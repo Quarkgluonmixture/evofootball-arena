@@ -95,6 +95,17 @@ const zones = await page.locator('#league-screen tr.zone-up, #league-screen tr.z
 check('promotion/relegation zones highlighted', zones === 4, `${zones} zone rows`);
 const cards = await page.locator('#league-screen .team-card').count();
 check('team cards render', cards === 16, `${cards} cards`);
+check('division badges on team cards', (await page.locator('#league-screen .tag.div-badge-1').count()) === 8);
+check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 2);
+
+// Toggle playoff mode and verify zones change to include the decider spots.
+await page.click('#league-screen button:has-text("⚔ Playoff")');
+await page.waitForTimeout(300);
+const playoffZones = await page.locator('#league-screen tr.zone-playoff').count();
+check('playoff mode marks the decider spots', playoffZones === 2, `${playoffZones} playoff rows`);
+await page.click('#league-screen button:has-text("Auto top/bottom 2")');
+await page.waitForTimeout(200);
+
 await page.screenshot({ path: `${OUT}/5-league.png` });
 await page.click('button:has-text("League table")');
 
@@ -115,8 +126,9 @@ await page.screenshot({ path: `${OUT}/6-league-after-season.png` });
 await page.click('#league-screen button:has-text("Season report")');
 await page.waitForTimeout(300);
 const reportText = await page.textContent('#league-screen');
-check('season report names the champions', reportText.includes('champions'), '');
+check('season report names both champions', reportText.includes('Premier champions') && reportText.includes('Challenger'), '');
 check('promotion/relegation reported', reportText.includes('promoted') && reportText.includes('relegated'));
+check('season story narrative renders', (await page.locator('#league-screen .report-story div').count()) >= 1);
 check('both division race charts render', (await page.locator('#league-screen .race-chart').count()) === 2);
 check('awards render (golden boot)', reportText.includes('Golden Boot'));
 await page.screenshot({ path: `${OUT}/7-season-report.png` });
@@ -130,8 +142,10 @@ await page.screenshot({ path: `${OUT}/8-evolution.png` });
 await page.click('#league-screen button:has-text("Hall of fame")');
 await page.waitForTimeout(300);
 const hallText = await page.textContent('#league-screen');
-check('hall of fame shows titles + records', hallText.includes('Titles') && hallText.includes('Most points'));
+check('hall of fame shows titles + records', hallText.includes('Premier titles') && hallText.includes('Most points'));
+check('movement records render', hallText.includes('Movement records'));
 check('dynasty timeline shows all 16 slots', (await page.locator('#league-screen .dynasty-row').count()) === 16);
+check('dynasty division bands render', (await page.locator('#league-screen .dynasty-cell.band-d1').count()) > 0);
 await page.screenshot({ path: `${OUT}/9-hall-of-fame.png` });
 await page.click('#league-screen button:has-text("League")');
 

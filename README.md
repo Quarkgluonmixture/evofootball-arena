@@ -22,7 +22,7 @@ npm run build      # typecheck + production bundle
 npm run calibrate  # headless: 2 seasons, prints per-match balance stats
 npm run evolve-check      # headless: 10 seasons of evolution
 npm run debug:visual      # drives the real 2D game in headless Chromium (dev server must be up)
-npm run debug:visual3d    # same, for the 3D viewer: meshes, cameras, replay (18 checks)
+npm run debug:visual3d    # same, for the 3D viewer: meshes, cameras, replay (20 checks)
 ```
 
 Requires Node 18+. No backend, no network — everything runs and saves locally.
@@ -75,7 +75,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence
-tests/                  vitest suites (32 tests)
+tests/                  vitest suites (73 tests)
 scripts/                headless calibration & evolution tools
 ```
 
@@ -87,7 +87,7 @@ scripts/                headless calibration & evolution tools
 - **Fixed timestep** (1/60 s). The watched match and the headless match run the
   exact same `Match.step()` — speed is just steps-per-frame.
 - **Determinism:** all randomness flows through a seeded RNG (`mulberry32`);
-  every match seed is `hash(leagueSeed, generation, round, matchIndex)`.
+  every match seed is `hash(leagueSeed, generation, round, division*4+index)`.
   Same seed ⇒ identical match, watched or skipped. Saves store no RNG state.
 - **Pitch:** 90×58 m, futsal-style walls (the ball bounces instead of going
   out) to keep autonomous play flowing. Goals are real: 7 m mouths.
@@ -226,14 +226,21 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ## League & evolution
 
-- **A 16-team pyramid: two divisions of 8** with promotion/relegation — each
-  division plays a single round-robin per season (56 matches total), 3/1/0
-  points, one Elo ladder (K=28) across both tiers.
-- End of season: D1 bottom-2 relegate, D2 top-2 promote (by table — sporting
-  merit). Evolution runs per division on the fitness axis: D1 never kills a
-  team (strugglers drop instead), while D2's bottom three are reborn from
-  **D1's elite parent pool** — new blood enters the pyramid at the bottom.
-  Promoted teams and the champion are always protected from rebirth.
+- **A 16-team pyramid: Premier Division + Challenger Division (8 each)** with
+  promotion/relegation — each division plays a single round-robin per season
+  (56 matches total), 3/1/0 points, one Elo ladder (K=28) across both tiers.
+- End of season: Premier bottom-2 relegate, Challenger top-2 promote (by
+  table — sporting merit). Evolution runs per division on the fitness axis:
+  the Premier never kills a team (strugglers drop instead), while the
+  Challenger's bottom three are reborn from **the Premier's elite parent
+  pool** — new blood enters the pyramid at the bottom. Promoted teams and the
+  champion are always protected from rebirth. Team identity (name, colors,
+  genes, squad, lineage) always travels with the team across divisions.
+- **Optional playoff mode** (league screen → Promotion rules): Premier 8th
+  drops and Challenger 1st rises automatically, then Premier 7th hosts
+  Challenger 2nd in a one-match decider for the last spot (a draw keeps the
+  Premier side up — deterministic, no extra time). The decider is a
+  standalone tie: no table/stats/Elo bookkeeping.
 - **Fitness** (normalized within each division, weights sum to 1): points
   0.28, goal difference 0.15, shot quality (xG/shot) 0.12, pass completion
   0.12, recoveries 0.11, stamina efficiency 0.10, style consistency 0.12.
@@ -245,17 +252,23 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ## Narrative & insight layer (league screen tabs)
 
-- **Season report**: champion headline, the points race (8 kit-colored lines,
-  round by round, direct end labels), and awards — Golden Boot / Playmaker /
-  Golden Glove from **per-player season stats** (goals, assists, shots, saves,
-  recoveries — passive sim counters, attribution tested; own goals credit
-  nobody). Champions history lists every season's winner + top scorer.
+- **Season report**: both champions, promoted/relegated (and the playoff
+  scoreline when enabled), a mined **season story** (titles retained/taken,
+  promoted overachievers, straight-bounce-backs, fallen champions, biggest
+  points swing up/down — `sim/records.ts`, unit-tested), per-division points
+  races, Premier awards — Golden Boot / Playmaker / Golden Glove from
+  **per-player season stats** — plus Challenger top scorers. Champions
+  history lists every season's winners (pre-pyramid seasons are labeled
+  "single-division era").
 - **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
   attributes — league mean per generation, so you can watch the meta drift —
   plus the last evolution's elite/mutated/reborn entries with fitness & drift.
-- **Hall of fame**: titles leaderboard, single-season records (points, goal
+- **Hall of fame**: Premier + Challenger title leaderboards, movement records
+  (most promotions/relegations, longest Premier tenure, greatest comeback —
+  relegated then later champions), single-season records (points, goal
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
-  per league slot (👑 elite / 🧬 mutated / 🔄 reborn, hover for parents).
+  per league slot — cell shading shows the division each season, with
+  🏆/🥇/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
 - Save format v3 (adds player aggregates; v1/v2 saves migrate in place).
 
 ### Balance (from `npm run calibrate`, 240 s matches)
@@ -290,8 +303,8 @@ overlays, possession/crowd readability aids, goal/save/shot event feedback,
 replay with scrubbing/event jumps/auto-camera/slow-mo), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
 fame), save/load (v4 — a v3 save's 8 teams become Division 1 with a fresh D2
-spawned beneath; v1/v2 chain-migrate), 66 tests, and browser-driving visual
-smoke tests for both views (20 + 20 checks).
+spawned beneath; v1/v2 chain-migrate), 73 tests, and browser-driving visual
+smoke tests for both views (26 + 20 checks).
 
 Ideas for the next phase:
 - Set pieces (corners/throw-ins) instead of futsal walls

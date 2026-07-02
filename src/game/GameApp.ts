@@ -143,6 +143,16 @@ export class GameApp implements GameActions {
     this.right = new RightPanel(rightEl);
     this.feed = new EventFeed(feedEl);
     this.leagueScreen = new LeagueScreen(stage);
+    this.leagueScreen.onSetPromotionMode = (m) => {
+      this.league.promotionMode = m;
+      saveLeague(this.league);
+      this.leagueScreen.refreshIfVisible(this.league);
+      this.feed.pushSystem(
+        m === 'playoff'
+          ? '⚔ Promotion rules: playoff mode — Premier 7th will host Challenger 2nd for the last spot.'
+          : '📋 Promotion rules: automatic top/bottom two.',
+      );
+    };
 
     // ---- League ----
     const loaded = hasSave() ? loadLeague() : null;
@@ -270,14 +280,21 @@ export class GameApp implements GameActions {
       this.buffer = new ReplayBuffer();
     }
     if (this.league.seasonDone) {
+      const prevChampion = this.league.history[this.league.history.length - 1]?.championName;
       const rec = this.league.finishSeason();
-      this.feed.pushSystem(`🏆 Season ${rec.generation} — champions: ${rec.championName}!`);
-      if (rec.promoted?.length) {
-        this.feed.pushSystem(`⬆️ Promoted to D1: ${rec.promoted.map((p) => p.name).join(', ')}`);
+      this.feed.pushSystem(
+        rec.championName === prevChampion
+          ? `🏆 ${rec.championName} retained the Premier title! (Season ${rec.generation})`
+          : `🏆 ${rec.championName} are Premier champions! (Season ${rec.generation})`,
+      );
+      if (rec.d2Champion) this.feed.pushSystem(`🥇 ${rec.d2Champion} won the Challenger Division.`);
+      if (rec.playoff) {
+        this.feed.pushSystem(
+          `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — ${rec.playoff.winnerName} take the final Premier spot.`,
+        );
       }
-      if (rec.relegated?.length) {
-        this.feed.pushSystem(`⬇️ Relegated to D2: ${rec.relegated.map((p) => p.name).join(', ')}`);
-      }
+      for (const p of rec.promoted ?? []) this.feed.pushSystem(`⬆️ ${p.name} promoted to the Premier Division.`);
+      for (const r of rec.relegated ?? []) this.feed.pushSystem(`⬇️ ${r.name} relegated to the Challenger Division.`);
       for (const e of rec.evolution.entries) {
         if (e.kind === 'reborn') {
           this.feed.pushSystem(`🔄 ${e.name} born from ${e.parents?.join(' × ')} (drift ${e.drift.toFixed(2)})`);

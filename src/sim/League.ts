@@ -14,7 +14,10 @@ import {
 } from './types';
 
 export type Division = 0 | 1;
-export const DIVISION_NAMES = ['Division 1', 'Division 2'] as const;
+export const DIVISION_NAMES = ['Premier Division', 'Challenger Division'] as const;
+export const DIVISION_SHORT = ['Premier', 'Challenger'] as const;
+
+export type PromotionMode = 'auto' | 'playoff';
 
 export interface Fixture {
   round: number;
@@ -27,6 +30,8 @@ export interface Fixture {
   played: boolean;
   scoreH?: number;
   scoreA?: number;
+  /** Promotion playoff decider (home = Premier 7th, away = Challenger 2nd). */
+  playoff?: boolean;
 }
 
 export interface TableRow {
@@ -67,8 +72,12 @@ export interface SeasonRecord {
   }>;
   fitness: Array<FitnessBreakdown & { name: string }>;
   evolution: EvolutionReport;
+  /** Playoff decider result, when promotion mode is 'playoff'. */
+  playoff?: { homeName: string; awayName: string; score: [number, number]; winnerName: string };
   /** Post-season additions (optional: absent on records from old saves). */
   awards?: SeasonAwards;
+  /** Challenger Division top scorers (top 3). */
+  awardsD2?: SeasonAwards;
   /** League-average gene values of the population that PLAYED this season. */
   geneMeans?: Record<GeneKey, number>;
   attrMeans?: Record<AttrKey, number>;
@@ -101,6 +110,12 @@ export class League {
   seed: number;
   generation = 1;
   matchDuration: number;
+  /**
+   * 'auto' (default): Premier bottom-2 swap with Challenger top-2.
+   * 'playoff': Premier 8th down, Challenger 1st up, and Premier 7th hosts
+   * Challenger 2nd in a one-match decider (a DRAW keeps the Premier side up).
+   */
+  promotionMode: PromotionMode = 'auto';
   franchises: Franchise[] = [];
   fixtures: Fixture[] = [];
   /** Index of the next unplayed fixture. */
@@ -144,11 +159,30 @@ export class League {
   }
 
   get seasonDone(): boolean {
+    this.ensurePlayoffFixture();
     return this.cursor >= this.fixtures.length;
   }
 
   nextFixture(): Fixture | null {
     return this.seasonDone ? null : this.fixtures[this.cursor];
+  }
+
+  /** In playoff mode, append the decider once the regular season is complete. */
+  private ensurePlayoffFixture(): void {
+    if (this.promotionMode !== 'playoff') return;
+    if (this.fixtures.some((f) => f.playoff)) return;
+    if (this.cursor < this.fixtures.length) return;
+    const seventh = this.standings(0)[6];
+    const second = this.standings(1)[1];
+    this.fixtures.push({
+      round: TEAMS_PER_DIVISION - 1, // "round 8": seed hash stays unique
+      index: 0,
+      division: 0,
+      home: seventh.slot,
+      away: second.slot,
+      played: false,
+      playoff: true,
+    });
   }
 
   currentRound(): number {
@@ -181,6 +215,12 @@ export class League {
     fixture.played = true;
     fixture.scoreH = result.score[0];
     fixture.scoreA = result.score[1];
+
+    // The playoff is a standalone decider: no table/stats/Elo bookkeeping.
+    if (fixture.playoff) {
+      this.cursor++;
+      return;
+    }
 
     const rows = [this.table[fixture.home], this.table[fixture.away]];
     const [sh, sa] = result.score;
@@ -284,13 +324,42 @@ export class League {
     const map1 = new Map(fit1.map((x) => [x.slot, x.total]));
     const map2 = new Map(fit2.map((x) => [x.slot, x.total]));
 
-    // Protections: the champion, and the promoted pair (they earned it on the
-    // pitch — evolution must not delete them on style grounds).
+    // Who goes up and down. 'auto': straight top/bottom-2 swap. 'playoff':
+    // 8th down + 1st up automatically, 7th-vs-2nd decider for the last spot
+    // (a draw keeps the Premier side up).
+    let promoted: typeof standings2;
+    let relegated: typeof standings1;
+    let playoffResult: SeasonRecord['playoff'];
+    if (this.promotionMode === 'playoff') {
+      const decider = this.fixtures.find((f) => f.playoff && f.played);
+      relegated = [standings1[7]];
+      promoted = [standings2[0]];
+      if (decider && decider.scoreH !== undefined && decider.scoreA !== undefined) {
+        const challengerWon = decider.scoreA > decider.scoreH;
+        const homeF = this.franchise(decider.home);
+        const awayF = this.franchise(decider.away);
+        playoffResult = {
+          homeName: homeF.name,
+          awayName: awayF.name,
+          score: [decider.scoreH, decider.scoreA],
+          winnerName: challengerWon ? awayF.name : homeF.name,
+        };
+        if (challengerWon) {
+          relegated = [...relegated, standings1[6]];
+          promoted = [...promoted, standings2[1]];
+        }
+      }
+    } else {
+      promoted = standings2.slice(0, 2);
+      relegated = standings1.slice(-2);
+    }
+
+    // Protections: the champion, and the promoted team(s) (they earned it on
+    // the pitch — evolution must not delete them on style grounds).
     map1.set(standings1[0].slot, Math.max(...map1.values()) + eps);
-    const promoted = standings2.slice(0, 2);
-    const relegated = standings1.slice(-2);
-    map2.set(promoted[1].slot, Math.max(...map2.values()) + eps);
-    map2.set(promoted[0].slot, Math.max(...map2.values()) + eps);
+    for (const p of [...promoted].reverse()) {
+      map2.set(p.slot, Math.max(...map2.values()) + eps);
+    }
 
     const record: SeasonRecord = {
       generation: this.generation,
@@ -299,6 +368,7 @@ export class League {
       d2Champion: standings2[0].franchise.name,
       promoted: promoted.map((r) => ({ slot: r.slot, name: r.franchise.name })),
       relegated: relegated.map((r) => ({ slot: r.slot, name: r.franchise.name })),
+      playoff: playoffResult,
       table: [...standings1, ...standings2].map((r) => ({
         slot: r.slot, name: r.franchise.name, pts: r.pts, w: r.w, d: r.d, l: r.l,
         gf: r.gf, ga: r.ga, elo: Math.round(r.franchise.elo),
@@ -308,7 +378,8 @@ export class League {
         .map((x) => ({ ...x, name: this.franchise(x.slot).name }))
         .sort((a, b) => b.total - a.total),
       evolution: undefined as unknown as EvolutionReport,
-      awards: this.buildAwards(),
+      awards: this.buildAwards(0),
+      awardsD2: this.buildAwards(1),
       geneMeans: this.geneMeans(),
       attrMeans: this.attrMeans(),
       pointsTimeline: this.buildPointsTimeline(),
@@ -362,9 +433,8 @@ export class League {
     return lines;
   }
 
-  /** Awards are for the top flight (Division 1). */
-  private buildAwards(): SeasonAwards {
-    const lines = this.playerLines(0);
+  private buildAwards(division: Division): SeasonAwards {
+    const lines = this.playerLines(division);
     const topScorers = [...lines]
       .sort((a, b) => b.goals - a.goals || b.assists - a.assists || a.slot - b.slot)
       .slice(0, 5)
@@ -427,6 +497,7 @@ export class League {
       seed: this.seed,
       generation: this.generation,
       matchDuration: this.matchDuration,
+      promotionMode: this.promotionMode,
       franchises: this.franchises,
       fixtures: this.fixtures,
       cursor: this.cursor,
@@ -483,6 +554,7 @@ export class League {
       seed: data.seed,
       generation: data.generation,
       matchDuration: data.matchDuration,
+      promotionMode: data.promotionMode ?? 'auto',
       franchises: data.franchises,
       fixtures: data.fixtures,
       cursor: data.cursor,

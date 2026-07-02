@@ -84,6 +84,77 @@ describe('League', () => {
     expect(league.table.every((r) => r.played === 0)).toBe(true);
   });
 
+  it('playoff mode: 8th down, 1st up, 7th-vs-2nd decider — deterministic', () => {
+    const run = () => {
+      const league = new League({ seed: 4242, matchDuration: 30 });
+      league.promotionMode = 'playoff';
+      // Regular season: exactly 56 fixtures, then the decider appears.
+      for (let i = 0; i < 56; i++) {
+        const f = league.nextFixture()!;
+        expect(f.playoff).toBeUndefined();
+        league.applyResult(f, league.createMatch(f).runToCompletion());
+      }
+      expect(league.seasonDone).toBe(false); // playoff still pending
+      const decider = league.nextFixture()!;
+      expect(decider.playoff).toBe(true);
+      expect(decider.home).toBe(league.standings(0)[6].slot); // Premier 7th hosts
+      expect(decider.away).toBe(league.standings(1)[1].slot); // Challenger 2nd
+
+      const tableBefore = JSON.stringify(league.table);
+      league.applyResult(decider, league.createMatch(decider).runToCompletion());
+      // The decider is a standalone tie: league table untouched.
+      expect(JSON.stringify(league.table)).toBe(tableBefore);
+
+      const rec = league.finishSeason();
+      return { rec, decider };
+    };
+
+    const a = run();
+    const b = run();
+    expect(a.rec.playoff).toBeDefined();
+    expect(a.rec.playoff).toEqual(b.rec.playoff); // deterministic decider
+    expect(a.rec.promoted).toEqual(b.rec.promoted);
+
+    const challengerWon = a.rec.playoff!.score[1] > a.rec.playoff!.score[0];
+    if (challengerWon) {
+      expect(a.rec.promoted!.length).toBe(2);
+      expect(a.rec.relegated!.length).toBe(2);
+      expect(a.rec.playoff!.winnerName).toBe(a.rec.playoff!.awayName);
+    } else {
+      // Premier side wins or draws: only the automatic spots move.
+      expect(a.rec.promoted!.length).toBe(1);
+      expect(a.rec.relegated!.length).toBe(1);
+      expect(a.rec.playoff!.winnerName).toBe(a.rec.playoff!.homeName);
+    }
+  });
+
+  it('identity follows the team across divisions (name, colors, genome)', () => {
+    const league = makeLeague();
+    playSeason(league);
+    const upSlot = league.standings(1)[0].slot;
+    const downSlot = league.standings(0)[7].slot;
+    const upBefore = JSON.parse(JSON.stringify(league.franchise(upSlot)));
+    const downBefore = JSON.parse(JSON.stringify(league.franchise(downSlot)));
+    league.finishSeason();
+
+    // Promoted champion of D2: elite-protected — everything survives the move.
+    const up = league.franchise(upSlot);
+    expect(up.division).toBe(0);
+    expect(up.name).toBe(upBefore.name);
+    expect(up.colors).toEqual(upBefore.colors);
+    expect(up.genome).toEqual(upBefore.genome);
+    expect(up.squad).toEqual(upBefore.squad);
+
+    // Relegated team: identity (name/colors/lineage) survives; genes may
+    // mutate per the rebuild policy, but it is never reborn.
+    const down = league.franchise(downSlot);
+    expect(down.division).toBe(1);
+    expect(down.name).toBe(downBefore.name);
+    expect(down.colors).toEqual(downBefore.colors);
+    expect(down.lineage.length).toBeGreaterThan(downBefore.lineage.length);
+    expect(down.lineage.some((l) => l.event === 'reborn' && l.generation === 2)).toBe(false);
+  });
+
   it('promotes the D2 top two and relegates the D1 bottom two, by table', () => {
     const league = makeLeague();
     playSeason(league);

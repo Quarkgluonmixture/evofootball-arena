@@ -191,5 +191,14 @@ button.danger:hover { border-color: #ef4444; color: #ef4444; }
 
 .dynasty-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; font-size: 12px; }
 .dynasty-row .g-name { width: 130px; }
-.dynasty-cells { letter-spacing: 2px; }
-.dynasty-cell { cursor: default; }
+.dynasty-cells { letter-spacing: 0; display: inline-flex; gap: 2px; }
+.dynasty-cell { cursor: default; padding: 1px 3px; border-radius: 3px; }
+.dynasty-cell.band-d0 { background: rgba(74, 222, 128, 0.13); }
+.dynasty-cell.band-d1 { background: rgba(130, 148, 181, 0.13); }
+
+#league-screen tr.zone-playoff td { background: rgba(250, 204, 21, 0.08); }
+.rules-row { margin-bottom: 12px; font-size: 12px; }
+.report-story { margin: 10px 0 4px; padding: 8px 12px; border-left: 3px solid var(--accent); color: var(--text); font-size: 13px; }
+.report-story div { margin: 2px 0; }
+.tag.div-badge-0 { border-color: var(--accent); color: var(--accent); }
+.tag.div-badge-1 { border-color: #8294b5; }

@@ -1,6 +1,13 @@
 import { GENE_KEYS, describeIdentity } from '../evolution/genome';
 import { ATTR_KEYS, squadSummary } from '../evolution/playerGenome';
-import { DIVISION_NAMES, type Division, type League, type PlayerSeasonLine, type SeasonRecord } from '../sim/League';
+import {
+  DIVISION_NAMES, DIVISION_SHORT,
+  type Division, type League, type PlayerSeasonLine, type PromotionMode, type SeasonRecord,
+} from '../sim/League';
+import {
+  challengerTitles, divisionIn, greatestComeback, longestPremierStreak, movementCounts,
+  premierTitles, seasonStories,
+} from '../sim/records';
 import { raceChart, sparklineTile } from './charts';
 import { bar, button, colorHex, el } from './dom';
 
@@ -25,6 +32,8 @@ export class LeagueScreen {
   private visible = false;
   private tab: Tab = 'league';
   private league: League | null = null;
+  /** Set by GameApp: change the promotion rules (persisted with the save). */
+  onSetPromotionMode: ((m: PromotionMode) => void) | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -67,6 +76,7 @@ export class LeagueScreen {
 
     switch (this.tab) {
       case 'league':
+        this.renderRules(league);
         for (const d of [0, 1] as Division[]) {
           this.root.appendChild(el('h2', '', DIVISION_NAMES[d]));
           this.renderStandings(league, d);
@@ -88,6 +98,26 @@ export class LeagueScreen {
 
   /* ---------------- League tab ---------------- */
 
+  private renderRules(league: League): void {
+    const row = el('div', 'row rules-row');
+    row.appendChild(el('span', 'muted', 'Promotion rules:'));
+    const auto = button('Auto top/bottom 2', () => this.onSetPromotionMode?.('auto'));
+    const playoff = button('⚔ Playoff', () => this.onSetPromotionMode?.('playoff'));
+    auto.classList.toggle('active', league.promotionMode === 'auto');
+    playoff.classList.toggle('active', league.promotionMode === 'playoff');
+    row.append(auto, playoff);
+    row.appendChild(
+      el(
+        'span',
+        'muted',
+        league.promotionMode === 'auto'
+          ? '— Premier bottom two swap with Challenger top two.'
+          : '— Premier 8th down, Challenger 1st up; Premier 7th hosts Challenger 2nd in a one-match decider (draw keeps the Premier side up).',
+      ),
+    );
+    this.root.appendChild(row);
+  }
+
   private renderStandings(league: League, division: Division): void {
     const table = el('table');
     const thead = el('thead');
@@ -99,12 +129,29 @@ export class LeagueScreen {
 
     const tbody = el('tbody');
     const rows = league.standings(division);
+    const playoffMode = league.promotionMode === 'playoff';
     rows.forEach((row, i) => {
       const tr = el('tr');
-      // Promotion / relegation zones.
-      if (division === 0 && i >= rows.length - 2) tr.className = 'zone-down';
-      if (division === 1 && i < 2) tr.className = 'zone-up';
-      tr.appendChild(el('td', '', String(i + 1)));
+      // Promotion / relegation / playoff zones with explicit markers.
+      let marker = '';
+      if (division === 0) {
+        if (i === rows.length - 1 || (!playoffMode && i === rows.length - 2)) {
+          tr.className = 'zone-down';
+          marker = '⬇';
+        } else if (playoffMode && i === rows.length - 2) {
+          tr.className = 'zone-playoff';
+          marker = '⚔';
+        }
+      } else {
+        if (i === 0 || (!playoffMode && i === 1)) {
+          tr.className = 'zone-up';
+          marker = '⬆';
+        } else if (playoffMode && i === 1) {
+          tr.className = 'zone-playoff';
+          marker = '⚔';
+        }
+      }
+      tr.appendChild(el('td', '', `${i + 1}${marker ? ' ' + marker : ''}`));
       const nameTd = el('td');
       const dot = el('span', 'dot');
       dot.style.background = colorHex(row.franchise.colors.primary);
@@ -135,6 +182,8 @@ export class LeagueScreen {
       card.appendChild(head);
 
       const tags = el('div', 'tags');
+      const divBadge = el('span', `tag div-badge-${f.division}`, DIVISION_SHORT[f.division]);
+      tags.appendChild(divBadge);
       for (const t of describeIdentity(f.genome)) tags.appendChild(el('span', 'tag', t));
       card.appendChild(tags);
 
@@ -185,7 +234,8 @@ export class LeagueScreen {
     }
 
     const headline = el('div', 'report-headline');
-    headline.innerHTML = `🏆 <b>Season ${rec.generation}</b> — champions: <b>${rec.championName}</b> (${rec.table[0].pts} pts, GD ${rec.table[0].gf - rec.table[0].ga})`;
+    headline.innerHTML = `🏆 <b>Season ${rec.generation}</b> — Premier champions: <b>${rec.championName}</b> (${rec.table[0].pts} pts, GD ${rec.table[0].gf - rec.table[0].ga})` +
+      (rec.d2Champion ? ` &nbsp;·&nbsp; 🥇 Challenger champions: <b>${rec.d2Champion}</b>` : '');
     this.root.appendChild(headline);
     if (rec.promoted && rec.relegated) {
       const moves = el('div', 'history-entry');
@@ -193,6 +243,19 @@ export class LeagueScreen {
         `⬆️ promoted: <b>${rec.promoted.map((p) => p.name).join(', ')}</b>` +
         ` &nbsp;·&nbsp; ⬇️ relegated: <b>${rec.relegated.map((p) => p.name).join(', ')}</b>`;
       this.root.appendChild(moves);
+    }
+    if (rec.playoff) {
+      const po = el('div', 'history-entry');
+      po.innerHTML = `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — <b>${rec.playoff.winnerName}</b> take the final Premier spot.`;
+      this.root.appendChild(po);
+    }
+
+    // The season's story, mined from history.
+    const stories = seasonStories(league.history);
+    if (stories.length > 0) {
+      const story = el('div', 'report-story');
+      for (const s of stories) story.appendChild(el('div', '', s));
+      this.root.appendChild(story);
     }
 
     if (rec.pointsTimeline) {
@@ -223,10 +286,16 @@ export class LeagueScreen {
     }
 
     if (rec.awards) {
-      this.root.appendChild(el('h2', '', 'Awards (Division 1)'));
+      this.root.appendChild(el('h2', '', 'Awards (Premier Division)'));
       this.root.appendChild(this.awardsBlock(rec));
     } else {
       this.root.appendChild(el('div', 'muted', 'No award data for this season (pre-v3 save).'));
+    }
+    if (rec.awardsD2 && rec.awardsD2.topScorers.length > 0) {
+      this.root.appendChild(el('h2', '', 'Challenger top scorers'));
+      for (const l of rec.awardsD2.topScorers.slice(0, 3)) {
+        this.root.appendChild(el('div', 'history-entry', `⚽ ${l.name} (${l.team}) — ${l.goals}g ${l.assists}a`));
+      }
     }
 
     this.renderCurrentScorers(league);
@@ -235,10 +304,12 @@ export class LeagueScreen {
     for (const r of [...league.history].reverse()) {
       const entry = el('div', 'history-entry');
       const boot = r.awards?.topScorers[0];
+      const singleEra = !r.table.some((row) => row.division !== undefined);
       entry.innerHTML =
         `<b>Season ${r.generation}</b> — 🏆 <b>${r.championName}</b>` +
-        (r.d2Champion ? ` · D2: ${r.d2Champion}` : '') +
-        (boot ? ` · ⚽ ${boot.name} (${boot.team}) ${boot.goals}g` : '');
+        (r.d2Champion ? ` · 🥇 ${r.d2Champion}` : '') +
+        (boot ? ` · ⚽ ${boot.name} (${boot.team}) ${boot.goals}g` : '') +
+        (singleEra ? ' · <i>(single-division era)</i>' : '');
       this.root.appendChild(entry);
     }
   }
@@ -316,12 +387,42 @@ export class LeagueScreen {
       return;
     }
 
-    // Titles by franchise name.
-    const titles = new Map<string, number>();
-    for (const r of h) titles.set(r.championName, (titles.get(r.championName) ?? 0) + 1);
-    this.root.appendChild(el('h2', '', '🏆 Titles'));
-    for (const [name, n] of [...titles.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8)) {
+    // Titles by team name (Premier + Challenger).
+    this.root.appendChild(el('h2', '', '🏆 Premier titles'));
+    for (const [name, n] of [...premierTitles(h).entries()].sort((a, b) => b[1] - a[1]).slice(0, 6)) {
       this.root.appendChild(el('div', 'history-entry', `${'🏆'.repeat(Math.min(n, 8))} ${name} — ${n}`));
+    }
+    const d2t = [...challengerTitles(h).entries()].sort((a, b) => b[1] - a[1]).slice(0, 4);
+    if (d2t.length > 0) {
+      this.root.appendChild(el('h2', '', '🥇 Challenger titles'));
+      for (const [name, n] of d2t) {
+        this.root.appendChild(el('div', 'history-entry', `${'🥇'.repeat(Math.min(n, 8))} ${name} — ${n}`));
+      }
+    }
+
+    // Movement records + long-run arcs.
+    this.root.appendChild(el('h2', '', '🎢 Movement records'));
+    const moves = movementCounts(this.league!.franchises);
+    const mostUp = [...moves].sort((a, b) => b.promotions - a.promotions)[0];
+    const mostDown = [...moves].sort((a, b) => b.relegations - a.relegations)[0];
+    if (mostUp && mostUp.promotions > 0) {
+      this.root.appendChild(el('div', 'history-entry', `⬆️ Most promotions: ${mostUp.name} — ${mostUp.promotions}`));
+    }
+    if (mostDown && mostDown.relegations > 0) {
+      this.root.appendChild(el('div', 'history-entry', `⬇️ Most relegations: ${mostDown.name} — ${mostDown.relegations}`));
+    }
+    const streak = longestPremierStreak(h, this.league!.franchises);
+    if (streak) {
+      this.root.appendChild(
+        el('div', 'history-entry', `🛡️ Longest Premier tenure: ${streak.name} — ${streak.length} season${streak.length > 1 ? 's' : ''}`),
+      );
+    }
+    const comeback = greatestComeback(h);
+    if (comeback) {
+      this.root.appendChild(
+        el('div', 'history-entry',
+          `🔥 Greatest comeback: ${comeback.name} — relegated in S${comeback.fellSeason}, Premier champions by S${comeback.wonSeason}`),
+      );
     }
 
     // Single-season records mined from the history.
@@ -362,9 +463,12 @@ export class LeagueScreen {
       this.root.appendChild(div);
     }
 
-    // Dynasty strips: one row per slot, division movements included.
+    // Dynasty strips: one row per slot, with division bands (cell background
+    // = the division that season) and champion/movement icons.
     this.root.appendChild(el('h2', '', '🧬 Dynasty timeline (per league slot)'));
-    this.root.appendChild(el('div', 'muted', '👑 elite · 🧬 mutated · 🔄 reborn · ⬆️ promoted · ⬇️ relegated'));
+    this.root.appendChild(
+      el('div', 'muted', '🏆 Premier champions · 🥇 Challenger champions · ⬆️⬇️ moved · 👑 elite · 🧬 mutated · 🔄 reborn — cell shade = division that season'),
+    );
     const ordered = [...this.league!.division(0), ...this.league!.division(1)];
     ordered.forEach((f, i) => {
       if (i === 0) this.root.appendChild(el('div', 'muted', DIVISION_NAMES[0]));
@@ -379,8 +483,11 @@ export class LeagueScreen {
         let icon = e ? (e.kind === 'elite' ? '👑' : e.kind === 'mutated' ? '🧬' : '🔄') : '·';
         if (r.promoted?.some((p) => p.slot === f.slot)) icon = '⬆️';
         if (r.relegated?.some((p) => p.slot === f.slot)) icon = '⬇️';
-        const cell = el('span', 'dynasty-cell', icon);
-        if (e) cell.title = `S${r.generation}: ${e.name}${e.parents ? ` ← ${e.parents.join(' × ')}` : ''}`;
+        const d2ChampSlot = r.table.find((row) => row.division === 1)?.slot;
+        if (d2ChampSlot === f.slot) icon = '🥇';
+        if (r.championSlot === f.slot) icon = '🏆';
+        const cell = el('span', `dynasty-cell band-d${divisionIn(r, f.slot)}`, icon);
+        cell.title = `S${r.generation} · ${DIVISION_SHORT[divisionIn(r, f.slot)]}${e ? `: ${e.name}${e.parents ? ` ← ${e.parents.join(' × ')}` : ''}` : ''}`;
         cells.appendChild(cell);
       }
       strip.appendChild(cells);
