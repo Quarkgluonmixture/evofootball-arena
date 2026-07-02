@@ -33,12 +33,21 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
+**Status (as of tag `phase-12.1`)**: phases 0–12 complete — deterministic 5v5
+sim; 14 tactical genes + 5-attr squad DNA; a 16-team Premier/Challenger
+pyramid with promotion/relegation and an optional playoff decider; 2D (Pixi) +
+3D (Three.js) viewers with replay; season reports/awards/narratives, evolution
+sparklines, hall of fame with dynasty timelines; saves at v4 (chain-migrates
+v1–v3). 73 vitest tests; Playwright suites: 2D 26 checks, 3D 20 checks;
+~44 ms/headless match. Git tags `phase-10`…`phase-12.1` are known-green
+checkpoints. Open roadmap ideas live in the README's "next steps".
+
 ## 2. Module ownership
 
 | Module | Owns | Must NOT do |
 |---|---|---|
 | `src/utils/` | seeded RNG (`mulberry32`), vec2 math, scalar helpers | import anything else in src |
-| `src/sim/` | Match state machine, ball/player physics, mechanics (kicks/tackles/saves/xG), League (fixtures, table, Elo, season lifecycle), stats/events | import render*, ui, pixi, three, browser APIs |
+| `src/sim/` | Match state machine, ball/player physics, mechanics (kicks/tackles/saves/xG), League (two-division fixtures, tables, Elo, promotion/relegation, playoff, season lifecycle), record mining (`records.ts`, pure), stats/events | import render*, ui, pixi, three, browser APIs |
 | `src/ai/` | TeamBrain (modes + press/mark assignments), PlayerBrain (utility scoring), action execution/steering, formations, perception | mutate anything except the deciding player's own action/targets (kicks go through `match.perform*`) |
 | `src/evolution/` | TacticalGenome + squad DNA operators, fitness, selection (elite/mutate/reborn), names/kits, franchise lineage | know about matches at runtime (it consumes season aggregates only) |
 | `src/replay/` | `ReplayBuffer`: 10 Hz RenderState snapshots, binary-search + interpolation | hold references into live sim objects (it stores adapter-produced plain data) |
@@ -71,6 +80,7 @@ only via `import type` where the target is `Match` itself. Keep it that way.
 ```
 league creation rng : hashSeed(leagueSeed, 0xF0)
 match seed          : hashSeed(leagueSeed, generation, round, division*4 + index)
+playoff decider     : same scheme with round = 7 (regular rounds are 0–6)
 v3→v4 D2 spawn      : hashSeed(leagueSeed, generation, 0xD2)
 evolution rng       : hashSeed(leagueSeed, generation, 0xE0)
 v1→v2 squad backfill: hashSeed(leagueSeed, slot, 0xA7)
@@ -143,6 +153,12 @@ in this order — record → evolve → promote/relegate):
 - **Promotion/relegation is by TABLE position** (points), a deliberately
   different axis from evolution (fitness): D1 bottom-2 ↔ D2 top-2. Lineage
   gets 'promoted'/'relegated' entries.
+- **Optional playoff mode** (`league.promotionMode = 'playoff'`, UI toggle,
+  persisted): 8th down + 1st up automatically; Premier 7th hosts Challenger
+  2nd for the last spot; a DRAW keeps the Premier side up (deterministic, no
+  extra time). The decider is a standalone tie — `applyResult` skips
+  table/stats/Elo for `fixture.playoff` — and appears lazily via
+  `ensurePlayoffFixture()` once the 56 regular fixtures are done.
 - Squad DNA mutates/crosses position-by-position alongside the tactics.
 
 Season history (`SeasonRecord`) stores both division tables (with division +

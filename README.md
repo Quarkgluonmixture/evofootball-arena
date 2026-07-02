@@ -306,9 +306,14 @@ fame), save/load (v4 — a v3 save's 8 teams become Division 1 with a fresh D2
 spawned beneath; v1/v2 chain-migrate), 73 tests, and browser-driving visual
 smoke tests for both views (26 + 20 checks).
 
-Ideas for the next phase:
-- Set pieces (corners/throw-ins) instead of futsal walls
-- A cup competition (knockout) alongside the league pyramid
-- Optional GLTF player models with the procedural mesh as fallback
-- Optional learned policies (RL) benchmarked against the utility AI
+Ideas for the next phase (rough priority order):
+- **A cup competition** (single-elimination knockout across both divisions) —
+  giant-killing narratives, cup finals worth watching in 3D, cup honors in
+  the hall of fame
+- Set pieces (corners/throw-ins) instead of futsal walls — touches the
+  deterministic core; needs full recalibration per docs/ARCHITECTURE.md
+- Optional learned policies (ES/RL "wildcard team") benchmarked against the
+  evolved utility-AI teams
 - WebWorker simulation for even faster multi-season runs
+- Release polish: responsive layout, touch controls, PWA, itch.io page
+- Optional GLTF player models with the procedural mesh as fallback
