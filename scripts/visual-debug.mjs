@@ -96,17 +96,41 @@ check('team cards render', cards === 8, `${cards} cards`);
 await page.screenshot({ path: `${OUT}/5-league.png` });
 await page.click('button:has-text("League table")');
 
-// Simulate a full season headless via the UI button.
+// Simulate two full seasons headless via the UI button (two, so the
+// evolution sparklines have a line to draw).
 await page.click('button:has-text("Season")');
-await page.waitForFunction(
-  () => !document.querySelector('#event-feed')?.textContent?.includes('undefined'),
-);
-await page.waitForTimeout(30000);
+await page.waitForTimeout(25000);
 const feedText = await page.textContent('#event-feed');
 check('season sim completes with champion message', feedText.includes('champions'), '');
+await page.click('button:has-text("Season")');
+await page.waitForTimeout(25000);
+
+// League screen tabs: report, evolution, hall of fame.
 await page.click('button:has-text("League table")');
 await page.waitForTimeout(400);
 await page.screenshot({ path: `${OUT}/6-league-after-season.png` });
+
+await page.click('#league-screen button:has-text("Season report")');
+await page.waitForTimeout(300);
+const reportText = await page.textContent('#league-screen');
+check('season report names the champions', reportText.includes('champions'), '');
+check('points race chart renders', (await page.locator('#league-screen .race-chart svg path').count()) >= 8);
+check('awards render (golden boot)', reportText.includes('Golden Boot'));
+await page.screenshot({ path: `${OUT}/7-season-report.png` });
+
+await page.click('#league-screen button:has-text("Evolution")');
+await page.waitForTimeout(300);
+const tiles = await page.locator('#league-screen .spark-tile').count();
+check('gene+attr drift sparklines render', tiles >= 19, `${tiles} tiles`);
+await page.screenshot({ path: `${OUT}/8-evolution.png` });
+
+await page.click('#league-screen button:has-text("Hall of fame")');
+await page.waitForTimeout(300);
+const hallText = await page.textContent('#league-screen');
+check('hall of fame shows titles + records', hallText.includes('Titles') && hallText.includes('Most points'));
+check('dynasty timeline shows all 8 slots', (await page.locator('#league-screen .dynasty-row').count()) === 8);
+await page.screenshot({ path: `${OUT}/9-hall-of-fame.png` });
+await page.click('#league-screen button:has-text("League")');
 
 check('no console/page errors', errors.length === 0, errors.slice(0, 3).join(' | '));
 

@@ -119,9 +119,28 @@ export const emptyStats = (): TeamMatchStats => ({
   staminaSpent: 0,
 });
 
+/** Per-player counters for awards/records — passive, never read by the sim. */
+export interface PlayerMatchStats {
+  goals: number;
+  assists: number;
+  shots: number;
+  saves: number;
+  recoveries: number;
+}
+
+export const emptyPlayerStats = (): PlayerMatchStats => ({
+  goals: 0,
+  assists: 0,
+  shots: 0,
+  saves: 0,
+  recoveries: 0,
+});
+
 export interface MatchResult {
   score: [number, number];
   stats: [TeamMatchStats, TeamMatchStats];
+  /** Indexed by gid (0-4 home, 5-9 away). */
+  playerStats: PlayerMatchStats[];
   events: MatchEvent[];
   duration: number;
 }

@@ -78,11 +78,19 @@ export function performShot(match: Match, shooter: Player): void {
   match.kickBall(shooter, dir, SHOT_SPEED);
   team.stats.shots++;
   team.stats.xg += q;
+  match.playerStats[shooter.gid].shots++;
 
   // Dive difficulty, frozen at the moment of the strike (keeper reaction).
   const path = closestPointOnSegment(match.ball.pos, add(match.ball.pos, scale(dir, 40)), gk.pos);
   const gkPerp = dist(path, gk.pos);
   const difficulty = clamp(1.15 - gkPerp / keeperReach(opp, gk), 0.25, 1);
+
+  // Assist credit if this shot scores: the completed pass that set it up.
+  const lpForAssist = match.lastCompletedPass;
+  const assistGid =
+    lpForAssist && lpForAssist.receiverGid === shooter.gid && match.simTime - lpForAssist.t < 3
+      ? lpForAssist.passerGid
+      : null;
 
   match.markShotOutcome('miss'); // close out any still-pending previous shot
   match.shotLog.push({ t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending' });
@@ -94,6 +102,7 @@ export function performShot(match: Match, shooter: Player): void {
     resolved: false,
     logIndex: match.shotLog.length - 1,
     difficulty,
+    assistGid,
   };
 
   // Key pass: shot within 3s of receiving.
@@ -152,6 +161,7 @@ export function tryTackles(match: Match): void {
 
   if (match.rng.chance(p)) {
     oppTeam.stats.tackles++;
+    match.playerStats[tackler.gid].recoveries++;
     // No feed event — tackles are too frequent to narrate; stats + debug show them.
     ball.owner = null;
     ball.lastTouch = tackler;
@@ -196,6 +206,7 @@ export function tryKeeperSave(match: Match): void {
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;
     defTeam.stats.saves++;
+    match.playerStats[gk.gid].saves++;
     match.markShotOutcome('saved');
     if (speed < 19 && match.rng.chance(0.65)) {
       match.pushEvent('save', defSide, `${gk.name} catches it`);

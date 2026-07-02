@@ -238,6 +238,21 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 - Team cards show identity tags derived from gene extremes ("Gegenpress",
   "Counter-attack", "Low block", "High risk / chaos"…), fitness, and lineage.
 
+## Narrative & insight layer (league screen tabs)
+
+- **Season report**: champion headline, the points race (8 kit-colored lines,
+  round by round, direct end labels), and awards — Golden Boot / Playmaker /
+  Golden Glove from **per-player season stats** (goals, assists, shots, saves,
+  recoveries — passive sim counters, attribution tested; own goals credit
+  nobody). Champions history lists every season's winner + top scorer.
+- **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
+  attributes — league mean per generation, so you can watch the meta drift —
+  plus the last evolution's elite/mutated/reborn entries with fitness & drift.
+- **Hall of fame**: titles leaderboard, single-season records (points, goal
+  difference, peak Elo, most goals, most saves) and a dynasty timeline strip
+  per league slot (👑 elite / 🧬 mutated / 🔄 reborn, hover for parents).
+- Save format v3 (adds player aggregates; v1/v2 saves migrate in place).
+
 ### Balance (from `npm run calibrate`, 240 s matches)
 
 ~2.9 goals, ~14 shots, ~117 passes at 72% completion, balanced possession,
@@ -265,9 +280,10 @@ lineage/history, watch UI with 5 speeds + headless fast-sim, live match stats +
 xG race chart, debug overlays, a full 3D match viewer (procedural players with
 distinct run/kick/dive/celebrate animations, 5 polished camera modes, 3D
 overlays, possession/crowd readability aids, goal/save/shot event feedback,
-replay with scrubbing/event jumps/auto-camera/slow-mo), save/load (v2,
-migrates v1), 61 tests, and browser-driving visual smoke tests for both views
-(12 + 20 checks).
+replay with scrubbing/event jumps/auto-camera/slow-mo), a narrative layer
+(season reports with awards + points race, gene-drift sparklines, hall of
+fame), save/load (v3, migrates v1/v2), 64 tests, and browser-driving visual
+smoke tests for both views (18 + 20 checks).
 
 Ideas for the next phase:
 - Set pieces (corners/throw-ins) instead of futsal walls

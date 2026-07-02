@@ -13,7 +13,11 @@ import {
 import * as mech from './mechanics';
 import { Player } from './Player';
 import { Team } from './Team';
-import type { EventType, MatchEvent, MatchPhase, MatchResult, Side, TeamInfo } from './types';
+import {
+  emptyPlayerStats,
+  type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
+  type Side, type TeamInfo,
+} from './types';
 
 export interface PendingPass {
   side: Side;
@@ -30,6 +34,8 @@ export interface PendingShot {
   resolved: boolean;
   /** Index into Match.shotLog for outcome bookkeeping. */
   logIndex: number;
+  /** Passer credited with an assist if this shot scores (else null). */
+  assistGid: number | null;
   /**
    * Save-probability multiplier fixed AT SHOT TIME from how far the ball's
    * path passes from the keeper's position when the shot is struck. Computed
@@ -85,6 +91,8 @@ export class Match {
   shotLog: ShotLogEntry[] = [];
   /** Gid of the most recent goalscorer — passive, for celebration visuals only. */
   lastScorerGid: number | null = null;
+  /** Per-player counters (goals/assists/shots/saves/recoveries), gid-indexed. Passive. */
+  playerStats: PlayerMatchStats[] = [];
   lastCompletedPass: { passerGid: number; receiverGid: number; t: number } | null = null;
 
   private kickoffSide: Side = 0;
@@ -96,6 +104,7 @@ export class Match {
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
+    this.playerStats = this.allPlayers.map(() => emptyPlayerStats());
     // Stagger decision ticks deterministically (symmetric across the teams)
     // so all 10 players don't think in the same frame.
     this.allPlayers.forEach((p) => (p.decisionTimer = ((p.index % 5) + 1) * (AI_INTERVAL / 5)));
@@ -192,6 +201,7 @@ export class Match {
     return {
       score: [this.score[0], this.score[1]],
       stats: [this.teams[0].stats, this.teams[1].stats],
+      playerStats: this.playerStats,
       events: this.events,
       duration: this.duration,
     };
@@ -253,6 +263,7 @@ export class Match {
         this.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: this.simTime };
       } else if (p.side !== pass.side) {
         team.stats.interceptions++;
+        this.playerStats[p.gid].recoveries++;
         this.pushEvent('interception', p.side, `${p.name} intercepts`);
       }
       this.pendingPass = null;
@@ -312,12 +323,16 @@ export class Match {
       const shooter = this.allPlayers.find((p) => p.gid === shot.shooterGid);
       scorerText = shooter ? `${shooter.name} (${shooter.role})` : team.info.name;
       this.lastScorerGid = shot.shooterGid;
+      this.playerStats[shot.shooterGid].goals++;
+      if (shot.assistGid !== null) this.playerStats[shot.assistGid].assists++;
     } else if (this.ball.lastTouch && this.ball.lastTouch.side !== side) {
       scorerText = `${this.ball.lastTouch.name} (og)`;
       this.lastScorerGid = this.ball.lastTouch.gid;
+      // Own goals credit nobody's tally.
     } else {
       scorerText = this.ball.lastTouch ? `${this.ball.lastTouch.name} (scramble)` : team.info.name;
       this.lastScorerGid = this.ball.lastTouch?.gid ?? null;
+      if (this.ball.lastTouch) this.playerStats[this.ball.lastTouch.gid].goals++;
     }
     this.pushEvent(
       'goal',
