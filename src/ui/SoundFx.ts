@@ -1,0 +1,51 @@
+/**
+ * Optional event sounds — tiny generated WebAudio tones, no assets.
+ * OFF by default; toggled from the left panel. Failures (no AudioContext,
+ * autoplay policy) are swallowed silently: sound is strictly cosmetic.
+ */
+export type FxSoundType = 'goal' | 'save' | 'shot' | 'interception';
+
+export class SoundFx {
+  enabled = false;
+  private ctx: AudioContext | null = null;
+
+  play(type: FxSoundType): void {
+    if (!this.enabled) return;
+    try {
+      this.ctx ??= new AudioContext();
+      if (this.ctx.state === 'suspended') void this.ctx.resume();
+      switch (type) {
+        case 'shot':
+          this.beep(440, 0.06, 0.06, 'square');
+          break;
+        case 'save':
+          this.beep(170, 0.14, 0.09, 'triangle');
+          break;
+        case 'interception':
+          this.beep(320, 0.05, 0.04, 'triangle');
+          break;
+        case 'goal':
+          this.beep(523, 0.12, 0.09, 'triangle', 0);
+          this.beep(659, 0.12, 0.09, 'triangle', 0.11);
+          this.beep(784, 0.22, 0.1, 'triangle', 0.22);
+          break;
+      }
+    } catch {
+      /* sound is best-effort */
+    }
+  }
+
+  private beep(freq: number, dur: number, gain: number, wave: OscillatorType, delay = 0): void {
+    const ctx = this.ctx!;
+    const t0 = ctx.currentTime + delay;
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = wave;
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(gain, t0);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g).connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.02);
+  }
+}

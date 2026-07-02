@@ -1,0 +1,31 @@
+{
+  "name": "evofootball-arena",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "calibrate": "tsx scripts/calibrate.ts",
+    "evolve-check": "tsx scripts/evolve-check.ts",
+    "debug:visual": "node scripts/visual-debug.mjs",
+    "debug:visual3d": "node scripts/visual-debug-3d.mjs"
+  },
+  "dependencies": {
+    "pixi.js": "^8.6.6",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/three": "^0.185.0",
+    "playwright": "^1.61.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.5"
+  }
+}
