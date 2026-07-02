@@ -5,12 +5,19 @@ import { generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { crossoverSquads, mutateSquad } from './playerGenome';
 
 /**
- * End-of-season evolution over the 8 league slots (ranked by fitness):
- *   ranks 1–2  ELITE    — genome untouched; proven tactics survive intact
- *   ranks 3–5  MUTATED  — small gaussian tweaks; mid-table teams experiment
- *   ranks 6–8  REBORN   — replaced by a crossover child of two elite-pool
- *                          parents plus a bigger mutation; the slot (and kit
- *                          color) survives so lineages stay followable.
+ * End-of-season evolution, generalized for the two-division era. A group
+ * (one division) is ranked by fitness and split into bands:
+ *
+ *   top eliteN            ELITE    — genome untouched; proven tactics survive
+ *   middle                MUTATED  — small gaussian tweaks
+ *   bottom rebornN        REBORN   — crossover child of two parents sampled
+ *                                    from `parentPool` (defaults to the
+ *                                    group's own top-4), heavier mutation,
+ *                                    new name; the slot/kit survives.
+ *
+ * Division 1 runs with rebornN=0 (its bottom two relegate instead of dying);
+ * Division 2 rebirths its bottom three from DIVISION 1's elite pool, so new
+ * blood always enters the ecosystem at the bottom of the pyramid.
  */
 export interface EvolutionEntry {
   slot: number;
@@ -27,21 +34,29 @@ export interface EvolutionReport {
   entries: EvolutionEntry[];
 }
 
-export function evolveFranchises(
+export interface EvolvePlan {
+  eliteN: number;
+  rebornN: number;
+  /** Parent candidates for reborn slots, strongest first (weights 4/3/2/1). */
+  parentPool?: Franchise[];
+}
+
+export function evolveGroup(
   franchises: Franchise[],
   fitnessBySlot: Map<number, number>,
   generation: number,
   rng: Rng,
-): EvolutionReport {
+  plan: EvolvePlan,
+  takenNames: Set<string>,
+): EvolutionEntry[] {
   const ranked = [...franchises].sort(
     (a, b) => (fitnessBySlot.get(b.slot) ?? 0) - (fitnessBySlot.get(a.slot) ?? 0) || a.slot - b.slot,
   );
-  const takenNames = new Set(franchises.map((f) => f.name));
   const entries: EvolutionEntry[] = [];
   const nextGen = generation + 1;
+  const rebornFrom = ranked.length - plan.rebornN;
 
-  // Weighted parent pool: top 4, weights 4/3/2/1.
-  const pool = ranked.slice(0, 4);
+  const pool = (plan.parentPool ?? ranked).slice(0, 4);
   const pickParent = (exclude?: Franchise): Franchise => {
     const cands = pool.filter((f) => f !== exclude);
     const weights = cands.map((f) => 4 - pool.indexOf(f));
@@ -56,10 +71,10 @@ export function evolveFranchises(
 
   ranked.forEach((f, rank) => {
     const fitness = fitnessBySlot.get(f.slot) ?? 0;
-    if (rank < 2) {
+    if (rank < plan.eliteN) {
       f.lineage.push({ generation: nextGen, event: 'elite', fitness });
       entries.push({ slot: f.slot, name: f.name, kind: 'elite', fitness, drift: 0 });
-    } else if (rank < 5) {
+    } else if (rank < rebornFrom) {
       const before = f.genome;
       f.genome = mutateGenome(f.genome, rng, { rate: 0.4, scale: 0.08 });
       f.squad = mutateSquad(f.squad, rng, { rate: 0.3, scale: 0.06 });
@@ -72,6 +87,7 @@ export function evolveFranchises(
       f.genome = mutateGenome(crossoverGenomes(pa.genome, pb.genome, rng), rng, { rate: 0.5, scale: 0.15 });
       f.squad = mutateSquad(crossoverSquads(pa.squad, pb.squad, rng), rng, { rate: 0.4, scale: 0.1 });
       const oldName = f.name;
+      takenNames.delete(oldName);
       f.name = uniqueTeamName(rng, takenNames);
       f.short = shortName(f.name);
       f.playerNames = generatePlayerNames(rng);
@@ -95,5 +111,5 @@ export function evolveFranchises(
     }
   });
 
-  return { generation: nextGen, entries };
+  return entries;
 }

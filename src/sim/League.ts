@@ -1,5 +1,5 @@
 import { hashSeed, Rng } from '../utils/rng';
-import { evolveFranchises, type EvolutionReport } from '../evolution/evolve';
+import { evolveGroup, type EvolutionReport } from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
 import {
   createFranchise, emptyAggregates, type Franchise, type SeasonAggregates,
@@ -13,9 +13,14 @@ import {
   type MatchResult, type PlayerMatchStats, type TeamInfo,
 } from './types';
 
+export type Division = 0 | 1;
+export const DIVISION_NAMES = ['Division 1', 'Division 2'] as const;
+
 export interface Fixture {
   round: number;
+  /** Match index within the division's round (0-3). */
   index: number;
+  division: Division;
   /** Franchise slots. */
   home: number;
   away: number;
@@ -53,9 +58,12 @@ export interface SeasonRecord {
   generation: number;
   championSlot: number;
   championName: string;
+  d2Champion?: string;
+  promoted?: Array<{ slot: number; name: string }>;
+  relegated?: Array<{ slot: number; name: string }>;
   table: Array<{
     slot: number; name: string; pts: number; w: number; d: number; l: number;
-    gf: number; ga: number; elo?: number;
+    gf: number; ga: number; elo?: number; division?: Division;
   }>;
   fitness: Array<FitnessBreakdown & { name: string }>;
   evolution: EvolutionReport;
@@ -68,13 +76,26 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-const SAVE_VERSION = 3;
+const SAVE_VERSION = 4;
+const TEAMS_PER_DIVISION = 8;
+const TOTAL_TEAMS = 16;
 
 /**
- * Autonomous league: 8 evolving franchises, single round-robin seasons
- * (7 rounds × 4 matches). Fully derived randomness — every match seed is
- * hash(leagueSeed, generation, round, index) — so there is no live RNG state
- * to persist and a saved league replays identically after load.
+ * The autonomous football pyramid: 16 evolving franchises in two divisions of
+ * eight, each playing a single round-robin per season (7 rounds × 4 matches
+ * per division, 56 matches total).
+ *
+ * End of season, in this order:
+ *   1. Division fitness + season record (as played).
+ *   2. Evolution per division — D1: 2 elite / 6 mutated (its strugglers get
+ *      relegated, not killed); D2: promoted pair protected as elite, 3
+ *      mutated, bottom-3 REBORN from D1's elite parent pool.
+ *   3. Promotion/relegation by TABLE position (sporting merit, not fitness):
+ *      bottom-2 of D1 swap with top-2 of D2.
+ *
+ * Randomness stays fully derived — every match seed is
+ * hash(leagueSeed, generation, round, division*4+index) — so saves replay
+ * identically after load.
  */
 export class League {
   seed: number;
@@ -95,12 +116,25 @@ export class League {
     this.matchDuration = cfg.matchDuration ?? MATCH_DURATION;
     const rng = new Rng(hashSeed(this.seed, 0xf0));
     const taken = new Set<string>();
-    this.franchises = Array.from({ length: 8 }, (_, i) => createFranchise(i, rng, taken));
+    this.franchises = Array.from({ length: TOTAL_TEAMS }, (_, i) =>
+      createFranchise(i, rng, taken, i < TEAMS_PER_DIVISION ? 0 : 1),
+    );
     this.startSeason();
   }
 
+  division(d: Division): Franchise[] {
+    return this.franchises.filter((f) => f.division === d);
+  }
+
   private startSeason(): void {
-    this.fixtures = buildRoundRobin(8);
+    this.fixtures = [];
+    // Interleave rounds so watching the league alternates divisions naturally.
+    const perDiv = ([0, 1] as Division[]).map((d) =>
+      buildDivisionFixtures(this.division(d).map((f) => f.slot), d),
+    );
+    for (let r = 0; r < TEAMS_PER_DIVISION - 1; r++) {
+      for (const list of perDiv) this.fixtures.push(...list.filter((f) => f.round === r));
+    }
     this.cursor = 0;
     this.table = this.franchises.map((f) => ({
       slot: f.slot, played: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0,
@@ -118,7 +152,7 @@ export class League {
   }
 
   currentRound(): number {
-    return this.seasonDone ? 7 : this.fixtures[this.cursor].round + 1;
+    return this.seasonDone ? TEAMS_PER_DIVISION - 1 : this.fixtures[this.cursor].round + 1;
   }
 
   franchise(slot: number): Franchise {
@@ -136,7 +170,7 @@ export class League {
   /** Build the deterministic Match for a fixture (same seed => same game). */
   createMatch(f: Fixture): Match {
     return new Match({
-      seed: hashSeed(this.seed, this.generation, f.round, f.index),
+      seed: hashSeed(this.seed, this.generation, f.round, f.division * 4 + f.index),
       teamA: this.teamInfo(f.home),
       teamB: this.teamInfo(f.away),
       duration: this.matchDuration,
@@ -192,8 +226,6 @@ export class League {
       a.recoveries += s.interceptions + s.tackles;
       a.staminaSpent += s.staminaSpent;
       a.distance += s.distance;
-      // Style sample: pass volume per possession-minute, press volume per
-      // opponent-possession-minute — the axes styleConsistency is scored on.
       const possMin = Math.max(s.possessionTime / 60, 0.25);
       const oppPossMin = Math.max(so.possessionTime / 60, 0.25);
       a.styleSamples.push({
@@ -214,7 +246,7 @@ export class League {
       acc.recoveries += s.recoveries;
     }
 
-    // Elo (K=28).
+    // Elo (K=28) — a single ladder across both divisions.
     const fh = this.franchise(fixture.home);
     const fa = this.franchise(fixture.away);
     const expected = 1 / (1 + 10 ** ((fa.elo - fh.elo) / 400));
@@ -226,9 +258,10 @@ export class League {
     this.cursor++;
   }
 
-  standings(): Array<TableRow & { franchise: Franchise }> {
+  standings(division: Division): Array<TableRow & { franchise: Franchise }> {
     return this.table
       .map((row) => ({ ...row, franchise: this.franchise(row.slot) }))
+      .filter((r) => r.franchise.division === division)
       .sort(
         (a, b) =>
           b.pts - a.pts || b.gf - b.ga - (a.gf - a.ga) || b.gf - a.gf || a.slot - b.slot,
@@ -236,28 +269,42 @@ export class League {
   }
 
   /**
-   * Close the season: compute fitness, record history, evolve the population,
-   * and schedule the next season. The champion is always protected as elite
-   * regardless of its style scores — winning the league must never get a team
-   * deleted, or the incentive landscape stops making sense.
+   * Close the season: record → evolve per division → promote/relegate.
+   * The D1 champion and the promoted D2 pair are always protected as elite.
    */
   finishSeason(): SeasonRecord {
-    const fitness = computeFitness(this.franchises.map((f) => ({ slot: f.slot, agg: this.agg[f.slot] })));
-    const fitnessMap = new Map(fitness.map((x) => [x.slot, x.total]));
-    const standings = this.standings();
-    const champion = standings[0];
-    const maxFit = Math.max(...fitnessMap.values());
-    fitnessMap.set(champion.slot, maxFit + 0.001);
+    const eps = 0.001;
+    const standings1 = this.standings(0);
+    const standings2 = this.standings(1);
+
+    const fitnessFor = (d: Division) =>
+      computeFitness(this.division(d).map((f) => ({ slot: f.slot, agg: this.agg[f.slot] })));
+    const fit1 = fitnessFor(0);
+    const fit2 = fitnessFor(1);
+    const map1 = new Map(fit1.map((x) => [x.slot, x.total]));
+    const map2 = new Map(fit2.map((x) => [x.slot, x.total]));
+
+    // Protections: the champion, and the promoted pair (they earned it on the
+    // pitch — evolution must not delete them on style grounds).
+    map1.set(standings1[0].slot, Math.max(...map1.values()) + eps);
+    const promoted = standings2.slice(0, 2);
+    const relegated = standings1.slice(-2);
+    map2.set(promoted[1].slot, Math.max(...map2.values()) + eps);
+    map2.set(promoted[0].slot, Math.max(...map2.values()) + eps);
 
     const record: SeasonRecord = {
       generation: this.generation,
-      championSlot: champion.slot,
-      championName: champion.franchise.name,
-      table: standings.map((r) => ({
-        slot: r.slot, name: r.franchise.name, pts: r.pts, w: r.w, d: r.d, l: r.l, gf: r.gf, ga: r.ga,
-        elo: Math.round(r.franchise.elo),
+      championSlot: standings1[0].slot,
+      championName: standings1[0].franchise.name,
+      d2Champion: standings2[0].franchise.name,
+      promoted: promoted.map((r) => ({ slot: r.slot, name: r.franchise.name })),
+      relegated: relegated.map((r) => ({ slot: r.slot, name: r.franchise.name })),
+      table: [...standings1, ...standings2].map((r) => ({
+        slot: r.slot, name: r.franchise.name, pts: r.pts, w: r.w, d: r.d, l: r.l,
+        gf: r.gf, ga: r.ga, elo: Math.round(r.franchise.elo),
+        division: r.franchise.division,
       })),
-      fitness: fitness
+      fitness: [...fit1, ...fit2]
         .map((x) => ({ ...x, name: this.franchise(x.slot).name }))
         .sort((a, b) => b.total - a.total),
       evolution: undefined as unknown as EvolutionReport,
@@ -267,8 +314,33 @@ export class League {
       pointsTimeline: this.buildPointsTimeline(),
     };
 
+    // Evolution per division. D2's reborn slots draw parents from D1's best.
     const evoRng = new Rng(hashSeed(this.seed, this.generation, 0xe0));
-    record.evolution = evolveFranchises(this.franchises, fitnessMap, this.generation, evoRng);
+    const taken = new Set(this.franchises.map((f) => f.name));
+    const d1 = this.division(0);
+    const d2 = this.division(1);
+    const d1Ranked = [...d1].sort((a, b) => (map1.get(b.slot) ?? 0) - (map1.get(a.slot) ?? 0));
+    const entries = [
+      ...evolveGroup(d1, map1, this.generation, evoRng, { eliteN: 2, rebornN: 0 }, taken),
+      ...evolveGroup(
+        d2, map2, this.generation, evoRng,
+        { eliteN: 2, rebornN: 3, parentPool: d1Ranked },
+        taken,
+      ),
+    ];
+    record.evolution = { generation: this.generation + 1, entries };
+
+    // Promotion & relegation by table position.
+    for (const r of relegated) {
+      const f = this.franchise(r.slot);
+      f.division = 1;
+      f.lineage.push({ generation: this.generation + 1, event: 'relegated' });
+    }
+    for (const r of promoted) {
+      const f = this.franchise(r.slot);
+      f.division = 0;
+      f.lineage.push({ generation: this.generation + 1, event: 'promoted' });
+    }
 
     this.history.push(record);
     this.generation++;
@@ -279,9 +351,10 @@ export class League {
   /* ---------------- season report inputs ---------------- */
 
   /** Named player season lines, resolved against current rosters. */
-  playerLines(): PlayerSeasonLine[] {
+  playerLines(division?: Division): PlayerSeasonLine[] {
     const lines: PlayerSeasonLine[] = [];
     for (const f of this.franchises) {
+      if (division !== undefined && f.division !== division) continue;
       this.playerAgg[f.slot].forEach((s, i) => {
         lines.push({ ...s, slot: f.slot, name: f.playerNames[i] ?? ROLES[i], team: f.name, role: ROLES[i] });
       });
@@ -289,8 +362,9 @@ export class League {
     return lines;
   }
 
+  /** Awards are for the top flight (Division 1). */
   private buildAwards(): SeasonAwards {
-    const lines = this.playerLines();
+    const lines = this.playerLines(0);
     const topScorers = [...lines]
       .sort((a, b) => b.goals - a.goals || b.assists - a.assists || a.slot - b.slot)
       .slice(0, 5)
@@ -331,20 +405,17 @@ export class League {
   private buildPointsTimeline(): number[][] {
     const timeline: number[][] = this.franchises.map(() => []);
     const pts = this.franchises.map(() => 0);
-    let round = 0;
-    for (const f of this.fixtures) {
-      if (f.round !== round) {
-        for (let s = 0; s < pts.length; s++) timeline[s].push(pts[s]);
-        round = f.round;
+    for (let r = 0; r < TEAMS_PER_DIVISION - 1; r++) {
+      for (const f of this.fixtures) {
+        if (f.round !== r || !f.played || f.scoreH === undefined || f.scoreA === undefined) continue;
+        if (f.scoreH > f.scoreA) pts[f.home] += 3;
+        else if (f.scoreH === f.scoreA) {
+          pts[f.home] += 1;
+          pts[f.away] += 1;
+        } else pts[f.away] += 3;
       }
-      if (!f.played || f.scoreH === undefined || f.scoreA === undefined) continue;
-      if (f.scoreH > f.scoreA) pts[f.home] += 3;
-      else if (f.scoreH === f.scoreA) {
-        pts[f.home] += 1;
-        pts[f.away] += 1;
-      } else pts[f.away] += 3;
+      for (let s = 0; s < pts.length; s++) timeline[s].push(pts[s]);
     }
-    for (let s = 0; s < pts.length; s++) timeline[s].push(pts[s]);
     return timeline;
   }
 
@@ -376,10 +447,35 @@ export class League {
       data.version = 2;
     }
     if (data.version === 2) {
-      // v2 -> v3: player season stats didn't exist — start the counters at
-      // zero mid-season (awards may undercount this one season; documented).
+      // v2 -> v3: player season stats didn't exist — start the counters at zero.
       data.playerAgg = (data.franchises as Franchise[]).map(() => ROLES.map(() => emptyPlayerStats()));
       data.version = 3;
+    }
+    if (data.version === 3) {
+      // v3 -> v4: the single 8-team division becomes Division 1, and a brand
+      // new Division 2 spawns beneath it. The current season's D1 fixtures
+      // (and results) are preserved; fresh D2 fixtures are appended.
+      const franchises = data.franchises as Franchise[];
+      for (const f of franchises) f.division = 0;
+      const rng = new Rng(hashSeed(Number(data.seed), Number(data.generation), 0xd2));
+      const taken = new Set(franchises.map((f) => f.name));
+      const newcomers: Franchise[] = [];
+      for (let slot = franchises.length; slot < TOTAL_TEAMS; slot++) {
+        newcomers.push(createFranchise(slot, rng, taken, 1, Number(data.generation)));
+      }
+      data.franchises = [...franchises, ...newcomers];
+      (data.table as TableRow[]).push(
+        ...newcomers.map((f) => ({ slot: f.slot, played: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 })),
+      );
+      (data.agg as SeasonAggregates[]).push(...newcomers.map(() => emptyAggregates()));
+      (data.playerAgg as PlayerMatchStats[][]).push(
+        ...newcomers.map(() => ROLES.map(() => emptyPlayerStats())),
+      );
+      for (const f of data.fixtures as Fixture[]) f.division = 0;
+      (data.fixtures as Fixture[]).push(
+        ...buildDivisionFixtures(newcomers.map((f) => f.slot), 1),
+      );
+      data.version = 4;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
@@ -399,24 +495,29 @@ export class League {
   }
 }
 
-/** Single round-robin via the circle method: n-1 rounds of n/2 matches. */
-export function buildRoundRobin(n: number): Fixture[] {
+/** Single round-robin via the circle method: n-1 rounds of n/2 pairings. */
+export function buildRoundRobin(n: number): Array<{ round: number; index: number; home: number; away: number }> {
   const ids = Array.from({ length: n }, (_, i) => i);
-  const fixtures: Fixture[] = [];
+  const out: Array<{ round: number; index: number; home: number; away: number }> = [];
   for (let r = 0; r < n - 1; r++) {
     for (let i = 0; i < n / 2; i++) {
       const a = ids[i];
       const b = ids[n - 1 - i];
-      fixtures.push({
-        round: r,
-        index: i,
-        home: r % 2 === 0 ? a : b,
-        away: r % 2 === 0 ? b : a,
-        played: false,
-      });
+      out.push({ round: r, index: i, home: r % 2 === 0 ? a : b, away: r % 2 === 0 ? b : a });
     }
-    // rotate all but the first
     ids.splice(1, 0, ids.pop()!);
   }
-  return fixtures;
+  return out;
+}
+
+/** Map a division's member slots onto a round-robin schedule. */
+export function buildDivisionFixtures(memberSlots: number[], division: Division): Fixture[] {
+  return buildRoundRobin(memberSlots.length).map((p) => ({
+    round: p.round,
+    index: p.index,
+    division,
+    home: memberSlots[p.home],
+    away: memberSlots[p.away],
+    played: false,
+  }));
 }

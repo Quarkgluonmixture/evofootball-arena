@@ -19,7 +19,9 @@ const SURNAMES = [
   'Brix', 'Corda', 'Dova', 'Enzo', 'Frey', 'Gale', 'Hosk', 'Iber', 'Jett',
 ];
 
-/** Distinct kit palettes per league slot (green avoided — the pitch is green). */
+/** Distinct kit palettes per league slot (green avoided — the pitch is green).
+ * 16 slots for the two-division era; per-match clashes are additionally
+ * handled by the renderer's inverted-kit swap. */
 export const KIT_COLORS: Array<{ primary: number; secondary: number }> = [
   { primary: 0xd64550, secondary: 0xffffff }, // red
   { primary: 0x3b82f6, secondary: 0xfde047 }, // blue
@@ -29,6 +31,14 @@ export const KIT_COLORS: Array<{ primary: number; secondary: number }> = [
   { primary: 0xec4899, secondary: 0xfefce8 }, // pink
   { primary: 0xfacc15, secondary: 0x111827 }, // yellow
   { primary: 0x94a3b8, secondary: 0x111111 }, // steel
+  { primary: 0xf8fafc, secondary: 0xb91c1c }, // white
+  { primary: 0x1f2937, secondary: 0xf59e0b }, // charcoal
+  { primary: 0x9f1239, secondary: 0xfbcfe8 }, // maroon
+  { primary: 0x1e40af, secondary: 0xf8fafc }, // navy
+  { primary: 0xb45309, secondary: 0xfef3c7 }, // bronze
+  { primary: 0xc4b5fd, secondary: 0x312e81 }, // lavender
+  { primary: 0xfb7185, secondary: 0x111827 }, // coral
+  { primary: 0x7dd3fc, secondary: 0x0c4a6e }, // sky
 ];
 
 export function uniqueTeamName(rng: Rng, taken: Set<string>): string {

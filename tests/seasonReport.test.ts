@@ -60,17 +60,20 @@ describe('season report data', () => {
     playSeason(league);
 
     const lines = league.playerLines();
-    expect(lines.length).toBe(40); // 8 teams × 5 players
+    expect(lines.length).toBe(80); // 16 teams × 5 players
     const totalGoals = lines.reduce((a, l) => a + l.goals, 0);
     const tableGf = league.table.reduce((a, r) => a + r.gf, 0);
     expect(totalGoals).toBeLessThanOrEqual(tableGf);
 
+    const d1Slots = league.division(0).map((f) => f.slot);
     const rec = league.finishSeason();
     expect(rec.awards).toBeDefined();
     const scorers = rec.awards!.topScorers;
     for (let i = 1; i < scorers.length; i++) {
       expect(scorers[i - 1].goals).toBeGreaterThanOrEqual(scorers[i].goals);
     }
+    // Awards are a Division 1 honor.
+    for (const l of scorers) expect(d1Slots).toContain(l.slot);
     if (rec.awards!.topKeeper) expect(rec.awards!.topKeeper.role).toBe('GK');
 
     // Gene/attr means cover every key and stay in [0,1].
@@ -80,14 +83,16 @@ describe('season report data', () => {
     }
     for (const k of ATTR_KEYS) expect(rec.attrMeans![k]).toBeGreaterThanOrEqual(0);
 
-    // Points timeline: 8 slots × 7 rounds, final column equals the table.
-    expect(rec.pointsTimeline!.length).toBe(8);
+    // Points timeline: 16 slots × 7 rounds, final column equals the table.
+    expect(rec.pointsTimeline!.length).toBe(16);
     for (const row of rec.pointsTimeline!) expect(row.length).toBe(7);
     for (const t of rec.table) {
       expect(rec.pointsTimeline![t.slot][6]).toBe(t.pts);
     }
-    // Elo snapshot present.
+    // Elo + division snapshots present.
     expect(rec.table[0].elo).toBeTypeOf('number');
+    expect(rec.table.filter((r) => r.division === 0).length).toBe(8);
+    expect(rec.table.filter((r) => r.division === 1).length).toBe(8);
 
     // New season resets player aggregates.
     expect(league.playerLines().every((l) => l.goals === 0 && l.shots === 0)).toBe(true);
@@ -95,37 +100,93 @@ describe('season report data', () => {
 });
 
 describe('save migrations preserve old saves', () => {
-  it('v2 (no playerAgg) and v1 (no squads) both load', () => {
-    const league = new League({ seed: 7, matchDuration: 30 });
-    for (let i = 0; i < 6; i++) {
+  /**
+   * Craft an authentic v3-era (8-team, single-division) save. The v4
+   * constructor draws its first 8 franchises from the same RNG sequence the
+   * v3 constructor used, so slicing a fresh v4 league IS a v3 league.
+   */
+  const craftV3 = (seed: number, matchDuration: number, playMatches: number) => {
+    const league = new League({ seed, matchDuration });
+    // Play some D1 fixtures (they are exactly the fixtures a v3 league had).
+    let played = 0;
+    while (played < playMatches) {
       const f = league.nextFixture()!;
+      if (f.division !== 0) {
+        league.cursor++; // skip D2 fixtures — they don't exist in a v3 save
+        continue;
+      }
       league.applyResult(f, league.createMatch(f).runToCompletion());
+      played++;
     }
-    const v3 = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown>;
+    const v4 = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown>;
+    const v3 = { ...v4 };
+    v3.version = 3;
+    v3.franchises = (v4.franchises as Franchise[]).slice(0, 8).map((f) => {
+      const copy = { ...f } as Partial<Franchise>;
+      delete copy.division;
+      return copy;
+    });
+    v3.fixtures = (v4.fixtures as Array<Record<string, unknown>>)
+      .filter((f) => f.division === 0)
+      .map((f) => {
+        const copy = { ...f };
+        delete copy.division;
+        return copy;
+      });
+    v3.cursor = (v3.fixtures as Array<{ played: boolean }>).filter((f) => f.played).length;
+    v3.table = (v4.table as unknown[]).slice(0, 8);
+    v3.agg = (v4.agg as unknown[]).slice(0, 8);
+    v3.playerAgg = (v4.playerAgg as unknown[]).slice(0, 8);
+    return { league, v3: JSON.parse(JSON.stringify(v3)) as Record<string, unknown> };
+  };
 
-    // Simulate a v2 save: player aggregates didn't exist.
+  it('v3 (8-team era) becomes Division 1 with a fresh Division 2 beneath', () => {
+    const { league, v3 } = craftV3(7, 30, 6);
+    const migrated = League.fromJSON(v3);
+
+    expect(migrated.franchises.length).toBe(16);
+    expect(migrated.division(0).length).toBe(8);
+    expect(migrated.division(1).length).toBe(8);
+    expect(new Set(migrated.franchises.map((f) => f.name)).size).toBe(16);
+    expect(migrated.fixtures.length).toBe(56);
+    expect(migrated.playerAgg.length).toBe(16);
+
+    // Old D1 results survive the migration.
+    expect(migrated.fixtures.filter((f) => f.played).length).toBe(6);
+
+    // The old league's franchises are untouched (same genomes -> same future).
+    for (let s = 0; s < 8; s++) {
+      expect(migrated.franchise(s).name).toBe(league.franchise(s).name);
+      expect(migrated.franchise(s).genome).toEqual(league.franchise(s).genome);
+    }
+    // Remaining D1 fixtures still produce identical results (same seeds).
+    const nextD1 = migrated.fixtures.find((f) => !f.played && f.division === 0)!;
+    const same = league.fixtures.find(
+      (f) => f.division === 0 && f.round === nextD1.round && f.index === nextD1.index,
+    )!;
+    expect(migrated.createMatch(nextD1).runToCompletion().score).toEqual(
+      league.createMatch(same).runToCompletion().score,
+    );
+  });
+
+  it('v2 (no playerAgg) and v1 (no squads) chain-migrate to v4', () => {
+    const { v3 } = craftV3(11, 30, 4);
+
     const v2 = JSON.parse(JSON.stringify(v3)) as Record<string, unknown>;
     delete v2.playerAgg;
     v2.version = 2;
     const fromV2 = League.fromJSON(v2);
-    expect(fromV2.playerAgg.length).toBe(8);
+    expect(fromV2.franchises.length).toBe(16);
+    expect(fromV2.playerAgg.length).toBe(16);
     expect(fromV2.playerAgg[0].length).toBe(5);
-    expect(fromV2.cursor).toBe(league.cursor);
 
-    // Simulate a v1 save: squads didn't exist either.
     const v1 = JSON.parse(JSON.stringify(v3)) as Record<string, unknown>;
     delete v1.playerAgg;
     for (const f of v1.franchises as Franchise[]) delete (f as Partial<Franchise>).squad;
     v1.version = 1;
     const fromV1 = League.fromJSON(v1);
     expect(fromV1.franchises[0].squad.length).toBe(5);
-    expect(fromV1.playerAgg.length).toBe(8);
-
-    // Migrated leagues still produce identical future results.
-    const fa = fromV2.nextFixture()!;
-    const fb = league.nextFixture()!;
-    expect(fromV2.createMatch(fa).runToCompletion().score).toEqual(
-      league.createMatch(fb).runToCompletion().score,
-    );
+    expect(fromV1.franchises.length).toBe(16);
+    expect(fromV1.division(1).length).toBe(8);
   });
 });

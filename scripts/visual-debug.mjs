@@ -90,9 +90,11 @@ await page.screenshot({ path: `${OUT}/4-player-selected.png` });
 await page.click('button:has-text("League table")');
 await page.waitForTimeout(400);
 const standingsRows = await page.locator('#league-screen tbody tr').count();
-check('league standings show 8 teams', standingsRows === 8, `${standingsRows} rows`);
+check('two division tables show 16 teams', standingsRows === 16, `${standingsRows} rows`);
+const zones = await page.locator('#league-screen tr.zone-up, #league-screen tr.zone-down').count();
+check('promotion/relegation zones highlighted', zones === 4, `${zones} zone rows`);
 const cards = await page.locator('#league-screen .team-card').count();
-check('team cards render', cards === 8, `${cards} cards`);
+check('team cards render', cards === 16, `${cards} cards`);
 await page.screenshot({ path: `${OUT}/5-league.png` });
 await page.click('button:has-text("League table")');
 
@@ -114,7 +116,8 @@ await page.click('#league-screen button:has-text("Season report")');
 await page.waitForTimeout(300);
 const reportText = await page.textContent('#league-screen');
 check('season report names the champions', reportText.includes('champions'), '');
-check('points race chart renders', (await page.locator('#league-screen .race-chart svg path').count()) >= 8);
+check('promotion/relegation reported', reportText.includes('promoted') && reportText.includes('relegated'));
+check('both division race charts render', (await page.locator('#league-screen .race-chart').count()) === 2);
 check('awards render (golden boot)', reportText.includes('Golden Boot'));
 await page.screenshot({ path: `${OUT}/7-season-report.png` });
 
@@ -128,7 +131,7 @@ await page.click('#league-screen button:has-text("Hall of fame")');
 await page.waitForTimeout(300);
 const hallText = await page.textContent('#league-screen');
 check('hall of fame shows titles + records', hallText.includes('Titles') && hallText.includes('Most points'));
-check('dynasty timeline shows all 8 slots', (await page.locator('#league-screen .dynasty-row').count()) === 8);
+check('dynasty timeline shows all 16 slots', (await page.locator('#league-screen .dynasty-row').count()) === 16);
 await page.screenshot({ path: `${OUT}/9-hall-of-fame.png` });
 await page.click('#league-screen button:has-text("League")');
 

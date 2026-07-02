@@ -116,7 +116,8 @@ export class LeftPanel {
     this.nameA.style.color = colorHex(match.teams[0].info.colors.primary);
     this.nameB.textContent = match.teams[1].info.name;
     this.nameB.style.color = colorHex(match.teams[1].info.colors.primary);
-    this.meta.textContent = `Gen ${league.generation} · Season ${league.history.length + 1} · Round ${league.currentRound()}/7`;
+    const div = league.nextFixture() ? `D${league.nextFixture()!.division + 1} ` : '';
+    this.meta.textContent = `Gen ${league.generation} · Season ${league.history.length + 1} · ${div}Round ${league.currentRound()}/7`;
   }
 
   updateClock(match: Match): void {

@@ -272,6 +272,12 @@ export class GameApp implements GameActions {
     if (this.league.seasonDone) {
       const rec = this.league.finishSeason();
       this.feed.pushSystem(`🏆 Season ${rec.generation} — champions: ${rec.championName}!`);
+      if (rec.promoted?.length) {
+        this.feed.pushSystem(`⬆️ Promoted to D1: ${rec.promoted.map((p) => p.name).join(', ')}`);
+      }
+      if (rec.relegated?.length) {
+        this.feed.pushSystem(`⬇️ Relegated to D2: ${rec.relegated.map((p) => p.name).join(', ')}`);
+      }
       for (const e of rec.evolution.entries) {
         if (e.kind === 'reborn') {
           this.feed.pushSystem(`🔄 ${e.name} born from ${e.parents?.join(' × ')} (drift ${e.drift.toFixed(2)})`);

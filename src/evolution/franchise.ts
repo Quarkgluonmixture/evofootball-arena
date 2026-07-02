@@ -6,7 +6,7 @@ import { randomSquad, type PlayerAttributes } from './playerGenome';
 /** One historical entry in a franchise's evolutionary lineage. */
 export interface LineageEntry {
   generation: number;
-  event: 'founded' | 'elite' | 'mutated' | 'reborn';
+  event: 'founded' | 'elite' | 'mutated' | 'reborn' | 'promoted' | 'relegated';
   /** Parent team names for 'reborn' (crossover) entries. */
   parents?: string[];
   fitness?: number;
@@ -29,14 +29,22 @@ export interface Franchise {
   /** Per-player attribute genes, role order [GK, DF, MF, WG, ST]. */
   squad: PlayerAttributes[];
   elo: number;
+  /** 0 = top flight, 1 = second division. Changes via promotion/relegation. */
+  division: 0 | 1;
   lineage: LineageEntry[];
 }
 
-export function createFranchise(slot: number, rng: Rng, takenNames: Set<string>): Franchise {
+export function createFranchise(
+  slot: number,
+  rng: Rng,
+  takenNames: Set<string>,
+  division: 0 | 1 = 0,
+  generation = 1,
+): Franchise {
   const name = uniqueTeamName(rng, takenNames);
   return {
     slot,
-    id: `T${slot}-g1`,
+    id: `T${slot}-g${generation}`,
     name,
     short: shortName(name),
     colors: KIT_COLORS[slot % KIT_COLORS.length],
@@ -44,7 +52,8 @@ export function createFranchise(slot: number, rng: Rng, takenNames: Set<string>)
     genome: randomGenome(rng),
     squad: randomSquad(rng),
     elo: 1500,
-    lineage: [{ generation: 1, event: 'founded' }],
+    division,
+    lineage: [{ generation, event: 'founded' }],
   };
 }
 

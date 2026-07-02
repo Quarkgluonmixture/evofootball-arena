@@ -27,17 +27,20 @@ describe('League', () => {
     }
   };
 
-  it('creates 8 uniquely named franchises', () => {
+  it('creates 16 uniquely named franchises in two divisions', () => {
     const league = makeLeague();
-    expect(league.franchises.length).toBe(8);
-    expect(new Set(league.franchises.map((f) => f.name)).size).toBe(8);
+    expect(league.franchises.length).toBe(16);
+    expect(new Set(league.franchises.map((f) => f.name)).size).toBe(16);
+    expect(league.division(0).length).toBe(8);
+    expect(league.division(1).length).toBe(8);
+    expect(league.fixtures.length).toBe(56);
   });
 
   it('plays a season: table is consistent, Elo is zero-sum', () => {
     const league = makeLeague();
     playSeason(league);
     const totalPlayed = league.table.reduce((a, r) => a + r.played, 0);
-    expect(totalPlayed).toBe(56); // 28 matches × 2 teams
+    expect(totalPlayed).toBe(112); // 56 matches × 2 teams
     for (const row of league.table) {
       expect(row.played).toBe(7);
       expect(row.w * 3 + row.d).toBe(row.pts);
@@ -46,36 +49,64 @@ describe('League', () => {
     const ga = league.table.reduce((a, r) => a + r.ga, 0);
     expect(gf).toBe(ga);
     const eloSum = league.franchises.reduce((a, f) => a + f.elo, 0);
-    expect(eloSum).toBeCloseTo(8 * 1500, 6);
+    expect(eloSum).toBeCloseTo(16 * 1500, 6);
   });
 
-  it('evolves after a season: elites survive, reborn get new lineage', () => {
+  it('evolves per division: elites survive, D2 bottom is reborn from D1 parents', () => {
     const league = makeLeague();
     playSeason(league);
     const namesBefore = league.franchises.map((f) => f.name);
+    const d1Names = league.division(0).map((f) => f.name);
+    const d2Slots = league.division(1).map((f) => f.slot);
     const rec = league.finishSeason();
 
     expect(league.generation).toBe(2);
-    expect(league.history.length).toBe(1);
-    expect(rec.evolution.entries.filter((e) => e.kind === 'elite').length).toBe(2);
-    expect(rec.evolution.entries.filter((e) => e.kind === 'mutated').length).toBe(3);
+    expect(rec.evolution.entries.length).toBe(16);
+    expect(rec.evolution.entries.filter((e) => e.kind === 'elite').length).toBe(4); // 2 per division
+    expect(rec.evolution.entries.filter((e) => e.kind === 'mutated').length).toBe(9); // 6 D1 + 3 D2
     expect(rec.evolution.entries.filter((e) => e.kind === 'reborn').length).toBe(3);
 
     // Champion is always kept as elite.
     expect(rec.evolution.entries.find((e) => e.slot === rec.championSlot)?.kind).toBe('elite');
 
-    // Reborn teams have new names + lineage entries with parents.
+    // Reborn slots are all D2 (as played), with new names and D1 parents.
     for (const e of rec.evolution.entries.filter((x) => x.kind === 'reborn')) {
+      expect(d2Slots).toContain(e.slot);
       const f = league.franchise(e.slot);
       expect(namesBefore).not.toContain(f.name);
-      const last = f.lineage[f.lineage.length - 1];
-      expect(last.event).toBe('reborn');
-      expect(last.parents?.length).toBe(2);
+      const rebornEntry = [...f.lineage].reverse().find((l) => l.event === 'reborn');
+      expect(rebornEntry?.parents?.length).toBe(2);
+      for (const parent of rebornEntry!.parents!) expect(d1Names).toContain(parent);
     }
 
     // Next season is scheduled and fresh.
     expect(league.seasonDone).toBe(false);
     expect(league.table.every((r) => r.played === 0)).toBe(true);
+  });
+
+  it('promotes the D2 top two and relegates the D1 bottom two, by table', () => {
+    const league = makeLeague();
+    playSeason(league);
+    const downSlots = league.standings(0).slice(-2).map((r) => r.slot);
+    const upSlots = league.standings(1).slice(0, 2).map((r) => r.slot);
+    const rec = league.finishSeason();
+
+    expect(rec.relegated!.map((r) => r.slot)).toEqual(downSlots);
+    expect(rec.promoted!.map((r) => r.slot)).toEqual(upSlots);
+    for (const s of upSlots) {
+      expect(league.franchise(s).division).toBe(0);
+      expect(league.franchise(s).lineage.some((l) => l.event === 'promoted')).toBe(true);
+      // Promoted teams are protected: never reborn on the way up.
+      expect(rec.evolution.entries.find((e) => e.slot === s)?.kind).toBe('elite');
+    }
+    for (const s of downSlots) {
+      expect(league.franchise(s).division).toBe(1);
+      expect(league.franchise(s).lineage.some((l) => l.event === 'relegated')).toBe(true);
+    }
+    // Both divisions still have 8 teams and a full fixture list.
+    expect(league.division(0).length).toBe(8);
+    expect(league.division(1).length).toBe(8);
+    expect(league.fixtures.length).toBe(56);
   });
 
   it('save/load roundtrip preserves state and future results', () => {

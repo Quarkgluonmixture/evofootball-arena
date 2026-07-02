@@ -12,7 +12,7 @@ code is the truth — then fix this document in the same change.
 
 EvoFootball Arena is an autonomous football ecosystem: a **deterministic 2D
 5v5 simulation** (the single source of truth), a **utility AI** with
-explainable scoring, an **evolving 8-team league** (tactical genes + per-player
+explainable scoring, an **evolving 16-team two-division pyramid** (tactical genes + per-player
 squad DNA), and two **read-only views** (PixiJS 2D, Three.js 3D) plus replay,
 analytics and debug tooling layered on top.
 
@@ -70,7 +70,8 @@ only via `import type` where the target is `Match` itself. Keep it that way.
 
 ```
 league creation rng : hashSeed(leagueSeed, 0xF0)
-match seed          : hashSeed(leagueSeed, generation, round, fixtureIndex)
+match seed          : hashSeed(leagueSeed, generation, round, division*4 + index)
+v3→v4 D2 spawn      : hashSeed(leagueSeed, generation, 0xD2)
 evolution rng       : hashSeed(leagueSeed, generation, 0xE0)
 v1→v2 squad backfill: hashSeed(leagueSeed, slot, 0xA7)
 ```
@@ -125,19 +126,28 @@ unverified. Both are forbidden (see invariants).
 
 ## 6. Evolution
 
-Per season (`League.finishSeason` → `evolution/evolve.ts`):
+Two divisions of 8; per season (`League.finishSeason` → `evolution/evolve.ts`,
+in this order — record → evolve → promote/relegate):
 
-- **Fitness** (`fitness.ts`): min-max-normalized across the league —
+- **Fitness** (`fitness.ts`): min-max-normalized **within each division** —
   points .28, goal diff .15, shot quality (xG/shot) .12, pass completion .12,
-  recoveries .11, stamina efficiency .10, style consistency .12. The
-  **champion is force-protected as elite** (winning must never delete a team).
-- Ranks 1–2 elite (genome+squad untouched), 3–5 mutated (small gaussian),
-  6–8 **reborn**: crossover of two fitness-weighted top-4 parents + heavier
-  mutation, new name, same slot/kit, lineage entry with parents recorded.
+  recoveries .11, stamina efficiency .10, style consistency .12.
+- **Protections**: the D1 champion AND the promoted D2 pair are force-bumped
+  into the elite band — sporting success must never get a team deleted.
+- **Division 1** (`evolveGroup`, eliteN=2, rebornN=0): 2 elite, 6 mutated.
+  Its strugglers are *relegated*, not killed — they fight back from D2.
+- **Division 2** (eliteN=2, rebornN=3, parentPool = D1 ranked by fitness):
+  promoted pair preserved, 3 mutated, bottom-3 **reborn** as crossover
+  children of D1's elite pool — new blood always enters the pyramid at the
+  bottom. New name, same slot/kit, lineage records the parents.
+- **Promotion/relegation is by TABLE position** (points), a deliberately
+  different axis from evolution (fitness): D1 bottom-2 ↔ D2 top-2. Lineage
+  gets 'promoted'/'relegated' entries.
 - Squad DNA mutates/crosses position-by-position alongside the tactics.
 
-Season history (`SeasonRecord`) stores the table, fitness breakdowns and the
-evolution report — the league screen renders lineage from it.
+Season history (`SeasonRecord`) stores both division tables (with division +
+Elo), fitness breakdowns, awards, promoted/relegated, gene/attr means, points
+timelines and the evolution report — the league screen renders it all.
 
 ## 7. Replay, analytics, debug systems
 

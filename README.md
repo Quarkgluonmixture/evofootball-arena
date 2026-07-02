@@ -226,15 +226,20 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ## League & evolution
 
-- 8 franchises, single round-robin seasons (7 rounds × 4 matches), 3/1/0
-  points, Elo (K=28).
-- **Fitness** (normalized across the league, weights sum to 1): points 0.28,
-  goal difference 0.15, shot quality (xG/shot) 0.12, pass completion 0.12,
-  recoveries 0.11, stamina efficiency 0.10, style consistency 0.12.
-- After each season: ranks 1–2 survive **elite** (champion is always
-  protected), 3–5 get small **mutations**, 6–8 are **reborn** as
-  crossover children of two top-4 parents with heavier mutation — new name,
-  same league slot/kit, lineage recorded (`g7 🔄 reborn ← A × B`).
+- **A 16-team pyramid: two divisions of 8** with promotion/relegation — each
+  division plays a single round-robin per season (56 matches total), 3/1/0
+  points, one Elo ladder (K=28) across both tiers.
+- End of season: D1 bottom-2 relegate, D2 top-2 promote (by table — sporting
+  merit). Evolution runs per division on the fitness axis: D1 never kills a
+  team (strugglers drop instead), while D2's bottom three are reborn from
+  **D1's elite parent pool** — new blood enters the pyramid at the bottom.
+  Promoted teams and the champion are always protected from rebirth.
+- **Fitness** (normalized within each division, weights sum to 1): points
+  0.28, goal difference 0.15, shot quality (xG/shot) 0.12, pass completion
+  0.12, recoveries 0.11, stamina efficiency 0.10, style consistency 0.12.
+- Reborn teams get a new name but keep their league slot/kit, and the lineage
+  records the parents (`g7 🔄 reborn ← A × B`); promotions and relegations are
+  recorded too (`⬆️`/`⬇️` in the dynasty timeline).
 - Team cards show identity tags derived from gene extremes ("Gegenpress",
   "Counter-attack", "Low block", "High risk / chaos"…), fitness, and lineage.
 
@@ -255,11 +260,12 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.9 goals, ~14 shots, ~117 passes at 72% completion, balanced possession,
-98% ball-in-play, ~43 ms per headless match (a 10-season fast-sim takes ~12 s).
-Squad DNA diversified the emergent meta noticeably — counter-attack, gegenpress,
-deep-block and wide-play identities now coexist across generations
-(see `npm run evolve-check`).
+~2.4–2.9 goals, ~12–15 shots, ~75% pass completion, balanced possession, 98%
+ball-in-play, ~44 ms per headless match (a 10-season two-division fast-sim ≈
+24 s, 112 matches per season). The per-match engine is unchanged from the
+8-team era — averages shift a little with each seed population. The pyramid
+produces real football stories: never-relegated aristocrats, yo-yo clubs with
+5+ division moves, and a visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
@@ -275,19 +281,21 @@ deep-block and wide-play identities now coexist across generations
 ## What's implemented vs. next steps
 
 Implemented: autonomous 5v5 matches, three-layer utility AI, 14 live tactical
-genes + 5 per-player attribute genes, evolving 8-team league with
-lineage/history, watch UI with 5 speeds + headless fast-sim, live match stats +
+genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
+with promotion/relegation and followable lineage, watch UI with 5 speeds +
+headless fast-sim, live match stats +
 xG race chart, debug overlays, a full 3D match viewer (procedural players with
 distinct run/kick/dive/celebrate animations, 5 polished camera modes, 3D
 overlays, possession/crowd readability aids, goal/save/shot event feedback,
 replay with scrubbing/event jumps/auto-camera/slow-mo), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v3, migrates v1/v2), 64 tests, and browser-driving visual
-smoke tests for both views (18 + 20 checks).
+fame), save/load (v4 — a v3 save's 8 teams become Division 1 with a fresh D2
+spawned beneath; v1/v2 chain-migrate), 66 tests, and browser-driving visual
+smoke tests for both views (20 + 20 checks).
 
 Ideas for the next phase:
 - Set pieces (corners/throw-ins) instead of futsal walls
-- Promotion/relegation with a second division; tournaments
+- A cup competition (knockout) alongside the league pyramid
 - Optional GLTF player models with the procedural mesh as fallback
 - Optional learned policies (RL) benchmarked against the utility AI
 - WebWorker simulation for even faster multi-season runs
