@@ -345,3 +345,25 @@ body.cinematic .cinematic-exit { display: block; }
   border: 1px dashed var(--border); border-radius: 8px;
   padding: 14px; text-align: center; margin: 8px 0 16px;
 }
+
+/* ---------- Phase 17: responsive layout ---------- */
+/* The stage canvas already scales (max-width: 100%). Below 1400px the side
+   panels slim down; below 1100px the app stacks vertically — pitch first,
+   panels as wrapping card rows — so laptops and tablets stay playable. */
+@media (max-width: 1400px) {
+  aside { width: 220px; }
+  #right-panel { width: 260px; }
+  .gene-row { grid-template-columns: 90px 1fr 1fr; }
+}
+@media (max-width: 1100px) {
+  #layout { flex-direction: column; overflow-y: auto; }
+  #stage { order: -1; overflow: visible; width: 100%; }
+  aside {
+    width: 100% !important;
+    flex-direction: row; flex-wrap: wrap; align-items: flex-start;
+    border: none; border-top: 1px solid var(--border);
+  }
+  aside .section { flex: 1 1 240px; }
+  #event-feed { height: 110px; }
+  #topbar { flex-wrap: wrap; row-gap: 4px; }
+}

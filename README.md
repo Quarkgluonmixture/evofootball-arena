@@ -11,21 +11,60 @@ explainable **utility AI + evolutionary strategy** system: every decision has a
 visible score, every team has 14 readable "genes", and evolution is something
 you can watch and reason about.
 
-## Running
+## Quickstart (play it)
+
+Requires [Node.js](https://nodejs.org) 18+ (20+ recommended) — that's the
+only prerequisite. No backend, no accounts, no network calls: everything runs
+and saves locally in your browser.
 
 ```bash
+git clone https://github.com/Quarkgluonmixture/evofootball-arena.git
+cd evofootball-arena
 npm install
-npm run dev        # open the printed URL (Vite dev server)
-
-npm test           # vitest: determinism, league, evolution, gene/attr-effect tests
-npm run build      # typecheck + production bundle
-npm run calibrate  # headless: 2 seasons, prints per-match balance stats
-npm run evolve-check      # headless: 10 seasons of evolution
-npm run debug:visual      # drives the real 2D game in headless Chromium (dev server must be up)
-npm run debug:visual3d    # same, for the 3D viewer: meshes, cameras, replay (20 checks)
+npm run dev        # then open the printed URL (usually http://localhost:5173)
 ```
 
-Requires Node 18+. No backend, no network — everything runs and saves locally.
+Press **1×** to watch the first match, or **Season** to fast-sim one. Your
+league auto-saves in the browser (localStorage) after every season.
+
+For a production build:
+
+```bash
+npm run build      # typecheck + bundle into dist/
+npm run preview    # serve the built game locally
+```
+
+The build is fully static — host `dist/` anywhere (GitHub Pages, itch.io,
+any file server); asset paths are relative (`base: './'`).
+
+## Development & validation
+
+```bash
+npm test           # vitest: determinism, league/cup/set-piece invariants, sim-worker equivalence
+npm run typecheck  # tsc --noEmit
+npm run calibrate  # headless: 2 seasons, prints per-match balance stats
+npm run evolve-check      # headless: 10 seasons of evolution meta-diversity
+
+# Browser smoke suites (optional — needs Playwright's Chromium once):
+npx playwright install chromium
+npx vite --port 5199 --strictPort &   # the suites expect the dev server here
+npm run debug:visual      # drives the real 2D game end to end (47 checks + screenshots)
+npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic (26 checks)
+```
+
+### Troubleshooting
+
+- **Blank/black 3D view**: your browser or VM lacks WebGL — the app says so in
+  the feed and stays in 2D. Everything except the 3D viewer works without it.
+- **Port already in use**: `npm run dev -- --port 5174` (any free port works;
+  only the Playwright suites insist on 5199).
+- **`npm install` fails on old Node**: check `node --version` ≥ 18.
+- **Lost your league**: saves live in the browser's localStorage under
+  `evofootball-arena-save-v1` — clearing site data deletes them; the Save
+  button (top bar) writes the same slot on demand.
+- **Slow fast-sim**: long runs execute on a Web Worker; if your browser lacks
+  module workers the app falls back to a slower main-thread loop
+  automatically (identical results).
 
 ## How to play (watch)
 
@@ -373,5 +412,5 @@ browser-driving visual smoke tests for both views (47 + 26 checks).
 Ideas for the next phase (rough priority order):
 - Optional learned policies (ES/RL "wildcard team") benchmarked against the
   evolved utility-AI teams
-- Release polish: responsive layout, touch controls, PWA, itch.io page
+- An itch.io page for the built `dist/` bundle
 - Optional GLTF player models with the procedural mesh as fallback

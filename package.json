@@ -1,7 +1,16 @@
 {
   "name": "evofootball-arena",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.16.0",
+  "description": "An autonomous 5v5 football ecosystem — deterministic simulation, explainable utility AI, evolving leagues, cups and giant killings. You mostly watch.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Quarkgluonmixture/evofootball-arena.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
