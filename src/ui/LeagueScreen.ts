@@ -263,7 +263,7 @@ export class LeagueScreen {
       this.root.appendChild(this.renderBracket(league, league.cup));
     } else {
       this.root.appendChild(
-        el('div', 'muted', `No cup this season (pre-cup save) — the first ${CUP_NAME} kicks off next season.`),
+        el('div', 'muted empty', `No cup this season (pre-cup save) — the first ${CUP_NAME} kicks off next season.`),
       );
     }
 
@@ -339,7 +339,7 @@ export class LeagueScreen {
   private renderReport(league: League): void {
     const rec = league.history[league.history.length - 1];
     if (!rec) {
-      this.root.appendChild(el('div', 'muted', 'No completed seasons yet — simulate one!'));
+      this.root.appendChild(el('div', 'muted empty', 'No completed seasons yet — simulate one!'));
       this.renderCurrentScorers(league);
       return;
     }
@@ -476,7 +476,7 @@ export class LeagueScreen {
     const withGenes = league.history.filter((r) => r.geneMeans);
     this.root.appendChild(el('h2', '', 'Tactical gene drift (league mean per generation)'));
     if (withGenes.length === 0) {
-      this.root.appendChild(el('div', 'muted', 'Finish a season to start tracking gene drift.'));
+      this.root.appendChild(el('div', 'muted empty', 'Finish a season to start tracking gene drift.'));
     } else {
       const grid = el('div', 'spark-grid');
       for (const k of GENE_KEYS) {
@@ -511,7 +511,7 @@ export class LeagueScreen {
   private renderHall(league: League): void {
     const h = league.history;
     if (h.length === 0) {
-      this.root.appendChild(el('div', 'muted', 'No history yet — the hall opens after the first season.'));
+      this.root.appendChild(el('div', 'muted empty', 'No history yet — the hall opens after the first season.'));
       return;
     }
 

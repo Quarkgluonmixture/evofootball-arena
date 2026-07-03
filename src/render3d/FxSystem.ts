@@ -131,14 +131,18 @@ export interface FxHooks {
   onEvent?: (type: FxEvent['type']) => void;
 }
 
+export type FxQuality = 'low' | 'medium' | 'high';
+
 export class FxSystem {
   readonly root = new THREE.Group();
-  private bursts = [new Burst(), new Burst(), new Burst()];
+  private bursts = [new Burst(), new Burst(), new Burst(), new Burst(), new Burst()];
   private floaters = [new Floater(), new Floater(), new Floater()];
   private nextBurst = 0;
   private nextFloater = 0;
   private seen = new Set<string>();
   hooks: FxHooks | null = null;
+  /** low = feedback without particles; high = celebratory extras (confetti). */
+  quality: FxQuality = 'medium';
 
   constructor() {
     for (const b of this.bursts) this.root.add(b.points);
@@ -157,6 +161,7 @@ export class FxSystem {
       this.seen.add(key);
       if (this.seen.size > 400) this.seen.clear(); // unbounded-growth guard
 
+      const particles = this.quality !== 'low';
       switch (fx.type) {
         case 'shot': {
           const label = fx.xg !== undefined ? `xG ${fx.xg.toFixed(2)}` : 'shot';
@@ -167,15 +172,24 @@ export class FxSystem {
         case 'save': {
           // Burst at the saving side's keeper.
           const gk = state.players.find((p) => p.side === fx.side && p.role === 'GK');
-          if (gk) this.burst().fire(gk.x, 1.4, gk.z, 0x7dd3fc);
+          if (gk && particles) this.burst().fire(gk.x, 1.4, gk.z, 0x7dd3fc);
           break;
         }
         case 'interception': {
-          this.burst().fire(state.ball.x, 0.6, state.ball.z, teamColors[fx.side]);
+          if (particles) this.burst().fire(state.ball.x, 0.6, state.ball.z, teamColors[fx.side]);
+          break;
+        }
+        case 'corner': {
+          this.floater().fire(state.ball.x, state.ball.z, '⚑ corner', '#facc15');
           break;
         }
         case 'goal': {
-          this.burst().fire(state.ball.x, 1.0, state.ball.z, teamColors[fx.side]);
+          if (particles) this.burst().fire(state.ball.x, 1.0, state.ball.z, teamColors[fx.side]);
+          if (this.quality === 'high') {
+            // Confetti: two extra offset bursts in both kit colors.
+            this.burst().fire(state.ball.x - 1.6, 1.6, state.ball.z + 1.2, teamColors[fx.side]);
+            this.burst().fire(state.ball.x + 1.6, 1.9, state.ball.z - 1.2, 0xffffff);
+          }
           this.hooks?.onGoal(fx.side);
           break;
         }

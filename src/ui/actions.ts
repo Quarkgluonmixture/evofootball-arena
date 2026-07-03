@@ -1,6 +1,8 @@
 import type { CameraMode } from '../render3d/CameraController';
+import type { FxQuality } from '../render3d/FxSystem';
 
 export type ViewMode = '2d' | '3d';
+export type { FxQuality };
 
 /** UI ↔ game contract. GameApp implements this; panels call it. */
 export interface UiFlags {
@@ -42,4 +44,9 @@ export interface GameActions {
   resetCamera(): void;
   openReplay(): void;
   setSound(v: boolean): void;
+  /** Presentation (Phase 15): all real controls, all optional. */
+  setCinematic(v: boolean): void;
+  setFxQuality(q: FxQuality): void;
+  takeScreenshot(): void;
+  copyShareSummary(): void;
 }

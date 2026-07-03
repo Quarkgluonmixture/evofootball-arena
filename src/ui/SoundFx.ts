@@ -3,7 +3,7 @@
  * OFF by default; toggled from the left panel. Failures (no AudioContext,
  * autoplay policy) are swallowed silently: sound is strictly cosmetic.
  */
-export type FxSoundType = 'goal' | 'save' | 'shot' | 'interception';
+export type FxSoundType = 'goal' | 'save' | 'shot' | 'interception' | 'corner';
 
 export class SoundFx {
   enabled = false;
@@ -23,6 +23,9 @@ export class SoundFx {
           break;
         case 'interception':
           this.beep(320, 0.05, 0.04, 'triangle');
+          break;
+        case 'corner':
+          this.beep(392, 0.09, 0.05, 'triangle');
           break;
         case 'goal':
           this.beep(523, 0.12, 0.09, 'triangle', 0);

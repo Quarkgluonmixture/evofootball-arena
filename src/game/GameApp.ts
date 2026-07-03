@@ -15,7 +15,7 @@ import { CUP_NAME, CUP_ROUND_NAMES, cupEntrant, cupTie } from '../sim/cup';
 import { League, type Fixture } from '../sim/League';
 import type { Match } from '../sim/Match';
 import type { MatchEvent } from '../sim/types';
-import { defaultFlags, type GameActions, type UiFlags, type ViewMode } from '../ui/actions';
+import { defaultFlags, type FxQuality, type GameActions, type UiFlags, type ViewMode } from '../ui/actions';
 import { button, el } from '../ui/dom';
 import { EventFeed } from '../ui/EventFeed';
 import { LeagueScreen } from '../ui/LeagueScreen';
@@ -52,6 +52,9 @@ export class GameApp implements GameActions {
   private paused = true;
   private speed = 1;
   private autoContinue = true;
+  private cinematic = false;
+  private fxQuality: FxQuality = 'medium';
+  private cineBug!: HTMLDivElement;
   private flags: UiFlags = defaultFlags();
   private selectedGid: number | null = null;
   private acc = 0;
@@ -133,6 +136,18 @@ export class GameApp implements GameActions {
       onJump: (ev) => this.replayJump(ev),
       onExit: () => this.exitReplay(),
     });
+    // Cinematic mode chrome: an exit control (cinematic must always be
+    // escapable) and a minimal 2D score bug (3D has its own broadcast bug).
+    const cineExit = button('✕ exit cinematic', () => this.setCinematic(false));
+    cineExit.className = 'cinematic-exit';
+    stage.appendChild(cineExit);
+    this.cineBug = el('div') as HTMLDivElement;
+    this.cineBug.className = 'score-bug cine-bug hidden';
+    stage.appendChild(this.cineBug);
+    window.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape' && this.cinematic) this.setCinematic(false);
+    });
+
     const pitch = new PitchRenderer();
     this.app.stage.addChild(pitch.container, this.matchRenderer.container, this.debugOverlay.container);
     this.matchRenderer.onSelectPlayer = (gid) => {
@@ -182,6 +197,7 @@ export class GameApp implements GameActions {
         bufferSize: this.buffer.size,
       }),
       viewMode: () => this.viewMode,
+      cinematic: () => this.cinematic,
     };
   }
 
@@ -219,7 +235,24 @@ export class GameApp implements GameActions {
     if (this.panelTimer > 0.12) {
       this.panelTimer = 0;
       if (this.match) this.right.updateDynamic(this.match, this.selectedGid);
+      this.updateCineBug();
     }
+  }
+
+  /** Minimal broadcast overlay for 2D cinematic mode (3D has its own bug). */
+  private updateCineBug(): void {
+    const show = this.cinematic && this.viewMode === '2d' && this.match !== null;
+    this.cineBug.classList.toggle('hidden', !show);
+    if (!show || !this.match) return;
+    const m = this.match;
+    const hex = (c: number) => `#${c.toString(16).padStart(6, '0')}`;
+    this.cineBug.innerHTML =
+      `<span class="sb-chip" style="background:${hex(m.teams[0].info.colors.primary)}"></span>` +
+      `<span class="sb-team">${m.teams[0].info.short}</span>` +
+      `<span class="sb-score">${m.score[0]}–${m.score[1]}</span>` +
+      `<span class="sb-team">${m.teams[1].info.short}</span>` +
+      `<span class="sb-chip" style="background:${hex(m.teams[1].info.colors.primary)}"></span>` +
+      `<span class="sb-min">${m.minute()}'</span>`;
   }
 
   /** What the 3D view should draw this frame: live sim state or replay state. */
@@ -439,6 +472,81 @@ export class GameApp implements GameActions {
     this.sound.enabled = v;
   }
 
+  /* ---------------- presentation (Phase 15) ---------------- */
+
+  setCinematic(v: boolean): void {
+    this.cinematic = v;
+    document.body.classList.toggle('cinematic', v);
+    this.updateCineBug();
+    this.left.setCinematicUI(v);
+    if (v) this.feed.pushSystem('🎥 Cinematic mode — press Esc or ✕ to exit.');
+  }
+
+  setFxQuality(q: FxQuality): void {
+    this.fxQuality = q;
+    this.three?.setFxQuality(q);
+    this.left.setFxQualityUI(q);
+  }
+
+  takeScreenshot(): void {
+    try {
+      let dataUrl: string;
+      if (this.viewMode === '3d' && this.three) {
+        dataUrl = this.three.captureScreenshot();
+      } else {
+        // Pixi: extract renders synchronously into a fresh canvas — safe to read.
+        const canvas = this.app.renderer.extract.canvas(this.app.stage) as HTMLCanvasElement;
+        dataUrl = canvas.toDataURL('image/png');
+      }
+      const m = this.match;
+      const name = m
+        ? `evofootball-${m.teams[0].info.short}-${m.score[0]}-${m.score[1]}-${m.teams[1].info.short}-${m.minute()}min.png`
+        : 'evofootball.png';
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = name;
+      a.click();
+      this.feed.pushSystem(`📸 Screenshot saved: ${name}`);
+    } catch (err) {
+      console.error('Screenshot failed:', err);
+      this.feed.pushSystem('⚠️ Screenshot not supported in this browser — try the OS screenshot tool.');
+    }
+  }
+
+  copyShareSummary(): void {
+    const summary = this.buildShareSummary();
+    const done = () => this.feed.pushSystem('📋 Share summary copied to clipboard.');
+    const fallback = () => {
+      // Clipboard blocked (permissions/headless): surface the text itself.
+      this.feed.pushSystem(`📋 Copy blocked — summary: ${summary.replace(/\n/g, ' · ')}`);
+    };
+    try {
+      navigator.clipboard.writeText(summary).then(done, fallback);
+    } catch {
+      fallback();
+    }
+  }
+
+  private buildShareSummary(): string {
+    const m = this.match;
+    const lines: string[] = [];
+    if (m) {
+      const [a, b] = m.teams;
+      lines.push(
+        `⚽ ${a.info.name} ${m.score[0]}–${m.score[1]} ${b.info.name} (${m.minute()}') · xG ${a.stats.xg.toFixed(2)}–${b.stats.xg.toFixed(2)}`,
+      );
+      const scorers = m.playerStats
+        .map((s, gid) => ({ s, gid }))
+        .filter(({ s }) => s.goals > 0)
+        .map(({ s, gid }) => `${m.allPlayers[gid].name} ${'⚽'.repeat(Math.min(s.goals, 5))}`);
+      if (scorers.length > 0) lines.push(`Scorers: ${scorers.join(', ')}`);
+    }
+    lines.push(
+      `EvoFootball Arena · Gen ${this.league.generation} · Season ${this.league.history.length + 1} · ${this.league.roundLabel()} · seed ${this.league.seed}`,
+    );
+    return lines.join('\n');
+  }
+
   saveNow(): void {
     if (saveLeague(this.league)) this.feed.pushSystem('💾 League saved.');
   }
@@ -490,6 +598,7 @@ export class GameApp implements GameActions {
             this.selectedGid = this.selectedGid === gid ? null : gid;
           };
           this.three.onFxEvent = (type) => this.sound.play(type);
+          this.three.setFxQuality(this.fxQuality);
           if (this.match) this.three.attach(buildRenderTheme(this.match));
         }
       } catch (err) {
@@ -565,6 +674,7 @@ export class GameApp implements GameActions {
   private replayJump(ev: MatchEvent): void {
     const range = this.replay.source?.range();
     if (!range) return;
+    this.replayBar.setContext(ev); // broadcast-style "what am I rewatching" label
     this.replay.t = Math.max(range[0], ev.t - 3); // 3s lead-in to the moment
     // Goals and saves replay in slow motion.
     this.replay.speed = ev.type === 'goal' || ev.type === 'save' ? 0.5 : 1;

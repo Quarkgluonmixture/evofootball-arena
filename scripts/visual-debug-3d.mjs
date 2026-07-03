@@ -39,6 +39,14 @@ check('2 goal models exist', info?.goals === 2);
 
 const shot3d = await page.locator('#three-host canvas').screenshot();
 check('3D canvas renders non-blank', shot3d.length > 10000, `${shot3d.length} bytes`);
+check('broadcast score bug shows', info?.scoreBugVisible === true);
+check('FX quality defaults to medium', info?.fxQuality === 'medium', `q=${info?.fxQuality}`);
+
+// FX quality buttons drive the renderer for real.
+await page.click('button:has-text("High")');
+await page.waitForTimeout(200);
+check('FX quality High reaches the renderer', (await page.evaluate(() => window.__evo.three()))?.fxQuality === 'high');
+await page.click('button:has-text("Med")');
 
 // ---- brief tactical look ----
 await page.click('button:has-text("8×")');
@@ -93,6 +101,21 @@ for (let i = 0; i < 50; i++) {
 }
 await page.screenshot({ path: `${OUT}/3-broadcast-attack.png` });
 check('broadcast camera frames final-third attacks', framed);
+
+// ---- goalkeeper identity close-up (behind-goal frames the keeper) ----
+await page.click('button:has-text("Goal")');
+await page.waitForTimeout(1500);
+await page.screenshot({ path: `${OUT}/3b-gk-identity.png` });
+
+// ---- cinematic mode in 3D ----
+await page.click('button:has-text("🎥 Cinematic")');
+await page.waitForTimeout(400);
+check('3D cinematic hides panels', !(await page.locator('#left-panel').isVisible()));
+await page.screenshot({ path: `${OUT}/3c-cinematic-3d.png` });
+await page.keyboard.press('Escape');
+await page.waitForTimeout(300);
+check('Esc exits 3D cinematic', await page.locator('#left-panel').isVisible());
+check('cinematic state exposed to tooling', (await page.evaluate(() => window.__evo.cinematic())) === false);
 
 // ---- select a player in 3D ----
 await page.click('button:has-text("⏸")');

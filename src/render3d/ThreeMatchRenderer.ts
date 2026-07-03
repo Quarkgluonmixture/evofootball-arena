@@ -5,7 +5,7 @@ import type { UiFlags } from '../ui/actions';
 import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
 import { CameraController, type CameraMode } from './CameraController';
-import { FxSystem } from './FxSystem';
+import { FxSystem, type FxQuality } from './FxSystem';
 import { Goal3D } from './GoalModel';
 import { declutterLabels, type LabelItem } from './labelDeclutter';
 import { Overlays3D } from './Overlays3D';
@@ -43,6 +43,9 @@ export class ThreeMatchRenderer {
 
   private banner: HTMLDivElement;
   private bannerTimer: ReturnType<typeof setTimeout> | null = null;
+  private scoreBug: HTMLDivElement;
+  private scoreBugText = '';
+  private vignette: HTMLDivElement;
 
   onSelectPlayer: ((gid: number) => void) | null = null;
   /** Optional external hook (sound etc.) fired once per fx event. */
@@ -74,18 +77,24 @@ export class ThreeMatchRenderer {
 
     this.cameraCtl = new CameraController(CANVAS_W / CANVAS_H, this.renderer.domElement);
 
-    // Goal banner (DOM overlay on the 3D host).
+    // DOM overlays on the 3D host: goal banner, broadcast score bug, and a
+    // subtle vignette that keeps the pitch the visual center.
     host.style.position = 'relative';
     this.banner = document.createElement('div');
     this.banner.className = 'goal-banner hidden';
-    host.appendChild(this.banner);
+    this.vignette = document.createElement('div');
+    this.vignette.className = 'pitch-vignette';
+    this.scoreBug = document.createElement('div');
+    this.scoreBug.className = 'score-bug hidden';
+    host.append(this.vignette, this.scoreBug, this.banner);
 
     // Renderer-owned event feedback.
     this.fx.hooks = {
       onGoal: (side) => {
         this.goals[side].shake();
         const team = this.theme?.teams[side];
-        if (team) this.showBanner(`GOAL!  ${team.name}`, team.primary);
+        const score = this.lastState ? `${this.lastState.score[0]}–${this.lastState.score[1]}` : '';
+        if (team) this.showBanner(team.name, score, team.primary);
       },
       onShot: () => this.cameraCtl.pulse(),
       onEvent: (type) => this.onFxEvent?.(type),
@@ -141,6 +150,9 @@ export class ThreeMatchRenderer {
 
   update(state: RenderState | null, dt: number, flags: UiFlags, selectedGid: number | null): void {
     if (state) {
+      // Assign early so fx hooks (goal banner) see the post-event score.
+      this.lastState = state;
+      this.updateScoreBug(state);
       for (const p of state.players) {
         const model = this.players.get(p.gid);
         if (!model) continue;
@@ -162,8 +174,8 @@ export class ThreeMatchRenderer {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
       }
       this.cameraCtl.update(state.ball, dt);
-      this.lastState = state;
     } else {
+      this.scoreBug.classList.add('hidden');
       this.cameraCtl.update({ x: 0, z: 0, vx: 0, vz: 0 }, dt);
     }
     this.fx.update(dt);
@@ -203,8 +215,29 @@ export class ThreeMatchRenderer {
     }
   }
 
-  private showBanner(text: string, color: number): void {
-    this.banner.textContent = text;
+  /** Broadcast score bug: `RUS 2–1 OBS · 34'` with kit-color chips. */
+  private updateScoreBug(state: RenderState): void {
+    const t = this.theme;
+    if (!t) return;
+    this.scoreBug.classList.remove('hidden');
+    const text = `${t.teams[0].short}${state.score[0]}${state.score[1]}${t.teams[1].short}${state.minute}`;
+    if (text === this.scoreBugText) return;
+    this.scoreBugText = text;
+    const hex = (c: number) => `#${c.toString(16).padStart(6, '0')}`;
+    this.scoreBug.innerHTML =
+      `<span class="sb-chip" style="background:${hex(t.teams[0].primary)}"></span>` +
+      `<span class="sb-team">${t.teams[0].short}</span>` +
+      `<span class="sb-score">${state.score[0]}–${state.score[1]}</span>` +
+      `<span class="sb-team">${t.teams[1].short}</span>` +
+      `<span class="sb-chip" style="background:${hex(t.teams[1].primary)}"></span>` +
+      `<span class="sb-min">${state.minute}'</span>`;
+  }
+
+  private showBanner(team: string, score: string, color: number): void {
+    this.banner.innerHTML =
+      `<div class="gb-title">GOAL!</div>` +
+      `<div class="gb-sub">${team}${score ? ` · ${score}` : ''}</div>`;
+    this.banner.style.borderColor = `#${color.toString(16).padStart(6, '0')}`;
     this.banner.style.color = `#${color.toString(16).padStart(6, '0')}`;
     this.banner.classList.remove('hidden');
     if (this.bannerTimer) clearTimeout(this.bannerTimer);
@@ -213,6 +246,27 @@ export class ThreeMatchRenderer {
 
   private hideBanner(): void {
     this.banner.classList.add('hidden');
+  }
+
+  /** FX quality: low = no particles/vignette + 1× pixel ratio; high = confetti. */
+  setFxQuality(q: FxQuality): void {
+    this.fx.quality = q;
+    this.vignette.style.display = q === 'low' ? 'none' : '';
+    this.renderer.setPixelRatio(q === 'low' ? 1 : Math.min(window.devicePixelRatio, 2));
+  }
+
+  get fxQuality(): FxQuality {
+    return this.fx.quality;
+  }
+
+  /**
+   * Capture the current 3D frame as a PNG data URL. Renders synchronously
+   * first — reading a WebGL canvas outside the same task returns blank
+   * (see ARCHITECTURE failure mode 9).
+   */
+  captureScreenshot(): string {
+    this.renderer.render(this.scene, this.cameraCtl.camera);
+    return this.renderer.domElement.toDataURL('image/png');
   }
 
   setCameraMode(mode: CameraMode): void {
@@ -276,6 +330,8 @@ export class ThreeMatchRenderer {
     labelsVisible: number;
     netShaking: boolean;
     bannerVisible: boolean;
+    scoreBugVisible: boolean;
+    fxQuality: FxQuality;
   } {
     return {
       players: this.players.size,
@@ -289,6 +345,8 @@ export class ThreeMatchRenderer {
       labelsVisible: this.labelVisibleCount,
       netShaking: this.goals[0].isShaking || this.goals[1].isShaking,
       bannerVisible: !this.banner.classList.contains('hidden'),
+      scoreBugVisible: !this.scoreBug.classList.contains('hidden'),
+      fxQuality: this.fx.quality,
     };
   }
 
@@ -296,6 +354,8 @@ export class ThreeMatchRenderer {
   dispose(): void {
     if (this.bannerTimer) clearTimeout(this.bannerTimer);
     this.banner.remove();
+    this.scoreBug.remove();
+    this.vignette.remove();
     this.scene.traverse((obj) => {
       const mesh = obj as THREE.Mesh;
       if (mesh.geometry) mesh.geometry.dispose();

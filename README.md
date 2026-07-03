@@ -40,6 +40,10 @@ Requires Node 18+. No backend, no network — everything runs and saves locally.
   shot vectors, marking lines, press assignments, ball heatmap.
 - The league **auto-saves after every season** (localStorage); Save/Load/Reset
   in the top bar. `New league` accepts a numeric or text seed.
+- **Presentation** (left panel): 🎥 cinematic mode (hides all chrome — Esc/✕
+  exits), 📸 screenshot of the current view, 📋 copy a share summary (score,
+  scorers, xG, league/cup context, seed), and an FX quality setting
+  (Low/Med/High). Style rules live in `docs/ART_DIRECTION.md`.
 
 > **Contributing / coding agents:** read
 > [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) first — module ownership,
@@ -209,9 +213,16 @@ src/replay/ReplayBuffer.ts  10 Hz RenderState snapshots of watched play;
   (selected > carrier > GK priority, pure fn in `labelDeclutter.ts`), and an
   automatic inverted-kit swap when both teams' primaries are too similar.
 - **Event feedback** (`FxSystem.ts`, deduped by event time so live play and
-  replays each fire once): xG floaters on shots, particle bursts on
-  saves/interceptions, goal banner + net shake (`Goal3D`), camera push-in on
-  shots. Optional generated-tone sound FX (WebAudio, off by default).
+  replays each fire once): xG floaters on shots and ⚑ corners, particle bursts
+  on saves/interceptions (confetti on High FX), a broadcast goal-banner card +
+  net shake (`Goal3D`), a persistent score bug (works in replays — snapshots
+  carry score/minute), camera push-in on shots. Optional generated-tone sound
+  FX (WebAudio, off by default).
+- **Presentation polish (Phase 15)**: procedural low-poly players with back
+  numbers, short sleeves, role-based builds and a gloved, broader keeper;
+  diorama stadium (terraces, floodlights, adboards, corner arcs + penalty D,
+  vignette); cinematic hide-UI mode with a REPLAY badge + event-context label.
+  Art rules: `docs/ART_DIRECTION.md`; QA notes: `docs/VISUAL_QA.md`.
 - **Camera feel**: broadcast pans with velocity look-ahead and pushes in during
   final-third attacks; ball-follow is heavily damped (motion-sickness guard);
   behind-goal auto-frames the goalmouth.
@@ -325,8 +336,10 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 - `npm run debug:visual` — Playwright drives the *real* game in headless
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
-  seasons from the UI, and screenshots every stage to
-  `/tmp/evofootball-shots/` (39 checks).
+  seasons from the UI, exercises cinematic/screenshot/share/FX-quality
+  controls, and screenshots every stage to `/tmp/evofootball-shots/`
+  (46 checks). The 3D suite covers models, cameras, replay, score bug and
+  cinematic mode (26 checks).
 
 ## What's implemented vs. next steps
 
@@ -341,10 +354,12 @@ headless fast-sim, live match stats +
 xG race chart, debug overlays, a full 3D match viewer (procedural players with
 distinct run/kick/dive/celebrate animations, 5 polished camera modes, 3D
 overlays, possession/crowd readability aids, goal/save/shot event feedback,
-replay with scrubbing/event jumps/auto-camera/slow-mo), a narrative layer
+replay with scrubbing/event jumps/auto-camera/slow-mo), a unified art
+direction with broadcast overlays, cinematic mode and screenshot/share tools
+(Phase 15 — `docs/ART_DIRECTION.md`), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
 fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), 95 tests, and
-browser-driving visual smoke tests for both views (39 + 20 checks).
+browser-driving visual smoke tests for both views (46 + 26 checks).
 
 Ideas for the next phase (rough priority order):
 - Optional learned policies (ES/RL "wildcard team") benchmarked against the

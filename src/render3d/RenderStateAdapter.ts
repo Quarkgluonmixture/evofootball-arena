@@ -38,7 +38,7 @@ export interface RenderBall {
 
 /** A recent notable event, for visual/audio feedback (deduped by `t`). */
 export interface FxEvent {
-  type: 'goal' | 'save' | 'shot' | 'interception';
+  type: 'goal' | 'save' | 'shot' | 'interception' | 'corner';
   side: Side;
   t: number;
   /** Attached for shots so the viewer can show chance quality. */
@@ -148,7 +148,7 @@ function buildFx(match: Match): FxEvent[] {
   for (let i = match.events.length - 1; i >= 0; i--) {
     const ev = match.events[i];
     if (match.simTime - ev.t > FX_WINDOW) break;
-    if (ev.type === 'goal' || ev.type === 'save' || ev.type === 'shot' || ev.type === 'interception') {
+    if (ev.type === 'goal' || ev.type === 'save' || ev.type === 'shot' || ev.type === 'interception' || ev.type === 'corner') {
       const fx: FxEvent = { type: ev.type, side: ev.side as Side, t: ev.t };
       if (ev.type === 'shot') {
         for (let j = match.shotLog.length - 1; j >= 0; j--) {

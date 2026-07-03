@@ -33,16 +33,19 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-14`)**: phases 0–14 complete — deterministic 5v5
+**Status (as of tag `phase-15`)**: phases 0–15 complete — deterministic 5v5
 sim with real boundaries and set pieces (kick-ins/corners/goal kicks as live
 dead-ball restarts); 14 tactical genes + 5-attr squad DNA; a 16-team
 Premier/Challenger pyramid with promotion/relegation and an optional playoff
 decider; the Evo Cup (a deterministic single-elimination knockout woven
 between league rounds, with giant-killing/upset narratives); 2D (Pixi) + 3D
-(Three.js) viewers with replay; season reports/awards/narratives, evolution
-sparklines, hall of fame with dynasty timelines and cup honours; saves at v5
-(chain-migrates v1–v4). 95 vitest tests; Playwright suites: 2D 39 checks,
-3D 20 checks; ~45 ms/headless match. Git tags `phase-10`…`phase-14` are
+(Three.js) viewers with replay; a unified art direction ("retro tactical
+broadcast + low-poly diorama", `docs/ART_DIRECTION.md`) with polished player
+models/stadium/broadcast overlays, cinematic mode, screenshot/share tools and
+an FX quality setting; season reports/awards/narratives, evolution sparklines,
+hall of fame with dynasty timelines and cup honours; saves at v5
+(chain-migrates v1–v4). 95 vitest tests; Playwright suites: 2D 46 checks,
+3D 26 checks; ~45 ms/headless match. Git tags `phase-10`…`phase-15` are
 known-green checkpoints. Open roadmap ideas live in the README's "next steps".
 
 ## 2. Module ownership

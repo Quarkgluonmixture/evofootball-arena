@@ -51,7 +51,7 @@ function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
   const group = new THREE.Group();
   const net = new THREE.Group();
   group.add(net);
-  const frameMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.35 });
+  const frameMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.22, metalness: 0.25 });
   const postGeo = new THREE.CylinderGeometry(POST_R, POST_R, CROSSBAR_H, 10);
 
   const halfW = GOAL_WIDTH / 2;
@@ -82,7 +82,7 @@ function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
   const netMat = new THREE.MeshBasicMaterial({
     map: netTexture(),
     transparent: true,
-    opacity: 0.68,
+    opacity: 0.78,
     side: THREE.DoubleSide,
     depthWrite: false,
   });

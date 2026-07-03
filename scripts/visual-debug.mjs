@@ -122,6 +122,35 @@ await page.click('#league-screen button:has-text("League")');
 await page.waitForTimeout(200);
 await page.click('button:has-text("League table")');
 
+// ---- Phase 15: presentation tools (cinematic, share, FX quality) ----
+await page.click('button:has-text("🎥 Cinematic")');
+await page.waitForTimeout(400);
+check('cinematic hides the panel chrome', !(await page.locator('#left-panel').isVisible()), '');
+check('cinematic shows the 2D score bug', await page.locator('.cine-bug').isVisible(), '');
+check('cinematic exit control is present', await page.locator('.cinematic-exit').isVisible(), '');
+await page.screenshot({ path: `${OUT}/11-cinematic-2d.png` });
+await page.click('.cinematic-exit');
+await page.waitForTimeout(300);
+check('cinematic exits back to full UI', await page.locator('#left-panel').isVisible(), '');
+
+await page.click('button:has-text("📸 Screenshot")');
+await page.waitForTimeout(500);
+const feedAfterShot = await page.textContent('#event-feed');
+check('screenshot control is real (feed confirms)', /Screenshot (saved|not supported)/.test(feedAfterShot), '');
+
+await page.click('button:has-text("📋 Share summary")');
+await page.waitForTimeout(500);
+const feedAfterShare = await page.textContent('#event-feed');
+check('share summary control is real (feed confirms)', feedAfterShare.includes('summary'), '');
+
+await page.click('button:has-text("High")');
+await page.waitForTimeout(200);
+const fxActive = await page.evaluate(() =>
+  [...document.querySelectorAll('#left-panel button')].find((b) => b.textContent === 'High')?.classList.contains('active'),
+);
+check('FX quality selector reflects its state', fxActive === true, '');
+await page.click('button:has-text("Med")');
+
 // Simulate two full seasons headless via the UI button (two, so the
 // evolution sparklines have a line to draw).
 await page.click('button:has-text("Season")');

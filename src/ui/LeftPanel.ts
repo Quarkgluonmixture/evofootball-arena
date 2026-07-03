@@ -3,7 +3,13 @@ import { CUP_ROUND_SHORT } from '../sim/cup';
 import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import { button, checkbox, colorHex, el } from './dom';
-import type { GameActions, UiFlags, ViewMode } from './actions';
+import type { FxQuality, GameActions, UiFlags, ViewMode } from './actions';
+
+const FX_LABELS: Array<[FxQuality, string]> = [
+  ['low', 'Low'],
+  ['medium', 'Med'],
+  ['high', 'High'],
+];
 
 const CAMERA_LABELS: Array<[CameraMode, string]> = [
   ['tactical', 'Tactical'],
@@ -35,6 +41,8 @@ export class LeftPanel {
   private viewButtons = new Map<ViewMode, HTMLButtonElement>();
   private cameraButtons = new Map<CameraMode, HTMLButtonElement>();
   private threeOnly: HTMLButtonElement[] = [];
+  private fxButtons = new Map<FxQuality, HTMLButtonElement>();
+  private cineButton!: HTMLButtonElement;
 
   constructor(root: HTMLElement, actions: GameActions, flags: UiFlags) {
     const scoreboard = el('div', 'section');
@@ -96,14 +104,44 @@ export class LeftPanel {
     viewSec.appendChild(camRow2);
     viewSec.appendChild(checkbox('Sound FX (beeps)', false, (v) => actions.setSound(v)));
 
+    // Presentation: cinematic hide-UI, screenshots, share text, FX quality.
+    const presSec = el('div', 'section');
+    presSec.append(el('h3', '', 'Presentation'));
+    const presRow = el('div', 'row');
+    this.cineButton = button('🎥 Cinematic', () => actions.setCinematic(true));
+    presRow.append(this.cineButton);
+    presRow.appendChild(button('📸 Screenshot', () => actions.takeScreenshot()));
+    presSec.appendChild(presRow);
+    const presRow2 = el('div', 'row');
+    presRow2.appendChild(button('📋 Share summary', () => actions.copyShareSummary()));
+    presSec.appendChild(presRow2);
+    const fxRow = el('div', 'row');
+    fxRow.appendChild(el('span', 'muted g-name', 'FX quality'));
+    for (const [q, label] of FX_LABELS) {
+      const b = button(label, () => actions.setFxQuality(q));
+      this.fxButtons.set(q, b);
+      fxRow.appendChild(b);
+    }
+    presSec.appendChild(fxRow);
+
     const dbgSec = el('div', 'section');
+    dbgSec.className = 'section debug-section';
     dbgSec.append(el('h3', '', 'Debug overlays'));
     for (const [key, label] of FLAG_LABELS) {
       dbgSec.appendChild(checkbox(label, flags[key], (v) => actions.setFlag(key, v)));
     }
 
-    root.append(scoreboard, speedSec, viewSec, simSec, dbgSec);
+    root.append(scoreboard, speedSec, viewSec, simSec, presSec, dbgSec);
     this.setViewUI('2d', 'tactical');
+    this.setFxQualityUI('medium');
+  }
+
+  setCinematicUI(on: boolean): void {
+    this.cineButton.classList.toggle('active', on);
+  }
+
+  setFxQualityUI(q: FxQuality): void {
+    for (const [k, b] of this.fxButtons) b.classList.toggle('active', k === q);
   }
 
   setViewUI(view: ViewMode, camera: CameraMode): void {

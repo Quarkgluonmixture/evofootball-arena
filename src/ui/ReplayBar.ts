@@ -24,6 +24,7 @@ export class ReplayBar {
   private playBtn: HTMLButtonElement;
   private range: HTMLInputElement;
   private timeLabel: HTMLSpanElement;
+  private context: HTMLSpanElement;
   private chips: HTMLDivElement;
   private speedBtns = new Map<number, HTMLButtonElement>();
   private t0 = 0;
@@ -35,6 +36,8 @@ export class ReplayBar {
     this.root.classList.add('hidden');
 
     const row1 = el('div', 'row');
+    row1.appendChild(el('span', 'replay-badge', 'REPLAY'));
+    this.context = el('span', 'replay-context', '');
     this.playBtn = button('⏸', cb.onPlayPause);
     row1.appendChild(this.playBtn);
     for (const s of [0.25, 0.5, 1, 2]) {
@@ -44,6 +47,7 @@ export class ReplayBar {
     }
     this.timeLabel = el('span', 'muted', '');
     row1.appendChild(this.timeLabel);
+    row1.appendChild(this.context);
     const spacer = el('span', 'spacer');
     row1.appendChild(spacer);
     row1.appendChild(button('exit replay ✕', cb.onExit));
@@ -66,8 +70,14 @@ export class ReplayBar {
     this.root.addEventListener('pointerdown', stop);
   }
 
+  /** What moment is being rewatched — set on event jumps, cleared on show. */
+  setContext(ev: MatchEvent | null): void {
+    this.context.textContent = ev ? `${EVENT_ICON[ev.type] ?? ''} ${ev.minute}' — ${ev.text}` : '';
+  }
+
   show(range: [number, number], events: MatchEvent[], cb: ReplayCallbacks): void {
     [this.t0, this.t1] = range;
+    this.setContext(null);
     this.chips.textContent = '';
     for (const ev of events) {
       if (ev.t < this.t0 || ev.t > this.t1) continue; // only jumps inside the recording

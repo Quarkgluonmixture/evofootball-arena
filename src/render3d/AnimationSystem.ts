@@ -68,7 +68,7 @@ const LEAN: Partial<Record<AnimName, number>> = {
 /** Arm-swing factor relative to leg swing. */
 const ARM_F: Partial<Record<AnimName, number>> = {
   jog: 0.65,
-  sprint: 0.9,
+  sprint: 1.0, // full arm pump — sprints read urgent even at tactical range
   dribble: 0.55,
 };
 
@@ -158,8 +158,8 @@ export class AnimationSystem {
       leanZ = -side * 1.3;
       armLz = side > 0 ? 2.7 : 1.5; // top arm reaches further
       armRz = side > 0 ? -1.5 : -2.7;
-      legLz = side * 0.55;
-      legRz = side * 0.45;
+      legLz = side * 0.7; // legs trail into the dive — full-stretch silhouette
+      legRz = side * 0.55;
       leanX = 0.12;
       hop = 0;
     } else if (anim === 'celebrate') {
@@ -169,7 +169,7 @@ export class AnimationSystem {
       armRz = -2.5;
       armL = 0;
       armR = 0;
-      hop = Math.abs(Math.sin(model.animTime * (isScorer ? 9 : 6))) * (isScorer ? 0.5 : 0.16);
+      hop = Math.abs(Math.sin(model.animTime * (isScorer ? 9 : 6))) * (isScorer ? 0.62 : 0.16);
       leanX = isScorer ? -0.15 : -0.06;
     }
 
