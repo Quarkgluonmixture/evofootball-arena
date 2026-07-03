@@ -151,6 +151,20 @@ const fxActive = await page.evaluate(() =>
 check('FX quality selector reflects its state', fxActive === true, '');
 await page.click('button:has-text("Med")');
 
+// ---- Phase 18: wildcard exhibition (learned policy vs league leader) ----
+await page.click('button:has-text("⚡ Wildcard exhibition")');
+await page.waitForTimeout(600);
+const exhibitionNames = await page.textContent('#scoreboard .names');
+check('exhibition fields the Wildcard XI', exhibitionNames.includes('Wildcard XI'), exhibitionNames.slice(0, 40));
+const exhibitionMeta = await page.textContent('#scoreboard .muted');
+check('exhibition labeled as a friendly', exhibitionMeta.includes('Exhibition'), '');
+await page.screenshot({ path: `${OUT}/12-exhibition.png` });
+await page.click('button:has-text("⏭ skip")');
+await page.waitForTimeout(600);
+const feedAfterExhibition = await page.textContent('#event-feed');
+check('exhibition FT reported, league untouched', feedAfterExhibition.includes('Exhibition FT'), '');
+check('league fixture restored after exhibition', !(await page.textContent('#scoreboard .names')).includes('Wildcard'), '');
+
 // Simulate two full seasons headless via the UI button (two, so the
 // evolution sparklines have a line to draw).
 await page.click('button:has-text("Season")');

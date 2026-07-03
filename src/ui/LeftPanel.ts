@@ -78,6 +78,9 @@ export class LeftPanel {
     this.simButtons = [b1, b2, b3];
     simRow.append(b1, b2, b3);
     simSec.append(simRow);
+    const exhibitionRow = el('div', 'row');
+    exhibitionRow.appendChild(button('⚡ Wildcard exhibition', () => actions.playExhibition()));
+    simSec.append(exhibitionRow);
 
     const viewSec = el('div', 'section');
     viewSec.append(el('h3', '', 'View & camera'));
@@ -150,17 +153,19 @@ export class LeftPanel {
     for (const b of this.threeOnly) b.disabled = view !== '3d';
   }
 
-  updateHeader(match: Match, league: League): void {
+  updateHeader(match: Match, league: League, exhibition = false): void {
     this.nameA.textContent = match.teams[0].info.name;
     this.nameA.style.color = colorHex(match.teams[0].info.colors.primary);
     this.nameB.textContent = match.teams[1].info.name;
     this.nameB.style.color = colorHex(match.teams[1].info.colors.primary);
-    const fixture = league.nextFixture();
-    const context = fixture?.playoff
-      ? '⚔ Promotion playoff'
-      : fixture?.cup
-        ? `⚡ Cup ${CUP_ROUND_SHORT[fixture.round]}`
-        : `${fixture ? `D${fixture.division + 1} ` : ''}Round ${league.currentRound()}/7`;
+    const fixture = exhibition ? null : league.nextFixture();
+    const context = exhibition
+      ? '⚡ Exhibition (friendly)'
+      : fixture?.playoff
+        ? '⚔ Promotion playoff'
+        : fixture?.cup
+          ? `⚡ Cup ${CUP_ROUND_SHORT[fixture.round]}`
+          : `${fixture ? `D${fixture.division + 1} ` : ''}Round ${league.currentRound()}/7`;
     this.meta.textContent = `Gen ${league.generation} · Season ${league.history.length + 1} · ${context}`;
   }
 

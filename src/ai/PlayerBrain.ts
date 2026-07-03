@@ -51,6 +51,7 @@ export function decidePlayer(p: Player, match: Match): void {
 
 function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const g = team.genome;
+  const W = team.policy; // utility weights — DEFAULT_POLICY unless a wildcard carries learned ones
   const ball = match.ball;
   // Restart first touch must be a kick (kick-in/corner/goal kick) — dribbling
   // straight off the spot would break the dead-ball fiction.
@@ -70,9 +71,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // in execution (tighter spread in mechanics.performShot), not in shot
     // selection. Coupling it to utility made finishers take worse shots and
     // turned the attribute into a net negative.
-    let s = q * (1.9 + g.shootBias * 2.2);
-    if (team.mode === 'Attack' || team.mode === 'CounterAttack') s *= 1.2;
-    s *= 1 - pressure * 0.25;
+    let s = q * (W.shootBase + g.shootBias * W.shootGene);
+    if (team.mode === 'Attack' || team.mode === 'CounterAttack') s *= W.shootModeMul;
+    s *= 1 - pressure * W.shootPressurePen;
     cands.push({ action: 'Shoot', score: s, why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}` });
   }
 
@@ -89,9 +90,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // Forward progress of the pass, normalized to ±1 over 30m.
       const gain = clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
 
-      let s = 0.2 + lane * 0.3 + open * 0.2;
-      if (gain > 0) s *= 1 + gain * (0.35 + g.riskTolerance * 0.75);
-      else s *= 1 + gain * 0.25; // mild penalty for going backward
+      let s = W.passBase + lane * W.passLaneW + open * W.passOpenW;
+      if (gain > 0) s *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk);
+      else s *= 1 + gain * W.passBackPen; // mild penalty for going backward
       // Contested forward balls are gated by riskTolerance.
       if (gain > 0.15 && lane < 0.4) s *= 0.35 + g.riskTolerance * 0.65;
       if (team.mode === 'CounterAttack' && gain > 0) s *= 1.3;
@@ -108,7 +109,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         bestWhy = `to ${mate.name} · lane ${lane.toFixed(2)} · open ${open.toFixed(2)} · passBias ${g.passBias.toFixed(2)}`;
       }
     }
-    if (pressure > 0.5) bestPass *= 1.15; // pass is the pressure outlet
+    if (pressure > 0.5) bestPass *= W.passOutletMul; // pass is the pressure outlet
     if (bestMate) cands.push({ action: 'Pass', score: bestPass, why: bestWhy });
   }
 
@@ -116,15 +117,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   if (!mustKick) {
     const toGoal = norm(sub(goal, p.pos));
     const space = spaceAhead(p, toGoal, opp.players);
-    let sD = (0.28 + space * 0.55) * (0.45 + g.dribbleBias * 1.0);
-    sD *= 1 - pressure * 0.35;
+    let sD = (W.dribbleBase + space * W.dribbleSpaceW) * (W.dribbleGeneBase + g.dribbleBias * W.dribbleGeneW);
+    sD *= 1 - pressure * W.dribblePressurePen;
     if (team.mode === 'CounterAttack') sD *= 1.25;
     cands.push({ action: 'Dribble', score: sD, why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}` });
   }
 
   // --- Clear: panic button deep in our half; risk-averse teams use it more.
   if (localX < -18 && p.kickCooldown <= 0) {
-    let sC = (0.12 + pressure * 0.55) * (1.25 - g.riskTolerance * 0.8);
+    let sC = (W.clearBase + pressure * W.clearPressureW) * (1.25 - g.riskTolerance * 0.8);
     if (p.role === 'GK') sC *= 1.35;
     cands.push({ action: 'ClearBall', score: sC, why: `pressure ${pressure.toFixed(2)} · risk-averse ${(1 - g.riskTolerance).toFixed(2)}` });
   }
@@ -198,6 +199,7 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
 
 function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
   const g = team.genome;
+  const W = team.policy;
   const ball = match.ball;
   const possession = match.possessionSide;
   const cands: UtilityScore[] = [];
@@ -218,13 +220,13 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       const d = dist(p.pos, carrier.pos);
       const roleBonus = p.role === 'ST' ? 0.12 : p.role === 'WG' ? 0.1 : p.role === 'MF' ? 0.06 : 0;
       const modeMul = team.mode === 'Attack' || team.mode === 'CounterAttack' ? 1.2 : team.mode === 'BuildUp' ? 1.0 : 0.6;
-      let s = (0.3 + clamp01(1 - d / 30) * 0.35 + roleBonus) * modeMul;
+      let s = (W.supportBase + clamp01(1 - d / 30) * W.supportProxW + roleBonus) * modeMul;
       if (tired) s *= 0.6; // conserve energy: prefer holding shape
       cands.push({ action: 'SupportBallCarrier', score: s, why: `dist ${d.toFixed(0)}m · mode ${team.mode}` });
     }
     cands.push({
       action: 'MoveToFormationSpot',
-      score: 0.45 + (tired ? 0.2 : 0),
+      score: W.formationBase + (tired ? 0.2 : 0),
       why: tired ? 'keeping shape (stamina conservation)' : 'keeping shape',
     });
   } else {
@@ -236,11 +238,11 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // Cut out a pass in flight.
     if (ball.owner === null && match.pendingPass && match.pendingPass.side !== team.side) {
       const inter = canInterceptPass(p, ball);
-      if (inter.ok) cands.push({ action: 'InterceptPass', score: 0.95, why: 'can reach the passing lane first' });
+      if (inter.ok) cands.push({ action: 'InterceptPass', score: W.interceptScore, why: 'can reach the passing lane first' });
     }
     // Chase only if the TeamBrain assigned us — this is what stops ball-swarming.
     if (team.chasers.has(p.index)) {
-      const s = 0.85 + g.pressIntensity * 0.15;
+      const s = W.chaseBase + g.pressIntensity * 0.15;
       cands.push({ action: 'ChaseBall', score: s, why: `assigned presser · pressIntensity ${g.pressIntensity.toFixed(2)}` });
     } else if (possession === -1) {
       // Loose ball: closest unassigned player may react a little.
@@ -252,7 +254,7 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       markTarget = mark;
       cands.push({
         action: 'MarkOpponent',
-        score: 0.62 + g.markingAggression * 0.15,
+        score: W.markBase + g.markingAggression * 0.15,
         why: `mark ${opp.players[mark].name} · aggression ${g.markingAggression.toFixed(2)}`,
       });
     }

@@ -2,7 +2,10 @@ import { v2, type V2 } from '../utils/vec';
 import type { TacticalGenome } from '../evolution/genome';
 import { HALF_L } from './constants';
 import { Player } from './Player';
-import { ROLES, emptyStats, type Side, type TeamInfo, type TeamMatchStats, type TeamMode } from './types';
+import {
+  DEFAULT_POLICY, ROLES, emptyStats,
+  type PolicyParams, type Side, type TeamInfo, type TeamMatchStats, type TeamMode,
+} from './types';
 
 export class Team {
   readonly side: Side;
@@ -10,6 +13,8 @@ export class Team {
   readonly attackDir: 1 | -1;
   readonly info: TeamInfo;
   readonly players: Player[];
+  /** Utility-policy weights the brains score with (learned for wildcards). */
+  readonly policy: PolicyParams;
 
   mode: TeamMode = 'ResetShape';
   modeTime = 0;
@@ -29,6 +34,7 @@ export class Team {
     this.side = side;
     this.attackDir = side === 0 ? 1 : -1;
     this.info = info;
+    this.policy = info.policy ?? DEFAULT_POLICY;
     this.players = ROLES.map(
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );

@@ -11,11 +11,14 @@ import {
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
+import { buildWildcardTeamInfo, WILDCARD_NAME } from '../ai/wildcard';
+import { WILDCARD_POLICY } from '../ai/wildcardPolicy';
 import { CUP_NAME, CUP_ROUND_NAMES, cupEntrant, cupTie } from '../sim/cup';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
+import { Match } from '../sim/Match';
 import type { SimRequest } from '../sim/simRunner';
+import { hashSeed } from '../utils/rng';
 import type { SimWorkerMessage } from './simWorker';
-import type { Match } from '../sim/Match';
 import type { MatchEvent } from '../sim/types';
 import { defaultFlags, type FxQuality, type GameActions, type UiFlags, type ViewMode } from '../ui/actions';
 import { button, el } from '../ui/dom';
@@ -54,6 +57,8 @@ export class GameApp implements GameActions {
   private paused = true;
   private speed = 1;
   private autoContinue = true;
+  /** A standalone Wildcard-vs-leader match is on screen (no league bookkeeping). */
+  private exhibition = false;
   private cinematic = false;
   private fxQuality: FxQuality = 'medium';
   private cineBug!: HTMLDivElement;
@@ -287,6 +292,7 @@ export class GameApp implements GameActions {
 
   private loadNextFixture(): void {
     this.exitReplay();
+    this.exhibition = false; // any league (re)load ends a pending exhibition
     this.fixture = this.league.nextFixture();
     if (!this.fixture) return; // never happens: finishSeason immediately schedules the next
     this.match = this.league.createMatch(this.fixture);
@@ -301,6 +307,19 @@ export class GameApp implements GameActions {
   }
 
   private onWatchedMatchFinished(): void {
+    // Exhibition FT: report, archive the replay, restore the league fixture —
+    // absolutely no league bookkeeping (table/Elo/stats untouched).
+    if (this.exhibition && this.match) {
+      const m = this.match;
+      this.feed.pushSystem(
+        `⚡ Exhibition FT: ${m.teams[0].info.short} ${m.score[0]}–${m.score[1]} ${m.teams[1].info.short}.`,
+      );
+      this.archiveReplay();
+      this.loadNextFixture();
+      this.paused = true;
+      this.left.setSpeedUI(true, this.speed);
+      return;
+    }
     if (!this.fixture || !this.match) return;
     this.league.applyResult(this.fixture, this.match.getResult());
     this.afterFixtureApplied();
@@ -310,8 +329,8 @@ export class GameApp implements GameActions {
     }
   }
 
-  private afterFixtureApplied(): void {
-    // Keep the finished match's recording around for 3D replay.
+  /** Keep the finished match's recording around for 3D replay. */
+  private archiveReplay(): void {
     if (this.match && this.buffer.hasContent) {
       this.archive = {
         buffer: this.buffer,
@@ -321,6 +340,10 @@ export class GameApp implements GameActions {
       };
       this.buffer = new ReplayBuffer();
     }
+  }
+
+  private afterFixtureApplied(): void {
+    this.archiveReplay();
     // Cup storylines must be read before finishSeason resets the bracket.
     if (this.fixture?.cup) this.announceCupResult(this.fixture);
     if (this.league.seasonDone) {
@@ -459,7 +482,42 @@ export class GameApp implements GameActions {
 
   skipMatch(): void {
     if (this.busy) return;
+    if (this.exhibition && this.match) {
+      this.match.runToCompletion();
+      this.onWatchedMatchFinished();
+      return;
+    }
     this.finishCurrentMatchHeadless();
+  }
+
+  /** Field the ES-trained Wildcard XI against the current Premier leader. */
+  playExhibition(): void {
+    if (this.busy) return;
+    this.exitReplay();
+    const leader = this.league.standings(0)[0];
+    const opp = this.league.teamInfo(leader.slot);
+    this.exhibition = true;
+    this.fixture = null; // standalone: never applied to the league
+    this.match = new Match({
+      seed: hashSeed(this.league.seed, this.league.generation, 0xeb),
+      teamA: buildWildcardTeamInfo(WILDCARD_POLICY),
+      teamB: opp,
+      duration: this.league.matchDuration,
+    });
+    this.buffer.clear();
+    this.matchRenderer.attach(this.match);
+    this.three?.attach(buildRenderTheme(this.match));
+    this.feed.attach(this.match);
+    this.right.attach(this.match);
+    this.left.updateHeader(this.match, this.league, true);
+    this.selectedGid = null;
+    this.acc = 0;
+    this.paused = false;
+    this.speed = 1;
+    this.left.setSpeedUI(false, 1);
+    this.feed.pushSystem(
+      `⚡ Exhibition: ${WILDCARD_NAME} (learned policy, neutral genes) vs ${opp.name} — friendly, no league bookkeeping.`,
+    );
   }
 
   simRound(): void {

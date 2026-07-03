@@ -39,6 +39,8 @@ export interface GameActions {
   loadNow(): void;
   newLeague(seedText: string): void;
   resetAll(): void;
+  /** One-off Wildcard XI (learned policy) vs the current Premier leader. */
+  playExhibition(): void;
   setViewMode(v: ViewMode): void;
   setCameraMode(m: CameraMode): void;
   resetCamera(): void;

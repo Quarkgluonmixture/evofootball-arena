@@ -46,6 +46,66 @@ export interface KitColors {
   secondary: number;
 }
 
+/**
+ * Utility-policy weights (Phase 18): the hand-tuned constants of the
+ * PlayerBrain scorers, exposed as data so a "wildcard" team can carry a
+ * LEARNED policy. DEFAULT_POLICY holds the exact literals the brain always
+ * used — a team without an explicit policy is bit-identical to before.
+ */
+export interface PolicyParams {
+  shootBase: number;
+  shootGene: number;
+  shootModeMul: number;
+  shootPressurePen: number;
+  passBase: number;
+  passLaneW: number;
+  passOpenW: number;
+  passFwdBase: number;
+  passFwdRisk: number;
+  passBackPen: number;
+  passOutletMul: number;
+  dribbleBase: number;
+  dribbleSpaceW: number;
+  dribbleGeneBase: number;
+  dribbleGeneW: number;
+  dribblePressurePen: number;
+  clearBase: number;
+  clearPressureW: number;
+  supportBase: number;
+  supportProxW: number;
+  formationBase: number;
+  chaseBase: number;
+  markBase: number;
+  interceptScore: number;
+}
+
+export const DEFAULT_POLICY: PolicyParams = {
+  shootBase: 1.9,
+  shootGene: 2.2,
+  shootModeMul: 1.2,
+  shootPressurePen: 0.25,
+  passBase: 0.2,
+  passLaneW: 0.3,
+  passOpenW: 0.2,
+  passFwdBase: 0.35,
+  passFwdRisk: 0.75,
+  passBackPen: 0.25,
+  passOutletMul: 1.15,
+  dribbleBase: 0.28,
+  dribbleSpaceW: 0.55,
+  dribbleGeneBase: 0.45,
+  dribbleGeneW: 1.0,
+  dribblePressurePen: 0.35,
+  clearBase: 0.12,
+  clearPressureW: 0.55,
+  supportBase: 0.3,
+  supportProxW: 0.35,
+  formationBase: 0.45,
+  chaseBase: 0.85,
+  markBase: 0.62,
+  interceptScore: 0.95,
+};
+
 /** Everything a Match needs to know about one participating team. */
 export interface TeamInfo {
   id: string;
@@ -57,6 +117,8 @@ export interface TeamInfo {
   genome: TacticalGenome;
   /** Per-player attribute genes in role order [GK, DF, MF, WG, ST]. */
   squad: PlayerAttributes[];
+  /** Learned utility-policy weights (wildcard team); omitted = DEFAULT_POLICY. */
+  policy?: PolicyParams;
 }
 
 export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'halftime' | 'fulltime';
