@@ -107,6 +107,17 @@ await page.click('#league-screen button:has-text("Auto top/bottom 2")');
 await page.waitForTimeout(200);
 
 await page.screenshot({ path: `${OUT}/5-league.png` });
+
+// Cup tab, fresh season: the R16 draw is made, later rounds await winners.
+await page.click('#league-screen button:has-text("Cup")');
+await page.waitForTimeout(300);
+const cupFreshTxt = await page.textContent('#league-screen');
+check('cup tab: draw rule documented', cupFreshTxt.includes('lower-division (else lower-seeded)'));
+check('cup tab: fresh bracket shows all 15 ties', (await page.locator('#league-screen .cup-tie').count()) === 15);
+check('cup tab: 14 slots await feeder winners', (await page.locator('#league-screen .cup-row.cup-tbd').count()) === 14);
+await page.screenshot({ path: `${OUT}/5b-cup-fresh.png` });
+await page.click('#league-screen button:has-text("League")');
+await page.waitForTimeout(200);
 await page.click('button:has-text("League table")');
 
 // Simulate two full seasons headless via the UI button (two, so the
@@ -115,6 +126,7 @@ await page.click('button:has-text("Season")');
 await page.waitForTimeout(25000);
 const feedText = await page.textContent('#event-feed');
 check('season sim completes with champion message', feedText.includes('champions'), '');
+check('cup champion announced in feed', feedText.includes('win the Evo Cup'), '');
 await page.click('button:has-text("Season")');
 await page.waitForTimeout(25000);
 
@@ -131,6 +143,11 @@ check('promotion/relegation reported', reportText.includes('promoted') && report
 check('season story narrative renders', (await page.locator('#league-screen .report-story div').count()) >= 1);
 check('both division race charts render', (await page.locator('#league-screen .race-chart').count()) === 2);
 check('awards render (golden boot)', reportText.includes('Golden Boot'));
+check('season report tells the cup final', reportText.includes('Evo Cup'), '');
+// Which story fires depends on knife-edge match outcomes that legitimately
+// differ between Node and Chromium float paths — assert a story, not a name.
+const storyText = await page.locator('#league-screen .report-story').textContent();
+check('a cup narrative is mined', /DOUBLE:|GIANT SLAIN:|CUP RUN:|REVENGE:/.test(storyText), storyText.slice(0, 60));
 await page.screenshot({ path: `${OUT}/7-season-report.png` });
 
 await page.click('#league-screen button:has-text("Evolution")');
@@ -146,7 +163,19 @@ check('hall of fame shows titles + records', hallText.includes('Premier titles')
 check('movement records render', hallText.includes('Movement records'));
 check('dynasty timeline shows all 16 slots', (await page.locator('#league-screen .dynasty-row').count()) === 16);
 check('dynasty division bands render', (await page.locator('#league-screen .dynasty-cell.band-d1').count()) > 0);
+check('hall of fame lists Evo Cup honours', hallText.includes('Evo Cup honours'), '');
+check('giant killings tallied in hall', hallText.includes('Most giant killings'), '');
 await page.screenshot({ path: `${OUT}/9-hall-of-fame.png` });
+
+// Cup tab after two seasons: live bracket + last season's completed bracket.
+await page.click('#league-screen button:has-text("Cup")');
+await page.waitForTimeout(300);
+const cupTxt = await page.textContent('#league-screen');
+check('cup tab: current + last-season brackets', (await page.locator('#league-screen .bracket').count()) === 2, '');
+check('cup tab: completed bracket crowns 15 winners', (await page.locator('#league-screen .cup-row.cup-win').count()) === 15, '');
+check('cup tab: giant killings marked', (await page.locator('#league-screen .cup-tie.upset').count()) >= 1, '');
+check('cup tab: roll of honour lists champions', cupTxt.includes('Roll of honour'), '');
+await page.screenshot({ path: `${OUT}/10-cup-bracket.png`, fullPage: true });
 await page.click('#league-screen button:has-text("League")');
 
 check('no console/page errors', errors.length === 0, errors.slice(0, 3).join(' | '));

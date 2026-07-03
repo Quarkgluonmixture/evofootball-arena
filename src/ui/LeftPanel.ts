@@ -1,4 +1,5 @@
 import type { CameraMode } from '../render3d/CameraController';
+import { CUP_ROUND_SHORT } from '../sim/cup';
 import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import { button, checkbox, colorHex, el } from './dom';
@@ -119,7 +120,9 @@ export class LeftPanel {
     const fixture = league.nextFixture();
     const context = fixture?.playoff
       ? '⚔ Promotion playoff'
-      : `${fixture ? `D${fixture.division + 1} ` : ''}Round ${league.currentRound()}/7`;
+      : fixture?.cup
+        ? `⚡ Cup ${CUP_ROUND_SHORT[fixture.round]}`
+        : `${fixture ? `D${fixture.division + 1} ` : ''}Round ${league.currentRound()}/7`;
     this.meta.textContent = `Gen ${league.generation} · Season ${league.history.length + 1} · ${context}`;
   }
 

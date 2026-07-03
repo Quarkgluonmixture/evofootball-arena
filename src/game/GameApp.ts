@@ -11,6 +11,7 @@ import {
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
+import { CUP_NAME, CUP_ROUND_NAMES, cupEntrant, cupTie } from '../sim/cup';
 import { League, type Fixture } from '../sim/League';
 import type { Match } from '../sim/Match';
 import type { MatchEvent } from '../sim/types';
@@ -279,6 +280,8 @@ export class GameApp implements GameActions {
       };
       this.buffer = new ReplayBuffer();
     }
+    // Cup storylines must be read before finishSeason resets the bracket.
+    if (this.fixture?.cup) this.announceCupResult(this.fixture);
     if (this.league.seasonDone) {
       const prevChampion = this.league.history[this.league.history.length - 1]?.championName;
       const rec = this.league.finishSeason();
@@ -293,6 +296,9 @@ export class GameApp implements GameActions {
           `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — ${rec.playoff.winnerName} take the final Premier spot.`,
         );
       }
+      if (rec.cup && rec.cup.winnerSlot === rec.championSlot && rec.cup.winnerName === rec.championName) {
+        this.feed.pushSystem(`✨ DOUBLE: ${rec.cup.winnerName} won the league and ${CUP_NAME}.`);
+      }
       for (const p of rec.promoted ?? []) this.feed.pushSystem(`⬆️ ${p.name} promoted to the Premier Division.`);
       for (const r of rec.relegated ?? []) this.feed.pushSystem(`⬇️ ${r.name} relegated to the Challenger Division.`);
       for (const e of rec.evolution.entries) {
@@ -304,6 +310,45 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
     }
     this.loadNextFixture();
+    this.announceCupDraw();
+  }
+
+  /** Feed lines for a just-applied cup tie: giant killings and the final. */
+  private announceCupResult(f: Fixture): void {
+    const cup = this.league.cup;
+    if (!cup) return;
+    const tie = cupTie(cup, f.round, f.index);
+    if (!tie.played || tie.winner === undefined) return;
+    const winner = cupEntrant(cup, tie.winner);
+    const loser = cupEntrant(cup, tie.winner === tie.home ? tie.away : tie.home);
+    const score = `${tie.scoreH}–${tie.scoreA}`;
+    const drawNote = tie.byDrawRule ? ' — level at full time, the underdog advances' : '';
+    if (tie.round === 3) {
+      this.feed.pushSystem(`🏅 ${winner.name} win the ${CUP_NAME}! ${score} vs ${loser.name}${drawNote}.`);
+    } else if (tie.upset) {
+      this.feed.pushSystem(
+        `⚡ GIANT KILLING: ${winner.name} knocked out ${loser.name} ${score} in the ${CUP_ROUND_NAMES[tie.round]}${drawNote}.`,
+      );
+    }
+  }
+
+  /** Announce a cup round the moment its first tie comes up. */
+  private announceCupDraw(): void {
+    const f = this.fixture;
+    const cup = this.league.cup;
+    if (!f?.cup || !cup || f.index !== 0 || f.played) return;
+    if (f.round === 0) {
+      this.feed.pushSystem(
+        `🎪 ${CUP_NAME} — the Round of 16 draw is made: eight Premier–Challenger ties. Drawn ties send the underdog through.`,
+      );
+    } else if (f.round === 3) {
+      const tie = cupTie(cup, 3, 0);
+      this.feed.pushSystem(
+        `🏆 ${CUP_NAME} Final: ${cupEntrant(cup, tie.home).name} vs ${cupEntrant(cup, tie.away).name}!`,
+      );
+    } else {
+      this.feed.pushSystem(`🎪 ${CUP_NAME} ${CUP_ROUND_NAMES[f.round]}s are here.`);
+    }
   }
 
   private finishCurrentMatchHeadless(): void {
@@ -358,9 +403,13 @@ export class GameApp implements GameActions {
   simRound(): void {
     const gen = this.league.generation;
     const round = this.league.currentRound();
+    const cup = this.league.nextFixture()?.cup ?? false;
     void this.simFixtures(
-      () => this.league.generation === gen && this.league.currentRound() === round,
-      `Round ${round}`,
+      () =>
+        this.league.generation === gen &&
+        this.league.currentRound() === round &&
+        (this.league.nextFixture()?.cup ?? false) === cup,
+      this.league.roundLabel(),
     );
   }
 

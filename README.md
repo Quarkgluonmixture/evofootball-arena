@@ -59,6 +59,8 @@ src/
     mechanics.ts        kicks, tackles, keeper saves, xG model
     Player.ts Ball.ts Team.ts   entities
     League.ts           fixtures (round robin), table, Elo, season lifecycle
+    cup.ts              Evo Cup: seeded knockout bracket, draw rule, records
+    records.ts          pure record mining (titles, streaks, cup honours…)
   ai/
     TeamBrain.ts        tactical mode + press/marking assignments (coordination)
     PlayerBrain.ts      utility scoring for player actions (the "why")
@@ -241,6 +243,18 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   Challenger 2nd in a one-match decider for the last spot (a draw keeps the
   Premier side up — deterministic, no extra time). The decider is a
   standalone tie: no table/stats/Elo bookkeeping.
+- **The Evo Cup** — a 16-team single-elimination knockout across both
+  divisions, woven between league rounds (R16/QF/SF after league rounds
+  2/4/6, the final after round 7 and before any playoff — interleaving keeps
+  cup drama running through the season while the final still closes it).
+  Seeded draw: every R16 tie pairs a Premier side with a Challenger side and
+  the underdog hosts. **Drawn ties send the lower-division (else
+  lower-seeded) team through** — no extra time or penalties, "the cup loves
+  an upset", and the rule is shown on the bracket. Cup ties are standalone
+  (no table/Elo/season-stat/fitness bookkeeping — cup glory never feeds
+  evolution), so giant killings are pure story: ⚡ feed lines, upset-marked
+  brackets, doubles, Challenger cup runs and revenge ties all get mined into
+  the season report and hall of fame.
 - **Fitness** (normalized within each division, weights sum to 1): points
   0.28, goal difference 0.15, shot quality (xG/shot) 0.12, pass completion
   0.12, recoveries 0.11, stamina efficiency 0.10, style consistency 0.12.
@@ -252,64 +266,76 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ## Narrative & insight layer (league screen tabs)
 
+- **Cup**: the live bracket (15 ties across four rounds, seeds + division
+  tags, winners highlighted, ⚡ giant killings and draw-rule notes), last
+  season's completed bracket, and the roll of honour. The current round is
+  also shown in the left panel ("⚡ Cup QF").
 - **Season report**: both champions, promoted/relegated (and the playoff
-  scoreline when enabled), a mined **season story** (titles retained/taken,
-  promoted overachievers, straight-bounce-backs, fallen champions, biggest
-  points swing up/down — `sim/records.ts`, unit-tested), per-division points
-  races, Premier awards — Golden Boot / Playmaker / Golden Glove from
-  **per-player season stats** — plus Challenger top scorers. Champions
-  history lists every season's winners (pre-pyramid seasons are labeled
-  "single-division era").
+  scoreline when enabled), the Evo Cup final + upsets + cup top scorer, a
+  mined **season story** (titles retained/taken, promoted overachievers,
+  straight-bounce-backs, fallen champions, biggest points swing up/down —
+  plus cup doubles, Challenger cup runs, giant slayings and revenge ties —
+  `sim/records.ts`, unit-tested), per-division points races, Premier awards —
+  Golden Boot / Playmaker / Golden Glove from **per-player season stats** —
+  plus Challenger top scorers. Champions history lists every season's winners
+  (pre-pyramid seasons are labeled "single-division era", pre-cup seasons
+  "pre-cup era").
 - **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
   attributes — league mean per generation, so you can watch the meta drift —
   plus the last evolution's elite/mutated/reborn entries with fitness & drift.
-- **Hall of fame**: Premier + Challenger title leaderboards, movement records
+- **Hall of fame**: Premier + Challenger title leaderboards, Evo Cup honours
+  (titles + final appearances, domestic doubles, most giant killings, deepest
+  Challenger cup run, most cup goals in a season), movement records
   (most promotions/relegations, longest Premier tenure, greatest comeback —
   relegated then later champions), single-season records (points, goal
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
   per league slot — cell shading shows the division each season, with
-  🏆/🥇/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
-- Save format v3 (adds player aggregates; v1/v2 saves migrate in place).
+  🏆/🥇/🏅/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
+- Save format v5 (adds the cup; v1–v4 saves chain-migrate in place — an old
+  save finishes its current season cup-less and joins the cup next season;
+  historical seasons stay honestly "pre-cup era").
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.4–2.9 goals, ~12–15 shots, ~75% pass completion, balanced possession, 98%
-ball-in-play, ~44 ms per headless match (a 10-season two-division fast-sim ≈
-24 s, 112 matches per season). The per-match engine is unchanged from the
-8-team era — averages shift a little with each seed population. The pyramid
-produces real football stories: never-relegated aristocrats, yo-yo clubs with
-5+ division moves, and a visible D1/D2 Elo gap (see `npm run evolve-check`).
+~2.4 goals, ~12–15 shots, ~76% pass completion, balanced possession, 98%
+ball-in-play, ~44 ms per headless match (a 10-season fast-sim ≈ 31 s at 71
+matches per season — 56 league + 15 cup). The per-match engine is unchanged
+from the 8-team era — averages shift a little with each seed population, and
+adding the cup left the per-match numbers identical (verified against
+phase-12.1 on the same seed). The pyramid produces real football stories:
+never-relegated aristocrats, yo-yo clubs with 5+ division moves, cup
+giant-killers, and a visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 41 tests: RNG/vec math, genome operators, match determinism
-  (watched ≡ headless), league/Elo/evolution invariants, save/load roundtrips,
-  and statistical gene/attribute effect tests.
+- `npm test` — 87 tests: RNG/vec math, genome operators, match determinism
+  (watched ≡ headless), league/Elo/evolution invariants, Evo Cup bracket
+  shape/draw-rule/standalone-tie/determinism, save/load roundtrips incl. the
+  v1–v5 migration chain, and statistical gene/attribute effect tests.
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
 - `npm run debug:visual` — Playwright drives the *real* game in headless
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
-  `window.__evo` dev hook, opens the league screen, simulates a season from the
-  UI, and screenshots every stage to `/tmp/evofootball-shots/` (12 checks).
+  `window.__evo` dev hook, opens the league screen and cup brackets, simulates
+  seasons from the UI, and screenshots every stage to
+  `/tmp/evofootball-shots/` (38 checks).
 
 ## What's implemented vs. next steps
 
 Implemented: autonomous 5v5 matches, three-layer utility AI, 14 live tactical
 genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
-with promotion/relegation and followable lineage, watch UI with 5 speeds +
+with promotion/relegation and followable lineage, the Evo Cup (seeded
+knockout between league rounds with giant-killing/upset/double/revenge
+narratives, bracket UI and cup honours), watch UI with 5 speeds +
 headless fast-sim, live match stats +
 xG race chart, debug overlays, a full 3D match viewer (procedural players with
 distinct run/kick/dive/celebrate animations, 5 polished camera modes, 3D
 overlays, possession/crowd readability aids, goal/save/shot event feedback,
 replay with scrubbing/event jumps/auto-camera/slow-mo), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v4 — a v3 save's 8 teams become Division 1 with a fresh D2
-spawned beneath; v1/v2 chain-migrate), 73 tests, and browser-driving visual
-smoke tests for both views (26 + 20 checks).
+fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), 87 tests, and
+browser-driving visual smoke tests for both views (38 + 20 checks).
 
 Ideas for the next phase (rough priority order):
-- **A cup competition** (single-elimination knockout across both divisions) —
-  giant-killing narratives, cup finals worth watching in 3D, cup honors in
-  the hall of fame
 - Set pieces (corners/throw-ins) instead of futsal walls — touches the
   deterministic core; needs full recalibration per docs/ARCHITECTURE.md
 - Optional learned policies (ES/RL "wildcard team") benchmarked against the

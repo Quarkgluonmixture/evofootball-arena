@@ -1,24 +1,36 @@
 import { GENE_KEYS, describeIdentity } from '../evolution/genome';
 import { ATTR_KEYS, squadSummary } from '../evolution/playerGenome';
 import {
+  CUP_NAME, CUP_ROUNDS, CUP_ROUND_NAMES, CUP_ROUND_SHORT,
+  type CupEntrant, type CupTie,
+} from '../sim/cup';
+import {
   DIVISION_NAMES, DIVISION_SHORT,
   type Division, type League, type PlayerSeasonLine, type PromotionMode, type SeasonRecord,
 } from '../sim/League';
 import {
-  challengerTitles, divisionIn, greatestComeback, longestPremierStreak, movementCounts,
-  premierTitles, seasonStories,
+  bestChallengerCupRun, challengerTitles, cupFinalAppearances, cupTitles, divisionIn,
+  domesticDoubles, giantKillingCounts, greatestComeback, longestPremierStreak, mostCupGoals,
+  movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
 import { raceChart, sparklineTile } from './charts';
 import { bar, button, colorHex, el } from './dom';
 
-type Tab = 'league' | 'report' | 'evolution' | 'hall';
+type Tab = 'league' | 'cup' | 'report' | 'evolution' | 'hall';
 
 const TABS: Array<[Tab, string]> = [
   ['league', 'League'],
+  ['cup', 'Cup'],
   ['report', 'Season report'],
   ['evolution', 'Evolution'],
   ['hall', 'Hall of fame'],
 ];
+
+/** The slice of cup state a bracket needs (live CupState or recorded CupRecord). */
+interface BracketData {
+  entrants: CupEntrant[];
+  ties: CupTie[];
+}
 
 /**
  * Full-screen league overlay, four tabs:
@@ -60,7 +72,7 @@ export class LeagueScreen {
     this.league = league;
     this.root.textContent = '';
     this.root.appendChild(
-      el('h2', '', `League — Generation ${league.generation} · Season ${league.history.length + 1} · Round ${league.currentRound()}/7`),
+      el('h2', '', `League — Generation ${league.generation} · Season ${league.history.length + 1} · ${league.roundLabel()}`),
     );
 
     const nav = el('div', 'row tab-nav');
@@ -83,6 +95,9 @@ export class LeagueScreen {
         }
         this.root.appendChild(el('h2', '', 'Team cards'));
         this.renderCards(league);
+        break;
+      case 'cup':
+        this.renderCup(league);
         break;
       case 'report':
         this.renderReport(league);
@@ -223,6 +238,102 @@ export class LeagueScreen {
     this.root.appendChild(cards);
   }
 
+  /* ---------------- Cup tab ---------------- */
+
+  private renderCup(league: League): void {
+    this.root.appendChild(el('h2', '', `🏅 The ${CUP_NAME}`));
+    const rules = el('div', 'rules-row muted');
+    rules.textContent =
+      'Single-elimination knockout across both divisions, played between league rounds. ' +
+      'Seeded draw: every Round-of-16 tie is Premier vs Challenger, and the underdog hosts. ' +
+      'Drawn ties: the lower-division (else lower-seeded) side advances — the cup loves an upset. ' +
+      'No extra time, no penalties. Cup ties never touch league tables, Elo or evolution fitness.';
+    this.root.appendChild(rules);
+
+    if (league.cup) {
+      const final = league.cup.ties[league.cup.ties.length - 1];
+      const next = league.cup.ties.find((t) => !t.played && t.home >= 0);
+      const status = final.played
+        ? `🏅 ${league.cup.entrants.find((e) => e.slot === final.winner)?.name} are cup champions!`
+        : next
+          ? `Next up: ${CUP_ROUND_NAMES[next.round]}${next.round > 0 && next.round < 3 ? 's' : ''} (after league round ${[2, 4, 6, 7][next.round]}).`
+          : 'The draw is made — the cup kicks off after league round 2.';
+      this.root.appendChild(el('h2', '', `Season ${league.history.length + 1} bracket`));
+      this.root.appendChild(el('div', 'muted cup-status', status));
+      this.root.appendChild(this.renderBracket(league, league.cup));
+    } else {
+      this.root.appendChild(
+        el('div', 'muted', `No cup this season (pre-cup save) — the first ${CUP_NAME} kicks off next season.`),
+      );
+    }
+
+    const lastCup = [...league.history].reverse().find((r) => r.cup)?.cup;
+    const lastGen = [...league.history].reverse().find((r) => r.cup)?.generation;
+    if (lastCup) {
+      this.root.appendChild(el('h2', '', `Last season's cup (Season ${lastGen})`));
+      this.root.appendChild(
+        el('div', 'muted cup-status',
+          `🏅 ${lastCup.winnerName} beat ${lastCup.runnerUpName} in the final` +
+          (lastCup.topScorer ? ` · ⚽ top scorer: ${lastCup.topScorer.name} (${lastCup.topScorer.team}), ${lastCup.topScorer.goals}g` : '')),
+      );
+      this.root.appendChild(this.renderBracket(league, lastCup));
+    }
+
+    const honours = league.history.filter((r) => r.cup);
+    if (honours.length > 0) {
+      this.root.appendChild(el('h2', '', 'Roll of honour'));
+      for (const r of [...honours].reverse().slice(0, 10)) {
+        this.root.appendChild(
+          el('div', 'history-entry', `Season ${r.generation} — 🏅 ${r.cup!.winnerName} (beat ${r.cup!.runnerUpName})`),
+        );
+      }
+    }
+  }
+
+  /** Procedural DOM bracket: four columns, winners bold, upsets flagged ⚡. */
+  private renderBracket(league: League, cup: BracketData): HTMLElement {
+    const bracket = el('div', 'bracket');
+    for (let round = 0; round < CUP_ROUNDS; round++) {
+      const col = el('div', 'bracket-col');
+      col.appendChild(el('div', 'bracket-col-title', CUP_ROUND_NAMES[round] + (round > 0 && round < 3 ? 's' : '')));
+      for (const tie of cup.ties.filter((t) => t.round === round)) {
+        col.appendChild(this.renderTie(league, cup, tie));
+      }
+      bracket.appendChild(col);
+    }
+    return bracket;
+  }
+
+  private renderTie(league: League, cup: BracketData, tie: CupTie): HTMLElement {
+    const box = el('div', `cup-tie${tie.upset ? ' upset' : ''}`);
+    const teamRow = (slot: number, score: number | undefined, feeder: number) => {
+      const row = el('div', 'cup-row');
+      if (slot < 0) {
+        row.classList.add('cup-tbd');
+        row.appendChild(el('span', 'cup-name muted', `Winner of ${CUP_ROUND_SHORT[tie.round - 1]} ${feeder + 1}`));
+        return row;
+      }
+      const e = cup.entrants.find((x) => x.slot === slot)!;
+      if (tie.played) row.classList.add(tie.winner === slot ? 'cup-win' : 'cup-lose');
+      const dot = el('span', 'dot');
+      dot.style.background = colorHex(league.franchise(slot).colors.primary);
+      const name = el('span', 'cup-name');
+      name.append(dot, document.createTextNode(` ${e.name}`));
+      name.title = `${DIVISION_NAMES[e.division]} · seed ${e.seed} · Elo ${e.elo} at the draw`;
+      const seedTag = el('span', `cup-seed cup-d${e.division}`, `${DIVISION_SHORT[e.division][0]}·${e.seed}`);
+      const scoreEl = el('span', 'cup-score', tie.played ? String(score) : '');
+      row.append(name, seedTag, scoreEl);
+      return row;
+    };
+    box.appendChild(teamRow(tie.home, tie.scoreH, tie.index * 2));
+    box.appendChild(teamRow(tie.away, tie.scoreA, tie.index * 2 + 1));
+    const notes: string[] = [];
+    if (tie.upset) notes.push('⚡ giant killing');
+    if (tie.byDrawRule) notes.push('drawn — underdog advances');
+    if (notes.length > 0) box.appendChild(el('div', 'cup-note', notes.join(' · ')));
+    return box;
+  }
+
   /* ---------------- Season report tab ---------------- */
 
   private renderReport(league: League): void {
@@ -248,6 +359,22 @@ export class LeagueScreen {
       const po = el('div', 'history-entry');
       po.innerHTML = `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — <b>${rec.playoff.winnerName}</b> take the final Premier spot.`;
       this.root.appendChild(po);
+    }
+    if (rec.cup) {
+      const final = rec.cup.ties[rec.cup.ties.length - 1];
+      const cupLine = el('div', 'history-entry');
+      cupLine.innerHTML =
+        `🏅 ${CUP_NAME}: <b>${rec.cup.winnerName}</b> beat ${rec.cup.runnerUpName} ` +
+        `${final.scoreH}–${final.scoreA} in the final` +
+        (final.byDrawRule ? ' <i>(level — underdog rule)</i>' : '') +
+        (rec.cup.topScorer ? ` &nbsp;·&nbsp; ⚽ cup top scorer: ${rec.cup.topScorer.name} (${rec.cup.topScorer.team}), ${rec.cup.topScorer.goals}g` : '');
+      this.root.appendChild(cupLine);
+      for (const u of rec.cup.upsets) {
+        this.root.appendChild(
+          el('div', 'history-entry',
+            `⚡ ${u.winnerName} knocked out ${u.loserName} ${u.score[0]}–${u.score[1]} (${CUP_ROUND_NAMES[u.round]})`),
+        );
+      }
     }
 
     // The season's story, mined from history.
@@ -308,8 +435,9 @@ export class LeagueScreen {
       entry.innerHTML =
         `<b>Season ${r.generation}</b> — 🏆 <b>${r.championName}</b>` +
         (r.d2Champion ? ` · 🥇 ${r.d2Champion}` : '') +
+        (r.cup ? ` · 🏅 ${r.cup.winnerName}` : '') +
         (boot ? ` · ⚽ ${boot.name} (${boot.team}) ${boot.goals}g` : '') +
-        (singleEra ? ' · <i>(single-division era)</i>' : '');
+        (singleEra ? ' · <i>(single-division era)</i>' : !r.cup ? ' · <i>(pre-cup era)</i>' : '');
       this.root.appendChild(entry);
     }
   }
@@ -400,6 +528,44 @@ export class LeagueScreen {
       }
     }
 
+    // Evo Cup honours (absent entirely on pre-cup histories).
+    const cupWinners = [...cupTitles(h).entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
+    if (cupWinners.length > 0) {
+      this.root.appendChild(el('h2', '', `🏅 ${CUP_NAME} honours`));
+      const finals = cupFinalAppearances(h);
+      for (const [name, n] of cupWinners) {
+        this.root.appendChild(
+          el('div', 'history-entry',
+            `${'🏅'.repeat(Math.min(n, 8))} ${name} — ${n} (finals: ${finals.get(name) ?? n})`),
+        );
+      }
+      const doubles = domesticDoubles(h);
+      if (doubles.length > 0) {
+        this.root.appendChild(
+          el('div', 'history-entry',
+            `✨ Domestic doubles: ${doubles.map((d) => `${d.name} (S${d.generation})`).join(', ')}`),
+        );
+      }
+      const killer = [...giantKillingCounts(h).entries()].sort((a, b) => b[1] - a[1])[0];
+      if (killer) {
+        this.root.appendChild(el('div', 'history-entry', `⚡ Most giant killings: ${killer[0]} — ${killer[1]}`));
+      }
+      const run = bestChallengerCupRun(h);
+      if (run) {
+        const feat = run.wonCup ? 'won the cup' : `reached the ${CUP_ROUND_NAMES[run.roundReached].toLowerCase()}`;
+        this.root.appendChild(
+          el('div', 'history-entry', `🚀 Deepest Challenger cup run: ${run.name} — ${feat} (S${run.generation})`),
+        );
+      }
+      const goals = mostCupGoals(h);
+      if (goals) {
+        this.root.appendChild(
+          el('div', 'history-entry',
+            `⚽ Most cup goals in a season: ${goals.name} (${goals.team}) — ${goals.goals} (S${goals.generation})`),
+        );
+      }
+    }
+
     // Movement records + long-run arcs.
     this.root.appendChild(el('h2', '', '🎢 Movement records'));
     const moves = movementCounts(this.league!.franchises);
@@ -467,7 +633,7 @@ export class LeagueScreen {
     // = the division that season) and champion/movement icons.
     this.root.appendChild(el('h2', '', '🧬 Dynasty timeline (per league slot)'));
     this.root.appendChild(
-      el('div', 'muted', '🏆 Premier champions · 🥇 Challenger champions · ⬆️⬇️ moved · 👑 elite · 🧬 mutated · 🔄 reborn — cell shade = division that season'),
+      el('div', 'muted', '🏆 Premier champions · 🥇 Challenger champions · 🏅 cup winners · ⬆️⬇️ moved · 👑 elite · 🧬 mutated · 🔄 reborn — cell shade = division that season'),
     );
     const ordered = [...this.league!.division(0), ...this.league!.division(1)];
     ordered.forEach((f, i) => {
@@ -481,6 +647,8 @@ export class LeagueScreen {
       for (const r of h) {
         const e = r.evolution.entries.find((x) => x.slot === f.slot);
         let icon = e ? (e.kind === 'elite' ? '👑' : e.kind === 'mutated' ? '🧬' : '🔄') : '·';
+        // Cup winner shows only when nothing bigger happened that season.
+        if (r.cup?.winnerSlot === f.slot) icon = '🏅';
         if (r.promoted?.some((p) => p.slot === f.slot)) icon = '⬆️';
         if (r.relegated?.some((p) => p.slot === f.slot)) icon = '⬇️';
         const d2ChampSlot = r.table.find((row) => row.division === 1)?.slot;

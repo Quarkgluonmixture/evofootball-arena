@@ -88,8 +88,9 @@ describe('League', () => {
     const run = () => {
       const league = new League({ seed: 4242, matchDuration: 30 });
       league.promotionMode = 'playoff';
-      // Regular season: exactly 56 fixtures, then the decider appears.
-      for (let i = 0; i < 56; i++) {
+      // Regular season + cup: 56 league fixtures and 15 cup ties, then the
+      // decider appears — the playoff is always the season's last match.
+      for (let i = 0; i < 56 + 15; i++) {
         const f = league.nextFixture()!;
         expect(f.playoff).toBeUndefined();
         league.applyResult(f, league.createMatch(f).runToCompletion());

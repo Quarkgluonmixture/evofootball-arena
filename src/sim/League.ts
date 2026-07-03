@@ -1,4 +1,8 @@
 import { hashSeed, Rng } from '../utils/rng';
+import {
+  CUP_ROUND_SHORT, CUP_SEED_TAG, buildCup, buildCupRecord, cupRoundComplete,
+  fillCupRound, resolveCupTie, type CupRecord, type CupState,
+} from './cup';
 import { evolveGroup, type EvolutionReport } from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
 import {
@@ -32,6 +36,8 @@ export interface Fixture {
   scoreA?: number;
   /** Promotion playoff decider (home = Premier 7th, away = Challenger 2nd). */
   playoff?: boolean;
+  /** Evo Cup tie: round/index address the bracket; standalone like the playoff. */
+  cup?: boolean;
 }
 
 export interface TableRow {
@@ -74,6 +80,8 @@ export interface SeasonRecord {
   evolution: EvolutionReport;
   /** Playoff decider result, when promotion mode is 'playoff'. */
   playoff?: { homeName: string; awayName: string; score: [number, number]; winnerName: string };
+  /** The season's Evo Cup (absent on pre-cup-era records from old saves). */
+  cup?: CupRecord;
   /** Post-season additions (optional: absent on records from old saves). */
   awards?: SeasonAwards;
   /** Challenger Division top scorers (top 3). */
@@ -85,9 +93,16 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-const SAVE_VERSION = 4;
+const SAVE_VERSION = 5;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
+
+/**
+ * Evo Cup rounds unlock after this many PLAYED league fixtures — i.e. after
+ * league rounds 2 / 4 / 6 / 7 — so the cup weaves through the season and the
+ * final lands after the last league round (before any promotion playoff).
+ */
+const CUP_GATES = [16, 32, 48, 56];
 
 /**
  * The autonomous football pyramid: 16 evolving franchises in two divisions of
@@ -125,6 +140,8 @@ export class League {
   /** Per-player season totals: [slot][playerIndex 0-4]. */
   playerAgg: PlayerMatchStats[][] = [];
   history: SeasonRecord[] = [];
+  /** This season's Evo Cup; null on migrated saves until the next season starts. */
+  cup: CupState | null = null;
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -156,15 +173,42 @@ export class League {
     }));
     this.agg = this.franchises.map(() => emptyAggregates());
     this.playerAgg = this.franchises.map(() => ROLES.map(() => emptyPlayerStats()));
+    this.cup = buildCup(this.franchises, this.seed, this.generation);
   }
 
   get seasonDone(): boolean {
+    this.ensureCupFixtures();
     this.ensurePlayoffFixture();
     return this.cursor >= this.fixtures.length;
   }
 
   nextFixture(): Fixture | null {
     return this.seasonDone ? null : this.fixtures[this.cursor];
+  }
+
+  /**
+   * Schedule the next unlocked cup round by splicing its ties in at the
+   * cursor (i.e. right after the league round that unlocked it). Idempotent
+   * and save-safe: the bracket lives in `this.cup`; fixtures only mirror it.
+   */
+  private ensureCupFixtures(): void {
+    if (!this.cup) return; // migrated mid-season save: cup starts next season
+    const leaguePlayed = this.fixtures.reduce(
+      (n, f) => n + (!f.cup && !f.playoff && f.played ? 1 : 0), 0,
+    );
+    for (let round = 0; round < CUP_GATES.length; round++) {
+      if (this.fixtures.some((f) => f.cup && f.round === round)) continue; // scheduled
+      if (leaguePlayed < CUP_GATES[round]) return;
+      if (round > 0 && !cupRoundComplete(this.cup, round - 1)) return;
+      const ties = round === 0
+        ? this.cup.ties.filter((t) => t.round === 0)
+        : fillCupRound(this.cup, round);
+      this.fixtures.splice(this.cursor, 0, ...ties.map((t) => ({
+        round: t.round, index: t.index, division: 0 as Division,
+        home: t.home, away: t.away, played: false, cup: true,
+      })));
+      return;
+    }
   }
 
   /** In playoff mode, append the decider once the regular season is complete. */
@@ -189,6 +233,14 @@ export class League {
     return this.seasonDone ? TEAMS_PER_DIVISION - 1 : this.fixtures[this.cursor].round + 1;
   }
 
+  /** Human label for the upcoming fixture: league round, cup round or playoff. */
+  roundLabel(): string {
+    const f = this.nextFixture();
+    if (f?.cup) return `Cup ${CUP_ROUND_SHORT[f.round]}`;
+    if (f?.playoff) return 'Playoff';
+    return `Round ${this.currentRound()}/${TEAMS_PER_DIVISION - 1}`;
+  }
+
   franchise(slot: number): Franchise {
     return this.franchises.find((f) => f.slot === slot)!;
   }
@@ -204,7 +256,9 @@ export class League {
   /** Build the deterministic Match for a fixture (same seed => same game). */
   createMatch(f: Fixture): Match {
     return new Match({
-      seed: hashSeed(this.seed, this.generation, f.round, f.division * 4 + f.index),
+      seed: f.cup
+        ? hashSeed(this.seed, this.generation, CUP_SEED_TAG + f.round, f.index)
+        : hashSeed(this.seed, this.generation, f.round, f.division * 4 + f.index),
       teamA: this.teamInfo(f.home),
       teamB: this.teamInfo(f.away),
       duration: this.matchDuration,
@@ -218,6 +272,21 @@ export class League {
 
     // The playoff is a standalone decider: no table/stats/Elo bookkeeping.
     if (fixture.playoff) {
+      this.cursor++;
+      return;
+    }
+
+    // Cup ties are standalone too: resolve the bracket (draws send the
+    // underdog through) and track cup-only scorer stats — nothing here may
+    // touch the table, Elo, season aggregates or fitness.
+    if (fixture.cup) {
+      if (this.cup) {
+        resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1]);
+        for (let gid = 0; gid < result.playerStats.length; gid++) {
+          const slot = gid < 5 ? fixture.home : fixture.away;
+          this.cup.playerGoals[slot][gid % 5] += result.playerStats[gid].goals;
+        }
+      }
       this.cursor++;
       return;
     }
@@ -378,6 +447,9 @@ export class League {
         .map((x) => ({ ...x, name: this.franchise(x.slot).name }))
         .sort((a, b) => b.total - a.total),
       evolution: undefined as unknown as EvolutionReport,
+      cup: this.cup && cupRoundComplete(this.cup, 3)
+        ? buildCupRecord(this.cup, (slot, i) => this.franchise(slot).playerNames[i] ?? ROLES[i])
+        : undefined,
       awards: this.buildAwards(0),
       awardsD2: this.buildAwards(1),
       geneMeans: this.geneMeans(),
@@ -477,6 +549,8 @@ export class League {
     const pts = this.franchises.map(() => 0);
     for (let r = 0; r < TEAMS_PER_DIVISION - 1; r++) {
       for (const f of this.fixtures) {
+        // Cup ties reuse low round numbers and award no points — league only.
+        if (f.cup || f.playoff) continue;
         if (f.round !== r || !f.played || f.scoreH === undefined || f.scoreA === undefined) continue;
         if (f.scoreH > f.scoreA) pts[f.home] += 3;
         else if (f.scoreH === f.scoreA) {
@@ -505,6 +579,7 @@ export class League {
       agg: this.agg,
       playerAgg: this.playerAgg,
       history: this.history,
+      cup: this.cup,
     };
   }
 
@@ -548,6 +623,13 @@ export class League {
       );
       data.version = 4;
     }
+    if (data.version === 4) {
+      // v4 -> v5: the Evo Cup arrives. The in-progress season has no cup
+      // fixtures scheduled, so it finishes cup-less (pre-cup era); the next
+      // startSeason draws the first bracket. Never fabricate old cup history.
+      data.cup = null;
+      data.version = 5;
+    }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
     Object.assign(lg, {
@@ -562,6 +644,7 @@ export class League {
       agg: data.agg,
       playerAgg: data.playerAgg,
       history: data.history,
+      cup: data.cup ?? null,
     });
     return lg;
   }

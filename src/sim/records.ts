@@ -1,4 +1,5 @@
 import type { Franchise } from '../evolution/franchise';
+import { CUP_ROUND_NAMES, type CupRecord } from './cup';
 import type { SeasonRecord } from './League';
 
 /**
@@ -26,6 +27,125 @@ export function challengerTitles(history: SeasonRecord[]): Map<string, number> {
   const out = new Map<string, number>();
   for (const r of history) {
     if (r.d2Champion) out.set(r.d2Champion, (out.get(r.d2Champion) ?? 0) + 1);
+  }
+  return out;
+}
+
+/** Evo Cup titles by team name (pre-cup-era records simply have no cup). */
+export function cupTitles(history: SeasonRecord[]): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const r of history) {
+    if (r.cup) out.set(r.cup.winnerName, (out.get(r.cup.winnerName) ?? 0) + 1);
+  }
+  return out;
+}
+
+/** Cup final appearances (winner + runner-up) by team name. */
+export function cupFinalAppearances(history: SeasonRecord[]): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const r of history) {
+    if (!r.cup) continue;
+    for (const name of [r.cup.winnerName, r.cup.runnerUpName]) {
+      out.set(name, (out.get(name) ?? 0) + 1);
+    }
+  }
+  return out;
+}
+
+/** Domestic doubles: Premier title + Evo Cup in the same season. */
+export function domesticDoubles(history: SeasonRecord[]): Array<{ name: string; generation: number }> {
+  return history
+    .filter((r) => r.cup && r.cup.winnerSlot === r.championSlot && r.cup.winnerName === r.championName)
+    .map((r) => ({ name: r.championName, generation: r.generation }));
+}
+
+/** Giant killings by the giant-killer's name, across all recorded cups. */
+export function giantKillingCounts(history: SeasonRecord[]): Map<string, number> {
+  const out = new Map<string, number>();
+  for (const r of history) {
+    for (const u of r.cup?.upsets ?? []) {
+      out.set(u.winnerName, (out.get(u.winnerName) ?? 0) + 1);
+    }
+  }
+  return out;
+}
+
+/**
+ * Challenger sides that reached at least the cup semi-final in a season.
+ * roundReached: 2 = semi-final, 3 = final; wonCup marks a full triumph.
+ */
+export function challengerCupRuns(cup: CupRecord): Array<{ name: string; roundReached: number; wonCup: boolean }> {
+  const out: Array<{ name: string; roundReached: number; wonCup: boolean }> = [];
+  for (const e of cup.entrants) {
+    if (e.division !== 1) continue;
+    let reached = -1;
+    for (const t of cup.ties) {
+      if (t.home === e.slot || t.away === e.slot) reached = Math.max(reached, t.round);
+    }
+    if (reached >= 2) out.push({ name: e.name, roundReached: reached, wonCup: cup.winnerSlot === e.slot });
+  }
+  return out.sort((a, b) => Number(b.wonCup) - Number(a.wonCup) || b.roundReached - a.roundReached);
+}
+
+/** Deepest cup run by a Challenger side across all history. */
+export function bestChallengerCupRun(
+  history: SeasonRecord[],
+): { name: string; generation: number; roundReached: number; wonCup: boolean } | null {
+  let best: { name: string; generation: number; roundReached: number; wonCup: boolean } | null = null;
+  for (const r of history) {
+    if (!r.cup) continue;
+    for (const run of challengerCupRuns(r.cup)) {
+      const depth = run.roundReached + (run.wonCup ? 1 : 0);
+      if (!best || depth > best.roundReached + (best.wonCup ? 1 : 0)) {
+        best = { ...run, generation: r.generation };
+      }
+    }
+  }
+  return best;
+}
+
+/** Most cup goals by one player in a single season. */
+export function mostCupGoals(
+  history: SeasonRecord[],
+): { name: string; team: string; goals: number; generation: number } | null {
+  let best: { name: string; team: string; goals: number; generation: number } | null = null;
+  for (const r of history) {
+    const s = r.cup?.topScorer;
+    if (s && (!best || s.goals > best.goals)) best = { ...s, generation: r.generation };
+  }
+  return best;
+}
+
+/**
+ * Revenge ties in the LAST season's cup: the winner had been knocked out of a
+ * previous season's cup by that same opponent (matched by name — a renamed or
+ * reborn franchise is a different team, so no fabricated grudges).
+ */
+export function cupRevenges(
+  history: SeasonRecord[],
+): Array<{ winnerName: string; loserName: string; round: number; prevGeneration: number }> {
+  const rec = history[history.length - 1];
+  if (!rec?.cup) return [];
+  const nameOf = (cup: CupRecord, slot: number) => cup.entrants.find((e) => e.slot === slot)?.name ?? '?';
+  const out: Array<{ winnerName: string; loserName: string; round: number; prevGeneration: number }> = [];
+  for (const tie of rec.cup.ties) {
+    if (tie.winner === undefined) continue;
+    const winnerName = nameOf(rec.cup, tie.winner);
+    const loserName = nameOf(rec.cup, tie.winner === tie.home ? tie.away : tie.home);
+    for (let i = history.length - 2; i >= 0; i--) {
+      const prev = history[i];
+      if (!prev.cup) continue;
+      const grudge = prev.cup.ties.some((t) => {
+        if (t.winner === undefined) return false;
+        const w = nameOf(prev.cup!, t.winner);
+        const l = nameOf(prev.cup!, t.winner === t.home ? t.away : t.home);
+        return w === loserName && l === winnerName;
+      });
+      if (grudge) {
+        out.push({ winnerName, loserName, round: tie.round, prevGeneration: prev.generation });
+        break;
+      }
+    }
   }
   return out;
 }
@@ -161,6 +281,25 @@ export function seasonStories(history: SeasonRecord[]): string[] {
     }
     if (bestUp && bestUp.d >= 6) out.push(`Overachievers: ${bestUp.name} (+${bestUp.d} pts on last season).`);
     if (bestDown && bestDown.d <= -6) out.push(`Collapse of the season: ${bestDown.name} (${bestDown.d} pts on last season).`);
+  }
+
+  // ---- Evo Cup stories (mined from the recorded bracket, never invented). ----
+  if (rec.cup) {
+    const cup = rec.cup;
+    const winnerDivision = cup.entrants.find((e) => e.slot === cup.winnerSlot)?.division ?? 0;
+    if (cup.winnerSlot === rec.championSlot && cup.winnerName === rec.championName) {
+      out.push(`DOUBLE: ${cup.winnerName} won the Premier title and the Evo Cup.`);
+    }
+    if (winnerDivision === 1) {
+      out.push(`GIANT SLAIN: Challenger side ${cup.winnerName} won the Evo Cup outright.`);
+    }
+    for (const run of challengerCupRuns(cup)) {
+      if (run.wonCup) continue; // already told above
+      out.push(`CUP RUN: ${run.name} reached the ${CUP_ROUND_NAMES[run.roundReached].toLowerCase()} from the Challenger Division.`);
+    }
+    for (const rev of cupRevenges(history)) {
+      out.push(`REVENGE: ${rev.winnerName} knocked out ${rev.loserName}, who had ended their cup run in Season ${rev.prevGeneration}.`);
+    }
   }
 
   return out;

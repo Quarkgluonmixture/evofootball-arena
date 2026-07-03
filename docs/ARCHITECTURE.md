@@ -33,13 +33,15 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-12.1`)**: phases 0–12 complete — deterministic 5v5
+**Status (as of tag `phase-13`)**: phases 0–13 complete — deterministic 5v5
 sim; 14 tactical genes + 5-attr squad DNA; a 16-team Premier/Challenger
-pyramid with promotion/relegation and an optional playoff decider; 2D (Pixi) +
-3D (Three.js) viewers with replay; season reports/awards/narratives, evolution
-sparklines, hall of fame with dynasty timelines; saves at v4 (chain-migrates
-v1–v3). 73 vitest tests; Playwright suites: 2D 26 checks, 3D 20 checks;
-~44 ms/headless match. Git tags `phase-10`…`phase-12.1` are known-green
+pyramid with promotion/relegation and an optional playoff decider; the Evo Cup
+(a deterministic single-elimination knockout woven between league rounds, with
+giant-killing/upset narratives); 2D (Pixi) + 3D (Three.js) viewers with
+replay; season reports/awards/narratives, evolution sparklines, hall of fame
+with dynasty timelines and cup honours; saves at v5 (chain-migrates v1–v4).
+87 vitest tests; Playwright suites: 2D 38 checks, 3D 20 checks;
+~44 ms/headless match. Git tags `phase-10`…`phase-13` are known-green
 checkpoints. Open roadmap ideas live in the README's "next steps".
 
 ## 2. Module ownership
@@ -47,7 +49,7 @@ checkpoints. Open roadmap ideas live in the README's "next steps".
 | Module | Owns | Must NOT do |
 |---|---|---|
 | `src/utils/` | seeded RNG (`mulberry32`), vec2 math, scalar helpers | import anything else in src |
-| `src/sim/` | Match state machine, ball/player physics, mechanics (kicks/tackles/saves/xG), League (two-division fixtures, tables, Elo, promotion/relegation, playoff, season lifecycle), record mining (`records.ts`, pure), stats/events | import render*, ui, pixi, three, browser APIs |
+| `src/sim/` | Match state machine, ball/player physics, mechanics (kicks/tackles/saves/xG), League (two-division fixtures, tables, Elo, promotion/relegation, playoff, Evo Cup scheduling, season lifecycle), cup bracket logic (`cup.ts`, pure), record mining (`records.ts`, pure), stats/events | import render*, ui, pixi, three, browser APIs |
 | `src/ai/` | TeamBrain (modes + press/mark assignments), PlayerBrain (utility scoring), action execution/steering, formations, perception | mutate anything except the deciding player's own action/targets (kicks go through `match.perform*`) |
 | `src/evolution/` | TacticalGenome + squad DNA operators, fitness, selection (elite/mutate/reborn), names/kits, franchise lineage | know about matches at runtime (it consumes season aggregates only) |
 | `src/replay/` | `ReplayBuffer`: 10 Hz RenderState snapshots, binary-search + interpolation | hold references into live sim objects (it stores adapter-produced plain data) |
@@ -81,6 +83,8 @@ only via `import type` where the target is `Match` itself. Keep it that way.
 league creation rng : hashSeed(leagueSeed, 0xF0)
 match seed          : hashSeed(leagueSeed, generation, round, division*4 + index)
 playoff decider     : same scheme with round = 7 (regular rounds are 0–6)
+cup R16 draw shuffle: hashSeed(leagueSeed, generation, 0xC5)
+cup tie match seed  : hashSeed(leagueSeed, generation, 0xC0 + cupRound, tieIndex)   (cupRound 0–3)
 v3→v4 D2 spawn      : hashSeed(leagueSeed, generation, 0xD2)
 evolution rng       : hashSeed(leagueSeed, generation, 0xE0)
 v1→v2 squad backfill: hashSeed(leagueSeed, slot, 0xA7)
@@ -161,9 +165,36 @@ in this order — record → evolve → promote/relegate):
   `ensurePlayoffFixture()` once the 56 regular fixtures are done.
 - Squad DNA mutates/crosses position-by-position alongside the tactics.
 
+### The Evo Cup (Phase 13)
+
+A 16-team single-elimination knockout each season (`sim/cup.ts` = pure
+bracket logic; League owns the state and scheduling):
+
+- **Draw at `startSeason`**: entrants seeded 1–16 (Premier 1–8 by Elo,
+  Challenger 9–16 by Elo; higher number = underdog). Every R16 tie is Premier
+  vs Challenger; Premier seeds are bracket-placed so 1 and 2 meet only in the
+  final; Challenger opponents are hash-shuffled. The underdog hosts every tie.
+- **Scheduling**: cup rounds unlock after 16/32/48/56 played league fixtures
+  (i.e. after league rounds 2/4/6/7) and are spliced into `fixtures` at the
+  cursor — R16 → QF → SF → Final, with the final before any promotion
+  playoff. `ensureCupFixtures()` is idempotent and save-safe (bracket state
+  persists; fixtures only mirror it).
+- **Drawn ties**: the lower-division (else lower-seeded) side advances
+  (`byDrawRule`) — no extra time, no penalties, engine untouched.
+- **Standalone ties**: `applyResult` resolves the bracket and cup-only scorer
+  tallies, then returns — cup ties must NEVER touch the table, Elo, season
+  aggregates, player season stats or fitness (same pattern as the playoff
+  decider; regression-tested byte-for-byte in `tests/cup.test.ts`).
+- **Records**: `SeasonRecord.cup` snapshots the bracket, winner/runner-up,
+  giant killings (`upsets`) and cup top scorer; `records.ts` mines titles,
+  final appearances, doubles, giant-killing counts, Challenger cup runs and
+  revenge ties. Old saves have no `cup` field — render as "pre-cup era",
+  never fabricate.
+
 Season history (`SeasonRecord`) stores both division tables (with division +
-Elo), fitness breakdowns, awards, promoted/relegated, gene/attr means, points
-timelines and the evolution report — the league screen renders it all.
+Elo), fitness breakdowns, awards, promoted/relegated, the cup record,
+gene/attr means, points timelines and the evolution report — the league
+screen renders it all.
 
 ## 7. Replay, analytics, debug systems
 
@@ -207,8 +238,10 @@ Real-browser validation (headless Chromium, `--enable-unsafe-swiftshader`):
 
 - `npm run debug:visual` — 2D: renders, clock advances at 32×, stats/feed/xG
   chart populate, click-to-select via `__evo.playerPositions()`, league screen,
-  UI-driven season sim, zero console errors. Screenshots →
-  `/tmp/evofootball-shots/`.
+  cup tab (fresh + completed brackets, upset markers, roll of honour),
+  UI-driven season sims, report/hall cup honours, zero console errors.
+  Screenshots → `/tmp/evofootball-shots/`. Checks that span a season sim must
+  be structural, not outcome-named (see failure mode 11).
 - `npm run debug:visual3d` — 3D: renderer init, 10 player models + 2 goals,
   non-blank canvas (PNG-size heuristic; `drawImage` on WebGL canvases is a
   false-negative trap), all camera modes, 3D picking updates the player card,
@@ -257,6 +290,15 @@ only caught by eyes on the PNGs.
 10. **localStorage schema drift.** Bumping save shape without a migration
     bricks saves silently (`loadLeague` swallows to null). v1→v2 migration in
     `League.fromJSON` is the pattern to copy.
+11. **Cross-engine float drift (Node vs Chromium).** Determinism is exact
+    *within* one JS engine, but different V8 builds (Node 26 vs current
+    Chromium) round some transcendental paths differently, and one knife-edge
+    event can flip a match result (measured: 1 of 71 seed-1337 matches,
+    `hash(1337,1,3,4)`, 1–0 in Node vs 0–0 in Chromium — reproduced on
+    phase-12.1 too, so it predates the cup). Consequences: never assert
+    Node-derived *outcomes* (names, scores, story types) in Playwright
+    browser checks — assert structure; and don't compare saves across
+    runtimes. Within-engine reproducibility stays regression-tested.
 
 ## 11. Known tuning levers
 
