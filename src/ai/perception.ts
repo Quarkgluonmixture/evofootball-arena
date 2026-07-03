@@ -65,6 +65,19 @@ export interface InterceptSolution {
 }
 
 /**
+ * Intercept sampling grid, precomputed once. Uses the same `t += 0.1` float
+ * accumulation and exp() evaluations the per-call loop used to run (30 exps
+ * per call, every chasing player, every frame) — table values are
+ * bit-identical to what the loop produced; only the recomputation is gone.
+ */
+const INTERCEPT_T: number[] = [];
+const INTERCEPT_TRAVEL: number[] = [];
+for (let t = 0.1; t <= 3.0; t += 0.1) {
+  INTERCEPT_T.push(t);
+  INTERCEPT_TRAVEL.push((1 - Math.exp(-BALL_FRICTION_K * t)) / BALL_FRICTION_K);
+}
+
+/**
  * Where should I run to meet the moving ball? The free ball follows
  * pos(t) = p0 + v0 * (1 - e^{-kt}) / k. We sample forward and take the first
  * point we can reach before the ball does; falls back to the rest point.
@@ -75,14 +88,14 @@ export function interceptBall(p: Player, ball: Ball): InterceptSolution {
   if (speed0 < 0.5) {
     return { point: ball.pos, tBall: 0, tMe: timeToPoint(p, ball.pos), reachable: true };
   }
-  const k = BALL_FRICTION_K;
-  for (let t = 0.1; t <= 3.0; t += 0.1) {
-    const travel = (1 - Math.exp(-k * t)) / k;
-    const pt = add(ball.pos, scale(v0, travel));
+  for (let i = 0; i < INTERCEPT_T.length; i++) {
+    const t = INTERCEPT_T[i];
+    const travel = INTERCEPT_TRAVEL[i];
+    const pt = { x: ball.pos.x + v0.x * travel, y: ball.pos.y + v0.y * travel };
     const tMe = timeToPoint(p, pt);
     if (tMe <= t) return { point: pt, tBall: t, tMe, reachable: true };
   }
-  const rest = add(ball.pos, scale(v0, 1 / k));
+  const rest = add(ball.pos, scale(v0, 1 / BALL_FRICTION_K));
   return { point: rest, tBall: 3, tMe: timeToPoint(p, rest), reachable: false };
 }
 

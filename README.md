@@ -31,7 +31,10 @@ Requires Node 18+. No backend, no network — everything runs and saves locally.
 
 - **Speed controls** (left panel): pause / 1× / 2× / 8× / 32×, plus **⏭ skip**
   to finish the current match instantly (identical result — see Determinism).
-- **Simulate** buttons run a whole round / season / 10 seasons headless.
+- **Simulate** buttons run a whole round / season / 10 seasons headless — on
+  a **Web Worker** (Phase 16), so the UI stays at 60 fps during long runs;
+  results are byte-identical to main-thread simulation (regression-tested)
+  and it falls back to the old chunked loop where workers are unavailable.
 - **League table** (top bar) opens standings, team cards with genes + lineage,
   and the season/evolution history.
 - Click any player on the pitch to see their current action **and the utility
@@ -65,6 +68,7 @@ src/
     League.ts           fixtures (round robin), table, Elo, season lifecycle
     cup.ts              Evo Cup: seeded knockout bracket, draw rule, records
     records.ts          pure record mining (titles, streaks, cup honours…)
+    simRunner.ts        headless fast-sim loop (pure; worker + tests share it)
   ai/
     TeamBrain.ts        tactical mode + press/marking assignments (coordination)
     PlayerBrain.ts      utility scoring for player actions (the "why")
@@ -317,8 +321,10 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ~2.6 goals, ~11–14 shots, ~78% pass completion, balanced possession, ~95%
 ball-in-play (the rest is live dead-ball time around ~4 restarts per match:
-≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins), ~45 ms per headless match (a
-10-season fast-sim ≈ 31 s at 71 matches per season — 56 league + 15 cup).
+≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins), ~34 ms per headless match
+after the Phase 16 optimization pass (allocation-free hot paths + a
+precomputed intercept table — bit-identical results, ~15% faster; a
+10-season fast-sim runs off the main thread on the sim worker).
 Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6
 (corner chances; parries that deflect instead of bouncing back), in-play
 98% → 95%. The pyramid produces real football stories: never-relegated
@@ -327,8 +333,9 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 95 tests: RNG/vec math, genome operators, match determinism
-  (watched ≡ headless), set-piece award rules/restart lifecycle/boundary
+- `npm test` — 100 tests: RNG/vec math, genome operators, match determinism
+  (watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
+  byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, league/Elo/evolution invariants, Evo Cup bracket
   shape/draw-rule/standalone-tie/determinism, save/load roundtrips incl. the
   v1–v5 migration chain, and statistical gene/attribute effect tests.
@@ -358,12 +365,13 @@ replay with scrubbing/event jumps/auto-camera/slow-mo), a unified art
 direction with broadcast overlays, cinematic mode and screenshot/share tools
 (Phase 15 — `docs/ART_DIRECTION.md`), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), 95 tests, and
-browser-driving visual smoke tests for both views (46 + 26 checks).
+fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
+fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
+(Phase 16), 100 tests, and
+browser-driving visual smoke tests for both views (47 + 26 checks).
 
 Ideas for the next phase (rough priority order):
 - Optional learned policies (ES/RL "wildcard team") benchmarked against the
   evolved utility-AI teams
-- WebWorker simulation for even faster multi-season runs
 - Release polish: responsive layout, touch controls, PWA, itch.io page
 - Optional GLTF player models with the procedural mesh as fallback

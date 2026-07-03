@@ -158,6 +158,11 @@ await page.waitForTimeout(25000);
 const feedText = await page.textContent('#event-feed');
 check('season sim completes with champion message', feedText.includes('champions'), '');
 check('cup champion announced in feed', feedText.includes('win the Evo Cup'), '');
+check(
+  'season simulated on the worker thread',
+  (await page.evaluate(() => window.__evo.simMode())) === 'worker',
+  '',
+);
 await page.click('button:has-text("Season")');
 await page.waitForTimeout(25000);
 

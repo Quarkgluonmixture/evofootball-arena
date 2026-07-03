@@ -1,4 +1,4 @@
-import { add, approachV, clampLen, len, norm, scale, v2, type V2 } from '../utils/vec';
+import { v2, type V2 } from '../utils/vec';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 import type { ActionState, Role, Side } from './types';
 
@@ -53,12 +53,37 @@ export class Player {
   }
 
   physicsStep(dt: number): void {
-    const target = clampLen(this.desiredVel, this.topSpeed);
-    this.vel = approachV(this.vel, target, this.accel * dt);
-    this.pos = add(this.pos, scale(this.vel, dt));
+    // In-place integration — this ran as clampLen/approachV/add/norm, which
+    // allocated ~6 vectors per player per step (860k per match). The exact
+    // same operations in the exact same IEEE order, written out flat:
+    // results are bit-identical (regression: same seed ⇒ same save JSON).
+    const dv = this.desiredVel;
+    const max = this.topSpeed;
+    const dl = Math.sqrt(dv.x * dv.x + dv.y * dv.y); // clampLen
+    let tx = dv.x;
+    let ty = dv.y;
+    if (dl > max && dl > 1e-8) {
+      const s = max / dl;
+      tx = dv.x * s;
+      ty = dv.y * s;
+    }
+    const maxDelta = this.accel * dt; // approachV
+    const ax = tx - this.vel.x;
+    const ay = ty - this.vel.y;
+    const al = Math.sqrt(ax * ax + ay * ay);
+    if (al <= maxDelta || al < 1e-8) {
+      this.vel.x = tx;
+      this.vel.y = ty;
+    } else {
+      const s = maxDelta / al;
+      this.vel.x = this.vel.x + ax * s;
+      this.vel.y = this.vel.y + ay * s;
+    }
+    this.pos.x = this.pos.x + this.vel.x * dt;
+    this.pos.y = this.pos.y + this.vel.y * dt;
 
-    const sp = len(this.vel);
-    if (sp > 0.5) this.heading = norm(this.vel);
+    const sp = Math.sqrt(this.vel.x * this.vel.x + this.vel.y * this.vel.y);
+    if (sp > 0.5) this.heading = { x: this.vel.x / sp, y: this.vel.y / sp };
     this.distance += sp * dt;
 
     // Stamina: quadratic drain above ~55% effort, slow recovery when jogging/idle.

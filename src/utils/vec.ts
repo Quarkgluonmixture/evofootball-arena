@@ -14,7 +14,14 @@ export const scale = (a: V2, s: number): V2 => ({ x: a.x * s, y: a.y * s });
 
 export const lenSq = (a: V2): number => a.x * a.x + a.y * a.y;
 export const len = (a: V2): number => Math.sqrt(lenSq(a));
-export const distSq = (a: V2, b: V2): number => lenSq(sub(a, b));
+// Allocation-free: dist is the hottest call in the sim (pair scans run it
+// ~650k times per match). Same operations in the same IEEE order as the old
+// lenSq(sub(a, b)) — results are bit-identical, only the garbage is gone.
+export const distSq = (a: V2, b: V2): number => {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return dx * dx + dy * dy;
+};
 export const dist = (a: V2, b: V2): number => Math.sqrt(distSq(a, b));
 export const dot = (a: V2, b: V2): number => a.x * b.x + a.y * b.y;
 

@@ -12,7 +12,9 @@ import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
 import { CUP_NAME, CUP_ROUND_NAMES, cupEntrant, cupTie } from '../sim/cup';
-import { League, type Fixture } from '../sim/League';
+import { League, type Fixture, type SeasonRecord } from '../sim/League';
+import type { SimRequest } from '../sim/simRunner';
+import type { SimWorkerMessage } from './simWorker';
 import type { Match } from '../sim/Match';
 import type { MatchEvent } from '../sim/types';
 import { defaultFlags, type FxQuality, type GameActions, type UiFlags, type ViewMode } from '../ui/actions';
@@ -60,6 +62,11 @@ export class GameApp implements GameActions {
   private acc = 0;
   private busy = false;
   private panelTimer = 0;
+
+  // ---- sim worker (fast-sim off the main thread; falls back gracefully) ----
+  private simWorker: Worker | null = null;
+  private simWorkerBroken = false;
+  private lastSimMode: 'worker' | 'main' | null = null;
 
   // ---- 3D view & replay ----
   private viewMode: ViewMode = '2d';
@@ -198,6 +205,7 @@ export class GameApp implements GameActions {
       }),
       viewMode: () => this.viewMode,
       cinematic: () => this.cinematic,
+      simMode: () => this.lastSimMode,
     };
   }
 
@@ -318,32 +326,53 @@ export class GameApp implements GameActions {
     if (this.league.seasonDone) {
       const prevChampion = this.league.history[this.league.history.length - 1]?.championName;
       const rec = this.league.finishSeason();
-      this.feed.pushSystem(
-        rec.championName === prevChampion
-          ? `🏆 ${rec.championName} retained the Premier title! (Season ${rec.generation})`
-          : `🏆 ${rec.championName} are Premier champions! (Season ${rec.generation})`,
-      );
-      if (rec.d2Champion) this.feed.pushSystem(`🥇 ${rec.d2Champion} won the Challenger Division.`);
-      if (rec.playoff) {
-        this.feed.pushSystem(
-          `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — ${rec.playoff.winnerName} take the final Premier spot.`,
-        );
-      }
-      if (rec.cup && rec.cup.winnerSlot === rec.championSlot && rec.cup.winnerName === rec.championName) {
-        this.feed.pushSystem(`✨ DOUBLE: ${rec.cup.winnerName} won the league and ${CUP_NAME}.`);
-      }
-      for (const p of rec.promoted ?? []) this.feed.pushSystem(`⬆️ ${p.name} promoted to the Premier Division.`);
-      for (const r of rec.relegated ?? []) this.feed.pushSystem(`⬇️ ${r.name} relegated to the Challenger Division.`);
-      for (const e of rec.evolution.entries) {
-        if (e.kind === 'reborn') {
-          this.feed.pushSystem(`🔄 ${e.name} born from ${e.parents?.join(' × ')} (drift ${e.drift.toFixed(2)})`);
-        }
-      }
+      // Cup lines were already announced live, fixture by fixture.
+      this.announceSeasonRecord(rec, prevChampion, false);
       saveLeague(this.league);
       this.leagueScreen.refreshIfVisible(this.league);
     }
     this.loadNextFixture();
     this.announceCupDraw();
+  }
+
+  /**
+   * Season-end feed lines from a SeasonRecord. `includeCup` adds the cup
+   * summary for worker-simmed seasons, where the live per-tie announcements
+   * never ran (the record carries the whole story).
+   */
+  private announceSeasonRecord(rec: SeasonRecord, prevChampion: string | undefined, includeCup: boolean): void {
+    this.feed.pushSystem(
+      rec.championName === prevChampion
+        ? `🏆 ${rec.championName} retained the Premier title! (Season ${rec.generation})`
+        : `🏆 ${rec.championName} are Premier champions! (Season ${rec.generation})`,
+    );
+    if (rec.d2Champion) this.feed.pushSystem(`🥇 ${rec.d2Champion} won the Challenger Division.`);
+    if (rec.playoff) {
+      this.feed.pushSystem(
+        `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — ${rec.playoff.winnerName} take the final Premier spot.`,
+      );
+    }
+    if (includeCup && rec.cup) {
+      const final = rec.cup.ties[rec.cup.ties.length - 1];
+      this.feed.pushSystem(
+        `🏅 ${rec.cup.winnerName} win the ${CUP_NAME}! ${final.scoreH}–${final.scoreA} vs ${rec.cup.runnerUpName}.`,
+      );
+      if (rec.cup.upsets.length > 0) {
+        this.feed.pushSystem(
+          `⚡ ${rec.cup.upsets.length} giant killing${rec.cup.upsets.length > 1 ? 's' : ''} along the cup run.`,
+        );
+      }
+    }
+    if (rec.cup && rec.cup.winnerSlot === rec.championSlot && rec.cup.winnerName === rec.championName) {
+      this.feed.pushSystem(`✨ DOUBLE: ${rec.cup.winnerName} won the league and ${CUP_NAME}.`);
+    }
+    for (const p of rec.promoted ?? []) this.feed.pushSystem(`⬆️ ${p.name} promoted to the Premier Division.`);
+    for (const r of rec.relegated ?? []) this.feed.pushSystem(`⬇️ ${r.name} relegated to the Challenger Division.`);
+    for (const e of rec.evolution.entries) {
+      if (e.kind === 'reborn') {
+        this.feed.pushSystem(`🔄 ${e.name} born from ${e.parents?.join(' × ')} (drift ${e.drift.toFixed(2)})`);
+      }
+    }
   }
 
   /** Feed lines for a just-applied cup tie: giant killings and the final. */
@@ -437,7 +466,8 @@ export class GameApp implements GameActions {
     const gen = this.league.generation;
     const round = this.league.currentRound();
     const cup = this.league.nextFixture()?.cup ?? false;
-    void this.simFixtures(
+    this.runSim(
+      { kind: 'round' },
       () =>
         this.league.generation === gen &&
         this.league.currentRound() === round &&
@@ -448,12 +478,107 @@ export class GameApp implements GameActions {
 
   simSeason(): void {
     const gen = this.league.generation;
-    void this.simFixtures(() => this.league.generation === gen, `Season ${gen}`);
+    this.runSim({ kind: 'toGeneration', target: gen + 1 }, () => this.league.generation === gen, `Season ${gen}`);
   }
 
   simSeasons(n: number): void {
     const target = this.league.generation + n;
-    void this.simFixtures(() => this.league.generation < target, `${n} seasons`);
+    this.runSim({ kind: 'toGeneration', target }, () => this.league.generation < target, `${n} seasons`);
+  }
+
+  /* ---------------- sim worker plumbing ---------------- */
+
+  private ensureSimWorker(): Worker | null {
+    if (this.simWorkerBroken) return null;
+    if (this.simWorker) return this.simWorker;
+    try {
+      this.simWorker = new Worker(new URL('./simWorker.ts', import.meta.url), { type: 'module' });
+    } catch (err) {
+      console.error('Sim worker unavailable — using main-thread sim:', err);
+      this.simWorkerBroken = true;
+      return null;
+    }
+    return this.simWorker;
+  }
+
+  /**
+   * Fast-sim dispatch: run `req` on the sim worker (main thread stays at
+   * 60fps), falling back to the chunked main-thread loop (`cont`) when
+   * workers are unavailable or fail. Both paths produce identical league
+   * state — regression-tested in tests/simRunner.test.ts.
+   */
+  private runSim(req: SimRequest, cont: () => boolean, label: string): void {
+    if (this.busy) return;
+    const w = this.ensureSimWorker();
+    if (!w) {
+      this.lastSimMode = 'main';
+      void this.simFixtures(cont, label);
+      return;
+    }
+    this.lastSimMode = 'worker';
+    this.busy = true;
+    this.left.setBusy(true);
+    this.setStatus(`${label}: starting…`);
+    const t0 = performance.now();
+
+    // Finish a half-watched match on the main thread first: its replay
+    // archive, live feed events and possible season rollover behave exactly
+    // as before, and the worker starts from a clean next-fixture state.
+    if (this.match && this.fixture && !this.match.finished) this.finishCurrentMatchHeadless();
+    if (!cont()) {
+      // That match already completed the request (it was the round/season end).
+      this.busy = false;
+      this.left.setBusy(false);
+      this.setStatus(`${label}: 1 match in ${((performance.now() - t0) / 1000).toFixed(1)}s`);
+      this.leagueScreen.refreshIfVisible(this.league);
+      return;
+    }
+
+    const historyBefore = this.league.history.length;
+    let prevChampion = this.league.history[historyBefore - 1]?.championName;
+    const fallback = () => {
+      this.simWorkerBroken = true;
+      this.busy = false;
+      this.left.setBusy(false);
+      this.lastSimMode = 'main';
+      void this.simFixtures(cont, label);
+    };
+
+    w.onerror = (ev) => {
+      console.error('Sim worker crashed:', ev.message);
+      fallback();
+    };
+    w.onmessage = (ev: MessageEvent<SimWorkerMessage>) => {
+      const msg = ev.data;
+      if (msg.type === 'progress') {
+        this.setStatus(`${label}: ${msg.matches} matches…`);
+        return;
+      }
+      w.onmessage = null;
+      if (msg.type === 'error') {
+        console.error('Sim worker failed:', msg.message);
+        fallback();
+        return;
+      }
+      try {
+        this.league = League.fromJSON(msg.league);
+      } catch (err) {
+        console.error('Sim worker result rejected:', err);
+        fallback();
+        return;
+      }
+      for (const rec of this.league.history.slice(historyBefore)) {
+        this.announceSeasonRecord(rec, prevChampion, true);
+        prevChampion = rec.championName;
+      }
+      if (this.league.history.length > historyBefore) saveLeague(this.league);
+      this.busy = false;
+      this.left.setBusy(false);
+      this.setStatus(`${label}: ${msg.matches} matches in ${((performance.now() - t0) / 1000).toFixed(1)}s (worker)`);
+      this.leagueScreen.refreshIfVisible(this.league);
+      this.loadNextFixture();
+    };
+    w.postMessage({ league: this.league.toJSON(), req });
   }
 
   setAutoContinue(v: boolean): void {
@@ -548,10 +673,18 @@ export class GameApp implements GameActions {
   }
 
   saveNow(): void {
+    if (this.busy) {
+      this.feed.pushSystem('⏳ Simulation running — save again in a moment.');
+      return;
+    }
     if (saveLeague(this.league)) this.feed.pushSystem('💾 League saved.');
   }
 
   loadNow(): void {
+    if (this.busy) {
+      this.feed.pushSystem('⏳ Simulation running — load again in a moment.');
+      return;
+    }
     const loaded = loadLeague();
     if (!loaded) {
       this.feed.pushSystem('⚠️ No save found.');

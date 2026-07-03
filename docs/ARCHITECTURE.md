@@ -44,9 +44,11 @@ broadcast + low-poly diorama", `docs/ART_DIRECTION.md`) with polished player
 models/stadium/broadcast overlays, cinematic mode, screenshot/share tools and
 an FX quality setting; season reports/awards/narratives, evolution sparklines,
 hall of fame with dynasty timelines and cup honours; saves at v5
-(chain-migrates v1–v4). 95 vitest tests; Playwright suites: 2D 46 checks,
-3D 26 checks; ~45 ms/headless match. Git tags `phase-10`…`phase-15` are
-known-green checkpoints. Open roadmap ideas live in the README's "next steps".
+(chain-migrates v1–v4); fast-sim on a Web Worker with a bit-identical
+main-thread fallback (phase 16). 100 vitest tests; Playwright suites: 2D 47
+checks, 3D 26 checks; ~34 ms/headless match. Git tags `phase-10`…`phase-16`
+are known-green checkpoints. Open roadmap ideas live in the README's "next
+steps".
 
 ## 2. Module ownership
 
@@ -61,7 +63,9 @@ known-green checkpoints. Open roadmap ideas live in the README's "next steps".
 | `src/render3d/` | Three.js viewer; `RenderStateAdapter` is the ONLY sim→3D bridge (pure, three-free) | be imported by sim/ai/evolution (enforced by test) |
 | `src/ui/` | plain-DOM panels, league screen, replay bar, `GameActions` contract | talk to sim directly for mutations (everything goes through GameApp) |
 | `src/data/` | localStorage save/load + version migration | — |
-| `src/game/GameApp.ts` | the loop, lifecycle, view/replay switching, dev hook `window.__evo` | contain game rules |
+| `src/sim/simRunner.ts` | the headless fast-sim loop (pure; shared by worker + tests) | touch browser/worker APIs |
+| `src/game/simWorker.ts` | Web Worker wrapper around simRunner (worker globals live HERE, not in sim/) | contain sim logic beyond dispatch |
+| `src/game/GameApp.ts` | the loop, lifecycle, view/replay switching, sim-worker dispatch, dev hook `window.__evo` | contain game rules |
 | `scripts/` | headless calibration/evolution probes, Playwright visual tests | be imported by src |
 
 Circular-import rule: `Match` → `ai` at runtime; `ai` → sim **types/entities**
@@ -238,6 +242,14 @@ screen renders it all.
   ball height on kicks is synthesized inside `BallModel` (visual only).
 - Every UI control calls a `GameActions` method implemented by GameApp. No
   panel touches League/Match mutators directly.
+- **Fast-sim runs on a Web Worker** (Phase 16): Round/Season/10-Seasons ship
+  `league.toJSON()` to `game/simWorker.ts`, which runs `sim/simRunner.ts` —
+  the exact loop vitest proves byte-identical to direct simulation — streams
+  progress, and posts the finished league back; GameApp swaps its League and
+  narrates the new SeasonRecords. A half-watched match is finished on the
+  main thread first (replay archive + live feed parity). Falls back to the
+  old chunked main-thread loop if workers are unavailable; the sim itself is
+  worker-safe precisely because of invariant 1 (no browser APIs in sim/).
 - 3D lifecycle: created lazily on first switch, fully `dispose()`d on switch
   back to 2D; WebGL init failure logs to the feed and stays in 2D.
 
@@ -345,10 +357,12 @@ feature is:
    rendering and browser APIs.** No pixi/three/DOM/localStorage imports —
    enforced by `tests/render3d.test.ts` boundary checks. League simulation
    must never depend on WebGL.
-2. **Headless season simulation stays fast.** Budget: ≲50 ms per 240 s match,
-   a 10-season fast-sim in ~10–15 s (`npm run calibrate` prints ms/match).
-   No per-step allocations explosions, no O(n²) blowups beyond the existing
-   10-player pair loops.
+2. **Headless season simulation stays fast.** Budget: ≲50 ms per 240 s match
+   (~34 ms after the Phase 16 pass; `npm run calibrate` prints ms/match).
+   No per-step allocation explosions, no O(n²) blowups beyond the existing
+   10-player pair loops. Hot-path optimizations must be **bit-identical**:
+   same seed ⇒ same save JSON before and after (fingerprint a 2-season league
+   and compare hashes) — never reorder float arithmetic for speed.
 3. **Watching and skipping the same seeded match produce identical results.**
    Same seed ⇒ same score, events and stats — step-by-step vs
    `runToCompletion` is regression-tested and must stay green.

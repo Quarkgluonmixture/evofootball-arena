@@ -10,10 +10,16 @@ export function seek(p: Player, target: V2, speed: number): V2 {
 
 /** Like seek but decelerates inside `slowRadius` so players settle on spots. */
 export function arrive(p: Player, target: V2, speed: number, slowRadius = 2.5): V2 {
-  const d = dist(p.pos, target);
+  // Flat form of scale(norm(sub(target, p.pos)), s) — runs for every player
+  // every frame. dist() and norm's internal length share the same bits
+  // ((-a)² === a² in IEEE), so one sqrt serves both; results are unchanged.
+  const dx = target.x - p.pos.x;
+  const dy = target.y - p.pos.y;
+  const d = Math.sqrt(dx * dx + dy * dy);
   if (d < 0.05) return v2();
   const s = d < slowRadius ? speed * (d / slowRadius) : speed;
-  return scale(norm(sub(target, p.pos)), s);
+  if (d < 1e-8) return v2();
+  return { x: (dx / d) * s, y: (dy / d) * s };
 }
 
 /**
