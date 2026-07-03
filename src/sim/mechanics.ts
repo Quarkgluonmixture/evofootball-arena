@@ -118,8 +118,10 @@ export function performShot(match: Match, shooter: Player): void {
 export function performClear(match: Match, p: Player): void {
   if (match.ball.owner !== p || p.kickCooldown > 0) return;
   const team = match.teams[p.side];
-  // Hoof it upfield with a random lateral component — safety over precision.
-  const lat = match.rng.range(-0.6, 0.6);
+  // Hoof it upfield with a wide lateral component — safety over precision.
+  // Panicked clears regularly cross the touchline: conceding a kick-in beats
+  // losing the ball in front of your own goal (this is where kick-ins come from).
+  const lat = match.rng.range(-1.0, 1.0);
   const dir = rotate(norm(v2(team.attackDir, lat)), match.rng.gaussian() * 0.08);
   match.kickBall(p, dir, 23);
   team.stats.clearances++;
@@ -212,8 +214,14 @@ export function tryKeeperSave(match: Match): void {
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
     } else {
-      const outDir = norm(sub(ball.pos, goal));
-      ball.vel = scale(rotate(outDir, match.rng.range(-0.6, 0.6)), 9);
+      // A parry deflects the shot rather than reversing it: the ball is
+      // pushed wide of the goal — often behind for a corner, sometimes loose
+      // in the box for a scramble. (The old inward "bounce-back" parry is why
+      // corners never happened.)
+      const inDir = norm(ball.vel);
+      const side = ball.pos.y >= 0 ? 1 : -1;
+      const ang = side * Math.sign(inDir.x || 1) * match.rng.range(0.55, 1.15);
+      ball.vel = scale(rotate(inDir, ang), clamp(len(ball.vel) * 0.45, 7, 12));
       ball.lastTouch = gk;
       gk.kickCooldown = 0.6; // let the parry leave the keeper's feet
       match.pushEvent('save', defSide, `${gk.name} parries!`);

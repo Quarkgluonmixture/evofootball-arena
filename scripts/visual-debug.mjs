@@ -50,6 +50,8 @@ check('clock advances under 32×', clockBefore !== clockAfter, `"${clockBefore}"
 const shotVals = await page.locator('#right-panel .stat-val').allTextContents();
 const totalShots = Number(shotVals[0] ?? 0) + Number(shotVals[1] ?? 0);
 check('match stats accumulate', totalShots > 0, `shots ${shotVals[0]}+${shotVals[1]}`);
+const statsText = await page.textContent('#right-panel');
+check('set-piece stats row present (corners)', statsText.includes('corners'), '');
 await page.click('button:has-text("⏸")');
 
 const feedRows = await page.locator('#event-feed .ev').count();

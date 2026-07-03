@@ -9,6 +9,7 @@ const ICON: Record<EventType, string> = {
   interception: '✂️',
   tackle: '🛡️',
   keypass: '🔑',
+  corner: '⚑',
   kickoff: '▶️',
   halftime: '⏸',
   fulltime: '🏁',

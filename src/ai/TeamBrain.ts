@@ -18,7 +18,9 @@ import type { TeamMode } from '../sim/types';
  *  - dead ball / kickoff                            -> ResetShape
  */
 export function updateTeamBrain(team: Team, match: Match): void {
-  if (match.phase !== 'playing') {
+  // Restarts are live for coordination: defenders keep marks and pressers
+  // crowd the edge of the clearance circle while the taker walks over.
+  if (match.phase !== 'playing' && match.phase !== 'restart') {
     team.mode = 'ResetShape';
     team.chasers.clear();
     team.marks.clear();

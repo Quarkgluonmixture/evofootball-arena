@@ -129,11 +129,15 @@ export class LeftPanel {
   updateClock(match: Match): void {
     this.score.textContent = `${match.score[0]} – ${match.score[1]}`;
     const phase = match.phase;
+    const restart = match.restart
+      ? { kickIn: '↪ kick-in', corner: '⚑ corner', goalKick: '🥅 goal kick' }[match.restart.kind]
+      : null;
     const label =
       phase === 'kickoff' ? 'KO' :
       phase === 'goalPause' ? 'GOAL!' :
       phase === 'halftime' ? 'HT' :
       phase === 'fulltime' ? 'FT' :
+      phase === 'restart' && restart ? `${match.minute()}' · ${restart}` :
       `${match.minute()}'`;
     this.clock.textContent = `${label}  ·  H${match.half}`;
   }

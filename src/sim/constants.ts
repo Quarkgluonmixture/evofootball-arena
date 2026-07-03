@@ -2,8 +2,9 @@
  * center, +x toward the right goal, +y downward on screen. Team 0 attacks +x,
  * team 1 attacks -x (no side swap at half time — keeps formation math simple).
  *
- * Boundaries behave futsal-style: the ball bounces off walls instead of going
- * out for throw-ins. This keeps the autonomous game flowing (see README).
+ * Boundaries are real (Phase 14): a ball over the touchline is a kick-in,
+ * over the goal line a corner or goal kick. Restarts are live dead-ball
+ * phases — the clock runs while the taker walks over and defenders reshape.
  */
 export const PITCH_LENGTH = 90;
 export const PITCH_WIDTH = 58;
@@ -23,7 +24,13 @@ export const MATCH_DURATION = 240;
 
 /** Ball exponential velocity decay per second: v *= exp(-K * dt). */
 export const BALL_FRICTION_K = 0.55;
-export const BALL_WALL_RESTITUTION = 0.62;
+
+/** Opponents are held this far from a dead-ball restart spot. */
+export const RESTART_CLEARANCE = 6;
+/** Restart setup: minimum dead-ball time before the kick can be taken... */
+export const RESTART_MIN_SETUP = 1.0;
+/** ...and a failsafe: after this long the taker kicks from wherever they are. */
+export const RESTART_TIMEOUT = 6;
 
 /** A player controls a free ball inside this radius... */
 export const CONTROL_RADIUS = 1.25;

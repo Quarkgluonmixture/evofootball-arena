@@ -21,7 +21,15 @@ export function decidePlayer(p: Player, match: Match): void {
   const team = match.teams[p.side];
   const opp = match.teams[1 - p.side];
 
-  if (match.phase !== 'playing') {
+  // Dead-ball restart: the taker walks to the spot (chasing the stationary
+  // ball); everyone else runs their normal logic against the dead ball —
+  // defenders reshape and mark, attackers hold width around the spot.
+  if (match.phase === 'restart' && match.restart) {
+    if (p.gid === match.restart.takerGid) {
+      p.action = { type: 'ChaseBall', scores: [{ action: 'ChaseBall', score: 1, why: 'taking the restart' }] };
+      return;
+    }
+  } else if (match.phase !== 'playing') {
     p.action = { type: 'MoveToFormationSpot', scores: [] };
     return;
   }
@@ -44,6 +52,10 @@ export function decidePlayer(p: Player, match: Match): void {
 function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const g = team.genome;
   const ball = match.ball;
+  // Restart first touch must be a kick (kick-in/corner/goal kick) — dribbling
+  // straight off the spot would break the dead-ball fiction.
+  const mustKick = match.restartKickGid === p.gid;
+  if (mustKick) match.restartKickGid = null;
   const cands: UtilityScore[] = [];
   const pressure = pressureAt(p.pos, opp.players);
   const goal = team.oppGoal();
@@ -101,12 +113,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   }
 
   // --- Dribble: needs space ahead; dribbleBias makes it a first choice.
-  const toGoal = norm(sub(goal, p.pos));
-  const space = spaceAhead(p, toGoal, opp.players);
-  let sD = (0.28 + space * 0.55) * (0.45 + g.dribbleBias * 1.0);
-  sD *= 1 - pressure * 0.35;
-  if (team.mode === 'CounterAttack') sD *= 1.25;
-  cands.push({ action: 'Dribble', score: sD, why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}` });
+  if (!mustKick) {
+    const toGoal = norm(sub(goal, p.pos));
+    const space = spaceAhead(p, toGoal, opp.players);
+    let sD = (0.28 + space * 0.55) * (0.45 + g.dribbleBias * 1.0);
+    sD *= 1 - pressure * 0.35;
+    if (team.mode === 'CounterAttack') sD *= 1.25;
+    cands.push({ action: 'Dribble', score: sD, why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}` });
+  }
 
   // --- Clear: panic button deep in our half; risk-averse teams use it more.
   if (localX < -18 && p.kickCooldown <= 0) {
@@ -116,6 +130,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   }
 
   cands.sort((a, b) => b.score - a.score);
+  // Degenerate fallback (kick still on cooldown): carry the ball as today.
+  if (cands.length === 0) {
+    p.action = { type: 'Dribble', scores: [] };
+    return;
+  }
   const top = cands[0];
   const scores = cands.slice(0, 4);
 

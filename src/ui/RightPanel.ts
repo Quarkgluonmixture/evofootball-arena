@@ -12,6 +12,7 @@ const STAT_ROWS = [
   'passes',
   'pass %',
   'recoveries',
+  'corners',
   'saves',
 ] as const;
 
@@ -120,6 +121,7 @@ export class RightPanel {
       `${Math.round((b.passesCompleted / Math.max(b.passes, 1)) * 100)}%`,
     );
     set('recoveries', String(a.tackles + a.interceptions), String(b.tackles + b.interceptions));
+    set('corners', String(a.corners), String(b.corners));
     set('saves', String(a.saves), String(b.saves));
   }
 

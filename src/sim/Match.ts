@@ -6,9 +6,9 @@ import { executeAction } from '../ai/actionExecutor';
 import { formationSpot } from '../ai/formations';
 import { Ball } from './Ball';
 import {
-  AI_INTERVAL, BALL_FRICTION_K, BALL_WALL_RESTITUTION, CONTROL_MAX_SPEED, CONTROL_RADIUS, DT,
+  AI_INTERVAL, BALL_FRICTION_K, CONTROL_MAX_SPEED, CONTROL_RADIUS, DT,
   GK_CONTROL_MAX_SPEED, GOAL_WIDTH, HALF_L, HALF_W, KICK_COOLDOWN, MATCH_DURATION,
-  PLAYER_MIN_DIST, TEAM_AI_INTERVAL,
+  PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP, RESTART_TIMEOUT, TEAM_AI_INTERVAL,
 } from './constants';
 import * as mech from './mechanics';
 import { Player } from './Player';
@@ -16,7 +16,7 @@ import { Team } from './Team';
 import {
   emptyPlayerStats,
   type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
-  type Side, type TeamInfo,
+  type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
 
 export interface PendingPass {
@@ -86,6 +86,10 @@ export class Match {
 
   /** Which side has effective possession; -1 while the ball is loose. */
   possessionSide: Side | -1 = -1;
+  /** Live dead-ball restart (kick-in/corner/goal kick); null in open play. */
+  restart: RestartState | null = null;
+  /** Gid whose next carrier decision must be a kick (restart first touch). */
+  restartKickGid: number | null = null;
   pendingPass: PendingPass | null = null;
   pendingShot: PendingShot | null = null;
   shotLog: ShotLogEntry[] = [];
@@ -143,7 +147,7 @@ export class Match {
     }
     if (this.phase === 'fulltime') return;
 
-    // ---- playing ----
+    // ---- playing or restart (a restart is live: clock runs, players move) ----
     this.simTime += dt;
 
     for (const team of this.teams) {
@@ -171,9 +175,14 @@ export class Match {
     for (const p of order) p.physicsStep(dt);
     this.resolveOverlaps();
     this.clampPlayersToPitch();
-    this.stepBall(dt);
+    if (this.phase === 'restart') this.stepRestart(dt);
+    else this.stepBall(dt);
 
-    if (this.possessionSide !== -1) this.teams[this.possessionSide].stats.possessionTime += dt;
+    // Possession only accrues in open play — restarts are dead-ball time,
+    // so the calibrate "ball-in-play share" stays an honest metric.
+    if (this.phase === 'playing' && this.possessionSide !== -1) {
+      this.teams[this.possessionSide].stats.possessionTime += dt;
+    }
 
     // Stale in-flight bookkeeping expires.
     if (this.pendingPass && this.simTime - this.pendingPass.t > 3.5) this.pendingPass = null;
@@ -296,7 +305,7 @@ export class Match {
     ball.pos = add(ball.pos, scale(ball.vel, dt));
     ball.vel = scale(ball.vel, Math.exp(-BALL_FRICTION_K * dt));
     if (this.checkGoal()) return;
-    this.bounceWalls();
+    if (this.checkOutOfPlay()) return;
     mech.tryKeeperSave(this);
     this.tryCapture();
   }
@@ -350,26 +359,116 @@ export class Match {
     this.phaseTimer = 2.0;
   }
 
-  private bounceWalls(): void {
+  /* ---------------- set pieces (Phase 14) ---------------- */
+
+  /**
+   * Real boundaries: over the touchline = kick-in against the last touch;
+   * over the goal line (outside the mouth — goals were checked first) =
+   * corner if the defending side touched it last, else goal kick.
+   */
+  private checkOutOfPlay(): boolean {
     const ball = this.ball;
-    const r = BALL_WALL_RESTITUTION;
-    if (ball.pos.x < -HALF_L) {
-      ball.pos.x = -HALF_L - (ball.pos.x + HALF_L);
-      ball.vel.x = -ball.vel.x * r;
-      ball.vel.y *= 0.85;
-    } else if (ball.pos.x > HALF_L) {
-      ball.pos.x = HALF_L - (ball.pos.x - HALF_L);
-      ball.vel.x = -ball.vel.x * r;
-      ball.vel.y *= 0.85;
+    const lastSide: Side = this.ball.lastTouch?.side ?? 0;
+    if (Math.abs(ball.pos.y) > HALF_W) {
+      const sy = ball.pos.y >= 0 ? 1 : -1;
+      const pos = v2(
+        Math.max(-HALF_L + 1, Math.min(HALF_L - 1, ball.pos.x)),
+        sy * (HALF_W - 0.4),
+      );
+      this.awardRestart('kickIn', (1 - lastSide) as Side, pos);
+      return true;
     }
-    if (ball.pos.y < -HALF_W) {
-      ball.pos.y = -HALF_W - (ball.pos.y + HALF_W);
-      ball.vel.y = -ball.vel.y * r;
-      ball.vel.x *= 0.85;
-    } else if (ball.pos.y > HALF_W) {
-      ball.pos.y = HALF_W - (ball.pos.y - HALF_W);
-      ball.vel.y = -ball.vel.y * r;
-      ball.vel.x *= 0.85;
+    if (Math.abs(ball.pos.x) > HALF_L) {
+      const sx = ball.pos.x >= 0 ? 1 : -1;
+      // Team 0 attacks +x: the +x goal line is defended by team 1.
+      const defSide: Side = sx > 0 ? 1 : 0;
+      if (lastSide === defSide) {
+        const sy = ball.pos.y >= 0 ? 1 : -1;
+        this.awardRestart('corner', (1 - defSide) as Side, v2(sx * (HALF_L - 0.6), sy * (HALF_W - 0.6)));
+      } else {
+        this.awardRestart('goalKick', defSide, v2(sx * (HALF_L - 7), 0));
+      }
+      return true;
+    }
+    return false;
+  }
+
+  private awardRestart(kind: RestartKind, side: Side, pos: V2): void {
+    const team = this.teams[side];
+    // A shot that went out is a miss; any pass in flight is dead.
+    this.markShotOutcome('miss');
+    this.pendingShot = null;
+    this.pendingPass = null;
+
+    this.ball.owner = null;
+    this.ball.pos = clone(pos);
+    this.ball.vel = v2();
+
+    // The restart team is "in possession" for shape/marking purposes.
+    this.possessionSide = side;
+    team.possessionGainedAt = this.simTime;
+    this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
+    this.teams[1].brainTimer = Math.min(this.teams[1].brainTimer, 0.05);
+
+    if (kind === 'corner') {
+      team.stats.corners++;
+      this.pushEvent('corner', side, `Corner — ${team.info.name}`);
+    }
+
+    this.restart = { kind, side, pos: clone(pos), timer: 0, takerGid: this.pickTaker(kind, side, pos) };
+    this.phase = 'restart';
+  }
+
+  /** GK takes goal kicks; otherwise the nearest outfielder walks over. */
+  private pickTaker(kind: RestartKind, side: Side, pos: V2): number {
+    const team = this.teams[side];
+    if (kind === 'goalKick') return team.goalkeeper.gid;
+    let best = team.players[1];
+    let bestD = Infinity;
+    for (const p of team.players) {
+      if (p.role === 'GK') continue;
+      const d = dist(p.pos, pos);
+      if (d < bestD) {
+        best = p;
+        bestD = d;
+      }
+    }
+    return best.gid;
+  }
+
+  /**
+   * A restart is live play with a dead ball: the taker walks to the spot
+   * (their brain chases the stationary ball), defenders reshape but are held
+   * out of the clearance circle, and once the taker arrives (or a failsafe
+   * timeout passes) they get the ball with a must-kick first touch.
+   */
+  private stepRestart(dt: number): void {
+    const r = this.restart!;
+    r.timer += dt;
+    const ball = this.ball;
+    ball.owner = null;
+    ball.pos = clone(r.pos);
+    ball.vel = v2();
+
+    // Hold opponents out of the restart circle (slide along its edge).
+    for (const o of this.teams[1 - r.side].players) {
+      const d = dist(o.pos, r.pos);
+      if (d < RESTART_CLEARANCE) {
+        const dir = d < 1e-6 ? v2(-this.teams[r.side].attackDir, 0) : norm(sub(o.pos, r.pos));
+        o.pos = add(r.pos, scale(dir, RESTART_CLEARANCE));
+        o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
+        o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
+      }
+    }
+
+    const taker = this.allPlayers[r.takerGid];
+    const ready = dist(taker.pos, r.pos) < 1.3 && r.timer >= RESTART_MIN_SETUP;
+    if (ready || r.timer >= RESTART_TIMEOUT) {
+      this.restart = null;
+      this.phase = 'playing';
+      this.restartKickGid = taker.gid;
+      this.giveBall(taker);
+      taker.decisionTimer = 0.12; // kick promptly (giveBall's settle is for open play)
     }
   }
 
@@ -431,6 +530,8 @@ export class Match {
     this.markShotOutcome('miss');
     this.pendingShot = null;
     this.lastCompletedPass = null;
+    this.restart = null; // a restart pending at half-time is simply not taken
+    this.restartKickGid = null;
     this.ball.reset();
 
     for (const team of this.teams) {

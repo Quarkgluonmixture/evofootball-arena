@@ -77,7 +77,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence
-tests/                  vitest suites (73 tests)
+tests/                  vitest suites (95 tests)
 scripts/                headless calibration & evolution tools
 ```
 
@@ -91,8 +91,15 @@ scripts/                headless calibration & evolution tools
 - **Determinism:** all randomness flows through a seeded RNG (`mulberry32`);
   every match seed is `hash(leagueSeed, generation, round, division*4+index)`.
   Same seed ⇒ identical match, watched or skipped. Saves store no RNG state.
-- **Pitch:** 90×58 m, futsal-style walls (the ball bounces instead of going
-  out) to keep autonomous play flowing. Goals are real: 7 m mouths.
+- **Pitch:** 90×58 m with real boundaries. Goals are real: 7 m mouths.
+- **Set pieces (Phase 14):** a ball over the touchline is a **kick-in**
+  (futsal rules — kicked, not thrown) against the side that touched it last;
+  over the goal line it's a **corner** (defending touch — keeper parries are
+  deflections now, so shots pushed wide go behind) or a **goal kick** (keeper
+  restarts). Restarts are live dead-ball phases: the clock runs, the taker
+  walks over, opponents are held 6 m off the ball while both teams reshape,
+  and the first touch must be a kick. Everything is deterministic — no
+  restart randomness beyond the usual seeded kick mechanics.
 - **Ball:** exponential friction, kick impulses, owner-glued dribbling,
   interceptable in flight; keepers can handle faster balls than outfielders.
 - **Players:** acceleration toward a desired velocity, role-based top speed,
@@ -297,19 +304,21 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.4 goals, ~12–15 shots, ~76% pass completion, balanced possession, 98%
-ball-in-play, ~44 ms per headless match (a 10-season fast-sim ≈ 31 s at 71
-matches per season — 56 league + 15 cup). The per-match engine is unchanged
-from the 8-team era — averages shift a little with each seed population, and
-adding the cup left the per-match numbers identical (verified against
-phase-12.1 on the same seed). The pyramid produces real football stories:
-never-relegated aristocrats, yo-yo clubs with 5+ division moves, cup
-giant-killers, and a visible D1/D2 Elo gap (see `npm run evolve-check`).
+~2.6 goals, ~11–14 shots, ~78% pass completion, balanced possession, ~95%
+ball-in-play (the rest is live dead-ball time around ~4 restarts per match:
+≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins), ~45 ms per headless match (a
+10-season fast-sim ≈ 31 s at 71 matches per season — 56 league + 15 cup).
+Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6
+(corner chances; parries that deflect instead of bouncing back), in-play
+98% → 95%. The pyramid produces real football stories: never-relegated
+aristocrats, yo-yo clubs with 5+ division moves, cup giant-killers, and a
+visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 87 tests: RNG/vec math, genome operators, match determinism
-  (watched ≡ headless), league/Elo/evolution invariants, Evo Cup bracket
+- `npm test` — 95 tests: RNG/vec math, genome operators, match determinism
+  (watched ≡ headless), set-piece award rules/restart lifecycle/boundary
+  invariants, league/Elo/evolution invariants, Evo Cup bracket
   shape/draw-rule/standalone-tie/determinism, save/load roundtrips incl. the
   v1–v5 migration chain, and statistical gene/attribute effect tests.
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
@@ -317,11 +326,13 @@ giant-killers, and a visible D1/D2 Elo gap (see `npm run evolve-check`).
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
   seasons from the UI, and screenshots every stage to
-  `/tmp/evofootball-shots/` (38 checks).
+  `/tmp/evofootball-shots/` (39 checks).
 
 ## What's implemented vs. next steps
 
-Implemented: autonomous 5v5 matches, three-layer utility AI, 14 live tactical
+Implemented: autonomous 5v5 matches with real boundaries and set pieces
+(kick-ins/corners/goal kicks as live dead-ball restarts), three-layer utility
+AI, 14 live tactical
 genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
 knockout between league rounds with giant-killing/upset/double/revenge
@@ -332,12 +343,10 @@ distinct run/kick/dive/celebrate animations, 5 polished camera modes, 3D
 overlays, possession/crowd readability aids, goal/save/shot event feedback,
 replay with scrubbing/event jumps/auto-camera/slow-mo), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), 87 tests, and
-browser-driving visual smoke tests for both views (38 + 20 checks).
+fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), 95 tests, and
+browser-driving visual smoke tests for both views (39 + 20 checks).
 
 Ideas for the next phase (rough priority order):
-- Set pieces (corners/throw-ins) instead of futsal walls — touches the
-  deterministic core; needs full recalibration per docs/ARCHITECTURE.md
 - Optional learned policies (ES/RL "wildcard team") benchmarked against the
   evolved utility-AI teams
 - WebWorker simulation for even faster multi-season runs

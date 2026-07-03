@@ -33,23 +33,24 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-13`)**: phases 0–13 complete — deterministic 5v5
-sim; 14 tactical genes + 5-attr squad DNA; a 16-team Premier/Challenger
-pyramid with promotion/relegation and an optional playoff decider; the Evo Cup
-(a deterministic single-elimination knockout woven between league rounds, with
-giant-killing/upset narratives); 2D (Pixi) + 3D (Three.js) viewers with
-replay; season reports/awards/narratives, evolution sparklines, hall of fame
-with dynasty timelines and cup honours; saves at v5 (chain-migrates v1–v4).
-87 vitest tests; Playwright suites: 2D 38 checks, 3D 20 checks;
-~44 ms/headless match. Git tags `phase-10`…`phase-13` are known-green
-checkpoints. Open roadmap ideas live in the README's "next steps".
+**Status (as of tag `phase-14`)**: phases 0–14 complete — deterministic 5v5
+sim with real boundaries and set pieces (kick-ins/corners/goal kicks as live
+dead-ball restarts); 14 tactical genes + 5-attr squad DNA; a 16-team
+Premier/Challenger pyramid with promotion/relegation and an optional playoff
+decider; the Evo Cup (a deterministic single-elimination knockout woven
+between league rounds, with giant-killing/upset narratives); 2D (Pixi) + 3D
+(Three.js) viewers with replay; season reports/awards/narratives, evolution
+sparklines, hall of fame with dynasty timelines and cup honours; saves at v5
+(chain-migrates v1–v4). 95 vitest tests; Playwright suites: 2D 39 checks,
+3D 20 checks; ~45 ms/headless match. Git tags `phase-10`…`phase-14` are
+known-green checkpoints. Open roadmap ideas live in the README's "next steps".
 
 ## 2. Module ownership
 
 | Module | Owns | Must NOT do |
 |---|---|---|
 | `src/utils/` | seeded RNG (`mulberry32`), vec2 math, scalar helpers | import anything else in src |
-| `src/sim/` | Match state machine, ball/player physics, mechanics (kicks/tackles/saves/xG), League (two-division fixtures, tables, Elo, promotion/relegation, playoff, Evo Cup scheduling, season lifecycle), cup bracket logic (`cup.ts`, pure), record mining (`records.ts`, pure), stats/events | import render*, ui, pixi, three, browser APIs |
+| `src/sim/` | Match state machine (incl. set-piece restarts), ball/player physics, mechanics (kicks/tackles/saves/xG), League (two-division fixtures, tables, Elo, promotion/relegation, playoff, Evo Cup scheduling, season lifecycle), cup bracket logic (`cup.ts`, pure), record mining (`records.ts`, pure), stats/events | import render*, ui, pixi, three, browser APIs |
 | `src/ai/` | TeamBrain (modes + press/mark assignments), PlayerBrain (utility scoring), action execution/steering, formations, perception | mutate anything except the deciding player's own action/targets (kicks go through `match.perform*`) |
 | `src/evolution/` | TacticalGenome + squad DNA operators, fitness, selection (elite/mutate/reborn), names/kits, franchise lineage | know about matches at runtime (it consumes season aggregates only) |
 | `src/replay/` | `ReplayBuffer`: 10 Hz RenderState snapshots, binary-search + interpolation | hold references into live sim objects (it stores adapter-produced plain data) |
@@ -69,6 +70,11 @@ only via `import type` where the target is `Match` itself. Keep it that way.
   Watching = N steps per render frame; skipping = `runToCompletion()` running
   the same loop. **Identical trajectories by construction** (regression-tested
   in `tests/match.test.ts`).
+- Set-piece restarts (phase `'restart'`) are part of the same step loop: the
+  ball is dead at the spot, the clock runs, the taker's brain chases the
+  stationary ball, and opponents are positionally held out of a 6 m circle.
+  No extra RNG, no teleports — a restart is just more deterministic stepping
+  (award rules + lifecycle tested in `tests/setpieces.test.ts`).
 - All randomness flows through `match.rng` (seeded mulberry32). **Never call
   `Math.random()`, `Date.now()`, or read wall-clock inside sim/ai/evolution.**
 - Iteration order is part of determinism: player arrays are fixed-order; the
@@ -290,7 +296,16 @@ only caught by eyes on the PNGs.
 10. **localStorage schema drift.** Bumping save shape without a migration
     bricks saves silently (`loadLeague` swallows to null). v1→v2 migration in
     `League.fromJSON` is the pattern to copy.
-11. **Cross-engine float drift (Node vs Chromium).** Determinism is exact
+11. **Polite mechanics produce zero set pieces.** With real boundaries wired
+    up, corners and kick-ins simply never happened at first: the old parry
+    pushed the ball *away from goal* (back into play, never behind), passes
+    are aimed at feet, and narrow clears got captured mid-flight. Out-of-play
+    events need mechanics that honestly send balls out — the parry is a
+    deflection of the incoming shot (often behind for a corner), and panicked
+    clears spray wide (±1.0 rad → kick-ins). If you add a defensive touch
+    mechanic, check the restart-rate probe before shipping (≈2.4 goal kicks /
+    1.3 corners / 0.5 kick-ins per match at phase-14 tuning).
+12. **Cross-engine float drift (Node vs Chromium).** Determinism is exact
     *within* one JS engine, but different V8 builds (Node 26 vs current
     Chromium) round some transcendental paths differently, and one knife-edge
     event can flip a match result (measured: 1 of 71 seed-1337 matches,
@@ -305,6 +320,8 @@ only caught by eyes on the PNGs.
 | Goal | Lever |
 |---|---|
 | Goals per match (~2.9 target) | `mechanics.tryKeeperSave` saveP base (0.52 − xG·0.6); shot `spread`; xG curve `exp(-d/11)` |
+| Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
+| Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |
 | Pass-fest vs dribble balance | carrier utility bases in `PlayerBrain.decideCarrier`; post-receive settle (`giveBall` decisionTimer 0.3) |
 | Turnover rate | tackle probability in `mechanics.tryTackles` |
 | Pressing strength | chaser count logic in `TeamBrain.assignChasers`; press mode threshold 0.62 |

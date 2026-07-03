@@ -59,7 +59,21 @@ export interface TeamInfo {
   squad: PlayerAttributes[];
 }
 
-export type MatchPhase = 'kickoff' | 'playing' | 'goalPause' | 'halftime' | 'fulltime';
+export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'halftime' | 'fulltime';
+
+/** Dead-ball restart kinds. Futsal-style kick-ins (not throws) from the touchline. */
+export type RestartKind = 'kickIn' | 'corner' | 'goalKick';
+
+export interface RestartState {
+  kind: RestartKind;
+  /** Team taking the restart. */
+  side: Side;
+  pos: V2;
+  /** Sim-seconds since the restart was awarded. */
+  timer: number;
+  /** The player walking over to take it (GK for goal kicks). */
+  takerGid: number;
+}
 
 export type EventType =
   | 'goal'
@@ -68,6 +82,7 @@ export type EventType =
   | 'interception'
   | 'tackle'
   | 'keypass'
+  | 'corner'
   | 'kickoff'
   | 'halftime'
   | 'fulltime'
@@ -96,6 +111,7 @@ export interface TeamMatchStats {
   clearances: number;
   saves: number;
   dribbles: number;
+  corners: number;
   possessionTime: number;
   distance: number;
   staminaSpent: number;
@@ -114,6 +130,7 @@ export const emptyStats = (): TeamMatchStats => ({
   clearances: 0,
   saves: 0,
   dribbles: 0,
+  corners: 0,
   possessionTime: 0,
   distance: 0,
   staminaSpent: 0,

@@ -77,14 +77,19 @@ describe('tactical genes influence behavior', () => {
   });
 
   it('high pressIntensity + markingAggression team recovers the ball more', () => {
+    // Side-balanced + pooled (§10.5): the raw margin is a few recoveries per
+    // match, so a one-sided six-seed sample measures pitch-side noise.
     const pressing = neutral();
     pressing.pressIntensity = 0.95;
     pressing.markingAggression = 0.9;
     const passive = neutral();
     passive.pressIntensity = 0.05;
     passive.markingAggression = 0.1;
-    const [a, b] = totals(pressing, passive, SEEDS);
-    expect(a.tackles + a.interceptions).toBeGreaterThan(b.tackles + b.interceptions);
+    const seeds = [11, 42, 99, 1234, 777, 31337, 5150, 2718];
+    const [a1, b1] = totals(pressing, passive, seeds);
+    const [b2, a2] = totals(passive, pressing, seeds.map((s) => s + 13));
+    expect(a1.tackles + a1.interceptions + a2.tackles + a2.interceptions)
+      .toBeGreaterThan(b1.tackles + b1.interceptions + b2.tackles + b2.interceptions);
   });
 
   it('stamina conservation saves energy', () => {
