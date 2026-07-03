@@ -45,10 +45,12 @@ models/stadium/broadcast overlays, cinematic mode, screenshot/share tools and
 an FX quality setting; season reports/awards/narratives, evolution sparklines,
 hall of fame with dynasty timelines and cup honours; saves at v5
 (chain-migrates v1–v4); fast-sim on a Web Worker with a bit-identical
-main-thread fallback (phase 16). 100 vitest tests; Playwright suites: 2D 47
-checks, 3D 26 checks; ~34 ms/headless match. Git tags `phase-10`…`phase-16`
-are known-green checkpoints. Open roadmap ideas live in the README's "next
-steps".
+main-thread fallback (phase 16); release polish — quickstart README,
+responsive layout, PWA manifest/icon, MIT license (phase 17). 100 vitest
+tests; Playwright suites: 2D 47 checks, 3D 26 checks; ~34 ms/headless match.
+Git tags `phase-10`…`phase-17` are known-green checkpoints; published at
+https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
+live in the README's "next steps".
 
 ## 2. Module ownership
 
