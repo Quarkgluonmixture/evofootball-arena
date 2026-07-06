@@ -23,7 +23,8 @@
     "fingerprint": "tsx scripts/fingerprint.ts",
     "evolve-check": "tsx scripts/evolve-check.ts",
     "debug:visual": "node scripts/visual-debug.mjs",
-    "debug:visual3d": "node scripts/visual-debug-3d.mjs"
+    "debug:visual3d": "node scripts/visual-debug-3d.mjs",
+    "package:itch": "npm run build && node scripts/package-itch.mjs"
   },
   "dependencies": {
     "pixi.js": "^8.6.6",

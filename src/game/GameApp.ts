@@ -1,5 +1,7 @@
 import { Application, type Ticker } from 'pixi.js';
-import { clearSave, hasSave, loadLeague, saveLeague } from '../data/save';
+import {
+  clearSave, exportLeagueJSON, hasSave, importLeagueJSON, loadLeague, saveLeague,
+} from '../data/save';
 import { DebugOverlay } from '../render/DebugOverlay';
 import { MatchRenderer } from '../render/MatchRenderer';
 import { PitchRenderer } from '../render/PitchRenderer';
@@ -100,6 +102,8 @@ export class GameApp implements GameActions {
     topbar.appendChild(button('League table', () => this.toggleLeagueScreen()));
     topbar.appendChild(button('Save', () => this.saveNow()));
     topbar.appendChild(button('Load', () => this.loadNow()));
+    topbar.appendChild(button('Export', () => this.exportSave()));
+    topbar.appendChild(button('Import', () => this.importSave()));
     this.seedInput = el('input');
     this.seedInput.type = 'text';
     this.seedInput.placeholder = 'seed';
@@ -705,6 +709,55 @@ export class GameApp implements GameActions {
     this.loadNextFixture();
     this.feed.pushSystem('💾 League loaded.');
     this.leagueScreen.refreshIfVisible(this.league);
+  }
+
+  /** Download the current league as a .json save file (Phase 21). */
+  private exportSave(): void {
+    if (this.busy) {
+      this.feed.pushSystem('⏳ Simulation running — export again in a moment.');
+      return;
+    }
+    const blob = new Blob([exportLeagueJSON(this.league)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `evofootball-save-gen${this.league.generation}-seed${this.league.seed}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    this.feed.pushSystem('📤 Save exported as a .json file.');
+  }
+
+  /**
+   * Load a league from a .json save file. Like Load, this only swaps the
+   * running league — the localStorage slot is untouched until the next
+   * Save/auto-save, so a bad import can't destroy the existing league.
+   */
+  private importSave(): void {
+    if (this.busy) {
+      this.feed.pushSystem('⏳ Simulation running — import again in a moment.');
+      return;
+    }
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.addEventListener('change', () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      void file.text().then((text) => {
+        const league = importLeagueJSON(text);
+        if (!league) {
+          this.feed.pushSystem('⚠️ Not a valid EvoFootball save file.');
+          return;
+        }
+        this.league = league;
+        this.loadNextFixture();
+        this.feed.pushSystem(
+          `📥 League imported — Gen ${league.generation}, seed ${league.seed}. Press Save to keep it.`,
+        );
+        this.leagueScreen.refreshIfVisible(this.league);
+      });
+    });
+    input.click();
   }
 
   newLeague(seedText: string): void {

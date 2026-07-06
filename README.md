@@ -36,6 +36,8 @@ npm run preview    # serve the built game locally
 
 The build is fully static — host `dist/` anywhere (GitHub Pages, itch.io,
 any file server); asset paths are relative (`base: './'`).
+For itch.io specifically, `npm run package:itch` builds and zips an
+upload-ready archive; settings live in [`docs/ITCH.md`](docs/ITCH.md).
 
 ## Development & validation
 
@@ -83,6 +85,9 @@ npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic (26 ch
   shot vectors, marking lines, press assignments, ball heatmap.
 - The league **auto-saves after every season** (localStorage); Save/Load/Reset
   in the top bar. `New league` accepts a numeric or text seed.
+- **Export/Import** (top bar) move a league between machines as a `.json`
+  file — Import only swaps the running league (your stored save is untouched
+  until you press Save), and any save version since v1 imports cleanly.
 - **Presentation** (left panel): 🎥 cinematic mode (hides all chrome — Esc/✕
   exits), 📸 screenshot of the current view, 📋 copy a share summary (score,
   scorers, xG, league/cup context, seed), and an FX quality setting

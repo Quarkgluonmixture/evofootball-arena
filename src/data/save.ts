@@ -71,3 +71,25 @@ export function clearSave(): void {
     /* ignore */
   }
 }
+
+/* ---------------- file export / import (Phase 21) ---------------- */
+
+/** Serialize the league for a downloadable .json save file. */
+export function exportLeagueJSON(league: League): string {
+  return JSON.stringify(league.toJSON());
+}
+
+/**
+ * Parse + validate an imported save file. Returns null (never throws) when
+ * the text isn't a recognizable league save; accepts any version the
+ * migration chain handles (v1+).
+ */
+export function importLeagueJSON(text: string): League | null {
+  try {
+    const data: unknown = JSON.parse(text);
+    if (!isLeagueSaveData(data)) return null;
+    return League.fromJSON(data);
+  } catch {
+    return null;
+  }
+}
