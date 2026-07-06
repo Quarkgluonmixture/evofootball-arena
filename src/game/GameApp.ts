@@ -6,22 +6,24 @@ import { PitchRenderer } from '../render/PitchRenderer';
 import { CANVAS_H, CANVAS_W, toPx } from '../render/transform';
 import { cameraForEvent, type CameraMode } from '../render3d/CameraController';
 import {
-  buildRenderState, buildRenderTheme, type RenderState,
+  buildOverlays, buildRenderState, buildRenderTheme, type RenderState,
 } from '../render3d/RenderStateAdapter';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
 import { buildWildcardTeamInfo, WILDCARD_NAME } from '../ai/wildcard';
 import { WILDCARD_POLICY } from '../ai/wildcardPolicy';
-import { CUP_NAME, CUP_ROUND_NAMES, cupEntrant, cupTie } from '../sim/cup';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
+import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
 import { Match } from '../sim/Match';
 import type { SimRequest } from '../sim/simRunner';
 import { hashSeed } from '../utils/rng';
 import type { SimWorkerMessage } from './simWorker';
 import type { MatchEvent } from '../sim/types';
-import { defaultFlags, type FxQuality, type GameActions, type UiFlags, type ViewMode } from '../ui/actions';
-import { button, el } from '../ui/dom';
+import {
+  anyOverlayOn, defaultFlags, type FxQuality, type GameActions, type UiFlags, type ViewMode,
+} from '../ui/actions';
+import { button, colorHex, el } from '../ui/dom';
 import { EventFeed } from '../ui/EventFeed';
 import { LeagueScreen } from '../ui/LeagueScreen';
 import { LeftPanel } from '../ui/LeftPanel';
@@ -239,7 +241,12 @@ export class GameApp implements GameActions {
       this.three.update(this.currentRenderState(dtReal), dtReal, this.flags, this.selectedGid);
     } else {
       this.matchRenderer.update(dtReal, this.flags, this.selectedGid, steps);
-      this.debugOverlay.update(this.match, this.flags);
+      const m = this.match;
+      this.debugOverlay.update(
+        m && anyOverlayOn(this.flags) ? buildOverlays(m) : null,
+        this.flags,
+        m ? [m.teams[0].info.colors.primary, m.teams[1].info.colors.primary] : [0xffffff, 0xffffff],
+      );
     }
     if (this.match) this.left.updateClock(this.match);
     this.feed.sync();
@@ -264,13 +271,12 @@ export class GameApp implements GameActions {
     const key = `${m.teams[0].info.short}|${m.score[0]}|${m.score[1]}|${m.minute()}`;
     if (key === this.lastCineBugKey) return;
     this.lastCineBugKey = key;
-    const hex = (c: number) => `#${c.toString(16).padStart(6, '0')}`;
     this.cineBug.innerHTML =
-      `<span class="sb-chip" style="background:${hex(m.teams[0].info.colors.primary)}"></span>` +
+      `<span class="sb-chip" style="background:${colorHex(m.teams[0].info.colors.primary)}"></span>` +
       `<span class="sb-team">${m.teams[0].info.short}</span>` +
       `<span class="sb-score">${m.score[0]}–${m.score[1]}</span>` +
       `<span class="sb-team">${m.teams[1].info.short}</span>` +
-      `<span class="sb-chip" style="background:${hex(m.teams[1].info.colors.primary)}"></span>` +
+      `<span class="sb-chip" style="background:${colorHex(m.teams[1].info.colors.primary)}"></span>` +
       `<span class="sb-min">${m.minute()}'</span>`;
   }
 
@@ -288,10 +294,7 @@ export class GameApp implements GameActions {
       return this.replay.source.stateAt(this.replay.t);
     }
     if (!this.match) return null;
-    const anyOverlay =
-      this.flags.formation || this.flags.passLines || this.flags.shotVector ||
-      this.flags.marking || this.flags.chasers;
-    return buildRenderState(this.match, anyOverlay);
+    return buildRenderState(this.match, anyOverlayOn(this.flags));
   }
 
   /* ---------------- match lifecycle ---------------- */
@@ -370,76 +373,20 @@ export class GameApp implements GameActions {
    * never ran (the record carries the whole story).
    */
   private announceSeasonRecord(rec: SeasonRecord, prevChampion: string | undefined, includeCup: boolean): void {
-    this.feed.pushSystem(
-      rec.championName === prevChampion
-        ? `🏆 ${rec.championName} retained the Premier title! (Season ${rec.generation})`
-        : `🏆 ${rec.championName} are Premier champions! (Season ${rec.generation})`,
-    );
-    if (rec.d2Champion) this.feed.pushSystem(`🥇 ${rec.d2Champion} won the Challenger Division.`);
-    if (rec.playoff) {
-      this.feed.pushSystem(
-        `⚔ Playoff: ${rec.playoff.homeName} ${rec.playoff.score[0]}–${rec.playoff.score[1]} ${rec.playoff.awayName} — ${rec.playoff.winnerName} take the final Premier spot.`,
-      );
-    }
-    if (includeCup && rec.cup) {
-      const final = rec.cup.ties[rec.cup.ties.length - 1];
-      this.feed.pushSystem(
-        `🏅 ${rec.cup.winnerName} win the ${CUP_NAME}! ${final.scoreH}–${final.scoreA} vs ${rec.cup.runnerUpName}.`,
-      );
-      if (rec.cup.upsets.length > 0) {
-        this.feed.pushSystem(
-          `⚡ ${rec.cup.upsets.length} giant killing${rec.cup.upsets.length > 1 ? 's' : ''} along the cup run.`,
-        );
-      }
-    }
-    if (rec.cup && rec.cup.winnerSlot === rec.championSlot && rec.cup.winnerName === rec.championName) {
-      this.feed.pushSystem(`✨ DOUBLE: ${rec.cup.winnerName} won the league and ${CUP_NAME}.`);
-    }
-    for (const p of rec.promoted ?? []) this.feed.pushSystem(`⬆️ ${p.name} promoted to the Premier Division.`);
-    for (const r of rec.relegated ?? []) this.feed.pushSystem(`⬇️ ${r.name} relegated to the Challenger Division.`);
-    for (const e of rec.evolution.entries) {
-      if (e.kind === 'reborn') {
-        this.feed.pushSystem(`🔄 ${e.name} born from ${e.parents?.join(' × ')} (drift ${e.drift.toFixed(2)})`);
-      }
-    }
+    for (const line of seasonRecordLines(rec, prevChampion, includeCup)) this.feed.pushSystem(line);
   }
 
   /** Feed lines for a just-applied cup tie: giant killings and the final. */
   private announceCupResult(f: Fixture): void {
-    const cup = this.league.cup;
-    if (!cup) return;
-    const tie = cupTie(cup, f.round, f.index);
-    if (!tie.played || tie.winner === undefined) return;
-    const winner = cupEntrant(cup, tie.winner);
-    const loser = cupEntrant(cup, tie.winner === tie.home ? tie.away : tie.home);
-    const score = `${tie.scoreH}–${tie.scoreA}`;
-    const drawNote = tie.byDrawRule ? ' — level at full time, the underdog advances' : '';
-    if (tie.round === 3) {
-      this.feed.pushSystem(`🏅 ${winner.name} win the ${CUP_NAME}! ${score} vs ${loser.name}${drawNote}.`);
-    } else if (tie.upset) {
-      this.feed.pushSystem(
-        `⚡ GIANT KILLING: ${winner.name} knocked out ${loser.name} ${score} in the ${CUP_ROUND_NAMES[tie.round]}${drawNote}.`,
-      );
-    }
+    if (!this.league.cup) return;
+    for (const line of cupResultLines(this.league.cup, f)) this.feed.pushSystem(line);
   }
 
   /** Announce a cup round the moment its first tie comes up. */
   private announceCupDraw(): void {
     const f = this.fixture;
-    const cup = this.league.cup;
-    if (!f?.cup || !cup || f.index !== 0 || f.played) return;
-    if (f.round === 0) {
-      this.feed.pushSystem(
-        `🎪 ${CUP_NAME} — the Round of 16 draw is made: eight Premier–Challenger ties. Drawn ties send the underdog through.`,
-      );
-    } else if (f.round === 3) {
-      const tie = cupTie(cup, 3, 0);
-      this.feed.pushSystem(
-        `🏆 ${CUP_NAME} Final: ${cupEntrant(cup, tie.home).name} vs ${cupEntrant(cup, tie.away).name}!`,
-      );
-    } else {
-      this.feed.pushSystem(`🎪 ${CUP_NAME} ${CUP_ROUND_NAMES[f.round]}s are here.`);
-    }
+    if (!f || !this.league.cup) return;
+    for (const line of cupDrawLines(this.league.cup, f)) this.feed.pushSystem(line);
   }
 
   private finishCurrentMatchHeadless(): void {

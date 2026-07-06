@@ -1,6 +1,6 @@
 import type { Match } from '../sim/Match';
 import type { EventType } from '../sim/types';
-import { el } from './dom';
+import { el, escapeHtml } from './dom';
 
 const ICON: Record<EventType, string> = {
   goal: '⚽',
@@ -57,6 +57,3 @@ export class EventFeed {
   }
 }
 
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}

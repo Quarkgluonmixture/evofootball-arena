@@ -25,6 +25,13 @@ export const defaultFlags = (): UiFlags => ({
   chasers: false,
 });
 
+/** The overlay-channel subset of UiFlags — shared by the 2D and 3D overlays. */
+export type OverlayFlags = Pick<UiFlags, 'formation' | 'passLines' | 'shotVector' | 'marking' | 'chasers'>;
+
+/** True when any overlay channel is on (single source for both views). */
+export const anyOverlayOn = (f: OverlayFlags): boolean =>
+  f.formation || f.passLines || f.shotVector || f.marking || f.chasers;
+
 export interface GameActions {
   setPaused(p: boolean): void;
   setSpeed(s: number): void;

@@ -1,4 +1,4 @@
-import { colorHex, el } from './dom';
+import { colorHex, el, escapeHtml } from './dom';
 
 /**
  * Tiny inline-SVG chart builders for the league screens.
@@ -107,7 +107,7 @@ export function raceChart(series: RaceSeries[], rounds: number): HTMLDivElement 
     parts.push(
       `<line x1="${(W - PADR).toFixed(1)}" y1="${lastY.toFixed(1)}" x2="${W - PADR + 6}" y2="${endY.toFixed(1)}" stroke="${color}" stroke-width="1" opacity="0.5"/>`,
       `<text x="${W - PADR + 9}" y="${(endY + 3).toFixed(1)}" font-size="9.5" fill="${INK_MUTED}">` +
-        `<tspan fill="${color}">■</tspan> ${escapeXml(s.name)} ${s.values[s.values.length - 1] ?? 0}</text>`,
+        `<tspan fill="${color}">■</tspan> ${escapeHtml(s.name)} ${s.values[s.values.length - 1] ?? 0}</text>`,
     );
   });
 
@@ -121,6 +121,3 @@ export function raceChart(series: RaceSeries[], rounds: number): HTMLDivElement 
   return wrap;
 }
 
-function escapeXml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}

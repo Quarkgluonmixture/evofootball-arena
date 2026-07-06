@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { ACTION_SHORT } from '../render/actionLabels';
 import { CANVAS_H, CANVAS_W } from '../render/transform';
 import type { UiFlags } from '../ui/actions';
+import { colorHex } from '../ui/dom';
 import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
 import { CameraController, type CameraMode } from './CameraController';
@@ -133,7 +134,7 @@ export class ThreeMatchRenderer {
 
     for (const p of theme.players) {
       const tk = teamKits[p.side];
-      const labelColor = `#${theme.teams[p.side].primary.toString(16).padStart(6, '0')}`;
+      const labelColor = colorHex(theme.teams[p.side].primary);
       const model = new PlayerModel(
         p.gid,
         p.role,
@@ -167,11 +168,6 @@ export class ThreeMatchRenderer {
       this.updatePossessionRing(state, dt);
       this.ball.update(state.ball, state.players, dt);
       this.overlays.update(state.overlays, flags);
-      const gids = this.overlays.activeChaserGids;
-      gids.forEach((gid, i) => {
-        const p = state.players.find((x) => x.gid === gid);
-        if (p) this.overlays.placeChaserRing(i, p.x, p.z);
-      });
       if (this.theme) {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
       }
@@ -225,13 +221,12 @@ export class ThreeMatchRenderer {
     const text = `${t.teams[0].short}${state.score[0]}${state.score[1]}${t.teams[1].short}${state.minute}`;
     if (text === this.scoreBugText) return;
     this.scoreBugText = text;
-    const hex = (c: number) => `#${c.toString(16).padStart(6, '0')}`;
     this.scoreBug.innerHTML =
-      `<span class="sb-chip" style="background:${hex(t.teams[0].primary)}"></span>` +
+      `<span class="sb-chip" style="background:${colorHex(t.teams[0].primary)}"></span>` +
       `<span class="sb-team">${t.teams[0].short}</span>` +
       `<span class="sb-score">${state.score[0]}–${state.score[1]}</span>` +
       `<span class="sb-team">${t.teams[1].short}</span>` +
-      `<span class="sb-chip" style="background:${hex(t.teams[1].primary)}"></span>` +
+      `<span class="sb-chip" style="background:${colorHex(t.teams[1].primary)}"></span>` +
       `<span class="sb-min">${state.minute}'</span>`;
   }
 
@@ -239,8 +234,8 @@ export class ThreeMatchRenderer {
     this.banner.innerHTML =
       `<div class="gb-title">GOAL!</div>` +
       `<div class="gb-sub">${team}${score ? ` · ${score}` : ''}</div>`;
-    this.banner.style.borderColor = `#${color.toString(16).padStart(6, '0')}`;
-    this.banner.style.color = `#${color.toString(16).padStart(6, '0')}`;
+    this.banner.style.borderColor = colorHex(color);
+    this.banner.style.color = colorHex(color);
     this.banner.classList.remove('hidden');
     if (this.bannerTimer) clearTimeout(this.bannerTimer);
     this.bannerTimer = setTimeout(() => this.hideBanner(), 2200);

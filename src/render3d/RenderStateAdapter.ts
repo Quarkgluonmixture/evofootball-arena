@@ -52,10 +52,10 @@ export interface OverlayState {
   shotLine: { x1: number; z1: number; x2: number; z2: number } | null;
   /** Marker -> marked opponent, both teams. */
   markLines: Array<{ x1: number; z1: number; x2: number; z2: number }>;
-  /** Gids of players currently assigned to press. */
-  chasers: number[];
-  /** Formation target per player. */
-  formation: Array<{ gid: number; side: Side; x: number; z: number }>;
+  /** Players currently assigned to press, with their positions. */
+  chasers: Array<{ gid: number; x: number; z: number }>;
+  /** Formation target (x/z) per player, plus the player's position (px/pz). */
+  formation: Array<{ gid: number; side: Side; x: number; z: number; px: number; pz: number }>;
 }
 
 export interface RenderState {
@@ -166,7 +166,11 @@ function buildFx(match: Match): FxEvent[] {
   return out.reverse();
 }
 
-function buildOverlays(match: Match): OverlayState {
+/**
+ * The single source of truth for debug-overlay geometry — the 2D DebugOverlay
+ * and the 3D Overlays3D both consume this (no duplicated projection math).
+ */
+export function buildOverlays(match: Match): OverlayState {
   let passLine: OverlayState['passLine'] = null;
   if (match.pendingPass) {
     const target = match.allPlayers.find((p) => p.gid === match.pendingPass!.targetGid);
@@ -186,7 +190,7 @@ function buildOverlays(match: Match): OverlayState {
   }
 
   const markLines: OverlayState['markLines'] = [];
-  const chasers: number[] = [];
+  const chasers: OverlayState['chasers'] = [];
   for (const team of match.teams) {
     const opp = match.teams[1 - team.side];
     for (const [ownIdx, oppIdx] of team.marks) {
@@ -194,7 +198,10 @@ function buildOverlays(match: Match): OverlayState {
       const b = opp.players[oppIdx];
       markLines.push({ x1: a.pos.x, z1: a.pos.y, x2: b.pos.x, z2: b.pos.y });
     }
-    for (const idx of team.chasers) chasers.push(team.side * 5 + idx);
+    for (const idx of team.chasers) {
+      const p = team.players[idx];
+      chasers.push({ gid: p.gid, x: p.pos.x, z: p.pos.y });
+    }
   }
 
   const formation: OverlayState['formation'] = [];
@@ -202,7 +209,7 @@ function buildOverlays(match: Match): OverlayState {
     const hasBall = match.possessionSide === team.side;
     for (const p of team.players) {
       const spot = formationSpot(p, team, match.ball, hasBall);
-      formation.push({ gid: p.gid, side: team.side, x: spot.x, z: spot.y });
+      formation.push({ gid: p.gid, side: team.side, x: spot.x, z: spot.y, px: p.pos.x, pz: p.pos.y });
     }
   }
 

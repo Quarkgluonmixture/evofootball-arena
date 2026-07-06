@@ -2,6 +2,7 @@ import { Circle, Container, Graphics, Text } from 'pixi.js';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { HALF_L, HALF_W, PITCH_LENGTH, PITCH_WIDTH } from '../sim/constants';
+import type { UiFlags } from '../ui/actions';
 import { ACTION_SHORT } from './actionLabels';
 import { CANVAS_H, CANVAS_W, MARGIN, SCALE, toPx } from './transform';
 
@@ -15,10 +16,8 @@ interface PlayerSprite {
   lastAction: string;
 }
 
-export interface RenderFlags {
-  actionLabels: boolean;
-  heatmap: boolean;
-}
+/** The 2D-renderer subset of UiFlags — derived so the two can't drift. */
+export type RenderFlags = Pick<UiFlags, 'actionLabels' | 'heatmap'>;
 
 /**
  * Draws the dynamic match state: players, ball + trail, goal FX, heatmap.

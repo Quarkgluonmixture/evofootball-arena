@@ -93,7 +93,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-const SAVE_VERSION = 5;
+export const SAVE_VERSION = 5;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 

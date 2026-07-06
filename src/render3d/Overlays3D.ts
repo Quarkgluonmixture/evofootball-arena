@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { UiFlags } from '../ui/actions';
+import type { OverlayFlags } from '../ui/actions';
 import type { OverlayState, RenderTheme } from './RenderStateAdapter';
 
 const Y = 0.08; // just above the grass
@@ -72,7 +72,7 @@ export class Overlays3D {
     }
   }
 
-  update(overlays: OverlayState | null, flags: UiFlags): void {
+  update(overlays: OverlayState | null, flags: OverlayFlags): void {
     const pass = flags.passLines ? overlays?.passLine : null;
     setLine(this.passLine, pass ?? null);
     const shot = flags.shotVector ? overlays?.shotLine : null;
@@ -100,22 +100,14 @@ export class Overlays3D {
       if (spot) marker.position.set(spot.x, Y, spot.z);
     }
 
-    // Press rings — parked under the assigned chasers.
+    // Press rings — parked under the assigned chasers (positions travel in
+    // the overlay state now, so no player rescan is needed).
     const chasers = flags.chasers && overlays ? overlays.chasers : [];
     for (let i = 0; i < this.chaserRings.length; i++) {
-      this.chaserRings[i].visible = i < chasers.length;
-      this.chaserRings[i].userData.gid = chasers[i] ?? -1;
+      const c = chasers[i];
+      this.chaserRings[i].visible = c !== undefined;
+      if (c) this.chaserRings[i].position.set(c.x, Y, c.z);
     }
-  }
-
-  /** Rings follow their player; called after player positions are known. */
-  placeChaserRing(i: number, x: number, z: number): void {
-    const ring = this.chaserRings[i];
-    if (ring && ring.visible) ring.position.set(x, Y, z);
-  }
-
-  get activeChaserGids(): number[] {
-    return this.chaserRings.filter((r) => r.visible).map((r) => r.userData.gid as number);
   }
 }
 

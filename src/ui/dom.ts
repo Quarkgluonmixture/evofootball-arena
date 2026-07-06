@@ -29,6 +29,10 @@ export function checkbox(label: string, checked: boolean, onChange: (v: boolean)
 
 export const colorHex = (c: number): string => `#${c.toString(16).padStart(6, '0')}`;
 
+/** Escape &, <, > for interpolation into innerHTML or inline SVG markup. */
+export const escapeHtml = (s: string): string =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
 /** A labeled 0..1 horizontal bar; returns the wrapper and a setter. */
 export function bar(value: number, color: string): HTMLDivElement {
   const outer = el('div', 'bar');
