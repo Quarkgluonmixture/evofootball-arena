@@ -151,6 +151,13 @@ scripts/                headless calibration, evolution & wildcard-training tool
   walks over, opponents are held 6 m off the ball while both teams reshape,
   and the first touch must be a kick. Everything is deterministic — no
   restart randomness beyond the usual seeded kick mechanics.
+- **Fouls (Phase 20):** a failed tackle is sometimes a **foul** (seeded roll;
+  aggressive-marking sides give more away) — a **free kick** where it
+  happened, taken through the same live restart machinery. A foul inside the
+  offender's own box is a **PENALTY**: the fouled team's best finisher steps
+  up against the keeper from the drawn spot (9.4 m), everyone else held 8 m
+  clear, and the first touch is the shot. ~4.4 fouls and ~0.1 penalties per
+  match at current tuning.
 - **Ball:** exponential friction, kick impulses, owner-glued dribbling,
   interceptable in flight; keepers can handle faster balls than outfielders.
 - **Players:** acceleration toward a desired velocity, role-based top speed,
@@ -200,7 +207,7 @@ All 14 genes are 0..1 and read directly by the AI:
 | riskTolerance | gates contested forward passes AND through balls; more clearing when low |
 | counterAttackBias | CounterAttack mode window after winning the ball |
 | staminaConservation | slower jog/press sprints — fresher legs late on |
-| markingAggression | tighter marking distance, higher tackle success |
+| markingAggression | tighter marking distance, higher tackle success, more fouls conceded |
 | keeperAggression | keeper plays further off the line, longer reach |
 | tempo | faster ball circulation; a second licensed runner + through-ball appetite |
 | formationDepth | block height (deep block ↔ high line) |
@@ -391,11 +398,12 @@ friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.7 goals, ~12–14 shots, ~75% pass completion with **~16 through balls per
+~2.6 goals, ~12–13 shots, ~78% pass completion with **~14 through balls per
 match** (Phase 19 — assigned runners + direct balls into their path),
-balanced possession, ~94% ball-in-play (the rest is live dead-ball time
-around ~4 restarts per match: ≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins),
-~25 ms per headless match (allocation-free hot paths + a precomputed
+balanced possession, ~93% ball-in-play (the rest is live dead-ball time
+across ~8–9 restarts per match: ≈2.4 goal kicks, ≈1.3 corners, ≈0.5
+kick-ins, plus **≈4.4 fouls → free kicks, ≈0.1 of them penalties** — Phase
+20), ~25 ms per headless match (allocation-free hot paths + a precomputed
 intercept table — Phase 16; a 10-season fast-sim runs off the main thread on
 the sim worker).
 Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6
@@ -406,12 +414,14 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 106 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
+- `npm test` — 114 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
   (watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
-  invariants, league/Elo/evolution invariants, Evo Cup bracket
-  shape/draw-rule/standalone-tie/determinism, save/load roundtrips incl. the
-  v1–v5 migration chain, and statistical gene/attribute effect tests.
+  invariants, foul/free-kick/penalty rules (award logic, taker choice,
+  clearance, first-touch shot, directional foul-rate test), league/Elo/evolution
+  invariants, Evo Cup bracket shape/draw-rule/standalone-tie/determinism,
+  save/load roundtrips incl. the v1–v5 migration chain, and statistical
+  gene/attribute effect tests.
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
 - `npm run debug:visual` — Playwright drives the *real* game in headless
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
@@ -424,7 +434,8 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 ## What's implemented vs. next steps
 
 Implemented: autonomous 5v5 matches with real boundaries and set pieces
-(kick-ins/corners/goal kicks as live dead-ball restarts), three-layer utility
+(kick-ins/corners/goal kicks as live dead-ball restarts), fouls with free
+kicks and penalties (Phase 20), three-layer utility
 AI, 14 live tactical
 genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
@@ -440,7 +451,7 @@ direction with broadcast overlays, cinematic mode and screenshot/share tools
 (season reports with awards + points race, gene-drift sparklines, hall of
 fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
-(Phase 16), the ES-trained Wildcard XI benchmark team with in-game exhibitions (Phase 18), 105 tests, and
+(Phase 16), the ES-trained Wildcard XI benchmark team with in-game exhibitions (Phase 18), 114 tests, and
 browser-driving visual smoke tests for both views (51 + 26 checks).
 
 Ideas for the next phase (rough priority order):

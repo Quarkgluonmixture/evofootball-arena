@@ -6,9 +6,10 @@ import { executeAction } from '../ai/actionExecutor';
 import { formationSpot } from '../ai/formations';
 import { Ball } from './Ball';
 import {
-  AI_INTERVAL, BALL_FRICTION_K, CONTROL_MAX_SPEED, CONTROL_RADIUS, DT,
+  AI_INTERVAL, BALL_FRICTION_K, BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_SPEED, CONTROL_RADIUS, DT,
   GK_CONTROL_MAX_SPEED, GOAL_WIDTH, HALF_L, HALF_W, KICK_COOLDOWN, MATCH_DURATION,
-  PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP, RESTART_TIMEOUT, TEAM_AI_INTERVAL,
+  PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
+  RESTART_TIMEOUT, TEAM_AI_INTERVAL,
 } from './constants';
 import * as mech from './mechanics';
 import { Player } from './Player';
@@ -90,6 +91,8 @@ export class Match {
   restart: RestartState | null = null;
   /** Gid whose next carrier decision must be a kick (restart first touch). */
   restartKickGid: number | null = null;
+  /** What kind of restart that kick is — penalties force a shot. */
+  restartKickKind: RestartKind | null = null;
   pendingPass: PendingPass | null = null;
   pendingShot: PendingShot | null = null;
   shotLog: ShotLogEntry[] = [];
@@ -403,6 +406,36 @@ export class Match {
     return false;
   }
 
+  /** Is `pos` inside `defSide`'s own penalty box? (Same box the pitch draws.) */
+  inPenaltyBox(pos: V2, defSide: Side): boolean {
+    if (Math.abs(pos.y) > BOX_WIDTH / 2) return false;
+    const goalLineX = -this.teams[defSide].attackDir * HALF_L;
+    return goalLineX > 0 ? pos.x >= goalLineX - BOX_DEPTH : pos.x <= goalLineX + BOX_DEPTH;
+  }
+
+  /**
+   * A failed tackle turned foul (Phase 20): free kick where the ball was —
+   * or a penalty when the offender fouled inside their own box.
+   */
+  awardFoul(offender: Player, victim: Player): void {
+    const side = victim.side; // the fouled team takes the kick
+    this.teams[offender.side].stats.fouls++;
+    if (this.inPenaltyBox(this.ball.pos, offender.side)) {
+      this.teams[side].stats.penalties++;
+      const goalLineX = -this.teams[offender.side].attackDir * HALF_L;
+      const spot = v2(goalLineX - Math.sign(goalLineX) * PENALTY_SPOT_DIST, 0);
+      this.pushEvent('foul', side, `PENALTY! ${offender.name} brings down ${victim.name} in the box`);
+      this.awardRestart('penalty', side, spot);
+    } else {
+      const spot = v2(
+        Math.max(-HALF_L + 1, Math.min(HALF_L - 1, this.ball.pos.x)),
+        Math.max(-HALF_W + 1, Math.min(HALF_W - 1, this.ball.pos.y)),
+      );
+      this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — free kick`);
+      this.awardRestart('freeKick', side, spot);
+    }
+  }
+
   private awardRestart(kind: RestartKind, side: Side, pos: V2): void {
     const team = this.teams[side];
     // A shot that went out is a miss; any pass in flight is dead.
@@ -429,10 +462,21 @@ export class Match {
     this.phase = 'restart';
   }
 
-  /** GK takes goal kicks; otherwise the nearest outfielder walks over. */
+  /**
+   * GK takes goal kicks; the best finisher steps up for penalties;
+   * otherwise the nearest outfielder walks over.
+   */
   private pickTaker(kind: RestartKind, side: Side, pos: V2): number {
     const team = this.teams[side];
     if (kind === 'goalKick') return team.goalkeeper.gid;
+    if (kind === 'penalty') {
+      let taker = team.players[1];
+      for (const p of team.players) {
+        if (p.role === 'GK') continue;
+        if (p.attrs.finishing > taker.attrs.finishing) taker = p;
+      }
+      return taker.gid;
+    }
     let best = team.players[1];
     let bestD = Infinity;
     for (const p of team.players) {
@@ -460,12 +504,19 @@ export class Match {
     ball.pos = clone(r.pos);
     ball.vel = v2();
 
-    // Hold opponents out of the restart circle (slide along its edge).
-    for (const o of this.teams[1 - r.side].players) {
+    // Hold everyone who isn't part of the restart out of the clearance
+    // circle (slide along its edge). Penalties clear a wider circle and it
+    // applies to BOTH teams — only the taker and the defending keeper (who
+    // stands on the line, outside the circle) are near the ball.
+    const clearance = r.kind === 'penalty' ? PENALTY_CLEARANCE : RESTART_CLEARANCE;
+    for (const o of this.allPlayers) {
+      if (o.gid === r.takerGid) continue;
+      if (o.side === r.side && r.kind !== 'penalty') continue; // only penalties hold teammates
+      if (o.side !== r.side && r.kind === 'penalty' && o.role === 'GK') continue; // keeper keeps the line
       const d = dist(o.pos, r.pos);
-      if (d < RESTART_CLEARANCE) {
+      if (d < clearance) {
         const dir = d < 1e-6 ? v2(-this.teams[r.side].attackDir, 0) : norm(sub(o.pos, r.pos));
-        o.pos = add(r.pos, scale(dir, RESTART_CLEARANCE));
+        o.pos = add(r.pos, scale(dir, clearance));
         o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
         o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
       }
@@ -477,6 +528,7 @@ export class Match {
       this.restart = null;
       this.phase = 'playing';
       this.restartKickGid = taker.gid;
+      this.restartKickKind = r.kind;
       this.giveBall(taker);
       taker.decisionTimer = 0.12; // kick promptly (giveBall's settle is for open play)
     }
@@ -560,6 +612,7 @@ export class Match {
     this.lastCompletedPass = null;
     this.restart = null; // a restart pending at half-time is simply not taken
     this.restartKickGid = null;
+    this.restartKickKind = null;
     this.ball.reset();
 
     for (const team of this.teams) {

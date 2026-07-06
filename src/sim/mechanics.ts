@@ -203,6 +203,10 @@ export function tryTackles(match: Match): void {
     match.possessionSide = -1;
   } else {
     tackler.tackleCooldown = 1.2;
+    // A failed lunge is sometimes a foul (Phase 20): free kick, or a penalty
+    // in the tackler's own box. Aggressive markers give more away.
+    const foulP = 0.06 + oppTeam.genome.markingAggression * 0.1;
+    if (match.rng.chance(foulP)) match.awardFoul(tackler, owner);
   }
 }
 

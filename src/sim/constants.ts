@@ -27,6 +27,13 @@ export const BALL_FRICTION_K = 0.55;
 
 /** Opponents are held this far from a dead-ball restart spot. */
 export const RESTART_CLEARANCE = 6;
+/** Penalty spot distance from the goal line — matches the drawn spot (BOX_DEPTH · 0.72). */
+export const PENALTY_SPOT_DIST = BOX_DEPTH * 0.72;
+/**
+ * Everyone except the taker (and the defending keeper, who stands ~9.4m away
+ * on the goal line) is held this far from the penalty spot during setup.
+ */
+export const PENALTY_CLEARANCE = 8;
 /** Restart setup: minimum dead-ball time before the kick can be taken... */
 export const RESTART_MIN_SETUP = 1.0;
 /** ...and a failsafe: after this long the taker kicks from wherever they are. */

@@ -55,10 +55,20 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const g = team.genome;
   const W = team.policy; // utility weights — DEFAULT_POLICY unless a wildcard carries learned ones
   const ball = match.ball;
-  // Restart first touch must be a kick (kick-in/corner/goal kick) — dribbling
-  // straight off the spot would break the dead-ball fiction.
+  // Restart first touch must be a kick (kick-in/corner/goal kick/free kick)
+  // — dribbling straight off the spot would break the dead-ball fiction.
   const mustKick = match.restartKickGid === p.gid;
-  if (mustKick) match.restartKickGid = null;
+  const kickKind = mustKick ? match.restartKickKind : null;
+  if (mustKick) {
+    match.restartKickGid = null;
+    match.restartKickKind = null;
+  }
+  // A penalty's first touch IS the shot — no utility scoring from the spot.
+  if (kickKind === 'penalty') {
+    p.action = { type: 'Shoot', scores: [{ action: 'Shoot', score: 1, why: 'penalty kick' }] };
+    match.performShot(p);
+    return;
+  }
   const cands: UtilityScore[] = [];
   const pressure = pressureAt(p.pos, opp.players);
   const goal = team.oppGoal();

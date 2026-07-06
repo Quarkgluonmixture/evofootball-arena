@@ -127,7 +127,7 @@ describe('set pieces — restart lifecycle', () => {
 describe('set pieces — full-match invariants', () => {
   it('the ball never leaves the pitch in live play, restarts occur, none hang', () => {
     let restarts = 0;
-    const kinds = { kickIn: 0, corner: 0, goalKick: 0 };
+    const kinds = { kickIn: 0, corner: 0, goalKick: 0, freeKick: 0, penalty: 0 };
     for (const seed of [3, 21, 99, 1234]) {
       const m = new Match({ seed, teamA: team('Alpha'), teamB: team('Beta'), duration: 240 });
       let prev = false;

@@ -135,8 +135,11 @@ export interface TeamInfo {
 
 export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'halftime' | 'fulltime';
 
-/** Dead-ball restart kinds. Futsal-style kick-ins (not throws) from the touchline. */
-export type RestartKind = 'kickIn' | 'corner' | 'goalKick';
+/**
+ * Dead-ball restart kinds. Futsal-style kick-ins (not throws) from the
+ * touchline; free kicks and penalties are awarded for fouls (Phase 20).
+ */
+export type RestartKind = 'kickIn' | 'corner' | 'goalKick' | 'freeKick' | 'penalty';
 
 export interface RestartState {
   kind: RestartKind;
@@ -157,6 +160,7 @@ export type EventType =
   | 'tackle'
   | 'keypass'
   | 'corner'
+  | 'foul'
   | 'kickoff'
   | 'halftime'
   | 'fulltime'
@@ -188,6 +192,10 @@ export interface TeamMatchStats {
   saves: number;
   dribbles: number;
   corners: number;
+  /** Fouls committed — each hands the opponents a free kick or penalty. */
+  fouls: number;
+  /** Penalties won (fouled inside the opponents' box). */
+  penalties: number;
   possessionTime: number;
   distance: number;
   staminaSpent: number;
@@ -208,6 +216,8 @@ export const emptyStats = (): TeamMatchStats => ({
   saves: 0,
   dribbles: 0,
   corners: 0,
+  fouls: 0,
+  penalties: 0,
   possessionTime: 0,
   distance: 0,
   staminaSpent: 0,

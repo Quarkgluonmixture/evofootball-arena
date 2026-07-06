@@ -181,7 +181,13 @@ export class LeftPanel {
     }
     const phase = match.phase;
     const restart = match.restart
-      ? { kickIn: '↪ kick-in', corner: '⚑ corner', goalKick: '🥅 goal kick' }[match.restart.kind]
+      ? {
+          kickIn: '↪ kick-in',
+          corner: '⚑ corner',
+          goalKick: '🥅 goal kick',
+          freeKick: '⚠ free kick',
+          penalty: '⚡ PENALTY',
+        }[match.restart.kind]
       : null;
     const label =
       phase === 'kickoff' ? 'KO' :

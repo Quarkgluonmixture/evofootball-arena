@@ -13,6 +13,7 @@ const STAT_ROWS = [
   'pass %',
   'recoveries',
   'corners',
+  'fouls',
   'saves',
 ] as const;
 
@@ -122,6 +123,7 @@ export class RightPanel {
     );
     set('recoveries', String(a.tackles + a.interceptions), String(b.tackles + b.interceptions));
     set('corners', String(a.corners), String(b.corners));
+    set('fouls', String(a.fouls), String(b.fouls));
     set('saves', String(a.saves), String(b.saves));
   }
 

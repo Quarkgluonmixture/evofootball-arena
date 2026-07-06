@@ -51,9 +51,13 @@ responsive layout, PWA manifest/icon, MIT license (phase 17); the Wildcard XI
 bit-identical) with an ES trainer, held-out benchmark and in-game exhibition
 (phase 18); off-ball runs + through balls — assigned runners sprint past the
 last defender and carriers feed their PATH, gated by riskTolerance/tempo
-(~16 through balls/match; phase 19). 106 vitest tests; Playwright suites:
-2D 51 checks, 3D 26 checks; ~25 ms/headless match. Git tags
-`phase-10`…`phase-19` are known-green checkpoints; published at
+(~14 through balls/match; phase 19); fouls + free kicks + penalties — a
+failed tackle sometimes fouls (seeded roll, scaled by markingAggression),
+awarding a free kick through the same restart machinery, or a penalty (best
+finisher vs the keeper from the drawn spot) for fouls in the offender's own
+box (~4.4 fouls, ~0.1 penalties/match; phase 20). 114 vitest tests;
+Playwright suites: 2D 51 checks, 3D 26 checks; ~25 ms/headless match. Git
+tags `phase-10`…`phase-19` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
 
@@ -356,6 +360,7 @@ only caught by eyes on the PNGs.
 |---|---|
 | Goals per match (~2.9 target) | `mechanics.tryKeeperSave` saveP base (0.52 − xG·0.6); shot `spread`; xG curve `exp(-d/11)` |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
+| Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
 | Direct play (through balls ~16/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
 | Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |
 | Pass-fest vs dribble balance | carrier utility bases in `PlayerBrain.decideCarrier`; post-receive settle (`giveBall` decisionTimer 0.3) |
