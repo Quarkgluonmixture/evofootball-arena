@@ -15,6 +15,8 @@ export class Team {
   readonly players: Player[];
   /** Utility-policy weights the brains score with (learned for wildcards). */
   readonly policy: PolicyParams;
+  /** Per-player policy resolved by index — `rolePolicies[i]`, else `policy`. */
+  readonly policies: readonly PolicyParams[];
 
   mode: TeamMode = 'ResetShape';
   modeTime = 0;
@@ -42,6 +44,7 @@ export class Team {
     this.attackDir = side === 0 ? 1 : -1;
     this.info = info;
     this.policy = info.policy ?? DEFAULT_POLICY;
+    this.policies = ROLES.map((_, i) => info.rolePolicies?.[i] ?? this.policy);
     this.players = ROLES.map(
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );

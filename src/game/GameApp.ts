@@ -14,7 +14,8 @@ import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
 import { buildWildcardTeamInfo, WILDCARD_NAME } from '../ai/wildcard';
-import { WILDCARD_POLICY } from '../ai/wildcardPolicy';
+import { describeIdentity } from '../evolution/genome';
+import { WILDCARD } from '../ai/wildcardPolicy';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
 import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
 import { Match } from '../sim/Match';
@@ -467,7 +468,7 @@ export class GameApp implements GameActions {
     this.fixture = null; // standalone: never applied to the league
     this.match = new Match({
       seed: hashSeed(this.league.seed, this.league.generation, 0xeb),
-      teamA: buildWildcardTeamInfo(WILDCARD_POLICY),
+      teamA: buildWildcardTeamInfo(WILDCARD),
       teamB: opp,
       duration: this.league.matchDuration,
     });
@@ -483,7 +484,7 @@ export class GameApp implements GameActions {
     this.speed = 1;
     this.left.setSpeedUI(false, 1);
     this.feed.pushSystem(
-      `⚡ Exhibition: ${WILDCARD_NAME} (learned policy, neutral genes) vs ${opp.name} — friendly, no league bookkeeping.`,
+      `⚡ Exhibition: ${WILDCARD_NAME} (co-trained genes + per-role brains: ${describeIdentity(WILDCARD.genome).join(', ')}) vs ${opp.name} — friendly, no league bookkeeping.`,
     );
   }
 

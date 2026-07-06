@@ -131,6 +131,12 @@ export interface TeamInfo {
   squad: PlayerAttributes[];
   /** Learned utility-policy weights (wildcard team); omitted = DEFAULT_POLICY. */
   policy?: PolicyParams;
+  /**
+   * Per-role policy vectors in role order [GK, DF, MF, WG, ST] (Phase 23).
+   * A missing entry falls back to `policy` (then DEFAULT_POLICY), so a team
+   * without this field is bit-identical to the shared-policy path.
+   */
+  rolePolicies?: PolicyParams[];
 }
 
 export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'halftime' | 'fulltime';

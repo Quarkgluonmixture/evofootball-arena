@@ -1,5 +1,7 @@
 import type { Rng } from '../utils/rng';
-import { DEFAULT_POLICY, type PolicyParams } from '../sim/types';
+import { clamp01 } from '../utils/math';
+import { GENE_KEYS, type TacticalGenome } from '../evolution/genome';
+import { DEFAULT_POLICY, ROLES, type PolicyParams } from '../sim/types';
 
 /**
  * Wildcard policy space (Phase 18): the PlayerBrain's utility weights as an
@@ -7,6 +9,12 @@ import { DEFAULT_POLICY, type PolicyParams } from '../sim/types';
  * the ES trainer (scripts/train-wildcard.ts) searches inside POLICY_BOUNDS
  * for weights that win matches outright. Deterministic: all randomness comes
  * from a seeded Rng passed in.
+ *
+ * Phase 23 widens the search to a WildcardCandidate: the 14 tactical genes
+ * are co-trained with FIVE per-role weight vectors ([GK, DF, MF, WG, ST]).
+ * Squad DNA stays pinned neutral — physique is deliberately NOT part of the
+ * learned experiment (maxed attributes would win trivially and say nothing
+ * about the brain).
  */
 
 export const POLICY_KEYS = Object.keys(DEFAULT_POLICY) as Array<keyof PolicyParams>;
@@ -67,4 +75,38 @@ export function crossoverPolicy(a: PolicyParams, b: PolicyParams, rng: Rng): Pol
   const out = { ...a };
   for (const k of POLICY_KEYS) out[k] = rng.chance(0.5) ? a[k] : b[k];
   return out;
+}
+
+/* ------------------------------------------------------------------ */
+/* Co-trained candidate (Phase 23): genes + per-role policy vectors    */
+/* ------------------------------------------------------------------ */
+
+export interface WildcardCandidate {
+  /** Learned tactical genes, all clamped to [0, 1]. */
+  genome: TacticalGenome;
+  /** Per-role policy vectors in role order [GK, DF, MF, WG, ST]. */
+  policies: PolicyParams[];
+}
+
+/** A candidate from one shared policy (the pre-Phase-23 representation). */
+export function candidateFrom(genome: TacticalGenome, policy: PolicyParams): WildcardCandidate {
+  return { genome: { ...genome }, policies: ROLES.map(() => ({ ...policy })) };
+}
+
+/**
+ * Gaussian mutation of the whole candidate. RNG order is fixed (genes first,
+ * then policies role by role) — reordering would silently change every
+ * trained result for a given seed. Gene range is 1, so `scale` acts directly.
+ */
+export function mutateCandidate(base: WildcardCandidate, rng: Rng, scale: number): WildcardCandidate {
+  const genome = { ...base.genome };
+  for (const k of GENE_KEYS) genome[k] = clamp01(base.genome[k] + rng.gaussian() * scale);
+  return { genome, policies: base.policies.map((p) => mutatePolicy(p, rng, scale)) };
+}
+
+/** Uniform crossover: genes per key, then each role's vector per key. */
+export function crossoverCandidate(a: WildcardCandidate, b: WildcardCandidate, rng: Rng): WildcardCandidate {
+  const genome = {} as TacticalGenome;
+  for (const k of GENE_KEYS) genome[k] = rng.chance(0.5) ? a.genome[k] : b.genome[k];
+  return { genome, policies: a.policies.map((p, i) => crossoverPolicy(p, b.policies[i], rng)) };
 }

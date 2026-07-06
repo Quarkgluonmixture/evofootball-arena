@@ -53,7 +53,7 @@ export function decidePlayer(p: Player, match: Match): void {
 
 function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const g = team.genome;
-  const W = team.policy; // utility weights — DEFAULT_POLICY unless a wildcard carries learned ones
+  const W = team.policies[p.index]; // utility weights — DEFAULT_POLICY unless a wildcard carries learned ones
   const ball = match.ball;
   // Restart first touch must be a kick (kick-in/corner/goal kick/free kick)
   // — dribbling straight off the spot would break the dead-ball fiction.
@@ -270,7 +270,7 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
 
 function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
   const g = team.genome;
-  const W = team.policy;
+  const W = team.policies[p.index];
   const ball = match.ball;
   const possession = match.possessionSide;
   const cands: UtilityScore[] = [];

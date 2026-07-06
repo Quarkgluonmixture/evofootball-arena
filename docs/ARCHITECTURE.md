@@ -33,7 +33,7 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-22`)**: phases 0–22 complete — deterministic 5v5
+**Status (as of tag `phase-23`)**: phases 0–23 complete — deterministic 5v5
 sim with real boundaries and set pieces (kick-ins/corners/goal kicks as live
 dead-ball restarts); 14 tactical genes + 5-attr squad DNA; a 16-team
 Premier/Challenger pyramid with promotion/relegation and an optional playoff
@@ -58,7 +58,11 @@ finisher vs the keeper from the drawn spot) for fouls in the offender's own
 box (~4.4 fouls, ~0.1 penalties/match; phase 20); save export/import as
 .json files + itch.io packaging (phase 21); drawn cup ties decided by a
 deterministic seeded penalty shootout with the classic underdog rule as a
-league-screen option (phase 22). 124 vitest tests;
+league-screen option (phase 22); Wildcard co-training — per-role policy
+vectors (`TeamInfo.rolePolicies`, resolved per player with a bit-identical
+default fallback) and an ES that learns the 14 tactical genes together with
+five role vectors, warm-started from the previous champion; held-out 32/48
+pts vs shared-policy 25/48 vs default 6/48 (phase 23). 127 vitest tests;
 Playwright suites: 2D 53 checks, 3D 26 checks; ~25 ms/headless match. Git
 tags `phase-10`…`phase-22` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
@@ -151,13 +155,20 @@ Three layers, all in `src/ai/`:
 If you add an action or score, keep the `why` string honest — the
 explainability of scores is a product feature, not decoration.
 
-**Policy weights (Phase 18):** the scorers' hand-tuned constants live in
-`PolicyParams` (`sim/types.ts`), read via `team.policy`. `DEFAULT_POLICY`
-must hold the exact original literals — a team without an explicit policy is
-bit-identical to the pre-refactor brain (fingerprint discipline, invariant
-2). The Wildcard XI (neutral genes, ES-learned weights via
-`scripts/train-wildcard.ts`) exists ONLY for exhibitions and headless
-benchmarks: it never enters a league, saves or evolution.
+**Policy weights (Phases 18/23):** the scorers' hand-tuned constants live in
+`PolicyParams` (`sim/types.ts`), read via `team.policies[player.index]` —
+per-role vectors from `TeamInfo.rolePolicies` ([GK, DF, MF, WG, ST]), each
+entry falling back to the shared `team.policy`, then `DEFAULT_POLICY`.
+`DEFAULT_POLICY` must hold the exact original literals — a team with neither
+field resolves every player to the same object and is bit-identical to the
+pre-refactor brain (fingerprint discipline, invariant 2). The Wildcard XI
+(Phase 23: 14 genes co-trained with five per-role vectors via
+`scripts/train-wildcard.ts`; squad pinned neutral — physique is deliberately
+outside the search space) exists ONLY for exhibitions and headless
+benchmarks: it never enters a league, saves or evolution. The trainer
+warm-starts from the previous champion in `wildcardPolicy.ts`, and its
+held-out numbers are re-measured on the current engine each run — old
+stamped scores go stale as the sim evolves.
 
 ## 5. Genes and squad DNA — where each one bites
 
