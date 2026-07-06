@@ -111,7 +111,7 @@ src/
     mechanics.ts        kicks, tackles, keeper saves, xG model
     Player.ts Ball.ts Team.ts   entities
     League.ts           fixtures (round robin), table, Elo, season lifecycle
-    cup.ts              Evo Cup: seeded knockout bracket, draw rule, records
+    cup.ts              Evo Cup: seeded knockout bracket, penalty shootouts, records
     records.ts          pure record mining (titles, streaks, cup honours…)
     simRunner.ts        headless fast-sim loop (pure; worker + tests share it)
   ai/
@@ -132,7 +132,7 @@ src/
     names.ts            seeded team & player names, kit palettes
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
-  data/save.ts          localStorage persistence
+  data/save.ts          localStorage persistence + .json file export/import
 tests/                  vitest suites (124 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
@@ -468,5 +468,17 @@ browser-driving visual smoke tests for both views (53 + 26 checks).
 
 Ideas for the next phase (rough priority order):
 - Co-train wildcard genes + policy weights; per-role policy vectors
-- An itch.io page for the built `dist/` bundle
+- 3D shootout presentation: a drawn cup tie's shootout currently resolves
+  instantly at full time (feed lines + bracket pens score) — a kick-by-kick
+  staging with the behind-goal camera and slow-mo would make it watchable
+- Yellow/red cards: light = booking stats + a "dirtiest team" season award;
+  heavy = red cards playing 4v5 (touches formation math — scope carefully)
+- Player careers: aging/development curves, retirements and newgens for
+  dynasty depth (squads currently reroll with their franchise)
+- Publish to itch.io: packaging + upload docs are DONE (`npm run
+  package:itch` → `release/*.zip`, settings in `docs/ITCH.md`) — only the
+  account-holder upload remains
 - Optional GLTF player models with the procedural mesh as fallback
+- Headless perf: gate the decision-tick `why`-string building behind a flag
+  (largest remaining cost in profiles; match results are unaffected, only
+  the debug panel content — mind the watched≡skipped invariant when wiring)
