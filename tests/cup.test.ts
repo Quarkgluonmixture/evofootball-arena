@@ -191,6 +191,8 @@ describe('Evo Cup — season integration', () => {
     for (const seed of [3, 11]) {
       const a = makeLeague(seed);
       const b = makeLeague(seed);
+      a.cupDrawMode = 'underdog'; // this test pins the classic draw rule
+      b.cupDrawMode = 'underdog';
       playSeason(a);
       playSeason(b);
       expect(JSON.stringify(a.cup)).toBe(JSON.stringify(b.cup));

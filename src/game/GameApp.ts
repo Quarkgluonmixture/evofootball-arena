@@ -187,6 +187,16 @@ export class GameApp implements GameActions {
           : '📋 Promotion rules: automatic top/bottom two.',
       );
     };
+    this.leagueScreen.onSetCupDrawMode = (m) => {
+      this.league.cupDrawMode = m;
+      saveLeague(this.league);
+      this.leagueScreen.refreshIfVisible(this.league);
+      this.feed.pushSystem(
+        m === 'shootout'
+          ? '🥅 Cup draw rule: level ties now go to a penalty shootout.'
+          : '⚡ Cup draw rule: level ties send the underdog through.',
+      );
+    };
 
     // ---- League ----
     const loaded = hasSave() ? loadLeague() : null;

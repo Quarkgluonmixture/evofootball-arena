@@ -98,7 +98,8 @@ check('promotion/relegation zones highlighted', zones === 4, `${zones} zone rows
 const cards = await page.locator('#league-screen .team-card').count();
 check('team cards render', cards === 16, `${cards} cards`);
 check('division badges on team cards', (await page.locator('#league-screen .tag.div-badge-1').count()) === 8);
-check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 2);
+check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 4);
+check('cup draw rule selector present', (await page.locator('#league-screen .rules-row').count()) === 2);
 
 // Toggle playoff mode and verify zones change to include the decider spots.
 await page.click('#league-screen button:has-text("⚔ Playoff")');
@@ -108,13 +109,21 @@ check('playoff mode marks the decider spots', playoffZones === 2, `${playoffZone
 await page.click('#league-screen button:has-text("Auto top/bottom 2")');
 await page.waitForTimeout(200);
 
+// Cup draw rule toggle (Phase 22): shootout is the new-league default.
+await page.click('#league-screen button:has-text("Underdog advances")');
+await page.waitForTimeout(200);
+const rulesTxt = await page.textContent('#league-screen');
+check('cup draw rule toggles to underdog', rulesTxt.includes('lower-division (else lower-seeded)'));
+await page.click('#league-screen button:has-text("Penalty shootout")');
+await page.waitForTimeout(200);
+
 await page.screenshot({ path: `${OUT}/5-league.png` });
 
 // Cup tab, fresh season: the R16 draw is made, later rounds await winners.
 await page.click('#league-screen button:has-text("Cup")');
 await page.waitForTimeout(300);
 const cupFreshTxt = await page.textContent('#league-screen');
-check('cup tab: draw rule documented', cupFreshTxt.includes('lower-division (else lower-seeded)'));
+check('cup tab: draw rule documented', cupFreshTxt.includes('penalty shootout'));
 check('cup tab: fresh bracket shows all 15 ties', (await page.locator('#league-screen .cup-tie').count()) === 15);
 check('cup tab: 14 slots await feeder winners', (await page.locator('#league-screen .cup-row.cup-tbd').count()) === 14);
 await page.screenshot({ path: `${OUT}/5b-cup-fresh.png` });

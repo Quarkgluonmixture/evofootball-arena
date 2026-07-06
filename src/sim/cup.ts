@@ -1,4 +1,5 @@
 import type { Franchise } from '../evolution/franchise';
+import type { PlayerAttributes } from '../evolution/playerGenome';
 import { hashSeed, Rng } from '../utils/rng';
 import type { Division } from './League';
 
@@ -13,9 +14,13 @@ import type { Division } from './League';
  *  - The R16 draw pairs every Premier side against a Challenger side
  *    (hash-shuffled), with Premier seeds placed so top seeds meet late.
  *  - The underdog hosts every tie — the cup loves an upset.
- *  - A DRAWN tie sends the LOWER-DIVISION (else lower-seeded) team through:
- *    no extra time, no penalties — the engine stays untouched and the rule
- *    is surfaced in the UI/records via `byDrawRule`.
+ *  - A DRAWN tie is decided by the league's cup draw mode (Phase 22):
+ *    'shootout' (new-league default) runs a deterministic seeded penalty
+ *    shootout — kicker finishing vs keeper reflexes, best-of-5 then sudden
+ *    death — recorded on the tie as `shootout`; 'underdog' (and the
+ *    shootout's 15-round failsafe) sends the LOWER-DIVISION (else
+ *    lower-seeded) team through, surfaced via `byDrawRule`. No extra time
+ *    either way — the match engine stays untouched.
  *  - Cup ties are standalone: no league table/Elo/season-stat/fitness
  *    bookkeeping (same pattern as the promotion playoff decider).
  */
@@ -28,6 +33,11 @@ export const CUP_ROUND_SHORT = ['R16', 'QF', 'SF', 'Final'] as const;
 export const CUP_SEED_TAG = 0xc0;
 /** The R16 draw shuffle uses hash(leagueSeed, generation, 0xC5). */
 export const CUP_DRAW_TAG = 0xc5;
+/** Shootout rng seed = hash(leagueSeed, generation, 0xB0 + round, index). */
+export const CUP_SHOOTOUT_TAG = 0xb0;
+
+/** How drawn cup ties are decided (league-screen setting, persisted). */
+export type CupDrawMode = 'shootout' | 'underdog';
 
 export interface CupEntrant {
   slot: number;
@@ -54,6 +64,8 @@ export interface CupTie {
   upset?: boolean;
   /** The tie ended level and the draw rule (underdog advances) decided it. */
   byDrawRule?: boolean;
+  /** The tie ended level and a penalty shootout decided it (Phase 22). */
+  shootout?: ShootoutResult;
 }
 
 export interface CupState {
@@ -138,11 +150,87 @@ export function cupUnderdog(cup: CupState, slotA: number, slotB: number): number
   return cupEntrant(cup, slotA).seed > cupEntrant(cup, slotB).seed ? slotA : slotB;
 }
 
+/* ---------------- penalty shootout (Phase 22) ---------------- */
+
+export interface ShootoutSquad {
+  /** Kicker finishing in kick order: best outfield finishers first, keeper 5th. */
+  kickers: number[];
+  gkReflexes: number;
+}
+
+export interface ShootoutResult {
+  scoreH: number;
+  scoreA: number;
+  /** True when the best-of-5 stayed level and sudden death decided it. */
+  sudden: boolean;
+}
+
+/** Kick order from squad DNA: outfielders by finishing (index tiebreak), GK last. */
+export function shootoutLineup(squad: PlayerAttributes[]): ShootoutSquad {
+  const outfield = [1, 2, 3, 4].sort(
+    (i, j) => squad[j].finishing - squad[i].finishing || i - j,
+  );
+  return {
+    kickers: [...outfield.map((i) => squad[i].finishing), squad[0].finishing],
+    gkReflexes: squad[0].reflexes,
+  };
+}
+
 /**
- * Apply a tie's final score: pick the winner (draw → underdog advances) and
- * flag giant killings. Returns the resolved tie.
+ * Deterministic penalty shootout. Each kick scores with probability
+ * 0.74 + (finishing−0.5)·0.3 − (keeperReflexes−0.5)·0.3 (clamped 0.35–0.95;
+ * ~74% baseline matches real-world conversion). Best-of-5 with kicks
+ * alternating (hosts first) and stopping the moment the trailing side can't
+ * catch up, then sudden-death pairs cycling the lineup. Returns null in the
+ * astronomically unlikely event ten sudden-death rounds stay level — the
+ * caller falls back to the underdog rule so resolution stays total.
  */
-export function resolveCupTie(cup: CupState, round: number, index: number, scoreH: number, scoreA: number): CupTie {
+export function resolveShootout(home: ShootoutSquad, away: ShootoutSquad, rng: Rng): ShootoutResult | null {
+  const kickP = (finishing: number, reflexes: number): number =>
+    Math.min(0.95, Math.max(0.35, 0.74 + (finishing - 0.5) * 0.3 - (reflexes - 0.5) * 0.3));
+  const BEST_OF = 5;
+  let h = 0;
+  let a = 0;
+  let hTaken = 0;
+  let aTaken = 0;
+  const decided = (): boolean => h > a + (BEST_OF - aTaken) || a > h + (BEST_OF - hTaken);
+
+  for (let kick = 0; kick < BEST_OF * 2 && !decided(); kick++) {
+    if (kick % 2 === 0) {
+      if (rng.chance(kickP(home.kickers[hTaken], away.gkReflexes))) h++;
+      hTaken++;
+    } else {
+      if (rng.chance(kickP(away.kickers[aTaken], home.gkReflexes))) a++;
+      aTaken++;
+    }
+  }
+  if (h !== a) return { scoreH: h, scoreA: a, sudden: false };
+
+  for (let round = 0; round < 10; round++) {
+    const kicker = (BEST_OF + round) % 5;
+    const hScores = rng.chance(kickP(home.kickers[kicker], away.gkReflexes));
+    const aScores = rng.chance(kickP(away.kickers[kicker], home.gkReflexes));
+    if (hScores) h++;
+    if (aScores) a++;
+    if (hScores !== aScores) return { scoreH: h, scoreA: a, sudden: true };
+  }
+  return null;
+}
+
+/**
+ * Apply a tie's final score: pick the winner and flag giant killings.
+ * A draw goes to the shootout when `shootout` context is provided (mode
+ * 'shootout'); otherwise — or on the shootout failsafe — the underdog
+ * advances. Returns the resolved tie.
+ */
+export function resolveCupTie(
+  cup: CupState,
+  round: number,
+  index: number,
+  scoreH: number,
+  scoreA: number,
+  shootout?: { home: ShootoutSquad; away: ShootoutSquad; rng: Rng },
+): CupTie {
   const tie = cupTie(cup, round, index);
   tie.played = true;
   tie.scoreH = scoreH;
@@ -150,8 +238,14 @@ export function resolveCupTie(cup: CupState, round: number, index: number, score
   if (scoreH !== scoreA) {
     tie.winner = scoreH > scoreA ? tie.home : tie.away;
   } else {
-    tie.byDrawRule = true;
-    tie.winner = cupUnderdog(cup, tie.home, tie.away);
+    const pens = shootout ? resolveShootout(shootout.home, shootout.away, shootout.rng) : null;
+    if (pens) {
+      tie.shootout = pens;
+      tie.winner = pens.scoreH > pens.scoreA ? tie.home : tie.away;
+    } else {
+      tie.byDrawRule = true;
+      tie.winner = cupUnderdog(cup, tie.home, tie.away);
+    }
   }
   const loser = tie.winner === tie.home ? tie.away : tie.home;
   tie.upset = cupEntrant(cup, tie.winner).division > cupEntrant(cup, loser).division;

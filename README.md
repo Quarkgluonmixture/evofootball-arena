@@ -51,7 +51,7 @@ npx tsx scripts/train-wildcard.ts   # retrain the Wildcard XI policy (ES, ~90s; 
 # Browser smoke suites (optional — needs Playwright's Chromium once):
 npx playwright install chromium
 npx vite --port 5199 --strictPort &   # the suites expect the dev server here
-npm run debug:visual      # drives the real 2D game end to end (51 checks + screenshots)
+npm run debug:visual      # drives the real 2D game end to end (53 checks + screenshots)
 npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic (26 checks)
 ```
 
@@ -133,7 +133,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence
-tests/                  vitest suites (105 tests)
+tests/                  vitest suites (124 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -333,9 +333,13 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   2/4/6, the final after round 7 and before any playoff — interleaving keeps
   cup drama running through the season while the final still closes it).
   Seeded draw: every R16 tie pairs a Premier side with a Challenger side and
-  the underdog hosts. **Drawn ties send the lower-division (else
-  lower-seeded) team through** — no extra time or penalties, "the cup loves
-  an upset", and the rule is shown on the bracket. Cup ties are standalone
+  the underdog hosts. **Drawn ties go to a deterministic penalty shootout**
+  (Phase 22 — best finishers kick first vs the keeper's reflexes, best-of-5
+  then sudden death, seeded so the same league replays the same shootout;
+  the bracket shows the pens score). The classic **underdog rule** — lower
+  division, else lower seed, advances, "the cup loves an upset" — is a
+  league-screen setting and what pre-shootout saves keep. No extra time
+  either way. Cup ties are standalone
   (no table/Elo/season-stat/fitness bookkeeping — cup glory never feeds
   evolution), so giant killings are pure story: ⚡ feed lines, upset-marked
   brackets, doubles, Challenger cup runs and revenge ties all get mined into
@@ -419,21 +423,23 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 114 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
+- `npm test` — 124 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
   (watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, foul/free-kick/penalty rules (award logic, taker choice,
-  clearance, first-touch shot, directional foul-rate test), league/Elo/evolution
+  clearance, first-touch shot, directional foul-rate test), penalty-shootout
+  rules (determinism, decisiveness, directional finishing/keeper tests,
+  lineup order, league integration, save default), league/Elo/evolution
   invariants, Evo Cup bracket shape/draw-rule/standalone-tie/determinism,
-  save/load roundtrips incl. the v1–v5 migration chain, and statistical
-  gene/attribute effect tests.
+  save/load + file export/import roundtrips incl. the v1–v5 migration chain,
+  and statistical gene/attribute effect tests.
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
 - `npm run debug:visual` — Playwright drives the *real* game in headless
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
   seasons from the UI, exercises cinematic/screenshot/share/FX-quality
   controls, and screenshots every stage to `/tmp/evofootball-shots/`
-  (46 checks). The 3D suite covers models, cameras, replay, score bug and
+  (53 checks). The 3D suite covers models, cameras, replay, score bug and
   cinematic mode (26 checks).
 
 ## What's implemented vs. next steps
@@ -445,7 +451,8 @@ AI, 14 live tactical
 genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
 knockout between league rounds with giant-killing/upset/double/revenge
-narratives, bracket UI and cup honours), watch UI with 5 speeds +
+narratives, penalty shootouts for drawn ties, bracket UI and cup honours),
+watch UI with 5 speeds +
 headless fast-sim, live match stats +
 xG race chart, debug overlays, a full 3D match viewer (procedural players with
 distinct run/kick/dive/celebrate animations, 5 polished camera modes, 3D
@@ -456,8 +463,8 @@ direction with broadcast overlays, cinematic mode and screenshot/share tools
 (season reports with awards + points race, gene-drift sparklines, hall of
 fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
-(Phase 16), the ES-trained Wildcard XI benchmark team with in-game exhibitions (Phase 18), 114 tests, and
-browser-driving visual smoke tests for both views (51 + 26 checks).
+(Phase 16), the ES-trained Wildcard XI benchmark team with in-game exhibitions (Phase 18), 124 tests, and
+browser-driving visual smoke tests for both views (53 + 26 checks).
 
 Ideas for the next phase (rough priority order):
 - Co-train wildcard genes + policy weights; per-role policy vectors

@@ -55,9 +55,12 @@ last defender and carriers feed their PATH, gated by riskTolerance/tempo
 failed tackle sometimes fouls (seeded roll, scaled by markingAggression),
 awarding a free kick through the same restart machinery, or a penalty (best
 finisher vs the keeper from the drawn spot) for fouls in the offender's own
-box (~4.4 fouls, ~0.1 penalties/match; phase 20). 114 vitest tests;
-Playwright suites: 2D 51 checks, 3D 26 checks; ~25 ms/headless match. Git
-tags `phase-10`…`phase-19` are known-green checkpoints; published at
+box (~4.4 fouls, ~0.1 penalties/match; phase 20); save export/import as
+.json files + itch.io packaging (phase 21); drawn cup ties decided by a
+deterministic seeded penalty shootout with the classic underdog rule as a
+league-screen option (phase 22). 124 vitest tests;
+Playwright suites: 2D 53 checks, 3D 26 checks; ~25 ms/headless match. Git
+tags `phase-10`…`phase-22` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
 
@@ -109,6 +112,7 @@ match seed          : hashSeed(leagueSeed, generation, round, division*4 + index
 playoff decider     : same scheme with round = 7 (regular rounds are 0–6)
 cup R16 draw shuffle: hashSeed(leagueSeed, generation, 0xC5)
 cup tie match seed  : hashSeed(leagueSeed, generation, 0xC0 + cupRound, tieIndex)   (cupRound 0–3)
+cup shootout        : hashSeed(leagueSeed, generation, 0xB0 + cupRound, tieIndex)   (drawn ties, mode 'shootout')
 v3→v4 D2 spawn      : hashSeed(leagueSeed, generation, 0xD2)
 evolution rng       : hashSeed(leagueSeed, generation, 0xE0)
 v1→v2 squad backfill: hashSeed(leagueSeed, slot, 0xA7)
@@ -216,8 +220,15 @@ bracket logic; League owns the state and scheduling):
   cursor — R16 → QF → SF → Final, with the final before any promotion
   playoff. `ensureCupFixtures()` is idempotent and save-safe (bracket state
   persists; fixtures only mirror it).
-- **Drawn ties**: the lower-division (else lower-seeded) side advances
-  (`byDrawRule`) — no extra time, no penalties, engine untouched.
+- **Drawn ties** (Phase 22): decided by `league.cupDrawMode` — 'shootout'
+  (new-league default) runs a deterministic seeded penalty shootout in
+  `cup.resolveShootout` (kicker finishing vs keeper reflexes around a 74%
+  baseline; best-of-5 with honest early stopping, then sudden death; a
+  15-round failsafe falls back to the underdog rule), recorded on the tie as
+  `shootout {scoreH, scoreA, sudden}`; 'underdog' (and pre-Phase-22 saves via
+  the load default) keeps the classic rule: lower-division (else
+  lower-seeded) advances (`byDrawRule`). No extra time either way — the
+  match engine stays untouched.
 - **Standalone ties**: `applyResult` resolves the bracket and cup-only scorer
   tallies, then returns — cup ties must NEVER touch the table, Elo, season
   aggregates, player season stats or fitness (same pattern as the playoff

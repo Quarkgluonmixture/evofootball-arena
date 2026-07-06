@@ -49,20 +49,28 @@ export function seasonRecordLines(
   return lines;
 }
 
-/** Feed lines for a just-applied cup tie: giant killings and the final. */
+/** Feed lines for a just-applied cup tie: shootouts, giant killings, the final. */
 export function cupResultLines(cup: CupState, f: Fixture): string[] {
   const tie = cupTie(cup, f.round, f.index);
   if (!tie.played || tie.winner === undefined) return [];
   const winner = cupEntrant(cup, tie.winner);
   const loser = cupEntrant(cup, tie.winner === tie.home ? tie.away : tie.home);
   const score = `${tie.scoreH}–${tie.scoreA}`;
+  const pens = tie.shootout
+    ? ` (${tie.shootout.scoreH}–${tie.shootout.scoreA} on penalties${tie.shootout.sudden ? ', sudden death' : ''})`
+    : '';
   const drawNote = tie.byDrawRule ? ' — level at full time, the underdog advances' : '';
   if (tie.round === 3) {
-    return [`🏅 ${winner.name} win the ${CUP_NAME}! ${score} vs ${loser.name}${drawNote}.`];
+    return [`🏅 ${winner.name} win the ${CUP_NAME}! ${score}${pens} vs ${loser.name}${drawNote}.`];
   }
   if (tie.upset) {
     return [
-      `⚡ GIANT KILLING: ${winner.name} knocked out ${loser.name} ${score} in the ${CUP_ROUND_NAMES[tie.round]}${drawNote}.`,
+      `⚡ GIANT KILLING: ${winner.name} knocked out ${loser.name} ${score}${pens} in the ${CUP_ROUND_NAMES[tie.round]}${drawNote}.`,
+    ];
+  }
+  if (tie.shootout) {
+    return [
+      `🥅 Shootout drama: ${winner.name} edge ${loser.name} ${tie.shootout.scoreH}–${tie.shootout.scoreA} on penalties${tie.shootout.sudden ? ' after sudden death' : ''} (${score} at full time).`,
     ];
   }
   return [];

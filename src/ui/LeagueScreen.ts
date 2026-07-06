@@ -2,7 +2,7 @@ import { GENE_KEYS, describeIdentity } from '../evolution/genome';
 import { ATTR_KEYS, squadSummary } from '../evolution/playerGenome';
 import {
   CUP_NAME, CUP_ROUNDS, CUP_ROUND_NAMES, CUP_ROUND_SHORT,
-  type CupEntrant, type CupTie,
+  type CupDrawMode, type CupEntrant, type CupTie,
 } from '../sim/cup';
 import {
   DIVISION_NAMES, DIVISION_SHORT,
@@ -46,6 +46,8 @@ export class LeagueScreen {
   private league: League | null = null;
   /** Set by GameApp: change the promotion rules (persisted with the save). */
   onSetPromotionMode: ((m: PromotionMode) => void) | null = null;
+  /** Set by GameApp: change how drawn cup ties resolve (persisted with the save). */
+  onSetCupDrawMode: ((m: CupDrawMode) => void) | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -131,6 +133,24 @@ export class LeagueScreen {
       ),
     );
     this.root.appendChild(row);
+
+    const cupRow = el('div', 'row rules-row');
+    cupRow.appendChild(el('span', 'muted', 'Cup draw rule:'));
+    const pens = button('\u{1F945} Penalty shootout', () => this.onSetCupDrawMode?.('shootout'));
+    const dog = button('\u26A1 Underdog advances', () => this.onSetCupDrawMode?.('underdog'));
+    pens.classList.toggle('active', league.cupDrawMode === 'shootout');
+    dog.classList.toggle('active', league.cupDrawMode === 'underdog');
+    cupRow.append(pens, dog);
+    cupRow.appendChild(
+      el(
+        'span',
+        'muted',
+        league.cupDrawMode === 'shootout'
+          ? '\u2014 level cup ties go to a seeded penalty shootout (finishing vs keeper reflexes).'
+          : '\u2014 level cup ties send the lower-division (else lower-seeded) side through.',
+      ),
+    );
+    this.root.appendChild(cupRow);
   }
 
   private renderStandings(league: League, division: Division): void {
@@ -246,8 +266,10 @@ export class LeagueScreen {
     rules.textContent =
       'Single-elimination knockout across both divisions, played between league rounds. ' +
       'Seeded draw: every Round-of-16 tie is Premier vs Challenger, and the underdog hosts. ' +
-      'Drawn ties: the lower-division (else lower-seeded) side advances — the cup loves an upset. ' +
-      'No extra time, no penalties. Cup ties never touch league tables, Elo or evolution fitness.';
+      (league.cupDrawMode === 'shootout'
+        ? 'Drawn ties go to a penalty shootout (League tab → Cup draw rule). '
+        : 'Drawn ties: the lower-division (else lower-seeded) side advances — the cup loves an upset. ') +
+      'No extra time. Cup ties never touch league tables, Elo or evolution fitness.';
     this.root.appendChild(rules);
 
     if (league.cup) {
@@ -330,6 +352,9 @@ export class LeagueScreen {
     const notes: string[] = [];
     if (tie.upset) notes.push('⚡ giant killing');
     if (tie.byDrawRule) notes.push('drawn — underdog advances');
+    if (tie.shootout) {
+      notes.push(`🥅 ${tie.shootout.scoreH}–${tie.shootout.scoreA} pens${tie.shootout.sudden ? ' (sudden death)' : ''}`);
+    }
     if (notes.length > 0) box.appendChild(el('div', 'cup-note', notes.join(' · ')));
     return box;
   }
@@ -367,6 +392,7 @@ export class LeagueScreen {
         `🏅 ${CUP_NAME}: <b>${rec.cup.winnerName}</b> beat ${rec.cup.runnerUpName} ` +
         `${final.scoreH}–${final.scoreA} in the final` +
         (final.byDrawRule ? ' <i>(level — underdog rule)</i>' : '') +
+        (final.shootout ? ` <i>(${final.shootout.scoreH}–${final.shootout.scoreA} on penalties)</i>` : '') +
         (rec.cup.topScorer ? ` &nbsp;·&nbsp; ⚽ cup top scorer: ${rec.cup.topScorer.name} (${rec.cup.topScorer.team}), ${rec.cup.topScorer.goals}g` : '');
       this.root.appendChild(cupLine);
       for (const u of rec.cup.upsets) {

@@ -1,7 +1,7 @@
 import { hashSeed, Rng } from '../utils/rng';
 import {
-  CUP_ROUND_SHORT, CUP_SEED_TAG, buildCup, buildCupRecord, cupRoundComplete,
-  fillCupRound, resolveCupTie, type CupRecord, type CupState,
+  CUP_ROUND_SHORT, CUP_SEED_TAG, CUP_SHOOTOUT_TAG, buildCup, buildCupRecord, cupRoundComplete,
+  fillCupRound, resolveCupTie, shootoutLineup, type CupDrawMode, type CupRecord, type CupState,
 } from './cup';
 import { evolveGroup, type EvolutionReport } from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
@@ -131,6 +131,12 @@ export class League {
    * Challenger 2nd in a one-match decider (a DRAW keeps the Premier side up).
    */
   promotionMode: PromotionMode = 'auto';
+  /**
+   * How drawn cup ties resolve: 'shootout' (new-league default — seeded
+   * penalties, finishing vs reflexes) or 'underdog' (the classic draw rule;
+   * also what pre-Phase-22 saves load as).
+   */
+  cupDrawMode: CupDrawMode = 'shootout';
   franchises: Franchise[] = [];
   fixtures: Fixture[] = [];
   /** Index of the next unplayed fixture. */
@@ -281,7 +287,17 @@ export class League {
     // touch the table, Elo, season aggregates or fitness.
     if (fixture.cup) {
       if (this.cup) {
-        resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1]);
+        // Drawn ties: seeded shootout in 'shootout' mode (its own derived
+        // seed — never the match's rng), underdog rule otherwise.
+        const shootout =
+          this.cupDrawMode === 'shootout'
+            ? {
+                home: shootoutLineup(this.franchise(fixture.home).squad),
+                away: shootoutLineup(this.franchise(fixture.away).squad),
+                rng: new Rng(hashSeed(this.seed, this.generation, CUP_SHOOTOUT_TAG + fixture.round, fixture.index)),
+              }
+            : undefined;
+        resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1], shootout);
         for (let gid = 0; gid < result.playerStats.length; gid++) {
           const slot = gid < 5 ? fixture.home : fixture.away;
           this.cup.playerGoals[slot][gid % 5] += result.playerStats[gid].goals;
@@ -572,6 +588,7 @@ export class League {
       generation: this.generation,
       matchDuration: this.matchDuration,
       promotionMode: this.promotionMode,
+      cupDrawMode: this.cupDrawMode,
       franchises: this.franchises,
       fixtures: this.fixtures,
       cursor: this.cursor,
@@ -637,6 +654,8 @@ export class League {
       generation: data.generation,
       matchDuration: data.matchDuration,
       promotionMode: data.promotionMode ?? 'auto',
+      // Pre-Phase-22 saves keep the behavior they were built with.
+      cupDrawMode: data.cupDrawMode ?? 'underdog',
       franchises: data.franchises,
       fixtures: data.fixtures,
       cursor: data.cursor,
