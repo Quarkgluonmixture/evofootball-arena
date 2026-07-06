@@ -32,6 +32,8 @@ export class Player {
   kickCooldown = 0;
   tackleCooldown = 0;
 
+  /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
+  age?: number;
   /** Has a yellow card this match — a second booking is a red (Phase 25). */
   booked = false;
   /** Sent off: parked on the apron, excluded from every sim interaction. */

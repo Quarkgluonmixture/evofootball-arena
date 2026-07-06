@@ -65,3 +65,12 @@ export function generatePlayerNames(rng: Rng): string[] {
   rng.shuffle(pool);
   return pool.slice(0, 5);
 }
+
+/** One newgen surname, avoiding the current squad's names (Phase 26). */
+export function newgenName(rng: Rng, taken: string[]): string {
+  for (let i = 0; i < 20; i++) {
+    const name = rng.pick(SURNAMES);
+    if (!taken.includes(name)) return name;
+  }
+  return rng.pick(SURNAMES); // pathological pool exhaustion — accept a repeat
+}

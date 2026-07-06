@@ -48,6 +48,7 @@ export class Team {
     this.players = ROLES.map(
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );
+    if (info.ages) this.players.forEach((p, i) => (p.age = info.ages![i]));
     this.ownGoalPos = v2(-this.attackDir * HALF_L, 0);
     this.oppGoalPos = v2(this.attackDir * HALF_L, 0);
   }

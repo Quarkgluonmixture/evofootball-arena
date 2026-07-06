@@ -241,6 +241,9 @@ export class LeagueScreen {
         row.appendChild(b);
         card.appendChild(row);
       }
+      // Careers (Phase 26): the five people behind the bars, with their ages.
+      card.appendChild(el('div', 'muted',
+        f.playerNames.map((n, i) => `${n} ${f.ages[i]}y`).join(' · ')));
 
       const fit = lastSeason?.fitness.find((x) => x.slot === f.slot);
       if (fit) card.appendChild(el('div', 'muted', `last-season fitness: ${fit.total.toFixed(3)}`));
@@ -451,6 +454,17 @@ export class LeagueScreen {
       }
     }
 
+    // Retirements (Phase 26) — absent on records from before careers existed.
+    if (rec.retirements && rec.retirements.length > 0) {
+      this.root.appendChild(el('h2', '', '🎓 Retirements'));
+      for (const r of rec.retirements) {
+        const line = r.role === 'GK'
+          ? `${r.name} (${r.team}, ${r.age}) — ${r.seasons} seasons, ${r.saves} saves`
+          : `${r.name} (${r.team}, ${r.age}) — ${r.seasons} seasons, ${r.goals} goals`;
+        this.root.appendChild(el('div', 'history-entry', `🎓 ${line}`));
+      }
+    }
+
     this.renderCurrentScorers(league);
 
     this.root.appendChild(el('h2', '', 'Champions history'));
@@ -547,6 +561,19 @@ export class LeagueScreen {
     if (h.length === 0) {
       this.root.appendChild(el('div', 'muted empty', 'No history yet — the hall opens after the first season.'));
       return;
+    }
+
+    // All-time greats (Phase 26): the best retired careers, kept forever.
+    if (league.legends.length > 0) {
+      this.root.appendChild(el('h2', '', '🎓 All-time greats (retired)'));
+      for (const l of league.legends.slice(0, 8)) {
+        const line = l.role === 'GK'
+          ? `${l.career.saves} saves in ${l.career.seasons} seasons`
+          : `${l.career.goals}g ${l.career.assists}a in ${l.career.seasons} seasons`;
+        this.root.appendChild(
+          el('div', 'history-entry', `🎓 ${l.name} (${l.team}, retired ${l.age}) — ${line}`),
+        );
+      }
     }
 
     // Titles by team name (Premier + Challenger).

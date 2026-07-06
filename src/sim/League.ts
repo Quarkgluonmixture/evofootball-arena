@@ -4,13 +4,18 @@ import {
   fillCupRound, resolveCupTie, shootoutLineup, type CupDrawMode, type CupRecord, type CupState,
   type ShootoutSquad,
 } from './cup';
+import {
+  developPlayer, emptyCareer, retireChance, rookieAge, veteranAge,
+  type LegendEntry, type PlayerCareer,
+} from '../evolution/careers';
 import { evolveGroup, type EvolutionReport } from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
 import {
   createFranchise, emptyAggregates, type Franchise, type SeasonAggregates,
 } from '../evolution/franchise';
 import { GENE_KEYS, type GeneKey } from '../evolution/genome';
-import { ATTR_KEYS, randomSquad, type AttrKey } from '../evolution/playerGenome';
+import { newgenName } from '../evolution/names';
+import { ATTR_KEYS, SQUAD_ROLES, randomPlayer, randomSquad, type AttrKey } from '../evolution/playerGenome';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
@@ -68,6 +73,17 @@ export interface SeasonAwards {
   dirtiest?: { slot: number; name: string; yellows: number; reds: number } | null;
 }
 
+/** A season-end retirement, remembered in the season report (Phase 26). */
+export interface RetirementEntry {
+  name: string;
+  team: string;
+  role: string;
+  age: number;
+  seasons: number;
+  goals: number;
+  saves: number;
+}
+
 export interface SeasonRecord {
   generation: number;
   championSlot: number;
@@ -92,11 +108,13 @@ export interface SeasonRecord {
   /** League-average gene values of the population that PLAYED this season. */
   geneMeans?: Record<GeneKey, number>;
   attrMeans?: Record<AttrKey, number>;
+  /** Players who hung up their boots at season end (Phase 26). */
+  retirements?: RetirementEntry[];
   /** Cumulative points per slot after each round (slot-indexed, 7 rounds). */
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 6;
+export const SAVE_VERSION = 7;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -151,6 +169,8 @@ export class League {
   history: SeasonRecord[] = [];
   /** This season's Evo Cup; null on migrated saves until the next season starts. */
   cup: CupState | null = null;
+  /** All-time greats, recorded at retirement (top 20 by career goals; Phase 26). */
+  legends: LegendEntry[] = [];
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -259,6 +279,7 @@ export class League {
     return {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
       playerNames: f.playerNames, genome: f.genome, squad: f.squad,
+      ages: f.ages,
     };
   }
 
@@ -411,6 +432,18 @@ export class League {
    */
   finishSeason(): SeasonRecord {
     const eps = 0.001;
+    // Careers bank the season BEFORE evolution can rebirth a squad away
+    // (a reborn club's players vanish with their ledgers — that's the point).
+    for (const f of this.franchises) {
+      this.playerAgg[f.slot].forEach((s, i) => {
+        const c = f.careers[i];
+        c.seasons++;
+        c.goals += s.goals;
+        c.assists += s.assists;
+        c.saves += s.saves;
+        c.recoveries += s.recoveries;
+      });
+    }
     const standings1 = this.standings(0);
     const standings2 = this.standings(1);
 
@@ -501,6 +534,38 @@ export class League {
     ];
     record.evolution = { generation: this.generation + 1, entries };
 
+    // Careers pass (Phase 26): everyone still at their club ages a year,
+    // develops along the age curve, and may retire — replaced by a newgen.
+    // Reborn squads are brand-new people and sit this generation out.
+    const rebornSlots = new Set(entries.filter((e) => e.kind === 'reborn').map((e) => e.slot));
+    const ageRng = new Rng(hashSeed(this.seed, this.generation, 0xa9));
+    const retirements: RetirementEntry[] = [];
+    for (const f of this.franchises) {
+      if (rebornSlots.has(f.slot)) continue;
+      for (let i = 0; i < f.squad.length; i++) {
+        f.ages[i]++;
+        f.squad[i] = developPlayer(f.squad[i], f.ages[i], ageRng);
+        if (ageRng.chance(retireChance(f.ages[i]))) {
+          const career = f.careers[i];
+          retirements.push({
+            name: f.playerNames[i] ?? ROLES[i],
+            team: f.name,
+            role: ROLES[i],
+            age: f.ages[i],
+            seasons: career.seasons,
+            goals: career.goals,
+            saves: career.saves,
+          });
+          this.recordLegend(f, i, career);
+          f.playerNames[i] = newgenName(ageRng, f.playerNames);
+          f.squad[i] = randomPlayer(ageRng, SQUAD_ROLES[i]);
+          f.ages[i] = rookieAge(ageRng);
+          f.careers[i] = emptyCareer();
+        }
+      }
+    }
+    record.retirements = retirements;
+
     // Promotion & relegation by table position.
     for (const r of relegated) {
       const f = this.franchise(r.slot);
@@ -517,6 +582,25 @@ export class League {
     this.generation++;
     this.startSeason();
     return record;
+  }
+
+  /** Keep the best retirees forever: top 20 by career goals (saves, then seasons break ties). */
+  private recordLegend(f: Franchise, i: number, career: PlayerCareer): void {
+    this.legends.push({
+      name: f.playerNames[i] ?? ROLES[i],
+      team: f.name,
+      role: ROLES[i],
+      age: f.ages[i],
+      career: { ...career },
+    });
+    this.legends.sort(
+      (a, b) =>
+        b.career.goals - a.career.goals ||
+        b.career.saves - a.career.saves ||
+        b.career.seasons - a.career.seasons ||
+        a.name.localeCompare(b.name),
+    );
+    this.legends = this.legends.slice(0, 20);
   }
 
   /* ---------------- season report inputs ---------------- */
@@ -623,6 +707,7 @@ export class League {
       playerAgg: this.playerAgg,
       history: this.history,
       cup: this.cup,
+      legends: this.legends,
     };
   }
 
@@ -682,6 +767,18 @@ export class League {
       }
       data.version = 6;
     }
+    if (data.version === 6) {
+      // v6 -> v7: player careers (Phase 26). Existing squads get seeded ages
+      // spanning the career arc; ledgers start blank from here — never
+      // fabricate career history that wasn't simulated.
+      const rng = new Rng(hashSeed(Number(data.seed), 0xa9));
+      for (const f of data.franchises as Franchise[]) {
+        f.ages = SQUAD_ROLES.map(() => veteranAge(rng));
+        f.careers = SQUAD_ROLES.map(() => emptyCareer());
+      }
+      data.legends = [];
+      data.version = 7;
+    }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
     Object.assign(lg, {
@@ -699,6 +796,7 @@ export class League {
       playerAgg: data.playerAgg,
       history: data.history,
       cup: data.cup ?? null,
+      legends: data.legends ?? [],
     });
     return lg;
   }

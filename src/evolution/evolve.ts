@@ -1,8 +1,9 @@
 import type { Rng } from '../utils/rng';
+import { emptyCareer, rookieAge } from './careers';
 import { crossoverGenomes, geneDistance, mutateGenome } from './genome';
 import type { Franchise } from './franchise';
 import { generatePlayerNames, shortName, uniqueTeamName } from './names';
-import { crossoverSquads, mutateSquad } from './playerGenome';
+import { crossoverSquads } from './playerGenome';
 
 /**
  * End-of-season evolution, generalized for the two-division era. A group
@@ -77,7 +78,8 @@ export function evolveGroup(
     } else if (rank < rebornFrom) {
       const before = f.genome;
       f.genome = mutateGenome(f.genome, rng, { rate: 0.4, scale: 0.08 });
-      f.squad = mutateSquad(f.squad, rng, { rate: 0.3, scale: 0.06 });
+      // Squads no longer take random mutation — since Phase 26 they change
+      // through the careers pass instead (development, retirement, newgens).
       f.lineage.push({ generation: nextGen, event: 'mutated', fitness });
       entries.push({ slot: f.slot, name: f.name, kind: 'mutated', fitness, drift: geneDistance(before, f.genome) });
     } else {
@@ -85,7 +87,11 @@ export function evolveGroup(
       const pb = pickParent(pa);
       const before = f.genome;
       f.genome = mutateGenome(crossoverGenomes(pa.genome, pb.genome, rng), rng, { rate: 0.5, scale: 0.15 });
-      f.squad = mutateSquad(crossoverSquads(pa.squad, pb.squad, rng), rng, { rate: 0.4, scale: 0.1 });
+      // The academy intake: attributes cross over from both parents' squads,
+      // but the players themselves are NEW — young, unnamed, blank careers.
+      f.squad = crossoverSquads(pa.squad, pb.squad, rng);
+      f.ages = f.squad.map(() => rookieAge(rng) + rng.int(0, 5)); // 17–24
+      f.careers = f.squad.map(() => emptyCareer());
       const oldName = f.name;
       takenNames.delete(oldName);
       f.name = uniqueTeamName(rng, takenNames);

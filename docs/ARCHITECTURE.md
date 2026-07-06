@@ -33,7 +33,7 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-25`)**: phases 0–25 complete — deterministic 5v5
+**Status (as of tag `phase-26`)**: phases 0–26 complete — deterministic 5v5
 sim with real boundaries and set pieces (kick-ins/corners/goal kicks as live
 dead-ball restarts); 14 tactical genes + 5-attr squad DNA; a 16-team
 Premier/Challenger pyramid with promotion/relegation and an optional playoff
@@ -43,8 +43,8 @@ between league rounds, with giant-killing/upset narratives); 2D (Pixi) + 3D
 broadcast + low-poly diorama", `docs/ART_DIRECTION.md`) with polished player
 models/stadium/broadcast overlays, cinematic mode, screenshot/share tools and
 an FX quality setting; season reports/awards/narratives, evolution sparklines,
-hall of fame with dynasty timelines and cup honours; saves at v6
-(chain-migrates v1–v5); fast-sim on a Web Worker with a bit-identical
+hall of fame with dynasty timelines and cup honours; saves at v7
+(chain-migrates v1–v6); fast-sim on a Web Worker with a bit-identical
 main-thread fallback (phase 16); release polish — quickstart README,
 responsive layout, PWA manifest/icon, MIT license (phase 17); the Wildcard XI
 — PlayerBrain utility weights exposed as `PolicyParams` (defaults
@@ -72,10 +72,17 @@ end, ⏭ skips; phase 24); yellow/red cards — fouls sometimes book
 red sends the player off and the team plays 4v5 (`Player.sentOff`, skipped
 by EVERY player loop — sim, brains, perception, steering, formations;
 keepers are never carded: no bench, and box fouls already concede a
-penalty), cards feed the Dirtiest-team award; saves at v6 (phase 25).
-145 vitest tests;
+penalty), cards feed the Dirtiest-team award (phase 25); player careers —
+every player has an age, develops along an age curve
+(`evolution/careers.ts`: growth to ~23, decline from 30, pace fades
+fastest), retires in the mid-thirties into a fresh newgen, and banks career
+stats that feed a retirements section in the season report plus an
+All-time-greats hall ledger (`League.legends`, top 20); random squad
+mutation is GONE — careers and rebirth (young academy intake) are how
+squads change; saves at v7 (phase 26).
+153 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~32 checks; ~25 ms/headless match. Git
-tags `phase-10`…`phase-25` are known-green checkpoints; published at
+tags `phase-10`…`phase-26` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
 
@@ -132,7 +139,9 @@ cup tie match seed  : hashSeed(leagueSeed, generation, 0xC0 + cupRound, tieIndex
 cup shootout        : hashSeed(leagueSeed, generation, 0xB0 + cupRound, tieIndex)   (drawn ties, mode 'shootout')
 v3→v4 D2 spawn      : hashSeed(leagueSeed, generation, 0xD2)
 evolution rng       : hashSeed(leagueSeed, generation, 0xE0)
+careers/aging rng   : hashSeed(leagueSeed, generation, 0xA9)   (development, retirement, newgens)
 v1→v2 squad backfill: hashSeed(leagueSeed, slot, 0xA7)
+v6→v7 age backfill  : hashSeed(leagueSeed, 0xA9)
 ```
 
 Because every seed is derived functionally, a save can be reloaded at fixture
@@ -230,7 +239,14 @@ in this order — record → evolve → promote/relegate):
   extra time). The decider is a standalone tie — `applyResult` skips
   table/stats/Elo for `fixture.playoff` — and appears lazily via
   `ensurePlayoffFixture()` once the 56 regular fixtures are done.
-- Squad DNA mutates/crosses position-by-position alongside the tactics.
+- **Squad DNA changes through careers, not mutation** (Phase 26): after
+  evolution, every non-reborn player ages a year, develops along the age
+  curve (`evolution/careers.ts`), and may retire — replaced by a newgen with
+  a fresh name, rookie age and blank ledger. Reborn squads cross over from
+  their parents position-by-position but arrive as a young academy intake
+  (17–24, blank careers). Career stats accumulate from `playerAgg` BEFORE
+  evolution so a rebirth honestly erases its people. Retirees fill
+  `SeasonRecord.retirements` and the best enter `League.legends`.
 
 ### The Evo Cup (Phase 13)
 

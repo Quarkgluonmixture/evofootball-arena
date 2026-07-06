@@ -1,7 +1,8 @@
 import type { Rng } from '../utils/rng';
+import { emptyCareer, veteranAge, type PlayerCareer } from './careers';
 import { randomGenome, type TacticalGenome } from './genome';
 import { KIT_COLORS, generatePlayerNames, shortName, uniqueTeamName } from './names';
-import { randomSquad, type PlayerAttributes } from './playerGenome';
+import { SQUAD_ROLES, randomSquad, type PlayerAttributes } from './playerGenome';
 
 /** One historical entry in a franchise's evolutionary lineage. */
 export interface LineageEntry {
@@ -28,6 +29,10 @@ export interface Franchise {
   genome: TacticalGenome;
   /** Per-player attribute genes, role order [GK, DF, MF, WG, ST]. */
   squad: PlayerAttributes[];
+  /** Player ages in role order (Phase 26) — drive development & retirement. */
+  ages: number[];
+  /** Career ledgers in role order — accumulated season stats + seasons. */
+  careers: PlayerCareer[];
   elo: number;
   /** 0 = top flight, 1 = second division. Changes via promotion/relegation. */
   division: 0 | 1;
@@ -51,6 +56,8 @@ export function createFranchise(
     playerNames: generatePlayerNames(rng),
     genome: randomGenome(rng),
     squad: randomSquad(rng),
+    ages: SQUAD_ROLES.map(() => veteranAge(rng)),
+    careers: SQUAD_ROLES.map(() => emptyCareer()),
     elo: 1500,
     division,
     lineage: [{ generation, event: 'founded' }],

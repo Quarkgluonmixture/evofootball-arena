@@ -151,7 +151,7 @@ export class RightPanel {
     const head = el('div', 'team-head');
     const dot = el('span', 'dot');
     dot.style.background = colorHex(team.info.colors.primary);
-    head.append(dot, el('span', '', `${p.name} · ${p.role} · ${team.info.short}`));
+    head.append(dot, el('span', '', `${p.name} · ${p.role}${p.age !== undefined ? ` · ${p.age}y` : ''} · ${team.info.short}`));
     this.playerCard.appendChild(head);
 
     this.playerCard.appendChild(el('div', '', `action: ${p.action.type}`));

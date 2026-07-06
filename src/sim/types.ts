@@ -129,6 +129,8 @@ export interface TeamInfo {
   genome: TacticalGenome;
   /** Per-player attribute genes in role order [GK, DF, MF, WG, ST]. */
   squad: PlayerAttributes[];
+  /** Player ages in role order (Phase 26) — display only, never read by the sim. */
+  ages?: number[];
   /** Learned utility-policy weights (wildcard team); omitted = DEFAULT_POLICY. */
   policy?: PolicyParams;
   /**

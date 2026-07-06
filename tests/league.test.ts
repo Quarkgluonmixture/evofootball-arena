@@ -138,13 +138,22 @@ describe('League', () => {
     const downBefore = JSON.parse(JSON.stringify(league.franchise(downSlot)));
     league.finishSeason();
 
-    // Promoted champion of D2: elite-protected — everything survives the move.
+    // Promoted champion of D2: elite-protected — the identity survives the
+    // move. The squad is the same PEOPLE a season older (attributes drift
+    // with age via the careers pass — exact attr equality stopped being the
+    // contract in Phase 26; anyone whose name changed must be a newgen).
     const up = league.franchise(upSlot);
     expect(up.division).toBe(0);
     expect(up.name).toBe(upBefore.name);
     expect(up.colors).toEqual(upBefore.colors);
     expect(up.genome).toEqual(upBefore.genome);
-    expect(up.squad).toEqual(upBefore.squad);
+    up.ages.forEach((age, i) => {
+      if (up.playerNames[i] === (upBefore.playerNames as string[])[i]) {
+        expect(age).toBe((upBefore.ages as number[])[i] + 1);
+      } else {
+        expect(age).toBeLessThanOrEqual(19); // a retiree's newgen replacement
+      }
+    });
 
     // Relegated team: identity (name/colors/lineage) survives; genes may
     // mutate per the rebuild policy, but it is never reborn.

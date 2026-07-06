@@ -140,7 +140,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (145 tests)
+tests/                  vitest suites (153 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -249,10 +249,19 @@ attribute genes (0..1) that evolve with the franchise (`evolution/playerGenome.t
 | reflexes | keeper save odds ±11pp, longer dive reach |
 
 Players are born role-biased (keepers high reflexes, wingers high pace,
-strikers high finishing…), squads mutate with mid-table teams and cross over
-position-by-position when a franchise is reborn. The selected-player card and
-team cards show the bars; `tests/playerGenome.test.ts` verifies each attribute's
-statistical effect.
+strikers high finishing…). Since Phase 26 they are **people with careers**:
+every player has an age and develops along an age curve — strong growth to
+~23, a plateau through the twenties, decline from 30 (pace fades fastest,
+technique holds longest) — then retires in their mid-thirties and is replaced
+by a 17–19-year-old **newgen** with a fresh name. Career stats accumulate
+season by season; retirements make the season report, and the best careers
+enter the hall of fame's **All-time greats**. Squads no longer take random
+mutation — development, retirement and rebirth (a reborn club fields a young
+academy intake crossed over from its parents) are how squads change. The
+selected-player card shows age alongside the attribute bars; team cards list
+the squad with ages; `tests/playerGenome.test.ts` verifies each attribute's
+statistical effect and `tests/careers.test.ts` the career arc (directional
+development, retirement curve, 12-season stability of mean age/attributes).
 
 Two sim-quality lessons are baked in as regression tests and comments:
 - **Save difficulty is frozen at shot time** from how far the ball's path
@@ -365,6 +374,9 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 - Reborn teams get a new name but keep their league slot/kit, and the lineage
   records the parents (`g7 🔄 reborn ← A × B`); promotions and relegations are
   recorded too (`⬆️`/`⬇️` in the dynasty timeline).
+- **Careers drive squad change** (Phase 26): at season end every player ages,
+  develops along the age curve and may retire into a newgen; reborn clubs
+  field a young academy intake crossed over from their parents.
 - Team cards show identity tags derived from gene extremes ("Gegenpress",
   "Counter-attack", "Low block", "High risk / chaos"…), fitness, and lineage.
 
@@ -402,7 +414,8 @@ standalone friendly, no league bookkeeping.
   season's completed bracket, and the roll of honour. The current round is
   also shown in the left panel ("⚡ Cup QF").
 - **Season report**: both champions, promoted/relegated (and the playoff
-  scoreline when enabled), the Evo Cup final + upsets + cup top scorer, a
+  scoreline when enabled), the Evo Cup final + upsets + cup top scorer,
+  the season's retirements (Phase 26), a
   mined **season story** (titles retained/taken, promoted overachievers,
   straight-bounce-backs, fallen champions, biggest points swing up/down —
   plus cup doubles, Challenger cup runs, giant slayings and revenge ties —
@@ -415,7 +428,8 @@ standalone friendly, no league bookkeeping.
 - **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
   attributes — league mean per generation, so you can watch the meta drift —
   plus the last evolution's elite/mutated/reborn entries with fitness & drift.
-- **Hall of fame**: Premier + Challenger title leaderboards, Evo Cup honours
+- **Hall of fame**: All-time greats — the best retired careers, kept forever
+  (Phase 26) — Premier + Challenger title leaderboards, Evo Cup honours
   (titles + final appearances, domestic doubles, most giant killings, deepest
   Challenger cup run, most cup goals in a season), movement records
   (most promotions/relegations, longest Premier tenure, greatest comeback —
@@ -423,9 +437,10 @@ standalone friendly, no league bookkeeping.
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
   per league slot — cell shading shows the division each season, with
   🏆/🥇/🏅/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
-- Save format v5 (adds the cup; v1–v4 saves chain-migrate in place — an old
-  save finishes its current season cup-less and joins the cup next season;
-  historical seasons stay honestly "pre-cup era").
+- Save format v7 (v6 added cards, v7 careers; v1–v6 saves chain-migrate in
+  place — an old save finishes its current season cup-less and joins the cup
+  next season, card tallies start at zero, and squads get seeded ages with
+  blank career ledgers; history stays honest, nothing is fabricated).
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
@@ -446,7 +461,8 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 145 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
+- `npm test` — 153 tests: RNG/vec math, genome operators, career curves
+  (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, foul/free-kick/penalty rules (award logic, taker choice,
@@ -477,7 +493,9 @@ Implemented: autonomous 5v5 matches with real boundaries and set pieces
 kicks and penalties (Phase 20), yellow/red cards with 4v5 play and a
 dirtiest-team award (Phase 25), three-layer utility
 AI, 14 live tactical
-genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
+genes + 5 per-player attribute genes with full player careers — ages,
+development curves, retirements, newgens and an all-time-greats ledger
+(Phase 26) — an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
 knockout between league rounds with giant-killing/upset/double/revenge
 narratives, penalty shootouts for drawn ties — staged kick-by-kick in 3D
@@ -500,8 +518,6 @@ exhibitions, 137 tests, and
 browser-driving visual smoke tests for both views (53 + ~32 checks).
 
 Ideas for the next phase (rough priority order):
-- Player careers: aging/development curves, retirements and newgens for
-  dynasty depth (squads currently reroll with their franchise)
 - Publish to itch.io: packaging + upload docs are DONE (`npm run
   package:itch` → `release/*.zip`, settings in `docs/ITCH.md`) — only the
   account-holder upload remains

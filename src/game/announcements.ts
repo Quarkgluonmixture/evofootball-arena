@@ -46,6 +46,12 @@ export function seasonRecordLines(
       lines.push(`🔄 ${e.name} born from ${e.parents?.join(' × ')} (drift ${e.drift.toFixed(2)})`);
     }
   }
+  // Careers (Phase 26): one compact line — the season report holds the detail.
+  if (rec.retirements && rec.retirements.length > 0) {
+    const names = rec.retirements.slice(0, 4).map((r) => `${r.name} (${r.team}, ${r.age})`);
+    const more = rec.retirements.length > 4 ? ` +${rec.retirements.length - 4} more` : '';
+    lines.push(`🎓 Retired: ${names.join(', ')}${more}.`);
+  }
   return lines;
 }
 
