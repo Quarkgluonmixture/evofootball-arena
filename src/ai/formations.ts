@@ -69,13 +69,44 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
 }
 
 /**
+ * The opponents' last defensive line, in `team`-local x (bigger = deeper
+ * toward their goal). GK excluded — beating the keeper is the striker's job.
+ */
+export function defenderLineLocalX(team: Team, opponents: Player[]): number {
+  let line = -HALF_L;
+  for (const o of opponents) {
+    if (o.role === 'GK') continue;
+    const lx = team.localX(o.pos.x);
+    if (lx > line) line = lx;
+  }
+  return line;
+}
+
+/**
+ * Where an assigned runner sprints: past the last defender's shoulder,
+ * angling into the channel toward goal. Clamped short of the keeper's box so
+ * runs stretch the defence without parking on the goal line (there is no
+ * offside — the keeper's sweeping range and marking are the counterweight).
+ */
+export function runTarget(p: Player, team: Team, opponents: Player[]): V2 {
+  const line = defenderLineLocalX(team, opponents);
+  const myX = team.localX(p.pos.x);
+  const targetLocalX = clamp(Math.max(line + 7, myX + 5), myX + 3, HALF_L - 9);
+  // Narrow toward the goal mouth as the run goes deeper, keeping the lane.
+  const y = clamp(p.pos.y * 0.6, -HALF_W + 4, HALF_W - 4);
+  return v2(targetLocalX * team.attackDir, y);
+}
+
+/**
  * Where an off-ball player supports the carrier: ahead of the ball for
  * attacking modes, offset laterally toward the supporter's own formation lane,
  * at a radius set by the supportDistance gene.
  */
 export function supportSpot(p: Player, team: Team, ball: Ball): V2 {
   const g = team.genome;
-  const radius = 6 + g.supportDistance * 9; // 6 .. 15m from the carrier
+  // 8..16m: close enough for a give-and-go, far enough that the carrier
+  // isn't mobbed by their own teammates (Phase 19 spacing pass).
+  const radius = 8 + g.supportDistance * 8;
   const aheadBias = team.mode === 'CounterAttack' || team.mode === 'Attack' ? 0.75 : 0.35;
 
   const lane = formationSpot(p, team, ball, true);

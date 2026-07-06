@@ -24,6 +24,7 @@ export function animFor(action: ActionType, speed: number, celebrating: boolean)
   if (celebrating) return 'celebrate';
   switch (action) {
     case 'Pass':
+    case 'ThroughBall':
     case 'Shoot':
     case 'ClearBall':
       return 'kick';
@@ -96,7 +97,8 @@ export class AnimationSystem {
     // One-shot kick trigger on entering the kick state.
     if (anim === 'kick' && model.prevAnim !== 'kick') {
       model.kickT = 0;
-      model.kickPower = p.action === 'Shoot' || p.action === 'ClearBall' ? 1 : 0.65;
+      model.kickPower =
+        p.action === 'Shoot' || p.action === 'ClearBall' ? 1 : p.action === 'ThroughBall' ? 0.85 : 0.65;
     }
     model.prevAnim = anim;
 

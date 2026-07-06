@@ -54,6 +54,36 @@ export function performPass(match: Match, passer: Player, mate: Player): void {
   match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: mate.gid, t: match.simTime };
 }
 
+/**
+ * Through ball (Phase 19): hit harder and led much further than a feet pass —
+ * into the space the runner is attacking, not to where they stand. Riskier by
+ * construction (longer flight, bigger lead), which is exactly the trade
+ * riskTolerance gates in the carrier's scoring.
+ */
+export function performThroughBall(match: Match, passer: Player, runner: Player): void {
+  if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
+  const team = match.teams[passer.side];
+  const opp = match.teams[1 - passer.side];
+
+  const flight = dist(passer.pos, runner.pos) / 18;
+  const lead = add(runner.pos, scale(runner.vel, flight * 1.6));
+  const d = dist(passer.pos, lead);
+  const speed = clamp(d * 0.6 + 9, 10, 24);
+
+  const pressure = pressureAt(passer.pos, opp.players);
+  const noise =
+    match.rng.gaussian() *
+    (0.025 + pressure * 0.07 + d * 0.0017) *
+    (1.15 - team.genome.passBias * 0.3) *
+    (1.25 - passer.attrs.technique * 0.5);
+  const dir = rotate(norm(sub(lead, passer.pos)), noise);
+
+  match.kickBall(passer, dir, speed);
+  team.stats.passes++;
+  team.stats.throughBalls++;
+  match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: runner.gid, t: match.simTime };
+}
+
 export function performShot(match: Match, shooter: Player): void {
   if (match.ball.owner !== shooter || shooter.kickCooldown > 0) return;
   const team = match.teams[shooter.side];

@@ -164,12 +164,20 @@ scripts/                headless calibration, evolution & wildcard-training tool
 1. **TeamBrain** picks one of six modes — `BuildUp, Attack, Defend, Press,
    CounterAttack, ResetShape` — from possession, ball position, time since
    turnover, and genes. It also hands out **assignments**: at most 1–3 players
-   are allowed to chase/press (this is what prevents ball-swarming), and
-   remaining defenders get man-marking targets.
+   are allowed to chase/press (this is what prevents ball-swarming), remaining
+   defenders get man-marking targets, and in possession 1–2 attackers are
+   licensed as **runners** who sprint in behind the last defender (2 for
+   counter-attacks and high-tempo sides) — the off-ball movement that makes
+   direct play possible.
 2. **PlayerBrain** scores candidate actions every 0.15 s (staggered):
-   carriers weigh `Pass / Shoot / Dribble / ClearBall`; off-ball players weigh
-   `ReceivePass / SupportBallCarrier / MoveToFormationSpot / ChaseBall /
-   MarkOpponent / InterceptPass`; keepers have `GoalkeeperSave / Position`.
+   carriers weigh `Pass / ThroughBall / Shoot / Dribble / ClearBall` — a
+   through ball is aimed into an assigned runner's path (scored by the lane
+   to the projected point and how far beyond the line it lands, gated by
+   riskTolerance and tempo, so direct football is a team style, not a global
+   behavior); off-ball players weigh
+   `ReceivePass / MakeRun / SupportBallCarrier / MoveToFormationSpot /
+   ChaseBall / MarkOpponent / InterceptPass`; keepers have
+   `GoalkeeperSave / Position`.
    Every score is a product of normalized perception factors (lane openness,
    receiver openness, space ahead, pressure, xG) and **gene multipliers** —
    the top candidates with reasoning strings are shown in the right panel.
@@ -189,12 +197,12 @@ All 14 genes are 0..1 and read directly by the AI:
 | pressIntensity | more assigned pressers, Press mode threshold |
 | defensiveCompactness | off-ball block squeezes toward ball/center |
 | attackingWidth | in-possession formation stretch |
-| riskTolerance | gates contested forward passes; more clearing when low |
+| riskTolerance | gates contested forward passes AND through balls; more clearing when low |
 | counterAttackBias | CounterAttack mode window after winning the ball |
 | staminaConservation | slower jog/press sprints — fresher legs late on |
 | markingAggression | tighter marking distance, higher tackle success |
 | keeperAggression | keeper plays further off the line, longer reach |
-| tempo | faster ball circulation |
+| tempo | faster ball circulation; a second licensed runner + through-ball appetite |
 | formationDepth | block height (deep block ↔ high line) |
 | supportDistance | how far support runs sit from the carrier |
 
@@ -342,11 +350,13 @@ constants, so every normal team is bit-identical to before the refactor
 (regression-tested).
 
 Result (held-out benchmark vs an unseen league's top 8, home & away): the
-learned policy scores **12/48 points where the default brain on the same
-neutral genes scores 3/48** — a 4× lift from brain weights alone, though
-still well short of evolved-gene teams on their own turf. Press
-**⚡ Wildcard exhibition** (left panel) to field it against your current
-Premier leader — a standalone friendly, no league bookkeeping.
+learned policy scores **30/48 points where the default brain on the same
+neutral genes scores 9/48**. The jump came with Phase 19: once runs and
+through balls entered the action space, ES immediately learned an extreme
+direct style (runScore/throughBase near their bounds) — the learned-policy
+axis got dramatically more leverage. Press **⚡ Wildcard exhibition** (left
+panel) to field it against your current Premier leader — a standalone
+friendly, no league bookkeeping.
 
 ## Narrative & insight layer (league screen tabs)
 
@@ -381,12 +391,13 @@ Premier leader — a standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.6 goals, ~11–14 shots, ~78% pass completion, balanced possession, ~95%
-ball-in-play (the rest is live dead-ball time around ~4 restarts per match:
-≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins), ~34 ms per headless match
-after the Phase 16 optimization pass (allocation-free hot paths + a
-precomputed intercept table — bit-identical results, ~15% faster; a
-10-season fast-sim runs off the main thread on the sim worker).
+~2.7 goals, ~12–14 shots, ~75% pass completion with **~16 through balls per
+match** (Phase 19 — assigned runners + direct balls into their path),
+balanced possession, ~94% ball-in-play (the rest is live dead-ball time
+around ~4 restarts per match: ≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins),
+~33 ms per headless match (allocation-free hot paths + a precomputed
+intercept table — Phase 16; a 10-season fast-sim runs off the main thread on
+the sim worker).
 Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6
 (corner chances; parries that deflect instead of bouncing back), in-play
 98% → 95%. The pyramid produces real football stories: never-relegated
@@ -395,7 +406,7 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 105 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
+- `npm test` — 106 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
   (watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, league/Elo/evolution invariants, Evo Cup bracket

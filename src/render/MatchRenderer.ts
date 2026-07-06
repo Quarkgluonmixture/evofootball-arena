@@ -2,24 +2,8 @@ import { Circle, Container, Graphics, Text } from 'pixi.js';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { HALF_L, HALF_W, PITCH_LENGTH, PITCH_WIDTH } from '../sim/constants';
-import type { ActionType } from '../sim/types';
+import { ACTION_SHORT } from './actionLabels';
 import { CANVAS_H, CANVAS_W, MARGIN, SCALE, toPx } from './transform';
-
-const ACTION_SHORT: Record<ActionType, string> = {
-  MoveToFormationSpot: 'form',
-  ChaseBall: 'chase',
-  ReceivePass: 'recv',
-  MarkOpponent: 'mark',
-  InterceptPass: 'cut',
-  SupportBallCarrier: 'support',
-  Dribble: 'dribble',
-  Pass: 'pass',
-  Shoot: 'shoot!',
-  ClearBall: 'clear',
-  GoalkeeperSave: 'SAVE',
-  GoalkeeperPosition: 'gk',
-  HoldPosition: 'hold',
-};
 
 interface PlayerSprite {
   root: Container;

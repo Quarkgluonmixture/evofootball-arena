@@ -37,6 +37,10 @@ export const POLICY_BOUNDS: Record<keyof PolicyParams, [number, number]> = {
   chaseBase: [0.5, 1.2],
   markBase: [0.3, 1.0],
   interceptScore: [0.6, 1.3],
+  runScore: [0.5, 1.15],
+  throughBase: [0.05, 0.6],
+  throughOpenW: [0.1, 0.7],
+  throughBehindW: [0.1, 0.9],
 };
 
 export function clampPolicy(p: PolicyParams): PolicyParams {

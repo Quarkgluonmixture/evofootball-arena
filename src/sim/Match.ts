@@ -224,6 +224,9 @@ export class Match {
   performPass(p: Player, mate: Player): void {
     mech.performPass(this, p, mate);
   }
+  performThroughBall(p: Player, runner: Player): void {
+    mech.performThroughBall(this, p, runner);
+  }
   performShot(p: Player): void {
     mech.performShot(this, p);
   }

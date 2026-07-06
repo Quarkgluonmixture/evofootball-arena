@@ -12,11 +12,13 @@ export type ActionType =
   | 'MoveToFormationSpot'
   | 'ChaseBall'
   | 'ReceivePass'
+  | 'MakeRun'
   | 'MarkOpponent'
   | 'InterceptPass'
   | 'SupportBallCarrier'
   | 'Dribble'
   | 'Pass'
+  | 'ThroughBall'
   | 'Shoot'
   | 'ClearBall'
   | 'GoalkeeperSave'
@@ -77,6 +79,12 @@ export interface PolicyParams {
   chaseBase: number;
   markBase: number;
   interceptScore: number;
+  /** Off-ball attacking run priority (assigned runners, Phase 19). */
+  runScore: number;
+  /** Through-ball scoring: base + open-lane and behind-the-line weights. */
+  throughBase: number;
+  throughOpenW: number;
+  throughBehindW: number;
 }
 
 export const DEFAULT_POLICY: PolicyParams = {
@@ -104,6 +112,10 @@ export const DEFAULT_POLICY: PolicyParams = {
   chaseBase: 0.85,
   markBase: 0.62,
   interceptScore: 0.95,
+  runScore: 0.88,
+  throughBase: 0.22,
+  throughOpenW: 0.35,
+  throughBehindW: 0.45,
 };
 
 /** Everything a Match needs to know about one participating team. */
@@ -167,6 +179,8 @@ export interface TeamMatchStats {
   xg: number;
   passes: number;
   passesCompleted: number;
+  /** Direct balls played into a runner's path (subset of passes). */
+  throughBalls: number;
   keyPasses: number;
   interceptions: number;
   tackles: number;
@@ -186,6 +200,7 @@ export const emptyStats = (): TeamMatchStats => ({
   xg: 0,
   passes: 0,
   passesCompleted: 0,
+  throughBalls: 0,
   keyPasses: 0,
   interceptions: 0,
   tackles: 0,

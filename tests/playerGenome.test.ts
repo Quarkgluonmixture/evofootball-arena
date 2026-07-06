@@ -129,7 +129,10 @@ describe('player attributes influence the sim', () => {
     //    one-sided matches measures pitch-side noise, not finishing.
     const hi = { shots: 0, goals: 0 };
     const lo = { shots: 0, goals: 0 };
-    for (let i = 0; i < 30; i++) {
+    // 90 seeds: the Phase 19 dynamics (through balls/runs) added enough match
+    // variance that 30 seeds could land on the wrong side of noise (verified:
+    // at 90×2 the margin is a solid ~4pp, 23.7% vs 19.7%).
+    for (let i = 0; i < 90; i++) {
       const seed = 1000 + i * 37;
       for (const hiSide of [0, 1] as const) {
         const squads =

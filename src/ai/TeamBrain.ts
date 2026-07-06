@@ -1,7 +1,7 @@
 import { dist } from '../utils/vec';
 import type { Match } from '../sim/Match';
 import type { Team } from '../sim/Team';
-import type { TeamMode } from '../sim/types';
+import type { Role, TeamMode } from '../sim/types';
 
 /**
  * TeamBrain — picks one tactical mode for the whole team and hands out
@@ -24,6 +24,7 @@ export function updateTeamBrain(team: Team, match: Match): void {
     team.mode = 'ResetShape';
     team.chasers.clear();
     team.marks.clear();
+    team.runners.clear();
     return;
   }
 
@@ -62,6 +63,28 @@ export function updateTeamBrain(team: Team, match: Match): void {
 
   assignChasers(team, match);
   assignMarks(team, match);
+  assignRunners(team, match);
+}
+
+/**
+ * Runners: 1–2 attackers licensed to sprint in behind the defensive line
+ * while we have the ball — the off-ball movement that makes through balls
+ * possible. Capped like chasers so the team never dissolves into everyone
+ * running; the carrier and keeper are never runners.
+ */
+const RUN_ROLE_W: Record<Role, number> = { GK: 0, DF: 0.4, MF: 1.2, WG: 1.8, ST: 2.2 };
+
+function assignRunners(team: Team, match: Match): void {
+  team.runners.clear();
+  if (match.possessionSide !== team.side) return;
+  const carrier = match.ball.owner;
+  // A second runner for fast/direct sides: counters and high-tempo teams.
+  const count = team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1;
+  const scored = team.players
+    .filter((p) => p.role !== 'GK' && p !== carrier)
+    .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
+    .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
+  for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
 }
 
 /**

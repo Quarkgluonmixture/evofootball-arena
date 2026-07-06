@@ -1,5 +1,7 @@
-import { clamp01 } from '../utils/math';
+import { clamp, clamp01 } from '../utils/math';
 import { dist, dot, norm, sub } from '../utils/vec';
+import { HALF_L, HALF_W } from '../sim/constants';
+import { defenderLineLocalX } from './formations';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -113,6 +115,36 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     if (bestMate) cands.push({ action: 'Pass', score: bestPass, why: bestWhy });
   }
 
+  // --- Through ball: feed an assigned runner IN THEIR PATH, not to feet.
+  // Scored by the lane to the projected point and how far beyond the last
+  // defender it lands; riskTolerance gates it (direct sides live on these).
+  let bestRunner: Player | null = null;
+  let bestThrough = 0;
+  let bestThroughWhy = '';
+  if (p.kickCooldown <= 0) {
+    const line = defenderLineLocalX(team, opp.players);
+    for (const mate of team.players) {
+      if (mate === p || mate.action.type !== 'MakeRun') continue;
+      const flight = dist(p.pos, mate.pos) / 18;
+      const point = {
+        x: clamp(mate.pos.x + mate.vel.x * flight * 1.6, -HALF_L + 2, HALF_L - 2),
+        y: clamp(mate.pos.y + mate.vel.y * flight * 1.6, -HALF_W + 2, HALF_W - 2),
+      };
+      if (team.localX(point.x) < localX + 5) continue; // must genuinely penetrate
+      const lane = laneOpenness(p.pos, point, opp.players);
+      const behind = clamp01((team.localX(point.x) - line) / 10);
+      let s = W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW;
+      s *= 0.45 + g.riskTolerance * 0.85;
+      s *= 0.85 + g.tempo * 0.3;
+      if (s > bestThrough) {
+        bestThrough = s;
+        bestRunner = mate;
+        bestThroughWhy = `into ${mate.name}'s run · lane ${lane.toFixed(2)} · behind ${behind.toFixed(2)} · risk ${g.riskTolerance.toFixed(2)}`;
+      }
+    }
+    if (bestRunner) cands.push({ action: 'ThroughBall', score: bestThrough, why: bestThroughWhy });
+  }
+
   // --- Dribble: needs space ahead; dribbleBias makes it a first choice.
   if (!mustKick) {
     const toGoal = norm(sub(goal, p.pos));
@@ -144,6 +176,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     case 'Pass':
       p.action = { type: 'Pass', targetIdx: bestMate!.gid, scores };
       match.performPass(p, bestMate!);
+      break;
+    case 'ThroughBall':
+      p.action = { type: 'ThroughBall', targetIdx: bestRunner!.gid, scores };
+      match.performThroughBall(p, bestRunner!);
       break;
     case 'Shoot':
       p.action = { type: 'Shoot', scores };
@@ -223,6 +259,13 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       let s = (W.supportBase + clamp01(1 - d / 30) * W.supportProxW + roleBonus) * modeMul;
       if (tired) s *= 0.6; // conserve energy: prefer holding shape
       cands.push({ action: 'SupportBallCarrier', score: s, why: `dist ${d.toFixed(0)}m · mode ${team.mode}` });
+    }
+    // Assigned runner: sprint in behind and drag the line — the movement a
+    // through ball needs. Tired legs sit the run out.
+    if (team.runners.has(p.index) && carrier && carrier !== p) {
+      let s = W.runScore;
+      if (tired) s *= 0.6;
+      cands.push({ action: 'MakeRun', score: s, why: 'licensed run in behind' });
     }
     cands.push({
       action: 'MoveToFormationSpot',

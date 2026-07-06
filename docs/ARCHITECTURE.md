@@ -49,9 +49,11 @@ main-thread fallback (phase 16); release polish — quickstart README,
 responsive layout, PWA manifest/icon, MIT license (phase 17); the Wildcard XI
 — PlayerBrain utility weights exposed as `PolicyParams` (defaults
 bit-identical) with an ES trainer, held-out benchmark and in-game exhibition
-(phase 18). 105 vitest tests; Playwright suites: 2D 51 checks, 3D 26 checks;
-~34 ms/headless match. Git tags `phase-10`…`phase-18` are known-green
-checkpoints; published at
+(phase 18); off-ball runs + through balls — assigned runners sprint past the
+last defender and carriers feed their PATH, gated by riskTolerance/tempo
+(~16 through balls/match; phase 19). 106 vitest tests; Playwright suites:
+2D 51 checks, 3D 26 checks; ~33 ms/headless match. Git tags
+`phase-10`…`phase-19` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
 
@@ -120,13 +122,18 @@ Three layers, all in `src/ai/`:
    one mode — `BuildUp/Attack/Defend/Press/CounterAttack/ResetShape` — from
    possession, ball position, time-since-turnover and genes, then assigns
    **chasers** (1–3 players allowed to hunt the ball; this is what prevents
-   ball-swarming) and greedy goal-side **marks**.
+   ball-swarming), greedy goal-side **marks**, and in possession **runners**
+   (1–2 attackers licensed to sprint past the last defender — 2 on counters
+   / high tempo; capped so the shape never dissolves — Phase 19).
 2. **PlayerBrain** (`PlayerBrain.ts`, every 0.15 s, staggered symmetrically):
    scores candidate actions as products of normalized perception factors
    (lane openness, receiver openness, space ahead, pressure, xG) × gene
    multipliers. The top candidates **with human-readable `why` strings** are
    stored on `player.action.scores` — the right-panel player card shows them.
-   Kicks (`Pass/Shoot/ClearBall`) execute immediately via `match.perform*`.
+   Kicks (`Pass/ThroughBall/Shoot/ClearBall`) execute immediately via
+   `match.perform*`. Through balls aim into an assigned runner's PATH
+   (projected point, lane + behind-the-line scoring) and are gated by
+   riskTolerance/tempo — direct football is a style, not a global behavior.
 3. **actionExecutor** (`actionExecutor.ts`, every frame): re-resolves dynamic
    targets (ball intercept points, sliding formation spots, marking positions)
    and blends steering (arrive + separation + avoidance) into `desiredVel`.
@@ -349,6 +356,7 @@ only caught by eyes on the PNGs.
 |---|---|
 | Goals per match (~2.9 target) | `mechanics.tryKeeperSave` saveP base (0.52 − xG·0.6); shot `spread`; xG curve `exp(-d/11)` |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
+| Direct play (through balls ~16/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
 | Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |
 | Pass-fest vs dribble balance | carrier utility bases in `PlayerBrain.decideCarrier`; post-receive settle (`giveBall` decisionTimer 0.3) |
 | Turnover rate | tackle probability in `mechanics.tryTackles` |

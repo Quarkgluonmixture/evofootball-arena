@@ -3,7 +3,7 @@ import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
-import { formationSpot, supportSpot } from './formations';
+import { formationSpot, runTarget, supportSpot } from './formations';
 import { interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
 
@@ -66,12 +66,20 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       speedF = (team.mode === 'CounterAttack' ? 1 : 0.9) - conserve * 0.15;
       break;
     }
+    case 'MakeRun': {
+      // Attacking run in behind — a full sprint, recomputed each frame so the
+      // run bends with the defensive line.
+      target = runTarget(p, team, opp.players);
+      speedF = sprint;
+      break;
+    }
     case 'Dribble': {
       target = dribbleTarget(p, match);
       speedF = 0.88; // dribbling is slower than free running
       break;
     }
     case 'Pass':
+    case 'ThroughBall':
     case 'Shoot':
     case 'ClearBall': {
       // Kick already happened at decision time — brief follow-through.

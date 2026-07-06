@@ -24,6 +24,8 @@ export class Team {
   chasers = new Set<number>();
   /** Marking assignments: our player index -> opponent player index. */
   marks = new Map<number, number>();
+  /** Player indices assigned to make attacking runs in behind (in possession). */
+  runners = new Set<number>();
 
   /** Sim time when we last gained possession (for counter-attack windows). */
   possessionGainedAt = -999;

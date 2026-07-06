@@ -92,6 +92,21 @@ describe('tactical genes influence behavior', () => {
       .toBeGreaterThan(b1.tackles + b1.interceptions + b2.tackles + b2.interceptions);
   });
 
+  it('direct sides (riskTolerance + tempo) play more through balls than patient sides', () => {
+    // Phase 19: through balls are gated by riskTolerance and tempo — style,
+    // not a global behavior. Side-balanced + pooled per §10.5.
+    const direct = neutral();
+    direct.riskTolerance = 0.95;
+    direct.tempo = 0.9;
+    const patient = neutral();
+    patient.riskTolerance = 0.05;
+    patient.tempo = 0.1;
+    const seeds = [11, 42, 99, 1234, 777, 31337];
+    const [a1, b1] = totals(direct, patient, seeds);
+    const [b2, a2] = totals(patient, direct, seeds.map((s) => s + 13));
+    expect(a1.throughBalls + a2.throughBalls).toBeGreaterThan(b1.throughBalls + b2.throughBalls);
+  });
+
   it('stamina conservation saves energy', () => {
     const miser = neutral();
     miser.staminaConservation = 0.95;
