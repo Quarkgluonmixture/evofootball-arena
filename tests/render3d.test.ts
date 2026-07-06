@@ -142,10 +142,22 @@ describe('cameraGoalFor', () => {
   const ball = { x: 20, z: -10, vx: 5, vz: 0 };
 
   it('returns finite goals for every non-orbit mode', () => {
-    for (const mode of ['tactical', 'broadcast', 'follow', 'behindGoal'] as const) {
+    for (const mode of ['tactical', 'broadcast', 'follow', 'behindGoal', 'penalty'] as const) {
       const g = cameraGoalFor(mode, ball);
       for (const v of Object.values(g)) expect(Number.isFinite(v)).toBe(true);
       expect(g.py).toBeGreaterThan(0);
+    }
+  });
+
+  it('penalty shot sits behind the taker looking at the goal (Phase 24)', () => {
+    for (const sign of [1, -1] as const) {
+      const spot = { x: sign * 35.6, z: 0, vx: 0, vz: 0 };
+      const g = cameraGoalFor('penalty', spot);
+      expect(g.lx).toBe(sign * 45); // frames the goal
+      // Camera between halfway and the spot — behind the kicker, not the net.
+      expect(Math.abs(g.px)).toBeLessThan(Math.abs(spot.x));
+      expect(Math.sign(g.px)).toBe(sign);
+      expect(g.py).toBeLessThan(7.5); // lower than the behind-goal gantry
     }
   });
 

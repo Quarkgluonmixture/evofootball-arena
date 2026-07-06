@@ -155,6 +155,8 @@ export function cupUnderdog(cup: CupState, slotA: number, slotB: number): number
 export interface ShootoutSquad {
   /** Kicker finishing in kick order: best outfield finishers first, keeper 5th. */
   kickers: number[];
+  /** Player indices (0–4) in the same kick order — presentation reads WHO kicks. */
+  order: number[];
   gkReflexes: number;
 }
 
@@ -165,13 +167,28 @@ export interface ShootoutResult {
   sudden: boolean;
 }
 
+/** One kick of a shootout, for kick-by-kick presentation (Phase 24). */
+export interface ShootoutKick {
+  /** 0 = home kicks (hosts go first). */
+  side: 0 | 1;
+  /** Kicking player's index (0–4) within their team. */
+  kicker: number;
+  scored: boolean;
+  /** Running shootout score after this kick. */
+  h: number;
+  a: number;
+  sudden: boolean;
+}
+
 /** Kick order from squad DNA: outfielders by finishing (index tiebreak), GK last. */
 export function shootoutLineup(squad: PlayerAttributes[]): ShootoutSquad {
   const outfield = [1, 2, 3, 4].sort(
     (i, j) => squad[j].finishing - squad[i].finishing || i - j,
   );
+  const order = [...outfield, 0];
   return {
-    kickers: [...outfield.map((i) => squad[i].finishing), squad[0].finishing],
+    kickers: order.map((i) => squad[i].finishing),
+    order,
     gkReflexes: squad[0].reflexes,
   };
 }
@@ -184,8 +201,17 @@ export function shootoutLineup(squad: PlayerAttributes[]): ShootoutSquad {
  * catch up, then sudden-death pairs cycling the lineup. Returns null in the
  * astronomically unlikely event ten sudden-death rounds stay level — the
  * caller falls back to the underdog rule so resolution stays total.
+ *
+ * `kicks`, when given, records every kick in strike order for kick-by-kick
+ * presentation. Recording changes NO rng draws — results are identical with
+ * or without it (regression-tested), so persisted saves never shift.
  */
-export function resolveShootout(home: ShootoutSquad, away: ShootoutSquad, rng: Rng): ShootoutResult | null {
+export function resolveShootout(
+  home: ShootoutSquad,
+  away: ShootoutSquad,
+  rng: Rng,
+  kicks?: ShootoutKick[],
+): ShootoutResult | null {
   const kickP = (finishing: number, reflexes: number): number =>
     Math.min(0.95, Math.max(0.35, 0.74 + (finishing - 0.5) * 0.3 - (reflexes - 0.5) * 0.3));
   const BEST_OF = 5;
@@ -194,13 +220,20 @@ export function resolveShootout(home: ShootoutSquad, away: ShootoutSquad, rng: R
   let hTaken = 0;
   let aTaken = 0;
   const decided = (): boolean => h > a + (BEST_OF - aTaken) || a > h + (BEST_OF - hTaken);
+  const record = (side: 0 | 1, lineup: number, scored: boolean, sudden: boolean): void => {
+    kicks?.push({ side, kicker: (side === 0 ? home : away).order[lineup], scored, h, a, sudden });
+  };
 
   for (let kick = 0; kick < BEST_OF * 2 && !decided(); kick++) {
     if (kick % 2 === 0) {
-      if (rng.chance(kickP(home.kickers[hTaken], away.gkReflexes))) h++;
+      const scored = rng.chance(kickP(home.kickers[hTaken], away.gkReflexes));
+      if (scored) h++;
+      record(0, hTaken, scored, false);
       hTaken++;
     } else {
-      if (rng.chance(kickP(away.kickers[aTaken], home.gkReflexes))) a++;
+      const scored = rng.chance(kickP(away.kickers[aTaken], home.gkReflexes));
+      if (scored) a++;
+      record(1, aTaken, scored, false);
       aTaken++;
     }
   }
@@ -211,7 +244,9 @@ export function resolveShootout(home: ShootoutSquad, away: ShootoutSquad, rng: R
     const hScores = rng.chance(kickP(home.kickers[kicker], away.gkReflexes));
     const aScores = rng.chance(kickP(away.kickers[kicker], home.gkReflexes));
     if (hScores) h++;
+    record(0, kicker, hScores, true);
     if (aScores) a++;
+    record(1, kicker, aScores, true);
     if (hScores !== aScores) return { scoreH: h, scoreA: a, sudden: true };
   }
   return null;

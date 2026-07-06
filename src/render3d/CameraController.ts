@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { HALF_L } from '../sim/constants';
 import { clamp } from '../utils/math';
 
-export type CameraMode = 'tactical' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit';
+export type CameraMode = 'tactical' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty';
 
 export interface CameraGoal {
   px: number;
@@ -67,6 +67,21 @@ export function cameraGoalFor(
         lx: goalX * 0.45 + ball.x * 0.55,
         ly: 0.8,
         lz: ball.z * 0.65,
+      };
+    }
+    case 'penalty': {
+      // Pens TV shot (Phase 24): low, over the taker's shoulder, keeper and
+      // goalmouth filling the frame — the behind-goal shot hides the diving
+      // keeper behind the net at this range. Following the ball gives a
+      // gentle damped push-in as the kick flies.
+      const sign = ball.x >= 0 ? 1 : -1;
+      return {
+        px: ball.x - sign * 10.5,
+        py: 4.6,
+        pz: 5.2,
+        lx: sign * HALF_L,
+        ly: 1.3,
+        lz: 0,
       };
     }
   }

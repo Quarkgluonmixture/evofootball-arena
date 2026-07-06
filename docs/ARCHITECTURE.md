@@ -33,7 +33,7 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-23`)**: phases 0–23 complete — deterministic 5v5
+**Status (as of tag `phase-24`)**: phases 0–24 complete — deterministic 5v5
 sim with real boundaries and set pieces (kick-ins/corners/goal kicks as live
 dead-ball restarts); 14 tactical genes + 5-attr squad DNA; a 16-team
 Premier/Challenger pyramid with promotion/relegation and an optional playoff
@@ -62,9 +62,14 @@ league-screen option (phase 22); Wildcard co-training — per-role policy
 vectors (`TeamInfo.rolePolicies`, resolved per player with a bit-identical
 default fallback) and an ES that learns the 14 tactical genes together with
 five role vectors, warm-started from the previous champion; held-out 32/48
-pts vs shared-policy 25/48 vs default 6/48 (phase 23). 127 vitest tests;
-Playwright suites: 2D 53 checks, 3D 26 checks; ~25 ms/headless match. Git
-tags `phase-10`…`phase-22` are known-green checkpoints; published at
+pts vs shared-policy 25/48 vs default 6/48 (phase 23); the 3D shootout
+theater — drawn cup ties watched in 3D stage their already-decided shootout
+kick by kick (`resolveShootout` optionally records a kick script with zero
+extra rng draws; `ShootoutTheater` synthesizes RenderStates; a dedicated
+'penalty' camera + broadcast finale cut; applyResult deferred to theater
+end, ⏭ skips; phase 24). 137 vitest tests;
+Playwright suites: 2D 53 checks, 3D ~32 checks; ~25 ms/headless match. Git
+tags `phase-10`…`phase-24` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
 
@@ -275,8 +280,22 @@ screen renders it all.
 - **Debug overlays**: one `UiFlags` object drives both views — 2D
   (`render/DebugOverlay.ts`) and 3D (`render3d/Overlays3D.ts`): action labels,
   formation targets, pass/shot lines, marking lines, press rings, heatmap (2D).
+- **Shootout theater** (`render3d/ShootoutTheater.ts`, Phase 24): when a
+  watched cup tie ends level in 'shootout' mode and the 3D view is active,
+  GameApp recomputes the tie's shootout via `league.shootoutContext(fixture)`
+  + `resolveShootout(…, kicks)` — the SAME pure seeded function applyResult
+  uses, so the staged outcome always matches the recorded one (tested) —
+  and defers `applyResult` until the theater ends. The theater is a pure
+  RenderState synthesizer (no three.js, no sim access, wall-clock driven):
+  walk-up/strike/dive/celebration per kick, slow-mo deciding kick, a
+  `RenderState.shootout` pens score for the bug, save/goal fx, and a
+  'penalty' camera (behind the taker) cutting to broadcast for the finale.
+  ⏭ skips; 2D falls back to instant resolution. `__evo.debugShootout()`
+  stages a synthetic one for the Playwright suite. Sim state is never
+  touched — watched-vs-skipped equivalence is unaffected.
 - **Dev hook**: `window.__evo` exposes player positions (2D px + 3D projected),
-  `three()` debug info, `replayInfo()`, `viewMode()` — used by Playwright and
+  `three()` debug info, `replayInfo()`, `viewMode()`, `theater()`,
+  `debugShootout()` — used by Playwright and
   console debugging. Extend it rather than adding ad-hoc globals.
 
 ## 8. How UI and rendering consume sim state
@@ -377,6 +396,13 @@ only caught by eyes on the PNGs.
     Node-derived *outcomes* (names, scores, story types) in Playwright
     browser checks — assert structure; and don't compare saves across
     runtimes. Within-engine reproducibility stays regression-tested.
+13. **The behind-goal camera hides goal-line actors.** From `behindGoal`'s
+    gantry (13 m behind the net, 7.5 m up) anything within ~1 m of the goal
+    line renders THROUGH the semi-transparent net mesh against the dark
+    apron — a diving keeper is effectively invisible. That is why the
+    shootout theater got its own 'penalty' camera (low, behind the taker).
+    If you stage new goal-line presentation, screenshot it before trusting
+    any fixed camera (`scripts/probe-shootout.mjs` is the pattern).
 
 ## 11. Known tuning levers
 

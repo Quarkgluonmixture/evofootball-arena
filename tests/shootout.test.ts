@@ -8,6 +8,7 @@ import { Rng } from '../src/utils/rng';
 
 const squadOf = (finishing: number, reflexes: number): ShootoutSquad => ({
   kickers: [finishing, finishing, finishing, finishing, finishing],
+  order: [1, 2, 3, 4, 0],
   gkReflexes: reflexes,
 });
 
@@ -80,7 +81,65 @@ describe('penalty shootout (Phase 22)', () => {
     const lineup = shootoutLineup(squad);
     // Outfield sorted by finishing desc with index tiebreak (2 → 0.9, then 3 & 4 at 0.6, then 1), GK last.
     expect(lineup.kickers).toEqual([0.9, 0.6, 0.6, 0.4, 0.2]);
+    expect(lineup.order).toEqual([2, 3, 4, 1, 0]);
+    // The order indices and kicker values must describe the same players.
+    lineup.order.forEach((pi, i) => expect(squad[pi].finishing).toBe(lineup.kickers[i]));
     expect(lineup.gkReflexes).toBe(0.7);
+  });
+
+  it('kick recording (Phase 24): same result, honest kick-by-kick script', () => {
+    for (let seed = 0; seed < 200; seed++) {
+      const bare = resolveShootout(squadOf(0.6, 0.5), squadOf(0.4, 0.6), new Rng(seed));
+      const kicks: import('../src/sim/cup').ShootoutKick[] = [];
+      const recorded = resolveShootout(squadOf(0.6, 0.5), squadOf(0.4, 0.6), new Rng(seed), kicks);
+      // Recording must not shift a single rng draw.
+      expect(recorded).toEqual(bare);
+      if (!recorded) continue;
+      // The script's running score ends exactly at the recorded result.
+      const last = kicks[kicks.length - 1];
+      expect([last.h, last.a]).toEqual([recorded.scoreH, recorded.scoreA]);
+      // Best-of-5 kicks alternate home/away starting with the hosts.
+      kicks.filter((k) => !k.sudden).forEach((k, i) => expect(k.side).toBe(i % 2));
+      // Sudden-death kicks appear only after the best-of-5, in home/away pairs.
+      const firstSudden = kicks.findIndex((k) => k.sudden);
+      if (firstSudden >= 0) {
+        expect(recorded.sudden).toBe(true);
+        kicks.slice(firstSudden).forEach((k, i) => {
+          expect(k.sudden).toBe(true);
+          expect(k.side).toBe(i % 2);
+        });
+      }
+      // Scores only ever step up by the recorded kick's own outcome.
+      let h = 0;
+      let a = 0;
+      for (const k of kicks) {
+        if (k.scored) k.side === 0 ? h++ : a++;
+        expect([k.h, k.a]).toEqual([h, a]);
+        expect(k.kicker).toBeGreaterThanOrEqual(0);
+        expect(k.kicker).toBeLessThanOrEqual(4);
+      }
+    }
+  });
+
+  it('league shootoutContext replays the exact shootout applyResult recorded', { timeout: 20000 }, () => {
+    const league = new League({ seed: 3, matchDuration: 30 });
+    let checked = 0;
+    while (!league.seasonDone) {
+      const f = league.nextFixture()!;
+      const result = league.createMatch(f).runToCompletion();
+      // Capture the presentation script BEFORE applying, like the theater does.
+      const ctx = f.cup && result.score[0] === result.score[1] ? league.shootoutContext(f) : undefined;
+      const kicks: import('../src/sim/cup').ShootoutKick[] = [];
+      const replayed = ctx ? resolveShootout(ctx.home, ctx.away, ctx.rng, kicks) : null;
+      league.applyResult(f, result);
+      if (ctx && replayed) {
+        const tie = league.cup!.ties.find((t) => t.round === f.round && t.index === f.index)!;
+        expect(tie.shootout).toEqual(replayed); // same seed ⇒ same shootout
+        expect(kicks.length).toBeGreaterThan(0);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(0);
   });
 
   it('league integration: in shootout mode drawn ties carry a shootout and its winner', { timeout: 20000 }, () => {

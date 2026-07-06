@@ -2,6 +2,7 @@ import { hashSeed, Rng } from '../utils/rng';
 import {
   CUP_ROUND_SHORT, CUP_SEED_TAG, CUP_SHOOTOUT_TAG, buildCup, buildCupRecord, cupRoundComplete,
   fillCupRound, resolveCupTie, shootoutLineup, type CupDrawMode, type CupRecord, type CupState,
+  type ShootoutSquad,
 } from './cup';
 import { evolveGroup, type EvolutionReport } from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
@@ -271,6 +272,21 @@ export class League {
     });
   }
 
+  /**
+   * The shootout inputs a drawn cup tie will resolve with (mode 'shootout'):
+   * lineups from squad DNA and a fresh derived-seed Rng. Pure and stateless —
+   * `applyResult` consumes it, and the presentation layer calls it again to
+   * replay the identical kick sequence (same seed ⇒ same shootout).
+   */
+  shootoutContext(fixture: Fixture): { home: ShootoutSquad; away: ShootoutSquad; rng: Rng } | undefined {
+    if (this.cupDrawMode !== 'shootout') return undefined;
+    return {
+      home: shootoutLineup(this.franchise(fixture.home).squad),
+      away: shootoutLineup(this.franchise(fixture.away).squad),
+      rng: new Rng(hashSeed(this.seed, this.generation, CUP_SHOOTOUT_TAG + fixture.round, fixture.index)),
+    };
+  }
+
   applyResult(fixture: Fixture, result: MatchResult): void {
     fixture.played = true;
     fixture.scoreH = result.score[0];
@@ -289,15 +305,7 @@ export class League {
       if (this.cup) {
         // Drawn ties: seeded shootout in 'shootout' mode (its own derived
         // seed — never the match's rng), underdog rule otherwise.
-        const shootout =
-          this.cupDrawMode === 'shootout'
-            ? {
-                home: shootoutLineup(this.franchise(fixture.home).squad),
-                away: shootoutLineup(this.franchise(fixture.away).squad),
-                rng: new Rng(hashSeed(this.seed, this.generation, CUP_SHOOTOUT_TAG + fixture.round, fixture.index)),
-              }
-            : undefined;
-        resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1], shootout);
+        resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1], this.shootoutContext(fixture));
         for (let gid = 0; gid < result.playerStats.length; gid++) {
           const slot = gid < 5 ? fixture.home : fixture.away;
           this.cup.playerGoals[slot][gid % 5] += result.playerStats[gid].goals;

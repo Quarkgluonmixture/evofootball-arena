@@ -10,9 +10,11 @@ import { cameraForEvent, type CameraMode } from '../render3d/CameraController';
 import {
   buildOverlays, buildRenderState, buildRenderTheme, type RenderState,
 } from '../render3d/RenderStateAdapter';
+import { ShootoutTheater } from '../render3d/ShootoutTheater';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
+import { resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
 import { buildWildcardTeamInfo, WILDCARD_NAME } from '../ai/wildcard';
 import { describeIdentity } from '../evolution/genome';
 import { WILDCARD } from '../ai/wildcardPolicy';
@@ -20,7 +22,7 @@ import { League, type Fixture, type SeasonRecord } from '../sim/League';
 import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
 import { Match } from '../sim/Match';
 import type { SimRequest } from '../sim/simRunner';
-import { hashSeed } from '../utils/rng';
+import { hashSeed, Rng } from '../utils/rng';
 import type { SimWorkerMessage } from './simWorker';
 import type { MatchEvent } from '../sim/types';
 import {
@@ -94,6 +96,14 @@ export class GameApp implements GameActions {
     source: null as ReplayBuffer | null,
     events: [] as MatchEvent[],
   };
+
+  // ---- shootout theater (Phase 24): kick-by-kick pens presentation ----
+  private theater: ShootoutTheater | null = null;
+  /** Camera mode to restore when the theater ends. */
+  private theaterPrevCam: CameraMode | null = null;
+  /** Debug-hook theater: presentation only, never applies a result. */
+  private theaterDebug = false;
+  private shootoutHintShown = false;
 
   async init(root: HTMLElement): Promise<void> {
     // ---- DOM shell ----
@@ -228,6 +238,8 @@ export class GameApp implements GameActions {
       viewMode: () => this.viewMode,
       cinematic: () => this.cinematic,
       simMode: () => this.lastSimMode,
+      theater: () => (this.theater ? this.theater.info() : null),
+      debugShootout: () => this.debugShootout(),
     };
   }
 
@@ -236,7 +248,8 @@ export class GameApp implements GameActions {
   private frame(t: Ticker): void {
     const dtReal = Math.min(t.deltaMS / 1000, 0.1);
     let steps = 0;
-    if (!this.paused && !this.busy && this.match && !this.match.finished) {
+    // A shootout theater owns the stage — the sim never advances behind it.
+    if (!this.paused && !this.busy && this.match && !this.match.finished && !this.theater) {
       this.acc += dtReal * this.speed;
       const maxSteps = this.speed * 4 + 8; // spiral-of-death guard
       while (this.acc >= DT && steps < maxSteps) {
@@ -295,8 +308,20 @@ export class GameApp implements GameActions {
       `<span class="sb-min">${m.minute()}'</span>`;
   }
 
-  /** What the 3D view should draw this frame: live sim state or replay state. */
+  /** What the 3D view should draw this frame: live sim, replay, or theater. */
   private currentRenderState(dtReal: number): RenderState | null {
+    if (this.theater) {
+      const st = this.theater.advance(this.paused ? 0 : dtReal);
+      for (const k of this.theater.takeEvents()) this.announceKick(k);
+      // Director's cut: wide shot for the closing celebration (only if the
+      // user hasn't taken the camera over themselves).
+      if (this.theater.finale && this.three && this.three.cameraMode === 'penalty') {
+        this.three.setCameraMode('broadcast');
+        this.left.setViewUI(this.viewMode, 'broadcast');
+      }
+      if (this.theater.done) this.finishTheater();
+      return st;
+    }
     if (this.replay.active && this.replay.source) {
       if (this.replay.playing) {
         const range = this.replay.source.range();
@@ -316,6 +341,7 @@ export class GameApp implements GameActions {
 
   private loadNextFixture(): void {
     this.exitReplay();
+    this.dropTheater(); // league (re)loads discard any pending presentation
     this.exhibition = false; // any league (re)load ends a pending exhibition
     this.fixture = this.league.nextFixture();
     if (!this.fixture) return; // never happens: finishSeason immediately schedules the next
@@ -345,12 +371,120 @@ export class GameApp implements GameActions {
       return;
     }
     if (!this.fixture || !this.match) return;
+    // Phase 24: a drawn cup tie in shootout mode is presented kick by kick in
+    // 3D — the result (same seeded pure function the League applies) is
+    // staged first; applyResult runs when the theater ends.
+    if (this.fixture.cup && this.match.score[0] === this.match.score[1]) {
+      const ctx = this.league.shootoutContext(this.fixture);
+      if (ctx) {
+        const kicks: ShootoutKick[] = [];
+        if (resolveShootout(ctx.home, ctx.away, ctx.rng, kicks)) {
+          if (this.viewMode === '3d' && this.three) {
+            this.startTheater(kicks);
+            return;
+          }
+          if (!this.shootoutHintShown) {
+            this.shootoutHintShown = true;
+            this.feed.pushSystem('🥅 Tip: watch cup ties in 3D to see shootouts play out kick by kick.');
+          }
+        }
+      }
+    }
     this.league.applyResult(this.fixture, this.match.getResult());
     this.afterFixtureApplied();
     if (!this.autoContinue) {
       this.paused = true;
       this.left.setSpeedUI(this.paused, this.speed);
     }
+  }
+
+  /* ---------------- shootout theater (Phase 24) ---------------- */
+
+  private startTheater(kicks: ShootoutKick[]): void {
+    if (!this.match || !this.three) return;
+    const m = this.match;
+    this.theater = new ShootoutTheater(kicks, buildRenderState(m, false).players, [m.score[0], m.score[1]]);
+    this.theaterPrevCam = this.three.cameraMode;
+    this.three.setCameraMode('penalty');
+    this.left.setViewUI(this.viewMode, 'penalty');
+    this.paused = false;
+    this.left.setSpeedUI(false, this.speed);
+    this.feed.pushSystem(
+      `🥅 Level at full time — penalty shootout: ${m.teams[0].info.name} vs ${m.teams[1].info.name} (⏭ to skip).`,
+    );
+  }
+
+  /** One feed line per landed kick, with the real kicker/keeper names. */
+  private announceKick(k: ShootoutKick): void {
+    const m = this.match;
+    if (!m) return;
+    const kicker = m.teams[k.side].players[k.kicker];
+    const keeper = m.teams[1 - k.side].players[0];
+    const tag = k.sudden ? 'Sudden death' : 'Pens';
+    this.feed.pushSystem(
+      k.scored
+        ? `🥅 ${tag}: ${kicker.name} scores — ${k.h}–${k.a}.`
+        : `🥅 ${tag}: ${kicker.name} — SAVED by ${keeper.name}! Still ${k.h}–${k.a}.`,
+    );
+  }
+
+  /**
+   * End the theater: drain remaining feed lines, restore the camera, then
+   * apply the deferred result (the League's own seeded shootout resolves to
+   * the exact same score). Debug theaters apply nothing.
+   */
+  private finishTheater(): void {
+    const th = this.theater;
+    if (!th) return;
+    th.skip();
+    for (const k of th.takeEvents()) this.announceKick(k);
+    this.theater = null;
+    if (this.three && this.theaterPrevCam) {
+      this.three.setCameraMode(this.theaterPrevCam);
+      this.left.setViewUI(this.viewMode, this.theaterPrevCam);
+    }
+    this.theaterPrevCam = null;
+    if (this.theaterDebug) {
+      this.theaterDebug = false;
+      return;
+    }
+    if (this.fixture && this.match) {
+      this.league.applyResult(this.fixture, this.match.getResult());
+      this.afterFixtureApplied();
+      if (!this.autoContinue) {
+        this.paused = true;
+        this.left.setSpeedUI(true, this.speed);
+      }
+    }
+  }
+
+  /** Discard a pending theater without applying anything (league swaps). */
+  private dropTheater(): void {
+    if (!this.theater) return;
+    this.theater = null;
+    this.theaterDebug = false;
+    if (this.three && this.theaterPrevCam) {
+      this.three.setCameraMode(this.theaterPrevCam);
+      this.left.setViewUI(this.viewMode, this.theaterPrevCam);
+    }
+    this.theaterPrevCam = null;
+  }
+
+  /** Dev hook: stage a synthetic shootout over the current match (3D only). */
+  private debugShootout(): boolean {
+    if (this.viewMode !== '3d' || !this.three || !this.match || this.theater) return false;
+    const m = this.match;
+    const kicks: ShootoutKick[] = [];
+    const res = resolveShootout(
+      shootoutLineup(m.teams[0].info.squad),
+      shootoutLineup(m.teams[1].info.squad),
+      new Rng(7),
+      kicks,
+    );
+    if (!res) return false;
+    this.theaterDebug = true;
+    this.startTheater(kicks);
+    return true;
   }
 
   /** Keep the finished match's recording around for 3D replay. */
@@ -450,6 +584,10 @@ export class GameApp implements GameActions {
 
   skipMatch(): void {
     if (this.busy) return;
+    if (this.theater) {
+      this.finishTheater(); // ⏭ during a shootout: jump to the result
+      return;
+    }
     if (this.exhibition && this.match) {
       this.match.runToCompletion();
       this.onWatchedMatchFinished();
@@ -461,6 +599,7 @@ export class GameApp implements GameActions {
   /** Field the ES-trained Wildcard XI against the current Premier leader. */
   playExhibition(): void {
     if (this.busy) return;
+    this.finishTheater();
     this.exitReplay();
     const leader = this.league.standings(0)[0];
     const opp = this.league.teamInfo(leader.slot);
@@ -535,6 +674,7 @@ export class GameApp implements GameActions {
    */
   private runSim(req: SimRequest, cont: () => boolean, label: string): void {
     if (this.busy) return;
+    this.finishTheater(); // apply a pending shootout before fast-simming on
     const w = this.ensureSimWorker();
     if (!w) {
       this.lastSimMode = 'main';
@@ -818,6 +958,7 @@ export class GameApp implements GameActions {
       this.app.canvas.style.display = 'none';
       this.threeHost.style.display = '';
     } else {
+      this.finishTheater(); // switching away = skipping the shootout
       this.exitReplay();
       this.viewMode = '2d';
       this.threeHost.style.display = 'none';
@@ -841,6 +982,10 @@ export class GameApp implements GameActions {
 
   openReplay(): void {
     if (this.replay.active) return;
+    if (this.theater) {
+      this.feed.pushSystem('🎬 After the shootout — ⏭ skips it.');
+      return;
+    }
     if (this.viewMode !== '3d') this.setViewMode('3d');
     if (this.viewMode !== '3d' || !this.three) return; // 3D init failed
     const useLive = this.buffer.hasContent;

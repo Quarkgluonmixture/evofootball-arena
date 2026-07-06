@@ -52,7 +52,7 @@ npx tsx scripts/train-wildcard.ts   # retrain the Wildcard XI (co-training ES, ~
 npx playwright install chromium
 npx vite --port 5199 --strictPort &   # the suites expect the dev server here
 npm run debug:visual      # drives the real 2D game end to end (53 checks + screenshots)
-npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic (26 checks)
+npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shootout theater (~32 checks)
 ```
 
 ### Troubleshooting
@@ -73,6 +73,13 @@ npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic (26 ch
 
 - **Speed controls** (left panel): pause / 1× / 2× / 8× / 32×, plus **⏭ skip**
   to finish the current match instantly (identical result — see Determinism).
+- **Penalty shootouts play out kick by kick in 3D** (Phase 24): watch a drawn
+  cup tie to full time in the 3D view and the shootout is staged live —
+  walk-ups, dives, a running pens score bug, the deciding kick in slow
+  motion and a broadcast-wide winner celebration, narrated kick-by-kick in
+  the feed. ⏭ skips it; the result is identical either way (the same seeded
+  shootout the league records — presentation only). In 2D the result is
+  announced instantly, as before.
 - **Simulate** buttons run a whole round / season / 10 seasons headless — on
   a **Web Worker** (Phase 16), so the UI stays at 60 fps during long runs;
   results are byte-identical to main-thread simulation (regression-tested)
@@ -133,7 +140,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (127 tests)
+tests/                  vitest suites (137 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -336,7 +343,8 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   the underdog hosts. **Drawn ties go to a deterministic penalty shootout**
   (Phase 22 — best finishers kick first vs the keeper's reflexes, best-of-5
   then sudden death, seeded so the same league replays the same shootout;
-  the bracket shows the pens score). The classic **underdog rule** — lower
+  the bracket shows the pens score, and watched ties stage it kick by kick
+  in 3D — Phase 24). The classic **underdog rule** — lower
   division, else lower seed, advances, "the cup loves an upset" — is a
   league-screen setting and what pre-shootout saves keep. No extra time
   either way. Cup ties are standalone
@@ -429,13 +437,14 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 127 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
+- `npm test` — 137 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, foul/free-kick/penalty rules (award logic, taker choice,
   clearance, first-touch shot, directional foul-rate test), penalty-shootout
   rules (determinism, decisiveness, directional finishing/keeper tests,
-  lineup order, league integration, save default), league/Elo/evolution
+  lineup order, league integration, save default, kick-recording equivalence
+  + theater staging/skip/determinism — Phase 24), league/Elo/evolution
   invariants, Evo Cup bracket shape/draw-rule/standalone-tie/determinism,
   save/load + file export/import roundtrips incl. the v1–v5 migration chain,
   and statistical gene/attribute effect tests.
@@ -445,8 +454,10 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
   seasons from the UI, exercises cinematic/screenshot/share/FX-quality
   controls, and screenshots every stage to `/tmp/evofootball-shots/`
-  (53 checks). The 3D suite covers models, cameras, replay, score bug and
-  cinematic mode (26 checks).
+  (53 checks). The 3D suite covers models, cameras, replay, score bug,
+  cinematic mode and the shootout theater (~32 checks; a few are conditional
+  on match events). `node scripts/probe-shootout.mjs` screenshots the
+  theater's key beats for eyeballing.
 
 ## What's implemented vs. next steps
 
@@ -457,7 +468,9 @@ AI, 14 live tactical
 genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
 knockout between league rounds with giant-killing/upset/double/revenge
-narratives, penalty shootouts for drawn ties, bracket UI and cup honours),
+narratives, penalty shootouts for drawn ties — staged kick-by-kick in 3D
+with a dedicated pens camera, slow-mo deciding kick and winner banner
+(Phase 24) — bracket UI and cup honours),
 watch UI with 5 speeds +
 headless fast-sim, live match stats +
 xG race chart, debug overlays, a full 3D match viewer (procedural players with
@@ -471,13 +484,10 @@ fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), the ES-trained Wildcard XI benchmark team — tactical genes
 co-trained with five per-role brain vectors (Phases 18 + 23) — with in-game
-exhibitions, 127 tests, and
-browser-driving visual smoke tests for both views (53 + 26 checks).
+exhibitions, 137 tests, and
+browser-driving visual smoke tests for both views (53 + ~32 checks).
 
 Ideas for the next phase (rough priority order):
-- 3D shootout presentation: a drawn cup tie's shootout currently resolves
-  instantly at full time (feed lines + bracket pens score) — a kick-by-kick
-  staging with the behind-goal camera and slow-mo would make it watchable
 - Yellow/red cards: light = booking stats + a "dirtiest team" season award;
   heavy = red cards playing 4v5 (touches formation math — scope carefully)
 - Player careers: aging/development curves, retirements and newgens for

@@ -201,6 +201,31 @@ await page.click('button:has-text("3D")');
 await page.waitForTimeout(800);
 check('3D re-initializes after dispose', (await page.evaluate(() => window.__evo.three()))?.players === 10);
 
+// ---- Phase 24: shootout theater (dev-hook driven; checks stay structural —
+// the kick script itself is engine-independent, mulberry32 only) ----
+const theaterStarted = await page.evaluate(() => window.__evo.debugShootout());
+check('shootout theater starts via dev hook', theaterStarted === true);
+await page.waitForTimeout(400);
+const th = await page.evaluate(() => window.__evo.theater());
+check('theater reports kick progress', th !== null && th.total >= 6, JSON.stringify(th));
+check(
+  'penalty camera takes over for pens',
+  (await page.evaluate(() => window.__evo.three().cameraMode)) === 'penalty',
+);
+const pensBugEarly = await page.textContent('#three-host .score-bug');
+check('score bug switches to the pens score', pensBugEarly.includes('pens'), pensBugEarly.slice(0, 60));
+// Let the first kick land (intro + walk + set + strike ≈ 5.2s), then look.
+await page.waitForTimeout(7000);
+await page.screenshot({ path: `${OUT}/12-shootout.png` });
+const theaterFeed = await page.textContent('#event-feed');
+check('feed narrates kicks by name', theaterFeed.includes('Pens:'), '');
+check('theater still owns the stage mid-shootout', (await page.evaluate(() => window.__evo.theater())) !== null);
+await page.click('button:has-text("⏭ skip")');
+await page.waitForTimeout(300);
+check('⏭ skips the shootout', (await page.evaluate(() => window.__evo.theater())) === null);
+const feedAfterTheater = await page.textContent('#event-feed');
+check('skipped kicks still reach the feed', (feedAfterTheater.match(/Pens:|Sudden death:/g) ?? []).length >= 6);
+
 check('no console/page errors', errors.length === 0, errors.slice(0, 3).join(' | '));
 
 const failed = checks.filter((c) => !c.ok);

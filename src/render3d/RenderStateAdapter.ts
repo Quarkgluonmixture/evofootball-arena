@@ -72,6 +72,11 @@ export interface RenderState {
   overlays: OverlayState | null;
   /** Events from the last ~0.5s of sim time — viewers dedupe by `t`. */
   fx: FxEvent[];
+  /**
+   * Running penalty-shootout score while the shootout theater plays
+   * (Phase 24). Never set by the live-sim adapter or replays.
+   */
+  shootout?: { h: number; a: number };
 }
 
 /** Static per-match info the 3D scene needs once (kits, names, roles). */
@@ -243,6 +248,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
     celebratingSide: late.celebratingSide,
     celebratingGid: late.celebratingGid,
     fx: late.fx,
+    shootout: late.shootout,
     players: a.players.map((pa, i) => {
       const pb = b.players[i] ?? pa;
       return {

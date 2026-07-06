@@ -96,8 +96,14 @@ export class ThreeMatchRenderer {
       onGoal: (side) => {
         this.goals[side].shake();
         const team = this.theme?.teams[side];
-        const score = this.lastState ? `${this.lastState.score[0]}–${this.lastState.score[1]}` : '';
-        if (team) this.showBanner(team.name, score, team.primary);
+        const pens = this.lastState?.shootout;
+        if (team && pens) {
+          // Shootout theater's winning moment: pens score, not the FT score.
+          this.showBanner('WINS THE SHOOTOUT!', `${team.name} · ${pens.h}–${pens.a} pens`, team.primary);
+        } else if (team) {
+          const score = this.lastState ? `${this.lastState.score[0]}–${this.lastState.score[1]}` : '';
+          this.showBanner('GOAL!', `${team.name}${score ? ` · ${score}` : ''}`, team.primary);
+        }
       },
       onShot: () => this.cameraCtl.pulse(),
       onEvent: (type) => this.onFxEvent?.(type),
@@ -213,12 +219,13 @@ export class ThreeMatchRenderer {
     }
   }
 
-  /** Broadcast score bug: `RUS 2–1 OBS · 34'` with kit-color chips. */
+  /** Broadcast score bug: `RUS 2–1 OBS · 34'` (`· pens 3–2` during shootouts). */
   private updateScoreBug(state: RenderState): void {
     const t = this.theme;
     if (!t) return;
     this.scoreBug.classList.remove('hidden');
-    const text = `${t.teams[0].short}${state.score[0]}${state.score[1]}${t.teams[1].short}${state.minute}`;
+    const pens = state.shootout ? `${state.shootout.h}:${state.shootout.a}` : '';
+    const text = `${t.teams[0].short}${state.score[0]}${state.score[1]}${t.teams[1].short}${state.minute}${pens}`;
     if (text === this.scoreBugText) return;
     this.scoreBugText = text;
     this.scoreBug.innerHTML =
@@ -227,13 +234,15 @@ export class ThreeMatchRenderer {
       `<span class="sb-score">${state.score[0]}–${state.score[1]}</span>` +
       `<span class="sb-team">${t.teams[1].short}</span>` +
       `<span class="sb-chip" style="background:${colorHex(t.teams[1].primary)}"></span>` +
-      `<span class="sb-min">${state.minute}'</span>`;
+      (state.shootout
+        ? `<span class="sb-min">pens ${state.shootout.h}–${state.shootout.a}</span>`
+        : `<span class="sb-min">${state.minute}'</span>`);
   }
 
-  private showBanner(team: string, score: string, color: number): void {
+  private showBanner(title: string, sub: string, color: number): void {
     this.banner.innerHTML =
-      `<div class="gb-title">GOAL!</div>` +
-      `<div class="gb-sub">${team}${score ? ` · ${score}` : ''}</div>`;
+      `<div class="gb-title">${title}</div>` +
+      `<div class="gb-sub">${sub}</div>`;
     this.banner.style.borderColor = colorHex(color);
     this.banner.style.color = colorHex(color);
     this.banner.classList.remove('hidden');
