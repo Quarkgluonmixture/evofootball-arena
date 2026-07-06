@@ -75,7 +75,7 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
 export function defenderLineLocalX(team: Team, opponents: Player[]): number {
   let line = -HALF_L;
   for (const o of opponents) {
-    if (o.role === 'GK') continue;
+    if (o.role === 'GK' || o.sentOff) continue;
     const lx = team.localX(o.pos.x);
     if (lx > line) line = lx;
   }

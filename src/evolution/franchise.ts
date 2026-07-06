@@ -73,6 +73,9 @@ export interface SeasonAggregates {
   recoveries: number;
   staminaSpent: number;
   distance: number;
+  /** Cards picked up over the season (Phase 25) — feeds the dirtiest-team award. */
+  yellows: number;
+  reds: number;
   /** Per-match style samples for consistency scoring. */
   styleSamples: Array<{ passVol: number; pressVol: number }>;
 }
@@ -92,5 +95,7 @@ export const emptyAggregates = (): SeasonAggregates => ({
   recoveries: 0,
   staminaSpent: 0,
   distance: 0,
+  yellows: 0,
+  reds: 0,
   styleSamples: [],
 });

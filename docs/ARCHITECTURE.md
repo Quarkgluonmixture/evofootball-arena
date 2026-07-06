@@ -33,7 +33,7 @@ Data flows one way:
 `game/GameApp.ts` is the only orchestrator: it owns the fixed-timestep loop,
 the League lifecycle, view switching, replay state, and wires UI actions.
 
-**Status (as of tag `phase-24`)**: phases 0–24 complete — deterministic 5v5
+**Status (as of tag `phase-25`)**: phases 0–25 complete — deterministic 5v5
 sim with real boundaries and set pieces (kick-ins/corners/goal kicks as live
 dead-ball restarts); 14 tactical genes + 5-attr squad DNA; a 16-team
 Premier/Challenger pyramid with promotion/relegation and an optional playoff
@@ -43,8 +43,8 @@ between league rounds, with giant-killing/upset narratives); 2D (Pixi) + 3D
 broadcast + low-poly diorama", `docs/ART_DIRECTION.md`) with polished player
 models/stadium/broadcast overlays, cinematic mode, screenshot/share tools and
 an FX quality setting; season reports/awards/narratives, evolution sparklines,
-hall of fame with dynasty timelines and cup honours; saves at v5
-(chain-migrates v1–v4); fast-sim on a Web Worker with a bit-identical
+hall of fame with dynasty timelines and cup honours; saves at v6
+(chain-migrates v1–v5); fast-sim on a Web Worker with a bit-identical
 main-thread fallback (phase 16); release polish — quickstart README,
 responsive layout, PWA manifest/icon, MIT license (phase 17); the Wildcard XI
 — PlayerBrain utility weights exposed as `PolicyParams` (defaults
@@ -67,9 +67,15 @@ theater — drawn cup ties watched in 3D stage their already-decided shootout
 kick by kick (`resolveShootout` optionally records a kick script with zero
 extra rng draws; `ShootoutTheater` synthesizes RenderStates; a dedicated
 'penalty' camera + broadcast finale cut; applyResult deferred to theater
-end, ⏭ skips; phase 24). 137 vitest tests;
+end, ⏭ skips; phase 24); yellow/red cards — fouls sometimes book
+(`Match.maybeCard`, ~1.0🟨/0.09🟥 per match), a second yellow or straight
+red sends the player off and the team plays 4v5 (`Player.sentOff`, skipped
+by EVERY player loop — sim, brains, perception, steering, formations;
+keepers are never carded: no bench, and box fouls already concede a
+penalty), cards feed the Dirtiest-team award; saves at v6 (phase 25).
+145 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~32 checks; ~25 ms/headless match. Git
-tags `phase-10`…`phase-24` are known-green checkpoints; published at
+tags `phase-10`…`phase-25` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
 
@@ -183,7 +189,9 @@ bindings: `passBias/shootBias/dribbleBias` multiply carrier utilities
 (`PlayerBrain.decideCarrier`), `pressIntensity` sets chaser count + Press
 threshold (`TeamBrain`), `defensiveCompactness/attackingWidth/formationDepth`
 shape `formations.ts`, `markingAggression` sets tackle odds + mark distance
-(`mechanics.tryTackles`, executor), `keeperAggression` sets GK line height and
+(`mechanics.tryTackles`, executor) AND card odds (`Match.maybeCard` —
+aggression trades ball-winning against fouls, bookings and the occasional
+red), `keeperAggression` sets GK line height and
 reach, `staminaConservation` trades jog/press sprint speed for energy.
 
 **Squad DNA** (5 attributes per player, `evolution/playerGenome.ts`):
@@ -411,6 +419,7 @@ only caught by eyes on the PNGs.
 | Goals per match (~2.9 target) | `mechanics.tryKeeperSave` saveP base (0.52 − xG·0.6); shot `spread`; xG curve `exp(-d/11)` |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
 | Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
+| Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~1.0🟨/0.09🟥 per match; calibrate prints both) |
 | Direct play (through balls ~16/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
 | Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |
 | Pass-fest vs dribble balance | carrier utility bases in `PlayerBrain.decideCarrier`; post-receive settle (`giveBall` decisionTimer 0.3) |

@@ -480,6 +480,14 @@ export class LeagueScreen {
     mk('⚽ Golden Boot', rec.awards!.topScorers, (l) => `${l.name} (${l.team}) — ${l.goals}g ${l.assists}a`);
     mk('🅰️ Playmaker', rec.awards!.topAssists, (l) => `${l.name} (${l.team}) — ${l.assists}a ${l.goals}g`);
     mk('🧤 Golden Glove', rec.awards!.topKeeper ? [rec.awards!.topKeeper] : [], (l) => `${l.name} (${l.team}) — ${l.saves} saves`);
+    // Cards arrived in Phase 25 — records from older saves honestly have none.
+    const dirty = rec.awards!.dirtiest;
+    if (dirty) {
+      const card = el('div', 'team-card');
+      card.appendChild(el('div', 'team-head', '🟥 Dirtiest team'));
+      card.appendChild(el('div', '', `${dirty.name} — ${dirty.yellows}🟨 ${dirty.reds}🟥`));
+      wrap.appendChild(card);
+    }
     return wrap;
   }
 

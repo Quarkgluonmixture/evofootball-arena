@@ -11,6 +11,7 @@ const ICON: Record<EventType, string> = {
   keypass: '🔑',
   corner: '⚑',
   foul: '⚠️',
+  card: '🟨',
   kickoff: '▶️',
   halftime: '⏸',
   fulltime: '🏁',

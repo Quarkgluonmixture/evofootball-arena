@@ -167,6 +167,7 @@ export type EventType =
   | 'keypass'
   | 'corner'
   | 'foul'
+  | 'card'
   | 'kickoff'
   | 'halftime'
   | 'fulltime'
@@ -202,6 +203,10 @@ export interface TeamMatchStats {
   fouls: number;
   /** Penalties won (fouled inside the opponents' box). */
   penalties: number;
+  /** Bookings picked up (a second yellow counts here AND as a red). */
+  yellows: number;
+  /** Players sent off — the team plays a man short from that moment. */
+  reds: number;
   possessionTime: number;
   distance: number;
   staminaSpent: number;
@@ -224,6 +229,8 @@ export const emptyStats = (): TeamMatchStats => ({
   corners: 0,
   fouls: 0,
   penalties: 0,
+  yellows: 0,
+  reds: 0,
   possessionTime: 0,
   distance: 0,
   staminaSpent: 0,

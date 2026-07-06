@@ -140,7 +140,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (137 tests)
+tests/                  vitest suites (145 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -168,8 +168,15 @@ scripts/                headless calibration, evolution & wildcard-training tool
   happened, taken through the same live restart machinery. A foul inside the
   offender's own box is a **PENALTY**: the fouled team's best finisher steps
   up against the keeper from the drawn spot (9.4 m), everyone else held 8 m
-  clear, and the first touch is the shot. ~4.4 fouls and ~0.1 penalties per
+  clear, and the first touch is the shot. ~4.6 fouls and ~0.1 penalties per
   match at current tuning.
+- **Cards (Phase 25):** a foul sometimes draws a **yellow** (~1 booking per
+  match; aggressive markers collect more), and a second yellow — or a rare
+  straight red — is a **sending off**: the player is parked on the apron and
+  the team plays **4v5** for the rest of the match (measurably costly).
+  Cards feed the season's **Dirtiest team** award. Keepers are never carded
+  (no bench — a red keeper would break the one-GK premise; box fouls already
+  concede a penalty), and cards don't carry into cup shootouts.
 - **Ball:** exponential friction, kick impulses, owner-glued dribbling,
   interceptable in flight; keepers can handle faster balls than outfielders.
 - **Players:** acceleration toward a desired velocity, role-based top speed,
@@ -219,7 +226,7 @@ All 14 genes are 0..1 and read directly by the AI:
 | riskTolerance | gates contested forward passes AND through balls; more clearing when low |
 | counterAttackBias | CounterAttack mode window after winning the ball |
 | staminaConservation | slower jog/press sprints — fresher legs late on |
-| markingAggression | tighter marking distance, higher tackle success, more fouls conceded |
+| markingAggression | tighter marking distance, higher tackle success, more fouls and cards conceded |
 | keeperAggression | keeper plays further off the line, longer reach |
 | tempo | faster ball circulation; a second licensed runner + through-ball appetite |
 | formationDepth | block height (deep block ↔ high line) |
@@ -400,8 +407,9 @@ standalone friendly, no league bookkeeping.
   straight-bounce-backs, fallen champions, biggest points swing up/down —
   plus cup doubles, Challenger cup runs, giant slayings and revenge ties —
   `sim/records.ts`, unit-tested), per-division points races, Premier awards —
-  Golden Boot / Playmaker / Golden Glove from **per-player season stats** —
-  plus Challenger top scorers. Champions history lists every season's winners
+  Golden Boot / Playmaker / Golden Glove from **per-player season stats**,
+  plus the Dirtiest team (most cards, Phase 25) —
+  and Challenger top scorers. Champions history lists every season's winners
   (pre-pyramid seasons are labeled "single-division era", pre-cup seasons
   "pre-cup era").
 - **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
@@ -421,12 +429,13 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.6 goals, ~12–13 shots, ~78% pass completion with **~14 through balls per
+~2.5 goals, ~12–13 shots, ~78% pass completion with **~14 through balls per
 match** (Phase 19 — assigned runners + direct balls into their path),
 balanced possession, ~93% ball-in-play (the rest is live dead-ball time
 across ~8–9 restarts per match: ≈2.4 goal kicks, ≈1.3 corners, ≈0.5
-kick-ins, plus **≈4.4 fouls → free kicks, ≈0.1 of them penalties** — Phase
-20), ~25 ms per headless match (allocation-free hot paths + a precomputed
+kick-ins, plus **≈4.6 fouls → free kicks, ≈0.1 of them penalties** — Phase
+20 — drawing **≈1.0 yellows and ≈0.09 reds** per match — Phase 25), ~25 ms
+per headless match (allocation-free hot paths + a precomputed
 intercept table — Phase 16; a 10-season fast-sim runs off the main thread on
 the sim worker).
 Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6
@@ -437,11 +446,13 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 137 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
+- `npm test` — 145 tests: RNG/vec math, genome operators, match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, foul/free-kick/penalty rules (award logic, taker choice,
-  clearance, first-touch shot, directional foul-rate test), penalty-shootout
+  clearance, first-touch shot, directional foul-rate test), card rules
+  (booking rates, second-yellow consistency, directional aggression and
+  4v5-hurts tests, sent-off exclusion, v6 save migration), penalty-shootout
   rules (determinism, decisiveness, directional finishing/keeper tests,
   lineup order, league integration, save default, kick-recording equivalence
   + theater staging/skip/determinism — Phase 24), league/Elo/evolution
@@ -463,7 +474,8 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 
 Implemented: autonomous 5v5 matches with real boundaries and set pieces
 (kick-ins/corners/goal kicks as live dead-ball restarts), fouls with free
-kicks and penalties (Phase 20), three-layer utility
+kicks and penalties (Phase 20), yellow/red cards with 4v5 play and a
+dirtiest-team award (Phase 25), three-layer utility
 AI, 14 live tactical
 genes + 5 per-player attribute genes, an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
@@ -488,8 +500,6 @@ exhibitions, 137 tests, and
 browser-driving visual smoke tests for both views (53 + ~32 checks).
 
 Ideas for the next phase (rough priority order):
-- Yellow/red cards: light = booking stats + a "dirtiest team" season award;
-  heavy = red cards playing 4v5 (touches formation math — scope carefully)
 - Player careers: aging/development curves, retirements and newgens for
   dynasty depth (squads currently reroll with their franchise)
 - Publish to itch.io: packaging + upload docs are DONE (`npm run

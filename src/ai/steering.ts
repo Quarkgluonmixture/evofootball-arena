@@ -30,7 +30,7 @@ export function separation(p: Player, all: Player[], radius = 2.2, strength = 3.
   let ox = 0;
   let oy = 0;
   for (const o of all) {
-    if (o === p) continue;
+    if (o === p || o.sentOff) continue;
     const dx = p.pos.x - o.pos.x;
     const dy = p.pos.y - o.pos.y;
     const d = Math.sqrt(dx * dx + dy * dy);
@@ -54,6 +54,7 @@ export function avoidOpponents(p: Player, desired: V2, opponents: Player[]): V2 
   let ox = 0;
   let oy = 0;
   for (const o of opponents) {
+    if (o.sentOff) continue;
     const tox = o.pos.x - p.pos.x;
     const toy = o.pos.y - p.pos.y;
     const ahead = tox * dirX + toy * dirY; // projection onto heading

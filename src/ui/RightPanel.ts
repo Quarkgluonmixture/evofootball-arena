@@ -14,8 +14,15 @@ const STAT_ROWS = [
   'recoveries',
   'corners',
   'fouls',
+  'cards',
   'saves',
 ] as const;
+
+/** `1🟨` / `1🟨 1🟥` / `—` — compact card tally for the stats table. */
+const cardLine = (yellows: number, reds: number): string => {
+  if (yellows === 0 && reds === 0) return '—';
+  return `${yellows}🟨${reds > 0 ? ` ${reds}🟥` : ''}`;
+};
 
 /**
  * Tactics inspector: both teams' genes side by side, live tactical mode,
@@ -124,6 +131,7 @@ export class RightPanel {
     set('recoveries', String(a.tackles + a.interceptions), String(b.tackles + b.interceptions));
     set('corners', String(a.corners), String(b.corners));
     set('fouls', String(a.fouls), String(b.fouls));
+    set('cards', cardLine(a.yellows, a.reds), cardLine(b.yellows, b.reds));
     set('saves', String(a.saves), String(b.saves));
   }
 

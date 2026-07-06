@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   CUP_ROUNDS, buildCupRecord, cupUnderdog, fillCupRound, resolveCupTie, type CupState,
 } from '../src/sim/cup';
-import { League } from '../src/sim/League';
+import { League, SAVE_VERSION } from '../src/sim/League';
 import { challengerCupRuns, cupTitles, domesticDoubles, giantKillingCounts } from '../src/sim/records';
 
 const makeLeague = (seed = 99) => new League({ seed, matchDuration: 30 });
@@ -232,7 +232,7 @@ describe('Evo Cup — v5 migration', () => {
       league.applyResult(f, league.createMatch(f).runToCompletion());
     }
     const json = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown>;
-    expect(json.version).toBe(5);
+    expect(json.version).toBe(SAVE_VERSION);
     json.version = 4;
     delete json.cup;
 

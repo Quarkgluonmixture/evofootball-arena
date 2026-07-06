@@ -168,14 +168,19 @@ export class Match {
     // iteration direction every step cancels the asymmetry, deterministically.
     const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
     for (const p of order) {
+      if (p.sentOff) continue;
       if (p.decisionTimer <= 0) {
         decidePlayer(p, this);
         p.decisionTimer = AI_INTERVAL;
       }
     }
 
-    for (const p of order) executeAction(p, this, dt);
-    for (const p of order) p.physicsStep(dt);
+    for (const p of order) {
+      if (!p.sentOff) executeAction(p, this, dt);
+    }
+    for (const p of order) {
+      if (!p.sentOff) p.physicsStep(dt);
+    }
     this.resolveOverlaps();
     this.clampPlayersToPitch();
     if (this.phase === 'restart') this.stepRestart(dt);
@@ -434,6 +439,59 @@ export class Match {
       this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — free kick`);
       this.awardRestart('freeKick', side, spot);
     }
+    this.maybeCard(offender);
+  }
+
+  /**
+   * Cards (Phase 25): a foul is sometimes a booking (aggressive-marking sides
+   * pick up more); a second booking — or a rare straight red — is a sending
+   * off. Keepers are never carded: with no bench, a red keeper would break
+   * the one-goalkeeper premise, and box fouls already concede a penalty.
+   */
+  private maybeCard(offender: Player): void {
+    if (offender.role === 'GK') return;
+    const team = this.teams[offender.side];
+    const yellowP = 0.16 + team.genome.markingAggression * 0.12;
+    if (this.rng.chance(yellowP)) {
+      team.stats.yellows++;
+      if (offender.booked) {
+        this.pushEvent('card', offender.side, `Second yellow — ${offender.name} is SENT OFF`);
+        this.sendOff(offender);
+      } else {
+        offender.booked = true;
+        this.pushEvent('card', offender.side, `${offender.name} is booked`);
+      }
+    } else if (this.rng.chance(0.012)) {
+      this.pushEvent('card', offender.side, `STRAIGHT RED! ${offender.name} is sent off`);
+      this.sendOff(offender);
+    }
+  }
+
+  /**
+   * Send a player off: park them on the apron beside their own half and
+   * remove them from every sim interaction (all player loops skip `sentOff`).
+   * The team plays a man short for the rest of the match.
+   */
+  sendOff(p: Player): void {
+    if (p.sentOff) return;
+    p.sentOff = true;
+    const team = this.teams[p.side];
+    team.stats.reds++;
+    p.pos = v2(-team.attackDir * 12, (p.side === 0 ? -1 : 1) * (HALF_W + 4));
+    p.vel = v2();
+    p.desiredVel = v2();
+    p.action = { type: 'HoldPosition', scores: [] };
+    // Clear stale assignments in both directions and make both brains
+    // re-coordinate promptly (same pattern as possession swings).
+    team.chasers.delete(p.index);
+    team.marks.delete(p.index);
+    team.runners.delete(p.index);
+    const opp = this.teams[1 - p.side];
+    for (const [own, target] of opp.marks) {
+      if (target === p.index) opp.marks.delete(own);
+    }
+    this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
+    this.teams[1].brainTimer = Math.min(this.teams[1].brainTimer, 0.05);
   }
 
   private awardRestart(kind: RestartKind, side: Side, pos: V2): void {
@@ -469,18 +527,20 @@ export class Match {
   private pickTaker(kind: RestartKind, side: Side, pos: V2): number {
     const team = this.teams[side];
     if (kind === 'goalKick') return team.goalkeeper.gid;
+    // Only outfielders still on the pitch take kicks; if (absurdly) all four
+    // are sent off, the keeper steps up so resolution stays total.
+    const eligible = team.players.filter((p) => p.role !== 'GK' && !p.sentOff);
+    if (eligible.length === 0) return team.goalkeeper.gid;
     if (kind === 'penalty') {
-      let taker = team.players[1];
-      for (const p of team.players) {
-        if (p.role === 'GK') continue;
+      let taker = eligible[0];
+      for (const p of eligible) {
         if (p.attrs.finishing > taker.attrs.finishing) taker = p;
       }
       return taker.gid;
     }
-    let best = team.players[1];
+    let best = eligible[0];
     let bestD = Infinity;
-    for (const p of team.players) {
-      if (p.role === 'GK') continue;
+    for (const p of eligible) {
       const d = dist(p.pos, pos);
       if (d < bestD) {
         best = p;
@@ -510,7 +570,7 @@ export class Match {
     // stands on the line, outside the circle) are near the ball.
     const clearance = r.kind === 'penalty' ? PENALTY_CLEARANCE : RESTART_CLEARANCE;
     for (const o of this.allPlayers) {
-      if (o.gid === r.takerGid) continue;
+      if (o.sentOff || o.gid === r.takerGid) continue;
       if (o.side === r.side && r.kind !== 'penalty') continue; // only penalties hold teammates
       if (o.side !== r.side && r.kind === 'penalty' && o.role === 'GK') continue; // keeper keeps the line
       const d = dist(o.pos, r.pos);
@@ -542,7 +602,7 @@ export class Match {
     // Alternate scan direction so equal-distance ties don't favor one team.
     const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
     for (const p of order) {
-      if (p.kickCooldown > 0) continue;
+      if (p.sentOff || p.kickCooldown > 0) continue;
       const maxSpeed = p.role === 'GK' ? GK_CONTROL_MAX_SPEED : CONTROL_MAX_SPEED;
       if (speed > maxSpeed) continue;
       // Same cheap reject as resolveOverlaps: |dx| ≥ radius ⇒ d ≥ radius.
@@ -565,8 +625,10 @@ export class Match {
     const ps = this.allPlayers;
     for (let i = 0; i < ps.length; i++) {
       const a = ps[i];
+      if (a.sentOff) continue;
       for (let j = i + 1; j < ps.length; j++) {
         const b = ps[j];
+        if (b.sentOff) continue;
         // Cheap reject before the sqrt: √(x²+y²) ≥ |x| holds bitwise in IEEE
         // round-to-nearest, so |dx| or |dy| ≥ PLAYER_MIN_DIST guarantees the
         // d-check below would continue anyway. Most of the 45 pairs exit here.
@@ -595,6 +657,7 @@ export class Match {
 
   private clampPlayersToPitch(): void {
     for (const p of this.allPlayers) {
+      if (p.sentOff) continue; // parked on the apron, outside the pitch
       p.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, p.pos.x));
       p.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, p.pos.y));
     }
@@ -620,12 +683,21 @@ export class Match {
       team.chasers.clear();
       team.marks.clear();
       for (const p of team.players) {
+        if (p.sentOff) continue; // stays parked on the apron
         p.resetForKickoff(formationSpot(p, team, this.ball, team.side === kickSide));
       }
     }
 
     const kicking = this.teams[kickSide];
-    const st = kicking.players[4];
+    // The striker kicks off; if he was sent off, the deepest remaining
+    // outfielder steps in (keeper as the absurd-case failsafe).
+    let st = kicking.goalkeeper;
+    for (let i = 4; i >= 1; i--) {
+      if (!kicking.players[i].sentOff) {
+        st = kicking.players[i];
+        break;
+      }
+    }
     st.pos = v2(-kicking.attackDir * 1.2, 0);
     st.heading = v2(kicking.attackDir, 0);
     st.decisionTimer = 0.05;

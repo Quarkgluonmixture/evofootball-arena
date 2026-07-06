@@ -96,7 +96,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   let bestOpen = 0;
   if (p.kickCooldown <= 0) {
     for (const mate of team.players) {
-      if (mate === p) continue;
+      if (mate === p || mate.sentOff) continue;
       const lane = laneOpenness(p.pos, mate.pos, opp.players);
       const open = opennessOf(mate, opp.players);
       const d = dist(p.pos, mate.pos);
@@ -145,7 +145,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   if (p.kickCooldown <= 0) {
     const line = defenderLineLocalX(team, opp.players);
     for (const mate of team.players) {
-      if (mate === p || mate.action.type !== 'MakeRun') continue;
+      if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;
       const flight = dist(p.pos, mate.pos) / 18;
       const point = {
         x: clamp(mate.pos.x + mate.vel.x * flight * 1.6, -HALF_L + 2, HALF_L - 2),
@@ -248,7 +248,7 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
     // filter/map/spread allocated two arrays per GK decision.
     let rivalT = Infinity;
     for (const q of match.allPlayers) {
-      if (q === p) continue;
+      if (q === p || q.sentOff) continue;
       const t = timeToPoint(q, sol.point);
       if (t < rivalT) rivalT = t;
     }

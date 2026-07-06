@@ -15,6 +15,7 @@ import type { Player } from '../sim/Player';
 export function pressureAt(pos: V2, opponents: Player[]): number {
   let best = Infinity;
   for (const o of opponents) {
+    if (o.sentOff) continue;
     const d = dist(o.pos, pos);
     if (d < best) best = d;
   }
@@ -25,6 +26,7 @@ export function pressureAt(pos: V2, opponents: Player[]): number {
 export function laneOpenness(from: V2, to: V2, opponents: Player[]): number {
   let worst = 1;
   for (const o of opponents) {
+    if (o.sentOff) continue;
     const cp = closestPointOnSegment(from, to, o.pos);
     // Ignore defenders standing right on top of the passer — the kick clears them.
     if (dist(cp, from) < 1.5) continue;
@@ -37,7 +39,10 @@ export function laneOpenness(from: V2, to: V2, opponents: Player[]): number {
 /** How much free space a receiver has (nearest opponent distance / 8m). */
 export function opennessOf(p: Player, opponents: Player[]): number {
   let best = Infinity;
-  for (const o of opponents) best = Math.min(best, dist(o.pos, p.pos));
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    best = Math.min(best, dist(o.pos, p.pos));
+  }
   return clamp01(best / 8);
 }
 
@@ -46,6 +51,7 @@ export function spaceAhead(p: Player, dir: V2, opponents: Player[]): number {
   const probe = add(p.pos, scale(norm(dir), 7));
   let crowd = 0;
   for (const o of opponents) {
+    if (o.sentOff) continue;
     const d = dist(o.pos, probe);
     if (d < 8) crowd += 1 - d / 8;
   }

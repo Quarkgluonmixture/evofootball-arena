@@ -172,7 +172,7 @@ export function tryTackles(match: Match): void {
   let tackler: Player | null = null;
   let best = Infinity;
   for (const o of oppTeam.players) {
-    if (o.tackleCooldown > 0) continue;
+    if (o.sentOff || o.tackleCooldown > 0) continue;
     const d = dist(o.pos, ball.pos);
     if (d < 1.15 && d < best) {
       best = d;

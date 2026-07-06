@@ -20,6 +20,8 @@ let throughBalls = 0;
 let saves = 0;
 let fouls = 0;
 let penalties = 0;
+let yellows = 0;
+let reds = 0;
 let tackles = 0;
 let interceptions = 0;
 let possA = 0;
@@ -43,6 +45,8 @@ for (let s = 0; s < SEASONS; s++) {
       saves += st.saves;
       fouls += st.fouls;
       penalties += st.penalties;
+      yellows += st.yellows;
+      reds += st.reds;
       tackles += st.tackles;
       interceptions += st.interceptions;
       xg += st.xg;
@@ -62,6 +66,7 @@ console.log(`shots/match:        ${per(shots)}  (on target: ${per(onTarget)}, xG
 console.log(`passes/match:       ${per(passes)}  (completion: ${(completed / Math.max(passes, 1) * 100).toFixed(0)}%, through balls: ${per(throughBalls)})`);
 console.log(`saves/match:        ${per(saves)}`);
 console.log(`fouls/match:        ${per(fouls)}  (penalties: ${per(penalties)})`);
+console.log(`cards/match:        ${per(yellows)} 🟨  ${per(reds)} 🟥`);
 console.log(`tackles/match:      ${per(tackles)}`);
 console.log(`interceptions/match:${per(interceptions)}`);
 console.log(`possession balance: ${(possA / (possA + possB) * 100).toFixed(0)}% / ${(possB / (possA + possB) * 100).toFixed(0)}%`);

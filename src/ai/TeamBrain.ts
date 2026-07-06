@@ -81,7 +81,7 @@ function assignRunners(team: Team, match: Match): void {
   // A second runner for fast/direct sides: counters and high-tempo teams.
   const count = team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1;
   const scored = team.players
-    .filter((p) => p.role !== 'GK' && p !== carrier)
+    .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
     .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
     .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
   for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
@@ -103,7 +103,7 @@ function assignChasers(team: Team, match: Match): void {
   if (team.genome.pressIntensity > 0.78) count += 1;
   if (possession === -1) count = Math.min(count, 2);
 
-  const outfield = team.players.filter((p) => p.role !== 'GK');
+  const outfield = team.players.filter((p) => p.role !== 'GK' && !p.sentOff);
   const byDist = [...outfield].sort(
     (a, b) => dist(a.pos, match.ball.pos) - dist(b.pos, match.ball.pos) || a.index - b.index,
   );
@@ -124,10 +124,10 @@ function assignMarks(team: Team, match: Match): void {
   // for us. (A numerically identical pre-sort used to run first; this
   // comparator is a total order — index tiebreak — so one sort decides fully.)
   const threats = opp.players
-    .filter((o) => o.role !== 'GK' && o !== carrier)
+    .filter((o) => o.role !== 'GK' && o !== carrier && !o.sentOff)
     .sort((a, b) => opp.localX(b.pos.x) - opp.localX(a.pos.x) || a.index - b.index);
 
-  const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index));
+  const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index) && !p.sentOff);
   const used = new Set<number>();
   for (const threat of threats) {
     let best: { idx: number; d: number } | null = null;

@@ -144,6 +144,7 @@ function dribbleTarget(p: Player, match: Match): V2 {
   let block: Player | null = null;
   let blockD = Infinity;
   for (const o of opp.players) {
+    if (o.sentOff) continue;
     const to = sub(o.pos, p.pos);
     const ahead = to.x * toGoal.x + to.y * toGoal.y;
     if (ahead > 0 && ahead < 6) {

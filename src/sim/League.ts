@@ -64,6 +64,8 @@ export interface SeasonAwards {
   topScorers: PlayerSeasonLine[];
   topAssists: PlayerSeasonLine[];
   topKeeper: PlayerSeasonLine | null;
+  /** Most cards this season (reds weighted double); absent pre-Phase-25. */
+  dirtiest?: { slot: number; name: string; yellows: number; reds: number } | null;
 }
 
 export interface SeasonRecord {
@@ -94,7 +96,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 5;
+export const SAVE_VERSION = 6;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -359,6 +361,8 @@ export class League {
       a.recoveries += s.interceptions + s.tackles;
       a.staminaSpent += s.staminaSpent;
       a.distance += s.distance;
+      a.yellows += s.yellows;
+      a.reds += s.reds;
       const possMin = Math.max(s.possessionTime / 60, 0.25);
       const oppPossMin = Math.max(so.possessionTime / 60, 0.25);
       a.styleSamples.push({
@@ -540,7 +544,21 @@ export class League {
       .slice(0, 3)
       .filter((l) => l.assists > 0);
     const keepers = lines.filter((l) => l.role === 'GK').sort((a, b) => b.saves - a.saves || a.slot - b.slot);
-    return { topScorers, topAssists, topKeeper: keepers[0] && keepers[0].saves > 0 ? keepers[0] : null };
+    let dirtiest: SeasonAwards['dirtiest'] = null;
+    for (const f of this.franchises) {
+      if (f.division !== division) continue;
+      const a = this.agg[f.slot];
+      const score = a.yellows + a.reds * 2;
+      if (score > 0 && (!dirtiest || score > dirtiest.yellows + dirtiest.reds * 2)) {
+        dirtiest = { slot: f.slot, name: f.name, yellows: a.yellows, reds: a.reds };
+      }
+    }
+    return {
+      topScorers,
+      topAssists,
+      topKeeper: keepers[0] && keepers[0].saves > 0 ? keepers[0] : null,
+      dirtiest,
+    };
   }
 
   private geneMeans(): Record<GeneKey, number> {
@@ -654,6 +672,15 @@ export class League {
       // startSeason draws the first bracket. Never fabricate old cup history.
       data.cup = null;
       data.version = 5;
+    }
+    if (data.version === 5) {
+      // v5 -> v6: cards arrive (Phase 25). Season aggregates gain card
+      // tallies — the in-progress season simply starts counting from here.
+      for (const a of data.agg as Array<Record<string, unknown>>) {
+        a.yellows ??= 0;
+        a.reds ??= 0;
+      }
+      data.version = 6;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

@@ -32,6 +32,11 @@ export class Player {
   kickCooldown = 0;
   tackleCooldown = 0;
 
+  /** Has a yellow card this match — a second booking is a red (Phase 25). */
+  booked = false;
+  /** Sent off: parked on the apron, excluded from every sim interaction. */
+  sentOff = false;
+
   readonly baseSpeed: number;
   readonly accel: number;
 
