@@ -32,6 +32,11 @@ export class Team {
 
   stats: TeamMatchStats = emptyStats();
 
+  // Goal centers never move — cached so per-frame callers (marking, keeper
+  // positioning) don't allocate. Shared instances: callers must not mutate.
+  private readonly ownGoalPos: V2;
+  private readonly oppGoalPos: V2;
+
   constructor(side: Side, info: TeamInfo) {
     this.side = side;
     this.attackDir = side === 0 ? 1 : -1;
@@ -40,6 +45,8 @@ export class Team {
     this.players = ROLES.map(
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );
+    this.ownGoalPos = v2(-this.attackDir * HALF_L, 0);
+    this.oppGoalPos = v2(this.attackDir * HALF_L, 0);
   }
 
   get genome(): TacticalGenome {
@@ -50,14 +57,14 @@ export class Team {
     return this.players[0];
   }
 
-  /** Center of the goal we defend. */
+  /** Center of the goal we defend. Read-only — shared cached instance. */
   ownGoal(): V2 {
-    return v2(-this.attackDir * HALF_L, 0);
+    return this.ownGoalPos;
   }
 
-  /** Center of the goal we attack. */
+  /** Center of the goal we attack. Read-only — shared cached instance. */
   oppGoal(): V2 {
-    return v2(this.attackDir * HALF_L, 0);
+    return this.oppGoalPos;
   }
 
   /** Attacking-direction-local x: positive = closer to opponent goal. */

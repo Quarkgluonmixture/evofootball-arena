@@ -4,7 +4,6 @@ import { HALF_L } from '../sim/constants';
 import { clamp } from '../utils/math';
 
 export type CameraMode = 'tactical' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit';
-export const CAMERA_MODES: CameraMode[] = ['tactical', 'broadcast', 'follow', 'behindGoal', 'orbit'];
 
 export interface CameraGoal {
   px: number;

@@ -10,7 +10,9 @@ import { Goal3D } from './GoalModel';
 import { declutterLabels, type LabelItem } from './labelDeclutter';
 import { Overlays3D } from './Overlays3D';
 import { createPitch } from './PitchModel';
-import { PlayerModel, disposeKit, makeKit, type KitMaterials } from './PlayerModel';
+import {
+  PlayerModel, disposeKit, makeKit, resetSharedPlayerResources, type KitMaterials,
+} from './PlayerModel';
 import type { FxEvent, RenderState, RenderTheme } from './RenderStateAdapter';
 import { createScene } from './SceneFactory';
 
@@ -368,6 +370,9 @@ export class ThreeMatchRenderer {
     });
     for (const model of this.players.values()) model.dispose();
     this.players.clear();
+    // The traverse above disposed the shared player geometry/materials too —
+    // forget the module caches so the next 3D init rebuilds them fresh.
+    resetSharedPlayerResources();
     this.cameraCtl.dispose();
     this.renderer.dispose();
     this.renderer.domElement.remove();

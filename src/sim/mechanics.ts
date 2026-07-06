@@ -139,7 +139,7 @@ export function performShot(match: Match, shooter: Player): void {
   const lp = match.lastCompletedPass;
   if (lp && lp.receiverGid === shooter.gid && match.simTime - lp.t < 3) {
     team.stats.keyPasses++;
-    const passer = match.allPlayers.find((x) => x.gid === lp.passerGid);
+    const passer = match.allPlayers[lp.passerGid]; // allPlayers is gid-indexed
     if (passer) match.pushEvent('keypass', shooter.side, `${passer.name} with the key pass`);
   }
   match.pushEvent('shot', shooter.side, `${shooter.name} shoots! (xG ${q.toFixed(2)})`);

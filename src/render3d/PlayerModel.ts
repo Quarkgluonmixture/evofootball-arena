@@ -55,9 +55,33 @@ function sharedGeo(): NonNullable<typeof GEO> {
   return GEO;
 }
 
-const SKIN = new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 });
-const DARK = new THREE.MeshStandardMaterial({ color: 0x14171e, roughness: 0.65 });
-const GLOVE = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.85 });
+/* Shared skin/boot/glove materials — lazy like GEO so a full renderer
+   dispose (whose scene traverse disposes them) can reset the cache. */
+let MATS: {
+  skin: THREE.MeshStandardMaterial;
+  dark: THREE.MeshStandardMaterial;
+  glove: THREE.MeshStandardMaterial;
+} | null = null;
+
+function sharedMats(): NonNullable<typeof MATS> {
+  if (MATS) return MATS;
+  MATS = {
+    skin: new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 }),
+    dark: new THREE.MeshStandardMaterial({ color: 0x14171e, roughness: 0.65 }),
+    glove: new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.85 }),
+  };
+  return MATS;
+}
+
+/**
+ * Forget the shared geometry/material caches. Call after a full renderer
+ * dispose() — its scene traverse has already disposed the GPU resources —
+ * so the next 3D init builds fresh ones instead of reusing disposed objects.
+ */
+export function resetSharedPlayerResources(): void {
+  GEO = null;
+  MATS = null;
+}
 
 /** Squad numbers by role — instantly readable football shorthand. */
 const ROLE_NUMBER: Record<Role, number> = { GK: 1, DF: 4, MF: 8, WG: 7, ST: 9 };
@@ -144,7 +168,7 @@ export class PlayerModel {
     torso.scale.set(build.torsoW, 1, build.torsoD);
     torso.rotation.x = build.leanBias;
     torso.castShadow = true;
-    const head = new THREE.Mesh(g.head, SKIN);
+    const head = new THREE.Mesh(g.head, sharedMats().skin);
     head.position.y = 1.32;
     head.scale.setScalar(build.head);
     head.castShadow = true;
@@ -219,7 +243,8 @@ export class PlayerModel {
     arm.position.set(x, 1.0, 0);
     const sleeve = new THREE.Mesh(g.sleeve, kit.shirt);
     // Keepers wear long sleeves + big pale gloves; outfielders show skin.
-    const forearm = new THREE.Mesh(g.forearm, isGK ? GLOVE : SKIN);
+    const m = sharedMats();
+    const forearm = new THREE.Mesh(g.forearm, isGK ? m.glove : m.skin);
     if (isGK) forearm.scale.set(1.25, 1, 1.25);
     sleeve.castShadow = true;
     forearm.castShadow = true;
@@ -233,7 +258,7 @@ export class PlayerModel {
     const thigh = new THREE.Mesh(g.thigh, kit.shorts);
     const sock = new THREE.Mesh(g.sock, kit.sock);
     const band = new THREE.Mesh(g.sockBand, kit.shorts); // contrast sock-top trim
-    const foot = new THREE.Mesh(g.foot, DARK);
+    const foot = new THREE.Mesh(g.foot, sharedMats().dark);
     foot.position.z = 0.1; // toes forward (+z = facing direction)
     thigh.castShadow = true;
     sock.castShadow = true;
@@ -299,6 +324,12 @@ export class PlayerModel {
     this.numberMat.dispose();
     (this.label.material as THREE.SpriteMaterial).dispose();
     (this.selectRing.material as THREE.Material).dispose();
+    // Per-instance (not shared) geometry+materials — these leaked on every
+    // match attach until they were added here.
+    this.selectHalo.geometry.dispose();
+    (this.selectHalo.material as THREE.Material).dispose();
+    this.blob.geometry.dispose();
+    (this.blob.material as THREE.Material).dispose();
   }
 }
 

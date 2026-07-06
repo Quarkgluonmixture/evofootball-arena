@@ -52,7 +52,7 @@ bit-identical) with an ES trainer, held-out benchmark and in-game exhibition
 (phase 18); off-ball runs + through balls — assigned runners sprint past the
 last defender and carriers feed their PATH, gated by riskTolerance/tempo
 (~16 through balls/match; phase 19). 106 vitest tests; Playwright suites:
-2D 51 checks, 3D 26 checks; ~33 ms/headless match. Git tags
+2D 51 checks, 3D 26 checks; ~25 ms/headless match. Git tags
 `phase-10`…`phase-19` are known-green checkpoints; published at
 https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
 live in the README's "next steps".
@@ -379,11 +379,13 @@ feature is:
    enforced by `tests/render3d.test.ts` boundary checks. League simulation
    must never depend on WebGL.
 2. **Headless season simulation stays fast.** Budget: ≲50 ms per 240 s match
-   (~34 ms after the Phase 16 pass; `npm run calibrate` prints ms/match).
-   No per-step allocation explosions, no O(n²) blowups beyond the existing
-   10-player pair loops. Hot-path optimizations must be **bit-identical**:
-   same seed ⇒ same save JSON before and after (fingerprint a 2-season league
-   and compare hashes) — never reorder float arithmetic for speed.
+   (~25 ms after the flatten pass that followed Phase 19; `npm run calibrate`
+   prints ms/match). No per-step allocation explosions, no O(n²) blowups
+   beyond the existing 10-player pair loops. Hot-path optimizations must be
+   **bit-identical**: same seed ⇒ same save JSON before and after — run
+   `npm run fingerprint` (and `npm run fingerprint -- 42 3` for a second
+   seed) before and after and compare hashes; never reorder float arithmetic
+   for speed.
 3. **Watching and skipping the same seeded match produce identical results.**
    Same seed ⇒ same score, events and stats — step-by-step vs
    `runToCompletion` is regression-tested and must stay green.

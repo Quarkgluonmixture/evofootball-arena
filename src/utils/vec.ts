@@ -36,13 +36,7 @@ export const clampLen = (a: V2, max: number): V2 => {
   return l > max && l > 1e-8 ? scale(a, max / l) : clone(a);
 };
 
-export const lerpV = (a: V2, b: V2, t: number): V2 => ({
-  x: a.x + (b.x - a.x) * t,
-  y: a.y + (b.y - a.y) * t,
-});
-
 export const fromAngle = (rad: number, l = 1): V2 => ({ x: Math.cos(rad) * l, y: Math.sin(rad) * l });
-export const angleOf = (a: V2): number => Math.atan2(a.y, a.x);
 
 export const rotate = (a: V2, rad: number): V2 => {
   const c = Math.cos(rad);
@@ -59,10 +53,14 @@ export const approachV = (cur: V2, target: V2, maxDelta: number): V2 => {
 };
 
 /** Closest point on segment [a, b] to point p. Zero-length segments return a. */
+// Allocation-free interior (hot via laneOpenness: once per opponent, per
+// teammate scored, per carrier decision). Same operations in the same IEEE
+// order as the old sub/lenSq/dot/add/scale chain — results are bit-identical.
 export const closestPointOnSegment = (a: V2, b: V2, p: V2): V2 => {
-  const ab = sub(b, a);
-  const l2 = lenSq(ab);
+  const abx = b.x - a.x;
+  const aby = b.y - a.y;
+  const l2 = abx * abx + aby * aby;
   if (l2 < 1e-8) return clone(a);
-  const t = Math.max(0, Math.min(1, dot(sub(p, a), ab) / l2));
-  return add(a, scale(ab, t));
+  const t = Math.max(0, Math.min(1, ((p.x - a.x) * abx + (p.y - a.y) * aby) / l2));
+  return { x: a.x + abx * t, y: a.y + aby * t };
 };

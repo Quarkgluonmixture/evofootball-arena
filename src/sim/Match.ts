@@ -300,13 +300,20 @@ export class Match {
     const ball = this.ball;
     if (ball.owner) {
       // Dribble: the ball rides slightly ahead of the owner's heading.
-      ball.pos = add(ball.owner.pos, scale(ball.owner.heading, 0.85));
-      ball.vel = clone(ball.owner.vel);
+      // In-place writes (was add/scale/clone — 3 vectors per step); ball.pos
+      // and ball.vel are never aliased, all other writers assign fresh objects.
+      ball.pos.x = ball.owner.pos.x + ball.owner.heading.x * 0.85;
+      ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * 0.85;
+      ball.vel.x = ball.owner.vel.x;
+      ball.vel.y = ball.owner.vel.y;
       mech.tryTackles(this);
       return;
     }
-    ball.pos = add(ball.pos, scale(ball.vel, dt));
-    ball.vel = scale(ball.vel, Math.exp(-BALL_FRICTION_K * dt));
+    ball.pos.x += ball.vel.x * dt;
+    ball.pos.y += ball.vel.y * dt;
+    const fr = Math.exp(-BALL_FRICTION_K * dt);
+    ball.vel.x *= fr;
+    ball.vel.y *= fr;
     if (this.checkGoal()) return;
     if (this.checkOutOfPlay()) return;
     mech.tryKeeperSave(this);
@@ -332,7 +339,7 @@ export class Match {
     const shot = this.pendingShot;
     if (shot && shot.side === side) {
       team.stats.shotsOnTarget++;
-      const shooter = this.allPlayers.find((p) => p.gid === shot.shooterGid);
+      const shooter = this.allPlayers[shot.shooterGid]; // allPlayers is gid-indexed
       scorerText = shooter ? `${shooter.name} (${shooter.role})` : team.info.name;
       this.lastScorerGid = shot.shooterGid;
       this.playerStats[shot.shooterGid].goals++;
@@ -486,7 +493,12 @@ export class Match {
       if (p.kickCooldown > 0) continue;
       const maxSpeed = p.role === 'GK' ? GK_CONTROL_MAX_SPEED : CONTROL_MAX_SPEED;
       if (speed > maxSpeed) continue;
-      const d = dist(p.pos, ball.pos);
+      // Same cheap reject as resolveOverlaps: |dx| ≥ radius ⇒ d ≥ radius.
+      const dx = p.pos.x - ball.pos.x;
+      if (dx >= CONTROL_RADIUS || dx <= -CONTROL_RADIUS) continue;
+      const dy = p.pos.y - ball.pos.y;
+      if (dy >= CONTROL_RADIUS || dy <= -CONTROL_RADIUS) continue;
+      const d = Math.sqrt(dx * dx + dy * dy);
       if (d < CONTROL_RADIUS && d < bestD) {
         best = p;
         bestD = d;
@@ -500,18 +512,31 @@ export class Match {
   private resolveOverlaps(): void {
     const ps = this.allPlayers;
     for (let i = 0; i < ps.length; i++) {
+      const a = ps[i];
       for (let j = i + 1; j < ps.length; j++) {
-        const a = ps[i];
         const b = ps[j];
-        const d = dist(a.pos, b.pos);
+        // Cheap reject before the sqrt: √(x²+y²) ≥ |x| holds bitwise in IEEE
+        // round-to-nearest, so |dx| or |dy| ≥ PLAYER_MIN_DIST guarantees the
+        // d-check below would continue anyway. Most of the 45 pairs exit here.
+        const dx = a.pos.x - b.pos.x;
+        if (dx >= PLAYER_MIN_DIST || dx <= -PLAYER_MIN_DIST) continue;
+        const dy = a.pos.y - b.pos.y;
+        if (dy >= PLAYER_MIN_DIST || dy <= -PLAYER_MIN_DIST) continue;
+        const d = Math.sqrt(dx * dx + dy * dy);
         if (d >= PLAYER_MIN_DIST) continue;
         if (d < 1e-6) {
-          a.pos = add(a.pos, v2(0.02 * (i + 1), 0.01));
+          a.pos.x += 0.02 * (i + 1);
+          a.pos.y += 0.01;
           continue;
         }
-        const push = scale(norm(sub(a.pos, b.pos)), (PLAYER_MIN_DIST - d) / 2);
-        a.pos = add(a.pos, push);
-        b.pos = sub(b.pos, push);
+        // Flat form of the old norm/scale/add push — same op order, in place.
+        const k = (PLAYER_MIN_DIST - d) / 2;
+        const px = (dx / d) * k;
+        const py = (dy / d) * k;
+        a.pos.x += px;
+        a.pos.y += py;
+        b.pos.x -= px;
+        b.pos.y -= py;
       }
     }
   }

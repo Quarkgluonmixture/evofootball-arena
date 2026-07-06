@@ -120,11 +120,12 @@ function assignMarks(team: Team, match: Match): void {
 
   const opp = match.teams[1 - team.side];
   const carrier = match.ball.owner;
+  // Sort by how deep they are in OUR half: smaller localX for them = deeper
+  // for us. (A numerically identical pre-sort used to run first; this
+  // comparator is a total order — index tiebreak — so one sort decides fully.)
   const threats = opp.players
     .filter((o) => o.role !== 'GK' && o !== carrier)
-    .sort((a, b) => team.localX(b.pos.x) * -1 - team.localX(a.pos.x) * -1 || a.index - b.index);
-  // Sort by how deep they are in OUR half: smaller localX for them = deeper for us.
-  threats.sort((a, b) => opp.localX(b.pos.x) - opp.localX(a.pos.x) || a.index - b.index);
+    .sort((a, b) => opp.localX(b.pos.x) - opp.localX(a.pos.x) || a.index - b.index);
 
   const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index));
   const used = new Set<number>();

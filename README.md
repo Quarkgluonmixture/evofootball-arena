@@ -395,7 +395,7 @@ friendly, no league bookkeeping.
 match** (Phase 19 — assigned runners + direct balls into their path),
 balanced possession, ~94% ball-in-play (the rest is live dead-ball time
 around ~4 restarts per match: ≈2.4 goal kicks, ≈1.3 corners, ≈0.5 kick-ins),
-~33 ms per headless match (allocation-free hot paths + a precomputed
+~25 ms per headless match (allocation-free hot paths + a precomputed
 intercept table — Phase 16; a 10-season fast-sim runs off the main thread on
 the sim worker).
 Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6

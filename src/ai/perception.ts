@@ -1,6 +1,6 @@
 import { clamp01 } from '../utils/math';
 import {
-  add, closestPointOnSegment, dist, len, norm, scale, sub, v2, type V2,
+  add, closestPointOnSegment, dist, len, norm, scale, type V2,
 } from '../utils/vec';
 import { BALL_FRICTION_K } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
@@ -85,18 +85,30 @@ for (let t = 0.1; t <= 3.0; t += 0.1) {
 export function interceptBall(p: Player, ball: Ball): InterceptSolution {
   const v0 = ball.vel;
   const speed0 = len(v0);
+  // timeToPoint inlined with the topSpeed getter hoisted out of the sampling
+  // loop (stamina can't change mid-call, so every sample read the same value);
+  // sample points stay scalar until one is actually returned. Same arithmetic
+  // in the same order — results are bit-identical, the garbage is gone.
+  const ts = Math.max(p.topSpeed, 0.1);
   if (speed0 < 0.5) {
-    return { point: ball.pos, tBall: 0, tMe: timeToPoint(p, ball.pos), reachable: true };
+    const dx = p.pos.x - ball.pos.x;
+    const dy = p.pos.y - ball.pos.y;
+    return { point: ball.pos, tBall: 0, tMe: Math.sqrt(dx * dx + dy * dy) / ts + 0.15, reachable: true };
   }
   for (let i = 0; i < INTERCEPT_T.length; i++) {
     const t = INTERCEPT_T[i];
     const travel = INTERCEPT_TRAVEL[i];
-    const pt = { x: ball.pos.x + v0.x * travel, y: ball.pos.y + v0.y * travel };
-    const tMe = timeToPoint(p, pt);
-    if (tMe <= t) return { point: pt, tBall: t, tMe, reachable: true };
+    const px = ball.pos.x + v0.x * travel;
+    const py = ball.pos.y + v0.y * travel;
+    const dx = p.pos.x - px;
+    const dy = p.pos.y - py;
+    const tMe = Math.sqrt(dx * dx + dy * dy) / ts + 0.15;
+    if (tMe <= t) return { point: { x: px, y: py }, tBall: t, tMe, reachable: true };
   }
   const rest = add(ball.pos, scale(v0, 1 / BALL_FRICTION_K));
-  return { point: rest, tBall: 3, tMe: timeToPoint(p, rest), reachable: false };
+  const dx = p.pos.x - rest.x;
+  const dy = p.pos.y - rest.y;
+  return { point: rest, tBall: 3, tMe: Math.sqrt(dx * dx + dy * dy) / ts + 0.15, reachable: false };
 }
 
 /** Can `p` cut out a pass traveling from the ball along its velocity? */
@@ -112,6 +124,3 @@ export function canInterceptPass(p: Player, ball: Ball): { ok: boolean; point: V
   const tMe = timeToPoint(p, cp);
   return { ok: tMe < tBall * 0.95 && dist(p.pos, cp) < 10, point: cp };
 }
-
-export const away = (from: V2, of: V2): V2 => norm(sub(from, of));
-export const zero = (): V2 => v2();

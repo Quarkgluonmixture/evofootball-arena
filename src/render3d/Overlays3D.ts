@@ -18,6 +18,8 @@ export class Overlays3D {
   private markPositions: THREE.BufferAttribute;
   private formationMarkers: THREE.Mesh[] = [];
   private chaserRings: THREE.Mesh[] = [];
+  /** One diamond marker geometry reused across themes (a fresh one leaked per attach). */
+  private markerGeo: THREE.RingGeometry | null = null;
 
   constructor() {
     this.passLine = makeLine(0xfde047);
@@ -55,7 +57,8 @@ export class Overlays3D {
       (m.material as THREE.Material).dispose();
     }
     this.formationMarkers = [];
-    const geo = new THREE.RingGeometry(0.28, 0.55, 4); // diamond-ish marker
+    this.markerGeo ??= new THREE.RingGeometry(0.28, 0.55, 4); // diamond-ish marker
+    const geo = this.markerGeo;
     for (const p of theme.players) {
       const mat = new THREE.MeshBasicMaterial({
         color: theme.teams[p.side].primary, transparent: true, opacity: 0.55, side: THREE.DoubleSide,

@@ -68,7 +68,11 @@ export class MatchRenderer {
   /** Rebuild sprites for a new match. */
   attach(match: Match): void {
     this.match = match;
-    this.playersLayer.removeChildren();
+    // destroy() the old containers (Text objects own GPU textures that GC
+    // alone does not reliably free in Pixi v8) — removeChildren only detaches.
+    for (const child of this.playersLayer.removeChildren()) {
+      child.destroy({ children: true });
+    }
     this.sprites.clear();
     this.trail = [];
     this.heat.fill(0);

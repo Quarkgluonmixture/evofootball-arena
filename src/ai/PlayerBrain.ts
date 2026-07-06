@@ -82,7 +82,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // --- Pass: score every teammate, keep the best.
   let bestMate: Player | null = null;
   let bestPass = 0;
-  let bestWhy = '';
+  let bestLane = 0;
+  let bestOpen = 0;
   if (p.kickCooldown <= 0) {
     for (const mate of team.players) {
       if (mate === p) continue;
@@ -108,11 +109,20 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (s > bestPass) {
         bestPass = s;
         bestMate = mate;
-        bestWhy = `to ${mate.name} · lane ${lane.toFixed(2)} · open ${open.toFixed(2)} · passBias ${g.passBias.toFixed(2)}`;
+        bestLane = lane;
+        bestOpen = open;
       }
     }
     if (pressure > 0.5) bestPass *= W.passOutletMul; // pass is the pressure outlet
-    if (bestMate) cands.push({ action: 'Pass', score: bestPass, why: bestWhy });
+    // The why string is built once for the winner — building it per improved
+    // candidate inside the loop was pure string churn (toFixed × 3 each time).
+    if (bestMate) {
+      cands.push({
+        action: 'Pass',
+        score: bestPass,
+        why: `to ${bestMate.name} · lane ${bestLane.toFixed(2)} · open ${bestOpen.toFixed(2)} · passBias ${g.passBias.toFixed(2)}`,
+      });
+    }
   }
 
   // --- Through ball: feed an assigned runner IN THEIR PATH, not to feet.
@@ -120,7 +130,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // defender it lands; riskTolerance gates it (direct sides live on these).
   let bestRunner: Player | null = null;
   let bestThrough = 0;
-  let bestThroughWhy = '';
+  let bestBehind = 0;
+  let bestThroughLane = 0;
   if (p.kickCooldown <= 0) {
     const line = defenderLineLocalX(team, opp.players);
     for (const mate of team.players) {
@@ -139,10 +150,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (s > bestThrough) {
         bestThrough = s;
         bestRunner = mate;
-        bestThroughWhy = `into ${mate.name}'s run · lane ${lane.toFixed(2)} · behind ${behind.toFixed(2)} · risk ${g.riskTolerance.toFixed(2)}`;
+        bestThroughLane = lane;
+        bestBehind = behind;
       }
     }
-    if (bestRunner) cands.push({ action: 'ThroughBall', score: bestThrough, why: bestThroughWhy });
+    if (bestRunner) {
+      cands.push({
+        action: 'ThroughBall',
+        score: bestThrough,
+        why: `into ${bestRunner.name}'s run · lane ${bestThroughLane.toFixed(2)} · behind ${bestBehind.toFixed(2)} · risk ${g.riskTolerance.toFixed(2)}`,
+      });
+    }
   }
 
   // --- Dribble: needs space ahead; dribbleBias makes it a first choice.
@@ -216,7 +234,14 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
   // Loose ball near our goal that we can claim first.
   if (ball.owner === null && dist(ball.pos, ownGoal) < 15) {
     const sol = interceptBall(p, ball);
-    const rivalT = Math.min(...match.allPlayers.filter((q) => q !== p).map((q) => timeToPoint(q, sol.point)));
+    // Running min over the same values in the same order — the old
+    // filter/map/spread allocated two arrays per GK decision.
+    let rivalT = Infinity;
+    for (const q of match.allPlayers) {
+      if (q === p) continue;
+      const t = timeToPoint(q, sol.point);
+      if (t < rivalT) rivalT = t;
+    }
     if (sol.tMe < rivalT) {
       p.action = { type: 'ChaseBall', scores: [{ action: 'ChaseBall', score: 0.9, why: 'claim loose ball in box' }] };
       return;
@@ -274,10 +299,6 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     });
   } else {
     // ----- They have the ball (or it's loose) -----
-    if (ball.owner !== null && ball.owner.side !== p.side) {
-      const inter = canInterceptPass(p, ball);
-      void inter; // owner holds it — no pass in flight; handled below when free
-    }
     // Cut out a pass in flight.
     if (ball.owner === null && match.pendingPass && match.pendingPass.side !== team.side) {
       const inter = canInterceptPass(p, ball);

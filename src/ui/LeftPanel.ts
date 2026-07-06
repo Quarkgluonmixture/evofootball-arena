@@ -35,6 +35,8 @@ export class LeftPanel {
   private nameB: HTMLElement;
   private score: HTMLElement;
   private clock: HTMLElement;
+  private lastScore = '';
+  private lastClock = '';
   private meta: HTMLElement;
   private speedButtons = new Map<number, HTMLButtonElement>();
   private simButtons: HTMLButtonElement[] = [];
@@ -170,7 +172,13 @@ export class LeftPanel {
   }
 
   updateClock(match: Match): void {
-    this.score.textContent = `${match.score[0]} – ${match.score[1]}`;
+    // Called every frame — diff before writing (the score changes a handful
+    // of times per match, the clock about once per second).
+    const score = `${match.score[0]} – ${match.score[1]}`;
+    if (score !== this.lastScore) {
+      this.lastScore = score;
+      this.score.textContent = score;
+    }
     const phase = match.phase;
     const restart = match.restart
       ? { kickIn: '↪ kick-in', corner: '⚑ corner', goalKick: '🥅 goal kick' }[match.restart.kind]
@@ -182,7 +190,11 @@ export class LeftPanel {
       phase === 'fulltime' ? 'FT' :
       phase === 'restart' && restart ? `${match.minute()}' · ${restart}` :
       `${match.minute()}'`;
-    this.clock.textContent = `${label}  ·  H${match.half}`;
+    const clock = `${label}  ·  H${match.half}`;
+    if (clock !== this.lastClock) {
+      this.lastClock = clock;
+      this.clock.textContent = clock;
+    }
   }
 
   setSpeedUI(paused: boolean, speed: number): void {

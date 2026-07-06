@@ -52,9 +52,17 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       const markIdx = p.action.targetIdx;
       const mark = markIdx !== undefined ? opp.players[markIdx] : null;
       if (mark) {
-        // Goal-side position: between the opponent and our goal, tighter with aggression.
+        // Goal-side position: between the opponent and our goal, tighter with
+        // aggression. Flat form of add(mark.pos, scale(norm(sub(goal, mark.pos)), markDist))
+        // — same op order, no per-frame vectors.
         const markDist = 2.6 - g.markingAggression * 1.8;
-        target = add(mark.pos, scale(norm(sub(team.ownGoal(), mark.pos)), markDist));
+        const goal = team.ownGoal();
+        const gx = goal.x - mark.pos.x;
+        const gy = goal.y - mark.pos.y;
+        const gl = Math.sqrt(gx * gx + gy * gy);
+        const nx = gl < 1e-8 ? 0 : gx / gl;
+        const ny = gl < 1e-8 ? 0 : gy / gl;
+        target = { x: mark.pos.x + nx * markDist, y: mark.pos.y + ny * markDist };
         speedF = 0.85 + g.markingAggression * 0.15;
       } else {
         target = formationSpot(p, team, ball, hasBall);
@@ -94,23 +102,32 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       break;
     }
     case 'GoalkeeperPosition': {
+      // Flat form of add(goal, scale(sub(ball.pos, goal), k)) — every frame for keepers.
       const goal = team.ownGoal();
       const out = 2.5 + g.keeperAggression * 7;
-      const toBall = sub(ball.pos, goal);
-      const d = Math.max(dist(ball.pos, goal), 0.1);
-      const raw = add(goal, scale(toBall, Math.min(out, d * 0.5) / d));
-      target = clampToBox(raw, team.attackDir);
+      const tbx = ball.pos.x - goal.x;
+      const tby = ball.pos.y - goal.y;
+      const d = Math.max(Math.sqrt(tbx * tbx + tby * tby), 0.1);
+      const k = Math.min(out, d * 0.5) / d;
+      target = clampToBox({ x: goal.x + tbx * k, y: goal.y + tby * k }, team.attackDir);
       speedF = 0.9;
       break;
     }
   }
 
-  let desired = target ? arrive(p, target, p.topSpeed * speedF, 2.2) : scale(p.vel, 0.4);
+  // arrive/scale return fresh vectors, so accumulating into `desired` in place
+  // is alias-free — same additions in the same order, two fewer allocations
+  // per player per frame.
+  const desired = target ? arrive(p, target, p.topSpeed * speedF, 2.2) : scale(p.vel, 0.4);
 
   // Steering blend: hard anti-stacking vs teammates + soft path avoidance.
-  desired = add(desired, separation(p, team.players, 2.4, 2.5));
+  const sep = separation(p, team.players, 2.4, 2.5);
+  desired.x += sep.x;
+  desired.y += sep.y;
   if (p.action.type === 'MoveToFormationSpot' || p.action.type === 'SupportBallCarrier') {
-    desired = add(desired, avoidOpponents(p, desired, opp.players));
+    const av = avoidOpponents(p, desired, opp.players);
+    desired.x += av.x;
+    desired.y += av.y;
   }
 
   p.desiredVel = desired;

@@ -252,12 +252,18 @@ export class GameApp implements GameActions {
     }
   }
 
+  private lastCineBugKey = '';
+
   /** Minimal broadcast overlay for 2D cinematic mode (3D has its own bug). */
   private updateCineBug(): void {
     const show = this.cinematic && this.viewMode === '2d' && this.match !== null;
     this.cineBug.classList.toggle('hidden', !show);
     if (!show || !this.match) return;
     const m = this.match;
+    // Diff before rebuilding the markup (same pattern as the 3D score bug).
+    const key = `${m.teams[0].info.short}|${m.score[0]}|${m.score[1]}|${m.minute()}`;
+    if (key === this.lastCineBugKey) return;
+    this.lastCineBugKey = key;
     const hex = (c: number) => `#${c.toString(16).padStart(6, '0')}`;
     this.cineBug.innerHTML =
       `<span class="sb-chip" style="background:${hex(m.teams[0].info.colors.primary)}"></span>` +
