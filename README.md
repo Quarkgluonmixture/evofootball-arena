@@ -722,6 +722,35 @@ Ideas for the next phase (rough priority order):
     - Push protocol, V8 float-drift, English-pinned Playwright selectors,
       and all failure modes: `docs/ARCHITECTURE.md` §10-11. When play-feel
       and the calibrate table disagree, the USER'S PLAY REPORT wins.
+- **Roadmap beyond Phase 30 (directions, not commitments — re-scope each
+  against the user's play reports):**
+  - **Phase 31 — formations ENTER EVOLUTION + set-piece routines.** Once
+    Phase 30's fixed formations exist, let them evolve: formation/scheme
+    become inheritable-mutable identity (meta drift visible in the
+    Evolution tab — "the league discovered the low block"), and corner
+    ROUTINES (near-post / far-post / short-corner picks, scored like
+    everything else) so set pieces stop being one hardcoded cross.
+  - **Phase 32 — free kicks become REAL.** Offside + professional fouls
+    (29.x) made free kicks common again but they're generic restarts:
+    direct shots from range (a 2-3 man wall + keeper positioning — the
+    danger-band pro foul then has real cost), quick vs slow restart
+    choice, a designated set-piece taker (finishing/technique).
+  - **Phase 33 — the watching experience.** Auto-highlights: HT/FT replay
+    reel of goals/big saves (ReplayBuffer already archives), man-of-the-
+    match + per-player match ratings feeding awards, pass-combo detection
+    (tiki-taka feed moments once Phase 30 makes them real), phone UX pass
+    on the 6-man team cards.
+  - **Phase 34 — players become PEOPLE.** Traits layered on attributes
+    (clinical / playmaker / enforcer — small, READABLE sim effects),
+    captains, simple form arcs feeding season stories; maybe a transfer
+    window between seasons if the ecosystem needs fresh narratives.
+  - **Phase 35 — league ecology.** Rivalries/derbies (seeded from repeat
+    finals + relegation fights) with visible intensity effects, prestige
+    shaping rebirth parent choice, attendance/stadium flavor.
+  - Ordering rationale: 31-32 deepen what 30 builds (tactics), 33 cashes
+    it in visually (the user watches on a phone), 34-35 only pay off once
+    the football itself looks right. If Phase 30 lands badly on play-feel,
+    STOP and rebalance before any of these.
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only
