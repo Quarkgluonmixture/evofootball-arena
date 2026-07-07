@@ -174,10 +174,10 @@ scripts/                headless calibration, evolution & wildcard-training tool
   happened, taken through the same live restart machinery. A foul inside the
   offender's own box is a **PENALTY**: the fouled team's best finisher steps
   up against the keeper from the drawn spot (9.4 m), everyone else held 8 m
-  clear, and the first touch is the shot. ~4.6 fouls and ~0.1 penalties per
+  clear, and the first touch is the shot. ~3.7 fouls and ~0.12 penalties per
   match at current tuning.
-- **Cards (Phase 25):** a foul sometimes draws a **yellow** (~1 booking per
-  match; aggressive markers collect more), and a second yellow — or a rare
+- **Cards (Phase 25):** a foul sometimes draws a **yellow** (~0.75 bookings
+  per match; aggressive markers collect more), and a second yellow — or a rare
   straight red — is a **sending off**: the player is parked on the apron and
   the team plays **4v5** for the rest of the match (measurably costly).
   Cards feed the season's **Dirtiest team** award. Keepers are never carded
@@ -465,24 +465,28 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~4.2 goals from ~14.8 shots (≈10 on target — futsal-flavored scorelines;
-keepers are genuinely busy at **≈5.8 saves/match**), ~68% pass completion
-with **~15 through balls per match** and **~55% of passes played forward**
+~4.0 goals from ~14 shots (≈9.5 on target — futsal-flavored scorelines;
+keepers are genuinely busy at **≈5.5 saves/match**), ~74% pass completion
+with **~14.5 through balls per match** and **~55% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
-sideways recycling), **≈10 first-touch miscontrols/match** (forced errors —
-pressing pays), balanced possession, ~91% ball-in-play (the rest is live
-dead-ball time: goal kicks, corners, kick-ins, plus **≈5.0 fouls → free
-kicks, ≈0.15 of them penalties** — Phase 20 — drawing **≈1.05 yellows and
-≈0.09 reds** per match — Phase 25), ~26 ms per headless match
-(allocation-free hot paths + a precomputed intercept table — Phase 16; a
-10-season fast-sim runs off the main thread on the sim worker).
-Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.2 and completion
-77% → 68%, because attacks are far more direct (shots per completed pass
-more than doubled) and errors are real; the keeper economy was re-tuned to
-match (save base 0.75, reach 2.15 m, 80% catches under 21 m/s). The pyramid
-produces real football stories: never-relegated aristocrats, yo-yo clubs
-with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo gap (see
-`npm run evolve-check`).
+sideways recycling), **≈8 first-touch miscontrols/match** (forced errors —
+pressing pays), ~2.3 corners (≈11% lead to a shot inside 8 s), balanced
+possession, ~92% ball-in-play (the rest is live dead-ball time: goal kicks,
+corners, kick-ins, plus **≈3.7 fouls → free kicks, ≈0.12 of them
+penalties** — Phase 20 — drawing **≈0.75 yellows and ≈0.09 reds** per
+match — Phase 25), ~26 ms per headless match (allocation-free hot paths + a
+precomputed intercept table — Phase 16; a 10-season fast-sim runs off the
+main thread on the sim worker).
+Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
+77% → 74%, because attacks are far more direct (shots per completed pass
+roughly doubled) and errors are real; the keeper economy was re-tuned to
+match (save base 0.75, reach 2.15 m, 80% catches under 21 m/s), and the
+27.1 spacing pass (separated formation lanes, wider support radius, a
+softer ball-side marking pull) unclogged the central corridor — fouls,
+tackles and interceptions all dropped back as the crowd dissolved. The
+pyramid produces real football stories: never-relegated aristocrats, yo-yo
+clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
+gap (see `npm run evolve-check`).
 
 ## Verification tooling
 

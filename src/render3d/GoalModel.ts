@@ -2,7 +2,9 @@ import * as THREE from 'three';
 import { GOAL_DEPTH, GOAL_WIDTH, HALF_L } from '../sim/constants';
 
 const CROSSBAR_H = 2.44;
-const POST_R = 0.09;
+// Chunkier than a real post (0.06 m): at broadcast/gantry distances a thin
+// cylinder collapses to a sub-pixel line and the goal loses its 3D frame.
+const POST_R = 0.13;
 
 /**
  * A real 3D goal: two posts, crossbar, angled back stanchions and a net made
@@ -14,9 +16,13 @@ export class Goal3D {
   private net: THREE.Group;
   private shakeT = -1;
 
-  /** @param dir +1 = goal on the +x end, -1 = goal on the -x end. */
-  constructor(dir: 1 | -1) {
-    const { group, net } = buildGoal(dir);
+  /**
+   * @param dir +1 = goal on the +x end, -1 = goal on the -x end.
+   * @param anisotropy renderer max anisotropy — keeps the net mesh readable
+   *   at grazing angles and on small (phone) canvases.
+   */
+  constructor(dir: 1 | -1, anisotropy = 1) {
+    const { group, net } = buildGoal(dir, anisotropy);
     this.group = group;
     this.net = net;
   }
@@ -47,11 +53,16 @@ export class Goal3D {
   }
 }
 
-function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
+function buildGoal(dir: 1 | -1, anisotropy: number): { group: THREE.Group; net: THREE.Group } {
   const group = new THREE.Group();
   const net = new THREE.Group();
   group.add(net);
-  const frameMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.22, metalness: 0.25 });
+  // A touch of emissive keeps the frame readable against the dark apron the
+  // behind-goal cameras look into (failure mode 13's neighborhood).
+  const frameMat = new THREE.MeshStandardMaterial({
+    color: 0xf8fafc, roughness: 0.22, metalness: 0.25,
+    emissive: 0x8b96a8, emissiveIntensity: 0.35,
+  });
   const postGeo = new THREE.CylinderGeometry(POST_R, POST_R, CROSSBAR_H, 10);
 
   const halfW = GOAL_WIDTH / 2;
@@ -66,7 +77,7 @@ function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
 
     // Back stanchion: slopes from the crossbar down to the back of the net.
     const len = Math.hypot(GOAL_DEPTH, CROSSBAR_H);
-    const stanchion = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, len, 8), frameMat);
+    const stanchion = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, len, 8), frameMat);
     stanchion.position.set((lineX + backX) / 2, CROSSBAR_H / 2, sz * halfW);
     stanchion.rotation.z = -dir * Math.atan2(GOAL_DEPTH, CROSSBAR_H);
     group.add(stanchion);
@@ -78,25 +89,36 @@ function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
   bar.castShadow = true;
   group.add(bar);
 
-  // Net planes with a repeating grid texture (finer + brighter for depth).
-  const netMat = new THREE.MeshBasicMaterial({
-    map: netTexture(),
-    transparent: true,
-    opacity: 0.78,
-    side: THREE.DoubleSide,
-    depthWrite: false,
-  });
-  const addNet = (w: number, h: number, setup: (m: THREE.Mesh) => void) => {
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), netMat);
-    const tex = netMat.map as THREE.Texture;
+  // Net planes with a repeating grid texture. Each panel gets its own
+  // texture clone with the repeat derived from ITS dimensions, so the mesh
+  // is a square ~0.28 m weave on every face — one shared repeat stretched
+  // the roof's cells to 0.24×1.75 m and the goal read as a flat grate from
+  // the behind-goal gantry instead of a proper box net.
+  const NET_CELL = 0.28;
+  const baseTex = netTexture(anisotropy);
+  const addNet = (w: number, h: number, opacity: number, setup: (m: THREE.Mesh) => void) => {
+    const tex = baseTex.clone();
     tex.wrapS = THREE.RepeatWrapping;
     tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(9, 4);
+    tex.repeat.set(Math.max(1, Math.round(w / NET_CELL)), Math.max(1, Math.round(h / NET_CELL)));
+    tex.needsUpdate = true;
+    const mat = new THREE.MeshBasicMaterial({
+      map: tex,
+      transparent: true,
+      opacity,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
     setup(mesh);
     net.add(mesh);
   };
+  // Per-panel opacity: at grazing angles a panel's lines stack up per pixel
+  // and it glows; face-on they thin out. The roof is seen at a grazing angle
+  // from every elevated camera, so it gets the LOW opacity — otherwise it
+  // outshines the box and the whole goal reads as a flat grate.
   // Back wall.
-  addNet(GOAL_WIDTH, CROSSBAR_H, (m) => {
+  addNet(GOAL_WIDTH, CROSSBAR_H, 0.9, (m) => {
     m.position.set(backX, CROSSBAR_H / 2, 0);
     m.rotation.y = Math.PI / 2;
   });
@@ -105,13 +127,13 @@ function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
   // (goal depth) and local y -> world z (goal width). NOTE Three.js applies
   // euler X last — the previous y-then-x rotation combo stood this panel
   // upright as a 7 m-tall tower above the bar.
-  addNet(GOAL_DEPTH, GOAL_WIDTH, (m) => {
+  addNet(GOAL_DEPTH, GOAL_WIDTH, 0.42, (m) => {
     m.position.set((lineX + backX) / 2, CROSSBAR_H - 0.02, 0);
     m.rotation.x = -Math.PI / 2;
   });
   // Side walls.
   for (const sz of [-1, 1]) {
-    addNet(GOAL_DEPTH, CROSSBAR_H, (m) => {
+    addNet(GOAL_DEPTH, CROSSBAR_H, 0.68, (m) => {
       m.position.set((lineX + backX) / 2, CROSSBAR_H / 2, sz * halfW);
     });
   }
@@ -119,15 +141,20 @@ function buildGoal(dir: 1 | -1): { group: THREE.Group; net: THREE.Group } {
   return { group, net };
 }
 
-function netTexture(): THREE.CanvasTexture {
+function netTexture(anisotropy: number): THREE.CanvasTexture {
+  // 64px cell + 3px lines: the mesh survives mip filtering, so the net still
+  // reads as a woven grid on small (phone) canvases and at grazing angles —
+  // the old 32px/2px version filtered away to a faint haze when downscaled.
+  const S = 64;
   const c = document.createElement('canvas');
-  c.width = 32;
-  c.height = 32;
+  c.width = S;
+  c.height = S;
   const ctx = c.getContext('2d')!;
-  ctx.clearRect(0, 0, 32, 32);
-  ctx.strokeStyle = 'rgba(240,245,250,0.9)';
-  ctx.lineWidth = 2;
-  ctx.strokeRect(1, 1, 30, 30);
+  ctx.clearRect(0, 0, S, S);
+  ctx.strokeStyle = 'rgba(244,248,252,0.95)';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(2, 2, S - 4, S - 4);
   const tex = new THREE.CanvasTexture(c);
+  tex.anisotropy = anisotropy;
   return tex;
 }

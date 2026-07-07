@@ -57,15 +57,18 @@ export function cameraGoalFor(
     }
     case 'behindGoal': {
       // Sit behind whichever goal the ball is closer to and frame the
-      // goalmouth: look at a blend of the goal and the ball.
+      // goalmouth: look at a blend of the goal and the ball. Kept LOW
+      // (Phase 27.1): from the old 7.5 m gantry the view looked down onto
+      // the net roof and the goal read as a flat grate — from ~4 m the
+      // posts, crossbar and back net read as a real box.
       const sign = ball.x >= 0 ? 1 : -1;
       const goalX = sign * HALF_L;
       return {
-        px: sign * (HALF_L + 13),
-        py: 7.5,
+        px: sign * (HALF_L + 12),
+        py: 5.0,
         pz: clamp(ball.z * 0.35, -6, 6),
         lx: goalX * 0.45 + ball.x * 0.55,
-        ly: 0.8,
+        ly: 1.0,
         lz: ball.z * 0.65,
       };
     }

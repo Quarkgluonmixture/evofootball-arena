@@ -12,12 +12,15 @@ import type { Role, TeamMode } from '../sim/types';
  * tactical mode, and three genes (formationDepth, attackingWidth,
  * defensiveCompactness).
  */
+// Lanes are deliberately separated (Phase 27.1): with DF/MF/ST all within
+// ~7m of the center line, BOTH teams' spines stacked into one central
+// corridor and open play collapsed into a six-player chase around the ball.
 const BASE_SPOTS: Record<Role, V2> = {
   GK: v2(-41, 0),
-  DF: v2(-26, -2),
-  MF: v2(-11, -7),
-  WG: v2(-7, 15),
-  ST: v2(5, -1),
+  DF: v2(-26, -5),
+  MF: v2(-11, -12),
+  WG: v2(-7, 17),
+  ST: v2(5, 4),
 };
 
 /** How far up/down the pitch each tactical mode pushes the block. */
@@ -47,9 +50,11 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
 
   let x = base.x + slide + depth + MODE_SHIFT[team.mode];
 
-  // Width: stretch when we have the ball, squeeze when we don't.
+  // Width: stretch when we have the ball, squeeze when we don't. The
+  // in-possession floor is 1.0 (Phase 27.1) — an attacking shape should
+  // never be narrower than its base lanes.
   const widthMul = hasBall
-    ? 0.85 + g.attackingWidth * 0.65 // 0.85 .. 1.5
+    ? 1.0 + g.attackingWidth * 0.55 // 1.0 .. 1.55
     : 1.15 - g.defensiveCompactness * 0.6; // 1.15 .. 0.55
   let y = base.y * widthMul;
 
@@ -104,9 +109,10 @@ export function runTarget(p: Player, team: Team, opponents: Player[]): V2 {
  */
 export function supportSpot(p: Player, team: Team, ball: Ball): V2 {
   const g = team.genome;
-  // 8..16m: close enough for a give-and-go, far enough that the carrier
-  // isn't mobbed by their own teammates (Phase 19 spacing pass).
-  const radius = 8 + g.supportDistance * 8;
+  // 10..18m: close enough for a give-and-go, far enough that the carrier
+  // isn't mobbed by their own teammates (Phase 19 spacing pass, widened in
+  // Phase 27.1 — the crowd complaint was real).
+  const radius = 10 + g.supportDistance * 8;
   const aheadBias = team.mode === 'CounterAttack' || team.mode === 'Attack' ? 0.75 : 0.35;
 
   const lane = formationSpot(p, team, ball, true);

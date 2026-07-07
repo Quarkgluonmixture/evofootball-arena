@@ -67,7 +67,10 @@ aside {
   display: flex; align-items: flex-start; justify-content: center;
   padding: 8px; position: relative;
 }
-#stage canvas { max-width: 100%; height: auto; border-radius: 6px; }
+/* height must beat the INLINE style three.js writes via setSize() — without
+   !important the width gets capped by max-width while the inline pixel
+   height survives, vertically stretching the whole 3D view on phones. */
+#stage canvas { max-width: 100%; height: auto !important; border-radius: 6px; display: block; }
 #three-host { max-width: 100%; }
 
 /* ---------- goal banner (3D broadcast card) ---------- */

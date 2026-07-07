@@ -65,7 +65,9 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
         const bx = ball.pos.x - mark.pos.x;
         const by = ball.pos.y - mark.pos.y;
         const bl = Math.sqrt(bx * bx + by * by);
-        const laneW = 0.35 + g.markingAggression * 0.3;
+        // Kept moderate (Phase 27.1): a stronger ball-side pull dragged every
+        // marker into the central corridor and fed the crowding complaint.
+        const laneW = 0.22 + g.markingAggression * 0.22;
         const mx = nx + (bl < 1e-8 ? 0 : (bx / bl) * laneW);
         const my = ny + (bl < 1e-8 ? 0 : (by / bl) * laneW);
         const ml = Math.sqrt(mx * mx + my * my);

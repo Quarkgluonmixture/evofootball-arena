@@ -87,10 +87,10 @@ of balls too fast to trap (`tryDeflection`), goal-side+ball-side lane
 marking, tackle stun (victim 0.6s / whiff 0.35s) with lunge/stumble
 animations in both renderers, the anti-recycling territory clock
 (`Team.staleTime` → `stagnation` tilt in `decideCarrier`), a re-tuned
-keeper/shot economy (~4.2 goals) and a ≤640px phone layout (phase 27).
+keeper/shot economy and a ≤640px phone layout, then the 27.1 follow-up from live play reports — restart takers face their kick (corners work again), separated formation lanes + wider support radius (the six-player ball-chase dissolved), un-stretched 3D on phones (inline canvas height vs CSS) and a goal that reads as a box net (per-panel net repeat/opacity, chunkier frame, lower gantry) — landing at ~4.0 goals (phase 27).
 161 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~26 ms/headless match. Git
-tags `phase-10`…`phase-26` are known-green checkpoints; source at
+tags `phase-10`…`phase-27` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
 https://quarkgluonmixture.github.io/evofootball-arena/ (GitHub Pages,
 auto-deployed by `.github/workflows/pages.yml` — npm ci + full tests +
@@ -444,6 +444,11 @@ only caught by eyes on the PNGs.
     shootout theater got its own 'penalty' camera (low, behind the taker).
     If you stage new goal-line presentation, screenshot it before trusting
     any fixed camera (`scripts/probe-shootout.mjs` is the pattern).
+    Corollary (27.1): a semi-transparent grid viewed at a GRAZING angle
+    stacks many lines per pixel and glows, while the same grid face-on
+    nearly vanishes — from the old 7.5 m gantry the net's roof outshone the
+    box and the whole goal read as a flat grate. Per-panel opacity (roof
+    dimmest) + a lower camera fixed it.
 14. **The keeper's REACH is the binding constraint on goals — not the post,
     and not saveP.** Phase 27 tuning measured two traps. (a) Making shooters
     aim SAFER (aimMargin 1.3 → 1.45, further from the post) RAISED goals by
@@ -469,7 +474,7 @@ only caught by eyes on the PNGs.
 | Tackle economy | tackle base 0.23 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
 | Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
-| Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~1.0🟨/0.09🟥 per match; calibrate prints both) |
+| Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~0.75🟨/0.09🟥 per match since the 27.1 spacing pass cut tackle volume; calibrate prints both) |
 | Direct play (through balls ~16/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
 | Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |
 | Pass-fest vs dribble balance | carrier utility bases in `PlayerBrain.decideCarrier`; post-receive settle (`giveBall` decisionTimer 0.3) |

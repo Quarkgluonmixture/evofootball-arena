@@ -91,8 +91,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     let s = q * (W.shootBase + g.shootBias * W.shootGene);
     if (team.mode === 'Attack' || team.mode === 'CounterAttack') s *= W.shootModeMul;
     s *= 1 - pressure * W.shootPressurePen;
-    // Facing away from goal (Phase 27): turn first instead of snap-shooting blind.
-    s *= 1 - kickMisalignment(p, norm(sub(goal, p.pos))) * 0.3;
+    // Facing away from goal (Phase 27): turn first instead of snap-shooting
+    // blind. Restart takers are exempt — they set themselves before kicking.
+    if (!mustKick) s *= 1 - kickMisalignment(p, norm(sub(goal, p.pos))) * 0.3;
     cands.push({ action: 'Shoot', score: s, why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}` });
   }
 
@@ -134,8 +135,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // Playing the ball where the body doesn't face costs accuracy (Phase 27)
       // — prefer passes we're facing; technique loosens the constraint. Kept
       // mild: the time-gated stagnation tilt is the forward driver, this is
-      // only the body-mechanics tiebreak.
-      s *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
+      // only the body-mechanics tiebreak. Restart takers are exempt.
+      if (!mustKick) s *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
       // Don't just hand it straight back to the passer unless it progresses.
       if (lp && lp.passerGid === mate.gid && lp.receiverGid === p.gid && match.simTime - lp.t < 2.5 && gain < 0.1) {
         s *= 0.55;
@@ -229,6 +230,25 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   }
   const top = cands[0];
   const scores = cands.slice(0, 4);
+
+  // A restart taker sets themselves before striking (the run-up): face the
+  // chosen target so orientation penalties don't gut dead-ball deliveries —
+  // corners arrived weak and wild while the taker still faced the flag.
+  if (mustKick) {
+    const at =
+      top.action === 'Pass' ? bestMate!.pos
+      : top.action === 'ThroughBall' ? bestRunner!.pos
+      : top.action === 'Shoot' ? goal
+      : null; // clears/dribbles: face straight upfield
+    if (at) {
+      const hx = at.x - p.pos.x;
+      const hy = at.y - p.pos.y;
+      const hl = Math.sqrt(hx * hx + hy * hy);
+      if (hl > 1e-6) p.heading = { x: hx / hl, y: hy / hl };
+    } else {
+      p.heading = { x: team.attackDir, y: 0 };
+    }
+  }
 
   // Kicks resolve instantly; movement actions persist until next tick.
   switch (top.action) {

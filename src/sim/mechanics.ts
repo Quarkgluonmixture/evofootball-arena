@@ -36,9 +36,9 @@ export function orientationNoiseMul(misalign: number, technique: number): number
   return 1 + misalign * (0.9 - technique * 0.6);
 }
 
-/** Kicks against the body lose power (up to −30%); technique recovers some. */
+/** Kicks against the body lose power (up to −22%); technique recovers some. */
 export function orientationPowerMul(misalign: number, technique: number): number {
-  return 1 - misalign * 0.3 * (1 - technique * 0.4);
+  return 1 - misalign * 0.22 * (1 - technique * 0.4);
 }
 
 /**

@@ -63,8 +63,9 @@ export class ThreeMatchRenderer {
     host.appendChild(this.renderer.domElement);
 
     this.scene = createScene();
-    this.scene.add(createPitch(this.renderer.capabilities.getMaxAnisotropy()));
-    this.goals = [new Goal3D(1), new Goal3D(-1)];
+    const maxAniso = this.renderer.capabilities.getMaxAnisotropy();
+    this.scene.add(createPitch(maxAniso));
+    this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
     this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup);
 
