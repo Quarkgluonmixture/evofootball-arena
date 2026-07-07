@@ -200,6 +200,22 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     expect(m.inPenaltyBox(intruder.pos, 1)).toBe(false);
   });
 
+  it('halves end at a safe break inside the stoppage window, never mid-shot (27.4)', () => {
+    let sawStoppage = false;
+    for (const seed of [2, 7, 19, 42, 77, 1234]) {
+      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+      m.runToCompletion();
+      const ht = m.events.find((e) => e.type === 'halftime')!;
+      const ft = m.events.find((e) => e.type === 'fulltime')!;
+      expect(ht.t).toBeGreaterThanOrEqual(60);
+      expect(ht.t).toBeLessThanOrEqual(60 + 8 + 0.05);
+      expect(ft.t).toBeGreaterThanOrEqual(120);
+      expect(ft.t).toBeLessThanOrEqual(120 + 8 + 0.05);
+      if (ht.t > 60.1 || ft.t > 120.1) sawStoppage = true;
+    }
+    expect(sawStoppage).toBe(true); // the window is actually used sometimes
+  });
+
   it('the territory clock resets on possession change and accrues in stale spells', () => {
     const m = new Match({ seed: 5, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
     m.teams[0].resetProgress(3);

@@ -341,6 +341,7 @@ export function tryKeeperSave(match: Match): void {
   if (dist(gk.pos, ball.pos) > reach) return;
 
   shot.resolved = true;
+  gk.saveAnimTimer = 0.7; // the dive is visible whether it saves or not (27.4)
   const shooterTeam = match.teams[shot.side];
   // Reflexes swing save odds by ±11 percentage points around the xG baseline;
   // the shot's frozen dive difficulty then discounts it — accurate corner

@@ -10,7 +10,7 @@ import {
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GOAL_WIDTH, HALF_L, HALF_W, KICK_COOLDOWN, MATCH_DURATION,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
-  RESTART_TIMEOUT, TEAM_AI_INTERVAL,
+  RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL,
 } from './constants';
 import * as mech from './mechanics';
 import { Player } from './Player';
@@ -107,6 +107,8 @@ export class Match {
 
   private kickoffSide: Side = 0;
   private stepCount = 0;
+  /** One "stoppage time" feed line per half (Phase 27.4). */
+  private stoppageAnnounced = false;
 
   constructor(cfg: MatchConfig) {
     this.rng = new Rng(cfg.seed);
@@ -215,12 +217,37 @@ export class Match {
     }
 
     if (this.half === 1 && this.simTime >= this.duration / 2) {
-      this.phase = 'halftime';
-      this.phaseTimer = 1.2;
-      this.pushEvent('halftime', -1, 'Half-time');
+      if (this.refBlowsNow(this.duration / 2)) {
+        this.phase = 'halftime';
+        this.phaseTimer = 1.2;
+        this.stoppageAnnounced = false;
+        this.pushEvent('halftime', -1, 'Half-time');
+      }
     } else if (this.simTime >= this.duration) {
-      this.endMatch();
+      if (this.refBlowsNow(this.duration)) this.endMatch();
     }
+  }
+
+  /**
+   * Stoppage time (Phase 27.4): the half doesn't cut off mid-move. The
+   * whistle waits for a safe break — no shot or pass in flight, no attack
+   * into the final third, and a penalty must always be taken — up to
+   * STOPPAGE_MAX seconds past the nominal end.
+   */
+  private refBlowsNow(nominal: number): boolean {
+    if (this.simTime >= nominal + STOPPAGE_MAX) return true; // patience over
+    let holdOn = false;
+    if (this.pendingShot || this.pendingPass) holdOn = true;
+    else if (this.phase === 'restart') holdOn = this.restart!.kind === 'penalty';
+    else if (this.possessionSide !== -1) {
+      const t = this.teams[this.possessionSide];
+      holdOn = t.localX(this.ball.pos.x) > 12; // live attack plays out
+    }
+    if (holdOn && !this.stoppageAnnounced) {
+      this.stoppageAnnounced = true;
+      this.pushEvent('info', -1, 'Stoppage time — the attack plays out');
+    }
+    return !holdOn;
   }
 
   /** Run the rest of the match headless. Same trajectory as watching it. */

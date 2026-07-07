@@ -144,9 +144,15 @@ export class MatchRenderer {
       const color = p.stamina > 0.5 ? 0x4ade80 : p.stamina > 0.25 ? 0xfacc15 : 0xef4444;
       s.staminaBar.rect(-7, 9, w, 2).fill({ color, alpha: 0.9 });
 
-      // Tackle lunge / recovery stumble (Phase 27): the lunge stretches the
-      // body along the heading; a stunned player wobbles and dims.
-      if (p.tackleAnimTimer > 0) {
+      // Keeper dive (27.4) / tackle lunge / recovery stumble (Phase 27): the
+      // dive stretches the body toward the ball, the lunge along the heading;
+      // a stunned player wobbles and dims.
+      if (p.saveAnimTimer > 0) {
+        const k = p.saveAnimTimer / 0.7;
+        s.body.rotation = Math.atan2(match.ball.pos.y - p.pos.y, match.ball.pos.x - p.pos.x);
+        s.body.scale.set(1 + 0.7 * k, 1 - 0.35 * k);
+        s.body.alpha = 1;
+      } else if (p.tackleAnimTimer > 0) {
         const k = p.tackleAnimTimer / 0.4;
         s.body.rotation = Math.atan2(p.heading.y, p.heading.x);
         s.body.scale.set(1 + 0.5 * k, 1 - 0.3 * k);

@@ -26,6 +26,8 @@ export interface RenderPlayer {
   tackling?: boolean;
   /** Recovering after being dispossessed / a whiffed lunge (Phase 27). */
   stunned?: boolean;
+  /** A keeper dive is playing (Phase 27.4) — display only. */
+  saving?: boolean;
 }
 
 export interface RenderBall {
@@ -128,6 +130,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     stamina: p.stamina,
     tackling: p.tackleAnimTimer > 0,
     stunned: p.stunTimer > 0,
+    saving: p.saveAnimTimer > 0,
   }));
 
   const ball: RenderBall = {
@@ -274,6 +277,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
         // `=== true` also maps pre-Phase-27 replay snapshots (undefined) to false.
         tackling: (t >= 0.5 ? pb : pa).tackling === true,
         stunned: (t >= 0.5 ? pb : pa).stunned === true,
+        saving: (t >= 0.5 ? pb : pa).saving === true,
       };
     }),
     ball: {

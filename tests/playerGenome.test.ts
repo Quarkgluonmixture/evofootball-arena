@@ -102,13 +102,20 @@ function totals(
     for (const k of Object.keys(out) as Array<keyof TeamMatchStats>) out[k] += b[k];
     return out;
   };
+  // Side-balanced: each seed runs both home/away orders so iteration- or
+  // side-linked noise cancels (§10.5 — one-order pools flipped on real
+  // effects twice as the engine's rng stream moved under them).
   let acc: [TeamMatchStats, TeamMatchStats] | null = null;
   const shots: ShotLogEntry[] = [];
   for (const seed of SEEDS) {
-    const m = new Match({ seed, teamA: team('A', sa), teamB: team('B', sb), duration: 120 });
-    const r = m.runToCompletion();
-    shots.push(...m.shotLog);
-    acc = acc ? [sum(acc[0], r.stats[0]), sum(acc[1], r.stats[1])] : [r.stats[0], r.stats[1]];
+    const ab = new Match({ seed, teamA: team('A', sa), teamB: team('B', sb), duration: 120 });
+    const rab = ab.runToCompletion();
+    shots.push(...ab.shotLog);
+    acc = acc ? [sum(acc[0], rab.stats[0]), sum(acc[1], rab.stats[1])] : [rab.stats[0], rab.stats[1]];
+    const ba = new Match({ seed, teamA: team('B', sb), teamB: team('A', sa), duration: 120 });
+    const rba = ba.runToCompletion();
+    for (const s of ba.shotLog) shots.push({ ...s, side: (1 - s.side) as 0 | 1 });
+    acc = [sum(acc[0], rba.stats[1]), sum(acc[1], rba.stats[0])];
   }
   return [acc![0], acc![1], shots];
 }

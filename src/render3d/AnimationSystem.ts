@@ -94,10 +94,11 @@ export class AnimationSystem {
   update(model: PlayerModel, p: RenderPlayer, state: RenderState, dt: number): void {
     const celebrating = state.celebratingSide === p.side && p.role !== 'GK';
     let anim = animFor(p.action, p.speed, celebrating);
-    // Phase 27 overrides: a live tackle lunge / recovery stumble beats the
-    // action-derived pose (celebrations still win).
+    // Phase 27 overrides: a live keeper dive / tackle lunge / recovery
+    // stumble beats the action-derived pose (celebrations still win).
     if (!celebrating) {
-      if (p.tackling) anim = 'lunge';
+      if (p.saving) anim = 'gkDive';
+      else if (p.tackling) anim = 'lunge';
       else if (p.stunned) anim = 'stumble';
     }
 

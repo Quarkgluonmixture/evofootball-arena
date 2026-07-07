@@ -21,6 +21,11 @@ export const CENTER_CIRCLE_R = 7;
 export const DT = 1 / 60;
 /** Default full match duration in sim-seconds (2 halves). Display clock maps this to 90'. */
 export const MATCH_DURATION = 240;
+/**
+ * Max sim-seconds a half runs past its nominal end waiting for a safe break
+ * (Phase 27.4 stoppage time) — ≈3 added display minutes on the 90' clock.
+ */
+export const STOPPAGE_MAX = 8;
 
 /** Ball exponential velocity decay per second: v *= exp(-K * dt). */
 export const BALL_FRICTION_K = 0.55;
