@@ -1,5 +1,8 @@
 # Publishing to itch.io
 
+**Published: <https://quarkgluonmixture.itch.io/evofootball-arena>**
+(first upload 2026-07-07, v0.20.0 — for updates see §4).
+
 The build is fully static with relative asset paths (`base: './'`), so it runs
 inside itch.io's HTML5 player as-is. Saves live in the browser's localStorage
 (per-domain), and the Export/Import buttons let players move leagues between

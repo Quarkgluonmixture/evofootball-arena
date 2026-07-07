@@ -82,9 +82,14 @@ mutation is GONE — careers and rebirth (young academy intake) are how
 squads change; saves at v7 (phase 26).
 153 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~32 checks; ~25 ms/headless match. Git
-tags `phase-10`…`phase-26` are known-green checkpoints; published at
-https://github.com/Quarkgluonmixture/evofootball-arena. Open roadmap ideas
-live in the README's "next steps".
+tags `phase-10`…`phase-26` are known-green checkpoints; source at
+https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
+https://quarkgluonmixture.github.io/evofootball-arena/ (GitHub Pages,
+auto-deployed by `.github/workflows/pages.yml` — npm ci + full tests +
+build on every push to main; statistical tests carry explicit timeouts and
+periodic event-loop yields for slow CI runners) and
+https://quarkgluonmixture.itch.io/evofootball-arena (manual zip upload,
+`docs/ITCH.md`). Open roadmap ideas live in the README's "next steps".
 
 ## 2. Module ownership
 

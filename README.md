@@ -13,9 +13,11 @@ you can watch and reason about.
 
 ## Quickstart (play it)
 
-**▶ Play in the browser right now:**
-<https://quarkgluonmixture.github.io/evofootball-arena/> — no install, saves
-live in your browser (deployed from `main` by GitHub Actions).
+**▶ Play in the browser right now** — no install, saves live in your browser:
+
+- <https://quarkgluonmixture.github.io/evofootball-arena/> (GitHub Pages,
+  auto-deployed from `main` by GitHub Actions)
+- <https://quarkgluonmixture.itch.io/evofootball-arena> (itch.io)
 
 To run it locally instead: [Node.js](https://nodejs.org) 18+ (20+
 recommended) is the only prerequisite. No backend, no accounts, no network
@@ -522,9 +524,6 @@ exhibitions, 137 tests, and
 browser-driving visual smoke tests for both views (53 + ~32 checks).
 
 Ideas for the next phase (rough priority order):
-- Publish to itch.io: packaging + upload docs are DONE (`npm run
-  package:itch` → `release/*.zip`, settings in `docs/ITCH.md`) — only the
-  account-holder upload remains
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only
