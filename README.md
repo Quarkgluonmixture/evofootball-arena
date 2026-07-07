@@ -13,9 +13,13 @@ you can watch and reason about.
 
 ## Quickstart (play it)
 
-Requires [Node.js](https://nodejs.org) 18+ (20+ recommended) — that's the
-only prerequisite. No backend, no accounts, no network calls: everything runs
-and saves locally in your browser.
+**▶ Play in the browser right now:**
+<https://quarkgluonmixture.github.io/evofootball-arena/> — no install, saves
+live in your browser (deployed from `main` by GitHub Actions).
+
+To run it locally instead: [Node.js](https://nodejs.org) 18+ (20+
+recommended) is the only prerequisite. No backend, no accounts, no network
+calls: everything runs and saves locally in your browser.
 
 ```bash
 git clone https://github.com/Quarkgluonmixture/evofootball-arena.git
