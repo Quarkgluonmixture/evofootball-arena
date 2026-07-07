@@ -276,11 +276,11 @@ export function tryAerial(match: Match, order: Player[]): void {
   if (ball.z < HEADER_MIN_HEIGHT || ball.z > GK_CLAIM_HEIGHT) return;
 
   for (const gk of order) {
-    if (gk.role !== 'GK' || gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0) continue;
+    if (gk.role !== 'GK' || gk.sentOff || gk.stunTimer > 0 || gk.tackleCooldown > 0) continue;
     const dx = gk.pos.x - ball.pos.x;
     const dy = gk.pos.y - ball.pos.y;
     if (dx * dx + dy * dy > 1.9 * 1.9) continue;
-    gk.kickCooldown = 0.5; // committed to the jump either way
+    gk.tackleCooldown = 0.5; // committed to the jump either way (pickup stays free)
     gk.saveAnimTimer = 0.6;
     const crowd = pressureAt(gk.pos, match.teams[1 - gk.side].players);
     const pClaim = clamp(0.62 + (gk.attrs.reflexes - 0.5) * 0.5 - crowd * 0.3, 0.2, 0.9);
@@ -450,7 +450,7 @@ export function performShot(match: Match, shooter: Player): void {
   // confident finishers aim closer to the post (bigger keeper-evasion, riskier
   // margin) AND group their shots tighter.
   const goalX = team.attackDir * HALF_L;
-  const aimMargin = 1.42 - shooter.attrs.finishing * 0.9; // 0.52 (clinical) .. 1.37 (timid)
+  const aimMargin = 1.5 - shooter.attrs.finishing * 0.9; // 0.6 (clinical) .. 1.45 (timid)
   const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
   const target = v2(goalX, aimY);
 
@@ -561,13 +561,13 @@ export function trySmother(match: Match): void {
   const owner = match.ball.owner;
   if (!owner || owner.gkHoldTimer > 0) return;
   const gk = match.teams[1 - owner.side].goalkeeper;
-  if (gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0) return;
+  if (gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0 || gk.tackleCooldown > 0) return;
   const rushing = gk.action.type === 'GoalkeeperRush';
   if (!rushing && !match.inPenaltyBox(match.ball.pos, gk.side)) return;
   if (dist(gk.pos, match.ball.pos) >= 1.3) return;
 
   gk.saveAnimTimer = 0.7; // the dive at the feet is visible either way
-  const pWin = clamp(0.5 + (gk.attrs.reflexes - 0.5) * 0.5 - (owner.attrs.technique - 0.5) * 0.35, 0.2, 0.8);
+  const pWin = clamp(0.56 + (gk.attrs.reflexes - 0.5) * 0.5 - (owner.attrs.technique - 0.5) * 0.35, 0.2, 0.85);
   if (match.rng.chance(pWin)) {
     match.teams[gk.side].stats.saves++;
     match.playerStats[gk.gid].saves++;
@@ -577,7 +577,11 @@ export function trySmother(match: Match): void {
     match.giveBall(gk); // hold state engages — hands, untackleable
   } else {
     gk.stunTimer = 0.8; // beaten — picking himself up off the turf
-    gk.kickCooldown = 0.5;
+    // A long recovery before RE-CHALLENGING (Phase 28.2): a keeper who dove
+    // again every 1.3s read as convulsing. tackleCooldown — NOT kickCooldown
+    // — so a loose ball at his feet can still be scooped up the moment the
+    // stun ends (kickCooldown also gates ball pickup in tryCapture).
+    gk.tackleCooldown = 1.2;
     // A full-speed rush is clumsier than a standing challenge at the feet.
     if (match.rng.chance(rushing ? 0.12 : 0.03)) match.awardFoul(gk, owner);
   }
@@ -672,7 +676,7 @@ export function tryKeeperSave(match: Match): void {
   // the shot's frozen dive difficulty then discounts it — accurate corner
   // finishes stay hard to save even though the keeper converges on the path.
   const saveP =
-    clamp(0.72 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+    clamp(0.70 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;

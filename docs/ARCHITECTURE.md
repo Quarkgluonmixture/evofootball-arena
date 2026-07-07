@@ -118,7 +118,21 @@ attacker-momentum bonus in the duel, and the UI is localized — Chinese by
 default, EN/中文 top-bar toggle, `src/ui/i18n.ts` `t()` keyed by English
 source strings with English fallback; sim-generated text stays English
 (sim/ never touches the browser); the Playwright suites pin `lang=en` via
-addInitScript because their selectors are English (phase 28.1).
+addInitScript because their selectors are English (phase 28.1); then 28.2
+from live play reports — interception feed lines REMOVED (~25/match drowned
+the feed; failure mode 7 — stats panel keeps the count), the keeper smother
+works ANYWHERE (feet challenge, no box gate) with its re-challenge spaced by
+`tackleCooldown` NOT `kickCooldown` (kickCooldown also gates ball pickup in
+tryCapture — a beaten keeper could not scoop the loose ball at his own
+feet; same fix on aerial-claim attempts), smother pWin base 0.56, receivers
+in shooting range (attacking third, <20m from goal) decide in 0.08s instead
+of the 0.3s settle — the FIRST-TIME FINISH exists, long-shot dig softened
+to `longShotW` 0.38 with pressure term (1 − 0.7·p), conversion re-tuned
+(aimMargin 1.5, saveP 0.70 → ~3.5 goals), the 4v5 cost channel measured
+after the economy changes is SHOT CREATION (−16% own shots; GD margins are
+now noisier than the effect — the cards test asserts shots, §10.5), and
+DEFAULT_SEED = 1168 so a fresh league opens on a 3–3 19-shot banger
+(phase 28.2).
 180 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-27` are known-green checkpoints; source at

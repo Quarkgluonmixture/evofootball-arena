@@ -132,7 +132,7 @@ export const DEFAULT_POLICY: PolicyParams = {
   crossBoxW: 0.5,
   loftBase: 0.14,
   loftOpenW: 0.38,
-  longShotW: 0.3,
+  longShotW: 0.38,
 };
 
 /** Everything a Match needs to know about one participating team. */

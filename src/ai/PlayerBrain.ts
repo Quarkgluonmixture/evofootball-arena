@@ -140,7 +140,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       dig =
         W.longShotW *
         (0.3 + g.shootBias * 0.7) *
-        (1 - pressure) *
+        (1 - pressure * 0.7) *
         (0.55 + stagnation * 0.45) *
         clamp01((30 - dGoal) / 14);
       s += dig;

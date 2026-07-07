@@ -37,7 +37,10 @@ import { ReplayBar } from '../ui/ReplayBar';
 import { RightPanel } from '../ui/RightPanel';
 import { SoundFx } from '../ui/SoundFx';
 
-const DEFAULT_SEED = 1337;
+// Chosen so a fresh league OPENS with a banger (Phase 28.2): seed 1168's
+// first fixture is a 3–3 with 19 shots, 4 corners and a late goal — the
+// first thing a new player watches should sell the game.
+const DEFAULT_SEED = 1168;
 
 /**
  * Top-level orchestrator: owns the League, the currently watched Match, the

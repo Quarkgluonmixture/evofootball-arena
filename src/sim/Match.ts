@@ -367,7 +367,14 @@ export class Match {
       // hands, not feet. Restart first touches (goal kicks) stay quick.
       p.gkHoldTimer = 1.1;
     }
-    p.decisionTimer = Math.max(p.decisionTimer, 0.3);
+    // Snap decisions in shooting range (Phase 28.2): a receiver in front of
+    // goal decides NOW — the first-time finish exists. Everywhere else the
+    // settle touch stays (one-touch ping-pong was the original disease).
+    const inShootingRange =
+      p.role !== 'GK' &&
+      team.localX(p.pos.x) > HALF_L - 24 &&
+      dist(p.pos, team.oppGoal()) < 20;
+    p.decisionTimer = Math.max(p.decisionTimer, inShootingRange ? 0.08 : 0.3);
 
     const pass = this.pendingPass;
     if (pass) {
@@ -375,9 +382,11 @@ export class Match {
         team.stats.passesCompleted++;
         this.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: this.simTime };
       } else if (p.side !== pass.side) {
+        // No feed line (Phase 28.2): at ~25 per match, "X intercepts" drowned
+        // the feed in noise (failure mode 7) — the stats panel carries the
+        // count, the debug overlays show the moment.
         team.stats.interceptions++;
         this.playerStats[p.gid].recoveries++;
-        this.pushEvent('interception', p.side, `${p.name} intercepts`);
       }
       this.pendingPass = null;
     }

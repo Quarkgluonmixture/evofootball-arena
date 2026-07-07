@@ -264,7 +264,7 @@ describe('aerial duels and deliveries', () => {
     const league = new League({ seed: 987001 });
     let corners = 0;
     let cornerShots = 0;
-    for (let i = 0; i < 24; i++) {
+    for (let i = 0; i < 48; i++) {
       const f = league.nextFixture()!;
       const r = league.createMatch(f).runToCompletion();
       league.applyResult(f, r);
@@ -282,7 +282,7 @@ describe('aerial duels and deliveries', () => {
         }
       }
     }
-    expect(corners).toBeGreaterThan(20);
+    expect(corners).toBeGreaterThan(40);
     // Measured ≈13% at Phase 28 tuning (was 5% before box-crashing runners);
     // the floor guards the mechanism, not the exact rate.
     expect(cornerShots / corners).toBeGreaterThan(0.05);
@@ -293,9 +293,13 @@ describe('aerial duels and deliveries', () => {
     // then check the assist bookkeeping. Fixed seed ⇒ this always finds one.
     const league = new League({ seed: 424243 });
     let found = false;
-    for (let i = 0; i < 40 && !found; i++) {
-      const f = league.nextFixture();
-      if (!f) break;
+    for (let i = 0; i < 120 && !found; i++) {
+      let f = league.nextFixture();
+      if (!f) {
+        league.finishSeason(); // hunt across seasons — headed goals are ~0.15/match
+        f = league.nextFixture();
+        if (!f) break;
+      }
       const m = league.createMatch(f);
       let sawHeaderShot = -1;
       while (!m.finished) {

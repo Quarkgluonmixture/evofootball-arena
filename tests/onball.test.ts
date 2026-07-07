@@ -231,7 +231,10 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     expect(m.inPenaltyBox(intruder.pos, 1)).toBe(false);
   });
 
-  it('halves end at a safe break inside the stoppage window, never mid-shot (27.4)', () => {
+  it('halves end at a safe break inside their own stoppage windows (27.4/28.1)', () => {
+    // Since 28.1 each half runs its OWN nominal length + stoppage: the
+    // second half starts where the first (plus its added time) ended, so
+    // full time lands at ht.t + 60 (+ up to STOPPAGE_MAX), not at 120.
     let sawStoppage = false;
     for (const seed of [2, 7, 19, 42, 77, 1234]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
@@ -240,9 +243,9 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
       const ft = m.events.find((e) => e.type === 'fulltime')!;
       expect(ht.t).toBeGreaterThanOrEqual(60);
       expect(ht.t).toBeLessThanOrEqual(60 + 8 + 0.05);
-      expect(ft.t).toBeGreaterThanOrEqual(120);
-      expect(ft.t).toBeLessThanOrEqual(120 + 8 + 0.05);
-      if (ht.t > 60.1 || ft.t > 120.1) sawStoppage = true;
+      expect(ft.t).toBeGreaterThanOrEqual(ht.t + 60);
+      expect(ft.t).toBeLessThanOrEqual(ht.t + 60 + 8 + 0.05);
+      if (ht.t > 60.1 || ft.t > ht.t + 60.1) sawStoppage = true;
     }
     expect(sawStoppage).toBe(true); // the window is actually used sometimes
   });
