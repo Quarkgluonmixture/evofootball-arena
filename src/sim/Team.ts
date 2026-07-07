@@ -58,8 +58,15 @@ export class Team {
     this.side = side;
     this.attackDir = side === 0 ? 1 : -1;
     this.info = info;
-    this.policy = info.policy ?? DEFAULT_POLICY;
-    this.policies = ROLES.map((_, i) => info.rolePolicies?.[i] ?? this.policy);
+    // Explicit policies are merged over the defaults so a vector trained
+    // before new weights existed (Phase 28 added five) stays usable — the
+    // missing keys read as the hand-tuned constants. Teams WITHOUT a policy
+    // keep the DEFAULT_POLICY object itself (bit-identity discipline).
+    this.policy = info.policy ? { ...DEFAULT_POLICY, ...info.policy } : DEFAULT_POLICY;
+    this.policies = ROLES.map((_, i) => {
+      const rp = info.rolePolicies?.[i];
+      return rp ? { ...DEFAULT_POLICY, ...rp } : this.policy;
+    });
     this.players = ROLES.map(
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );

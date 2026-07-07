@@ -6,9 +6,11 @@ import { executeAction } from '../ai/actionExecutor';
 import { formationSpot } from '../ai/formations';
 import { Ball } from './Ball';
 import {
-  AI_INTERVAL, BALL_FRICTION_K, BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_SPEED, CONTROL_RADIUS,
+  AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
+  CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS,
   DEFLECT_MAX_SPEED, DT,
-  GK_CONTROL_MAX_SPEED, GOAL_WIDTH, HALF_L, HALF_W, KICK_COOLDOWN, MATCH_DURATION,
+  GK_CONTROL_MAX_SPEED, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W, KICK_COOLDOWN,
+  MATCH_DURATION,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
   RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL,
 } from './constants';
@@ -274,8 +276,14 @@ export class Match {
   performPass(p: Player, mate: Player): void {
     mech.performPass(this, p, mate);
   }
-  performThroughBall(p: Player, runner: Player): void {
-    mech.performThroughBall(this, p, runner);
+  performThroughBall(p: Player, runner: Player, lofted = false): void {
+    mech.performThroughBall(this, p, runner, lofted);
+  }
+  performCross(p: Player, target: Player): void {
+    mech.performCross(this, p, target);
+  }
+  performLoftedPass(p: Player, mate: Player): void {
+    mech.performLoftedPass(this, p, mate);
   }
   performShot(p: Player): void {
     mech.performShot(this, p);
@@ -292,13 +300,18 @@ export class Match {
     if (entry && entry.outcome === 'pending') entry.outcome = outcome;
   }
 
-  /** Low-level kick: releases the ball with velocity and a re-capture cooldown. */
-  kickBall(p: Player, dir: V2, speed: number): void {
+  /**
+   * Low-level kick: releases the ball with velocity and a re-capture cooldown.
+   * `loft` (Phase 28) is the vertical launch speed — 0 keeps it on the grass.
+   */
+  kickBall(p: Player, dir: V2, speed: number, loft = 0): void {
     const ball = this.ball;
     ball.owner = null;
     ball.lastTouch = p;
     ball.vel = scale(dir, speed);
     ball.pos = add(p.pos, scale(dir, 0.9));
+    ball.z = 0;
+    ball.vz = loft;
     p.kickCooldown = KICK_COOLDOWN;
   }
 
@@ -308,6 +321,8 @@ export class Match {
     ball.owner = p;
     ball.lastTouch = p;
     ball.vel = v2();
+    ball.z = 0;
+    ball.vz = 0;
     const team = this.teams[p.side];
 
     // Settle on the ball: carry it briefly before the next decision instead of
@@ -369,17 +384,41 @@ export class Match {
     }
     ball.pos.x += ball.vel.x * dt;
     ball.pos.y += ball.vel.y * dt;
-    const fr = Math.exp(-BALL_FRICTION_K * dt);
-    ball.vel.x *= fr;
-    ball.vel.y *= fr;
+    if (ball.z > 0 || ball.vz !== 0) {
+      // Airborne (Phase 28): friction-free parabola, landing bounces. Ground
+      // balls never enter this branch — their trajectories are untouched.
+      ball.z += ball.vz * dt;
+      ball.vz -= GRAVITY * dt;
+      if (ball.z <= 0) {
+        ball.z = 0;
+        if (ball.vz < -BOUNCE_MIN_VZ) {
+          ball.vz = -ball.vz * BALL_BOUNCE;
+          ball.vel.x *= BOUNCE_DAMP;
+          ball.vel.y *= BOUNCE_DAMP;
+        } else {
+          ball.vz = 0;
+        }
+      }
+    } else {
+      const fr = Math.exp(-BALL_FRICTION_K * dt);
+      ball.vel.x *= fr;
+      ball.vel.y *= fr;
+    }
     if (this.checkGoal()) return;
     if (this.checkOutOfPlay()) return;
     mech.tryKeeperSave(this);
+    if (ball.z > CONTROL_MAX_HEIGHT) {
+      // Too high for feet: only heads (or the keeper's hands) can meet it.
+      const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
+      mech.tryAerial(this, order);
+      return;
+    }
     this.tryCapture();
   }
 
   private checkGoal(): boolean {
     const ball = this.ball;
+    if (ball.z >= GOAL_HEIGHT) return false; // over the bar (Phase 28)
     if (Math.abs(ball.pos.x) <= HALF_L || Math.abs(ball.pos.y) >= GOAL_WIDTH / 2) return false;
     // Team 0 attacks +x: ball past +x line = goal for team 0.
     const scorer: Side = ball.pos.x > 0 ? 0 : 1;
@@ -422,6 +461,8 @@ export class Match {
     this.possessionSide = -1;
     this.ball.owner = null;
     this.ball.vel = v2();
+    this.ball.z = 0;
+    this.ball.vz = 0;
     this.kickoffSide = (1 - side) as Side;
     this.phase = 'goalPause';
     this.phaseTimer = 2.0;
@@ -554,6 +595,8 @@ export class Match {
     this.ball.owner = null;
     this.ball.pos = clone(pos);
     this.ball.vel = v2();
+    this.ball.z = 0;
+    this.ball.vz = 0;
 
     // The restart team is "in possession" for shape/marking purposes.
     this.possessionSide = side;
@@ -614,6 +657,8 @@ export class Match {
     ball.owner = null;
     ball.pos = clone(r.pos);
     ball.vel = v2();
+    ball.z = 0;
+    ball.vz = 0;
 
     // Hold everyone who isn't part of the restart out of the clearance
     // circle (slide along its edge). Penalties clear a wider circle and it
@@ -720,10 +765,23 @@ export class Match {
         const k = (PLAYER_MIN_DIST - d) / 2;
         const px = (dx / d) * k;
         const py = (dy / d) * k;
-        a.pos.x += px;
-        a.pos.y += py;
-        b.pos.x -= px;
-        b.pos.y -= py;
+        // A keeper stands their ground in their own box against opponents
+        // (Phase 28): the carrier bounces off — nobody bulldozes the keeper
+        // back into the net a half-push at a time.
+        const gkA = a.role === 'GK' && b.side !== a.side && this.inPenaltyBox(a.pos, a.side);
+        const gkB = b.role === 'GK' && a.side !== b.side && this.inPenaltyBox(b.pos, b.side);
+        if (gkA && !gkB) {
+          b.pos.x -= px * 2;
+          b.pos.y -= py * 2;
+        } else if (gkB && !gkA) {
+          a.pos.x += px * 2;
+          a.pos.y += py * 2;
+        } else {
+          a.pos.x += px;
+          a.pos.y += py;
+          b.pos.x -= px;
+          b.pos.y -= py;
+        }
       }
     }
   }

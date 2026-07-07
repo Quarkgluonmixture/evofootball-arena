@@ -56,6 +56,7 @@ describe('Match', () => {
       for (const p of m.allPlayers) {
         expect(Number.isFinite(p.pos.x)).toBe(true);
         expect(Number.isFinite(p.pos.y)).toBe(true);
+        if (p.sentOff) continue; // parked on the apron OUTSIDE the pitch (Phase 25)
         expect(Math.abs(p.pos.x)).toBeLessThanOrEqual(46);
         expect(Math.abs(p.pos.y)).toBeLessThanOrEqual(30);
       }

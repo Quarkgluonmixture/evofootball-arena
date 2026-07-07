@@ -15,6 +15,7 @@ export type AnimName =
   | 'sprint'
   | 'dribble'
   | 'kick'
+  | 'header'
   | 'lunge'
   | 'stumble'
   | 'gkReady'
@@ -25,11 +26,14 @@ export function animFor(action: ActionType, speed: number, celebrating: boolean)
   if (celebrating) return 'celebrate';
   switch (action) {
     case 'Pass':
+    case 'LoftedPass':
     case 'ThroughBall':
+    case 'Cross':
     case 'Shoot':
     case 'ClearBall':
       return 'kick';
     case 'Dribble':
+    case 'HoldUp':
       return 'dribble';
     case 'InterceptPass':
       return 'lunge';
@@ -98,6 +102,7 @@ export class AnimationSystem {
     // stumble beats the action-derived pose (celebrations still win).
     if (!celebrating) {
       if (p.saving) anim = 'gkDive';
+      else if (p.header) anim = 'header';
       else if (p.tackling) anim = 'lunge';
       else if (p.stunned) anim = 'stumble';
     }
@@ -106,8 +111,12 @@ export class AnimationSystem {
     if (anim === 'kick' && model.prevAnim !== 'kick') {
       model.kickT = 0;
       model.kickPower =
-        p.action === 'Shoot' || p.action === 'ClearBall' ? 1 : p.action === 'ThroughBall' ? 0.85 : 0.65;
+        p.action === 'Shoot' || p.action === 'ClearBall' ? 1
+        : p.action === 'ThroughBall' || p.action === 'Cross' || p.action === 'LoftedPass' ? 0.85
+        : 0.65;
     }
+    // One-shot header jump on entering the header state (Phase 28).
+    if (anim === 'header' && model.prevAnim !== 'header') model.headerT = 0;
     model.prevAnim = anim;
 
     // Run cycle phase: distance-driven so feet match ground speed.
@@ -151,7 +160,23 @@ export class AnimationSystem {
       }
     }
 
-    if (anim === 'lunge') {
+    if (anim === 'header') {
+      // Aerial duel (Phase 28): a real jump — up off the turf, arms driving,
+      // neck snapping through the ball at the apex.
+      if (model.headerT >= 0) {
+        model.headerT += dt;
+        const k = model.headerT / 0.55;
+        if (k >= 1) model.headerT = -1;
+        else {
+          hop = Math.sin(Math.PI * k) * 0.55;
+          leanX = k < 0.45 ? -0.22 : 0.28; // arch back, snap through
+          armLz = 1.1;
+          armRz = -1.1;
+          legL = 0.25;
+          legR = -0.15;
+        }
+      }
+    } else if (anim === 'lunge') {
       // Tackle/interception: low, one leg thrust forward, arms out for balance.
       legL = 0.95;
       legR = -0.5;

@@ -84,15 +84,18 @@ export class BallModel {
     this.root.position.set(ball.x, 0, ball.z);
 
     const owned = ball.ownerGid !== null;
+    const realH = ball.y ?? 0; // sim height (Phase 28); 0 in old replays
     // Kick detection: the ball leaves a player's feet with a burst of speed.
-    if (!owned && ball.speed > 9 && (this.prevOwned || ball.speed > this.prevSpeed + 7)) {
+    // Only synthesize the visual hop for GROUND kicks — lofted balls carry
+    // their real trajectory from the sim.
+    if (!owned && realH <= 0.02 && ball.speed > 9 && (this.prevOwned || ball.speed > this.prevSpeed + 7)) {
       this.hopDur = Math.min(1.1, 0.35 + ball.speed * 0.02);
       this.hopHeight = Math.min(1.8, ball.speed * 0.055);
       this.hopT = 0;
     }
-    if (owned) this.hopT = -1;
+    if (owned || realH > 0.02) this.hopT = -1;
 
-    let h = 0;
+    let h = realH;
     if (this.hopT >= 0) {
       this.hopT += dt;
       const p = this.hopT / this.hopDur;

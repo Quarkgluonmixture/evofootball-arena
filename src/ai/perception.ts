@@ -2,7 +2,7 @@ import { clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, len, norm, scale, type V2,
 } from '../utils/vec';
-import { BALL_FRICTION_K } from '../sim/constants';
+import { BALL_FRICTION_K, GRAVITY } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 
@@ -20,6 +20,23 @@ export function pressureAt(pos: V2, opponents: Player[]): number {
     if (d < best) best = d;
   }
   return clamp01(1 - best / 6);
+}
+
+/**
+ * How clean an AERIAL lane is (Phase 28): a lofted ball only cares about
+ * opponents close enough to the kicker to charge it down before it rises —
+ * everything downfield is flown over. Landing safety is the receiver's
+ * openness, scored separately by the caller.
+ */
+export function airLaneOpenness(from: V2, opponents: Player[]): number {
+  let worst = 1;
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    const d = dist(o.pos, from);
+    if (d < 1.5) continue; // right on top of the kicker — the chip clears them
+    worst = Math.min(worst, clamp01((d - 1.5) / 3));
+  }
+  return worst;
 }
 
 /** How clean the passing lane from `from` to `to` is (1 = wide open). */
@@ -96,6 +113,18 @@ export function interceptBall(p: Player, ball: Ball): InterceptSolution {
   // sample points stay scalar until one is actually returned. Same arithmetic
   // in the same order — results are bit-identical, the garbage is gone.
   const ts = Math.max(p.topSpeed, 0.1);
+  // Airborne ball (Phase 28): nothing on the ground meets it mid-flight —
+  // run to where it comes DOWN (friction-free flight, so the landing point
+  // is exact) and be there when it drops.
+  if (ball.z > 0.02 || ball.vz > 0.02) {
+    const tLand = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
+    const px = ball.pos.x + v0.x * tLand;
+    const py = ball.pos.y + v0.y * tLand;
+    const dx = p.pos.x - px;
+    const dy = p.pos.y - py;
+    const tMe = Math.sqrt(dx * dx + dy * dy) / ts + 0.15;
+    return { point: { x: px, y: py }, tBall: tLand, tMe, reachable: tMe <= tLand + 0.6 };
+  }
   if (speed0 < 0.5) {
     const dx = p.pos.x - ball.pos.x;
     const dy = p.pos.y - ball.pos.y;

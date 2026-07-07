@@ -144,6 +144,7 @@ export class PlayerModel {
   animTime = 0;
   kickT = -1;
   kickPower = 1;
+  headerT = -1;
   prevAnim: AnimName = 'idle';
 
   readonly gid: number;

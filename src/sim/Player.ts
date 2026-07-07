@@ -65,6 +65,8 @@ export class Player {
   tackleAnimTimer = 0;
   /** Display-only: renderers play a keeper dive while this runs (27.4). */
   saveAnimTimer = 0;
+  /** Display-only: renderers play a header jump while this runs (Phase 28). */
+  headerAnimTimer = 0;
 
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;
@@ -183,6 +185,7 @@ export class Player {
     this.gkHoldTimer = Math.max(0, this.gkHoldTimer - dt);
     this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);
     this.saveAnimTimer = Math.max(0, this.saveAnimTimer - dt);
+    this.headerAnimTimer = Math.max(0, this.headerAnimTimer - dt);
     this.decisionTimer -= dt;
   }
 
@@ -197,5 +200,6 @@ export class Player {
     this.gkHoldTimer = 0;
     this.tackleAnimTimer = 0;
     this.saveAnimTimer = 0;
+    this.headerAnimTimer = 0;
   }
 }

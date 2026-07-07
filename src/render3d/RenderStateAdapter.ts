@@ -28,11 +28,15 @@ export interface RenderPlayer {
   stunned?: boolean;
   /** A keeper dive is playing (Phase 27.4) — display only. */
   saving?: boolean;
+  /** A header jump is playing (Phase 28) — display only. */
+  header?: boolean;
 }
 
 export interface RenderBall {
   x: number;
   z: number;
+  /** Real ball height (m) from the sim (Phase 28). Absent in old replays. */
+  y?: number;
   vx: number;
   vz: number;
   speed: number;
@@ -131,11 +135,13 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     tackling: p.tackleAnimTimer > 0,
     stunned: p.stunTimer > 0,
     saving: p.saveAnimTimer > 0,
+    header: p.headerAnimTimer > 0,
   }));
 
   const ball: RenderBall = {
     x: match.ball.pos.x,
     z: match.ball.pos.y,
+    y: match.ball.z,
     vx: match.ball.vel.x,
     vz: match.ball.vel.y,
     speed: Math.hypot(match.ball.vel.x, match.ball.vel.y),
@@ -278,11 +284,14 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
         tackling: (t >= 0.5 ? pb : pa).tackling === true,
         stunned: (t >= 0.5 ? pb : pa).stunned === true,
         saving: (t >= 0.5 ? pb : pa).saving === true,
+        header: (t >= 0.5 ? pb : pa).header === true,
       };
     }),
     ball: {
       x: lerp(a.ball.x, b.ball.x, t),
       z: lerp(a.ball.z, b.ball.z, t),
+      // `?? 0` maps pre-Phase-28 replay snapshots onto the ground.
+      y: lerp(a.ball.y ?? 0, b.ball.y ?? 0, t),
       vx: lerp(a.ball.vx, b.ball.vx, t),
       vz: lerp(a.ball.vz, b.ball.vz, t),
       speed: lerp(a.ball.speed, b.ball.speed, t),

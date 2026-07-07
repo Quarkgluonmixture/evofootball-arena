@@ -87,9 +87,26 @@ of balls too fast to trap (`tryDeflection`), goal-side+ball-side lane
 marking, tackle stun (victim 0.6s / whiff 0.35s) with lunge/stumble
 animations in both renderers, the anti-recycling territory clock
 (`Team.staleTime` → `stagnation` tilt in `decideCarrier`), a re-tuned
-keeper/shot economy and a ≤640px phone layout, then the 27.1 follow-up from live play reports — restart takers face their kick (corners work again), separated formation lanes + wider support radius (the six-player ball-chase dissolved), un-stretched 3D on phones (inline canvas height vs CSS) and a goal that reads as a box net (per-panel net repeat/opacity, chunkier frame, lower gantry) — landing at ~4.0 goals, then 27.2: keeper HOLD (gkHoldTimer — claims are scooped up untackleable for ~1.1s, ball at the chest in 3D, restarts exempt) and the ADVANTAGE rule (outfield fouls never stop play — the only foul source is a failed tackle, so the whistle only hurt the attackers; fouls/cards still counted, box penalties kept) (phase 27).
-168 vitest tests;
-Playwright suites: 2D 53 checks, 3D ~34 checks; ~26 ms/headless match. Git
+keeper/shot economy and a ≤640px phone layout, then the 27.1 follow-up from live play reports — restart takers face their kick (corners work again), separated formation lanes + wider support radius (the six-player ball-chase dissolved), un-stretched 3D on phones (inline canvas height vs CSS) and a goal that reads as a box net (per-panel net repeat/opacity, chunkier frame, lower gantry) — landing at ~4.0 goals, then 27.2: keeper HOLD (gkHoldTimer — claims are scooped up untackleable for ~1.1s, ball at the chest in 3D, restarts exempt) and the ADVANTAGE rule (outfield fouls never stop play — the only foul source is a failed tackle, so the whistle only hurt the attackers; fouls/cards still counted, box penalties kept) (phase 27); the aerial game — the ball has real height (`Ball.z/vz`,
+friction-free parabolic flight, damped bounces, `GOAL_HEIGHT` crossbar:
+over the bar is out, not in), lofted deliveries all solve landing from
+flight time (`mechanics.loftKick` — crosses `performCross`, switches
+`performLoftedPass`, chipped through balls `performThroughBall(lofted)`,
+hoofed clears), balls above `CONTROL_MAX_HEIGHT` can only be met by heads
+or the keeper's hands (`tryAerial`: GK claim first, then a header contest
+scored by position + `aerialSense` (role + defending) + a seeded jump roll;
+winner heads at goal / clears / cushions down; headed goals credit the
+crosser's assist), corners license the three best headers of the ball as
+box-crashers during the dead-ball setup (runners with no carrier — the fix
+that took corner→shot from 5% to ~15%), strikers hold up back-to-goal
+(`HoldUp` + lay-off boost), a stale-move long-shot bonus (`longShotW`),
+five new `PolicyParams` keys (stored wildcard vectors backfill from
+`DEFAULT_POLICY` — `StoredWildcardCandidate`), and two live-play fixes:
+keepers smother at the feet of a carrier in their box without needing a
+rush, and hold their ground (overlap-immovable) against opponents in their
+own box (phase 28).
+179 vitest tests;
+Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-27` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
 https://quarkgluonmixture.github.io/evofootball-arena/ (GitHub Pages,
@@ -214,7 +231,9 @@ shape `formations.ts`, `markingAggression` sets tackle odds + mark distance
 (`mechanics.tryTackles`, executor) AND card odds (`Match.maybeCard` —
 aggression trades ball-winning against fouls, bookings and the occasional
 red), `keeperAggression` sets GK line height and
-reach, `staminaConservation` trades jog/press sprint speed for energy.
+reach, `staminaConservation` trades jog/press sprint speed for energy,
+`attackingWidth` also scales cross appetite (Phase 28 — wide overloads are
+a style, not a global behavior).
 
 **Squad DNA** (5 attributes per player, `evolution/playerGenome.ts`):
 `pace` → ±12% speed/±10% accel (`Player` ctor); `technique` → pass noise ↓,
@@ -223,7 +242,8 @@ tackle resistance, and since Phase 27 also first-touch security
 body (`orientationNoiseMul/PowerMul`) and dribble carry speed
 (actionExecutor); `finishing` → shot spread ↓ AND braver aim margin
 (`mechanics.performShot`); `defending` → tackle success + pass-lane
-deflection odds (`mechanics.tryDeflection`, Phase 27); `reflexes` → save
+deflection odds (`mechanics.tryDeflection`, Phase 27) + aerial-duel wins
+(`aerialSense`, Phase 28); `reflexes` → save
 probability ±11pp and dive reach (`mechanics.tryKeeperSave`, `keeperReach`).
 
 **Directional tests exist for every gene/attribute channel**
@@ -449,7 +469,22 @@ only caught by eyes on the PNGs.
     nearly vanishes — from the old 7.5 m gantry the net's roof outshone the
     box and the whole goal read as a flat grate. Per-panel opacity (roof
     dimmest) + a lower camera fixed it.
-14. **The keeper's REACH is the binding constraint on goals — not the post,
+14. **Deliveries without arrivals are noise.** Phase 28's first cut whipped
+    real crosses into an EMPTY box: corner→shot-inside-8s measured **5%**
+    (worse than the tame ground corners it replaced). The delivery was never
+    the bottleneck — the runners were: during a dead-ball setup there is no
+    carrier, so the normal runner licensing (`carrier && carrier !== p`)
+    silently disabled every attacking run. Licensing three box-crashers
+    during the corner setup took it to ~15%. If you add a new delivery,
+    check who is ATTACKING it before tuning the kick.
+15. **Match-level stats can be too diluted to test an attribute.** The
+    defending→aerial channel is decisive in a CONTESTED duel (~0.89 win
+    rate at equal position over the jump roll), but headersWon per match is
+    dominated by uncontested headers — whoever stands under the ball —
+    and an 8-seed side-balanced pool flipped sign. The fix is a focused
+    duel harness (two players, equal distance, 300 seeded rolls on
+    `tryAerial` directly), not a bigger match pool (`tests/aerial.test.ts`).
+16. **The keeper's REACH is the binding constraint on goals — not the post,
     and not saveP.** Phase 27 tuning measured two traps. (a) Making shooters
     aim SAFER (aimMargin 1.3 → 1.45, further from the post) RAISED goals by
     ~0.9/match: fewer shots missed wide while the keeper still couldn't
@@ -466,13 +501,18 @@ only caught by eyes on the PNGs.
 
 | Goal | Lever |
 |---|---|
-| Goals per match (~4.2 target since Phase 27's direct-play economy) | `mechanics.tryKeeperSave` saveP base (0.75 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.15; shot `spread` (base 0.032); xG curve `exp(-d/10)`; shoot gate `dGoal < 30` — see failure mode 14 before touching these |
+| Goals per match (~4.2 target since Phase 27's direct-play economy) | `mechanics.tryKeeperSave` saveP base (0.75 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.15; shot `spread` (base 0.032); xG curve `exp(-d/10)`; shoot gate `dGoal < 30` — see failure mode 16 before touching these |
 | Forced-error rate (~10 miscontrols/match) | `touchFailChance` coefficients in `mechanics.attemptFirstTouch` (speed/pressure/blind-side vs technique) |
 | Forward urgency / anti-recycling | territory clock in `Match.step` (progress +1.5m resets, 0.35 m/s mark decay) + `stagnation = (staleTime−3)/5` tilt multipliers in `decideCarrier` |
 | Body-orientation feel | `TURN_RATE` (6.5 rad/s) in `Player.ts`; `orientationNoiseMul/PowerMul` slopes; decision-side misalign penalties (pass 0.12, shot 0.3) in `decideCarrier` |
 | Lane anticipation | `DEFLECT_MAX_SPEED` (24) + odds in `mechanics.tryDeflection`; ball-side blend `laneW = 0.35 + aggression·0.3` in executor MarkOpponent |
 | Tackle economy | tackle base 0.23 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
+| Corner / cross threat | box-crash count in `assignRunners` (3); cross pull-toward-goal 0.25 in `performCross`; corner cross boost ×2.4 in `decideCarrier`; `HEADER_RADIUS` |
+| Aerial duel character | `AERIAL_ROLE` + attr weights in `aerialSense`; attacker-momentum bonus 0.07 in `tryAerial`; header-shot gate 16.5m + quality `0.5·exp(−d/8.5)` in `performHeaderShot` |
+| Long-ball volume | `loftBase/loftOpenW` + the d>24 gate in the pass loop; flight times in `loftKick` callers (hang time = interceptability) |
+| Long-shot appetite | `longShotW` (default 0.3) × shootBias × stagnation, 16–30m gate in `decideCarrier` |
+| GK vs dribblers | smother reach 1.3m / pWin base 0.5 / clumsy-foul 0.12 rush · 0.03 standing in `trySmother`; GK overlap anchor in `resolveOverlaps` |
 | Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
 | Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~0.7🟨/0.05🟥 per match since the 27.1 spacing pass cut tackle volume; calibrate prints both) |
 | Direct play (through balls ~16/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |

@@ -1,4 +1,5 @@
 import { dist } from '../utils/vec';
+import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
 import type { Team } from '../sim/Team';
 import type { Role, TeamMode } from '../sim/types';
@@ -78,6 +79,17 @@ function assignRunners(team: Team, match: Match): void {
   team.runners.clear();
   if (match.possessionSide !== team.side) return;
   const carrier = match.ball.owner;
+  // Corner (Phase 28): flood the box — the three best headers of the ball
+  // (aerial sense lives with the DFs and the ST) attack the area while the
+  // taker walks over, so the cross has someone to find.
+  if (match.phase === 'restart' && match.restart?.kind === 'corner' && match.restart.side === team.side) {
+    const scored = team.players
+      .filter((p) => p.role !== 'GK' && p.gid !== match.restart!.takerGid && !p.sentOff)
+      .map((p) => ({ p, s: aerialSense(p) }))
+      .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
+    for (const { p } of scored.slice(0, 3)) team.runners.add(p.index);
+    return;
+  }
   // A second runner for fast/direct sides: counters and high-tempo teams.
   const count = team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1;
   const scored = team.players

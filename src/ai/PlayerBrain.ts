@@ -6,9 +6,10 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
 import type { UtilityScore } from '../sim/types';
-import { kickMisalignment } from '../sim/mechanics';
+import { aerialSense, kickMisalignment } from '../sim/mechanics';
 import {
-  canInterceptPass, interceptBall, laneOpenness, opennessOf, pressureAt, spaceAhead, timeToPoint,
+  airLaneOpenness, canInterceptPass, interceptBall, laneOpenness, opennessOf, pressureAt,
+  spaceAhead, timeToPoint,
 } from './perception';
 
 /**
@@ -132,16 +133,40 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // Facing away from goal (Phase 27): turn first instead of snap-shooting
     // blind. Restart takers are exempt — they set themselves before kicking.
     if (!mustKick) s *= 1 - kickMisalignment(p, norm(sub(goal, p.pos))) * 0.3;
-    cands.push({ action: 'Shoot', score: s, why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}` });
+    // Long-range appetite (Phase 28): when the sight is clear and the move
+    // is going nowhere, have a dig from 16–30m instead of recycling forever.
+    let dig = 0;
+    if (dGoal > 16) {
+      dig =
+        W.longShotW *
+        (0.3 + g.shootBias * 0.7) *
+        (1 - pressure) *
+        (0.4 + stagnation * 0.6) *
+        clamp01((30 - dGoal) / 14);
+      s += dig;
+    }
+    cands.push({
+      action: 'Shoot',
+      score: s,
+      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}`,
+    });
   }
 
-  // --- Pass: score every teammate, keep the best.
+  // --- Pass: score every teammate, keep the best. Long targets also get a
+  // LOFTED variant (Phase 28): the switch flies over the press, so it skips
+  // the ground lane and the 32m suppression — its risks are the charge-down
+  // at the kicker's feet and the scatter/first touch at the far end.
   let bestMate: Player | null = null;
   let bestPass = 0;
   let bestLane = 0;
   let bestOpen = 0;
+  let bestLoftMate: Player | null = null;
+  let bestLoft = 0;
+  let bestLoftOpen = 0;
   if (p.kickCooldown <= 0) {
     const lp = match.lastCompletedPass;
+    const airLane = airLaneOpenness(p.pos, opp.players);
+    const layingOff = p.action.type === 'HoldUp'; // pivot lay-off (Phase 28)
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;
       const lane = laneOpenness(p.pos, mate.pos, opp.players);
@@ -150,31 +175,35 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // Forward progress of the pass, normalized to ±1 over 30m.
       const gain = clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
 
+      // Shared style/tilt multipliers (identical for ground and lofted).
+      let mul = 1;
+      if (gain > 0.05) mul *= 1 + gain * stagnation * 0.35;
+      else mul *= 1 - stagnation * 0.3;
+      if (team.mode === 'CounterAttack' && gain > 0) mul *= 1.3;
+      if (team.mode === 'BuildUp' && gain < 0) mul *= 1.1; // patient recycling is fine
+      mul *= 0.7 + g.passBias * 0.75;
+      mul *= 0.85 + g.tempo * 0.3;
+      if (mate.role === 'GK') mul *= 0.5; // back-passes to keeper are a last resort
+      // Playing the ball where the body doesn't face costs accuracy (Phase 27)
+      // — prefer passes we're facing; technique loosens the constraint. Kept
+      // mild: the time-gated stagnation tilt is the forward driver, this is
+      // only the body-mechanics tiebreak. Restart takers are exempt.
+      if (!mustKick) mul *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
+      // A pivot lays off short after holding up (Phase 28).
+      if (layingOff && d < 12) mul *= 1.3;
+
       let s = W.passBase + lane * W.passLaneW + open * W.passOpenW;
       if (gain > 0) s *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk);
       else s *= 1 + gain * W.passBackPen; // mild penalty for going backward
-      // Stagnation tilt (Phase 27): a move going nowhere devalues sideways/
-      // backward recycling and rewards ground gained.
-      if (gain > 0.05) s *= 1 + gain * stagnation * 0.35;
-      else s *= 1 - stagnation * 0.3;
       // Contested forward balls are gated by riskTolerance — but patience
       // runs out: a stale move plays the risky forward ball anyway.
       if (gain > 0.15 && lane < 0.4) {
         const gate = 0.35 + g.riskTolerance * 0.65;
         s *= gate + (1 - gate) * stagnation * 0.4;
       }
-      if (team.mode === 'CounterAttack' && gain > 0) s *= 1.3;
-      if (team.mode === 'BuildUp' && gain < 0) s *= 1.1; // patient recycling is fine
-      s *= 0.7 + g.passBias * 0.75;
-      s *= 0.85 + g.tempo * 0.3;
+      s *= mul;
       if (d > 32) s *= 0.5;
       if (d < 5) s *= 0.75;
-      if (mate.role === 'GK') s *= 0.5; // back-passes to keeper are a last resort
-      // Playing the ball where the body doesn't face costs accuracy (Phase 27)
-      // — prefer passes we're facing; technique loosens the constraint. Kept
-      // mild: the time-gated stagnation tilt is the forward driver, this is
-      // only the body-mechanics tiebreak. Restart takers are exempt.
-      if (!mustKick) s *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
       // Don't just hand it straight back to the passer unless it progresses.
       if (lp && lp.passerGid === mate.gid && lp.receiverGid === p.gid && match.simTime - lp.t < 2.5 && gain < 0.1) {
         s *= 0.55;
@@ -185,6 +214,22 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         bestMate = mate;
         bestLane = lane;
         bestOpen = open;
+      }
+
+      // Lofted switch: only worth the hang time for genuinely long balls
+      // into space; long passing is a skill (technique gates execution AND
+      // selection — poor passers don't trust the diagonal).
+      if (d > 24 && !layingOff) {
+        let sL = (W.loftBase + open * W.loftOpenW) * airLane;
+        if (gain > 0) sL *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk) * 0.8;
+        else sL *= 1 + gain * W.passBackPen;
+        sL *= mul;
+        sL *= 0.55 + p.attrs.technique * 0.75;
+        if (sL > bestLoft) {
+          bestLoft = sL;
+          bestLoftMate = mate;
+          bestLoftOpen = open;
+        }
       }
     }
     if (pressure > 0.5) bestPass *= W.passOutletMul; // pass is the pressure outlet
@@ -197,6 +242,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         why: `to ${bestMate.name} · lane ${bestLane.toFixed(2)} · open ${bestOpen.toFixed(2)} · passBias ${g.passBias.toFixed(2)}${stagnation > 0.01 ? ` · stale ${stagnation.toFixed(2)}` : ''}`,
       });
     }
+    if (bestLoftMate) {
+      cands.push({
+        action: 'LoftedPass',
+        score: bestLoft,
+        why: `switch to ${bestLoftMate.name} · open ${bestLoftOpen.toFixed(2)} · air lane ${airLane.toFixed(2)} · technique ${p.attrs.technique.toFixed(2)}`,
+      });
+    }
   }
 
   // --- Through ball: feed an assigned runner IN THEIR PATH, not to feet.
@@ -206,8 +258,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   let bestThrough = 0;
   let bestBehind = 0;
   let bestThroughLane = 0;
+  let bestThroughChip = false;
   if (p.kickCooldown <= 0) {
     const line = defenderLineLocalX(team, opp.players);
+    const airLane = airLaneOpenness(p.pos, opp.players);
     for (const mate of team.players) {
       if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;
       const flight = dist(p.pos, mate.pos) / 18;
@@ -218,22 +272,91 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (team.localX(point.x) < localX + 5) continue; // must genuinely penetrate
       const lane = laneOpenness(p.pos, point, opp.players);
       const behind = clamp01((team.localX(point.x) - line) / 10);
-      let s = W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW;
-      s *= 0.45 + g.riskTolerance * 0.85;
-      s *= 0.85 + g.tempo * 0.3;
-      s *= 1 + stagnation * 0.2; // a stale move looks for the runner (Phase 27)
+      const gates = (0.45 + g.riskTolerance * 0.85) * (0.85 + g.tempo * 0.3) * (1 + stagnation * 0.2);
+      const s = (W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW) * gates;
       if (s > bestThrough) {
         bestThrough = s;
         bestRunner = mate;
         bestThroughLane = lane;
         bestBehind = behind;
+        bestThroughChip = false;
+      }
+      // Chip over the top (Phase 28): when bodies block the ground lane but
+      // the runner is going in behind, go over them instead — slower to
+      // arrive and harder to bring down (technique gates the trust in it).
+      if (lane < 0.45) {
+        const sC =
+          (W.throughBase + airLane * W.throughOpenW * 0.8 + behind * W.throughBehindW) *
+          gates * 0.9 * (0.55 + p.attrs.technique * 0.7);
+        if (sC > bestThrough) {
+          bestThrough = sC;
+          bestRunner = mate;
+          bestThroughLane = airLane;
+          bestBehind = behind;
+          bestThroughChip = true;
+        }
       }
     }
     if (bestRunner) {
       cands.push({
         action: 'ThroughBall',
         score: bestThrough,
-        why: `into ${bestRunner.name}'s run · lane ${bestThroughLane.toFixed(2)} · behind ${bestBehind.toFixed(2)} · risk ${g.riskTolerance.toFixed(2)}`,
+        why: `${bestThroughChip ? 'chipped over the top ' : ''}into ${bestRunner.name}'s run · lane ${bestThroughLane.toFixed(2)} · behind ${bestBehind.toFixed(2)} · risk ${g.riskTolerance.toFixed(2)}`,
+      });
+    }
+  }
+
+  // --- Cross (Phase 28): from wide and advanced (or the corner flag), whip
+  // it at the best aerial target attacking the box. Wide-overload football
+  // lives here: attackingWidth is the style gene that trusts the delivery.
+  let bestCrossMate: Player | null = null;
+  let bestCrossT = 0;
+  const isCorner = kickKind === 'corner';
+  if (p.kickCooldown <= 0 && (isCorner || (Math.abs(p.pos.y) > 10 && localX > 10))) {
+    for (const mate of team.players) {
+      if (mate === p || mate.sentOff || mate.role === 'GK') continue;
+      const mLocalX = team.localX(mate.pos.x);
+      if (mLocalX < 16 || Math.abs(mate.pos.y) > 13) continue; // must attack the box channel
+      const t =
+        aerialSense(mate) * 0.6 +
+        opennessOf(mate, opp.players) * 0.4 +
+        clamp01((mLocalX - 18) / 20) * 0.25;
+      if (t > bestCrossT) {
+        bestCrossT = t;
+        bestCrossMate = mate;
+      }
+    }
+    if (bestCrossMate) {
+      let sX = W.crossBase + bestCrossT * W.crossBoxW;
+      sX *= 0.75 + g.attackingWidth * 0.5;
+      sX *= 0.7 + g.passBias * 0.4;
+      if (team.mode === 'Attack' || team.mode === 'CounterAttack') sX *= 1.15;
+      if (isCorner) sX *= 2.4; // the corner IS a cross — deliver it
+      if (!mustKick) sX *= 1 - kickMisalignment(p, norm(sub(bestCrossMate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
+      cands.push({
+        action: 'Cross',
+        score: sX,
+        why: `${isCorner ? 'corner — ' : ''}to ${bestCrossMate.name} in the box · target ${bestCrossT.toFixed(2)} · width ${g.attackingWidth.toFixed(2)}`,
+      });
+    }
+  }
+
+  // --- Hold-up (Phase 28): the pivot's back-to-goal game. A striker with
+  // the ball, back to goal and a defender on them shields it and waits for
+  // support instead of forcing a turn — the lay-off boost in the pass loop
+  // is the payoff. Patience isn't free: stagnation drains it.
+  if (!mustKick && p.role === 'ST' && localX > 0 && localX < 32) {
+    const backToGoal = kickMisalignment(p, norm(sub(goal, p.pos))); // 1 = facing own goal
+    if (backToGoal > 0.45 && pressure > 0.2) {
+      const sH =
+        (0.36 + pressure * 0.3) *
+        (0.55 + p.attrs.technique * 0.7) *
+        (0.5 + backToGoal * 0.5) *
+        (1 - stagnation * 0.5);
+      cands.push({
+        action: 'HoldUp',
+        score: sH,
+        why: `back to goal · pressure ${pressure.toFixed(2)} · technique ${p.attrs.technique.toFixed(2)}`,
       });
     }
   }
@@ -275,6 +398,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   if (mustKick) {
     const at =
       top.action === 'Pass' ? bestMate!.pos
+      : top.action === 'LoftedPass' ? bestLoftMate!.pos
+      : top.action === 'Cross' ? bestCrossMate!.pos
       : top.action === 'ThroughBall' ? bestRunner!.pos
       : top.action === 'Shoot' ? goal
       : null; // clears/dribbles: face straight upfield
@@ -294,9 +419,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       p.action = { type: 'Pass', targetIdx: bestMate!.gid, scores };
       match.performPass(p, bestMate!);
       break;
+    case 'LoftedPass':
+      p.action = { type: 'LoftedPass', targetIdx: bestLoftMate!.gid, scores };
+      match.performLoftedPass(p, bestLoftMate!);
+      break;
+    case 'Cross':
+      p.action = { type: 'Cross', targetIdx: bestCrossMate!.gid, scores };
+      match.performCross(p, bestCrossMate!);
+      break;
     case 'ThroughBall':
       p.action = { type: 'ThroughBall', targetIdx: bestRunner!.gid, scores };
-      match.performThroughBall(p, bestRunner!);
+      match.performThroughBall(p, bestRunner!, bestThroughChip);
       break;
     case 'Shoot':
       p.action = { type: 'Shoot', scores };
@@ -305,6 +438,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     case 'ClearBall':
       p.action = { type: 'ClearBall', scores };
       match.performClear(p);
+      break;
+    case 'HoldUp':
+      p.action = { type: 'HoldUp', scores };
       break;
     default:
       p.action = { type: 'Dribble', scores };
@@ -352,20 +488,24 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
     }
   }
 
-  // Loose ball near our goal that we can claim first.
-  if (ball.owner === null && dist(ball.pos, ownGoal) < 15) {
+  // Loose ball near our goal that we can claim first. The gate is on where
+  // the ball is COMING DOWN (Phase 28) — a cross dropping into the box pulls
+  // the keeper off the line to meet it even while it's still out wide.
+  if (ball.owner === null) {
     const sol = interceptBall(p, ball);
-    // Running min over the same values in the same order — the old
-    // filter/map/spread allocated two arrays per GK decision.
-    let rivalT = Infinity;
-    for (const q of match.allPlayers) {
-      if (q === p || q.sentOff) continue;
-      const t = timeToPoint(q, sol.point);
-      if (t < rivalT) rivalT = t;
-    }
-    if (sol.tMe < rivalT) {
-      p.action = { type: 'ChaseBall', scores: [{ action: 'ChaseBall', score: 0.9, why: 'claim loose ball in box' }] };
-      return;
+    if (dist(sol.point, ownGoal) < 15) {
+      // Running min over the same values in the same order — the old
+      // filter/map/spread allocated two arrays per GK decision.
+      let rivalT = Infinity;
+      for (const q of match.allPlayers) {
+        if (q === p || q.sentOff) continue;
+        const t = timeToPoint(q, sol.point);
+        if (t < rivalT) rivalT = t;
+      }
+      if (sol.tMe < rivalT || (ball.airborne && sol.tMe <= sol.tBall + 0.2)) {
+        p.action = { type: 'ChaseBall', scores: [{ action: 'ChaseBall', score: 0.9, why: ball.airborne ? 'attack the dropping ball' : 'claim loose ball in box' }] };
+        return;
+      }
     }
   }
 
@@ -407,11 +547,17 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       cands.push({ action: 'SupportBallCarrier', score: s, why: `dist ${d.toFixed(0)}m · mode ${team.mode}` });
     }
     // Assigned runner: sprint in behind and drag the line — the movement a
-    // through ball needs. Tired legs sit the run out.
-    if (team.runners.has(p.index) && carrier && carrier !== p) {
+    // through ball needs. Tired legs sit the run out. During a corner setup
+    // there is no carrier yet — the licensed box-crashers run anyway
+    // (Phase 28: the cross needs bodies attacking the area, not spectators).
+    if (team.runners.has(p.index) && (carrier ? carrier !== p : match.phase === 'restart')) {
       let s = W.runScore;
       if (tired) s *= 0.6;
-      cands.push({ action: 'MakeRun', score: s, why: 'licensed run in behind' });
+      cands.push({
+        action: 'MakeRun',
+        score: s,
+        why: match.phase === 'restart' ? 'attacking the box for the delivery' : 'licensed run in behind',
+      });
     }
     cands.push({
       action: 'MoveToFormationSpot',
@@ -420,8 +566,9 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     });
   } else {
     // ----- They have the ball (or it's loose) -----
-    // Cut out a pass in flight.
-    if (ball.owner === null && match.pendingPass && match.pendingPass.side !== team.side) {
+    // Cut out a pass in flight — unless it's sailing overhead (Phase 28);
+    // lofted balls are contested at the landing point via ChaseBall instead.
+    if (ball.owner === null && match.pendingPass && match.pendingPass.side !== team.side && ball.z <= 0.5) {
       const inter = canInterceptPass(p, ball);
       if (inter.ok) cands.push({ action: 'InterceptPass', score: W.interceptScore, why: 'can reach the passing lane first' });
     }
@@ -430,9 +577,11 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       const s = W.chaseBase + g.pressIntensity * 0.15;
       cands.push({ action: 'ChaseBall', score: s, why: `assigned presser · pressIntensity ${g.pressIntensity.toFixed(2)}` });
     } else if (possession === -1) {
-      // Loose ball: closest unassigned player may react a little.
+      // Loose ball: closest unassigned player may react a little. Radius
+      // tightened in Phase 28 — a wide net pulled extra bodies into every
+      // scramble and open play collapsed into rolling six-player scrums.
       const d = dist(p.pos, ball.pos);
-      if (d < 10) cands.push({ action: 'ChaseBall', score: 0.4 * (1 - d / 10), why: 'loose ball nearby' });
+      if (d < 8) cands.push({ action: 'ChaseBall', score: 0.4 * (1 - d / 8), why: 'loose ball nearby' });
     }
     const mark = team.marks.get(p.index);
     if (mark !== undefined) {

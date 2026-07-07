@@ -2,10 +2,14 @@ import { clamp, clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, dot, fromAngle, len, norm, rotate, scale, sub, v2, type V2,
 } from '../utils/vec';
-import { pressureAt } from '../ai/perception';
-import { GOAL_WIDTH, HALF_L, HALF_W, SHOT_SPEED } from './constants';
+import { opennessOf, pressureAt } from '../ai/perception';
+import {
+  BOX_DEPTH, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W, HEADER_MAX_HEIGHT,
+  HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
+} from './constants';
 import type { Match } from './Match';
 import type { Player } from './Player';
+import type { Role } from './types';
 
 /**
  * Ball mechanics: kicks, tackles, keeper saves and the xG model.
@@ -60,10 +64,13 @@ export function touchFailChance(speed: number, pressure: number, misalign: numbe
  */
 export function attemptFirstTouch(match: Match, p: Player): boolean {
   const ball = match.ball;
-  const speed = len(ball.vel);
+  // A dropping ball is harder to kill than a rolled one (Phase 28): the
+  // vertical speed counts toward touch difficulty. Ground balls: vz = 0.
+  const speed = len(ball.vel) + Math.abs(ball.vz) * 0.6;
   if (p.role === 'GK' || speed <= 6) return true;
-  const inx = ball.vel.x / speed;
-  const iny = ball.vel.y / speed;
+  const hSpeed = Math.max(len(ball.vel), 1e-6);
+  const inx = ball.vel.x / hSpeed;
+  const iny = ball.vel.y / hSpeed;
   // Ball arriving at the face = 0, arriving from behind the body = 1.
   const misalign = (1 + (inx * p.heading.x + iny * p.heading.y)) / 2;
   const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
@@ -73,6 +80,7 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   match.teams[p.side].stats.miscontrols++;
   ball.lastTouch = p; // a heavy touch out of play concedes the restart
   ball.vel = scale(rotate(v2(inx, iny), match.rng.range(-0.8, 0.8)), match.rng.range(3.5, 6.5));
+  ball.vz = 0; // the touch kills any remaining flight — the ball drops
   p.kickCooldown = 0.5; // off balance — can't instantly regather
   return false;
 }
@@ -125,9 +133,11 @@ export function performPass(match: Match, passer: Player, mate: Player): void {
  * Through ball (Phase 19): hit harder and led much further than a feet pass —
  * into the space the runner is attacking, not to where they stand. Riskier by
  * construction (longer flight, bigger lead), which is exactly the trade
- * riskTolerance gates in the carrier's scoring.
+ * riskTolerance gates in the carrier's scoring. `lofted` (Phase 28) chips it
+ * over the defensive line instead — slower to arrive and harder to take down,
+ * but nothing on the ground can cut it out.
  */
-export function performThroughBall(match: Match, passer: Player, runner: Player): void {
+export function performThroughBall(match: Match, passer: Player, runner: Player, lofted = false): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
@@ -137,26 +147,294 @@ export function performThroughBall(match: Match, passer: Player, runner: Player)
   const misalign = kickMisalignment(passer, norm(sub(runner.pos, passer.pos)));
   const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
 
-  const flight = dist(passer.pos, runner.pos) / (18 * powerMul);
-  const lead = add(runner.pos, scale(runner.vel, flight * 1.6));
-  const d = dist(passer.pos, lead);
-  const speed = clamp(d * 0.6 + 9, 10, 24) * powerMul;
+  if (lofted) {
+    const flight0 = clamp(0.55 + dist(passer.pos, runner.pos) * 0.045, 0.8, 2.0);
+    const lead = add(runner.pos, scale(runner.vel, flight0 * 1.35));
+    loftKick(match, passer, lead, 0.55, 0.045, 0.8, 2.0, 1.0);
+    team.stats.longBalls++; // a chip is a lofted long ball too
+  } else {
+    const flight = dist(passer.pos, runner.pos) / (18 * powerMul);
+    const lead = add(runner.pos, scale(runner.vel, flight * 1.6));
+    const d = dist(passer.pos, lead);
+    const speed = clamp(d * 0.6 + 9, 10, 24) * powerMul;
 
-  const pressure = pressureAt(passer.pos, opp.players);
-  const aim = norm(sub(lead, passer.pos));
-  const noise =
-    match.rng.gaussian() *
-    (0.025 + pressure * 0.07 + d * 0.0017) *
-    (1.15 - team.genome.passBias * 0.3) *
-    (1.25 - passer.attrs.technique * 0.5) *
-    orientationNoiseMul(misalign, passer.attrs.technique);
-  const dir = rotate(aim, noise);
+    const pressure = pressureAt(passer.pos, opp.players);
+    const aim = norm(sub(lead, passer.pos));
+    const noise =
+      match.rng.gaussian() *
+      (0.025 + pressure * 0.07 + d * 0.0017) *
+      (1.15 - team.genome.passBias * 0.3) *
+      (1.25 - passer.attrs.technique * 0.5) *
+      orientationNoiseMul(misalign, passer.attrs.technique);
+    const dir = rotate(aim, noise);
 
-  match.kickBall(passer, dir, speed);
+    match.kickBall(passer, dir, speed);
+  }
   team.stats.passes++;
   team.stats.throughBalls++;
   if (team.localX(runner.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: runner.gid, t: match.simTime };
+}
+
+/* ------------------------------------------------------------------ */
+/* The aerial game (Phase 28)                                          */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Loft a ball to land at `target`: flight time grows with distance
+ * (tBase + m·tPerM, clamped), horizontal speed = distance/time, and the
+ * vertical launch is whatever brings it back down exactly at landing
+ * (airborne balls fly friction-free, so the projectile math is exact).
+ * Accuracy: direction noise like a ground pass plus a RANGE error — long
+ * deliveries drift short/long; technique and passBias tame both.
+ */
+function loftKick(
+  match: Match, p: Player, target: V2,
+  tBase: number, tPerM: number, tMin: number, tMax: number, noiseMul: number,
+): void {
+  const team = match.teams[p.side];
+  const opp = match.teams[1 - p.side];
+  const aimDir = norm(sub(target, p.pos));
+  const misalign = kickMisalignment(p, aimDir);
+  const d = dist(p.pos, target);
+  const pressure = pressureAt(p.pos, opp.players);
+  const noise =
+    match.rng.gaussian() *
+    (0.03 + pressure * 0.05 + d * 0.0011) * noiseMul *
+    (1.15 - team.genome.passBias * 0.3) *
+    (1.3 - p.attrs.technique * 0.55) *
+    orientationNoiseMul(misalign, p.attrs.technique);
+  const dir = rotate(aimDir, noise);
+  // Range error + orientation power loss both shorten/stretch the delivery.
+  let dEff = d * orientationPowerMul(misalign, p.attrs.technique);
+  dEff *= 1 + match.rng.gaussian() * (0.02 + d * 0.0008) * (1.25 - p.attrs.technique * 0.5);
+  dEff = Math.max(dEff, 3);
+  const T = clamp(tBase + dEff * tPerM, tMin, tMax);
+  match.kickBall(p, dir, dEff / T, (GRAVITY * T) / 2);
+}
+
+/**
+ * Cross (Phase 28): whip a lofted ball from wide toward a target arriving in
+ * the box, pulled a quarter of the way toward goal so deliveries drop into
+ * the danger area rather than at a standing man's feet. Resolved in the air:
+ * keeper claim or header contest (tryAerial), not a ground reception.
+ */
+export function performCross(match: Match, crosser: Player, target: Player): void {
+  if (match.ball.owner !== crosser || crosser.kickCooldown > 0) return;
+  const team = match.teams[crosser.side];
+  const flight0 = clamp(0.5 + dist(crosser.pos, target.pos) * 0.038, 0.7, 1.7);
+  const arrive = add(target.pos, scale(target.vel, flight0 * 0.9));
+  const goal = team.oppGoal();
+  const spot = v2(arrive.x + (goal.x - arrive.x) * 0.25, arrive.y + (goal.y - arrive.y) * 0.25);
+  loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1);
+  team.stats.passes++;
+  team.stats.crosses++;
+  if (team.localX(target.pos.x) - team.localX(crosser.pos.x) > 2) team.stats.passesForward++;
+  match.pendingPass = { side: crosser.side, passerGid: crosser.gid, targetGid: target.gid, t: match.simTime };
+}
+
+/**
+ * Lofted switch (Phase 28): the big diagonal — a 25m+ ball over the press to
+ * a receiver in space. What the 32m ground-pass penalty used to suppress.
+ */
+export function performLoftedPass(match: Match, passer: Player, mate: Player): void {
+  if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
+  const team = match.teams[passer.side];
+  const flight0 = clamp(0.8 + dist(passer.pos, mate.pos) * 0.045, 1.3, 2.7);
+  const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));
+  loftKick(match, passer, lead, 0.8, 0.045, 1.3, 2.7, 1.0);
+  team.stats.passes++;
+  team.stats.longBalls++;
+  if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
+  match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: mate.gid, t: match.simTime };
+}
+
+/** Aerial presence by role: centre-backs and strikers attack the ball. */
+const AERIAL_ROLE: Record<Role, number> = { GK: 0, DF: 0.3, MF: 0.14, WG: 0.06, ST: 0.26 };
+
+/**
+ * How good this player is in the air — the same formula the header contest
+ * rolls against, so cross targeting (PlayerBrain) and duel resolution agree.
+ */
+export function aerialSense(p: Player): number {
+  return AERIAL_ROLE[p.role] + p.attrs.defending * 0.3 + p.attrs.technique * 0.1;
+}
+
+/**
+ * Resolve a ball flying through the contest band (Phase 28). Keepers first —
+ * hands beat heads: a keeper under the ball claims it (crowd pressure and
+ * reflexes decide). Then outfielders within reach jump: position + role
+ * aerial sense + attributes pick the winner, who heads for goal in the
+ * opponent box, powers it clear near their own, or cushions it to a teammate.
+ * `order` alternates per step (the same fairness contract as tryCapture).
+ */
+export function tryAerial(match: Match, order: Player[]): void {
+  const ball = match.ball;
+  if (ball.z < HEADER_MIN_HEIGHT || ball.z > GK_CLAIM_HEIGHT) return;
+
+  for (const gk of order) {
+    if (gk.role !== 'GK' || gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0) continue;
+    const dx = gk.pos.x - ball.pos.x;
+    const dy = gk.pos.y - ball.pos.y;
+    if (dx * dx + dy * dy > 1.9 * 1.9) continue;
+    gk.kickCooldown = 0.5; // committed to the jump either way
+    gk.saveAnimTimer = 0.6;
+    const crowd = pressureAt(gk.pos, match.teams[1 - gk.side].players);
+    const pClaim = clamp(0.62 + (gk.attrs.reflexes - 0.5) * 0.5 - crowd * 0.3, 0.2, 0.9);
+    if (match.rng.chance(pClaim)) {
+      // A claimed opponent shot is a save (a dropping header, typically).
+      const shot = match.pendingShot;
+      if (shot && !shot.resolved && shot.side !== gk.side) {
+        shot.resolved = true;
+        match.teams[shot.side].stats.shotsOnTarget++;
+        match.teams[gk.side].stats.saves++;
+        match.playerStats[gk.gid].saves++;
+        match.markShotOutcome('saved');
+      }
+      match.pushEvent('save', gk.side, `${gk.name} claims the high ball`);
+      match.giveBall(gk);
+      return;
+    }
+    // Flapped at it under pressure — the ball sails on.
+  }
+
+  if (ball.z > HEADER_MAX_HEIGHT) return;
+  let winner: Player | null = null;
+  let best = -Infinity;
+  let contested = false;
+  for (const p of order) {
+    if (p.role === 'GK' || p.sentOff || p.stunTimer > 0 || p.kickCooldown > 0) continue;
+    const dx = p.pos.x - ball.pos.x;
+    const dy = p.pos.y - ball.pos.y;
+    const d2 = dx * dx + dy * dy;
+    if (d2 > HEADER_RADIUS * HEADER_RADIUS) continue;
+    // Position + aerial sense + a seeded jump-timing roll pick the winner.
+    // Attackers meeting a delivery in the opponent box arrive with momentum
+    // — a small edge over the defender jumping from a standing start.
+    const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.07 : 0;
+    const s =
+      aerialSense(p) +
+      attacking +
+      (1 - Math.sqrt(d2) / HEADER_RADIUS) * 0.35 +
+      match.rng.range(0, 0.45);
+    p.kickCooldown = 0.45; // jumped — brief recovery before the next touch
+    p.headerAnimTimer = 0.55;
+    contested = true;
+    if (s > best) {
+      best = s;
+      winner = p;
+    }
+  }
+  if (!contested || !winner) return;
+  headBall(match, winner);
+}
+
+/** What the header winner does with it — shot, clearance or knockdown. */
+function headBall(match: Match, p: Player): void {
+  const ball = match.ball;
+  const team = match.teams[p.side];
+  ball.lastTouch = p;
+  team.stats.headersWon++;
+
+  // Delivery bookkeeping: a teammate's cross/loft met in the air is a
+  // completed pass (assist credit if the header goes in); an opponent's
+  // delivery headed away is an interception.
+  const pass = match.pendingPass;
+  if (pass && pass.side === p.side && pass.passerGid !== p.gid) {
+    team.stats.passesCompleted++;
+    match.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: match.simTime };
+  } else if (pass && pass.side !== p.side) {
+    team.stats.interceptions++;
+    match.playerStats[p.gid].recoveries++;
+  }
+  match.pendingPass = null;
+
+  const dGoal = dist(ball.pos, team.oppGoal());
+  if (dGoal < 16.5) {
+    performHeaderShot(match, p);
+    return;
+  }
+  if (dist(ball.pos, team.ownGoal()) < 20) {
+    // Defensive header: power it away from goal, high and wide.
+    const dir = norm(v2(team.attackDir, match.rng.range(-0.9, 0.9)));
+    ball.vel = scale(dir, match.rng.range(11, 15));
+    ball.vz = match.rng.range(3.5, 5.2);
+    team.stats.clearances++;
+    return;
+  }
+  // Knockdown: cushion it toward the best-placed teammate in range.
+  let mate: Player | null = null;
+  let bestS = -Infinity;
+  for (const q of team.players) {
+    if (q === p || q.sentOff) continue;
+    const d = dist(q.pos, ball.pos);
+    if (d > 16) continue;
+    const s = opennessOf(q, match.teams[1 - p.side].players) - (d / 16) * 0.4;
+    if (s > bestS) {
+      bestS = s;
+      mate = q;
+    }
+  }
+  const to = mate ? norm(sub(mate.pos, ball.pos)) : v2(team.attackDir, 0);
+  ball.vel = scale(to, match.rng.range(7, 9.5));
+  ball.vz = 0.8; // nodded down — drops quickly to feet
+}
+
+/**
+ * Headed shot: meeting a cross in the box. Converts worse than feet (tight
+ * distance falloff, capped quality) and sprays more, but arrives from the
+ * exact spot defenders least want — the same pendingShot machinery as
+ * performShot, difficulty frozen at contact.
+ */
+function performHeaderShot(match: Match, shooter: Player): void {
+  const team = match.teams[shooter.side];
+  const opp = match.teams[1 - shooter.side];
+  const gk = opp.goalkeeper;
+  const ball = match.ball;
+
+  const goalX = team.attackDir * HALF_L;
+  const aimMargin = 1.6 - shooter.attrs.finishing * 0.8;
+  const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
+  const target = v2(goalX, aimY);
+  const d = dist(ball.pos, target);
+  const pressure = pressureAt(shooter.pos, opp.players);
+  const central = 1 - clamp01(Math.abs(ball.pos.y) / HALF_W) * 0.5;
+  const q = clamp(0.5 * Math.exp(-d / 8.5) * central * (1 - pressure * 0.25), 0.01, 0.45);
+
+  const aim = norm(sub(target, ball.pos));
+  const spread = (0.05 + d * 0.004 + pressure * 0.04) * (1.35 - shooter.attrs.finishing * 0.65);
+  const dir = rotate(aim, match.rng.gaussian() * spread);
+  ball.vel = scale(dir, 15 + shooter.attrs.finishing * 4);
+  ball.vz = -1.2; // headed down toward the goal
+
+  team.stats.shots++;
+  team.stats.xg += q;
+  match.playerStats[shooter.gid].shots++;
+
+  const path = closestPointOnSegment(ball.pos, add(ball.pos, scale(dir, 40)), gk.pos);
+  const difficulty = clamp(1.15 - dist(path, gk.pos) / keeperReach(opp, gk), 0.25, 1);
+  const lp = match.lastCompletedPass;
+  const assistGid =
+    lp && lp.receiverGid === shooter.gid && match.simTime - lp.t < 3 ? lp.passerGid : null;
+
+  match.markShotOutcome('miss');
+  match.shotLog.push({ t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending' });
+  match.pendingShot = {
+    side: shooter.side,
+    shooterGid: shooter.gid,
+    xg: q,
+    t: match.simTime,
+    resolved: false,
+    logIndex: match.shotLog.length - 1,
+    difficulty,
+    assistGid,
+  };
+  if (assistGid !== null) {
+    team.stats.keyPasses++;
+    const passer = match.allPlayers[assistGid];
+    if (passer) match.pushEvent('keypass', shooter.side, `${passer.name} with the delivery`);
+  }
+  match.pushEvent('shot', shooter.side, `${shooter.name} heads it at goal! (xG ${q.toFixed(2)})`);
 }
 
 export function performShot(match: Match, shooter: Player): void {
@@ -237,7 +515,14 @@ export function performClear(match: Match, p: Player): void {
   const dir = rotate(aim, match.rng.gaussian() * 0.08);
   // A clear hammered against the body's facing comes off weaker (Phase 27) —
   // at half strength: a panic hoof is a compromise, not a fifty-fifty gift.
-  match.kickBall(p, dir, 23 * (1 - kickMisalignment(p, aim) * 0.15 * (1 - p.attrs.technique * 0.4)));
+  // Since Phase 28 the hoof goes UP as well as out: it hangs uninterceptable
+  // over midfield and comes down as an aerial contest, like a real clearance.
+  match.kickBall(
+    p,
+    dir,
+    23 * (1 - kickMisalignment(p, aim) * 0.15 * (1 - p.attrs.technique * 0.4)),
+    match.rng.range(3.2, 5.4),
+  );
   team.stats.clearances++;
 }
 
@@ -264,14 +549,18 @@ export function tryDeflection(match: Match, p: Player): void {
  * dives on it. Reflexes vs the carrier's close control decide it; a win is
  * a keeper claim (hands, hold state), a loss leaves the keeper on the floor
  * — and occasionally a clumsy challenge that concedes the foul (a penalty,
- * in the box where rushes live).
+ * in the box where rushes live). Since Phase 28 a keeper does NOT need to
+ * be mid-rush: a carrier who dribbles into the keeper's face inside the box
+ * gets smothered at the feet the same way — you can go past the keeper,
+ * you cannot stand on their toes and keep the ball forever.
  */
 export function trySmother(match: Match): void {
   const owner = match.ball.owner;
   if (!owner || owner.gkHoldTimer > 0) return;
   const gk = match.teams[1 - owner.side].goalkeeper;
   if (gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0) return;
-  if (gk.action.type !== 'GoalkeeperRush') return;
+  const rushing = gk.action.type === 'GoalkeeperRush';
+  if (!rushing && !match.inPenaltyBox(match.ball.pos, gk.side)) return;
   if (dist(gk.pos, match.ball.pos) >= 1.3) return;
 
   gk.saveAnimTimer = 0.7; // the dive at the feet is visible either way
@@ -286,7 +575,8 @@ export function trySmother(match: Match): void {
   } else {
     gk.stunTimer = 0.8; // beaten — picking himself up off the turf
     gk.kickCooldown = 0.5;
-    if (match.rng.chance(0.12)) match.awardFoul(gk, owner); // clumsy rush
+    // A full-speed rush is clumsier than a standing challenge at the feet.
+    if (match.rng.chance(rushing ? 0.12 : 0.03)) match.awardFoul(gk, owner);
   }
 }
 
@@ -364,6 +654,7 @@ export function tryKeeperSave(match: Match): void {
   const defTeam = match.teams[defSide];
   const gk = defTeam.goalkeeper;
   const goal = defTeam.ownGoal();
+  if (ball.z > GK_CLAIM_HEIGHT) return; // sailing over the keeper's hands
   const speed = len(ball.vel);
   if (speed < 6) return;
   if (dot(ball.vel, sub(goal, ball.pos)) <= 0) return;

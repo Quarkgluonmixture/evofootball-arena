@@ -13,6 +13,8 @@ export const HALF_W = PITCH_WIDTH / 2;
 
 export const GOAL_WIDTH = 7;
 export const GOAL_DEPTH = 2.2;
+/** Crossbar height (m) — a ball crossing the goal line above this is OVER the bar. */
+export const GOAL_HEIGHT = 2.44;
 export const BOX_DEPTH = 13;
 export const BOX_WIDTH = 28;
 export const CENTER_CIRCLE_R = 7;
@@ -29,6 +31,25 @@ export const STOPPAGE_MAX = 8;
 
 /** Ball exponential velocity decay per second: v *= exp(-K * dt). */
 export const BALL_FRICTION_K = 0.55;
+
+/* ---- The aerial game (Phase 28) ---- */
+/** Gravity on the lofted ball (m/s²). Airborne balls fly friction-free. */
+export const GRAVITY = 9.81;
+/** Vertical restitution on landing: bounce vz = -vz · this. */
+export const BALL_BOUNCE = 0.45;
+/** Horizontal speed kept per bounce (the turf bites). */
+export const BOUNCE_DAMP = 0.72;
+/** Landing slower than this vertically just settles into a roll. */
+export const BOUNCE_MIN_VZ = 2.2;
+/** Above this height a ball can't be trapped or deflected — only headed. */
+export const CONTROL_MAX_HEIGHT = 1.3;
+/** Header contest window: ball height where outfielders can attack it... */
+export const HEADER_MIN_HEIGHT = 1.35;
+export const HEADER_MAX_HEIGHT = 2.5;
+/** ...standing within this horizontal radius of the ball. */
+export const HEADER_RADIUS = 1.35;
+/** Keepers can claim high balls up to here (jump + hands). */
+export const GK_CLAIM_HEIGHT = 2.55;
 
 /** Opponents are held this far from a dead-ball restart spot. */
 export const RESTART_CLEARANCE = 6;

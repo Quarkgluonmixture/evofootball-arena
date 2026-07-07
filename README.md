@@ -190,6 +190,21 @@ scripts/                headless calibration, evolution & wildcard-training tool
   concede a penalty), and cards don't carry into cup shootouts.
 - **Ball:** exponential friction, kick impulses, owner-glued dribbling,
   interceptable in flight; keepers can handle faster balls than outfielders.
+- **The aerial game (Phase 28):** the ball has real **height** — lofted kicks
+  fly friction-free parabolas (gravity, damped bounces) and a ball crossing
+  the goal line above the **2.44 m crossbar** is out, not in. Nothing on the
+  ground can touch a ball above chest height: **crosses** whipped in from
+  wide (corners flood the box with the three best headers of the ball),
+  **lofted switches** that beat the press over the top (the old 32 m pass
+  suppression no longer applies in the air), **chipped through balls** over
+  the line, and hoofed clearances that hang and come down as contests.
+  Aerial duels are resolved by position + role aerial sense + `defending`
+  (keepers claim over everyone, crowd pressure allowed for); the winner
+  **heads it** — at goal in the opponent box (headed goals credit the
+  crosser's assist), powerfully clear near their own, or cushioned down to a
+  teammate. Strikers also play **back-to-goal hold-up**: shield, wait for
+  support, lay off. Long-range shot appetite rises when a move goes stale —
+  the 20 m dig is a real release valve now.
 - **Keepers use their hands (Phase 27.2):** a keeper who claims the ball in
   open play scoops it up and **holds it** for ~1 s — untackleable, ball
   carried at the chest (visible in 3D) — before distributing. Restart first
@@ -266,7 +281,7 @@ All 14 genes are 0..1 and read directly by the AI:
 | dribbleBias | multiplies dribble utility |
 | pressIntensity | more assigned pressers, Press mode threshold |
 | defensiveCompactness | off-ball block squeezes toward ball/center |
-| attackingWidth | in-possession formation stretch |
+| attackingWidth | in-possession formation stretch AND cross appetite (wide overloads) |
 | riskTolerance | gates contested forward passes AND through balls; more clearing when low |
 | counterAttackBias | CounterAttack mode window after winning the ball |
 | staminaConservation | slower jog/press sprints — fresher legs late on |
@@ -289,7 +304,7 @@ attribute genes (0..1) that evolve with the franchise (`evolution/playerGenome.t
 | pace | ±12% top speed, ±10% acceleration |
 | technique | tighter pass accuracy; resists tackles (close control) |
 | finishing | tighter shot grouping AND braver aim (closer to the post) |
-| defending | higher tackle success |
+| defending | higher tackle success; wins aerial duels (Phase 28) |
 | reflexes | keeper save odds ±11pp, longer dive reach |
 
 Players are born role-biased (keepers high reflexes, wingers high pace,
@@ -340,7 +355,8 @@ src/replay/ReplayBuffer.ts  10 Hz RenderState snapshots of watched play;
                          binary-search + interpolation for smooth scrubbing
 ```
 
-- The ball's vertical hop on kicks is synthesized in `BallModel` — visual only.
+- The ball's real height (Phase 28) flows through `RenderState.ball.y`; the
+  little visual hop `BallModel` synthesizes applies to hard ground kicks only.
 - **Readability aids** (Phase 10): pulsing team-colored possession ring under
   the carrier, an always-on-top marker when the ball hides inside a crowd,
   motion trails (hotter on shots), screen-space label decluttering
@@ -442,12 +458,12 @@ role vectors fall back to it, so every normal team is bit-identical to before
 the refactor (regression-tested + fingerprint-checked).
 
 Result (held-out benchmark vs an unseen league's top 8, home & away, on the
-current engine): the co-trained candidate scores **32/48 points where the
-Phase-18 shared-policy champion scores 25/48 and the default brain 6/48**.
-The ES learned an identity you can read right off its gene bars — Gegenpress,
-counter-attack, high risk, zero stamina conservation — with role
-specialization on top (the striker's shoot weights and the midfielder's
-through-ball/press weights sit near their bounds). Press **⚡ Wildcard
+Phase-28 aerial engine): the co-trained candidate scores **21/48 points
+where the default brain scores 16/48** (each retrain re-measures on the
+current engine — Phase 28 rewrote the attacking economy, so older stamped
+scores no longer apply). The ES learned an identity you can read right off
+its gene bars — Gegenpress, high risk / chaos — and its role vectors now
+include learned weights for the five Phase-28 aerial/long-shot channels. Press **⚡ Wildcard
 exhibition** (left panel) to field it against your current Premier leader — a
 standalone friendly, no league bookkeeping.
 
@@ -488,33 +504,43 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~3.8 goals from ~13.6 shots (≈9.6 on target — futsal-flavored scorelines;
-keepers are genuinely busy at **≈7.3 saves/match** incl. 1v1 smothers),
-~72% pass completion
-with **~14.5 through balls per match** and **~55% of passes played forward**
+~3.8 goals from ~13.4 shots (≈8.8 on target — futsal-flavored scorelines;
+keepers are genuinely busy at **≈6.5 saves/match** plus ~0.55 smothers at a
+dribbler's feet), ~69% pass completion — the Phase 28 aerial deliveries are
+honest low-percentage balls — with **~14.8 through balls per match**,
+**~58% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
-sideways recycling), **≈8 first-touch miscontrols/match** (forced errors —
-pressing pays), ~2.3 corners (≈11% lead to a shot inside 8 s), balanced
+sideways recycling), **≈2.9 crosses, ≈4.3 aerial duels won and ≈4.9 lofted
+long balls per match** (Phase 28), **≈8.8 first-touch miscontrols/match**
+(forced errors — pressing pays), ~2.5 corners (**≈15% lead to a shot inside
+8 s, ≈5% to a goal** — box-crashing runners attack the delivery), balanced
 possession, ~93% ball-in-play (the rest is live dead-ball time: goal kicks,
-corners, kick-ins, penalties; **≈3.8 fouls play advantage since 27.2,
-≈0.08 becoming penalties** — Phase 20 — drawing **≈0.7 yellows and
-≈0.05 reds** per match — Phase 25), ~26 ms per headless match
-(allocation-free hot paths + a precomputed intercept table — Phase 16; a
-10-season fast-sim runs off the main thread on the sim worker).
+corners, kick-ins, penalties; **≈3.9 fouls play advantage since 27.2,
+≈0.4 penalties/match** — box congestion from crosses raised it — drawing
+**≈0.7 yellows and ≈0.06 reds** per match — Phase 25), ~28 ms per headless
+match (allocation-free hot paths + a precomputed intercept table — Phase 16;
+a 10-season fast-sim runs off the main thread on the sim worker).
 Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
 77% → 74%, because attacks are far more direct (shots per completed pass
 roughly doubled) and errors are real; the keeper economy was re-tuned to
 match (save base 0.75, reach 2.15 m, 80% catches under 21 m/s), and the
 27.1 spacing pass (separated formation lanes, wider support radius, a
 softer ball-side marking pull) unclogged the central corridor — fouls,
-tackles and interceptions all dropped back as the crowd dissolved. The
+tackles and interceptions all dropped back as the crowd dissolved.
+Phase 28 then opened the air: corners went from tame (5% led to a shot
+while crosses dropped into an empty box) to genuinely dangerous (15%) once
+the corner licensed three box-crashers, and two live-play complaints were
+fixed — a keeper now **smothers at the feet of anyone dribbling into their
+face inside the box** (and can't be bulldozed backward: keepers hold their
+ground against opponents in their own box), and the loose-ball reaction
+radius was tightened so scrambles pull in fewer spectators. The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
 gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 168 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 179 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
@@ -527,11 +553,16 @@ gap (see `npm run evolve-check`).
   + theater staging/skip/determinism — Phase 24), on-ball realism (turn-rate
   cap, orientation/first-touch helper monotonicity, directional
   technique-vs-miscontrol and forward-share/error-rate windows — Phase 27),
+  the aerial game (parabola/bounce physics, the crossbar, focused aerial
+  duels, directional crossing/long-shot tests, corner-threat and
+  headed-assist structure — Phase 28),
   league/Elo/evolution
   invariants, Evo Cup bracket shape/draw-rule/standalone-tie/determinism,
   save/load + file export/import roundtrips incl. the v1–v5 migration chain,
   and statistical gene/attribute effect tests.
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
+- `npx tsx scripts/probe-aerial.ts` — per-mechanism aerial tallies (corner
+  threat %, header outcomes, keeper claims, delivery volume) for tuning.
 - `npm run debug:visual` — Playwright drives the *real* game in headless
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
@@ -550,7 +581,11 @@ kicks and penalties (Phase 20), yellow/red cards with 4v5 play and a
 dirtiest-team award (Phase 25), on-ball realism — body facing with a real
 turn rate, orientation-dependent kicks, first-touch errors, pass-lane
 deflections, tackle stuns with lunge/stumble animations and the
-anti-recycling territory clock (Phase 27) — three-layer utility
+anti-recycling territory clock (Phase 27) — the aerial game: real ball
+height with parabolic lofted kicks, bounces and a 2.44 m crossbar, crosses
++ headers with box-crashing corner runners, keeper claims and feet-smothers,
+lofted switches/chips that beat the press, back-to-goal hold-up play and a
+long-shot release valve (Phase 28) — three-layer utility
 AI, 14 live tactical
 genes + 5 per-player attribute genes with full player careers — ages,
 development curves, retirements, newgens and an all-time-greats ledger
@@ -577,14 +612,6 @@ exhibitions, a phone-friendly responsive layout (Phase 27), 161 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Ideas for the next phase (rough priority order):
-- **Phase 28 — the aerial game** (user-diagnosed: corners are tame because
-  NOTHING travels in the air): ball height in the sim (z + lofted kick
-  arcs), **crosses** from wide, **headers** (win chance from position +
-  attributes), **lofted switches** (the 32m pass-distance cap currently
-  kills big diagonals), lofted through balls over the line, and a bigger
-  long-shot appetite. This also unlocks the missing tactic archetypes:
-  direct long counters (B), wide overloads with real crosses (D), and the
-  target-pivot game (E — needs a back-to-goal hold-up mechanic too).
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only

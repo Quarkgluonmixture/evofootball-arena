@@ -1,7 +1,8 @@
 import * as THREE from 'three';
-import { GOAL_DEPTH, GOAL_WIDTH, HALF_L } from '../sim/constants';
+import { GOAL_DEPTH, GOAL_HEIGHT, GOAL_WIDTH, HALF_L } from '../sim/constants';
 
-const CROSSBAR_H = 2.44;
+// The drawn crossbar IS the sim's over-the-bar boundary (Phase 28).
+const CROSSBAR_H = GOAL_HEIGHT;
 // Chunkier than a real post (0.06 m): at broadcast/gantry distances a thin
 // cylinder collapses to a sub-pixel line and the goal loses its 3D frame.
 const POST_R = 0.13;

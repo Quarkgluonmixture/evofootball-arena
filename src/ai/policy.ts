@@ -49,6 +49,11 @@ export const POLICY_BOUNDS: Record<keyof PolicyParams, [number, number]> = {
   throughBase: [0.05, 0.6],
   throughOpenW: [0.1, 0.7],
   throughBehindW: [0.1, 0.9],
+  crossBase: [0.05, 0.6],
+  crossBoxW: [0.1, 1.0],
+  loftBase: [0.03, 0.4],
+  loftOpenW: [0.1, 0.8],
+  longShotW: [0.0, 0.6],
 };
 
 export function clampPolicy(p: PolicyParams): PolicyParams {

@@ -189,7 +189,15 @@ export class MatchRenderer {
     }
 
     this.ballG.clear();
-    this.ballG.circle(px.x, px.y, 4).fill(0xffffff).stroke({ width: 1, color: 0x333333 });
+    // Height read (Phase 28): an airborne ball casts a shadow at its ground
+    // spot while the ball itself draws bigger and nudged up-screen — the
+    // classic top-down "it's in the air" cue.
+    const z = match.ball.z;
+    if (z > 0.15) {
+      this.ballG.ellipse(px.x, px.y, 3.5, 2.2).fill({ color: 0x000000, alpha: 0.3 });
+    }
+    const r = 4 * (1 + Math.min(z, 8) * 0.09);
+    this.ballG.circle(px.x, px.y - z * 1.6, r).fill(0xffffff).stroke({ width: 1, color: 0x333333 });
 
     // Heatmap accumulation (weighted by sim steps so fast-forward still counts).
     if (flags.heatmap && match.phase === 'playing' && steps > 0) {

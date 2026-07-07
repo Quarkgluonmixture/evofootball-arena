@@ -18,7 +18,10 @@ export type ActionType =
   | 'SupportBallCarrier'
   | 'Dribble'
   | 'Pass'
+  | 'LoftedPass'
   | 'ThroughBall'
+  | 'Cross'
+  | 'HoldUp'
   | 'Shoot'
   | 'ClearBall'
   | 'GoalkeeperSave'
@@ -86,6 +89,14 @@ export interface PolicyParams {
   throughBase: number;
   throughOpenW: number;
   throughBehindW: number;
+  /** Cross scoring (Phase 28): base + weight on the best box target. */
+  crossBase: number;
+  crossBoxW: number;
+  /** Lofted switch scoring: base + weight on the receiver's open space. */
+  loftBase: number;
+  loftOpenW: number;
+  /** Long-range shot appetite bonus (16–30m, scaled by shootBias). */
+  longShotW: number;
 }
 
 export const DEFAULT_POLICY: PolicyParams = {
@@ -117,6 +128,11 @@ export const DEFAULT_POLICY: PolicyParams = {
   throughBase: 0.22,
   throughOpenW: 0.35,
   throughBehindW: 0.45,
+  crossBase: 0.22,
+  crossBoxW: 0.5,
+  loftBase: 0.14,
+  loftOpenW: 0.38,
+  longShotW: 0.3,
 };
 
 /** Everything a Match needs to know about one participating team. */
@@ -199,6 +215,12 @@ export interface TeamMatchStats {
   passesForward: number;
   /** First touches that got away from the receiver (forced errors, Phase 27). */
   miscontrols: number;
+  /** Lofted balls whipped into the box from wide (Phase 28). */
+  crosses: number;
+  /** Aerial duels won — headed shots, clears and knockdowns (Phase 28). */
+  headersWon: number;
+  /** Lofted long deliveries — switches/diagonals + chipped through balls (Phase 28). */
+  longBalls: number;
   keyPasses: number;
   interceptions: number;
   tackles: number;
@@ -229,6 +251,9 @@ export const emptyStats = (): TeamMatchStats => ({
   throughBalls: 0,
   passesForward: 0,
   miscontrols: 0,
+  crosses: 0,
+  headersWon: 0,
+  longBalls: 0,
   keyPasses: 0,
   interceptions: 0,
   tackles: 0,

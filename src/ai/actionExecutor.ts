@@ -101,11 +101,38 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       break;
     }
     case 'Pass':
+    case 'LoftedPass':
     case 'ThroughBall':
+    case 'Cross':
     case 'Shoot':
     case 'ClearBall': {
       // Kick already happened at decision time — brief follow-through.
       target = null;
+      break;
+    }
+    case 'HoldUp': {
+      // Pivot shield (Phase 28): keep the body between ball and defender —
+      // a slow drift away from the nearest opponent, chest toward our own
+      // half so the lay-off is played with the facing, not against it.
+      let near: Player | null = null;
+      let nearD = Infinity;
+      for (const o of opp.players) {
+        if (o.sentOff) continue;
+        const d = dist(o.pos, p.pos);
+        if (d < nearD) {
+          nearD = d;
+          near = o;
+        }
+      }
+      if (near && nearD > 1e-6) {
+        const ax = (p.pos.x - near.pos.x) / nearD;
+        const ay = (p.pos.y - near.pos.y) / nearD;
+        target = { x: p.pos.x + ax * 1.4, y: p.pos.y + ay * 1.4 };
+      } else {
+        target = p.pos;
+      }
+      speedF = 0.35;
+      p.faceTarget = team.ownGoal();
       break;
     }
     case 'GoalkeeperSave': {

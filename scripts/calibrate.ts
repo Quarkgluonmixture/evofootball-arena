@@ -18,6 +18,9 @@ let passes = 0;
 let completed = 0;
 let throughBalls = 0;
 let passesForward = 0;
+let crosses = 0;
+let headers = 0;
+let longBalls = 0;
 let miscontrols = 0;
 let saves = 0;
 let fouls = 0;
@@ -45,6 +48,9 @@ for (let s = 0; s < SEASONS; s++) {
       completed += st.passesCompleted;
       throughBalls += st.throughBalls;
       passesForward += st.passesForward;
+      crosses += st.crosses;
+      headers += st.headersWon;
+      longBalls += st.longBalls;
       miscontrols += st.miscontrols;
       saves += st.saves;
       fouls += st.fouls;
@@ -68,6 +74,7 @@ console.log(`\n${matches} matches in ${elapsed.toFixed(1)}s (${(elapsed / matche
 console.log(`goals/match:        ${per(goals)}`);
 console.log(`shots/match:        ${per(shots)}  (on target: ${per(onTarget)}, xG: ${per(xg)})`);
 console.log(`passes/match:       ${per(passes)}  (completion: ${(completed / Math.max(passes, 1) * 100).toFixed(0)}%, through balls: ${per(throughBalls)}, forward share: ${(passesForward / Math.max(passes, 1) * 100).toFixed(0)}%)`);
+console.log(`aerial/match:       crosses ${per(crosses)}, headers won ${per(headers)}, long balls ${per(longBalls)}`);
 console.log(`miscontrols/match:  ${per(miscontrols)}`);
 console.log(`saves/match:        ${per(saves)}`);
 console.log(`fouls/match:        ${per(fouls)}  (penalties: ${per(penalties)})`);
