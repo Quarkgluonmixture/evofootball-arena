@@ -70,6 +70,12 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     match.performShot(p);
     return;
   }
+  // Keeper hold (Phase 27.2): ball in the hands — no distribution decision
+  // until the hold runs out.
+  if (p.gkHoldTimer > 0) {
+    p.action = { type: 'HoldPosition', scores: [{ action: 'HoldPosition', score: 1, why: 'ball in hands' }] };
+    return;
+  }
   const cands: UtilityScore[] = [];
   const pressure = pressureAt(p.pos, opp.players);
   const goal = team.oppGoal();

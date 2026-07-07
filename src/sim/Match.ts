@@ -286,6 +286,10 @@ export class Match {
     if (p.role !== 'GK') {
       p.action = { type: 'Dribble', scores: p.action.scores };
       team.stats.dribbles++;
+    } else if (this.restartKickGid !== p.gid) {
+      // Keeper hold (Phase 27.2): scoop it up and hold before distributing —
+      // hands, not feet. Restart first touches (goal kicks) stay quick.
+      p.gkHoldTimer = 1.1;
     }
     p.decisionTimer = Math.max(p.decisionTimer, 0.3);
 
@@ -321,11 +325,13 @@ export class Match {
   private stepBall(dt: number): void {
     const ball = this.ball;
     if (ball.owner) {
-      // Dribble: the ball rides slightly ahead of the owner's heading.
+      // Dribble: the ball rides slightly ahead of the owner's heading — or
+      // tight to the chest while a keeper holds it in their hands (27.2).
       // In-place writes (was add/scale/clone — 3 vectors per step); ball.pos
       // and ball.vel are never aliased, all other writers assign fresh objects.
-      ball.pos.x = ball.owner.pos.x + ball.owner.heading.x * 0.85;
-      ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * 0.85;
+      const carry = ball.owner.gkHoldTimer > 0 ? 0.3 : 0.85;
+      ball.pos.x = ball.owner.pos.x + ball.owner.heading.x * carry;
+      ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * carry;
       ball.vel.x = ball.owner.vel.x;
       ball.vel.y = ball.owner.vel.y;
       mech.tryTackles(this);
@@ -446,12 +452,12 @@ export class Match {
       this.pushEvent('foul', side, `PENALTY! ${offender.name} brings down ${victim.name} in the box`);
       this.awardRestart('penalty', side, spot);
     } else {
-      const spot = v2(
-        Math.max(-HALF_L + 1, Math.min(HALF_L - 1, this.ball.pos.x)),
-        Math.max(-HALF_W + 1, Math.min(HALF_W - 1, this.ball.pos.y)),
-      );
-      this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — free kick`);
-      this.awardRestart('freeKick', side, spot);
+      // Advantage (Phase 27.2): outfield fouls no longer stop play. The only
+      // foul this sim produces is a FAILED tackle — the carrier kept the
+      // ball, so the whistle only ever interrupted the attacking team's own
+      // move. The foul still counts and still draws cards; box fouls above
+      // still concede a penalty.
+      this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — advantage`);
     }
     this.maybeCard(offender);
   }

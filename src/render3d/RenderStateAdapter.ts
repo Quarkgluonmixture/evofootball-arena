@@ -39,6 +39,8 @@ export interface RenderBall {
   isShot: boolean;
   /** A pass is currently in flight. */
   isPass: boolean;
+  /** The keeper is holding the ball in their hands (Phase 27.2). */
+  heldByGk?: boolean;
 }
 
 /** A recent notable event, for visual/audio feedback (deduped by `t`). */
@@ -137,6 +139,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     ownerGid: match.ball.owner ? match.ball.owner.gid : null,
     isShot: match.pendingShot !== null,
     isPass: match.pendingPass !== null,
+    heldByGk: match.ball.owner !== null && match.ball.owner.gkHoldTimer > 0,
   };
 
   return {
@@ -282,6 +285,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
       ownerGid: late.ball.ownerGid,
       isShot: late.ball.isShot,
       isPass: late.ball.isPass,
+      heldByGk: late.ball.heldByGk === true,
     },
     overlays: null,
   };

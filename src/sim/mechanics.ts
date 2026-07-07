@@ -269,6 +269,8 @@ export function tryTackles(match: Match): void {
   const ball = match.ball;
   const owner = ball.owner;
   if (!owner) return;
+  // A keeper holding the ball in their hands can't be tackled (Phase 27.2).
+  if (owner.gkHoldTimer > 0) return;
   const oppTeam = match.teams[1 - owner.side];
 
   let tackler: Player | null = null;

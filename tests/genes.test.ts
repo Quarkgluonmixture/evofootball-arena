@@ -43,10 +43,15 @@ function totals(gA: TacticalGenome, gB: TacticalGenome, seeds: number[]): [TeamM
     for (const k of Object.keys(out) as Array<keyof TeamMatchStats>) out[k] += b[k];
     return out;
   };
+  // Side-balanced: each seed runs both home/away orders so iteration- or
+  // side-linked noise cancels (§10.5 — a one-order 6-match pool lost a real
+  // +46% shootBias effect to a 31–32 coin flip after Phase 27.2).
   let acc: [TeamMatchStats, TeamMatchStats] | null = null;
   for (const seed of seeds) {
-    const r = new Match({ seed, teamA: team('A', gA), teamB: team('B', gB), duration: 120 }).runToCompletion();
-    acc = acc ? [sum(acc[0], r.stats[0]), sum(acc[1], r.stats[1])] : [r.stats[0], r.stats[1]];
+    const ab = new Match({ seed, teamA: team('A', gA), teamB: team('B', gB), duration: 120 }).runToCompletion();
+    acc = acc ? [sum(acc[0], ab.stats[0]), sum(acc[1], ab.stats[1])] : [ab.stats[0], ab.stats[1]];
+    const ba = new Match({ seed, teamA: team('B', gB), teamB: team('A', gA), duration: 120 }).runToCompletion();
+    acc = [sum(acc[0], ba.stats[1]), sum(acc[1], ba.stats[0])];
   }
   return acc!;
 }

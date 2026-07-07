@@ -49,6 +49,12 @@ export class Player {
    * a stunned player can't control a loose ball or tackle.
    */
   stunTimer = 0;
+  /**
+   * Keeper hold (Phase 27.2): after claiming the ball a keeper scoops it up
+   * and holds it briefly — untackleable, ball carried in the hands — before
+   * distributing. Never set for restart first touches (goal kicks stay quick).
+   */
+  gkHoldTimer = 0;
   /** Display-only: renderers play a lunge animation while this runs. */
   tackleAnimTimer = 0;
 
@@ -149,6 +155,7 @@ export class Player {
     this.kickCooldown = Math.max(0, this.kickCooldown - dt);
     this.tackleCooldown = Math.max(0, this.tackleCooldown - dt);
     this.stunTimer = Math.max(0, this.stunTimer - dt);
+    this.gkHoldTimer = Math.max(0, this.gkHoldTimer - dt);
     this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);
     this.decisionTimer -= dt;
   }
@@ -161,6 +168,7 @@ export class Player {
     this.kickCooldown = 0;
     this.tackleCooldown = 0;
     this.stunTimer = 0;
+    this.gkHoldTimer = 0;
     this.tackleAnimTimer = 0;
   }
 }

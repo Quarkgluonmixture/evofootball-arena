@@ -169,13 +169,15 @@ scripts/                headless calibration, evolution & wildcard-training tool
   walks over, opponents are held 6 m off the ball while both teams reshape,
   and the first touch must be a kick. Everything is deterministic — no
   restart randomness beyond the usual seeded kick mechanics.
-- **Fouls (Phase 20):** a failed tackle is sometimes a **foul** (seeded roll;
-  aggressive-marking sides give more away) — a **free kick** where it
-  happened, taken through the same live restart machinery. A foul inside the
-  offender's own box is a **PENALTY**: the fouled team's best finisher steps
-  up against the keeper from the drawn spot (9.4 m), everyone else held 8 m
-  clear, and the first touch is the shot. ~3.7 fouls and ~0.12 penalties per
-  match at current tuning.
+- **Fouls (Phase 20, advantage since 27.2):** a failed tackle is sometimes a
+  **foul** (seeded roll; aggressive-marking sides give more away). Outside
+  the box the referee plays **advantage** — the only foul this sim produces
+  is a failed tackle, so the carrier kept the ball and a whistle would only
+  punish the attackers: play continues, the foul is counted and can still
+  draw a card. A foul inside the offender's own box is still a **PENALTY**:
+  the fouled team's best finisher steps up against the keeper from the drawn
+  spot (9.4 m), everyone else held 8 m clear, and the first touch is the
+  shot. ~3.8 fouls and ~0.08 penalties per match at current tuning.
 - **Cards (Phase 25):** a foul sometimes draws a **yellow** (~0.75 bookings
   per match; aggressive markers collect more), and a second yellow — or a rare
   straight red — is a **sending off**: the player is parked on the apron and
@@ -185,6 +187,10 @@ scripts/                headless calibration, evolution & wildcard-training tool
   concede a penalty), and cards don't carry into cup shootouts.
 - **Ball:** exponential friction, kick impulses, owner-glued dribbling,
   interceptable in flight; keepers can handle faster balls than outfielders.
+- **Keepers use their hands (Phase 27.2):** a keeper who claims the ball in
+  open play scoops it up and **holds it** for ~1 s — untackleable, ball
+  carried at the chest (visible in 3D) — before distributing. Restart first
+  touches (goal kicks) stay quick.
 - **Players:** acceleration toward a desired velocity, role-based top speed,
   quadratic stamina drain above ~55% effort (tired players cap at 62% speed),
   pairwise separation so nobody stacks.
@@ -471,12 +477,12 @@ with **~14.5 through balls per match** and **~55% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
 sideways recycling), **≈8 first-touch miscontrols/match** (forced errors —
 pressing pays), ~2.3 corners (≈11% lead to a shot inside 8 s), balanced
-possession, ~92% ball-in-play (the rest is live dead-ball time: goal kicks,
-corners, kick-ins, plus **≈3.7 fouls → free kicks, ≈0.12 of them
-penalties** — Phase 20 — drawing **≈0.75 yellows and ≈0.09 reds** per
-match — Phase 25), ~26 ms per headless match (allocation-free hot paths + a
-precomputed intercept table — Phase 16; a 10-season fast-sim runs off the
-main thread on the sim worker).
+possession, ~93% ball-in-play (the rest is live dead-ball time: goal kicks,
+corners, kick-ins, penalties; **≈3.8 fouls play advantage since 27.2,
+≈0.08 becoming penalties** — Phase 20 — drawing **≈0.7 yellows and
+≈0.05 reds** per match — Phase 25), ~26 ms per headless match
+(allocation-free hot paths + a precomputed intercept table — Phase 16; a
+10-season fast-sim runs off the main thread on the sim worker).
 Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
 77% → 74%, because attacks are far more direct (shots per completed pass
 roughly doubled) and errors are real; the keeper economy was re-tuned to

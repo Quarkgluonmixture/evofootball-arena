@@ -152,6 +152,23 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     expect(miscontrols / matches).toBeLessThan(25); // and not slapstick
   });
 
+  it('a keeper claim becomes a protected hold: hands, no tackles, then distribution (27.2)', () => {
+    const m = new Match({ seed: 9, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    const gk = m.teams[0].goalkeeper;
+    m.giveBall(gk);
+    expect(gk.gkHoldTimer).toBeGreaterThan(0);
+    // Park an opponent right on the ball: the hold must make a tackle impossible.
+    const presser = m.teams[1].players[4];
+    presser.pos = { x: m.ball.pos.x + 0.5, y: m.ball.pos.y };
+    presser.tackleCooldown = 0;
+    for (let i = 0; i < 30 && gk.gkHoldTimer > 0; i++) {
+      presser.pos = { x: m.ball.pos.x + 0.5, y: m.ball.pos.y };
+      m.step(DT);
+      expect(m.ball.owner).toBe(gk); // never dispossessed mid-hold
+    }
+  });
+
   it('the territory clock resets on possession change and accrues in stale spells', () => {
     const m = new Match({ seed: 5, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
     m.teams[0].resetProgress(3);

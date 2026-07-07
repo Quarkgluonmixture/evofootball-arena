@@ -18,6 +18,7 @@ export class BallModel {
   private hopT = -1;
   private hopDur = 0;
   private hopHeight = 0;
+  private heldY = 0;
   private prevSpeed = 0;
   private prevOwned = false;
 
@@ -98,7 +99,12 @@ export class BallModel {
       if (p >= 1) this.hopT = -1;
       else h = Math.sin(Math.PI * p) * this.hopHeight;
     }
-    this.mesh.position.y = RADIUS + h;
+    // Keeper hold (Phase 27.2): the ball rides up into the hands and back
+    // down as the keeper releases it — the "uses their hands" read.
+    this.heldY = ball.heldByGk
+      ? Math.min(0.95, this.heldY + dt * 5)
+      : Math.max(0, this.heldY - dt * 5);
+    this.mesh.position.y = RADIUS + h + this.heldY;
 
     // Roll around the axis perpendicular to travel.
     if (ball.speed > 0.2 && h < 0.05) {

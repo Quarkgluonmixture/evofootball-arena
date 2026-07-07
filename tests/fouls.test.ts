@@ -34,21 +34,20 @@ const playingMatch = (seed = 5, a = team('Alpha'), b = team('Beta')): Match => {
 };
 
 describe('fouls — award rules (Phase 20)', () => {
-  it('a foul outside the box is a free kick for the fouled team where the ball was', () => {
+  it('a foul outside the box plays advantage: counted and carded, never a stoppage (27.2)', () => {
     const m = playingMatch(11);
     m.ball.pos = v2(4, -6); // midfield — nobody's box
     const offender = m.teams[1].players[1];
     const victim = m.teams[0].players[3];
     m.awardFoul(offender, victim);
 
-    expect(m.phase).toBe('restart');
-    expect(m.restart!.kind).toBe('freeKick');
-    expect(m.restart!.side).toBe(victim.side);
-    expect(m.restart!.pos.x).toBeCloseTo(4, 5);
-    expect(m.restart!.pos.y).toBeCloseTo(-6, 5);
+    // Play continues — the only fouls this sim produces are FAILED tackles,
+    // so the carrier kept the ball and a whistle would punish the attackers.
+    expect(m.phase).toBe('playing');
+    expect(m.restart).toBeNull();
     expect(m.teams[1].stats.fouls).toBe(1);
     expect(m.teams[0].stats.penalties).toBe(0);
-    expect(m.events.some((e) => e.type === 'foul')).toBe(true);
+    expect(m.events.some((e) => e.type === 'foul' && e.text.includes('advantage'))).toBe(true);
   });
 
   it('a foul in the offender own box is a penalty at the drawn spot', () => {
