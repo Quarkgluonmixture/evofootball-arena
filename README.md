@@ -213,7 +213,9 @@ scripts/                headless calibration, evolution & wildcard-training tool
 - **Keepers use their hands (Phase 27.2):** a keeper who claims the ball in
   open play scoops it up and **holds it** for ~1 s — untackleable, ball
   carried at the chest (visible in 3D) — before distributing. Restart first
-  touches (goal kicks) stay quick.
+  touches (goal kicks) stay quick. Since Phase 28.3 the release is
+  **deliberate**: an accurate hand throw to an open teammate, a pass or a
+  targeted long switch — never the panic hoof (that was a 50/50 giveaway).
 - **Keepers rush 1v1s (Phase 27.5):** an opponent carrier bearing down with
   nobody goal-side pulls the keeper **off the line** (keeperAggression sets
   how far — sweeping outside the box at the aggressive end). Reaching the
@@ -510,7 +512,7 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~3.5 goals from ~12.7 shots (≈8.4 on target — futsal-flavored scorelines;
+~3.2 goals from ~14 shots (≈8 on target — futsal-flavored scorelines;
 keepers are genuinely busy at **≈6.3 saves/match** plus ~0.55 smothers at a
 dribbler's feet and the occasional high-ball claim), ~70% pass completion —
 the Phase 28 aerial deliveries are honest low-percentage balls — with

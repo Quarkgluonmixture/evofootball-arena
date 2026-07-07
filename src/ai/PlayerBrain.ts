@@ -133,6 +133,21 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // Facing away from goal (Phase 27): turn first instead of snap-shooting
     // blind. Restart takers are exempt — they set themselves before kicking.
     if (!mustKick) s *= 1 - kickMisalignment(p, norm(sub(goal, p.pos))) * 0.3;
+    // 1v1 (Phase 28.4): nobody between you and the keeper — FINISH. The
+    // old economy kept Dribble marginally ahead, so breakaways were walked
+    // all the way onto the keeper's toes instead of being struck from 10m.
+    let breakaway = false;
+    if (dGoal < 17) {
+      let goalside = 0;
+      for (const o of opp.players) {
+        if (o.role === 'GK' || o.sentOff) continue;
+        if (dist(o.pos, goal) < dGoal - 1) goalside++;
+      }
+      if (goalside === 0) {
+        breakaway = true;
+        s *= 1.45;
+      }
+    }
     // Long-range appetite (Phase 28): when the sight is clear, have a dig
     // from 16–30m instead of recycling forever — a stale move digs sooner.
     let dig = 0;
@@ -148,7 +163,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     cands.push({
       action: 'Shoot',
       score: s,
-      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}`,
+      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${breakaway ? ' · 1v1 — finish it' : ''}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}`,
     });
   }
 
@@ -330,6 +345,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       let sX = W.crossBase + bestCrossT * W.crossBoxW;
       sX *= 0.75 + g.attackingWidth * 0.5;
       sX *= 0.7 + g.passBias * 0.4;
+      if (p.role === 'WG') sX *= 1.25; // it's what wingers are FOR (28.3)
       if (team.mode === 'Attack' || team.mode === 'CounterAttack') sX *= 1.15;
       if (isCorner) sX *= 2.4; // the corner IS a cross — deliver it
       if (!mustKick) sX *= 1 - kickMisalignment(p, norm(sub(bestCrossMate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
@@ -376,8 +392,37 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     });
   }
 
+  // --- Keeper throw (Phase 28.3): a keeper who HELD the ball distributes
+  // by hand — quick, flat, accurate. Scored against pass/switch so the
+  // release finds a body instead of a hopeful hoof.
+  let bestThrowMate: Player | null = null;
+  let bestThrow = 0;
+  if (p.role === 'GK' && p.gkDistributing && p.kickCooldown <= 0) {
+    for (const mate of team.players) {
+      if (mate === p || mate.sentOff) continue;
+      const d = dist(p.pos, mate.pos);
+      if (d < 8 || d > 30) continue;
+      const open = opennessOf(mate, opp.players);
+      const gain = clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
+      const sT = (0.3 + open * 0.5) * (1 + Math.max(gain, 0) * 0.3);
+      if (sT > bestThrow) {
+        bestThrow = sT;
+        bestThrowMate = mate;
+      }
+    }
+    if (bestThrowMate) {
+      cands.push({
+        action: 'ThrowOut',
+        score: bestThrow,
+        why: `thrown to ${bestThrowMate.name} · open ${opennessOf(bestThrowMate, opp.players).toFixed(2)}`,
+      });
+    }
+  }
+
   // --- Clear: panic button deep in our half; risk-averse teams use it more.
-  if (localX < -18 && p.kickCooldown <= 0) {
+  // A keeper distributing from the HANDS never panic-hoofs (Phase 28.3) —
+  // they had a full second to pick a target.
+  if (localX < -18 && p.kickCooldown <= 0 && !(p.role === 'GK' && p.gkDistributing)) {
     let sC = (W.clearBase + pressure * W.clearPressureW) * (1.25 - g.riskTolerance * 0.8);
     if (p.role === 'GK') sC *= 1.35;
     cands.push({ action: 'ClearBall', score: sC, why: `pressure ${pressure.toFixed(2)} · risk-averse ${(1 - g.riskTolerance).toFixed(2)}` });
@@ -426,6 +471,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     case 'Cross':
       p.action = { type: 'Cross', targetIdx: bestCrossMate!.gid, scores };
       match.performCross(p, bestCrossMate!);
+      break;
+    case 'ThrowOut':
+      p.action = { type: 'ThrowOut', targetIdx: bestThrowMate!.gid, scores };
+      match.performKeeperThrow(p, bestThrowMate!);
       break;
     case 'ThroughBall':
       p.action = { type: 'ThroughBall', targetIdx: bestRunner!.gid, scores };

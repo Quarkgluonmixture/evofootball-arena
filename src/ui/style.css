@@ -394,7 +394,19 @@ body.cinematic .cinematic-exit { display: block; }
   aside .section { flex: 1 1 100%; }
   aside .row { gap: 6px; row-gap: 6px; }
   #event-feed { height: 96px; font-size: 12px; }
-  #league-screen { padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); }
+  /* Full-viewport overlay (Phase 28.3): in the stacked phone layout the
+     screen was absolutely positioned inside #stage and came out ~260px
+     tall — the whole league centre lived in a letterbox. Fix it to the
+     viewport instead (below the topbar). */
+  #league-screen {
+    position: fixed;
+    inset: 0;
+    top: var(--topbar-h, 88px);
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+  }
+  /* Sticky offset must match THIS padding (desktop is -18px for 18px padding)
+     — mismatched, content peeked through an 8px slit above the tabs. */
+  .tab-nav { top: -10px; background: rgba(8, 12, 22, 1); }
   #league-screen button { padding: 7px 11px; min-height: 36px; }
   #league-screen table { display: block; overflow-x: auto; }
   .bracket { grid-template-columns: repeat(2, minmax(140px, 1fr)); }

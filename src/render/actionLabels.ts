@@ -14,6 +14,7 @@ export const ACTION_SHORT: Record<ActionType, string> = {
   LoftedPass: 'switch!',
   ThroughBall: 'through!',
   Cross: 'cross!',
+  ThrowOut: 'throw',
   HoldUp: 'hold-up',
   Shoot: 'shoot!',
   ClearBall: 'clear',

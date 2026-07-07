@@ -113,6 +113,12 @@ export class GameApp implements GameActions {
     // ---- DOM shell ----
     const topbar = el('header');
     topbar.id = 'topbar';
+    // Publish the topbar's real height (it wraps to two rows on phones) so
+    // the fixed-position league overlay can sit exactly below it (28.3).
+    const setTopbarVar = () =>
+      document.documentElement.style.setProperty('--topbar-h', `${topbar.offsetHeight}px`);
+    window.addEventListener('resize', setTopbarVar);
+    requestAnimationFrame(setTopbarVar);
     topbar.appendChild(el('h1', '', 'EVOFOOTBALL ARENA'));
     topbar.appendChild(button(t('League table'), () => this.toggleLeagueScreen()));
     topbar.appendChild(button(t('Save'), () => this.saveNow()));

@@ -189,6 +189,27 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     expect(m.teams[1].chasers.size).toBeLessThanOrEqual(1);
   });
 
+  it('a keeper who held the ball throws it out — never a panic hoof (28.3)', { timeout: 30000 }, () => {
+    // Hold-releases are ~1–2 per match; scan seeds until a throw shows up.
+    // The no-hoof contract is asserted across EVERY scanned match.
+    let sawThrow = false;
+    for (const seed of [21, 9, 12, 42, 77, 1234]) {
+      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 240 });
+      while (!m.finished) {
+        m.step(DT);
+        for (const t of m.teams) {
+          const gk = t.goalkeeper;
+          if (gk.action.type === 'ThrowOut') sawThrow = true;
+          // A keeper releasing from the HANDS never picks the random hoof
+          // (its ±1-rad spray was a 50/50 giveaway).
+          if (gk.gkDistributing) expect(gk.action.type).not.toBe('ClearBall');
+        }
+      }
+      if (sawThrow) break;
+    }
+    expect(sawThrow).toBe(true);
+  });
+
   it('everyone starts in their own half at kickoff (27.5)', () => {
     for (const seed of [3, 44]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });

@@ -67,6 +67,12 @@ export class Player {
   saveAnimTimer = 0;
   /** Display-only: renderers play a header jump while this runs (Phase 28). */
   headerAnimTimer = 0;
+  /**
+   * Keeper distribution mode (Phase 28.3): set while holding the ball in the
+   * hands, cleared on the kick — a keeper who HELD the ball releases it
+   * deliberately (throw/pass/switch), never with a panic hoof.
+   */
+  gkDistributing = false;
 
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;
@@ -198,6 +204,7 @@ export class Player {
     this.tackleCooldown = 0;
     this.stunTimer = 0;
     this.gkHoldTimer = 0;
+    this.gkDistributing = false;
     this.tackleAnimTimer = 0;
     this.saveAnimTimer = 0;
     this.headerAnimTimer = 0;

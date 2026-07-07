@@ -122,6 +122,11 @@ function assignChasers(team: Team, match: Match): void {
     if (team.genome.pressIntensity > 0.78) count += 1;
     if (possession === -1) count = Math.min(count, 2);
   }
+  // Dead ball (Phase 28.3): you can't win a ball nobody may touch — ONE
+  // player closes the taker down (blocking the short option, real-football
+  // style); the old pack of 2–3 stood pinned at the corner-flag clearance
+  // circle jogging on the spot.
+  if (match.phase === 'restart') count = 1;
 
   const outfield = team.players.filter((p) => p.role !== 'GK' && !p.sentOff);
   const byDist = [...outfield].sort(
@@ -153,6 +158,11 @@ function assignMarks(team: Team, match: Match): void {
     let best: { idx: number; d: number } | null = null;
     for (const p of free) {
       if (used.has(p.index)) continue;
+      // Width discipline (Phase 28.4): a WIDE winger does not abandon the
+      // flank to join a central pile-up — central threats belong to the
+      // spine. This is the user-diagnosed collapse: turnover in midfield →
+      // wingers tuck in → six bodies in one corridor → playground scramble.
+      if (p.role === 'WG' && Math.abs(p.pos.y) > 12 && Math.abs(threat.pos.y) < 8) continue;
       const d = dist(p.pos, threat.pos);
       if (d < 22 && (best === null || d < best.d)) best = { idx: p.index, d };
     }

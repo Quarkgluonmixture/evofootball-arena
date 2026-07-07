@@ -66,11 +66,12 @@ describe('policy parameterization (Phase 18)', () => {
 
   it('a distinct policy actually changes play', () => {
     // Pooled over seeds — a single short match's shot count is a small
-    // integer that can coincide across configs by chance.
+    // integer that can coincide across configs by chance (a 3-seed pool
+    // flipped on engine churn in 28.3; 8 carries the large true effect).
     const shootHappy = { ...DEFAULT_POLICY, shootBase: 4.0, passBase: 0.05 };
     let bareShots = 0;
     let skewedShots = 0;
-    for (const seed of [7, 11, 42]) {
+    for (const seed of [7, 11, 42, 99, 777, 1234, 5150, 31337]) {
       bareShots += new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 })
         .runToCompletion().stats[0].shots;
       skewedShots += new Match({ seed, teamA: team('A', shootHappy), teamB: team('B'), duration: 120 })

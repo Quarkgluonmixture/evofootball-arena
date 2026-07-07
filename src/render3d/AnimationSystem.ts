@@ -40,6 +40,7 @@ export function animFor(action: ActionType, speed: number, celebrating: boolean)
     case 'GoalkeeperSave':
       return 'gkDive';
     case 'GoalkeeperPosition':
+    case 'ThrowOut':
       return 'gkReady';
     default:
       break;

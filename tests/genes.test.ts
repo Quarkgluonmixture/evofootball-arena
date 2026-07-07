@@ -90,7 +90,7 @@ describe('tactical genes influence behavior', () => {
     const passive = neutral();
     passive.pressIntensity = 0.05;
     passive.markingAggression = 0.1;
-    const seeds = [11, 42, 99, 1234, 777, 31337, 5150, 2718];
+    const seeds = [11, 42, 99, 1234, 777, 31337, 5150, 2718, 61803, 141421, 173205, 271828];
     const [a1, b1] = totals(pressing, passive, seeds);
     const [b2, a2] = totals(passive, pressing, seeds.map((s) => s + 13));
     expect(a1.tackles + a1.interceptions + a2.tackles + a2.interceptions)

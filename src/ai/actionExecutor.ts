@@ -159,7 +159,10 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       const tbx = ball.pos.x - goal.x;
       const tby = ball.pos.y - goal.y;
       const d = Math.max(Math.sqrt(tbx * tbx + tby * tby), 0.1);
-      const k = Math.min(out, d * 0.5) / d;
+      // Stand your ground (Phase 28.4): never backpedal INTO the goalmouth —
+      // hold ~2m off the line so the 1v1 duel happens out here, not with the
+      // carrier's studs on the keeper's chest at the post.
+      const k = Math.max(Math.min(out, d * 0.5), Math.min(2.0, d * 0.9)) / d;
       target = clampToBox({ x: goal.x + tbx * k, y: goal.y + tby * k }, team.attackDir);
       speedF = 0.9;
       break;

@@ -90,8 +90,8 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
 function addTerraces(group: THREE.Group): void {
   const mat = new THREE.MeshStandardMaterial({ color: 0x131c30, roughness: 0.95 });
   const seatMat = new THREE.MeshStandardMaterial({ color: 0x1a2742, roughness: 0.9 });
-  const mk = (w: number, x: number, z: number, rot: number) => {
-    for (let step = 0; step < 3; step++) {
+  const mk = (w: number, x: number, z: number, rot: number, steps: number) => {
+    for (let step = 0; step < steps; step++) {
       const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 1.1, 2.4), step % 2 === 0 ? mat : seatMat);
       const off = 1.6 + step * 2.4;
       slab.position.set(
@@ -104,9 +104,13 @@ function addTerraces(group: THREE.Group): void {
       group.add(slab);
     }
   };
-  mk(HALF_L * 2 + 6, 0, -HALF_W - 5.2, 0); // far side (behind the adboards)
-  mk(HALF_W * 2 - 4, -HALF_L - 5.4, 0, Math.PI / 2); // behind -x goal
-  mk(HALF_W * 2 - 4, HALF_L + 5.4, 0, -Math.PI / 2); // behind +x goal
+  mk(HALF_L * 2 + 6, 0, -HALF_W - 5.2, 0, 3); // far side (behind the adboards)
+  // Behind each goal: ONE low bank only (Phase 28.3). The old three-step
+  // stands rose to 3.3m and reached x≈58 — the behind-goal camera (±57, y5)
+  // sat INSIDE them and the whole goalmouth vanished behind a black slab
+  // (failure mode 13's cousin: screenshot every fixed camera).
+  mk(HALF_W * 2 - 4, -HALF_L - 5.4, 0, Math.PI / 2, 1); // behind -x goal
+  mk(HALF_W * 2 - 4, HALF_L + 5.4, 0, -Math.PI / 2, 1); // behind +x goal
 }
 
 /** Four corner floodlight towers with softly glowing heads. */

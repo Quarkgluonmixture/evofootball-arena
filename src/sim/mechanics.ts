@@ -237,6 +237,22 @@ export function performCross(match: Match, crosser: Player, target: Player): voi
 }
 
 /**
+ * Keeper throw (Phase 28.3): an ACCURATE hand distribution — flat, quick,
+ * half the noise of a kicked ball, 8–30m. This is what a keeper who held
+ * the ball does instead of hoofing 50/50s: find a body, hit the body.
+ */
+export function performKeeperThrow(match: Match, gk: Player, mate: Player): void {
+  if (match.ball.owner !== gk || gk.kickCooldown > 0) return;
+  const team = match.teams[gk.side];
+  const flight0 = clamp(0.5 + dist(gk.pos, mate.pos) * 0.03, 0.7, 1.4);
+  const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));
+  loftKick(match, gk, lead, 0.5, 0.03, 0.7, 1.4, 0.45);
+  team.stats.passes++;
+  if (team.localX(mate.pos.x) - team.localX(gk.pos.x) > 2) team.stats.passesForward++;
+  match.pendingPass = { side: gk.side, passerGid: gk.gid, targetGid: mate.gid, t: match.simTime };
+}
+
+/**
  * Lofted switch (Phase 28): the big diagonal — a 25m+ ball over the press to
  * a receiver in space. What the 32m ground-pass penalty used to suppress.
  */
@@ -440,6 +456,11 @@ function performHeaderShot(match: Match, shooter: Player): void {
   match.pushEvent('shot', shooter.side, `${shooter.name} heads it at goal! (xG ${q.toFixed(2)})`);
 }
 
+/** Attacked-goal center for a shooter's team (helper for 1v1 detection). */
+function goalCenterFor(team: { oppGoal(): V2 }): V2 {
+  return team.oppGoal();
+}
+
 export function performShot(match: Match, shooter: Player): void {
   if (match.ball.owner !== shooter || shooter.kickCooldown > 0) return;
   const team = match.teams[shooter.side];
@@ -457,13 +478,28 @@ export function performShot(match: Match, shooter: Player): void {
   const q = shotQuality(match, shooter);
   const d = dist(shooter.pos, target);
   const pressure = pressureAt(shooter.pos, opp.players);
-  const aim = norm(sub(target, shooter.pos));
+  // Composed 1v1 (Phase 28.4): nobody goal-side but the keeper — the shooter
+  // PICKS a spot: tighter to the post, tighter grouping. Without this the
+  // breakaway-finish appetite just fed the keeper from 15m.
+  let oneVone = true;
+  for (const o of opp.players) {
+    if (o.role === 'GK' || o.sentOff) continue;
+    if (dist(o.pos, goalCenterFor(team)) < d - 1) {
+      oneVone = false;
+      break;
+    }
+  }
+  const aimTarget = oneVone
+    ? v2(goalX, (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin * 0.72))
+    : target;
+  const aim = norm(sub(aimTarget, shooter.pos));
   // Long-range and pressured shots spray more; finishers spray less. A shot
   // snatched against the body's facing (Phase 27) sprays more and loses power.
   const misalign = kickMisalignment(shooter, aim);
   const spread =
     (0.029 + d * 0.0028 + pressure * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
+    (oneVone ? 0.8 : 1) *
     orientationNoiseMul(misalign, shooter.attrs.technique);
   const dir = rotate(aim, match.rng.gaussian() * spread);
 
@@ -632,7 +668,9 @@ export function tryTackles(match: Match): void {
     // No feed event — tackles are too frequent to narrate; stats + debug show them.
     ball.owner = null;
     ball.lastTouch = tackler;
-    ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(3.5, 6.5));
+    // The won ball travels (Phase 28.4): a real tackle knocks it CLEAR of
+    // the boot zone — short squirts re-fed the same scramble endlessly.
+    ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(4.5, 8.5));
     owner.kickCooldown = 0.3;
     owner.stunTimer = 0.6; // dispossessed: stumble before rejoining play (Phase 27)
     tackler.tackleCooldown = 0.5;

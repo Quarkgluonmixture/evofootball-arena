@@ -132,8 +132,30 @@ to `longShotW` 0.38 with pressure term (1 − 0.7·p), conversion re-tuned
 after the economy changes is SHOT CREATION (−16% own shots; GD margins are
 now noisier than the effect — the cards test asserts shots, §10.5), and
 DEFAULT_SEED = 1168 so a fresh league opens on a 3–3 19-shot banger
-(phase 28.2).
-180 vitest tests;
+(phase 28.2); and 28.3 — restart/hold clearance pushes also damp the
+pushed player's velocity ×0.2 (velocity-driven run animation played
+treadmill legs at the circle's edge), dead-ball chasers cap at ONE (the
+2–3-man pack stood pinned at the corner flag), wingers get a ×1.25 cross
+bonus (crossBase 0.26 → ~3.8 crosses/match), the behind-goal terraces are
+a single low bank (the 3-step stands reached x≈58/3.3m and swallowed the
+behind-goal camera at ±57 — screenshot every fixed camera), and the league
+screen on phones is a FIXED full-viewport overlay below the topbar
+(`--topbar-h` CSS var set from GameApp; it was absolute inside #stage and
+letterboxed to ~260px), and keeper DISTRIBUTION — `Player.gkDistributing`
+set while holding, cleared on the kick: a keeper releasing from the hands
+never picks the panic hoof (ClearBall suppressed) and gains an accurate
+hand THROW (`performKeeperThrow`, `ThrowOut` action: flat 8–30m, noiseMul
+0.45, finds the open body ~2.4×/match) (phase 28.3); and 28.4,
+the width/1v1 pass from the user's own diagnosis (midfield turnover →
+wingers tuck in → central pile-up): WIDE wingers refuse CENTRAL marks
+(`assignMarks` lane gate — the flank holds its lane and the spine defends
+the middle), breakaway carriers with nobody goal-side FINISH (×1.45 shoot
+bonus <17m) and finish COMPOSED (`performShot` 1v1: aim 0.72×margin
+tighter to the post, spread ×0.8 — without this the finish appetite just
+fed the keeper from 15m), keepers stand ~2m off the line instead of
+backpedalling into the net, and a won tackle knocks the ball 4.5–8.5 m/s
+clear so scrambles disperse instead of re-feeding (phase 28.4).
+181 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-27` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at

@@ -314,6 +314,9 @@ export class Match {
   performCross(p: Player, target: Player): void {
     mech.performCross(this, p, target);
   }
+  performKeeperThrow(p: Player, mate: Player): void {
+    mech.performKeeperThrow(this, p, mate);
+  }
   performLoftedPass(p: Player, mate: Player): void {
     mech.performLoftedPass(this, p, mate);
   }
@@ -344,6 +347,7 @@ export class Match {
     ball.pos = add(p.pos, scale(dir, 0.9));
     ball.z = 0;
     ball.vz = loft;
+    p.gkDistributing = false;
     p.kickCooldown = KICK_COOLDOWN;
   }
 
@@ -366,6 +370,7 @@ export class Match {
       // Keeper hold (Phase 27.2): scoop it up and hold before distributing —
       // hands, not feet. Restart first touches (goal kicks) stay quick.
       p.gkHoldTimer = 1.1;
+      p.gkDistributing = true; // the release is deliberate (28.3)
     }
     // Snap decisions in shooting range (Phase 28.2): a receiver in front of
     // goal decides NOW — the first-time finish exists. Everywhere else the
@@ -433,6 +438,8 @@ export class Match {
             o.pos = add(gk.pos, scale(dir, GK_HOLD_CLEARANCE));
             o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
             o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
+            o.vel.x *= 0.2; // braced — no treadmill legs (28.3)
+            o.vel.y *= 0.2;
           }
         }
         return; // untackleable, unsmotherable — hands beat everything
@@ -734,6 +741,11 @@ export class Match {
         o.pos = add(r.pos, scale(dir, clearance));
         o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
         o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
+        // Braced at the line (Phase 28.3): kill the inward velocity too, or
+        // the run animation plays while the clamp holds them still — legs
+        // sprinting on a treadmill at the edge of the circle.
+        o.vel.x *= 0.2;
+        o.vel.y *= 0.2;
       }
       // Goal kicks (Phase 27.3): opponents must be OUT OF THE BOX until the
       // kick is taken — held at the edge, not camped on the six-yard line.

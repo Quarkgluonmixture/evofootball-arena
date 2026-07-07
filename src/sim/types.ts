@@ -21,6 +21,7 @@ export type ActionType =
   | 'LoftedPass'
   | 'ThroughBall'
   | 'Cross'
+  | 'ThrowOut'
   | 'HoldUp'
   | 'Shoot'
   | 'ClearBall'
@@ -128,7 +129,7 @@ export const DEFAULT_POLICY: PolicyParams = {
   throughBase: 0.22,
   throughOpenW: 0.35,
   throughBehindW: 0.45,
-  crossBase: 0.22,
+  crossBase: 0.26,
   crossBoxW: 0.5,
   loftBase: 0.14,
   loftOpenW: 0.38,
