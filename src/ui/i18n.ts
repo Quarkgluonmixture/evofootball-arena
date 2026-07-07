@@ -58,7 +58,6 @@ const ZH: Record<string, string> = {
   Round: '单轮',
   Season: '整季',
   '10 Seasons': '10 个赛季',
-  '⚡ Wildcard exhibition': '⚡ 外卡表演赛',
   'View & camera': '视角与镜头',
   Tactical: '战术',
   TV: '转播',

@@ -15,9 +15,6 @@ import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
 import { resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
-import { buildWildcardTeamInfo, WILDCARD_NAME } from '../ai/wildcard';
-import { describeIdentity } from '../evolution/genome';
-import { WILDCARD } from '../ai/wildcardPolicy';
 import { lang, setLang, t } from '../ui/i18n';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
 import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
@@ -610,37 +607,6 @@ export class GameApp implements GameActions {
       return;
     }
     this.finishCurrentMatchHeadless();
-  }
-
-  /** Field the ES-trained Wildcard XI against the current Premier leader. */
-  playExhibition(): void {
-    if (this.busy) return;
-    this.finishTheater();
-    this.exitReplay();
-    const leader = this.league.standings(0)[0];
-    const opp = this.league.teamInfo(leader.slot);
-    this.exhibition = true;
-    this.fixture = null; // standalone: never applied to the league
-    this.match = new Match({
-      seed: hashSeed(this.league.seed, this.league.generation, 0xeb),
-      teamA: buildWildcardTeamInfo(WILDCARD),
-      teamB: opp,
-      duration: this.league.matchDuration,
-    });
-    this.buffer.clear();
-    this.matchRenderer.attach(this.match);
-    this.three?.attach(buildRenderTheme(this.match));
-    this.feed.attach(this.match);
-    this.right.attach(this.match);
-    this.left.updateHeader(this.match, this.league, true);
-    this.selectedGid = null;
-    this.acc = 0;
-    this.paused = false;
-    this.speed = 1;
-    this.left.setSpeedUI(false, 1);
-    this.feed.pushSystem(
-      `⚡ Exhibition: ${WILDCARD_NAME} (co-trained genes + per-role brains: ${describeIdentity(WILDCARD.genome).join(', ')}) vs ${opp.name} — friendly, no league bookkeeping.`,
-    );
   }
 
   simRound(): void {

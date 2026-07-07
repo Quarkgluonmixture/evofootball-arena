@@ -209,8 +209,11 @@ crossed — the save "twitch"; aerial-claim re-rolls spaced 0.9s), the
 offside free kick is labeled 🚩 offside (`RestartState.offside`, display
 only — every free kick had read as "fouls are back"), and the speed
 preset row is GONE from the UI (⏸/▶ + ⏭ only; tooling drives speed via
-`__evo.app.setSpeed`) (phase 29.1).
-197 vitest tests;
+`__evo.app.setSpeed`) (phase 29.1); and the Wildcard XI feature was REMOVED
+(user: unused; `PolicyParams`/`DEFAULT_POLICY`/`TeamInfo.policy` plumbing
+deliberately KEPT — it's the brain's tuning surface and tests ride on it)
+(phase 29.2).
+192 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-29` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at

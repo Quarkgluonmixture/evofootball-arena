@@ -81,9 +81,6 @@ export class LeftPanel {
     this.simButtons = [b1, b2, b3];
     simRow.append(b1, b2, b3);
     simSec.append(simRow);
-    const exhibitionRow = el('div', 'row');
-    exhibitionRow.appendChild(button(t('⚡ Wildcard exhibition'), () => actions.playExhibition()));
-    simSec.append(exhibitionRow);
 
     const viewSec = el('div', 'section');
     viewSec.append(el('h3', '', t('View & camera')));

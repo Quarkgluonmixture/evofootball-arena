@@ -1,5 +1,20 @@
 import { describe, expect, it } from 'vitest';
-import { neutralGenome, neutralSquad } from '../src/ai/wildcard';
+import type { TacticalGenome } from '../src/evolution/genome';
+import { GENE_KEYS } from '../src/evolution/genome';
+import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
+
+// Local neutral helpers (used to live in the removed wildcard module).
+const neutralGenome = (): TacticalGenome => {
+  const g = {} as TacticalGenome;
+  for (const k of GENE_KEYS) g[k] = 0.5;
+  return g;
+};
+const neutralSquad = (): PlayerAttributes[] =>
+  Array.from({ length: 5 }, () => {
+    const a = {} as PlayerAttributes;
+    for (const k of ATTR_KEYS) a[k] = 0.5;
+    return a;
+  });
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import type { TeamInfo } from '../src/sim/types';

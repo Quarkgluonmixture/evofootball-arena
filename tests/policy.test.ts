@@ -1,14 +1,22 @@
 import { describe, expect, it } from 'vitest';
-import {
-  POLICY_BOUNDS, POLICY_KEYS, candidateFrom, clampPolicy, crossoverCandidate, crossoverPolicy,
-  mutateCandidate, mutatePolicy,
-} from '../src/ai/policy';
-import { buildWildcardTeamInfo, neutralGenome, neutralSquad } from '../src/ai/wildcard';
-import { WILDCARD } from '../src/ai/wildcardPolicy';
+import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
+import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { Match } from '../src/sim/Match';
 import { DEFAULT_POLICY, ROLES, type TeamInfo } from '../src/sim/types';
-import { Rng } from '../src/utils/rng';
+
+// Local neutral helpers (used to live in the removed wildcard module).
+const neutralGenome = (): TacticalGenome => {
+  const g = {} as TacticalGenome;
+  for (const k of GENE_KEYS) g[k] = 0.5;
+  return g;
+};
+const neutralSquad = (): PlayerAttributes[] =>
+  Array.from({ length: 5 }, () => {
+    const a = {} as PlayerAttributes;
+    for (const k of ATTR_KEYS) a[k] = 0.5;
+    return a;
+  });
 
 const team = (name: string, policy?: TeamInfo['policy'], rolePolicies?: TeamInfo['rolePolicies']): TeamInfo => ({
   id: name,
@@ -80,76 +88,4 @@ describe('policy parameterization (Phase 18)', () => {
     expect(skewedShots).toBeGreaterThan(bareShots);
   });
 
-  it('DEFAULT_POLICY sits inside the ES search bounds', () => {
-    for (const k of POLICY_KEYS) {
-      const [lo, hi] = POLICY_BOUNDS[k];
-      expect(DEFAULT_POLICY[k]).toBeGreaterThanOrEqual(lo);
-      expect(DEFAULT_POLICY[k]).toBeLessThanOrEqual(hi);
-    }
-  });
-
-  it('mutation/crossover are deterministic, bounded and seed-sensitive', () => {
-    const a = mutatePolicy(DEFAULT_POLICY, new Rng(5), 0.12);
-    const b = mutatePolicy(DEFAULT_POLICY, new Rng(5), 0.12);
-    const c = mutatePolicy(DEFAULT_POLICY, new Rng(6), 0.12);
-    expect(a).toEqual(b);
-    expect(a).not.toEqual(c);
-    for (const k of POLICY_KEYS) {
-      const [lo, hi] = POLICY_BOUNDS[k];
-      expect(a[k]).toBeGreaterThanOrEqual(lo);
-      expect(a[k]).toBeLessThanOrEqual(hi);
-    }
-    const x = crossoverPolicy(a, c, new Rng(9));
-    for (const k of POLICY_KEYS) expect([a[k], c[k]]).toContain(x[k]);
-    expect(clampPolicy({ ...DEFAULT_POLICY, shootBase: 99 }).shootBase).toBe(POLICY_BOUNDS.shootBase[1]);
-  });
-
-  it('candidate mutation/crossover are deterministic, bounded and complete (Phase 23)', () => {
-    const seedCand = candidateFrom(neutralGenome(), DEFAULT_POLICY);
-    expect(seedCand.policies).toHaveLength(ROLES.length);
-    const a = mutateCandidate(seedCand, new Rng(5), 0.12);
-    const b = mutateCandidate(seedCand, new Rng(5), 0.12);
-    const c = mutateCandidate(seedCand, new Rng(6), 0.12);
-    expect(a).toEqual(b);
-    expect(a).not.toEqual(c);
-    for (const g of GENE_KEYS) {
-      expect(a.genome[g]).toBeGreaterThanOrEqual(0);
-      expect(a.genome[g]).toBeLessThanOrEqual(1);
-    }
-    for (const p of a.policies) {
-      for (const k of POLICY_KEYS) {
-        const [lo, hi] = POLICY_BOUNDS[k];
-        expect(p[k]).toBeGreaterThanOrEqual(lo);
-        expect(p[k]).toBeLessThanOrEqual(hi);
-      }
-    }
-    // Role vectors mutate independently — co-training has per-role freedom.
-    expect(JSON.stringify(a.policies[0])).not.toBe(JSON.stringify(a.policies[4]));
-    const x = crossoverCandidate(a, c, new Rng(9));
-    for (const g of GENE_KEYS) expect([a.genome[g], c.genome[g]]).toContain(x.genome[g]);
-    for (let i = 0; i < ROLES.length; i++) {
-      for (const k of POLICY_KEYS) expect([a.policies[i][k], c.policies[i][k]]).toContain(x.policies[i][k]);
-    }
-  });
-
-  it('the trained wildcard candidate is valid and playable', () => {
-    expect(WILDCARD.policies).toHaveLength(ROLES.length);
-    for (const p of WILDCARD.policies) {
-      for (const k of POLICY_KEYS) {
-        const [lo, hi] = POLICY_BOUNDS[k];
-        expect(p[k]).toBeGreaterThanOrEqual(lo);
-        expect(p[k]).toBeLessThanOrEqual(hi);
-      }
-    }
-    for (const g of GENE_KEYS) {
-      expect(WILDCARD.genome[g]).toBeGreaterThanOrEqual(0);
-      expect(WILDCARD.genome[g]).toBeLessThanOrEqual(1);
-    }
-    const wc = buildWildcardTeamInfo(WILDCARD);
-    const r = new Match({ seed: 3, teamA: wc, teamB: team('B'), duration: 120 }).runToCompletion();
-    expect(r.duration).toBe(120);
-    // Same seed, same opponent: the learned candidate plays differently from default.
-    const base = new Match({ seed: 3, teamA: buildWildcardTeamInfo(undefined), teamB: team('B'), duration: 120 }).runToCompletion();
-    expect(JSON.stringify(r.stats)).not.toBe(JSON.stringify(base.stats));
-  });
 });
