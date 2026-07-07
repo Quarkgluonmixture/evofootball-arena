@@ -670,6 +670,93 @@ timed runs (Phase 29), 193 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Ideas for the next phase (rough priority order):
+- **⭐ Phase 30 — 6v6 + THE FORMATION SYSTEM (user green-lit 2026-07-07;
+  start here).** The user's diagnosis, verbatim in spirit: most possessions
+  die in midfield scrambles or backfield steals, keeper distributions gift
+  breakaways, no tiki-taka and no wing play, and everything still clumps —
+  the root is 4 outfielders on a 90×58 pitch with NO build-up structure.
+  Agreed scope:
+  - **6th player = a SECOND WINGER** (两翼齐飞 — width was the most-missed
+    behavior). Slot order [GK, DF, MF, WGL, WGR, ST]; a TEAM_SIZE constant;
+    gid = side*6+index (sweep EVERY gid/index-5 assumption: playerStats
+    indexing, `p.index % 5` decision stagger, kickoff `players[4]`,
+    match.test bounds, aerial harnesses); names/squad/ages arrays → 6;
+    newgen/career/legend plumbing already role-generic; save **v8**
+    migration (backfill each team with a generated WG newgen so old
+    leagues keep playing seamlessly).
+  - **Formation system**: every team owns a FIXED attacking formation AND
+    defending formation (identity, shown on the team card, inherited
+    through rebirth) picked from a small library of per-slot spot tables
+    (e.g. attack 2-1-2 wide vs 1-2-2 narrow; defend 3-2 low block vs 2-3
+    press). `formationSpot` reads the team's shape tables instead of one
+    global BASE_SPOTS. Defensive SCHEME per team: **man-marking vs zonal**
+    (zonal = hold sliding spots, man = current assignMarks behavior);
+    derive the scheme + formation picks deterministically from genes at
+    franchise creation so no genome migration is needed, store on
+    TeamInfo, inherit on rebirth.
+  - **The keeper WAITS for shape** (this kills the distribution gifts): a
+    goal kick / hold release does not happen until teammates have settled
+    near their attacking-formation spots (with a determinism-safe timeout
+    ~4s); receivers are SET before the ball comes, defenders mark up
+    against the structure (real goal-kick build-up picture), and the
+    keeper-throw target gates get stricter. Expected effects: build-up
+    exists, midfield scrambles drop, no more "门将开球失误送单刀".
+  - Watch the crowding metrics while retuning: tackles+interceptions
+    (~66/match combined at 29.1) should FALL noticeably; keep offside
+    timing (2 WGs give the line new legal outlets), recalibrate everything
+    (goals target ~2.6-3.0 with the new width), update README/ARCH.
+  - **HANDOVER PLAN (written by the outgoing model for its successor —
+    follow this order, it encodes the gotchas):**
+    - **Step 0 — Wildcard removal** (user-confirmed 2026-07-07), if `git
+      log` doesn't already show it. DELETE: `src/ai/wildcard.ts`,
+      `src/ai/wildcardPolicy.ts`, `src/ai/policy.ts`,
+      `scripts/train-wildcard.ts`. STRIP references: GameApp (import +
+      the wildcard-exhibition method + its action), LeftPanel
+      ('⚡ Wildcard exhibition' button), `src/ui/actions.ts` (GameActions
+      entry), i18n key, `scripts/visual-debug.mjs` (it clicks/checks the
+      exhibition — grep 'ildcard'), tests that import the deleted files
+      (keep the DEFAULT_POLICY / rolePolicies bit-equivalence tests —
+      they test live plumbing), README (quickstart trainer line, the
+      "Wildcard XI" section, arch-tree lines, implemented-list mentions)
+      + one-line removal note in ARCHITECTURE's status stamp. **KEEP**:
+      `PolicyParams`, `DEFAULT_POLICY`, `TeamInfo.policy/rolePolicies`,
+      `Team.policies` resolution (aerial/genes tests construct teams with
+      `policy:` overrides — it's the tuning surface, not wildcard code).
+    - **Step 1 — 6v6 mechanical pass** (no behavior changes yet): add the
+      6th slot as WGL/WGR; introduce a TEAM_SIZE constant and a slot-role
+      list; grep-sweep EVERY 5-player assumption: `% 5` (decision
+      stagger), `players[4]`/`for i 4..1` (kickoff striker pick), `* 5` /
+      gid math (gid = side*TEAM_SIZE+index; playerStats & allPlayers are
+      gid-indexed), `slice(0, 5)`, playerNames/squad/ages arrays,
+      `names.ts` (6 surnames), role-biased newgen for the 2nd WG, save
+      **v8** (chain-migrate: backfill one generated WG newgen per team;
+      old saves must keep playing), 3D/2D team cards on PHONE widths
+      (≤390px, 6 squad rows). Then re-baseline the determinism
+      fingerprint and fix the many gid/position-hardcoded tests (aerial
+      duel harness, onball scenarios, match bounds). Gate: typecheck +
+      full vitest + both Playwright suites GREEN before Step 2.
+    - **Step 2 — formations**: library of per-slot spot tables (attack:
+      e.g. 'wide-212' / 'narrow-122'; defend: 'low-32' / 'press-23');
+      per-team fixed picks + man/zonal scheme derived deterministically
+      from the genome at franchise creation (NO genome/save migration
+      needed for this part — formations live on TeamInfo, inherit on
+      rebirth), `formationSpot` reads the team tables (replacing the one
+      global BASE_SPOTS), `assignMarks` gets the zonal branch (zonal =
+      keep sliding spots, no man assignments outside the box), team card
+      shows both formations + scheme.
+    - **Step 3 — keeper waits for shape**: goal-kick `stepRestart` ready
+      gate + gk hold release gate on "≥3 outfielders within ~6m of their
+      attacking spots", timeout-capped (~4s, pure sim-state — mind
+      invariant 3, watched ≡ skipped; NO wall-clock).
+    - **Step 4 — retune**: calibrate targets ~2.6-3.0 goals,
+      tackles+interceptions should FALL from ~66/match (that's the
+      crowding number), offsides ~2, keep the §10.5 test-power doctrine
+      (small levers drown in n=142 noise — don't micro-tune ±0.15
+      effects), README/ARCH stamps, tag `phase-30`, push (gh auth switch
+      Quarkgluonmixture), verify Pages bundle, remind about itch.
+    - Push protocol, V8 float-drift, English-pinned Playwright selectors,
+      and all failure modes: `docs/ARCHITECTURE.md` §10-11. When play-feel
+      and the calibrate table disagree, the USER'S PLAY REPORT wins.
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only
