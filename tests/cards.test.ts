@@ -15,7 +15,9 @@ const team = (name: string, genes: Partial<ReturnType<typeof neutralGenome>> = {
 });
 
 describe('cards (Phase 25)', () => {
-  it('bookings land at a plausible rate; reds are rare but real', () => {
+  // Statistical suites simulate hundreds of full matches — generous timeouts
+  // for CI runners that are ~2× slower than a dev machine.
+  it('bookings land at a plausible rate; reds are rare but real', { timeout: 120000 }, () => {
     let yellows = 0;
     let reds = 0;
     let fouls = 0;
@@ -34,7 +36,7 @@ describe('cards (Phase 25)', () => {
     expect(reds / N).toBeLessThan(0.2); // ...but stay dramatic, not routine
   });
 
-  it('directional: aggressive markers collect more cards (side-balanced)', () => {
+  it('directional: aggressive markers collect more cards (side-balanced)', { timeout: 60000 }, () => {
     let aggressive = 0;
     let clean = 0;
     for (let seed = 0; seed < 120; seed++) {
@@ -50,7 +52,7 @@ describe('cards (Phase 25)', () => {
     expect(aggressive).toBeGreaterThan(clean * 1.5);
   });
 
-  it('a second yellow is a red: events and stats stay consistent', () => {
+  it('a second yellow is a red: events and stats stay consistent', { timeout: 90000 }, () => {
     for (let seed = 0; seed < 200; seed++) {
       const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 });
       const r = m.runToCompletion();
@@ -82,7 +84,7 @@ describe('cards (Phase 25)', () => {
     }
   });
 
-  it('directional: playing a man short costs results (forced early red)', () => {
+  it('directional: playing a man short costs results (forced early red)', { timeout: 60000 }, () => {
     let shorthandedGd = 0;
     let fullGd = 0;
     for (let seed = 0; seed < 40; seed++) {
