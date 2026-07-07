@@ -92,6 +92,8 @@ export class Match {
   restart: RestartState | null = null;
   /** Gid whose next carrier decision must be a kick (restart first touch). */
   restartKickGid: number | null = null;
+  /** Gid whose next carrier decision is the kickoff — played BACKWARD (27.3). */
+  kickoffKickGid: number | null = null;
   /** What kind of restart that kick is — penalties force a shot. */
   restartKickKind: RestartKind | null = null;
   pendingPass: PendingPass | null = null;
@@ -601,6 +603,12 @@ export class Match {
         o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
         o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
       }
+      // Goal kicks (Phase 27.3): opponents must be OUT OF THE BOX until the
+      // kick is taken — held at the edge, not camped on the six-yard line.
+      if (r.kind === 'goalKick' && o.side !== r.side && this.inPenaltyBox(o.pos, r.side)) {
+        const attackDir = this.teams[r.side].attackDir;
+        o.pos.x = -attackDir * HALF_L + attackDir * (BOX_DEPTH + 0.4);
+      }
     }
 
     const taker = this.allPlayers[r.takerGid];
@@ -738,6 +746,7 @@ export class Match {
     st.pos = v2(-kicking.attackDir * 1.2, 0);
     st.heading = v2(kicking.attackDir, 0);
     st.decisionTimer = 0.05;
+    this.kickoffKickGid = st.gid;
     this.ball.owner = st;
     this.ball.lastTouch = st;
     this.possessionSide = kickSide;

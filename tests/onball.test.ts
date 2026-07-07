@@ -169,6 +169,37 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     }
   });
 
+  it('the kickoff first touch is a pass played backward (27.3)', () => {
+    for (const seed of [3, 17, 88]) {
+      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+      // Step until the kickoff pass is in flight (it is the match's first pass).
+      for (let i = 0; i < 240 && !m.pendingPass; i++) m.step(DT);
+      expect(m.pendingPass).not.toBeNull();
+      const kicking = m.teams[m.pendingPass!.side];
+      const receiver = m.allPlayers[m.pendingPass!.targetGid];
+      expect(kicking.localX(receiver.pos.x)).toBeLessThan(0); // played back
+    }
+  });
+
+  it('opponents are held out of the box until a goal kick is taken (27.3)', () => {
+    const m = new Match({ seed: 21, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    // Attacker (side 0) puts it over team 1's goal line, wide of the mouth.
+    m.ball.owner = null;
+    m.ball.lastTouch = m.teams[0].players[4];
+    m.ball.pos = { x: 46, y: 12 };
+    m.ball.vel = { x: 2, y: 0 };
+    m.step(DT);
+    expect(m.phase).toBe('restart');
+    expect(m.restart!.kind).toBe('goalKick');
+    expect(m.restart!.side).toBe(1);
+    // Park an attacker deep inside team 1's box: the restart must expel them.
+    const intruder = m.teams[0].players[4];
+    intruder.pos = { x: 40, y: 0 };
+    m.step(DT);
+    expect(m.inPenaltyBox(intruder.pos, 1)).toBe(false);
+  });
+
   it('the territory clock resets on possession change and accrues in stale spells', () => {
     const m = new Match({ seed: 5, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
     m.teams[0].resetProgress(3);

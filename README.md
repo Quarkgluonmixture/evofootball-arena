@@ -146,7 +146,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (161 tests)
+tests/                  vitest suites (164 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -210,7 +210,10 @@ scripts/                headless calibration, evolution & wildcard-training tool
   scoring tilts toward forward passes, through balls and carries (the debug
   panel shows the `stale` factor).
 - **Match flow:** kickoff → two halves → goal pauses → full time, with a
-  90-minute display clock mapped onto 240 sim-seconds.
+  90-minute display clock mapped onto 240 sim-seconds. The kickoff first
+  touch is always **played backward** to a teammate (27.3) — no driving
+  forward off the spot — and **opponents are held out of the penalty box
+  until a goal kick is taken**.
 
 ## The AI (three layers)
 
@@ -496,7 +499,7 @@ gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 161 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 164 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary

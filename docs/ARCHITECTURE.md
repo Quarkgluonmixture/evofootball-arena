@@ -88,7 +88,7 @@ marking, tackle stun (victim 0.6s / whiff 0.35s) with lunge/stumble
 animations in both renderers, the anti-recycling territory clock
 (`Team.staleTime` → `stagnation` tilt in `decideCarrier`), a re-tuned
 keeper/shot economy and a ≤640px phone layout, then the 27.1 follow-up from live play reports — restart takers face their kick (corners work again), separated formation lanes + wider support radius (the six-player ball-chase dissolved), un-stretched 3D on phones (inline canvas height vs CSS) and a goal that reads as a box net (per-panel net repeat/opacity, chunkier frame, lower gantry) — landing at ~4.0 goals, then 27.2: keeper HOLD (gkHoldTimer — claims are scooped up untackleable for ~1.1s, ball at the chest in 3D, restarts exempt) and the ADVANTAGE rule (outfield fouls never stop play — the only foul source is a failed tackle, so the whistle only hurt the attackers; fouls/cards still counted, box penalties kept) (phase 27).
-161 vitest tests;
+164 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~26 ms/headless match. Git
 tags `phase-10`…`phase-27` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at

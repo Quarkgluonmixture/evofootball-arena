@@ -76,6 +76,38 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     p.action = { type: 'HoldPosition', scores: [{ action: 'HoldPosition', score: 1, why: 'ball in hands' }] };
     return;
   }
+  // Kickoff first touch (Phase 27.3): played BACKWARD to a teammate — no
+  // driving forward off the spot, no long ball over the top. Everyone else
+  // starts behind the ball at kickoff, so the fallback is nearly unreachable.
+  if (match.kickoffKickGid === p.gid) {
+    match.kickoffKickGid = null;
+    let back: Player | null = null;
+    let backScore = -Infinity;
+    for (const mate of team.players) {
+      if (mate === p || mate.sentOff) continue;
+      if (team.localX(mate.pos.x) > -0.5) continue; // must be behind the ball
+      const d = dist(p.pos, mate.pos);
+      // Open, and comfortably ~12m back — not the keeper 40m away.
+      const s = opennessOf(mate, opp.players) - Math.abs(d - 12) * 0.02 - (mate.role === 'GK' ? 0.3 : 0);
+      if (s > backScore) {
+        backScore = s;
+        back = mate;
+      }
+    }
+    if (back) {
+      const hx = back.pos.x - p.pos.x;
+      const hy = back.pos.y - p.pos.y;
+      const hl = Math.sqrt(hx * hx + hy * hy);
+      if (hl > 1e-6) p.heading = { x: hx / hl, y: hy / hl };
+      p.action = {
+        type: 'Pass',
+        targetIdx: back.gid,
+        scores: [{ action: 'Pass', score: 1, why: 'kickoff — played back' }],
+      };
+      match.performPass(p, back);
+      return;
+    }
+  }
   const cands: UtilityScore[] = [];
   const pressure = pressureAt(p.pos, opp.players);
   const goal = team.oppGoal();
