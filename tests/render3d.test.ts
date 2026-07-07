@@ -79,8 +79,10 @@ describe('RenderStateAdapter', () => {
     const shotFx = rs.fx.find((f) => f.type === 'shot');
     expect(shotFx).toBeDefined();
     expect(shotFx!.xg).toBeCloseTo(match.shotLog[match.shotLog.length - 1].xg);
-    // Old events fall out of the fx window.
-    for (let i = 0; i < 90; i++) match.step(DT);
+    // Old events fall out of the fx window. Advance SIM time (not raw
+    // frames): a scoring shot freezes simTime through the goal pause.
+    const t0 = match.simTime;
+    for (let i = 0; i < 900 && match.simTime < t0 + 1.5 && !match.finished; i++) match.step(DT);
     const later = buildRenderState(match, false);
     expect(later.fx.find((f) => f.t === shotFx!.t)).toBeUndefined();
   });

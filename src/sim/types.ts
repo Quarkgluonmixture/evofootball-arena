@@ -23,6 +23,7 @@ export type ActionType =
   | 'ClearBall'
   | 'GoalkeeperSave'
   | 'GoalkeeperPosition'
+  | 'GoalkeeperRush'
   | 'HoldPosition';
 
 /** One scored candidate from utility evaluation — kept for the debug panel. */

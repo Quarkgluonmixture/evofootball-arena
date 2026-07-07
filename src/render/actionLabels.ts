@@ -16,5 +16,6 @@ export const ACTION_SHORT: Record<ActionType, string> = {
   ClearBall: 'clear',
   GoalkeeperSave: 'SAVE',
   GoalkeeperPosition: 'gk',
+  GoalkeeperRush: 'RUSH!',
   HoldPosition: 'hold',
 };

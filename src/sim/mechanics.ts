@@ -260,6 +260,37 @@ export function tryDeflection(match: Match, p: Player): void {
 }
 
 /**
+ * Smother (Phase 27.5): a rushing keeper who reaches the carrier's ball
+ * dives on it. Reflexes vs the carrier's close control decide it; a win is
+ * a keeper claim (hands, hold state), a loss leaves the keeper on the floor
+ * — and occasionally a clumsy challenge that concedes the foul (a penalty,
+ * in the box where rushes live).
+ */
+export function trySmother(match: Match): void {
+  const owner = match.ball.owner;
+  if (!owner || owner.gkHoldTimer > 0) return;
+  const gk = match.teams[1 - owner.side].goalkeeper;
+  if (gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0) return;
+  if (gk.action.type !== 'GoalkeeperRush') return;
+  if (dist(gk.pos, match.ball.pos) >= 1.3) return;
+
+  gk.saveAnimTimer = 0.7; // the dive at the feet is visible either way
+  const pWin = clamp(0.5 + (gk.attrs.reflexes - 0.5) * 0.5 - (owner.attrs.technique - 0.5) * 0.35, 0.2, 0.8);
+  if (match.rng.chance(pWin)) {
+    match.teams[gk.side].stats.saves++;
+    match.playerStats[gk.gid].saves++;
+    owner.kickCooldown = 0.4;
+    owner.stunTimer = 0.4; // ran into a wall of keeper
+    match.pushEvent('save', gk.side, `${gk.name} smothers at ${owner.name}'s feet!`);
+    match.giveBall(gk); // hold state engages — hands, untackleable
+  } else {
+    gk.stunTimer = 0.8; // beaten — picking himself up off the turf
+    gk.kickCooldown = 0.5;
+    if (match.rng.chance(0.12)) match.awardFoul(gk, owner); // clumsy rush
+  }
+}
+
+/**
  * Tackling: the nearest ready opponent within reach of a dribbler attempts to
  * win the ball. Success odds: markingAggression helps the tackler, the
  * carrier's dribbleBias (close control) protects them. A failed tackle puts

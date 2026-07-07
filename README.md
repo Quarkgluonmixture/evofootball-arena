@@ -79,6 +79,9 @@ npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shoot
 
 - **Speed controls** (left panel): pause / 1× / 2× / 8× / 32×, plus **⏭ skip**
   to finish the current match instantly (identical result — see Determinism).
+- **The app boots in the 3D view** (Phase 27.5); switch to 2D anytime with
+  the view buttons. Where WebGL is unavailable it falls back to 2D with a
+  notice in the feed.
 - **Penalty shootouts play out kick by kick in 3D** (Phase 24): watch a drawn
   cup tie to full time in the 3D view and the shootout is staged live —
   walk-ups, dives, a running pens score bug, the deciding kick in slow
@@ -146,7 +149,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (164 tests)
+tests/                  vitest suites (168 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -191,6 +194,14 @@ scripts/                headless calibration, evolution & wildcard-training tool
   open play scoops it up and **holds it** for ~1 s — untackleable, ball
   carried at the chest (visible in 3D) — before distributing. Restart first
   touches (goal kicks) stay quick.
+- **Keepers rush 1v1s (Phase 27.5):** an opponent carrier bearing down with
+  nobody goal-side pulls the keeper **off the line** (keeperAggression sets
+  how far — sweeping outside the box at the aggressive end). Reaching the
+  ball triggers a **smother**: reflexes vs the carrier's close control —
+  win and it's a claim into the hands, lose and the keeper is beaten on the
+  floor (and occasionally concedes the penalty for a clumsy rush). Keepers
+  also **backpedal facing the play** instead of turning their back, and
+  every in-reach save attempt shows a full dive in both views (27.4).
 - **Players:** acceleration toward a desired velocity, role-based top speed,
   quadratic stamina drain above ~55% effort (tired players cap at 62% speed),
   pairwise separation so nobody stacks.
@@ -210,10 +221,13 @@ scripts/                headless calibration, evolution & wildcard-training tool
   scoring tilts toward forward passes, through balls and carries (the debug
   panel shows the `stale` factor).
 - **Match flow:** kickoff → two halves → goal pauses → full time, with a
-  90-minute display clock mapped onto 240 sim-seconds. The kickoff first
-  touch is always **played backward** to a teammate (27.3) — no driving
-  forward off the spot — and **opponents are held out of the penalty box
-  until a goal kick is taken**.
+  90-minute display clock mapped onto 240 sim-seconds. Both teams start
+  kickoffs **entirely in their own half**, the kickoff first touch is always
+  **played backward** to a teammate (27.3) — no driving forward off the
+  spot — and **opponents are held out of the penalty box until a goal kick
+  is taken**. Halves end in **stoppage time** (27.4): the whistle waits for
+  a safe break — no shot or pass in flight, live final-third attacks play
+  out, penalties are always taken — up to ~3 added display minutes.
 
 ## The AI (three layers)
 
@@ -474,8 +488,9 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~4.0 goals from ~14 shots (≈9.5 on target — futsal-flavored scorelines;
-keepers are genuinely busy at **≈5.5 saves/match**), ~74% pass completion
+~3.8 goals from ~13.6 shots (≈9.6 on target — futsal-flavored scorelines;
+keepers are genuinely busy at **≈7.3 saves/match** incl. 1v1 smothers),
+~72% pass completion
 with **~14.5 through balls per match** and **~55% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
 sideways recycling), **≈8 first-touch miscontrols/match** (forced errors —
@@ -499,7 +514,7 @@ gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 164 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 168 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
@@ -562,6 +577,14 @@ exhibitions, a phone-friendly responsive layout (Phase 27), 161 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Ideas for the next phase (rough priority order):
+- **Phase 28 — the aerial game** (user-diagnosed: corners are tame because
+  NOTHING travels in the air): ball height in the sim (z + lofted kick
+  arcs), **crosses** from wide, **headers** (win chance from position +
+  attributes), **lofted switches** (the 32m pass-distance cap currently
+  kills big diagonals), lofted through balls over the line, and a bigger
+  long-shot appetite. This also unlocks the missing tactic archetypes:
+  direct long counters (B), wide overloads with real crosses (D), and the
+  target-pivot game (E — needs a back-to-goal hold-up mechanic too).
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only

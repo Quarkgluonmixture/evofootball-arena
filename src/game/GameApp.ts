@@ -241,6 +241,10 @@ export class GameApp implements GameActions {
       theater: () => (this.theater ? this.theater.info() : null),
       debugShootout: () => this.debugShootout(),
     };
+
+    // Default view is 3D (Phase 27.5, user request) — setViewMode falls back
+    // to 2D with a feed notice where WebGL is unavailable.
+    this.setViewMode('3d');
   }
 
   /* ---------------- frame loop ---------------- */

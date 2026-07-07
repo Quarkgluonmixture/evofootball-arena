@@ -330,6 +330,28 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
     return;
   }
 
+  // 1v1 rush (Phase 27.5): an opponent carrier bearing down with nobody
+  // goal-side — charge them down and make the goal small. keeperAggression
+  // sets how far out the keeper is willing to leave the line.
+  const carrier = ball.owner;
+  if (carrier && carrier.side !== p.side) {
+    const dGoal = dist(carrier.pos, ownGoal);
+    if (dGoal < 9 + team.genome.keeperAggression * 8) {
+      let goalside = 0;
+      for (const mate of team.players) {
+        if (mate === p || mate.sentOff) continue;
+        if (dist(mate.pos, ownGoal) < dGoal - 1) goalside++;
+      }
+      if (goalside === 0) {
+        p.action = {
+          type: 'GoalkeeperRush',
+          scores: [{ action: 'GoalkeeperRush', score: 1, why: `1v1 — rushing out · aggr ${team.genome.keeperAggression.toFixed(2)}` }],
+        };
+        return;
+      }
+    }
+  }
+
   // Loose ball near our goal that we can claim first.
   if (ball.owner === null && dist(ball.pos, ownGoal) < 15) {
     const sol = interceptBall(p, ball);

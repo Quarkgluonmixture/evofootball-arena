@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
+import { decidePlayer } from '../src/ai/PlayerBrain';
 import { Match } from '../src/sim/Match';
 import {
-  kickMisalignment, orientationNoiseMul, orientationPowerMul, touchFailChance,
+  kickMisalignment, orientationNoiseMul, orientationPowerMul, touchFailChance, trySmother,
 } from '../src/sim/mechanics';
 import { Player, TURN_RATE } from '../src/sim/Player';
 import { DT } from '../src/sim/constants';
@@ -169,6 +170,17 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     }
   });
 
+  it('everyone starts in their own half at kickoff (27.5)', () => {
+    for (const seed of [3, 44]) {
+      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+      for (const t of m.teams) {
+        for (const p of t.players) {
+          expect(t.localX(p.pos.x)).toBeLessThan(0);
+        }
+      }
+    }
+  });
+
   it('the kickoff first touch is a pass played backward (27.3)', () => {
     for (const seed of [3, 17, 88]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
@@ -214,6 +226,54 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
       if (ht.t > 60.1 || ft.t > 120.1) sawStoppage = true;
     }
     expect(sawStoppage).toBe(true); // the window is actually used sometimes
+  });
+
+  it('a keeper rushes a 1v1 but holds the line when a defender is goal-side (27.5)', () => {
+    const m = new Match({ seed: 4, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    const gk = m.teams[1].goalkeeper; // defends +x goal
+    const striker = m.teams[0].players[4];
+    striker.pos = { x: 38, y: 0 };
+    m.ball.owner = striker;
+    m.ball.pos = { x: 38.8, y: 0 };
+    m.possessionSide = 0;
+    // Clear team 1 out of the danger zone: a true 1v1.
+    for (const p of m.teams[1].players) {
+      if (p.role !== 'GK') p.pos = { x: -20, y: p.pos.y };
+    }
+    decidePlayer(gk, m);
+    expect(gk.action.type).toBe('GoalkeeperRush');
+    // Now park a defender goal-side: the keeper stays home.
+    m.teams[1].players[1].pos = { x: 42, y: 0 };
+    decidePlayer(gk, m);
+    expect(gk.action.type).not.toBe('GoalkeeperRush');
+  });
+
+  it('a smother either claims into the hold or leaves the keeper beaten (27.5)', () => {
+    let claims = 0;
+    let beaten = 0;
+    for (let seed = 1; seed <= 12; seed++) {
+      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+      while (m.phase !== 'playing') m.step(DT);
+      const gk = m.teams[1].goalkeeper;
+      const striker = m.teams[0].players[4];
+      striker.pos = { x: 40, y: 0 };
+      m.ball.owner = striker;
+      m.ball.pos = { x: 40.8, y: 0 };
+      m.possessionSide = 0;
+      gk.pos = { x: 41.5, y: 0 };
+      gk.action = { type: 'GoalkeeperRush', scores: [] };
+      trySmother(m);
+      if (m.ball.owner === gk) {
+        claims++;
+        expect(gk.gkHoldTimer).toBeGreaterThan(0); // straight into the hands
+      } else {
+        beaten++;
+        expect(gk.stunTimer).toBeGreaterThan(0); // on the floor
+      }
+    }
+    expect(claims).toBeGreaterThan(0);
+    expect(beaten).toBeGreaterThan(0); // both outcomes are live at 5v5 odds
   });
 
   it('the territory clock resets on possession change and accrues in stale spells', () => {

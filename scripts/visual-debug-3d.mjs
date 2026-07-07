@@ -27,10 +27,9 @@ page.on('console', (msg) => {
 page.on('pageerror', (err) => errors.push(String(err)));
 
 await page.goto(URL, { waitUntil: 'networkidle' });
-await page.waitForSelector('#stage canvas', { timeout: 15000 });
-
-// ---- switch to 3D ----
-await page.click('button:has-text("3D")');
+// The app boots straight into 3D since Phase 27.5 — wait for ITS canvas
+// (the hidden 2D Pixi canvas never becomes visible on its own).
+await page.waitForSelector('#three-host canvas', { timeout: 15000 });
 await page.waitForTimeout(1200);
 const info = await page.evaluate(() => window.__evo.three());
 check('3D renderer initializes', info !== null);

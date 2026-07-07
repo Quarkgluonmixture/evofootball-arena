@@ -26,6 +26,7 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
   const sprint = 1 - conserve * 0.12;
   let target: V2 | null = null;
   let speedF = jog;
+  p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
 
   switch (p.action.type) {
     case 'MoveToFormationSpot':
@@ -112,9 +113,19 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       // Never leave the goal area chasing a shot.
       target = clampToBox(sol.point, team.attackDir);
       speedF = 1;
+      p.faceTarget = ball.pos;
+      break;
+    }
+    case 'GoalkeeperRush': {
+      // 1v1 (Phase 27.5): charge the ball at full sprint — deliberately NOT
+      // clamped to the box; an aggressive keeper sweeps outside it.
+      target = ball.pos;
+      speedF = 1;
+      p.faceTarget = ball.pos;
       break;
     }
     case 'GoalkeeperPosition': {
+      p.faceTarget = ball.pos; // backpedal facing the play (27.5)
       // Flat form of add(goal, scale(sub(ball.pos, goal), k)) — every frame for keepers.
       const goal = team.ownGoal();
       const out = 2.5 + g.keeperAggression * 7;

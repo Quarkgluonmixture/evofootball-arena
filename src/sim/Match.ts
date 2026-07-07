@@ -364,6 +364,7 @@ export class Match {
       ball.vel.x = ball.owner.vel.x;
       ball.vel.y = ball.owner.vel.y;
       mech.tryTackles(this);
+      mech.trySmother(this);
       return;
     }
     ball.pos.x += ball.vel.x * dt;
@@ -757,6 +758,10 @@ export class Match {
       for (const p of team.players) {
         if (p.sentOff) continue; // stays parked on the apron
         p.resetForKickoff(formationSpot(p, team, this.ball, team.side === kickSide));
+        // Everyone starts in their OWN half at kickoff (27.5) — the base
+        // striker spot sits past halfway and used to straddle the line.
+        const lx = team.localX(p.pos.x);
+        if (lx > -1.5) p.pos.x = -1.5 * team.attackDir;
       }
     }
 

@@ -26,6 +26,10 @@ page.on('console', (msg) => {
 page.on('pageerror', (err) => errors.push(String(err)));
 
 await page.goto(URL, { waitUntil: 'networkidle' });
+// The app boots in 3D since Phase 27.5 — this suite drives the 2D view, so
+// switch first (the hidden Pixi canvas never becomes visible on its own).
+await page.waitForSelector('button:has-text("2D")', { timeout: 15000 });
+await page.click('button:has-text("2D")');
 await page.waitForSelector('#stage canvas', { timeout: 15000 });
 await page.waitForTimeout(800);
 await page.screenshot({ path: `${OUT}/1-initial.png` });

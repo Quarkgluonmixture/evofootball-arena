@@ -34,6 +34,12 @@ export class Player {
   heading = v2(1, 0);
   /** Set every frame by the action executor; physics chases it. */
   desiredVel = v2();
+  /**
+   * When set (by the executor, per frame), heading turns toward this point
+   * instead of the movement direction — keepers backpedal FACING the play
+   * (27.5). Holds a live reference (e.g. ball.pos); cleared each frame.
+   */
+  faceTarget: V2 | null = null;
 
   stamina = 1;
   staminaSpent = 0;
@@ -123,16 +129,33 @@ export class Player {
     this.pos.y = this.pos.y + this.vel.y * dt;
 
     const sp = Math.sqrt(this.vel.x * this.vel.x + this.vel.y * this.vel.y);
-    if (sp > 0.5) {
-      // Rotate heading toward the movement direction, capped at TURN_RATE.
-      // No trig in the loop: the per-step rotation's cos/sin are cached per dt.
-      if (dt !== turnDt) {
-        turnDt = dt;
-        turnCos = Math.cos(TURN_RATE * dt);
-        turnSin = Math.sin(TURN_RATE * dt);
+    // Rotate heading toward the face target (backpedal, 27.5) or, failing
+    // that, the movement direction — capped at TURN_RATE either way.
+    // No trig in the loop: the per-step rotation's cos/sin are cached per dt.
+    if (dt !== turnDt) {
+      turnDt = dt;
+      turnCos = Math.cos(TURN_RATE * dt);
+      turnSin = Math.sin(TURN_RATE * dt);
+    }
+    const ft = this.faceTarget;
+    let wx = 0;
+    let wy = 0;
+    let turn = false;
+    if (ft) {
+      const fx = ft.x - this.pos.x;
+      const fy = ft.y - this.pos.y;
+      const fl = Math.sqrt(fx * fx + fy * fy);
+      if (fl > 1e-6) {
+        wx = fx / fl;
+        wy = fy / fl;
+        turn = true;
       }
-      const wx = this.vel.x / sp;
-      const wy = this.vel.y / sp;
+    } else if (sp > 0.5) {
+      wx = this.vel.x / sp;
+      wy = this.vel.y / sp;
+      turn = true;
+    }
+    if (turn) {
       const hx = this.heading.x;
       const hy = this.heading.y;
       if (hx * wx + hy * wy >= turnCos) {
