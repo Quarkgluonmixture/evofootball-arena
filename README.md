@@ -154,7 +154,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (168 tests)
+tests/                  vitest suites (193 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -210,6 +210,21 @@ scripts/                headless calibration, evolution & wildcard-training tool
   teammate. Strikers also play **back-to-goal hold-up**: shield, wait for
   support, lay off. Long-range shot appetite rises when a move goes stale —
   the 20 m dig is a real release valve now.
+- **Offside (Phase 29):** the real law, judged the real way — status is
+  **frozen the moment a teammate strikes the ball**: in the opponent half,
+  ahead of the ball AND the second-last defender (counting the keeper) =
+  offside position; the whistle only comes if the flagged **delivery target
+  touches the ball** (reception or a won header — a defender playing it
+  first means play on), and the defenders restart with a free kick from
+  where the offender stood. Kick-ins, corners and goal kicks are exempt,
+  exactly per the laws. Runners now **time their runs**: they hold at the
+  second-last defender's shoulder while a teammate carries the ball and
+  break the instant the pass is struck — through balls anticipate the burst
+  instead of the standing position. Tight calls happen (~2 a match, in the
+  stats panel) because players back their judgment on marginal positions;
+  they refuse only the clearly offside ball. The structural payoff: no more
+  striker camped on the keeper, defensive lines dare to push up, and the
+  midfield compresses like real football.
 - **Keepers use their hands (Phase 27.2):** a keeper who claims the ball in
   open play scoops it up and **holds it** for ~1 s — untackleable, ball
   carried at the chest (visible in 3D) — before distributing. Restart first
@@ -465,13 +480,14 @@ role vectors fall back to it, so every normal team is bit-identical to before
 the refactor (regression-tested + fingerprint-checked).
 
 Result (held-out benchmark vs an unseen league's top 8, home & away, on the
-Phase-28.1 engine): the co-trained candidate scores **36/48 points where
-the previous champion scores 34/48 and the default brain 21/48** (each
-retrain re-measures on the current engine — Phase 28 rewrote the attacking
-economy, so older stamped scores no longer apply). The ES learned an
-identity you can read right off its gene bars — Gegenpress, high risk /
-chaos — and its role vectors now include learned weights for the five
-Phase-28 aerial/long-shot channels. Press **⚡ Wildcard
+Phase-29 engine): the co-trained candidate scores **26/48 points where the
+default brain manages 6/48** (each retrain re-measures on the current
+engine — Phase 29's offside rewrote the attacking meta, so older stamped
+scores no longer apply; successive 40-generation runs benchmarked 26–29/48,
+within this benchmark's noise). The ES learned an identity you can read
+right off its gene bars — **Gegenpress, wide play**: exactly the style
+offside rewards, since crosses beat a line you can no longer camp behind.
+Press **⚡ Wildcard
 exhibition** (left panel) to field it against your current Premier leader — a
 standalone friendly, no league bookkeeping.
 
@@ -512,22 +528,23 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~3.2 goals from ~14 shots (≈8 on target — futsal-flavored scorelines;
-keepers are genuinely busy at **≈6.3 saves/match** plus ~0.55 smothers at a
-dribbler's feet and the occasional high-ball claim), ~70% pass completion —
-the Phase 28 aerial deliveries are honest low-percentage balls — with
-**~17 through balls per match**, **~58% of passes played forward**
+~2.8 goals from ~13 shots (≈6.7 on target; keepers make **≈4.4 saves/match**
+plus smothers at a dribbler's feet and high-ball claims), ~65% pass
+completion — direct football: **~19 through balls per match** now that
+passes anticipate the timed run, **~52% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
-sideways recycling), **≈3.3 crosses, ≈4.8 aerial duels won and ≈5.1 lofted
-long balls per match** (Phase 28), **≈8.4 first-touch miscontrols/match**
-(forced errors — pressing pays), ~2.5 corners (**≈10% lead to a shot inside
-8 s** — box-crashing runners attack the delivery), balanced
-possession, ~94% ball-in-play (the rest is live dead-ball time: goal kicks,
-corners, kick-ins, penalties; **≈4.2 fouls play advantage since 27.2,
-≈0.35 penalties/match** — box congestion from crosses raised it — drawing
-**≈0.8 yellows and ≈0.06 reds** per match — Phase 25), ~28 ms per headless
-match (allocation-free hot paths + a precomputed intercept table — Phase 16;
-a 10-season fast-sim runs off the main thread on the sim worker).
+sideways recycling), **≈3.2 crosses, ≈6.6 aerial duels won and ≈4.4 lofted
+long balls per match** (Phase 28), **≈2.1 offsides/match** (Phase 29 —
+tight calls on marginal runs; the stats panel counts them), **≈11.5
+first-touch miscontrols/match** (forced errors — pressing pays), ~2.5
+corners (**≈10% lead to a shot inside 8 s** — box-crashing runners attack
+the delivery), balanced possession, ~93% ball-in-play (the rest is live
+dead-ball time: goal kicks, corners, kick-ins, free kicks, penalties;
+**≈6 fouls play advantage since 27.2, ≈0.08 penalties/match** — offside
+decongested the box — drawing **≈1.2 yellows and ≈0.11 reds** per match —
+Phase 25), ~28 ms per headless match (allocation-free hot paths + a
+precomputed intercept table — Phase 16; a 10-season fast-sim runs off the
+main thread on the sim worker).
 Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
 77% → 74%, because attacks are far more direct (shots per completed pass
 roughly doubled) and errors are real; the keeper economy was re-tuned to
@@ -547,14 +564,20 @@ outlet (robbing every distribution was a goal factory; removing it cost
 tackle/save economy), kick-ins and corners **breathe** (1.8–2 s of setup
 instead of instant releases), each half runs **its own stoppage time** with
 a 45+2-style clock, and the loose-ball reaction radius was tightened so
-scrambles pull in fewer spectators. The
+scrambles pull in fewer spectators. Phase 29's offside moved the numbers
+again, deliberately: goals ~3.2 → ~2.8 and completion 68% → 65%, because
+the point-blank chances camped runners used to feast on are illegal now —
+in exchange the defensive line steps up (DF base −26 → −20), through balls
+anticipate timed runs (~19/match), penalties fell to ~0.08 as the box
+decongested, and the save base eased to 0.66 so the chances that remain
+convert. The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
 gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 180 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 193 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
@@ -569,7 +592,10 @@ gap (see `npm run evolve-check`).
   technique-vs-miscontrol and forward-share/error-rate windows — Phase 27),
   the aerial game (parabola/bounce physics, the crossbar, focused aerial
   duels, directional crossing/long-shot tests, corner-threat and
-  headed-assist structure — Phase 28),
+  headed-assist structure — Phase 28), offside (kick-time judgment
+  geometry, the ball/own-half/level exceptions, restart exemptions, header
+  whistles, defender-touch play-on, the executor onside hold, and a league
+  liveness/rate window — Phase 29),
   league/Elo/evolution
   invariants, Evo Cup bracket shape/draw-rule/standalone-tie/determinism,
   save/load + file export/import roundtrips incl. the v1–v5 migration chain,
@@ -599,7 +625,9 @@ anti-recycling territory clock (Phase 27) — the aerial game: real ball
 height with parabolic lofted kicks, bounces and a 2.44 m crossbar, crosses
 + headers with box-crashing corner runners, keeper claims and feet-smothers,
 lofted switches/chips that beat the press, back-to-goal hold-up play and a
-long-shot release valve (Phase 28) — three-layer utility
+long-shot release valve (Phase 28) — offside judged at kick time with
+timed runs held at the line, restart exemptions and free-kick awards
+(Phase 29) — three-layer utility
 AI, 14 live tactical
 genes + 5 per-player attribute genes with full player careers — ages,
 development curves, retirements, newgens and an all-time-greats ledger
@@ -622,52 +650,11 @@ fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), the ES-trained Wildcard XI benchmark team — tactical genes
 co-trained with five per-role brain vectors (Phases 18 + 23) — with in-game
-exhibitions, a phone-friendly responsive layout (Phase 27), 161 tests, and
+exhibitions, a phone-friendly responsive layout (Phase 27), offside with
+timed runs (Phase 29), 193 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Ideas for the next phase (rough priority order):
-- **⭐ Phase 29 — OFFSIDE (user green-lit 2026-07-07; start here).** The
-  structural cure for the sim's two visible diseases — central scrums and
-  the breakaway-with-a-chasing-pack loop are two faces of "no offside":
-  runners can't camp behind the line → the defensive line dares to step up
-  → play compresses into a band → width/crosses become how you break a
-  block. Agreed design notes:
-  - Judge at KICK time: freeze each attacker's onside/offside status the
-    moment a pass/through/chip/cross is struck (deterministic, no new rng).
-    Offside line = the SECOND-LAST defender counting the keeper (real
-    rule; `defenderLineLocalX` excludes the GK — add a variant), or the
-    ball's own local-x if deeper; only applies in the opponent half.
-  - Only the kicker's teammates can be offside. Exempt per the real laws:
-    kick-ins (≈throw-ins), corners, goal kicks.
-  - "Interfering with play" simplification: only flag the DELIVERY TARGET
-    (pendingPass.targetGid) — offside at kick time AND the ball reaches
-    them (giveBall / header contest win) ⇒ whistle. No passive-offside
-    modeling.
-  - Award: free kick to the defenders at the offside spot via the existing
-    `freeKick` restart machinery. Feed line + new `offsides` team stat +
-    stats-panel row.
-  - `runTarget` must hold runners ONSIDE (cap at line − ε; break the
-    instant a kick is struck) — timing runs replaces camping. Off-ball
-    attackers stranded behind the line should drift back onside
-    (formations/MakeRun executor).
-  - Expect the through-ball/chip economy to shift hard: retune with
-    calibrate (README balance numbers), add directional tests (a timed-run
-    team beats a camped-run team; offside actually gets called at a sane
-    rate ~2-4/match), retrain the wildcard, and mind invariant 3
-    (watched ≡ skipped) — judgment must live in the sim step, not the
-    renderer.
-- **Bug to fix FIRST (user report 2026-07-07): goal-kick press.** During
-  goalKick restarts one chaser still sprints at the keeper and pins
-  against the clearance circle ("疯狂冲向门将"). 28.3 capped restart
-  chasers at 1 — for goal kicks it should be 0 (everyone marks up; nobody
-  presses a goal kick). One-line fix in `TeamBrain.assignChasers`
-  (`match.restart?.kind === 'goalKick'` → count 0) + extend the treadmill
-  regression thinking to this case.
-- **Housekeeping for the next session:** the previous session's shell died
-  before this checkpoint could be pushed — `git add README.md && git
-  commit && git push` it (account `Quarkgluonmixture`, `gh auth switch`)
-  before starting Phase 29. Wildcard was retrained on the 28.4 engine and
-  IS committed; itch.io still lags (needs manual `npm run package:itch`).
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only

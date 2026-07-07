@@ -1,7 +1,7 @@
 import { clamp, clamp01 } from '../utils/math';
 import { dist, dot, norm, sub } from '../utils/vec';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { defenderLineLocalX } from './formations';
+import { defenderLineLocalX, offsideLineLocalX, runBurstPoint } from './formations';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -114,6 +114,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const goal = team.oppGoal();
   const dGoal = dist(p.pos, goal);
   const localX = team.localX(p.pos.x);
+  // Offside awareness (Phase 29): real-law dead-ball exemptions, and the
+  // line every delivery below checks its target against. Players avoid
+  // teammates stood CLEARLY offside (beyond the 1.2m margin) but back their
+  // judgment on tight ones — the referee judges at +0.2m, so the marginal
+  // band is exactly where real flags come from (a runner who broke on the
+  // previous kick and hasn't checked back level yet).
+  const offsideExemptKick = kickKind === 'kickIn' || kickKind === 'corner' || kickKind === 'goalKick';
+  const offLine = offsideLineLocalX(team, opp.players, localX) + 2.2;
   // Territory pressure (Phase 27): 0 while the move is fresh or gaining
   // ground, 1 after ~8s of possession going nowhere. It tilts every carrier
   // choice toward the opponent goal — sideways recycling stops being free.
@@ -199,6 +207,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       mul *= 0.7 + g.passBias * 0.75;
       mul *= 0.85 + g.tempo * 0.3;
       if (mate.role === 'GK') mul *= 0.5; // back-passes to keeper are a last resort
+      // A mate stood offside is a dead target (Phase 29) — near-suppressed,
+      // not zero: the rare desperate ball into them is where flags come from.
+      if (!offsideExemptKick && team.localX(mate.pos.x) > offLine + 0.2) mul *= 0.08;
       // Playing the ball where the body doesn't face costs accuracy (Phase 27)
       // — prefer passes we're facing; technique loosens the constraint. Kept
       // mild: the time-gated stagnation tilt is the forward driver, this is
@@ -280,14 +291,21 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     for (const mate of team.players) {
       if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;
       const flight = dist(p.pos, mate.pos) / 18;
+      // Meet the run, not the hover (Phase 29): a runner held onside shows
+      // ~zero velocity, so the aim point projects the burst they will make.
+      const burst = runBurstPoint(mate, team, opp.players, flight);
       const point = {
-        x: clamp(mate.pos.x + mate.vel.x * flight * 1.6, -HALF_L + 2, HALF_L - 2),
-        y: clamp(mate.pos.y + mate.vel.y * flight * 1.6, -HALF_W + 2, HALF_W - 2),
+        x: clamp(burst.x, -HALF_L + 2, HALF_L - 2),
+        y: clamp(burst.y, -HALF_W + 2, HALF_W - 2),
       };
       if (team.localX(point.x) < localX + 5) continue; // must genuinely penetrate
       const lane = laneOpenness(p.pos, point, opp.players);
       const behind = clamp01((team.localX(point.x) - line) / 10);
-      const gates = (0.45 + g.riskTolerance * 0.85) * (0.85 + g.tempo * 0.3) * (1 + stagnation * 0.2);
+      let gates = (0.45 + g.riskTolerance * 0.85) * (0.85 + g.tempo * 0.3) * (1 + stagnation * 0.2);
+      // A runner ALREADY beyond the offside line is flagged the moment this
+      // ball is struck (Phase 29) — wait for them to check their run instead.
+      // The held run (executor clamp) makes the legal version of this ball.
+      if (!offsideExemptKick && team.localX(mate.pos.x) > offLine + 0.2) gates *= 0.1;
       const s = (W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW) * gates;
       if (s > bestThrough) {
         bestThrough = s;
@@ -332,10 +350,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (mate === p || mate.sentOff || mate.role === 'GK') continue;
       const mLocalX = team.localX(mate.pos.x);
       if (mLocalX < 16 || Math.abs(mate.pos.y) > 13) continue; // must attack the box channel
-      const t =
+      let t =
         aerialSense(mate) * 0.6 +
         opennessOf(mate, opp.players) * 0.4 +
         clamp01((mLocalX - 18) / 20) * 0.25;
+      // Open-play crosses are judged like any pass (Phase 29) — an offside
+      // box target wastes the delivery. Corners are exempt (real law).
+      if (!offsideExemptKick && mLocalX > offLine + 0.2) t *= 0.12;
       if (t > bestCrossT) {
         bestCrossT = t;
         bestCrossMate = mate;
@@ -462,15 +483,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   switch (top.action) {
     case 'Pass':
       p.action = { type: 'Pass', targetIdx: bestMate!.gid, scores };
-      match.performPass(p, bestMate!);
+      match.performPass(p, bestMate!, offsideExemptKick);
       break;
     case 'LoftedPass':
       p.action = { type: 'LoftedPass', targetIdx: bestLoftMate!.gid, scores };
-      match.performLoftedPass(p, bestLoftMate!);
+      match.performLoftedPass(p, bestLoftMate!, offsideExemptKick);
       break;
     case 'Cross':
       p.action = { type: 'Cross', targetIdx: bestCrossMate!.gid, scores };
-      match.performCross(p, bestCrossMate!);
+      match.performCross(p, bestCrossMate!, offsideExemptKick);
       break;
     case 'ThrowOut':
       p.action = { type: 'ThrowOut', targetIdx: bestThrowMate!.gid, scores };
@@ -478,7 +499,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       break;
     case 'ThroughBall':
       p.action = { type: 'ThroughBall', targetIdx: bestRunner!.gid, scores };
-      match.performThroughBall(p, bestRunner!, bestThroughChip);
+      match.performThroughBall(p, bestRunner!, bestThroughChip, offsideExemptKick);
       break;
     case 'Shoot':
       p.action = { type: 'Shoot', scores };

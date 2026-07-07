@@ -17,6 +17,7 @@ const STAT_ROWS = [
   'miscontrols',
   'recoveries',
   'corners',
+  'offsides',
   'fouls',
   'cards',
   'saves',
@@ -137,6 +138,7 @@ export class RightPanel {
     set('miscontrols', String(a.miscontrols), String(b.miscontrols));
     set('recoveries', String(a.tackles + a.interceptions), String(b.tackles + b.interceptions));
     set('corners', String(a.corners), String(b.corners));
+    set('offsides', String(a.offsides), String(b.offsides));
     set('fouls', String(a.fouls), String(b.fouls));
     set('cards', cardLine(a.yellows, a.reds), cardLine(b.yellows, b.reds));
     set('saves', String(a.saves), String(b.saves));

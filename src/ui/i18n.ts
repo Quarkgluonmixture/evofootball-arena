@@ -115,6 +115,7 @@ const ZH: Record<string, string> = {
   miscontrols: '停球失误',
   recoveries: '抢回球权',
   corners: '角球',
+  offsides: '越位',
   fouls: '犯规',
   cards: '红黄牌',
   saves: '扑救',

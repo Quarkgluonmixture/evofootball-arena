@@ -28,6 +28,15 @@ export interface PendingPass {
   passerGid: number;
   targetGid: number;
   t: number;
+  /**
+   * Offside, judged AT KICK TIME (Phase 29): the target was in an offside
+   * position when the ball was struck. The flag only becomes an offence if
+   * the ball reaches the flagged target (giveBall or a won header) —
+   * defenders playing it, or another teammate arriving, plays on.
+   */
+  offside: boolean;
+  /** Where the flagged target stood at the kick — the free-kick spot. */
+  offsideSpot: V2 | null;
 }
 
 export interface PendingShot {
@@ -305,20 +314,20 @@ export class Match {
   shotQuality(p: Player): number {
     return mech.shotQuality(this, p);
   }
-  performPass(p: Player, mate: Player): void {
-    mech.performPass(this, p, mate);
+  performPass(p: Player, mate: Player, offsideExempt = false): void {
+    mech.performPass(this, p, mate, offsideExempt);
   }
-  performThroughBall(p: Player, runner: Player, lofted = false): void {
-    mech.performThroughBall(this, p, runner, lofted);
+  performThroughBall(p: Player, runner: Player, lofted = false, offsideExempt = false): void {
+    mech.performThroughBall(this, p, runner, lofted, offsideExempt);
   }
-  performCross(p: Player, target: Player): void {
-    mech.performCross(this, p, target);
+  performCross(p: Player, target: Player, offsideExempt = false): void {
+    mech.performCross(this, p, target, offsideExempt);
   }
   performKeeperThrow(p: Player, mate: Player): void {
     mech.performKeeperThrow(this, p, mate);
   }
-  performLoftedPass(p: Player, mate: Player): void {
-    mech.performLoftedPass(this, p, mate);
+  performLoftedPass(p: Player, mate: Player, offsideExempt = false): void {
+    mech.performLoftedPass(this, p, mate, offsideExempt);
   }
   performShot(p: Player): void {
     mech.performShot(this, p);
@@ -353,6 +362,16 @@ export class Match {
 
   /** Give a player clean control of the ball, resolving pass bookkeeping. */
   giveBall(p: Player): void {
+    // Offside (Phase 29): the flag frozen at kick time becomes an offence the
+    // moment the flagged target touches the ball. Checked before ANY
+    // bookkeeping — an offside "reception" is not a dribble or a completed
+    // pass, it's a dead ball.
+    const flagged = this.pendingPass;
+    if (flagged && flagged.offside && p.side === flagged.side && p.gid === flagged.targetGid) {
+      this.pendingPass = null;
+      this.callOffside(p, flagged.offsideSpot ?? p.pos);
+      return;
+    }
     const ball = this.ball;
     ball.owner = p;
     ball.lastTouch = p;
@@ -649,6 +668,25 @@ export class Match {
     }
     this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
     this.teams[1].brainTimer = Math.min(this.teams[1].brainTimer, 0.05);
+  }
+
+  /**
+   * Offside whistle (Phase 29): stat against the offender's team, feed line,
+   * and a free kick to the defenders where the offender stood at the kick.
+   * Runs through the same free-kick restart machinery fouls use.
+   */
+  callOffside(offender: Player, spot: V2): void {
+    const attTeam = this.teams[offender.side];
+    attTeam.stats.offsides++;
+    const defSide = (1 - offender.side) as Side;
+    this.pushEvent('foul', defSide, `Offside — ${offender.name} (${attTeam.info.name})`);
+    // Pulled off the goal line the same way goal-kick spots are: a free kick
+    // ON the defenders' line would wedge the taker against the boundary.
+    const pos = v2(
+      Math.max(-HALF_L + 7, Math.min(HALF_L - 7, spot.x)),
+      Math.max(-HALF_W + 1, Math.min(HALF_W - 1, spot.y)),
+    );
+    this.awardRestart('freeKick', defSide, pos);
   }
 
   private awardRestart(kind: RestartKind, side: Side, pos: V2): void {

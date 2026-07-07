@@ -154,10 +154,38 @@ bonus <17m) and finish COMPOSED (`performShot` 1v1: aim 0.72×margin
 tighter to the post, spread ×0.8 — without this the finish appetite just
 fed the keeper from 15m), keepers stand ~2m off the line instead of
 backpedalling into the net, and a won tackle knocks the ball 4.5–8.5 m/s
-clear so scrambles disperse instead of re-feeding (phase 28.4).
-181 vitest tests;
+clear so scrambles disperse instead of re-feeding (phase 28.4); and
+OFFSIDE (phase 29) — the structural cure for camped runners and the
+chasing-pack breakaway loop: judgment is FROZEN AT KICK TIME
+(`mechanics.registerPass`, the single funnel every targeted delivery
+registers through — pass/through/cross/switch/keeper throw), the line is
+the second-last defender COUNTING the keeper or the ball if deeper, floored
+at halfway (`formations.offsideLineLocalX`; the GK-excluded
+`defenderLineLocalX` still measures run depth), only the delivery target is
+flagged (`PendingPass.offside` + `offsideSpot`; no passive-offside
+modeling), the whistle blows when the flagged target TOUCHES the ball
+(`Match.giveBall` head check + won header in `tryAerial` →
+`Match.callOffside` → the existing freeKick restart at the frozen spot;
+defenders playing it first = play on), kick-ins/corners/goal kicks are
+exempt per the real law (an `offsideExempt` parameter threaded from the
+restart taker's `decideCarrier` — penalties shoot, free kicks are NOT
+exempt), off-ball attackers are HELD onside while a teammate carries the
+ball (executor-level clamp at line −0.4 that releases the instant a kick
+strips ownership — the timed run replaces camping, and stranded attackers
+drift back by the same clamp), through balls MEET THE RUN, not the hover
+(`formations.runBurstPoint`: a held runner shows ~zero velocity, so
+velocity leads collapsed — the aim projects the burst along `runTarget` at
+top speed; scoring AND `performThroughBall` both use it), carriers avoid
+CLEARLY offside mates but gamble on tight ones (the +2.2m scoring margin
+vs the referee's +0.2m — see failure mode 17: with perfect information
+nobody ever passed to a flagged man and organic offsides measured ZERO),
+and the back line steps up (DF base spot −26 → −20) because offside
+finally makes a high line safe — the economy landed at ~2.8 goals, ~2.1
+offsides, ~19 through balls/match with saveP 0.66 compensating for the
+dead point-blank chances (phase 29).
+193 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
-tags `phase-10`…`phase-27` are known-green checkpoints; source at
+tags `phase-10`…`phase-29` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
 https://quarkgluonmixture.github.io/evofootball-arena/ (GitHub Pages,
 auto-deployed by `.github/workflows/pages.yml` — npm ci + full tests +
@@ -546,12 +574,26 @@ only caught by eyes on the PNGs.
     changes dwarf execution-noise changes — completion stayed pinned at
     64–68% through large noise trims because WHICH passes get attempted
     (risk selection) dominates how accurately they're struck.
+17. **A perfect-information sim never breaks a rule by accident — if a law
+    needs a violation rate, model the imperfection explicitly.** Phase 29's
+    first cut judged offside at kick time and penalized passing to flagged
+    teammates — and organic offsides measured ZERO across 48 matches:
+    decision and kick happen in the same tick with the same positions, so
+    the AI simply never chose the illegal ball. Real offsides are timing
+    errors at the MARGIN. The fix is an honesty gap: the referee judges at
+    line +0.2m but carriers only avoid targets beyond +2.2m — the band
+    between is where they back their judgment, and where every organic flag
+    comes from (a runner who broke on the previous kick and hasn't checked
+    back level yet). If a rule's violation rate is a product number, find
+    where perfect information erases it before tuning anything else.
 
 ## 11. Known tuning levers
 
 | Goal | Lever |
 |---|---|
-| Goals per match (~3.5 since Phase 28.1 traded the keeper-robbery goals for cleaner football) | `mechanics.tryKeeperSave` saveP base (0.72 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.05; shot `spread` (base 0.029); `aimMargin` base 1.42; xG curve `exp(-d/10)`; shoot gate `dGoal < 30` — see failure mode 16 before touching these |
+| Goals per match (~2.8 since Phase 29 — offside killed the point-blank camped chances; 28.1 had traded the keeper-robbery goals the same way) | `mechanics.tryKeeperSave` saveP base (0.66 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.05; shot `spread` (base 0.029); `aimMargin` base 1.5; xG curve `exp(-d/10)`; shoot gate `dGoal < 30`; DF base spot height (−20, Phase 29 — the line lever moves goals ~0.1/m) — see failure mode 16 before touching these |
+| Offside rate (~2.1/match) | carrier gamble margin (+2.2m) vs referee epsilon (+0.2m) in `decideCarrier`/`offsideAtKick` — the gap IS the rate (failure mode 17); executor hold offset (line −0.4); DF base spot height (higher line = more flags) |
+| Timed-run conversion | `runBurstPoint` projection (top speed ×1.1 burst); through-ball pace (d·0.55+8.5, cap 21) in `performThroughBall`; `throughBehindW` 0.52 |
 | Forced-error rate (~10 miscontrols/match) | `touchFailChance` coefficients in `mechanics.attemptFirstTouch` (speed/pressure/blind-side vs technique) |
 | Forward urgency / anti-recycling | territory clock in `Match.step` (progress +1.5m resets, 0.35 m/s mark decay) + `stagnation = (staleTime−3)/5` tilt multipliers in `decideCarrier` |
 | Body-orientation feel | `TURN_RATE` (6.5 rad/s) in `Player.ts`; `orientationNoiseMul/PowerMul` slopes; decision-side misalign penalties (pass 0.12, shot 0.3) in `decideCarrier` |

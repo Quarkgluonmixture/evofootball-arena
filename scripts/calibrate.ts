@@ -24,6 +24,7 @@ let longBalls = 0;
 let miscontrols = 0;
 let saves = 0;
 let fouls = 0;
+let offsides = 0;
 let penalties = 0;
 let yellows = 0;
 let reds = 0;
@@ -54,6 +55,7 @@ for (let s = 0; s < SEASONS; s++) {
       miscontrols += st.miscontrols;
       saves += st.saves;
       fouls += st.fouls;
+      offsides += st.offsides;
       penalties += st.penalties;
       yellows += st.yellows;
       reds += st.reds;
@@ -78,6 +80,7 @@ console.log(`aerial/match:       crosses ${per(crosses)}, headers won ${per(head
 console.log(`miscontrols/match:  ${per(miscontrols)}`);
 console.log(`saves/match:        ${per(saves)}`);
 console.log(`fouls/match:        ${per(fouls)}  (penalties: ${per(penalties)})`);
+console.log(`offsides/match:     ${per(offsides)}`);
 console.log(`cards/match:        ${per(yellows)} 🟨  ${per(reds)} 🟥`);
 console.log(`tackles/match:      ${per(tackles)}`);
 console.log(`interceptions/match:${per(interceptions)}`);

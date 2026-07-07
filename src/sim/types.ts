@@ -128,7 +128,7 @@ export const DEFAULT_POLICY: PolicyParams = {
   runScore: 0.95,
   throughBase: 0.22,
   throughOpenW: 0.35,
-  throughBehindW: 0.45,
+  throughBehindW: 0.52,
   crossBase: 0.26,
   crossBoxW: 0.5,
   loftBase: 0.14,
@@ -231,6 +231,8 @@ export interface TeamMatchStats {
   corners: number;
   /** Fouls committed — each hands the opponents a free kick or penalty. */
   fouls: number;
+  /** Offside flags against this team (Phase 29) — free kick to the opponents. */
+  offsides: number;
   /** Penalties won (fouled inside the opponents' box). */
   penalties: number;
   /** Bookings picked up (a second yellow counts here AND as a red). */
@@ -263,6 +265,7 @@ export const emptyStats = (): TeamMatchStats => ({
   dribbles: 0,
   corners: 0,
   fouls: 0,
+  offsides: 0,
   penalties: 0,
   yellows: 0,
   reds: 0,

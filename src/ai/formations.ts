@@ -15,9 +15,12 @@ import type { Role, TeamMode } from '../sim/types';
 // Lanes are deliberately separated (Phase 27.1): with DF/MF/ST all within
 // ~7m of the center line, BOTH teams' spines stacked into one central
 // corridor and open play collapsed into a six-player chase around the ball.
+// The DF spot stepped up -26 → -23 in Phase 29: with offside real, a back
+// line that dares to hold higher compresses the game — and the space it
+// leaves BEHIND is what timed runs (and sweeping keepers) now contest.
 const BASE_SPOTS: Record<Role, V2> = {
   GK: v2(-41, 0),
-  DF: v2(-26, -5),
+  DF: v2(-20, -5),
   MF: v2(-11, -12),
   WG: v2(-7, 17),
   ST: v2(5, 4),
@@ -88,10 +91,36 @@ export function defenderLineLocalX(team: Team, opponents: Player[]): number {
 }
 
 /**
+ * The OFFSIDE line in `team`-local x (Phase 29): the second-last opponent
+ * COUNTING the keeper (the real law — usually the last outfield defender,
+ * because the keeper is the last man), or the ball itself if it's deeper,
+ * floored at halfway (you cannot be offside in your own half). An attacker
+ * ahead of this line when a teammate strikes the ball is in an offside
+ * position; level is onside (callers add their own epsilon).
+ */
+export function offsideLineLocalX(team: Team, opponents: Player[], ballLocalX: number): number {
+  let last = -HALF_L;
+  let secondLast = -HALF_L;
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    const lx = team.localX(o.pos.x);
+    if (lx > last) {
+      secondLast = last;
+      last = lx;
+    } else if (lx > secondLast) {
+      secondLast = lx;
+    }
+  }
+  return Math.max(secondLast, ballLocalX, 0);
+}
+
+/**
  * Where an assigned runner sprints: past the last defender's shoulder,
  * angling into the channel toward goal. Clamped short of the keeper's box so
- * runs stretch the defence without parking on the goal line (there is no
- * offside — the keeper's sweeping range and marking are the counterweight).
+ * runs stretch the defence without parking on the goal line. The target aims
+ * BEYOND the line on purpose — while a teammate still carries the ball the
+ * executor holds the run at the offside line (Phase 29), and the instant the
+ * kick is struck the clamp releases and this target is the burst in behind.
  */
 export function runTarget(p: Player, team: Team, opponents: Player[]): V2 {
   const line = defenderLineLocalX(team, opponents);
@@ -100,6 +129,29 @@ export function runTarget(p: Player, team: Team, opponents: Player[]): V2 {
   // Narrow toward the goal mouth as the run goes deeper, keeping the lane.
   const y = clamp(p.pos.y * 0.6, -HALF_W + 4, HALF_W - 4);
   return v2(targetLocalX * team.attackDir, y);
+}
+
+/**
+ * Where a through ball should MEET a runner (Phase 29). A runner already in
+ * stride is led by their velocity, like any pass. But a runner HELD at the
+ * offside line hovers with near-zero velocity — leading by velocity would
+ * put the ball at their feet ON the line, exactly the ball the line exists
+ * to kill. The pass anticipates the break instead: it projects the burst
+ * along the run target at the runner's top speed, and the runner breaks the
+ * instant the kick releases the onside hold. Judgment stays honest — the
+ * flag is judged on where the runner STANDS at the kick, not the aim point.
+ */
+export function runBurstPoint(p: Player, team: Team, opponents: Player[], flight: number): V2 {
+  const speed = Math.hypot(p.vel.x, p.vel.y);
+  if (speed > 3) {
+    return v2(p.pos.x + p.vel.x * flight * 1.6, p.pos.y + p.vel.y * flight * 1.6);
+  }
+  const rt = runTarget(p, team, opponents);
+  const dx = rt.x - p.pos.x;
+  const dy = rt.y - p.pos.y;
+  const d = Math.hypot(dx, dy) || 1;
+  const burst = Math.min(d, p.topSpeed * flight * 1.1);
+  return v2(p.pos.x + (dx / d) * burst, p.pos.y + (dy / d) * burst);
 }
 
 /**

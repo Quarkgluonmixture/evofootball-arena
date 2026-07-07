@@ -77,7 +77,11 @@ describe('tactical genes influence behavior', () => {
     shooter.shootBias = 0.95;
     const shy = neutral();
     shy.shootBias = 0.05;
-    const [a, b] = totals(shooter, shy, SEEDS);
+    // Wider pool than the file default (Phase 29): headers, breakaway
+    // finishes and the long-shot dig all produce shots outside the
+    // shootBias gate now, so the gene's margin needs more matches to clear
+    // the seed noise (§10.5 — the effect is real, the 6-seed pool wasn't).
+    const [a, b] = totals(shooter, shy, [...SEEDS, 5150, 2718, 4242, 9001, 123, 456]);
     expect(a.shots).toBeGreaterThan(b.shots);
   });
 

@@ -3,7 +3,7 @@ import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
-import { formationSpot, runTarget, supportSpot } from './formations';
+import { formationSpot, offsideLineLocalX, runTarget, supportSpot } from './formations';
 import { interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
 
@@ -167,6 +167,17 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       speedF = 0.9;
       break;
     }
+  }
+
+  // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
+  // attackers never target a spot beyond the offside line — runs hold at the
+  // second-last defender's shoulder and break the instant the kick is struck
+  // (a ball in flight has no owner, so the hold releases by itself). This is
+  // also how attackers stranded beyond the line drift back onside.
+  const carrier = ball.owner;
+  if (target && carrier && carrier !== p && carrier.side === p.side && p.role !== 'GK') {
+    const holdX = offsideLineLocalX(team, opp.players, team.localX(ball.pos.x)) - 0.4;
+    if (team.localX(target.x) > holdX) target = { x: holdX * team.attackDir, y: target.y };
   }
 
   // arrive/scale return fresh vectors, so accumulating into `desired` in place

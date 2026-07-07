@@ -3,6 +3,7 @@ import {
   add, closestPointOnSegment, dist, dot, fromAngle, len, norm, rotate, scale, sub, v2, type V2,
 } from '../utils/vec';
 import { opennessOf, pressureAt } from '../ai/perception';
+import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
   BOX_DEPTH, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W, HEADER_MAX_HEIGHT,
   HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
@@ -85,6 +86,38 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   return false;
 }
 
+/**
+ * Offside judgment, frozen at kick time (Phase 29): is `target` in an
+ * offside position right now, as `passer` strikes the ball? Opponent half
+ * only; the line is the second-last defender counting the keeper, or the
+ * ball (the passer) if deeper; level is onside (0.2m epsilon).
+ */
+function offsideAtKick(match: Match, passer: Player, target: Player): boolean {
+  const team = match.teams[passer.side];
+  const tx = team.localX(target.pos.x);
+  if (tx <= 0) return false; // own half — never offside
+  const line = offsideLineLocalX(team, match.teams[1 - passer.side].players, team.localX(passer.pos.x));
+  return tx > line + 0.2;
+}
+
+/**
+ * The single funnel for pass bookkeeping (Phase 29): every delivery that
+ * names a target registers here, so the offside flag is judged exactly once,
+ * at kick time. `exempt` = the real-law dead-ball exemptions (kick-ins,
+ * corners, goal kicks — passed down from the restart taker's decision).
+ */
+function registerPass(match: Match, passer: Player, target: Player, exempt: boolean): void {
+  const offside = !exempt && offsideAtKick(match, passer, target);
+  match.pendingPass = {
+    side: passer.side,
+    passerGid: passer.gid,
+    targetGid: target.gid,
+    t: match.simTime,
+    offside,
+    offsideSpot: offside ? v2(target.pos.x, target.pos.y) : null,
+  };
+}
+
 /** xG-like chance quality: distance falloff · central angle · pressure. */
 export function shotQuality(match: Match, p: Player): number {
   const team = match.teams[p.side];
@@ -95,7 +128,7 @@ export function shotQuality(match: Match, p: Player): number {
   return clamp(0.85 * Math.exp(-d / 10) * central * (1 - pressure * 0.3), 0.01, 0.8);
 }
 
-export function performPass(match: Match, passer: Player, mate: Player): void {
+export function performPass(match: Match, passer: Player, mate: Player, offsideExempt = false): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
@@ -126,7 +159,7 @@ export function performPass(match: Match, passer: Player, mate: Player): void {
   match.kickBall(passer, dir, speed);
   team.stats.passes++;
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
-  match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: mate.gid, t: match.simTime };
+  registerPass(match, passer, mate, offsideExempt);
 }
 
 /**
@@ -137,7 +170,9 @@ export function performPass(match: Match, passer: Player, mate: Player): void {
  * over the defensive line instead — slower to arrive and harder to take down,
  * but nothing on the ground can cut it out.
  */
-export function performThroughBall(match: Match, passer: Player, runner: Player, lofted = false): void {
+export function performThroughBall(
+  match: Match, passer: Player, runner: Player, lofted = false, offsideExempt = false,
+): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
@@ -147,16 +182,23 @@ export function performThroughBall(match: Match, passer: Player, runner: Player,
   const misalign = kickMisalignment(passer, norm(sub(runner.pos, passer.pos)));
   const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
 
+  // Meet the run, not the hover (Phase 29): a runner held at the offside
+  // line has ~zero velocity — the delivery projects the burst they make the
+  // moment this kick releases the hold, instead of dropping at their feet.
+  const oppPlayers = match.teams[1 - passer.side].players;
   if (lofted) {
     const flight0 = clamp(0.55 + dist(passer.pos, runner.pos) * 0.045, 0.8, 2.0);
-    const lead = add(runner.pos, scale(runner.vel, flight0 * 1.35));
+    const lead = runBurstPoint(runner, team, oppPlayers, flight0 * 0.85);
     loftKick(match, passer, lead, 0.55, 0.045, 0.8, 2.0, 1.0);
     team.stats.longBalls++; // a chip is a lofted long ball too
   } else {
     const flight = dist(passer.pos, runner.pos) / (18 * powerMul);
-    const lead = add(runner.pos, scale(runner.vel, flight * 1.6));
+    const lead = runBurstPoint(runner, team, oppPlayers, flight);
     const d = dist(passer.pos, lead);
-    const speed = clamp(d * 0.6 + 9, 10, 24) * powerMul;
+    // A touch softer since Phase 29: the ball is played into SPACE for a
+    // runner arriving at a sprint — friction kills it into the path, and a
+    // pace the runner can actually take down is what converts timed runs.
+    const speed = clamp(d * 0.55 + 8.5, 10, 21) * powerMul;
 
     const pressure = pressureAt(passer.pos, opp.players);
     const aim = norm(sub(lead, passer.pos));
@@ -173,7 +215,7 @@ export function performThroughBall(match: Match, passer: Player, runner: Player,
   team.stats.passes++;
   team.stats.throughBalls++;
   if (team.localX(runner.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
-  match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: runner.gid, t: match.simTime };
+  registerPass(match, passer, runner, offsideExempt);
 }
 
 /* ------------------------------------------------------------------ */
@@ -219,7 +261,7 @@ function loftKick(
  * the danger area rather than at a standing man's feet. Resolved in the air:
  * keeper claim or header contest (tryAerial), not a ground reception.
  */
-export function performCross(match: Match, crosser: Player, target: Player): void {
+export function performCross(match: Match, crosser: Player, target: Player, offsideExempt = false): void {
   if (match.ball.owner !== crosser || crosser.kickCooldown > 0) return;
   const team = match.teams[crosser.side];
   const flight0 = clamp(0.5 + dist(crosser.pos, target.pos) * 0.038, 0.7, 1.7);
@@ -233,7 +275,7 @@ export function performCross(match: Match, crosser: Player, target: Player): voi
   team.stats.passes++;
   team.stats.crosses++;
   if (team.localX(target.pos.x) - team.localX(crosser.pos.x) > 2) team.stats.passesForward++;
-  match.pendingPass = { side: crosser.side, passerGid: crosser.gid, targetGid: target.gid, t: match.simTime };
+  registerPass(match, crosser, target, offsideExempt);
 }
 
 /**
@@ -249,14 +291,14 @@ export function performKeeperThrow(match: Match, gk: Player, mate: Player): void
   loftKick(match, gk, lead, 0.5, 0.03, 0.7, 1.4, 0.45);
   team.stats.passes++;
   if (team.localX(mate.pos.x) - team.localX(gk.pos.x) > 2) team.stats.passesForward++;
-  match.pendingPass = { side: gk.side, passerGid: gk.gid, targetGid: mate.gid, t: match.simTime };
+  registerPass(match, gk, mate, false); // a hand throw is regular play — offside applies
 }
 
 /**
  * Lofted switch (Phase 28): the big diagonal — a 25m+ ball over the press to
  * a receiver in space. What the 32m ground-pass penalty used to suppress.
  */
-export function performLoftedPass(match: Match, passer: Player, mate: Player): void {
+export function performLoftedPass(match: Match, passer: Player, mate: Player, offsideExempt = false): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const flight0 = clamp(0.8 + dist(passer.pos, mate.pos) * 0.045, 1.3, 2.7);
@@ -265,7 +307,7 @@ export function performLoftedPass(match: Match, passer: Player, mate: Player): v
   team.stats.passes++;
   team.stats.longBalls++;
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
-  match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: mate.gid, t: match.simTime };
+  registerPass(match, passer, mate, offsideExempt);
 }
 
 /** Aerial presence by role: centre-backs and strikers attack the ball. */
@@ -345,6 +387,14 @@ export function tryAerial(match: Match, order: Player[]): void {
     }
   }
   if (!contested || !winner) return;
+  // Offside (Phase 29): the flagged target meeting the delivery in the air
+  // IS the touch that completes the offence — whistle instead of the header.
+  const pass = match.pendingPass;
+  if (pass && pass.offside && winner.side === pass.side && winner.gid === pass.targetGid) {
+    match.pendingPass = null;
+    match.callOffside(winner, pass.offsideSpot ?? winner.pos);
+    return;
+  }
   headBall(match, winner);
 }
 
@@ -713,8 +763,11 @@ export function tryKeeperSave(match: Match): void {
   // Reflexes swing save odds by ±11 percentage points around the xG baseline;
   // the shot's frozen dive difficulty then discounts it — accurate corner
   // finishes stay hard to save even though the keeper converges on the path.
+  // 0.70 → 0.66 in Phase 29: offside removed the point-blank chances camped
+  // runners used to feast on, so the shots that remain convert a little
+  // better — same watchability trade as 28.1's keeper-economy pass.
   const saveP =
-    clamp(0.70 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+    clamp(0.66 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;
