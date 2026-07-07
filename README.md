@@ -30,7 +30,7 @@ npm install
 npm run dev        # then open the printed URL (usually http://localhost:5173)
 ```
 
-Press **1×** to watch the first match, or **Season** to fast-sim one. Your
+The first match plays on load — or press **Season** to fast-sim one. Your
 league auto-saves in the browser (localStorage) after every season.
 
 For a production build:
@@ -77,8 +77,10 @@ npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shoot
 
 ## How to play (watch)
 
-- **Speed controls** (left panel): pause / 1× / 2× / 8× / 32×, plus **⏭ skip**
-  to finish the current match instantly (identical result — see Determinism).
+- **Match control** (left panel): a big **⏸ pause / ▶ play** toggle plus
+  **⏭ skip** to finish the current match instantly (identical result — see
+  Determinism). The old 1×–32× preset row is gone (Phase 29.1): watching is
+  real time, and anything faster is a skip or a headless simulate button.
 - **The app boots in the 3D view** (Phase 27.5); switch to 2D anytime with
   the view buttons. Where WebGL is unavailable it falls back to 2D with a
   notice in the feed.
@@ -177,12 +179,17 @@ scripts/                headless calibration, evolution & wildcard-training tool
   walks over, opponents are held 6 m off the ball while both teams reshape,
   and the first touch must be a kick. Everything is deterministic — no
   restart randomness beyond the usual seeded kick mechanics.
-- **Fouls (Phase 20, advantage since 27.2):** a failed tackle is sometimes a
-  **foul** (seeded roll; aggressive-marking sides give more away). Outside
-  the box the referee plays **advantage** — the only foul this sim produces
-  is a failed tackle, so the carrier kept the ball and a whistle would only
-  punish the attackers: play continues, the foul is counted and can still
-  draw a card. A foul inside the offender's own box is still a **PENALTY**:
+- **Fouls (Phase 20, advantage since 27.2, professional fouls since 29.1):**
+  a failed tackle is sometimes a **foul** (seeded roll; aggressive-marking
+  sides give more away). Outside the box the referee plays **advantage** —
+  the carrier kept the ball, so the whistle would only punish the attackers:
+  play continues, the foul is counted and can still draw a card. The
+  exception is the **professional foul** (Phase 29.1): a beaten defender
+  chasing a breakaway — nobody but the keeper goal-side — hauls the carrier
+  down from behind; the move dies, so play STOPS with a free kick, a
+  near-automatic booking, and the occasional straight red for the last man.
+  Pace still wins the race: a runner clear by more than arm's reach can't be
+  caught. A foul inside the offender's own box is still a **PENALTY**:
   the fouled team's best finisher steps up against the keeper from the drawn
   spot (9.4 m), everyone else held 8 m clear, and the first touch is the
   shot. ~3.8 fouls and ~0.08 penalties per match at current tuning.
@@ -528,23 +535,26 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.8 goals from ~13 shots (≈6.7 on target; keepers make **≈4.4 saves/match**
-plus smothers at a dribbler's feet and high-ball claims), ~65% pass
-completion — direct football: **~19 through balls per match** now that
-passes anticipate the timed run, **~52% of passes played forward**
+~2.4 goals from ~13.6 shots (≈6.3 on target; keepers make **≈4.3
+saves/match** plus smothers at a dribbler's feet and high-ball claims),
+~65% pass completion — direct football: **~18 through balls per match** now
+that passes anticipate the timed run, **~52% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
-sideways recycling), **≈3.2 crosses, ≈6.6 aerial duels won and ≈4.4 lofted
-long balls per match** (Phase 28), **≈2.1 offsides/match** (Phase 29 —
-tight calls on marginal runs; the stats panel counts them), **≈11.5
+sideways recycling), **≈2.5 crosses, ≈5.6 aerial duels won and ≈4.6 lofted
+long balls per match** (Phase 28), **≈1.9 offsides/match** (Phase 29 —
+tight calls on marginal runs; the stats panel counts them), **≈12
 first-touch miscontrols/match** (forced errors — pressing pays), ~2.5
 corners (**≈10% lead to a shot inside 8 s** — box-crashing runners attack
 the delivery), balanced possession, ~93% ball-in-play (the rest is live
 dead-ball time: goal kicks, corners, kick-ins, free kicks, penalties;
-**≈6 fouls play advantage since 27.2, ≈0.08 penalties/match** — offside
-decongested the box — drawing **≈1.2 yellows and ≈0.11 reds** per match —
-Phase 25), ~28 ms per headless match (allocation-free hot paths + a
-precomputed intercept table — Phase 16; a 10-season fast-sim runs off the
-main thread on the sim worker).
+**≈7 fouls/match — most play advantage (27.2), but ≈1 is a professional
+foul that stops the break (29.1) — ≈0.06 penalties** — offside decongested
+the box — drawing **≈1.5 yellows and ≈0.11 reds** per match; referees
+manage the game, so a booked man gets benefit of the doubt on ordinary
+fouls while the cynical one stays near-automatic), ~29 ms per headless
+match (allocation-free
+hot paths + a precomputed intercept table — Phase 16; a 10-season fast-sim
+runs off the main thread on the sim worker).
 Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
 77% → 74%, because attacks are far more direct (shots per completed pass
 roughly doubled) and errors are real; the keeper economy was re-tuned to
@@ -558,9 +568,10 @@ the corner licensed three box-crashers, and live-play complaints drove a
 28.1 pass — a keeper now **smothers at the feet of anyone dribbling into
 their face inside the box** (and can't be bulldozed backward: keepers hold
 their ground against opponents in their own box), a keeper **holding the
-ball gets a 3 m release bubble** with at most one opponent shadowing the
-outlet (robbing every distribution was a goal factory; removing it cost
-~0.3 goals/match, deliberately traded for cleaner football and re-tuned via
+ball gets a 3 m release bubble and nobody presses it** (29.1 — the single
+outlet-shadow 28.1 kept read as a man camped in the keeper's face; robbing
+distributions had been a goal factory; removing it cost ~0.3 goals/match,
+deliberately traded for cleaner football and re-tuned via
 tackle/save economy), kick-ins and corners **breathe** (1.8–2 s of setup
 instead of instant releases), each half runs **its own stoppage time** with
 a 45+2-style clock, and the loose-ball reaction radius was tightened so
@@ -568,9 +579,13 @@ scrambles pull in fewer spectators. Phase 29's offside moved the numbers
 again, deliberately: goals ~3.2 → ~2.8 and completion 68% → 65%, because
 the point-blank chances camped runners used to feast on are illegal now —
 in exchange the defensive line steps up (DF base −26 → −20), through balls
-anticipate timed runs (~19/match), penalties fell to ~0.08 as the box
-decongested, and the save base eased to 0.66 so the chances that remain
-convert. The
+anticipate timed runs (~18/match), penalties fell as the box decongested,
+and the save/spread economy eased (saveP 0.63, spread 0.025) so the chances
+that remain convert. The 29.1 live-play pass then made defending SMARTER on
+user reports — containment jockeys, professional fouls, layered holds — and
+goals settled at ~2.4: real-football scorelines, priced in deliberately;
+the next rebalance takes play-feel, not the calibrate table, as its input.
+The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
 gap (see `npm run evolve-check`).

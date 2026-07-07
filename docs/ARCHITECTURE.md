@@ -182,8 +182,35 @@ nobody ever passed to a flagged man and organic offsides measured ZERO),
 and the back line steps up (DF base spot −26 → −20) because offside
 finally makes a high line safe — the economy landed at ~2.8 goals, ~2.1
 offsides, ~19 through balls/match with saveP 0.66 compensating for the
-dead point-blank chances (phase 29).
-193 vitest tests;
+dead point-blank chances (phase 29); then 29.1, the same-day live-play
+pass: NOBODY presses a keeper holding the ball (the 28.1 outlet-shadow
+read as a man camped in the keeper's face), restart TAKERS are never
+marked (a marker plus the chaser made two men stand uselessly at the
+corner flag), the PROFESSIONAL foul (`tryTacticalFoul` →
+`awardTacticalFoul`: a beaten defender within 1.7m BEHIND a breakaway
+carrier in the 16–34m danger band hauls them down ~1/match — play stops
+with a free kick + a booking more often than not, never in their own
+box; the user-requested counterweight to offside-era breakaways; the
+first cut fired on EVERY line break and hit 8 yellows/match — the
+danger band + rare willingness + referee game management [booked men get
+yellowP ×0.45 on ordinary fouls] brought cards back to 1.5🟨/0.11🟥),
+goal-side defenders CONTAIN an arriving carrier
+(< 8m, defensive 35m, no assignment, ONE container — the closest — and
+the jockey stands off at 2.6m instead of tackle range; the mark used to
+vanish the moment the tracked striker received the ball and the defender
+jogged away to his formation spot; each of those three qualifiers was
+paid for in calibrate cycles — unqualified contain strangled the game to
+2.0 goals), the onside hold is LAYERED by role (ST −0.4
+/ WG −0.8 / MF −1.8 — one shared depth parked every attacker plus their
+markers on a single flat strip), won tackles knock the ball 5.5–10 m/s
+clear, the keeper dive pose FREEZES its direction at dive start in both
+renderers (per-frame recompute mirror-flipped the stretch as the ball
+crossed — the save "twitch"; aerial-claim re-rolls spaced 0.9s), the
+offside free kick is labeled 🚩 offside (`RestartState.offside`, display
+only — every free kick had read as "fouls are back"), and the speed
+preset row is GONE from the UI (⏸/▶ + ⏭ only; tooling drives speed via
+`__evo.app.setSpeed`) (phase 29.1).
+197 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-29` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
@@ -599,7 +626,9 @@ only caught by eyes on the PNGs.
 | Body-orientation feel | `TURN_RATE` (6.5 rad/s) in `Player.ts`; `orientationNoiseMul/PowerMul` slopes; decision-side misalign penalties (pass 0.12, shot 0.3) in `decideCarrier` |
 | Lane anticipation | `DEFLECT_MAX_SPEED` (24) + odds in `mechanics.tryDeflection`; ball-side blend `laneW = 0.35 + aggression·0.3` in executor MarkOpponent |
 | Tackle economy | tackle base 0.21 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
-| GK release protection | `GK_HOLD_CLEARANCE` (3 m) bubble in `Match.stepBall`; single outlet-cutter chaser in `assignChasers` |
+| GK release protection | `GK_HOLD_CLEARANCE` (3 m) bubble in `Match.stepBall`; ZERO chasers on a held ball in `assignChasers` (29.1) |
+| Professional-foul rate (~1/match) | danger band 16–34m + sprint 4.5 + grab reach 1.7m behind-only, no own-box, `chance(0.06 + aggression·0.1)` (booked ×0.3) in `tryTacticalFoul`; card odds (yellow 0.52 / red 0.03) in `awardTacticalFoul`; referee game management: booked men get yellowP ×0.45 on ordinary fouls in `maybeCard` |
+| Defensive shape vs crowding | contain gates in `decideOffBall` (carrier < 14m, < 35m from own goal, unassigned only); `HOLD_DEPTH` role layering in the executor onside clamp; won-tackle squirt 5.5–10 m/s |
 | Restart pacing feel | per-kind min setup in `stepRestart` (kick-in 1.8 s, corner 2.0 s, else `RESTART_MIN_SETUP`) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
 | Corner / cross threat | box-crash count in `assignRunners` (3); cross pull-toward-goal 0.25 in `performCross`; corner cross boost ×2.4 in `decideCarrier`; `HEADER_RADIUS` |

@@ -176,6 +176,13 @@ export interface RestartState {
   timer: number;
   /** The player walking over to take it (GK for goal kicks). */
   takerGid: number;
+  /**
+   * Display only (Phase 29): this free kick is an offside award — the UI
+   * labels it 🚩 offside instead of ⚠ free kick (since 27.2 outfield fouls
+   * play advantage, so offside is the ONLY source of free kicks; without
+   * the flag every whistle read as "fouls are back").
+   */
+  offside?: boolean;
 }
 
 export type EventType =

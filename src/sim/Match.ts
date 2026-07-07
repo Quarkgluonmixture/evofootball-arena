@@ -464,6 +464,7 @@ export class Match {
         return; // untackleable, unsmotherable — hands beat everything
       }
       mech.tryTackles(this);
+      mech.tryTacticalFoul(this); // guards internally: owner may be gone
       mech.trySmother(this);
       return;
     }
@@ -608,11 +609,11 @@ export class Match {
       this.pushEvent('foul', side, `PENALTY! ${offender.name} brings down ${victim.name} in the box`);
       this.awardRestart('penalty', side, spot);
     } else {
-      // Advantage (Phase 27.2): outfield fouls no longer stop play. The only
-      // foul this sim produces is a FAILED tackle — the carrier kept the
-      // ball, so the whistle only ever interrupted the attacking team's own
-      // move. The foul still counts and still draws cards; box fouls above
-      // still concede a penalty.
+      // Advantage (Phase 27.2): failed-tackle fouls don't stop play — the
+      // carrier kept the ball, so the whistle only ever interrupted the
+      // attacking team's own move. The foul still counts and still draws
+      // cards; box fouls above still concede a penalty. (The PROFESSIONAL
+      // foul is different — the carrier goes down — see awardTacticalFoul.)
       this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — advantage`);
     }
     this.maybeCard(offender);
@@ -627,7 +628,14 @@ export class Match {
   private maybeCard(offender: Player): void {
     if (offender.role === 'GK') return;
     const team = this.teams[offender.side];
-    const yellowP = 0.16 + team.genome.markingAggression * 0.12;
+    // 0.16 → 0.12 in 29.1: professional fouls added their own near-automatic
+    // bookings, so the base rate eases to keep total cards (and second-yellow
+    // reds) at a watchable level. Referees also MANAGE the game (29.1): a
+    // player already booked gets more benefit of the doubt on ordinary
+    // fouls — without it the pro-foul bookings compounded into a red every
+    // 3–4 matches (professional fouls themselves stay near-automatic).
+    let yellowP = 0.12 + team.genome.markingAggression * 0.12;
+    if (offender.booked) yellowP *= 0.45;
     if (this.rng.chance(yellowP)) {
       team.stats.yellows++;
       if (offender.booked) {
@@ -637,7 +645,7 @@ export class Match {
         offender.booked = true;
         this.pushEvent('card', offender.side, `${offender.name} is booked`);
       }
-    } else if (this.rng.chance(0.012)) {
+    } else if (this.rng.chance(0.009)) {
       this.pushEvent('card', offender.side, `STRAIGHT RED! ${offender.name} is sent off`);
       this.sendOff(offender);
     }
@@ -671,6 +679,42 @@ export class Match {
   }
 
   /**
+   * The professional foul (Phase 29.1): a beaten defender hauls down a
+   * breakaway carrier from behind. Unlike the failed-tackle foul (advantage
+   * — the carrier KEPT the ball there), this one kills the move dead, so
+   * the whistle genuinely blows: free kick where the carrier went down, and
+   * the cynical foul is a near-automatic booking — the last man denying a
+   * clear run occasionally sees straight red.
+   */
+  awardTacticalFoul(offender: Player, victim: Player): void {
+    const team = this.teams[offender.side];
+    team.stats.fouls++;
+    this.pushEvent('foul', victim.side, `Cynical! ${offender.name} hauls down ${victim.name} on the break`);
+    victim.stunTimer = 0.8; // brought down — picks himself up as the kick is set
+    victim.kickCooldown = 0.4;
+    if (offender.role !== 'GK') {
+      if (this.rng.chance(0.03)) {
+        this.pushEvent('card', offender.side, `STRAIGHT RED! ${offender.name} is sent off for the professional foul`);
+        this.sendOff(offender);
+      } else if (this.rng.chance(0.52)) {
+        team.stats.yellows++;
+        if (offender.booked) {
+          this.pushEvent('card', offender.side, `Second yellow — ${offender.name} is SENT OFF`);
+          this.sendOff(offender);
+        } else {
+          offender.booked = true;
+          this.pushEvent('card', offender.side, `${offender.name} is booked for the cynical foul`);
+        }
+      }
+    }
+    const pos = v2(
+      Math.max(-HALF_L + 2, Math.min(HALF_L - 2, this.ball.pos.x)),
+      Math.max(-HALF_W + 1, Math.min(HALF_W - 1, this.ball.pos.y)),
+    );
+    this.awardRestart('freeKick', victim.side, pos);
+  }
+
+  /**
    * Offside whistle (Phase 29): stat against the offender's team, feed line,
    * and a free kick to the defenders where the offender stood at the kick.
    * Runs through the same free-kick restart machinery fouls use.
@@ -687,6 +731,7 @@ export class Match {
       Math.max(-HALF_W + 1, Math.min(HALF_W - 1, spot.y)),
     );
     this.awardRestart('freeKick', defSide, pos);
+    this.restart!.offside = true; // the UI labels the dead ball 🚩 offside
   }
 
   private awardRestart(kind: RestartKind, side: Side, pos: V2): void {

@@ -160,10 +160,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // from 16–30m instead of recycling forever — a stale move digs sooner.
     let dig = 0;
     if (dGoal > 16) {
+      // Pressure gate eased 0.7 → 0.5 (29.1): a containing jockey 2.6m off
+      // shouldn't extinguish the dig — shooting over the delay IS the
+      // counter to being contained (and the user wants the 20m strike).
       dig =
         W.longShotW *
         (0.3 + g.shootBias * 0.7) *
-        (1 - pressure * 0.7) *
+        (1 - pressure * 0.5) *
         (0.55 + stagnation * 0.45) *
         clamp01((30 - dGoal) / 14);
       s += dig;
@@ -661,6 +664,43 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
         score: W.markBase + g.markingAggression * 0.15,
         why: `mark ${opp.players[mark].name} · aggression ${g.markingAggression.toFixed(2)}`,
       });
+    } else if (ball.owner && ball.owner.side !== team.side && !team.chasers.has(p.index)) {
+      // Contain (Phase 29.1): the carrier bears down on ME and I'm already
+      // goal-side — jockey them (goal-side stance on the carrier) instead of
+      // jogging away to a formation spot. The reported bug: a set defender
+      // suddenly ran upfield as the striker arrived, because his mark
+      // assignment vanished the moment that striker became the carrier
+      // (marks exclude the carrier — the chaser presses the ball, but the
+      // chaser can be someone else entirely).
+      const carrier = ball.owner;
+      const dC = dist(p.pos, carrier.pos);
+      const ownGoal = team.ownGoal();
+      const carrierGoalD = dist(carrier.pos, ownGoal);
+      // Defensive-territory only (< 35m out): containing a deep build-up
+      // carrier 70m from goal would just add one more body to the press.
+      // ONE container only — the closest unassigned goal-side defender;
+      // everyone eligible jockeying at once re-created the pile-up AND
+      // strangled the game to 2.0 goals.
+      let closest = true;
+      if (dC < 8 && carrierGoalD < 35 && dist(p.pos, ownGoal) < carrierGoalD) {
+        for (const q of team.players) {
+          if (q === p || q.role === 'GK' || q.sentOff) continue;
+          if (team.chasers.has(q.index) || team.marks.has(q.index)) continue;
+          if (dist(q.pos, ownGoal) >= carrierGoalD) continue; // not goal-side
+          if (dist(q.pos, carrier.pos) < dC) {
+            closest = false;
+            break;
+          }
+        }
+        if (closest) {
+          markTarget = carrier.index;
+          cands.push({
+            action: 'MarkOpponent',
+            score: 0.66 + clamp01(1 - dC / 10) * 0.18,
+            why: `contain ${carrier.name} — hold goal-side`,
+          });
+        }
+      }
     }
     cands.push({
       action: 'MoveToFormationSpot',

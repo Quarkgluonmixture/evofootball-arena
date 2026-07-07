@@ -118,6 +118,13 @@ export class AnimationSystem {
     }
     // One-shot header jump on entering the header state (Phase 28).
     if (anim === 'header' && model.prevAnim !== 'header') model.headerT = 0;
+    // Freeze the dive side at dive START (29.1): the ball keeps moving —
+    // often straight past the keeper — and a per-frame side recompute
+    // mirror-flipped the full-stretch pose mid-dive (the save "twitch").
+    if (anim === 'gkDive' && model.prevAnim !== 'gkDive') {
+      const toBall = Math.atan2(state.ball.x - p.x, state.ball.z - p.z);
+      model.diveSide = Math.sign(Math.sin(toBall - p.yaw)) || 1;
+    }
     model.prevAnim = anim;
 
     // Run cycle phase: distance-driven so feet match ground speed.
@@ -199,9 +206,8 @@ export class AnimationSystem {
       armLz = 0.85;
       armRz = -0.85;
     } else if (anim === 'gkDive') {
-      // Full-stretch dive toward the ball's side (in the keeper's local frame).
-      const toBall = Math.atan2(state.ball.x - p.x, state.ball.z - p.z);
-      const side = Math.sign(Math.sin(toBall - p.yaw)) || 1;
+      // Full-stretch dive toward the side frozen at dive start (29.1).
+      const side = model.diveSide;
       leanZ = -side * 1.3;
       armLz = side > 0 ? 2.7 : 1.5; // top arm reaches further
       armRz = side > 0 ? -1.5 : -2.7;

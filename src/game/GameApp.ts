@@ -225,7 +225,7 @@ export class GameApp implements GameActions {
     const loaded = hasSave() ? loadLeague() : null;
     this.league = loaded ?? new League({ seed: DEFAULT_SEED });
     this.loadNextFixture();
-    this.feed.pushSystem(loaded ? '💾 Loaded saved league.' : `🌱 New league (seed ${this.league.seed}). Press 1× to watch, or simulate a season.`);
+    this.feed.pushSystem(loaded ? '💾 Loaded saved league.' : `🌱 New league (seed ${this.league.seed}). Watch the match, or simulate a season.`);
     this.left.setSpeedUI(this.paused, this.speed);
 
     this.app.ticker.add((t) => this.frame(t));

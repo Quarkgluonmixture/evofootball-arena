@@ -338,7 +338,10 @@ export function tryAerial(match: Match, order: Player[]): void {
     const dx = gk.pos.x - ball.pos.x;
     const dy = gk.pos.y - ball.pos.y;
     if (dx * dx + dy * dy > 1.9 * 1.9) continue;
-    gk.tackleCooldown = 0.5; // committed to the jump either way (pickup stays free)
+    // Committed to the jump either way (pickup stays free). 0.5 → 0.9 in
+    // 29.1: a ball hanging/bouncing through the claim band re-rolled every
+    // half second, and the restarting dive pose read as convulsions.
+    gk.tackleCooldown = 0.9;
     gk.saveAnimTimer = 0.6;
     const crowd = pressureAt(gk.pos, match.teams[1 - gk.side].players);
     const pClaim = clamp(0.62 + (gk.attrs.reflexes - 0.5) * 0.5 - crowd * 0.3, 0.2, 0.9);
@@ -371,8 +374,11 @@ export function tryAerial(match: Match, order: Player[]): void {
     if (d2 > HEADER_RADIUS * HEADER_RADIUS) continue;
     // Position + aerial sense + a seeded jump-timing roll pick the winner.
     // Attackers meeting a delivery in the opponent box arrive with momentum
-    // — a real edge over the defender jumping from a standing start.
-    const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.12 : 0;
+    // — a real edge over the defender jumping from a standing start. Raised
+    // 0.12 → 0.2 in 29.1: un-marking the corner taker freed a defender to
+    // mark in the box (3v3, everyone tracked) and corner threat collapsed
+    // to 3.5% — the crasher's running jump is what beats a set marker.
+    const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.2 : 0;
     const s =
       aerialSense(p) +
       attacking +
@@ -546,8 +552,12 @@ export function performShot(match: Match, shooter: Player): void {
   // Long-range and pressured shots spray more; finishers spray less. A shot
   // snatched against the body's facing (Phase 27) sprays more and loses power.
   const misalign = kickMisalignment(shooter, aim);
+  // Spread base 0.029 → 0.025 in 29.1: contain puts a body near every
+  // shooter now, and the pressure term alone dropped on-target share to
+  // ~43% — tighter base grouping keeps shots honest without touching the
+  // pressure physics (failure mode 16: aim/spread beat reach/saveP here).
   const spread =
-    (0.029 + d * 0.0028 + pressure * 0.05) *
+    (0.025 + d * 0.0028 + pressure * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
     (oneVone ? 0.8 : 1) *
     orientationNoiseMul(misalign, shooter.attrs.technique);
@@ -674,6 +684,65 @@ export function trySmother(match: Match): void {
 }
 
 /**
+ * The professional foul (Phase 29.1): a breakaway carrier has beaten the
+ * field — nobody but the keeper goal-side — and a chasing defender close
+ * enough to reach the shirt but not the ball hauls them down from behind.
+ * Play stops (the carrier does NOT keep the ball, so the advantage rule
+ * cannot apply): free kick + a near-automatic card via `awardTacticalFoul`.
+ * Never in the defender's own box — professionals concede the free kick,
+ * not the penalty. This is the counterweight to offside-era breakaways
+ * where the chasing pack could only eat exhaust fumes: pace still wins the
+ * race (a >1.7m gap is uncatchable), but a caught runner gets fouled.
+ */
+export function tryTacticalFoul(match: Match): void {
+  const owner = match.ball.owner;
+  if (!owner || owner.gkHoldTimer > 0) return;
+  const attTeam = match.teams[owner.side];
+  const defTeam = match.teams[1 - owner.side];
+  const goal = attTeam.oppGoal();
+  const dGoal = dist(owner.pos, goal);
+  // Only DESPERATE territory: the carrier is bearing down on the edge of
+  // the danger zone (16–34m out — inside is the box/keeper duel, further
+  // out the defence still trusts the recovery). The high offside line
+  // makes "nobody goal-side" routine, so without this band every line
+  // break got hauled down and cards hit 8/match.
+  if (dGoal < 16 || dGoal > 34) return;
+  // Only a genuine breakaway: carrier at a real sprint, driving at goal.
+  if (len(owner.vel) < 4.5) return;
+  if (dot(owner.vel, sub(goal, owner.pos)) <= 0) return;
+  if (match.inPenaltyBox(match.ball.pos, defTeam.side)) return;
+  for (const o of defTeam.players) {
+    if (o.role === 'GK' || o.sentOff) continue;
+    if (dist(o.pos, goal) < dGoal - 1) return; // covered — let the race run
+  }
+  // The nearest ready chaser in grab range BEHIND the carrier (a defender
+  // in FRONT can still play the ball honestly — that's tryTackles' job).
+  let grabber: Player | null = null;
+  let best = Infinity;
+  for (const o of defTeam.players) {
+    if (o.role === 'GK' || o.sentOff || o.tackleCooldown > 0 || o.stunTimer > 0) continue;
+    const d = dist(o.pos, owner.pos);
+    if (d > 1.7) continue;
+    const bx = o.pos.x - owner.pos.x;
+    const by = o.pos.y - owner.pos.y;
+    if (bx * owner.vel.x + by * owner.vel.y > 0) continue;
+    if (d < best) {
+      best = d;
+      grabber = o;
+    }
+  }
+  if (!grabber) return;
+  grabber.tackleCooldown = 2.0; // committed either way — one grab per chase, not spam
+  // Cynicism is RARE (~1/match), aggression-flavored, and a booked man keeps
+  // his hands to himself (the second yellow is the whole deterrent).
+  let p = 0.06 + defTeam.genome.markingAggression * 0.1;
+  if (grabber.booked) p *= 0.3;
+  if (!match.rng.chance(p)) return;
+  grabber.tackleAnimTimer = 0.4;
+  match.awardTacticalFoul(grabber, owner);
+}
+
+/**
  * Tackling: the nearest ready opponent within reach of a dribbler attempts to
  * win the ball. Success odds: markingAggression helps the tackler, the
  * carrier's dribbleBias (close control) protects them. A failed tackle puts
@@ -718,9 +787,11 @@ export function tryTackles(match: Match): void {
     // No feed event — tackles are too frequent to narrate; stats + debug show them.
     ball.owner = null;
     ball.lastTouch = tackler;
-    // The won ball travels (Phase 28.4): a real tackle knocks it CLEAR of
-    // the boot zone — short squirts re-fed the same scramble endlessly.
-    ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(4.5, 8.5));
+    // The won ball travels (Phase 28.4, further in 29.1): a real tackle
+    // knocks it CLEAR of the boot zone — short squirts re-fed the same
+    // scramble endlessly, and the offside-compressed midfield made every
+    // re-contest pull in more bodies.
+    ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(5.5, 10));
     owner.kickCooldown = 0.3;
     owner.stunTimer = 0.6; // dispossessed: stumble before rejoining play (Phase 27)
     tackler.tackleCooldown = 0.5;
@@ -763,11 +834,12 @@ export function tryKeeperSave(match: Match): void {
   // Reflexes swing save odds by ±11 percentage points around the xG baseline;
   // the shot's frozen dive difficulty then discounts it — accurate corner
   // finishes stay hard to save even though the keeper converges on the path.
-  // 0.70 → 0.66 in Phase 29: offside removed the point-blank chances camped
-  // runners used to feast on, so the shots that remain convert a little
-  // better — same watchability trade as 28.1's keeper-economy pass.
+  // 0.70 → 0.66 in Phase 29, → 0.63 in 29.1: offside killed the point-blank
+  // chances and the 29.1 defensive pass (contain, professional fouls) took
+  // another bite — the shots that remain convert better so football stays
+  // watchable. Same trade as 28.1's keeper-economy pass.
   const saveP =
-    clamp(0.66 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+    clamp(0.63 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;

@@ -6,6 +6,7 @@ import { decidePlayer } from '../src/ai/PlayerBrain';
 import { Match } from '../src/sim/Match';
 import {
   kickMisalignment, orientationNoiseMul, orientationPowerMul, touchFailChance, trySmother,
+  tryTacticalFoul,
 } from '../src/sim/mechanics';
 import { Player, TURN_RATE } from '../src/sim/Player';
 import { DT, GK_HOLD_CLEARANCE } from '../src/sim/constants';
@@ -183,10 +184,11 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     for (const o of m.teams[1].players) {
       expect(dist(o.pos, gk.pos)).toBeGreaterThan(GK_HOLD_CLEARANCE - 0.5);
     }
-    // And the opposing brain drops the swarm: at most ONE outlet-cutter
-    // shadows the release from the bubble's edge.
+    // And the opposing brain drops the press entirely (29.1): the 28.1
+    // outlet-cutter read as a man camped in the keeper's face — a held
+    // ball is unchallengeable, so NOBODY chases it.
     for (let i = 0; i < 6 && gk.gkHoldTimer > 0; i++) m.step(DT);
-    expect(m.teams[1].chasers.size).toBeLessThanOrEqual(1);
+    expect(m.teams[1].chasers.size).toBe(0);
   });
 
   it('a keeper who held the ball throws it out — never a panic hoof (28.3)', { timeout: 30000 }, () => {
@@ -272,6 +274,86 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
       expect(m.teams[0].chasers.size).toBe(0);
       m.step(DT);
     }
+  });
+
+  it('a beaten defender hauls down the breakaway: free kick to the attacker + cards (29.1)', () => {
+    let fouls = 0;
+    let cards = 0;
+    for (let seed = 1; seed <= 64; seed++) {
+      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+      while (m.phase !== 'playing') m.step(DT);
+      const striker = m.teams[0].players[4];
+      const chaser = m.teams[1].players[1];
+      // Breakaway into the danger band (16–34m from goal): everyone else
+      // behind the ball, the chaser hanging on the shoulder — from BEHIND.
+      for (const p of m.teams[1].players) {
+        if (p.role !== 'GK') p.pos = { x: -10, y: p.index * 6 - 12 };
+      }
+      striker.pos = { x: 16, y: 0 };
+      striker.vel = { x: 7, y: 0 };
+      m.ball.owner = striker;
+      m.ball.pos = { x: 16.8, y: 0 };
+      m.possessionSide = 0;
+      chaser.pos = { x: 14.9, y: 0.3 };
+      chaser.vel = { x: 7.5, y: 0 };
+      chaser.tackleCooldown = 0;
+      chaser.stunTimer = 0;
+      const cardsBefore = m.teams[1].stats.yellows + m.teams[1].stats.reds;
+      tryTacticalFoul(m);
+      if ((m.phase as string) === 'restart') { // step() mutates phase — dodge TS narrowing
+        fouls++;
+        expect(m.restart!.kind).toBe('freeKick');
+        expect(m.restart!.side).toBe(0); // the fouled team's kick
+        expect(m.restart!.offside).toBeUndefined(); // labeled ⚠ free kick, not 🚩
+        if (m.teams[1].stats.yellows + m.teams[1].stats.reds > cardsBefore) cards++;
+      } else {
+        expect(chaser.tackleCooldown).toBeGreaterThan(0); // let off — but committed
+      }
+    }
+    // Cynicism is deliberately RARE (p≈0.11 per grab at neutral aggression —
+    // the first cut fired on every line break and cards hit 8/match).
+    expect(fouls).toBeGreaterThan(0);
+    expect(fouls).toBeLessThan(30);
+    expect(cards).toBeGreaterThan(0); // the professional foul gets punished
+  });
+
+  it('no professional foul inside the defender\'s own box — that would be the penalty (29.1)', () => {
+    const m = new Match({ seed: 5, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    const striker = m.teams[0].players[4];
+    const chaser = m.teams[1].players[1];
+    for (const p of m.teams[1].players) {
+      if (p.role !== 'GK') p.pos = { x: -10, y: p.index * 6 - 12 };
+    }
+    striker.pos = { x: 34, y: 0 }; // inside team 1's box (depth 14 from x=45)
+    striker.vel = { x: 7, y: 0 };
+    m.ball.owner = striker;
+    m.ball.pos = { x: 34.8, y: 0 };
+    m.possessionSide = 0;
+    chaser.pos = { x: 32.9, y: 0.3 };
+    chaser.vel = { x: 7.5, y: 0 };
+    chaser.tackleCooldown = 0;
+    tryTacticalFoul(m);
+    expect(m.phase).toBe('playing'); // professionals concede kicks, not penalties
+  });
+
+  it('a goal-side defender contains an arriving carrier instead of jogging upfield (29.1)', () => {
+    const m = new Match({ seed: 7, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    const carrier = m.teams[0].players[4];
+    carrier.pos = { x: 20, y: 0 }; // 25m from team 1's goal — defensive territory
+    m.ball.owner = carrier;
+    m.ball.pos = { x: 20.8, y: 0 };
+    m.possessionSide = 0;
+    const df = m.teams[1].players[1];
+    df.pos = { x: 26, y: 1 }; // set, goal-side, waiting — the reported scene
+    m.teams[1].marks.clear();
+    m.teams[1].chasers.clear();
+    m.teams[1].chasers.add(m.teams[1].players[2].index); // the presser is someone else
+    m.pendingPass = null;
+    decidePlayer(df, m);
+    expect(df.action.type).toBe('MarkOpponent'); // jockey — NOT MoveToFormationSpot
+    expect(df.action.targetIdx).toBe(carrier.index);
   });
 
   it('halves end at a safe break inside their own stoppage windows (27.4/28.1)', () => {

@@ -3,6 +3,7 @@ import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
+import type { Role } from '../sim/types';
 import { formationSpot, offsideLineLocalX, runTarget, supportSpot } from './formations';
 import { interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
@@ -56,7 +57,10 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
         // Goal-side AND ball-side (Phase 27): the stance blends "between my
         // man and our goal" with "between my man and the ball", so markers
         // shadow the passing lane and anticipated balls can be cut out.
-        const markDist = 2.6 - g.markingAggression * 1.8;
+        // Containing the CARRIER (29.1) stands off at 2.6m — jockey and
+        // delay; closing to tackle range turned every contain into a bonus
+        // tackler and strangled scoring (tackles +3/match).
+        const markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.8;
         const goal = team.ownGoal();
         const gx = goal.x - mark.pos.x;
         const gy = goal.y - mark.pos.y;
@@ -173,10 +177,15 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck
   // (a ball in flight has no owner, so the hold releases by itself). This is
-  // also how attackers stranded beyond the line drift back onside.
+  // also how attackers stranded beyond the line drift back onside. The hold
+  // depth is LAYERED by role (29.1): one shared depth parked every attacker
+  // on the same flat strip, their markers interleaved on it, and the band
+  // read as a single blob — the striker toes the line, wingers and mids
+  // stagger behind like a real attacking shape.
   const carrier = ball.owner;
   if (target && carrier && carrier !== p && carrier.side === p.side && p.role !== 'GK') {
-    const holdX = offsideLineLocalX(team, opp.players, team.localX(ball.pos.x)) - 0.4;
+    const holdX =
+      offsideLineLocalX(team, opp.players, team.localX(ball.pos.x)) - HOLD_DEPTH[p.role];
     if (team.localX(target.x) > holdX) target = { x: holdX * team.attackDir, y: target.y };
   }
 
@@ -197,6 +206,10 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
 
   p.desiredVel = desired;
 }
+
+/** Onside hold depth below the line, by role (29.1) — layers the shape.
+ * Kept shallow: −2.6/−1.2 visibly staggered but cost too many arrivals. */
+const HOLD_DEPTH: Record<Role, number> = { GK: 0, DF: 3.0, MF: 1.8, WG: 0.8, ST: 0.4 };
 
 /** Dribble toward goal, bending away from the nearest defender ahead. */
 function dribbleTarget(p: Player, match: Match): V2 {

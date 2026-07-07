@@ -109,15 +109,18 @@ function assignChasers(team: Team, match: Match): void {
   const possession = match.possessionSide;
   const weOwn = possession === team.side;
   if (weOwn) return; // no chasing our own carrier
-  // The opposing keeper has it in their HANDS (Phase 28.1): unchallengeable,
-  // so swarming them is wasted legs — ONE presser shadows the release from
-  // the clearance bubble's edge (cutting the short outlet, futsal-style),
-  // everyone else keeps marks and sets the block for the distribution.
+  // The opposing keeper has it in their HANDS (Phase 28.1 → 29.1): they are
+  // unchallengeable, so pressing is wasted legs. 28.1 kept ONE shadow at the
+  // bubble's edge to cut the short outlet — live play read it as a man
+  // camped in the keeper's face (reported twice), so now NOBODY presses a
+  // held ball: everyone marks up for the distribution, like a goal kick.
   const owner = match.ball.owner;
   const gkHolding = owner !== null && owner.role === 'GK' && owner.gkHoldTimer > 0;
 
   let count = 1;
-  if (!gkHolding) {
+  if (gkHolding) {
+    count = 0;
+  } else {
     if (team.mode === 'Press') count += 1;
     if (team.genome.pressIntensity > 0.78) count += 1;
     if (possession === -1) count = Math.min(count, 2);
@@ -150,8 +153,13 @@ function assignMarks(team: Team, match: Match): void {
   // Sort by how deep they are in OUR half: smaller localX for them = deeper
   // for us. (A numerically identical pre-sort used to run first; this
   // comparator is a total order — index tiebreak — so one sort decides fully.)
+  // The restart taker is not a threat (Phase 29.1): they're pinned to a dead
+  // ball the clearance circle already guards, and the assigned chaser blocks
+  // the short option — a marker sent there too made TWO men stand uselessly
+  // at the corner flag while the box went a body short.
+  const takerGid = match.restart?.takerGid;
   const threats = opp.players
-    .filter((o) => o.role !== 'GK' && o !== carrier && !o.sentOff)
+    .filter((o) => o.role !== 'GK' && o !== carrier && !o.sentOff && o.gid !== takerGid)
     .sort((a, b) => opp.localX(b.pos.x) - opp.localX(a.pos.x) || a.index - b.index);
 
   const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index) && !p.sentOff);

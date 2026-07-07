@@ -14,6 +14,10 @@ interface PlayerSprite {
   staminaBar: Graphics;
   selectRing: Graphics;
   lastAction: string;
+  /** Dive direction frozen at dive start (29.1) — tracking the moving ball
+   * per frame spun the body as the shot crossed the keeper (the "twitch"). */
+  diveDir: number;
+  lastSaveT: number;
 }
 
 /** The 2D-renderer subset of UiFlags — derived so the two can't drift. */
@@ -116,7 +120,10 @@ export class MatchRenderer {
       root.on('pointerdown', () => this.onSelectPlayer?.(p.gid));
 
       this.playersLayer.addChild(root);
-      this.sprites.set(p.gid, { root, body, label, actionLabel, staminaBar, selectRing, lastAction: '' });
+      this.sprites.set(p.gid, {
+        root, body, label, actionLabel, staminaBar, selectRing,
+        lastAction: '', diveDir: 0, lastSaveT: 0,
+      });
     }
   }
 
@@ -149,7 +156,11 @@ export class MatchRenderer {
       // a stunned player wobbles and dims.
       if (p.saveAnimTimer > 0) {
         const k = p.saveAnimTimer / 0.7;
-        s.body.rotation = Math.atan2(match.ball.pos.y - p.pos.y, match.ball.pos.x - p.pos.x);
+        // Direction frozen at dive start (29.1): rising timer = new dive.
+        if (p.saveAnimTimer > s.lastSaveT) {
+          s.diveDir = Math.atan2(match.ball.pos.y - p.pos.y, match.ball.pos.x - p.pos.x);
+        }
+        s.body.rotation = s.diveDir;
         s.body.scale.set(1 + 0.7 * k, 1 - 0.35 * k);
         s.body.alpha = 1;
       } else if (p.tackleAnimTimer > 0) {

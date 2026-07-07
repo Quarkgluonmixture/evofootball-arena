@@ -44,14 +44,17 @@ check('canvas renders non-blank pitch', canvasShot.length > 10000, `${canvasShot
 
 const clockBefore = await page.textContent('#scoreboard .clock');
 
-// Fast-forward at 32x; read mid-match (after the match ends the app loads the
-// next fixture, which resets the scoreboard/stats — by design).
-await page.click('button:has-text("32×")');
+// Fast-forward at 32x via the dev hook (29.1: the speed preset buttons are
+// gone from the UI — watching is 1×, tooling drives speed directly); read
+// mid-match (after the match ends the app loads the next fixture, which
+// resets the scoreboard/stats — by design).
+await page.evaluate(() => window.__evo.app.setSpeed(32));
 await page.waitForTimeout(4000);
 await page.screenshot({ path: `${OUT}/2-match-32x.png` });
 
 const clockAfter = await page.textContent('#scoreboard .clock');
 check('clock advances under 32×', clockBefore !== clockAfter, `"${clockBefore}" -> "${clockAfter}"`);
+check('speed presets are gone from the UI (29.1)', (await page.locator('button:has-text("32×")').count()) === 0, '');
 
 const shotVals = await page.locator('#right-panel .stat-val').allTextContents();
 const totalShots = Number(shotVals[0] ?? 0) + Number(shotVals[1] ?? 0);
@@ -59,6 +62,7 @@ check('match stats accumulate', totalShots > 0, `shots ${shotVals[0]}+${shotVals
 const statsText = await page.textContent('#right-panel');
 check('set-piece stats row present (corners)', statsText.includes('corners'), '');
 await page.click('button:has-text("⏸")');
+check('pause toggles to play (29.1)', (await page.locator('button:has-text("▶")').count()) >= 1, '');
 
 const feedRows = await page.locator('#event-feed .ev').count();
 check('event feed populates', feedRows > 3, `${feedRows} rows`);
@@ -71,7 +75,7 @@ await page.click('button:has-text("⏭ skip")');
 for (const label of ['Formation targets', 'Marking lines', 'Press assignments', 'Ball heatmap']) {
   await page.click(`label:has-text("${label}")`);
 }
-await page.click('button:has-text("2×")');
+await page.evaluate(() => window.__evo.app.setSpeed(2));
 await page.waitForTimeout(2500);
 await page.screenshot({ path: `${OUT}/3-overlays.png` });
 

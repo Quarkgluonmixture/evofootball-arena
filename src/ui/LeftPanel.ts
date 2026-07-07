@@ -39,7 +39,8 @@ export class LeftPanel {
   private lastScore = '';
   private lastClock = '';
   private meta: HTMLElement;
-  private speedButtons = new Map<number, HTMLButtonElement>();
+  private pauseBtn: HTMLButtonElement | null = null;
+  private isPaused = false;
   private simButtons: HTMLButtonElement[] = [];
   private viewButtons = new Map<ViewMode, HTMLButtonElement>();
   private cameraButtons = new Map<CameraMode, HTMLButtonElement>();
@@ -59,15 +60,14 @@ export class LeftPanel {
     this.meta = el('div', 'muted', '');
     scoreboard.append(names, this.score, this.clock, this.meta);
 
+    // Match control (29.1, user request): the 1×/2×/8×/32× preset row is
+    // gone — watching is watching (1×), everything faster is ⏭ skip or the
+    // headless sim buttons. Two big buttons: pause/play toggle and skip.
     const speedSec = el('div', 'section');
-    speedSec.append(el('h3', '', t('Speed')));
-    const speedRow = el('div', 'row');
-    const speeds: Array<[number, string]> = [[0, '⏸'], [1, '1×'], [2, '2×'], [8, '8×'], [32, '32×']];
-    for (const [s, label] of speeds) {
-      const b = button(label, () => (s === 0 ? actions.setPaused(true) : actions.setSpeed(s)));
-      this.speedButtons.set(s, b);
-      speedRow.appendChild(b);
-    }
+    speedSec.append(el('h3', '', t('Match control')));
+    const speedRow = el('div', 'row speed-row');
+    this.pauseBtn = button(t('⏸ pause'), () => actions.setPaused(!this.isPaused));
+    speedRow.appendChild(this.pauseBtn);
     speedRow.appendChild(button(t('⏭ skip'), () => actions.skipMatch()));
     speedSec.append(speedRow);
     speedSec.appendChild(checkbox(t('Auto-continue to next match'), true, (v) => actions.setAutoContinue(v)));
@@ -182,13 +182,15 @@ export class LeftPanel {
     }
     const phase = match.phase;
     const restart = match.restart
-      ? {
-          kickIn: t('↪ kick-in'),
-          corner: t('⚑ corner'),
-          goalKick: t('🥅 goal kick'),
-          freeKick: t('⚠ free kick'),
-          penalty: t('⚡ PENALTY'),
-        }[match.restart.kind]
+      ? match.restart.offside
+        ? t('🚩 offside')
+        : {
+            kickIn: t('↪ kick-in'),
+            corner: t('⚑ corner'),
+            goalKick: t('🥅 goal kick'),
+            freeKick: t('⚠ free kick'),
+            penalty: t('⚡ PENALTY'),
+          }[match.restart.kind]
       : null;
     const label =
       phase === 'kickoff' ? t('KO') :
@@ -204,9 +206,11 @@ export class LeftPanel {
     }
   }
 
-  setSpeedUI(paused: boolean, speed: number): void {
-    for (const [s, b] of this.speedButtons) {
-      b.classList.toggle('active', paused ? s === 0 : s === speed);
+  setSpeedUI(paused: boolean, _speed: number): void {
+    this.isPaused = paused;
+    if (this.pauseBtn) {
+      this.pauseBtn.textContent = paused ? t('▶ play') : t('⏸ pause');
+      this.pauseBtn.classList.toggle('active', paused);
     }
   }
 

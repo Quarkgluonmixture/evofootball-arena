@@ -49,7 +49,9 @@ const ZH: Record<string, string> = {
   'Delete the save and start over?': '删除存档并重新开始?',
 
   // ---- left panel ----
-  Speed: '速度',
+  'Match control': '比赛控制',
+  '⏸ pause': '⏸ 暂停',
+  '▶ play': '▶ 继续',
   '⏭ skip': '⏭ 跳过',
   'Auto-continue to next match': '自动进入下一场',
   'Simulate (headless)': '快速模拟',
@@ -96,6 +98,7 @@ const ZH: Record<string, string> = {
   '⚑ corner': '⚑ 角球',
   '🥅 goal kick': '🥅 球门球',
   '⚠ free kick': '⚠ 任意球',
+  '🚩 offside': '🚩 越位',
   '⚡ PENALTY': '⚡ 点球',
 
   // ---- right panel ----

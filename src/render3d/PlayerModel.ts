@@ -145,6 +145,9 @@ export class PlayerModel {
   kickT = -1;
   kickPower = 1;
   headerT = -1;
+  /** Dive side frozen at dive start (29.1) — recomputing it per frame made
+   * the pose mirror-flip as the ball crossed the keeper (the "twitch"). */
+  diveSide = 1;
   prevAnim: AnimName = 'idle';
 
   readonly gid: number;

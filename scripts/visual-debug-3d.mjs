@@ -50,12 +50,12 @@ check('FX quality High reaches the renderer', (await page.evaluate(() => window.
 await page.click('button:has-text("Med")');
 
 // ---- brief tactical look ----
-await page.click('button:has-text("8×")');
+await page.evaluate(() => window.__evo.app.setSpeed(8));
 await page.waitForTimeout(2500);
 await page.screenshot({ path: `${OUT}/1-tactical.png` });
 
 // ---- watch the full first match at 32x, polling readability/feedback flags ----
-await page.click('button:has-text("32×")');
+await page.evaluate(() => window.__evo.app.setSpeed(32));
 const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false };
 let crowdedShotTaken = false;
 for (let i = 0; i < 60; i++) {
@@ -90,7 +90,7 @@ if (goalsInMatch1 > 0) {
 
 // ---- broadcast attack framing (next match) ----
 await page.click('button:has-text("TV")');
-await page.click('button:has-text("8×")');
+await page.evaluate(() => window.__evo.app.setSpeed(8));
 let framed = false;
 for (let i = 0; i < 50; i++) {
   const d = await page.evaluate(() => window.__evo.three());
@@ -140,7 +140,7 @@ check('player click-to-select works in 3D', selected);
 for (const label of ['Formation targets', 'Marking lines', 'Press assignments']) {
   await page.click(`label:has-text("${label}")`);
 }
-await page.click('button:has-text("2×")');
+await page.evaluate(() => window.__evo.app.setSpeed(2));
 await page.waitForTimeout(1500);
 await page.screenshot({ path: `${OUT}/4-overlays.png` });
 

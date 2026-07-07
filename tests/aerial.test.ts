@@ -260,12 +260,19 @@ describe('aerial duels and deliveries', () => {
     expect(maxZ).toBeGreaterThan(2.5); // deliveries genuinely clear head height
   });
 
-  it('corners are a threat: a meaningful share leads to a shot inside 8s', { timeout: 30000 }, () => {
+  it('corners are a threat: a meaningful share leads to a shot inside 8s', { timeout: 60000 }, () => {
+    // 96 matches since 29.1: corners fell to ~1.2/match (offside-era play
+    // reaches the byline less), so 48 matches left only ~57 corners — at a
+    // true ~10% rate that sample false-alarms the 5% floor ~8% of the time.
     const league = new League({ seed: 987001 });
     let corners = 0;
     let cornerShots = 0;
-    for (let i = 0; i < 48; i++) {
-      const f = league.nextFixture()!;
+    for (let i = 0; i < 96; i++) {
+      let f = league.nextFixture();
+      if (!f) {
+        league.finishSeason();
+        f = league.nextFixture()!;
+      }
       const r = league.createMatch(f).runToCompletion();
       league.applyResult(f, r);
       for (let j = 0; j < r.events.length; j++) {
