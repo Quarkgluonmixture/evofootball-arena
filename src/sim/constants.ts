@@ -44,6 +44,11 @@ export const CONTROL_RADIUS = 1.25;
 /** ...if it is slower than this (outfield) — keepers can handle faster balls. */
 export const CONTROL_MAX_SPEED = 14;
 export const GK_CONTROL_MAX_SPEED = 23;
+/**
+ * Faster balls (hard passes, not shots — SHOT_SPEED is 27) can still be
+ * DEFLECTED by a player in their path (Phase 27 lane anticipation).
+ */
+export const DEFLECT_MAX_SPEED = 24;
 
 /** After kicking, a player can't re-capture for this long (lets passes leave). */
 export const KICK_COOLDOWN = 0.45;

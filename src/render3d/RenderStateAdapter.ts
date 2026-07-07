@@ -21,6 +21,11 @@ export interface RenderPlayer {
   speed: number;
   action: ActionType;
   stamina: number;
+  /** A tackle lunge is playing (Phase 27) — display only. Optional: the
+   * shootout theater and pre-Phase-27 replays never set it. */
+  tackling?: boolean;
+  /** Recovering after being dispossessed / a whiffed lunge (Phase 27). */
+  stunned?: boolean;
 }
 
 export interface RenderBall {
@@ -119,6 +124,8 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     speed: Math.hypot(p.vel.x, p.vel.y),
     action: p.action.type,
     stamina: p.stamina,
+    tackling: p.tackleAnimTimer > 0,
+    stunned: p.stunTimer > 0,
   }));
 
   const ball: RenderBall = {
@@ -261,6 +268,9 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
         speed: lerp(pa.speed, pb.speed, t),
         action: (t >= 0.5 ? pb : pa).action,
         stamina: lerp(pa.stamina, pb.stamina, t),
+        // `=== true` also maps pre-Phase-27 replay snapshots (undefined) to false.
+        tackling: (t >= 0.5 ? pb : pa).tackling === true,
+        stunned: (t >= 0.5 ? pb : pa).stunned === true,
       };
     }),
     ball: {

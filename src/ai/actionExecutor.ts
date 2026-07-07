@@ -52,9 +52,9 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       const markIdx = p.action.targetIdx;
       const mark = markIdx !== undefined ? opp.players[markIdx] : null;
       if (mark) {
-        // Goal-side position: between the opponent and our goal, tighter with
-        // aggression. Flat form of add(mark.pos, scale(norm(sub(goal, mark.pos)), markDist))
-        // — same op order, no per-frame vectors.
+        // Goal-side AND ball-side (Phase 27): the stance blends "between my
+        // man and our goal" with "between my man and the ball", so markers
+        // shadow the passing lane and anticipated balls can be cut out.
         const markDist = 2.6 - g.markingAggression * 1.8;
         const goal = team.ownGoal();
         const gx = goal.x - mark.pos.x;
@@ -62,7 +62,16 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
         const gl = Math.sqrt(gx * gx + gy * gy);
         const nx = gl < 1e-8 ? 0 : gx / gl;
         const ny = gl < 1e-8 ? 0 : gy / gl;
-        target = { x: mark.pos.x + nx * markDist, y: mark.pos.y + ny * markDist };
+        const bx = ball.pos.x - mark.pos.x;
+        const by = ball.pos.y - mark.pos.y;
+        const bl = Math.sqrt(bx * bx + by * by);
+        const laneW = 0.35 + g.markingAggression * 0.3;
+        const mx = nx + (bl < 1e-8 ? 0 : (bx / bl) * laneW);
+        const my = ny + (bl < 1e-8 ? 0 : (by / bl) * laneW);
+        const ml = Math.sqrt(mx * mx + my * my);
+        const dx = ml < 1e-8 ? nx : mx / ml;
+        const dy = ml < 1e-8 ? ny : my / ml;
+        target = { x: mark.pos.x + dx * markDist, y: mark.pos.y + dy * markDist };
         speedF = 0.85 + g.markingAggression * 0.15;
       } else {
         target = formationSpot(p, team, ball, hasBall);
@@ -83,7 +92,9 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
     }
     case 'Dribble': {
       target = dribbleTarget(p, match);
-      speedF = 0.88; // dribbling is slower than free running
+      // Dribbling is slower than free running; close control (technique)
+      // lets a carrier keep more of their pace (Phase 27).
+      speedF = 0.84 + p.attrs.technique * 0.1;
       break;
     }
     case 'Pass':

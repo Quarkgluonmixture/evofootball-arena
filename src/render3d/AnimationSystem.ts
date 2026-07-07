@@ -16,6 +16,7 @@ export type AnimName =
   | 'dribble'
   | 'kick'
   | 'lunge'
+  | 'stumble'
   | 'gkReady'
   | 'gkDive'
   | 'celebrate';
@@ -92,7 +93,13 @@ const approach = (cur: number, target: number, maxDelta: number): number =>
 export class AnimationSystem {
   update(model: PlayerModel, p: RenderPlayer, state: RenderState, dt: number): void {
     const celebrating = state.celebratingSide === p.side && p.role !== 'GK';
-    const anim = animFor(p.action, p.speed, celebrating);
+    let anim = animFor(p.action, p.speed, celebrating);
+    // Phase 27 overrides: a live tackle lunge / recovery stumble beats the
+    // action-derived pose (celebrations still win).
+    if (!celebrating) {
+      if (p.tackling) anim = 'lunge';
+      else if (p.stunned) anim = 'stumble';
+    }
 
     // One-shot kick trigger on entering the kick state.
     if (anim === 'kick' && model.prevAnim !== 'kick') {
@@ -149,6 +156,17 @@ export class AnimationSystem {
       legR = -0.5;
       armLz = 0.7;
       armRz = -0.7;
+      hop = 0;
+    } else if (anim === 'stumble') {
+      // Dispossessed / beaten lunger (Phase 27): low, off balance, arms
+      // flailing for support while they pick themself up.
+      const w = Math.sin(model.animTime * 14);
+      leanX = 0.32;
+      leanZ = w * 0.18;
+      armLz = 0.9 + w * 0.25;
+      armRz = -0.9 + w * 0.25;
+      legL = 0.35;
+      legR = -0.25;
       hop = 0;
     } else if (anim === 'gkReady') {
       armLz = 0.85;

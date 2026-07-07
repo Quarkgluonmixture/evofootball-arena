@@ -6,6 +6,7 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
 import type { UtilityScore } from '../sim/types';
+import { kickMisalignment } from '../sim/mechanics';
 import {
   canInterceptPass, interceptBall, laneOpenness, opennessOf, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
@@ -74,10 +75,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const goal = team.oppGoal();
   const dGoal = dist(p.pos, goal);
   const localX = team.localX(p.pos.x);
+  // Territory pressure (Phase 27): 0 while the move is fresh or gaining
+  // ground, 1 after ~8s of possession going nowhere. It tilts every carrier
+  // choice toward the opponent goal — sideways recycling stops being free.
+  const stagnation = clamp01((team.staleTime - 3) / 5);
 
   // --- Shoot: worth it when the chance quality (xG) is decent; shootBias
   // scales it from "only tap-ins" (0) to "shoot on sight" (1).
-  if (dGoal < 34 && p.kickCooldown <= 0) {
+  if (dGoal < 30 && p.kickCooldown <= 0) {
     const q = match.shotQuality(p);
     // NOTE: finishing deliberately does NOT raise shot utility — it pays off
     // in execution (tighter spread in mechanics.performShot), not in shot
@@ -86,6 +91,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     let s = q * (W.shootBase + g.shootBias * W.shootGene);
     if (team.mode === 'Attack' || team.mode === 'CounterAttack') s *= W.shootModeMul;
     s *= 1 - pressure * W.shootPressurePen;
+    // Facing away from goal (Phase 27): turn first instead of snap-shooting blind.
+    s *= 1 - kickMisalignment(p, norm(sub(goal, p.pos))) * 0.3;
     cands.push({ action: 'Shoot', score: s, why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}` });
   }
 
@@ -95,6 +102,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   let bestLane = 0;
   let bestOpen = 0;
   if (p.kickCooldown <= 0) {
+    const lp = match.lastCompletedPass;
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;
       const lane = laneOpenness(p.pos, mate.pos, opp.players);
@@ -106,8 +114,16 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       let s = W.passBase + lane * W.passLaneW + open * W.passOpenW;
       if (gain > 0) s *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk);
       else s *= 1 + gain * W.passBackPen; // mild penalty for going backward
-      // Contested forward balls are gated by riskTolerance.
-      if (gain > 0.15 && lane < 0.4) s *= 0.35 + g.riskTolerance * 0.65;
+      // Stagnation tilt (Phase 27): a move going nowhere devalues sideways/
+      // backward recycling and rewards ground gained.
+      if (gain > 0.05) s *= 1 + gain * stagnation * 0.35;
+      else s *= 1 - stagnation * 0.3;
+      // Contested forward balls are gated by riskTolerance — but patience
+      // runs out: a stale move plays the risky forward ball anyway.
+      if (gain > 0.15 && lane < 0.4) {
+        const gate = 0.35 + g.riskTolerance * 0.65;
+        s *= gate + (1 - gate) * stagnation * 0.4;
+      }
       if (team.mode === 'CounterAttack' && gain > 0) s *= 1.3;
       if (team.mode === 'BuildUp' && gain < 0) s *= 1.1; // patient recycling is fine
       s *= 0.7 + g.passBias * 0.75;
@@ -115,6 +131,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (d > 32) s *= 0.5;
       if (d < 5) s *= 0.75;
       if (mate.role === 'GK') s *= 0.5; // back-passes to keeper are a last resort
+      // Playing the ball where the body doesn't face costs accuracy (Phase 27)
+      // — prefer passes we're facing; technique loosens the constraint. Kept
+      // mild: the time-gated stagnation tilt is the forward driver, this is
+      // only the body-mechanics tiebreak.
+      s *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
+      // Don't just hand it straight back to the passer unless it progresses.
+      if (lp && lp.passerGid === mate.gid && lp.receiverGid === p.gid && match.simTime - lp.t < 2.5 && gain < 0.1) {
+        s *= 0.55;
+      }
 
       if (s > bestPass) {
         bestPass = s;
@@ -130,7 +155,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       cands.push({
         action: 'Pass',
         score: bestPass,
-        why: `to ${bestMate.name} · lane ${bestLane.toFixed(2)} · open ${bestOpen.toFixed(2)} · passBias ${g.passBias.toFixed(2)}`,
+        why: `to ${bestMate.name} · lane ${bestLane.toFixed(2)} · open ${bestOpen.toFixed(2)} · passBias ${g.passBias.toFixed(2)}${stagnation > 0.01 ? ` · stale ${stagnation.toFixed(2)}` : ''}`,
       });
     }
   }
@@ -157,6 +182,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       let s = W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW;
       s *= 0.45 + g.riskTolerance * 0.85;
       s *= 0.85 + g.tempo * 0.3;
+      s *= 1 + stagnation * 0.2; // a stale move looks for the runner (Phase 27)
       if (s > bestThrough) {
         bestThrough = s;
         bestRunner = mate;
@@ -180,7 +206,12 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     let sD = (W.dribbleBase + space * W.dribbleSpaceW) * (W.dribbleGeneBase + g.dribbleBias * W.dribbleGeneW);
     sD *= 1 - pressure * W.dribblePressurePen;
     if (team.mode === 'CounterAttack') sD *= 1.25;
-    cands.push({ action: 'Dribble', score: sD, why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}` });
+    sD *= 1 + stagnation * 0.28; // carrying it forward relieves stagnation (Phase 27)
+    cands.push({
+      action: 'Dribble',
+      score: sD,
+      why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}${stagnation > 0.01 ? ` · stale ${stagnation.toFixed(2)}` : ''}`,
+    });
   }
 
   // --- Clear: panic button deep in our half; risk-averse teams use it more.

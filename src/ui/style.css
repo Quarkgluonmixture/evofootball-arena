@@ -35,7 +35,9 @@ html, body {
   font-size: 13px;
 }
 
-#app { display: flex; flex-direction: column; height: 100vh; }
+/* 100dvh (where supported) tracks the REAL visible viewport on phones —
+   with plain 100vh the collapsing URL bar cuts off the bottom controls. */
+#app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
 
 /* ---------- top bar ---------- */
 #topbar {
@@ -131,6 +133,7 @@ button {
   border: 1px solid var(--border); border-radius: 5px;
   padding: 4px 10px; font: inherit; cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  touch-action: manipulation; /* no 300ms double-tap-zoom delay on phones */
 }
 button:hover { border-color: var(--accent); }
 button:disabled { opacity: 0.45; cursor: default; }
@@ -366,4 +369,26 @@ body.cinematic .cinematic-exit { display: block; }
   aside .section { flex: 1 1 240px; }
   #event-feed { height: 110px; }
   #topbar { flex-wrap: wrap; row-gap: 4px; }
+}
+
+/* ---------- Phase 27: phone layout ---------- */
+/* Below 640px the broadcast chrome compresses: tighter topbar, full-width
+   cards, scrollable tables, and a 2-column cup bracket — nothing may be
+   wider than the viewport (horizontal overflow is what breaks the page
+   proportions on phones). */
+@media (max-width: 640px) {
+  #topbar { padding: 4px 8px; gap: 6px; }
+  #topbar h1 { font-size: 13px; margin-right: 4px; }
+  #topbar button { padding: 3px 7px; font-size: 11px; }
+  #stage { padding: 4px; }
+  aside { padding: 6px; gap: 6px; }
+  aside .section { flex: 1 1 100%; }
+  #event-feed { height: 88px; font-size: 11px; }
+  #league-screen { padding: 10px 10px; }
+  #league-screen table { display: block; overflow-x: auto; }
+  .bracket { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+  .goal-banner .gb-title { font-size: 26px; letter-spacing: 2px; }
+  .goal-banner { padding: 6px 14px; }
+  .replay-context { max-width: 140px; }
+  #replay-bar { bottom: 8px; padding: 6px 8px; }
 }

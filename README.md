@@ -146,7 +146,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (153 tests)
+tests/                  vitest suites (161 tests)
 scripts/                headless calibration, evolution & wildcard-training tools
 ```
 
@@ -188,6 +188,21 @@ scripts/                headless calibration, evolution & wildcard-training tool
 - **Players:** acceleration toward a desired velocity, role-based top speed,
   quadratic stamina drain above ~55% effort (tired players cap at 62% speed),
   pairwise separation so nobody stacks.
+- **On-ball realism (Phase 27):** players have a **body facing** that turns
+  at a capped rate (a 180° cut takes ~0.5 s, not one frame). Kicks played
+  across or against the facing **spray more and arrive weaker** (technique
+  tames it), and carriers prefer passes they're facing. A firm ball can get
+  away on the **first touch** — ball speed, defender pressure and blind-side
+  receptions against technique — so pressing produces real **forced errors**
+  (~10 miscontrols/match, counted in the stats panel). Passes too fast to
+  trap can still be **deflected** by a player who read the lane
+  (defending-attr roll), and markers shadow **goal-side and ball-side** so
+  anticipated passes get cut out. A dispossessed carrier — and a beaten
+  lunger — is briefly **stunned**, with visible tackle-lunge and stumble
+  animations in 2D and 3D. Finally a **territory clock** ends free sideways
+  recycling: the longer a possession goes nowhere, the more the carrier's
+  scoring tilts toward forward passes, through balls and carries (the debug
+  panel shows the `stale` factor).
 - **Match flow:** kickoff → two halves → goal pauses → full time, with a
   90-minute display clock mapped onto 240 sim-seconds.
 
@@ -450,24 +465,28 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~2.5 goals, ~12–13 shots, ~78% pass completion with **~14 through balls per
-match** (Phase 19 — assigned runners + direct balls into their path),
-balanced possession, ~93% ball-in-play (the rest is live dead-ball time
-across ~8–9 restarts per match: ≈2.4 goal kicks, ≈1.3 corners, ≈0.5
-kick-ins, plus **≈4.6 fouls → free kicks, ≈0.1 of them penalties** — Phase
-20 — drawing **≈1.0 yellows and ≈0.09 reds** per match — Phase 25), ~25 ms
-per headless match (allocation-free hot paths + a precomputed
-intercept table — Phase 16; a 10-season fast-sim runs off the main thread on
-the sim worker).
-Set pieces (Phase 14) moved the numbers deliberately: goals 2.37 → ~2.6
-(corner chances; parries that deflect instead of bouncing back), in-play
-98% → 95%. The pyramid produces real football stories: never-relegated
-aristocrats, yo-yo clubs with 5+ division moves, cup giant-killers, and a
-visible D1/D2 Elo gap (see `npm run evolve-check`).
+~4.2 goals from ~14.8 shots (≈10 on target — futsal-flavored scorelines;
+keepers are genuinely busy at **≈5.8 saves/match**), ~68% pass completion
+with **~15 through balls per match** and **~55% of passes played forward**
+(Phase 27 — the territory clock plus body-orientation costs ended free
+sideways recycling), **≈10 first-touch miscontrols/match** (forced errors —
+pressing pays), balanced possession, ~91% ball-in-play (the rest is live
+dead-ball time: goal kicks, corners, kick-ins, plus **≈5.0 fouls → free
+kicks, ≈0.15 of them penalties** — Phase 20 — drawing **≈1.05 yellows and
+≈0.09 reds** per match — Phase 25), ~26 ms per headless match
+(allocation-free hot paths + a precomputed intercept table — Phase 16; a
+10-season fast-sim runs off the main thread on the sim worker).
+Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.2 and completion
+77% → 68%, because attacks are far more direct (shots per completed pass
+more than doubled) and errors are real; the keeper economy was re-tuned to
+match (save base 0.75, reach 2.15 m, 80% catches under 21 m/s). The pyramid
+produces real football stories: never-relegated aristocrats, yo-yo clubs
+with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo gap (see
+`npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 153 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 161 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
@@ -477,7 +496,10 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
   4v5-hurts tests, sent-off exclusion, v6 save migration), penalty-shootout
   rules (determinism, decisiveness, directional finishing/keeper tests,
   lineup order, league integration, save default, kick-recording equivalence
-  + theater staging/skip/determinism — Phase 24), league/Elo/evolution
+  + theater staging/skip/determinism — Phase 24), on-ball realism (turn-rate
+  cap, orientation/first-touch helper monotonicity, directional
+  technique-vs-miscontrol and forward-share/error-rate windows — Phase 27),
+  league/Elo/evolution
   invariants, Evo Cup bracket shape/draw-rule/standalone-tie/determinism,
   save/load + file export/import roundtrips incl. the v1–v5 migration chain,
   and statistical gene/attribute effect tests.
@@ -497,7 +519,10 @@ visible D1/D2 Elo gap (see `npm run evolve-check`).
 Implemented: autonomous 5v5 matches with real boundaries and set pieces
 (kick-ins/corners/goal kicks as live dead-ball restarts), fouls with free
 kicks and penalties (Phase 20), yellow/red cards with 4v5 play and a
-dirtiest-team award (Phase 25), three-layer utility
+dirtiest-team award (Phase 25), on-ball realism — body facing with a real
+turn rate, orientation-dependent kicks, first-touch errors, pass-lane
+deflections, tackle stuns with lunge/stumble animations and the
+anti-recycling territory clock (Phase 27) — three-layer utility
 AI, 14 live tactical
 genes + 5 per-player attribute genes with full player careers — ages,
 development curves, retirements, newgens and an all-time-greats ledger
@@ -520,8 +545,8 @@ fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), the ES-trained Wildcard XI benchmark team — tactical genes
 co-trained with five per-role brain vectors (Phases 18 + 23) — with in-game
-exhibitions, 137 tests, and
-browser-driving visual smoke tests for both views (53 + ~32 checks).
+exhibitions, a phone-friendly responsive layout (Phase 27), 161 tests, and
+browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Ideas for the next phase (rough priority order):
 - Optional GLTF player models with the procedural mesh as fallback

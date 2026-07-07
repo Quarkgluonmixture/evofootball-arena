@@ -143,6 +143,24 @@ export class MatchRenderer {
       const w = 14 * p.stamina;
       const color = p.stamina > 0.5 ? 0x4ade80 : p.stamina > 0.25 ? 0xfacc15 : 0xef4444;
       s.staminaBar.rect(-7, 9, w, 2).fill({ color, alpha: 0.9 });
+
+      // Tackle lunge / recovery stumble (Phase 27): the lunge stretches the
+      // body along the heading; a stunned player wobbles and dims.
+      if (p.tackleAnimTimer > 0) {
+        const k = p.tackleAnimTimer / 0.4;
+        s.body.rotation = Math.atan2(p.heading.y, p.heading.x);
+        s.body.scale.set(1 + 0.5 * k, 1 - 0.3 * k);
+        s.body.alpha = 1;
+      } else if (p.stunTimer > 0) {
+        const wob = Math.sin(p.stunTimer * 25) * 0.12;
+        s.body.rotation = 0;
+        s.body.scale.set(1 + wob, 1 - wob);
+        s.body.alpha = 0.8;
+      } else if (s.body.scale.x !== 1 || s.body.scale.y !== 1 || s.body.rotation !== 0 || s.body.alpha !== 1) {
+        s.body.scale.set(1, 1);
+        s.body.rotation = 0;
+        s.body.alpha = 1;
+      }
     }
 
     this.updateBall(match, stepsThisFrame, flags);

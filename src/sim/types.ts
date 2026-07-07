@@ -194,6 +194,10 @@ export interface TeamMatchStats {
   passesCompleted: number;
   /** Direct balls played into a runner's path (subset of passes). */
   throughBalls: number;
+  /** Passes played ≥2m toward the opponent goal (subset of passes, Phase 27). */
+  passesForward: number;
+  /** First touches that got away from the receiver (forced errors, Phase 27). */
+  miscontrols: number;
   keyPasses: number;
   interceptions: number;
   tackles: number;
@@ -222,6 +226,8 @@ export const emptyStats = (): TeamMatchStats => ({
   passes: 0,
   passesCompleted: 0,
   throughBalls: 0,
+  passesForward: 0,
+  miscontrols: 0,
   keyPasses: 0,
   interceptions: 0,
   tackles: 0,

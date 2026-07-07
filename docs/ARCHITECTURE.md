@@ -79,9 +79,17 @@ fastest), retires in the mid-thirties into a fresh newgen, and banks career
 stats that feed a retirements section in the season report plus an
 All-time-greats hall ledger (`League.legends`, top 20); random squad
 mutation is GONE — careers and rebirth (young academy intake) are how
-squads change; saves at v7 (phase 26).
-153 vitest tests;
-Playwright suites: 2D 53 checks, 3D ~32 checks; ~25 ms/headless match. Git
+squads change; saves at v7 (phase 26); on-ball realism — capped-rate body
+facing (`Player.heading`, TURN_RATE), orientation-dependent kick
+noise/power + decision penalties, first-touch miscontrol
+(`attemptFirstTouch` — forced errors under pressing), pass-lane deflection
+of balls too fast to trap (`tryDeflection`), goal-side+ball-side lane
+marking, tackle stun (victim 0.6s / whiff 0.35s) with lunge/stumble
+animations in both renderers, the anti-recycling territory clock
+(`Team.staleTime` → `stagnation` tilt in `decideCarrier`), a re-tuned
+keeper/shot economy (~4.2 goals) and a ≤640px phone layout (phase 27).
+161 vitest tests;
+Playwright suites: 2D 53 checks, 3D ~34 checks; ~26 ms/headless match. Git
 tags `phase-10`…`phase-26` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
 https://quarkgluonmixture.github.io/evofootball-arena/ (GitHub Pages,
@@ -210,8 +218,12 @@ reach, `staminaConservation` trades jog/press sprint speed for energy.
 
 **Squad DNA** (5 attributes per player, `evolution/playerGenome.ts`):
 `pace` → ±12% speed/±10% accel (`Player` ctor); `technique` → pass noise ↓,
-tackle resistance; `finishing` → shot spread ↓ AND braver aim margin
-(`mechanics.performShot`); `defending` → tackle success; `reflexes` → save
+tackle resistance, and since Phase 27 also first-touch security
+(`touchFailChance`), orientation-penalty relief on kicks played across the
+body (`orientationNoiseMul/PowerMul`) and dribble carry speed
+(actionExecutor); `finishing` → shot spread ↓ AND braver aim margin
+(`mechanics.performShot`); `defending` → tackle success + pass-lane
+deflection odds (`mechanics.tryDeflection`, Phase 27); `reflexes` → save
 probability ±11pp and dive reach (`mechanics.tryKeeperSave`, `keeperReach`).
 
 **Directional tests exist for every gene/attribute channel**
@@ -432,12 +444,29 @@ only caught by eyes on the PNGs.
     shootout theater got its own 'penalty' camera (low, behind the taker).
     If you stage new goal-line presentation, screenshot it before trusting
     any fixed camera (`scripts/probe-shootout.mjs` is the pattern).
+14. **The keeper's REACH is the binding constraint on goals — not the post,
+    and not saveP.** Phase 27 tuning measured two traps. (a) Making shooters
+    aim SAFER (aimMargin 1.3 → 1.45, further from the post) RAISED goals by
+    ~0.9/match: fewer shots missed wide while the keeper still couldn't
+    reach the corner, so on-target share (and conversion) jumped. (b) Buffing
+    saveP gets partially eaten by parry rebounds — saves recycle into
+    second shots (goals barely moved while saves +0.9). Volume levers (pass
+    reliability, entries per possession, shot-distance gates) move the goal
+    rate far more reliably than conversion levers. Corollary: pass-selection
+    changes dwarf execution-noise changes — completion stayed pinned at
+    64–68% through large noise trims because WHICH passes get attempted
+    (risk selection) dominates how accurately they're struck.
 
 ## 11. Known tuning levers
 
 | Goal | Lever |
 |---|---|
-| Goals per match (~2.9 target) | `mechanics.tryKeeperSave` saveP base (0.52 − xG·0.6); shot `spread`; xG curve `exp(-d/11)` |
+| Goals per match (~4.2 target since Phase 27's direct-play economy) | `mechanics.tryKeeperSave` saveP base (0.75 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.15; shot `spread` (base 0.032); xG curve `exp(-d/10)`; shoot gate `dGoal < 30` — see failure mode 14 before touching these |
+| Forced-error rate (~10 miscontrols/match) | `touchFailChance` coefficients in `mechanics.attemptFirstTouch` (speed/pressure/blind-side vs technique) |
+| Forward urgency / anti-recycling | territory clock in `Match.step` (progress +1.5m resets, 0.35 m/s mark decay) + `stagnation = (staleTime−3)/5` tilt multipliers in `decideCarrier` |
+| Body-orientation feel | `TURN_RATE` (6.5 rad/s) in `Player.ts`; `orientationNoiseMul/PowerMul` slopes; decision-side misalign penalties (pass 0.12, shot 0.3) in `decideCarrier` |
+| Lane anticipation | `DEFLECT_MAX_SPEED` (24) + odds in `mechanics.tryDeflection`; ball-side blend `laneW = 0.35 + aggression·0.3` in executor MarkOpponent |
+| Tackle economy | tackle base 0.23 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
 | Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
 | Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~1.0🟨/0.09🟥 per match; calibrate prints both) |

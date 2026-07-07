@@ -1,6 +1,6 @@
 import { clamp, clamp01 } from '../utils/math';
 import {
-  add, closestPointOnSegment, dist, dot, fromAngle, len, norm, rotate, scale, sub, v2,
+  add, closestPointOnSegment, dist, dot, fromAngle, len, norm, rotate, scale, sub, v2, type V2,
 } from '../utils/vec';
 import { pressureAt } from '../ai/perception';
 import { GOAL_WIDTH, HALF_L, HALF_W, SHOT_SPEED } from './constants';
@@ -15,7 +15,66 @@ import type { Player } from './Player';
 
 /** How far out the keeper can reach a ball (dive included). */
 export function keeperReach(defTeam: { genome: { keeperAggression: number } }, gk: Player): number {
-  return 1.8 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5;
+  return 2.15 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5;
+}
+
+/* ------------------------------------------------------------------ */
+/* Body orientation (Phase 27)                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * How far a kick direction is from where the body faces: (1 − cosθ) / 2.
+ * 0 = striking dead ahead, 0.5 = square across the body, 1 = fully blind.
+ * `dir` must be normalized.
+ */
+export function kickMisalignment(p: Player, dir: V2): number {
+  return (1 - (p.heading.x * dir.x + p.heading.y * dir.y)) / 2;
+}
+
+/** Kicks across/against the body spray more; technique tames the penalty. */
+export function orientationNoiseMul(misalign: number, technique: number): number {
+  return 1 + misalign * (0.9 - technique * 0.6);
+}
+
+/** Kicks against the body lose power (up to −30%); technique recovers some. */
+export function orientationPowerMul(misalign: number, technique: number): number {
+  return 1 - misalign * 0.3 * (1 - technique * 0.4);
+}
+
+/**
+ * First-touch difficulty (Phase 27): chance a moving ball gets away from the
+ * receiver. Grows with ball speed, defender pressure and taking the ball from
+ * behind the body; technique tames all of it. This is where pressing turns
+ * into forced errors.
+ */
+export function touchFailChance(speed: number, pressure: number, misalign: number, technique: number): number {
+  const raw = 0.01 + clamp01((speed - 6) / 8) * 0.07 + pressure * 0.1 + misalign * 0.05;
+  return clamp(raw * (1.3 - technique * 0.85), 0, 0.4);
+}
+
+/**
+ * Roll the first touch for a player about to control a moving ball. Returns
+ * true if the touch is clean (caller gives them the ball). A failed touch
+ * knocks the ball loose ahead of the receiver — anyone can pounce on it.
+ * Keepers are exempt (they catch); slow balls are trivially trapped.
+ */
+export function attemptFirstTouch(match: Match, p: Player): boolean {
+  const ball = match.ball;
+  const speed = len(ball.vel);
+  if (p.role === 'GK' || speed <= 6) return true;
+  const inx = ball.vel.x / speed;
+  const iny = ball.vel.y / speed;
+  // Ball arriving at the face = 0, arriving from behind the body = 1.
+  const misalign = (1 + (inx * p.heading.x + iny * p.heading.y)) / 2;
+  const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
+  const pFail = touchFailChance(speed, pressure, misalign, p.attrs.technique);
+  if (!match.rng.chance(pFail)) return true;
+
+  match.teams[p.side].stats.miscontrols++;
+  ball.lastTouch = p; // a heavy touch out of play concedes the restart
+  ball.vel = scale(rotate(v2(inx, iny), match.rng.range(-0.8, 0.8)), match.rng.range(3.5, 6.5));
+  p.kickCooldown = 0.5; // off balance — can't instantly regather
+  return false;
 }
 
 /** xG-like chance quality: distance falloff · central angle · pressure. */
@@ -25,7 +84,7 @@ export function shotQuality(match: Match, p: Player): number {
   const d = dist(p.pos, goal);
   const central = 1 - clamp01(Math.abs(p.pos.y) / HALF_W) * 0.5;
   const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
-  return clamp(0.85 * Math.exp(-d / 11) * central * (1 - pressure * 0.3), 0.01, 0.8);
+  return clamp(0.85 * Math.exp(-d / 10) * central * (1 - pressure * 0.3), 0.01, 0.8);
 }
 
 export function performPass(match: Match, passer: Player, mate: Player): void {
@@ -33,24 +92,32 @@ export function performPass(match: Match, passer: Player, mate: Player): void {
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
 
+  // Playing across/against the body (Phase 27) takes pace off the ball —
+  // known up front, so the lead and the kick agree on the effective speed.
+  const misalign = kickMisalignment(passer, norm(sub(mate.pos, passer.pos)));
+  const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
+
   // Lead the receiver by a fraction of the expected flight time.
-  const flight = dist(passer.pos, mate.pos) / 16;
+  const flight = dist(passer.pos, mate.pos) / (16 * powerMul);
   const lead = add(mate.pos, scale(mate.vel, flight * 0.8));
   const d = dist(passer.pos, lead);
-  const speed = clamp(d * 0.55 + 7.5, 8, 21);
+  const speed = clamp(d * 0.55 + 7.5, 8, 21) * powerMul;
 
   // Accuracy: pressure sprays passes; a drilled team (passBias) and a
-  // technical passer tighten them.
+  // technical passer tighten them; kicks against the body spray more.
   const pressure = pressureAt(passer.pos, opp.players);
+  const aim = norm(sub(lead, passer.pos));
   const noise =
     match.rng.gaussian() *
     (0.02 + pressure * 0.07 + d * 0.0015) *
     (1.15 - team.genome.passBias * 0.3) *
-    (1.25 - passer.attrs.technique * 0.5);
-  const dir = rotate(norm(sub(lead, passer.pos)), noise);
+    (1.25 - passer.attrs.technique * 0.5) *
+    orientationNoiseMul(misalign, passer.attrs.technique);
+  const dir = rotate(aim, noise);
 
   match.kickBall(passer, dir, speed);
   team.stats.passes++;
+  if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: mate.gid, t: match.simTime };
 }
 
@@ -65,22 +132,30 @@ export function performThroughBall(match: Match, passer: Player, runner: Player)
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
 
-  const flight = dist(passer.pos, runner.pos) / 18;
+  // Same body-orientation contract as performPass: effective speed known
+  // up front so the projected meeting point stays honest.
+  const misalign = kickMisalignment(passer, norm(sub(runner.pos, passer.pos)));
+  const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
+
+  const flight = dist(passer.pos, runner.pos) / (18 * powerMul);
   const lead = add(runner.pos, scale(runner.vel, flight * 1.6));
   const d = dist(passer.pos, lead);
-  const speed = clamp(d * 0.6 + 9, 10, 24);
+  const speed = clamp(d * 0.6 + 9, 10, 24) * powerMul;
 
   const pressure = pressureAt(passer.pos, opp.players);
+  const aim = norm(sub(lead, passer.pos));
   const noise =
     match.rng.gaussian() *
     (0.025 + pressure * 0.07 + d * 0.0017) *
     (1.15 - team.genome.passBias * 0.3) *
-    (1.25 - passer.attrs.technique * 0.5);
-  const dir = rotate(norm(sub(lead, passer.pos)), noise);
+    (1.25 - passer.attrs.technique * 0.5) *
+    orientationNoiseMul(misalign, passer.attrs.technique);
+  const dir = rotate(aim, noise);
 
   match.kickBall(passer, dir, speed);
   team.stats.passes++;
   team.stats.throughBalls++;
+  if (team.localX(runner.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   match.pendingPass = { side: passer.side, passerGid: passer.gid, targetGid: runner.gid, t: match.simTime };
 }
 
@@ -101,11 +176,17 @@ export function performShot(match: Match, shooter: Player): void {
   const q = shotQuality(match, shooter);
   const d = dist(shooter.pos, target);
   const pressure = pressureAt(shooter.pos, opp.players);
-  // Long-range and pressured shots spray more; finishers spray less.
-  const spread = (0.025 + d * 0.0028 + pressure * 0.05) * (1.45 - shooter.attrs.finishing * 0.9);
-  const dir = rotate(norm(sub(target, shooter.pos)), match.rng.gaussian() * spread);
+  const aim = norm(sub(target, shooter.pos));
+  // Long-range and pressured shots spray more; finishers spray less. A shot
+  // snatched against the body's facing (Phase 27) sprays more and loses power.
+  const misalign = kickMisalignment(shooter, aim);
+  const spread =
+    (0.032 + d * 0.0028 + pressure * 0.05) *
+    (1.45 - shooter.attrs.finishing * 0.9) *
+    orientationNoiseMul(misalign, shooter.attrs.technique);
+  const dir = rotate(aim, match.rng.gaussian() * spread);
 
-  match.kickBall(shooter, dir, SHOT_SPEED);
+  match.kickBall(shooter, dir, SHOT_SPEED * orientationPowerMul(misalign, shooter.attrs.technique));
   team.stats.shots++;
   team.stats.xg += q;
   match.playerStats[shooter.gid].shots++;
@@ -152,9 +233,30 @@ export function performClear(match: Match, p: Player): void {
   // Panicked clears regularly cross the touchline: conceding a kick-in beats
   // losing the ball in front of your own goal (this is where kick-ins come from).
   const lat = match.rng.range(-1.0, 1.0);
-  const dir = rotate(norm(v2(team.attackDir, lat)), match.rng.gaussian() * 0.08);
-  match.kickBall(p, dir, 23);
+  const aim = norm(v2(team.attackDir, lat));
+  const dir = rotate(aim, match.rng.gaussian() * 0.08);
+  // A clear hammered against the body's facing comes off weaker (Phase 27) —
+  // at half strength: a panic hoof is a compromise, not a fifty-fifty gift.
+  match.kickBall(p, dir, 23 * (1 - kickMisalignment(p, aim) * 0.15 * (1 - p.attrs.technique * 0.4)));
   team.stats.clearances++;
+}
+
+/**
+ * Deflection (Phase 27): a ball too fast to control (a drilled pass) can
+ * still be knocked loose by a player standing in its path — reading the lane
+ * pays off even when the pass is hit hard. Rolled once per crossing (the
+ * kick cooldown stops re-rolls while the ball is still in reach).
+ */
+export function tryDeflection(match: Match, p: Player): void {
+  const ball = match.ball;
+  const speed = len(ball.vel);
+  // Committed to the stretch either way — no second bite at the same ball.
+  p.kickCooldown = 0.3;
+  const pDef = clamp(0.28 + p.attrs.defending * 0.4 - (speed - 14) * 0.02, 0.1, 0.6);
+  if (!match.rng.chance(pDef)) return; // it zips past the outstretched leg
+  ball.lastTouch = p;
+  ball.vel = scale(rotate(norm(ball.vel), match.rng.range(-1.2, 1.2)), match.rng.range(4, 8));
+  p.tackleAnimTimer = 0.4; // the stretch is visible (display only)
 }
 
 /**
@@ -172,7 +274,7 @@ export function tryTackles(match: Match): void {
   let tackler: Player | null = null;
   let best = Infinity;
   for (const o of oppTeam.players) {
-    if (o.sentOff || o.tackleCooldown > 0) continue;
+    if (o.sentOff || o.tackleCooldown > 0 || o.stunTimer > 0) continue;
     const d = dist(o.pos, ball.pos);
     if (d < 1.15 && d < best) {
       best = d;
@@ -180,10 +282,13 @@ export function tryTackles(match: Match): void {
     }
   }
   if (!tackler) return;
+  tackler.tackleAnimTimer = 0.4; // the lunge is visible either way (display only)
 
   // Team aggression + the tackler's defending vs the carrier's close control.
+  // Base raised with Phase 27's whiff stun: a lunge is a real commitment, so
+  // the ones that connect win the ball a little more often.
   let p =
-    0.2 +
+    0.23 +
     oppTeam.genome.markingAggression * 0.2 +
     tackler.attrs.defending * 0.24 -
     match.teams[owner.side].genome.dribbleBias * 0.08 -
@@ -198,11 +303,13 @@ export function tryTackles(match: Match): void {
     ball.owner = null;
     ball.lastTouch = tackler;
     ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(3.5, 6.5));
-    owner.kickCooldown = 0.3; // dribbler is off balance
+    owner.kickCooldown = 0.3;
+    owner.stunTimer = 0.6; // dispossessed: stumble before rejoining play (Phase 27)
     tackler.tackleCooldown = 0.5;
     match.possessionSide = -1;
   } else {
     tackler.tackleCooldown = 1.2;
+    tackler.stunTimer = 0.35; // whiffed lunge: pick yourself up first (Phase 27)
     // A failed lunge is sometimes a foul (Phase 20): free kick, or a penalty
     // in the tackler's own box. Aggressive markers give more away.
     const foulP = 0.06 + oppTeam.genome.markingAggression * 0.1;
@@ -237,14 +344,14 @@ export function tryKeeperSave(match: Match): void {
   // the shot's frozen dive difficulty then discounts it — accurate corner
   // finishes stay hard to save even though the keeper converges on the path.
   const saveP =
-    clamp(0.52 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.85) * shot.difficulty;
+    clamp(0.75 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;
     defTeam.stats.saves++;
     match.playerStats[gk.gid].saves++;
     match.markShotOutcome('saved');
-    if (speed < 19 && match.rng.chance(0.65)) {
+    if (speed < 21 && match.rng.chance(0.8)) {
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
     } else {

@@ -32,6 +32,21 @@ export class Team {
   /** Sim time when we last gained possession (for counter-attack windows). */
   possessionGainedAt = -999;
 
+  /**
+   * Territory pressure (Phase 27): high-water mark of the ball's local-x
+   * during this possession, and how long we've held the ball without beating
+   * it. The carrier brain reads `staleTime` — the longer a team recycles the
+   * ball sideways, the more its scoring tilts toward playing forward.
+   */
+  progressLocalX = -HALF_L;
+  staleTime = 0;
+
+  /** Restart the territory clock (possession gained / dead ball / kickoff). */
+  resetProgress(ballLocalX: number): void {
+    this.progressLocalX = ballLocalX;
+    this.staleTime = 0;
+  }
+
   stats: TeamMatchStats = emptyStats();
 
   // Goal centers never move — cached so per-frame callers (marking, keeper

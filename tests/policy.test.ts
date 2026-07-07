@@ -65,10 +65,18 @@ describe('policy parameterization (Phase 18)', () => {
   });
 
   it('a distinct policy actually changes play', () => {
+    // Pooled over seeds — a single short match's shot count is a small
+    // integer that can coincide across configs by chance.
     const shootHappy = { ...DEFAULT_POLICY, shootBase: 4.0, passBase: 0.05 };
-    const bare = new Match({ seed: 7, teamA: team('A'), teamB: team('B'), duration: 120 }).runToCompletion();
-    const skewed = new Match({ seed: 7, teamA: team('A', shootHappy), teamB: team('B'), duration: 120 }).runToCompletion();
-    expect(skewed.stats[0].shots).not.toBe(bare.stats[0].shots);
+    let bareShots = 0;
+    let skewedShots = 0;
+    for (const seed of [7, 11, 42]) {
+      bareShots += new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 })
+        .runToCompletion().stats[0].shots;
+      skewedShots += new Match({ seed, teamA: team('A', shootHappy), teamB: team('B'), duration: 120 })
+        .runToCompletion().stats[0].shots;
+    }
+    expect(skewedShots).toBeGreaterThan(bareShots);
   });
 
   it('DEFAULT_POLICY sits inside the ES search bounds', () => {

@@ -6,7 +6,8 @@ import { executeAction } from '../ai/actionExecutor';
 import { formationSpot } from '../ai/formations';
 import { Ball } from './Ball';
 import {
-  AI_INTERVAL, BALL_FRICTION_K, BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_SPEED, CONTROL_RADIUS, DT,
+  AI_INTERVAL, BALL_FRICTION_K, BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_SPEED, CONTROL_RADIUS,
+  DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GOAL_WIDTH, HALF_L, HALF_W, KICK_COOLDOWN, MATCH_DURATION,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
   RESTART_TIMEOUT, TEAM_AI_INTERVAL,
@@ -189,7 +190,19 @@ export class Match {
     // Possession only accrues in open play — restarts are dead-ball time,
     // so the calibrate "ball-in-play share" stays an honest metric.
     if (this.phase === 'playing' && this.possessionSide !== -1) {
-      this.teams[this.possessionSide].stats.possessionTime += dt;
+      const holder = this.teams[this.possessionSide];
+      holder.stats.possessionTime += dt;
+      // Territory clock (Phase 27): the high-water mark only counts as beaten
+      // by a real gain (+1.5m); after a retreat it erodes toward the ball so
+      // re-won ground counts again. Holding station just ages the possession.
+      const lx = holder.localX(this.ball.pos.x);
+      if (lx > holder.progressLocalX + 1.5) {
+        holder.progressLocalX = lx;
+        holder.staleTime = 0;
+      } else {
+        holder.progressLocalX = Math.max(lx, holder.progressLocalX - 0.35 * dt);
+        holder.staleTime += dt;
+      }
     }
 
     // Stale in-flight bookkeeping expires.
@@ -295,6 +308,7 @@ export class Match {
 
     if (this.possessionSide !== p.side) {
       team.possessionGainedAt = this.simTime;
+      team.resetProgress(team.localX(ball.pos.x));
       this.possessionSide = p.side;
       // Possession swung — both brains re-evaluate promptly.
       this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
@@ -508,6 +522,7 @@ export class Match {
     // The restart team is "in possession" for shape/marking purposes.
     this.possessionSide = side;
     team.possessionGainedAt = this.simTime;
+    team.resetProgress(team.localX(pos.x));
     this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
     this.teams[1].brainTimer = Math.min(this.teams[1].brainTimer, 0.05);
 
@@ -599,24 +614,40 @@ export class Match {
     const speed = Math.hypot(ball.vel.x, ball.vel.y);
     let best: Player | null = null;
     let bestD = Infinity;
+    let deflector: Player | null = null;
+    let deflectorD = Infinity;
+    const deflectable = speed > CONTROL_MAX_SPEED && speed <= DEFLECT_MAX_SPEED;
     // Alternate scan direction so equal-distance ties don't favor one team.
     const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
     for (const p of order) {
-      if (p.sentOff || p.kickCooldown > 0) continue;
-      const maxSpeed = p.role === 'GK' ? GK_CONTROL_MAX_SPEED : CONTROL_MAX_SPEED;
-      if (speed > maxSpeed) continue;
+      if (p.sentOff || p.kickCooldown > 0 || p.stunTimer > 0) continue;
       // Same cheap reject as resolveOverlaps: |dx| ≥ radius ⇒ d ≥ radius.
       const dx = p.pos.x - ball.pos.x;
       if (dx >= CONTROL_RADIUS || dx <= -CONTROL_RADIUS) continue;
       const dy = p.pos.y - ball.pos.y;
       if (dy >= CONTROL_RADIUS || dy <= -CONTROL_RADIUS) continue;
       const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < CONTROL_RADIUS && d < bestD) {
-        best = p;
-        bestD = d;
+      if (d >= CONTROL_RADIUS) continue;
+      const maxSpeed = p.role === 'GK' ? GK_CONTROL_MAX_SPEED : CONTROL_MAX_SPEED;
+      if (speed <= maxSpeed) {
+        if (d < bestD) {
+          best = p;
+          bestD = d;
+        }
+      } else if (deflectable && d < deflectorD) {
+        deflector = p;
+        deflectorD = d;
       }
     }
-    if (best) this.giveBall(best);
+    // First touch (Phase 27): a firm ball can get away from the receiver —
+    // pressing and blind-side receptions turn into real turnovers.
+    if (best) {
+      if (mech.attemptFirstTouch(this, best)) this.giveBall(best);
+      return;
+    }
+    // Nobody can control it — but a player in the path of a drilled (non-shot)
+    // ball can stick a leg in and knock it loose (Phase 27 lane anticipation).
+    if (deflector) mech.tryDeflection(this, deflector);
   }
 
   /* ---------------- player constraints ---------------- */
@@ -705,6 +736,7 @@ export class Match {
     this.ball.lastTouch = st;
     this.possessionSide = kickSide;
     kicking.possessionGainedAt = this.simTime;
+    kicking.resetProgress(kicking.localX(this.ball.pos.x));
     this.pushEvent('kickoff', kickSide, `${kicking.info.name} kick off`);
   }
 

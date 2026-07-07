@@ -6,6 +6,18 @@ import type { ActionState, Role, Side } from './types';
 const BASE_SPEED: Record<Role, number> = { GK: 6.4, DF: 7.0, MF: 7.3, WG: 7.9, ST: 7.7 };
 const ACCEL = 14; // m/s^2 toward desired velocity
 
+/**
+ * Body turn rate (rad/s), Phase 27: heading sweeps toward the movement
+ * direction instead of snapping to it, so a 180° cut takes ~0.48s of visible
+ * rotation. Velocity itself is already inertia-bound by ACCEL — this cap is
+ * what the eye (and the kick-orientation mechanics) read as "facing".
+ */
+export const TURN_RATE = 6.5;
+// cos/sin of the per-step turn cap, cached per dt (the sim always uses DT).
+let turnDt = -1;
+let turnCos = 1;
+let turnSin = 0;
+
 export class Player {
   /** Index within team (0..4, role order GK/DF/MF/WG/ST). */
   readonly index: number;
@@ -31,6 +43,14 @@ export class Player {
   decisionTimer = 0;
   kickCooldown = 0;
   tackleCooldown = 0;
+  /**
+   * Recovery stun (Phase 27): a dispossessed carrier stumbles and a beaten
+   * lunger picks themself up — movement is heavily damped while it runs, and
+   * a stunned player can't control a loose ball or tackle.
+   */
+  stunTimer = 0;
+  /** Display-only: renderers play a lunge animation while this runs. */
+  tackleAnimTimer = 0;
 
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;
@@ -74,6 +94,11 @@ export class Player {
       tx = dv.x * s;
       ty = dv.y * s;
     }
+    // Stunned (Phase 27): stumbling players can barely move until they recover.
+    if (this.stunTimer > 0) {
+      tx *= 0.15;
+      ty *= 0.15;
+    }
     const maxDelta = this.accel * dt; // approachV
     const ax = tx - this.vel.x;
     const ay = ty - this.vel.y;
@@ -90,7 +115,25 @@ export class Player {
     this.pos.y = this.pos.y + this.vel.y * dt;
 
     const sp = Math.sqrt(this.vel.x * this.vel.x + this.vel.y * this.vel.y);
-    if (sp > 0.5) this.heading = { x: this.vel.x / sp, y: this.vel.y / sp };
+    if (sp > 0.5) {
+      // Rotate heading toward the movement direction, capped at TURN_RATE.
+      // No trig in the loop: the per-step rotation's cos/sin are cached per dt.
+      if (dt !== turnDt) {
+        turnDt = dt;
+        turnCos = Math.cos(TURN_RATE * dt);
+        turnSin = Math.sin(TURN_RATE * dt);
+      }
+      const wx = this.vel.x / sp;
+      const wy = this.vel.y / sp;
+      const hx = this.heading.x;
+      const hy = this.heading.y;
+      if (hx * wx + hy * wy >= turnCos) {
+        this.heading = { x: wx, y: wy };
+      } else {
+        const s = hx * wy - hy * wx >= 0 ? turnSin : -turnSin;
+        this.heading = { x: hx * turnCos - hy * s, y: hx * s + hy * turnCos };
+      }
+    }
     this.distance += sp * dt;
 
     // Stamina: quadratic drain above ~55% effort, slow recovery when jogging/idle.
@@ -105,6 +148,8 @@ export class Player {
 
     this.kickCooldown = Math.max(0, this.kickCooldown - dt);
     this.tackleCooldown = Math.max(0, this.tackleCooldown - dt);
+    this.stunTimer = Math.max(0, this.stunTimer - dt);
+    this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);
     this.decisionTimer -= dt;
   }
 
@@ -115,5 +160,7 @@ export class Player {
     this.action = { type: 'MoveToFormationSpot', scores: [] };
     this.kickCooldown = 0;
     this.tackleCooldown = 0;
+    this.stunTimer = 0;
+    this.tackleAnimTimer = 0;
   }
 }
