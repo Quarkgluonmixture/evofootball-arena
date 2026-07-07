@@ -14,15 +14,25 @@ const team = (name: string, genes: Partial<ReturnType<typeof neutralGenome>> = {
   squad: neutralSquad(),
 });
 
+/**
+ * Let the event loop breathe between simulated matches. The statistical
+ * suites peg the CPU for 60s+ on slow CI runners, which starves vitest's
+ * worker RPC heartbeat ("Timeout calling onTaskUpdate") — a periodic
+ * setImmediate keeps the channel alive without touching determinism.
+ */
+const breathe = (i: number): Promise<void> | undefined =>
+  i % 25 === 0 ? new Promise((r) => setImmediate(r)) : undefined;
+
 describe('cards (Phase 25)', () => {
   // Statistical suites simulate hundreds of full matches — generous timeouts
   // for CI runners that are ~2× slower than a dev machine.
-  it('bookings land at a plausible rate; reds are rare but real', { timeout: 120000 }, () => {
+  it('bookings land at a plausible rate; reds are rare but real', { timeout: 120000 }, async () => {
     let yellows = 0;
     let reds = 0;
     let fouls = 0;
     const N = 300;
     for (let seed = 0; seed < N; seed++) {
+      await breathe(seed);
       const r = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 }).runToCompletion();
       yellows += r.stats[0].yellows + r.stats[1].yellows;
       reds += r.stats[0].reds + r.stats[1].reds;
@@ -36,10 +46,11 @@ describe('cards (Phase 25)', () => {
     expect(reds / N).toBeLessThan(0.2); // ...but stay dramatic, not routine
   });
 
-  it('directional: aggressive markers collect more cards (side-balanced)', { timeout: 60000 }, () => {
+  it('directional: aggressive markers collect more cards (side-balanced)', { timeout: 60000 }, async () => {
     let aggressive = 0;
     let clean = 0;
     for (let seed = 0; seed < 120; seed++) {
+      await breathe(seed);
       const dirty = team('Dirty', { markingAggression: 0.95 });
       const tidy = team('Tidy', { markingAggression: 0.05 });
       const home = seed % 2 === 0 ? dirty : tidy;
@@ -52,8 +63,9 @@ describe('cards (Phase 25)', () => {
     expect(aggressive).toBeGreaterThan(clean * 1.5);
   });
 
-  it('a second yellow is a red: events and stats stay consistent', { timeout: 90000 }, () => {
+  it('a second yellow is a red: events and stats stay consistent', { timeout: 90000 }, async () => {
     for (let seed = 0; seed < 200; seed++) {
+      await breathe(seed);
       const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 });
       const r = m.runToCompletion();
       for (const side of [0, 1] as const) {
@@ -84,10 +96,11 @@ describe('cards (Phase 25)', () => {
     }
   });
 
-  it('directional: playing a man short costs results (forced early red)', { timeout: 60000 }, () => {
+  it('directional: playing a man short costs results (forced early red)', { timeout: 60000 }, async () => {
     let shorthandedGd = 0;
     let fullGd = 0;
     for (let seed = 0; seed < 40; seed++) {
+      await breathe(seed);
       // Side-balanced: the sent-off player alternates teams; compare each
       // shorthanded match against the same seed at full strength.
       const full = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 }).runToCompletion();

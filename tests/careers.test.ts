@@ -101,9 +101,12 @@ describe('player careers (Phase 26)', () => {
     expect(rec.retirements!.length).toBeGreaterThanOrEqual(5 - (reborn.has(0) ? 5 : 0));
   });
 
-  it('long run: 12 seasons keep mean age and mean attributes in sane bands', () => {
+  it('long run: 12 seasons keep mean age and mean attributes in sane bands', async () => {
     const league = new League({ seed: 21, matchDuration: 30 });
-    for (let s = 0; s < 12; s++) playSeason(league);
+    for (let s = 0; s < 12; s++) {
+      playSeason(league);
+      await new Promise((r) => setImmediate(r)); // keep vitest's worker RPC alive on slow CI
+    }
     let ageSum = 0;
     let attrSum = 0;
     let n = 0;
