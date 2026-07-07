@@ -252,6 +252,28 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     expect(m.inPenaltyBox(intruder.pos, 1)).toBe(false);
   });
 
+  it('nobody presses a goal kick: zero chasers while the keeper stands over it (Phase 29)', () => {
+    const m = new Match({ seed: 31, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    m.ball.owner = null;
+    m.ball.lastTouch = m.teams[0].players[4];
+    m.ball.pos = { x: 46, y: 12 };
+    m.ball.vel = { x: 2, y: 0 };
+    m.step(DT);
+    expect(m.restart!.kind).toBe('goalKick');
+    // Let both brains re-coordinate (awardRestart forces a prompt update),
+    // then hold the assertion through the whole dead-ball phase: the old bug
+    // was one chaser sprinting at the keeper and pinning against the
+    // clearance circle until the kick was finally struck.
+    const inRestart = () => (m.phase as string) === 'restart'; // step() mutates phase — dodge TS narrowing
+    for (let i = 0; i < 10 && inRestart(); i++) m.step(DT);
+    expect(inRestart()).toBe(true);
+    while (inRestart() && !m.finished) {
+      expect(m.teams[0].chasers.size).toBe(0);
+      m.step(DT);
+    }
+  });
+
   it('halves end at a safe break inside their own stoppage windows (27.4/28.1)', () => {
     // Since 28.1 each half runs its OWN nominal length + stoppage: the
     // second half starts where the first (plus its added time) ended, so

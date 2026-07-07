@@ -125,8 +125,10 @@ function assignChasers(team: Team, match: Match): void {
   // Dead ball (Phase 28.3): you can't win a ball nobody may touch — ONE
   // player closes the taker down (blocking the short option, real-football
   // style); the old pack of 2–3 stood pinned at the corner-flag clearance
-  // circle jogging on the spot.
-  if (match.phase === 'restart') count = 1;
+  // circle jogging on the spot. Goal kicks (Phase 29): ZERO — the taker is
+  // the keeper deep in their own box; charging them is pure wasted legs,
+  // so everyone marks up for the distribution instead.
+  if (match.phase === 'restart') count = match.restart?.kind === 'goalKick' ? 0 : 1;
 
   const outfield = team.players.filter((p) => p.role !== 'GK' && !p.sentOff);
   const byDist = [...outfield].sort(
