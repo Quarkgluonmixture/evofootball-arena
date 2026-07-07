@@ -3,30 +3,31 @@ import { CUP_ROUND_SHORT } from '../sim/cup';
 import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import { button, checkbox, colorHex, el } from './dom';
+import { halfLabel, t } from './i18n';
 import type { FxQuality, GameActions, UiFlags, ViewMode } from './actions';
 
 const FX_LABELS: Array<[FxQuality, string]> = [
-  ['low', 'Low'],
-  ['medium', 'Med'],
-  ['high', 'High'],
+  ['low', t('Low')],
+  ['medium', t('Med')],
+  ['high', t('High')],
 ];
 
 const CAMERA_LABELS: Array<[CameraMode, string]> = [
-  ['tactical', 'Tactical'],
-  ['broadcast', 'TV'],
-  ['follow', 'Ball'],
-  ['behindGoal', 'Goal'],
-  ['orbit', 'Orbit'],
+  ['tactical', t('Tactical')],
+  ['broadcast', t('TV')],
+  ['follow', t('Ball')],
+  ['behindGoal', t('Goal')],
+  ['orbit', t('Orbit')],
 ];
 
 const FLAG_LABELS: Array<[keyof UiFlags, string]> = [
-  ['actionLabels', 'Player action labels'],
-  ['formation', 'Formation targets'],
-  ['passLines', 'Pass target line'],
-  ['shotVector', 'Shot vector'],
-  ['marking', 'Marking lines'],
-  ['chasers', 'Press assignments'],
-  ['heatmap', 'Ball heatmap'],
+  ['actionLabels', t('Player action labels')],
+  ['formation', t('Formation targets')],
+  ['passLines', t('Pass target line')],
+  ['shotVector', t('Shot vector')],
+  ['marking', t('Marking lines')],
+  ['chasers', t('Press assignments')],
+  ['heatmap', t('Ball heatmap')],
 ];
 
 /** Match control panel: scoreboard, speed, sim buttons, debug toggles. */
@@ -59,7 +60,7 @@ export class LeftPanel {
     scoreboard.append(names, this.score, this.clock, this.meta);
 
     const speedSec = el('div', 'section');
-    speedSec.append(el('h3', '', 'Speed'));
+    speedSec.append(el('h3', '', t('Speed')));
     const speedRow = el('div', 'row');
     const speeds: Array<[number, string]> = [[0, '⏸'], [1, '1×'], [2, '2×'], [8, '8×'], [32, '32×']];
     for (const [s, label] of speeds) {
@@ -67,25 +68,25 @@ export class LeftPanel {
       this.speedButtons.set(s, b);
       speedRow.appendChild(b);
     }
-    speedRow.appendChild(button('⏭ skip', () => actions.skipMatch()));
+    speedRow.appendChild(button(t('⏭ skip'), () => actions.skipMatch()));
     speedSec.append(speedRow);
-    speedSec.appendChild(checkbox('Auto-continue to next match', true, (v) => actions.setAutoContinue(v)));
+    speedSec.appendChild(checkbox(t('Auto-continue to next match'), true, (v) => actions.setAutoContinue(v)));
 
     const simSec = el('div', 'section');
-    simSec.append(el('h3', '', 'Simulate (headless)'));
+    simSec.append(el('h3', '', t('Simulate (headless)')));
     const simRow = el('div', 'row');
-    const b1 = button('Round', () => actions.simRound());
-    const b2 = button('Season', () => actions.simSeason());
-    const b3 = button('10 Seasons', () => actions.simSeasons(10));
+    const b1 = button(t('Round'), () => actions.simRound());
+    const b2 = button(t('Season'), () => actions.simSeason());
+    const b3 = button(t('10 Seasons'), () => actions.simSeasons(10));
     this.simButtons = [b1, b2, b3];
     simRow.append(b1, b2, b3);
     simSec.append(simRow);
     const exhibitionRow = el('div', 'row');
-    exhibitionRow.appendChild(button('⚡ Wildcard exhibition', () => actions.playExhibition()));
+    exhibitionRow.appendChild(button(t('⚡ Wildcard exhibition'), () => actions.playExhibition()));
     simSec.append(exhibitionRow);
 
     const viewSec = el('div', 'section');
-    viewSec.append(el('h3', '', 'View & camera'));
+    viewSec.append(el('h3', '', t('View & camera')));
     const viewRow = el('div', 'row');
     for (const v of ['2d', '3d'] as ViewMode[]) {
       const b = button(v.toUpperCase(), () => actions.setViewMode(v));
@@ -102,26 +103,26 @@ export class LeftPanel {
     }
     viewSec.appendChild(camRow);
     const camRow2 = el('div', 'row');
-    const resetCam = button('Reset cam', () => actions.resetCamera());
-    const replayBtn = button('🎬 Replay', () => actions.openReplay());
+    const resetCam = button(t('Reset cam'), () => actions.resetCamera());
+    const replayBtn = button(t('🎬 Replay'), () => actions.openReplay());
     this.threeOnly.push(resetCam);
     camRow2.append(resetCam, replayBtn);
     viewSec.appendChild(camRow2);
-    viewSec.appendChild(checkbox('Sound FX (beeps)', false, (v) => actions.setSound(v)));
+    viewSec.appendChild(checkbox(t('Sound FX (beeps)'), false, (v) => actions.setSound(v)));
 
     // Presentation: cinematic hide-UI, screenshots, share text, FX quality.
     const presSec = el('div', 'section');
-    presSec.append(el('h3', '', 'Presentation'));
+    presSec.append(el('h3', '', t('Presentation')));
     const presRow = el('div', 'row');
-    this.cineButton = button('🎥 Cinematic', () => actions.setCinematic(true));
+    this.cineButton = button(t('🎥 Cinematic'), () => actions.setCinematic(true));
     presRow.append(this.cineButton);
-    presRow.appendChild(button('📸 Screenshot', () => actions.takeScreenshot()));
+    presRow.appendChild(button(t('📸 Screenshot'), () => actions.takeScreenshot()));
     presSec.appendChild(presRow);
     const presRow2 = el('div', 'row');
-    presRow2.appendChild(button('📋 Share summary', () => actions.copyShareSummary()));
+    presRow2.appendChild(button(t('📋 Share summary'), () => actions.copyShareSummary()));
     presSec.appendChild(presRow2);
     const fxRow = el('div', 'row');
-    fxRow.appendChild(el('span', 'muted g-name', 'FX quality'));
+    fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
     for (const [q, label] of FX_LABELS) {
       const b = button(label, () => actions.setFxQuality(q));
       this.fxButtons.set(q, b);
@@ -131,7 +132,7 @@ export class LeftPanel {
 
     const dbgSec = el('div', 'section');
     dbgSec.className = 'section debug-section';
-    dbgSec.append(el('h3', '', 'Debug overlays'));
+    dbgSec.append(el('h3', '', t('Debug overlays')));
     for (const [key, label] of FLAG_LABELS) {
       dbgSec.appendChild(checkbox(label, flags[key], (v) => actions.setFlag(key, v)));
     }
@@ -162,13 +163,13 @@ export class LeftPanel {
     this.nameB.style.color = colorHex(match.teams[1].info.colors.primary);
     const fixture = exhibition ? null : league.nextFixture();
     const context = exhibition
-      ? '⚡ Exhibition (friendly)'
+      ? t('⚡ Exhibition (friendly)')
       : fixture?.playoff
-        ? '⚔ Promotion playoff'
+        ? t('⚔ Promotion playoff')
         : fixture?.cup
-          ? `⚡ Cup ${CUP_ROUND_SHORT[fixture.round]}`
-          : `${fixture ? `D${fixture.division + 1} ` : ''}Round ${league.currentRound()}/7`;
-    this.meta.textContent = `Gen ${league.generation} · Season ${league.history.length + 1} · ${context}`;
+          ? `⚡ ${t('Cup')} ${CUP_ROUND_SHORT[fixture.round]}`
+          : `${fixture ? `D${fixture.division + 1} ` : ''}${t('Round#')} ${league.currentRound()}/7`;
+    this.meta.textContent = `${t('Gen')} ${league.generation} · ${t('Season#')} ${league.history.length + 1} · ${context}`;
   }
 
   updateClock(match: Match): void {
@@ -182,21 +183,21 @@ export class LeftPanel {
     const phase = match.phase;
     const restart = match.restart
       ? {
-          kickIn: '↪ kick-in',
-          corner: '⚑ corner',
-          goalKick: '🥅 goal kick',
-          freeKick: '⚠ free kick',
-          penalty: '⚡ PENALTY',
+          kickIn: t('↪ kick-in'),
+          corner: t('⚑ corner'),
+          goalKick: t('🥅 goal kick'),
+          freeKick: t('⚠ free kick'),
+          penalty: t('⚡ PENALTY'),
         }[match.restart.kind]
       : null;
     const label =
-      phase === 'kickoff' ? 'KO' :
-      phase === 'goalPause' ? 'GOAL!' :
-      phase === 'halftime' ? 'HT' :
-      phase === 'fulltime' ? 'FT' :
-      phase === 'restart' && restart ? `${match.minute()}' · ${restart}` :
-      `${match.minute()}'`;
-    const clock = `${label}  ·  H${match.half}`;
+      phase === 'kickoff' ? t('KO') :
+      phase === 'goalPause' ? t('GOAL!') :
+      phase === 'halftime' ? t('HT') :
+      phase === 'fulltime' ? t('FT') :
+      phase === 'restart' && restart ? `${match.clockText()}' · ${restart}` :
+      `${match.clockText()}'`;
+    const clock = `${label}  ·  ${halfLabel(match.half)}`;
     if (clock !== this.lastClock) {
       this.lastClock = clock;
       this.clock.textContent = clock;

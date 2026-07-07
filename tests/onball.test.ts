@@ -8,9 +8,9 @@ import {
   kickMisalignment, orientationNoiseMul, orientationPowerMul, touchFailChance, trySmother,
 } from '../src/sim/mechanics';
 import { Player, TURN_RATE } from '../src/sim/Player';
-import { DT } from '../src/sim/constants';
+import { DT, GK_HOLD_CLEARANCE } from '../src/sim/constants';
 import type { TeamInfo } from '../src/sim/types';
-import { v2 } from '../src/utils/vec';
+import { dist, v2 } from '../src/utils/vec';
 
 /**
  * Phase 27 — on-ball realism: body orientation (turning inertia, kicks
@@ -168,6 +168,25 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
       m.step(DT);
       expect(m.ball.owner).toBe(gk); // never dispossessed mid-hold
     }
+  });
+
+  it('a holding keeper gets room: opponents held off, the press drops (28.1)', () => {
+    const m = new Match({ seed: 12, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
+    while (m.phase !== 'playing') m.step(DT);
+    const gk = m.teams[0].goalkeeper;
+    m.giveBall(gk);
+    expect(gk.gkHoldTimer).toBeGreaterThan(0);
+    // Park the whole opposing team on top of the keeper: the hold bubble
+    // must push them out — a keeper in possession releases in peace.
+    for (const o of m.teams[1].players) o.pos = { x: gk.pos.x + 0.3, y: gk.pos.y + 0.1 };
+    m.step(DT);
+    for (const o of m.teams[1].players) {
+      expect(dist(o.pos, gk.pos)).toBeGreaterThan(GK_HOLD_CLEARANCE - 0.5);
+    }
+    // And the opposing brain drops the swarm: at most ONE outlet-cutter
+    // shadows the release from the bubble's edge.
+    for (let i = 0; i < 6 && gk.gkHoldTimer > 0; i++) m.step(DT);
+    expect(m.teams[1].chasers.size).toBeLessThanOrEqual(1);
   });
 
   it('everyone starts in their own half at kickoff (27.5)', () => {

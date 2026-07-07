@@ -380,18 +380,28 @@ body.cinematic .cinematic-exit { display: block; }
    wider than the viewport (horizontal overflow is what breaks the page
    proportions on phones). */
 @media (max-width: 640px) {
-  #topbar { padding: 4px 8px; gap: 6px; }
+  #topbar { padding: 6px 8px; gap: 6px; }
   #topbar h1 { font-size: 13px; margin-right: 4px; }
-  #topbar button { padding: 3px 7px; font-size: 11px; }
+  /* Real thumbs (Phase 28.1): every control keeps a ≥34px tap target —
+     the old 3px-padding buttons were desktop-cursor sized. */
+  #topbar button { padding: 6px 10px; font-size: 12px; min-height: 34px; }
+  #topbar input { min-height: 34px; }
+  aside button { padding: 7px 11px; font-size: 12px; min-height: 36px; }
+  aside label { padding: 5px 0; min-height: 30px; display: flex; align-items: center; gap: 6px; }
+  aside input[type='checkbox'] { width: 18px; height: 18px; }
   #stage { padding: 4px; }
-  aside { padding: 6px; gap: 6px; }
+  aside { padding: 8px; gap: 8px; }
   aside .section { flex: 1 1 100%; }
-  #event-feed { height: 88px; font-size: 11px; }
-  #league-screen { padding: 10px 10px; }
+  aside .row { gap: 6px; row-gap: 6px; }
+  #event-feed { height: 96px; font-size: 12px; }
+  #league-screen { padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); }
+  #league-screen button { padding: 7px 11px; min-height: 36px; }
   #league-screen table { display: block; overflow-x: auto; }
   .bracket { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
   .goal-banner .gb-title { font-size: 26px; letter-spacing: 2px; }
   .goal-banner { padding: 6px 14px; }
   .replay-context { max-width: 140px; }
-  #replay-bar { bottom: 8px; padding: 6px 8px; }
+  #replay-bar { bottom: calc(8px + env(safe-area-inset-bottom)); padding: 6px 8px; }
+  #replay-bar button { min-height: 34px; }
+  body { padding-bottom: env(safe-area-inset-bottom); }
 }

@@ -75,6 +75,8 @@ export interface RenderState {
   t: number;
   phase: MatchPhase;
   minute: number;
+  /** Scoreboard clock with stoppage (`45+2`) — absent in old replays/theater. */
+  clock?: string;
   score: [number, number];
   /** Side celebrating during goalPause, else -1. */
   celebratingSide: Side | -1;
@@ -155,6 +157,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     t: match.simTime,
     phase: match.phase,
     minute: match.minute(),
+    clock: match.clockText(),
     score: [match.score[0], match.score[1]],
     celebratingSide,
     celebratingGid: match.phase === 'goalPause' ? match.lastScorerGid : null,
@@ -263,6 +266,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
     t: lerp(a.t, b.t, t),
     phase: late.phase,
     minute: late.minute,
+    clock: late.clock,
     score: late.score,
     celebratingSide: late.celebratingSide,
     celebratingGid: late.celebratingGid,

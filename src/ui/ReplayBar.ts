@@ -1,5 +1,6 @@
 import type { MatchEvent } from '../sim/types';
 import { button, el } from './dom';
+import { t } from './i18n';
 
 export interface ReplayCallbacks {
   onPlayPause(): void;
@@ -50,7 +51,7 @@ export class ReplayBar {
     row1.appendChild(this.context);
     const spacer = el('span', 'spacer');
     row1.appendChild(spacer);
-    row1.appendChild(button('exit replay ✕', cb.onExit));
+    row1.appendChild(button(t('exit replay ✕'), cb.onExit));
 
     this.range = el('input');
     this.range.type = 'range';

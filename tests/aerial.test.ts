@@ -233,12 +233,15 @@ describe('aerial duels and deliveries', () => {
     expect(a.longBalls + b.longBalls).toBeGreaterThan(0);
   });
 
-  it('structural: crosses, switches, hold-up play and real flight all occur in league play', () => {
+  it('structural: crosses, switches, hold-up play and real flight all occur in league play', { timeout: 30000 }, () => {
+    // Hold-up is the rarest of the three (~0.6/match) — scan up to 30
+    // deterministic matches, stopping as soon as everything has appeared.
     const league = new League({ seed: 555001 });
     const seen = new Set<string>();
     let maxZ = 0;
-    for (let i = 0; i < 12; i++) {
-      const f = league.nextFixture()!;
+    for (let i = 0; i < 30 && !(seen.size === 3 && maxZ > 2.5); i++) {
+      const f = league.nextFixture();
+      if (!f) break;
       const m = league.createMatch(f);
       while (!m.finished) {
         m.step(DT);

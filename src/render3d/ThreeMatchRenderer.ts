@@ -226,7 +226,9 @@ export class ThreeMatchRenderer {
     if (!t) return;
     this.scoreBug.classList.remove('hidden');
     const pens = state.shootout ? `${state.shootout.h}:${state.shootout.a}` : '';
-    const text = `${t.teams[0].short}${state.score[0]}${state.score[1]}${t.teams[1].short}${state.minute}${pens}`;
+    // `?? minute` keeps pre-Phase-28.1 replay snapshots (no clock field) honest.
+    const clock = state.clock ?? String(state.minute);
+    const text = `${t.teams[0].short}${state.score[0]}${state.score[1]}${t.teams[1].short}${clock}${pens}`;
     if (text === this.scoreBugText) return;
     this.scoreBugText = text;
     this.scoreBug.innerHTML =
@@ -237,7 +239,7 @@ export class ThreeMatchRenderer {
       `<span class="sb-chip" style="background:${colorHex(t.teams[1].primary)}"></span>` +
       (state.shootout
         ? `<span class="sb-min">pens ${state.shootout.h}–${state.shootout.a}</span>`
-        : `<span class="sb-min">${state.minute}'</span>`);
+        : `<span class="sb-min">${clock}'</span>`);
   }
 
   private showBanner(title: string, sub: string, color: number): void {

@@ -108,6 +108,11 @@ npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shoot
   exits), 📸 screenshot of the current view, 📋 copy a share summary (score,
   scorers, xG, league/cup context, seed), and an FX quality setting
   (Low/Med/High). Style rules live in `docs/ART_DIRECTION.md`.
+- **Language** (Phase 28.1): the UI ships in **Chinese by default** with an
+  EN/中文 toggle in the top bar (persisted; switching reloads the page).
+  Sim-generated text — the event feed, mined season stories, team and
+  player names — stays English by design: those strings live in the
+  simulation layer, which never touches the browser.
 
 > **Contributing / coding agents:** read
 > [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) first — module ownership,
@@ -458,12 +463,13 @@ role vectors fall back to it, so every normal team is bit-identical to before
 the refactor (regression-tested + fingerprint-checked).
 
 Result (held-out benchmark vs an unseen league's top 8, home & away, on the
-Phase-28 aerial engine): the co-trained candidate scores **21/48 points
-where the default brain scores 16/48** (each retrain re-measures on the
-current engine — Phase 28 rewrote the attacking economy, so older stamped
-scores no longer apply). The ES learned an identity you can read right off
-its gene bars — Gegenpress, high risk / chaos — and its role vectors now
-include learned weights for the five Phase-28 aerial/long-shot channels. Press **⚡ Wildcard
+Phase-28.1 engine): the co-trained candidate scores **36/48 points where
+the previous champion scores 34/48 and the default brain 21/48** (each
+retrain re-measures on the current engine — Phase 28 rewrote the attacking
+economy, so older stamped scores no longer apply). The ES learned an
+identity you can read right off its gene bars — Gegenpress, high risk /
+chaos — and its role vectors now include learned weights for the five
+Phase-28 aerial/long-shot channels. Press **⚡ Wildcard
 exhibition** (left panel) to field it against your current Premier leader — a
 standalone friendly, no league bookkeeping.
 
@@ -504,20 +510,20 @@ standalone friendly, no league bookkeeping.
 
 ### Balance (from `npm run calibrate`, 240 s matches)
 
-~3.8 goals from ~13.4 shots (≈8.8 on target — futsal-flavored scorelines;
-keepers are genuinely busy at **≈6.5 saves/match** plus ~0.55 smothers at a
-dribbler's feet), ~69% pass completion — the Phase 28 aerial deliveries are
-honest low-percentage balls — with **~14.8 through balls per match**,
-**~58% of passes played forward**
+~3.5 goals from ~12.7 shots (≈8.4 on target — futsal-flavored scorelines;
+keepers are genuinely busy at **≈6.3 saves/match** plus ~0.55 smothers at a
+dribbler's feet and the occasional high-ball claim), ~70% pass completion —
+the Phase 28 aerial deliveries are honest low-percentage balls — with
+**~17 through balls per match**, **~58% of passes played forward**
 (Phase 27 — the territory clock plus body-orientation costs ended free
-sideways recycling), **≈2.9 crosses, ≈4.3 aerial duels won and ≈4.9 lofted
-long balls per match** (Phase 28), **≈8.8 first-touch miscontrols/match**
-(forced errors — pressing pays), ~2.5 corners (**≈15% lead to a shot inside
-8 s, ≈5% to a goal** — box-crashing runners attack the delivery), balanced
-possession, ~93% ball-in-play (the rest is live dead-ball time: goal kicks,
-corners, kick-ins, penalties; **≈3.9 fouls play advantage since 27.2,
-≈0.4 penalties/match** — box congestion from crosses raised it — drawing
-**≈0.7 yellows and ≈0.06 reds** per match — Phase 25), ~28 ms per headless
+sideways recycling), **≈3.3 crosses, ≈4.8 aerial duels won and ≈5.1 lofted
+long balls per match** (Phase 28), **≈8.4 first-touch miscontrols/match**
+(forced errors — pressing pays), ~2.5 corners (**≈10% lead to a shot inside
+8 s** — box-crashing runners attack the delivery), balanced
+possession, ~94% ball-in-play (the rest is live dead-ball time: goal kicks,
+corners, kick-ins, penalties; **≈4.2 fouls play advantage since 27.2,
+≈0.35 penalties/match** — box congestion from crosses raised it — drawing
+**≈0.8 yellows and ≈0.06 reds** per match — Phase 25), ~28 ms per headless
 match (allocation-free hot paths + a precomputed intercept table — Phase 16;
 a 10-season fast-sim runs off the main thread on the sim worker).
 Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
@@ -528,19 +534,25 @@ match (save base 0.75, reach 2.15 m, 80% catches under 21 m/s), and the
 softer ball-side marking pull) unclogged the central corridor — fouls,
 tackles and interceptions all dropped back as the crowd dissolved.
 Phase 28 then opened the air: corners went from tame (5% led to a shot
-while crosses dropped into an empty box) to genuinely dangerous (15%) once
-the corner licensed three box-crashers, and two live-play complaints were
-fixed — a keeper now **smothers at the feet of anyone dribbling into their
-face inside the box** (and can't be bulldozed backward: keepers hold their
-ground against opponents in their own box), and the loose-ball reaction
-radius was tightened so scrambles pull in fewer spectators. The
+while crosses dropped into an empty box) to genuinely dangerous (~10%) once
+the corner licensed three box-crashers, and live-play complaints drove a
+28.1 pass — a keeper now **smothers at the feet of anyone dribbling into
+their face inside the box** (and can't be bulldozed backward: keepers hold
+their ground against opponents in their own box), a keeper **holding the
+ball gets a 3 m release bubble** with at most one opponent shadowing the
+outlet (robbing every distribution was a goal factory; removing it cost
+~0.3 goals/match, deliberately traded for cleaner football and re-tuned via
+tackle/save economy), kick-ins and corners **breathe** (1.8–2 s of setup
+instead of instant releases), each half runs **its own stoppage time** with
+a 45+2-style clock, and the loose-ball reaction radius was tightened so
+scrambles pull in fewer spectators. The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
 gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 179 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 180 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary

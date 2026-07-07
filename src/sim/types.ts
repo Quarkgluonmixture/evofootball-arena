@@ -124,7 +124,7 @@ export const DEFAULT_POLICY: PolicyParams = {
   chaseBase: 0.85,
   markBase: 0.62,
   interceptScore: 0.95,
-  runScore: 0.88,
+  runScore: 0.95,
   throughBase: 0.22,
   throughOpenW: 0.35,
   throughBehindW: 0.45,

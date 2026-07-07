@@ -15,15 +15,16 @@ import {
 } from '../sim/records';
 import { raceChart, sparklineTile } from './charts';
 import { bar, button, colorHex, el } from './dom';
+import { t } from './i18n';
 
 type Tab = 'league' | 'cup' | 'report' | 'evolution' | 'hall';
 
 const TABS: Array<[Tab, string]> = [
-  ['league', 'League'],
-  ['cup', 'Cup'],
-  ['report', 'Season report'],
-  ['evolution', 'Evolution'],
-  ['hall', 'Hall of fame'],
+  ['league', t('League')],
+  ['cup', t('Cup')],
+  ['report', t('Season report')],
+  ['evolution', t('Evolution')],
+  ['hall', t('Hall of fame')],
 ];
 
 /** The slice of cup state a bracket needs (live CupState or recorded CupRecord). */
@@ -74,7 +75,7 @@ export class LeagueScreen {
     this.league = league;
     this.root.textContent = '';
     this.root.appendChild(
-      el('h2', '', `League — Generation ${league.generation} · Season ${league.history.length + 1} · ${league.roundLabel()}`),
+      el('h2', '', `${t('League')} — ${t('Gen')} ${league.generation} · ${t('Season#')} ${league.history.length + 1} · ${league.roundLabel().replace(/^Round /, `${t('Round#')} `)}`),
     );
 
     const nav = el('div', 'row tab-nav');
@@ -92,10 +93,10 @@ export class LeagueScreen {
       case 'league':
         this.renderRules(league);
         for (const d of [0, 1] as Division[]) {
-          this.root.appendChild(el('h2', '', DIVISION_NAMES[d]));
+          this.root.appendChild(el('h2', '', t(DIVISION_NAMES[d])));
           this.renderStandings(league, d);
         }
-        this.root.appendChild(el('h2', '', 'Team cards'));
+        this.root.appendChild(el('h2', '', t('Team cards')));
         this.renderCards(league);
         break;
       case 'cup':
@@ -117,9 +118,9 @@ export class LeagueScreen {
 
   private renderRules(league: League): void {
     const row = el('div', 'row rules-row');
-    row.appendChild(el('span', 'muted', 'Promotion rules:'));
-    const auto = button('Auto top/bottom 2', () => this.onSetPromotionMode?.('auto'));
-    const playoff = button('⚔ Playoff', () => this.onSetPromotionMode?.('playoff'));
+    row.appendChild(el('span', 'muted', `${t('Promotion rules')}:`));
+    const auto = button(t('Auto top/bottom 2'), () => this.onSetPromotionMode?.('auto'));
+    const playoff = button(t('⚔ Playoff'), () => this.onSetPromotionMode?.('playoff'));
     auto.classList.toggle('active', league.promotionMode === 'auto');
     playoff.classList.toggle('active', league.promotionMode === 'playoff');
     row.append(auto, playoff);
@@ -135,9 +136,9 @@ export class LeagueScreen {
     this.root.appendChild(row);
 
     const cupRow = el('div', 'row rules-row');
-    cupRow.appendChild(el('span', 'muted', 'Cup draw rule:'));
-    const pens = button('\u{1F945} Penalty shootout', () => this.onSetCupDrawMode?.('shootout'));
-    const dog = button('\u26A1 Underdog advances', () => this.onSetCupDrawMode?.('underdog'));
+    cupRow.appendChild(el('span', 'muted', `${t('Cup draw rule')}:`));
+    const pens = button(t('\u{1F945} Penalty shootout'), () => this.onSetCupDrawMode?.('shootout'));
+    const dog = button(t('\u26A1 Underdog advances'), () => this.onSetCupDrawMode?.('underdog'));
     pens.classList.toggle('active', league.cupDrawMode === 'shootout');
     dog.classList.toggle('active', league.cupDrawMode === 'underdog');
     cupRow.append(pens, dog);
@@ -283,7 +284,7 @@ export class LeagueScreen {
         : next
           ? `Next up: ${CUP_ROUND_NAMES[next.round]}${next.round > 0 && next.round < 3 ? 's' : ''} (after league round ${[2, 4, 6, 7][next.round]}).`
           : 'The draw is made — the cup kicks off after league round 2.';
-      this.root.appendChild(el('h2', '', `Season ${league.history.length + 1} bracket`));
+      this.root.appendChild(el('h2', '', `${t('Season#')} ${league.history.length + 1} · ${t('bracket')}`));
       this.root.appendChild(el('div', 'muted cup-status', status));
       this.root.appendChild(this.renderBracket(league, league.cup));
     } else {
@@ -295,7 +296,7 @@ export class LeagueScreen {
     const lastCup = [...league.history].reverse().find((r) => r.cup)?.cup;
     const lastGen = [...league.history].reverse().find((r) => r.cup)?.generation;
     if (lastCup) {
-      this.root.appendChild(el('h2', '', `Last season's cup (Season ${lastGen})`));
+      this.root.appendChild(el('h2', '', `${t("Last season's cup")} (${t('Season#')} ${lastGen})`));
       this.root.appendChild(
         el('div', 'muted cup-status',
           `🏅 ${lastCup.winnerName} beat ${lastCup.runnerUpName} in the final` +
@@ -306,7 +307,7 @@ export class LeagueScreen {
 
     const honours = league.history.filter((r) => r.cup);
     if (honours.length > 0) {
-      this.root.appendChild(el('h2', '', 'Roll of honour'));
+      this.root.appendChild(el('h2', '', t('Roll of honour')));
       for (const r of [...honours].reverse().slice(0, 10)) {
         this.root.appendChild(
           el('div', 'history-entry', `Season ${r.generation} — 🏅 ${r.cup!.winnerName} (beat ${r.cup!.runnerUpName})`),
@@ -442,13 +443,13 @@ export class LeagueScreen {
     }
 
     if (rec.awards) {
-      this.root.appendChild(el('h2', '', 'Awards (Premier Division)'));
+      this.root.appendChild(el('h2', '', t('Awards (Premier Division)')));
       this.root.appendChild(this.awardsBlock(rec));
     } else {
       this.root.appendChild(el('div', 'muted', 'No award data for this season (pre-v3 save).'));
     }
     if (rec.awardsD2 && rec.awardsD2.topScorers.length > 0) {
-      this.root.appendChild(el('h2', '', 'Challenger top scorers'));
+      this.root.appendChild(el('h2', '', t('Challenger top scorers')));
       for (const l of rec.awardsD2.topScorers.slice(0, 3)) {
         this.root.appendChild(el('div', 'history-entry', `⚽ ${l.name} (${l.team}) — ${l.goals}g ${l.assists}a`));
       }
@@ -456,7 +457,7 @@ export class LeagueScreen {
 
     // Retirements (Phase 26) — absent on records from before careers existed.
     if (rec.retirements && rec.retirements.length > 0) {
-      this.root.appendChild(el('h2', '', '🎓 Retirements'));
+      this.root.appendChild(el('h2', '', t('🎓 Retirements')));
       for (const r of rec.retirements) {
         const line = r.role === 'GK'
           ? `${r.name} (${r.team}, ${r.age}) — ${r.seasons} seasons, ${r.saves} saves`
@@ -467,7 +468,7 @@ export class LeagueScreen {
 
     this.renderCurrentScorers(league);
 
-    this.root.appendChild(el('h2', '', 'Champions history'));
+    this.root.appendChild(el('h2', '', t('Champions history')));
     for (const r of [...league.history].reverse()) {
       const entry = el('div', 'history-entry');
       const boot = r.awards?.topScorers[0];
@@ -512,7 +513,7 @@ export class LeagueScreen {
       .sort((a, b) => b.goals - a.goals || b.assists - a.assists)
       .slice(0, 5);
     if (lines.length === 0) return;
-    this.root.appendChild(el('h2', '', 'Top scorers (current season, D1)'));
+    this.root.appendChild(el('h2', '', t('Top scorers (current season, D1)')));
     for (const l of lines) {
       this.root.appendChild(el('div', 'history-entry', `⚽ ${l.name} (${l.team}, ${l.role}) — ${l.goals}g ${l.assists}a`));
     }
@@ -522,7 +523,7 @@ export class LeagueScreen {
 
   private renderEvolution(league: League): void {
     const withGenes = league.history.filter((r) => r.geneMeans);
-    this.root.appendChild(el('h2', '', 'Tactical gene drift (league mean per generation)'));
+    this.root.appendChild(el('h2', '', t('Tactical gene drift (league mean per generation)')));
     if (withGenes.length === 0) {
       this.root.appendChild(el('div', 'muted empty', 'Finish a season to start tracking gene drift.'));
     } else {
@@ -532,7 +533,7 @@ export class LeagueScreen {
       }
       this.root.appendChild(grid);
 
-      this.root.appendChild(el('h2', '', 'Squad attribute drift'));
+      this.root.appendChild(el('h2', '', t('Squad attribute drift')));
       const attrGrid = el('div', 'spark-grid');
       const withAttrs = league.history.filter((r) => r.attrMeans);
       for (const k of ATTR_KEYS) {
@@ -565,7 +566,7 @@ export class LeagueScreen {
 
     // All-time greats (Phase 26): the best retired careers, kept forever.
     if (league.legends.length > 0) {
-      this.root.appendChild(el('h2', '', '🎓 All-time greats (retired)'));
+      this.root.appendChild(el('h2', '', t('🎓 All-time greats (retired)')));
       for (const l of league.legends.slice(0, 8)) {
         const line = l.role === 'GK'
           ? `${l.career.saves} saves in ${l.career.seasons} seasons`
@@ -577,13 +578,13 @@ export class LeagueScreen {
     }
 
     // Titles by team name (Premier + Challenger).
-    this.root.appendChild(el('h2', '', '🏆 Premier titles'));
+    this.root.appendChild(el('h2', '', t('🏆 Premier titles')));
     for (const [name, n] of [...premierTitles(h).entries()].sort((a, b) => b[1] - a[1]).slice(0, 6)) {
       this.root.appendChild(el('div', 'history-entry', `${'🏆'.repeat(Math.min(n, 8))} ${name} — ${n}`));
     }
     const d2t = [...challengerTitles(h).entries()].sort((a, b) => b[1] - a[1]).slice(0, 4);
     if (d2t.length > 0) {
-      this.root.appendChild(el('h2', '', '🥇 Challenger titles'));
+      this.root.appendChild(el('h2', '', t('🥇 Challenger titles')));
       for (const [name, n] of d2t) {
         this.root.appendChild(el('div', 'history-entry', `${'🥇'.repeat(Math.min(n, 8))} ${name} — ${n}`));
       }
@@ -628,7 +629,7 @@ export class LeagueScreen {
     }
 
     // Movement records + long-run arcs.
-    this.root.appendChild(el('h2', '', '🎢 Movement records'));
+    this.root.appendChild(el('h2', '', t('🎢 Movement records')));
     const moves = movementCounts(this.league!.franchises);
     const mostUp = [...moves].sort((a, b) => b.promotions - a.promotions)[0];
     const mostDown = [...moves].sort((a, b) => b.relegations - a.relegations)[0];
@@ -653,7 +654,7 @@ export class LeagueScreen {
     }
 
     // Single-season records mined from the history.
-    this.root.appendChild(el('h2', '', '📜 Records (single season)'));
+    this.root.appendChild(el('h2', '', t('📜 Records (single season)')));
     const rows: string[] = [];
     let bestPts: { v: number; who: string; gen: number } | null = null;
     let bestGd: { v: number; who: string; gen: number } | null = null;
@@ -692,7 +693,7 @@ export class LeagueScreen {
 
     // Dynasty strips: one row per slot, with division bands (cell background
     // = the division that season) and champion/movement icons.
-    this.root.appendChild(el('h2', '', '🧬 Dynasty timeline (per league slot)'));
+    this.root.appendChild(el('h2', '', t('🧬 Dynasty timeline (per league slot)')));
     this.root.appendChild(
       el('div', 'muted', '🏆 Premier champions · 🥇 Challenger champions · 🏅 cup winners · ⬆️⬇️ moved · 👑 elite · 🧬 mutated · 🔄 reborn — cell shade = division that season'),
     );

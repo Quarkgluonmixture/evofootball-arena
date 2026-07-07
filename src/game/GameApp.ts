@@ -18,6 +18,7 @@ import { resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
 import { buildWildcardTeamInfo, WILDCARD_NAME } from '../ai/wildcard';
 import { describeIdentity } from '../evolution/genome';
 import { WILDCARD } from '../ai/wildcardPolicy';
+import { lang, setLang, t } from '../ui/i18n';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
 import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
 import { Match } from '../sim/Match';
@@ -110,17 +111,19 @@ export class GameApp implements GameActions {
     const topbar = el('header');
     topbar.id = 'topbar';
     topbar.appendChild(el('h1', '', 'EVOFOOTBALL ARENA'));
-    topbar.appendChild(button('League table', () => this.toggleLeagueScreen()));
-    topbar.appendChild(button('Save', () => this.saveNow()));
-    topbar.appendChild(button('Load', () => this.loadNow()));
-    topbar.appendChild(button('Export', () => this.exportSave()));
-    topbar.appendChild(button('Import', () => this.importSave()));
+    topbar.appendChild(button(t('League table'), () => this.toggleLeagueScreen()));
+    topbar.appendChild(button(t('Save'), () => this.saveNow()));
+    topbar.appendChild(button(t('Load'), () => this.loadNow()));
+    topbar.appendChild(button(t('Export'), () => this.exportSave()));
+    topbar.appendChild(button(t('Import'), () => this.importSave()));
     this.seedInput = el('input');
     this.seedInput.type = 'text';
-    this.seedInput.placeholder = 'seed';
+    this.seedInput.placeholder = t('seed');
     topbar.appendChild(this.seedInput);
-    topbar.appendChild(button('New league', () => this.newLeague(this.seedInput.value)));
-    topbar.appendChild(button('Reset', () => this.resetAll(), 'danger'));
+    topbar.appendChild(button(t('New league'), () => this.newLeague(this.seedInput.value)));
+    topbar.appendChild(button(t('Reset'), () => this.resetAll(), 'danger'));
+    // Language toggle (Phase 28.1) — persists and reloads (panels build once).
+    topbar.appendChild(button(lang === 'zh' ? 'EN' : '中文', () => setLang(lang === 'zh' ? 'en' : 'zh')));
     topbar.appendChild(el('div', 'spacer'));
     this.statusEl = el('span', 'status', '');
     topbar.appendChild(this.statusEl);
@@ -167,7 +170,7 @@ export class GameApp implements GameActions {
     });
     // Cinematic mode chrome: an exit control (cinematic must always be
     // escapable) and a minimal 2D score bug (3D has its own broadcast bug).
-    const cineExit = button('✕ exit cinematic', () => this.setCinematic(false));
+    const cineExit = button(t('✕ exit cinematic'), () => this.setCinematic(false));
     cineExit.className = 'cinematic-exit';
     stage.appendChild(cineExit);
     this.cineBug = el('div') as HTMLDivElement;
@@ -300,7 +303,7 @@ export class GameApp implements GameActions {
     if (!show || !this.match) return;
     const m = this.match;
     // Diff before rebuilding the markup (same pattern as the 3D score bug).
-    const key = `${m.teams[0].info.short}|${m.score[0]}|${m.score[1]}|${m.minute()}`;
+    const key = `${m.teams[0].info.short}|${m.score[0]}|${m.score[1]}|${m.clockText()}`;
     if (key === this.lastCineBugKey) return;
     this.lastCineBugKey = key;
     this.cineBug.innerHTML =
@@ -309,7 +312,7 @@ export class GameApp implements GameActions {
       `<span class="sb-score">${m.score[0]}–${m.score[1]}</span>` +
       `<span class="sb-team">${m.teams[1].info.short}</span>` +
       `<span class="sb-chip" style="background:${colorHex(m.teams[1].info.colors.primary)}"></span>` +
-      `<span class="sb-min">${m.minute()}'</span>`;
+      `<span class="sb-min">${m.clockText()}'</span>`;
   }
 
   /** What the 3D view should draw this frame: live sim, replay, or theater. */
@@ -928,7 +931,7 @@ export class GameApp implements GameActions {
 
   resetAll(): void {
     if (this.busy) return;
-    if (!window.confirm('Delete the save and start over?')) return;
+    if (!window.confirm(t('Delete the save and start over?'))) return;
     clearSave();
     this.league = new League({ seed: DEFAULT_SEED });
     this.loadNextFixture();

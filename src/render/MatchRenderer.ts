@@ -194,10 +194,12 @@ export class MatchRenderer {
     // classic top-down "it's in the air" cue.
     const z = match.ball.z;
     if (z > 0.15) {
-      this.ballG.ellipse(px.x, px.y, 3.5, 2.2).fill({ color: 0x000000, alpha: 0.3 });
+      // Shadow shrinks slightly as the ball climbs — the height read.
+      const sh = Math.max(2.2, 3.8 - z * 0.18);
+      this.ballG.ellipse(px.x, px.y, sh, sh * 0.62).fill({ color: 0x000000, alpha: 0.35 });
     }
-    const r = 4 * (1 + Math.min(z, 8) * 0.09);
-    this.ballG.circle(px.x, px.y - z * 1.6, r).fill(0xffffff).stroke({ width: 1, color: 0x333333 });
+    const r = 4 * (1 + Math.min(z, 8) * 0.13);
+    this.ballG.circle(px.x, px.y - z * 2.4, r).fill(0xffffff).stroke({ width: 1, color: 0x333333 });
 
     // Heatmap accumulation (weighted by sim steps so fast-forward still counts).
     if (flags.heatmap && match.phase === 'playing' && steps > 0) {

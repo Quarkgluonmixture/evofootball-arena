@@ -1,0 +1,215 @@
+/**
+ * UI localization (Phase 28.1): Chinese by default, English via the top-bar
+ * toggle. Keys are the English source strings — `t()` falls back to the key
+ * itself, so untranslated (or newly added) labels degrade to English instead
+ * of breaking. UI chrome only: sim-generated text (event feed lines, mined
+ * season stories, player/team names) deliberately stays English — those
+ * strings live in `sim/` which must never know about the browser.
+ *
+ * Switching languages persists the choice and reloads the page — panels are
+ * built once at startup, and a deterministic league replays its current
+ * fixture identically after reload.
+ */
+
+export type Lang = 'zh' | 'en';
+
+const STORE_KEY = 'evofootball-lang';
+
+function readLang(): Lang {
+  try {
+    const v = localStorage.getItem(STORE_KEY);
+    return v === 'en' ? 'en' : 'zh';
+  } catch {
+    return 'zh';
+  }
+}
+
+export const lang: Lang = readLang();
+
+export function setLang(next: Lang): void {
+  try {
+    localStorage.setItem(STORE_KEY, next);
+  } catch {
+    /* private mode — the toggle still works for this load */
+  }
+  location.reload();
+}
+
+const ZH: Record<string, string> = {
+  // ---- top bar ----
+  'League table': '联赛中心',
+  Save: '保存',
+  Load: '读取',
+  Export: '导出',
+  Import: '导入',
+  seed: '种子',
+  'New league': '新联赛',
+  Reset: '重置',
+  '✕ exit cinematic': '✕ 退出影院模式',
+  'Delete the save and start over?': '删除存档并重新开始?',
+
+  // ---- left panel ----
+  Speed: '速度',
+  '⏭ skip': '⏭ 跳过',
+  'Auto-continue to next match': '自动进入下一场',
+  'Simulate (headless)': '快速模拟',
+  Round: '单轮',
+  Season: '整季',
+  '10 Seasons': '10 个赛季',
+  '⚡ Wildcard exhibition': '⚡ 外卡表演赛',
+  'View & camera': '视角与镜头',
+  Tactical: '战术',
+  TV: '转播',
+  Ball: '跟球',
+  Goal: '门后',
+  Orbit: '环绕',
+  'Reset cam': '重置镜头',
+  '🎬 Replay': '🎬 回放',
+  'Sound FX (beeps)': '音效(蜂鸣)',
+  Presentation: '演出',
+  '🎥 Cinematic': '🎥 影院模式',
+  '📸 Screenshot': '📸 截图',
+  '📋 Share summary': '📋 复制战报',
+  'FX quality': '特效质量',
+  Low: '低',
+  Med: '中',
+  High: '高',
+  'Debug overlays': '调试图层',
+  'Player action labels': '球员动作标签',
+  'Formation targets': '阵型落点',
+  'Pass target line': '传球目标线',
+  'Shot vector': '射门向量',
+  'Marking lines': '盯人连线',
+  'Press assignments': '逼抢指派',
+  'Ball heatmap': '球路热力图',
+  '⚡ Exhibition (friendly)': '⚡ 表演赛(友谊赛)',
+  '⚔ Promotion playoff': '⚔ 升级附加赛',
+  Cup: '杯赛',
+  Gen: '世代',
+  'Season#': '赛季',
+  'Round#': '轮次',
+  KO: '开球',
+  HT: '半场',
+  FT: '全场',
+  'GOAL!': '进球!',
+  '↪ kick-in': '↪ 界外球',
+  '⚑ corner': '⚑ 角球',
+  '🥅 goal kick': '🥅 球门球',
+  '⚠ free kick': '⚠ 任意球',
+  '⚡ PENALTY': '⚡ 点球',
+
+  // ---- right panel ----
+  'Match stats · xG race': '比赛数据 · xG 曲线',
+  'Teams & tactical genes': '球队与战术基因',
+  'Selected player': '选中球员',
+  'Click a player on the pitch.': '点击场上的球员查看详情。',
+  mode: '模式',
+  shots: '射门',
+  'on target': '射正',
+  xG: 'xG',
+  possession: '控球率',
+  passes: '传球',
+  'pass %': '传球成功率',
+  crosses: '传中',
+  'headers won': '争顶成功',
+  miscontrols: '停球失误',
+  recoveries: '抢回球权',
+  corners: '角球',
+  fouls: '犯规',
+  cards: '红黄牌',
+  saves: '扑救',
+  'action:': '动作:',
+  stamina: '体能',
+  'utility scores:': '效用评分:',
+
+  // ---- team modes ----
+  BuildUp: '组织',
+  Attack: '进攻',
+  Defend: '防守',
+  Press: '逼抢',
+  CounterAttack: '反击',
+  ResetShape: '落位',
+
+  // ---- tactical genes ----
+  passBias: '传球倾向',
+  shootBias: '射门倾向',
+  dribbleBias: '盘带倾向',
+  pressIntensity: '逼抢强度',
+  defensiveCompactness: '防守紧凑度',
+  attackingWidth: '进攻宽度',
+  riskTolerance: '冒险倾向',
+  counterAttackBias: '反击倾向',
+  staminaConservation: '体能节省',
+  markingAggression: '盯人强度',
+  keeperAggression: '门将激进度',
+  tempo: '节奏',
+  formationDepth: '阵型高度',
+  supportDistance: '接应距离',
+
+  // ---- player attributes ----
+  pace: '速度',
+  technique: '技术',
+  finishing: '射术',
+  defending: '防守',
+  reflexes: '反应',
+
+  // ---- league screen ----
+  League: '联赛',
+  'Team cards': '球队卡片',
+  'Promotion rules': '升降级规则',
+  'Auto top/bottom 2': '自动升降级(前2/后2)',
+  '⚔ Playoff': '⚔ 附加赛',
+  'Cup draw rule': '杯赛平局规则',
+  '\u{1F945} Penalty shootout': '\u{1F945} 点球大战',
+  '⚡ Underdog advances': '⚡ 黑马晋级',
+  'Roll of honour': '荣誉榜',
+  'Awards (Premier Division)': '赛季最佳(超级组)',
+  'Challenger top scorers': '挑战组射手榜',
+  '🎓 Retirements': '🎓 赛季退役',
+  'Champions history': '历届冠军',
+  'Top scorers (current season, D1)': '本赛季射手榜(超级组)',
+  'Tactical gene drift (league mean per generation)': '战术基因漂移(每代联赛均值)',
+  'Squad attribute drift (league mean per generation)': '球员属性漂移(每代联赛均值)',
+  'Premier Division': '超级组',
+  'Challenger Division': '挑战组',
+  Close: '关闭',
+  '✕ Close': '✕ 关闭',
+
+  // ---- replay bar ----
+  Replay: '回放',
+  Exit: '退出',
+  '✕ Exit replay': '✕ 退出回放',
+  'exit replay ✕': '退出回放 ✕',
+
+  // ---- league screen extras ----
+  'Season report': '赛季报告',
+  Evolution: '演化',
+  'Hall of fame': '名人堂',
+  bracket: '对阵表',
+  "Last season's cup": '上赛季杯赛',
+  'Squad attribute drift': '球员属性漂移',
+  '🎓 All-time greats (retired)': '🎓 历史最佳(已退役)',
+  '🏆 Premier titles': '🏆 超级组冠军榜',
+  '🥇 Challenger titles': '🥇 挑战组冠军榜',
+  '🎢 Movement records': '🎢 升降级纪录',
+  '📜 Records (single season)': '📜 单赛季纪录',
+  '🧬 Dynasty timeline (per league slot)': '🧬 王朝时间线(按联赛席位)',
+};
+
+/** Translate a UI string; unknown keys fall back to the English source. */
+export function t(key: string): string {
+  return lang === 'zh' ? (ZH[key] ?? key) : key;
+}
+
+/** `H1`/`H2` → 上半场/下半场. */
+export function halfLabel(half: 1 | 2): string {
+  if (lang === 'zh') return half === 1 ? '上半场' : '下半场';
+  return `H${half}`;
+}
+
+// The document language should match the UI language (a11y + font shaping).
+try {
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+} catch {
+  /* non-DOM context (tests) */
+}

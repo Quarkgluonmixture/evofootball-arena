@@ -109,11 +109,19 @@ function assignChasers(team: Team, match: Match): void {
   const possession = match.possessionSide;
   const weOwn = possession === team.side;
   if (weOwn) return; // no chasing our own carrier
+  // The opposing keeper has it in their HANDS (Phase 28.1): unchallengeable,
+  // so swarming them is wasted legs — ONE presser shadows the release from
+  // the clearance bubble's edge (cutting the short outlet, futsal-style),
+  // everyone else keeps marks and sets the block for the distribution.
+  const owner = match.ball.owner;
+  const gkHolding = owner !== null && owner.role === 'GK' && owner.gkHoldTimer > 0;
 
   let count = 1;
-  if (team.mode === 'Press') count += 1;
-  if (team.genome.pressIntensity > 0.78) count += 1;
-  if (possession === -1) count = Math.min(count, 2);
+  if (!gkHolding) {
+    if (team.mode === 'Press') count += 1;
+    if (team.genome.pressIntensity > 0.78) count += 1;
+    if (possession === -1) count = Math.min(count, 2);
+  }
 
   const outfield = team.players.filter((p) => p.role !== 'GK' && !p.sentOff);
   const byDist = [...outfield].sort(

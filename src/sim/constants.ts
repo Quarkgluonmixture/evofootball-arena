@@ -50,6 +50,12 @@ export const HEADER_MAX_HEIGHT = 2.5;
 export const HEADER_RADIUS = 1.35;
 /** Keepers can claim high balls up to here (jump + hands). */
 export const GK_CLAIM_HEIGHT = 2.55;
+/**
+ * Opponents are held this far from a keeper holding the ball in their hands
+ * (Phase 28.1) — you can't challenge a keeper in possession, so crowding
+ * them was pointless harassment that turned every release into a turnover.
+ */
+export const GK_HOLD_CLEARANCE = 3;
 
 /** Opponents are held this far from a dead-ball restart spot. */
 export const RESTART_CLEARANCE = 6;

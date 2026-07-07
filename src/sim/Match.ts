@@ -9,8 +9,8 @@ import {
   AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
   CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS,
   DEFLECT_MAX_SPEED, DT,
-  GK_CONTROL_MAX_SPEED, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W, KICK_COOLDOWN,
-  MATCH_DURATION,
+  GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
+  KICK_COOLDOWN, MATCH_DURATION,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
   RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL,
 } from './constants';
@@ -111,6 +111,9 @@ export class Match {
   private stepCount = 0;
   /** One "stoppage time" feed line per half (Phase 27.4). */
   private stoppageAnnounced = false;
+  /** Sim time when the second half kicked off — first-half stoppage must not
+   * leak into the second half's display clock (Phase 28.1). */
+  private secondHalfStart = 0;
 
   constructor(cfg: MatchConfig) {
     this.rng = new Rng(cfg.seed);
@@ -125,9 +128,35 @@ export class Match {
     this.setupKickoff(0);
   }
 
-  /** Display minute: sim time scaled onto a 90' clock. */
+  /**
+   * Display minute: sim time scaled onto a 90' clock, held at 45/90 during
+   * stoppage (Phase 28.1 — the first half used to tick into "46', 47'" while
+   * its added time played out, which read as the second half starting early).
+   * The second half's clock restarts from 45' regardless of how much
+   * stoppage the first half ran.
+   */
   minute(): number {
-    return Math.min(90, Math.floor((this.simTime / this.duration) * 90));
+    if (this.half === 1) {
+      return Math.min(45, Math.floor((this.simTime / this.duration) * 90));
+    }
+    const secondHalf = Math.floor(((this.simTime - this.secondHalfStart) / this.duration) * 90);
+    return Math.min(90, 45 + Math.max(0, secondHalf));
+  }
+
+  /** Added display-minutes in the current half (0 outside stoppage). */
+  addedMinutes(): number {
+    const over =
+      this.half === 1
+        ? this.simTime - this.duration / 2
+        : this.simTime - this.secondHalfStart - this.duration / 2;
+    if (over <= 0) return 0;
+    return Math.max(1, Math.ceil((over / this.duration) * 90));
+  }
+
+  /** Scoreboard clock: `37`, `45+2`, `90+1`. */
+  clockText(): string {
+    const added = this.addedMinutes();
+    return added > 0 ? `${this.minute()}+${added}` : `${this.minute()}`;
   }
 
   pushEvent(type: EventType, side: Side | -1, text: string): void {
@@ -150,6 +179,7 @@ export class Match {
         else if (this.phase === 'goalPause') this.setupKickoff(this.kickoffSide);
         else {
           this.half = 2;
+          this.secondHalfStart = this.simTime;
           this.setupKickoff(1);
         }
       }
@@ -218,6 +248,8 @@ export class Match {
       this.pendingShot = null;
     }
 
+    // Each half runs its own nominal length + its own stoppage (28.1) —
+    // first-half added time no longer eats into the second half.
     if (this.half === 1 && this.simTime >= this.duration / 2) {
       if (this.refBlowsNow(this.duration / 2)) {
         this.phase = 'halftime';
@@ -225,8 +257,8 @@ export class Match {
         this.stoppageAnnounced = false;
         this.pushEvent('halftime', -1, 'Half-time');
       }
-    } else if (this.simTime >= this.duration) {
-      if (this.refBlowsNow(this.duration)) this.endMatch();
+    } else if (this.half === 2 && this.simTime >= this.secondHalfStart + this.duration / 2) {
+      if (this.refBlowsNow(this.secondHalfStart + this.duration / 2)) this.endMatch();
     }
   }
 
@@ -378,6 +410,24 @@ export class Match {
       ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * carry;
       ball.vel.x = ball.owner.vel.x;
       ball.vel.y = ball.owner.vel.y;
+      // Ball in the keeper's hands (Phase 28.1): opponents are held off the
+      // same way a restart holds them — you cannot challenge a keeper in
+      // possession, so let them RELEASE in peace too (the crowd used to
+      // stand in the tackle circle waiting for the ball to touch grass).
+      if (ball.owner.gkHoldTimer > 0) {
+        const gk = ball.owner;
+        for (const o of this.teams[1 - gk.side].players) {
+          if (o.sentOff) continue;
+          const d = dist(o.pos, gk.pos);
+          if (d < GK_HOLD_CLEARANCE) {
+            const dir = d < 1e-6 ? v2(this.teams[1 - gk.side].attackDir, 0) : norm(sub(o.pos, gk.pos));
+            o.pos = add(gk.pos, scale(dir, GK_HOLD_CLEARANCE));
+            o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
+            o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
+          }
+        }
+        return; // untackleable, unsmotherable — hands beat everything
+      }
       mech.tryTackles(this);
       mech.trySmother(this);
       return;
@@ -685,7 +735,12 @@ export class Match {
     }
 
     const taker = this.allPlayers[r.takerGid];
-    const ready = dist(taker.pos, r.pos) < 1.3 && r.timer >= RESTART_MIN_SETUP;
+    // Kick-ins and corners breathe (Phase 28.1): the taker settles the ball
+    // and both teams get a beat to shape up — instant touchline restarts
+    // read as chaos, and the box picture needs time to form for a cross.
+    const minSetup =
+      r.kind === 'kickIn' ? 1.8 : r.kind === 'corner' ? 2.0 : RESTART_MIN_SETUP;
+    const ready = dist(taker.pos, r.pos) < 1.3 && r.timer >= minSetup;
     if (ready || r.timer >= RESTART_TIMEOUT) {
       this.restart = null;
       this.phase = 'playing';

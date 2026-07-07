@@ -133,15 +133,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // Facing away from goal (Phase 27): turn first instead of snap-shooting
     // blind. Restart takers are exempt — they set themselves before kicking.
     if (!mustKick) s *= 1 - kickMisalignment(p, norm(sub(goal, p.pos))) * 0.3;
-    // Long-range appetite (Phase 28): when the sight is clear and the move
-    // is going nowhere, have a dig from 16–30m instead of recycling forever.
+    // Long-range appetite (Phase 28): when the sight is clear, have a dig
+    // from 16–30m instead of recycling forever — a stale move digs sooner.
     let dig = 0;
     if (dGoal > 16) {
       dig =
         W.longShotW *
         (0.3 + g.shootBias * 0.7) *
         (1 - pressure) *
-        (0.4 + stagnation * 0.6) *
+        (0.55 + stagnation * 0.45) *
         clamp01((30 - dGoal) / 14);
       s += dig;
     }

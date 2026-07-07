@@ -19,7 +19,7 @@ import type { Role } from './types';
 
 /** How far out the keeper can reach a ball (dive included). */
 export function keeperReach(defTeam: { genome: { keeperAggression: number } }, gk: Player): number {
-  return 2.15 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5;
+  return 2.05 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5;
 }
 
 /* ------------------------------------------------------------------ */
@@ -225,7 +225,10 @@ export function performCross(match: Match, crosser: Player, target: Player): voi
   const flight0 = clamp(0.5 + dist(crosser.pos, target.pos) * 0.038, 0.7, 1.7);
   const arrive = add(target.pos, scale(target.vel, flight0 * 0.9));
   const goal = team.oppGoal();
-  const spot = v2(arrive.x + (goal.x - arrive.x) * 0.25, arrive.y + (goal.y - arrive.y) * 0.25);
+  // Pulled toward goal, but NOT into the six-yard area — a delivery that
+  // drops on the keeper's claim radius is a delivery wasted (28.1: this
+  // pull was 0.25 and fed the keeper instead of the penalty spot).
+  const spot = v2(arrive.x + (goal.x - arrive.x) * 0.18, arrive.y + (goal.y - arrive.y) * 0.18);
   loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1);
   team.stats.passes++;
   team.stats.crosses++;
@@ -310,8 +313,8 @@ export function tryAerial(match: Match, order: Player[]): void {
     if (d2 > HEADER_RADIUS * HEADER_RADIUS) continue;
     // Position + aerial sense + a seeded jump-timing roll pick the winner.
     // Attackers meeting a delivery in the opponent box arrive with momentum
-    // — a small edge over the defender jumping from a standing start.
-    const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.07 : 0;
+    // — a real edge over the defender jumping from a standing start.
+    const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.12 : 0;
     const s =
       aerialSense(p) +
       attacking +
@@ -447,7 +450,7 @@ export function performShot(match: Match, shooter: Player): void {
   // confident finishers aim closer to the post (bigger keeper-evasion, riskier
   // margin) AND group their shots tighter.
   const goalX = team.attackDir * HALF_L;
-  const aimMargin = 1.3 - shooter.attrs.finishing * 0.9; // 0.4 (clinical) .. 1.25 (timid)
+  const aimMargin = 1.42 - shooter.attrs.finishing * 0.9; // 0.52 (clinical) .. 1.37 (timid)
   const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
   const target = v2(goalX, aimY);
 
@@ -459,7 +462,7 @@ export function performShot(match: Match, shooter: Player): void {
   // snatched against the body's facing (Phase 27) sprays more and loses power.
   const misalign = kickMisalignment(shooter, aim);
   const spread =
-    (0.032 + d * 0.0028 + pressure * 0.05) *
+    (0.029 + d * 0.0028 + pressure * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
     orientationNoiseMul(misalign, shooter.attrs.technique);
   const dir = rotate(aim, match.rng.gaussian() * spread);
@@ -537,7 +540,7 @@ export function tryDeflection(match: Match, p: Player): void {
   const speed = len(ball.vel);
   // Committed to the stretch either way — no second bite at the same ball.
   p.kickCooldown = 0.3;
-  const pDef = clamp(0.28 + p.attrs.defending * 0.4 - (speed - 14) * 0.02, 0.1, 0.6);
+  const pDef = clamp(0.24 + p.attrs.defending * 0.4 - (speed - 14) * 0.02, 0.1, 0.6);
   if (!match.rng.chance(pDef)) return; // it zips past the outstretched leg
   ball.lastTouch = p;
   ball.vel = scale(rotate(norm(ball.vel), match.rng.range(-1.2, 1.2)), match.rng.range(4, 8));
@@ -611,7 +614,7 @@ export function tryTackles(match: Match): void {
   // Base raised with Phase 27's whiff stun: a lunge is a real commitment, so
   // the ones that connect win the ball a little more often.
   let p =
-    0.23 +
+    0.21 +
     oppTeam.genome.markingAggression * 0.2 +
     tackler.attrs.defending * 0.24 -
     match.teams[owner.side].genome.dribbleBias * 0.08 -
@@ -669,7 +672,7 @@ export function tryKeeperSave(match: Match): void {
   // the shot's frozen dive difficulty then discounts it — accurate corner
   // finishes stay hard to save even though the keeper converges on the path.
   const saveP =
-    clamp(0.75 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+    clamp(0.72 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;

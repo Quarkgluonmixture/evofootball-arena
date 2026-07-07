@@ -104,8 +104,22 @@ five new `PolicyParams` keys (stored wildcard vectors backfill from
 `DEFAULT_POLICY` — `StoredWildcardCandidate`), and two live-play fixes:
 keepers smother at the feet of a carrier in their box without needing a
 rush, and hold their ground (overlap-immovable) against opponents in their
-own box (phase 28).
-179 vitest tests;
+own box (phase 28); then the 28.1 live-play pass — a keeper HOLDING the
+ball gets a `GK_HOLD_CLEARANCE` (3 m) release bubble with at most ONE
+opponent chaser shadowing the outlet (the old release-robbery was a goal
+factory; removing it cost ~0.3 goals/match, deliberately accepted and
+re-tuned via tackle 0.21 / deflection 0.24 / saveP 0.72 / spread 0.029 /
+aimMargin 1.42 / keeperReach 2.05), kick-ins/corners get 1.8 s/2.0 s setup
+time, each half runs its OWN nominal length + stoppage (`secondHalfStart`;
+the clock shows `45+2` via `Match.clockText()` — first-half stoppage no
+longer eats the second half or leaks into its clock), corner crosses pull
+0.18 toward goal (0.25 dropped them on the keeper) with a 0.12
+attacker-momentum bonus in the duel, and the UI is localized — Chinese by
+default, EN/中文 top-bar toggle, `src/ui/i18n.ts` `t()` keyed by English
+source strings with English fallback; sim-generated text stays English
+(sim/ never touches the browser); the Playwright suites pin `lang=en` via
+addInitScript because their selectors are English (phase 28.1).
+180 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-27` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
@@ -501,12 +515,14 @@ only caught by eyes on the PNGs.
 
 | Goal | Lever |
 |---|---|
-| Goals per match (~4.2 target since Phase 27's direct-play economy) | `mechanics.tryKeeperSave` saveP base (0.75 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.15; shot `spread` (base 0.032); xG curve `exp(-d/10)`; shoot gate `dGoal < 30` — see failure mode 16 before touching these |
+| Goals per match (~3.5 since Phase 28.1 traded the keeper-robbery goals for cleaner football) | `mechanics.tryKeeperSave` saveP base (0.72 − xG·0.6) + catch odds (0.8 under 21 m/s); `keeperReach` base 2.05; shot `spread` (base 0.029); `aimMargin` base 1.42; xG curve `exp(-d/10)`; shoot gate `dGoal < 30` — see failure mode 16 before touching these |
 | Forced-error rate (~10 miscontrols/match) | `touchFailChance` coefficients in `mechanics.attemptFirstTouch` (speed/pressure/blind-side vs technique) |
 | Forward urgency / anti-recycling | territory clock in `Match.step` (progress +1.5m resets, 0.35 m/s mark decay) + `stagnation = (staleTime−3)/5` tilt multipliers in `decideCarrier` |
 | Body-orientation feel | `TURN_RATE` (6.5 rad/s) in `Player.ts`; `orientationNoiseMul/PowerMul` slopes; decision-side misalign penalties (pass 0.12, shot 0.3) in `decideCarrier` |
 | Lane anticipation | `DEFLECT_MAX_SPEED` (24) + odds in `mechanics.tryDeflection`; ball-side blend `laneW = 0.35 + aggression·0.3` in executor MarkOpponent |
-| Tackle economy | tackle base 0.23 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
+| Tackle economy | tackle base 0.21 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
+| GK release protection | `GK_HOLD_CLEARANCE` (3 m) bubble in `Match.stepBall`; single outlet-cutter chaser in `assignChasers` |
+| Restart pacing feel | per-kind min setup in `stepRestart` (kick-in 1.8 s, corner 2.0 s, else `RESTART_MIN_SETUP`) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
 | Corner / cross threat | box-crash count in `assignRunners` (3); cross pull-toward-goal 0.25 in `performCross`; corner cross boost ×2.4 in `decideCarrier`; `HEADER_RADIUS` |
 | Aerial duel character | `AERIAL_ROLE` + attr weights in `aerialSense`; attacker-momentum bonus 0.07 in `tryAerial`; header-shot gate 16.5m + quality `0.5·exp(−d/8.5)` in `performHeaderShot` |

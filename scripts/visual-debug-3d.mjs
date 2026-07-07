@@ -25,6 +25,8 @@ page.on('console', (msg) => {
   if (msg.type() === 'error') errors.push(msg.text());
 });
 page.on('pageerror', (err) => errors.push(String(err)));
+// The suites' selectors are English — pin the UI language (zh is the app default since Phase 28.1).
+await page.addInitScript(() => localStorage.setItem('evofootball-lang', 'en'));
 
 await page.goto(URL, { waitUntil: 'networkidle' });
 // The app boots straight into 3D since Phase 27.5 — wait for ITS canvas

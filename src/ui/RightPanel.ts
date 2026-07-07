@@ -2,6 +2,7 @@ import { GENE_KEYS } from '../evolution/genome';
 import { ATTR_KEYS } from '../evolution/playerGenome';
 import type { Match } from '../sim/Match';
 import { bar, colorHex, el } from './dom';
+import { t } from './i18n';
 import { XgChart } from './XgChart';
 
 const STAT_ROWS = [
@@ -50,11 +51,11 @@ export class RightPanel {
 
     // ---- match stats + xG race ----
     const statsSec = el('div', 'section');
-    statsSec.append(el('h3', '', 'Match stats · xG race'));
+    statsSec.append(el('h3', '', t('Match stats · xG race')));
     statsSec.appendChild(this.chart.root);
     for (const label of STAT_ROWS) {
       const row = el('div', 'gene-row');
-      row.appendChild(el('div', 'g-name', label));
+      row.appendChild(el('div', 'g-name', t(label)));
       const a = el('div', 'stat-val', '0');
       const b = el('div', 'stat-val', '0');
       row.append(a, b);
@@ -64,7 +65,7 @@ export class RightPanel {
 
     // ---- teams & genes ----
     const teamsSec = el('div', 'section');
-    teamsSec.append(el('h3', '', 'Teams & tactical genes'));
+    teamsSec.append(el('h3', '', t('Teams & tactical genes')));
 
     const heads = el('div', 'gene-row');
     heads.append(el('div', 'g-name', ''));
@@ -78,7 +79,7 @@ export class RightPanel {
     teamsSec.appendChild(heads);
 
     const modes = el('div', 'gene-row');
-    modes.append(el('div', 'g-name', 'mode'));
+    modes.append(el('div', 'g-name', t('mode')));
     this.modeA = el('span', 'mode-badge', '—');
     this.modeB = el('span', 'mode-badge', '—');
     modes.append(this.modeA, this.modeB);
@@ -86,7 +87,7 @@ export class RightPanel {
 
     for (const key of GENE_KEYS) {
       const row = el('div', 'gene-row');
-      row.appendChild(el('div', 'g-name', key));
+      row.appendChild(el('div', 'g-name', t(key)));
       row.appendChild(bar(match.teams[0].genome[key], colorHex(match.teams[0].info.colors.primary)));
       row.appendChild(bar(match.teams[1].genome[key], colorHex(match.teams[1].info.colors.primary)));
       teamsSec.appendChild(row);
@@ -95,16 +96,16 @@ export class RightPanel {
     // ---- selected player ----
     const playerSec = el('div', 'section');
     playerSec.id = 'player-card';
-    playerSec.append(el('h3', '', 'Selected player'));
-    this.playerCard = el('div', 'muted', 'Click a player on the pitch.');
+    playerSec.append(el('h3', '', t('Selected player')));
+    this.playerCard = el('div', 'muted', t('Click a player on the pitch.'));
     playerSec.appendChild(this.playerCard);
 
     this.root.append(statsSec, teamsSec, playerSec);
   }
 
   updateDynamic(match: Match, selectedGid: number | null): void {
-    if (this.modeA) this.modeA.textContent = match.teams[0].mode;
-    if (this.modeB) this.modeB.textContent = match.teams[1].mode;
+    if (this.modeA) this.modeA.textContent = t(match.teams[0].mode);
+    if (this.modeB) this.modeB.textContent = t(match.teams[1].mode);
 
     this.chart.update(match);
     this.updateStats(match);
@@ -145,7 +146,7 @@ export class RightPanel {
     if (!this.playerCard) return;
     const p = selectedGid !== null ? match.allPlayers.find((x) => x.gid === selectedGid) : undefined;
     if (!p) {
-      this.playerCard.textContent = 'Click a player on the pitch.';
+      this.playerCard.textContent = t('Click a player on the pitch.');
       this.playerCard.className = 'muted';
       return;
     }
@@ -160,17 +161,17 @@ export class RightPanel {
     head.append(dot, el('span', '', `${p.name} · ${p.role}${p.age !== undefined ? ` · ${p.age}y` : ''} · ${team.info.short}`));
     this.playerCard.appendChild(head);
 
-    this.playerCard.appendChild(el('div', '', `action: ${p.action.type}`));
+    this.playerCard.appendChild(el('div', '', `${t('action:')} ${p.action.type}`));
 
     const stamRow = el('div', 'row');
-    stamRow.appendChild(el('span', 'muted', `stamina ${(p.stamina * 100).toFixed(0)}%`));
+    stamRow.appendChild(el('span', 'muted', `${t('stamina')} ${(p.stamina * 100).toFixed(0)}%`));
     stamRow.appendChild(bar(p.stamina, p.stamina > 0.5 ? '#4ade80' : p.stamina > 0.25 ? '#facc15' : '#ef4444'));
     this.playerCard.appendChild(stamRow);
 
     // Attribute genes (squad DNA) — single-hue bars: this is magnitude, not identity.
     for (const k of ATTR_KEYS) {
       const row = el('div', 'gene-row');
-      row.appendChild(el('div', 'g-name', k));
+      row.appendChild(el('div', 'g-name', t(k)));
       const b = bar(p.attrs[k], '#60a5fa');
       b.style.gridColumn = '2 / 4';
       row.appendChild(b);
@@ -178,7 +179,7 @@ export class RightPanel {
     }
 
     if (p.action.scores.length > 0) {
-      this.playerCard.appendChild(el('div', 'muted', 'utility scores:'));
+      this.playerCard.appendChild(el('div', 'muted', t('utility scores:')));
       const list = el('ul', 'why');
       for (const s of p.action.scores) {
         list.appendChild(el('li', '', `${s.action} = ${s.score.toFixed(2)} — ${s.why}`));
