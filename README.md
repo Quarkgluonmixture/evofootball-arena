@@ -626,6 +626,48 @@ exhibitions, a phone-friendly responsive layout (Phase 27), 161 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Ideas for the next phase (rough priority order):
+- **⭐ Phase 29 — OFFSIDE (user green-lit 2026-07-07; start here).** The
+  structural cure for the sim's two visible diseases — central scrums and
+  the breakaway-with-a-chasing-pack loop are two faces of "no offside":
+  runners can't camp behind the line → the defensive line dares to step up
+  → play compresses into a band → width/crosses become how you break a
+  block. Agreed design notes:
+  - Judge at KICK time: freeze each attacker's onside/offside status the
+    moment a pass/through/chip/cross is struck (deterministic, no new rng).
+    Offside line = the SECOND-LAST defender counting the keeper (real
+    rule; `defenderLineLocalX` excludes the GK — add a variant), or the
+    ball's own local-x if deeper; only applies in the opponent half.
+  - Only the kicker's teammates can be offside. Exempt per the real laws:
+    kick-ins (≈throw-ins), corners, goal kicks.
+  - "Interfering with play" simplification: only flag the DELIVERY TARGET
+    (pendingPass.targetGid) — offside at kick time AND the ball reaches
+    them (giveBall / header contest win) ⇒ whistle. No passive-offside
+    modeling.
+  - Award: free kick to the defenders at the offside spot via the existing
+    `freeKick` restart machinery. Feed line + new `offsides` team stat +
+    stats-panel row.
+  - `runTarget` must hold runners ONSIDE (cap at line − ε; break the
+    instant a kick is struck) — timing runs replaces camping. Off-ball
+    attackers stranded behind the line should drift back onside
+    (formations/MakeRun executor).
+  - Expect the through-ball/chip economy to shift hard: retune with
+    calibrate (README balance numbers), add directional tests (a timed-run
+    team beats a camped-run team; offside actually gets called at a sane
+    rate ~2-4/match), retrain the wildcard, and mind invariant 3
+    (watched ≡ skipped) — judgment must live in the sim step, not the
+    renderer.
+- **Bug to fix FIRST (user report 2026-07-07): goal-kick press.** During
+  goalKick restarts one chaser still sprints at the keeper and pins
+  against the clearance circle ("疯狂冲向门将"). 28.3 capped restart
+  chasers at 1 — for goal kicks it should be 0 (everyone marks up; nobody
+  presses a goal kick). One-line fix in `TeamBrain.assignChasers`
+  (`match.restart?.kind === 'goalKick'` → count 0) + extend the treadmill
+  regression thinking to this case.
+- **Housekeeping for the next session:** the previous session's shell died
+  before this checkpoint could be pushed — `git add README.md && git
+  commit && git push` it (account `Quarkgluonmixture`, `gh auth switch`)
+  before starting Phase 29. Wildcard was retrained on the 28.4 engine and
+  IS committed; itch.io still lags (needs manual `npm run package:itch`).
 - Optional GLTF player models with the procedural mesh as fallback
 - Headless perf: gate the decision-tick `why`-string building behind a flag
   (largest remaining cost in profiles; match results are unaffected, only
