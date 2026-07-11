@@ -34,6 +34,12 @@ function team(name: string, genome: TacticalGenome): TeamInfo {
     playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome,
     squad: neutralSquad(),
+    // Phase 30: pin the tactical SYSTEM. Genes now also derive the
+    // formation/scheme identity; these tests predate that and measure the
+    // gene's in-system effect (e.g. low markingAggression must mean sloppy
+    // marking, not "a zonal side" — the zone lattice out-defends man and
+    // flipped the recovery test's sign).
+    style: { formationAtk: 'wide-212', formationDef: 'press-23', scheme: 'man' },
   };
 }
 

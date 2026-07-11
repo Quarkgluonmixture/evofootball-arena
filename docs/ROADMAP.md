@@ -19,7 +19,21 @@ chrome is localized via `src/ui/i18n.ts` (zh default).
 
 ---
 
-## ⭐ Phase 30 — 6v6 + the formation system (user green-lit 2026-07-07)
+## ⭐ Phase 30 — 6v6 + the formation system — **SHIPPED (tag `phase-30`)**
+
+**Outcome:** all four steps built and gated (202 tests, 51+32 visual
+checks). Texture targets hit: tackles+interceptions 76.7 → ~57, completion
+63%, ~21 through balls, build-up visible, keeper distributions find set
+receivers. **Goals landed at ~1.4, honestly below the 2.6–3.0 target** —
+the structures deleted the chaos goals and set shapes suppress chance
+volume for everyone; ARCHITECTURE **failure mode 18** is the full analysis
+(variance insight, zonal-is-OP paradox, n=142 noise is ±0.3–0.4 → use
+`npm run calibrate -- 8`). Corner threat collapsed to ~3% (the one
+hardcoded cross died to set shapes) — **Phase 31's corner routines are
+promoted from polish to fix.** The user's first 6v6 play reports decide
+the rebalance before any new build.
+
+<details><summary>Original handover plan (done — kept for reference)</summary>
 
 **The user's diagnosis (verbatim in spirit):** most possessions die in
 midfield scrambles or backfield steals, keeper distributions gift
@@ -110,12 +124,20 @@ The root: 4 outfielders on a 90×58 pitch with NO build-up structure.
 - The keeper-waits gate must not deadlock: the timeout is the failsafe —
   test a pathological setup (all teammates sent off / parked far).
 
+</details>
+
 ---
 
-## Phase 31 — formations enter EVOLUTION + set-piece routines
+## Phase 31 — chance volume vs set defences, formations enter EVOLUTION, set-piece routines
 
-**Goal:** tactical identity becomes something the ecosystem DISCOVERS, and
-corners stop being one hardcoded cross.
+**Goal:** make attacks beat SET defences (the phase-30 follow-through:
+scoring sits at ~1.4 and the missing goals are chance VOLUME — lane-aware
+shot selection so carriers stop shooting into parked bodies, cutback
+crosses, overload runs), tactical identity becomes something the ecosystem
+DISCOVERS, and corners stop being one hardcoded cross (**promoted from
+polish to fix**: set shapes defused it to ~3% corner→shot — probed, and
+the crasher-momentum lever that saved 29.1 is inert; the delivery dies
+before any aerial duel, so the ROUTINES are the fix).
 
 - **Build:** move formation/scheme picks from "derived at creation" to
   franchise DNA: inherit on rebirth from the dominant parent, mutate with

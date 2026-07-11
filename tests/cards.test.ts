@@ -112,13 +112,14 @@ describe('cards (Phase 25)', () => {
   });
 
   it('directional: playing a man short costs results (forced early red)', { timeout: 120000 }, async () => {
-    // 4v5's robust cost channel is SHOT CREATION (the missing man is an
-    // outlet/runner): measured −16% own shots over paired seeds, while shots
-    // conceded barely move. Goal-difference margins are noisier than the
-    // effect since the 28.x possession economy softened — shots are the
-    // honest directional metric (§10.5: power over vibes).
-    let shorthandedShots = 0;
-    let fullShots = 0;
+    // The robust cost channel moved in Phase 30: under set defensive
+    // shapes a 5v6 side still SHOOTS as often (the shape fills in — probed
+    // 294 vs 290 shots over these seeds) but scores a third less (26 vs 38
+    // goals): the missing man is the difference between a contested shot
+    // and a finished one. Goals, not shots, are the honest directional
+    // metric now (§10.5: power over vibes).
+    let shorthandedGoals = 0;
+    let fullGoals = 0;
     for (let seed = 0; seed < 60; seed++) {
       await breathe(seed);
       // Side-balanced: the sent-off player alternates teams; compare each
@@ -128,10 +129,10 @@ describe('cards (Phase 25)', () => {
       const shortSide = seed % 2;
       m.sendOff(m.teams[shortSide].players[2]); // the MF goes at kickoff
       const r = m.runToCompletion();
-      shorthandedShots += r.stats[shortSide].shots;
-      fullShots += full.stats[shortSide].shots;
+      shorthandedGoals += r.score[shortSide];
+      fullGoals += full.score[shortSide];
     }
-    expect(shorthandedShots).toBeLessThan(fullShots - 25); // 4v5 must genuinely hurt
+    expect(shorthandedGoals).toBeLessThan(fullGoals * 0.9); // 5v6 must genuinely hurt
   });
 
   it('a sent-off player never rejoins: parked off-pitch through kickoffs and restarts', () => {

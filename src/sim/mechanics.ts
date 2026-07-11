@@ -193,12 +193,17 @@ export function performThroughBall(
     team.stats.longBalls++; // a chip is a lofted long ball too
   } else {
     const flight = dist(passer.pos, runner.pos) / (18 * powerMul);
-    const lead = runBurstPoint(runner, team, oppPlayers, flight);
+    // Lead FURTHER since Phase 30 (flight ×1.25, pace cap 21→24): with a
+    // sixth defender recovering, a ball met AT the line gets the runner
+    // caught before the shot — the delivery must land deep enough that the
+    // 17 through balls/match turn back into 1v1s (the high-xG chances the
+    // 30.x structures had erased: 0.38/match → 0.08 before this).
+    const lead = runBurstPoint(runner, team, oppPlayers, flight * 1.25);
     const d = dist(passer.pos, lead);
     // A touch softer since Phase 29: the ball is played into SPACE for a
     // runner arriving at a sprint — friction kills it into the path, and a
     // pace the runner can actually take down is what converts timed runs.
-    const speed = clamp(d * 0.55 + 8.5, 10, 21) * powerMul;
+    const speed = clamp(d * 0.6 + 9, 10, 24) * powerMul;
 
     const pressure = pressureAt(passer.pos, opp.players);
     const aim = norm(sub(lead, passer.pos));
@@ -527,7 +532,10 @@ export function performShot(match: Match, shooter: Player): void {
   // confident finishers aim closer to the post (bigger keeper-evasion, riskier
   // margin) AND group their shots tighter.
   const goalX = team.attackDir * HALF_L;
-  const aimMargin = 1.5 - shooter.attrs.finishing * 0.9; // 0.6 (clinical) .. 1.45 (timid)
+  // 1.5 -> 1.2 base in Phase 30.4: conversion is the last lever standing —
+  // the 30.x structures deleted the chaos goals, so the shots that remain
+  // must dare the corners. 0.3 (clinical) .. 1.15 (timid).
+  const aimMargin = 1.2 - shooter.attrs.finishing * 0.9;
   const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
   const target = v2(goalX, aimY);
 
@@ -552,14 +560,14 @@ export function performShot(match: Match, shooter: Player): void {
   // Long-range and pressured shots spray more; finishers spray less. A shot
   // snatched against the body's facing (Phase 27) sprays more and loses power.
   const misalign = kickMisalignment(shooter, aim);
-  // Spread base 0.029 → 0.025 in 29.1: contain puts a body near every
-  // shooter now, and the pressure term alone dropped on-target share to
-  // ~43% — tighter base grouping keeps shots honest without touching the
+  // Spread base 0.029 → 0.025 in 29.1, → 0.022 in Phase 30: set defences
+  // (formations) mean almost every shot is a contested one now — tighter
+  // base grouping keeps the on-target share honest without touching the
   // pressure physics (failure mode 16: aim/spread beat reach/saveP here).
   const spread =
-    (0.025 + d * 0.0028 + pressure * 0.05) *
+    (0.022 + d * 0.0028 + pressure * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
-    (oneVone ? 0.8 : 1) *
+    (oneVone ? 0.7 : 1) *
     orientationNoiseMul(misalign, shooter.attrs.technique);
   const dir = rotate(aim, match.rng.gaussian() * spread);
 
@@ -834,12 +842,15 @@ export function tryKeeperSave(match: Match): void {
   // Reflexes swing save odds by ±11 percentage points around the xG baseline;
   // the shot's frozen dive difficulty then discounts it — accurate corner
   // finishes stay hard to save even though the keeper converges on the path.
-  // 0.70 → 0.66 in Phase 29, → 0.63 in 29.1: offside killed the point-blank
-  // chances and the 29.1 defensive pass (contain, professional fouls) took
-  // another bite — the shots that remain convert better so football stays
-  // watchable. Same trade as 28.1's keeper-economy pass.
+  // 0.70 → 0.66 in Phase 29, → 0.63 in 29.1, → 0.48 in Phase 30: every
+  // 30.x structure (6th defender, formations, set keeper distributions)
+  // deleted another slice of the cheap goals-above-xG (breakaways,
+  // scrambles, gifted distributions) that used to carry the scoreline —
+  // 29.2's goals ran +36% OVER xG, 30.3's ran dead even. The shots that
+  // survive a set defence are earned; they convert better. Same trade as
+  // 28.1/29.1, one size bigger.
   const saveP =
-    clamp(0.63 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+    clamp(0.48 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;

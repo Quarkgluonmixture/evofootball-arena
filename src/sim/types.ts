@@ -44,7 +44,12 @@ export function deriveTeamStyle(genome: TacticalGenome): TeamStyle {
   return {
     formationAtk: genome.attackingWidth >= 0.5 ? 'wide-212' : 'narrow-122',
     formationDef: genome.pressIntensity >= 0.5 ? 'press-23' : 'low-32',
-    scheme: genome.markingAggression >= 0.5 ? 'man' : 'zonal',
+    // Zonal is the RARE identity (~1 in 5 clubs): a parked zone lattice is
+    // structurally much harder to score on than man-marking (measured ~3.5
+    // vs ~8 shots conceded — man-markers get DRAGGED out of shape, zones
+    // don't), so a 50/50 league collapsed to 1.1 goals/match. Rare keeps
+    // the texture ("the league's zone side") without sinking the league.
+    scheme: genome.markingAggression >= 0.3 ? 'man' : 'zonal',
   };
 }
 
@@ -173,7 +178,9 @@ export const DEFAULT_POLICY: PolicyParams = {
   crossBoxW: 0.5,
   loftBase: 0.14,
   loftOpenW: 0.38,
-  longShotW: 0.38,
+  // 0.38 -> 0.55 in Phase 30.4: set defences (formations + zonal) park the
+  // block, and the realistic answer to a parked block is shooting over it.
+  longShotW: 0.55,
 };
 
 /** Everything a Match needs to know about one participating team. */

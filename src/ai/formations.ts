@@ -21,16 +21,23 @@ import type { AttackFormationId, DefendFormationId, TeamMode } from '../sim/type
  */
 export const ATTACK_FORMATIONS: Record<AttackFormationId, V2[]> = {
   // Double base, a linking striker, both wingers HIGH and WIDE (两翼齐飞).
-  'wide-212': [v2(-41, 0), v2(-17, -6), v2(-15, 7), v2(4, -19), v2(4, 19), v2(-2, 0)],
+  'wide-212': [v2(-41, 0), v2(-16, -6), v2(-12, 7), v2(8, -19), v2(8, 19), v2(4, 0)],
   // One anchor, the left winger tucks into midfield, an inside-right pair.
-  'narrow-122': [v2(-41, 0), v2(-20, 0), v2(-11, -7), v2(-9, 8), v2(2, 11), v2(5, -3)],
+  'narrow-122': [v2(-41, 0), v2(-19, 0), v2(-9, -7), v2(-6, 8), v2(6, 11), v2(7, -3)],
 };
 
+// Defend tables keep the STRIKER HIGH on purpose (30.4). The first cut
+// parked all five outfielders goal-side and league scoring collapsed to
+// ~1.1: a high body PINS an opposing defender (offence by presence) and
+// gives every turnover a launch point — 29.x, whose single spot table left
+// the ST at +5 even out of possession, scored fine for exactly this
+// reason. Identity lives in the BACK of the shape instead: low-32 drops
+// both wingers as wide backs; press-23 pushes them onto the build-up.
 export const DEFEND_FORMATIONS: Record<DefendFormationId, V2[]> = {
-  // Back THREE (wingers drop as wide backs), two screening — a low block.
-  'low-32': [v2(-41, 0), v2(-24, 0), v2(-13, -4), v2(-22, -11), v2(-22, 11), v2(-9, 5)],
-  // Back two, front three hunting high — the pressing shape.
-  'press-23': [v2(-41, 0), v2(-19, -5), v2(-16, 5), v2(-2, -14), v2(-2, 14), v2(3, 0)],
+  // Back THREE (wingers drop as wide backs), MF screens, ST stays HIGH.
+  'low-32': [v2(-41, 0), v2(-20, 0), v2(-9, -4), v2(-16, -11), v2(-16, 11), v2(5, 2)],
+  // Back two, wingers at halfway, ST hunting the opponent back line.
+  'press-23': [v2(-41, 0), v2(-18, -5), v2(-13, 5), v2(0, -15), v2(0, 15), v2(7, 0)],
 };
 
 /** How far up/down the pitch each tactical mode pushes the block. */
@@ -65,9 +72,15 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
   // Width: stretch when we have the ball, squeeze when we don't. The
   // in-possession floor is 1.0 (Phase 27.1) — an attacking shape should
   // never be narrower than its base lanes.
-  const widthMul = hasBall
+  let widthMul = hasBall
     ? 1.0 + g.attackingWidth * 0.55 // 1.0 .. 1.55
     : 1.15 - g.defensiveCompactness * 0.6; // 1.15 .. 0.55
+  // Zonal shape stays HONEST-WIDE (Phase 30.4): a zone defence covers
+  // width by definition — it may not also collapse into the central
+  // corridor, or its parked bodies dead-lane the entire pitch (measured:
+  // zonal sides conceded 3.6 shots/match vs man's 8 — the league's shot
+  // volume collapsed with half the clubs zonal).
+  if (!hasBall && team.style.scheme === 'zonal') widthMul = Math.max(widthMul, 0.95);
   let y = base.y * widthMul;
 
   // Compact teams also drag their block a little toward the ball's y.
@@ -75,7 +88,7 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
 
   if (p.role === 'GK') {
     // Keepers hold a narrow band in front of goal regardless of mode.
-    x = clamp(base.x + (g.keeperAggression - 0.5) * 4, -44, -34);
+    x = clamp(base.x + (g.keeperAggression - 0.5) * 4, -HALF_L + 1, -HALF_L + 11);
     y = clamp(ball.pos.y * 0.25, -GOAL_WIDTH / 2, GOAL_WIDTH / 2);
     return v2(x * team.attackDir, y);
   }

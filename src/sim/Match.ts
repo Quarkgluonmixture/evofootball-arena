@@ -871,7 +871,15 @@ export class Match {
     let bestD = Infinity;
     let deflector: Player | null = null;
     let deflectorD = Infinity;
-    const deflectable = speed > CONTROL_MAX_SPEED && speed <= DEFLECT_MAX_SPEED;
+    // Lane anticipation was always meant for drilled PASSES, not shots
+    // ("non-shot" below) — shots left the foot at 27 m/s, above the window.
+    // But friction decays a shot into 14–24 m/s within ~5m of flight, and
+    // once formations parked bodies on every shot path (Phase 30), the legs
+    // silently swallowed the league's goals (measured: conversion ~28% of
+    // on-target while saveP said ~50%). A shot in flight is the KEEPER's
+    // problem; blocks want lane-aware shot selection first (roadmap).
+    const shotInFlight = this.pendingShot !== null && !this.pendingShot.resolved;
+    const deflectable = speed > CONTROL_MAX_SPEED && speed <= DEFLECT_MAX_SPEED && !shotInFlight;
     // Alternate scan direction so equal-distance ties don't favor one team.
     const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
     for (const p of order) {

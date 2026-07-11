@@ -5,8 +5,8 @@
  */
 import { League } from '../src/sim/League';
 
-const SEASONS = 2;
-const SEED = 20260702;
+const SEASONS = Number(process.argv[2] ?? 2);
+const SEED = Number(process.argv[3] ?? 20260702);
 
 const league = new League({ seed: SEED });
 

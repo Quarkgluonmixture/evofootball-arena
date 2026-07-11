@@ -227,7 +227,26 @@ best-of-5, the keeper kicks 6th in sudden death). First 6v6 calibrate
 tackles+interceptions 76.7 (up from ~66 — the anticipated "6th body worsens
 crowding until formations spread lanes" regression; step 2's job, not a
 tuning knob) (phase 30.1).
-193 vitest tests;
+Phase 30 steps 2–4: the FORMATION SYSTEM — every club owns a TeamStyle
+(attack `wide-212|narrow-122`, defend `low-32|press-23`, scheme
+`man|zonal`) derived from its genes at creation/rebirth
+(`deriveTeamStyle`, sim/types.ts), stored on the franchise, backfilled by
+the v8 migration, shown on team card + right panel; `formationSpot` reads
+per-slot tables (`ATTACK_FORMATIONS`/`DEFEND_FORMATIONS`); zonal marks
+only in its zones + the box and is the RARE identity
+(markingAggression < 0.3 — failure mode 18); the keeper WAITS FOR SHAPE
+before goal kicks and hold-releases (`shapeReady`, gkShapeWait budget —
+watched ≡ skipped, timeout failsafes) (phase 30.2–30.3). The 30.4
+rebalance is failure mode 18's story: structure deleted the chaos goals;
+conversion re-priced (saveP 0.48, spread 0.022, aimMargin 1.2, deeper
+through-ball leads ×1.25/cap 24, shots no longer leg-deflectable — that
+"lane anticipation" was always meant for passes); calibrate at n=568:
+1.44 goals, 9.8 shots, 63% completion, ~21 through balls, 2.2 offsides,
+t+i ~57 (from 76.7), 92% in-play. Scoring sits BELOW the 2.6 target —
+structure done, chance volume vs set defences is Phase 31's build
+(corner routines got PROMOTED there: the one hardcoded cross died to set
+shapes, ~3% corner→shot).
+202 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-29` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at
@@ -630,6 +649,25 @@ only caught by eyes on the PNGs.
     comes from (a runner who broke on the previous kick and hasn't checked
     back level yet). If a rule's violation rate is a product number, find
     where perfect information erases it before tuning anything else.
+18. **Goals live in the VARIANCE of the gene mix, not in symmetric play —
+    give every club a structural floor and the league stops scoring.**
+    Phase 30's formation system dropped league goals 2.06 → ~1.1, and
+    every classical lever (spot heights, marking ranges, pitch size, shot
+    appetite) moved ±0.1 at best. The differential probe that cracked it:
+    neutral-mirror matches score ~1.6 in BOTH eras — 29.x's 2.4+ came from
+    MISMATCHES (a low-markingAggression club used to leak; the spot tables
+    gave everyone a competent shape and nobody leaked). Corollaries paid
+    for in probes: (a) in this engine LESS marking = STRONGER defence —
+    markers get dragged out of shape, lattices don't (the zonal scheme
+    conceded 3 shots/match vs man's 8 and had to become the RARE identity,
+    markingAggression < 0.3); (b) n=142 calibrate noise on goals is
+    ±0.3–0.4 in this regime, not ±0.15 — `npm run calibrate -- 8` (568
+    matches) before believing any lever; (c) the 30.x structures deleted
+    the goals-above-xG channel (breakaways, scrambles, gifted
+    distributions): 29.2 goals ran +36% over xG, 30.x runs dead even, so
+    conversion had to be re-priced (saveP 0.48, aimMargin 1.2) just to
+    hold 1.4. Restoring chance VOLUME against set defences (lane-aware
+    shots, cutbacks, overloads, corner routines) is Phase 31 work.
 
 ## 11. Known tuning levers
 

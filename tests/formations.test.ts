@@ -119,29 +119,34 @@ describe('marking schemes', () => {
     const carrier = B.players[2];
     carrier.pos = { x: 10, y: 0 }; // team 1 attacks -x: 10 is their own half
     m.giveBall(carrier);
-    // One threat at deep midfield (NOT in team 0's box), one inside the box.
-    B.players[5].pos = { x: -20, y: 3 };
+    // One threat on the HIGH FLANK — far from every low-32 zone center (the
+    // defending spots cluster low and central) — and one inside the box.
+    B.players[5].pos = { x: -5, y: 25 };
     B.players[3].pos = { x: -38, y: 2 }; // inside the box (depth 13, width 28)
-    // Defenders near both threats so man-marking range (22m) is satisfied.
+    // Defenders near both threats so man-marking range (22m) is satisfied;
+    // A[4] stands on the carrier so the chaser role doesn't consume the
+    // only defender in range of the flank threat.
     const A = m.teams[0];
     A.players[1].pos = { x: -36, y: -2 };
     A.players[2].pos = { x: -22, y: -1 };
-    A.players[5].pos = { x: -18, y: 5 };
+    A.players[4].pos = { x: 5, y: 2 };
+    A.players[5].pos = { x: -8, y: 12 };
     return m;
   };
 
-  it('man marks the midfield threat; zonal holds shape and only marks in the box', () => {
+  it('man tracks the flank threat; zonal defends its zones and the box', () => {
     const man = staged('man');
     updateTeamBrain(man.teams[0], man);
     const manMarked = new Set(man.teams[0].marks.values());
-    expect(manMarked.has(5)).toBe(true); // midfield threat picked up
+    expect(manMarked.has(5)).toBe(true); // flank threat tracked wherever it goes
     expect(manMarked.has(3)).toBe(true); // box threat picked up
 
     const zonal = staged('zonal');
     updateTeamBrain(zonal.teams[0], zonal);
     const zonalMarked = new Set(zonal.teams[0].marks.values());
     expect(zonalMarked.has(3)).toBe(true); // the box is still defended man-for-man
-    expect(zonalMarked.has(5)).toBe(false); // midfield belongs to the zone
+    // The flank threat sits in NOBODY's zone — the lattice holds instead.
+    expect(zonalMarked.has(5)).toBe(false);
   });
 });
 

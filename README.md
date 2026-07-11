@@ -50,7 +50,7 @@ upload-ready archive; settings live in [`docs/ITCH.md`](docs/ITCH.md).
 ```bash
 npm test           # vitest: determinism, league/cup/set-piece invariants, sim-worker equivalence
 npm run typecheck  # tsc --noEmit
-npm run calibrate  # headless: 2 seasons, prints per-match balance stats
+npm run calibrate  # headless balance stats (default 2 seasons; `-- 8` for a low-noise n=568)
 npm run evolve-check      # headless: 10 seasons of evolution meta-diversity
 
 # Browser smoke suites (optional — needs Playwright's Chromium once):
@@ -152,7 +152,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (193 tests)
+tests/                  vitest suites (202 tests)
 scripts/                headless calibration & evolution tools
 ```
 
@@ -495,33 +495,33 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
   per league slot — cell shading shows the division each season, with
   🏆/🥇/🏅/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
-- Save format v7 (v6 added cards, v7 careers; v1–v6 saves chain-migrate in
-  place — an old save finishes its current season cup-less and joins the cup
-  next season, card tallies start at zero, and squads get seeded ages with
-  blank career ledgers; history stays honest, nothing is fabricated).
+- Save format v8 (v6 added cards, v7 careers, v8 the second winger + the
+  club's tactical identity; v1–v7 saves chain-migrate in place — an old
+  save finishes its current season cup-less and joins the cup next season,
+  card tallies start at zero, squads get seeded ages with blank career
+  ledgers, and every club signs a seed-derived WG newgen at slot 4 with a
+  genome-derived formation identity; history stays honest, nothing is
+  fabricated).
 
-### Balance (from `npm run calibrate`, 240 s matches)
+### Balance (from `npm run calibrate -- 8`, 240 s matches, n=568)
 
-~2.4 goals from ~13.6 shots (≈6.3 on target; keepers make **≈4.3
+~1.4 goals from ~9.8 shots (≈3.5 on target; keepers make **≈2.1
 saves/match** plus smothers at a dribbler's feet and high-ball claims),
-~65% pass completion — direct football: **~18 through balls per match** now
-that passes anticipate the timed run, **~52% of passes played forward**
-(Phase 27 — the territory clock plus body-orientation costs ended free
-sideways recycling), **≈2.5 crosses, ≈5.6 aerial duels won and ≈4.6 lofted
-long balls per match** (Phase 28), **≈1.9 offsides/match** (Phase 29 —
-tight calls on marginal runs; the stats panel counts them), **≈12
-first-touch miscontrols/match** (forced errors — pressing pays), ~2.5
-corners (**≈10% lead to a shot inside 8 s** — box-crashing runners attack
-the delivery), balanced possession, ~93% ball-in-play (the rest is live
-dead-ball time: goal kicks, corners, kick-ins, free kicks, penalties;
-**≈7 fouls/match — most play advantage (27.2), but ≈1 is a professional
-foul that stops the break (29.1) — ≈0.06 penalties** — offside decongested
-the box — drawing **≈1.5 yellows and ≈0.11 reds** per match; referees
-manage the game, so a booked man gets benefit of the doubt on ordinary
-fouls while the cynical one stays near-automatic), ~29 ms per headless
-match (allocation-free
-hot paths + a precomputed intercept table — Phase 16; a 10-season fast-sim
-runs off the main thread on the sim worker).
+~63% pass completion — direct football: **~21 through balls per match**
+with deliveries led deep into the run, **~59% of passes played forward**,
+**≈1.5 crosses, ≈3 aerial duels won and ≈4.5 lofted long balls per match**
+(Phase 28), **≈2.2 offsides/match** (Phase 29 — tight calls on marginal
+runs; the stats panel counts them), **≈11 first-touch miscontrols/match**
+(forced errors — pressing pays), balanced possession, ~92% ball-in-play
+(the rest is live dead-ball time: goal kicks — which now WAIT for the
+team's shape — corners, kick-ins, free kicks, penalties; **≈6
+fouls/match — most play advantage (27.2), with the professional foul that
+stops the break (29.1) — drawing **≈1.4 yellows and ≈0.11 reds** per
+match; referees manage the game, so a booked man gets benefit of the
+doubt on ordinary fouls while the cynical one stays near-automatic),
+~36 ms per headless match (allocation-free hot paths + a precomputed
+intercept table — Phase 16; a 10-season fast-sim runs off the main thread
+on the sim worker).
 Phase 27 moved the numbers deliberately: goals ~3.3 → ~4.0 and completion
 77% → 74%, because attacks are far more direct (shots per completed pass
 roughly doubled) and errors are real; the keeper economy was re-tuned to
@@ -550,8 +550,16 @@ anticipate timed runs (~18/match), penalties fell as the box decongested,
 and the save/spread economy eased (saveP 0.63, spread 0.025) so the chances
 that remain convert. The 29.1 live-play pass then made defending SMARTER on
 user reports — containment jockeys, professional fouls, layered holds — and
-goals settled at ~2.4: real-football scorelines, priced in deliberately;
-the next rebalance takes play-feel, not the calibrate table, as its input.
+goals settled at ~2.4. **Phase 30 (6v6 + formations) moved them again, and
+honestly below target: ~1.4.** Every 30.x structure deleted a slice of the
+chaos goals (scrambles, keeper gifts, unmarked leaks — 29.x goals ran +36%
+over xG on exactly those; 30.x runs dead even), and set defensive shapes
+suppress chance volume for EVERYONE (ARCHITECTURE failure mode 18 tells
+the full detective story). Conversion was re-priced (saveP 0.48, tighter
+spread, braver aim, deeper through-ball leads) to hold 1.4; restoring
+chance volume against set defences — lane-aware shot selection, cutback
+crosses, overloads, real corner routines — is Phase 31's build, and the
+next rebalance takes play-feel, not the calibrate table, as its input.
 The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
@@ -559,7 +567,7 @@ gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 193 tests: RNG/vec math, genome operators, career curves
+- `npm test` — 202 tests: RNG/vec math, genome operators, career curves
   (directional development, retirement, long-run stability, v7+v8 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
@@ -631,12 +639,14 @@ direction with broadcast overlays, cinematic mode and screenshot/share tools
 fame), save/load (v8 — 6v6 splices in the second winger; v1–v7 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), a phone-friendly responsive layout (Phase 27), offside with
-timed runs (Phase 29), 193 tests, and
+timed runs (Phase 29), 6v6 + per-club formations + set keeper distributions (Phase 30), 202 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
-Next up: **⭐ Phase 30 — 6v6 + the formation system** (user green-lit
-2026-07-07). The full handover plan — implementation order, the 5-player
-assumption sweep, save v8 migration, keeper-waits-for-shape — plus the
-Phase 31–35 roadmap (formation evolution, real free kicks, highlights,
-player traits, league ecology) live in
-[`docs/ROADMAP.md`](docs/ROADMAP.md). Start there.
+Next up: **Phase 31 — chance volume vs set defences + set-piece routines**
+(lane-aware shot selection, cutback crosses, corner routines — promoted
+from polish to fix after the formation era defused the one hardcoded
+cross; ARCHITECTURE failure mode 18 has the analysis). The Phase 31–35
+roadmap (formation evolution, real free kicks, highlights, player traits,
+league ecology) lives in [`docs/ROADMAP.md`](docs/ROADMAP.md). Start
+there — and Phase 30's first live-play reports decide the rebalance
+before anything else.

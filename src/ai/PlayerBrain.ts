@@ -164,7 +164,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       }
       if (goalside === 0) {
         breakaway = true;
-        s *= 1.45;
+        s *= 1.6;
       }
     }
     // Long-range appetite (Phase 28): when the sight is clear, have a dig

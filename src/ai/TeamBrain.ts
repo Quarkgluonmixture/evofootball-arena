@@ -1,5 +1,6 @@
 import { dist } from '../utils/vec';
 import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
+import { formationSpot } from './formations';
 import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
 import type { Team } from '../sim/Team';
@@ -146,9 +147,13 @@ function assignChasers(team: Team, match: Match): void {
  * opponent (deepest into our half) within range. Greedy and deterministic.
  *
  * Marking SCHEME (Phase 30, `team.style.scheme`): 'man' marks every ranged
- * threat (the behavior every phase before 30 shipped with); 'zonal' holds
- * the sliding formation spots and only picks up threats INSIDE OUR PENALTY
- * BOX — the zone cordon defends space, the box defends people.
+ * threat (the behavior every phase before 30 shipped with); 'zonal' marks a
+ * threat only when it ENTERS A DEFENDER'S ZONE (near that defender's
+ * defending spot) or our penalty box. Zone defenders otherwise hold the
+ * sliding spots — and crucially, engaging a zone runner drags its defender
+ * OFF the spot lattice, which is how attacks open a zone up (a first cut
+ * that never engaged parked an impenetrable 5-body wall: 3 shots/match
+ * conceded, and the league's shot volume collapsed).
  */
 function assignMarks(team: Team, match: Match): void {
   team.marks.clear();
@@ -169,12 +174,14 @@ function assignMarks(team: Team, match: Match): void {
     team.localX(x) < -HALF_L + BOX_DEPTH && Math.abs(y) < BOX_WIDTH / 2;
   const threats = opp.players
     .filter((o) => o.role !== 'GK' && o !== carrier && !o.sentOff && o.gid !== takerGid)
-    .filter((o) => !zonal || inOurBox(o.pos.x, o.pos.y))
     .sort((a, b) => opp.localX(b.pos.x) - opp.localX(a.pos.x) || a.index - b.index);
 
   const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index) && !p.sentOff);
+  // Zonal: each free defender's zone is centered on their DEFENDING spot.
+  const zones = zonal ? new Map(free.map((p) => [p.index, formationSpot(p, team, match.ball, false)])) : null;
   const used = new Set<number>();
   for (const threat of threats) {
+    const boxThreat = inOurBox(threat.pos.x, threat.pos.y);
     let best: { idx: number; d: number } | null = null;
     for (const p of free) {
       if (used.has(p.index)) continue;
@@ -183,6 +190,9 @@ function assignMarks(team: Team, match: Match): void {
       // spine. This is the user-diagnosed collapse: turnover in midfield →
       // wingers tuck in → six bodies in one corridor → playground scramble.
       if (p.role === 'WG' && Math.abs(p.pos.y) > 12 && Math.abs(threat.pos.y) < 8) continue;
+      // Zonal: outside our box, only the defender whose ZONE the threat
+      // entered may engage — everyone else keeps the lattice.
+      if (zones && !boxThreat && dist(zones.get(p.index)!, threat.pos) > 9) continue;
       const d = dist(p.pos, threat.pos);
       if (d < 22 && (best === null || d < best.d)) best = { idx: p.index, d };
     }
