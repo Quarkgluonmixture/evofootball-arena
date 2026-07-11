@@ -8,7 +8,7 @@ import { DT } from '../src/sim/constants';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { performPass, tryAerial } from '../src/sim/mechanics';
-import type { TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 
 /**
  * Phase 29 — offside. Judgment is frozen at kick time (the real law's
@@ -25,7 +25,7 @@ const neutral = (): TacticalGenome => {
 };
 
 const squad = (): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const p = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) p[k] = 0.5;
     return p;
@@ -37,7 +37,7 @@ function team(name: string): TeamInfo {
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome: neutral(),
     squad: squad(),
   };
@@ -75,10 +75,13 @@ function defence(m: Match, secondLastX: number): void {
   const B = m.teams[1];
   B.players[0].pos = { x: 44, y: 0 }; // GK — the LAST defender
   B.players[1].pos = { x: secondLastX, y: 20 }; // second-last, wide of the lane
-  // Remaining B outfielders shallow so players[1] really is second-last.
+  // Remaining B outfielders shallow so players[1] really is second-last
+  // (the stage() parking spot at x=+40 is DEEPER than the line — every
+  // defender must be re-placed or the parked one becomes the line).
   B.players[2].pos = { x: 5, y: -20 };
   B.players[3].pos = { x: 5, y: -24 };
   B.players[4].pos = { x: 5, y: -28 };
+  B.players[5].pos = { x: 5, y: -16 };
 }
 
 describe('offside judgment at kick time', () => {
@@ -161,6 +164,7 @@ describe('offside judgment at kick time', () => {
     B.players[2].pos = { x: 34, y: -10 };
     B.players[3].pos = { x: 5, y: -24 };
     B.players[4].pos = { x: 5, y: -28 };
+    B.players[5].pos = { x: 5, y: -16 };
     const line = offsideLineLocalX(m.teams[0], B.players, 0);
     expect(line).toBeCloseTo(34, 5);
   });

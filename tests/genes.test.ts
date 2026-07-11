@@ -3,7 +3,7 @@ import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { Match } from '../src/sim/Match';
-import type { TeamInfo, TeamMatchStats } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
 
 /**
  * The core product claim: tactical genes visibly change behavior. We pit
@@ -19,7 +19,7 @@ const neutral = (): TacticalGenome => {
 };
 
 export const neutralSquad = (): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const p = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) p[k] = 0.5;
     return p;
@@ -31,7 +31,7 @@ function team(name: string, genome: TacticalGenome): TeamInfo {
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome,
     squad: neutralSquad(),
   };

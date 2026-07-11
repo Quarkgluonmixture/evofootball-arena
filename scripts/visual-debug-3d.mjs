@@ -35,7 +35,7 @@ await page.waitForSelector('#three-host canvas', { timeout: 15000 });
 await page.waitForTimeout(1200);
 const info = await page.evaluate(() => window.__evo.three());
 check('3D renderer initializes', info !== null);
-check('10 player models exist', info?.players === 10, `players=${info?.players}`);
+check('12 player models exist', info?.players === 12, `players=${info?.players}`);
 check('2 goal models exist', info?.goals === 2);
 
 const shot3d = await page.locator('#three-host canvas').screenshot();
@@ -200,7 +200,7 @@ await page.waitForTimeout(400);
 check('back to 2D, 3D disposed', await page.evaluate(() => window.__evo.three()) === null);
 await page.click('button:has-text("3D")');
 await page.waitForTimeout(800);
-check('3D re-initializes after dispose', (await page.evaluate(() => window.__evo.three()))?.players === 10);
+check('3D re-initializes after dispose', (await page.evaluate(() => window.__evo.three()))?.players === 12);
 
 // ---- Phase 24: shootout theater (dev-hook driven; checks stay structural —
 // the kick script itself is engine-independent, mulberry32 only) ----

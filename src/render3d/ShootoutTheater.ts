@@ -1,5 +1,6 @@
 import { HALF_L, PENALTY_SPOT_DIST } from '../sim/constants';
 import type { ShootoutKick } from '../sim/cup';
+import { TEAM_SIZE } from '../sim/types';
 import type { RenderPlayer, RenderState } from './RenderStateAdapter';
 
 /**
@@ -76,7 +77,7 @@ export class ShootoutTheater {
       if (p.role === 'GK') {
         this.waitSpot.set(p.gid, { x: this.sign * (HALF_L - 1.2), y: p.side === 0 ? 5.5 : -5.5 });
       } else {
-        const rank = p.gid % 5; // 1..4 within the team
+        const rank = p.gid % TEAM_SIZE; // 1..TEAM_SIZE-1 within the team
         this.waitSpot.set(p.gid, {
           x: this.sign * (HALF_L - 19.5 - rank * 1.1),
           y: p.side === 0 ? -7 - rank * 1.4 : 7 + rank * 1.4,
@@ -167,8 +168,8 @@ export class ShootoutTheater {
     }
 
     // ---- choreograph the 10 players + ball ----
-    const kickerGid = kick ? kick.side * 5 + kick.kicker : -1;
-    const keeperGid = kick ? (1 - kick.side) * 5 : -1; // defending keeper
+    const kickerGid = kick ? kick.side * TEAM_SIZE + kick.kicker : -1;
+    const keeperGid = kick ? (1 - kick.side) * TEAM_SIZE : -1; // defending keeper
     const standX = spot.x - this.sign * 1.3;
 
     const ball = { x: spot.x, z: spot.y, vx: 0, vz: 0, speed: 0, ownerGid: null as number | null, isShot: false, isPass: false };

@@ -60,6 +60,10 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
     ? 1.0 + g.attackingWidth * 0.55 // 1.0 .. 1.55
     : 1.15 - g.defensiveCompactness * 0.6; // 1.15 .. 0.55
   let y = base.y * widthMul;
+  // Phase 30 (6v6): the WG spot serves BOTH wingers — slot 4 (WGR) mirrors
+  // to the opposite touchline, so the two wings actually are two wings.
+  // Step 2's per-team formation tables replace this with real per-slot spots.
+  if (p.role === 'WG' && p.index === 4) y = -y;
 
   // Compact teams also drag their block a little toward the ball's y.
   if (!hasBall) y += (ball.pos.y - y * team.attackDir) * team.attackDir * g.defensiveCompactness * 0.25;

@@ -27,11 +27,11 @@ export interface Franchise {
   colors: { primary: number; secondary: number };
   playerNames: string[];
   genome: TacticalGenome;
-  /** Per-player attribute genes, role order [GK, DF, MF, WG, ST]. */
+  /** Per-player attribute genes, slot order [GK, DF, MF, WGL, WGR, ST]. */
   squad: PlayerAttributes[];
-  /** Player ages in role order (Phase 26) — drive development & retirement. */
+  /** Player ages in slot order (Phase 26) — drive development & retirement. */
   ages: number[];
-  /** Career ledgers in role order — accumulated season stats + seasons. */
+  /** Career ledgers in slot order — accumulated season stats + seasons. */
   careers: PlayerCareer[];
   elo: number;
   /** 0 = top flight, 1 = second division. Changes via promotion/relegation. */

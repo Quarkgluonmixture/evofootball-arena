@@ -3,7 +3,7 @@ import { GENE_KEYS, type TacticalGenome } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { DT, HALF_L, PENALTY_CLEARANCE, PENALTY_SPOT_DIST } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
-import type { TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { dist, v2 } from '../src/utils/vec';
 
 const neutral = (): TacticalGenome => {
@@ -12,7 +12,7 @@ const neutral = (): TacticalGenome => {
   return g;
 };
 const neutralSquad = (): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const p = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) p[k] = 0.5;
     return p;
@@ -22,7 +22,7 @@ const team = (name: string, genome = neutral()): TeamInfo => ({
   name,
   short: name.slice(0, 3).toUpperCase(),
   colors: { primary: 0xff0000, secondary: 0xffffff },
-  playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+  playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
   genome,
   squad: neutralSquad(),
 });

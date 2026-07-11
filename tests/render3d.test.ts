@@ -13,7 +13,7 @@ import {
 import { ReplayBuffer } from '../src/replay/ReplayBuffer';
 import { DT } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
-import type { TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 function makeTeam(name: string, seed: number): TeamInfo {
@@ -23,7 +23,7 @@ function makeTeam(name: string, seed: number): TeamInfo {
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xd64550, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome: randomGenome(rng),
     squad: randomSquad(rng),
   };
@@ -38,7 +38,7 @@ describe('RenderStateAdapter', () => {
     for (let i = 0; i < 300; i++) match.step(DT);
     const rs = buildRenderState(match, false);
 
-    expect(rs.players.length).toBe(10);
+    expect(rs.players.length).toBe(TEAM_SIZE * 2);
     rs.players.forEach((rp, i) => {
       const sp = match.allPlayers[i];
       expect(rp.gid).toBe(sp.gid);
@@ -93,13 +93,13 @@ describe('RenderStateAdapter', () => {
     expect(buildRenderState(match, false).overlays).toBeNull();
     const withOv = buildRenderState(match, true);
     expect(withOv.overlays).not.toBeNull();
-    expect(withOv.overlays!.formation.length).toBe(10);
+    expect(withOv.overlays!.formation.length).toBe(TEAM_SIZE * 2);
   });
 
   it('builds a theme with kits and rosters', () => {
     const theme = buildRenderTheme(makeMatch());
     expect(theme.teams.length).toBe(2);
-    expect(theme.players.length).toBe(10);
+    expect(theme.players.length).toBe(TEAM_SIZE * 2);
     expect(theme.players[0].role).toBe('GK');
   });
 

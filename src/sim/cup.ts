@@ -2,6 +2,7 @@ import type { Franchise } from '../evolution/franchise';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 import { hashSeed, Rng } from '../utils/rng';
 import type { Division } from './League';
+import { TEAM_SIZE } from './types';
 
 /**
  * The Evo Cup: a deterministic single-elimination knockout across both
@@ -72,7 +73,7 @@ export interface CupState {
   entrants: CupEntrant[]; // 16
   /** 15 ties in bracket order: R16 0–7, QF 0–3, SF 0–1, Final 0. */
   ties: CupTie[];
-  /** Cup goals per [slot][playerIndex 0–4] — cup-only, never enters fitness. */
+  /** Cup goals per [slot][playerIndex] — cup-only, never enters fitness. */
   playerGoals: number[][];
 }
 
@@ -133,7 +134,7 @@ export function buildCup(franchises: Franchise[], leagueSeed: number, generation
   return {
     entrants,
     ties,
-    playerGoals: franchises.map(() => [0, 0, 0, 0, 0]),
+    playerGoals: franchises.map(() => Array.from({ length: TEAM_SIZE }, () => 0)),
   };
 }
 
@@ -153,9 +154,9 @@ export function cupUnderdog(cup: CupState, slotA: number, slotB: number): number
 /* ---------------- penalty shootout (Phase 22) ---------------- */
 
 export interface ShootoutSquad {
-  /** Kicker finishing in kick order: best outfield finishers first, keeper 5th. */
+  /** Kicker finishing in kick order: best outfield finishers first, keeper last. */
   kickers: number[];
-  /** Player indices (0–4) in the same kick order — presentation reads WHO kicks. */
+  /** Player indices in the same kick order — presentation reads WHO kicks. */
   order: number[];
   gkReflexes: number;
 }
@@ -171,7 +172,7 @@ export interface ShootoutResult {
 export interface ShootoutKick {
   /** 0 = home kicks (hosts go first). */
   side: 0 | 1;
-  /** Kicking player's index (0–4) within their team. */
+  /** Kicking player's index within their team. */
   kicker: number;
   scored: boolean;
   /** Running shootout score after this kick. */
@@ -182,9 +183,10 @@ export interface ShootoutKick {
 
 /** Kick order from squad DNA: outfielders by finishing (index tiebreak), GK last. */
 export function shootoutLineup(squad: PlayerAttributes[]): ShootoutSquad {
-  const outfield = [1, 2, 3, 4].sort(
-    (i, j) => squad[j].finishing - squad[i].finishing || i - j,
-  );
+  const outfield = squad
+    .map((_, i) => i)
+    .slice(1)
+    .sort((i, j) => squad[j].finishing - squad[i].finishing || i - j);
   const order = [...outfield, 0];
   return {
     kickers: order.map((i) => squad[i].finishing),
@@ -240,7 +242,9 @@ export function resolveShootout(
   if (h !== a) return { scoreH: h, scoreA: a, sudden: false };
 
   for (let round = 0; round < 10; round++) {
-    const kicker = (BEST_OF + round) % 5;
+    // Sudden death continues down the lineup (the 6th kicker is the keeper),
+    // then cycles back to the best finisher.
+    const kicker = (BEST_OF + round) % home.kickers.length;
     const hScores = rng.chance(kickP(home.kickers[kicker], away.gkReflexes));
     const aScores = rng.chance(kickP(away.kickers[kicker], home.gkReflexes));
     if (hScores) h++;

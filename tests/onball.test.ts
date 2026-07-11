@@ -10,7 +10,7 @@ import {
 } from '../src/sim/mechanics';
 import { Player, TURN_RATE } from '../src/sim/Player';
 import { DT, GK_HOLD_CLEARANCE } from '../src/sim/constants';
-import type { TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { dist, v2 } from '../src/utils/vec';
 
 /**
@@ -38,9 +38,9 @@ function team(name: string, technique: number): TeamInfo {
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome: neutralGenome(),
-    squad: Array.from({ length: 5 }, () => attrs(technique)),
+    squad: Array.from({ length: TEAM_SIZE }, () => attrs(technique)),
   };
 }
 
@@ -195,7 +195,7 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     // Hold-releases are ~1–2 per match; scan seeds until a throw shows up.
     // The no-hoof contract is asserted across EVERY scanned match.
     let sawThrow = false;
-    for (const seed of [21, 9, 12, 42, 77, 1234]) {
+    for (const seed of [21, 9, 12, 42, 77, 1234, 7, 300, 555, 4096]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 240 });
       while (!m.finished) {
         m.step(DT);

@@ -1,6 +1,6 @@
 import { v2, type V2 } from '../utils/vec';
 import type { PlayerAttributes } from '../evolution/playerGenome';
-import type { ActionState, Role, Side } from './types';
+import { TEAM_SIZE, type ActionState, type Role, type Side } from './types';
 
 /** Physical top speed by role (m/s) before pace/stamina scaling. */
 const BASE_SPEED: Record<Role, number> = { GK: 6.4, DF: 7.0, MF: 7.3, WG: 7.9, ST: 7.7 };
@@ -19,9 +19,9 @@ let turnCos = 1;
 let turnSin = 0;
 
 export class Player {
-  /** Index within team (0..4, role order GK/DF/MF/WG/ST). */
+  /** Index within team (0..5, slot order GK/DF/MF/WGL/WGR/ST). */
   readonly index: number;
-  /** Global id across both teams (0..9), = side * 5 + index. */
+  /** Global id across both teams (0..11), = side * TEAM_SIZE + index. */
   readonly gid: number;
   readonly side: Side;
   readonly role: Role;
@@ -87,7 +87,7 @@ export class Player {
   constructor(side: Side, index: number, role: Role, name: string, attrs: PlayerAttributes) {
     this.side = side;
     this.index = index;
-    this.gid = side * 5 + index;
+    this.gid = side * TEAM_SIZE + index;
     this.role = role;
     this.name = name;
     this.attrs = attrs;

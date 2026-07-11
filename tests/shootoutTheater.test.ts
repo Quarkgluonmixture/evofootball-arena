@@ -4,7 +4,7 @@ import {
   resolveShootout, shootoutLineup, type ShootoutKick, type ShootoutResult,
 } from '../src/sim/cup';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
-import { ROLES } from '../src/sim/types';
+import { ROLES, TEAM_SIZE } from '../src/sim/types';
 import { interpolateStates, type RenderPlayer, type RenderState } from '../src/render3d/RenderStateAdapter';
 import { ShootoutTheater } from '../src/render3d/ShootoutTheater';
 import { Rng } from '../src/utils/rng';
@@ -19,7 +19,7 @@ const attrs = (finishing: number): PlayerAttributes => {
 const templatePlayers = (): RenderPlayer[] =>
   [0, 1].flatMap((side) =>
     ROLES.map((role, i) => ({
-      gid: side * 5 + i,
+      gid: side * TEAM_SIZE + i,
       side: side as 0 | 1,
       role,
       x: 0,
@@ -61,15 +61,17 @@ describe('ShootoutTheater (Phase 24)', () => {
     expect(last.shootout).toEqual({ h: result.scoreH, a: result.scoreA });
   });
 
-  it('states stay well-formed: 10 players, ball on stage, monotonic pens', () => {
+  it('states stay well-formed: 12 players, ball on stage, monotonic pens', () => {
     const { kicks } = script(3);
     const theater = new ShootoutTheater(kicks, templatePlayers(), [2, 2]);
     const { states } = runToEnd(theater);
     let prevH = 0;
     let prevA = 0;
     for (const st of states) {
-      expect(st.players).toHaveLength(10);
-      expect(st.players.map((p) => p.gid).sort((a, b) => a - b)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+      expect(st.players).toHaveLength(TEAM_SIZE * 2);
+      expect(st.players.map((p) => p.gid).sort((a, b) => a - b)).toEqual(
+        Array.from({ length: TEAM_SIZE * 2 }, (_, g) => g),
+      );
       expect(Math.abs(st.ball.x)).toBeLessThanOrEqual(HALF_L + 2);
       expect(Math.abs(st.ball.z)).toBeLessThanOrEqual(HALF_W);
       expect(st.score).toEqual([2, 2]); // the FT score never changes

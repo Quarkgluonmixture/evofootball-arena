@@ -3,7 +3,7 @@ import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { Match } from '../src/sim/Match';
-import { DEFAULT_POLICY, ROLES, type TeamInfo } from '../src/sim/types';
+import { DEFAULT_POLICY, ROLES, TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 
 // Local neutral helpers (used to live in the removed wildcard module).
 const neutralGenome = (): TacticalGenome => {
@@ -12,7 +12,7 @@ const neutralGenome = (): TacticalGenome => {
   return g;
 };
 const neutralSquad = (): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const a = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) a[k] = 0.5;
     return a;
@@ -23,7 +23,7 @@ const team = (name: string, policy?: TeamInfo['policy'], rolePolicies?: TeamInfo
   name,
   short: name.slice(0, 3).toUpperCase(),
   colors: { primary: 0xff0000, secondary: 0xffffff },
-  playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+  playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
   genome: neutralGenome(),
   squad: neutralSquad(),
   policy,

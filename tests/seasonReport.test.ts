@@ -6,7 +6,7 @@ import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import type { TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 function makeTeam(name: string, seed: number): TeamInfo {
@@ -16,7 +16,7 @@ function makeTeam(name: string, seed: number): TeamInfo {
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome: randomGenome(rng),
     squad: randomSquad(rng),
   };
@@ -37,7 +37,7 @@ describe('player match stats (passive counters)', () => {
       const ownGoals = r.events.filter((e) => e.text.includes('(og)')).length;
 
       for (const side of [0, 1] as const) {
-        const gids = side === 0 ? [0, 1, 2, 3, 4] : [5, 6, 7, 8, 9];
+        const gids = Array.from({ length: TEAM_SIZE }, (_, i) => side * TEAM_SIZE + i);
         const sum = (k: 'goals' | 'assists' | 'shots' | 'saves' | 'recoveries') =>
           gids.reduce((a, g) => a + r.playerStats[g][k], 0);
         expect(sum('shots')).toBe(r.stats[side].shots);
@@ -60,7 +60,7 @@ describe('season report data', () => {
     playSeason(league);
 
     const lines = league.playerLines();
-    expect(lines.length).toBe(80); // 16 teams × 5 players
+    expect(lines.length).toBe(16 * TEAM_SIZE); // 16 teams × squad size
     const totalGoals = lines.reduce((a, l) => a + l.goals, 0);
     const tableGf = league.table.reduce((a, r) => a + r.gf, 0);
     expect(totalGoals).toBeLessThanOrEqual(tableGf);
@@ -178,15 +178,67 @@ describe('save migrations preserve old saves', () => {
     const fromV2 = League.fromJSON(v2);
     expect(fromV2.franchises.length).toBe(16);
     expect(fromV2.playerAgg.length).toBe(16);
-    expect(fromV2.playerAgg[0].length).toBe(5);
+    // The chain now runs to v8 (6v6) — loaded shapes are current-era shapes.
+    expect(fromV2.playerAgg[0].length).toBe(TEAM_SIZE);
 
     const v1 = JSON.parse(JSON.stringify(v3)) as Record<string, unknown>;
     delete v1.playerAgg;
     for (const f of v1.franchises as Franchise[]) delete (f as Partial<Franchise>).squad;
     v1.version = 1;
     const fromV1 = League.fromJSON(v1);
-    expect(fromV1.franchises[0].squad.length).toBe(5);
+    expect(fromV1.franchises[0].squad.length).toBe(TEAM_SIZE);
     expect(fromV1.franchises.length).toBe(16);
     expect(fromV1.division(1).length).toBe(8);
+  });
+
+  it('v7 (5-a-side era) saves grow a second winger at slot 4, neighbors intact', () => {
+    const league = new League({ seed: 31, matchDuration: 30 });
+    for (let i = 0; i < 4; i++) {
+      const f = league.nextFixture()!;
+      league.applyResult(f, league.createMatch(f).runToCompletion());
+    }
+    // Forge an authentic v7 save by reversing the v8 splice: drop slot 4
+    // (WGR) from every player-shaped array, leaving the old 5-slot order
+    // [GK, DF, MF, WG, ST].
+    const data = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown> & {
+      version: number;
+      franchises: Franchise[];
+      playerAgg: Array<Array<Record<string, number>>>;
+      cup: { playerGoals: number[][] } | null;
+    };
+    data.version = 7;
+    for (const f of data.franchises) {
+      f.playerNames.splice(4, 1);
+      f.squad.splice(4, 1);
+      f.ages.splice(4, 1);
+      f.careers.splice(4, 1);
+    }
+    for (const arr of data.playerAgg) arr.splice(4, 1);
+    if (data.cup) for (const g of data.cup.playerGoals) g.splice(4, 1);
+
+    const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
+    for (const [i, f] of loaded.franchises.entries()) {
+      const orig = league.franchises[i];
+      expect(f.squad).toHaveLength(TEAM_SIZE);
+      expect(f.playerNames).toHaveLength(TEAM_SIZE);
+      expect(f.ages).toHaveLength(TEAM_SIZE);
+      expect(f.careers).toHaveLength(TEAM_SIZE);
+      // The splice lands BETWEEN the old WG and ST: 0-3 untouched, ST at 5.
+      expect(f.playerNames.slice(0, 4)).toEqual(orig.playerNames.slice(0, 4));
+      expect(f.playerNames[5]).toBe(orig.playerNames[5]);
+      expect(new Set(f.playerNames).size).toBe(TEAM_SIZE); // newgen avoids clashes
+    }
+    for (const arr of loaded.playerAgg) {
+      expect(arr).toHaveLength(TEAM_SIZE);
+      expect(arr[4]).toEqual({ goals: 0, assists: 0, shots: 0, saves: 0, recoveries: 0 });
+    }
+    if (loaded.cup) for (const g of loaded.cup.playerGoals) expect(g).toHaveLength(TEAM_SIZE);
+
+    // Migration is deterministic (seed-derived newgens), and the loaded
+    // league keeps simulating.
+    const again = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
+    expect(JSON.stringify(again.toJSON())).toBe(JSON.stringify(loaded.toJSON()));
+    const next = loaded.nextFixture()!;
+    expect(() => loaded.applyResult(next, loaded.createMatch(next).runToCompletion())).not.toThrow();
   });
 });

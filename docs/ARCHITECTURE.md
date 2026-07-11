@@ -11,7 +11,7 @@ code is the truth — then fix this document in the same change.
 ## 1. System overview
 
 EvoFootball Arena is an autonomous football ecosystem: a **deterministic 2D
-5v5 simulation** (the single source of truth), a **utility AI** with
+6v6 simulation** (the single source of truth), a **utility AI** with
 explainable scoring, an **evolving 16-team two-division pyramid** (tactical genes + per-player
 squad DNA), and two **read-only views** (PixiJS 2D, Three.js 3D) plus replay,
 analytics and debug tooling layered on top.
@@ -213,7 +213,21 @@ preset row is GONE from the UI (⏸/▶ + ⏭ only; tooling drives speed via
 (user: unused; `PolicyParams`/`DEFAULT_POLICY`/`TeamInfo.policy` plumbing
 deliberately KEPT — it's the brain's tuning surface and tests ride on it)
 (phase 29.2).
-192 vitest tests;
+Phase 30 step 1: the sim is **6v6** — a SECOND WINGER at slot 4, slot order
+`[GK, DF, MF, WGL, WGR, ST]` (`ROLES`/`TEAM_SIZE` in `sim/types.ts`; the
+Role SET is unchanged, WG appears twice; gid = side·TEAM_SIZE+index). WGR
+mirrors the shared WG base spot to the opposite touchline as a stopgap until
+step 2's per-team formation tables. Saves at **v8** (chain-migrates v1–v7;
+the v8 step splices a seed-derived WG newgen into every player-shaped array
+at index 4, LENGTH-GUARDED because franchises minted by earlier migrations
+already use today's 6-slot generators — and v6→v7 became squad-length-driven
+for the same reason). Shootout lineups generalize (5 outfield kickers
+best-of-5, the keeper kicks 6th in sudden death). First 6v6 calibrate
+(pre-formations): 2.06 goals, 67% completion (up from 64), offsides 1.99,
+tackles+interceptions 76.7 (up from ~66 — the anticipated "6th body worsens
+crowding until formations spread lanes" regression; step 2's job, not a
+tuning knob) (phase 30.1).
+193 vitest tests;
 Playwright suites: 2D 53 checks, 3D ~34 checks; ~28 ms/headless match. Git
 tags `phase-10`…`phase-29` are known-green checkpoints; source at
 https://github.com/Quarkgluonmixture/evofootball-arena, PLAYABLE at

@@ -24,8 +24,8 @@ export interface PlayerAttributes {
 export const ATTR_KEYS = ['pace', 'technique', 'finishing', 'defending', 'reflexes'] as const;
 export type AttrKey = (typeof ATTR_KEYS)[number];
 
-/** Squad order matches team roles: [GK, DF, MF, WG, ST]. */
-export const SQUAD_ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'ST'];
+/** Squad slot order (mirrors sim/types ROLES): [GK, DF, MF, WGL, WGR, ST]. */
+export const SQUAD_ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'WG', 'ST'];
 
 /** Each role tends to be born good at its job (bias added, then clamped). */
 const ROLE_BIAS: Record<Role, Partial<PlayerAttributes>> = {

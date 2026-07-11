@@ -4,7 +4,15 @@ import type { PlayerAttributes } from '../evolution/playerGenome';
 
 export type Side = 0 | 1;
 export type Role = 'GK' | 'DF' | 'MF' | 'WG' | 'ST';
-export const ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'ST'];
+/**
+ * Squad slot order (Phase 30: 6v6). The Role SET is unchanged — WG simply
+ * appears twice (slot 3 = left winger, slot 4 = right winger; two wings was
+ * the whole point of the 6th player). Everything player-array-shaped
+ * (playerNames, squad, ages, careers, playerAgg, cup.playerGoals) is indexed
+ * by this list; gid = side * TEAM_SIZE + index.
+ */
+export const ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'WG', 'ST'];
+export const TEAM_SIZE = ROLES.length;
 
 export type TeamMode = 'BuildUp' | 'Attack' | 'Defend' | 'Press' | 'CounterAttack' | 'ResetShape';
 
@@ -142,19 +150,20 @@ export interface TeamInfo {
   name: string;
   short: string;
   colors: KitColors;
-  /** Surnames in role order [GK, DF, MF, WG, ST]. */
+  /** Surnames in slot order [GK, DF, MF, WGL, WGR, ST]. */
   playerNames: string[];
   genome: TacticalGenome;
-  /** Per-player attribute genes in role order [GK, DF, MF, WG, ST]. */
+  /** Per-player attribute genes in slot order [GK, DF, MF, WGL, WGR, ST]. */
   squad: PlayerAttributes[];
   /** Player ages in role order (Phase 26) — display only, never read by the sim. */
   ages?: number[];
   /** Learned utility-policy weights (wildcard team); omitted = DEFAULT_POLICY. */
   policy?: PolicyParams;
   /**
-   * Per-role policy vectors in role order [GK, DF, MF, WG, ST] (Phase 23).
-   * A missing entry falls back to `policy` (then DEFAULT_POLICY), so a team
-   * without this field is bit-identical to the shared-policy path.
+   * Per-slot policy vectors in slot order [GK, DF, MF, WGL, WGR, ST]
+   * (Phase 23). A missing entry falls back to `policy` (then
+   * DEFAULT_POLICY), so a team without this field is bit-identical to the
+   * shared-policy path.
    */
   rolePolicies?: PolicyParams[];
 }
@@ -301,7 +310,7 @@ export const emptyPlayerStats = (): PlayerMatchStats => ({
 export interface MatchResult {
   score: [number, number];
   stats: [TeamMatchStats, TeamMatchStats];
-  /** Indexed by gid (0-4 home, 5-9 away). */
+  /** Indexed by gid (0..TEAM_SIZE-1 home, TEAM_SIZE.. away). */
   playerStats: PlayerMatchStats[];
   events: MatchEvent[];
   duration: number;

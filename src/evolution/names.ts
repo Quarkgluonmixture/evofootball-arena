@@ -1,3 +1,4 @@
+import { TEAM_SIZE } from '../sim/types';
 import type { Rng } from '../utils/rng';
 
 const PREFIXES = [
@@ -59,11 +60,11 @@ export function shortName(name: string): string {
   return name.replace(/[^A-Za-z]/g, '').slice(0, 3).toUpperCase();
 }
 
-/** Five squad surnames, order = [GK, DF, MF, WG, ST]. */
+/** Squad surnames, slot order = [GK, DF, MF, WGL, WGR, ST]. */
 export function generatePlayerNames(rng: Rng): string[] {
   const pool = [...SURNAMES];
   rng.shuffle(pool);
-  return pool.slice(0, 5);
+  return pool.slice(0, TEAM_SIZE);
 }
 
 /** One newgen surname, avoiding the current squad's names (Phase 26). */

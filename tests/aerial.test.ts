@@ -6,7 +6,7 @@ import { DT, GOAL_HEIGHT, GRAVITY, HALF_L } from '../src/sim/constants';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { tryAerial } from '../src/sim/mechanics';
-import { DEFAULT_POLICY, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
+import { DEFAULT_POLICY, TEAM_SIZE, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
 
 /**
  * Phase 28 — the aerial game. Ball height physics, the crossbar, aerial
@@ -22,7 +22,7 @@ const neutral = (): TacticalGenome => {
 };
 
 const squadOf = (defending: number): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const p = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) p[k] = 0.5;
     p.defending = defending;
@@ -35,7 +35,7 @@ function team(name: string, genome: TacticalGenome, opts: Partial<TeamInfo> = {}
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome,
     squad: squadOf(0.5),
     ...opts,

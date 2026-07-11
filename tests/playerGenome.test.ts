@@ -5,7 +5,7 @@ import {
   ATTR_KEYS, crossoverSquads, mutateSquad, randomSquad, squadSummary, type PlayerAttributes,
 } from '../src/evolution/playerGenome';
 import { Match, type ShotLogEntry } from '../src/sim/Match';
-import type { TeamInfo, TeamMatchStats } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 /* ---------------- genome operators ---------------- */
@@ -17,7 +17,7 @@ describe('player genome operators', () => {
     const N = 50;
     for (let i = 0; i < N; i++) {
       const squad = randomSquad(new Rng(i + 1));
-      expect(squad.length).toBe(5);
+      expect(squad.length).toBe(TEAM_SIZE);
       for (const p of squad) {
         for (const k of ATTR_KEYS) {
           expect(p[k]).toBeGreaterThanOrEqual(0);
@@ -25,7 +25,7 @@ describe('player genome operators', () => {
         }
       }
       gkReflex += squad[0].reflexes; // GK slot
-      stReflex += squad[4].reflexes; // ST slot
+      stReflex += squad[5].reflexes; // ST slot
     }
     expect(gkReflex / N).toBeGreaterThan(stReflex / N);
   });
@@ -59,7 +59,7 @@ describe('player genome operators', () => {
   it('squadSummary averages attributes', () => {
     const squad = randomSquad(new Rng(11));
     const s = squadSummary(squad);
-    const manual = squad.reduce((acc, p) => acc + p.pace, 0) / 5;
+    const manual = squad.reduce((acc, p) => acc + p.pace, 0) / TEAM_SIZE;
     expect(s.pace).toBeCloseTo(manual);
   });
 });
@@ -73,7 +73,7 @@ const neutralGenome = (): TacticalGenome => {
 };
 
 const squadWith = (overrides: Partial<PlayerAttributes>): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const p = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) p[k] = 0.5;
     return { ...p, ...overrides };
@@ -85,7 +85,7 @@ function team(name: string, squad: PlayerAttributes[]): TeamInfo {
     name,
     short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },
-    playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+    playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
     genome: neutralGenome(),
     squad,
   };

@@ -1,6 +1,6 @@
 # EvoFootball Arena
 
-A top-down 2D **autonomous football ecosystem**. AI-controlled 5v5 teams play
+A top-down 2D **autonomous football ecosystem**. AI-controlled 6v6 teams play
 matches against each other, compete in round-robin seasons, and **evolve their
 tactical DNA across generations**. You mostly watch: speed games up, inspect
 why players make decisions, follow the league table, and track how tactical
@@ -152,7 +152,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (192 tests)
+tests/                  vitest suites (193 tests)
 scripts/                headless calibration & evolution tools
 ```
 
@@ -321,7 +321,7 @@ passBias=0.95 team out-passes a dribbleBias=0.95 team across seeds).
 
 ## Squad DNA — per-player attribute genes
 
-Alongside the team's tactical genome, each of the five players carries
+Alongside the team's tactical genome, each of the six players carries
 attribute genes (0..1) that evolve with the franchise (`evolution/playerGenome.ts`):
 
 | attribute | effect in the sim |
@@ -559,8 +559,8 @@ gap (see `npm run evolve-check`).
 
 ## Verification tooling
 
-- `npm test` — 192 tests: RNG/vec math, genome operators, career curves
-  (directional development, retirement, long-run stability, v7 migration), match determinism, policy-default bit-equivalence
+- `npm test` — 193 tests: RNG/vec math, genome operators, career curves
+  (directional development, retirement, long-run stability, v7+v8 migration), match determinism, policy-default bit-equivalence
   (shared AND per-role vectors; watched ≡ headless), sim-worker equivalence (worker core ≡ direct sim,
   byte-identical saves), set-piece award rules/restart lifecycle/boundary
   invariants, foul/free-kick/penalty rules (award logic, taker choice,
@@ -597,7 +597,7 @@ gap (see `npm run evolve-check`).
 
 ## What's implemented vs. next steps
 
-Implemented: autonomous 5v5 matches with real boundaries and set pieces
+Implemented: autonomous 6v6 matches (Phase 30 — a second winger for real width) with real boundaries and set pieces
 (kick-ins/corners/goal kicks as live dead-ball restarts), fouls with free
 kicks and penalties (Phase 20), yellow/red cards with 4v5 play and a
 dirtiest-team award (Phase 25), on-ball realism — body facing with a real
@@ -628,10 +628,10 @@ replay with scrubbing/event jumps/auto-camera/slow-mo), a unified art
 direction with broadcast overlays, cinematic mode and screenshot/share tools
 (Phase 15 — `docs/ART_DIRECTION.md`), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v5 — the cup arrives; v1–v4 chain-migrate), Web Worker
+fame), save/load (v8 — 6v6 splices in the second winger; v1–v7 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), a phone-friendly responsive layout (Phase 27), offside with
-timed runs (Phase 29), 192 tests, and
+timed runs (Phase 29), 193 tests, and
 browser-driving visual smoke tests for both views (53 + ~34 checks).
 
 Next up: **⭐ Phase 30 — 6v6 + the formation system** (user green-lit

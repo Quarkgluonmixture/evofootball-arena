@@ -19,7 +19,7 @@ import { ATTR_KEYS, SQUAD_ROLES, randomPlayer, randomSquad, type AttrKey } from 
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
-  ROLES, emptyPlayerStats,
+  ROLES, TEAM_SIZE, emptyPlayerStats,
   type MatchResult, type PlayerMatchStats, type TeamInfo,
 } from './types';
 
@@ -114,7 +114,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 7;
+export const SAVE_VERSION = 8;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -164,7 +164,7 @@ export class League {
   cursor = 0;
   table: TableRow[] = [];
   agg: SeasonAggregates[] = [];
-  /** Per-player season totals: [slot][playerIndex 0-4]. */
+  /** Per-player season totals: [slot][playerIndex 0..TEAM_SIZE-1]. */
   playerAgg: PlayerMatchStats[][] = [];
   history: SeasonRecord[] = [];
   /** This season's Evo Cup; null on migrated saves until the next season starts. */
@@ -330,8 +330,8 @@ export class League {
         // seed — never the match's rng), underdog rule otherwise.
         resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1], this.shootoutContext(fixture));
         for (let gid = 0; gid < result.playerStats.length; gid++) {
-          const slot = gid < 5 ? fixture.home : fixture.away;
-          this.cup.playerGoals[slot][gid % 5] += result.playerStats[gid].goals;
+          const slot = gid < TEAM_SIZE ? fixture.home : fixture.away;
+          this.cup.playerGoals[slot][gid % TEAM_SIZE] += result.playerStats[gid].goals;
         }
       }
       this.cursor++;
@@ -392,10 +392,10 @@ export class League {
       });
     }
 
-    // Per-player season totals (gids 0-4 = home slot, 5-9 = away slot).
+    // Per-player season totals (home gids first, then away — TEAM_SIZE each).
     for (let gid = 0; gid < result.playerStats.length; gid++) {
-      const slot = gid < 5 ? fixture.home : fixture.away;
-      const acc = this.playerAgg[slot][gid % 5];
+      const slot = gid < TEAM_SIZE ? fixture.home : fixture.away;
+      const acc = this.playerAgg[slot][gid % TEAM_SIZE];
       const s = result.playerStats[gid];
       acc.goals += s.goals;
       acc.assists += s.assists;
@@ -773,11 +773,39 @@ export class League {
       // fabricate career history that wasn't simulated.
       const rng = new Rng(hashSeed(Number(data.seed), 0xa9));
       for (const f of data.franchises as Franchise[]) {
-        f.ages = SQUAD_ROLES.map(() => veteranAge(rng));
-        f.careers = SQUAD_ROLES.map(() => emptyCareer());
+        // Squad-length-driven, NOT SQUAD_ROLES-driven: this migration must
+        // produce era-correct (5-slot) data even though the constant has
+        // since grown to 6 (Phase 30) — v7→v8 is where the 6th slot appears.
+        f.ages = f.squad.map(() => veteranAge(rng));
+        f.careers = f.squad.map(() => emptyCareer());
       }
       data.legends = [];
       data.version = 7;
+    }
+    if (data.version === 7) {
+      // v7 -> v8: 6v6 (Phase 30). Every club signs a second winger — a
+      // generated WG newgen spliced in at slot 4 (between the old WG, now
+      // WGL, and the striker, who moves to slot 5). Old saves keep playing;
+      // their remaining fixtures are simply contested six-a-side. Every
+      // splice is length-guarded: franchises minted by EARLIER migrations
+      // (v1→v2 squads, v3→v4 Division 2 newcomers) already used today's
+      // 6-slot generators and must not grow a 7th player.
+      const rng = new Rng(hashSeed(Number(data.seed), 0xb8));
+      for (const f of data.franchises as Franchise[]) {
+        if (f.squad.length < TEAM_SIZE) f.squad.splice(4, 0, randomPlayer(rng, 'WG'));
+        if (f.playerNames.length < TEAM_SIZE) f.playerNames.splice(4, 0, newgenName(rng, f.playerNames));
+        if (f.ages.length < TEAM_SIZE) f.ages.splice(4, 0, rookieAge(rng));
+        if (f.careers.length < TEAM_SIZE) f.careers.splice(4, 0, emptyCareer());
+      }
+      // Mid-season counters grow a sixth row; the newcomer starts at zero.
+      for (const arr of data.playerAgg as PlayerMatchStats[][]) {
+        if (arr.length < TEAM_SIZE) arr.splice(4, 0, emptyPlayerStats());
+      }
+      const cup = data.cup as CupState | null | undefined;
+      if (cup) for (const goals of cup.playerGoals) {
+        if (goals.length < TEAM_SIZE) goals.splice(4, 0, 0);
+      }
+      data.version = 8;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

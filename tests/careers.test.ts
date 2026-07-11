@@ -4,6 +4,7 @@ import {
 } from '../src/evolution/careers';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { League, SAVE_VERSION } from '../src/sim/League';
+import { TEAM_SIZE } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 const neutral = (): PlayerAttributes => ({
@@ -85,7 +86,7 @@ describe('player careers (Phase 26)', () => {
     const reborn = new Set(rec.evolution.entries.filter((e) => e.kind === 'reborn').map((e) => e.slot));
     if (!reborn.has(0)) {
       const retiredFromTarget = rec.retirements!.filter((r) => r.team === target.name);
-      expect(retiredFromTarget).toHaveLength(5);
+      expect(retiredFromTarget).toHaveLength(TEAM_SIZE);
       for (const r of retiredFromTarget) expect(r.age).toBe(36);
       target.ages.forEach((age) => {
         expect(age).toBeGreaterThanOrEqual(17);
@@ -169,7 +170,7 @@ describe('player careers (Phase 26)', () => {
     const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
     expect(loaded.legends).toEqual([]);
     for (const f of loaded.franchises) {
-      expect(f.ages).toHaveLength(5);
+      expect(f.ages).toHaveLength(TEAM_SIZE);
       for (const age of f.ages) {
         expect(age).toBeGreaterThanOrEqual(20);
         expect(age).toBeLessThanOrEqual(32);

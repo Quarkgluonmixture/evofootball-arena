@@ -53,7 +53,11 @@ The root: 4 outfielders on a 90×58 pitch with NO build-up structure.
    `git log` before redoing anything. `PolicyParams` / `DEFAULT_POLICY` /
    `TeamInfo.policy+rolePolicies` plumbing was deliberately KEPT (it's the
    brain's tuning surface; bit-equivalence tests ride on it).
-1. **6v6 mechanical pass** (no behavior changes yet): add the 6th slot as
+1. **6v6 mechanical pass — DONE (phase 30.1)**: full gate green (193 vitest,
+   2D 51 + 3D 34 Playwright, fingerprint re-baselined
+   `92f30f48…`). First 6v6 calibrate: 2.06 goals / 67% completion /
+   1.99 offsides / tackles+interceptions 76.7 (the predicted pre-formation
+   crowding bump — step 2's job). Original spec: add the 6th slot as
    a second WG; introduce a `TEAM_SIZE` constant and a slot-role list;
    grep-sweep EVERY 5-player assumption:
    - `% 5` (decision-tick stagger), `players[4]` / `for i 4..1` (kickoff

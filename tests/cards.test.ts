@@ -10,21 +10,21 @@ const neutralGenome = (): TacticalGenome => {
   return g;
 };
 const neutralSquad = (): PlayerAttributes[] =>
-  Array.from({ length: 5 }, () => {
+  Array.from({ length: TEAM_SIZE }, () => {
     const a = {} as PlayerAttributes;
     for (const k of ATTR_KEYS) a[k] = 0.5;
     return a;
   });
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
-import type { TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 
 const team = (name: string, genes: Partial<ReturnType<typeof neutralGenome>> = {}): TeamInfo => ({
   id: name,
   name,
   short: name.slice(0, 3).toUpperCase(),
   colors: { primary: 0xff0000, secondary: 0xffffff },
-  playerNames: ['Gk', 'Df', 'Mf', 'Wg', 'St'],
+  playerNames: ['Gk', 'Df', 'Mf', 'Wl', 'Wr', 'St'],
   genome: { ...neutralGenome(), ...genes },
   squad: neutralSquad(),
 });

@@ -18,7 +18,7 @@ import * as mech from './mechanics';
 import { Player } from './Player';
 import { Team } from './Team';
 import {
-  emptyPlayerStats,
+  TEAM_SIZE, emptyPlayerStats,
   type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
   type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
@@ -77,7 +77,7 @@ export interface MatchConfig {
 }
 
 /**
- * A fully deterministic 5v5 match: same config + seed => same result, whether
+ * A fully deterministic 6v6 match: same config + seed => same result, whether
  * it's watched frame by frame or run headless. The Match owns all state and a
  * single fixed-timestep `step(DT)`; rendering reads state and never writes.
  */
@@ -132,8 +132,8 @@ export class Match {
     this.allPlayersReversed = [...this.allPlayers].reverse();
     this.playerStats = this.allPlayers.map(() => emptyPlayerStats());
     // Stagger decision ticks deterministically (symmetric across the teams)
-    // so all 10 players don't think in the same frame.
-    this.allPlayers.forEach((p) => (p.decisionTimer = ((p.index % 5) + 1) * (AI_INTERVAL / 5)));
+    // so all 12 players don't think in the same frame.
+    this.allPlayers.forEach((p) => (p.decisionTimer = ((p.index % TEAM_SIZE) + 1) * (AI_INTERVAL / TEAM_SIZE)));
     this.setupKickoff(0);
   }
 
@@ -986,7 +986,7 @@ export class Match {
     // The striker kicks off; if he was sent off, the deepest remaining
     // outfielder steps in (keeper as the absurd-case failsafe).
     let st = kicking.goalkeeper;
-    for (let i = 4; i >= 1; i--) {
+    for (let i = TEAM_SIZE - 1; i >= 1; i--) {
       if (!kicking.players[i].sentOff) {
         st = kicking.players[i];
         break;
