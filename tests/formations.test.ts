@@ -145,6 +145,119 @@ describe('marking schemes', () => {
   });
 });
 
+describe('the keeper waits for shape (Phase 30.3)', () => {
+  const SPOT_RADIUS = 6;
+
+  /** Mean/settled-count of team 0's outfielders vs their attacking spots. */
+  const settledCount = (m: Match): number => {
+    const A = m.teams[0];
+    let n = 0;
+    for (const p of A.players) {
+      if (p.role === 'GK' || p.sentOff) continue;
+      const spot = formationSpot(p, A, m.ball, true);
+      if (Math.hypot(p.pos.x - spot.x, p.pos.y - spot.y) < SPOT_RADIUS) n++;
+    }
+    return n;
+  };
+
+  /** A match forced into a team-0 goal kick, outfielders scattered. */
+  const goalKick = (scatter: boolean): Match => {
+    const m = new Match({ seed: 17, teamA: team('A'), teamB: team('B'), duration: 240 });
+    for (let i = 0; i < 70; i++) m.step(DT);
+    const A = m.teams[0];
+    const gk = A.goalkeeper;
+    const pos = { x: -40, y: 0 };
+    gk.pos = { x: -40, y: 0.5 }; // taker already at the spot
+    for (const p of m.allPlayers) {
+      if (p === gk) continue;
+      if (p.side === 0) {
+        p.pos = scatter
+          ? { x: 38, y: p.index % 2 === 0 ? 24 : -24 } // far corner, way off shape
+          : formationSpot(p, A, m.ball, true);
+      } else {
+        p.pos = { x: 30, y: -20 + p.index * 6 };
+      }
+      p.vel = { x: 0, y: 0 };
+    }
+    m.phase = 'restart';
+    m.restart = { kind: 'goalKick', side: 0, pos, timer: 0, takerGid: gk.gid };
+    m.possessionSide = 0;
+    m.ball.pos = { ...pos };
+    return m;
+  };
+
+  it('a goal kick waits for the outfielders to settle, then releases to a set shape', () => {
+    const m = goalKick(true);
+    let released = -1;
+    for (let i = 0; i < 60 * 8 && released < 0; i++) {
+      const timer = m.restart?.timer ?? 0;
+      m.step(DT);
+      if ((m.phase as string) !== 'restart') released = timer;
+    }
+    expect(released).toBeGreaterThan(2); // it WAITED well past the 1.0s setup
+    // Released either into shape or by the timeout cap (minSetup 1.0 + 4).
+    expect(settledCount(m) >= 3 || released >= 4.9).toBe(true);
+  });
+
+  it('pre-settled receivers release quickly — the gate costs nothing when shape exists', () => {
+    const m = goalKick(false);
+    let released = -1;
+    for (let i = 0; i < 60 * 8 && released < 0; i++) {
+      const timer = m.restart?.timer ?? 0;
+      m.step(DT);
+      if ((m.phase as string) !== 'restart') released = timer;
+    }
+    expect(released).toBeGreaterThan(0);
+    expect(released).toBeLessThan(2);
+  });
+
+  it('never deadlocks: a team with every outfielder sent off kicks at the normal beat', () => {
+    const m = goalKick(true);
+    for (const p of m.teams[0].players) if (p.role !== 'GK') p.sentOff = true;
+    let released = -1;
+    for (let i = 0; i < 60 * 8 && released < 0; i++) {
+      const timer = m.restart?.timer ?? 0;
+      m.step(DT);
+      if ((m.phase as string) !== 'restart') released = timer;
+    }
+    expect(released).toBeGreaterThan(0);
+    expect(released).toBeLessThan(2); // min(3, outfield 0) = 0 — no pointless wait
+  });
+
+  it('a keeper with the ball in hand holds until shape (budget-capped), then releases', () => {
+    const m = new Match({ seed: 23, teamA: team('A'), teamB: team('B'), duration: 240 });
+    for (let i = 0; i < 70; i++) m.step(DT);
+    m.phase = 'playing';
+    m.restart = null;
+    m.restartKickGid = null;
+    m.restartKickKind = null;
+    m.kickoffKickGid = null;
+    const A = m.teams[0];
+    const gk = A.goalkeeper;
+    gk.pos = { x: -41, y: 0 };
+    for (const p of m.allPlayers) {
+      if (p === gk) continue;
+      p.pos = p.side === 0 ? { x: 38, y: p.index % 2 === 0 ? 25 : -25 } : { x: 25, y: -20 + p.index * 6 };
+      p.vel = { x: 0, y: 0 };
+      p.decisionTimer = 999; // frozen: shape can NEVER form — the budget must release
+    }
+    m.giveBall(gk);
+    expect(gk.gkHoldTimer).toBeGreaterThan(0);
+
+    // Well past the base 1.1s hold the keeper still owns it, waiting.
+    for (let i = 0; i < Math.round(2.5 / DT); i++) m.step(DT);
+    expect(m.ball.owner).toBe(gk);
+
+    // ...but the budget caps the wait: within ~7s total the ball has GONE.
+    let releasedAt = -1;
+    for (let i = 0; i < Math.round(5 / DT) && releasedAt < 0; i++) {
+      m.step(DT);
+      if (m.ball.owner !== gk) releasedAt = 1;
+    }
+    expect(releasedAt).toBe(1);
+  });
+});
+
 describe('formations are tactics, not paint (directional)', () => {
   // Metric choice (probed, §10.5): outcome soups don't carry the signal at
   // any affordable n — conceded shots/xG/goals and opponent completion all

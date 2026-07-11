@@ -1,7 +1,7 @@
 import { clamp, clamp01 } from '../utils/math';
 import { dist, dot, norm, sub } from '../utils/vec';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { defenderLineLocalX, offsideLineLocalX, runBurstPoint } from './formations';
+import { defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady } from './formations';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -75,6 +75,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // until the hold runs out.
   if (p.gkHoldTimer > 0) {
     p.action = { type: 'HoldPosition', scores: [{ action: 'HoldPosition', score: 1, why: 'ball in hands' }] };
+    return;
+  }
+  // The keeper WAITS for shape (Phase 30.3): a held ball is released to SET
+  // receivers. Until the outfielders settle near their attacking spots, the
+  // hold re-arms in small quanta — every hands protection (untackleable,
+  // clearance bubble, nobody presses) keys off gkHoldTimer and keeps
+  // applying. Budget-capped so a scattered team can't stall the match.
+  if (p.role === 'GK' && p.gkDistributing && p.gkShapeWait < 4 && !shapeReady(team, match.ball)) {
+    p.gkHoldTimer = 0.25;
+    p.gkShapeWait += 0.25;
+    p.action = { type: 'HoldPosition', scores: [{ action: 'HoldPosition', score: 1, why: 'waiting for shape' }] };
     return;
   }
   // Kickoff first touch (Phase 27.3): played BACKWARD to a teammate — no

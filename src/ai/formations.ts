@@ -86,6 +86,28 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
 }
 
 /**
+ * Is the team settled into its ATTACKING shape? (Phase 30 step 3 — the
+ * keeper waits for this before releasing a goal kick or a held ball, so
+ * distributions find SET receivers instead of gifting scrambles.) At least
+ * three outfielders within `radius` of their attacking spots — or every
+ * outfielder the team still has, when send-offs leave fewer than three.
+ * Pure sim-state (invariant 3): positions vs spot tables, no clocks.
+ */
+export function shapeReady(team: Team, ball: Ball, radius = 6): boolean {
+  let settled = 0;
+  let outfield = 0;
+  for (const p of team.players) {
+    if (p.role === 'GK' || p.sentOff) continue;
+    outfield++;
+    const spot = formationSpot(p, team, ball, true);
+    const dx = p.pos.x - spot.x;
+    const dy = p.pos.y - spot.y;
+    if (dx * dx + dy * dy < radius * radius) settled++;
+  }
+  return settled >= Math.min(3, outfield);
+}
+
+/**
  * The opponents' last defensive line, in `team`-local x (bigger = deeper
  * toward their goal). GK excluded — beating the keeper is the striker's job.
  */

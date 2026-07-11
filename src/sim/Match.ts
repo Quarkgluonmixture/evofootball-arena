@@ -3,7 +3,7 @@ import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
 import { updateTeamBrain } from '../ai/TeamBrain';
 import { executeAction } from '../ai/actionExecutor';
-import { formationSpot } from '../ai/formations';
+import { formationSpot, shapeReady } from '../ai/formations';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
@@ -390,6 +390,7 @@ export class Match {
       // hands, not feet. Restart first touches (goal kicks) stay quick.
       p.gkHoldTimer = 1.1;
       p.gkDistributing = true; // the release is deliberate (28.3)
+      p.gkShapeWait = 0; // a fresh hold gets a fresh shape-wait budget (30.3)
     }
     // Snap decisions in shooting range (Phase 28.2): a receiver in front of
     // goal decides NOW — the first-time finish exists. Everywhere else the
@@ -844,7 +845,15 @@ export class Match {
     // read as chaos, and the box picture needs time to form for a cross.
     const minSetup =
       r.kind === 'kickIn' ? 1.8 : r.kind === 'corner' ? 2.0 : RESTART_MIN_SETUP;
-    const ready = dist(taker.pos, r.pos) < 1.3 && r.timer >= minSetup;
+    let ready = dist(taker.pos, r.pos) < 1.3 && r.timer >= minSetup;
+    // The keeper WAITS for shape (Phase 30 step 3): a goal kick is not
+    // struck until the outfielders settle near their attacking spots — the
+    // kick finds SET receivers instead of gifting a midfield scramble.
+    // Timeout-capped (pure sim-state, invariant 3); RESTART_TIMEOUT is the
+    // outer failsafe either way.
+    if (ready && r.kind === 'goalKick' && r.timer < minSetup + 4 && !shapeReady(this.teams[r.side], ball)) {
+      ready = false;
+    }
     if (ready || r.timer >= RESTART_TIMEOUT) {
       this.restart = null;
       this.phase = 'playing';

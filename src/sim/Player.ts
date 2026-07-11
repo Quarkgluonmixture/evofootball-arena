@@ -73,6 +73,13 @@ export class Player {
    * deliberately (throw/pass/switch), never with a panic hoof.
    */
   gkDistributing = false;
+  /**
+   * Shape-wait budget spent (Phase 30.3): while distributing, the keeper
+   * re-arms the hold in small quanta until the outfielders settle into
+   * shape; this counts what's been spent so a parked team can't stall the
+   * match. Reset when a fresh hold starts.
+   */
+  gkShapeWait = 0;
 
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;
@@ -205,6 +212,7 @@ export class Player {
     this.stunTimer = 0;
     this.gkHoldTimer = 0;
     this.gkDistributing = false;
+    this.gkShapeWait = 0;
     this.tackleAnimTimer = 0;
     this.saveAnimTimer = 0;
     this.headerAnimTimer = 0;
