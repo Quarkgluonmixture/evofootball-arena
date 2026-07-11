@@ -126,7 +126,7 @@ describe('player attributes influence the sim', () => {
     expect(a.distance).toBeGreaterThan(b.distance);
   });
 
-  it('finishing: clinical squad converts more of its shots into goals', () => {
+  it('finishing: clinical squad converts more of its shots into goals', { timeout: 120000 }, async () => {
     // Two design notes, learned the hard way:
     // 1. "On target" is a bad proxy — sprayed shots drift toward the keeper
     //    and get "saved" (counted on target) while corner-shaving finishes
@@ -140,6 +140,10 @@ describe('player attributes influence the sim', () => {
     // variance that 30 seeds could land on the wrong side of noise (verified:
     // at 90×2 the margin is a solid ~4pp, 23.7% vs 19.7%).
     for (let i = 0; i < 90; i++) {
+      // Yield periodically: 180 full matches peg the CPU and starve
+      // vitest's RPC heartbeat on 2-core CI runners (repo CI rule) — this
+      // one first tripped it when 6v6 matches got ~30% dearer (phase 30).
+      if (i % 25 === 0) await new Promise((r) => setImmediate(r));
       const seed = 1000 + i * 37;
       for (const hiSide of [0, 1] as const) {
         const squads =
