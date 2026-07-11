@@ -1,21 +1,28 @@
-# Roadmap — Phase 30 handover plan, Phases 31–35 specs, brainstorm parking lot
+# Roadmap — Phase 31 handover plan, Phases 32–35 specs, brainstorm parking lot
 
-**Audience: the next coding agent (and the user).** Phase 30 is green-lit
-and specified below — follow the steps in order, they encode the gotchas.
-Phases 31–35 are specced concretely but are directions, not commitments:
-re-scope each against the user's play reports before starting. When
-play-feel and the calibrate table disagree, **the user's play report wins**.
+**Audience: the next coding agent (and the user).** Phase 30 SHIPPED
+(tag `phase-30`, deployed); Phase 31 is the next build and is specified
+below as a step-by-step handover — follow the steps in order, they encode
+the gotchas. Phases 32–35 are directions, not commitments: re-scope each
+against the user's play reports before starting. When play-feel and the
+calibrate table disagree, **the user's play report wins**.
 
 Standing rules (full detail in [`ARCHITECTURE.md`](ARCHITECTURE.md) §10–11):
 every step ends with typecheck + full vitest + both Playwright suites green;
 push via `gh auth switch --user Quarkgluonmixture`, then switch back; verify
 the Pages bundle after CI; itch.io needs a manual `npm run package:itch`;
-re-baseline the determinism fingerprint after mechanics changes; small
-balance levers (±0.15 goals) drown in calibrate noise at n=142 — don't
-micro-tune them; Playwright selectors are English (suites pin `lang=en`);
-the user plays 3D on a PHONE (≤390–640px) — check every UI change there;
-sim-generated text stays English (sim/ never touches the browser), UI
-chrome is localized via `src/ui/i18n.ts` (zh default).
+re-baseline the determinism fingerprint after mechanics changes;
+**calibrate noise on goals is ±0.3–0.4 at the default n=142 — ALWAYS
+measure balance levers with `npm run calibrate -- 8` (n=568), and read
+failure modes 16–18 before touching any lever** (18 is Phase 30's whole
+detective story: goals live in gene-mix variance, LESS marking = STRONGER
+defence, structure deleted the goals-above-xG channel); statistical
+match-loop tests need `{ timeout }` + `setImmediate` yields every ~25
+matches or CI's 2-core runner starves vitest's heartbeat; Playwright
+selectors are English (suites pin `lang=en`); the user plays 3D on a
+PHONE (≤390–640px) — check every UI change there; sim-generated text
+stays English (sim/ never touches the browser), UI chrome is localized
+via `src/ui/i18n.ts` (zh default).
 
 ---
 
@@ -128,35 +135,89 @@ The root: 4 outfielders on a 90×58 pitch with NO build-up structure.
 
 ---
 
-## Phase 31 — chance volume vs set defences, formations enter EVOLUTION, set-piece routines
+## ⭐ Phase 31 — beating SET defences (chance volume), set-piece routines, formation evolution
 
-**Goal:** make attacks beat SET defences (the phase-30 follow-through:
-scoring sits at ~1.4 and the missing goals are chance VOLUME — lane-aware
-shot selection so carriers stop shooting into parked bodies, cutback
-crosses, overload runs), tactical identity becomes something the ecosystem
-DISCOVERS, and corners stop being one hardcoded cross (**promoted from
-polish to fix**: set shapes defused it to ~3% corner→shot — probed, and
-the crasher-momentum lever that saved 29.1 is inert; the delivery dies
-before any aerial duel, so the ROUTINES are the fix).
+**Goal:** Phase 30 built the structure and honestly under-delivered on
+scoring (~1.4 goals; target ≥2.2). The missing goals are chance VOLUME
+against set shapes (on-target 3.45/match vs 29.2's 5.9 — per-shot
+conversion is already back at 29.2 levels, don't re-tune it). This phase
+gives attacks the real-football answers to a parked block, makes corners
+real again, and lets formations evolve. **Read ARCHITECTURE failure modes
+16–18 before writing any code.**
 
-- **Build:** move formation/scheme picks from "derived at creation" to
-  franchise DNA: inherit on rebirth from the dominant parent, mutate with
-  small per-season probability (~0.08 — switch to an adjacent formation in
-  the library), crossover picks one parent's. Evolution tab: a stacked
-  share-per-generation strip per formation id ("the league discovered the
-  low block") next to the existing gene sparklines. Corner ROUTINES:
-  `RestartState.routine` (near-post / far-post / short / edge-of-box
-  cutback), chosen by the taker's brain from openness of each routine's
-  target zone; each routine = a target-spot table + which runners attack
-  it (reuses the box-crash licensing).
-- **Tests:** routine choice determinism; evolve-check shows a
-  non-degenerate formation distribution after 10 seasons (no formation
-  extinct AND no monoculture — both are failure smells); directional:
-  short-corner routine completes more passes, far-post wins more headers.
-- **Tune:** corner→shot stays ≥10%; goals impact ±0.1.
-- **Risk:** formation mutation churn can destroy identity continuity the
-  dynasty timeline sells — keep mutation rare and log it as a lineage
-  event (`🔧 switched to low-32`).
+### Implementation order (the handover steps)
+
+0. **Play-feel gate.** The user has NOT yet reported on 6v6. Their report
+   decides the emphasis: if "还是进不了球/太干" → steps 1–2 are the phase;
+   if texture complaints (crowding, wing play, keeper waits feel slow) →
+   fix those FIRST as a 30.5 live-play pass, exactly like 29.1. Do not
+   skip this gate.
+1. **Lane-aware shot selection + blocks.** Today `shotQuality`
+   (mechanics.ts) is distance·angle·pressure — it cannot see the four
+   parked bodies on the shot path, so carriers shoot into walls (and since
+   30.4 shots are NOT leg-deflectable, those fly harmlessly). Build the
+   pair together: (a) a `laneBlockers(pos, goal, opponents)` count —
+   bodies within ~1m of the shot corridor's first 60% — that DISCOUNTS
+   shot utility in `decideCarrier` (carriers work for an angle instead:
+   the dribble/pass alternatives win when blocked) and (b) restore shot
+   BLOCKS as an explicit mechanic (a blocker within the corridor rolls a
+   block chance; blocked = loose ball, NOT the old speed-window deflection
+   friction accident) so daring a blocked lane has a real cost. Net
+   effect: fewer doomed shots, more shots from actual angles — volume AND
+   conversion rise together. Directional test: shots taken with 0 lane
+   blockers convert ≥2× shots taken with 2+.
+2. **Cutback crosses + overload runs.** The byline cutback is football's
+   canonical set-defence beater and the engine has every ingredient: a
+   winger reaching the byline zone (localX > HALF_L−10, |y| > 12) gets a
+   CUTBACK candidate — a hard low ball to the edge-of-box arc (localX
+   ~HALF_L−16, |y| < 8) where a licensed late runner (MF/second WG —
+   extend `assignRunners` with an `arriving` license) meets it first-time
+   (the snap-decision reception in `giveBall` already exists). Second
+   lever: when the ball is wide, the WEAK-side winger's attack spot pulls
+   toward the far post (formationSpot override or a runner license) — the
+   overload that punishes ball-side zone shifts. Directional: cutback
+   goals exist (>0.05/match), crosses/match recovers toward ~2.5.
+3. **Corner ROUTINES** (promoted from polish to fix — the one hardcoded
+   cross died to set shapes: ~3% corner→shot, probed across three league
+   seeds; the 29.1 crasher-momentum lever is INERT, the delivery dies
+   before any aerial duel — so routines must create SEPARATION, not just
+   aim elsewhere). `RestartState.routine`: near-post flick / far-post
+   crash / short-corner give-and-go / edge-of-box cutback (reuses step
+   2's arc mechanics), chosen by the taker's brain from openness of each
+   routine's target zone; each routine = a target-spot table + which
+   box-crash runners attack it (reuses the licensing). Tests: routine
+   choice determinism; directional per routine (short completes more
+   passes, far-post wins more headers); **corner→shot ≥8%** across league
+   seeds (the plumbing floor in aerial.test.ts goes back up when this
+   lands).
+4. **Formations enter EVOLUTION.** Move style picks from
+   "derived at creation" to franchise DNA: inherit on rebirth from the
+   dominant parent, mutate with small per-season probability (~0.08 —
+   switch ONE component to an adjacent option), log it as a lineage event
+   (`🔧 switched to low-32`). Evolution tab: a stacked share-per-generation
+   strip per formation id next to the gene sparklines. NOTE the zonal
+   guard: zonal is the RARE identity by design (failure mode 18 — the
+   lattice out-defends man); if evolution can mutate INTO zonal, keep its
+   entry probability low or scoring sinks league-wide again. Tests:
+   evolve-check shows a non-degenerate style distribution after 10
+   seasons (nothing extinct, no monoculture).
+5. **Retune + ship**: `npm run calibrate -- 8`; targets — goals ≥2.2
+   (stretch 2.6), on-target ≥4.5, corner→shot ≥8%, offsides ~2–3,
+   t+i stays ≤60, completion ≥62%. README/ARCHITECTURE stamps, tag
+   `phase-31`, push (account switch!), verify Pages, remind itch.
+
+### Risks / watchpoints
+
+- Step 1's block mechanic re-opens the 30.4 hole if it uses the old
+  speed-window deflection — implement it ON the pendingShot path,
+  explicitly, or conversion silently dies again.
+- Steps 1+2 both raise chance volume: calibrate between steps (at n=568)
+  so step 5 isn't untangling a double overshoot.
+- Formation mutation churn can destroy the identity continuity the
+  dynasty timeline sells — keep mutation rare, one component at a time.
+- The cutback runner license must respect the onside hold (executor
+  clamp) — an "arriving" runner is exactly the profile the offside
+  honesty gap flags; expect offsides to tick up and let them.
 
 ## Phase 32 — free kicks become REAL
 
