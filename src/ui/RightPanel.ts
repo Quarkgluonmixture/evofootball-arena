@@ -86,6 +86,20 @@ export class RightPanel {
     modes.append(this.modeA, this.modeB);
     teamsSec.appendChild(modes);
 
+    // Tactical identity (Phase 30): fixed formations + marking scheme.
+    const styleRows: Array<[string, (s: (typeof match.teams)[0]['style']) => string]> = [
+      [t('formation ⚔'), (s) => s.formationAtk],
+      [t('formation 🛡'), (s) => s.formationDef],
+      [t('marking'), (s) => t(s.scheme === 'man' ? 'man-marking' : 'zonal')],
+    ];
+    for (const [label, read] of styleRows) {
+      const row = el('div', 'gene-row');
+      row.appendChild(el('div', 'g-name', label));
+      row.appendChild(el('div', 'stat-val', read(match.teams[0].style)));
+      row.appendChild(el('div', 'stat-val', read(match.teams[1].style)));
+      teamsSec.appendChild(row);
+    }
+
     for (const key of GENE_KEYS) {
       const row = el('div', 'gene-row');
       row.appendChild(el('div', 'g-name', t(key)));

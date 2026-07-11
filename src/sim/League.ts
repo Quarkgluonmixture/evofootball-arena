@@ -19,7 +19,7 @@ import { ATTR_KEYS, SQUAD_ROLES, randomPlayer, randomSquad, type AttrKey } from 
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
-  ROLES, TEAM_SIZE, emptyPlayerStats,
+  ROLES, TEAM_SIZE, deriveTeamStyle, emptyPlayerStats,
   type MatchResult, type PlayerMatchStats, type TeamInfo,
 } from './types';
 
@@ -279,7 +279,7 @@ export class League {
     return {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
       playerNames: f.playerNames, genome: f.genome, squad: f.squad,
-      ages: f.ages,
+      ages: f.ages, style: f.style,
     };
   }
 
@@ -804,6 +804,12 @@ export class League {
       const cup = data.cup as CupState | null | undefined;
       if (cup) for (const goals of cup.playerGoals) {
         if (goals.length < TEAM_SIZE) goals.splice(4, 0, 0);
+      }
+      // The formation system arrives with 6v6: backfill every club's
+      // tactical identity from its genome (the same derivation creation
+      // uses, so a loaded club looks like a freshly created one).
+      for (const f of data.franchises as Franchise[]) {
+        f.style ??= deriveTeamStyle(f.genome);
       }
       data.version = 8;
     }

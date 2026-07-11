@@ -1,4 +1,5 @@
 import { dist } from '../utils/vec';
+import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
 import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
 import type { Team } from '../sim/Team';
@@ -143,11 +144,17 @@ function assignChasers(team: Team, match: Match): void {
 /**
  * Marks: each non-chasing outfielder picks the most dangerous unmarked
  * opponent (deepest into our half) within range. Greedy and deterministic.
+ *
+ * Marking SCHEME (Phase 30, `team.style.scheme`): 'man' marks every ranged
+ * threat (the behavior every phase before 30 shipped with); 'zonal' holds
+ * the sliding formation spots and only picks up threats INSIDE OUR PENALTY
+ * BOX — the zone cordon defends space, the box defends people.
  */
 function assignMarks(team: Team, match: Match): void {
   team.marks.clear();
   if (match.possessionSide === team.side) return;
 
+  const zonal = team.style.scheme === 'zonal';
   const opp = match.teams[1 - team.side];
   const carrier = match.ball.owner;
   // Sort by how deep they are in OUR half: smaller localX for them = deeper
@@ -158,8 +165,11 @@ function assignMarks(team: Team, match: Match): void {
   // the short option — a marker sent there too made TWO men stand uselessly
   // at the corner flag while the box went a body short.
   const takerGid = match.restart?.takerGid;
+  const inOurBox = (x: number, y: number): boolean =>
+    team.localX(x) < -HALF_L + BOX_DEPTH && Math.abs(y) < BOX_WIDTH / 2;
   const threats = opp.players
     .filter((o) => o.role !== 'GK' && o !== carrier && !o.sentOff && o.gid !== takerGid)
+    .filter((o) => !zonal || inOurBox(o.pos.x, o.pos.y))
     .sort((a, b) => opp.localX(b.pos.x) - opp.localX(a.pos.x) || a.index - b.index);
 
   const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index) && !p.sentOff);

@@ -1,3 +1,4 @@
+import { deriveTeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, rookieAge } from './careers';
 import { crossoverGenomes, geneDistance, mutateGenome } from './genome';
@@ -87,6 +88,9 @@ export function evolveGroup(
       const pb = pickParent(pa);
       const before = f.genome;
       f.genome = mutateGenome(crossoverGenomes(pa.genome, pb.genome, rng), rng, { rate: 0.5, scale: 0.15 });
+      // A reborn club's tactical identity is its NEW DNA's readout; mutated
+      // clubs keep their stored style (identity survives small gene drift).
+      f.style = deriveTeamStyle(f.genome);
       // The academy intake: attributes cross over from both parents' squads,
       // but the players themselves are NEW — young, unnamed, blank careers.
       f.squad = crossoverSquads(pa.squad, pb.squad, rng);

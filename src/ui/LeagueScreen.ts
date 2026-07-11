@@ -220,6 +220,10 @@ export class LeagueScreen {
       const tags = el('div', 'tags');
       const divBadge = el('span', `tag div-badge-${f.division}`, DIVISION_SHORT[f.division]);
       tags.appendChild(divBadge);
+      // Tactical identity (Phase 30): the club's fixed formations + scheme.
+      tags.appendChild(el('span', 'tag', `⚔ ${f.style.formationAtk}`));
+      tags.appendChild(el('span', 'tag', `🛡 ${f.style.formationDef}`));
+      tags.appendChild(el('span', 'tag', t(f.style.scheme === 'man' ? 'man-marking' : 'zonal')));
       for (const t of describeIdentity(f.genome)) tags.appendChild(el('span', 'tag', t));
       card.appendChild(tags);
 

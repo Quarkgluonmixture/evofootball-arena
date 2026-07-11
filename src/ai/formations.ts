@@ -4,26 +4,33 @@ import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
-import type { Role, TeamMode } from '../sim/types';
+import type { AttackFormationId, DefendFormationId, TeamMode } from '../sim/types';
 
 /**
- * Formation spots in team-local coordinates: +x = our attacking direction,
- * x=-45 is our goal line. The whole block then slides with the ball, the
- * tactical mode, and three genes (formationDepth, attackingWidth,
- * defensiveCompactness).
+ * Formation spot tables (Phase 30) in team-local coordinates: +x = our
+ * attacking direction, x=-45 is our goal line. One V2 per SLOT in order
+ * [GK, DF, MF, WGL, WGR, ST]; every team owns one attacking and one
+ * defending table (its identity, `team.style`). The whole block still
+ * slides with the ball, the tactical mode, and three genes (formationDepth,
+ * attackingWidth, defensiveCompactness) exactly as it did on the old single
+ * BASE_SPOTS. Formation names count outfield lines back→front.
+ *
+ * Lanes are deliberately separated (Phase 27.1): stacked spines collapse
+ * open play into one central corridor. Back-line height is the goals lever
+ * (Phase 29/30: higher line = compressed game, space in behind for runs).
  */
-// Lanes are deliberately separated (Phase 27.1): with DF/MF/ST all within
-// ~7m of the center line, BOTH teams' spines stacked into one central
-// corridor and open play collapsed into a six-player chase around the ball.
-// The DF spot stepped up -26 → -23 in Phase 29: with offside real, a back
-// line that dares to hold higher compresses the game — and the space it
-// leaves BEHIND is what timed runs (and sweeping keepers) now contest.
-const BASE_SPOTS: Record<Role, V2> = {
-  GK: v2(-41, 0),
-  DF: v2(-20, -5),
-  MF: v2(-11, -12),
-  WG: v2(-7, 17),
-  ST: v2(5, 4),
+export const ATTACK_FORMATIONS: Record<AttackFormationId, V2[]> = {
+  // Double base, a linking striker, both wingers HIGH and WIDE (两翼齐飞).
+  'wide-212': [v2(-41, 0), v2(-17, -6), v2(-15, 7), v2(4, -19), v2(4, 19), v2(-2, 0)],
+  // One anchor, the left winger tucks into midfield, an inside-right pair.
+  'narrow-122': [v2(-41, 0), v2(-20, 0), v2(-11, -7), v2(-9, 8), v2(2, 11), v2(5, -3)],
+};
+
+export const DEFEND_FORMATIONS: Record<DefendFormationId, V2[]> = {
+  // Back THREE (wingers drop as wide backs), two screening — a low block.
+  'low-32': [v2(-41, 0), v2(-24, 0), v2(-13, -4), v2(-22, -11), v2(-22, 11), v2(-9, 5)],
+  // Back two, front three hunting high — the pressing shape.
+  'press-23': [v2(-41, 0), v2(-19, -5), v2(-16, 5), v2(-2, -14), v2(-2, 14), v2(3, 0)],
 };
 
 /** How far up/down the pitch each tactical mode pushes the block. */
@@ -42,7 +49,9 @@ const MODE_SHIFT: Record<TeamMode, number> = {
  */
 export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolean): V2 {
   const g = team.genome;
-  const base = BASE_SPOTS[p.role];
+  const base = hasBall
+    ? ATTACK_FORMATIONS[team.style.formationAtk][p.index]
+    : DEFEND_FORMATIONS[team.style.formationDef][p.index];
 
   // Block slides toward the ball along x (local coords), capped at ±10m.
   const ballLocalX = team.localX(ball.pos.x);
@@ -60,10 +69,6 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
     ? 1.0 + g.attackingWidth * 0.55 // 1.0 .. 1.55
     : 1.15 - g.defensiveCompactness * 0.6; // 1.15 .. 0.55
   let y = base.y * widthMul;
-  // Phase 30 (6v6): the WG spot serves BOTH wingers — slot 4 (WGR) mirrors
-  // to the opposite touchline, so the two wings actually are two wings.
-  // Step 2's per-team formation tables replace this with real per-slot spots.
-  if (p.role === 'WG' && p.index === 4) y = -y;
 
   // Compact teams also drag their block a little toward the ball's y.
   if (!hasBall) y += (ball.pos.y - y * team.attackDir) * team.attackDir * g.defensiveCompactness * 0.25;

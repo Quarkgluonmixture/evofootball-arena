@@ -16,6 +16,38 @@ export const TEAM_SIZE = ROLES.length;
 
 export type TeamMode = 'BuildUp' | 'Attack' | 'Defend' | 'Press' | 'CounterAttack' | 'ResetShape';
 
+/**
+ * Formation system (Phase 30): every team owns a FIXED attacking formation,
+ * a FIXED defending formation and a marking scheme — its tactical identity,
+ * shown on the team card and inherited through rebirth. Names read as
+ * outfield lines from the back (the keeper is implicit).
+ */
+export type AttackFormationId = 'wide-212' | 'narrow-122';
+export type DefendFormationId = 'low-32' | 'press-23';
+export type MarkScheme = 'man' | 'zonal';
+
+export interface TeamStyle {
+  formationAtk: AttackFormationId;
+  formationDef: DefendFormationId;
+  scheme: MarkScheme;
+}
+
+/**
+ * Derive a team's tactical identity from its genome — legible thresholds on
+ * the genes that already MEAN width, pressing and marking, so the identity
+ * is the DNA's readout, not a separate random draw. Called once at franchise
+ * creation/rebirth and STORED (mid-life gene mutation must not flip a
+ * club's formation every season — switching is Phase 31's explicit,
+ * lineage-logged mutation).
+ */
+export function deriveTeamStyle(genome: TacticalGenome): TeamStyle {
+  return {
+    formationAtk: genome.attackingWidth >= 0.5 ? 'wide-212' : 'narrow-122',
+    formationDef: genome.pressIntensity >= 0.5 ? 'press-23' : 'low-32',
+    scheme: genome.markingAggression >= 0.5 ? 'man' : 'zonal',
+  };
+}
+
 export type ActionType =
   | 'MoveToFormationSpot'
   | 'ChaseBall'
@@ -157,6 +189,11 @@ export interface TeamInfo {
   squad: PlayerAttributes[];
   /** Player ages in role order (Phase 26) — display only, never read by the sim. */
   ages?: number[];
+  /**
+   * Tactical identity (Phase 30). Optional: a TeamInfo without one (tests,
+   * ad-hoc teams) derives it from the genome — same thresholds, same result.
+   */
+  style?: TeamStyle;
   /** Learned utility-policy weights (wildcard team); omitted = DEFAULT_POLICY. */
   policy?: PolicyParams;
   /**

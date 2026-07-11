@@ -125,6 +125,13 @@ const ZH: Record<string, string> = {
   stamina: '体能',
   'utility scores:': '效用评分:',
 
+  // ---- tactical identity (Phase 30) ----
+  'formation ⚔': '⚔ 进攻阵型',
+  'formation 🛡': '🛡 防守阵型',
+  marking: '盯人方案',
+  'man-marking': '盯人',
+  zonal: '区域',
+
   // ---- team modes ----
   BuildUp: '组织',
   Attack: '进攻',

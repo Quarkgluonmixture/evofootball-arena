@@ -1,3 +1,4 @@
+import { deriveTeamStyle, type TeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, veteranAge, type PlayerCareer } from './careers';
 import { randomGenome, type TacticalGenome } from './genome';
@@ -27,6 +28,13 @@ export interface Franchise {
   colors: { primary: number; secondary: number };
   playerNames: string[];
   genome: TacticalGenome;
+  /**
+   * Tactical identity (Phase 30): formations + marking scheme. Derived from
+   * the genome at creation/rebirth and STORED — season-to-season gene
+   * mutation must not flip a club's formation (switching is Phase 31's
+   * explicit, lineage-logged mutation).
+   */
+  style: TeamStyle;
   /** Per-player attribute genes, slot order [GK, DF, MF, WGL, WGR, ST]. */
   squad: PlayerAttributes[];
   /** Player ages in slot order (Phase 26) — drive development & retirement. */
@@ -47,6 +55,7 @@ export function createFranchise(
   generation = 1,
 ): Franchise {
   const name = uniqueTeamName(rng, takenNames);
+  const genome = randomGenome(rng);
   return {
     slot,
     id: `T${slot}-g${generation}`,
@@ -54,7 +63,8 @@ export function createFranchise(
     short: shortName(name),
     colors: KIT_COLORS[slot % KIT_COLORS.length],
     playerNames: generatePlayerNames(rng),
-    genome: randomGenome(rng),
+    genome,
+    style: deriveTeamStyle(genome),
     squad: randomSquad(rng),
     ages: SQUAD_ROLES.map(() => veteranAge(rng)),
     careers: SQUAD_ROLES.map(() => emptyCareer()),

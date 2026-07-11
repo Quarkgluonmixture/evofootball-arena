@@ -3,8 +3,9 @@ import type { TacticalGenome } from '../evolution/genome';
 import { HALF_L } from './constants';
 import { Player } from './Player';
 import {
-  DEFAULT_POLICY, ROLES, emptyStats,
+  DEFAULT_POLICY, ROLES, deriveTeamStyle, emptyStats,
   type PolicyParams, type Side, type TeamInfo, type TeamMatchStats, type TeamMode,
+  type TeamStyle,
 } from './types';
 
 export class Team {
@@ -17,6 +18,8 @@ export class Team {
   readonly policy: PolicyParams;
   /** Per-player policy resolved by index — `rolePolicies[i]`, else `policy`. */
   readonly policies: readonly PolicyParams[];
+  /** Tactical identity (Phase 30): formations + marking scheme, resolved once. */
+  readonly style: TeamStyle;
 
   mode: TeamMode = 'ResetShape';
   modeTime = 0;
@@ -63,6 +66,7 @@ export class Team {
     // missing keys read as the hand-tuned constants. Teams WITHOUT a policy
     // keep the DEFAULT_POLICY object itself (bit-identity discipline).
     this.policy = info.policy ? { ...DEFAULT_POLICY, ...info.policy } : DEFAULT_POLICY;
+    this.style = info.style ?? deriveTeamStyle(info.genome);
     this.policies = ROLES.map((_, i) => {
       const rp = info.rolePolicies?.[i];
       return rp ? { ...DEFAULT_POLICY, ...rp } : this.policy;
