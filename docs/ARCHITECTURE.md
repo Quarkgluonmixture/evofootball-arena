@@ -730,6 +730,9 @@ only caught by eyes on the PNGs.
 | Offside rate (~2.1/match) | carrier gamble margin (+2.2m) vs referee epsilon (+0.2m) in `decideCarrier`/`offsideAtKick` — the gap IS the rate (failure mode 17); executor hold offset (line −0.4); DF base spot height (higher line = more flags) |
 | Timed-run conversion | `runBurstPoint` projection (top speed ×1.1 burst); through-ball pace (d·0.55+8.5, cap 21) in `performThroughBall`; `throughBehindW` 0.52 |
 | Forced-error rate (~10 miscontrols/match) | `touchFailChance` coefficients in `mechanics.attemptFirstTouch` (speed/pressure/blind-side vs technique) |
+| Reception / the cushioned trap (31.7-8) | intended-receiver control ceiling 24 m/s vs bystander `CONTROL_MAX_SPEED` 14 in `Match.tryCapture` (the pendingPass target may take down any DESIGNED delivery, priced by the touch roll); pass zip `d·0.6+8.2` cap 22 in `performPass` |
+| Distribution calm (31.6-8) | marking stand-off `max(stance, 2.6 − aggr·0.6)` while the mark's keeper holds/stands over a goal kick (executor); held ball clears the BOX (stepBall, user-called law simplification); offside restarts as a goal kick (`callOffside`) |
+| Narrow-derby chaos | narrow-122 half-space slots (±12/15) in `ATTACK_FORMATIONS` — with both wide slots ≤11 the mirror-fixture had NO relief valve (t+i 123, 0 goals); next dials = founding share threshold in `deriveTeamStyle`, more half-space |
 | Forward urgency / anti-recycling | territory clock in `Match.step` (progress +1.5m resets, 0.35 m/s mark decay) + `stagnation = (staleTime−3)/5` tilt multipliers in `decideCarrier` |
 | Body-orientation feel | `TURN_RATE` (6.5 rad/s) in `Player.ts`; `orientationNoiseMul/PowerMul` slopes; decision-side misalign penalties (pass 0.12, shot 0.3) in `decideCarrier` |
 | Lane anticipation | `DEFLECT_MAX_SPEED` (24) + odds in `mechanics.tryDeflection`; ball-side blend `laneW = 0.35 + aggression·0.3` in executor MarkOpponent |

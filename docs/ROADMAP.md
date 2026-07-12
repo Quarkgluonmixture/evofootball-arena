@@ -14,9 +14,12 @@ the Pages bundle after CI; itch.io needs a manual `npm run package:itch`;
 re-baseline the determinism fingerprint after mechanics changes;
 **calibrate noise on goals is ±0.3–0.4 at the default n=142 — ALWAYS
 measure balance levers with `npm run calibrate -- 8` (n=568), and read
-failure modes 16–18 before touching any lever** (18 is Phase 30's whole
+failure modes 16–21 before touching any lever** (18 is Phase 30's whole
 detective story: goals live in gene-mix variance, LESS marking = STRONGER
-defence, structure deleted the goals-above-xG channel); statistical
+defence, structure deleted the goals-above-xG channel; 19–21 are Phase
+30.5/31's: bounded support fans, the completion homeostat, and
+inheritance compounding — plus fm 12's Node-vs-Node corollary for any
+long-run league test); statistical
 match-loop tests need `{ timeout }` + `setImmediate` yields every ~25
 matches or CI's 2-core runner starves vitest's heartbeat; Playwright
 selectors are English (suites pin `lang=en`); the user plays 3D on a
@@ -207,6 +210,34 @@ absorbed: the 5v6 invariant moved to GOAL DIFFERENCE (the counter
 economy keeps a besieged attack alive — the robust man-short cost is the
 LEAK, 70 vs 59 conceded), the press/marking gene test went focused
 (failure mode 15), the corner floor pooled over three seeds. 226 tests.
+
+**Phase 31.7 — the cushioned trap (SHIPPED):** "长球停不住" — the 30.5
+driven switch lands ~19.5 m/s, above CONTROL_MAX_SPEED 14, so it skipped
+past the winger it was aimed at. The pass's INTENDED receiver may now
+control up to 24 m/s (raised from a first cut of 22 when the user hit the
+same wall on 40m keeper launches — "门将开长球穿模接不到"), priced by
+attemptFirstTouch; bystanders/interceptors keep 14, so lane dynamics are
+unchanged. LoftedPass completion 20-25% → 71%; goals 2.26 → ~2.5;
+crosses recovered ~1.8-1.9 (switch receptions flow into wing play).
+
+**Phase 31.8 — three live reports (SHIPPED):** (1) a held keeper ball
+clears the BOX like a goal kick (user call — same calm-reset
+simplification family as the offside goal kick). (2) "有的比赛还是到处抢"
+— probed 112 matches: t+i variance 28–123 correlates ZERO with
+press/aggression genomes; the top-5 chaotic fixtures were ALL
+narrow-122 derbies (both attacks mirror into one corridor; the support
+fan anchors to lanes and narrow lanes gave it no relief valve — worst:
+224 passes, 123 turnovers, 0 goals). narrow-122's inside slots moved to
+the HALF-SPACES (8/11 → 12/15; wide-212 stays ±19): worst-match t+i
+123 → 97. The narrow derby remains the scrappiest fixture BY IDENTITY —
+if play still reads too chaotic, the next dial is the founding share
+(deriveTeamStyle attackingWidth threshold 0.5) or more half-space.
+(3) the 5v6 invariant moved a THIRD time — to what survives n=60 across
+economy tweaks: shots ratio < 0.97 + "never better off short" (the GD
+penalty sank into ±8 pool noise; chasing it was testing noise, §10.5).
+Final state: goals ~2.5, on-target 4.8, completion 69%, t+i 45 (the
+ping-pong era is over: 57.5 at 30.5 → 45), tags `phase-31.6/7/8`, all
+deployed, fingerprint `c5771aca…`.
 
 **Play-feel queue (user reports, post-31):** "现在是不是没有头球?" —
 correct as a viewing experience: aerial DUELS exist (~3.6-5.4 headers
