@@ -22,6 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history + tags: the build badge is `git describe --tags`
+          # (a shallow clone would degrade it to a bare sha).
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22

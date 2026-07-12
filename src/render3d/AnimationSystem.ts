@@ -261,10 +261,14 @@ export class AnimationSystem {
     model.armR.rotation.z = approach(model.armR.rotation.z, armRz, r);
     model.lean.rotation.x = approach(model.lean.rotation.x, leanX, r);
     model.lean.rotation.z = approach(model.lean.rotation.z, leanZ, r);
-    model.root.position.y = approach(model.root.position.y, hop, 8 * dt);
+    // The run bob lives on the BODY, not the root (31.9.1, user report:
+    // the action label "小幅度颤动…眼花") — the label/ring/blob are root
+    // children, and a 4-7.5cm stride bob at ~5Hz made the floating TEXT
+    // tremble. The body steps; the billboard holds still.
+    model.root.position.y = approach(model.root.position.y, 0, 8 * dt);
     // The dive launches fast; the recovery (targets back to 0 once the save
     // ends) runs at half rate — the keeper visibly gets back to his feet.
     model.body.rotation.z = approach(model.body.rotation.z, bodyTilt, (anim === 'gkDive' ? 7 : 2.8) * dt);
-    model.body.position.y = approach(model.body.position.y, bodyY, 4 * dt);
+    model.body.position.y = approach(model.body.position.y, bodyY + hop, 6 * dt);
   }
 }
