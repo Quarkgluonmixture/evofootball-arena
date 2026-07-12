@@ -320,7 +320,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   const restart = match.restart;
   const barred =
     (restart?.kind === 'goalKick' && restart.side !== p.side) ||
-    (opp.goalkeeper.gkHoldTimer > 0 && ball.owner === opp.goalkeeper);
+    ((opp.goalkeeper.gkHoldTimer > 0 || opp.goalkeeper.gkDistributing) && ball.owner === opp.goalkeeper);
   const oppGoalX = opp.attackDir < 0 ? HALF_L : -HALF_L; // opp defends this line
   const edgeX = oppGoalX - Math.sign(oppGoalX) * (BOX_DEPTH + 0.8);
   if (target && barred && p.role !== 'GK' && Math.abs(target.y) < BOX_WIDTH / 2 + 0.5) {

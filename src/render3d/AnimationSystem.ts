@@ -131,8 +131,15 @@ export class AnimationSystem {
     // Run cycle phase: distance-driven so feet match ground speed.
     model.phase += Math.max(p.speed, anim === 'celebrate' ? 4 : 0.6) * dt * 1.7 * (FREQ[anim] ?? 1);
     model.animTime += dt;
-    const swing = Math.sin(model.phase) * (SWING_AMP[anim] ?? 0);
-    const armF = ARM_F[anim] ?? 0.7;
+    // Amplitudes EASE between anims (31.9, user report "跑的时候眼花"): a
+    // player hovering on the jog↔sprint threshold (or braked at a clamp,
+    // idle↔jog) re-picks the anim every few frames, and the instant
+    // 0.6↔1.05 swing flip read as a strobe. The rotations were already
+    // approach()-smoothed — the amplitude was the one raw switch left.
+    model.swingAmpCur = approach(model.swingAmpCur, SWING_AMP[anim] ?? 0, 3.2 * dt);
+    model.armFCur = approach(model.armFCur, ARM_F[anim] ?? 0.7, 3.2 * dt);
+    const swing = Math.sin(model.phase) * model.swingAmpCur;
+    const armF = model.armFCur;
 
     const r = 10 * dt; // smoothing rate for poses
     let legL = swing;

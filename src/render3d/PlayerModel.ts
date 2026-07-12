@@ -151,6 +151,11 @@ export class PlayerModel {
   kickT = -1;
   kickPower = 1;
   headerT = -1;
+  /** Smoothed swing amplitude / arm factor (31.9): players hovering on the
+   * jog↔sprint speed threshold flipped limb amplitude INSTANTLY every few
+   * frames — the "跑动眼花" strobe. These ease toward the anim's targets. */
+  swingAmpCur = 0.05;
+  armFCur = 0.7;
   /** Dive side frozen at dive start (29.1) — recomputing it per frame made
    * the pose mirror-flip as the ball crossed the keeper (the "twitch"). */
   diveSide = 1;

@@ -96,6 +96,7 @@ const SEEDS = [11, 42, 99, 1234, 777, 31337, 2026, 555];
 function totals(
   sa: PlayerAttributes[],
   sb: PlayerAttributes[],
+  seeds: readonly number[] = SEEDS,
 ): [TeamMatchStats, TeamMatchStats, ShotLogEntry[]] {
   const sum = (a: TeamMatchStats, b: TeamMatchStats): TeamMatchStats => {
     const out = { ...a };
@@ -107,7 +108,7 @@ function totals(
   // effects twice as the engine's rng stream moved under them).
   let acc: [TeamMatchStats, TeamMatchStats] | null = null;
   const shots: ShotLogEntry[] = [];
-  for (const seed of SEEDS) {
+  for (const seed of seeds) {
     const ab = new Match({ seed, teamA: team('A', sa), teamB: team('B', sb), duration: 120 });
     const rab = ab.runToCompletion();
     shots.push(...ab.shotLog);
@@ -168,8 +169,13 @@ describe('player attributes influence the sim', () => {
     expect(a.tackles).toBeGreaterThan(b.tackles);
   });
 
-  it('reflexes: better keeper saves a higher share of on-target shots', () => {
-    const [a, b] = totals(squadWith({ reflexes: 0.95 }), squadWith({ reflexes: 0.05 }));
+  it('reflexes: better keeper saves a higher share of on-target shots', { timeout: 60000 }, () => {
+    // Own wide pool (31.9, §10.5): at the 8-seed default a keeper faces
+    // only ~35 on-target shots — the real ~13pp save-rate edge (54.8% vs
+    // 41.7% at 120 matches) is ~1σ there and flipped on the tackle-economy
+    // churn. 60 seeds ⇒ ~120 faced per arm, edge >2σ.
+    const seeds = Array.from({ length: 60 }, (_, i) => 5000 + i * 13);
+    const [a, b] = totals(squadWith({ reflexes: 0.95 }), squadWith({ reflexes: 0.05 }), seeds);
     // Team A's keeper faces B's on-target shots and vice versa.
     const rateA = a.saves / Math.max(b.shotsOnTarget, 1);
     const rateB = b.saves / Math.max(a.shotsOnTarget, 1);

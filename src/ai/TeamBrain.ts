@@ -224,7 +224,10 @@ function assignChasers(team: Team, match: Match): void {
   // camped in the keeper's face (reported twice), so now NOBODY presses a
   // held ball: everyone marks up for the distribution, like a goal kick.
   const owner = match.ball.owner;
-  const gkHolding = owner !== null && owner.role === 'GK' && owner.gkHoldTimer > 0;
+  // gkDistributing too (31.9): the shape-wait's 0.25s re-arm quanta left
+  // timer==0 gaps where a chaser got assigned, charged, and was expelled
+  // when the hold re-armed — the "疯狂抽动逼抢" flicker.
+  const gkHolding = owner !== null && owner.role === 'GK' && (owner.gkHoldTimer > 0 || owner.gkDistributing);
 
   let count = 1;
   if (gkHolding) {

@@ -892,6 +892,14 @@ export function tryTackles(match: Match): void {
     owner.kickCooldown = 0.3;
     owner.stunTimer = 0.6; // dispossessed: stumble before rejoining play (Phase 27)
     tackler.tackleCooldown = 0.5;
+    // The tackle knocks it LOOSE — it does not hand it over (Phase 31.9,
+    // user report "抢断后几乎直接被对方控制,和拦截没有区别"): the tackler
+    // is committed to the lunge and may not hoover his own squirt. Probed
+    // before this line: 85% of won tackles were re-captured BY THE TACKLER
+    // within 0.19s — the squirt was cosmetic and every dispossession read
+    // as an instant possession flip. Now the loose ball belongs to the
+    // third man: interception = clean takeaway, tackle = contested ball.
+    tackler.kickCooldown = 0.5;
     match.possessionSide = -1;
   } else {
     tackler.tackleCooldown = 1.2;

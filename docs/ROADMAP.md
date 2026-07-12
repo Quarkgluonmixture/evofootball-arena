@@ -300,7 +300,51 @@ ball-in-play 91%. Fingerprint re-baselined `8a3a6534…`. 231 tests** (the
 shootBias pool re-widened to 48 seeds and the finishing pool to 270 —
 both were coin flips vs their real margins at the old sizes, §10.5).
 
-**Play-feel queue (post-31.9):** the box duel itself is now the header
+**Phase 31.9.1 — the same-day live-play pass (SHIPPED):** four more
+reports against the deployed 31.9.
+
+(1) "抢断后球直接被对方控制,拦截/抢断/解围没区别" (user diagnosis of
+乱抢) — dead right: the won-tackle "squirt" was cosmetic. Probed: **85%
+of won tackles were re-captured BY THE TACKLER within 0.19s** (squirt
+5.5-10 m/s < CONTROL_MAX 14, victim stunned 0.6s, tackler unrestricted).
+Fix: the tackler is committed to the lunge — `kickCooldown 0.5` on the
+win, so the loose ball belongs to the THIRD man. Now: tackler-himself
+51%, victim's side recovers 25% (was 8%), mean loose-ball time 0.81s.
+The three takeaways finally differ: interception = clean, tackle =
+contested 50/50, clearance = hoofed hang (already healthy). Economy
+fallout absorbed: goals 2.79 → ~2.5, completion 69 → 66% (contested
+phases are back), ball-in-play 91 → 87% — if that reads too scrappy,
+the tackler cooldown length is the dial.
+
+(2) "门将手拿球/球门球时对方疯狂抽动逼抢" — the shape-wait re-arms the
+hold in 0.25s quanta and the clearance DIED in the timer==0 gaps between
+them: 22% of distribution time was gap, box intrusion ran 7× higher
+there, opponents surged/expelled at ~4Hz. `gkDistributing` now spans the
+whole hand-to-kick phase in stepBall's calm branch, the executor's
+barred-box steering and assignChasers' zero-chaser rule — gap-frame box
+intrusions: 123 → 0.
+
+(3) "球员跑的时候帧率不对,眼花" — players hovering on the jog↔sprint
+speed threshold (5.2, common now that marker-lag anchors jump their
+targets) flipped limb swing amplitude 0.6↔1.05 INSTANTLY every few
+frames — a strobe. Swing amplitude and arm factor now ease via
+approach() like every rotation already did (render-only).
+
+(4) "扑救动画后球的位置应该随手部变化" — the held ball hovered at the
+standing carry spot while the body dove. ThreeMatchRenderer hands
+BallModel a hands anchor (body-group localToWorld) whenever the owner's
+body is tilted; the ball blends toward it by tilt fraction and eases
+back as the keeper gets up (render-only).
+
+Test pools re-powered while the economy moved (§10.5): keeper-reflexes
+60 seeds (own pool — the 8-seed default gave the real +13pp save-rate
+edge ~1σ), the 5v6 invariant 180 seeds with GD margin +12 (three
+disjoint 60-pools measured GD-diff {+6,−17,−1}, σ≈12 — the old +4 margin
+sat inside single-pool noise; the guard is for SYSTEMATIC inversions).
+**31.9.1 finals: goals 2.48, on-target 4.51, completion 66%, one-touch
+12.0, t+i 44.2, headers won 5.41. Fingerprint `6c963230…`. 231 tests.**
+
+**Play-feel queue (post-31.9.1):** the box duel itself is now the header
 bottleneck — defenders still win the first corner duel ~7:1 (the box
 outnumbers the crash 4-5v3 and DF aerial sense 0.3 tops every crasher
 role except ST 0.26). Next dials if the user still wants more headed
@@ -308,7 +352,9 @@ goals: rank crash-spot assignment by aerialSense (today it's player-index
 order), a crasher momentum bonus in the duel score, or a longer reaction
 lag. Also watch: kick protection changed restart dynamics for kick-ins
 and goal kicks too (takers are no longer rushable in the hand-off gap) —
-if restarts now feel too safe, the protection window is the dial.
+if restarts now feel too safe, the protection window is the dial. And
+watch completion 66% + ball-in-play 87% (the tackle-scramble price) —
+the tackler kickCooldown 0.5 is the dial if midfield reads scrappy again.
 
 <details><summary>Original handover plan (done — kept for reference)</summary>
 

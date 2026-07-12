@@ -502,7 +502,13 @@ export class Match {
       // same way a restart holds them — you cannot challenge a keeper in
       // possession, so let them RELEASE in peace too (the crowd used to
       // stand in the tackle circle waiting for the ball to touch grass).
-      if (ball.owner.gkHoldTimer > 0) {
+      // The WHOLE distribution counts (Phase 31.9, user report "手拿球时
+      // 对方疯狂抽动"): the shape-wait re-arms the hold in 0.25s quanta,
+      // and in the timer==0 gaps between quanta the clearance died — 22%
+      // of distribution time was gap, box intrusion ran 7× higher there,
+      // and opponents surged in and got expelled at ~4Hz. gkDistributing
+      // spans hand-to-kick, so the calm holds without gaps.
+      if (ball.owner.gkHoldTimer > 0 || (ball.owner.role === 'GK' && ball.owner.gkDistributing)) {
         const gk = ball.owner;
         for (const o of this.teams[1 - gk.side].players) {
           if (o.sentOff) continue;

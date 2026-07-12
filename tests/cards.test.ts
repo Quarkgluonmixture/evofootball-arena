@@ -111,21 +111,22 @@ describe('cards (Phase 25)', () => {
     }
   });
 
-  it('directional: playing a man short costs results (forced early red)', { timeout: 120000 }, async () => {
+  it('directional: playing a man short costs results (forced early red)', { timeout: 240000 }, async () => {
     // The robust cost channel moved THREE times (30: goals; 31: goal
     // difference; 31.8: neither survives n=60 — the calm-restart +
     // clean-reception era genuinely compresses the man-short RESULTS
-    // penalty, and the GD margin sank into ±8 pool noise, flipping on
-    // every economy tweak. Chasing it with thresholds = testing noise
-    // (§10.5). What every post-rest-defence probe DOES show robustly:
-    // a man short you create less (shots ratio 0.83–0.95), and what must
-    // NEVER happen is being short making you BETTER (31.1's inversion —
-    // the uncovered-breakaway bug this test caught twice). Assert both.
+    // penalty). 31.9 re-measured the noise on THREE disjoint 60-seed
+    // pools: GD diff {+6, −17, −1} (σ≈12/pool — the old +4 margin sat
+    // INSIDE single-pool noise and flipped on the tackle-economy change;
+    // shots ratio {0.88, 1.03, 0.86} flaps at n=60 too). So: 180 seeds,
+    // shots ratio < 0.97 (0.92 at scale) and GD margin +12 — the guard
+    // exists to catch the SYSTEMATIC inversion (31.1's uncovered-breakaway
+    // bug read as a whole-pool blowout, caught twice), not pool rolls.
     let shortShots = 0;
     let fullShots = 0;
     let shortGD = 0;
     let fullGD = 0;
-    for (let seed = 0; seed < 60; seed++) {
+    for (let seed = 0; seed < 180; seed++) {
       await breathe(seed);
       // Side-balanced: the sent-off player alternates teams; compare each
       // shorthanded match against the same seed at full strength.
@@ -140,7 +141,7 @@ describe('cards (Phase 25)', () => {
       fullGD += full.score[shortSide] - full.score[1 - shortSide];
     }
     expect(shortShots).toBeLessThan(fullShots * 0.97); // a man short, you create less
-    expect(shortGD).toBeLessThan(fullGD + 4); // and it must NEVER make you better off
+    expect(shortGD).toBeLessThan(fullGD + 12); // and it must NEVER make you (systematically) better off
   });
 
   it('a sent-off player never rejoins: parked off-pitch through kickoffs and restarts', () => {

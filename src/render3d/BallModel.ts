@@ -80,7 +80,12 @@ export class BallModel {
     return this.trail.visible;
   }
 
-  update(ball: RenderBall, players: RenderPlayer[], dt: number): void {
+  update(
+    ball: RenderBall,
+    players: RenderPlayer[],
+    dt: number,
+    hands: { x: number; y: number; z: number; t: number } | null = null,
+  ): void {
     this.root.position.set(ball.x, 0, ball.z);
 
     const owned = ball.ownerGid !== null;
@@ -107,7 +112,17 @@ export class BallModel {
     this.heldY = ball.heldByGk
       ? Math.min(0.95, this.heldY + dt * 5)
       : Math.max(0, this.heldY - dt * 5);
-    this.mesh.position.y = RADIUS + h + this.heldY;
+    this.mesh.position.set(0, RADIUS + h + this.heldY, 0);
+    // A tilted owner's hands carry it (31.9): blend the held ball toward
+    // the hands anchor by tilt fraction — a diving keeper's catch sweeps
+    // with the dive and eases back as he picks himself up. Render-only.
+    if (hands && hands.t > 0) {
+      this.mesh.position.set(
+        this.mesh.position.x + (hands.x - ball.x - this.mesh.position.x) * hands.t,
+        this.mesh.position.y + (hands.y - this.mesh.position.y) * hands.t,
+        this.mesh.position.z + (hands.z - ball.z - this.mesh.position.z) * hands.t,
+      );
+    }
 
     // Roll around the axis perpendicular to travel.
     if (ball.speed > 0.2 && h < 0.05) {

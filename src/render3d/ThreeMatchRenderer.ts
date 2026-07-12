@@ -173,7 +173,22 @@ export class ThreeMatchRenderer {
       }
       this.declutter(state, selectedGid);
       this.updatePossessionRing(state, dt);
-      this.ball.update(state.ball, state.players, dt);
+      // A diving keeper's hands carry the ball (31.9, user report "球的位置
+      // 应该随着手部变化"): while the owner's body is tilted, hand the
+      // BallModel a hands anchor in world space so the held ball rides the
+      // dive instead of hovering at the standing carry spot. Render-only.
+      let hands: { x: number; y: number; z: number; t: number } | null = null;
+      if (state.ball.ownerGid !== null) {
+        const ownerModel = this.players.get(state.ball.ownerGid);
+        const tilt = ownerModel ? Math.abs(ownerModel.body.rotation.z) : 0;
+        if (ownerModel && tilt > 0.05) {
+          const v = new THREE.Vector3(0, 1.8, 0.25);
+          ownerModel.body.updateWorldMatrix(true, false);
+          ownerModel.body.localToWorld(v);
+          hands = { x: v.x, y: v.y, z: v.z, t: Math.min(1, tilt / 0.9) };
+        }
+      }
+      this.ball.update(state.ball, state.players, dt, hands);
       this.overlays.update(state.overlays, flags);
       if (this.theme) {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
