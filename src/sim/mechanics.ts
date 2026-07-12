@@ -266,7 +266,7 @@ function loftKick(
  * the danger area rather than at a standing man's feet. Resolved in the air:
  * keeper claim or header contest (tryAerial), not a ground reception.
  */
-export function performCross(match: Match, crosser: Player, target: Player, offsideExempt = false): void {
+export function performCross(match: Match, crosser: Player, target: Player, offsideExempt = false, pull = 0.18): void {
   if (match.ball.owner !== crosser || crosser.kickCooldown > 0) return;
   const team = match.teams[crosser.side];
   const flight0 = clamp(0.5 + dist(crosser.pos, target.pos) * 0.038, 0.7, 1.7);
@@ -275,7 +275,11 @@ export function performCross(match: Match, crosser: Player, target: Player, offs
   // Pulled toward goal, but NOT into the six-yard area — a delivery that
   // drops on the keeper's claim radius is a delivery wasted (28.1: this
   // pull was 0.25 and fed the keeper instead of the penalty spot).
-  const spot = v2(arrive.x + (goal.x - arrive.x) * 0.18, arrive.y + (goal.y - arrive.y) * 0.18);
+  // Corner routines pass a SMALLER pull (Phase 31): the marker stands
+  // goal-side of the crasher by construction, so pulling the drop toward
+  // goal handed every corner duel to the defence (probed: attackers won
+  // 0.00 duels/corner) — the routine delivery meets the RUN instead.
+  const spot = v2(arrive.x + (goal.x - arrive.x) * pull, arrive.y + (goal.y - arrive.y) * pull);
   loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1);
   team.stats.passes++;
   team.stats.crosses++;
@@ -421,7 +425,11 @@ export function tryAerial(match: Match, order: Player[]): void {
     // 0.12 → 0.2 in 29.1: un-marking the corner taker freed a defender to
     // mark in the box (3v3, everyone tracked) and corner threat collapsed
     // to 3.5% — the crasher's running jump is what beats a set marker.
-    const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.2 : 0;
+    // 0.2 → 0.3 (Phase 31): with routine deliveries finally meeting the
+  // crashers' runs, the running jump's edge over the goal-side marker's
+  // standing start is what wins the zone — at 0.2 the position term still
+  // handed every corner duel to the defence.
+  const attacking = match.teams[p.side].localX(ball.pos.x) > HALF_L - BOX_DEPTH ? 0.3 : 0;
     const s =
       aerialSense(p) +
       attacking +

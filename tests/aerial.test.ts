@@ -293,13 +293,15 @@ describe('aerial duels and deliveries', () => {
     }
     expect(corners).toBeGreaterThan(40);
     // Measured ≈13% at Phase 28 tuning; Phase 30's SET defensive shapes
-    // largely defused the one hardcoded cross (probed ~2-4% across league
-    // seeds; the crasher-momentum lever that fixed 29.1 is inert here — the
-    // delivery dies before any aerial duel). The floor now guards the
-    // PLUMBING (corners produce attempts at all); making corners a real
-    // threat again is Phase 31's corner-routine build, promoted from
-    // polish to fix (docs/ROADMAP.md).
-    expect(cornerShots / corners).toBeGreaterThan(0.015);
+    // defused the one hardcoded cross to ~2-4%. Phase 31's routines took
+    // it back to ~6.5-7.5% across league seeds (routine-chosen deliveries,
+    // the crasher-wait gate, run-targeted drops) and the floor rises with
+    // it. The ROADMAP's full ≥8% needs marker-tracking separation
+    // (defenders shadow crashers frame-perfectly, so the goal-side marker
+    // still wins most post duels) — logged there for a future pass. At
+    // ~60 corners per 96-match pool, 0.04 is the strongest floor that
+    // won't flake.
+    expect(cornerShots / corners).toBeGreaterThan(0.04);
   });
 
   it('headed goals credit the crosser with the assist', { timeout: 30000 }, () => {

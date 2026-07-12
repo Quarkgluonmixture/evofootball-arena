@@ -4,7 +4,9 @@ import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Role } from '../sim/types';
-import { formationSpot, offsideLineLocalX, runTarget, supportSpot } from './formations';
+import {
+  cornerCrashSpots, cornerKeyZone, formationSpot, offsideLineLocalX, runTarget, supportSpot,
+} from './formations';
 import { interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
 
@@ -98,13 +100,27 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       break;
     }
     case 'MakeRun': {
-      // Attacking run in behind — a full sprint, recomputed each frame so the
-      // run bends with the defensive line. The ARRIVER (Phase 31) instead
-      // attacks the edge-of-box arc: the late body a byline cutback finds.
-      target =
-        team.arriver === p.index
-          ? v2((HALF_L - 16) * team.attackDir, clamp(p.pos.y * 0.3, -7, 7))
-          : runTarget(p, team, opp.players);
+      // Attacking run in behind — a full sprint, recomputed each frame so
+      // the run bends with the defensive line. Corner setups (Phase 31)
+      // route the licensed bodies instead: crashers attack the ROUTINE's
+      // crash spots (primary/secondary/rebound by stable rank), the extra
+      // license (team.arriver) goes to the routine's key zone. In open
+      // play the arriver attacks the edge-of-box arc — the late body a
+      // byline cutback finds.
+      const r = match.restart;
+      const cornerSetup = r?.kind === 'corner' && r.side === p.side;
+      if (cornerSetup && team.runners.has(p.index)) {
+        const ranked = [...team.runners].sort((a, b) => a - b);
+        const spots = cornerCrashSpots(r!.routine, team.attackDir, r!.pos.y);
+        target = spots[ranked.indexOf(p.index) % 3];
+      } else if (team.arriver === p.index) {
+        target =
+          cornerSetup && (r!.routine === 'short' || r!.routine === 'arcCutback')
+            ? cornerKeyZone(r!.routine!, team.attackDir, r!.pos.y)
+            : v2((HALF_L - 16) * team.attackDir, clamp(p.pos.y * 0.3, -7, 7));
+      } else {
+        target = runTarget(p, team, opp.players);
+      }
       speedF = sprint;
       break;
     }

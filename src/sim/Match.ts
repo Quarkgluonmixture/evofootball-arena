@@ -1,9 +1,9 @@
 import { Rng } from '../utils/rng';
 import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
-import { updateTeamBrain } from '../ai/TeamBrain';
+import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
 import { executeAction } from '../ai/actionExecutor';
-import { formationSpot, shapeReady } from '../ai/formations';
+import { cornerCrashSpots, formationSpot, shapeReady } from '../ai/formations';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
@@ -20,7 +20,7 @@ import { Team } from './Team';
 import {
   TEAM_SIZE, emptyPlayerStats,
   type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
-  type RestartKind, type RestartState, type Side, type TeamInfo,
+  type CornerRoutine, type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
 
 export interface PendingPass {
@@ -109,6 +109,8 @@ export class Match {
   kickoffKickGid: number | null = null;
   /** What kind of restart that kick is — penalties force a shot. */
   restartKickKind: RestartKind | null = null;
+  /** The corner routine the restart handed to the kick (Phase 31). */
+  restartKickRoutine: CornerRoutine | null = null;
   pendingPass: PendingPass | null = null;
   pendingShot: PendingShot | null = null;
   shotLog: ShotLogEntry[] = [];
@@ -324,8 +326,8 @@ export class Match {
   performThroughBall(p: Player, runner: Player, lofted = false, offsideExempt = false): void {
     mech.performThroughBall(this, p, runner, lofted, offsideExempt);
   }
-  performCross(p: Player, target: Player, offsideExempt = false): void {
-    mech.performCross(this, p, target, offsideExempt);
+  performCross(p: Player, target: Player, offsideExempt = false, pull = 0.18): void {
+    mech.performCross(this, p, target, offsideExempt, pull);
   }
   performKeeperThrow(p: Player, mate: Player): void {
     mech.performKeeperThrow(this, p, mate);
@@ -854,6 +856,12 @@ export class Match {
     }
 
     const taker = this.allPlayers[r.takerGid];
+    // Corner routine (Phase 31): once the defensive picture has ~formed,
+    // the taking side reads the box and commits to a routine — the runner
+    // licenses and crash spots key off it for the rest of the setup.
+    if (r.kind === 'corner' && r.routine === undefined && r.timer > 0.6) {
+      r.routine = pickCornerRoutine(this, r);
+    }
     // Kick-ins and corners breathe (Phase 28.1): the taker settles the ball
     // and both teams get a beat to shape up — instant touchline restarts
     // read as chaos, and the box picture needs time to form for a cross.
@@ -868,11 +876,27 @@ export class Match {
     if (ready && r.kind === 'goalKick' && r.timer < minSetup + 4 && !shapeReady(this.teams[r.side], ball)) {
       ready = false;
     }
+    // The corner WAITS for its crashers (Phase 31 — the 30.3 pattern): a
+    // delivery into empty zones is a delivery wasted (failure mode 14), so
+    // the taker stands over the ball until at least two licensed runners
+    // are attacking their crash spots. Timeout-capped like everything else.
+    if (ready && r.kind === 'corner' && r.timer < minSetup + 3.5) {
+      const team = this.teams[r.side];
+      const spots = cornerCrashSpots(r.routine, team.attackDir, r.pos.y);
+      const ranked = [...team.runners].sort((a, b) => a - b);
+      let set = 0;
+      for (const idx of ranked) {
+        const p = team.players[idx];
+        if (dist(p.pos, spots[ranked.indexOf(idx) % 3]) < 7) set++;
+      }
+      if (set < Math.min(2, ranked.length)) ready = false;
+    }
     if (ready || r.timer >= RESTART_TIMEOUT) {
       this.restart = null;
       this.phase = 'playing';
       this.restartKickGid = taker.gid;
       this.restartKickKind = r.kind;
+      this.restartKickRoutine = r.kind === 'corner' ? r.routine ?? null : null;
       this.giveBall(taker);
       taker.decisionTimer = 0.12; // kick promptly (giveBall's settle is for open play)
     }

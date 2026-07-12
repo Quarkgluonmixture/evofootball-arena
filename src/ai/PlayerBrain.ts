@@ -1,7 +1,9 @@
 import { clamp, clamp01 } from '../utils/math';
 import { dist, dot, norm, sub, v2 } from '../utils/vec';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady } from './formations';
+import {
+  cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady,
+} from './formations';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -61,9 +63,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // — dribbling straight off the spot would break the dead-ball fiction.
   const mustKick = match.restartKickGid === p.gid;
   const kickKind = mustKick ? match.restartKickKind : null;
+  const kickRoutine = mustKick ? match.restartKickRoutine : null;
   if (mustKick) {
     match.restartKickGid = null;
     match.restartKickKind = null;
+    match.restartKickRoutine = null;
   }
   // A penalty's first touch IS the shot — no utility scoring from the spot.
   if (kickKind === 'penalty') {
@@ -406,6 +410,12 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         aerialSense(mate) * 0.6 +
         opennessOf(mate, opp.players) * 0.4 +
         clamp01((mLocalX - 18) / 20) * 0.25;
+      // Corner routine (Phase 31): a post routine aims the delivery at the
+      // crasher attacking the KEY zone — the separation run the 29.1
+      // momentum lever needed but never got a delivery for.
+      if (isCorner && (kickRoutine === 'nearPost' || kickRoutine === 'farPost')) {
+        t += clamp01(1 - dist(mate.pos, cornerKeyZone(kickRoutine, team.attackDir, p.pos.y)) / 10) * 0.6;
+      }
       // Open-play crosses are judged like any pass (Phase 29) — an offside
       // box target wastes the delivery. Corners are exempt (real law).
       if (!offsideExemptKick && mLocalX > offLine + 0.2) t *= 0.12;
@@ -420,7 +430,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       sX *= 0.7 + g.passBias * 0.4;
       if (p.role === 'WG') sX *= 1.25; // it's what wingers are FOR (28.3)
       if (team.mode === 'Attack' || team.mode === 'CounterAttack') sX *= 1.15;
-      if (isCorner) sX *= 2.4; // the corner IS a cross — deliver it
+      // The corner IS a cross — deliver it. Unless the routine says the
+      // ball goes SHORT or to the ARC (Phase 31): then the whip is the
+      // fallback, not the plan.
+      if (isCorner) sX *= kickRoutine === 'short' || kickRoutine === 'arcCutback' ? 0.7 : 2.4;
       if (!mustKick) sX *= 1 - kickMisalignment(p, norm(sub(bestCrossMate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
       cands.push({
         action: 'Cross',
@@ -438,8 +451,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // snap-decision window (giveBall) makes the first-time strike.
   let cutbackMate: Player | null = null;
   let cutbackCand: UtilityScore | null = null;
+  const cornerCutback = kickKind === 'corner' && kickRoutine === 'arcCutback';
   if (
-    p.kickCooldown <= 0 && !mustKick && team.arriver !== null &&
+    p.kickCooldown <= 0 && (!mustKick || cornerCutback) && team.arriver !== null &&
     Math.abs(p.pos.y) > 10 && localX > HALF_L - 17
   ) {
     const arr = team.players[team.arriver];
@@ -448,10 +462,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       const open = opennessOf(arr, opp.players);
       const arrLocalX = team.localX(arr.pos.x);
       const inArc = arrLocalX > HALF_L - 26 && Math.abs(arr.pos.y) < 12;
-      const sCB =
+      let sCB =
         (0.48 + lane * 0.3 + open * 0.28) *
         (inArc ? 1.15 : 0.6) *
         (0.8 + g.attackingWidth * 0.4);
+      // The corner routine committed to this ball (Phase 31) — the arc
+      // strike IS the plan, the whipped cross is the fallback.
+      if (cornerCutback) sCB *= 2.2;
       cutbackMate = arr;
       cutbackCand = {
         action: 'Pass',
@@ -565,7 +582,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // corners arrived weak and wild while the taker still faced the flag.
   if (mustKick) {
     const at =
-      top.action === 'Pass' ? bestMate!.pos
+      top === cutbackCand ? cutbackMate!.pos // the corner arc cutback (31)
+      : top.action === 'Pass' ? bestMate!.pos
       : top.action === 'LoftedPass' ? bestLoftMate!.pos
       : top.action === 'Cross' ? bestCrossMate!.pos
       : top.action === 'ThroughBall' ? bestRunner!.pos
@@ -598,7 +616,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       break;
     case 'Cross':
       p.action = { type: 'Cross', targetIdx: bestCrossMate!.gid, scores };
-      match.performCross(p, bestCrossMate!, offsideExemptKick);
+      // A routine corner delivers to the RUN, not toward the goal-side
+      // marker (Phase 31) — the small pull keeps the drop on the crasher.
+      match.performCross(p, bestCrossMate!, offsideExemptKick, kickKind === 'corner' ? 0.06 : 0.18);
       break;
     case 'ThrowOut':
       p.action = { type: 'ThrowOut', targetIdx: bestThrowMate!.gid, scores };

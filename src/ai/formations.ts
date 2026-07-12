@@ -4,7 +4,9 @@ import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
-import type { AttackFormationId, DefendFormationId, TeamMode } from '../sim/types';
+import type {
+  AttackFormationId, CornerRoutine, DefendFormationId, TeamMode,
+} from '../sim/types';
 
 /**
  * Formation spot tables (Phase 30) in team-local coordinates: +x = our
@@ -121,6 +123,52 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
   x = clamp(x, -HALF_L + 3, HALF_L - 7);
   y = clamp(y, -HALF_W + 2, HALF_W - 2);
   return v2(x * team.attackDir, y);
+}
+
+/**
+ * Corner routine geometry (Phase 31), in world coordinates for the taking
+ * team. `attackDir` is the taker's attacking direction, `cornerY` the sign
+ * of the corner flag's y. The KEY zone is what the routine's openness is
+ * judged on; the CRASH spots are where the three licensed box-crashers
+ * attack (primary / secondary / rebound), ordered by aerial rank.
+ */
+export function cornerKeyZone(routine: CornerRoutine, attackDir: 1 | -1, cornerY: number): V2 {
+  const gx = attackDir * HALF_L;
+  const s = cornerY >= 0 ? 1 : -1;
+  switch (routine) {
+    case 'nearPost':
+      return v2(gx - attackDir * 4.5, s * 2.8);
+    case 'farPost':
+      return v2(gx - attackDir * 5.5, -s * 3.2);
+    case 'short':
+      return v2(gx - attackDir * 9, s * (HALF_W - 6));
+    case 'arcCutback':
+      return v2(gx - attackDir * 16, s * 3);
+  }
+}
+
+export function cornerCrashSpots(
+  routine: CornerRoutine | undefined, attackDir: 1 | -1, cornerY: number,
+): [V2, V2, V2] {
+  const gx = attackDir * HALF_L;
+  const s = cornerY >= 0 ? 1 : -1;
+  const b = (dx: number, y: number): V2 => v2(gx - attackDir * dx, y);
+  switch (routine) {
+    case 'nearPost':
+      // Overload the front zone: the flick wins the race, the others eat
+      // the flick-on and the spill.
+      return [b(4.5, s * 2.8), b(7, -s * 1), b(11, s * 0.5)];
+    case 'farPost':
+      // The back-post crash: primary attacks the far stick with a run.
+      return [b(5.5, -s * 3.2), b(6, s * 1.5), b(11, 0)];
+    case 'arcCutback':
+      // Crashers pin the box DEEP so the arc stays empty for the arriver.
+      return [b(4.5, s * 2.5), b(5.5, -s * 2.5), b(7.5, 0)];
+    case 'short':
+    default:
+      // Default milling (and the short routine's box picture): posts + spot.
+      return [b(5, s * 2.5), b(6, -s * 2.5), b(11, 0)];
+  }
 }
 
 /**

@@ -220,6 +220,13 @@ export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'half
  */
 export type RestartKind = 'kickIn' | 'corner' | 'goalKick' | 'freeKick' | 'penalty';
 
+/**
+ * Corner routines (Phase 31): each is a target-spot table plus which
+ * box-crash runners attack it. Chosen by the taking side once the
+ * defensive picture forms, from the openness of each routine's key zone.
+ */
+export type CornerRoutine = 'nearPost' | 'farPost' | 'short' | 'arcCutback';
+
 export interface RestartState {
   kind: RestartKind;
   /** Team taking the restart. */
@@ -229,6 +236,8 @@ export interface RestartState {
   timer: number;
   /** The player walking over to take it (GK for goal kicks). */
   takerGid: number;
+  /** Corner routine (Phase 31) — picked mid-setup, undefined until then. */
+  routine?: CornerRoutine;
   /**
    * Display only (Phase 29): this free kick is an offside award — the UI
    * labels it 🚩 offside instead of ⚠ free kick (since 27.2 outfield fouls

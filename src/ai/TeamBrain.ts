@@ -1,11 +1,11 @@
 import { dist } from '../utils/vec';
 import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
-import { formationSpot } from './formations';
+import { cornerKeyZone, formationSpot } from './formations';
 import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
-import type { Role, TeamMode } from '../sim/types';
+import type { CornerRoutine, RestartState, Role, TeamMode } from '../sim/types';
 
 /**
  * TeamBrain — picks one tactical mode for the whole team and hands out
@@ -88,11 +88,42 @@ function assignRunners(team: Team, match: Match): void {
   // (aerial sense lives with the DFs and the ST) attack the area while the
   // taker walks over, so the cross has someone to find.
   if (match.phase === 'restart' && match.restart?.kind === 'corner' && match.restart.side === team.side) {
+    // Aerial sense × REACHABILITY (Phase 31): the DF is the best header in
+    // the game, but the rest-defence clamp parks him ~50m away — a licensed
+    // crasher who cannot arrive leaves the primary zone empty (the trace
+    // that cracked the 0%-duel-wins corner: the best spots had nobody).
+    const flag = match.restart.pos;
+    const routine = match.restart.routine;
+    // Short/arc routines trade a crasher for the receiver (Phase 31): on a
+    // five-outfielder team, three crashers plus the taker leave exactly ONE
+    // arriver candidate — usually the worst-placed body on the pitch, and
+    // the routine's whole target zone went unattended (probed: the "short"
+    // corner crossed 30/30 because the short receiver stood 40m away).
+    const crashCount = routine === 'short' || routine === 'arcCutback' ? 2 : 3;
     const scored = team.players
       .filter((p) => p.role !== 'GK' && p.gid !== match.restart!.takerGid && !p.sentOff)
-      .map((p) => ({ p, s: aerialSense(p) }))
+      .map((p) => ({ p, s: aerialSense(p) - dist(p.pos, flag) / 45 }))
       .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
-    for (const { p } of scored.slice(0, 3)) team.runners.add(p.index);
+    for (const { p } of scored.slice(0, crashCount)) team.runners.add(p.index);
+    // Routine extra license (Phase 31): the SHORT receiver or the ARC
+    // arriver — one more purposeful body, routed by the executor to the
+    // routine's key zone. Crash spots for the runners come from the
+    // routine's table (executor, cornerCrashSpots).
+    if (routine === 'short' || routine === 'arcCutback') {
+      const zone = cornerKeyZone(routine, team.attackDir, match.restart.pos.y);
+      let pick: Player | null = null;
+      let bd = Infinity;
+      for (const p of team.players) {
+        if (p.role === 'GK' || p.sentOff || p.gid === match.restart.takerGid) continue;
+        if (team.runners.has(p.index)) continue;
+        const d = dist(p.pos, zone);
+        if (d < bd) {
+          bd = d;
+          pick = p;
+        }
+      }
+      if (pick) team.arriver = pick.index;
+    }
     return;
   }
   // A second runner for fast/direct sides: counters and high-tempo teams.
@@ -126,6 +157,40 @@ function assignRunners(team: Team, match: Match): void {
 }
 
 /**
+ * Corner routine choice (Phase 31): once the defensive picture forms
+ * (~0.6s into the setup), the taking side reads the openness of each
+ * routine's KEY zone and commits. Deterministic — pure state, fixed
+ * iteration order, strict improvement. The short option is discounted:
+ * it's the pressure valve when the box is packed, not the default.
+ */
+export function pickCornerRoutine(match: Match, r: RestartState): CornerRoutine {
+  const team = match.teams[r.side];
+  const defenders = match.teams[1 - r.side].players;
+  const order: CornerRoutine[] = ['farPost', 'nearPost', 'arcCutback', 'short'];
+  let best: CornerRoutine = 'farPost';
+  let bestScore = -Infinity;
+  for (const routine of order) {
+    const zone = cornerKeyZone(routine, team.attackDir, r.pos.y);
+    let nearest = Infinity;
+    for (const d of defenders) {
+      if (d.sentOff || d.role === 'GK') continue;
+      const dd = dist(d.pos, zone);
+      if (dd < nearest) nearest = dd;
+    }
+    let score = Math.min(nearest, 10) / 10;
+    if (routine === 'short') score *= 0.55;
+    // The arc strike is the best-converting routine (probed: ~2× the post
+    // deliveries) — when its zone is comparably open, take it.
+    if (routine === 'arcCutback') score += 0.08;
+    if (score > bestScore) {
+      bestScore = score;
+      best = routine;
+    }
+  }
+  return best;
+}
+
+/**
  * Chasers: outfield players allowed to hunt the ball. Everyone else keeps
  * shape/marks. Count scales with pressing: 1 base, +1 in Press mode, +1 for
  * extreme pressIntensity.
@@ -147,8 +212,11 @@ function assignChasers(team: Team, match: Match): void {
   if (gkHolding) {
     count = 0;
   } else {
-    if (team.mode === 'Press') count += 1;
-    if (team.genome.pressIntensity > 0.78) count += 1;
+    // One presser, two for a pressing side — NEVER three (Phase 31, user
+    // report): real football sends one or two at the ball; everyone else
+    // marks or holds the shape. The extreme-pressIntensity third chaser
+    // stacked onto Press mode just re-created the swarm.
+    if (team.mode === 'Press' || team.genome.pressIntensity > 0.78) count += 1;
     // Loose ball = a DUEL, not a scrum (Phase 30.5): one contester per team.
     // At 2 per team every midfield 50/50 pulled four sprinters plus the
     // support/marking crowd already there, and the won-tackle squirt re-fed
