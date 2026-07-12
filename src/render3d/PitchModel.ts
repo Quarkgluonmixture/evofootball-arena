@@ -96,11 +96,15 @@ function addTerraces(group: THREE.Group): void {
   const mk = (w: number, x: number, z: number, rot: number, steps: number) => {
     for (let step = 0; step < steps; step++) {
       const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 1.1, 2.4), step % 2 === 0 ? mat : seatMat);
+      // Rows RECEDE as they rise (user report "观众应该阶梯向上"): the
+      // offset marches AWAY from the pitch with height — the first cut
+      // marched it toward the pitch, an inside-out grandstand whose back
+      // row was the lowest. The anchor is the FRONT row, at the boards.
       const off = 1.6 + step * 2.4;
       slab.position.set(
-        x + Math.sin(rot) * off,
+        x - Math.sin(rot) * off,
         0.55 + step * 1.1,
-        z + Math.cos(rot) * off,
+        z - Math.cos(rot) * off,
       );
       slab.rotation.y = rot;
       slab.receiveShadow = true;
@@ -108,14 +112,14 @@ function addTerraces(group: THREE.Group): void {
       slabs.push({ w, x: slab.position.x, y: 1.1 + step * 1.1, z: slab.position.z, rot });
     }
   };
-  mk(HALF_L * 2 + 6, 0, -HALF_W - 5.2, 0, 3); // far side (behind the adboards)
+  mk(HALF_L * 2 + 6, 0, -HALF_W - 1.8, 0, 3); // far side (front row behind the adboards)
   // Behind each goal: ONE low bank only (Phase 28.3). The old three-step
   // stands rose to 3.3m and reached x≈58 — the behind-goal camera (±57, y5)
   // sat INSIDE them and the whole goalmouth vanished behind a black slab
   // (failure mode 13's cousin: screenshot every fixed camera). The seated
   // crowd keeps the same ceiling: bodies top out ~1m above the low bank.
-  mk(HALF_W * 2 - 4, -HALF_L - 5.4, 0, Math.PI / 2, 1); // behind -x goal
-  mk(HALF_W * 2 - 4, HALF_L + 5.4, 0, -Math.PI / 2, 1); // behind +x goal
+  mk(HALF_W * 2 - 4, -HALF_L - 2.2, 0, Math.PI / 2, 1); // behind -x goal
+  mk(HALF_W * 2 - 4, HALF_L + 2.2, 0, -Math.PI / 2, 1); // behind +x goal
   addCrowd(group, slabs);
 }
 
