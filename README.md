@@ -505,13 +505,15 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate -- 8`, 240 s matches, n=568)
 
-~1.9 goals from ~10.7 shots (≈4.2 on target; keepers make **≈2.4
-saves/match** plus smothers at a dribbler's feet and high-ball claims),
-~61% pass completion — direct football: **~22 through balls per match**
-with deliveries led deep into the run, **~60% of passes played forward**,
-**≈1.3 crosses, ≈8 aerial duels won and ≈9.6 lofted long balls per match**
+~2.6 goals from ~10.2 shots (≈4.9 on target, ≈0.1 blocked by a thrown-in
+body — Phase 31; keepers make **≈2.4 saves/match** plus smothers at a
+dribbler's feet and high-ball claims),
+~64% pass completion — direct football: **~16 through balls per match**
+with deliveries led deep into the run, **~64% of passes played forward**,
+**≈1.4 crosses, ≈0.5 byline cutbacks, ≈5.4 aerial duels won and ≈6.5
+lofted long balls per match**
 (Phase 28; the driven 30.5 switch made the diagonal a real weapon),
-**≈1.9 offsides/match** (Phase 29 — tight calls on marginal
+**≈1.7 offsides/match** (Phase 29 — tight calls on marginal
 runs; the stats panel counts them), **≈11 first-touch miscontrols/match**
 (forced errors — pressing pays), balanced possession, ~91% ball-in-play
 (the rest is live dead-ball time: goal kicks — which now WAIT for the
@@ -575,6 +577,23 @@ headed away. Net: goals 1.4 → ~1.9 with on-target 3.5 → 4.2 — the first
 volume recovery of the set-defence era — while completion held its ~63%
 evolutionary equilibrium (failure mode 20: selection levers can't move
 it; geometry can).
+**Phase 31 (beating set defences) then finished the job: goals ~1.9 →
+~2.6.** Lane-aware shot selection (carriers see the parked bodies and work
+an angle; daring the wall anyway rolls a real BLOCK into a loose ball),
+the OPEN RUN economy (a breakaway carrier drives at the keeper instead of
+turning back — the reported 单刀回传/不突破 fixes — with a REST-DEFENCE
+DF who never joins the siege so counters stay honest), the byline game
+(wide carriers drive the touchline, 下底, and pull the ball back to a
+licensed late runner at the arc), corner ROUTINES (near-post / far-post /
+short / arc cutback, picked from zone openness; the kick WAITS for its
+crashers and delivers to the RUN, not the goal-side marker — corner→shot
+~2-4% → ~7-9%), pressing capped at two chasers (user report: 一到两人
+chase, 其余盯人/站位), and formations became franchise DNA — inherited
+from the dominant parent through rebirth, rarely mutated (🔧 lineage
+events, an Evolution-tab share strip per identity) with a zonal ecology
+budget: without it, rebirth inheritance compounded the lattice's
+defensive edge into a 10-of-16 zonal league in ten seasons and scoring
+sank exactly as failure mode 18 predicts.
 The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo

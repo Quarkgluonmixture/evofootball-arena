@@ -108,6 +108,8 @@ export interface SeasonRecord {
   /** League-average gene values of the population that PLAYED this season. */
   geneMeans?: Record<GeneKey, number>;
   attrMeans?: Record<AttrKey, number>;
+  /** Formation-identity counts of the population that PLAYED this season (Phase 31). */
+  styleShares?: { atk: Record<string, number>; def: Record<string, number>; scheme: Record<string, number> };
   /** Players who hung up their boots at season end (Phase 26). */
   retirements?: RetirementEntry[];
   /** Cumulative points per slot after each round (slot-indexed, 7 rounds). */
@@ -515,6 +517,7 @@ export class League {
       awardsD2: this.buildAwards(1),
       geneMeans: this.geneMeans(),
       attrMeans: this.attrMeans(),
+      styleShares: this.styleShares(),
       pointsTimeline: this.buildPointsTimeline(),
     };
 
@@ -524,11 +527,16 @@ export class League {
     const d1 = this.division(0);
     const d2 = this.division(1);
     const d1Ranked = [...d1].sort((a, b) => (map1.get(b.slot) ?? 0) - (map1.get(a.slot) ?? 0));
+    // Zonal ecology budget (Phase 31): one shared counter for both division
+    // passes — zonal stays the RARE identity (~4 of 16) no matter which
+    // channel (mutation or rebirth inheritance) tries to spread it.
+    const zonalCount = this.franchises.filter((f) => f.style.scheme === 'zonal').length;
+    const zonal = { room: Math.max(0, 4 - zonalCount) };
     const entries = [
-      ...evolveGroup(d1, map1, this.generation, evoRng, { eliteN: 2, rebornN: 0 }, taken),
+      ...evolveGroup(d1, map1, this.generation, evoRng, { eliteN: 2, rebornN: 0, zonal }, taken),
       ...evolveGroup(
         d2, map2, this.generation, evoRng,
-        { eliteN: 2, rebornN: 3, parentPool: d1Ranked },
+        { eliteN: 2, rebornN: 3, parentPool: d1Ranked, zonal },
         taken,
       ),
     ];
@@ -651,6 +659,20 @@ export class League {
       out[k] = this.franchises.reduce((a, f) => a + f.genome[k], 0) / this.franchises.length;
     }
     return out;
+  }
+
+  /** Formation-identity counts across the 16 clubs (Phase 31 — the
+   * Evolution tab's share strips read these per generation). */
+  private styleShares(): { atk: Record<string, number>; def: Record<string, number>; scheme: Record<string, number> } {
+    const atk: Record<string, number> = {};
+    const def: Record<string, number> = {};
+    const scheme: Record<string, number> = {};
+    for (const f of this.franchises) {
+      atk[f.style.formationAtk] = (atk[f.style.formationAtk] ?? 0) + 1;
+      def[f.style.formationDef] = (def[f.style.formationDef] ?? 0) + 1;
+      scheme[f.style.scheme] = (scheme[f.style.scheme] ?? 0) + 1;
+    }
+    return { atk, def, scheme };
   }
 
   private attrMeans(): Record<AttrKey, number> {

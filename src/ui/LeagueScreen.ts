@@ -13,7 +13,7 @@ import {
   domesticDoubles, giantKillingCounts, greatestComeback, longestPremierStreak, mostCupGoals,
   movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
-import { raceChart, sparklineTile } from './charts';
+import { raceChart, sparklineTile, stackedShareStrip } from './charts';
 import { bar, button, colorHex, el } from './dom';
 import { t } from './i18n';
 
@@ -544,6 +544,28 @@ export class LeagueScreen {
         attrGrid.appendChild(sparklineTile(k, withAttrs.map((r) => r.attrMeans![k]), '#4ade80'));
       }
       this.root.appendChild(attrGrid);
+
+      // Formation identity shares (Phase 31): formations are franchise DNA
+      // now — inherited through rebirth, rarely mutated — so their league
+      // share per generation is an evolution story worth a strip each.
+      const withStyles = league.history.filter((r) => r.styleShares);
+      if (withStyles.length > 0) {
+        this.root.appendChild(el('h2', '', t('Formation identity share (per generation)')));
+        const styleGrid = el('div', 'spark-grid');
+        styleGrid.appendChild(stackedShareStrip(t('Attack formation'), [
+          { label: 'wide-212', color: '#60a5fa' },
+          { label: 'narrow-122', color: '#f59e0b' },
+        ], withStyles.map((r) => r.styleShares!.atk)));
+        styleGrid.appendChild(stackedShareStrip(t('Defend formation'), [
+          { label: 'low-32', color: '#60a5fa' },
+          { label: 'press-23', color: '#f472b6' },
+        ], withStyles.map((r) => r.styleShares!.def)));
+        styleGrid.appendChild(stackedShareStrip(t('Marking'), [
+          { label: 'man', color: '#4ade80' },
+          { label: 'zonal', color: '#a78bfa' },
+        ], withStyles.map((r) => r.styleShares!.scheme)));
+        this.root.appendChild(styleGrid);
+      }
     }
 
     const last = league.history[league.history.length - 1];

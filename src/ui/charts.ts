@@ -45,6 +45,56 @@ export function sparklineTile(name: string, values: number[], color = '#60a5fa')
   return tile;
 }
 
+/**
+ * Stacked share strip (Phase 31): one column per generation, filled by each
+ * option's share of the clubs — a tactical identity's evolution story at a
+ * glance. Head shows the latest counts as direct labels (no legend); rects
+ * carry <title> tooltips so color is never the only channel.
+ */
+export function stackedShareStrip(
+  title: string,
+  options: Array<{ label: string; color: string }>,
+  counts: Array<Record<string, number>>,
+): HTMLDivElement {
+  const tile = el('div', 'spark-tile');
+  const head = el('div', 'spark-head');
+  const latest = counts[counts.length - 1] ?? {};
+  head.append(
+    el('span', 'g-name', title),
+    el('span', 'spark-val', options.map((o) => `${o.label} ${latest[o.label] ?? 0}`).join(' · ')),
+  );
+  tile.appendChild(head);
+
+  const W = 132;
+  const H = 34;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%');
+  if (counts.length >= 1) {
+    const cw = (W - 8) / counts.length;
+    let inner = '';
+    counts.forEach((c, i) => {
+      const total = options.reduce((a, o) => a + (c[o.label] ?? 0), 0) || 1;
+      let y = 4;
+      for (const o of options) {
+        const h = ((c[o.label] ?? 0) / total) * (H - 8);
+        if (h > 0.05) {
+          inner +=
+            `<rect x="${(4 + i * cw).toFixed(1)}" y="${y.toFixed(1)}" ` +
+            `width="${Math.max(cw - 0.6, 0.6).toFixed(1)}" height="${h.toFixed(1)}" fill="${o.color}">` +
+            `<title>${escapeHtml(o.label)}</title></rect>`;
+        }
+        y += h;
+      }
+    });
+    svg.innerHTML = inner;
+  } else {
+    svg.innerHTML = `<text x="4" y="${H - 12}" font-size="9" fill="${INK_MUTED}">need a finished season</text>`;
+  }
+  tile.appendChild(svg);
+  return tile;
+}
+
 export interface RaceSeries {
   name: string;
   color: number;

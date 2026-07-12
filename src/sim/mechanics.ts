@@ -581,10 +581,12 @@ export function performShot(match: Match, shooter: Player): void {
   // confident finishers aim closer to the post (bigger keeper-evasion, riskier
   // margin) AND group their shots tighter.
   const goalX = team.attackDir * HALF_L;
-  // 1.5 -> 1.2 base in Phase 30.4: conversion is the last lever standing —
-  // the 30.x structures deleted the chaos goals, so the shots that remain
-  // must dare the corners. 0.3 (clinical) .. 1.15 (timid).
-  const aimMargin = 1.2 - shooter.attrs.finishing * 0.9;
+  // 1.5 → 1.2 in Phase 30.4 (dare the corners), → 1.3 in Phase 31's
+  // retune: with chance volume restored (open runs, cutbacks, routines)
+  // the trade flips back toward failure mode 16a — a slightly safer aim
+  // keeps more strikes on the frame while the keeper still can't reach
+  // the corner. 0.4 (clinical) .. 1.25 (timid).
+  const aimMargin = 1.3 - shooter.attrs.finishing * 0.9;
   const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
   const target = v2(goalX, aimY);
 

@@ -24,6 +24,18 @@ for (let s = 0; s < 10; s++) {
 }
 console.log(`\n10 seasons in ${((performance.now() - t0) / 1000).toFixed(1)}s\n`);
 
+// Formation-identity ecology (Phase 31): styles are franchise DNA now —
+// watch for monoculture/extinction the same way gene identities are watched.
+const shares = league.history[league.history.length - 1]?.styleShares;
+if (shares) {
+  const fmt = (r: Record<string, number>): string =>
+    Object.entries(r).map(([k, v]) => `${k} ${v}`).join(' · ');
+  console.log(`Formation identities: atk [${fmt(shares.atk)}]  def [${fmt(shares.def)}]  marking [${fmt(shares.scheme)}]`);
+  const switches = league.franchises.reduce(
+    (a, f) => a + f.lineage.filter((l) => l.note?.startsWith('🔧')).length, 0);
+  console.log(`Style switches across all lineages: ${switches}\n`);
+}
+
 console.log('Final population:');
 for (const f of [...league.franchises].sort((a, b) => a.division - b.division || b.elo - a.elo)) {
   const gens = f.lineage.filter((l) => l.event === 'elite').length;

@@ -699,6 +699,21 @@ only caught by eyes on the PNGs.
     shoot-happy policy test) needs a stronger pull to clear noise in a
     more organized league — the lever still works, the environment prices
     it higher.
+21. **Inheritance channels compound selection — guard EVERY entry into a
+    structurally-dominant identity, not just the mutation roll.** Phase
+    31 made formations franchise DNA (reborn clubs inherit the dominant
+    parent's style). The zonal mutation had its rare-entry guard (×0.3),
+    but INHERITANCE had none: zonal out-defends man (failure mode 18a) →
+    zonal clubs win → parent the reborn → zonal multiplied to 10 of 16
+    clubs in ten seasons on seed 31313 and scoring sank. The fix is an
+    ecology BUDGET (League-computed `room = max(0, 4 − zonal count)`,
+    one shared counter across both division passes) consumed by both
+    channels; exits refund it. Corollary: the corner-duel story — the
+    goal-side marker + the 0.18 goal-pull meant attackers won 0.00
+    corner duels; deliveries must target the RUN (pull 0.06), and a
+    licensed crasher who cannot REACH the spot leaves the zone empty
+    (aerial sense × reachability, and the kick WAITS for arrivals —
+    failure mode 14's lesson applied to set pieces).
 
 ## 11. Known tuning levers
 
@@ -717,7 +732,11 @@ only caught by eyes on the PNGs.
 | Defensive shape vs crowding | contain gates in `decideOffBall` (carrier < 14m, < 35m from own goal, unassigned only); `HOLD_DEPTH` role layering in the executor onside clamp; won-tackle squirt 5.5–10 m/s; loose-ball chasers capped at 1/team (30.5, `assignChasers`); support fan pull 0.75 / cap 0.9·radius in `supportSpot` (30.5 — failure mode 19); marking stance `2.6 − aggr·1.4` (floor 1.2m, outside tackle radius — 30.5) |
 | Restart pacing feel | per-kind min setup in `stepRestart` (kick-in 1.8 s, corner 2.0 s, else `RESTART_MIN_SETUP`) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
-| Corner / cross threat | box-crash count in `assignRunners` (3); cross pull-toward-goal 0.25 in `performCross`; corner cross boost ×2.4 in `decideCarrier`; `HEADER_RADIUS` |
+| Corner / cross threat | box-crash count in `assignRunners` (3; 2 for short/arc routines — the receiver takes the slot); cross pull-toward-goal 0.18 open play / **0.06 corners** in `performCross` (the goal-pull fed the goal-side marker — fm 21); corner cross boost ×2.4 in `decideCarrier` (×0.7 when the routine goes short/arc); routine priors + zone openness in `pickCornerRoutine`; crasher-wait gate in `stepRestart` (≥2 at spots, minSetup+3.5 cap); `HEADER_RADIUS` |
+| Shot blocks / lane awareness (Phase 31) | `laneBlockers` radius 1.0 / corridor 60% (perception); shot-utility discount `pow(0.55 + shootBias·0.15, blockers)` in `decideCarrier`; block roll `0.32 + defending·0.25` within 0.9m in `tryShotBlock` (goalmouth <6m excluded) |
+| The open run / rest defence (Phase 31) | openRun zone dGoal<28 + nobody goal-side; back-pass mul 0.35, drive ×1.35 (NO pressure exemption — it inverted shootBias, fm 20); rest-defence DF: support suppressed past halfway + spot clamp ≤ −12 local |
+| Cutback volume | arriver trigger localX > HALF_L−21 & |y|>10 (`assignRunners`); carrier zone localX > HALF_L−17 & |y|>10; wide-drive dribble (下底) at |y|>13, 20<localX<HALF_L−7; arc-arrival window in `decideCarrier` (HALF_L−26, |y|<12) |
+| Formation-identity ecology (Phase 31) | style mutation 0.08/season (mutated band only, one component); zonal entry ×0.3 roll AND the League's shared budget `max(0, 4 − zonal)`; rebirth inherits the dominant parent within the same budget |
 | Aerial duel character | `AERIAL_ROLE` + attr weights in `aerialSense`; attacker-momentum bonus 0.07 in `tryAerial`; header-shot gate 16.5m + quality `0.5·exp(−d/8.5)` in `performHeaderShot` |
 | Long-ball volume | `loftBase/loftOpenW` + the d>24 gate in the pass loop (don't lower it — 18m cannibalized healthy ground passes, 30.5); flight times in `loftKick` callers (hang time = interceptability; the switch is a DRIVEN 0.55+d·0.033 ball since 30.5 — floaters always lost the drop) |
 | Long-shot appetite | `longShotW` (default 0.3) × shootBias × stagnation, 16–30m gate in `decideCarrier` |

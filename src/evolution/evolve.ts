@@ -1,4 +1,4 @@
-import { deriveTeamStyle } from '../sim/types';
+import type { TeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, rookieAge } from './careers';
 import { crossoverGenomes, geneDistance, mutateGenome } from './genome';
@@ -41,6 +41,46 @@ export interface EvolvePlan {
   rebornN: number;
   /** Parent candidates for reborn slots, strongest first (weights 4/3/2/1). */
   parentPool?: Franchise[];
+  /**
+   * Shared zonal budget (Phase 31): how many MORE clubs may become zonal
+   * this evolution pass, across both divisions. Zonal out-defends man
+   * structurally (failure mode 18) and inheritance lets selection compound
+   * it — without an ecological cap a lucky lineage turned the league 10/16
+   * zonal in ten seasons and scoring sank with it. The League computes
+   * room = max(0, 4 − current zonal count) and passes ONE mutable object
+   * to both division passes.
+   */
+  zonal?: { room: number };
+}
+
+/**
+ * Rare, single-component style mutation (Phase 31, ~0.08/season): the club
+ * switches ONE of attack formation / defend formation / marking scheme to
+ * its alternative. Returns the lineage note when a switch happened. Zonal
+ * entry is extra-guarded (×0.3) so the league never drifts zonal-heavy.
+ */
+function mutateStyle(style: TeamStyle, rng: Rng, zonal?: { room: number }): string | undefined {
+  if (!rng.chance(0.08)) return undefined;
+  const component = rng.int(0, 2);
+  if (component === 0) {
+    style.formationAtk = style.formationAtk === 'wide-212' ? 'narrow-122' : 'wide-212';
+    return `🔧 switched to ${style.formationAtk}`;
+  }
+  if (component === 1) {
+    style.formationDef = style.formationDef === 'low-32' ? 'press-23' : 'low-32';
+    return `🔧 switched to ${style.formationDef}`;
+  }
+  if (style.scheme === 'zonal') {
+    style.scheme = 'man';
+    if (zonal) zonal.room += 1;
+    return '🔧 switched to man marking';
+  }
+  // Zonal stays the RARE identity: a second roll AND an open ecology slot.
+  if (!rng.chance(0.3)) return undefined;
+  if (!zonal || zonal.room <= 0) return undefined;
+  zonal.room -= 1;
+  style.scheme = 'zonal';
+  return '🔧 switched to zonal marking';
 }
 
 export function evolveGroup(
@@ -81,16 +121,33 @@ export function evolveGroup(
       f.genome = mutateGenome(f.genome, rng, { rate: 0.4, scale: 0.08 });
       // Squads no longer take random mutation — since Phase 26 they change
       // through the careers pass instead (development, retirement, newgens).
-      f.lineage.push({ generation: nextGen, event: 'mutated', fitness });
+      // Formations are franchise DNA (Phase 31): a surviving club's style
+      // occasionally mutates — ONE component switches to its alternative,
+      // logged as a lineage event. Zonal is guarded (failure mode 18: the
+      // lattice out-defends man — a zonal-heavy league stops scoring), so
+      // mutating INTO it needs a second, rarer roll.
+      const styleNote = mutateStyle(f.style, rng, plan.zonal);
+      f.lineage.push({ generation: nextGen, event: 'mutated', fitness, note: styleNote });
       entries.push({ slot: f.slot, name: f.name, kind: 'mutated', fitness, drift: geneDistance(before, f.genome) });
     } else {
       const pa = pickParent();
       const pb = pickParent(pa);
       const before = f.genome;
       f.genome = mutateGenome(crossoverGenomes(pa.genome, pb.genome, rng), rng, { rate: 0.5, scale: 0.15 });
-      // A reborn club's tactical identity is its NEW DNA's readout; mutated
-      // clubs keep their stored style (identity survives small gene drift).
-      f.style = deriveTeamStyle(f.genome);
+      // Formations are franchise DNA (Phase 31): a reborn club INHERITS its
+      // tactical identity from the dominant parent — the dynasty's shape
+      // survives the rebirth (it used to be re-derived from the child
+      // genome, which broke identity continuity every generation). The
+      // zonal budget applies to inheritance too: this was THE compounding
+      // channel (zonal elite win → parent the reborn → zonal multiplies).
+      const wasZonal = f.style.scheme === 'zonal';
+      f.style = { ...pa.style };
+      if (f.style.scheme === 'zonal' && !wasZonal) {
+        if (plan.zonal && plan.zonal.room > 0) plan.zonal.room -= 1;
+        else f.style.scheme = 'man';
+      } else if (wasZonal && f.style.scheme !== 'zonal' && plan.zonal) {
+        plan.zonal.room += 1;
+      }
       // The academy intake: attributes cross over from both parents' squads,
       // but the players themselves are NEW — young, unnamed, blank careers.
       f.squad = crossoverSquads(pa.squad, pb.squad, rng);

@@ -167,7 +167,28 @@ decides whether 30.5 iterates or Phase 31 starts.
 
 ---
 
-## ⭐ Phase 31 — beating SET defences (chance volume), set-piece routines, formation evolution
+## ⭐ Phase 31 — beating SET defences, set-piece routines, formation evolution — **SHIPPED**
+
+**Outcome (final `calibrate -- 8`): goals 2.58 (target ≥2.2, stretch 2.6
+hit), on-target 4.89 (≥4.5 ✓), completion 64% (≥62% ✓), t+i 55.7 (≤60 ✓),
+corner→shot ~7-9% across league seeds (from 2-4%; the literal ≥8%-
+everywhere needs marker-tracking separation — markers shadow crashers
+frame-perfectly, so the goal-side man still wins most post duels; the
+aerial.test floor sits at 0.04), crosses 1.35 (the ~2.5 reference was
+pre-cutback: byline drives + cutbacks 0.46 + corner routines carry the
+wide-delivery texture now; crossBase 0.32 was tried and overshot goals to
+3.0), offsides 1.71 (the expected tick-up never came — fine).** All five
+steps built: lane-aware shooting + explicit blocks (31.1, plus the
+user-reported 单刀回传/大空间不突破 fixes — the OPEN RUN economy and the
+REST-DEFENCE DF), byline cutbacks + the arriving runner + 下底 + far-post
+pull (31.2), corner routines with the crasher-wait gate (31.3, plus
+chasers capped at two — user report), formation evolution with the zonal
+ecology budget (31.4 — failure mode 21: inheritance compounded zonal to
+10/16 clubs before the budget), aimMargin 1.2 → 1.3 retune (31.5, fm 16a
+re-validated: +0.36 goals from one aim-safety lever). 225 tests;
+fingerprint re-baselined `3aed8c8f…`.
+
+<details><summary>Original handover plan (done — kept for reference)</summary>
 
 **Goal:** Phase 30 built the structure and honestly under-delivered on
 scoring (~1.4 goals; target ≥2.2). The missing goals are chance VOLUME
@@ -251,6 +272,8 @@ real again, and lets formations evolve. **Read ARCHITECTURE failure modes
 - The cutback runner license must respect the onside hold (executor
   clamp) — an "arriving" runner is exactly the profile the offside
   honesty gap flags; expect offsides to tick up and let them.
+
+</details>
 
 ## Phase 32 — free kicks become REAL
 
