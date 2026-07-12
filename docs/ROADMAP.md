@@ -188,6 +188,18 @@ ecology budget (31.4 — failure mode 21: inheritance compounded zonal to
 re-validated: +0.36 goals from one aim-safety lever). 225 tests;
 fingerprint re-baselined `3aed8c8f…`.
 
+**Play-feel queue (user reports, post-31):** "现在是不是没有头球?" —
+correct as a viewing experience: aerial DUELS exist (~3.6-5.4 headers
+won/match, mostly midfield knockdowns and defensive clears) but ATTACKING
+headers are ~0.33 shots/match and headed goals rarer still. Root causes,
+in order: (1) few feeds — crosses ~1.4-2 and corners ~0.7/match; (2) the
+goal-side marker wins most box duels (the marker-tracking separation gap
+above — markers shadow crashers frame-perfectly, so the running jump
+rarely gets a clean meet). Any headed-game pass should fix (2) first —
+a marker REACTION LAG on box crashes (defenders re-target on their
+decision tick, not per-frame) is the honest mechanic, and it lifts
+corner→shot past the 8% line at the same time.
+
 <details><summary>Original handover plan (done — kept for reference)</summary>
 
 **Goal:** Phase 30 built the structure and honestly under-delivered on
