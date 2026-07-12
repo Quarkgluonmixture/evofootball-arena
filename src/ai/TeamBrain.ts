@@ -1,5 +1,5 @@
 import { dist } from '../utils/vec';
-import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, GRAVITY, HALF_L } from '../sim/constants';
 import { cornerKeyZone, formationSpot } from './formations';
 import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
@@ -253,6 +253,46 @@ function assignChasers(team: Team, match: Match): void {
   if (match.phase === 'restart') count = match.restart?.kind === 'goalKick' ? 0 : 1;
 
   const outfield = team.players.filter((p) => p.role !== 'GK' && !p.sentOff);
+  // ATTACK THE DROP (Phase 32.1, user report "大脚高球也应该能被解围"): an
+  // opponent's lofted delivery in flight is chased at its LANDING, by
+  // whoever gets there fastest — long balls aim at open men by design, so
+  // the by-current-ball-distance pick sent a presser who could never
+  // arrive (probed: nearest defender averaged 7.6m off the descent, 5%
+  // aerial contests, and the hoof was uncontestable in practice).
+  // interceptBall already projects the parabola; the chaser just needed
+  // to be the right man.
+  const pass = match.pendingPass;
+  const ball = match.ball;
+  if (
+    count > 0 && pass && pass.side !== team.side && ball.owner === null &&
+    (ball.z > 0.5 || ball.vz > 2)
+  ) {
+    const tLand = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
+    const land = { x: ball.pos.x + ball.vel.x * tLand, y: ball.pos.y + ball.vel.y * tLand };
+    // LONG hoofs into open field only: an unscoped first cut attacked the
+    // landing of every cross, corner and chip too — one extra converging
+    // defender on every box delivery re-buried the 31.9 headed game and
+    // cost 0.77 goals/match at n=568. Box landings belong to the marking
+    // scheme; short chips to the through-ball economy.
+    const flight = Math.hypot(ball.vel.x, ball.vel.y) * tLand;
+    const inOurBox =
+      Math.abs(land.y) < BOX_WIDTH / 2 && team.localX(land.x) < -(HALF_L - BOX_DEPTH);
+    if (flight > 12 && !inOurBox) {
+      let best: Player | null = null;
+      let bestT = Infinity;
+      for (const p of outfield) {
+        const t = dist(p.pos, land) / Math.max(p.topSpeed, 0.1);
+        if (t < bestT) {
+          bestT = t;
+          best = p;
+        }
+      }
+      if (best) {
+        team.chasers.add(best.index);
+        return;
+      }
+    }
+  }
   const byDist = [...outfield].sort(
     (a, b) => dist(a.pos, match.ball.pos) - dist(b.pos, match.ball.pos) || a.index - b.index,
   );
