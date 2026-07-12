@@ -210,6 +210,21 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     });
   }
 
+  // --- Direct free kick (Phase 32): the danger-band placed ball is the
+  // specialist's REAL strike — performFreeKick curls it over the wall, so
+  // lane blockers don't apply and the ordinary shot economics (pressure,
+  // misalignment) don't either. Competes with crossing/passing the FK.
+  if (kickKind === 'freeKick' && localX > 0 && dGoal > 9 && dGoal < 28) {
+    // Steep in range: the wall pulls two defenders out of the marking
+    // scheme, so an FK always HAS an open mate — and real takers still
+    // shoot from 17-22m. The pass only outscores from the band's edge.
+    const sFK =
+      (0.55 + (28 - dGoal) * 0.02) *
+      (0.7 + (p.attrs.finishing + p.attrs.technique * 0.5) * 0.45) *
+      (0.85 + g.shootBias * 0.3);
+    cands.push({ action: 'Shoot', score: sFK, why: `direct free kick · ${dGoal.toFixed(0)}m out` });
+  }
+
   // --- Pass: score every teammate, keep the best. Long targets also get a
   // LOFTED variant (Phase 28): the switch flies over the press, so it skips
   // the ground lane and the 32m suppression — its risks are the charge-down
@@ -638,7 +653,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       break;
     case 'Shoot':
       p.action = { type: 'Shoot', scores };
-      match.performShot(p);
+      // A free-kick strike is a different kick entirely (Phase 32): the
+      // placed ball curls OVER the wall on its own flight profile.
+      if (kickKind === 'freeKick') match.performFreeKick(p);
+      else match.performShot(p);
       break;
     case 'ClearBall':
       p.action = { type: 'ClearBall', scores };

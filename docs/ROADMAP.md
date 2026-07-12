@@ -443,7 +443,36 @@ real again, and lets formations evolve. **Read ARCHITECTURE failure modes
 
 </details>
 
-## Phase 32 — free kicks become REAL
+## ⭐ Phase 32 — free kicks become REAL — **SHIPPED**
+
+**Outcome:** the danger-band FK (attacking half, 9–28m out) is a real set
+piece: the SPECIALIST steps up (best finishing+technique·0.5 among
+players within 26m — an unbounded pick summoned men who couldn't arrive
+before the 6s failsafe), a 2–3 body WALL forms on the ball–goal line at
+the law 9.15m (93% formed at kick in league play), the keeper cheats a
+step to the near post, and the direct strike curls OVER the wall on a
+closed-form parabola (z ≥ 2.6 at the wall — above the header band) and
+dips. QUICK restarts (~7%) punish a slow defensive reset when a clearly
+open FORWARD outlet exists. Fouls in the band are WHISTLED BACK
+(⚠ deliberate narrowing of the 27.2 advantage rule — flagged for the
+user's veto: the set piece out-values scrappy possession there; advantage
+still swallows every whistle elsewhere), and the professional foul weighs
+the new threat (willingness ×0.6 in range). League picture: ~0.7 danger
+FKs/match, ~0.45 direct strikes, ~0.05 FK goals (the real game's rate —
+the spec's 0.10-0.15 predates the advantage-rule reality), conversion
+~8-10% focused. Fallout absorbed en route, each probed: the wall members
+were glass-walled by the restart circle (exempted — the wall IS the
+clearance), shoved off their slots by resolveOverlaps (1.1m spacing >
+PLAYER_MIN_DIST), beaten to their line by the fast taker (the referee
+now WAITS for the wall like corners wait for crashers), and — the best
+one — released at the kick, they walked back toward their marks straight
+into the climb's header band and free-headed the ball they had just
+walled (the wall now HOLDS 0.7s after the strike). Calibrate: goals 2.66,
+on-target 4.83, t+i 41.2, cards 0.94🟨 (the pro-foul discount), corners
+still ~25%+ corner→shot. 238 tests (7 new in freekick.test.ts);
+fingerprint `0782000e…`.
+
+<details><summary>Original spec (done — kept for reference)</summary>
 
 **Goal:** offside + professional fouls (29.x) made free kicks common; give
 them teeth so the danger-band pro foul has real cost.
@@ -467,6 +496,8 @@ them teeth so the danger-band pro foul has real cost.
   feeding FK danger into the `tryTacticalFoul` willingness).
 - **Risk:** wall clearance vs the existing 6m restart circle — don't let
   two clearance systems fight (the wall IS the clearance for close FKs).
+
+</details>
 
 ## Phase 33 — the watching experience
 

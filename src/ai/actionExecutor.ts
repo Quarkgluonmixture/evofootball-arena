@@ -1,11 +1,12 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
-import { BOX_DEPTH, BOX_WIDTH, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, CORNER_CLEARANCE, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Role } from '../sim/types';
 import {
-  cornerCrashSpots, cornerKeyZone, formationSpot, offsideLineLocalX, runTarget, supportSpot,
+  cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
+  supportSpot,
 } from './formations';
 import { interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
@@ -290,8 +291,33 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // carrier's studs on the keeper's chest at the post.
       const k = Math.max(Math.min(out, d * 0.5), Math.min(2.0, d * 0.9)) / d;
       target = clampToBox({ x: goal.x + tbx * k, y: goal.y + tby * k }, team.attackDir);
+      // Free-kick stance (Phase 32): the wall covers one side of the goal,
+      // the keeper cheats a step toward the NEAR post to own the other.
+      if (match.fkWall && match.fkWall.side === p.side) {
+        target = {
+          x: target.x,
+          y: clamp(target.y + Math.sign(match.fkWall.pos.y || 1) * 1.0, -GOAL_WIDTH / 2 + 0.5, GOAL_WIDTH / 2 - 0.5),
+        };
+      }
       speedF = 0.9;
       break;
+    }
+  }
+
+  // Free-kick WALL (Phase 32): the assigned bodies stand ON the ball–goal
+  // line at the clearance edge and brace, facing the ball. Their slot IS
+  // their steering target — the clearance clamps never fight them (the
+  // wall IS the clearance for a close FK), and the teammate-separation
+  // push is skipped below (a wall packs tighter than the anti-stack radius).
+  let inWall = false;
+  const wall = match.fkWall;
+  if (wall && p.side === wall.side) {
+    const slot = wall.gids.indexOf(p.gid);
+    if (slot >= 0) {
+      inWall = true;
+      target = fkWallSlots(wall.pos, team.ownGoal(), wall.gids.length)[slot];
+      speedF = 0.95;
+      p.faceTarget = wall.pos;
     }
   }
 
@@ -335,9 +361,12 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   const desired = target ? arrive(p, target, p.topSpeed * speedF, 2.2) : scale(p.vel, 0.4);
 
   // Steering blend: hard anti-stacking vs teammates + soft path avoidance.
-  const sep = separation(p, team.players, 2.4, 2.5);
-  desired.x += sep.x;
-  desired.y += sep.y;
+  // Wall members skip it — shoulder-to-shoulder IS the assignment.
+  if (!inWall) {
+    const sep = separation(p, team.players, 2.4, 2.5);
+    desired.x += sep.x;
+    desired.y += sep.y;
+  }
   if (p.action.type === 'MoveToFormationSpot' || p.action.type === 'SupportBallCarrier') {
     const av = avoidOpponents(p, desired, opp.players);
     desired.x += av.x;

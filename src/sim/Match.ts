@@ -3,7 +3,8 @@ import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
 import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
 import { executeAction } from '../ai/actionExecutor';
-import { cornerCrashSpots, formationSpot, shapeReady } from '../ai/formations';
+import { cornerCrashSpots, fkWallSlots, formationSpot, shapeReady } from '../ai/formations';
+import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
@@ -57,6 +58,12 @@ export interface PendingShot {
    * 0.25 = shaving the edge of reach.
    */
   difficulty: number;
+  /**
+   * A PLACED ball (Phase 32, direct free kicks): the keeper is set and
+   * expecting it — tryKeeperSave floors the difficulty discount instead of
+   * treating the far-corner curl like an open-play reaction save.
+   */
+  placed?: boolean;
 }
 
 /** One shot for the analytics timeline (xG race chart). */
@@ -109,6 +116,18 @@ export class Match {
   kickoffKickGid: number | null = null;
   /** What kind of restart that kick is — penalties force a shot. */
   restartKickKind: RestartKind | null = null;
+  /**
+   * Free-kick WALL (Phase 32): picked when a danger-zone FK is awarded —
+   * the defending bodies that line up on the ball–goal line at the law
+   * clearance. The executor routes them there (their slot IS their
+   * steering target, so the clearance clamps never fight them — the wall
+   * IS the clearance). The kick STARTS the release timer instead of
+   * dissolving it: released instantly, the wallers walked back toward
+   * their marks — straight into the climb's header band — and free-headed
+   * the kick they had just walled. `until` null = holding; set = released
+   * at that sim time. A new restart clears it outright.
+   */
+  fkWall: { gids: number[]; pos: V2; side: Side; until: number | null } | null = null;
   /** The corner routine the restart handed to the kick (Phase 31). */
   restartKickRoutine: CornerRoutine | null = null;
   pendingPass: PendingPass | null = null;
@@ -242,11 +261,15 @@ export class Match {
     // the boot. Corners were the loudest victim: probed deliveries left at
     // 19 m/s and were crawling at 8 m/s within metres of the flag. Real
     // law: opponents keep their distance until the ball is IN PLAY.
+    if (this.fkWall && this.fkWall.until !== null && this.simTime > this.fkWall.until) {
+      this.fkWall = null; // the ball has cleared the wall — break for the marks
+    }
     if (this.restartKickGid !== null && this.restartKickKind !== null && this.restartKickKind !== 'penalty') {
       const taker = this.allPlayers[this.restartKickGid];
-      const kickClear = this.restartKickKind === 'corner' ? CORNER_CLEARANCE : RESTART_CLEARANCE;
+      const kickClear = this.restartKickKind === 'corner' || this.restartKickKind === 'freeKick' ? CORNER_CLEARANCE : RESTART_CLEARANCE;
       for (const o of this.teams[1 - taker.side].players) {
         if (o.sentOff) continue;
+        if (this.fkWall?.gids.includes(o.gid)) continue; // the wall IS the clearance (Phase 32)
         const d = dist(o.pos, this.ball.pos);
         if (d < kickClear) {
           const dir = d < 1e-6 ? v2(-this.teams[taker.side].attackDir, 0) : norm(sub(o.pos, this.ball.pos));
@@ -365,6 +388,9 @@ export class Match {
   performCutback(p: Player, mate: Player): void {
     mech.performCutback(this, p, mate);
   }
+  performFreeKick(p: Player): void {
+    mech.performFreeKick(this, p);
+  }
   performClear(p: Player): void {
     mech.performClear(this, p);
   }
@@ -392,6 +418,9 @@ export class Match {
     p.gkDistributing = false;
     p.kickCooldown = KICK_COOLDOWN;
     p.firstTouchWindow = 0; // any kick consumes the one-touch window
+    // The kick starts the wall's release timer (Phase 32): the bodies hold
+    // their line while the ball clears them, THEN break for their marks.
+    if (this.fkWall && this.fkWall.until === null) this.fkWall.until = this.simTime + 0.7;
   }
 
   /** Give a player clean control of the ball, resolving pass bookkeeping. */
@@ -691,7 +720,17 @@ export class Match {
       // attacking team's own move. The foul still counts and still draws
       // cards; box fouls above still concede a penalty. (The PROFESSIONAL
       // foul is different — the carrier goes down — see awardTacticalFoul.)
-      this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — advantage`);
+      // EXCEPT the danger band (Phase 32): with the direct free kick real,
+      // the set piece out-values scrappy possession there — the ref brings
+      // it back the way real ones do when the foul is in range. Everywhere
+      // else the whistle stays swallowed (fluency, the 27.2 user call).
+      const dGoal = dist(this.ball.pos, this.teams[side].oppGoal());
+      if (this.teams[side].localX(this.ball.pos.x) > 0 && dGoal < 28 && dGoal > 9) {
+        this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — free kick in range`);
+        this.awardRestart('freeKick', side, clone(this.ball.pos));
+      } else {
+        this.pushEvent('foul', side, `Foul by ${offender.name} on ${victim.name} — advantage`);
+      }
     }
     this.maybeCard(offender);
   }
@@ -842,6 +881,27 @@ export class Match {
 
     this.restart = { kind, side, pos: clone(pos), timer: 0, takerGid: this.pickTaker(kind, side, pos) };
     this.phase = 'restart';
+
+    // Free-kick wall (Phase 32): a danger-zone FK gets 2–3 defending
+    // bodies assigned to the ball–goal line. Nearest outfielders take the
+    // duty (they can actually arrive during setup); closer kicks earn the
+    // bigger wall.
+    this.fkWall = null;
+    if (kind === 'freeKick') {
+      const goal = v2(this.teams[side].attackDir * HALF_L, 0);
+      const dGoal = dist(pos, goal);
+      if (dGoal < 30 && dGoal > 8) {
+        const defSide = (1 - side) as Side;
+        const wallers = this.teams[defSide].players
+          .filter((p) => p.role !== 'GK' && !p.sentOff)
+          .map((p) => ({ p, d: dist(p.pos, pos) }))
+          .sort((a, b) => a.d - b.d || a.p.index - b.p.index)
+          .slice(0, dGoal < 19 ? 3 : 2);
+        if (wallers.length > 0) {
+          this.fkWall = { gids: wallers.map((w) => w.p.gid), pos: clone(pos), side: defSide, until: null };
+        }
+      }
+    }
   }
 
   /**
@@ -861,6 +921,29 @@ export class Match {
         if (p.attrs.finishing > taker.attrs.finishing) taker = p;
       }
       return taker.gid;
+    }
+    // A danger-zone free kick belongs to the SPECIALIST (Phase 32): the
+    // best striker of a dead ball steps up — among those who can ARRIVE.
+    // An unbounded pick summoned the far full-back and the 6s failsafe
+    // handed him the ball 6m short of the spot (probed: the strike left
+    // from the wrong geometry entirely).
+    if (kind === 'freeKick') {
+      const goal = v2(this.teams[side].attackDir * HALF_L, 0);
+      if (dist(pos, goal) < 30) {
+        const reachable = eligible.filter((p) => dist(p.pos, pos) < 26);
+        if (reachable.length > 0) {
+          let taker = reachable[0];
+          let bestS = -Infinity;
+          for (const p of reachable) {
+            const s = p.attrs.finishing + p.attrs.technique * 0.5;
+            if (s > bestS) {
+              bestS = s;
+              taker = p;
+            }
+          }
+          return taker.gid;
+        }
+      }
     }
     let best = eligible[0];
     let bestD = Infinity;
@@ -895,11 +978,20 @@ export class Match {
     // applies to BOTH teams — only the taker and the defending keeper (who
     // stands on the line, outside the circle) are near the ball.
     const clearance =
-      r.kind === 'penalty' ? PENALTY_CLEARANCE : r.kind === 'corner' ? CORNER_CLEARANCE : RESTART_CLEARANCE;
+      r.kind === 'penalty' ? PENALTY_CLEARANCE
+      // Corners AND free kicks use the real-law 9.15m (Phase 31.9/32): at
+      // 6m the FK arc had to float so high the deep defenders beat it to
+      // the drop — the flatter flight over a law-distance wall is a shot.
+      : r.kind === 'corner' || r.kind === 'freeKick' ? CORNER_CLEARANCE
+      : RESTART_CLEARANCE;
     for (const o of this.allPlayers) {
       if (o.sentOff || o.gid === r.takerGid) continue;
       if (o.side === r.side && r.kind !== 'penalty') continue; // only penalties hold teammates
       if (o.side !== r.side && r.kind === 'penalty' && o.role === 'GK') continue; // keeper keeps the line
+      // Wall members pass freely (Phase 32): their slot sits on the GOAL
+      // side of the ball, so the walk to the wall crosses the circle — the
+      // radial clamp read as a glass wall and no wall ever formed.
+      if (this.fkWall?.gids.includes(o.gid)) continue;
       const d = dist(o.pos, r.pos);
       if (d < clearance) {
         const dir = d < 1e-6 ? v2(-this.teams[r.side].attackDir, 0) : norm(sub(o.pos, r.pos));
@@ -933,8 +1025,42 @@ export class Match {
     // and both teams get a beat to shape up — instant touchline restarts
     // read as chaos, and the box picture needs time to form for a cross.
     const minSetup =
-      r.kind === 'kickIn' ? 1.8 : r.kind === 'corner' ? 2.0 : RESTART_MIN_SETUP;
+      r.kind === 'kickIn' ? 1.8
+      : r.kind === 'corner' ? 2.0
+      // A danger FK breathes (Phase 32): the wall needs ~2s to form and the
+      // set-piece read as instant chaos without the pause. Quick option below.
+      : r.kind === 'freeKick' && this.fkWall ? 2.2
+      : RESTART_MIN_SETUP;
     let ready = dist(taker.pos, r.pos) < 1.3 && r.timer >= minSetup;
+    // The QUICK free kick (Phase 32): if the taker arrives fast, the wall
+    // has not formed yet, and an open teammate exists, play it NOW — real
+    // football's punishment for a slow defensive reset.
+    if (!ready && r.kind === 'freeKick' && this.fkWall && r.timer < 0.8 && dist(taker.pos, r.pos) < 1.3) {
+      const goal = v2(this.teams[r.side].attackDir * HALF_L, 0);
+      const wallCenter = add(r.pos, scale(norm(sub(goal, r.pos)), CORNER_CLEARANCE));
+      let wallFormed = false;
+      for (const gid of this.fkWall.gids) {
+        if (dist(this.allPlayers[gid].pos, wallCenter) < 4) {
+          wallFormed = true;
+          break;
+        }
+      }
+      if (!wallFormed) {
+        // A CLEARLY open mate AHEAD of the ball only: half the danger FKs
+        // went quick at looser gates and the wall-and-curler spectacle
+        // never happened — a sideways quick kick is worth less than the
+        // placed strike, so only a forward outlet justifies skipping it.
+        const takerTeam = this.teams[r.side];
+        for (const mate of takerTeam.players) {
+          if (mate.gid === taker.gid || mate.sentOff) continue;
+          if (takerTeam.localX(mate.pos.x) <= takerTeam.localX(r.pos.x) + 2) continue;
+          if (opennessOf(mate, this.teams[1 - r.side].players) > 0.85) {
+            ready = true;
+            break;
+          }
+        }
+      }
+    }
     // The keeper WAITS for shape (Phase 30 step 3): a goal kick is not
     // struck until the outfielders settle near their attacking spots — the
     // kick finds SET receivers instead of gifting a midfield scramble.
@@ -947,6 +1073,22 @@ export class Match {
     // delivery into empty zones is a delivery wasted (failure mode 14), so
     // the taker stands over the ball until at least two licensed runners
     // are attacking their crash spots. Timeout-capped like everything else.
+    // The free kick WAITS for its wall (Phase 32, the corner crasher-wait
+    // pattern): a reachable specialist arrives inside 2s while the wall
+    // bodies may need 3 — striking early made the set piece a formality.
+    // ON THEIR SLOTS (<1.5m), not merely nearby: a waller still 2m short
+    // stands exactly where the climb crosses the header band and free-
+    // headed the kick (probed at z 2.3-2.5, six seeds in thirty).
+    // Timeout-capped; the QUICK option above already beat this gate.
+    if (ready && r.kind === 'freeKick' && this.fkWall && r.timer < minSetup + 3) {
+      const goal = v2(this.teams[r.side].attackDir * HALF_L, 0);
+      const slots = fkWallSlots(r.pos, goal, this.fkWall.gids.length);
+      let set = 0;
+      this.fkWall.gids.forEach((gid, i) => {
+        if (dist(this.allPlayers[gid].pos, slots[i]) < 1.5) set++;
+      });
+      if (set < Math.min(2, this.fkWall.gids.length)) ready = false;
+    }
     if (ready && r.kind === 'corner' && r.timer < minSetup + 3.5) {
       const team = this.teams[r.side];
       const spots = cornerCrashSpots(r.routine, team.attackDir, r.pos.y);

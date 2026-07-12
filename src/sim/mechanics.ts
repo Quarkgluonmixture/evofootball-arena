@@ -5,8 +5,8 @@ import {
 import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
-  BOX_DEPTH, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W, HEADER_MAX_HEIGHT,
-  HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
+  BOX_DEPTH, CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
+  HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
 } from './constants';
 import type { Match } from './Match';
 import type { Player } from './Player';
@@ -700,6 +700,85 @@ export function performShot(match: Match, shooter: Player): void {
   match.pushEvent('shot', shooter.side, `${shooter.name} shoots! (xG ${q.toFixed(2)})`);
 }
 
+/**
+ * Direct free kick (Phase 32): the curl over the wall. Closed-form
+ * parabola through TWO constraints — z ≥ 2.6m at the wall line (above the
+ * outfield header band, 2.5m: a wall that can contest the climb eats
+ * every kick, the 31.9 corner-sentry lesson) and a chosen arrival height
+ * under the bar — then the usual shot bookkeeping so saves/goals/xG all
+ * ride the pendingShot machinery.
+ */
+export function performFreeKick(match: Match, taker: Player): void {
+  if (match.ball.owner !== taker || taker.kickCooldown > 0) return;
+  const team = match.teams[taker.side];
+  const opp = match.teams[1 - taker.side];
+  const gk = opp.goalkeeper;
+  const ball = match.ball;
+
+  const goalX = team.attackDir * HALF_L;
+  // Specialists shave the post; timid takers aim well inside it.
+  const aimMargin = 1.05 - taker.attrs.finishing * 0.55;
+  const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
+  const target = v2(goalX, aimY);
+  const d = dist(ball.pos, target);
+
+  // Solve the flight: z(a·T) = 2.6 at the wall (a = wallDist/d) and
+  // z(T) = zg at the goal ⇒ T² = (2.6 − a·zg) / (G/2 · a(1−a)).
+  // The arrival height DRAWS high (up to ~2.75): everything above the bar
+  // is the classic blazed-over-the-wall miss — without it every strike
+  // arrived under the bar by construction and conversion tripled.
+  const zg = 0.85 + match.rng.range(0, 1.9);
+  // The wall's REAL distance from the release point (the taker may stand
+  // up to ~1.3m off the spot and kickBall releases 0.9m ahead — assuming
+  // a spot-kick left the climb at ~2.2m over the heads, inside the header
+  // band, instead of the designed 2.6).
+  let wallD = CORNER_CLEARANCE - 0.9;
+  if (match.fkWall) {
+    const own = v2(team.attackDir * HALF_L, 0);
+    const center = add(match.fkWall.pos, scale(norm(sub(own, match.fkWall.pos)), CORNER_CLEARANCE + 0.15));
+    wallD = dist(ball.pos, center) - 1.4; // release offset + safety margin
+  }
+  const a = clamp(wallD / d, 0.12, 0.6);
+  const T = clamp(Math.sqrt(Math.max(0.4, (2.6 - a * zg) / ((GRAVITY / 2) * a * (1 - a)))), 0.9, 1.9);
+  const vz = (zg + (GRAVITY / 2) * T * T) / T;
+  const speed = d / T;
+
+  // Placed ball, full run-up: no orientation penalties, tight spread that
+  // finishing tames — the free kick is the specialist's shot.
+  const spread = (0.034 + d * 0.001) * (1.35 - taker.attrs.finishing * 0.7);
+  const aim = norm(sub(target, ball.pos));
+  const dir = rotate(aim, match.rng.gaussian() * spread);
+
+  // Direct FKs convert ~4-8% in the real game — the xG entry says so.
+  const q = clamp(0.09 - (d - 17) * 0.003, 0.02, 0.12);
+
+  match.kickBall(taker, dir, speed, vz);
+  team.stats.shots++;
+  team.stats.xg += q;
+  match.playerStats[taker.gid].shots++;
+
+  const path = closestPointOnSegment(ball.pos, add(ball.pos, scale(dir, 40)), gk.pos);
+  const difficulty = clamp(1.15 - dist(path, gk.pos) / keeperReach(opp, gk), 0.25, 1);
+
+  match.markShotOutcome('miss'); // close out any still-pending previous shot
+  match.shotLog.push({
+    t: match.simTime, minute: match.minute(), side: taker.side, xg: q, outcome: 'pending',
+    blockers: 0, // the wall is cleared by construction; blocks don't apply
+  });
+  match.pendingShot = {
+    side: taker.side,
+    shooterGid: taker.gid,
+    xg: q,
+    t: match.simTime,
+    resolved: false,
+    logIndex: match.shotLog.length - 1,
+    difficulty,
+    assistGid: null, // a placed ball has no assist
+    placed: true,
+  };
+  match.pushEvent('shot', taker.side, `${taker.name} bends the free kick! (xG ${q.toFixed(2)})`);
+}
+
 export function performClear(match: Match, p: Player): void {
   if (match.ball.owner !== p || p.kickCooldown > 0) return;
   const team = match.teams[p.side];
@@ -834,6 +913,10 @@ export function tryTacticalFoul(match: Match): void {
   // his hands to himself (the second yellow is the whole deterrent).
   let p = 0.06 + defTeam.genome.markingAggression * 0.1;
   if (grabber.booked) p *= 0.3;
+  // The free kick has TEETH now (Phase 32): hauling a man down inside the
+  // direct-FK band hands the specialist a real strike at goal — the
+  // professional weighs that and lets some breaks run.
+  if (dGoal < 28) p *= 0.6;
   if (!match.rng.chance(p)) return;
   grabber.tackleAnimTimer = 0.4;
   match.awardTacticalFoul(grabber, owner);
@@ -987,8 +1070,15 @@ export function tryKeeperSave(match: Match): void {
   // 29.2's goals ran +36% OVER xG, 30.3's ran dead even. The shots that
   // survive a set defence are earned; they convert better. Same trade as
   // 28.1/29.1, one size bigger.
-  const saveP =
-    clamp(0.48 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+  // A placed ball (Phase 32): the keeper is SET and expecting the strike —
+  // the reaction-time difficulty discount barely applies (floor 0.85) and
+  // the base is a set keeper's, not a scrambling one's. Without this the
+  // far-corner curl carried difficulty ~0.25 and 67% of on-target free
+  // kicks went in (probed) — real keepers save most on-frame FKs.
+  const saveP = shot.placed
+    ? clamp(0.7 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) *
+      Math.max(shot.difficulty, 0.85)
+    : clamp(0.48 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;

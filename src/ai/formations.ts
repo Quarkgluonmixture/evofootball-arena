@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { v2, type V2 } from '../utils/vec';
-import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
+import { CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -129,6 +129,32 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
   x = clamp(x, -HALF_L + 3, HALF_L - 7);
   y = clamp(y, -HALF_W + 2, HALF_W - 2);
   return v2(x * team.attackDir, y);
+}
+
+/**
+ * Free-kick wall slots (Phase 32): shoulder-to-shoulder on the ball–goal
+ * line at the law clearance (9.15m), 0.7m apart, centered. Shared by the
+ * executor (routing), the referee's wall-wait gate and the flight solver —
+ * one geometry, so nothing fights and nobody strikes past a half-built
+ * wall standing in the climb's header band.
+ */
+export function fkWallSlots(from: V2, goal: V2, n: number): V2[] {
+  const dx = goal.x - from.x;
+  const dy = goal.y - from.y;
+  const dl = Math.max(Math.sqrt(dx * dx + dy * dy), 1e-6);
+  const ux = dx / dl;
+  const uy = dy / dl;
+  const cx = from.x + ux * (CORNER_CLEARANCE + 0.15);
+  const cy = from.y + uy * (CORNER_CLEARANCE + 0.15);
+  const out: V2[] = [];
+  for (let i = 0; i < n; i++) {
+    // 1.1m spacing: anything under PLAYER_MIN_DIST (1.05) gets shoved
+    // apart by resolveOverlaps every frame — the wall equilibrated 1.4m
+    // OFF its slots, standing exactly in the climb's header band.
+    const off = (i - (n - 1) / 2) * 1.1;
+    out.push(v2(cx - uy * off, cy + ux * off));
+  }
+  return out;
 }
 
 /**
