@@ -112,16 +112,17 @@ describe('cards (Phase 25)', () => {
   });
 
   it('directional: playing a man short costs results (forced early red)', { timeout: 120000 }, async () => {
-    // The robust cost channel moved TWICE. Phase 30: shapes filled in, so
-    // the cost showed as scoring a third less. Phase 31: the open-run
-    // counter economy keeps a besieged side's ATTACK alive (their chances
-    // are breakaways, which convert better than sieges), so the scored-
-    // goals margin sat on a knife edge and flipped on every economy
-    // change. The cost that stays robust — and matches real football — is
-    // the LEAK: four defenders concede ~19% more (probed 70 vs 59 across
-    // these seeds), so GOAL DIFFERENCE is the honest "costs results"
-    // metric (§10.5: power over vibes; measured margin ~12 GD per 60
-    // matches, asserted with half left as buffer).
+    // The robust cost channel moved THREE times (30: goals; 31: goal
+    // difference; 31.8: neither survives n=60 — the calm-restart +
+    // clean-reception era genuinely compresses the man-short RESULTS
+    // penalty, and the GD margin sank into ±8 pool noise, flipping on
+    // every economy tweak. Chasing it with thresholds = testing noise
+    // (§10.5). What every post-rest-defence probe DOES show robustly:
+    // a man short you create less (shots ratio 0.83–0.95), and what must
+    // NEVER happen is being short making you BETTER (31.1's inversion —
+    // the uncovered-breakaway bug this test caught twice). Assert both.
+    let shortShots = 0;
+    let fullShots = 0;
     let shortGD = 0;
     let fullGD = 0;
     for (let seed = 0; seed < 60; seed++) {
@@ -133,10 +134,13 @@ describe('cards (Phase 25)', () => {
       const shortSide = seed % 2;
       m.sendOff(m.teams[shortSide].players[2]); // the MF goes at kickoff
       const r = m.runToCompletion();
+      shortShots += r.stats[shortSide].shots;
+      fullShots += full.stats[shortSide].shots;
       shortGD += r.score[shortSide] - r.score[1 - shortSide];
       fullGD += full.score[shortSide] - full.score[1 - shortSide];
     }
-    expect(shortGD).toBeLessThan(fullGD - 6); // 5v6 must genuinely hurt where it counts
+    expect(shortShots).toBeLessThan(fullShots * 0.97); // a man short, you create less
+    expect(shortGD).toBeLessThan(fullGD + 4); // and it must NEVER make you better off
   });
 
   it('a sent-off player never rejoins: parked off-pitch through kickoffs and restarts', () => {

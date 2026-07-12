@@ -471,6 +471,14 @@ export class Match {
             o.vel.x *= 0.2; // braced — no treadmill legs (28.3)
             o.vel.y *= 0.2;
           }
+          // A held ball clears the BOX too (Phase 31.8, user call — same
+          // deliberate calm-reset simplification as the offside goal kick;
+          // the real law only forbids challenging). Same x-clamp as the
+          // goal-kick hold: opponents ride the box edge until the release.
+          if (this.inPenaltyBox(o.pos, gk.side)) {
+            const attackDir = this.teams[gk.side].attackDir;
+            o.pos.x = -attackDir * HALF_L + attackDir * (BOX_DEPTH + 0.4);
+          }
         }
         return; // untackleable, unsmotherable — hands beat everything
       }
@@ -942,8 +950,15 @@ export class Match {
         this.pendingPass !== null &&
         this.pendingPass.targetGid === p.gid &&
         this.pendingPass.side === p.side;
+      // 22 → 24 (31.8, user report "门将开长球穿模接不到"): a 40m goal
+      // kick arrives at ~21 m/s horizontal with a steep drop — the ball
+      // sailed THROUGH the target's model and skipped away untouchable.
+      // 24 matches the through-ball pace cap: every delivery the game
+      // DESIGNS is takeable by its intended man, priced by the touch roll
+      // (a dropping ball's vz counts extra there, so long kicks still get
+      // away plenty — and the aerial duel fires first when contested).
       const maxSpeed =
-        p.role === 'GK' ? GK_CONTROL_MAX_SPEED : intended ? 22 : CONTROL_MAX_SPEED;
+        p.role === 'GK' ? GK_CONTROL_MAX_SPEED : intended ? 24 : CONTROL_MAX_SPEED;
       if (speed <= maxSpeed) {
         if (d < bestD) {
           best = p;

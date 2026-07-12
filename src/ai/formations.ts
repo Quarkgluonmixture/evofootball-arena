@@ -24,8 +24,14 @@ import type {
 export const ATTACK_FORMATIONS: Record<AttackFormationId, V2[]> = {
   // Double base, a linking striker, both wingers HIGH and WIDE (两翼齐飞).
   'wide-212': [v2(-41, 0), v2(-16, -6), v2(-12, 7), v2(8, -19), v2(8, 19), v2(4, 0)],
-  // One anchor, the left winger tucks into midfield, an inside-right pair.
-  'narrow-122': [v2(-41, 0), v2(-19, 0), v2(-9, -7), v2(-6, 8), v2(6, 11), v2(7, -3)],
+  // One anchor, the left winger tucks in, an inside-right pair — at the
+  // HALF-SPACES (8/11 → 12/15, Phase 31.8): with both wide slots inside
+  // y≤11, a narrow-vs-narrow derby had no relief valve at all — both
+  // attacks mirrored into one central corridor and the top-5 most chaotic
+  // matches in the league (t+i 85–123, zero goals) were ALL this fixture.
+  // Still clearly narrower than wide-212's ±19: inside-forwards, not
+  // wingers.
+  'narrow-122': [v2(-41, 0), v2(-19, 0), v2(-9, -7), v2(-6, 12), v2(6, 15), v2(7, -3)],
 };
 
 // Defend tables keep the STRIKER HIGH on purpose (30.4). The first cut
