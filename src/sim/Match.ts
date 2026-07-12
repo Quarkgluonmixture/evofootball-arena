@@ -930,7 +930,20 @@ export class Match {
       if (dy >= CONTROL_RADIUS || dy <= -CONTROL_RADIUS) continue;
       const d = Math.sqrt(dx * dx + dy * dy);
       if (d >= CONTROL_RADIUS) continue;
-      const maxSpeed = p.role === 'GK' ? GK_CONTROL_MAX_SPEED : CONTROL_MAX_SPEED;
+      // The cushioned trap (Phase 31.7, user report "长球停不住"): the
+      // pass's INTENDED receiver is set for the ball and may take down a
+      // driven delivery a bystander can't — the 30.5 driven switch lands
+      // at ~19.5 m/s, above CONTROL_MAX_SPEED, so it skipped past every
+      // winger it was aimed at. attemptFirstTouch prices the attempt (the
+      // fail chance grows with speed and caps at 0.4, so hot deliveries
+      // still squirt plenty); interceptors keep the old ceiling, so lane
+      // dynamics don't change.
+      const intended =
+        this.pendingPass !== null &&
+        this.pendingPass.targetGid === p.gid &&
+        this.pendingPass.side === p.side;
+      const maxSpeed =
+        p.role === 'GK' ? GK_CONTROL_MAX_SPEED : intended ? 22 : CONTROL_MAX_SPEED;
       if (speed <= maxSpeed) {
         if (d < bestD) {
           best = p;
