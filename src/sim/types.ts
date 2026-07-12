@@ -285,6 +285,8 @@ export interface TeamMatchStats {
   keyPasses: number;
   interceptions: number;
   tackles: number;
+  /** Shots thrown a body in front of (Phase 31) — the blocked drive becomes a loose ball. */
+  blocks: number;
   clearances: number;
   saves: number;
   dribbles: number;
@@ -320,6 +322,7 @@ export const emptyStats = (): TeamMatchStats => ({
   keyPasses: 0,
   interceptions: 0,
   tackles: 0,
+  blocks: 0,
   clearances: 0,
   saves: 0,
   dribbles: 0,

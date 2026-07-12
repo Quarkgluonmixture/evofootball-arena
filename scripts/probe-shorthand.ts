@@ -32,23 +32,45 @@ const team = (name: string): TeamInfo => ({
   squad: neutralSquad(),
 });
 
-let shorthandedGoals = 0;
-let fullGoals = 0;
+interface Mix {
+  goals: number;
+  shots: number;
+  xg: number;
+  bigChances: number; // xG ≥ 0.25 — the "finished, not contested" channel
+  bigGoals: number;
+}
+const emptyMix = (): Mix => ({ goals: 0, shots: 0, xg: 0, bigChances: 0, bigGoals: 0 });
+const short = emptyMix();
+const fullBase = emptyMix();
 let fullTotal = 0;
-let shortShots = 0;
-let fullShots = 0;
 for (let seed = 0; seed < 60; seed++) {
-  const full = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 }).runToCompletion();
+  const full = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 });
+  const fullR = full.runToCompletion();
   const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 });
   const shortSide = seed % 2;
   m.sendOff(m.teams[shortSide].players[2]);
   const r = m.runToCompletion();
-  shorthandedGoals += r.score[shortSide];
-  fullGoals += full.score[shortSide];
-  fullTotal += full.score[0] + full.score[1];
-  shortShots += r.stats[shortSide].shots;
-  fullShots += full.stats[shortSide].shots;
+  const tally = (mix: Mix, match: Match, side: number, score: number): void => {
+    mix.goals += score;
+    for (const s of match.shotLog) {
+      if (s.side !== side) continue;
+      mix.shots++;
+      mix.xg += s.xg;
+      if (s.xg >= 0.25) {
+        mix.bigChances++;
+        if (s.outcome === 'goal') mix.bigGoals++;
+      }
+    }
+  };
+  tally(short, m, shortSide, r.score[shortSide]);
+  tally(fullBase, full, shortSide, fullR.score[shortSide]);
+  fullTotal += fullR.score[0] + fullR.score[1];
 }
-console.log(`shorthanded goals ${shorthandedGoals} vs full ${fullGoals} (need < ${(fullGoals * 0.9).toFixed(1)})`);
-console.log(`shorthanded shots ${shortShots} vs full ${fullShots}`);
+const show = (label: string, m: Mix): void =>
+  console.log(
+    `${label}: goals ${m.goals}, shots ${m.shots}, xG/shot ${(m.xg / m.shots).toFixed(3)}, big chances ${m.bigChances} (→${m.bigGoals} goals), conv ${((m.goals / m.shots) * 100).toFixed(1)}%`,
+  );
+show('shorthanded', short);
+show('full-base  ', fullBase);
+console.log(`invariant: ${short.goals} must be < ${(fullBase.goals * 0.9).toFixed(1)}`);
 console.log(`neutral-mirror total goals/match: ${(fullTotal / 60).toFixed(2)}`);

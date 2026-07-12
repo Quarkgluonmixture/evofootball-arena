@@ -69,6 +69,19 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
 
   let x = base.x + slide + depth + MODE_SHIFT[team.mode];
 
+  // Rest defence (Phase 31): the DF slot NEVER joins the siege. With the
+  // ball deep in the opponent half, slide (+10) + Attack shift (+10) used
+  // to push even the last outfielder past halfway — the attacking team had
+  // literally nobody covering, so every turnover was an uncontested
+  // breakaway. That hole is what let a 5v6 side out-score its own
+  // full-strength baseline once the open-run economy paid honestly
+  // (counters were ALL open runs). One cover man keeps counters real —
+  // beatable by pace or a dragged block, never free.
+  // −12, not −5: a cover man AT halfway is already beaten by the time a
+  // counter carrier enters the open-run zone (28m out) — he has to start
+  // goal-side of the race, near his base spot, to ever contest it.
+  if (hasBall && p.index === 1) x = Math.min(x, -12);
+
   // Width: stretch when we have the ball, squeeze when we don't. The
   // in-possession floor is 1.0 (Phase 27.1) — an attacking shape should
   // never be narrower than its base lanes.

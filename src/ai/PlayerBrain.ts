@@ -8,8 +8,8 @@ import type { Team } from '../sim/Team';
 import type { UtilityScore } from '../sim/types';
 import { aerialSense, kickMisalignment } from '../sim/mechanics';
 import {
-  airLaneOpenness, canInterceptPass, interceptBall, laneOpenness, opennessOf, pressureAt,
-  spaceAhead, timeToPoint,
+  airLaneOpenness, canInterceptPass, interceptBall, laneBlockers, laneOpenness, opennessOf,
+  pressureAt, spaceAhead, timeToPoint,
 } from './perception';
 
 /**
@@ -138,6 +138,22 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // choice toward the opponent goal — sideways recycling stops being free.
   const stagnation = clamp01((team.staleTime - 3) / 5);
 
+  // An OPEN RUN (Phase 31, user report "单刀回传"): nobody goal-side within
+  // striking territory. Shared state for the whole carrier economy — the
+  // finish boost inside 17m (28.4), the drive boost outside it, and the
+  // back-pass suppression all key off it. Computed once.
+  let openRun = false;
+  if (dGoal < 28) {
+    openRun = true;
+    for (const o of opp.players) {
+      if (o.role === 'GK' || o.sentOff) continue;
+      if (dist(o.pos, goal) < dGoal - 1) {
+        openRun = false;
+        break;
+      }
+    }
+  }
+
   // --- Shoot: worth it when the chance quality (xG) is decent; shootBias
   // scales it from "only tap-ins" (0) to "shoot on sight" (1).
   if (dGoal < 30 && p.kickCooldown <= 0) {
@@ -155,18 +171,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // 1v1 (Phase 28.4): nobody between you and the keeper — FINISH. The
     // old economy kept Dribble marginally ahead, so breakaways were walked
     // all the way onto the keeper's toes instead of being struck from 10m.
-    let breakaway = false;
-    if (dGoal < 17) {
-      let goalside = 0;
-      for (const o of opp.players) {
-        if (o.role === 'GK' || o.sentOff) continue;
-        if (dist(o.pos, goal) < dGoal - 1) goalside++;
-      }
-      if (goalside === 0) {
-        breakaway = true;
-        s *= 1.6;
-      }
-    }
+    const breakaway = openRun && dGoal < 17;
+    if (breakaway) s *= 1.6;
     // Long-range appetite (Phase 28): when the sight is clear, have a dig
     // from 16–30m instead of recycling forever — a stale move digs sooner.
     let dig = 0;
@@ -182,10 +188,21 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         clamp01((30 - dGoal) / 14);
       s += dig;
     }
+    // Lane-aware selection (Phase 31): shotQuality's distance·angle·pressure
+    // cannot see the parked bodies on the path — carriers shot into walls,
+    // and since 30.4 those flew harmlessly (not even a deflection). Each
+    // corridor body discounts the whole appetite (dig included — the 20m
+    // dig into a wall is exactly the doomed shot); the carrier works for an
+    // angle instead, and tryShotBlock makes daring it anyway a real cost.
+    // shootBias loosens the discount — daring traffic IS what the gene
+    // means (a flat 0.62 inverted it: the shoot-happy team lost its whole
+    // expression channel and out-shot NOBODY).
+    const blockers = breakaway ? 0 : laneBlockers(p.pos, goal, opp.players);
+    if (blockers > 0) s *= Math.pow(0.55 + g.shootBias * 0.15, blockers);
     cands.push({
       action: 'Shoot',
       score: s,
-      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${breakaway ? ' · 1v1 — finish it' : ''}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}`,
+      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${breakaway ? ' · 1v1 — finish it' : ''}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}${blockers > 0 ? ` · ${blockers} in the lane` : ''}`,
     });
   }
 
@@ -221,6 +238,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       mul *= 0.7 + g.passBias * 0.75;
       mul *= 0.85 + g.tempo * 0.3;
       if (mate.role === 'GK') mul *= 0.5; // back-passes to keeper are a last resort
+      // Turning back on an OPEN RUN is the last resort (Phase 31 — the
+      // reported "单刀回传"): with nobody goal-side, the chaser at your back
+      // reads as pressure and the outlet multiplier used to make the
+      // trailing back-pass BEAT driving on. Squaring it forward is fine.
+      if (openRun && gain < 0) mul *= 0.35;
       // A mate stood offside is a dead target (Phase 29) — near-suppressed,
       // not zero: the rare desperate ball into them is where flags come from.
       if (!offsideExemptKick && team.localX(mate.pos.x) > offLine + 0.2) mul *= 0.08;
@@ -434,12 +456,20 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     const space = spaceAhead(p, toGoal, opp.players);
     let sD = (W.dribbleBase + space * W.dribbleSpaceW) * (W.dribbleGeneBase + g.dribbleBias * W.dribbleGeneW);
     sD *= 1 - pressure * W.dribblePressurePen;
+    // Drive the OPEN RUN (Phase 31, the reported "大空间不突破就硬要传球"):
+    // big space ahead used to lose to forced passes. The boost is a flat
+    // multiplier ON TOP of the pressure penalty — an earlier cut also
+    // EXEMPTED open-run dribbles from back-pressure, and that possession-
+    // longevity freebie inverted the shootBias gene (patient teams simply
+    // outlasted everyone into MORE shots; genes.test caught it). Inside
+    // 15m the 28.4 breakaway boost takes over: FINISH, don't carry it in.
+    if (openRun && dGoal > 15) sD *= 1.35;
     if (team.mode === 'CounterAttack') sD *= 1.25;
     sD *= 1 + stagnation * 0.28; // carrying it forward relieves stagnation (Phase 27)
     cands.push({
       action: 'Dribble',
       score: sD,
-      why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}${stagnation > 0.01 ? ` · stale ${stagnation.toFixed(2)}` : ''}`,
+      why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}${openRun && dGoal > 15 ? ' · open run — drive' : ''}${stagnation > 0.01 ? ` · stale ${stagnation.toFixed(2)}` : ''}`,
     });
   }
 
@@ -638,7 +668,15 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       receiveFlag = true;
     }
     const carrier = ball.owner;
-    if (carrier && carrier !== p) {
+    // The DF slot is the REST DEFENCE (Phase 31): once the ball crosses
+    // halfway he does not join the siege — formationSpot clamps his spot
+    // deep (≤ −12 local) and he holds it as the +1 cover and the recycling
+    // outlet. Without this the support fan pulled even the last outfielder
+    // to the ball, nobody covered, and every turnover was an uncontested
+    // breakaway — which is how a 5v6 side out-scored its full-strength
+    // self (the besieged team lives on counters).
+    const restDefence = p.index === 1 && team.localX(ball.pos.x) > 0;
+    if (carrier && carrier !== p && !restDefence) {
       const d = dist(p.pos, carrier.pos);
       const roleBonus = p.role === 'ST' ? 0.12 : p.role === 'WG' ? 0.1 : p.role === 'MF' ? 0.06 : 0;
       const modeMul = team.mode === 'Attack' || team.mode === 'CounterAttack' ? 1.2 : team.mode === 'BuildUp' ? 1.0 : 0.6;

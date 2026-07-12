@@ -2,7 +2,7 @@ import { clamp, clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, dot, fromAngle, len, norm, rotate, scale, sub, v2, type V2,
 } from '../utils/vec';
-import { opennessOf, pressureAt } from '../ai/perception';
+import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
   BOX_DEPTH, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W, HEADER_MAX_HEIGHT,
@@ -503,7 +503,10 @@ function performHeaderShot(match: Match, shooter: Player): void {
     lp && lp.receiverGid === shooter.gid && match.simTime - lp.t < 3 ? lp.passerGid : null;
 
   match.markShotOutcome('miss');
-  match.shotLog.push({ t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending' });
+  match.shotLog.push({
+    t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending',
+    blockers: laneBlockers(ball.pos, team.oppGoal(), opp.players),
+  });
   match.pendingShot = {
     side: shooter.side,
     shooterGid: shooter.gid,
@@ -594,7 +597,10 @@ export function performShot(match: Match, shooter: Player): void {
       : null;
 
   match.markShotOutcome('miss'); // close out any still-pending previous shot
-  match.shotLog.push({ t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending' });
+  match.shotLog.push({
+    t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending',
+    blockers: laneBlockers(shooter.pos, goalCenterFor(team), opp.players),
+  });
   match.pendingShot = {
     side: shooter.side,
     shooterGid: shooter.gid,
@@ -816,6 +822,47 @@ export function tryTackles(match: Match): void {
     // in the tackler's own box. Aggressive markers give more away.
     const foulP = 0.06 + oppTeam.genome.markingAggression * 0.1;
     if (match.rng.chance(foulP)) match.awardFoul(tackler, owner);
+  }
+}
+
+/**
+ * Shot blocks (Phase 31): a defender the ball passes within reach of gets a
+ * real chance to throw a body in — the cost of daring a blocked lane that
+ * `laneBlockers` warned the shooter about. Explicitly ON the pendingShot
+ * path: 30.4 removed shots from the leg-deflection window because that
+ * friction accident silently ate the league's goals (failure mode 18c);
+ * this is the honest, tuned replacement. Ground-height drives only — a
+ * rising ball clears the legs. One roll per defender per shot (the lunge
+ * commits their kickCooldown either way); a successful block kills the
+ * shot into a slow ricochet off the blocker — lastTouch transfers, so a
+ * deflection behind the line is a corner, real-law.
+ */
+export function tryShotBlock(match: Match): void {
+  const shot = match.pendingShot;
+  const ball = match.ball;
+  if (!shot || shot.resolved || ball.owner !== null) return;
+  if (ball.z > 1.1) return; // over the legs and bodies
+  const defTeam = match.teams[1 - shot.side];
+  if (dist(ball.pos, defTeam.ownGoal()) < 6) return; // the goalmouth is the keeper's
+  for (const o of defTeam.players) {
+    if (o.role === 'GK' || o.sentOff || o.stunTimer > 0 || o.kickCooldown > 0) continue;
+    const dx = o.pos.x - ball.pos.x;
+    if (dx >= 0.9 || dx <= -0.9) continue;
+    const dy = o.pos.y - ball.pos.y;
+    if (dy >= 0.9 || dy <= -0.9) continue;
+    if (Math.sqrt(dx * dx + dy * dy) >= 0.9) continue;
+    o.kickCooldown = 0.45; // committed to the block, ball met or not
+    o.tackleAnimTimer = 0.4;
+    if (!match.rng.chance(0.32 + o.attrs.defending * 0.25)) continue;
+    defTeam.stats.blocks++;
+    ball.lastTouch = o;
+    const away = match.rng.chance(0.5) ? 1 : -1;
+    ball.vel = scale(rotate(norm(ball.vel), away * match.rng.range(0.7, 2.4)), match.rng.range(4.5, 9));
+    ball.vz = 0;
+    match.pushEvent('info', o.side, `${o.name} throws a body in front of it!`);
+    match.markShotOutcome('miss');
+    match.pendingShot = null;
+    return;
   }
 }
 

@@ -1,6 +1,6 @@
 import { clamp01 } from '../utils/math';
 import {
-  add, closestPointOnSegment, dist, len, norm, scale, type V2,
+  add, closestPointOnSegment, dist, len, norm, scale, sub, type V2,
 } from '../utils/vec';
 import { BALL_FRICTION_K, GRAVITY } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
@@ -51,6 +51,24 @@ export function laneOpenness(from: V2, to: V2, opponents: Player[]): number {
     worst = Math.min(worst, clamp01(d / 4));
   }
   return worst;
+}
+
+/**
+ * Bodies parked on a shot path (Phase 31): outfield opponents within ~1m of
+ * the corridor's FIRST 60% — the final stretch belongs to the keeper (who
+ * has the save path, not the block path). This is what `shotQuality`'s
+ * distance·angle·pressure model cannot see: four set defenders between the
+ * ball and the goal read as "low pressure" while the drive has zero chance.
+ */
+export function laneBlockers(from: V2, goal: V2, opponents: Player[]): number {
+  const end = add(from, scale(sub(goal, from), 0.6));
+  let n = 0;
+  for (const o of opponents) {
+    if (o.sentOff || o.role === 'GK') continue;
+    const cp = closestPointOnSegment(from, end, o.pos);
+    if (dist(cp, o.pos) < 1.0) n++;
+  }
+  return n;
 }
 
 /** How much free space a receiver has (nearest opponent distance / 8m). */

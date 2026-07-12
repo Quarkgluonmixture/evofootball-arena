@@ -66,6 +66,8 @@ export interface ShotLogEntry {
   side: Side;
   xg: number;
   outcome: 'pending' | 'goal' | 'saved' | 'miss';
+  /** Bodies on the shot corridor at the strike (Phase 31, `laneBlockers`). */
+  blockers: number;
 }
 
 export interface MatchConfig {
@@ -493,6 +495,7 @@ export class Match {
     }
     if (this.checkGoal()) return;
     if (this.checkOutOfPlay()) return;
+    mech.tryShotBlock(this);
     mech.tryKeeperSave(this);
     if (ball.z > CONTROL_MAX_HEIGHT) {
       // Too high for feet: only heads (or the keeper's hands) can meet it.

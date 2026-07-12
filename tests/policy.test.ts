@@ -64,33 +64,36 @@ describe('policy parameterization (Phase 18)', () => {
 
   it('a single role vector changes play (others stay default)', () => {
     // Only the striker turns shoot-happy — the team's play must move.
+    // Full-length match (31: at 120s the lane-aware economy left the seed-7
+    // ST without a single decision the skew could flip — plumbing needs
+    // enough decisions to express, not a luckier seed).
     const rolePolicies = ROLES.map((r) =>
       r === 'ST' ? { ...DEFAULT_POLICY, shootBase: 4.0, passBase: 0.05 } : { ...DEFAULT_POLICY },
     );
-    const bare = new Match({ seed: 7, teamA: team('A'), teamB: team('B'), duration: 120 }).runToCompletion();
-    const skewed = new Match({ seed: 7, teamA: team('A', undefined, rolePolicies), teamB: team('B'), duration: 120 }).runToCompletion();
+    const bare = new Match({ seed: 7, teamA: team('A'), teamB: team('B'), duration: 240 }).runToCompletion();
+    const skewed = new Match({ seed: 7, teamA: team('A', undefined, rolePolicies), teamB: team('B'), duration: 240 }).runToCompletion();
     expect(JSON.stringify(skewed.stats)).not.toBe(JSON.stringify(bare.stats));
   });
 
   it('a distinct policy actually changes play', () => {
-    // Pooled over seeds — a single short match's shot count is a small
-    // integer that can coincide across configs by chance (a 3-seed pool
-    // flipped on engine churn in 28.3; 8 carries the large true effect).
-    // Skew strengthened in 30.5 (shootBase 4→6, +longShotW): organized
-    // support fans and looser marking stances cut the scramble possessions
-    // a shoot-on-sight policy fed on, so the old skew's margin sank into
-    // seed noise (+5% over 16 seeds) while a stronger pull still clears it
-    // (+49%) — the lever works; the environment just prices it higher.
-    const shootHappy = { ...DEFAULT_POLICY, shootBase: 6.0, passBase: 0.02, longShotW: 1.4 };
-    let bareShots = 0;
-    let skewedShots = 0;
+    // Pooled over seeds — a single short match's counter is a small integer
+    // that can coincide across configs by chance (a 3-seed pool flipped on
+    // engine churn in 28.3). Channel switched shots → clearances in Phase
+    // 31: shot volume is no longer monotone in shootBase (a shoot-on-sight
+    // policy wastes possessions in the lane-aware economy and can end up
+    // OUT-shot — coherent, but useless as a plumbing probe). Clearances
+    // are a terminal action with no economy feedback: cranking clearBase
+    // moves them 1 → 24 on this pool, a margin engine churn can't erase.
+    const hoofHappy = { ...DEFAULT_POLICY, clearBase: 2.5, clearPressureW: 1.5 };
+    let bareClears = 0;
+    let skewedClears = 0;
     for (const seed of [7, 11, 42, 99, 777, 1234, 5150, 31337]) {
-      bareShots += new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 })
-        .runToCompletion().stats[0].shots;
-      skewedShots += new Match({ seed, teamA: team('A', shootHappy), teamB: team('B'), duration: 120 })
-        .runToCompletion().stats[0].shots;
+      bareClears += new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 })
+        .runToCompletion().stats[0].clearances;
+      skewedClears += new Match({ seed, teamA: team('A', hoofHappy), teamB: team('B'), duration: 120 })
+        .runToCompletion().stats[0].clearances;
     }
-    expect(skewedShots).toBeGreaterThan(bareShots);
+    expect(skewedClears).toBeGreaterThan(bareClears + 8);
   });
 
 });
