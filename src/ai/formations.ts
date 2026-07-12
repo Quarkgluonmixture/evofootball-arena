@@ -200,8 +200,20 @@ export function runBurstPoint(p: Player, team: Team, opponents: Player[], flight
 
 /**
  * Where an off-ball player supports the carrier: ahead of the ball for
- * attacking modes, offset laterally toward the supporter's own formation lane,
- * at a radius set by the supportDistance gene.
+ * attacking modes, pulled laterally TOWARD the supporter's own formation
+ * lane, at a radius set by the supportDistance gene.
+ *
+ * Lane-pulled but radius-bounded (Phase 30.5): the old sign()-based nudge
+ * kept every supporter within ~5m of the ball's y, so all three off-ball
+ * attackers formed one narrow column ahead of the carrier — dragging their
+ * markers into the same corridor, walling off every forward lane
+ * (interceptions ran 33/match) and pulling wingers off the flank. Pulling
+ * y toward the lane spreads support into a fan: near-central options stay
+ * short, the ball-side winger becomes a REAL wide outlet. The lateral pull
+ * is capped at ~0.9× the support radius on purpose — a first cut anchored
+ * y fully to the lane, which parked "support" 30m from the carrier: no
+ * short options left, neutral-genome attacks starved (mirror goals 1.47 →
+ * 0.93), and the 5v6 sanity invariant inverted (probe-shorthand).
  */
 export function supportSpot(p: Player, team: Team, ball: Ball): V2 {
   const g = team.genome;
@@ -212,13 +224,10 @@ export function supportSpot(p: Player, team: Team, ball: Ball): V2 {
   const aheadBias = team.mode === 'CounterAttack' || team.mode === 'Attack' ? 0.75 : 0.35;
 
   const lane = formationSpot(p, team, ball, true);
-  // Direction: mostly forward (attackDir), pulled toward the player's lane y.
-  const dy = Math.sign(lane.y - ball.pos.y) || (p.index % 2 === 0 ? 1 : -1);
-  const dir = v2(team.attackDir * aheadBias, dy * (1 - aheadBias));
-  const l = Math.hypot(dir.x, dir.y) || 1;
-
+  const maxLat = radius * 0.9;
+  const latPull = clamp((lane.y - ball.pos.y) * 0.75, -maxLat, maxLat);
   return v2(
-    clamp(ball.pos.x + (dir.x / l) * radius, -HALF_L + 2, HALF_L - 2),
-    clamp(ball.pos.y + (dir.y / l) * radius, -HALF_W + 2, HALF_W - 2),
+    clamp(ball.pos.x + team.attackDir * radius * aheadBias, -HALF_L + 2, HALF_L - 2),
+    clamp(ball.pos.y + latPull, -HALF_W + 2, HALF_W - 2),
   );
 }

@@ -668,6 +668,37 @@ only caught by eyes on the PNGs.
     conversion had to be re-priced (saveP 0.48, aimMargin 1.2) just to
     hold 1.4. Restoring chance VOLUME against set defences (lane-aware
     shots, cutbacks, overloads, corner routines) is Phase 31 work.
+19. **Support that abandons pass range isn't support.** Phase 30.5's first
+    fan cut anchored every supporter's y fully to their formation lane —
+    conceptually "spread into a fan", actually "the winger parks 30m from
+    the carrier". Short options vanished, neutral-genome attacks starved
+    (mirror goals 1.47 → 0.93) and the 5v6 sanity invariant INVERTED (a
+    man-short side out-scored its full-strength self — probe-shorthand.ts
+    reproduces the cards.test harness for exactly this bisect). The shipped
+    fan pulls y toward the lane but caps the lateral offset at ~0.9× the
+    supportDistance radius: the gradient (mids near, wingers wide-but-
+    reachable) is the whole value. Corollary: judge any off-ball change on
+    the 5v6 probe AND neutral mirrors, not just the evolved-league
+    calibrate — evolved genomes route around damage that flattens neutral
+    ones (that's ALSO why calibrate goals can rise while a test population
+    collapses).
+20. **Pass completion is an evolutionary homeostat (~63%) — selection
+    levers can't move it, and suppressing one risky channel just re-routes
+    the doomed volume to the next.** Measured across six 30.5 configs
+    (lane-decay discounts, blocked-lane gates, loft eligibility 18m):
+    completion pinned at 61–63% every time while the failure mass migrated
+    ground→through→loft→aerial (probe-pass.ts buckets every pass by
+    kind × distance × kick-time lane and is how you see the migration).
+    The league EVOLVES risk appetite until marginal completion balances —
+    fighting the equilibrium wastes levers. What does work: change the
+    GEOMETRY selection sees (bounded support fan opened real lanes; goals
+    1.44 → 1.94 while completion never moved) or fix a channel's execution
+    honesty (driven 1.4–1.6s switches instead of 2.15s floaters a winger —
+    the game's WORST header (AERIAL_ROLE 0.06) — always lost at the drop).
+    A directional test whose lever rides on scramble frequency (the
+    shoot-happy policy test) needs a stronger pull to clear noise in a
+    more organized league — the lever still works, the environment prices
+    it higher.
 
 ## 11. Known tuning levers
 
@@ -683,17 +714,17 @@ only caught by eyes on the PNGs.
 | Tackle economy | tackle base 0.21 in `tryTackles`; victim stun 0.6s / whiff stun 0.35s (stunned players can't capture or tackle) |
 | GK release protection | `GK_HOLD_CLEARANCE` (3 m) bubble in `Match.stepBall`; ZERO chasers on a held ball in `assignChasers` (29.1) |
 | Professional-foul rate (~1/match) | danger band 16–34m + sprint 4.5 + grab reach 1.7m behind-only, no own-box, `chance(0.06 + aggression·0.1)` (booked ×0.3) in `tryTacticalFoul`; card odds (yellow 0.52 / red 0.03) in `awardTacticalFoul`; referee game management: booked men get yellowP ×0.45 on ordinary fouls in `maybeCard` |
-| Defensive shape vs crowding | contain gates in `decideOffBall` (carrier < 14m, < 35m from own goal, unassigned only); `HOLD_DEPTH` role layering in the executor onside clamp; won-tackle squirt 5.5–10 m/s |
+| Defensive shape vs crowding | contain gates in `decideOffBall` (carrier < 14m, < 35m from own goal, unassigned only); `HOLD_DEPTH` role layering in the executor onside clamp; won-tackle squirt 5.5–10 m/s; loose-ball chasers capped at 1/team (30.5, `assignChasers`); support fan pull 0.75 / cap 0.9·radius in `supportSpot` (30.5 — failure mode 19); marking stance `2.6 − aggr·1.4` (floor 1.2m, outside tackle radius — 30.5) |
 | Restart pacing feel | per-kind min setup in `stepRestart` (kick-in 1.8 s, corner 2.0 s, else `RESTART_MIN_SETUP`) |
 | Set-piece frequency | parry deflection angle/damping in `tryKeeperSave` (corners); clear lateral spread in `performClear` (kick-ins) |
 | Corner / cross threat | box-crash count in `assignRunners` (3); cross pull-toward-goal 0.25 in `performCross`; corner cross boost ×2.4 in `decideCarrier`; `HEADER_RADIUS` |
 | Aerial duel character | `AERIAL_ROLE` + attr weights in `aerialSense`; attacker-momentum bonus 0.07 in `tryAerial`; header-shot gate 16.5m + quality `0.5·exp(−d/8.5)` in `performHeaderShot` |
-| Long-ball volume | `loftBase/loftOpenW` + the d>24 gate in the pass loop; flight times in `loftKick` callers (hang time = interceptability) |
+| Long-ball volume | `loftBase/loftOpenW` + the d>24 gate in the pass loop (don't lower it — 18m cannibalized healthy ground passes, 30.5); flight times in `loftKick` callers (hang time = interceptability; the switch is a DRIVEN 0.55+d·0.033 ball since 30.5 — floaters always lost the drop) |
 | Long-shot appetite | `longShotW` (default 0.3) × shootBias × stagnation, 16–30m gate in `decideCarrier` |
 | GK vs dribblers | smother reach 1.3m / pWin base 0.5 / clumsy-foul 0.12 rush · 0.03 standing in `trySmother`; GK overlap anchor in `resolveOverlaps` |
 | Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
 | Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~0.7🟨/0.05🟥 per match since the 27.1 spacing pass cut tackle volume; calibrate prints both) |
-| Direct play (through balls ~16/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
+| Direct play (through balls ~22/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates + the multiplicative openness gate `0.4 + 0.6·(lane/0.45)` and landing-judged chips (30.5) in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
 | Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |
 | Pass-fest vs dribble balance | carrier utility bases in `PlayerBrain.decideCarrier`; post-receive settle (`giveBall` decisionTimer 0.3) |
 | Turnover rate | tackle probability in `mechanics.tryTackles` |

@@ -237,6 +237,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       else s *= 1 + gain * W.passBackPen; // mild penalty for going backward
       // Contested forward balls are gated by riskTolerance — but patience
       // runs out: a stale move plays the risky forward ball anyway.
+      // (30.5 tried gating blocked SIDEWAYS balls too — it starved the
+      // feed out to the held-width winger and neutral-genome populations
+      // stopped scoring; the fan's wide outlet needs that half-blocked ball.)
       if (gain > 0.15 && lane < 0.4) {
         const gate = 0.35 + g.riskTolerance * 0.65;
         s *= gate + (1 - gate) * stagnation * 0.4;
@@ -258,7 +261,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
 
       // Lofted switch: only worth the hang time for genuinely long balls
       // into space; long passing is a skill (technique gates execution AND
-      // selection — poor passers don't trust the diagonal).
+      // selection — poor passers don't trust the diagonal). Keep it 24m+
+      // (30.5 tried 18m: the loft cannibalized healthy ground passes and
+      // through balls in the 18–24m band and goals sank with them).
       if (d > 24 && !layingOff) {
         let sL = (W.loftBase + open * W.loftOpenW) * airLane;
         if (gain > 0) sL *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk) * 0.8;
@@ -320,7 +325,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // ball is struck (Phase 29) — wait for them to check their run instead.
       // The held run (executor clamp) makes the legal version of this ball.
       if (!offsideExemptKick && team.localX(mate.pos.x) > offLine + 0.2) gates *= 0.1;
-      const s = (W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW) * gates;
+      // The behind term alone used to float a fully-walled ball over the
+      // selection bar (Phase 30.5): 82% of through balls went into blocked
+      // lanes at 36% completion (probe-pass). Openness now gates the score
+      // multiplicatively — open balls unchanged, walls discount hard.
+      const s =
+        (W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW) *
+        gates * (0.4 + 0.6 * clamp01(lane / 0.45));
       if (s > bestThrough) {
         bestThrough = s;
         bestRunner = mate;
@@ -331,14 +342,19 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // Chip over the top (Phase 28): when bodies block the ground lane but
       // the runner is going in behind, go over them instead — slower to
       // arrive and harder to bring down (technique gates the trust in it).
+      // Judged at the LANDING (Phase 30.5): airLane only sees the kicker's
+      // surroundings, so packed drop zones looked wide open — the chip's
+      // real risk is who stands where the ball comes down.
       if (lane < 0.45) {
+        const landOpen = 1 - pressureAt(point, opp.players);
         const sC =
-          (W.throughBase + airLane * W.throughOpenW * 0.8 + behind * W.throughBehindW) *
-          gates * 0.9 * (0.55 + p.attrs.technique * 0.7);
+          (W.throughBase + landOpen * W.throughOpenW * 0.8 + behind * W.throughBehindW) *
+          gates * 0.9 * (0.55 + p.attrs.technique * 0.7) *
+          (0.7 + airLane * 0.3) * (0.4 + 0.6 * clamp01(landOpen / 0.45));
         if (sC > bestThrough) {
           bestThrough = sC;
           bestRunner = mate;
-          bestThroughLane = airLane;
+          bestThroughLane = landOpen;
           bestBehind = behind;
           bestThroughChip = true;
         }

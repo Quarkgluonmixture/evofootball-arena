@@ -60,7 +60,14 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
         // Containing the CARRIER (29.1) stands off at 2.6m — jockey and
         // delay; closing to tackle range turned every contain into a bonus
         // tackler and strangled scoring (tackles +3/match).
-        const markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.8;
+        // Stance floor 0.8 → 1.2m (Phase 30.5): the tightest markers parked
+        // INSIDE tackle radius (1.15m), so every marked reception was a
+        // snap dispossession — receivers never survived their settle touch
+        // and possession chains died at the first marked man. Kept at 1.2
+        // (not 1.6): halving the slope entirely inverted the
+        // markingAggression gene's recover-more edge (genes.test) — the
+        // stance IS that gene's main payoff channel (failure mode 3).
+        const markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.4;
         const goal = team.ownGoal();
         const gx = goal.x - mark.pos.x;
         const gy = goal.y - mark.pos.y;

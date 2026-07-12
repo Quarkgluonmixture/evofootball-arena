@@ -135,6 +135,38 @@ The root: 4 outfielders on a 90×58 pitch with NO build-up structure.
 
 ---
 
+## ⭐ Phase 30.5 — the live-play texture pass — **SHIPPED**
+
+**The user's first 6v6 play report** (2026-07-12): starts fine, then
+degrades into a perpetual midfield scramble — constant dispossessions, a
+pile of bodies, no visible formation, wings unused except by a few teams.
+Their hypothesis: organizing attack pays too little, swarming pays too
+much. Diagnosis confirmed in code, but the lever was GEOMETRY, not payoff
+weights: all three off-ball supporters converged into one column ~10–18m
+ahead of the carrier (dragging markers into the same corridor — every
+forward lane walled), the tightest marking stance stood INSIDE tackle
+radius (a marked reception = snap dispossession), loose balls pulled 2
+chasers per team plus the crowd, 82% of through balls flew into blocked
+lanes (the chip was judged by the kicker's surroundings, not the landing),
+and the 2.15s floated switch always lost its aerial duel at the winger.
+
+**Shipped fixes** (each measured at n=568): radius-bounded support fan
+(failure mode 19 — the unbounded first cut inverted the 5v6 invariant),
+marking stance floor 1.2m (slope 1.8 → 1.4; genes.test guards the
+aggression payoff), loose ball = 1 chaser per team, landing-judged chips +
+multiplicative openness gate on through balls, driven 1.4–1.6s switches.
+**Result: goals 1.44 → 1.94, on-target 3.45 → 4.21 — the set-defence
+era's first volume recovery — t+i ≈58 flat, completion pinned at ~61–63%
+(failure mode 20: it's an evolutionary homeostat; don't chase it).**
+New probes: `probe-pass.ts` (pass-failure buckets), `probe-shorthand.ts`
+(5v6 sanity). Policy shot-skew test strengthened (shootBase 6) — the
+lever works, the organized league prices it higher. Fingerprint
+re-baselined `64039883…`. What only the user can judge: whether the
+fan/wings/duels read as ORGANIZED on the pitch — the next play report
+decides whether 30.5 iterates or Phase 31 starts.
+
+---
+
 ## ⭐ Phase 31 — beating SET defences (chance volume), set-piece routines, formation evolution
 
 **Goal:** Phase 30 built the structure and honestly under-delivered on
@@ -147,11 +179,12 @@ real again, and lets formations evolve. **Read ARCHITECTURE failure modes
 
 ### Implementation order (the handover steps)
 
-0. **Play-feel gate.** The user has NOT yet reported on 6v6. Their report
-   decides the emphasis: if "还是进不了球/太干" → steps 1–2 are the phase;
-   if texture complaints (crowding, wing play, keeper waits feel slow) →
-   fix those FIRST as a 30.5 live-play pass, exactly like 29.1. Do not
-   skip this gate.
+0. **Play-feel gate.** The first report came in texture-shaped and Phase
+   30.5 (above) answered it. The gate now re-arms on the user's NEXT
+   report: if the scramble/shape/wings complaints persist → iterate 30.5
+   (the fan pull 0.75 / cap 0.9·radius, stance floor, duel cap are the
+   dials); if it shifts to "还是进不了球/太干" → steps 1–2 are the phase.
+   Do not skip this gate.
 1. **Lane-aware shot selection + blocks.** Today `shotQuality`
    (mechanics.ts) is distance·angle·pressure — it cannot see the four
    parked bodies on the shot path, so carriers shoot into walls (and since

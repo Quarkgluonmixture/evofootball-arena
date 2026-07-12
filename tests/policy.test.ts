@@ -76,7 +76,12 @@ describe('policy parameterization (Phase 18)', () => {
     // Pooled over seeds — a single short match's shot count is a small
     // integer that can coincide across configs by chance (a 3-seed pool
     // flipped on engine churn in 28.3; 8 carries the large true effect).
-    const shootHappy = { ...DEFAULT_POLICY, shootBase: 4.0, passBase: 0.05 };
+    // Skew strengthened in 30.5 (shootBase 4→6, +longShotW): organized
+    // support fans and looser marking stances cut the scramble possessions
+    // a shoot-on-sight policy fed on, so the old skew's margin sank into
+    // seed noise (+5% over 16 seeds) while a stronger pull still clears it
+    // (+49%) — the lever works; the environment just prices it higher.
+    const shootHappy = { ...DEFAULT_POLICY, shootBase: 6.0, passBase: 0.02, longShotW: 1.4 };
     let bareShots = 0;
     let skewedShots = 0;
     for (const seed of [7, 11, 42, 99, 777, 1234, 5150, 31337]) {

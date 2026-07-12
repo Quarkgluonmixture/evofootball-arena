@@ -125,7 +125,11 @@ function assignChasers(team: Team, match: Match): void {
   } else {
     if (team.mode === 'Press') count += 1;
     if (team.genome.pressIntensity > 0.78) count += 1;
-    if (possession === -1) count = Math.min(count, 2);
+    // Loose ball = a DUEL, not a scrum (Phase 30.5): one contester per team.
+    // At 2 per team every midfield 50/50 pulled four sprinters plus the
+    // support/marking crowd already there, and the won-tackle squirt re-fed
+    // the same pile — the reported "乱成一锅粥" loop.
+    if (possession === -1) count = Math.min(count, 1);
   }
   // Dead ball (Phase 28.3): you can't win a ball nobody may touch — ONE
   // player closes the taker down (blocking the short option, real-football

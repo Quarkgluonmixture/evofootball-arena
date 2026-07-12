@@ -505,18 +505,19 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate -- 8`, 240 s matches, n=568)
 
-~1.4 goals from ~9.8 shots (≈3.5 on target; keepers make **≈2.1
+~1.9 goals from ~10.7 shots (≈4.2 on target; keepers make **≈2.4
 saves/match** plus smothers at a dribbler's feet and high-ball claims),
-~63% pass completion — direct football: **~21 through balls per match**
-with deliveries led deep into the run, **~59% of passes played forward**,
-**≈1.5 crosses, ≈3 aerial duels won and ≈4.5 lofted long balls per match**
-(Phase 28), **≈2.2 offsides/match** (Phase 29 — tight calls on marginal
+~61% pass completion — direct football: **~22 through balls per match**
+with deliveries led deep into the run, **~60% of passes played forward**,
+**≈1.3 crosses, ≈8 aerial duels won and ≈9.6 lofted long balls per match**
+(Phase 28; the driven 30.5 switch made the diagonal a real weapon),
+**≈1.9 offsides/match** (Phase 29 — tight calls on marginal
 runs; the stats panel counts them), **≈11 first-touch miscontrols/match**
-(forced errors — pressing pays), balanced possession, ~92% ball-in-play
+(forced errors — pressing pays), balanced possession, ~91% ball-in-play
 (the rest is live dead-ball time: goal kicks — which now WAIT for the
 team's shape — corners, kick-ins, free kicks, penalties; **≈6
 fouls/match — most play advantage (27.2), with the professional foul that
-stops the break (29.1) — drawing **≈1.4 yellows and ≈0.11 reds** per
+stops the break (29.1) — drawing **≈1.3 yellows and ≈0.10 reds** per
 match; referees manage the game, so a booked man gets benefit of the
 doubt on ordinary fouls while the cynical one stays near-automatic),
 ~36 ms per headless match (allocation-free hot paths + a precomputed
@@ -560,6 +561,20 @@ spread, braver aim, deeper through-ball leads) to hold 1.4; restoring
 chance volume against set defences — lane-aware shot selection, cutback
 crosses, overloads, real corner routines — is Phase 31's build, and the
 next rebalance takes play-feel, not the calibrate table, as its input.
+**Phase 30.5 (the live-play texture pass) answered the first 6v6 play
+report** ("perpetual midfield scramble, no visible shape, no wing play"):
+off-ball support now fans across formation lanes instead of forming one
+column ahead of the carrier (radius-bounded — ARCHITECTURE failure mode
+19), the tightest marking stance moved outside tackle radius so a marked
+reception isn't an automatic dispossession, loose balls are contested by
+ONE player per team instead of a four-body scrum, through balls price the
+wall of bodies honestly (chips are judged at the LANDING zone, not the
+kicker's feet), and the lofted switch is a driven 1.4–1.6s ball a winger
+can actually receive instead of a 2.15s floater the fullback always
+headed away. Net: goals 1.4 → ~1.9 with on-target 3.5 → 4.2 — the first
+volume recovery of the set-defence era — while completion held its ~63%
+evolutionary equilibrium (failure mode 20: selection levers can't move
+it; geometry can).
 The
 pyramid produces real football stories: never-relegated aristocrats, yo-yo
 clubs with 5+ division moves, cup giant-killers, and a visible D1/D2 Elo
@@ -593,6 +608,13 @@ gap (see `npm run evolve-check`).
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
 - `npx tsx scripts/probe-aerial.ts` — per-mechanism aerial tallies (corner
   threat %, header outcomes, keeper claims, delivery volume) for tuning.
+- `npx tsx scripts/probe-pass.ts` — buckets every pass by delivery kind ×
+  distance × kick-time lane openness and prints completion per bucket:
+  where the ~37 failed passes/match actually die (Phase 30.5's detective
+  tool — see ARCHITECTURE failure mode 20 before "fixing" completion).
+- `npx tsx scripts/probe-shorthand.ts` — the 5v6 sanity harness (mirrors
+  cards.test.ts): playing a man short must genuinely hurt; run it on any
+  off-ball behavior change (failure mode 19).
 - `npm run debug:visual` — Playwright drives the *real* game in headless
   Chromium: renders, fast-forwards, toggles overlays, selects a player via the
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates

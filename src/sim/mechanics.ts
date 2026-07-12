@@ -306,9 +306,14 @@ export function performKeeperThrow(match: Match, gk: Player, mate: Player): void
 export function performLoftedPass(match: Match, passer: Player, mate: Player, offsideExempt = false): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
-  const flight0 = clamp(0.8 + dist(passer.pos, mate.pos) * 0.045, 1.3, 2.7);
+  // Driven, not floated (Phase 30.5): at the old 0.8+d·0.045 a 30m switch
+  // hung 2.15s — any defender within ~12m of the drop reached it, and the
+  // receiving WINGER is the worst header in the game (AERIAL_ROLE 0.06 vs
+  // DF 0.3), so the diagonal completed ~20% and wing play starved. A flat
+  // 1.4–1.6s ball reaches the flank before the fullback does.
+  const flight0 = clamp(0.55 + dist(passer.pos, mate.pos) * 0.033, 1.1, 2.1);
   const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));
-  loftKick(match, passer, lead, 0.8, 0.045, 1.3, 2.7, 1.0);
+  loftKick(match, passer, lead, 0.55, 0.033, 1.1, 2.1, 0.9);
   team.stats.passes++;
   team.stats.longBalls++;
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
