@@ -246,6 +246,9 @@ describe('the keeper waits for shape (Phase 30.3)', () => {
       p.vel = { x: 0, y: 0 };
       p.decisionTimer = 999; // frozen: shape can NEVER form — the budget must release
     }
+    // The scenario is a CLAIM into the hands — a live same-side pass would
+    // now trip the 32.2 back-pass law and put it at his feet instead.
+    m.pendingPass = null;
     m.giveBall(gk);
     expect(gk.gkHoldTimer).toBeGreaterThan(0);
 

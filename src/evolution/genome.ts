@@ -109,6 +109,9 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if (g.counterAttackBias > 0.65) tags.push('Counter-attack');
   if (g.defensiveCompactness > 0.68 && g.riskTolerance < 0.4) tags.push('Low block');
   if (g.riskTolerance > 0.72) tags.push('High risk / chaos');
+  // 32.2: the genes that price the back-pass outlet and the keeper's feet
+  // — an identity that is VISIBLE in play (the press-escape through him).
+  if ((g.passBias + g.riskTolerance) / 2 > 0.62) tags.push('Ball-playing keeper');
   if (g.shootBias > 0.7) tags.push('Shoot on sight');
   if (g.dribbleBias > 0.7) tags.push('Street dribblers');
   if (g.attackingWidth > 0.7) tags.push('Wide play');

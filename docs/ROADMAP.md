@@ -499,6 +499,64 @@ them teeth so the danger-band pro foul has real cost.
 
 </details>
 
+## ⭐ Phase 32.1 — attack the drop — **SHIPPED**
+
+"大脚高球也应该能被解围": nobody on the defending side ever attacked a
+long ball's landing (nearest defender averaged 7.6m off the descent, 5%
+aerial contests) — `interceptBall` has projected the parabola since
+Phase 28, but chasers were picked by distance-to-BALL. The defending
+chaser is now whoever reaches the LANDING fastest, scoped to long
+(>12m) deliveries landing OUTSIDE our box — the unscoped first cut
+attacked every cross/corner/chip too and cost 0.77 goals/match. A/B at
+the 3-6m reachability band: defender clearances 21% → 29-44%; balls into
+genuine space stay winnable (that's what the long ball is FOR).
+
+## ⭐ Phase 32.2 — the ball-playing keeper — **SHIPPED**
+
+User-approved design ("进球组织也可以门将一起参与…值得吗 → 开始"). The
+BACK-PASS LAW: a deliberate teammate ball may not be picked up — the
+keeper plays it at his FEET (pressable, no hold, no box clearance, no
+calm reset; saves/claims/loose pickups keep the hands). Teammates price
+him as a build-up OUTLET by `(passBias + riskTolerance)/2` × pressure —
+the press-escape valve; the keeper's own feet-vs-hoof choice runs on the
+same genes (clear ×(1.9 − (passBias+riskTolerance)·0.55)); keepers can
+never Dribble (the 门将带球跑出禁区 class of nonsense is fenced for
+good) and move a feet ball inside ~1.5s. `describeIdentity` gained the
+**Ball-playing keeper** tag (>0.62) — an evolution identity you can SEE
+in play. Probed: feet receptions 3.2/match (ball-play genome) vs
+2.2 (hoofer); calibrate steady (goals ~2.5, t+i ~45). 241 tests
+(gkBuildup.test.ts +3); fingerprint `c37f5020…`.
+
+## Phase 32.5 — evolution made VISIBLE (NEXT — user-approved 2026-07-12)
+
+The user's design question: "Evo 究竟指的是什么,是什么在进化?这个根本
+不可视化". What evolves: the 16-gene tactical genome, the formation/
+scheme identity (31.4), and player generations — but it all happens in
+one invisible instant (`finishSeason`) and 16-dim gene drift is
+unreadable. Build the two approved pieces:
+
+1. **The REBIRTH CEREMONY**: season end gets a proper screen/sequence —
+   which clubs died, who each new franchise inherited from (dominant
+   parent), a parent-vs-child gene RADAR with the mutated genes
+   highlighted, the inherited formation/scheme identity, and the lineage
+   note that already exists (`🔧 switched to low-32`). The moment of
+   evolution becomes an EVENT you watch instead of a ledger entry.
+   Everything needed is already recorded (evolve.ts lineage events,
+   parent gids, style inheritance) — this is presentation, sim untouched.
+2. **TACTICAL DNA CARDS**: every team gets a card — gene radar,
+   `describeIdentity` tags (incl. the new Ball-playing keeper), formation
+   pair + scheme, and its family tree (parent chain). Pre-match, show
+   BOTH cards side by side so every fixture reads as a clash of
+   identities ("Gegenpress vs Low block") before kickoff.
+
+Implementation notes for the next session: UI-only (renderers/LeagueScreen
+/i18n — zh default, phone ≤390-640px FIRST); radar = small canvas or SVG,
+reuse chart conventions in `src/ui/charts.ts`; the rebirth data flows from
+`League.finishSeason`'s records; check `feedback-dashboard-style` does NOT
+apply (that's for leader reports, not the game UI — the game keeps its
+dark theme). Gate: typecheck + vitest + BOTH Playwright suites + phone
+widths; no sim changes → no fingerprint move expected.
+
 ## Phase 33 — the watching experience
 
 **Goal:** cash the tactics in visually — the user watches on a phone.

@@ -445,9 +445,20 @@ export class Match {
 
     // Settle on the ball: carry it briefly before the next decision instead of
     // one-touch ping-pong. Outfielders start driving forward immediately.
+    // Back-pass law (Phase 32.2, 出球门将): a DELIBERATE teammate ball may
+    // not be picked up — the keeper plays it with his FEET: pressable, no
+    // hold, no box clearance, no calm reset. Saves, claims and loose
+    // pickups keep the hands. This is what makes the ball-playing keeper
+    // (and pressing him) possible at all.
+    const backPass =
+      this.pendingPass !== null &&
+      this.pendingPass.side === p.side &&
+      this.pendingPass.passerGid !== p.gid;
     if (p.role !== 'GK') {
       p.action = { type: 'Dribble', scores: p.action.scores };
       team.stats.dribbles++;
+    } else if (backPass) {
+      p.action = { type: 'Dribble', scores: p.action.scores }; // at his feet, on the clock
     } else if (this.restartKickGid !== p.gid) {
       // Keeper hold (Phase 27.2): scoop it up and hold before distributing —
       // hands, not feet. Restart first touches (goal kicks) stay quick.
@@ -463,6 +474,9 @@ export class Match {
       team.localX(p.pos.x) > HALF_L - 24 &&
       dist(p.pos, team.oppGoal()) < 20;
     p.decisionTimer = Math.max(p.decisionTimer, inShootingRange ? 0.08 : 0.3);
+    // A keeper with the ball at his FEET is on the press's clock (32.2):
+    // he moves it in a beat, he doesn't stroll on it like an outfielder.
+    if (p.role === 'GK' && backPass) p.decisionTimer = Math.min(p.decisionTimer, 0.18);
 
     const pass = this.pendingPass;
     if (pass) {

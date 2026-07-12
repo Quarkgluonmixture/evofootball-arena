@@ -505,18 +505,23 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate -- 8`, 240 s matches, n=568)
 
-~2.8 goals from ~10 shots (≈5.3 on target, ≈0.1 blocked by a thrown-in
-body — Phase 31; keepers make **≈2.6 saves/match** plus smothers at a
-dribbler's feet and high-ball claims),
-~69% pass completion on CRISP passes (31.6 zip + the 31.7 cushioned
-trap: tackles+interceptions ~43/match — the
-ping-pong era is over; long deliveries complete ~71% to their intended
-man instead of skipping through him), **≈12 one-touch passes/match**
+~2.5 goals from ~10 shots (≈4.8 on target — Phase 31/32; keepers make
+**≈2.4 saves/match** plus smothers at a dribbler's feet and high-ball
+claims), plus the set-piece game: **~0.45 direct free kicks/match**
+curled over a real 9.15m WALL (Phase 32 — the specialist steps up, the
+wall holds its line through the strike, ~0.05 FK goals/match like the
+real game),
+~67% pass completion on CRISP passes (31.6 zip + the 31.7 cushioned
+trap: tackles+interceptions ~45/match — the ping-pong era is over; long
+deliveries complete to their intended man unless a defender genuinely
+beats them to the drop, 32.1), **≈11 one-touch passes/match**
 (31.9, 一脚出球 — pressured receivers play it as it comes, accuracy
-priced by technique) —
+priced by technique), and the BALL-PLAYING KEEPER (32.2 — the back-pass
+law puts a teammate's ball at his FEET; high passBias+riskTolerance
+sides escape the press through him, hoofers boot it) —
 direct football: **~14 through balls per match**
 with deliveries led deep into the run, **~64% of passes played forward**,
-**≈2.1 crosses, ≈0.8 byline cutbacks, ≈4.8 aerial duels won and ≈4.7
+**≈1.6 crosses, ≈0.8 byline cutbacks, ≈5.5 aerial duels won and ≈5.4
 lofted long balls per match**
 (Phase 28; the driven 30.5 switch made the diagonal a real weapon;
 31.9 rebuilt the corner delivery chain — the 9.15m law clearance, the

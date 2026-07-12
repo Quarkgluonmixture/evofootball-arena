@@ -256,7 +256,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (team.mode === 'BuildUp' && gain < 0) mul *= 1.1; // patient recycling is fine
       mul *= 0.7 + g.passBias * 0.75;
       mul *= 0.85 + g.tempo * 0.3;
-      if (mate.role === 'GK') mul *= 0.5; // back-passes to keeper are a last resort
+      if (mate.role === 'GK') {
+        // The keeper as a build-up OUTLET (Phase 32.2, 出球门将): a
+        // traditional side treats the back-pass as a last resort; a
+        // ball-playing side (passBias + riskTolerance) uses him to escape
+        // the press — the modern relief valve, priced by the same genes
+        // that make the keeper himself play instead of hoof.
+        const ballPlay = (g.passBias + g.riskTolerance) / 2;
+        mul *= (0.25 + ballPlay * 0.55) * (0.7 + pressure * 1.1);
+      }
       // Turning back on an OPEN RUN is the last resort (Phase 31 — the
       // reported "单刀回传"): with nobody goal-side, the chaser at your back
       // reads as pressure and the outlet multiplier used to make the
@@ -515,7 +523,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   }
 
   // --- Dribble: needs space ahead; dribbleBias makes it a first choice.
-  if (!mustKick) {
+  // Never for a keeper (32.2): a back-pass puts the ball at his FEET and
+  // his job is to move it, not to carry it out of the box (the reported
+  // 门将带球跑出禁区 class of nonsense is fenced here for good).
+  if (!mustKick && p.role !== 'GK') {
     // Wide and advanced (Phase 31): the drive goes DOWN THE LINE toward the
     // byline, not diagonally into the packed box — 下底. Space is measured
     // along the actual path (the touchline channel is usually open when the
@@ -579,7 +590,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // they had a full second to pick a target.
   if (localX < -18 && p.kickCooldown <= 0 && !(p.role === 'GK' && p.gkDistributing)) {
     let sC = (W.clearBase + pressure * W.clearPressureW) * (1.25 - g.riskTolerance * 0.8);
-    if (p.role === 'GK') sC *= 1.35;
+    // A keeper with the ball at his feet (32.2): the TRADITIONAL keeper
+    // hoofs it; the ball-playing one (passBias + riskTolerance) trusts his
+    // feet and plays through the press — the same genes that make his
+    // teammates use him as the outlet.
+    if (p.role === 'GK') sC *= 1.9 - (g.passBias + g.riskTolerance) * 0.55;
     cands.push({ action: 'ClearBall', score: sC, why: `pressure ${pressure.toFixed(2)} · risk-averse ${(1 - g.riskTolerance).toFixed(2)}` });
   }
 
