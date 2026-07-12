@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
-import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Role } from '../sim/types';
@@ -15,7 +15,7 @@ import { arrive, avoidOpponents, separation } from './steering';
  * frame. Dynamic targets — moving balls, moving opponents, sliding formation
  * spots — are recomputed here each frame so actions never chase stale data.
  */
-export function executeAction(p: Player, match: Match, _dt: number): void {
+export function executeAction(p: Player, match: Match, dt: number): void {
   const team = match.teams[p.side];
   const opp = match.teams[1 - p.side];
   const g = team.genome;
@@ -30,6 +30,10 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
   let target: V2 | null = null;
   let speedF = jog;
   p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
+  if (p.action.type !== 'MarkOpponent' && p.markAnchor) {
+    p.markAnchor = null; // a stale anchor must not survive an action change
+    p.markAnchorAge = 0;
+  }
 
   switch (p.action.type) {
     case 'MoveToFormationSpot':
@@ -105,6 +109,28 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
         const dx = ml < 1e-8 ? nx : mx / ml;
         const dy = ml < 1e-8 ? ny : my / ml;
         target = { x: mark.pos.x + dx * markDist, y: mark.pos.y + dy * markDist };
+        // Marker REACTION LAG (Phase 31.9, the headed-game pass): a marker
+        // tracking a SPRINTING mark near our goal re-reads the stance
+        // target on his reaction cadence (0.2–0.45s by defending), not
+        // per-frame. Frame-perfect shadowing meant the goal-side man met
+        // every delivery first (HEADER_RADIUS is 1.35m — a crash that
+        // earns more separation than that heads UNCONTESTED) and the
+        // attacking header had gone extinct at ~0.33 shots/match. A
+        // standing striker stays tight: he barely moves between refreshes.
+        const markSpeed = Math.hypot(mark.vel.x, mark.vel.y);
+        if (ball.owner !== mark && markSpeed > 4.5 && dist(mark.pos, team.ownGoal()) < 26) {
+          p.markAnchorAge += dt;
+          const lag = 0.45 - p.attrs.defending * 0.25;
+          if (!p.markAnchor || p.markAnchorIdx !== markIdx || p.markAnchorAge >= lag) {
+            p.markAnchor = { x: target.x, y: target.y };
+            p.markAnchorIdx = markIdx ?? null;
+            p.markAnchorAge = 0;
+          }
+          target = p.markAnchor;
+        } else {
+          p.markAnchor = null;
+          p.markAnchorAge = 0;
+        }
         speedF = 0.85 + g.markingAggression * 0.15;
       } else {
         target = formationSpot(p, team, ball, hasBall);
@@ -125,15 +151,67 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
       // play the arriver attacks the edge-of-box arc — the late body a
       // byline cutback finds.
       const r = match.restart;
-      const cornerSetup = r?.kind === 'corner' && r.side === p.side;
-      if (cornerSetup && team.runners.has(p.index)) {
+      const cc = team.cornerCrash;
+      const liveCorner = r?.kind === 'corner' && r.side === p.side;
+      // The crash keeps running through the hand-off + flight (31.9).
+      const crash = liveCorner
+        ? { routine: r!.routine, y: r!.pos.y, burst: r!.timer >= 1.7 }
+        : cc !== null && match.simTime < cc.until
+          ? { routine: cc.routine as typeof cc.routine | undefined, y: cc.y, burst: true }
+          : null;
+      if (crash && team.runners.has(p.index)) {
         const ranked = [...team.runners].sort((a, b) => a - b);
-        const spots = cornerCrashSpots(r!.routine, team.attackDir, r!.pos.y);
-        target = spots[ranked.indexOf(p.index) % 3];
+        const spots = cornerCrashSpots(crash.routine, team.attackDir, crash.y);
+        const spot = spots[ranked.indexOf(p.index) % 3];
+        // Attack the MEET point, not the landing (31.9): the delivery
+        // crosses the header band (z 2.5→1.35) in its last ~2.6m of flight,
+        // so a crasher standing ON the landing watches the ball sail past
+        // his face 3m short — shift the attack 2.5m flag-side along the
+        // flight line and the run meets the descent in the band.
+        let fx = spot.x - team.attackDir * HALF_L;
+        let fy = spot.y - crash.y;
+        let fl = Math.hypot(fx, fy) || 1;
+        let meet = v2(spot.x - (fx / fl) * 2.5, spot.y - (fy / fl) * 2.5);
+        // The delivery is UP: real crashers adjust to the actual flight.
+        // Corner noise scatters the landing ~2.6m σ laterally — a crasher
+        // pinned to the table spot watches half the deliveries drop out of
+        // HEADER_RADIUS (1.35m). The closest licensed crasher re-routes to
+        // the true descent (friction-free parabola, exact); the others keep
+        // their structure spots for the knockdown and the rebound.
+        if (!r && ball.owner === null && (ball.z > 0 || ball.vz !== 0)) {
+          const tLand = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
+          const landX = ball.pos.x + ball.vel.x * tLand;
+          const landY = ball.pos.y + ball.vel.y * tLand;
+          let closest = -1;
+          let bd = Infinity;
+          for (const idx of ranked) {
+            const q = team.players[idx];
+            if (q.sentOff) continue;
+            const d = Math.hypot(q.pos.x - landX, q.pos.y - landY);
+            if (d < bd) {
+              bd = d;
+              closest = idx;
+            }
+          }
+          if (closest === p.index) {
+            fx = ball.vel.x;
+            fy = ball.vel.y;
+            fl = Math.hypot(fx, fy) || 1;
+            meet = v2(landX - (fx / fl) * 2.5, landY - (fy / fl) * 2.5);
+          }
+        }
+        // The TIMED crash (Phase 31.9, the headed-game pass): during setup a
+        // crasher HOLDS 4.5m off his spot (still inside the taker's 7m wait
+        // gate) and only bursts through it as the taker steps up (corner
+        // minSetup is 2.0s). Pre-positioned crashers stood ON the landing
+        // waiting — a static box the set marker always won; the delivery
+        // aims at the routine's key zone, and the marker reaction lag above
+        // needs an actual sprint to fall behind. Separation is born here.
+        target = crash.burst ? meet : v2(meet.x - team.attackDir * 4.5, meet.y);
       } else if (team.arriver === p.index) {
         target =
-          cornerSetup && (r!.routine === 'short' || r!.routine === 'arcCutback')
-            ? cornerKeyZone(r!.routine!, team.attackDir, r!.pos.y)
+          crash && (crash.routine === 'short' || crash.routine === 'arcCutback')
+            ? cornerKeyZone(crash.routine, team.attackDir, crash.y)
             : v2((HALF_L - 16) * team.attackDir, clamp(p.pos.y * 0.3, -7, 7));
       } else {
         target = runTarget(p, team, opp.players);
@@ -233,6 +311,24 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
     if (team.localX(target.x) > holdX) target = { x: holdX * team.attackDir, y: target.y };
   }
 
+  // Barred-box discipline (Phase 31.9, user report "门球时盯人球员往禁区里
+  // 挤,抽搐"): while a goal kick or a keeper hold bars this player from the
+  // opposing box, STEER to the box edge instead of into it. Match's hard
+  // clamp (the rule) still exists, but a target inside the box made steering
+  // fight it — drive in, get teleported out, every frame: the twitch. The
+  // steering target rides 0.4m outside the clamp line so it never triggers.
+  const restart = match.restart;
+  const barred =
+    (restart?.kind === 'goalKick' && restart.side !== p.side) ||
+    (opp.goalkeeper.gkHoldTimer > 0 && ball.owner === opp.goalkeeper);
+  const oppGoalX = opp.attackDir < 0 ? HALF_L : -HALF_L; // opp defends this line
+  const edgeX = oppGoalX - Math.sign(oppGoalX) * (BOX_DEPTH + 0.8);
+  if (target && barred && p.role !== 'GK' && Math.abs(target.y) < BOX_WIDTH / 2 + 0.5) {
+    if (oppGoalX > 0 ? target.x > edgeX : target.x < edgeX) {
+      target = { x: edgeX, y: target.y };
+    }
+  }
+
   // arrive/scale return fresh vectors, so accumulating into `desired` in place
   // is alias-free — same additions in the same order, two fewer allocations
   // per player per frame.
@@ -246,6 +342,15 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
     const av = avoidOpponents(p, desired, opp.players);
     desired.x += av.x;
     desired.y += av.y;
+  }
+
+  // Barred-box backstop, velocity level: separation between two markers
+  // standing shoulder-to-shoulder ON the edge line can still shove one of
+  // them inward past the target clamp above — kill the into-box component
+  // for anyone already at the line, whatever pushed them.
+  if (barred && p.role !== 'GK' && Math.abs(p.pos.y) < BOX_WIDTH / 2 + 0.5) {
+    const inward = Math.sign(oppGoalX - edgeX);
+    if ((p.pos.x - edgeX) * inward > -0.3 && desired.x * inward > 0) desired.x = 0;
   }
 
   p.desiredVel = desired;

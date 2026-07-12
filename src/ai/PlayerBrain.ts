@@ -616,9 +616,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       break;
     case 'Cross':
       p.action = { type: 'Cross', targetIdx: bestCrossMate!.gid, scores };
-      // A routine corner delivers to the RUN, not toward the goal-side
-      // marker (Phase 31) — the small pull keeps the drop on the crasher.
-      match.performCross(p, bestCrossMate!, offsideExemptKick, kickKind === 'corner' ? 0.06 : 0.18);
+      // A routine corner delivers to the KEY ZONE, not to a led body
+      // (Phase 31.9): the crasher's burst is timed onto the zone, and a
+      // velocity lead on a sprinting man overshot the whole picture by
+      // ~9m. The small pull keeps the drop off the keeper's claim radius.
+      match.performCross(
+        p, bestCrossMate!, offsideExemptKick,
+        kickKind === 'corner' ? 0.06 : 0.18,
+        kickKind === 'corner' && (kickRoutine === 'nearPost' || kickRoutine === 'farPost')
+          ? cornerKeyZone(kickRoutine, team.attackDir, p.pos.y)
+          : undefined,
+      );
       break;
     case 'ThrowOut':
       p.action = { type: 'ThrowOut', targetIdx: bestThrowMate!.gid, scores };
@@ -758,7 +766,12 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // The ARRIVER (Phase 31) runs on the same license — executor routes
     // their run to the edge-of-box arc instead of in behind.
     const arriving = team.arriver === p.index;
-    if ((team.runners.has(p.index) || arriving) && (carrier ? carrier !== p : match.phase === 'restart')) {
+    // A corner delivery in FLIGHT has no carrier and phase is 'playing' —
+    // without the cornerCrash clause the licensed crashers lost their run
+    // the instant the ball left the taker's boot and walked back to their
+    // formation spots while it was still in the air (Phase 31.9).
+    const crashLive = team.cornerCrash !== null && match.simTime < team.cornerCrash.until;
+    if ((team.runners.has(p.index) || arriving) && (carrier ? carrier !== p : match.phase === 'restart' || crashLive)) {
       let s = W.runScore;
       if (tired) s *= 0.6;
       cands.push({
@@ -766,7 +779,7 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
         score: s,
         why: arriving
           ? 'arriving late at the cutback arc'
-          : match.phase === 'restart' ? 'attacking the box for the delivery' : 'licensed run in behind',
+          : match.phase === 'restart' || crashLive ? 'attacking the box for the delivery' : 'licensed run in behind',
       });
     }
     cands.push({

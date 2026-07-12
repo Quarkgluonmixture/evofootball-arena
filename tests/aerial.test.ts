@@ -299,13 +299,14 @@ describe('aerial duels and deliveries', () => {
     }
     expect(corners).toBeGreaterThan(120);
     // Measured ≈13% at Phase 28 tuning; Phase 30's SET defensive shapes
-    // defused the one hardcoded cross to ~2-4%. Phase 31's routines took
-    // it back to ~6-8% pooled (routine-chosen deliveries, the crasher-wait
-    // gate, run-targeted drops) and the floor rises with it. The ROADMAP's
-    // full ≥8% needs marker-tracking separation (defenders shadow crashers
-    // frame-perfectly, so the goal-side marker still wins most post duels)
-    // — logged there for a future pass.
-    expect(cornerShots / corners).toBeGreaterThan(0.04);
+    // defused the one hardcoded cross to ~2-4%; Phase 31's routines took
+    // it back to ~6-8% pooled. Phase 31.9 finally found the silent killers
+    // (the 6m sentry heading every climbing corner at the flag, the
+    // hand-off gap unlicensing the crashers mid-flight, the vel-lead
+    // overshooting the picture) — measured ~24-35% pooled after the 9.15m
+    // law clearance + persisted crash state + zone-aimed deliveries, so
+    // the ROADMAP's ≥8% floor is finally honest.
+    expect(cornerShots / corners).toBeGreaterThan(0.08);
   });
 
   it('headed goals credit the crosser with the assist', { timeout: 30000 }, () => {

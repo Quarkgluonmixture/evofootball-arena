@@ -83,11 +83,12 @@ describe('tactical genes influence behavior', () => {
     shooter.shootBias = 0.95;
     const shy = neutral();
     shy.shootBias = 0.05;
-    // Wider pool than the file default (Phase 29): headers, breakaway
-    // finishes and the long-shot dig all produce shots outside the
-    // shootBias gate now, so the gene's margin needs more matches to clear
-    // the seed noise (§10.5 — the effect is real, the 6-seed pool wasn't).
-    const [a, b] = totals(shooter, shy, [...SEEDS, 5150, 2718, 4242, 9001, 123, 456]);
+    // Wide pool (§10.5, re-widened Phase 31.9): the organized league prices
+    // shootBias at a ~9% shot margin — at the old 12-seed pool (24 matches)
+    // that's diff≈21 vs σ≈22, a literal coin flip that re-rolled on every
+    // mechanics change. 48 seeds ⇒ four disjoint pools probed +64/+40/+56/
+    // +47 — the sign is stable at this size and only at this size.
+    const [a, b] = totals(shooter, shy, Array.from({ length: 48 }, (_, i) => 10000 + i));
     expect(a.shots).toBeGreaterThan(b.shots);
   });
 

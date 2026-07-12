@@ -7,7 +7,7 @@ import { cornerCrashSpots, formationSpot, shapeReady } from '../ai/formations';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
-  CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS,
+  CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS, CORNER_CLEARANCE,
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
   KICK_COOLDOWN, MATCH_DURATION,
@@ -235,6 +235,29 @@ export class Match {
     }
     this.resolveOverlaps();
     this.clampPlayersToPitch();
+    // Kick protection (Phase 31.9): the clearance circle must survive the
+    // hand-off — the restart clears ~0.2–0.5s before the taker's kick, and
+    // in that gap defenders rushed the taker, so the launch (its first
+    // ~2-3m fly at leg height, inside the deflect window) got blocked at
+    // the boot. Corners were the loudest victim: probed deliveries left at
+    // 19 m/s and were crawling at 8 m/s within metres of the flag. Real
+    // law: opponents keep their distance until the ball is IN PLAY.
+    if (this.restartKickGid !== null && this.restartKickKind !== null && this.restartKickKind !== 'penalty') {
+      const taker = this.allPlayers[this.restartKickGid];
+      const kickClear = this.restartKickKind === 'corner' ? CORNER_CLEARANCE : RESTART_CLEARANCE;
+      for (const o of this.teams[1 - taker.side].players) {
+        if (o.sentOff) continue;
+        const d = dist(o.pos, this.ball.pos);
+        if (d < kickClear) {
+          const dir = d < 1e-6 ? v2(-this.teams[taker.side].attackDir, 0) : norm(sub(o.pos, this.ball.pos));
+          o.pos = add(this.ball.pos, scale(dir, kickClear));
+          o.pos.x = Math.max(-HALF_L + 0.3, Math.min(HALF_L - 0.3, o.pos.x));
+          o.pos.y = Math.max(-HALF_W + 0.3, Math.min(HALF_W - 0.3, o.pos.y));
+          o.vel.x *= 0.2;
+          o.vel.y *= 0.2;
+        }
+      }
+    }
     if (this.phase === 'restart') this.stepRestart(dt);
     else this.stepBall(dt);
 
@@ -326,8 +349,8 @@ export class Match {
   performThroughBall(p: Player, runner: Player, lofted = false, offsideExempt = false): void {
     mech.performThroughBall(this, p, runner, lofted, offsideExempt);
   }
-  performCross(p: Player, target: Player, offsideExempt = false, pull = 0.18): void {
-    mech.performCross(this, p, target, offsideExempt, pull);
+  performCross(p: Player, target: Player, offsideExempt = false, pull = 0.18, at?: V2): void {
+    mech.performCross(this, p, target, offsideExempt, pull, at);
   }
   performKeeperThrow(p: Player, mate: Player): void {
     mech.performKeeperThrow(this, p, mate);
@@ -368,6 +391,7 @@ export class Match {
     ball.vz = loft;
     p.gkDistributing = false;
     p.kickCooldown = KICK_COOLDOWN;
+    p.firstTouchWindow = 0; // any kick consumes the one-touch window
   }
 
   /** Give a player clean control of the ball, resolving pass bookkeeping. */
@@ -416,6 +440,26 @@ export class Match {
       if (p.side === pass.side && p.gid !== pass.passerGid) {
         team.stats.passesCompleted++;
         this.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: this.simTime };
+        // 一脚出球 (Phase 31.9, user request): a PRESSURED intended receiver
+        // plays the ball as it comes — decide now, and a pass kicked inside
+        // the window carries a first-time noise penalty priced by technique
+        // (mechanics). Pressure-triggered only: the 0.3s settle above stays
+        // the default, or one-touch ping-pong (the original disease) is
+        // back. High-tempo sides live closer to the edge and release under
+        // looser pressure.
+        if (!inShootingRange && p.role !== 'GK' && p.gid === pass.targetGid) {
+          const trigger = 3.0 + team.genome.tempo * 1.5;
+          let nearOpp = Infinity;
+          for (const o of this.teams[1 - p.side].players) {
+            if (o.sentOff) continue;
+            const d = dist(o.pos, p.pos);
+            if (d < nearOpp) nearOpp = d;
+          }
+          if (nearOpp < trigger) {
+            p.decisionTimer = 0.07;
+            p.firstTouchWindow = 0.28;
+          }
+        }
       } else if (p.side !== pass.side) {
         // No feed line (Phase 28.2): at ~25 per match, "X intercepts" drowned
         // the feed in noise (failure mode 7) — the stats panel carries the
@@ -478,6 +522,8 @@ export class Match {
           if (this.inPenaltyBox(o.pos, gk.side)) {
             const attackDir = this.teams[gk.side].attackDir;
             o.pos.x = -attackDir * HALF_L + attackDir * (BOX_DEPTH + 0.4);
+            o.vel.x *= 0.2; // braced, like the circle clamp — no treadmill
+            o.vel.y *= 0.2;
           }
         }
         return; // untackleable, unsmotherable — hands beat everything
@@ -766,6 +812,9 @@ export class Match {
     this.markShotOutcome('miss');
     this.pendingShot = null;
     this.pendingPass = null;
+    // A dead ball ends any corner crash still running (Phase 31.9).
+    this.teams[0].cornerCrash = null;
+    this.teams[1].cornerCrash = null;
 
     this.ball.owner = null;
     this.ball.pos = clone(pos);
@@ -839,7 +888,8 @@ export class Match {
     // circle (slide along its edge). Penalties clear a wider circle and it
     // applies to BOTH teams — only the taker and the defending keeper (who
     // stands on the line, outside the circle) are near the ball.
-    const clearance = r.kind === 'penalty' ? PENALTY_CLEARANCE : RESTART_CLEARANCE;
+    const clearance =
+      r.kind === 'penalty' ? PENALTY_CLEARANCE : r.kind === 'corner' ? CORNER_CLEARANCE : RESTART_CLEARANCE;
     for (const o of this.allPlayers) {
       if (o.sentOff || o.gid === r.takerGid) continue;
       if (o.side === r.side && r.kind !== 'penalty') continue; // only penalties hold teammates
@@ -861,6 +911,8 @@ export class Match {
       if (r.kind === 'goalKick' && o.side !== r.side && this.inPenaltyBox(o.pos, r.side)) {
         const attackDir = this.teams[r.side].attackDir;
         o.pos.x = -attackDir * HALF_L + attackDir * (BOX_DEPTH + 0.4);
+        o.vel.x *= 0.2; // braced, like the circle clamp — no treadmill
+        o.vel.y *= 0.2;
       }
     }
 
@@ -906,6 +958,17 @@ export class Match {
       this.restartKickGid = taker.gid;
       this.restartKickKind = r.kind;
       this.restartKickRoutine = r.kind === 'corner' ? r.routine ?? null : null;
+      // Corner crash state survives the hand-off (Phase 31.9): the taker's
+      // kick is still ~0.2–0.5s away and the delivery flies ~1.6s more —
+      // without this, the licenses died HERE and the crashers turned back
+      // toward their formation spots before the ball was struck.
+      if (r.kind === 'corner') {
+        const team = this.teams[r.side];
+        team.cornerCrash = {
+          routine: r.routine ?? 'farPost', y: r.pos.y, until: this.simTime + 2.8,
+          runners: [...team.runners], arriver: team.arriver,
+        };
+      }
       this.giveBall(taker);
       taker.decisionTimer = 0.12; // kick promptly (giveBall's settle is for open play)
     }

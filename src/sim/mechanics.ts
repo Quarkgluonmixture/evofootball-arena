@@ -118,6 +118,16 @@ function registerPass(match: Match, passer: Player, target: Player, exempt: bool
   };
 }
 
+/**
+ * One-touch penalty (Phase 31.9, 一脚出球): a pass struck inside the
+ * receiver's first-touch window (set at a pressured reception, consumed by
+ * any kick) sprays more — technique discounts it: tech 0.95 ≈ ×1.2, tech
+ * 0.5 ≈ ×1.6, tech 0.1 ≈ ×2.0. Multiplies aim noise (and loft range error).
+ */
+function oneTouchMul(p: Player): number {
+  return p.firstTouchWindow > 0 ? 1.15 + (1 - p.attrs.technique) * 0.9 : 1;
+}
+
 /** xG-like chance quality: distance falloff · central angle · pressure. */
 export function shotQuality(match: Match, p: Player): number {
   const team = match.teams[p.side];
@@ -156,11 +166,14 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
     (0.02 + pressure * 0.07 + d * 0.0015) *
     (1.15 - team.genome.passBias * 0.3) *
     (1.25 - passer.attrs.technique * 0.5) *
+    oneTouchMul(passer) *
     orientationNoiseMul(misalign, passer.attrs.technique);
   const dir = rotate(aim, noise);
 
+  const oneTouch = passer.firstTouchWindow > 0;
   match.kickBall(passer, dir, speed);
   team.stats.passes++;
+  if (oneTouch) team.stats.oneTouch++;
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, passer, mate, offsideExempt);
 }
@@ -179,6 +192,7 @@ export function performThroughBall(
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
+  const oneTouch = passer.firstTouchWindow > 0; // read before any kick consumes it
 
   // Same body-orientation contract as performPass: effective speed known
   // up front so the projected meeting point stays honest.
@@ -215,6 +229,7 @@ export function performThroughBall(
       (0.025 + pressure * 0.07 + d * 0.0017) *
       (1.15 - team.genome.passBias * 0.3) *
       (1.25 - passer.attrs.technique * 0.5) *
+      oneTouchMul(passer) *
       orientationNoiseMul(misalign, passer.attrs.technique);
     const dir = rotate(aim, noise);
 
@@ -222,6 +237,7 @@ export function performThroughBall(
   }
   team.stats.passes++;
   team.stats.throughBalls++;
+  if (oneTouch) team.stats.oneTouch++;
   if (team.localX(runner.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, passer, runner, offsideExempt);
 }
@@ -253,11 +269,12 @@ function loftKick(
     (0.03 + pressure * 0.05 + d * 0.0011) * noiseMul *
     (1.15 - team.genome.passBias * 0.3) *
     (1.3 - p.attrs.technique * 0.55) *
+    oneTouchMul(p) *
     orientationNoiseMul(misalign, p.attrs.technique);
   const dir = rotate(aimDir, noise);
   // Range error + orientation power loss both shorten/stretch the delivery.
   let dEff = d * orientationPowerMul(misalign, p.attrs.technique);
-  dEff *= 1 + match.rng.gaussian() * (0.02 + d * 0.0008) * (1.25 - p.attrs.technique * 0.5);
+  dEff *= 1 + match.rng.gaussian() * (0.02 + d * 0.0008) * (1.25 - p.attrs.technique * 0.5) * oneTouchMul(p);
   dEff = Math.max(dEff, 3);
   const T = clamp(tBase + dEff * tPerM, tMin, tMax);
   match.kickBall(p, dir, dEff / T, (GRAVITY * T) / 2);
@@ -269,11 +286,19 @@ function loftKick(
  * the danger area rather than at a standing man's feet. Resolved in the air:
  * keeper claim or header contest (tryAerial), not a ground reception.
  */
-export function performCross(match: Match, crosser: Player, target: Player, offsideExempt = false, pull = 0.18): void {
+export function performCross(
+  match: Match, crosser: Player, target: Player, offsideExempt = false, pull = 0.18, at?: V2,
+): void {
   if (match.ball.owner !== crosser || crosser.kickCooldown > 0) return;
   const team = match.teams[crosser.side];
-  const flight0 = clamp(0.5 + dist(crosser.pos, target.pos) * 0.038, 0.7, 1.7);
-  const arrive = add(target.pos, scale(target.vel, flight0 * 0.9));
+  const flight0 = clamp(0.5 + dist(crosser.pos, at ?? target.pos) * 0.038, 0.7, 1.7);
+  // Corner routines pass `at` (Phase 31.9): the delivery attacks the
+  // routine's KEY ZONE and the crasher times his burst onto it. The
+  // velocity lead is for open play — leading a crasher mid-burst by
+  // vel·flight (~9m at a 1.45s corner flight) dropped the ball far past
+  // the spot everyone was licensed to attack (probed: 0/30 corners met
+  // their man in the header band).
+  const arrive = at ?? add(target.pos, scale(target.vel, flight0 * 0.9));
   const goal = team.oppGoal();
   // Pulled toward goal, but NOT into the six-yard area — a delivery that
   // drops on the keeper's claim radius is a delivery wasted (28.1: this
@@ -283,9 +308,11 @@ export function performCross(match: Match, crosser: Player, target: Player, offs
   // goal handed every corner duel to the defence (probed: attackers won
   // 0.00 duels/corner) — the routine delivery meets the RUN instead.
   const spot = v2(arrive.x + (goal.x - arrive.x) * pull, arrive.y + (goal.y - arrive.y) * pull);
+  const oneTouch = crosser.firstTouchWindow > 0;
   loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1);
   team.stats.passes++;
   team.stats.crosses++;
+  if (oneTouch) team.stats.oneTouch++;
   if (team.localX(target.pos.x) - team.localX(crosser.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, crosser, target, offsideExempt);
 }
@@ -331,10 +358,13 @@ export function performCutback(match: Match, passer: Player, mate: Player): void
     (0.02 + pressure * 0.06 + d * 0.0012) *
     (1.15 - team.genome.passBias * 0.3) *
     (1.25 - passer.attrs.technique * 0.5) *
+    oneTouchMul(passer) *
     orientationNoiseMul(misalign, passer.attrs.technique);
+  const oneTouch = passer.firstTouchWindow > 0;
   match.kickBall(passer, rotate(aim, noise), speed);
   team.stats.passes++;
   team.stats.cutbacks++;
+  if (oneTouch) team.stats.oneTouch++;
   match.lastCutback = { side: passer.side, t: match.simTime };
   registerPass(match, passer, mate, false);
 }
@@ -353,9 +383,11 @@ export function performLoftedPass(match: Match, passer: Player, mate: Player, of
   // 1.4–1.6s ball reaches the flank before the fullback does.
   const flight0 = clamp(0.55 + dist(passer.pos, mate.pos) * 0.033, 1.1, 2.1);
   const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));
+  const oneTouch = passer.firstTouchWindow > 0;
   loftKick(match, passer, lead, 0.55, 0.033, 1.1, 2.1, 0.9);
   team.stats.passes++;
   team.stats.longBalls++;
+  if (oneTouch) team.stats.oneTouch++;
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, passer, mate, offsideExempt);
 }

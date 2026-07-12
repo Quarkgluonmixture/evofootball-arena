@@ -239,17 +239,76 @@ Final state: goals ~2.5, on-target 4.8, completion 69%, t+i 45 (the
 ping-pong era is over: 57.5 at 30.5 → 45), tags `phase-31.6/7/8`, all
 deployed, fingerprint `c5771aca…`.
 
-**Play-feel queue (user reports, post-31):** "现在是不是没有头球?" —
-correct as a viewing experience: aerial DUELS exist (~3.6-5.4 headers
-won/match, mostly midfield knockdowns and defensive clears) but ATTACKING
-headers are ~0.33 shots/match and headed goals rarer still. Root causes,
-in order: (1) few feeds — crosses ~1.4-2 and corners ~0.7/match; (2) the
-goal-side marker wins most box duels (the marker-tracking separation gap
-above — markers shadow crashers frame-perfectly, so the running jump
-rarely gets a clean meet). Any headed-game pass should fix (2) first —
-a marker REACTION LAG on box crashes (defenders re-target on their
-decision tick, not per-frame) is the honest mechanic, and it lifts
-corner→shot past the 8% line at the same time.
+**Phase 31.9 — four live reports + the headed-game pass (SHIPPED):**
+
+(1) "门球时 mark 的球员往禁区里挤,抽搐" — steering fought Match's hard
+box clamp every frame (drive in → teleport out). Fixed at the steering
+layer: while a goal kick or keeper hold bars a player from the opposing
+box, their target rides 0.4m OUTSIDE the clamp line, plus a velocity-level
+backstop (separation between two markers on the edge shoved one inward)
+and vel-braking on the hard clamps. Probed: pinned-on-clamp frames 4003 →
+876 across 12 matches, longest streak 16 frames (was 79), zero above 0.5s.
+
+(2) "门将扑救鬼畜,只有上半身动" — the dive pose tilted only the `lean`
+group while the legs stood planted. PlayerModel grew a `body` group
+(lean + legs, pivot at the feet); the dive is now a one-shot arc: whole
+body tilts 1.2 rad with a launch hop, scissor legs, both arms to the ball
+side, and a half-rate approach() recovery that reads as getting back up.
+Render-only.
+
+(3) "有没有一脚出球?" (user request) — a PRESSURED intended receiver
+(opponent within 3.0+tempo·1.5m) now plays first-time: the reception opens
+a 0.28s window + an immediate decision; any pass struck inside it carries
+×(1.15 + (1−technique)·0.9) aim noise (loft range error too). Unpressured
+receptions keep the 0.3s settle — the window must never be free or
+one-touch ping-pong (the original disease) returns. ~12-16 one-touch
+passes/match; completion 68→69%, tackles −1.3 (the pressured layoff
+escapes the snap dispossession), t+i 49→43. tests/oneTouch.test.ts pins
+the trigger, the consumption, and the technique-priced spray (measured
+via release-angle std — completion in open scenes doesn't discriminate).
+
+(4) **The headed-game pass** ("做头球那些") — the queue's marker REACTION
+LAG shipped (markers tracking a >4.5 m/s mark within 26m of their own
+goal re-read the stance target every 0.2–0.45s by `defending`, not
+per-frame), but the probes showed it changed NOTHING — the corner was
+being killed upstream by a chain of silent bugs the outcome metrics never
+separated: (a) crashers pre-positioned ON the landing (a static box the
+set marker always won) → the timed crash: hold 4.5m off the spot, burst
+through it as the taker steps up; (b) the HAND-OFF GAP — the restart
+clears ~0.2-0.5s before the kick, and licenses/routing/clearance all died
+with it: crashers turned back toward formation spots mid-flight (fixed:
+`team.cornerCrash` persists routine+personnel through the flight, brain
+keeps MakeRun alive on it) and defenders rushed the taker so the launch
+(first ~3m at leg height, inside the deflect window) was blocked at the
+boot (fixed: the clearance circle now holds until the ball is actually
+kicked, all restart kinds); (c) the corner cross led the target by
+vel·flight ≈ 9m — a burst-timed crasher got the ball dropped far past
+everyone (fixed: routine corners aim at the KEY ZONE, `performCross(at)`);
+(d) **the 6m sentry** — our corner's apex is ~3.5m, so its ascent sits in
+the header band until ~7.8m from the flag, and a defender camped on the
+generic 6m clearance edge got a free header at every climbing corner
+(fixed: `CORNER_CLEARANCE = 9.15`, the real law); (e) corner noise
+scatters the landing ~2.6m σ — a crasher pinned to the table spot missed
+half the drops (fixed: the closest licensed crasher re-routes to the true
+descent, exact parabola, meeting 2.5m upstream where the ball crosses the
+band). **Corner→shot 7.6% → ~24-35% pooled (aerial.test floor 0.04 →
+0.08), headed goals ×3 (0.021 → 0.069/match), header shots 0.31 → 0.39.**
+
+**31.9 finals (`calibrate -- 8`): goals 2.79, on-target 5.26, completion
+69%, one-touch 11.7, crosses 2.08, t+i 43.2 (new low), offsides 1.68,
+ball-in-play 91%. Fingerprint re-baselined `8a3a6534…`. 231 tests** (the
+shootBias pool re-widened to 48 seeds and the finishing pool to 270 —
+both were coin flips vs their real margins at the old sizes, §10.5).
+
+**Play-feel queue (post-31.9):** the box duel itself is now the header
+bottleneck — defenders still win the first corner duel ~7:1 (the box
+outnumbers the crash 4-5v3 and DF aerial sense 0.3 tops every crasher
+role except ST 0.26). Next dials if the user still wants more headed
+goals: rank crash-spot assignment by aerialSense (today it's player-index
+order), a crasher momentum bonus in the duel score, or a longer reaction
+lag. Also watch: kick protection changed restart dynamics for kick-ins
+and goal kicks too (takers are no longer rushable in the hand-off gap) —
+if restarts now feel too safe, the protection window is the dial.
 
 <details><summary>Original handover plan (done — kept for reference)</summary>
 

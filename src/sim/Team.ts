@@ -4,8 +4,8 @@ import { HALF_L } from './constants';
 import { Player } from './Player';
 import {
   DEFAULT_POLICY, ROLES, deriveTeamStyle, emptyStats,
-  type PolicyParams, type Side, type TeamInfo, type TeamMatchStats, type TeamMode,
-  type TeamStyle,
+  type CornerRoutine, type PolicyParams, type Side, type TeamInfo, type TeamMatchStats,
+  type TeamMode, type TeamStyle,
 } from './types';
 
 export class Team {
@@ -37,6 +37,24 @@ export class Team {
    * byline cutback is pulled back for. null = no cutback situation.
    */
   arriver: number | null = null;
+  /**
+   * Corner crash state persisted THROUGH the hand-off and the flight
+   * (Phase 31.9): the restart clears ~0.2–0.5s before the taker's kick,
+   * and losing the crash routing at that instant sent every crasher back
+   * toward his formation spot before the ball was even struck — the
+   * delivery aimed at retreating men and 0/30 corners met their target in
+   * the header band. Set at hand-off, honored by TeamBrain licensing and
+   * the executor's crash routing until `until` (or an opponent touch).
+   */
+  cornerCrash: {
+    routine: CornerRoutine;
+    y: number;
+    until: number;
+    /** Personnel locked at hand-off: re-scoring licenses mid-flight swapped
+     * a crasher for the weak-side winger 27m away and unmapped every spot. */
+    runners: number[];
+    arriver: number | null;
+  } | null = null;
 
   /** Sim time when we last gained possession (for counter-attack windows). */
   possessionGainedAt = -999;

@@ -10,8 +10,9 @@ import type { AnimName } from './AnimationSystem';
  *
  * Joint hierarchy (all pivots chosen so AnimationSystem can pose it):
  *   root (pitch position, yaw, hop)
- *     lean (hip pivot, forward/side lean)  -> torso, head, armL, armR
- *     legL, legR (hip pivots)              -> thigh+sock+foot
+ *     body (whole-body pivot at the feet — dives tilt EVERYTHING)
+ *       lean (hip pivot, forward/side lean)  -> torso, head, armL, armR
+ *       legL, legR (hip pivots)              -> thigh+sock+foot
  *     selectRing (flat ring on the grass)
  *     label (sprite billboard)
  */
@@ -124,6 +125,11 @@ const HIP_Y = 1.06;
 
 export class PlayerModel {
   readonly root = new THREE.Group();
+  /** Whole-body group (lean + legs), pivot at the feet: the keeper dive
+   * tilts THIS, so the legs leave the ground with the torso — tilting only
+   * `lean` folded the keeper at the hips while his legs stood planted (the
+   * "只有上半身动" report). Label/ring/blob stay outside it, upright. */
+  readonly body = new THREE.Group();
   readonly lean = new THREE.Group();
   readonly legL: THREE.Group;
   readonly legR: THREE.Group;
@@ -148,6 +154,8 @@ export class PlayerModel {
   /** Dive side frozen at dive start (29.1) — recomputing it per frame made
    * the pose mirror-flip as the ball crossed the keeper (the "twitch"). */
   diveSide = 1;
+  /** One-shot dive clock: drives the launch → full-stretch → landed arc. */
+  diveT = -1;
   prevAnim: AnimName = 'idle';
 
   readonly gid: number;
@@ -237,7 +245,8 @@ export class PlayerModel {
     this.label.scale.set(3.4, 1.28, 1);
     this.drawLabel('');
 
-    this.root.add(this.lean, this.legL, this.legR, this.blob, this.selectRing, this.selectHalo, this.label);
+    this.body.add(this.lean, this.legL, this.legR);
+    this.root.add(this.body, this.blob, this.selectRing, this.selectHalo, this.label);
     // Raycast target for click-to-select.
     this.root.traverse((o) => (o.userData.gid = gid));
   }

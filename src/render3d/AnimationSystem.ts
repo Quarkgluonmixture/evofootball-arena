@@ -124,6 +124,7 @@ export class AnimationSystem {
     if (anim === 'gkDive' && model.prevAnim !== 'gkDive') {
       const toBall = Math.atan2(state.ball.x - p.x, state.ball.z - p.z);
       model.diveSide = Math.sign(Math.sin(toBall - p.yaw)) || 1;
+      model.diveT = 0;
     }
     model.prevAnim = anim;
 
@@ -146,6 +147,9 @@ export class AnimationSystem {
     let hop = (BOB[anim] ?? 0) * Math.abs(Math.sin(model.phase));
     let legLz = 0;
     let legRz = 0;
+    // Whole-body dive pose (pivot at the feet) — 0 for everything but gkDive.
+    let bodyTilt = 0;
+    let bodyY = 0;
 
     if (model.kickT >= 0) {
       // Kick: windup (lean back, leg cocked) then snap-through with a forward
@@ -206,14 +210,28 @@ export class AnimationSystem {
       armLz = 0.85;
       armRz = -0.85;
     } else if (anim === 'gkDive') {
-      // Full-stretch dive toward the side frozen at dive start (29.1).
+      // Full-body dive toward the side frozen at dive start (29.1). The old
+      // pose tilted only the `lean` group — the keeper folded at the hips
+      // while his legs stood planted (the "只有上半身动" report). Now the
+      // whole body group (legs included) tilts around the feet and rides a
+      // launch arc: push off, horizontal at full stretch, land low, and the
+      // slow approach() recovery below reads as him picking himself up.
       const side = model.diveSide;
-      leanZ = -side * 1.3;
-      armLz = side > 0 ? 2.7 : 1.5; // top arm reaches further
-      armRz = side > 0 ? -1.5 : -2.7;
-      legLz = side * 0.7; // legs trail into the dive — full-stretch silhouette
-      legRz = side * 0.55;
-      leanX = 0.12;
+      model.diveT += dt;
+      const t = model.diveT;
+      const stretch = Math.min(1, t / 0.32);
+      bodyTilt = -side * 1.2 * (0.25 + 0.75 * stretch);
+      bodyY = Math.max(0.03, Math.sin(Math.min(t / 0.55, 1) * Math.PI) * 0.38);
+      leanZ = -side * 0.18; // a touch of arch on top of the body tilt
+      leanX = -0.08;
+      armL = 0; // both arms stretch with the body axis, toward the ball
+      armR = 0;
+      armLz = side > 0 ? 2.9 : 2.2; // top arm reaches further
+      armRz = side > 0 ? -2.2 : -2.9;
+      legL = side > 0 ? 0.45 : -0.3; // scissor: one leg drives, one trails
+      legR = side > 0 ? -0.3 : 0.45;
+      legLz = side * 0.2;
+      legRz = side * 0.12;
       hop = 0;
     } else if (anim === 'celebrate') {
       // The scorer leaps; teammates raise arms with a lighter bounce.
@@ -237,5 +255,9 @@ export class AnimationSystem {
     model.lean.rotation.x = approach(model.lean.rotation.x, leanX, r);
     model.lean.rotation.z = approach(model.lean.rotation.z, leanZ, r);
     model.root.position.y = approach(model.root.position.y, hop, 8 * dt);
+    // The dive launches fast; the recovery (targets back to 0 once the save
+    // ends) runs at half rate — the keeper visibly gets back to his feet.
+    model.body.rotation.z = approach(model.body.rotation.z, bodyTilt, (anim === 'gkDive' ? 7 : 2.8) * dt);
+    model.body.position.y = approach(model.body.position.y, bodyY, 4 * dt);
   }
 }

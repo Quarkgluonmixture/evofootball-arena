@@ -86,14 +86,32 @@ function assignRunners(team: Team, match: Match): void {
   const carrier = match.ball.owner;
   // Corner (Phase 28): flood the box — the three best headers of the ball
   // (aerial sense lives with the DFs and the ST) attack the area while the
-  // taker walks over, so the cross has someone to find.
-  if (match.phase === 'restart' && match.restart?.kind === 'corner' && match.restart.side === team.side) {
+  // taker walks over, so the cross has someone to find. The licenses hold
+  // THROUGH the hand-off and the flight (Phase 31.9, team.cornerCrash):
+  // the restart clears before the kick, and re-licensing generically at
+  // that instant pulled every crasher out of the box mid-delivery.
+  const liveCorner = match.phase === 'restart' && match.restart?.kind === 'corner' && match.restart.side === team.side;
+  const heldCrash = !liveCorner && team.cornerCrash !== null && match.simTime < team.cornerCrash.until;
+  if (team.cornerCrash && match.simTime >= team.cornerCrash.until) team.cornerCrash = null;
+  if (heldCrash) {
+    // Personnel locked at hand-off (31.9): re-scoring here swapped crashers
+    // for whoever happened to stand better mid-flight (once the weak-side
+    // winger 27m away) and remapped every crash spot under their feet.
+    for (const idx of team.cornerCrash!.runners) {
+      if (!team.players[idx].sentOff && team.players[idx] !== carrier) team.runners.add(idx);
+    }
+    const arr = team.cornerCrash!.arriver;
+    if (arr !== null && !team.players[arr].sentOff && team.players[arr] !== carrier) team.arriver = arr;
+    return;
+  }
+  if (liveCorner) {
     // Aerial sense × REACHABILITY (Phase 31): the DF is the best header in
     // the game, but the rest-defence clamp parks him ~50m away — a licensed
     // crasher who cannot arrive leaves the primary zone empty (the trace
     // that cracked the 0%-duel-wins corner: the best spots had nobody).
-    const flag = match.restart.pos;
-    const routine = match.restart.routine;
+    const flag = match.restart!.pos;
+    const routine = match.restart!.routine;
+    const takerGid = match.restart!.takerGid;
     // Short/arc routines trade a crasher for the receiver (Phase 31): on a
     // five-outfielder team, three crashers plus the taker leave exactly ONE
     // arriver candidate — usually the worst-placed body on the pitch, and
@@ -101,7 +119,7 @@ function assignRunners(team: Team, match: Match): void {
     // corner crossed 30/30 because the short receiver stood 40m away).
     const crashCount = routine === 'short' || routine === 'arcCutback' ? 2 : 3;
     const scored = team.players
-      .filter((p) => p.role !== 'GK' && p.gid !== match.restart!.takerGid && !p.sentOff)
+      .filter((p) => p.role !== 'GK' && p.gid !== takerGid && p !== carrier && !p.sentOff)
       .map((p) => ({ p, s: aerialSense(p) - dist(p.pos, flag) / 45 }))
       .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
     for (const { p } of scored.slice(0, crashCount)) team.runners.add(p.index);
@@ -110,11 +128,11 @@ function assignRunners(team: Team, match: Match): void {
     // routine's key zone. Crash spots for the runners come from the
     // routine's table (executor, cornerCrashSpots).
     if (routine === 'short' || routine === 'arcCutback') {
-      const zone = cornerKeyZone(routine, team.attackDir, match.restart.pos.y);
+      const zone = cornerKeyZone(routine, team.attackDir, flag.y);
       let pick: Player | null = null;
       let bd = Infinity;
       for (const p of team.players) {
-        if (p.role === 'GK' || p.sentOff || p.gid === match.restart.takerGid) continue;
+        if (p.role === 'GK' || p.sentOff || p.gid === takerGid || p === carrier) continue;
         if (team.runners.has(p.index)) continue;
         const d = dist(p.pos, zone);
         if (d < bd) {

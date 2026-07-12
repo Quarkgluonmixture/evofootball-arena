@@ -126,7 +126,7 @@ describe('player attributes influence the sim', () => {
     expect(a.distance).toBeGreaterThan(b.distance);
   });
 
-  it('finishing: clinical squad converts more of its shots into goals', { timeout: 120000 }, async () => {
+  it('finishing: clinical squad converts more of its shots into goals', { timeout: 240000 }, async () => {
     // Two design notes, learned the hard way:
     // 1. "On target" is a bad proxy — sprayed shots drift toward the keeper
     //    and get "saved" (counted on target) while corner-shaving finishes
@@ -136,10 +136,11 @@ describe('player attributes influence the sim', () => {
     //    one-sided matches measures pitch-side noise, not finishing.
     const hi = { shots: 0, goals: 0 };
     const lo = { shots: 0, goals: 0 };
-    // 90 seeds: the Phase 19 dynamics (through balls/runs) added enough match
-    // variance that 30 seeds could land on the wrong side of noise (verified:
-    // at 90×2 the margin is a solid ~4pp, 23.7% vs 19.7%).
-    for (let i = 0; i < 90; i++) {
+    // 270 seeds (was 90, was 30 — §10.5's law of this file): the effect is
+    // a solid ~4pp at scale (verified 31.9: 21.3% vs 17.7% at 270×2), but
+    // at 90×2 that's only ~1.6σ over shot-count noise and the pool flipped
+    // on the corner-flood mechanics churn. 540 matches ⇒ ~2.8σ.
+    for (let i = 0; i < 270; i++) {
       // Yield periodically: 180 full matches peg the CPU and starve
       // vitest's RPC heartbeat on 2-core CI runners (repo CI rule) — this
       // one first tripped it when 6v6 matches got ~30% dearer (phase 30).

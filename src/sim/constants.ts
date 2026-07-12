@@ -59,6 +59,11 @@ export const GK_HOLD_CLEARANCE = 3;
 
 /** Opponents are held this far from a dead-ball restart spot. */
 export const RESTART_CLEARANCE = 6;
+/** Corners use the real-law 9.15m (Phase 31.9): the delivery's ascent is
+ * inside the header band (z 1.35–2.5) until ~7.8m from the flag, so a
+ * sentry camped on the generic 6m edge got a free header at every
+ * climbing corner — the silent killer of the whole corner routine. */
+export const CORNER_CLEARANCE = 9.15;
 /** Penalty spot distance from the goal line — matches the drawn spot (BOX_DEPTH · 0.72). */
 export const PENALTY_SPOT_DIST = BOX_DEPTH * 0.72;
 /**

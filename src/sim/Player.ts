@@ -80,6 +80,22 @@ export class Player {
    * match. Reset when a fresh hold starts.
    */
   gkShapeWait = 0;
+  /**
+   * One-touch window (Phase 31.9, 一脚出球): set at a PRESSURED reception —
+   * the receiver decides immediately, and a pass kicked while this runs is
+   * played first-time: extra aim noise, discounted by technique. Any kick
+   * consumes it; expiry means they took a settle touch after all.
+   */
+  firstTouchWindow = 0;
+  /**
+   * Marker reaction lag (Phase 31.9, the headed-game pass): while the mark
+   * SPRINTS near our goal, the marking stance target is frozen here and
+   * only re-read on the marker's reaction cadence (0.2–0.45s by defending)
+   * — frame-perfect shadowing had made the attacking header extinct.
+   */
+  markAnchor: V2 | null = null;
+  markAnchorAge = 0;
+  markAnchorIdx: number | null = null;
 
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;
@@ -199,6 +215,7 @@ export class Player {
     this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);
     this.saveAnimTimer = Math.max(0, this.saveAnimTimer - dt);
     this.headerAnimTimer = Math.max(0, this.headerAnimTimer - dt);
+    this.firstTouchWindow = Math.max(0, this.firstTouchWindow - dt);
     this.decisionTimer -= dt;
   }
 
@@ -216,5 +233,6 @@ export class Player {
     this.tackleAnimTimer = 0;
     this.saveAnimTimer = 0;
     this.headerAnimTimer = 0;
+    this.firstTouchWindow = 0;
   }
 }
