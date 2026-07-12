@@ -3,6 +3,7 @@ import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
 import { formationSpot } from './formations';
 import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
+import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
 import type { Role, TeamMode } from '../sim/types';
 
@@ -28,6 +29,7 @@ export function updateTeamBrain(team: Team, match: Match): void {
     team.chasers.clear();
     team.marks.clear();
     team.runners.clear();
+    team.arriver = null;
     return;
   }
 
@@ -79,6 +81,7 @@ const RUN_ROLE_W: Record<Role, number> = { GK: 0, DF: 0.4, MF: 1.2, WG: 1.8, ST:
 
 function assignRunners(team: Team, match: Match): void {
   team.runners.clear();
+  team.arriver = null;
   if (match.possessionSide !== team.side) return;
   const carrier = match.ball.owner;
   // Corner (Phase 28): flood the box — the three best headers of the ball
@@ -99,6 +102,27 @@ function assignRunners(team: Team, match: Match): void {
     .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))
     .sort((a, b) => b.s - a.s || a.p.index - b.p.index);
   for (const { p } of scored.slice(0, count)) team.runners.add(p.index);
+
+  // The ARRIVING runner (Phase 31): ball deep and wide in the attacking
+  // third — license ONE late body onto the edge-of-box arc so the byline
+  // cutback has someone to find. The MF is the natural arriver (the late
+  // midfield run is football's canonical cutback target); the weak-side
+  // winger stands in when the MF is the carrier, gone, or already running.
+  const ballPos = match.ball.pos;
+  const ballLocalX = team.localX(ballPos.x);
+  // Trigger EARLY (ball entering the wide attacking channel, not already at
+  // the byline) so the arriver's late run is underway by the time the
+  // carrier reaches the pull-back zone — an arriver licensed at the byline
+  // arrives after the moment has gone (failure mode 14: check who's
+  // attacking the delivery before tuning the delivery).
+  if (ballLocalX > HALF_L - 21 && Math.abs(ballPos.y) > 10) {
+    const eligible = (p: Player | undefined): p is Player =>
+      p !== undefined && p !== carrier && !p.sentOff && !team.runners.has(p.index);
+    const mf = team.players[2];
+    const weakWG = ballPos.y > 0 ? team.players[3] : team.players[4];
+    const pick = eligible(mf) ? mf : eligible(weakWG) ? weakWG : null;
+    if (pick) team.arriver = pick.index;
+  }
 }
 
 /**

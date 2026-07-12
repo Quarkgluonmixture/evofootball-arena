@@ -99,8 +99,12 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
     }
     case 'MakeRun': {
       // Attacking run in behind — a full sprint, recomputed each frame so the
-      // run bends with the defensive line.
-      target = runTarget(p, team, opp.players);
+      // run bends with the defensive line. The ARRIVER (Phase 31) instead
+      // attacks the edge-of-box arc: the late body a byline cutback finds.
+      target =
+        team.arriver === p.index
+          ? v2((HALF_L - 16) * team.attackDir, clamp(p.pos.y * 0.3, -7, 7))
+          : runTarget(p, team, opp.players);
       speedF = sprint;
       break;
     }
@@ -218,11 +222,18 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
  * Kept shallow: −2.6/−1.2 visibly staggered but cost too many arrivals. */
 const HOLD_DEPTH: Record<Role, number> = { GK: 0, DF: 3.0, MF: 1.8, WG: 0.8, ST: 0.4 };
 
-/** Dribble toward goal, bending away from the nearest defender ahead. */
+/** Dribble toward goal, bending away from the nearest defender ahead —
+ * or DOWN THE LINE toward the byline when wide and advanced (Phase 31,
+ * 下底): the same steering decideCarrier's wide-drive space check scored,
+ * so the legs go where the utility looked. */
 function dribbleTarget(p: Player, match: Match): V2 {
   const team = match.teams[p.side];
   const opp = match.teams[1 - p.side];
-  const goal = team.oppGoal();
+  const localX = team.localX(p.pos.x);
+  const wideDrive = Math.abs(p.pos.y) > 13 && localX > 20 && localX < HALF_L - 7;
+  const goal = wideDrive
+    ? v2((HALF_L - 8) * team.attackDir, Math.sign(p.pos.y) * (HALF_W - 12))
+    : team.oppGoal();
   const toGoal = norm(sub(goal, p.pos));
 
   // Find the most obstructive opponent within 6m ahead.

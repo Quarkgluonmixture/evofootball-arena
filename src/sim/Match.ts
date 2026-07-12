@@ -117,6 +117,8 @@ export class Match {
   /** Per-player counters (goals/assists/shots/saves/recoveries), gid-indexed. Passive. */
   playerStats: PlayerMatchStats[] = [];
   lastCompletedPass: { passerGid: number; receiverGid: number; t: number } | null = null;
+  /** The most recent cutback kick (Phase 31) — goals within 5s credit it. */
+  lastCutback: { side: Side; t: number } | null = null;
 
   private kickoffSide: Side = 0;
   private stepCount = 0;
@@ -334,6 +336,10 @@ export class Match {
   performShot(p: Player): void {
     mech.performShot(this, p);
   }
+
+  performCutback(p: Player, mate: Player): void {
+    mech.performCutback(this, p, mate);
+  }
   performClear(p: Player): void {
     mech.performClear(this, p);
   }
@@ -521,6 +527,11 @@ export class Match {
     this.score[side]++;
     team.stats.goals++;
     this.markShotOutcome(this.pendingShot?.side === side ? 'goal' : 'miss');
+    // Cutback payoff bookkeeping (Phase 31): a goal within 5s of the
+    // pull-back credits the routine (the directional test's metric).
+    if (this.lastCutback && this.lastCutback.side === side && this.simTime - this.lastCutback.t < 5) {
+      team.stats.cutbackGoals++;
+    }
 
     let scorerText: string;
     const shot = this.pendingShot;

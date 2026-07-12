@@ -99,6 +99,18 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
   // Compact teams also drag their block a little toward the ball's y.
   if (!hasBall) y += (ball.pos.y - y * team.attackDir) * team.attackDir * g.defensiveCompactness * 0.25;
 
+  // Weak-side far-post pull (Phase 31): when the attack is deep AND wide,
+  // the far winger leaves the touchline and attacks the back post — the
+  // overload that punishes a ball-side defensive shift, and the second
+  // body a cutback or deep cross finds. The strong-side winger keeps the
+  // width; the pull releases as soon as the ball comes back central.
+  if (
+    hasBall && p.role === 'WG' && ballLocalX > HALF_L - 20 &&
+    Math.abs(ball.pos.y) > 12 && Math.sign(y) !== Math.sign(ball.pos.y)
+  ) {
+    y *= 0.3;
+  }
+
   if (p.role === 'GK') {
     // Keepers hold a narrow band in front of goal regardless of mode.
     x = clamp(base.x + (g.keeperAggression - 0.5) * 4, -HALF_L + 1, -HALF_L + 11);

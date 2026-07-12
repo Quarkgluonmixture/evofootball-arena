@@ -300,6 +300,39 @@ export function performKeeperThrow(match: Match, gk: Player, mate: Player): void
 }
 
 /**
+ * Cutback (Phase 31): the byline pull-back — a HARD, flat ball driven from
+ * the touchline zone to the edge-of-box arc, where the licensed arriver
+ * meets it first-time (giveBall's snap-decision window). Faster than a
+ * regular pass at the same range so it beats the box defenders' recovery
+ * slide across; registered like any pass (interceptions, assists and the
+ * offside judgment all apply — the arriver runs from DEEP, so flags are
+ * rare by construction).
+ */
+export function performCutback(match: Match, passer: Player, mate: Player): void {
+  if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
+  const team = match.teams[passer.side];
+  const misalign = kickMisalignment(passer, norm(sub(mate.pos, passer.pos)));
+  const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
+  const flight = dist(passer.pos, mate.pos) / (18 * powerMul);
+  const lead = add(mate.pos, scale(mate.vel, flight * 0.8));
+  const d = dist(passer.pos, lead);
+  const speed = clamp(d * 0.6 + 10, 11, 23) * powerMul;
+  const pressure = pressureAt(passer.pos, match.teams[1 - passer.side].players);
+  const aim = norm(sub(lead, passer.pos));
+  const noise =
+    match.rng.gaussian() *
+    (0.02 + pressure * 0.06 + d * 0.0012) *
+    (1.15 - team.genome.passBias * 0.3) *
+    (1.25 - passer.attrs.technique * 0.5) *
+    orientationNoiseMul(misalign, passer.attrs.technique);
+  match.kickBall(passer, rotate(aim, noise), speed);
+  team.stats.passes++;
+  team.stats.cutbacks++;
+  match.lastCutback = { side: passer.side, t: match.simTime };
+  registerPass(match, passer, mate, false);
+}
+
+/**
  * Lofted switch (Phase 28): the big diagonal — a 25m+ ball over the press to
  * a receiver in space. What the 32m ground-pass penalty used to suppress.
  */

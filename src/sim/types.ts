@@ -278,6 +278,10 @@ export interface TeamMatchStats {
   miscontrols: number;
   /** Lofted balls whipped into the box from wide (Phase 28). */
   crosses: number;
+  /** Byline pull-backs driven to the edge-of-box arc (Phase 31). */
+  cutbacks: number;
+  /** Goals within 5s of a completed cutback (Phase 31 — the payoff metric). */
+  cutbackGoals: number;
   /** Aerial duels won — headed shots, clears and knockdowns (Phase 28). */
   headersWon: number;
   /** Lofted long deliveries — switches/diagonals + chipped through balls (Phase 28). */
@@ -317,6 +321,8 @@ export const emptyStats = (): TeamMatchStats => ({
   passesForward: 0,
   miscontrols: 0,
   crosses: 0,
+  cutbacks: 0,
+  cutbackGoals: 0,
   headersWon: 0,
   longBalls: 0,
   keyPasses: 0,

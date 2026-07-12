@@ -31,6 +31,12 @@ export class Team {
   marks = new Map<number, number>();
   /** Player indices assigned to make attacking runs in behind (in possession). */
   runners = new Set<number>();
+  /**
+   * The ARRIVING runner (Phase 31): one player licensed to attack the
+   * edge-of-box arc late when the ball is deep and wide — the body a
+   * byline cutback is pulled back for. null = no cutback situation.
+   */
+  arriver: number | null = null;
 
   /** Sim time when we last gained possession (for counter-attack windows). */
   possessionGainedAt = -999;

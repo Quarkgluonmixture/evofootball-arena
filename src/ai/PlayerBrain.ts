@@ -1,5 +1,5 @@
 import { clamp, clamp01 } from '../utils/math';
-import { dist, dot, norm, sub } from '../utils/vec';
+import { dist, dot, norm, sub, v2 } from '../utils/vec';
 import { HALF_L, HALF_W } from '../sim/constants';
 import { defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady } from './formations';
 import type { Match } from '../sim/Match';
@@ -430,6 +430,38 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     }
   }
 
+  // --- Cutback (Phase 31): from the byline zone, the hard pull-back to the
+  // arc — real football's canonical set-defence beater. The regular pass
+  // loop can never pick it (gain < 0 reads as a back-pass and gets
+  // penalized), so it scores as its own candidate aimed at the licensed
+  // ARRIVER, whose late run the executor routes to the arc. The receiver's
+  // snap-decision window (giveBall) makes the first-time strike.
+  let cutbackMate: Player | null = null;
+  let cutbackCand: UtilityScore | null = null;
+  if (
+    p.kickCooldown <= 0 && !mustKick && team.arriver !== null &&
+    Math.abs(p.pos.y) > 10 && localX > HALF_L - 17
+  ) {
+    const arr = team.players[team.arriver];
+    if (arr !== p && !arr.sentOff) {
+      const lane = laneOpenness(p.pos, arr.pos, opp.players);
+      const open = opennessOf(arr, opp.players);
+      const arrLocalX = team.localX(arr.pos.x);
+      const inArc = arrLocalX > HALF_L - 26 && Math.abs(arr.pos.y) < 12;
+      const sCB =
+        (0.48 + lane * 0.3 + open * 0.28) *
+        (inArc ? 1.15 : 0.6) *
+        (0.8 + g.attackingWidth * 0.4);
+      cutbackMate = arr;
+      cutbackCand = {
+        action: 'Pass',
+        score: sCB,
+        why: `cutback to ${arr.name} at the arc · lane ${lane.toFixed(2)} · open ${open.toFixed(2)}`,
+      };
+      cands.push(cutbackCand);
+    }
+  }
+
   // --- Hold-up (Phase 28): the pivot's back-to-goal game. A striker with
   // the ball, back to goal and a defender on them shields it and waits for
   // support instead of forcing a turn — the lay-off boost in the pass loop
@@ -452,7 +484,17 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
 
   // --- Dribble: needs space ahead; dribbleBias makes it a first choice.
   if (!mustKick) {
-    const toGoal = norm(sub(goal, p.pos));
+    // Wide and advanced (Phase 31): the drive goes DOWN THE LINE toward the
+    // byline, not diagonally into the packed box — 下底. Space is measured
+    // along the actual path (the touchline channel is usually open when the
+    // central cone is a wall), and dribbleTarget steers the same way, so
+    // the utility and the legs agree. This is what puts carriers in the
+    // pull-back zone at all: measured before it, the byline was occupied
+    // for 0.16s per MATCH.
+    const wideDrive = Math.abs(p.pos.y) > 13 && localX > 20 && localX < HALF_L - 7;
+    const toGoal = wideDrive
+      ? norm(sub(v2((HALF_L - 8) * team.attackDir, Math.sign(p.pos.y) * (HALF_W - 12)), p.pos))
+      : norm(sub(goal, p.pos));
     const space = spaceAhead(p, toGoal, opp.players);
     let sD = (W.dribbleBase + space * W.dribbleSpaceW) * (W.dribbleGeneBase + g.dribbleBias * W.dribbleGeneW);
     sD *= 1 - pressure * W.dribblePressurePen;
@@ -542,8 +584,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // Kicks resolve instantly; movement actions persist until next tick.
   switch (top.action) {
     case 'Pass':
-      p.action = { type: 'Pass', targetIdx: bestMate!.gid, scores };
-      match.performPass(p, bestMate!, offsideExemptKick);
+      if (top === cutbackCand) {
+        p.action = { type: 'Pass', targetIdx: cutbackMate!.gid, scores };
+        match.performCutback(p, cutbackMate!);
+      } else {
+        p.action = { type: 'Pass', targetIdx: bestMate!.gid, scores };
+        match.performPass(p, bestMate!, offsideExemptKick);
+      }
       break;
     case 'LoftedPass':
       p.action = { type: 'LoftedPass', targetIdx: bestLoftMate!.gid, scores };
@@ -688,13 +735,18 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // through ball needs. Tired legs sit the run out. During a corner setup
     // there is no carrier yet — the licensed box-crashers run anyway
     // (Phase 28: the cross needs bodies attacking the area, not spectators).
-    if (team.runners.has(p.index) && (carrier ? carrier !== p : match.phase === 'restart')) {
+    // The ARRIVER (Phase 31) runs on the same license — executor routes
+    // their run to the edge-of-box arc instead of in behind.
+    const arriving = team.arriver === p.index;
+    if ((team.runners.has(p.index) || arriving) && (carrier ? carrier !== p : match.phase === 'restart')) {
       let s = W.runScore;
       if (tired) s *= 0.6;
       cands.push({
         action: 'MakeRun',
         score: s,
-        why: match.phase === 'restart' ? 'attacking the box for the delivery' : 'licensed run in behind',
+        why: arriving
+          ? 'arriving late at the cutback arc'
+          : match.phase === 'restart' ? 'attacking the box for the delivery' : 'licensed run in behind',
       });
     }
     cands.push({

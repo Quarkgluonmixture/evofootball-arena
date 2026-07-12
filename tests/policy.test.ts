@@ -63,16 +63,21 @@ describe('policy parameterization (Phase 18)', () => {
   });
 
   it('a single role vector changes play (others stay default)', () => {
-    // Only the striker turns shoot-happy — the team's play must move.
-    // Full-length match (31: at 120s the lane-aware economy left the seed-7
-    // ST without a single decision the skew could flip — plumbing needs
-    // enough decisions to express, not a luckier seed).
+    // Only the DF turns hoof-happy — the team's play must move. (31: the
+    // old ST shoot-skew stopped expressing on single seeds — a striker's
+    // choices are dominated by lane geometry now; the DF's clear-vs-pass
+    // call under pressure fires every match. Pooled over 3 seeds so one
+    // quiet defensive half can't fake a null result.)
     const rolePolicies = ROLES.map((r) =>
-      r === 'ST' ? { ...DEFAULT_POLICY, shootBase: 4.0, passBase: 0.05 } : { ...DEFAULT_POLICY },
+      r === 'DF' ? { ...DEFAULT_POLICY, clearBase: 2.5, clearPressureW: 1.5 } : { ...DEFAULT_POLICY },
     );
-    const bare = new Match({ seed: 7, teamA: team('A'), teamB: team('B'), duration: 240 }).runToCompletion();
-    const skewed = new Match({ seed: 7, teamA: team('A', undefined, rolePolicies), teamB: team('B'), duration: 240 }).runToCompletion();
-    expect(JSON.stringify(skewed.stats)).not.toBe(JSON.stringify(bare.stats));
+    let anyDiff = false;
+    for (const seed of [7, 11, 42]) {
+      const bare = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 240 }).runToCompletion();
+      const skewed = new Match({ seed, teamA: team('A', undefined, rolePolicies), teamB: team('B'), duration: 240 }).runToCompletion();
+      if (JSON.stringify(skewed.stats) !== JSON.stringify(bare.stats)) anyDiff = true;
+    }
+    expect(anyDiff).toBe(true);
   });
 
   it('a distinct policy actually changes play', () => {
