@@ -598,6 +598,13 @@ only caught by eyes on the PNGs.
     Node-derived *outcomes* (names, scores, story types) in Playwright
     browser checks — assert structure; and don't compare saves across
     runtimes. Within-engine reproducibility stays regression-tested.
+    Phase 31 corollary: this bites NODE-vs-NODE too (CI's V8 ≠ local's) —
+    a 10-season league test asserting the final formation distribution
+    passed locally and failed on CI (one flipped match ⇒ different
+    champions ⇒ different rebirth parents ⇒ a formation extinct). Long-run
+    ecology tests may assert only engine-stable properties: seeded
+    CREATION arithmetic, bookkeeping invariants, and mechanism contracts
+    (e.g. the zonal budget's ceiling) — never "who survived".
 13. **The behind-goal camera hides goal-line actors.** From `behindGoal`'s
     gantry (13 m behind the net, 7.5 m up) anything within ~1 m of the goal
     line renders THROUGH the semi-transparent net mesh against the dark
