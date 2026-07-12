@@ -101,9 +101,13 @@ describe('offside judgment at kick time', () => {
 
     m.giveBall(target); // the touch completes the offence
     expect(m.phase).toBe('restart');
-    expect(m.restart?.kind).toBe('freeKick');
+    // 31.6 (user call, deliberate law simplification): the award restarts
+    // as a GOAL KICK — keeper takes it, box clears, shape resets — instead
+    // of the real indirect free kick at the offence spot. 🚩 stays.
+    expect(m.restart?.kind).toBe('goalKick');
+    expect(m.restart?.offside).toBe(true);
     expect(m.restart?.side).toBe(1); // defenders take it
-    expect(m.restart?.pos.x).toBeCloseTo(35, 5); // where the offender stood
+    expect(m.restart?.pos.x).toBeCloseTo(38, 5); // their goal area (45 − 7)
     expect(A.stats.offsides).toBe(1);
     expect(m.teams[1].stats.offsides).toBe(0);
     expect(A.stats.passesCompleted).toBe(0); // an offside ball is not a completed pass
@@ -228,7 +232,8 @@ describe('offside judgment at kick time', () => {
     };
     tryAerial(m, m.allPlayers);
     expect(m.phase).toBe('restart');
-    expect(m.restart?.kind).toBe('freeKick');
+    expect(m.restart?.kind).toBe('goalKick'); // 31.6: the offside award restarts as a goal kick
+    expect(m.restart?.offside).toBe(true);
     expect(m.restart?.side).toBe(1);
     expect(A.stats.offsides).toBe(1);
     expect(A.stats.headersWon).toBe(0); // the whistle beat the header

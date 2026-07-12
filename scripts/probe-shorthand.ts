@@ -38,6 +38,7 @@ interface Mix {
   xg: number;
   bigChances: number; // xG ≥ 0.25 — the "finished, not contested" channel
   bigGoals: number;
+  conceded?: number;
 }
 const emptyMix = (): Mix => ({ goals: 0, shots: 0, xg: 0, bigChances: 0, bigGoals: 0 });
 const short = emptyMix();
@@ -64,6 +65,8 @@ for (let seed = 0; seed < 60; seed++) {
   };
   tally(short, m, shortSide, r.score[shortSide]);
   tally(fullBase, full, shortSide, fullR.score[shortSide]);
+  short.conceded = (short.conceded ?? 0) + r.score[1 - shortSide];
+  fullBase.conceded = (fullBase.conceded ?? 0) + fullR.score[1 - shortSide];
   fullTotal += fullR.score[0] + fullR.score[1];
 }
 const show = (label: string, m: Mix): void =>
@@ -72,5 +75,6 @@ const show = (label: string, m: Mix): void =>
   );
 show('shorthanded', short);
 show('full-base  ', fullBase);
+console.log(`conceded: shorthanded ${short.conceded} vs full-strength ${fullBase.conceded}`);
 console.log(`invariant: ${short.goals} must be < ${(fullBase.goals * 0.9).toFixed(1)}`);
 console.log(`neutral-mirror total goals/match: ${(fullTotal / 60).toFixed(2)}`);

@@ -69,7 +69,24 @@ export function executeAction(p: Player, match: Match, _dt: number): void {
         // (not 1.6): halving the slope entirely inverted the
         // markingAggression gene's recover-more edge (genes.test) — the
         // stance IS that gene's main payoff channel (failure mode 3).
-        const markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.4;
+        let markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.4;
+        // Distribution stand-off (Phase 31.6, user report "开门球挤着对面
+        // 队员"): while the mark's keeper stands over a goal kick or holds
+        // the ball, markers COVER the lane from 2.0–2.6m instead of body-
+        // gluing the receiver — real defenders show the pass and jump it
+        // at the kick; the glued stance turned every keeper wait into a
+        // box wrestling match (and the goal-kick box clamp only moves
+        // opponents in x, so they camped ON the edge millimetres away).
+        // Aggression still SCALES the stand-off (2.0 pushy .. 2.6 passive):
+        // a flat floor erased the markingAggression payoff channel again
+        // (the 30.5 stance-floor lesson, second edition — failure mode 3).
+        const oppGk = opp.goalkeeper;
+        if (
+          (match.restart?.kind === 'goalKick' && match.restart.side === mark.side) ||
+          ((oppGk.gkHoldTimer > 0 || oppGk.gkDistributing) && ball.owner === oppGk)
+        ) {
+          markDist = Math.max(markDist, 2.6 - g.markingAggression * 0.6);
+        }
         const goal = team.ownGoal();
         const gx = goal.x - mark.pos.x;
         const gy = goal.y - mark.pos.y;

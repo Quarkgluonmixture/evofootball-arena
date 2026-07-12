@@ -262,45 +262,49 @@ describe('aerial duels and deliveries', () => {
     expect(maxZ).toBeGreaterThan(2.5); // deliveries genuinely clear head height
   });
 
-  it('corners are a threat: a meaningful share leads to a shot inside 8s', { timeout: 60000 }, () => {
-    // 96 matches since 29.1: corners fell to ~1.2/match (offside-era play
-    // reaches the byline less), so 48 matches left only ~57 corners — at a
-    // true ~10% rate that sample false-alarms the 5% floor ~8% of the time.
-    const league = new League({ seed: 987001 });
+  it('corners are a threat: a meaningful share leads to a shot inside 8s', { timeout: 180000 }, async () => {
+    // POOLED over three league seeds (Phase 31.6): corners run ~0.65/match,
+    // so one 96-match pool holds only ~60 corners — at a true ~7% rate a
+    // single seed re-rolls between 3% and 9% on ANY engine churn (a 2-shot
+    // swing). Three pools ≈ 190 corners keeps the floor meaningful.
     let corners = 0;
     let cornerShots = 0;
-    for (let i = 0; i < 96; i++) {
-      let f = league.nextFixture();
-      if (!f) {
-        league.finishSeason();
-        f = league.nextFixture()!;
-      }
-      const r = league.createMatch(f).runToCompletion();
-      league.applyResult(f, r);
-      for (let j = 0; j < r.events.length; j++) {
-        const ev = r.events[j];
-        if (ev.type !== 'corner') continue;
-        corners++;
-        for (let k = j + 1; k < r.events.length; k++) {
-          const e2 = r.events[k];
-          if (e2.t - ev.t > 8) break;
-          if ((e2.type === 'shot' || e2.type === 'goal') && e2.side === ev.side) {
-            cornerShots++;
-            break;
+    let played = 0;
+    for (const seed of [987001, 20260702, 424242]) {
+      const league = new League({ seed });
+      for (let i = 0; i < 96; i++) {
+        // CI heartbeat (1c504f0): yield the event loop through long pools.
+        if (played++ % 25 === 0) await new Promise((r) => setImmediate(r));
+        let f = league.nextFixture();
+        if (!f) {
+          league.finishSeason();
+          f = league.nextFixture()!;
+        }
+        const r = league.createMatch(f).runToCompletion();
+        league.applyResult(f, r);
+        for (let j = 0; j < r.events.length; j++) {
+          const ev = r.events[j];
+          if (ev.type !== 'corner') continue;
+          corners++;
+          for (let k = j + 1; k < r.events.length; k++) {
+            const e2 = r.events[k];
+            if (e2.t - ev.t > 8) break;
+            if ((e2.type === 'shot' || e2.type === 'goal') && e2.side === ev.side) {
+              cornerShots++;
+              break;
+            }
           }
         }
       }
     }
-    expect(corners).toBeGreaterThan(40);
+    expect(corners).toBeGreaterThan(120);
     // Measured ≈13% at Phase 28 tuning; Phase 30's SET defensive shapes
     // defused the one hardcoded cross to ~2-4%. Phase 31's routines took
-    // it back to ~6.5-7.5% across league seeds (routine-chosen deliveries,
-    // the crasher-wait gate, run-targeted drops) and the floor rises with
-    // it. The ROADMAP's full ≥8% needs marker-tracking separation
-    // (defenders shadow crashers frame-perfectly, so the goal-side marker
-    // still wins most post duels) — logged there for a future pass. At
-    // ~60 corners per 96-match pool, 0.04 is the strongest floor that
-    // won't flake.
+    // it back to ~6-8% pooled (routine-chosen deliveries, the crasher-wait
+    // gate, run-targeted drops) and the floor rises with it. The ROADMAP's
+    // full ≥8% needs marker-tracking separation (defenders shadow crashers
+    // frame-perfectly, so the goal-side marker still wins most post duels)
+    // — logged there for a future pass.
     expect(cornerShots / corners).toBeGreaterThan(0.04);
   });
 

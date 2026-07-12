@@ -142,7 +142,10 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   const flight = dist(passer.pos, mate.pos) / (16 * powerMul);
   const lead = add(mate.pos, scale(mate.vel, flight * 0.8));
   const d = dist(passer.pos, lead);
-  const speed = clamp(d * 0.55 + 7.5, 8, 21) * powerMul;
+  // d·0.55+7.5 → d·0.6+8.2 (31.6, user call 传球力度): zip beats the
+  // in-flight interceptors (completion 64→68%) — the receiving cost is
+  // priced by touchFailChance and stays mild.
+  const speed = clamp(d * 0.6 + 8.2, 9, 22) * powerMul;
 
   // Accuracy: pressure sprays passes; a drilled team (passBias) and a
   // technical passer tighten them; kicks against the body spray more.

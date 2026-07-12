@@ -505,12 +505,14 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate -- 8`, 240 s matches, n=568)
 
-~2.6 goals from ~10.2 shots (≈4.9 on target, ≈0.1 blocked by a thrown-in
-body — Phase 31; keepers make **≈2.4 saves/match** plus smothers at a
+~2.3 goals from ~10 shots (≈4.4 on target, ≈0.1 blocked by a thrown-in
+body — Phase 31; keepers make **≈2.3 saves/match** plus smothers at a
 dribbler's feet and high-ball claims),
-~64% pass completion — direct football: **~16 through balls per match**
-with deliveries led deep into the run, **~64% of passes played forward**,
-**≈1.4 crosses, ≈0.5 byline cutbacks, ≈5.4 aerial duels won and ≈6.5
+~65% pass completion on CRISP passes (31.6 zip: interceptions 31 → 27,
+tackles+interceptions ~49/match — the smoothest the game has measured) —
+direct football: **~16 through balls per match**
+with deliveries led deep into the run, **~67% of passes played forward**,
+**≈1.6 crosses, ≈0.6 byline cutbacks, ≈5.3 aerial duels won and ≈7.2
 lofted long balls per match**
 (Phase 28; the driven 30.5 switch made the diagonal a real weapon),
 **≈1.7 offsides/match** (Phase 29 — tight calls on marginal

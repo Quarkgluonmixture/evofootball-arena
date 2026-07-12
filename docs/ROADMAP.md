@@ -188,6 +188,26 @@ ecology budget (31.4 — failure mode 21: inheritance compounded zonal to
 re-validated: +0.36 goals from one aim-safety lever). 225 tests;
 fingerprint re-baselined `3aed8c8f…`.
 
+**Phase 31.6 — the post-ship live-play pass (SHIPPED same day):** four
+user reports, four fixes. (1) "开门球对面挤着队员" → the distribution
+STAND-OFF: while a keeper stands over a goal kick or holds the ball,
+markers cover from 2.0–2.6m (aggression still scales it — a flat floor
+erased the gene channel again, 30.5's lesson second edition). (2)
+"offside 应该发门球" → offside now restarts as a GOAL KICK to the
+defenders (deliberate law simplification, user call — the real award is
+an indirect FK at the spot; the calm keeper reset is what the flag is
+FOR here; 🚩 label kept). (3) "做一下观众席" → instanced crowd on every
+terrace step (~300 bodies+heads, 2 draw calls, deterministic palette;
+behind-goal stands stay LOW — failure mode 13). (4) "要增加传球力度吗"
+→ measured: pass speed d·0.55+7.5 → d·0.6+8.2 (cap 22) — zip beats the
+in-flight interceptors; completion 64→65-69%, interceptions 31→27,
+t+i 57→49 (the smoothest the game has ever measured), goals 2.26 (≥2.2
+holds; aimMargin has headroom if the user wants 2.5+ back). Fallout
+absorbed: the 5v6 invariant moved to GOAL DIFFERENCE (the counter
+economy keeps a besieged attack alive — the robust man-short cost is the
+LEAK, 70 vs 59 conceded), the press/marking gene test went focused
+(failure mode 15), the corner floor pooled over three seeds. 226 tests.
+
 **Play-feel queue (user reports, post-31):** "现在是不是没有头球?" —
 correct as a viewing experience: aerial DUELS exist (~3.6-5.4 headers
 won/match, mostly midfield knockdowns and defensive clears) but ATTACKING

@@ -169,3 +169,28 @@ describe('set pieces — full-match invariants', () => {
     expect(run()).toEqual(run());
   });
 });
+
+describe('distribution stand-off (Phase 31.6)', () => {
+  // User report: opponents body-glued the receivers while the keeper stood
+  // over a goal kick (the box clamp only moves them in x, so they camped ON
+  // the edge millimetres from a receiver). Markers now cover from ≥2.4m
+  // while the distribution is being prepared.
+  it('a presser glued to a goal-kick receiver is pushed off during the setup', () => {
+    const m = new Match({ seed: 9, teamA: team('Alpha'), teamB: team('Beta'), duration: 240 });
+    while (m.phase !== 'playing') m.step(DT);
+    m.ball.owner = null;
+    m.ball.lastTouch = m.allPlayers[4]; // team 0 touch
+    m.ball.pos = v2(45.5, 8); // over team 1's goal line, wide of goal
+    m.ball.vel = v2(6, 0);
+    m.step(DT);
+    expect(m.restart?.kind).toBe('goalKick');
+    expect(m.restart?.side).toBe(1);
+    const receiver = m.teams[1].players[1];
+    receiver.pos = v2(30, 3); // waiting for the distribution outside the box
+    const presser = m.teams[0].players[5];
+    presser.pos = v2(29.2, 3.4); // glued — 0.9m away
+    for (let i = 0; i < 90 && (m.phase as string) === 'restart'; i++) m.step(DT);
+    const d = Math.hypot(presser.pos.x - receiver.pos.x, presser.pos.y - receiver.pos.y);
+    expect(d).toBeGreaterThan(1.7); // covering the lane, not wrestling
+  });
+});

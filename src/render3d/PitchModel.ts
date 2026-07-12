@@ -84,12 +84,15 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
 
 /**
  * Low-poly terrace silhouettes: three stepped slabs along the far touchline
- * and shallow banks behind each goal. Dark, non-reflective, shadow-receiving —
- * atmosphere without stealing focus from the pitch.
+ * and shallow banks behind each goal — now SEATED (Phase 31.6, user ask
+ * "做一下观众席"): a deterministic instanced crowd on every step. Two
+ * InstancedMeshes total (~300 bodies + heads = 2 draw calls), so the
+ * stands read alive on a phone without costing the frame budget.
  */
 function addTerraces(group: THREE.Group): void {
   const mat = new THREE.MeshStandardMaterial({ color: 0x131c30, roughness: 0.95 });
   const seatMat = new THREE.MeshStandardMaterial({ color: 0x1a2742, roughness: 0.9 });
+  const slabs: Array<{ w: number; x: number; y: number; z: number; rot: number }> = [];
   const mk = (w: number, x: number, z: number, rot: number, steps: number) => {
     for (let step = 0; step < steps; step++) {
       const slab = new THREE.Mesh(new THREE.BoxGeometry(w, 1.1, 2.4), step % 2 === 0 ? mat : seatMat);
@@ -102,15 +105,68 @@ function addTerraces(group: THREE.Group): void {
       slab.rotation.y = rot;
       slab.receiveShadow = true;
       group.add(slab);
+      slabs.push({ w, x: slab.position.x, y: 1.1 + step * 1.1, z: slab.position.z, rot });
     }
   };
   mk(HALF_L * 2 + 6, 0, -HALF_W - 5.2, 0, 3); // far side (behind the adboards)
   // Behind each goal: ONE low bank only (Phase 28.3). The old three-step
   // stands rose to 3.3m and reached x≈58 — the behind-goal camera (±57, y5)
   // sat INSIDE them and the whole goalmouth vanished behind a black slab
-  // (failure mode 13's cousin: screenshot every fixed camera).
+  // (failure mode 13's cousin: screenshot every fixed camera). The seated
+  // crowd keeps the same ceiling: bodies top out ~1m above the low bank.
   mk(HALF_W * 2 - 4, -HALF_L - 5.4, 0, Math.PI / 2, 1); // behind -x goal
   mk(HALF_W * 2 - 4, HALF_L + 5.4, 0, -Math.PI / 2, 1); // behind +x goal
+  addCrowd(group, slabs);
+}
+
+/** The instanced crowd: seated bodies + heads on every terrace step.
+ * Deterministic LCG (same pattern as the pitch-texture grain) — purely
+ * cosmetic, stable across reloads, kit-accent colors sprinkled in. */
+function addCrowd(
+  group: THREE.Group,
+  slabs: Array<{ w: number; x: number; y: number; z: number; rot: number }>,
+): void {
+  let lcg = 987654321;
+  const rand = () => ((lcg = (lcg * 48271) % 2147483647) / 2147483647);
+  const palette = [0x33415e, 0x475c85, 0x8294b5, 0x4ade80, 0xf59e0b, 0xe2e8f0, 0x60a5fa, 0x1d3a5f];
+  const seats: Array<{ x: number; y: number; z: number; c: number }> = [];
+  for (const s of slabs) {
+    const usable = s.w - 2;
+    const n = Math.floor(usable / 1.15);
+    for (let i = 0; i < n; i++) {
+      if (rand() < 0.22) continue; // empty seats keep it from reading as a texture
+      const along = -usable / 2 + (i + 0.5) * (usable / n) + (rand() - 0.5) * 0.3;
+      seats.push({
+        x: s.x + Math.cos(s.rot) * along,
+        y: s.y + 0.36 + rand() * 0.06,
+        z: s.z - Math.sin(s.rot) * along,
+        c: palette[Math.floor(rand() * palette.length)],
+      });
+    }
+  }
+  const bodies = new THREE.InstancedMesh(
+    new THREE.BoxGeometry(0.42, 0.72, 0.34),
+    new THREE.MeshStandardMaterial({ roughness: 0.9 }),
+    seats.length,
+  );
+  const heads = new THREE.InstancedMesh(
+    new THREE.SphereGeometry(0.16, 6, 5),
+    new THREE.MeshStandardMaterial({ color: 0xd9b99b, roughness: 0.85 }),
+    seats.length,
+  );
+  const m4 = new THREE.Matrix4();
+  const color = new THREE.Color();
+  seats.forEach((s, i) => {
+    m4.makeTranslation(s.x, s.y, s.z);
+    bodies.setMatrixAt(i, m4);
+    bodies.setColorAt(i, color.setHex(s.c));
+    m4.makeTranslation(s.x, s.y + 0.5, s.z);
+    heads.setMatrixAt(i, m4);
+  });
+  bodies.instanceMatrix.needsUpdate = true;
+  if (bodies.instanceColor) bodies.instanceColor.needsUpdate = true;
+  heads.instanceMatrix.needsUpdate = true;
+  group.add(bodies, heads);
 }
 
 /** Four corner floodlight towers with softly glowing heads. */

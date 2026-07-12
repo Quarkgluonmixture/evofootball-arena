@@ -91,20 +91,54 @@ describe('tactical genes influence behavior', () => {
     expect(a.shots).toBeGreaterThan(b.shots);
   });
 
-  it('high pressIntensity + markingAggression team recovers the ball more', () => {
-    // Side-balanced + pooled (§10.5): the raw margin is a few recoveries per
-    // match, so a one-sided six-seed sample measures pitch-side noise.
-    const pressing = neutral();
-    pressing.pressIntensity = 0.95;
-    pressing.markingAggression = 0.9;
-    const passive = neutral();
-    passive.pressIntensity = 0.05;
-    passive.markingAggression = 0.1;
-    const seeds = [11, 42, 99, 1234, 777, 31337, 5150, 2718, 61803, 141421, 173205, 271828];
-    const [a1, b1] = totals(pressing, passive, seeds);
-    const [b2, a2] = totals(passive, pressing, seeds.map((s) => s + 13));
-    expect(a1.tackles + a1.interceptions + a2.tackles + a2.interceptions)
-      .toBeGreaterThan(b1.tackles + b1.interceptions + b2.tackles + b2.interceptions);
+  it('markingAggression wins more tackles; pressIntensity sends the second chaser (focused)', () => {
+    // Was a 24-match recovery-count pool — after the 30.5/31.6 stance
+    // passes the genes' match-level margin (a few recoveries) sank below
+    // pitch noise and the pool measured nothing (failure mode 15: dilution
+    // is fixed by a focused harness, not a bigger soup). Channel 1: the
+    // tackle roll itself, 300 seeded attempts per aggression extreme.
+    const tackleWins = (aggr: number): number => {
+      const g = neutral();
+      g.markingAggression = aggr;
+      let wins = 0;
+      for (let seed = 0; seed < 300; seed++) {
+        const m = new Match({ seed: seed * 3 + 1, teamA: team('A', neutral()), teamB: team('B', g), duration: 120 });
+        while (m.phase !== 'playing') m.step(1 / 60);
+        const carrier = m.teams[0].players[5];
+        carrier.pos = { x: 0, y: 0 };
+        m.ball.owner = carrier;
+        m.ball.pos = { x: 0.4, y: 0 };
+        m.possessionSide = 0;
+        m.kickoffKickGid = null;
+        const tackler = m.teams[1].players[1];
+        tackler.pos = { x: 0.9, y: 0.3 };
+        tackler.tackleCooldown = 0;
+        tackler.stunTimer = 0;
+        m.step(1 / 60); // one step: tryTackles rolls once for the adjacent man
+        if (m.ball.owner !== carrier) wins++;
+      }
+      return wins;
+    };
+    expect(tackleWins(0.9)).toBeGreaterThan(tackleWins(0.1) + 20);
+
+    // Channel 2: pressIntensity's coordination payoff — the pressing side
+    // fields a SECOND chaser where the passive side keeps one.
+    const chasers = (press: number): number => {
+      const g = neutral();
+      g.pressIntensity = press;
+      const m = new Match({ seed: 7, teamA: team('A', neutral()), teamB: team('B', g), duration: 120 });
+      while (m.phase !== 'playing') m.step(1 / 60);
+      const carrier = m.teams[0].players[2];
+      carrier.pos = { x: -20, y: 0 }; // deep in A's half — press territory for B
+      m.ball.owner = carrier;
+      m.ball.pos = { x: -19.6, y: 0 };
+      m.possessionSide = 0;
+      m.kickoffKickGid = null;
+      for (let i = 0; i < 30; i++) m.step(1 / 60); // let the team brain settle
+      return m.teams[1].chasers.size;
+    };
+    expect(chasers(0.95)).toBe(2);
+    expect(chasers(0.05)).toBe(1);
   });
 
   it('direct sides (riskTolerance + tempo) play more through balls than patient sides', () => {

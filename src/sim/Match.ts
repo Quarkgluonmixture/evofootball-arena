@@ -732,22 +732,23 @@ export class Match {
   }
 
   /**
-   * Offside whistle (Phase 29): stat against the offender's team, feed line,
-   * and a free kick to the defenders where the offender stood at the kick.
-   * Runs through the same free-kick restart machinery fouls use.
+   * Offside whistle (Phase 29 → 31.6): stat against the offender's team,
+   * feed line, and the ball to the DEFENDERS' KEEPER as a goal kick.
+   * DELIBERATE law simplification (user call, 2026-07-12): the real award
+   * is an indirect free kick at the offence spot, but at this match scale
+   * that read as "a scrambly free kick somewhere in the defensive third" —
+   * the goal-kick restart (keeper takes it, box clears, the team WAITS for
+   * shape) is the calm reset the flag is FOR. The 🚩 offside flag keeps
+   * the UI honest about why the keeper has the ball.
    */
-  callOffside(offender: Player, spot: V2): void {
+  callOffside(offender: Player, _spot: V2): void {
     const attTeam = this.teams[offender.side];
     attTeam.stats.offsides++;
     const defSide = (1 - offender.side) as Side;
     this.pushEvent('foul', defSide, `Offside — ${offender.name} (${attTeam.info.name})`);
-    // Pulled off the goal line the same way goal-kick spots are: a free kick
-    // ON the defenders' line would wedge the taker against the boundary.
-    const pos = v2(
-      Math.max(-HALF_L + 7, Math.min(HALF_L - 7, spot.x)),
-      Math.max(-HALF_W + 1, Math.min(HALF_W - 1, spot.y)),
-    );
-    this.awardRestart('freeKick', defSide, pos);
+    const goalLineX = -this.teams[defSide].attackDir * HALF_L;
+    const pos = v2(goalLineX - Math.sign(goalLineX) * 7, 0);
+    this.awardRestart('goalKick', defSide, pos);
     this.restart!.offside = true; // the UI labels the dead ball 🚩 offside
   }
 
