@@ -659,6 +659,28 @@ Two play reports, one sweep of UI calls:
   segmented controls, sound moved under 演出. Suites updated: 2D 75
   checks, 3D 37.
 
+## ⭐ Phase 34.2 — the set keeper + the escape carry — **SHIPPED**
+
+Two play reports:
+- **"出手瞬间就做好扑救等球来"**: the ACTION-derived dive pose
+  (GoalkeeperSave) rendered the full stretch from the strike. The
+  keeper now holds a SET crouch (`gkReady`) until the ball is genuinely
+  arriving — launch at ETA ≈ 0.38s (≈ the 0.32s stretch), computed from
+  the ball's closing speed. Choreography only: `p.saving` (a real
+  resolved dive) is never gated; fingerprint untouched by this half.
+- **"球员不会向后带球" (脱压带球)**: a pressured carrier outside the
+  final third with the front door closed used to stop dead (the forward
+  dribble died to the pressure penalty) or drive into bodies. New
+  `escapeCarry` predicate in perception.ts, shared by the SCORER (a
+  Dribble candidate whose pressure penalty barely applies — escaping is
+  the point; half-gated by dribbleBias, it's craft not flair) and the
+  EXECUTOR (target = opponent-repulsion within 8m, tilted lateral so
+  the carry arcs to the safe wing, never into the own box). Null when:
+  front open (>0.55 space), final third (localX>15), pressure <0.45, or
+  boxed in (<0.25 escape space) — the normal forward game is untouched
+  (escape.test.ts pins all five cases). Calibrate both seeds in band
+  (2.46 / 2.57); fingerprint re-baselined `6f251a22…` → `46c88002…`.
+
 ## Phase 35 — players become PEOPLE
 
 **Goal:** small, READABLE individuality on top of attributes.

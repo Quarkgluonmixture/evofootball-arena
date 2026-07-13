@@ -23,6 +23,47 @@ export function pressureAt(pos: V2, opponents: Player[]): number {
 }
 
 /**
+ * 脱压带球 (Phase 34.2, user report "球员不会向后带球"): a pressured
+ * carrier outside the final third whose FORWARD path is closed should
+ * carry the ball AWAY from the press — back or sideways — to buy time,
+ * instead of stopping dead or driving into bodies. Returns the escape
+ * direction (opponent-repulsion within 8m, tilted lateral so the carry
+ * arcs to the safe wing rather than straight into his own goalmouth) and
+ * the space along it, or null when this is not an escape situation.
+ * Shared by the SCORER and the EXECUTOR so the utility and the legs agree.
+ */
+export function escapeCarry(
+  p: Player,
+  attackDir: number,
+  localX: number,
+  opponents: Player[],
+): { dir: V2; space: number } | null {
+  if (localX > 15) return null; // final third: go at them or release, never turn tail
+  const pressure = pressureAt(p.pos, opponents);
+  if (pressure < 0.45) return null;
+  let rx = 0;
+  let ry = 0;
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    const dx = p.pos.x - o.pos.x;
+    const dy = p.pos.y - o.pos.y;
+    const d2 = dx * dx + dy * dy;
+    if (d2 > 64 || d2 < 1e-6) continue;
+    rx += dx / d2;
+    ry += dy / d2;
+  }
+  if (rx === 0 && ry === 0) return null;
+  // Tilt lateral: straight retreats toward the own goal are the last resort.
+  ry += Math.sign(ry || p.pos.y || 1) * 0.35 * Math.hypot(rx, ry);
+  let dir = norm({ x: rx, y: ry });
+  const forward = spaceAhead(p, { x: attackDir, y: 0 }, opponents);
+  if (forward > 0.55) return null; // the front door is open — no need to turn
+  const space = spaceAhead(p, dir, opponents);
+  if (space < 0.25) return null; // boxed in on every side — not an escape
+  return { dir, space };
+}
+
+/**
  * How clean an AERIAL lane is (Phase 28): a lofted ball only cares about
  * opponents close enough to the kicker to charge it down before it rises —
  * everything downfield is flown over. Landing safety is the receiver's

@@ -11,7 +11,7 @@ import type { UtilityScore } from '../sim/types';
 import { aerialSense, kickMisalignment } from '../sim/mechanics';
 import {
   airLaneOpenness, canInterceptPass, interceptBall, laneBlockers, laneOpenness, opennessOf,
-  pressureAt, spaceAhead, timeToPoint,
+  escapeCarry, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
 
 /**
@@ -593,6 +593,23 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       score: sD,
       why: `space ${space.toFixed(2)} · dribbleBias ${g.dribbleBias.toFixed(2)}${openRun && dGoal > 15 ? ' · open run — drive' : ''}${stagnation > 0.01 ? ` · stale ${stagnation.toFixed(2)}` : ''}`,
     });
+    // 脱压带球 (34.2, user report): pressured with the front door closed,
+    // the craft answer is to CARRY it back or sideways and buy an outlet —
+    // not to stop dead (the old forward-only dribble died to the pressure
+    // penalty here and the carrier froze). Escaping pressure is the point,
+    // so the penalty barely applies; basic craft, only half-gated by flair.
+    const esc = escapeCarry(p, team.attackDir, localX, opp.players);
+    if (esc && !openRun) {
+      let sE =
+        (W.dribbleBase + esc.space * W.dribbleSpaceW) *
+        (W.dribbleGeneBase + g.dribbleBias * 0.5 * W.dribbleGeneW);
+      sE *= 1 - pressure * 0.1;
+      cands.push({
+        action: 'Dribble',
+        score: sE,
+        why: `carrying it OUT of the press · escape space ${esc.space.toFixed(2)}`,
+      });
+    }
   }
 
   // --- Keeper throw (Phase 28.3): a keeper who HELD the ball distributes

@@ -107,6 +107,19 @@ export class AnimationSystem {
       else if (p.tackling) anim = 'lunge';
       else if (p.stunned) anim = 'stumble';
     }
+    // The ACTION-derived dive (GoalkeeperSave) holds a SET crouch until the
+    // ball is genuinely arriving (34.2, user report: the keeper hit the full
+    // stretch at the strike and lay waiting for the ball). Choreography
+    // only — the sim's save roll happens elsewhere; `p.saving` (an actual
+    // resolved dive) is never gated. Launch at ETA ≈ the 0.32s stretch.
+    if (anim === 'gkDive' && !p.saving) {
+      const dx = state.ball.x - p.x;
+      const dz = state.ball.z - p.z;
+      const d = Math.hypot(dx, dz) || 1e-6;
+      const closing = -(dx * state.ball.vx + dz * state.ball.vz) / d;
+      const eta = closing > 4 ? d / closing : Infinity;
+      if (eta > 0.38 && d > 1.6) anim = 'gkReady';
+    }
 
     // One-shot kick trigger on entering the kick state.
     if (anim === 'kick' && model.prevAnim !== 'kick') {

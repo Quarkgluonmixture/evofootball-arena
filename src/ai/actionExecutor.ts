@@ -8,7 +8,7 @@ import {
   cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
   supportSpot,
 } from './formations';
-import { interceptBall } from './perception';
+import { escapeCarry, interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
 
 /**
@@ -405,6 +405,17 @@ function dribbleTarget(p: Player, match: Match): V2 {
   const team = match.teams[p.side];
   const opp = match.teams[1 - p.side];
   const localX = team.localX(p.pos.x);
+  // 脱压带球 (34.2): same predicate the scorer used — pressured, front door
+  // closed, outside the final third ⇒ carry it AWAY from the press. Never
+  // into the own box (the calm-reset family lives there).
+  const esc = escapeCarry(p, team.attackDir, localX, opp.players);
+  if (esc) {
+    const t = add(p.pos, scale(esc.dir, 5));
+    const minLocal = -(HALF_L - BOX_DEPTH) + 1;
+    if (team.localX(t.x) < minLocal) t.x = minLocal * team.attackDir;
+    t.y = clamp(t.y, -HALF_W + 1.5, HALF_W - 1.5);
+    return t;
+  }
   const wideDrive = Math.abs(p.pos.y) > 13 && localX > 20 && localX < HALF_L - 7;
   const goal = wideDrive
     ? v2((HALF_L - 8) * team.attackDir, Math.sign(p.pos.y) * (HALF_W - 12))
