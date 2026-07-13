@@ -64,9 +64,21 @@ await page.screenshot({ path: `${OUT}/1-tactical.png` });
 
 // ---- watch the full first match at 32x, polling readability/feedback flags ----
 await page.evaluate(() => window.__evo.app.setSpeed(32));
-const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false };
+const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, reel: false };
 let crowdedShotTaken = false;
 for (let i = 0; i < 60; i++) {
+  // HT/FT auto-highlights (Phase 33): the reel pauses the sim at a whistle.
+  // Verify it rolled (chip + replay), screenshot once, then ⏭ back to live.
+  if (await page.evaluate(() => window.__evo.reelActive())) {
+    if (!seen.reel) {
+      seen.reel = true;
+      await page.waitForTimeout(600);
+      await page.screenshot({ path: `${OUT}/2b-highlight-reel.png` });
+    }
+    await page.evaluate(() => window.__evo.app.skipMatch());
+    await page.waitForTimeout(200);
+    continue;
+  }
   const d = await page.evaluate(() => {
     const t = window.__evo.three();
     return t && { ...t, clock: document.querySelector('#scoreboard .clock')?.textContent ?? '' };
@@ -85,6 +97,14 @@ for (let i = 0; i < 60; i++) {
   await page.waitForTimeout(250);
 }
 check('possession ring appears on ball carriers', seen.possessionRing);
+check('HT/FT highlight reel rolled and ⏭ skipped it (33)', seen.reel, seen.reel ? '2b-highlight-reel.png' : '');
+// Reel verified — switch auto-highlights OFF so the remaining sections
+// (camera framing, selection, replay) poll live play, not surprise reels.
+await page.click('label:has-text("Auto highlights")');
+if (await page.evaluate(() => window.__evo.reelActive())) {
+  await page.evaluate(() => window.__evo.app.skipMatch());
+  await page.waitForTimeout(200);
+}
 check('ball trail appears on kicks', seen.ballTrail);
 check('crowd marker flags a hidden ball', seen.ballMarker, crowdedShotTaken ? 'screenshot 2-crowded.png' : '');
 check('labels declutter in crowds (<10 visible)', seen.declutter);
@@ -97,6 +117,11 @@ if (goalsInMatch1 > 0) {
 }
 
 // ---- broadcast attack framing (next match) ----
+// A reel may still be running off the last whistle — back to live first.
+if (await page.evaluate(() => window.__evo.reelActive())) {
+  await page.evaluate(() => window.__evo.app.skipMatch());
+  await page.waitForTimeout(200);
+}
 await page.click('button:has-text("TV")');
 await page.evaluate(() => window.__evo.app.setSpeed(8));
 let framed = false;
@@ -127,6 +152,11 @@ check('Esc exits 3D cinematic', await page.locator('#left-panel').isVisible());
 check('cinematic state exposed to tooling', (await page.evaluate(() => window.__evo.cinematic())) === false);
 
 // ---- select a player in 3D ----
+// Live play only: a reel replaying moments would put clicks on ghost frames.
+if (await page.evaluate(() => window.__evo.reelActive())) {
+  await page.evaluate(() => window.__evo.app.skipMatch());
+  await page.waitForTimeout(200);
+}
 await page.click('button:has-text("⏸")');
 await page.waitForTimeout(300);
 // A new fixture may have loaded behind the watch loop — clear its clash
@@ -159,6 +189,20 @@ await page.waitForTimeout(1500);
 await page.screenshot({ path: `${OUT}/4-overlays.png` });
 
 // ---- replay: auto-camera, slow-mo, goal feedback ----
+// The live buffer needs at least one jumpable moment first — a young match
+// (reel-skips eat watch time) may not have produced a shot yet. Run on 32×.
+if ((await page.evaluate(() => window.__evo.liveMoments())) === 0) {
+  await page.evaluate(() => window.__evo.app.setSpeed(32));
+  for (let i = 0; i < 40; i++) {
+    if (await page.evaluate(() => window.__evo.reelActive())) {
+      await page.evaluate(() => window.__evo.app.skipMatch());
+    }
+    if ((await page.evaluate(() => window.__evo.liveMoments())) > 0) break;
+    await page.waitForTimeout(250);
+  }
+  await page.click('button:has-text("⏸")');
+  await page.waitForTimeout(200);
+}
 await page.click('button:has-text("🎬 Replay")');
 await page.waitForTimeout(500);
 check('replay opens', (await page.evaluate(() => window.__evo.replayInfo())).active === true);

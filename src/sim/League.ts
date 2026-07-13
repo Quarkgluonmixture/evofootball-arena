@@ -63,6 +63,8 @@ export interface PlayerSeasonLine extends PlayerMatchStats {
   name: string;
   team: string;
   role: string;
+  /** Season average of the 6.0–10.0 match ratings (Phase 33). */
+  avgRating: number;
 }
 
 export interface SeasonAwards {
@@ -71,6 +73,8 @@ export interface SeasonAwards {
   topKeeper: PlayerSeasonLine | null;
   /** Most cards this season (reds weighted double); absent pre-Phase-25. */
   dirtiest?: { slot: number; name: string; yellows: number; reds: number } | null;
+  /** Season MVP — best average match rating (Phase 33); absent on old records. */
+  mvp?: PlayerSeasonLine | null;
 }
 
 /** A season-end retirement, remembered in the season report (Phase 26). */
@@ -110,13 +114,15 @@ export interface SeasonRecord {
   attrMeans?: Record<AttrKey, number>;
   /** Formation-identity counts of the population that PLAYED this season (Phase 31). */
   styleShares?: { atk: Record<string, number>; def: Record<string, number>; scheme: Record<string, number> };
+  /** Longest completed-pass chain of the season (Phase 33 — the tiki-taka record). */
+  longestChain?: { team: string; length: number };
   /** Players who hung up their boots at season end (Phase 26). */
   retirements?: RetirementEntry[];
   /** Cumulative points per slot after each round (slot-indexed, 7 rounds). */
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 8;
+export const SAVE_VERSION = 9;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -386,6 +392,7 @@ export class League {
       a.distance += s.distance;
       a.yellows += s.yellows;
       a.reds += s.reds;
+      if (s.bestPassChain > a.longestChain) a.longestChain = s.bestPassChain;
       const possMin = Math.max(s.possessionTime / 60, 0.25);
       const oppPossMin = Math.max(so.possessionTime / 60, 0.25);
       a.styleSamples.push({
@@ -404,6 +411,8 @@ export class League {
       acc.shots += s.shots;
       acc.saves += s.saves;
       acc.recoveries += s.recoveries;
+      acc.miscontrols += s.miscontrols;
+      acc.rating += s.rating; // season SUM — playerLines divides by matches
     }
 
     // Elo (K=28) — a single ladder across both divisions.
@@ -518,6 +527,7 @@ export class League {
       geneMeans: this.geneMeans(),
       attrMeans: this.attrMeans(),
       styleShares: this.styleShares(),
+      longestChain: this.longestChainRecord(),
       pointsTimeline: this.buildPointsTimeline(),
     };
 
@@ -618,8 +628,18 @@ export class League {
     const lines: PlayerSeasonLine[] = [];
     for (const f of this.franchises) {
       if (division !== undefined && f.division !== division) continue;
+      // Everyone plays every fixture (fixed six-a-side lineups), so the
+      // team's played count IS the player's matches for the rating average.
+      const played = this.table.find((r) => r.slot === f.slot)?.played ?? 0;
       this.playerAgg[f.slot].forEach((s, i) => {
-        lines.push({ ...s, slot: f.slot, name: f.playerNames[i] ?? ROLES[i], team: f.name, role: ROLES[i] });
+        lines.push({
+          ...s,
+          slot: f.slot,
+          name: f.playerNames[i] ?? ROLES[i],
+          team: f.name,
+          role: ROLES[i],
+          avgRating: played > 0 ? s.rating / played : 0,
+        });
       });
     }
     return lines;
@@ -645,12 +665,26 @@ export class League {
         dirtiest = { slot: f.slot, name: f.name, yellows: a.yellows, reds: a.reds };
       }
     }
+    const rated = [...lines].sort(
+      (a, b) => b.avgRating - a.avgRating || b.goals - a.goals || a.slot - b.slot,
+    );
     return {
       topScorers,
       topAssists,
       topKeeper: keepers[0] && keepers[0].saves > 0 ? keepers[0] : null,
       dirtiest,
+      mvp: rated[0] && rated[0].avgRating > 0 ? rated[0] : null,
     };
+  }
+
+  /** The season's tiki-taka crown: longest completed-pass chain (Phase 33). */
+  private longestChainRecord(): { team: string; length: number } | undefined {
+    let best: { team: string; length: number } | undefined;
+    for (const f of this.franchises) {
+      const n = this.agg[f.slot].longestChain;
+      if (n > 0 && (!best || n > best.length)) best = { team: f.name, length: n };
+    }
+    return best;
   }
 
   private geneMeans(): Record<GeneKey, number> {
@@ -834,6 +868,18 @@ export class League {
         f.style ??= deriveTeamStyle(f.genome);
       }
       data.version = 8;
+    }
+    if (data.version === 8) {
+      // v8 -> v9: ratings + pass chains (Phase 33). Pure counters — the
+      // in-progress season starts counting from here, no history fabricated.
+      for (const arr of data.playerAgg as Array<Array<Record<string, unknown>>>) {
+        for (const s of arr) {
+          s.miscontrols ??= 0;
+          s.rating ??= 0;
+        }
+      }
+      for (const a of data.agg as Array<Record<string, unknown>>) a.longestChain ??= 0;
+      data.version = 9;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

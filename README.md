@@ -407,6 +407,18 @@ src/replay/ReplayBuffer.ts  10 Hz RenderState snapshots of watched play;
   banner/net shake replay too. The finished match is archived so you can
   rewatch it after the league moves on. Replays never touch sim state;
   headless sims aren't recorded.
+- **Auto-highlights** (Phase 33, 3D watched matches): at half-time and full
+  time the recorded goals + big saves play back-to-back — 3s lead-in, slow
+  motion, the drama-appropriate camera, a `🎬 4' · 1/3` progress chip. ⏭
+  skips; a presentation checkbox turns the reels off. The FT reel skips
+  whatever the HT reel already showed.
+- **Ratings & the tiki-taka line** (Phase 33): every player gets a live
+  6.0–10.0 match rating (goals/assists/saves/recoveries vs miscontrols,
+  plus the result) — on the player card, sealed at the whistle, `⭐ Man of
+  the match` in the FT feed, season-averaged into a 🌟 MVP award. Chains of
+  6+ completed passes earn one `🎼 N-pass move!` feed line (~2/match,
+  measured) and feed the season's longest-chain record. Tap the scoreboard
+  (or the 3D score bug) any time to pop the two teams' tactical-DNA clash.
 - If WebGL init fails the app stays in 2D with a message; leagues and headless
   tools never depend on WebGL (enforced by an import-boundary test).
 - Switching back to 2D disposes all GPU resources; 3D re-initializes lazily.
@@ -479,6 +491,7 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   plus cup doubles, Challenger cup runs, giant slayings and revenge ties —
   `sim/records.ts`, unit-tested), per-division points races, Premier awards —
   Golden Boot / Playmaker / Golden Glove from **per-player season stats**,
+  the 🌟 Season MVP (best average match rating, Phase 33),
   plus the Dirtiest team (most cards, Phase 25) —
   and Challenger top scorers. Champions history lists every season's winners
   (pre-pyramid seasons are labeled "single-division era", pre-cup seasons
@@ -504,7 +517,8 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
   per league slot — cell shading shows the division each season, with
   🏆/🥇/🏅/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
-- Save format v8 (v6 added cards, v7 careers, v8 the second winger + the
+- Save format v9 (v6 added cards, v7 careers, v9 ratings + pass-chain
+  counters, v8 the second winger + the
   club's tactical identity; v1–v7 saves chain-migrate in place — an old
   save finishes its current season cup-less and joins the cup next season,
   card tallies start at zero, squads get seeded ages with blank career

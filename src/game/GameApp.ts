@@ -12,6 +12,7 @@ import {
 } from '../render3d/RenderStateAdapter';
 import { ShootoutTheater } from '../render3d/ShootoutTheater';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
+import { momentWindow, pickHighlights } from '../replay/highlights';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
 import { CUP_ROUND_NAMES, resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
@@ -63,6 +64,8 @@ export class GameApp implements GameActions {
   private leagueScreen!: LeagueScreen;
   private ceremony!: RebirthCeremony;
   private clash!: ClashBanner;
+  /** Pre-match clash auto-hides at kickoff; scoreboard-opened ones are pinned. */
+  private clashAutoHide = true;
   /** Pause state to restore when the auto-shown rebirth ceremony closes. */
   private ceremonyPrevPaused = false;
   private statusEl!: HTMLElement;
@@ -103,6 +106,14 @@ export class GameApp implements GameActions {
     source: null as ReplayBuffer | null,
     events: [] as MatchEvent[],
   };
+
+  // ---- highlight reel (Phase 33): HT/FT moments, auto-played ----
+  private autoHighlights = true;
+  private reel: { moments: MatchEvent[]; idx: number; endT: number; prevCam: CameraMode; prevPaused: boolean } | null = null;
+  private reelBug!: HTMLDivElement;
+  /** HT reel already covered everything up to this sim time (per match). */
+  private reelShownUpTo = -1;
+  private htReelDone = false;
 
   // ---- shootout theater (Phase 24): kick-by-kick pens presentation ----
   private theater: ShootoutTheater | null = null;
@@ -180,6 +191,12 @@ export class GameApp implements GameActions {
       onJump: (ev) => this.replayJump(ev),
       onExit: () => this.exitReplay(),
     });
+    // Highlight-reel chip (Phase 33): tells the viewer this is a replay, not
+    // live play, and which moment of how many is running.
+    this.reelBug = el('div') as HTMLDivElement;
+    this.reelBug.className = 'reel-bug hidden';
+    stage.appendChild(this.reelBug);
+
     // Cinematic mode chrome: an exit control (cinematic must always be
     // escapable) and a minimal 2D score bug (3D has its own broadcast bug).
     const cineExit = button(t('✕ exit cinematic'), () => this.setCinematic(false));
@@ -187,6 +204,7 @@ export class GameApp implements GameActions {
     stage.appendChild(cineExit);
     this.cineBug = el('div') as HTMLDivElement;
     this.cineBug.className = 'score-bug cine-bug hidden';
+    this.cineBug.addEventListener('click', () => this.toggleClash());
     stage.appendChild(this.cineBug);
     window.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape' && this.cinematic) this.setCinematic(false);
@@ -262,6 +280,11 @@ export class GameApp implements GameActions {
       debugShootout: () => this.debugShootout(),
       showCeremony: () => this.showCeremony(),
       clashVisible: () => this.clash.isVisible,
+      reelActive: () => this.reel !== null,
+      liveMoments: () =>
+        this.match
+          ? this.match.events.filter((e) => e.type === 'goal' || e.type === 'shot' || e.type === 'save').length
+          : 0,
     };
 
     // Default view is 3D (Phase 27.5, user request) — setViewMode falls back
@@ -291,6 +314,16 @@ export class GameApp implements GameActions {
       if (this.acc > DT * maxSteps) this.acc = 0; // drop debt we'll never repay
     }
 
+    // Highlight reel (Phase 33): advance to the next moment, and catch the
+    // half-time whistle of a watched match to roll the H1 moments.
+    if (this.reel && this.replay.active && this.replay.t >= this.reel.endT) this.nextReelMoment();
+    if (this.match && !this.match.finished && this.match.phase === 'halftime' && !this.htReelDone) {
+      this.htReelDone = true;
+      const shownUpTo = this.match.simTime;
+      const evs = this.match.events.filter((e) => e.type === 'goal' || e.type === 'save');
+      if (this.maybeStartReel(this.buffer, evs, -1)) this.reelShownUpTo = shownUpTo;
+    }
+
     if (this.viewMode === '3d' && this.three) {
       this.three.update(this.currentRenderState(dtReal), dtReal, this.flags, this.selectedGid);
     } else {
@@ -310,8 +343,10 @@ export class GameApp implements GameActions {
       this.panelTimer = 0;
       if (this.match) this.right.updateDynamic(this.match, this.selectedGid);
       // The pre-match clash is a broadcast graphic, not a modal: it clears
-      // itself once the match is properly under way.
-      if (this.clash.isVisible && this.match && this.match.simTime > 10) this.clash.hide();
+      // itself once the match is properly under way (manual opens are pinned).
+      if (this.clash.isVisible && this.clashAutoHide && this.match && this.match.simTime > 10) {
+        this.clash.hide();
+      }
       this.updateCineBug();
     }
   }
@@ -383,10 +418,35 @@ export class GameApp implements GameActions {
     this.left.updateHeader(this.match, this.league);
     this.selectedGid = null;
     this.acc = 0;
+    this.htReelDone = false;
+    this.reelShownUpTo = -1;
     // The clash of identities this fixture is (32.5) — tap or kickoff clears it.
+    this.clashAutoHide = true;
     this.clash.show(
       this.match,
       this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
+    );
+  }
+
+  /**
+   * Toggle the tactical-DNA clash for the current match (user request,
+   * Phase 33): the scoreboard is the button, any time — a manual open is
+   * pinned (no kickoff auto-hide), a tap on the banner still closes it.
+   */
+  toggleClash(): void {
+    if (this.clash.isVisible) {
+      this.clash.hide();
+      return;
+    }
+    if (!this.match) return;
+    this.clashAutoHide = false;
+    this.clash.show(
+      this.match,
+      this.exhibition || !this.fixture
+        ? 'Friendly'
+        : this.fixture.cup
+          ? `${CUP_ROUND_NAMES[this.fixture.round]}`
+          : this.league.roundLabel(),
     );
   }
 
@@ -424,12 +484,96 @@ export class GameApp implements GameActions {
         }
       }
     }
+    // FT highlights (Phase 33): what the HT reel already showed stays shown.
+    const reelMinT = this.reelShownUpTo;
     this.league.applyResult(this.fixture, this.match.getResult());
     this.afterFixtureApplied();
     if (!this.autoContinue) {
       this.paused = true;
       this.left.setSpeedUI(this.paused, this.speed);
     }
+    // The archive holds the finished match; the reel plays over the loaded
+    // next fixture and hands control back where it found it.
+    if (this.archive) this.maybeStartReel(this.archive.buffer, this.archive.events, reelMinT);
+  }
+
+  /* ---------------- highlight reel (Phase 33) ---------------- */
+
+  /**
+   * Auto-play recorded moments (goals + big saves) back-to-back. Presentation
+   * only: frames come from the ReplayBuffer, cameras from cameraForEvent,
+   * slow-mo for the drama, ⏭ skips. 3D watched matches only — headless sims
+   * record nothing and 2D has no cinematic cameras. Returns whether it ran.
+   */
+  private maybeStartReel(source: ReplayBuffer | null, events: MatchEvent[], minT: number): boolean {
+    if (!this.autoHighlights || this.viewMode !== '3d' || !this.three) return false;
+    if (this.replay.active || this.theater || this.reel || this.ceremony.isVisible) return false;
+    if (!source || !source.hasContent) return false;
+    const range = source.range();
+    if (!range) return false;
+    const moments = pickHighlights(events, minT);
+    if (moments.length === 0) return false;
+    this.clash.hide(); // the reel owns the stage; the clash returns after
+    this.reel = { moments, idx: -1, endT: 0, prevCam: this.three.cameraMode, prevPaused: this.paused };
+    this.paused = true;
+    this.left.setSpeedUI(true, this.speed);
+    this.replay = { active: true, playing: true, t: range[0], speed: 0.5, source, events: [] };
+    this.feed.pushSystem('🎬 Highlights (⏭ skips).');
+    this.nextReelMoment();
+    return true;
+  }
+
+  private nextReelMoment(): void {
+    const reel = this.reel;
+    if (!reel || !this.three || !this.replay.source) return;
+    reel.idx++;
+    if (reel.idx >= reel.moments.length) {
+      this.endReel();
+      return;
+    }
+    const range = this.replay.source.range()!;
+    const ev = reel.moments[reel.idx];
+    const w = momentWindow(ev, range);
+    reel.endT = w.to;
+    this.replay.t = w.from;
+    this.replay.speed = w.speed;
+    this.replay.playing = true;
+    if (ev.type === 'goal' || ev.type === 'shot' || ev.type === 'save' || ev.type === 'interception') {
+      this.three.setCameraMode(cameraForEvent(ev.type));
+    }
+    this.three.resetFx();
+    this.reelBug.textContent = `🎬 ${ev.minute}' · ${reel.idx + 1}/${reel.moments.length}`;
+    this.reelBug.classList.remove('hidden');
+  }
+
+  private endReel(): void {
+    const reel = this.reel;
+    if (!reel) return;
+    this.reel = null;
+    this.reelBug.classList.add('hidden');
+    this.replay.active = false;
+    this.replay.playing = false;
+    this.replay.source = null;
+    if (this.three) {
+      this.three.setCameraMode(reel.prevCam);
+      this.left.setViewUI(this.viewMode, reel.prevCam);
+      if (this.match) this.three.attach(buildRenderTheme(this.match));
+    }
+    this.paused = reel.prevPaused;
+    this.left.setSpeedUI(this.paused, this.speed);
+    // An FT reel covered the next fixture's pre-match clash — bring it back.
+    if (this.match && this.match.simTime < 10 && this.fixture) {
+      this.clashAutoHide = true;
+      this.clash.show(
+        this.match,
+        this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
+      );
+    }
+  }
+
+  setAutoHighlights(v: boolean): void {
+    this.autoHighlights = v;
+    if (!v) this.endReel();
   }
 
   /* ---------------- shootout theater (Phase 24) ---------------- */
@@ -625,6 +769,10 @@ export class GameApp implements GameActions {
 
   skipMatch(): void {
     if (this.busy) return;
+    if (this.reel) {
+      this.endReel(); // ⏭ during highlights: back to live
+      return;
+    }
     if (this.theater) {
       this.finishTheater(); // ⏭ during a shootout: jump to the result
       return;
@@ -977,6 +1125,7 @@ export class GameApp implements GameActions {
             this.selectedGid = this.selectedGid === gid ? null : gid;
           };
           this.three.onFxEvent = (type) => this.sound.play(type);
+          this.three.onScoreBugTap = () => this.toggleClash();
           this.three.setFxQuality(this.fxQuality);
           if (this.match) this.three.attach(buildRenderTheme(this.match));
         }
@@ -1076,6 +1225,11 @@ export class GameApp implements GameActions {
   }
 
   private exitReplay(): void {
+    if (this.reel) {
+      // A reel is a replay too — anything that tears replay down ends it.
+      this.endReel();
+      return;
+    }
     if (!this.replay.active) return;
     this.replay.active = false;
     this.replay.source = null;

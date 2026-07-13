@@ -6,7 +6,7 @@ import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
+import { TEAM_SIZE, emptyPlayerStats, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 function makeTeam(name: string, seed: number): TeamInfo {
@@ -230,7 +230,8 @@ describe('save migrations preserve old saves', () => {
     }
     for (const arr of loaded.playerAgg) {
       expect(arr).toHaveLength(TEAM_SIZE);
-      expect(arr[4]).toEqual({ goals: 0, assists: 0, shots: 0, saves: 0, recoveries: 0 });
+      // Today's empty shape — v9 added rating/miscontrol zeros (Phase 33).
+      expect(arr[4]).toEqual(emptyPlayerStats());
     }
     if (loaded.cup) for (const g of loaded.cup.playerGoals) expect(g).toHaveLength(TEAM_SIZE);
 

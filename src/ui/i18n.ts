@@ -195,6 +195,12 @@ const ZH: Record<string, string> = {
   '✕ Exit replay': '✕ 退出回放',
   'exit replay ✕': '退出回放 ✕',
 
+  // ---- the watching experience (Phase 33) ----
+  rating: '评分',
+  'Tap for the tactical DNA clash': '点按查看战术基因对撞',
+  'Longest passing move': '最长传递配合',
+  '🎬 Auto highlights (HT/FT)': '🎬 自动集锦(半场/全场)',
+
   // ---- rebirth ceremony & tactical DNA (Phase 32.5) ----
   'Rebirth ceremony': '重生仪式',
   'The pyramid turns over: the weakest Challenger clubs die, and champions breed their successors.':

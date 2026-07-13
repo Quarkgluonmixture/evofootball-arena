@@ -42,6 +42,8 @@ export interface GameActions {
   setAutoContinue(v: boolean): void;
   setFlag(key: keyof UiFlags, v: boolean): void;
   toggleLeagueScreen(): void;
+  /** Pop the tactical-DNA clash for the current match (Phase 33: the scoreboard is the button). */
+  toggleClash(): void;
   saveNow(): void;
   loadNow(): void;
   newLeague(seedText: string): void;
@@ -53,6 +55,8 @@ export interface GameActions {
   setSound(v: boolean): void;
   /** Presentation (Phase 15): all real controls, all optional. */
   setCinematic(v: boolean): void;
+  /** HT/FT auto-highlight reels (Phase 33) — on by default, ⏭ skips. */
+  setAutoHighlights(v: boolean): void;
   setFxQuality(q: FxQuality): void;
   takeScreenshot(): void;
   copyShareSummary(): void;

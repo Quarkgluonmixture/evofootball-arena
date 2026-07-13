@@ -93,6 +93,8 @@ export interface SeasonAggregates {
   /** Cards picked up over the season (Phase 25) — feeds the dirtiest-team award. */
   yellows: number;
   reds: number;
+  /** Longest completed-pass chain in one move this season (Phase 33). */
+  longestChain: number;
   /** Per-match style samples for consistency scoring. */
   styleSamples: Array<{ passVol: number; pressVol: number }>;
 }
@@ -114,5 +116,6 @@ export const emptyAggregates = (): SeasonAggregates => ({
   distance: 0,
   yellows: 0,
   reds: 0,
+  longestChain: 0,
   styleSamples: [],
 });

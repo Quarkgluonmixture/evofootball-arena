@@ -59,6 +59,11 @@ export class LeftPanel {
     this.clock = el('div', 'clock', "0'");
     this.meta = el('div', 'muted', '');
     scoreboard.append(names, this.score, this.clock, this.meta);
+    // The whole scoreboard is the tale-of-the-tape button (Phase 33, user
+    // request): tap it any time to pop the two teams' tactical DNA.
+    scoreboard.classList.add('clickable');
+    scoreboard.title = t('Tap for the tactical DNA clash');
+    scoreboard.addEventListener('click', () => actions.toggleClash());
 
     // Match control (29.1, user request): the 1×/2×/8×/32× preset row is
     // gone — watching is watching (1×), everything faster is ⏭ skip or the
@@ -118,6 +123,9 @@ export class LeftPanel {
     const presRow2 = el('div', 'row');
     presRow2.appendChild(button(t('📋 Share summary'), () => actions.copyShareSummary()));
     presSec.appendChild(presRow2);
+    // HT/FT auto-highlights (Phase 33): watched 3D matches replay their
+    // goals + big saves at the whistles; ⏭ skips a running reel.
+    presSec.appendChild(checkbox(t('🎬 Auto highlights (HT/FT)'), true, (v) => actions.setAutoHighlights(v)));
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
     for (const [q, label] of FX_LABELS) {

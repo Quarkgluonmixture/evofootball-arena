@@ -476,6 +476,13 @@ export class LeagueScreen {
       }
     }
 
+    // The season's tiki-taka crown (Phase 33).
+    if (rec.longestChain) {
+      this.root.appendChild(
+        el('div', 'history-entry', `🎼 ${t('Longest passing move')}: ${rec.longestChain.team} — ${rec.longestChain.length}`),
+      );
+    }
+
     // Retirements (Phase 26) — absent on records from before careers existed.
     if (rec.retirements && rec.retirements.length > 0) {
       this.root.appendChild(el('h2', '', t('🎓 Retirements')));
@@ -516,6 +523,10 @@ export class LeagueScreen {
     mk('⚽ Golden Boot', rec.awards!.topScorers, (l) => `${l.name} (${l.team}) — ${l.goals}g ${l.assists}a`);
     mk('🅰️ Playmaker', rec.awards!.topAssists, (l) => `${l.name} (${l.team}) — ${l.assists}a ${l.goals}g`);
     mk('🧤 Golden Glove', rec.awards!.topKeeper ? [rec.awards!.topKeeper] : [], (l) => `${l.name} (${l.team}) — ${l.saves} saves`);
+    // Season MVP (Phase 33) — absent on records from before ratings existed.
+    if (rec.awards!.mvp) {
+      mk('🌟 Season MVP', [rec.awards!.mvp], (l) => `${l.name} (${l.team}, ${l.role}) — ${t('rating')} ${l.avgRating.toFixed(2)}`);
+    }
     // Cards arrived in Phase 25 — records from older saves honestly have none.
     const dirty = rec.awards!.dirtiest;
     if (dirty) {
@@ -707,6 +718,8 @@ export class LeagueScreen {
     let peakElo: { v: number; who: string; gen: number } | null = null;
     let bestScorer: { v: number; who: string; gen: number } | null = null;
     let bestKeeper: { v: number; who: string; gen: number } | null = null;
+    let bestChain: { v: number; who: string; gen: number } | null = null;
+    let bestMvp: { v: number; who: string; gen: number } | null = null;
     for (const r of h) {
       const top = r.table[0];
       if (!bestPts || top.pts > bestPts.v) bestPts = { v: top.pts, who: top.name, gen: r.generation };
@@ -725,12 +738,21 @@ export class LeagueScreen {
       if (glove && (!bestKeeper || glove.saves > bestKeeper.v)) {
         bestKeeper = { v: glove.saves, who: `${glove.name} (${glove.team})`, gen: r.generation };
       }
+      if (r.longestChain && (!bestChain || r.longestChain.length > bestChain.v)) {
+        bestChain = { v: r.longestChain.length, who: r.longestChain.team, gen: r.generation };
+      }
+      const mvp = r.awards?.mvp;
+      if (mvp && (!bestMvp || mvp.avgRating > bestMvp.v)) {
+        bestMvp = { v: mvp.avgRating, who: `${mvp.name} (${mvp.team})`, gen: r.generation };
+      }
     }
     if (bestPts) rows.push(`Most points: <b>${bestPts.v}</b> — ${bestPts.who} (S${bestPts.gen})`);
     if (bestGd) rows.push(`Best goal difference: <b>${bestGd.v > 0 ? '+' : ''}${bestGd.v}</b> — ${bestGd.who} (S${bestGd.gen})`);
     if (peakElo) rows.push(`Peak Elo: <b>${peakElo.v}</b> — ${peakElo.who} (S${peakElo.gen})`);
     if (bestScorer) rows.push(`Most goals: <b>${bestScorer.v}</b> — ${bestScorer.who} (S${bestScorer.gen})`);
     if (bestKeeper) rows.push(`Most saves: <b>${bestKeeper.v}</b> — ${bestKeeper.who} (S${bestKeeper.gen})`);
+    if (bestChain) rows.push(`🎼 Longest passing move: <b>${bestChain.v}</b> — ${bestChain.who} (S${bestChain.gen})`);
+    if (bestMvp) rows.push(`🌟 Best season rating: <b>${bestMvp.v.toFixed(2)}</b> — ${bestMvp.who} (S${bestMvp.gen})`);
     for (const r of rows) {
       const div = el('div', 'history-entry');
       div.innerHTML = r;

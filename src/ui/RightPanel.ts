@@ -1,6 +1,7 @@
 import { GENE_KEYS } from '../evolution/genome';
 import { ATTR_KEYS } from '../evolution/playerGenome';
 import type { Match } from '../sim/Match';
+import { matchRating } from '../sim/ratings';
 import { bar, colorHex, el } from './dom';
 import { t } from './i18n';
 import { XgChart } from './XgChart';
@@ -178,6 +179,16 @@ export class RightPanel {
     this.playerCard.appendChild(head);
 
     this.playerCard.appendChild(el('div', '', `${t('action:')} ${p.action.type}`));
+
+    // Live match rating (Phase 33): same fold the FT rating uses, read
+    // against the score as it stands — it settles into the official number
+    // at the whistle.
+    const s = match.playerStats[p.gid];
+    const diff = (match.score[p.side] ?? 0) - (match.score[1 - p.side] ?? 0);
+    const live = match.finished ? s.rating : matchRating(s, diff);
+    this.playerCard.appendChild(
+      el('div', '', `⭐ ${t('rating')} ${live.toFixed(1)}${s.goals > 0 ? ` · ${'⚽'.repeat(Math.min(s.goals, 4))}` : ''}`),
+    );
 
     const stamRow = el('div', 'row');
     stamRow.appendChild(el('span', 'muted', `${t('stamina')} ${(p.stamina * 100).toFixed(0)}%`));

@@ -759,6 +759,8 @@ only caught by eyes on the PNGs.
 | Long-shot appetite | `longShotW` (default 0.3) × shootBias × stagnation, 16–30m gate in `decideCarrier` |
 | GK vs dribblers | smother reach 1.3m / pWin base 0.5 / clumsy-foul 0.12 rush · 0.03 standing in `trySmother`; GK overlap anchor in `resolveOverlaps` |
 | Foul / penalty rate | `foulP = 0.06 + markingAggression·0.1` per failed tackle in `mechanics.tryTackles`; penalty share follows box tackle volume |
+| Feed 🎼 pass-move lines (Phase 33) | `PASS_MOVE_FEED_MIN` in `Match` (6 ⇒ ~2.1 lines/match, 8 ⇒ 0.75 — measured); the chain itself finalizes in `endPassMove` (turnover/dead ball/shot/clear) |
+| Match ratings (Phase 33) | weights in `sim/ratings.ts` (goal 1.2 · assist 0.8 · save 0.25 · recovery 0.1 · miscontrol −0.1 · win 0.3, base 6.5, clamp [6,10]); written once at `endMatch` — presentation reads, sim never does |
 | Card rate | `yellowP = 0.16 + markingAggression·0.12` per foul + straight-red 0.012 in `Match.maybeCard` (~0.7🟨/0.05🟥 per match since the 27.1 spacing pass cut tackle volume; calibrate prints both) |
 | Direct play (through balls ~22/match) | `throughBase/OpenW/BehindW` policy defaults; riskTolerance/tempo gates + the multiplicative openness gate `0.4 + 0.6·(lane/0.45)` and landing-judged chips (30.5) in `decideCarrier`; runner count in `assignRunners`; run depth clamp in `runTarget` |
 | Restart pace / dead-ball share | `RESTART_MIN_SETUP` (1 s), `RESTART_CLEARANCE` (6 m), `RESTART_TIMEOUT` failsafe (6 s) |

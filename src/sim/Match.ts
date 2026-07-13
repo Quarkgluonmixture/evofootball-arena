@@ -17,12 +17,20 @@ import {
 } from './constants';
 import * as mech from './mechanics';
 import { Player } from './Player';
+import { matchRating } from './ratings';
 import { Team } from './Team';
 import {
   TEAM_SIZE, emptyPlayerStats,
   type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
   type CornerRoutine, type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
+
+/**
+ * Feed threshold for 🎼 pass-move lines (Phase 33). Measured (20-match
+ * probe): 6 ⇒ ~2.1 lines/match, 8 ⇒ ~0.75 — six keeps the line an event
+ * without feed spam (failure mode 7); `bestPassChain` records every chain.
+ */
+const PASS_MOVE_FEED_MIN = 6;
 
 export interface PendingPass {
   side: Side;
@@ -131,6 +139,8 @@ export class Match {
   /** The corner routine the restart handed to the kick (Phase 31). */
   restartKickRoutine: CornerRoutine | null = null;
   pendingPass: PendingPass | null = null;
+  /** Consecutive completed passes in the current move, per side (Phase 33). */
+  private passChain: [number, number] = [0, 0];
   pendingShot: PendingShot | null = null;
   shotLog: ShotLogEntry[] = [];
   /** Gid of the most recent goalscorer — passive, for celebration visuals only. */
@@ -195,6 +205,22 @@ export class Match {
 
   pushEvent(type: EventType, side: Side | -1, text: string): void {
     this.events.push({ t: this.simTime, minute: this.minute(), type, side, text });
+  }
+
+  /**
+   * A passing move ends (Phase 33): turnover, dead ball, shot or clear.
+   * Long chains earn ONE feed line (failure mode 7 — the threshold keeps
+   * them rare) and the match best feeds the season's longest-chain record.
+   */
+  endPassMove(side: Side): void {
+    const n = this.passChain[side];
+    if (n === 0) return;
+    this.passChain[side] = 0;
+    const team = this.teams[side];
+    if (n > team.stats.bestPassChain) team.stats.bestPassChain = n;
+    if (n >= PASS_MOVE_FEED_MIN) {
+      this.pushEvent('info', side, `🎼 ${n}-pass move by ${team.info.name}!`);
+    }
   }
 
   step(dt: number): void {
@@ -313,6 +339,8 @@ export class Match {
     // first-half added time no longer eats into the second half.
     if (this.half === 1 && this.simTime >= this.duration / 2) {
       if (this.refBlowsNow(this.duration / 2)) {
+        this.endPassMove(0);
+        this.endPassMove(1);
         this.phase = 'halftime';
         this.phaseTimer = 1.2;
         this.stoppageAnnounced = false;
@@ -482,6 +510,7 @@ export class Match {
     if (pass) {
       if (p.side === pass.side && p.gid !== pass.passerGid) {
         team.stats.passesCompleted++;
+        this.passChain[p.side]++;
         this.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: this.simTime };
         // 一脚出球 (Phase 31.9, user request): a PRESSURED intended receiver
         // plays the ball as it comes — decide now, and a pass kicked inside
@@ -518,6 +547,8 @@ export class Match {
     }
 
     if (this.possessionSide !== p.side) {
+      // The dispossessed side's passing move is over (Phase 33).
+      this.endPassMove((1 - p.side) as Side);
       team.possessionGainedAt = this.simTime;
       team.resetProgress(team.localX(ball.pos.x));
       this.possessionSide = p.side;
@@ -629,6 +660,8 @@ export class Match {
 
   private onGoal(side: Side): void {
     const team = this.teams[side];
+    // The move's feed line lands BEFORE the goal line it produced (Phase 33).
+    this.endPassMove(side);
     this.score[side]++;
     team.stats.goals++;
     this.markShotOutcome(this.pendingShot?.side === side ? 'goal' : 'miss');
@@ -871,6 +904,9 @@ export class Match {
     this.markShotOutcome('miss');
     this.pendingShot = null;
     this.pendingPass = null;
+    // The whistle ends any passing move (Phase 33).
+    this.endPassMove(0);
+    this.endPassMove(1);
     // A dead ball ends any corner crash still running (Phase 31.9).
     this.teams[0].cornerCrash = null;
     this.teams[1].cornerCrash = null;
@@ -1316,6 +1352,8 @@ export class Match {
   private endMatch(): void {
     if (this.finished) return;
     this.markShotOutcome('miss'); // a shot in flight at the whistle didn't go in
+    this.endPassMove(0);
+    this.endPassMove(1);
     // Fold per-player physical output into team stats.
     for (const team of this.teams) {
       for (const p of team.players) {
@@ -1323,6 +1361,12 @@ export class Match {
         team.stats.staminaSpent += p.staminaSpent;
       }
     }
+    // Match ratings (Phase 33): written once, at the whistle — MatchResult
+    // carries them, so the League and the feed read the same numbers.
+    const diff = this.score[0] - this.score[1];
+    this.playerStats.forEach((s, gid) => {
+      s.rating = matchRating(s, gid < TEAM_SIZE ? diff : -diff);
+    });
     this.phase = 'fulltime';
     this.finished = true;
     this.pushEvent(
@@ -1330,5 +1374,13 @@ export class Match {
       -1,
       `Full time: ${this.teams[0].info.name} ${this.score[0]}–${this.score[1]} ${this.teams[1].info.name}`,
     );
+    // Man of the match: best rating, goals then earlier gid break ties.
+    let motm = 0;
+    this.playerStats.forEach((s, gid) => {
+      const b = this.playerStats[motm];
+      if (s.rating > b.rating || (s.rating === b.rating && s.goals > b.goals)) motm = gid;
+    });
+    const star = this.allPlayers[motm];
+    this.pushEvent('info', star.side, `⭐ Man of the match: ${star.name} (${this.playerStats[motm].rating.toFixed(1)})`);
   }
 }

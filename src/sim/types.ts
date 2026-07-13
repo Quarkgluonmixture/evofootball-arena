@@ -320,6 +320,8 @@ export interface TeamMatchStats {
   possessionTime: number;
   distance: number;
   staminaSpent: number;
+  /** Longest chain of consecutive completed passes in one move (Phase 33). */
+  bestPassChain: number;
 }
 
 export const emptyStats = (): TeamMatchStats => ({
@@ -354,6 +356,7 @@ export const emptyStats = (): TeamMatchStats => ({
   possessionTime: 0,
   distance: 0,
   staminaSpent: 0,
+  bestPassChain: 0,
 });
 
 /** Per-player counters for awards/records — passive, never read by the sim. */
@@ -363,6 +366,14 @@ export interface PlayerMatchStats {
   shots: number;
   saves: number;
   recoveries: number;
+  /** First touches that got away (Phase 33 — the rating's malus side). */
+  miscontrols: number;
+  /**
+   * Match rating on the 6.0–10.0 scale, written once at full time
+   * (`sim/ratings.ts`). In `League.playerAgg` this field accumulates the
+   * season SUM — divide by matches played for the average.
+   */
+  rating: number;
 }
 
 export const emptyPlayerStats = (): PlayerMatchStats => ({
@@ -371,6 +382,8 @@ export const emptyPlayerStats = (): PlayerMatchStats => ({
   shots: 0,
   saves: 0,
   recoveries: 0,
+  miscontrols: 0,
+  rating: 0,
 });
 
 export interface MatchResult {

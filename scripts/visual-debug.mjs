@@ -83,6 +83,19 @@ await page.click('#clash-banner');
 await page.waitForTimeout(200);
 check('clash banner dismisses on tap', !(await page.evaluate(() => window.__evo.clashVisible())), '');
 
+// Phase 33 (user request): the scoreboard is a button — tap to pop the
+// tactical DNA clash any time, tap again to close. Manual opens are pinned.
+const feedAfterSkip = await page.textContent('#event-feed');
+check('FT feed names the man of the match (33)', feedAfterSkip.includes('Man of the match'), '');
+await page.click('#scoreboard');
+await page.waitForTimeout(200);
+check('scoreboard tap re-opens the clash (33)', await page.evaluate(() => window.__evo.clashVisible()), '');
+await page.screenshot({ path: `${OUT}/2c-clash-toggle.png` });
+await page.click('#scoreboard');
+await page.waitForTimeout(200);
+check('scoreboard tap closes it again', !(await page.evaluate(() => window.__evo.clashVisible())), '');
+check('auto-highlights toggle present (33)', (await page.locator('label:has-text("Auto highlights")').count()) === 1, '');
+
 for (const label of ['Formation targets', 'Marking lines', 'Press assignments', 'Ball heatmap']) {
   await page.click(`label:has-text("${label}")`);
 }
@@ -106,6 +119,7 @@ await page.waitForTimeout(400);
 const cardTxt = await page.textContent('#player-card');
 check('player click-to-select works', cardTxt.includes('action:'), cardTxt.slice(0, 40));
 check('player card shows attributes', cardTxt.includes('finishing'), '');
+check('player card shows the live match rating (33)', /⭐ rating \d+\.\d/.test(cardTxt), '');
 check('player card explains utility', cardTxt.includes('utility scores:'), '');
 await page.screenshot({ path: `${OUT}/4-player-selected.png` });
 
@@ -159,6 +173,10 @@ await page.waitForTimeout(400);
 check('cinematic hides the panel chrome', !(await page.locator('#left-panel').isVisible()), '');
 check('cinematic shows the 2D score bug', await page.locator('.cine-bug').isVisible(), '');
 check('cinematic exit control is present', await page.locator('.cinematic-exit').isVisible(), '');
+// Desktop cinematic fills the screen (user request, 33): the canvas scales
+// past its 960px natural width to fit-contain the viewport.
+const cineBox = await page.locator('#stage canvas').boundingBox();
+check('cinematic canvas fills the desktop viewport (33)', cineBox !== null && cineBox.width > 1300, `w=${cineBox?.width}`);
 await page.screenshot({ path: `${OUT}/11-cinematic-2d.png` });
 await page.click('.cinematic-exit');
 await page.waitForTimeout(300);

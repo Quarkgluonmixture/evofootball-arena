@@ -101,7 +101,9 @@ aside {
   position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
   display: flex; align-items: center; gap: 7px;
   background: rgba(10, 16, 30, 0.88); border: 1px solid var(--border);
-  border-radius: 7px; padding: 4px 12px; z-index: 5; pointer-events: none;
+  border-radius: 7px; padding: 4px 12px; z-index: 5;
+  /* Clickable since Phase 33: the score bug pops the tactical-DNA clash. */
+  pointer-events: auto; cursor: pointer;
   font-weight: 700; letter-spacing: 1px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
@@ -274,6 +276,20 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
 .radar-cap { font-size: 10px; text-align: center; margin-top: -4px; }
 .family-tree { font-size: 11px; }
 
+/* Highlight-reel chip (Phase 33): "this is a replay" + progress. */
+.reel-bug {
+  position: absolute; top: 12px; left: 12px; z-index: 6;
+  background: rgba(8, 12, 22, 0.9); border: 1px solid var(--border);
+  border-radius: 7px; padding: 4px 10px; font-size: 12px; font-weight: 700;
+  color: var(--accent); letter-spacing: 0.5px; pointer-events: none;
+  animation: feed-in 0.25s ease-out;
+}
+.reel-bug.hidden { display: none; }
+
+/* The scoreboard doubles as the clash button (Phase 33). */
+#scoreboard.clickable { cursor: pointer; transition: background 0.15s ease; border-radius: 8px; }
+#scoreboard.clickable:hover { background: rgba(36, 48, 74, 0.35); }
+
 #clash-banner {
   position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
   display: flex; align-items: stretch; gap: 10px; z-index: 5;
@@ -368,7 +384,12 @@ body.cinematic #topbar,
 body.cinematic #left-panel,
 body.cinematic #right-panel,
 body.cinematic #event-feed { display: none; }
-body.cinematic #stage { padding: 0; align-items: center; background: #05090f; }
+body.cinematic #stage { padding: 0; align-items: center; background: #05090f; overflow: hidden; }
+/* Fill the desktop screen (user request, Phase 33): fit-contain the 3:2
+   stage into the viewport instead of stopping at the 960px natural width.
+   Retina renders at 2× pixel ratio, so the upscale stays sharp. */
+body.cinematic #stage canvas { width: min(100vw, 150vh); max-width: none; }
+body.cinematic #three-host { max-width: none; }
 .cinematic-exit {
   display: none; position: absolute; top: 10px; right: 12px; z-index: 30;
   opacity: 0.7; font-size: var(--fs-sm);

@@ -53,6 +53,8 @@ export class ThreeMatchRenderer {
   onSelectPlayer: ((gid: number) => void) | null = null;
   /** Optional external hook (sound etc.) fired once per fx event. */
   onFxEvent: ((type: FxEvent['type']) => void) | null = null;
+  /** Tap on the broadcast score bug (Phase 33: pops the tactical-DNA clash). */
+  onScoreBugTap: (() => void) | null = null;
 
   constructor(host: HTMLElement) {
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -90,6 +92,7 @@ export class ThreeMatchRenderer {
     this.vignette.className = 'pitch-vignette';
     this.scoreBug = document.createElement('div');
     this.scoreBug.className = 'score-bug hidden';
+    this.scoreBug.addEventListener('click', () => this.onScoreBugTap?.());
     host.append(this.vignette, this.scoreBug, this.banner);
 
     // Renderer-owned event feedback.

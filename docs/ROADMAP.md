@@ -565,25 +565,46 @@ five new fields from the save and re-hashing → exactly `c37f5020…`
 (technique worth remembering: record-only fields move the fingerprint
 without moving the sim).
 
-## Phase 33 — the watching experience
+## ⭐ Phase 33 — the watching experience — **SHIPPED**
 
-**Goal:** cash the tactics in visually — the user watches on a phone.
+All three pieces, plus two live user requests:
 
-- **Build:** HT/FT auto-highlights: play the archived `ReplayBuffer` goal
-  (+big-save) moments back-to-back in cinematic framing with the existing
-  `cameraForEvent` + slow-mo, ⏭ skips (reuse the shootout-theater
-  presentation pattern: presentation only, results already decided).
-  Player match RATINGS: fold existing `playerStats` + team outcome into a
-  6.0–10.0 scale (weights: goal 1.2, assist 0.8, save 0.25, recovery 0.1,
-  miscontrol −0.1, win +0.3), show on player card + a MOTM line in the FT
-  feed + season awards integration. TIKI-TAKA counter: consecutive
-  completed passes per possession; ≥6 emits one feed line
-  (`🎼 8-pass move!`) and a season stat (longest chain).
-- **Tests:** ratings are deterministic + bounded; highlight reel replays
-  identical frames (snapshot equality on RenderState samples); chain
-  counter resets on turnover/dead ball.
-- **Risk:** feed spam (failure mode 7) — one line per qualifying move,
-  threshold high enough to stay rare (~2–3/match).
+- **Player RATINGS** (`sim/ratings.ts`, pure): 6.0–10.0, base 6.5 + goal
+  1.2 / assist 0.8 / save 0.25 / recovery 0.1 / miscontrol −0.1 (now
+  counted per player) / win +0.3, draw +0.1; written ONCE at the whistle
+  into `playerStats[].rating` (probe: mean 7.09, min 6.3, max clamps 10).
+  Live rating on the player card, `⭐ Man of the match` FT feed line,
+  season SUM in playerAgg → `avgRating` per line → **🌟 Season MVP**
+  award + hall-of-fame best-season-rating record.
+- **TIKI-TAKA counter**: `Match.passChain` counts consecutive completed
+  passes; `endPassMove(side)` finalizes on turnover, dead ball, shot,
+  header or clear (mechanics call it so the 🎼 line lands BEFORE the GOAL
+  line it produced). Threshold measured, not guessed: 6 ⇒ ~2.1
+  lines/match, 8 ⇒ 0.75 → `PASS_MOVE_FEED_MIN = 6` (failure mode 7).
+  `bestPassChain` per match → season `agg.longestChain` → season-report
+  line + hall single-season record.
+- **HT/FT auto-highlights** (`replay/highlights.ts` pure picker +
+  GameApp reel): goals + big saves (newest goals survive the 4-cap),
+  3s lead-in / 1.5s hold / 0.5× slow-mo, `cameraForEvent` framing, reel
+  chip (`🎬 4' · 1/3`), ⏭ skips, presentation checkbox to turn off. HT
+  reel = H1 moments; FT reel skips what HT already showed. 3D watched
+  matches only; ceremony wins season-end conflicts; the pre-match clash
+  hides during a reel and returns after.
+- **User requests shipped live**: the SCOREBOARD (and the 3D/cinematic
+  score bugs) is now a button — tap any time to pop the tactical-DNA
+  clash, pinned until tapped closed; desktop CINEMATIC fit-contains the
+  viewport (`min(100vw, 150vh)` — was stopping at the 960px natural
+  width).
+- **Fixed on the way**: `EventFeed.attach` now drains the outgoing
+  match's unsynced tail (FT/MOTM/stoppage-goal lines used to VANISH when
+  the next fixture attached in the same frame; a ⏭-skipped match's big
+  tail collapses to its recap: goals + FT + MOTM).
+
+Save v9 (rating/miscontrol/longestChain backfill). Gate: 267 vitest
+(ratings +8, highlights +5), 2D 72 checks (+6), 3D 37 (+3, reel verified
+then toggled off so later sections poll live play), fingerprint moved
+`40f72c64…` → `183b9c55…` — record fields only, PROVEN by strip-and-rehash
+back to exactly `40f72c64…`.
 
 ## Phase 34 — players become PEOPLE
 

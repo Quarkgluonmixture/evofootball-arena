@@ -79,6 +79,7 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   if (!match.rng.chance(pFail)) return true;
 
   match.teams[p.side].stats.miscontrols++;
+  match.playerStats[p.gid].miscontrols++;
   ball.lastTouch = p; // a heavy touch out of play concedes the restart
   ball.vel = scale(rotate(v2(inx, iny), match.rng.range(-0.8, 0.8)), match.rng.range(3.5, 6.5));
   ball.vz = 0; // the touch kills any remaining flight — the ball drops
@@ -548,6 +549,7 @@ function headBall(match: Match, p: Player): void {
  * performShot, difficulty frozen at contact.
  */
 function performHeaderShot(match: Match, shooter: Player): void {
+  match.endPassMove(shooter.side); // the header ends the move (Phase 33)
   const team = match.teams[shooter.side];
   const opp = match.teams[1 - shooter.side];
   const gk = opp.goalkeeper;
@@ -608,6 +610,7 @@ function goalCenterFor(team: { oppGoal(): V2 }): V2 {
 
 export function performShot(match: Match, shooter: Player): void {
   if (match.ball.owner !== shooter || shooter.kickCooldown > 0) return;
+  match.endPassMove(shooter.side); // a strike ends the passing move (Phase 33)
   const team = match.teams[shooter.side];
   const opp = match.teams[1 - shooter.side];
   const gk = opp.goalkeeper;
@@ -781,6 +784,7 @@ export function performFreeKick(match: Match, taker: Player): void {
 
 export function performClear(match: Match, p: Player): void {
   if (match.ball.owner !== p || p.kickCooldown > 0) return;
+  match.endPassMove(p.side); // a hoof is not part of a passing move (Phase 33)
   const team = match.teams[p.side];
   // Hoof it upfield with a wide lateral component — safety over precision.
   // Panicked clears regularly cross the touchline: conceding a kick-in beats
