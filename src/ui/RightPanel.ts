@@ -14,6 +14,9 @@ const STAT_ROWS = [
   'passes',
   'pass %',
   'crosses',
+  'one-twos',
+  'third man',
+  'overlaps',
   'headers won',
   'miscontrols',
   'recoveries',
@@ -149,6 +152,9 @@ export class RightPanel {
       `${Math.round((b.passesCompleted / Math.max(b.passes, 1)) * 100)}%`,
     );
     set('crosses', String(a.crosses), String(b.crosses));
+    set('one-twos', String(a.oneTwos), String(b.oneTwos));
+    set('third man', String(a.thirdMan), String(b.thirdMan));
+    set('overlaps', String(a.overlaps), String(b.overlaps));
     set('headers won', String(a.headersWon), String(b.headersWon));
     set('miscontrols', String(a.miscontrols), String(b.miscontrols));
     set('recoveries', String(a.tackles + a.interceptions), String(b.tackles + b.interceptions));

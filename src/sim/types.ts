@@ -322,6 +322,12 @@ export interface TeamMatchStats {
   staminaSpent: number;
   /** Longest chain of consecutive completed passes in one move (Phase 33). */
   bestPassChain: number;
+  /** Completed give-and-gos: the wall return found the bursting passer (Phase 34). */
+  oneTwos: number;
+  /** Completed third-man releases: fresh receiver → bounce → runner (Phase 34). */
+  thirdMan: number;
+  /** Completed overlap releases: the wide ball found the overlapping runner (Phase 34). */
+  overlaps: number;
 }
 
 export const emptyStats = (): TeamMatchStats => ({
@@ -357,6 +363,9 @@ export const emptyStats = (): TeamMatchStats => ({
   distance: 0,
   staminaSpent: 0,
   bestPassChain: 0,
+  oneTwos: 0,
+  thirdMan: 0,
+  overlaps: 0,
 });
 
 /** Per-player counters for awards/records — passive, never read by the sim. */

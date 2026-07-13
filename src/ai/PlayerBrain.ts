@@ -296,9 +296,41 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       s *= mul;
       if (d > 32) s *= 0.5;
       if (d < 5) s *= 0.75;
-      // Don't just hand it straight back to the passer unless it progresses.
-      if (lp && lp.passerGid === mate.gid && lp.receiverGid === p.gid && match.simTime - lp.t < 2.5 && gain < 0.1) {
+      // 2过1 return (Phase 34): the original passer is BURSTING — the return
+      // into his stride is the whole point of the wall pass, so it flips the
+      // "don't hand it straight back" rule below into a bonus (forward only).
+      const wallReturn =
+        mate.wallRun !== null &&
+        match.simTime < mate.wallRun.until &&
+        mate.wallRun.partnerGid === p.gid &&
+        gain > 0.2; // the runner must genuinely be IN BEHIND, not alongside
+      if (wallReturn) {
+        s *= 1.15 + (g.tempo + g.passBias) * 0.25;
+      } else if (lp && lp.passerGid === mate.gid && lp.receiverGid === p.gid && match.simTime - lp.t < 2.5 && gain < 0.1) {
+        // Don't just hand it straight back to the passer unless it progresses.
         s *= 0.55;
+      }
+      // Third man (Phase 34): freshly received with a runner ahead — the
+      // quick bounce releases HIM, not the man who fed you (that's a 2过1).
+      if (
+        lp && lp.receiverGid === p.gid && match.simTime - lp.t < 1.5 &&
+        lp.passerGid !== mate.gid && mate.action.type === 'MakeRun' && gain > 0.15
+      ) {
+        s *= 1 + g.passBias * 0.3;
+      }
+      // 套边 release (Phase 34): the ball down the line into the overlap —
+      // but only once the run has COME AROUND (wide, level or beyond).
+      // Bonusing the licensed man wherever he stood released the ball
+      // instantly to a runner still 3m BEHIND (probed: median reception
+      // |y| 9.6 — a central recycle wearing the overlap's name).
+      if (
+        team.overlapper === mate.index &&
+        Math.abs(mate.pos.y) > 9 &&
+        team.localX(mate.pos.x) > localX - 6
+      ) {
+        // A DEVELOPED overlap is the best ball on the pitch — priced like it
+        // (the run happens ~1.6s/match, probed; a timid bonus never cashed it).
+        s *= 1.3 + g.attackingWidth * 0.6;
       }
 
       if (s > bestPass) {
@@ -356,8 +388,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   if (p.kickCooldown <= 0) {
     const line = defenderLineLocalX(team, opp.players);
     const airLane = airLaneOpenness(p.pos, opp.players);
+    // Third man (Phase 34): p JUST received — the bounce to a runner within a
+    // beat is the possession game's release. Modulated by passBias.
+    const lpT = match.lastCompletedPass;
+    const fresh = lpT !== null && lpT.receiverGid === p.gid && match.simTime - lpT.t < 1.5;
     for (const mate of team.players) {
       if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;
+      const bounceMul = fresh && lpT!.passerGid !== mate.gid ? 1 + g.passBias * 0.35 : 1;
       const flight = dist(p.pos, mate.pos) / 18;
       // Meet the run, not the hover (Phase 29): a runner held onside shows
       // ~zero velocity, so the aim point projects the burst they will make.
@@ -380,7 +417,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // multiplicatively — open balls unchanged, walls discount hard.
       const s =
         (W.throughBase + lane * W.throughOpenW + behind * W.throughBehindW) *
-        gates * (0.4 + 0.6 * clamp01(lane / 0.45));
+        gates * (0.4 + 0.6 * clamp01(lane / 0.45)) * bounceMul;
       if (s > bestThrough) {
         bestThrough = s;
         bestRunner = mate;
@@ -399,7 +436,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         const sC =
           (W.throughBase + landOpen * W.throughOpenW * 0.8 + behind * W.throughBehindW) *
           gates * 0.9 * (0.55 + p.attrs.technique * 0.7) *
-          (0.7 + airLane * 0.3) * (0.4 + 0.6 * clamp01(landOpen / 0.45));
+          (0.7 + airLane * 0.3) * (0.4 + 0.6 * clamp01(landOpen / 0.45)) * bounceMul;
         if (sC > bestThrough) {
           bestThrough = sC;
           bestRunner = mate;
@@ -814,6 +851,23 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
           ? 'arriving late at the cutback arc'
           : match.phase === 'restart' || crashLive ? 'attacking the box for the delivery' : 'licensed run in behind',
       });
+    }
+    // 2过1 (Phase 34): just played the wall pass under pressure — burst past
+    // the marker NOW; the return is scored to find this run. The BURST is
+    // short (1.2s) even though the return credit runs 2.3s: a full-window
+    // sprint pulled the passer out of the support structure for so long it
+    // cost goals across the calibrate seeds — dart, then re-join.
+    if (p.wallRun && match.simTime < p.wallRun.until - 1.1 && carrier && carrier !== p) {
+      let s = W.runScore * (1.05 + (g.tempo + g.passBias) * 0.25);
+      if (tired) s *= 0.6;
+      cands.push({ action: 'MakeRun', score: s, why: 'bursting for the one-two return' });
+    }
+    // 套边 (Phase 34): licensed to overlap outside the confronted wide
+    // carrier — width genes commit harder to the run.
+    if (team.overlapper === p.index && carrier && carrier !== p) {
+      let s = W.runScore * (1 + g.attackingWidth * 0.3);
+      if (tired) s *= 0.6;
+      cands.push({ action: 'MakeRun', score: s, why: 'overlapping outside the carrier' });
     }
     cands.push({
       action: 'MoveToFormationSpot',

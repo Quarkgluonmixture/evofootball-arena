@@ -606,7 +606,44 @@ then toggled off so later sections poll live play), fingerprint moved
 `40f72c64…` → `183b9c55…` — record fields only, PROVEN by strip-and-rehash
 back to exactly `40f72c64…`.
 
-## Phase 34 — players become PEOPLE
+## ⭐ Phase 34 — the combination pack (套路包) — **SHIPPED**
+
+User-requested ("2过1/三人轮转/套边这种小套路 → go"). Three explicit
+patterns, built ONE AT A TIME, each probed for rate and guardrailed on
+TWO calibrate seeds (goals 2.61/2.69 vs baseline 2.52/2.75 — neutral):
+
+- **2过1 wall pass**: a short pass under pressure in the attacking half
+  licenses the passer (`Player.wallRun`, partner-tagged) — a 1.2s BURST
+  past his marker with a 2.3s return-credit window (the round trip alone
+  is ~1.5s; the first cut's 1.15s license expired before any return
+  could arrive, and a full-window sprint bled 0.3 goals/match of
+  structure — dart, then re-join). The return INTO the burst (gain>0.2)
+  flips the anti-ping-pong ×0.55 into ×(1.15+(tempo+passBias)·0.25).
+  Gene-gated at 0.35: specialists ~0.6/match, slow sides exactly 0.
+- **Third man**: a fresh receiver (<1.5s) bouncing it FORWARD to a
+  running C (not back to A — that's the 2过1) gets ×(1+passBias·0.3~0.35)
+  in both pass loops; flagged on `pendingPass.bounce`, credited on
+  arrival. Possession sides ~5/match vs ~2 for direct ones.
+- **套边 overlap**: a confronted wide carrier in the attacking half pulls
+  a trailing same-wing teammate around the OUTSIDE (`team.overlapper`,
+  executor routes past the ball down the touchline; the license
+  SURVIVES its own release ball's flight — the 31.9 corner lesson,
+  relearned). Release priced ×(1.3+width·0.6) only once the run has COME
+  AROUND (bonusing him wherever he stood released central recycles
+  wearing the overlap's name — probed, median reception |y| 9.6).
+  Structurally rare in 6v6 (no wing-backs): WIDE ~0.13/match, narrow
+  gene-gated to 0. Honest ceiling, documented.
+
+Stats panel rows 2过1/三人配合/套边; directional tests per pattern
+(combos.test.ts, side-balanced, deterministic-gate zeros asserted).
+⚠ ECOLOGY WATCH: 3-seed evolve probe shows NO directional formation
+bias (wide sweeps one seed, narrow another) but SHARPER selection —
+2/3 seeds reached attack-formation monoculture by gen 10 (baseline
+0/3, always ~8/8). Style mutation (0.08/season) is the re-entry
+channel; revisit if the league gets STUCK. Fingerprint re-baselined
+(behavioral): `183b9c55…` → `6f251a22…`.
+
+## Phase 35 — players become PEOPLE
 
 **Goal:** small, READABLE individuality on top of attributes.
 
@@ -624,7 +661,7 @@ back to exactly `40f72c64…`.
 - **Risk:** trait soup — cap at 5-6 trait types total; every trait must be
   visible either in play or in stories, or it's cut.
 
-## Phase 35 — league ecology
+## Phase 36 — league ecology
 
 **Goal:** long-run narratives the hall of fame can't mine today.
 

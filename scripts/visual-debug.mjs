@@ -61,6 +61,7 @@ const totalShots = Number(shotVals[0] ?? 0) + Number(shotVals[1] ?? 0);
 check('match stats accumulate', totalShots > 0, `shots ${shotVals[0]}+${shotVals[1]}`);
 const statsText = await page.textContent('#right-panel');
 check('set-piece stats row present (corners)', statsText.includes('corners'), '');
+check('combo stats rows present (34)', statsText.includes('one-twos') && statsText.includes('third man') && statsText.includes('overlaps'), '');
 await page.click('button:has-text("⏸")');
 check('pause toggles to play (29.1)', (await page.locator('button:has-text("▶")').count()) >= 1, '');
 

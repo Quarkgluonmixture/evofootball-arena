@@ -214,6 +214,14 @@ export function executeAction(p: Player, match: Match, dt: number): void {
           crash && (crash.routine === 'short' || crash.routine === 'arcCutback')
             ? cornerKeyZone(crash.routine, team.attackDir, crash.y)
             : v2((HALF_L - 16) * team.attackDir, clamp(p.pos.y * 0.3, -7, 7));
+      } else if (team.overlapper === p.index && ball.owner && ball.owner.side === p.side) {
+        // 套边 (Phase 34): around the OUTSIDE of the wide carrier, hugging
+        // the touchline past him — the lane the release ball is led into.
+        const c = ball.owner;
+        target = v2(
+          clamp(c.pos.x + team.attackDir * 13, -HALF_L + 2, HALF_L - 2),
+          Math.sign(c.pos.y || 1) * (HALF_W - 2.5),
+        );
       } else {
         target = runTarget(p, team, opp.players);
       }

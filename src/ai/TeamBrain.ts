@@ -82,6 +82,15 @@ const RUN_ROLE_W: Record<Role, number> = { GK: 0, DF: 0.4, MF: 1.2, WG: 1.8, ST:
 function assignRunners(team: Team, match: Match): void {
   team.runners.clear();
   team.arriver = null;
+  // The overlap license survives its own release ball's FLIGHT (the corner
+  // lesson, 31.9): the kick clears ball.owner, and a license torn up at
+  // that instant strands the runner — and the arriving ball — mid-flight.
+  const keepOverlap =
+    team.overlapper !== null &&
+    match.pendingPass !== null &&
+    match.pendingPass.side === team.side &&
+    match.pendingPass.targetGid === team.players[team.overlapper].gid;
+  if (!keepOverlap) team.overlapper = null;
   if (match.possessionSide !== team.side) return;
   const carrier = match.ball.owner;
   // Corner (Phase 28): flood the box — the three best headers of the ball
@@ -171,6 +180,44 @@ function assignRunners(team: Team, match: Match): void {
     const weakWG = ballPos.y > 0 ? team.players[3] : team.players[4];
     const pick = eligible(mf) ? mf : eligible(weakWG) ? weakWG : null;
     if (pick) team.arriver = pick.index;
+  }
+
+  // 套边 (Phase 34): a WIDE carrier confronted in the attacking half pulls
+  // one trailing teammate around the OUTSIDE. Wide-play genes look for it;
+  // narrow sides leave the lane to the carrier's own drive.
+  if (
+    team.overlapper === null && // a flight-preserved license stands
+    carrier &&
+    carrier.role !== 'GK' &&
+    Math.abs(carrier.pos.y) > 10 &&
+    team.localX(carrier.pos.x) > 0 &&
+    team.genome.attackingWidth > 0.3
+  ) {
+    const cLocal = team.localX(carrier.pos.x);
+    const confronted = match.teams[1 - team.side].players.some(
+      (o) =>
+        !o.sentOff &&
+        dist(o.pos, carrier.pos) < 5.5 &&
+        match.teams[1 - team.side].localX(o.pos.x) < match.teams[1 - team.side].localX(carrier.pos.x) + 0.5,
+    );
+    if (confronted) {
+      let pick: Player | null = null;
+      let bd = Infinity;
+      for (const p of team.players) {
+        if (p.role === 'GK' || p === carrier || p.sentOff) continue;
+        if (team.runners.has(p.index) || team.arriver === p.index || p.stamina < 0.3) continue;
+        // Same wing (or central enough to swing out); trailing but reachable.
+        if (Math.sign(p.pos.y) !== Math.sign(carrier.pos.y) && Math.abs(p.pos.y) > 8) continue;
+        const behind = cLocal - team.localX(p.pos.x);
+        if (behind < 1 || behind > 24) continue;
+        const d = dist(p.pos, carrier.pos);
+        if (d < bd) {
+          bd = d;
+          pick = p;
+        }
+      }
+      if (pick) team.overlapper = pick.index;
+    }
   }
 }
 

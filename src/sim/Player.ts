@@ -96,6 +96,13 @@ export class Player {
   markAnchor: V2 | null = null;
   markAnchorAge = 0;
   markAnchorIdx: number | null = null;
+  /**
+   * 2过1 burst license (Phase 34): granted when this player plays a short
+   * pass under pressure — for its ~1.1s he sprints past his marker and the
+   * return ball INTO him (from `partnerGid`) is scored as the wall pass,
+   * not the "handing it straight back" it would otherwise read as.
+   */
+  wallRun: { until: number; partnerGid: number } | null = null;
 
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;

@@ -38,6 +38,12 @@ export class Team {
    */
   arriver: number | null = null;
   /**
+   * 套边 (Phase 34): one trailing teammate licensed to overlap OUTSIDE a
+   * confronted wide carrier — the executor routes him down the touchline
+   * past the ball. null = no overlap situation.
+   */
+  overlapper: number | null = null;
+  /**
    * Corner crash state persisted THROUGH the hand-off and the flight
    * (Phase 31.9): the restart clears ~0.2–0.5s before the taker's kick,
    * and losing the crash routing at that instant sent every crasher back

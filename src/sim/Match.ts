@@ -46,6 +46,8 @@ export interface PendingPass {
   offside: boolean;
   /** Where the flagged target stood at the kick — the free-kick spot. */
   offsideSpot: V2 | null;
+  /** Third-man release (Phase 34): a fresh receiver bouncing it to a runner. */
+  bounce?: boolean;
 }
 
 export interface PendingShot {
@@ -511,6 +513,18 @@ export class Match {
       if (p.side === pass.side && p.gid !== pass.passerGid) {
         team.stats.passesCompleted++;
         this.passChain[p.side]++;
+        // The give-and-go completed (Phase 34): the wall's return found the
+        // bursting passer inside his license window.
+        if (p.wallRun && this.simTime < p.wallRun.until && p.wallRun.partnerGid === pass.passerGid) {
+          team.stats.oneTwos++;
+          p.wallRun = null;
+        }
+        // The third-man release arrived (Phase 34).
+        if (pass.bounce && p.gid === pass.targetGid) team.stats.thirdMan++;
+        // The overlap release arrived WIDE (Phase 34). Position-gated only:
+        // receivers brake to take the ball, so an in-stride velocity test
+        // (tried) zeroed the count at the capture instant.
+        if (team.overlapper === p.index && Math.abs(p.pos.y) > 11) team.stats.overlaps++;
         this.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: this.simTime };
         // 一脚出球 (Phase 31.9, user request): a PRESSURED intended receiver
         // plays the ball as it comes — decide now, and a pass kicked inside

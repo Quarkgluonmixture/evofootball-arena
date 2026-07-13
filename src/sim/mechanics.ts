@@ -109,6 +109,17 @@ function offsideAtKick(match: Match, passer: Player, target: Player): boolean {
  */
 function registerPass(match: Match, passer: Player, target: Player, exempt: boolean): void {
   const offside = !exempt && offsideAtKick(match, passer, target);
+  // Third-man shape (Phase 34): A→B, and B bounces it FORWARD to a running
+  // C within a beat of receiving — flagged at the kick, credited on arrival.
+  const lp = match.lastCompletedPass;
+  const team = match.teams[passer.side];
+  const bounce =
+    lp !== null &&
+    lp.receiverGid === passer.gid &&
+    lp.passerGid !== target.gid && // back to A is a one-two, not a third man
+    match.simTime - lp.t < 1.5 &&
+    target.action.type === 'MakeRun' &&
+    team.localX(target.pos.x) > team.localX(passer.pos.x) + 3;
   match.pendingPass = {
     side: passer.side,
     passerGid: passer.gid,
@@ -116,6 +127,7 @@ function registerPass(match: Match, passer: Player, target: Player, exempt: bool
     t: match.simTime,
     offside,
     offsideSpot: offside ? v2(target.pos.x, target.pos.y) : null,
+    bounce,
   };
 }
 
@@ -177,6 +189,27 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   if (oneTouch) team.stats.oneTouch++;
   if (team.localX(mate.pos.x) - team.localX(passer.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, passer, mate, offsideExempt);
+
+  // 2过1 (Phase 34): a short pass played UNDER PRESSURE licenses the passer
+  // to burst past his marker for the return — the "go" half of the
+  // give-and-go. Sides that play at speed (tempo + passBias) look for it;
+  // slow ones take the touch and keep shape. Not from the defensive third
+  // (a wall pass at your own box is how counters are born).
+  // Window 2.3s: the round trip is ~0.7s out + the wall's touch + ~0.7s
+  // back — a 1.15s license expired before any return could arrive (probed).
+  // Attacking half only: granted from build-up, the flip bonus turned the
+  // midfield into a wall-pass ping-pong that ate 0.3 goals/match (probed
+  // against the same calibrate seeds) — the one-two is a PENETRATION device.
+  if (
+    passer.role !== 'GK' &&
+    d < 15 &&
+    pressure > 0.2 &&
+    passer.stamina > 0.3 &&
+    team.localX(passer.pos.x) > 0 &&
+    (team.genome.tempo + team.genome.passBias) / 2 > 0.35
+  ) {
+    passer.wallRun = { until: match.simTime + 2.3, partnerGid: mate.gid };
+  }
 }
 
 /**

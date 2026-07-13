@@ -419,6 +419,15 @@ src/replay/ReplayBuffer.ts  10 Hz RenderState snapshots of watched play;
   6+ completed passes earn one `🎼 N-pass move!` feed line (~2/match,
   measured) and feed the season's longest-chain record. Tap the scoreboard
   (or the 3D score bug) any time to pop the two teams' tactical-DNA clash.
+- **The combination pack** (Phase 34, 套路包): three explicit patterns,
+  each gene-gated so identities play differently — the **2过1 wall pass**
+  (a pressured short passer bursts past his marker; the return into his
+  stride is scored as the point of it — tempo+passBias sides), the
+  **third-man bounce** (a fresh receiver releases the RUNNER, not the man
+  who fed him — possession sides), and the **套边 overlap** (a trailing
+  teammate rounds the outside of a confronted wide carrier — width
+  sides). Completions counted in the match stats panel; slow/narrow
+  genomes produce exactly zero, by design.
 - If WebGL init fails the app stays in 2D with a message; leagues and headless
   tools never depend on WebGL (enforced by an import-boundary test).
 - Switching back to 2D disposes all GPU resources; 3D re-initializes lazily.
