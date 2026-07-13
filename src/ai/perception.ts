@@ -97,7 +97,19 @@ export function escapeCarry(
  */
 export function ballLanding(ball: Ball): { t: number; x: number; y: number } {
   const t = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
-  return { t, x: ball.pos.x + ball.vel.x * t, y: ball.pos.y + ball.vel.y * t };
+  const dx = ball.vel.x * t;
+  const dy = ball.vel.y * t;
+  // Magnus (Phase 37): a constant-rate spin flies a circular arc whose
+  // chord is the straight displacement rotated by HALF the total turn —
+  // the same closed form the kick's pre-compensation used, so designed
+  // deliveries land where they were designed to.
+  if (ball.spin !== 0) {
+    const half = ball.spin * t * 0.5;
+    const c = Math.cos(half);
+    const s = Math.sin(half);
+    return { t, x: ball.pos.x + dx * c - dy * s, y: ball.pos.y + dx * s + dy * c };
+  }
+  return { t, x: ball.pos.x + dx, y: ball.pos.y + dy };
 }
 
 /**
@@ -224,11 +236,23 @@ export function interceptBall(p: Player, ball: Ball): InterceptSolution {
     const dy = p.pos.y - ball.pos.y;
     return { point: ball.pos, tBall: 0, tMe: Math.sqrt(dx * dx + dy * dy) / ts + 0.15, reachable: true };
   }
+  const spinning = ball.spin !== 0;
   for (let i = 0; i < INTERCEPT_T.length; i++) {
     const t = INTERCEPT_T[i];
     const travel = INTERCEPT_TRAVEL[i];
-    const px = ball.pos.x + v0.x * travel;
-    const py = ball.pos.y + v0.y * travel;
+    let px = ball.pos.x + v0.x * travel;
+    let py = ball.pos.y + v0.y * travel;
+    // Magnus (Phase 37): a curling ground ball — the displacement rotates
+    // by half the turn so far (the arc's chord). Zero-spin balls keep the
+    // exact straight table path.
+    if (spinning) {
+      const half = ball.spin * t * 0.5;
+      const c = Math.cos(half);
+      const s = Math.sin(half);
+      const rx = ball.pos.x + (px - ball.pos.x) * c - (py - ball.pos.y) * s;
+      py = ball.pos.y + (px - ball.pos.x) * s + (py - ball.pos.y) * c;
+      px = rx;
+    }
     const dx = p.pos.x - px;
     const dy = p.pos.y - py;
     const tMe = Math.sqrt(dx * dx + dy * dy) / ts + 0.15;

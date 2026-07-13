@@ -5,8 +5,8 @@ import {
 import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
-  BOX_DEPTH, CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
-  HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
+  BALL_FRICTION_K, BOX_DEPTH, CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
+  HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_COOLDOWN,
 } from './constants';
 import type { Match } from './Match';
@@ -305,6 +305,7 @@ export function performThroughBall(
 function loftKick(
   match: Match, p: Player, target: V2,
   tBase: number, tPerM: number, tMin: number, tMax: number, noiseMul: number,
+  spin = 0,
 ): void {
   const team = match.teams[p.side];
   const opp = match.teams[1 - p.side];
@@ -325,7 +326,12 @@ function loftKick(
   dEff *= 1 + match.rng.gaussian() * (0.02 + d * 0.0008) * (1.25 - p.attrs.technique * 0.5) * oneTouchMul(p);
   dEff = Math.max(dEff, 3);
   const T = clamp(tBase + dEff * tPerM, tMin, tMax);
-  match.kickBall(p, dir, dEff / T, (GRAVITY * T) / 2);
+  // Magnus pre-compensation (Phase 37): launch rotated −spin·T/2 so the
+  // ARC's chord still points where the aim did — the designed landing
+  // point (and the whole 31.9 corner chain) is invariant; only the path
+  // between bends. ballLanding() projects the same closed form.
+  match.kickBall(p, spin === 0 ? dir : rotate(dir, -spin * T * 0.5), dEff / T, (GRAVITY * T) / 2);
+  match.ball.spin = spin;
 }
 
 /**
@@ -357,7 +363,15 @@ export function performCross(
   // 0.00 duels/corner) — the routine delivery meets the RUN instead.
   const spot = v2(arrive.x + (goal.x - arrive.x) * pull, arrive.y + (goal.y - arrive.y) * pull);
   const oneTouch = crosser.firstTouchWindow > 0;
-  loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1);
+  // The whipped delivery (Phase 37): crosses and corners curl TOWARD the
+  // goal — the inswinger. Sign from the chord×to-goal cross product;
+  // technique whips harder. (The landing point is pre-compensated in
+  // loftKick, so the 31.9 corner chain sees the same scatter.)
+  const chord = norm(sub(spot, crosser.pos));
+  const toGoal = norm(sub(goal, crosser.pos));
+  const swing = Math.sign(chord.x * toGoal.y - chord.y * toGoal.x) || 1;
+  const spin = swing * (0.28 + crosser.attrs.technique * 0.3);
+  loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1, spin);
   team.stats.passes++;
   team.stats.crosses++;
   if (oneTouch) team.stats.oneTouch++;
@@ -706,13 +720,26 @@ export function performShot(match: Match, shooter: Player): void {
     orientationNoiseMul(misalign, shooter.attrs.technique);
   const dir = rotate(aim, match.rng.gaussian() * spread);
 
-  match.kickBall(shooter, dir, SHOT_SPEED * orientationPowerMul(misalign, shooter.attrs.technique));
+  // The placed curler (Phase 37): technique bends the strike around the
+  // dive. Launch pre-compensated by −spin·T/2 so the chord still crosses
+  // the frame where the aim pointed; lateral drift = spin·vx, so the sign
+  // that bends AWAY from the keeper is sign(Δy·dirx).
+  const curl =
+    (Math.sign((aimTarget.y - gk.pos.y) * dir.x) || 1) * (0.1 + shooter.attrs.technique * 0.2);
+  const v0 = SHOT_SPEED * orientationPowerMul(misalign, shooter.attrs.technique);
+  const shotT = -Math.log(1 - Math.min((d * BALL_FRICTION_K) / v0, 0.85)) / BALL_FRICTION_K;
+  match.kickBall(shooter, rotate(dir, -curl * shotT * 0.5), v0);
+  match.ball.spin = curl;
   team.stats.shots++;
   team.stats.xg += q;
   match.playerStats[shooter.gid].shots++;
 
-  // Dive difficulty, frozen at the moment of the strike (keeper reaction).
-  const difficulty = diveDifficulty(match.ball.pos, dir, gk, opp);
+  // Dive difficulty, frozen at the moment of the strike (keeper reaction) —
+  // priced on the CHORD, discounted for the bend the dive can't fully read.
+  const difficulty = Math.max(
+    0.25,
+    diveDifficulty(match.ball.pos, dir, gk, opp) * (1 - Math.abs(curl) * 0.12),
+  );
 
   // Assist credit if this shot scores: the completed pass that set it up.
   const lpForAssist = match.lastCompletedPass;
@@ -785,8 +812,15 @@ export function performFreeKick(match: Match, taker: Player): void {
     const center = add(match.fkWall.pos, scale(norm(sub(own, match.fkWall.pos)), CORNER_CLEARANCE + 0.15));
     wallD = dist(ball.pos, center) - 1.4; // release offset + safety margin
   }
+  // The banana's price (Phase 37): a curled launch leaves the straight
+  // line, and the climb's header-band segment sweeps past the wall's edge
+  // bodies — the solver buys extra clearance per unit of spin (the first
+  // cut at spin ≤0.7 with plain 2.6 put 4/30 walls back in the header
+  // game, the exact 31.9 sentry failure the invariant test pins).
+  const spinMag = 0.25 + taker.attrs.technique * 0.25;
   const a = clamp(wallD / d, 0.12, 0.6);
-  const T = clamp(Math.sqrt(Math.max(0.4, (2.6 - a * zg) / ((GRAVITY / 2) * a * (1 - a)))), 0.9, 1.9);
+  const wallClear = 2.6 + spinMag * 0.5;
+  const T = clamp(Math.sqrt(Math.max(0.4, (wallClear - a * zg) / ((GRAVITY / 2) * a * (1 - a)))), 0.9, 1.9);
   const vz = (zg + (GRAVITY / 2) * T * T) / T;
   const speed = d / T;
 
@@ -799,12 +833,24 @@ export function performFreeKick(match: Match, taker: Player): void {
   // Direct FKs convert ~4-8% in the real game — the xG entry says so.
   const q = clamp(0.09 - (d - 17) * 0.003, 0.02, 0.12);
 
-  match.kickBall(taker, dir, speed, vz);
+  // The banana ball (Phase 37): the specialist's strike curls AWAY from
+  // the keeper toward the chosen corner — over the wall on the solver's
+  // flight, bending across the frame. Launch pre-compensated by −spin·T/2
+  // (the chord still crosses at the aim point); the curl prices the dive.
+  // Lateral (y) drift of a spinning ball = spin·vx, so the sign that
+  // drifts from the keeper toward the chosen corner is sign(Δy·vx).
+  const curlSign = Math.sign((target.y - gk.pos.y) * dir.x) || 1;
+  const spin = curlSign * spinMag;
+  const kickPos = v2(ball.pos.x, ball.pos.y);
+  match.kickBall(taker, rotate(dir, -spin * T * 0.5), speed, vz);
+  ball.spin = spin;
   team.stats.shots++;
   team.stats.xg += q;
   match.playerStats[taker.gid].shots++;
 
-  const difficulty = diveDifficulty(ball.pos, dir, gk, opp);
+  // The dive prices the CHORD (where the arc actually crosses the frame)
+  // plus the late bend the keeper cannot fully read.
+  const difficulty = Math.max(0.25, diveDifficulty(kickPos, dir, gk, opp) * (1 - Math.abs(spin) * 0.12));
 
   match.markShotOutcome('miss'); // close out any still-pending previous shot
   match.shotLog.push({

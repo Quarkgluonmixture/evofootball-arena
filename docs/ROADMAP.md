@@ -1,14 +1,15 @@
-# Roadmap — shipped through phase-36; autonomous run continues to Phase 40
+# Roadmap — shipped through phase-37; autonomous run continues to Phase 40
 
 **Audience: the next coding agent (and the user).** Everything through
-**phase-36** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
+**phase-37** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
 instruction (2026-07-13) is to run the queue AUTONOMOUSLY through Phase
-40 — next up is Phase 37 (Magnus curve; the flight-projection seam is
-`perception.ballLanding()`, ONE function since the structure pass), then
-38 → 39 → 40, each closed with probe evidence.** Phase specs are directions, not
+40 — next up is Phase 38 (body contact; it leans on 36's touch windows),
+then 39 → 40, each closed with probe evidence.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
 starting. When play-feel and the calibrate table disagree, **the user's
-play report wins**. Awaiting play reports on: 36 visible touches (does
+play report wins**. Awaiting play reports on: 37 Magnus (the corner
+whip, the FK banana, curled finishes — do the arcs READ on the phone),
+36 visible touches (does
 the carry finally read as FEET, poke steals, heavy-touch feel), 35
 game-state tactics (late-chase feel, 门将上前, bus/clock-milking, the
 live gene bars breathing), 34 套路包 (one-twos/third-man/overlap
@@ -823,28 +824,41 @@ changes (adapter passes real ball pos; ownerGid null → it just rolls).
   −0.48 was path divergence again; fm 18(b) discipline).
 - Fingerprint re-baselined (behavioral): `3a5f659d…` → `2ada3cb1…`.
 
-## Phase 37 — the curved ball (Magnus)
+## ⭐ Phase 37 — the curved ball (Magnus) — **SHIPPED**
 
-**Goal:** shots/crosses/FKs fly straight parabolas today; "bends the
-free kick" exists only as feed text. The banana ball is football's
-visual signature.
+**Outcome:** the banana ball exists. `Ball.spin` (rad/s) rotates the
+free ball's velocity at a constant rate — a CIRCULAR ARC, so every
+projection has an exact closed form. The two keystones:
 
-- **Build:** sidespin component on the ball (set at kick time by kick
-  type + technique + aim context), Magnus lateral acceleration in
-  flight physics; curled placed shots (far-corner finishes curve away
-  from the keeper), inswinging/outswinging corners + crosses (routine
-  chooses), FK curl over/around the wall (solver already computes
-  clearance — add the bend). Keeper save geometry reads the CURVED
-  path (interceptBall/save reach must integrate the same physics or
-  keepers misjudge everything).
-- **Probes:** flight-path curvature distributions; save% / goals per
-  kick type before/after (expect FK conversion +, re-tune saveP);
-  corner delivery landing scatter (the 31.9 chain must not regress —
-  rerun its probes).
-- **Risk:** every aerial consumer (tryAerial, landing chasers, GK
-  claim) assumes straight flight projections — audit ALL parabola
-  extrapolations (grep tLand/landX patterns) or defenders will attack
-  phantom landing spots.
+- **Pre-compensation**: every curled kick launches rotated −spin·T/2,
+  so the arc's CHORD still crosses where the straight aim pointed —
+  the designed landing point is invariant by construction, and the
+  probe proved it: corner descent→key-zone scatter 11.53m vs 11.95m
+  on phase-36 (identically-biased sample of untouched deliveries —
+  no regression). diveDifficulty prices the chord unchanged.
+- **One flight projector**: the structure-pass's `ballLanding()` (and
+  interceptBall's ground table) grew the arc form — chord = straight
+  displacement rotated by half the turn. Every consumer (drop chasers,
+  crash re-routes, GK claim) reads curved flight through them; all
+  other consumers are frame-live (audited: attemptFirstTouch,
+  tryKeeperSave, tryDeflection read instantaneous state;
+  canInterceptPass only sees unspun ground passes).
+
+Spin setters: crosses/corners inswing toward goal (0.28+tech·0.3,
+sign = chord×toGoal); FK curls away from the keeper (0.25+tech·0.25 —
+the first cut at ≤0.7 swung the climb past the wall's EDGE and 4/30
+walls free-headed it, the exact 31.9 sentry failure; the solver now
+buys +0.5m clearance per unit spin and the invariant test pins it);
+placed shots bend away from the dive (0.1+tech·0.2, ground-plane spin,
+travel time from the friction integral; dive difficulty ×(1−|spin|·0.12)).
+Spin decays 0.25/s air, 1.5/s grass, ×0.55 per bounce; zeroed on every
+plain kick and capture. The straight game is EXACTLY untouched (test:
+spin 0 flies y===0).
+
+Probes: analytic bow (chord·|spin₀|·T/8) on real corners mean 2.92m,
+p90 4.66m — the visible whip. Calibrate 2.25/2.54 (paired vs 36:
++0.26/+0.17 — curled strikes buy goals back through the dive
+discount). Fingerprint `2ada3cb1…` → `f6d49cda…`.
 
 ## Phase 38 — body contact (身体对抗可视化)
 

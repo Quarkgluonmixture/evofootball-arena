@@ -484,6 +484,7 @@ export class Match {
     ball.pos = add(p.pos, scale(dir, 0.9));
     ball.z = 0;
     ball.vz = loft;
+    ball.spin = 0; // plain kicks fly straight — curlKick re-sets after
     p.gkDistributing = false;
     p.kickCooldown = KICK_COOLDOWN;
     p.firstTouchWindow = 0; // any kick consumes the one-touch window
@@ -510,6 +511,7 @@ export class Match {
     ball.vel = v2();
     ball.z = 0;
     ball.vz = 0;
+    ball.spin = 0;
     const team = this.teams[p.side];
 
     // Settle on the ball: carry it briefly before the next decision instead of
@@ -704,6 +706,19 @@ export class Match {
       mech.trySmother(this);
       return;
     }
+    // Magnus (Phase 37): sidespin rotates the velocity — a constant rate is
+    // a circular arc, so every projection has an exact closed form. Spin
+    // bleeds slowly in the air, fast on the grass, and dies on the bounce.
+    if (ball.spin !== 0) {
+      const a = ball.spin * dt;
+      const c = Math.cos(a);
+      const s = Math.sin(a);
+      const vx = ball.vel.x;
+      ball.vel.x = vx * c - ball.vel.y * s;
+      ball.vel.y = vx * s + ball.vel.y * c;
+      ball.spin *= Math.exp(-(ball.z > 0 ? 0.25 : 1.5) * dt);
+      if (ball.spin > -0.02 && ball.spin < 0.02) ball.spin = 0;
+    }
     ball.pos.x += ball.vel.x * dt;
     ball.pos.y += ball.vel.y * dt;
     if (ball.z > 0 || ball.vz !== 0) {
@@ -717,6 +732,7 @@ export class Match {
           ball.vz = -ball.vz * BALL_BOUNCE;
           ball.vel.x *= BOUNCE_DAMP;
           ball.vel.y *= BOUNCE_DAMP;
+          ball.spin *= 0.55;
         } else {
           ball.vz = 0;
         }

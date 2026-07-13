@@ -14,6 +14,14 @@ export class Ball {
   z = 0;
   /** Vertical velocity (m/s, + up). 0 for ground balls. */
   vz = 0;
+  /**
+   * Sidespin (Phase 37, Magnus): the velocity direction rotates at this
+   * rate (rad/s, + = counterclockwise) while the ball is free — a constant
+   * rate is a circular arc, which gives every projection (ballLanding,
+   * interceptBall) an exact closed form. Set only by curled kicks
+   * (`curlKick` in mechanics); zeroed by every plain kick and capture.
+   */
+  spin = 0;
   owner: Player | null = null;
   lastTouch: Player | null = null;
 
@@ -27,6 +35,7 @@ export class Ball {
     this.vel = v2();
     this.z = 0;
     this.vz = 0;
+    this.spin = 0;
     this.owner = null;
     this.lastTouch = null;
   }
