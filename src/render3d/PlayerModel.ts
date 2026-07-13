@@ -161,6 +161,11 @@ export class PlayerModel {
   diveSide = 1;
   /** One-shot dive clock: drives the launch → full-stretch → landed arc. */
   diveT = -1;
+  /** Facing frozen at dive start (34.1) — the sim heading keeps tracking
+   * the ball, and applying it raw ROTATED the horizontal body mid-save. */
+  yawLock = 0;
+  /** Recovery blend: 1 → still facing the lock, eases to the live heading. */
+  yawEase = 0;
   prevAnim: AnimName = 'idle';
 
   readonly gid: number;

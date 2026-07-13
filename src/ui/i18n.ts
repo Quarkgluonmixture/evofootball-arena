@@ -70,7 +70,6 @@ const ZH: Record<string, string> = {
   Presentation: '演出',
   '🎥 Cinematic': '🎥 影院模式',
   '📸 Screenshot': '📸 截图',
-  '📋 Share summary': '📋 复制战报',
   'FX quality': '特效质量',
   Low: '低',
   Med: '中',

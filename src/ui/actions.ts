@@ -59,5 +59,4 @@ export interface GameActions {
   setAutoHighlights(v: boolean): void;
   setFxQuality(q: FxQuality): void;
   takeScreenshot(): void;
-  copyShareSummary(): void;
 }

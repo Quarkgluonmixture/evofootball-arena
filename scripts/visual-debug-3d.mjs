@@ -141,8 +141,8 @@ await page.click('button:has-text("Goal")');
 await page.waitForTimeout(1500);
 await page.screenshot({ path: `${OUT}/3b-gk-identity.png` });
 
-// ---- cinematic mode in 3D ----
-await page.click('button:has-text("🎥 Cinematic")');
+// ---- cinematic mode in 3D (stage button since 34.1) ----
+await page.click('.cinematic-enter');
 await page.waitForTimeout(400);
 check('3D cinematic hides panels', !(await page.locator('#left-panel').isVisible()));
 await page.screenshot({ path: `${OUT}/3c-cinematic-3d.png` });
@@ -252,11 +252,11 @@ check(
 await page.click('button:has-text("exit replay")');
 check('replay exits', (await page.evaluate(() => window.__evo.replayInfo())).active === false);
 
-// ---- 2D round-trip ----
-await page.click('button:has-text("2D")');
+// ---- 2D round-trip (fallback path — panel toggle removed in 34.1) ----
+await page.evaluate(() => window.__evo.app.setViewMode('2d'));
 await page.waitForTimeout(400);
 check('back to 2D, 3D disposed', await page.evaluate(() => window.__evo.three()) === null);
-await page.click('button:has-text("3D")');
+await page.evaluate(() => window.__evo.app.setViewMode('3d'));
 await page.waitForTimeout(800);
 check('3D re-initializes after dispose', (await page.evaluate(() => window.__evo.three()))?.players === 12);
 

@@ -643,6 +643,22 @@ bias (wide sweeps one seed, narrow another) but SHARPER selection —
 channel; revisit if the league gets STUCK. Fingerprint re-baselined
 (behavioral): `183b9c55…` → `6f251a22…`.
 
+## ⭐ Phase 34.1 — dive facing + the panel diet — **SHIPPED**
+
+Two play reports, one sweep of UI calls:
+- **GK 扑救后随球旋转**: the sim heading keeps tracking the ball and
+  `setPose` applied it raw to a horizontal body — the dive now LOCKS the
+  model's yaw at launch (`PlayerModel.yawLock`, render-only, fingerprint
+  untouched `6f251a22…`) and eases back to the live heading (~0.45s) as
+  he picks himself up.
+- **Panel diet (user calls)**: the 2D/3D toggle is GONE (3D is the game;
+  the Pixi view survives only as the WebGL-init fallback — suites reach
+  it via `__evo.app.setViewMode`), Share summary deleted, CINEMATIC
+  promoted to an always-visible stage button (🎥 top-right — it's used
+  constantly; ✕/Esc exits as before), camera modes + FX quality became
+  segmented controls, sound moved under 演出. Suites updated: 2D 75
+  checks, 3D 37.
+
 ## Phase 35 — players become PEOPLE
 
 **Goal:** small, READABLE individuality on top of attributes.

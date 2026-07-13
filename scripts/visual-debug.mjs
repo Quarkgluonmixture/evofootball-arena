@@ -28,10 +28,10 @@ page.on('pageerror', (err) => errors.push(String(err)));
 await page.addInitScript(() => localStorage.setItem('evofootball-lang', 'en'));
 
 await page.goto(URL, { waitUntil: 'networkidle' });
-// The app boots in 3D since Phase 27.5 — this suite drives the 2D view, so
-// switch first (the hidden Pixi canvas never becomes visible on its own).
-await page.waitForSelector('button:has-text("2D")', { timeout: 15000 });
-await page.click('button:has-text("2D")');
+// The app boots in 3D — this suite drives the 2D view, which since 34.1 is
+// the WebGL FALLBACK only (no panel toggle): switch via the dev hook.
+await page.waitForFunction(() => window.__evo !== undefined, { timeout: 15000 });
+await page.evaluate(() => window.__evo.app.setViewMode('2d'));
 await page.waitForSelector('#stage canvas', { timeout: 15000 });
 await page.waitForTimeout(800);
 await page.screenshot({ path: `${OUT}/1-initial.png` });
@@ -169,7 +169,9 @@ await page.waitForTimeout(200);
 await page.click('button:has-text("League table")');
 
 // ---- Phase 15: presentation tools (cinematic, share, FX quality) ----
-await page.click('button:has-text("🎥 Cinematic")');
+// Cinematic enters from the STAGE button since 34.1 (user request).
+check('cinematic enter button lives on the stage (34.1)', await page.locator('.cinematic-enter').isVisible(), '');
+await page.click('.cinematic-enter');
 await page.waitForTimeout(400);
 check('cinematic hides the panel chrome', !(await page.locator('#left-panel').isVisible()), '');
 check('cinematic shows the 2D score bug', await page.locator('.cine-bug').isVisible(), '');
@@ -188,10 +190,9 @@ await page.waitForTimeout(500);
 const feedAfterShot = await page.textContent('#event-feed');
 check('screenshot control is real (feed confirms)', /Screenshot (saved|not supported)/.test(feedAfterShot), '');
 
-await page.click('button:has-text("📋 Share summary")');
-await page.waitForTimeout(500);
-const feedAfterShare = await page.textContent('#event-feed');
-check('share summary control is real (feed confirms)', feedAfterShare.includes('summary'), '');
+// Share summary was removed in 34.1 (user call) — assert it stays gone.
+check('share summary is gone (34.1)', (await page.locator('button:has-text("Share summary")').count()) === 0, '');
+check('2D/3D view toggle is gone from the panel (34.1)', (await page.locator('#left-panel button:has-text("3D")').count()) === 0, '');
 
 await page.click('button:has-text("High")');
 await page.waitForTimeout(200);

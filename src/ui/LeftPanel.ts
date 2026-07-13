@@ -42,11 +42,9 @@ export class LeftPanel {
   private pauseBtn: HTMLButtonElement | null = null;
   private isPaused = false;
   private simButtons: HTMLButtonElement[] = [];
-  private viewButtons = new Map<ViewMode, HTMLButtonElement>();
   private cameraButtons = new Map<CameraMode, HTMLButtonElement>();
   private threeOnly: HTMLButtonElement[] = [];
   private fxButtons = new Map<FxQuality, HTMLButtonElement>();
-  private cineButton!: HTMLButtonElement;
 
   constructor(root: HTMLElement, actions: GameActions, flags: UiFlags) {
     const scoreboard = el('div', 'section');
@@ -87,51 +85,45 @@ export class LeftPanel {
     simRow.append(b1, b2, b3);
     simSec.append(simRow);
 
+    // Camera (34.1 overhaul, user requests): the 2D/3D toggle is GONE from
+    // the panel — 3D is the game; the Pixi view survives only as the WebGL
+    // fallback (setViewMode still works, tooling reaches it via __evo).
     const viewSec = el('div', 'section');
     viewSec.append(el('h3', '', t('View & camera')));
-    const viewRow = el('div', 'row');
-    for (const v of ['2d', '3d'] as ViewMode[]) {
-      const b = button(v.toUpperCase(), () => actions.setViewMode(v));
-      this.viewButtons.set(v, b);
-      viewRow.appendChild(b);
-    }
-    viewSec.appendChild(viewRow);
-    const camRow = el('div', 'row');
+    const camSeg = el('div', 'seg');
     for (const [mode, label] of CAMERA_LABELS) {
       const b = button(label, () => actions.setCameraMode(mode));
       this.cameraButtons.set(mode, b);
       this.threeOnly.push(b);
-      camRow.appendChild(b);
+      camSeg.appendChild(b);
     }
-    viewSec.appendChild(camRow);
+    viewSec.appendChild(camSeg);
     const camRow2 = el('div', 'row');
     const resetCam = button(t('Reset cam'), () => actions.resetCamera());
     const replayBtn = button(t('🎬 Replay'), () => actions.openReplay());
     this.threeOnly.push(resetCam);
     camRow2.append(resetCam, replayBtn);
     viewSec.appendChild(camRow2);
-    viewSec.appendChild(checkbox(t('Sound FX (beeps)'), false, (v) => actions.setSound(v)));
 
-    // Presentation: cinematic hide-UI, screenshots, share text, FX quality.
+    // Presentation: cinematic lives ON THE STAGE now (used constantly —
+    // one tap, no panel dive); Share summary is gone (user call).
     const presSec = el('div', 'section');
     presSec.append(el('h3', '', t('Presentation')));
     const presRow = el('div', 'row');
-    this.cineButton = button(t('🎥 Cinematic'), () => actions.setCinematic(true));
-    presRow.append(this.cineButton);
     presRow.appendChild(button(t('📸 Screenshot'), () => actions.takeScreenshot()));
     presSec.appendChild(presRow);
-    const presRow2 = el('div', 'row');
-    presRow2.appendChild(button(t('📋 Share summary'), () => actions.copyShareSummary()));
-    presSec.appendChild(presRow2);
     // HT/FT auto-highlights (Phase 33): watched 3D matches replay their
     // goals + big saves at the whistles; ⏭ skips a running reel.
     presSec.appendChild(checkbox(t('🎬 Auto highlights (HT/FT)'), true, (v) => actions.setAutoHighlights(v)));
+    presSec.appendChild(checkbox(t('Sound FX (beeps)'), false, (v) => actions.setSound(v)));
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
+    const fxSeg = el('div', 'seg');
+    fxRow.appendChild(fxSeg);
     for (const [q, label] of FX_LABELS) {
       const b = button(label, () => actions.setFxQuality(q));
       this.fxButtons.set(q, b);
-      fxRow.appendChild(b);
+      fxSeg.appendChild(b);
     }
     presSec.appendChild(fxRow);
 
@@ -147,16 +139,11 @@ export class LeftPanel {
     this.setFxQualityUI('medium');
   }
 
-  setCinematicUI(on: boolean): void {
-    this.cineButton.classList.toggle('active', on);
-  }
-
   setFxQualityUI(q: FxQuality): void {
     for (const [k, b] of this.fxButtons) b.classList.toggle('active', k === q);
   }
 
   setViewUI(view: ViewMode, camera: CameraMode): void {
-    for (const [v, b] of this.viewButtons) b.classList.toggle('active', v === view);
     for (const [m, b] of this.cameraButtons) b.classList.toggle('active', view === '3d' && m === camera);
     for (const b of this.threeOnly) b.disabled = view !== '3d';
   }

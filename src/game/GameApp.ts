@@ -197,8 +197,13 @@ export class GameApp implements GameActions {
     this.reelBug.className = 'reel-bug hidden';
     stage.appendChild(this.reelBug);
 
-    // Cinematic mode chrome: an exit control (cinematic must always be
-    // escapable) and a minimal 2D score bug (3D has its own broadcast bug).
+    // Cinematic mode chrome: the ENTER control lives on the stage (34.1,
+    // user request — it's used constantly, one tap beats a panel dive), the
+    // exit control appears in its place, and 2D keeps a minimal score bug.
+    const cineEnter = button(t('🎥'), () => this.setCinematic(true));
+    cineEnter.className = 'cinematic-enter';
+    cineEnter.title = t('🎥 Cinematic');
+    stage.appendChild(cineEnter);
     const cineExit = button(t('✕ exit cinematic'), () => this.setCinematic(false));
     cineExit.className = 'cinematic-exit';
     stage.appendChild(cineExit);
@@ -948,7 +953,6 @@ export class GameApp implements GameActions {
     this.cinematic = v;
     document.body.classList.toggle('cinematic', v);
     this.updateCineBug();
-    this.left.setCinematicUI(v);
     if (v) this.feed.pushSystem('🎥 Cinematic mode — press Esc or ✕ to exit.');
   }
 
@@ -981,40 +985,6 @@ export class GameApp implements GameActions {
       console.error('Screenshot failed:', err);
       this.feed.pushSystem('⚠️ Screenshot not supported in this browser — try the OS screenshot tool.');
     }
-  }
-
-  copyShareSummary(): void {
-    const summary = this.buildShareSummary();
-    const done = () => this.feed.pushSystem('📋 Share summary copied to clipboard.');
-    const fallback = () => {
-      // Clipboard blocked (permissions/headless): surface the text itself.
-      this.feed.pushSystem(`📋 Copy blocked — summary: ${summary.replace(/\n/g, ' · ')}`);
-    };
-    try {
-      navigator.clipboard.writeText(summary).then(done, fallback);
-    } catch {
-      fallback();
-    }
-  }
-
-  private buildShareSummary(): string {
-    const m = this.match;
-    const lines: string[] = [];
-    if (m) {
-      const [a, b] = m.teams;
-      lines.push(
-        `⚽ ${a.info.name} ${m.score[0]}–${m.score[1]} ${b.info.name} (${m.minute()}') · xG ${a.stats.xg.toFixed(2)}–${b.stats.xg.toFixed(2)}`,
-      );
-      const scorers = m.playerStats
-        .map((s, gid) => ({ s, gid }))
-        .filter(({ s }) => s.goals > 0)
-        .map(({ s, gid }) => `${m.allPlayers[gid].name} ${'⚽'.repeat(Math.min(s.goals, 5))}`);
-      if (scorers.length > 0) lines.push(`Scorers: ${scorers.join(', ')}`);
-    }
-    lines.push(
-      `EvoFootball Arena · Gen ${this.league.generation} · Season ${this.league.history.length + 1} · ${this.league.roundLabel()} · seed ${this.league.seed}`,
-    );
-    return lines.join('\n');
   }
 
   saveNow(): void {

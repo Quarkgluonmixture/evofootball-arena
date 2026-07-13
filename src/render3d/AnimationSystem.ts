@@ -1,5 +1,5 @@
 import type { ActionType } from '../sim/types';
-import type { RenderPlayer, RenderState } from './RenderStateAdapter';
+import { lerpAngle, type RenderPlayer, type RenderState } from './RenderStateAdapter';
 import type { PlayerModel } from './PlayerModel';
 
 /**
@@ -125,6 +125,18 @@ export class AnimationSystem {
       const toBall = Math.atan2(state.ball.x - p.x, state.ball.z - p.z);
       model.diveSide = Math.sign(Math.sin(toBall - p.yaw)) || 1;
       model.diveT = 0;
+      model.yawLock = p.yaw;
+    }
+    // The dive freezes the FACING too (34.1, user report: the keeper kept
+    // rotating with the ball mid-save — sim heading tracks the ball and
+    // setPose applied it raw to a horizontal body). Locked for the dive,
+    // eased back to the live heading as he picks himself up.
+    if (anim === 'gkDive') {
+      model.root.rotation.y = model.yawLock;
+      model.yawEase = 1;
+    } else if (model.yawEase > 0) {
+      model.yawEase = Math.max(0, model.yawEase - dt / 0.45);
+      model.root.rotation.y = lerpAngle(p.yaw, model.yawLock, model.yawEase);
     }
     model.prevAnim = anim;
 

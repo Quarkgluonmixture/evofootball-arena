@@ -405,6 +405,26 @@ body.cinematic #three-host { max-width: none; }
 body.cinematic .cinematic-exit { display: block; }
 .cine-bug { top: 14px; }
 
+/* Cinematic ENTER lives on the stage (34.1) — one tap, always in reach. */
+.cinematic-enter {
+  position: absolute; top: 10px; right: 12px; z-index: 6;
+  font-size: 16px; padding: 5px 12px; min-height: 36px;
+  background: rgba(8, 12, 22, 0.75); border: 1px solid var(--border);
+  border-radius: 9px; opacity: 0.8; transition: opacity 0.15s ease;
+}
+.cinematic-enter:hover { opacity: 1; }
+body.cinematic .cinematic-enter { display: none; }
+
+/* Segmented controls (34.1): joined buttons, one active fill. */
+.seg { display: flex; flex: 1; min-width: 0; }
+.seg button {
+  flex: 1; margin: 0; border-radius: 0; border-right-width: 0;
+  padding: 5px 4px; font-size: 11px; white-space: nowrap; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.seg button:first-child { border-radius: 8px 0 0 8px; }
+.seg button:last-child { border-radius: 0 8px 8px 0; border-right-width: 1px; }
+
 /* ---------- Phase 15: replay broadcast chrome ---------- */
 .replay-badge {
   background: var(--danger); color: #fff; font-size: var(--fs-xs); font-weight: 800;
