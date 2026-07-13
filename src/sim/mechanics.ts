@@ -19,8 +19,16 @@ import type { Role } from './types';
  */
 
 /** How far out the keeper can reach a ball (dive included). */
-export function keeperReach(defTeam: { genome: { keeperAggression: number } }, gk: Player): number {
+function keeperReach(defTeam: { genome: { keeperAggression: number } }, gk: Player): number {
   return 2.05 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5;
+}
+
+/** Dive difficulty, frozen at the moment of the strike: how far off the
+ * shot's line the keeper stands, priced against his reach. Shared by the
+ * open-play shot, the header and the placed free kick. */
+function diveDifficulty(ballPos: V2, dir: V2, gk: Player, opp: { genome: { keeperAggression: number } }): number {
+  const path = closestPointOnSegment(ballPos, add(ballPos, scale(dir, 40)), gk.pos);
+  return clamp(1.15 - dist(path, gk.pos) / keeperReach(opp, gk), 0.25, 1);
 }
 
 /* ------------------------------------------------------------------ */
@@ -607,8 +615,7 @@ function performHeaderShot(match: Match, shooter: Player): void {
   team.stats.xg += q;
   match.playerStats[shooter.gid].shots++;
 
-  const path = closestPointOnSegment(ball.pos, add(ball.pos, scale(dir, 40)), gk.pos);
-  const difficulty = clamp(1.15 - dist(path, gk.pos) / keeperReach(opp, gk), 0.25, 1);
+  const difficulty = diveDifficulty(ball.pos, dir, gk, opp);
   const lp = match.lastCompletedPass;
   const assistGid =
     lp && lp.receiverGid === shooter.gid && match.simTime - lp.t < 3 ? lp.passerGid : null;
@@ -699,9 +706,7 @@ export function performShot(match: Match, shooter: Player): void {
   match.playerStats[shooter.gid].shots++;
 
   // Dive difficulty, frozen at the moment of the strike (keeper reaction).
-  const path = closestPointOnSegment(match.ball.pos, add(match.ball.pos, scale(dir, 40)), gk.pos);
-  const gkPerp = dist(path, gk.pos);
-  const difficulty = clamp(1.15 - gkPerp / keeperReach(opp, gk), 0.25, 1);
+  const difficulty = diveDifficulty(match.ball.pos, dir, gk, opp);
 
   // Assist credit if this shot scores: the completed pass that set it up.
   const lpForAssist = match.lastCompletedPass;
@@ -793,8 +798,7 @@ export function performFreeKick(match: Match, taker: Player): void {
   team.stats.xg += q;
   match.playerStats[taker.gid].shots++;
 
-  const path = closestPointOnSegment(ball.pos, add(ball.pos, scale(dir, 40)), gk.pos);
-  const difficulty = clamp(1.15 - dist(path, gk.pos) / keeperReach(opp, gk), 0.25, 1);
+  const difficulty = diveDifficulty(ball.pos, dir, gk, opp);
 
   match.markShotOutcome('miss'); // close out any still-pending previous shot
   match.shotLog.push({

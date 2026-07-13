@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
-import { BOX_DEPTH, BOX_WIDTH, CORNER_CLEARANCE, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Role } from '../sim/types';
@@ -8,7 +8,7 @@ import {
   cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
   supportSpot,
 } from './formations';
-import { escapeCarry, interceptBall } from './perception';
+import { ballLanding, escapeCarry, interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
 
 /**
@@ -187,9 +187,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         // the true descent (friction-free parabola, exact); the others keep
         // their structure spots for the knockdown and the rebound.
         if (!r && ball.owner === null && (ball.z > 0 || ball.vz !== 0)) {
-          const tLand = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
-          const landX = ball.pos.x + ball.vel.x * tLand;
-          const landY = ball.pos.y + ball.vel.y * tLand;
+          const { x: landX, y: landY } = ballLanding(ball);
           let closest = -1;
           let bd = Infinity;
           for (const idx of ranked) {

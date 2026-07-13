@@ -96,6 +96,5 @@ export const AI_INTERVAL = 0.15;
 export const TEAM_AI_INTERVAL = 0.4;
 
 export const SHOT_SPEED = 27;
-export const PLAYER_RADIUS = 0.55;
 /** Minimum distance between player centers (hard separation). */
 export const PLAYER_MIN_DIST = 1.05;

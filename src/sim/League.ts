@@ -518,7 +518,10 @@ export class League {
       fitness: [...fit1, ...fit2]
         .map((x) => ({ ...x, name: this.franchise(x.slot).name }))
         .sort((a, b) => b.total - a.total),
-      evolution: undefined as unknown as EvolutionReport,
+      // Filled after the evolution pass below — the record must snapshot
+      // geneMeans/attrMeans/styleShares BEFORE evolution mutates franchises,
+      // so the entries cannot be computed at literal-build time.
+      evolution: { generation: this.generation + 1, entries: [] },
       cup: this.cup && cupRoundComplete(this.cup, 3)
         ? buildCupRecord(this.cup, (slot, i) => this.franchise(slot).playerNames[i] ?? ROLES[i])
         : undefined,

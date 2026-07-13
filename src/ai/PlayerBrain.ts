@@ -236,9 +236,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   let bestLoftMate: Player | null = null;
   let bestLoft = 0;
   let bestLoftOpen = 0;
+  // One aerial-lane read per decision — the pass loop and the through-ball
+  // loop used to each run the same scan with the same arguments.
+  const airLane = p.kickCooldown <= 0 ? airLaneOpenness(p.pos, opp.players) : 0;
   if (p.kickCooldown <= 0) {
     const lp = match.lastCompletedPass;
-    const airLane = airLaneOpenness(p.pos, opp.players);
     const layingOff = p.action.type === 'HoldUp'; // pivot lay-off (Phase 28)
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;
@@ -387,7 +389,6 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   let bestThroughChip = false;
   if (p.kickCooldown <= 0) {
     const line = defenderLineLocalX(team, opp.players);
-    const airLane = airLaneOpenness(p.pos, opp.players);
     // Third man (Phase 34): p JUST received — the bounce to a runner within a
     // beat is the possession game's release. Modulated by passBias.
     const lpT = match.lastCompletedPass;

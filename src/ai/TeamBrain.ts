@@ -1,6 +1,7 @@
 import { dist } from '../utils/vec';
-import { BOX_DEPTH, BOX_WIDTH, GRAVITY, HALF_L } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, HALF_L } from '../sim/constants';
 import { cornerKeyZone, formationSpot } from './formations';
+import { ballLanding } from './perception';
 import { aerialSense } from '../sim/mechanics';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
@@ -335,14 +336,13 @@ function assignChasers(team: Team, match: Match): void {
     count > 0 && pass && pass.side !== team.side && ball.owner === null &&
     (ball.z > 0.5 || ball.vz > 2)
   ) {
-    const tLand = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
-    const land = { x: ball.pos.x + ball.vel.x * tLand, y: ball.pos.y + ball.vel.y * tLand };
+    const land = ballLanding(ball);
     // LONG hoofs into open field only: an unscoped first cut attacked the
     // landing of every cross, corner and chip too — one extra converging
     // defender on every box delivery re-buried the 31.9 headed game and
     // cost 0.77 goals/match at n=568. Box landings belong to the marking
     // scheme; short chips to the through-ball economy.
-    const flight = Math.hypot(ball.vel.x, ball.vel.y) * tLand;
+    const flight = Math.hypot(ball.vel.x, ball.vel.y) * land.t;
     const inOurBox =
       Math.abs(land.y) < BOX_WIDTH / 2 && team.localX(land.x) < -(HALF_L - BOX_DEPTH);
     if (flight > 12 && !inOurBox) {

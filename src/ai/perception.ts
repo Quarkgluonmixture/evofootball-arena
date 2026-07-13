@@ -89,6 +89,18 @@ export function escapeCarry(
 }
 
 /**
+ * Friction-free landing of an airborne ball: time to touch down and the
+ * exact point. The same closed form used to live inline in interceptBall,
+ * TeamBrain's drop-chaser and the executor's crash re-route — ONE
+ * projector now, so when the ball learns to curve (Phase 37 Magnus) every
+ * consumer reads the same corrected flight.
+ */
+export function ballLanding(ball: Ball): { t: number; x: number; y: number } {
+  const t = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
+  return { t, x: ball.pos.x + ball.vel.x * t, y: ball.pos.y + ball.vel.y * t };
+}
+
+/**
  * How clean an AERIAL lane is (Phase 28): a lofted ball only cares about
  * opponents close enough to the kicker to charge it down before it rises —
  * everything downfield is flown over. Landing safety is the receiver's
@@ -201,9 +213,7 @@ export function interceptBall(p: Player, ball: Ball): InterceptSolution {
   // run to where it comes DOWN (friction-free flight, so the landing point
   // is exact) and be there when it drops.
   if (ball.z > 0.02 || ball.vz > 0.02) {
-    const tLand = (ball.vz + Math.sqrt(ball.vz * ball.vz + 2 * GRAVITY * ball.z)) / GRAVITY;
-    const px = ball.pos.x + v0.x * tLand;
-    const py = ball.pos.y + v0.y * tLand;
+    const { t: tLand, x: px, y: py } = ballLanding(ball);
     const dx = p.pos.x - px;
     const dy = p.pos.y - py;
     const tMe = Math.sqrt(dx * dx + dy * dy) / ts + 0.15;
