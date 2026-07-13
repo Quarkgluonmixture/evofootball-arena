@@ -39,4 +39,13 @@ describe('escapeCarry', () => {
     const ring = [opp(1.4, 0), opp(-1.4, 0), opp(0, 1.4), opp(0, -1.4), opp(1, 1), opp(-1, -1), opp(1, -1), opp(-1, 1)];
     expect(escapeCarry(carrier(0, 0), 1, 0, ring)).toBeNull();
   });
+
+  it('a WIDE carrier escapes OUTWARD to his touchline, never on an inward arc (34.3)', () => {
+    // Winger at y=+14, wall ahead and a body inside — repulsion alone would
+    // point him across the pitch; the wide bias sends him line-or-back.
+    const esc = escapeCarry(carrier(0, 14), 1, 0, [opp(2, 14), opp(4, 15.5), opp(4, 12.5), opp(1, 11)]);
+    expect(esc).not.toBeNull();
+    expect(esc!.dir.y).toBeGreaterThan(0); // toward HIS touchline (+y), not inward
+    expect(esc!.dir.x).toBeLessThan(0.3);
+  });
 });

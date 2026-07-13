@@ -686,6 +686,30 @@ Two play reports:
   (escape.test.ts pins all five cases). Calibrate both seeds in band
   (2.46 / 2.57); fingerprint re-baselined `6f251a22…` → `46c88002…`.
 
+## ⭐ Phase 34.3 — orientation-aware receiving — **SHIPPED**
+
+Two user reports ("脱压应配合角色: 中锋接球不转身护球/往后带, 边锋往边路带"
++ "球员朝向也挺重要"), three levers, all probed A/B vs phase-34.2
+(scripts/probes/orientation-ab.ts, worktree method):
+
+- **The TURN TAX**: driving forward with your back to the play is a
+  contested touch — forward dribble × (1 − backToGoal·pressure·0.3).
+  First cut at 0.4 dropped main-seed goals to 2.35 (below band); 0.3
+  lands 2.53/2.62 on both seeds. Facing now shapes the decision: the
+  back-to-goal receiver lays off first-time, holds, or escapes instead
+  of auto-turning.
+- **HoldUp zone** localX >0 → >−12: the target man shields wherever the
+  ball finds him. ST hold-ups 0.16 → 0.50/match (3.1×).
+- **Winger outward escape**: escapeCarry biases wide carriers (|y|>8) to
+  THEIR touchline — mechanism probe: 374 wide escape frames, **100%
+  outward, 0% inward** (guarded within 5m of the line where outward =
+  into touch). Back-to-goal pressured retention 56.2% → 58.3%.
+
+gkBuildup directional test n 40→80: the new outlets added variance to
+keeper-reception counts and one n=40 sample landed 1.18× (bar 1.25×);
+probed at n=80 the true ratio is 1.38× — scaled the test per §10.5, no
+lever or bar touched. Fingerprint `46c88002…` → `e2e64942…`.
+
 ## Phase 35 — players become PEOPLE
 
 **Goal:** small, READABLE individuality on top of attributes.

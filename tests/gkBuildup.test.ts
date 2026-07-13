@@ -102,10 +102,14 @@ describe('the ball-playing keeper (Phase 32.2)', () => {
     }
   });
 
-  it('directional: ball-playing sides route more build-up through their keeper', { timeout: 120000 }, async () => {
+  // n 40 → 80 (34.3): the escape carry + combo outlets gave pressured
+  // players alternatives to the back-pass, adding variance to this count —
+  // at n=40 one sample landed 1.18×; probed at n=80 the true ratio is
+  // ~1.38× (§10.5: scale the test, don't weaken the lever or the bar).
+  it('directional: ball-playing sides route more build-up through their keeper', { timeout: 240000 }, async () => {
     const feetReceptions = async (g: TacticalGenome): Promise<number> => {
       let feet = 0;
-      for (let seed = 0; seed < 40; seed++) {
+      for (let seed = 0; seed < 80; seed++) {
         await breathe(seed);
         const m = new Match({ seed, teamA: team('A', g), teamB: team('B'), duration: 240 });
         const gk = m.teams[0].goalkeeper;

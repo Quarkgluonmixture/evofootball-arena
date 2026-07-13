@@ -2,7 +2,7 @@ import { clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, len, norm, scale, sub, type V2,
 } from '../utils/vec';
-import { BALL_FRICTION_K, GRAVITY } from '../sim/constants';
+import { BALL_FRICTION_K, GRAVITY, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 
@@ -54,7 +54,13 @@ export function escapeCarry(
   }
   if (rx === 0 && ry === 0) return null;
   // Tilt lateral: straight retreats toward the own goal are the last resort.
-  ry += Math.sign(ry || p.pos.y || 1) * 0.35 * Math.hypot(rx, ry);
+  // 边锋 (34.3, user report): a WIDE carrier escapes to HIS touchline or
+  // backward — never on an inward arc across the press. Guarded near the
+  // line itself, where the outward pull would carry into touch.
+  const wide = Math.abs(p.pos.y) > 8 && Math.abs(p.pos.y) < HALF_W - 5;
+  const tiltSign = wide ? Math.sign(p.pos.y) : Math.sign(ry || p.pos.y || 1);
+  if (wide && Math.sign(ry) !== tiltSign) ry = Math.abs(ry) * tiltSign * 0.6;
+  ry += tiltSign * 0.35 * Math.hypot(rx, ry);
   let dir = norm({ x: rx, y: ry });
   const forward = spaceAhead(p, { x: attackDir, y: 0 }, opponents);
   if (forward > 0.55) return null; // the front door is open — no need to turn

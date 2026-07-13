@@ -543,7 +543,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // the ball, back to goal and a defender on them shields it and waits for
   // support instead of forcing a turn — the lay-off boost in the pass loop
   // is the payoff. Patience isn't free: stagnation drains it.
-  if (!mustKick && p.role === 'ST' && localX > 0 && localX < 32) {
+  // 34.3 (user report "中锋接球之后不转身"): the zone extends into the own
+  // half — the target-man outlet shields wherever the long ball finds him.
+  if (!mustKick && p.role === 'ST' && localX > -12 && localX < 32) {
     const backToGoal = kickMisalignment(p, norm(sub(goal, p.pos))); // 1 = facing own goal
     if (backToGoal > 0.45 && pressure > 0.2) {
       const sH =
@@ -578,6 +580,12 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     const space = spaceAhead(p, toGoal, opp.players);
     let sD = (W.dribbleBase + space * W.dribbleSpaceW) * (W.dribbleGeneBase + g.dribbleBias * W.dribbleGeneW);
     sD *= 1 - pressure * W.dribblePressurePen;
+    // The TURN TAX (34.3, user report "球员朝向也挺重要"): driving forward
+    // with your back to the play means turning ON the ball — a contested
+    // touch when someone is close. Facing forward, or free of pressure,
+    // costs nothing; back-to-goal under a marker, the forward drive yields
+    // to holding up, escaping, or the first-time ball.
+    sD *= 1 - kickMisalignment(p, toGoal) * pressure * 0.3;
     // Drive the OPEN RUN (Phase 31, the reported "大空间不突破就硬要传球"):
     // big space ahead used to lose to forced passes. The boost is a flat
     // multiplier ON TOP of the pressure penalty — an earlier cut also
