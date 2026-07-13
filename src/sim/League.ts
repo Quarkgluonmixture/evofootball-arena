@@ -102,7 +102,15 @@ export interface SeasonRecord {
   fitness: Array<FitnessBreakdown & { name: string }>;
   evolution: EvolutionReport;
   /** Playoff decider result, when promotion mode is 'playoff'. */
-  playoff?: { homeName: string; awayName: string; score: [number, number]; winnerName: string };
+  playoff?: {
+    homeName: string;
+    awayName: string;
+    /** Slots (Phase 40, optional — absent on older records): rivalry fuel. */
+    homeSlot?: number;
+    awaySlot?: number;
+    score: [number, number];
+    winnerName: string;
+  };
   /** The season's Evo Cup (absent on pre-cup-era records from old saves). */
   cup?: CupRecord;
   /** Post-season additions (optional: absent on records from old saves). */
@@ -282,6 +290,52 @@ export class League {
     return this.franchises.find((f) => f.slot === slot)!;
   }
 
+  /**
+   * Rivalries (Phase 40) — DERIVED from history, never stored: every cup
+   * FINAL and promotion-playoff decider is a "meeting in a decider" for
+   * that slot pair; two meetings arm a rivalry forever (the slot — the
+   * CLUB — survives rebirths, so the feud outlives the people). Pure and
+   * deterministic; cheap enough to recompute on demand.
+   */
+  rivalryMeetings(): Map<string, number> {
+    const meetings = new Map<string, number>();
+    const add = (a: number, b: number): void => {
+      if (a < 0 || b < 0) return;
+      const key = a < b ? `${a}-${b}` : `${b}-${a}`;
+      meetings.set(key, (meetings.get(key) ?? 0) + 1);
+    };
+    for (const rec of this.history) {
+      const finalTie = rec.cup?.ties.find((t) => t.round === 3 && t.played);
+      if (finalTie) add(finalTie.home, finalTie.away);
+      const po = rec.playoff;
+      if (po && po.homeSlot !== undefined && po.awaySlot !== undefined) add(po.homeSlot, po.awaySlot);
+    }
+    return meetings;
+  }
+
+  /** Is this pairing an ARMED rivalry (≥2 decider meetings)? */
+  isDerby(a: number, b: number): boolean {
+    const key = a < b ? `${a}-${b}` : `${b}-${a}`;
+    return (this.rivalryMeetings().get(key) ?? 0) >= 2;
+  }
+
+  /**
+   * Prestige (Phase 40): age-decayed trophy weight per slot — titles 1.0,
+   * cups 0.6, decayed ×0.85 per season of age (only slot-unambiguous
+   * honors count). Pure over history; biases rebirth parent ranking
+   * (CAPPED — see finishSeason).
+   */
+  prestigeOf(slot: number): number {
+    let p = 0;
+    for (const rec of this.history) {
+      const age = this.generation - rec.generation;
+      const w = Math.pow(0.85, Math.max(0, age));
+      if (rec.championSlot === slot) p += w;
+      if (rec.cup && rec.cup.winnerSlot === slot) p += 0.6 * w;
+    }
+    return p;
+  }
+
   teamInfo(slot: number): TeamInfo {
     const f = this.franchise(slot);
     return {
@@ -300,6 +354,7 @@ export class League {
       teamA: this.teamInfo(f.home),
       teamB: this.teamInfo(f.away),
       duration: this.matchDuration,
+      derby: this.isDerby(f.home, f.away),
     });
   }
 
@@ -482,6 +537,10 @@ export class League {
         playoffResult = {
           homeName: homeF.name,
           awayName: awayF.name,
+          // Slots too (Phase 40): rivalries live on the CLUB (the slot
+          // survives rebirths), names don't. Optional — old records lack it.
+          homeSlot: decider.home,
+          awaySlot: decider.away,
           score: [decider.scoreH, decider.scoreA],
           winnerName: challengerWon ? awayF.name : homeF.name,
         };
@@ -539,7 +598,14 @@ export class League {
     const taken = new Set(this.franchises.map((f) => f.name));
     const d1 = this.division(0);
     const d2 = this.division(1);
-    const d1Ranked = [...d1].sort((a, b) => (map1.get(b.slot) ?? 0) - (map1.get(a.slot) ?? 0));
+    // Prestige bias (Phase 40): dynasties leave slightly bigger genetic
+    // footprints — the D2 rebirth parent pool ranks by fitness PLUS an
+    // age-decayed trophy weight, HARD-CAPPED at +0.06 (fitness totals run
+    // ~0–1, so prestige can only flip near-ties; the positive-feedback
+    // monoculture risk is the cap's whole reason — evolve-check gates it).
+    const pKey = (f: Franchise): number =>
+      (map1.get(f.slot) ?? 0) + Math.min(this.prestigeOf(f.slot), 2) * 0.03;
+    const d1Ranked = [...d1].sort((a, b) => pKey(b) - pKey(a));
     // Zonal ecology budget (Phase 31): one shared counter for both division
     // passes — zonal stays the RARE identity (~4 of 16) no matter which
     // channel (mutation or rebirth inheritance) tries to spread it.

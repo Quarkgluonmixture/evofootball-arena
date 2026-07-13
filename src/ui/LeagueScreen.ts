@@ -235,6 +235,11 @@ export class LeagueScreen {
       tags.appendChild(el('span', 'tag', `🛡 ${f.style.formationDef}`));
       tags.appendChild(el('span', 'tag', t(f.style.scheme === 'man' ? 'man-marking' : 'zonal')));
       for (const t of describeIdentity(f.genome)) tags.appendChild(el('span', 'tag', t));
+      // Prestige (Phase 40): age-decayed trophy weight, shown as stars.
+      const prestige = this.league ? this.league.prestigeOf(f.slot) : 0;
+      if (prestige >= 0.5) {
+        tags.appendChild(el('span', 'tag', '★'.repeat(Math.max(1, Math.min(Math.round(prestige), 3)))));
+      }
       card.appendChild(tags);
 
       // Tactical DNA (32.5): the radar reads as a SHAPE where 14 bars read
@@ -339,6 +344,21 @@ export class LeagueScreen {
       for (const r of [...honours].reverse().slice(0, 10)) {
         this.root.appendChild(
           el('div', 'history-entry', `Season ${r.generation} — 🏅 ${r.cup!.winnerName} (beat ${r.cup!.runnerUpName})`),
+        );
+      }
+    }
+
+    // Rivalries (Phase 40): armed pairs (≥2 decider meetings), derived live.
+    const meetings = [...league.rivalryMeetings().entries()]
+      .filter(([, n]) => n >= 2)
+      .sort((a, b) => b[1] - a[1]);
+    if (meetings.length > 0) {
+      this.root.appendChild(el('h2', '', t('Rivalries')));
+      for (const [key, n] of meetings.slice(0, 8)) {
+        const [a, b] = key.split('-').map(Number);
+        this.root.appendChild(
+          el('div', 'history-entry',
+            `🔥 ${league.franchise(a).name} × ${league.franchise(b).name} — ${n} ${t('meetings in deciders')}`),
         );
       }
     }

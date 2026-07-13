@@ -77,7 +77,8 @@ export function updateTeamBrain(team: Team, match: Match): void {
     const pressScore =
       g.pressIntensity +
       (ballLocalX > 0 ? 0.18 : -0.1) +
-      (prevMode === 'Press' ? 0.08 + steady : prevMode === 'Defend' ? -steady : 0);
+      (prevMode === 'Press' ? 0.08 + steady : prevMode === 'Defend' ? -steady : 0) +
+      (match.derby ? 0.04 : 0); // derbies bite (Phase 40)
     mode = pressScore > 0.62 ? 'Press' : 'Defend';
   } else {
     // Loose ball: keep the previous shape decision (brief window anyway).

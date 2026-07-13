@@ -175,6 +175,8 @@ const ZH: Record<string, string> = {
   '\u{1F945} Penalty shootout': '\u{1F945} 点球大战',
   '⚡ Underdog advances': '⚡ 黑马晋级',
   'Roll of honour': '荣誉榜',
+  'Rivalries': '宿敌对决',
+  'meetings in deciders': '次决战相遇',
   'Awards (Premier Division)': '赛季最佳(超级组)',
   'Challenger top scorers': '挑战组射手榜',
   '🎓 Retirements': '🎓 赛季退役',

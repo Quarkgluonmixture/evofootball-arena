@@ -1,16 +1,20 @@
-# Roadmap — shipped through phase-39; autonomous run continues to Phase 40
+# Roadmap — shipped through phase-40; the autonomous 35→40 run is COMPLETE
 
 **Audience: the next coding agent (and the user).** Everything through
-**phase-39** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
-instruction (2026-07-13) is to run the queue AUTONOMOUSLY through Phase
-40 (league ecology — rivalries + prestige), the final phase of the run,
-closed with probe evidence, then a session wrap.** Phase specs are directions, not
+**phase-40** is SHIPPED and live — the 2026-07-13 autonomous run
+delivered the whole realism-gap plan (35 game-state tactics, 36 visible
+touches, 37 Magnus, 38 body contact) plus 39 traits and 40 ecology, each
+with probe evidence, and a bit-identical structure pass. ⭐ **RESUME
+HERE: there is NO queued build work — the next phase comes from the
+user's PLAY REPORTS (the awaiting list below) or a new user pick from
+the parking lot.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
 starting. When play-feel and the calibrate table disagree, **the user's
-play report wins**. Awaiting play reports on: 39 traits (do the emoji
-chips + captain read; do 🦊 post-channel runs show), 38 body contact
-(shield / shoulder ride / corner grapple — do the poses READ on the
-phone), 37
+play report wins**. Awaiting play reports on: 40 ecology (does 🔥
+Derby! land; rivalry list + ★ prestige on cards), 39 traits (do the
+emoji chips + captain read; do 🦊 post-channel runs show), 38 body
+contact (shield / shoulder ride / corner grapple — do the poses READ
+on the phone), 37
 Magnus (the corner whip, the FK banana, curled finishes), 36 visible
 touches (does
 the carry finally read as FEET, poke steals, heavy-touch feel), 35
@@ -927,20 +931,33 @@ stories (all six traits are visible IN PLAY) and the optional transfer
 window (ecosystem isn't stale). Trait census probe = `trait-census.ts`.
 Calibrate 2.42/2.35; fingerprint `f6d49cda…` → `608b4b4c…` (behavioral).
 
-## Phase 40 — league ecology
+## ⭐ Phase 40 — league ecology — **SHIPPED**
 
-**Goal:** long-run narratives the hall of fame can't mine today.
+**Outcome:** feuds and dynasties, both DERIVED from history (no save
+schema beyond two optional slot fields on the playoff record — rivalries
+live on the SLOT, the club that survives rebirths).
 
-- **Build:** RIVALRIES: a pair ledger in League history (≥2 meetings in
-  finals/deciders/relegation six-pointers arms a rivalry); rivalry
-  fixtures get a small intensity effect (press +, fouls +, feed banner
-  `🔥 Derby`) and their own hall-of-fame table (H2H). PRESTIGE: weighted
-  trophy history that biases rebirth parent selection (dynasties leave
-  bigger genetic footprints) — watch evolve-check diversity doesn't
-  collapse. Attendance/stadium flavor text scaled by prestige+form.
-- **Tests:** rivalry arming determinism; prestige bias measurable but
-  bounded (diversity metrics in evolve-check stay in band).
-- **Risk:** positive-feedback prestige → monoculture; cap the bias.
+- **RIVALRIES** (`League.rivalryMeetings()`/`isDerby()`): every cup
+  FINAL and promotion-playoff decider is a meeting; ≥2 meetings arm the
+  pair forever. Armed fixtures play as derbies: `🔥 Derby!` banner,
+  press appetite +0.04 both sides, foul bite +0.01 (`cfg.derby` →
+  `match.derby`). Hall of fame lists armed pairs (宿敌对决). Census
+  (probe, 3 seeds × 20 gens): 18–19 pairs MEET, **1–2 ARM** — a feud a
+  decade, not one a season; 0–1 league derby fixtures per season (armed
+  pairs don't always share a division — the cup rematch carries it).
+- **PRESTIGE** (`League.prestigeOf()`): age-decayed trophy weight
+  (title 1.0, cup 0.6, ×0.85/season; only slot-unambiguous honours).
+  Bias: the D2 rebirth parent ranking adds `min(prestige,2)·0.03` —
+  HARD-CAPPED at +0.06 on a ~0–1 fitness scale, so dynasties flip
+  near-ties only. Gate held: champion churn 8–12 distinct in 20
+  seasons (probe), evolve-check identity spread intact. Team cards
+  show ★–★★★ from 0.5 prestige.
+- Cut: H2H tables (per-fixture results aren't in history — a real
+  schema cost for a table nobody asked for) and attendance flavor
+  (parked with the crowd/audio lot).
+
+Probe = `ecology-census.ts`; tests pin arming determinism, the banner,
+the cap, decay math and long-run ledger determinism.
 
 ---
 

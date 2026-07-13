@@ -94,6 +94,8 @@ export interface MatchConfig {
   teamB: TeamInfo;
   /** Sim-seconds for the whole match (default MATCH_DURATION). Tests use short ones. */
   duration?: number;
+  /** Armed rivalry fixture (Phase 40): a touch more press and bite, 🔥 banner. */
+  derby?: boolean;
 }
 
 /**
@@ -169,9 +171,13 @@ export class Match {
    * leak into the second half's display clock (Phase 28.1). */
   private secondHalfStart = 0;
 
+  /** Armed rivalry fixture (Phase 40): press + bite up a touch, 🔥 banner. */
+  readonly derby: boolean;
+
   constructor(cfg: MatchConfig) {
     this.rng = new Rng(cfg.seed);
     this.duration = cfg.duration ?? MATCH_DURATION;
+    this.derby = cfg.derby ?? false;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
@@ -180,6 +186,7 @@ export class Match {
     // so all 12 players don't think in the same frame.
     this.allPlayers.forEach((p) => (p.decisionTimer = ((p.index % TEAM_SIZE) + 1) * (AI_INTERVAL / TEAM_SIZE)));
     this.setupKickoff(0);
+    if (this.derby) this.pushEvent('info', -1, '🔥 Derby! Old rivals meet again');
   }
 
   /**

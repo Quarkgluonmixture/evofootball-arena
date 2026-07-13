@@ -1138,7 +1138,9 @@ export function tryTackles(match: Match): void {
     // A failed lunge is sometimes a foul (Phase 20): free kick, or a penalty
     // in the tackler's own box. Aggressive markers give more away.
     const foulP =
-      0.06 + oppTeam.genome.markingAggression * 0.1 + (tackler.traits.includes('enforcer') ? 0.02 : 0);
+      0.06 + oppTeam.genome.markingAggression * 0.1 +
+      (tackler.traits.includes('enforcer') ? 0.02 : 0) +
+      (match.derby ? 0.01 : 0); // derbies bite (Phase 40)
     if (match.rng.chance(foulP)) match.awardFoul(tackler, owner);
   }
 }
