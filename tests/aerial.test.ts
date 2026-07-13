@@ -190,6 +190,48 @@ describe('aerial duels and deliveries', () => {
     expect(winsA).toBeGreaterThan(winsB * 1.5); // defending decides the air
   });
 
+  it('chest trap (28.6): an unpressured drop is taken to the FEET; a contested one is headed', () => {
+    const m = new Match({ seed: 11, teamA: team('A', neutral()), teamB: team('B', neutral()), duration: 240 });
+    const trapper = m.teams[0].players[2]; // a mid-technique outfielder (0.5)
+    const opp = m.teams[1].players[1];
+    // Park everyone else out of the contest.
+    for (const p of m.allPlayers) {
+      if (p !== trapper) p.pos = { x: p.side === 0 ? -40 : 40, y: p.index * 5 - 12 };
+    }
+    const drop = (): void => {
+      m.ball.owner = null;
+      m.ball.pos = { x: 0, y: 0 };
+      m.ball.vel = { x: 2, y: 0 };
+      m.ball.z = 1.5;   // chest band (≤ CHEST_TRAP_MAX_HEIGHT 1.7)
+      m.ball.vz = -2;   // dropping
+      m.pendingPass = null;
+      trapper.pos = { x: 0.3, y: 0 }; // almost under it (< CHEST_TRAP_RADIUS)
+      trapper.kickCooldown = 0;
+      trapper.stunTimer = 0;
+    };
+    // UNPRESSURED: no opponent within header reach → cushion it down.
+    let trapped = 0;
+    for (let i = 0; i < 200; i++) {
+      drop();
+      tryAerial(m, m.allPlayers);
+      if (m.ball.owner === trapper) trapped++;
+    }
+    expect(trapped).toBeGreaterThan(150); // most taken down clean; the rest spill (混战)
+    expect(trapped).toBeLessThan(200);    // pressure/speed still spill some — never automatic
+
+    // PRESSURED: an opponent on top of him → it's an aerial DUEL, headed, never a calm trap.
+    let trappedContested = 0;
+    for (let i = 0; i < 200; i++) {
+      drop();
+      opp.pos = { x: -0.4, y: 0 }; // within HEADER_RADIUS of the ball
+      opp.kickCooldown = 0;
+      opp.stunTimer = 0;
+      tryAerial(m, m.allPlayers);
+      if (m.ball.owner === trapper) trappedContested++;
+    }
+    expect(trappedContested).toBe(0);
+  });
+
   it('directional: wide teams (attackingWidth) cross more (side-balanced)', () => {
     const wide = neutral();
     wide.attackingWidth = 0.95;

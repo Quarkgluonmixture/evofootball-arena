@@ -48,6 +48,20 @@ export const HEADER_MIN_HEIGHT = 1.35;
 export const HEADER_MAX_HEIGHT = 2.5;
 /** ...standing within this horizontal radius of the ball. */
 export const HEADER_RADIUS = 1.35;
+/**
+ * Chest / thigh trap (Phase 28.6, user report "球在两个球员之间弹来弹去 —
+ * 是不是没有胸部停球"): a ball dropping through the LOWER header band that no
+ * opponent is contesting can be CUSHIONED to the feet instead of headed.
+ * Heading a hanging ball just nods it to the next man — the endless aerial
+ * rally. The take-down is priced by technique/first-touch and spills under
+ * pressure (a failed trap keeps the scramble). Ceiling below a leaping
+ * header (you can't chest a 2m ball); only a descending/apex ball (vz gate);
+ * the trapper must be almost under it (tighter than HEADER_RADIUS).
+ */
+export const CHEST_TRAP_MAX_HEIGHT = 1.7;
+export const CHEST_TRAP_RADIUS = 1.05;
+/** Above this upward vz the ball is rising too hard to cushion (just bounced/headed up). */
+export const CHEST_TRAP_MAX_VZ = 1.5;
 /** Keepers can claim high balls up to here (jump + hands). */
 export const GK_CLAIM_HEIGHT = 2.55;
 /**

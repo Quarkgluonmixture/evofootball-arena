@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-40 (+36.1, +28.5); play-report iteration is live
+# Roadmap — shipped through phase-40 (+36.1, +28.5, +28.6); play-report iteration is live
 
 **Audience: the next coding agent (and the user).** Everything through
 **phase-40** is SHIPPED and live — the 2026-07-13 autonomous run
@@ -6,8 +6,9 @@ delivered the whole realism-gap plan (35 game-state tactics, 36 visible
 touches, 37 Magnus, 38 body contact) plus 39 traits and 40 ecology, each
 with probe evidence, and a bit-identical structure pass. **phase-36.1**
 (carry regimes + the contested 50/50) shipped AFTER 40 from same-day
-play reports; **phase-28.5** (keeper hands stay in the box) shipped after
-that from a keeper play report. ⭐ **RESUME HERE: there is NO queued build work — the next
+play reports; **phase-28.5** (keeper hands stay in the box) then
+**phase-28.6** (the chest/thigh trap — the aerial ping-pong) shipped
+after that, each from a play report. ⭐ **RESUME HERE: there is NO queued build work — the next
 phase comes from the user's PLAY REPORTS (the awaiting list below) or a
 new user pick from the parking lot.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
@@ -20,11 +21,13 @@ it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
 correct, not a regression (phase-28.5 continues the pattern — a keeper-
 family tag on the newest HEAD). Never force-retag pushed tags (worktree
-A/B baselines and CI history ride on them). HEAD fingerprint: `6264488f…`.
+A/B baselines and CI history ride on them). HEAD fingerprint: `7efd3ef6…`.
 
-Awaiting play reports on: **28.5 keeper hands (does the sweeper now
-CLEAR with feet outside the box instead of scooping it up? any handball
-still slipping through?)**, **36.1 carry regimes (爆趟/一步一带 read?)
+Awaiting play reports on: **28.6 chest trap (does a hanging ball now get
+CUSHIONED to the feet instead of headed man-to-man? does the take-down
+READ on the phone? any pinball left?)**, **28.5 keeper hands (does the
+sweeper now CLEAR with feet outside the box instead of scooping it up?
+any handball still slipping through?)**, **36.1 carry regimes (爆趟/一步一带 read?)
 + the contested 50/50 (still anyone frozen off-ball?)**, 40 ecology
 (does 🔥 Derby! land; rivalry list + ★ prestige on cards), 39 traits
 (do the emoji chips + captain read; do 🦊 post-channel runs show), 38
@@ -1031,6 +1034,43 @@ directional test scaled n=80→160 (the confounded n=80 sample drew 1.18
 near the 1.25 bar; the true build-up ratio is a stable ~1.30, measured
 identical either side of this change). Fingerprint `b8fa54ae…` →
 `6264488f…` (behavioral).
+
+## ⭐ Phase 28.6 — the chest / thigh trap — **SHIPPED**
+
+Play report: **"球有的时候在两个球员之间弹来弹去,是不是没有胸部停球"** —
+and yes, exactly that. Instrumenting the rallies (`pingpong-dump`) showed
+the ping-pong is AERIAL: a ball hanging in the header band (1.35–2.5m)
+that nobody could take out of the air, so unpressured players just
+NODDED it to each other — one rally ran 10 headers between 3 teammates
+with the nearest opponent 3–5m away. Heading was the only option; there
+was no cushion.
+
+Two coupled parts (design ratified by the user — probability by
+technique/first-touch, spills under pressure to keep 混战):
+- **`tryChestTrap`** (in `tryAerial`, before the header contest): the man
+  almost under a dropping ball (`CHEST_TRAP_RADIUS` 1.05) below chest
+  height (`CHEST_TRAP_MAX_HEIGHT` 1.7, `vz` ≤ 1.5) with NO opponent inside
+  header reach cushions it — priced by the same `touchFailChance` surface
+  as a ground first touch (+a small aerial malus). Clean → `giveBall`
+  (dead to the feet, with the pass/offside bookkeeping giveBall already
+  does); spill → a heavy low knock + miscontrol, so the scramble is
+  preserved, just not perpetual.
+- **The header DEFERS**: an uncontested winner on a DROPPING midfield ball
+  (no opponent within header reach, `vz`<0, >16.5m from the opponent goal,
+  not near our own) declines to head and lets it drop into the trap — a
+  player with time and space controls, he doesn't nod it aimlessly. This
+  defer is what makes the trap bite. Attacking free headers and defensive
+  clearances fall OUTSIDE the gate — unchanged.
+
+Evidence — probe `pingpong.ts`, same-seed A/B vs `phase-28.5` two banks:
+**rallies (≥3 loose touches, ≥2 players, <1.5s) 0.26/0.37 → 0.06/0.09**
+(~75% gone); chest-band traps 0.10/0.16 → 0.34/0.49. Balance
+(`calibrate -- 8`, two seeds): headers-won 5.0/4.1 → 3.3/2.8 (the
+unpressured midfield nods that became traps), goals 2.59/2.35 →
+2.41/2.22 — **mean 2.32, right where phase-36.1 already shipped (2.34)**,
+so the game stays in its goal band; completion/possession/through-balls
+flat. A locking test pins uncontested-drop→feet vs contested→headed.
+Fingerprint `6264488f…` → `7efd3ef6…` (behavioral).
 
 ---
 

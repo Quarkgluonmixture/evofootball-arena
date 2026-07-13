@@ -5,7 +5,8 @@ import {
 import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
-  BALL_FRICTION_K, BOX_DEPTH, CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
+  BALL_FRICTION_K, BOX_DEPTH, CHEST_TRAP_MAX_HEIGHT, CHEST_TRAP_MAX_VZ, CHEST_TRAP_RADIUS,
+  CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
 } from './constants';
@@ -515,15 +516,19 @@ export function tryAerial(match: Match, order: Player[]): void {
   }
 
   if (ball.z > HEADER_MAX_HEIGHT) return;
+  // Chest / thigh trap (Phase 28.6): before anyone HEADS a hanging ball,
+  // an unpressured man under a dropping ball in the lower band takes it DOWN.
+  if (tryChestTrap(match, order)) return;
   let winner: Player | null = null;
   let best = -Infinity;
-  let contested = false;
+  const contenders: Player[] = [];
   for (const p of order) {
     if (p.role === 'GK' || p.sentOff || p.stunTimer > 0 || p.kickCooldown > 0) continue;
     const dx = p.pos.x - ball.pos.x;
     const dy = p.pos.y - ball.pos.y;
     const d2 = dx * dx + dy * dy;
     if (d2 > HEADER_RADIUS * HEADER_RADIUS) continue;
+    contenders.push(p);
     // Position + aerial sense + a seeded jump-timing roll pick the winner.
     // Attackers meeting a delivery in the opponent box arrive with momentum
     // — a real edge over the defender jumping from a standing start. Raised
@@ -540,15 +545,35 @@ export function tryAerial(match: Match, order: Player[]): void {
       attacking +
       (1 - Math.sqrt(d2) / HEADER_RADIUS) * 0.35 +
       match.rng.range(0, 0.45);
-    p.kickCooldown = 0.45; // jumped — brief recovery before the next touch
-    p.headerAnimTimer = 0.55;
-    contested = true;
     if (s > best) {
       best = s;
       winner = p;
     }
   }
-  if (!contested || !winner) return;
+  if (!winner) return;
+  // Let it DROP for the chest trap (Phase 28.6): a player with TIME and SPACE
+  // shouldn't nod a dropping midfield ball on — that header is exactly what
+  // kept the aerial rally alive. If nobody's contesting (no opponent within
+  // header reach), the ball is falling (vz < 0), and it's neither a header
+  // chance on goal nor a clearance near our own, decline the header and let
+  // it come down — `tryChestTrap` takes it to the feet a few steps later (or
+  // it just lands and is controlled on the ground). Attacking free headers
+  // and defensive clears are UNCHANGED (they fall outside the gate).
+  const wteam = match.teams[winner.side];
+  const dOppGoal = dist(ball.pos, wteam.oppGoal());
+  const nearOwnGoal = dist(ball.pos, wteam.ownGoal()) < 20;
+  let oppNear = false;
+  for (const o of match.teams[1 - winner.side].players) {
+    if (o.sentOff || o.role === 'GK') continue;
+    if (dist(o.pos, ball.pos) < HEADER_RADIUS) { oppNear = true; break; }
+  }
+  if (!oppNear && ball.vz < 0 && dOppGoal >= 16.5 && !nearOwnGoal) return;
+  // Committed to the header — every contender jumped (brief recovery so a
+  // ball hanging through the band doesn't re-roll into a convulsion).
+  for (const p of contenders) {
+    p.kickCooldown = 0.45;
+    p.headerAnimTimer = 0.55;
+  }
   // Offside (Phase 29): the flagged target meeting the delivery in the air
   // IS the touch that completes the offence — whistle instead of the header.
   const pass = match.pendingPass;
@@ -609,6 +634,65 @@ function headBall(match: Match, p: Player): void {
   const to = mate ? norm(sub(mate.pos, ball.pos)) : v2(team.attackDir, 0);
   ball.vel = scale(to, match.rng.range(7, 9.5));
   ball.vz = 0.8; // nodded down — drops quickly to feet
+}
+
+/**
+ * Chest / thigh trap (Phase 28.6, user report "球在两个球员之间弹来弹去 —
+ * 是不是没有胸部停球"). A ball DROPPING through the lower header band that no
+ * opponent is contesting can be CUSHIONED to the feet instead of headed — the
+ * missing alternative that turned every hanging ball into an endless nod-it-
+ * back-and-forth rally. Only the man almost directly under it, only a
+ * descending/apex ball below chest height, only when it is NOT a live aerial
+ * duel (an opponent within header reach = head it, as before). The take-down
+ * is priced by first-touch (same `touchFailChance` surface as a ground
+ * reception, +a small aerial malus) and SPILLS under pressure — a failed trap
+ * drops the ball loose, so the scramble is preserved, just not perpetual.
+ * Returns true if the trap fired (clean OR spilled); the caller then skips the
+ * header contest for this step.
+ */
+function tryChestTrap(match: Match, order: Player[]): boolean {
+  const ball = match.ball;
+  if (ball.z > CHEST_TRAP_MAX_HEIGHT || ball.vz > CHEST_TRAP_MAX_VZ) return false;
+  // The man almost directly under it (tighter than a header reach).
+  let trapper: Player | null = null;
+  let bestD = CHEST_TRAP_RADIUS;
+  for (const p of order) {
+    if (p.role === 'GK' || p.sentOff || p.stunTimer > 0 || p.kickCooldown > 0) continue;
+    const d = dist(p.pos, ball.pos);
+    if (d < bestD) {
+      bestD = d;
+      trapper = p;
+    }
+  }
+  if (!trapper) return false;
+  // A contested ball is an aerial DUEL — let it be headed (unchanged).
+  for (const o of match.teams[1 - trapper.side].players) {
+    if (o.sentOff || o.role === 'GK') continue;
+    if (dist(o.pos, ball.pos) < HEADER_RADIUS) return false;
+  }
+  // Price the cushion: drop speed (vz counts, like a ground first touch),
+  // pressure, and taking it on the blind side; technique tames all of it.
+  const hSpeed = Math.max(len(ball.vel), 1e-6);
+  const inx = ball.vel.x / hSpeed;
+  const iny = ball.vel.y / hSpeed;
+  const speed = len(ball.vel) + Math.abs(ball.vz) * 0.6;
+  const misalign = (1 + (inx * trapper.heading.x + iny * trapper.heading.y)) / 2;
+  const pressure = pressureAt(trapper.pos, match.teams[1 - trapper.side].players);
+  const pFail = clamp(
+    touchFailChance(speed, pressure, misalign, trapper.attrs.technique) + 0.05, 0, 0.5,
+  );
+  trapper.kickCooldown = 0.3; // committed to the touch either way
+  if (!match.rng.chance(pFail)) {
+    match.giveBall(trapper); // clean take-down: giveBall snaps it dead to feet + does pass/offside bookkeeping
+    return true;
+  }
+  // Spilled the cushion — a heavy touch knocks it loose and low (the scramble).
+  match.teams[trapper.side].stats.miscontrols++;
+  match.playerStats[trapper.gid].miscontrols++;
+  ball.lastTouch = trapper;
+  ball.vel = scale(rotate(v2(inx, iny), match.rng.range(-0.9, 0.9)), match.rng.range(3, 5.5));
+  ball.vz = 0; // knocked down — it drops
+  return true;
 }
 
 /**
