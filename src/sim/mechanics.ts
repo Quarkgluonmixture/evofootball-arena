@@ -21,7 +21,11 @@ import type { Role } from './types';
 
 /** How far out the keeper can reach a ball (dive included). */
 function keeperReach(defTeam: { genome: { keeperAggression: number } }, gk: Player): number {
-  return 2.05 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5;
+  // The cat (Phase 39): elite-reflex keepers reach a hand further.
+  return (
+    2.05 + defTeam.genome.keeperAggression * 0.4 + (gk.attrs.reflexes - 0.5) * 0.5 +
+    (gk.traits.includes('cat') ? 0.12 : 0)
+  );
 }
 
 /** Dive difficulty, frozen at the moment of the strike: how far off the
@@ -684,7 +688,14 @@ export function performShot(match: Match, shooter: Player): void {
   // the trade flips back toward failure mode 16a — a slightly safer aim
   // keeps more strikes on the frame while the keeper still can't reach
   // the corner. 0.4 (clinical) .. 1.25 (timid).
-  const aimMargin = 1.3 - shooter.attrs.finishing * 0.9;
+  // The clinical trait (Phase 39) shaves another 0.1 off the post —
+  // floored at 0.4 (the base formula's own minimum at finishing 1.0):
+  // an elite finisher who ALSO shaved 0.1 aimed past the optimum and
+  // converted less (caught by the finishing-conversion invariant test).
+  const aimMargin = Math.max(
+    0.4,
+    1.3 - shooter.attrs.finishing * 0.9 - (shooter.traits.includes('clinical') ? 0.1 : 0),
+  );
   const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
   const target = v2(goalX, aimY);
 
@@ -1095,6 +1106,7 @@ export function tryTackles(match: Match): void {
     match.teams[owner.side].genome.dribbleBias * 0.08 -
     owner.attrs.technique * 0.12;
   if (oppTeam.mode === 'Press') p += 0.06;
+  if (tackler.traits.includes('enforcer')) p += 0.04; // the destroyer (Phase 39)
   p = clamp(p, 0.06, 0.7);
 
   if (match.rng.chance(p)) {
@@ -1125,7 +1137,8 @@ export function tryTackles(match: Match): void {
     tackler.stunTimer = 0.35; // whiffed lunge: pick yourself up first (Phase 27)
     // A failed lunge is sometimes a foul (Phase 20): free kick, or a penalty
     // in the tackler's own box. Aggressive markers give more away.
-    const foulP = 0.06 + oppTeam.genome.markingAggression * 0.1;
+    const foulP =
+      0.06 + oppTeam.genome.markingAggression * 0.1 + (tackler.traits.includes('enforcer') ? 0.02 : 0);
     if (match.rng.chance(foulP)) match.awardFoul(tackler, owner);
   }
 }

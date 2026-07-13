@@ -276,7 +276,14 @@ export function runTarget(p: Player, team: Team, opponents: Player[]): V2 {
   const myX = team.localX(p.pos.x);
   const targetLocalX = clamp(Math.max(line + 7, myX + 5), myX + 3, HALF_L - 9);
   // Narrow toward the goal mouth as the run goes deeper, keeping the lane.
-  const y = clamp(p.pos.y * 0.6, -HALF_W + 4, HALF_W - 4);
+  // The poacher (Phase 39) attacks the POST CHANNEL (|y|≈3.5, his wing's
+  // post) — the tap-in zone. NOT the center: a first cut narrowed him to
+  // ×0.35 and his runs ended on the keeper's chest (fm 21, the goal-pull
+  // lesson — conversion went DOWN and the finishing invariant test flagged
+  // it).
+  const y = p.traits.includes('poacher')
+    ? Math.sign(p.pos.y || 1) * 3.5
+    : clamp(p.pos.y * 0.6, -HALF_W + 4, HALF_W - 4);
   return v2(targetLocalX * team.attackDir, y);
 }
 

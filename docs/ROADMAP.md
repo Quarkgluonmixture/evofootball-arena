@@ -1,14 +1,16 @@
-# Roadmap — shipped through phase-38; autonomous run continues to Phase 40
+# Roadmap — shipped through phase-39; autonomous run continues to Phase 40
 
 **Audience: the next coding agent (and the user).** Everything through
-**phase-38** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
+**phase-39** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
 instruction (2026-07-13) is to run the queue AUTONOMOUSLY through Phase
-40 — next up is Phase 39 (players become PEOPLE), then 40, each closed
-with probe evidence.** Phase specs are directions, not
+40 (league ecology — rivalries + prestige), the final phase of the run,
+closed with probe evidence, then a session wrap.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
 starting. When play-feel and the calibrate table disagree, **the user's
-play report wins**. Awaiting play reports on: 38 body contact (shield /
-shoulder ride / corner grapple — do the poses READ on the phone), 37
+play report wins**. Awaiting play reports on: 39 traits (do the emoji
+chips + captain read; do 🦊 post-channel runs show), 38 body contact
+(shield / shoulder ride / corner grapple — do the poses READ on the
+phone), 37
 Magnus (the corner whip, the FK banana, curled finishes), 36 visible
 touches (does
 the carry finally read as FEET, poke steals, heavy-touch feel), 35
@@ -892,23 +894,38 @@ AnimationSystem, unit-tested + probed headlessly per invariant 11):
 Probe: `contact-choreo.ts` (headless RenderStates over 60 matches).
 The user's phone verdict on how the poses READ is the open item.
 
-## Phase 39 — players become PEOPLE
+## ⭐ Phase 39 — players become PEOPLE — **SHIPPED**
 
-**Goal:** small, READABLE individuality on top of attributes.
+**Outcome:** six traits, DERIVED not stored (`evolution/traits.ts`, pure
+fn of attrs+role, ≤2 per player, no save-schema change — developing
+players grow into and out of them). Census (probe): 22.6% of newgens
+carry one (0/1/2 = 77/20/3% — individuality, not soup), rising to 34.4%
+by generation 8 as development pushes attrs over the bars (veterans
+become 🛡️ enforcers and 🐱 cats). Every trait has a PLAY effect:
 
-- **Build:** 1–2 TRAITS per player, derived deterministically at
-  birth/newgen from attribute extremes + role (clinical: aimMargin −0.1;
-  playmaker: pass lane weight +15%; enforcer: tackle +0.04 / foul +0.02;
-  engine: stamina drain −10%; poacher: box positioning bias). Shown on the
-  player card + mined into season stories ("the enforcer collected his
-  10th booking"). Captains: highest age·technique — small mode-hysteresis
-  bonus (the team switches modes less erratically). OPTIONAL transfer
-  window: one swap per team per season between divisions, driven by
-  fitness gaps — only if the ecosystem feels stale.
-- **Tests:** trait derivation determinism; each trait's effect directional
-  (focused harnesses per §10.5, NOT match-stat soups).
-- **Risk:** trait soup — cap at 5-6 trait types total; every trait must be
-  visible either in play or in stories, or it's cut.
+- 🎯 clinical (finishing ≥0.8, shooters): aimMargin −0.1, FLOORED at
+  0.4 (the base formula's own minimum — an elite finisher who also
+  shaved 0.1 aimed past the optimum and converted LESS; the finishing
+  invariant test caught it)
+- 🦊 poacher (ST, finishing ≥0.75, technique <0.6): runs attack the
+  POST CHANNEL (|y|≈3.5) — a first cut narrowed him to the goalmouth
+  center and his runs ended on the keeper's chest (fm 21, the goal-pull
+  lesson; conversion DROPPED and the same invariant test flagged it)
+- 🎩 playmaker (technique ≥0.8): pass-lane read ×1.15
+- 🛡️ enforcer (defending ≥0.8): tackle +0.04, foul +0.02
+- 🔋 engine (pace ≥0.82): stamina drain ×0.9 (cached on Player — no
+  includes() in the physics step)
+- 🐱 cat (GK, reflexes ≥0.85): keeper reach +0.12
+
+Directional evidence by the DISCONTINUITY method (attrs 0.79 vs 0.81
+across a bar — the step is the trait's own effect, §10.5): enforcer
+p(win) 0.400→0.444 where the attr slope alone adds 0.005. Captains:
+highest age·technique outfielder (`team.captain`), steadies TeamBrain's
+mode hysteresis (±0.04) while on the pitch. Squad rows in the League
+screen show trait emoji. Cut, per the anti-soup risk clause: season
+stories (all six traits are visible IN PLAY) and the optional transfer
+window (ecosystem isn't stale). Trait census probe = `trait-census.ts`.
+Calibrate 2.42/2.35; fingerprint `f6d49cda…` → `608b4b4c…` (behavioral).
 
 ## Phase 40 — league ecology
 

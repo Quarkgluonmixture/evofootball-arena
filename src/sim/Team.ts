@@ -82,6 +82,8 @@ export class Team {
   surgeAnnounced = false;
   shutdownAnnounced = false;
   keeperUpAnnounced = false;
+  /** Captain's player index (Phase 39): highest age·technique outfielder. */
+  captain = -1;
 
   /** Sim time when we last gained possession (for counter-attack windows). */
   possessionGainedAt = -999;
@@ -126,6 +128,20 @@ export class Team {
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );
     if (info.ages) this.players.forEach((p, i) => (p.age = info.ages![i]));
+    // The captain (Phase 39): the oldest cool head — age·technique. He
+    // steadies the TEAM's mode switching (TeamBrain hysteresis), nothing
+    // else; deterministic (index tiebreak).
+    let bestC = -1;
+    let bestScore = -Infinity;
+    for (let i = 1; i < this.players.length; i++) {
+      const p = this.players[i];
+      const s = (p.age ?? 24) * p.attrs.technique;
+      if (s > bestScore) {
+        bestScore = s;
+        bestC = i;
+      }
+    }
+    this.captain = bestC;
     this.effGenome = info.genome;
     this.ownGoalPos = v2(-this.attackDir * HALF_L, 0);
     this.oppGoalPos = v2(this.attackDir * HALF_L, 0);

@@ -1,5 +1,6 @@
 import { v2, type V2 } from '../utils/vec';
 import type { PlayerAttributes } from '../evolution/playerGenome';
+import { traitsOf, type Trait } from '../evolution/traits';
 import { TEAM_SIZE, type ActionState, type Role, type Side } from './types';
 
 /** Physical top speed by role (m/s) before pace/stamina scaling. */
@@ -120,6 +121,10 @@ export class Player {
 
   readonly baseSpeed: number;
   readonly accel: number;
+  /** Traits (Phase 39) — derived from attrs+role at construction, ≤2. */
+  readonly traits: readonly Trait[];
+  /** Cached engine-trait drain factor (hot path — no includes() per step). */
+  readonly staminaDrainMul: number;
 
   constructor(side: Side, index: number, role: Role, name: string, attrs: PlayerAttributes) {
     this.side = side;
@@ -131,6 +136,10 @@ export class Player {
     // pace: ±12% top speed, ±10% acceleration around the role baseline.
     this.baseSpeed = BASE_SPEED[role] * (0.88 + attrs.pace * 0.24);
     this.accel = ACCEL * (0.9 + attrs.pace * 0.2);
+    // Traits (Phase 39): derived, never stored — a developing player grows
+    // into (or out of) them. Hot-path effects are cached as plain numbers.
+    this.traits = traitsOf(attrs, role);
+    this.staminaDrainMul = this.traits.includes('engine') ? 0.9 : 1;
   }
 
   /** Effective top speed — tired players slow down but never stop. */
@@ -213,9 +222,10 @@ export class Player {
     this.distance += sp * dt;
 
     // Stamina: quadratic drain above ~55% effort, slow recovery when jogging/idle.
+    // The engine trait (Phase 39) drains 10% slower — the motor runs all day.
     const effort = sp / this.baseSpeed;
     if (effort > 0.55) {
-      const drain = 0.006 * effort * effort * dt;
+      const drain = 0.006 * effort * effort * dt * this.staminaDrainMul;
       this.stamina = Math.max(0.05, this.stamina - drain);
       this.staminaSpent += drain;
     } else {

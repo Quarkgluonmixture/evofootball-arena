@@ -256,7 +256,12 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     const layingOff = p.action.type === 'HoldUp'; // pivot lay-off (Phase 28)
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;
-      const lane = laneOpenness(p.pos, mate.pos, opp.players);
+      // The playmaker (Phase 39) reads passing lanes 15% more open than
+      // they look — the trait is vision, priced into lane weight only.
+      const lane = Math.min(
+        1,
+        laneOpenness(p.pos, mate.pos, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
+      );
       const open = opennessOf(mate, opp.players);
       const d = dist(p.pos, mate.pos);
       // Forward progress of the pass, normalized to ±1 over 30m.

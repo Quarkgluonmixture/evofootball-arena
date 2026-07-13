@@ -1,5 +1,6 @@
 import { GENE_KEYS, describeIdentity } from '../evolution/genome';
-import { ATTR_KEYS, squadSummary } from '../evolution/playerGenome';
+import { ATTR_KEYS, SQUAD_ROLES, squadSummary } from '../evolution/playerGenome';
+import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
   CUP_NAME, CUP_ROUNDS, CUP_ROUND_NAMES, CUP_ROUND_SHORT,
   type CupDrawMode, type CupEntrant, type CupTie,
@@ -263,9 +264,15 @@ export class LeagueScreen {
         row.appendChild(b);
         card.appendChild(row);
       }
-      // Careers (Phase 26): the five people behind the bars, with their ages.
+      // Careers (Phase 26): the people behind the bars, with their ages —
+      // and their TRAITS (Phase 39, derived live from attrs+role).
       card.appendChild(el('div', 'muted',
-        f.playerNames.map((n, i) => `${n} ${f.ages[i]}y`).join(' · ')));
+        f.playerNames.map((n, i) => {
+          const tr = traitsOf(f.squad[i], SQUAD_ROLES[i])
+            .map((tt) => TRAIT_EMOJI[tt])
+            .join('');
+          return `${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
+        }).join(' · ')));
 
       const fit = lastSeason?.fitness.find((x) => x.slot === f.slot);
       if (fit) card.appendChild(el('div', 'muted', `last-season fitness: ${fit.total.toFixed(3)}`));

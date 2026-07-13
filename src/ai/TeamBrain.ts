@@ -70,10 +70,14 @@ export function updateTeamBrain(team: Team, match: Match): void {
     // Press appetite: gene + where the ball is (pressing high is more attractive)
     // + hysteresis so the mode doesn't flicker.
     const ballLocalX = team.localX(ball.pos.x);
+    // The captain steadies the switch (Phase 39): with the cool head on
+    // the pitch, hysteresis is stronger — the team commits to its mode.
+    const steady =
+      team.captain >= 0 && !team.players[team.captain].sentOff ? 0.04 : 0;
     const pressScore =
       g.pressIntensity +
       (ballLocalX > 0 ? 0.18 : -0.1) +
-      (prevMode === 'Press' ? 0.08 : 0);
+      (prevMode === 'Press' ? 0.08 + steady : prevMode === 'Defend' ? -steady : 0);
     mode = pressScore > 0.62 ? 'Press' : 'Defend';
   } else {
     // Loose ball: keep the previous shape decision (brief window anyway).
