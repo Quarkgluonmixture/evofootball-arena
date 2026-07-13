@@ -483,6 +483,10 @@ export function tryAerial(match: Match, order: Player[]): void {
 
   for (const gk of order) {
     if (gk.role !== 'GK' || gk.sentOff || gk.stunTimer > 0 || gk.tackleCooldown > 0) continue;
+    // Hands only inside the box (Phase 28.5): a keeper stranded off his line
+    // can't PLUCK a high ball out of the air — outside his area the delivery
+    // is an outfield header contest, not a keeper claim.
+    if (!match.inPenaltyBox(gk.pos, gk.side)) continue;
     const dx = gk.pos.x - ball.pos.x;
     const dy = gk.pos.y - ball.pos.y;
     if (dx * dx + dy * dy > 1.9 * 1.9) continue;
@@ -996,7 +1000,12 @@ export function trySmother(match: Match): void {
   const gk = match.teams[1 - owner.side].goalkeeper;
   if (gk.sentOff || gk.stunTimer > 0 || gk.kickCooldown > 0 || gk.tackleCooldown > 0) return;
   const rushing = gk.action.type === 'GoalkeeperRush';
-  if (!rushing && !match.inPenaltyBox(match.ball.pos, gk.side)) return;
+  // Hands only inside the box (Phase 28.5, user report "门将出击到禁区外用手
+  // 接球了"): the smother IS a dive ONTO the ball with the hands, so it may
+  // only happen in the keeper's own area — even mid-rush. A sweeper who
+  // rushes past his line closes the angle, but a ball out there he takes with
+  // his feet (giveBall) or not at all; he cannot claim it here.
+  if (!match.inPenaltyBox(match.ball.pos, gk.side)) return;
   if (dist(gk.pos, match.ball.pos) >= 1.3) return;
 
   gk.saveAnimTimer = 0.7; // the dive at the feet is visible either way

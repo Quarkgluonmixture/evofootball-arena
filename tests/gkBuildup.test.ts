@@ -85,6 +85,45 @@ describe('the ball-playing keeper (Phase 32.2)', () => {
     expect(hands).toBeGreaterThan(14); // the loose ball is scooped up
   });
 
+  it('hands only inside the box (28.5): a sweeper who collects OUTSIDE his area plays it at his FEET', () => {
+    // team 0 defends the left; its box is x ≤ -(HALF_L - BOX_DEPTH) = -32.
+    const capture = (gkX: number): { got: boolean; hands: boolean; inBox: boolean } => {
+      const m = new Match({ seed: 7, teamA: team('A'), teamB: team('B'), duration: 120 });
+      while (m.phase !== 'playing') m.step(DT);
+      m.kickoffKickGid = null;
+      const gk = m.teams[0].goalkeeper;
+      // Park everyone else far up-field so only the keeper can reach the ball.
+      for (const p of [...m.teams[0].players, ...m.teams[1].players]) {
+        if (p === gk) continue;
+        p.pos = v2(20, p.gid % 2 === 0 ? 22 : -22);
+        p.vel = v2(0, 0);
+      }
+      gk.pos = v2(gkX, 0);
+      gk.vel = v2(0, 0);
+      m.ball.owner = null;
+      m.ball.pos = v2(gkX + 0.6, 0); // a loose ball at his feet, captured next step
+      m.ball.vel = v2(0, 0);
+      m.ball.z = 0;
+      m.ball.vz = 0;
+      m.possessionSide = 0;
+      m.pendingPass = null; // loose, NOT a deliberate back-pass
+      for (let t = 0; t < 40 && m.ball.owner !== gk; t++) m.step(DT);
+      return {
+        got: m.ball.owner === gk,
+        hands: gk.gkHoldTimer > 0 || gk.gkDistributing,
+        inBox: m.inPenaltyBox(gk.pos, 0),
+      };
+    };
+    const outside = capture(-(HALF_L - BOX_DEPTH) + 4); // ~4m beyond the box edge
+    expect(outside.got).toBe(true);
+    expect(outside.inBox).toBe(false);
+    expect(outside.hands).toBe(false); // the fix: feet, not hands, off his line
+    const inside = capture(-HALF_L + 6); // deep in his own box
+    expect(inside.got).toBe(true);
+    expect(inside.inBox).toBe(true);
+    expect(inside.hands).toBe(true); // scooped up and held — legal, unchanged
+  });
+
   it('the keeper at his feet RELEASES: no carrying the ball out of the box', () => {
     for (let seed = 0; seed < 20; seed++) {
       const m = ballAtKeeper(seed, true);
@@ -102,14 +141,19 @@ describe('the ball-playing keeper (Phase 32.2)', () => {
     }
   });
 
-  // n 40 → 80 (34.3): the escape carry + combo outlets gave pressured
-  // players alternatives to the back-pass, adding variance to this count —
-  // at n=40 one sample landed 1.18×; probed at n=80 the true ratio is
-  // ~1.38× (§10.5: scale the test, don't weaken the lever or the bar).
+  // n 40 → 80 (34.3) → 160 (28.5): the escape carry + combo outlets, and now
+  // the sweeper's out-of-box feet clearances, add variance to this count. The
+  // true ratio is a stable ~1.30 at n=160 (measured identical either side of
+  // the 28.5 hands-in-box change); at n=80 a single sample swung to 1.18.
+  // §10.5: scale the test, don't weaken the lever or the bar.
+  // IN-BOX only (28.5): the sweeper-keeper now takes loose balls OUTSIDE his
+  // box at his feet too (the hands-in-box law), but that clearance is a
+  // style-independent behavior — counting it diluted the build-up signal
+  // this test exists to measure, so gate the count to the box.
   it('directional: ball-playing sides route more build-up through their keeper', { timeout: 240000 }, async () => {
     const feetReceptions = async (g: TacticalGenome): Promise<number> => {
       let feet = 0;
-      for (let seed = 0; seed < 80; seed++) {
+      for (let seed = 0; seed < 160; seed++) {
         await breathe(seed);
         const m = new Match({ seed, teamA: team('A', g), teamB: team('B'), duration: 240 });
         const gk = m.teams[0].goalkeeper;
@@ -117,7 +161,10 @@ describe('the ball-playing keeper (Phase 32.2)', () => {
         while (!m.finished) {
           m.step(DT);
           const o = m.ball.owner;
-          if (o === gk && prev !== gk && gk.gkHoldTimer <= 0 && !gk.gkDistributing) feet++;
+          if (
+            o === gk && prev !== gk && gk.gkHoldTimer <= 0 && !gk.gkDistributing &&
+            m.inPenaltyBox(gk.pos, 0)
+          ) feet++;
           prev = o;
         }
       }

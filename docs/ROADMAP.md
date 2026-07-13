@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-40 (+36.1); play-report iteration is live
+# Roadmap — shipped through phase-40 (+36.1, +28.5); play-report iteration is live
 
 **Audience: the next coding agent (and the user).** Everything through
 **phase-40** is SHIPPED and live — the 2026-07-13 autonomous run
@@ -6,7 +6,8 @@ delivered the whole realism-gap plan (35 game-state tactics, 36 visible
 touches, 37 Magnus, 38 body contact) plus 39 traits and 40 ecology, each
 with probe evidence, and a bit-identical structure pass. **phase-36.1**
 (carry regimes + the contested 50/50) shipped AFTER 40 from same-day
-play reports. ⭐ **RESUME HERE: there is NO queued build work — the next
+play reports; **phase-28.5** (keeper hands stay in the box) shipped after
+that from a keeper play report. ⭐ **RESUME HERE: there is NO queued build work — the next
 phase comes from the user's PLAY REPORTS (the awaiting list below) or a
 new user pick from the parking lot.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
@@ -17,10 +18,13 @@ play report wins**.
 MECHANIC FAMILY they iterate (36.1 = touches, like 34.2/34.3 before
 it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
-correct, not a regression. Never force-retag pushed tags (worktree A/B
-baselines and CI history ride on them). HEAD fingerprint: `b8fa54ae…`.
+correct, not a regression (phase-28.5 continues the pattern — a keeper-
+family tag on the newest HEAD). Never force-retag pushed tags (worktree
+A/B baselines and CI history ride on them). HEAD fingerprint: `6264488f…`.
 
-Awaiting play reports on: **36.1 carry regimes (爆趟/一步一带 read?)
+Awaiting play reports on: **28.5 keeper hands (does the sweeper now
+CLEAR with feet outside the box instead of scooping it up? any handball
+still slipping through?)**, **36.1 carry regimes (爆趟/一步一带 read?)
 + the contested 50/50 (still anyone frozen off-ball?)**, 40 ecology
 (does 🔥 Derby! land; rivalry list + ★ prestige on cards), 39 traits
 (do the emoji chips + captain read; do 🦊 post-channel runs show), 38
@@ -995,6 +999,38 @@ live on the SLOT, the club that survives rebirths).
 
 Probe = `ecology-census.ts`; tests pin arming determinism, the banner,
 the cap, decay math and long-run ledger determinism.
+
+## ⭐ Phase 28.5 — the keeper's hands stay in the box — **SHIPPED**
+
+Play report: **"门将有的时候出击到禁区外面用手接球了"** — a sweeper who
+rushed or chased off his line would scoop the ball up and HOLD it, a
+handball nobody was calling. The sweep itself is good football (Phase
+27.5's rush, `keeperAggression`); only the HANDS were illegal. Root: the
+box is 13m deep but `GoalkeeperRush` reaches to `9+aggr·8` (≈17m) and
+`ChaseBall` to 15m — both deliberately un-clamped — while every hands
+entry (`giveBall`'s hold, `tryAerial`'s claim, `trySmother`'s dive) set
+the hold state with **no box check**.
+
+One rule, applied at each hands entry: a keeper handles ONLY inside his
+own area. `giveBall` gains a `gkFeet` gate (GK + not a restart taker +
+(back-pass **or** outside the box) ⇒ plays it at his FEET, on the ≤0.18s
+press clock, no hold/clearance) — this single gate covers the loose
+capture and the high claim, which both funnel through `giveBall`.
+`trySmother` now demands `inPenaltyBox(ball)` even mid-rush (the
+`rushing` bypass was exactly the illegal off-line dive), and `tryAerial`
+skips the keeper claim when the GK stands outside his box (the delivery
+becomes an outfield header contest). The sweeper still leaves his line —
+he just clears with his feet, pressable, like the ball-playing keeper.
+
+Probe `keeper-hands.ts` splits every keeper possession into 4 cells
+(hands/feet × in/out-box), same-seed A/B vs `phase-36.1` across two seed
+banks: **HANDS-outside 0.10–0.13/match → 0.00**; FEET-outside 0.01 →
+0.10–0.18 (the sweep survives, now legal); in-box hands/feet, goals and
+saves all flat — a rule fix, not a balance lever. The gkBuildup
+directional test scaled n=80→160 (the confounded n=80 sample drew 1.18
+near the 1.25 bar; the true build-up ratio is a stable ~1.30, measured
+identical either side of this change). Fingerprint `b8fa54ae…` →
+`6264488f…` (behavioral).
 
 ---
 

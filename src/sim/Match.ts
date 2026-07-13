@@ -537,6 +537,18 @@ export class Match {
     // decision comes quicker (the touch was the setup, not a reception).
     const recollect = this.dribbleTouch !== null && this.dribbleTouch.gid === p.gid;
     this.dribbleTouch = null;
+    // Hands only inside the box (Phase 28.5, user report "门将出击到禁区外
+    // 用手接球了"): a keeper plays with his FEET on a back-pass (by rule) AND
+    // whenever he collects the ball OUTSIDE his own area — a sweeper who
+    // rushed/chased off his line (GoalkeeperRush / ChaseBall are deliberately
+    // un-clamped) may control and clear, but he may not scoop it up and hold.
+    // Restart takers (goal kicks) keep their own quick-kick path. This one
+    // gate covers every hands entry that funnels through giveBall — the loose
+    // capture (tryCapture) and the high claim (tryAerial).
+    const gkFeet =
+      p.role === 'GK' &&
+      this.restartKickGid !== p.gid &&
+      (backPass || !this.inPenaltyBox(p.pos, p.side));
     if (p.role !== 'GK') {
       p.action = { type: 'Dribble', scores: p.action.scores };
       if (!recollect) team.stats.dribbles++;
@@ -545,7 +557,7 @@ export class Match {
       // A continuing carry (recollect) chains faster — 一步一带 lives here:
       // regather, half a beat, next touch (36.1).
       p.touchTimer = (recollect ? 0.2 : 0.32) + (1 - p.attrs.technique) * 0.08;
-    } else if (backPass) {
+    } else if (gkFeet) {
       p.action = { type: 'Dribble', scores: p.action.scores }; // at his feet, on the clock
     } else if (this.restartKickGid !== p.gid) {
       // Keeper hold (Phase 27.2): scoop it up and hold before distributing —
@@ -566,7 +578,8 @@ export class Match {
     p.decisionTimer = Math.max(p.decisionTimer, inShootingRange ? 0.08 : recollect ? 0.18 : 0.3);
     // A keeper with the ball at his FEET is on the press's clock (32.2):
     // he moves it in a beat, he doesn't stroll on it like an outfielder.
-    if (p.role === 'GK' && backPass) p.decisionTimer = Math.min(p.decisionTimer, 0.18);
+    // A sweeper stranded outside his box (28.5) is on the same clock.
+    if (gkFeet) p.decisionTimer = Math.min(p.decisionTimer, 0.18);
 
     const pass = this.pendingPass;
     if (pass) {
