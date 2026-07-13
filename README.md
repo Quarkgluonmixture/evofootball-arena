@@ -671,6 +671,12 @@ gap (see `npm run evolve-check`).
   save/load + file export/import roundtrips incl. the v1–v5 migration chain,
   and statistical gene/attribute effect tests.
 - `npm run calibrate` / `npm run evolve-check` — headless balance & ecosystem probes.
+- `scripts/probes/` — per-phase mechanic probes (invariant 11: every phase
+  ships with probe evidence). `combo-rates.ts` (one-twos/third-man/overlap
+  rates by genome), `chain-rates.ts` (🎼 feed threshold), `dive-timing.ts`
+  (keeper set-vs-launch choreography), `escape-ab.ts` (脱压带球 A/B — the
+  predicate is self-contained so it runs on any historical worktree). All
+  plain `npx tsx scripts/probes/<name>.ts`.
 - `npx tsx scripts/probe-aerial.ts` — per-mechanism aerial tallies (corner
   threat %, header outcomes, keeper claims, delivery volume) for tuning.
 - `npx tsx scripts/probe-pass.ts` — buckets every pass by delivery kind ×

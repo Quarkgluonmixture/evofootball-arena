@@ -823,6 +823,21 @@ feature is:
     `npm run build`, plus `npm run debug:visual` (and `debug:visual3d` if the
     3D path is touched) — and someone looked at the screenshots. Declaring
     completion without these is forbidden.
+11. **Every phase ships with PROBE evidence** (user rule, 34.2 — every big
+    catch in this project came from a probe, not a test suite). By change
+    type: **sim/AI behavior** → a rate/delivery probe of the new mechanic
+    itself (measure the DELIVERY, not just calibrate outcomes — the corner
+    chain was 0/30 while calibrate looked fine), a same-seed A/B against
+    the previous tag when the claim is "X improved" (git worktree at the
+    tag; `scripts/probes/escape-ab.ts` is the template), and calibrate on
+    TWO seeds before believing any delta (evolution-path drift produced a
+    phantom +0.32 goals once). **Render/presentation** → if the logic is a
+    pure function of sim state, probe it headlessly
+    (`scripts/probes/dive-timing.ts` is the template); pixels stay
+    screenshots + the user's eyes. **Record/schema** → strip-and-rehash
+    fingerprint proof (invariant 2). Probes live in `scripts/probes/`
+    (plain tsx, self-contained); quote their numbers in the ROADMAP phase
+    block.
 
 ## 13. How to safely add a new feature
 
@@ -838,12 +853,16 @@ Checklist — do these in order:
    the statistical power to mean something (§10.5).
 4. **Expose it in debug UI only after it works** (overlay checkbox, panel row,
    `window.__evo` accessor) — debuggability is part of the feature.
-5. **Run calibration** — `npm run calibrate` + `npm run evolve-check`; compare
-   against the README reference numbers; investigate any balance drift you
-   didn't intend.
-6. **Run browser validation** — `npm run debug:visual` (+ `debug:visual3d` if
+5. **Probe the mechanic itself** (invariant 11) — a small tsx probe in
+   `scripts/probes/` measuring the new behavior's rate/shape directly; A/B
+   against the previous tag when claiming an improvement. A mechanic whose
+   probe reads zero is silently dead no matter how green the tests.
+6. **Run calibration** — `npm run calibrate` on TWO seeds + `npm run
+   evolve-check`; compare against the README reference numbers; investigate
+   any balance drift you didn't intend.
+7. **Run browser validation** — `npm run debug:visual` (+ `debug:visual3d` if
    relevant) and actually look at the screenshots.
-7. **Update README** (features, balance numbers, scripts) **and this document**
+8. **Update README** (features, balance numbers, scripts) **and this document**
    if you changed architecture, invariants, seeds, or added a failure mode
    worth remembering. There is no separate CHANGELOG — README + git history
    serve that role.

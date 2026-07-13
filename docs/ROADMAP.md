@@ -7,7 +7,12 @@ the gotchas. Phases 32–35 are directions, not commitments: re-scope each
 against the user's play reports before starting. When play-feel and the
 calibrate table disagree, **the user's play report wins**.
 
-Standing rules (full detail in [`ARCHITECTURE.md`](ARCHITECTURE.md) §10–11):
+Standing rules (full detail in [`ARCHITECTURE.md`](ARCHITECTURE.md) §10–13):
+**every phase ends with PROBE evidence** (user rule 2026-07-13, invariant
+11: a `scripts/probes/` tsx measuring the mechanic's own rate/shape —
+same-seed A/B vs the previous tag for "X improved" claims, two calibrate
+seeds before believing deltas, headless choreography probes for
+render-side logic, strip-and-rehash for schema growth);
 every step ends with typecheck + full vitest + both Playwright suites green;
 push via `gh auth switch --user Quarkgluonmixture`, then switch back; verify
 the Pages bundle after CI; itch.io needs a manual `npm run package:itch`;
