@@ -44,6 +44,18 @@ export function decidePlayer(p: Player, match: Match): void {
     decideCarrier(p, team, opp, match);
     return;
   }
+  // The carry continues (Phase 36): between discrete touches the ball is
+  // free but it is HIS — he chases his own push instead of falling into
+  // off-ball logic (which would send him to a spot while the ball rolls).
+  if (
+    match.ball.owner === null &&
+    match.dribbleTouch !== null &&
+    match.dribbleTouch.gid === p.gid &&
+    match.simTime < match.dribbleTouch.until
+  ) {
+    p.action = { type: 'ChaseBall', scores: [{ action: 'ChaseBall', score: 1, why: 'chasing my own touch' }] };
+    return;
+  }
   if (p.role === 'GK') {
     decideGoalkeeper(p, team, match);
     return;

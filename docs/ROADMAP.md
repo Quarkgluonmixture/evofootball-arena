@@ -1,18 +1,20 @@
-# Roadmap — shipped through phase-35; autonomous run continues to Phase 40
+# Roadmap — shipped through phase-36; autonomous run continues to Phase 40
 
 **Audience: the next coding agent (and the user).** Everything through
-**phase-35** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
+**phase-36** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
 instruction (2026-07-13) is to run the queue AUTONOMOUSLY through Phase
-40 — next up is Phase 36 (visible touches), then 37 → 38 → 39 → 40, each
-closed with probe evidence.** Phase specs are directions, not
+40 — next up is Phase 37 (Magnus curve; the flight-projection seam is
+`perception.ballLanding()`, ONE function since the structure pass), then
+38 → 39 → 40, each closed with probe evidence.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
 starting. When play-feel and the calibrate table disagree, **the user's
-play report wins**. Awaiting play reports on: 35 game-state tactics
-(late-chase feel, 门将上前, bus/clock-milking, the live gene bars
-breathing), 34 套路包 (one-twos/third-man/overlap visibility + the stats
-rows), 34.2/34.3 (set keeper, 脱压带球, turn tax/hold-up feel),
-formation-ecology monoculture watch (34's sharper selection), box duels
-still ~7:1 defender-won (dials listed at 31.9). The 32 danger-band
+play report wins**. Awaiting play reports on: 36 visible touches (does
+the carry finally read as FEET, poke steals, heavy-touch feel), 35
+game-state tactics (late-chase feel, 门将上前, bus/clock-milking, the
+live gene bars breathing), 34 套路包 (one-twos/third-man/overlap
+visibility + the stats rows), 34.2/34.3 (set keeper, 脱压带球, turn
+tax/hold-up feel), formation-ecology monoculture watch (34's sharper
+selection), box duels still ~7:1 defender-won (dials listed at 31.9). The 32 danger-band
 whistle report is PARTLY addressed by 35 (set pieces + balls in flight
 are never whistled away now — open-play buildup at patience-over still
 gets cut, by design).
@@ -788,26 +790,38 @@ the drama concentrates in the true endgame.
   judged on PAIRED-seed means now, never one seed's band position.
   Fingerprint re-baselined (behavioral): `e2e64942…` → `3a5f659d…`.
 
-## Phase 36 — visible touches (可见的触球)
+## ⭐ Phase 36 — visible touches (可见的触球) — **SHIPPED**
 
-**Goal:** kill the magnet-ball look — dribbling today glues the ball
-0.85m ahead of the carrier ("推着磁悬浮球滑冰").
+**Outcome:** the magnet ball is dead. An outfield carrier DRIVING in
+open field (nearest opponent > `TOUCH_CONTROL_DIST` 4.2m, moving
+> 2.5 m/s, action Dribble) PUSHES the ball ahead along his heading
+(`mechanics.performDribbleTouch`: base 1.2 + 0.3/m of open cone ahead,
+technique prices length and wobble) and chases it — between touches the
+ball is a FREE BODY. His `kickCooldown` (0.34s) is the poke window: an
+opponent in the path plays the BALL. Close control (pressure, walking
+pace, shielding, keepers, restart takers) keeps the old glue — the
+tackle/shield duel economy lives there untouched. `touchTimer` at
+capture (0.32 + low-tech 0.08) ≥ the decision settle, so the first
+decision after any capture happens ON the ball: the pass game keeps
+its timing, restart takers kick before a push can fire. Re-collects
+are the same carry continuing: gentler first-touch roll (×0.45 — the
+misalign term reads your own touch as blind-side), quicker next
+decision (0.18s), no dribbles++ inflation. The 3D view needed ZERO
+changes (adapter passes real ball pos; ownerGid null → it just rolls).
 
-- **Build:** discrete dribble touches: the carrier PUSHES the ball
-  (every ~0.5–0.8s, technique prices push distance/accuracy and touch
-  cadence) and re-collects it; between touches the ball is a free body
-  (tacklers/interceptors play the BALL in that window — the poke-tackle
-  becomes real). The turn tax and escape carry get automatic visual
-  meaning (you SEE the heavy touch). Sprint-dribbling pushes further
-  (knock-and-run down the wing); close control = short touches.
-- **Probes:** touch cadence/distance distributions by technique; tackle
-  outcome shift (the free-ball window changes the duel economy —
-  re-tune tackle/deflection to hold t+i ~45 and completion 66-68%);
-  both calibrate seeds.
-- **Risk:** the whole on-ball economy re-tunes (kick protection,
-  capture radius, pressure) — this is a BIG lever; expect 2–3 calibrate
-  iterations and a fingerprint re-baseline. Do it as its own phase,
-  nothing else in the batch.
+- **Probe drove the tune** (touch-rates.ts, n=150): first cut
+  (3.5/1.7/0.38) rolled touches 1.09s and **39% were poked away** — a
+  coin flip per carry; at 4.2/1.2/0.3 + the walking-pace glue gate:
+  **18 pushes/match, flight 0.74s (spec's 0.5–0.8), mean gap 1.53m,
+  poke 15.8%, recollect 79.9%**. Staged full-flow test showed the
+  right emergence: a marked carrier GLUES and lays off (that's close
+  control), so the poke test is unit-level on the push itself.
+- **Economy held without re-tuning**: completion 68/69% (target
+  66–68), t+i 43.5/38.4, fouls ~3.6-4.1, miscontrols +~2 (heavy
+  touches are real). 6-seed paired calibrate vs phase-35: mean 2.165
+  vs 2.228 — **Δ −0.06±0.10, noise-compatible** (the scary main-seed
+  −0.48 was path divergence again; fm 18(b) discipline).
+- Fingerprint re-baselined (behavioral): `3a5f659d…` → `2ada3cb1…`.
 
 ## Phase 37 — the curved ball (Magnus)
 

@@ -14,7 +14,7 @@ import {
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
   KICK_COOLDOWN, MATCH_DURATION,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
-  RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL,
+  RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
 } from './constants';
 import * as mech from './mechanics';
 import { Player } from './Player';
@@ -119,6 +119,13 @@ export class Match {
 
   /** Which side has effective possession; -1 while the ball is loose. */
   possessionSide: Side | -1 = -1;
+  /**
+   * Discrete dribble touch in flight (Phase 36): the carrier pushed the
+   * ball ahead and is chasing it. The tag keeps his brain on the chase and
+   * prices his re-collect gently (it's HIS touch, not a blind reception);
+   * any other capture, kick or dead ball clears it.
+   */
+  dribbleTouch: { gid: number; until: number } | null = null;
   /** Live dead-ball restart (kick-in/corner/goal kick); null in open play. */
   restart: RestartState | null = null;
   /** Gid whose next carrier decision must be a kick (restart first touch). */
@@ -347,6 +354,7 @@ export class Match {
 
     // Stale in-flight bookkeeping expires.
     if (this.pendingPass && this.simTime - this.pendingPass.t > 3.5) this.pendingPass = null;
+    if (this.dribbleTouch && this.simTime > this.dribbleTouch.until) this.dribbleTouch = null;
     if (this.pendingShot && this.simTime - this.pendingShot.t > 3.0) {
       this.markShotOutcome('miss');
       this.pendingShot = null;
@@ -515,9 +523,17 @@ export class Match {
       this.pendingPass !== null &&
       this.pendingPass.side === p.side &&
       this.pendingPass.passerGid !== p.gid;
+    // Re-collecting your own pushed touch is the SAME carry continuing
+    // (Phase 36) — not a fresh dribble for the stats, and the next
+    // decision comes quicker (the touch was the setup, not a reception).
+    const recollect = this.dribbleTouch !== null && this.dribbleTouch.gid === p.gid;
+    this.dribbleTouch = null;
     if (p.role !== 'GK') {
       p.action = { type: 'Dribble', scores: p.action.scores };
-      team.stats.dribbles++;
+      if (!recollect) team.stats.dribbles++;
+      // The settle beat before the next push: the first decision after any
+      // capture happens ON the ball (touchTimer ≥ the decision settle).
+      p.touchTimer = 0.32 + (1 - p.attrs.technique) * 0.08;
     } else if (backPass) {
       p.action = { type: 'Dribble', scores: p.action.scores }; // at his feet, on the clock
     } else if (this.restartKickGid !== p.gid) {
@@ -536,7 +552,7 @@ export class Match {
       p.role !== 'GK' &&
       team.localX(p.pos.x) > HALF_L - 24 &&
       dist(p.pos, team.oppGoal()) < 20;
-    p.decisionTimer = Math.max(p.decisionTimer, inShootingRange ? 0.08 : 0.3);
+    p.decisionTimer = Math.max(p.decisionTimer, inShootingRange ? 0.08 : recollect ? 0.18 : 0.3);
     // A keeper with the ball at his FEET is on the press's clock (32.2):
     // he moves it in a beat, he doesn't stroll on it like an outfielder.
     if (p.role === 'GK' && backPass) p.decisionTimer = Math.min(p.decisionTimer, 0.18);
@@ -610,6 +626,34 @@ export class Match {
   private stepBall(dt: number): void {
     const ball = this.ball;
     if (ball.owner) {
+      // Discrete touches (Phase 36, 可见的触球): an outfield carrier DRIVING
+      // in open field pushes the ball ahead and chases it — the magnet-ball
+      // glue below is only close control now (pressure, shielding, keepers,
+      // restart takers). touchTimer ≥ the capture settle guarantees the
+      // first decision happens ON the ball, so the pass game keeps its
+      // timing and restart takers kick before a push can fire.
+      const o = ball.owner;
+      if (
+        this.phase === 'playing' &&
+        o.role !== 'GK' &&
+        o.action.type === 'Dribble' &&
+        o.touchTimer <= 0 &&
+        o.gkHoldTimer <= 0 &&
+        // A slow or turning carrier keeps the ball at his feet — pushes
+        // belong to the DRIVE (walking pace = close control by definition).
+        o.vel.x * o.vel.x + o.vel.y * o.vel.y > 2.5 * 2.5
+      ) {
+        let nearOpp = Infinity;
+        for (const q of this.teams[1 - o.side].players) {
+          if (q.sentOff) continue;
+          const d = dist(q.pos, o.pos);
+          if (d < nearOpp) nearOpp = d;
+        }
+        if (nearOpp > TOUCH_CONTROL_DIST) {
+          mech.performDribbleTouch(this, o);
+          return; // the ball is free — it integrates from next step
+        }
+      }
       // Dribble: the ball rides slightly ahead of the owner's heading — or
       // tight to the chest while a keeper holds it in their hands (27.2).
       // In-place writes (was add/scale/clone — 3 vectors per step); ball.pos

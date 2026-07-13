@@ -61,6 +61,13 @@ export class Player {
    * distributing. Never set for restart first touches (goal kicks stay quick).
    */
   gkHoldTimer = 0;
+  /**
+   * Discrete touches (Phase 36): time until this carrier may PUSH the ball
+   * again. Set at capture so the first decision happens ON the ball (the
+   * settle touch and the pass game keep their timing); a decision that
+   * keeps Dribble releases the next push.
+   */
+  touchTimer = 0;
   /** Display-only: renderers play a lunge animation while this runs. */
   tackleAnimTimer = 0;
   /** Display-only: renderers play a keeper dive while this runs (27.4). */
@@ -217,6 +224,7 @@ export class Player {
 
     this.kickCooldown = Math.max(0, this.kickCooldown - dt);
     this.tackleCooldown = Math.max(0, this.tackleCooldown - dt);
+    this.touchTimer = Math.max(0, this.touchTimer - dt);
     this.stunTimer = Math.max(0, this.stunTimer - dt);
     this.gkHoldTimer = Math.max(0, this.gkHoldTimer - dt);
     this.tackleAnimTimer = Math.max(0, this.tackleAnimTimer - dt);

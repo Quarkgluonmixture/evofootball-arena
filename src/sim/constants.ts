@@ -90,6 +90,24 @@ export const DEFLECT_MAX_SPEED = 24;
 /** After kicking, a player can't re-capture for this long (lets passes leave). */
 export const KICK_COOLDOWN = 0.45;
 
+/**
+ * Discrete dribble touches (Phase 36, 可见的触球): an outfield carrier
+ * DRIVING in space pushes the ball ahead and chases it — between touches
+ * the ball is a free body an opponent in the path may poke away. Under
+ * pressure (an opponent inside TOUCH_CONTROL_DIST) the carry stays glued:
+ * close control IS short touches, and the tackle/shield duel lives there.
+ */
+/** Nearest-opponent distance above which the carrier plays open touches.
+ * First cut 3.5/1.7/0.38 rolled the ball 1.1s ahead and 39% of pushes were
+ * poked away — a coin flip per carry. */
+export const TOUCH_CONTROL_DIST = 4.2;
+/** Base speed added to the carrier's own on the push. */
+export const TOUCH_PUSH_BASE = 1.2;
+/** Extra push per meter of open field ahead (capped in mechanics). */
+export const TOUCH_PUSH_SPACE = 0.3;
+/** The toucher may not re-collect for this long — the poke window. */
+export const TOUCH_RECOLLECT_COOLDOWN = 0.34;
+
 /** How often each player re-evaluates its utility scores (staggered). */
 export const AI_INTERVAL = 0.15;
 /** How often each TeamBrain re-picks a tactical mode / assignments. */

@@ -7,6 +7,7 @@ import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
   BOX_DEPTH, CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
   HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
+  TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_COOLDOWN,
 } from './constants';
 import type { Match } from './Match';
 import type { Player } from './Player';
@@ -83,7 +84,12 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   // Ball arriving at the face = 0, arriving from behind the body = 1.
   const misalign = (1 + (inx * p.heading.x + iny * p.heading.y)) / 2;
   const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
-  const pFail = touchFailChance(speed, pressure, misalign, p.attrs.technique);
+  let pFail = touchFailChance(speed, pressure, misalign, p.attrs.technique);
+  // Re-collecting your OWN pushed touch (Phase 36): the ball rolls away
+  // from the body, which reads as a blind-side reception to the misalign
+  // term — but he watched it leave his own boot. Priced well down, not
+  // free: overhit knock-and-runs still get away.
+  if (match.dribbleTouch !== null && match.dribbleTouch.gid === p.gid) pFail *= 0.45;
   if (!match.rng.chance(pFail)) return true;
 
   match.teams[p.side].stats.miscontrols++;
@@ -817,6 +823,49 @@ export function performFreeKick(match: Match, taker: Player): void {
     placed: true,
   };
   match.pushEvent('shot', taker.side, `${taker.name} bends the free kick! (xG ${q.toFixed(2)})`);
+}
+
+/**
+ * The dribble PUSH (Phase 36, 可见的触球): the carrier knocks the ball
+ * ahead along his heading and chases it. The ball is a free body until he
+ * re-collects (TOUCH_RECOLLECT_COOLDOWN — the poke window an opponent in
+ * the path plays the BALL in). Push length grows with open field ahead
+ * (knock-and-run down the wing) and wobbles with poor technique; sprint
+ * speed carries into the ball, so close control at walking pace stays
+ * naturally tight.
+ */
+export function performDribbleTouch(match: Match, p: Player): void {
+  const ball = match.ball;
+  if (ball.owner !== p) return;
+  const opp = match.teams[1 - p.side];
+  // Open field ahead: nearest opponent inside a forward cone prices the push.
+  const hx = p.heading.x;
+  const hy = p.heading.y;
+  let aheadD = 14;
+  for (const o of opp.players) {
+    if (o.sentOff) continue;
+    const dx = o.pos.x - p.pos.x;
+    const dy = o.pos.y - p.pos.y;
+    const along = dx * hx + dy * hy;
+    if (along < 0 || along > 14) continue;
+    const perp = Math.abs(dx * hy - dy * hx);
+    if (perp > along * 0.7 + 1) continue; // outside the ~70° cone
+    if (along < aheadD) aheadD = along;
+  }
+  const push =
+    (TOUCH_PUSH_BASE + Math.min(aheadD - 2, 8) * TOUCH_PUSH_SPACE) *
+    (1.05 - p.attrs.technique * 0.15);
+  const speed = Math.hypot(p.vel.x, p.vel.y) + Math.max(push, 0.9);
+  // A heavy first touch is a WOBBLY one: direction noise priced by technique.
+  const noise = match.rng.gaussian() * 0.07 * (1.35 - p.attrs.technique * 0.7);
+  const dir = rotate(v2(hx, hy), noise);
+  ball.owner = null;
+  ball.lastTouch = p;
+  ball.vel = scale(dir, speed);
+  ball.z = 0;
+  ball.vz = 0;
+  p.kickCooldown = TOUCH_RECOLLECT_COOLDOWN;
+  match.dribbleTouch = { gid: p.gid, until: match.simTime + 1.6 };
 }
 
 export function performClear(match: Match, p: Player): void {
