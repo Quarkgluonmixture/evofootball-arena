@@ -1,15 +1,16 @@
-# Roadmap — shipped through phase-37; autonomous run continues to Phase 40
+# Roadmap — shipped through phase-38; autonomous run continues to Phase 40
 
 **Audience: the next coding agent (and the user).** Everything through
-**phase-37** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
+**phase-38** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
 instruction (2026-07-13) is to run the queue AUTONOMOUSLY through Phase
-40 — next up is Phase 38 (body contact; it leans on 36's touch windows),
-then 39 → 40, each closed with probe evidence.** Phase specs are directions, not
+40 — next up is Phase 39 (players become PEOPLE), then 40, each closed
+with probe evidence.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
 starting. When play-feel and the calibrate table disagree, **the user's
-play report wins**. Awaiting play reports on: 37 Magnus (the corner
-whip, the FK banana, curled finishes — do the arcs READ on the phone),
-36 visible touches (does
+play report wins**. Awaiting play reports on: 38 body contact (shield /
+shoulder ride / corner grapple — do the poses READ on the phone), 37
+Magnus (the corner whip, the FK banana, curled finishes), 36 visible
+touches (does
 the carry finally read as FEET, poke steals, heavy-touch feel), 35
 game-state tactics (late-chase feel, 门将上前, bus/clock-milking, the
 live gene bars breathing), 34 套路包 (one-twos/third-man/overlap
@@ -860,15 +861,36 @@ p90 4.66m — the visible whip. Calibrate 2.25/2.54 (paired vs 36:
 +0.26/+0.17 — curled strikes buy goals back through the dive
 discount). Fingerprint `2ada3cb1…` → `f6d49cda…`.
 
-## Phase 38 — body contact (身体对抗可视化)
+## ⭐ Phase 38 — body contact (身体对抗可视化) — **SHIPPED**
 
-**Goal:** duels read as RNG flicker — two bodies near, a dice roll.
-Make the wrestle LEGIBLE: shielding stance (HoldUp gets a pose),
-shoulder-to-shoulder riding on parallel runs, box jostling before
-corners (pairs with the 31.9 crash/marker machinery), a shove-stumble
-when the duel dice already say "foul". Mostly RENDER + small sim nudges
-(separation forces during duels); depends on Phase 36's touch windows
-for the poke-tackle to look right — build after it.
+**Outcome:** the wrestle is legible — and it shipped as a PURE RENDER
+phase: zero sim changes, fingerprint still `f6d49cda…` (proven by
+re-run, the cheapest invariance proof a phase can have). Three contact
+behaviors, all pure functions of RenderState (exported from
+AnimationSystem, unit-tested + probed headlessly per invariant 11):
+
+- **The shield** (new `shield` anim): HoldUp ON the ball, plus the
+  pressured slow carry (`shielding()` — Phase 36 made the glued ball
+  MEAN close control, so the body now shows the fight it implies):
+  wide low base, backside into the man, fending arm barred, weight
+  shifting foot to foot. 2.17s/match visible (was 0.15s with HoldUp
+  alone — the action's 0.3s decision window is too brief to see).
+- **The shoulder ride** (`rideSide()`, a lean layered ON the run
+  cycle): both bodies within arm's reach at speed, near-parallel,
+  BESIDE not in the wake, **and the ball in the duel** — that last
+  gate is the discriminator that mattered: every marking pair on the
+  pitch tracks at exactly PLAYER_MIN_DIST (the overlap resolver's
+  shell), so without it the whole defense permanently leaned (probed
+  185–286 bouts/match). Shipped: 33 bouts/match, 11.9s/match — a real
+  duel every ~90s, brief.
+- **The corner grapple** (`jostling()`): during a corner setup,
+  near-stationary opponents in grabbing range in the goalmouth wrestle
+  (braced arms, gid-offset sway so pairs never sync). 0.93
+  player-seconds/match across ~3.2s of setups.
+- The shove-stumble on fouls already existed (`stunned` → stumble).
+
+Probe: `contact-choreo.ts` (headless RenderStates over 60 matches).
+The user's phone verdict on how the poses READ is the open item.
 
 ## Phase 39 — players become PEOPLE
 

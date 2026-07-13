@@ -4,11 +4,12 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import { animFor } from '../src/render3d/AnimationSystem';
+import { animFor, jostling, rideSide } from '../src/render3d/AnimationSystem';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import {
   buildRenderState, buildRenderTheme, interpolateStates, lerpAngle,
+  type RenderPlayer, type RenderState,
 } from '../src/render3d/RenderStateAdapter';
 import { ReplayBuffer } from '../src/replay/ReplayBuffer';
 import { DT } from '../src/sim/constants';
@@ -137,6 +138,54 @@ describe('animFor (action -> animation mapping)', () => {
   it('celebration overrides everything', () => {
     expect(animFor('ChaseBall', 7, true)).toBe('celebrate');
     expect(animFor('Pass', 2, true)).toBe('celebrate');
+  });
+
+  it('HoldUp shields ON the ball, moves normally off it (Phase 38)', () => {
+    expect(animFor('HoldUp', 1, false, true)).toBe('shield');
+    expect(animFor('HoldUp', 1, false, false)).toBe('dribble');
+    expect(animFor('HoldUp', 1, false)).toBe('dribble'); // legacy callers
+  });
+});
+
+describe('body-contact detection (Phase 38, pure fns of RenderState)', () => {
+  const rp = (over: Partial<RenderPlayer>): RenderPlayer => ({
+    gid: 0, side: 0, role: 'ST', x: 0, z: 0, yaw: 0, speed: 0,
+    action: 'MoveToFormationSpot', stamina: 1, ...over,
+  });
+
+  it('rideSide: parallel sprinters dueling FOR the ball read it; trackers do not', () => {
+    const ballAt = (x: number, z: number) => ({ x, z, ownerGid: null });
+    const a = rp({ gid: 1, side: 0, x: 0, z: 0, yaw: 0, speed: 6 });
+    const rider = rp({ gid: 7, side: 1, x: 0.9, z: 0, yaw: 0.2, speed: 6 });
+    expect(rideSide(a, [a, rider], ballAt(0.5, 1.5))).not.toBe(0);
+    // The ball gate: the same pair 20m from the ball is a marking run, not
+    // a duel — without this every pair on the resolver's min-dist shell
+    // "leaned" (probed 185-286 bouts/match).
+    expect(rideSide(a, [a, rider], ballAt(20, 0))).toBe(0);
+    // A teammate never triggers it; neither does a crossing (perpendicular) run.
+    expect(rideSide(a, [a, rp({ gid: 2, side: 0, x: 0.9, z: 0, yaw: 0, speed: 6 })], ballAt(0.5, 1.5))).toBe(0);
+    expect(rideSide(a, [a, rp({ gid: 8, side: 1, x: 0.9, z: 0, yaw: Math.PI / 2, speed: 6 })], ballAt(0.5, 1.5))).toBe(0);
+    // Standing bodies aren't riding anyone.
+    expect(rideSide(rp({ speed: 1 }), [rider], ballAt(0.5, 1.5))).toBe(0);
+  });
+
+  it('jostling: corner setups wrestle in the goalmouth, open play never', () => {
+    const marker = rp({ gid: 9, side: 1, x: 40, z: 6, speed: 0.5 });
+    const crasher = rp({ gid: 3, side: 0, x: 40.6, z: 6.4, speed: 0.5 });
+    const corner: RenderState = {
+      t: 10, phase: 'restart', minute: 30, score: [0, 0], celebratingSide: -1,
+      celebratingGid: null, players: [marker, crasher],
+      ball: { x: 44.4, z: 28.4, vx: 0, vz: 0, speed: 0, ownerGid: null, isShot: false, isPass: false },
+      overlays: null, fx: [],
+    };
+    expect(jostling(crasher, corner)).toBe(true);
+    expect(jostling(marker, corner)).toBe(true);
+    // Live play: same bodies, no corner — nobody grapples.
+    expect(jostling(crasher, { ...corner, phase: 'playing' })).toBe(false);
+    // A kick-in on the touchline is not a corner picture.
+    expect(jostling(crasher, { ...corner, ball: { ...corner.ball, x: 10, z: 28.4 } })).toBe(false);
+    // A sprinting player is running a crash, not wrestling.
+    expect(jostling({ ...crasher, speed: 5 }, corner)).toBe(false);
   });
 });
 

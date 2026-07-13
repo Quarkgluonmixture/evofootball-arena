@@ -1,3 +1,4 @@
+import { BOX_DEPTH, HALF_L, HALF_W } from '../sim/constants';
 import type { ActionType } from '../sim/types';
 import { lerpAngle, type RenderPlayer, type RenderState } from './RenderStateAdapter';
 import type { PlayerModel } from './PlayerModel';
@@ -14,6 +15,7 @@ export type AnimName =
   | 'jog'
   | 'sprint'
   | 'dribble'
+  | 'shield'
   | 'kick'
   | 'header'
   | 'lunge'
@@ -22,7 +24,9 @@ export type AnimName =
   | 'gkDive'
   | 'celebrate';
 
-export function animFor(action: ActionType, speed: number, celebrating: boolean): AnimName {
+export function animFor(
+  action: ActionType, speed: number, celebrating: boolean, hasBall = false,
+): AnimName {
   if (celebrating) return 'celebrate';
   switch (action) {
     case 'Pass':
@@ -33,8 +37,12 @@ export function animFor(action: ActionType, speed: number, celebrating: boolean)
     case 'ClearBall':
       return 'kick';
     case 'Dribble':
-    case 'HoldUp':
       return 'dribble';
+    case 'HoldUp':
+      // The pivot's shield (Phase 38): ON the ball it is a wrestle — wide
+      // base, arm fending the defender. Off the ball (waiting for it to
+      // arrive) it is just movement.
+      return hasBall ? 'shield' : 'dribble';
     case 'InterceptPass':
       return 'lunge';
     case 'GoalkeeperSave':
@@ -95,10 +103,89 @@ const FREQ: Partial<Record<AnimName, number>> = {
 const approach = (cur: number, target: number, maxDelta: number): number =>
   Math.abs(target - cur) <= maxDelta ? target : cur + Math.sign(target - cur) * maxDelta;
 
+/**
+ * Shoulder-to-shoulder ride detection (Phase 38, pure — probed headlessly):
+ * an OPPONENT within arm's reach, both at running pace, headings near
+ * parallel, AND the ball in the duel — the classic ride on a driving
+ * carrier. The ball gate is the discriminator that matters: every marking
+ * pair on the pitch tracks at exactly PLAYER_MIN_DIST (the overlap
+ * resolver's shell), so without it the whole defense permanently "leans"
+ * (probed: 185–286 bouts/match; with the gate, the handful of real duels).
+ * Returns which side of `p` the contact is on, or 0.
+ */
+export function rideSide(
+  p: RenderPlayer, players: RenderPlayer[], ball: { x: number; z: number; ownerGid: number | null },
+): -1 | 0 | 1 {
+  if (p.speed < 4) return 0;
+  const bdx = ball.x - p.x;
+  const bdz = ball.z - p.z;
+  if (bdx * bdx + bdz * bdz > 3.5 * 3.5) return 0; // the duel is FOR the ball
+  const fx = Math.sin(p.yaw);
+  const fz = Math.cos(p.yaw);
+  for (const q of players) {
+    if (q.side === p.side || q.gid === p.gid) continue;
+    if (q.speed < 4) continue;
+    const dx = q.x - p.x;
+    const dz = q.z - p.z;
+    if (dx * dx + dz * dz > 1.2 * 1.2) continue;
+    let dyaw = Math.abs(q.yaw - p.yaw) % (Math.PI * 2);
+    if (dyaw > Math.PI) dyaw = Math.PI * 2 - dyaw;
+    if (dyaw > 0.55) continue;
+    // BESIDE, not in the wake: a chaser tucked directly behind is a chase.
+    const lat = fx * dz - fz * dx;
+    const along = fx * dx + fz * dz;
+    if (Math.abs(along) > Math.abs(lat) * 1.5) continue;
+    return lat > 0 ? -1 : 1;
+  }
+  return 0;
+}
+
+/**
+ * The shield wrestle (Phase 38, pure): a carrier at walking pace with a
+ * defender in grabbing range is holding the man off — Phase 36's close
+ * control IS this state (the glue only survives under pressure now).
+ * HoldUp-with-ball routes here via animFor; this catches the pressured
+ * slow carry the HoldUp action's 0.3s decision window is too brief for.
+ */
+export function shielding(p: RenderPlayer, state: RenderState): boolean {
+  if (state.ball.ownerGid !== p.gid || p.speed > 2.2 || p.role === 'GK') return false;
+  for (const q of state.players) {
+    if (q.side === p.side) continue;
+    const dx = q.x - p.x;
+    const dz = q.z - p.z;
+    if (dx * dx + dz * dz < 1.6 * 1.6) return true;
+  }
+  return false;
+}
+
+/**
+ * Pre-corner box jostle (Phase 38, pure): during a corner setup, a
+ * near-stationary player with an opponent in grabbing range is WRESTLING
+ * for position, not standing politely.
+ */
+export function jostling(p: RenderPlayer, state: RenderState): boolean {
+  if (state.phase !== 'restart' || p.speed > 1.6) return false;
+  const b = state.ball;
+  // The ball sits at a corner flag during a corner setup.
+  if (Math.abs(b.x) < HALF_L - 4 || Math.abs(b.z) < HALF_W - 6) return false;
+  // Jostle near the goalmouth the flag belongs to, not across the pitch.
+  if (Math.sign(p.x) !== Math.sign(b.x) || Math.abs(p.x) < HALF_L - BOX_DEPTH - 2) return false;
+  for (const q of state.players) {
+    if (q.side === p.side || q.gid === p.gid) continue;
+    const dx = q.x - p.x;
+    const dz = q.z - p.z;
+    if (dx * dx + dz * dz < 1.7 * 1.7) return true;
+  }
+  return false;
+}
+
 export class AnimationSystem {
   update(model: PlayerModel, p: RenderPlayer, state: RenderState, dt: number): void {
     const celebrating = state.celebratingSide === p.side && p.role !== 'GK';
-    let anim = animFor(p.action, p.speed, celebrating);
+    let anim = animFor(p.action, p.speed, celebrating, state.ball.ownerGid === p.gid);
+    // The pressured slow carry wrestles too (Phase 38) — Phase 36 made the
+    // glued ball MEAN close control, so show the body fight it implies.
+    if (anim === 'dribble' && shielding(p, state)) anim = 'shield';
     // Phase 27 overrides: a live keeper dive / tackle lunge / recovery
     // stumble beats the action-derived pose (celebrations still win).
     if (!celebrating) {
@@ -238,6 +325,21 @@ export class AnimationSystem {
       legL = 0.35;
       legR = -0.25;
       hop = 0;
+    } else if (anim === 'shield') {
+      // The pivot's wrestle (Phase 38): wide low base, backside into the
+      // defender, one arm barred across him, weight shifting foot to foot.
+      const w = Math.sin(model.animTime * 2.6);
+      legLz = 0.32;
+      legRz = -0.32;
+      legL = 0.18 + w * 0.1;
+      legR = -0.18 - w * 0.1;
+      leanX = -0.1; // leaning INTO the man behind, not over the ball
+      leanZ = w * 0.08;
+      armLz = 1.25; // the fending arm, barred
+      armRz = -0.5;
+      armL = -0.3;
+      armR = 0.2;
+      hop = 0;
     } else if (anim === 'gkReady') {
       armLz = 0.85;
       armRz = -0.85;
@@ -274,6 +376,27 @@ export class AnimationSystem {
       armR = 0;
       hop = Math.abs(Math.sin(model.animTime * (isScorer ? 9 : 6))) * (isScorer ? 0.62 : 0.16);
       leanX = isScorer ? -0.15 : -0.06;
+    }
+
+    // Body contact modifiers (Phase 38) — LAYERED on the run cycle, never
+    // replacing it: the wrestle is in the torso, the legs keep running.
+    if (anim === 'jog' || anim === 'sprint' || anim === 'dribble') {
+      // Shoulder-to-shoulder: two bodies riding each other down the line —
+      // both lean INTO the contact, the inner arm bars across.
+      const side = rideSide(p, state.players, state.ball);
+      if (side !== 0) {
+        leanZ += side * 0.22;
+        if (side > 0) armRz -= 0.55;
+        else armLz += 0.55;
+      }
+    } else if (anim === 'idle' && jostling(p, state)) {
+      // Pre-corner grappling: braced arms, weight wrestling side to side —
+      // phase offset by gid so a pair never sways in lockstep.
+      const w = Math.sin(model.animTime * 3.1 + model.gid * 1.7);
+      leanZ += w * 0.13;
+      leanX += 0.08;
+      armLz = Math.max(armLz, 0.55 + w * 0.15);
+      armRz = Math.min(armRz, -0.55 + w * 0.15);
     }
 
     model.legL.rotation.x = approach(model.legL.rotation.x, legL, r * 1.6);
