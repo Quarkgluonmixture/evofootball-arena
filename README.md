@@ -486,6 +486,15 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 - **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
   attributes — league mean per generation, so you can watch the meta drift —
   plus the last evolution's elite/mutated/reborn entries with fitness & drift.
+- **The rebirth ceremony** (Phase 32.5): season end is an EVENT — elites
+  crowned, identity switches listed, and one card per dead club: who died,
+  which two parents bred the successor, a parent-vs-child **gene radar**
+  with the novel mutations highlighted (child genes outside both parents'
+  range), and the inherited formation/scheme. Auto-shows at season end,
+  reopenable from the Evolution tab. Team cards carry the same radar vs the
+  league mean plus a 🌳 family tree, and every fixture opens with a
+  **pre-match clash** — both teams' tactical DNA side by side (tap to
+  dismiss).
 - **Hall of fame**: All-time greats — the best retired careers, kept forever
   (Phase 26) — Premier + Challenger title leaderboards, Evo Cup honours
   (titles + final appearances, domestic doubles, most giant killings, deepest

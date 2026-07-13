@@ -13,9 +13,10 @@ import {
   domesticDoubles, giantKillingCounts, greatestComeback, longestPremierStreak, mostCupGoals,
   movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
-import { raceChart, sparklineTile, stackedShareStrip } from './charts';
+import { geneRadar, raceChart, sparklineTile, stackedShareStrip, type RadarSeries } from './charts';
 import { bar, button, colorHex, el } from './dom';
-import { t } from './i18n';
+import { lang, t } from './i18n';
+import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
 
 type Tab = 'league' | 'cup' | 'report' | 'evolution' | 'hall';
 
@@ -49,6 +50,8 @@ export class LeagueScreen {
   onSetPromotionMode: ((m: PromotionMode) => void) | null = null;
   /** Set by GameApp: change how drawn cup ties resolve (persisted with the save). */
   onSetCupDrawMode: ((m: CupDrawMode) => void) | null = null;
+  /** Set by GameApp: reopen the latest rebirth ceremony (Phase 32.5). */
+  onShowCeremony: (() => void) | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -208,6 +211,12 @@ export class LeagueScreen {
     const lastSeason = league.history[league.history.length - 1];
     const ordered = [...league.division(0), ...league.division(1)];
 
+    const labels = geneAxisLabels(lang);
+    const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
+    const leagueMean = GENE_KEYS.map(
+      (k) => ordered.reduce((a, f) => a + f.genome[k], 0) / Math.max(ordered.length, 1),
+    );
+
     for (const f of ordered) {
       const card = el('div', 'team-card');
 
@@ -227,13 +236,21 @@ export class LeagueScreen {
       for (const t of describeIdentity(f.genome)) tags.appendChild(el('span', 'tag', t));
       card.appendChild(tags);
 
-      for (const key of GENE_KEYS) {
-        const row = el('div', 'gene-row');
-        row.appendChild(el('div', 'g-name', key));
-        const b = bar(f.genome[key], colorHex(f.colors.primary));
-        b.style.gridColumn = '2 / 4';
-        row.appendChild(b);
-        card.appendChild(row);
+      // Tactical DNA (32.5): the radar reads as a SHAPE where 14 bars read
+      // as a wall — the dashed league mean makes "what's distinctive here"
+      // visible at a glance (per-gene values live in the axis tooltips).
+      const series: RadarSeries[] = [
+        { values: leagueMean, color: '#8294b5', name: t('league mean'), dashed: true },
+        { values: genomeValues(f.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
+      ];
+      card.appendChild(geneRadar(axes, series, { size: 190 }));
+      card.appendChild(el('div', 'radar-cap muted', `┄ ${t('league mean')}`));
+
+      // Family tree (32.5): the slot's chain of rebirths, newest first.
+      const hops = parentChain(f.lineage, f.name);
+      if (hops.length > 0) {
+        card.appendChild(el('div', 'muted family-tree',
+          `🌳 ${hops.map((h) => `${h.child} ← ${h.parents.join(' × ')} (g${h.generation})`).join('  ·  ')}`));
       }
 
       card.appendChild(el('div', 'muted', 'squad (avg attributes):'));
@@ -571,6 +588,9 @@ export class LeagueScreen {
     const last = league.history[league.history.length - 1];
     if (last) {
       this.root.appendChild(el('h2', '', `Last evolution (gen ${last.generation} → ${last.generation + 1})`));
+      const row = el('div', 'row');
+      row.appendChild(button(`🧬 ${t('Rebirth ceremony')}`, () => this.onShowCeremony?.()));
+      this.root.appendChild(row);
       for (const e of last.evolution.entries) {
         const icon = e.kind === 'elite' ? '👑' : e.kind === 'mutated' ? '🧬' : '🔄';
         const par = e.parents ? ` ← ${e.parents.join(' × ')}` : '';

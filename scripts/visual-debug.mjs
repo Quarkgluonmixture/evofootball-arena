@@ -72,6 +72,17 @@ check('xG chart draws step lines', chartPaths >= 2, `${chartPaths} paths`);
 
 // Advance into the next match, enable overlays, let it play a moment.
 await page.click('button:has-text("⏭ skip")');
+
+// Pre-match clash (32.5): every freshly loaded fixture opens with the
+// tale-of-the-tape — two DNA radars side by side. Dismiss it here so later
+// canvas clicks are never intercepted.
+check('pre-match clash shows on the next fixture (32.5)', await page.evaluate(() => window.__evo.clashVisible()), '');
+check('clash banner carries two DNA radars', (await page.locator('#clash-banner svg.radar').count()) === 2, '');
+await page.screenshot({ path: `${OUT}/2b-clash.png` });
+await page.click('#clash-banner');
+await page.waitForTimeout(200);
+check('clash banner dismisses on tap', !(await page.evaluate(() => window.__evo.clashVisible())), '');
+
 for (const label of ['Formation targets', 'Marking lines', 'Press assignments', 'Ball heatmap']) {
   await page.click(`label:has-text("${label}")`);
 }
@@ -107,6 +118,7 @@ const zones = await page.locator('#league-screen tr.zone-up, #league-screen tr.z
 check('promotion/relegation zones highlighted', zones === 4, `${zones} zone rows`);
 const cards = await page.locator('#league-screen .team-card').count();
 check('team cards render', cards === 16, `${cards} cards`);
+check('every team card carries a DNA radar (32.5)', (await page.locator('#league-screen .team-card svg.radar').count()) === 16, '');
 check('division badges on team cards', (await page.locator('#league-screen .tag.div-badge-1').count()) === 8);
 check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 4);
 check('cup draw rule selector present', (await page.locator('#league-screen .rules-row').count()) === 2);
@@ -182,8 +194,28 @@ check(
   (await page.evaluate(() => window.__evo.simMode())) === 'worker',
   '',
 );
+
+// The rebirth ceremony (32.5) auto-shows at season end: three D2 clubs die,
+// each card overlays parent-vs-child gene radars with mutations flagged.
+check('rebirth ceremony auto-shows at season end (32.5)', await page.locator('#rebirth-screen').isVisible(), '');
+const deathCards = await page.locator('#rebirth-screen .rebirth-card').count();
+check('ceremony shows the three rebirths', deathCards === 3, `${deathCards} cards`);
+check('each rebirth card carries a radar', (await page.locator('#rebirth-screen .rebirth-card svg.radar').count()) === 3, '');
+const ceremonyTxt = await page.textContent('#rebirth-screen');
+check('ceremony crowns the elites', ceremonyTxt.includes('Survived untouched'), '');
+check('ceremony names dead → born', (await page.locator('#rebirth-screen .rebirth-dead').count()) === 3, '');
+await page.screenshot({ path: `${OUT}/6a-rebirth-ceremony.png`, fullPage: true });
+await page.click('#rebirth-screen .ceremony-continue');
+await page.waitForTimeout(200);
+check('ceremony closes on continue', !(await page.locator('#rebirth-screen').isVisible()), '');
+
 await page.click('button:has-text("Season")');
 await page.waitForTimeout(25000);
+// Season two's ceremony — close it so the league screen is clickable below.
+if (await page.locator('#rebirth-screen').isVisible()) {
+  await page.click('#rebirth-screen .ceremony-continue');
+  await page.waitForTimeout(200);
+}
 
 // League screen tabs: report, evolution, hall of fame.
 await page.click('button:has-text("League table")');
@@ -213,6 +245,13 @@ const tiles = await page.locator('#league-screen .spark-tile').count();
 check('gene+attr drift sparklines render', tiles >= 19, `${tiles} tiles`);
 await page.screenshot({ path: `${OUT}/8-evolution.png` });
 
+// The ceremony is reopenable from the Evolution tab (32.5).
+await page.click('#league-screen button:has-text("Rebirth ceremony")');
+await page.waitForTimeout(300);
+check('evolution tab reopens the rebirth ceremony', await page.locator('#rebirth-screen').isVisible(), '');
+await page.click('#rebirth-screen .ceremony-continue');
+await page.waitForTimeout(200);
+
 await page.click('#league-screen button:has-text("Hall of fame")');
 await page.waitForTimeout(300);
 const hallText = await page.textContent('#league-screen');
@@ -234,6 +273,37 @@ check('cup tab: giant killings marked', (await page.locator('#league-screen .cup
 check('cup tab: roll of honour lists champions', cupTxt.includes('Roll of honour'), '');
 await page.screenshot({ path: `${OUT}/10-cup-bracket.png`, fullPage: true });
 await page.click('#league-screen button:has-text("League")');
+
+// ---- Phase 32.5 on a phone (the user's primary device, ≤390px) ----
+// Nothing may overflow the viewport (failure mode: horizontal overflow
+// breaks the whole page's proportions on phones).
+await page.setViewportSize({ width: 390, height: 844 });
+await page.waitForTimeout(600);
+await page.screenshot({ path: `${OUT}/13-phone-league-cards.png` });
+const cardOverflow = await page.evaluate(() => {
+  const s = document.querySelector('#league-screen');
+  return s ? s.scrollWidth - s.clientWidth : 0;
+});
+check('phone: league cards fit 390px', cardOverflow <= 1, `overflow ${cardOverflow}px`);
+await page.click('button:has-text("League table")'); // close the league screen
+
+await page.evaluate(() => window.__evo.showCeremony());
+await page.waitForTimeout(400);
+const cerOverflow = await page.evaluate(() => {
+  const s = document.querySelector('#rebirth-screen');
+  return s ? s.scrollWidth - s.clientWidth : 0;
+});
+check('phone: rebirth ceremony fits 390px', cerOverflow <= 1, `overflow ${cerOverflow}px`);
+await page.screenshot({ path: `${OUT}/14-phone-ceremony.png`, fullPage: true });
+await page.click('#rebirth-screen .ceremony-continue');
+await page.waitForTimeout(200);
+
+await page.evaluate(() => window.__evo.app.skipMatch());
+await page.waitForTimeout(400);
+check('phone: clash banner shows', await page.evaluate(() => window.__evo.clashVisible()), '');
+const clashBox = await page.locator('#clash-banner').boundingBox();
+check('phone: clash banner fits 390px', clashBox !== null && clashBox.width <= 390, `w=${clashBox?.width}`);
+await page.screenshot({ path: `${OUT}/15-phone-clash.png` });
 
 check('no console/page errors', errors.length === 0, errors.slice(0, 3).join(' | '));
 

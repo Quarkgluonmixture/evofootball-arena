@@ -195,6 +195,20 @@ const ZH: Record<string, string> = {
   '✕ Exit replay': '✕ 退出回放',
   'exit replay ✕': '退出回放 ✕',
 
+  // ---- rebirth ceremony & tactical DNA (Phase 32.5) ----
+  'Rebirth ceremony': '重生仪式',
+  'The pyramid turns over: the weakest Challenger clubs die, and champions breed their successors.':
+    '金字塔翻转:挑战组垫底的俱乐部死去,豪门的战术基因诞下新军。',
+  'Survived untouched (elite)': '原样存续(精英)',
+  'Died and reborn': '死亡与重生',
+  'fitness at death': '死亡时适应度',
+  'gene drift': '基因漂移',
+  parents: '父本',
+  'no novel mutations — a true heir': '无新突变——纯正传人',
+  Continue: '继续',
+  'league mean': '联赛均值',
+  'tap to dismiss': '点按关闭',
+
   // ---- league screen extras ----
   'Season report': '赛季报告',
   Evolution: '演化',

@@ -268,7 +268,7 @@ https://quarkgluonmixture.itch.io/evofootball-arena (manual zip upload,
 | `src/replay/` | `ReplayBuffer`: 10 Hz RenderState snapshots, binary-search + interpolation | hold references into live sim objects (it stores adapter-produced plain data) |
 | `src/render/` | PixiJS 2D view, DebugOverlay, shared `actionLabels`, px transform | write sim state |
 | `src/render3d/` | Three.js viewer; `RenderStateAdapter` is the ONLY sim→3D bridge (pure, three-free) | be imported by sim/ai/evolution (enforced by test) |
-| `src/ui/` | plain-DOM panels, league screen, replay bar, `GameActions` contract | talk to sim directly for mutations (everything goes through GameApp) |
+| `src/ui/` | plain-DOM panels, league screen, replay bar, rebirth ceremony + pre-match clash (`RebirthCeremony`/`ClashBanner`, view-model `rebirth.ts` — pure + unit-tested), chart builders (`charts.ts` incl. the gene radar), `GameActions` contract | talk to sim directly for mutations (everything goes through GameApp) |
 | `src/data/` | localStorage save/load + version migration | — |
 | `src/sim/simRunner.ts` | the headless fast-sim loop (pure; shared by worker + tests) | touch browser/worker APIs |
 | `src/game/simWorker.ts` | Web Worker wrapper around simRunner (worker globals live HERE, not in sim/) | contain sim logic beyond dispatch |
@@ -789,7 +789,12 @@ feature is:
    **bit-identical**: same seed ⇒ same save JSON before and after — run
    `npm run fingerprint` (and `npm run fingerprint -- 42 3` for a second
    seed) before and after and compare hashes; never reorder float arithmetic
-   for speed.
+   for speed. ⚠ The fingerprint hashes the **save JSON**, so adding
+   record-only fields (e.g. 32.5's rebirth snapshots in
+   `history[].evolution.entries`) moves the hash without moving the sim —
+   when that's the claim, PROVE it by stripping the new fields from the
+   output and re-hashing: the reduced hash must equal the old baseline
+   exactly (32.5: reduced == `c37f5020…`, full baseline now `40f72c64…`).
 3. **Watching and skipping the same seeded match produce identical results.**
    Same seed ⇒ same score, events and stats — step-by-step vs
    `runToCompletion` is regression-tested and must stay green.

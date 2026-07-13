@@ -95,6 +95,91 @@ export function stackedShareStrip(
   return tile;
 }
 
+export interface RadarSeries {
+  /** Values in axis order, each in [0, 1]. */
+  values: number[];
+  /** CSS color for the polygon (identity lives in the caller's chips/labels). */
+  color: string;
+  name: string;
+  /** Filled identity polygon (the subject) vs outline-only context (parents/mean). */
+  fill?: boolean;
+  dashed?: boolean;
+}
+
+/**
+ * Gene radar (Phase 32.5): one polygon per series over N fixed axes.
+ * Same dataviz rules as the sparklines — recessive rings, 2px strokes, ink
+ * labels; identity comes from the caller's header chips, and every axis
+ * carries a <title> with the full name + values so color is never the only
+ * channel. `highlight` flags axes (mutated genes) with an accent dot.
+ */
+export function geneRadar(
+  axes: Array<{ label: string; title: string }>,
+  series: RadarSeries[],
+  opts: { size?: number; highlight?: boolean[] } = {},
+): HTMLDivElement {
+  const S = opts.size ?? 180;
+  const cx = S / 2;
+  const cy = S / 2;
+  const R = S / 2 - 20; // room for the axis labels
+  const n = axes.length;
+  const angle = (i: number) => -Math.PI / 2 + (i / n) * Math.PI * 2;
+  const pt = (i: number, v: number): [number, number] => [
+    cx + Math.cos(angle(i)) * R * v,
+    cy + Math.sin(angle(i)) * R * v,
+  ];
+
+  const parts: string[] = [];
+  // Recessive grid: two rings (0.5 / 1.0) + spokes.
+  for (const ring of [0.5, 1]) {
+    const d = axes.map((_, i) => pt(i, ring).map((c) => c.toFixed(1)).join(',')).join(' ');
+    parts.push(`<polygon points="${d}" fill="none" stroke="${GRID}" stroke-width="1"/>`);
+  }
+  axes.forEach((a, i) => {
+    const [x1, y1] = pt(i, 1);
+    const hot = opts.highlight?.[i] ?? false;
+    parts.push(`<line x1="${cx}" y1="${cy}" x2="${x1.toFixed(1)}" y2="${y1.toFixed(1)}" stroke="${GRID}" stroke-width="1"/>`);
+    const [lx, ly] = pt(i, 1 + 11 / R);
+    const anchor = Math.abs(Math.cos(angle(i))) < 0.25 ? 'middle' : Math.cos(angle(i)) > 0 ? 'start' : 'end';
+    const vals = series.map((s) => `${s.name} ${(s.values[i] ?? 0).toFixed(2)}`).join(' · ');
+    parts.push(
+      `<text x="${lx.toFixed(1)}" y="${(ly + 3).toFixed(1)}" font-size="8.5" fill="${hot ? '#facc15' : INK_MUTED}" ` +
+        `text-anchor="${anchor}"${hot ? ' font-weight="700"' : ''}>${escapeHtml(a.label)}` +
+        `<title>${escapeHtml(a.title)} — ${escapeHtml(vals)}</title></text>`,
+    );
+  });
+  for (const s of series) {
+    const d = s.values.map((v, i) => pt(i, Math.max(0, Math.min(1, v))).map((c) => c.toFixed(1)).join(',')).join(' ');
+    parts.push(
+      `<polygon points="${d}" fill="${s.fill ? s.color : 'none'}" fill-opacity="${s.fill ? 0.16 : 0}" ` +
+        `stroke="${s.color}" stroke-width="2" stroke-linejoin="round"${s.dashed ? ' stroke-dasharray="4 3"' : ''}>` +
+        `<title>${escapeHtml(s.name)}</title></polygon>`,
+    );
+  }
+  // Mutation markers: an accent dot on the SUBJECT polygon's mutated vertices
+  // (the last series is the subject — callers draw context first).
+  const subject = series[series.length - 1];
+  if (subject && opts.highlight) {
+    opts.highlight.forEach((hot, i) => {
+      if (!hot) return;
+      const [x, y] = pt(i, Math.max(0, Math.min(1, subject.values[i] ?? 0)));
+      parts.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#facc15" stroke="${SURFACE}" stroke-width="1"/>`);
+    });
+  }
+
+  const wrap = el('div', 'gene-radar');
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${S} ${S}`);
+  svg.setAttribute('width', '100%');
+  svg.classList.add('radar');
+  // East/west labels anchor outward — let them bleed into the card padding
+  // instead of being cut at the viewBox edge (long English axis names).
+  svg.style.overflow = 'visible';
+  svg.innerHTML = parts.join('');
+  wrap.appendChild(svg);
+  return wrap;
+}
+
 export interface RaceSeries {
   name: string;
   color: number;

@@ -1,7 +1,7 @@
 import type { TeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, rookieAge } from './careers';
-import { crossoverGenomes, geneDistance, mutateGenome } from './genome';
+import { crossoverGenomes, geneDistance, mutateGenome, type TacticalGenome } from './genome';
 import type { Franchise } from './franchise';
 import { generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { crossoverSquads } from './playerGenome';
@@ -29,6 +29,19 @@ export interface EvolutionEntry {
   fitness: number;
   /** Gene-space distance moved this generation (0 for elites). */
   drift: number;
+  /** Style-switch lineage note for mutated clubs (e.g. "🔧 switched to low-32"). */
+  note?: string;
+  // Rebirth snapshots (Phase 32.5): the ceremony replays the moment of
+  // evolution from the record alone — parents' genomes are copied HERE
+  // because the living parents keep evolving after this generation.
+  /** Reborn: the club that died to make room. */
+  oldName?: string;
+  /** Reborn: the crossover inputs, dominant parent first. */
+  parentGenomes?: [TacticalGenome, TacticalGenome];
+  /** Reborn: the newborn genome (crossover + heavy mutation). */
+  childGenome?: TacticalGenome;
+  /** Reborn: tactical identity inherited from the dominant parent. */
+  inheritedStyle?: TeamStyle;
 }
 
 export interface EvolutionReport {
@@ -128,7 +141,10 @@ export function evolveGroup(
       // mutating INTO it needs a second, rarer roll.
       const styleNote = mutateStyle(f.style, rng, plan.zonal);
       f.lineage.push({ generation: nextGen, event: 'mutated', fitness, note: styleNote });
-      entries.push({ slot: f.slot, name: f.name, kind: 'mutated', fitness, drift: geneDistance(before, f.genome) });
+      entries.push({
+        slot: f.slot, name: f.name, kind: 'mutated', fitness,
+        drift: geneDistance(before, f.genome), note: styleNote,
+      });
     } else {
       const pa = pickParent();
       const pb = pickParent(pa);
@@ -174,6 +190,10 @@ export function evolveGroup(
         parents: [pa.name, pb.name],
         fitness,
         drift: geneDistance(before, f.genome),
+        oldName,
+        parentGenomes: [{ ...pa.genome }, { ...pb.genome }],
+        childGenome: { ...f.genome },
+        inheritedStyle: { ...f.style },
       });
     }
   });

@@ -14,7 +14,7 @@ import { ShootoutTheater } from '../render3d/ShootoutTheater';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
-import { resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
+import { CUP_ROUND_NAMES, resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
 import { lang, setLang, t } from '../ui/i18n';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
 import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
@@ -27,8 +27,10 @@ import {
   anyOverlayOn, defaultFlags, type FxQuality, type GameActions, type UiFlags, type ViewMode,
 } from '../ui/actions';
 import { button, colorHex, el } from '../ui/dom';
+import { ClashBanner } from '../ui/ClashBanner';
 import { EventFeed } from '../ui/EventFeed';
 import { LeagueScreen } from '../ui/LeagueScreen';
+import { RebirthCeremony } from '../ui/RebirthCeremony';
 import { LeftPanel } from '../ui/LeftPanel';
 import { ReplayBar } from '../ui/ReplayBar';
 import { RightPanel } from '../ui/RightPanel';
@@ -59,6 +61,10 @@ export class GameApp implements GameActions {
   private right!: RightPanel;
   private feed!: EventFeed;
   private leagueScreen!: LeagueScreen;
+  private ceremony!: RebirthCeremony;
+  private clash!: ClashBanner;
+  /** Pause state to restore when the auto-shown rebirth ceremony closes. */
+  private ceremonyPrevPaused = false;
   private statusEl!: HTMLElement;
   private seedInput!: HTMLInputElement;
 
@@ -217,6 +223,11 @@ export class GameApp implements GameActions {
           : '⚡ Cup draw rule: level ties send the underdog through.',
       );
     };
+    // Phase 32.5: evolution made visible — the season-end rebirth ceremony
+    // (auto-shown, reopenable from the Evolution tab) and the pre-match clash.
+    this.ceremony = new RebirthCeremony(stage, () => this.onCeremonyClosed());
+    this.leagueScreen.onShowCeremony = () => this.showCeremony();
+    this.clash = new ClashBanner(stage);
 
     // ---- League ----
     const loaded = hasSave() ? loadLeague() : null;
@@ -249,6 +260,8 @@ export class GameApp implements GameActions {
       simMode: () => this.lastSimMode,
       theater: () => (this.theater ? this.theater.info() : null),
       debugShootout: () => this.debugShootout(),
+      showCeremony: () => this.showCeremony(),
+      clashVisible: () => this.clash.isVisible,
     };
 
     // Default view is 3D (Phase 27.5, user request) — setViewMode falls back
@@ -296,6 +309,9 @@ export class GameApp implements GameActions {
     if (this.panelTimer > 0.12) {
       this.panelTimer = 0;
       if (this.match) this.right.updateDynamic(this.match, this.selectedGid);
+      // The pre-match clash is a broadcast graphic, not a modal: it clears
+      // itself once the match is properly under way.
+      if (this.clash.isVisible && this.match && this.match.simTime > 10) this.clash.hide();
       this.updateCineBug();
     }
   }
@@ -367,6 +383,11 @@ export class GameApp implements GameActions {
     this.left.updateHeader(this.match, this.league);
     this.selectedGid = null;
     this.acc = 0;
+    // The clash of identities this fixture is (32.5) — tap or kickoff clears it.
+    this.clash.show(
+      this.match,
+      this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
+    );
   }
 
   private onWatchedMatchFinished(): void {
@@ -517,6 +538,7 @@ export class GameApp implements GameActions {
     this.archiveReplay();
     // Cup storylines must be read before finishSeason resets the bracket.
     if (this.fixture?.cup) this.announceCupResult(this.fixture);
+    let seasonEnded = false;
     if (this.league.seasonDone) {
       const prevChampion = this.league.history[this.league.history.length - 1]?.championName;
       const rec = this.league.finishSeason();
@@ -524,9 +546,13 @@ export class GameApp implements GameActions {
       this.announceSeasonRecord(rec, prevChampion, false);
       saveLeague(this.league);
       this.leagueScreen.refreshIfVisible(this.league);
+      seasonEnded = true;
     }
     this.loadNextFixture();
     this.announceCupDraw();
+    // The moment of evolution becomes an EVENT (32.5). During bulk sims the
+    // loop stays headless — the ceremony shows once, at the end.
+    if (seasonEnded && !this.busy) this.showCeremony();
   }
 
   /**
@@ -564,6 +590,7 @@ export class GameApp implements GameActions {
     this.busy = true;
     this.left.setBusy(true);
     const t0 = performance.now();
+    const historyBefore = this.league.history.length;
     let count = 0;
     try {
       while (cont()) {
@@ -579,6 +606,7 @@ export class GameApp implements GameActions {
       this.left.setBusy(false);
       this.setStatus(`${label}: ${count} matches in ${((performance.now() - t0) / 1000).toFixed(1)}s`);
       this.leagueScreen.refreshIfVisible(this.league);
+      if (this.league.history.length > historyBefore) this.showCeremony();
     }
   }
 
@@ -725,6 +753,7 @@ export class GameApp implements GameActions {
       this.setStatus(`${label}: ${msg.matches} matches in ${((performance.now() - t0) / 1000).toFixed(1)}s (worker)`);
       this.leagueScreen.refreshIfVisible(this.league);
       this.loadNextFixture();
+      if (this.league.history.length > historyBefore) this.showCeremony();
     };
     w.postMessage({ league: this.league.toJSON(), req });
   }
@@ -739,6 +768,26 @@ export class GameApp implements GameActions {
 
   toggleLeagueScreen(): void {
     this.leagueScreen.toggle(this.league);
+  }
+
+  /* ---------------- rebirth ceremony (Phase 32.5) ---------------- */
+
+  /**
+   * Show the latest generation's rebirth ceremony. Auto-shown at season end
+   * (game pauses; the pre-ceremony pause state is restored on close) and
+   * reopenable from the league screen's Evolution tab.
+   */
+  private showCeremony(): void {
+    if (this.league.history.length === 0) return;
+    if (!this.ceremony.isVisible) this.ceremonyPrevPaused = this.paused;
+    this.paused = true;
+    this.left.setSpeedUI(true, this.speed);
+    this.ceremony.show(this.league);
+  }
+
+  private onCeremonyClosed(): void {
+    this.paused = this.ceremonyPrevPaused;
+    this.left.setSpeedUI(this.paused, this.speed);
   }
 
   setSound(v: boolean): void {
@@ -968,6 +1017,7 @@ export class GameApp implements GameActions {
       this.feed.pushSystem('🎬 After the shootout — ⏭ skips it.');
       return;
     }
+    this.clash.hide(); // the replay owns the stage
     if (this.viewMode !== '3d') this.setViewMode('3d');
     if (this.viewMode !== '3d' || !this.three) return; // 3D init failed
     const useLive = this.buffer.hasContent;

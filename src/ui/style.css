@@ -237,14 +237,60 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
   background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px;
   display: flex; flex-direction: column; gap: 6px;
 }
-.team-card .tags { display: flex; gap: 4px; flex-wrap: wrap; }
-.team-card .tag {
+.team-card .tags, .clash-card .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.team-card .tag, .clash-card .tag {
   font-size: 10px; padding: 1px 7px; border-radius: 9px;
   background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
 }
 .team-card .lineage { font-size: 11px; color: var(--muted); max-height: 72px; overflow-y: auto; }
 .history-entry { margin-bottom: 8px; font-size: 12px; color: var(--muted); }
 .history-entry b { color: var(--text); }
+
+/* ---------- rebirth ceremony & tactical DNA (Phase 32.5) ---------- */
+#rebirth-screen {
+  position: absolute; inset: 0; overflow-y: auto;
+  background: rgba(8, 12, 22, 0.97); padding: 18px 22px; z-index: 12;
+  animation: feed-in 0.2s ease-out;
+}
+#rebirth-screen.hidden { display: none; }
+#rebirth-screen h2 {
+  margin: 14px 0 10px; color: var(--accent); font-size: var(--fs-lg);
+  letter-spacing: 0.5px; border-bottom: 1px solid var(--border-soft); padding-bottom: 5px;
+}
+.ceremony-head { display: flex; align-items: baseline; gap: 10px; }
+.ceremony-head h2 { flex: 1; margin-top: 0; }
+.ceremony-line { font-size: 12px; color: var(--muted); margin: 5px 0; }
+.ceremony-continue {
+  display: block; margin: 14px auto 20px; padding: 9px 32px;
+  font-size: 14px; border-radius: 18px;
+}
+.rebirth-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rebirth-dead { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+.rebirth-arrow { color: var(--muted); }
+.rebirth-born { font-weight: 700; }
+.rebirth-parents { font-size: 12px; }
+.tag.mut { border-color: rgba(250, 204, 21, 0.6); color: #facc15; background: rgba(250, 204, 21, 0.08); }
+.gene-radar { max-width: 240px; margin: 0 auto; width: 100%; }
+.radar-cap { font-size: 10px; text-align: center; margin-top: -4px; }
+.family-tree { font-size: 11px; }
+
+#clash-banner {
+  position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+  display: flex; align-items: stretch; gap: 10px; z-index: 5;
+  background: rgba(8, 12, 22, 0.97); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 14px 18px; cursor: pointer;
+  animation: feed-in 0.25s ease-out; max-width: min(92%, 560px);
+}
+#clash-banner.hidden { display: none; }
+.clash-card { width: 200px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.clash-card .team-head { font-size: 12px; }
+.clash-mid { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.clash-vs { font-size: 18px; font-weight: 800; letter-spacing: 1px; color: var(--accent); }
+.clash-ctx { font-size: 10px; text-align: center; }
+.clash-hint {
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  text-align: center; font-size: 9px;
+}
 
 /* ---------- league screen tabs & report ---------- */
 .tab-nav {
@@ -400,12 +446,18 @@ body.cinematic .cinematic-exit { display: block; }
      screen was absolutely positioned inside #stage and came out ~260px
      tall — the whole league centre lived in a letterbox. Fix it to the
      viewport instead (below the topbar). */
-  #league-screen {
+  #league-screen,
+  #rebirth-screen {
     position: fixed;
     inset: 0;
     top: var(--topbar-h, 88px);
     padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
   }
+  /* Clash cards shrink to share a ≤390px stage; the radar stays legible. */
+  #clash-banner { gap: 6px; padding: 8px 8px 16px; top: 8px; }
+  .clash-card { width: min(150px, 41vw); }
+  .clash-card .team-head { font-size: 11px; }
+  .clash-vs { font-size: 14px; }
   /* Sticky offset must match THIS padding (desktop is -18px for 18px padding)
      — mismatched, content peeked through an 8px slit above the tabs. */
   .tab-nav { top: -10px; background: rgba(8, 12, 22, 1); }

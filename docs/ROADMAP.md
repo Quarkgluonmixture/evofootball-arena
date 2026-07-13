@@ -527,35 +527,43 @@ in play. Probed: feet receptions 3.2/match (ball-play genome) vs
 2.2 (hoofer); calibrate steady (goals ~2.5, t+i ~45). 241 tests
 (gkBuildup.test.ts +3); fingerprint `c37f5020…`.
 
-## Phase 32.5 — evolution made VISIBLE (NEXT — user-approved 2026-07-12)
+## ⭐ Phase 32.5 — evolution made VISIBLE — **SHIPPED**
 
 The user's design question: "Evo 究竟指的是什么,是什么在进化?这个根本
-不可视化". What evolves: the 16-gene tactical genome, the formation/
-scheme identity (31.4), and player generations — but it all happens in
-one invisible instant (`finishSeason`) and 16-dim gene drift is
-unreadable. Build the two approved pieces:
+不可视化". Both approved pieces built (UI-only, zero sim change):
 
-1. **The REBIRTH CEREMONY**: season end gets a proper screen/sequence —
-   which clubs died, who each new franchise inherited from (dominant
-   parent), a parent-vs-child gene RADAR with the mutated genes
-   highlighted, the inherited formation/scheme identity, and the lineage
-   note that already exists (`🔧 switched to low-32`). The moment of
-   evolution becomes an EVENT you watch instead of a ledger entry.
-   Everything needed is already recorded (evolve.ts lineage events,
-   parent gids, style inheritance) — this is presentation, sim untouched.
-2. **TACTICAL DNA CARDS**: every team gets a card — gene radar,
-   `describeIdentity` tags (incl. the new Ball-playing keeper), formation
-   pair + scheme, and its family tree (parent chain). Pre-match, show
-   BOTH cards side by side so every fixture reads as a clash of
-   identities ("Gegenpress vs Low block") before kickoff.
+1. **The REBIRTH CEREMONY** (`ui/RebirthCeremony.ts` + view-model
+   `ui/rebirth.ts`): auto-shows at season end (game pauses, pause state
+   restored on close; bulk sims show it ONCE at the end), reopenable from
+   the Evolution tab. Elites crowned, style switches listed, and one card
+   per death: 💀 old name → 🐣 successor, both parents with kit chips, a
+   parent-vs-child GENE RADAR (dashed parents, filled child) with novel
+   mutations highlighted (child genes outside BOTH parents' range —
+   crossover can only produce in-range values, so out-of-range = genuine
+   mutation, provably), and the inherited formation/scheme identity.
+   evolve.ts now SNAPSHOTS parent/child genomes + dead name + inherited
+   style into `EvolutionEntry` (records only — parents keep evolving, so
+   live lookup would lie a season later; old saves fall back to live
+   state).
+2. **TACTICAL DNA CARDS + PRE-MATCH CLASH**: team cards swap the
+   14-bar wall for a gene radar vs the dashed league mean (per-gene
+   values in axis tooltips) + a 🌳 family-tree line (born-names
+   reconstructed from the next rebirth's "was X" note). Every freshly
+   loaded fixture opens with `ui/ClashBanner.ts`: both teams' radar +
+   formation pair + scheme + identity tags side by side — a broadcast
+   tale-of-the-tape, tap to dismiss, auto-clears once sim time passes 10s
+   (never blocks play).
 
-Implementation notes for the next session: UI-only (renderers/LeagueScreen
-/i18n — zh default, phone ≤390-640px FIRST); radar = small canvas or SVG,
-reuse chart conventions in `src/ui/charts.ts`; the rebirth data flows from
-`League.finishSeason`'s records; check `feedback-dashboard-style` does NOT
-apply (that's for leader reports, not the game UI — the game keeps its
-dark theme). Gate: typecheck + vitest + BOTH Playwright suites + phone
-widths; no sim changes → no fingerprint move expected.
+`geneRadar` joined `ui/charts.ts` (same dataviz rules; SVG overflow
+visible so east/west axis labels don't clip). Gate: 249 vitest
+(rebirth.test.ts +8), 2D suite 66 (+15: ceremony/clash/DNA + a 390px
+phone section), 3D suite 36 (+2), phone overflow 0px. ⚠ Fingerprint
+moved `c37f5020…` → `40f72c64…` — SCHEMA growth only: the fingerprint
+hashes the save JSON, and the new snapshot fields live in
+`history[].evolution.entries`. Proven sim-identical by stripping the
+five new fields from the save and re-hashing → exactly `c37f5020…`
+(technique worth remembering: record-only fields move the fingerprint
+without moving the sim).
 
 ## Phase 33 — the watching experience
 

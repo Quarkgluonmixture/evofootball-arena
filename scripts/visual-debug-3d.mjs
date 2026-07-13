@@ -43,6 +43,14 @@ check('3D canvas renders non-blank', shot3d.length > 10000, `${shot3d.length} by
 check('broadcast score bug shows', info?.scoreBugVisible === true);
 check('FX quality defaults to medium', info?.fxQuality === 'medium', `q=${info?.fxQuality}`);
 
+// Pre-match clash (32.5): the app boots paused on a fresh fixture, so the
+// tale-of-the-tape is up. Verify, then dismiss so it never blocks a click.
+check('pre-match clash shows at boot (32.5)', await page.evaluate(() => window.__evo.clashVisible()), '');
+await page.screenshot({ path: `${OUT}/0-clash-3d.png` });
+await page.click('#clash-banner');
+await page.waitForTimeout(200);
+check('clash dismisses on tap', !(await page.evaluate(() => window.__evo.clashVisible())), '');
+
 // FX quality buttons drive the renderer for real.
 await page.click('button:has-text("High")');
 await page.waitForTimeout(200);
@@ -121,6 +129,12 @@ check('cinematic state exposed to tooling', (await page.evaluate(() => window.__
 // ---- select a player in 3D ----
 await page.click('button:has-text("⏸")');
 await page.waitForTimeout(300);
+// A new fixture may have loaded behind the watch loop — clear its clash
+// banner so the raw canvas clicks below can't be intercepted.
+if (await page.evaluate(() => window.__evo.clashVisible())) {
+  await page.click('#clash-banner');
+  await page.waitForTimeout(200);
+}
 const box = await page.locator('#three-host canvas').boundingBox();
 const size = await page.evaluate(() => window.__evo.canvasSize);
 const targets = await page.evaluate(() => window.__evo.threePlayerPositions());
