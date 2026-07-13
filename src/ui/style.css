@@ -295,7 +295,14 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
   display: flex; align-items: stretch; gap: 10px; z-index: 5;
   background: rgba(8, 12, 22, 0.97); border: 1px solid var(--border);
   border-radius: 10px; padding: 10px 14px 18px; cursor: pointer;
-  animation: feed-in 0.25s ease-out; max-width: min(92%, 560px);
+  /* Own keyframes, like goal-pop: generic feed-in ends at `transform: none`,
+     which KILLS the translateX(-50%) centering for the animation's duration
+     — the banner popped at the side, then snapped to center (user report). */
+  animation: clash-in 0.25s ease-out; max-width: min(92%, 560px);
+}
+@keyframes clash-in {
+  from { opacity: 0; transform: translate(-50%, -6px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
 #clash-banner.hidden { display: none; }
 .clash-card { width: 200px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
