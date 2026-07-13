@@ -1,15 +1,21 @@
-# Roadmap — shipped through phase-34.3; NEXT = the realism gap plan (Phase 35+)
+# Roadmap — shipped through phase-35; autonomous run continues to Phase 40
 
 **Audience: the next coding agent (and the user).** Everything through
-**phase-34.3** is SHIPPED and live. ⭐ **RESUME HERE: the next work is the
-REALISM GAP plan (user-approved ranking, 2026-07-13) — Phase 35 below.**
-Phase specs are directions, not commitments: re-scope each against the
-user's play reports before starting. When play-feel and the calibrate
-table disagree, **the user's play report wins**. Awaiting play reports
-on: 34 套路包 (one-twos/third-man/overlap visibility + the stats rows),
-34.2/34.3 (set keeper, 脱压带球, turn tax/hold-up feel), 32 danger-band
-whistle veto, formation-ecology monoculture watch (34's sharper
-selection), box duels still ~7:1 defender-won (dials listed at 31.9).
+**phase-35** is SHIPPED and live. ⭐ **RESUME HERE: the user's standing
+instruction (2026-07-13) is to run the queue AUTONOMOUSLY through Phase
+40 — next up is Phase 36 (visible touches), then 37 → 38 → 39 → 40, each
+closed with probe evidence.** Phase specs are directions, not
+commitments: re-scope each against the user's play reports before
+starting. When play-feel and the calibrate table disagree, **the user's
+play report wins**. Awaiting play reports on: 35 game-state tactics
+(late-chase feel, 门将上前, bus/clock-milking, the live gene bars
+breathing), 34 套路包 (one-twos/third-man/overlap visibility + the stats
+rows), 34.2/34.3 (set keeper, 脱压带球, turn tax/hold-up feel),
+formation-ecology monoculture watch (34's sharper selection), box duels
+still ~7:1 defender-won (dials listed at 31.9). The 32 danger-band
+whistle report is PARTLY addressed by 35 (set pieces + balls in flight
+are never whistled away now — open-play buildup at patience-over still
+gets cut, by design).
 
 Standing rules (full detail in [`ARCHITECTURE.md`](ARCHITECTURE.md) §10–13):
 **every phase ends with PROBE evidence** (user rule 2026-07-13, invariant
@@ -726,33 +732,61 @@ become-PEOPLE — "people" first, then rotating them. Home crowd/audio,
 text commentary with narrative memory, body-size-from-attributes,
 injuries: parking lot below.)
 
-## Phase 35 — game-state tactics (比赛状态战术) — NEXT
+## ⭐ Phase 35 — game-state tactics (比赛状态战术) — **SHIPPED**
 
-**Goal:** teams that KNOW the score and the clock — football's best
-theater is the chase and the shut-down. Today 0:1 at 85' plays exactly
-like 0:0 at 5'.
+**Outcome:** teams KNOW the score and the clock. `src/ai/mentality.ts`
+is a pure function of (score diff, display minute, raw genes) served
+through the `Team.genome` getter — every in-match gene read sees the
+mentality-modified view (`effGenome`), the raw identity stays at
+`info.genome` (style/evolution/UI untouched), and a LEVEL game returns
+the raw object itself (bit-identity, pinned by test). Trailing from 68'
+→ risk/tempo/press/depth float up **plus shootBias +0.25·u and width
++0.15·u**; leading from 72' → tempo −0.16·h, thin depth pull, corner
+carry. Gene-modulated: the chaos side 梭哈 harder, the possession side
+raises its passing tempo, a press identity keeps hunting even ahead.
+The ramps start LATE on purpose — the first cut (60'/65') covered so
+much of every decided match that league goals sank ~0.30 paired; at
+68'/72' the paired 6-seed delta is −0.11±0.09 (noise-compatible) and
+the drama concentrates in the true endgame.
 
-- **Build:** a mentality modifier layer over the genome read (NOT gene
-  mutation — a pure function of score diff + clock + genes): TRAILING
-  late → riskTolerance/pressIntensity/formationDepth float up, keeper
-  joins attacking corners in stoppage time (the 90' 门将上前 moment),
-  more bodies forward (runner count +1); LEADING late → tempo down,
-  corner-flag ball-holding (escape carry toward the corner, not the
-  wing), deeper block, keeper slows distributions. Modulate by genes so
-  identities CHASE DIFFERENTLY (a chaos side goes 梭哈, a possession
-  side passes the opponent to death) — the mentality curve itself can
-  become 1–2 new genes later (evolution synergy). Feed lines for the
-  visible switches (`⚡ throwing everyone forward`), sparingly (fm 7).
-- **Probes (invariant 11):** trailing-side shot share in the last
-  quarter vs baseline A/B; leading-side possession/tempo in the last
-  quarter; comeback rate (points recovered from losing positions at
-  75') — expect a real but BOUNDED lift; keeper-up corner count.
-- **Tests:** mentality modifier pure-function determinism + directional
-  (trailing high-risk genome ≠ trailing low-risk genome); late-game
-  stats split by state.
-- **Risk:** rubber-banding — the chase must COST (more risk = more
-  counters conceded, measure GD both ways); don't let comebacks become
-  free (fitness/evolution would exploit it).
+- **The probe drove the shape** (mentality-ab.ts, n=600 pooled, two
+  seed blocks vs phase-34.3 worktree — single blocks LIED, baseline
+  comeback rate swung 10.6→5.3% between blocks): risk/press/depth alone
+  sent trailing shot share DOWN (46.4→43.1%) — possession up, shots
+  down, counters bled: through balls into a parked bus never work.
+  shootBias/width fixed the direction; then the LEADER's bus at
+  h·0.22 depth smothered comebacks below baseline, so the bus is THIN
+  (h·0.12) and the shut-down is mostly CLOCK (tempo, keeper hold
+  ×1.5, corner carry). Final pooled: trailing late shot share 44.6 →
+  **47.7%** (+3.1pp), comeback rate 7.9 → **8.3%** (the spec's bounded
+  lift), chase-conceded 0.208 → **0.237/game** (the chase COSTS),
+  match goals flat (1.79 vs 1.77).
+- **门将上前**: from 89' a trailing keeper supports sustained attacks
+  from HALFWAY (chase positioning, executor), and an attacking corner
+  licenses him into the box — the taker WAITS for the sprint (corner
+  window extended to 8.5s, setpieces invariant updated), the license
+  survives the hand-off + flight via `cornerCrash` (the 31.9 lesson),
+  and dies within one brain tick after. 3/600 probe matches saw it;
+  the debug seed produced a 90' keeper-up-corner equalizer. Feed lines
+  (once each): `🧤 UP for the corner`, `⚡ throw everyone forward`,
+  `🧊 shut up shop`.
+- **The whistle never blows a set piece away** (refBlowsNow): awarded
+  penalties/corners/walled FKs are PLAYED, and at patience-over a ball
+  in flight still lands (the keeper-up corner was being cut at its
+  climax — the exact class of the user's danger-band report). No
+  keep-ball exploit: pendingPass clears on every reception and the
+  whistle takes the gap.
+- **打卡油角**: escapeCarry gained a `holdCorner` mode (leading late →
+  the final-third gate opens, the carry blends toward the attacking
+  corner, guarded off the lines) and HoldUp widens to ANY carrier at
+  the flag; both scorer and executor read the same flag.
+- **Free UI win:** the RightPanel gene bars read the live view — you
+  can watch a trailing side's risk bar climb at 85'.
+- Calibrate: main seed 2.47, cross-seed 2.40 (both in band); the REAL
+  discovery is fm 18(b)'s new corollary — phase-34.3 ITSELF spans
+  1.83–2.62 across 6 league seeds (mean 2.34), so behavioral levers are
+  judged on PAIRED-seed means now, never one seed's band position.
+  Fingerprint re-baselined (behavioral): `e2e64942…` → `3a5f659d…`.
 
 ## Phase 36 — visible touches (可见的触球)
 

@@ -132,6 +132,7 @@ describe('set pieces — full-match invariants', () => {
       const m = new Match({ seed, teamA: team('Alpha'), teamB: team('Beta'), duration: 240 });
       let prev = false;
       let started = 0;
+      let keeperUpCorner = false;
       while (!m.finished) {
         m.step(DT);
         // Free balls never rest out of bounds (a crossing becomes a restart in
@@ -147,7 +148,15 @@ describe('set pieces — full-match invariants', () => {
           kinds[m.restart!.kind]++;
           started = m.simTime;
         }
-        if (!active && prev) expect(m.simTime - started).toBeLessThanOrEqual(RESTART_TIMEOUT + 0.1);
+        // 门将上前 (Phase 35): a stoppage-time corner whose taker waits for
+        // the sprinting keeper runs on a licensed longer clock (8.5s cap).
+        if (active && m.restart!.kind === 'corner' && m.teams[m.restart!.side].keeperUp) {
+          keeperUpCorner = true;
+        }
+        if (!active && prev) {
+          expect(m.simTime - started).toBeLessThanOrEqual(keeperUpCorner ? 8.6 : RESTART_TIMEOUT + 0.1);
+          keeperUpCorner = false;
+        }
         prev = active;
       }
     }

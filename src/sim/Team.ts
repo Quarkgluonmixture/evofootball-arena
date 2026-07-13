@@ -1,5 +1,6 @@
 import { v2, type V2 } from '../utils/vec';
 import type { TacticalGenome } from '../evolution/genome';
+import { NEUTRAL_MENTALITY, type Mentality } from '../ai/mentality';
 import { HALF_L } from './constants';
 import { Player } from './Player';
 import {
@@ -62,6 +63,26 @@ export class Team {
     arriver: number | null;
   } | null = null;
 
+  /**
+   * Game-state mentality (Phase 35): recomputed each brain tick from
+   * (score diff, minute, raw genes). `effGenome` is what the `genome`
+   * getter serves — every in-match gene read sees the mentality-modified
+   * view; the raw identity stays at `info.genome` (style derivation,
+   * evolution, UI). Identity object when neutral (bit discipline).
+   */
+  mentality: Mentality = NEUTRAL_MENTALITY;
+  effGenome: TacticalGenome;
+  /**
+   * 门将上前 (Phase 35): the keeper is licensed to crash the opponent box
+   * for a stoppage-time attacking corner while trailing. Set by TeamBrain,
+   * survives the hand-off + flight like the corner crash does (31.9).
+   */
+  keeperUp = false;
+  /** One feed line each per match — the surge, the shut-down, the keeper. */
+  surgeAnnounced = false;
+  shutdownAnnounced = false;
+  keeperUpAnnounced = false;
+
   /** Sim time when we last gained possession (for counter-attack windows). */
   possessionGainedAt = -999;
 
@@ -105,12 +126,14 @@ export class Team {
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );
     if (info.ages) this.players.forEach((p, i) => (p.age = info.ages![i]));
+    this.effGenome = info.genome;
     this.ownGoalPos = v2(-this.attackDir * HALF_L, 0);
     this.oppGoalPos = v2(this.attackDir * HALF_L, 0);
   }
 
+  /** The mentality-modified gene view (Phase 35). Raw = `info.genome`. */
   get genome(): TacticalGenome {
-    return this.info.genome;
+    return this.effGenome;
   }
 
   get goalkeeper(): Player {

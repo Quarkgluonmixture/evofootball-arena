@@ -151,6 +151,13 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // license (team.arriver) goes to the routine's key zone. In open
       // play the arriver attacks the edge-of-box arc — the late body a
       // byline cutback finds.
+      // 门将上前 (Phase 35): the licensed keeper attacks the penalty-spot
+      // area — an extra unmarked body the defense never accounted for.
+      if (p.role === 'GK' && team.keeperUp) {
+        target = v2(team.attackDir * (HALF_L - 9), clamp(p.pos.y * 0.2, -4, 4));
+        speedF = sprint;
+        break;
+      }
       const r = match.restart;
       const cc = team.cornerCrash;
       const liveCorner = r?.kind === 'corner' && r.side === p.side;
@@ -288,6 +295,21 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
     case 'GoalkeeperPosition': {
       p.faceTarget = ball.pos; // backpedal facing the play (27.5)
+      // 追分清道夫 (Phase 35): from the 89th minute a trailing keeper
+      // supports a sustained attack from around HALFWAY — his goal stands
+      // empty (the chase's price), and the corner license (keeperUp) only
+      // has to carry him the last 45m instead of the full pitch.
+      if (
+        team.mentality.urgency > 0.5 &&
+        match.half === 2 &&
+        match.minute() >= 89 &&
+        match.possessionSide === p.side &&
+        team.localX(ball.pos.x) > 10
+      ) {
+        target = v2(-team.attackDir * 2, clamp(ball.pos.y * 0.3, -10, 10));
+        speedF = 1;
+        break;
+      }
       // Flat form of add(goal, scale(sub(ball.pos, goal), k)) — every frame for keepers.
       const goal = team.ownGoal();
       const out = 2.5 + g.keeperAggression * 7;
@@ -407,8 +429,9 @@ function dribbleTarget(p: Player, match: Match): V2 {
   const localX = team.localX(p.pos.x);
   // 脱压带球 (34.2): same predicate the scorer used — pressured, front door
   // closed, outside the final third ⇒ carry it AWAY from the press. Never
-  // into the own box (the calm-reset family lives there).
-  const esc = escapeCarry(p, team.attackDir, localX, opp.players);
+  // into the own box (the calm-reset family lives there). Same holding
+  // flag as the scorer (Phase 35) so the utility and the legs agree.
+  const esc = escapeCarry(p, team.attackDir, localX, opp.players, team.mentality.holding > 0.5);
   if (esc) {
     const t = add(p.pos, scale(esc.dir, 5));
     const minLocal = -(HALF_L - BOX_DEPTH) + 1;

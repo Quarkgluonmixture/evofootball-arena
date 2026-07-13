@@ -1,6 +1,7 @@
 import { Rng } from '../utils/rng';
 import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
+import { applyMentality, mentalityOf } from '../ai/mentality';
 import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, shapeReady } from '../ai/formations';
@@ -256,6 +257,20 @@ export class Match {
       team.brainTimer -= dt;
       team.modeTime += dt;
       if (team.brainTimer <= 0) {
+        // Game-state mentality (Phase 35): the gene view every brain and
+        // mechanic reads is recomputed here — pure fn of score + clock.
+        const diff = this.score[team.side] - this.score[1 - team.side];
+        team.mentality = mentalityOf(diff, this.minute());
+        team.effGenome = applyMentality(team.info.genome, team.mentality);
+        // The visible switches earn ONE feed line each (failure mode 7).
+        if (team.mentality.urgency > 0.8 && !team.surgeAnnounced) {
+          team.surgeAnnounced = true;
+          this.pushEvent('info', team.side, `⚡ ${team.info.name} throw everyone forward!`);
+        }
+        if (team.mentality.holding > 0.8 && !team.shutdownAnnounced) {
+          team.shutdownAnnounced = true;
+          this.pushEvent('info', team.side, `🧊 ${team.info.name} shut up shop`);
+        }
         updateTeamBrain(team, this);
         team.brainTimer = TEAM_AI_INTERVAL;
       }
@@ -360,10 +375,26 @@ export class Match {
    * STOPPAGE_MAX seconds past the nominal end.
    */
   private refBlowsNow(nominal: number): boolean {
-    if (this.simTime >= nominal + STOPPAGE_MAX) return true; // patience over
+    // The whistle never blows a set piece AWAY (Phase 35 + the reported
+    // danger-band cuts): an awarded penalty, corner, or walled free kick is
+    // PLAYED — this is what makes the 90'+ keeper-up corner possible at
+    // all. Bounded: restarts timeout, shots resolve in ~2s, and the
+    // duration×4 safety net in step() is absolute.
+    const setPiece =
+      this.phase === 'restart' &&
+      (this.restart!.kind === 'penalty' ||
+        this.restart!.kind === 'corner' ||
+        (this.restart!.kind === 'freeKick' && this.fkWall !== null));
+    if (this.simTime >= nominal + STOPPAGE_MAX) {
+      // Patience over: a ball IN FLIGHT or a live set piece still holds it
+      // (the corner that waited for the keeper must land, or the theater
+      // is cut at its climax). No keep-ball exploit: pendingPass clears on
+      // every reception, and the whistle takes the gap between passes.
+      return !(this.pendingShot !== null || this.pendingPass !== null || setPiece);
+    }
     let holdOn = false;
     if (this.pendingShot || this.pendingPass) holdOn = true;
-    else if (this.phase === 'restart') holdOn = this.restart!.kind === 'penalty';
+    else if (this.phase === 'restart') holdOn = setPiece;
     else if (this.possessionSide !== -1) {
       const t = this.teams[this.possessionSide];
       holdOn = t.localX(this.ball.pos.x) > 12; // live attack plays out
@@ -492,7 +523,9 @@ export class Match {
     } else if (this.restartKickGid !== p.gid) {
       // Keeper hold (Phase 27.2): scoop it up and hold before distributing —
       // hands, not feet. Restart first touches (goal kicks) stay quick.
-      p.gkHoldTimer = 1.1;
+      // Game state prices the hold (Phase 35): a keeper protecting a lead
+      // milks the clock; a keeper whose side is chasing gets it moving.
+      p.gkHoldTimer = 1.1 * (1 + team.mentality.holding * 0.5 - team.mentality.urgency * 0.3);
       p.gkDistributing = true; // the release is deliberate (28.3)
       p.gkShapeWait = 0; // a fresh hold gets a fresh shape-wait budget (30.3)
     }
@@ -1164,7 +1197,15 @@ export class Match {
       }
       if (set < Math.min(2, ranked.length)) ready = false;
     }
-    if (ready || r.timer >= RESTART_TIMEOUT) {
+    // 门将上前 (Phase 35): the taker WAITS for his sprinting keeper — the
+    // broadcast moment. The chase positioning already carried him to
+    // halfway, so the last ~45m fit inside the extended window.
+    const keeperUpWait = r.kind === 'corner' && this.teams[r.side].keeperUp;
+    if (keeperUpWait && r.timer < 8) {
+      const team = this.teams[r.side];
+      if (team.localX(team.goalkeeper.pos.x) < HALF_L - 24) ready = false;
+    }
+    if (ready || r.timer >= (keeperUpWait ? 8.5 : RESTART_TIMEOUT)) {
       this.restart = null;
       this.phase = 'playing';
       this.restartKickGid = taker.gid;

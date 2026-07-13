@@ -545,14 +545,19 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // is the payoff. Patience isn't free: stagnation drains it.
   // 34.3 (user report "中锋接球之后不转身"): the zone extends into the own
   // half — the target-man outlet shields wherever the long ball finds him.
-  if (!mustKick && p.role === 'ST' && localX > -12 && localX < 32) {
+  // 打卡油角 (Phase 35): killing the game at the corner flag, ANY carrier
+  // shields — the pivot's back-to-goal craft, borrowed for the clock.
+  const cornerHold =
+    team.mentality.holding > 0.5 && localX > HALF_L - 18 && Math.abs(p.pos.y) > 10;
+  if (!mustKick && ((p.role === 'ST' && localX > -12 && localX < 32) || cornerHold)) {
     const backToGoal = kickMisalignment(p, norm(sub(goal, p.pos))); // 1 = facing own goal
     if (backToGoal > 0.45 && pressure > 0.2) {
       const sH =
         (0.36 + pressure * 0.3) *
         (0.55 + p.attrs.technique * 0.7) *
         (0.5 + backToGoal * 0.5) *
-        (1 - stagnation * 0.5);
+        (1 - stagnation * 0.5) *
+        (cornerHold ? 1 + team.mentality.holding * 0.6 : 1);
       cands.push({
         action: 'HoldUp',
         score: sH,
@@ -606,16 +611,22 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // not to stop dead (the old forward-only dribble died to the pressure
     // penalty here and the carrier froze). Escaping pressure is the point,
     // so the penalty barely applies; basic craft, only half-gated by flair.
-    const esc = escapeCarry(p, team.attackDir, localX, opp.players);
+    const holdCorner = team.mentality.holding > 0.5;
+    const esc = escapeCarry(p, team.attackDir, localX, opp.players, holdCorner);
     if (esc && !openRun) {
       let sE =
         (W.dribbleBase + esc.space * W.dribbleSpaceW) *
         (W.dribbleGeneBase + g.dribbleBias * 0.5 * W.dribbleGeneW);
       sE *= 1 - pressure * 0.1;
+      // Killing the game (Phase 35): the carry to the corner outranks the
+      // risky ball — possession IS the shot now.
+      if (holdCorner && localX > 0) sE *= 1 + team.mentality.holding * 0.4;
       cands.push({
         action: 'Dribble',
         score: sE,
-        why: `carrying it OUT of the press · escape space ${esc.space.toFixed(2)}`,
+        why: holdCorner && localX > 0
+          ? `carrying it to the corner — killing the game · space ${esc.space.toFixed(2)}`
+          : `carrying it OUT of the press · escape space ${esc.space.toFixed(2)}`,
       });
     }
   }
@@ -763,6 +774,19 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
     dot(ball.vel, sub(ownGoal, ball.pos)) > 0
   ) {
     p.action = { type: 'GoalkeeperSave', scores: [{ action: 'GoalkeeperSave', score: 1, why: 'shot incoming' }] };
+    return;
+  }
+
+  // 门将上前 (Phase 35): licensed for a stoppage-time attacking corner —
+  // the goal stands EMPTY behind him; a cleared ball into the counter is
+  // the price of the theater. TeamBrain tears the license up within one
+  // brain tick of the moment dying and he falls through to positioning,
+  // which sprints him home.
+  if (team.keeperUp) {
+    p.action = {
+      type: 'MakeRun',
+      scores: [{ action: 'MakeRun', score: 1, why: 'keeper UP for the corner — nothing left to lose' }],
+    };
     return;
   }
 

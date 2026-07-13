@@ -30,7 +30,23 @@ export function updateTeamBrain(team: Team, match: Match): void {
     team.marks.clear();
     team.runners.clear();
     team.arriver = null;
+    team.keeperUp = false;
     return;
+  }
+
+  // 门将上前 (Phase 35): trailing in the dying minutes, our own attacking
+  // corner — the keeper abandons his goal for the box. The license lives
+  // exactly as long as the corner does (setup, hand-off, flight — the
+  // 31.9 lesson via team.cornerCrash); the moment it dies he sprints home.
+  team.keeperUp =
+    team.mentality.urgency > 0.5 &&
+    match.half === 2 &&
+    match.minute() >= 89 &&
+    ((match.phase === 'restart' && match.restart?.kind === 'corner' && match.restart.side === team.side) ||
+      (team.cornerCrash !== null && match.simTime < team.cornerCrash.until));
+  if (team.keeperUp && !team.keeperUpAnnounced) {
+    team.keeperUpAnnounced = true;
+    match.pushEvent('info', team.side, `🧤 ${team.goalkeeper.name} is UP for the corner!`);
   }
 
   const g = team.genome;
@@ -154,7 +170,12 @@ function assignRunners(team: Team, match: Match): void {
     return;
   }
   // A second runner for fast/direct sides: counters and high-tempo teams.
-  const count = team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1;
+  // The late chase (Phase 35) throws one MORE body forward — this is where
+  // "everyone forward" physically lives, and where the counters it
+  // concedes are born (the chase must cost).
+  const count =
+    (team.mode === 'CounterAttack' || team.genome.tempo > 0.65 ? 2 : 1) +
+    (team.mentality.urgency > 0.65 ? 1 : 0);
   const scored = team.players
     .filter((p) => p.role !== 'GK' && p !== carrier && !p.sentOff)
     .map((p) => ({ p, s: RUN_ROLE_W[p.role] + team.localX(p.pos.x) / 45 }))

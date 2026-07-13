@@ -2,7 +2,7 @@ import { clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, len, norm, scale, sub, type V2,
 } from '../utils/vec';
-import { BALL_FRICTION_K, GRAVITY, HALF_W } from '../sim/constants';
+import { BALL_FRICTION_K, GRAVITY, HALF_L, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 
@@ -37,8 +37,11 @@ export function escapeCarry(
   attackDir: number,
   localX: number,
   opponents: Player[],
+  holdCorner = false,
 ): { dir: V2; space: number } | null {
-  if (localX > 15) return null; // final third: go at them or release, never turn tail
+  // 打卡油角 (Phase 35): a side killing the game late carries INTO the
+  // attacking corner and shields — for it, the final-third gate opens.
+  if (localX > 15 && !holdCorner) return null; // final third: go at them or release, never turn tail
   const pressure = pressureAt(p.pos, opponents);
   if (pressure < 0.45) return null;
   let rx = 0;
@@ -53,17 +56,33 @@ export function escapeCarry(
     ry += dy / d2;
   }
   if (rx === 0 && ry === 0) return null;
-  // Tilt lateral: straight retreats toward the own goal are the last resort.
-  // 边锋 (34.3, user report): a WIDE carrier escapes to HIS touchline or
-  // backward — never on an inward arc across the press. Guarded near the
-  // line itself, where the outward pull would carry into touch.
-  const wide = Math.abs(p.pos.y) > 8 && Math.abs(p.pos.y) < HALF_W - 5;
-  const tiltSign = wide ? Math.sign(p.pos.y) : Math.sign(ry || p.pos.y || 1);
-  if (wide && Math.sign(ry) !== tiltSign) ry = Math.abs(ry) * tiltSign * 0.6;
-  ry += tiltSign * 0.35 * Math.hypot(rx, ry);
+  if (holdCorner && localX > 0) {
+    // Corner-flag holding (Phase 35): blend the repulsion with a pull
+    // toward the attacking corner, guarded off the lines themselves —
+    // on the touchline the pull runs ALONG it, at the byline it holds.
+    const rep = norm({ x: rx, y: ry });
+    const cx = localX > HALF_L - 8 ? 0 : attackDir;
+    const cy = Math.abs(p.pos.y) > HALF_W - 6 ? 0 : Math.sign(p.pos.y || 1);
+    if (cx !== 0 || cy !== 0) {
+      const corner = norm({ x: cx, y: cy });
+      rx = rep.x + corner.x * 1.2;
+      ry = rep.y + corner.y * 1.2;
+    }
+  } else {
+    // Tilt lateral: straight retreats toward the own goal are the last resort.
+    // 边锋 (34.3, user report): a WIDE carrier escapes to HIS touchline or
+    // backward — never on an inward arc across the press. Guarded near the
+    // line itself, where the outward pull would carry into touch.
+    const wide = Math.abs(p.pos.y) > 8 && Math.abs(p.pos.y) < HALF_W - 5;
+    const tiltSign = wide ? Math.sign(p.pos.y) : Math.sign(ry || p.pos.y || 1);
+    if (wide && Math.sign(ry) !== tiltSign) ry = Math.abs(ry) * tiltSign * 0.6;
+    ry += tiltSign * 0.35 * Math.hypot(rx, ry);
+  }
   let dir = norm({ x: rx, y: ry });
   const forward = spaceAhead(p, { x: attackDir, y: 0 }, opponents);
-  if (forward > 0.55) return null; // the front door is open — no need to turn
+  // Holding late in the attacking half, "the front door is open" is not a
+  // reason to charge at goal — the corner carry stands.
+  if (forward > 0.55 && !(holdCorner && localX > 0)) return null;
   const space = spaceAhead(p, dir, opponents);
   if (space < 0.25) return null; // boxed in on every side — not an escape
   return { dir, space };
