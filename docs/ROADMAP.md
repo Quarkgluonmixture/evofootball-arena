@@ -1,20 +1,31 @@
-# Roadmap — shipped through phase-40 + 36.1; play-report iteration is live
+# Roadmap — shipped through phase-40 (+36.1); play-report iteration is live
 
 **Audience: the next coding agent (and the user).** Everything through
 **phase-40** is SHIPPED and live — the 2026-07-13 autonomous run
 delivered the whole realism-gap plan (35 game-state tactics, 36 visible
 touches, 37 Magnus, 38 body contact) plus 39 traits and 40 ecology, each
-with probe evidence, and a bit-identical structure pass. ⭐ **RESUME
-HERE: there is NO queued build work — the next phase comes from the
-user's PLAY REPORTS (the awaiting list below) or a new user pick from
-the parking lot.** Phase specs are directions, not
+with probe evidence, and a bit-identical structure pass. **phase-36.1**
+(carry regimes + the contested 50/50) shipped AFTER 40 from same-day
+play reports. ⭐ **RESUME HERE: there is NO queued build work — the next
+phase comes from the user's PLAY REPORTS (the awaiting list below) or a
+new user pick from the parking lot.** Phase specs are directions, not
 commitments: re-scope each against the user's play reports before
 starting. When play-feel and the calibrate table disagree, **the user's
-play report wins**. Awaiting play reports on: 40 ecology (does 🔥
-Derby! land; rivalry list + ★ prestige on cards), 39 traits (do the
-emoji chips + captain read; do 🦊 post-channel runs show), 38 body
-contact (shield / shoulder ride / corner grapple — do the poses READ
-on the phone), 37
+play report wins**.
+
+**Tag convention (user-ratified 2026-07-13):** point tags attach to the
+MECHANIC FAMILY they iterate (36.1 = touches, like 34.2/34.3 before
+it), NOT to chronology — so the badge (latest tag on HEAD) can show a
+LOWER number than the newest chapter; phase-36.1 following phase-40 is
+correct, not a regression. Never force-retag pushed tags (worktree A/B
+baselines and CI history ride on them). HEAD fingerprint: `b8fa54ae…`.
+
+Awaiting play reports on: **36.1 carry regimes (爆趟/一步一带 read?)
++ the contested 50/50 (still anyone frozen off-ball?)**, 40 ecology
+(does 🔥 Derby! land; rivalry list + ★ prestige on cards), 39 traits
+(do the emoji chips + captain read; do 🦊 post-channel runs show), 38
+body contact (shield / shoulder ride / corner grapple — do the poses
+READ on the phone), 37
 Magnus (the corner whip, the FK banana, curled finishes), 36 visible
 touches (does
 the carry finally read as FEET, poke steals, heavy-touch feel), 35
