@@ -1,11 +1,15 @@
-# Roadmap — Phase 31 handover plan, Phases 32–35 specs, brainstorm parking lot
+# Roadmap — shipped through phase-34.3; NEXT = the realism gap plan (Phase 35+)
 
-**Audience: the next coding agent (and the user).** Phase 30 SHIPPED
-(tag `phase-30`, deployed); Phase 31 is the next build and is specified
-below as a step-by-step handover — follow the steps in order, they encode
-the gotchas. Phases 32–35 are directions, not commitments: re-scope each
-against the user's play reports before starting. When play-feel and the
-calibrate table disagree, **the user's play report wins**.
+**Audience: the next coding agent (and the user).** Everything through
+**phase-34.3** is SHIPPED and live. ⭐ **RESUME HERE: the next work is the
+REALISM GAP plan (user-approved ranking, 2026-07-13) — Phase 35 below.**
+Phase specs are directions, not commitments: re-scope each against the
+user's play reports before starting. When play-feel and the calibrate
+table disagree, **the user's play report wins**. Awaiting play reports
+on: 34 套路包 (one-twos/third-man/overlap visibility + the stats rows),
+34.2/34.3 (set keeper, 脱压带球, turn tax/hold-up feel), 32 danger-band
+whistle veto, formation-ecology monoculture watch (34's sharper
+selection), box duels still ~7:1 defender-won (dials listed at 31.9).
 
 Standing rules (full detail in [`ARCHITECTURE.md`](ARCHITECTURE.md) §10–13):
 **every phase ends with PROBE evidence** (user rule 2026-07-13, invariant
@@ -710,7 +714,101 @@ keeper-reception counts and one n=40 sample landed 1.18× (bar 1.25×);
 probed at n=80 the true ratio is 1.38× — scaled the test per §10.5, no
 lever or bar touched. Fingerprint `46c88002…` → `e2e64942…`.
 
-## Phase 35 — players become PEOPLE
+## The REALISM GAP plan (user-approved ranking 2026-07-13 — Phases 35–38)
+
+The framing question was "离真实足球/实况还差哪些真正影响体验的 gap".
+The coordinate: 实况's fidelity = thousands of mocap animations + control
+feel — we never chase that. Our comparative advantage is the EVOLUTION
+layer; gaps are ranked by watch-feel improvement per effort, not by
+sim-parity. Agreed order: game-state tactics → visible touches → Magnus
+curve → body contact. (Substitutions/bench: parked until after players-
+become-PEOPLE — "people" first, then rotating them. Home crowd/audio,
+text commentary with narrative memory, body-size-from-attributes,
+injuries: parking lot below.)
+
+## Phase 35 — game-state tactics (比赛状态战术) — NEXT
+
+**Goal:** teams that KNOW the score and the clock — football's best
+theater is the chase and the shut-down. Today 0:1 at 85' plays exactly
+like 0:0 at 5'.
+
+- **Build:** a mentality modifier layer over the genome read (NOT gene
+  mutation — a pure function of score diff + clock + genes): TRAILING
+  late → riskTolerance/pressIntensity/formationDepth float up, keeper
+  joins attacking corners in stoppage time (the 90' 门将上前 moment),
+  more bodies forward (runner count +1); LEADING late → tempo down,
+  corner-flag ball-holding (escape carry toward the corner, not the
+  wing), deeper block, keeper slows distributions. Modulate by genes so
+  identities CHASE DIFFERENTLY (a chaos side goes 梭哈, a possession
+  side passes the opponent to death) — the mentality curve itself can
+  become 1–2 new genes later (evolution synergy). Feed lines for the
+  visible switches (`⚡ throwing everyone forward`), sparingly (fm 7).
+- **Probes (invariant 11):** trailing-side shot share in the last
+  quarter vs baseline A/B; leading-side possession/tempo in the last
+  quarter; comeback rate (points recovered from losing positions at
+  75') — expect a real but BOUNDED lift; keeper-up corner count.
+- **Tests:** mentality modifier pure-function determinism + directional
+  (trailing high-risk genome ≠ trailing low-risk genome); late-game
+  stats split by state.
+- **Risk:** rubber-banding — the chase must COST (more risk = more
+  counters conceded, measure GD both ways); don't let comebacks become
+  free (fitness/evolution would exploit it).
+
+## Phase 36 — visible touches (可见的触球)
+
+**Goal:** kill the magnet-ball look — dribbling today glues the ball
+0.85m ahead of the carrier ("推着磁悬浮球滑冰").
+
+- **Build:** discrete dribble touches: the carrier PUSHES the ball
+  (every ~0.5–0.8s, technique prices push distance/accuracy and touch
+  cadence) and re-collects it; between touches the ball is a free body
+  (tacklers/interceptors play the BALL in that window — the poke-tackle
+  becomes real). The turn tax and escape carry get automatic visual
+  meaning (you SEE the heavy touch). Sprint-dribbling pushes further
+  (knock-and-run down the wing); close control = short touches.
+- **Probes:** touch cadence/distance distributions by technique; tackle
+  outcome shift (the free-ball window changes the duel economy —
+  re-tune tackle/deflection to hold t+i ~45 and completion 66-68%);
+  both calibrate seeds.
+- **Risk:** the whole on-ball economy re-tunes (kick protection,
+  capture radius, pressure) — this is a BIG lever; expect 2–3 calibrate
+  iterations and a fingerprint re-baseline. Do it as its own phase,
+  nothing else in the batch.
+
+## Phase 37 — the curved ball (Magnus)
+
+**Goal:** shots/crosses/FKs fly straight parabolas today; "bends the
+free kick" exists only as feed text. The banana ball is football's
+visual signature.
+
+- **Build:** sidespin component on the ball (set at kick time by kick
+  type + technique + aim context), Magnus lateral acceleration in
+  flight physics; curled placed shots (far-corner finishes curve away
+  from the keeper), inswinging/outswinging corners + crosses (routine
+  chooses), FK curl over/around the wall (solver already computes
+  clearance — add the bend). Keeper save geometry reads the CURVED
+  path (interceptBall/save reach must integrate the same physics or
+  keepers misjudge everything).
+- **Probes:** flight-path curvature distributions; save% / goals per
+  kick type before/after (expect FK conversion +, re-tune saveP);
+  corner delivery landing scatter (the 31.9 chain must not regress —
+  rerun its probes).
+- **Risk:** every aerial consumer (tryAerial, landing chasers, GK
+  claim) assumes straight flight projections — audit ALL parabola
+  extrapolations (grep tLand/landX patterns) or defenders will attack
+  phantom landing spots.
+
+## Phase 38 — body contact (身体对抗可视化)
+
+**Goal:** duels read as RNG flicker — two bodies near, a dice roll.
+Make the wrestle LEGIBLE: shielding stance (HoldUp gets a pose),
+shoulder-to-shoulder riding on parallel runs, box jostling before
+corners (pairs with the 31.9 crash/marker machinery), a shove-stumble
+when the duel dice already say "foul". Mostly RENDER + small sim nudges
+(separation forces during duels); depends on Phase 36's touch windows
+for the poke-tackle to look right — build after it.
+
+## Phase 39 — players become PEOPLE
 
 **Goal:** small, READABLE individuality on top of attributes.
 
@@ -728,7 +826,7 @@ lever or bar touched. Fingerprint `46c88002…` → `e2e64942…`.
 - **Risk:** trait soup — cap at 5-6 trait types total; every trait must be
   visible either in play or in stories, or it's cut.
 
-## Phase 36 — league ecology
+## Phase 40 — league ecology
 
 **Goal:** long-run narratives the hall of fame can't mine today.
 
@@ -750,9 +848,20 @@ lever or bar touched. Fingerprint `46c88002…` → `e2e64942…`.
 - **Weather / pitch conditions** per fixture (seeded): rain raises
   first-touch difficulty + ball friction, wind perturbs lofted flight —
   deterministic modifiers, visible in 3D (particles) + a fixture badge.
-- **Injuries + a bench** (pairs with Phase 34): knocks from hard tackles,
-  one sub per match; requires squad size 8 and breaks the "no bench"
-  premise — big, only if the user asks for squad depth.
+- **Substitutions + bench + injuries** (realism-gap tier 2, deliberately
+  parked until AFTER Phase 39 players-become-PEOPLE — "people" first,
+  then rotating them): knocks from hard tackles, one sub per match,
+  fresh-legs-at-70' drama; requires squad size 8 and is a data-model
+  surgery. Evolution upside: bench depth becomes an evolvable asset.
+- **Home crowd + reactive audio** (realism-gap tier 2): crowd noise
+  swelling with xG moments, small home advantage; the audio bed is what
+  the beeps can't fake.
+- **Text commentary with narrative memory** (realism-gap tier 3): the
+  feed upgraded to commentary lines that remember ("his third one-on-one
+  miss this season") — the honest middle ground; voice commentary is
+  实况's moat, never chase it.
+- **Body size from attributes** (pairs with Phase 39): height/build
+  mapped from attrs so the target man LOOKS like one.
 - **Named managers**: a coach persona per franchise carrying the tactical
   identity across rebirths (the genome gets a face); cheap narrative win.
 - **Season showpieces**: an All-Star match or Champion-vs-Cup-winner
@@ -770,7 +879,10 @@ lever or bar touched. Fingerprint `46c88002…` → `e2e64942…`.
   watched ≡ skipped when wiring).
 - **GLTF player models** with the procedural mesh as fallback.
 
-**Ordering rationale:** 31–32 deepen what 30 builds (tactics), 33 cashes
-it in visually, 34–35 only pay off once the football itself looks right.
-**If Phase 30 lands badly on play-feel, STOP and rebalance before any of
-these.**
+**Ordering rationale (2026-07-13, realism-gap ranking):** 35 game-state
+tactics is pure sim+genes with the highest drama-per-effort and the
+strongest evolution synergy; 36 visible touches and 37 Magnus are "the
+ball itself" — the visual foundation everything else reads against; 38
+body contact depends on 36's touch windows. 39 PEOPLE + 40 ecology
+follow (subs wait for PEOPLE). Each phase alone, probed (invariant 11),
+one lever at a time.
