@@ -7,7 +7,7 @@ import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
   BALL_FRICTION_K, BOX_DEPTH, CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
-  TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_COOLDOWN,
+  TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
 } from './constants';
 import type { Match } from './Match';
 import type { Player } from './Player';
@@ -885,7 +885,7 @@ export function performFreeKick(match: Match, taker: Player): void {
 /**
  * The dribble PUSH (Phase 36, 可见的触球): the carrier knocks the ball
  * ahead along his heading and chases it. The ball is a free body until he
- * re-collects (TOUCH_RECOLLECT_COOLDOWN — the poke window an opponent in
+ * re-collects (the push-scaled poke window an opponent in
  * the path plays the BALL in). Push length grows with open field ahead
  * (knock-and-run down the wing) and wobbles with poor technique; sprint
  * speed carries into the ball, so close control at walking pace stays
@@ -909,10 +909,22 @@ export function performDribbleTouch(match: Match, p: Player): void {
     if (perp > along * 0.7 + 1) continue; // outside the ~70° cone
     if (along < aheadD) aheadD = along;
   }
-  const push =
-    (TOUCH_PUSH_BASE + Math.min(aheadD - 2, 8) * TOUCH_PUSH_SPACE) *
-    (1.05 - p.attrs.technique * 0.15);
-  const speed = Math.hypot(p.vel.x, p.vel.y) + Math.max(push, 0.9);
+  // Carry regimes (36.1): the open cone ahead PRICES the touch — a
+  // stride-length nudge in traffic (一步一带), a real knock into open
+  // grass (爆趟). Technique shortens and steadies both.
+  const open = Math.min(Math.max(aheadD - 2, 0), 9);
+  let push = (TOUCH_PUSH_BASE + open * TOUCH_PUSH_SPACE) * (1.05 - p.attrs.technique * 0.15);
+  // The line guard (36.1): a knock that would roll into touch is halved —
+  // real wingers shorten the touch at the line (12.9% of pushes rolled
+  // dead/out at the first cut).
+  const rollEst = push; // rolled meters ≈ push m/s over ~1s of decay
+  if (
+    Math.abs(p.pos.y + hy * (rollEst + 2)) > HALF_W - 1 ||
+    Math.abs(p.pos.x + hx * (rollEst + 2)) > HALF_L - 1
+  ) {
+    push *= 0.5;
+  }
+  const speed = Math.hypot(p.vel.x, p.vel.y) + Math.max(push, 0.8);
   // A heavy first touch is a WOBBLY one: direction noise priced by technique.
   const noise = match.rng.gaussian() * 0.07 * (1.35 - p.attrs.technique * 0.7);
   const dir = rotate(v2(hx, hy), noise);
@@ -921,7 +933,9 @@ export function performDribbleTouch(match: Match, p: Player): void {
   ball.vel = scale(dir, speed);
   ball.z = 0;
   ball.vz = 0;
-  p.kickCooldown = TOUCH_RECOLLECT_COOLDOWN;
+  // The regather window follows the push: a knock is a chase, a dribble
+  // touch comes back underfoot within the stride.
+  p.kickCooldown = TOUCH_RECOLLECT_BASE + push * TOUCH_RECOLLECT_PER_PUSH;
   match.dribbleTouch = { gid: p.gid, until: match.simTime + 1.6 };
 }
 

@@ -291,7 +291,34 @@ function assignChasers(team: Team, match: Match): void {
   team.chasers.clear();
   const possession = match.possessionSide;
   const weOwn = possession === team.side;
-  if (weOwn) return; // no chasing our own carrier
+  if (weOwn) {
+    // No chasing our own CARRIER — but a LOOSE ball is ours to contest
+    // too (36.2, user report "有人去抢球,其他人呆住了"): possession is
+    // sticky, so after a squirt/miscontrol/knockdown the nominal owners
+    // never sent a body and the 50/50 was a one-team race. One nearest
+    // man goes; designed balls stay untouched (the dribble toucher
+    // already chases his own push, a pass in flight belongs to its
+    // receiver, restarts have a taker).
+    if (
+      match.ball.owner === null &&
+      match.dribbleTouch === null &&
+      !(match.pendingPass !== null && match.pendingPass.side === team.side) &&
+      match.phase === 'playing'
+    ) {
+      let best: Player | null = null;
+      let bd = Infinity;
+      for (const p of team.players) {
+        if (p.role === 'GK' || p.sentOff) continue;
+        const d = dist(p.pos, match.ball.pos);
+        if (d < bd) {
+          bd = d;
+          best = p;
+        }
+      }
+      if (best) team.chasers.add(best.index);
+    }
+    return;
+  }
   // The opposing keeper has it in their HANDS (Phase 28.1 → 29.1): they are
   // unchallengeable, so pressing is wasted legs. 28.1 kept ONE shadow at the
   // bubble's edge to cut the short outlet — live play read it as a man

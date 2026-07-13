@@ -101,12 +101,23 @@ export const KICK_COOLDOWN = 0.45;
  * First cut 3.5/1.7/0.38 rolled the ball 1.1s ahead and 39% of pushes were
  * poked away — a coin flip per carry. */
 export const TOUCH_CONTROL_DIST = 4.2;
+/**
+ * Carry REGIMES (36.1, user report "跑动应该有不同的触球频率"): the push
+ * range is wide on purpose — in traffic it's a stride-length nudge
+ * (一步一带, ~0.9 m/s over the run), into 10m of open grass it's a real
+ * knock (爆趟, up to ~4.7); walking pace keeps the glue (慢带). Cadence
+ * follows: the poke window scales with the push, so a long knock is a
+ * long chase and a dribble regathers in a step.
+ */
 /** Base speed added to the carrier's own on the push. */
-export const TOUCH_PUSH_BASE = 1.2;
-/** Extra push per meter of open field ahead (capped in mechanics). */
-export const TOUCH_PUSH_SPACE = 0.3;
-/** The toucher may not re-collect for this long — the poke window. */
-export const TOUCH_RECOLLECT_COOLDOWN = 0.34;
+export const TOUCH_PUSH_BASE = 0.9;
+/** Extra push per meter of open cone ahead (capped at 9m in mechanics).
+ * 0.38 + cooldown slope 0.06 overshot: pokes 26%, 13% rolled dead, goals
+ * −0.27 (probed) — the mid-range carry bled possession. */
+export const TOUCH_PUSH_SPACE = 0.32;
+/** The no-recollect window: base + slope·push — the poke window. */
+export const TOUCH_RECOLLECT_BASE = 0.26;
+export const TOUCH_RECOLLECT_PER_PUSH = 0.04;
 
 /** How often each player re-evaluates its utility scores (staggered). */
 export const AI_INTERVAL = 0.15;

@@ -33,6 +33,18 @@ let ranOut = 0; // touch rolled dead / out of play / expired
 let gapSum = 0;
 let gapMax = 0;
 let flightSum = 0;
+// Carry regimes (36.1): bucket resolved flights by roll length — the
+// stride dribble (一步一带), the mid carry, the knock into space (爆趟).
+const regime = {
+  stride: { n: 0, gap: 0, t: 0 }, // maxGap < 1.4m
+  mid: { n: 0, gap: 0, t: 0 },
+  knock: { n: 0, gap: 0, t: 0 }, // maxGap ≥ 2.4m
+};
+// 50/50 contests (36.2, user report "其他人呆住了"): during a TRUE loose
+// ball (no owner, no designed reception, no touch in flight), does the
+// nominal-possession side send a body too?
+let looseWindows = 0;
+let looseContested = 0;
 let goals = 0;
 let tackles = 0;
 let interceptions = 0;
@@ -44,8 +56,22 @@ let fouls = 0;
 for (let seed = OFF; seed < OFF + N; seed++) {
   const m = new Match({ seed, teamA: team('A', seed * 2 + 1), teamB: team('B', seed * 2 + 2), duration: 240 });
   let live: { gid: number; start: number; maxGap: number } | null = null;
+  let looseFor = 0;
   while (!m.finished) {
     m.step(DT);
+    const ps = m.possessionSide;
+    if (
+      m.phase === 'playing' && m.ball.owner === null && m.dribbleTouch === null &&
+      m.pendingPass === null && ps !== -1
+    ) {
+      looseFor += DT;
+      if (looseFor >= 0.5 && looseFor < 0.5 + DT) {
+        looseWindows++;
+        if (m.teams[ps].chasers.size > 0) looseContested++;
+      }
+    } else {
+      looseFor = 0;
+    }
     const dt = m.dribbleTouch;
     if (dt && m.ball.owner === null) {
       if (!live || live.gid !== dt.gid || live.start > m.simTime) {
@@ -62,9 +88,14 @@ for (let seed = OFF; seed < OFF + N; seed++) {
         if (owner.gid === live.gid) recollects++;
         else if (owner.side === m.allPlayers[live.gid].side) teammatePickups++;
         else pokes++;
-        flightSum += m.simTime - live.start;
+        const t = m.simTime - live.start;
+        flightSum += t;
         gapSum += live.maxGap;
         if (live.maxGap > gapMax) gapMax = live.maxGap;
+        const b = live.maxGap < 1.4 ? regime.stride : live.maxGap < 2.4 ? regime.mid : regime.knock;
+        b.n++;
+        b.gap += live.maxGap;
+        b.t += t;
       } else {
         ranOut++; // dead ball / expiry without a capture
       }
@@ -90,3 +121,11 @@ console.log(`goals/match: ${per(goals)}`);
 console.log(`t+i/match: ${per(tackles + interceptions)}  (tackles ${per(tackles)}, interceptions ${per(interceptions)})`);
 console.log(`completion: ${((passesCompleted / Math.max(passes, 1)) * 100).toFixed(1)}%  (passes ${per(passes)})`);
 console.log(`miscontrols/match: ${per(miscontrols)}  fouls/match: ${per(fouls)}`);
+console.log(`50/50s (loose ≥0.5s): ${(looseWindows / N).toFixed(2)}/match, possession side contesting ${((looseContested / Math.max(looseWindows, 1)) * 100).toFixed(1)}%`);
+const resolved = regime.stride.n + regime.mid.n + regime.knock.n;
+for (const [name, b] of Object.entries(regime)) {
+  console.log(
+    `  regime ${name.padEnd(6)}: ${((b.n / Math.max(resolved, 1)) * 100).toFixed(1)}% of touches, ` +
+    `mean gap ${(b.gap / Math.max(b.n, 1)).toFixed(2)}m, mean flight ${(b.t / Math.max(b.n, 1)).toFixed(2)}s`,
+  );
+}

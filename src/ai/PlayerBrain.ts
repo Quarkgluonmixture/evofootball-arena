@@ -879,6 +879,12 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       cands.push({ action: 'ReceivePass', score: 1.2, why: 'pass is coming to me' });
       receiveFlag = true;
     }
+    // OUR loose ball (36.2): TeamBrain assigned this player to the 50/50
+    // (a squirt/miscontrol/knockdown while possession is nominally ours) —
+    // go win it back; the race outranks shape and support.
+    if (ball.owner === null && team.chasers.has(p.index)) {
+      cands.push({ action: 'ChaseBall', score: 1.1, why: 'our loose ball — contest it' });
+    }
     const carrier = ball.owner;
     // The DF slot is the REST DEFENCE (Phase 31): once the ball crosses
     // halfway he does not join the siege — formationSpot clamps his spot

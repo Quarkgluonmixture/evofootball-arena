@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-40; the autonomous 35→40 run is COMPLETE
+# Roadmap — shipped through phase-40 + 36.1; play-report iteration is live
 
 **Audience: the next coding agent (and the user).** Everything through
 **phase-40** is SHIPPED and live — the 2026-07-13 autonomous run
@@ -830,6 +830,32 @@ changes (adapter passes real ball pos; ownerGid null → it just rolls).
   vs 2.228 — **Δ −0.06±0.10, noise-compatible** (the scary main-seed
   −0.48 was path divergence again; fm 18(b) discipline).
 - Fingerprint re-baselined (behavioral): `3a5f659d…` → `2ada3cb1…`.
+
+## ⭐ Phase 36.1 — carry regimes + the contested 50/50 — **SHIPPED**
+
+Two same-day play reports on the touch game, one commit:
+
+- **"跑动应该有不同的触球频率" (爆趟/一步一带/慢带):** the push range
+  widened so the open cone ahead PRICES the touch — base 0.9 + 0.32/m
+  (cap 9m), and the regather window follows the push (0.26 + 0.04·push):
+  a knock is a chase, a dribble touch comes back within the stride;
+  recollect settle 0.2s so 一步一带 chains. Probed regimes (touch-rates
+  buckets): stride 41.5% of touches @0.43s/1.14m, mid 55% @1.05s/1.76m,
+  knock 3.6% @3.56m mean gap. The first cut (slope 0.38/cooldown 0.06)
+  overshot — pokes 26%, 13% of pushes rolled dead, goals −0.27 — pulled
+  back plus a LINE GUARD (a knock that would roll into touch is halved;
+  dead/expired 12.9→2.2%). Poke rate 16.4% (36's band held).
+- **"有人去抢球,其他人呆住了" (36.2):** possession is STICKY, so after
+  a squirt/miscontrol/knockdown the nominal owners never sent a body —
+  `assignChasers` early-returned for the possession side and every 50/50
+  was a one-team race. Now ONE nearest man contests a TRUE loose ball
+  (owner null, no pass in flight, no dribble touch, no restart), with a
+  ChaseBall candidate in the possession-side off-ball brain to consume
+  it. Probed: possession side contests **100%** of ≥0.5s loose windows
+  (~7/match; was structurally 0%).
+
+Calibrate 2.13/2.55 (paired vs phase-39/40's 2.42/2.35 — mean Δ −0.05,
+noise); fingerprint `608b4b4c…` → `b8fa54ae…` (behavioral).
 
 ## ⭐ Phase 37 — the curved ball (Magnus) — **SHIPPED**
 

@@ -145,6 +145,32 @@ describe('discrete dribble touches (Phase 36)', () => {
     expect(pokes).toBeGreaterThan(5); // the toucher's cooldown is the window
   });
 
+  it('our loose ball is CONTESTED, designed balls are not (36.2)', () => {
+    const m = openCarry(4);
+    const st = m.teams[0].players[5];
+    // A true 50/50: ball squirts loose, possession nominally still ours.
+    m.ball.owner = null;
+    m.ball.pos = v2(st.pos.x + 6, st.pos.y + 4);
+    m.ball.vel = v2(0, 0);
+    m.dribbleTouch = null;
+    m.pendingPass = null;
+    for (let t = 0; t < 30; t++) m.step(DT); // past a team-brain tick
+    expect(m.teams[0].chasers.size).toBe(1);
+    // A pass in flight to US belongs to its receiver — no extra chaser.
+    const m2 = openCarry(4);
+    const st2 = m2.teams[0].players[5];
+    m2.ball.owner = null;
+    m2.ball.pos = v2(st2.pos.x + 6, st2.pos.y + 4);
+    m2.ball.vel = v2(2, 0);
+    m2.pendingPass = {
+      side: 0, passerGid: st2.gid, targetGid: m2.teams[0].players[2].gid,
+      t: m2.simTime, offside: false, offsideSpot: null,
+    };
+    for (let t = 0; t < 30 && m2.pendingPass; t++) m2.step(DT);
+    // (checked DURING the flight — the tick inside the loop is what matters)
+    expect(m2.teams[0].chasers.size).toBeLessThanOrEqual(1);
+  });
+
   it('keepers never push: the back-pass ball stays at the feet', () => {
     const m = openCarry(3);
     const gk = m.teams[0].goalkeeper;

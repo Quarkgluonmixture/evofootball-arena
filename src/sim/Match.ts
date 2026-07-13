@@ -542,7 +542,9 @@ export class Match {
       if (!recollect) team.stats.dribbles++;
       // The settle beat before the next push: the first decision after any
       // capture happens ON the ball (touchTimer ≥ the decision settle).
-      p.touchTimer = 0.32 + (1 - p.attrs.technique) * 0.08;
+      // A continuing carry (recollect) chains faster — 一步一带 lives here:
+      // regather, half a beat, next touch (36.1).
+      p.touchTimer = (recollect ? 0.2 : 0.32) + (1 - p.attrs.technique) * 0.08;
     } else if (backPass) {
       p.action = { type: 'Dribble', scores: p.action.scores }; // at his feet, on the clock
     } else if (this.restartKickGid !== p.gid) {
