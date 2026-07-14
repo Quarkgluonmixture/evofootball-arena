@@ -25,5 +25,16 @@ export default defineConfig({
     // the suite robust on loaded/thermally-throttled hardware while still
     // failing fast on genuine hangs (the sim itself has a 4× step safety net).
     testTimeout: 20000,
+    // CI runs ONE worker thread (fm 12's corollary, final form): on the
+    // 2-core runner two worker threads contend for both cores, a match loop
+    // can then hold its event loop past vitest's 60s RPC budget, and the run
+    // dies with "[vitest-worker]: Timeout calling onTaskUpdate" — with all
+    // tests GREEN (killed the phase-45..50 deploy twice; per-test setImmediate
+    // yields only shrink the window). Single-threaded, the worker owns one
+    // core and the orchestrator the other. Local runs keep full parallelism.
+    poolOptions: {
+      threads: { singleThread: !!process.env.CI },
+      forks: { singleFork: !!process.env.CI },
+    },
   },
 });
