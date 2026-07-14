@@ -1,15 +1,17 @@
-import { deriveTeamStyle, type TeamStyle } from '../sim/types';
+import { deriveTeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, veteranAge, type PlayerCareer } from './careers';
-import { randomGenome, type TacticalGenome } from './genome';
+import { createCoach, type Coach } from './coach';
+import { randomGenome } from './genome';
 import { KIT_COLORS, generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { SQUAD_ROLES, enforceBudget, randomSquad, type PlayerAttributes } from './playerGenome';
-import { defaultPolicyGenes, type PolicyGenes } from './policyGenome';
+import { defaultPolicyGenes } from './policyGenome';
 
 /** One historical entry in a franchise's evolutionary lineage. */
 export interface LineageEntry {
   generation: number;
-  event: 'founded' | 'elite' | 'mutated' | 'reborn' | 'promoted' | 'relegated';
+  event: 'founded' | 'elite' | 'mutated' | 'reborn' | 'promoted' | 'relegated'
+    | 'sacked' | 'hired' | 'coach-retired';
   /** Parent team names for 'reborn' (crossover) entries. */
   parents?: string[];
   fitness?: number;
@@ -18,8 +20,13 @@ export interface LineageEntry {
 
 /**
  * A league slot that persists across seasons. Elite franchises keep their
- * genome; weak ones are reborn from crossover — the slot (and kit color)
- * stays, so you can follow a lane through history.
+ * coach's philosophy; weak ones are reborn from crossover — the slot (and
+ * kit color) stays, so you can follow a lane through history.
+ *
+ * Phase 53: the tactical genome / policy genes / formation identity moved
+ * INTO `coach` — a named, aging person the philosophy is embodied in. The
+ * club keeps the structural assets: squad, academy bloodline, budget,
+ * colors, division, lineage, Elo (and prestige/rivalries, derived).
  */
 export interface Franchise {
   slot: number;
@@ -28,18 +35,8 @@ export interface Franchise {
   short: string;
   colors: { primary: number; secondary: number };
   playerNames: string[];
-  genome: TacticalGenome;
-  /** Evolvable attacking-style policy weights (Phase 42): the per-franchise
-   * subset of PolicyParams that lets decision STYLE diverge (the rest stay at
-   * DEFAULT_POLICY). Fed to the brain through TeamInfo.policy. */
-  policy: PolicyGenes;
-  /**
-   * Tactical identity (Phase 30): formations + marking scheme. Derived from
-   * the genome at creation/rebirth and STORED — season-to-season gene
-   * mutation must not flip a club's formation (switching is Phase 31's
-   * explicit, lineage-logged mutation).
-   */
-  style: TeamStyle;
+  /** The philosophy, embodied (Phase 53): genome + policy + style live here. */
+  coach: Coach;
   /** Per-player attribute genes, slot order [GK, DF, MF, WGL, WGR, ST]. */
   squad: PlayerAttributes[];
   /** Player ages in slot order (Phase 26) — drive development & retirement. */
@@ -68,9 +65,7 @@ export function createFranchise(
     short: shortName(name),
     colors: KIT_COLORS[slot % KIT_COLORS.length],
     playerNames: generatePlayerNames(rng),
-    genome,
-    policy: defaultPolicyGenes(),
-    style: deriveTeamStyle(genome),
+    coach: createCoach(rng, genome, defaultPolicyGenes(), deriveTeamStyle(genome)),
     squad: enforceBudget(randomSquad(rng)),
     ages: SQUAD_ROLES.map(() => veteranAge(rng)),
     careers: SQUAD_ROLES.map(() => emptyCareer()),

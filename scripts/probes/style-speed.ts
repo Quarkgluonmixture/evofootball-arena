@@ -13,7 +13,7 @@ const SEED = Number(process.argv[3] ?? 424242);
 const league = new League({ seed: SEED });
 
 const measure = (): { spread: number; plates: number } => {
-  const srcs = league.franchises.map((f) => ({ genome: f.genome, policy: f.policy }));
+  const srcs = league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy }));
   const spread = styleSpread(dimStats(srcs.map(styleValues)));
   const worn = new Set<string>();
   for (const plate of nameplates(srcs)) for (const w of plate) if (w !== 'Balanced') worn.add(w);

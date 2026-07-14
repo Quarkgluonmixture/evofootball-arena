@@ -25,7 +25,7 @@ const roleAttr = (role: Role, key: AttrKey): number => {
 };
 const gene = (key: string): number => {
   let s = 0;
-  for (const f of league.franchises) s += (f.genome as unknown as Record<string, number>)[key];
+  for (const f of league.franchises) s += (f.coach.genome as unknown as Record<string, number>)[key];
   return s / league.franchises.length;
 };
 const f2 = (v: number): string => v.toFixed(3);

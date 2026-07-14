@@ -8,25 +8,41 @@ import {
   developPlayer, emptyCareer, retireChance, rookieAge, veteranAge,
   type LegendEntry, type PlayerCareer,
 } from '../evolution/careers';
-import { evolveGroup, type EvolutionReport } from '../evolution/evolve';
+import {
+  coachRetireChance, createCoach, rookieCoachAge,
+  type Coach, type CoachLegend, type PoolEntry,
+} from '../evolution/coach';
+import { evolveGroup, type EvolutionEntry, type EvolutionReport } from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
 import {
   createFranchise, emptyAggregates, type Franchise, type SeasonAggregates,
 } from '../evolution/franchise';
-import { GENE_KEYS, type GeneKey } from '../evolution/genome';
+import { GENE_KEYS, mutateGenome, type GeneKey, type TacticalGenome } from '../evolution/genome';
 import { newgenName } from '../evolution/names';
 import {
   ATTR_KEYS, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer, randomSquad,
   type AttrKey,
 } from '../evolution/playerGenome';
-import { defaultPolicyGenes } from '../evolution/policyGenome';
+import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evolution/policyGenome';
 import { styleValues } from '../evolution/styleSpace';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
   ROLES, TEAM_SIZE, deriveTeamStyle, emptyPlayerStats,
-  type MatchResult, type PlayerMatchStats, type TeamInfo,
+  type MatchResult, type PlayerMatchStats, type TeamInfo, type TeamStyle,
 } from './types';
+
+/** Raw pre-v15 franchise shape inside the migration chain: the philosophy
+ * fields still sit loose on the club until the v14→v15 step wraps them into
+ * the coach (Phase 53). Franchises minted mid-chain by CURRENT-shape
+ * creators (v3→v4 newcomers) already carry `coach` — handlers skip those. */
+interface LegacyFranchise {
+  slot: number;
+  genome?: TacticalGenome;
+  policy?: Partial<PolicyGenes>;
+  style?: TeamStyle;
+  coach?: Coach;
+}
 
 export type Division = 0 | 1;
 export const DIVISION_NAMES = ['Premier Division', 'Challenger Division'] as const;
@@ -137,9 +153,18 @@ export interface SeasonRecord {
   retirements?: RetirementEntry[];
   /** Cumulative points per slot after each round (slot-indexed, 7 rounds). */
   pointsTimeline?: number[][];
+  /** Dugout events of the season (Phase 53) — the chronicle mines these. */
+  coaching?: Array<{
+    event: 'sacked' | 'hired' | 'retired' | 'succeeded';
+    club: string;
+    coach: string;
+    note?: string;
+    /** Retired: titles + cups won — the chronicle only eulogizes winners. */
+    honours?: number;
+  }>;
 }
 
-export const SAVE_VERSION = 14;
+export const SAVE_VERSION = 15;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -196,6 +221,16 @@ export class League {
   cup: CupState | null = null;
   /** All-time greats, recorded at retirement (top 20 by career goals; Phase 26). */
   legends: LegendEntry[] = [];
+  /** Out-of-work coaches (Phase 53): dead clubs' ex-managers + sacked bosses —
+   * the sack/hire channel's market. Philosophies survive their clubs here. */
+  coachPool: PoolEntry[] = [];
+  /** The dugout hall of fame: retired coaches, best first (top 12). */
+  coachLegends: CoachLegend[] = [];
+  /** Consecutive bottom-third-fitness seasons per slot — the sacking fuse. */
+  misery: number[] = [];
+  /** Probe surface (not serialized): the coach-mobility A/B gate flips this
+   * off to isolate the sack/hire channel's effect on style diversity. */
+  sackingEnabled = true;
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -205,6 +240,7 @@ export class League {
     this.franchises = Array.from({ length: TOTAL_TEAMS }, (_, i) =>
       createFranchise(i, rng, taken, i < TEAMS_PER_DIVISION ? 0 : 1),
     );
+    this.misery = this.franchises.map(() => 0);
     this.startSeason();
   }
 
@@ -349,8 +385,8 @@ export class League {
     const f = this.franchise(slot);
     return {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
-      playerNames: f.playerNames, genome: f.genome, squad: f.squad,
-      ages: f.ages, style: f.style, policy: f.policy,
+      playerNames: f.playerNames, genome: f.coach.genome, squad: f.squad,
+      ages: f.ages, style: f.coach.style, policy: f.coach.policy,
     };
   }
 
@@ -600,11 +636,18 @@ export class League {
       styleShares: this.styleShares(),
       styleMatrix: this.franchises.map((f) => ({
         slot: f.slot,
-        values: styleValues({ genome: f.genome, policy: f.policy }),
+        values: styleValues({ genome: f.coach.genome, policy: f.coach.policy }),
       })),
       longestChain: this.longestChainRecord(),
       pointsTimeline: this.buildPointsTimeline(),
     };
+
+    // The dugout banks the season too (Phase 53) — BEFORE evolution can
+    // replace a dying club's manager, exactly like the player careers above.
+    for (const f of this.franchises) f.coach.career.seasons++;
+    this.franchise(record.championSlot).coach.career.titles++;
+    if (record.cup) this.franchise(record.cup.winnerSlot).coach.career.cups++;
+    for (const p of promoted) this.franchise(p.slot).coach.career.promotions++;
 
     // Evolution per division. D2's reborn slots draw parents from D1's best.
     const evoRng = new Rng(hashSeed(this.seed, this.generation, 0xe0));
@@ -622,17 +665,32 @@ export class League {
     // Zonal ecology budget (Phase 31): one shared counter for both division
     // passes — zonal stays the RARE identity (~4 of 16) no matter which
     // channel (mutation or rebirth inheritance) tries to spread it.
-    const zonalCount = this.franchises.filter((f) => f.style.scheme === 'zonal').length;
+    const zonalCount = this.franchises.filter((f) => f.coach.style.scheme === 'zonal').length;
     const zonal = { room: Math.max(0, 4 - zonalCount) };
+    const fired: Coach[] = [];
     const entries = [
-      ...evolveGroup(d1, map1, this.generation, evoRng, { eliteN: 2, rebornN: 0, zonal }, taken),
+      ...evolveGroup(d1, map1, this.generation, evoRng, { eliteN: 2, rebornN: 0, zonal, firedCoaches: fired }, taken),
       ...evolveGroup(
         d2, map2, this.generation, evoRng,
-        { eliteN: 2, rebornN: 3, parentPool: d1Ranked, zonal },
+        { eliteN: 2, rebornN: 3, parentPool: d1Ranked, zonal, firedCoaches: fired },
         taken,
       ),
     ];
     record.evolution = { generation: this.generation + 1, entries };
+
+    // Dead clubs' managers hit the market (Phase 53) — same order as the
+    // reborn entries, so each ex-boss carries his club's final fitness.
+    const rebornEntries = entries.filter((e) => e.kind === 'reborn');
+    fired.forEach((coach, i) => {
+      this.coachPool.push({
+        coach,
+        sinceGen: this.generation,
+        lastFitness: rebornEntries[i]?.fitness ?? 0,
+        lastClub: rebornEntries[i]?.oldName ?? '?',
+      });
+    });
+
+    record.coaching = this.coachingPass(record, promoted, entries, map1, map2);
 
     // Careers pass (Phase 26): everyone still at their club ages a year,
     // develops along the age curve, and may retire — replaced by a newgen.
@@ -688,6 +746,141 @@ export class League {
     this.generation++;
     this.startSeason();
     return record;
+  }
+
+  /**
+   * The dugout pass (Phase 53), after evolution: (1) the SACK/HIRE channel —
+   * a club on a two-season bottom-third fuse fires its coach when the market
+   * offers a better philosophy (tactics spread by MOVEMENT, not just death);
+   * (2) coaches age; retirement hands the club a successor schooled by the
+   * retiree (the mentor tree), and the pool ages out too. Returns the
+   * season's dugout events for the record/chronicle.
+   */
+  private coachingPass(
+    record: SeasonRecord,
+    promoted: Array<{ slot: number }>,
+    entries: EvolutionEntry[],
+    map1: Map<number, number>,
+    map2: Map<number, number>,
+  ): NonNullable<SeasonRecord['coaching']> {
+    const coaching: NonNullable<SeasonRecord['coaching']> = [];
+    const nextGen = this.generation + 1;
+    const rebornSlots = new Set(entries.filter((e) => e.kind === 'reborn').map((e) => e.slot));
+    const safe = new Set([
+      record.championSlot,
+      ...(record.cup ? [record.cup.winnerSlot] : []),
+      ...promoted.map((p) => p.slot),
+    ]);
+
+    // The misery fuse: consecutive bottom-third-fitness seasons per slot.
+    for (const d of [0, 1] as Division[]) {
+      const group = this.division(d);
+      const fmap = d === 0 ? map1 : map2;
+      const ranked = [...group].sort(
+        (a, b) => (fmap.get(b.slot) ?? 0) - (fmap.get(a.slot) ?? 0) || a.slot - b.slot,
+      );
+      ranked.forEach((f, rank) => {
+        if (rebornSlots.has(f.slot)) {
+          this.misery[f.slot] = 0; // a fresh project starts with a clean slate
+          return;
+        }
+        const bottomThird = rank >= group.length - 3;
+        this.misery[f.slot] = bottomThird && !safe.has(f.slot) ? (this.misery[f.slot] ?? 0) + 1 : 0;
+      });
+    }
+
+    // Sackings: the fuse burns at 2, and a board only acts when the market's
+    // best available philosophy OUTSCORES the incumbent's season — selective
+    // pressure, not churn. (Fitness across seasons is an approximate ruler;
+    // that's what a hiring board sees too.)
+    for (const f of this.franchises) {
+      if (!this.sackingEnabled) break;
+      if ((this.misery[f.slot] ?? 0) < 2 || this.coachPool.length === 0) continue;
+      const own = (f.division === 0 ? map1 : map2).get(f.slot) ?? 0;
+      const market = [...this.coachPool].sort(
+        (a, b) => b.lastFitness - a.lastFitness || b.sinceGen - a.sinceGen ||
+          a.coach.name.localeCompare(b.coach.name),
+      );
+      const pick = market[0];
+      if (pick.lastFitness <= own) continue;
+      const old = f.coach;
+      old.career.sackings++;
+      this.coachPool = this.coachPool.filter((p) => p !== pick);
+      const hired = pick.coach;
+      hired.career.clubs++;
+      // The zonal ecology budget gates arrivals too (failure mode 18): an
+      // incoming zonal philosophy needs room or the new boss adapts to man.
+      if (hired.style.scheme === 'zonal') {
+        const zCount = this.franchises
+          .filter((x) => x.slot !== f.slot && x.coach.style.scheme === 'zonal').length;
+        if (zCount >= 4) hired.style = { ...hired.style, scheme: 'man' };
+      }
+      f.coach = hired;
+      this.coachPool.push({ coach: old, sinceGen: nextGen, lastFitness: own, lastClub: f.name });
+      this.misery[f.slot] = 0;
+      f.lineage.push({ generation: nextGen, event: 'sacked', note: `🪓 ${old.name}` });
+      f.lineage.push({
+        generation: nextGen, event: 'hired',
+        note: `🤝 ${hired.name} (ex-${pick.lastClub})`,
+      });
+      coaching.push({ event: 'sacked', club: f.name, coach: old.name });
+      coaching.push({ event: 'hired', club: f.name, coach: hired.name, note: `ex-${pick.lastClub}` });
+    }
+
+    // Aging + retirement + succession (the mentor tree).
+    const coachRng = new Rng(hashSeed(this.seed, this.generation, 0xc2));
+    for (const f of this.franchises) {
+      const c = f.coach;
+      c.age++;
+      if (!coachRng.chance(coachRetireChance(c.age))) continue;
+      this.recordCoachLegend(c, f.name);
+      coaching.push({
+        event: 'retired', club: f.name, coach: c.name,
+        note: `${c.career.titles}×🏆 ${c.career.cups}×🏅 over ${c.career.seasons} seasons, age ${c.age}`,
+        honours: c.career.titles + c.career.cups,
+      });
+      const successor = createCoach(
+        coachRng,
+        mutateGenome(c.genome, coachRng, { rate: 0.4, scale: 0.08 }),
+        mutatePolicyGenes(c.policy, coachRng),
+        { ...c.style },
+        { age: rookieCoachAge(coachRng), mentor: c.name },
+      );
+      f.coach = successor;
+      f.lineage.push({
+        generation: nextGen, event: 'coach-retired', note: `🎓 ${c.name} → ${successor.name}`,
+      });
+      coaching.push({
+        event: 'succeeded', club: f.name, coach: successor.name, note: `school of ${c.name}`,
+      });
+    }
+    // The market ages too; nobody waits by the phone forever.
+    for (const p of [...this.coachPool]) {
+      p.coach.age++;
+      if (coachRng.chance(coachRetireChance(p.coach.age)) || nextGen - p.sinceGen >= 3) {
+        this.coachPool = this.coachPool.filter((x) => x !== p);
+        this.recordCoachLegend(p.coach, p.lastClub);
+      }
+    }
+    return coaching;
+  }
+
+  /** The dugout hall of fame: top 12 retired coaches by honours. Only careers
+   * worth remembering enter — silverware, or real longevity in the dugout
+   * (the churn retires plenty of two-season nobodies through the pool). */
+  private recordCoachLegend(c: Coach, lastClub: string): void {
+    if (c.career.titles + c.career.cups === 0 && c.career.seasons < 6) return;
+    this.coachLegends.push({
+      name: c.name, age: c.age, career: { ...c.career }, mentor: c.mentor, lastClub,
+    });
+    this.coachLegends.sort(
+      (a, b) =>
+        b.career.titles - a.career.titles ||
+        b.career.cups - a.career.cups ||
+        b.career.seasons - a.career.seasons ||
+        a.name.localeCompare(b.name),
+    );
+    this.coachLegends = this.coachLegends.slice(0, 12);
   }
 
   /** Keep the best retirees forever: top 20 by career goals (saves, then seasons break ties). */
@@ -778,7 +971,7 @@ export class League {
   private geneMeans(): Record<GeneKey, number> {
     const out = {} as Record<GeneKey, number>;
     for (const k of GENE_KEYS) {
-      out[k] = this.franchises.reduce((a, f) => a + f.genome[k], 0) / this.franchises.length;
+      out[k] = this.franchises.reduce((a, f) => a + f.coach.genome[k], 0) / this.franchises.length;
     }
     return out;
   }
@@ -790,9 +983,10 @@ export class League {
     const def: Record<string, number> = {};
     const scheme: Record<string, number> = {};
     for (const f of this.franchises) {
-      atk[f.style.formationAtk] = (atk[f.style.formationAtk] ?? 0) + 1;
-      def[f.style.formationDef] = (def[f.style.formationDef] ?? 0) + 1;
-      scheme[f.style.scheme] = (scheme[f.style.scheme] ?? 0) + 1;
+      const s = f.coach.style;
+      atk[s.formationAtk] = (atk[s.formationAtk] ?? 0) + 1;
+      def[s.formationDef] = (def[s.formationDef] ?? 0) + 1;
+      scheme[s.scheme] = (scheme[s.scheme] ?? 0) + 1;
     }
     return { atk, def, scheme };
   }
@@ -852,6 +1046,9 @@ export class League {
       history: this.history,
       cup: this.cup,
       legends: this.legends,
+      coachPool: this.coachPool,
+      coachLegends: this.coachLegends,
+      misery: this.misery,
     };
   }
 
@@ -951,9 +1148,11 @@ export class League {
       }
       // The formation system arrives with 6v6: backfill every club's
       // tactical identity from its genome (the same derivation creation
-      // uses, so a loaded club looks like a freshly created one).
-      for (const f of data.franchises as Franchise[]) {
-        f.style ??= deriveTeamStyle(f.genome);
+      // uses, so a loaded club looks like a freshly created one). Guarded
+      // off franchises minted by LATER-shape creators (v3→v4 newcomers
+      // already carry a coach and have no loose genome, Phase 53).
+      for (const f of data.franchises as LegacyFranchise[]) {
+        if (!f.coach && f.genome) f.style ??= deriveTeamStyle(f.genome);
       }
       data.version = 8;
     }
@@ -973,31 +1172,33 @@ export class League {
       // v9 -> v10: attacking-style policy genes (Phase 42). Pre-42 clubs all
       // played the shared DEFAULT_POLICY — backfill that subset so a loaded
       // club is bit-identical to before; evolution diverges them from here.
-      for (const f of data.franchises as Franchise[]) f.policy ??= defaultPolicyGenes();
+      for (const f of data.franchises as LegacyFranchise[]) {
+        if (!f.coach) f.policy ??= defaultPolicyGenes();
+      }
       data.version = 10;
     }
     if (data.version === 10) {
       // v10 -> v11: defensive-style policy genes (Phase 43) join the attacking
       // set. Fill the NEW keys with their DEFAULT while keeping a phase-42
       // club's evolved attacking values, so evolution doesn't read undefined.
-      for (const f of data.franchises as Franchise[]) {
-        f.policy = { ...defaultPolicyGenes(), ...f.policy };
+      for (const f of data.franchises as LegacyFranchise[]) {
+        if (!f.coach) f.policy = { ...defaultPolicyGenes(), ...f.policy };
       }
       data.version = 11;
     }
     if (data.version === 11) {
       // v11 -> v12: build-up policy genes (Phase 44) join the set. Same backfill
       // — fill new keys with DEFAULT, keep evolved attacking/defensive values.
-      for (const f of data.franchises as Franchise[]) {
-        f.policy = { ...defaultPolicyGenes(), ...f.policy };
+      for (const f of data.franchises as LegacyFranchise[]) {
+        if (!f.coach) f.policy = { ...defaultPolicyGenes(), ...f.policy };
       }
       data.version = 12;
     }
     if (data.version === 12) {
       // v12 -> v13: combo policy genes (Phase 45). Same backfill — the new
       // 套路 appetites load at 1.0 (the Phase-34 constants), evolved values kept.
-      for (const f of data.franchises as Franchise[]) {
-        f.policy = { ...defaultPolicyGenes(), ...f.policy };
+      for (const f of data.franchises as LegacyFranchise[]) {
+        if (!f.coach) f.policy = { ...defaultPolicyGenes(), ...f.policy };
       }
       data.version = 13;
     }
@@ -1027,6 +1228,26 @@ export class League {
       }
       data.version = 14;
     }
+    if (data.version === 14) {
+      // v14 -> v15: THE COACH (Phase 53). The club's tactical genome, policy
+      // genes and formation identity are wrapped into a named, aging coach —
+      // the same values, now embodied (a loaded club plays bit-identically).
+      // Careers start blank (no fabricated dugout history); ages are seeded.
+      const rng = new Rng(hashSeed(Number(data.seed), 0xc0));
+      for (const f of data.franchises as LegacyFranchise[]) {
+        if (f.coach || !f.genome) continue;
+        f.coach = createCoach(
+          rng,
+          f.genome,
+          { ...defaultPolicyGenes(), ...f.policy },
+          f.style ?? deriveTeamStyle(f.genome),
+        );
+        delete f.genome;
+        delete f.policy;
+        delete f.style;
+      }
+      data.version = 15;
+    }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
     Object.assign(lg, {
@@ -1045,6 +1266,13 @@ export class League {
       history: data.history,
       cup: data.cup ?? null,
       legends: data.legends ?? [],
+      coachPool: data.coachPool ?? [],
+      coachLegends: data.coachLegends ?? [],
+      misery: data.misery ?? (data.franchises as unknown[]).map(() => 0),
+      // fromJSON builds via Object.create — class-field initializers never
+      // ran, so the probe flag must be set EXPLICITLY or loaded leagues
+      // silently lose the sack/hire channel (falsy undefined).
+      sackingEnabled: true,
     });
     return lg;
   }

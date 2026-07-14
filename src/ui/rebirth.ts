@@ -91,12 +91,12 @@ export function buildCeremony(rec: SeasonRecord, franchises: Franchise[]): Cerem
       const parentGenomes =
         e.parentGenomes ??
         (parents.length === 2 && parents.every((p) => byName.has(p))
-          ? ([{ ...byName.get(parents[0])!.genome }, { ...byName.get(parents[1])!.genome }] as [
+          ? ([{ ...byName.get(parents[0])!.coach.genome }, { ...byName.get(parents[1])!.coach.genome }] as [
               TacticalGenome,
               TacticalGenome,
             ])
           : null);
-      const childGenome = e.childGenome ?? (f ? { ...f.genome } : null);
+      const childGenome = e.childGenome ?? (f ? { ...f.coach.genome } : null);
       deaths.push({
         slot: e.slot,
         oldName,
@@ -104,7 +104,7 @@ export function buildCeremony(rec: SeasonRecord, franchises: Franchise[]): Cerem
         parents,
         parentGenomes,
         childGenome,
-        inheritedStyle: e.inheritedStyle ?? f?.style ?? null,
+        inheritedStyle: e.inheritedStyle ?? f?.coach.style ?? null,
         fitness: e.fitness,
         drift: e.drift,
         mutated: parentGenomes && childGenome ? mutatedGenes(childGenome, parentGenomes[0], parentGenomes[1]) : [],

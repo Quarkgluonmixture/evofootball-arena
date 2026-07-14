@@ -75,3 +75,16 @@ export function newgenName(rng: Rng, taken: string[]): string {
   }
   return rng.pick(SURNAMES); // pathological pool exhaustion — accept a repeat
 }
+
+/** Coach forenames (Phase 53) — full names distinguish the person on the
+ * touchline from the surnames-only players on the pitch. */
+const FORENAMES = [
+  'Marco', 'Sven', 'Diego', 'Anton', 'Rui', 'Kenji', 'Bora', 'Luka',
+  'Ottmar', 'Cesar', 'Ivo', 'Nils', 'Ramon', 'Tomas', 'Ede', 'Viktor',
+];
+
+/** A coach's full name — deterministic, collisions allowed (people do
+ * share names; the 16×36 pool makes them rare enough to be a story). */
+export function coachName(rng: Rng): string {
+  return `${rng.pick(FORENAMES)} ${rng.pick(SURNAMES)}`;
+}

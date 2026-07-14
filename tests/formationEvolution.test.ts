@@ -31,19 +31,19 @@ describe('rebirth inherits the dominant parent style', () => {
       // mutated tier) may itself have been style-mutated earlier in the SAME
       // pass, and the reborn club inherits that FRESH identity. Parents keep
       // their names (only reborn clubs rename), so the lookup still resolves.
-      const styleByName = new Map(fr.map((f) => [f.name, { ...f.style }]));
+      const styleByName = new Map(fr.map((f) => [f.name, { ...f.coach.style }]));
       for (const e of entries) {
         if (e.kind !== 'reborn') continue;
         const f = fr.find((x) => x.slot === e.slot)!;
         const parentStyles = e.parents!.map((p) => styleByName.get(p)!);
         const match = parentStyles.some(
           (s) =>
-            s.formationAtk === f.style.formationAtk &&
-            s.formationDef === f.style.formationDef &&
+            s.formationAtk === f.coach.style.formationAtk &&
+            s.formationDef === f.coach.style.formationDef &&
             // The zonal ecology budget may clamp an inherited zonal scheme
             // to man (failure mode 18 guard) — that's the design, not a
             // broken inheritance.
-            (s.scheme === f.style.scheme || (s.scheme === 'zonal' && f.style.scheme === 'man')),
+            (s.scheme === f.coach.style.scheme || (s.scheme === 'zonal' && f.coach.style.scheme === 'man')),
         );
         expect(match).toBe(true);
       }
@@ -60,16 +60,16 @@ describe('style mutation (🔧)', () => {
       const fr = group(rng);
       for (let gen = 1; gen <= 12; gen++) {
         seasons++;
-        const before = new Map(fr.map((f) => [f.slot, { ...f.style }]));
+        const before = new Map(fr.map((f) => [f.slot, { ...f.coach.style }]));
         const fitness = new Map(fr.map((f, i) => [f.slot, 1 - ((i + gen) % 8) * 0.1]));
         evolveGroup(fr, fitness, gen, rng, { eliteN: 2, rebornN: 0 }, new Set(fr.map((f) => f.name)));
         for (const f of fr) {
           const last = f.lineage[f.lineage.length - 1];
           const b = before.get(f.slot)!;
           const changed =
-            (b.formationAtk !== f.style.formationAtk ? 1 : 0) +
-            (b.formationDef !== f.style.formationDef ? 1 : 0) +
-            (b.scheme !== f.style.scheme ? 1 : 0);
+            (b.formationAtk !== f.coach.style.formationAtk ? 1 : 0) +
+            (b.formationDef !== f.coach.style.formationDef ? 1 : 0) +
+            (b.scheme !== f.coach.style.scheme ? 1 : 0);
           if (last.note?.startsWith('🔧')) {
             switches++;
             expect(changed).toBe(1); // ONE component, not a reshuffle
@@ -100,9 +100,9 @@ describe('league-level style ecology', () => {
     // on any trajectory. What the evolved distribution looks like is
     // evolve-check's job — a human eyeballs it, no assertion rides on it.
     const league = new League({ seed: 31313 });
-    const founded = league.franchises.filter((f) => f.style.scheme === 'zonal').length;
-    const foundedAtk = new Set(league.franchises.map((f) => f.style.formationAtk));
-    const foundedDef = new Set(league.franchises.map((f) => f.style.formationDef));
+    const founded = league.franchises.filter((f) => f.coach.style.scheme === 'zonal').length;
+    const foundedAtk = new Set(league.franchises.map((f) => f.coach.style.formationAtk));
+    const foundedDef = new Set(league.franchises.map((f) => f.coach.style.formationDef));
     expect(foundedAtk.size).toBe(2); // both attack identities exist at founding
     expect(foundedDef.size).toBe(2);
 

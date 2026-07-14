@@ -219,11 +219,11 @@ export class LeagueScreen {
     const labels = geneAxisLabels(lang);
     const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
     const leagueMean = GENE_KEYS.map(
-      (k) => ordered.reduce((a, f) => a + f.genome[k], 0) / Math.max(ordered.length, 1),
+      (k) => ordered.reduce((a, f) => a + f.coach.genome[k], 0) / Math.max(ordered.length, 1),
     );
     // Data-driven nameplates (Phase 49): a club's tags are where it actually
     // deviates from THIS population — replaces the fixed identity buckets.
-    const plates = nameplates(ordered.map((f) => ({ genome: f.genome, policy: f.policy })));
+    const plates = nameplates(ordered.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })));
 
     for (const f of ordered) {
       const card = el('div', 'team-card');
@@ -238,9 +238,9 @@ export class LeagueScreen {
       const divBadge = el('span', `tag div-badge-${f.division}`, DIVISION_SHORT[f.division]);
       tags.appendChild(divBadge);
       // Tactical identity (Phase 30): the club's fixed formations + scheme.
-      tags.appendChild(el('span', 'tag', `⚔ ${f.style.formationAtk}`));
-      tags.appendChild(el('span', 'tag', `🛡 ${f.style.formationDef}`));
-      tags.appendChild(el('span', 'tag', t(f.style.scheme === 'man' ? 'man-marking' : 'zonal')));
+      tags.appendChild(el('span', 'tag', `⚔ ${f.coach.style.formationAtk}`));
+      tags.appendChild(el('span', 'tag', `🛡 ${f.coach.style.formationDef}`));
+      tags.appendChild(el('span', 'tag', t(f.coach.style.scheme === 'man' ? 'man-marking' : 'zonal')));
       for (const word of plates[ordered.indexOf(f)]) {
         tags.appendChild(el('span', 'tag nameplate', t(word)));
       }
@@ -256,10 +256,21 @@ export class LeagueScreen {
       // visible at a glance (per-gene values live in the axis tooltips).
       const series: RadarSeries[] = [
         { values: leagueMean, color: '#8294b5', name: t('league mean'), dashed: true },
-        { values: genomeValues(f.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
+        { values: genomeValues(f.coach.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
       ];
       card.appendChild(geneRadar(axes, series, { size: 190 }));
       card.appendChild(el('div', 'radar-cap muted', `┄ ${t('league mean')}`));
+
+      // The dugout (Phase 53): the person the radar actually describes.
+      const c = f.coach;
+      const honours = [
+        c.career.titles > 0 ? `${c.career.titles}×🏆` : '',
+        c.career.cups > 0 ? `${c.career.cups}×🏅` : '',
+        c.career.clubs > 1 ? `${c.career.clubs} ${t('clubs')}` : '',
+      ].filter(Boolean).join(' ');
+      card.appendChild(el('div', 'muted coach-line',
+        `👔 ${c.name} · ${c.age}${t('y')}${honours ? ` · ${honours}` : ''}` +
+        (c.mentor ? ` · 🎓${t('school of')} ${c.mentor}` : '')));
 
       // Family tree (32.5): the slot's chain of rebirths, newest first.
       const hops = parentChain(f.lineage, f.name);
@@ -725,6 +736,23 @@ export class LeagueScreen {
           el('div', 'history-entry',
             `⚽ Most cup goals in a season: ${goals.name} (${goals.team}) — ${goals.goals} (S${goals.generation})`),
         );
+      }
+    }
+
+    // The dugout hall of fame (Phase 53): retired coaches worth remembering.
+    const coachHall = this.league!.coachLegends;
+    if (coachHall.length > 0) {
+      this.root.appendChild(el('h2', '', t('👔 Dugout hall of fame')));
+      for (const l of coachHall.slice(0, 8)) {
+        const honours = `${l.career.titles}×🏆 ${l.career.cups}×🏅`;
+        const extras = [
+          l.career.clubs > 1 ? `${l.career.clubs} ${t('clubs')}` : '',
+          l.career.sackings > 0 ? `${l.career.sackings}×🪓` : '',
+          l.mentor ? `🎓 ${t('school of')} ${l.mentor}` : '',
+        ].filter(Boolean).join(' · ');
+        this.root.appendChild(el('div', 'history-entry',
+          `👔 ${l.name} (${l.lastClub}, ${t('retired#')} ${l.age}) — ${honours} · ` +
+          `${l.career.seasons} ${t('seasons in charge')}${extras ? ` · ${extras}` : ''}`));
       }
     }
 

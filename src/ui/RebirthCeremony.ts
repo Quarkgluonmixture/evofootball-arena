@@ -150,7 +150,7 @@ export class RebirthCeremony {
       // Data-driven nameplate (Phase 49): the newborn's identity relative to
       // the CURRENT population (policy dims read DEFAULT — the child's policy
       // snapshot isn't recorded; genes carry the signal here).
-      const stats = dimStats(league.franchises.map((f) => styleValues({ genome: f.genome, policy: f.policy })));
+      const stats = dimStats(league.franchises.map((f) => styleValues({ genome: f.coach.genome, policy: f.coach.policy })));
       for (const word of nameplateFor(styleValues({ genome: d.childGenome }), stats)) {
         idTags.appendChild(el('span', 'tag nameplate', t(word)));
       }

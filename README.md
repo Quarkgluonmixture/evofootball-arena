@@ -455,6 +455,19 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ## League & evolution
 
+- **👔 THE COACH (Phase 53)**: the tactical philosophy is EMBODIED — the
+  genome, evolved policy genes and formation identity live on a named,
+  aging coach, not on the club. Mutation is the same person rethinking;
+  a reborn club HIRES a newgen coach bred from two successful managers'
+  philosophies (his mentor: the dominant parent's boss — a real mentor
+  tree). Dead clubs' ex-managers wait in an unemployed pool, and a club
+  stuck in the fitness bottom third two seasons running SACKS its coach
+  for the market's best philosophy — tactics spread by MOVEMENT as well as
+  by death (the memetic channel; a monoculture probe hard-gates it).
+  Coaches age and retire (a successor from their own school takes over),
+  the dugout hall of fame keeps the careers worth remembering, and the
+  chronicle reports the sackings, arrivals and farewells. Team cards and
+  the club deep dive name the coach, his record and his school.
 - **A 16-team pyramid: Premier Division + Challenger Division (8 each)** with
   promotion/relegation — each division plays a single round-robin per season
   (56 matches total), 3/1/0 points, one Elo ladder (K=28) across both tiers.
@@ -568,7 +581,8 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
   per league slot — cell shading shows the division each season, with
   🏆/🥇/🏅/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
-- Save format v9 (v6 added cards, v7 careers, v9 ratings + pass-chain
+- Save format v15 (v15 wraps the philosophy into the coach — Phase 53;
+  v6 added cards, v7 careers, v9 ratings + pass-chain
   counters, v8 the second winger + the
   club's tactical identity; v1–v7 saves chain-migrate in place — an old
   save finishes its current season cup-less and joins the cup next season,

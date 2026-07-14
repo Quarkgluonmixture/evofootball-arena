@@ -114,7 +114,7 @@ export class EvolutionScreen {
     out.push({
       label: `${t('Gen')} ${league.generation} (${t('now')})`,
       bySlot: new Map(this.clubs(league).map((f) => [
-        f.slot, styleValues({ genome: f.genome, policy: f.policy }),
+        f.slot, styleValues({ genome: f.coach.genome, policy: f.coach.policy }),
       ])),
     });
     return out;
@@ -129,7 +129,7 @@ export class EvolutionScreen {
     this.root.appendChild(el('h2', '', `🧬 ${t('Evolution center')} — ${t('Gen')} ${league.generation}`));
 
     const clubs = this.clubs(league);
-    const pop = clubs.map((f) => styleValues({ genome: f.genome, policy: f.policy }));
+    const pop = clubs.map((f) => styleValues({ genome: f.coach.genome, policy: f.coach.policy }));
     const stats = dimStats(pop);
     const frames = this.frames(league);
     const idx = this.frameIdx ?? frames.length - 1;
@@ -328,22 +328,31 @@ export class EvolutionScreen {
     idCol.appendChild(head);
     const tags = el('div', 'tags');
     tags.appendChild(el('span', `tag div-badge-${f.division}`, f.division === 0 ? t('Premier Division') : t('Challenger Division')));
-    const plate = nameplateFor(styleValues({ genome: f.genome, policy: f.policy }), stats);
+    const plate = nameplateFor(styleValues({ genome: f.coach.genome, policy: f.coach.policy }), stats);
     for (const word of plate) tags.appendChild(el('span', 'tag nameplate', t(word)));
-    tags.appendChild(el('span', 'tag', `⚔ ${f.style.formationAtk}`));
-    tags.appendChild(el('span', 'tag', `🛡 ${f.style.formationDef}`));
+    tags.appendChild(el('span', 'tag', `⚔ ${f.coach.style.formationAtk}`));
+    tags.appendChild(el('span', 'tag', `🛡 ${f.coach.style.formationDef}`));
     const prestige = league.prestigeOf(f.slot);
     if (prestige >= 0.5) tags.appendChild(el('span', 'tag', '★'.repeat(Math.max(1, Math.min(Math.round(prestige), 3)))));
     idCol.appendChild(tags);
 
+    // The dugout (Phase 53): the philosophy has a face, an age and a record.
+    const c = f.coach;
+    idCol.appendChild(el('div', 'coach-block',
+      `👔 ${c.name} · ${c.age}${t('y')} — ${c.career.seasons} ${t('seasons in charge')}` +
+      ` · ${c.career.titles}×🏆 ${c.career.cups}×🏅` +
+      (c.career.clubs > 1 ? ` · ${c.career.clubs} ${t('clubs')}` : '') +
+      (c.career.sackings > 0 ? ` · ${c.career.sackings}×🪓` : '') +
+      (c.mentor ? ` · 🎓 ${t('school of')} ${c.mentor}` : '')));
+
     const labels = geneAxisLabels(lang);
     const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
     const leagueMean = GENE_KEYS.map(
-      (k) => clubs.reduce((a, c) => a + c.genome[k], 0) / Math.max(clubs.length, 1),
+      (k) => clubs.reduce((a, c) => a + c.coach.genome[k], 0) / Math.max(clubs.length, 1),
     );
     const series: RadarSeries[] = [
       { values: leagueMean, color: '#8294b5', name: t('league mean'), dashed: true },
-      { values: genomeValues(f.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
+      { values: genomeValues(f.coach.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
     ];
     idCol.appendChild(geneRadar(axes, series, { size: 190 }));
     idCol.appendChild(el('div', 'radar-cap muted', `┄ ${t('league mean')}`));

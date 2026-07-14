@@ -44,14 +44,14 @@ describe('rebirth snapshots (evolve.ts)', () => {
       expect(e.parentGenomes?.length).toBe(2);
       // The child snapshot IS the newborn's genome, and the parent snapshots
       // match the (still-living, untouched-since) parents' current genomes.
-      expect(e.childGenome).toEqual(f.genome);
-      expect(e.inheritedStyle).toEqual(f.style);
+      expect(e.childGenome).toEqual(f.coach.genome);
+      expect(e.inheritedStyle).toEqual(f.coach.style);
       e.parents!.forEach((name, i) => {
         const parent = league.franchises.find((x) => x.name === name)!;
-        expect(e.parentGenomes![i]).toEqual(parent.genome);
+        expect(e.parentGenomes![i]).toEqual(parent.coach.genome);
       });
       // Snapshots are COPIES, not references to the living objects.
-      expect(e.childGenome).not.toBe(f.genome);
+      expect(e.childGenome).not.toBe(f.coach.genome);
     }
   });
 
@@ -146,7 +146,7 @@ describe('buildCeremony', () => {
       // Parents are D1 survivors — resolvable by name; the child genome comes
       // from the slot's live franchise; the old name from the lineage note.
       expect(d.parentGenomes).not.toBeNull();
-      expect(d.childGenome).toEqual(league.franchise(d.slot).genome);
+      expect(d.childGenome).toEqual(league.franchise(d.slot).coach.genome);
       expect(d.oldName).not.toBe('?');
     }
   });

@@ -30,8 +30,8 @@ for (let g = 0; g < GENS; g++) {
 }
 
 const F = league.franchises;
-const pol = (k: string): number[] => F.map((f) => (f.policy as unknown as Record<string, number>)[k]);
-const gene = (k: string): number[] => F.map((f) => (f.genome as unknown as Record<string, number>)[k]);
+const pol = (k: string): number[] => F.map((f) => (f.coach.policy as unknown as Record<string, number>)[k]);
+const gene = (k: string): number[] => F.map((f) => (f.coach.genome as unknown as Record<string, number>)[k]);
 
 const pairs: Array<[string, number[], number[]]> = [
   ['pressGene ↔ chase  (does a pressing gene co-select a chasing policy?)', gene('pressIntensity'), pol('chaseBase')],

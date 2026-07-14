@@ -1,6 +1,7 @@
 import type { TeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, rookieAge } from './careers';
+import { createCoach, rookieCoachAge, type Coach } from './coach';
 import { crossoverGenomes, geneDistance, mutateGenome, type TacticalGenome } from './genome';
 import type { Franchise } from './franchise';
 import { generatePlayerNames, shortName, uniqueTeamName } from './names';
@@ -43,6 +44,8 @@ export interface EvolutionEntry {
   childGenome?: TacticalGenome;
   /** Reborn: tactical identity inherited from the dominant parent. */
   inheritedStyle?: TeamStyle;
+  /** Reborn: the newgen coach hired to carry the new philosophy (Phase 53). */
+  coach?: string;
 }
 
 export interface EvolutionReport {
@@ -65,6 +68,9 @@ export interface EvolvePlan {
    * to both division passes.
    */
   zonal?: { room: number };
+  /** Sink for the dying clubs' managers (Phase 53) — the League routes them
+   * into its unemployed pool, where the sack/hire channel can rehire them. */
+  firedCoaches?: Coach[];
 }
 
 /**
@@ -131,49 +137,64 @@ export function evolveGroup(
       f.lineage.push({ generation: nextGen, event: 'elite', fitness });
       entries.push({ slot: f.slot, name: f.name, kind: 'elite', fitness, drift: 0 });
     } else if (rank < rebornFrom) {
-      const before = f.genome;
-      f.genome = mutateGenome(f.genome, rng, { rate: 0.4, scale: 0.08 });
+      const coach = f.coach;
+      const before = coach.genome;
+      // The coach's own ideas drift (Phase 53: mutation = the same person
+      // rethinking, not a new person).
+      coach.genome = mutateGenome(coach.genome, rng, { rate: 0.4, scale: 0.08 });
       // Attacking-style policy drifts too (Phase 42) — decision STYLE evolves.
-      f.policy = mutatePolicyGenes(f.policy, rng);
+      coach.policy = mutatePolicyGenes(coach.policy, rng);
       // Squads no longer take random mutation — since Phase 26 they change
       // through the careers pass instead (development, retirement, newgens).
-      // Formations are franchise DNA (Phase 31): a surviving club's style
-      // occasionally mutates — ONE component switches to its alternative,
-      // logged as a lineage event. Zonal is guarded (failure mode 18: the
-      // lattice out-defends man — a zonal-heavy league stops scoring), so
-      // mutating INTO it needs a second, rarer roll.
-      const styleNote = mutateStyle(f.style, rng, plan.zonal);
+      // Formations are the philosophy's shape (Phase 31→53): occasionally ONE
+      // component switches to its alternative, logged as a lineage event.
+      // Zonal is guarded (failure mode 18: the lattice out-defends man — a
+      // zonal-heavy league stops scoring), so mutating INTO it needs a
+      // second, rarer roll.
+      const styleNote = mutateStyle(coach.style, rng, plan.zonal);
       f.lineage.push({ generation: nextGen, event: 'mutated', fitness, note: styleNote });
       entries.push({
         slot: f.slot, name: f.name, kind: 'mutated', fitness,
-        drift: geneDistance(before, f.genome), note: styleNote,
+        drift: geneDistance(before, coach.genome), note: styleNote,
       });
     } else {
       const pa = pickParent();
       const pb = pickParent(pa);
-      const before = f.genome;
-      f.genome = mutateGenome(crossoverGenomes(pa.genome, pb.genome, rng), rng, { rate: 0.5, scale: 0.15 });
-      // Formations are franchise DNA (Phase 31): a reborn club INHERITS its
-      // tactical identity from the dominant parent — the dynasty's shape
-      // survives the rebirth (it used to be re-derived from the child
-      // genome, which broke identity continuity every generation). The
-      // zonal budget applies to inheritance too: this was THE compounding
-      // channel (zonal elite win → parent the reborn → zonal multiplies).
-      const wasZonal = f.style.scheme === 'zonal';
-      f.style = { ...pa.style };
-      if (f.style.scheme === 'zonal' && !wasZonal) {
+      const before = f.coach.genome;
+      // The dying club's manager is out of a job — the League routes him to
+      // the unemployed pool (the memetic channel's supply side, Phase 53).
+      plan.firedCoaches?.push(f.coach);
+      const genome = mutateGenome(
+        crossoverGenomes(pa.coach.genome, pb.coach.genome, rng), rng, { rate: 0.5, scale: 0.15 },
+      );
+      // The new philosophy blends both parents' styles, then mutates harder
+      // (Phase 42) — and it arrives EMBODIED (Phase 53): the reborn club
+      // hires a newgen coach schooled by the dominant parent's manager (the
+      // mentor tree).
+      const policy = mutatePolicyGenes(
+        crossoverPolicyGenes(pa.coach.policy, pb.coach.policy, rng), rng, { rate: 0.5, scale: 0.15 },
+      );
+      // Formations are the philosophy's shape (Phase 31): the newborn
+      // philosophy INHERITS its tactical identity from the dominant parent —
+      // the dynasty's shape survives the rebirth. The zonal budget applies
+      // to inheritance too: this was THE compounding channel (zonal elite
+      // win → parent the reborn → zonal multiplies).
+      const wasZonal = f.coach.style.scheme === 'zonal';
+      const style: TeamStyle = { ...pa.coach.style };
+      if (style.scheme === 'zonal' && !wasZonal) {
         if (plan.zonal && plan.zonal.room > 0) plan.zonal.room -= 1;
-        else f.style.scheme = 'man';
-      } else if (wasZonal && f.style.scheme !== 'zonal' && plan.zonal) {
+        else style.scheme = 'man';
+      } else if (wasZonal && style.scheme !== 'zonal' && plan.zonal) {
         plan.zonal.room += 1;
       }
+      f.coach = createCoach(rng, genome, policy, style, {
+        age: rookieCoachAge(rng),
+        mentor: pa.coach.name,
+      });
       // The academy intake: attributes cross over from both parents' squads,
       // but the players themselves are NEW — young, unnamed, blank careers.
       // Budget-enforced (Phase 48): two rich parents can't compound past the cap.
       f.squad = enforceBudget(crossoverSquads(pa.squad, pb.squad, rng));
-      // The reborn club inherits a blend of both parents' styles, then mutates
-      // harder (Phase 42) — a new philosophy from the crossover pool.
-      f.policy = mutatePolicyGenes(crossoverPolicyGenes(pa.policy, pb.policy, rng), rng, { rate: 0.5, scale: 0.15 });
       f.ages = f.squad.map(() => rookieAge(rng) + rng.int(0, 5)); // 17–24
       f.careers = f.squad.map(() => emptyCareer());
       const oldName = f.name;
@@ -196,11 +217,12 @@ export function evolveGroup(
         kind: 'reborn',
         parents: [pa.name, pb.name],
         fitness,
-        drift: geneDistance(before, f.genome),
+        drift: geneDistance(before, f.coach.genome),
         oldName,
-        parentGenomes: [{ ...pa.genome }, { ...pb.genome }],
-        childGenome: { ...f.genome },
-        inheritedStyle: { ...f.style },
+        coach: f.coach.name,
+        parentGenomes: [{ ...pa.coach.genome }, { ...pb.coach.genome }],
+        childGenome: { ...f.coach.genome },
+        inheritedStyle: { ...f.coach.style },
       });
     }
   });

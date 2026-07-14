@@ -38,7 +38,7 @@ if (shares) {
 
 console.log('Final population:');
 const sorted = [...league.franchises].sort((a, b) => a.division - b.division || b.elo - a.elo);
-const plates = nameplates(sorted.map((f) => ({ genome: f.genome, policy: f.policy })));
+const plates = nameplates(sorted.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })));
 for (const [idx, f] of sorted.entries()) {
   const gens = f.lineage.filter((l) => l.event === 'elite').length;
   const moves =

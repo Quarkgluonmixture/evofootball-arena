@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-52 (the season chronicle)
+# Roadmap — shipped through phase-53 (the coach)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -28,12 +28,15 @@ SHIPPED** (Stage 3 opens — **W4 the SEASON CHRONICLE**: `sim/chronicle.ts`
 title-race mining from the points timeline, the era-banded 编年史 league
 tab, era names DISCOVERED from the records via `evolution/eras.ts`, and
 the era strip on the dynasty wall; ZERO sim change — fingerprint
-untouched; evidence in the blueprint ledger). Next: Stage 3 continues —
-**W1 coach entity** → W2 player personal style → W3 fire-sale, shaped by
-the user's play reports. HEAD fingerprint `3f4e16b1…` (since phase-51.2).
-⚠ WATCH: goals band 2.8-3.6 across seeds after the emergence era's honest
-buffs — play-feel decides whether to pull it back (dials in the blueprint
-ledger).
+untouched; evidence in the blueprint ledger) + ✅ **phase-53 SHIPPED**
+(**W1 the COACH** — the philosophy embodied in a named, aging person;
+rebirth = hiring, the sack/hire memetic channel, mentor tree, dugout hall;
+save v15; the monoculture HARD GATE passed with spread ratios 1.15/0.98).
+Next: Stage 3 continues — **W2 player personal style** → W3 fire-sale,
+shaped by the user's play reports. HEAD fingerprint `086d2cd7…`
+(phase-53, behavioral rebaseline). ⚠ WATCH: goals band now 2.31/2.98 on
+the resampled populations (the 51.2 creep eased itself) — play-feel still
+decides (dials in the blueprint ledger).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

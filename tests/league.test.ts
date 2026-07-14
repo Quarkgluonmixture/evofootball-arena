@@ -146,7 +146,7 @@ describe('League', () => {
     expect(up.division).toBe(0);
     expect(up.name).toBe(upBefore.name);
     expect(up.colors).toEqual(upBefore.colors);
-    expect(up.genome).toEqual(upBefore.genome);
+    expect(up.coach.genome).toEqual(upBefore.coach.genome);
     up.ages.forEach((age, i) => {
       if (up.playerNames[i] === (upBefore.playerNames as string[])[i]) {
         expect(age).toBe((upBefore.ages as number[])[i] + 1);
@@ -215,21 +215,29 @@ describe('League', () => {
     const league = makeLeague();
     const json = JSON.parse(JSON.stringify(league.toJSON())) as {
       version: number;
-      franchises: Array<{ policy: Record<string, number> }>;
+      franchises: Array<Record<string, unknown> & { coach?: Record<string, unknown> }>;
     };
     json.version = 12;
     for (const f of json.franchises) {
-      delete f.policy.wallPassW;
-      delete f.policy.thirdManW;
-      delete f.policy.overlapW;
-      f.policy.shootBase = 2.5; // an "evolved" v12 value that must survive
+      // A real v12 franchise carries the philosophy LOOSE (pre-coach shape).
+      const coach = f.coach!;
+      f.genome = coach.genome;
+      f.style = coach.style;
+      const policy = coach.policy as Record<string, number>;
+      delete policy.wallPassW;
+      delete policy.thirdManW;
+      delete policy.overlapW;
+      policy.shootBase = 2.5; // an "evolved" v12 value that must survive
+      f.policy = policy;
+      delete f.coach;
     }
     const restored = League.fromJSON(json as unknown as Record<string, unknown>);
     for (const f of restored.franchises) {
-      expect(f.policy.wallPassW).toBe(1);
-      expect(f.policy.thirdManW).toBe(1);
-      expect(f.policy.overlapW).toBe(1);
-      expect(f.policy.shootBase).toBe(2.5);
+      expect(f.coach.policy.wallPassW).toBe(1);
+      expect(f.coach.policy.thirdManW).toBe(1);
+      expect(f.coach.policy.overlapW).toBe(1);
+      expect(f.coach.policy.shootBase).toBe(2.5);
+      expect(f.coach.name.length).toBeGreaterThan(0);
     }
   });
 
@@ -257,6 +265,36 @@ describe('League', () => {
         expect((p as unknown as Record<string, number>).technique).toBeUndefined();
       }
     }
+  });
+
+  it('migrates a v14 save: the loose philosophy wraps into a coach, bit-identical', () => {
+    const league = makeLeague();
+    const json = JSON.parse(JSON.stringify(league.toJSON())) as {
+      version: number;
+      franchises: Array<Record<string, unknown> & { coach?: Record<string, unknown> }>;
+    };
+    json.version = 14;
+    const loose: Array<Record<string, unknown>> = [];
+    for (const f of json.franchises) {
+      const coach = f.coach!;
+      f.genome = coach.genome;
+      f.policy = coach.policy;
+      f.style = coach.style;
+      loose.push({ genome: coach.genome, policy: coach.policy, style: coach.style });
+      delete f.coach;
+    }
+    const restored = League.fromJSON(json as unknown as Record<string, unknown>);
+    restored.franchises.forEach((f, i) => {
+      // The SAME philosophy, relocated — a migrated club plays bit-identically.
+      expect(f.coach.genome).toEqual(loose[i].genome);
+      expect(f.coach.policy).toEqual(loose[i].policy);
+      expect(f.coach.style).toEqual(loose[i].style);
+      // The person is generated: named, mid-career, blank dugout history.
+      expect(f.coach.name.length).toBeGreaterThan(2);
+      expect(f.coach.age).toBeGreaterThanOrEqual(38);
+      expect(f.coach.career.seasons).toBe(0);
+      expect((f as unknown as Record<string, unknown>).genome).toBeUndefined();
+    });
   });
 
   it('league runs are reproducible end to end', () => {

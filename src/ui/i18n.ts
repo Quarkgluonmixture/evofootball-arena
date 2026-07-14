@@ -338,6 +338,14 @@ const ZH: Record<string, string> = {
     '这个联盟被记录下来的时代——纪元之名从史料中涌现，绝非预设。',
   'No completed seasons yet — the chronicle opens after the first one.':
     '还没有完整赛季——第一季结束后编年史开卷。',
+
+  // ---- the coach (Phase 53) ----
+  '👔 Dugout hall of fame': '👔 教练名人堂',
+  'school of': '师承',
+  clubs: '家俱乐部',
+  'seasons in charge': '个执教赛季',
+  'retired#': '退休于',
+  y: '岁',
 };
 
 /** Translate a UI string; unknown keys fall back to the English source. */

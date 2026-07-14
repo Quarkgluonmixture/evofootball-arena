@@ -587,6 +587,10 @@ body.cinematic .cinematic-enter { display: none; }
 .chron-line { margin: 3px 0; font-size: 13px; }
 .chron-icon { display: inline-block; min-width: 24px; }
 
+/* ---- the coach (Phase 53) ---- */
+.coach-line { margin: 4px 0; }
+.coach-block { margin: 8px 0; padding: 6px 10px; border-left: 3px solid #f5c542; font-size: 13px; }
+
 @media (max-width: 640px) {
   #evolution-screen { padding: 12px 10px; }
   .evo-club { grid-template-columns: 1fr; }

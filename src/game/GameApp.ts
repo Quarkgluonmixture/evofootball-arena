@@ -459,7 +459,7 @@ export class GameApp implements GameActions {
     this.clash.show(
       this.match,
       this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
-      this.league.franchises,
+      this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
     );
   }
 
@@ -482,7 +482,7 @@ export class GameApp implements GameActions {
         : this.fixture.cup
           ? `${CUP_ROUND_NAMES[this.fixture.round]}`
           : this.league.roundLabel(),
-      this.league.franchises,
+      this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
     );
   }
 

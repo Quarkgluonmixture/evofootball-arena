@@ -287,3 +287,36 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   comebacks), ~13–14 lines/chapter after noise pruning. Fingerprint
   **UNCHANGED `3f4e16b1…`** (pure derivation — the proof W4 was picked
   for). vitest 337 (+14), visual 95 (+8) + 37.
+- ✅ **phase-53 SHIPPED** (Stage 3 **W1 — THE COACH**: the philosophy embodied
+  + the memetic channel): the tactical genome, policy genes and formation
+  identity moved off the club into a named, aging **`Franchise.coach`**
+  (`evolution/coach.ts`; the club keeps squad/academy/budget/colors/Elo/
+  prestige/rivalries/lineage). Same genetic operators, new transmission
+  graph: **mutation = the same person rethinking; rebirth = HIRING a newgen
+  coach** bred from the parent pool's philosophies (mentor = the dominant
+  parent's manager — the mentor tree); dying clubs' managers enter an
+  **unemployed pool**; a club on a **two-season bottom-third-fitness fuse
+  SACKS** and hires from the pool — but only when the market's best
+  `lastFitness` beats the incumbent (selective mobility, not churn), style
+  travels with the person under the zonal budget (adapts to man when full).
+  Coaches age (retire 62→certain 67), succession seeds a newgen from the
+  retiree's philosophy; the dugout hall of fame keeps careers worth
+  remembering (silverware or 6+ seasons). Save **v15** (bit-identical
+  wrap migration, tested), `SeasonRecord.coaching` events → the chronicle
+  gained 🪓 sackings / 🤝 hires / 🎓 winner-retirements. ⭐ **The
+  monoculture HARD GATE PASSED** (`coach-mobility.ts`, sacking ON/OFF on
+  identical leagues, 40 gens × 2 seeds): style spread ratio **1.15 / 0.98**
+  (mobility even ADDS diversity on 424242), sacks ~0.4–0.5/season, zonal
+  budget never breached, multi-club coaches exist. Emergent and kept: the
+  pyramid churns clubs faster than coaches age, so in-post retirement is
+  RARE — the dugout is a young man's game; legends mostly enter via the
+  pool. evo-drift: the two seeds evolved DIVERGENT metas (424242 narrow
+  press-tempo, width →0.13; 777 slow wide dribble, width 0.61 / drb 0.89)
+  — cross-seed divergence, in-league spread guarded by the gate. Calibrate
+  2.31 / 2.98 (population resample — founding draws changed; mean back
+  inside the classic band, the 51.2 WATCH creep eased). Fixed en route: a
+  fromJSON-built League has NO class-field initializers (Object.create) —
+  the sacking flag arrived `undefined` and silently disabled the channel
+  on every LOADED league until set explicitly. Fingerprint **REBASELINED
+  `086d2cd7…`** (behavioral: founding + evolution draws). vitest 346
+  (coach.test +8 incl. the save-roundtrip regression), visual 97 (+2) + 37.

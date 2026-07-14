@@ -18,7 +18,7 @@ const pct = (std: Record<PolicyGeneKey, number>, k: PolicyGeneKey): string =>
   `${((100 * std[k]) / def[k]).toFixed(0)}%`;
 
 const row = (g: number): void => {
-  const std = policyGeneStd(league.franchises.map((f) => f.policy));
+  const std = policyGeneStd(league.franchises.map((f) => f.coach.policy));
   const avg = (POLICY_GENE_KEYS.reduce((s, k) => s + std[k] / def[k], 0) / POLICY_GENE_KEYS.length) * 100;
   console.log(
     `${String(g).padStart(3)} | ATT shoot ${pct(std, 'shootBase')} dribble ${pct(std, 'dribbleBase')} ` +

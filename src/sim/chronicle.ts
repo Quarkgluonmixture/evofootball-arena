@@ -267,6 +267,19 @@ export function chronicleChapters(history: SeasonRecord[]): ChronicleChapter[] {
       });
     }
 
+    // Dugout drama (Phase 53): sackings and arrivals are always chapter-worthy
+    // (the fuse makes them rare); retirements only when the man won something.
+    // Successions live in the record/lineage — the chronicle stays selective.
+    for (const ev of rec.coaching ?? []) {
+      if (ev.event === 'sacked') {
+        lines.push({ icon: '🪓', text: `${ev.club} sacked ${ev.coach}.` });
+      } else if (ev.event === 'hired') {
+        lines.push({ icon: '🤝', text: `${ev.club} hired ${ev.coach}${ev.note ? ` (${ev.note})` : ''}.` });
+      } else if (ev.event === 'retired' && (ev.honours ?? 0) > 0) {
+        lines.push({ icon: '🎓', text: `${ev.coach} retired from ${ev.club}${ev.note ? ` — ${ev.note}` : ''}.` });
+      }
+    }
+
     lines.push(...recordLines(history, index));
 
     const mvp = rec.awards?.mvp;

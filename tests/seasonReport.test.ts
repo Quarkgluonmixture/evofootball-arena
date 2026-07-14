@@ -157,7 +157,7 @@ describe('save migrations preserve old saves', () => {
     // The old league's franchises are untouched (same genomes -> same future).
     for (let s = 0; s < 8; s++) {
       expect(migrated.franchise(s).name).toBe(league.franchise(s).name);
-      expect(migrated.franchise(s).genome).toEqual(league.franchise(s).genome);
+      expect(migrated.franchise(s).coach.genome).toEqual(league.franchise(s).coach.genome);
     }
     // Remaining D1 fixtures still produce identical results (same seeds).
     const nextD1 = migrated.fixtures.find((f) => !f.played && f.division === 0)!;
