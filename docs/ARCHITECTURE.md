@@ -778,6 +778,18 @@ only caught by eyes on the PNGs.
     population is CONSTANT in the deviation size (both σ and the
     deviation scale together), so z-RANKING tests need a population with
     real variance in the competing dims.
+24. **`League.fromJSON` builds via `Object.create(League.prototype)` —
+    class-field initializers NEVER run on a loaded league.** Any new
+    League field must be EXPLICITLY assigned in fromJSON's
+    `Object.assign` block (with a default), or every loaded/imported
+    save silently reads `undefined`. Phase 53 paid: `sackingEnabled =
+    true` existed only as a field initializer, so the sack/hire channel
+    was ON for fresh leagues and silently OFF for every loaded one — the
+    careers round-trip test caught it as a replay divergence (one arm
+    sacked, the other couldn't). Symptom signature: fresh-vs-loaded
+    behavioral divergence with identical serialized state. The
+    round-trip-then-replay test pattern (save → load → play one more
+    season → expect identical franchises) is the guard; keep it green.
 
 ## 11. Known tuning levers
 
