@@ -131,7 +131,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 11;
+export const SAVE_VERSION = 12;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -966,6 +966,14 @@ export class League {
         f.policy = { ...defaultPolicyGenes(), ...f.policy };
       }
       data.version = 11;
+    }
+    if (data.version === 11) {
+      // v11 -> v12: build-up policy genes (Phase 44) join the set. Same backfill
+      // — fill new keys with DEFAULT, keep evolved attacking/defensive values.
+      for (const f of data.franchises as Franchise[]) {
+        f.policy = { ...defaultPolicyGenes(), ...f.policy };
+      }
+      data.version = 12;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

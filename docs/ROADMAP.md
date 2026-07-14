@@ -27,12 +27,12 @@ released `DEFAULT_POLICY` (attacking-style subset) to per-franchise evolution**;
 `policy-emergence.ts` gate PASSED — cross-franchise style spread 0% → ~20-24%
 and PERSISTS (distinct styles coexist), goals mean 2.52 (on target). (4) ⭐
 **broaden it** (user: build-up / 防守 / 套路 / players should all emerge): ✅
-defence (43 shipped — chase/mark/intercept/clear genetified, ATT+DEF spread
-~20%, goals 2.40), build-up (44 NEXT), then 套路 + player biases — one lever
-each, `policy-emergence` + `calibrate` gated. Open user threads: style
-COHERENCE (let it be selected, measure — don't hardcode), an evolution VIZ
-module, and attribute richness (5 attrs coarse, `technique` overloaded) — see
-**`EMERGENCE-PIVOT.md`**. HEAD fingerprint `85cdb0b4…` (phase-43).
+defence (43) + build-up (44) SHIPPED — chase/mark/intercept/clear + pass/outlet/
+support genetified, ATT+DEF+BUILD spread ~20%, goals 2.40 / 2.34. NEXT (easier
+lot): 套路 combos + style-COHERENCE measurement. ⚠️ **DEFERRED to a later FABLE
+model (user 2026-07-14, hardest): player-attribute expansion + the evolution VIZ
+module** — both scoped in **`EMERGENCE-PIVOT.md`**. HEAD fingerprint
+`79f6dd04…` (phase-44).
 
 Everything below is the pre-pivot play-report history (still valid as
 mechanics reference; the ITERATION MODEL is superseded by the above).
@@ -60,7 +60,7 @@ it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
 correct, not a regression (phase-28.5 continues the pattern — a keeper-
 family tag on the newest HEAD). Never force-retag pushed tags (worktree
-A/B baselines and CI history ride on them). HEAD fingerprint: `85cdb0b4…`.
+A/B baselines and CI history ride on them). HEAD fingerprint: `79f6dd04…`.
 
 Awaiting play reports on: **28.6 chest trap (does a hanging ball now get
 CUSHIONED to the feet instead of headed man-to-man? does the take-down
@@ -1186,6 +1186,20 @@ completion flat. One rebirth test rewritten (it compared reborn styles to a
 PRE-evolve snapshot; a pooled parent can be style-mutated earlier in the pass,
 so the reborn inherits the FRESH style — compare post-evolve, by name). vitest
 306, both Playwright suites, build green. Fingerprint `fd6e9d05…` → `85cdb0b4…`.
+
+### phase-44 — build-up STYLE evolves too
+
+Completes the policy-style trilogy (attack 42 / defence 43 / build-up 44):
+`passBase / passLaneW / passOpenW / passOutletMul / supportBase` join
+`POLICY_GENE_KEYS`, same bounded [0.5×,1.7×] evolution, save v11→v12 backfills.
+So patient short-passing + outlet-seeking + support shape vs direct now diverge
+per club. `policy-emergence.ts`: ATT+DEF+BUILD spread 0% → ~20% persists (both
+seeds; build-up genes 11-30%). Balance (`calibrate -- 8`, two seeds): goals
+2.53/2.14 (mean **2.34**, in band), completion 66/70% FLAT (the fm-danger
+concern held — bounded floors keep teams passing), possession 50/50. vitest 306,
+Playwright 75/37, build green. Fingerprint `85cdb0b4…` → `79f6dd04…`. NEXT
+(easier): 套路 combos + coherence measurement. DEFERRED to a Fable model
+(hardest): player attributes + the evolution viz module.
 
 ---
 

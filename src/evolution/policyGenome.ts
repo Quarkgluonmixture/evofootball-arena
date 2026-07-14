@@ -7,7 +7,7 @@ import { DEFAULT_POLICY, type PolicyParams } from '../sim/types';
  * PlayerBrain scores with were a SHARED, hand-tuned constant (DEFAULT_POLICY):
  * every team decided to play the same way and the 14 tactical genes only
  * modulated it, so decision STYLE could never truly diverge. This releases the
- * ATTACKING (Phase 42) and DEFENSIVE (Phase 43) style subsets to per-franchise
+ * ATTACKING (42), DEFENSIVE (43) and BUILD-UP (44) style subsets to per-franchise
  * evolution — bounded around each default so a club keeps basic competence
  * (never stops shooting, passing, or defending) while its style (direct vs
  * patient, shoot-happy vs build-up, dribble vs pass, crosses vs through-balls;
@@ -22,6 +22,9 @@ export const POLICY_GENE_KEYS = [
   // Defensive style (Phase 43): press/chase vs sit, intercept vs tackle, hoof
   // vs play-out — the out-of-possession identity, also earned by selection.
   'chaseBase', 'markBase', 'interceptScore', 'clearBase', 'clearPressureW',
+  // Build-up style (Phase 44): patient short-passing + outlet-seeking + support
+  // shape vs direct — how a team plays OUT, also earned by selection.
+  'passBase', 'passLaneW', 'passOpenW', 'passOutletMul', 'supportBase',
 ] as const satisfies readonly (keyof PolicyParams)[];
 export type PolicyGeneKey = (typeof POLICY_GENE_KEYS)[number];
 export type PolicyGenes = Record<PolicyGeneKey, number>;
