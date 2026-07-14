@@ -205,3 +205,20 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   tooltips, recessive grids). vitest 323 (styleSpace.test +8), visual
   **78**+35 (3 new checks: 16 map dots, 128 heatmap cells, nameplate tags).
   Fingerprint `85a7b813…` (schema growth only).
+- ✅ **phase-50 SHIPPED** (fitness slimming — Stage-1E lever 1): fitness is
+  RESULTS-dominant now — points 0.50 / GD 0.25 / shotQuality 0.10 /
+  styleConsistency 0.15; **passCompletion, recoveries and staminaEfficiency
+  DROPPED** (three uniform-virtue rewards = hidden designer taste pushing
+  every club toward one texture; `recoveries` directly fed the press
+  equilibrium). Evidence (`style-speed.ts` A/B vs the phase-49 worktree, 20
+  gens × 2 seeds): **the speed target is ALREADY MET post-budget** — spread
+  ≥0.08 sustained by gen 1 and 20-27 distinct nameplate fragments worn by
+  gen 20 on BOTH configs, so slimming ships on principle + no-regression
+  (spread 0.185/0.170 vs 0.190/0.198 ≈ equal); press end-state softened
+  0.936→0.831 on the hot seed (mixed attribution with 48's defending
+  reprice — honest note); DFdef selection recovered 0.53→0.82; calibrate
+  2.91 / 3.13 in the post-46 band. ⭐ **The remaining speed levers (parent
+  diversity, mutation thermostat, harder culling) are PARKED — not needed:**
+  the budget + visibility already deliver fast visible divergence; revisit
+  only if a future probe shows convergence. vitest 323, visual 78+37.
+  Fingerprint `2eac71da…` (behavioral — selection changed).

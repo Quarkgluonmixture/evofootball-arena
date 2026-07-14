@@ -15,12 +15,15 @@ passers; finishing aim slope retuned after its payoff measured dead) +
 ✅ **phase-48 SHIPPED** (the RESOURCE BUDGET keystone: `SQUAD_BUDGET` 24 caps
 attribute inflation dead, newgens are club BLOODLINE not random+ROLE_BIAS,
 stars-vs-balanced emerges, strength/stamina finally have a PRICE; defending repriced
-0.24→0.34 after leagues drained DF to fund attack) + ✅ **phase-49 SHIPPED**
-(visibility v1: data-driven NAMEPLATES replace the fixed identity buckets,
-the style-space map + divergence curve + budget heatmap land on the
-Evolution tab; details in the blueprint's status ledger) → NEXT 50
-(selection speed: fitness slimming first). HEAD fingerprint `85a7b813…`
-(phase-49, record-schema growth proven by strip-and-rehash).
+0.24→0.34 after leagues drained DF to fund attack) + ✅ **phase-49**
+(visibility v1: data-driven NAMEPLATES, the style-space map + divergence
+curve + budget heatmap) + ✅ **phase-50 SHIPPED** (results-dominant fitness —
+the three uniform-virtue rewards dropped; measured verdict: the SPEED target
+was already met post-budget, remaining speed levers PARKED). **STAGE 1+2 OF
+THE BLUEPRINT ARE COMPLETE** — next is Stage 3 (the WORLD layer: W1 coach
+entity → W2 player personal style → W3 fire-sale → W4 season narrative),
+gated on the user's play reports of the new evolution era. HEAD fingerprint
+`2eac71da…` (phase-50, behavioral).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 
