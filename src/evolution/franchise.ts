@@ -4,6 +4,7 @@ import { emptyCareer, veteranAge, type PlayerCareer } from './careers';
 import { randomGenome, type TacticalGenome } from './genome';
 import { KIT_COLORS, generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { SQUAD_ROLES, randomSquad, type PlayerAttributes } from './playerGenome';
+import { defaultPolicyGenes, type PolicyGenes } from './policyGenome';
 
 /** One historical entry in a franchise's evolutionary lineage. */
 export interface LineageEntry {
@@ -28,6 +29,10 @@ export interface Franchise {
   colors: { primary: number; secondary: number };
   playerNames: string[];
   genome: TacticalGenome;
+  /** Evolvable attacking-style policy weights (Phase 42): the per-franchise
+   * subset of PolicyParams that lets decision STYLE diverge (the rest stay at
+   * DEFAULT_POLICY). Fed to the brain through TeamInfo.policy. */
+  policy: PolicyGenes;
   /**
    * Tactical identity (Phase 30): formations + marking scheme. Derived from
    * the genome at creation/rebirth and STORED — season-to-season gene
@@ -64,6 +69,7 @@ export function createFranchise(
     colors: KIT_COLORS[slot % KIT_COLORS.length],
     playerNames: generatePlayerNames(rng),
     genome,
+    policy: defaultPolicyGenes(),
     style: deriveTeamStyle(genome),
     squad: randomSquad(rng),
     ages: SQUAD_ROLES.map(() => veteranAge(rng)),

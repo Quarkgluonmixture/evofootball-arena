@@ -5,6 +5,7 @@ import { crossoverGenomes, geneDistance, mutateGenome, type TacticalGenome } fro
 import type { Franchise } from './franchise';
 import { generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { crossoverSquads } from './playerGenome';
+import { crossoverPolicyGenes, mutatePolicyGenes } from './policyGenome';
 
 /**
  * End-of-season evolution, generalized for the two-division era. A group
@@ -132,6 +133,8 @@ export function evolveGroup(
     } else if (rank < rebornFrom) {
       const before = f.genome;
       f.genome = mutateGenome(f.genome, rng, { rate: 0.4, scale: 0.08 });
+      // Attacking-style policy drifts too (Phase 42) — decision STYLE evolves.
+      f.policy = mutatePolicyGenes(f.policy, rng);
       // Squads no longer take random mutation — since Phase 26 they change
       // through the careers pass instead (development, retirement, newgens).
       // Formations are franchise DNA (Phase 31): a surviving club's style
@@ -167,6 +170,9 @@ export function evolveGroup(
       // The academy intake: attributes cross over from both parents' squads,
       // but the players themselves are NEW — young, unnamed, blank careers.
       f.squad = crossoverSquads(pa.squad, pb.squad, rng);
+      // The reborn club inherits a blend of both parents' styles, then mutates
+      // harder (Phase 42) — a new philosophy from the crossover pool.
+      f.policy = mutatePolicyGenes(crossoverPolicyGenes(pa.policy, pb.policy, rng), rng, { rate: 0.5, scale: 0.15 });
       f.ages = f.squad.map(() => rookieAge(rng) + rng.int(0, 5)); // 17–24
       f.careers = f.squad.map(() => emptyCareer());
       const oldName = f.name;

@@ -201,8 +201,9 @@ export interface TeamInfo {
    * ad-hoc teams) derives it from the genome — same thresholds, same result.
    */
   style?: TeamStyle;
-  /** Learned utility-policy weights (wildcard team); omitted = DEFAULT_POLICY. */
-  policy?: PolicyParams;
+  /** Evolvable / learned utility-policy weights; MISSING keys fall back to
+   * DEFAULT_POLICY (Phase 42 franchises carry the attacking-style subset). */
+  policy?: Partial<PolicyParams>;
   /**
    * Per-slot policy vectors in slot order [GK, DF, MF, WGL, WGR, ST]
    * (Phase 23). A missing entry falls back to `policy` (then

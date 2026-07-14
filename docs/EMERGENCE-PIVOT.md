@@ -133,10 +133,22 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
      16.8/15.3 → 11.1/11.4** (the intended mechanism: carriers now retain);
      through-balls up, completion/possession flat. NOT compensated back — pulling
      goals down means raising tackle success, which would undo the width gradient.
-3. ⭐ **NEXT (optional, deeper): release Bucket-3 biases** — start with the shared
-   `DEFAULT_POLICY` → gene-driven, so decision STYLE evolves. Now gated-in: step-1
-   proved a gradient exists (width climbs), so handing weights to genes is no
-   longer "just noise". Still ONE lever at a time; re-run `evo-drift` after.
+3. ✅ **DONE (phase-42) — released the shared `DEFAULT_POLICY` to per-franchise
+   evolution** (attacking-style subset: shoot / dribble / forward-vs-back-pass /
+   through / cross / loft / long-shot / run appetites, bounded [0.5×,1.7×] of the
+   DEFAULT, `evolution/policyGenome.ts`; fed via the kept `info.policy` hook,
+   evolved in `evolve.ts`'s mutated + reborn tiers). `policy-emergence.ts` gate
+   PASSED: cross-franchise style spread rises **0% → ~20-24% and PERSISTS** (both
+   seeds) — distinct styles COEXIST (calibrate shows seed-leagues evolving
+   different metas: one pass-heavy 94/match, one direct/crossing 72/match).
+   Balance: goals mean 2.32 → **2.52** (on the ~2.5 target), no inversion. Every
+   franchise is BORN at DEFAULT, so any style is earned by selection, not seeded.
+4. ⭐ **NEXT — broaden the emergence** (user 2026-07-14: "build-up / 防守 / 进攻
+   套路 都要涌现,和现实类似,还有球员"): same pattern, ONE lever at a time —
+   phase-43 defensive-style weights (chase / mark / intercept / clear → watch
+   goals-CONCEDED), phase-44 build-up weights, then investigate the 套路 combo
+   system (Phase 34 — hand-set trigger rates?) + player-level biases (`ROLE_BIAS`,
+   `RUN_ROLE_W` — Bucket 3). Gate each with `policy-emergence` + `calibrate`.
 
 ## Guardrails
 - **fm 16–21 danger zone** (marking / completion / structure — goals can invert,
@@ -152,8 +164,8 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
   `phase-28.6` (chest/thigh trap).
 - **phase-41 (the master gate)** — the 1v1 pace/technique rework above; full gate
   passed (tsc + vitest 306 + both Playwright suites 75/37 + build). HEAD
-  fingerprint `a0894cb4…` (phase-41 was `39612cec…`; phase-41.1 out-of-play
-  coast rebaselined it). `cards.test.ts`
+  fingerprint `fd6e9d05…` (41 `39612cec…` → 41.1 `a0894cb4…` → 42 `fd6e9d05…`,
+  each behavioral). `cards.test.ts`
   dirtiest-award test bumped to 240s matches (the per-division award needs cards;
   60s + an outcome shift once tipped seed 9 to zero — not a mechanic regression).
 - **Parked — do NOT resurrect as-is** (all fight the evo gradient / are 治标):

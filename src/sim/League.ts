@@ -16,6 +16,7 @@ import {
 import { GENE_KEYS, type GeneKey } from '../evolution/genome';
 import { newgenName } from '../evolution/names';
 import { ATTR_KEYS, SQUAD_ROLES, randomPlayer, randomSquad, type AttrKey } from '../evolution/playerGenome';
+import { defaultPolicyGenes } from '../evolution/policyGenome';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
@@ -130,7 +131,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 9;
+export const SAVE_VERSION = 10;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -341,7 +342,7 @@ export class League {
     return {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
       playerNames: f.playerNames, genome: f.genome, squad: f.squad,
-      ages: f.ages, style: f.style,
+      ages: f.ages, style: f.style, policy: f.policy,
     };
   }
 
@@ -949,6 +950,13 @@ export class League {
       }
       for (const a of data.agg as Array<Record<string, unknown>>) a.longestChain ??= 0;
       data.version = 9;
+    }
+    if (data.version === 9) {
+      // v9 -> v10: attacking-style policy genes (Phase 42). Pre-42 clubs all
+      // played the shared DEFAULT_POLICY — backfill that subset so a loaded
+      // club is bit-identical to before; evolution diverges them from here.
+      for (const f of data.franchises as Franchise[]) f.policy ??= defaultPolicyGenes();
+      data.version = 10;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

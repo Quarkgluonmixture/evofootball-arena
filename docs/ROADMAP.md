@@ -22,11 +22,15 @@ UNBIASED (no role hardcoding); (2) ✅ `evo-drift.ts` gate PASSED —
 `attackingWidth` no longer craters (baseline 0.57→0.19 / 0.45→0.09; now
 bottoms then CLIMBS OUT to 0.27 / 0.31, seed 777 rising 0.077→0.313 on its
 own), dribbleBias climbs harder, press softens; goals 2.41/1.78→2.71/2.17
-(mean 2.44, on target), won tackles 16.8→11. (3) ⭐ **NEXT — release the
-biggest hand-set bias: the shared fixed `DEFAULT_POLICY` → gene-driven** (now
-gated-in — a width gradient exists to climb, so it's no longer "just noise").
-Full audit (3 buckets), data, plan, guardrails and what's PARKED are in
-**`EMERGENCE-PIVOT.md`**. HEAD fingerprint `a0894cb4…` (phase-41.1).
+(mean 2.44, on target), won tackles 16.8→11. (3) ✅ **phase-42 SHIPPED —
+released `DEFAULT_POLICY` (attacking-style subset) to per-franchise evolution**;
+`policy-emergence.ts` gate PASSED — cross-franchise style spread 0% → ~20-24%
+and PERSISTS (distinct styles coexist), goals mean 2.52 (on target). (4) ⭐
+**NEXT — broaden it** (user: build-up / 防守 / 套路 / players should all
+emerge): defence weights (43), build-up (44), then 套路 + player biases — one
+lever each, `policy-emergence` + `calibrate` gated. Full audit (3 buckets),
+data, plan, guardrails and what's PARKED are in **`EMERGENCE-PIVOT.md`**. HEAD
+fingerprint `fd6e9d05…` (phase-42).
 
 Everything below is the pre-pivot play-report history (still valid as
 mechanics reference; the ITERATION MODEL is superseded by the above).
@@ -54,7 +58,7 @@ it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
 correct, not a regression (phase-28.5 continues the pattern — a keeper-
 family tag on the newest HEAD). Never force-retag pushed tags (worktree
-A/B baselines and CI history ride on them). HEAD fingerprint: `a0894cb4…`.
+A/B baselines and CI history ride on them). HEAD fingerprint: `fd6e9d05…`.
 
 Awaiting play reports on: **28.6 chest trap (does a hanging ball now get
 CUSHIONED to the feet instead of headed man-to-man? does the take-down
@@ -1146,6 +1150,25 @@ tackles / possession flat — the coast only delays dead-ball restarts. Six test
 updated for the coast delay (step past it before asserting the restart; the
 invariant exempts `Match.ballCoastingOut`); the 3D suite turns auto-highlights on
 before its reel check. Fingerprint `39612cec…` → `a0894cb4…` (behavioral).
+
+### phase-42 — decision STYLE evolves (emergence pivot step 3)
+
+The shared, hand-tuned `DEFAULT_POLICY` (~35 PlayerBrain scorer weights) meant
+every team decided to play the SAME way — the 14 tactical genes only modulated
+it, so style couldn't truly diverge. phase-42 releases the ATTACKING-STYLE
+subset (shoot / dribble / forward-vs-back-pass / through / cross / loft /
+long-shot / run appetites) to per-franchise evolution: `evolution/policyGenome.ts`
+(bounded [0.5×,1.7×] of each DEFAULT — floors keep basic competence), fed to the
+brain through the kept `info.policy` hook, evolved in `evolve.ts`'s mutated +
+reborn tiers (elite keeps), backfilled for old saves (v9→v10). UNBIASED — no
+archetypes prescribed; every club is BORN at DEFAULT and earns its style by
+selection. `scripts/probes/policy-emergence.ts` gate PASSED: cross-franchise
+style spread rises **0% → ~20-24% and persists** (both seeds) — distinct styles
+COEXIST; calibrate shows seed-leagues evolving different metas (one pass-heavy
+94/match, one direct/crossing 72/match). Balance (`calibrate -- 8`, two seeds):
+goals 2.36/2.28 → 2.47/2.57 (mean **2.52**, on the ~2.5 target), no inversion,
+possession/completion flat. Fingerprint `a0894cb4…` → `fd6e9d05…` (behavioral).
+NEXT (user 2026-07-14): broaden emergence to defence / build-up / 套路 / players.
 
 ---
 
