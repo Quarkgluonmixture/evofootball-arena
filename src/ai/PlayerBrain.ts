@@ -335,7 +335,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         lp && lp.receiverGid === p.gid && match.simTime - lp.t < 1.5 &&
         lp.passerGid !== mate.gid && mate.action.type === 'MakeRun' && gain > 0.15
       ) {
-        s *= 1 + g.passBias * 0.3;
+        s *= 1 + g.passBias * 0.3 * W.thirdManW;
       }
       // 套边 release (Phase 34): the ball down the line into the overlap —
       // but only once the run has COME AROUND (wide, level or beyond).
@@ -412,7 +412,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     const fresh = lpT !== null && lpT.receiverGid === p.gid && match.simTime - lpT.t < 1.5;
     for (const mate of team.players) {
       if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;
-      const bounceMul = fresh && lpT!.passerGid !== mate.gid ? 1 + g.passBias * 0.35 : 1;
+      const bounceMul = fresh && lpT!.passerGid !== mate.gid ? 1 + g.passBias * 0.35 * W.thirdManW : 1;
       const flight = dist(p.pos, mate.pos) / 18;
       // Meet the run, not the hover (Phase 29): a runner held onside shows
       // ~zero velocity, so the aim point projects the burst they will make.

@@ -219,13 +219,15 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   // Attacking half only: granted from build-up, the flip bonus turned the
   // midfield into a wall-pass ping-pong that ate 0.3 goals/match (probed
   // against the same calibrate seeds) — the one-two is a PENETRATION device.
+  // The gene score is scaled by the franchise's evolved wallPassW (Phase 45)
+  // before the gate — appetite for the one-two is style, not a constant.
   if (
     passer.role !== 'GK' &&
     d < 15 &&
     pressure > 0.2 &&
     passer.stamina > 0.3 &&
     team.localX(passer.pos.x) > 0 &&
-    (team.genome.tempo + team.genome.passBias) / 2 > 0.35
+    ((team.genome.tempo + team.genome.passBias) / 2) * team.policies[passer.index].wallPassW > 0.35
   ) {
     passer.wallRun = { until: match.simTime + 2.3, partnerGid: mate.gid };
   }

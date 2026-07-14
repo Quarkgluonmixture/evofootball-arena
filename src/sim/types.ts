@@ -143,6 +143,11 @@ export interface PolicyParams {
   loftOpenW: number;
   /** Long-range shot appetite bonus (16–30m, scaled by shootBias). */
   longShotW: number;
+  /** Combo appetites (Phase 45): multipliers on the 套路 trigger gates —
+   * 2过1 license / third-man bounce bonus / 套边 overlap license. */
+  wallPassW: number;
+  thirdManW: number;
+  overlapW: number;
 }
 
 export const DEFAULT_POLICY: PolicyParams = {
@@ -181,6 +186,12 @@ export const DEFAULT_POLICY: PolicyParams = {
   // 0.38 -> 0.55 in Phase 30.4: set defences (formations + zonal) park the
   // block, and the realistic answer to a parked block is shooting over it.
   longShotW: 0.55,
+  // Combo appetites (Phase 45): 1.0 = the Phase-34 hand-tuned behavior;
+  // per-franchise evolution moves them so combo-heavy vs combo-averse
+  // styles are EARNED by selection, not set.
+  wallPassW: 1.0,
+  thirdManW: 1.0,
+  overlapW: 1.0,
 };
 
 /** Everything a Match needs to know about one participating team. */

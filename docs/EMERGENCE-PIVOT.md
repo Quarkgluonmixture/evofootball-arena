@@ -154,10 +154,10 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
    by `policy-emergence` + `calibrate`: ✅ **phase-43 (defence)** + ✅ **phase-44
    (build-up: passBase / passLaneW / passOpenW / passOutletMul / supportBase)**
    SHIPPED — ATT+DEF+BUILD spread 0% → ~20% persists, goals 2.40 / 2.34 in band.
-   **NEXT — the easier lot, DO NOW:** the 套路 combo system (Phase 34 — is it
-   hand-set trigger rates? make gene-driven) + style-COHERENCE measurement
-   (below). Player-level biases (`ROLE_BIAS`, `RUN_ROLE_W`) ride with the Fable
-   attribute phase.
+   ✅ **the easier lot SHIPPED (phase-45)**: 套路 trigger appetites are policy
+   genes (`wallPassW/thirdManW/overlapW`, save v13) + the coherence BASELINE is
+   measured (details in EVO-BLUEPRINT.md's status ledger). Player-level biases
+   (`ROLE_BIAS`, `RUN_ROLE_W`) ride with the Fable attribute phase.
 5. **OPEN THREADS (user 2026-07-14) — TRIAGED (user: hardest → a later Fable
    model, do the rest now):**
    > ⭐ **META (user 2026-07-14): don't hard-code presets — these are GOALS +

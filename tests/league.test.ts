@@ -211,6 +211,28 @@ describe('League', () => {
     expect(ra.score).toEqual(rb.score);
   });
 
+  it('migrates a v12 save: combo policy genes backfill at 1.0, evolved keys kept', () => {
+    const league = makeLeague();
+    const json = JSON.parse(JSON.stringify(league.toJSON())) as {
+      version: number;
+      franchises: Array<{ policy: Record<string, number> }>;
+    };
+    json.version = 12;
+    for (const f of json.franchises) {
+      delete f.policy.wallPassW;
+      delete f.policy.thirdManW;
+      delete f.policy.overlapW;
+      f.policy.shootBase = 2.5; // an "evolved" v12 value that must survive
+    }
+    const restored = League.fromJSON(json as unknown as Record<string, unknown>);
+    for (const f of restored.franchises) {
+      expect(f.policy.wallPassW).toBe(1);
+      expect(f.policy.thirdManW).toBe(1);
+      expect(f.policy.overlapW).toBe(1);
+      expect(f.policy.shootBase).toBe(2.5);
+    }
+  });
+
   it('league runs are reproducible end to end', () => {
     const a = makeLeague();
     const b = makeLeague();

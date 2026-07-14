@@ -131,7 +131,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 12;
+export const SAVE_VERSION = 13;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -974,6 +974,14 @@ export class League {
         f.policy = { ...defaultPolicyGenes(), ...f.policy };
       }
       data.version = 12;
+    }
+    if (data.version === 12) {
+      // v12 -> v13: combo policy genes (Phase 45). Same backfill — the new
+      // 套路 appetites load at 1.0 (the Phase-34 constants), evolved values kept.
+      for (const f of data.franchises as Franchise[]) {
+        f.policy = { ...defaultPolicyGenes(), ...f.policy };
+      }
+      data.version = 13;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

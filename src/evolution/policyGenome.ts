@@ -25,6 +25,10 @@ export const POLICY_GENE_KEYS = [
   // Build-up style (Phase 44): patient short-passing + outlet-seeking + support
   // shape vs direct — how a team plays OUT, also earned by selection.
   'passBase', 'passLaneW', 'passOpenW', 'passOutletMul', 'supportBase',
+  // Combo style (Phase 45): the 套路 trigger appetites — 2过1 / third man /
+  // 套边. Born at 1.0 (the Phase-34 constants); combo-heavy vs combo-averse
+  // is earned by selection.
+  'wallPassW', 'thirdManW', 'overlapW',
 ] as const satisfies readonly (keyof PolicyParams)[];
 export type PolicyGeneKey = (typeof POLICY_GENE_KEYS)[number];
 export type PolicyGenes = Record<PolicyGeneKey, number>;

@@ -105,3 +105,19 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
 
 - 2026-07-14: blueprint ratified by the user ("可以,先更新docs,然后开始自走").
   Stage-1 execution begins at phase 45.
+- ✅ **phase-45 SHIPPED** (套路 → policy genes + coherence baseline): `wallPassW /
+  thirdManW / overlapW` join `POLICY_GENE_KEYS` (born 1.0 = the Phase-34
+  constants; the two gate sites scale the gene score before the threshold, the
+  bounce bonus scales its multiplier — BOTH bounce sites, feet + through).
+  Save v13 (same backfill pattern). Gates: policy-emergence spread 0→~20-26%
+  persists on both seeds WITH the combo genes in the pool; combos tests grew
+  three policy-flip tests (wallPass/overlap license flips are deterministic
+  zeros; thirdMan proven by a 40-scene deterministic sweep — hungry releases
+  the runner in 29 scenes vs averse 26; per-match counts are noise, probed
+  135 vs 127/24 matches, so the MECHANISM is the pin); calibrate 2.33 / 2.32
+  (phase-44: 2.40 / 2.34 — in band); evolve-check healthy; vitest 310, visual
+  75+37. Fingerprint `43f71508…` (behavioral: +3 rng draws per policy
+  mutation). **Coherence BASELINE recorded** (seed 424242, 40 gens):
+  counter↔fwdPass r=+0.42 and dribbleGene↔dribblePolicy r=−0.56 already
+  emerge from selection alone; chase↔fwdPass r=−0.38; mark↔intercept r≈0 —
+  the flat pairs are Stage-1E's measuring stick, not something to hand-wire.

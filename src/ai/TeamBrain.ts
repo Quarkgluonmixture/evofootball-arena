@@ -218,7 +218,8 @@ function assignRunners(team: Team, match: Match): void {
     carrier.role !== 'GK' &&
     Math.abs(carrier.pos.y) > 10 &&
     team.localX(carrier.pos.x) > 0 &&
-    team.genome.attackingWidth > 0.3
+    // Width gene × the evolved overlap appetite (Phase 45) crosses the gate.
+    team.genome.attackingWidth * team.policy.overlapW > 0.3
   ) {
     const cLocal = team.localX(carrier.pos.x);
     const confronted = match.teams[1 - team.side].players.some(
