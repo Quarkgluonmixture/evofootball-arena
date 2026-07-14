@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-55 (the fire-sale; STAGE 3 COMPLETE)
+# Roadmap — shipped through phase-56 (the player center)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -40,10 +40,14 @@ the FIRE-SALE** — dead clubs' players hit the market with careers intact,
 signed only at retirement vacancies under the budget; feeds the
 rebuilding, not the rich; save v17). **STAGE 3 (the WORLD layer) IS
 COMPLETE** — chronicle + eras, coaches + the memetic channel, player
-personalities, and the fire-sale all live. Next: the user's PLAY REPORTS
-on the new world layer decide what iterates; Stage 4 (substrate
-thickening: substitutions/bench first) waits pull-based in the blueprint.
-HEAD fingerprint `85cb3f2a…` (phase-55, behavioral rebaseline). ⚠ WATCH:
+personalities, and the fire-sale all live — + ✅ **phase-56 SHIPPED**
+(the **PLAYER CENTER** 👥, from the user's first world-layer report: the
+96-player style-space map with role lenses, the player deep dive with
+diverging appetite bars, the transfer market + signings chronicle, the
+trait census; UI-only, fingerprint untouched). Next: the user's PLAY
+REPORTS decide what iterates; Stage 4 (substrate thickening:
+substitutions/bench first) waits pull-based in the blueprint.
+HEAD fingerprint `85cb3f2a…` (since phase-55). ⚠ WATCH:
 goals band 2.30/3.02 across seeds — play-feel still decides (dials in the
 blueprint ledger).
 

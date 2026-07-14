@@ -317,6 +317,27 @@ check('evolution center reopens the rebirth ceremony', await page.locator('#rebi
 await page.click('#rebirth-screen .ceremony-continue');
 await page.waitForTimeout(200);
 
+// Phase 56 — the PLAYER CENTER: style space, deep dive, transfers, census.
+await page.click('#topbar button:has-text("Players")');
+await page.waitForTimeout(300);
+check('player center opens (own screen)', await page.locator('#player-screen').isVisible(), '');
+check('evolution center closed by the player center', !(await page.locator('#evolution-screen').isVisible()), '');
+const playerDots = await page.locator('#player-screen .player-map circle').count();
+check('player style space plots all 96 players (56)', playerDots === 96, `${playerDots} dots`);
+await page.click('#player-screen .player-lens button:has-text("ST")');
+await page.waitForTimeout(200);
+const stDots = await page.locator('#player-screen .player-map circle').count();
+check('role lens filters the map to one line', stDots === 16, `${stDots} ST dots`);
+await page.click('#player-screen .player-lens button:has-text("All")');
+await page.waitForTimeout(200);
+const diveRows = await page.locator('#player-screen .player-dive .gene-row').count();
+check('deep dive shows attributes + appetites', diveRows === 13, `${diveRows} rows`);
+check('personal appetites render as diverging bars', (await page.locator('#player-screen .style-diverge').count()) === 5, '');
+const playerTxt = await page.textContent('#player-screen');
+check('transfers & market section renders', playerTxt.includes('Transfers'), '');
+check('census counts earned nameplates', playerTxt.includes('nameplate'), '');
+await page.screenshot({ path: `${OUT}/8b-player-center.png`, fullPage: true });
+
 // Back to the league screen for the hall checks.
 await page.click('#topbar button:has-text("League table")');
 await page.waitForTimeout(200);
@@ -366,6 +387,17 @@ await page.screenshot({ path: `${OUT}/13b-phone-chronicle.png` });
 await page.click('#league-screen button:has-text("League")'); // back to the league tab
 await page.waitForTimeout(200);
 await page.click('button:has-text("League table")'); // close the league screen
+
+// Phone: the player center (56).
+await page.click('#topbar button:has-text("Players")');
+await page.waitForTimeout(400);
+const playerOverflow = await page.evaluate(() => {
+  const s = document.querySelector('#player-screen');
+  return s ? s.scrollWidth - s.clientWidth : 0;
+});
+check('phone: player center fits 390px (56)', playerOverflow <= 1, `overflow ${playerOverflow}px`);
+await page.screenshot({ path: `${OUT}/13c-phone-players.png` });
+await page.click('#topbar button:has-text("Players")'); // close it again
 
 await page.evaluate(() => window.__evo.showCeremony());
 await page.waitForTimeout(400);

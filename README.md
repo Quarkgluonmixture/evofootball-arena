@@ -589,6 +589,13 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   rest. Extreme appetites earn 🎲/🪄/👻 trait badges and the player card
   shows an EARNED personal nameplate (z-scored against all 96 players —
   ordinary players wear nothing) plus a 🌟 career-highlight line.
+- **👥 The player center (Phase 56)**: the people get their own screen —
+  every player in the league plotted in the style space (axes = wherever
+  the population disagrees most, with GK/DF/MF/WG/ST lenses), a player
+  deep dive (traits, earned nameplate, attributes, personal appetites as
+  diverging bars around the coach's baseline, career + best season), the
+  live free-agent market and the signings chronicle, and a league-wide
+  trait census.
 - **✍ The free-agent fire-sale (Phase 55)**: a dying club's players enter
   the market with their genes, styles, ages and CAREERS intact — a
   retirement vacancy may sign the best like-for-like fit instead of an

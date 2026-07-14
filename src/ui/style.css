@@ -590,6 +590,36 @@ body.cinematic .cinematic-enter { display: none; }
 /* ---- the coach (Phase 53) ---- */
 .coach-line { margin: 4px 0; }
 .player-plate { margin: 3px 0; color: #f5c542; font-size: 13px; }
+
+/* ---- the player center (Phase 56) ---- */
+#player-screen {
+  position: absolute; inset: 0; overflow-y: auto;
+  background: #080c16; padding: 18px 22px; z-index: 10;
+  animation: feed-in 0.2s ease-out;
+}
+#player-screen.hidden { display: none; }
+#player-screen h2 {
+  margin: 14px 0 10px; color: var(--accent); font-size: var(--fs-lg);
+}
+#player-screen h2:first-child { margin-top: 0; }
+.player-map { max-width: 640px; }
+.player-lens button { padding: 4px 12px; border-radius: 12px; }
+.player-dive { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 18px; }
+.player-col { min-width: 0; }
+.style-diverge {
+  position: relative; height: 10px; border-radius: 5px; background: rgba(36, 48, 74, 0.6);
+  overflow: hidden;
+}
+.style-diverge::after {
+  content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: #8294b5; opacity: 0.7;
+}
+.style-diverge-fill { position: absolute; top: 0; bottom: 0; border-radius: 5px; }
+.census-tags { margin: 6px 0; }
+@media (max-width: 640px) {
+  #player-screen { padding: 12px 10px; }
+  .player-dive { grid-template-columns: 1fr; }
+}
 .coach-block { margin: 8px 0; padding: 6px 10px; border-left: 3px solid #f5c542; font-size: 13px; }
 
 @media (max-width: 640px) {

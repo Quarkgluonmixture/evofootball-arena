@@ -370,3 +370,20 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   whole squad as the fee). Calibrate 2.30 / 3.02 (in band). Fingerprint
   **REBASELINED `85cb3f2a…`** (behavioral: signings skip newgen draws).
   vitest 359 (+5), visual 97+37.
+- ✅ **phase-56 SHIPPED** (the PLAYER CENTER — user report 2026-07-14:
+  "球员这个部分也需要对应的看板,比如性格,转会,风格"): the Evolution
+  Center precedent applied to PEOPLE — a third top-bar screen (👥 球员,
+  three-way exclusive with 联赛中心/演化中心), `ui/PlayerScreen.ts`:
+  (1) the **player style space** — all 96 players scattered on the two
+  dims the population disagrees on most (13-dim identity space, axes
+  data-driven; GK/DF/MF/WG/ST role LENSES recompute axes within the
+  lens — the 51.1 grammar), kit-color dots, click → select; (2) the
+  **player deep dive** — trait chips (zh-named), earned nameplate,
+  attribute bars + personal appetites as DIVERGING bars around the
+  coach's ×1.0, career ledger + 🌟 best-season highlight; (3)
+  **transfers** — the live free-agent market (🧳 ability/ex-club) + the
+  signings chronicle mined from records ("from the ashes of...");
+  (4) the **census** — trait distribution, earned-nameplate count,
+  active career scorers. UI-only: fingerprint UNTOUCHED `85cb3f2a…`.
+  vitest 359, visual **106** (+9: 96 dots, role lens →16, 13 dive rows,
+  5 diverging bars, phone 390px) + 37.

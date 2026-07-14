@@ -97,10 +97,18 @@ export function applyPlayerStyle(
 
 /* ---------------- personal nameplates (data-driven, Phase 54) ---------------- */
 
-/** The player identity space: 8 attributes + 5 personal appetites. */
-const PLAYER_DIMS: Array<{ key: string; kind: 'attr' | 'style' }> = [
-  ...ATTR_KEYS.map((key) => ({ key, kind: 'attr' as const })),
-  ...PLAYER_STYLE_KEYS.map((key) => ({ key, kind: 'style' as const })),
+/** The player identity space: 8 attributes + 5 personal appetites. The
+ * scale lets variances be compared across dims (attrs span 1.0, style
+ * multipliers span STYLE_MAX−STYLE_MIN) — exported for the player center's
+ * data-driven axes (Phase 56). */
+export interface PlayerDim {
+  key: string;
+  kind: 'attr' | 'style';
+  scale: number;
+}
+export const PLAYER_DIMS: PlayerDim[] = [
+  ...ATTR_KEYS.map((key) => ({ key, kind: 'attr' as const, scale: 1 })),
+  ...PLAYER_STYLE_KEYS.map((key) => ({ key, kind: 'style' as const, scale: STYLE_MAX - STYLE_MIN })),
 ];
 
 /** One legible football fragment per nameable direction — the same grammar
