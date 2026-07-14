@@ -1,5 +1,12 @@
 # The emergence pivot (2026-07-14) — READ BEFORE THE NEXT BUILD
 
+> **2026-07-14 (later the same day): the PLAN half of this doc is superseded
+> by [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md)** (the user ratified a four-stage
+> vision: Engine → Visibility → World → Substrate, with phases 45+ sequenced
+> there). This doc stays canonical for the RATIONALE, the substrate audit
+> (the three buckets), the gates, and the §5 turnkey attribute scope that
+> phase 47 executes verbatim.
+
 The whole approach changed this session. Big code changes were deliberately
 deferred to a fresh session; this doc is the handoff.
 

@@ -1,6 +1,17 @@
 # Roadmap — shipped through phase-40 (+36.1, +28.5, +28.6)
 
-## ⭐⭐ NEXT SESSION — READ [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) FIRST (2026-07-14)
+## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
+
+The user extended the emergence pivot into a full four-stage vision (Engine →
+Visibility → World → Substrate): tactics, players, COACHES, seasons and cups
+all evolving with earned identities, fast + visible divergence, on a
+high-quality substrate. **Resume there** — it sequences everything below and
+in EMERGENCE-PIVOT.md (which stays canonical for rationale, the substrate
+audit, and the turnkey 5→8 attribute scope). Stage-1 execution starts at
+phase 45 (套路 genes) → 46 (keeper-aware carry cone) → 47 (attrs 5→8) →
+48 (resource budget) → 49 (visibility v1) → 50 (selection speed).
+
+## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 
 **The approach changed.** The play-report-driven small-mechanic era is
 PAUSED. The user reframed the project: **tactics / skills / styles must
