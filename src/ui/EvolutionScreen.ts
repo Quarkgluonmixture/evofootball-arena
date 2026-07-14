@@ -2,7 +2,8 @@ import { GENE_KEYS } from '../evolution/genome';
 import type { Franchise } from '../evolution/franchise';
 import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import {
-  STYLE_DIMS, dimStats, nameplateFor, styleSpread, styleValues, topVarianceDims, type DimStat,
+  STYLE_DIMS, dimStats, nameplateFor, styleSpread, styleValues, topVarianceDims,
+  type DimStat, type DimTheme,
 } from '../evolution/styleSpace';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import type { League } from '../sim/League';
@@ -138,18 +139,36 @@ export class EvolutionScreen {
     this.renderLastEvolution(league);
   }
 
-  /** Section 1 — the hero map with the generation scrubber. */
+  /** Section 1 — the hero: FOUR side-by-side lenses on the style space
+   * (user 2026-07-14: "风格空间这种可以放多个并列的图") — the overall map
+   * plus attack/defence/build-up lenses, every axis pair earned by variance
+   * within its lens, all driven by ONE scrubber so playback moves them
+   * together. */
   private renderHero(
     league: League, clubs: Franchise[], stats: DimStat[], frames: StyleFrame[], idx: number,
   ): void {
-    const [xi, yi] = topVarianceDims(stats);
     this.root.appendChild(el('h2', '', t('Style space')));
     this.root.appendChild(el('div', 'muted',
-      `${t('x-axis')}: ${t(STYLE_DIMS[xi].key)} · ${t('y-axis')}: ${t(STYLE_DIMS[yi].key)} — ${t('the two dimensions this league disagrees on most')}`));
+      t('Four lenses on the same league — axes are wherever the clubs disagree most, overall and per phase of play.')));
 
     const heroWrap = el('div', 'evo-hero');
-    const mapHost = el('div', 'evo-map');
-    heroWrap.appendChild(mapHost);
+    const lenses: Array<{ title: string; theme?: DimTheme; host: HTMLElement; dims: [number, number] }> = [
+      { title: t('Overall'), theme: undefined, host: el('div', 'evo-map'), dims: topVarianceDims(stats) },
+      { title: t('Attack'), theme: 'attack', host: el('div', 'evo-map'), dims: topVarianceDims(stats, 'attack') },
+      { title: t('Defend'), theme: 'defence', host: el('div', 'evo-map'), dims: topVarianceDims(stats, 'defence') },
+      { title: t('BuildUp'), theme: 'build', host: el('div', 'evo-map'), dims: topVarianceDims(stats, 'build') },
+    ];
+    const mapGrid = el('div', 'evo-map-grid');
+    for (const lens of lenses) {
+      const cell = el('div', 'evo-map-cell');
+      cell.appendChild(el('div', 'muted evo-map-title', lens.title));
+      cell.appendChild(lens.host);
+      mapGrid.appendChild(cell);
+    }
+    heroWrap.appendChild(mapGrid);
+    const drawAll = (frameIdx: number): void => {
+      for (const lens of lenses) this.drawMap(lens.host, clubs, stats, frames, frameIdx, lens.dims);
+    };
 
     // Controls: ◀ frame slider ▶ + play.
     const controls = el('div', 'row evo-controls');
@@ -172,7 +191,7 @@ export class EvolutionScreen {
         this.frameIdx = cur + 1;
         slider.value = String(this.frameIdx);
         frameLabel.textContent = frames[this.frameIdx].label;
-        this.drawMap(mapHost, clubs, stats, frames, this.frameIdx);
+        drawAll(this.frameIdx);
       }, 450);
     });
     playBtn.classList.add('evo-play');
@@ -188,20 +207,21 @@ export class EvolutionScreen {
       playBtn.textContent = '▶';
       this.frameIdx = Number(slider.value);
       frameLabel.textContent = frames[this.frameIdx].label;
-      this.drawMap(mapHost, clubs, stats, frames, this.frameIdx);
+      drawAll(this.frameIdx);
     });
     controls.append(playBtn, slider, frameLabel);
     heroWrap.appendChild(controls);
     this.root.appendChild(heroWrap);
 
-    this.drawMap(mapHost, clubs, stats, frames, idx);
+    drawAll(idx);
   }
 
-  /** Draw one frame of the map (DOM SVG so dots take click handlers). */
+  /** Draw one frame of one lens (DOM SVG so dots take click handlers). */
   private drawMap(
     host: HTMLElement, clubs: Franchise[], stats: DimStat[], frames: StyleFrame[], idx: number,
+    dims: [number, number],
   ): void {
-    const [xi, yi] = topVarianceDims(stats);
+    const [xi, yi] = dims;
     const z = (v: number, i: number) =>
       (v - stats[i].mean) / Math.max(stats[i].std, STYLE_DIMS[i].scale * 0.02);
     const W = 420;

@@ -267,13 +267,15 @@ await page.click('#topbar button:has-text("Evolution")');
 await page.waitForTimeout(300);
 check('evolution center opens (own screen)', await page.locator('#evolution-screen').isVisible(), '');
 check('league screen closed by the evolution center', !(await page.locator('#league-screen').isVisible()), '');
+const mapCount = await page.locator('#evolution-screen .evo-map').count();
+check('four style-space lenses render (51.1)', mapCount === 4, `${mapCount} maps`);
 const mapDots = await page.locator('#evolution-screen .evo-map circle').count();
-check('style-space map plots all 16 clubs', mapDots === 16, `${mapDots} dots`);
+check('every lens plots all 16 clubs', mapDots === 64, `${mapDots} dots`);
 check('generation scrubber present', (await page.locator('#evolution-screen .evo-scrub').count()) === 1, '');
-// Scrub to frame 0 and back — the map redraws without errors.
+// Scrub to frame 0 — all four lenses redraw without errors.
 await page.locator('#evolution-screen .evo-scrub').fill('0');
-await page.waitForTimeout(150);
-check('scrubbing to gen 0 keeps 16 dots', (await page.locator('#evolution-screen .evo-map circle').count()) === 16, '');
+await page.waitForTimeout(200);
+check('scrubbing to gen 0 keeps 64 dots', (await page.locator('#evolution-screen .evo-map circle').count()) === 64, '');
 // Tap a dynasty row → the club panel follows.
 const dynRows = await page.locator('#evolution-screen .dyn-row-line').count();
 check('dynasty wall shows all 16 slots', dynRows === 16, `${dynRows} rows`);

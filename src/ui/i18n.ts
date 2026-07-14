@@ -170,6 +170,9 @@ const ZH: Record<string, string> = {
 
   // ---- evolution center (Phase 51) ----
   'Evolution center': '演化中心',
+  Overall: '总览',
+  'Four lenses on the same league — axes are wherever the clubs disagree most, overall and per phase of play.':
+    '同一联盟的四个镜头——坐标轴取各镜头内分歧最大的维度：总览与进攻/防守/组织各一张，滑块同步驱动。',
   now: '当前',
   'x-axis': '横轴',
   'y-axis': '纵轴',

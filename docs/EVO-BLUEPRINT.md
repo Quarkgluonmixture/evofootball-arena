@@ -241,3 +241,10 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   NOT yet in it (next iterations as reports come in): per-club budget
   HISTORY (needs an attrMatrix record snapshot), era auto-naming on the
   timeline, cluster hulls on the map.
+- ✅ **phase-51.1 SHIPPED** (user report: "风格空间这种可以放多个并列的图"):
+  the hero becomes FOUR side-by-side lenses in a 2×2 grid — Overall plus
+  attack/defence/build themed maps. Lenses are substrate grammar (the dim→
+  theme grouping mirrors the policy-gene subsets); each lens's AXES stay
+  data-driven (top variance within the lens). One scrubber drives all four;
+  the selected club rings in every lens. `topVarianceDims(stats, theme?)` in
+  styleSpace.ts. visual 87 (four-lens + 64-dot checks).

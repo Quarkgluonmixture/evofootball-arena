@@ -20,17 +20,55 @@ export interface StyleSource {
   policy?: Partial<PolicyParams>;
 }
 
+/** Substrate grouping for the themed map LENSES (Phase 51.1) — like the
+ * naming vocabulary, the grouping is hand-built grammar; which dims a lens
+ * actually shows (its axes) stays data-driven (top variance within the
+ * theme). Mirrors the policy-gene subsets (attack/defence/build-up). */
+export type DimTheme = 'attack' | 'defence' | 'build';
+
 export interface StyleDim {
   key: string;
   kind: 'gene' | 'policy';
   /** Full range of the dim (genes 1.0; policy (1.7−0.5)·default) — lets
    * variances be compared across dims of different physical scales. */
   scale: number;
+  theme: DimTheme;
 }
 
+const GENE_THEME: Record<string, DimTheme> = {
+  passBias: 'build',
+  shootBias: 'attack',
+  dribbleBias: 'attack',
+  pressIntensity: 'defence',
+  defensiveCompactness: 'defence',
+  attackingWidth: 'attack',
+  riskTolerance: 'attack',
+  counterAttackBias: 'attack',
+  staminaConservation: 'build',
+  markingAggression: 'defence',
+  keeperAggression: 'defence',
+  tempo: 'build',
+  formationDepth: 'defence',
+  supportDistance: 'build',
+};
+const POLICY_THEME: Record<string, DimTheme> = {
+  shootBase: 'attack', dribbleBase: 'attack', passFwdBase: 'attack', passBackPen: 'attack',
+  throughBase: 'attack', crossBase: 'attack', loftBase: 'attack', longShotW: 'attack',
+  runScore: 'attack', wallPassW: 'attack', thirdManW: 'attack', overlapW: 'attack',
+  chaseBase: 'defence', markBase: 'defence', interceptScore: 'defence',
+  clearBase: 'defence', clearPressureW: 'defence',
+  passBase: 'build', passLaneW: 'build', passOpenW: 'build',
+  passOutletMul: 'build', supportBase: 'build',
+};
+
 export const STYLE_DIMS: StyleDim[] = [
-  ...GENE_KEYS.map((key) => ({ key, kind: 'gene' as const, scale: 1 })),
-  ...POLICY_GENE_KEYS.map((key) => ({ key, kind: 'policy' as const, scale: DEFAULT_POLICY[key] * 1.2 })),
+  ...GENE_KEYS.map((key) => ({
+    key, kind: 'gene' as const, scale: 1, theme: GENE_THEME[key] ?? ('build' as DimTheme),
+  })),
+  ...POLICY_GENE_KEYS.map((key) => ({
+    key, kind: 'policy' as const, scale: DEFAULT_POLICY[key] * 1.2,
+    theme: POLICY_THEME[key] ?? ('build' as DimTheme),
+  })),
 ];
 
 /** A club's raw style vector in STYLE_DIMS order. */
@@ -56,10 +94,13 @@ export function dimStats(pop: number[][]): DimStat[] {
 }
 
 /** The two dims the population disagrees on most (std normalized by each
- * dim's scale) — the season's own axes of style, not designer-picked ones. */
-export function topVarianceDims(stats: DimStat[]): [number, number] {
+ * dim's scale) — the season's own axes of style, not designer-picked ones.
+ * With a theme, the ranking runs WITHIN that lens's dims only (the lens is
+ * substrate grammar; its axes are still earned by the data). */
+export function topVarianceDims(stats: DimStat[], theme?: DimTheme): [number, number] {
   const ranked = stats
     .map((s, i) => ({ i, v: s.std / STYLE_DIMS[i].scale }))
+    .filter((r) => !theme || STYLE_DIMS[r.i].theme === theme)
     .sort((a, b) => b.v - a.v || a.i - b.i);
   return [ranked[0].i, ranked[1].i];
 }
