@@ -153,16 +153,28 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
    attribute phase.
 5. **OPEN THREADS (user 2026-07-14) — TRIAGED (user: hardest → a later Fable
    model, do the rest now):**
+   > ⭐ **META (user 2026-07-14): don't hard-code presets — these are GOALS +
+   > constraints, not a rigid recipe. Fable model: use your own judgment/
+   > ingenuity.** In particular, do NOT pre-define the style archetypes (no fixed
+   > "Gegenpress / Tiki-taka" buckets I hand-picked) — build the SUBSTRATE +
+   > constraints and let the archetypes EMERGE, then discover/name them from the
+   > actual evolved data. Hand-coding presets is the exact designer-mode trap the
+   > pivot exists to avoid.
    - **Style COHERENCE** — a club's defence should RELATE to its attack (co-
      evolve, mutually influence), like real teams. Emergence-way: let coherence
      be SELECTED (fitting styles win), don't hand-wire correlations — MEASURE it
      (add cross-gene correlation to `policy-emergence`); a flat correlation = a
      substrate/selection lever to fix, not a thing to hardcode.
    - ⚠️ **FOR A LATER FABLE MODEL — Evolution VISUALIZATION module** (hardest,
-     deferred) — a big UI to SEE styles diverge: team
-     identity cards, a style-space map (teams plotted by directness × press,
-     clustering into archetypes), gene/policy drift curves, diversity over
-     generations. Substantial build — design + scope with the user first.
+     deferred) — a big UI to SEE styles diverge, the main fix for "NOT PROMINENT"
+     (see §6): team identity cards with **STYLE NAMEPLATES derived from each
+     club's ACTUAL evolved gene profile — DATA-DRIVEN, not hand-picked buckets**
+     (e.g. cluster the population and describe each emergent cluster by whatever
+     genes actually dominate it, or summarise a club by its own gene extremes;
+     let the categories + names come from the data, per the §5 META), a
+     style-space map (teams
+     plotted by directness × press, clustering into archetypes), gene/policy
+     drift curves, diversity over generations. Substantial build — scope first.
    - ⚠️ **FOR A LATER FABLE MODEL — Attribute richness** (hardest, deferred per
      user 2026-07-14; the "还有球员" half — build-up took the phase-44 slot). 5
      attrs is COARSE vs FIFA/FM and `technique` is OVERLOADED. Plan (SCOPED —
@@ -195,6 +207,29 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
      - **Balance-SENSITIVE** (passing/first-touch → completion → fm 16-21): gate
        HARD with `calibrate` (both seeds, watch completion+goals) + a player-
        archetype probe (do WG evolve dribble≫pass, MF pass≫dribble?).
+   - ⚠️ **FOR A LATER FABLE MODEL — RESOURCE BUDGET** (user 2026-07-14, the key to
+     "有限资源下涌现不同风格"). TODAY there is NO budget: evolution maxes EVERY
+     attribute (evo-drift: ST finishing → 0.99, WG pace → 0.9) → "good at
+     everything" wins → little pressure to SPECIALISE, so archetypes stay faint.
+     Add a squad points / wage CAP (a total attribute budget) so raising one attr
+     COSTS another → forced tradeoffs → fast-but-fragile vs technical-but-slow vs
+     strong-but-plodding EMERGE, each reading as a distinct playstyle. UNBIASED
+     (evolution chooses where to spend). PAIRS with the attribute split (a budget
+     is what makes "passer vs dribbler" a real choice) and with coherence (a
+     budget forces coherent tradeoffs). Likely the single highest-leverage lever
+     for the whole vision — and it makes divergence BIGGER + FASTER (see §6).
+
+6. ⭐ **CROSS-CUTTING (user 2026-07-14): the evolution's results are TOO SLOW to
+   see and NOT PROMINENT.** Divergence currently needs ~20–50 seasons to show and
+   is subtle even then. Every emergence change above must optimise for FAST +
+   VISIBLE divergence, not just eventual divergence:
+   - **Faster / bigger**: the RESOURCE BUDGET forces specialisation immediately;
+     also consider stronger selection (harder culling) / larger style-mutation
+     early, so archetypes separate in a handful of seasons, not dozens.
+   - **Prominent**: the VIZ module + **STYLE NAMEPLATES** (above) are the fix —
+     make a club's emergent identity legible at a glance, so you don't have to
+     watch closely or sim forever to SEE evolution working. This is a first-class
+     requirement for the Fable work, not a nice-to-have.
 
 ## Guardrails
 - **fm 16–21 danger zone** (marking / completion / structure — goals can invert,
