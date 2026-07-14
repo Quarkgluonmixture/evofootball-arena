@@ -108,12 +108,17 @@ export class GameApp implements GameActions {
   };
 
   // ---- highlight reel (Phase 33): HT/FT moments, auto-played ----
-  private autoHighlights = true;
+  private autoHighlights = false;
   private reel: { moments: MatchEvent[]; idx: number; endT: number; prevCam: CameraMode; prevPaused: boolean } | null = null;
   private reelBug!: HTMLDivElement;
   /** HT reel already covered everything up to this sim time (per match). */
   private reelShownUpTo = -1;
   private htReelDone = false;
+  /** Half-time / full-time presentation hold (Phase 41.1): real seconds to
+   * linger on the frozen match so the walk-to-tunnel plays. Only when auto-
+   * highlights is off (else the reel owns the whistle). */
+  private presentHoldT = 0;
+  private htHeld = false;
 
   // ---- shootout theater (Phase 24): kick-by-kick pens presentation ----
   private theater: ShootoutTheater | null = null;
@@ -303,7 +308,7 @@ export class GameApp implements GameActions {
     const dtReal = Math.min(t.deltaMS / 1000, 0.1);
     let steps = 0;
     // A shootout theater owns the stage — the sim never advances behind it.
-    if (!this.paused && !this.busy && this.match && !this.match.finished && !this.theater) {
+    if (!this.paused && !this.busy && this.match && !this.match.finished && !this.theater && this.presentHoldT <= 0) {
       this.acc += dtReal * this.speed;
       const maxSteps = this.speed * 4 + 8; // spiral-of-death guard
       while (this.acc >= DT && steps < maxSteps) {
@@ -311,12 +316,27 @@ export class GameApp implements GameActions {
         this.buffer.maybeRecord(this.match); // replay snapshots, 10 Hz sim-time
         this.acc -= DT;
         steps++;
+        // Half-time / full-time: linger ~3s so the walk-to-tunnel plays (41.1),
+        // unless auto-highlights owns the whistle with a reel.
         if (this.match.finished) {
-          this.onWatchedMatchFinished();
+          if (this.autoHighlights) this.onWatchedMatchFinished();
+          else this.presentHoldT = 3;
+          break;
+        }
+        if (this.match.phase === 'halftime' && !this.htHeld && !this.autoHighlights) {
+          this.htHeld = true;
+          this.presentHoldT = 3;
           break;
         }
       }
       if (this.acc > DT * maxSteps) this.acc = 0; // drop debt we'll never repay
+    }
+
+    // Tick the HT/FT presentation hold down on real time; at full-time, move on
+    // to the next fixture once it elapses (a manual pause freezes it too).
+    if (this.presentHoldT > 0 && !this.paused) {
+      this.presentHoldT -= dtReal;
+      if (this.presentHoldT <= 0 && this.match && this.match.finished) this.onWatchedMatchFinished();
     }
 
     // Highlight reel (Phase 33): advance to the next moment, and catch the
@@ -424,6 +444,8 @@ export class GameApp implements GameActions {
     this.selectedGid = null;
     this.acc = 0;
     this.htReelDone = false;
+    this.htHeld = false;
+    this.presentHoldT = 0;
     this.reelShownUpTo = -1;
     // The clash of identities this fixture is (32.5) — tap or kickoff clears it.
     this.clashAutoHide = true;

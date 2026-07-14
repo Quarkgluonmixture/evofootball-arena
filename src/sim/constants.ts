@@ -11,6 +11,13 @@ export const PITCH_WIDTH = 58;
 export const HALF_L = PITCH_LENGTH / 2;
 export const HALF_W = PITCH_WIDTH / 2;
 
+/** A ball over the GOAL line (a wide or over-the-bar shot) coasts this long
+ * before its corner / goal-kick is awarded (Phase 41.1) — it reads as sailing
+ * OUT, not vanishing the instant it crosses. Goal-line only; touchline kick-ins
+ * stay instant. Goal detection runs first and is frozen out during the coast,
+ * so a wide ball drifting behind the line can never register a phantom goal. */
+export const OUT_PLAY_COAST = 0.5;
+
 export const GOAL_WIDTH = 7;
 export const GOAL_DEPTH = 2.2;
 /** Crossbar height (m) — a ball crossing the goal line above this is OVER the bar. */

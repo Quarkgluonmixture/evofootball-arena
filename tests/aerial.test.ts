@@ -127,7 +127,7 @@ describe('ball flight physics', () => {
     over.ball.z = GOAL_HEIGHT + 0.6;
     over.ball.vz = 1.5;
     const score0 = over.score[0] + over.score[1];
-    for (let i = 0; i < 10; i++) over.step(DT);
+    for (let i = 0; i < 50 && (over.phase as string) !== 'restart'; i++) over.step(DT); // past the out-of-play coast (41.1)
     expect(over.score[0] + over.score[1]).toBe(score0); // no goal
     expect(over.phase).toBe('restart'); // corner or goal kick instead
 

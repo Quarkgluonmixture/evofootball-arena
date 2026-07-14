@@ -246,7 +246,7 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     m.ball.lastTouch = m.teams[0].players[4];
     m.ball.pos = { x: 46, y: 12 };
     m.ball.vel = { x: 2, y: 0 };
-    m.step(DT);
+    for (let i = 0; i < 50 && (m.phase as string) !== 'restart'; i++) m.step(DT); // past the out-of-play coast (41.1)
     expect(m.phase).toBe('restart');
     expect(m.restart!.kind).toBe('goalKick');
     expect(m.restart!.side).toBe(1);
@@ -264,7 +264,7 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     m.ball.lastTouch = m.teams[0].players[4];
     m.ball.pos = { x: 46, y: 12 };
     m.ball.vel = { x: 2, y: 0 };
-    m.step(DT);
+    for (let i = 0; i < 50 && (m.phase as string) !== 'restart'; i++) m.step(DT); // past the out-of-play coast (41.1)
     expect(m.restart!.kind).toBe('goalKick');
     // Let both brains re-coordinate (awardRestart forces a prompt update),
     // then hold the assertion through the whole dead-ball phase: the old bug

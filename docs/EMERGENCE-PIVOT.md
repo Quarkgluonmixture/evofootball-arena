@@ -152,7 +152,8 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
   `phase-28.6` (chest/thigh trap).
 - **phase-41 (the master gate)** — the 1v1 pace/technique rework above; full gate
   passed (tsc + vitest 306 + both Playwright suites 75/37 + build). HEAD
-  fingerprint `39612cec…` (behavioral shift, rebaselined). `cards.test.ts`
+  fingerprint `a0894cb4…` (phase-41 was `39612cec…`; phase-41.1 out-of-play
+  coast rebaselined it). `cards.test.ts`
   dirtiest-award test bumped to 240s matches (the per-division award needs cards;
   60s + an outcome shift once tipped seed 9 to zero — not a mechanic regression).
 - **Parked — do NOT resurrect as-is** (all fight the evo gradient / are 治标):

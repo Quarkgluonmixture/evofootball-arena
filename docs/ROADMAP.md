@@ -26,7 +26,7 @@ own), dribbleBias climbs harder, press softens; goals 2.41/1.78→2.71/2.17
 biggest hand-set bias: the shared fixed `DEFAULT_POLICY` → gene-driven** (now
 gated-in — a width gradient exists to climb, so it's no longer "just noise").
 Full audit (3 buckets), data, plan, guardrails and what's PARKED are in
-**`EMERGENCE-PIVOT.md`**. HEAD fingerprint `39612cec…`.
+**`EMERGENCE-PIVOT.md`**. HEAD fingerprint `a0894cb4…` (phase-41.1).
 
 Everything below is the pre-pivot play-report history (still valid as
 mechanics reference; the ITERATION MODEL is superseded by the above).
@@ -54,7 +54,7 @@ it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
 correct, not a regression (phase-28.5 continues the pattern — a keeper-
 family tag on the newest HEAD). Never force-retag pushed tags (worktree
-A/B baselines and CI history ride on them). HEAD fingerprint: `39612cec…`.
+A/B baselines and CI history ride on them). HEAD fingerprint: `a0894cb4…`.
 
 Awaiting play reports on: **28.6 chest trap (does a hanging ball now get
 CUSHIONED to the feet instead of headed man-to-man? does the take-down
@@ -1125,6 +1125,27 @@ compensated (would undo the width gradient). `cards.test.ts` dirtiest-award test
 bumped 60s→240s (the per-division award needs cards; an outcome shift tipped
 seed 9's short season to zero — test fragility, not a regression). Fingerprint
 `7efd3ef6…` → `39612cec…` (behavioral). NEXT: `DEFAULT_POLICY` → gene-driven.
+
+### phase-41.1 — HT/FT presentation + out-of-play polish (play reports)
+
+Three small fixes after phase-41 played well ("手感真挺不错的"). (1) A wide /
+over-the-bar shot now COASTS clear of the goal line ~0.5s before the corner /
+goal-kick is placed (`OUT_PLAY_COAST`; `Match.checkOutOfPlay` sets a `pendingOut`
+buffer that FREEZES goal detection while the ball runs out, so a wide ball
+drifting behind the line can't phantom-goal) — it reads as going OUT, not
+vanishing the instant it crosses. (2) Auto-highlights (the HT/FT reel) now
+defaults OFF (`GameApp.autoHighlights`, LeftPanel checkbox) — the whistle shows
+the pitch, not a reel. (3) At half-time and full-time the watched match holds ~3s
+of real time (`GameApp.presentHoldT`, only when auto-highlights is off) and the
+3D renderer walks players toward a halfway-line tunnel at an unhurried 1.4 m/s
+(`ThreeMatchRenderer.poseWalkOff`, render-only, gait speed-matched) instead of
+the stale-velocity run-in-place. NB the walk is a "start heading off" beat — 3s
+covers only a few metres of a 30–60m trek, by design (fluency over a long pause).
+Balance (`calibrate -- 8`, two seeds): goals 2.36/2.28 (mean 2.32, in band),
+tackles / possession flat — the coast only delays dead-ball restarts. Six tests
+updated for the coast delay (step past it before asserting the restart; the
+invariant exempts `Match.ballCoastingOut`); the 3D suite turns auto-highlights on
+before its reel check. Fingerprint `39612cec…` → `a0894cb4…` (behavioral).
 
 ---
 

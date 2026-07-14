@@ -135,10 +135,11 @@ describe('set pieces — full-match invariants', () => {
       let keeperUpCorner = false;
       while (!m.finished) {
         m.step(DT);
-        // Free balls never rest out of bounds (a crossing becomes a restart in
-        // the same step). Owned balls may poke ~0.85m past the line while a
-        // clamped-in dribbler shields them — that's the futsal-style hug.
-        if ((m.phase === 'playing' || m.phase === 'restart') && m.ball.owner === null) {
+        // Free balls never rest out of bounds — EXCEPT one coasting clear over
+        // the goal line before its restart (Phase 41.1, m.ballCoastingOut).
+        // Owned balls may poke ~0.85m past the line while a clamped-in dribbler
+        // shields them — that's the futsal-style hug.
+        if ((m.phase === 'playing' || m.phase === 'restart') && m.ball.owner === null && !m.ballCoastingOut) {
           expect(Math.abs(m.ball.pos.x)).toBeLessThanOrEqual(HALF_L + 0.01);
           expect(Math.abs(m.ball.pos.y)).toBeLessThanOrEqual(HALF_W + 0.01);
         }
@@ -191,7 +192,7 @@ describe('distribution stand-off (Phase 31.6)', () => {
     m.ball.lastTouch = m.allPlayers[4]; // team 0 touch
     m.ball.pos = v2(45.5, 8); // over team 1's goal line, wide of goal
     m.ball.vel = v2(6, 0);
-    m.step(DT);
+    for (let i = 0; i < 50 && (m.phase as string) !== 'restart'; i++) m.step(DT); // past the out-of-play coast (41.1)
     expect(m.restart?.kind).toBe('goalKick');
     expect(m.restart?.side).toBe(1);
     const receiver = m.teams[1].players[1];

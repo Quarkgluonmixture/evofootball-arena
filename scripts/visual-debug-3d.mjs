@@ -63,6 +63,9 @@ await page.waitForTimeout(2500);
 await page.screenshot({ path: `${OUT}/1-tactical.png` });
 
 // ---- watch the full first match at 32x, polling readability/feedback flags ----
+// Auto-highlights defaults OFF now (Phase 41.1): turn it ON to exercise the
+// reel; the click after the reel check toggles it back off for the live sections.
+await page.click('label:has-text("Auto highlights")');
 await page.evaluate(() => window.__evo.app.setSpeed(32));
 const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, reel: false };
 let crowdedShotTaken = false;

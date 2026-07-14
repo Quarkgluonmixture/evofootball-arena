@@ -12,7 +12,7 @@ import {
   CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS, CORNER_CLEARANCE,
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
-  KICK_COOLDOWN, MATCH_DURATION,
+  KICK_COOLDOWN, MATCH_DURATION, OUT_PLAY_COAST,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
   RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
 } from './constants';
@@ -130,6 +130,11 @@ export class Match {
   dribbleTouch: { gid: number; until: number } | null = null;
   /** Live dead-ball restart (kick-in/corner/goal kick); null in open play. */
   restart: RestartState | null = null;
+  /** A ball over the goal line, coasting clear before its corner/goal-kick is
+   * placed (Phase 41.1). Goal detection is frozen while this is set, so a wide
+   * ball drifting behind the line can't phantom-goal. Transient — lives only
+   * ~OUT_PLAY_COAST s of open play, and setupKickoff clears any stragglers. */
+  private pendingOut: { kind: RestartKind; side: Side; spot: V2; until: number } | null = null;
   /** Gid whose next carrier decision must be a kick (restart first touch). */
   restartKickGid: number | null = null;
   /** Gid whose next carrier decision is the kickoff — played BACKWARD (27.3). */
@@ -764,6 +769,17 @@ export class Match {
       ball.vel.x *= fr;
       ball.vel.y *= fr;
     }
+    // A ball already over the goal line is coasting clear (Phase 41.1): let it
+    // run, freeze goal + out re-checks, and award the restart once it's had its
+    // moment out of play.
+    if (this.pendingOut !== null) {
+      if (this.simTime >= this.pendingOut.until) {
+        const o = this.pendingOut;
+        this.pendingOut = null;
+        this.awardRestart(o.kind, o.side, o.spot);
+      }
+      return;
+    }
     if (this.checkGoal()) return;
     if (this.checkOutOfPlay()) return;
     mech.tryShotBlock(this);
@@ -859,11 +875,15 @@ export class Match {
       const sx = ball.pos.x >= 0 ? 1 : -1;
       // Team 0 attacks +x: the +x goal line is defended by team 1.
       const defSide: Side = sx > 0 ? 1 : 0;
+      // Don't snap to the spot the instant it crosses — let the ball coast out
+      // (Phase 41.1) and place the restart a beat later. Goal detection is
+      // frozen while pendingOut is set (see stepBall).
+      const until = this.simTime + OUT_PLAY_COAST;
       if (lastSide === defSide) {
         const sy = ball.pos.y >= 0 ? 1 : -1;
-        this.awardRestart('corner', (1 - defSide) as Side, v2(sx * (HALF_L - 0.6), sy * (HALF_W - 0.6)));
+        this.pendingOut = { kind: 'corner', side: (1 - defSide) as Side, spot: v2(sx * (HALF_L - 0.6), sy * (HALF_W - 0.6)), until };
       } else {
-        this.awardRestart('goalKick', defSide, v2(sx * (HALF_L - 7), 0));
+        this.pendingOut = { kind: 'goalKick', side: defSide, spot: v2(sx * (HALF_L - 7), 0), until };
       }
       return true;
     }
@@ -875,6 +895,13 @@ export class Match {
     if (Math.abs(pos.y) > BOX_WIDTH / 2) return false;
     const goalLineX = -this.teams[defSide].attackDir * HALF_L;
     return goalLineX > 0 ? pos.x >= goalLineX - BOX_DEPTH : pos.x <= goalLineX + BOX_DEPTH;
+  }
+
+  /** True while a ball is over the goal line and coasting clear before its
+   * corner/goal-kick is placed (Phase 41.1) — lets the renderer and tests tell
+   * this brief, deliberate out-of-play excursion from genuine live play. */
+  get ballCoastingOut(): boolean {
+    return this.pendingOut !== null;
   }
 
   /**
@@ -1446,6 +1473,7 @@ export class Match {
     this.pendingShot = null;
     this.lastCompletedPass = null;
     this.restart = null; // a restart pending at half-time is simply not taken
+    this.pendingOut = null; // drop any ball still coasting out (e.g. at the whistle)
     this.restartKickGid = null;
     this.restartKickKind = null;
     this.ball.reset();

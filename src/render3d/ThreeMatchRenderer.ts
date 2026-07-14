@@ -16,6 +16,11 @@ import {
 } from './PlayerModel';
 import type { FxEvent, RenderState, RenderTheme } from './RenderStateAdapter';
 import { createScene } from './SceneFactory';
+import { HALF_W } from '../sim/constants';
+import { TEAM_SIZE } from '../sim/types';
+
+/** Half-time / full-time stroll speed (m/s) — an unhurried walk to the tunnel. */
+const WALKOFF_SPEED = 1.4;
 
 /**
  * ThreeMatchRenderer — the 3D match viewer. Pure consumer of RenderState
@@ -35,6 +40,10 @@ export class ThreeMatchRenderer {
   private players = new Map<number, PlayerModel>();
   private kits: KitMaterials[] = [];
   private anim = new AnimationSystem();
+  /** Half-time / full-time walk to the tunnel (Phase 41.1, render-only): per-gid
+   * current walked position, seeded from the freeze pose and advanced each frame
+   * so players stroll off instead of the stale-velocity run-in-place. */
+  private walkOff = new Map<number, { x: number; z: number }>();
   private raycaster = new THREE.Raycaster();
   private lastState: RenderState | null = null;
   private theme: RenderTheme | null = null;
@@ -166,16 +175,25 @@ export class ThreeMatchRenderer {
       // Assign early so fx hooks (goal banner) see the post-event score.
       this.lastState = state;
       this.updateScoreBug(state);
+      // Half-time / full-time: stroll to the tunnel instead of the stale-
+      // velocity run-in-place (Phase 41.1). Render-only — the sim is frozen.
+      const walkingOff = state.phase === 'halftime' || state.phase === 'fulltime';
       for (const p of state.players) {
         const model = this.players.get(p.gid);
         if (!model) continue;
-        model.setPose(p.x, p.z, p.yaw);
-        model.setSelected(selectedGid === p.gid);
-        model.setLabel(ACTION_SHORT[p.action], flags.actionLabels);
-        this.anim.update(model, p, state, dt);
+        if (walkingOff) {
+          this.poseWalkOff(model, p, state, dt, selectedGid);
+        } else {
+          model.setPose(p.x, p.z, p.yaw);
+          model.setSelected(selectedGid === p.gid);
+          model.setLabel(ACTION_SHORT[p.action], flags.actionLabels);
+          this.anim.update(model, p, state, dt);
+        }
       }
+      if (!walkingOff && this.walkOff.size > 0) this.walkOff.clear();
       this.declutter(state, selectedGid);
-      this.updatePossessionRing(state, dt);
+      if (walkingOff) this.possessionRing.visible = false; // dead ball — no carrier
+      else this.updatePossessionRing(state, dt);
       // A diving keeper's hands carry the ball (31.9, user report "球的位置
       // 应该随着手部变化"): while the owner's body is tilted, hand the
       // BallModel a hands anchor in world space so the held ball rides the
@@ -205,6 +223,46 @@ export class ThreeMatchRenderer {
     this.goals[0].update(dt);
     this.goals[1].update(dt);
     this.renderer.render(this.scene, this.cameraCtl.camera);
+  }
+
+  /** The tunnel: a single mouth at the halfway line by one touchline. Players
+   * fan across it by squad slot so they stream off without stacking on a point. */
+  private tunnelTarget(gid: number): { x: number; z: number } {
+    const slot = gid % TEAM_SIZE; // 0..TEAM_SIZE-1
+    return { x: (slot - (TEAM_SIZE - 1) / 2) * 2.6, z: HALF_W + 1.2 };
+  }
+
+  /** Walk one model toward the tunnel at an unhurried pace (Phase 41.1). The sim
+   * has frozen the players with stale velocity (a run-in-place), so ignore its
+   * pose: advance a render-only position and feed the gait a matching speed so
+   * the legs stroll instead of sprint. */
+  private poseWalkOff(
+    model: PlayerModel, p: RenderState['players'][number], state: RenderState,
+    dt: number, selectedGid: number | null,
+  ): void {
+    let wp = this.walkOff.get(p.gid);
+    if (!wp) { wp = { x: p.x, z: p.z }; this.walkOff.set(p.gid, wp); }
+    const t = this.tunnelTarget(p.gid);
+    const dx = t.x - wp.x;
+    const dz = t.z - wp.z;
+    const d = Math.hypot(dx, dz);
+    let speed = 0;
+    if (d > 0.3) {
+      const move = Math.min(WALKOFF_SPEED * dt, d) / d;
+      wp.x += dx * move;
+      wp.z += dz * move;
+      speed = WALKOFF_SPEED;
+    }
+    const yaw = d > 0.3 ? Math.atan2(dx, dz) : model.root.rotation.y;
+    model.setPose(wp.x, wp.z, yaw);
+    model.setSelected(selectedGid === p.gid);
+    model.setLabel('', false);
+    this.anim.update(
+      model,
+      { ...p, x: wp.x, z: wp.z, yaw, speed, action: 'MakeRun', saving: false, header: false, tackling: false, stunned: false },
+      state,
+      dt,
+    );
   }
 
   /** Hide low-priority labels that would overlap on screen. */
