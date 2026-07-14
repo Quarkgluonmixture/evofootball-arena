@@ -589,7 +589,15 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   rest. Extreme appetites earn 🎲/🪄/👻 trait badges and the player card
   shows an EARNED personal nameplate (z-scored against all 96 players —
   ordinary players wear nothing) plus a 🌟 career-highlight line.
-- Save format v16 (v16 adds per-player styles — Phase 54; v15 wraps the
+- **✍ The free-agent fire-sale (Phase 55)**: a dying club's players enter
+  the market with their genes, styles, ages and CAREERS intact — a
+  retirement vacancy may sign the best like-for-like fit instead of an
+  academy newgen, but only when he clearly beats the bloodline option and
+  fits under the squad budget (so the fire-sale feeds rebuilding clubs,
+  not the rich). Careers genuinely survive their clubs; the chronicle
+  reports every signing "from the ashes".
+- Save format v17 (v17 opens the free-agent market — Phase 55; v16 adds
+  per-player styles — Phase 54; v15 wraps the
   philosophy into the coach — Phase 53;
   v6 added cards, v7 careers, v9 ratings + pass-chain
   counters, v8 the second winger + the

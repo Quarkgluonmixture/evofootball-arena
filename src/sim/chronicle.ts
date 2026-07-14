@@ -267,6 +267,15 @@ export function chronicleChapters(history: SeasonRecord[]): ChronicleChapter[] {
       });
     }
 
+    // Fire-sale signings (Phase 55): a career continuing at a new club after
+    // the old one folded is exactly the chronicle's kind of story.
+    for (const s of rec.signings ?? []) {
+      lines.push({
+        icon: '✍',
+        text: `${s.club} signed ${s.player} (${s.age}) from the ashes of ${s.from}.`,
+      });
+    }
+
     // Dugout drama (Phase 53): sackings and arrivals are always chapter-worthy
     // (the fuse makes them rare); retirements only when the man won something.
     // Successions live in the record/lineage — the chronicle stays selective.

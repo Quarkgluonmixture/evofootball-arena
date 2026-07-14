@@ -90,11 +90,19 @@ describe('player careers (Phase 26)', () => {
       const retiredFromTarget = rec.retirements!.filter((r) => r.team === target.name);
       expect(retiredFromTarget).toHaveLength(TEAM_SIZE);
       for (const r of retiredFromTarget) expect(r.age).toBe(36);
-      target.ages.forEach((age) => {
-        expect(age).toBeGreaterThanOrEqual(17);
-        expect(age).toBeLessThanOrEqual(19);
+      // Each vacancy is filled by an academy rookie — or, since Phase 55,
+      // by a fire-sale signing who ARRIVES with a past.
+      const signedHere = new Set(
+        (rec.signings ?? []).filter((s) => s.club === target.name).map((s) => s.player));
+      target.ages.forEach((age, i) => {
+        if (signedHere.has(target.playerNames[i])) {
+          expect(target.careers[i].seasons).toBeGreaterThanOrEqual(1);
+        } else {
+          expect(age).toBeGreaterThanOrEqual(17);
+          expect(age).toBeLessThanOrEqual(19);
+          expect(target.careers[i]).toEqual(emptyCareer());
+        }
       });
-      for (const c of target.careers) expect(c).toEqual(emptyCareer());
       // Newgens took fresh names (surnames may repeat across the league, but
       // the squad itself must have turned over).
       expect(target.playerNames).not.toEqual(oldNames);

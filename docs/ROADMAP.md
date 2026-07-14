@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-54 (player personal style)
+# Roadmap — shipped through phase-55 (the fire-sale; STAGE 3 COMPLETE)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -35,11 +35,17 @@ save v15; the monoculture HARD GATE passed with spread ratios 1.15/0.98).
 + ✅ **phase-54 SHIPPED** (**W2 PLAYER PERSONAL STYLE** — per-player
 appetites as multipliers on the coach's policy through the rolePolicies
 wire; badges-of-genes traits 🎲🪄👻, earned personal nameplates, career
-highlights on the player card; save v16). Next: Stage 3's last piece —
-**W3 free-agent fire-sale**, shaped by the user's play reports. HEAD
-fingerprint `aedc3b17…` (phase-54, behavioral rebaseline). ⚠ WATCH: goals band 2.44/2.96
-with styles live — play-feel still decides (dials in the blueprint
-ledger).
+highlights on the player card; save v16) + ✅ **phase-55 SHIPPED** (**W3
+the FIRE-SALE** — dead clubs' players hit the market with careers intact,
+signed only at retirement vacancies under the budget; feeds the
+rebuilding, not the rich; save v17). **STAGE 3 (the WORLD layer) IS
+COMPLETE** — chronicle + eras, coaches + the memetic channel, player
+personalities, and the fire-sale all live. Next: the user's PLAY REPORTS
+on the new world layer decide what iterates; Stage 4 (substrate
+thickening: substitutions/bench first) waits pull-based in the blueprint.
+HEAD fingerprint `85cb3f2a…` (phase-55, behavioral rebaseline). ⚠ WATCH:
+goals band 2.30/3.02 across seeds — play-feel still decides (dials in the
+blueprint ledger).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

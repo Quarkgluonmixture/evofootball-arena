@@ -348,3 +348,25 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   2.96 (in band; styles neutral-born so the 8-season window barely moves).
   Fingerprint **REBASELINED `aedc3b17…`** (behavioral: succession +
   crossover draws). vitest 354 (+8), visual 97+37.
+- ✅ **phase-55 SHIPPED** (Stage 3 **W3 — the FREE-AGENT FIRE-SALE**,
+  minimal first cut, STAGE 3 COMPLETE): a dying club's players hit
+  `League.freeAgents` (attrs + personal style + age + CAREER travel —
+  `evolution/freeAgents.ts`, pool capped 12 best/youngest, ages out at
+  31 or 3 idle seasons) instead of vanishing — the player-gene mirror of
+  the coach pool. Signing is deliberately narrow: only at a RETIREMENT
+  vacancy, like-for-like role, age ≤ 29, must beat the academy option
+  (agent total > retiree + 0.2 — the newgen would be ≈ the retiree) and
+  must fit UNDER the budget without taxing the squad (headroom =
+  cap − total + leaver). Consequence, probe-measured (`fire-sale.ts`,
+  30 gens × 2 seeds): ~1.9/season while the league is young, throttling
+  to ~0.2–0.8 at cap maturity — **the fire-sale feeds the REBUILDING,
+  not the rich** (D2 buys 42–48%); budget violations 0/960 club-seasons;
+  careers genuinely survive their clubs (a 32-goal career spanning two
+  of them). Signed careers CONTINUE (`career.seasons ≥ 1` is the
+  newgen discriminator, unit-tested); the chronicle gained ✍ "signed X
+  from the ashes of Y" lines; save v17 (empty market — no fabricated
+  ex-players). If the mature market reads too quiet in play, the dial is
+  the tax model (allow over-headroom signings, enforceBudget shaves the
+  whole squad as the fee). Calibrate 2.30 / 3.02 (in band). Fingerprint
+  **REBASELINED `85cb3f2a…`** (behavioral: signings skip newgen draws).
+  vitest 359 (+5), visual 97+37.

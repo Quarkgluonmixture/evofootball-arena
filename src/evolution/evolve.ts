@@ -72,6 +72,16 @@ export interface EvolvePlan {
   /** Sink for the dying clubs' managers (Phase 53) — the League routes them
    * into its unemployed pool, where the sack/hire channel can rehire them. */
   firedCoaches?: Coach[];
+  /** Sink for the dying clubs' SQUADS (Phase 55) — the fire-sale: player
+   * genes hit the free-agent market instead of vanishing with the club. */
+  firedSquads?: Array<{
+    club: string;
+    names: string[];
+    squad: Franchise['squad'];
+    styles: Franchise['squadStyles'];
+    ages: number[];
+    careers: Franchise['careers'];
+  }>;
 }
 
 /**
@@ -163,8 +173,17 @@ export function evolveGroup(
       const pb = pickParent(pa);
       const before = f.coach.genome;
       // The dying club's manager is out of a job — the League routes him to
-      // the unemployed pool (the memetic channel's supply side, Phase 53).
+      // the unemployed pool (the memetic channel's supply side, Phase 53) —
+      // and the squad hits the fire-sale (the player-gene channel, Phase 55).
       plan.firedCoaches?.push(f.coach);
+      plan.firedSquads?.push({
+        club: f.name,
+        names: [...f.playerNames],
+        squad: f.squad.map((p) => ({ ...p })),
+        styles: f.squadStyles.map((s) => ({ ...s })),
+        ages: [...f.ages],
+        careers: f.careers.map((c) => ({ ...c })),
+      });
       const genome = mutateGenome(
         crossoverGenomes(pa.coach.genome, pb.coach.genome, rng), rng, { rate: 0.5, scale: 0.15 },
       );

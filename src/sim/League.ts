@@ -12,7 +12,9 @@ import {
   coachRetireChance, createCoach, rookieCoachAge,
   type Coach, type CoachLegend, type PoolEntry,
 } from '../evolution/coach';
-import { evolveGroup, type EvolutionEntry, type EvolutionReport } from '../evolution/evolve';
+import {
+  evolveGroup, type EvolutionEntry, type EvolutionReport, type EvolvePlan,
+} from '../evolution/evolve';
 import { computeFitness, type FitnessBreakdown } from '../evolution/fitness';
 import {
   createFranchise, emptyAggregates, type Franchise, type SeasonAggregates,
@@ -20,9 +22,12 @@ import {
 import { GENE_KEYS, mutateGenome, type GeneKey, type TacticalGenome } from '../evolution/genome';
 import { newgenName } from '../evolution/names';
 import {
-  ATTR_KEYS, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer, randomSquad,
-  type AttrKey,
+  ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer,
+  randomSquad, squadTotal, type AttrKey,
 } from '../evolution/playerGenome';
+import {
+  FREE_AGENT_MAX_AGE, agentTotal, trimPool, type FreeAgent,
+} from '../evolution/freeAgents';
 import {
   applyPlayerStyle, neutralSquadStyles, styleFromBloodline,
 } from '../evolution/playerStyle';
@@ -156,6 +161,9 @@ export interface SeasonRecord {
   retirements?: RetirementEntry[];
   /** Cumulative points per slot after each round (slot-indexed, 7 rounds). */
   pointsTimeline?: number[][];
+  /** Fire-sale signings of the season (Phase 55) — free agents landing at
+   * a retirement vacancy, career intact. The chronicle mines these. */
+  signings?: Array<{ club: string; player: string; from: string; age: number }>;
   /** Dugout events of the season (Phase 53) — the chronicle mines these. */
   coaching?: Array<{
     event: 'sacked' | 'hired' | 'retired' | 'succeeded';
@@ -167,7 +175,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 16;
+export const SAVE_VERSION = 17;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -231,6 +239,8 @@ export class League {
   coachLegends: CoachLegend[] = [];
   /** Consecutive bottom-third-fitness seasons per slot — the sacking fuse. */
   misery: number[] = [];
+  /** The fire-sale market (Phase 55): dead clubs' players, genes intact. */
+  freeAgents: FreeAgent[] = [];
   /** Probe surface (not serialized): the coach-mobility A/B gate flips this
    * off to isolate the sack/hire channel's effect on style diversity. */
   sackingEnabled = true;
@@ -685,11 +695,13 @@ export class League {
     const zonalCount = this.franchises.filter((f) => f.coach.style.scheme === 'zonal').length;
     const zonal = { room: Math.max(0, 4 - zonalCount) };
     const fired: Coach[] = [];
+    const firedSquads: NonNullable<EvolvePlan['firedSquads']> = [];
     const entries = [
-      ...evolveGroup(d1, map1, this.generation, evoRng, { eliteN: 2, rebornN: 0, zonal, firedCoaches: fired }, taken),
+      ...evolveGroup(d1, map1, this.generation, evoRng,
+        { eliteN: 2, rebornN: 0, zonal, firedCoaches: fired, firedSquads }, taken),
       ...evolveGroup(
         d2, map2, this.generation, evoRng,
-        { eliteN: 2, rebornN: 3, parentPool: d1Ranked, zonal, firedCoaches: fired },
+        { eliteN: 2, rebornN: 3, parentPool: d1Ranked, zonal, firedCoaches: fired, firedSquads },
         taken,
       ),
     ];
@@ -709,12 +721,31 @@ export class League {
 
     record.coaching = this.coachingPass(record, promoted, entries, map1, map2);
 
+    // The FIRE-SALE intake (Phase 55): the dead clubs' players hit the
+    // market with their genes, styles, ages and careers intact.
+    for (const dead of firedSquads) {
+      dead.squad.forEach((attrs, i) => {
+        this.freeAgents.push({
+          name: dead.names[i] ?? ROLES[i],
+          role: ROLES[i],
+          attrs,
+          style: dead.styles[i],
+          age: dead.ages[i],
+          career: dead.careers[i],
+          lastClub: dead.club,
+          sinceGen: this.generation,
+        });
+      });
+    }
+    this.freeAgents = trimPool(this.freeAgents);
+
     // Careers pass (Phase 26): everyone still at their club ages a year,
     // develops along the age curve, and may retire — replaced by a newgen.
     // Reborn squads are brand-new people and sit this generation out.
     const rebornSlots = new Set(entries.filter((e) => e.kind === 'reborn').map((e) => e.slot));
     const ageRng = new Rng(hashSeed(this.seed, this.generation, 0xa9));
     const retirements: RetirementEntry[] = [];
+    const signings: NonNullable<SeasonRecord['signings']> = [];
     for (const f of this.franchises) {
       if (rebornSlots.has(f.slot)) continue;
       for (let i = 0; i < f.squad.length; i++) {
@@ -732,6 +763,28 @@ export class League {
             saves: career.saves,
           });
           this.recordLegend(f, i, career);
+          // The FIRE-SALE window (Phase 55): a retirement is the one natural
+          // vacancy. The board signs the market's best like-for-like ONLY
+          // when he clearly beats the academy option (the newgen would be
+          // ≈ the retiree's profile) AND fits under the budget without
+          // taxing the rest of the squad. Otherwise: academy as always.
+          const retireeTotal = ATTR_KEYS.reduce((a, k) => a + f.squad[i][k], 0);
+          const headroom = SQUAD_BUDGET - squadTotal(f.squad) + retireeTotal;
+          const agent = this.freeAgents
+            .filter((x) =>
+              x.role === ROLES[i] && x.age <= FREE_AGENT_MAX_AGE &&
+              agentTotal(x) > retireeTotal + 0.2 && agentTotal(x) <= headroom + 1e-9)
+            .sort((a, b) => agentTotal(b) - agentTotal(a) || a.age - b.age || a.name.localeCompare(b.name))[0];
+          if (agent) {
+            this.freeAgents = this.freeAgents.filter((x) => x !== agent);
+            f.playerNames[i] = agent.name;
+            f.squad[i] = { ...agent.attrs };
+            f.squadStyles[i] = { ...agent.style };
+            f.ages[i] = agent.age;
+            f.careers[i] = { ...agent.career }; // the career CONTINUES
+            signings.push({ club: f.name, player: agent.name, from: agent.lastClub, age: agent.age });
+            continue;
+          }
           f.playerNames[i] = newgenName(ageRng, f.playerNames);
           // Academy heredity (Phase 48): the successor is grown in the
           // club's image — the retiree's profile mutated, NOT a random
@@ -748,6 +801,14 @@ export class League {
       f.squad = enforceBudget(f.squad);
     }
     record.retirements = retirements;
+    record.signings = signings;
+
+    // The market ages with everyone else; veterans and the long-unsigned
+    // drift into quiet retirement (their genes had their chance).
+    this.freeAgents = this.freeAgents.filter((x) => {
+      x.age++;
+      return x.age <= FREE_AGENT_MAX_AGE + 2 && this.generation + 1 - x.sinceGen < 3;
+    });
 
     // Promotion & relegation by table position.
     for (const r of relegated) {
@@ -1068,6 +1129,7 @@ export class League {
       coachPool: this.coachPool,
       coachLegends: this.coachLegends,
       misery: this.misery,
+      freeAgents: this.freeAgents,
     };
   }
 
@@ -1276,6 +1338,12 @@ export class League {
       }
       data.version = 16;
     }
+    if (data.version === 16) {
+      // v16 -> v17: the free-agent fire-sale (Phase 55). The market opens
+      // EMPTY — no fabricated ex-players; the first club death fills it.
+      data.freeAgents ??= [];
+      data.version = 17;
+    }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
     Object.assign(lg, {
@@ -1297,6 +1365,7 @@ export class League {
       coachPool: data.coachPool ?? [],
       coachLegends: data.coachLegends ?? [],
       misery: data.misery ?? (data.franchises as unknown[]).map(() => 0),
+      freeAgents: data.freeAgents ?? [],
       // fromJSON builds via Object.create — class-field initializers never
       // ran, so the probe flag must be set EXPLICITLY or loaded leagues
       // silently lose the sack/hire channel (falsy undefined).
