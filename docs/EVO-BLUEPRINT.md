@@ -101,6 +101,59 @@ Parking-lot realism items admitted one at a time, each passing the test
 (rotation becomes an evolvable strategy, couples with stamina + budget),
 then form/morale, injuries, home-crowd effects, narrative-memory commentary.
 
+## The post-Stage-3 queue (2026-07-14 gap review, user-ratified) — ⭐ THE PHASE PLAN FOR 57+
+
+Stage 1–3 built the loop and the world; the gap review against the
+original vision ("好玩的,可以自我进化的,可视化优秀的,有深度的,玩着爽的,
+能自己产生多元化战术的,贴近现实足球") found the remaining distance
+concentrated in six places. **This queue IS the next phase plan** (user
+2026-07-14: "这些作为之后的phase计划") — work it in order, one phase per
+item unless a probe result re-scopes it, play reports still interleave:
+
+- **N1 — the COUNTER-PLAY probe (对战矩阵), first and gating**: style
+  diversity today is budget-forced + mutation; whether it is
+  ECOLOGICALLY self-sustaining depends on frequency-dependent payoffs
+  (does long-ball punish a press-heavy meta? does the counter beat
+  possession?). Probe: round-robin the evolved archetype teams from
+  different seeds/eras against each other, build the matchup matrix, test
+  for cycles (A>B>C>A) vs transitivity. A TRANSITIVE matrix = a dominant
+  strategy exists ⇒ the substrate needs counter-payoff work (space
+  behind a high line punished by pace/long balls etc.) before any more
+  tactical breadth is added. One probe, decides direction.
+- **N2 — SUBSTITUTIONS / the bench** (Stage 4's planned first item): the
+  biggest missing tactical surface — rotation as an evolvable strategy,
+  stamina gets strategic expression, late-game personnel responses;
+  red-card suspensions and injuries are gated behind this
+  infrastructure.
+- **N3 — COACH MATCH-DAY PRESENCE**: the coach stops being a nameplate —
+  the existing mentality/game-state adjustments get ATTRIBUTED to him
+  (gene-driven adjustment personality: the tinkerer vs the
+  trust-the-XI stoic), adjustments narrated in the feed, and ⭐ **the
+  coach STANDS ON THE TOUCHLINE in the 3D view** (user addition: a
+  visible figure by the technical area — reacting is the polish, being
+  THERE is the point). Couples with N2 once subs exist.
+- **N4 — the TACTICAL BROADCAST layer**: make evolution visible IN PLAY,
+  not just in dashboards — pressing-wave highlights, defensive-block
+  outline, a live mini formation map; presentation-grade, not the debug
+  overlays.
+- **N5 — FORMATION LIBRARY expansion**: 2×2×2 shapes is the hard ceiling
+  on visible structural diversity; add 6v6-honest attack shapes
+  (asymmetry, twin ST, deep-forward) as RARE mutations under an ecology
+  budget (the zonal lesson, failure mode 21).
+- **N6 — the market signs for STYLE FIT**: player personality's second
+  selection channel — boards weigh appetite-fit with the coach's
+  philosophy, NOT a fitness term (failure mode 22 forbids uniform-virtue
+  rewards).
+- **Honest long-term note**: 6v6 itself is the realism ceiling (three
+  lines, full-backs, midfield triangles need bodies). 11v11 is the
+  endgame question — parked DELIBERATELY (an engine-scale rewrite), not
+  forgotten.
+
+Cross-cutting polish noted in the same review (fits any phase): entity
+LINKS between the screens (click a player in the chronicle → his deep
+dive; the world should be one navigable web, not three islands), and
+crowd AUDIO (noise swelling with xG, goal eruptions) — cheap, high 爽.
+
 ## Status ledger
 
 - 2026-07-14: blueprint ratified by the user ("可以,先更新docs,然后开始自走").
