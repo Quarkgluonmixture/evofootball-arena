@@ -1,5 +1,7 @@
+import { detectEras } from '../evolution/eras';
 import { GENE_KEYS } from '../evolution/genome';
 import type { Franchise } from '../evolution/franchise';
+import { eraColor, eraDisplayName, eraIndexOf } from './chronicleView';
 import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import {
   STYLE_DIMS, dimStats, nameplateFor, styleSpread, styleValues, topVarianceDims,
@@ -411,6 +413,36 @@ export class EvolutionScreen {
       `👑 ${t('elite')} · 💀 ${t('reborn')} · ⬆⬇ ${t('promotion/relegation')} — ${t('tap a row to inspect the club')}`));
     const wall = el('div', 'dyn-wall');
     const maxGen = league.generation;
+
+    // Era strip (Phase 52): one same-sized cell per generation so it wraps in
+    // lockstep with the club rows below; names discovered from the records.
+    const eras = detectEras(league.history);
+    if (eras.length > 0) {
+      const legend = el('div', 'era-legend');
+      eras.forEach((era, i) => {
+        const chip = el('span', 'era-chip');
+        const swatch = el('span', 'era-swatch');
+        swatch.style.background = eraColor(i);
+        const range = era.start === era.end ? `S${era.start}` : `S${era.start}–${era.end}`;
+        chip.append(swatch, document.createTextNode(`${eraDisplayName(era.label)} ${range}`));
+        legend.appendChild(chip);
+      });
+      this.root.appendChild(legend);
+      const stripRow = el('div', 'era-strip');
+      stripRow.appendChild(el('div', 'dyn-name', t('Eras')));
+      const stripCells = el('div', 'dyn-cells');
+      for (let g = 1; g <= maxGen; g++) {
+        const idx = eraIndexOf(eras, g);
+        const cell = el('span', 'dyn-cell era-cell');
+        if (idx >= 0) {
+          cell.style.background = eraColor(idx);
+          cell.title = `${t('Gen')} ${g}: ${eraDisplayName(eras[idx].label)}`;
+        }
+        stripCells.appendChild(cell);
+      }
+      stripRow.appendChild(stripCells);
+      wall.appendChild(stripRow);
+    }
     for (const f of clubs) {
       const row = el('div', 'dyn-row-line');
       if (f.slot === this.selectedSlot) row.classList.add('selected');

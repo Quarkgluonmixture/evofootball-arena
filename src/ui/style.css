@@ -565,9 +565,32 @@ body.cinematic .cinematic-enter { display: none; }
 }
 .evo-details summary { color: var(--muted); cursor: pointer; margin: 10px 0; }
 .tag.nameplate { border-color: #f5c542; color: #f5c542; }
+
+/* ---- chronicle & eras (Phase 52) ---- */
+.era-legend { display: flex; gap: 12px; flex-wrap: wrap; margin: 6px 0 4px; font-size: var(--fs-xs); color: var(--muted); }
+.era-chip { display: inline-flex; align-items: center; gap: 5px; }
+.era-swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; flex: none; }
+/* Same grid metrics as .dyn-row-line so the per-generation cells wrap in
+ * lockstep with the club rows below — but NOT that class (not clickable,
+ * and the wall's row count must stay 16 slots). */
+.era-strip {
+  display: grid; grid-template-columns: 74px 1fr; gap: 8px; align-items: center;
+  padding: 2px 4px;
+}
+.era-cell { height: 6px; border-radius: 2px; }
+.era-head { display: flex; align-items: center; gap: 8px; margin: 16px 0 6px; flex-wrap: wrap; }
+.era-head .era-name { font-weight: 700; font-size: 15px; }
+.chron-chapter { border-left: 3px solid var(--accent); padding: 3px 10px; margin: 6px 0; }
+.chron-chapter summary { cursor: pointer; font-size: 13px; }
+.chron-chapter summary b { margin-right: 4px; }
+.chron-body { margin: 6px 0 4px; }
+.chron-line { margin: 3px 0; font-size: 13px; }
+.chron-icon { display: inline-block; min-width: 24px; }
+
 @media (max-width: 640px) {
   #evolution-screen { padding: 12px 10px; }
   .evo-club { grid-template-columns: 1fr; }
   .dyn-cell { width: 12px; height: 12px; font-size: 8px; }
-  .dyn-row-line { grid-template-columns: 56px 1fr; }
+  .era-cell { height: 5px; }
+  .dyn-row-line, .era-strip { grid-template-columns: 56px 1fr; }
 }

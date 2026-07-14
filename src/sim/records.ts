@@ -117,14 +117,16 @@ export function mostCupGoals(
 }
 
 /**
- * Revenge ties in the LAST season's cup: the winner had been knocked out of a
- * previous season's cup by that same opponent (matched by name — a renamed or
- * reborn franchise is a different team, so no fabricated grudges).
+ * Revenge ties in one season's cup (default: the last): the winner had been
+ * knocked out of a previous season's cup by that same opponent (matched by
+ * name — a renamed or reborn franchise is a different team, so no fabricated
+ * grudges).
  */
 export function cupRevenges(
   history: SeasonRecord[],
+  index = history.length - 1,
 ): Array<{ winnerName: string; loserName: string; round: number; prevGeneration: number }> {
-  const rec = history[history.length - 1];
+  const rec = history[index];
   if (!rec?.cup) return [];
   const nameOf = (cup: CupRecord, slot: number) => cup.entrants.find((e) => e.slot === slot)?.name ?? '?';
   const out: Array<{ winnerName: string; loserName: string; round: number; prevGeneration: number }> = [];
@@ -132,7 +134,7 @@ export function cupRevenges(
     if (tie.winner === undefined) continue;
     const winnerName = nameOf(rec.cup, tie.winner);
     const loserName = nameOf(rec.cup, tie.winner === tie.home ? tie.away : tie.home);
-    for (let i = history.length - 2; i >= 0; i--) {
+    for (let i = index - 1; i >= 0; i--) {
       const prev = history[i];
       if (!prev.cup) continue;
       const grudge = prev.cup.ties.some((t) => {
@@ -220,13 +222,15 @@ export function greatestComeback(
 }
 
 /**
- * Season-narrative helpers: compare a season against the previous one.
- * Returns human-readable story fragments (empty when nothing notable).
+ * Season-narrative helpers: compare one season (default: the last) against
+ * the previous one. Returns human-readable story fragments (empty when
+ * nothing notable). The FIRST fragment is always the title line — the
+ * chronicle relies on that to swap it for its own race-flavored headline.
  */
-export function seasonStories(history: SeasonRecord[]): string[] {
-  const rec = history[history.length - 1];
+export function seasonStories(history: SeasonRecord[], index = history.length - 1): string[] {
+  const rec = history[index];
   if (!rec) return [];
-  const prev = history[history.length - 2];
+  const prev = index > 0 ? history[index - 1] : undefined;
   const out: string[] = [];
 
   // Title retained / first-time champion.
@@ -297,7 +301,7 @@ export function seasonStories(history: SeasonRecord[]): string[] {
       if (run.wonCup) continue; // already told above
       out.push(`CUP RUN: ${run.name} reached the ${CUP_ROUND_NAMES[run.roundReached].toLowerCase()} from the Challenger Division.`);
     }
-    for (const rev of cupRevenges(history)) {
+    for (const rev of cupRevenges(history, index)) {
       out.push(`REVENGE: ${rev.winnerName} knocked out ${rev.loserName}, who had ended their cup run in Season ${rev.prevGeneration}.`);
     }
   }

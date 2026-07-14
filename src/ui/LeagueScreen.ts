@@ -1,5 +1,8 @@
+import { detectEras } from '../evolution/eras';
 import { GENE_KEYS } from '../evolution/genome';
 import { nameplates } from '../evolution/styleSpace';
+import { chronicleChapters } from '../sim/chronicle';
+import { eraColor, eraDisplayName } from './chronicleView';
 import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
@@ -20,12 +23,13 @@ import { bar, button, colorHex, el } from './dom';
 import { lang, t } from './i18n';
 import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
 
-type Tab = 'league' | 'cup' | 'report' | 'hall';
+type Tab = 'league' | 'cup' | 'report' | 'chronicle' | 'hall';
 
 const TABS: Array<[Tab, string]> = [
   ['league', t('League')],
   ['cup', t('Cup')],
   ['report', t('Season report')],
+  ['chronicle', t('📜 Chronicle')],
   ['hall', t('Hall of fame')],
 ];
 
@@ -108,6 +112,9 @@ export class LeagueScreen {
         break;
       case 'report':
         this.renderReport(league);
+        break;
+      case 'chronicle':
+        this.renderChronicle(league);
         break;
       case 'hall':
         this.renderHall(league);
@@ -590,7 +597,63 @@ export class LeagueScreen {
     }
   }
 
-  /* ---------------- Evolution tab ---------------- */
+  /* ---------------- Chronicle tab (Phase 52) ---------------- */
+
+  /**
+   * The browsable chronicle: recorded seasons grouped into ERAS (discovered
+   * from the records — evolution/eras.ts), newest era first, each season a
+   * collapsible chapter mined by sim/chronicle.ts. Pure read; sim text stays
+   * English, only the chrome localizes.
+   */
+  private renderChronicle(league: League): void {
+    if (league.history.length === 0) {
+      this.root.appendChild(el('div', 'muted empty', t('No completed seasons yet — the chronicle opens after the first one.')));
+      return;
+    }
+    this.root.appendChild(el('div', 'muted',
+      t('The recorded ages of this league — era names are discovered from the records, never preset.')));
+
+    const eras = detectEras(league.history);
+    const chapters = chronicleChapters(league.history);
+    const byGen = new Map(chapters.map((c) => [c.generation, c]));
+
+    for (let e = eras.length - 1; e >= 0; e--) {
+      const era = eras[e];
+      const head = el('div', 'era-head');
+      const swatch = el('span', 'era-swatch');
+      swatch.style.background = eraColor(e);
+      const range = era.start === era.end ? `S${era.start}` : `S${era.start}–S${era.end}`;
+      head.append(swatch, el('span', 'era-name', eraDisplayName(era.label)), el('span', 'muted', range));
+      for (const h of era.honours.slice(0, 2)) {
+        head.appendChild(el('span', 'tag', `🏆×${h.titles} ${h.name}`));
+      }
+      this.root.appendChild(head);
+
+      for (let g = era.end; g >= era.start; g--) {
+        const ch = byGen.get(g);
+        if (!ch) continue;
+        const details = document.createElement('details');
+        details.className = 'chron-chapter';
+        // The latest chapter of the latest era arrives open.
+        if (e === eras.length - 1 && g === era.end) details.open = true;
+        const summary = document.createElement('summary');
+        summary.append(
+          el('b', '', `S${ch.generation}`),
+          document.createTextNode(` ${ch.headline}`),
+        );
+        details.appendChild(summary);
+        const body = el('div', 'chron-body');
+        for (const line of ch.lines) {
+          const row = el('div', 'chron-line');
+          row.append(el('span', 'chron-icon', line.icon), document.createTextNode(line.text));
+          body.appendChild(row);
+        }
+        if (ch.lines.length === 0) body.appendChild(el('div', 'muted', '—'));
+        details.appendChild(body);
+        this.root.appendChild(details);
+      }
+    }
+  }
 
   /* ---------------- Hall of fame tab ---------------- */
 

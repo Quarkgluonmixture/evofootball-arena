@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-40 (+36.1, +28.5, +28.6)
+# Roadmap — shipped through phase-52 (the season chronicle)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -22,13 +22,18 @@ the three uniform-virtue rewards dropped; measured verdict: the SPEED target
 was already met post-budget, remaining speed levers PARKED). **STAGE 1+2 COMPLETE** +
 ✅ **phase-51 SHIPPED** (the EVOLUTION CENTER — evolution got its own screen
 per the user's report: scrubber-driven style map, club deep dive, dynasty
-wall; league screen back to pure data). Next: Stage 3 (the WORLD layer:
-W4 season chronicle first, then W1 coach entity → W2 player personal style →
-W3 fire-sale), shaped by the user's play reports of the new screen. Shipped
-since: 51.1 (four style-space lenses) + 51.2 (keeper-hold + restart-taker
-facing, behavioral). HEAD fingerprint `3f4e16b1…` (phase-51.2). ⚠ WATCH:
-goals band 2.8-3.6 across seeds after the emergence era's honest buffs —
-play-feel decides whether to pull it back (dials in the blueprint ledger).
+wall; league screen back to pure data) + 51.1 (four style-space lenses) +
+51.2 (keeper-hold + restart-taker facing, behavioral) + ✅ **phase-52
+SHIPPED** (Stage 3 opens — **W4 the SEASON CHRONICLE**: `sim/chronicle.ts`
+title-race mining from the points timeline, the era-banded 编年史 league
+tab, era names DISCOVERED from the records via `evolution/eras.ts`, and
+the era strip on the dynasty wall; ZERO sim change — fingerprint
+untouched; evidence in the blueprint ledger). Next: Stage 3 continues —
+**W1 coach entity** → W2 player personal style → W3 fire-sale, shaped by
+the user's play reports. HEAD fingerprint `3f4e16b1…` (since phase-51.2).
+⚠ WATCH: goals band 2.8-3.6 across seeds after the emergence era's honest
+buffs — play-feel decides whether to pull it back (dials in the blueprint
+ledger).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

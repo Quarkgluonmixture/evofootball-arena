@@ -329,6 +329,15 @@ const ZH: Record<string, string> = {
   '🎢 Movement records': '🎢 升降级纪录',
   '📜 Records (single season)': '📜 单赛季纪录',
   '🧬 Dynasty timeline (per league slot)': '🧬 王朝时间线(按联赛席位)',
+
+  // ---- chronicle & eras (Phase 52) ----
+  '📜 Chronicle': '📜 编年史',
+  'Age of contention': '群雄割据',
+  Eras: '纪元',
+  'The recorded ages of this league — era names are discovered from the records, never preset.':
+    '这个联盟被记录下来的时代——纪元之名从史料中涌现，绝非预设。',
+  'No completed seasons yet — the chronicle opens after the first one.':
+    '还没有完整赛季——第一季结束后编年史开卷。',
 };
 
 /** Translate a UI string; unknown keys fall back to the English source. */

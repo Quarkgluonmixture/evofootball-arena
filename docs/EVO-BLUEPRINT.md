@@ -263,3 +263,27 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   a ±0.01 knife edge, and the keeper-throw seed list re-probed (8/38 under
   the new facing geometry). vitest 323, visual 87+37, fingerprint
   `3f4e16b1…` (behavioral).
+- ✅ **phase-52 SHIPPED** (Stage 3 **W4 — the season chronicle**, zero sim
+  change): `sim/chronicle.ts` — `titleRace()` reads the points timeline
+  (mathematically-DECIDED round vs final-day, wire-to-wire, halfway rank,
+  GD titles) into a coronation-flavored headline per season; chapters reuse
+  the (now index-generalized) `seasonStories` + cup finals winner-first w/
+  derby flag (decider-meeting count as of THAT season), QF+ upsets only
+  (R16 kills are ~5/season noise), funerals compacted to one line with a
+  🏚 epitaph for fallen GIANTS (honours scan includes the death season —
+  cup-win-then-fold is the best tragedy), records-broken (needs 3 prior
+  seasons), MVP. `evolution/eras.ts` — eras SEGMENTED by population
+  style-centroid drift (min 3 seasons, split 0.045) and NAMED from data
+  per the meta-rule: dynasty (≥max(2,half) titles) → style word (the
+  nameplate z-grammar applied across TIME, minZ 0.9 — a clean two-age
+  split sits exactly at |z|=1) → contested fallback; a one-era history is
+  provably un-style-nameable (its centroid IS the mean). UI: league-screen
+  **编年史 tab** (era-banded collapsible chapters, latest open) + era
+  strip/legend riding the dynasty wall (per-generation cells wrap in
+  lockstep with the club rows). Probe `chronicle-demo.ts` (30 gens × 2
+  seeds): **5–7 eras** (mean ~4–6 seasons; mixed DYNASTY + style names —
+  Tiki-taka/直塞手术刀/两翼齐飞 ages all emerged), race data 30/30
+  chapters (4 sealed early, 7–11 wire-to-wire, 4–5 GD titles, 1–2
+  comebacks), ~13–14 lines/chapter after noise pruning. Fingerprint
+  **UNCHANGED `3f4e16b1…`** (pure derivation — the proof W4 was picked
+  for). vitest 337 (+14), visual 95 (+8) + 37.

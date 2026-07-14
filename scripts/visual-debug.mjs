@@ -261,6 +261,19 @@ const storyText = await page.locator('#league-screen .report-story').textContent
 check('mined season stories carry real text', storyText.trim().length > 20, storyText.slice(0, 60));
 await page.screenshot({ path: `${OUT}/7-season-report.png` });
 
+// Phase 52 — the chronicle tab: era-grouped, browsable season chapters.
+await page.click('#league-screen button:has-text("Chronicle")');
+await page.waitForTimeout(300);
+const eraHeads = await page.locator('#league-screen .era-head').count();
+check('chronicle groups seasons under era headers (52)', eraHeads >= 1, `${eraHeads} eras`);
+const chapterCount = await page.locator('#league-screen .chron-chapter').count();
+check('chronicle writes one chapter per season', chapterCount === 2, `${chapterCount} chapters`);
+check('the latest chapter arrives open with mined lines',
+  (await page.locator('#league-screen .chron-chapter[open] .chron-line').count()) >= 1, '');
+const headlineTxt = await page.locator('#league-screen .chron-chapter[open] summary').textContent();
+check('chapter headline reads as a title sentence', /title|crown|champion/i.test(headlineTxt), headlineTxt.slice(0, 60));
+await page.screenshot({ path: `${OUT}/7b-chronicle.png` });
+
 // Phase 51 — evolution has its OWN screen (top-bar 🧬 button; opening it
 // closes the league screen). Hero map + scrubber + club panel + dynasty wall.
 await page.click('#topbar button:has-text("Evolution")');
@@ -276,6 +289,11 @@ check('generation scrubber present', (await page.locator('#evolution-screen .evo
 await page.locator('#evolution-screen .evo-scrub').fill('0');
 await page.waitForTimeout(200);
 check('scrubbing to gen 0 keeps 64 dots', (await page.locator('#evolution-screen .evo-map circle').count()) === 64, '');
+// Phase 52 — the era strip above the wall (one cell per generation) + legend.
+check('era strip rides the dynasty wall (52)', (await page.locator('#evolution-screen .era-strip').count()) === 1, '');
+const eraCells = await page.locator('#evolution-screen .era-strip .era-cell').count();
+check('era strip covers every generation', eraCells >= 2, `${eraCells} cells`);
+check('era legend names the ages', (await page.locator('#evolution-screen .era-legend .era-chip').count()) >= 1, '');
 // Tap a dynasty row → the club panel follows.
 const dynRows = await page.locator('#evolution-screen .dyn-row-line').count();
 check('dynasty wall shows all 16 slots', dynRows === 16, `${dynRows} rows`);
@@ -334,6 +352,16 @@ const cardOverflow = await page.evaluate(() => {
   return s ? s.scrollWidth - s.clientWidth : 0;
 });
 check('phone: league cards fit 390px', cardOverflow <= 1, `overflow ${cardOverflow}px`);
+await page.click('#league-screen button:has-text("Chronicle")');
+await page.waitForTimeout(300);
+const chronOverflow = await page.evaluate(() => {
+  const s = document.querySelector('#league-screen');
+  return s ? s.scrollWidth - s.clientWidth : 0;
+});
+check('phone: chronicle fits 390px (52)', chronOverflow <= 1, `overflow ${chronOverflow}px`);
+await page.screenshot({ path: `${OUT}/13b-phone-chronicle.png` });
+await page.click('#league-screen button:has-text("League")'); // back to the league tab
+await page.waitForTimeout(200);
 await page.click('button:has-text("League table")'); // close the league screen
 
 await page.evaluate(() => window.__evo.showCeremony());

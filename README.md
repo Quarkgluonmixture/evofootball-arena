@@ -544,6 +544,21 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   league mean plus a 🌳 family tree, and every fixture opens with a
   **pre-match clash** — both teams' tactical DNA side by side (tap to
   dismiss).
+- **📜 Chronicle** (Phase 52): the league's browsable history book — every
+  recorded season a collapsible chapter under its ERA. Chapter headlines
+  mine the points timeline (`sim/chronicle.ts`): when the title was
+  mathematically decided vs a final-day/goal-difference finish,
+  wire-to-wire leads, comeback champions (4th+ at halfway); chapter lines
+  add the cup final (winner-first score, 🔥 derby flag when the pairing
+  had met in deciders before), quarter-final-plus giant killings, the
+  season's story fragments, compacted funerals with a 🏚 epitaph for
+  fallen giants (a club that lifted silverware then folded), records
+  broken, and the MVP. Eras are DISCOVERED from the records
+  (`evolution/eras.ts` — population style-centroid change-points; named
+  dynasty → style word via the nameplate grammar applied across time →
+  age of contention), and an era strip with the same names rides the
+  evolution center's dynasty wall. Pure derivation: zero sim change, the
+  determinism fingerprint is untouched.
 - **Hall of fame**: All-time greats — the best retired careers, kept forever
   (Phase 26) — Premier + Challenger title leaderboards, Evo Cup honours
   (titles + final appearances, domestic doubles, most giant killings, deepest
