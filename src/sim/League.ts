@@ -23,6 +23,9 @@ import {
   ATTR_KEYS, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer, randomSquad,
   type AttrKey,
 } from '../evolution/playerGenome';
+import {
+  applyPlayerStyle, neutralSquadStyles, styleFromBloodline,
+} from '../evolution/playerStyle';
 import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evolution/policyGenome';
 import { styleValues } from '../evolution/styleSpace';
 import { MATCH_DURATION } from './constants';
@@ -164,7 +167,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 15;
+export const SAVE_VERSION = 16;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -387,6 +390,9 @@ export class League {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
       playerNames: f.playerNames, genome: f.coach.genome, squad: f.squad,
       ages: f.ages, style: f.coach.style, policy: f.coach.policy,
+      // The personal-style wire (Phase 54): each slot's brain runs the
+      // coach's policy through the player's own appetites.
+      rolePolicies: f.squadStyles?.map((s) => applyPlayerStyle(f.coach.policy, s)),
     };
   }
 
@@ -546,6 +552,7 @@ export class League {
     // Careers bank the season BEFORE evolution can rebirth a squad away
     // (a reborn club's players vanish with their ledgers — that's the point).
     for (const f of this.franchises) {
+      const played = this.table.find((r) => r.slot === f.slot)?.played ?? 0;
       this.playerAgg[f.slot].forEach((s, i) => {
         const c = f.careers[i];
         c.seasons++;
@@ -553,6 +560,16 @@ export class League {
         c.assists += s.assists;
         c.saves += s.saves;
         c.recoveries += s.recoveries;
+        // Career highlights (Phase 54): remember the best single season.
+        if (s.goals > 0 && s.goals > (c.bestGoals ?? 0)) {
+          c.bestGoals = s.goals;
+          c.bestGoalsSeason = this.generation;
+        }
+        const avg = played > 0 ? s.rating / played : 0;
+        if (avg > (c.bestRating ?? 0)) {
+          c.bestRating = avg;
+          c.bestRatingSeason = this.generation;
+        }
       });
     }
     const standings1 = this.standings(0);
@@ -718,8 +735,10 @@ export class League {
           f.playerNames[i] = newgenName(ageRng, f.playerNames);
           // Academy heredity (Phase 48): the successor is grown in the
           // club's image — the retiree's profile mutated, NOT a random
-          // role-biased roll. What this slot's player IS is bloodline now.
+          // role-biased roll. What this slot's player IS is bloodline now —
+          // and so is HOW he likes to play (Phase 54).
           f.squad[i] = newgenFromBloodline(f.squad[i], ageRng);
+          f.squadStyles[i] = styleFromBloodline(f.squadStyles[i], ageRng);
           f.ages[i] = rookieAge(ageRng);
           f.careers[i] = emptyCareer();
         }
@@ -1247,6 +1266,15 @@ export class League {
         delete f.style;
       }
       data.version = 15;
+    }
+    if (data.version === 15) {
+      // v15 -> v16: per-player decision styles (Phase 54). Everyone loads
+      // NEUTRAL (×1.0 — the coach's policy verbatim, bit-identical play);
+      // divergence is earned through the academy from here.
+      for (const f of data.franchises as Array<{ squad: unknown[]; squadStyles?: unknown[] }>) {
+        f.squadStyles ??= neutralSquadStyles(f.squad.length);
+      }
+      data.version = 16;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

@@ -18,6 +18,12 @@ export interface PlayerCareer {
   assists: number;
   saves: number;
   recoveries: number;
+  /** Career highlight (Phase 54): the best single season, banked at season
+   * end — the player card's "remember S12" line. Absent on old ledgers. */
+  bestGoals?: number;
+  bestGoalsSeason?: number;
+  bestRating?: number;
+  bestRatingSeason?: number;
 }
 
 export const emptyCareer = (): PlayerCareer => ({

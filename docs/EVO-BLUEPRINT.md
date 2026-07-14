@@ -320,3 +320,31 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   on every LOADED league until set explicitly. Fingerprint **REBASELINED
   `086d2cd7…`** (behavioral: founding + evolution draws). vitest 346
   (coach.test +8 incl. the save-roundtrip regression), visual 97 (+2) + 37.
+- ✅ **phase-54 SHIPPED** (Stage 3 **W2 — PLAYER PERSONAL STYLE**): a small
+  per-player decision-bias gene set — `evolution/playerStyle.ts`,
+  `PLAYER_STYLE_KEYS = {shootBase, longShotW, dribbleBase, runScore,
+  wallPassW}` as MULTIPLIERS (0.6–1.5) on the coach's evolved policy,
+  wired through the long-dormant **`TeamInfo.rolePolicies`** exactly as
+  the blueprint predicted. Emergence rules held: everyone is born ×1.0
+  (the neutral bit-identity contract is unit-tested), divergence comes
+  ONLY from academy bloodline mutation at succession (σ0.15 — the probe
+  measured crossover blending + D2 rebirth pinning variance, so the
+  personal layer mutates louder than attrs; styles are FIXED for a career
+  — development changes what you can do, not who you are) + rebirth
+  crossover + selection. Traits grew three **badges-of-genes** (🎲
+  maverick / 🪄 trickster / 👻 shadow, bars at the probe-measured
+  reachable tail 1.2 — their play effect IS the multiplier, already live
+  through the policy wire; no second hand-tuned effect). **Personal
+  nameplates**: z ≥ 1.25 vs the current 96-player population over 13 dims
+  (8 attrs + 5 appetites) through a 13-word grammar — an unremarkable
+  player wears NOTHING (no 'Balanced' for people). Career highlights
+  banked on `PlayerCareer` (bestGoals/bestRating + season) → the in-match
+  player card shows traits + plate + 🌟 highlight via a GameApp
+  league-context callback. Save v16 (neutral backfill). Probe
+  `player-style.ts` 30 gens × 2 seeds: role means differentiate (MF
+  runScore −0.12 / longShotW −0.10, DF wallPassW +0.07 on 424242), 66–73
+  of 96 players wear an earned personal plate, style words (The howitzer,
+  Take-on artist, Never shoots) emerge in the tails. Calibrate 2.44 /
+  2.96 (in band; styles neutral-born so the 8-season window barely moves).
+  Fingerprint **REBASELINED `aedc3b17…`** (behavioral: succession +
+  crossover draws). vitest 354 (+8), visual 97+37.

@@ -303,7 +303,7 @@ export class LeagueScreen {
       // and their TRAITS (Phase 39, derived live from attrs+role).
       card.appendChild(el('div', 'muted',
         f.playerNames.map((n, i) => {
-          const tr = traitsOf(f.squad[i], SQUAD_ROLES[i])
+          const tr = traitsOf(f.squad[i], SQUAD_ROLES[i], f.squadStyles?.[i])
             .map((tt) => TRAIT_EMOJI[tt])
             .join('');
           return `${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;

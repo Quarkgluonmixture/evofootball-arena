@@ -12,6 +12,9 @@ import {
 } from '../render3d/RenderStateAdapter';
 import { ShootoutTheater } from '../render3d/ShootoutTheater';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
+import { playerDimStats, playerNameplate, playerVector } from '../evolution/playerStyle';
+import { SQUAD_ROLES } from '../evolution/playerGenome';
+import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import { momentWindow, pickHighlights } from '../replay/highlights';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
@@ -232,6 +235,31 @@ export class GameApp implements GameActions {
     // ---- Panels ----
     this.left = new LeftPanel(leftEl, this, this.flags);
     this.right = new RightPanel(rightEl);
+    // Player identity context (Phase 54): traits + data-driven nameplate
+    // (z vs the CURRENT 96-player population) + the career highlight —
+    // league-side knowledge the match view can't derive on its own.
+    this.right.playerContext = (teamId, index) => {
+      const f = this.league.franchises.find((x) => x.id === teamId);
+      const style = f?.squadStyles?.[index];
+      if (!f || !style) return null;
+      const stats = playerDimStats(
+        this.league.franchises.flatMap((x) =>
+          x.squad.map((p, i) => playerVector(p, x.squadStyles[i]))),
+      );
+      const chips = traitsOf(f.squad[index], SQUAD_ROLES[index], style)
+        .map((tt) => TRAIT_EMOJI[tt]).join('');
+      const c = f.careers[index];
+      const highlight = c?.bestGoals
+        ? `🌟 S${c.bestGoalsSeason}: ${c.bestGoals} goals${c.bestRating ? ` · best rating ${c.bestRating.toFixed(2)} (S${c.bestRatingSeason})` : ''}`
+        : c?.bestRating
+          ? `🌟 best rating ${c.bestRating.toFixed(2)} (S${c.bestRatingSeason})`
+          : undefined;
+      return {
+        chips,
+        plate: playerNameplate(playerVector(f.squad[index], style), stats),
+        highlight,
+      };
+    };
     this.feed = new EventFeed(feedEl);
     this.leagueScreen = new LeagueScreen(stage);
     this.leagueScreen.onSetPromotionMode = (m) => {

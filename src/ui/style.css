@@ -589,6 +589,7 @@ body.cinematic .cinematic-enter { display: none; }
 
 /* ---- the coach (Phase 53) ---- */
 .coach-line { margin: 4px 0; }
+.player-plate { margin: 3px 0; color: #f5c542; font-size: 13px; }
 .coach-block { margin: 8px 0; padding: 6px 10px; border-left: 3px solid #f5c542; font-size: 13px; }
 
 @media (max-width: 640px) {

@@ -12,7 +12,7 @@ import { runHeadless } from '../../src/sim/simRunner';
 import { Rng } from '../../src/utils/rng';
 
 // ---- 1. Newgen census ----
-const counts: Record<Trait, number> = { clinical: 0, playmaker: 0, enforcer: 0, engine: 0, poacher: 0, cat: 0 };
+const counts: Record<Trait, number> = { clinical: 0, playmaker: 0, enforcer: 0, engine: 0, poacher: 0, cat: 0, maverick: 0, trickster: 0, shadow: 0 };
 const perPlayer = [0, 0, 0]; // 0, 1, 2 traits
 let players = 0;
 {
@@ -41,7 +41,7 @@ for (const t of TRAIT_KEYS) console.log(`  ${t}: ${((counts[t] / players) * 100)
   const lg = League.fromJSON(out.league as Record<string, unknown>);
   let n = 0;
   const withTrait = { any: 0 };
-  const devCounts: Record<Trait, number> = { clinical: 0, playmaker: 0, enforcer: 0, engine: 0, poacher: 0, cat: 0 };
+  const devCounts: Record<Trait, number> = { clinical: 0, playmaker: 0, enforcer: 0, engine: 0, poacher: 0, cat: 0, maverick: 0, trickster: 0, shadow: 0 };
   for (const f of lg.franchises) {
     f.squad.forEach((a: PlayerAttributes, i: number) => {
       n++;

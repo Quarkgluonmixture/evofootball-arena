@@ -581,7 +581,16 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   difference, peak Elo, most goals, most saves) and a dynasty timeline strip
   per league slot — cell shading shows the division each season, with
   🏆/🥇/🏅/⬆️/⬇️/👑/🧬/🔄 icons (hover for parents).
-- Save format v15 (v15 wraps the philosophy into the coach — Phase 53;
+- **🧍 Player personal style (Phase 54)**: every player carries a small
+  set of decision appetites — shot-hungriness, long-shot love, take-on
+  urge, late-run drive, one-two instinct — as multipliers on his coach's
+  policy (the per-slot `rolePolicies` wire). Born neutral, inherited
+  through the academy bloodline, fixed for a career; selection does the
+  rest. Extreme appetites earn 🎲/🪄/👻 trait badges and the player card
+  shows an EARNED personal nameplate (z-scored against all 96 players —
+  ordinary players wear nothing) plus a 🌟 career-highlight line.
+- Save format v16 (v16 adds per-player styles — Phase 54; v15 wraps the
+  philosophy into the coach — Phase 53;
   v6 added cards, v7 careers, v9 ratings + pass-chain
   counters, v8 the second winger + the
   club's tactical identity; v1–v7 saves chain-migrate in place — an old

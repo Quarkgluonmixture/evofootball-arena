@@ -6,6 +6,7 @@ import { crossoverGenomes, geneDistance, mutateGenome, type TacticalGenome } fro
 import type { Franchise } from './franchise';
 import { generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { crossoverSquads, enforceBudget } from './playerGenome';
+import { crossoverSquadStyles } from './playerStyle';
 import { crossoverPolicyGenes, mutatePolicyGenes } from './policyGenome';
 
 /**
@@ -195,6 +196,9 @@ export function evolveGroup(
       // but the players themselves are NEW — young, unnamed, blank careers.
       // Budget-enforced (Phase 48): two rich parents can't compound past the cap.
       f.squad = enforceBudget(crossoverSquads(pa.squad, pb.squad, rng));
+      // Personal styles cross the same way (Phase 54) — the newborn academy
+      // inherits both parents' decision temperaments, slot by slot.
+      f.squadStyles = crossoverSquadStyles(pa.squadStyles, pb.squadStyles, rng);
       f.ages = f.squad.map(() => rookieAge(rng) + rng.int(0, 5)); // 17–24
       f.careers = f.squad.map(() => emptyCareer());
       const oldName = f.name;

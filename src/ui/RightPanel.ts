@@ -165,6 +165,13 @@ export class RightPanel {
     set('saves', String(a.saves), String(b.saves));
   }
 
+  /** Set by GameApp (Phase 54): league-side context the match view can't
+   * know — the player's personal traits/nameplate (needs the 96-player
+   * population) and his career highlight. Null = exhibition/no league. */
+  playerContext:
+    | ((teamId: string, index: number) => { chips: string; plate: string[]; highlight?: string } | null)
+    | null = null;
+
   private updatePlayerCard(match: Match, selectedGid: number | null): void {
     if (!this.playerCard) return;
     const p = selectedGid !== null ? match.allPlayers.find((x) => x.gid === selectedGid) : undefined;
@@ -200,6 +207,18 @@ export class RightPanel {
     stamRow.appendChild(el('span', 'muted', `${t('stamina')} ${(p.stamina * 100).toFixed(0)}%`));
     stamRow.appendChild(bar(p.stamina, p.stamina > 0.5 ? '#4ade80' : p.stamina > 0.25 ? '#facc15' : '#ef4444'));
     this.playerCard.appendChild(stamRow);
+
+    // Who this player IS (Phase 54): personal traits + data-driven nameplate
+    // + the career highlight, resolved league-side via GameApp.
+    const extras = this.playerContext?.(team.info.id, p.index);
+    if (extras) {
+      const bits = [
+        extras.chips,
+        ...extras.plate.map((w) => t(w)),
+      ].filter(Boolean).join(' · ');
+      if (bits) this.playerCard.appendChild(el('div', 'player-plate', bits));
+      if (extras.highlight) this.playerCard.appendChild(el('div', 'muted', extras.highlight));
+    }
 
     // Attribute genes (squad DNA) — single-hue bars: this is magnitude, not identity.
     for (const k of ATTR_KEYS) {

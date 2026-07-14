@@ -339,6 +339,23 @@ const ZH: Record<string, string> = {
   'No completed seasons yet — the chronicle opens after the first one.':
     '还没有完整赛季——第一季结束后编年史开卷。',
 
+  // ---- player personal style (Phase 54) ----
+  'Jet heels': '风驰电掣',
+  'Silk passer': '传球如丝',
+  'Glued to the boot': '球黏脚上',
+  'Killer touch': '致命一击',
+  'The wall': '一夫当关',
+  'Ox strong': '力大如牛',
+  'Iron lungs': '铁肺引擎',
+  'Spring cat': '弹簧猫',
+  'Shot hungry': '射门成瘾',
+  'Never shoots': '惜射如金',
+  'The howitzer': '重炮手',
+  'Take-on artist': '过人艺术家',
+  'Keeps it simple': '简约主义',
+  'Ghost runner': '幽灵后插',
+  'One-two brain': '撞墙脑回路',
+
   // ---- the coach (Phase 53) ----
   '👔 Dugout hall of fame': '👔 教练名人堂',
   'school of': '师承',

@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-53 (the coach)
+# Roadmap — shipped through phase-54 (player personal style)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -32,11 +32,14 @@ untouched; evidence in the blueprint ledger) + ✅ **phase-53 SHIPPED**
 (**W1 the COACH** — the philosophy embodied in a named, aging person;
 rebirth = hiring, the sack/hire memetic channel, mentor tree, dugout hall;
 save v15; the monoculture HARD GATE passed with spread ratios 1.15/0.98).
-Next: Stage 3 continues — **W2 player personal style** → W3 fire-sale,
-shaped by the user's play reports. HEAD fingerprint `086d2cd7…`
-(phase-53, behavioral rebaseline). ⚠ WATCH: goals band now 2.31/2.98 on
-the resampled populations (the 51.2 creep eased itself) — play-feel still
-decides (dials in the blueprint ledger).
++ ✅ **phase-54 SHIPPED** (**W2 PLAYER PERSONAL STYLE** — per-player
+appetites as multipliers on the coach's policy through the rolePolicies
+wire; badges-of-genes traits 🎲🪄👻, earned personal nameplates, career
+highlights on the player card; save v16). Next: Stage 3's last piece —
+**W3 free-agent fire-sale**, shaped by the user's play reports. HEAD
+fingerprint `aedc3b17…` (phase-54, behavioral rebaseline). ⚠ WATCH: goals band 2.44/2.96
+with styles live — play-feel still decides (dials in the blueprint
+ledger).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

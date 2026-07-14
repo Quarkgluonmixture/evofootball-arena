@@ -407,7 +407,7 @@ export class EvolutionScreen {
     }
     driftCol.appendChild(el('div', 'muted',
       f.playerNames.map((n, i) => {
-        const tr = traitsOf(f.squad[i], SQUAD_ROLES[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
+        const tr = traitsOf(f.squad[i], SQUAD_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
         return `${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
       }).join(' · ')));
     panel.appendChild(driftCol);

@@ -5,6 +5,7 @@ import { createCoach, type Coach } from './coach';
 import { randomGenome } from './genome';
 import { KIT_COLORS, generatePlayerNames, shortName, uniqueTeamName } from './names';
 import { SQUAD_ROLES, enforceBudget, randomSquad, type PlayerAttributes } from './playerGenome';
+import { neutralSquadStyles, type PlayerStyle } from './playerStyle';
 import { defaultPolicyGenes } from './policyGenome';
 
 /** One historical entry in a franchise's evolutionary lineage. */
@@ -39,6 +40,9 @@ export interface Franchise {
   coach: Coach;
   /** Per-player attribute genes, slot order [GK, DF, MF, WGL, WGR, ST]. */
   squad: PlayerAttributes[];
+  /** Per-player decision-style multipliers (Phase 54) — personal appetites
+   * on the coach's policy, inherited through the academy bloodline. */
+  squadStyles: PlayerStyle[];
   /** Player ages in slot order (Phase 26) — drive development & retirement. */
   ages: number[];
   /** Career ledgers in slot order — accumulated season stats + seasons. */
@@ -67,6 +71,9 @@ export function createFranchise(
     playerNames: generatePlayerNames(rng),
     coach: createCoach(rng, genome, defaultPolicyGenes(), deriveTeamStyle(genome)),
     squad: enforceBudget(randomSquad(rng)),
+    // Everyone is born playing the coach's way (×1.0) — personal style is
+    // EARNED through bloodline inheritance + selection, never seeded.
+    squadStyles: neutralSquadStyles(SQUAD_ROLES.length),
     ages: SQUAD_ROLES.map(() => veteranAge(rng)),
     careers: SQUAD_ROLES.map(() => emptyCareer()),
     elo: 1500,

@@ -217,11 +217,13 @@ export interface TeamInfo {
   policy?: Partial<PolicyParams>;
   /**
    * Per-slot policy vectors in slot order [GK, DF, MF, WGL, WGR, ST]
-   * (Phase 23). A missing entry falls back to `policy` (then
-   * DEFAULT_POLICY), so a team without this field is bit-identical to the
-   * shared-policy path.
+   * (Phase 23; since Phase 54 the personal-style wire: the coach's policy
+   * run through each player's own appetites). A missing entry falls back
+   * to `policy` (then DEFAULT_POLICY), so a team without this field is
+   * bit-identical to the shared-policy path; missing KEYS read as the
+   * hand-tuned defaults.
    */
-  rolePolicies?: PolicyParams[];
+  rolePolicies?: Partial<PolicyParams>[];
 }
 
 export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'halftime' | 'fulltime';
