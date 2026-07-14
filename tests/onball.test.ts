@@ -364,6 +364,11 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     // Since 28.1 each half runs its OWN nominal length + stoppage: the
     // second half starts where the first (plus its added time) ended, so
     // full time lands at ht.t + 60 (+ up to STOPPAGE_MAX), not at 120.
+    // The +10 tail is refBlowsNow's DOCUMENTED holds past the window — a
+    // ball in flight resolves (~2s) and a live penalty/corner/walled FK is
+    // always played (restart timeout ≤8.5s). The old +0.05 bound was an
+    // accident of trajectories that never hit the tail; phase-48's re-roll
+    // found a 1.6s in-flight overshoot (129.63 vs 128.07) on seed 42.
     let sawStoppage = false;
     for (const seed of [2, 7, 19, 42, 77, 1234]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 120 });
@@ -371,9 +376,9 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
       const ht = m.events.find((e) => e.type === 'halftime')!;
       const ft = m.events.find((e) => e.type === 'fulltime')!;
       expect(ht.t).toBeGreaterThanOrEqual(60);
-      expect(ht.t).toBeLessThanOrEqual(60 + 8 + 0.05);
+      expect(ht.t).toBeLessThanOrEqual(60 + 8 + 10);
       expect(ft.t).toBeGreaterThanOrEqual(ht.t + 60);
-      expect(ft.t).toBeLessThanOrEqual(ht.t + 60 + 8 + 0.05);
+      expect(ft.t).toBeLessThanOrEqual(ht.t + 60 + 8 + 10);
       if (ht.t > 60.1 || ft.t > ht.t + 60.1) sawStoppage = true;
     }
     expect(sawStoppage).toBe(true); // the window is actually used sometimes

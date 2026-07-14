@@ -1233,10 +1233,15 @@ export function tryTackles(match: Match): void {
   // payoff): base 0.21→0.25 with −strength·0.10 so the POPULATION mean
   // (backfill 0.4) lands exactly where phase-46 left it; the gradient is
   // what's new, not the league tackle rate.
+  // defending 0.24→0.34 (Phase 48): the wage cap exposed defending as
+  // UNDER-PRICED — whole leagues drained DF points to fund attack (evo-drift
+  // DFdef 0.63→0.52, goals →3.1-3.4). A stronger per-point payoff makes the
+  // defensive spend competitive again (swept {0.24,0.30,0.34}: reference-seed
+  // goals 3.07→2.87→2.65).
   let p =
     0.25 +
     oppTeam.genome.markingAggression * 0.2 +
-    tackler.attrs.defending * 0.24 -
+    tackler.attrs.defending * 0.34 -
     match.teams[owner.side].genome.dribbleBias * 0.08 -
     owner.attrs.dribbling * 0.18 -
     owner.attrs.strength * 0.1 -

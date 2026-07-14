@@ -216,7 +216,8 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
      - **Balance-SENSITIVE** (passing/first-touch → completion → fm 16-21): gate
        HARD with `calibrate` (both seeds, watch completion+goals) + a player-
        archetype probe (do WG evolve dribble≫pass, MF pass≫dribble?).
-   - ⚠️ **FOR A LATER FABLE MODEL — RESOURCE BUDGET** (user 2026-07-14, the key to
+   - ✅ **SHIPPED (phase-48)** — RESOURCE BUDGET (see EVO-BLUEPRINT.md's status
+     ledger for gate evidence; original scoping kept below). (user 2026-07-14, the key to
      "有限资源下涌现不同风格"). TODAY there is NO budget: evolution maxes EVERY
      attribute (evo-drift: ST finishing → 0.99, WG pace → 0.9) → "good at
      everything" wins → little pressure to SPECIALISE, so archetypes stay faint.

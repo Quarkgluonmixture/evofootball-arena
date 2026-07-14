@@ -3,7 +3,7 @@ import type { Rng } from '../utils/rng';
 import { emptyCareer, veteranAge, type PlayerCareer } from './careers';
 import { randomGenome, type TacticalGenome } from './genome';
 import { KIT_COLORS, generatePlayerNames, shortName, uniqueTeamName } from './names';
-import { SQUAD_ROLES, randomSquad, type PlayerAttributes } from './playerGenome';
+import { SQUAD_ROLES, enforceBudget, randomSquad, type PlayerAttributes } from './playerGenome';
 import { defaultPolicyGenes, type PolicyGenes } from './policyGenome';
 
 /** One historical entry in a franchise's evolutionary lineage. */
@@ -71,7 +71,7 @@ export function createFranchise(
     genome,
     policy: defaultPolicyGenes(),
     style: deriveTeamStyle(genome),
-    squad: randomSquad(rng),
+    squad: enforceBudget(randomSquad(rng)),
     ages: SQUAD_ROLES.map(() => veteranAge(rng)),
     careers: SQUAD_ROLES.map(() => emptyCareer()),
     elo: 1500,

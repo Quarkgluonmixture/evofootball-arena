@@ -15,7 +15,10 @@ import {
 } from '../evolution/franchise';
 import { GENE_KEYS, type GeneKey } from '../evolution/genome';
 import { newgenName } from '../evolution/names';
-import { ATTR_KEYS, SQUAD_ROLES, randomPlayer, randomSquad, type AttrKey } from '../evolution/playerGenome';
+import {
+  ATTR_KEYS, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer, randomSquad,
+  type AttrKey,
+} from '../evolution/playerGenome';
 import { defaultPolicyGenes } from '../evolution/policyGenome';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
@@ -646,11 +649,17 @@ export class League {
           });
           this.recordLegend(f, i, career);
           f.playerNames[i] = newgenName(ageRng, f.playerNames);
-          f.squad[i] = randomPlayer(ageRng, SQUAD_ROLES[i]);
+          // Academy heredity (Phase 48): the successor is grown in the
+          // club's image — the retiree's profile mutated, NOT a random
+          // role-biased roll. What this slot's player IS is bloodline now.
+          f.squad[i] = newgenFromBloodline(f.squad[i], ageRng);
           f.ages[i] = rookieAge(ageRng);
           f.careers[i] = emptyCareer();
         }
       }
+      // The wage cap (Phase 48): growth + intake settle onto the budget —
+      // youth development is funded by shaving everyone proportionally.
+      f.squad = enforceBudget(f.squad);
     }
     record.retirements = retirements;
 

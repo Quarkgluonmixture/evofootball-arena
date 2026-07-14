@@ -10,11 +10,14 @@ in EMERGENCE-PIVOT.md (which stays canonical for rationale, the substrate
 audit, and the turnkey 5→8 attribute scope). Stage-1: ✅ **phase-45**
 (套路 → policy genes, save v13, coherence baseline) + ✅ **phase-46**
 (keeper-aware carry cone: maxed-genome keeper-collects 9%→5%, shots 39%→43%) +
-✅ **phase-47 SHIPPED** (attrs 5→8, save v14 — WG evolve as dribblers, MF as
-passers, strength selected; finishing aim slope retuned 0.9→0.6 after its
-payoff measured dead; details in the blueprint's status ledger) →
-NEXT 48 (resource budget + academy heredity) → 49 (visibility v1) →
-50 (selection speed). HEAD fingerprint `6fa4fe32…` (phase-47, behavioral).
+✅ **phase-47** (attrs 5→8, save v14 — WG evolve as dribblers, MF as
+passers; finishing aim slope retuned after its payoff measured dead) +
+✅ **phase-48 SHIPPED** (the RESOURCE BUDGET keystone: `SQUAD_BUDGET` 24 caps
+attribute inflation dead, newgens are club BLOODLINE not random+ROLE_BIAS,
+stars-vs-balanced emerges, strength/stamina finally have a PRICE; defending repriced
+0.24→0.34 after leagues drained DF to fund attack; details in the
+blueprint's status ledger) → NEXT 49 (visibility v1) → 50 (selection
+speed). HEAD fingerprint `2c434e57…` (phase-48, behavioral).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

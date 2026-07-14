@@ -159,6 +159,7 @@ const ZH: Record<string, string> = {
   supportDistance: '接应距离',
 
   // ---- player attributes (8 since Phase 47) ----
+  budget: '预算',
   pace: '速度',
   passing: '传球',
   dribbling: '盘带',

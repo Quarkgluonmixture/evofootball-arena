@@ -4,7 +4,7 @@ import { emptyCareer, rookieAge } from './careers';
 import { crossoverGenomes, geneDistance, mutateGenome, type TacticalGenome } from './genome';
 import type { Franchise } from './franchise';
 import { generatePlayerNames, shortName, uniqueTeamName } from './names';
-import { crossoverSquads } from './playerGenome';
+import { crossoverSquads, enforceBudget } from './playerGenome';
 import { crossoverPolicyGenes, mutatePolicyGenes } from './policyGenome';
 
 /**
@@ -169,7 +169,8 @@ export function evolveGroup(
       }
       // The academy intake: attributes cross over from both parents' squads,
       // but the players themselves are NEW — young, unnamed, blank careers.
-      f.squad = crossoverSquads(pa.squad, pb.squad, rng);
+      // Budget-enforced (Phase 48): two rich parents can't compound past the cap.
+      f.squad = enforceBudget(crossoverSquads(pa.squad, pb.squad, rng));
       // The reborn club inherits a blend of both parents' styles, then mutates
       // harder (Phase 42) — a new philosophy from the crossover pool.
       f.policy = mutatePolicyGenes(crossoverPolicyGenes(pa.policy, pb.policy, rng), rng, { rate: 0.5, scale: 0.15 });

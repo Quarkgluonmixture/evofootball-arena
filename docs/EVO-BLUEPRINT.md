@@ -163,3 +163,27 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   it — phase 50's slimming target). vitest 312, visual 75+35 (two
   goal-conditional checks didn't fire this trajectory). Fingerprint
   `6fa4fe32…` (behavioral).
+- ✅ **phase-48 SHIPPED** (the RESOURCE BUDGET + academy heredity — the
+  keystone): `SQUAD_BUDGET = 24` (6 players × 8 attrs × 0.5) hard-capped by a
+  pure proportional `enforceBudget` at founding / rebirth crossover / the
+  season careers pass; **newgens are BLOODLINE now** (`newgenFromBloodline`:
+  the retiree's profile mutated σ0.12 — ROLE_BIAS retired from the newgen
+  path, survives only at founding). Budget bar on team cards (预算 spent/cap).
+  **Specialisation evidence** (`specialization.ts` + `attr-archetype.ts` +
+  evo-drift, 40-50 gens): totals PLATEAU 20.6→~23.8 at the cap (attribute
+  inflation is dead); starGap (within-squad player-total spread) rises
+  0.37→0.62 — the star-vs-role-players axis exists; MF passer split
+  strengthens +0.31→+0.55; **strength selected 0.37→0.75** and **stamina
+  goes from a downward random-walk (no price) to held ~0.56** — the budget
+  gave the physical game a price; WG pace stops inflating (0.87 peak →
+  0.83, clubs now CHOOSE between pace and dribbling); width THRIVES on 777
+  (0.50→0.75). **Root-cause fix absorbed**: the cap exposed defending as
+  under-priced — whole leagues drained DF points to fund attack (DFdef
+  0.63→0.52, goals →3.1-3.4) — `tryTackles` defending weight 0.24→0.34
+  (swept: reference-seed goals 3.07→2.65). Calibrate band 2.65 / 3.29 /
+  2.56 (777 remains a hot possession-meta outlier; dials: defending weight,
+  GK_RUSH_ENVELOPE, aim slope). Stoppage-time test bound corrected to
+  refBlowsNow's documented holds (+10 tail; the old +0.05 was trajectory
+  luck). No save bump (same schema; old saves settle onto the cap at their
+  first season end). vitest 315, visual 75+37. Fingerprint `2c434e57…`
+  (behavioral).

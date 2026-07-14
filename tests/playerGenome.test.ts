@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import {
-  ATTR_KEYS, crossoverSquads, mutateSquad, randomSquad, squadSummary, type PlayerAttributes,
+  ATTR_KEYS, SQUAD_BUDGET, crossoverSquads, enforceBudget, mutateSquad, newgenFromBloodline,
+  randomSquad, squadSummary, squadTotal, type PlayerAttributes,
 } from '../src/evolution/playerGenome';
 import { Match, type ShotLogEntry } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
@@ -54,6 +55,44 @@ describe('player genome operators', () => {
         expect(p[k]).toBeLessThanOrEqual(Math.max(a[i][k], b[i][k]) + 1e-9);
       }
     });
+  });
+
+  it('enforceBudget: over-cap squads rescale proportionally, under-cap pass through untouched', () => {
+    const hot: PlayerAttributes[] = Array.from({ length: TEAM_SIZE }, () => {
+      const p = {} as PlayerAttributes;
+      for (const k of ATTR_KEYS) p[k] = 0.9;
+      return p;
+    });
+    const capped = enforceBudget(hot);
+    expect(squadTotal(capped)).toBeCloseTo(SQUAD_BUDGET, 6);
+    // Proportional: relative allocation is untouched — the shave is unbiased.
+    const mul = SQUAD_BUDGET / squadTotal(hot);
+    expect(capped[0].pace).toBeCloseTo(0.9 * mul, 9);
+    const modest: PlayerAttributes[] = Array.from({ length: TEAM_SIZE }, () => {
+      const p = {} as PlayerAttributes;
+      for (const k of ATTR_KEYS) p[k] = 0.3;
+      return p;
+    });
+    expect(enforceBudget(modest)).toBe(modest); // same reference: no work under cap
+  });
+
+  it('newgenFromBloodline: the successor is grown in the club\'s image', () => {
+    const legend = {} as PlayerAttributes;
+    for (const k of ATTR_KEYS) legend[k] = 0.1;
+    legend.reflexes = 0.95; // a keeper dynasty's slot
+    let topStaysReflexes = 0;
+    const N = 60;
+    for (let s = 0; s < N; s++) {
+      const heir = newgenFromBloodline(legend, new Rng(1000 + s));
+      for (const k of ATTR_KEYS) {
+        expect(heir[k]).toBeGreaterThanOrEqual(0);
+        expect(heir[k]).toBeLessThanOrEqual(1);
+        expect(Math.abs(heir[k] - legend[k])).toBeLessThan(0.5); // σ0.12 mutation, not a reroll
+      }
+      const top = ATTR_KEYS.reduce((a, b) => (heir[a] >= heir[b] ? a : b));
+      if (top === 'reflexes') topStaysReflexes++;
+    }
+    expect(topStaysReflexes / N).toBeGreaterThan(0.9); // the bloodline holds
   });
 
   it('squadSummary averages attributes', () => {

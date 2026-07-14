@@ -101,6 +101,51 @@ export function crossoverSquads(a: PlayerAttributes[], b: PlayerAttributes[], rn
   });
 }
 
+/**
+ * The RESOURCE BUDGET (Phase 48 — the emergence keystone): a hard cap on a
+ * squad's total attribute points. Without it evolution maxes EVERY attribute
+ * ("good at everything" wins) and archetypes stay faint; with it, raising
+ * one attribute COSTS another and specialisation is forced. SQUAD-level on
+ * purpose: star-plus-role-players vs a balanced six is itself an evolvable
+ * axis. 24 = 6 players × 8 attrs × 0.5 — "a club is above average in some
+ * things only by being below in others". Founding squads roll ~20.6, so
+ * there is headroom to grow before the cap bites.
+ */
+export const SQUAD_BUDGET = 24;
+
+export function squadTotal(squad: PlayerAttributes[]): number {
+  let t = 0;
+  for (const p of squad) for (const k of ATTR_KEYS) t += p[k];
+  return t;
+}
+
+/** Proportional rescale onto the cap — pure, order-free, unbiased (evolution
+ * chooses where the shave lands by choosing where the points sit). */
+export function enforceBudget(squad: PlayerAttributes[]): PlayerAttributes[] {
+  const total = squadTotal(squad);
+  if (total <= SQUAD_BUDGET) return squad;
+  const mul = SQUAD_BUDGET / total;
+  return squad.map((p) => {
+    const out = {} as PlayerAttributes;
+    for (const k of ATTR_KEYS) out[k] = p[k] * mul;
+    return out;
+  });
+}
+
+/**
+ * Academy heredity (Phase 48): a retiring player's successor is grown in the
+ * club's image — the retiree's attribute profile, mutated. This retires
+ * ROLE_BIAS from the newgen path (the bias survives only at FOUNDING, where
+ * selection has nothing to work with yet): what a club's left winger IS is
+ * now bloodline, discovered by evolution, not set by us. The age curve
+ * regrows a 17-year-old's inherited profile from there.
+ */
+export function newgenFromBloodline(retiree: PlayerAttributes, rng: Rng): PlayerAttributes {
+  const out = {} as PlayerAttributes;
+  for (const k of ATTR_KEYS) out[k] = clamp01(retiree[k] + rng.gaussian() * 0.12);
+  return out;
+}
+
 /** Squad-average of each attribute — shown on team cards. */
 export function squadSummary(squad: PlayerAttributes[]): PlayerAttributes {
   const sum = {} as PlayerAttributes;

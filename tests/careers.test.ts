@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   developPlayer, emptyCareer, retireChance, rookieAge, veteranAge,
 } from '../src/evolution/careers';
-import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
+import { ATTR_KEYS, SQUAD_BUDGET, squadTotal, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { League, SAVE_VERSION } from '../src/sim/League';
 import { TEAM_SIZE } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -103,6 +103,14 @@ describe('player careers (Phase 26)', () => {
     }
     expect(rec.retirements!.length).toBeGreaterThanOrEqual(5 - (reborn.has(0) ? 5 : 0));
   });
+
+  it('the wage cap holds: after seasons of growth no squad exceeds SQUAD_BUDGET', () => {
+    const league = new League({ seed: 33, matchDuration: 30 });
+    for (let s = 0; s < 3; s++) playSeason(league);
+    for (const f of league.franchises) {
+      expect(squadTotal(f.squad)).toBeLessThanOrEqual(SQUAD_BUDGET + 1e-9);
+    }
+  }, 60000);
 
   it('long run: 12 seasons keep mean age and mean attributes in sane bands', async () => {
     const league = new League({ seed: 21, matchDuration: 30 });

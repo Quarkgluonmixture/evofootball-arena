@@ -1,5 +1,5 @@
 import { GENE_KEYS, describeIdentity } from '../evolution/genome';
-import { ATTR_KEYS, SQUAD_ROLES, squadSummary } from '../evolution/playerGenome';
+import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
   CUP_NAME, CUP_ROUNDS, CUP_ROUND_NAMES, CUP_ROUND_SHORT,
@@ -260,6 +260,16 @@ export class LeagueScreen {
       }
 
       card.appendChild(el('div', 'muted', 'squad (avg attributes):'));
+      // The wage cap (Phase 48): where a club chose to spend is its
+      // identity — the constraint is visible at a glance.
+      const spent = squadTotal(f.squad);
+      const budgetRow = el('div', 'gene-row');
+      budgetRow.appendChild(el('div', 'g-name', t('budget')));
+      const budgetBar = bar(spent / SQUAD_BUDGET, spent >= SQUAD_BUDGET - 0.05 ? '#f59e0b' : '#34d399');
+      budgetBar.style.gridColumn = '2 / 3';
+      budgetRow.appendChild(budgetBar);
+      budgetRow.appendChild(el('div', 'muted', `${spent.toFixed(1)}/${SQUAD_BUDGET}`));
+      card.appendChild(budgetRow);
       const summary = squadSummary(f.squad);
       for (const k of ATTR_KEYS) {
         const row = el('div', 'gene-row');
