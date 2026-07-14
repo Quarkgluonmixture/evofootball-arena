@@ -56,8 +56,8 @@ npm run evolve-check      # headless: 10 seasons of evolution meta-diversity
 # Browser smoke suites (optional — needs Playwright's Chromium once):
 npx playwright install chromium
 npx vite --port 5199 --strictPort &   # the suites expect the dev server here
-npm run debug:visual      # drives the real 2D game end to end (53 checks + screenshots)
-npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shootout theater (~32 checks)
+npm run debug:visual      # drives the real 2D game end to end (~78 checks + screenshots)
+npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shootout theater (~37 checks)
 ```
 
 ### Troubleshooting
@@ -144,15 +144,19 @@ src/
     formations.ts       gene- and mode-adjusted formation & support spots
     perception.ts       normalized queries: pressure, lanes, openness, intercepts
   evolution/
-    genome.ts           TacticalGenome (14 genes), mutate/crossover, identity tags
+    genome.ts           TacticalGenome (14 genes), mutate/crossover
+    playerGenome.ts     8 player attributes, the SQUAD_BUDGET wage cap, bloodline newgens
+    policyGenome.ts     evolvable decision-style weights (attack/defence/build-up/combos)
+    styleSpace.ts       the 33-dim style space: data-driven nameplates, map axes, spread
     franchise.ts        league slots with lineage across generations
-    fitness.ts          multi-factor fitness (see below)
+    fitness.ts          results-dominant fitness (see below)
     evolve.ts           elite / mutate / reborn selection
+    careers.ts traits.ts  age curves + derived player traits
     names.ts            seeded team & player names, kit palettes
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (202 tests)
+tests/                  vitest suites (323 tests)
 scripts/                headless calibration & evolution tools
 ```
 
@@ -247,10 +251,10 @@ scripts/                headless calibration & evolution tools
   pairwise separation so nobody stacks.
 - **On-ball realism (Phase 27):** players have a **body facing** that turns
   at a capped rate (a 180° cut takes ~0.5 s, not one frame). Kicks played
-  across or against the facing **spray more and arrive weaker** (technique
+  across or against the facing **spray more and arrive weaker** (passing
   tames it), and carriers prefer passes they're facing. A firm ball can get
   away on the **first touch** — ball speed, defender pressure and blind-side
-  receptions against technique — so pressing produces real **forced errors**
+  receptions against dribbling — so pressing produces real **forced errors**
   (~10 miscontrols/match, counted in the stats panel). Passes too fast to
   trap can still be **deflected** by a player who read the lane
   (defending-attr roll), and markers shadow **goal-side and ball-side** so
@@ -336,9 +340,13 @@ attribute genes (0..1) that evolve with the franchise (`evolution/playerGenome.t
 | reflexes | keeper save odds ±11pp, longer dive reach |
 
 (8 since Phase 47 — the overloaded `technique` split into passing+dribbling,
-plus the physical game as two new evolvable dimensions.) Players are born
+plus the physical game as two new evolvable dimensions. Under the Phase-48
+wage cap these trade off against each other, and it shows: wingers evolve
+dribbling≫passing, midfielders the reverse, strength gets bought once it
+must be paid for.) FOUNDING squads are born
 role-biased (keepers high reflexes, wingers high pace,
-strikers high finishing…). Since Phase 26 they are **people with careers**:
+strikers high finishing…) — after that, newgens inherit their slot's
+bloodline. Since Phase 26 they are **people with careers**:
 every player has an age and develops along an age curve — strong growth to
 ~23, a plateau through the twenties, decline from 30 (pace and stamina fade
 fastest, passing craft holds longest) — then retires in their mid-thirties and is replaced
@@ -479,17 +487,28 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   evolution), so giant killings are pure story: ⚡ feed lines, upset-marked
   brackets, doubles, Challenger cup runs and revenge ties all get mined into
   the season report and hall of fame.
-- **Fitness** (normalized within each division, weights sum to 1): points
-  0.28, goal difference 0.15, shot quality (xG/shot) 0.12, pass completion
-  0.12, recoveries 0.11, stamina efficiency 0.10, style consistency 0.12.
+- **Fitness** (results-dominant since Phase 50; normalized within each
+  division, weights sum to 1): points 0.50, goal difference 0.25, shot
+  quality (xG/shot) 0.10, style consistency 0.15. Winning is the selector;
+  HOW you win is style — the old pass-completion/recoveries/stamina rewards
+  were removed as hidden convergence pressure (they paid every club for the
+  same texture).
 - Reborn teams get a new name but keep their league slot/kit, and the lineage
   records the parents (`g7 🔄 reborn ← A × B`); promotions and relegations are
   recorded too (`⬆️`/`⬇️` in the dynasty timeline).
 - **Careers drive squad change** (Phase 26): at season end every player ages,
   develops along the age curve and may retire into a newgen; reborn clubs
-  field a young academy intake crossed over from their parents.
-- Team cards show identity tags derived from gene extremes ("Gegenpress",
-  "Counter-attack", "Low block", "High risk / chaos"…), fitness, and lineage.
+  field a young academy intake crossed over from their parents. Since Phase
+  48 a newgen is **bloodline** — the retiring slot's profile mutated, so what
+  a club's left winger IS gets inherited and selected, not rerolled — and
+  every squad settles onto the **`SQUAD_BUDGET` wage cap (24 points)**:
+  attribute inflation is impossible, youth growth is funded by shaving
+  everyone proportionally, and spending choices ARE the club's identity.
+- Team cards carry **data-driven NAMEPLATES** (Phase 49): up to two football
+  words generated from where the club actually deviates ≥1σ from the current
+  population in the 33-dim style space (genes + evolved policy) — "均衡/
+  Balanced" must be earned away, and no archetype is ever hand-picked — plus
+  fitness, lineage, and the 预算 wage-cap bar.
 
 ## Narrative & insight layer (league screen tabs)
 
@@ -510,7 +529,10 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
   and Challenger top scorers. Champions history lists every season's winners
   (pre-pyramid seasons are labeled "single-division era", pre-cup seasons
   "pre-cup era").
-- **Evolution**: sparkline tiles for all 14 tactical genes and 5 squad
+- **Evolution**: the **style-space map** (Phase 49 — clubs scattered on the
+  two dimensions this season's population disagrees on most, kit-color dots
+  with drift trails over recent seasons), the **style-divergence curve**, the
+  16×8 **budget-allocation heatmap**, then sparkline tiles for all 14 tactical genes and 8 squad
   attributes — league mean per generation, so you can watch the meta drift —
   plus the last evolution's elite/mutated/reborn entries with fitness & drift.
 - **The rebirth ceremony** (Phase 32.5): season end is an EVENT — elites
@@ -542,20 +564,23 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 
 ### Balance (from `npm run calibrate -- 8`, 240 s matches, n=568)
 
-~2.5 goals from ~10 shots (≈4.8 on target — Phase 31/32; keepers make
-**≈2.4 saves/match** plus smothers at a dribbler's feet and high-ball
-claims), plus the set-piece game: **~0.45 direct free kicks/match**
+~2.6–3.1 goals from ~9 shots (≈5 on target; the Stage-1 emergence era —
+honest breakaways (46), the finishing retune (47) and the budget's defending
+reprice (48) settled the band higher than the old ~2.5, and evolved leagues
+now genuinely differ: a possession-meta seed runs hotter than a balanced one;
+keepers make **≈2.6 saves/match** plus smothers at a dribbler's feet and
+high-ball claims), plus the set-piece game: **~0.45 direct free kicks/match**
 curled over a real 9.15m WALL (Phase 32 — the specialist steps up, the
 wall holds its line through the strike, ~0.05 FK goals/match like the
 real game),
 ~67% pass completion on CRISP passes (31.6 zip + the 31.7 cushioned
 trap: tackles+interceptions ~37/match — the ping-pong era is over; Phase 41
-dropped WON tackles ~16→11 as the 1v1 now rewards a carrier's pace+technique,
+dropped WON tackles ~16→11 as the 1v1 now rewards a carrier's pace+dribbling+strength,
 so a beaten challenge leaves the ball with the dribbler, not the tackler; long
 deliveries complete to their intended man unless a defender genuinely
 beats them to the drop, 32.1), **≈11 one-touch passes/match**
 (31.9, 一脚出球 — pressured receivers play it as it comes, accuracy
-priced by technique), and the BALL-PLAYING KEEPER (32.2 — the back-pass
+priced by dribbling), and the BALL-PLAYING KEEPER (32.2 — the back-pass
 law puts a teammate's ball at his FEET; high passBias+riskTolerance
 sides escape the press through him, hoofers boot it) —
 direct football: **~14 through balls per match**
@@ -666,7 +691,7 @@ gap (see `npm run evolve-check`).
   lineup order, league integration, save default, kick-recording equivalence
   + theater staging/skip/determinism — Phase 24), on-ball realism (turn-rate
   cap, orientation/first-touch helper monotonicity, directional
-  technique-vs-miscontrol and forward-share/error-rate windows — Phase 27),
+  dribbling-vs-miscontrol and forward-share/error-rate windows — Phase 27),
   the aerial game (parabola/bounce physics, the crossbar, focused aerial
   duels, directional crossing/long-shot tests, corner-threat and
   headed-assist structure — Phase 28), offside (kick-time judgment
@@ -698,8 +723,8 @@ gap (see `npm run evolve-check`).
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
   seasons from the UI, exercises cinematic/screenshot/share/FX-quality
   controls, and screenshots every stage to `/tmp/evofootball-shots/`
-  (53 checks). The 3D suite covers models, cameras, replay, score bug,
-  cinematic mode and the shootout theater (~32 checks; a few are conditional
+  (~78 checks). The 3D suite covers models, cameras, replay, score bug,
+  cinematic mode and the shootout theater (~37 checks; a few are conditional
   on match events). `node scripts/probe-shootout.mjs` screenshots the
   theater's key beats for eyeballing.
 
@@ -719,9 +744,15 @@ long-shot release valve (Phase 28) — offside judged at kick time with
 timed runs held at the line, restart exemptions and free-kick awards
 (Phase 29) — three-layer utility
 AI, 14 live tactical
-genes + 5 per-player attribute genes with full player careers — ages,
+genes + evolvable decision-style policy weights (Phases 42–45) + 8
+per-player attribute genes under a hard wage cap with bloodline newgens
+(Phases 47–48: wingers evolve into dribblers, midfielders into passers,
+strength gets bought once it costs something) and full player careers — ages,
 development curves, retirements, newgens and an all-time-greats ledger
-(Phase 26) — an evolving 16-team two-division pyramid
+(Phase 26) — **the emergence era (Phases 41–50,
+`docs/EVO-BLUEPRINT.md`): tactics, decision styles and player archetypes are
+EARNED by selection on an unbiased substrate, never hand-set, and made
+visible through data-driven nameplates + the style-space map** — an evolving 16-team two-division pyramid
 with promotion/relegation and followable lineage, the Evo Cup (seeded
 knockout between league rounds with giant-killing/upset/double/revenge
 narratives, penalty shootouts for drawn ties — staged kick-by-kick in 3D
@@ -736,17 +767,21 @@ replay with scrubbing/event jumps/auto-camera/slow-mo), a unified art
 direction with broadcast overlays, cinematic mode and screenshot/share tools
 (Phase 15 — `docs/ART_DIRECTION.md`), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v8 — 6v6 splices in the second winger; v1–v7 chain-migrate), Web Worker
+fame), save/load (v14 — the attribute split; v1–v13 chain-migrate, v9–v13 backfill
+the growing evolvable-policy set), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), a phone-friendly responsive layout (Phase 27), offside with
-timed runs (Phase 29), 6v6 + per-club formations + set keeper distributions (Phase 30), 202 tests, and
-browser-driving visual smoke tests for both views (53 + ~34 checks).
+timed runs (Phase 29), 6v6 + per-club formations + set keeper distributions
+(Phase 30), lane-aware shooting/cutbacks/corner routines (31), real free
+kicks (32), ratings/highlights (33), 套路 combos (34), game-state mentality
+(35), visible touches (36), Magnus curl (37), body contact (38), traits
+(39), league ecology (40), 323 tests, and
+browser-driving visual smoke tests for both views (~78 + ~37 checks).
 
-Next up: **Phase 31 — chance volume vs set defences + set-piece routines**
-(lane-aware shot selection, cutback crosses, corner routines — promoted
-from polish to fix after the formation era defused the one hardcoded
-cross; ARCHITECTURE failure mode 18 has the analysis). The Phase 31–35
-roadmap (formation evolution, real free kicks, highlights, player traits,
-league ecology) lives in [`docs/ROADMAP.md`](docs/ROADMAP.md). Start
-there — and Phase 30's first live-play reports decide the rebalance
-before anything else.
+Next up: **Stage 3 of [`docs/EVO-BLUEPRINT.md`](docs/EVO-BLUEPRINT.md) — the
+WORLD layer**: a coach entity that embodies the tactical genome and lets
+philosophies spread by movement, per-player decision-style genes, a
+free-agent fire-sale market, and a data-derived season chronicle. Stages 1–2
+(the emergence engine + its visibility) shipped as phases 45–50; the live
+plan and per-phase evidence ledger live in the blueprint, and
+[`docs/ROADMAP.md`](docs/ROADMAP.md) is still the session entry point.
