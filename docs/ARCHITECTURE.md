@@ -377,8 +377,11 @@ reach, `staminaConservation` trades jog/press sprint speed for energy,
 a style, not a global behavior).
 
 **Squad DNA** (5 attributes per player, `evolution/playerGenome.ts`):
-`pace` → ±12% speed/±10% accel (`Player` ctor); `technique` → pass noise ↓,
-tackle resistance, and since Phase 27 also first-touch security
+`pace` → ±12% speed/±10% accel (`Player` ctor) + momentum-gated 1v1 tackle
+resistance (Phase 41: `pace·clamp(len(vel)/9,0,1)·0.20` protects a carrier with
+a running start — the space→width payoff, `mechanics.tryTackles`); `technique` →
+pass noise ↓, tackle resistance (weight raised 0.12→0.18 in Phase 41), and since
+Phase 27 also first-touch security
 (`touchFailChance`), orientation-penalty relief on kicks played across the
 body (`orientationNoiseMul/PowerMul`) and dribble carry speed
 (actionExecutor); `finishing` → shot spread ↓ AND braver aim margin

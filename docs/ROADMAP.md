@@ -15,14 +15,18 @@ duel `tryTackles` ignores pace). So the "no space / midfield churn" the
 user hates is the EVOLVED equilibrium, and any hand-set width/winger fix
 fights that gradient and gets collapsed back.
 
-**Next = substrate rework, gated by evolution, in this order:** (1) fix
-the master gate — make the 1v1 reward pace + technique, gene-driven and
-UNBIASED (no role hardcoding); (2) re-run `evo-drift.ts` — success =
-`attackingWidth` stops collapsing / rises on its own; (3) then optionally
-release the biggest hand-set bias (the shared fixed `DEFAULT_POLICY` →
-gene-driven). Full audit (3 buckets), data, plan, guardrails and what's
-PARKED are in **`EMERGENCE-PIVOT.md`**. Big changes were deferred to a
-fresh session on purpose. HEAD fingerprint `7efd3ef6…`.
+**Substrate rework, gated by evolution:** (1) ✅ **phase-41 SHIPPED** — the
+master gate: the 1v1 (`mechanics.tryTackles`) now rewards carrier pace
+(momentum-gated `pace·clamp(len(vel)/9)·0.20`) + technique (0.12→0.18),
+UNBIASED (no role hardcoding); (2) ✅ `evo-drift.ts` gate PASSED —
+`attackingWidth` no longer craters (baseline 0.57→0.19 / 0.45→0.09; now
+bottoms then CLIMBS OUT to 0.27 / 0.31, seed 777 rising 0.077→0.313 on its
+own), dribbleBias climbs harder, press softens; goals 2.41/1.78→2.71/2.17
+(mean 2.44, on target), won tackles 16.8→11. (3) ⭐ **NEXT — release the
+biggest hand-set bias: the shared fixed `DEFAULT_POLICY` → gene-driven** (now
+gated-in — a width gradient exists to climb, so it's no longer "just noise").
+Full audit (3 buckets), data, plan, guardrails and what's PARKED are in
+**`EMERGENCE-PIVOT.md`**. HEAD fingerprint `39612cec…`.
 
 Everything below is the pre-pivot play-report history (still valid as
 mechanics reference; the ITERATION MODEL is superseded by the above).
@@ -50,7 +54,7 @@ it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
 correct, not a regression (phase-28.5 continues the pattern — a keeper-
 family tag on the newest HEAD). Never force-retag pushed tags (worktree
-A/B baselines and CI history ride on them). HEAD fingerprint: `7efd3ef6…`.
+A/B baselines and CI history ride on them). HEAD fingerprint: `39612cec…`.
 
 Awaiting play reports on: **28.6 chest trap (does a hanging ball now get
 CUSHIONED to the feet instead of headed man-to-man? does the take-down
@@ -1100,6 +1104,27 @@ unpressured midfield nods that became traps), goals 2.59/2.35 →
 so the game stays in its goal band; completion/possession/through-balls
 flat. A locking test pins uncontested-drop→feet vs contested→headed.
 Fingerprint `6264488f…` → `7efd3ef6…` (behavioral).
+
+### phase-41 — the emergence pivot's first cut (the 1v1 master gate)
+
+First substrate-rework phase (not a play-report mechanic — see
+[`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md)). `mechanics.tryTackles` was
+pace-BLIND: `− dribbleBias·0.08 − technique·0.12`, so beating a man with
+pace/skill never paid → `evo-drift` showed evolution selecting the no-space
+slugfest (attackingWidth 0.57→0.19 / 0.45→0.09). Now the carrier's evasion is
+`− dribbleBias·0.08 − technique·0.18 − pace·clamp(len(vel)/9,0,1)·0.20`:
+technique bumped, and PACE pays but only with a running start — momentum-gated,
+so the edge only exists where there's room to build speed (the flanks/channels),
+UNBIASED (no role check). That is the space→width link. `evo-drift` gate PASSED:
+width stops cratering and CLIMBS OUT (→0.27 / 0.31; seed 777 rises 0.077→0.313
+on its own), dribbleBias climbs harder, pressIntensity softens. Balance
+(`calibrate -- 8`, two seeds): goals 2.41/1.78 → 2.71/2.17 (mean 2.44, on the
+~2.5 target), won tackles 16.8/15.3 → 11.1/11.4 (carriers now retain — the
+mechanism working), through-balls up, completion/possession flat; NOT
+compensated (would undo the width gradient). `cards.test.ts` dirtiest-award test
+bumped 60s→240s (the per-division award needs cards; an outcome shift tipped
+seed 9's short season to zero — test fragility, not a regression). Fingerprint
+`7efd3ef6…` → `39612cec…` (behavioral). NEXT: `DEFAULT_POLICY` → gene-driven.
 
 ---
 

@@ -108,20 +108,35 @@ gradient exists to climb; otherwise it's just noise. Right now, gene-ifying
 "width" would do nothing (width still values 0). So: **fix Bucket 2 (create the
 gradients) FIRST, then release Bucket 3 (let evolution use them).**
 
-## The plan (next session)
+## The plan
 
-1. **First cut — the master gate (Bucket 2): make the 1v1 reward pace +
-   technique**, gene/attr-driven and UNBIASED (NO `if role==='WG'`; wingers must
-   EMERGE as the dribblers because evolution puts pace/dribble genes into wide
-   attacking roles). Consider space-vs-pressure payoff too.
-2. **Re-run `evo-drift.ts` — the evolution-native success gate:**
-   - ✅ success = `attackingWidth` stops collapsing / rises on its own; wing play
-     & dribbling emerge; goals healthy.
-   - ❌ fail = width still craters to ~0.1 → the substrate still doesn't reward it,
-     keep going.
-   - Do NOT judge by hand-tuned outcomes.
-3. **Then (optional, deeper): release Bucket-3 biases** — start with the shared
-   `DEFAULT_POLICY` → gene-driven, so decision style emerges.
+1. ✅ **DONE (phase-41) — the master gate (Bucket 2): the 1v1 now rewards pace +
+   technique**, gene/attr-driven and UNBIASED (no `if role==='WG'`).
+   `mechanics.tryTackles` carrier-evasion is now
+   `− dribbleBias·0.08 − technique·0.18 − pace·drive·0.20`, where
+   `drive = clamp(len(owner.vel)/9, 0, 1)` is momentum (~0 jostling in a crowd,
+   ~0.5 at the 4.5 m/s "real sprint", ~1 flat out). Momentum-gating is the
+   deliberate choice: a flat pace term would just make everyone fast-and-narrow;
+   gating on speed means pace only pays where you can BUILD speed (room ahead —
+   the flanks/channels), so it is the space→width link, not a blanket buff.
+2. ✅ **DONE — `evo-drift.ts` success gate PASSED** (50 gens × 2 seeds):
+   - `attackingWidth`: baseline cratered **0.57→0.19 / 0.45→0.09** (ended in the
+     hole). Now **bottoms then CLIMBS OUT → 0.27 / 0.31** — seed 777 rises from
+     0.077 (gen20) to 0.313 (gen50) on its own. The collapse is arrested; width
+     recovers. ✅ (not a full reversal to 0.5+, but the gate was "stops
+     collapsing / rises", and it does.)
+   - `dribbleBias` climbs harder (→0.84 / 0.90); `pressIntensity` climbs LESS
+     (777: 0.85→0.70) — the relentless-press equilibrium softened. ST-finishing
+     control still climbs (→0.91/0.96): selection machinery intact.
+   - Balance (`calibrate -- 8`, two seeds): goals **2.41/1.78 → 2.71/2.17**
+     (mean 2.44, on README's ~2.5 target — no inversion); **won tackles
+     16.8/15.3 → 11.1/11.4** (the intended mechanism: carriers now retain);
+     through-balls up, completion/possession flat. NOT compensated back — pulling
+     goals down means raising tackle success, which would undo the width gradient.
+3. ⭐ **NEXT (optional, deeper): release Bucket-3 biases** — start with the shared
+   `DEFAULT_POLICY` → gene-driven, so decision STYLE evolves. Now gated-in: step-1
+   proved a gradient exists (width climbs), so handing weights to genes is no
+   longer "just noise". Still ONE lever at a time; re-run `evo-drift` after.
 
 ## Guardrails
 - **fm 16–21 danger zone** (marking / completion / structure — goals can invert,
@@ -134,7 +149,12 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
 
 ## State at handoff
 - **Shipped** (committed + CI green): `phase-28.5` (keeper hands stay in the box),
-  `phase-28.6` (chest/thigh trap). HEAD fingerprint `7efd3ef6…`.
+  `phase-28.6` (chest/thigh trap).
+- **phase-41 (the master gate)** — the 1v1 pace/technique rework above; full gate
+  passed (tsc + vitest 306 + both Playwright suites 75/37 + build). HEAD
+  fingerprint `39612cec…` (behavioral shift, rebaselined). `cards.test.ts`
+  dirtiest-award test bumped to 240s matches (the per-division award needs cards;
+  60s + an outcome shift once tipped seed 9 to zero — not a mechanic regression).
 - **Parked — do NOT resurrect as-is** (all fight the evo gradient / are 治标):
   the winger take-on, the winger run-license, the widen-formation.
 - **Probes kept**: `evo-drift.ts` (⭐ the success gate), `churn.ts`,

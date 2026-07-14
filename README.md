@@ -544,7 +544,9 @@ curled over a real 9.15m WALL (Phase 32 — the specialist steps up, the
 wall holds its line through the strike, ~0.05 FK goals/match like the
 real game),
 ~67% pass completion on CRISP passes (31.6 zip + the 31.7 cushioned
-trap: tackles+interceptions ~45/match — the ping-pong era is over; long
+trap: tackles+interceptions ~37/match — the ping-pong era is over; Phase 41
+dropped WON tackles ~16→11 as the 1v1 now rewards a carrier's pace+technique,
+so a beaten challenge leaves the ball with the dribbler, not the tackler; long
 deliveries complete to their intended man unless a defender genuinely
 beats them to the drop, 32.1), **≈11 one-touch passes/match**
 (31.9, 一脚出球 — pressured receivers play it as it comes, accuracy

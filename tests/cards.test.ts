@@ -157,15 +157,21 @@ describe('cards (Phase 25)', () => {
   });
 
   it('league: cards aggregate into the dirtiest-team award and the save roundtrips', () => {
-    const league = new League({ seed: 9, matchDuration: 60 });
+    // Full-length matches on purpose: the dirtiest award counts ONE division's
+    // cards (League.finishSeason filters `f.division !== division`), and the
+    // booking rate scales with match length — a 60s season yields only ~0.14
+    // bookings/match and the awarded division can realistically see zero (a
+    // legitimate outcome shift once tipped seed 9 there). At 240s the awarded
+    // division collects ~25 cards, so a season without one is astronomically
+    // unlikely and the assertion is robust to future outcome drift.
+    const league = new League({ seed: 9, matchDuration: 240 });
     while (!league.seasonDone) {
       const f = league.nextFixture()!;
       league.applyResult(f, league.createMatch(f).runToCompletion());
     }
     const rec = league.finishSeason();
     expect(rec.awards).toBeDefined();
-    // At ~1 booking/match a 56-match season without a single card is
-    // astronomically unlikely — the award must exist and be non-empty.
+    // The award must exist and be non-empty.
     expect(rec.awards!.dirtiest).toBeTruthy();
     expect(rec.awards!.dirtiest!.yellows + rec.awards!.dirtiest!.reds).toBeGreaterThan(0);
     // Save/load: v6 roundtrips, and the loaded league keeps playing.

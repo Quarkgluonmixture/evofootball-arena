@@ -1203,15 +1203,25 @@ export function tryTackles(match: Match): void {
   if (!tackler) return;
   tackler.tackleAnimTimer = 0.4; // the lunge is visible either way (display only)
 
-  // Team aggression + the tackler's defending vs the carrier's close control.
-  // Base raised with Phase 27's whiff stun: a lunge is a real commitment, so
-  // the ones that connect win the ball a little more often.
+  // Team aggression + the tackler's defending vs the carrier's evasion. The
+  // carrier resists two UNBIASED ways (attrs/genes, never role): close control
+  // — technique + the team's dribble philosophy — shields and turns a standing
+  // challenge; PACE only pays with a running start. `drive` is the carrier's
+  // momentum (~0 jostling in a crowd, ~0.5 at the 4.5 m/s the cynical-foul code
+  // already treats as a "real sprint", ~1 flat out), so a quick player driving
+  // into space is hard to dispossess while a fast one hemmed in gets nothing
+  // from it. That momentum gate is the space payoff — you can only build speed
+  // where there's room ahead (the flanks, the channels), so wide/quick play
+  // earns a duel edge the compact clump can't, giving width a gradient to climb
+  // (the master gate, Phase 41). Base carries Phase 27's whiff-stun raise.
+  const drive = clamp(len(owner.vel) / 9, 0, 1);
   let p =
     0.21 +
     oppTeam.genome.markingAggression * 0.2 +
     tackler.attrs.defending * 0.24 -
     match.teams[owner.side].genome.dribbleBias * 0.08 -
-    owner.attrs.technique * 0.12;
+    owner.attrs.technique * 0.18 -
+    owner.attrs.pace * drive * 0.2;
   if (oppTeam.mode === 'Press') p += 0.06;
   if (tackler.traits.includes('enforcer')) p += 0.04; // the destroyer (Phase 39)
   p = clamp(p, 0.06, 0.7);
