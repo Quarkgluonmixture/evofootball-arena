@@ -1,4 +1,33 @@
-# Roadmap — shipped through phase-40 (+36.1, +28.5, +28.6); play-report iteration is live
+# Roadmap — shipped through phase-40 (+36.1, +28.5, +28.6)
+
+## ⭐⭐ NEXT SESSION — READ [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) FIRST (2026-07-14)
+
+**The approach changed.** The play-report-driven small-mechanic era is
+PAUSED. The user reframed the project: **tactics / skills / styles must
+EMERGE from evolution + selection, not be hand-coded** (memory
+`feedback-evofootball-emergence`). Do NOT hand-design more mechanics.
+
+Measured this session (`scripts/probes/evo-drift.ts`, 50 gens × 2 seeds):
+evolution ACTIVELY SELECTS the no-space slugfest — `attackingWidth`
+collapses **0.57→0.19 / 0.45→0.09**, `pressIntensity` climbs to
+**0.74 / 0.85** — because width/skill don't PAY in the substrate (the 1v1
+duel `tryTackles` ignores pace). So the "no space / midfield churn" the
+user hates is the EVOLVED equilibrium, and any hand-set width/winger fix
+fights that gradient and gets collapsed back.
+
+**Next = substrate rework, gated by evolution, in this order:** (1) fix
+the master gate — make the 1v1 reward pace + technique, gene-driven and
+UNBIASED (no role hardcoding); (2) re-run `evo-drift.ts` — success =
+`attackingWidth` stops collapsing / rises on its own; (3) then optionally
+release the biggest hand-set bias (the shared fixed `DEFAULT_POLICY` →
+gene-driven). Full audit (3 buckets), data, plan, guardrails and what's
+PARKED are in **`EMERGENCE-PIVOT.md`**. Big changes were deferred to a
+fresh session on purpose. HEAD fingerprint `7efd3ef6…`.
+
+Everything below is the pre-pivot play-report history (still valid as
+mechanics reference; the ITERATION MODEL is superseded by the above).
+
+---
 
 **Audience: the next coding agent (and the user).** Everything through
 **phase-40** is SHIPPED and live — the 2026-07-13 autonomous run
