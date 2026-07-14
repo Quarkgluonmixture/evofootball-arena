@@ -7,13 +7,14 @@ Visibility → World → Substrate): tactics, players, COACHES, seasons and cups
 all evolving with earned identities, fast + visible divergence, on a
 high-quality substrate. **Resume there** — it sequences everything below and
 in EMERGENCE-PIVOT.md (which stays canonical for rationale, the substrate
-audit, and the turnkey 5→8 attribute scope). Stage-1: ✅ **phase-45 SHIPPED**
-(套路 combo appetites → policy genes, save v13, coherence baseline recorded) +
-✅ **phase-46 SHIPPED** (keeper-aware carry cone — the breakaway substrate
-defect: maxed-genome keeper-collects 9%→5%, shots 39%→43%; goals 2.86/2.57,
-`GK_RUSH_ENVELOPE` is the dial; details in the blueprint's status ledger) →
-NEXT 47 (attrs 5→8) → 48 (resource budget) → 49 (visibility v1) →
-50 (selection speed). HEAD fingerprint `53bc3824…` (phase-46, behavioral).
+audit, and the turnkey 5→8 attribute scope). Stage-1: ✅ **phase-45**
+(套路 → policy genes, save v13, coherence baseline) + ✅ **phase-46**
+(keeper-aware carry cone: maxed-genome keeper-collects 9%→5%, shots 39%→43%) +
+✅ **phase-47 SHIPPED** (attrs 5→8, save v14 — WG evolve as dribblers, MF as
+passers, strength selected; finishing aim slope retuned 0.9→0.6 after its
+payoff measured dead; details in the blueprint's status ledger) →
+NEXT 48 (resource budget + academy heredity) → 49 (visibility v1) →
+50 (selection speed). HEAD fingerprint `6fa4fe32…` (phase-47, behavioral).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

@@ -135,3 +135,31 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   ball out of bounds through its whole setup (probed x=45.06, seed 99) —
   `awardRestart` now places free kicks ON the pitch. vitest 311, visual
   75+37. Fingerprint `53bc3824…` (behavioral).
+- ✅ **phase-47 SHIPPED** (attribute expansion 5→8): `pace / passing /
+  dribbling / finishing / defending / strength / stamina / reflexes` — the
+  EMERGENCE-PIVOT §5 turnkey scope executed (per-line technique remap;
+  strength → aerial + the `tryTackles` shield term, base 0.25 − strength·0.10
+  so the population mean is where 46 left it; stamina → drain ×(1.24−sta·0.6)
+  / recovery ×(0.88+sta·0.3), neutral at the 0.4 backfill; ROLE_BIAS MF →
+  passing, strength/stamina UNBIASED; traits playmaker→passing / poacher→
+  dribbling; DECLINE_W means 1.0 over 8 keys; save v14 with history
+  attrMeans upgraded). **Archetypes EMERGE** (`attr-archetype.ts`, 30 gens):
+  WG evolve dribbling≫passing (drb 0.37→0.62, split turns negative), MF
+  passing≫dribbling (+0.31→+0.45, pas →0.86), strength SELECTED 0.37→0.50;
+  stamina random-walks (weak gradient — exactly what the phase-48 budget
+  prices). evo-drift 50-gen gate PASSED both seeds (width troughs then
+  recovers 0.09→0.22 / holds 0.54-0.72; WG drb →0.67/0.75; ST fin control
+  intact). **Fallout absorbed, probed**: the finishing→conversion payoff had
+  ALREADY decayed to +1.3pp ≈ noise by phase-46 (eras of churn pushed the
+  corner dare past its optimum) and the invariant test flipped on 47's
+  re-roll — aimMargin finishing slope 0.9→0.6 (swept {0.9,.75,.6,.5} at 540
+  matches: hi-fin conversion 28.9% vs 26.8% restored); two combo-test
+  "deterministic zeros" were mentality-permeable at boundary genes (width
+  +0.15·u / tempo +0.1+0.2·passBias) — re-pinned at safe genes + a
+  unit-level license test. Calibrate 2.92 / 3.09 (top of the original
+  2.6–3.0 band; 777's league evolved a genuine short-pass meta — long balls
+  1.6, completion 71%). WATCH: headers-won drifted 3.5→~2.4-3.1 across 46-47;
+  press climbs to ~0.75 in 50-gen runs (the fitness `recoveries` term rewards
+  it — phase 50's slimming target). vitest 312, visual 75+35 (two
+  goal-conditional checks didn't fire this trajectory). Fingerprint
+  `6fa4fe32…` (behavioral).

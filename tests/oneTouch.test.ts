@@ -19,7 +19,8 @@ import { norm, sub, v2 } from '../src/utils/vec';
 const attrs = (technique = 0.5): PlayerAttributes => {
   const p = {} as PlayerAttributes;
   for (const k of ATTR_KEYS) p[k] = 0.5;
-  p.technique = technique;
+  p.passing = technique;
+  p.dribbling = technique;
   return p;
 };
 const neutralGenome = (): TacticalGenome => {
@@ -147,7 +148,7 @@ describe('一脚出球 — the first-touch window (Phase 31.9)', () => {
         // performPass's own aim, rebuilt exactly (helpers are exported).
         const toMate = norm(sub(mate.pos, receiver.pos));
         const misalign = kickMisalignment(receiver, toMate);
-        const powerMul = orientationPowerMul(misalign, receiver.attrs.technique);
+        const powerMul = orientationPowerMul(misalign, receiver.attrs.passing);
         const flight = Math.hypot(mate.pos.x - receiver.pos.x, mate.pos.y - receiver.pos.y) / (16 * powerMul);
         const lead = v2(mate.pos.x + mate.vel.x * flight * 0.8, mate.pos.y + mate.vel.y * flight * 0.8);
         const want = Math.atan2(lead.y - receiver.pos.y, lead.x - receiver.pos.x);

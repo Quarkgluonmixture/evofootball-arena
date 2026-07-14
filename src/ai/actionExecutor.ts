@@ -237,7 +237,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       target = dribbleTarget(p, match);
       // Dribbling is slower than free running; close control (technique)
       // lets a carrier keep more of their pace (Phase 27).
-      speedF = 0.84 + p.attrs.technique * 0.1;
+      speedF = 0.84 + p.attrs.dribbling * 0.1;
       break;
     }
     case 'Pass':

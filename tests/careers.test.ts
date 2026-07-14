@@ -7,9 +7,11 @@ import { League, SAVE_VERSION } from '../src/sim/League';
 import { TEAM_SIZE } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
-const neutral = (): PlayerAttributes => ({
-  pace: 0.5, technique: 0.5, finishing: 0.5, defending: 0.5, reflexes: 0.5,
-});
+const neutral = (): PlayerAttributes => {
+  const p = {} as PlayerAttributes;
+  for (const k of ATTR_KEYS) p[k] = 0.5;
+  return p;
+};
 
 /** Play a full season headless. */
 const playSeason = (league: League): ReturnType<League['finishSeason']> => {
@@ -35,7 +37,7 @@ describe('player careers (Phase 26)', () => {
         old += o[k] - 0.5;
       }
       oldPace += o.pace - 0.5;
-      oldTech += o.technique - 0.5;
+      oldTech += o.passing - 0.5;
     }
     expect(young / N).toBeGreaterThan(0.05); // clear growth at 18
     expect(old / N).toBeLessThan(-0.05); // clear decline at 33

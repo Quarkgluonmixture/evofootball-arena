@@ -39,10 +39,10 @@ function candidates(a: PlayerAttributes, role: Role): Array<{ t: Trait; excess: 
     return out; // keepers are keepers — outfield traits stay outfield
   }
   if (role !== 'DF' && a.finishing >= 0.8) out.push({ t: 'clinical', excess: a.finishing - 0.8 });
-  if (role === 'ST' && a.finishing >= 0.75 && a.technique < 0.6) {
+  if (role === 'ST' && a.finishing >= 0.75 && a.dribbling < 0.6) {
     out.push({ t: 'poacher', excess: a.finishing - 0.75 });
   }
-  if (a.technique >= 0.8) out.push({ t: 'playmaker', excess: a.technique - 0.8 });
+  if (a.passing >= 0.8) out.push({ t: 'playmaker', excess: a.passing - 0.8 });
   if (a.defending >= 0.8) out.push({ t: 'enforcer', excess: a.defending - 0.8 });
   if (a.pace >= 0.82) out.push({ t: 'engine', excess: a.pace - 0.82 });
   return out;

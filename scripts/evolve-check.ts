@@ -43,7 +43,7 @@ for (const f of [...league.franchises].sort((a, b) => a.division - b.division ||
     f.lineage.filter((l) => l.event === 'promoted').length +
     f.lineage.filter((l) => l.event === 'relegated').length;
   const s = squadSummary(f.squad);
-  const attrs = `pace ${s.pace.toFixed(2)} tec ${s.technique.toFixed(2)} fin ${s.finishing.toFixed(2)} def ${s.defending.toFixed(2)} ref ${s.reflexes.toFixed(2)}`;
+  const attrs = `pac ${s.pace.toFixed(2)} pas ${s.passing.toFixed(2)} drb ${s.dribbling.toFixed(2)} fin ${s.finishing.toFixed(2)} def ${s.defending.toFixed(2)} str ${s.strength.toFixed(2)} sta ${s.stamina.toFixed(2)} ref ${s.reflexes.toFixed(2)}`;
   console.log(
     `  D${f.division + 1} ${f.name.padEnd(18)} elo ${String(Math.round(f.elo)).padStart(4)}  ` +
     `elite×${gens} moves×${moves}  [${describeIdentity(f.genome).join(', ')}]\n` +

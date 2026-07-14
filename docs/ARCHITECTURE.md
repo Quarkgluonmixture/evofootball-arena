@@ -377,7 +377,7 @@ reach, `staminaConservation` trades jog/press sprint speed for energy,
 `attackingWidth` also scales cross appetite (Phase 28 — wide overloads are
 a style, not a global behavior).
 
-**Squad DNA** (5 attributes per player, `evolution/playerGenome.ts`):
+**Squad DNA** (8 attributes per player since Phase 47 — `technique` split into `passing` (striking a ball at a target) + `dribbling` (the ball at the feet), plus `strength` (aerial + the shield term in `tryTackles`) and `stamina` (drain/recovery scaling in `Player.physicsStep`, both centred neutral at 0.4); `evolution/playerGenome.ts`):
 `pace` → ±12% speed/±10% accel (`Player` ctor) + momentum-gated 1v1 tackle
 resistance (Phase 41: `pace·clamp(len(vel)/9,0,1)·0.20` protects a carrier with
 a running start — the space→width payoff, `mechanics.tryTackles`); `technique` →

@@ -232,7 +232,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // shoot from 17-22m. The pass only outscores from the band's edge.
     const sFK =
       (0.55 + (28 - dGoal) * 0.02) *
-      (0.7 + (p.attrs.finishing + p.attrs.technique * 0.5) * 0.45) *
+      (0.7 + (p.attrs.finishing + p.attrs.dribbling * 0.5) * 0.45) *
       (0.85 + g.shootBias * 0.3);
     cands.push({ action: 'Shoot', score: sFK, why: `direct free kick · ${dGoal.toFixed(0)}m out` });
   }
@@ -296,7 +296,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // — prefer passes we're facing; technique loosens the constraint. Kept
       // mild: the time-gated stagnation tilt is the forward driver, this is
       // only the body-mechanics tiebreak. Restart takers are exempt.
-      if (!mustKick) mul *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
+      if (!mustKick) mul *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.passing * 0.5);
       // A pivot lays off short after holding up (Phase 28).
       if (layingOff && d < 12) mul *= 1.3;
 
@@ -369,7 +369,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         if (gain > 0) sL *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk) * 0.8;
         else sL *= 1 + gain * W.passBackPen;
         sL *= mul;
-        sL *= 0.55 + p.attrs.technique * 0.75;
+        sL *= 0.55 + p.attrs.passing * 0.75;
         if (sL > bestLoft) {
           bestLoft = sL;
           bestLoftMate = mate;
@@ -391,7 +391,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       cands.push({
         action: 'LoftedPass',
         score: bestLoft,
-        why: `switch to ${bestLoftMate.name} · open ${bestLoftOpen.toFixed(2)} · air lane ${airLane.toFixed(2)} · technique ${p.attrs.technique.toFixed(2)}`,
+        why: `switch to ${bestLoftMate.name} · open ${bestLoftOpen.toFixed(2)} · air lane ${airLane.toFixed(2)} · passing ${p.attrs.passing.toFixed(2)}`,
       });
     }
   }
@@ -453,7 +453,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         const landOpen = 1 - pressureAt(point, opp.players);
         const sC =
           (W.throughBase + landOpen * W.throughOpenW * 0.8 + behind * W.throughBehindW) *
-          gates * 0.9 * (0.55 + p.attrs.technique * 0.7) *
+          gates * 0.9 * (0.55 + p.attrs.passing * 0.7) *
           (0.7 + airLane * 0.3) * (0.4 + 0.6 * clamp01(landOpen / 0.45)) * bounceMul;
         if (sC > bestThrough) {
           bestThrough = sC;
@@ -512,7 +512,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // ball goes SHORT or to the ARC (Phase 31): then the whip is the
       // fallback, not the plan.
       if (isCorner) sX *= kickRoutine === 'short' || kickRoutine === 'arcCutback' ? 0.7 : 2.4;
-      if (!mustKick) sX *= 1 - kickMisalignment(p, norm(sub(bestCrossMate.pos, p.pos))) * 0.12 * (1 - p.attrs.technique * 0.5);
+      if (!mustKick) sX *= 1 - kickMisalignment(p, norm(sub(bestCrossMate.pos, p.pos))) * 0.12 * (1 - p.attrs.passing * 0.5);
       cands.push({
         action: 'Cross',
         score: sX,
@@ -572,14 +572,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     if (backToGoal > 0.45 && pressure > 0.2) {
       const sH =
         (0.36 + pressure * 0.3) *
-        (0.55 + p.attrs.technique * 0.7) *
+        (0.55 + p.attrs.dribbling * 0.7) *
         (0.5 + backToGoal * 0.5) *
         (1 - stagnation * 0.5) *
         (cornerHold ? 1 + team.mentality.holding * 0.6 : 1);
       cands.push({
         action: 'HoldUp',
         score: sH,
-        why: `back to goal · pressure ${pressure.toFixed(2)} · technique ${p.attrs.technique.toFixed(2)}`,
+        why: `back to goal · pressure ${pressure.toFixed(2)} · dribbling ${p.attrs.dribbling.toFixed(2)}`,
       });
     }
   }

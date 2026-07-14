@@ -31,10 +31,10 @@ const gene = (key: string): number => {
 const f2 = (v: number): string => v.toFixed(3);
 
 console.log(`seed ${SEED}, ${GENS} generations`);
-console.log('gen | WGpace WGtec | STfin(ctrl) | DFdef | width dribble tempo press');
+console.log('gen | WGpace WGdrb | STfin(ctrl) | DFdef | width dribble tempo press');
 const row = (g: number): void => {
   console.log(
-    `${String(g).padStart(3)} | ${f2(roleAttr('WG', 'pace'))} ${f2(roleAttr('WG', 'technique'))} | ` +
+    `${String(g).padStart(3)} | ${f2(roleAttr('WG', 'pace'))} ${f2(roleAttr('WG', 'dribbling'))} | ` +
     `${f2(roleAttr('ST', 'finishing'))} | ${f2(roleAttr('DF', 'defending'))} | ` +
     `${f2(gene('attackingWidth'))} ${f2(gene('dribbleBias'))} ${f2(gene('tempo'))} ${f2(gene('pressIntensity'))}`,
   );

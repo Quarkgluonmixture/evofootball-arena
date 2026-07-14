@@ -47,12 +47,17 @@ export function veteranAge(rng: Rng): number {
   return rng.int(20, 32);
 }
 
-/** Pace fades fastest with age; technique holds longest. */
+/** Pace and stamina fade fastest with age; passing craft holds longest.
+ * The weights MEAN 1.0 across the 8 keys (Phase 47) so a full career still
+ * round-trips and league attribute means stay stable across generations. */
 const DECLINE_W: Record<AttrKey, number> = {
   pace: 1.5,
-  technique: 0.6,
+  passing: 0.6,
+  dribbling: 0.8,
   finishing: 0.9,
   defending: 0.9,
+  strength: 1.0,
+  stamina: 1.2,
   reflexes: 1.1,
 };
 

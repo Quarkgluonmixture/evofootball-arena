@@ -22,7 +22,8 @@ import { dist, v2 } from '../src/utils/vec';
 const attrs = (technique: number): PlayerAttributes => {
   const p = {} as PlayerAttributes;
   for (const k of ATTR_KEYS) p[k] = 0.5;
-  p.technique = technique;
+  p.passing = technique;
+  p.dribbling = technique;
   return p;
 };
 

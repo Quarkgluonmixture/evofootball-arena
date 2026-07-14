@@ -561,7 +561,7 @@ export class Match {
       // capture happens ON the ball (touchTimer ≥ the decision settle).
       // A continuing carry (recollect) chains faster — 一步一带 lives here:
       // regather, half a beat, next touch (36.1).
-      p.touchTimer = (recollect ? 0.2 : 0.32) + (1 - p.attrs.technique) * 0.08;
+      p.touchTimer = (recollect ? 0.2 : 0.32) + (1 - p.attrs.dribbling) * 0.08;
     } else if (gkFeet) {
       p.action = { type: 'Dribble', scores: p.action.scores }; // at his feet, on the clock
     } else if (this.restartKickGid !== p.gid) {
@@ -1151,7 +1151,7 @@ export class Match {
           let taker = reachable[0];
           let bestS = -Infinity;
           for (const p of reachable) {
-            const s = p.attrs.finishing + p.attrs.technique * 0.5;
+            const s = p.attrs.finishing + p.attrs.passing * 0.5;
             if (s > bestS) {
               bestS = s;
               taker = p;

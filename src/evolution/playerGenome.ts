@@ -5,33 +5,50 @@ import type { Role } from '../sim/types';
 /**
  * Squad DNA — per-player attribute genes that evolve alongside the team's
  * TacticalGenome. All 0..1, all read directly by the simulation, so squads
- * feel physically different, not just tactically different:
+ * feel physically different, not just tactically different.
+ *
+ * Phase 47 (the emergence pivot's attribute richness): the overloaded
+ * `technique` split into PASSING (striking a ball toward a target: pass /
+ * cross / through / loft / switch / FK accuracy+power) and DRIBBLING
+ * (the ball at the feet: first touch, carry control, tackle resistance,
+ * 1v1s, shot strike), plus two new payoff dimensions:
  *
  *   pace       top speed & acceleration (±12% speed)
- *   technique  pass accuracy + dribble control (tackle resistance)
+ *   passing    pass/cross/loft accuracy and power retention
+ *   dribbling  first touch, carry push control, beating a man
  *   finishing  shot accuracy (spread) and shot confidence
  *   defending  tackle success + tighter marking
+ *   strength   aerial power, shielding, the 50/50 shove
+ *   stamina    fatigue drain & recovery rate
  *   reflexes   keeper save probability & reach (matters mostly for the GK)
  */
 export interface PlayerAttributes {
   pace: number;
-  technique: number;
+  passing: number;
+  dribbling: number;
   finishing: number;
   defending: number;
+  strength: number;
+  stamina: number;
   reflexes: number;
 }
 
-export const ATTR_KEYS = ['pace', 'technique', 'finishing', 'defending', 'reflexes'] as const;
+export const ATTR_KEYS = [
+  'pace', 'passing', 'dribbling', 'finishing', 'defending', 'strength', 'stamina', 'reflexes',
+] as const;
 export type AttrKey = (typeof ATTR_KEYS)[number];
 
 /** Squad slot order (mirrors sim/types ROLES): [GK, DF, MF, WGL, WGR, ST]. */
 export const SQUAD_ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'WG', 'ST'];
 
-/** Each role tends to be born good at its job (bias added, then clamped). */
+/** Each role tends to be born good at its job (bias added, then clamped).
+ * strength/stamina carry NO bias (Phase 47) — where the physical game pays
+ * is evolution's to discover. (ROLE_BIAS itself retires in the budget
+ * phase: newgens will inherit their slot's bloodline instead.) */
 const ROLE_BIAS: Record<Role, Partial<PlayerAttributes>> = {
   GK: { reflexes: 0.3 },
   DF: { defending: 0.25 },
-  MF: { technique: 0.2 },
+  MF: { passing: 0.2 },
   WG: { pace: 0.25 },
   ST: { finishing: 0.25 },
 };
@@ -86,7 +103,8 @@ export function crossoverSquads(a: PlayerAttributes[], b: PlayerAttributes[], rn
 
 /** Squad-average of each attribute — shown on team cards. */
 export function squadSummary(squad: PlayerAttributes[]): PlayerAttributes {
-  const sum = { pace: 0, technique: 0, finishing: 0, defending: 0, reflexes: 0 };
+  const sum = {} as PlayerAttributes;
+  for (const k of ATTR_KEYS) sum[k] = 0;
   for (const p of squad) for (const k of ATTR_KEYS) sum[k] += p[k];
   for (const k of ATTR_KEYS) sum[k] /= Math.max(squad.length, 1);
   return sum;

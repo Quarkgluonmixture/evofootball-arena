@@ -90,7 +90,7 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   // Ball arriving at the face = 0, arriving from behind the body = 1.
   const misalign = (1 + (inx * p.heading.x + iny * p.heading.y)) / 2;
   const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
-  let pFail = touchFailChance(speed, pressure, misalign, p.attrs.technique);
+  let pFail = touchFailChance(speed, pressure, misalign, p.attrs.dribbling);
   // Re-collecting your OWN pushed touch (Phase 36): the ball rolls away
   // from the body, which reads as a blind-side reception to the misalign
   // term — but he watched it leave his own boot. Priced well down, not
@@ -158,7 +158,7 @@ function registerPass(match: Match, passer: Player, target: Player, exempt: bool
  * 0.5 ≈ ×1.6, tech 0.1 ≈ ×2.0. Multiplies aim noise (and loft range error).
  */
 function oneTouchMul(p: Player): number {
-  return p.firstTouchWindow > 0 ? 1.15 + (1 - p.attrs.technique) * 0.9 : 1;
+  return p.firstTouchWindow > 0 ? 1.15 + (1 - p.attrs.dribbling) * 0.9 : 1;
 }
 
 /** xG-like chance quality: distance falloff · central angle · pressure. */
@@ -179,7 +179,7 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   // Playing across/against the body (Phase 27) takes pace off the ball —
   // known up front, so the lead and the kick agree on the effective speed.
   const misalign = kickMisalignment(passer, norm(sub(mate.pos, passer.pos)));
-  const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
+  const powerMul = orientationPowerMul(misalign, passer.attrs.passing);
 
   // Lead the receiver by a fraction of the expected flight time.
   const flight = dist(passer.pos, mate.pos) / (16 * powerMul);
@@ -198,9 +198,9 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
     match.rng.gaussian() *
     (0.02 + pressure * 0.07 + d * 0.0015) *
     (1.15 - team.genome.passBias * 0.3) *
-    (1.25 - passer.attrs.technique * 0.5) *
+    (1.25 - passer.attrs.passing * 0.5) *
     oneTouchMul(passer) *
-    orientationNoiseMul(misalign, passer.attrs.technique);
+    orientationNoiseMul(misalign, passer.attrs.passing);
   const dir = rotate(aim, noise);
 
   const oneTouch = passer.firstTouchWindow > 0;
@@ -253,7 +253,7 @@ export function performThroughBall(
   // Same body-orientation contract as performPass: effective speed known
   // up front so the projected meeting point stays honest.
   const misalign = kickMisalignment(passer, norm(sub(runner.pos, passer.pos)));
-  const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
+  const powerMul = orientationPowerMul(misalign, passer.attrs.passing);
 
   // Meet the run, not the hover (Phase 29): a runner held at the offside
   // line has ~zero velocity — the delivery projects the burst they make the
@@ -284,9 +284,9 @@ export function performThroughBall(
       match.rng.gaussian() *
       (0.025 + pressure * 0.07 + d * 0.0017) *
       (1.15 - team.genome.passBias * 0.3) *
-      (1.25 - passer.attrs.technique * 0.5) *
+      (1.25 - passer.attrs.passing * 0.5) *
       oneTouchMul(passer) *
-      orientationNoiseMul(misalign, passer.attrs.technique);
+      orientationNoiseMul(misalign, passer.attrs.passing);
     const dir = rotate(aim, noise);
 
     match.kickBall(passer, dir, speed);
@@ -325,13 +325,13 @@ function loftKick(
     match.rng.gaussian() *
     (0.03 + pressure * 0.05 + d * 0.0011) * noiseMul *
     (1.15 - team.genome.passBias * 0.3) *
-    (1.3 - p.attrs.technique * 0.55) *
+    (1.3 - p.attrs.passing * 0.55) *
     oneTouchMul(p) *
-    orientationNoiseMul(misalign, p.attrs.technique);
+    orientationNoiseMul(misalign, p.attrs.passing);
   const dir = rotate(aimDir, noise);
   // Range error + orientation power loss both shorten/stretch the delivery.
-  let dEff = d * orientationPowerMul(misalign, p.attrs.technique);
-  dEff *= 1 + match.rng.gaussian() * (0.02 + d * 0.0008) * (1.25 - p.attrs.technique * 0.5) * oneTouchMul(p);
+  let dEff = d * orientationPowerMul(misalign, p.attrs.passing);
+  dEff *= 1 + match.rng.gaussian() * (0.02 + d * 0.0008) * (1.25 - p.attrs.passing * 0.5) * oneTouchMul(p);
   dEff = Math.max(dEff, 3);
   const T = clamp(tBase + dEff * tPerM, tMin, tMax);
   // Magnus pre-compensation (Phase 37): launch rotated −spin·T/2 so the
@@ -378,7 +378,7 @@ export function performCross(
   const chord = norm(sub(spot, crosser.pos));
   const toGoal = norm(sub(goal, crosser.pos));
   const swing = Math.sign(chord.x * toGoal.y - chord.y * toGoal.x) || 1;
-  const spin = swing * (0.28 + crosser.attrs.technique * 0.3);
+  const spin = swing * (0.28 + crosser.attrs.passing * 0.3);
   loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1, spin);
   team.stats.passes++;
   team.stats.crosses++;
@@ -416,7 +416,7 @@ export function performCutback(match: Match, passer: Player, mate: Player): void
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const misalign = kickMisalignment(passer, norm(sub(mate.pos, passer.pos)));
-  const powerMul = orientationPowerMul(misalign, passer.attrs.technique);
+  const powerMul = orientationPowerMul(misalign, passer.attrs.passing);
   const flight = dist(passer.pos, mate.pos) / (18 * powerMul);
   const lead = add(mate.pos, scale(mate.vel, flight * 0.8));
   const d = dist(passer.pos, lead);
@@ -427,9 +427,9 @@ export function performCutback(match: Match, passer: Player, mate: Player): void
     match.rng.gaussian() *
     (0.02 + pressure * 0.06 + d * 0.0012) *
     (1.15 - team.genome.passBias * 0.3) *
-    (1.25 - passer.attrs.technique * 0.5) *
+    (1.25 - passer.attrs.passing * 0.5) *
     oneTouchMul(passer) *
-    orientationNoiseMul(misalign, passer.attrs.technique);
+    orientationNoiseMul(misalign, passer.attrs.passing);
   const oneTouch = passer.firstTouchWindow > 0;
   match.kickBall(passer, rotate(aim, noise), speed);
   team.stats.passes++;
@@ -470,7 +470,7 @@ const AERIAL_ROLE: Record<Role, number> = { GK: 0, DF: 0.3, MF: 0.14, WG: 0.06, 
  * rolls against, so cross targeting (PlayerBrain) and duel resolution agree.
  */
 export function aerialSense(p: Player): number {
-  return AERIAL_ROLE[p.role] + p.attrs.defending * 0.3 + p.attrs.technique * 0.1;
+  return AERIAL_ROLE[p.role] + p.attrs.defending * 0.3 + p.attrs.strength * 0.1;
 }
 
 /**
@@ -682,7 +682,7 @@ function tryChestTrap(match: Match, order: Player[]): boolean {
   const misalign = (1 + (inx * trapper.heading.x + iny * trapper.heading.y)) / 2;
   const pressure = pressureAt(trapper.pos, match.teams[1 - trapper.side].players);
   const pFail = clamp(
-    touchFailChance(speed, pressure, misalign, trapper.attrs.technique) + 0.05, 0, 0.5,
+    touchFailChance(speed, pressure, misalign, trapper.attrs.dribbling) + 0.05, 0, 0.5,
   );
   trapper.kickCooldown = 0.3; // committed to the touch either way
   if (!match.rng.chance(pFail)) {
@@ -778,14 +778,21 @@ export function performShot(match: Match, shooter: Player): void {
   // retune: with chance volume restored (open runs, cutbacks, routines)
   // the trade flips back toward failure mode 16a — a slightly safer aim
   // keeps more strikes on the frame while the keeper still can't reach
-  // the corner. 0.4 (clinical) .. 1.25 (timid).
+  // the corner.
   // The clinical trait (Phase 39) shaves another 0.1 off the post —
   // floored at 0.4 (the base formula's own minimum at finishing 1.0):
   // an elite finisher who ALSO shaved 0.1 aimed past the optimum and
   // converted less (caught by the finishing-conversion invariant test).
+  // Finishing slope 0.9 → 0.6 (Phase 47): the eras of churn since 31.5
+  // (36.1 carries, 38 contact, 46 keeper envelope) had pushed the corner
+  // dare past its optimum again — by phase-46 the hi-fin conversion edge
+  // measured +1.3pp ≈ noise and the invariant test finally flipped.
+  // Swept {0.9, 0.75, 0.6, 0.5} at 540 matches: 0.6 restores +2.1pp
+  // (hi 28.9% vs lo 26.8%) — the finisher backs off the post just enough
+  // that the tight grouping cashes.
   const aimMargin = Math.max(
     0.4,
-    1.3 - shooter.attrs.finishing * 0.9 - (shooter.traits.includes('clinical') ? 0.1 : 0),
+    1.3 - shooter.attrs.finishing * 0.6 - (shooter.traits.includes('clinical') ? 0.1 : 0),
   );
   const aimY = (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin);
   const target = v2(goalX, aimY);
@@ -819,7 +826,7 @@ export function performShot(match: Match, shooter: Player): void {
     (0.022 + d * 0.0028 + pressure * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
     (oneVone ? 0.7 : 1) *
-    orientationNoiseMul(misalign, shooter.attrs.technique);
+    orientationNoiseMul(misalign, shooter.attrs.dribbling);
   const dir = rotate(aim, match.rng.gaussian() * spread);
 
   // The placed curler (Phase 37): technique bends the strike around the
@@ -827,8 +834,8 @@ export function performShot(match: Match, shooter: Player): void {
   // the frame where the aim pointed; lateral drift = spin·vx, so the sign
   // that bends AWAY from the keeper is sign(Δy·dirx).
   const curl =
-    (Math.sign((aimTarget.y - gk.pos.y) * dir.x) || 1) * (0.1 + shooter.attrs.technique * 0.2);
-  const v0 = SHOT_SPEED * orientationPowerMul(misalign, shooter.attrs.technique);
+    (Math.sign((aimTarget.y - gk.pos.y) * dir.x) || 1) * (0.1 + shooter.attrs.dribbling * 0.2);
+  const v0 = SHOT_SPEED * orientationPowerMul(misalign, shooter.attrs.dribbling);
   const shotT = -Math.log(1 - Math.min((d * BALL_FRICTION_K) / v0, 0.85)) / BALL_FRICTION_K;
   match.kickBall(shooter, rotate(dir, -curl * shotT * 0.5), v0);
   match.ball.spin = curl;
@@ -919,7 +926,7 @@ export function performFreeKick(match: Match, taker: Player): void {
   // bodies — the solver buys extra clearance per unit of spin (the first
   // cut at spin ≤0.7 with plain 2.6 put 4/30 walls back in the header
   // game, the exact 31.9 sentry failure the invariant test pins).
-  const spinMag = 0.25 + taker.attrs.technique * 0.25;
+  const spinMag = 0.25 + taker.attrs.passing * 0.25;
   const a = clamp(wallD / d, 0.12, 0.6);
   const wallClear = 2.6 + spinMag * 0.5;
   const T = clamp(Math.sqrt(Math.max(0.4, (wallClear - a * zg) / ((GRAVITY / 2) * a * (1 - a)))), 0.9, 1.9);
@@ -1008,7 +1015,7 @@ export function performDribbleTouch(match: Match, p: Player): void {
   // stride-length nudge in traffic (一步一带), a real knock into open
   // grass (爆趟). Technique shortens and steadies both.
   const open = Math.min(Math.max(aheadD - 2, 0), 9);
-  let push = (TOUCH_PUSH_BASE + open * TOUCH_PUSH_SPACE) * (1.05 - p.attrs.technique * 0.15);
+  let push = (TOUCH_PUSH_BASE + open * TOUCH_PUSH_SPACE) * (1.05 - p.attrs.dribbling * 0.15);
   // The line guard (36.1): a knock that would roll into touch is halved —
   // real wingers shorten the touch at the line (12.9% of pushes rolled
   // dead/out at the first cut).
@@ -1021,7 +1028,7 @@ export function performDribbleTouch(match: Match, p: Player): void {
   }
   const speed = Math.hypot(p.vel.x, p.vel.y) + Math.max(push, 0.8);
   // A heavy first touch is a WOBBLY one: direction noise priced by technique.
-  const noise = match.rng.gaussian() * 0.07 * (1.35 - p.attrs.technique * 0.7);
+  const noise = match.rng.gaussian() * 0.07 * (1.35 - p.attrs.dribbling * 0.7);
   const dir = rotate(v2(hx, hy), noise);
   ball.owner = null;
   ball.lastTouch = p;
@@ -1051,7 +1058,7 @@ export function performClear(match: Match, p: Player): void {
   match.kickBall(
     p,
     dir,
-    23 * (1 - kickMisalignment(p, aim) * 0.15 * (1 - p.attrs.technique * 0.4)),
+    23 * (1 - kickMisalignment(p, aim) * 0.15 * (1 - p.attrs.passing * 0.4)),
     match.rng.range(3.2, 5.4),
   );
   team.stats.clearances++;
@@ -1100,7 +1107,7 @@ export function trySmother(match: Match): void {
   if (dist(gk.pos, match.ball.pos) >= 1.3) return;
 
   gk.saveAnimTimer = 0.7; // the dive at the feet is visible either way
-  const pWin = clamp(0.56 + (gk.attrs.reflexes - 0.5) * 0.5 - (owner.attrs.technique - 0.5) * 0.35, 0.2, 0.85);
+  const pWin = clamp(0.56 + (gk.attrs.reflexes - 0.5) * 0.5 - (owner.attrs.dribbling - 0.5) * 0.35, 0.2, 0.85);
   if (match.rng.chance(pWin)) {
     match.teams[gk.side].stats.saves++;
     match.playerStats[gk.gid].saves++;
@@ -1222,12 +1229,17 @@ export function tryTackles(match: Match): void {
   // earns a duel edge the compact clump can't, giving width a gradient to climb
   // (the master gate, Phase 41). Base carries Phase 27's whiff-stun raise.
   const drive = clamp(len(owner.vel) / 9, 0, 1);
+  // strength SHIELDS the standing challenge (Phase 47 — the hold-up/pivot
+  // payoff): base 0.21→0.25 with −strength·0.10 so the POPULATION mean
+  // (backfill 0.4) lands exactly where phase-46 left it; the gradient is
+  // what's new, not the league tackle rate.
   let p =
-    0.21 +
+    0.25 +
     oppTeam.genome.markingAggression * 0.2 +
     tackler.attrs.defending * 0.24 -
     match.teams[owner.side].genome.dribbleBias * 0.08 -
-    owner.attrs.technique * 0.18 -
+    owner.attrs.dribbling * 0.18 -
+    owner.attrs.strength * 0.1 -
     owner.attrs.pace * drive * 0.2;
   if (oppTeam.mode === 'Press') p += 0.06;
   if (tackler.traits.includes('enforcer')) p += 0.04; // the destroyer (Phase 39)

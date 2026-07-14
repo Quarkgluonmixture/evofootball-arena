@@ -326,17 +326,22 @@ attribute genes (0..1) that evolve with the franchise (`evolution/playerGenome.t
 
 | attribute | effect in the sim |
 |---|---|
-| pace | ±12% top speed, ±10% acceleration |
-| technique | tighter pass accuracy; resists tackles (close control) |
+| pace | ±12% top speed, ±10% acceleration; momentum-gated 1v1 evasion |
+| passing | tighter pass/cross/loft/FK accuracy and power retention |
+| dribbling | first-touch security, carry control, beating a man, shot strike |
 | finishing | tighter shot grouping AND braver aim (closer to the post) |
 | defending | higher tackle success; wins aerial duels (Phase 28) |
+| strength | aerial presence; shields the ball in a standing challenge |
+| stamina | slower fatigue drain, faster recovery |
 | reflexes | keeper save odds ±11pp, longer dive reach |
 
-Players are born role-biased (keepers high reflexes, wingers high pace,
+(8 since Phase 47 — the overloaded `technique` split into passing+dribbling,
+plus the physical game as two new evolvable dimensions.) Players are born
+role-biased (keepers high reflexes, wingers high pace,
 strikers high finishing…). Since Phase 26 they are **people with careers**:
 every player has an age and develops along an age curve — strong growth to
-~23, a plateau through the twenties, decline from 30 (pace fades fastest,
-technique holds longest) — then retires in their mid-thirties and is replaced
+~23, a plateau through the twenties, decline from 30 (pace and stamina fade
+fastest, passing craft holds longest) — then retires in their mid-thirties and is replaced
 by a 17–19-year-old **newgen** with a fresh name. Career stats accumulate
 season by season; retirements make the season report, and the best careers
 enter the hall of fame's **All-time greats**. Squads no longer take random

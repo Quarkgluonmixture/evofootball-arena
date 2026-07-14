@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { decidePlayer } from '../src/ai/PlayerBrain';
+import { updateTeamBrain } from '../src/ai/TeamBrain';
 import { GENE_KEYS, type TacticalGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
 import { DT, MATCH_DURATION } from '../src/sim/constants';
@@ -59,12 +60,15 @@ function harvest(
 }
 
 describe('2过1 — the wall pass (Phase 34)', () => {
-  it('high tempo+passBias sides complete one-twos; slow sides are gated out', { timeout: 240000 }, () => {
-    const high = harvest(flat(0.5, { tempo: 0.85, passBias: 0.85 }), (s) => s.oneTwos);
-    const low = harvest(flat(0.5, { tempo: 0.15, passBias: 0.15 }), (s) => s.oneTwos);
-    // The license gate is deterministic: (0.15+0.15)/2 < 0.35 ⇒ never granted.
+  it('high tempo+passBias sides complete one-twos; slow sides are gated out', { timeout: 480000 }, () => {
+    // Pool 24 → 48 seeds (Phase 47): the attribute split halved the
+    // specialist completion rate (~0.5 → ~0.2/match — MF first touch lost
+    // its role bias) and 24 seeds landed 5 vs the old floor 6. Deterministic
+    // zero is mentality-safe here: max boosted tempo = 0.15+0.1+0.03 = 0.28
+    // ⇒ gate (0.28+0.15)/2 = 0.215 < 0.35 even in a trailing endgame.
+    const high = harvest(flat(0.5, { tempo: 0.85, passBias: 0.85 }), (s) => s.oneTwos, 48);
+    const low = harvest(flat(0.5, { tempo: 0.15, passBias: 0.15 }), (s) => s.oneTwos, 48);
     expect(low).toBe(0);
-    // Probed ~0.5/match for the specialist — a dead pattern fails here.
     expect(high).toBeGreaterThanOrEqual(6);
   });
 });
@@ -97,23 +101,48 @@ describe('套边 — the overlap (Phase 34)', () => {
  * bonus is a score multiplier, pinned directionally.
  */
 describe('combo policy genes (Phase 45)', () => {
-  it('wallPassW flips the one-two license on the SAME genome', { timeout: 240000 }, () => {
-    // Gene score (0.6+0.6)/2 = 0.6 vs gate 0.35: hungry 0.6·1.7 passes,
-    // averse 0.6·0.5 = 0.3 < 0.35 ⇒ deterministic zero.
-    const g = flat(0.5, { tempo: 0.6, passBias: 0.6 });
+  it('wallPassW flips the one-two license on the SAME genome', { timeout: 480000 }, () => {
+    // Genes 0.5/0.5 (not 0.6 — Phase 35 mentality floats a trailing side's
+    // tempo up to +0.1+0.2·passBias, and 0.6 genes could cross the averse
+    // gate at 0.355 in an endgame chase): averse max (0.7+0.5)/2·0.5 = 0.30
+    // < 0.35 ⇒ deterministic zero; hungry 0.5·1.7 = 0.85 ⇒ licensed.
+    const g = flat(0.5);
     const hungry = harvest(g, (s) => s.oneTwos, 24, { wallPassW: 1.7 });
     const averse = harvest(g, (s) => s.oneTwos, 24, { wallPassW: 0.5 });
     expect(averse).toBe(0);
     expect(hungry).toBeGreaterThanOrEqual(1);
   });
 
-  it('overlapW flips the overlap license on the SAME genome', { timeout: 480000 }, () => {
-    // width 0.58 vs gate 0.3: hungry 0.58·1.7 passes, averse 0.29 < 0.3 ⇒ zero.
-    const g = flat(0.5, { attackingWidth: 0.58 });
-    const hungry = harvest(g, (s) => s.overlaps, 48, { overlapW: 1.7 });
-    const averse = harvest(g, (s) => s.overlaps, 48, { overlapW: 0.5 });
-    expect(averse).toBe(0);
-    expect(hungry).toBeGreaterThanOrEqual(1);
+  it('overlapW gates the overlap license on the SAME genome (unit level)', () => {
+    // The harvest version pinned a "deterministic zero" that Phase 35
+    // mentality quietly broke (a trailing side's width floats +0.15·u and a
+    // boundary width re-crosses the gate late). Pin the GATE itself: one
+    // staged confrontation, only the policy differs, score level (raw genes).
+    const license = (overlapW: number): number | null => {
+      const m = new Match({
+        seed: 5,
+        teamA: team('S', 1000, flat(0.5, { attackingWidth: 0.58 }), { overlapW }),
+        teamB: team('N', 2000, flat(0.5)),
+        duration: 120,
+      });
+      while (m.phase !== 'playing') m.step(DT);
+      const t0 = m.teams[0];
+      const carrier = t0.players[4]; // WGR, wide right in the attacking half
+      carrier.pos = { x: 8, y: 14 };
+      m.ball.owner = carrier;
+      m.ball.pos = { x: 8.5, y: 14 };
+      m.possessionSide = 0;
+      m.pendingPass = null;
+      t0.players[3].pos = { x: 0, y: 10 }; // the trailing same-wing mate
+      m.teams[1].players[1].pos = { x: 11, y: 14 }; // the confronter, goal-side
+      t0.overlapper = null;
+      t0.runners.clear();
+      t0.arriver = null;
+      updateTeamBrain(t0, m);
+      return t0.overlapper;
+    };
+    expect(license(1.7)).not.toBeNull(); // 0.58·1.7 crosses the 0.3 gate
+    expect(license(0.5)).toBeNull(); // 0.58·0.5 = 0.29 stays under
   });
 
   it('thirdManW widens the bounce acceptance region (deterministic sweep)', { timeout: 60000 }, () => {

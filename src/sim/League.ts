@@ -131,7 +131,7 @@ export interface SeasonRecord {
   pointsTimeline?: number[][];
 }
 
-export const SAVE_VERSION = 13;
+export const SAVE_VERSION = 14;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -982,6 +982,32 @@ export class League {
         f.policy = { ...defaultPolicyGenes(), ...f.policy };
       }
       data.version = 13;
+    }
+    if (data.version === 13) {
+      // v13 -> v14: the attribute split (Phase 47). passing/dribbling
+      // inherit the old technique; strength/stamina start neutral at 0.4
+      // (every new payoff term is centred there, so a migrated league's
+      // balance doesn't move — the gradients are what's new).
+      const up = (p: Record<string, number | undefined>): Record<string, number> => {
+        const technique = p.technique ?? 0.5;
+        return {
+          pace: p.pace ?? 0.5,
+          passing: p.passing ?? technique,
+          dribbling: p.dribbling ?? technique,
+          finishing: p.finishing ?? 0.5,
+          defending: p.defending ?? 0.5,
+          strength: p.strength ?? 0.4,
+          stamina: p.stamina ?? 0.4,
+          reflexes: p.reflexes ?? 0.5,
+        };
+      };
+      for (const f of data.franchises as unknown as Array<{ squad: Array<Record<string, number>> }>) {
+        f.squad = f.squad.map(up);
+      }
+      for (const r of ((data.history ?? []) as Array<{ attrMeans?: Record<string, number> }>)) {
+        if (r.attrMeans) r.attrMeans = up(r.attrMeans);
+      }
+      data.version = 14;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

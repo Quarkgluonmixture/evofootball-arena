@@ -135,7 +135,7 @@ export class Team {
     let bestScore = -Infinity;
     for (let i = 1; i < this.players.length; i++) {
       const p = this.players[i];
-      const s = (p.age ?? 24) * p.attrs.technique;
+      const s = (p.age ?? 24) * ((p.attrs.passing + p.attrs.dribbling) / 2);
       if (s > bestScore) {
         bestScore = s;
         bestC = i;

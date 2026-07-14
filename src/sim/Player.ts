@@ -224,12 +224,16 @@ export class Player {
     // Stamina: quadratic drain above ~55% effort, slow recovery when jogging/idle.
     // The engine trait (Phase 39) drains 10% slower — the motor runs all day.
     const effort = sp / this.baseSpeed;
+    // The stamina ATTRIBUTE scales drain and recovery (Phase 47): neutral
+    // at the 0.4 backfill so the league's energy economy doesn't move —
+    // the motor is now a dimension evolution can spend on.
     if (effort > 0.55) {
-      const drain = 0.006 * effort * effort * dt * this.staminaDrainMul;
+      const drain =
+        0.006 * effort * effort * dt * this.staminaDrainMul * (1.24 - this.attrs.stamina * 0.6);
       this.stamina = Math.max(0.05, this.stamina - drain);
       this.staminaSpent += drain;
     } else {
-      this.stamina = Math.min(1, this.stamina + 0.014 * dt);
+      this.stamina = Math.min(1, this.stamina + 0.014 * dt * (0.88 + this.attrs.stamina * 0.3));
     }
 
     this.kickCooldown = Math.max(0, this.kickCooldown - dt);

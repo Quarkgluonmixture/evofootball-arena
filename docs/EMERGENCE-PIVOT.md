@@ -182,7 +182,9 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
      style-space map (teams
      plotted by directness × press, clustering into archetypes), gene/policy
      drift curves, diversity over generations. Substantial build — scope first.
-   - ⚠️ **FOR A LATER FABLE MODEL — Attribute richness** (hardest, deferred per
+   - ✅ **SHIPPED (phase-47)** — Attribute richness (executed per the scope below;
+     see EVO-BLUEPRINT.md's status ledger for gate evidence). (Original scoping
+     kept for reference:) (hardest, deferred per
      user 2026-07-14; the "还有球员" half — build-up took the phase-44 slot). 5
      attrs is COARSE vs FIFA/FM and `technique` is OVERLOADED. Plan (SCOPED —
      turnkey; big + balance-sensitive, do it FOCUSED not rushed):

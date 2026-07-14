@@ -26,26 +26,28 @@ describe('trait derivation (pure)', () => {
   it('thresholds gate, roles gate, and the cap is TWO', () => {
     expect(traitsOf(attrs({ finishing: 0.85 }), 'ST')).toContain('clinical');
     // Below the clinical bar (technique raised so the poacher gate stays shut).
-    expect(traitsOf(attrs({ finishing: 0.79, technique: 0.65 }), 'ST')).toHaveLength(0);
+    expect(traitsOf(attrs({ finishing: 0.79, dribbling: 0.65 }), 'ST')).toHaveLength(0);
     expect(traitsOf(attrs({ finishing: 0.85 }), 'DF')).toHaveLength(0); // DFs don't get clinical
-    expect(traitsOf(attrs({ technique: 0.85 }), 'MF')).toContain('playmaker');
+    expect(traitsOf(attrs({ passing: 0.85 }), 'MF')).toContain('playmaker');
     expect(traitsOf(attrs({ defending: 0.85 }), 'DF')).toContain('enforcer');
     expect(traitsOf(attrs({ pace: 0.9 }), 'WG')).toContain('engine');
     // The poacher: instinct over craft, strikers only.
-    expect(traitsOf(attrs({ finishing: 0.78, technique: 0.4 }), 'ST')).toContain('poacher');
-    expect(traitsOf(attrs({ finishing: 0.78, technique: 0.7 }), 'ST')).toHaveLength(0);
-    expect(traitsOf(attrs({ finishing: 0.78, technique: 0.4 }), 'WG')).toHaveLength(0);
+    expect(traitsOf(attrs({ finishing: 0.78, dribbling: 0.4 }), 'ST')).toContain('poacher');
+    expect(traitsOf(attrs({ finishing: 0.78, dribbling: 0.7 }), 'ST')).toHaveLength(0);
+    expect(traitsOf(attrs({ finishing: 0.78, dribbling: 0.4 }), 'WG')).toHaveLength(0);
     // Keepers are keepers.
     expect(traitsOf(attrs({ reflexes: 0.9 }), 'GK')).toEqual(['cat']);
-    expect(traitsOf(attrs({ finishing: 0.95, technique: 0.95 }), 'GK')).toHaveLength(0);
+    expect(traitsOf(attrs({ finishing: 0.95, passing: 0.95 }), 'GK')).toHaveLength(0);
     // Cap at 2, ranked by excess.
-    const many = traitsOf(attrs({ finishing: 0.95, technique: 0.85, defending: 0.9, pace: 0.9 }), 'ST');
+    // dribbling raised too: the poacher gate (ST fin≥0.75 + drb<0.6) must
+    // stay SHUT here or poacher's 0.20 excess outranks clinical's 0.15.
+    const many = traitsOf(attrs({ finishing: 0.95, passing: 0.85, dribbling: 0.85, defending: 0.9, pace: 0.9 }), 'ST');
     expect(many).toHaveLength(2);
     expect(many[0]).toBe('clinical'); // biggest excess (0.15)
   });
 
   it('derivation is deterministic and pure', () => {
-    const a = attrs({ finishing: 0.9, technique: 0.82 });
+    const a = attrs({ finishing: 0.9, passing: 0.82 });
     expect(traitsOf(a, 'ST')).toEqual(traitsOf(a, 'ST'));
     expect(a.finishing).toBe(0.9);
   });
@@ -66,7 +68,7 @@ describe('trait effects reach the sim', () => {
       return g;
     })();
     const squad = Array.from({ length: TEAM_SIZE }, () => attrs());
-    squad[2] = attrs({ technique: 0.9 }); // MF: sharp but young
+    squad[2] = attrs({ passing: 0.9, dribbling: 0.9 }); // MF: sharp but young
     const info: TeamInfo = {
       id: 'A', name: 'A', short: 'AAA',
       colors: { primary: 1, secondary: 2 },

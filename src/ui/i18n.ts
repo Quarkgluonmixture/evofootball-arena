@@ -158,11 +158,13 @@ const ZH: Record<string, string> = {
   formationDepth: '阵型高度',
   supportDistance: '接应距离',
 
-  // ---- player attributes ----
+  // ---- player attributes (8 since Phase 47) ----
   pace: '速度',
-  technique: '技术',
+  passing: '传球',
+  dribbling: '盘带',
   finishing: '射术',
   defending: '防守',
+  strength: '强壮',
   reflexes: '反应',
 
   // ---- league screen ----

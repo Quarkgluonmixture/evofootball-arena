@@ -17,7 +17,7 @@ const MAX = process.argv[2] === 'max';
 const team = (name: string, seed: number): TeamInfo => {
   const rng = new Rng(seed);
   const squad = randomSquad(rng);
-  if (MAX) for (const p of squad) { p.technique = 0.95; p.finishing = 0.9; }
+  if (MAX) for (const p of squad) { p.dribbling = 0.95; p.finishing = 0.9; }
   return {
     id: name, name, short: name.slice(0, 3).toUpperCase(),
     colors: { primary: 0xff0000, secondary: 0xffffff },

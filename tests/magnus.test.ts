@@ -130,7 +130,7 @@ describe('the curved ball (Phase 37)', () => {
     const shot = (tech: number): number => {
       const m = staged(5);
       const st = m.teams[0].players[5];
-      (st.attrs as { technique: number }).technique = tech;
+      (st.attrs as { dribbling: number }).dribbling = tech;
       st.pos = v2(HALF_L - 14, 2);
       st.heading = v2(1, 0);
       m.ball.owner = st;

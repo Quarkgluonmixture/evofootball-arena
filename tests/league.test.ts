@@ -233,6 +233,32 @@ describe('League', () => {
     }
   });
 
+  it('migrates a v13 save: technique splits into passing+dribbling, strength/stamina neutral', () => {
+    const league = makeLeague();
+    const json = JSON.parse(JSON.stringify(league.toJSON())) as {
+      version: number;
+      franchises: Array<{ squad: Array<Record<string, number>> }>;
+      history: Array<{ attrMeans?: Record<string, number> }>;
+    };
+    json.version = 13;
+    for (const f of json.franchises) {
+      f.squad = f.squad.map((p) => ({
+        pace: p.pace, technique: 0.63, finishing: p.finishing,
+        defending: p.defending, reflexes: p.reflexes,
+      }));
+    }
+    const restored = League.fromJSON(json as unknown as Record<string, unknown>);
+    for (const f of restored.franchises) {
+      for (const p of f.squad) {
+        expect(p.passing).toBe(0.63);
+        expect(p.dribbling).toBe(0.63);
+        expect(p.strength).toBe(0.4);
+        expect(p.stamina).toBe(0.4);
+        expect((p as unknown as Record<string, number>).technique).toBeUndefined();
+      }
+    }
+  });
+
   it('league runs are reproducible end to end', () => {
     const a = makeLeague();
     const b = makeLeague();

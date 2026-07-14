@@ -115,7 +115,7 @@ describe('free kicks become REAL (Phase 32)', () => {
 
   it('the specialist takes it: best finishing + technique/2 steps up in range', () => {
     const squad = Array.from({ length: TEAM_SIZE }, () => attrs());
-    squad[5] = attrs({ finishing: 0.95, technique: 0.9 }); // the ST slot
+    squad[5] = attrs({ finishing: 0.95, passing: 0.9 }); // the ST slot
     const m = dangerFK(7, v2(45 - 20, 4), 0, squad);
     expect(m.restart).not.toBeNull();
     expect(m.restart!.takerGid).toBe(m.teams[0].players[5].gid);
