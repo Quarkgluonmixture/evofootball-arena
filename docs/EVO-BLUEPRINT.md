@@ -121,3 +121,17 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   counter↔fwdPass r=+0.42 and dribbleGene↔dribblePolicy r=−0.56 already
   emerge from selection alone; chase↔fwdPass r=−0.38; mark↔intercept r≈0 —
   the flat pairs are Stage-1E's measuring stick, not something to hand-wire.
+- ✅ **phase-46 SHIPPED** (keeper-aware carry cone): `GK_RUSH_ENVELOPE = 5` —
+  the dribble-push cone prices a keeper 5m upfield of his body (any roll
+  reaching him is dead: hands + `GK_CONTROL_MAX_SPEED` 23 vs outfield 14;
+  5m ≈ GK 6.4 m/s × the ~0.8s loose window). Breakaway probe A/B: normal
+  genomes keeper-collects **8%→5%** (shots 45→46%); MAXED genomes **9%→5%**
+  with shots **39%→43%** — the maxed-genome inversion (technique made
+  breakaways WORSE) is gone, so pace/finishing gradients now pay on the
+  break. Calibrate 2.86 / 2.57 (mean 2.72 — breakaways cashing honestly;
+  NOT compensated, the phase-41 precedent: pulling it back re-blinds the
+  keeper. If play-feel reads goal-happy, `GK_RUSH_ENVELOPE` is the dial).
+  Fallout absorbed: an unclamped danger-band FK spot could park the dead
+  ball out of bounds through its whole setup (probed x=45.06, seed 99) —
+  `awardRestart` now places free kicks ON the pitch. vitest 311, visual
+  75+37. Fingerprint `53bc3824…` (behavioral).

@@ -1055,6 +1055,16 @@ export class Match {
   }
 
   private awardRestart(kind: RestartKind, side: Side, pos: V2): void {
+    // A free kick is always placed ON the pitch (Phase 46): a whistle can
+    // catch the ball marginally over a line mid-scramble, and an unclamped
+    // spot parked the dead ball out of bounds through the whole setup
+    // (probed: x=45.06 for the full 8s timer). Refs put it on the line.
+    if (kind === 'freeKick') {
+      pos = v2(
+        Math.max(-HALF_L + 0.2, Math.min(HALF_L - 0.2, pos.x)),
+        Math.max(-HALF_W + 0.2, Math.min(HALF_W - 0.2, pos.y)),
+      );
+    }
     const team = this.teams[side];
     // A shot that went out is a miss; any pass in flight is dead.
     this.markShotOutcome('miss');

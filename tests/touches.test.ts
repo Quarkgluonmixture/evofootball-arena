@@ -118,6 +118,30 @@ describe('discrete dribble touches (Phase 36)', () => {
     expect(openSpeed).toBeGreaterThan(wallSpeed);
   });
 
+  it('a keeper ahead is not open grass: the same body shortens the touch more as the GK (Phase 46)', () => {
+    // One body 10m ahead in the cone. As an outfielder it's a normal
+    // squeeze; as the KEEPER his rush envelope prices the grass shorter —
+    // any roll reaching him is dead (hands + the GK control ceiling), so
+    // the substrate must stop the carrier knocking it into his arms.
+    const mDf = openCarry(1);
+    const stD = mDf.teams[0].players[5];
+    stD.vel = v2(5, 0);
+    stD.heading = v2(1, 0);
+    mDf.teams[1].players[1].pos = v2(stD.pos.x + 10, stD.pos.y);
+    performDribbleTouch(mDf, stD);
+    const dfSpeed = Math.hypot(mDf.ball.vel.x, mDf.ball.vel.y);
+
+    const mGk = openCarry(1);
+    const stG = mGk.teams[0].players[5];
+    stG.vel = v2(5, 0);
+    stG.heading = v2(1, 0);
+    mGk.teams[1].players[0].pos = v2(stG.pos.x + 10, stG.pos.y); // the GK
+    performDribbleTouch(mGk, stG);
+    const gkSpeed = Math.hypot(mGk.ball.vel.x, mGk.ball.vel.y);
+
+    expect(gkSpeed).toBeLessThan(dfSpeed);
+  });
+
   it('the poke: an opponent in the rolling ball\'s path wins it clean', () => {
     // Unit-level: fire the push directly (in play the control gate keeps
     // defenders this close from ever seeing a push — a staged full-flow

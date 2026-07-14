@@ -8,6 +8,7 @@ import {
   BALL_FRICTION_K, BOX_DEPTH, CHEST_TRAP_MAX_HEIGHT, CHEST_TRAP_MAX_VZ, CHEST_TRAP_RADIUS,
   CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
+  GK_RUSH_ENVELOPE,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
 } from './constants';
 import type { Match } from './Match';
@@ -994,10 +995,14 @@ export function performDribbleTouch(match: Match, p: Player): void {
     const dx = o.pos.x - p.pos.x;
     const dy = o.pos.y - p.pos.y;
     const along = dx * hx + dy * hy;
-    if (along < 0 || along > 14) continue;
+    // The keeper's stopping power starts upfield of his body (Phase 46):
+    // a loose roll entering his rush envelope is collected, full stop —
+    // outfielders must WIN the ball, so they price at body position.
+    const eff = o.role === 'GK' ? along - GK_RUSH_ENVELOPE : along;
+    if (along < 0 || eff > 14) continue;
     const perp = Math.abs(dx * hy - dy * hx);
     if (perp > along * 0.7 + 1) continue; // outside the ~70° cone
-    if (along < aheadD) aheadD = along;
+    if (eff < aheadD) aheadD = Math.max(eff, 0);
   }
   // Carry regimes (36.1): the open cone ahead PRICES the touch — a
   // stride-length nudge in traffic (一步一带), a real knock into open

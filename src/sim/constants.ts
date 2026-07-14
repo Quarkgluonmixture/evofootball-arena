@@ -139,6 +139,13 @@ export const TOUCH_PUSH_SPACE = 0.32;
 /** The no-recollect window: base + slope·push — the poke window. */
 export const TOUCH_RECOLLECT_BASE = 0.26;
 export const TOUCH_RECOLLECT_PER_PUSH = 0.04;
+/** A keeper ahead is not open grass (Phase 46): any roll that reaches him
+ * is DEAD (GK_CONTROL_MAX_SPEED 23 vs outfield 14, plus hands in the box),
+ * and he covers ~GK 6.4 m/s × the ~0.8s loose window while a knock is
+ * un-regatherable. The carry cone prices him at that envelope upfield of
+ * his body — the substrate fix for 趟球太大送门将 (breakaway probe:
+ * keeper-collects stuck at 8-9% even with maxed technique). */
+export const GK_RUSH_ENVELOPE = 5;
 
 /** How often each player re-evaluates its utility scores (staggered). */
 export const AI_INTERVAL = 0.15;
