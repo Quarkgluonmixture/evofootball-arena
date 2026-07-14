@@ -168,6 +168,28 @@ const ZH: Record<string, string> = {
   strength: '强壮',
   reflexes: '反应',
 
+  // ---- evolution center (Phase 51) ----
+  'Evolution center': '演化中心',
+  now: '当前',
+  'x-axis': '横轴',
+  'y-axis': '纵轴',
+  'the two dimensions this league disagrees on most': '本联盟分歧最大的两个维度',
+  'Club deep dive': '俱乐部深潜',
+  'This club\'s biggest style moves': '这家俱乐部漂移最大的风格维度',
+  'Finish a season to see this club\'s drift.': '完成一个赛季后可见漂移曲线。',
+  'Dynasty wall': '王朝墙',
+  elite: '精英存续',
+  reborn: '重生',
+  founded: '创立',
+  mutated: '延续',
+  promoted: '升级',
+  relegated: '降级',
+  'promotion/relegation': '升降级',
+  'tap a row to inspect the club': '点击任意一行查看俱乐部',
+  'Population trends': '种群趋势',
+  'All gene & attribute curves (league mean per generation)': '全部基因与属性曲线（联盟均值/世代）',
+  'Last evolution': '最近一次演化',
+
   // ---- style space & nameplates (Phase 49; en source strings from styleSpace.ts) ----
   'Style space': '风格空间',
   'Axes = the two dimensions this season\'s clubs disagree on most; trails = recent seasons.':

@@ -19,11 +19,13 @@ stars-vs-balanced emerges, strength/stamina finally have a PRICE; defending repr
 (visibility v1: data-driven NAMEPLATES, the style-space map + divergence
 curve + budget heatmap) + ✅ **phase-50 SHIPPED** (results-dominant fitness —
 the three uniform-virtue rewards dropped; measured verdict: the SPEED target
-was already met post-budget, remaining speed levers PARKED). **STAGE 1+2 OF
-THE BLUEPRINT ARE COMPLETE** — next is Stage 3 (the WORLD layer: W1 coach
-entity → W2 player personal style → W3 fire-sale → W4 season narrative),
-gated on the user's play reports of the new evolution era. HEAD fingerprint
-`2eac71da…` (phase-50, behavioral).
+was already met post-budget, remaining speed levers PARKED). **STAGE 1+2 COMPLETE** +
+✅ **phase-51 SHIPPED** (the EVOLUTION CENTER — evolution got its own screen
+per the user's report: scrubber-driven style map, club deep dive, dynasty
+wall; league screen back to pure data). Next: Stage 3 (the WORLD layer:
+W4 season chronicle first, then W1 coach entity → W2 player personal style →
+W3 fire-sale), shaped by the user's play reports of the new screen. HEAD
+fingerprint `2eac71da…` (phase-50; 51 is UI-only).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

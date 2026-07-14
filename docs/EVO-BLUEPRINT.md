@@ -222,3 +222,22 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   the budget + visibility already deliver fast visible divergence; revisit
   only if a future probe shows convergence. vitest 323, visual 78+37.
   Fingerprint `2eac71da…` (behavioral — selection changed).
+- ✅ **phase-51 SHIPPED** (the EVOLUTION CENTER — user report 2026-07-14: "演化
+  的看板不直观也不够详细，演化应该单独放一个"): evolution moves OUT of the
+  league screen (which returns to pure data) into its own full-screen
+  `EvolutionScreen` (top-bar 🧬 演化, mutually exclusive with 联赛中心).
+  Architecture, hero first: (1) the style-space map with a **generation
+  scrubber + ▶ playback** — watch styles drift season by season (styleMatrix
+  history), clubs clickable, trails grow during playback; (2) **club deep
+  dive** — nameplate/radar vs league mean/the club's own four most-moved
+  style dims as curves/budget + squad + family tree; (3) the **dynasty
+  wall** — 16 slots × generations of elite/reborn/promotion events;
+  (4) population trends (divergence, formation shares, budget heatmap) with
+  the old 22-tile wall folded into a <details>. UI-only (no sim change, no
+  fingerprint move). Fixed en route: spark-tile head text collided on long
+  labels (ellipsis now), screen background bled the pitch through. vitest
+  323, visual 86+37 (evolution section rewritten for the new screen: map
+  dots, scrubber, wall-select, nameplates, heatmap). Naming unified: 演化中心.
+  NOT yet in it (next iterations as reports come in): per-club budget
+  HISTORY (needs an attrMatrix record snapshot), era auto-naming on the
+  timeline, cluster hulls on the map.

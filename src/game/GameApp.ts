@@ -30,6 +30,7 @@ import {
 import { button, colorHex, el } from '../ui/dom';
 import { ClashBanner } from '../ui/ClashBanner';
 import { EventFeed } from '../ui/EventFeed';
+import { EvolutionScreen } from '../ui/EvolutionScreen';
 import { LeagueScreen } from '../ui/LeagueScreen';
 import { RebirthCeremony } from '../ui/RebirthCeremony';
 import { LeftPanel } from '../ui/LeftPanel';
@@ -62,6 +63,7 @@ export class GameApp implements GameActions {
   private right!: RightPanel;
   private feed!: EventFeed;
   private leagueScreen!: LeagueScreen;
+  private evolutionScreen!: EvolutionScreen;
   private ceremony!: RebirthCeremony;
   private clash!: ClashBanner;
   /** Pre-match clash auto-hides at kickoff; scoreboard-opened ones are pinned. */
@@ -140,6 +142,7 @@ export class GameApp implements GameActions {
     requestAnimationFrame(setTopbarVar);
     topbar.appendChild(el('h1', '', 'EVOFOOTBALL ARENA'));
     topbar.appendChild(button(t('League table'), () => this.toggleLeagueScreen()));
+    topbar.appendChild(button(`🧬 ${t('Evolution')}`, () => this.toggleEvolutionScreen()));
     topbar.appendChild(button(t('Save'), () => this.saveNow()));
     topbar.appendChild(button(t('Load'), () => this.loadNow()));
     topbar.appendChild(button(t('Export'), () => this.exportSave()));
@@ -235,6 +238,7 @@ export class GameApp implements GameActions {
       this.league.promotionMode = m;
       saveLeague(this.league);
       this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       this.feed.pushSystem(
         m === 'playoff'
           ? '⚔ Promotion rules: playoff mode — Premier 7th will host Challenger 2nd for the last spot.'
@@ -245,6 +249,7 @@ export class GameApp implements GameActions {
       this.league.cupDrawMode = m;
       saveLeague(this.league);
       this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       this.feed.pushSystem(
         m === 'shootout'
           ? '🥅 Cup draw rule: level ties now go to a penalty shootout.'
@@ -255,6 +260,8 @@ export class GameApp implements GameActions {
     // (auto-shown, reopenable from the Evolution tab) and the pre-match clash.
     this.ceremony = new RebirthCeremony(stage, () => this.onCeremonyClosed());
     this.leagueScreen.onShowCeremony = () => this.showCeremony();
+    this.evolutionScreen = new EvolutionScreen(stage);
+    this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.clash = new ClashBanner(stage);
 
     // ---- League ----
@@ -719,6 +726,7 @@ export class GameApp implements GameActions {
       this.announceSeasonRecord(rec, prevChampion, false);
       saveLeague(this.league);
       this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       seasonEnded = true;
     }
     this.loadNextFixture();
@@ -779,6 +787,7 @@ export class GameApp implements GameActions {
       this.left.setBusy(false);
       this.setStatus(`${label}: ${count} matches in ${((performance.now() - t0) / 1000).toFixed(1)}s`);
       this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       if (this.league.history.length > historyBefore) this.showCeremony();
     }
   }
@@ -884,6 +893,7 @@ export class GameApp implements GameActions {
       this.left.setBusy(false);
       this.setStatus(`${label}: 1 match in ${((performance.now() - t0) / 1000).toFixed(1)}s`);
       this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       return;
     }
 
@@ -929,6 +939,7 @@ export class GameApp implements GameActions {
       this.left.setBusy(false);
       this.setStatus(`${label}: ${msg.matches} matches in ${((performance.now() - t0) / 1000).toFixed(1)}s (worker)`);
       this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       this.loadNextFixture();
       if (this.league.history.length > historyBefore) this.showCeremony();
     };
@@ -944,7 +955,14 @@ export class GameApp implements GameActions {
   }
 
   toggleLeagueScreen(): void {
+    this.evolutionScreen.hide();
     this.leagueScreen.toggle(this.league);
+  }
+
+  /** The evolution CENTER (Phase 51) — evolution's own stage, not a league tab. */
+  toggleEvolutionScreen(): void {
+    if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
+    this.evolutionScreen.toggle(this.league);
   }
 
   /* ---------------- rebirth ceremony (Phase 32.5) ---------------- */
@@ -1079,6 +1097,7 @@ export class GameApp implements GameActions {
           `📥 League imported — Gen ${league.generation}, seed ${league.seed}. Press Save to keep it.`,
         );
         this.leagueScreen.refreshIfVisible(this.league);
+      this.evolutionScreen.refreshIfVisible(this.league);
       });
     });
     input.click();

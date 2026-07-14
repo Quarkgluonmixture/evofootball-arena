@@ -1,7 +1,5 @@
 import { GENE_KEYS } from '../evolution/genome';
-import {
-  STYLE_DIMS, dimStats, nameplates, styleSpread, styleValues, topVarianceDims,
-} from '../evolution/styleSpace';
+import { nameplates } from '../evolution/styleSpace';
 import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
@@ -17,20 +15,17 @@ import {
   domesticDoubles, giantKillingCounts, greatestComeback, longestPremierStreak, mostCupGoals,
   movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
-import {
-  attrHeatmap, geneRadar, raceChart, sparklineTile, stackedShareStrip, styleScatter, type RadarSeries,
-} from './charts';
+import { geneRadar, raceChart, sparklineTile, type RadarSeries } from './charts';
 import { bar, button, colorHex, el } from './dom';
 import { lang, t } from './i18n';
 import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
 
-type Tab = 'league' | 'cup' | 'report' | 'evolution' | 'hall';
+type Tab = 'league' | 'cup' | 'report' | 'hall';
 
 const TABS: Array<[Tab, string]> = [
   ['league', t('League')],
   ['cup', t('Cup')],
   ['report', t('Season report')],
-  ['evolution', t('Evolution')],
   ['hall', t('Hall of fame')],
 ];
 
@@ -44,8 +39,8 @@ interface BracketData {
  * Full-screen league overlay, four tabs:
  *  League      — standings + team cards (genes, squad DNA, lineage)
  *  Report      — last season: awards, points race, champions history
- *  Evolution   — gene/attribute drift sparklines across generations
  *  Hall of fame — all-time records mined from season history
+ * (Evolution moved to its OWN screen — EvolutionScreen, Phase 51.)
  */
 export class LeagueScreen {
   readonly root: HTMLElement;
@@ -114,73 +109,10 @@ export class LeagueScreen {
       case 'report':
         this.renderReport(league);
         break;
-      case 'evolution':
-        this.renderEvolution(league);
-        break;
       case 'hall':
         this.renderHall(league);
         break;
     }
-  }
-
-  /* ---------------- Style space (Phase 49) ---------------- */
-
-  /**
-   * The evolution tab's headline: WHERE the league's styles sit and how far
-   * they've drifted apart. Axes are the two dims the population disagrees on
-   * most THIS season (data-driven, never designer-picked); trails replay the
-   * last seasons' recorded styleMatrix through the same projection.
-   */
-  private renderStyleSpace(league: League): void {
-    const clubs = [...league.division(0), ...league.division(1)];
-    const pop = clubs.map((f) => styleValues({ genome: f.genome, policy: f.policy }));
-    const stats = dimStats(pop);
-    const [xi, yi] = topVarianceDims(stats);
-    const z = (v: number, i: number) =>
-      (v - stats[i].mean) / Math.max(stats[i].std, STYLE_DIMS[i].scale * 0.02);
-    const plates = nameplates(clubs.map((f) => ({ genome: f.genome, policy: f.policy })));
-    const points = clubs.map((f, ci) => ({
-      x: z(pop[ci][xi], xi),
-      y: z(pop[ci][yi], yi),
-      color: colorHex(f.colors.primary),
-      label: f.short,
-      title: `${f.name} — ${plates[ci].map((w) => t(w)).join(' · ')}`,
-    }));
-    // Trails: recent recorded seasons projected on the SAME axes/stats, so
-    // a trail reads as "how this club moved toward where it stands today".
-    const withMatrix = league.history.filter((r) => r.styleMatrix).slice(-8);
-    const trails = clubs.map((f) => ({
-      color: colorHex(f.colors.primary),
-      pts: withMatrix
-        .map((r) => r.styleMatrix!.find((row) => row.slot === f.slot))
-        .filter((row): row is { slot: number; values: number[] } => row !== undefined)
-        .map((row) => ({ x: z(row.values[xi], xi), y: z(row.values[yi], yi) }))
-        .concat([{ x: z(pop[clubs.indexOf(f)][xi], xi), y: z(pop[clubs.indexOf(f)][yi], yi) }]),
-    }));
-    this.root.appendChild(el('h2', '', t('Style space')));
-    this.root.appendChild(el('div', 'muted',
-      t('Axes = the two dimensions this season\'s clubs disagree on most; trails = recent seasons.')));
-    this.root.appendChild(styleScatter(points, { x: t(STYLE_DIMS[xi].key), y: t(STYLE_DIMS[yi].key) }, trails));
-
-    // Divergence curve: population spread per recorded generation — the
-    // "is evolution visibly diverging" dial, front and centre.
-    const spreadSeries = league.history
-      .filter((r) => r.styleMatrix)
-      .map((r) => styleSpread(dimStats(r.styleMatrix!.map((row) => row.values))));
-    spreadSeries.push(styleSpread(stats));
-    const spreadGrid = el('div', 'spark-grid');
-    spreadGrid.appendChild(sparklineTile(`${t('style divergence')} ×5`, spreadSeries.map((v) => v * 5), '#f59e0b'));
-    this.root.appendChild(spreadGrid);
-
-    // Budget allocation (Phase 48 pairing): who spends their cap on WHAT.
-    this.root.appendChild(el('h2', '', t('Budget allocation')));
-    this.root.appendChild(attrHeatmap(
-      clubs.map((f) => {
-        const s = squadSummary(f.squad);
-        return { label: f.short, title: f.name, cells: ATTR_KEYS.map((k) => s[k]) };
-      }),
-      ATTR_KEYS.map((k) => t(k)),
-    ));
   }
 
   /* ---------------- League tab ---------------- */
@@ -659,66 +591,6 @@ export class LeagueScreen {
   }
 
   /* ---------------- Evolution tab ---------------- */
-
-  private renderEvolution(league: League): void {
-    this.renderStyleSpace(league);
-    const withGenes = league.history.filter((r) => r.geneMeans);
-    this.root.appendChild(el('h2', '', t('Tactical gene drift (league mean per generation)')));
-    if (withGenes.length === 0) {
-      this.root.appendChild(el('div', 'muted empty', 'Finish a season to start tracking gene drift.'));
-    } else {
-      const grid = el('div', 'spark-grid');
-      for (const k of GENE_KEYS) {
-        grid.appendChild(sparklineTile(k, withGenes.map((r) => r.geneMeans![k])));
-      }
-      this.root.appendChild(grid);
-
-      this.root.appendChild(el('h2', '', t('Squad attribute drift')));
-      const attrGrid = el('div', 'spark-grid');
-      const withAttrs = league.history.filter((r) => r.attrMeans);
-      for (const k of ATTR_KEYS) {
-        attrGrid.appendChild(sparklineTile(k, withAttrs.map((r) => r.attrMeans![k]), '#4ade80'));
-      }
-      this.root.appendChild(attrGrid);
-
-      // Formation identity shares (Phase 31): formations are franchise DNA
-      // now — inherited through rebirth, rarely mutated — so their league
-      // share per generation is an evolution story worth a strip each.
-      const withStyles = league.history.filter((r) => r.styleShares);
-      if (withStyles.length > 0) {
-        this.root.appendChild(el('h2', '', t('Formation identity share (per generation)')));
-        const styleGrid = el('div', 'spark-grid');
-        styleGrid.appendChild(stackedShareStrip(t('Attack formation'), [
-          { label: 'wide-212', color: '#60a5fa' },
-          { label: 'narrow-122', color: '#f59e0b' },
-        ], withStyles.map((r) => r.styleShares!.atk)));
-        styleGrid.appendChild(stackedShareStrip(t('Defend formation'), [
-          { label: 'low-32', color: '#60a5fa' },
-          { label: 'press-23', color: '#f472b6' },
-        ], withStyles.map((r) => r.styleShares!.def)));
-        styleGrid.appendChild(stackedShareStrip(t('Marking'), [
-          { label: 'man', color: '#4ade80' },
-          { label: 'zonal', color: '#a78bfa' },
-        ], withStyles.map((r) => r.styleShares!.scheme)));
-        this.root.appendChild(styleGrid);
-      }
-    }
-
-    const last = league.history[league.history.length - 1];
-    if (last) {
-      this.root.appendChild(el('h2', '', `Last evolution (gen ${last.generation} → ${last.generation + 1})`));
-      const row = el('div', 'row');
-      row.appendChild(button(`🧬 ${t('Rebirth ceremony')}`, () => this.onShowCeremony?.()));
-      this.root.appendChild(row);
-      for (const e of last.evolution.entries) {
-        const icon = e.kind === 'elite' ? '👑' : e.kind === 'mutated' ? '🧬' : '🔄';
-        const par = e.parents ? ` ← ${e.parents.join(' × ')}` : '';
-        this.root.appendChild(
-          el('div', 'history-entry', `${icon} ${e.name}${par} · fitness ${e.fitness.toFixed(3)} · drift ${e.drift.toFixed(2)}`),
-        );
-      }
-    }
-  }
 
   /* ---------------- Hall of fame tab ---------------- */
 

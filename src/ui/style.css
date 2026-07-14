@@ -338,8 +338,11 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
   border-radius: 6px; padding: 6px 8px;
 }
 .spark-head { display: flex; justify-content: space-between; gap: 4px; margin-bottom: 2px; }
-.spark-head .g-name { flex: 1; min-width: 0; }
-.spark-val { font-size: 12px; font-weight: 700; flex-shrink: 0; }
+.spark-head .g-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.spark-val {
+  font-size: 12px; font-weight: 700; flex-shrink: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 75%;
+}
 
 .dynasty-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; font-size: 12px; }
 .dynasty-row:hover { background: rgba(36, 48, 74, 0.3); border-radius: 4px; }
@@ -518,4 +521,46 @@ body.cinematic .cinematic-enter { display: none; }
   #replay-bar { bottom: calc(8px + env(safe-area-inset-bottom)); padding: 6px 8px; }
   #replay-bar button { min-height: 34px; }
   body { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+/* ---------------- Evolution center (Phase 51) ---------------- */
+#evolution-screen {
+  position: absolute; inset: 0; overflow-y: auto;
+  background: #080c16; padding: 18px 22px; z-index: 10;
+  animation: feed-in 0.2s ease-out;
+}
+#evolution-screen .spark-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+#evolution-screen.hidden { display: none; }
+#evolution-screen h2 {
+  margin: 14px 0 10px; color: var(--accent); font-size: var(--fs-lg);
+  letter-spacing: 0.5px; border-bottom: 1px solid var(--border-soft); padding-bottom: 5px;
+}
+#evolution-screen h2:first-child { margin-top: 0; }
+.evo-hero { max-width: 720px; }
+.evo-map { max-width: 720px; }
+.evo-controls { align-items: center; gap: 10px; margin-top: 6px; }
+.evo-play { min-width: 44px; }
+.evo-scrub { flex: 1; min-width: 120px; accent-color: #f5c542; }
+.evo-frame-label { white-space: nowrap; }
+.evo-club { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: 18px; }
+.evo-club-col { min-width: 0; }
+.dyn-wall { display: flex; flex-direction: column; gap: 3px; }
+.dyn-row-line {
+  display: grid; grid-template-columns: 74px 1fr; gap: 8px; align-items: center;
+  cursor: pointer; border-radius: 6px; padding: 2px 4px;
+}
+.dyn-row-line:hover, .dyn-row-line.selected { background: rgba(36, 48, 74, 0.45); }
+.dyn-name { font-size: var(--fs-xs); color: var(--muted); white-space: nowrap; }
+.dyn-cells { display: flex; gap: 2px; flex-wrap: wrap; }
+.dyn-cell {
+  width: 16px; height: 16px; border-radius: 3px; font-size: 10px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.evo-details summary { color: var(--muted); cursor: pointer; margin: 10px 0; }
+.tag.nameplate { border-color: #f5c542; color: #f5c542; }
+@media (max-width: 640px) {
+  #evolution-screen { padding: 12px 10px; }
+  .evo-club { grid-template-columns: 1fr; }
+  .dyn-cell { width: 12px; height: 12px; font-size: 8px; }
+  .dyn-row-line { grid-template-columns: 56px 1fr; }
 }

@@ -261,25 +261,43 @@ const storyText = await page.locator('#league-screen .report-story').textContent
 check('mined season stories carry real text', storyText.trim().length > 20, storyText.slice(0, 60));
 await page.screenshot({ path: `${OUT}/7-season-report.png` });
 
-await page.click('#league-screen button:has-text("Evolution")');
+// Phase 51 — evolution has its OWN screen (top-bar 🧬 button; opening it
+// closes the league screen). Hero map + scrubber + club panel + dynasty wall.
+await page.click('#topbar button:has-text("Evolution")');
 await page.waitForTimeout(300);
-const tiles = await page.locator('#league-screen .spark-tile').count();
-check('gene+attr drift sparklines render', tiles >= 19, `${tiles} tiles`);
-// Phase 49 — the style-space headline: map with 16 kit dots, the divergence
-// tile, the budget heatmap (16 rows × 8 cols = 128 cells), and data-driven
-// nameplate tags on team cards.
-const mapDots = await page.locator('#league-screen .style-map circle').count();
+check('evolution center opens (own screen)', await page.locator('#evolution-screen').isVisible(), '');
+check('league screen closed by the evolution center', !(await page.locator('#league-screen').isVisible()), '');
+const mapDots = await page.locator('#evolution-screen .evo-map circle').count();
 check('style-space map plots all 16 clubs', mapDots === 16, `${mapDots} dots`);
-const heatCells = await page.locator('#league-screen .attr-heatmap rect').count();
+check('generation scrubber present', (await page.locator('#evolution-screen .evo-scrub').count()) === 1, '');
+// Scrub to frame 0 and back — the map redraws without errors.
+await page.locator('#evolution-screen .evo-scrub').fill('0');
+await page.waitForTimeout(150);
+check('scrubbing to gen 0 keeps 16 dots', (await page.locator('#evolution-screen .evo-map circle').count()) === 16, '');
+// Tap a dynasty row → the club panel follows.
+const dynRows = await page.locator('#evolution-screen .dyn-row-line').count();
+check('dynasty wall shows all 16 slots', dynRows === 16, `${dynRows} rows`);
+await page.locator('#evolution-screen .dyn-row-line').nth(3).click();
+await page.waitForTimeout(200);
+check('club deep-dive selects from the wall', (await page.locator('#evolution-screen .dyn-row-line.selected').count()) === 1, '');
+check('club panel carries nameplate tags', (await page.locator('#evolution-screen .evo-club .tag.nameplate').count()) >= 1, '');
+const heatCells = await page.locator('#evolution-screen .attr-heatmap rect').count();
 check('budget heatmap renders 16×8 cells', heatCells === 128, `${heatCells} cells`);
+const tiles = await page.locator('#evolution-screen .spark-tile').count();
+check('population trend tiles render', tiles >= 5, `${tiles} tiles`);
 await page.screenshot({ path: `${OUT}/8-evolution.png` });
 
-// The ceremony is reopenable from the Evolution tab (32.5).
-await page.click('#league-screen button:has-text("Rebirth ceremony")');
+// The ceremony is reopenable from the evolution center (32.5 → 51).
+await page.click('#evolution-screen button:has-text("Rebirth ceremony")');
 await page.waitForTimeout(300);
-check('evolution tab reopens the rebirth ceremony', await page.locator('#rebirth-screen').isVisible(), '');
+check('evolution center reopens the rebirth ceremony', await page.locator('#rebirth-screen').isVisible(), '');
 await page.click('#rebirth-screen .ceremony-continue');
 await page.waitForTimeout(200);
+
+// Back to the league screen for the hall checks.
+await page.click('#topbar button:has-text("League table")');
+await page.waitForTimeout(200);
+check('league table button closes the evolution center', !(await page.locator('#evolution-screen').isVisible()), '');
 
 await page.click('#league-screen button:has-text("Hall of fame")');
 await page.waitForTimeout(300);
