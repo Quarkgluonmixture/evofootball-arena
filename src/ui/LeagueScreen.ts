@@ -1,4 +1,7 @@
-import { GENE_KEYS, describeIdentity } from '../evolution/genome';
+import { GENE_KEYS } from '../evolution/genome';
+import {
+  STYLE_DIMS, dimStats, nameplates, styleSpread, styleValues, topVarianceDims,
+} from '../evolution/styleSpace';
 import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
@@ -14,7 +17,9 @@ import {
   domesticDoubles, giantKillingCounts, greatestComeback, longestPremierStreak, mostCupGoals,
   movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
-import { geneRadar, raceChart, sparklineTile, stackedShareStrip, type RadarSeries } from './charts';
+import {
+  attrHeatmap, geneRadar, raceChart, sparklineTile, stackedShareStrip, styleScatter, type RadarSeries,
+} from './charts';
 import { bar, button, colorHex, el } from './dom';
 import { lang, t } from './i18n';
 import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
@@ -118,6 +123,66 @@ export class LeagueScreen {
     }
   }
 
+  /* ---------------- Style space (Phase 49) ---------------- */
+
+  /**
+   * The evolution tab's headline: WHERE the league's styles sit and how far
+   * they've drifted apart. Axes are the two dims the population disagrees on
+   * most THIS season (data-driven, never designer-picked); trails replay the
+   * last seasons' recorded styleMatrix through the same projection.
+   */
+  private renderStyleSpace(league: League): void {
+    const clubs = [...league.division(0), ...league.division(1)];
+    const pop = clubs.map((f) => styleValues({ genome: f.genome, policy: f.policy }));
+    const stats = dimStats(pop);
+    const [xi, yi] = topVarianceDims(stats);
+    const z = (v: number, i: number) =>
+      (v - stats[i].mean) / Math.max(stats[i].std, STYLE_DIMS[i].scale * 0.02);
+    const plates = nameplates(clubs.map((f) => ({ genome: f.genome, policy: f.policy })));
+    const points = clubs.map((f, ci) => ({
+      x: z(pop[ci][xi], xi),
+      y: z(pop[ci][yi], yi),
+      color: colorHex(f.colors.primary),
+      label: f.short,
+      title: `${f.name} — ${plates[ci].map((w) => t(w)).join(' · ')}`,
+    }));
+    // Trails: recent recorded seasons projected on the SAME axes/stats, so
+    // a trail reads as "how this club moved toward where it stands today".
+    const withMatrix = league.history.filter((r) => r.styleMatrix).slice(-8);
+    const trails = clubs.map((f) => ({
+      color: colorHex(f.colors.primary),
+      pts: withMatrix
+        .map((r) => r.styleMatrix!.find((row) => row.slot === f.slot))
+        .filter((row): row is { slot: number; values: number[] } => row !== undefined)
+        .map((row) => ({ x: z(row.values[xi], xi), y: z(row.values[yi], yi) }))
+        .concat([{ x: z(pop[clubs.indexOf(f)][xi], xi), y: z(pop[clubs.indexOf(f)][yi], yi) }]),
+    }));
+    this.root.appendChild(el('h2', '', t('Style space')));
+    this.root.appendChild(el('div', 'muted',
+      t('Axes = the two dimensions this season\'s clubs disagree on most; trails = recent seasons.')));
+    this.root.appendChild(styleScatter(points, { x: t(STYLE_DIMS[xi].key), y: t(STYLE_DIMS[yi].key) }, trails));
+
+    // Divergence curve: population spread per recorded generation — the
+    // "is evolution visibly diverging" dial, front and centre.
+    const spreadSeries = league.history
+      .filter((r) => r.styleMatrix)
+      .map((r) => styleSpread(dimStats(r.styleMatrix!.map((row) => row.values))));
+    spreadSeries.push(styleSpread(stats));
+    const spreadGrid = el('div', 'spark-grid');
+    spreadGrid.appendChild(sparklineTile(`${t('style divergence')} ×5`, spreadSeries.map((v) => v * 5), '#f59e0b'));
+    this.root.appendChild(spreadGrid);
+
+    // Budget allocation (Phase 48 pairing): who spends their cap on WHAT.
+    this.root.appendChild(el('h2', '', t('Budget allocation')));
+    this.root.appendChild(attrHeatmap(
+      clubs.map((f) => {
+        const s = squadSummary(f.squad);
+        return { label: f.short, title: f.name, cells: ATTR_KEYS.map((k) => s[k]) };
+      }),
+      ATTR_KEYS.map((k) => t(k)),
+    ));
+  }
+
   /* ---------------- League tab ---------------- */
 
   private renderRules(league: League): void {
@@ -217,6 +282,9 @@ export class LeagueScreen {
     const leagueMean = GENE_KEYS.map(
       (k) => ordered.reduce((a, f) => a + f.genome[k], 0) / Math.max(ordered.length, 1),
     );
+    // Data-driven nameplates (Phase 49): a club's tags are where it actually
+    // deviates from THIS population — replaces the fixed identity buckets.
+    const plates = nameplates(ordered.map((f) => ({ genome: f.genome, policy: f.policy })));
 
     for (const f of ordered) {
       const card = el('div', 'team-card');
@@ -234,7 +302,9 @@ export class LeagueScreen {
       tags.appendChild(el('span', 'tag', `⚔ ${f.style.formationAtk}`));
       tags.appendChild(el('span', 'tag', `🛡 ${f.style.formationDef}`));
       tags.appendChild(el('span', 'tag', t(f.style.scheme === 'man' ? 'man-marking' : 'zonal')));
-      for (const t of describeIdentity(f.genome)) tags.appendChild(el('span', 'tag', t));
+      for (const word of plates[ordered.indexOf(f)]) {
+        tags.appendChild(el('span', 'tag nameplate', t(word)));
+      }
       // Prestige (Phase 40): age-decayed trophy weight, shown as stars.
       const prestige = this.league ? this.league.prestigeOf(f.slot) : 0;
       if (prestige >= 0.5) {
@@ -591,6 +661,7 @@ export class LeagueScreen {
   /* ---------------- Evolution tab ---------------- */
 
   private renderEvolution(league: League): void {
+    this.renderStyleSpace(league);
     const withGenes = league.history.filter((r) => r.geneMeans);
     this.root.appendChild(el('h2', '', t('Tactical gene drift (league mean per generation)')));
     if (withGenes.length === 0) {

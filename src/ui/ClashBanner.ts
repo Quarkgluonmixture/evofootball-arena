@@ -1,4 +1,5 @@
-import { GENE_KEYS, describeIdentity } from '../evolution/genome';
+import { GENE_KEYS } from '../evolution/genome';
+import { nameplates, type StyleSource } from '../evolution/styleSpace';
 import type { Match } from '../sim/Match';
 import { deriveTeamStyle } from '../sim/types';
 import { geneRadar } from './charts';
@@ -29,11 +30,11 @@ export class ClashBanner {
     return this.visible;
   }
 
-  show(match: Match, contextLabel: string): void {
+  show(match: Match, contextLabel: string, population?: StyleSource[]): void {
     this.root.textContent = '';
     const mid = el('div', 'clash-mid');
     mid.append(el('div', 'clash-vs', 'VS'), el('div', 'clash-ctx muted', contextLabel));
-    this.root.append(this.sideCard(match, 0), mid, this.sideCard(match, 1));
+    this.root.append(this.sideCard(match, 0, population), mid, this.sideCard(match, 1, population));
     this.root.appendChild(el('div', 'clash-hint muted', t('tap to dismiss')));
     this.visible = true;
     this.root.classList.remove('hidden');
@@ -44,7 +45,7 @@ export class ClashBanner {
     this.root.classList.add('hidden');
   }
 
-  private sideCard(match: Match, side: 0 | 1): HTMLElement {
+  private sideCard(match: Match, side: 0 | 1, population?: StyleSource[]): HTMLElement {
     const info = match.teams[side].info;
     const style = info.style ?? deriveTeamStyle(info.genome);
     const card = el('div', 'clash-card');
@@ -68,7 +69,15 @@ export class ClashBanner {
     tags.appendChild(el('span', 'tag', `⚔ ${style.formationAtk}`));
     tags.appendChild(el('span', 'tag', `🛡 ${style.formationDef}`));
     tags.appendChild(el('span', 'tag', t(style.scheme === 'man' ? 'man-marking' : 'zonal')));
-    for (const tag of describeIdentity(info.genome).slice(0, 2)) tags.appendChild(el('span', 'tag', tag));
+    // Data-driven nameplate (Phase 49): identity relative to the current
+    // league population; both teams appended so exhibition sides still rank.
+    const pool: StyleSource[] = [
+      ...(population ?? []),
+      { genome: match.teams[0].info.genome, policy: match.teams[0].info.policy },
+      { genome: match.teams[1].info.genome, policy: match.teams[1].info.policy },
+    ];
+    const plate = nameplates(pool)[pool.length - 2 + side];
+    for (const word of plate) tags.appendChild(el('span', 'tag nameplate', t(word)));
     card.appendChild(tags);
     return card;
   }

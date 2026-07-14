@@ -172,7 +172,8 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
      be SELECTED (fitting styles win), don't hand-wire correlations — MEASURE it
      (add cross-gene correlation to `policy-emergence`); a flat correlation = a
      substrate/selection lever to fix, not a thing to hardcode.
-   - ⚠️ **FOR A LATER FABLE MODEL — Evolution VISUALIZATION module** (hardest,
+   - ✅ **SHIPPED (phase-49, v1)** — Evolution VISUALIZATION module (nameplates/
+     map/divergence per EVO-BLUEPRINT.md's ledger; original scoping below). (hardest,
      deferred) — a big UI to SEE styles diverge, the main fix for "NOT PROMINENT"
      (see §6): team identity cards with **STYLE NAMEPLATES derived from each
      club's ACTUAL evolved gene profile — DATA-DRIVEN, not hand-picked buckets**

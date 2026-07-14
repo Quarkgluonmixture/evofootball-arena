@@ -187,3 +187,21 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   luck). No save bump (same schema; old saves settle onto the cap at their
   first season end). vitest 315, visual 75+37. Fingerprint `2c434e57…`
   (behavioral).
+- ✅ **phase-49 SHIPPED** (visibility v1 — Stage 2): `evolution/styleSpace.ts`
+  — a club's style is its point in the 33-dim (14 genes + 19 policy) space.
+  **Data-driven NAMEPLATES** replace `describeIdentity`'s fixed buckets
+  everywhere in the UI (team cards, clash banner, rebirth ceremony,
+  evolve-check): up-to-2 fragments from where a club z-deviates ≥1σ from the
+  CURRENT population, through a dimension→vocabulary grammar (33 football
+  words, zh-localized; combinations are emergent, 'Balanced' must be earned
+  away). **Style-space map** on the Evolution tab: clubs scattered on the
+  season's two highest-variance dims (axes data-driven, kit-color dots +
+  direct labels + drift trails over the last 8 recorded seasons);
+  **divergence sparkline** (population spread per generation) and the
+  **budget-allocation heatmap** (16×8, single-hue ramp) beside it.
+  SeasonRecord grew `styleMatrix` (per-club vectors, snapshotted before
+  evolution) — **proven record-only by strip-and-rehash back to exactly
+  `2c434e57…`**. Dataviz rules applied (entity colors, direct labels, title
+  tooltips, recessive grids). vitest 323 (styleSpace.test +8), visual
+  **78**+35 (3 new checks: 16 map dots, 128 heatmap cells, nameplate tags).
+  Fingerprint `85a7b813…` (schema growth only).

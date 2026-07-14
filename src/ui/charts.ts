@@ -256,3 +256,97 @@ export function raceChart(series: RaceSeries[], rounds: number): HTMLDivElement 
   return wrap;
 }
 
+
+/**
+ * Style-space scatter (Phase 49): the league's clubs plotted on the two
+ * dimensions the population disagrees on most (z-scored). Dots wear KIT
+ * colors (color follows the entity) with a 2px surface ring and a direct
+ * short-name label — identity is never color-alone. Optional trails show
+ * each club's drift over recent seasons in its own color at low opacity.
+ */
+export function styleScatter(
+  points: Array<{ x: number; y: number; color: string; label: string; title: string }>,
+  axes: { x: string; y: string },
+  trails: Array<{ color: string; pts: Array<{ x: number; y: number }> }> = [],
+): HTMLDivElement {
+  const wrap = el('div', 'style-map');
+  wrap.style.maxWidth = '560px';
+  const W = 340;
+  const H = 260;
+  const PAD = 26;
+  // z-scores live in roughly ±2.5; clamp so an outlier can't fling the map.
+  const cx = (z: number) => W / 2 + Math.max(-2.5, Math.min(2.5, z)) * ((W / 2 - PAD) / 2.5);
+  const cy = (z: number) => H / 2 - Math.max(-2.5, Math.min(2.5, z)) * ((H / 2 - PAD) / 2.5);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%');
+  const parts: string[] = [
+    `<rect x="0" y="0" width="${W}" height="${H}" rx="8" fill="${SURFACE}"/>`,
+    // recessive centre axes: the population mean
+    `<line x1="${PAD}" y1="${H / 2}" x2="${W - PAD}" y2="${H / 2}" stroke="${GRID}" stroke-width="1"/>`,
+    `<line x1="${W / 2}" y1="${PAD}" x2="${W / 2}" y2="${H - PAD}" stroke="${GRID}" stroke-width="1"/>`,
+    `<text x="${W - PAD}" y="${H / 2 - 6}" text-anchor="end" font-size="9" fill="${INK_MUTED}">${escapeHtml(axes.x)} →</text>`,
+    `<text x="${W / 2 + 6}" y="${PAD + 4}" font-size="9" fill="${INK_MUTED}">${escapeHtml(axes.y)} ↑</text>`,
+  ];
+  for (const t of trails) {
+    if (t.pts.length < 2) continue;
+    const d = t.pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${cx(p.x).toFixed(1)} ${cy(p.y).toFixed(1)}`).join(' ');
+    parts.push(`<path d="${d}" fill="none" stroke="${t.color}" stroke-width="1.5" opacity="0.35"/>`);
+  }
+  for (const p of points) {
+    const x = cx(p.x);
+    const y = cy(p.y);
+    parts.push(
+      `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="${p.color}" stroke="${SURFACE}" stroke-width="2"><title>${escapeHtml(p.title)}</title></circle>`,
+      `<text x="${(x + 7).toFixed(1)}" y="${(y + 3).toFixed(1)}" font-size="8" fill="${INK_MUTED}">${escapeHtml(p.label)}</text>`,
+    );
+  }
+  svg.innerHTML = parts.join('');
+  wrap.appendChild(svg);
+  return wrap;
+}
+
+/**
+ * Attribute-allocation heatmap (Phase 49): clubs × attributes, single-hue
+ * lightness ramp (sequential = magnitude), 2px cell gaps, <title> tooltips
+ * carrying the exact value so color is never the only channel.
+ */
+export function attrHeatmap(
+  rows: Array<{ label: string; cells: number[]; title?: string }>,
+  cols: string[],
+): HTMLDivElement {
+  const wrap = el('div', 'attr-heatmap');
+  const CELL = 22;
+  const GAP = 2;
+  const LABEL_W = 44;
+  const HEAD_H = 30;
+  const W = LABEL_W + cols.length * (CELL + GAP);
+  const H = HEAD_H + rows.length * (CELL + GAP);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('style', `max-width:${W}px`);
+  const parts: string[] = [];
+  cols.forEach((c, j) => {
+    parts.push(
+      `<text x="${LABEL_W + j * (CELL + GAP) + CELL / 2}" y="${HEAD_H - 8}" text-anchor="middle" font-size="8" fill="${INK_MUTED}">${escapeHtml(c.slice(0, 3))}</text>`,
+    );
+  });
+  rows.forEach((r, i) => {
+    const y = HEAD_H + i * (CELL + GAP);
+    parts.push(
+      `<text x="${LABEL_W - 6}" y="${y + CELL / 2 + 3}" text-anchor="end" font-size="9" fill="${INK_MUTED}">${escapeHtml(r.label)}</text>`,
+    );
+    r.cells.forEach((v, j) => {
+      const clamped = Math.max(0, Math.min(1, v));
+      // single blue hue, dark→light lightness ramp on the dark surface
+      const light = 16 + clamped * 46;
+      parts.push(
+        `<rect x="${LABEL_W + j * (CELL + GAP)}" y="${y}" width="${CELL}" height="${CELL}" rx="3" fill="hsl(213 70% ${light.toFixed(0)}%)"><title>${escapeHtml(`${r.title ?? r.label} · ${cols[j]}: ${v.toFixed(2)}`)}</title></rect>`,
+      );
+    });
+  });
+  svg.innerHTML = parts.join('');
+  wrap.appendChild(svg);
+  return wrap;
+}

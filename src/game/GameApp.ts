@@ -452,6 +452,7 @@ export class GameApp implements GameActions {
     this.clash.show(
       this.match,
       this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
+      this.league.franchises,
     );
   }
 
@@ -474,6 +475,7 @@ export class GameApp implements GameActions {
         : this.fixture.cup
           ? `${CUP_ROUND_NAMES[this.fixture.round]}`
           : this.league.roundLabel(),
+      this.league.franchises,
     );
   }
 

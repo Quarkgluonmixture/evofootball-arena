@@ -1,4 +1,5 @@
-import { GENE_KEYS, describeIdentity } from '../evolution/genome';
+import { GENE_KEYS } from '../evolution/genome';
+import { dimStats, nameplateFor, styleValues } from '../evolution/styleSpace';
 import type { League } from '../sim/League';
 import { geneRadar, type RadarSeries } from './charts';
 import { button, colorHex, el } from './dom';
@@ -55,7 +56,7 @@ export class RebirthCeremony {
 
     this.root.appendChild(el('h2', '', `💀 ${t('Died and reborn')}`));
     const cards = el('div', 'cards ceremony-cards');
-    for (const d of model.deaths) cards.appendChild(this.deathCard(d));
+    for (const d of model.deaths) cards.appendChild(this.deathCard(d, league));
     this.root.appendChild(cards);
 
     const cont = button(`${t('Continue')} ▶`, () => this.hide());
@@ -74,7 +75,7 @@ export class RebirthCeremony {
     this.onClose();
   }
 
-  private deathCard(d: CeremonyDeath): HTMLElement {
+  private deathCard(d: CeremonyDeath, league: League): HTMLElement {
     const card = el('div', 'team-card rebirth-card');
 
     const head = el('div', 'team-head rebirth-head');
@@ -146,7 +147,13 @@ export class RebirthCeremony {
         idTags.appendChild(el('span', 'tag', `🛡 ${d.inheritedStyle.formationDef}`));
         idTags.appendChild(el('span', 'tag', t(d.inheritedStyle.scheme === 'man' ? 'man-marking' : 'zonal')));
       }
-      for (const tag of describeIdentity(d.childGenome)) idTags.appendChild(el('span', 'tag', tag));
+      // Data-driven nameplate (Phase 49): the newborn's identity relative to
+      // the CURRENT population (policy dims read DEFAULT — the child's policy
+      // snapshot isn't recorded; genes carry the signal here).
+      const stats = dimStats(league.franchises.map((f) => styleValues({ genome: f.genome, policy: f.policy })));
+      for (const word of nameplateFor(styleValues({ genome: d.childGenome }), stats)) {
+        idTags.appendChild(el('span', 'tag nameplate', t(word)));
+      }
       card.appendChild(idTags);
     }
 

@@ -3,7 +3,7 @@
  * tactical identities and Elo spread so you can see whether the ecosystem
  * develops distinct, drifting identities. Run with: npx tsx scripts/evolve-check.ts
  */
-import { describeIdentity } from '../src/evolution/genome';
+import { nameplates } from '../src/evolution/styleSpace';
 import { squadSummary } from '../src/evolution/playerGenome';
 import { League } from '../src/sim/League';
 
@@ -37,7 +37,9 @@ if (shares) {
 }
 
 console.log('Final population:');
-for (const f of [...league.franchises].sort((a, b) => a.division - b.division || b.elo - a.elo)) {
+const sorted = [...league.franchises].sort((a, b) => a.division - b.division || b.elo - a.elo);
+const plates = nameplates(sorted.map((f) => ({ genome: f.genome, policy: f.policy })));
+for (const [idx, f] of sorted.entries()) {
   const gens = f.lineage.filter((l) => l.event === 'elite').length;
   const moves =
     f.lineage.filter((l) => l.event === 'promoted').length +
@@ -46,7 +48,7 @@ for (const f of [...league.franchises].sort((a, b) => a.division - b.division ||
   const attrs = `pac ${s.pace.toFixed(2)} pas ${s.passing.toFixed(2)} drb ${s.dribbling.toFixed(2)} fin ${s.finishing.toFixed(2)} def ${s.defending.toFixed(2)} str ${s.strength.toFixed(2)} sta ${s.stamina.toFixed(2)} ref ${s.reflexes.toFixed(2)}`;
   console.log(
     `  D${f.division + 1} ${f.name.padEnd(18)} elo ${String(Math.round(f.elo)).padStart(4)}  ` +
-    `elite×${gens} moves×${moves}  [${describeIdentity(f.genome).join(', ')}]\n` +
+    `elite×${gens} moves×${moves}  [${plates[idx].join(', ')}]\n` +
     `     ${''.padEnd(18)} squad: ${attrs}`,
   );
 }

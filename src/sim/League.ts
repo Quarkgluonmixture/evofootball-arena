@@ -20,6 +20,7 @@ import {
   type AttrKey,
 } from '../evolution/playerGenome';
 import { defaultPolicyGenes } from '../evolution/policyGenome';
+import { styleValues } from '../evolution/styleSpace';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
@@ -124,6 +125,10 @@ export interface SeasonRecord {
   /** League-average gene values of the population that PLAYED this season. */
   geneMeans?: Record<GeneKey, number>;
   attrMeans?: Record<AttrKey, number>;
+  /** Per-club style vectors in STYLE_DIMS order (Phase 49), snapshotted
+   * BEFORE evolution — the style-space map's trails and the divergence
+   * curve read these. Optional: old records lack it. */
+  styleMatrix?: Array<{ slot: number; values: number[] }>;
   /** Formation-identity counts of the population that PLAYED this season (Phase 31). */
   styleShares?: { atk: Record<string, number>; def: Record<string, number>; scheme: Record<string, number> };
   /** Longest completed-pass chain of the season (Phase 33 — the tiki-taka record). */
@@ -593,6 +598,10 @@ export class League {
       geneMeans: this.geneMeans(),
       attrMeans: this.attrMeans(),
       styleShares: this.styleShares(),
+      styleMatrix: this.franchises.map((f) => ({
+        slot: f.slot,
+        values: styleValues({ genome: f.genome, policy: f.policy }),
+      })),
       longestChain: this.longestChainRecord(),
       pointsTimeline: this.buildPointsTimeline(),
     };

@@ -134,6 +134,8 @@ check('promotion/relegation zones highlighted', zones === 4, `${zones} zone rows
 const cards = await page.locator('#league-screen .team-card').count();
 check('team cards render', cards === 16, `${cards} cards`);
 check('every team card carries a DNA radar (32.5)', (await page.locator('#league-screen .team-card svg.radar').count()) === 16, '');
+const plateTags = await page.locator('#league-screen .team-card .tag.nameplate').count();
+check('data-driven nameplates on team cards (49)', plateTags >= 16, `${plateTags} tags`);
 check('division badges on team cards', (await page.locator('#league-screen .tag.div-badge-1').count()) === 8);
 check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 4);
 check('cup draw rule selector present', (await page.locator('#league-screen .rules-row').count()) === 2);
@@ -263,6 +265,13 @@ await page.click('#league-screen button:has-text("Evolution")');
 await page.waitForTimeout(300);
 const tiles = await page.locator('#league-screen .spark-tile').count();
 check('gene+attr drift sparklines render', tiles >= 19, `${tiles} tiles`);
+// Phase 49 — the style-space headline: map with 16 kit dots, the divergence
+// tile, the budget heatmap (16 rows × 8 cols = 128 cells), and data-driven
+// nameplate tags on team cards.
+const mapDots = await page.locator('#league-screen .style-map circle').count();
+check('style-space map plots all 16 clubs', mapDots === 16, `${mapDots} dots`);
+const heatCells = await page.locator('#league-screen .attr-heatmap rect').count();
+check('budget heatmap renders 16×8 cells', heatCells === 128, `${heatCells} cells`);
 await page.screenshot({ path: `${OUT}/8-evolution.png` });
 
 // The ceremony is reopenable from the Evolution tab (32.5).
