@@ -111,7 +111,11 @@ describe('league-level style ecology', () => {
     let played = 0;
     for (let s = 0; s < 10; s++) {
       while (!league.seasonDone) {
-        if (played++ % 25 === 0) await new Promise((r) => setImmediate(r));
+        // Every 5, not 25: two vitest workers contend for CI's 2 cores, so
+        // 25 full-length matches can block ~60s straight — exactly the RPC
+        // "Timeout calling onTaskUpdate" heartbeat budget (fm 12 corollary;
+        // this file killed the phase-45..50 deploy run with 323/323 green).
+        if (played++ % 5 === 0) await new Promise((r) => setImmediate(r));
         const f = league.nextFixture()!;
         league.applyResult(f, league.createMatch(f).runToCompletion());
       }

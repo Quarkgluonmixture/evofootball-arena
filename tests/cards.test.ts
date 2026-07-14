@@ -156,7 +156,7 @@ describe('cards (Phase 25)', () => {
     expect(r.duration).toBe(240);
   });
 
-  it('league: cards aggregate into the dirtiest-team award and the save roundtrips', () => {
+  it('league: cards aggregate into the dirtiest-team award and the save roundtrips', { timeout: 120000 }, async () => {
     // Full-length matches on purpose: the dirtiest award counts ONE division's
     // cards (League.finishSeason filters `f.division !== division`), and the
     // booking rate scales with match length — a 60s season yields only ~0.14
@@ -164,10 +164,15 @@ describe('cards (Phase 25)', () => {
     // legitimate outcome shift once tipped seed 9 there). At 240s the awarded
     // division collects ~25 cards, so a season without one is astronomically
     // unlikely and the assertion is robust to future outcome drift.
+    // 56 full-length matches peg a 2-core CI runner past vitest's default
+    // 20s (the previous docs push failed CI exactly here) — explicit timeout
+    // + periodic yields keep the worker RPC heartbeat alive (repo CI rule).
     const league = new League({ seed: 9, matchDuration: 240 });
+    let played = 0;
     while (!league.seasonDone) {
       const f = league.nextFixture()!;
       league.applyResult(f, league.createMatch(f).runToCompletion());
+      if (++played % 10 === 0) await new Promise((r) => setImmediate(r));
     }
     const rec = league.finishSeason();
     expect(rec.awards).toBeDefined();
