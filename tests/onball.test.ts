@@ -196,10 +196,11 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     // Hold-releases are ~1–2 per match; scan seeds until a throw shows up.
     // The no-hoof contract is asserted across EVERY scanned match.
     let sawThrow = false;
-    // Seeds 6/19/29/32 are known throw-producers under the Phase 30
-    // formation geometry (probed 1..60); the rest keep the no-hoof contract
-    // scanning a spread of ordinary matches.
-    for (const seed of [6, 19, 29, 32, 21, 9, 12, 42]) {
+    // Seeds 8/38 are the known throw-producers under the 51.2 facing
+    // geometry (re-probed 1..60 — the held keeper now squares toward the
+    // opponent goal, which reshuffled hold-release choices); the rest keep
+    // the no-hoof contract scanning a spread of ordinary matches.
+    for (const seed of [8, 38, 6, 19, 29, 32, 21, 42]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 240 });
       while (!m.finished) {
         m.step(DT);

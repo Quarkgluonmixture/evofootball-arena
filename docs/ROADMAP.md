@@ -24,8 +24,11 @@ was already met post-budget, remaining speed levers PARKED). **STAGE 1+2 COMPLET
 per the user's report: scrubber-driven style map, club deep dive, dynasty
 wall; league screen back to pure data). Next: Stage 3 (the WORLD layer:
 W4 season chronicle first, then W1 coach entity → W2 player personal style →
-W3 fire-sale), shaped by the user's play reports of the new screen. HEAD
-fingerprint `2eac71da…` (phase-50; 51 is UI-only).
+W3 fire-sale), shaped by the user's play reports of the new screen. Shipped
+since: 51.1 (four style-space lenses) + 51.2 (keeper-hold + restart-taker
+facing, behavioral). HEAD fingerprint `3f4e16b1…` (phase-51.2). ⚠ WATCH:
+goals band 2.8-3.6 across seeds after the emergence era's honest buffs —
+play-feel decides whether to pull it back (dials in the blueprint ledger).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

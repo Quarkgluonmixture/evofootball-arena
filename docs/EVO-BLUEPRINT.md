@@ -248,3 +248,18 @@ then form/morale, injuries, home-crowd effects, narrative-memory commentary.
   data-driven (top variance within the lens). One scrubber drives all four;
   the selected club rings in every lens. `topVarianceDims(stats, theme?)` in
   styleSpace.ts. visual 87 (four-lens + 64-dot checks).
+- ✅ **phase-51.2 SHIPPED** (facing polish, user report: 门将 hold 应面向对方
+  球门（球也是）、任意球等摆位也应正确面向): one post-switch rule in
+  `actionExecutor` — a keeper HOLDING the ball (`gkHoldTimer`/`gkDistributing`)
+  faces `oppGoal()` (the held ball rides 0.3m along his heading, so it comes
+  around with him), and a restart TAKER within 2.5m of the spot squares
+  toward the play. Behavioral: takers no longer pay the accidental
+  backward-facing kick penalty — restart quality genuinely improves.
+  Calibrate 2.76 / 3.60 / 3.04 (777 stays the hot outlier; ⚠ WATCH the goals
+  band creep across the emergence era — if play-feel says too many, dials:
+  tryTackles defending 0.34→0.38, `GK_RUSH_ENVELOPE`, aim slope). Two test
+  re-pins absorbed: the out-of-play invariant now tolerates the documented
+  one-frame release-from-the-futsal-hug transit (≤3 frames, ≤1m) instead of
+  a ±0.01 knife edge, and the keeper-throw seed list re-probed (8/38 under
+  the new facing geometry). vitest 323, visual 87+37, fingerprint
+  `3f4e16b1…` (behavioral).

@@ -410,6 +410,23 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     if ((p.pos.x - edgeX) * inward > -0.3 && desired.x * inward > 0) desired.x = 0;
   }
 
+  // Facing polish (Phase 51.2, user report): a keeper HOLDING the ball
+  // squares up toward the opponent goal — he surveys the pitch, and the
+  // held ball (glued 0.3m along his heading) comes around with him instead
+  // of pointing at the net he just saved. Same for a restart TAKER standing
+  // over the ball (free kick / corner / kick-in / goal kick): once he has
+  // arrived at the spot he faces the play, not the walk-up direction.
+  // Post-switch on purpose: these states override any case's facing.
+  if (p.role === 'GK' && ball.owner === p && (p.gkHoldTimer > 0 || p.gkDistributing)) {
+    p.faceTarget = team.oppGoal();
+  } else if (
+    match.restart !== null &&
+    match.restart.takerGid === p.gid &&
+    dist(p.pos, match.restart.pos) < 2.5
+  ) {
+    p.faceTarget = team.oppGoal();
+  }
+
   p.desiredVel = desired;
 }
 
