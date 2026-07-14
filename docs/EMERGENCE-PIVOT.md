@@ -160,13 +160,38 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
      identity cards, a style-space map (teams plotted by directness × press,
      clustering into archetypes), gene/policy drift curves, diversity over
      generations. Substantial build — design + scope with the user first.
-   - **Attribute richness** — 5 attrs (pace / technique / finishing / defending /
-     reflexes) is COARSE vs FIFA/FM (~35-40), and `technique` is OVERLOADED
-     (pass + dribble + first-touch + tackle-resistance). For richer PLAYER
-     archetypes to emerge (deep playmaker vs dribbler, target-man, engine),
-     split technique (passing vs dribbling) + add strength / stamina (/ vision),
-     each with a real sim payoff. NOT all of FIFA's 35 (search cost); ~8-10 well-
-     chosen. A future phase — the "还有球员" half of the mandate.
+   - **Attribute richness → phase-44 (user CHOSE this next, 2026-07-14; the
+     "还有球员" half).** 5 attrs is COARSE vs FIFA/FM and `technique` is
+     OVERLOADED. Plan (SCOPED — turnkey; deferred from the mega-turn that shipped
+     41–43 because it's big + balance-sensitive, do it FOCUSED not rushed):
+     - **5 → 8 attrs**: `pace / passing / dribbling / finishing / defending /
+       strength / stamina / reflexes` (split technique → passing+dribbling; add
+       strength+stamina). Edit `PlayerAttributes` + `ATTR_KEYS` in
+       `playerGenome.ts`; mutate/crossover/randomPlayer iterate ATTR_KEYS (free).
+     - **Remap ~25 `attrs.technique` readers** (`tsc` lists every one — ~64
+       errors): **passing** = pass/cross/through/loft/switch/FK noise+power
+       (`mechanics` orientation*, PlayerBrain loft/through/cross gates 372/456/
+       515, kick-misalign 299/1047); **dribbling** = first touch
+       (`touchFailChance` 92/682, `oneTouchMul` 160, touchTimer M564), carry
+       push/speed (1004/1017, actionExecutor 240), tackle-resistance
+       (`tryTackles` owner 1223), 1v1-vs-keeper 1096, shot strike/curl
+       (819/827/828, PlayerBrain 235, M1144), back-to-goal 575. ⚠️ **GOTCHA:
+       `p.attrs.technique` is context-AMBIGUOUS in mechanics.ts** — the SAME
+       `p.` var is a PASS in one fn (325–331) and a TOUCH in another (92/160) —
+       so map PER LINE, do NOT blanket replace_all `p.attrs.technique`.
+     - **New payoffs (each attr must MATTER)**: strength → `aerialSense` (replace
+       its `technique*0.1` term, mechanics 470) + a `tryTackles` shield term +
+       hold-up/50-50; stamina → scale the uniform fatigue drain/recovery in
+       `Player.physicsStep` (~229–232) by `attrs.stamina`.
+     - **Also update**: `ROLE_BIAS` MF technique→passing (strength/stamina
+       UNBIASED); `traits.ts` playmaker→passing≥0.8, poacher→dribbling<0.6;
+       `careers.ts DECLINE_W`, `playerGenome squadSummary`, `Team` captain pick
+       (138, →(passing+dribbling)/2), `evo-drift.ts`/`evolve-check.ts` — all need
+       the 8 keys. **Save v11→v12**: passing=dribbling=old technique,
+       strength=stamina≈0.4 (neutral).
+     - **Balance-SENSITIVE** (passing/first-touch → completion → fm 16-21): gate
+       HARD with `calibrate` (both seeds, watch completion+goals) + a player-
+       archetype probe (do WG evolve dribble≫pass, MF pass≫dribble?).
 
 ## Guardrails
 - **fm 16–21 danger zone** (marking / completion / structure — goals can invert,
