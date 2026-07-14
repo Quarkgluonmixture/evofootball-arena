@@ -26,11 +26,13 @@ own), dribbleBias climbs harder, press softens; goals 2.41/1.78→2.71/2.17
 released `DEFAULT_POLICY` (attacking-style subset) to per-franchise evolution**;
 `policy-emergence.ts` gate PASSED — cross-franchise style spread 0% → ~20-24%
 and PERSISTS (distinct styles coexist), goals mean 2.52 (on target). (4) ⭐
-**NEXT — broaden it** (user: build-up / 防守 / 套路 / players should all
-emerge): defence weights (43), build-up (44), then 套路 + player biases — one
-lever each, `policy-emergence` + `calibrate` gated. Full audit (3 buckets),
-data, plan, guardrails and what's PARKED are in **`EMERGENCE-PIVOT.md`**. HEAD
-fingerprint `fd6e9d05…` (phase-42).
+**broaden it** (user: build-up / 防守 / 套路 / players should all emerge): ✅
+defence (43 shipped — chase/mark/intercept/clear genetified, ATT+DEF spread
+~20%, goals 2.40), build-up (44 NEXT), then 套路 + player biases — one lever
+each, `policy-emergence` + `calibrate` gated. Open user threads: style
+COHERENCE (let it be selected, measure — don't hardcode), an evolution VIZ
+module, and attribute richness (5 attrs coarse, `technique` overloaded) — see
+**`EMERGENCE-PIVOT.md`**. HEAD fingerprint `85cdb0b4…` (phase-43).
 
 Everything below is the pre-pivot play-report history (still valid as
 mechanics reference; the ITERATION MODEL is superseded by the above).
@@ -58,7 +60,7 @@ it), NOT to chronology — so the badge (latest tag on HEAD) can show a
 LOWER number than the newest chapter; phase-36.1 following phase-40 is
 correct, not a regression (phase-28.5 continues the pattern — a keeper-
 family tag on the newest HEAD). Never force-retag pushed tags (worktree
-A/B baselines and CI history ride on them). HEAD fingerprint: `fd6e9d05…`.
+A/B baselines and CI history ride on them). HEAD fingerprint: `85cdb0b4…`.
 
 Awaiting play reports on: **28.6 chest trap (does a hanging ball now get
 CUSHIONED to the feet instead of headed man-to-man? does the take-down
@@ -1169,6 +1171,21 @@ COEXIST; calibrate shows seed-leagues evolving different metas (one pass-heavy
 goals 2.36/2.28 → 2.47/2.57 (mean **2.52**, on the ~2.5 target), no inversion,
 possession/completion flat. Fingerprint `a0894cb4…` → `fd6e9d05…` (behavioral).
 NEXT (user 2026-07-14): broaden emergence to defence / build-up / 套路 / players.
+
+### phase-43 — defensive STYLE evolves too
+
+Extends phase-42 to the out-of-possession identity: `chaseBase / markBase /
+interceptScore / clearBase / clearPressureW` join `POLICY_GENE_KEYS`
+(`policyGenome.ts`), same bounded [0.5×,1.7×] evolution, save v10→v11 backfills
+the new keys. So press-vs-sit, intercept-vs-tackle and hoof-vs-play-out now
+diverge per club, UNBIASED. `policy-emergence.ts` gate PASSED: ATT+DEF spread
+0% → ~18-24% and persists (both seeds; defensive genes spread 11-30%). Balance
+(`calibrate -- 8`, two seeds): goals 2.38/2.42 (mean **2.40**, in band — the
+[0.5×] floors kept basic defending, no fm 16-21 inversion), possession/
+completion flat. One rebirth test rewritten (it compared reborn styles to a
+PRE-evolve snapshot; a pooled parent can be style-mutated earlier in the pass,
+so the reborn inherits the FRESH style — compare post-evolve, by name). vitest
+306, both Playwright suites, build green. Fingerprint `fd6e9d05…` → `85cdb0b4…`.
 
 ---
 

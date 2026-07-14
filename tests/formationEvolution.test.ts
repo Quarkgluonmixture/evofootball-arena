@@ -26,12 +26,16 @@ describe('rebirth inherits the dominant parent style', () => {
       const rng = new Rng(seed);
       const fr = group(rng);
       const fitness = new Map(fr.map((f, i) => [f.slot, 1 - i * 0.1]));
-      const byName = new Map(fr.map((f) => [f.name, { ...f.style }]));
       const entries = evolveGroup(fr, fitness, 1, rng, { eliteN: 2, rebornN: 3 }, new Set(fr.map((f) => f.name)));
+      // Parent styles read AFTER evolution: a pooled parent (top-4 spans the
+      // mutated tier) may itself have been style-mutated earlier in the SAME
+      // pass, and the reborn club inherits that FRESH identity. Parents keep
+      // their names (only reborn clubs rename), so the lookup still resolves.
+      const styleByName = new Map(fr.map((f) => [f.name, { ...f.style }]));
       for (const e of entries) {
         if (e.kind !== 'reborn') continue;
         const f = fr.find((x) => x.slot === e.slot)!;
-        const parentStyles = e.parents!.map((p) => byName.get(p)!);
+        const parentStyles = e.parents!.map((p) => styleByName.get(p)!);
         const match = parentStyles.some(
           (s) =>
             s.formationAtk === f.style.formationAtk &&

@@ -21,9 +21,9 @@ const row = (g: number): void => {
   const std = policyGeneStd(league.franchises.map((f) => f.policy));
   const avg = (POLICY_GENE_KEYS.reduce((s, k) => s + std[k] / def[k], 0) / POLICY_GENE_KEYS.length) * 100;
   console.log(
-    `${String(g).padStart(3)} | shoot ${pct(std, 'shootBase')} dribble ${pct(std, 'dribbleBase')} ` +
-    `fwd ${pct(std, 'passFwdBase')} through ${pct(std, 'throughBase')} cross ${pct(std, 'crossBase')} ` +
-    `long ${pct(std, 'longShotW')} | avg ${avg.toFixed(0)}%`,
+    `${String(g).padStart(3)} | ATT shoot ${pct(std, 'shootBase')} dribble ${pct(std, 'dribbleBase')} through ${pct(std, 'throughBase')} ` +
+    `| DEF chase ${pct(std, 'chaseBase')} mark ${pct(std, 'markBase')} intercept ${pct(std, 'interceptScore')} clear ${pct(std, 'clearBase')} ` +
+    `| avg ${avg.toFixed(0)}%`,
   );
 };
 

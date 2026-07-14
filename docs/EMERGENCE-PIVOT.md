@@ -143,12 +143,30 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
    different metas: one pass-heavy 94/match, one direct/crossing 72/match).
    Balance: goals mean 2.32 → **2.52** (on the ~2.5 target), no inversion. Every
    franchise is BORN at DEFAULT, so any style is earned by selection, not seeded.
-4. ⭐ **NEXT — broaden the emergence** (user 2026-07-14: "build-up / 防守 / 进攻
-   套路 都要涌现,和现实类似,还有球员"): same pattern, ONE lever at a time —
-   phase-43 defensive-style weights (chase / mark / intercept / clear → watch
-   goals-CONCEDED), phase-44 build-up weights, then investigate the 套路 combo
-   system (Phase 34 — hand-set trigger rates?) + player-level biases (`ROLE_BIAS`,
-   `RUN_ROLE_W` — Bucket 3). Gate each with `policy-emergence` + `calibrate`.
+4. **Broaden the emergence** (user 2026-07-14), ONE lever at a time, each gated
+   by `policy-emergence` + `calibrate`: ✅ **phase-43 DONE** — defensive-style
+   weights (chase / mark / intercept / clear / clearPressure) genetified; ATT+DEF
+   spread rises 0% → ~20% and persists, goals mean 2.40 in band. **NEXT —
+   phase-44 build-up** (passBase / passOutletMul / passLaneW / passOpenW), then
+   the 套路 combo system (Phase 34 — is it hand-set trigger rates? make gene-
+   driven) + player-level biases (`ROLE_BIAS`, `RUN_ROLE_W`).
+5. ⭐ **OPEN THREADS from the user (2026-07-14), pending design/steer:**
+   - **Style COHERENCE** — a club's defence should RELATE to its attack (co-
+     evolve, mutually influence), like real teams. Emergence-way: let coherence
+     be SELECTED (fitting styles win), don't hand-wire correlations — MEASURE it
+     (add cross-gene correlation to `policy-emergence`); a flat correlation = a
+     substrate/selection lever to fix, not a thing to hardcode.
+   - **Evolution VISUALIZATION module** — a big UI to SEE styles diverge: team
+     identity cards, a style-space map (teams plotted by directness × press,
+     clustering into archetypes), gene/policy drift curves, diversity over
+     generations. Substantial build — design + scope with the user first.
+   - **Attribute richness** — 5 attrs (pace / technique / finishing / defending /
+     reflexes) is COARSE vs FIFA/FM (~35-40), and `technique` is OVERLOADED
+     (pass + dribble + first-touch + tackle-resistance). For richer PLAYER
+     archetypes to emerge (deep playmaker vs dribbler, target-man, engine),
+     split technique (passing vs dribbling) + add strength / stamina (/ vision),
+     each with a real sim payoff. NOT all of FIFA's 35 (search cost); ~8-10 well-
+     chosen. A future phase — the "还有球员" half of the mandate.
 
 ## Guardrails
 - **fm 16–21 danger zone** (marking / completion / structure — goals can invert,
@@ -164,8 +182,8 @@ gradients) FIRST, then release Bucket 3 (let evolution use them).**
   `phase-28.6` (chest/thigh trap).
 - **phase-41 (the master gate)** — the 1v1 pace/technique rework above; full gate
   passed (tsc + vitest 306 + both Playwright suites 75/37 + build). HEAD
-  fingerprint `fd6e9d05…` (41 `39612cec…` → 41.1 `a0894cb4…` → 42 `fd6e9d05…`,
-  each behavioral). `cards.test.ts`
+  fingerprint `85cdb0b4…` (41 `39612cec…` → 41.1 `a0894cb4…` → 42 `fd6e9d05…` →
+  43 `85cdb0b4…`, each behavioral). `cards.test.ts`
   dirtiest-award test bumped to 240s matches (the per-division award needs cards;
   60s + an outcome shift once tipped seed 9 to zero — not a mechanic regression).
 - **Parked — do NOT resurrect as-is** (all fight the evo gradient / are 治标):
