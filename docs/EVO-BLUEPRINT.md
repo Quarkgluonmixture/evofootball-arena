@@ -110,16 +110,24 @@ concentrated in six places. **This queue IS the next phase plan** (user
 2026-07-14: "这些作为之后的phase计划") — work it in order, one phase per
 item unless a probe result re-scopes it, play reports still interleave:
 
-- **N1 — the COUNTER-PLAY probe (对战矩阵), first and gating**: style
-  diversity today is budget-forced + mutation; whether it is
-  ECOLOGICALLY self-sustaining depends on frequency-dependent payoffs
-  (does long-ball punish a press-heavy meta? does the counter beat
-  possession?). Probe: round-robin the evolved archetype teams from
-  different seeds/eras against each other, build the matchup matrix, test
-  for cycles (A>B>C>A) vs transitivity. A TRANSITIVE matrix = a dominant
-  strategy exists ⇒ the substrate needs counter-payoff work (space
-  behind a high line punished by pace/long balls etc.) before any more
-  tactical breadth is added. One probe, decides direction.
+- ✅ **N1 — the COUNTER-PLAY probe (对战矩阵) — DONE, phase-57. VERDICT:
+  TRANSITIVE, the gate FIRES.** 0 cyclic / 21 fully-decisive triads; one
+  meta (narrow + direct + aggressive + risk-on) dominates every world's
+  champions. Full evidence + anatomy in the phase-57 ledger entry ⇒ N1.5.
+- **N1.5 — the COUNTER-PAYOFF SURFACE (inserted by N1's verdict; N5 is
+  HARD-GATED behind it)**: give the meta's strengths physical COSTS so
+  counters can EVOLVE — never hand-code the counter-tactic (the
+  emergence rule). Candidate levers from the probe anatomy, one per
+  phase: (a) price aggression on its SUCCESS path — today
+  markingAggression buys +0.2 tackle success first-order while fouls
+  (0.06+MA·0.1) and yellows (0.12+MA·0.12) live only on the failure
+  path, second yellows ≈ never bind in 240 sim-s; (b) make width/open
+  passing CREATE something against the narrow clump — the Phase-41
+  drive/duel gate is too weak (attackingWidth correlates −0.74 with
+  head-to-head share); (c) amplify the one existing trade the matrix
+  found: route-one over the press (T05 held the top dog .50).
+  **The matrix probe IS the regression gate: re-run it per lever; DONE
+  when cycles ≥10% of decisive triads.**
 - **N2 — SUBSTITUTIONS / the bench** (Stage 4's planned first item): the
   biggest missing tactical surface — rotation as an evolvable strategy,
   stamina gets strategic expression, late-game personnel responses;
@@ -440,3 +448,33 @@ crowd AUDIO (noise swelling with xG, goal eruptions) — cheap, high 爽.
   active career scorers. UI-only: fingerprint UNTOUCHED `85cb3f2a…`.
   vitest 359, visual **106** (+9: 96 dots, role lens →16, 13 dive rows,
   5 diverging bars, phone 390px) + 37.
+- ✅ **phase-57 SHIPPED** (**N1 — the COUNTER-PLAY MATRIX probe**, the
+  post-Stage-3 gate; probe-only, ZERO sim change, fingerprint untouched
+  `85cb3f2a…`, vitest 359): `scripts/probes/matchup-matrix.ts` — 3
+  worlds evolved 24 generations, 12 archetype snapshots (champion at
+  g+8; champion + the 2 style-farthest D1 clubs at g+24), 66 pairs × 24
+  friendlies, sides alternated, deterministic seeds (matrix reproduced
+  bit-identical on rerun). **VERDICT: TRANSITIVE — the gate FIRES.**
+  Decisive edges (|GD|>2·SE) 30/66; fully-decisive triads 21, **cyclic
+  0** (pre-registered ecological threshold: ≥10%). One meta tops
+  everything — narrow + direct + aggressive + risk-on ("Bone-crunchers
+  / Runners in waves": Crimson Wolves avg share .741, Velvet Serpents
+  .657) — and the dim↔share correlations name it: attackingWidth
+  **−0.74**, passOpenW −0.73, riskTolerance +0.64, shootBias −0.54,
+  markingAggression +0.51, runScore +0.48 — the whole possession/width
+  family is strictly dominated. Era check: late beats early .607, and
+  each world's OWN champion differs (Route one / High press / Bone-
+  crunchers) yet 424242's Bone-crunchers beat all when thrown together
+  — a single global attractor found at different speeds, NOT niches.
+  The one hopeful trade: Route-one T05 holds the top dog dead even
+  (.50) — the over-the-top axis already trades with aggro-press.
+  Mechanism reading (why nothing counters): markingAggression buys
+  +0.2 tackle success FIRST-ORDER while its costs (foul 0.06+MA·0.1,
+  yellow 0.12+MA·0.12) live on the FAILURE path only, and the second
+  yellow ≈ never binds in 240 sim-s; the Phase-41 width/drive gate is
+  too weak against the narrow clump. Side note: cross-meta friendlies
+  run hot — 3.45 goals/match vs the 2.3–3.0 co-evolved band (not a
+  calibrate concern; co-adaptation suppresses goals). **Consequence:
+  N1.5 (counter-payoff surface) inserted into the queue, N5 hard-gated
+  behind it, and this probe becomes the standing regression gate —
+  counters exist ⇔ cycles appear.**

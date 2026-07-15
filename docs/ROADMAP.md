@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-56 (the player center)
+# Roadmap — shipped through phase-57 (the counter-play matrix verdict)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -44,13 +44,20 @@ personalities, and the fire-sale all live — + ✅ **phase-56 SHIPPED**
 (the **PLAYER CENTER** 👥, from the user's first world-layer report: the
 96-player style-space map with role lenses, the player deep dive with
 diverging appetite bars, the transfer market + signings chronicle, the
-trait census; UI-only, fingerprint untouched). ⭐ **Next: the
-POST-STAGE-3 QUEUE in the blueprint (user-ratified 2026-07-14, = the
-phase plan for 57+): N1 counter-play matrix probe (GATING — is diversity
-ecologically self-sustaining?) → N2 substitutions/bench → N3 coach
+trait census; UI-only, fingerprint untouched) + ✅ **phase-57 SHIPPED**
+(**N1 the COUNTER-PLAY MATRIX probe — VERDICT: TRANSITIVE, the gate
+FIRES**: 0 cyclic / 21 decisive triads across 12 archetypes from 3
+worlds; one meta — narrow+direct+aggressive+risk-on — dominates;
+attackingWidth correlates −0.74 with winning; probe-only, fingerprint
+untouched; full anatomy in the blueprint ledger). ⭐ **Next: the
+POST-STAGE-3 QUEUE in the blueprint, re-scoped by N1's verdict:
+N1.5 counter-payoff surface (aggression priced on its success path /
+width must create / amplify route-one-over-press; matrix probe re-run
+per lever, DONE when cycles ≥10%) → N2 substitutions/bench → N3 coach
 match-day presence (incl. the coach STANDING ON THE TOUCHLINE in 3D —
-user addition) → N4 tactical broadcast layer → N5 formation library →
-N6 market signs for style fit.** Play reports interleave as always.
+user addition) → N4 tactical broadcast layer → N5 formation library
+(HARD-GATED behind N1.5) → N6 market signs for style fit.** Play
+reports interleave as always.
 HEAD fingerprint `85cb3f2a…` (since phase-55). ⚠ WATCH:
 goals band 2.30/3.02 across seeds — play-feel still decides (dials in the
 blueprint ledger).
