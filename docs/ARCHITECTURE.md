@@ -790,6 +790,32 @@ only caught by eyes on the PNGs.
     behavioral divergence with identical serialized state. The
     round-trip-then-replay test pattern (save → load → play one more
     season → expect identical franchises) is the guard; keep it green.
+25. **A fully-WIRED payoff surface can be silently dead — probe the
+    binding, not the wiring.** `staminaConservation` had everything:
+    jog/sprint discounts in the executor, a tired-legs brain gate, style
+    dims, "Energy misers" nameplates. It was still a strictly-LOSING
+    gene for 11 phases because the resource it traded against never
+    depleted — recovery (0.014/s) dwarfed drain (0.006·e²/s), full-time
+    stamina sat at 0.98-0.99, the tired gate (<0.4) was unreachable, so
+    misers paid the slow-jog cost every match and never harvested the
+    fresher-legs payoff. The N1 matrix meta (cost-free aggression) grew
+    on exactly this dead ground. Lesson: any gene/attribute that trades
+    a PRESENT cost for a CONDITIONAL payoff needs a probe showing the
+    condition actually OCCURS at match scale (phase-58's diagnostic
+    printed FT stamina by style; the stamina test now pins FT < 0.93 so
+    the gauge can never go dead again). Grep candidates: every genome
+    dim should appear in a probe's measured-effect output at least once.
+26. **Per-world outcome metrics are ECOLOGY-dominated after a substrate
+    change — don't chase them with global dials.** Phase-58's economy
+    dropped calibrate goals on seed 424242 to 2.03 (under the 2.3
+    floor) while the reference seed sat at 2.38. The counterfactual
+    (recovery 0.009→0.010) moved the reference seed the WRONG way
+    (2.38→2.23): any constant change re-rolls each world's evolved
+    style mix, and THAT mix — not the dial — sets the world's goal
+    rate. Verify the mechanism instead (FT stamina healthy ⇒ not
+    sludge), read the band across seeds as a distribution, and let
+    play-feel decide. Same genus as failure mode 20 (homeostat chasing)
+    one level up: the homeostat here is the whole ecology.
 
 ## 11. Known tuning levers
 

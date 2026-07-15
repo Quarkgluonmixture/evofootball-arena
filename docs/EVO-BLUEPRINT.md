@@ -166,6 +166,13 @@ crowd AUDIO (noise swelling with xG, goal eruptions) — cheap, high 爽.
 
 ## Status ledger
 
+Shipping a phase = gates green (calibrate band, evolve-check, vitest,
+visual, fingerprint noted) → ledger entry here + ROADMAP head →
+commit → **`git tag phase-NN`** → push commit AND tag. The Pages build
+stamps `git describe` into the corner version, so a missing tag ships
+as the PREVIOUS phase's name plus a commit count (phases 57/58 first
+read "phase-56-3-…" until back-tagged — confusing in play reports).
+
 - 2026-07-14: blueprint ratified by the user ("可以,先更新docs,然后开始自走").
   Stage-1 execution begins at phase 45.
 - ✅ **phase-45 SHIPPED** (套路 → policy genes + coherence baseline): `wallPassW /
@@ -518,4 +525,7 @@ crowd AUDIO (noise swelling with xG, goal eruptions) — cheap, high 爽.
   play-feel decides, dial = STAMINA_RECOVERY if the game reads dour).
   evolve-check: 5 champions / 10 gens, formations mixed. vitest **361**
   (+2). visual 106+37. Fingerprint **REBASELINED `ce0e5c2e…`**
-  (behavioral: drain/recovery/lunge).
+  (behavioral: drain/recovery/lunge). Failure modes **25** (a wired
+  payoff surface can be silently dead — probe the BINDING) and **26**
+  (per-world metrics are ecology-dominated — don't chase with global
+  dials) registered in ARCHITECTURE §10.
