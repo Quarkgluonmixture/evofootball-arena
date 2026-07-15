@@ -52,15 +52,33 @@ describe('the coach entity (Phase 53)', () => {
   it('banks the dugout season: titles/cups to the winners, seasons to everyone', () => {
     const league = playedLeague();
     const rec = league.history[0];
-    const champion = league.franchise(rec.championSlot);
-    expect(champion.coach.career.titles).toBe(1);
+    // Banking runs BEFORE the aging pass, so when a winning coach RETIRES
+    // the same season (legitimate coincidence — phase 58's reshuffle landed
+    // on one), the banked honour rides into the legends hall with him and
+    // the live pointer is his 0-honour successor.
+    const retiredClubs = new Set(
+      (rec.coaching ?? []).filter((e) => e.event === 'retired' || e.event === 'sacked').map((e) => e.club));
+    const banked = (slot: number, honour: 'titles' | 'cups'): number => {
+      const club = league.franchise(slot);
+      // A reborn club carries a NEW name; its old boss sits in the pool
+      // under the old one. Sacked bosses hit the pool, retirees the hall.
+      const rebornEntry = rec.evolution.entries.find((e) => e.kind === 'reborn' && e.slot === slot);
+      const oldName = rebornEntry?.oldName ?? club.name;
+      if (!rebornEntry && !retiredClubs.has(oldName)) return club.coach.career[honour];
+      const exCareer =
+        league.coachLegends.find((l) => l.lastClub === oldName)?.career ??
+        league.coachPool.find((p) => p.lastClub === oldName)?.coach.career;
+      return exCareer?.[honour] ?? -1;
+    };
+    expect(banked(rec.championSlot, 'titles')).toBe(1);
     if (rec.cup) {
-      expect(league.franchise(rec.cup.winnerSlot).coach.career.cups).toBe(1);
+      expect(banked(rec.cup.winnerSlot, 'cups')).toBe(1);
     }
-    // Reborn clubs' NEW coaches sat out the banked season.
+    // Reborn clubs' NEW coaches sat out the banked season — and so did the
+    // fresh successors of same-season retirees.
     const reborn = new Set(rec.evolution.entries.filter((e) => e.kind === 'reborn').map((e) => e.slot));
     for (const f of league.franchises) {
-      if (!reborn.has(f.slot) && f.slot !== rec.championSlot) {
+      if (!reborn.has(f.slot) && f.slot !== rec.championSlot && !retiredClubs.has(f.name)) {
         expect(f.coach.career.seasons).toBeGreaterThanOrEqual(1);
       }
     }

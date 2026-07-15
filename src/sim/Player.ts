@@ -1,4 +1,5 @@
 import { v2, type V2 } from '../utils/vec';
+import { STAMINA_DRAIN, STAMINA_RECOVERY } from './constants';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 import { traitsOf, type Trait } from '../evolution/traits';
 import { TEAM_SIZE, type ActionState, type Role, type Side } from './types';
@@ -227,13 +228,15 @@ export class Player {
     // The stamina ATTRIBUTE scales drain and recovery (Phase 47): neutral
     // at the 0.4 backfill so the league's energy economy doesn't move —
     // the motor is now a dimension evolution can spend on.
+    // Phase 58: drain/recovery repriced so the economy BINDS in-match
+    // (constants.ts has the story) — legs are a resource, not a gauge.
     if (effort > 0.55) {
       const drain =
-        0.006 * effort * effort * dt * this.staminaDrainMul * (1.24 - this.attrs.stamina * 0.6);
+        STAMINA_DRAIN * effort * effort * dt * this.staminaDrainMul * (1.24 - this.attrs.stamina * 0.6);
       this.stamina = Math.max(0.05, this.stamina - drain);
       this.staminaSpent += drain;
     } else {
-      this.stamina = Math.min(1, this.stamina + 0.014 * dt * (0.88 + this.attrs.stamina * 0.3));
+      this.stamina = Math.min(1, this.stamina + STAMINA_RECOVERY * dt * (0.88 + this.attrs.stamina * 0.3));
     }
 
     this.kickCooldown = Math.max(0, this.kickCooldown - dt);
@@ -246,6 +249,17 @@ export class Player {
     this.headerAnimTimer = Math.max(0, this.headerAnimTimer - dt);
     this.firstTouchWindow = Math.max(0, this.firstTouchWindow - dt);
     this.decisionTimer -= dt;
+  }
+
+  /**
+   * An instantaneous burst the movement drain never saw — a tackle lunge
+   * (Phase 58). Same per-player modifiers as the running drain, so engines
+   * and high-stamina players absorb bursts better too.
+   */
+  spendBurst(cost: number): void {
+    const drain = cost * this.staminaDrainMul * (1.24 - this.attrs.stamina * 0.6);
+    this.stamina = Math.max(0.05, this.stamina - drain);
+    this.staminaSpent += drain;
   }
 
   resetForKickoff(pos: V2): void {

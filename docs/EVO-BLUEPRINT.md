@@ -117,17 +117,19 @@ item unless a probe result re-scopes it, play reports still interleave:
 - **N1.5 — the COUNTER-PAYOFF SURFACE (inserted by N1's verdict; N5 is
   HARD-GATED behind it)**: give the meta's strengths physical COSTS so
   counters can EVOLVE — never hand-code the counter-tactic (the
-  emergence rule). Candidate levers from the probe anatomy, one per
-  phase: (a) price aggression on its SUCCESS path — today
-  markingAggression buys +0.2 tackle success first-order while fouls
-  (0.06+MA·0.1) and yellows (0.12+MA·0.12) live only on the failure
-  path, second yellows ≈ never bind in 240 sim-s; (b) make width/open
-  passing CREATE something against the narrow clump — the Phase-41
-  drive/duel gate is too weak (attackingWidth correlates −0.74 with
-  head-to-head share); (c) amplify the one existing trade the matrix
-  found: route-one over the press (T05 held the top dog .50).
-  **The matrix probe IS the regression gate: re-run it per lever; DONE
-  when cycles ≥10% of decisive triads.**
+  emergence rule). One lever per phase; **the matrix probe IS the
+  regression gate: re-run it per lever; DONE when cycles ≥10% of
+  decisive triads.** Progress:
+  - ✅ lever 1 (phase-58) — the ENERGY ECONOMY BINDS: aggression priced
+    via real fatigue (MA correlation +0.51 → −0.54, era arms race
+    dissolved, width freed). Cycles still 0 — the meta rotated to
+    "Runners in waves / Compact block".
+  - ⭐ lever 2 (next) — make the COMPACT BLOCK's concessions real: it
+    cedes the flanks + the cutback zone, and cutbacks convert ~6%
+    (0.98/match → 0.06 goals — near-dead payoff). Width/crossing play
+    must actually harvest what the low block gives away.
+  - candidates beyond: (c) amplify route-one-over-press; cards that
+    bind (couples with N2's suspensions infra).
 - **N2 — SUBSTITUTIONS / the bench** (Stage 4's planned first item): the
   biggest missing tactical surface — rotation as an evolvable strategy,
   stamina gets strategic expression, late-game personnel responses;
@@ -478,3 +480,42 @@ crowd AUDIO (noise swelling with xG, goal eruptions) — cheap, high 爽.
   N1.5 (counter-payoff surface) inserted into the queue, N5 hard-gated
   behind it, and this probe becomes the standing regression gate —
   counters exist ⇔ cycles appear.**
+- ✅ **phase-58 SHIPPED** (**N1.5 lever 1 — the ENERGY ECONOMY BINDS**,
+  behavioral): the pre-lever diagnostic (`scripts/probes/aggression-cost.ts`)
+  found full-time stamina at 0.98-0.99 — recovery (0.014/s) dwarfed
+  drain (0.006·e²/s), so EVERY fatigue payoff was decorative: the
+  stamina attribute, staminaConservation's "fresher legs late" (misers
+  paid the slow-jog cost and never harvested — a strictly-losing gene),
+  the tired-legs brain gate (needs <0.4, unreachable), cards (reds
+  0.037/match). Aggression's +0.2 tackle bonus ran cost-free. The
+  lever, swept {drain/recovery/lunge}: v1 (0.012/0.007/0.025) overshot
+  — FT 0.51, goals 2.03; **shipped v2 = 0.010/0.009/0.020**
+  (`STAMINA_DRAIN`/`STAMINA_RECOVERY`/`TACKLE_LUNGE_COST`; tackle
+  lunges + cynical grabs call the new `Player.spendBurst` — win or
+  whiff, the lunge costs legs). Probe-measured consequences: FT
+  stamina 0.69-0.87 (binds, no sludge) with ~0.15 style spread; a
+  first rock-paper-scissors trace in the diagnostic (SOFT>AGGRO .56,
+  AGGRO>WIDE .69, WIDE>SOFT .75). **Matrix gate re-run: cycles still
+  0/18 — N1.5 NOT done — but every precondition rotated**:
+  markingAggression share-correlation **+0.51 → −0.54** (evolution now
+  walks AWAY from Bone-crunchers), attackingWidth left the loser list
+  (Overlap machine / Wings unleashed at dominance ranks 2/4), the era
+  arms race dissolved (late-vs-early .607 → .524), matrix goals
+  3.45 → 2.78. The meta ROTATED to T09 "Runners in waves / Compact
+  block" (.752, unbeaten; nearest Tiki-taka .40) ⇒ **lever 2 = make
+  the compact block's concessions REAL**: it cedes the flanks and the
+  cutback zone, and cutbacks convert at ~6% (0.98/match → 0.06 goals)
+  — the width-creates candidate (b) has a concrete target. Tests: the
+  coach banking test now survives the legit winner-retires-same-season
+  coincidence (banked() follows retirees to the hall, sacked/reborn to
+  the pool), GK-throw seed re-probed (39 — same dance as 51.2), +2
+  stamina mechanism pins (spendBurst attribute scaling; the
+  gauge-can-never-go-dead regression, FT < 0.93 enforced). Calibrate
+  2.38 / **2.03 ⚠** (424242 under the 2.3 floor — the world evolved
+  lower-scoring styles, NOT sludge: FT stamina 0.69-0.87; counterfactual
+  recovery 0.010 re-rolled BOTH worlds and didn't lift it — per-world
+  goals are ecology-dominated, don't chase them with global dials;
+  play-feel decides, dial = STAMINA_RECOVERY if the game reads dour).
+  evolve-check: 5 champions / 10 gens, formations mixed. vitest **361**
+  (+2). visual 106+37. Fingerprint **REBASELINED `ce0e5c2e…`**
+  (behavioral: drain/recovery/lunge).

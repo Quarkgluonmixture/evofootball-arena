@@ -39,6 +39,27 @@ export const STOPPAGE_MAX = 8;
 /** Ball exponential velocity decay per second: v *= exp(-K * dt). */
 export const BALL_FRICTION_K = 0.55;
 
+/* ---- The energy economy (Phase 58 — it BINDS now) ---- */
+/**
+ * The N1 matrix probe found the meta uncounterable and the phase-58
+ * diagnostic found out why nothing tires it: full-time stamina sat at
+ * 0.98-0.99 (recovery 0.014/s dwarfed drain 0.006·e²/s), so every payoff
+ * built on fatigue — the stamina attribute, staminaConservation's
+ * "fresher legs late", the tired-legs brain gate — was dead. Repriced so
+ * a match SPENDS legs: sustained sprinters finish ~0.6-0.8, patient
+ * sides ~0.9. Sweep + gates in the phase-58 ledger entry.
+ */
+export const STAMINA_DRAIN = 0.01;
+export const STAMINA_RECOVERY = 0.009;
+/**
+ * A tackle lunge is a burst the movement integral never saw (the lunge is
+ * instantaneous): each attempt — win or whiff — costs a flat chunk,
+ * scaled by the same per-player drain modifiers. Aggressive markers
+ * attempt ~2× a patient side's volume (probe: 9.4 vs 5.2 WON tackles),
+ * so relentless pressing now buys its late-game price.
+ */
+export const TACKLE_LUNGE_COST = 0.02;
+
 /* ---- The aerial game (Phase 28) ---- */
 /** Gravity on the lofted ball (m/s²). Airborne balls fly friction-free. */
 export const GRAVITY = 9.81;

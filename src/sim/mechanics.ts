@@ -9,6 +9,7 @@ import {
   CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   GK_RUSH_ENVELOPE,
+  TACKLE_LUNGE_COST,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
 } from './constants';
 import type { Match } from './Match';
@@ -1177,6 +1178,7 @@ export function tryTacticalFoul(match: Match): void {
   }
   if (!grabber) return;
   grabber.tackleCooldown = 2.0; // committed either way — one grab per chase, not spam
+  grabber.spendBurst(TACKLE_LUNGE_COST); // the grab is a burst too (Phase 58)
   // Cynicism is RARE (~1/match), aggression-flavored, and a booked man keeps
   // his hands to himself (the second yellow is the whole deterrent).
   let p = 0.06 + defTeam.genome.markingAggression * 0.1;
@@ -1216,6 +1218,7 @@ export function tryTackles(match: Match): void {
   }
   if (!tackler) return;
   tackler.tackleAnimTimer = 0.4; // the lunge is visible either way (display only)
+  tackler.spendBurst(TACKLE_LUNGE_COST); // win or whiff, the lunge costs legs (Phase 58)
 
   // Team aggression + the tackler's defending vs the carrier's evasion. The
   // carrier resists two UNBIASED ways (attrs/genes, never role): close control

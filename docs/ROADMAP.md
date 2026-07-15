@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-57 (the counter-play matrix verdict)
+# Roadmap — shipped through phase-58 (the energy economy binds)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -49,18 +49,27 @@ trait census; UI-only, fingerprint untouched) + ✅ **phase-57 SHIPPED**
 FIRES**: 0 cyclic / 21 decisive triads across 12 archetypes from 3
 worlds; one meta — narrow+direct+aggressive+risk-on — dominates;
 attackingWidth correlates −0.74 with winning; probe-only, fingerprint
-untouched; full anatomy in the blueprint ledger). ⭐ **Next: the
-POST-STAGE-3 QUEUE in the blueprint, re-scoped by N1's verdict:
-N1.5 counter-payoff surface (aggression priced on its success path /
-width must create / amplify route-one-over-press; matrix probe re-run
-per lever, DONE when cycles ≥10%) → N2 substitutions/bench → N3 coach
-match-day presence (incl. the coach STANDING ON THE TOUCHLINE in 3D —
-user addition) → N4 tactical broadcast layer → N5 formation library
-(HARD-GATED behind N1.5) → N6 market signs for style fit.** Play
-reports interleave as always.
-HEAD fingerprint `85cb3f2a…` (since phase-55). ⚠ WATCH:
-goals band 2.30/3.02 across seeds — play-feel still decides (dials in the
-blueprint ledger).
+untouched; full anatomy in the blueprint ledger) + ✅ **phase-58
+SHIPPED** (**N1.5 lever 1 — the ENERGY ECONOMY BINDS**: FT stamina was
+0.98-0.99 and every fatigue payoff decorative; repriced
+drain/recovery + tackle lunges cost legs via `spendBurst`. Measured:
+FT 0.69-0.87 with style spread, markingAggression winning-correlation
+**+0.51 → −0.54**, era arms race dissolved .607→.524, width freed;
+matrix cycles still 0 — meta rotated to runners+compact-block; vitest
+361, visual 106+37, fingerprint REBASELINED `ce0e5c2e…`).
+⭐ **Next: the POST-STAGE-3 QUEUE in the blueprint, re-scoped by N1:
+N1.5 lever 2 — make the COMPACT BLOCK's concessions real (cutbacks
+convert ~6%, near-dead payoff; width must harvest what the low block
+cedes; matrix probe re-run per lever, N1.5 DONE when cycles ≥10%) →
+N2 substitutions/bench → N3 coach match-day presence (incl. the coach
+STANDING ON THE TOUCHLINE in 3D — user addition) → N4 tactical
+broadcast layer → N5 formation library (HARD-GATED behind N1.5) → N6
+market signs for style fit.** Play reports interleave as always.
+HEAD fingerprint `ce0e5c2e…` (since phase-58). ⚠ WATCH: calibrate
+goals 2.38 / 2.03 across seeds — 424242 under the 2.3 floor (its world
+evolved lower-scoring styles; NOT sludge, FT stamina healthy;
+per-world goals are ecology-dominated — play-feel decides, dial =
+STAMINA_RECOVERY if the game reads dour).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 
