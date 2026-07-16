@@ -96,6 +96,13 @@ export class Team {
   mentality: Mentality = NEUTRAL_MENTALITY;
   effGenome: TacticalGenome;
   /**
+   * The kickoff-shifted gene view (Phase 64): raw identity bent by the
+   * underdog shift, set once by Match when both teams' Elo is known.
+   * The mentality layer applies ON TOP of this each brain tick. Stays
+   * === info.genome for favorites, purists and Elo-less matches.
+   */
+  baseGenome: TacticalGenome;
+  /**
    * 门将上前 (Phase 35): the keeper is licensed to crash the opponent box
    * for a stoppage-time attacking corner while trailing. Set by TeamBrain,
    * survives the hand-off + flight like the corner crash does (31.9).
@@ -185,6 +192,7 @@ export class Team {
       }
     }
     this.captain = bestC;
+    this.baseGenome = info.genome;
     this.effGenome = info.genome;
     this.ownGoalPos = v2(-this.attackDir * HALF_L, 0);
     this.oppGoalPos = v2(this.attackDir * HALF_L, 0);

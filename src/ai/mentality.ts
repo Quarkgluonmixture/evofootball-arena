@@ -52,6 +52,30 @@ export function mentalityOf(scoreDiff: number, minute: number): Mentality {
 }
 
 /**
+ * The UNDERDOG SHIFT (Phase 64 — opponent-conditional tactics): a coach
+ * who KNOWS he is outgunned bends toward the bus — deep, compact,
+ * counter-first, risk-off. `s` is the product of the Elo gap read at
+ * kickoff (0 at parity, 1 a full class apart) and the coach's
+ * `underdogShift` gene (0 = purist, 1 = pragmatist); the DIRECTION is
+ * football law, the MAGNITUDE is DNA. Identity when s = 0 (bit
+ * discipline — a purist or a favorite reads his raw genes through the
+ * same reference as ever). Static per match: the score/clock response
+ * stays applyMentality's job, layered on top.
+ */
+export function applyUnderdogShift(raw: TacticalGenome, s: number): TacticalGenome {
+  if (s <= 0) return raw;
+  return {
+    ...raw,
+    defensiveCompactness: clamp01(raw.defensiveCompactness + s * 0.3),
+    formationDepth: clamp01(raw.formationDepth - s * 0.3),
+    pressIntensity: clamp01(raw.pressIntensity - s * 0.25),
+    counterAttackBias: clamp01(raw.counterAttackBias + s * 0.3),
+    riskTolerance: clamp01(raw.riskTolerance - s * 0.15),
+    tempo: clamp01(raw.tempo - s * 0.1),
+  };
+}
+
+/**
  * Apply the mentality to a genome read. Identity (the SAME object) when
  * neutral — bit-identity discipline: a 0:0 match reads the raw genes
  * through the exact same reference it always did.

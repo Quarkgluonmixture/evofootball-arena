@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
-import { applyMentality, mentalityOf, NEUTRAL_MENTALITY } from '../src/ai/mentality';
+import { applyMentality, applyUnderdogShift, mentalityOf, NEUTRAL_MENTALITY } from '../src/ai/mentality';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { Match } from '../src/sim/Match';
 import { DT, HALF_L } from '../src/sim/constants';
@@ -166,5 +166,45 @@ describe('the mentality reaches the match (integration)', () => {
     for (let t = 0; t < 30; t++) m.step(DT);
     expect(m.teams[0].genome).toBe(m.teams[0].info.genome);
     expect(m.teams[1].genome).toBe(m.teams[1].info.genome);
+  });
+});
+
+describe('the underdog shift (Phase 64 — opponent-conditional tactics)', () => {
+  it('pure: identity at zero, the bus vector at one, everything clamped', () => {
+    const raw = genome({ formationDepth: 0.2, pressIntensity: 0.1 });
+    expect(applyUnderdogShift(raw, 0)).toBe(raw); // the purist reads his own genes
+    const shifted = applyUnderdogShift(raw, 1);
+    expect(shifted.defensiveCompactness).toBeGreaterThan(raw.defensiveCompactness);
+    expect(shifted.formationDepth).toBeLessThan(raw.formationDepth);
+    expect(shifted.pressIntensity).toBeGreaterThanOrEqual(0); // clamped
+    expect(shifted.counterAttackBias).toBeGreaterThan(raw.counterAttackBias);
+    expect(shifted.riskTolerance).toBeLessThan(raw.riskTolerance);
+    // Untouched genes pass through.
+    expect(shifted.passBias).toBe(raw.passBias);
+    expect(shifted.underdogShift).toBe(raw.underdogShift);
+  });
+
+  it('match integration: the outgunned pragmatist bends at kickoff, the favorite never does', () => {
+    const weak = { ...team('W', genome({ underdogShift: 1 })), elo: 1350 };
+    const strong = { ...team('S', genome({ underdogShift: 1 })), elo: 1650 };
+    const m = new Match({ seed: 5, teamA: weak, teamB: strong });
+    const w = m.teams[0];
+    const s = m.teams[1];
+    expect(w.baseGenome).not.toBe(w.info.genome);
+    expect(w.baseGenome.defensiveCompactness).toBeCloseTo(0.8, 10); // full factor × 0.3
+    expect(w.baseGenome.formationDepth).toBeCloseTo(0.2, 10);
+    expect(s.baseGenome).toBe(s.info.genome); // the favorite plays his football
+    // The brains read the shifted view through the usual getter.
+    for (let t = 0; t < 60; t++) m.step(DT);
+    expect(w.genome.defensiveCompactness).toBeCloseTo(0.8, 10);
+  });
+
+  it('a purist (gene 0) and an Elo-less team sheet stay bit-identical', () => {
+    const purist = { ...team('P', genome({ underdogShift: 0 })), elo: 1350 };
+    const strong = { ...team('S', genome()), elo: 1650 };
+    const m1 = new Match({ seed: 5, teamA: purist, teamB: strong });
+    expect(m1.teams[0].baseGenome).toBe(m1.teams[0].info.genome);
+    const m2 = new Match({ seed: 5, teamA: team('A', genome({ underdogShift: 1 })), teamB: team('B') });
+    expect(m2.teams[0].baseGenome).toBe(m2.teams[0].info.genome); // no Elo, no shift
   });
 });

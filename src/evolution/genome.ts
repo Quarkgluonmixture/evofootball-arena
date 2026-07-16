@@ -43,6 +43,16 @@ export interface TacticalGenome {
    * is evolution's to price.
    */
   rotationBias: number;
+  /**
+   * The underdog shift (Phase 64 — opponent-CONDITIONAL tactics): how far
+   * the coach bends toward the bus (deep + compact + counter + risk-off)
+   * when OUTGUNNED, read from the Elo gap at kickoff. 0 = the purist who
+   * plays his football against anyone; 1 = the full pragmatist. Real
+   * leagues' diversity lives here: the bus is what weak teams DO against
+   * strong ones, not a fixed identity — whether bending pays is
+   * evolution's to discover.
+   */
+  underdogShift: number;
 }
 
 export const GENE_KEYS = [
@@ -61,6 +71,7 @@ export const GENE_KEYS = [
   'formationDepth',
   'supportDistance',
   'rotationBias',
+  'underdogShift',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -128,6 +139,7 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if (g.formationDepth < 0.3) tags.push('Deep block');
   if (g.staminaConservation > 0.72) tags.push('Energy misers');
   if ((g.rotationBias ?? 0.5) > 0.72) tags.push('Fresh legs');
+  if ((g.underdogShift ?? 0) > 0.72) tags.push('Cup fighter');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

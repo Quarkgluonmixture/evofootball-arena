@@ -723,3 +723,34 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   seed-luck fragilities hardened (league identity accepts fire-sale
   signings; coach sack test accepts same-pass rehire). vitest **379**.
   visual 106+37. Fingerprint **REBASELINED `0e93940a…`**.
+- ✅ **phase-64 SHIPPED** (**the UNDERDOG SHIFT** — opponent-CONDITIONAL
+  tactics, the Klopp/bus lever from the real-league reframe; save v20):
+  new gene `underdogShift` — how far the coach bends toward the bus
+  (compact +0.3, depth −0.3, press −0.25, counter +0.3, risk −0.15,
+  tempo −0.1) when OUTGUNNED, read from the kickoff Elo gap (sensor:
+  150 Elo = a full class apart — the first cut at /300 left in-league
+  factors at 0.11-0.19, a sensor whose range never met its signal;
+  corrected, factors run mean ~0.3 / p90 0.55-0.79). Applied ONCE at
+  kickoff into `Team.baseGenome`; the score/clock mentality layers on
+  top; identity for favorites, purists (gene 0) and Elo-less team
+  sheets (probes/tests/replays bit-safe). **Mechanism probe
+  (`conditional-anatomy.ts`, n=600 side-balanced): at a REALISTIC gap
+  (0.45 vs 0.55 attrs, 150 Elo) the full pragmatist earns +0.15
+  pts/match (0.90→1.05, ≈3σ) and saves a third of the deficit (GD
+  −0.66→−0.41); against a juggernaut (0.42/0.58, 300) it still trims
+  blowouts (GD −0.96→−0.74)** — the bus is worth most against
+  somewhat-stronger sides, exactly the football shape. Under selection
+  the gene stays mid-with-spread (424242 ~0.55, 991 ~0.43 [0.00-0.78])
+  — a conditional tool's per-season fitness is small; the SUBSTRATE
+  now supports the behavior, selection is weather. Migration backfills
+  ZERO (the purist — migrated clubs play exactly as before). Calibrate
+  **2.90 / 2.99 — both seeds high in band; 424242's three-phase low
+  streak (2.22/2.29/2.10) dissolves, confirming ecology-luck (failure
+  mode 26)**. Matrix: 0 cycles / 41 decisive, era .662 (the weather
+  turns per phase — noted, not chased). ⚠ WATCH (evolve-check, one
+  world): def-formation ecology skewed to low-32 15/16 with zonal
+  extinct and press-23 at 1 — the shift may make deep-block play
+  selectable enough to crowd the def-formation menu; attack diversity
+  IMPROVED (narrow 9 / wide 7). vitest **383** (+4: shift unit,
+  kickoff integration, purist/Elo-less identity, v20 migration).
+  visual 106+37. Fingerprint **REBASELINED `7878ed9b…`**.

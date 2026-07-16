@@ -1,7 +1,7 @@
 import { Rng } from '../utils/rng';
 import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
-import { applyMentality, mentalityOf } from '../ai/mentality';
+import { applyMentality, applyUnderdogShift, mentalityOf } from '../ai/mentality';
 import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, shapeReady } from '../ai/formations';
@@ -188,6 +188,23 @@ export class Match {
     this.duration = cfg.duration ?? MATCH_DURATION;
     this.derby = cfg.derby ?? false;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
+    // The underdog shift (Phase 64): with both clubs' Elo on the team
+    // sheet, the outgunned coach bends toward the bus by his gene. Read
+    // ONCE at kickoff; the score/clock mentality layers on top each brain
+    // tick. 150 Elo = a full class apart — OUR ladder is compressed
+    // (K=28, reborn clubs reset to 1500, 14-match seasons), and the first
+    // cut at /300 left in-league kickoff factors averaging 0.11-0.19:
+    // a sensor whose dynamic range never met its signal (probed).
+    if (cfg.teamA.elo !== undefined && cfg.teamB.elo !== undefined) {
+      const gap = cfg.teamB.elo - cfg.teamA.elo;
+      for (const team of this.teams) {
+        const factor = Math.min(1, Math.max(0, (team.side === 0 ? gap : -gap) / 150));
+        team.baseGenome = applyUnderdogShift(
+          team.info.genome, factor * (team.info.genome.underdogShift ?? 0),
+        );
+        team.effGenome = team.baseGenome;
+      }
+    }
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
     // Roster-indexed stats (Phase 61): bench rows exist from kickoff and
@@ -299,7 +316,7 @@ export class Match {
         // mechanic reads is recomputed here — pure fn of score + clock.
         const diff = this.score[team.side] - this.score[1 - team.side];
         team.mentality = mentalityOf(diff, this.minute());
-        team.effGenome = applyMentality(team.info.genome, team.mentality);
+        team.effGenome = applyMentality(team.baseGenome, team.mentality);
         // The visible switches earn ONE feed line each (failure mode 7).
         if (team.mentality.urgency > 0.8 && !team.surgeAnnounced) {
           team.surgeAnnounced = true;

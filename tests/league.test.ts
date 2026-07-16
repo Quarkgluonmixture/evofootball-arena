@@ -306,6 +306,28 @@ describe('League', () => {
     });
   });
 
+  it('migrates a v19 save: the underdog gene backfills at ZERO (the purist)', () => {
+    const league = makeLeague();
+    playSeason(league);
+    league.finishSeason();
+    const json = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown> & {
+      franchises: Array<{ coach: { genome: Record<string, number> } }>;
+      history: Array<{ geneMeans?: Record<string, number> }>;
+    };
+    json.version = 19;
+    for (const f of json.franchises) delete f.coach.genome.underdogShift;
+    for (const r of json.history) delete r.geneMeans?.underdogShift;
+    const restored = League.fromJSON(json as unknown as Record<string, unknown>);
+    for (const f of restored.franchises) {
+      expect(f.coach.genome.underdogShift).toBe(0); // plays exactly as before
+    }
+    for (const r of restored.history) {
+      if (r.geneMeans) expect(r.geneMeans.underdogShift).toBe(0);
+    }
+    const next = restored.nextFixture()!;
+    expect(() => restored.applyResult(next, restored.createMatch(next).runToCompletion())).not.toThrow();
+  });
+
   it('league runs are reproducible end to end', () => {
     const a = makeLeague();
     const b = makeLeague();

@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-63 (the aerial channel lives; cross bombardment tops the matrix)
+# Roadmap — shipped through phase-64 (the underdog shift: the bus is now a CHOICE, not an identity)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -115,18 +115,28 @@ direction: press fears the delivery (shot 28-34%), the bus eats it
 to the TOP archetype (±8, .667); decisive edges 56%→39%, the era arms
 race dissolved .762→.528** — still 0 cycles, but the ecology is
 flattening. vitest 379; fingerprint REBASELINED `0e93940a…`.)
-⭐ **Next: phase-64 — OPPONENT-CONDITIONAL tactics** (the Klopp/bus
-lever): an Elo-read at kickoff + a gene-driven shift toward
-compact/counter when outgunned (magnitude = DNA, 0 = purist; selection
-decides). Then the frequency-dependence yardstick replaces the
-cycles-in-3-worlds lens; then N3 coach touchline presence → N4
-broadcast layer (N5 stays gated). ⚠ WATCH: calibrate 2.74 / **2.10**
-— seed 424242's third straight sub-floor reading (2.22/2.29/2.10);
-the goals BAND itself needs the user's play-feel verdict.
-Play reports interleave as always — **SIX unplayed behavioral phases
++ ✅ **phase-64 SHIPPED** (**the UNDERDOG SHIFT** — the Klopp/bus lever,
+save v20: the `underdogShift` gene bends an outgunned side toward the
+bus by the kickoff Elo gap (150 = a full class); mechanism probed at
+3σ — the full pragmatist earns +0.15 pts/match and saves a third of a
+realistic deficit; the bus is finally what weak teams DO, not a fixed
+identity. Calibrate **2.90/2.99 — both seeds high in band; the 424242
+low streak dissolves as ecology-luck**. vitest 383; fingerprint
+REBASELINED `7878ed9b…`. ⚠ WATCH: one evolve-world skewed def
+formations to low-32 15/16, zonal extinct — the shift may crowd the
+def-formation menu.)
+⭐ **Next: the FREQUENCY-DEPENDENCE yardstick** (replaces the
+cycles-in-3-worlds lens as N1.5's measure): in-league, does a style's
+win rate FALL as its population share rises? Negative frequency
+dependence = the ecology self-balances = diversity is self-sustaining
+— the direct answer to the user's original question. Then N3 coach
+touchline presence (3D figure — user addition) → N4 broadcast layer
+(N5 stays gated on the yardstick's verdict).
+Play reports interleave as always — **SEVEN unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
-🚫, the aerial channel); a play report is overdue.**
-HEAD fingerprint `0e93940a…` (since phase-63).
+🚫, the aerial channel, the underdog shift); a play report is VERY
+overdue — and the goals band question resolved itself (2.90/2.99).**
+HEAD fingerprint `7878ed9b…` (since phase-64).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

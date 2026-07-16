@@ -228,6 +228,12 @@ export interface TeamInfo {
    * ad-hoc teams) derives it from the genome — same thresholds, same result.
    */
   style?: TeamStyle;
+  /**
+   * Club Elo at kickoff (Phase 64): the strength READING the underdog
+   * shift bends against. Missing on either side = nobody shifts (ad-hoc
+   * teams, probes and old replays keep pure-identity tactics).
+   */
+  elo?: number;
   /** Evolvable / learned utility-policy weights; MISSING keys fall back to
    * DEFAULT_POLICY (Phase 42 franchises carry the attacking-style subset). */
   policy?: Partial<PolicyParams>;

@@ -181,7 +181,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 19;
+export const SAVE_VERSION = 20;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -406,6 +406,7 @@ export class League {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
       playerNames: f.playerNames, genome: f.coach.genome, squad: f.squad,
       ages: f.ages, style: f.coach.style, policy: f.coach.policy,
+      elo: f.elo, // the underdog shift's strength reading (Phase 64)
       // The personal-style wire (Phase 54): each slot's brain runs the
       // coach's policy through the player's own appetites.
       rolePolicies: f.squadStyles?.map((s) => applyPlayerStyle(f.coach.policy, s)),
@@ -1493,6 +1494,25 @@ export class League {
         }
       }
       data.version = 19;
+    }
+    if (data.version === 19) {
+      // v19 -> v20: the underdog shift (Phase 64). Backfilled at ZERO —
+      // the purist — so a migrated club plays exactly as it always did
+      // until evolution discovers pragmatism; history snapshots get the
+      // key too (radar/sparkline safety).
+      const fixG = (g: TacticalGenome | undefined): void => {
+        if (g) g.underdogShift ??= 0;
+      };
+      for (const f of data.franchises as Franchise[]) fixG(f.coach.genome);
+      for (const e of (data.coachPool ?? []) as PoolEntry[]) fixG(e.coach.genome);
+      for (const r of ((data.history ?? []) as SeasonRecord[])) {
+        if (r.geneMeans) (r.geneMeans as Record<string, number>).underdogShift ??= 0;
+        for (const e of r.evolution?.entries ?? []) {
+          fixG(e.childGenome);
+          if (e.parentGenomes) e.parentGenomes.forEach(fixG);
+        }
+      }
+      data.version = 20;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
