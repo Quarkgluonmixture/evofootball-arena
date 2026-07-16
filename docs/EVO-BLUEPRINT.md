@@ -685,3 +685,41 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   era arms race .762) ⇒ the decision point above. vitest **377** (+9).
   evolve-check 7 champions / 10 gens. visual 106+37. Fingerprint
   **REBASELINED `e5abf0da…`**.
+- ✅ **phase-63 SHIPPED** (**the ROUTE-ONE / AERIAL channel** — the
+  Everton lever, from the user's real-league reframe: tactical
+  diversity stands on cheap specialist CHANNELS that different defensive
+  structures can't all cover). The anatomy probe (`aerial-anatomy.ts`)
+  decomposed the dead cross pipeline: **80-91% of open-play crosses
+  produced NO aerial contact** — the delivery led the runner by his full
+  vel×flight (the pre-31.9 corner bug alive in open play) AND the
+  receiver's intercept solution parked him on the LANDING, where the
+  ball arrives at his FEET (3-4m downstream of where it crosses the
+  header band) — in the goal-side defenders' laps (45% of crosses died
+  there). One principle, three sites: (1) the MEETABLE delivery —
+  `CROSS_LEAD_FRAC 0.4` capped at `CROSS_LEAD_MAX 3.5m` (A/B: neutral
+  alone — the receiver was compensating; kept as delivery sanity);
+  (2) **attack the DESCENT, not the drop** — the 31.9 corner meet-point
+  generalized to open-play ReceivePass (route 2.5m upstream along the
+  flight line while the ball flies above control height): **attacker
+  headers DOUBLED** (3.9→9.0% vs PRESS, 6.3→12.5% vs NEUTRAL);
+  (3) **STRENGTH owns the air** — `aerialSense` reweighted (defending
+  0.3→0.15, strength 0.1→0.3; the aerial payoff phase-47 assigned to
+  strength is finally real, and the tall-CB COUNTER is buyable the same
+  way). Honest boundary: the strength gradient's end-to-end effect at
+  6v6 is subtle (TM ≈ GEN in 250-match A/B — one big man is a small
+  term in cross-volume × contest-rate × duel-delta × conversion);
+  channel EXPRESSION is left to selection. Per-cross direction now
+  exists: shot 28-34% vs PRESS/NEUTRAL vs 12-19% vs BUS — **the press
+  fears the delivery, the bus eats it**. Matrix (standing check):
+  still 0 cycles BUT decisive edges 56%→39%, the era arms race
+  DISSOLVED (.762→.528), and the top archetype is **"All-in risk /
+  Cross bombardment" (±8, .667)** with High line/Wings #4 and High
+  press styles bottom — the channel is a winning strategy in evolved
+  worlds one phase after being unplayable. Calibrate 2.74 / **2.10 ⚠**
+  (424242's third straight low: 2.22/2.29/2.10 — ecology-tilted,
+  failure mode 26; the band-vs-play-feel question is now urgent).
+  League headers won 2.8→3.9/match. Tests: +2 aerial pins (strength
+  duel directional, open-play attacker-header floor 3%) + two
+  seed-luck fragilities hardened (league identity accepts fire-sale
+  signings; coach sack test accepts same-pass rehire). vitest **379**.
+  visual 106+37. Fingerprint **REBASELINED `0e93940a…`**.

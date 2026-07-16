@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
-import { BOX_DEPTH, BOX_WIDTH, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Role } from '../sim/types';
@@ -52,8 +52,27 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
     case 'ReceivePass':
     case 'InterceptPass': {
-      const sol = interceptBall(p, ball);
-      target = sol.point;
+      // Attack the DESCENT, not the drop (Phase 63 — the 31.9 corner
+      // principle in open play): a lofted delivery is headable only in its
+      // last ~2.6m of flight, so the intercept solution parked the receiver
+      // ON the landing — where the ball arrives at his FEET, in the
+      // goal-side defenders' laps (probed: attacker headers 1-10% of
+      // crosses, 45% of deliveries eaten on the ground by the defence).
+      // While the delivery flies ABOVE control height, the intended
+      // receiver routes 2.5m upstream along the flight line and meets the
+      // band; once it drops low the normal intercept chase resumes.
+      if (
+        p.action.type === 'ReceivePass' &&
+        ball.owner === null &&
+        ball.z > CONTROL_MAX_HEIGHT
+      ) {
+        const { x: lx, y: ly } = ballLanding(ball);
+        const vl = Math.hypot(ball.vel.x, ball.vel.y) || 1;
+        target = { x: lx - (ball.vel.x / vl) * 2.5, y: ly - (ball.vel.y / vl) * 2.5 };
+      } else {
+        const sol = interceptBall(p, ball);
+        target = sol.point;
+      }
       speedF = sprint;
       break;
     }

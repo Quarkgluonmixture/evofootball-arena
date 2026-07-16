@@ -187,7 +187,82 @@ describe('aerial duels and deliveries', () => {
     const winsA = m.teams[0].stats.headersWon - before[0];
     const winsB = m.teams[1].stats.headersWon - before[1];
     expect(winsA + winsB).toBe(300); // every roll was a real contest
-    expect(winsA).toBeGreaterThan(winsB * 1.5); // defending decides the air
+    expect(winsA).toBeGreaterThan(winsB * 1.5); // defending still reads the flight
+  });
+
+  it('directional: STRENGTH owns the air (Phase 63 — the target-man gradient)', () => {
+    // Same harness, strength differential: the big man out-jumps the
+    // technician at 2× the defending gradient's edge (0.3 vs 0.15 weights).
+    const strong = squadOf(0.5).map((p) => ({ ...p, strength: 0.9 }));
+    const weak = squadOf(0.5).map((p) => ({ ...p, strength: 0.1 }));
+    const m = new Match({
+      seed: 7,
+      teamA: team('A', neutral(), { squad: strong }),
+      teamB: team('B', neutral(), { squad: weak }),
+      duration: 240,
+    });
+    const dfA = m.teams[0].players[1];
+    const dfB = m.teams[1].players[1];
+    for (const p of m.allPlayers) {
+      if (p !== dfA && p !== dfB) p.pos = { x: p.side === 0 ? -40 : 40, y: p.index * 5 - 12 };
+    }
+    const before = [m.teams[0].stats.headersWon, m.teams[1].stats.headersWon];
+    for (let i = 0; i < 300; i++) {
+      m.ball.owner = null;
+      m.ball.pos = { x: 0, y: 0 };
+      m.ball.vel = { x: 0, y: 0 };
+      m.ball.z = 2.0;
+      m.ball.vz = -3;
+      m.pendingPass = null;
+      for (const p of [dfA, dfB]) {
+        p.kickCooldown = 0;
+        p.stunTimer = 0;
+      }
+      dfA.pos = { x: 0.4, y: 0 };
+      dfB.pos = { x: -0.4, y: 0 };
+      tryAerial(m, m.allPlayers);
+    }
+    const winsA = m.teams[0].stats.headersWon - before[0];
+    const winsB = m.teams[1].stats.headersWon - before[1];
+    expect(winsA + winsB).toBe(300);
+    expect(winsA).toBeGreaterThan(winsB * 2);
+  });
+
+  it('open-play crosses find HEADS: the attacker header exists at a real rate (Phase 63)', { timeout: 120000 }, () => {
+    // Pre-63 anatomy: deliveries led the runner into next week and receivers
+    // parked on the LANDING (where the ball is feet-height) — attacker
+    // headers ran 1-4% of open-play crosses. The meetable delivery + the
+    // attack-the-descent routing doubled it; this floor guards the channel.
+    const g = neutral();
+    g.attackingWidth = 0.85;
+    const wide = { formationAtk: 'wide-212', formationDef: 'press-23', scheme: 'man' } as const;
+    let crosses = 0;
+    let atkHead = 0;
+    for (let seed = 1; seed <= 20; seed++) {
+      const m = new Match({
+        seed: 4400 + seed,
+        teamA: team('A', g, { style: wide, policy: { crossBase: DEFAULT_POLICY.crossBase * 2.2 } }),
+        teamB: team('B', neutral()),
+        duration: 240,
+      });
+      let c0 = 0;
+      let open: { t: number; ah0: number } | null = null;
+      while (!m.finished) {
+        m.step(DT);
+        const c = m.teams[0].stats.crosses;
+        if (c > c0) {
+          c0 = c;
+          crosses++;
+          open = { t: m.simTime, ah0: m.teams[0].stats.headersWon };
+        }
+        if (open && m.simTime > open.t + 4) {
+          if (m.teams[0].stats.headersWon > open.ah0) atkHead++;
+          open = null;
+        }
+      }
+    }
+    expect(crosses).toBeGreaterThan(30); // the harness actually crossed
+    expect(atkHead / crosses).toBeGreaterThan(0.03);
   });
 
   it('chest trap (28.6): an unpressured drop is taken to the FEET; a contested one is headed', () => {

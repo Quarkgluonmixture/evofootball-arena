@@ -140,8 +140,17 @@ describe('the coach entity (Phase 53)', () => {
     const club = league.franchises.find((f) => f.name === starHire[0].club)!;
     expect(club.coach).toBe(star);
     expect(star.career.clubs).toBe(2);
-    // The sacked man is back on the market, scarred.
-    expect(league.coachPool.some((p) => p.coach.name === sacked[0].coach && p.coach.career.sackings >= 1)).toBe(true);
+    // The sacked man is back on the market, scarred — OR another board
+    // hired him in the same pass (the channel's whole point; seed-luck
+    // decides which, phase-63's reshuffle landed on a rehire).
+    const sackedName = sacked[0].coach;
+    const inPool = league.coachPool.some(
+      (p) => p.coach.name === sackedName && p.coach.career.sackings >= 1,
+    );
+    const rehired =
+      hired.some((ev) => ev.coach === sackedName) ||
+      league.franchises.some((f) => f.coach.name === sackedName && f.coach.career.sackings >= 1);
+    expect(inPool || rehired).toBe(true);
     // Lineage tells the story on the club.
     expect(club.lineage.some((l) => l.event === 'sacked')).toBe(true);
     expect(club.lineage.some((l) => l.event === 'hired')).toBe(true);

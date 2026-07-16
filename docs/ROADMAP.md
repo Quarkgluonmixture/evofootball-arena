@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-62 (cards that bind; N1.5 at a decision point)
+# Roadmap — shipped through phase-63 (the aerial channel lives; cross bombardment tops the matrix)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -100,18 +100,33 @@ MA-0.7+ clubs. vitest 377; fingerprint REBASELINED `e5abf0da…`.
 re-rolled ecology, watch not chase. **The N1.5 close attempt FAILED:
 0 cycles / 44 decisive — press correlation halved (+0.87→+0.43) but
 discipline is a constant tax, not frequency dependence.**)
-⭐ **NEXT = a USER DECISION on N1.5** (the standing ≥10%-cycles gate):
-(a) keep chasing — route-one amplification is the pool's next named
-lever, or heavier discipline / scarcer budget; (b) re-scope the gate —
-roster-era worlds run structurally transitive, and cycles-in-3-worlds
-may be the wrong lens for counter-play now; (c) park N1.5 and proceed
-to N3 coach match-day presence (incl. the coach STANDING ON THE
-TOUCHLINE in 3D — user addition) → N4 tactical broadcast layer → N6
-market signs (N5 formation library stays HARD-GATED until decided).
-Play reports interleave as always — **FIVE unplayed behavioral phases
+⭐ 2026-07-16 the user REFRAMED N1.5 from real leagues ("为什么英超有
+克制和多样性?瓜迪奥拉传控/克洛普反击/弱队大巴长传/埃弗顿高塔"):
+diversity stands on (1) cheap specialist CHANNELS no one structure
+covers, (2) opponent-CONDITIONAL strategy (the bus is what weak teams
+do vs strong ones, not an identity), (3) resource inequality. The
+derived queue: ✅ **phase-63 SHIPPED** (**the AERIAL/ROUTE-ONE
+channel** — the dead cross pipeline decomposed and repaired: attack
+the DESCENT not the drop (the 31.9 corner principle in open play,
+attacker headers ×2), meetable lead, STRENGTH owns the air
+(aerialSense 0.15/0.3 — the tall-CB counter is buyable too). Per-cross
+direction: press fears the delivery (shot 28-34%), the bus eats it
+(12-19%). **Matrix: cross bombardment went from unplayable (phase-60)
+to the TOP archetype (±8, .667); decisive edges 56%→39%, the era arms
+race dissolved .762→.528** — still 0 cycles, but the ecology is
+flattening. vitest 379; fingerprint REBASELINED `0e93940a…`.)
+⭐ **Next: phase-64 — OPPONENT-CONDITIONAL tactics** (the Klopp/bus
+lever): an Elo-read at kickoff + a gene-driven shift toward
+compact/counter when outgunned (magnitude = DNA, 0 = purist; selection
+decides). Then the frequency-dependence yardstick replaces the
+cycles-in-3-worlds lens; then N3 coach touchline presence → N4
+broadcast layer (N5 stays gated). ⚠ WATCH: calibrate 2.74 / **2.10**
+— seed 424242's third straight sub-floor reading (2.22/2.29/2.10);
+the goals BAND itself needs the user's play-feel verdict.
+Play reports interleave as always — **SIX unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
-🚫); a play report is overdue.**
-HEAD fingerprint `e5abf0da…` (since phase-62).
+🚫, the aerial channel); a play report is overdue.**
+HEAD fingerprint `0e93940a…` (since phase-63).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

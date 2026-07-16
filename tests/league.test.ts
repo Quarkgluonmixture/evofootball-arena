@@ -136,12 +136,13 @@ describe('League', () => {
     const downSlot = league.standings(0)[7].slot;
     const upBefore = JSON.parse(JSON.stringify(league.franchise(upSlot)));
     const downBefore = JSON.parse(JSON.stringify(league.franchise(downSlot)));
-    league.finishSeason();
+    const rec = league.finishSeason();
 
     // Promoted champion of D2: elite-protected — the identity survives the
     // move. The squad is the same PEOPLE a season older (attributes drift
     // with age via the careers pass — exact attr equality stopped being the
-    // contract in Phase 26; anyone whose name changed must be a newgen).
+    // contract in Phase 26; anyone whose name changed must be a newgen —
+    // or, since Phase 55, a fire-sale SIGNING who arrives with his age).
     const up = league.franchise(upSlot);
     expect(up.division).toBe(0);
     expect(up.name).toBe(upBefore.name);
@@ -151,7 +152,10 @@ describe('League', () => {
       if (up.playerNames[i] === (upBefore.playerNames as string[])[i]) {
         expect(age).toBe((upBefore.ages as number[])[i] + 1);
       } else {
-        expect(age).toBeLessThanOrEqual(19); // a retiree's newgen replacement
+        const signed = (rec.signings ?? []).some(
+          (s) => s.club === up.name && s.player === up.playerNames[i] && s.age === age,
+        );
+        expect(signed || age <= 19).toBe(true);
       }
     });
 

@@ -95,6 +95,20 @@ export const CONTACT_BLIND_PEN = 0.7;
  */
 export const UNSET_BLOCK_WEIGHT = 0.55;
 
+/**
+ * The MEETABLE cross (Phase 63, the route-one channel): open-play crosses
+ * used to lead the target by his FULL velocity × flight — the pre-31.9
+ * corner bug alive in open play. Probed (aerial-anatomy): as the delivery
+ * dropped into the header band the intended target was a median 8-9m away
+ * (header reach is 1.35m) — attacker headers ran 1-10% of crosses and 47%
+ * died in defenders' laps on the ground. The delivery now leads a MEETABLE
+ * fraction of the run, capped in meters: the crasher keeps his momentum
+ * (the running jump IS his duel edge) and covers the difference himself
+ * (ReceivePass chases the landing).
+ */
+export const CROSS_LEAD_FRAC = 0.4;
+export const CROSS_LEAD_MAX = 3.5;
+
 /* ---- The aerial game (Phase 28) ---- */
 /** Gravity on the lofted ball (m/s²). Airborne balls fly friction-free. */
 export const GRAVITY = 9.81;

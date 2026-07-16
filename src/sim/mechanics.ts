@@ -6,7 +6,7 @@ import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
   BALL_FRICTION_K, BOX_DEPTH, CHEST_TRAP_MAX_HEIGHT, CHEST_TRAP_MAX_VZ, CHEST_TRAP_RADIUS,
-  CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
+  CORNER_CLEARANCE, CROSS_LEAD_FRAC, CROSS_LEAD_MAX, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   GK_RUSH_ENVELOPE,
   DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST, UNSET_BLOCK_WEIGHT,
@@ -356,12 +356,18 @@ export function performCross(
   const team = match.teams[crosser.side];
   const flight0 = clamp(0.5 + dist(crosser.pos, at ?? target.pos) * 0.038, 0.7, 1.7);
   // Corner routines pass `at` (Phase 31.9): the delivery attacks the
-  // routine's KEY ZONE and the crasher times his burst onto it. The
-  // velocity lead is for open play — leading a crasher mid-burst by
-  // vel·flight (~9m at a 1.45s corner flight) dropped the ball far past
-  // the spot everyone was licensed to attack (probed: 0/30 corners met
-  // their man in the header band).
-  const arrive = at ?? add(target.pos, scale(target.vel, flight0 * 0.9));
+  // routine's KEY ZONE and the crasher times his burst onto it. Open play
+  // (Phase 63) leads a MEETABLE fraction of the target's run, capped —
+  // the full vel·flight lead was the same 31.9 bug in open-play clothes
+  // (constants.ts has the anatomy numbers).
+  let leadX = target.vel.x * flight0 * CROSS_LEAD_FRAC;
+  let leadY = target.vel.y * flight0 * CROSS_LEAD_FRAC;
+  const leadLen = Math.hypot(leadX, leadY);
+  if (leadLen > CROSS_LEAD_MAX) {
+    leadX *= CROSS_LEAD_MAX / leadLen;
+    leadY *= CROSS_LEAD_MAX / leadLen;
+  }
+  const arrive = at ?? v2(target.pos.x + leadX, target.pos.y + leadY);
   const goal = team.oppGoal();
   // Pulled toward goal, but NOT into the six-yard area — a delivery that
   // drops on the keeper's claim radius is a delivery wasted (28.1: this
@@ -469,9 +475,18 @@ const AERIAL_ROLE: Record<Role, number> = { GK: 0, DF: 0.3, MF: 0.14, WG: 0.06, 
 /**
  * How good this player is in the air — the same formula the header contest
  * rolls against, so cross targeting (PlayerBrain) and duel resolution agree.
+ *
+ * Phase 63 (the target-man gradient): STRENGTH owns the air. The old
+ * weights (defending 0.3, strength 0.1) made the classic big-man
+ * investment invisible — +0.45 strength bought +0.045 of duel score
+ * against a 0-0.45 random roll, and the probe showed a budget-neutral
+ * target man changing NOTHING about cross outcomes. Now strength 0.3 /
+ * defending 0.15: the aerial payoff phase-47 assigned to strength is
+ * real, and the COUNTER is evolvable the same way — a back line that
+ * buys strength out-jumps the big man (the tall-CB answer).
  */
 export function aerialSense(p: Player): number {
-  return AERIAL_ROLE[p.role] + p.attrs.defending * 0.3 + p.attrs.strength * 0.1;
+  return AERIAL_ROLE[p.role] + p.attrs.defending * 0.15 + p.attrs.strength * 0.3;
 }
 
 /**
