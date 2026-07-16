@@ -817,6 +817,17 @@ only caught by eyes on the PNGs.
     play-feel decide. Same genus as failure mode 20 (homeostat chasing)
     one level up: the homeostat here is the whole ecology.
 
+27. **A swept constant re-runs the FULL gate suite — the pre-sweep run
+    doesn't count.** Phase-60 swept `UNSET_BLOCK_WEIGHT` 0.3→0.55 late
+    in the phase and only re-ran the targeted suites; the full vitest
+    that backed "363 green" predated the sweep, and a blocks test
+    pinning the floor-0.3 literal ("four retreaters ≈ 1.5") shipped
+    LATENTLY RED on HEAD — found a phase later (61). Two rules: (a)
+    every gate run reported in a ledger must be against the FINAL
+    constants, re-run after any sweep, and (b) tests pin contracts
+    RELATIVE to the constant (4×floor), never the magic number a
+    particular sweep produced.
+
 ## 11. Known tuning levers
 
 | Goal | Lever |

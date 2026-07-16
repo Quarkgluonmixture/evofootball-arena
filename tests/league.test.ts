@@ -257,11 +257,16 @@ describe('League', () => {
     }
     const restored = League.fromJSON(json as unknown as Record<string, unknown>);
     for (const f of restored.franchises) {
-      for (const p of f.squad) {
-        expect(p.passing).toBe(0.63);
-        expect(p.dribbling).toBe(0.63);
-        expect(p.strength).toBe(0.4);
-        expect(p.stamina).toBe(0.4);
+      // Only the six v13-era players carry the split technique — the v18
+      // bench rows are fresh signings. The v18 roster-budget pass may shave
+      // everyone by one shared factor, so the pins are RATIO-relative.
+      for (const p of f.squad.slice(0, 6)) {
+        const mul = p.passing / 0.63;
+        expect(mul).toBeGreaterThan(0.9);
+        expect(mul).toBeLessThanOrEqual(1 + 1e-9);
+        expect(p.dribbling).toBeCloseTo(p.passing, 10);
+        expect(p.strength).toBeCloseTo(0.4 * mul, 10);
+        expect(p.stamina).toBeCloseTo(0.4 * mul, 10);
         expect((p as unknown as Record<string, number>).technique).toBeUndefined();
       }
     }

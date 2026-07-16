@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-60 (the unset wall; three cycles)
+# Roadmap — shipped through phase-61 (the bench; rotation evolves)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -74,19 +74,32 @@ roll; the crossBase+0.87 hypothesis was A/B-refuted first
 attack/defense balance. **Matrix: 3 cycles, 7.5%** — trajectory
 0→0→4.5→7.5% across the three N1.5 levers; defensive styles back in
 the top tier; vitest 363, fingerprint REBASELINED `b59eeb10…`).
-⭐ **Next: N2 substitutions/bench (the remaining N1.5 lever — CARDS
-THAT BIND — needs its suspension infra; after N2, re-run the matrix
-gate to close N1.5 at ≥10%) → N3 coach match-day presence (incl. the
-coach STANDING ON THE TOUCHLINE in 3D — user addition) → N4 tactical
-broadcast layer → N5 formation library (HARD-GATED behind N1.5) → N6
-market signs for style fit.** Play reports interleave as always —
-**THREE unplayed behavioral phases are live (fatigue, reaction gate,
-unset wall); a play report is overdue before N2.**
-HEAD fingerprint `b59eeb10…` (since phase-60). ⚠ WATCH: calibrate
-goals 2.23 / 2.22 — both seeds just under the 2.3 floor but finally
-TIGHT across seeds; three levers ran goals slightly downhill — the
-BAND itself may deserve a play-feel revisit (failure mode 26; dial =
-STAMINA_RECOVERY if the game reads dour).
++ ✅ **phase-61 SHIPPED** (**N2 — SUBSTITUTIONS / the bench**: 9-man
+rosters under a widened `SQUAD_BUDGET` 36 — a deep bench is funded by
+a shallower XI; dead-ball subs driven by the new `rotationBias` gene
+(fatigue threshold; tiredest off, like-for-like on; SUBS_MAX 3, no
+re-entry, keepers stay); roster-indexed playerStats + `apps` so a
+sub's goals land on HIS career; save v18. Probe: the trigger binds
+monotonically AND selection is ecology-dependent — world 424242 goes
+full carousel (gene .465→.886, 1.46 subs/team/match) while world 991
+keeps a mid spread (~0.5 subs) — two rotation cultures, not a uniform
+virtue. Calibrate **2.70/2.59 — both seeds back in band, the phase-60
+goals watch RESOLVES**. ⚠ Matrix gate RE-BASED (new founding worlds):
+0 cycles / 26 decisive, pressIntensity +0.87 — rotation partially
+refunds the press fatigue tax. vitest 368; visual 106+37; fingerprint
+REBASELINED `9357f90a…`; ARCHITECTURE failure mode 27 added — the
+phase-60 blocks test had shipped latently red after its late sweep.)
+⭐ **Next: N2.5 CARDS THAT BIND (the remaining N1.5 lever, now
+unblocked — suspensions that carry across matches price sustained
+aggression from the discipline side, aimed at the refunded press
+meta; then re-run the matrix gate to close N1.5 at ≥10%) → N3 coach
+match-day presence (incl. the coach STANDING ON THE TOUCHLINE in 3D —
+user addition) → N4 tactical broadcast layer → N5 formation library
+(HARD-GATED behind N1.5) → N6 market signs for style fit.** Play
+reports interleave as always — **FOUR unplayed behavioral phases are
+live (fatigue, reaction gate, unset wall, the bench: watch for 🔄
+lines and late-game fresh legs); a play report is overdue.**
+HEAD fingerprint `9357f90a…` (since phase-61).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

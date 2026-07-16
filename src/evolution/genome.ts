@@ -35,6 +35,14 @@ export interface TacticalGenome {
   formationDepth: number;
   /** How far away support runs position themselves from the carrier. */
   supportDistance: number;
+  /**
+   * Rotation appetite (Phase 61, N2): how quickly the coach turns to his
+   * bench. Read as a fatigue threshold — 0 rides the starting six into the
+   * ground, 1 sends fresh legs at the first sign of tiredness. What the
+   * carousel COSTS (bench quality under the roster budget, star minutes)
+   * is evolution's to price.
+   */
+  rotationBias: number;
 }
 
 export const GENE_KEYS = [
@@ -52,6 +60,7 @@ export const GENE_KEYS = [
   'tempo',
   'formationDepth',
   'supportDistance',
+  'rotationBias',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -118,6 +127,7 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if (g.formationDepth > 0.7) tags.push('High line');
   if (g.formationDepth < 0.3) tags.push('Deep block');
   if (g.staminaConservation > 0.72) tags.push('Energy misers');
+  if ((g.rotationBias ?? 0.5) > 0.72) tags.push('Fresh legs');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

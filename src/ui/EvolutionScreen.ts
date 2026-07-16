@@ -2,7 +2,7 @@ import { detectEras } from '../evolution/eras';
 import { GENE_KEYS } from '../evolution/genome';
 import type { Franchise } from '../evolution/franchise';
 import { eraColor, eraDisplayName, eraIndexOf } from './chronicleView';
-import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
+import { ATTR_KEYS, ROSTER_ROLES, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import {
   STYLE_DIMS, dimStats, nameplateFor, styleSpread, styleValues, topVarianceDims,
   type DimStat, type DimTheme,
@@ -407,8 +407,9 @@ export class EvolutionScreen {
     }
     driftCol.appendChild(el('div', 'muted',
       f.playerNames.map((n, i) => {
-        const tr = traitsOf(f.squad[i], SQUAD_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
-        return `${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
+        const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
+        // The bench (Phase 61) sits behind the 🪑 marker.
+        return `${i === SQUAD_ROLES.length ? '🪑 ' : ''}${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
       }).join(' · ')));
     panel.appendChild(driftCol);
 

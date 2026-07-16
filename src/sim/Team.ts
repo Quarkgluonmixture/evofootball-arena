@@ -3,11 +3,28 @@ import type { TacticalGenome } from '../evolution/genome';
 import { NEUTRAL_MENTALITY, type Mentality } from '../ai/mentality';
 import { HALF_L } from './constants';
 import { Player } from './Player';
+import type { PlayerAttributes } from '../evolution/playerGenome';
 import {
-  DEFAULT_POLICY, ROLES, deriveTeamStyle, emptyStats,
-  type CornerRoutine, type PolicyParams, type Side, type TeamInfo, type TeamMatchStats,
-  type TeamMode, type TeamStyle,
+  BENCH_ROLES, DEFAULT_POLICY, ROLES, deriveTeamStyle, emptyStats,
+  type CornerRoutine, type PolicyParams, type Role, type Side, type TeamInfo,
+  type TeamMatchStats, type TeamMode, type TeamStyle,
 } from './types';
+
+/**
+ * One bench body (Phase 61, N2): everything a substitution needs to swap a
+ * pitch slot's identity. `role` is NOMINAL (the pick prefers a like-for-like
+ * body); on the pitch he assumes the slot he replaces.
+ */
+export interface BenchEntry {
+  rosterIdx: number;
+  role: Role;
+  name: string;
+  attrs: PlayerAttributes;
+  age?: number;
+  /** His personal-style policy (Phase 54 wire), swapped in with him. */
+  policy: PolicyParams;
+  used: boolean;
+}
 
 export class Team {
   readonly side: Side;
@@ -17,8 +34,14 @@ export class Team {
   readonly players: Player[];
   /** Utility-policy weights the brains score with (learned for wildcards). */
   readonly policy: PolicyParams;
-  /** Per-player policy resolved by index — `rolePolicies[i]`, else `policy`. */
-  readonly policies: readonly PolicyParams[];
+  /** Per-player policy resolved by index — `rolePolicies[i]`, else `policy`.
+   * Elements are swapped when a substitute brings his own appetites on. */
+  readonly policies: PolicyParams[];
+  /** The bench (Phase 61): roster rows past the starting six. May be empty
+   * (ad-hoc TeamInfos, older tests) — then no substitutions ever happen. */
+  readonly bench: BenchEntry[];
+  /** Substitutions made (SUBS_MAX caps them; no re-entry). */
+  subsUsed = 0;
   /** Tactical identity (Phase 30): formations + marking scheme, resolved once. */
   readonly style: TeamStyle;
 
@@ -128,6 +151,20 @@ export class Team {
       (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
     );
     if (info.ages) this.players.forEach((p, i) => (p.age = info.ages![i]));
+    // The bench (Phase 61): whatever the roster carries past the starters.
+    this.bench = [];
+    for (let i = ROLES.length; i < info.squad.length; i++) {
+      const rp = info.rolePolicies?.[i];
+      this.bench.push({
+        rosterIdx: i,
+        role: BENCH_ROLES[i - ROLES.length] ?? 'MF',
+        name: info.playerNames[i] ?? 'SUB',
+        attrs: info.squad[i],
+        age: info.ages?.[i],
+        policy: rp ? { ...DEFAULT_POLICY, ...rp } : this.policy,
+        used: false,
+      });
+    }
     // The captain (Phase 39): the oldest cool head — age·technique. He
     // steadies the TEAM's mode switching (TeamBrain hysteresis), nothing
     // else; deterministic (index tiebreak).

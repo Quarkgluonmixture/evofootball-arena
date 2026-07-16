@@ -99,7 +99,7 @@ describe('fouls — award rules (Phase 20)', () => {
     m.ball.pos = v2(HALF_L - 5, 2);
     m.awardFoul(m.teams[1].players[3], m.teams[0].players[4]);
     const takerGid = m.restart!.takerGid;
-    const takerShotsBefore = m.playerStats[takerGid].shots;
+    const takerShotsBefore = m.stat(takerGid).shots;
     const teamShotsBefore = m.teams[0].stats.shots;
 
     // Run through setup + the kick itself.
@@ -110,7 +110,7 @@ describe('fouls — award rules (Phase 20)', () => {
       if (m.finished) break;
     }
     expect(kicked).toBe(true);
-    expect(m.playerStats[takerGid].shots).toBe(takerShotsBefore + 1);
+    expect(m.stat(takerGid).shots).toBe(takerShotsBefore + 1);
   });
 
   it('same seed ⇒ identical fouls, penalties, score and events', () => {

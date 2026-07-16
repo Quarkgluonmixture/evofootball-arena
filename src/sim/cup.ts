@@ -2,7 +2,7 @@ import type { Franchise } from '../evolution/franchise';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 import { hashSeed, Rng } from '../utils/rng';
 import type { Division } from './League';
-import { TEAM_SIZE } from './types';
+import { ROSTER_SIZE } from './types';
 
 /**
  * The Evo Cup: a deterministic single-elimination knockout across both
@@ -134,7 +134,7 @@ export function buildCup(franchises: Franchise[], leagueSeed: number, generation
   return {
     entrants,
     ties,
-    playerGoals: franchises.map(() => Array.from({ length: TEAM_SIZE }, () => 0)),
+    playerGoals: franchises.map(() => Array.from({ length: ROSTER_SIZE }, () => 0)),
   };
 }
 
@@ -183,7 +183,11 @@ export interface ShootoutKick {
 
 /** Kick order from squad DNA: outfielders by finishing (index tiebreak), GK last. */
 export function shootoutLineup(squad: PlayerAttributes[]): ShootoutSquad {
+  // Starters only (Phase 61): the bench doesn't take shootout kicks — the
+  // cup layer doesn't track who was on at FT, and the shootout theater
+  // stages the starting cast (kicker indices must map onto pitch gids).
   const outfield = squad
+    .slice(0, 6)
     .map((_, i) => i)
     .slice(1)
     .sort((i, j) => squad[j].finishing - squad[i].finishing || i - j);

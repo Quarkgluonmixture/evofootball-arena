@@ -320,6 +320,13 @@ export class PlayerModel {
     this.drawLabel(key);
   }
 
+  /** A substitution changed this slot's man (Phase 61) — redraw the plate. */
+  setName(name: string): void {
+    if (name === this.name) return;
+    this.name = name;
+    this.drawLabel(this.labelDrawn);
+  }
+
   private drawLabel(action: string): void {
     this.labelDrawn = action;
     const ctx = this.labelCanvas.getContext('2d')!;

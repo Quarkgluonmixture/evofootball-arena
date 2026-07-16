@@ -100,7 +100,7 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   if (!match.rng.chance(pFail)) return true;
 
   match.teams[p.side].stats.miscontrols++;
-  match.playerStats[p.gid].miscontrols++;
+  match.stat(p.gid).miscontrols++;
   ball.lastTouch = p; // a heavy touch out of play concedes the restart
   ball.vel = scale(rotate(v2(inx, iny), match.rng.range(-0.8, 0.8)), match.rng.range(3.5, 6.5));
   ball.vz = 0; // the touch kills any remaining flight — the ball drops
@@ -509,7 +509,7 @@ export function tryAerial(match: Match, order: Player[]): void {
         shot.resolved = true;
         match.teams[shot.side].stats.shotsOnTarget++;
         match.teams[gk.side].stats.saves++;
-        match.playerStats[gk.gid].saves++;
+        match.stat(gk.gid).saves++;
         match.markShotOutcome('saved');
       }
       match.pushEvent('save', gk.side, `${gk.name} claims the high ball`);
@@ -605,7 +605,7 @@ function headBall(match: Match, p: Player): void {
     match.lastCompletedPass = { passerGid: pass.passerGid, receiverGid: p.gid, t: match.simTime };
   } else if (pass && pass.side !== p.side) {
     team.stats.interceptions++;
-    match.playerStats[p.gid].recoveries++;
+    match.stat(p.gid).recoveries++;
   }
   match.pendingPass = null;
 
@@ -692,7 +692,7 @@ function tryChestTrap(match: Match, order: Player[]): boolean {
   }
   // Spilled the cushion — a heavy touch knocks it loose and low (the scramble).
   match.teams[trapper.side].stats.miscontrols++;
-  match.playerStats[trapper.gid].miscontrols++;
+  match.stat(trapper.gid).miscontrols++;
   ball.lastTouch = trapper;
   ball.vel = scale(rotate(v2(inx, iny), match.rng.range(-0.9, 0.9)), match.rng.range(3, 5.5));
   ball.vz = 0; // knocked down — it drops
@@ -729,7 +729,7 @@ function performHeaderShot(match: Match, shooter: Player): void {
 
   team.stats.shots++;
   team.stats.xg += q;
-  match.playerStats[shooter.gid].shots++;
+  match.stat(shooter.gid).shots++;
 
   const difficulty = diveDifficulty(ball.pos, dir, gk, opp);
   const lp = match.lastCompletedPass;
@@ -842,7 +842,7 @@ export function performShot(match: Match, shooter: Player): void {
   match.ball.spin = curl;
   team.stats.shots++;
   team.stats.xg += q;
-  match.playerStats[shooter.gid].shots++;
+  match.stat(shooter.gid).shots++;
 
   // Dive difficulty, frozen at the moment of the strike (keeper reaction) —
   // priced on the CHORD, discounted for the bend the dive can't fully read.
@@ -956,7 +956,7 @@ export function performFreeKick(match: Match, taker: Player): void {
   ball.spin = spin;
   team.stats.shots++;
   team.stats.xg += q;
-  match.playerStats[taker.gid].shots++;
+  match.stat(taker.gid).shots++;
 
   // The dive prices the CHORD (where the arc actually crosses the frame)
   // plus the late bend the keeper cannot fully read.
@@ -1120,7 +1120,7 @@ export function trySmother(match: Match): void {
   const pWin = clamp(0.56 + (gk.attrs.reflexes - 0.5) * 0.5 - (owner.attrs.dribbling - 0.5) * 0.35, 0.2, 0.85);
   if (match.rng.chance(pWin)) {
     match.teams[gk.side].stats.saves++;
-    match.playerStats[gk.gid].saves++;
+    match.stat(gk.gid).saves++;
     owner.kickCooldown = 0.4;
     owner.stunTimer = 0.4; // ran into a wall of keeper
     match.pushEvent('save', gk.side, `${gk.name} smothers at ${owner.name}'s feet!`);
@@ -1264,7 +1264,7 @@ export function tryTackles(match: Match): void {
 
   if (match.rng.chance(p)) {
     oppTeam.stats.tackles++;
-    match.playerStats[tackler.gid].recoveries++;
+    match.stat(tackler.gid).recoveries++;
     // No feed event — tackles are too frequent to narrate; stats + debug show them.
     ball.owner = null;
     ball.lastTouch = tackler;
@@ -1398,7 +1398,7 @@ export function tryKeeperSave(match: Match): void {
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;
     defTeam.stats.saves++;
-    match.playerStats[gk.gid].saves++;
+    match.stat(gk.gid).saves++;
     match.markShotOutcome('saved');
     if (speed < 21 && match.rng.chance(0.8)) {
       match.pushEvent('save', defSide, `${gk.name} catches it`);

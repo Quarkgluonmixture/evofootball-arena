@@ -181,6 +181,9 @@ export class ThreeMatchRenderer {
       for (const p of state.players) {
         const model = this.players.get(p.gid);
         if (!model) continue;
+        // A substitution changed the slot's man (Phase 61) — cheap string
+        // compare per frame, canvas redraw only on the actual swap.
+        if (p.name !== undefined) model.setName(p.name);
         if (walkingOff) {
           this.poseWalkOff(model, p, state, dt, selectedGid);
         } else {

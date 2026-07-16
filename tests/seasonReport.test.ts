@@ -6,7 +6,7 @@ import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import { TEAM_SIZE, emptyPlayerStats, type TeamInfo } from '../src/sim/types';
+import { ROSTER_SIZE, TEAM_SIZE, emptyPlayerStats, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 function makeTeam(name: string, seed: number): TeamInfo {
@@ -37,9 +37,10 @@ describe('player match stats (passive counters)', () => {
       const ownGoals = r.events.filter((e) => e.text.includes('(og)')).length;
 
       for (const side of [0, 1] as const) {
-        const gids = Array.from({ length: TEAM_SIZE }, (_, i) => side * TEAM_SIZE + i);
+        // playerStats is ROSTER-indexed (Phase 61) — sum the side's rows.
+        const rows = Array.from({ length: ROSTER_SIZE }, (_, i) => side * ROSTER_SIZE + i);
         const sum = (k: 'goals' | 'assists' | 'shots' | 'saves' | 'recoveries') =>
-          gids.reduce((a, g) => a + r.playerStats[g][k], 0);
+          rows.reduce((a, g) => a + r.playerStats[g][k], 0);
         expect(sum('shots')).toBe(r.stats[side].shots);
         expect(sum('saves')).toBe(r.stats[side].saves);
         expect(sum('recoveries')).toBe(r.stats[side].tackles + r.stats[side].interceptions);
@@ -60,7 +61,7 @@ describe('season report data', () => {
     playSeason(league);
 
     const lines = league.playerLines();
-    expect(lines.length).toBe(16 * TEAM_SIZE); // 16 teams × squad size
+    expect(lines.length).toBe(16 * ROSTER_SIZE); // 16 teams × roster size (Phase 61)
     const totalGoals = lines.reduce((a, l) => a + l.goals, 0);
     const tableGf = league.table.reduce((a, r) => a + r.gf, 0);
     expect(totalGoals).toBeLessThanOrEqual(tableGf);
@@ -178,15 +179,15 @@ describe('save migrations preserve old saves', () => {
     const fromV2 = League.fromJSON(v2);
     expect(fromV2.franchises.length).toBe(16);
     expect(fromV2.playerAgg.length).toBe(16);
-    // The chain now runs to v8 (6v6) — loaded shapes are current-era shapes.
-    expect(fromV2.playerAgg[0].length).toBe(TEAM_SIZE);
+    // The chain now runs to v18 (the bench) — loaded shapes are current-era.
+    expect(fromV2.playerAgg[0].length).toBe(ROSTER_SIZE);
 
     const v1 = JSON.parse(JSON.stringify(v3)) as Record<string, unknown>;
     delete v1.playerAgg;
     for (const f of v1.franchises as Franchise[]) delete (f as Partial<Franchise>).squad;
     v1.version = 1;
     const fromV1 = League.fromJSON(v1);
-    expect(fromV1.franchises[0].squad.length).toBe(TEAM_SIZE);
+    expect(fromV1.franchises[0].squad.length).toBe(ROSTER_SIZE);
     expect(fromV1.franchises.length).toBe(16);
     expect(fromV1.division(1).length).toBe(8);
   });
@@ -208,32 +209,45 @@ describe('save migrations preserve old saves', () => {
     };
     data.version = 7;
     for (const f of data.franchises) {
+      // A v7 save had no bench (Phase 61) — strip it first, then drop WGR.
+      f.playerNames.splice(TEAM_SIZE);
+      f.squad.splice(TEAM_SIZE);
+      f.ages.splice(TEAM_SIZE);
+      f.careers.splice(TEAM_SIZE);
       f.playerNames.splice(4, 1);
       f.squad.splice(4, 1);
       f.ages.splice(4, 1);
       f.careers.splice(4, 1);
     }
-    for (const arr of data.playerAgg) arr.splice(4, 1);
-    if (data.cup) for (const g of data.cup.playerGoals) g.splice(4, 1);
+    for (const arr of data.playerAgg) {
+      arr.splice(TEAM_SIZE);
+      arr.splice(4, 1);
+    }
+    if (data.cup) for (const g of data.cup.playerGoals) {
+      g.splice(TEAM_SIZE);
+      g.splice(4, 1);
+    }
 
     const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
     for (const [i, f] of loaded.franchises.entries()) {
       const orig = league.franchises[i];
-      expect(f.squad).toHaveLength(TEAM_SIZE);
-      expect(f.playerNames).toHaveLength(TEAM_SIZE);
-      expect(f.ages).toHaveLength(TEAM_SIZE);
-      expect(f.careers).toHaveLength(TEAM_SIZE);
+      expect(f.squad).toHaveLength(ROSTER_SIZE); // v8 restores WGR, v18 adds the bench
+      expect(f.playerNames).toHaveLength(ROSTER_SIZE);
+      expect(f.ages).toHaveLength(ROSTER_SIZE);
+      expect(f.careers).toHaveLength(ROSTER_SIZE);
       // The splice lands BETWEEN the old WG and ST: 0-3 untouched, ST at 5.
       expect(f.playerNames.slice(0, 4)).toEqual(orig.playerNames.slice(0, 4));
       expect(f.playerNames[5]).toBe(orig.playerNames[5]);
-      expect(new Set(f.playerNames).size).toBe(TEAM_SIZE); // newgen avoids clashes
+      expect(new Set(f.playerNames).size).toBe(ROSTER_SIZE); // newgens avoid clashes
     }
     for (const arr of loaded.playerAgg) {
-      expect(arr).toHaveLength(TEAM_SIZE);
+      expect(arr).toHaveLength(ROSTER_SIZE);
       // Today's empty shape — v9 added rating/miscontrol zeros (Phase 33).
-      expect(arr[4]).toEqual(emptyPlayerStats());
+      // The v18 apps backfill treats every pre-bench row as ever-present,
+      // including the v8-minted WGR (fabricated-history convention).
+      expect({ ...arr[4], apps: 0 }).toEqual(emptyPlayerStats());
     }
-    if (loaded.cup) for (const g of loaded.cup.playerGoals) expect(g).toHaveLength(TEAM_SIZE);
+    if (loaded.cup) for (const g of loaded.cup.playerGoals) expect(g).toHaveLength(ROSTER_SIZE);
 
     // Migration is deterministic (seed-derived newgens), and the loaded
     // league keeps simulating.

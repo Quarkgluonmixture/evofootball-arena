@@ -68,9 +68,16 @@ describe('ratings in a played match', () => {
     for (const seed of [3, 11, 42]) {
       const { m, res } = play(seed);
       const best = Math.max(...res.playerStats.map((s) => s.rating));
+      // Roster rows (Phase 61): whoever APPEARED is rated 6–10; a bench
+      // body that never came on stays at 0 — didn't play ≠ played badly.
+      expect(res.playerStats.filter((s) => s.apps > 0).length).toBeGreaterThanOrEqual(12);
       for (const s of res.playerStats) {
-        expect(s.rating).toBeGreaterThanOrEqual(6);
-        expect(s.rating).toBeLessThanOrEqual(10);
+        if (s.apps > 0) {
+          expect(s.rating).toBeGreaterThanOrEqual(6);
+          expect(s.rating).toBeLessThanOrEqual(10);
+        } else {
+          expect(s.rating).toBe(0);
+        }
       }
       const motm = m.events.filter((e) => e.text.includes('Man of the match'));
       expect(motm.length).toBe(1);
@@ -133,12 +140,20 @@ describe('season integration (Phase 33)', () => {
       league.applyResult(f, league.createMatch(f).runToCompletion());
     }
     const lines = league.playerLines();
-    expect(lines.every((l) => l.avgRating >= 6 && l.avgRating <= 10)).toBe(true);
+    // Everyone who appeared averages 6–10; never-used bench rows sit at 0.
+    expect(lines.every((l) => l.apps === 0 || (l.avgRating >= 6 && l.avgRating <= 10))).toBe(true);
+    expect(lines.some((l) => l.apps > 0)).toBe(true);
     const premier = league.playerLines(0); // the MVP award is per division
+    // Snapshot played counts BEFORE finishSeason resets the table.
+    const played = new Map(league.table.map((r) => [r.slot, r.played]));
     const rec = league.finishSeason();
     expect(rec.awards?.mvp).toBeTruthy();
+    // The MVP gate (Phase 61) needs apps ≥ half the club's fixtures — the
+    // winner tops the QUALIFIED field (a two-cameo 8.0 may sit above him
+    // in the raw list, by design).
+    const qualified = premier.filter((l) => l.apps * 2 >= (played.get(l.slot) ?? 0));
     expect(rec.awards!.mvp!.avgRating).toBeGreaterThanOrEqual(
-      Math.max(...premier.map((l) => l.avgRating)) - 1e-9,
+      Math.max(...qualified.map((l) => l.avgRating)) - 1e-9,
     );
     expect(rec.longestChain).toBeTruthy();
     expect(rec.longestChain!.length).toBeGreaterThanOrEqual(6); // some side strings six together in 56 matches

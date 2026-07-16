@@ -323,11 +323,13 @@ await page.waitForTimeout(300);
 check('player center opens (own screen)', await page.locator('#player-screen').isVisible(), '');
 check('evolution center closed by the player center', !(await page.locator('#evolution-screen').isVisible()), '');
 const playerDots = await page.locator('#player-screen .player-map circle').count();
-check('player style space plots all 96 players (56)', playerDots === 96, `${playerDots} dots`);
+// 16 clubs × 9-man ROSTERS since Phase 61 (the bench joined the population).
+check('player style space plots all 144 players (61)', playerDots === 144, `${playerDots} dots`);
 await page.click('#player-screen .player-lens button:has-text("ST")');
 await page.waitForTimeout(200);
 const stDots = await page.locator('#player-screen .player-map circle').count();
-check('role lens filters the map to one line', stDots === 16, `${stDots} ST dots`);
+// 16 starting STs + 16 nominal-ST bench rows.
+check('role lens filters the map to one line', stDots === 32, `${stDots} ST dots`);
 await page.click('#player-screen .player-lens button:has-text("All")');
 await page.waitForTimeout(200);
 const diveRows = await page.locator('#player-screen .player-dive .gene-row').count();

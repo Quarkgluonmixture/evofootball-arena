@@ -87,10 +87,17 @@ describe('the unset wall (Phase 60)', () => {
     expect(blockReadiness(set, shooter)).toBeGreaterThan(blockReadiness(unset, shooter));
   });
 
-  it('four mid-collapse retreaters read like ~one set man — dare the strike', () => {
+  it('four mid-collapse retreaters all sit at the floor — dare the strike', () => {
+    // Every retreater is fully unset, so the pack reads 4 × the floor —
+    // 2.2 at the shipped 0.55 (vs the raw count's 4). The literal "~1.5"
+    // this test pinned at first was the floor-0.3 iteration; the sweep to
+    // 0.55 (phase-60 ledger: 0.3 broke attack/defence balance) moved it,
+    // and the contract is FLOOR-RELATIVE, not a magic number.
     const shooter = v2(25, 0);
     const retreaters = [26.5, 28, 29.5, 31].map((x) => wall(x, 0.3, v2(5, 0), v2(1, 0)));
-    expect(effectiveBlockers(shooter, goal, retreaters)).toBeLessThan(1.5);
+    const eff = effectiveBlockers(shooter, goal, retreaters);
+    expect(eff).toBeLessThanOrEqual(4 * UNSET_BLOCK_WEIGHT + 1e-9);
+    expect(eff).toBeLessThan(4 - 1e-9); // meaningfully below the raw count
     expect(laneBlockers(shooter, goal, retreaters)).toBe(4); // the raw count still sees 4
   });
 });

@@ -196,7 +196,7 @@ export class RightPanel {
     // Live match rating (Phase 33): same fold the FT rating uses, read
     // against the score as it stands — it settles into the official number
     // at the whistle.
-    const s = match.playerStats[p.gid];
+    const s = match.stat(p.gid); // roster row of the slot's CURRENT occupant (Phase 61)
     const diff = (match.score[p.side] ?? 0) - (match.score[1 - p.side] ?? 0);
     const live = match.finished ? s.rating : matchRating(s, diff);
     this.playerCard.appendChild(
@@ -210,7 +210,7 @@ export class RightPanel {
 
     // Who this player IS (Phase 54): personal traits + data-driven nameplate
     // + the career highlight, resolved league-side via GameApp.
-    const extras = this.playerContext?.(team.info.id, p.index);
+    const extras = this.playerContext?.(team.info.id, p.rosterIdx);
     if (extras) {
       const bits = [
         extras.chips,

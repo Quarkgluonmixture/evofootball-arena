@@ -177,7 +177,7 @@ describe('chronicleChapters', () => {
   it('only calls a record after enough prior seasons, and only when beaten', () => {
     const boot = (goals: number): SeasonRecord['awards'] => ({
       topScorers: [{
-        slot: 0, name: 'Ace', team: 'T0', role: 'ST', goals, assists: 2,
+        slot: 0, name: 'Ace', team: 'T0', role: 'ST', goals, assists: 2, apps: 5,
         shots: 20, saves: 0, recoveries: 0, miscontrols: 0, rating: 40, avgRating: 8,
       }],
       topAssists: [],

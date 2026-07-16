@@ -15,6 +15,10 @@ export interface RenderPlayer {
   gid: number;
   side: Side;
   role: Role;
+  /** Surname of the slot's CURRENT occupant (Phase 61) — carried per frame
+   * so a substitution updates the nameplate. Absent in old replays: the
+   * renderer then keeps the theme's (kickoff) name. */
+  name?: string;
   x: number;
   z: number;
   yaw: number;
@@ -128,6 +132,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     gid: p.gid,
     side: p.side,
     role: p.role,
+    name: p.name,
     x: p.pos.x,
     z: p.pos.y,
     yaw: Math.atan2(p.heading.x, p.heading.y),
@@ -278,6 +283,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
         gid: pa.gid,
         side: pa.side,
         role: pa.role,
+        name: (t >= 0.5 ? pb : pa).name,
         x: lerp(pa.x, pb.x, t),
         z: lerp(pa.z, pb.z, t),
         yaw: lerpAngle(pa.yaw, pb.yaw, t),

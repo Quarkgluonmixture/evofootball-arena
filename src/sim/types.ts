@@ -14,6 +14,22 @@ export type Role = 'GK' | 'DF' | 'MF' | 'WG' | 'ST';
 export const ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'WG', 'ST'];
 export const TEAM_SIZE = ROLES.length;
 
+/**
+ * The BENCH (Phase 61, N2): a club's roster is the starting six plus three
+ * substitutes. Bench slots carry NOMINAL roles (market matching, records,
+ * founding bias) — on the pitch a substitute ASSUMES the slot he replaces,
+ * exactly like a midfielder covering at wing. Everything player-array-shaped
+ * at the FRANCHISE level (playerNames, squad, squadStyles, ages, careers,
+ * playerAgg, cup.playerGoals) is ROSTER_SIZE long; the on-pitch world
+ * (gids, formations, marks) stays TEAM_SIZE. MatchResult.playerStats is
+ * roster-indexed so a substitute's goals land on HIS career, not his slot's.
+ */
+export const BENCH_ROLES: Role[] = ['DF', 'MF', 'ST'];
+export const ROSTER_ROLES: Role[] = [...ROLES, ...BENCH_ROLES];
+export const ROSTER_SIZE = ROSTER_ROLES.length;
+/** Substitutions allowed per team per match (no re-entry). */
+export const SUBS_MAX = 3;
+
 export type TeamMode = 'BuildUp' | 'Attack' | 'Defend' | 'Press' | 'CounterAttack' | 'ResetShape';
 
 /**
@@ -384,6 +400,13 @@ export const emptyStats = (): TeamMatchStats => ({
 
 /** Per-player counters for awards/records — passive, never read by the sim. */
 export interface PlayerMatchStats {
+  /**
+   * Appearances (Phase 61): 1 if this roster member was on the pitch at any
+   * point this match, 0 otherwise. Before the bench everyone played every
+   * match, so rating averages divided by team matches; now they divide by
+   * apps (a two-cameo bench player is a 2-app average, not a 30-match one).
+   */
+  apps: number;
   goals: number;
   assists: number;
   shots: number;
@@ -400,6 +423,7 @@ export interface PlayerMatchStats {
 }
 
 export const emptyPlayerStats = (): PlayerMatchStats => ({
+  apps: 0,
   goals: 0,
   assists: 0,
   shots: 0,
@@ -412,7 +436,12 @@ export const emptyPlayerStats = (): PlayerMatchStats => ({
 export interface MatchResult {
   score: [number, number];
   stats: [TeamMatchStats, TeamMatchStats];
-  /** Indexed by gid (0..TEAM_SIZE-1 home, TEAM_SIZE.. away). */
+  /**
+   * ROSTER-indexed (Phase 61): 0..ROSTER_SIZE-1 home, ROSTER_SIZE.. away.
+   * A substitute's counters land on HIS roster row, not his slot's — the
+   * career/award pipeline reads people, the pitch reads slots. Unused bench
+   * rows stay empty (apps 0, rating 0).
+   */
   playerStats: PlayerMatchStats[];
   events: MatchEvent[];
   duration: number;

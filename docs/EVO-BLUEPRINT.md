@@ -136,19 +136,25 @@ item unless a probe result re-scopes it, play reports still interleave:
     facing·stillness. **Three cycles, 7.5%** (0→0→4.5→7.5%); the floor
     (`UNSET_BLOCK_WEIGHT`) is the attack/defense dial — 0.3 broke the
     balance (0 cycles, attack über alles), 0.55 shipped.
-  - ⭐ next — the remaining named lever, CARDS THAT BIND, needs N2's
-    bench/suspension infra ⇒ **proceed to N2 (substitutions), then
-    re-run the matrix gate to close N1.5** (≥10%). Route-one
-    amplification stays in the pool if still short.
-  - ⚠ goals watch: 2.23 / 2.22 — both seeds now just UNDER the 2.3
-    floor but finally tight; three levers running goals slightly
-    downhill says the BAND may need a play-feel revisit, not another
-    dial chase (failure mode 26).
-- **N2 — SUBSTITUTIONS / the bench** (Stage 4's planned first item): the
-  biggest missing tactical surface — rotation as an evolvable strategy,
-  stamina gets strategic expression, late-game personnel responses;
-  red-card suspensions and injuries are gated behind this
-  infrastructure.
+  - ⚠ **the matrix RE-BASED at phase-61** (9-man rosters = new founding
+    worlds; the 0→0→4.5→7.5% trajectory ended with its era): 0 cycles /
+    26 decisive, decisive-edge rate 50%, pressIntensity +0.87 —
+    **rotation partially refunds the press fatigue tax**. The close
+    still means ≥10% cycles, measured on the roster-era worlds.
+  - ⭐ next — the remaining named lever, **CARDS THAT BIND** (N2's
+    bench/suspension infra now EXISTS): suspensions that carry across
+    matches price sustained aggression from the discipline side — aimed
+    exactly at the refunded press meta. Then re-run the matrix gate to
+    close N1.5 (≥10%). Route-one amplification stays in the pool if
+    still short.
+  - ✅ goals watch RESOLVED at phase-61: calibrate 2.70 / 2.59 — both
+    seeds back in band (fresh legs + the new founding ecology).
+- ✅ **N2 — SUBSTITUTIONS / the bench — DONE, phase-61**: 9-man rosters
+  under the widened budget (deep bench vs star XI is a REAL allocation),
+  dead-ball subs driven by the `rotationBias` gene, roster-indexed
+  careers/apps. Selection verdict: alive and ecology-dependent (world
+  424242 goes full carousel, world 991 stays mixed). Red-card
+  suspensions and injuries are UNBLOCKED by this infrastructure.
 - **N3 — COACH MATCH-DAY PRESENCE**: the coach stops being a nameplate —
   the existing mentality/game-state adjustments get ATTRIBUTED to him
   (gene-driven adjustment personality: the tinkerer vs the
@@ -608,3 +614,43 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   finally TIGHT; play-feel decides). evolve-check 6 champions / 10
   gens. vitest **363** (+2). visual 106+35. Fingerprint **REBASELINED
   `b59eeb10…`**.
+- ✅ **phase-61 SHIPPED** (**N2 — SUBSTITUTIONS / the bench**, rotation
+  as an EVOLVABLE strategy; save v18): rosters grow to NINE — six
+  starters + a 3-man bench with NOMINAL DF/MF/ST roles (market
+  matching/records; on the pitch a sub ASSUMES the slot he replaces).
+  `SQUAD_BUDGET` 24→36 = the same per-player density, so **a deep bench
+  is funded by a shallower XI** — the trade-off only bites once lineages
+  grow to the cap. The substrate rule is minimal (laws-of-the-game
+  only): subs at dead balls + half-time, `SUBS_MAX` 3, no re-entry,
+  keepers stay; **WHEN is the coach's new `rotationBias` gene** read as
+  a fatigue threshold (0.25+0.5·gene), WHO OFF = the tiredest body, WHO
+  ON prefers the like-for-like nominal role; the entrant swaps the pitch
+  slot's IDENTITY in place (`becomeSub` — every gid-keyed reference
+  survives; fresh legs = stamina 1; cards are personal; 3D nameplates
+  redraw on the swap). `MatchResult.playerStats` went ROSTER-indexed
+  (a sub's goals land on HIS career) + the new `apps` field: rating
+  averages divide by appearances, the MVP needs apps ≥ half his club's
+  fixtures. **Probe (`subs-anatomy.ts`): the trigger BINDS, monotone**
+  (fixed pair: bias 0/.5/.75/1 → 0/0/0.5/1.46 subs/team/match; subs
+  arrive 2nd-half-heavy, q1/med 45'/54' at bias 1) — and under
+  selection the surface is **ALIVE and ECOLOGY-DEPENDENT: world 424242
+  selects rotation HARD (gene mean .465→.886 over 15 gens, league subs
+  0→1.46/team/match) while world 991 keeps a mid spread (.478
+  [.20–.80], ~0.5 subs)** — two worlds, two rotation cultures, not a
+  uniform virtue. Calibrate **2.70 / 2.59 — BOTH SEEDS BACK IN BAND**
+  (the phase-60 goals watch RESOLVES; fresh legs + the new founding
+  ecology lifted scoring). ⚠ **Matrix gate RE-BASED: 0 cycles / 26
+  decisive** — 9-man founding rosters change every creation-time rng
+  draw, so these are NEW worlds (the 0→0→4.5→7.5% trajectory ended with
+  its era); decisive-edge rate softened 59%→50%, no ±9 monarch, but
+  pressIntensity correlates +0.87 — **rotation partially REFUNDS the
+  phase-58 press fatigue tax** (rotate your pressers), which is exactly
+  the meta CARDS THAT BIND (unblocked by this phase) prices from the
+  discipline side. Shootout kicks stay starters-only (deliberate).
+  Tests: vitest **368** (+5 subs/migration pins) — and the phase-60
+  blocks retreater test was found LATENTLY RED on HEAD (it pinned the
+  floor-0.3 literal "~1.5"; the final full vitest predated the 0.55
+  sweep — a swept constant re-runs the FULL suite, ARCHITECTURE
+  failure mode 27). evolve-check 8 champions / 10 gens, zonal at the
+  ecology cap. visual 106 + 3D 37 (player center now plots 144).
+  Fingerprint **REBASELINED `9357f90a…`**.

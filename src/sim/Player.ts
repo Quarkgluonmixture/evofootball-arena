@@ -27,9 +27,17 @@ export class Player {
   readonly gid: number;
   readonly side: Side;
   readonly role: Role;
-  readonly name: string;
+  /**
+   * Roster row this body's stats land on (Phase 61): a starter's slot index,
+   * a substitute's bench row. The PLAYER OBJECT is the pitch slot — a sub
+   * swaps its identity in place (`becomeSub`), so every gid-keyed reference
+   * (marks, renderer models, action targets) survives the change.
+   */
+  rosterIdx: number;
+  /** Identity fields — mutated ONLY by becomeSub (the bench, Phase 61). */
+  name: string;
   /** Attribute genes (squad DNA) — pace/technique/finishing/defending/reflexes. */
-  readonly attrs: PlayerAttributes;
+  attrs: PlayerAttributes;
 
   pos = v2();
   vel = v2();
@@ -120,17 +128,18 @@ export class Player {
   /** Sent off: parked on the apron, excluded from every sim interaction. */
   sentOff = false;
 
-  readonly baseSpeed: number;
-  readonly accel: number;
-  /** Traits (Phase 39) — derived from attrs+role at construction, ≤2. */
-  readonly traits: readonly Trait[];
+  baseSpeed: number;
+  accel: number;
+  /** Traits (Phase 39) — derived from attrs+role, ≤2. Recomputed on becomeSub. */
+  traits: readonly Trait[];
   /** Cached engine-trait drain factor (hot path — no includes() per step). */
-  readonly staminaDrainMul: number;
+  staminaDrainMul: number;
 
   constructor(side: Side, index: number, role: Role, name: string, attrs: PlayerAttributes) {
     this.side = side;
     this.index = index;
     this.gid = side * TEAM_SIZE + index;
+    this.rosterIdx = index;
     this.role = role;
     this.name = name;
     this.attrs = attrs;
@@ -141,6 +150,49 @@ export class Player {
     // into (or out of) them. Hot-path effects are cached as plain numbers.
     this.traits = traitsOf(attrs, role);
     this.staminaDrainMul = this.traits.includes('engine') ? 0.9 : 1;
+  }
+
+  /**
+   * The SUBSTITUTION (Phase 61, N2): this pitch slot changes bodies. The
+   * object survives so every reference keyed by gid stays valid; the
+   * identity — name, genes, traits, speed — becomes the bench player's.
+   * Fresh legs are the bench's whole payoff: stamina resets to 1. Cards
+   * are personal (the new man is unbooked). distance/staminaSpent are NOT
+   * reset — they fold into TEAM totals at full time and must keep the
+   * outgoing man's work.
+   */
+  becomeSub(sub: { rosterIdx: number; name: string; attrs: PlayerAttributes; age?: number }, pos: V2): void {
+    this.name = sub.name;
+    this.attrs = sub.attrs;
+    this.age = sub.age;
+    this.rosterIdx = sub.rosterIdx;
+    this.baseSpeed = BASE_SPEED[this.role] * (0.88 + sub.attrs.pace * 0.24);
+    this.accel = ACCEL * (0.9 + sub.attrs.pace * 0.2);
+    this.traits = traitsOf(sub.attrs, this.role);
+    this.staminaDrainMul = this.traits.includes('engine') ? 0.9 : 1;
+    this.stamina = 1;
+    this.booked = false;
+    this.pos = v2(pos.x, pos.y);
+    this.vel = v2();
+    this.desiredVel = v2();
+    this.heading = v2(0, pos.y > 0 ? -1 : 1); // facing the pitch he steps onto
+    this.faceTarget = null;
+    this.action = { type: 'MoveToFormationSpot', scores: [] };
+    this.kickCooldown = 0;
+    this.tackleCooldown = 0;
+    this.stunTimer = 0;
+    this.touchTimer = 0;
+    this.gkHoldTimer = 0;
+    this.gkDistributing = false;
+    this.gkShapeWait = 0;
+    this.tackleAnimTimer = 0;
+    this.saveAnimTimer = 0;
+    this.headerAnimTimer = 0;
+    this.firstTouchWindow = 0;
+    this.markAnchor = null;
+    this.markAnchorAge = 0;
+    this.markAnchorIdx = null;
+    this.wallRun = null;
   }
 
   /** Effective top speed — tired players slow down but never stop. */

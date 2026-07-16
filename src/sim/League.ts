@@ -36,7 +36,7 @@ import { styleValues } from '../evolution/styleSpace';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
-  ROLES, TEAM_SIZE, deriveTeamStyle, emptyPlayerStats,
+  ROLES, ROSTER_ROLES, ROSTER_SIZE, TEAM_SIZE, deriveTeamStyle, emptyPlayerStats,
   type MatchResult, type PlayerMatchStats, type TeamInfo, type TeamStyle,
 } from './types';
 
@@ -175,7 +175,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 17;
+export const SAVE_VERSION = 18;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -275,7 +275,7 @@ export class League {
       slot: f.slot, played: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0,
     }));
     this.agg = this.franchises.map(() => emptyAggregates());
-    this.playerAgg = this.franchises.map(() => ROLES.map(() => emptyPlayerStats()));
+    this.playerAgg = this.franchises.map(() => ROSTER_ROLES.map(() => emptyPlayerStats()));
     this.cup = buildCup(this.franchises, this.seed, this.generation);
   }
 
@@ -453,9 +453,10 @@ export class League {
         // Drawn ties: seeded shootout in 'shootout' mode (its own derived
         // seed — never the match's rng), underdog rule otherwise.
         resolveCupTie(this.cup, fixture.round, fixture.index, result.score[0], result.score[1], this.shootoutContext(fixture));
-        for (let gid = 0; gid < result.playerStats.length; gid++) {
-          const slot = gid < TEAM_SIZE ? fixture.home : fixture.away;
-          this.cup.playerGoals[slot][gid % TEAM_SIZE] += result.playerStats[gid].goals;
+        // playerStats is ROSTER-indexed (Phase 61) — home roster first.
+        for (let ri = 0; ri < result.playerStats.length; ri++) {
+          const slot = ri < ROSTER_SIZE ? fixture.home : fixture.away;
+          this.cup.playerGoals[slot][ri % ROSTER_SIZE] += result.playerStats[ri].goals;
         }
       }
       this.cursor++;
@@ -517,11 +518,13 @@ export class League {
       });
     }
 
-    // Per-player season totals (home gids first, then away — TEAM_SIZE each).
-    for (let gid = 0; gid < result.playerStats.length; gid++) {
-      const slot = gid < TEAM_SIZE ? fixture.home : fixture.away;
-      const acc = this.playerAgg[slot][gid % TEAM_SIZE];
-      const s = result.playerStats[gid];
+    // Per-player season totals (home roster first, then away — ROSTER_SIZE
+    // each since Phase 61: substitutes' stats land on their own rows).
+    for (let ri = 0; ri < result.playerStats.length; ri++) {
+      const slot = ri < ROSTER_SIZE ? fixture.home : fixture.away;
+      const acc = this.playerAgg[slot][ri % ROSTER_SIZE];
+      const s = result.playerStats[ri];
+      acc.apps += s.apps;
       acc.goals += s.goals;
       acc.assists += s.assists;
       acc.shots += s.shots;
@@ -562,7 +565,6 @@ export class League {
     // Careers bank the season BEFORE evolution can rebirth a squad away
     // (a reborn club's players vanish with their ledgers — that's the point).
     for (const f of this.franchises) {
-      const played = this.table.find((r) => r.slot === f.slot)?.played ?? 0;
       this.playerAgg[f.slot].forEach((s, i) => {
         const c = f.careers[i];
         c.seasons++;
@@ -575,7 +577,9 @@ export class League {
           c.bestGoals = s.goals;
           c.bestGoalsSeason = this.generation;
         }
-        const avg = played > 0 ? s.rating / played : 0;
+        // Rating averages divide by APPS since the bench (Phase 61) — a
+        // player no longer plays every fixture by construction.
+        const avg = s.apps > 0 ? s.rating / s.apps : 0;
         if (avg > (c.bestRating ?? 0)) {
           c.bestRating = avg;
           c.bestRatingSeason = this.generation;
@@ -654,7 +658,7 @@ export class League {
       // so the entries cannot be computed at literal-build time.
       evolution: { generation: this.generation + 1, entries: [] },
       cup: this.cup && cupRoundComplete(this.cup, 3)
-        ? buildCupRecord(this.cup, (slot, i) => this.franchise(slot).playerNames[i] ?? ROLES[i])
+        ? buildCupRecord(this.cup, (slot, i) => this.franchise(slot).playerNames[i] ?? ROSTER_ROLES[i])
         : undefined,
       awards: this.buildAwards(0),
       awardsD2: this.buildAwards(1),
@@ -726,8 +730,8 @@ export class League {
     for (const dead of firedSquads) {
       dead.squad.forEach((attrs, i) => {
         this.freeAgents.push({
-          name: dead.names[i] ?? ROLES[i],
-          role: ROLES[i],
+          name: dead.names[i] ?? ROSTER_ROLES[i],
+          role: ROSTER_ROLES[i],
           attrs,
           style: dead.styles[i],
           age: dead.ages[i],
@@ -754,9 +758,9 @@ export class League {
         if (ageRng.chance(retireChance(f.ages[i]))) {
           const career = f.careers[i];
           retirements.push({
-            name: f.playerNames[i] ?? ROLES[i],
+            name: f.playerNames[i] ?? ROSTER_ROLES[i],
             team: f.name,
-            role: ROLES[i],
+            role: ROSTER_ROLES[i],
             age: f.ages[i],
             seasons: career.seasons,
             goals: career.goals,
@@ -772,7 +776,7 @@ export class League {
           const headroom = SQUAD_BUDGET - squadTotal(f.squad) + retireeTotal;
           const agent = this.freeAgents
             .filter((x) =>
-              x.role === ROLES[i] && x.age <= FREE_AGENT_MAX_AGE &&
+              x.role === ROSTER_ROLES[i] && x.age <= FREE_AGENT_MAX_AGE &&
               agentTotal(x) > retireeTotal + 0.2 && agentTotal(x) <= headroom + 1e-9)
             .sort((a, b) => agentTotal(b) - agentTotal(a) || a.age - b.age || a.name.localeCompare(b.name))[0];
           if (agent) {
@@ -966,9 +970,9 @@ export class League {
   /** Keep the best retirees forever: top 20 by career goals (saves, then seasons break ties). */
   private recordLegend(f: Franchise, i: number, career: PlayerCareer): void {
     this.legends.push({
-      name: f.playerNames[i] ?? ROLES[i],
+      name: f.playerNames[i] ?? ROSTER_ROLES[i],
       team: f.name,
-      role: ROLES[i],
+      role: ROSTER_ROLES[i],
       age: f.ages[i],
       career: { ...career },
     });
@@ -989,17 +993,16 @@ export class League {
     const lines: PlayerSeasonLine[] = [];
     for (const f of this.franchises) {
       if (division !== undefined && f.division !== division) continue;
-      // Everyone plays every fixture (fixed six-a-side lineups), so the
-      // team's played count IS the player's matches for the rating average.
-      const played = this.table.find((r) => r.slot === f.slot)?.played ?? 0;
       this.playerAgg[f.slot].forEach((s, i) => {
         lines.push({
           ...s,
           slot: f.slot,
-          name: f.playerNames[i] ?? ROLES[i],
+          name: f.playerNames[i] ?? ROSTER_ROLES[i],
           team: f.name,
-          role: ROLES[i],
-          avgRating: played > 0 ? s.rating / played : 0,
+          role: ROSTER_ROLES[i],
+          // Divide by APPS since the bench (Phase 61): a substitute's
+          // average is over the matches he actually appeared in.
+          avgRating: s.apps > 0 ? s.rating / s.apps : 0,
         });
       });
     }
@@ -1026,9 +1029,12 @@ export class League {
         dirtiest = { slot: f.slot, name: f.name, yellows: a.yellows, reds: a.reds };
       }
     }
-    const rated = [...lines].sort(
-      (a, b) => b.avgRating - a.avgRating || b.goals - a.goals || a.slot - b.slot,
-    );
+    // MVP needs a body of work (Phase 61): half his club's fixtures. A
+    // two-cameo 8.0 must not outrank a season-long 7.4.
+    const playedOf = new Map(this.table.map((r) => [r.slot, r.played]));
+    const rated = lines
+      .filter((l) => l.apps * 2 >= (playedOf.get(l.slot) ?? 0))
+      .sort((a, b) => b.avgRating - a.avgRating || b.goals - a.goals || a.slot - b.slot);
     return {
       topScorers,
       topAssists,
@@ -1343,6 +1349,53 @@ export class League {
       // EMPTY — no fabricated ex-players; the first club death fills it.
       data.freeAgents ??= [];
       data.version = 17;
+    }
+    if (data.version === 17) {
+      // v17 -> v18: the BENCH (Phase 61, N2). Every club signs three
+      // substitutes — role-biased veterans appended after the starting six,
+      // exactly what founding rolls (length-guarded like v7→v8: franchises
+      // minted mid-chain by current-shape creators already carry nine).
+      // The rotation gene backfills NEUTRAL (0.5) everywhere a genome is
+      // stored — live coaches, the unemployed pool, and history snapshots
+      // (the ceremony radar and the gene sparklines read those).
+      const rng = new Rng(hashSeed(Number(data.seed), 0xbe));
+      for (const f of data.franchises as Franchise[]) {
+        while (f.squad.length < ROSTER_SIZE) {
+          f.squad.push(randomPlayer(rng, ROSTER_ROLES[f.squad.length]));
+          f.playerNames.push(newgenName(rng, f.playerNames));
+          f.ages.push(veteranAge(rng));
+          f.careers.push(emptyCareer());
+          f.squadStyles.push(...neutralSquadStyles(1));
+        }
+        // Budget headroom: the cap grew 24 → 36 with the roster (same
+        // per-player density), so a migrated 24-cap squad plus three
+        // founding-strength subs (~34) fits without a shave.
+        f.squad = enforceBudget(f.squad);
+      }
+      const fixGenome = (g: TacticalGenome | undefined): void => {
+        if (g) g.rotationBias ??= 0.5;
+      };
+      for (const f of data.franchises as Franchise[]) fixGenome(f.coach.genome);
+      for (const e of (data.coachPool ?? []) as PoolEntry[]) fixGenome(e.coach.genome);
+      for (const r of ((data.history ?? []) as SeasonRecord[])) {
+        if (r.geneMeans) (r.geneMeans as Record<string, number>).rotationBias ??= 0.5;
+        for (const e of r.evolution?.entries ?? []) {
+          fixGenome(e.childGenome);
+          if (e.parentGenomes) e.parentGenomes.forEach(fixGenome);
+        }
+      }
+      // Mid-season counters grow bench rows; apps backfill from the table —
+      // before the bench, every rostered player played every fixture.
+      const playedBySlot = new Map((data.table as TableRow[]).map((r) => [r.slot, r.played]));
+      (data.playerAgg as Array<Array<PlayerMatchStats>>).forEach((arr, slot) => {
+        for (const s of arr) s.apps ??= playedBySlot.get(slot) ?? 0;
+        while (arr.length < ROSTER_SIZE) arr.push(emptyPlayerStats());
+      });
+      const cup17 = data.cup as CupState | null | undefined;
+      if (cup17) for (const goals of cup17.playerGoals) {
+        while (goals.length < ROSTER_SIZE) goals.push(0);
+      }
+      data.version = 18;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

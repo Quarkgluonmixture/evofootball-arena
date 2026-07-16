@@ -4,7 +4,7 @@ import {
 } from '../src/evolution/careers';
 import { ATTR_KEYS, SQUAD_BUDGET, squadTotal, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { League, SAVE_VERSION } from '../src/sim/League';
-import { TEAM_SIZE } from '../src/sim/types';
+import { ROSTER_SIZE } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
 const neutral = (): PlayerAttributes => {
@@ -88,14 +88,16 @@ describe('player careers (Phase 26)', () => {
     const reborn = new Set(rec.evolution.entries.filter((e) => e.kind === 'reborn').map((e) => e.slot));
     if (!reborn.has(0)) {
       const retiredFromTarget = rec.retirements!.filter((r) => r.team === target.name);
-      expect(retiredFromTarget).toHaveLength(TEAM_SIZE);
+      expect(retiredFromTarget).toHaveLength(ROSTER_SIZE);
       for (const r of retiredFromTarget) expect(r.age).toBe(36);
       // Each vacancy is filled by an academy rookie — or, since Phase 55,
-      // by a fire-sale signing who ARRIVES with a past.
-      const signedHere = new Set(
-        (rec.signings ?? []).filter((s) => s.club === target.name).map((s) => s.player));
+      // by a fire-sale signing who ARRIVES with a past. Match signings by
+      // name AND age: surnames repeat across the league, and with nine
+      // roster rows a newgen sharing a signing's surname is a real seed.
+      const signedHere = new Map(
+        (rec.signings ?? []).filter((s) => s.club === target.name).map((s) => [s.player, s.age]));
       target.ages.forEach((age, i) => {
-        if (signedHere.has(target.playerNames[i])) {
+        if (signedHere.get(target.playerNames[i]) === age) {
           expect(target.careers[i].seasons).toBeGreaterThanOrEqual(1);
         } else {
           expect(age).toBeGreaterThanOrEqual(17);
@@ -188,7 +190,7 @@ describe('player careers (Phase 26)', () => {
     const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
     expect(loaded.legends).toEqual([]);
     for (const f of loaded.franchises) {
-      expect(f.ages).toHaveLength(TEAM_SIZE);
+      expect(f.ages).toHaveLength(ROSTER_SIZE);
       for (const age of f.ages) {
         expect(age).toBeGreaterThanOrEqual(20);
         expect(age).toBeLessThanOrEqual(32);

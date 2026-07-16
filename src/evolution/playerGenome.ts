@@ -40,6 +40,10 @@ export type AttrKey = (typeof ATTR_KEYS)[number];
 
 /** Squad slot order (mirrors sim/types ROLES): [GK, DF, MF, WGL, WGR, ST]. */
 export const SQUAD_ROLES: Role[] = ['GK', 'DF', 'MF', 'WG', 'WG', 'ST'];
+/** The full roster (Phase 61): starters + a 3-man bench with NOMINAL roles
+ * (market matching / records / founding bias — on the pitch a sub assumes
+ * the slot he replaces). Mirrors sim/types ROSTER_ROLES. */
+export const ROSTER_ROLES: Role[] = [...SQUAD_ROLES, 'DF', 'MF', 'ST'];
 
 /** Each role tends to be born good at its job (bias added, then clamped).
  * strength/stamina carry NO bias (Phase 47) — where the physical game pays
@@ -61,8 +65,11 @@ export function randomPlayer(rng: Rng, role: Role): PlayerAttributes {
   return p;
 }
 
+/** A founding ROSTER (Phase 61): six starters + three bench players, all
+ * role-biased at birth (bias is only a starting point — bloodline heredity
+ * owns the long run). */
 export function randomSquad(rng: Rng): PlayerAttributes[] {
-  return SQUAD_ROLES.map((role) => randomPlayer(rng, role));
+  return ROSTER_ROLES.map((role) => randomPlayer(rng, role));
 }
 
 export interface SquadMutateOptions {
@@ -107,11 +114,13 @@ export function crossoverSquads(a: PlayerAttributes[], b: PlayerAttributes[], rn
  * ("good at everything" wins) and archetypes stay faint; with it, raising
  * one attribute COSTS another and specialisation is forced. SQUAD-level on
  * purpose: star-plus-role-players vs a balanced six is itself an evolvable
- * axis. 24 = 6 players × 8 attrs × 0.5 — "a club is above average in some
- * things only by being below in others". Founding squads roll ~20.6, so
- * there is headroom to grow before the cap bites.
+ * axis. Phase 61 (the bench): the budget covers the whole 9-man ROSTER —
+ * 36 = 9 players × 8 attrs × 0.5, the same density 24 bought six. That
+ * makes rotation a REAL trade-off: a deep bench is funded by shaving the
+ * starting six, a star XI leaves its bench (and its fresh legs) thin.
+ * Founding rosters roll ~31, so there is headroom before the cap bites.
  */
-export const SQUAD_BUDGET = 24;
+export const SQUAD_BUDGET = 36;
 
 export function squadTotal(squad: PlayerAttributes[]): number {
   let t = 0;

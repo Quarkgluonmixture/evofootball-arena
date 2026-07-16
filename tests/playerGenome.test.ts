@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import {
-  ATTR_KEYS, SQUAD_BUDGET, crossoverSquads, enforceBudget, mutateSquad, newgenFromBloodline,
-  randomSquad, squadSummary, squadTotal, type PlayerAttributes,
+  ATTR_KEYS, ROSTER_ROLES, SQUAD_BUDGET, crossoverSquads, enforceBudget, mutateSquad,
+  newgenFromBloodline, randomSquad, squadSummary, squadTotal, type PlayerAttributes,
 } from '../src/evolution/playerGenome';
 import { Match, type ShotLogEntry } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
@@ -18,7 +18,7 @@ describe('player genome operators', () => {
     const N = 50;
     for (let i = 0; i < N; i++) {
       const squad = randomSquad(new Rng(i + 1));
-      expect(squad.length).toBe(TEAM_SIZE);
+      expect(squad.length).toBe(ROSTER_ROLES.length); // 9 since the bench (Phase 61)
       for (const p of squad) {
         for (const k of ATTR_KEYS) {
           expect(p[k]).toBeGreaterThanOrEqual(0);
@@ -98,7 +98,7 @@ describe('player genome operators', () => {
   it('squadSummary averages attributes', () => {
     const squad = randomSquad(new Rng(11));
     const s = squadSummary(squad);
-    const manual = squad.reduce((acc, p) => acc + p.pace, 0) / TEAM_SIZE;
+    const manual = squad.reduce((acc, p) => acc + p.pace, 0) / squad.length;
     expect(s.pace).toBeCloseTo(manual);
   });
 });

@@ -13,7 +13,7 @@ import {
 import { ShootoutTheater } from '../render3d/ShootoutTheater';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import { playerDimStats, playerNameplate, playerVector } from '../evolution/playerStyle';
-import { SQUAD_ROLES } from '../evolution/playerGenome';
+import { ROSTER_ROLES } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import { momentWindow, pickHighlights } from '../replay/highlights';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
@@ -239,7 +239,7 @@ export class GameApp implements GameActions {
     this.left = new LeftPanel(leftEl, this, this.flags);
     this.right = new RightPanel(rightEl);
     // Player identity context (Phase 54): traits + data-driven nameplate
-    // (z vs the CURRENT 96-player population) + the career highlight —
+    // (z vs the CURRENT 144-player population) + the career highlight —
     // league-side knowledge the match view can't derive on its own.
     this.right.playerContext = (teamId, index) => {
       const f = this.league.franchises.find((x) => x.id === teamId);
@@ -249,7 +249,7 @@ export class GameApp implements GameActions {
         this.league.franchises.flatMap((x) =>
           x.squad.map((p, i) => playerVector(p, x.squadStyles[i]))),
       );
-      const chips = traitsOf(f.squad[index], SQUAD_ROLES[index], style)
+      const chips = traitsOf(f.squad[index], ROSTER_ROLES[index], style)
         .map((tt) => TRAIT_EMOJI[tt]).join('');
       const c = f.careers[index];
       const highlight = c?.bestGoals

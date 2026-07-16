@@ -1,6 +1,6 @@
 import { emptyCareer } from '../evolution/careers';
 import { agentTotal } from '../evolution/freeAgents';
-import { ATTR_KEYS, SQUAD_ROLES } from '../evolution/playerGenome';
+import { ATTR_KEYS, ROSTER_ROLES } from '../evolution/playerGenome';
 import {
   PLAYER_DIMS, PLAYER_STYLE_KEYS, playerDimStats, playerNameplate, playerVector,
   type PlayerDimStats,
@@ -29,7 +29,8 @@ interface PlayerRow {
  * PEOPLE: everything here reads live franchises + records — no sim writes,
  * no rng, fingerprint untouched.
  *
- *   1. the PLAYER STYLE SPACE — all 96 players scattered on the two dims
+ *   1. the PLAYER STYLE SPACE — all 144 players (16 clubs × 9-man rosters
+ *      since Phase 61) scattered on the two dims
  *      the population disagrees on most (13-dim identity space: 8 attrs +
  *      5 personal appetites), with role lenses; dots wear kit colors;
  *   2. a PLAYER DEEP DIVE — traits, earned nameplate, attributes, personal
@@ -95,7 +96,7 @@ export class PlayerScreen {
     const rows = this.population(league);
     const stats = playerDimStats(rows.map((r) => r.vec));
     if (!this.selected) {
-      const best = rows.find((r) => SQUAD_ROLES[r.index] === 'ST');
+      const best = rows.find((r) => ROSTER_ROLES[r.index] === 'ST');
       if (best) this.selected = { slot: best.franchise.slot, index: best.index };
     }
 
@@ -128,7 +129,7 @@ export class PlayerScreen {
     this.root.appendChild(lensRow);
 
     const inLens = this.roleLens
-      ? rows.filter((r) => SQUAD_ROLES[r.index] === this.roleLens)
+      ? rows.filter((r) => ROSTER_ROLES[r.index] === this.roleLens)
       : rows;
     const stats = this.roleLens ? playerDimStats(inLens.map((r) => r.vec)) : allStats;
     const ranked = PLAYER_DIMS
@@ -187,7 +188,7 @@ export class PlayerScreen {
       dot.setAttribute('stroke-width', isSel ? '2' : '1.5');
       (dot as unknown as HTMLElement).style.cursor = 'pointer';
       const title = mk('title');
-      title.textContent = `${r.franchise.playerNames[r.index]} (${r.franchise.short} ${SQUAD_ROLES[r.index]})`;
+      title.textContent = `${r.franchise.playerNames[r.index]} (${r.franchise.short} ${ROSTER_ROLES[r.index]})`;
       dot.appendChild(title);
       dot.addEventListener('click', () => {
         this.selected = { slot: r.franchise.slot, index: r.index };
@@ -227,11 +228,11 @@ export class PlayerScreen {
     const dot = el('span', 'dot');
     dot.style.background = colorHex(f.colors.primary);
     head.append(dot, el('span', '',
-      `${f.playerNames[i]} · ${SQUAD_ROLES[i]} · ${f.ages[i]}${t('y')} · ${f.name}`));
+      `${f.playerNames[i]} · ${ROSTER_ROLES[i]} · ${f.ages[i]}${t('y')} · ${f.name}`));
     idCol.appendChild(head);
 
     const tags = el('div', 'tags');
-    for (const tr of traitsOf(attrs, SQUAD_ROLES[i], style)) {
+    for (const tr of traitsOf(attrs, ROSTER_ROLES[i], style)) {
       tags.appendChild(el('span', 'tag', `${TRAIT_EMOJI[tr]} ${t(tr)}`));
     }
     for (const word of playerNameplate(row.vec, stats)) {
@@ -241,7 +242,7 @@ export class PlayerScreen {
     idCol.appendChild(tags);
 
     // The career, and the season worth remembering.
-    const line = SQUAD_ROLES[i] === 'GK'
+    const line = ROSTER_ROLES[i] === 'GK'
       ? `${career.saves} ${t('saves#')}`
       : `${career.goals}⚽ ${career.assists}🅰`;
     idCol.appendChild(el('div', '',
@@ -321,7 +322,7 @@ export class PlayerScreen {
     const counts = new Map<string, number>();
     let plated = 0;
     for (const r of rows) {
-      for (const tr of traitsOf(r.franchise.squad[r.index], SQUAD_ROLES[r.index], r.franchise.squadStyles[r.index])) {
+      for (const tr of traitsOf(r.franchise.squad[r.index], ROSTER_ROLES[r.index], r.franchise.squadStyles[r.index])) {
         counts.set(tr, (counts.get(tr) ?? 0) + 1);
       }
       if (playerNameplate(r.vec, stats).length > 0) plated++;
@@ -342,7 +343,7 @@ export class PlayerScreen {
       .map((r) => ({
         name: r.franchise.playerNames[r.index],
         team: r.franchise.name,
-        role: SQUAD_ROLES[r.index],
+        role: ROSTER_ROLES[r.index],
         career: r.franchise.careers[r.index],
       }))
       .filter((x) => x.career && x.career.goals > 0)

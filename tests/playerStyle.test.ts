@@ -72,11 +72,11 @@ describe('player personal style (Phase 54)', () => {
   it('the league wires styles into rolePolicies and inherits them through the academy', () => {
     const league = new League({ seed: 6, matchDuration: 30 });
     for (const f of league.franchises) {
-      expect(f.squadStyles).toHaveLength(6);
+      expect(f.squadStyles).toHaveLength(9);
       for (const s of f.squadStyles) expect(s).toEqual(neutralStyle());
     }
     const info = league.teamInfo(0);
-    expect(info.rolePolicies).toHaveLength(6);
+    expect(info.rolePolicies).toHaveLength(9);
     // Neutral start: every slot's effective policy equals the coach's.
     for (const rp of info.rolePolicies!) {
       for (const k of PLAYER_STYLE_KEYS) expect(rp[k]).toBe(league.franchise(0).coach.policy[k]);
@@ -104,7 +104,7 @@ describe('player personal style (Phase 54)', () => {
     for (const f of json.franchises) delete f.squadStyles;
     const restored = League.fromJSON(json as unknown as Record<string, unknown>);
     for (const f of restored.franchises) {
-      expect(f.squadStyles).toHaveLength(6);
+      expect(f.squadStyles).toHaveLength(9);
       for (const s of f.squadStyles) expect(s).toEqual(neutralStyle());
     }
   });

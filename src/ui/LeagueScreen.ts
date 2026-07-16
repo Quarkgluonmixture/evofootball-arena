@@ -3,7 +3,7 @@ import { GENE_KEYS } from '../evolution/genome';
 import { nameplates } from '../evolution/styleSpace';
 import { chronicleChapters } from '../sim/chronicle';
 import { eraColor, eraDisplayName } from './chronicleView';
-import { ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
+import { ATTR_KEYS, ROSTER_ROLES, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
   CUP_NAME, CUP_ROUNDS, CUP_ROUND_NAMES, CUP_ROUND_SHORT,
@@ -300,14 +300,19 @@ export class LeagueScreen {
         card.appendChild(row);
       }
       // Careers (Phase 26): the people behind the bars, with their ages —
-      // and their TRAITS (Phase 39, derived live from attrs+role).
+      // and their TRAITS (Phase 39, derived live from attrs+role). The
+      // bench (Phase 61) sits behind the 🪑.
+      const personLine = (i: number): string => {
+        const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i])
+          .map((tt) => TRAIT_EMOJI[tt])
+          .join('');
+        return `${f.playerNames[i]} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
+      };
+      const starterIdx = f.playerNames.slice(0, SQUAD_ROLES.length).map((_, i) => i);
+      const benchIdx = f.playerNames.slice(SQUAD_ROLES.length).map((_, i) => SQUAD_ROLES.length + i);
       card.appendChild(el('div', 'muted',
-        f.playerNames.map((n, i) => {
-          const tr = traitsOf(f.squad[i], SQUAD_ROLES[i], f.squadStyles?.[i])
-            .map((tt) => TRAIT_EMOJI[tt])
-            .join('');
-          return `${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
-        }).join(' · ')));
+        starterIdx.map(personLine).join(' · ')
+        + (benchIdx.length ? `  🪑 ${benchIdx.map(personLine).join(' · ')}` : '')));
 
       const fit = lastSeason?.fitness.find((x) => x.slot === f.slot);
       if (fit) card.appendChild(el('div', 'muted', `last-season fitness: ${fit.total.toFixed(3)}`));

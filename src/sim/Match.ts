@@ -21,7 +21,7 @@ import { Player } from './Player';
 import { matchRating } from './ratings';
 import { Team } from './Team';
 import {
-  TEAM_SIZE, emptyPlayerStats,
+  ROSTER_SIZE, SUBS_MAX, TEAM_SIZE, emptyPlayerStats,
   type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
   type CornerRoutine, type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
@@ -162,8 +162,12 @@ export class Match {
   shotLog: ShotLogEntry[] = [];
   /** Gid of the most recent goalscorer — passive, for celebration visuals only. */
   lastScorerGid: number | null = null;
-  /** Per-player counters (goals/assists/shots/saves/recoveries), gid-indexed. Passive. */
+  /** Per-player counters (goals/assists/shots/saves/recoveries). ROSTER-
+   * indexed since Phase 61 (home 0..ROSTER_SIZE-1, then away): a substitute's
+   * numbers land on HIS row. Write through `stat(gid)`. Passive. */
   playerStats: PlayerMatchStats[] = [];
+  /** Roster surnames (record resolution — the MOTM line may name a sub). */
+  private readonly rosterNames: string[];
   lastCompletedPass: { passerGid: number; receiverGid: number; t: number } | null = null;
   /** The most recent cutback kick (Phase 31) — goals within 5s credit it. */
   lastCutback: { side: Side; t: number } | null = null;
@@ -186,7 +190,15 @@ export class Match {
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
     this.allPlayersReversed = [...this.allPlayers].reverse();
-    this.playerStats = this.allPlayers.map(() => emptyPlayerStats());
+    // Roster-indexed stats (Phase 61): bench rows exist from kickoff and
+    // stay empty unless their man comes on. Starters are appearances.
+    this.playerStats = Array.from({ length: ROSTER_SIZE * 2 }, () => emptyPlayerStats());
+    for (const p of this.allPlayers) this.stat(p.gid).apps = 1;
+    this.rosterNames = Array.from({ length: ROSTER_SIZE * 2 }, (_, ri) => {
+      const side = ri < ROSTER_SIZE ? 0 : 1;
+      const info = side === 0 ? cfg.teamA : cfg.teamB;
+      return info.playerNames[ri % ROSTER_SIZE] ?? '?';
+    });
     // Stagger decision ticks deterministically (symmetric across the teams)
     // so all 12 players don't think in the same frame.
     this.allPlayers.forEach((p) => (p.decisionTimer = ((p.index % TEAM_SIZE) + 1) * (AI_INTERVAL / TEAM_SIZE)));
@@ -227,6 +239,13 @@ export class Match {
 
   pushEvent(type: EventType, side: Side | -1, text: string): void {
     this.events.push({ t: this.simTime, minute: this.minute(), type, side, text });
+  }
+
+  /** The stats row for the CURRENT occupant of a pitch slot (Phase 61):
+   * gid → whoever's rosterIdx holds the slot right now. */
+  stat(gid: number): PlayerMatchStats {
+    const p = this.allPlayers[gid];
+    return this.playerStats[p.side * ROSTER_SIZE + p.rosterIdx];
   }
 
   /**
@@ -382,6 +401,10 @@ export class Match {
         this.phaseTimer = 1.2;
         this.stoppageAnnounced = false;
         this.pushEvent('halftime', -1, 'Half-time');
+        // The break is the classic substitution window (Phase 61); the
+        // second-half kickoff will place the entrant into formation.
+        this.trySubstitution(0);
+        this.trySubstitution(1);
       }
     } else if (this.half === 2 && this.simTime >= this.secondHalfStart + this.duration / 2) {
       if (this.refBlowsNow(this.secondHalfStart + this.duration / 2)) this.endMatch();
@@ -629,7 +652,7 @@ export class Match {
         // the feed in noise (failure mode 7) — the stats panel carries the
         // count, the debug overlays show the moment.
         team.stats.interceptions++;
-        this.playerStats[p.gid].recoveries++;
+        this.stat(p.gid).recoveries++;
       }
       this.pendingPass = null;
     }
@@ -823,8 +846,8 @@ export class Match {
       const shooter = this.allPlayers[shot.shooterGid]; // allPlayers is gid-indexed
       scorerText = shooter ? `${shooter.name} (${shooter.role})` : team.info.name;
       this.lastScorerGid = shot.shooterGid;
-      this.playerStats[shot.shooterGid].goals++;
-      if (shot.assistGid !== null) this.playerStats[shot.assistGid].assists++;
+      this.stat(shot.shooterGid).goals++;
+      if (shot.assistGid !== null) this.stat(shot.assistGid).assists++;
     } else if (this.ball.lastTouch && this.ball.lastTouch.side !== side) {
       scorerText = `${this.ball.lastTouch.name} (og)`;
       this.lastScorerGid = this.ball.lastTouch.gid;
@@ -832,7 +855,7 @@ export class Match {
     } else {
       scorerText = this.ball.lastTouch ? `${this.ball.lastTouch.name} (scramble)` : team.info.name;
       this.lastScorerGid = this.ball.lastTouch?.gid ?? null;
-      if (this.ball.lastTouch) this.playerStats[this.ball.lastTouch.gid].goals++;
+      if (this.ball.lastTouch) this.stat(this.ball.lastTouch.gid).goals++;
     }
     this.pushEvent(
       'goal',
@@ -1098,6 +1121,11 @@ export class Match {
     this.restart = { kind, side, pos: clone(pos), timer: 0, takerGid: this.pickTaker(kind, side, pos) };
     this.phase = 'restart';
 
+    // Substitutions happen at dead balls (Phase 61) — after the taker is
+    // picked, so the man walking over is never the man walking off.
+    this.trySubstitution(0);
+    this.trySubstitution(1);
+
     // Free-kick wall (Phase 32): a danger-zone FK gets 2–3 defending
     // bodies assigned to the ball–goal line. Nearest outfielders take the
     // duty (they can actually arrive during setup); closer kicks earn the
@@ -1118,6 +1146,45 @@ export class Match {
         }
       }
     }
+  }
+
+  /**
+   * The SUBSTITUTION (Phase 61, N2 — rotation as an EVOLVABLE strategy).
+   * The substrate provides only the laws-of-the-game frame: subs happen
+   * at dead balls, at most SUBS_MAX per match, no re-entry, keepers stay.
+   * Everything strategic is DNA: WHEN is the coach's `rotationBias` read
+   * as a fatigue threshold; WHO comes off is simply the tiredest body
+   * below it; WHO comes on prefers the like-for-like nominal role — and
+   * which attrs sit on the bench at all is the roster budget's evolvable
+   * allocation (a deep bench is paid for by a shallower XI). Deterministic:
+   * no rng draws, pure sim state.
+   */
+  private trySubstitution(side: Side): void {
+    const team = this.teams[side];
+    if (team.subsUsed >= SUBS_MAX) return;
+    const available = team.bench.filter((b) => !b.used);
+    if (available.length === 0) return;
+    // rotationBias 0 → threshold 0.25 (ride the XI); 1 → 0.75 (carousel).
+    const threshold = 0.25 + (team.info.genome.rotationBias ?? 0.5) * 0.5;
+    let out: Player | null = null;
+    for (let i = 1; i < TEAM_SIZE; i++) {
+      const p = team.players[i];
+      if (p.sentOff) continue;
+      if (this.restart !== null && this.restart.takerGid === p.gid) continue;
+      if (p.stamina >= threshold) continue;
+      if (out === null || p.stamina < out.stamina) out = p;
+    }
+    if (out === null) return;
+    const sub = available.find((b) => b.role === out!.role) ?? available[0];
+    sub.used = true;
+    team.subsUsed++;
+    const offName = out.name;
+    // Enter from the touchline by the halfway line (the bench side).
+    out.becomeSub(sub, v2(side === 0 ? -1.2 : 1.2, HALF_W - 0.6));
+    out.decisionTimer = 0.05; // think on arrival, not a stale slot's cadence
+    team.policies[out.index] = sub.policy;
+    this.stat(out.gid).apps = 1;
+    this.pushEvent('info', side, `🔄 ${team.info.name}: ${sub.name} on for ${offName}`);
   }
 
   /**
@@ -1560,10 +1627,12 @@ export class Match {
       }
     }
     // Match ratings (Phase 33): written once, at the whistle — MatchResult
-    // carries them, so the League and the feed read the same numbers.
+    // carries them, so the League and the feed read the same numbers. Only
+    // players who actually APPEARED are rated (Phase 61: bench rows that
+    // never came on stay at 0 — "didn't play", not "played badly").
     const diff = this.score[0] - this.score[1];
-    this.playerStats.forEach((s, gid) => {
-      s.rating = matchRating(s, gid < TEAM_SIZE ? diff : -diff);
+    this.playerStats.forEach((s, ri) => {
+      if (s.apps > 0) s.rating = matchRating(s, ri < ROSTER_SIZE ? diff : -diff);
     });
     this.phase = 'fulltime';
     this.finished = true;
@@ -1572,13 +1641,13 @@ export class Match {
       -1,
       `Full time: ${this.teams[0].info.name} ${this.score[0]}–${this.score[1]} ${this.teams[1].info.name}`,
     );
-    // Man of the match: best rating, goals then earlier gid break ties.
+    // Man of the match: best rating, goals then earlier roster row break ties.
     let motm = 0;
-    this.playerStats.forEach((s, gid) => {
+    this.playerStats.forEach((s, ri) => {
       const b = this.playerStats[motm];
-      if (s.rating > b.rating || (s.rating === b.rating && s.goals > b.goals)) motm = gid;
+      if (s.rating > b.rating || (s.rating === b.rating && s.goals > b.goals)) motm = ri;
     });
-    const star = this.allPlayers[motm];
-    this.pushEvent('info', star.side, `⭐ Man of the match: ${star.name} (${this.playerStats[motm].rating.toFixed(1)})`);
+    const motmSide: Side = motm < ROSTER_SIZE ? 0 : 1;
+    this.pushEvent('info', motmSide, `⭐ Man of the match: ${this.rosterNames[motm]} (${this.playerStats[motm].rating.toFixed(1)})`);
   }
 }
