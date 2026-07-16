@@ -115,7 +115,10 @@ describe('the coach entity (Phase 53)', () => {
     expect(target.coach.mentor).toBe(oldName);
     expect(rec.coaching!.some((ev) => ev.event === 'retired' && ev.coach === oldName)).toBe(true);
     expect(rec.coaching!.some((ev) => ev.event === 'succeeded' && ev.club === target.name)).toBe(true);
-    expect(league.coachLegends.some((l) => l.name === oldName && l.career.titles === 2)).toBe(true);
+    // ≥, not ===: the planted 2 titles can grow by 1 when his club WINS the
+    // played season before he retires (banking runs first) — seed-luck that
+    // phase-59's reshuffle landed on.
+    expect(league.coachLegends.some((l) => l.name === oldName && l.career.titles >= 2)).toBe(true);
   });
 
   it('a chronically miserable club sacks its coach for the market\'s best philosophy', () => {

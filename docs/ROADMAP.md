@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-58 (the energy economy binds)
+# Roadmap — shipped through phase-59 (the reaction gate; the first cycle)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -56,20 +56,29 @@ drain/recovery + tackle lunges cost legs via `spendBurst`. Measured:
 FT 0.69-0.87 with style spread, markingAggression winning-correlation
 **+0.51 → −0.54**, era arms race dissolved .607→.524, width freed;
 matrix cycles still 0 — meta rotated to runners+compact-block; vitest
-361, visual 106+37, fingerprint REBASELINED `ce0e5c2e…`).
-⭐ **Next: the POST-STAGE-3 QUEUE in the blueprint, re-scoped by N1:
-N1.5 lever 2 — make the COMPACT BLOCK's concessions real (cutbacks
-convert ~6%, near-dead payoff; width must harvest what the low block
-cedes; matrix probe re-run per lever, N1.5 DONE when cycles ≥10%) →
-N2 substitutions/bench → N3 coach match-day presence (incl. the coach
-STANDING ON THE TOUCHLINE in 3D — user addition) → N4 tactical
+361, visual 106+37, fingerprint REBASELINED `ce0e5c2e…`) + ✅
+**phase-59 SHIPPED** (**N1.5 lever 2 — the REACTION GATE**: bystanders
+must SEE a live pass to touch it — blind-side deflections whiff
+(`DEFLECT_BLIND_PEN`) and bystander captures roll a reaction gate
+(`CONTACT_BLIND_PEN`); the cutback anatomy probe traced ~60% of
+pull-backs dying to UNCONDITIONAL mid-flight captures. Measured:
+delivery 33-40%→43-50%, vs-COMPACT cutback conversion 1.4%→3.3%,
+completion 68%→73-76%; **the matrix gate produced the FIRST CYCLE —
+Tiki-taka > Compact bus > through-ball surgeons > Tiki-taka — cyclic
+4.5%, no unbeaten king, era arms race inverted (.431)**; vitest 361,
+visual all-pass, fingerprint REBASELINED `5ec853a4…`).
+⭐ **Next: N1.5 lever 3 (anatomy names crossBase +0.87 — box-delivery
+honesty / aerial defence next candidate; N1.5 DONE when cycles ≥10%)
+→ N2 substitutions/bench → N3 coach match-day presence (incl. the
+coach STANDING ON THE TOUCHLINE in 3D — user addition) → N4 tactical
 broadcast layer → N5 formation library (HARD-GATED behind N1.5) → N6
-market signs for style fit.** Play reports interleave as always.
-HEAD fingerprint `ce0e5c2e…` (since phase-58). ⚠ WATCH: calibrate
-goals 2.38 / 2.03 across seeds — 424242 under the 2.3 floor (its world
-evolved lower-scoring styles; NOT sludge, FT stamina healthy;
-per-world goals are ecology-dominated — play-feel decides, dial =
-STAMINA_RECOVERY if the game reads dour).
+market signs for style fit.** Play reports interleave as always —
+**two unplayed behavioral phases are live (fatigue + reaction gate);
+a play report should come before lever 3.**
+HEAD fingerprint `5ec853a4…` (since phase-59). ⚠ WATCH: calibrate
+goals 2.30 / 2.11 across seeds — 424242 hugs the floor (ecology-
+dominated, NOT sludge; play-feel decides, dial = STAMINA_RECOVERY if
+the game reads dour).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

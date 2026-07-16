@@ -60,6 +60,30 @@ export const STAMINA_RECOVERY = 0.009;
  */
 export const TACKLE_LUNGE_COST = 0.02;
 
+/**
+ * Blind-side deflection penalty (Phase 59, N1.5 lever 2): you can only
+ * stick a leg on a drilled ball you SEE. The cutback anatomy probe found
+ * ~60% of pull-backs dying in flight to legs with NO facing check — a
+ * defender retreating goalward deflected the ball zipping behind his heels
+ * at the same odds as a set, facing interceptor, which re-sealed the very
+ * arc the collapsed block cedes. Fully blind ⇒ deflection odds ×(1−this);
+ * facing ⇒ unchanged. Buffs every DRILLED delivery (cutbacks, driven
+ * switches, hard through balls) against unset bodies only.
+ */
+export const DEFLECT_BLIND_PEN = 0.75;
+/**
+ * The same seeing-the-ball principle at the CAPTURE contact (Phase 59):
+ * the anatomy probe's kill telemetry showed pull-back flights dying 7:1 to
+ * the full-capture branch, not the deflection stretch — friction decays a
+ * 19 m/s cutback under CONTROL_MAX_SPEED mid-flight, and every bystander
+ * within 1.25m then got an UNCONDITIONAL touch (a failed control still
+ * squirts the ball = the pass dies either way). Now a bystander must
+ * REACT to a live pass rolling past: contact odds fall with ball speed
+ * and blind-side arrival; the INTENDED receiver is set for it (exempt),
+ * dead/loose scrambles (no pass in flight) keep the old physics.
+ */
+export const CONTACT_BLIND_PEN = 0.7;
+
 /* ---- The aerial game (Phase 28) ---- */
 /** Gravity on the lofted ball (m/s²). Airborne balls fly friction-free. */
 export const GRAVITY = 9.81;

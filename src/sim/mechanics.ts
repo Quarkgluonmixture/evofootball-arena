@@ -9,7 +9,7 @@ import {
   CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   GK_RUSH_ENVELOPE,
-  TACKLE_LUNGE_COST,
+  DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
 } from './constants';
 import type { Match } from './Match';
@@ -1076,7 +1076,16 @@ export function tryDeflection(match: Match, p: Player): void {
   const speed = len(ball.vel);
   // Committed to the stretch either way — no second bite at the same ball.
   p.kickCooldown = 0.3;
-  const pDef = clamp(0.24 + p.attrs.defending * 0.4 - (speed - 14) * 0.02, 0.1, 0.6);
+  // Blind-side honesty (Phase 59): same convention as attemptFirstTouch —
+  // ball arriving at the face = 0, from behind the body = 1. The retreating
+  // defender with a pull-back zipping behind his heels mostly whiffs; the
+  // set, facing interceptor keeps his old numbers. This is what makes the
+  // collapsed block's ceded arc a REAL payoff (the N1.5 counter surface).
+  const dir = norm(ball.vel);
+  const blind = (1 + (dir.x * p.heading.x + dir.y * p.heading.y)) / 2;
+  const pDef = clamp(
+    (0.24 + p.attrs.defending * 0.4 - (speed - 14) * 0.02) * (1 - blind * DEFLECT_BLIND_PEN),
+    0.05, 0.6);
   if (!match.rng.chance(pDef)) return; // it zips past the outstretched leg
   ball.lastTouch = p;
   ball.vel = scale(rotate(norm(ball.vel), match.rng.range(-1.2, 1.2)), match.rng.range(4, 8));

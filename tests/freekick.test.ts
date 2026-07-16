@@ -144,8 +144,12 @@ describe('free kicks become REAL (Phase 32)', () => {
       if (entry.outcome === 'goal') goals++;
     }
     // The direct option is a REGULAR choice from 19m (the marked scene
-    // still lets a clearly better pass win sometimes — football)...
-    expect(strikes).toBeGreaterThan(75);
+    // still lets a clearly better pass win sometimes — football). Floor
+    // 75 → 40 (phase-59): the reaction gate improved the passing ecology,
+    // so the 4s setup play leaves better pass options on the board at the
+    // whistle and the direct hit wins less often (~19%, was ~40%) — still
+    // regular, not extinct; extinction is what the floor guards.
+    expect(strikes).toBeGreaterThan(40);
     // ...and converts like the real thing (~4-9% probed; the band is wide
     // because ~100 strikes carry ±2pp of seed noise).
     expect(goals / strikes).toBeGreaterThan(0.01);
@@ -158,7 +162,10 @@ describe('free kicks become REAL (Phase 32)', () => {
     // delivery) must not reappear at free kicks.
     let strikes = 0;
     let contested = 0;
-    for (let seed = 0; seed < 30; seed++) {
+    // 30 → 65 seeds (phase-59): the direct hit is chosen less often since
+    // the reaction gate (see the volume test above), so the scan needs a
+    // bigger pool to keep >12 genuine strikes for the no-contest contract.
+    for (let seed = 0; seed < 65; seed++) {
       const m = dangerFK(seed, v2(45 - 19, 3));
       if (!m.fkWall) continue;
       // A deep defender heading the DIPPER near the goal is honest defence;

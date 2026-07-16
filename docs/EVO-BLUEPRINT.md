@@ -124,12 +124,18 @@ item unless a probe result re-scopes it, play reports still interleave:
     via real fatigue (MA correlation +0.51 → −0.54, era arms race
     dissolved, width freed). Cycles still 0 — the meta rotated to
     "Runners in waves / Compact block".
-  - ⭐ lever 2 (next) — make the COMPACT BLOCK's concessions real: it
-    cedes the flanks + the cutback zone, and cutbacks convert ~6%
-    (0.98/match → 0.06 goals — near-dead payoff). Width/crossing play
-    must actually harvest what the low block gives away.
-  - candidates beyond: (c) amplify route-one-over-press; cards that
-    bind (couples with N2's suspensions infra).
+  - ✅ lever 2 (phase-59) — the REACTION GATE: bystanders must SEE a
+    live pass to touch it. **The first cycle appeared** (Tiki-taka >
+    Compact bus > through-ball surgeons > Tiki-taka), cyclic 4.5%
+    (gate: ≥10%), no unbeaten king, the era arms race inverted (.431).
+  - ⭐ lever 3 (next candidate) — the anatomy now names **crossBase
+    +0.87** as the strong axis: check whether box deliveries are
+    over-buffed (cross bombardment as the new near-king) or whether
+    aerial defence needs its own honesty pass; ALSO still open: cards
+    that bind (couples with N2's suspensions infra), route-one
+    amplification.
+  - ⚠ the goals watch persists across both levers: 2.30 / 2.11 —
+    424242 hugs the floor. Play-feel decides; dial = STAMINA_RECOVERY.
 - **N2 — SUBSTITUTIONS / the bench** (Stage 4's planned first item): the
   biggest missing tactical surface — rotation as an evolvable strategy,
   stamina gets strategic expression, late-game personnel responses;
@@ -529,3 +535,36 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   payoff surface can be silently dead — probe the BINDING) and **26**
   (per-world metrics are ecology-dominated — don't chase with global
   dials) registered in ARCHITECTURE §10.
+- ✅ **phase-59 SHIPPED** (**N1.5 lever 2 — the REACTION GATE: you can
+  only touch a ball you can react to**, behavioral): the cutback
+  anatomy (`scripts/probes/cutback-anatomy.ts`, iterated to kill
+  telemetry) found the ceded arc was real but the DELIVERY died ~60%
+  in flight — and 7:1 to the full-CAPTURE branch, not the deflection
+  stretch: friction decays a 19 m/s pull-back under CONTROL_MAX_SPEED
+  (14) mid-flight, and any bystander within 1.25m then got an
+  UNCONDITIONAL touch (failed control still squirts = the pass dies
+  either way). Two changes, one principle: (a) `tryDeflection` prices
+  blind-side (`DEFLECT_BLIND_PEN` 0.75 — the retreating heel-zip mostly
+  whiffs), (b) NEW reaction gate in `tryCapture` for bystanders on a
+  LIVE pass (`CONTACT_BLIND_PEN` 0.7; contact odds fall with speed +
+  blind arrival; intended receiver exempt, loose scrambles unchanged;
+  a failed gate commits kickCooldown — no second bite). Probe-measured:
+  delivery 33-40% → 43-50%; vs COMPACT shot rate 4.6%→13.1%, conversion
+  1.4%→3.3%; vs PRESS 0.8%→5.4%; surviving kills' blind 0.39→0.27 (the
+  filtered subset is exactly the blind-side one). League texture:
+  completion 68%→73-76%, interceptions 22→18-21, through balls +26%,
+  goals 2.30 / 2.11 (watch unchanged, 424242 still soft). **Matrix
+  gate: the FIRST CYCLE — Tiki-taka > the-bus/Compact > through-ball
+  surgeons > Tiki-taka (T4>T1>T9>T4); cyclic 4.5% of 22 decided (gate
+  needs ≥10%); NO unbeaten king (top Copeland ±6, was ±9); the era
+  arms race INVERTED (late-vs-early .607→.524→.431 — co-adaptation is
+  now exploitable specialization = frequency dependence).** New
+  dominance axis: crossBase **+0.87** — cross bombardment is the next
+  lever candidate (watch whether the gate over-buffed box deliveries).
+  Tests: mentor-tree titles pin ===→>= (seed-luck banking), direct-FK
+  choice floor 75→40 of 250 (better pass ecology means the direct hit
+  wins less often — ~19%, still regular; extinction is what the floor
+  guards) + wall-climb scan 30→65 seeds, GK-throw seed re-probed (52).
+  Calibrate 2.30 / 2.11. evolve-check 7 champions / 10 gens. vitest
+  361. visual 106 + 3D all-pass (35 this run — shootout checks are
+  scene-conditional). Fingerprint **REBASELINED `5ec853a4…`**.

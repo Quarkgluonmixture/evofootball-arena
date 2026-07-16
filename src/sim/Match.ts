@@ -9,7 +9,7 @@ import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
   AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
-  CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS, CORNER_CLEARANCE,
+  CONTACT_BLIND_PEN, CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS, CORNER_CLEARANCE,
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
   KICK_COOLDOWN, MATCH_DURATION, OUT_PLAY_COAST,
@@ -1407,6 +1407,29 @@ export class Match {
     // First touch (Phase 27): a firm ball can get away from the receiver —
     // pressing and blind-side receptions turn into real turnovers.
     if (best) {
+      // Reaction gate (Phase 59): a BYSTANDER only gets a foot on a live
+      // pass he can react to — priced by ball speed and blind-side arrival,
+      // the same principle as tryDeflection's stretch. The intended
+      // receiver is SET for it (exempt), and a dead/loose ball (no pass in
+      // flight) keeps the old scramble physics. A failed gate commits the
+      // step (kickCooldown) — the ball beat him, no second bite.
+      const intendedBest =
+        this.pendingPass !== null &&
+        this.pendingPass.targetGid === best.gid &&
+        this.pendingPass.side === best.side;
+      if (!intendedBest && this.pendingPass !== null && speed > 7) {
+        const bx = ball.vel.x / speed;
+        const by = ball.vel.y / speed;
+        const blind = (1 + (bx * best.heading.x + by * best.heading.y)) / 2;
+        const pContact = Math.min(0.95, Math.max(
+          0.1,
+          (0.95 - (speed - 7) * 0.04) * (1 - blind * CONTACT_BLIND_PEN),
+        ));
+        if (!this.rng.chance(pContact)) {
+          best.kickCooldown = 0.3;
+          return;
+        }
+      }
       if (mech.attemptFirstTouch(this, best)) this.giveBall(best);
       return;
     }
