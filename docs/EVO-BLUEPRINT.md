@@ -146,11 +146,27 @@ item unless a probe result re-scopes it, play reports still interleave:
     press correlation HALVED (+0.87 → +0.43 — the discipline tax hits
     the right axis) but cycles stayed 0/44 and the era arms race is
     strong (.762) — ~0.5% of starter-slots banned is a constant tax,
-    not frequency dependence. ⭐ **DECISION POINT for the user**: keep
-    chasing ≥10% with route-one amplification / heavier discipline, or
-    re-scope the gate itself (cycles-in-3-worlds may be the wrong lens
-    for counter-play now that roster-era worlds run more transitive).
-    N5 stays hard-gated until decided.
+    not frequency dependence. The decision point → the user re-framed
+    the question from real leagues (2026-07-16) ⇒ levers 5-6 + the
+    yardstick swap below.
+  - ✅ lever 5 (phase-63) — the AERIAL/ROUTE-ONE channel (cross
+    bombardment: unplayable → the matrix's top archetype).
+  - ✅ lever 6 (phase-64) — the UNDERDOG SHIFT (the bus becomes
+    opponent-conditional; +0.15 pts/match for the outgunned pragmatist).
+  - ✅ **N1.5 CLOSED at phase-65 under the RE-SCOPED gate.** The
+    ≥10%-cycles criterion is RETIRED: cross-era snapshot round-robins
+    conflate arms-race progress with style相性 (era .762 at 62 proved
+    it) and re-roll with every founding-rng change. The ecological
+    standard — **negative FREQUENCY DEPENDENCE, measured in-league**
+    (`freq-dependence.ts`, 2 worlds × 30 seasons) — gives the verdict:
+    **7 axes SELF-BALANCE** (a style's payoff falls as it spreads:
+    rotationBias −0.71, dribbleBias −0.66, markingAggression −0.56,
+    attackingWidth −0.51, defensiveCompactness −0.42, wide-212 −0.39,
+    keeperAggression −0.31 — different axes per world, ecology-true)
+    and — the load-bearing half — **ZERO RUNAWAY axes anywhere**: no
+    style anywhere gets STRONGER as it spreads. Diversity is
+    self-sustaining, not constraint-propped. N5 is UNGATED (mind the
+    phase-64 def-menu watch: one world skewed low-32 15/16).
   - ✅ goals watch RESOLVED at phase-61: calibrate 2.70 / 2.59 — both
     seeds back in band (fresh legs + the new founding ecology).
 - ✅ **N2 — SUBSTITUTIONS / the bench — DONE, phase-61**: 9-man rosters
@@ -170,10 +186,12 @@ item unless a probe result re-scopes it, play reports still interleave:
   not just in dashboards — pressing-wave highlights, defensive-block
   outline, a live mini formation map; presentation-grade, not the debug
   overlays.
-- **N5 — FORMATION LIBRARY expansion**: 2×2×2 shapes is the hard ceiling
-  on visible structural diversity; add 6v6-honest attack shapes
-  (asymmetry, twin ST, deep-forward) as RARE mutations under an ecology
-  budget (the zonal lesson, failure mode 21).
+- **N5 — FORMATION LIBRARY expansion** (UNGATED at phase-65 — N1.5
+  closed): 2×2×2 shapes is the hard ceiling on visible structural
+  diversity; add 6v6-honest attack shapes (asymmetry, twin ST,
+  deep-forward) as RARE mutations under an ecology budget (the zonal
+  lesson, failure mode 21; plus the phase-64 def-menu watch — low-32
+  crowded one world's defensive menu).
 - **N6 — the market signs for STYLE FIT**: player personality's second
   selection channel — boards weigh appetite-fit with the coach's
   philosophy, NOT a fitness term (failure mode 22 forbids uniform-virtue
@@ -754,3 +772,20 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   IMPROVED (narrow 9 / wide 7). vitest **383** (+4: shift unit,
   kickoff integration, purist/Elo-less identity, v20 migration).
   visual 106+37. Fingerprint **REBASELINED `7878ed9b…`**.
+- ✅ **phase-65 SHIPPED** (**the FREQUENCY-DEPENDENCE yardstick — N1.5
+  CLOSED**; probe-only, zero sim change, fingerprint untouched
+  `7878ed9b…`): `freq-dependence.ts` measures, per style axis and
+  in-league, corr(the axis's population share, its holders' relative
+  points) over 30 seasons × 2 worlds. Verdict: **7 SELF-BALANCING
+  readings** (negative FD — the style's payoff falls as it spreads:
+  rotationBias −0.71, dribbleBias −0.66, markingAggression −0.56,
+  attackingWidth −0.51, defensiveCompactness −0.42, atk wide-212
+  −0.39, keeperAggression −0.31), ~25 neutral (drift under
+  constraints), and **ZERO runaway** — no axis in either world grows
+  stronger as it spreads. The user's original question ("can the game
+  grow self-sustaining tactical diversity?") answers YES: the ecology
+  actively self-limits its commonest styles and has no
+  winner-take-all meta. The ≥10%-cycles criterion is retired with
+  reasons in the N1.5 section; the matrix stays a descriptive
+  anatomy tool. The which-axes-balance set differs per world —
+  ecology-dependent, consistent with every N-era finding.

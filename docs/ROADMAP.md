@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-64 (the underdog shift: the bus is now a CHOICE, not an identity)
+# Roadmap — shipped through phase-65 (N1.5 CLOSED: the ecology self-balances, zero runaway metas)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -125,18 +125,26 @@ low streak dissolves as ecology-luck**. vitest 383; fingerprint
 REBASELINED `7878ed9b…`. ⚠ WATCH: one evolve-world skewed def
 formations to low-32 15/16, zonal extinct — the shift may crowd the
 def-formation menu.)
-⭐ **Next: the FREQUENCY-DEPENDENCE yardstick** (replaces the
-cycles-in-3-worlds lens as N1.5's measure): in-league, does a style's
-win rate FALL as its population share rises? Negative frequency
-dependence = the ecology self-balances = diversity is self-sustaining
-— the direct answer to the user's original question. Then N3 coach
-touchline presence (3D figure — user addition) → N4 broadcast layer
-(N5 stays gated on the yardstick's verdict).
++ ✅ **phase-65 SHIPPED** (**the FREQUENCY-DEPENDENCE yardstick — N1.5
+CLOSED**, probe-only: in-league, per axis, corr(style share, holders'
+relative points) over 30 seasons × 2 worlds. **7 axes SELF-BALANCE
+(rotationBias −0.71, dribbleBias −0.66, markingAggression −0.56,
+attackingWidth −0.51, defensiveCompactness −0.42, wide-212 −0.39,
+keeperAggression −0.31) and ZERO axes run away — no style anywhere
+gets stronger as it spreads. Diversity is self-sustaining.** The
+≥10%-cycles gate is retired (cross-era snapshots conflated arms-race
+progress with相性); the matrix stays a descriptive tool. N5 UNGATED.)
+⭐ **Next: N3 — COACH MATCH-DAY PRESENCE** (the named coach's
+game-state adjustments ATTRIBUTED and narrated + the coach STANDING ON
+THE TOUCHLINE in 3D — user addition; subs/mentality/underdog calls are
+all his now) → N4 tactical broadcast layer → N5 formation library
+(ungated; mind the low-32 def-menu watch) → N6 market signs for style
+fit.
 Play reports interleave as always — **SEVEN unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
 🚫, the aerial channel, the underdog shift); a play report is VERY
-overdue — and the goals band question resolved itself (2.90/2.99).**
-HEAD fingerprint `7878ed9b…` (since phase-64).
+overdue — the goals band question resolved itself (2.90/2.99).**
+HEAD fingerprint `7878ed9b…` (since phase-64; 65 is probe-only).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 
