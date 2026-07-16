@@ -240,6 +240,14 @@ export interface TeamInfo {
    * hand-tuned defaults.
    */
   rolePolicies?: Partial<PolicyParams>[];
+  /**
+   * Match-day availability (Phase 62 — suspensions): roster rows in playing
+   * order — first TEAM_SIZE start (slot order, a banned starter's row
+   * replaced by his bench cover), the rest are the available bench. All
+   * other TeamInfo arrays stay ROSTER-ordered; this is the only reordering.
+   * Missing = everyone available = [0..n-1], bit-identical to Phase 61.
+   */
+  lineup?: number[];
 }
 
 export type MatchPhase = 'kickoff' | 'playing' | 'restart' | 'goalPause' | 'halftime' | 'fulltime';
@@ -415,6 +423,14 @@ export interface PlayerMatchStats {
   /** First touches that got away (Phase 33 — the rating's malus side). */
   miscontrols: number;
   /**
+   * Personal discipline (Phase 62, CARDS THAT BIND): bookings and sendings-
+   * off now belong to the MAN, not just the team tally — the league's
+   * suspension system reads these. A second yellow counts in both fields
+   * (mirrors the team-stats convention).
+   */
+  yellows: number;
+  reds: number;
+  /**
    * Match rating on the 6.0–10.0 scale, written once at full time
    * (`sim/ratings.ts`). In `League.playerAgg` this field accumulates the
    * season SUM — divide by matches played for the average.
@@ -430,6 +446,8 @@ export const emptyPlayerStats = (): PlayerMatchStats => ({
   saves: 0,
   recoveries: 0,
   miscontrols: 0,
+  yellows: 0,
+  reds: 0,
   rating: 0,
 });
 

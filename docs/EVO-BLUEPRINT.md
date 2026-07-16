@@ -141,12 +141,16 @@ item unless a probe result re-scopes it, play reports still interleave:
     26 decisive, decisive-edge rate 50%, pressIntensity +0.87 —
     **rotation partially refunds the press fatigue tax**. The close
     still means ≥10% cycles, measured on the roster-era worlds.
-  - ⭐ next — the remaining named lever, **CARDS THAT BIND** (N2's
-    bench/suspension infra now EXISTS): suspensions that carry across
-    matches price sustained aggression from the discipline side — aimed
-    exactly at the refunded press meta. Then re-run the matrix gate to
-    close N1.5 (≥10%). Route-one amplification stays in the pool if
-    still short.
+  - ✅ lever 4 (phase-62) — **CARDS THAT BIND**: personal cards +
+    suspensions served by real lineups. **The close attempt FAILED**:
+    press correlation HALVED (+0.87 → +0.43 — the discipline tax hits
+    the right axis) but cycles stayed 0/44 and the era arms race is
+    strong (.762) — ~0.5% of starter-slots banned is a constant tax,
+    not frequency dependence. ⭐ **DECISION POINT for the user**: keep
+    chasing ≥10% with route-one amplification / heavier discipline, or
+    re-scope the gate itself (cycles-in-3-worlds may be the wrong lens
+    for counter-play now that roster-era worlds run more transitive).
+    N5 stays hard-gated until decided.
   - ✅ goals watch RESOLVED at phase-61: calibrate 2.70 / 2.59 — both
     seeds back in band (fresh legs + the new founding ecology).
 - ✅ **N2 — SUBSTITUTIONS / the bench — DONE, phase-61**: 9-man rosters
@@ -654,3 +658,30 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   failure mode 27). evolve-check 8 champions / 10 gens, zonal at the
   ecology cap. visual 106 + 3D 37 (player center now plots 144).
   Fingerprint **REBASELINED `9357f90a…`**.
+- ✅ **phase-62 SHIPPED** (**N1.5 lever 4 — CARDS THAT BIND**, discipline
+  becomes personal and priced; save v19): bookings/sendings-off land on
+  the MAN (`PlayerMatchStats.yellows/reds`); a red (any fixture) and
+  every 3rd league yellow of a season (`SUSPENSION_YELLOWS`) cost him
+  the club's next match — served by REAL lineups: `League.buildLineup`
+  benches the banned man and fields the like-for-like nominal-role
+  bench body in his slot (rosterIdx keeps stats on the right career;
+  congestion valve for the unreachable 4+-bans case; keepers exempt =
+  uncarded, no reserve GK by design; slate wiped at season end).
+  **Probe A pre-registered the problem** (failure mode 25 discipline):
+  at the old pricing the league drew 52-67 yellows/season (player
+  median 0 — threshold-3 bans would be 2-4/season, a dead wire) and
+  club yellows coupled to style at only r≈0.18 → the referee REPRICES
+  with a steeper aggression slope (`yellowP` 0.12+MA·0.12 →
+  0.16+MA·0.28). **Probe B (live system): 4/9 banned man-matches
+  actually served per season across the two worlds, bans hit 3-7/16
+  clubs, the worst offenders are MA 0.77/0.70 clubs (style-targeted ✓,
+  club-yellows↔MA r up to 0.26/0.36), XI cover cost mild (bench ≈
+  starter in the budget-headroom era).** Cards/match 0.84→1.18-1.25 🟨
+  (reds 0.05-0.07; the ×0.45 booked-discount governor holds; cards.test
+  band <2.0 ✓). Calibrate 2.57 / **2.29 ⚠ knife-edge** (the reprice
+  re-rolled ecologies — failure mode 26, watch not chase; mean 2.43
+  healthy). **Matrix: 0 cycles / 44 decisive — the N1.5 close FAILS**
+  (press correlation halved +0.87→+0.43 but no frequency dependence;
+  era arms race .762) ⇒ the decision point above. vitest **377** (+9).
+  evolve-check 7 champions / 10 gens. visual 106+37. Fingerprint
+  **REBASELINED `e5abf0da…`**.

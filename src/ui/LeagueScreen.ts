@@ -306,7 +306,8 @@ export class LeagueScreen {
         const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i])
           .map((tt) => TRAIT_EMOJI[tt])
           .join('');
-        return `${f.playerNames[i]} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
+        const ban = (f.suspensions?.[i] ?? 0) > 0 ? ` 🚫${f.suspensions![i]}` : '';
+        return `${f.playerNames[i]} ${f.ages[i]}y${tr ? ` ${tr}` : ''}${ban}`;
       };
       const starterIdx = f.playerNames.slice(0, SQUAD_ROLES.length).map((_, i) => i);
       const benchIdx = f.playerNames.slice(SQUAD_ROLES.length).map((_, i) => SQUAD_ROLES.length + i);

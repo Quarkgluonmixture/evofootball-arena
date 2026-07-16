@@ -48,6 +48,14 @@ export interface Franchise {
   ages: number[];
   /** Career ledgers in slot order — accumulated season stats + seasons. */
   careers: PlayerCareer[];
+  /**
+   * Matches of suspension remaining per roster row (Phase 62 — CARDS THAT
+   * BIND): a red card (any fixture) or every SUSPENSION_YELLOWS-th league
+   * booking costs the MAN the club's next match — his slot is covered by
+   * the like-for-like bench body. Served on any fixture played; cleared at
+   * season end (rows change people through retirement/rebirth).
+   */
+  suspensions: number[];
   elo: number;
   /** 0 = top flight, 1 = second division. Changes via promotion/relegation. */
   division: 0 | 1;
@@ -77,6 +85,7 @@ export function createFranchise(
     squadStyles: neutralSquadStyles(ROSTER_ROLES.length),
     ages: ROSTER_ROLES.map(() => veteranAge(rng)),
     careers: ROSTER_ROLES.map(() => emptyCareer()),
+    suspensions: ROSTER_ROLES.map(() => 0),
     elo: 1500,
     division,
     lineage: [{ generation, event: 'founded' }],

@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-61 (the bench; rotation evolves)
+# Roadmap — shipped through phase-62 (cards that bind; N1.5 at a decision point)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -89,17 +89,29 @@ goals watch RESOLVES**. ⚠ Matrix gate RE-BASED (new founding worlds):
 refunds the press fatigue tax. vitest 368; visual 106+37; fingerprint
 REBASELINED `9357f90a…`; ARCHITECTURE failure mode 27 added — the
 phase-60 blocks test had shipped latently red after its late sweep.)
-⭐ **Next: N2.5 CARDS THAT BIND (the remaining N1.5 lever, now
-unblocked — suspensions that carry across matches price sustained
-aggression from the discipline side, aimed at the refunded press
-meta; then re-run the matrix gate to close N1.5 at ≥10%) → N3 coach
-match-day presence (incl. the coach STANDING ON THE TOUCHLINE in 3D —
-user addition) → N4 tactical broadcast layer → N5 formation library
-(HARD-GATED behind N1.5) → N6 market signs for style fit.** Play
-reports interleave as always — **FOUR unplayed behavioral phases are
-live (fatigue, reaction gate, unset wall, the bench: watch for 🔄
-lines and late-game fresh legs); a play report is overdue.**
-HEAD fingerprint `9357f90a…` (since phase-61).
++ ✅ **phase-62 SHIPPED** (**N1.5 lever 4 — CARDS THAT BIND**, save
+v19: personal yellows/reds; a red or every 3rd league yellow = a
+one-match ban SERVED BY REAL LINEUPS — the like-for-like bench body
+covers the slot, 🚫 on team cards; referee repriced with a steeper
+aggression slope after probe A found the old card volume a dead wire.
+Probe B: 4-9 banned man-matches/season actually served, targeted at
+MA-0.7+ clubs. vitest 377; fingerprint REBASELINED `e5abf0da…`.
+⚠ calibrate 2.57/2.29 — 424242 knife-edge under the 2.3 floor,
+re-rolled ecology, watch not chase. **The N1.5 close attempt FAILED:
+0 cycles / 44 decisive — press correlation halved (+0.87→+0.43) but
+discipline is a constant tax, not frequency dependence.**)
+⭐ **NEXT = a USER DECISION on N1.5** (the standing ≥10%-cycles gate):
+(a) keep chasing — route-one amplification is the pool's next named
+lever, or heavier discipline / scarcer budget; (b) re-scope the gate —
+roster-era worlds run structurally transitive, and cycles-in-3-worlds
+may be the wrong lens for counter-play now; (c) park N1.5 and proceed
+to N3 coach match-day presence (incl. the coach STANDING ON THE
+TOUCHLINE in 3D — user addition) → N4 tactical broadcast layer → N6
+market signs (N5 formation library stays HARD-GATED until decided).
+Play reports interleave as always — **FIVE unplayed behavioral phases
+are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
+🚫); a play report is overdue.**
+HEAD fingerprint `e5abf0da…` (since phase-62).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

@@ -56,6 +56,12 @@ export type Division = 0 | 1;
 export const DIVISION_NAMES = ['Premier Division', 'Challenger Division'] as const;
 export const DIVISION_SHORT = ['Premier', 'Challenger'] as const;
 
+/* ---- Discipline (Phase 62 — CARDS THAT BIND) ---- */
+/** Every Nth league booking of a season costs the man one match. */
+export const SUSPENSION_YELLOWS = 3;
+/** Matches banned per sending-off (any fixture kind). */
+export const RED_BAN = 1;
+
 export type PromotionMode = 'auto' | 'playoff';
 
 export interface Fixture {
@@ -175,7 +181,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 18;
+export const SAVE_VERSION = 19;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -403,7 +409,51 @@ export class League {
       // The personal-style wire (Phase 54): each slot's brain runs the
       // coach's policy through the player's own appetites.
       rolePolicies: f.squadStyles?.map((s) => applyPlayerStyle(f.coach.policy, s)),
+      lineup: this.buildLineup(f),
     };
+  }
+
+  /**
+   * Match-day availability (Phase 62): banned starters are covered by the
+   * like-for-like bench body — the ordering of AVAILABLE roster rows, XI
+   * first (slot order), then the remaining bench. Undefined when nobody is
+   * suspended (the common case — Team's default is bit-identical). Pure:
+   * suspension state only changes in applyResult/finishSeason.
+   */
+  private buildLineup(f: Franchise): number[] | undefined {
+    const susp = f.suspensions;
+    if (!susp || !susp.some((s) => s > 0)) return undefined;
+    const n = f.squad.length;
+    const banned = new Set<number>();
+    // Slot 0 is exempt by construction: keepers are never carded (Match
+    // rule) and the bench carries no reserve keeper.
+    for (let i = 1; i < n; i++) if ((susp[i] ?? 0) > 0) banned.add(i);
+    if (banned.size === 0) return undefined;
+    const benchPool: number[] = [];
+    for (let i = TEAM_SIZE; i < n; i++) if (!banned.has(i)) benchPool.push(i);
+    const xi: number[] = [];
+    for (let slotIdx = 0; slotIdx < TEAM_SIZE; slotIdx++) {
+      if (!banned.has(slotIdx)) {
+        xi.push(slotIdx);
+        continue;
+      }
+      let pick = benchPool.findIndex((ri) => ROSTER_ROLES[ri] === ROLES[slotIdx]);
+      if (pick < 0 && benchPool.length > 0) pick = 0;
+      if (pick >= 0) {
+        xi.push(benchPool[pick]);
+        benchPool.splice(pick, 1);
+      } else {
+        // Congestion valve (4+ banned at once — practically unreachable):
+        // the shortest remaining ban plays through it; the ban still ticks.
+        let best = -1;
+        for (const ri of banned) {
+          if (xi.includes(ri)) continue;
+          if (best < 0 || (susp[ri] ?? 0) < (susp[best] ?? 0)) best = ri;
+        }
+        xi.push(best >= 0 ? best : slotIdx);
+      }
+    }
+    return [...xi, ...benchPool];
   }
 
   /** Build the deterministic Match for a fixture (same seed => same game). */
@@ -438,6 +488,23 @@ export class League {
     fixture.played = true;
     fixture.scoreH = result.score[0];
     fixture.scoreA = result.score[1];
+
+    // Discipline (Phase 62) runs for EVERY fixture kind — league, cup,
+    // playoff: whoever was banned served this one (decrement first, so a
+    // red earned TODAY starts tomorrow), then today's sendings-off bank
+    // their bans. Yellow ACCUMULATION is league-only (below, with the
+    // playerAgg ledger) — competition-specific counts, like the real law.
+    for (const [i, slot] of [fixture.home, fixture.away].entries()) {
+      const f = this.franchise(slot);
+      f.suspensions ??= f.squad.map(() => 0);
+      for (let ri = 0; ri < f.suspensions.length; ri++) {
+        if (f.suspensions[ri] > 0) f.suspensions[ri]--;
+      }
+      for (let ri = 0; ri < ROSTER_SIZE; ri++) {
+        const s = result.playerStats[i * ROSTER_SIZE + ri];
+        if (s && s.reds > 0) f.suspensions[ri] += s.reds * RED_BAN;
+      }
+    }
 
     // The playoff is a standalone decider: no table/stats/Elo bookkeeping.
     if (fixture.playoff) {
@@ -525,6 +592,16 @@ export class League {
       const acc = this.playerAgg[slot][ri % ROSTER_SIZE];
       const s = result.playerStats[ri];
       acc.apps += s.apps;
+      // Yellow accumulation (Phase 62): every SUSPENSION_YELLOWS-th league
+      // booking of the season costs the man the club's next match.
+      const beforeY = acc.yellows;
+      acc.yellows += s.yellows;
+      if (Math.floor(acc.yellows / SUSPENSION_YELLOWS) > Math.floor(beforeY / SUSPENSION_YELLOWS)) {
+        const f = this.franchise(slot);
+        f.suspensions ??= f.squad.map(() => 0);
+        f.suspensions[ri % ROSTER_SIZE]++;
+      }
+      acc.reds += s.reds;
       acc.goals += s.goals;
       acc.assists += s.assists;
       acc.shots += s.shots;
@@ -825,6 +902,10 @@ export class League {
       f.division = 0;
       f.lineage.push({ generation: this.generation + 1, event: 'promoted' });
     }
+
+    // Discipline slate wiped (Phase 62): suspensions don't cross seasons —
+    // retirement/rebirth changes WHO occupies a row, and a ban is personal.
+    for (const f of this.franchises) f.suspensions = f.squad.map(() => 0);
 
     this.history.push(record);
     this.generation++;
@@ -1396,6 +1477,22 @@ export class League {
         while (goals.length < ROSTER_SIZE) goals.push(0);
       }
       data.version = 18;
+    }
+    if (data.version === 18) {
+      // v18 -> v19: CARDS THAT BIND (Phase 62). Personal card counters
+      // start at zero (the season's earlier bookings predate attribution —
+      // no fabricated discipline history) and every club loads with a
+      // clean suspension slate.
+      for (const f of data.franchises as Franchise[]) {
+        f.suspensions ??= f.squad.map(() => 0);
+      }
+      for (const arr of data.playerAgg as Array<Array<Record<string, unknown>>>) {
+        for (const s of arr) {
+          s.yellows ??= 0;
+          s.reds ??= 0;
+        }
+      }
+      data.version = 19;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

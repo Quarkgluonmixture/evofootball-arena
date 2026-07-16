@@ -178,7 +178,8 @@ describe('chronicleChapters', () => {
     const boot = (goals: number): SeasonRecord['awards'] => ({
       topScorers: [{
         slot: 0, name: 'Ace', team: 'T0', role: 'ST', goals, assists: 2, apps: 5,
-        shots: 20, saves: 0, recoveries: 0, miscontrols: 0, rating: 40, avgRating: 8,
+        shots: 20, saves: 0, recoveries: 0, miscontrols: 0, yellows: 0, reds: 0,
+        rating: 40, avgRating: 8,
       }],
       topAssists: [],
       topKeeper: null,

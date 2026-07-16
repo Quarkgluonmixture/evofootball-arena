@@ -971,15 +971,21 @@ export class Match {
     if (offender.role === 'GK') return;
     const team = this.teams[offender.side];
     // 0.16 → 0.12 in 29.1: professional fouls added their own near-automatic
-    // bookings, so the base rate eases to keep total cards (and second-yellow
-    // reds) at a watchable level. Referees also MANAGE the game (29.1): a
-    // player already booked gets more benefit of the doubt on ordinary
-    // fouls — without it the pro-foul bookings compounded into a red every
-    // 3–4 matches (professional fouls themselves stay near-automatic).
-    let yellowP = 0.12 + team.genome.markingAggression * 0.12;
+    // bookings, so the base rate eased to keep cards at a watchable level.
+    // Phase 62 (CARDS THAT BIND) reprices upward with a STEEPER aggression
+    // slope: probe A found the whole league drawing only 52-67 yellows a
+    // season (player median 0) — too thin for any suspension threshold to
+    // bind — and club yellows coupling to style at just r≈0.18 (MA) /
+    // 0.31 (press). Cards now carry systemic weight (bans), so the referee
+    // prices the aggressive STYLE, not just the moment: base 0.16, slope
+    // 0.28 (MA 0.3 ⇒ 0.24/foul, MA 0.9 ⇒ 0.41/foul). Referees still
+    // MANAGE the game (29.1): a player already booked gets benefit of the
+    // doubt on ordinary fouls (×0.45) — the second-yellow governor.
+    let yellowP = 0.16 + team.genome.markingAggression * 0.28;
     if (offender.booked) yellowP *= 0.45;
     if (this.rng.chance(yellowP)) {
       team.stats.yellows++;
+      this.stat(offender.gid).yellows++;
       if (offender.booked) {
         this.pushEvent('card', offender.side, `Second yellow — ${offender.name} is SENT OFF`);
         this.sendOff(offender);
@@ -1003,6 +1009,7 @@ export class Match {
     p.sentOff = true;
     const team = this.teams[p.side];
     team.stats.reds++;
+    this.stat(p.gid).reds++; // the ban is PERSONAL (Phase 62)
     p.pos = v2(-team.attackDir * 12, (p.side === 0 ? -1 : 1) * (HALF_W + 4));
     p.vel = v2();
     p.desiredVel = v2();
@@ -1040,6 +1047,7 @@ export class Match {
         this.sendOff(offender);
       } else if (this.rng.chance(0.52)) {
         team.stats.yellows++;
+        this.stat(offender.gid).yellows++;
         if (offender.booked) {
           this.pushEvent('card', offender.side, `Second yellow — ${offender.name} is SENT OFF`);
           this.sendOff(offender);

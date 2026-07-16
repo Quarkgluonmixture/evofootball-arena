@@ -143,24 +143,30 @@ export class Team {
     // keep the DEFAULT_POLICY object itself (bit-identity discipline).
     this.policy = info.policy ? { ...DEFAULT_POLICY, ...info.policy } : DEFAULT_POLICY;
     this.style = info.style ?? deriveTeamStyle(info.genome);
+    // Match-day order (Phase 62): lineup[slot] = the roster row playing that
+    // slot (bans covered by bench bodies); missing = the roster order itself.
+    const lineup = info.lineup ?? info.squad.map((_, i) => i);
     this.policies = ROLES.map((_, i) => {
-      const rp = info.rolePolicies?.[i];
+      const rp = info.rolePolicies?.[lineup[i] ?? i];
       return rp ? { ...DEFAULT_POLICY, ...rp } : this.policy;
     });
-    this.players = ROLES.map(
-      (role, i) => new Player(side, i, role, info.playerNames[i] ?? role, info.squad[i]),
-    );
-    if (info.ages) this.players.forEach((p, i) => (p.age = info.ages![i]));
-    // The bench (Phase 61): whatever the roster carries past the starters.
+    this.players = ROLES.map((role, i) => {
+      const ri = lineup[i] ?? i;
+      const p = new Player(side, i, role, info.playerNames[ri] ?? role, info.squad[ri]);
+      p.rosterIdx = ri; // stats/careers follow the MAN, not the slot
+      if (info.ages) p.age = info.ages[ri];
+      return p;
+    });
+    // The bench (Phase 61): whatever the roster carries past the XI.
     this.bench = [];
-    for (let i = ROLES.length; i < info.squad.length; i++) {
-      const rp = info.rolePolicies?.[i];
+    for (const ri of lineup.slice(ROLES.length)) {
+      const rp = info.rolePolicies?.[ri];
       this.bench.push({
-        rosterIdx: i,
-        role: BENCH_ROLES[i - ROLES.length] ?? 'MF',
-        name: info.playerNames[i] ?? 'SUB',
-        attrs: info.squad[i],
-        age: info.ages?.[i],
+        rosterIdx: ri,
+        role: BENCH_ROLES[ri - ROLES.length] ?? 'MF',
+        name: info.playerNames[ri] ?? 'SUB',
+        attrs: info.squad[ri],
+        age: info.ages?.[ri],
         policy: rp ? { ...DEFAULT_POLICY, ...rp } : this.policy,
         used: false,
       });

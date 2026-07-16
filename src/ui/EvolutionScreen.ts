@@ -408,8 +408,9 @@ export class EvolutionScreen {
     driftCol.appendChild(el('div', 'muted',
       f.playerNames.map((n, i) => {
         const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
-        // The bench (Phase 61) sits behind the 🪑 marker.
-        return `${i === SQUAD_ROLES.length ? '🪑 ' : ''}${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}`;
+        // The bench (Phase 61) sits behind the 🪑 marker; 🚫 = suspended.
+        const ban = (f.suspensions?.[i] ?? 0) > 0 ? ` 🚫${f.suspensions[i]}` : '';
+        return `${i === SQUAD_ROLES.length ? '🪑 ' : ''}${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}${ban}`;
       }).join(' · ')));
     panel.appendChild(driftCol);
 
