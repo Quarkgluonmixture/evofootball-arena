@@ -2,7 +2,7 @@ import { clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, len, norm, scale, sub, type V2,
 } from '../utils/vec';
-import { BALL_FRICTION_K, GRAVITY, HALF_L, HALF_W } from '../sim/constants';
+import { BALL_FRICTION_K, GRAVITY, HALF_L, HALF_W, UNSET_BLOCK_WEIGHT } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 
@@ -157,6 +157,38 @@ export function laneBlockers(from: V2, goal: V2, opponents: Player[]): number {
     if (o.sentOff || o.role === 'GK') continue;
     const cp = closestPointOnSegment(from, end, o.pos);
     if (dist(cp, o.pos) < 1.0) n++;
+  }
+  return n;
+}
+
+/**
+ * How ready this body is to BLOCK a strike from `from` (Phase 60): 1 = set
+ * and facing the shooter, floored at UNSET_BLOCK_WEIGHT for a sprinting or
+ * blind body — the collapsing block's retreaters can't organize a wall
+ * against the first-time hit. Shared by the shoot decision
+ * (effectiveBlockers) and the block physics (tryShotBlock).
+ */
+export function blockReadiness(o: Player, from: V2): number {
+  const dx = from.x - o.pos.x;
+  const dy = from.y - o.pos.y;
+  const d = Math.hypot(dx, dy);
+  const facing = d > 1e-6 ? (1 + (dx * o.heading.x + dy * o.heading.y) / d) / 2 : 1;
+  const stillness = clamp01((3.5 - Math.hypot(o.vel.x, o.vel.y)) / 2.5);
+  return UNSET_BLOCK_WEIGHT + (1 - UNSET_BLOCK_WEIGHT) * facing * stillness;
+}
+
+/**
+ * laneBlockers with each body weighted by blockReadiness (Phase 60): the
+ * count the shoot APPETITE should see. Four set defenders still read ~4;
+ * four mid-collapse retreaters read closer to 1.5 — dare the strike.
+ */
+export function effectiveBlockers(from: V2, goal: V2, opponents: Player[]): number {
+  const end = add(from, scale(sub(goal, from), 0.6));
+  let n = 0;
+  for (const o of opponents) {
+    if (o.sentOff || o.role === 'GK') continue;
+    const cp = closestPointOnSegment(from, end, o.pos);
+    if (dist(cp, o.pos) < 1.0) n += blockReadiness(o, from);
   }
   return n;
 }

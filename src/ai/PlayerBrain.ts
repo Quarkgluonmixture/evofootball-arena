@@ -10,7 +10,7 @@ import type { Team } from '../sim/Team';
 import type { UtilityScore } from '../sim/types';
 import { aerialSense, kickMisalignment } from '../sim/mechanics';
 import {
-  airLaneOpenness, canInterceptPass, interceptBall, laneBlockers, laneOpenness, opennessOf,
+  airLaneOpenness, canInterceptPass, effectiveBlockers, interceptBall, laneOpenness, opennessOf,
   escapeCarry, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
 
@@ -213,12 +213,16 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // shootBias loosens the discount — daring traffic IS what the gene
     // means (a flat 0.62 inverted it: the shoot-happy team lost its whole
     // expression channel and out-shot NOBODY).
-    const blockers = breakaway ? 0 : laneBlockers(p.pos, goal, opp.players);
+    // Phase 60 (the UNSET WALL): the appetite sees READINESS-weighted
+    // bodies — a mid-collapse retreater discounts far less than a set,
+    // facing wall, so the first-time arc strike gets dared while the
+    // block is still arriving. Math.pow takes the fractional count fine.
+    const blockers = breakaway ? 0 : effectiveBlockers(p.pos, goal, opp.players);
     if (blockers > 0) s *= Math.pow(0.55 + g.shootBias * 0.15, blockers);
     cands.push({
       action: 'Shoot',
       score: s,
-      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${breakaway ? ' · 1v1 — finish it' : ''}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}${blockers > 0 ? ` · ${blockers} in the lane` : ''}`,
+      why: `xG ${q.toFixed(2)} · shootBias ${g.shootBias.toFixed(2)}${breakaway ? ' · 1v1 — finish it' : ''}${dig > 0.03 ? ` · long-range dig ${dig.toFixed(2)}` : ''}${blockers > 0 ? ` · ${blockers.toFixed(1)} ready in the lane` : ''}`,
     });
   }
 

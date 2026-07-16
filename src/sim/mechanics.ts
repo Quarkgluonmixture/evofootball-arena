@@ -9,7 +9,7 @@ import {
   CORNER_CLEARANCE, GK_CLAIM_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L,
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   GK_RUSH_ENVELOPE,
-  DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST,
+  DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST, UNSET_BLOCK_WEIGHT,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
 } from './constants';
 import type { Match } from './Match';
@@ -1326,7 +1326,18 @@ export function tryShotBlock(match: Match): void {
     if (Math.sqrt(dx * dx + dy * dy) >= 0.9) continue;
     o.kickCooldown = 0.45; // committed to the block, ball met or not
     o.tackleAnimTimer = 0.4;
-    if (!match.rng.chance(0.32 + o.attrs.defending * 0.25)) continue;
+    // The UNSET WALL (Phase 60): a set, facing body keeps its full block;
+    // the mid-collapse retreater mostly fails to organize in front of a
+    // first-time hit. Same principle the shoot appetite prices via
+    // blockReadiness — but at CONTACT range the bearing to the ball is
+    // unstable (a drive shaving past reads perpendicular), so the facing
+    // term here is the ball's INCOMING direction (the tryDeflection blind
+    // convention): you block what you can see coming.
+    const bdir = norm(ball.vel);
+    const blind = (1 + (bdir.x * o.heading.x + bdir.y * o.heading.y)) / 2;
+    const stillness = clamp01((3.5 - len(o.vel)) / 2.5);
+    const readiness = UNSET_BLOCK_WEIGHT + (1 - UNSET_BLOCK_WEIGHT) * (1 - blind) * stillness;
+    if (!match.rng.chance((0.32 + o.attrs.defending * 0.25) * readiness)) continue;
     defTeam.stats.blocks++;
     ball.lastTouch = o;
     const away = match.rng.chance(0.5) ? 1 : -1;

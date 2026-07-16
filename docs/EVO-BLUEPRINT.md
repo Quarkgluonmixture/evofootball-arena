@@ -128,14 +128,22 @@ item unless a probe result re-scopes it, play reports still interleave:
     live pass to touch it. **The first cycle appeared** (Tiki-taka >
     Compact bus > through-ball surgeons > Tiki-taka), cyclic 4.5%
     (gate: ≥10%), no unbeaten king, the era arms race inverted (.431).
-  - ⭐ lever 3 (next candidate) — the anatomy now names **crossBase
-    +0.87** as the strong axis: check whether box deliveries are
-    over-buffed (cross bombardment as the new near-king) or whether
-    aerial defence needs its own honesty pass; ALSO still open: cards
-    that bind (couples with N2's suspensions infra), route-one
-    amplification.
-  - ⚠ the goals watch persists across both levers: 2.30 / 2.11 —
-    424242 hugs the floor. Play-feel decides; dial = STAMINA_RECOVERY.
+    (The crossBase +0.87 axis it flagged was A/B-REFUTED by
+    `cross-anatomy.ts` — cross-heavy loses to everything, the bus
+    punishes it hardest; the n=12 dim correlation is a hypothesis
+    generator, NOT a verdict — always A/B before nerfing.)
+  - ✅ lever 3 (phase-60) — the UNSET WALL: blockers weigh by
+    facing·stillness. **Three cycles, 7.5%** (0→0→4.5→7.5%); the floor
+    (`UNSET_BLOCK_WEIGHT`) is the attack/defense dial — 0.3 broke the
+    balance (0 cycles, attack über alles), 0.55 shipped.
+  - ⭐ next — the remaining named lever, CARDS THAT BIND, needs N2's
+    bench/suspension infra ⇒ **proceed to N2 (substitutions), then
+    re-run the matrix gate to close N1.5** (≥10%). Route-one
+    amplification stays in the pool if still short.
+  - ⚠ goals watch: 2.23 / 2.22 — both seeds now just UNDER the 2.3
+    floor but finally tight; three levers running goals slightly
+    downhill says the BAND may need a play-feel revisit, not another
+    dial chase (failure mode 26).
 - **N2 — SUBSTITUTIONS / the bench** (Stage 4's planned first item): the
   biggest missing tactical surface — rotation as an evolvable strategy,
   stamina gets strategic expression, late-game personnel responses;
@@ -568,3 +576,35 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   Calibrate 2.30 / 2.11. evolve-check 7 champions / 10 gens. vitest
   361. visual 106 + 3D all-pass (35 this run — shootout checks are
   scene-conditional). Fingerprint **REBASELINED `5ec853a4…`**.
+- ✅ **phase-60 SHIPPED** (**N1.5 lever 3 — the UNSET WALL**,
+  behavioral): the reception snapshot (cutback-anatomy extended) showed
+  38-50% of delivered pull-backs arriving to a "blocked" shot corridor
+  whose bodies were **64-83% UNSET** (sprinting goalward or blind — 83%
+  vs the collapsing bus), yet both the shoot appetite (laneBlockers)
+  and the block physics (0.32+def·0.25 flat) treated them as a set
+  wall — so the arc arrival recycled (time-to-shot 2.4-2.9s, blockers
+  at taken shots 0.00: only clean looks were ever dared). One
+  principle, two sites: blockers now weigh by READINESS = facing ·
+  stillness, floored at `UNSET_BLOCK_WEIGHT` — decision side
+  `effectiveBlockers` (raw laneBlockers stays for stats), physics side
+  in `tryShotBlock` via the incoming-ball-direction blind convention
+  (bearing-to-ball is unstable at contact range). **The floor IS the
+  attack/defense balance dial, sweep-proven**: 0.3 double-dipped
+  (dared shots × weakened blocks) and broke the matrix — 0 cycles / 55
+  decisive, EVERY defensive dim negative, attack über alles; **shipped
+  0.55**: cutback→goal 6.1/4.6/4.7% vs NEUTRAL/COMPACT/PRESS (baseline
+  1.4% vs COMPACT — 3.3×), shots now dare traffic (blockers-at-shot
+  0.29-0.46, goal-rate held 29-37%), and the discount is
+  frequency-SHAPED (helps most vs the 81%-unset bus, least vs the
+  56%-unset press). **Matrix gate: 3 CYCLES / 40 decided = 7.5%**
+  (trajectory 0→0→4.5→7.5% across N1.5 levers; gate ≥10%), defensive
+  styles back in the top tier (Counter-punchers/Compact block #2, the
+  bus mid-table), no ±9 monarch. Matrix goals 3.66 (cross-meta
+  friendlies run hot; league calibrate is the dial that binds).
+  Tests: the two Phase-31 block tests now SET their manufactured
+  walls' heading + re-freeze during resolution (the contract is about
+  set bodies), +2 readiness geometry pins. Calibrate 2.23 / 2.22 (⚠
+  both seeds now just under the 2.3 floor but the cross-seed spread
+  finally TIGHT; play-feel decides). evolve-check 6 champions / 10
+  gens. vitest **363** (+2). visual 106+35. Fingerprint **REBASELINED
+  `b59eeb10…`**.

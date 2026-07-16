@@ -83,6 +83,17 @@ export const DEFLECT_BLIND_PEN = 0.75;
  * dead/loose scrambles (no pass in flight) keep the old physics.
  */
 export const CONTACT_BLIND_PEN = 0.7;
+/**
+ * The UNSET WALL (Phase 60, N1.5 lever 3): a body on the shot corridor
+ * only blocks in FULL when it is set (still) and facing the strike. The
+ * cutback anatomy measured 38-50% of delivered pull-backs arriving with a
+ * "blocked" corridor whose bodies were 64-83% UNSET — sprinting goalward
+ * or blind — and both the shoot decision (laneBlockers-suppressed appetite)
+ * and the block physics treated them as a set wall, so the arc arrival
+ * recycled instead of striking first-time. Weight per corridor body:
+ * this floor + (1−floor)·readiness, readiness = facing · stillness.
+ */
+export const UNSET_BLOCK_WEIGHT = 0.55;
 
 /* ---- The aerial game (Phase 28) ---- */
 /** Gravity on the lofted ball (m/s²). Airborne balls fly friction-free. */

@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-59 (the reaction gate; the first cycle)
+# Roadmap — shipped through phase-60 (the unset wall; three cycles)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -67,18 +67,26 @@ completion 68%→73-76%; **the matrix gate produced the FIRST CYCLE —
 Tiki-taka > Compact bus > through-ball surgeons > Tiki-taka — cyclic
 4.5%, no unbeaten king, era arms race inverted (.431)**; vitest 361,
 visual all-pass, fingerprint REBASELINED `5ec853a4…`).
-⭐ **Next: N1.5 lever 3 (anatomy names crossBase +0.87 — box-delivery
-honesty / aerial defence next candidate; N1.5 DONE when cycles ≥10%)
-→ N2 substitutions/bench → N3 coach match-day presence (incl. the
++ ✅ **phase-60 SHIPPED** (**N1.5 lever 3 — the UNSET WALL**: shot
+blockers weigh by facing·stillness at both the appetite and the block
+roll; the crossBase+0.87 hypothesis was A/B-refuted first
+(`cross-anatomy.ts`); floor swept 0.3→0.55 after 0.3 broke the
+attack/defense balance. **Matrix: 3 cycles, 7.5%** — trajectory
+0→0→4.5→7.5% across the three N1.5 levers; defensive styles back in
+the top tier; vitest 363, fingerprint REBASELINED `b59eeb10…`).
+⭐ **Next: N2 substitutions/bench (the remaining N1.5 lever — CARDS
+THAT BIND — needs its suspension infra; after N2, re-run the matrix
+gate to close N1.5 at ≥10%) → N3 coach match-day presence (incl. the
 coach STANDING ON THE TOUCHLINE in 3D — user addition) → N4 tactical
 broadcast layer → N5 formation library (HARD-GATED behind N1.5) → N6
 market signs for style fit.** Play reports interleave as always —
-**two unplayed behavioral phases are live (fatigue + reaction gate);
-a play report should come before lever 3.**
-HEAD fingerprint `5ec853a4…` (since phase-59). ⚠ WATCH: calibrate
-goals 2.30 / 2.11 across seeds — 424242 hugs the floor (ecology-
-dominated, NOT sludge; play-feel decides, dial = STAMINA_RECOVERY if
-the game reads dour).
+**THREE unplayed behavioral phases are live (fatigue, reaction gate,
+unset wall); a play report is overdue before N2.**
+HEAD fingerprint `b59eeb10…` (since phase-60). ⚠ WATCH: calibrate
+goals 2.23 / 2.22 — both seeds just under the 2.3 floor but finally
+TIGHT across seeds; three levers ran goals slightly downhill — the
+BAND itself may deserve a play-feel revisit (failure mode 26; dial =
+STAMINA_RECOVERY if the game reads dour).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

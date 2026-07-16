@@ -3,11 +3,11 @@ import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { decidePlayer } from '../src/ai/PlayerBrain';
-import { laneBlockers } from '../src/ai/perception';
+import { blockReadiness, effectiveBlockers, laneBlockers } from '../src/ai/perception';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import type { Player } from '../src/sim/Player';
-import { DT } from '../src/sim/constants';
+import { DT, UNSET_BLOCK_WEIGHT } from '../src/sim/constants';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { v2 } from '../src/utils/vec';
 
@@ -73,6 +73,28 @@ describe('laneBlockers geometry (Phase 31)', () => {
   });
 });
 
+describe('the unset wall (Phase 60)', () => {
+  const goal = v2(45, 0);
+  const wall = (x: number, y: number, vel: ReturnType<typeof v2>, heading: ReturnType<typeof v2>): Player =>
+    ({ pos: v2(x, y), vel, heading, role: 'DF', sentOff: false } as unknown as Player);
+
+  it('a set, facing body counts in full; a sprinting blind one sits at the floor', () => {
+    const shooter = v2(25, 0);
+    const set = wall(30, 0, v2(0, 0), v2(-1, 0)); // still, eyes on the shooter
+    const unset = wall(30, 0, v2(6, 0), v2(1, 0)); // sprinting goalward, back turned
+    expect(effectiveBlockers(shooter, goal, [set])).toBeGreaterThan(0.95);
+    expect(effectiveBlockers(shooter, goal, [unset])).toBeLessThanOrEqual(UNSET_BLOCK_WEIGHT + 1e-9);
+    expect(blockReadiness(set, shooter)).toBeGreaterThan(blockReadiness(unset, shooter));
+  });
+
+  it('four mid-collapse retreaters read like ~one set man — dare the strike', () => {
+    const shooter = v2(25, 0);
+    const retreaters = [26.5, 28, 29.5, 31].map((x) => wall(x, 0.3, v2(5, 0), v2(1, 0)));
+    expect(effectiveBlockers(shooter, goal, retreaters)).toBeLessThan(1.5);
+    expect(laneBlockers(shooter, goal, retreaters)).toBe(4); // the raw count still sees 4
+  });
+});
+
 describe('shot blocks (Phase 31)', () => {
   it('a defender parked on the path blocks a real share of drives into a loose ball', { timeout: 60000 }, async () => {
     let blocks = 0;
@@ -93,6 +115,7 @@ describe('shot blocks (Phase 31)', () => {
       const wall = m.teams[1].players[1];
       wall.pos = v2(27.5, 0); // square on the corridor, 3.5m ahead
       wall.vel = v2(0, 0);
+      wall.heading = { x: -1, y: 0 }; // SET and facing the strike (Phase 60 readiness)
       m.ball.owner = shooter;
       m.ball.pos = v2(24.8, 0);
       m.possessionSide = 0;
@@ -170,13 +193,31 @@ describe('shot blocks (Phase 31)', () => {
           m.teams[1].players[2].pos = v2(36.8, 2.52);
           m.teams[1].players[1].vel = v2(0, 0);
           m.teams[1].players[2].vel = v2(0, 0);
+          // SET walls face the strike (Phase 60 readiness) — the test's
+          // contract is about set bodies, not mid-collapse retreaters.
+          for (const w of [m.teams[1].players[1], m.teams[1].players[2]]) {
+            const wd = Math.hypot(32 - w.pos.x, 4 - w.pos.y);
+            w.heading = { x: (32 - w.pos.x) / wd, y: (4 - w.pos.y) / wd };
+          }
         }
         m.ball.owner = shooter;
         m.ball.pos = v2(32.6, 3.8);
         m.possessionSide = 0;
         m.performShot(shooter);
         const scoreBefore = m.score[0];
-        for (let i = 0; i < 150 && m.pendingShot; i++) m.step(DT);
+        for (let i = 0; i < 150 && m.pendingShot; i++) {
+          // Keep the manufactured walls SET (Phase 60): their brains start
+          // recovering the moment the scene runs, and a drifting body is —
+          // by design — a weaker wall. The contract here is about set ones.
+          if (walls) {
+            for (const w of [m.teams[1].players[1], m.teams[1].players[2]]) {
+              w.vel = v2(0, 0);
+              const wd = Math.hypot(32 - w.pos.x, 4 - w.pos.y);
+              w.heading = { x: (32 - w.pos.x) / wd, y: (4 - w.pos.y) / wd };
+            }
+          }
+          m.step(DT);
+        }
         if (m.score[0] > scoreBefore) goals++;
       }
       return goals / 200;

@@ -82,6 +82,7 @@ for (const shell of shells) {
     laneByOutcome: { shot: [] as number[], lost: [] as number[], recycled: [] as number[] },
     delivered: 0, diedInFlight: 0,
     killByCapture: 0, killByDeflect: 0, killBlindSum: 0, killSpeedSum: 0, kills: 0,
+    recBlockersSum: 0, recUnsetSum: 0, recWithBlockers: 0,
   };
   for (let k = 0; k < MATCHES; k++) {
     const m = new Match({
@@ -143,6 +144,42 @@ for (const shell of shells) {
         if (lcp && lcp.passerGid === open.passerGid && lcp.t >= open.t && lcp.t <= open.t + 1.6) {
           acc.delivered++;
           open.deliveryResolved = true;
+          // Reception snapshot: the receiver's shot corridor (laneBlockers
+          // geometry replicated) with each body's SET state — a set, facing
+          // blocker is a real wall; a fast-moving or blind one is the
+          // unset body the first-time strike should beat.
+          const rec = m.allPlayers[lcp.receiverGid];
+          if (rec && rec.side === 0) {
+            const goal = m.teams[0].oppGoal();
+            const end = {
+              x: rec.pos.x + (goal.x - rec.pos.x) * 0.6,
+              y: rec.pos.y + (goal.y - rec.pos.y) * 0.6,
+            };
+            let nB = 0;
+            let nUnset = 0;
+            for (const o of m.teams[1].players) {
+              if (o.sentOff || o.role === 'GK') continue;
+              const abx = end.x - rec.pos.x;
+              const aby = end.y - rec.pos.y;
+              const len2 = abx * abx + aby * aby;
+              const tt = len2 > 1e-9
+                ? Math.max(0, Math.min(1, ((o.pos.x - rec.pos.x) * abx + (o.pos.y - rec.pos.y) * aby) / len2))
+                : 0;
+              const cx = rec.pos.x + abx * tt;
+              const cy = rec.pos.y + aby * tt;
+              if (Math.hypot(o.pos.x - cx, o.pos.y - cy) >= 1.0) continue;
+              nB++;
+              const spd = Math.hypot(o.vel.x, o.vel.y);
+              const toShooter = Math.hypot(rec.pos.x - o.pos.x, rec.pos.y - o.pos.y);
+              const facing = toShooter > 1e-6
+                ? (o.heading.x * (rec.pos.x - o.pos.x) + o.heading.y * (rec.pos.y - o.pos.y)) / toShooter
+                : 0;
+              if (spd > 2.5 || facing < 0.2) nUnset++;
+            }
+            if (nB > 0) acc.recWithBlockers++;
+            acc.recBlockersSum += nB;
+            acc.recUnsetSum += nUnset;
+          }
         } else {
           // Kill telemetry: the first OPPONENT contact during the flight —
           // an owner change = capture, a bare lastTouch flip = deflection.
@@ -219,5 +256,10 @@ for (const shell of shells) {
     `  flight kills: capture ${acc.killByCapture}  deflect ${acc.killByDeflect}  ` +
     `avg blind-at-kill ${acc.kills ? (acc.killBlindSum / acc.kills).toFixed(2) : '—'}  ` +
     `avg speed-at-kill ${acc.kills ? (acc.killSpeedSum / acc.kills).toFixed(1) : '—'} m/s`,
+  );
+  console.log(
+    `  at reception: shot-corridor blocked ${pc(acc.recWithBlockers, acc.delivered)} of deliveries  ` +
+    `avg blockers ${acc.delivered ? (acc.recBlockersSum / acc.delivered).toFixed(2) : '—'}  ` +
+    `UNSET share of blockers ${pc(acc.recUnsetSum, acc.recBlockersSum)}`,
   );
 }
