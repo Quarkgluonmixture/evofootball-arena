@@ -52,7 +52,7 @@ export interface GameActions {
   setCameraMode(m: CameraMode): void;
   resetCamera(): void;
   openReplay(): void;
-  setSound(v: boolean): void;
+  setSound(volume: number): void;
   /** Presentation (Phase 15): all real controls, all optional. */
   setCinematic(v: boolean): void;
   /** HT/FT auto-highlight reels (Phase 33) — on by default, ⏭ skips. */

@@ -115,7 +115,33 @@ export class LeftPanel {
     // HT/FT auto-highlights (Phase 33): watched 3D matches replay their
     // goals + big saves at the whistles; ⏭ skips a running reel.
     presSec.appendChild(checkbox(t('🎬 Auto highlights (HT/FT)'), false, (v) => actions.setAutoHighlights(v)));
-    presSec.appendChild(checkbox(t('Sound FX'), false, (v) => actions.setSound(v)));
+    // Sound: volume slider + click-the-icon-to-mute (78.1, user ask).
+    const soundRow = document.createElement('div');
+    soundRow.className = 'sound-row';
+    const soundIcon = document.createElement('span');
+    soundIcon.className = 'sound-icon';
+    soundIcon.textContent = '\u{1F507}';
+    const soundSlider = document.createElement('input');
+    soundSlider.type = 'range';
+    soundSlider.min = '0';
+    soundSlider.max = '100';
+    soundSlider.value = '0';
+    let lastVol = 70;
+    const applyVol = (v: number): void => {
+      soundSlider.value = String(v);
+      soundIcon.textContent = v === 0 ? '\u{1F507}' : '\u{1F50A}';
+      actions.setSound(v / 100);
+    };
+    soundSlider.addEventListener('input', () => {
+      const v = Number(soundSlider.value);
+      if (v > 0) lastVol = v;
+      applyVol(v);
+    });
+    soundIcon.addEventListener('click', () => applyVol(Number(soundSlider.value) === 0 ? lastVol : 0));
+    const soundText = document.createElement('span');
+    soundText.textContent = t('Sound FX');
+    soundRow.append(soundIcon, soundText, soundSlider);
+    presSec.appendChild(soundRow);
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
     const fxSeg = el('div', 'seg');

@@ -665,3 +665,7 @@ body.cinematic .cinematic-enter { display: none; }
     padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
   }
 }
+
+.sound-row { display: flex; align-items: center; gap: 6px; margin: 4px 0; font-size: 13px; }
+.sound-row input[type=range] { flex: 1; min-width: 0; max-width: 110px; }
+.sound-icon { cursor: pointer; }

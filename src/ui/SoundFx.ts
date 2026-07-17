@@ -6,7 +6,9 @@
  * Every failure (no AudioContext, missing file, undecodable codec) falls
  * back to the old generated beeps — sound stays strictly cosmetic.
  */
-export type FxSoundType = 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card';
+export type FxSoundType =
+  | 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card'
+  | 'pass' | 'touch';
 
 /** Sample file(s) + gain per event; arrays play together (net + crowd). */
 const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>>> = {
@@ -20,6 +22,11 @@ const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>
     { file: 'sfx_crowd_applause_01.m4a', gain: 0.5 },
   ],
   interception: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.7 }],
+  pass: [
+    { file: 'sfx_pass_short_02-001.m4a', gain: 0.55 },
+    { file: 'sfx_pass_short_02-002.m4a', gain: 0.55 },
+  ],
+  touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.35 }],
   corner: [{ file: 'sfx_pass_short_02-001.m4a', gain: 0.7 }],
   foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.55 }],
   // card: silent — the whistle already blew for the foul.
@@ -33,7 +40,9 @@ export class SoundFx {
   private loading = false;
   private ambSrc: AudioBufferSourceNode | null = null;
   private ambGain: GainNode | null = null;
+  private master: GainNode | null = null;
   private on = false;
+  private vol = 0.8;
 
   get enabled(): boolean {
     return this.on;
@@ -46,6 +55,28 @@ export class SoundFx {
     } else {
       this.stopAmbience();
     }
+  }
+
+  /** Master volume 0..1 (Phase 78.1, user ask) — a slider, 0 = mute. */
+  get volume(): number {
+    return this.vol;
+  }
+
+  set volume(v: number) {
+    this.vol = Math.max(0, Math.min(1, v));
+    if (this.master && this.ctx) {
+      this.master.gain.setTargetAtTime(this.vol, this.ctx.currentTime, 0.05);
+    }
+    this.enabled = this.vol > 0;
+  }
+
+  private out(): AudioNode {
+    if (!this.master) {
+      this.master = this.ctx!.createGain();
+      this.master.gain.value = this.vol;
+      this.master.connect(this.ctx!.destination);
+    }
+    return this.master;
   }
 
   private async init(): Promise<void> {
@@ -85,7 +116,7 @@ export class SoundFx {
     const g = this.ctx.createGain();
     g.gain.value = 0;
     g.gain.linearRampToValueAtTime(AMBIENCE.gain, this.ctx.currentTime + 1.2);
-    src.connect(g).connect(this.ctx.destination);
+    src.connect(g).connect(this.out());
     src.start();
     this.ambSrc = src;
     this.ambGain = g;
@@ -107,7 +138,14 @@ export class SoundFx {
     try {
       this.ctx ??= new AudioContext();
       if (this.ctx.state === 'suspended') void this.ctx.resume();
-      const list = SAMPLES[type];
+      // Self-heal (user report "平时没有 amb"): if the bed never started
+      // (fetch raced the first enable, tab was suspended...), start it now.
+      if (!this.ambSrc) this.startAmbience();
+      let list = SAMPLES[type];
+      if (type === 'pass' && list) {
+        // Variation pool: one random take per pass, not all at once.
+        list = [list[Math.floor(Math.random() * list.length)]];
+      }
       if (list && list.some((s) => this.buffers.has(s.file))) {
         for (const s of list) {
           const buf = this.buffers.get(s.file);
@@ -118,7 +156,7 @@ export class SoundFx {
           src.playbackRate.value = 0.96 + Math.random() * 0.08;
           const g = this.ctx.createGain();
           g.gain.value = s.gain;
-          src.connect(g).connect(this.ctx.destination);
+          src.connect(g).connect(this.out());
           src.start();
         }
         return;
@@ -139,6 +177,12 @@ export class SoundFx {
         break;
       case 'interception':
         this.beep(320, 0.05, 0.04, 'triangle');
+        break;
+      case 'pass':
+        this.beep(260, 0.04, 0.03, 'triangle');
+        break;
+      case 'touch':
+        this.beep(210, 0.03, 0.02, 'triangle');
         break;
       case 'corner':
         this.beep(392, 0.09, 0.05, 'triangle');
@@ -165,7 +209,7 @@ export class SoundFx {
     osc.frequency.value = freq;
     g.gain.setValueAtTime(gain, t0);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-    osc.connect(g).connect(ctx.destination);
+    osc.connect(g).connect(this.out());
     osc.start(t0);
     osc.stop(t0 + dur + 0.02);
   }

@@ -1032,8 +1032,8 @@ export class GameApp implements GameActions {
     this.left.setSpeedUI(this.paused, this.speed);
   }
 
-  setSound(v: boolean): void {
-    this.sound.enabled = v;
+  setSound(volume: number): void {
+    this.sound.volume = volume;
   }
 
   /* ---------------- presentation (Phase 15) ---------------- */

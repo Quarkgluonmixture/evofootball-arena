@@ -49,6 +49,7 @@ export class ThreeMatchRenderer {
   private coachesGroup = new THREE.Group();
   /** The on-pitch referee (Phase 75) — position synthesized render-side. */
   private referee = new RefereeModel();
+  private prevOwnerG: number | null = null;
   /** The assistants (Phase 77): opposite touchlines, one half each —
    * their running line IS the offside line. */
   private linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];
@@ -80,8 +81,9 @@ export class ThreeMatchRenderer {
   private tacmap: HTMLCanvasElement;
 
   onSelectPlayer: ((gid: number) => void) | null = null;
-  /** Optional external hook (sound etc.) fired once per fx event. */
-  onFxEvent: ((type: FxEvent['type']) => void) | null = null;
+  /** Optional external hook (sound etc.) fired once per fx event — plus
+   * the render-detected 'pass'/'touch' ball transitions (78.1). */
+  onFxEvent: ((type: FxEvent['type'] | 'pass' | 'touch') => void) | null = null;
   /** Tap on the broadcast score bug (Phase 33: pops the tactical-DNA clash). */
   onScoreBugTap: (() => void) | null = null;
 
@@ -316,6 +318,16 @@ export class ThreeMatchRenderer {
           }
         }
       }
+      // Audio transitions (78.1, user report "pass/touch 听不到"): a
+      // release at speed is a PASS (shots already fire their own event);
+      // a pickup is a TOUCH. Render-side detection, same as the ball hop.
+      const og = state.ball.ownerGid;
+      if (this.prevOwnerG !== null && og === null && state.ball.speed > 8 && !state.ball.isShot) {
+        this.onFxEvent?.('pass');
+      } else if (og !== null && og !== this.prevOwnerG) {
+        this.onFxEvent?.('touch');
+      }
+      this.prevOwnerG = og;
       this.ball.update(state.ball, state.players, dt, hands, carry);
       // The dugout lives the match (Phase 66 → 66.1): each coach tracks
       // the ball, celebrates HIS goals, despairs at concessions — and
