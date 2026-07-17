@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-72 (the ANALYST FEED: one tactical camera, info only at its moment)
+# Roadmap — shipped through phase-73 (the RUNNER'S BODY: knees, elbows, banking, the trap, the ball-side foot)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -317,15 +317,38 @@ The 📡 checkbox dies (the camera IS the toggle); the mini formation
 map shows only in-feed. Render-only, fingerprint IDENTITY `28002dfc…`;
 vitest 403 (+1 camera pin); visual 109+**47** (7 new: each element
 fires in-feed, everything dark outside it).)
-⭐ **Next: play report (THIRTEEN unplayed phases — fatigue, reaction
++ ✅ **phase-73 SHIPPED** (**the RUNNER'S BODY** — the FIFA-gap
+assessment's first tier, user-ratified "自走": the silhouette-level
+distance between our runners and real ones. KNEES (shared geo
+re-pivoted: sock/band/foot hang from a knee group at −0.55; the shin
+folds during its swing phase via max(0,∓cos φ) so the stance leg
+stays near-straight — real gait — with per-pose overrides for kick /
+lunge / dive scissor / celebrate landings / the keeper's set crouch,
+which now sits INTO its bent knees); ELBOWS (forearm re-pivoted at
+−0.34, ~90° run carry per-anim + pump; the shield bar arm holds
+straighter; a diver's arms stretch flat); turn BANKING (yaw-rate ×
+speed tips the torso into the arc, `bankFor` pure ±0.32, 1.2 rad
+teleport guard — kills the ice-skater flat turn); the TRAP (one-shot
+0.34s `receive` when a >6.5 m/s ball sticks to an outfielder: the
+ball-side leg reaches to meet it, knee extends then softens, weight
+sits back — football's most frequent event finally has a body); and
+the BALL-SIDE KICKING FOOT (`lateralSlot` pure fn, frozen at kick
+start, counter-arm drives). BONUS BUG: the empirical three.js sign
+check exposed the kick one-shot as MIRRORED since phase-27 — limbs
+hang below their pivots so positive rotation.x is BACKWARD, meaning
+the old windup swung the foot forward and the "snap-through" swept
+it backward; rebuilt as cock-back-with-folded-knee → snap through
+forward as the knee extends into contact. Render-only, fingerprint
+IDENTITY `28002dfc…`; vitest 405 (+2 pure-fn pins); visual 109+47;
+penalty-theater close-up eyeballed (forearms/socks/boots all
+attached, elbows carry naturally).)
+⭐ **Next: play report (FOURTEEN unplayed phases — fatigue, reaction
 gate, unset wall, bench, discipline, aerial channel, underdog shift,
-dugout, shapes, chips, curves — + the band verdict) → N5b def-menu
-expansion (the 16/0 watch) → N6 market signs for style fit.
-Play reports interleave as always — **EIGHT unplayed behavioral phases
-are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
-🚫, the aerial channel, the underdog shift, the dugout 🎩); a play
-report is VERY overdue — and the 2.15/2.13 goals watch wants eyes.**
-HEAD fingerprint `9a23d408…` (since phase-66).
+dugout, shapes, chips, curves, goal-kick offside, analyst feed, the
+runner's body — + the band verdict) → phase-74 net bulge + visible
+ball spin → phase-75 the referee → N5b def-menu expansion (the 16/0
+watch) → N6 market signs for style fit.**
+HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

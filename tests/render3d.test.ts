@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import { animFor, jostling, rideSide } from '../src/render3d/AnimationSystem';
+import { animFor, bankFor, jostling, lateralSlot, rideSide } from '../src/render3d/AnimationSystem';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import {
@@ -181,6 +181,28 @@ describe('animFor (action -> animation mapping)', () => {
     expect(animFor('HoldUp', 1, false, true)).toBe('shield');
     expect(animFor('HoldUp', 1, false, false)).toBe('dribble');
     expect(animFor('HoldUp', 1, false)).toBe('dribble'); // legacy callers
+  });
+});
+
+describe('limb pickers (Phase 73, pure)', () => {
+  it('lateralSlot picks the ball-side leg in model space', () => {
+    // Facing +z (yaw 0): world +x IS local +x — the legR slot.
+    expect(lateralSlot(0, 1, 0)).toBe(1);
+    expect(lateralSlot(0, -1, 0)).toBe(-1);
+    // Facing +x (yaw π/2): a ball toward world -z sits on local +x.
+    expect(lateralSlot(Math.PI / 2, 0, -1)).toBe(1);
+    expect(lateralSlot(Math.PI / 2, 0, 1)).toBe(-1);
+    // Dead ahead defaults to the +x slot, never NaN-flaps.
+    expect(lateralSlot(0, 0, 1)).toBe(1);
+  });
+
+  it('bankFor tips into the turn, scales with speed, clamps, and ignores walkers', () => {
+    // Positive yaw rate (turning toward local +x) → negative rotation.z.
+    expect(bankFor(2, 7)).toBeLessThan(0);
+    expect(bankFor(-2, 7)).toBeGreaterThan(0);
+    expect(Math.abs(bankFor(2, 8))).toBeGreaterThan(Math.abs(bankFor(2, 4)));
+    expect(Math.abs(bankFor(50, 9))).toBeLessThanOrEqual(0.32);
+    expect(bankFor(3, 1)).toBe(0); // near-standing pivots don't bank
   });
 });
 

@@ -1080,3 +1080,44 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   Screenshot eyeballed: red line + amber flash + grey hull +
   convergence + inset all live in one frame, reading exactly like a
   UEFA tactical still.
+- ✅ **phase-73 SHIPPED** (**the RUNNER'S BODY** — first tier of the
+  FIFA-gap assessment, user-ratified 自走; render-only, fingerprint
+  IDENTITY `28002dfc…`). The assessment's frame: FIFA's realism is
+  mocap volume + close-ups, unreachable and unwanted; what IS worth
+  chasing is the handful of cheap silhouette reads visible every
+  second at our camera distances. Shipped all five: (1) KNEES — the
+  shared limb geometry re-pivoted so sock/band/foot hang from a knee
+  group (y=−0.55 in the leg) and the shin FOLDS during its swing
+  phase (`kneeAmp·max(0,∓cos φ)` — folded in recovery, near-straight
+  in stance, which is what a real stride is), plus per-pose knees:
+  kick cocks it and extends into contact, the lunge trails one folded
+  leg, the dive scissors bent/long, celebrations flex on each
+  landing, and the keeper's set crouch finally sits INTO bent knees
+  (bodyY −0.06). (2) ELBOWS — forearms re-pivoted (y=−0.34), carried
+  bent ~90° on the run with a phase pump, per-anim carry table
+  (shield's barred arm straighter, a diver's arms flat along the
+  body axis). (3) turn BANKING — `bankFor(yawRate, speed)` pure,
+  clamped ±0.32, 1.2-rad frame-jump guard for teleports; the torso
+  tips INTO the arc and the ice-skater flat turn dies. (4) the TRAP
+  — a one-shot 0.34s `receive` anim the frame a >6.5 m/s ball sticks
+  to an outfielder (AnimationSystem now keeps a state.t-keyed
+  prev-frame ball): the ball-side leg reaches to MEET it, knee
+  extends then softens on the give, weight sits back; keepers exempt
+  (they catch). (5) the BALL-SIDE KICKING FOOT — `lateralSlot(yaw,
+  dx, dz)` pure (model-local lateral sign), frozen at kick start;
+  the balance arm opposite the kicking leg drives. THE FOUND BUG:
+  before writing joint code the sign conventions were verified
+  empirically against three.js (limbs hang BELOW their pivot →
+  positive rotation.x moves them BACKWARD; torso above → forward),
+  and that check exposed the kick one-shot as mirrored since
+  phase-27: windup swung the foot FORWARD 0.7 rad, the
+  "snap-through" swept it BACKWARD 1.35 rad. Nobody ever reported it
+  — a 0.38s blur reads as "kick" — but rebuilt correctly (cock back,
+  knee folded → snap through forward, knee extending into contact)
+  it now reads as a strike. vitest 405 (+2: `lateralSlot` picks the
+  ball-side slot in model space across yaws; `bankFor`
+  sign/scale/clamp/walker-gate); visual 109+47 green; penalty-theater
+  close-up eyeballed (forearms, sock bands, boots all attached and
+  carrying naturally). The remaining tiers stay queued: 74 = net
+  bulge + visible ball spin (the curve trilogy is still invisible in
+  flight), 75 = the referee.

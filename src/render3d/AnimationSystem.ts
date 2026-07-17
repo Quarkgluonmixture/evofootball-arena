@@ -22,6 +22,7 @@ export type AnimName =
   | 'stumble'
   | 'gkReady'
   | 'gkDive'
+  | 'receive'
   | 'celebrate';
 
 export function animFor(
@@ -67,6 +68,7 @@ const SWING_AMP: Partial<Record<AnimName, number>> = {
   gkReady: 0.08,
   kick: 0.3,
   lunge: 0.2,
+  receive: 0.08,
 };
 
 /** Forward body lean per animation (radians). */
@@ -78,6 +80,7 @@ const LEAN: Partial<Record<AnimName, number>> = {
   lunge: 0.55,
   kick: 0.12,
   gkReady: 0.32,
+  receive: 0.04,
 };
 
 /** Arm-swing factor relative to leg swing. */
@@ -85,6 +88,44 @@ const ARM_F: Partial<Record<AnimName, number>> = {
   jog: 0.65,
   sprint: 1.0, // full arm pump — sprints read urgent even at tactical range
   dribble: 0.55,
+};
+
+/**
+ * Standing knee flexion per animation (radians, Phase 73) — athletes never
+ * lock their knees. The RUN-cycle flexion (shin folding during the swing
+ * phase) is added on top of this base in update().
+ */
+const KNEE_BASE: Partial<Record<AnimName, number>> = {
+  idle: 0.05,
+  jog: 0.1,
+  sprint: 0.14,
+  dribble: 0.12,
+  shield: 0.4,
+  gkReady: 0.55, // the set crouch
+  stumble: 0.45,
+  celebrate: 0.12,
+  receive: 0.12,
+};
+
+/**
+ * Elbow carry per animation (radians, Phase 73). NEGATIVE = forearm swings
+ * FORWARD (limb pivots hang below the joint, so the sign mirrors the hips).
+ * Runners carry ~90°; a diver's arms stretch with the body axis.
+ */
+const ELBOW: Partial<Record<AnimName, number>> = {
+  idle: -0.3,
+  jog: -0.9,
+  sprint: -1.15,
+  dribble: -0.85,
+  shield: -0.55,
+  gkReady: -0.85,
+  kick: -0.5,
+  header: -0.6,
+  lunge: -0.35,
+  stumble: -0.5,
+  receive: -0.5,
+  celebrate: -0.2,
+  gkDive: -0.05,
 };
 
 /** Vertical run bob amplitude (m) — makes strides read as steps, not sliding. */
@@ -102,6 +143,28 @@ const FREQ: Partial<Record<AnimName, number>> = {
 
 const approach = (cur: number, target: number, maxDelta: number): number =>
   Math.abs(target - cur) <= maxDelta ? target : cur + Math.sign(target - cur) * maxDelta;
+
+/**
+ * Which leg slot handles a ball at world offset (dx,dz) from a player facing
+ * `yaw` (Phase 73, pure): +1 = the model's local-+x leg (the `legR` field),
+ * -1 = the local--x leg. Kicks and traps use the ball-side foot instead of
+ * the old always-legR.
+ */
+export function lateralSlot(yaw: number, dx: number, dz: number): 1 | -1 {
+  // Model local +x axis expressed in world coords is (cos yaw, -sin yaw).
+  return dx * Math.cos(yaw) - dz * Math.sin(yaw) >= 0 ? 1 : -1;
+}
+
+/**
+ * Torso bank into a turn (Phase 73, pure): yaw rate × speed, clamped. The
+ * sign tips INTO the arc (negative rotation.z = toward local +x = the side
+ * a positive yaw rate is turning toward). Kills the flat "ice-skater" turn.
+ */
+export function bankFor(yawRate: number, speed: number): number {
+  if (speed < 2.5) return 0;
+  const b = -yawRate * 0.085 * (Math.min(speed, 9) / 9);
+  return Math.max(-0.32, Math.min(0.32, b));
+}
 
 /**
  * Shoulder-to-shoulder ride detection (Phase 38, pure — probed headlessly):
@@ -180,7 +243,23 @@ export function jostling(p: RenderPlayer, state: RenderState): boolean {
 }
 
 export class AnimationSystem {
+  /** Previous frame's ball, for the trap trigger (Phase 73): update() runs
+   * once per player per frame, so the shift is keyed on state.t. */
+  private frameT = NaN;
+  private prevBall = { ownerGid: null as number | null, vx: 0, vz: 0, speed: 0 };
+  private curBall = { ownerGid: null as number | null, vx: 0, vz: 0, speed: 0 };
+
   update(model: PlayerModel, p: RenderPlayer, state: RenderState, dt: number): void {
+    if (state.t !== this.frameT) {
+      this.frameT = state.t;
+      this.prevBall = this.curBall;
+      this.curBall = {
+        ownerGid: state.ball.ownerGid,
+        vx: state.ball.vx,
+        vz: state.ball.vz,
+        speed: state.ball.speed,
+      };
+    }
     const celebrating = state.celebratingSide === p.side && p.role !== 'GK';
     let anim = animFor(p.action, p.speed, celebrating, state.ball.ownerGid === p.gid);
     // The pressured slow carry wrestles too (Phase 38) — Phase 36 made the
@@ -208,13 +287,38 @@ export class AnimationSystem {
       if (eta > 0.38 && d > 1.6) anim = 'gkReady';
     }
 
-    // One-shot kick trigger on entering the kick state.
+    // One-shot trap trigger (Phase 73): a fast ball ARRIVED and stuck this
+    // frame — the most frequent event in football gets a body: the ball-side
+    // leg reaches to meet it, then gives. Keepers catch instead; a same-frame
+    // first-time kick wins outright.
+    if (
+      state.ball.ownerGid === p.gid && this.prevBall.ownerGid !== p.gid &&
+      this.prevBall.speed > 6.5 && p.role !== 'GK' && model.kickT < 0 && !celebrating
+    ) {
+      model.receiveT = 0;
+      // The ball came FROM the reverse of its (previous) flight direction.
+      model.receiveSlot = lateralSlot(p.yaw, -this.prevBall.vx, -this.prevBall.vz);
+    }
+    if (model.receiveT >= 0) {
+      model.receiveT += dt;
+      if (model.receiveT >= 0.34) model.receiveT = -1;
+    }
+    if (
+      model.receiveT >= 0 &&
+      (anim === 'idle' || anim === 'jog' || anim === 'sprint' || anim === 'dribble' || anim === 'shield')
+    ) {
+      anim = 'receive';
+    }
+
+    // One-shot kick trigger on entering the kick state. The kicking foot is
+    // the ball-side one, frozen here (Phase 73) — kicks were always right-legged.
     if (anim === 'kick' && model.prevAnim !== 'kick') {
       model.kickT = 0;
       model.kickPower =
         p.action === 'Shoot' || p.action === 'ClearBall' ? 1
         : p.action === 'ThroughBall' || p.action === 'Cross' || p.action === 'LoftedPass' ? 0.85
         : 0.65;
+      model.kickSlot = lateralSlot(p.yaw, state.ball.x - p.x, state.ball.z - p.z);
     }
     // One-shot header jump on entering the header state (Phase 28).
     if (anim === 'header' && model.prevAnim !== 'header') model.headerT = 0;
@@ -269,25 +373,55 @@ export class AnimationSystem {
     // Whole-body dive pose (pivot at the feet) — 0 for everything but gkDive.
     let bodyTilt = 0;
     let bodyY = 0;
+    // Knees (Phase 73): base flexion + the swing-phase fold — a shin folds
+    // while its leg swings forward (airborne) and is near-straight in
+    // stance, which is what a real stride looks like. legL's hip is
+    // +sin(phase) with positive = backward, so its recovery half is cos < 0.
+    const kneeAmp = model.swingAmpCur * 1.15;
+    let kneeL = (KNEE_BASE[anim] ?? 0.08) + kneeAmp * Math.max(0, -Math.cos(model.phase));
+    let kneeR = (KNEE_BASE[anim] ?? 0.08) + kneeAmp * Math.max(0, Math.cos(model.phase));
+    // Elbows (Phase 73) carry bent; a light pump rides the run cycle.
+    const elbowBase = ELBOW[anim] ?? -0.4;
+    let elbowL = elbowBase;
+    let elbowR = elbowBase;
+    if (anim === 'jog' || anim === 'sprint' || anim === 'dribble') {
+      elbowL -= Math.abs(Math.sin(model.phase)) * 0.15;
+      elbowR -= Math.abs(Math.cos(model.phase)) * 0.15;
+    }
 
     if (model.kickT >= 0) {
-      // Kick: windup (lean back, leg cocked) then snap-through with a forward
-      // lean; shots swing harder than passes.
+      // Kick (rebuilt Phase 73): cock BACK with the knee folded, snap
+      // THROUGH forward as the knee extends into contact, follow through.
+      // The old one-shot had the whole swing mirrored — limbs hang BELOW
+      // their pivot, so positive rotation.x is backward (verified against
+      // three.js), and the "snap-through" was sweeping the foot backward.
+      // Shots swing harder than passes; the foot is the ball-side one.
       model.kickT += dt;
       const k = model.kickT / 0.38;
+      const pw = model.kickPower;
       if (k >= 1) model.kickT = -1;
-      else if (k < 0.35) {
-        legR = -0.7 * (k / 0.35) * model.kickPower;
-        legL = -0.12;
-        leanX = -0.12;
-        armL = 0.55;
-        armR = -0.55;
-      } else {
-        legR = 1.35 * Math.sin(((k - 0.35) / 0.65) * Math.PI) * model.kickPower;
-        legL = -0.18;
-        leanX = 0.3 * model.kickPower;
-        armL = 0.6;
-        armR = -0.6;
+      else {
+        let hip: number;
+        let knee: number;
+        if (k < 0.35) {
+          const w = k / 0.35;
+          hip = 0.6 * w * pw; // cocked back
+          knee = 0.2 + 1.3 * w * pw; // heel drawn toward the hip
+          leanX = -0.1;
+        } else {
+          const s = (k - 0.35) / 0.65;
+          hip = 0.6 * pw - 1.7 * pw * Math.sin(Math.min(s * 1.15, 1) * (Math.PI / 2));
+          knee = (0.2 + 1.3 * pw) * Math.max(0, 1 - s * 2.2) + 0.3 * pw * Math.max(0, s - 0.55) + 0.06;
+          leanX = 0.3 * pw;
+        }
+        const kickR = model.kickSlot > 0;
+        legL = kickR ? -0.14 : hip;
+        legR = kickR ? hip : -0.14;
+        kneeL = kickR ? 0.22 : knee;
+        kneeR = kickR ? knee : 0.22;
+        // The balance arm OPPOSITE the kicking leg drives forward.
+        armL = kickR ? -0.55 : 0.55;
+        armR = kickR ? 0.55 : -0.55;
       }
     }
 
@@ -305,12 +439,16 @@ export class AnimationSystem {
           armRz = -1.1;
           legL = 0.25;
           legR = -0.15;
+          kneeL = 0.55; // legs tuck under the jump
+          kneeR = 0.35;
         }
       }
     } else if (anim === 'lunge') {
       // Tackle/interception: low, one leg thrust forward, arms out for balance.
       legL = 0.95;
       legR = -0.5;
+      kneeL = 0.65; // trailing leg folded under, front leg extended to the ball
+      kneeR = 0.12;
       armLz = 0.7;
       armRz = -0.7;
       hop = 0;
@@ -324,6 +462,24 @@ export class AnimationSystem {
       armRz = -0.9 + w * 0.25;
       legL = 0.35;
       legR = -0.25;
+      kneeL = 0.45 + w * 0.12;
+      kneeR = 0.45 - w * 0.12;
+      hop = 0;
+    } else if (anim === 'receive') {
+      // The trap (Phase 73): the ball-side leg reaches to MEET the arriving
+      // ball, then gives — knee softens, weight sits back into the cushion.
+      const kk = Math.min(model.receiveT / 0.34, 1);
+      const reach = kk < 0.45 ? kk / 0.45 : Math.max(0, 1 - (kk - 0.45) / 0.55);
+      const rHip = -0.5 * reach; // forward, meeting the ball
+      const rKnee = 0.12 + 0.4 * (1 - reach); // extend to meet, soften on the give
+      const recvR = model.receiveSlot > 0;
+      legL = recvR ? 0.1 : rHip;
+      legR = recvR ? rHip : 0.1;
+      kneeL = recvR ? 0.25 : rKnee;
+      kneeR = recvR ? rKnee : 0.25;
+      leanX = 0.05 - 0.12 * reach;
+      armLz = 0.5;
+      armRz = -0.5;
       hop = 0;
     } else if (anim === 'shield') {
       // The pivot's wrestle (Phase 38): wide low base, backside into the
@@ -339,10 +495,13 @@ export class AnimationSystem {
       armRz = -0.5;
       armL = -0.3;
       armR = 0.2;
+      elbowL = -0.3; // the bar holds straighter than the balance arm
+      elbowR = -0.7;
       hop = 0;
     } else if (anim === 'gkReady') {
       armLz = 0.85;
       armRz = -0.85;
+      bodyY = -0.06; // the set crouch sits INTO the bent knees (Phase 73)
     } else if (anim === 'gkDive') {
       // Full-body dive toward the side frozen at dive start (29.1). The old
       // pose tilted only the `lean` group — the keeper folded at the hips
@@ -364,19 +523,40 @@ export class AnimationSystem {
       armRz = side > 0 ? -2.2 : -2.9;
       legL = side > 0 ? 0.45 : -0.3; // scissor: one leg drives, one trails
       legR = side > 0 ? -0.3 : 0.45;
+      kneeL = side > 0 ? 0.4 : 0.12; // driving leg folded, reaching leg long
+      kneeR = side > 0 ? 0.12 : 0.4;
       legLz = side * 0.2;
       legRz = side * 0.12;
       hop = 0;
     } else if (anim === 'celebrate') {
       // The scorer leaps; teammates raise arms with a lighter bounce.
       const isScorer = state.celebratingGid === model.gid;
+      const wave = Math.abs(Math.sin(model.animTime * (isScorer ? 9 : 6)));
       armLz = 2.5;
       armRz = -2.5;
       armL = 0;
       armR = 0;
-      hop = Math.abs(Math.sin(model.animTime * (isScorer ? 9 : 6))) * (isScorer ? 0.62 : 0.16);
+      hop = wave * (isScorer ? 0.62 : 0.16);
+      kneeL = 0.12 + (1 - wave) * 0.3; // knees flex on each landing
+      kneeR = kneeL;
       leanX = isScorer ? -0.15 : -0.06;
     }
+
+    // Banking into turns (Phase 73): the torso tips into the arc by yaw
+    // rate × speed — kills the flat "ice-skater" turn. The 1.2 rad
+    // frame-jump guard swallows kickoff teleports and replay scrubs.
+    let yawRate = 0;
+    if (model.yawPrev !== null && dt > 0) {
+      let dy = (p.yaw - model.yawPrev) % (Math.PI * 2);
+      if (dy > Math.PI) dy -= Math.PI * 2;
+      if (dy < -Math.PI) dy += Math.PI * 2;
+      if (Math.abs(dy) < 1.2) yawRate = dy / dt;
+    }
+    model.yawPrev = p.yaw;
+    const bankT =
+      anim === 'jog' || anim === 'sprint' || anim === 'dribble' ? bankFor(yawRate, p.speed) : 0;
+    model.bankCur = approach(model.bankCur, bankT, 2.2 * dt);
+    leanZ += model.bankCur;
 
     // Body contact modifiers (Phase 38) — LAYERED on the run cycle, never
     // replacing it: the wrestle is in the torso, the legs keep running.
@@ -403,6 +583,10 @@ export class AnimationSystem {
     model.legR.rotation.x = approach(model.legR.rotation.x, legR, r * 1.6);
     model.legL.rotation.z = approach(model.legL.rotation.z, legLz, r);
     model.legR.rotation.z = approach(model.legR.rotation.z, legRz, r);
+    model.kneeL.rotation.x = approach(model.kneeL.rotation.x, kneeL, r * 1.8);
+    model.kneeR.rotation.x = approach(model.kneeR.rotation.x, kneeR, r * 1.8);
+    model.elbowL.rotation.x = approach(model.elbowL.rotation.x, elbowL, r * 1.2);
+    model.elbowR.rotation.x = approach(model.elbowR.rotation.x, elbowR, r * 1.2);
     model.armL.rotation.x = approach(model.armL.rotation.x, armL, r * 1.6);
     model.armR.rotation.x = approach(model.armR.rotation.x, armR, r * 1.6);
     model.armL.rotation.z = approach(model.armL.rotation.z, armLz, r);

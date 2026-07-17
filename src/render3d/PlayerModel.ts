@@ -43,12 +43,15 @@ function sharedGeo(): NonNullable<typeof GEO> {
     head: new THREE.SphereGeometry(0.3, 12, 10),
     // Limbs pivot at their top: translate geometry downward by half height.
     // Short sleeves: shirt-colored upper arm, skin (or GK glove) forearm.
+    // Since Phase 73 the forearm hangs from an ELBOW group (y=-0.34 in the
+    // arm) and sock/band/foot from a KNEE group (y=-0.55 in the leg), so
+    // their geometry is translated relative to those pivots.
     sleeve: translate(new THREE.BoxGeometry(0.22, 0.36, 0.22), -0.18),
-    forearm: translate(new THREE.BoxGeometry(0.18, 0.44, 0.18), -0.56),
+    forearm: translate(new THREE.BoxGeometry(0.18, 0.44, 0.18), -0.22),
     thigh: translate(new THREE.BoxGeometry(0.26, 0.55, 0.28), -0.27),
-    sock: translate(new THREE.BoxGeometry(0.22, 0.42, 0.24), -0.76),
-    sockBand: translate(new THREE.BoxGeometry(0.24, 0.1, 0.26), -0.58),
-    foot: translate(new THREE.BoxGeometry(0.26, 0.16, 0.52), -1.0),
+    sock: translate(new THREE.BoxGeometry(0.22, 0.42, 0.24), -0.21),
+    sockBand: translate(new THREE.BoxGeometry(0.24, 0.1, 0.26), -0.03),
+    foot: translate(new THREE.BoxGeometry(0.26, 0.16, 0.52), -0.45),
     hips: new THREE.BoxGeometry(0.8, 0.34, 0.46),
     ring: new THREE.RingGeometry(0.75, 0.98, 24),
     number: new THREE.PlaneGeometry(0.52, 0.58),
@@ -135,6 +138,13 @@ export class PlayerModel {
   readonly legR: THREE.Group;
   readonly armL: THREE.Group;
   readonly armR: THREE.Group;
+  /** Second joints (Phase 73): shins flex during the swing phase, forearms
+   * carry at ~90° on the run — the single-segment limbs were the biggest
+   * silhouette gap vs. a real runner. */
+  readonly kneeL: THREE.Group;
+  readonly kneeR: THREE.Group;
+  readonly elbowL: THREE.Group;
+  readonly elbowR: THREE.Group;
   private selectRing: THREE.Mesh;
   private selectHalo!: THREE.Mesh;
   private blob!: THREE.Mesh;
@@ -166,6 +176,15 @@ export class PlayerModel {
   yawLock = 0;
   /** Recovery blend: 1 → still facing the lock, eases to the live heading. */
   yawEase = 0;
+  /** One-shot trap clock (Phase 73): reaches for an arriving ball, gives. */
+  receiveT = -1;
+  /** Which leg meets the arriving ball: +1 = the local-+x slot (legR). */
+  receiveSlot: 1 | -1 = 1;
+  /** Kicking leg, frozen at kick start (Phase 73): the ball-side foot. */
+  kickSlot: 1 | -1 = 1;
+  /** Previous frame's yaw + smoothed bank — turns tip the torso (Phase 73). */
+  yawPrev: number | null = null;
+  bankCur = 0;
   prevAnim: AnimName = 'idle';
 
   readonly gid: number;
@@ -210,14 +229,22 @@ export class PlayerModel {
     this.lean.add(backNumber);
 
     const armX = 0.55 * build.torsoW + (isGK ? 0.03 : 0);
-    this.armL = this.makeArm(g, kit, -armX, isGK);
-    this.armR = this.makeArm(g, kit, armX, isGK);
+    const aL = this.makeArm(g, kit, -armX, isGK);
+    const aR = this.makeArm(g, kit, armX, isGK);
+    this.armL = aL.arm;
+    this.armR = aR.arm;
+    this.elbowL = aL.elbow;
+    this.elbowR = aR.elbow;
     this.lean.add(torso, head, hips, this.armL, this.armR);
 
     // Legs pivot at the hips too (siblings of the lean group so the upper
     // body can lean without dragging the legs).
-    this.legL = this.makeLeg(g, kit, -0.22);
-    this.legR = this.makeLeg(g, kit, 0.22);
+    const lL = this.makeLeg(g, kit, -0.22);
+    const lR = this.makeLeg(g, kit, 0.22);
+    this.legL = lL.leg;
+    this.legR = lR.leg;
+    this.kneeL = lL.knee;
+    this.kneeR = lR.knee;
 
     // Selection highlight: bright inner ring + soft outer halo (pulsing).
     this.selectRing = new THREE.Mesh(
@@ -261,7 +288,9 @@ export class PlayerModel {
     this.root.traverse((o) => (o.userData.gid = gid));
   }
 
-  private makeArm(g: NonNullable<typeof GEO>, kit: KitMaterials, x: number, isGK: boolean): THREE.Group {
+  private makeArm(
+    g: NonNullable<typeof GEO>, kit: KitMaterials, x: number, isGK: boolean,
+  ): { arm: THREE.Group; elbow: THREE.Group } {
     const arm = new THREE.Group();
     arm.position.set(x, 1.0, 0);
     const sleeve = new THREE.Mesh(g.sleeve, kit.shirt);
@@ -271,11 +300,18 @@ export class PlayerModel {
     if (isGK) forearm.scale.set(1.25, 1, 1.25);
     sleeve.castShadow = true;
     forearm.castShadow = true;
-    arm.add(sleeve, forearm);
-    return arm;
+    // Elbow joint (Phase 73): the forearm hangs from its own pivot so it
+    // can carry bent while the shoulder swings.
+    const elbow = new THREE.Group();
+    elbow.position.y = -0.34;
+    elbow.add(forearm);
+    arm.add(sleeve, elbow);
+    return { arm, elbow };
   }
 
-  private makeLeg(g: NonNullable<typeof GEO>, kit: KitMaterials, x: number): THREE.Group {
+  private makeLeg(
+    g: NonNullable<typeof GEO>, kit: KitMaterials, x: number,
+  ): { leg: THREE.Group; knee: THREE.Group } {
     const leg = new THREE.Group();
     leg.position.set(x, HIP_Y, 0);
     const thigh = new THREE.Mesh(g.thigh, kit.shorts);
@@ -285,8 +321,13 @@ export class PlayerModel {
     foot.position.z = 0.1; // toes forward (+z = facing direction)
     thigh.castShadow = true;
     sock.castShadow = true;
-    leg.add(thigh, sock, band, foot);
-    return leg;
+    // Knee joint (Phase 73): shin+foot flex during the swing phase — the
+    // scissor-straight leg was the loudest "not a runner" tell.
+    const knee = new THREE.Group();
+    knee.position.y = -0.55;
+    knee.add(sock, band, foot);
+    leg.add(thigh, knee);
+    return { leg, knee };
   }
 
   setPose(x: number, z: number, yaw: number): void {
