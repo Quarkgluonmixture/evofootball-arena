@@ -900,3 +900,44 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   answer; N5's formation-library problem, don't chase here); (2) the
   goals band spans 1.89-2.74 across seeds — the user's play-feel
   verdict on scoring is still the open question from phase-66.
+- ✅ **phase-67 SHIPPED** (**N5 — the FORMATION LIBRARY** + the honest
+  re-temper of 41.2). (1) Two novel attack shapes join ATTACK_FORMATIONS:
+  `twin-st` (GK/DF/MF base, one true left feeder, a high pair at ±6
+  splitting the CBs) and `false-nine` (ST drops to −2 in the hole,
+  wingers at +12/±18 running the vacated space). DISCOVERED, never
+  seeded: founders still derive only the classic pair; entry is the
+  rare style mutation with the menu weighted 1/1/0.35/0.35 (the zonal
+  entry lesson); exits are free (reversibility = the safety valve);
+  reborn clubs copy parent style and coaches carry theirs, so a shape
+  that WINS spreads through persistence, rebirth and the dugout market.
+  **Emergence (shape-emergence.ts, 60 gens × 2 worlds, final config):
+  tried in both worlds; world 991 grew false-nine into a real
+  discovered meta (peak 9/16, gen-40 wide-212 extinct at 0) and its
+  gen-60 menu holds THREE shapes at once (wide 3 / narrow 6 / false9
+  7) — the first structural coexistence in the project's history;
+  world 424242 stays wide-led with novelty visiting (peak 5/16). No
+  monoculture anywhere on the attack side.** Head-to-head at flat
+  genes the novel shapes are honest (twin-st GF 1.11 GA 1.26, W-L
+  70-82; false-nine 1.35/1.39, 77-86 vs wide-212). League calibrate
+  is library-NEUTRAL (3-seed paired Δ+0.01). (2) The 41.2 CORRECTION
+  (fm 28, new): its ledger calibrate ("Δ+0.09, 2.49/1.89/2.74") was a
+  phantom — a BACKGROUND stash-race measured a never-shipped hybrid;
+  true 41.2 ran 2.76/2.29/3.59 (≈+0.6). The heat traced to penetration
+  DEPTH, not duel survival (drive knob saturated: 0.16→0.14 moved
+  nothing) ⇒ tempered at the source: slalom perp weight capped 1→0.72
+  (max cut ~60° — the defender keeps a play at close quarters).
+  Final: calibrate 2.76/2.06/3.26 (mean 2.69), pirouettes 0.58/match /
+  spin→tackle 0.03 (the 41.2 fix intact), width master gate re-passed
+  (0.42@gen30 ≈ baseline), aerial channel healthy. Two fragile pins
+  re-anchored (throw seeds → 9/65 after a 1..140 rescan at ~6% rate;
+  the stoic-silence assertion now pins HIS line only — the tinkerer
+  may legitimately 🧊 in the natural run). Gates: vitest **394** (+2:
+  founders-stay-classic, novel-shape playability), visual 106+40,
+  evolve-check healthy, fingerprint **REBASELINED `484c5704…`**.
+  ⚠ WATCH: (1) world 991's DEF menu ended 16/0 low-32 — a binary
+  defensive menu can't answer discovered attack shapes; the def-side
+  library (mid-block / a third shape) is the next structural lever
+  (N5b); (2) the goals band now sits ~2.7 mean (2.06-3.26 across
+  seeds) ≈ real-league scoring — whether the old 2.3-2.6 contract
+  still binds is the PLAY REPORT's call, now NINE unplayed behavioral
+  phases deep.

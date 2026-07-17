@@ -828,6 +828,20 @@ only caught by eyes on the PNGs.
     RELATIVE to the constant (4×floor), never the magic number a
     particular sweep produced.
 
+28. **Never run a git-stash A/B dance in the BACKGROUND while other
+    measurements run in the foreground.** Phase-41.2's "paired Δ+0.09,
+    tempered perfectly" calibrate line was a PHANTOM: a background
+    baseline probe (`stash push actionExecutor+Player → evo-drift →
+    stash pop`) held the fix files stashed for ~3 minutes while the
+    foreground three-seed calibrate ran inside that window — the
+    reported numbers measured baseline-steering + tempered-pricing, a
+    state that never shipped. Found a phase later when HEAD calibrate
+    would not reproduce (true 41.2: 2.76/2.29/3.59, ≈+0.6 hot — the
+    correction shipped in 67). Rules: (a) a stash dance owns the whole
+    working tree — run it strictly foreground, nothing else in flight;
+    (b) any headline number in a ledger gets ONE reproduction run
+    against clean HEAD before commit.
+
 ## 11. Known tuning levers
 
 | Goal | Lever |

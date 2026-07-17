@@ -32,6 +32,16 @@ export const ATTACK_FORMATIONS: Record<AttackFormationId, V2[]> = {
   // Still clearly narrower than wide-212's ±19: inside-forwards, not
   // wingers.
   'narrow-122': [v2(-41, 0), v2(-19, 0), v2(-9, -7), v2(-6, 12), v2(6, 15), v2(7, -3)],
+  // NOVEL (Phase 67, N5 — mutation-discovered only). TWIN STRIKERS: the
+  // right winger becomes a second 9 — a high pair splitting the center
+  // backs, one true wide feeder on the left, two at the base. The twins
+  // sit a touch higher than wide-212's wingers: a spearhead, not a line.
+  'twin-st': [v2(-41, 0), v2(-16, -4), v2(-11, 5), v2(2, -17), v2(10, 6), v2(10, -6)],
+  // NOVEL. The FALSE NINE: the striker DROPS between the lines (-2, the
+  // hole) to link and drag the last defender out; both wingers push very
+  // high and very wide — the runners the false nine releases into the
+  // space he vacated.
+  'false-nine': [v2(-41, 0), v2(-17, -5), v2(-12, 5), v2(12, -18), v2(12, 18), v2(-2, 0)],
 };
 
 // Defend tables keep the STRIKER HIGH on purpose (30.4). The first cut

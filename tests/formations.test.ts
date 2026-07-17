@@ -313,3 +313,43 @@ describe('formations are tactics, not paint (directional)', () => {
     expect(height['press-23']).toBeGreaterThan(height['low-32'] + 3);
   });
 });
+
+describe('the discovered shapes (Phase 67, N5)', () => {
+  it('novel shapes never come from derivation — founders stay classic', () => {
+    for (const w of [0, 0.25, 0.5, 0.75, 1]) {
+      const atk = deriveTeamStyle(neutral({ attackingWidth: w })).formationAtk;
+      expect(['wide-212', 'narrow-122']).toContain(atk);
+    }
+  });
+
+  it('twin-st and false-nine play REAL football — attack both ways over a seed pool', { timeout: 60000 }, () => {
+    for (const shape of ['twin-st', 'false-nine'] as const) {
+      const novel = team('N', neutral(), { formationAtk: shape, formationDef: 'press-23', scheme: 'man' });
+      const classic = team('C', neutral(), { formationAtk: 'wide-212', formationDef: 'press-23', scheme: 'man' });
+      let goalsN = 0;
+      let goalsC = 0;
+      let shotsN = 0;
+      let shotsC = 0;
+      // Side-balanced (§10.5): each seed plays both home/away orders.
+      for (let seed = 1; seed <= 8; seed++) {
+        const ab = new Match({ seed, teamA: novel, teamB: classic, duration: 240 }).runToCompletion();
+        goalsN += ab.score[0];
+        goalsC += ab.score[1];
+        shotsN += ab.stats[0].shots;
+        shotsC += ab.stats[1].shots;
+        const ba = new Match({ seed, teamA: classic, teamB: novel, duration: 240 }).runToCompletion();
+        goalsN += ba.score[1];
+        goalsC += ba.score[0];
+        shotsN += ba.stats[1].shots;
+        shotsC += ba.stats[0].shots;
+      }
+      // Playability, not balance: the shape generates a real attack and
+      // concedes a real one (whether it WINS is the emergence probe's
+      // question — selection prices that, not this pin).
+      expect(shotsN).toBeGreaterThan(40);
+      expect(shotsC).toBeGreaterThan(40);
+      expect(goalsN).toBeGreaterThan(0);
+      expect(goalsC).toBeGreaterThan(0);
+    }
+  });
+});

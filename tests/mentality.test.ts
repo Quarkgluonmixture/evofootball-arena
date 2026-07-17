@@ -215,9 +215,12 @@ describe('the tinker dial reaches the match + the coach owns the call (Phase 66)
     const m = tinkerMatch();
     while (!m.finished) m.step(DT);
     expect(m.events.some((e) => e.text === '⚡ Ranieri throws everyone forward!')).toBe(true);
-    // A full stoic peaks at holding 0.5 — the 🧊 line (0.8) is unreachable:
-    // his silence IS the personality rendering in the feed.
-    expect(m.events.some((e) => e.text.startsWith('🧊'))).toBe(false);
+    // A full stoic peaks at holding 0.5 — HIS 🧊 line (0.8) is unreachable:
+    // his silence IS the personality rendering in the feed. Pin the STOIC's
+    // silence only — the tinkerer may legitimately shut up shop during the
+    // natural run before the score is forced (phase-67 reshuffle caught the
+    // old any-🧊 assertion doing exactly that).
+    expect(m.events.some((e) => e.text === '🧊 Stoicu shuts up shop')).toBe(false);
   });
 
   it('without a coach on the sheet the club keeps the credit (old replays, ad-hoc)', () => {

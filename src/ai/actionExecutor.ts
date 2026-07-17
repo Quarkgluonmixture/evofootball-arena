@@ -519,7 +519,13 @@ function dribbleTarget(p: Player, match: Match): V2 {
       p.slalomUntil = match.simTime + 0.6;
     }
     const perp = v2(-toGoal.y * side, toGoal.x * side);
-    const w = clamp(1 - blockD / 6, 0, 1);
+    // Perp cap 1 → 0.72 (Phase 67 temper): with the 41.2 commitment the
+    // full-weight cut rounded engaged defenders so cleanly that penetration
+    // depth — not duel survival — ran the league ~+0.6 goals hot (the
+    // drive-protection knob measured SATURATED: 0.16→0.14 moved nothing).
+    // Capping the blend keeps the committed slalom but leaves the defender
+    // a play at close quarters.
+    const w = clamp(1 - blockD / 6, 0, 0.72);
     dir = norm(add(scale(toGoal, 1 - w * 0.8), scale(perp, w)));
   }
 

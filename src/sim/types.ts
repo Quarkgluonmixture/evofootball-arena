@@ -38,7 +38,14 @@ export type TeamMode = 'BuildUp' | 'Attack' | 'Defend' | 'Press' | 'CounterAttac
  * shown on the team card and inherited through rebirth. Names read as
  * outfield lines from the back (the keeper is implicit).
  */
-export type AttackFormationId = 'wide-212' | 'narrow-122';
+/**
+ * The attack-shape library (Phase 67, N5). The two CLASSIC shapes are what
+ * founders derive and what most clubs play; the NOVEL shapes ('twin-st',
+ * 'false-nine') can only be DISCOVERED — they enter through the rare style
+ * mutation at reduced weight (the zonal entry lesson) and survive purely on
+ * results. Structural diversity is earned, never seeded.
+ */
+export type AttackFormationId = 'wide-212' | 'narrow-122' | 'twin-st' | 'false-nine';
 export type DefendFormationId = 'low-32' | 'press-23';
 export type MarkScheme = 'man' | 'zonal';
 

@@ -196,12 +196,12 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     // Hold-releases are ~1–2 per match; scan seeds until a throw shows up.
     // The no-hoof contract is asserted across EVERY scanned match.
     let sawThrow = false;
-    // Seeds 35/53 are the known throw-producers under the phase-41.2
-    // slalom commitment (re-probed 1..60 — each behavioral phase
-    // reshuffles hold-release choices; 51.2, 58 and 59 did the same
-    // dance); they go LAST so the no-hoof contract first scans a spread
-    // of ordinary matches.
-    for (const seed of [8, 38, 6, 19, 29, 32, 35, 53]) {
+    // Seeds 9/65 are the known throw-producers under the phase-67 slalom
+    // perp cap (re-probed 1..140, rate ~6% of matches — each behavioral
+    // phase reshuffles hold-release choices; 51.2, 58, 59 and 41.2 did
+    // the same dance); they go LAST so the no-hoof contract first scans
+    // a spread of ordinary matches.
+    for (const seed of [8, 38, 6, 19, 29, 32, 9, 65]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 240 });
       while (!m.finished) {
         m.step(DT);

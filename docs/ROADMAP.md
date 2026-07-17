@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-66 (N3: the coach is PRESENT — his gene, his calls, his touchline)
+# Roadmap — shipped through phase-67 (N5: the formation LIBRARY — three attack shapes coexist in an evolved world)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -178,8 +178,11 @@ a decisively parked blocker flips it — a real cut). Pirouettes
 1.38→0.63/match, spin→tackle 0.15→0.08. The honest movement bought TOO
 much (3-seed paired calibrate +0.74 goals; evo-drift width re-collapsed
 0.52→0.14 under a dribble monoculture) ⇒ drive protection repriced
-0.20→0.16: paired goals Δ+0.09 (2.49/1.89/2.74), width back to the
-baseline trajectory (0.48@gen30). Aerial channel A/B'd healthy
+0.20→0.16: width back to the baseline trajectory (0.48@gen30).
+⚠ **CORRECTED at 67 (fm 28)**: the "Δ+0.09 (2.49/1.89/2.74)" calibrate
+line was a PHANTOM (a background stash race); true 41.2 =
+**2.76/2.29/3.59, ≈+0.6 hot** — tempering continued in 67. Aerial
+channel A/B'd healthy
 (per-cross attacker headers 6.6→7.3%); two statistical pins hardened
 per the phase-64 precedent (throw seeds 52→35/53; cross-header floor
 n=20→80 — its n=40 read was a 2%-tail streak, true rate 6.0%). vitest
@@ -187,9 +190,34 @@ n=20→80 — its n=40 read was a 2%-tail streak, true rate 6.0%). vitest
 the low-32 def-menu skew re-fired in the evolve-check world (15/1 —
 stronger carriers make deep blocks pay; N5's problem) and the goals
 band (2.49/1.89/2.74) spans wide across seeds.)
-⭐ **Next: N4 — the TACTICAL BROADCAST layer** → N5 formation library
-(ungated; mind the low-32 def-menu watch) → N6 market signs for style
-fit.
++ ✅ **phase-67 SHIPPED** (**N5 — the FORMATION LIBRARY**: structural
+diversity becomes discoverable. Two novel attack shapes join the
+tables — `twin-st` (a high pair splitting the CBs, one true feeder)
+and `false-nine` (the ST drops to the hole, wingers very high/wide) —
+enterable ONLY via the rare style mutation at ×0.35 weight (the zonal
+entry pattern); founders still derive classic; reborn clubs copy the
+parent's style and coaches carry theirs, so discovered shapes spread
+on RESULTS through all three channels. **Emergence verdict (60 gens ×
+2 worlds): tried in both; in world 991 false-nine became a genuine
+discovered meta (peak 9/16) and gen-60 shows THREE attack shapes
+coexisting (wide 3 / narrow 6 / false-nine 7) — the first structural
+divergence the game has ever grown. No monoculture.** Head-to-head
+the novel shapes are honest, not OP (twin-st 70-82 W-L, false-nine
+77-86 vs wide-212). Also: the 41.2 heat properly tempered at the
+SOURCE — slalom perp cap 1→0.72 (drive knob measured saturated) —
+calibrate 2.76/2.06/3.26 (mean 2.69, from 2.88); pirouettes hold at
+0.58/match, spin→tackle 0.03. Width master gate re-passed (0.42@gen30).
+vitest 394 (+2: founders-stay-classic, novel-shape playability);
+visual 106+40; fingerprint REBASELINED `484c5704…`; fm 28 added (the
+41.2 phantom-calibrate stash race, corrected above). ⚠ WATCH: world
+991's DEF menu hit full low-32 16/0 — the def-side library (a third
+defensive shape) is now the queue's obvious next structural lever;
+and the goals band (~2.7 mean, 2.06-3.26 spread) ≈ real-league
+scoring — the band contract verdict belongs to the overdue play
+report.)
+⭐ **Next: play report (NINE unplayed behavioral phases + the band
+verdict) → N4 — the TACTICAL BROADCAST layer → N5b def-menu expansion
+(the 16/0 watch) → N6 market signs for style fit.
 Play reports interleave as always — **EIGHT unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
 🚫, the aerial channel, the underdog shift, the dugout 🎩); a play

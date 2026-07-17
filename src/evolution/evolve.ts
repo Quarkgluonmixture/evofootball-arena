@@ -1,4 +1,4 @@
-import type { TeamStyle } from '../sim/types';
+import type { AttackFormationId, TeamStyle } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, rookieAge } from './careers';
 import { createCoach, rookieCoachAge, type Coach } from './coach';
@@ -94,7 +94,24 @@ function mutateStyle(style: TeamStyle, rng: Rng, zonal?: { room: number }): stri
   if (!rng.chance(0.08)) return undefined;
   const component = rng.int(0, 2);
   if (component === 0) {
-    style.formationAtk = style.formationAtk === 'wide-212' ? 'narrow-122' : 'wide-212';
+    // The shape LIBRARY (Phase 67, N5): switch to a weighted-random OTHER
+    // shape. The classic pair carries full weight; the novel shapes enter
+    // rare (×0.35 — the zonal entry pattern) so structure is DISCOVERED
+    // under selection, never seeded. Leaving a novel shape is as easy as
+    // any switch — reversibility is the ecology's safety valve.
+    const menu: Array<{ id: AttackFormationId; w: number }> = [
+      { id: 'wide-212', w: 1 }, { id: 'narrow-122', w: 1 },
+      { id: 'twin-st', w: 0.35 }, { id: 'false-nine', w: 0.35 },
+    ];
+    const options = menu.filter((o) => o.id !== style.formationAtk);
+    let r = rng.next() * options.reduce((s, o) => s + o.w, 0);
+    for (const o of options) {
+      r -= o.w;
+      if (r <= 0) {
+        style.formationAtk = o.id;
+        break;
+      }
+    }
     return `🔧 switched to ${style.formationAtk}`;
   }
   if (component === 1) {

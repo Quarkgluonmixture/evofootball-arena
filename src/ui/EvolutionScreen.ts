@@ -503,6 +503,10 @@ export class EvolutionScreen {
       grid.appendChild(stackedShareStrip(t('Attack formation'), [
         { label: 'wide-212', color: '#60a5fa' },
         { label: 'narrow-122', color: '#f59e0b' },
+        // The discovered shapes (Phase 67) — most eras show none; a colored
+        // band appearing IS the event.
+        { label: 'twin-st', color: '#4ade80' },
+        { label: 'false-nine', color: '#a78bfa' },
       ], withStyles.map((r) => r.styleShares!.atk)));
       grid.appendChild(stackedShareStrip(t('Defend formation'), [
         { label: 'low-32', color: '#60a5fa' },
