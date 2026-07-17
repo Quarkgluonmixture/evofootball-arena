@@ -1032,3 +1032,25 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   78→76%, goals mean 2.79 ≈ 69's 2.80 (dead neutral). Keeper-throw
   pins re-anchored (seeds 35/42, the fifth dance — 51.2/58/59/41.2/67
   precedent). vitest **402** (+3); visual 109+45.
+- ✅ **phase-71 SHIPPED** (goal-kick OFFSIDE — a user-ratified law
+  deviation — plus the line-holding clamp; fingerprint REBASELINED
+  `28002dfc…`). The report: attackers stood in the opponent's goalmouth
+  and the keeper's punt found them, no flag. The anatomy
+  (cherrypick-anatomy.ts): TRUE — goal kicks were offside-exempt (the
+  real law) AND the brain's targeting gates knew it (the ×0.08
+  beyond-line suppression switched off on exempt kicks), so the timeout
+  punt legally fed a camper 12m from goal on 19% of goal kicks. Fixes:
+  (1) goal kicks now play under NORMAL offside — deliberate arcade
+  deviation, the user's explicit call ("门将开大脚应该有越位"), same
+  family as offside→goal-kick restarts; kick-ins keep the throw-in
+  exemption, corners are geometrically exempt anyway; (2) during a
+  goal-kick setup the kicking side's outfielders are WALKED BACK to the
+  offside line (the established restart-clamp idiom; the first cut sat
+  after the same-side `continue` and never executed — caught by the
+  unchanged re-probe). After: beyond-line 0%/37%, targeted punts 0/12,
+  goalmouth camping 2.7%/19% (residue = legal line-level positioning
+  when the defending block itself sits deep). League: calibrate
+  2.81/2.07/3.42 (≈ 70), offsides steady at 2.01/match — the whistle
+  volume didn't move because the BRAIN's restored gates stop the bad
+  punt before the flag ever shows. vitest 402 (the overlap rare-event
+  floor hardened 48→96 seeds, its third reshuffle); visual 109+43.

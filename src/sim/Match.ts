@@ -4,7 +4,7 @@ import { decidePlayer } from '../ai/PlayerBrain';
 import { applyMentality, applyUnderdogShift, mentalityOf } from '../ai/mentality';
 import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
 import { executeAction } from '../ai/actionExecutor';
-import { cornerCrashSpots, fkWallSlots, formationSpot, shapeReady } from '../ai/formations';
+import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeReady } from '../ai/formations';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
@@ -1322,6 +1322,21 @@ export class Match {
       : RESTART_CLEARANCE;
     for (const o of this.allPlayers) {
       if (o.sentOff || o.gid === r.takerGid) continue;
+      // Strikers HOLD THE LINE at their own goal kicks (Phase 71, user
+      // report "站到对面球门里…开大脚完全没有越位" + the ruling that goal
+      // kicks now play under normal offside): campers stranded deep by the
+      // previous attack get walked back to the line during the setup, so
+      // the punt is a flick-on contest, not a goalmouth cherry-pick. Must
+      // run BEFORE the same-side skip below (teammates are otherwise free).
+      if (r.kind === 'goalKick' && o.side === r.side && o.role !== 'GK') {
+        const team = this.teams[r.side];
+        const line = offsideLineLocalX(team, this.teams[1 - r.side].players, team.localX(this.ball.pos.x));
+        const lx = team.localX(o.pos.x);
+        if (lx > line - 0.3) {
+          o.pos.x = (line - 0.3) * team.attackDir;
+          o.vel.x *= 0.2; // braced at the line, like every restart clamp
+        }
+      }
       if (o.side === r.side && r.kind !== 'penalty') continue; // only penalties hold teammates
       if (o.side !== r.side && r.kind === 'penalty' && o.role === 'GK') continue; // keeper keeps the line
       // Wall members pass freely (Phase 32): their slot sits on the GOAL

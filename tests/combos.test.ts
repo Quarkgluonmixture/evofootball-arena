@@ -84,12 +84,16 @@ describe('third man — the bounce (Phase 34)', () => {
 });
 
 describe('套边 — the overlap (Phase 34)', () => {
-  it('wide sides complete overlaps; narrow sides never even license one', { timeout: 480000 }, () => {
-    const wide = harvest(flat(0.5, { attackingWidth: 0.85 }), (s) => s.overlaps, 48);
-    const narrow = harvest(flat(0.5, { attackingWidth: 0.15 }), (s) => s.overlaps, 48);
+  it('wide sides complete overlaps; narrow sides never even license one', { timeout: 960000 }, () => {
+    // 48 → 96 seeds (Phase 71 hardening): at ~0.13/match a 48-seed pool
+    // holds λ≈6 but trajectory reshuffles kept landing 1-5 (this pin has
+    // re-rolled under 47, and again under 71's goal-kick offside) — at 96
+    // the ≥2 floor sits several σ under the rate instead of one streak away.
+    const wide = harvest(flat(0.5, { attackingWidth: 0.85 }), (s) => s.overlaps, 96);
+    const narrow = harvest(flat(0.5, { attackingWidth: 0.15 }), (s) => s.overlaps, 96);
     // The license gate is deterministic: width 0.15 < 0.3 ⇒ never granted.
     expect(narrow).toBe(0);
-    // Structurally rare in 6v6 (no wing-backs) — probed ~0.13/match; alive ≥ 2/48.
+    // Structurally rare in 6v6 (no wing-backs) — probed ~0.13/match; alive ≥ 2/96.
     expect(wide).toBeGreaterThanOrEqual(2);
   });
 });

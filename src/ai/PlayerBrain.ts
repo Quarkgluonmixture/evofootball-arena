@@ -147,7 +147,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // judgment on tight ones — the referee judges at +0.2m, so the marginal
   // band is exactly where real flags come from (a runner who broke on the
   // previous kick and hasn't checked back level yet).
-  const offsideExemptKick = kickKind === 'kickIn' || kickKind === 'corner' || kickKind === 'goalKick';
+  // DELIBERATE law deviation (Phase 71, user call "门将开大脚应该有越位"):
+  // real goal kicks are offside-exempt, but at this match scale the
+  // exemption read as a legal cherry-pick — a striker camped at the
+  // opponent's goal, fed by the timeout punt (probed: 19% of goal kicks
+  // had a man within 12m of goal). Goal kicks now play under normal
+  // offside, same family as the offside→goal-kick restart simplification.
+  // Kick-ins keep the real throw-in exemption; corners are geometrically
+  // exempt anyway (you cannot be offside level with the goal line ball).
+  const offsideExemptKick = kickKind === 'kickIn' || kickKind === 'corner';
   const offLine = offsideLineLocalX(team, opp.players, localX) + 2.2;
   // Territory pressure (Phase 27): 0 while the move is fresh or gaining
   // ground, 1 after ~8s of possession going nowhere. It tilts every carrier

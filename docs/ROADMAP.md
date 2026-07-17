@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-70 (the curve trilogy complete: chips, swinging switches, bent through balls)
+# Roadmap — shipped through phase-71 (goal kicks play under offside — the cherry-pick dies)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -284,7 +284,29 @@ straight and the untempered +44% festival). vitest **402** (+3:
 threaded bender + straight circulation contract, swing-away-from-
 threat, pre-compensated landing); visual 109+45; fingerprint
 REBASELINED `bd7ba2da…`.)
-⭐ **Next: play report (ELEVEN unplayed phases — fatigue, reaction
++ ✅ **phase-71 SHIPPED** (**goal-kick OFFSIDE + the line-holding
+clamp** — user report "队员站到对面球门里,门将开大脚完全没有越位" and
+ruling "门将开大脚应该有越位". Probed first: the real-law goal-kick
+exemption + the brain's exemption-aware targeting made cherry-picking
+LEGAL — 19% of goal kicks had an attacker camped within 12m of the
+opponent's goal, 37% beyond the line, and the timeout punt targeted
+him 12 times in 40 matches. Two fixes: (1) DELIBERATE law deviation,
+user-ratified — goal kicks now play under normal offside (same family
+as the offside→goal-kick restart simplification; kick-ins keep the
+real throw-in exemption, corners are geometrically exempt); (2)
+strikers HOLD THE LINE during their own goal-kick setup (the restart
+clamp idiom — walked back to the offside line, braced; the first cut
+sat below the same-side skip and never ran). Re-probe: beyond-line 0%
+(37%), punts at stranded men 0 (12), goalmouth camping 19%→2.7%
+(the residue = legal line-level positioning vs deep blocks).
+Calibrate 2.81/2.07/3.42 ≈ neutral; offsides 2.01/match. vitest 402
+(overlap floor pin hardened 48→96 seeds — its third reshuffle);
+visual 109+43; fingerprint REBASELINED `28002dfc…`.)
+⭐ **Next: phase-72 the TACTICAL CAMERA (user design: replace the
+behind-goal cam with a dedicated 3D tactical feed; ALL tactical info
+lives there and elements show only while ACTIVE — shape lines, press
+convergence, line-break/offside flashes; the always-on broadcast
+layer + its checkbox die) → play report (TWELVE unplayed phases — fatigue, reaction
 gate, unset wall, bench, discipline, aerial channel, underdog shift,
 dugout, shapes, chips, curves — + the band verdict) → N5b def-menu
 expansion (the 16/0 watch) → N6 market signs for style fit.
