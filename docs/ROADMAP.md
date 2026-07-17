@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-81 (probe session: opposite board cultures, mid-41 takes 991, goals-band = variance)
+# Roadmap — shipped through phase-82 (probe: GOAL INFLATION IS REAL — the press-meta equilibrium, ~6-7 goals by gen 24)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -517,13 +517,31 @@ band: 6 seeds × 4 seasons = 2.42-3.45, mean 2.78 — the phase-80
 new lead worth its own look someday), NOT a 79/80 drift; the
 standing ~2.8-vs-contract-2.3-2.6 watch stands as before, verdict
 = the user's play feel.)
-⭐ **Next: user's Suno BGM lands → wire music slots (title done by
-user; league/reel/ceremony/shootout queued) → the goals-warming-
-with-generations lead (probe: goals/match vs generation curve).**
-The user PLAYS CONTINUOUSLY — casual observations ARE the play
-report stream. Parked: foot IK/skinned meshes/cloth, celebration
-choreography (sim-touching), amb loop human listen (user's ears).
-HEAD fingerprint `c8d81a2e…` (phase-80 rebaseline; 81 probe-only).
++ ⚠⚠ **phase-82 SHIPPED** (**GOAL INFLATION IS REAL** —
+`goals-warming.ts` probe, observation-only: goals/match climb
+MONOTONICALLY in every world tested — 424242 3.0→5.9, 991 2.7→6.8,
+777 3.6→6.4 by gen ~24. Calibrate only ever sampled seasons 1-8, so
+this was invisible; played long leagues LIVE in the inflation zone.
+DIAGNOSIS (attr+gene means at gen 0/12/23): NOT an attribute arms
+race — defending/reflexes HOLD or rise under the budget, finishing
++0.03-0.07 only. The mover is the GENE meta: pressIntensity
+0.44→0.64-0.88 league-wide while shootBias falls 0.5→0.15-0.44 —
+evolution converges on universal HIGH PRESS + shot selectivity;
+pressing creates turnovers and open pitches both ways, chance
+quality soars, and goals inflate as the equilibrium's side effect.
+The phase-58 energy tax does not bind hard enough to stop it. NO
+FIX SHIPPED — this is a game-feel call the USER owns: (a) accept
+chaos-football as the evolved truth, (b) reprice the press
+(stamina/turnover economics) so the equilibrium lands lower, or
+(c) an absolute defensive anchor in fitness (currently pure
+relative results — league-wide defensive erosion is unpunished).
+Fingerprint untouched.)
+⭐ **Next: USER DECISION on goal inflation (a/b/c above) → user's
+Suno BGM lands → wire music slots.** The user PLAYS CONTINUOUSLY —
+casual observations ARE the play report stream. Parked: foot IK/
+skinned meshes/cloth, celebration choreography (sim-touching), amb
+loop human listen (user's ears).
+HEAD fingerprint `c8d81a2e…` (phase-80 rebaseline; 81/82 probe-only).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

@@ -1309,3 +1309,17 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   sampling variance + a SEASON-COUNT effect (goals warm as
   ecologies evolve — logged as a fresh lead), not a 79/80 drift;
   the ~2.8 standing watch is unchanged, verdict = the user's feel.
+- ⚠⚠ **phase-82 SHIPPED** (**GOAL INFLATION** — `goals-warming.ts`,
+  observation-only, fingerprint untouched). Goals/match climb
+  monotonically to ~6-7 by gen 24 in ALL worlds (424242 3.0→5.9,
+  991 2.7→6.8, 777 3.6→6.4); calibrate's 1-8-season window never
+  saw it. Diagnosis: attributes HOLD under the budget (defending
+  even rises) — the mover is the tactical-gene meta: league-wide
+  pressIntensity 0.44→0.64-0.88 with shootBias collapsing to
+  selective shooting. Universal high press = turnovers + open
+  pitches both ways = chance quality soars = goals inflate as an
+  equilibrium side effect the phase-58 energy tax fails to brake.
+  NO FIX — the user owns the call: accept chaos-football / reprice
+  the press / add an absolute defensive anchor to the
+  results-relative fitness (league-wide defensive erosion is
+  currently unpunished — the red-queen hole).
