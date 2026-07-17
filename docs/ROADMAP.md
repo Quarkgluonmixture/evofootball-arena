@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-71 (goal kicks play under offside — the cherry-pick dies)
+# Roadmap — shipped through phase-72 (the ANALYST FEED: one tactical camera, info only at its moment)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -302,11 +302,22 @@ sat below the same-side skip and never ran). Re-probe: beyond-line 0%
 Calibrate 2.81/2.07/3.42 ≈ neutral; offsides 2.01/match. vitest 402
 (overlap floor pin hardened 48→96 seeds — its third reshuffle);
 visual 109+43; fingerprint REBASELINED `28002dfc…`.)
-⭐ **Next: phase-72 the TACTICAL CAMERA (user design: replace the
-behind-goal cam with a dedicated 3D tactical feed; ALL tactical info
-lives there and elements show only while ACTIVE — shape lines, press
-convergence, line-break/offside flashes; the always-on broadcast
-layer + its checkbox die) → play report (TWELVE unplayed phases — fatigue, reaction
++ ✅ **phase-72 SHIPPED** (**the ANALYST FEED** — user design after the
+"看不懂" verdict on the always-on layer + the real-tactical-cam
+discussion: ONE dedicated camera (`tacfeed`, near-vertical, static,
+everyone in frame — the UEFA lesson that shapes carry the information)
+REPLACES the behind-goal button (behindGoal survives for replay
+auto-framing); ALL tactical info lives only there, and each element
+gates on its own MOMENT: defensive LINES per team (base — line height
+IS identity), the block HULL only while the defending side is SET
+(Defend/Press), press CONVERGENCE lines chaser→ball only while the
+hunt is on (the unreadable water-ripples die), and the OFFSIDE FLASH
+— the defending line burns amber only while a pass flies toward it.
+The 📡 checkbox dies (the camera IS the toggle); the mini formation
+map shows only in-feed. Render-only, fingerprint IDENTITY `28002dfc…`;
+vitest 403 (+1 camera pin); visual 109+**47** (7 new: each element
+fires in-feed, everything dark outside it).)
+⭐ **Next: play report (THIRTEEN unplayed phases — fatigue, reaction
 gate, unset wall, bench, discipline, aerial channel, underdog shift,
 dugout, shapes, chips, curves — + the band verdict) → N5b def-menu
 expansion (the 16/0 watch) → N6 market signs for style fit.

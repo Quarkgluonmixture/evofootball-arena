@@ -286,8 +286,12 @@ export class ThreeMatchRenderer {
       this.scoreBug.classList.add('hidden');
       this.cameraCtl.update({ x: 0, z: 0, vx: 0, vz: 0 }, dt);
     }
-    this.broadcast.update(state, flags.broadcast, dt);
-    this.updateTacmap(state, flags.broadcast);
+    // The analyst layer lives ONLY in the tacfeed camera (Phase 72, user
+    // design): the camera choice IS the toggle, and each element gates on
+    // its own moment inside the layer.
+    const tacfeed = this.cameraCtl.mode === 'tacfeed';
+    this.broadcast.update(state, tacfeed);
+    this.updateTacmap(state, tacfeed);
     this.fx.update(dt);
     this.goals[0].update(dt);
     this.goals[1].update(dt);
@@ -528,8 +532,10 @@ export class ThreeMatchRenderer {
     coaches: number;
     crowd: number;
     crowdArousal: number;
+    broadcastLines: boolean;
     broadcastBlock: boolean;
-    pressPulses: number;
+    pressConverge: boolean;
+    offsideFlash: boolean;
     tacmapVisible: boolean;
     goals: number;
     cameraMode: CameraMode;
@@ -549,8 +555,10 @@ export class ThreeMatchRenderer {
       coaches: this.coaches.length,
       crowd: this.crowd.count,
       crowdArousal: this.crowd.arousal,
+      broadcastLines: this.broadcast.linesVisible,
       broadcastBlock: this.broadcast.blockVisible,
-      pressPulses: this.broadcast.pulsesFired,
+      pressConverge: this.broadcast.pressVisible,
+      offsideFlash: this.broadcast.offsideFlash,
       tacmapVisible: !this.tacmap.classList.contains('hidden'),
       goals: 2,
       cameraMode: this.cameraCtl.mode,

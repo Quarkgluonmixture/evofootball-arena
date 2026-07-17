@@ -13,10 +13,6 @@ export interface UiFlags {
   shotVector: boolean;
   marking: boolean;
   chasers: boolean;
-  /** The tactical BROADCAST layer (Phase 68, N4): block outline, press
-   * waves, the mini formation map. Presentation-grade — ON by default,
-   * unlike the debug overlays above. */
-  broadcast: boolean;
 }
 
 export const defaultFlags = (): UiFlags => ({
@@ -27,7 +23,6 @@ export const defaultFlags = (): UiFlags => ({
   shotVector: true,
   marking: false,
   chasers: false,
-  broadcast: true,
 });
 
 /** The overlay-channel subset of UiFlags — shared by the 2D and 3D overlays. */

@@ -16,7 +16,7 @@ const CAMERA_LABELS: Array<[CameraMode, string]> = [
   ['tactical', t('Tactical')],
   ['broadcast', t('TV')],
   ['follow', t('Ball')],
-  ['behindGoal', t('Goal')],
+  ['tacfeed', t('Tac feed')],
   ['orbit', t('Orbit')],
 ];
 
@@ -115,9 +115,6 @@ export class LeftPanel {
     // HT/FT auto-highlights (Phase 33): watched 3D matches replay their
     // goals + big saves at the whistles; ⏭ skips a running reel.
     presSec.appendChild(checkbox(t('🎬 Auto highlights (HT/FT)'), false, (v) => actions.setAutoHighlights(v)));
-    // The tactical BROADCAST layer (Phase 68, N4) — presentation, not debug:
-    // block outline + press waves + the mini formation map, on by default.
-    presSec.appendChild(checkbox(t('📡 Tactical broadcast'), flags.broadcast, (v) => actions.setFlag('broadcast', v)));
     presSec.appendChild(checkbox(t('Sound FX (beeps)'), false, (v) => actions.setSound(v)));
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));

@@ -256,6 +256,13 @@ describe('cameraGoalFor', () => {
     expect(right.px).toBe(28);
   });
 
+  it('tacfeed is the near-vertical everyone-in-frame analyst view (72)', () => {
+    const g = cameraGoalFor('tacfeed', { x: 30, z: 10, vx: 5, vz: 0 });
+    expect(g.py).toBeGreaterThan(70); // higher than every other mode
+    expect(g.px).toBe(0); // static — the shapes carry the information
+    expect(g.lx).toBe(0);
+  });
+
   it('behindGoal sits behind the goal nearest the ball', () => {
     expect(cameraGoalFor('behindGoal', { x: 30, z: 0, vx: 0, vz: 0 }).px).toBeGreaterThan(45);
     expect(cameraGoalFor('behindGoal', { x: -30, z: 0, vx: 0, vz: 0 }).px).toBeLessThan(-45);

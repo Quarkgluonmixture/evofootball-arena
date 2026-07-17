@@ -41,8 +41,8 @@ check('2 goal models exist', info?.goals === 2);
 check('2 coaches stand the touchline (66)', info?.coaches === 2, `coaches=${info?.coaches}`);
 // 66.1: the seated crowd is instanced and alive (animated in the update loop).
 check('the crowd is seated (66.1)', (info?.crowd ?? 0) > 200, `crowd=${info?.crowd}`);
-// 68 (N4): the broadcast inset is up by default.
-check('mini formation map shows (68)', info?.tacmapVisible === true);
+// 72: tactical info lives ONLY in the tacfeed camera — hidden at boot.
+check('mini formation map hidden outside tacfeed (72)', info?.tacmapVisible === false);
 
 const shot3d = await page.locator('#three-host canvas.gl-canvas').screenshot();
 check('3D canvas renders non-blank', shot3d.length > 10000, `${shot3d.length} bytes`);
@@ -99,8 +99,6 @@ for (let i = 0; i < 60; i++) {
   seen.banner ||= d.bannerVisible;
   seen.netShake ||= d.netShaking;
   seen.crowdStirred ||= d.crowdArousal > 0.1; // 66.1: a shot/save/goal moved the stands
-  seen.blockOutline ||= d.broadcastBlock; // 68: the defensive hull drew
-  seen.pressWave ||= d.pressPulses > 0; // 68: a hunting pack pulsed
   if (d.ballMarker && !crowdedShotTaken) {
     crowdedShotTaken = true;
     seen.ballMarker = true;
@@ -121,15 +119,7 @@ check('ball trail appears on kicks', seen.ballTrail);
 check('crowd marker flags a hidden ball', seen.ballMarker, crowdedShotTaken ? 'screenshot 2-crowded.png' : '');
 check('labels declutter in crowds (<10 visible)', seen.declutter);
 check('the stands stirred at least once (66.1)', seen.crowdStirred === true);
-check('defensive block outline drew in live play (68)', seen.blockOutline === true);
-check('press wave pulsed at least once (68)', seen.pressWave === true);
-// The broadcast toggle reaches the renderer: off hides the inset.
-await page.click('label:has-text("Tactical broadcast")');
-await page.waitForTimeout(250);
-check('broadcast toggle hides the inset (68)', (await page.evaluate(() => window.__evo.three()))?.tacmapVisible === false);
-await page.click('label:has-text("Tactical broadcast")');
-await page.waitForTimeout(250);
-check('broadcast toggle restores the inset (68)', (await page.evaluate(() => window.__evo.three()))?.tacmapVisible === true);
+
 
 const goalsInMatch1 = await page.locator('#event-feed .ev.goal').count();
 if (goalsInMatch1 > 0) {
@@ -158,10 +148,35 @@ for (let i = 0; i < 50; i++) {
 await page.screenshot({ path: `${OUT}/3-broadcast-attack.png` });
 check('broadcast camera frames final-third attacks', framed);
 
-// ---- goalkeeper identity close-up (behind-goal frames the keeper) ----
-await page.click('button:has-text("Goal")');
-await page.waitForTimeout(1500);
-await page.screenshot({ path: `${OUT}/3b-gk-identity.png` });
+// ---- the ANALYST feed (72): tactical info only here, elements event-gated ----
+await page.click('button:has-text("Tac feed")');
+await page.evaluate(() => window.__evo.app.setSpeed(8));
+const tac = { lines: false, block: false, converge: false, flash: false, inset: false };
+for (let i = 0; i < 80; i++) {
+  const d = await page.evaluate(() => window.__evo.three());
+  if (!d) break;
+  tac.lines ||= d.broadcastLines;
+  tac.block ||= d.broadcastBlock;
+  tac.converge ||= d.pressConverge;
+  tac.flash ||= d.offsideFlash;
+  tac.inset ||= d.tacmapVisible;
+  if (await page.evaluate(() => window.__evo.reelActive())) {
+    await page.evaluate(() => window.__evo.app.skipMatch());
+    await page.waitForTimeout(150);
+  }
+  await page.waitForTimeout(200);
+}
+check('tacfeed: defensive lines draw (72)', tac.lines === true);
+check('tacfeed: set-block hull appears (72)', tac.block === true);
+check('tacfeed: press convergence appears (72)', tac.converge === true);
+check('tacfeed: offside flash fires (72)', tac.flash === true);
+check('tacfeed: the inset shows here (72)', tac.inset === true);
+await page.screenshot({ path: `${OUT}/3b-tacfeed.png` });
+await page.click('button:has-text("TV")');
+await page.waitForTimeout(300);
+const offFeed = await page.evaluate(() => window.__evo.three());
+check('leaving tacfeed hides the layer (72)', offFeed?.tacmapVisible === false && offFeed?.broadcastLines === false);
+await page.evaluate(() => window.__evo.app.setSpeed(1));
 
 // ---- cinematic mode in 3D (stage button since 34.1) ----
 await page.click('.cinematic-enter');

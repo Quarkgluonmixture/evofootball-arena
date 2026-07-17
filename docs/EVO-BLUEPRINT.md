@@ -1054,3 +1054,29 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   volume didn't move because the BRAIN's restored gates stop the bad
   punt before the flag ever shows. vitest 402 (the overlap rare-event
   floor hardened 48→96 seeds, its third reshuffle); visual 109+43.
+- ✅ **phase-72 SHIPPED** (**the ANALYST FEED** — the N4 broadcast layer
+  redesigned to the user's spec after their "看不懂" verdict; render-only,
+  fingerprint IDENTITY-verified `28002dfc…`). The design conversation's
+  two findings, now built: real tactical feeds work because (a) the
+  near-vertical everyone-in-frame CAMERA makes the shapes themselves
+  legible, and (b) annotation answers a QUESTION at a MOMENT — an
+  always-on overlay is wallpaper. So: new `tacfeed` camera mode
+  (0,84,26 → center, static) replacing the behind-goal BUTTON
+  (behindGoal itself survives as the replay auto-camera for
+  goals/saves); the entire tactical layer renders only in this mode
+  (the camera is the toggle — the 📡 checkbox and UiFlags.broadcast
+  are gone), and inside it each element gates on its own moment:
+  defensive LINES per team always (the one object every fan knows —
+  line height IS identity); the block HULL only while the defending
+  side is SET in Defend/Press ("the block has formed"); press
+  CONVERGENCE segments chaser→ball only during an active Press hunt
+  (replacing the water-ripple rings nobody could read); the OFFSIDE
+  FLASH — the defending line turns amber at 0.85 opacity only while a
+  pass is in flight toward it from in front. The mini formation map
+  shows only in-feed. Suite: 7 new checks (each element observed
+  firing in-feed at 8×; leaving the feed darkens everything), the GK
+  identity screenshot section repurposed, `.gl-canvas` selectors from
+  68 unchanged. vitest 403 (+1: tacfeed is the highest, static mode).
+  Screenshot eyeballed: red line + amber flash + grey hull +
+  convergence + inset all live in one frame, reading exactly like a
+  UEFA tactical still.

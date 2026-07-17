@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { HALF_L } from '../sim/constants';
 import { clamp } from '../utils/math';
 
-export type CameraMode = 'tactical' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty';
+export type CameraMode = 'tactical' | 'tacfeed' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty';
 
 export interface CameraGoal {
   px: number;
@@ -28,6 +28,12 @@ export function cameraGoalFor(
       // High angled full-pitch view: formations readable, both goals + corner
       // flags inside the frame.
       return { px: 0, py: 62, pz: 47, lx: 0, ly: 0, lz: 2 };
+    case 'tacfeed':
+      // The ANALYST feed (Phase 72, user design): the UEFA-tactical-cam
+      // lesson — near-vertical, static, every player in frame at once, so
+      // the SHAPES carry the information. The one camera where the
+      // broadcast layer draws its tactical elements.
+      return { px: 0, py: 84, pz: 26, lx: 0, ly: 0, lz: 0 };
     case 'broadcast': {
       // TV gantry on the +z sideline. Pans with play, pushes in as the ball
       // enters a final third (attack), pulls back through midfield
