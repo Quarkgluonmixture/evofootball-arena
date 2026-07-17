@@ -1345,3 +1345,16 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   conversion), mechanism-price the overperf contexts after a
   shot-mix probe, acceptance = late 2.8-3.3 / conv ≤35% / overperf
   →1.2×; fitness anchor only as last resort.
+- ⚠ **phase-85 SHIPPED** (**contested finishing — gate FAILED,
+  productively**; fingerprint REBASELINED `0c550c20…`). Both
+  touchpoints real (defender-quality-scaled shot pressure, ×1.0 at
+  0.5 = early-preserving; keeper saveP collapse softened with
+  ±14pp reflexes) — and the 24-gen gate still failed (late 5.6-6.4,
+  conv 55-69%). The finding: the meta's sitters are pressure≈0 BY
+  CONSTRUCTION (through-balls behind, cutbacks to unmarked men) —
+  a pressure-scaled gradient multiplies zero on exactly the
+  inflating shots. Defense's evolvable answer is UPSTREAM: don't
+  concede the situation. Next: shot-context telemetry (pressure/
+  oneVone/assist kind on shotLog), split late-gen goals by
+  situation, then price that situation's upstream defense
+  (interception × defending, recovery races, box marking).

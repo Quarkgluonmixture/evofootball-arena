@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-84 (inflation = CONVERSION: xG/shot doubles AND overperformance hits 2.5x)
+# Roadmap — shipped through phase-85 (contested finishing — gate FAILED: the inflation shots are uncontested by construction)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -571,9 +571,31 @@ contexts by MECHANISM after a shot-type-mix probe
 late equilibrium 2.8-3.3, conversion ≤35%, overperf →1.2×, early
 gens ≈unchanged; ④ fitness anchor (c) only if mechanisms fail.
 Probe-only, fingerprint untouched `8e1b75e2…`.)
-⭐ **Next: execute the conversion plan (① read tryShot + shot-mix
-probe → mechanism fixes → warming verdict) → user's Suno BGM lands
-→ wire music slots.** The user PLAYS CONTINUOUSLY —
++ ⚠ **phase-85 SHIPPED** (**contested finishing — the gate FAILED
+and the failure is the lesson**. User chose option 2 (defense gets
+a gradient at conversion). Shipped both touchpoints: ① the nearest
+closing OUTFIELDER's `defending` scales the shot's felt pressure
+(×0.55 statue → ×1.45 master, ×1.0 at 0.5 so early gens are
+preserved by construction; the xG model stays defender-blind like
+real xG); ② the keeper's saveP collapse softened (−0.6→−0.45·xG)
+with a stronger reflexes swing (±11→±14pp) — elite keepers now
+save SOME big chances, early shots move ≤+2pp. vitest 413 green,
+early gens unchanged, BOTH LEVERS REAL BUT THE 24-GEN GATE FAILED:
+late means still 5.6-6.4, conv 55-69%, overperf 2.2-2.6×. WHY (the
+finding): the meta's manufactured chances are pressure≈0 BY
+CONSTRUCTION — through-balls behind the line and cutbacks produce
+shooters with no defender inside 6m, so a pressure-scaled gradient
+multiplies zero exactly on the shots that inflate. The evolvable
+defensive answer must live UPSTREAM of the shot: not conceding the
+situation (killer-pass interception × defending, recovery races,
+box marking). NEXT CUT (before any lever): shot-context telemetry
+— extend shotLog with pressure/oneVone/assist-context and split
+late-gen goals by situation; then price the dominant situation's
+UPSTREAM defense. Calibrate 3.34/3.26/2.70; fingerprint REBASELINED
+`0c550c20…`; visual 109+54.)
+⭐ **Next: shot-context telemetry probe → upstream defensive
+gradient for the dominant situation → user's Suno BGM lands →
+wire music slots.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

@@ -1018,6 +1018,29 @@ export function performShot(match: Match, shooter: Player): void {
   const q = shotQuality(match, shooter);
   const d = dist(shooter.pos, target);
   const pressure = pressureAt(shooter.pos, opp.players);
+  // CONTESTED FINISHING (Phase 85, the inflation fix the user chose):
+  // pressureAt is distance-only — a 0.9-defending stopper closing on the
+  // strike degraded it exactly like a statue, so defense had NO evolvable
+  // gradient at the conversion point and late leagues converted 58-77% of
+  // all shots (phase-84 anatomy). The nearest closing OUTFIELDER's quality
+  // now scales the pressure the strike feels: ×1.0 at defending 0.5
+  // (early-gen behavior preserved by construction), ×0.55 vs a statue,
+  // ×1.45 vs a master. The xG model stays blind to defender quality —
+  // like real xG — so evolved defending shows up as UNDER-performance.
+  let contest = pressure;
+  if (pressure > 0) {
+    let bestD = Infinity;
+    let presser: Player | null = null;
+    for (const o of opp.players) {
+      if (o.sentOff || o.role === 'GK') continue;
+      const dd = dist(o.pos, shooter.pos);
+      if (dd < bestD) {
+        bestD = dd;
+        presser = o;
+      }
+    }
+    if (presser) contest = pressure * (0.55 + presser.attrs.defending * 0.9);
+  }
   // THE CHIP (Phase 69, user ask 挑射/吊射): a keeper OFF HIS LINE can be
   // beaten over the top — the ecology's first mechanism that PUNISHES
   // keeperAggression (the sweeper's line height is exactly what opens the
@@ -1047,7 +1070,7 @@ export function performShot(match: Match, shooter: Player): void {
   // base grouping keeps the on-target share honest without touching the
   // pressure physics (failure mode 16: aim/spread beat reach/saveP here).
   const spread =
-    (0.022 + d * 0.0028 + pressure * 0.05) *
+    (0.022 + d * 0.0028 + contest * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
     (oneVone ? 0.7 : 1) *
     orientationNoiseMul(misalign, shooter.attrs.dribbling);
@@ -1623,7 +1646,13 @@ export function tryKeeperSave(match: Match): void {
   const saveP = shot.placed
     ? clamp(0.7 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) *
       Math.max(shot.difficulty, 0.85)
-    : clamp(0.48 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) * shot.difficulty;
+    // Phase 85: the xG discount collapsed saveP to the floor at the meta's
+    // 0.3-0.5 xG (0.48−0.6·xG ⇒ ~0.2), where reflexes' ±11pp couldn't
+    // matter — the keeper had no evolvable answer to manufactured sitters.
+    // Softer collapse (−0.45·xG), stronger reflexes swing (±14pp): elite
+    // keepers now save SOME big chances (real big-chance save% 15-45%),
+    // early-gen shots (xG≈0.16) move ≤+2pp.
+    : clamp(0.48 - shot.xg * 0.45 + (gk.attrs.reflexes - 0.5) * 0.28, 0.1, 0.92) * shot.difficulty;
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;
