@@ -1323,3 +1323,15 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   the press / add an absolute defensive anchor to the
   results-relative fitness (league-wide defensive erosion is
   currently unpunished — the red-queen hole).
+- ⚠ **phase-83 SHIPPED** (**press-line coupling — necessary, not
+  sufficient**; fingerprint REBASELINED `8e1b75e2…`). The free lunch
+  was real: line height was formationDepth's alone, so 0.88-press
+  couch-defending paid turnovers at zero space-behind risk; now the
+  defending block steps up (press−0.5)×8m for outfielders and press
+  equilibria retreat to 0.55-0.64 (interior — the gradient bound).
+  But late-gen goals still 5.3-6.5: the press meta was a passenger.
+  Standing shape of the mystery: shot SELECTIVITY collapses
+  (shootBias →0.12-0.33) while goals double — round 2 must split
+  VOLUME vs CONVERSION (shots + xG through the generations) before
+  any further lever. vitest 413, visual 109+53, calibrate
+  3.57/3.71/2.43 (early-window variance).

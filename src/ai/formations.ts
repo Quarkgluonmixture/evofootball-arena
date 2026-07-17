@@ -94,7 +94,16 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
   // formationDepth: 0 = sit 6m deeper, 1 = push 6m higher.
   const depth = (g.formationDepth - 0.5) * 12;
 
-  let x = base.x + slide + depth + MODE_SHIFT[team.mode];
+  // PRESSING BUYS ITS RISK (Phase 83, the goal-inflation fix): a pressing
+  // side's defensive block steps UP with its press gene — outfielders only,
+  // defending phase only. Before this, line height was formationDepth's
+  // alone, so evolution could chase-press from a deep couch: turnovers with
+  // ZERO space conceded behind — the free lunch that rode pressIntensity to
+  // 0.88 and the league to 6-7 goals (phase-82 anatomy). Now the line you
+  // press with is the line the through-ball/route-one/chip channels attack.
+  const pressUp = hasBall || p.role === 'GK' ? 0 : (g.pressIntensity - 0.5) * 8;
+
+  let x = base.x + slide + depth + pressUp + MODE_SHIFT[team.mode];
 
   // Rest defence (Phase 31): the DF slot NEVER joins the siege. With the
   // ball deep in the opponent half, slide (+10) + Attack shift (+10) used

@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-82 (probe: GOAL INFLATION IS REAL — the press-meta equilibrium, ~6-7 goals by gen 24)
+# Roadmap — shipped through phase-83 (press buys its risk — line coupling; inflation persists, press was a passenger)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -536,8 +536,25 @@ chaos-football as the evolved truth, (b) reprice the press
 (c) an absolute defensive anchor in fitness (currently pure
 relative results — league-wide defensive erosion is unpunished).
 Fingerprint untouched.)
-⭐ **Next: USER DECISION on goal inflation (a/b/c above) → user's
-Suno BGM lands → wire music slots.** The user PLAYS CONTINUOUSLY —
++ ⚠ **phase-83 SHIPPED** (**PRESSING BUYS ITS RISK — necessary, NOT
+sufficient**: line height was `formationDepth`'s alone, fully
+decoupled from `pressIntensity` — evolution chase-pressed from a
+deep couch, turnovers at zero positional risk. Fix: the defending
+block steps up with the press gene (outfielders, defending phase,
+`(press−0.5)×8m`), so the through/route-one/chip channels attack
+the line the press exposes — the real-football tradeoff restored.
+MEASURED: press equilibria retreat 0.64-0.88 → 0.55-0.64 (interior
+✓ the gradient works) BUT goals still inflate (late means 5.3-6.5,
+Δ≈+3.0) — **the press meta was a PASSENGER, not the engine**.
+shootBias still collapses (0.12-0.33: extreme shot selectivity),
+pace drifts up. Next diagnostic cut: late-gen goals BY VOLUME vs
+CONVERSION (shots + xG per gen) — is inflation more shots, or the
+same shots converting double? Calibrate 3.57/3.71/2.43 (early
+window, world variance); vitest 413; visual 109+53; fingerprint
+REBASELINED `8e1b75e2…`.)
+⭐ **Next: inflation diagnosis round 2 (shots-vs-conversion per
+gen) → then the targeted fix (user decision if it means fitness
+anchor (c)) → user's Suno BGM lands → wire music slots.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
