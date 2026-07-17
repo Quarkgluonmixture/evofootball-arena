@@ -67,6 +67,7 @@ const ZH: Record<string, string> = {
   'Reset cam': '重置镜头',
   '🎬 Replay': '🎬 回放',
   'Sound FX (beeps)': '音效(蜂鸣)',
+  '📡 Tactical broadcast': '📡 战术转播',
   Presentation: '演出',
   '🎥 Cinematic': '🎥 影院模式',
   '📸 Screenshot': '📸 截图',

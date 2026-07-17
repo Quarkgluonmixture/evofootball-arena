@@ -398,8 +398,24 @@ const playerOverflow = await page.evaluate(() => {
   return s ? s.scrollWidth - s.clientWidth : 0;
 });
 check('phone: player center fits 390px (56)', playerOverflow <= 1, `overflow ${playerOverflow}px`);
+// 68 (user report): NOT letterboxed — full-viewport like the league screen.
+const playerH = await page.evaluate(() => document.querySelector('#player-screen')?.getBoundingClientRect().height ?? 0);
+check('phone: player center is FULL PAGE (68)', playerH > 400, `h=${playerH}px`);
 await page.screenshot({ path: `${OUT}/13c-phone-players.png` });
 await page.click('#topbar button:has-text("Players")'); // close it again
+
+// Phone: the evolution center (51) — same full-page contract (68).
+await page.click('#topbar button:has-text("Evolution")');
+await page.waitForTimeout(400);
+const evoH = await page.evaluate(() => document.querySelector('#evolution-screen')?.getBoundingClientRect().height ?? 0);
+const evoOverflow = await page.evaluate(() => {
+  const s = document.querySelector('#evolution-screen');
+  return s ? s.scrollWidth - s.clientWidth : 0;
+});
+check('phone: evolution center is FULL PAGE (68)', evoH > 400, `h=${evoH}px`);
+check('phone: evolution center fits 390px (68)', evoOverflow <= 1, `overflow ${evoOverflow}px`);
+await page.screenshot({ path: `${OUT}/13d-phone-evolution.png` });
+await page.click('#topbar button:has-text("Evolution")'); // close it again
 
 await page.evaluate(() => window.__evo.showCeremony());
 await page.waitForTimeout(400);

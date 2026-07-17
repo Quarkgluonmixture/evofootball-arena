@@ -104,6 +104,26 @@ describe('RenderStateAdapter', () => {
     expect(theme.players[0].role).toBe('GK');
   });
 
+  it('carries the broadcast-layer inputs: possession, modes, pressers (68)', () => {
+    const match = makeMatch();
+    for (let i = 0; i < 600; i++) match.step(DT);
+    const rs = buildRenderState(match, false);
+    expect(rs.possession).toBe(match.possessionSide);
+    expect(rs.modes).toEqual([match.teams[0].mode, match.teams[1].mode]);
+    expect(Array.isArray(rs.press)).toBe(true);
+    for (const c of rs.press!) {
+      expect([0, 1]).toContain(c.side);
+      expect(Math.abs(c.x)).toBeLessThanOrEqual(46);
+    }
+    // Interpolation passes the discrete broadcast fields through (late).
+    for (let i = 0; i < 60; i++) match.step(DT);
+    const b = buildRenderState(match, false);
+    const mid = interpolateStates(rs, b, 0.8);
+    expect(mid.possession).toBe(b.possession);
+    expect(mid.modes).toEqual(b.modes);
+    expect(mid.press).toEqual(b.press);
+  });
+
   it('the theme carries the named coach to the touchline; ad-hoc dugouts stay empty (66)', () => {
     const bare = buildRenderTheme(makeMatch());
     expect(bare.teams[0].coach).toBeUndefined();

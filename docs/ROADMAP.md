@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-67 (N5: the formation LIBRARY — three attack shapes coexist in an evolved world)
+# Roadmap — shipped through phase-68 (N4: the tactical BROADCAST layer — evolution visible in play)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -215,9 +215,30 @@ defensive shape) is now the queue's obvious next structural lever;
 and the goals band (~2.7 mean, 2.06-3.26 spread) ≈ real-league
 scoring — the band contract verdict belongs to the overdue play
 report.)
++ ✅ **phase-68 SHIPPED** (**N4 — the TACTICAL BROADCAST layer**:
+evolution visible IN PLAY, TV-graphics grade, render-only — fingerprint
+UNTOUCHED `484c5704…`. (1) The defensive-block outline: a soft
+team-colored hull under the defending outfielders — a low-32 bus and a
+press-23 line read differently at a glance; (2) press waves: the
+hunting pack's assigned chasers pulse expanding rings while their side
+is in Press mode; (3) the live mini formation map: a broadcast inset
+(bottom-right canvas, phone-sized at ≤640px) with both shapes + the
+ball, whatever the main camera does. All on a new `broadcast` flag in
+the PRESENTATION section (default ON — this is product, not debug);
+`RenderState` carries possession/modes/press (old replays degrade
+gracefully — the layer stays dark). + **the phone FULL-PAGE fix (user
+report "手机的演化和球员也要和联赛一样,不被截断,整页")**: the
+evolution center (51) and player center (56) were letterboxed at
+~260px on phones — built after the Phase-28.3 league fix and never
+joined it; the cascade demands the override sit BELOW their base rules
+(same specificity), so it lives in a late media block. Now 657px full
+viewport, guarded by two new phone checks. vitest 395 (+1 broadcast
+fields); visual **109 + 45** (+3 phone, +5 broadcast incl. the toggle
+round-trip); the GL canvas is now `.gl-canvas` (the inset made
+'#three-host canvas' ambiguous).)
 ⭐ **Next: play report (NINE unplayed behavioral phases + the band
-verdict) → N4 — the TACTICAL BROADCAST layer → N5b def-menu expansion
-(the 16/0 watch) → N6 market signs for style fit.
+verdict) → N5b def-menu expansion (the 16/0 watch) → N6 market signs
+for style fit.
 Play reports interleave as always — **EIGHT unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
 🚫, the aerial channel, the underdog shift, the dugout 🎩); a play

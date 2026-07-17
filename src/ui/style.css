@@ -496,7 +496,10 @@ body.cinematic .cinematic-enter { display: none; }
   /* Full-viewport overlay (Phase 28.3): in the stacked phone layout the
      screen was absolutely positioned inside #stage and came out ~260px
      tall — the whole league centre lived in a letterbox. Fix it to the
-     viewport instead (below the topbar). */
+     viewport instead (below the topbar). The evolution/player centers get
+     the same fix in a LATE block at the end of this file (Phase 68) —
+     their base rules are declared after this media query, so adding them
+     here loses the cascade (same specificity, later declaration wins). */
   #league-screen,
   #rebirth-screen {
     position: fixed;
@@ -628,4 +631,32 @@ body.cinematic .cinematic-enter { display: none; }
   .dyn-cell { width: 12px; height: 12px; font-size: 8px; }
   .era-cell { height: 5px; }
   .dyn-row-line, .era-strip { grid-template-columns: 56px 1fr; }
+}
+
+/* The live mini formation map (Phase 68, N4) — the broadcast inset. */
+.tacmap {
+  position: absolute; right: 10px; bottom: 10px; z-index: 5;
+  width: 168px; height: 112px;
+  border: 1px solid var(--border); border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+.tacmap.hidden { display: none; }
+@media (max-width: 640px) {
+  .tacmap { width: 126px; height: 84px; right: 6px; bottom: 6px; }
+}
+
+/* Phone full-page for the evolution (51) and player (56) centers — Phase 68,
+   user report "手机的演化和球员也要和联赛一样,不被截断,整页". They were
+   built after the Phase-28.3 league-screen letterbox fix and never joined
+   it; this block must stay BELOW their base rules or the cascade re-applies
+   position:absolute (same specificity, later declaration wins). */
+@media (max-width: 640px) {
+  #evolution-screen,
+  #player-screen {
+    position: fixed;
+    inset: 0;
+    top: var(--topbar-h, 88px);
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+  }
 }

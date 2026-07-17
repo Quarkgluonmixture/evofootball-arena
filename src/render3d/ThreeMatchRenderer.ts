@@ -6,6 +6,7 @@ import type { UiFlags } from '../ui/actions';
 import { colorHex } from '../ui/dom';
 import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
+import { BroadcastLayer } from './BroadcastLayer';
 import { CameraController, type CameraMode } from './CameraController';
 import { CoachModel } from './CoachModel';
 import { CrowdSystem } from './CrowdSystem';
@@ -19,7 +20,7 @@ import {
 } from './PlayerModel';
 import type { FxEvent, RenderState, RenderTheme } from './RenderStateAdapter';
 import { createScene } from './SceneFactory';
-import { HALF_W } from '../sim/constants';
+import { BOX_DEPTH, BOX_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import { TEAM_SIZE } from '../sim/types';
 
 /** Half-time / full-time stroll speed (m/s) — an unhurried walk to the tunnel. */
@@ -47,6 +48,8 @@ export class ThreeMatchRenderer {
   private coaches: CoachModel[] = [];
   /** The living crowd (66.1) — idles, ripples on chances, erupts on goals. */
   private crowd = new CrowdSystem();
+  /** The tactical broadcast layer (68, N4): block outline + press waves. */
+  private broadcast = new BroadcastLayer();
   private kits: KitMaterials[] = [];
   private anim = new AnimationSystem();
   /** Half-time / full-time walk to the tunnel (Phase 41.1, render-only): per-gid
@@ -67,6 +70,7 @@ export class ThreeMatchRenderer {
   private scoreBug: HTMLDivElement;
   private scoreBugText = '';
   private vignette: HTMLDivElement;
+  private tacmap: HTMLCanvasElement;
 
   onSelectPlayer: ((gid: number) => void) | null = null;
   /** Optional external hook (sound etc.) fired once per fx event. */
@@ -76,6 +80,9 @@ export class ThreeMatchRenderer {
 
   constructor(host: HTMLElement) {
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
+    // Named so tools can tell the stage apart from the tacmap inset (68) —
+    // '#three-host canvas' alone matches both since the broadcast layer.
+    this.renderer.domElement.className = 'gl-canvas';
     this.renderer.setSize(CANVAS_W, CANVAS_H);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
@@ -87,7 +94,7 @@ export class ThreeMatchRenderer {
     this.scene.add(createPitch(maxAniso));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
-    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root);
+    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root);
 
     // Possession indicator: pulsing team-colored ring under the ball carrier.
     this.possessionMat = new THREE.MeshBasicMaterial({
@@ -111,7 +118,12 @@ export class ThreeMatchRenderer {
     this.scoreBug = document.createElement('div');
     this.scoreBug.className = 'score-bug hidden';
     this.scoreBug.addEventListener('click', () => this.onScoreBugTap?.());
-    host.append(this.vignette, this.scoreBug, this.banner);
+    // The live mini formation map (Phase 68, N4) — the broadcast inset.
+    this.tacmap = document.createElement('canvas');
+    this.tacmap.className = 'tacmap hidden';
+    this.tacmap.width = 168;
+    this.tacmap.height = 112;
+    host.append(this.vignette, this.scoreBug, this.banner, this.tacmap);
 
     // Renderer-owned event feedback.
     this.fx.hooks = {
@@ -203,6 +215,7 @@ export class ThreeMatchRenderer {
     });
 
     this.overlays.applyTheme(theme);
+    this.broadcast.applyTheme(theme);
     this.fx.reset();
     this.hideBanner();
     this.lastState = null;
@@ -273,6 +286,8 @@ export class ThreeMatchRenderer {
       this.scoreBug.classList.add('hidden');
       this.cameraCtl.update({ x: 0, z: 0, vx: 0, vz: 0 }, dt);
     }
+    this.broadcast.update(state, flags.broadcast, dt);
+    this.updateTacmap(state, flags.broadcast);
     this.fx.update(dt);
     this.goals[0].update(dt);
     this.goals[1].update(dt);
@@ -349,6 +364,56 @@ export class ThreeMatchRenderer {
       const s = 1 + Math.sin(this.pulsePhase) * 0.1;
       this.possessionRing.scale.set(s, s, 1);
     }
+  }
+
+  /**
+   * The live mini formation map (Phase 68, N4): a broadcast inset — tiny
+   * pitch, twelve dots, the ball. Both teams' CURRENT shape at a glance,
+   * whatever the main camera is doing. Hidden with the broadcast flag,
+   * without a match, and while the shootout theater owns the stage.
+   */
+  private updateTacmap(state: RenderState | null, on: boolean): void {
+    const show = state !== null && on && !state.shootout && this.theme !== null;
+    this.tacmap.classList.toggle('hidden', !show);
+    if (!show) return;
+    const ctx = this.tacmap.getContext('2d')!;
+    const W = this.tacmap.width;
+    const H = this.tacmap.height;
+    const X = (x: number): number => ((x + HALF_L) / (HALF_L * 2)) * (W - 10) + 5;
+    const Z = (z: number): number => ((z + HALF_W) / (HALF_W * 2)) * (H - 10) + 5;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(10, 22, 14, 0.82)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = 'rgba(240, 246, 252, 0.35)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(X(-HALF_L), Z(-HALF_W), X(HALF_L) - X(-HALF_L), Z(HALF_W) - Z(-HALF_W));
+    ctx.beginPath();
+    ctx.moveTo(X(0), Z(-HALF_W));
+    ctx.lineTo(X(0), Z(HALF_W));
+    ctx.stroke();
+    for (const sx of [-1, 1]) {
+      const gx = sx * HALF_L;
+      const bx = sx * (HALF_L - BOX_DEPTH);
+      ctx.strokeRect(
+        Math.min(X(gx), X(bx)), Z(-BOX_WIDTH / 2),
+        Math.abs(X(bx) - X(gx)), Z(BOX_WIDTH / 2) - Z(-BOX_WIDTH / 2),
+      );
+    }
+    for (const p of state.players) {
+      const color = this.theme!.teams[p.side].primary;
+      ctx.fillStyle = colorHex(color);
+      ctx.beginPath();
+      ctx.arc(X(p.x), Z(p.z), p.role === 'GK' ? 2.2 : 2.8, 0, Math.PI * 2);
+      ctx.fill();
+      if (p.role === 'GK') {
+        ctx.strokeStyle = 'rgba(240,246,252,0.8)';
+        ctx.stroke();
+      }
+    }
+    ctx.fillStyle = '#f8fafc';
+    ctx.beginPath();
+    ctx.arc(X(state.ball.x), Z(state.ball.z), 1.8, 0, Math.PI * 2);
+    ctx.fill();
   }
 
   /** Broadcast score bug: `RUS 2–1 OBS · 34'` (`· pens 3–2` during shootouts). */
@@ -463,6 +528,9 @@ export class ThreeMatchRenderer {
     coaches: number;
     crowd: number;
     crowdArousal: number;
+    broadcastBlock: boolean;
+    pressPulses: number;
+    tacmapVisible: boolean;
     goals: number;
     cameraMode: CameraMode;
     drawCalls: number;
@@ -481,6 +549,9 @@ export class ThreeMatchRenderer {
       coaches: this.coaches.length,
       crowd: this.crowd.count,
       crowdArousal: this.crowd.arousal,
+      broadcastBlock: this.broadcast.blockVisible,
+      pressPulses: this.broadcast.pulsesFired,
+      tacmapVisible: !this.tacmap.classList.contains('hidden'),
       goals: 2,
       cameraMode: this.cameraCtl.mode,
       drawCalls: this.renderer.info.render.calls,
@@ -502,6 +573,7 @@ export class ThreeMatchRenderer {
     this.banner.remove();
     this.scoreBug.remove();
     this.vignette.remove();
+    this.tacmap.remove();
     this.scene.traverse((obj) => {
       const mesh = obj as THREE.Mesh;
       if (mesh.geometry) mesh.geometry.dispose();

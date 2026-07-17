@@ -31,7 +31,7 @@ await page.addInitScript(() => localStorage.setItem('evofootball-lang', 'en'));
 await page.goto(URL, { waitUntil: 'networkidle' });
 // The app boots straight into 3D since Phase 27.5 — wait for ITS canvas
 // (the hidden 2D Pixi canvas never becomes visible on its own).
-await page.waitForSelector('#three-host canvas', { timeout: 15000 });
+await page.waitForSelector('#three-host canvas.gl-canvas', { timeout: 15000 });
 await page.waitForTimeout(1200);
 const info = await page.evaluate(() => window.__evo.three());
 check('3D renderer initializes', info !== null);
@@ -41,8 +41,10 @@ check('2 goal models exist', info?.goals === 2);
 check('2 coaches stand the touchline (66)', info?.coaches === 2, `coaches=${info?.coaches}`);
 // 66.1: the seated crowd is instanced and alive (animated in the update loop).
 check('the crowd is seated (66.1)', (info?.crowd ?? 0) > 200, `crowd=${info?.crowd}`);
+// 68 (N4): the broadcast inset is up by default.
+check('mini formation map shows (68)', info?.tacmapVisible === true);
 
-const shot3d = await page.locator('#three-host canvas').screenshot();
+const shot3d = await page.locator('#three-host canvas.gl-canvas').screenshot();
 check('3D canvas renders non-blank', shot3d.length > 10000, `${shot3d.length} bytes`);
 check('broadcast score bug shows', info?.scoreBugVisible === true);
 check('FX quality defaults to medium', info?.fxQuality === 'medium', `q=${info?.fxQuality}`);
@@ -97,6 +99,8 @@ for (let i = 0; i < 60; i++) {
   seen.banner ||= d.bannerVisible;
   seen.netShake ||= d.netShaking;
   seen.crowdStirred ||= d.crowdArousal > 0.1; // 66.1: a shot/save/goal moved the stands
+  seen.blockOutline ||= d.broadcastBlock; // 68: the defensive hull drew
+  seen.pressWave ||= d.pressPulses > 0; // 68: a hunting pack pulsed
   if (d.ballMarker && !crowdedShotTaken) {
     crowdedShotTaken = true;
     seen.ballMarker = true;
@@ -117,6 +121,15 @@ check('ball trail appears on kicks', seen.ballTrail);
 check('crowd marker flags a hidden ball', seen.ballMarker, crowdedShotTaken ? 'screenshot 2-crowded.png' : '');
 check('labels declutter in crowds (<10 visible)', seen.declutter);
 check('the stands stirred at least once (66.1)', seen.crowdStirred === true);
+check('defensive block outline drew in live play (68)', seen.blockOutline === true);
+check('press wave pulsed at least once (68)', seen.pressWave === true);
+// The broadcast toggle reaches the renderer: off hides the inset.
+await page.click('label:has-text("Tactical broadcast")');
+await page.waitForTimeout(250);
+check('broadcast toggle hides the inset (68)', (await page.evaluate(() => window.__evo.three()))?.tacmapVisible === false);
+await page.click('label:has-text("Tactical broadcast")');
+await page.waitForTimeout(250);
+check('broadcast toggle restores the inset (68)', (await page.evaluate(() => window.__evo.three()))?.tacmapVisible === true);
 
 const goalsInMatch1 = await page.locator('#event-feed .ev.goal').count();
 if (goalsInMatch1 > 0) {
@@ -174,7 +187,7 @@ if (await page.evaluate(() => window.__evo.clashVisible())) {
   await page.click('#clash-banner');
   await page.waitForTimeout(200);
 }
-const box = await page.locator('#three-host canvas').boundingBox();
+const box = await page.locator('#three-host canvas.gl-canvas').boundingBox();
 const size = await page.evaluate(() => window.__evo.canvasSize);
 const targets = await page.evaluate(() => window.__evo.threePlayerPositions());
 let selected = false;

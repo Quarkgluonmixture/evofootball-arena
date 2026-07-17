@@ -1,6 +1,6 @@
 import { formationSpot } from '../ai/formations';
 import type { Match } from '../sim/Match';
-import type { ActionType, MatchPhase, Role, Side } from '../sim/types';
+import type { ActionType, MatchPhase, Role, Side, TeamMode } from '../sim/types';
 
 /**
  * RenderStateAdapter — the ONLY bridge between the authoritative 2D sim and
@@ -96,6 +96,15 @@ export interface RenderState {
    * (Phase 24). Never set by the live-sim adapter or replays.
    */
   shootout?: { h: number; a: number };
+  /**
+   * The BROADCAST layer's inputs (Phase 68, N4) — light, always built,
+   * independent of the debug overlays. Absent in old replays: the
+   * presentation degrades gracefully (no block outline, no press waves).
+   */
+  possession?: Side | -1;
+  modes?: [TeamMode, TeamMode];
+  /** Assigned pressers (both sides) — the press-wave emitters. */
+  press?: Array<{ side: Side; x: number; z: number }>;
 }
 
 /** Static per-match info the 3D scene needs once (kits, names, roles). */
@@ -183,6 +192,14 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     ball,
     overlays: includeOverlays ? buildOverlays(match) : null,
     fx: buildFx(match),
+    possession: match.possessionSide,
+    modes: [match.teams[0].mode, match.teams[1].mode],
+    press: match.teams.flatMap((team) =>
+      [...team.chasers].map((idx) => {
+        const p = team.players[idx];
+        return { side: team.side, x: p.pos.x, z: p.pos.y };
+      }),
+    ),
   };
 }
 
@@ -290,6 +307,9 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
     celebratingGid: late.celebratingGid,
     fx: late.fx,
     shootout: late.shootout,
+    possession: late.possession,
+    modes: late.modes,
+    press: late.press,
     players: a.players.map((pa, i) => {
       const pb = b.players[i] ?? pa;
       return {

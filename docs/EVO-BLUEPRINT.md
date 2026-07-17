@@ -184,10 +184,10 @@ item unless a probe result re-scopes it, play reports still interleave:
   goals). Selection verdict: alive with full-width spread, no corner
   runaway — the trade is real (chase bleeds counters, shut-down
   protects). Ledger entry below.
-- **N4 — the TACTICAL BROADCAST layer**: make evolution visible IN PLAY,
-  not just in dashboards — pressing-wave highlights, defensive-block
-  outline, a live mini formation map; presentation-grade, not the debug
-  overlays.
+- ✅ **N4 — the TACTICAL BROADCAST layer — DONE, phase-68**: block
+  outline + press waves + the live mini formation map, presentation-grade
+  on a default-ON flag; render-only, fingerprint untouched. Ledger entry
+  below.
 - **N5 — FORMATION LIBRARY expansion** (UNGATED at phase-65 — N1.5
   closed): 2×2×2 shapes is the hard ceiling on visible structural
   diversity; add 6v6-honest attack shapes (asymmetry, twin ST,
@@ -941,3 +941,31 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   seeds) ≈ real-league scoring — whether the old 2.3-2.6 contract
   still binds is the PLAY REPORT's call, now NINE unplayed behavioral
   phases deep.
+- ✅ **phase-68 SHIPPED** (**N4 — the TACTICAL BROADCAST layer** + the
+  phone full-page fix; render-only, fingerprint UNTOUCHED `484c5704…`).
+  Evolution becomes visible IN PLAY, in TV-graphics language on its own
+  `broadcast` flag (PRESENTATION section, default ON — product, not the
+  debug overlays): (1) `BroadcastLayer` — the defensive-block HULL, a
+  soft team-colored fan + edge loop under the defending outfielders
+  (gift-wrap over 5 points, preallocated buffers, +1.2m margin so
+  bodies stand inside their block) — compactness/depth/shape identity
+  readable at a glance; (2) PRESS WAVES — while the defending side's
+  mode is Press, its assigned chasers emit expanding ring pulses
+  (pooled ×8, 0.9s life, spawn cadence 0.7s): the pack is visibly ON;
+  (3) the MINI FORMATION MAP — a 168×112 canvas inset (126px on
+  phones), tiny pitch + twelve dots + ball, updated per frame, hidden
+  while the shootout theater owns the stage. `RenderState` gains
+  possession/modes/press (light, always built; old replays lack them →
+  the layer stays dark, interpolation passes them through late).
+  + **the phone FULL-PAGE fix** (user report mid-phase): evolution (51)
+  and player (56) centers were letterboxed at ~260px on ≤640px — they
+  postdate the Phase-28.3 league fix and their base rules sit AFTER
+  that media query, so the override must live in a LATE block (same
+  specificity, source order decides). Now 657px full-viewport.
+  Gates: vitest 395 (+1: broadcast fields + interpolation); visual
+  **109 + 45** (new: full-page ×2 + width ×1 on phone; inset shows,
+  block drew, wave pulsed, toggle hides/restores); fingerprint
+  IDENTITY-verified (no sim edit); the GL canvas is now `.gl-canvas`
+  (the inset made '#three-host canvas' ambiguous — suite selectors
+  tightened). Screenshot eyeballed: hull + inset + pulses read as
+  broadcast graphics, not debug lines.
