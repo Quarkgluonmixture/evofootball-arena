@@ -1276,3 +1276,22 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   baseline); vitest 412 with ZERO pin reshuffles (only
   evolution-time mutation rolls moved). Standing watch: does 991's
   defensive coexistence persist past gen 60?
+- ✅ **phase-80 SHIPPED** (**N6 — fitBias**: recruitment philosophy as
+  the 17th gene; sim change, fingerprint REBASELINED `c8d81a2e…`).
+  The fire-sale board (55) ranked eligible signings purely by
+  ability. Now: score = ability + fitBias×1.2×styleFit(candidate,
+  retiree) — the retiree IS the club's evolved bloodline for the
+  slot, so "fit" needs no hand-defined house style; galactico (0) vs
+  system-first (1) boards become a heritable, selectable identity.
+  Eligibility gates unchanged; only the ranking moves. Save v22 +
+  migration pin. LATENT BUG KILLED on the way: signings never
+  checked name collisions — identity is name-keyed (bodies 76,
+  styles 54, careers) and a duplicate nameplate corrupted all of it;
+  same-named agents are now ineligible (surfaced by the subs
+  migration test when fitBias moved the founder RNG stream — the
+  reshuffle-exposes-latent-bugs pattern again). Calibrate
+  3.32/3.29/2.98: the extra founder roll re-rolled every world
+  (twice this session) — the goals-band watch ESCALATES (~3.2 vs the
+  2.3–2.6 contract); needs the user's play verdict + a
+  variance-vs-drift mechanism check. Pending observation: fitBias
+  drift/divergence + signing-fit rates (next probe session).
