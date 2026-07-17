@@ -26,11 +26,11 @@ for (const seed of [424242, 991, 777]) {
     }
     league.finishSeason();
     curve.push(goals / matches);
-    if (g % 4 === 0 || g === GENS - 1) {
-      // The volume-vs-quality-vs-conversion split (Phase 84 round 2).
+    if (g < 3 || g >= GENS - 3) {
       console.log(
-        `  [gen ${String(g).padStart(2)}] goals ${(goals / matches).toFixed(2)} | shots ${(shots / matches).toFixed(2)} ` +
-        `| xG/shot ${(xg / shots).toFixed(3)} | goals/shot ${(goals / shots).toFixed(3)} | goals/xG ${(goals / xg).toFixed(2)}`,
+        `  s${String(g + 1).padStart(2)}: goals ${(goals / matches).toFixed(2)} ` +
+        `shots ${(shots / matches).toFixed(1)} xg/shot ${(xg / shots).toFixed(3)} ` +
+        `conv ${(goals / shots * 100).toFixed(1)}% overperf ${(goals / xg).toFixed(2)}x`,
       );
     }
     if (g === 0 || g === Math.floor(GENS / 2) || g === GENS - 1) {

@@ -1335,15 +1335,13 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   VOLUME vs CONVERSION (shots + xG through the generations) before
   any further lever. vitest 413, visual 109+53, calibrate
   3.57/3.71/2.43 (early-window variance).
-- ✅ **phase-84 SHIPPED** (**inflation decomposed** — probe-only,
-  volume/quality/conversion split per gen). It is CONVERSION, not
-  volume: 991 shots FLAT (8.1→8.2) while goals 2.2→5.6; goals/shot
-  0.27→0.59-0.68. Two components: chance QUALITY (xG/shot
-  0.16→0.23-0.32, the meta makes better chances — defensible) and
-  FINISHING-OVER-xG (goals/xG 1.7→2.5, given-quality chances convert
-  ~1.5× more late). Attributes ~flat (finishing & reflexes rise
-  together), so it's not a finishing arms race — keeping/defending
-  don't keep pace with the meta's shot POSITIONS, and relative
-  fitness ignores league-wide erosion (red-queen hole). Fix is a
-  design fork put to the user: (b') reprice keeping/defending
-  [recommended], (c) absolute defensive fitness anchor, (a) accept.
+- ⚠⚠ **phase-84 SHIPPED** (**inflation anatomy round 2: CONVERSION**;
+  probe-only, fingerprint untouched). Shots flat 8-11, xG/shot
+  0.16→0.23-0.33, overperf 1.7×→2.2-2.5×, all-shot conversion
+  58-77% by gen 22-24 (real ~10-12%). Evolution both manufactures
+  sitters and finds contexts the xG model underprices; defense has
+  no evolving counter at the conversion point. Plan (user briefed):
+  contested finishing (defender attr + keeper reflexes suppress
+  conversion), mechanism-price the overperf contexts after a
+  shot-mix probe, acceptance = late 2.8-3.3 / conv ≤35% / overperf
+  →1.2×; fitness anchor only as last resort.

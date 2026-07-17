@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-84 (inflation decomposed: CONVERSION not volume — finishing out-races keeping)
+# Roadmap — shipped through phase-84 (inflation = CONVERSION: xG/shot doubles AND overperformance hits 2.5x)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -552,34 +552,28 @@ CONVERSION (shots + xG per gen) — is inflation more shots, or the
 same shots converting double? Calibrate 3.57/3.71/2.43 (early
 window, world variance); vitest 413; visual 109+53; fingerprint
 REBASELINED `8e1b75e2…`.)
-+ ✅ **phase-84 SHIPPED** (**inflation DECOMPOSED** — goals-warming
-probe now splits volume/quality/conversion per gen; observation
-only. VERDICT: it is CONVERSION, not volume. 991: shots stay FLAT
-8.1→8.2 while goals go 2.2→5.6 — pure conversion. 424242: shots
-+40% (8.2→11.5), goals +190%. The conversion doubling (goals/shot
-0.27→0.59-0.68) splits two ways: (1) chance QUALITY rises — xG/shot
-0.16→0.23-0.32, the tactical meta manufactures better chances
-(defensible, mirrors modern football); (2) FINISHING BEATS xG
-harder each gen — goals/xG 1.7→2.5, i.e. a chance of given quality
-converts ~1.5× more by late gens. Attributes are ~flat under the
-budget (finishing 0.43→0.48, reflexes 0.43→0.49 rise TOGETHER), so
-(2) isn't a finishing arms race — it's that KEEPING/defending don't
-keep pace with the meta's shot POSITIONS at the league scale, and
-relative fitness never punishes league-wide erosion (the red-queen
-hole). The fix is a design fork = the USER's call ⤵)
-⭐ **Next: USER DECISION on the goal-inflation fix (see the 3
-options below) → user's Suno BGM lands → wire music slots.**
-The three levers, from least to most structural:
- (b') **reprice keeping/defending** — make reflexes+defending buy
-   more per budget point (or cheaper) so evolution re-invests in the
-   back; substrate reprice like phase-48/58, no fitness change.
- (c) **absolute defensive anchor in fitness** — add a conceded-goals
-   penalty to the results-relative fitness so league-wide defensive
-   collapse is punished; most direct at the red-queen hole.
- (a) **accept it** — chaos-football / modern-high-press scorelines
-   are the evolved truth; leave it, maybe just cap the display.
-Recommendation: (b') first (most constitution-faithful — change the
-price, let evolution rebalance), (c) if the meta still runs away. The user PLAYS CONTINUOUSLY —
++ ⚠⚠ **phase-84 SHIPPED** (**inflation = CONVERSION, not volume** —
+goals-warming now splits the economy per season: shots barely move
+(8→8-11.5) while xG/shot DOUBLES (0.16→0.23-0.33) and
+overperformance-vs-xG grows 1.7×→2.2-2.5× — late-gen leagues
+convert 58-77% of ALL shots (real football: 10-12%, 1v1s ~40%).
+Two coupled holes: evolution (a) manufactures ever-better chances
+and (b) finds shot CONTEXTS the xG model underprices where the
+keeper is structurally dead — while defense has NO evolving
+counter-gradient at the point of conversion. THE PLAN (user
+briefed): ① CONTESTED FINISHING — nearest-defender
+distance/closing × his defending attr + keeper positioning ×
+reflexes must suppress conversion, giving defensive attributes a
+direct anti-conversion channel (read tryShot first: the pressure
+term is suspected attribute-flat); ② price the 2.5×-overperf
+contexts by MECHANISM after a shot-type-mix probe
+(chip/cutback/through-1v1 share of late-gen goals); ③ acceptance:
+late equilibrium 2.8-3.3, conversion ≤35%, overperf →1.2×, early
+gens ≈unchanged; ④ fitness anchor (c) only if mechanisms fail.
+Probe-only, fingerprint untouched `8e1b75e2…`.)
+⭐ **Next: execute the conversion plan (① read tryShot + shot-mix
+probe → mechanism fixes → warming verdict) → user's Suno BGM lands
+→ wire music slots.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
