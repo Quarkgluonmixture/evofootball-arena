@@ -969,3 +969,37 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   (the inset made '#three-host canvas' ambiguous — suite selectors
   tightened). Screenshot eyeballed: hull + inset + pulses read as
   broadcast graphics, not debug lines.
+- ✅ **phase-69 SHIPPED** (**the CHIP 挑射** — user ask 2026-07-17, first
+  of the curve-ball trilogy; sim change, fingerprint REBASELINED
+  `ae193cb1…`). The finish lofted over a keeper who has left his line:
+  `tryChip` inside performShot mirrors the free kick's two-constraint
+  closed form — z ≥ GK_CLAIM_HEIGHT+0.25 passing the keeper (a ball
+  above the claim ceiling is unsavable by construction), arrival height
+  drawn 0.8–2.7 at the line (over the bar = the honest overhit, the FK's
+  blaze-over trick). FEASIBILITY IS GEOMETRY, the attempt is a price
+  comparison, and every counter is emergent rather than scripted: a
+  keeper in the shooter's face smothers the launch in its low first
+  meters; a keeper at home leaves no gap (along ≤ d−5.5 fails); a
+  floaty lob is rejected up front (hang >1.45s); a short chip drops
+  into the claim. Two probe-driven tightenings: the CAUGHT-OUT gate
+  (≥7.5m off the goal center — the first cut chipped routine KA-0.5
+  positioning 3.9×/match) and the clearly-better price bar (q·1.2+0.03
+  — the lob stays an EVENT: in-league 0.5–1.0 attempts, 0.12–0.20
+  goals/match ≈ 7% of scoring). Anatomy (chip-anatomy.ts, 300
+  side-balanced per cell): routine keepers 0.03 chips/match, the
+  extreme sweeper (KA 0.9) 3.5/match at 26% conversion and NET LOSES
+  the fixture (attacker 1.17→1.33→1.67 goals across KA 0.1/0.5/0.9) —
+  the tax scales with exactly the gene that creates the gap.
+  **Selection verdict (30 gens × 2 worlds): ecology-dependent, the
+  best kind — world 424242's keepers RETREAT (KA mean 0.42→0.24,
+  sweepers got farmed) while world 991's DOUBLE DOWN (0.49→0.73: the
+  false-nine/deep-block world, where sweeping through balls still
+  outearns the chip tax). A conditional trade the ecology prices per
+  world, not a uniform virtue or death sentence (fm 22 clean).**
+  Calibrate 3.02/2.28/4.10 vs 68's 2.76/2.06/3.26 — decomposed via
+  shotLog: ex-chip 2.84/–/3.99, i.e. direct chip contribution +0.15–0.2
+  and 2024's remaining jump is that world's usual heat (its 5-phase
+  history: 2.58→3.26→3.51→3.59→3.70→4.10 — the league's hottest seed).
+  ShotLogEntry gains `chip?: boolean`; the feed narrates "chips the
+  keeper!". vitest **399** (+4, incl. flight-sampled unsavability over
+  the keeper and bit determinism); visual 109+45.

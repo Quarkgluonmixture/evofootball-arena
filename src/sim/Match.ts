@@ -86,6 +86,9 @@ export interface ShotLogEntry {
   outcome: 'pending' | 'goal' | 'saved' | 'miss';
   /** Bodies on the shot corridor at the strike (Phase 31, `laneBlockers`). */
   blockers: number;
+  /** The lofted finish over an advanced keeper (Phase 69) — probes and the
+   * feed tell the chip apart from the placed ground strike. */
+  chip?: boolean;
 }
 
 export interface MatchConfig {

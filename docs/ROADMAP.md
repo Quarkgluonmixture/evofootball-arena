@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-68 (N4: the tactical BROADCAST layer — evolution visible in play)
+# Roadmap — shipped through phase-69 (the CHIP: the sweeper keeper finally has a predator)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -236,9 +236,33 @@ viewport, guarded by two new phone checks. vitest 395 (+1 broadcast
 fields); visual **109 + 45** (+3 phone, +5 broadcast incl. the toggle
 round-trip); the GL canvas is now `.gl-canvas` (the inset made
 '#three-host canvas' ambiguous).)
-⭐ **Next: play report (NINE unplayed behavioral phases + the band
-verdict) → N5b def-menu expansion (the 16/0 watch) → N6 market signs
-for style fit.
++ ✅ **phase-69 SHIPPED** (**the CHIP 挑射** — user ask, first of the
+curve-ball trilogy: the ecology's first mechanism that PUNISHES
+`keeperAggression`. `tryChip` in performShot mirrors the FK's
+two-constraint closed form — clear GK_CLAIM_HEIGHT+0.25 over the
+keeper (unsavable above the ceiling), arrive under the bar (over =
+the honest overhit). Feasibility is GEOMETRY: keeper on the chord,
+real gap behind (along ≤ d−5.5), genuinely CAUGHT OUT (≥7.5m off his
+goal center — the first cut fired 3.9/match at routine KA-0.5
+positioning, a lob festival), hang ≤1.45s, and the price must clearly
+beat the ground strike (q·1.2+0.03). Counters all emergent: in-face
+launch = smother window, short = the claim, long = over. Probe:
+routine keepers see 0.03 chips/match, the extreme sweeper (KA 0.9)
+3.5/match and NET LOSES (atk 1.17→1.67 across KA); conv ~25% ≈
+league-average per shot; in-league volume 0.5-1.0/match, chip goals
+0.12-0.20/match. **Selection is ecology-dependent — the headline
+result: world 424242's keepers RETREAT (KA 0.42→0.24) while world
+991's double down (0.49→0.73, the deep-block world where sweeping
+still pays) — a live conditional trade, not a uniform tax.**
+Calibrate 3.02/2.28/4.10 (ex-chip 2.84/–/3.99: the chip's direct
++0.15-0.2; 2024 is its usual hot self). vitest **399** (+4: chipped
+over the stranded keeper with flight sampling, never vs a home/in-face
+keeper, determinism); visual 109+45; fingerprint REBASELINED
+`ae193cb1…`.)
+⭐ **Next: phase-70 curled LOFTED passes → phase-71 curled GROUND
+through balls (the rest of the user's curve trilogy) → play report
+(TEN unplayed phases + the band verdict) → N5b def-menu expansion →
+N6 market signs for style fit.
 Play reports interleave as always — **EIGHT unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
 🚫, the aerial channel, the underdog shift, the dugout 🎩); a play

@@ -779,6 +779,101 @@ function goalCenterFor(team: { oppGoal(): V2 }): V2 {
   return team.oppGoal();
 }
 
+/**
+ * The CHIP (Phase 69): loft the finish over a keeper who has left his
+ * line, dropping under the bar behind him. Mirrors the free kick's
+ * two-constraint closed form — z ≥ the claim ceiling as it passes the
+ * keeper (tryKeeperSave cannot touch a ball above GK_CLAIM_HEIGHT),
+ * z = the drawn arrival height as it crosses the line (over the bar =
+ * the classic overhit, exactly like the FK's blaze-over). The counters
+ * are all emergent: a keeper IN THE FACE smothers the launch while it's
+ * still low (the save window before z clears 2.55), a keeper at home
+ * leaves no gap (feasibility fails), a floaty lob is rejected up front
+ * (hang time returns the line), and a short chip drops into the claim.
+ * Returns true when the chip replaced the ground strike.
+ */
+function tryChip(match: Match, shooter: Player, qGround: number, pressure: number): boolean {
+  const team = match.teams[shooter.side];
+  const opp = match.teams[1 - shooter.side];
+  const gk = opp.goalkeeper;
+  if (gk.sentOff) return false;
+  const goalX = team.attackDir * HALF_L;
+  // Cross the line off-center, away from the keeper's side — the open half.
+  // Geometry from the SHOOTER (the ground path's convention): the carried
+  // ball rides at his feet and kickBall re-bases the release at his body.
+  const target = v2(goalX, (gk.pos.y >= 0 ? -1 : 1) * 1.4);
+  const d = dist(shooter.pos, target);
+  if (d < 7 || d > 30) return false; // not a toe-poke, not a halfway lob
+  const aim = norm(sub(target, shooter.pos));
+  const toGkX = gk.pos.x - shooter.pos.x;
+  const toGkY = gk.pos.y - shooter.pos.y;
+  const along = toGkX * aim.x + toGkY * aim.y;
+  // The keeper must sit ON the chord with real space BEHIND him; a keeper
+  // in the shooter's face is the smother's problem, not the solver's.
+  if (along < 2.5 || along > d - 5.5) return false;
+  if (Math.abs(toGkX * aim.y - toGkY * aim.x) > 3.5) return false;
+  // CAUGHT OUT, not merely positioned (first probe: the routine line at
+  // KA 0.5 fired 3.9 chips/match — a lob festival): the chip demands the
+  // keeper genuinely stranded, ≥7.5m off his goal center. The sweeper's
+  // rushes and the high line (keeperAggression) are what put him there.
+  const og = opp.ownGoal();
+  if (Math.hypot(gk.pos.x - og.x, gk.pos.y - og.y) < 7.5) return false;
+
+  // Feasibility + price at the NOMINAL arrival (rng only spends on a
+  // taken chip, so untaken chips leave every other shot's stream alone).
+  const a = clamp(along / d, 0.15, 0.8);
+  const clearK = GK_CLAIM_HEIGHT + 0.25;
+  const t2Nom = (clearK - a * 1.3) / ((GRAVITY / 2) * a * (1 - a));
+  if (t2Nom <= 0) return false;
+  const tNom = Math.sqrt(t2Nom);
+  if (tNom > 1.45) return false; // hang time hands the keeper his line back
+  const qChip = clamp(
+    0.36 - (tNom - 0.9) * 0.22 - pressure * 0.12 + shooter.attrs.finishing * 0.06,
+    0.03, 0.38,
+  );
+  // Clearly better or nothing — a marginal chip is a shot wasted on
+  // spectacle (the volume gate that keeps the lob an EVENT).
+  if (qChip < qGround * 1.2 + 0.03) return false;
+
+  // Execute: the arrival height draws high (over-bar = the honest miss),
+  // finishing narrows the draw AND the lateral spray.
+  const zg = 0.8 + match.rng.range(0, 1.9 - shooter.attrs.finishing * 0.5);
+  const T = Math.sqrt(Math.max(0.4, (clearK - a * zg) / ((GRAVITY / 2) * a * (1 - a))));
+  const vz = (zg + (GRAVITY / 2) * T * T) / T;
+  const misalign = kickMisalignment(shooter, aim);
+  const spread =
+    (0.03 + d * 0.0012) * (1.3 - shooter.attrs.finishing * 0.6) *
+    orientationNoiseMul(misalign, shooter.attrs.dribbling);
+  const dir = rotate(aim, match.rng.gaussian() * spread);
+  match.kickBall(shooter, dir, d / T, vz);
+
+  team.stats.shots++;
+  team.stats.xg += qChip;
+  match.stat(shooter.gid).shots++;
+  const lp = match.lastCompletedPass;
+  const assistGid =
+    lp && lp.receiverGid === shooter.gid && match.simTime - lp.t < 3 ? lp.passerGid : null;
+  match.markShotOutcome('miss'); // close out any still-pending previous shot
+  match.shotLog.push({
+    t: match.simTime, minute: match.minute(), side: shooter.side, xg: qChip, outcome: 'pending',
+    blockers: laneBlockers(shooter.pos, goalCenterFor(team), opp.players),
+    chip: true,
+  });
+  match.pendingShot = {
+    side: shooter.side,
+    shooterGid: shooter.gid,
+    xg: qChip,
+    t: match.simTime,
+    resolved: false,
+    logIndex: match.shotLog.length - 1,
+    // A keeper scrambling BACK under a dropping ball saves awkwardly.
+    difficulty: 0.8,
+    assistGid,
+  };
+  match.pushEvent('shot', shooter.side, `${shooter.name} chips the keeper! (xG ${qChip.toFixed(2)})`);
+  return true;
+}
+
 export function performShot(match: Match, shooter: Player): void {
   if (match.ball.owner !== shooter || shooter.kickCooldown > 0) return;
   match.endPassMove(shooter.side); // a strike ends the passing move (Phase 33)
@@ -816,6 +911,12 @@ export function performShot(match: Match, shooter: Player): void {
   const q = shotQuality(match, shooter);
   const d = dist(shooter.pos, target);
   const pressure = pressureAt(shooter.pos, opp.players);
+  // THE CHIP (Phase 69, user ask 挑射/吊射): a keeper OFF HIS LINE can be
+  // beaten over the top — the ecology's first mechanism that PUNISHES
+  // keeperAggression (the sweeper's line height is exactly what opens the
+  // gap behind him). Geometry decides feasibility, the price comparison
+  // decides the attempt; a taken chip replaces this ground strike.
+  if (tryChip(match, shooter, q, pressure)) return;
   // Composed 1v1 (Phase 28.4): nobody goal-side but the keeper — the shooter
   // PICKS a spot: tighter to the post, tighter grouping. Without this the
   // breakaway-finish appetite just fed the keeper from 15m.
