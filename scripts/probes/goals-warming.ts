@@ -49,7 +49,7 @@ for (const seed of [424242, 991, 777]) {
       console.log(
         `  [gen ${g}] fin ${attr('finishing').toFixed(2)} pace ${attr('pace').toFixed(2)} ` +
         `def ${attr('defending').toFixed(2)} refl ${attr('reflexes').toFixed(2)} str ${attr('strength').toFixed(2)} | ` +
-        `shootB ${gene('shootBias').toFixed(2)} press ${gene('pressIntensity').toFixed(2)} width ${gene('attackingWidth').toFixed(2)} jockey ${gene('jockeyBias').toFixed(2)}`,
+        `shootB ${gene('shootBias').toFixed(2)} press ${gene('pressIntensity').toFixed(2)} width ${gene('attackingWidth').toFixed(2)} jockey ${gene('jockeyBias').toFixed(2)} cover ${gene('coverBias').toFixed(2)}`,
       );
     }
   }

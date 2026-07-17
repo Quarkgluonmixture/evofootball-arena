@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-87 (jockeyBias: evolution ADOPTS containment, defending finally moves, inflation halved)
+# Roadmap — shipped through phase-88 (coverBias shipped; jockey adoption is UNSTABLE across worlds — the red-queen case hardens)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -634,9 +634,29 @@ SWEEPER (coverBias — the man behind the beaten line). Keeper-throw
 seeds re-anchored 35/42→3/97/123 (throws rarer under containment;
 4th reshuffle). Calibrate 3.05/3.23/3.44 (early window healthy);
 vitest 414; visual 109+52; fingerprint REBASELINED `1a4db42a…`.)
-⭐ **Next: phase-88 coverBias (catenaccio sweeper — genetify the
-hardcoded rest-defense man) → offside trap (hold-the-line) →
-user's Suno BGM → music slots.** The user PLAYS CONTINUOUSLY —
++ ⚠ **phase-88 SHIPPED** (**coverBias — the sweeper gene — and a
+hard finding**: 19th gene (save v24+migration+test), the DF slot's
+depth relative to his line: libero behind (eats what beats the
+first wave, plays everyone onside — the built-in trap tension) vs
+stopper up; 0.5 = today's flat line AND the old −12 rest-defense
+EXACTLY (the phase-31 hardcode genetified, early-preserving by
+construction). THE FINDING (24-gen gate): the founder re-roll
+produced worlds where evolution ABANDONS containment — jockey
+0.16/0.20 in two worlds (goals re-inflate 5.8/6.7) while 777 keeps
+jockey 0.74 (goals 4.40 ✓). Cross-world correlation high-jockey ⟺
+low-goals VALIDATES the mechanism, but adoption is
+ecology-unstable: in some metas the dive-in school wins RELATIVE
+points even while inflating the league — the red-queen hole is now
+directly observed, not hypothesized. NEXT (in order): ① A/B probe
+— does jockey-0.9 actually beat jockey-0.1 head-to-head? (if NO:
+containment's cost is mispriced — fewer turnovers won = attack
+starves; rebalance the mechanism); ② if YES and adoption still
+flips: the fitness anchor (c) — the user's call. Fire-sale signing
+seed re-anchored 41→1 (3rd reshuffle of this class). Calibrate
+2.69/2.77/3.15 (early band healthy); vitest 415; visual 109+52;
+fingerprint REBASELINED `99ed8ed7…`.)
+⭐ **Next: jockey A/B head-to-head probe → (mechanism rebalance |
+fitness anchor decision) → offside trap → user's Suno BGM.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

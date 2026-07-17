@@ -116,7 +116,21 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
   // −12, not −5: a cover man AT halfway is already beaten by the time a
   // counter carrier enters the open-run zone (28m out) — he has to start
   // goal-side of the race, near his base spot, to ever contest it.
-  if (hasBall && p.index === 1) x = Math.min(x, -12);
+  if (p.index === 1 && p.role !== 'GK') {
+    if (hasBall) {
+      // Rest-defense depth is now the SWEEPER gene's possession face
+      // (Phase 88): 0.5 = the old hardcoded −12 exactly; the full libero
+      // (1) holds −16 even mid-siege, the bold stopper (0) dares −8.
+      x = Math.min(x, -8 - (g.coverBias ?? 0.5) * 8);
+    } else {
+      // THE SWEEPER (Phase 88, school #2 — catenaccio): the DF slot sits
+      // off his own line by the gene — behind it (libero: the man who
+      // meets whatever beats the first wave, at the price of playing
+      // everyone onside) or ahead of it (stopper: early interceptions,
+      // gambling the space behind). 0.5 = today's flat line.
+      x -= ((g.coverBias ?? 0.5) - 0.5) * 8;
+    }
+  }
 
   // Width: stretch when we have the ball, squeeze when we don't. The
   // in-possession floor is 1.0 (Phase 27.1) — an attacking shape should

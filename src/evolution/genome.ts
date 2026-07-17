@@ -87,6 +87,18 @@ export interface TacticalGenome {
    * duel is evolution's call.
    */
   jockeyBias: number;
+  /**
+   * The DEFENSIVE SCHOOL's second axis (Phase 88, user design — 意大利链式
+   * 防守): where the DF slot sits RELATIVE TO HIS LINE. 1 = the libero,
+   * parked behind the beaten line — eats through-balls, meets the carrier
+   * who beat the first wave, and (the natural cost) plays everyone ONSIDE,
+   * killing his own team's offside trap. 0 = the stopper who steps up to
+   * intercept early, gambling the space behind. 0.5 = today's flat line
+   * exactly. In possession the same gene sets the rest-defense depth
+   * (0.5 = the old hardcoded −12). Whether insurance beats aggression is
+   * evolution's call.
+   */
+  coverBias: number;
 }
 
 export const GENE_KEYS = [
@@ -109,6 +121,7 @@ export const GENE_KEYS = [
   'tinkerBias',
   'fitBias',
   'jockeyBias',
+  'coverBias',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -183,6 +196,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if ((g.fitBias ?? 0.5) < 0.28) tags.push('Galactico board');
   if ((g.jockeyBias ?? 0.5) > 0.72) tags.push('Contains & delays');
   if ((g.jockeyBias ?? 0.5) < 0.28) tags.push('Dives in');
+  if ((g.coverBias ?? 0.5) > 0.72) tags.push('Libero');
+  if ((g.coverBias ?? 0.5) < 0.28) tags.push('Stopper steps up');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

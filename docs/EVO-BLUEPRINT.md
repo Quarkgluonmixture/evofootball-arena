@@ -1381,3 +1381,15 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   goals 6.4/6.4/5.6 → 4.46/4.44/5.95. Remaining gap to the 2.8-3.3
   band = school #2, the sweeper (coverBias). Keeper-throw seeds
   re-anchored (4th time): 3/97/123.
+- ⚠ **phase-88 SHIPPED** (**coverBias + the adoption-instability
+  finding**; fingerprint REBASELINED `99ed8ed7…`, save v24). The
+  sweeper/stopper axis genetifies the phase-31 rest-defense hardcode
+  (0.5 = old behavior exactly). Gate result: founder re-roll gave
+  two worlds that ABANDON jockey (0.16/0.20 → goals 5.8/6.7) while
+  777 keeps it (0.74 → 4.40). High-jockey ⟺ low-goals across worlds
+  validates the mechanism; unstable adoption = the red-queen hole
+  OBSERVED: dive-in can win relative points while inflating the
+  league. Next: jockey A/B head-to-head (is containment individually
+  mispriced — starved attack from fewer turnovers?), then the
+  fitness-anchor fork (user's call) if the mechanism is honest but
+  collectively unstable.

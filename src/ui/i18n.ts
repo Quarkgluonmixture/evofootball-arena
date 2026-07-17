@@ -163,6 +163,7 @@ const ZH: Record<string, string> = {
   tinkerBias: '临场调整',
   fitBias: '引援适配',
   jockeyBias: '延缓盯防',
+  coverBias: '清道夫深度',
 
   // ---- player attributes (8 since Phase 47) ----
   budget: '预算',
