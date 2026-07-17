@@ -59,6 +59,27 @@ describe('the mentality curve (pure)', () => {
   });
 });
 
+describe('the tinker dial (Phase 66, N3 — the coach adjustment personality)', () => {
+  it('0.5 IS the Phase-35 curve — the default argument changes nothing', () => {
+    expect(mentalityOf(-1, 88, 0.5)).toEqual(mentalityOf(-1, 88));
+    expect(mentalityOf(1, 84, 0.5)).toEqual(mentalityOf(1, 84));
+  });
+
+  it('the stoic halves the response, the tinkerer runs it half again (clamped)', () => {
+    expect(mentalityOf(-1, 88, 0).urgency).toBeCloseTo(0.5, 5);
+    expect(mentalityOf(-1, 88, 1).urgency).toBe(1); // clamped at the ceiling
+    expect(mentalityOf(-1, 76, 1).urgency).toBeCloseTo(0.6, 5); // 0.4 × 1.5
+    expect(mentalityOf(1, 90, 0).holding).toBeCloseTo(0.5, 5);
+    expect(mentalityOf(-3, 90, 1).urgency).toBeCloseTo(0.75, 5); // still pushing a lost game
+  });
+
+  it('neutral stays the IDENTITY object at any tinker — no dial invents a response', () => {
+    expect(mentalityOf(0, 90, 1)).toBe(NEUTRAL_MENTALITY);
+    expect(mentalityOf(-1, 68, 1)).toBe(NEUTRAL_MENTALITY); // ramp 0 scales to 0
+    expect(mentalityOf(1, 72, 0)).toBe(NEUTRAL_MENTALITY);
+  });
+});
+
 describe('applying the mentality to the gene read', () => {
   it('neutral returns the SAME object — the bit-identity discipline', () => {
     const raw = genome();
@@ -169,6 +190,46 @@ describe('the mentality reaches the match (integration)', () => {
   });
 });
 
+describe('the tinker dial reaches the match + the coach owns the call (Phase 66)', () => {
+  /** A late one-goal game between a full tinkerer (side 0, trailing) and a
+   * full stoic (side 1, leading) — coach names on both team sheets. */
+  function tinkerMatch(): Match {
+    const a = { ...team('A', genome({ tinkerBias: 1 })), coachName: 'Ranieri' };
+    const b = { ...team('B', genome({ tinkerBias: 0 })), coachName: 'Stoicu' };
+    const m = new Match({ seed: 3, teamA: a, teamB: b, duration: 240 });
+    while (m.phase !== 'playing') m.step(DT);
+    while (!m.finished && !(m.half === 2 && m.minute() >= 89)) m.step(DT);
+    m.score = [0, 1];
+    return m;
+  }
+
+  it('the tinkerer chases at full tilt while the stoic holds at HALF the curve', () => {
+    const m = tinkerMatch();
+    for (let t = 0; t < 30; t++) m.step(DT); // past a team-brain tick
+    expect(m.teams[0].mentality.urgency).toBe(1); // clamped ceiling, reached early
+    expect(m.teams[1].mentality.holding).toBeLessThanOrEqual(0.5); // the stoic trusts his XI
+    expect(m.teams[1].mentality.holding).toBeGreaterThan(0);
+  });
+
+  it('the surge is the COACH’s call by name; the stoic never crosses the feed threshold', () => {
+    const m = tinkerMatch();
+    while (!m.finished) m.step(DT);
+    expect(m.events.some((e) => e.text === '⚡ Ranieri throws everyone forward!')).toBe(true);
+    // A full stoic peaks at holding 0.5 — the 🧊 line (0.8) is unreachable:
+    // his silence IS the personality rendering in the feed.
+    expect(m.events.some((e) => e.text.startsWith('🧊'))).toBe(false);
+  });
+
+  it('without a coach on the sheet the club keeps the credit (old replays, ad-hoc)', () => {
+    const m = new Match({ seed: 3, teamA: team('A', genome({ tinkerBias: 1 })), teamB: team('B'), duration: 240 });
+    while (m.phase !== 'playing') m.step(DT);
+    while (!m.finished && !(m.half === 2 && m.minute() >= 89)) m.step(DT);
+    m.score = [0, 1];
+    while (!m.finished) m.step(DT);
+    expect(m.events.some((e) => e.text === '⚡ A throw everyone forward!')).toBe(true);
+  });
+});
+
 describe('the underdog shift (Phase 64 — opponent-conditional tactics)', () => {
   it('pure: identity at zero, the bus vector at one, everything clamped', () => {
     const raw = genome({ formationDepth: 0.2, pressIntensity: 0.1 });
@@ -197,6 +258,23 @@ describe('the underdog shift (Phase 64 — opponent-conditional tactics)', () =>
     // The brains read the shifted view through the usual getter.
     for (let t = 0; t < 60; t++) m.step(DT);
     expect(w.genome.defensiveCompactness).toBeCloseTo(0.8, 10);
+  });
+
+  it('the pragmatist’s kickoff call is narrated ONCE — and it’s the coach’s (Phase 66)', () => {
+    const weak = { ...team('W', genome({ underdogShift: 1 })), elo: 1350, coachName: 'Mourinho' };
+    const strong = { ...team('S', genome({ underdogShift: 1 })), elo: 1650, coachName: 'Pep' };
+    const m = new Match({ seed: 5, teamA: weak, teamB: strong });
+    const busLines = m.events.filter((e) => e.text.startsWith('🚌'));
+    expect(busLines).toHaveLength(1);
+    expect(busLines[0].text).toBe('🚌 Mourinho parks the bus against S');
+    expect(busLines[0].side).toBe(0); // the favorite never gets one
+    // A small lean stays quiet (failure mode 7): gap 90/150 × gene 0.5 = 0.3.
+    const mild = new Match({
+      seed: 5,
+      teamA: { ...team('W', genome({ underdogShift: 0.5 })), elo: 1470 },
+      teamB: { ...team('S', genome()), elo: 1560 },
+    });
+    expect(mild.events.some((e) => e.text.startsWith('🚌'))).toBe(false);
   });
 
   it('a purist (gene 0) and an Elo-less team sheet stay bit-identical', () => {

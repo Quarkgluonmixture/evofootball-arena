@@ -151,14 +151,14 @@ export function geneAxisLabels(lang: 'zh' | 'en'): string[] {
     defensiveCompactness: '紧凑', attackingWidth: '宽度', riskTolerance: '冒险',
     counterAttackBias: '反击', staminaConservation: '节能', markingAggression: '盯人',
     keeperAggression: '门将', tempo: '节奏', formationDepth: '阵高', supportDistance: '接应',
-    rotationBias: '轮换', underdogShift: '逆境',
+    rotationBias: '轮换', underdogShift: '逆境', tinkerBias: '临场',
   };
   const EN: Record<GeneKey, string> = {
     passBias: 'pass', shootBias: 'shot', dribbleBias: 'drib', pressIntensity: 'press',
     defensiveCompactness: 'cmpct', attackingWidth: 'width', riskTolerance: 'risk',
     counterAttackBias: 'cntr', staminaConservation: 'stam', markingAggression: 'mark',
     keeperAggression: 'GK', tempo: 'tempo', formationDepth: 'depth', supportDistance: 'supp',
-    rotationBias: 'rota', underdogShift: 'udog',
+    rotationBias: 'rota', underdogShift: 'udog', tinkerBias: 'tink',
   };
   const m = lang === 'zh' ? ZH : EN;
   return GENE_KEYS.map((k) => m[k]);

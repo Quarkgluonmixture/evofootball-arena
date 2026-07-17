@@ -37,6 +37,8 @@ const info = await page.evaluate(() => window.__evo.three());
 check('3D renderer initializes', info !== null);
 check('12 player models exist', info?.players === 12, `players=${info?.players}`);
 check('2 goal models exist', info?.goals === 2);
+// Phase 66 (N3): league fixtures carry named coaches — both stand the touchline.
+check('2 coaches stand the touchline (66)', info?.coaches === 2, `coaches=${info?.coaches}`);
 
 const shot3d = await page.locator('#three-host canvas').screenshot();
 check('3D canvas renders non-blank', shot3d.length > 10000, `${shot3d.length} bytes`);

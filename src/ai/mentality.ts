@@ -28,25 +28,32 @@ export const NEUTRAL_MENTALITY: Mentality = Object.freeze({ urgency: 0, holding:
  * scoreboard. Deficit magnitude: a one-goal game is the full chase; down
  * three, heads drop (0.5) — and a side three up cruises (0.25) instead
  * of parking the bus on a won game.
+ *
+ * `tinker` (Phase 66, N3 — the coach's adjustment personality) scales the
+ * response MAGNITUDE: 0.5 reproduces this curve exactly (×1), the stoic
+ * halves it (×0.5), the tinkerer runs it half again as hard (×1.5,
+ * clamped) — he reaches the full chase EARLIER on the same ramp and keeps
+ * pushing games the curve had written off. Direction is football law.
  */
-export function mentalityOf(scoreDiff: number, minute: number): Mentality {
+export function mentalityOf(scoreDiff: number, minute: number, tinker = 0.5): Mentality {
   // Ramps start LATE (68'/72') on purpose: the first cut ramped from
   // 60'/65' and the modified state covered so much of every decided match
   // that league goals sank ~0.4 below the band (6-seed paired calibrate
   // vs phase-34.3) — the same play that read as "theater" per-match
   // compounded into suppression per-season. The narrow window keeps the
   // drama where it belongs: the endgame.
+  const f = 0.5 + tinker;
   if (scoreDiff < 0) {
     const ramp = clamp01((minute - 68) / 20);
     if (ramp === 0) return NEUTRAL_MENTALITY;
     const mag = scoreDiff === -1 ? 1 : scoreDiff === -2 ? 0.85 : 0.5;
-    return { urgency: ramp * mag, holding: 0 };
+    return { urgency: clamp01(ramp * mag * f), holding: 0 };
   }
   if (scoreDiff > 0) {
     const ramp = clamp01((minute - 72) / 18);
     if (ramp === 0) return NEUTRAL_MENTALITY;
     const mag = scoreDiff === 1 ? 1 : scoreDiff === 2 ? 0.6 : 0.25;
-    return { urgency: 0, holding: ramp * mag };
+    return { urgency: 0, holding: clamp01(ramp * mag * f) };
   }
   return NEUTRAL_MENTALITY;
 }

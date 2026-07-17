@@ -224,6 +224,12 @@ export interface TeamInfo {
   /** Player ages in role order (Phase 26) — display only, never read by the sim. */
   ages?: number[];
   /**
+   * The named coach in the dugout (Phase 66, N3) — feed attribution and the
+   * 3D touchline figure only, never read by mechanics. Missing (ad-hoc
+   * teams, old replays) = the calls stay credited to the club.
+   */
+  coachName?: string;
+  /**
    * Tactical identity (Phase 30). Optional: a TeamInfo without one (tests,
    * ad-hoc teams) derives it from the genome — same thresholds, same result.
    */

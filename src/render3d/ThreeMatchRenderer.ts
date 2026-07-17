@@ -6,6 +6,7 @@ import { colorHex } from '../ui/dom';
 import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
 import { CameraController, type CameraMode } from './CameraController';
+import { CoachModel } from './CoachModel';
 import { FxSystem, type FxQuality } from './FxSystem';
 import { Goal3D } from './GoalModel';
 import { declutterLabels, type LabelItem } from './labelDeclutter';
@@ -38,6 +39,10 @@ export class ThreeMatchRenderer {
   private goals: [Goal3D, Goal3D];
   private playersGroup = new THREE.Group();
   private players = new Map<number, PlayerModel>();
+  /** Touchline coaches (Phase 66, N3) — own group so raycast picking never
+   * sees them. Empty when no coach travels with the team sheet. */
+  private coachesGroup = new THREE.Group();
+  private coaches: CoachModel[] = [];
   private kits: KitMaterials[] = [];
   private anim = new AnimationSystem();
   /** Half-time / full-time walk to the tunnel (Phase 41.1, render-only): per-gid
@@ -78,7 +83,7 @@ export class ThreeMatchRenderer {
     this.scene.add(createPitch(maxAniso));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
-    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup);
+    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup);
 
     // Possession indicator: pulsing team-colored ring under the ball carrier.
     this.possessionMat = new THREE.MeshBasicMaterial({
@@ -164,6 +169,25 @@ export class ThreeMatchRenderer {
       this.players.set(p.gid, model);
       this.playersGroup.add(model.root);
     }
+
+    // The coaches take their technical areas (Phase 66, N3): bench side
+    // (+z, where subs enter and the tunnel sits), either side of halfway,
+    // clear of the walk-off fan (|x| ≤ 6.5 at z = HALF_W + 1.2). Only a
+    // NAMED coach stands there — ad-hoc teams play with an empty dugout.
+    for (const coach of this.coaches) {
+      this.coachesGroup.remove(coach.root);
+      coach.dispose();
+    }
+    this.coaches = [];
+    theme.teams.forEach((t, side) => {
+      if (!t.coach) return;
+      const model = new CoachModel(
+        side as 0 | 1, t.coach, t.primary, side === 0 ? -8 : 8, HALF_W + 1.7,
+      );
+      this.coaches.push(model);
+      this.coachesGroup.add(model.root);
+    });
+
     this.overlays.applyTheme(theme);
     this.fx.reset();
     this.hideBanner();
@@ -213,6 +237,11 @@ export class ThreeMatchRenderer {
         }
       }
       this.ball.update(state.ball, state.players, dt, hands);
+      // The dugout lives the match too (Phase 66): each coach tracks the
+      // ball and leaps while HIS side's goal celebration plays.
+      for (const coach of this.coaches) {
+        coach.update(state.ball.x, state.ball.z, state.celebratingSide === coach.side, dt);
+      }
       this.overlays.update(state.overlays, flags);
       if (this.theme) {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
@@ -408,6 +437,7 @@ export class ThreeMatchRenderer {
 
   debugInfo(): {
     players: number;
+    coaches: number;
     goals: number;
     cameraMode: CameraMode;
     drawCalls: number;
@@ -423,6 +453,7 @@ export class ThreeMatchRenderer {
   } {
     return {
       players: this.players.size,
+      coaches: this.coaches.length,
       goals: 2,
       cameraMode: this.cameraCtl.mode,
       drawCalls: this.renderer.info.render.calls,
@@ -456,6 +487,8 @@ export class ThreeMatchRenderer {
     });
     for (const model of this.players.values()) model.dispose();
     this.players.clear();
+    for (const coach of this.coaches) coach.dispose();
+    this.coaches = [];
     // The traverse above disposed the shared player geometry/materials too —
     // forget the module caches so the next 3D init rebuilds them fresh.
     resetSharedPlayerResources();

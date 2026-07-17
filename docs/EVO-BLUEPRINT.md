@@ -175,13 +175,15 @@ item unless a probe result re-scopes it, play reports still interleave:
   careers/apps. Selection verdict: alive and ecology-dependent (world
   424242 goes full carousel, world 991 stays mixed). Red-card
   suspensions and injuries are UNBLOCKED by this infrastructure.
-- **N3 — COACH MATCH-DAY PRESENCE**: the coach stops being a nameplate —
-  the existing mentality/game-state adjustments get ATTRIBUTED to him
-  (gene-driven adjustment personality: the tinkerer vs the
-  trust-the-XI stoic), adjustments narrated in the feed, and ⭐ **the
-  coach STANDS ON THE TOUCHLINE in the 3D view** (user addition: a
-  visible figure by the technical area — reacting is the polish, being
-  THERE is the point). Couples with N2 once subs exist.
+- ✅ **N3 — COACH MATCH-DAY PRESENCE — DONE, phase-66** (save v21): the
+  `tinkerBias` gene scales the mentality response (stoic ×0.5 ↔
+  tinkerer ×1.5, 0.5 = the old curve bit-exactly), the ⚡/🧊/🔄 calls
+  are narrated under HIS name (+ the Phase-64 bus 🚌 finally gets its
+  kickoff line), and the coach STANDS ON THE TOUCHLINE in 3D (suited
+  figure + scarf + nameplate, tracks the ball, leaps on his side's
+  goals). Selection verdict: alive with full-width spread, no corner
+  runaway — the trade is real (chase bleeds counters, shut-down
+  protects). Ledger entry below.
 - **N4 — the TACTICAL BROADCAST layer**: make evolution visible IN PLAY,
   not just in dashboards — pressing-wave highlights, defensive-block
   outline, a live mini formation map; presentation-grade, not the debug
@@ -789,3 +791,47 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   reasons in the N1.5 section; the matrix stays a descriptive
   anatomy tool. The which-axes-balance set differs per world —
   ecology-dependent, consistent with every N-era finding.
+- ✅ **phase-66 SHIPPED** (**N3 — COACH MATCH-DAY PRESENCE**; save v21):
+  the game-state response stops being an anonymous law and becomes the
+  PERSON's temperament. (1) New gene `tinkerBias` scales the Phase-35
+  mentality layer's MAGNITUDE — `mentalityOf(diff, minute, tinker)`,
+  factor 0.5+tinker, clamped: 0 = the stoic at half response (he can
+  NEVER reach the ⚡ 0.8 feed threshold — his silence is the
+  personality rendering), 0.5 = the shipped curve bit-exactly (the
+  default argument, so every existing fixture/test reads unchanged),
+  1 = the tinkerer at ×1.5 who hits the full chase early and keeps
+  pushing lost games (down 3 → urgency 0.75 vs 0.5). Read from the
+  RAW genome — personality is not bent by the underdog shift.
+  (2) Attribution: ⚡ surge, 🧊 shut-down and 🔄 subs are the COACH's
+  lines by name (club-name fallback for ad-hoc sheets/old replays,
+  same emoji prefixes — no test/UI churn), and the Phase-64 underdog
+  shift gets its FIRST narration: one 🚌 kickoff line when s ≥ 0.4
+  (small leans stay silent, failure mode 7). (3) The 3D dugout:
+  `CoachModel` — suited figure, club scarf + nameplate, in each
+  technical area on the bench apron (±8, HALF_W+1.7, clear of the
+  walk-off fan), tracks the ball with an eased pivot, sways idle, and
+  leaps while HIS side's celebration plays; render-only, own scene
+  group so raycast picking never sees him; ad-hoc dugouts stay empty.
+  **Mechanism probe (`tinker-anatomy.ts`, n=400 paired — blocks
+  bit-identical until the 68' ramps): the dial is two-faced, not a
+  uniform virtue (fm 22) — trailing@68 the ×1.5 chase buys NOTHING
+  (pts 0.10→0.09, GF 0.23→0.24) and bleeds counters (GA 0.31→0.38),
+  while leading@68 the harder shut-down PROTECTS (+0.16 pts/game,
+  2.65→2.81). Selection: 30 gens × 2 worlds — means wander 0.35–0.55,
+  spread stays full-width [0.00…1.00], zero corner runaway; a live,
+  ecology-priced axis (the rotationBias pattern).** Migration v20→v21
+  backfills 0.5 (migrated clubs respond exactly as before; geneMeans +
+  coachPool + evolution entries covered). Identity tags: Tinkerman /
+  Trusts the XI. Gates: vitest **392** (+9: tinker curve pins, match
+  integration + coach-line attribution, 🚌 narration + fm-7 silence,
+  v20 migration, theme-carries-coach); visual **106 + 38** (new 3D
+  check: 2 coaches stand the touchline); evolve-check healthy (styles
+  coexist, def menu balanced 9/7 — the phase-64 low-32 watch did not
+  worsen); fingerprint **REBASELINED `9a23d408…`** (new founding rng).
+  ⚠ calibrate **2.15 / 2.13** — both seeds ~0.2 under the 2.34
+  same-code center but inside the measured spread (1.83–2.62, fm 18),
+  and the probe shows the mechanism ADDS late goals (0.54→0.62/decided
+  game) — the dip reads as founding re-roll, watch not chase (the
+  phase-62 precedent). The play-report queue now carries EIGHT unplayed
+  behavioral phases; the next report should watch the dugout and the
+  goals band together.

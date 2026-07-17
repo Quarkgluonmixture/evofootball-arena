@@ -159,6 +159,7 @@ const ZH: Record<string, string> = {
   supportDistance: '接应距离',
   rotationBias: '轮换倾向',
   underdogShift: '逆境战术',
+  tinkerBias: '临场调整',
 
   // ---- player attributes (8 since Phase 47) ----
   budget: '预算',

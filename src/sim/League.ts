@@ -181,7 +181,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 20;
+export const SAVE_VERSION = 21;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -406,6 +406,7 @@ export class League {
       id: f.id, name: f.name, short: f.short, colors: f.colors,
       playerNames: f.playerNames, genome: f.coach.genome, squad: f.squad,
       ages: f.ages, style: f.coach.style, policy: f.coach.policy,
+      coachName: f.coach.name, // feed attribution + the touchline figure (Phase 66)
       elo: f.elo, // the underdog shift's strength reading (Phase 64)
       // The personal-style wire (Phase 54): each slot's brain runs the
       // coach's policy through the player's own appetites.
@@ -1513,6 +1514,25 @@ export class League {
         }
       }
       data.version = 20;
+    }
+    if (data.version === 20) {
+      // v20 -> v21: tinkerBias (Phase 66, N3 — the coach's adjustment
+      // personality). Backfilled at 0.5 — the exact Phase-35 mentality
+      // curve — so a migrated club responds to score + clock precisely as
+      // it always did until evolution moves the dial either way.
+      const fixG = (g: TacticalGenome | undefined): void => {
+        if (g) g.tinkerBias ??= 0.5;
+      };
+      for (const f of data.franchises as Franchise[]) fixG(f.coach.genome);
+      for (const e of (data.coachPool ?? []) as PoolEntry[]) fixG(e.coach.genome);
+      for (const r of ((data.history ?? []) as SeasonRecord[])) {
+        if (r.geneMeans) (r.geneMeans as Record<string, number>).tinkerBias ??= 0.5;
+        for (const e of r.evolution?.entries ?? []) {
+          fixG(e.childGenome);
+          if (e.parentGenomes) e.parentGenomes.forEach(fixG);
+        }
+      }
+      data.version = 21;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

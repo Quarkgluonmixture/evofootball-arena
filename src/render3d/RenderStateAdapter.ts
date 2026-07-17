@@ -100,7 +100,15 @@ export interface RenderState {
 
 /** Static per-match info the 3D scene needs once (kits, names, roles). */
 export interface RenderTheme {
-  teams: Array<{ primary: number; secondary: number; short: string; name: string }>;
+  teams: Array<{
+    primary: number;
+    secondary: number;
+    short: string;
+    name: string;
+    /** The named coach (Phase 66, N3) — drives the touchline figure.
+     * Missing (ad-hoc teams, old replays) = no dugout presence. */
+    coach?: string;
+  }>;
   players: Array<{ gid: number; side: Side; role: Role; name: string }>;
 }
 
@@ -111,6 +119,7 @@ export function buildRenderTheme(match: Match): RenderTheme {
       secondary: t.info.colors.secondary,
       short: t.info.short,
       name: t.info.name,
+      coach: t.info.coachName,
     })),
     players: match.allPlayers.map((p) => ({ gid: p.gid, side: p.side, role: p.role, name: p.name })),
   };

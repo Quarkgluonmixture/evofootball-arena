@@ -199,10 +199,20 @@ export class Match {
       const gap = cfg.teamB.elo - cfg.teamA.elo;
       for (const team of this.teams) {
         const factor = Math.min(1, Math.max(0, (team.side === 0 ? gap : -gap) / 150));
-        team.baseGenome = applyUnderdogShift(
-          team.info.genome, factor * (team.info.genome.underdogShift ?? 0),
-        );
+        const s = factor * (team.info.genome.underdogShift ?? 0);
+        team.baseGenome = applyUnderdogShift(team.info.genome, s);
         team.effGenome = team.baseGenome;
+        // The pragmatist's kickoff call gets NARRATED (Phase 66, N3): the
+        // shift existed since 64 but was invisible in the feed. One line,
+        // only when the bend is a real bus (s·0.3 ≈ +0.12 compactness), so
+        // routine small leans stay quiet (failure mode 7).
+        if (s >= 0.4) {
+          const oppName = (team.side === 0 ? cfg.teamB : cfg.teamA).name;
+          const coach = team.info.coachName;
+          this.pushEvent('info', team.side, coach
+            ? `🚌 ${coach} parks the bus against ${oppName}`
+            : `🚌 ${team.info.name} park the bus against ${oppName}`);
+        }
       }
     }
     this.allPlayers = [...this.teams[0].players, ...this.teams[1].players];
@@ -313,18 +323,28 @@ export class Match {
       team.modeTime += dt;
       if (team.brainTimer <= 0) {
         // Game-state mentality (Phase 35): the gene view every brain and
-        // mechanic reads is recomputed here — pure fn of score + clock.
+        // mechanic reads is recomputed here — pure fn of score + clock +
+        // (Phase 66) the coach's tinkerBias, which scales how HARD he
+        // responds. Read from the RAW genome: personality isn't bent by
+        // the underdog shift.
         const diff = this.score[team.side] - this.score[1 - team.side];
-        team.mentality = mentalityOf(diff, this.minute());
+        team.mentality = mentalityOf(diff, this.minute(), team.info.genome.tinkerBias ?? 0.5);
         team.effGenome = applyMentality(team.baseGenome, team.mentality);
-        // The visible switches earn ONE feed line each (failure mode 7).
+        // The visible switches earn ONE feed line each (failure mode 7) —
+        // the COACH's calls since Phase 66 (N3). A stoic (tinker→0) never
+        // crosses 0.8 at all: his silence is the personality showing.
+        const coach = team.info.coachName;
         if (team.mentality.urgency > 0.8 && !team.surgeAnnounced) {
           team.surgeAnnounced = true;
-          this.pushEvent('info', team.side, `⚡ ${team.info.name} throw everyone forward!`);
+          this.pushEvent('info', team.side, coach
+            ? `⚡ ${coach} throws everyone forward!`
+            : `⚡ ${team.info.name} throw everyone forward!`);
         }
         if (team.mentality.holding > 0.8 && !team.shutdownAnnounced) {
           team.shutdownAnnounced = true;
-          this.pushEvent('info', team.side, `🧊 ${team.info.name} shut up shop`);
+          this.pushEvent('info', team.side, coach
+            ? `🧊 ${coach} shuts up shop`
+            : `🧊 ${team.info.name} shut up shop`);
         }
         updateTeamBrain(team, this);
         team.brainTimer = TEAM_AI_INTERVAL;
@@ -1209,7 +1229,12 @@ export class Match {
     out.decisionTimer = 0.05; // think on arrival, not a stale slot's cadence
     team.policies[out.index] = sub.policy;
     this.stat(out.gid).apps = 1;
-    this.pushEvent('info', side, `🔄 ${team.info.name}: ${sub.name} on for ${offName}`);
+    // The coach's call by name (Phase 66, N3) — the club keeps the credit
+    // only when no coach travels with the team sheet (ad-hoc, old replays).
+    const coach = team.info.coachName;
+    this.pushEvent('info', side, coach
+      ? `🔄 ${coach} sends on ${sub.name} for ${offName}`
+      : `🔄 ${team.info.name}: ${sub.name} on for ${offName}`);
   }
 
   /**

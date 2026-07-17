@@ -104,6 +104,20 @@ describe('RenderStateAdapter', () => {
     expect(theme.players[0].role).toBe('GK');
   });
 
+  it('the theme carries the named coach to the touchline; ad-hoc dugouts stay empty (66)', () => {
+    const bare = buildRenderTheme(makeMatch());
+    expect(bare.teams[0].coach).toBeUndefined();
+    const withCoach = new Match({
+      seed: 42,
+      teamA: { ...makeTeam('Alpha', 1), coachName: 'Ferguson' },
+      teamB: makeTeam('Beta', 2),
+      duration: 60,
+    });
+    const theme = buildRenderTheme(withCoach);
+    expect(theme.teams[0].coach).toBe('Ferguson');
+    expect(theme.teams[1].coach).toBeUndefined();
+  });
+
   it('interpolates positions linearly and angles across the wrap', () => {
     const match = makeMatch();
     for (let i = 0; i < 120; i++) match.step(DT);

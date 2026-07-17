@@ -53,6 +53,17 @@ export interface TacticalGenome {
    * evolution's to discover.
    */
   underdogShift: number;
+  /**
+   * Match-day adjustment personality (Phase 66, N3): how hard the coach
+   * responds to score + clock. Scales the MAGNITUDE of the mentality
+   * layer (the chase and the shut-down) — the DIRECTION stays football
+   * law, exactly the underdogShift principle. 0 = the stoic who trusts
+   * his XI to play their game to the whistle; 0.5 = the Phase-35 curve
+   * exactly; 1 = the tinkerer who slams the panic button early and hard.
+   * Neither is a virtue: the chase concedes counters, the deep shut-down
+   * surrenders initiative — whether meddling pays is evolution's call.
+   */
+  tinkerBias: number;
 }
 
 export const GENE_KEYS = [
@@ -72,6 +83,7 @@ export const GENE_KEYS = [
   'supportDistance',
   'rotationBias',
   'underdogShift',
+  'tinkerBias',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -140,6 +152,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if (g.staminaConservation > 0.72) tags.push('Energy misers');
   if ((g.rotationBias ?? 0.5) > 0.72) tags.push('Fresh legs');
   if ((g.underdogShift ?? 0) > 0.72) tags.push('Cup fighter');
+  if ((g.tinkerBias ?? 0.5) > 0.72) tags.push('Tinkerman');
+  if ((g.tinkerBias ?? 0.5) < 0.28) tags.push('Trusts the XI');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

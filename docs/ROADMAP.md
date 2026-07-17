@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-65 (N1.5 CLOSED: the ecology self-balances, zero runaway metas)
+# Roadmap — shipped through phase-66 (N3: the coach is PRESENT — his gene, his calls, his touchline)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -134,17 +134,35 @@ keeperAggression −0.31) and ZERO axes run away — no style anywhere
 gets stronger as it spreads. Diversity is self-sustaining.** The
 ≥10%-cycles gate is retired (cross-era snapshots conflated arms-race
 progress with相性); the matrix stays a descriptive tool. N5 UNGATED.)
-⭐ **Next: N3 — COACH MATCH-DAY PRESENCE** (the named coach's
-game-state adjustments ATTRIBUTED and narrated + the coach STANDING ON
-THE TOUCHLINE in 3D — user addition; subs/mentality/underdog calls are
-all his now) → N4 tactical broadcast layer → N5 formation library
++ ✅ **phase-66 SHIPPED** (**N3 — COACH MATCH-DAY PRESENCE**, save v21:
+the game-state response becomes the PERSON's. The `tinkerBias` gene
+scales the mentality layer's MAGNITUDE (0 = the stoic who trusts his
+XI, 0.5 = the Phase-35 curve exactly, 1 = the tinkerer; direction
+stays football law — the underdogShift principle applied to score +
+clock); his calls are HIS in the feed (⚡/🧊/🔄 by name, the
+Phase-64 bus finally narrated 🚌 at kickoff, a full stoic never
+crosses the ⚡ threshold — silence IS personality rendering); and
+the coach STANDS ON THE TOUCHLINE in 3D (suited figure + club scarf
++ nameplate in each technical area, tracks the ball, leaps on his
+side's goals; render-only, raycast-safe). Probes: mechanism
+two-faced — the 1.5× chase buys nothing (GF 0.23→0.24) and bleeds
+counters (GA 0.31→0.38) while the harder shut-down protects (+0.16
+pts/game leading@68) — and selection is ALIVE, means 0.35–0.55 with
+full-width spread over 30 gens × 2 worlds, no corner runaway.
+vitest 392; visual 106+38 (new: 2 coaches stand the touchline);
+evolve-check healthy; fingerprint REBASELINED `9a23d408…`.
+⚠ calibrate 2.15/2.13 — both seeds below the 2.34 center but inside
+the documented same-code spread (1.83–2.62, fm 18), and the probe
+shows the dial ADDS late goals — new-gene founding re-roll, watch
+not chase.)
+⭐ **Next: N4 — the TACTICAL BROADCAST layer** → N5 formation library
 (ungated; mind the low-32 def-menu watch) → N6 market signs for style
 fit.
-Play reports interleave as always — **SEVEN unplayed behavioral phases
+Play reports interleave as always — **EIGHT unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
-🚫, the aerial channel, the underdog shift); a play report is VERY
-overdue — the goals band question resolved itself (2.90/2.99).**
-HEAD fingerprint `7878ed9b…` (since phase-64; 65 is probe-only).
+🚫, the aerial channel, the underdog shift, the dugout 🎩); a play
+report is VERY overdue — and the 2.15/2.13 goals watch wants eyes.**
+HEAD fingerprint `9a23d408…` (since phase-66).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 
