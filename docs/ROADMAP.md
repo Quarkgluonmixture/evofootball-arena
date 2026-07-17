@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-80 (N6: fitBias — the board's recruitment philosophy becomes a gene)
+# Roadmap — shipped through phase-81 (probe session: opposite board cultures, mid-41 takes 991, goals-band = variance)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -498,17 +498,32 @@ re-rolled every world; within historical world variance but the
 GOALS-BAND WATCH ESCALATES). vitest 413; visual 109+51;
 fingerprint REBASELINED `c8d81a2e…`. Pending observation: fitBias
 drift/divergence + signing-fit rates (next probe session).)
++ ✅ **phase-81 SHIPPED** (**the PROBE SESSION** — three questions,
+observation-only, fingerprint untouched. ① fitBias
+(`market-fit-anatomy.ts`, new): the two worlds evolved OPPOSITE
+board cultures — 424242 drifts system-first (mean 0.59→0.78,
+spread [0.55..1.00]) while 991 goes galactico (0.43→0.05→0.20,
+[0.00..0.56]); signings stay healthy (~1-1.5/season) — the gene is
+LIVE under selection and ecology-dependent, not neutral drift. ②
+991's defensive story past gen 60 (post-80 world): mid-41 doesn't
+just coexist — it TAKES THE LEAGUE (13-16/16 from gen 40 through
+gen 100), while 424242 keeps oscillating between the classics and
+barely samples it: world-scale ecology dependence ✓, no cross-world
+runaway; 991's fixation is its world personality (same as its old
+16/0 low-32), the menu is no longer the bottleneck. ③ the goals
+band: 6 seeds × 4 seasons = 2.42-3.45, mean 2.78 — the phase-80
+"3.2" reading was VARIANCE + a season-count effect (same seeds read
+3.3 at 8 seasons vs 2.5 at 4: goals warm as ecologies evolve — a
+new lead worth its own look someday), NOT a 79/80 drift; the
+standing ~2.8-vs-contract-2.3-2.6 watch stands as before, verdict
+= the user's play feel.)
 ⭐ **Next: user's Suno BGM lands → wire music slots (title done by
-user; league/reel/ceremony/shootout queued) → probe session
-(fitBias drift + does 991's defensive coexistence persist past gen
-60?).** The user PLAYS CONTINUOUSLY — casual observations ARE the
-play report stream; do NOT track "unplayed phases". Standing watch
-⚠ ESCALATED: goals band now ~3.2 (was ~2.8; old contract 2.3–2.6)
-— founder-gene reseeds moved it twice; wants the user's play
-verdict AND a mechanism check (is it reseed variance or drift?).
-Parked: foot IK/skinned meshes/cloth (deliberate), celebration
+user; league/reel/ceremony/shootout queued) → the goals-warming-
+with-generations lead (probe: goals/match vs generation curve).**
+The user PLAYS CONTINUOUSLY — casual observations ARE the play
+report stream. Parked: foot IK/skinned meshes/cloth, celebration
 choreography (sim-touching), amb loop human listen (user's ears).
-HEAD fingerprint `c8d81a2e…` (phase-80 rebaseline).
+HEAD fingerprint `c8d81a2e…` (phase-80 rebaseline; 81 probe-only).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

@@ -1295,3 +1295,17 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   2.3–2.6 contract); needs the user's play verdict + a
   variance-vs-drift mechanism check. Pending observation: fitBias
   drift/divergence + signing-fit rates (next probe session).
+- ✅ **phase-81 SHIPPED** (**probe session** — observation-only,
+  fingerprint untouched `c8d81a2e…`). ① `market-fit-anatomy.ts`:
+  OPPOSITE board cultures evolved — 424242 system-first (fitBias
+  mean →0.78), 991 galactico (→0.05-0.20); signings healthy; the
+  N6 gene is live and ecology-dependent. ② shape-emergence to gen
+  100: in the post-80 991, mid-41 TAKES the league (13-16/16 from
+  gen 40) while 424242 barely samples it and keeps cycling the
+  classics — world-scale ecology dependence, no cross-world
+  runaway; 991 fixates on SOME defense whatever the menu (world
+  personality, the old low-32 story transposed). ③ goals band:
+  6 seeds × 4 seasons = 2.42-3.45 mean 2.78 → phase-80's 3.2 was
+  sampling variance + a SEASON-COUNT effect (goals warm as
+  ecologies evolve — logged as a fresh lead), not a 79/80 drift;
+  the ~2.8 standing watch is unchanged, verdict = the user's feel.
