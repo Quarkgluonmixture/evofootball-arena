@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-83 (press buys its risk — line coupling; inflation persists, press was a passenger)
+# Roadmap — shipped through phase-84 (inflation decomposed: CONVERSION not volume — finishing out-races keeping)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -552,9 +552,34 @@ CONVERSION (shots + xG per gen) — is inflation more shots, or the
 same shots converting double? Calibrate 3.57/3.71/2.43 (early
 window, world variance); vitest 413; visual 109+53; fingerprint
 REBASELINED `8e1b75e2…`.)
-⭐ **Next: inflation diagnosis round 2 (shots-vs-conversion per
-gen) → then the targeted fix (user decision if it means fitness
-anchor (c)) → user's Suno BGM lands → wire music slots.** The user PLAYS CONTINUOUSLY —
++ ✅ **phase-84 SHIPPED** (**inflation DECOMPOSED** — goals-warming
+probe now splits volume/quality/conversion per gen; observation
+only. VERDICT: it is CONVERSION, not volume. 991: shots stay FLAT
+8.1→8.2 while goals go 2.2→5.6 — pure conversion. 424242: shots
++40% (8.2→11.5), goals +190%. The conversion doubling (goals/shot
+0.27→0.59-0.68) splits two ways: (1) chance QUALITY rises — xG/shot
+0.16→0.23-0.32, the tactical meta manufactures better chances
+(defensible, mirrors modern football); (2) FINISHING BEATS xG
+harder each gen — goals/xG 1.7→2.5, i.e. a chance of given quality
+converts ~1.5× more by late gens. Attributes are ~flat under the
+budget (finishing 0.43→0.48, reflexes 0.43→0.49 rise TOGETHER), so
+(2) isn't a finishing arms race — it's that KEEPING/defending don't
+keep pace with the meta's shot POSITIONS at the league scale, and
+relative fitness never punishes league-wide erosion (the red-queen
+hole). The fix is a design fork = the USER's call ⤵)
+⭐ **Next: USER DECISION on the goal-inflation fix (see the 3
+options below) → user's Suno BGM lands → wire music slots.**
+The three levers, from least to most structural:
+ (b') **reprice keeping/defending** — make reflexes+defending buy
+   more per budget point (or cheaper) so evolution re-invests in the
+   back; substrate reprice like phase-48/58, no fitness change.
+ (c) **absolute defensive anchor in fitness** — add a conceded-goals
+   penalty to the results-relative fitness so league-wide defensive
+   collapse is punished; most direct at the red-queen hole.
+ (a) **accept it** — chaos-football / modern-high-press scorelines
+   are the evolved truth; leave it, maybe just cap the display.
+Recommendation: (b') first (most constitution-faithful — change the
+price, let evolution rebalance), (c) if the meta still runs away. The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

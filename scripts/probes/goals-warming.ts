@@ -13,15 +13,26 @@ for (const seed of [424242, 991, 777]) {
   for (let g = 0; g < GENS; g++) {
     let goals = 0;
     let matches = 0;
+    let shots = 0;
+    let xg = 0;
     while (!league.seasonDone) {
       const fx = league.nextFixture()!;
       const res = league.createMatch(fx).runToCompletion();
       goals += res.score[0] + res.score[1];
+      shots += res.stats[0].shots + res.stats[1].shots;
+      xg += res.stats[0].xg + res.stats[1].xg;
       matches++;
       league.applyResult(fx, res);
     }
     league.finishSeason();
     curve.push(goals / matches);
+    if (g % 4 === 0 || g === GENS - 1) {
+      // The volume-vs-quality-vs-conversion split (Phase 84 round 2).
+      console.log(
+        `  [gen ${String(g).padStart(2)}] goals ${(goals / matches).toFixed(2)} | shots ${(shots / matches).toFixed(2)} ` +
+        `| xG/shot ${(xg / shots).toFixed(3)} | goals/shot ${(goals / shots).toFixed(3)} | goals/xG ${(goals / xg).toFixed(2)}`,
+      );
+    }
     if (g === 0 || g === Math.floor(GENS / 2) || g === GENS - 1) {
       // Diagnosis: where does the inflation live — attributes or genes?
       const attr = (k: string): number => {
