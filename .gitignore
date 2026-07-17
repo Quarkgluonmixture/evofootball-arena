@@ -7,3 +7,6 @@ release/
 # REAPER waveform cache — editor junk, never versioned
 audio/audio_raw/peaks/
 *.reapeaks
+
+# derived audio (rebuilt by scripts/audio/clean.py)
+audio/processed/*.wav

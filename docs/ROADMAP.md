@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-77 (the LINESMEN: two assistants whose running line IS the offside line)
+# Roadmap — shipped through phase-78 (REAL AUDIO: the user's recorded library, cleaned by pipeline, in the game)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -424,12 +424,37 @@ OBSERVED live on a real offside); fingerprint IDENTITY `28002dfc…`.
 One suite-side fix: my hardcoded touchline bound assumed HALF_W=30,
 real pitch is 58 wide (HALF_W=29) — the check was wrong, not the
 model.)
-⭐ **Next: N5b def-menu expansion (the 16/0 watch) → N6 market
-signs.** The user PLAYS CONTINUOUSLY (their correction: "我tm一直
-在玩") — casual observations ARE the play report stream; do NOT
-track "unplayed phases". Standing watch: the goals band (~2.8 vs
-old 2.3–2.6). Parked from the FIFA-gap list: foot IK / skinned
-meshes / cloth (deliberate), celebration choreography (sim-touching).
++ ✅ **phase-78 SHIPPED** (**REAL AUDIO** — the user recorded a 21-file
+REAPER library (`audio/audio_raw/`) and spec'd the cleanup pipeline
+(2026-07-17, four categories A–D). Built `scripts/audio/clean.py`
+(pure numpy, sample-level): noise-floor-ADAPTIVE trims (floor =
+median of quietest 10% of 5ms windows, never a fixed threshold),
+5ms pre-transient pads, decay-following fade-outs for whistle/
+crossbar/net (86/212/400ms auto-picked), crowd lead-in preserved
+(200ms), amb passthrough + equal-power head-blend loop candidates
+(0.75–2s) with honest seam QA (RMS/centroid/channel-balance/
+hot-transient) → `audio/processed/` + `warnings.md` (1 flagged:
+the dribble loop — correctly, its trimmed tail is silent). Web
+encode: SFX→AAC m4a via afconvert; the two stadium-bed LOOPS ship
+as 16-bit WAV (AAC encoder priming clicks at WebAudio loop points);
+5.1MB total. INTEGRATION: SoundFx rewritten — lazy sample engine
+(fetch+decode on first enable = the required user gesture),
+event→sample map (shot=kick, goal=net+celebration, save=glove+
+applause, foul=real whistle, interception=touch), ±4% rate jitter
+against machine-gunning, looping stadium bed at 0.22 gain with
+ramped start/stop, and the old beeps kept as per-file fallback;
+label "Sound FX (beeps)"→"Sound FX". vitest 412; visual 109+53;
+fingerprint IDENTITY `28002dfc…`. ⚠ Deliberately NOT auto-claimed:
+the two loop candidates passed QA but want one human listen (per
+the user's own spec); BGM slots await the user's Suno tracks —
+music hooks not yet wired.)
+⭐ **Next: user's Suno BGM lands → wire music slots (title done by
+user; league/reel/ceremony/shootout queued) → N5b def-menu
+expansion (the 16/0 watch) → N6 market signs.** The user PLAYS
+CONTINUOUSLY — casual observations ARE the play report stream; do
+NOT track "unplayed phases". Standing watch: the goals band (~2.8
+vs old 2.3–2.6). Parked: foot IK/skinned meshes/cloth (deliberate),
+celebration choreography (sim-touching).
 HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)

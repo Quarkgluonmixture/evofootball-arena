@@ -115,7 +115,7 @@ export class LeftPanel {
     // HT/FT auto-highlights (Phase 33): watched 3D matches replay their
     // goals + big saves at the whistles; ⏭ skips a running reel.
     presSec.appendChild(checkbox(t('🎬 Auto highlights (HT/FT)'), false, (v) => actions.setAutoHighlights(v)));
-    presSec.appendChild(checkbox(t('Sound FX (beeps)'), false, (v) => actions.setSound(v)));
+    presSec.appendChild(checkbox(t('Sound FX'), false, (v) => actions.setSound(v)));
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
     const fxSeg = el('div', 'seg');
