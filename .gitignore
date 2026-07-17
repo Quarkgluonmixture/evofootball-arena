@@ -3,3 +3,7 @@ dist/
 *.log
 .DS_Store
 release/
+
+# REAPER waveform cache — editor junk, never versioned
+audio/audio_raw/peaks/
+*.reapeaks
