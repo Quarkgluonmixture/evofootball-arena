@@ -172,3 +172,13 @@ export function playerNameplate(vec: number[], stats: PlayerDimStats, minZ = 1.2
   }
   return out;
 }
+
+/**
+ * Style fit between two players (Phase 80, N6): 1 = identical appetites,
+ * 0 = maximally apart across the style box. Pure; the market's signal.
+ */
+export function styleFit(a: PlayerStyle, b: PlayerStyle): number {
+  let d = 0;
+  for (const k of PLAYER_STYLE_KEYS) d += Math.abs(a[k] - b[k]);
+  return 1 - d / (PLAYER_STYLE_KEYS.length * (STYLE_MAX - STYLE_MIN));
+}

@@ -350,6 +350,23 @@ describe('League', () => {
     expect(() => restored.applyResult(next, restored.createMatch(next).runToCompletion())).not.toThrow();
   });
 
+  it('migrates a v21 save: fitBias backfills at 0.5 (Phase 80, N6)', () => {
+    const league = makeLeague();
+    playSeason(league);
+    league.finishSeason();
+    const json = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown> & {
+      franchises: Array<{ coach: { genome: Record<string, number> } }>;
+      history: Array<{ geneMeans?: Record<string, number> }>;
+    };
+    json.version = 21;
+    for (const f of json.franchises) delete f.coach.genome.fitBias;
+    for (const r of json.history) delete r.geneMeans?.fitBias;
+    const restored = League.fromJSON(json as unknown as Record<string, unknown>);
+    for (const f of restored.franchises) expect(f.coach.genome.fitBias).toBe(0.5);
+    const next = restored.nextFixture()!;
+    expect(() => restored.applyResult(next, restored.createMatch(next).runToCompletion())).not.toThrow();
+  });
+
   it('league runs are reproducible end to end', () => {
     const a = makeLeague();
     const b = makeLeague();

@@ -30,6 +30,7 @@ import {
 } from '../evolution/freeAgents';
 import {
   applyPlayerStyle, neutralSquadStyles, styleFromBloodline,
+  styleFit,
 } from '../evolution/playerStyle';
 import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evolution/policyGenome';
 import { styleValues } from '../evolution/styleSpace';
@@ -181,7 +182,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 21;
+export const SAVE_VERSION = 22;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -853,11 +854,24 @@ export class League {
           // taxing the rest of the squad. Otherwise: academy as always.
           const retireeTotal = ATTR_KEYS.reduce((a, k) => a + f.squad[i][k], 0);
           const headroom = SQUAD_BUDGET - squadTotal(f.squad) + retireeTotal;
+          // Style fit as a MARKET SIGNAL (Phase 80, N6): the board weighs a
+          // candidate's appetites against the retiree's — the club's evolved
+          // bloodline for the slot — by its OWN fitBias gene. Eligibility
+          // (beats the academy, fits the budget) is unchanged; only the
+          // ranking among eligibles moves. 1.2 = a perfect fit is worth up
+          // to ~1.2 ability points to an all-in system board.
+          const retireeStyle = { ...f.squadStyles[i] };
+          const fitW = (f.coach.genome.fitBias ?? 0.5) * 1.2;
+          const score = (x: FreeAgent): number => agentTotal(x) + fitW * styleFit(x.style, retireeStyle);
           const agent = this.freeAgents
             .filter((x) =>
               x.role === ROSTER_ROLES[i] && x.age <= FREE_AGENT_MAX_AGE &&
+              // No two men on one sheet share a nameplate (latent Phase-55
+              // bug surfaced by Phase 80's RNG shift): identity — bodies,
+              // styles, careers — is name-keyed on the roster.
+              !f.playerNames.includes(x.name) &&
               agentTotal(x) > retireeTotal + 0.2 && agentTotal(x) <= headroom + 1e-9)
-            .sort((a, b) => agentTotal(b) - agentTotal(a) || a.age - b.age || a.name.localeCompare(b.name))[0];
+            .sort((a, b) => score(b) - score(a) || a.age - b.age || a.name.localeCompare(b.name))[0];
           if (agent) {
             this.freeAgents = this.freeAgents.filter((x) => x !== agent);
             f.playerNames[i] = agent.name;
@@ -1533,6 +1547,24 @@ export class League {
         }
       }
       data.version = 21;
+    }
+    if (data.version === 21) {
+      // v21 -> v22: fitBias (Phase 80, N6 — the board's recruitment
+      // philosophy). Backfilled at 0.5: a migrated board half-weighs fit,
+      // and evolution moves the dial from there.
+      const fixG = (g: TacticalGenome | undefined): void => {
+        if (g) g.fitBias ??= 0.5;
+      };
+      for (const f of data.franchises as Franchise[]) fixG(f.coach.genome);
+      for (const e of (data.coachPool ?? []) as PoolEntry[]) fixG(e.coach.genome);
+      for (const r of ((data.history ?? []) as SeasonRecord[])) {
+        if (r.geneMeans) (r.geneMeans as Record<string, number>).fitBias ??= 0.5;
+        for (const e of r.evolution?.entries ?? []) {
+          fixG(e.childGenome);
+          if (e.parentGenomes) e.parentGenomes.forEach(fixG);
+        }
+      }
+      data.version = 22;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

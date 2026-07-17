@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-79 (N5b: the defensive menu opens — 991's 16/0 monoculture breaks)
+# Roadmap — shipped through phase-80 (N6: fitBias — the board's recruitment philosophy becomes a gene)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -477,15 +477,38 @@ on balance: calibrate 8-season × 3 seeds 2.81/2.10/3.46 vs 71's
 2.81/2.07/3.42 (Δ≤0.04). vitest 412 (zero pin reshuffles — the
 change only touches evolution-time mutation rolls); visual 109+52;
 fingerprint REBASELINED `43469bba…` (mutation RNG stream moved).)
++ ✅ **phase-80 SHIPPED** (**N6 — fitBias, recruitment as a GENE**: the
+fire-sale board ranked eligible signings by raw ability alone. Now
+each club's board carries `fitBias` (17th gene, GENE_KEYS
+auto-propagates mutate/crossover/founders): candidate score =
+ability + fitBias × 1.2 × `styleFit` (pure: appetite distance
+between the candidate and the RETIREE — the club's evolved
+bloodline for the slot). 0 = galactico board, 1 = system-first;
+whether culture-fit recruitment pays is evolution's call.
+Eligibility gates (beats academy, fits budget) unchanged — only the
+ranking moves. Save v22 (+migration test, backfill 0.5); identity
+tags 'System signings'/'Galactico board'; gene labels in
+rebirth/i18n. BONUS latent-bug kill: signings never checked NAME
+collisions (Phase-55 era) — a signed agent could duplicate a
+squadmate's nameplate, and identity (bodies since 76, styles,
+careers) is name-keyed; now same-named agents are ineligible
+(caught by the subs migration test when the RNG stream moved).
+Calibrate 3.32/3.29/2.98 (mean 3.20 — the new founder gene
+re-rolled every world; within historical world variance but the
+GOALS-BAND WATCH ESCALATES). vitest 413; visual 109+51;
+fingerprint REBASELINED `c8d81a2e…`. Pending observation: fitBias
+drift/divergence + signing-fit rates (next probe session).)
 ⭐ **Next: user's Suno BGM lands → wire music slots (title done by
-user; league/reel/ceremony/shootout queued) → N6 market signs for
-style fit.** The user PLAYS CONTINUOUSLY — casual observations ARE
-the play report stream; do NOT track "unplayed phases". Standing
-watches: the goals band (~2.8 vs old 2.3–2.6) + whether 991's new
-defensive coexistence PERSISTS past gen 60 (next probe run).
+user; league/reel/ceremony/shootout queued) → probe session
+(fitBias drift + does 991's defensive coexistence persist past gen
+60?).** The user PLAYS CONTINUOUSLY — casual observations ARE the
+play report stream; do NOT track "unplayed phases". Standing watch
+⚠ ESCALATED: goals band now ~3.2 (was ~2.8; old contract 2.3–2.6)
+— founder-gene reseeds moved it twice; wants the user's play
+verdict AND a mechanism check (is it reseed variance or drift?).
 Parked: foot IK/skinned meshes/cloth (deliberate), celebration
 choreography (sim-touching), amb loop human listen (user's ears).
-HEAD fingerprint `43469bba…` (phase-79 rebaseline).
+HEAD fingerprint `c8d81a2e…` (phase-80 rebaseline).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

@@ -64,6 +64,16 @@ export interface TacticalGenome {
    * surrenders initiative — whether meddling pays is evolution's call.
    */
   tinkerBias: number;
+  /**
+   * The BOARD's recruitment philosophy (Phase 80, N6): how much a signing's
+   * personal STYLE FIT (his appetites vs the man he replaces — the club's
+   * evolved bloodline for that slot) weighs against raw ability in the
+   * fire-sale market. 0 = best man available, damn the system; 1 = system
+   * first. Neither is a virtue: the galactico may never suit the shape,
+   * the system signing may simply be worse — whether culture-fit
+   * recruitment pays is evolution's call.
+   */
+  fitBias: number;
 }
 
 export const GENE_KEYS = [
@@ -84,6 +94,7 @@ export const GENE_KEYS = [
   'rotationBias',
   'underdogShift',
   'tinkerBias',
+  'fitBias',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -154,6 +165,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if ((g.underdogShift ?? 0) > 0.72) tags.push('Cup fighter');
   if ((g.tinkerBias ?? 0.5) > 0.72) tags.push('Tinkerman');
   if ((g.tinkerBias ?? 0.5) < 0.28) tags.push('Trusts the XI');
+  if ((g.fitBias ?? 0.5) > 0.72) tags.push('System signings');
+  if ((g.fitBias ?? 0.5) < 0.28) tags.push('Galactico board');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }
