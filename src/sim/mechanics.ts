@@ -1272,7 +1272,14 @@ export function tryTackles(match: Match): void {
     match.teams[owner.side].genome.dribbleBias * 0.08 -
     owner.attrs.dribbling * 0.18 -
     owner.attrs.strength * 0.1 -
-    owner.attrs.pace * drive * 0.2;
+    // 0.20 → 0.16 (Phase 41.2): the slalom COMMITMENT fix stopped carriers
+    // bleeding their momentum in pirouettes, so the same coefficient bought
+    // far more protection than Phase 41 priced (3-seed paired calibrate
+    // +0.74 goals; evo-drift dribbleBias railed 0.40→0.80 and width
+    // re-collapsed 0.52→0.14 — a dribble monoculture). The trim restores
+    // the DESIGNED effective protection at the new, honest drive levels;
+    // the space/pace gradient itself stays (the master-gate principle).
+    owner.attrs.pace * drive * 0.16;
   if (oppTeam.mode === 'Press') p += 0.06;
   if (tackler.traits.includes('enforcer')) p += 0.04; // the destroyer (Phase 39)
   p = clamp(p, 0.06, 0.7);

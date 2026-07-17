@@ -238,7 +238,13 @@ describe('aerial duels and deliveries', () => {
     const wide = { formationAtk: 'wide-212', formationDef: 'press-23', scheme: 'man' } as const;
     let crosses = 0;
     let atkHead = 0;
-    for (let seed = 1; seed <= 20; seed++) {
+    // 20 → 80 seeds (Phase 41.2 hardening): at ~67 crosses the floor rode
+    // on 2-3 header events, and the 4400s seed range drew a 2%-tail streak
+    // after the slalom reshuffle (n=40 read 0.8% while the SAME config at
+    // n=120 measures 6.0% — and aerial-anatomy A/B'd the channel healthy,
+    // 6.6→7.3% per cross). ~260 crosses puts the 3% floor ~2.5σ under the
+    // true rate instead of one unlucky streak away.
+    for (let seed = 1; seed <= 80; seed++) {
       const m = new Match({
         seed: 4400 + seed,
         teamA: team('A', g, { style: wide, policy: { crossBase: DEFAULT_POLICY.crossBase * 2.2 } }),

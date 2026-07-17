@@ -860,3 +860,43 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   timed), goal-moment screenshot eyeballed (fans at scattered heights
   mid-eruption, banner same frame, arousal 0.98). No probe beyond the
   choreography checks — no sim behavior to measure.
+- ✅ **phase-41.2 SHIPPED** (user report "球员带着球,转了一大圈身,然后
+  突然球丢了" — the 1v1 family, carrier side: slalom COMMITMENT + the
+  drive-protection reprice). Anatomy (`spin-loss.ts` n=60 paired +
+  `spin-trace.ts` frame transcripts): the dribble evasion recomputed its
+  perp SIDE every frame from an instantaneous cross product, so a
+  defender shadowing the carrier ON the goal axis flipped it every
+  0.25-0.6s; the body turn-rate cap integrated the flip-flop into a
+  full pirouette at walking pace (v≈2.4 ⇒ drive≈0.27 ⇒ no pace
+  protection) until the 1.1m tackle roll landed — the reported shape
+  exactly. Fix in `dribbleTarget`: per-carrier `slalomSide/slalomUntil`
+  (Player fields, deterministic, no rng) — pick a shoulder, hold 0.6s,
+  and re-picks are HYSTERETIC (|cross| ≤ 0.3·blockD keeps the committed
+  side; only a decisively parked blocker flips — reads as a deliberate
+  cut). First cut WITHOUT hysteresis only halved the cadence (a
+  mirroring shadow made every expiry re-pick a coin flip). Measured:
+  pirouettes (osc ≥103°/s, the flip-flop signature) 1.38→0.63/match,
+  ≥200° spins 0.7→0.3, spin→tackle 0.15→0.08; survivors trace as single
+  committed cuts (bend-and-cut-inside, ending in clean releases).
+  **The balance ledger**: honest movement bought too much — 3-seed
+  paired calibrate (default/424242/2024) 2.15/2.13/2.58 →
+  3.24/2.32/3.51 (mean +0.74) and evo-drift 424242 re-collapsed width
+  0.52→0.14 under a dribble monoculture (the master-gate inversion:
+  dribbling paying TOO well kills width the same way not-paying did).
+  ⇒ ONE lever: tryTackles drive protection 0.20→0.16 (the coefficient
+  was priced against pirouette-throttled drive; the trim restores the
+  designed effective protection). At 0.16: paired goals 2.49/1.89/2.74
+  (Δ+0.09 vs pre-fix — neutral), evo-drift width 0.48@gen30 ≈ baseline
+  0.476, dribble/press within baseline wander. Aerial channel A/B'd
+  HEALTHY (aerial-anatomy per-cross attacker headers 6.6→7.3%
+  GEN/NEUTRAL; league calibrate headers 2.94→2.89). Two statistical
+  pins hardened (the phase-64 precedent): keeper-throw seeds 52→35/53
+  (re-scanned 1..60), cross-header floor n=20→80 (the n=40 fail was a
+  2%-tail seed streak — the same config at n=120 measures 6.0%, twice
+  the floor). Gates: vitest 392; visual 106+40; evolve-check styles
+  coexist; fingerprint REBASELINED `0c9fd268…`. ⚠ WATCH: (1) the
+  low-32 def-menu skew RE-FIRED in the evolve-check world (def 15/1,
+  atk 15/1 wide — stronger carriers make deep blocks the rational
+  answer; N5's formation-library problem, don't chase here); (2) the
+  goals band spans 1.89-2.74 across seeds — the user's play-feel
+  verdict on scoring is still the open question from phase-66.

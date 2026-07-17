@@ -497,8 +497,27 @@ function dribbleTarget(p: Player, match: Match): V2 {
 
   let dir = toGoal;
   if (block) {
-    // Slalom: steer perpendicular, away from the blocker's side.
-    const side = (block.pos.x - p.pos.x) * toGoal.y - (block.pos.y - p.pos.y) * toGoal.x > 0 ? -1 : 1;
+    // Slalom: steer perpendicular, away from the blocker's side — and
+    // COMMIT to it (Phase 41.2, user report "带球转一大圈然后突然丢球"):
+    // a blocker shadowing the carrier right on the goal axis flipped the
+    // cross-product sign every few ticks, the steering flip-flopped ±68°,
+    // and the body turn-rate cap integrated that into a full pirouette at
+    // walking pace — momentum dead, no pace protection, tackle inevitable.
+    // A real dribbler picks a shoulder and goes: the side holds 0.6s, and
+    // a re-pick at expiry is HYSTERETIC — a shadow sitting ON the axis
+    // (|cross| small) keeps the committed shoulder (the first cut re-read
+    // the instantaneous sign at every expiry, which against a mirroring
+    // defender was a coin flip per 0.6s: the same pirouette, slower).
+    // Only a blocker decisively parked off-axis flips it — a real cut.
+    let side: 1 | -1;
+    if (match.simTime < p.slalomUntil) {
+      side = p.slalomSide;
+    } else {
+      const cross = (block.pos.x - p.pos.x) * toGoal.y - (block.pos.y - p.pos.y) * toGoal.x;
+      side = Math.abs(cross) > blockD * 0.3 ? (cross > 0 ? -1 : 1) : p.slalomSide;
+      p.slalomSide = side;
+      p.slalomUntil = match.simTime + 0.6;
+    }
     const perp = v2(-toGoal.y * side, toGoal.x * side);
     const w = clamp(1 - blockD / 6, 0, 1);
     dir = norm(add(scale(toGoal, 1 - w * 0.8), scale(perp, w)));

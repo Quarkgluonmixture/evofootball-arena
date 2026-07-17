@@ -121,6 +121,18 @@ export class Player {
    */
   wallRun: { until: number; partnerGid: number } | null = null;
 
+  /**
+   * Slalom COMMITMENT (Phase 41.2, user report "带球转一大圈然后突然丢
+   * 球"): the side picked to beat the current blocker, held until the
+   * timestamp. Without it a defender shadowing the carrier on the goal
+   * axis flipped the perp sign every few ticks — the turn-rate cap
+   * integrated the flip-flop into a full pirouette at walking pace
+   * (momentum gone = no pace protection) until the tackle landed. A real
+   * dribbler picks a shoulder and goes.
+   */
+  slalomSide: 1 | -1 = 1;
+  slalomUntil = -1;
+
   /** Age in seasons (Phase 26) — display only, set by Team from TeamInfo. */
   age?: number;
   /** Has a yellow card this match — a second booking is a red (Phase 25). */
@@ -329,5 +341,6 @@ export class Player {
     this.saveAnimTimer = 0;
     this.headerAnimTimer = 0;
     this.firstTouchWindow = 0;
+    this.slalomUntil = -1;
   }
 }

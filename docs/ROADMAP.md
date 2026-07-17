@@ -166,6 +166,27 @@ to `CrowdSystem` (same 2-draw-call instancing, ~270 seats) — idle sway,
 "ooh" ripples on shots/saves/corners via the FxSystem deduped hooks,
 full jumping eruption on goals (~2.6s decay, per-seat beats). visual
 106+40 — new checks: crowd seated, stands stirred in live play.)
++ ✅ **phase-41.2 SHIPPED** (user report "带球转一大圈然后突然丢球" —
+the 1v1 family's carrier side: slalom COMMITMENT. Diagnosed by
+`spin-loss.ts`/`spin-trace.ts`: the evasion perp's SIGN recomputed
+every frame, so a defender shadowing on the goal axis flipped it every
+0.25-0.6s and the body turn-rate cap integrated the flip-flop into a
+pirouette at walking pace — momentum dead, no pace protection, tackle
+inevitable. Fix: the carrier picks a shoulder and holds it 0.6s, with
+HYSTERETIC re-picks (an on-axis shadow keeps the committed side; only
+a decisively parked blocker flips it — a real cut). Pirouettes
+1.38→0.63/match, spin→tackle 0.15→0.08. The honest movement bought TOO
+much (3-seed paired calibrate +0.74 goals; evo-drift width re-collapsed
+0.52→0.14 under a dribble monoculture) ⇒ drive protection repriced
+0.20→0.16: paired goals Δ+0.09 (2.49/1.89/2.74), width back to the
+baseline trajectory (0.48@gen30). Aerial channel A/B'd healthy
+(per-cross attacker headers 6.6→7.3%); two statistical pins hardened
+per the phase-64 precedent (throw seeds 52→35/53; cross-header floor
+n=20→80 — its n=40 read was a 2%-tail streak, true rate 6.0%). vitest
+392; visual 106+40; fingerprint REBASELINED `0c9fd268…`. ⚠ WATCH ×2:
+the low-32 def-menu skew re-fired in the evolve-check world (15/1 —
+stronger carriers make deep blocks pay; N5's problem) and the goals
+band (2.49/1.89/2.74) spans wide across seeds.)
 ⭐ **Next: N4 — the TACTICAL BROADCAST layer** → N5 formation library
 (ungated; mind the low-32 def-menu watch) → N6 market signs for style
 fit.
