@@ -1147,3 +1147,34 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   0.7s, so any poll catching the shake must catch the bulge — it
   did, `bulge=true`). vitest 406; both visual suites green;
   fingerprint identity.
+- ✅ **phase-75 SHIPPED** (**the REFEREE** — FIFA-gap tier 3;
+  render-only, fingerprint IDENTITY `28002dfc…`). The sim has
+  adjudicated fouls, advantage, penalties and cards as pure state
+  since phase-25 — the calls just had no body. Now they do, without
+  the sim learning anything: `RefereeModel` (black kit, one yellow
+  collar flash so "that's the ref" reads from any camera, no
+  nameplate) synthesizes his position entirely render-side —
+  `refereeTarget` (pure, pinned) shadows play up the pitch at 0.8×,
+  drifts across the center channel with the end the ball is at,
+  holds a 7m adjudicating stand-off, and never comes within 6m of a
+  goal line (he must never be in the goalmouth picture). He runs the
+  players' distance-driven gait cycle (speed-scaled amplitude +
+  lean), faces his run while moving and the ball while standing.
+  CALLS come from the fx stream, which the adapter now extends with
+  `foul` and `card` events (FxEvent union + red flag mined from the
+  feed's own text — `SENT OFF|STRAIGHT RED` — the color lives
+  nowhere else); he stops mid-patrol, the call arm goes straight up
+  for 0.9s on fouls (SoundFx gains the 2093Hz double-trill whistle,
+  sound still off by default; 'card' stays silent — the whistle
+  already blew), and bookings raise the physical card for 1.5s in
+  the raised hand, yellow or red. Dedupe by event time exactly like
+  FxSystem, re-armed on match attach AND replay scrub; hidden during
+  the shootout theater (it stages its own picture). vitest 408 (+2);
+  the 3D suite's three new checks ALL fired live in one run —
+  in-bounds patrol, moves-with-play, and the call arm on a real
+  foul; fingerprint identity. FIFA-gap tiers 1–3 are now ALL
+  shipped in one session (73 the runner's body, 74 the goal & the
+  curve, 75 the referee); what remains from that assessment is the
+  deliberately-parked list (foot IK, skinned meshes, cloth) and the
+  sim-touching celebration choreography (needs celebrate-phase
+  movement, queued behind the play report).

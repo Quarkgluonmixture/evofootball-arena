@@ -59,11 +59,13 @@ export interface RenderBall {
 
 /** A recent notable event, for visual/audio feedback (deduped by `t`). */
 export interface FxEvent {
-  type: 'goal' | 'save' | 'shot' | 'interception' | 'corner';
+  type: 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card';
   side: Side;
   t: number;
   /** Attached for shots so the viewer can show chance quality. */
   xg?: number;
+  /** Cards only (Phase 75): a sending-off, from the feed's own words. */
+  red?: boolean;
 }
 
 export interface OverlayState {
@@ -215,8 +217,14 @@ function buildFx(match: Match): FxEvent[] {
   for (let i = match.events.length - 1; i >= 0; i--) {
     const ev = match.events[i];
     if (match.simTime - ev.t > FX_WINDOW) break;
-    if (ev.type === 'goal' || ev.type === 'save' || ev.type === 'shot' || ev.type === 'interception' || ev.type === 'corner') {
+    if (
+      ev.type === 'goal' || ev.type === 'save' || ev.type === 'shot' ||
+      ev.type === 'interception' || ev.type === 'corner' ||
+      ev.type === 'foul' || ev.type === 'card'
+    ) {
       const fx: FxEvent = { type: ev.type, side: ev.side as Side, t: ev.t };
+      // The card's color lives only in the feed text — mine it (Phase 75).
+      if (ev.type === 'card') fx.red = /SENT OFF|STRAIGHT RED/.test(ev.text);
       if (ev.type === 'shot') {
         for (let j = match.shotLog.length - 1; j >= 0; j--) {
           const s = match.shotLog[j];

@@ -7,6 +7,7 @@ import { randomSquad } from '../src/evolution/playerGenome';
 import { animFor, bankFor, jostling, lateralSlot, rideSide } from '../src/render3d/AnimationSystem';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
+import { refereeTarget } from '../src/render3d/RefereeModel';
 import {
   buildRenderState, buildRenderTheme, interpolateStates, lerpAngle,
   type RenderPlayer, type RenderState,
@@ -122,6 +123,18 @@ describe('RenderStateAdapter', () => {
     expect(mid.possession).toBe(b.possession);
     expect(mid.modes).toEqual(b.modes);
     expect(mid.press).toEqual(b.press);
+  });
+
+  it('surfaces fouls and cards to the fx stream, mining the card color (75)', () => {
+    const match = makeMatch();
+    for (let i = 0; i < 100; i++) match.step(DT);
+    match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 0, text: 'Foul by A on B — advantage' });
+    match.events.push({ t: match.simTime, minute: 1, type: 'card', side: 0, text: 'A is booked' });
+    match.events.push({ t: match.simTime, minute: 1, type: 'card', side: 1, text: 'STRAIGHT RED! C is sent off' });
+    const fx = buildRenderState(match, false).fx;
+    expect(fx.some((f) => f.type === 'foul')).toBe(true);
+    expect(fx.find((f) => f.type === 'card' && f.side === 0)?.red).toBe(false);
+    expect(fx.find((f) => f.type === 'card' && f.side === 1)?.red).toBe(true);
   });
 
   it('carries ball spin for the curve visual; absent spin lerps to 0 (74)', () => {
@@ -257,6 +270,22 @@ describe('body-contact detection (Phase 38, pure fns of RenderState)', () => {
     expect(jostling(crasher, { ...corner, ball: { ...corner.ball, x: 10, z: 28.4 } })).toBe(false);
     // A sprinting player is running a crash, not wrestling.
     expect(jostling({ ...crasher, speed: 5 }, corner)).toBe(false);
+  });
+});
+
+describe('refereeTarget (Phase 75, pure)', () => {
+  it('shadows play, stands off the ball, stays inside the pitch', () => {
+    // He tracks ends: deep ball at -x pulls him deep too.
+    expect(refereeTarget(-40, 0).x).toBeLessThan(-20);
+    expect(refereeTarget(40, 0).x).toBeGreaterThan(20);
+    // Never crowds the ball (7m adjudicating stand-off), anywhere.
+    for (const [bx, bz] of [[0, 0], [44, 20], [-44, -25], [10, -5], [30, 8]] as const) {
+      const t = refereeTarget(bx, bz);
+      expect(Math.hypot(t.x - bx, t.z - bz)).toBeGreaterThanOrEqual(6.99);
+    }
+    // Never enters the goalmouth picture: x stays ≥6m off the goal lines.
+    expect(Math.abs(refereeTarget(45, 0).x)).toBeLessThanOrEqual(39 + 1e-9);
+    expect(Math.abs(refereeTarget(-45, -28).x)).toBeLessThanOrEqual(39 + 1e-9);
   });
 });
 

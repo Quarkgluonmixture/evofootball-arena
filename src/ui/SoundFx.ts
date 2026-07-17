@@ -3,7 +3,7 @@
  * OFF by default; toggled from the left panel. Failures (no AudioContext,
  * autoplay policy) are swallowed silently: sound is strictly cosmetic.
  */
-export type FxSoundType = 'goal' | 'save' | 'shot' | 'interception' | 'corner';
+export type FxSoundType = 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card';
 
 export class SoundFx {
   enabled = false;
@@ -32,6 +32,12 @@ export class SoundFx {
           this.beep(659, 0.12, 0.09, 'triangle', 0.11);
           this.beep(784, 0.22, 0.1, 'triangle', 0.22);
           break;
+        case 'foul':
+          // The referee's whistle (Phase 75): a short high double-trill.
+          this.beep(2093, 0.07, 0.05, 'square', 0);
+          this.beep(2093, 0.1, 0.05, 'square', 0.09);
+          break;
+        // 'card' stays silent — the whistle already blew for the foul.
       }
     } catch {
       /* sound is best-effort */

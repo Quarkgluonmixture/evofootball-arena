@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-74 (the GOAL & THE CURVE made visible: net bulge, spinning ball)
+# Roadmap — shipped through phase-75 (the REFEREE: diagonal patrol, whistle, cards — all render-side)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -356,12 +356,30 @@ ball flies. Render-only, fingerprint IDENTITY `28002dfc…`; vitest
 406 (+1 spin-carry pin incl. NaN guard); visual 109 + 3D green with
 the new co-fire check (any poll catching the 0.7s shake must catch
 the 0.9s bulge — it did).)
-⭐ **Next: play report (FIFTEEN unplayed phases — fatigue, reaction
++ ✅ **phase-75 SHIPPED** (**the REFEREE** — FIFA-gap tier 3, the "this
+is a real match" presence: a black-kit yellow-collar figure whose
+POSITION IS SYNTHESIZED render-side (`refereeTarget` pure: shadow
+play up the pitch at 0.8×, drift the center channel with the end of
+play, 7m adjudicating stand-off, never inside 6m of a goal line —
+the sim knows nothing about him); he runs a real gait (distance-
+driven cycle, speed-scaled amplitude, lean), faces his run while
+moving and the ball while standing; FOULS stop him and raise the
+call arm 0.9s (+ a 2093Hz double-trill whistle in SoundFx, still
+off-by-default); CARDS raise the card itself 1.5s — yellow, or red
+mined from the feed's own words (`SENT OFF|STRAIGHT RED`), via the
+fx stream which now carries `foul`/`card` events (deduped by t like
+FxSystem, re-armed on attach + replay scrub; hidden during the
+shootout theater). vitest 408 (+2: refereeTarget geometry pins, fx
+foul/card carry + red mining); 3D suite +3 checks ALL observed live
+(patrols in bounds, moves with play, call arm raised on a real
+foul); 2D 109; fingerprint IDENTITY `28002dfc…`; tactical screenshot
+eyeballed — the yellow collar reads instantly against both kits.)
+⭐ **Next: play report (SIXTEEN unplayed phases — fatigue, reaction
 gate, unset wall, bench, discipline, aerial channel, underdog shift,
 dugout, shapes, chips, curves, goal-kick offside, analyst feed, the
-runner's body, net-bulge+spin — + the band verdict) → phase-75 the
-referee → N5b def-menu expansion (the 16/0 watch) → N6 market signs
-for style fit.**
+runner's body, net-bulge+spin, the referee — + the band verdict) →
+N5b def-menu expansion (the 16/0 watch) → N6 market signs for style
+fit.**
 HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)

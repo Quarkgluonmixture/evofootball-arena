@@ -73,7 +73,8 @@ await page.screenshot({ path: `${OUT}/1-tactical.png` });
 // reel; the click after the reel check toggles it back off for the live sections.
 await page.click('label:has-text("Auto highlights")');
 await page.evaluate(() => window.__evo.app.setSpeed(32));
-const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, netBulge: false, reel: false };
+const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, netBulge: false, reel: false, refInBounds: false, refMoved: false, refCall: false };
+let refPrev = null;
 let crowdedShotTaken = false;
 for (let i = 0; i < 60; i++) {
   // HT/FT auto-highlights (Phase 33): the reel pauses the sim at a whistle.
@@ -99,6 +100,12 @@ for (let i = 0; i < 60; i++) {
   seen.banner ||= d.bannerVisible;
   seen.netShake ||= d.netShaking;
   seen.netBulge ||= d.netBulging;
+  if (d.referee) {
+    seen.refInBounds ||= Math.abs(d.referee.x) <= 46 && Math.abs(d.referee.z) <= 31;
+    if (refPrev) seen.refMoved ||= Math.hypot(d.referee.x - refPrev.x, d.referee.z - refPrev.z) > 0.5;
+    refPrev = d.referee;
+    seen.refCall ||= d.referee.calling;
+  }
   seen.crowdStirred ||= d.crowdArousal > 0.1; // 66.1: a shot/save/goal moved the stands
   if (d.ballMarker && !crowdedShotTaken) {
     crowdedShotTaken = true;
@@ -120,6 +127,10 @@ check('ball trail appears on kicks', seen.ballTrail);
 check('crowd marker flags a hidden ball', seen.ballMarker, crowdedShotTaken ? 'screenshot 2-crowded.png' : '');
 check('labels declutter in crowds (<10 visible)', seen.declutter);
 check('the stands stirred at least once (66.1)', seen.crowdStirred === true);
+check('referee patrols inside the pitch (75)', seen.refInBounds);
+check('referee moves with play (75)', seen.refMoved);
+if (seen.refCall) check('referee raised the call arm on a foul/card (75)', true);
+else note('no foul landed in the poll window — call arm not observed');
 
 
 const goalsInMatch1 = await page.locator('#event-feed .ev.goal').count();
