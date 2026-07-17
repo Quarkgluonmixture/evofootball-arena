@@ -642,6 +642,11 @@ body.cinematic .cinematic-enter { display: none; }
   pointer-events: none;
 }
 .tacmap.hidden { display: none; }
+/* The #stage canvas sizing rule (top of file) carries ID specificity and
+   silently beat .tacmap.hidden — the "hidden" inset showed as an empty
+   frame in EVERY camera since Phase 68 (user report 2026-07-17 "右下角
+   那个框是什么?"). Match its specificity for the hide. */
+#stage canvas.tacmap.hidden { display: none; }
 @media (max-width: 640px) {
   .tacmap { width: 126px; height: 84px; right: 6px; bottom: 6px; }
 }

@@ -374,12 +374,23 @@ foul/card carry + red mining); 3D suite +3 checks ALL observed live
 (patrols in bounds, moves with play, call arm raised on a real
 foul); 2D 109; fingerprint IDENTITY `28002dfc…`; tactical screenshot
 eyeballed — the yellow collar reads instantly against both kits.)
-⭐ **Next: play report (SIXTEEN unplayed phases — fatigue, reaction
-gate, unset wall, bench, discipline, aerial channel, underdog shift,
-dugout, shapes, chips, curves, goal-kick offside, analyst feed, the
-runner's body, net-bulge+spin, the referee — + the band verdict) →
-N5b def-menu expansion (the 16/0 watch) → N6 market signs for style
-fit.**
++ ✅ **phase-75.1 SHIPPED** (**the tacmap ghost frame** — user report
+"右下角那个框是什么?/其他机位会出现一个半透明的": the tacfeed mini
+formation map NEVER actually hid — `#stage canvas` (ID specificity
+1,0,1) silently beat `.tacmap.hidden` (0,2,0) since Phase 68, so its
+empty border+shadow shell sat in the corner of EVERY camera. The
+suite's `tacmapVisible` read classList, which lied. Fix: an
+ID-matched hide rule + the debug flag now reads COMPUTED display;
+verified by elementFromPoint probe (display:none, zero rect) and the
+72-series checks now measure truth.)
+⭐ **Next (user-directed 2026-07-17): phase-76 — duel/dribble READ +
+per-player bodies bound to identity & attributes ("对抗…挤来挤去,
+没有盘带的感觉" + "每个球员模型都一样…和球员本身绑定再加上和能力
+绑定") → linesmen (assistant referees, user-ratified) → N5b def-menu
+expansion (the 16/0 watch) → N6 market signs.** The user PLAYS
+CONTINUOUSLY (their correction: "我tm一直在玩") — casual
+observations ARE the play report stream; do NOT track "unplayed
+phases". Standing watch: the goals band (~2.8 vs old 2.3–2.6).
 HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)

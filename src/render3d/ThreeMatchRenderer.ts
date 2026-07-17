@@ -573,7 +573,9 @@ export class ThreeMatchRenderer {
       broadcastBlock: this.broadcast.blockVisible,
       pressConverge: this.broadcast.pressVisible,
       offsideFlash: this.broadcast.offsideFlash,
-      tacmapVisible: !this.tacmap.classList.contains('hidden'),
+      // COMPUTED, not classList: the class said "hidden" for four phases
+      // while an ID-specificity CSS rule kept the frame on screen (75.1).
+      tacmapVisible: getComputedStyle(this.tacmap).display !== 'none',
       goals: 2,
       cameraMode: this.cameraCtl.mode,
       drawCalls: this.renderer.info.render.calls,
