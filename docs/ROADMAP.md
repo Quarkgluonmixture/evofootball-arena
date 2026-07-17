@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-86 (shot-context telemetry: the pipe is DRIBBLE-INTO-1v1, the Van Dijk gene is the answer)
+# Roadmap — shipped through phase-87 (jockeyBias: evolution ADOPTS containment, defending finally moves, inflation halved)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -614,8 +614,29 @@ contain man holds the carrier-goal line at standoff distance,
 tackles only on a loose touch; effects flow through EXISTING
 systems (goal-side presence kills 1v1 composure; no full-momentum
 duel entry). vitest 413; probe `shot-context-anatomy.ts`.)
-⭐ **Next: phase-87 jockeyBias (the Van Dijk gene) → coverBias
-(catenaccio) → offside trap (hold-the-line) → user's Suno BGM.** The user PLAYS CONTINUOUSLY —
++ ✅⚠ **phase-87 SHIPPED** (**jockeyBias — the Van Dijk gene, and it
+WORKS where 85 couldn't**: 18th gene (save v23+migration+test).
+Mechanics, both flowing through EXISTING systems: ① ChaseBall vs a
+carrier: a jockeying team's chaser takes the carrier-goal line at
+1.2-2.2m standoff instead of diving at the ball — a body goal-side
+kills the composed-1v1 flag by construction, the resolver+slalom
+make the carrier go around; ② tryTackles: the goal-side contain
+man refuses the full-momentum duel (gate `drive > 0.9−jockey·0.55`)
+— challenges only loose touches/dying drives; the dive-in school
+(low gene) keeps the old reflex. MEASURED (24-gen gate): evolution
+ADOPTS containment unprompted — jockey 0.63-0.84 across all three
+worlds; **defending attr moves for the first time in the whole
+investigation** (flat 0.50 → 0.53-0.60: the defensive spend finally
+buys something); late-gen goals 6.4/6.4/5.6 → **4.46/4.44/5.95**
+(Δ halved). NOT yet in the 2.8-3.3 band — conv still 53-62%,
+overperf ~2.3: the remaining pipe is the user's school #2, the
+SWEEPER (coverBias — the man behind the beaten line). Keeper-throw
+seeds re-anchored 35/42→3/97/123 (throws rarer under containment;
+4th reshuffle). Calibrate 3.05/3.23/3.44 (early window healthy);
+vitest 414; visual 109+52; fingerprint REBASELINED `1a4db42a…`.)
+⭐ **Next: phase-88 coverBias (catenaccio sweeper — genetify the
+hardcoded rest-defense man) → offside trap (hold-the-line) →
+user's Suno BGM → music slots.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

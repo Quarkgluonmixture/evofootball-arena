@@ -182,7 +182,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 22;
+export const SAVE_VERSION = 23;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -1565,6 +1565,23 @@ export class League {
         }
       }
       data.version = 22;
+    }
+    if (data.version === 22) {
+      // v22 -> v23: jockeyBias (Phase 87 — the defensive school's first
+      // axis). Backfilled at 0.5: moderate containment, evolution moves it.
+      const fixG = (g: TacticalGenome | undefined): void => {
+        if (g) g.jockeyBias ??= 0.5;
+      };
+      for (const f of data.franchises as Franchise[]) fixG(f.coach.genome);
+      for (const e of (data.coachPool ?? []) as PoolEntry[]) fixG(e.coach.genome);
+      for (const r of ((data.history ?? []) as SeasonRecord[])) {
+        if (r.geneMeans) (r.geneMeans as Record<string, number>).jockeyBias ??= 0.5;
+        for (const e of r.evolution?.entries ?? []) {
+          fixG(e.childGenome);
+          if (e.parentGenomes) e.parentGenomes.forEach(fixG);
+        }
+      }
+      data.version = 23;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

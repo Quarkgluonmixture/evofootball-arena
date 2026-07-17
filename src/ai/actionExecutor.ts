@@ -45,6 +45,21 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       break;
     }
     case 'ChaseBall': {
+      // THE JOCKEY (Phase 87, the Van Dijk school): against a CARRIER, a
+      // jockeying team's chaser takes the carrier-goal line at standoff
+      // distance instead of diving at the ball. Positioning IS the
+      // mechanism: a body goal-side is exactly what kills the composed
+      // 1v1 (performShot checks it), and the overlap resolver + slalom
+      // make the contained carrier go AROUND — chase time, blunted drive.
+      const carrier = ball.owner;
+      const jockey = team.genome.jockeyBias ?? 0.5;
+      if (carrier && carrier.side !== p.side && jockey > 0.25) {
+        const toGoal = norm(sub(team.ownGoal(), carrier.pos));
+        const standoff = 1.2 + jockey * 1.0;
+        target = add(carrier.pos, scale(toGoal, standoff));
+        speedF = sprint;
+        break;
+      }
       const sol = interceptBall(p, ball);
       target = sol.point;
       speedF = sprint;

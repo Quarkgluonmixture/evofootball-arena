@@ -74,6 +74,19 @@ export interface TacticalGenome {
    * recruitment pays is evolution's call.
    */
   fitBias: number;
+  /**
+   * The DEFENSIVE SCHOOL's first axis (Phase 87, user design — 范戴克式
+   * "give-space" modern defending vs the dive-in reflex): how much this
+   * team's goal-side contain man JOCKEYS a driving carrier — holds the
+   * carrier-goal line at standoff distance, refuses the full-momentum
+   * duel, challenges only loose touches — instead of lunging on contact.
+   * 0 = the old dive-in school (beaten by pace via the Phase-41 momentum
+   * gate); 1 = pure containment (the carrier keeps the ball but never
+   * gets the composed 1v1 — a body stays goal-side). Neither is a virtue:
+   * containment concedes time and range shots; whether delay beats the
+   * duel is evolution's call.
+   */
+  jockeyBias: number;
 }
 
 export const GENE_KEYS = [
@@ -95,6 +108,7 @@ export const GENE_KEYS = [
   'underdogShift',
   'tinkerBias',
   'fitBias',
+  'jockeyBias',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -167,6 +181,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if ((g.tinkerBias ?? 0.5) < 0.28) tags.push('Trusts the XI');
   if ((g.fitBias ?? 0.5) > 0.72) tags.push('System signings');
   if ((g.fitBias ?? 0.5) < 0.28) tags.push('Galactico board');
+  if ((g.jockeyBias ?? 0.5) > 0.72) tags.push('Contains & delays');
+  if ((g.jockeyBias ?? 0.5) < 0.28) tags.push('Dives in');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

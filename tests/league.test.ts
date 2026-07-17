@@ -367,6 +367,21 @@ describe('League', () => {
     expect(() => restored.applyResult(next, restored.createMatch(next).runToCompletion())).not.toThrow();
   });
 
+  it('migrates a v22 save: jockeyBias backfills at 0.5 (Phase 87)', () => {
+    const league = makeLeague();
+    playSeason(league);
+    league.finishSeason();
+    const json = JSON.parse(JSON.stringify(league.toJSON())) as Record<string, unknown> & {
+      franchises: Array<{ coach: { genome: Record<string, number> } }>;
+    };
+    json.version = 22;
+    for (const f of json.franchises) delete f.coach.genome.jockeyBias;
+    const restored = League.fromJSON(json as unknown as Record<string, unknown>);
+    for (const f of restored.franchises) expect(f.coach.genome.jockeyBias).toBe(0.5);
+    const next = restored.nextFixture()!;
+    expect(() => restored.applyResult(next, restored.createMatch(next).runToCompletion())).not.toThrow();
+  });
+
   it('league runs are reproducible end to end', () => {
     const a = makeLeague();
     const b = makeLeague();

@@ -1372,3 +1372,12 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   1.2-2.2m, refuses the full-momentum duel, tackles only the loose
   touch; costs = carrier gets time/space to pass or shoot from
   range.
+- ✅⚠ **phase-87 SHIPPED** (**jockeyBias works**; fingerprint
+  REBASELINED `1a4db42a…`, save v23). Containment via existing
+  systems: goal-side standoff targeting in ChaseBall (kills the
+  composed-1v1 flag by construction) + momentum-duel refusal in
+  tryTackles. Evolution ADOPTS it unprompted (0.63-0.84 all
+  worlds); defending attr finally moves (0.50→0.53-0.60); late-gen
+  goals 6.4/6.4/5.6 → 4.46/4.44/5.95. Remaining gap to the 2.8-3.3
+  band = school #2, the sweeper (coverBias). Keeper-throw seeds
+  re-anchored (4th time): 3/97/123.

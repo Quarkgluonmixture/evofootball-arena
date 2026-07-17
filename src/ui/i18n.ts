@@ -162,6 +162,7 @@ const ZH: Record<string, string> = {
   underdogShift: '逆境战术',
   tinkerBias: '临场调整',
   fitBias: '引援适配',
+  jockeyBias: '延缓盯防',
 
   // ---- player attributes (8 since Phase 47) ----
   budget: '预算',

@@ -1484,6 +1484,16 @@ export function tryTackles(match: Match): void {
     }
   }
   if (!tackler) return;
+  // THE JOCKEY (Phase 87): the goal-side contain man of a jockeying team
+  // refuses the full-momentum duel — he delays and challenges only a
+  // loose touch or a dying drive. The dive-in school (low gene) keeps the
+  // old reflex; the momentum gate (Phase 41) still pays the carrier who
+  // finds a duel, but a jockeyed carrier has to EARN one.
+  const jockeyG = oppTeam.genome.jockeyBias ?? 0.5;
+  const driveNow = clamp(len(owner.vel) / 9, 0, 1);
+  const goalSide = oppTeam.localX(tackler.pos.x) < oppTeam.localX(owner.pos.x) - 0.2;
+  const looseTouch = dist(ball.pos, owner.pos) > 0.85;
+  if (goalSide && !looseTouch && driveNow > 0.9 - jockeyG * 0.55) return;
   tackler.tackleAnimTimer = 0.4; // the lunge is visible either way (display only)
   tackler.spendBurst(TACKLE_LUNGE_COST); // win or whiff, the lunge costs legs (Phase 58)
 
@@ -1498,7 +1508,7 @@ export function tryTackles(match: Match): void {
   // where there's room ahead (the flanks, the channels), so wide/quick play
   // earns a duel edge the compact clump can't, giving width a gradient to climb
   // (the master gate, Phase 41). Base carries Phase 27's whiff-stun raise.
-  const drive = clamp(len(owner.vel) / 9, 0, 1);
+  const drive = driveNow;
   // strength SHIELDS the standing challenge (Phase 47 — the hold-up/pivot
   // payoff): base 0.21→0.25 with −strength·0.10 so the POPULATION mean
   // (backfill 0.4) lands exactly where phase-46 left it; the gradient is
