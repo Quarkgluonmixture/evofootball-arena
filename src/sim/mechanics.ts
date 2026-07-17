@@ -274,6 +274,7 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   // onto low-32's (the formations contract inverted; isolation-probed —
   // through-ball and aerial curves alone leave it intact). Curl lives where
   // football actually spends it: through balls, switches, crosses, shots.
+  match.lastPassKind = { kind: 'pass', t: match.simTime };
   match.kickBall(passer, dir, speed);
   team.stats.passes++;
   if (oneTouch) team.stats.oneTouch++;
@@ -411,6 +412,7 @@ function loftKick(
   // ARC's chord still points where the aim did — the designed landing
   // point (and the whole 31.9 corner chain) is invariant; only the path
   // between bends. ballLanding() projects the same closed form.
+  match.lastPassKind = { kind: 'through', t: match.simTime };
   match.kickBall(p, spin === 0 ? dir : rotate(dir, -spin * T * 0.5), dEff / T, (GRAVITY * T) / 2);
   match.ball.spin = spin;
 }
@@ -510,6 +512,7 @@ export function performCutback(match: Match, passer: Player, mate: Player): void
     oneTouchMul(passer) *
     orientationNoiseMul(misalign, passer.attrs.passing);
   const oneTouch = passer.firstTouchWindow > 0;
+  match.lastPassKind = { kind: 'cross', t: match.simTime };
   match.kickBall(passer, rotate(aim, noise), speed);
   team.stats.passes++;
   team.stats.cutbacks++;
@@ -952,6 +955,7 @@ function tryChip(match: Match, shooter: Player, qGround: number, pressure: numbe
     (0.03 + d * 0.0012) * (1.3 - shooter.attrs.finishing * 0.6) *
     orientationNoiseMul(misalign, shooter.attrs.dribbling);
   const dir = rotate(aim, match.rng.gaussian() * spread);
+  match.lastPassKind = { kind: 'lofted', t: match.simTime };
   match.kickBall(shooter, dir, d / T, vz);
 
   team.stats.shots++;
@@ -1108,6 +1112,14 @@ export function performShot(match: Match, shooter: Player): void {
   match.shotLog.push({
     t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending',
     blockers: laneBlockers(shooter.pos, goalCenterFor(team), opp.players),
+    pressure,
+    oneVone,
+    assist:
+      match.lastCutback && match.lastCutback.side === shooter.side && match.simTime - match.lastCutback.t < 5
+        ? 'cutback'
+        : match.lastPassKind && match.simTime - match.lastPassKind.t < 2.5
+          ? match.lastPassKind.kind
+          : 'none',
   });
   match.pendingShot = {
     side: shooter.side,

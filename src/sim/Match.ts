@@ -83,6 +83,11 @@ export interface ShotLogEntry {
   minute: number;
   side: Side;
   xg: number;
+  /** Shot-context telemetry (Phase 86): defender pressure at the strike,
+   * the composed-1v1 flag, and what SERVED it. Absent on old entries. */
+  pressure?: number;
+  oneVone?: boolean;
+  assist?: 'through' | 'cutback' | 'cross' | 'pass' | 'lofted' | 'none';
   outcome: 'pending' | 'goal' | 'saved' | 'miss';
   /** Bodies on the shot corridor at the strike (Phase 31, `laneBlockers`). */
   blockers: number;
@@ -174,6 +179,9 @@ export class Match {
   lastCompletedPass: { passerGid: number; receiverGid: number; t: number } | null = null;
   /** The most recent cutback kick (Phase 31) — goals within 5s credit it. */
   lastCutback: { side: Side; t: number } | null = null;
+  /** Telemetry (Phase 86): the most recent pass launch's kind — shot-context
+   * anatomy reads it; zero RNG, zero behavior. */
+  lastPassKind: { kind: 'pass' | 'through' | 'cross' | 'lofted'; t: number } | null = null;
 
   private kickoffSide: Side = 0;
   private stepCount = 0;

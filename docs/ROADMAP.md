@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-85 (contested finishing — gate FAILED: the inflation shots are uncontested by construction)
+# Roadmap — shipped through phase-86 (shot-context telemetry: the pipe is DRIBBLE-INTO-1v1, the Van Dijk gene is the answer)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -593,9 +593,29 @@ box marking). NEXT CUT (before any lever): shot-context telemetry
 late-gen goals by situation; then price the dominant situation's
 UPSTREAM defense. Calibrate 3.34/3.26/2.70; fingerprint REBASELINED
 `0c550c20…`; visual 109+54.)
-⭐ **Next: shot-context telemetry probe → upstream defensive
-gradient for the dominant situation → user's Suno BGM lands →
-wire music slots.** The user PLAYS CONTINUOUSLY —
++ ⚠⚠ **phase-86 SHIPPED** (**shot-context telemetry — the pipe
+identified, and it flips the plan**: ShotLogEntry gains
+pressure/oneVone/assist (pass launches tag `lastPassKind`; zero
+RNG — fingerprint IDENTITY-verified `0c550c20…`). Late-gen goal
+anatomy (gens 18-20, two worlds, 1524 goals): **85-87% assist=NONE
+(dribble-into-shot), 76-81% composed 1v1s, mean pressure 0.61** —
+NOT killer passes (through 3%, cutback 2%) and NOT unpressured:
+the presser is BEHIND, nobody goal-side. The engine: the phase-41
+substrate pays carriers → evolution buys pace/dribble → defenders
+dive in / lose the momentum duel → beaten line → composed-1v1
+finish (tight aim + spread×0.7). The user's defensive-school
+design maps: **#3 standoff/jockey marking (Van Dijk) is THE
+counter and goes FIRST** (stay goal-side, delay, don't lunge —
+kills the oneVone flag by simply existing goal-side); #2
+coverBias/sweeper second (the man behind the beaten line); #1
+offside trap LAST (dribbles have no offside — it serves only the
+3% through pipe). NEXT = phase-87 `jockeyBias` gene: the goal-side
+contain man holds the carrier-goal line at standoff distance,
+tackles only on a loose touch; effects flow through EXISTING
+systems (goal-side presence kills 1v1 composure; no full-momentum
+duel entry). vitest 413; probe `shot-context-anatomy.ts`.)
+⭐ **Next: phase-87 jockeyBias (the Van Dijk gene) → coverBias
+(catenaccio) → offside trap (hold-the-line) → user's Suno BGM.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

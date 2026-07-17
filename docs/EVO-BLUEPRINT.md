@@ -1358,3 +1358,17 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   oneVone/assist kind on shotLog), split late-gen goals by
   situation, then price that situation's upstream defense
   (interception × defending, recovery races, box marking).
+- ⚠⚠ **phase-86 SHIPPED** (**shot-context telemetry**; zero-RNG,
+  fingerprint IDENTITY `0c550c20…`). 1524 late-gen goals split:
+  85-87% assist=none (dribble-into-shot), 76-81% composed 1v1s,
+  mean pressure 0.61 — the inflation pipe is CARRIERS BEATING THE
+  LINE, not killer passes (through 3%, cutback 2%). The phase-85
+  "pressure≈0" model was wrong: pressers exist but chase from
+  BEHIND. Priority flip for the user's three defensive schools:
+  jockey/standoff (Van Dijk) FIRST — staying goal-side kills the
+  composed-1v1 flag by construction; sweeper second; offside trap
+  last (dribbles have no offside). Design for 87: jockeyBias gene —
+  the goal-side contain man holds the carrier-goal segment at
+  1.2-2.2m, refuses the full-momentum duel, tackles only the loose
+  touch; costs = carrier gets time/space to pass or shoot from
+  range.
