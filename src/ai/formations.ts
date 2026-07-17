@@ -56,6 +56,15 @@ export const DEFEND_FORMATIONS: Record<DefendFormationId, V2[]> = {
   'low-32': [v2(-41, 0), v2(-20, 0), v2(-9, -4), v2(-16, -11), v2(-16, 11), v2(5, 2)],
   // Back two, wingers at halfway, ST hunting the opponent back line.
   'press-23': [v2(-41, 0), v2(-18, -5), v2(-13, 5), v2(0, -15), v2(0, 15), v2(7, 0)],
+  // N5b (phase-79): the menu was BINARY (deep bus / front press) and world
+  // 991 fixed 16/0 on low-32 — selection had nothing structurally new to
+  // try. Two additions, mutation-only (founders still derive the classics):
+  // mid-41 = the midfield WALL, striker drops onto the pivot lane
+  // ("defend from the front" without pressing);
+  'mid-41': [v2(-41, 0), v2(-22, 0), v2(-10, 0), v2(-12, -13), v2(-12, 13), v2(-3, 0)],
+  // high-line = squeeze the pitch with the back line, no front press —
+  // lives or dies by the offside trap (phase-71's law made it honest).
+  'high-line': [v2(-41, 0), v2(-14, -3), v2(-9, 3), v2(-13, -12), v2(-13, 12), v2(6, 0)],
 };
 
 /** How far up/down the pitch each tactical mode pushes the block. */

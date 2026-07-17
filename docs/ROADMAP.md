@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-78 (REAL AUDIO: the user's recorded library, cleaned by pipeline, in the game)
+# Roadmap — shipped through phase-79 (N5b: the defensive menu opens — 991's 16/0 monoculture breaks)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -448,14 +448,44 @@ fingerprint IDENTITY `28002dfc…`. ⚠ Deliberately NOT auto-claimed:
 the two loop candidates passed QA but want one human listen (per
 the user's own spec); BGM slots await the user's Suno tracks —
 music hooks not yet wired.)
++ ✅ **phase-78.1 SHIPPED** (**audio UX** — user reports "平时没有
+amb / pass和touch听不到 / 要音量调节+点击静音": SoundFx gains a
+master GainNode + volume 0..1 (slider in the left panel, speaker
+icon = click-to-mute, remembers the last level); the stadium bed
+SELF-HEALS in play() if the first enable raced the fetch; and
+pass/touch finally SOUND — they have no sim events, so the renderer
+detects ball transitions itself (release >8m/s non-shot = pass with
+a 2-take variation pool, pickup = touch) and feeds the same fx
+hook. visual 109+52, tsc clean, UI-only.)
++ ✅ **phase-79 SHIPPED** (**N5b — the defensive menu OPENS**: the def
+formation mutation was a BINARY low-32↔press-23 toggle, so world
+991's 16/0 low-32 monoculture had nothing structurally new to
+try — the constitution's "missing behavior = the substrate doesn't
+offer it" diagnosis, same as phase-67's attack shapes. Two
+additions to `DEF_FORMATIONS` + a weighted menu (classics w=1,
+discoveries w=0.35, mutation-only — founders still derive the two
+classics from pressIntensity): **mid-41** (the midfield WALL — ST
+drops onto the pivot lane, defend-from-the-front without pressing)
+and **high-line** (squeeze the pitch on the back line, no front
+press — honest only since phase-71's goal-kick offside law).
+OBSERVED (shape-emergence probe, now printing def ids): world 991
+gen-50 was 16/0 low-32 → gen-60 runs **mid-41×6 + high-line×2 =
+8/16 clubs on novel defense**; world 424242 samples them (1-2
+clubs, many gens) but selection returns to the classics —
+ecology-dependent uptake, menu offers / selection decides. NEUTRAL
+on balance: calibrate 8-season × 3 seeds 2.81/2.10/3.46 vs 71's
+2.81/2.07/3.42 (Δ≤0.04). vitest 412 (zero pin reshuffles — the
+change only touches evolution-time mutation rolls); visual 109+52;
+fingerprint REBASELINED `43469bba…` (mutation RNG stream moved).)
 ⭐ **Next: user's Suno BGM lands → wire music slots (title done by
-user; league/reel/ceremony/shootout queued) → N5b def-menu
-expansion (the 16/0 watch) → N6 market signs.** The user PLAYS
-CONTINUOUSLY — casual observations ARE the play report stream; do
-NOT track "unplayed phases". Standing watch: the goals band (~2.8
-vs old 2.3–2.6). Parked: foot IK/skinned meshes/cloth (deliberate),
-celebration choreography (sim-touching).
-HEAD fingerprint `28002dfc…` (since phase-71).
+user; league/reel/ceremony/shootout queued) → N6 market signs for
+style fit.** The user PLAYS CONTINUOUSLY — casual observations ARE
+the play report stream; do NOT track "unplayed phases". Standing
+watches: the goals band (~2.8 vs old 2.3–2.6) + whether 991's new
+defensive coexistence PERSISTS past gen 60 (next probe run).
+Parked: foot IK/skinned meshes/cloth (deliberate), celebration
+choreography (sim-touching), amb loop human listen (user's ears).
+HEAD fingerprint `43469bba…` (phase-79 rebaseline).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)
 

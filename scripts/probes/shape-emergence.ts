@@ -38,7 +38,7 @@ for (const seed of [424242, 991]) {
       shareRows.push(
         `gen ${String(g).padStart(2)}: wide ${atk['wide-212'] ?? 0} narrow ${atk['narrow-122'] ?? 0} ` +
         `twin ${atk['twin-st'] ?? 0} false9 ${atk['false-nine'] ?? 0} | ` +
-        `def low ${def['low-32'] ?? 0} press ${def['press-23'] ?? 0}`,
+        `def low ${def['low-32'] ?? 0} press ${def['press-23'] ?? 0} mid41 ${def['mid-41'] ?? 0} hiline ${def['high-line'] ?? 0}`,
       );
     }
     if (g < GENS) {

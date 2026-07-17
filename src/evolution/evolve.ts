@@ -115,7 +115,20 @@ function mutateStyle(style: TeamStyle, rng: Rng, zonal?: { room: number }): stri
     return `🔧 switched to ${style.formationAtk}`;
   }
   if (component === 1) {
-    style.formationDef = style.formationDef === 'low-32' ? 'press-23' : 'low-32';
+    // N5b (phase-79): the binary toggle starved selection — a weighted menu
+    // like the attack one; discoveries enter rare (0.35) and must EARN share.
+    const defOptions = ([
+      { id: 'low-32', w: 1 }, { id: 'press-23', w: 1 },
+      { id: 'mid-41', w: 0.35 }, { id: 'high-line', w: 0.35 },
+    ] as const).filter((o) => o.id !== style.formationDef);
+    let rd = rng.next() * defOptions.reduce((s, o) => s + o.w, 0);
+    for (const o of defOptions) {
+      rd -= o.w;
+      if (rd <= 0) {
+        style.formationDef = o.id;
+        break;
+      }
+    }
     return `🔧 switched to ${style.formationDef}`;
   }
   if (style.scheme === 'zonal') {

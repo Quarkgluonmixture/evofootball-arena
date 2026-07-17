@@ -1248,3 +1248,31 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   assumptions. The refereeing crew is now complete: referee (75) +
   two assistants (77), all render-side, the sim never knowing any
   of them exist.
+- ✅ **phase-78 + 78.1 SHIPPED** (**REAL AUDIO** — the user recorded a
+  21-file REAPER library and spec'd the 4-category cleanup pipeline;
+  `scripts/audio/clean.py` (numpy, sample-level, noise-floor-adaptive,
+  decay-following fades, equal-power loop candidates with HONEST seam
+  QA — 1 flagged correctly) → `public/audio/` (SFX=AAC, loops=WAV
+  because AAC priming clicks at WebAudio loop points). SoundFx became
+  a lazy sample engine (beeps = per-file fallback). 78.1 from live
+  user reports: master-gain volume slider + click-to-mute, ambience
+  self-heal, and render-detected pass/touch transitions (no sim
+  events exist for them) feeding the same fx hook. Suno BGM slots
+  briefed to the user (league/pre-match/reel/ceremony/shootout/
+  victory); music hooks land when their tracks do.)
+- ✅ **phase-79 SHIPPED** (**N5b — the defensive menu opens**; sim
+  change, fingerprint REBASELINED `43469bba…`). The constitution's
+  diagnosis applied to defense: 991's 16/0 low-32 fixation wasn't
+  preference, the mutation operator was a BINARY toggle — nothing
+  structurally new existed to select. Added to the substrate
+  (mutation-only, w=0.35 vs classics 1.0, founders unchanged):
+  **mid-41** (midfield wall, the striker screens the pivot lane —
+  defending from the front without pressing) and **high-line**
+  (offside-trap squeeze, made honest by phase-71's goal-kick law).
+  Observed: 991 breaks 16/0 → 8/16 on novel shapes by gen 60
+  (mid-41×6 + high-line×2); 424242 samples and rejects — uptake is
+  ecology-dependent, exactly the menu-offers/selection-decides
+  pattern. Balance neutral (3-seed calibrate Δ≤0.04 vs the 71
+  baseline); vitest 412 with ZERO pin reshuffles (only
+  evolution-time mutation rolls moved). Standing watch: does 991's
+  defensive coexistence persist past gen 60?
