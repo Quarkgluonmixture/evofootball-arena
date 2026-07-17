@@ -835,3 +835,28 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   phase-62 precedent). The play-report queue now carries EIGHT unplayed
   behavioral phases; the next report should watch the dugout and the
   goals band together.
+- ✅ **phase-66.1 SHIPPED** (user report on 66: "coach 得有点对应的动作,
+  观众席也是" — the dugout REACTS, the stands LIVE; render-only, zero
+  sim change, fingerprint untouched `9a23d408…`). COACH: `despair` on
+  conceding (hands to head, shoulders slump, no leap — despair stays
+  rooted), a `nudge()` lean-in on every strike (FxSystem's deduped
+  onShot), and PERSONALITY animated from the SAME gene the feed
+  narrates — the renderer replays `mentalityOf(diff, minute, tinker)`
+  per side per frame, and the tinkerer works the touchline (arm pump +
+  off-arm flail at 6.5rad/s, amplitude = the live mentality level)
+  while the stoic (tinker < 0.3) folds his arms for ninety minutes.
+  `RenderTheme.teams` carries `tinker` alongside `coach`. CROWD: the
+  Phase-31.6 seated instancing moved out of the static pitch group into
+  `CrowdSystem` (`terraceSlabs()` now exported — one layout, slabs and
+  seats can't drift apart): identical silhouette (same LCG, ~270 seats,
+  2 draw calls), but instances belong to the update loop — idle
+  sway/bob, `ripple()` on shots (0.4) / saves (0.55) / corners (0.3),
+  `erupt()` on goals: every fan jumps on his own beat (upward-half sine
+  — they land IN their seats), ~2.6s decay; frustum culling off (the
+  span blinked at oblique angles once instances moved). Per-frame cost
+  ~600 matrix writes + 2 uploads — phone-safe. Gates: vitest 392 (+1
+  theme-carries-tinker assert), visual 106+**40** (new: crowd seated
+  ≥200; stands stirred >0.1 arousal during live play — polled, not
+  timed), goal-moment screenshot eyeballed (fans at scattered heights
+  mid-eruption, banner same frame, arousal 0.98). No probe beyond the
+  choreography checks — no sim behavior to measure.

@@ -108,6 +108,9 @@ export interface RenderTheme {
     /** The named coach (Phase 66, N3) — drives the touchline figure.
      * Missing (ad-hoc teams, old replays) = no dugout presence. */
     coach?: string;
+    /** His tinkerBias gene (66.1) — the touchline figure's temperament:
+     * the tinkerer gesticulates, the stoic folds his arms. Display only. */
+    tinker?: number;
   }>;
   players: Array<{ gid: number; side: Side; role: Role; name: string }>;
 }
@@ -120,6 +123,7 @@ export function buildRenderTheme(match: Match): RenderTheme {
       short: t.info.short,
       name: t.info.name,
       coach: t.info.coachName,
+      tinker: t.info.genome.tinkerBias ?? 0.5,
     })),
     players: match.allPlayers.map((p) => ({ gid: p.gid, side: p.side, role: p.role, name: p.name })),
   };

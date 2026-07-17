@@ -39,6 +39,8 @@ check('12 player models exist', info?.players === 12, `players=${info?.players}`
 check('2 goal models exist', info?.goals === 2);
 // Phase 66 (N3): league fixtures carry named coaches — both stand the touchline.
 check('2 coaches stand the touchline (66)', info?.coaches === 2, `coaches=${info?.coaches}`);
+// 66.1: the seated crowd is instanced and alive (animated in the update loop).
+check('the crowd is seated (66.1)', (info?.crowd ?? 0) > 200, `crowd=${info?.crowd}`);
 
 const shot3d = await page.locator('#three-host canvas').screenshot();
 check('3D canvas renders non-blank', shot3d.length > 10000, `${shot3d.length} bytes`);
@@ -94,6 +96,7 @@ for (let i = 0; i < 60; i++) {
   seen.declutter ||= d.labelsVisible < 10;
   seen.banner ||= d.bannerVisible;
   seen.netShake ||= d.netShaking;
+  seen.crowdStirred ||= d.crowdArousal > 0.1; // 66.1: a shot/save/goal moved the stands
   if (d.ballMarker && !crowdedShotTaken) {
     crowdedShotTaken = true;
     seen.ballMarker = true;
@@ -113,6 +116,7 @@ if (await page.evaluate(() => window.__evo.reelActive())) {
 check('ball trail appears on kicks', seen.ballTrail);
 check('crowd marker flags a hidden ball', seen.ballMarker, crowdedShotTaken ? 'screenshot 2-crowded.png' : '');
 check('labels declutter in crowds (<10 visible)', seen.declutter);
+check('the stands stirred at least once (66.1)', seen.crowdStirred === true);
 
 const goalsInMatch1 = await page.locator('#event-feed .ev.goal').count();
 if (goalsInMatch1 > 0) {

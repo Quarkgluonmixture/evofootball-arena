@@ -155,6 +155,17 @@ evolve-check healthy; fingerprint REBASELINED `9a23d408…`.
 the documented same-code spread (1.83–2.62, fm 18), and the probe
 shows the dial ADDS late goals — new-gene founding re-roll, watch
 not chase.)
++ ✅ **phase-66.1 SHIPPED** (user report "coach 得有点对应的动作,观众席
+也是": the dugout REACTS and the stands LIVE — render-only, fingerprint
+untouched `9a23d408…`. Coach: despair on conceding (hands to head +
+slump), a sharp lean-in on every strike, and PERSONALITY on the live
+mentality ramp — the tinkerer works the touchline (arm-pumping scaled
+by `mentalityOf` at his own gene) while the stoic stands arms-crossed
+all match; temperament visible with zero sim state. Crowd: extracted
+to `CrowdSystem` (same 2-draw-call instancing, ~270 seats) — idle sway,
+"ooh" ripples on shots/saves/corners via the FxSystem deduped hooks,
+full jumping eruption on goals (~2.6s decay, per-seat beats). visual
+106+40 — new checks: crowd seated, stands stirred in live play.)
 ⭐ **Next: N4 — the TACTICAL BROADCAST layer** → N5 formation library
 (ungated; mind the low-32 def-menu watch) → N6 market signs for style
 fit.

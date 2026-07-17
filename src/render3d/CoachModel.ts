@@ -4,12 +4,21 @@ import { lerpAngle } from './RenderStateAdapter';
 
 /**
  * The COACH on the touchline (Phase 66, N3 — user addition: "the coach
- * STANDS ON THE TOUCHLINE"). Render-only — the sim knows nothing about this
- * figure; his match-day CALLS live in the feed (Match.ts), this is the body
- * they're attributed to. A suited man by his technical area on the bench
- * side: he tracks the ball all match (being THERE is the point), throws
- * both arms up while his side celebrates a goal, and shifts his weight on
- * the spot so he reads as a person, not a statue. Reacting is the polish.
+ * STANDS ON THE TOUCHLINE"; reactions expanded in 66.1, user report "coach
+ * 得有点对应的动作"). Render-only — the sim knows nothing about this figure;
+ * his match-day CALLS live in the feed (Match.ts), this is the body they're
+ * attributed to. A suited man by his technical area on the bench side who
+ * lives the match:
+ *
+ *   always      — tracks the ball with an eased pivot, shifts his weight
+ *   celebrate   — his side scored: arms skyward + the touchline leap
+ *   despair     — his side CONCEDED: hands to the head, shoulders drop
+ *   shot nudge  — any strike: a sharp lean-in that eases off
+ *   personality — the SAME gene the feed narrates (Phase 66 tinkerBias):
+ *                 the tinkerer works the touchline in late decided games
+ *                 (waving, pumping an arm on the mentality ramp the sim
+ *                 actually plays); the stoic stands ARMS CROSSED all match
+ *                 and barely stirs — visible temperament, zero sim state.
  *
  * Own small geometries (two instances per match — sharing with the player
  * cache buys nothing and couples the dispose paths).
@@ -17,6 +26,8 @@ import { lerpAngle } from './RenderStateAdapter';
 export class CoachModel {
   readonly root = new THREE.Group();
   readonly side: Side;
+  /** The adjustment-personality gene, 0 stoic … 1 tinkerer (display copy). */
+  readonly tinker: number;
   private readonly lean = new THREE.Group();
   private readonly armL: THREE.Group;
   private readonly armR: THREE.Group;
@@ -25,15 +36,22 @@ export class CoachModel {
   private t = 0;
   /** Eased arms-up blend (0 = down at his sides, 1 = full celebration). */
   private celebrate = 0;
+  /** Eased hands-to-head blend (his side just conceded). */
+  private despair = 0;
+  /** Shot-tension pulse — set by nudge(), decays fast. */
+  private tension = 0;
 
-  constructor(side: Side, name: string | undefined, accent: number, x: number, z: number) {
+  constructor(
+    side: Side, name: string | undefined, accent: number, x: number, z: number, tinker = 0.5,
+  ) {
     this.side = side;
+    this.tinker = tinker;
     const suit = new THREE.MeshStandardMaterial({ color: 0x262a33, roughness: 0.7 });
     const shirt = new THREE.MeshStandardMaterial({ color: 0xe8e9ec, roughness: 0.85 });
     const skin = new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 });
     const scarf = new THREE.MeshStandardMaterial({ color: accent, roughness: 0.75 });
 
-    // Torso pivots at the hips so the idle sway moves the whole upper body.
+    // Torso pivots at the hips so poses move the whole upper body.
     this.lean.position.y = 1.06;
     const torso = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.95, 0.46), suit);
     torso.position.y = 0.62;
@@ -51,7 +69,7 @@ export class CoachModel {
     head.position.y = 1.3;
     head.castShadow = true;
 
-    // Arms pivot at the shoulders — the celebration rotates them skyward.
+    // Arms pivot at the shoulders — every pose is two shoulder rotations.
     const armGeo = new THREE.BoxGeometry(0.2, 0.78, 0.2);
     armGeo.translate(0, -0.34, 0);
     this.armL = new THREE.Group();
@@ -111,24 +129,62 @@ export class CoachModel {
     this.root.position.set(x, 0, z);
   }
 
-  /** Per-frame: face the ball, sway, blend the celebration arms. */
-  update(ballX: number, ballZ: number, celebrating: boolean, dt: number): void {
+  /** A shot was struck (either side) — the whole dugout tightens. */
+  nudge(): void {
+    this.tension = 1;
+  }
+
+  /**
+   * Per-frame. `mood` is the goal-pause read (his side celebrating, the
+   * other side's = he conceded); `activity` is the LIVE mentality level
+   * (max of urgency/holding at HIS tinker) — the tinkerer's cue to work
+   * the touchline.
+   */
+  update(
+    ballX: number, ballZ: number,
+    mood: 'neutral' | 'celebrate' | 'despair', activity: number, dt: number,
+  ): void {
     this.t += dt;
     const target = Math.atan2(ballX - this.root.position.x, ballZ - this.root.position.z);
     // Ease the turn — a man pivoting on the spot, not a turret.
     this.root.rotation.y = lerpAngle(this.root.rotation.y, target, Math.min(1, dt * 3));
-    // Idle weight shift + a thoughtful forward hunch.
-    this.lean.rotation.z = Math.sin(this.t * 0.9) * 0.03;
-    this.lean.rotation.x = 0.06 + Math.sin(this.t * 0.5) * 0.015;
 
-    const want = celebrating ? 1 : 0;
-    this.celebrate += (want - this.celebrate) * Math.min(1, dt * 6);
-    // Arms swing from resting (slight outward) to overhead; a celebrating
-    // coach also bounces — the touchline leap every dugout knows.
-    const up = this.celebrate;
-    this.armL.rotation.z = -0.08 - up * 2.6;
-    this.armR.rotation.z = 0.08 + up * 2.6;
-    this.root.position.y = up > 0.03 ? Math.abs(Math.sin(this.t * 9)) * 0.22 * up : 0;
+    this.celebrate += ((mood === 'celebrate' ? 1 : 0) - this.celebrate) * Math.min(1, dt * 6);
+    this.despair += ((mood === 'despair' ? 1 : 0) - this.despair) * Math.min(1, dt * 5);
+    this.tension = Math.max(0, this.tension - dt * 2.2);
+
+    const cel = this.celebrate;
+    const des = this.despair;
+    const rest = Math.max(0, 1 - cel - des);
+
+    // Personality at rest: the stoic folds his arms and keeps them folded;
+    // the tinkerer gesticulates on the live mentality ramp — one arm
+    // pumping, the other flung wide, faster the hotter the game state.
+    const crossed = Math.max(0, (0.3 - this.tinker) / 0.3);
+    const gest = rest * activity * Math.min(1, this.tinker * 1.6);
+    const pump = Math.sin(this.t * 6.5);
+    const gestR = gest * (0.9 + 0.55 * pump);
+    const gestL = gest * 0.35 * (1 - pump);
+
+    // Shoulder z, mirrored: negative-L / positive-R swings the arm OUT and
+    // UP away from the torso; the opposite sign folds it INWARD across the
+    // chest (the crossed-arms read, together with the forward x below).
+    this.armL.rotation.z = cel * -2.68 + des * -1.35 + rest * (-0.08 + crossed * 0.55 - gestL);
+    this.armR.rotation.z = cel * 2.68 + des * 1.35 + rest * (0.08 - crossed * 0.55 + gestR);
+    // Shoulder x: forward. Crossed arms fold across the chest; despair
+    // brings both hands to the head (up via z, forward via x).
+    this.armL.rotation.x = rest * crossed * 0.55 + des * 0.85;
+    this.armR.rotation.x = rest * crossed * 0.6 + des * 0.85;
+
+    // Torso: thoughtful hunch + idle weight shift; the shot pulse leans
+    // him in sharply; despair slumps the shoulders; a celebrating coach
+    // arches back.
+    this.lean.rotation.z = Math.sin(this.t * 0.9) * 0.03 * (1 - crossed * 0.5);
+    this.lean.rotation.x =
+      0.06 + Math.sin(this.t * 0.5) * 0.015 + this.tension * 0.16 + des * 0.24 - cel * 0.12;
+
+    // The touchline leap — celebration only; despair stays rooted.
+    this.root.position.y = cel > 0.03 ? Math.abs(Math.sin(this.t * 9)) * 0.22 * cel : 0;
   }
 
   dispose(): void {

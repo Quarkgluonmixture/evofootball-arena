@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { mentalityOf } from '../ai/mentality';
 import { ACTION_SHORT } from '../render/actionLabels';
 import { CANVAS_H, CANVAS_W } from '../render/transform';
 import type { UiFlags } from '../ui/actions';
@@ -7,6 +8,7 @@ import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
 import { CameraController, type CameraMode } from './CameraController';
 import { CoachModel } from './CoachModel';
+import { CrowdSystem } from './CrowdSystem';
 import { FxSystem, type FxQuality } from './FxSystem';
 import { Goal3D } from './GoalModel';
 import { declutterLabels, type LabelItem } from './labelDeclutter';
@@ -43,6 +45,8 @@ export class ThreeMatchRenderer {
    * sees them. Empty when no coach travels with the team sheet. */
   private coachesGroup = new THREE.Group();
   private coaches: CoachModel[] = [];
+  /** The living crowd (66.1) — idles, ripples on chances, erupts on goals. */
+  private crowd = new CrowdSystem();
   private kits: KitMaterials[] = [];
   private anim = new AnimationSystem();
   /** Half-time / full-time walk to the tunnel (Phase 41.1, render-only): per-gid
@@ -83,7 +87,7 @@ export class ThreeMatchRenderer {
     this.scene.add(createPitch(maxAniso));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
-    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup);
+    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root);
 
     // Possession indicator: pulsing team-colored ring under the ball carrier.
     this.possessionMat = new THREE.MeshBasicMaterial({
@@ -113,6 +117,7 @@ export class ThreeMatchRenderer {
     this.fx.hooks = {
       onGoal: (side) => {
         this.goals[side].shake();
+        this.crowd.erupt(); // the stands go up (66.1)
         const team = this.theme?.teams[side];
         const pens = this.lastState?.shootout;
         if (team && pens) {
@@ -123,8 +128,17 @@ export class ThreeMatchRenderer {
           this.showBanner('GOAL!', `${team.name}${score ? ` · ${score}` : ''}`, team.primary);
         }
       },
-      onShot: () => this.cameraCtl.pulse(),
-      onEvent: (type) => this.onFxEvent?.(type),
+      onShot: () => {
+        this.cameraCtl.pulse();
+        // The whole dugout and the stands tighten on a strike (66.1).
+        for (const coach of this.coaches) coach.nudge();
+        this.crowd.ripple(0.4);
+      },
+      onEvent: (type) => {
+        if (type === 'save') this.crowd.ripple(0.55);
+        else if (type === 'corner') this.crowd.ripple(0.3);
+        this.onFxEvent?.(type);
+      },
     };
 
     this.renderer.domElement.addEventListener('pointerdown', (ev) => this.pick(ev));
@@ -182,7 +196,7 @@ export class ThreeMatchRenderer {
     theme.teams.forEach((t, side) => {
       if (!t.coach) return;
       const model = new CoachModel(
-        side as 0 | 1, t.coach, t.primary, side === 0 ? -8 : 8, HALF_W + 1.7,
+        side as 0 | 1, t.coach, t.primary, side === 0 ? -8 : 8, HALF_W + 1.7, t.tinker,
       );
       this.coaches.push(model);
       this.coachesGroup.add(model.root);
@@ -237,10 +251,18 @@ export class ThreeMatchRenderer {
         }
       }
       this.ball.update(state.ball, state.players, dt, hands);
-      // The dugout lives the match too (Phase 66): each coach tracks the
-      // ball and leaps while HIS side's goal celebration plays.
+      // The dugout lives the match (Phase 66 → 66.1): each coach tracks
+      // the ball, celebrates HIS goals, despairs at concessions — and
+      // works the touchline on the SAME mentality ramp the sim plays,
+      // read at his own tinker gene (the stoic barely stirs).
       for (const coach of this.coaches) {
-        coach.update(state.ball.x, state.ball.z, state.celebratingSide === coach.side, dt);
+        const mood =
+          state.celebratingSide === -1 ? 'neutral'
+          : state.celebratingSide === coach.side ? 'celebrate'
+          : 'despair';
+        const diff = state.score[coach.side] - state.score[1 - coach.side];
+        const m = mentalityOf(diff, state.minute, coach.tinker);
+        coach.update(state.ball.x, state.ball.z, mood, Math.max(m.urgency, m.holding), dt);
       }
       this.overlays.update(state.overlays, flags);
       if (this.theme) {
@@ -254,6 +276,7 @@ export class ThreeMatchRenderer {
     this.fx.update(dt);
     this.goals[0].update(dt);
     this.goals[1].update(dt);
+    this.crowd.update(dt); // the stands breathe even between matches
     this.renderer.render(this.scene, this.cameraCtl.camera);
   }
 
@@ -438,6 +461,8 @@ export class ThreeMatchRenderer {
   debugInfo(): {
     players: number;
     coaches: number;
+    crowd: number;
+    crowdArousal: number;
     goals: number;
     cameraMode: CameraMode;
     drawCalls: number;
@@ -454,6 +479,8 @@ export class ThreeMatchRenderer {
     return {
       players: this.players.size,
       coaches: this.coaches.length,
+      crowd: this.crowd.count,
+      crowdArousal: this.crowd.arousal,
       goals: 2,
       cameraMode: this.cameraCtl.mode,
       drawCalls: this.renderer.info.render.calls,

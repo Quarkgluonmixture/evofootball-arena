@@ -116,6 +116,9 @@ describe('RenderStateAdapter', () => {
     const theme = buildRenderTheme(withCoach);
     expect(theme.teams[0].coach).toBe('Ferguson');
     expect(theme.teams[1].coach).toBeUndefined();
+    // 66.1: the touchline figure's temperament rides along — the theme
+    // carries the same gene the feed narrates.
+    expect(theme.teams[0].tinker).toBe(withCoach.teams[0].info.genome.tinkerBias);
   });
 
   it('interpolates positions linearly and angles across the wrap', () => {
