@@ -1222,3 +1222,29 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   running the line level with the second-last defender is a LIVING
   offside-line visualization, the best possible payoff of the
   phase-71 offside work.
+- ✅ **phase-77 SHIPPED** (**the LINESMEN** — user-ratified "边裁啥的
+  要加吗"; render-only, fingerprint IDENTITY `28002dfc…`). Two
+  assistants on opposite touchlines (z=±29.8, mirroring the ref's
+  diagonal system), each owning one half. The law they run is the
+  real one and it's the whole point: `linesmanTargetX(end, defLineX,
+  ballX)` (pure, pinned) holds each level with the SECOND-LAST
+  DEFENDER (`defensiveLineX`, second-deepest defending outfielder —
+  the same convention as the tacfeed's defensive lines) or with the
+  BALL when it's nearer the goal line, clamped between halfway and
+  the goal line — so in every camera, not just the tacfeed, there is
+  now a moving body that IS the offside line. The flag never leaves
+  his hand (orange cloth on a stick in the right arm); an OFFSIDE
+  call raises it straight up for 1.6s — offside lives in the sim as
+  a `foul` event whose text starts with "Offside", so the adapter
+  mines `fx.offside` from the text exactly like the card's red — and
+  a corner at his end gets a 1.0s point. Same fx-dedupe/reset/
+  shootout-hide idiom as the referee (75). vitest 412 (+2:
+  `defensiveLineX` side conventions, `linesmanTargetX`
+  line/ball/halfway/goal-line clamps); 3D suite +3, ALL observed
+  live including a real offside flag in the poll window. One
+  humbling suite fix: the touchline bound I hardcoded assumed
+  HALF_W=30 but the pitch is 58 wide (HALF_W=29) — the CHECK was
+  wrong, the model was right; measure against constants, not
+  assumptions. The refereeing crew is now complete: referee (75) +
+  two assistants (77), all render-side, the sim never knowing any
+  of them exist.

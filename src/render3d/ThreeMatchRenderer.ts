@@ -9,6 +9,7 @@ import { BallModel } from './BallModel';
 import { BroadcastLayer } from './BroadcastLayer';
 import { CameraController, type CameraMode } from './CameraController';
 import { CoachModel } from './CoachModel';
+import { LinesmanModel } from './LinesmanModel';
 import { RefereeModel } from './RefereeModel';
 import { CrowdSystem } from './CrowdSystem';
 import { FxSystem, type FxQuality } from './FxSystem';
@@ -48,6 +49,9 @@ export class ThreeMatchRenderer {
   private coachesGroup = new THREE.Group();
   /** The on-pitch referee (Phase 75) — position synthesized render-side. */
   private referee = new RefereeModel();
+  /** The assistants (Phase 77): opposite touchlines, one half each —
+   * their running line IS the offside line. */
+  private linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];
   private coaches: CoachModel[] = [];
   /** The living crowd (66.1) — idles, ripples on chances, erupts on goals. */
   private crowd = new CrowdSystem();
@@ -97,7 +101,7 @@ export class ThreeMatchRenderer {
     this.scene.add(createPitch(maxAniso));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
-    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root);
+    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);
 
     // Possession indicator: pulsing team-colored ring under the ball carrier.
     this.possessionMat = new THREE.MeshBasicMaterial({
@@ -225,6 +229,7 @@ export class ThreeMatchRenderer {
     this.broadcast.applyTheme(theme);
     this.fx.reset();
     this.referee.reset();
+    for (const lm of this.linesmen) lm.reset();
     this.hideBanner();
     this.lastState = null;
   }
@@ -328,6 +333,8 @@ export class ThreeMatchRenderer {
       // The referee patrols his diagonal, whistles fouls, raises cards
       // (Phase 75) — all synthesized from the state, never from the sim.
       this.referee.update(state, dt);
+      // The assistants run the offside line and flag the calls (Phase 77).
+      for (const lm of this.linesmen) lm.update(state, dt);
       this.overlays.update(state.overlays, flags);
       if (this.theme) {
         this.fx.process(state, [this.theme.teams[0].primary, this.theme.teams[1].primary]);
@@ -545,6 +552,7 @@ export class ThreeMatchRenderer {
   resetFx(): void {
     this.fx.reset();
     this.referee.reset();
+    for (const lm of this.linesmen) lm.reset();
   }
 
   /* -------- selection & tooling -------- */
@@ -600,6 +608,7 @@ export class ThreeMatchRenderer {
     netShaking: boolean;
     netBulging: boolean;
     referee: { x: number; z: number; calling: boolean };
+    linesmen: Array<{ x: number; z: number; flag: boolean }>;
     bannerVisible: boolean;
     scoreBugVisible: boolean;
     fxQuality: FxQuality;
@@ -627,6 +636,7 @@ export class ThreeMatchRenderer {
       netShaking: this.goals[0].isShaking || this.goals[1].isShaking,
       netBulging: this.goals[0].isBulging || this.goals[1].isBulging,
       referee: { ...this.referee.pos, calling: this.referee.calling },
+      linesmen: this.linesmen.map((lm) => ({ ...lm.pos, flag: lm.flagging })),
       bannerVisible: !this.banner.classList.contains('hidden'),
       scoreBugVisible: !this.scoreBug.classList.contains('hidden'),
       fxQuality: this.fx.quality,

@@ -73,8 +73,9 @@ await page.screenshot({ path: `${OUT}/1-tactical.png` });
 // reel; the click after the reel check toggles it back off for the live sections.
 await page.click('label:has-text("Auto highlights")');
 await page.evaluate(() => window.__evo.app.setSpeed(32));
-const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, netBulge: false, reel: false, refInBounds: false, refMoved: false, refCall: false };
+const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, netBulge: false, reel: false, refInBounds: false, refMoved: false, refCall: false, arOnLines: false, arMoved: false, arFlag: false };
 let refPrev = null;
+let arPrev = null;
 let crowdedShotTaken = false;
 for (let i = 0; i < 60; i++) {
   // HT/FT auto-highlights (Phase 33): the reel pauses the sim at a whistle.
@@ -106,6 +107,14 @@ for (let i = 0; i < 60; i++) {
     refPrev = d.referee;
     seen.refCall ||= d.referee.calling;
   }
+  if (d.linesmen?.length === 2) {
+    // Each AR holds his touchline (|z| just outside the pitch) and his half.
+    seen.arOnLines ||= d.linesmen.every((l, i) =>
+      Math.abs(l.z) > 29.4 && Math.abs(l.z) < 32 && Math.abs(l.x) <= 45 && (i === 0 ? l.x >= -0.6 : l.x <= 0.6));
+    if (arPrev) seen.arMoved ||= Math.abs(d.linesmen[0].x - arPrev[0].x) > 0.5 || Math.abs(d.linesmen[1].x - arPrev[1].x) > 0.5;
+    arPrev = d.linesmen;
+    seen.arFlag ||= d.linesmen.some((l) => l.flag);
+  }
   seen.crowdStirred ||= d.crowdArousal > 0.1; // 66.1: a shot/save/goal moved the stands
   if (d.ballMarker && !crowdedShotTaken) {
     crowdedShotTaken = true;
@@ -131,6 +140,10 @@ check('referee patrols inside the pitch (75)', seen.refInBounds);
 check('referee moves with play (75)', seen.refMoved);
 if (seen.refCall) check('referee raised the call arm on a foul/card (75)', true);
 else note('no foul landed in the poll window — call arm not observed');
+check('linesmen hold their touchlines + halves (77)', seen.arOnLines);
+check('linesmen run the offside line (77)', seen.arMoved);
+if (seen.arFlag) check('a linesman flagged an offside/corner (77)', true);
+else note('no offside/corner at a covered end in the poll window — flag not observed');
 
 
 const goalsInMatch1 = await page.locator('#event-feed .ev.goal').count();

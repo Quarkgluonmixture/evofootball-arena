@@ -7,6 +7,7 @@ import { randomSquad } from '../src/evolution/playerGenome';
 import { animFor, bankFor, jostling, lateralSlot, rideSide } from '../src/render3d/AnimationSystem';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
+import { defensiveLineX, linesmanTargetX } from '../src/render3d/LinesmanModel';
 import { bodyFor, hash01 } from '../src/render3d/PlayerModel';
 import { refereeTarget } from '../src/render3d/RefereeModel';
 import {
@@ -142,12 +143,16 @@ describe('RenderStateAdapter', () => {
     const match = makeMatch();
     for (let i = 0; i < 100; i++) match.step(DT);
     match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 0, text: 'Foul by A on B — advantage' });
+    match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 1, text: 'Offside — Ovie (Alpha)' });
     match.events.push({ t: match.simTime, minute: 1, type: 'card', side: 0, text: 'A is booked' });
     match.events.push({ t: match.simTime, minute: 1, type: 'card', side: 1, text: 'STRAIGHT RED! C is sent off' });
     const fx = buildRenderState(match, false).fx;
     expect(fx.some((f) => f.type === 'foul')).toBe(true);
     expect(fx.find((f) => f.type === 'card' && f.side === 0)?.red).toBe(false);
     expect(fx.find((f) => f.type === 'card' && f.side === 1)?.red).toBe(true);
+    // Offside rides the foul channel, marked from its text (77).
+    expect(fx.find((f) => f.type === 'foul' && f.side === 0)?.offside).toBe(false);
+    expect(fx.find((f) => f.type === 'foul' && f.side === 1)?.offside).toBe(true);
   });
 
   it('carries ball spin for the curve visual; absent spin lerps to 0 (74)', () => {
@@ -283,6 +288,33 @@ describe('body-contact detection (Phase 38, pure fns of RenderState)', () => {
     expect(jostling(crasher, { ...corner, ball: { ...corner.ball, x: 10, z: 28.4 } })).toBe(false);
     // A sprinting player is running a crash, not wrestling.
     expect(jostling({ ...crasher, speed: 5 }, corner)).toBe(false);
+  });
+});
+
+describe('the linesman law (Phase 77, pure)', () => {
+  const pl = (side: 0 | 1, role: string, x: number) => ({ side, role, x }) as never;
+
+  it('defensiveLineX picks the second-deepest outfielder toward the own goal', () => {
+    // Side 0 defends -x: deepest outfielder -40, second-deepest -35.
+    const players = [
+      pl(0, 'GK', -44), pl(0, 'DF', -40), pl(0, 'DF', -35), pl(0, 'MF', -10),
+      pl(1, 'GK', 44), pl(1, 'DF', 38), pl(1, 'DF', 30), pl(1, 'ST', -20),
+    ];
+    expect(defensiveLineX(players, 0)).toBe(-35);
+    expect(defensiveLineX(players, 1)).toBe(30);
+  });
+
+  it('linesmanTargetX stays level with the line or the ball, inside his half', () => {
+    // Level with the second-last defender.
+    expect(linesmanTargetX(1, 30, 10)).toBe(30);
+    // The ball is nearer the goal line — track the ball instead.
+    expect(linesmanTargetX(1, 30, 41)).toBe(41);
+    // Play in the other half: he waits at halfway, never crosses.
+    expect(linesmanTargetX(1, -20, -30)).toBe(0);
+    // Never past the goal line; mirrored end works the same.
+    expect(linesmanTargetX(1, 60, 0)).toBeLessThanOrEqual(45);
+    expect(linesmanTargetX(-1, -30, -41)).toBe(-41);
+    expect(linesmanTargetX(-1, 20, 30)).toBe(-0);
   });
 });
 

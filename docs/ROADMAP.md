@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-76 (INDIVIDUAL BODIES + the dribble read: no two players alike, the carry pushes ahead / screens away)
+# Roadmap — shipped through phase-77 (the LINESMEN: two assistants whose running line IS the offside line)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -406,13 +406,30 @@ grinding on top of it. vitest 410 (+2: bodyFor determinism/bounds/
 strength-monotonicity + names-diverge; str carried per frame); both
 visual suites green; TV-camera eyeball — hair + bulk variation reads
 clearly, referee visible mid-pitch.)
-⭐ **Next (user-ratified): linesmen (assistant referees — run the
-line level with the second-last defender = a living offside-line
-viz, flag on offside) → N5b def-menu expansion (the 16/0 watch) →
-N6 market signs.** The user PLAYS CONTINUOUSLY (their correction:
-"我tm一直在玩") — casual observations ARE the play report stream;
-do NOT track "unplayed phases". Standing watch: the goals band
-(~2.8 vs old 2.3–2.6).
++ ✅ **phase-77 SHIPPED** (**the LINESMEN** — user-ratified "边裁啥的
+要加吗": two assistants on OPPOSITE touchlines (z=±29.8), one half
+each, running the REAL assistant's law — `linesmanTargetX` (pure,
+pinned) keeps each level with `defensiveLineX` (second-deepest
+defending outfielder, BroadcastLayer's convention) OR the ball when
+it's nearer the goal line, clamped halfway↔goal-line — so their
+running line IS a living offside-line visualization in every
+camera, the payoff of phase-71's offside law. They carry the flag
+always (orange cloth on a stick, right hand); OFFSIDE raises it
+1.6s — offside rides the sim's `foul` events, marked into
+`fx.offside` by text-mining `Offside…` in the adapter — and a
+corner at his end gets a 1.0s point. Same fx dedupe/reset idiom as
+the referee; hidden in the shootout theater. vitest 412 (+2 pure-fn
+suites); 3D suite +3 checks (touchlines+halves held, line run, flag
+OBSERVED live on a real offside); fingerprint IDENTITY `28002dfc…`.
+One suite-side fix: my hardcoded touchline bound assumed HALF_W=30,
+real pitch is 58 wide (HALF_W=29) — the check was wrong, not the
+model.)
+⭐ **Next: N5b def-menu expansion (the 16/0 watch) → N6 market
+signs.** The user PLAYS CONTINUOUSLY (their correction: "我tm一直
+在玩") — casual observations ARE the play report stream; do NOT
+track "unplayed phases". Standing watch: the goals band (~2.8 vs
+old 2.3–2.6). Parked from the FIFA-gap list: foot IK / skinned
+meshes / cloth (deliberate), celebration choreography (sim-touching).
 HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)

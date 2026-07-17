@@ -70,6 +70,9 @@ export interface FxEvent {
   xg?: number;
   /** Cards only (Phase 75): a sending-off, from the feed's own words. */
   red?: boolean;
+  /** Fouls only (Phase 77): this whistle is an offside call — the sim
+   * pushes offside as a `foul` whose text starts with "Offside". */
+  offside?: boolean;
 }
 
 export interface OverlayState {
@@ -230,6 +233,8 @@ function buildFx(match: Match): FxEvent[] {
       const fx: FxEvent = { type: ev.type, side: ev.side as Side, t: ev.t };
       // The card's color lives only in the feed text — mine it (Phase 75).
       if (ev.type === 'card') fx.red = /SENT OFF|STRAIGHT RED/.test(ev.text);
+      // Offside is pushed as a foul; the text is its only marker (Phase 77).
+      if (ev.type === 'foul') fx.offside = ev.text.startsWith('Offside');
       if (ev.type === 'shot') {
         for (let j = match.shotLog.length - 1; j >= 0; j--) {
           const s = match.shotLog[j];
