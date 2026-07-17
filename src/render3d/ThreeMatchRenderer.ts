@@ -129,6 +129,10 @@ export class ThreeMatchRenderer {
     this.fx.hooks = {
       onGoal: (side) => {
         this.goals[side].shake();
+        // Punch the back net at the ball's impact point (Phase 74) — the
+        // goal event fires while the ball is still at/behind the line.
+        const b = this.lastState?.ball;
+        if (b) this.goals[side].bulge(b.z, Math.max(0.42, b.y ?? 0.42));
         this.crowd.erupt(); // the stands go up (66.1)
         const team = this.theme?.teams[side];
         const pens = this.lastState?.shootout;
@@ -546,6 +550,7 @@ export class ThreeMatchRenderer {
     ballTrail: boolean;
     labelsVisible: number;
     netShaking: boolean;
+    netBulging: boolean;
     bannerVisible: boolean;
     scoreBugVisible: boolean;
     fxQuality: FxQuality;
@@ -569,6 +574,7 @@ export class ThreeMatchRenderer {
       ballTrail: this.ball.trailVisible,
       labelsVisible: this.labelVisibleCount,
       netShaking: this.goals[0].isShaking || this.goals[1].isShaking,
+      netBulging: this.goals[0].isBulging || this.goals[1].isBulging,
       bannerVisible: !this.banner.classList.contains('hidden'),
       scoreBugVisible: !this.scoreBug.classList.contains('hidden'),
       fxQuality: this.fx.quality,

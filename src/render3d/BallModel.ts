@@ -3,6 +3,7 @@ import type { RenderBall, RenderPlayer } from './RenderStateAdapter';
 
 const RADIUS = 0.42; // slightly oversized for readability at tactical distance
 const TRAIL_N = 16;
+const UP = new THREE.Vector3(0, 1, 0); // sidespin axis (Phase 74)
 
 /**
  * The match ball: patterned sphere that rolls with its velocity, gets a
@@ -128,6 +129,13 @@ export class BallModel {
     if (ball.speed > 0.2 && h < 0.05) {
       this.axis.set(-ball.vz, 0, ball.vx).normalize();
       this.mesh.rotateOnWorldAxis(this.axis, (ball.speed * dt) / RADIUS);
+    }
+    // Visible sidespin (Phase 74): a curled ball rotates about the vertical
+    // axis. The sim's `spin` is the PATH's turn rate (rad/s) — small by
+    // construction; the ball itself spins far faster (that's what bends
+    // it), so scale up until the pattern visibly whirls in flight.
+    if (!owned && ball.spin && Math.abs(ball.spin) > 0.03 && ball.speed > 4) {
+      this.mesh.rotateOnWorldAxis(UP, ball.spin * 16 * dt);
     }
 
     this.updateTrail(ball, h);

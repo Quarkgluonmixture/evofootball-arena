@@ -15,7 +15,13 @@ const POST_R = 0.13;
 export class Goal3D {
   readonly group: THREE.Group;
   private net: THREE.Group;
+  private back: THREE.Mesh;
+  private backBase: Float32Array;
+  private readonly dir: 1 | -1;
   private shakeT = -1;
+  private bulgeT = -1;
+  private bulgeX = 0; // impact point in the back panel's local plane coords
+  private bulgeY = 0;
 
   /**
    * @param dir +1 = goal on the +x end, -1 = goal on the -x end.
@@ -23,9 +29,13 @@ export class Goal3D {
    *   at grazing angles and on small (phone) canvases.
    */
   constructor(dir: 1 | -1, anisotropy = 1) {
-    const { group, net } = buildGoal(dir, anisotropy);
+    const { group, net, back } = buildGoal(dir, anisotropy);
     this.group = group;
     this.net = net;
+    this.back = back;
+    this.dir = dir;
+    const pos = back.geometry.getAttribute('position') as THREE.BufferAttribute;
+    this.backBase = Float32Array.from(pos.array as Float32Array);
   }
 
   /** Ripple the net for ~0.7s. */
@@ -33,11 +43,54 @@ export class Goal3D {
     this.shakeT = 0;
   }
 
+  /**
+   * Punch the back net outward at the ball's impact point (Phase 74) — the
+   * iconic goal read. worldZ = across the mouth, worldY = ball height.
+   */
+  bulge(worldZ: number, worldY: number): void {
+    // The panel is rotated y=+90°, so plane local x = -(world z); local y
+    // is measured from the panel center at CROSSBAR_H/2.
+    const halfW = GOAL_WIDTH / 2;
+    this.bulgeX = Math.max(-halfW + 0.2, Math.min(halfW - 0.2, -worldZ));
+    this.bulgeY = Math.max(-CROSSBAR_H / 2 + 0.1, Math.min(CROSSBAR_H / 2 - 0.1, worldY - CROSSBAR_H / 2));
+    this.bulgeT = 0;
+  }
+
   get isShaking(): boolean {
     return this.shakeT >= 0;
   }
 
+  get isBulging(): boolean {
+    return this.bulgeT >= 0;
+  }
+
   update(dt: number): void {
+    if (this.bulgeT >= 0) {
+      this.bulgeT += dt;
+      const DUR = 0.9;
+      const pos = this.back.geometry.getAttribute('position') as THREE.BufferAttribute;
+      if (this.bulgeT >= DUR) {
+        this.bulgeT = -1;
+        (pos.array as Float32Array).set(this.backBase);
+        pos.needsUpdate = true;
+      } else {
+        // Instant punch, then a couple of decaying recoil swings; the
+        // displacement falls off as a gaussian around the impact point and
+        // pushes along the panel normal (local +z = world dir·x = outward).
+        const t = this.bulgeT;
+        const swing = Math.exp(-t * 4.2) * Math.cos(t * 11) * 0.62;
+        for (let i = 0; i < pos.count; i++) {
+          const bx = this.backBase[i * 3];
+          const by = this.backBase[i * 3 + 1];
+          const dx = bx - this.bulgeX;
+          const dy = by - this.bulgeY;
+          const g = Math.exp(-(dx * dx + dy * dy) / (2 * 1.1 * 1.1));
+          pos.setXYZ(i, bx, by, this.backBase[i * 3 + 2] + this.dir * swing * g);
+        }
+        pos.needsUpdate = true;
+      }
+    }
+
     if (this.shakeT < 0) return;
     this.shakeT += dt;
     const DUR = 0.7;
@@ -54,7 +107,9 @@ export class Goal3D {
   }
 }
 
-function buildGoal(dir: 1 | -1, anisotropy: number): { group: THREE.Group; net: THREE.Group } {
+function buildGoal(
+  dir: 1 | -1, anisotropy: number,
+): { group: THREE.Group; net: THREE.Group; back: THREE.Mesh } {
   const group = new THREE.Group();
   const net = new THREE.Group();
   group.add(net);
@@ -97,7 +152,9 @@ function buildGoal(dir: 1 | -1, anisotropy: number): { group: THREE.Group; net: 
   // the behind-goal gantry instead of a proper box net.
   const NET_CELL = 0.28;
   const baseTex = netTexture(anisotropy);
-  const addNet = (w: number, h: number, opacity: number, setup: (m: THREE.Mesh) => void) => {
+  const addNet = (
+    w: number, h: number, opacity: number, setup: (m: THREE.Mesh) => void, segsW = 1, segsH = 1,
+  ): THREE.Mesh => {
     const tex = baseTex.clone();
     tex.wrapS = THREE.RepeatWrapping;
     tex.wrapT = THREE.RepeatWrapping;
@@ -110,19 +167,20 @@ function buildGoal(dir: 1 | -1, anisotropy: number): { group: THREE.Group; net: 
       side: THREE.DoubleSide,
       depthWrite: false,
     });
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h, segsW, segsH), mat);
     setup(mesh);
     net.add(mesh);
+    return mesh;
   };
   // Per-panel opacity: at grazing angles a panel's lines stack up per pixel
   // and it glows; face-on they thin out. The roof is seen at a grazing angle
   // from every elevated camera, so it gets the LOW opacity — otherwise it
   // outshines the box and the whole goal reads as a flat grate.
-  // Back wall.
-  addNet(GOAL_WIDTH, CROSSBAR_H, 0.9, (m) => {
+  // Back wall — subdivided so the goal-impact bulge (Phase 74) can deform it.
+  const back = addNet(GOAL_WIDTH, CROSSBAR_H, 0.9, (m) => {
     m.position.set(backX, CROSSBAR_H / 2, 0);
     m.rotation.y = Math.PI / 2;
-  });
+  }, 18, 9);
   // Roof: lies flat from the crossbar back to the net's top rear edge.
   // PlaneGeometry(depth, width) + rotation.x=-90° maps local x -> world x
   // (goal depth) and local y -> world z (goal width). NOTE Three.js applies
@@ -139,7 +197,7 @@ function buildGoal(dir: 1 | -1, anisotropy: number): { group: THREE.Group; net: 
     });
   }
 
-  return { group, net };
+  return { group, net, back };
 }
 
 function netTexture(anisotropy: number): THREE.CanvasTexture {

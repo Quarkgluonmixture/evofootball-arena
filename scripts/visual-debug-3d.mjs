@@ -73,7 +73,7 @@ await page.screenshot({ path: `${OUT}/1-tactical.png` });
 // reel; the click after the reel check toggles it back off for the live sections.
 await page.click('label:has-text("Auto highlights")');
 await page.evaluate(() => window.__evo.app.setSpeed(32));
-const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, reel: false };
+const seen = { possessionRing: false, ballTrail: false, ballMarker: false, declutter: false, banner: false, netShake: false, netBulge: false, reel: false };
 let crowdedShotTaken = false;
 for (let i = 0; i < 60; i++) {
   // HT/FT auto-highlights (Phase 33): the reel pauses the sim at a whistle.
@@ -98,6 +98,7 @@ for (let i = 0; i < 60; i++) {
   seen.declutter ||= d.labelsVisible < 10;
   seen.banner ||= d.bannerVisible;
   seen.netShake ||= d.netShaking;
+  seen.netBulge ||= d.netBulging;
   seen.crowdStirred ||= d.crowdArousal > 0.1; // 66.1: a shot/save/goal moved the stands
   if (d.ballMarker && !crowdedShotTaken) {
     crowdedShotTaken = true;
@@ -124,6 +125,9 @@ check('the stands stirred at least once (66.1)', seen.crowdStirred === true);
 const goalsInMatch1 = await page.locator('#event-feed .ev.goal').count();
 if (goalsInMatch1 > 0) {
   check('goal banner and/or net shake fired live', seen.banner || seen.netShake, `banner=${seen.banner} shake=${seen.netShake}`);
+  // The bulge (74) starts with the shake and outlives it (0.9s vs 0.7s), so
+  // any poll that caught the shake must also have caught the bulge.
+  if (seen.netShake) check('net bulges at the impact point on goals (74)', seen.netBulge, `bulge=${seen.netBulge}`);
 } else {
   note('first match had no goals — banner/net-shake verified in replay below');
 }

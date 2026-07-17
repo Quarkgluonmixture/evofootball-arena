@@ -1121,3 +1121,29 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   carrying naturally). The remaining tiers stay queued: 74 = net
   bulge + visible ball spin (the curve trilogy is still invisible in
   flight), 75 = the referee.
+- ✅ **phase-74 SHIPPED** (**the GOAL & THE CURVE made visible** —
+  FIFA-gap tier 2; render-only, fingerprint IDENTITY `28002dfc…`).
+  Two high-value moments that were happening invisibly: (1) the NET
+  BULGE — the goal's back net panel is now subdivided (18×9 segments,
+  base positions cached) and `Goal3D.bulge(worldZ, worldY)` punches
+  it OUTWARD at the ball's actual impact point when a goal fires: a
+  gaussian (σ=1.1m) around the impact, displaced along the panel
+  normal (local +z → world dir·x) with a damped recoil
+  `e^{−4.2t}·cos(11t)·0.62m` over 0.9s — instant full punch, two
+  visible recoil swings — layered on the existing whole-net shake.
+  Wired in the same `onGoal` hook (the goal event fires while the
+  ball is still at the line, so `lastState.ball` IS the impact
+  point, clamped into the mouth for safety). (2) VISIBLE SIDESPIN —
+  phases 69/70 gave chips/switches/through-balls real Magnus
+  trajectories, but the BALL never showed the spin causing them.
+  `RenderBall.spin` now carries the sim field through the adapter
+  (interpolated with `?? 0` so pre-74 replays map to no-spin, not
+  NaN — pinned), and BallModel rotates the patterned mesh about the
+  vertical axis at 16× the path turn rate while a curled ball is in
+  flight (the sim's `spin` is the PATH's turn rate; the real ball
+  spins far faster — that's what bends it — so the scale-up is
+  honest in kind). Suite: `netBulging` debug flag + the co-fire
+  check (the bulge starts with the shake and outlives it 0.9s vs
+  0.7s, so any poll catching the shake must catch the bulge — it
+  did, `bulge=true`). vitest 406; both visual suites green;
+  fingerprint identity.

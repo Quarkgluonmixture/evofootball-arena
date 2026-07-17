@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-73 (the RUNNER'S BODY: knees, elbows, banking, the trap, the ball-side foot)
+# Roadmap — shipped through phase-74 (the GOAL & THE CURVE made visible: net bulge, spinning ball)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -342,12 +342,26 @@ forward as the knee extends into contact. Render-only, fingerprint
 IDENTITY `28002dfc…`; vitest 405 (+2 pure-fn pins); visual 109+47;
 penalty-theater close-up eyeballed (forearms/socks/boots all
 attached, elbows carry naturally).)
-⭐ **Next: play report (FOURTEEN unplayed phases — fatigue, reaction
++ ✅ **phase-74 SHIPPED** (**the GOAL & THE CURVE made visible** —
+FIFA-gap tier 2, the high-value moments: (1) the NET BULGE — the
+back panel subdivided 18×9 and punched OUTWARD at the ball's actual
+impact point on goals (gaussian falloff σ=1.1m around impact, damped
+recoil `e^{−4.2t}·cos(11t)·0.62m` over 0.9s, along the panel normal),
+layered on the existing whole-net shake — the iconic goal read; (2)
+VISIBLE SIDESPIN — the curve trilogy (69/70) bent trajectories but
+the ball itself never showed it: `ball.spin` now rides the adapter
+(lerped, `?? 0` for pre-74 replays) and BallModel whirls the pattern
+about the vertical axis at 16× the path turn rate while a curled
+ball flies. Render-only, fingerprint IDENTITY `28002dfc…`; vitest
+406 (+1 spin-carry pin incl. NaN guard); visual 109 + 3D green with
+the new co-fire check (any poll catching the 0.7s shake must catch
+the 0.9s bulge — it did).)
+⭐ **Next: play report (FIFTEEN unplayed phases — fatigue, reaction
 gate, unset wall, bench, discipline, aerial channel, underdog shift,
 dugout, shapes, chips, curves, goal-kick offside, analyst feed, the
-runner's body — + the band verdict) → phase-74 net bulge + visible
-ball spin → phase-75 the referee → N5b def-menu expansion (the 16/0
-watch) → N6 market signs for style fit.**
+runner's body, net-bulge+spin — + the band verdict) → phase-75 the
+referee → N5b def-menu expansion (the 16/0 watch) → N6 market signs
+for style fit.**
 HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)

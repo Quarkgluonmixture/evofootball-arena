@@ -124,6 +124,18 @@ describe('RenderStateAdapter', () => {
     expect(mid.press).toEqual(b.press);
   });
 
+  it('carries ball spin for the curve visual; absent spin lerps to 0 (74)', () => {
+    const match = makeMatch();
+    match.ball.spin = 0.4;
+    const rs = buildRenderState(match, false);
+    expect(rs.ball.spin).toBeCloseTo(0.4);
+    const hotter = { ...rs, ball: { ...rs.ball, spin: 0.8 } };
+    expect(interpolateStates(rs, hotter, 0.5).ball.spin).toBeCloseTo(0.6);
+    // Pre-74 replay snapshots carry no spin — the lerp maps them to 0, not NaN.
+    const old = { ...rs, ball: { ...rs.ball, spin: undefined } };
+    expect(interpolateStates(old, old, 0.5).ball.spin).toBe(0);
+  });
+
   it('the theme carries the named coach to the touchline; ad-hoc dugouts stay empty (66)', () => {
     const bare = buildRenderTheme(makeMatch());
     expect(bare.teams[0].coach).toBeUndefined();

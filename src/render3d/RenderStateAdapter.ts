@@ -44,6 +44,10 @@ export interface RenderBall {
   vx: number;
   vz: number;
   speed: number;
+  /** Sidespin (Phase 74, from the sim's Magnus field) — the path's turn
+   * rate in rad/s. Drives the visible ball rotation on curled balls.
+   * Absent in pre-curve replays. */
+  spin?: number;
   ownerGid: number | null;
   /** A shot is currently in flight (drives trail emphasis + camera pulse). */
   isShot: boolean;
@@ -174,6 +178,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     vx: match.ball.vel.x,
     vz: match.ball.vel.y,
     speed: Math.hypot(match.ball.vel.x, match.ball.vel.y),
+    spin: match.ball.spin,
     ownerGid: match.ball.owner ? match.ball.owner.gid : null,
     isShot: match.pendingShot !== null,
     isPass: match.pendingPass !== null,
@@ -338,6 +343,8 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
       vx: lerp(a.ball.vx, b.ball.vx, t),
       vz: lerp(a.ball.vz, b.ball.vz, t),
       speed: lerp(a.ball.speed, b.ball.speed, t),
+      // `?? 0` maps pre-Phase-74 replay snapshots onto no-spin.
+      spin: lerp(a.ball.spin ?? 0, b.ball.spin ?? 0, t),
       ownerGid: late.ball.ownerGid,
       isShot: late.ball.isShot,
       isPass: late.ball.isPass,
