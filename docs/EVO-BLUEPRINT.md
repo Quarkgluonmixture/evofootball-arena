@@ -1003,3 +1003,32 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   ShotLogEntry gains `chip?: boolean`; the feed narrates "chips the
   keeper!". vitest **399** (+4, incl. flight-sampled unsavability over
   the keeper and bit determinism); visual 109+45.
+- ✅ **phase-70 SHIPPED** (**弧线传球** — the curve trilogy's parts 2+3;
+  sim change, fingerprint REBASELINED `bd7ba2da…`). (1) AERIAL SWING:
+  `aerialSwing` gives lofted switches and dinked through balls a
+  technique-priced sidespin (0.12+passing·0.18) whose BULGE leans away
+  from the nearest defender to the drop zone (clean drop = a gentle
+  outswinger toward the flank); loftKick's pre-compensation keeps the
+  landing where it was aimed, so completion moves only through who can
+  meet the ARC. (2) The ground BENDER: `groundBend` + `bentKick` curl a
+  through ball around a leg pinching the seam (perp < 1.3), compensated
+  EXACTLY for grass spin decay; the whip is FLAT 0.45×tightness and the
+  price is a weight error technique tames. Three probe-driven verdicts
+  that shaped the design: **ordinary circulation passes stay
+  deliberately straight** — the first cut bent them too and the zonal
+  press-23 block's measured height collapsed onto low-32's (the
+  formations directional contract INVERTED; binary isolation pinned the
+  circulation bender as the sole culprit — bending the short game
+  defeats the lane-jumping that IS pressing, an ecology tax phases
+  58-61 fought to avoid); **the passing-scaled whip inverted the skill
+  gradient** (0.9-passing squads did WORSE than 0.2 — bigger bends,
+  bigger deviation) so the whip went flat and technique's edge moved
+  wholly into the weight error; **per-delivery the bender is neutral
+  within noise** (staged pinched seams n=400: 86.3% straight vs 84-85%
+  bent, σ±1.8pp) — shipped for the visible curve and the gradient, not
+  as a completion buff, with the finishing-conversion contract
+  restored by the tempering (it had inverted under the free-bending
+  first cut). League: through balls 8.95→10.97/match, completion
+  78→76%, goals mean 2.79 ≈ 69's 2.80 (dead neutral). Keeper-throw
+  pins re-anchored (seeds 35/42, the fifth dance — 51.2/58/59/41.2/67
+  precedent). vitest **402** (+3); visual 109+45.

@@ -144,4 +144,95 @@ describe('the curved ball (Phase 37)', () => {
     expect(crafted).toBeGreaterThan(blunt);
     expect(crafted).toBeGreaterThan(0.25);
   });
+
+  it('lofted switches SWING away from the drop-zone threat (Phase 70)', () => {
+    const swing = (threatY: number): number => {
+      const m = staged(9);
+      const passer = m.teams[0].players[2];
+      const mate = m.teams[0].players[4];
+      passer.pos = v2(-10, 0);
+      mate.pos = v2(14, 18);
+      mate.vel = v2(0, 0);
+      // One defender working the drop zone; everyone else far away.
+      const threat = m.teams[1].players[1];
+      threat.pos = v2(14, threatY);
+      m.ball.owner = passer;
+      m.ball.pos = v2(passer.pos.x, passer.pos.y);
+      m.possessionSide = 0;
+      passer.kickCooldown = 0;
+      m.performLoftedPass(passer, mate);
+      return m.ball.spin;
+    };
+    // Threat on either side of the chord bends the flight the OTHER way.
+    const left = swing(23);
+    const right = swing(13);
+    expect(Math.abs(left)).toBeGreaterThan(0.1);
+    expect(Math.abs(right)).toBeGreaterThan(0.1);
+    expect(Math.sign(left)).not.toBe(Math.sign(right));
+  });
+
+  it('the swinging switch still lands where it was aimed (pre-compensation)', () => {
+    const m = staged(21);
+    const passer = m.teams[0].players[2];
+    const mate = m.teams[0].players[4];
+    passer.pos = v2(-12, -2);
+    mate.pos = v2(12, 16);
+    mate.vel = v2(0, 0);
+    m.ball.owner = passer;
+    m.ball.pos = v2(passer.pos.x, passer.pos.y);
+    m.possessionSide = 0;
+    passer.kickCooldown = 0;
+    m.performLoftedPass(passer, mate);
+    expect(m.ball.spin).not.toBe(0);
+    // Fly to touchdown: the arc must come down near the receiver, not
+    // wherever the bend wandered (loftKick pre-compensates the launch).
+    let landed: { x: number; y: number } | null = null;
+    for (let t = 0; t < 240 && !landed; t++) {
+      const owner = m.ball.owner;
+      m.step(DT);
+      if (owner === null && m.ball.owner !== null) break; // someone took it
+      if (m.ball.z <= 0.01 && m.ball.vz <= 0 && m.ball.owner === null) {
+        landed = { x: m.ball.pos.x, y: m.ball.pos.y };
+      }
+    }
+    if (landed) {
+      const err = Math.hypot(landed.x - mate.pos.x, landed.y - mate.pos.y);
+      expect(err).toBeLessThan(6); // inside normal delivery scatter
+    }
+  });
+
+  it('a pinched THROUGH BALL gets the bender; ordinary passes stay straight (70/71)', () => {
+    const m = staged(31);
+    const passer = m.teams[0].players[2];
+    const runner = m.teams[0].players[5];
+    passer.pos = v2(-6, 0);
+    runner.pos = v2(6, 2);
+    runner.vel = v2(6, 0.5); // bursting — the delivery leads the run
+    const leg = m.teams[1].players[1];
+    leg.pos = v2(2, 1.4); // the last defender near the seam
+    leg.vel = v2(0, 0);
+    m.ball.owner = passer;
+    m.ball.pos = v2(passer.pos.x, passer.pos.y);
+    m.possessionSide = 0;
+    passer.kickCooldown = 0;
+    m.performThroughBall(passer, runner);
+    expect(Math.abs(m.ball.spin)).toBeGreaterThan(0.1); // curled around the leg
+
+    // The ordinary circulation pass is DELIBERATELY straight (the bender
+    // taxed pressing — see mechanics.ts): same stage, plain pass, no spin.
+    const m2 = staged(31);
+    const p2 = m2.teams[0].players[2];
+    const mate = m2.teams[0].players[3];
+    p2.pos = v2(-10, 0);
+    mate.pos = v2(8, 4);
+    const leg2 = m2.teams[1].players[2];
+    leg2.pos = v2(-1, 2.6);
+    leg2.vel = v2(0, 0);
+    m2.ball.owner = p2;
+    m2.ball.pos = v2(p2.pos.x, p2.pos.y);
+    m2.possessionSide = 0;
+    p2.kickCooldown = 0;
+    m2.performPass(p2, mate);
+    expect(m2.ball.spin).toBe(0);
+  });
 });

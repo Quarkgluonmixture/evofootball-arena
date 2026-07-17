@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-69 (the CHIP: the sweeper keeper finally has a predator)
+# Roadmap — shipped through phase-70 (the curve trilogy complete: chips, swinging switches, bent through balls)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -259,10 +259,35 @@ Calibrate 3.02/2.28/4.10 (ex-chip 2.84/–/3.99: the chip's direct
 over the stranded keeper with flight sampling, never vs a home/in-face
 keeper, determinism); visual 109+45; fingerprint REBASELINED
 `ae193cb1…`.)
-⭐ **Next: phase-70 curled LOFTED passes → phase-71 curled GROUND
-through balls (the rest of the user's curve trilogy) → play report
-(TEN unplayed phases + the band verdict) → N5b def-menu expansion →
-N6 market signs for style fit.
++ ✅ **phase-70 SHIPPED** (**弧线传球 — the curve trilogy's passes**,
+parts 2+3: aerial SWING + the ground BENDER. Lofted switches and dinks
+now carry technique-priced sidespin bulging away from whoever works
+the drop zone (outswinger to the flank when clean; landing point
+pre-compensated inside loftKick, so only the ARC changes). Ground
+THROUGH BALLS curl around a leg pinching the seam — whip flat 0.45 ×
+pinch tightness, launch compensated exactly for grass spin decay
+(ω(1−e^{−1.5T})/1.5), priced by a WEIGHT ERROR that technique tames.
+⭐ Two probe-driven design verdicts: (1) **ordinary circulation passes
+stay deliberately STRAIGHT** — the bender on short passes defeated
+exactly the lane-jumping that IS the pressing game (isolation-probed:
+the zonal press-23 block's measured height collapsed onto low-32's
+and the formations contract inverted; through-ball + aerial curves
+alone leave it green); (2) the passing-scaled whip inverted the skill
+gradient (better passers took bigger bends and paid the deviation) —
+the bend needed to clear a leg is geometry, flat for everyone;
+technique's edge lives in the weight error. Per-delivery the bender is
+NEUTRAL within scene noise (86.3→84-85%, n=400 σ±1.8) — its value is
+the visible curve + the technique gradient, not a completion buff.
+Calibrate 2.91/2.10/3.35 vs 69's 3.02/2.28/4.10 — mean dead neutral
+(2.79 vs 2.80), through balls 8.95→10.97/match (settled between
+straight and the untempered +44% festival). vitest **402** (+3:
+threaded bender + straight circulation contract, swing-away-from-
+threat, pre-compensated landing); visual 109+45; fingerprint
+REBASELINED `bd7ba2da…`.)
+⭐ **Next: play report (ELEVEN unplayed phases — fatigue, reaction
+gate, unset wall, bench, discipline, aerial channel, underdog shift,
+dugout, shapes, chips, curves — + the band verdict) → N5b def-menu
+expansion (the 16/0 watch) → N6 market signs for style fit.
 Play reports interleave as always — **EIGHT unplayed behavioral phases
 are live (fatigue, reaction gate, unset wall, the bench 🔄, discipline
 🚫, the aerial channel, the underdog shift, the dugout 🎩); a play

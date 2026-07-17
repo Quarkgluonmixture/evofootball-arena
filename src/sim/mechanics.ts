@@ -172,6 +172,69 @@ export function shotQuality(match: Match, p: Player): number {
   return clamp(0.85 * Math.exp(-d / 10) * central * (1 - pressure * 0.3), 0.01, 0.8);
 }
 
+/**
+ * The ground BENDER (Phase 71, the curve trilogy's last piece — user ask
+ * 弧线直塞): when a defender pinches the passing lane, a technical passer
+ * curls the ball AROUND his leg — the bulge leans away from the pincher
+ * and the arc comes back to the designed receiving point. Compensation is
+ * exact for grass decay (spin bleeds at 1.5/s, so the total rotation is
+ * ω(1−e^{−1.5T})/1.5 — half of it rotated off the launch keeps the chord
+ * endpoint honest). Nobody in the lane = no spin: the straight ball stays
+ * the default, and interceptors/deflectors meet the ARC per frame, so the
+ * bender beats exactly the leg it was played around. Returns the spin.
+ */
+function groundBend(
+  passer: Player, to: V2, opponents: Player[], d: number,
+): number {
+  const from = passer.pos;
+  const chord = norm(sub(to, from));
+  let pinch: Player | null = null;
+  let pinchPerp = 1.3; // a leg within reach of the straight lane
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    const ox = o.pos.x - from.x;
+    const oy = o.pos.y - from.y;
+    const along = ox * chord.x + oy * chord.y;
+    if (along < 2 || along > d - 2) continue; // passer's feet / receiver's trap
+    const perp = Math.abs(ox * chord.y - oy * chord.x);
+    if (perp < pinchPerp) {
+      pinchPerp = perp;
+      pinch = o;
+    }
+  }
+  if (!pinch) return 0;
+  // Magnitude scales with how TIGHT the pinch is — a leg 1.2m off the
+  // chord needs a lean, not a banana (the first cut bent every through
+  // ball at full whip: the last defender always stands near that chord,
+  // so high lines were being beaten for free — press-23's measured block
+  // height collapsed onto low-32's and the formations contract inverted).
+  const tightness = clamp(1.4 - pinchPerp, 0.3, 1);
+  // FLAT whip (the passing-scaled first cut inverted the skill gradient:
+  // better passers took BIGGER bends and paid the deviation) — the bend
+  // needed to clear a leg is geometry, the same for everyone; technique's
+  // edge lives in the weight error below.
+  const mag = 0.45 * tightness;
+  const cross = chord.x * (pinch.pos.y - from.y) - chord.y * (pinch.pos.x - from.x);
+  return (Math.sign(cross) || 1) * mag;
+}
+
+/** Kick a ground ball with bend: launch rotated half the DECAYED total
+ * rotation so the arc's endpoint sits where the straight aim pointed. */
+function bentKick(match: Match, p: Player, dir: V2, speed: number, spin: number, d: number): void {
+  if (spin === 0) {
+    match.kickBall(p, dir, speed);
+    return;
+  }
+  const T = -Math.log(1 - Math.min((d * BALL_FRICTION_K) / speed, 0.85)) / BALL_FRICTION_K;
+  const totalRot = (spin * (1 - Math.exp(-1.5 * T))) / 1.5;
+  // The bender's PRICE: a curled ball is harder to weight — extra launch
+  // noise grows with the whip and shrinks with technique. Free bending
+  // farmed the offside line (see groundBend's tightness note).
+  const weightErr = match.rng.gaussian() * Math.abs(spin) * 0.2 * (1.35 - p.attrs.passing);
+  match.kickBall(p, rotate(dir, -totalRot * 0.5 + weightErr), speed);
+  match.ball.spin = spin;
+}
+
 export function performPass(match: Match, passer: Player, mate: Player, offsideExempt = false): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
@@ -205,6 +268,12 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   const dir = rotate(aim, noise);
 
   const oneTouch = passer.firstTouchWindow > 0;
+  // Circulation stays STRAIGHT — deliberately (Phase 70/71): the bender on
+  // ordinary short passes defeated exactly the lane-jumping that IS the
+  // pressing game, and the zonal press-23 block's measured height collapsed
+  // onto low-32's (the formations contract inverted; isolation-probed —
+  // through-ball and aerial curves alone leave it intact). Curl lives where
+  // football actually spends it: through balls, switches, crosses, shots.
   match.kickBall(passer, dir, speed);
   team.stats.passes++;
   if (oneTouch) team.stats.oneTouch++;
@@ -263,7 +332,9 @@ export function performThroughBall(
   if (lofted) {
     const flight0 = clamp(0.55 + dist(passer.pos, runner.pos) * 0.045, 0.8, 2.0);
     const lead = runBurstPoint(runner, team, oppPlayers, flight0 * 0.85);
-    loftKick(match, passer, lead, 0.55, 0.045, 0.8, 2.0, 1.0);
+    // The dink bends away from the recovering defender (Phase 70).
+    const swing = aerialSwing(passer, passer.pos, lead, oppPlayers);
+    loftKick(match, passer, lead, 0.55, 0.045, 0.8, 2.0, 1.0, swing);
     team.stats.longBalls++; // a chip is a lofted long ball too
   } else {
     const flight = dist(passer.pos, runner.pos) / (18 * powerMul);
@@ -290,7 +361,8 @@ export function performThroughBall(
       orientationNoiseMul(misalign, passer.attrs.passing);
     const dir = rotate(aim, noise);
 
-    match.kickBall(passer, dir, speed);
+    // The bent through ball (Phase 71) — around the last defender's leg.
+    bentKick(match, passer, dir, speed, groundBend(passer, lead, oppPlayers, d), d);
   }
   team.stats.passes++;
   team.stats.throughBalls++;
@@ -450,6 +522,39 @@ export function performCutback(match: Match, passer: Player, mate: Player): void
  * Lofted switch (Phase 28): the big diagonal — a 25m+ ball over the press to
  * a receiver in space. What the 32m ground-pass penalty used to suppress.
  */
+/**
+ * The curled DELIVERY's swing (Phase 70, user ask 弧线长传 — the second of
+ * the curve trilogy): a lofted ball bends its BULGE away from the nearest
+ * threat to the landing zone (the recovering defender chases a flight that
+ * leans out of his line), or a gentle outswing toward the flank when the
+ * drop is clean. Technique whips harder; the landing point itself is
+ * pre-compensated inside loftKick, so completion changes only through the
+ * geometry of who can meet the ARC — never through a moved drop.
+ */
+function aerialSwing(passer: Player, from: V2, landing: V2, opponents: Player[]): number {
+  const chord = norm(sub(landing, from));
+  let threat: Player | null = null;
+  let best = 8; // only a defender who can actually work the drop zone
+  for (const o of opponents) {
+    if (o.sentOff) continue;
+    const d = dist(o.pos, landing);
+    if (d < best) {
+      best = d;
+      threat = o;
+    }
+  }
+  const mag = 0.12 + passer.attrs.passing * 0.18;
+  if (threat) {
+    const cross = chord.x * (threat.pos.y - from.y) - chord.y * (threat.pos.x - from.x);
+    return (Math.sign(cross) || 1) * mag;
+  }
+  // Clean drop: swing away from the pitch's center line — the outswinger
+  // a wide receiver runs onto without breaking stride.
+  const midY = (from.y + landing.y) / 2;
+  const cross = chord.x * (0 - midY);
+  return (Math.sign(cross) || 1) * mag * 0.6;
+}
+
 export function performLoftedPass(match: Match, passer: Player, mate: Player, offsideExempt = false): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
@@ -461,7 +566,9 @@ export function performLoftedPass(match: Match, passer: Player, mate: Player, of
   const flight0 = clamp(0.55 + dist(passer.pos, mate.pos) * 0.033, 1.1, 2.1);
   const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));
   const oneTouch = passer.firstTouchWindow > 0;
-  loftKick(match, passer, lead, 0.55, 0.033, 1.1, 2.1, 0.9);
+  // The switch swings (Phase 70) — bulge away from whoever works the drop.
+  const swing = aerialSwing(passer, passer.pos, lead, match.teams[1 - passer.side].players);
+  loftKick(match, passer, lead, 0.55, 0.033, 1.1, 2.1, 0.9, swing);
   team.stats.passes++;
   team.stats.longBalls++;
   if (oneTouch) team.stats.oneTouch++;
