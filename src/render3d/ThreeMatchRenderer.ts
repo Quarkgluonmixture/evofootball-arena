@@ -243,6 +243,8 @@ export class ThreeMatchRenderer {
         // A substitution changed the slot's man (Phase 61) — cheap string
         // compare per frame, canvas redraw only on the actual swap.
         if (p.name !== undefined) model.setName(p.name);
+        // The body follows the occupant + his evolved strength (Phase 76).
+        model.setBody(p.name, p.str ?? 0.5);
         if (walkingOff) {
           this.poseWalkOff(model, p, state, dt, selectedGid);
         } else {
@@ -271,7 +273,45 @@ export class ThreeMatchRenderer {
           hands = { x: v.x, y: v.y, z: v.z, t: Math.min(1, tilt / 0.9) };
         }
       }
-      this.ball.update(state.ball, state.players, dt, hands);
+      // The dribble READ (Phase 76, user report "两个人和球挤来挤去,没有
+      // 盘带的感觉"): at speed the displayed ball is pushed AHEAD in
+      // stride-synced touches (the carrier's own gait clock); under
+      // pressure at low speed it is SCREENED to the far side from the
+      // nearest opponent — the shield finally has a ball on the far foot.
+      // Display-only: the sim ball stays authoritative underneath.
+      let carry: { dx: number; dz: number } | null = null;
+      if (state.ball.ownerGid !== null && !state.ball.heldByGk) {
+        const owner = state.players.find((q) => q.gid === state.ball.ownerGid);
+        const om = this.players.get(state.ball.ownerGid);
+        if (owner && om) {
+          if (owner.speed > 3.2) {
+            const push =
+              Math.min(0.75, 0.2 + owner.speed * 0.055) *
+              (0.72 + 0.28 * Math.abs(Math.sin(om.phase)));
+            carry = { dx: Math.sin(owner.yaw) * push, dz: Math.cos(owner.yaw) * push };
+          } else {
+            let qx = 0;
+            let qz = 0;
+            let best = 2.4 * 2.4;
+            for (const q of state.players) {
+              if (q.side === owner.side) continue;
+              const ddx = q.x - owner.x;
+              const ddz = q.z - owner.z;
+              const d2 = ddx * ddx + ddz * ddz;
+              if (d2 < best) {
+                best = d2;
+                qx = ddx;
+                qz = ddz;
+              }
+            }
+            if (best < 2.4 * 2.4) {
+              const d = Math.sqrt(best) || 1e-6;
+              carry = { dx: (-qx / d) * 0.45, dz: (-qz / d) * 0.45 };
+            }
+          }
+        }
+      }
+      this.ball.update(state.ball, state.players, dt, hands, carry);
       // The dugout lives the match (Phase 66 → 66.1): each coach tracks
       // the ball, celebrates HIS goals, despairs at concessions — and
       // works the touchline on the SAME mentality ramp the sim plays,

@@ -21,6 +21,7 @@ import type { AnimName } from './AnimationSystem';
 let GEO: {
   torso: THREE.BoxGeometry;
   head: THREE.SphereGeometry;
+  hair: THREE.SphereGeometry;
   sleeve: THREE.BoxGeometry;
   forearm: THREE.BoxGeometry;
   thigh: THREE.BoxGeometry;
@@ -41,6 +42,8 @@ function sharedGeo(): NonNullable<typeof GEO> {
   GEO = {
     torso: new THREE.BoxGeometry(0.86, 0.95, 0.5),
     head: new THREE.SphereGeometry(0.3, 12, 10),
+    // Hair cap (Phase 76): the top half-sphere, slightly proud of the head.
+    hair: new THREE.SphereGeometry(0.315, 10, 6, 0, Math.PI * 2, 0, Math.PI * 0.52),
     // Limbs pivot at their top: translate geometry downward by half height.
     // Short sleeves: shirt-colored upper arm, skin (or GK glove) forearm.
     // Since Phase 73 the forearm hangs from an ELBOW group (y=-0.34 in the
@@ -77,6 +80,18 @@ function sharedMats(): NonNullable<typeof MATS> {
   return MATS;
 }
 
+/* Per-tone skin + per-color hair materials (Phase 76) — small shared caches,
+   reset together with GEO/MATS on a full renderer dispose. */
+const TONE_MATS = new Map<number, THREE.MeshStandardMaterial>();
+function toneMat(color: number, roughness = 0.8): THREE.MeshStandardMaterial {
+  let m = TONE_MATS.get(color);
+  if (!m) {
+    m = new THREE.MeshStandardMaterial({ color, roughness });
+    TONE_MATS.set(color, m);
+  }
+  return m;
+}
+
 /**
  * Forget the shared geometry/material caches. Call after a full renderer
  * dispose() — its scene traverse has already disposed the GPU resources —
@@ -85,6 +100,53 @@ function sharedMats(): NonNullable<typeof MATS> {
 export function resetSharedPlayerResources(): void {
   GEO = null;
   MATS = null;
+  TONE_MATS.clear();
+}
+
+/* ---------------- the individual body (Phase 76) ---------------- */
+
+/** Skin tones + hair colors — small palettes indexed by the name hash. */
+const SKIN_TONES = [0xf1c27d, 0xe0b089, 0xc68642, 0x9c6b3f, 0x6b4423, 0x4a2f1b];
+const HAIR_COLORS = [0x17171a, 0x2c2118, 0x4a3220, 0x6e4a26, 0x8a8d93, 0xb0651f];
+
+/** Deterministic 0..1 from a name (FNV-1a) — stable across sessions. */
+export function hash01(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return ((h >>> 0) % 100000) / 100000;
+}
+
+export interface BodySpec {
+  /** Whole-body scale, 0.94 – 1.06 (identity — from the name). */
+  height: number;
+  /** Torso/hip width multiplier, 0.88 – 1.16 (ability — from strength). */
+  bulk: number;
+  tone: number;
+  /** 0 = cap, 1 = buzz (flattened), 2 = bald (hidden). */
+  hair: 0 | 1 | 2;
+  hairColor: number;
+}
+
+/**
+ * The body a player EARNS (Phase 76, user direction "和球员本身绑定再加上
+ * 和能力绑定"): identity (height, skin, hair) hashes off the NAME so it
+ * survives saves/replays and swaps correctly on substitution; build follows
+ * the evolved STRENGTH attribute — the gym shows. Pure, unit-pinned.
+ */
+export function bodyFor(name: string, strength: number): BodySpec {
+  const h1 = hash01(name);
+  const h2 = hash01(`${name}#skin`);
+  const h3 = hash01(`#hair${name}`);
+  return {
+    height: 0.94 + h1 * 0.12,
+    bulk: 0.88 + Math.max(0, Math.min(1, strength)) * 0.28,
+    tone: SKIN_TONES[Math.min(SKIN_TONES.length - 1, Math.floor(h2 * SKIN_TONES.length))],
+    hair: h3 < 0.14 ? 2 : h3 < 0.62 ? 0 : 1,
+    hairColor: HAIR_COLORS[Math.min(HAIR_COLORS.length - 1, Math.floor(((h3 * 7919) % 1) * HAIR_COLORS.length))],
+  };
 }
 
 /** Squad numbers by role — instantly readable football shorthand. */
@@ -191,6 +253,14 @@ export class PlayerModel {
   private name: string;
   private role: Role;
   private labelColor: string;
+  /* Body-binding refs (Phase 76). */
+  private torso!: THREE.Mesh;
+  private hips!: THREE.Mesh;
+  private head!: THREE.Mesh;
+  private hair!: THREE.Mesh;
+  private skinMeshes: THREE.Mesh[] = [];
+  private build!: { torsoW: number; torsoD: number };
+  private bodyKey = '';
 
   constructor(gid: number, role: Role, name: string, kit: KitMaterials, labelColor: string) {
     this.gid = gid;
@@ -202,6 +272,7 @@ export class PlayerModel {
     // Upper body pivots at the hips. Builds differ subtly by role: keepers
     // are broad, wingers slim, strikers carry a slight forward hunch.
     const build = BUILD[role];
+    this.build = { torsoW: build.torsoW, torsoD: build.torsoD };
     const isGK = role === 'GK';
     this.lean.position.y = HIP_Y;
     const torso = new THREE.Mesh(g.torso, kit.shirt);
@@ -209,13 +280,21 @@ export class PlayerModel {
     torso.scale.set(build.torsoW, 1, build.torsoD);
     torso.rotation.x = build.leanBias;
     torso.castShadow = true;
+    this.torso = torso;
     const head = new THREE.Mesh(g.head, sharedMats().skin);
     head.position.y = 1.32;
     head.scale.setScalar(build.head);
     head.castShadow = true;
+    this.head = head;
+    this.skinMeshes.push(head);
+    // Hair cap (Phase 76) — restyled per occupant by setBody.
+    this.hair = new THREE.Mesh(g.hair, toneMat(HAIR_COLORS[0], 0.9));
+    this.hair.position.y = 0.02;
+    head.add(this.hair);
     const hips = new THREE.Mesh(g.hips, kit.shorts);
     hips.position.y = 0.06;
     hips.scale.set(build.torsoW, 1, build.torsoD);
+    this.hips = hips;
 
     // Back number: a small canvas plane on the shirt (kit-secondary digits).
     const numberTex = numberTexture(ROLE_NUMBER[role], kit.numberColor);
@@ -298,6 +377,7 @@ export class PlayerModel {
     const m = sharedMats();
     const forearm = new THREE.Mesh(g.forearm, isGK ? m.glove : m.skin);
     if (isGK) forearm.scale.set(1.25, 1, 1.25);
+    else this.skinMeshes.push(forearm); // retoned per occupant (Phase 76)
     sleeve.castShadow = true;
     forearm.castShadow = true;
     // Elbow joint (Phase 73): the forearm hangs from its own pivot so it
@@ -366,6 +446,27 @@ export class PlayerModel {
     if (name === this.name) return;
     this.name = name;
     this.drawLabel(this.labelDrawn);
+  }
+
+  /**
+   * Bind the body to the slot's CURRENT occupant (Phase 76): identity
+   * (height/skin/hair) from the name, build from the evolved strength.
+   * Called per frame — early-outs on the (name, strength) key.
+   */
+  setBody(name: string | undefined, strength: number): void {
+    const n = name ?? this.name; // old replays: the kickoff-sheet name
+    const key = `${n}:${strength.toFixed(2)}`;
+    if (key === this.bodyKey) return;
+    this.bodyKey = key;
+    const b = bodyFor(n, strength);
+    this.body.scale.setScalar(b.height);
+    this.torso.scale.set(this.build.torsoW * b.bulk, 1, this.build.torsoD * b.bulk);
+    this.hips.scale.set(this.build.torsoW * b.bulk, 1, this.build.torsoD * b.bulk);
+    const skin = toneMat(b.tone);
+    for (const mesh of this.skinMeshes) mesh.material = skin;
+    this.hair.visible = b.hair !== 2;
+    this.hair.material = toneMat(b.hairColor, 0.9);
+    this.hair.scale.set(1, b.hair === 1 ? 0.55 : 1, 1);
   }
 
   private drawLabel(action: string): void {

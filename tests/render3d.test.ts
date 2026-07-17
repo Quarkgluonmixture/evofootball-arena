@@ -7,6 +7,7 @@ import { randomSquad } from '../src/evolution/playerGenome';
 import { animFor, bankFor, jostling, lateralSlot, rideSide } from '../src/render3d/AnimationSystem';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
+import { bodyFor, hash01 } from '../src/render3d/PlayerModel';
 import { refereeTarget } from '../src/render3d/RefereeModel';
 import {
   buildRenderState, buildRenderTheme, interpolateStates, lerpAngle,
@@ -123,6 +124,18 @@ describe('RenderStateAdapter', () => {
     expect(mid.possession).toBe(b.possession);
     expect(mid.modes).toEqual(b.modes);
     expect(mid.press).toEqual(b.press);
+  });
+
+  it('carries the occupant strength per frame for the body binding (76)', () => {
+    const match = makeMatch();
+    const rs = buildRenderState(match, false);
+    for (const p of rs.players) {
+      const sim = match.allPlayers.find((sp) => sp.gid === p.gid)!;
+      expect(p.str).toBe(sim.attrs.strength);
+    }
+    // Interpolation passes it through discretely; absent (old replays) stays absent.
+    const mid = interpolateStates(rs, rs, 0.5);
+    expect(mid.players[0].str).toBe(rs.players[0].str);
   });
 
   it('surfaces fouls and cards to the fx stream, mining the card color (75)', () => {
@@ -270,6 +283,30 @@ describe('body-contact detection (Phase 38, pure fns of RenderState)', () => {
     expect(jostling(crasher, { ...corner, ball: { ...corner.ball, x: 10, z: 28.4 } })).toBe(false);
     // A sprinting player is running a crash, not wrestling.
     expect(jostling({ ...crasher, speed: 5 }, corner)).toBe(false);
+  });
+});
+
+describe('bodyFor (Phase 76, pure)', () => {
+  it('is deterministic per name, bounded, and strength-monotone in bulk', () => {
+    expect(bodyFor('Zubat', 0.5)).toEqual(bodyFor('Zubat', 0.5));
+    expect(hash01('Zubat')).toBe(hash01('Zubat'));
+    const weak = bodyFor('Zubat', 0.1);
+    const strong = bodyFor('Zubat', 0.9);
+    expect(strong.bulk).toBeGreaterThan(weak.bulk);
+    // Identity (height/skin/hair) hangs off the NAME alone — training in
+    // the gym must not change who you are.
+    expect(strong.height).toBe(weak.height);
+    expect(strong.tone).toBe(weak.tone);
+    expect(strong.hair).toBe(weak.hair);
+    for (const n of ['Zubat', 'Eska', 'Ovie', 'Mirek', 'Yano']) {
+      const b = bodyFor(n, 0.5);
+      expect(b.height).toBeGreaterThanOrEqual(0.94);
+      expect(b.height).toBeLessThanOrEqual(1.061);
+      expect([0, 1, 2]).toContain(b.hair);
+    }
+    // Different names actually diverge somewhere (the point of the phase).
+    const specs = ['Zubat', 'Eska', 'Ovie', 'Mirek', 'Yano', 'Kade', 'Brix'].map((n) => bodyFor(n, 0.5));
+    expect(new Set(specs.map((s) => `${s.height}:${s.tone}:${s.hair}`)).size).toBeGreaterThan(3);
   });
 });
 

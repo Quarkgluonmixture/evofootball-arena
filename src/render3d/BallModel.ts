@@ -29,6 +29,8 @@ export class BallModel {
 
   private marker: THREE.Mesh;
   private markerPhase = 0;
+  private carryCur = { x: 0, z: 0 };
+  private blob: THREE.Mesh;
 
   constructor() {
     this.mesh = new THREE.Mesh(
@@ -39,13 +41,14 @@ export class BallModel {
     this.mesh.position.y = RADIUS;
     this.root.add(this.mesh);
 
-    // Grounding blob under the ball.
+    // Grounding blob under the ball (follows the carry offset too).
     const blob = new THREE.Mesh(
       new THREE.CircleGeometry(0.34, 14),
       new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.25, depthWrite: false }),
     );
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.03;
+    this.blob = blob;
     this.root.add(blob);
 
     // Motion trail (world-space, so it is a sibling-independent child of root's parent — we
@@ -86,8 +89,17 @@ export class BallModel {
     players: RenderPlayer[],
     dt: number,
     hands: { x: number; y: number; z: number; t: number } | null = null,
+    carry: { dx: number; dz: number } | null = null,
   ): void {
     this.root.position.set(ball.x, 0, ball.z);
+    // The dribble read (Phase 76): ease toward the carrier's display offset
+    // (pushed ahead at speed, screened from the presser when slow) and back
+    // to the true spot the moment the ball is loose. Display-only.
+    const cx = carry ? carry.dx : 0;
+    const cz = carry ? carry.dz : 0;
+    const ease = Math.min(1, dt * 7);
+    this.carryCur.x += (cx - this.carryCur.x) * ease;
+    this.carryCur.z += (cz - this.carryCur.z) * ease;
 
     const owned = ball.ownerGid !== null;
     const realH = ball.y ?? 0; // sim height (Phase 28); 0 in old replays
@@ -113,7 +125,9 @@ export class BallModel {
     this.heldY = ball.heldByGk
       ? Math.min(0.95, this.heldY + dt * 5)
       : Math.max(0, this.heldY - dt * 5);
-    this.mesh.position.set(0, RADIUS + h + this.heldY, 0);
+    this.mesh.position.set(this.carryCur.x, RADIUS + h + this.heldY, this.carryCur.z);
+    this.blob.position.x = this.carryCur.x;
+    this.blob.position.z = this.carryCur.z;
     // A tilted owner's hands carry it (31.9): blend the held ball toward
     // the hands anchor by tilt fraction — a diving keeper's catch sweeps
     // with the dive and eases back as he picks himself up. Render-only.

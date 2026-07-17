@@ -25,6 +25,10 @@ export interface RenderPlayer {
   speed: number;
   action: ActionType;
   stamina: number;
+  /** The occupant's evolved strength (Phase 76) — drives the body build.
+   * Carried per frame (like `name`) so substitutions swap the body too.
+   * Absent in old replays: the renderer falls back to a neutral build. */
+  str?: number;
   /** A tackle lunge is playing (Phase 27) — display only. Optional: the
    * shootout theater and pre-Phase-27 replays never set it. */
   tackling?: boolean;
@@ -167,6 +171,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     speed: Math.hypot(p.vel.x, p.vel.y),
     action: p.action.type,
     stamina: p.stamina,
+    str: p.attrs.strength,
     tackling: p.tackleAnimTimer > 0,
     stunned: p.stunTimer > 0,
     saving: p.saveAnimTimer > 0,
@@ -336,6 +341,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
         speed: lerp(pa.speed, pb.speed, t),
         action: (t >= 0.5 ? pb : pa).action,
         stamina: lerp(pa.stamina, pb.stamina, t),
+        str: (t >= 0.5 ? pb : pa).str,
         // `=== true` also maps pre-Phase-27 replay snapshots (undefined) to false.
         tackling: (t >= 0.5 ? pb : pa).tackling === true,
         stunned: (t >= 0.5 ? pb : pa).stunned === true,

@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-75 (the REFEREE: diagonal patrol, whistle, cards — all render-side)
+# Roadmap — shipped through phase-76 (INDIVIDUAL BODIES + the dribble read: no two players alike, the carry pushes ahead / screens away)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -383,14 +383,36 @@ suite's `tacmapVisible` read classList, which lied. Fix: an
 ID-matched hide rule + the debug flag now reads COMPUTED display;
 verified by elementFromPoint probe (display:none, zero rect) and the
 72-series checks now measure truth.)
-⭐ **Next (user-directed 2026-07-17): phase-76 — duel/dribble READ +
-per-player bodies bound to identity & attributes ("对抗…挤来挤去,
-没有盘带的感觉" + "每个球员模型都一样…和球员本身绑定再加上和能力
-绑定") → linesmen (assistant referees, user-ratified) → N5b def-menu
-expansion (the 16/0 watch) → N6 market signs.** The user PLAYS
-CONTINUOUSLY (their correction: "我tm一直在玩") — casual
-observations ARE the play report stream; do NOT track "unplayed
-phases". Standing watch: the goals band (~2.8 vs old 2.3–2.6).
++ ✅ **phase-76 SHIPPED** (**INDIVIDUAL BODIES + the dribble READ** —
+user direction "每个球员模型都一样…和球员本身绑定再加上和能力绑定"
++ "对抗…挤来挤去,没有盘带的感觉"; render-only, fingerprint
+IDENTITY `28002dfc…`). TWO builds: (1) EVERY PLAYER NOW LOOKS
+DIFFERENT — `bodyFor(name, strength)` (pure, pinned): IDENTITY
+hashes off the NAME (FNV-1a `hash01`) so it survives saves/replays
+and swaps correctly on substitution — height 0.94–1.06×, one of 6
+skin tones, one of 3 hair styles (cap / buzz / bald) × 6 colors;
+BUILD follows the evolved STRENGTH attribute — bulk 0.88–1.16×
+(torso+hips), so the gym visibly shows and a 0.9-strength target
+man reads as a unit next to a 0.2-strength winger. Wired through
+`RenderPlayer.str` (adapter, per-frame like `name`); `setBody`
+early-outs on the (name, strength) key, re-tones the head+forearms,
+rescales the whole body group, restyles the hair mesh. (2) the
+DRIBBLE READ — the display ball (sim stays authoritative) is pushed
+AHEAD in stride-synced touches at speed (carrier's own gait clock)
+and SCREENED to the far side from the nearest presser when slowed
+under pressure, eased 7/s and snapping back the instant it's loose:
+the shield finally has a ball on the far foot instead of two men
+grinding on top of it. vitest 410 (+2: bodyFor determinism/bounds/
+strength-monotonicity + names-diverge; str carried per frame); both
+visual suites green; TV-camera eyeball — hair + bulk variation reads
+clearly, referee visible mid-pitch.)
+⭐ **Next (user-ratified): linesmen (assistant referees — run the
+line level with the second-last defender = a living offside-line
+viz, flag on offside) → N5b def-menu expansion (the 16/0 watch) →
+N6 market signs.** The user PLAYS CONTINUOUSLY (their correction:
+"我tm一直在玩") — casual observations ARE the play report stream;
+do NOT track "unplayed phases". Standing watch: the goals band
+(~2.8 vs old 2.3–2.6).
 HEAD fingerprint `28002dfc…` (since phase-71).
 
 ## ⭐⭐ THE EMERGENCE PIVOT — [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md) (2026-07-14)

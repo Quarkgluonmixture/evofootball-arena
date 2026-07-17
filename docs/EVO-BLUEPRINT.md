@@ -1178,3 +1178,47 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   deliberately-parked list (foot IK, skinned meshes, cloth) and the
   sim-touching celebration choreography (needs celebrate-phase
   movement, queued behind the play report).
+- ✅ **phase-75.1 SHIPPED** (**the tacmap ghost frame** — user report
+  "右下角那个框是什么?/其他机位会出现一个半透明的": the tacfeed
+  mini formation map's border+shadow shell sat in the corner of
+  EVERY camera because `#stage canvas` (ID specificity 1,0,1) beat
+  `.tacmap.hidden` (0,2,0) all the way back from Phase 68, and the
+  suite's `tacmapVisible` read classList so it never caught the lie.
+  Fix: an ID-matched hide rule + the debug flag reads COMPUTED
+  display; elementFromPoint probe confirms display:none/zero-rect.)
+- ✅ **phase-76 SHIPPED** (**INDIVIDUAL BODIES + the dribble READ** —
+  two user reports in one directive: "每个球员模型都一样…这个是不是
+  要和球员本身绑定再加上和能力绑定" and "对抗…带球的时候抢断等的
+  动画都不够合理…两个人和球挤来挤去,没有盘带的感觉"; render-only,
+  fingerprint IDENTITY `28002dfc…`). (1) THE BODY YOU EARN — a
+  footballer's silhouette now splits along the two axes the user
+  named: IDENTITY (who you are) hashes off the NAME via `hash01`
+  (FNV-1a, stable across sessions/replays, so a sub swaps the body
+  with the man) → whole-body height 0.94–1.06×, 1-of-6 skin tone,
+  1-of-3 hair style (cap/buzz/bald) × 1-of-6 color; ABILITY (what
+  you've trained) follows the evolved `strength` attribute →
+  bulk 0.88–1.16× on torso+hips. So bodies are no longer a uniform
+  clone army: the target man the evolution fed strength into reads
+  as a unit, the winger reads slight, and it's the SAME identity
+  every match. Plumbing: `RenderPlayer.str` on the adapter (per
+  frame, discrete through interpolation, `?? 0.5` for old replays),
+  `PlayerModel.setBody(name, str)` keyed+early-outing, a small
+  per-tone/per-hair-color shared material cache reset with the GEO
+  cache; the head grew a hair half-sphere child, forearms+head
+  re-toned per occupant. (2) THE DRIBBLE READ — the scrum look came
+  from the display ball sitting dead-center on the carrier while a
+  marker stood on top; now (display-only, sim ball still
+  authoritative underneath) the shown ball is pushed AHEAD of the
+  carrier in stride-synced touches at pace (amplitude from his speed
+  × his own gait phase — the knock-and-chase) and, when he's slowed
+  with a defender inside 2.4m, SCREENED to the far side away from
+  that defender (the shield finally shows a ball to protect), eased
+  at 7/s and snapping to the true position the moment possession
+  breaks. vitest 410 (+2: `bodyFor` deterministic/bounded/
+  strength-monotone-in-bulk-but-identity-fixed + names actually
+  diverge; `str` carried per frame + interpolation); both visual
+  suites green; TV-camera eyeball confirms hair + bulk variation
+  reads. NEXT from the referee family: linesmen — the assistant
+  running the line level with the second-last defender is a LIVING
+  offside-line visualization, the best possible payoff of the
+  phase-71 offside work.
