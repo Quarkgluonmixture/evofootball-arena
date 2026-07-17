@@ -8,7 +8,7 @@ identities drift, die out, and get reborn over seasons.
 
 No reinforcement learning — by design. The simulation is a deterministic,
 explainable **utility AI + evolutionary strategy** system: every decision has a
-visible score, every team has 14 readable "genes", and evolution is something
+visible score, every team has 16 readable "genes", and evolution is something
 you can watch and reason about.
 
 ## Quickstart (play it)
@@ -56,8 +56,8 @@ npm run evolve-check      # headless: 10 seasons of evolution meta-diversity
 # Browser smoke suites (optional — needs Playwright's Chromium once):
 npx playwright install chromium
 npx vite --port 5199 --strictPort &   # the suites expect the dev server here
-npm run debug:visual      # drives the real 2D game end to end (~78 checks + screenshots)
-npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shootout theater (~37 checks)
+npm run debug:visual      # drives the real 2D game end to end (106 checks + screenshots)
+npm run debug:visual3d    # 3D viewer: models, cameras, replay, cinematic, shootout theater (37 checks)
 ```
 
 ### Troubleshooting
@@ -144,7 +144,7 @@ src/
     formations.ts       gene- and mode-adjusted formation & support spots
     perception.ts       normalized queries: pressure, lanes, openness, intercepts
   evolution/
-    genome.ts           TacticalGenome (14 genes), mutate/crossover
+    genome.ts           TacticalGenome (16 genes), mutate/crossover
     playerGenome.ts     8 player attributes, the SQUAD_BUDGET wage cap, bloodline newgens
     policyGenome.ts     evolvable decision-style weights (attack/defence/build-up/combos)
     styleSpace.ts       the 33-dim style space: data-driven nameplates, map axes, spread
@@ -156,7 +156,7 @@ src/
   render/               PixiJS v8 — pitch, players, ball trail, goal FX, overlays
   ui/                   plain-DOM panels: scoreboard, genes, event feed, league screen
   data/save.ts          localStorage persistence + .json file export/import
-tests/                  vitest suites (323 tests)
+tests/                  vitest suites (383 tests)
 scripts/                headless calibration & evolution tools
 ```
 
@@ -301,7 +301,7 @@ scripts/                headless calibration & evolution tools
 
 ## Tactical genes → visible behavior
 
-All 14 genes are 0..1 and read directly by the AI:
+All 16 genes are 0..1 and read directly by the AI:
 
 | gene | effect |
 |---|---|
@@ -545,7 +545,7 @@ palette can't be pairwise CVD-safe, so line style carries the difference).
 - **Evolution**: the **style-space map** (Phase 49 — clubs scattered on the
   two dimensions this season's population disagrees on most, kit-color dots
   with drift trails over recent seasons), the **style-divergence curve**, the
-  16×8 **budget-allocation heatmap**, then sparkline tiles for all 14 tactical genes and 8 squad
+  16×8 **budget-allocation heatmap**, then sparkline tiles for all 16 tactical genes and 8 squad
   attributes — league mean per generation, so you can watch the meta drift —
   plus the last evolution's elite/mutated/reborn entries with fitness & drift.
 - **The rebirth ceremony** (Phase 32.5): season end is an EVENT — elites
@@ -776,7 +776,7 @@ gap (see `npm run evolve-check`).
   `window.__evo` dev hook, opens the league screen and cup brackets, simulates
   seasons from the UI, exercises cinematic/screenshot/share/FX-quality
   controls, and screenshots every stage to `/tmp/evofootball-shots/`
-  (~78 checks). The 3D suite covers models, cameras, replay, score bug,
+  (106 checks). The 3D suite covers models, cameras, replay, score bug,
   cinematic mode and the shootout theater (~37 checks; a few are conditional
   on match events). `node scripts/probe-shootout.mjs` screenshots the
   theater's key beats for eyeballing.
@@ -796,7 +796,7 @@ lofted switches/chips that beat the press, back-to-goal hold-up play and a
 long-shot release valve (Phase 28) — offside judged at kick time with
 timed runs held at the line, restart exemptions and free-kick awards
 (Phase 29) — three-layer utility
-AI, 14 live tactical
+AI, 16 live tactical
 genes + evolvable decision-style policy weights (Phases 42–45) + 8
 per-player attribute genes under a hard wage cap with bloodline newgens
 (Phases 47–48: wingers evolve into dribblers, midfielders into passers,
@@ -820,21 +820,35 @@ replay with scrubbing/event jumps/auto-camera/slow-mo), a unified art
 direction with broadcast overlays, cinematic mode and screenshot/share tools
 (Phase 15 — `docs/ART_DIRECTION.md`), a narrative layer
 (season reports with awards + points race, gene-drift sparklines, hall of
-fame), save/load (v14 — the attribute split; v1–v13 chain-migrate, v9–v13 backfill
-the growing evolvable-policy set), Web Worker
+fame), save/load (v20; v1–v19 chain-migrate), Web Worker
 fast-sim with a byte-identical fallback plus an allocation-free hot-path pass
 (Phase 16), a phone-friendly responsive layout (Phase 27), offside with
 timed runs (Phase 29), 6v6 + per-club formations + set keeper distributions
 (Phase 30), lane-aware shooting/cutbacks/corner routines (31), real free
 kicks (32), ratings/highlights (33), 套路 combos (34), game-state mentality
 (35), visible touches (36), Magnus curl (37), body contact (38), traits
-(39), league ecology (40), 323 tests, and
-browser-driving visual smoke tests for both views (~78 + ~37 checks).
+(39), league ecology (40), 383 tests, and
+browser-driving visual smoke tests for both views (106 + 37 checks).
 
-Next up: **Stage 3 of [`docs/EVO-BLUEPRINT.md`](docs/EVO-BLUEPRINT.md) — the
-WORLD layer**: a coach entity that embodies the tactical genome and lets
-philosophies spread by movement, per-player decision-style genes, a
-free-agent fire-sale market, and a data-derived season chronicle. Stages 1–2
-(the emergence engine + its visibility) shipped as phases 45–50; the live
-plan and per-phase evidence ledger live in the blueprint, and
-[`docs/ROADMAP.md`](docs/ROADMAP.md) is still the session entry point.
+Since then (phases 51–65, each with probe evidence in the blueprint
+ledger): **the WORLD layer** — a named, aging COACH who embodies the
+philosophy (sack/hire market, mentor trees), per-player decision styles
+with earned nameplates, the free-agent fire-sale, a data-mined season
+chronicle with discovered eras, and dedicated Evolution/Player center
+screens — then **the ecology era**: 9-man ROSTERS with a real bench
+(substitutions driven by an evolvable rotation gene), personal
+yellows/reds with suspensions served by real lineups, the repaired
+AERIAL channel (attack the descent; strength owns the air — cross
+bombardment went from unplayable to a top archetype), the UNDERDOG
+SHIFT (the bus is an opponent-conditional choice read from the kickoff
+Elo gap, not a fixed identity), and the frequency-dependence verdict:
+**the ecology self-balances on multiple style axes and no style
+anywhere gets stronger as it spreads** — tactical diversity is
+self-sustaining. Saves are v20 (v1–v19 chain-migrate).
+
+Next up: **N3 — coach match-day presence** (his calls narrated, his
+figure on the 3D touchline) → the tactical broadcast layer → the
+formation library. The live plan and per-phase evidence ledger live in
+[`docs/EVO-BLUEPRINT.md`](docs/EVO-BLUEPRINT.md), and
+[`docs/ROADMAP.md`](docs/ROADMAP.md) is still the session entry point
+(pre-pivot history: `docs/ROADMAP-ARCHIVE.md`).
