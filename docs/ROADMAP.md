@@ -821,6 +821,27 @@ build-time default fires mid-init — caught live as a boot crash).
 Both visual suites dismiss via the new `__evo.skipTitle()` FIRST,
 per the queue's own warning. Phone-checked at 390px. UI-only;
 fingerprint IDENTITY `3cd1253f…`; vitest 417; visual 109+52.)
++ ✅ **phase-97 SHIPPED** (**the keeper-hold flutter, measured and
+killed** (user report 球诡异上下颤动+队员抽动): `hold-jitter.ts`
+quantified all the queue's suspects — the real mechanism is the
+31.9 hold re-arm QUANTA: **21.6% of distribution frames sit in
+timer==0 gaps**, and while every SIM consumer was patched back
+then with `|| gkDistributing`, the RENDER adapter's `heldByGk`
+still read the raw timer → BallModel's heldY sawtoothed 4×/s
+(the vertical flutter) AND the sim's carry offset teleported
+0.3↔0.85m in the same gaps (a 0.55m 4Hz horizontal snap — at
+crowd scale this is almost certainly the perceived 抽动 too).
+Fixes, both render-only: ① the adapter joins the 31.9 convention
+(gap flicker after: 0/5522 frames, headless-verified); ② the held
+ball's DISPLAY pins to the keeper's chest via the carry channel
+(sim ball authoritative underneath — the phase-76 contract).
+Eliminated with data: receive one-shot restarts<0.5s = 0/match;
+physics vel reversals = 0; bubble pinning 5-8 frames/match.
+Sim-side residual for the tail: contain desired-vel flips 66-70/
+match (3/1k chase frames) — the hysteresis fix is BEHAVIORAL
+(fingerprint), parked at 100+ with baseline numbers in hand.
+Fingerprint IDENTITY `3cd1253f…`; vitest 417; visual 109+52;
+keeper-hands probe healthy.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on

@@ -1478,6 +1478,14 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   the game (attract mode beneath); 120BPM-pulsed grid/sun/stars;
   music slider born at 60; both visual suites dismiss first via
   `__evo.skipTitle()`.
+- ✅ **phase-97 SHIPPED** (**keeper-hold flutter**; render-only,
+  fingerprint IDENTITY `3cd1253f…`). The 31.9 re-arm quanta leave
+  21.6% timer-gaps; the render adapter was the last raw-timer
+  consumer → heldY sawtooth + 0.55m/4Hz carry teleport. Adapter
+  patched (0/5522 gap frames after) + held-ball display pinned to
+  the keeper's chest. Receive-restart/vel-reversal/pinning suspects
+  eliminated by `hold-jitter.ts`; contain desired-flip hysteresis
+  (66-70/match) parked as a 100+ behavioral item.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

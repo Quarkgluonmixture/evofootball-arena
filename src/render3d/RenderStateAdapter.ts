@@ -192,7 +192,16 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     ownerGid: match.ball.owner ? match.ball.owner.gid : null,
     isShot: match.pendingShot !== null,
     isPass: match.pendingPass !== null,
-    heldByGk: match.ball.owner !== null && match.ball.owner.gkHoldTimer > 0,
+    // gkDistributing too (Phase 97 — the LAST raw-timer consumer): the
+    // shape-wait re-arms the hold in 0.25s quanta, and in the timer==0 gaps
+    // (measured 21.6% of distribution frames, `hold-jitter.ts`) a raw-timer
+    // read flickered heldByGk off — BallModel's heldY sawtoothed 4×/s, the
+    // reported 持球上下颤动. Every SIM consumer was patched in 31.9; the
+    // render adapter was the one left behind.
+    heldByGk:
+      match.ball.owner !== null &&
+      (match.ball.owner.gkHoldTimer > 0 ||
+        (match.ball.owner.role === 'GK' && match.ball.owner.gkDistributing)),
   };
 
   return {

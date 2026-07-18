@@ -295,7 +295,20 @@ export class ThreeMatchRenderer {
       // nearest opponent — the shield finally has a ball on the far foot.
       // Display-only: the sim ball stays authoritative underneath.
       let carry: { dx: number; dz: number } | null = null;
-      if (state.ball.ownerGid !== null && !state.ball.heldByGk) {
+      if (state.ball.ownerGid !== null && state.ball.heldByGk) {
+        // A HELD ball rides the keeper's chest (Phase 97): the sim parks it
+        // 0.3m ahead while the hold timer runs but 0.85m (the feet) in the
+        // 0.25s re-arm gaps — a 0.55m 4Hz teleport on screen. Display-only
+        // pin to the keeper's own pose (the sim ball stays authoritative
+        // underneath, same contract as the dribble read below).
+        const owner = state.players.find((q) => q.gid === state.ball.ownerGid);
+        if (owner) {
+          carry = {
+            dx: owner.x + Math.sin(owner.yaw) * 0.3 - state.ball.x,
+            dz: owner.z + Math.cos(owner.yaw) * 0.3 - state.ball.z,
+          };
+        }
+      } else if (state.ball.ownerGid !== null && !state.ball.heldByGk) {
         const owner = state.players.find((q) => q.gid === state.ball.ownerGid);
         const om = this.players.get(state.ball.ownerGid);
         if (owner && om) {
