@@ -804,6 +804,23 @@ keeper 1v1 envelope vs the carry cone at point-blank), not more
 fitness engineering. Calibrate 2.50/2.46/2.97; vitest 417 (zero
 re-anchors again); visual 109+51; fingerprint REBASELINED
 `3cd1253f…`.)
++ ✅ **phase-96 SHIPPED** (**the TITLE SCREEN** — the user-designed
+synthwave launch overlay: striped neon sun ON the horizon (the
+opaque grid floor swallows its lower half), perspective grid
+scrolling one row per beat, chrome-gradient logo, pixel-star
+twinkle groups on alternating half-beats — every animation a 500ms
+multiple (120BPM, on the Title track). Two stages: the first click
+anywhere IS the WebAudio gesture (`MusicSystem.unlock()` resumes
+the born-suspended context; the Title BGM starts) → ▶ START
+dismisses to the live game (attract mode — the match was running
+beneath the whole time). Music slider now BORN at 60 (user intent:
+the title must sound; the slider still rules). `updateMusic` gained
+the title branch (stadium MUTED under the overlay — it's a title
+screen, not a broadcast graphic) + full optional-chaining (the
+build-time default fires mid-init — caught live as a boot crash).
+Both visual suites dismiss via the new `__evo.skipTitle()` FIRST,
+per the queue's own warning. Phone-checked at 390px. UI-only;
+fingerprint IDENTITY `3cd1253f…`; vitest 417; visual 109+52.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on

@@ -1472,6 +1472,12 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   (`FITNESS_ANCHOR.conceded`) + whether the next lever is the
   keeper-vs-carry point-blank economics. Phase-50 purity tradeoff
   documented in fitness.ts itself.
+- ✅ **phase-96 SHIPPED** (**the synthwave title screen**; UI-only,
+  fingerprint IDENTITY `3cd1253f…`). Click-to-enter = the WebAudio
+  gesture (Title BGM starts via MusicSystem.unlock), START reveals
+  the game (attract mode beneath); 120BPM-pulsed grid/sun/stars;
+  music slider born at 60; both visual suites dismiss first via
+  `__evo.skipTitle()`.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

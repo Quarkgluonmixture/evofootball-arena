@@ -55,6 +55,20 @@ export class MusicSystem {
     this.apply();
   }
 
+  /** Call from a REAL user gesture (Phase 96, the title screen's enter
+   * click): resumes a context that was born suspended by autoplay policy
+   * and re-applies the wanted slot. A muted slider still rules — vol 0
+   * stays silent. */
+  unlock(): void {
+    if (this.vol <= 0) return;
+    if (!this.ctx) {
+      this.volume = this.vol; // creates + resumes via the setter
+      return;
+    }
+    if (this.ctx.state === 'suspended') void this.ctx.resume();
+    this.apply();
+  }
+
   private out(): GainNode {
     if (!this.master) {
       this.master = this.ctx!.createGain();

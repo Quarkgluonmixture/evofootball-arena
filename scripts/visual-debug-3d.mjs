@@ -29,6 +29,10 @@ page.on('pageerror', (err) => errors.push(String(err)));
 await page.addInitScript(() => localStorage.setItem('evofootball-lang', 'en'));
 
 await page.goto(URL, { waitUntil: 'networkidle' });
+// The launch overlay (Phase 96) covers everything at boot — dismiss it
+// FIRST or every stage-level check below fails.
+await page.waitForFunction(() => window.__evo !== undefined, { timeout: 15000 });
+await page.evaluate(() => window.__evo.skipTitle());
 // The app boots straight into 3D since Phase 27.5 — wait for ITS canvas
 // (the hidden 2D Pixi canvas never becomes visible on its own).
 await page.waitForSelector('#three-host canvas.gl-canvas', { timeout: 15000 });

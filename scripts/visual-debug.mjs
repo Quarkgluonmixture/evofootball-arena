@@ -31,6 +31,9 @@ await page.goto(URL, { waitUntil: 'networkidle' });
 // The app boots in 3D — this suite drives the 2D view, which since 34.1 is
 // the WebGL FALLBACK only (no panel toggle): switch via the dev hook.
 await page.waitForFunction(() => window.__evo !== undefined, { timeout: 15000 });
+// The launch overlay (Phase 96) covers everything at boot — dismiss it
+// FIRST or every stage-level check below fails.
+await page.evaluate(() => window.__evo.skipTitle());
 await page.evaluate(() => window.__evo.app.setViewMode('2d'));
 await page.waitForSelector('#stage canvas', { timeout: 15000 });
 await page.waitForTimeout(800);

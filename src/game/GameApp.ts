@@ -41,6 +41,7 @@ import { LeftPanel } from '../ui/LeftPanel';
 import { ReplayBar } from '../ui/ReplayBar';
 import { RightPanel } from '../ui/RightPanel';
 import { MusicSystem } from '../ui/MusicSystem';
+import { TitleScreen } from '../ui/TitleScreen';
 import { SoundFx } from '../ui/SoundFx';
 
 // Chosen so a fresh league OPENS with a banger (Phase 28.2): seed 1168's
@@ -107,6 +108,7 @@ export class GameApp implements GameActions {
   private archive: ReplayArchive | null = null;
   private sound = new SoundFx();
   private music = new MusicSystem();
+  private titleScreen: TitleScreen | null = null;
   private replay = {
     active: false,
     playing: false,
@@ -299,6 +301,16 @@ export class GameApp implements GameActions {
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
     this.clash = new ClashBanner(stage);
+    // The launch overlay (Phase 96): the match boots and runs beneath it as
+    // attract mode; the first click is the WebAudio gesture that starts the
+    // Title BGM, START reveals the game.
+    this.titleScreen = new TitleScreen({
+      onEnter: () => {
+        this.music.unlock();
+        this.updateMusic();
+      },
+      onStart: () => this.updateMusic(),
+    });
     // UI click sounds (Phase 90): one capture listener; the big match
     // controls get the heavy press, checkboxes the toggle.
     document.addEventListener('click', (e) => {
@@ -341,6 +353,8 @@ export class GameApp implements GameActions {
       debugShootout: () => this.debugShootout(),
       showCeremony: () => this.showCeremony(),
       clashVisible: () => this.clash.isVisible,
+      titleVisible: () => this.titleScreen?.isVisible ?? false,
+      skipTitle: () => this.titleScreen?.skip(),
       reelActive: () => this.reel !== null,
       liveMoments: () =>
         this.match
@@ -1062,21 +1076,28 @@ export class GameApp implements GameActions {
     this.updateMusic();
   }
 
-  /** Context-driven BGM (Phase 89): ceremony = the victory track (enters
-   * at its 20s drop), management screens = the league track, the pre-match
-   * clash = the title anthem, live play = crowd only. */
+  /** Context-driven BGM (Phase 89): the launch overlay (96) and the
+   * pre-match clash = the title anthem, ceremony = the victory track
+   * (enters at its 20s drop), management screens = the league track,
+   * live play = crowd only. */
   private updateMusic(): void {
-    const slot = this.ceremony.isVisible
-      ? 'victory'
-      : this.leagueScreen.isVisible || this.evolutionScreen.isVisible || this.playerScreen.isVisible
-        ? 'league'
-        : this.clash.isVisible
-          ? 'title'
-          : null;
+    // Optional chaining throughout: the music slider's build-time default
+    // (Phase 96) calls this while the screens are still being constructed.
+    const slot = this.titleScreen?.isVisible
+      ? 'title'
+      : this.ceremony?.isVisible
+        ? 'victory'
+        : this.leagueScreen?.isVisible || this.evolutionScreen?.isVisible || this.playerScreen?.isVisible
+          ? 'league'
+          : this.clash?.isVisible
+            ? 'title'
+            : null;
     this.music.play(slot);
     // The stadium falls silent when a screen covers the stage (Phase 90);
-    // the pre-match clash is a broadcast graphic — the crowd stays.
-    this.sound.stadiumVisible = slot === null || slot === 'title';
+    // the pre-match clash is a broadcast graphic — the crowd stays. The
+    // launch overlay is a TITLE SCREEN: synthwave only, no crowd under it.
+    this.sound.stadiumVisible =
+      (slot === null || slot === 'title') && !this.titleScreen?.isVisible;
   }
 
   /* ---------------- presentation (Phase 15) ---------------- */

@@ -169,6 +169,10 @@ export class LeftPanel {
     musicText.textContent = t('Music');
     musicRow.append(musicIcon, musicText, musicSlider);
     presSec.appendChild(musicRow);
+    // Music defaults ON at 60 (Phase 96, user intent: the title screen
+    // should actually SOUND). The context stays suspended until the title
+    // screen's enter gesture unlocks it; the slider still rules.
+    applyMusic(60);
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
     const fxSeg = el('div', 'seg');

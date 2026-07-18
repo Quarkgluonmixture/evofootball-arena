@@ -669,3 +669,123 @@ body.cinematic .cinematic-enter { display: none; }
 .sound-row { display: flex; align-items: center; gap: 6px; margin: 4px 0; font-size: 13px; }
 .sound-row input[type=range] { flex: 1; min-width: 0; max-width: 110px; }
 .sound-icon { cursor: pointer; }
+
+/* ---- The launch overlay (Phase 96): synthwave title screen. ----
+   Every animation duration is a 500ms multiple — 120BPM, on the Title
+   track's beat. Pure CSS, transform/opacity only (GPU-friendly). */
+.title-screen {
+  position: fixed; inset: 0; z-index: 120; overflow: hidden; cursor: pointer;
+  background: linear-gradient(#05010f 0%, #12043a 38%, #3b0f63 58%, #b0326e 70%, #05010f 100%);
+  user-select: none;
+}
+.title-screen.ts-out { opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+/* Pixel stars: two twinkle groups on alternating half-beats. */
+.ts-stars { position: absolute; inset: 0 0 40% 0; }
+.ts-stars::before, .ts-stars::after {
+  content: ''; position: absolute; width: 3px; height: 3px; background: #fff;
+  box-shadow: 12vw 8vh 0 #9ae6ff, 28vw 22vh 0 #ff9ae0, 44vw 5vh 0 #fff,
+    61vw 18vh 0 #9ae6ff, 76vw 9vh 0 #fff, 88vw 25vh 0 #ff9ae0,
+    7vw 30vh 0 #fff, 52vw 32vh 0 #9ae6ff, 93vw 3vh 0 #fff, 35vw 14vh 0 #ffd166;
+  animation: ts-twinkle 1s steps(2, jump-none) infinite;
+}
+.ts-stars::after {
+  box-shadow: 18vw 15vh 0 #fff, 39vw 27vh 0 #ff9ae0, 55vw 10vh 0 #9ae6ff,
+    69vw 29vh 0 #fff, 83vw 16vh 0 #ffd166, 22vw 3vh 0 #9ae6ff,
+    47vw 20vh 0 #fff, 97vw 21vh 0 #ff9ae0;
+  animation-delay: 0.5s;
+}
+@keyframes ts-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+/* The neon sun: striped disc sitting ON the horizon (the opaque grid floor
+   below swallows its lower half), breathing on the beat. */
+.ts-sun {
+  position: absolute; left: 50%; bottom: 30%; width: min(46vmin, 340px); height: min(46vmin, 340px);
+  transform: translateX(-50%);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 6px, rgba(5, 1, 15, 0.95) 6px 10px),
+    radial-gradient(circle at 50% 38%, #fff7ae 0%, #ffd166 22%, #ff7ac8 55%, #b0326e 78%, transparent 79%);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 24px rgba(255, 122, 200, 0.55));
+  animation: ts-sunpulse 2s ease-in-out infinite;
+}
+@keyframes ts-sunpulse {
+  0%, 100% { filter: drop-shadow(0 0 22px rgba(255, 122, 200, 0.45)); }
+  50% { filter: drop-shadow(0 0 38px rgba(255, 122, 200, 0.8)); }
+}
+.ts-haze {
+  position: absolute; left: 0; right: 0; top: 58%; height: 12%;
+  background: linear-gradient(rgba(255, 122, 200, 0), rgba(255, 122, 200, 0.28) 60%, rgba(5, 1, 15, 0));
+  pointer-events: none;
+}
+/* The grid horizon: an opaque perspective floor scrolling toward the
+   viewer, one grid row per beat (500ms). Opaque on purpose — it swallows
+   the sun's lower half, which is what makes it a horizon. */
+.ts-grid-wrap {
+  position: absolute; left: 0; right: 0; top: 70%; bottom: 0;
+  perspective: 380px; perspective-origin: 50% 0;
+  overflow: hidden;
+  background: linear-gradient(#2a0845, #05010f 55%);
+}
+.ts-grid {
+  position: absolute; left: -60%; width: 220%; top: 0; height: 300%;
+  transform-origin: 50% 0;
+  transform: rotateX(60deg);
+  background-image:
+    linear-gradient(90deg, rgba(122, 220, 255, 0.5) 0 3px, transparent 3px),
+    linear-gradient(0deg, rgba(255, 122, 200, 0.65) 0 3px, transparent 3px);
+  background-size: 72px 64px;
+  animation: ts-gridscroll 0.5s linear infinite;
+}
+@keyframes ts-gridscroll { from { background-position: 0 0; } to { background-position: 0 64px; } }
+/* Horizon glow where floor meets sky. */
+.ts-grid-wrap::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 26%;
+  background: linear-gradient(rgba(255, 122, 200, 0.35), transparent);
+  pointer-events: none;
+}
+/* Logo (top band) + prompt/start (bottom band, over the grid floor). */
+.ts-core {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between; text-align: center;
+  padding: max(6vh, 34px) 16px max(7vh, 40px);
+}
+.ts-top { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ts-bottom { display: flex; flex-direction: column; align-items: center; }
+.ts-logo { display: flex; flex-direction: column; line-height: 0.95; }
+.ts-logo-evo {
+  font-size: clamp(34px, 9vw, 84px); font-weight: 800; letter-spacing: 0.06em;
+  background: linear-gradient(#fff7ae 15%, #ffd166 40%, #ff7ac8 65%, #7adcff 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 26px rgba(255, 122, 200, 0.35);
+}
+.ts-logo-arena {
+  font-size: clamp(22px, 5.4vw, 46px); font-weight: 800; letter-spacing: 0.85em;
+  padding-left: 0.85em; /* recenter tracked type */
+  color: #7adcff; text-shadow: 0 0 14px rgba(122, 220, 255, 0.8);
+  animation: ts-arena 4s ease-in-out infinite;
+}
+@keyframes ts-arena {
+  0%, 100% { text-shadow: 0 0 10px rgba(122, 220, 255, 0.55); }
+  50% { text-shadow: 0 0 22px rgba(122, 220, 255, 1); }
+}
+.ts-sub { color: var(--muted); font-size: var(--fs-sm); letter-spacing: 0.4em; padding-left: 0.4em; }
+.ts-prompt {
+  font-size: clamp(13px, 2.6vw, 18px); letter-spacing: 0.3em; padding-left: 0.3em;
+  color: #fff; text-shadow: 0 0 10px rgba(122, 220, 255, 0.9), 0 1px 3px #000;
+  animation: ts-blink 1s steps(2, jump-none) infinite;
+}
+@keyframes ts-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.ts-start {
+  font: inherit; font-size: clamp(15px, 3vw, 20px); font-weight: 700;
+  letter-spacing: 0.22em; padding: 12px 34px 12px calc(34px + 0.22em); cursor: pointer;
+  color: #05010f; background: linear-gradient(#7adcff, #ff7ac8);
+  border: 2px solid #fff; border-radius: 4px;
+  box-shadow: 0 0 18px rgba(255, 122, 200, 0.6), inset 0 0 6px rgba(255, 255, 255, 0.6);
+  animation: ts-startpulse 0.5s ease-in-out infinite alternate;
+}
+@keyframes ts-startpulse {
+  from { box-shadow: 0 0 12px rgba(255, 122, 200, 0.45), inset 0 0 6px rgba(255, 255, 255, 0.6); }
+  to { box-shadow: 0 0 26px rgba(122, 220, 255, 0.85), inset 0 0 6px rgba(255, 255, 255, 0.6); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ts-grid, .ts-sun, .ts-stars::before, .ts-stars::after, .ts-start { animation: none; }
+}

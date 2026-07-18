@@ -398,6 +398,10 @@ const ZH: Record<string, string> = {
   trickster: '盘带魔术师',
   shadow: '幽灵后插',
 
+  // ---- the title screen (Phase 96) ----
+  'CLICK TO ENTER': '点 击 进 入',
+  START: '开始',
+
   // ---- the coach (Phase 53) ----
   '👔 Dugout hall of fame': '👔 教练名人堂',
   'school of': '师承',
