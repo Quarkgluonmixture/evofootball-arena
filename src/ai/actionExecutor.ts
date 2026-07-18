@@ -53,9 +53,20 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // make the contained carrier go AROUND — chase time, blunted drive.
       const carrier = ball.owner;
       const jockey = team.genome.jockeyBias ?? 0.5;
-      if (carrier && carrier.side !== p.side && jockey > 0.25) {
+      // Phase 92 (the A/B verdict): ONLY the goal-side man jockeys — a
+      // pursuer from behind detouring to the standoff point was a free
+      // escort downfield (the mispricing that made 0.9-jockey LOSE the
+      // head-to-head). Behind the carrier = chase the ball, old-style.
+      const goalSideOfCarrier =
+        carrier !== null && team.localX(p.pos.x) < team.localX(carrier.pos.x) - 0.2;
+      // Phase 92 second cut: standoff at TACKLE-RANGE EDGE (2.1m parked the
+      // contain man permanently outside the 1.15m challenge radius — the
+      // collapse could never convert), and NO jockeying in the danger zone:
+      // inside ~28m of the own goal, real defenders engage.
+      const dangerZone = carrier !== null && team.localX(carrier.pos.x) < -17;
+      if (carrier && carrier.side !== p.side && jockey > 0.25 && goalSideOfCarrier && !dangerZone) {
         const toGoal = norm(sub(team.ownGoal(), carrier.pos));
-        const standoff = 1.2 + jockey * 1.0;
+        const standoff = 0.9 + jockey * 0.5;
         target = add(carrier.pos, scale(toGoal, standoff));
         speedF = sprint;
         break;

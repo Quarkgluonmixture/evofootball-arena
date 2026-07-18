@@ -1493,7 +1493,21 @@ export function tryTackles(match: Match): void {
   const driveNow = clamp(len(owner.vel) / 9, 0, 1);
   const goalSide = oppTeam.localX(tackler.pos.x) < oppTeam.localX(owner.pos.x) - 0.2;
   const looseTouch = dist(ball.pos, owner.pos) > 0.85;
-  if (goalSide && !looseTouch && driveNow > 0.9 - jockeyG * 0.55) return;
+  // Phase 92 (the A/B verdict): jockeying is delay UNTIL HELP ARRIVES —
+  // without an endgame a patient carrier was never dispossessed. A second
+  // defender inside 3m collapses the containment into the challenge.
+  let helpClose = false;
+  for (const o of oppTeam.players) {
+    if (o === tackler || o.sentOff || o.role === 'GK') continue;
+    if (dist(o.pos, owner.pos) < 3) {
+      helpClose = true;
+      break;
+    }
+  }
+  // No containment in the danger zone (Phase 92): inside ~28m of goal
+  // the challenge is mandatory — jockeying a shooter is just watching.
+  const dangerZone = oppTeam.localX(owner.pos.x) < -17;
+  if (goalSide && !looseTouch && !helpClose && !dangerZone && driveNow > 0.9 - jockeyG * 0.55) return;
   tackler.tackleAnimTimer = 0.4; // the lunge is visible either way (display only)
   tackler.spendBurst(TACKLE_LUNGE_COST); // win or whiff, the lunge costs legs (Phase 58)
 

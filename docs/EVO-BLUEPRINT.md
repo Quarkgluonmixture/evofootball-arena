@@ -1423,3 +1423,15 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   jockeying delays until help arrives; gate should lift when a
   second defender closes to ~3m). Decision with the user: fix
   mechanism (recommended) / fitness anchor / both.
+- ⚠ **phase-92 SHIPPED** (**containment repriced**; fingerprint
+  REBASELINED `f971e8a0…`). Three cuts: contain-man-only jockeying,
+  delay-until-help (second defender ≤3m collapses into the
+  challenge), tackle-edge standoff + mandatory engagement inside
+  28m. Neutral A/B FLIPS (0.9-jockey 1.45 vs 1.31 pts); the
+  def-0.4 meta env still loses — honestly (you must BE Van Dijk to
+  defend like him: the def+jockey package is the strategy space).
+  24-gen gate still fails: 2/3 worlds abandon (drift can't find the
+  two-locus package in a 16-club population); 777 holds 0.70 →
+  5.16. The fork is sharp: honest mechanism + unstable adoption =
+  the anchor's regime, or accept ecology variance. Pins re-anchored
+  (throw 58/182/207, cards seed 37 — containment cut lunge volume).

@@ -34,7 +34,9 @@ const fakeResult = (
 
 describe('card attribution (Phase 62)', () => {
   it('personal yellows/reds sum to the team tallies across seeds', { timeout: 120000 }, () => {
-    const league = new League({ seed: 5, matchDuration: 60 });
+    // Seed 5 → 37 (Phase 92): containment cut desperate lunges and with
+    // them the card volume in short matches; re-scanned for a producer.
+    const league = new League({ seed: 37, matchDuration: 60 });
     let cards = 0;
     for (let i = 0; i < 10; i++) {
       const f = league.nextFixture()!;

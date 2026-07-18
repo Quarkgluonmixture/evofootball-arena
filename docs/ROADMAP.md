@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-91 (jockey A/B: containment LOSES head-to-head — the mechanism is mispriced, not red-queen)
+# Roadmap — shipped through phase-92 (containment repriced: wins neutral head-to-head; adoption still unstable — the fork sharpens)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -713,8 +713,35 @@ mechanism (contain-man-only jockeys + gate lifts when a second
 defender is within ~3m) then re-run A/B + warming — recommended;
 (2) skip to the fitness anchor — data does NOT currently support
 it; (3) both. Probe-only, fingerprint untouched `99ed8ed7…`.)
-⭐ **Next: USER DECISION (1/2/3) → then execute → offside trap →
-woodwork sim mechanic.** The user PLAYS CONTINUOUSLY —
++ ⚠ **phase-92 SHIPPED** (**containment repriced — user chose fix
+the mechanism**: three cuts from the A/B audit: ① only the
+GOAL-SIDE man jockeys (pursuers from behind chase the ball — no
+more free escorts); ② the delay has an ENDGAME (a second defender
+inside 3m collapses containment into the challenge); ③ standoff
+tightened to the tackle-range edge (0.9+jockey·0.5 — 2.1m had
+parked the contain man permanently outside the 1.15m challenge
+radius) + NO jockeying in the danger zone (inside 28m the
+challenge is mandatory). A/B AFTER: **neutral squads FLIP — 0.9
+wins 1.45 vs 1.31 pts, concedes less**; the dribble-meta env still
+loses (1.34 vs 1.52) — but both sides there have defending 0.4,
+and a 0.4-defender genuinely can't jockey a 0.65-pace winger: the
+gene×attribute PACKAGE (invest defending + jockey = the Van Dijk
+build) is the intended strategy space. 24-GEN GATE: still fails —
+2/3 worlds abandon jockey (0.15/0.14, goals 6.0-6.7) while 777
+keeps 0.70 (goals 5.16): co-evolving the def+jockey package is a
+narrow path drift rarely finds in a 16-club population. THE FORK
+IS NOW SHARP: the mechanism is priced honestly (neutral A/B wins)
+yet population adoption doesn't hold → this IS the red-queen/
+drift regime the fitness anchor (c) exists for — OR accept
+ecology-dependent defensive worlds as the game's truth. Test pins
+re-anchored: keeper-throw 3/97/123→58/182/207 (5th), card sample
+seed 5→37 (containment cut desperate lunges = fewer cards).
+vitest 415; calibrate 2.95/2.97/3.43 (early band healthy);
+fingerprint REBASELINED `f971e8a0…`.)
+⭐ **Next: USER decision — fitness anchor now, or accept
+ecology-variance? → title screen phase (user-designed synthwave
+launch: Title BGM, dynamic 120BPM visuals) → keeper-hold ball-bob
++ player-twitch render bug → offside trap → woodwork.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
