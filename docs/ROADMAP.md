@@ -1317,18 +1317,40 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 120 — home advantage → memory commentary
-(clean Stage-4 progress). The carry-diversity arc is CLOSED for now:
-119b shipped (keeper honesty, the lever that stuck), then ~7 levers
-REFUTED by A/B (119c defensive game-plan, four 119d-1 supply cuts, the
-1v1 angle-cut) — the carry/1v1 equilibrium is 6v6-space + endpoint-EV
-LOCKED, and the meta is already reasonably diverse post-119b with
-near-realistic 1v1 conversion. The remaining gap is play-FEEL (judge
-by PLAYING) + the parked 11v11; the give-and-go co-weapon stays a
-candidate (probes kept: supply-side, breakaway-origin, give-and-go).
+⭐⭐ SESSION HANDOFF (2026-07-18, preset-free — facts only, next
+session decides direction). Repo is CLEAN at fingerprint `848370ae`
+(= phase-119b). SHIPPED this session: 119a (player radar + 3D
+showcase), 119a.5 (settings screen + topbar nav), 119b (keeper
+honesty — fingertip stretch + angle coverage; the last behavioral
+change that stuck). ATTEMPTED + REVERTED this session (all A/B'd,
+none committed, all left `848370ae` untouched): 119c per-opponent
+game-plan (defensive gene-bend); 119d-1 off-ball supply (peel /
+show-for-it / pitch-wide marker-lag, four cuts); the 1v1 keeper
+angle-cut; the marking-scheme freeing (lifted the zonal cap + entry
+asymmetry). Each entry below carries its raw A/B numbers.
+
+WHAT WAS BEING EXPLORED (the user's thread, open — not a directive):
+the "carry" scoring pattern and whether the game is too reliant on
+it. Measured facts on disk (probes kept: `attack-economics`,
+`onevone-anatomy`, `supply-side`, `breakaway-origin`, `give-and-go`):
+of clean 1v1s that form, ~19% are a dribble-beat, ~28-38% pass-created,
+~43-54% transition/scramble-born; 1v1 conversion 45-55%; goal-channel
+mix at gen21 is one world buildup-led, one carry+setpiece-mixed. The
+user's stated values (from this session, verbatim intent): dislikes
+the "乱抢" (scramble/loose-ball) goals as tactic-less/ugly; dislikes
+"人堆" (clumps — formations exist to avoid them); wants mechanisms
+fixed so play/decisions develop FREELY and diversify in a healthy,
+adversarial (对抗) environment; and wants a 赛前布置/赛前报告
+(pre-match plan/report). OPEN threads NOT yet built (user paused
+before deciding): the 赛前报告 (a UI matchday report — the clash
+banner enrichment, safe/UI-only) and/or a mild pre-match behavioural
+plan measured only against no-regression; the give-and-go as a second
+scoring weapon; a shape-preserving scramble fix; 11v11 (parked,
+engine-scale); phase 120 home-advantage → memory commentary (clean
+Stage-4). No recommendation is baked in here — read the entries +
+probe numbers and choose fresh.
 (112 through 119b ALL shipped 2026-07-18; 119c + 119d all ATTEMPTED +
-REVERTED same day; fingerprint baseline `848370ae…` UNCHANGED through
-the whole arc.)**
+REVERTED same day; fingerprint baseline `848370ae…` UNCHANGED.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top

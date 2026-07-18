@@ -1822,3 +1822,19 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   and the only structural break left is 11v11 (parked). Probes kept
   (`supply-side`, `breakaway-origin`, `give-and-go`) for whenever the
   give-and-go co-weapon or 11v11 is picked up.
+- **2026-07-18 THE MARKING-SCHEME FREEING TEST (measurements, then
+  reverted — recorded preset-free for the next session).** Fact found
+  in code: man-marking is hand-locked three ways — `deriveTeamStyle`
+  threshold (markingAggression≥0.3→man), a rebirth CAP (≤4/16 zonal),
+  and a hire-time forced conversion (zonal coach→man if ≥4). Zonal =
+  hold-your-formation-zone (shape, not clumps). Tested lifting the
+  locks and A/B'd (breakaway-origin, gen 21, worlds 991/424242):
+  · lifting the cap 4→16 + removing the hire conversion → BYTE-
+    IDENTICAL (zonal stayed 4/16 and 1/16); the cap was not binding.
+  · also removing the ×0.3 man→zonal entry asymmetry (symmetric scheme
+    mutation) → zonal 3/16 both (did not spread); goals 3.63→4.18 and
+    3.55→4.82 (rose); scramble share ~flat (54→57 / 43→46).
+  Reverted to `848370ae`. Raw observation only: with the locks fully
+  off, zonal did not gain share and goals rose. `breakaway-origin.ts`
+  kept its zonal/goals readout. (Interpretation left to the next
+  session — the numbers are above.)

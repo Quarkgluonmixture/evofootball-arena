@@ -46,11 +46,14 @@ for (const seed of [991, 424242]) {
   let coverFreeSum = 0;
   let markingSum = 0;
   let zeroCover = 0;
+  let goals = 0;
+  let matches = 0;
   const ownedSince = new Map<number, number>();
 
   while (!league.seasonDone) {
     const fx = league.nextFixture()!;
     const m: Match = league.createMatch(fx);
+    matches++;
     let epActive = false;
     while (!m.finished) {
       m.step(DT);
@@ -112,12 +115,14 @@ for (const seed of [991, 424242]) {
         epActive = false;
       }
     }
+    goals += m.score[0] + m.score[1];
     league.applyResult(fx, m.getResult());
   }
   league.finishSeason();
 
+  const zonalClubs = [...league.division(0), ...league.division(1)].filter((f) => f.coach.style.scheme === 'zonal').length;
   const pct = (n: number): string => `${((n / Math.max(breakaways, 1)) * 100).toFixed(0)}%`;
-  console.log(`\nworld ${seed} (gen ${GENS}, one traced season): ${breakaways} breakaways formed`);
+  console.log(`\nworld ${seed} (gen ${GENS}, one traced season): ${breakaways} breakaways formed · ${(goals / matches).toFixed(2)} goals/match · ZONAL clubs ${zonalClubs}/16`);
   console.log(`  ORIGIN: created(pass) ${pct(origin.created)} · beat(dribble>1.5s) ${pct(origin.beat)} · scramble ${pct(origin.scramble)}`);
   console.log(`  COVER at formation: marking-a-man x̄ ${(markingSum / Math.max(breakaways, 1)).toFixed(2)} · free-and-recoverable x̄ ${(coverFreeSum / Math.max(breakaways, 1)).toFixed(2)} · ZERO cover ${pct(zeroCover)}`);
 }
