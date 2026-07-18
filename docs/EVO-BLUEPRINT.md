@@ -1554,6 +1554,12 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅ **phase-108 SHIPPED** (**ENTITY LINKS**, the cross-cutting queue
+  item; UI-only, fingerprint identity `f4750bb9…`): living club/player
+  names in chronicle/market/census prose jump to their deep dives via
+  one generic `entityLinks.ts` scanner + `GameApp.openClubDive/
+  openPlayerDive`; dead entities stay plain text. Visual suite grew
+  109→111. Details at ROADMAP head ("THE 108 RESULT").
 - ✅ **phase-107 SHIPPED** (**N5 library expansion**: `overload` — the
   first ASYMMETRIC shape, flank triangle + isolation outlet — and
   `target-man` — the 埃弗顿高塔 the user named in the N1.5 reframe,

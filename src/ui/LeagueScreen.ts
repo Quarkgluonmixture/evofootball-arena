@@ -3,6 +3,7 @@ import { GENE_KEYS } from '../evolution/genome';
 import { nameplates } from '../evolution/styleSpace';
 import { chronicleChapters } from '../sim/chronicle';
 import { eraColor, eraDisplayName } from './chronicleView';
+import { buildEntityIndex, linkifyText, type EntityNav } from './entityLinks';
 import { ATTR_KEYS, ROSTER_ROLES, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
@@ -51,6 +52,8 @@ export class LeagueScreen {
   private visible = false;
   private tab: Tab = 'league';
   private league: League | null = null;
+  /** Cross-screen navigation (Phase 108, entity links) — set by GameApp. */
+  nav: EntityNav | null = null;
   /** Set by GameApp: change the promotion rules (persisted with the save). */
   onSetPromotionMode: ((m: PromotionMode) => void) | null = null;
   /** Set by GameApp: change how drawn cup ties resolve (persisted with the save). */
@@ -633,6 +636,11 @@ export class LeagueScreen {
     const eras = detectEras(league.history);
     const chapters = chronicleChapters(league.history);
     const byGen = new Map(chapters.map((c) => [c.generation, c]));
+    // Entity links (Phase 108): any LIVING club/player named in a line is
+    // a jump to its deep dive; dead entities stay plain text.
+    const linkIdx = this.nav ? buildEntityIndex(league) : null;
+    const prose = (text: string): Node =>
+      linkIdx && this.nav ? linkifyText(text, linkIdx, this.nav) : document.createTextNode(text);
 
     for (let e = eras.length - 1; e >= 0; e--) {
       const era = eras[e];
@@ -656,13 +664,14 @@ export class LeagueScreen {
         const summary = document.createElement('summary');
         summary.append(
           el('b', '', `S${ch.generation}`),
-          document.createTextNode(` ${ch.headline}`),
+          document.createTextNode(' '),
+          prose(ch.headline),
         );
         details.appendChild(summary);
         const body = el('div', 'chron-body');
         for (const line of ch.lines) {
           const row = el('div', 'chron-line');
-          row.append(el('span', 'chron-icon', line.icon), document.createTextNode(line.text));
+          row.append(el('span', 'chron-icon', line.icon), prose(line.text));
           body.appendChild(row);
         }
         if (ch.lines.length === 0) body.appendChild(el('div', 'muted', '—'));

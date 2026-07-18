@@ -1009,6 +1009,24 @@ session trick) + visibilitychange re-resume for backgrounding.
 ④ SFX default ON at 70 (user ask), slider still rules. UI-only;
 fingerprint IDENTITY `f4750bb9…`; vitest 421; visual 109+52. Final
 gain judgement = the user's ears; every number has a dB paper trail.)
+⭐⭐⭐ **THE 108 RESULT (2026-07-18 afternoon — ENTITY LINKS, SHIPPED,
+UI-only)**: any LIVING club or player named in prose is now a jump to
+its deep dive — dead entities stay plain text (honest: their dive no
+longer exists). One generic mechanism instead of per-surface rebuilds:
+`ui/entityLinks.ts` (`buildEntityIndex` = the league's current names,
+longest-first; `linkifyText` = scan a composed sentence, wrap matches
+in clickable spans). Wired surfaces: the CHRONICLE (headlines + mined
+lines — 55 live links in the visual-suite world), the MARKET (free
+agents' ex-clubs, the signings chronicle), the CENSUS career
+leaderboard. Cross-screen nav: `GameApp.openClubDive(slot)` /
+`openPlayerDive(slot, index)` → new `EvolutionScreen.focusClub` /
+`PlayerScreen.focusPlayer` (clears the role lens so it can't hide the
+jump target; both scroll to the dive anchor). The dynasty wall already
+linked in-screen (tap-a-row, phase-51) — left as is. Gates: visual
+2D 109→111 (two new 108 checks: links exist, a click LANDS on a dive
+screen), 3D 52; vitest 421; sim untouched → fingerprint IDENTITY
+`f4750bb9…`, no calibrate needed.
+
 ⭐⭐⭐ **THE 107 RESULT (2026-07-18 afternoon — N5 library expansion,
 SHIPPED)**: two novel attack shapes join the discoverable menu at the
 ×0.35 rare-entry weight — **`overload`** (the library's first ASYMMETRY:
@@ -1120,10 +1138,10 @@ entry above ("THE 107 RESULT"). No save bump needed (enum widening).
 ⭐ The counterfactual run's finding — gen-60 single-shape consolidation
 under EITHER menu — is 109's evidence base.
 
-**108 — ENTITY LINKS across screens** (blueprint cross-cutting item):
-click a player anywhere (chronicle, market, dynasty wall) → his deep
-dive; club names → club deep dive. UI-only, fingerprint identity,
-phone-checked at 390px.
+**108 — ENTITY LINKS across screens** ✅ **DONE 2026-07-18** — generic
+linkify over living entities (chronicle/market/census; dynasty wall
+already linked in-screen since 51); full entry above ("THE 108
+RESULT"). Inline spans, no layout change at 390px.
 
 **109 — the OFFSIDE-TRAP gene** (the user's defensive school #1, the
 last unbuilt): hold-the-line vs track-runner, natural tension with

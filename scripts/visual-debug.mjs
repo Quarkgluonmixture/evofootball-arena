@@ -279,6 +279,24 @@ const headlineTxt = await page.locator('#league-screen .chron-chapter[open] summ
 check('chapter headline reads as a title sentence', /title|crown|champion/i.test(headlineTxt), headlineTxt.slice(0, 60));
 await page.screenshot({ path: `${OUT}/7b-chronicle.png` });
 
+// Phase 108 — entity links: living club/player names in chronicle prose
+// are clickable and jump to the deep dive across screens.
+const chronLinks = await page.locator('#league-screen .entity-link').count();
+check('chronicle prose carries entity links (108)', chronLinks >= 1, `${chronLinks} links`);
+if (chronLinks >= 1) {
+  await page.locator('#league-screen .entity-link').first().click();
+  await page.waitForTimeout(300);
+  const landedDive =
+    (await page.locator('#evolution-screen').isVisible()) ||
+    (await page.locator('#player-screen').isVisible());
+  check('an entity link lands on a deep-dive screen (108)', landedDive, '');
+  // back to the league screen for the checks that follow
+  await page.click('#topbar button:has-text("League table")');
+  await page.waitForTimeout(200);
+  await page.click('#league-screen button:has-text("Chronicle")');
+  await page.waitForTimeout(200);
+}
+
 // Phase 51 — evolution has its OWN screen (top-bar 🧬 button; opening it
 // closes the league screen). Hero map + scrubber + club panel + dynasty wall.
 await page.click('#topbar button:has-text("Evolution")');

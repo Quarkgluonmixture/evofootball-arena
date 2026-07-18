@@ -300,6 +300,14 @@ export class GameApp implements GameActions {
     this.evolutionScreen = new EvolutionScreen(stage);
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
+    // Entity links (Phase 108): any club/player NAME in chronicle, market
+    // or census prose jumps to its deep dive across screens.
+    const nav = {
+      openClub: (slot: number) => this.openClubDive(slot),
+      openPlayer: (slot: number, index: number) => this.openPlayerDive(slot, index),
+    };
+    this.leagueScreen.nav = nav;
+    this.playerScreen.nav = nav;
     this.clash = new ClashBanner(stage);
     // The launch overlay (Phase 96): the match boots and runs beneath it as
     // attract mode; the first click is the WebAudio gesture that starts the
@@ -1054,6 +1062,22 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
     this.playerScreen.toggle(this.league);
+    this.updateMusic();
+  }
+
+  /** Entity links (Phase 108): jump to a club's deep dive from anywhere. */
+  openClubDive(slot: number): void {
+    if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
+    this.playerScreen.hide();
+    this.evolutionScreen.focusClub(this.league, slot);
+    this.updateMusic();
+  }
+
+  /** Entity links (Phase 108): jump to a player's deep dive from anywhere. */
+  openPlayerDive(slot: number, index: number): void {
+    if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
+    this.evolutionScreen.hide();
+    this.playerScreen.focusPlayer(this.league, slot, index);
     this.updateMusic();
   }
 

@@ -10,6 +10,7 @@ import type { Franchise } from '../evolution/franchise';
 import type { League } from '../sim/League';
 import type { Role } from '../sim/types';
 import { bar, button, colorHex, el } from './dom';
+import { buildEntityIndex, linkifyText, type EntityIndex, type EntityNav } from './entityLinks';
 import { t } from './i18n';
 
 const INK_MUTED = '#8294b5';
@@ -46,6 +47,10 @@ export class PlayerScreen {
   private league: League | null = null;
   private selected: { slot: number; index: number } | null = null;
   private roleLens: Role | null = null;
+  /** Cross-screen navigation (Phase 108, entity links) — set by GameApp. */
+  nav: EntityNav | null = null;
+  private linkIdx: EntityIndex | null = null;
+  private diveAnchor: HTMLElement | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -74,6 +79,17 @@ export class PlayerScreen {
     if (this.visible) this.render(league);
   }
 
+  /** Jump straight to one player's deep dive (Phase 108, entity links).
+   * Clears the role lens — it must never hide the jump target. */
+  focusPlayer(league: League, slot: number, index: number): void {
+    this.selected = { slot, index };
+    this.roleLens = null;
+    this.visible = true;
+    this.root.classList.remove('hidden');
+    this.render(league);
+    this.diveAnchor?.scrollIntoView({ block: 'start' });
+  }
+
   /* ---------------- data ---------------- */
 
   private population(league: League): PlayerRow[] {
@@ -90,6 +106,7 @@ export class PlayerScreen {
 
   render(league: League): void {
     this.league = league;
+    this.linkIdx = this.nav ? buildEntityIndex(league) : null;
     this.root.textContent = '';
     this.root.appendChild(el('h2', '', `👥 ${t('Player center')} — ${t('Gen')} ${league.generation}`));
 
@@ -220,7 +237,8 @@ export class PlayerScreen {
     const attrs = f.squad[i];
     const career = f.careers[i] ?? emptyCareer();
 
-    this.root.appendChild(el('h2', '', t('Player deep dive')));
+    this.diveAnchor = el('h2', '', t('Player deep dive'));
+    this.root.appendChild(this.diveAnchor);
     const panel = el('div', 'player-dive');
 
     const idCol = el('div', 'player-col');
@@ -298,7 +316,7 @@ export class PlayerScreen {
       this.root.appendChild(el('div', 'muted empty', t('The market is empty — it fills when a club folds.')));
     }
     for (const a of league.freeAgents) {
-      this.root.appendChild(el('div', 'history-entry',
+      this.root.appendChild(this.entry(
         `🧳 ${a.name} · ${a.role} · ${a.age}${t('y')} · ` +
         `${t('ability')} ${agentTotal(a).toFixed(1)} · ${t('ex-')}${a.lastClub}` +
         (a.career.goals > 0 ? ` · ${a.career.goals}⚽` : '')));
@@ -309,7 +327,7 @@ export class PlayerScreen {
     if (signings.length > 0) {
       this.root.appendChild(el('div', 'muted', t('Signings — careers that survived their clubs')));
       for (const s of signings.slice(0, 14)) {
-        this.root.appendChild(el('div', 'history-entry',
+        this.root.appendChild(this.entry(
           `✍ S${s.gen} — ${s.club} ← ${s.player} (${s.age}${t('y')}), ${t('from the ashes of')} ${s.from}`));
       }
     }
@@ -352,9 +370,17 @@ export class PlayerScreen {
     if (active.length > 0) {
       this.root.appendChild(el('div', 'muted', t('Active career scorers')));
       for (const x of active) {
-        this.root.appendChild(el('div', 'history-entry',
+        this.root.appendChild(this.entry(
           `⚽ ${x.name} (${x.team}, ${x.role}) — ${x.career.goals} ${t('career goals')} · ${x.career.seasons} ${t('seasons#')}`));
       }
     }
+  }
+
+  /** A history-entry line whose entity names are LINKS (Phase 108). */
+  private entry(text: string): HTMLElement {
+    const d = el('div', 'history-entry');
+    if (this.linkIdx && this.nav) d.appendChild(linkifyText(text, this.linkIdx, this.nav));
+    else d.textContent = text;
+    return d;
   }
 }

@@ -55,6 +55,7 @@ export class EvolutionScreen {
   private visible = false;
   private league: League | null = null;
   private selectedSlot = 0;
+  private diveAnchor: HTMLElement | null = null;
   /** Index into frames() — null means "latest". */
   private frameIdx: number | null = null;
   private playTimer: number | null = null;
@@ -93,6 +94,16 @@ export class EvolutionScreen {
 
   refreshIfVisible(league: League): void {
     if (this.visible) this.render(league);
+  }
+
+  /** Jump straight to one club's deep dive (Phase 108, entity links) —
+   * unlike toggle(), the selection is the caller's, not the leader's. */
+  focusClub(league: League, slot: number): void {
+    this.selectedSlot = slot;
+    this.visible = true;
+    this.root.classList.remove('hidden');
+    this.render(league);
+    this.diveAnchor?.scrollIntoView({ block: 'start' });
   }
 
   /* ---------------- data ---------------- */
@@ -316,7 +327,8 @@ export class EvolutionScreen {
   ): void {
     const f = clubs.find((c) => c.slot === this.selectedSlot) ?? clubs[0];
     this.selectedSlot = f.slot;
-    this.root.appendChild(el('h2', '', t('Club deep dive')));
+    this.diveAnchor = el('h2', '', t('Club deep dive'));
+    this.root.appendChild(this.diveAnchor);
     const panel = el('div', 'evo-club');
 
     // Identity column.
