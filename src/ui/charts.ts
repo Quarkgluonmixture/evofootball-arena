@@ -307,6 +307,51 @@ export function styleScatter(
 }
 
 /**
+ * Formation diagram (Phase 113.5, 阵型图): a mini pitch with a shape's six
+ * spots, attacking left→right. Input is a raw spot table
+ * (ATTACK_FORMATIONS / DEFEND_FORMATIONS: local coords, x −45..45 forward,
+ * y ±29 wide, index 0 = GK). Dots in the club color; the GK rendered
+ * hollow; every dot carries its role in a <title>.
+ */
+export function formationDiagram(
+  title: string,
+  spots: ReadonlyArray<{ x: number; y: number }>,
+  roles: readonly string[],
+  color: string,
+): HTMLDivElement {
+  const tile = el('div', 'pitch-tile');
+  tile.appendChild(el('div', 'g-name', title));
+  const W = 132;
+  const H = 92;
+  const PAD = 5;
+  const sx = (x: number) => PAD + ((x + 45) / 90) * (W - PAD * 2);
+  const sy = (y: number) => H / 2 + (y / 29) * (H / 2 - PAD);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', '100%');
+  // The pitch furniture — recessive, same grammar as the chart grids.
+  const boxW = ((16 / 90) * (W - PAD * 2)).toFixed(1);
+  const boxY = (H / 2 - (18 / 29) * (H / 2 - PAD)).toFixed(1);
+  const boxH = ((36 / 29) * (H / 2 - PAD)).toFixed(1);
+  let inner =
+    `<rect x="${PAD}" y="${PAD}" width="${W - PAD * 2}" height="${H - PAD * 2}" rx="4" fill="${SURFACE}" stroke="${GRID}"/>` +
+    `<line x1="${W / 2}" y1="${PAD}" x2="${W / 2}" y2="${H - PAD}" stroke="${GRID}"/>` +
+    `<circle cx="${W / 2}" cy="${H / 2}" r="9" fill="none" stroke="${GRID}"/>` +
+    `<rect x="${PAD}" y="${boxY}" width="${boxW}" height="${boxH}" fill="none" stroke="${GRID}"/>` +
+    `<rect x="${(W - PAD - Number(boxW)).toFixed(1)}" y="${boxY}" width="${boxW}" height="${boxH}" fill="none" stroke="${GRID}"/>`;
+  spots.forEach((s, i) => {
+    const gk = i === 0;
+    inner +=
+      `<circle cx="${sx(s.x).toFixed(1)}" cy="${sy(s.y).toFixed(1)}" r="4" ` +
+      (gk ? `fill="${SURFACE}" stroke="${color}" stroke-width="2"` : `fill="${color}"`) +
+      `><title>${escapeHtml(roles[i] ?? '')}</title></circle>`;
+  });
+  svg.innerHTML = inner;
+  tile.appendChild(svg);
+  return tile;
+}
+
+/**
  * Attribute-allocation heatmap (Phase 49): clubs × attributes, single-hue
  * lightness ramp (sequential = magnitude), 2px cell gaps, <title> tooltips
  * carrying the exact value so color is never the only channel.

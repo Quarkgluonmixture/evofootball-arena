@@ -135,15 +135,9 @@ check('two division tables show 16 teams', standingsRows === 16, `${standingsRow
 const zones = await page.locator('#league-screen tr.zone-up, #league-screen tr.zone-down').count();
 check('promotion/relegation zones highlighted', zones === 4, `${zones} zone rows`);
 const cards = await page.locator('#league-screen .team-card').count();
-check('team cards render', cards === 16, `${cards} cards`);
-check('every team card carries a DNA radar (32.5)', (await page.locator('#league-screen .team-card svg.radar').count()) === 16, '');
-const plateTags = await page.locator('#league-screen .team-card .tag.nameplate').count();
-check('data-driven nameplates on team cards (49)', plateTags >= 16, `${plateTags} tags`);
-const coachLines = await page.locator('#league-screen .team-card .coach-line').count();
-check('every team card names its coach (53)', coachLines === 16, `${coachLines} coaches`);
-const chanTiles = await page.locator('#league-screen .team-card .goal-channel').count();
-check('every team card carries a goal-channel tile (113)', chanTiles === 16, `${chanTiles} tiles`);
-check('division badges on team cards', (await page.locator('#league-screen .tag.div-badge-1').count()) === 8);
+check('league tab no longer hosts team cards (113.5)', cards === 0, `${cards} cards`);
+const standingLinks = await page.locator('#league-screen tbody .entity-link').count();
+check('standings names link to the club center (113.5)', standingLinks === 16, `${standingLinks} links`);
 check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 4);
 check('cup draw rule selector present', (await page.locator('#league-screen .rules-row').count()) === 2);
 
@@ -164,6 +158,34 @@ await page.click('#league-screen button:has-text("Penalty shootout")');
 await page.waitForTimeout(200);
 
 await page.screenshot({ path: `${OUT}/5-league.png` });
+
+// ---- Phase 113.5: the CLUB CENTER — the clubs' own stage. ----
+await page.click('#topbar button:has-text("Clubs")');
+await page.waitForTimeout(400);
+check('club center opens (own screen, 113.5)', await page.locator('#clubs-screen').isVisible(), '');
+check('league screen closed by the club center', !(await page.locator('#league-screen').isVisible()), '');
+const minis = await page.locator('#clubs-screen .club-mini').count();
+check('selector wall shows all 16 clubs', minis === 16, `${minis} minis`);
+check('division badges on the wall', (await page.locator('#clubs-screen .club-mini .tag.div-badge-1').count()) === 8);
+const wallPlates = await page.locator('#clubs-screen .club-mini .tag.nameplate').count();
+check('data-driven nameplates on the wall (49)', wallPlates >= 8, `${wallPlates} tags (capped 2/club)`);
+check('club dive carries the DNA radar (32.5)', (await page.locator('#clubs-screen .evo-club svg.radar').count()) === 1, '');
+check('club dive shows the dugout record (53)', (await page.locator('#clubs-screen .evo-club .coach-block').count()) === 1, '');
+check('club dive carries the goal-channel tile (113)', (await page.locator('#clubs-screen .evo-club .goal-channel').count()) === 1, '');
+const pitches = await page.locator('#clubs-screen .pitch-tile').count();
+check('formation diagrams render, both phases (113.5)', pitches === 2, `${pitches} pitches`);
+check('every diagram plots six spots', (await page.locator('#clubs-screen .pitch-tile circle').count()) === 14, ''); // 2×(6 dots + center circle)
+const firstName = await page.locator('#clubs-screen .evo-club .team-head span:not(.dot)').first().textContent();
+await page.locator('#clubs-screen .club-mini').nth(5).click();
+await page.waitForTimeout(300);
+const secondName = await page.locator('#clubs-screen .evo-club .team-head span:not(.dot)').first().textContent();
+check('tapping the wall re-targets the dive', firstName !== secondName, `${firstName} → ${secondName}`);
+check('wall marks the selected club', (await page.locator('#clubs-screen .club-mini.selected').count()) === 1, '');
+await page.screenshot({ path: `${OUT}/5c-clubs.png` });
+await page.click('#topbar button:has-text("Clubs")'); // close
+await page.waitForTimeout(200);
+await page.click('button:has-text("League table")');
+await page.waitForTimeout(300);
 
 // Cup tab, fresh season: the R16 draw is made, later rounds await winners.
 await page.click('#league-screen button:has-text("Cup")');
@@ -289,6 +311,7 @@ if (chronLinks >= 1) {
   await page.locator('#league-screen .entity-link').first().click();
   await page.waitForTimeout(300);
   const landedDive =
+    (await page.locator('#clubs-screen').isVisible()) ||
     (await page.locator('#evolution-screen').isVisible()) ||
     (await page.locator('#player-screen').isVisible());
   check('an entity link lands on a deep-dive screen (108)', landedDive, '');
@@ -325,9 +348,8 @@ check('dynasty wall shows all 16 slots', dynRows === 16, `${dynRows} rows`);
 await page.locator('#evolution-screen .dyn-row-line').nth(3).click();
 await page.waitForTimeout(200);
 check('club deep-dive selects from the wall', (await page.locator('#evolution-screen .dyn-row-line.selected').count()) === 1, '');
-check('club panel carries nameplate tags', (await page.locator('#evolution-screen .evo-club .tag.nameplate').count()) >= 1, '');
-check('club deep dive shows the dugout record (53)', (await page.locator('#evolution-screen .evo-club .coach-block').count()) === 1, '');
-check('club deep dive carries the goal-channel tile (113)', (await page.locator('#evolution-screen .evo-club .goal-channel').count()) === 1, '');
+check('club drift panel present (113.5 — identity moved to the club center)', (await page.locator('#evolution-screen .evo-club').count()) === 1, '');
+check('drift panel links to the club center (113.5)', (await page.locator('#evolution-screen .evo-club button.club-link').count()) === 1, '');
 const heatCells = await page.locator('#evolution-screen .attr-heatmap rect').count();
 check('budget heatmap renders 16×8 cells', heatCells === 128, `${heatCells} cells`);
 const tiles = await page.locator('#evolution-screen .spark-tile').count();

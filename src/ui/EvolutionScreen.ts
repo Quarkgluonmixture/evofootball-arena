@@ -2,18 +2,16 @@ import { detectEras } from '../evolution/eras';
 import { GENE_KEYS } from '../evolution/genome';
 import type { Franchise } from '../evolution/franchise';
 import { eraColor, eraDisplayName, eraIndexOf } from './chronicleView';
-import { ATTR_KEYS, ROSTER_ROLES, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
+import { ATTR_KEYS, squadSummary } from '../evolution/playerGenome';
 import {
-  STYLE_DIMS, dimStats, nameplateFor, styleSpread, styleValues, topVarianceDims,
+  STYLE_DIMS, dimStats, styleSpread, styleValues, topVarianceDims,
   type DimStat, type DimTheme,
 } from '../evolution/styleSpace';
-import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import type { League } from '../sim/League';
-import { attrHeatmap, geneRadar, sparklineTile, stackedShareStrip, type RadarSeries } from './charts';
-import { bar, button, colorHex, el } from './dom';
-import { channelWindow, goalChannelTile } from './goalChannels';
-import { lang, t } from './i18n';
-import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
+import { attrHeatmap, sparklineTile, stackedShareStrip } from './charts';
+import { button, colorHex, el } from './dom';
+import type { EntityNav } from './entityLinks';
+import { t } from './i18n';
 
 const INK_MUTED = '#8294b5';
 const GRID = '#24304a';
@@ -43,8 +41,8 @@ const EVENT_ICON: Record<string, string> = {
  * not a tab of tiles). Architecture, hero first:
  *   1. the style-space map with a GENERATION SCRUBBER + play button — watch
  *      the league's styles drift, season by season (styleMatrix history);
- *   2. a club deep-dive panel (tap any dot / dynasty row): nameplate, radar,
- *      the club's OWN most-moved style dims over time, budget, squad, lineage;
+ *   2. a club DRIFT panel (tap any dot / dynasty row): the club's OWN
+ *      most-moved style dims over time (identity-now → the club center, 113.5);
  *   3. the dynasty wall — 16 slots × generations of elite/reborn/promotion
  *      events at a glance;
  *   4. population trends (divergence, formation shares, budget heatmap) with
@@ -62,6 +60,9 @@ export class EvolutionScreen {
   private playTimer: number | null = null;
   /** Set by GameApp: reopen the latest rebirth ceremony. */
   onShowCeremony: (() => void) | null = null;
+  /** Cross-screen navigation (Phase 108/113.5) — the drift panel links to
+   * the club center. Set by GameApp. */
+  nav: EntityNav | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -95,16 +96,6 @@ export class EvolutionScreen {
 
   refreshIfVisible(league: League): void {
     if (this.visible) this.render(league);
-  }
-
-  /** Jump straight to one club's deep dive (Phase 108, entity links) —
-   * unlike toggle(), the selection is the caller's, not the leader's. */
-  focusClub(league: League, slot: number): void {
-    this.selectedSlot = slot;
-    this.visible = true;
-    this.root.classList.remove('hidden');
-    this.render(league);
-    this.diveAnchor?.scrollIntoView({ block: 'start' });
   }
 
   /* ---------------- data ---------------- */
@@ -322,62 +313,28 @@ export class EvolutionScreen {
     host.appendChild(svg);
   }
 
-  /** Section 2 — the selected club's deep dive. */
+  /** Section 2 — the selected club through the EVOLUTION lens (113.5):
+   * identity-now moved to the club center; what stays here is how this
+   * club's style has MOVED across the generations. */
   private renderClubPanel(
     league: League, clubs: Franchise[], stats: DimStat[], frames: StyleFrame[],
   ): void {
+    void stats;
     const f = clubs.find((c) => c.slot === this.selectedSlot) ?? clubs[0];
     this.selectedSlot = f.slot;
-    this.diveAnchor = el('h2', '', t('Club deep dive'));
+    this.diveAnchor = el('h2', '', t('Club drift'));
     this.root.appendChild(this.diveAnchor);
     const panel = el('div', 'evo-club');
+    const driftCol = el('div', 'evo-club-col');
 
-    // Identity column.
-    const idCol = el('div', 'evo-club-col');
     const head = el('div', 'team-head');
     const dot = el('span', 'dot');
     dot.style.background = colorHex(f.colors.primary);
     head.append(dot, el('span', '', `${f.name} · Elo ${Math.round(f.elo)}`));
-    idCol.appendChild(head);
-    const tags = el('div', 'tags');
-    tags.appendChild(el('span', `tag div-badge-${f.division}`, f.division === 0 ? t('Premier Division') : t('Challenger Division')));
-    const plate = nameplateFor(styleValues({ genome: f.coach.genome, policy: f.coach.policy }), stats);
-    for (const word of plate) tags.appendChild(el('span', 'tag nameplate', t(word)));
-    tags.appendChild(el('span', 'tag', `⚔ ${f.coach.style.formationAtk}`));
-    tags.appendChild(el('span', 'tag', `🛡 ${f.coach.style.formationDef}`));
-    const prestige = league.prestigeOf(f.slot);
-    if (prestige >= 0.5) tags.appendChild(el('span', 'tag', '★'.repeat(Math.max(1, Math.min(Math.round(prestige), 3)))));
-    idCol.appendChild(tags);
+    // Identity-now lives on the club's own stage — one hop away.
+    head.appendChild(button(`🏟 ${t('Club center')}`, () => this.nav?.openClub(f.slot), 'club-link'));
+    driftCol.appendChild(head);
 
-    // The dugout (Phase 53): the philosophy has a face, an age and a record.
-    const c = f.coach;
-    idCol.appendChild(el('div', 'coach-block',
-      `👔 ${c.name} · ${c.age}${t('y')} — ${c.career.seasons} ${t('seasons in charge')}` +
-      ` · ${c.career.titles}×🏆 ${c.career.cups}×🏅` +
-      (c.career.clubs > 1 ? ` · ${c.career.clubs} ${t('clubs')}` : '') +
-      (c.career.sackings > 0 ? ` · ${c.career.sackings}×🪓` : '') +
-      (c.mentor ? ` · 🎓 ${t('school of')} ${c.mentor}` : '')));
-
-    const labels = geneAxisLabels(lang);
-    const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
-    const leagueMean = GENE_KEYS.map(
-      (k) => clubs.reduce((a, c) => a + c.coach.genome[k], 0) / Math.max(clubs.length, 1),
-    );
-    const series: RadarSeries[] = [
-      { values: leagueMean, color: '#8294b5', name: t('league mean'), dashed: true },
-      { values: genomeValues(f.coach.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
-    ];
-    idCol.appendChild(geneRadar(axes, series, { size: 190 }));
-    idCol.appendChild(el('div', 'radar-cap muted', `┄ ${t('league mean')}`));
-    const hops = parentChain(f.lineage, f.name);
-    if (hops.length > 0) {
-      idCol.appendChild(el('div', 'muted family-tree',
-        `🌳 ${hops.map((h) => `${h.child} ← ${h.parents.join(' × ')} (g${h.generation})`).join('  ·  ')}`));
-    }
-    panel.appendChild(idCol);
-
-    // Drift column: this club's own most-moved style dims across the frames.
-    const driftCol = el('div', 'evo-club-col');
     driftCol.appendChild(el('div', 'muted', t('This club\'s biggest style moves')));
     const series8 = frames
       .map((fr) => fr.bySlot.get(f.slot))
@@ -399,35 +356,6 @@ export class EvolutionScreen {
     } else {
       driftCol.appendChild(el('div', 'muted empty', t('Finish a season to see this club\'s drift.')));
     }
-
-    // Budget + squad.
-    const spent = squadTotal(f.squad);
-    const budgetRow = el('div', 'gene-row');
-    budgetRow.appendChild(el('div', 'g-name', t('budget')));
-    const budgetBar = bar(spent / SQUAD_BUDGET, spent >= SQUAD_BUDGET - 0.05 ? '#f59e0b' : '#34d399');
-    budgetBar.style.gridColumn = '2 / 3';
-    budgetRow.appendChild(budgetBar);
-    budgetRow.appendChild(el('div', 'muted', `${spent.toFixed(1)}/${SQUAD_BUDGET}`));
-    driftCol.appendChild(budgetRow);
-    const summary = squadSummary(f.squad);
-    for (const k of ATTR_KEYS) {
-      const row = el('div', 'gene-row');
-      row.appendChild(el('div', 'g-name', t(k)));
-      const b = bar(summary[k], '#60a5fa');
-      b.style.gridColumn = '2 / 4';
-      row.appendChild(b);
-      driftCol.appendChild(row);
-    }
-    // Goal channels (Phase 113): how this identity actually cashes out —
-    // scores AND concedes — over the recent window.
-    driftCol.appendChild(goalChannelTile(channelWindow(league, f.slot)));
-    driftCol.appendChild(el('div', 'muted',
-      f.playerNames.map((n, i) => {
-        const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
-        // The bench (Phase 61) sits behind the 🪑 marker; 🚫 = suspended.
-        const ban = (f.suspensions?.[i] ?? 0) > 0 ? ` 🚫${f.suspensions[i]}` : '';
-        return `${i === SQUAD_ROLES.length ? '🪑 ' : ''}${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}${ban}`;
-      }).join(' · ')));
     panel.appendChild(driftCol);
 
     this.root.appendChild(panel);

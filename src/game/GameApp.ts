@@ -36,6 +36,7 @@ import { EventFeed } from '../ui/EventFeed';
 import { EvolutionScreen } from '../ui/EvolutionScreen';
 import { PlayerScreen } from '../ui/PlayerScreen';
 import { LeagueScreen } from '../ui/LeagueScreen';
+import { ClubsScreen } from '../ui/ClubsScreen';
 import { RebirthCeremony } from '../ui/RebirthCeremony';
 import { LeftPanel } from '../ui/LeftPanel';
 import { ReplayBar } from '../ui/ReplayBar';
@@ -69,6 +70,7 @@ export class GameApp implements GameActions {
   private right!: RightPanel;
   private feed!: EventFeed;
   private leagueScreen!: LeagueScreen;
+  private clubsScreen!: ClubsScreen;
   private evolutionScreen!: EvolutionScreen;
   private playerScreen!: PlayerScreen;
   private ceremony!: RebirthCeremony;
@@ -151,6 +153,7 @@ export class GameApp implements GameActions {
     requestAnimationFrame(setTopbarVar);
     topbar.appendChild(el('h1', '', 'EVOFOOTBALL ARENA'));
     topbar.appendChild(button(t('League table'), () => this.toggleLeagueScreen()));
+    topbar.appendChild(button(`🏟 ${t('Clubs')}`, () => this.toggleClubsScreen()));
     topbar.appendChild(button(`🧬 ${t('Evolution')}`, () => this.toggleEvolutionScreen()));
     topbar.appendChild(button(`👥 ${t('Players')}`, () => this.togglePlayerScreen()));
     topbar.appendChild(button(t('Save'), () => this.saveNow()));
@@ -275,6 +278,7 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       this.feed.pushSystem(
         m === 'playoff'
           ? '⚔ Promotion rules: playoff mode — Premier 7th will host Challenger 2nd for the last spot.'
@@ -287,6 +291,7 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       this.feed.pushSystem(
         m === 'shootout'
           ? '🥅 Cup draw rule: level ties now go to a penalty shootout.'
@@ -300,6 +305,7 @@ export class GameApp implements GameActions {
     this.evolutionScreen = new EvolutionScreen(stage);
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
+    this.clubsScreen = new ClubsScreen(stage);
     // Entity links (Phase 108): any club/player NAME in chronicle, market
     // or census prose jumps to its deep dive across screens.
     const nav = {
@@ -308,6 +314,8 @@ export class GameApp implements GameActions {
     };
     this.leagueScreen.nav = nav;
     this.playerScreen.nav = nav;
+    this.clubsScreen.nav = nav;
+    this.evolutionScreen.nav = nav;
     this.clash = new ClashBanner(stage);
     // The launch overlay (Phase 96): the match boots and runs beneath it as
     // attract mode; the first click is the WebAudio gesture that starts the
@@ -809,6 +817,7 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       seasonEnded = true;
     }
     this.loadNextFixture();
@@ -871,6 +880,7 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       if (this.league.history.length > historyBefore) this.showCeremony();
     }
   }
@@ -981,6 +991,7 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       return;
     }
 
@@ -1028,6 +1039,7 @@ export class GameApp implements GameActions {
       this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       this.loadNextFixture();
       if (this.league.history.length > historyBefore) this.showCeremony();
     };
@@ -1045,7 +1057,17 @@ export class GameApp implements GameActions {
   toggleLeagueScreen(): void {
     this.evolutionScreen.hide();
     this.playerScreen.hide();
+    this.clubsScreen.hide();
     this.leagueScreen.toggle(this.league);
+    this.updateMusic();
+  }
+
+  /** The CLUB CENTER (Phase 113.5) — the clubs' own stage. */
+  toggleClubsScreen(): void {
+    if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
+    this.evolutionScreen.hide();
+    this.playerScreen.hide();
+    this.clubsScreen.toggle(this.league);
     this.updateMusic();
   }
 
@@ -1053,6 +1075,7 @@ export class GameApp implements GameActions {
   toggleEvolutionScreen(): void {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.playerScreen.hide();
+    this.clubsScreen.hide();
     this.evolutionScreen.toggle(this.league);
     this.updateMusic();
   }
@@ -1061,15 +1084,18 @@ export class GameApp implements GameActions {
   togglePlayerScreen(): void {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
+    this.clubsScreen.hide();
     this.playerScreen.toggle(this.league);
     this.updateMusic();
   }
 
-  /** Entity links (Phase 108): jump to a club's deep dive from anywhere. */
+  /** Entity links (Phase 108): jump to a club's deep dive from anywhere —
+   * since 113.5 the identity dive lives on the club center. */
   openClubDive(slot: number): void {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.playerScreen.hide();
-    this.evolutionScreen.focusClub(this.league, slot);
+    this.evolutionScreen.hide();
+    this.clubsScreen.focusClub(this.league, slot);
     this.updateMusic();
   }
 
@@ -1077,6 +1103,7 @@ export class GameApp implements GameActions {
   openPlayerDive(slot: number, index: number): void {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
+    this.clubsScreen.hide();
     this.playerScreen.focusPlayer(this.league, slot, index);
     this.updateMusic();
   }
@@ -1127,7 +1154,7 @@ export class GameApp implements GameActions {
       ? ['title', 1]
       : this.ceremony?.isVisible
         ? ['victory', 1]
-        : this.leagueScreen?.isVisible || this.evolutionScreen?.isVisible || this.playerScreen?.isVisible
+        : this.leagueScreen?.isVisible || this.evolutionScreen?.isVisible || this.playerScreen?.isVisible || this.clubsScreen?.isVisible
           ? ['league', 1]
           : pauseMusic // the clash no longer keeps the anthem by itself —
             // live play is crowd-only the moment ▶ is pressed (105), and
@@ -1205,6 +1232,7 @@ export class GameApp implements GameActions {
     this.loadNextFixture();
     this.feed.pushSystem('💾 League loaded.');
     this.leagueScreen.refreshIfVisible(this.league);
+    this.clubsScreen.refreshIfVisible(this.league);
   }
 
   /** Download the current league as a .json save file (Phase 21). */
@@ -1253,6 +1281,7 @@ export class GameApp implements GameActions {
         this.leagueScreen.refreshIfVisible(this.league);
       this.evolutionScreen.refreshIfVisible(this.league);
       this.playerScreen.refreshIfVisible(this.league);
+      this.clubsScreen.refreshIfVisible(this.league);
       });
     });
     input.click();
@@ -1267,6 +1296,7 @@ export class GameApp implements GameActions {
     this.left.setSpeedUI(this.paused, this.speed);
     this.feed.pushSystem(`🌱 New league, seed ${seed}.`);
     this.leagueScreen.refreshIfVisible(this.league);
+    this.clubsScreen.refreshIfVisible(this.league);
   }
 
   resetAll(): void {
@@ -1279,6 +1309,7 @@ export class GameApp implements GameActions {
     this.left.setSpeedUI(this.paused, this.speed);
     this.feed.pushSystem('🗑️ Save cleared. Fresh league.');
     this.leagueScreen.refreshIfVisible(this.league);
+    this.clubsScreen.refreshIfVisible(this.league);
   }
 
   /* ---------------- 3D view & replay actions ---------------- */

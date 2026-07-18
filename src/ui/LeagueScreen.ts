@@ -1,11 +1,7 @@
 import { detectEras } from '../evolution/eras';
-import { GENE_KEYS } from '../evolution/genome';
-import { nameplates } from '../evolution/styleSpace';
 import { chronicleChapters } from '../sim/chronicle';
 import { eraColor, eraDisplayName } from './chronicleView';
 import { buildEntityIndex, linkifyText, type EntityNav } from './entityLinks';
-import { ATTR_KEYS, ROSTER_ROLES, SQUAD_BUDGET, SQUAD_ROLES, squadSummary, squadTotal } from '../evolution/playerGenome';
-import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import {
   CUP_NAME, CUP_ROUNDS, CUP_ROUND_NAMES, CUP_ROUND_SHORT,
   type CupDrawMode, type CupEntrant, type CupTie,
@@ -19,11 +15,9 @@ import {
   domesticDoubles, giantKillingCounts, greatestComeback, longestPremierStreak, mostCupGoals,
   movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
-import { geneRadar, raceChart, sparklineTile, type RadarSeries } from './charts';
-import { channelWindow, goalChannelTile } from './goalChannels';
-import { bar, button, colorHex, el } from './dom';
-import { lang, t } from './i18n';
-import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
+import { raceChart } from './charts';
+import { button, colorHex, el } from './dom';
+import { t } from './i18n';
 
 type Tab = 'league' | 'cup' | 'report' | 'chronicle' | 'hall';
 
@@ -43,7 +37,7 @@ interface BracketData {
 
 /**
  * Full-screen league overlay, four tabs:
- *  League      — standings + team cards (genes, squad DNA, lineage)
+ *  League      — standings (club identity moved to the CLUB CENTER, 113.5)
  *  Report      — last season: awards, points race, champions history
  *  Hall of fame — all-time records mined from season history
  * (Evolution moved to its OWN screen — EvolutionScreen, Phase 51.)
@@ -108,8 +102,6 @@ export class LeagueScreen {
           this.root.appendChild(el('h2', '', t(DIVISION_NAMES[d])));
           this.renderStandings(league, d);
         }
-        this.root.appendChild(el('h2', '', t('Team cards')));
-        this.renderCards(league);
         break;
       case 'cup':
         this.renderCup(league);
@@ -204,7 +196,11 @@ export class LeagueScreen {
       const dot = el('span', 'dot');
       dot.style.background = colorHex(row.franchise.colors.primary);
       dot.style.marginRight = '6px';
-      nameTd.append(dot, document.createTextNode(row.franchise.name));
+      // The name links to the club center (113.5) — the cards moved there.
+      const name = el('span', 'entity-link', row.franchise.name);
+      name.title = t('View club');
+      name.addEventListener('click', () => this.nav?.openClub(row.slot));
+      nameTd.append(dot, name);
       tr.appendChild(nameTd);
       for (const v of [row.played, row.w, row.d, row.l, row.gf, row.ga, row.gf - row.ga, row.pts, Math.round(row.franchise.elo)]) {
         tr.appendChild(el('td', 'num', String(v)));
@@ -213,130 +209,6 @@ export class LeagueScreen {
     });
     table.appendChild(tbody);
     this.root.appendChild(table);
-  }
-
-  private renderCards(league: League): void {
-    const cards = el('div', 'cards');
-    const lastSeason = league.history[league.history.length - 1];
-    const ordered = [...league.division(0), ...league.division(1)];
-
-    const labels = geneAxisLabels(lang);
-    const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
-    const leagueMean = GENE_KEYS.map(
-      (k) => ordered.reduce((a, f) => a + f.coach.genome[k], 0) / Math.max(ordered.length, 1),
-    );
-    // Data-driven nameplates (Phase 49): a club's tags are where it actually
-    // deviates from THIS population — replaces the fixed identity buckets.
-    const plates = nameplates(ordered.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })));
-
-    for (const f of ordered) {
-      const card = el('div', 'team-card');
-
-      const head = el('div', 'team-head');
-      const dot = el('span', 'dot');
-      dot.style.background = colorHex(f.colors.primary);
-      head.append(dot, el('span', '', `${f.name} · Elo ${Math.round(f.elo)}`));
-      card.appendChild(head);
-
-      const tags = el('div', 'tags');
-      const divBadge = el('span', `tag div-badge-${f.division}`, DIVISION_SHORT[f.division]);
-      tags.appendChild(divBadge);
-      // Tactical identity (Phase 30): the club's fixed formations + scheme.
-      tags.appendChild(el('span', 'tag', `⚔ ${f.coach.style.formationAtk}`));
-      tags.appendChild(el('span', 'tag', `🛡 ${f.coach.style.formationDef}`));
-      tags.appendChild(el('span', 'tag', t(f.coach.style.scheme === 'man' ? 'man-marking' : 'zonal')));
-      for (const word of plates[ordered.indexOf(f)]) {
-        tags.appendChild(el('span', 'tag nameplate', t(word)));
-      }
-      // Prestige (Phase 40): age-decayed trophy weight, shown as stars.
-      const prestige = this.league ? this.league.prestigeOf(f.slot) : 0;
-      if (prestige >= 0.5) {
-        tags.appendChild(el('span', 'tag', '★'.repeat(Math.max(1, Math.min(Math.round(prestige), 3)))));
-      }
-      card.appendChild(tags);
-
-      // Tactical DNA (32.5): the radar reads as a SHAPE where 14 bars read
-      // as a wall — the dashed league mean makes "what's distinctive here"
-      // visible at a glance (per-gene values live in the axis tooltips).
-      const series: RadarSeries[] = [
-        { values: leagueMean, color: '#8294b5', name: t('league mean'), dashed: true },
-        { values: genomeValues(f.coach.genome), color: colorHex(f.colors.primary), name: f.name, fill: true },
-      ];
-      card.appendChild(geneRadar(axes, series, { size: 190 }));
-      card.appendChild(el('div', 'radar-cap muted', `┄ ${t('league mean')}`));
-
-      // Goal channels (Phase 113): the radar is INTENT — this is outcome,
-      // how the club actually scores and concedes.
-      card.appendChild(goalChannelTile(channelWindow(league, f.slot)));
-
-      // The dugout (Phase 53): the person the radar actually describes.
-      const c = f.coach;
-      const honours = [
-        c.career.titles > 0 ? `${c.career.titles}×🏆` : '',
-        c.career.cups > 0 ? `${c.career.cups}×🏅` : '',
-        c.career.clubs > 1 ? `${c.career.clubs} ${t('clubs')}` : '',
-      ].filter(Boolean).join(' ');
-      card.appendChild(el('div', 'muted coach-line',
-        `👔 ${c.name} · ${c.age}${t('y')}${honours ? ` · ${honours}` : ''}` +
-        (c.mentor ? ` · 🎓${t('school of')} ${c.mentor}` : '')));
-
-      // Family tree (32.5): the slot's chain of rebirths, newest first.
-      const hops = parentChain(f.lineage, f.name);
-      if (hops.length > 0) {
-        card.appendChild(el('div', 'muted family-tree',
-          `🌳 ${hops.map((h) => `${h.child} ← ${h.parents.join(' × ')} (g${h.generation})`).join('  ·  ')}`));
-      }
-
-      card.appendChild(el('div', 'muted', 'squad (avg attributes):'));
-      // The wage cap (Phase 48): where a club chose to spend is its
-      // identity — the constraint is visible at a glance.
-      const spent = squadTotal(f.squad);
-      const budgetRow = el('div', 'gene-row');
-      budgetRow.appendChild(el('div', 'g-name', t('budget')));
-      const budgetBar = bar(spent / SQUAD_BUDGET, spent >= SQUAD_BUDGET - 0.05 ? '#f59e0b' : '#34d399');
-      budgetBar.style.gridColumn = '2 / 3';
-      budgetRow.appendChild(budgetBar);
-      budgetRow.appendChild(el('div', 'muted', `${spent.toFixed(1)}/${SQUAD_BUDGET}`));
-      card.appendChild(budgetRow);
-      const summary = squadSummary(f.squad);
-      for (const k of ATTR_KEYS) {
-        const row = el('div', 'gene-row');
-        row.appendChild(el('div', 'g-name', k));
-        const b = bar(summary[k], '#60a5fa');
-        b.style.gridColumn = '2 / 4';
-        row.appendChild(b);
-        card.appendChild(row);
-      }
-      // Careers (Phase 26): the people behind the bars, with their ages —
-      // and their TRAITS (Phase 39, derived live from attrs+role). The
-      // bench (Phase 61) sits behind the 🪑.
-      const personLine = (i: number): string => {
-        const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i])
-          .map((tt) => TRAIT_EMOJI[tt])
-          .join('');
-        const ban = (f.suspensions?.[i] ?? 0) > 0 ? ` 🚫${f.suspensions![i]}` : '';
-        return `${f.playerNames[i]} ${f.ages[i]}y${tr ? ` ${tr}` : ''}${ban}`;
-      };
-      const starterIdx = f.playerNames.slice(0, SQUAD_ROLES.length).map((_, i) => i);
-      const benchIdx = f.playerNames.slice(SQUAD_ROLES.length).map((_, i) => SQUAD_ROLES.length + i);
-      card.appendChild(el('div', 'muted',
-        starterIdx.map(personLine).join(' · ')
-        + (benchIdx.length ? `  🪑 ${benchIdx.map(personLine).join(' · ')}` : '')));
-
-      const fit = lastSeason?.fitness.find((x) => x.slot === f.slot);
-      if (fit) card.appendChild(el('div', 'muted', `last-season fitness: ${fit.total.toFixed(3)}`));
-
-      const lin = el('div', 'lineage');
-      for (const entry of [...f.lineage].reverse().slice(0, 6)) {
-        const icon = entry.event === 'elite' ? '👑' : entry.event === 'mutated' ? '🧬' : entry.event === 'reborn' ? '🔄' : '🌱';
-        const parents = entry.parents ? ` ← ${entry.parents.join(' × ')}` : '';
-        const note = entry.note ? ` (${entry.note})` : '';
-        lin.appendChild(el('div', '', `g${entry.generation} ${icon} ${entry.event}${parents}${note}`));
-      }
-      card.appendChild(lin);
-      cards.appendChild(card);
-    }
-    this.root.appendChild(cards);
   }
 
   /* ---------------- Cup tab ---------------- */

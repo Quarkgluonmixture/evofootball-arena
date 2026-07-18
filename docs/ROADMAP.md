@@ -1295,11 +1295,31 @@ sim-IDENTICAL under the invariant-2 strip protocol (v28 save minus
 ch-fields re-hashes to `8e02a9cb…` EXACTLY); full-JSON baseline
 REBASELINED `8c6330b2…` (format-only).
 
+⭐⭐⭐ **THE 113.5 RESULT (2026-07-18 evening) — the CLUB CENTER + the
+IA reorganization (user direction mid-113, ratified "go").** New
+top-bar 🏟 球队 tab (`ClubsScreen`, the player-center pattern): a
+compact 16-club selector wall (dot/name/Elo, division badge, 2
+nameplates, W-D-L·pts, coach) + ONE deep dive — identity-NOW all in
+one place: tags, dugout record, gene radar vs league mean, ⭐ the
+阵型图 (`formationDiagram` in charts.ts: mini pitch, six spots from
+the real `ATTACK_FORMATIONS`/`DEFEND_FORMATIONS` tables, hollow GK,
+role tooltips — both phases side by side), goal channels, budget +
+attrs + squad, family tree + lineage. The league tab SHEDS its 16
+full team cards (standings names are now click-through links to the
+club center); the evolution center sheds identity duty — its club
+panel is now DRIFT-only (style moves across generations + a
+club-center link button), so 116's enrichment lands in a purified
+home. Entity links (108) retarget: club names anywhere → club center.
+Zero sim: fingerprint IDENTICAL `8c6330b2…` (no strip needed). Gates:
+vitest 430 green, visual 120+54 (2D checks re-homed + 9 net new:
+wall/dive/diagram/link coverage), build clean.
+
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 113.5 (112+113 shipped 2026-07-18; 113.5 =
-the user's mid-113 IA direction, scope confirm pending their reply).**
+⭐ HEAD OF QUEUE IS NOW 114 (112+113+113.5 shipped 2026-07-18); the
+114/115 viz items land in their NEW homes (club center / league
+table) after the 113.5 IA split.**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1318,19 +1338,12 @@ in-engine classifier, save v28, 进球管道 tile on team cards + deep
 dive; census validated vs launch-anatomy; fingerprint sim-identical
 by strip protocol, full baseline `8c6330b2…`.)
 
-**113.5 — CLUB TAB + IA reorganization (user direction mid-113,
-2026-07-18: "球队应该和球员一样单开" + "演化就单独放演化…专门有球员,
-球队的tab" — SCOPE CONFIRM PENDING their reply to the proposal).**
-Proposed cut: ① new top-bar 球队 tab (like Players): card grid → club
-detail — identity (radar, nameplates, formation DIAGRAMS from the
-`ATTACK_FORMATIONS`/`DEFEND_FORMATIONS` spot tables — the 阵型图 ask),
-dugout, squad+budget, goal channels, honours/lineage; the league-tab
-team cards MOVE here, league center slims to standings/cup/report/
-chronicle/hall; ② Evolution screen sheds club-identity duty, keeps
-ONLY change-over-generations (population trends, drift, dynasty, eras)
-— which makes 116's enrichment land in a purified home; ③ the club
-deep dive relocates from Evolution → 球队 tab (Evolution keeps a link).
-114/115 then land in the new homes.
+**113.5 — CLUB TAB + IA reorganization** ✅✅ **SHIPPED 2026-07-18
+(user "go") — see the full result entry ABOVE this queue block.**
+(ClubsScreen selector-wall + identity dive with 阵型图; league tab
+sheds cards, standings link through; evolution club panel = drift
+only + club-center link; entity links retargeted; zero sim,
+fingerprint identical.)
 
 **114 — FORM STRIP + morale visibility.** Last-5 W/D/L dots + a morale
 sparkline on the league table rows and club cards (the 111 data is all

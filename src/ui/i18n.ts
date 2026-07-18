@@ -326,6 +326,15 @@ const ZH: Record<string, string> = {
   'league mean': '联赛均值',
   'tap to dismiss': '点按关闭',
 
+  // ---- the club center (Phase 113.5) ----
+  Clubs: '球队',
+  'Club center': '球队中心',
+  'All clubs': '全部球队',
+  'Tap a club to inspect it above.': '点选一支球队,在上方查看它。',
+  pts: '分',
+  'View club': '查看球队',
+  'Club drift': '风格漂移',
+
   // ---- goal channels (Phase 113) ----
   'Goal channels': '进球管道',
   scored: '攻',

@@ -611,17 +611,35 @@ body.cinematic .cinematic-enter { display: none; }
 .coach-line { margin: 4px 0; }
 .player-plate { margin: 3px 0; color: #f5c542; font-size: 13px; }
 
-/* ---- the player center (Phase 56) ---- */
-#player-screen {
+/* ---- the player center (Phase 56) + the club center (113.5) ---- */
+#player-screen,
+#clubs-screen {
   position: absolute; inset: 0; overflow-y: auto;
   background: #080c16; padding: 18px 22px; z-index: 10;
   animation: feed-in 0.2s ease-out;
 }
-#player-screen.hidden { display: none; }
-#player-screen h2 {
+#player-screen.hidden,
+#clubs-screen.hidden { display: none; }
+#player-screen h2,
+#clubs-screen h2 {
   margin: 14px 0 10px; color: var(--accent); font-size: var(--fs-lg);
 }
-#player-screen h2:first-child { margin-top: 0; }
+#player-screen h2:first-child,
+#clubs-screen h2:first-child { margin-top: 0; }
+
+/* ---- the club center (113.5): selector wall + formation diagrams ---- */
+.clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.club-mini {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 6px; padding: 8px 10px; cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.club-mini:hover { border-color: var(--accent); }
+.club-mini.selected { border-color: var(--accent); }
+.diagram-row { display: flex; gap: 8px; margin: 8px 0; }
+.pitch-tile { flex: 1; min-width: 0; }
+.pitch-tile .g-name { color: var(--muted); font-size: 11px; margin-bottom: 2px; }
+.team-head button.club-link { margin-left: auto; font-size: 11px; padding: 2px 10px; }
 .player-map { max-width: 640px; }
 .player-lens button { padding: 4px 12px; border-radius: 12px; }
 .player-dive { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 18px; }
@@ -637,7 +655,7 @@ body.cinematic .cinematic-enter { display: none; }
 .style-diverge-fill { position: absolute; top: 0; bottom: 0; border-radius: 5px; }
 .census-tags { margin: 6px 0; }
 @media (max-width: 640px) {
-  #player-screen { padding: 12px 10px; }
+  #player-screen, #clubs-screen { padding: 12px 10px; }
   .player-dive { grid-template-columns: 1fr; }
 }
 .coach-block { margin: 8px 0; padding: 6px 10px; border-left: 3px solid #f5c542; font-size: 13px; }
@@ -675,7 +693,8 @@ body.cinematic .cinematic-enter { display: none; }
    position:absolute (same specificity, later declaration wins). */
 @media (max-width: 640px) {
   #evolution-screen,
-  #player-screen {
+  #player-screen,
+  #clubs-screen {
     position: fixed;
     inset: 0;
     top: var(--topbar-h, 88px);
