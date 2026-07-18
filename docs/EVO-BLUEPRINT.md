@@ -1773,3 +1773,26 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   carry + give-and-go co-dominance, not passing dominance — a second
   scoring pattern, honest to the format. Reverted clean (`848370ae`
   untouched); `supply-side.ts` probe kept for the give-and-go work.
+- ⭐ **2026-07-18 THE BREAKAWAY-ORIGIN FINDING (user's 3rd read:
+  breakaways are scramble-born + uncovered)** — `breakaway-origin.ts`,
+  verified clean at gen 21: of every clean 1v1 that forms, **43-54%
+  are SCRAMBLE/transition-born** (won a loose ball/tackle and is
+  immediately through — 6v6 with bodies committed = win it, you're
+  through), 28-38% created by a pass, and **only 19% a genuine
+  dribble-beat**. So the "carry monoculture" is really a
+  transition-and-scramble-into-a-walk-in meta (partly REALISTIC for
+  small-sided — futsal is transition-goal-heavy); clean 1v1 dribbling
+  is the minority. COVER at formation: ~2.0-2.2 defenders are
+  free-and-recoverable and zero-cover is only 2% — so bodies EXIST,
+  they're just not positioned goal-side as a SPARE (the breakaway forms
+  because nobody holds the covering-sweeper role). ⭐ This points at the
+  first ASYMMETRIC lever in six attempts (119c defensive gene-bend +
+  four 119d-1 supply cuts all failed because they added space, which
+  helps the carry ≥ passing): a COVER/sweeper (the `coverBias` gene,
+  today a libero for the offside line only) that READS a forming
+  breakaway/transition and STEPS ACROSS to snuff it — adding a body to
+  the 1v1 (hurts the carry) and, by leaving his man, forcing the pass
+  to the freed attacker (the diversity engine / 博弈). Distinct from
+  the failed space-adders. Candidate for the real 119d; probe-first +
+  A/B (goals floor + gene-drain watch — a permanent sweeper could
+  over-suppress or be selected away). `breakaway-origin.ts` kept.
