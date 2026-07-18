@@ -1554,6 +1554,18 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ⭐ **2026-07-18 NIGHT — QUEUE v2 ratified** (user, against the UI
+  audit + counter-defense conversation): 112 transition-press gene
+  (the first-3s-after-turnover axis — the counter-defense audit's real
+  hole, sitting on the walk-in launch window) → 113 goal-channel viz
+  (probe-grade anatomy goes player-facing) → 114 form strip → 115
+  budget viz done right + trap-school feed credit → 116 Evolution
+  Center enrichment (formation/style/appetite HISTORY — how identities
+  change, user: 演化页面不够丰富) → 117 audio housekeeping (amb bed
+  random-pick leaves one silent per session; sfx_shot_01 is a dead
+  asset) → 118+ Stage 4 resumes (injuries → home adv → memory
+  commentary). **Full queue at ROADMAP head ("THE NEXT 自走 QUEUE
+  v2") — resume there.**
 - ✅ **phase-111 SHIPPED** (**FORM/MORALE** — Stage 4 opens: rolling,
   upset-weighted, mean-reverting team confidence + the 22nd gene
   `moraleSensitivity` pricing what it does (±9.6% pass/shot noise at

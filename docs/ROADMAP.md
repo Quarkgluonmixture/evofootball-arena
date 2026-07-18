@@ -1228,9 +1228,65 @@ mid-phase): ADVANTAGE fouls no longer whistle** — the fx stream
 filters "— advantage" fouls (RenderStateAdapter), so neither the SFX
 nor the 3D referee blows while play runs on; the feed line stays.
 
-**112+ — Stage 4 pull items, one at a time, each passing "does it give
-genes a NEW payoff surface?"**: injuries (N2 infrastructure ready) →
-home advantage → memory commentary.
+⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
+after the user's compact; user-ratified: "这几个写入吧" against the
+UI-audit + counter-defense conversation, plus their own additions).**
+State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
+day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
+111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
+re-roll watch). Execute IN ORDER, one phase = one commit+tag+push,
+full gates each, probe-first everywhere.
+
+**112 — the TRANSITION-PRESS gene (counter-press vs retreat — the
+first-3-seconds-after-turnover axis).** The real hole the counter-
+defense audit found: SIX channels answer a running counter (cover /
+jockey / chasers / slide / grab / keeper) but NO gene owns the
+transition INSTANT — gegenpress (win it back in 6s, at the price of
+being dead if beaten) vs drop-and-recover (concede the launch, keep
+the depth). It sits EXACTLY on the walk-in launch window
+(launch-anatomy: 69-78% of breakaways are carry-throughs born in that
+window) — school completeness AND arc-relevant. 23rd gene → save v27,
+migration, adoption gate, the full 109/111 playbook. Probe first: what
+do teams DO in the 3s after turnover today (chaser latency, retreat
+speed, presser count) — then let the gene price the choice.
+
+**113 — GOAL-CHANNEL visualization (the probe-grade anatomy goes
+player-facing).** The launch/shot classification we built for
+ourselves (walk-in / carry-through / through-ball / cross / set piece
+/ keeper-launch) becomes a per-club "进球管道" breakdown in the league
+center + club deep dive — how a team scores AND how it concedes; the
+defensive schools finally read. Needs a lightweight per-goal channel
+tag recorded at markShotOutcome time (save-touching? keep it in
+SeasonRecord aggregates).
+
+**114 — FORM STRIP + morale visibility.** Last-5 W/D/L dots + a morale
+sparkline on the league table rows and club cards (the 111 data is all
+there; only the 🔥/❄ extremes show today).
+
+**115 — BUDGET viz done RIGHT (the user's call-out) + small viz
+debts.** Replace/augment the attr heatmap with per-club DELTA BARS vs
+the league mean (+pace −defending — stars-vs-balanced, the 48
+emergence, finally legible); the bench-vs-XI budget split (61);
+⭐ also: credit the TRAP SCHOOL in the feed when a high-trapBias
+defense wins an offside (109's visible face is missing).
+
+**116 — the EVOLUTION CENTER enrichment (user: "演化页面不够丰富").**
+Per-club FORMATION/STYLE history (shape switches over generations — a
+timeline like the era strip, from lineage notes); player PERSONAL-
+style evolution (appetite drift across a career, the 54 wire has the
+data); coach philosophy drift; whatever else the 51-56 screens never
+surfaced about how identities CHANGE, not just what they are.
+
+**117 — AUDIO housekeeping (user report).** ① the two amb beds are
+both wired but `Math.random()` picks ONE per session — the other never
+plays (the user noticed). Decide: LAYER both (denser crowd) or slow-
+alternate; kill the per-load randomness. ② `sfx_shot_01.m4a` is a
+ZERO-reference dead asset — wire it (shots are silent today?) or
+delete it from the bundle. ③ a full asset-reference sweep while in
+there (all else verified 1-ref this audit).
+
+**118+ — Stage 4 pull items resume**: injuries (N2 infrastructure
+ready) → home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
 EARS (every gain has a dB paper trail in the 105 entry — report by
