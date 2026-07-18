@@ -63,7 +63,7 @@ export interface RenderBall {
 
 /** A recent notable event, for visual/audio feedback (deduped by `t`). */
 export interface FxEvent {
-  type: 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card';
+  type: 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card' | 'woodwork';
   side: Side;
   t: number;
   /** Attached for shots so the viewer can show chance quality. */
@@ -237,7 +237,7 @@ function buildFx(match: Match): FxEvent[] {
     if (
       ev.type === 'goal' || ev.type === 'save' || ev.type === 'shot' ||
       ev.type === 'interception' || ev.type === 'corner' ||
-      ev.type === 'foul' || ev.type === 'card'
+      ev.type === 'foul' || ev.type === 'card' || ev.type === 'woodwork'
     ) {
       const fx: FxEvent = { type: ev.type, side: ev.side as Side, t: ev.t };
       // The card's color lives only in the feed text — mine it (Phase 75).

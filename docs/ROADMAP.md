@@ -879,6 +879,24 @@ rule: diagnose before designing; a 91-style negative result).
 If the user's play-feel still disagrees in the morning, the next
 probe is through-ball QUALITY deep (completion + what the channel
 runner does), not appetite. Fingerprint untouched `fa984021…`.)
++ ✅ **phase-100 SHIPPED** (**WOODWORK — the crossbar sample finally
+has its mechanic** (queue-tail item): a driven ball crossing the
+goal plane in the OUTER band of a post (|y| ∈ [3.5, 3.67], the
+frame+ball radius) or just over the bar (z ∈ [2.44, 2.61]) CLANGS
+back into play — crossing point interpolated back to the plane (a
+30 m/s shot travels 0.5m/step; the post-step position overshoots).
+Deliberately outer-half only: the inner frame edge stays a goal
+EXACTLY as before, so no goals are stolen and NO rng draws are
+consumed (deterministic bounce → zero seed re-anchors: vitest 421
+all green untouched). First cut bounced ×0.52 and fed the six-yard
+scramble (calibrate 2024 hit 3.61) — deadened to ×0.4 with post
+ricochets pushed OUTWARD to the flank: calibrate 2.48/2.89/3.29
+(in band). Measured rate 0.38/match (30 posts + 8 bars per 100) —
+real-football territory. Full wire: 'woodwork' event type → feed
+🔩 → fx → `sfx_ball_hit_crossbar_01` + the crowd's wince; the
+miss-deflation treats a frame hit as resolved (no double gasp).
+vitest 421 (4 new); visual 109+52; fingerprint REBASELINED
+`47f0e842…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
@@ -950,7 +968,7 @@ chaser-count hardcode; N6 follow-through (fitBias drift watch).
 
 Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
 play reports; goals-band verdict = theirs; amb-loop human listen
-still open. HEAD fingerprint `3cd1253f…` (phase-95). The user PLAYS CONTINUOUSLY —
+still open. HEAD fingerprint `47f0e842…` (phase-100; 96/97 rode 95's `3cd1253f…` identity, 98 rebaselined `fa984021…`). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

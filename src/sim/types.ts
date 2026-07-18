@@ -308,6 +308,7 @@ export type EventType =
   | 'goal'
   | 'shot'
   | 'save'
+  | 'woodwork'
   | 'interception'
   | 'tackle'
   | 'keypass'

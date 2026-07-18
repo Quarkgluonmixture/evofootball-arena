@@ -357,7 +357,9 @@ export class ThreeMatchRenderer {
       // The near thing (Phase 90): a shot ended with neither a goal nor a
       // save in the fx window — the crowd deflates.
       if (this.prevIsShot && !state.ball.isShot) {
-        const resolved = state.fx.some((f) => f.type === 'goal' || f.type === 'save');
+        const resolved = state.fx.some(
+          (f) => f.type === 'goal' || f.type === 'save' || f.type === 'woodwork',
+        );
         if (!resolved) this.onFxEvent?.('miss');
       }
       this.prevIsShot = state.ball.isShot;

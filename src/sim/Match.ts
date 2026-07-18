@@ -852,6 +852,7 @@ export class Match {
       return;
     }
     if (this.checkGoal()) return;
+    if (this.checkWoodwork()) return; // clanged back into play — not out
     if (this.checkOutOfPlay()) return;
     mech.tryShotBlock(this);
     mech.tryKeeperSave(this);
@@ -862,6 +863,49 @@ export class Match {
       return;
     }
     this.tryCapture();
+  }
+
+  /**
+   * WOODWORK (Phase 100 — the queue-tail item that unlocks the recorded
+   * crossbar sample): a ball crossing the goal plane in the OUTER band of a
+   * post (|y| just past the frame) or just OVER the bar clangs back into
+   * play instead of going out. Deliberately outer-half only: the inner
+   * half of the frame stays a goal exactly as before — woodwork converts
+   * former near-miss OUTS into live rebounds, so the goal rate is
+   * untouched at first order and NO new rng draws are consumed (the
+   * bounce is deterministic: reflected, damped, spin killed).
+   */
+  private checkWoodwork(): boolean {
+    const ball = this.ball;
+    if (this.phase !== 'playing' || ball.owner !== null) return false;
+    if (Math.abs(ball.pos.x) <= HALF_L) return false;
+    const sign = ball.pos.x > 0 ? 1 : -1;
+    if (ball.vel.x * sign <= 2) return false; // must be DRIVEN out, not trickling
+    // Interpolate the crossing point back to the plane (a 30 m/s shot
+    // travels 0.5m in one step — the post-step position overshoots).
+    const stepX = Math.abs(ball.vel.x) * DT;
+    const frac = Math.min(1, (Math.abs(ball.pos.x) - HALF_L) / Math.max(stepX, 1e-6));
+    const yAt = ball.pos.y - ball.vel.y * DT * frac;
+    const zAt = Math.max(0, ball.z - ball.vz * DT * frac);
+    const BAND = 0.17; // post/bar radius + ball radius
+    const post = Math.abs(yAt) >= GOAL_WIDTH / 2 && Math.abs(yAt) < GOAL_WIDTH / 2 + BAND && zAt < GOAL_HEIGHT;
+    const bar = zAt >= GOAL_HEIGHT && zAt < GOAL_HEIGHT + BAND && Math.abs(yAt) < GOAL_WIDTH / 2 + BAND;
+    if (!post && !bar) return false;
+    // The clang: reflect off the plane, damped DEAD (the frame wins; a
+    // lively 0.52 rebound fed the six-yard scramble and pushed calibrate
+    // seed 2024 to 3.61 — the mechanic must not be a goal channel). Post
+    // hits also ricochet OUTWARD toward the flank, off the frame's curve.
+    ball.pos.x = sign * (HALF_L - (Math.abs(ball.pos.x) - HALF_L) * 0.4 - 0.01);
+    ball.vel.x *= -0.4;
+    if (post) ball.vel.y = Math.sign(yAt || 1) * Math.max(Math.abs(ball.vel.y) * 0.82, 3);
+    else ball.vel.y *= 0.82;
+    if (bar) ball.vz = -Math.abs(ball.vz) * 0.35; // off the bar it comes DOWN
+    ball.spin = 0;
+    // Credit the striker's side (sign>0 = the +x goal = team 0's attack).
+    const shooterSide: Side = this.pendingShot?.side ?? (sign > 0 ? 0 : 1);
+    this.pushEvent('woodwork', shooterSide, bar ? '🔩 Off the CROSSBAR!' : '🔩 Off the post!');
+    this.markShotOutcome('miss'); // on the frame ≠ on target
+    return true;
   }
 
   private checkGoal(): boolean {

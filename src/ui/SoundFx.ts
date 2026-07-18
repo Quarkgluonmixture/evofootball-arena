@@ -8,7 +8,7 @@
  */
 export type FxSoundType =
   | 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card'
-  | 'pass' | 'touch' | 'miss' | 'header';
+  | 'pass' | 'touch' | 'miss' | 'header' | 'woodwork';
 
 /** Sample file(s) + gain per event; arrays play together (net + crowd). */
 const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>>> = {
@@ -31,6 +31,12 @@ const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>
   foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.55 }],
   // A near thing goes wide/over — the crowd deflates (Phase 90).
   miss: [{ file: 'sfx_crowd_disappointment_01.m4a', gain: 0.6 }],
+  // The clang the author recorded a phase range ago finally has its
+  // mechanic (Phase 100): frame hit + the crowd's collective wince.
+  woodwork: [
+    { file: 'sfx_ball_hit_crossbar_01.m4a', gain: 1.25 },
+    { file: 'sfx_crowd_disappointment_01.m4a', gain: 0.5 },
+  ],
   // The aerial duel's thud (Phase 90) — header flags from the renderer.
   header: [{ file: 'sfx_aerial_duel_contact_01.m4a', gain: 0.8 }],
   // card: silent — the whistle already blew for the foul.

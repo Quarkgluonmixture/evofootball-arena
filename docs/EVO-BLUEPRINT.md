@@ -1501,6 +1501,13 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   through 6-18%, immediate turnover 3%. No appetite booster built —
   the data doesn't ask for one. Next probe if play-feel disagrees:
   through-ball quality deep, not appetite.
+- ✅ **phase-100 SHIPPED** (**woodwork**; fingerprint REBASELINED
+  `47f0e842…`, zero re-anchors — deterministic bounce, no rng).
+  Outer-band frame hits clang back into play (inner edge stays a
+  goal — nothing stolen); 0.38/match (posts 4:1 bars); rebound
+  deadened ×0.4 + outward post ricochet after the lively first cut
+  pushed a seed to 3.61. The recorded crossbar sample is live end
+  to end (event→feed→fx→SFX, miss-deflation deduped).
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure
