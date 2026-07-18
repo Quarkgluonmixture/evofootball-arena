@@ -1317,9 +1317,10 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 117 — AUDIO housekeeping (112 through 116
-shipped 2026-07-18; fingerprint baseline now `f032c705…` after the
-v29 shape-history field).**
+⭐ HEAD OF QUEUE IS NOW 118+ — Stage 4 pull items resume: INJURIES
+(N2 infrastructure ready) → home advantage → memory commentary. (112
+through 117 ALL shipped 2026-07-18; fingerprint baseline `f032c705…`
+since the v29 shape-history field.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1395,13 +1396,19 @@ bloodline-level and unrecorded; not built, documented (would need
 its own recording seam if ever wanted). Gates: vitest 436 (+2),
 visual 126+53, build clean.
 
-**117 — AUDIO housekeeping (user report).** ① the two amb beds are
-both wired but `Math.random()` picks ONE per session — the other never
-plays (the user noticed). Decide: LAYER both (denser crowd) or slow-
-alternate; kill the per-load randomness. ② `sfx_shot_01.m4a` is a
-ZERO-reference dead asset — wire it (shots are silent today?) or
-delete it from the bundle. ③ a full asset-reference sweep while in
-there (all else verified 1-ref this audit).
+**117 — AUDIO housekeeping** ✅ **SHIPPED 2026-07-18.** ① amb beds
+now LAYERED (chose density over alternation — alternation adds bed
+seams and the seam-listen is already a standing item): both loops
+play through per-bed constant gains into one shared arousal gain;
+each bed −3 dB (6.7/6.2 → 4.8/4.4) so the uncorrelated pair sums
+back to the 105-measured ≈−29 dB floor; `Math.random()` bed pick
+DELETED (chant randomness stays — that's within-session variety,
+render-side). ② `sfx_shot_01.m4a` deleted: shots were never silent
+(`SAMPLES.shot` = kick_power at 1.35 since 105) — a true dead asset.
+③ sweep: every other asset exactly 1-ref, all 3 BGM in use. ⭐ The
+new denser bed is part of the STANDING ears-session (105) — judge
+them together. Render-only: fingerprint IDENTICAL `f032c705…`.
+Gates: vitest 436, visual 126+54, build clean.
 
 **118+ — Stage 4 pull items resume**: injuries (N2 infrastructure
 ready) → home advantage → memory commentary.

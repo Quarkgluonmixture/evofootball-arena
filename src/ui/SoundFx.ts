@@ -61,12 +61,14 @@ const UI_SAMPLES: Record<'click' | 'toggle' | 'heavy', { file: string; gain: num
 
 const CHANTS = ['amb_stadium_crowd_chant_01.m4a', 'amb_stadium_crowd_chant_02.m4a'];
 // The beds are recorded VERY quiet (−45.5/−44.8 dB RMS — 18 dB under every
-// reaction sample); per-bed gains lift both to ≈−29 dB effective, the
-// audible floor the reactions then sit just above. Peaks stay ≤−9 dB even
-// at the arousal ceiling (×1.6).
+// reaction sample). Both beds now play LAYERED (Phase 117 — the old
+// Math.random pick left one bed unheard for a whole session): each bed's
+// 105-measured gain (6.7 / 6.2 → ≈−29 dB effective solo) drops 3 dB
+// (×0.71) so the UNCORRELATED pair sums back to the same ≈−29 dB floor,
+// just denser. Peaks stay ≤−9 dB at the arousal ceiling (×1.6).
 const AMB_BEDS = [
-  { file: 'amb_stadium_crowd_low_loop_01.wav', gain: 6.7 },
-  { file: 'amb_stadium_crowd_low_loop_02.wav', gain: 6.2 },
+  { file: 'amb_stadium_crowd_low_loop_01.wav', gain: 4.8 },
+  { file: 'amb_stadium_crowd_low_loop_02.wav', gain: 4.4 },
 ];
 // Source is near the noise floor (−62 dB RMS) — it needs this much just to
 // whisper under a sprint (was 0.3 = −72 dB effective, pure placebo).
@@ -78,7 +80,9 @@ export class SoundFx {
   private ctx: AudioContext | null = null;
   private buffers = new Map<string, AudioBuffer>();
   private loading = false;
-  private ambSrc: AudioBufferSourceNode | null = null;
+  private ambSrcs: AudioBufferSourceNode[] = [];
+  /** Shared arousal-scaled gain over the layered beds (per-bed level lives
+   * in each bed's own constant node). */
   private ambGain: GainNode | null = null;
   private master: GainNode | null = null;
   private on = false;
@@ -86,7 +90,6 @@ export class SoundFx {
   /** Sim playback speed (Phase 89): at fast-forward the per-touch layer
    * machine-guns — GameApp feeds the multiplier so play() can gate. */
   simSpeed = 1;
-  private ambBed = AMB_BEDS[Math.floor(Math.random() * AMB_BEDS.length)];
   private chantTimer: ReturnType<typeof setTimeout> | null = null;
   private arousal = 0;
   private stadium = true;
@@ -97,7 +100,7 @@ export class SoundFx {
     this.arousal = a;
     if (this.ambGain && this.ctx) {
       this.ambGain.gain.setTargetAtTime(
-        AMBIENCE_GAIN * this.ambBed.gain * (0.7 + a * 0.9), this.ctx.currentTime, 0.4,
+        AMBIENCE_GAIN * (0.7 + a * 0.9), this.ctx.currentTime, 0.4,
       );
     }
   }
@@ -282,22 +285,30 @@ export class SoundFx {
     if (this.on) this.startAmbience();
   }
 
-  /** The stadium bed: the QA'd seamless-loop candidate, WAV (AAC's encoder
-   * priming would click at the loop point), low in the mix. */
+  /** The stadium beds: the QA'd seamless-loop candidates, WAV (AAC's
+   * encoder priming would click at the loop point), low in the mix —
+   * BOTH layered since Phase 117 (level math at AMB_BEDS). */
   private startAmbience(): void {
-    if (!this.ctx || this.ambSrc || !this.stadium || !this.buffers.has(this.ambBed.file)) return;
-    const src = this.ctx.createBufferSource();
-    src.buffer = this.buffers.get(this.ambBed.file)!;
-    src.loop = true;
-    const g = this.ctx.createGain();
-    g.gain.value = 0;
-    g.gain.linearRampToValueAtTime(
-      AMBIENCE_GAIN * this.ambBed.gain * (0.7 + this.arousal * 0.9), this.ctx.currentTime + 1.2,
+    if (!this.ctx || this.ambSrcs.length > 0 || !this.stadium) return;
+    const beds = AMB_BEDS.filter((b) => this.buffers.has(b.file));
+    if (beds.length === 0) return;
+    const shared = this.ctx.createGain();
+    shared.gain.value = 0;
+    shared.gain.linearRampToValueAtTime(
+      AMBIENCE_GAIN * (0.7 + this.arousal * 0.9), this.ctx.currentTime + 1.2,
     );
-    src.connect(g).connect(this.out());
-    src.start();
-    this.ambSrc = src;
-    this.ambGain = g;
+    shared.connect(this.out());
+    for (const bed of beds) {
+      const src = this.ctx.createBufferSource();
+      src.buffer = this.buffers.get(bed.file)!;
+      src.loop = true;
+      const g = this.ctx.createGain();
+      g.gain.value = bed.gain;
+      src.connect(g).connect(shared);
+      src.start();
+      this.ambSrcs.push(src);
+    }
+    this.ambGain = shared;
     this.scheduleChant();
   }
 
@@ -307,7 +318,7 @@ export class SoundFx {
     if (this.chantTimer) clearTimeout(this.chantTimer);
     this.chantTimer = setTimeout(() => {
       this.chantTimer = null;
-      if (!this.ctx || !this.ambSrc || !this.on) return;
+      if (!this.ctx || this.ambSrcs.length === 0 || !this.on) return;
       const file = CHANTS[Math.floor(Math.random() * CHANTS.length)];
       const buf = this.buffers.get(file);
       if (buf) {
@@ -323,13 +334,13 @@ export class SoundFx {
   }
 
   private stopAmbience(): void {
-    if (!this.ctx || !this.ambSrc) return;
+    if (!this.ctx || this.ambSrcs.length === 0) return;
     const t = this.ctx.currentTime;
     this.ambGain?.gain.setValueAtTime(this.ambGain.gain.value, t);
     this.ambGain?.gain.linearRampToValueAtTime(0, t + 0.4);
-    const src = this.ambSrc;
-    setTimeout(() => src.stop(), 450);
-    this.ambSrc = null;
+    const srcs = this.ambSrcs;
+    setTimeout(() => srcs.forEach((src) => src.stop()), 450);
+    this.ambSrcs = [];
     this.ambGain = null;
     if (this.chantTimer) {
       clearTimeout(this.chantTimer);
@@ -344,7 +355,7 @@ export class SoundFx {
       if (this.ctx.state === 'suspended') void this.ctx.resume();
       // Self-heal (user report "平时没有 amb"): if the bed never started
       // (fetch raced the first enable, tab was suspended...), start it now.
-      if (!this.ambSrc) this.startAmbience();
+      if (this.ambSrcs.length === 0) this.startAmbience();
       // Fast-forward gate (Phase 89): the frequent layer (passes, touches)
       // fires per sim event — at 8-32× it smears into noise. Big moments
       // (goal, save, whistle) still play.
