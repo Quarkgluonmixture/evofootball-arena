@@ -1143,11 +1143,39 @@ linkify over living entities (chronicle/market/census; dynasty wall
 already linked in-screen since 51); full entry above ("THE 108
 RESULT"). Inline spans, no layout change at 390px.
 
-**109 — the OFFSIDE-TRAP gene** (the user's defensive school #1, the
-last unbuilt): hold-the-line vs track-runner, natural tension with
-coverBias (the libero plays everyone onside); through-pipe is only
-~3% of goals so expectations are honest — school completeness, not an
-inflation lever. 21st gene → save bump + migration + adoption gate.
+**109 — the OFFSIDE-TRAP gene** ✅⚠ **DONE 2026-07-18 — school #3
+complete, the last of the user's named defensive schools.** The 21st
+gene `trapBias`: a high-trap marker refuses to be dragged deeper than
+his SHAPE by an off-ball runner (x holds toward the formation spot at
+(trapBias−0.5)·2, y keeps sliding with the man; the phase-71 law flags
+whoever gets served beyond the held line), **gated to the ball OUTSIDE
+the −17 danger zone** — football law: the trap is sprung before the
+ball goes over the top; once beaten, everyone tracks. Save v25
+(backfill 0.5) + a migration test (vitest 422). **The measurement
+story:** ① `launch-anatomy.ts` (the 106 hand-off): breakaway launches
+are carry-through 69-78%, through-ball ≤1% — the trap is school
+completeness, NOT an inflation lever; the arc's real target remains
+the 1v1 carry-through at the line. ② Baseline offsides were always
+~1.09/match — the first "zero" was a DETECTOR bug (offside awards are
+GOAL KICKS, the 29.2 arcade rule). ③ Two "perception lag" fixes
+(runner + passer line reads) built on that false zero were MEASURED
+OUT by foreground stash A/B — gene-only springs BETTER (1.68 vs 1.13)
+than with lags (1.38/1.06; a stale read of a rising line makes runners
+hold conservatively) → lags reverted, archaeology in the executor.
+④ The UNGATED first build was selection-poison: trapBias railed to
+0.08, one warming world hit 8.5 goals/match (deep runners unmarked in
+the box) — the danger-zone gate fixed both. ⑤ Final A/B: offsides won
+1.33 vs 1.03 (+29%), goals 137-143 — a real trade, no blowout.
+**Adoption (24×3): two CULTURES — 991 adopts 0.58→0.74 (aggr 0.56:
+the trap school), 777 blends 0.62 (jockey 0.82 + cover 0.69: chained
+delay), 424242 rejects →0.21 (a press-0.93 world tracks)** — ecology-
+dependent, no uniform virtue. Gates: vitest 422; visual 111+52;
+warming 17.71 (top of the recent 15.6-17.4 same-code spread — watch);
+⚠ calibrate 3.43/2.93/**1.96** — 2024 under the 2.3 hard floor
+(single-seed excursion; the A/B shows ~14% suppression at gene
+extremes; watch-not-chase per the 62/66 precedent, RE-READ next
+phase); fingerprint REBASELINED `dce857a3…` (21-gene rng re-rolls
+every stream; the throw test survived without re-anchor).
 
 **110+ — Stage 4 pull items, one at a time, each passing "does it give
 genes a NEW payoff surface?"**: form/morale → injuries (N2

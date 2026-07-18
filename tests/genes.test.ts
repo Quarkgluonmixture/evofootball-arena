@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
+import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo, type TeamMatchStats } from '../src/sim/types';
 
@@ -164,5 +165,21 @@ describe('tactical genes influence behavior', () => {
     sprinter.staminaConservation = 0.05;
     const [a, b] = totals(miser, sprinter, SEEDS);
     expect(a.staminaSpent).toBeLessThan(b.staminaSpent);
+  });
+});
+
+describe('trapBias (Phase 109, the 21st gene)', () => {
+  it('v24 saves migrate: trapBias backfills at 0.5', () => {
+    const league = new League({ seed: 7, matchDuration: 30 });
+    const data = league.toJSON() as Record<string, unknown> & {
+      version: number;
+      franchises: Array<{ coach: { genome: Record<string, number> } }>;
+    };
+    data.version = 24; // forge a pre-trap save
+    for (const f of data.franchises) delete f.coach.genome.trapBias;
+    const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
+    for (const f of loaded.franchises) {
+      expect(f.coach.genome.trapBias).toBe(0.5);
+    }
   });
 });

@@ -1554,6 +1554,22 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅⚠ **phase-109 SHIPPED** (**the OFFSIDE-TRAP gene** — trapBias, the
+  21st gene, save v25; defensive school #3 complete, ALL the user's
+  named schools now built: jockey 87 / sweeper 88 / trap 109). Marker
+  holds his shape line vs off-ball runners, gated outside the −17
+  danger zone; the phase-71 law punishes. A/B: +29% offsides won,
+  goals 137-143 (real trade). Adoption 24×3: 991 → 0.74 (the trap
+  school lives), 777 → 0.62 blended, 424242 → 0.21 rejected — two
+  cultures. En route: the "zero offsides" was a detector bug (awards
+  are goal kicks); two perception-lag fixes built on it were measured
+  out and reverted; the ungated build railed to 0.08 + 8.5 goals/match
+  (box abandonment) before the gate. ⚠ watches: warming 17.71 (spread
+  top), calibrate 2024-seed 1.96 (under the hard floor, single-seed —
+  re-read next phase). launch-anatomy.ts (the 106 hand-off): breakaway
+  launches are 69-78% CARRY-THROUGH, ≤1% through-ball — the trap is
+  school completeness; the arc's target remains the carry-through 1v1.
+  Fingerprint REBASELINED `dce857a3…`. Full entry at ROADMAP head.
 - ✅ **phase-108 SHIPPED** (**ENTITY LINKS**, the cross-cutting queue
   item; UI-only, fingerprint identity `f4750bb9…`): living club/player
   names in chronicle/market/census prose jump to their deep dives via

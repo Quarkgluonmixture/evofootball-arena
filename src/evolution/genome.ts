@@ -99,6 +99,19 @@ export interface TacticalGenome {
    * evolution's call.
    */
   coverBias: number;
+  /**
+   * THE OFFSIDE TRAP (Phase 109, defensive school #3 — the last of the
+   * user's named schools): hold-the-line vs track-the-runner. 1 = the
+   * marker REFUSES to be dragged deeper than his shape by a runner — he
+   * holds the line laterally and lets the phase-71 offside law flag the
+   * man the ball is played to. 0 = track the runner all the way in.
+   * 0.5 = today's tracking exactly. The price is honest: a runner ONSIDE
+   * at the kick is clean through the held line — and a high coverBias
+   * libero sitting below the line plays everyone onside (the natural
+   * school tension). Offside does not exist against a CARRIER, so this
+   * governs the pass-served pipe only (launch-anatomy.ts has the shares).
+   */
+  trapBias: number;
 }
 
 export const GENE_KEYS = [
@@ -122,6 +135,7 @@ export const GENE_KEYS = [
   'fitBias',
   'jockeyBias',
   'coverBias',
+  'trapBias',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -198,6 +212,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if ((g.jockeyBias ?? 0.5) < 0.28) tags.push('Dives in');
   if ((g.coverBias ?? 0.5) > 0.72) tags.push('Libero');
   if ((g.coverBias ?? 0.5) < 0.28) tags.push('Stopper steps up');
+  if ((g.trapBias ?? 0.5) > 0.72) tags.push('Offside trap');
+  if ((g.trapBias ?? 0.5) < 0.28) tags.push('Tracks runners home');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

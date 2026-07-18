@@ -167,6 +167,30 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         const dx = ml < 1e-8 ? nx : mx / ml;
         const dy = ml < 1e-8 ? ny : my / ml;
         target = { x: mark.pos.x + dx * markDist, y: mark.pos.y + dy * markDist };
+        // THE OFFSIDE TRAP (Phase 109, defensive school #3 — the 21st
+        // gene): a high-trap marker REFUSES to be dragged deeper than his
+        // SHAPE by an off-ball runner — depth (x) holds at the formation
+        // line while y keeps sliding with the man, and the phase-71
+        // offside law flags whoever the ball is played to beyond the held
+        // line. Low trap (≤0.5) = today's tracking exactly. The price is
+        // physical, not scripted: a runner ONSIDE at the kick is clean
+        // through, and a libero (coverBias) below the line plays everyone
+        // onside. The carrier cannot be trapped (no offside on the ball)
+        // — the contain/jockey machinery owns him.
+        // The trap is sprung BEFORE the ball goes over the top (football
+        // law): once the ball is deep in our territory the line is beaten
+        // and EVERYONE tracks. The first build held unconditionally — deep
+        // runners stood unmarked in the box, trapBias railed to 0.08 under
+        // selection and one warming world hit 8.5 goals/match. Same -17
+        // danger-zone boundary as the jockey (Phase 92).
+        const trapHold = ((g.trapBias ?? 0.5) - 0.5) * 2;
+        const ballDeep = team.localX(ball.pos.x) < -17;
+        if (trapHold > 0 && !ballDeep && ball.owner && ball.owner.side !== p.side && ball.owner !== mark) {
+          const spot = formationSpot(p, team, ball, hasBall);
+          if (team.localX(target.x) < team.localX(spot.x)) {
+            target = { x: target.x + (spot.x - target.x) * trapHold, y: target.y };
+          }
+        }
         // Marker REACTION LAG (Phase 31.9, the headed-game pass): a marker
         // tracking a SPRINTING mark near our goal re-reads the stance
         // target on his reaction cadence (0.2–0.45s by defending), not
@@ -417,6 +441,12 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   // stagger behind like a real attacking shape.
   const carrier = ball.owner;
   if (target && carrier && carrier !== p && carrier.side === p.side && p.role !== 'GK') {
+    // (Phase 109 note: a lagged line-read for runners was built and
+    // MEASURED OUT here — with it the trap gene's offside yield DROPPED
+    // 1.68→1.38/match, because a stale read of a RISING line makes the
+    // runner hold conservatively. Frame-perfect onside discipline turned
+    // out not to block the trap at all — the passer's decision cadence is
+    // misjudgment enough. trap-ab.ts carries the numbers.)
     const holdX =
       offsideLineLocalX(team, opp.players, team.localX(ball.pos.x)) - HOLD_DEPTH[p.role];
     if (team.localX(target.x) > holdX) target = { x: holdX * team.attackDir, y: target.y };
