@@ -420,6 +420,8 @@ export interface TeamMatchStats {
   overlaps: number;
   /** Goals scored by channel (Phase 113) — the against side is the opponent's row. */
   goalChannels: Record<GoalChannel, number>;
+  /** Injuries suffered this match (Phase 118) — knocks + serious together. */
+  injuries: number;
 }
 
 export const emptyStats = (): TeamMatchStats => ({
@@ -459,6 +461,7 @@ export const emptyStats = (): TeamMatchStats => ({
   thirdMan: 0,
   overlaps: 0,
   goalChannels: emptyChannels(),
+  injuries: 0,
 });
 
 /** Per-player counters for awards/records — passive, never read by the sim. */
@@ -516,6 +519,9 @@ export interface MatchResult {
    * rows stay empty (apps 0, rating 0).
    */
   playerStats: PlayerMatchStats[];
+  /** Rounds out per roster row (Phase 118, same addressing as playerStats);
+   * 0 = fit. Optional: old replays/ad-hoc results simply lack it. */
+  injuries?: number[];
   events: MatchEvent[];
   duration: number;
 }

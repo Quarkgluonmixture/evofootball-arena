@@ -34,6 +34,16 @@ import {
  */
 const PASS_MOVE_FEED_MIN = 6;
 
+/**
+ * Per-foul injury chance at neutral fatigue/age (Phase 118). Calibrated by
+ * the injury-census probe against the user-ratified budget of ~1-2
+ * injuries per club-season: ≈4.5-5 fouls/match ×
+ * observed mean multiplier ≈0.6 (fouled carriers run fresher than the
+ * average leg) × this ≈ 0.27-0.30 injuries/match ≈ 1.2-1.4 per
+ * club-season (census, 12-season worlds 991/424242).
+ */
+const INJURY_BASE = 0.10;
+
 export interface PendingPass {
   side: Side;
   passerGid: number;
@@ -189,6 +199,9 @@ export class Match {
    * indexed since Phase 61 (home 0..ROSTER_SIZE-1, then away): a substitute's
    * numbers land on HIS row. Write through `stat(gid)`. Passive. */
   playerStats: PlayerMatchStats[] = [];
+  /** Rounds out per roster row (Phase 118) — home 0..8, then away; 0 = fit.
+   * Banked by League.applyResult into `f.injuries` (the suspension seam). */
+  readonly injuriesOut: number[] = Array<number>(ROSTER_SIZE * 2).fill(0);
   /** Roster surnames (record resolution — the MOTM line may name a sub). */
   private readonly rosterNames: string[];
   lastCompletedPass: { passerGid: number; receiverGid: number; t: number } | null = null;
@@ -538,6 +551,7 @@ export class Match {
       score: [this.score[0], this.score[1]],
       stats: [this.teams[0].stats, this.teams[1].stats],
       playerStats: this.playerStats,
+      injuries: this.injuriesOut,
       events: this.events,
       duration: this.duration,
     };
@@ -1164,6 +1178,7 @@ export class Match {
       }
     }
     this.maybeCard(offender);
+    this.maybeInjure(victim);
   }
 
   /**
@@ -1211,14 +1226,27 @@ export class Match {
    */
   sendOff(p: Player): void {
     if (p.sentOff) return;
+    this.teams[p.side].stats.reds++;
+    this.stat(p.gid).reds++; // the ban is PERSONAL (Phase 62)
+    this.removeFromPitch(p);
+  }
+
+  /** Park a player on the apron and clear every assignment pointing at
+   * him — send-offs and bench-less serious injuries (Phase 118) share
+   * this. Tallies (reds) stay with the callers. */
+  private removeFromPitch(p: Player): void {
     p.sentOff = true;
     const team = this.teams[p.side];
-    team.stats.reds++;
-    this.stat(p.gid).reds++; // the ban is PERSONAL (Phase 62)
     p.pos = v2(-team.attackDir * 12, (p.side === 0 ? -1 : 1) * (HALF_W + 4));
     p.vel = v2();
     p.desiredVel = v2();
     p.action = { type: 'HoldPosition', scores: [] };
+    // An injured CARRIER can leave mid-advantage (Phase 118) — the ball
+    // he was holding becomes loose. Send-offs never own the ball.
+    if (this.ball.owner === p) {
+      this.ball.owner = null;
+      this.possessionSide = -1;
+    }
     // Clear stale assignments in both directions and make both brains
     // re-coordinate promptly (same pattern as possession swings).
     team.chasers.delete(p.index);
@@ -1230,6 +1258,57 @@ export class Match {
     }
     this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
     this.teams[1].brainTimer = Math.min(this.teams[1].brainTimer, 0.05);
+  }
+
+  /**
+   * INJURIES (Phase 118, user-ratified defaults): a foul SOMETIMES hurts
+   * the man it fouled — no reward channel for the fouler beyond what cards
+   * and penalties already price; injury is a side effect of the foul
+   * economy, never an incentive. Rare by design (~1-2 per club-season,
+   * `injury-census` probe): 70% are KNOCKS — he plays on, visibly slower —
+   * the rest come OFF now and miss 2-4 rounds through the suspension seam.
+   * Tired legs and old legs are the frailest. Keepers only ever take
+   * knocks: no reserve GK exists (the "keepers are never carded" premise).
+   */
+  private maybeInjure(victim: Player): void {
+    if (victim.sentOff || victim.injured) return;
+    // stamina 1 → ×0.6 … 0.05 → ×1.55; age 27 = ×1 ± 6%/year in [0.65, 1.5].
+    const fatigue = 1.6 - victim.stamina;
+    const age = Math.max(0.65, Math.min(1.5, 1 + ((victim.age ?? 27) - 27) * 0.06));
+    if (!this.rng.chance(INJURY_BASE * fatigue * age)) return;
+    this.teams[victim.side].stats.injuries++;
+    if (victim.role === 'GK' || !this.rng.chance(0.3)) {
+      victim.takeKnock();
+      this.pushEvent('info', victim.side, `🚑 ${victim.name} picks up a knock — plays on`);
+      return;
+    }
+    victim.injured = 'serious';
+    const rounds = 2 + Math.floor(this.rng.range(0, 3)); // out 2-4 rounds
+    this.injuriesOut[victim.side * ROSTER_SIZE + victim.rosterIdx] = rounds;
+    this.pushEvent('info', victim.side, `🚑 ${victim.name} can't continue — stretchered off`);
+    this.forceSubstitution(victim);
+  }
+
+  /** The injury sub (Phase 118): bypasses the rotation threshold — this
+   * man is coming off NOW. Same bench budget and like-for-like pick as
+   * trySubstitution; with nothing left he leaves anyway and the side
+   * plays short (the send-off geometry, no red, no tally). */
+  private forceSubstitution(out: Player): void {
+    const team = this.teams[out.side];
+    const available = team.bench.filter((b) => !b.used);
+    if (team.subsUsed < SUBS_MAX && available.length > 0) {
+      const sub = available.find((b) => b.role === out.role) ?? available[0];
+      sub.used = true;
+      team.subsUsed++;
+      const offName = out.name;
+      out.becomeSub(sub, v2(out.side === 0 ? -1.2 : 1.2, HALF_W - 0.6));
+      out.decisionTimer = 0.05;
+      team.policies[out.index] = sub.policy;
+      this.stat(out.gid).apps = 1;
+      this.pushEvent('info', out.side, `🔄 ${sub.name} on for the injured ${offName}`);
+      return;
+    }
+    this.removeFromPitch(out);
   }
 
   /**
@@ -1267,6 +1346,7 @@ export class Match {
       Math.max(-HALF_W + 1, Math.min(HALF_W - 1, this.ball.pos.y)),
     );
     this.awardRestart('freeKick', victim.side, pos);
+    this.maybeInjure(victim); // hauled down hard (Phase 118)
   }
 
   /**

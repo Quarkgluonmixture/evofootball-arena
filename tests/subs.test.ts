@@ -34,7 +34,11 @@ const infoOf = (f: Franchise, rotationBias: number): TeamInfo => ({
   policy: f.coach.policy,
 });
 
-const subEvents = (m: Match): number => m.events.filter((e) => e.text.startsWith('🔄')).length;
+const allSubs = (m: Match): number => m.events.filter((e) => e.text.startsWith('🔄')).length;
+// The gene gate is about ROTATION subs — the injury sub (Phase 118) is
+// forced regardless of rotationBias and rightly consumes the budget.
+const rotationSubs = (m: Match): number =>
+  m.events.filter((e) => e.text.startsWith('🔄') && !e.text.includes('injured')).length;
 
 describe('substitutions (Phase 61)', () => {
   it('the gene gate: rotationBias 0 never subs, rotationBias 1 rotates', { timeout: 120000 }, () => {
@@ -43,14 +47,15 @@ describe('substitutions (Phase 61)', () => {
     for (const seed of [1, 2, 3, 4, 5, 6]) {
       const still = new Match({ seed, teamA: infoOf(fa, 0), teamB: infoOf(fb, 0) });
       while (!still.finished) still.step(1 / 60);
-      expect(subEvents(still)).toBe(0);
-      expect(still.teams[0].subsUsed + still.teams[1].subsUsed).toBe(0);
+      expect(rotationSubs(still)).toBe(0);
+      // Injury subs (118) may still spend the budget — counters agree.
+      expect(still.teams[0].subsUsed + still.teams[1].subsUsed).toBe(allSubs(still));
 
       const hungry = new Match({ seed, teamA: infoOf(fa, 1), teamB: infoOf(fb, 1) });
       while (!hungry.finished) hungry.step(1 / 60);
-      hungrySubs += subEvents(hungry);
+      hungrySubs += rotationSubs(hungry);
       // Feed lines and the counters agree.
-      expect(subEvents(hungry)).toBe(hungry.teams[0].subsUsed + hungry.teams[1].subsUsed);
+      expect(allSubs(hungry)).toBe(hungry.teams[0].subsUsed + hungry.teams[1].subsUsed);
     }
     expect(hungrySubs).toBeGreaterThan(0);
   });
@@ -107,7 +112,7 @@ describe('substitutions (Phase 61)', () => {
     });
     const m = new Match({ seed: 9, teamA: legacy(fa), teamB: legacy(fb), duration: 120 });
     const res = m.runToCompletion();
-    expect(subEvents(m)).toBe(0);
+    expect(allSubs(m)).toBe(0);
     expect(res.playerStats.filter((s) => s.apps > 0)).toHaveLength(TEAM_SIZE * 2);
   });
 });

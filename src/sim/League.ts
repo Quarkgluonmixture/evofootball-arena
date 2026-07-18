@@ -193,7 +193,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 29;
+export const SAVE_VERSION = 30;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -437,12 +437,15 @@ export class League {
    */
   private buildLineup(f: Franchise): number[] | undefined {
     const susp = f.suspensions;
-    if (!susp || !susp.some((s) => s > 0)) return undefined;
+    const inj = f.injuries;
+    const out = (i: number): number => (susp?.[i] ?? 0) + (inj?.[i] ?? 0);
+    if (!susp?.some((s) => s > 0) && !inj?.some((s) => s > 0)) return undefined;
     const n = f.squad.length;
     const banned = new Set<number>();
     // Slot 0 is exempt by construction: keepers are never carded (Match
-    // rule) and the bench carries no reserve keeper.
-    for (let i = 1; i < n; i++) if ((susp[i] ?? 0) > 0) banned.add(i);
+    // rule), never seriously injured (Phase 118, same premise), and the
+    // bench carries no reserve keeper.
+    for (let i = 1; i < n; i++) if (out(i) > 0) banned.add(i);
     if (banned.size === 0) return undefined;
     const benchPool: number[] = [];
     for (let i = TEAM_SIZE; i < n; i++) if (!banned.has(i)) benchPool.push(i);
@@ -463,7 +466,7 @@ export class League {
         let best = -1;
         for (const ri of banned) {
           if (xi.includes(ri)) continue;
-          if (best < 0 || (susp[ri] ?? 0) < (susp[best] ?? 0)) best = ri;
+          if (best < 0 || out(ri) < out(best)) best = ri;
         }
         xi.push(best >= 0 ? best : slotIdx);
       }
@@ -512,12 +515,28 @@ export class League {
     for (const [i, slot] of [fixture.home, fixture.away].entries()) {
       const f = this.franchise(slot);
       f.suspensions ??= f.squad.map(() => 0);
+      f.injuries ??= f.squad.map(() => 0);
       for (let ri = 0; ri < f.suspensions.length; ri++) {
         if (f.suspensions[ri] > 0) f.suspensions[ri]--;
+        if (f.injuries[ri] > 0) f.injuries[ri]--;
       }
       for (let ri = 0; ri < ROSTER_SIZE; ri++) {
         const s = result.playerStats[i * ROSTER_SIZE + ri];
         if (s && s.reds > 0) f.suspensions[ri] += s.reds * RED_BAN;
+      }
+      // Injuries bank AFTER the decrement, like reds (Phase 118). THE
+      // 6-MAN FLOOR (user default #4): an absence that would leave the
+      // club unable to field six is downgraded to a knock — he recovers
+      // for next round instead of sitting out. Deterministic (ri order).
+      for (let ri = 0; ri < ROSTER_SIZE; ri++) {
+        const rounds = result.injuries?.[i * ROSTER_SIZE + ri] ?? 0;
+        if (rounds <= 0) continue;
+        let availableAfter = 0;
+        for (let rj = 0; rj < f.squad.length; rj++) {
+          const out = (f.suspensions[rj] ?? 0) > 0 || (f.injuries[rj] ?? 0) > 0 || rj === ri;
+          if (!out) availableAfter++;
+        }
+        if (availableAfter >= TEAM_SIZE) f.injuries[ri] = Math.max(f.injuries[ri], rounds);
       }
     }
 
@@ -951,7 +970,10 @@ export class League {
 
     // Discipline slate wiped (Phase 62): suspensions don't cross seasons —
     // retirement/rebirth changes WHO occupies a row, and a ban is personal.
-    for (const f of this.franchises) f.suspensions = f.squad.map(() => 0);
+    for (const f of this.franchises) {
+      f.suspensions = f.squad.map(() => 0);
+      f.injuries = f.squad.map(() => 0); // the treatment table empties too (118)
+    }
 
     this.history.push(record);
     this.generation++;
@@ -1698,6 +1720,13 @@ export class League {
       // (Phase 116). Optional field, UI-guarded — old records simply lack
       // it; the timeline grows from here. Nothing to backfill.
       data.version = 29;
+    }
+    if (data.version === 29) {
+      // v29 -> v30: injuries (Phase 118). Everyone starts fit.
+      for (const f of data.franchises as Array<Record<string, unknown>>) {
+        f.injuries ??= (f.squad as unknown[]).map(() => 0);
+      }
+      data.version = 30;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

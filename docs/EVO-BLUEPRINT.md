@@ -1684,3 +1684,17 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   channel ledger (`SeasonAggregates.chFor/chAgainst`, save v28) to
   measure against — the trap's prey can return only if a pass-first
   attacking school re-evolves; watch `through` in the census.
+- ⭐ **2026-07-18 STAGE-4: INJURIES SHIPPED (phase-118, user-ratified
+  defaults)** — the N2 bench + phase-62 suspension seam carried it
+  exactly as designed: injuries ride fouls (`maybeInjure`, base 0.10 ×
+  fatigue × age), 70% knocks (pace/dribbling degrade, play on) / 30%
+  serious (2-4 rounds out through `f.injuries[ri]`, forced sub, 6-man
+  floor at bank time). NO new gene — the admission test is satisfied
+  through existing surfaces: rotationBias gains a prevention payoff
+  (tired legs are the frailest: fatigue multiplier 1.6−stamina), the
+  phase-61 XI-vs-bench budget split gains survival value, and the foul
+  economy gains a real cost WITHOUT a reward channel (injury is a side
+  effect of fouling; cards/pens still price it — deliberate, the user's
+  call ③). Census: 1.27/1.28 per club-season, economy intact, goals
+  Δ ≈ noise on paired A/B. Watch in future censuses: does selection
+  move rotationBias or bench spend now that depth has teeth?

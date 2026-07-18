@@ -90,9 +90,13 @@ describe('cards (Phase 25)', () => {
         const straightRed = cardEvents.filter((e) => e.text.includes('STRAIGHT RED')).length;
         expect(r.stats[side].yellows).toBe(yellowEvents + secondYellow);
         expect(r.stats[side].reds).toBe(secondYellow + straightRed);
-        // The pitch agrees with the ledger.
+        // The pitch agrees with the ledger. Since Phase 118 a player can
+        // also leave for good on a stretcher with the bench exhausted —
+        // every such exit is a 🚑 line WITHOUT a matching injury sub.
         const off = m.teams[side].players.filter((p) => p.sentOff).length;
-        expect(off).toBe(r.stats[side].reds);
+        const stretchers = r.events.filter((e) => e.side === side && e.text.includes('stretchered')).length;
+        const injurySubs = r.events.filter((e) => e.side === side && e.text.includes('for the injured')).length;
+        expect(off).toBe(r.stats[side].reds + (stretchers - injurySubs));
         // Keepers are never carded (documented simplification — no bench).
         expect(m.teams[side].goalkeeper.sentOff).toBe(false);
         expect(m.teams[side].goalkeeper.booked).toBe(false);

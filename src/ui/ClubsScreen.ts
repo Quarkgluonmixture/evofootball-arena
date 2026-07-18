@@ -216,12 +216,13 @@ export class ClubsScreen {
       outCol.appendChild(row);
     }
     // Careers (Phase 26): the people behind the bars — traits derived live,
-    // the bench (Phase 61) behind the 🪑, 🚫 = suspended.
+    // the bench (Phase 61) behind the 🪑, 🚫 = suspended, 🚑 = injured (118).
     outCol.appendChild(el('div', 'muted',
       f.playerNames.map((n, i) => {
         const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');
         const ban = (f.suspensions?.[i] ?? 0) > 0 ? ` 🚫${f.suspensions[i]}` : '';
-        return `${i === SQUAD_ROLES.length ? '🪑 ' : ''}${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}${ban}`;
+        const hurt = (f.injuries?.[i] ?? 0) > 0 ? ` 🚑${f.injuries[i]}` : '';
+        return `${i === SQUAD_ROLES.length ? '🪑 ' : ''}${n} ${f.ages[i]}y${tr ? ` ${tr}` : ''}${ban}${hurt}`;
       }).join(' · ')));
 
     const fit = league.history[league.history.length - 1]?.fitness.find((x) => x.slot === f.slot);

@@ -1410,8 +1410,37 @@ new denser bed is part of the STANDING ears-session (105) — judge
 them together. Render-only: fingerprint IDENTICAL `f032c705…`.
 Gates: vitest 436, visual 126+54, build clean.
 
-**118+ — Stage 4 pull items resume**: injuries (N2 infrastructure
-ready) → home advantage → memory commentary.
+**118 — INJURIES** ✅ **SHIPPED 2026-07-18 (user-ratified defaults:
+"很少 1-2/队季 · 多轻伤少重伤 · 会被铲伤但不奖励 · 保底 6 人").**
+A foul sometimes hurts the man it fouled (`maybeInjure` off BOTH foul
+paths — awardFoul + the cynical foul): `INJURY_BASE 0.10` × fatigue
+(1.6−stamina) × age (±6%/yr in [0.65,1.5]). 70% KNOCK — `takeKnock`:
+pace ×0.8 / dribbling ×0.85, attrs REPLACED not mutated, plays on —
+30% serious: out 2-4 rounds via the SUSPENSION SEAM twin
+(`f.injuries[ri]`, same decrement/lineup-exclusion/season-clear;
+`forceSubstitution` bypasses the rotation gate, bench-exhausted →
+`removeFromPitch` = the send-off geometry, no red; keepers only ever
+knock — the no-reserve-GK premise). THE 6-MAN FLOOR enforced at
+bank time (an absence that would strand the club downgrades to a
+knock, deterministic). No new gene — the payoff surfaces are for
+EXISTING ones: rotationBias (fresh legs are safer legs), the 61
+bench-budget split, the foul economy (injury = side effect, never
+an incentive). **Census (12-season worlds 991/424242): 1.27/1.28
+injuries per club-season ✓ on budget, serious 30/32%, avg out
+3.0/3.1 rounds, fouls 4.16/4.34 · goals 2.61/2.90 — economy
+intact. Paired stash A/B, 3 calibrate seeds: goals Δ −0.08/+0.16/
++0.37 ≈ re-roll noise (baselines 2.01/2.45/1.95 → 1.93/2.61/2.32)
+— no systematic suppression.** Save v30 + migration; 🚑 feed lines +
+club-page badge; three seeded suites re-anchored for the new RNG
+stream (subs gene-gate = rotation-only now, cards ledger admits the
+stretcher exit, freeAgents seed 1→3 — the documented dance).
+Fingerprint REBASELINED `e95c9d2b…` (behavioral — new rng draws).
+⭐ BONUS: goals-warming 12.62 (4.57/3.97/4.08, no blowout world) —
+THE ARC LOW (prior low 14.72): knocks blunt tired late-game legs
+exactly where the carry pipe lives. Gates: vitest 441 (+5), visual
+126+53, calibrate paired-A/B Δ≈noise, build clean.
+
+**119+ — Stage 4 continues**: home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
 EARS (every gain has a dB paper trail in the 105 entry — report by

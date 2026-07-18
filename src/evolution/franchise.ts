@@ -56,6 +56,10 @@ export interface Franchise {
    * season end (rows change people through retirement/rebirth).
    */
   suspensions: number[];
+  /** Matches of INJURY absence remaining per roster row (Phase 118) —
+   * the suspension seam's twin: same decrement, same lineup exclusion,
+   * cleared at season end. Banked from MatchResult.injuries. */
+  injuries: number[];
   elo: number;
   /**
    * TEAM MORALE (Phase 111, Stage 4): rolling confidence in [0.1, 0.9],
@@ -94,6 +98,7 @@ export function createFranchise(
     ages: ROSTER_ROLES.map(() => veteranAge(rng)),
     careers: ROSTER_ROLES.map(() => emptyCareer()),
     suspensions: ROSTER_ROLES.map(() => 0),
+    injuries: ROSTER_ROLES.map(() => 0),
     elo: 1500,
     morale: 0.5,
     division,

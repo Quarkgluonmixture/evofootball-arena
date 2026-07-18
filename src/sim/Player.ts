@@ -148,6 +148,9 @@ export class Player {
   booked = false;
   /** Sent off: parked on the apron, excluded from every sim interaction. */
   sentOff = false;
+  /** Injury state (Phase 118): a 'knock' plays on visibly slower; 'serious'
+   * comes off (the league ban rides MatchResult.injuries). Reset on sub. */
+  injured?: 'knock' | 'serious';
 
   baseSpeed: number;
   accel: number;
@@ -182,6 +185,16 @@ export class Player {
    * reset — they fold into TEAM totals at full time and must keep the
    * outgoing man's work.
    */
+  /** A KNOCK (Phase 118): hurt but playing on — pace and close control
+   * degrade for the rest of his match. The attrs object is REPLACED, never
+   * mutated: the roster row is shared with the franchise. */
+  takeKnock(): void {
+    this.injured = 'knock';
+    this.attrs = { ...this.attrs, pace: this.attrs.pace * 0.8, dribbling: this.attrs.dribbling * 0.85 };
+    this.baseSpeed = BASE_SPEED[this.role] * (0.88 + this.attrs.pace * 0.24);
+    this.accel = ACCEL * (0.9 + this.attrs.pace * 0.2);
+  }
+
   becomeSub(sub: { rosterIdx: number; name: string; attrs: PlayerAttributes; age?: number }, pos: V2): void {
     this.name = sub.name;
     this.attrs = sub.attrs;
@@ -193,6 +206,7 @@ export class Player {
     this.staminaDrainMul = this.traits.includes('engine') ? 0.9 : 1;
     this.stamina = 1;
     this.booked = false;
+    this.injured = undefined; // the new man arrives whole (Phase 118)
     this.pos = v2(pos.x, pos.y);
     this.vel = v2();
     this.desiredVel = v2();

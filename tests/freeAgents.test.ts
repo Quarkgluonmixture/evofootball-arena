@@ -44,10 +44,10 @@ describe('the free-agent fire-sale (Phase 55)', () => {
   });
 
   it('a retirement vacancy signs from the market — career continuing, budget held', () => {
-    // Seed 41 → 1 (Phase 88): each founder-gene addition reshuffles the
-    // RNG stream and this scenario's market composition with it (the
-    // fitBias/jockeyBias phases did the same dance) — re-scanned 1..120.
-    const league = new League({ seed: 1, matchDuration: 30 });
+    // Seed 41 → 1 (Phase 88) → 3 (Phase 118: the injury rolls join the
+    // RNG stream and reshuffle this scenario's market composition — the
+    // same dance as every stream-touching phase) — re-scanned 1..120.
+    const league = new League({ seed: 3, matchDuration: 30 });
     const target = league.franchises[2];
     target.ages[5] = 35; // the striker retires this season, guaranteed
     const rec = playSeason(league);
