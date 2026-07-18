@@ -8,7 +8,7 @@
  */
 export type FxSoundType =
   | 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card'
-  | 'pass' | 'touch';
+  | 'pass' | 'touch' | 'miss' | 'header';
 
 /** Sample file(s) + gain per event; arrays play together (net + crowd). */
 const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>>> = {
@@ -29,10 +29,26 @@ const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>
   touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.75 }],
   corner: [{ file: 'sfx_pass_short_02-001.m4a', gain: 0.7 }],
   foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.55 }],
+  // A near thing goes wide/over — the crowd deflates (Phase 90).
+  miss: [{ file: 'sfx_crowd_disappointment_01.m4a', gain: 0.6 }],
+  // The aerial duel's thud (Phase 90) — header flags from the renderer.
+  header: [{ file: 'sfx_aerial_duel_contact_01.m4a', gain: 0.8 }],
   // card: silent — the whistle already blew for the foul.
 };
 
-const AMBIENCE = { file: 'amb_stadium_crowd_low_loop_01.wav', gain: 0.5 };
+/** UI sounds (Phase 90) — the recorded clicks, routed through the same
+ * master so the volume slider governs them too. */
+const UI_SAMPLES: Record<'click' | 'toggle' | 'heavy', { file: string; gain: number }> = {
+  click: { file: 'ui_button_click_01.m4a', gain: 0.4 },
+  toggle: { file: 'ui_toggle_01.m4a', gain: 0.45 },
+  heavy: { file: 'ui_button_press_heavy_tonal_01.m4a', gain: 0.5 },
+};
+
+const CHANTS = ['amb_stadium_crowd_chant_01.m4a', 'amb_stadium_crowd_chant_02.m4a'];
+const AMB_BEDS = ['amb_stadium_crowd_low_loop_01.wav', 'amb_stadium_crowd_low_loop_02.wav'];
+const DRIBBLE = { file: 'sfx_dribble_fast_loop_01.m4a', gain: 0.3 };
+
+const AMBIENCE_GAIN = 0.5;
 
 export class SoundFx {
   private ctx: AudioContext | null = null;
@@ -46,6 +62,74 @@ export class SoundFx {
   /** Sim playback speed (Phase 89): at fast-forward the per-touch layer
    * machine-guns — GameApp feeds the multiplier so play() can gate. */
   simSpeed = 1;
+  private ambBed = AMB_BEDS[Math.floor(Math.random() * AMB_BEDS.length)];
+  private chantTimer: ReturnType<typeof setTimeout> | null = null;
+  private arousal = 0;
+  private stadium = true;
+  private dribbleSrc: AudioBufferSourceNode | null = null;
+
+  /** The stands react (Phase 90): CrowdSystem arousal swells the bed. */
+  setArousal(a: number): void {
+    this.arousal = a;
+    if (this.ambGain && this.ctx) {
+      this.ambGain.gain.setTargetAtTime(AMBIENCE_GAIN * (0.7 + a * 0.9), this.ctx.currentTime, 0.4);
+    }
+  }
+
+  /** Whether the match stage is on screen (Phase 90): management screens
+   * and the ceremony cover it — the stadium falls silent there. */
+  set stadiumVisible(v: boolean) {
+    if (v === this.stadium) return;
+    this.stadium = v;
+    if (!v) {
+      this.stopAmbience();
+      this.setCarry(false);
+    } else if (this.on) {
+      this.startAmbience();
+    }
+  }
+
+  /** A fast carry is on (renderer's carry state) — the dribble-step loop. */
+  setCarry(on: boolean): void {
+    if (!on || !this.on || !this.stadium || this.simSpeed > 4) {
+      if (this.dribbleSrc) {
+        try {
+          this.dribbleSrc.stop();
+        } catch {
+          /* already stopped */
+        }
+        this.dribbleSrc = null;
+      }
+      return;
+    }
+    if (this.dribbleSrc || !this.ctx || !this.buffers.has(DRIBBLE.file)) return;
+    const src = this.ctx.createBufferSource();
+    src.buffer = this.buffers.get(DRIBBLE.file)!;
+    src.loop = true;
+    const g = this.ctx.createGain();
+    g.gain.value = DRIBBLE.gain;
+    src.connect(g).connect(this.out());
+    src.start();
+    this.dribbleSrc = src;
+  }
+
+  /** UI click layer (Phase 90) — same master, same slider. */
+  playUi(kind: 'click' | 'toggle' | 'heavy'): void {
+    if (!this.on || !this.ctx) return;
+    const u = UI_SAMPLES[kind];
+    const buf = this.buffers.get(u.file);
+    if (!buf) return;
+    try {
+      const src = this.ctx.createBufferSource();
+      src.buffer = buf;
+      const g = this.ctx.createGain();
+      g.gain.value = u.gain;
+      src.connect(g).connect(this.out());
+      src.start();
+    } catch {
+      /* best-effort */
+    }
+  }
 
   get enabled(): boolean {
     return this.on;
@@ -91,7 +175,8 @@ export class SoundFx {
     }
     if (!this.loading && this.buffers.size === 0) {
       this.loading = true;
-      const files = new Set<string>([AMBIENCE.file]);
+      const files = new Set<string>([...AMB_BEDS, ...CHANTS, DRIBBLE.file]);
+      for (const u of Object.values(UI_SAMPLES)) files.add(u.file);
       for (const list of Object.values(SAMPLES)) for (const s of list) files.add(s.file);
       await Promise.all(
         [...files].map(async (f) => {
@@ -112,17 +197,39 @@ export class SoundFx {
   /** The stadium bed: the QA'd seamless-loop candidate, WAV (AAC's encoder
    * priming would click at the loop point), low in the mix. */
   private startAmbience(): void {
-    if (!this.ctx || this.ambSrc || !this.buffers.has(AMBIENCE.file)) return;
+    if (!this.ctx || this.ambSrc || !this.stadium || !this.buffers.has(this.ambBed)) return;
     const src = this.ctx.createBufferSource();
-    src.buffer = this.buffers.get(AMBIENCE.file)!;
+    src.buffer = this.buffers.get(this.ambBed)!;
     src.loop = true;
     const g = this.ctx.createGain();
     g.gain.value = 0;
-    g.gain.linearRampToValueAtTime(AMBIENCE.gain, this.ctx.currentTime + 1.2);
+    g.gain.linearRampToValueAtTime(AMBIENCE_GAIN * (0.7 + this.arousal * 0.9), this.ctx.currentTime + 1.2);
     src.connect(g).connect(this.out());
     src.start();
     this.ambSrc = src;
     this.ambGain = g;
+    this.scheduleChant();
+  }
+
+  /** A chant rises from the stands every so often (Phase 90) — louder
+   * when the crowd is already up. */
+  private scheduleChant(): void {
+    if (this.chantTimer) clearTimeout(this.chantTimer);
+    this.chantTimer = setTimeout(() => {
+      this.chantTimer = null;
+      if (!this.ctx || !this.ambSrc || !this.on) return;
+      const file = CHANTS[Math.floor(Math.random() * CHANTS.length)];
+      const buf = this.buffers.get(file);
+      if (buf) {
+        const src = this.ctx.createBufferSource();
+        src.buffer = buf;
+        const g = this.ctx.createGain();
+        g.gain.value = 0.24 * (0.6 + this.arousal);
+        src.connect(g).connect(this.out());
+        src.start();
+      }
+      this.scheduleChant();
+    }, 45000 + Math.random() * 55000);
   }
 
   private stopAmbience(): void {
@@ -134,6 +241,10 @@ export class SoundFx {
     setTimeout(() => src.stop(), 450);
     this.ambSrc = null;
     this.ambGain = null;
+    if (this.chantTimer) {
+      clearTimeout(this.chantTimer);
+      this.chantTimer = null;
+    }
   }
 
   play(type: FxSoundType): void {

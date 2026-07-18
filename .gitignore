@@ -10,3 +10,6 @@ audio/audio_raw/peaks/
 
 # derived audio (rebuilt by scripts/audio/clean.py)
 audio/processed/*.wav
+
+# audio sources live in the author archive; the game ships public/audio only
+audio/

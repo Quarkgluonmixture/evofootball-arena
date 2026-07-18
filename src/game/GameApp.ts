@@ -299,6 +299,14 @@ export class GameApp implements GameActions {
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
     this.clash = new ClashBanner(stage);
+    // UI click sounds (Phase 90): one capture listener; the big match
+    // controls get the heavy press, checkboxes the toggle.
+    document.addEventListener('click', (e) => {
+      const el = e.target as HTMLElement;
+      const btn = el.closest('button');
+      if (btn) this.sound.playUi(btn.closest('.speed-row') ? 'heavy' : 'click');
+      else if (el instanceof HTMLInputElement && el.type === 'checkbox') this.sound.playUi('toggle');
+    });
 
     // ---- League ----
     const loaded = hasSave() ? loadLeague() : null;
@@ -1066,6 +1074,9 @@ export class GameApp implements GameActions {
           ? 'title'
           : null;
     this.music.play(slot);
+    // The stadium falls silent when a screen covers the stage (Phase 90);
+    // the pre-match clash is a broadcast graphic — the crowd stays.
+    this.sound.stadiumVisible = slot === null || slot === 'title';
   }
 
   /* ---------------- presentation (Phase 15) ---------------- */
@@ -1218,6 +1229,8 @@ export class GameApp implements GameActions {
             this.selectedGid = this.selectedGid === gid ? null : gid;
           };
           this.three.onFxEvent = (type) => this.sound.play(type);
+          this.three.onArousal = (a) => this.sound.setArousal(a);
+          this.three.onCarry = (on) => this.sound.setCarry(on);
           this.three.onScoreBugTap = () => this.toggleClash();
           this.three.setFxQuality(this.fxQuality);
           if (this.match) this.three.attach(buildRenderTheme(this.match));

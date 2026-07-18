@@ -50,6 +50,10 @@ export class ThreeMatchRenderer {
   /** The on-pitch referee (Phase 75) — position synthesized render-side. */
   private referee = new RefereeModel();
   private prevOwnerG: number | null = null;
+  private prevHeaderCount = 0;
+  private prevIsShot = false;
+  private prevCarrying = false;
+  private arousalAccum = 0;
   /** The assistants (Phase 77): opposite touchlines, one half each —
    * their running line IS the offside line. */
   private linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];
@@ -83,7 +87,11 @@ export class ThreeMatchRenderer {
   onSelectPlayer: ((gid: number) => void) | null = null;
   /** Optional external hook (sound etc.) fired once per fx event — plus
    * the render-detected 'pass'/'touch' ball transitions (78.1). */
-  onFxEvent: ((type: FxEvent['type'] | 'pass' | 'touch') => void) | null = null;
+  onFxEvent: ((type: FxEvent['type'] | 'pass' | 'touch' | 'miss' | 'header') => void) | null = null;
+  /** Crowd arousal bridge (Phase 90) — throttled, drives the ambience swell. */
+  onArousal: ((a: number) => void) | null = null;
+  /** A fast carry started/ended (Phase 90) — the dribble-step loop. */
+  onCarry: ((on: boolean) => void) | null = null;
   /** Tap on the broadcast score bug (Phase 33: pops the tactical-DNA clash). */
   onScoreBugTap: (() => void) | null = null;
 
@@ -328,6 +336,23 @@ export class ThreeMatchRenderer {
         this.onFxEvent?.('touch');
       }
       this.prevOwnerG = og;
+      // Header thud (Phase 90): a header flag rose this frame.
+      let headerCount = 0;
+      for (const q of state.players) if (q.header) headerCount++;
+      if (headerCount > this.prevHeaderCount) this.onFxEvent?.('header');
+      this.prevHeaderCount = headerCount;
+      // The near thing (Phase 90): a shot ended with neither a goal nor a
+      // save in the fx window — the crowd deflates.
+      if (this.prevIsShot && !state.ball.isShot) {
+        const resolved = state.fx.some((f) => f.type === 'goal' || f.type === 'save');
+        if (!resolved) this.onFxEvent?.('miss');
+      }
+      this.prevIsShot = state.ball.isShot;
+      const carrying = carry !== null && !state.ball.heldByGk && state.ball.ownerGid !== null;
+      if (carrying !== this.prevCarrying) {
+        this.prevCarrying = carrying;
+        this.onCarry?.(carrying);
+      }
       this.ball.update(state.ball, state.players, dt, hands, carry);
       // The dugout lives the match (Phase 66 → 66.1): each coach tracks
       // the ball, celebrates HIS goals, despairs at concessions — and
@@ -366,6 +391,11 @@ export class ThreeMatchRenderer {
     this.goals[0].update(dt);
     this.goals[1].update(dt);
     this.crowd.update(dt); // the stands breathe even between matches
+    this.arousalAccum += dt;
+    if (this.arousalAccum > 0.5) {
+      this.arousalAccum = 0;
+      this.onArousal?.(this.crowd.arousal);
+    }
     this.renderer.render(this.scene, this.cameraCtl.camera);
   }
 

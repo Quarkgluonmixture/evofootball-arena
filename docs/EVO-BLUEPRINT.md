@@ -1402,3 +1402,13 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   (frequent layer skips above 4× — the machine-gun smear was likely
   half the complaint). Open: 7 unused samples, arousal coupling,
   match-only ambience.
+- ✅ **phase-90 SHIPPED** (**audio complete**; UI-only, fingerprint
+  IDENTITY `99ed8ed7…`). Every recorded sample wired except the
+  crossbar (no woodwork mechanic in the sim — queued as a future
+  behavioral phase, not faked): UI clicks/toggle/heavy, the miss
+  deflation, header thuds, rotating chants, second ambience bed,
+  arousal-coupled ambience swell (see-it-hear-it), the dribble-step
+  loop on fast carries, and stage-aware silence (screens/ceremony
+  mute the stadium; the clash keeps it). Audio sources untracked +
+  gitignored (masters live in the author archive; the game ships
+  public/audio).

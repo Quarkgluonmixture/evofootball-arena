@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-89 (BGM engine + the SFX mix fix: the user's Suno tracks are in the game)
+# Roadmap — shipped through phase-90 (audio COMPLETE: every recorded sample wired, the stands live, sources archived)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -673,9 +673,31 @@ IDENTITY `99ed8ed7…`; visual 109+52. Still open on the audio side:
 7 unused samples (UI clicks/crossbar/disappointment/aerial/chants/
 dribble-loop/amb-2), arousal-coupled ambience, ambience-only-in-
 match, prematch/reel/shootout music slots when tracks arrive.)
++ ✅ **phase-90 SHIPPED** (**audio round 2 — the whole recorded
+library is now IN the game** (user: "剩下队列先把所有声音有关的做
+完"). ① UI clicks: buttons → click, the big match controls
+(.speed-row) → the heavy tonal press, checkboxes → toggle — one
+capture listener, all through the master (the volume slider governs
+them). ② the MISS: a shot that ends with neither goal nor save
+deflates the crowd (renderer falling-edge detection). ③ the HEADER
+thud on aerial-duel flags. ④ CHANTS: one of the two recorded songs
+rises from the stands every 45-100s, louder when the crowd is up.
+⑤ the second ambience bed enters the rotation (random pick per
+session). ⑥ AROUSAL COUPLING: CrowdSystem's arousal now swells the
+ambience gain (0.7×→1.6×, throttled bridge) — the stands you SEE
+erupt are the stands you HEAR. ⑦ the dribble-step loop rides fast
+carries (renderer carry-state bridge). ⑧ ambience falls SILENT when
+a management screen or the ceremony covers the stage (the clash
+banner keeps the crowd — it's a broadcast graphic). SOURCES
+CLEANED: audio/ untracked + gitignored (author's archive owns the
+masters; the game ships public/audio only — files left on disk,
+nothing deleted). NOT wired, honestly: the crossbar sample — the
+sim has NO woodwork mechanic; queued as a future behavioral phase
+rather than faking it. UI-only; fingerprint IDENTITY `99ed8ed7…`;
+visual 109+52.)
 ⭐ **Next: jockey A/B head-to-head probe → (mechanism rebalance |
-fitness anchor decision) → offside trap → audio polish round 2
-(unused samples + arousal coupling) as tracks/reports arrive.** The user PLAYS CONTINUOUSLY —
+fitness anchor decision) → offside trap → woodwork sim mechanic
+(unlocks the crossbar sample).** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
