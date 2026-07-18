@@ -1331,10 +1331,15 @@ standing + head-to-head; the 119c revert→reframe's SAFE UI half,
 zero-sim). PROBED → NO-FIX this session: 119f-spill (the first-touch
 停球失误 is HONEST football — 90% hard receptions; nerfing it would
 trip the 119d-1 iron law; the ugliness is the spill FEEDING a
-scramble, = the give-and-go/119d frontier). ⭐ QUEUED NEXT: the 119g
-(b) pre-match BEHAVIOURAL plan (attacking-side/upstream only, per
-119z), the give-and-go co-weapon (119d). ATTEMPTED + REVERTED
-this session (all A/B'd, none committed): 119c per-opponent
+scramble, = the give-and-go/119d frontier). ⭐ ACTIVE NOW: 119h FREE
+THE MARKING SCHEME (decouple scheme from markingAggression into its
+own gene — scheme-balance probe found the old zonal-dominance
+imbalance has CLOSED, freeing now safe-ish; the emergence-honest 乱抢
+payoff fix). ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
+FIFA/FM/PES (positioning attr = deepest missing; GK split;
+heading/accel/tackling splits). Also queued: 119g(b) pre-match
+behavioural plan (attacking-side/upstream only), give-and-go (119d).
+ATTEMPTED + REVERTED this session (all A/B'd, none committed): 119c per-opponent
 game-plan (defensive gene-bend); 119d-1 off-ball supply (peel /
 show-for-it / pitch-wide marker-lag, four cuts); the 1v1 keeper
 angle-cut; the marking-scheme freeing (lifted the zonal cap + entry
@@ -1779,6 +1784,67 @@ BEHAVIOURAL plan. 119c REFUTED defensive gene-bend counter-picking
 working plan must be ATTACKING-side / upstream and probe-gated against
 no-regression (the revert→reframe rule) — a separate future attempt,
 not bundled with the UI.
+
+**119h — FREE THE MARKING SCHEME (the emergence-honest 乱抢 payoff fix)**
+⏳ **ACTIVE (user, 2026-07-19 — "让防守自己进化,不预设逼人/区域或贴身/
+范戴克比例").** The user's recall of the marking-scheme freeing test,
+now re-measured fresh. ⭐ `scheme-balance.ts` (new probe, kept) at gen
+21: the OLD imbalance behind the hand-lock (code comment: zonal ~3.5
+vs man ~8 shots conceded) HAS CLOSED — man 4.7-4.9 shots / 2.0-2.4
+goals conceded, zonal 4.0-5.5 / 1.4-2.0; roughly balanced now (991
+zonal even concedes MORE shots). The "zonal dominant → league collapse"
+danger that justified the lock has faded across the phases since.
+Displacement confirms the mechanism survives: man defenders get dragged
+11.9-12.5m off-spot, zonal holds shape 9.1-11.4m — a shape-holding
+defence carries cover behind, exactly what kills the 乱抢 free-1v1.
+⭐ ROOT CAUSE (why zonal stays 1-2/16 despite being balanced): scheme
+is DERIVED from `markingAggression ≥ 0.3` (a hand threshold, not a
+gene), and markingAggression ALSO pays for tackle-win (+0.2) + fouls +
+press, so evolution keeps it high → man. The coupling HURTS zonal
+(forced low-aggression → holds shape but can't win the ball) and makes
+the AGGRESSIVE-ZONAL quadrant (hold shape AND tackle hard = the modern
+zonal press) UNREACHABLE in gene space. THE PLAN (probe-first): (1) a
+quadrant-balance probe forcing {man,zonal}×{aggressive,passive} to
+confirm freeing is safe + which quadrant is the good defence; (2)
+decouple scheme into its OWN free gene (append to GENE_KEYS end so
+founder draws are unshifted; save migration backfills; remove the
+rebirth cap + hire-conversion locks); (3) A/B + fresh evolution +
+goals-floor gate + scheme-diversity watch. Structural fallback if
+freeing collapses goals: the attack can't punish a zone (movement/
+overload that pays) — that becomes the next substrate lever. Behavioral
+→ fingerprint rebaseline; save version bump.
+
+**STRATEGIC BACKLOG — the ATTRIBUTE/GENE AUDIT vs FIFA/FM/PES (user,
+2026-07-19).** We carry 8 player attrs (pace/passing/dribbling/
+finishing/defending/strength/stamina/reflexes) + 23 team genes + 9
+derived traits. Cross-referenced against the standard football-sim
+taxonomies, split into HAVE-BUT-PRESET-DEAD (coupled, can't evolve
+independently) and MISSING-BUT-NEEDED. ⚠ SQUAD_BUDGET makes attrs
+trade off — every new attr re-prices the whole economy (the reason
+5→8 growth was PARKED at phase-47); each must EARN its place, add
+deliberately, not wholesale.
+- ⭐ **Positioning / off-ball intelligence / anticipation** — MISSING,
+  the deepest gap: all positioning is team-gene + formation-table +
+  brain logic; NO player-level "reads space / times runs" attr. Sits
+  directly under the off-ball-separation wall (119d-1) + the
+  give-and-go. The highest-value single addition.
+- **GK attribute split** (handling / kicking / positioning distinct
+  from reflexes) — MISSING/collapsed; keeper distribution accuracy
+  uses outfield `passing`, catch-vs-spill isn't its own attr. Connects
+  straight to 119f + 119f-spill (the keeper-release + spill lines).
+- **Heading / jumping** — PRESET-DEAD (derived from strength×0.3 +
+  defending×0.15 + role via `aerialSense`); a small timing-header or
+  a strong non-jumper can't exist. Feeds the aerial channel + set
+  pieces.
+- **Acceleration vs top speed + agility** — collapsed into `pace`
+  (→topSpeed only); tight-space turning / the momentum gate.
+- **Tackling vs marking** — both are `defending`; a great marker ≠ a
+  great tackler (feeds scheme diversity).
+- Folded acceptably (low priority): composure→finishing, vision→
+  passing+playmaker-trait, first-touch→dribbling, set-piece specialism.
+Priority order: scheme-gene (119h, in flight) → positioning attr (its
+own big project, budget impact) → GK split (rides the keeper line) →
+heading / accel / tackling splits.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

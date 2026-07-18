@@ -1870,3 +1870,56 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   `5c6226fa…`. Scramble-goal SHARE is unmoved (21-24%) — the payoff
   end of the scramble lives with the SPILL half of its entries and
   the give-and-go frontier (119d), not with the squirt.
+- ⭐ **2026-07-19 THE KEEPER-RELEASE + SPILL LINES (119f shipped,
+  119f-spill NO-FIX).** `keeper-release.ts`: goal kicks (from the feet)
+  already run the lane-aware pass loop; the HANDS throw picked its
+  target by `opennessOf(receiver)` alone → threw AT a body in the lane
+  (blocked-lane 9-18%, lane-HITs 60-79% in the own defensive third).
+  119f multiplied the throw score by `0.3 + laneOpenness·0.7` — the
+  same read the outfield has; frozen A/B cut blocked-lane 9→6 / 18→13%
+  (fresh evolution is ecology-noise-dominated for a lever this small —
+  the [[grader-lever-noise]] lesson in football form, use the frozen
+  instrument). `spill-anatomy.ts`: the first-touch spill is HONEST —
+  90% hard receptions (48-57% heavy pressure, 36-39% blind-side,
+  contested middle third), the should-not-spill residual only 10%; NOT
+  a dishonesty, and nerfing it trips the 119d-1 iron law. The ugliness
+  is the spill FEEDING a scramble (the payoff end), not the reception.
+- ⭐⭐ **2026-07-19 THE MARKING-SCHEME RE-MEASURE → 119h "free the
+  scheme" (the emergence-honest 乱抢 payoff route; user: "让防守自己
+  进化,不预设逼人/区域或贴身/范戴克比例").** `scheme-balance.ts` at
+  gen 21 OVERTURNS the hand-lock's premise: the old imbalance (code
+  comment: zonal ~3.5 vs man ~8 shots conceded) HAS CLOSED — man
+  4.7-4.9 shots / 2.0-2.4 goals conceded, zonal 4.0-5.5 / 1.4-2.0,
+  roughly balanced (991 zonal even concedes MORE shots). The
+  "zonal-dominant → league collapse" fear that set the lock has faded.
+  Displacement confirms the mechanism lives: man dragged 11.9-12.5m
+  off-spot, zonal holds 9.1-11.4m — the shape-holding defence carries
+  cover behind (= the emergent kill of the 乱抢 free-1v1). ⭐ ROOT
+  CAUSE zonal stays 1-2/16 = NOT dominance but COUPLING: scheme is
+  derived from `markingAggression ≥ 0.3` (a hand threshold), and
+  markingAggression also pays for tackle-win (+0.2)/fouls/press →
+  evolution keeps it high → man; the coupling HURTS zonal (forced
+  low-aggression: holds shape, can't win the ball) and makes the
+  AGGRESSIVE-ZONAL quadrant (the modern zonal press: shape + ball-
+  winning) UNREACHABLE. So the emergence-honest fix is to DECOUPLE
+  scheme into its own free gene and let all four {man,zonal}×
+  {aggressive,passive} quadrants be selectable, not to hand-add a
+  sweeper role (my earlier "cover read" is just one primitive this
+  subsumes). Probe-first (quadrant balance) → decouple gene → A/B +
+  goals-floor + diversity watch; structural fallback if goals collapse
+  = the attack can't punish a zone (the next substrate lever).
+- ⭐ **2026-07-19 THE ATTRIBUTE/GENE AUDIT vs FIFA/FM/PES (strategic
+  backlog — full entry in ROADMAP).** 8 player attrs + 23 genes vs the
+  standard taxonomies. PRESET-DEAD (coupled): heading/jumping (→
+  strength via aerialSense), tackling-vs-marking (both `defending`),
+  accel-vs-topspeed+agility (→`pace`), composure/vision/first-touch
+  (→finishing/passing/dribbling), and ⭐ the marking SCHEME (→
+  markingAggression threshold — the 119h target). MISSING-but-needed:
+  ⭐ POSITIONING / off-ball intelligence / anticipation (the deepest
+  gap — all positioning is team-gene + formation-table, no player-level
+  spatial-IQ attr; sits under the off-ball wall + give-and-go), and the
+  GK attribute split (handling/kicking/positioning distinct from
+  reflexes — rides the keeper line). ⚠ SQUAD_BUDGET re-prices with
+  every new attr (why 5→8 was parked) — add deliberately, each earns
+  its place. Priority: scheme-gene (119h) → positioning attr → GK
+  split → heading/accel/tackling splits.
