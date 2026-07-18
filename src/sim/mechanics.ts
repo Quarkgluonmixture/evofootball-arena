@@ -1723,6 +1723,13 @@ export function tryKeeperSave(match: Match): void {
   // Frozen at shot time; chips and placed balls carry 0 (the chip is the
   // designed counter to the advanced keeper). Early-gen shots from range
   // are untouched by construction (closeIn ≈ 0 beyond 7m).
+  // (Phase 106 swept a closeIn DIFFICULTY FLOOR here — max(difficulty,
+  // cI·0.85) and ·1.2 — against the measured walk-in strike (goals hit
+  // ~6.5m out, keeper ~3.4m, difficulty 0.35, cI 0.52, conversion 72-79%):
+  // per-shot arithmetic moved, 24-gen warming totals did NOT (15.88/17.36
+  // vs baseline 15.72 — re-roll noise), keeperAggression adoption didn't
+  // shift, and one world held conv 72% regardless. Deleted per the
+  // phase-95 anchor discipline; evidence in scripts/probes/final15-anatomy.ts.)
   saveP = Math.min(0.95, saveP * (1 + (shot.closeIn ?? 0) * 0.9));
 
   if (match.rng.chance(saveP)) {

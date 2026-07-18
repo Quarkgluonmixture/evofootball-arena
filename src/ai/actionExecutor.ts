@@ -40,7 +40,11 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     case 'MoveToFormationSpot':
     case 'HoldPosition': {
       target = formationSpot(p, team, ball, hasBall);
-      // Hurry back if badly out of position.
+      // Hurry back if badly out of position. (A phase-106 "hurry when
+      // beaten" trigger was built and MEASURED OUT here: during walk-in
+      // breakaways the beaten men are 60-88% in MarkOpponent/ChaseBall —
+      // this branch owns only ~12-18% of their frames — and 24-gen warming
+      // totals didn't move. final15-anatomy.ts carries the evidence.)
       if (dist(p.pos, target) > 14) speedF = 0.95 - conserve * 0.2;
       break;
     }

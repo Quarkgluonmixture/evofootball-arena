@@ -1009,6 +1009,48 @@ session trick) + visibilitychange re-resume for backgrounding.
 ④ SFX default ON at 70 (user ask), slider still rules. UI-only;
 fingerprint IDENTITY `f4750bb9…`; vitest 421; visual 109+52. Final
 gain judgement = the user's ears; every number has a dB paper trail.)
+⭐⭐⭐ **THE 106 RESULT (2026-07-18 afternoon — the attack-side cut,
+executed probe-first as ratified; verdict: PROBE-ONLY, negative results
+shipped honestly, the diagnosis re-aims the queue).**
+**The instrument**: `scripts/probes/final15-anatomy.ts` — traces every
+final-15m carry episode in late-gen worlds (22 gens, 991/424242):
+entry regime (goal-side bodies / breakaway), the beaten men's actions,
+speeds and spot distances, the pursuit endgame (closest approach to
+carrier AND ball, pace ratio, lunge counter), and the save-model inputs
+frozen at the strike (xg/difficulty/closeIn/gkDist), chip-split.
+**What it measured**: walk-ins = 60-75% of ALL late-gen goals; 71-92%
+of walk-in goals enter with the ENTIRE outfield line beaten (gs=0);
+goals are struck ~6.5m out with the keeper 3.4m off, difficulty 0.35,
+closeIn 0.52; breakaway-entry conversion 72-79% (real one-on-ones ~40%).
+**Levers built and MEASURED OUT** (all reverted, site comments carry
+the archaeology): ① beaten-line recovery hurry (the queue's candidate
+A) — beaten men are 60-88% in MarkOpponent/ChaseBall already, the
+touched branch owns 12-18% of their frames; warming 16.52 vs baseline
+15.72 = noise. ② last-defender delay — no last defender EXISTS in the
+dominant regime (gs=0). ③ retreat geometry — spotDist 12-14m at goal
+episodes, nobody is parked on a saturated spot. ④ the closeIn
+DIFFICULTY FLOOR in tryKeeperSave (the data-picked lever: the walk-in's
+last meters paid DOUBLE — xg 0.21→0.34 while difficulty fell
+0.68→0.36) — swept ·0.85 (nothing, 15.88) and ·1.2 (world-split:
+424242 conv 79→51% with the honest 1:2 saved:goal; 991 held 72%
+regardless; warming 17.36; keeperAggression adoption unmoved 0.37/0.31/
+0.69 vs baseline 0.29/0.69/0.35) — deleted per the phase-95 anchor
+discipline. **Pursuit physics established**: the pursuer NEVER reaches
+the 1.15m lunge radius (closest approach to ball 2.4-3.3m; lunges fire
+in 2-4% of breakaway goals); top-speed ratio 0.90-0.94 is STRUCTURAL
+(role bases DF 7.0/MF 7.3 vs WG 7.9/ST 7.7 + carry at 0.84+0.1·dr).
+**THE DIAGNOSIS (the phase's real product)**: the walk-in is not
+under-defended — it is *selected*. shootBias rails to 0.07-0.41 by
+gen 23 (the gene's floor = "only tap-ins": refuse the 10-14m strike,
+carry to point-blank) while pressIntensity rails 0.52-0.88 and goals
+overperform xG 2.2×. Post-launch pricing cannot flip a strategy whose
+edge is VOLUME — 13-17 final-15m entries/match. The governing margin
+is what SERVES the launch, and the school built to price that channel
+is the offside trap (queue 109). Gates: vitest 421 (throw-test seeds
+re-anchored TWICE mid-phase and restored on revert — the 101 mechanism
+held); visual 109+52; fingerprint IDENTITY `f4750bb9…` (sim diff =
+comments only); calibrate untouched by identity (2.94/2.90/3.09 stand).
+
 ⭐⭐⭐ **THE NEXT 自走 QUEUE (2026-07-18 afternoon — ⭐ THE RESUME POINT
 after the user's compact; user said "我compact之后自走" against the gap
 review below, order = Claude's recommendation left unchallenged).**
@@ -1022,17 +1064,20 @@ behavioral changes · fingerprint identity-or-rebaseline · both ledgers);
 probe-first everywhere; the user PLAYS CONTINUOUSLY — casual
 observations ARE the play reports and may re-order this queue.
 
-**106 — the ATTACK-SIDE inflation cut (probe FIRST, lever unknown)**:
-the whole 93-104 arc pressed the DEFENSIVE side; late-gen conv is still
-48-60% because the walk-in carrier's PATH to point-blank goes
-ungoverned. Probe the anatomy of the final 15m (who could have stepped
-out, what the last defender did, where the line stood — extend
-`shot-context-anatomy`/`pinned-winger` scaffolding) and let the data
-pick the lever; candidates from the arc: the beaten line's RECOVERY
-run pricing, the last defender's delay physics, retreat geometry.
-Emergence rule in force: fix substrate/pricing, never script behavior.
-Gates: warming 24×3 late means (the ≤~3.8 bar stands), calibrate band,
-adoption where a gene is touched.
+**106 — the ATTACK-SIDE inflation cut** ✅⚠⚠ **DONE 2026-07-18 —
+PROBE-ONLY (the phase-99 shape): every lever the data could name was
+built, measured and MEASURED OUT; the phase's product is the anatomy
+instrument + the diagnosis that re-aims 109.** Full entry below
+("THE 106 RESULT"); one line: the walk-in is not under-defended, it is
+SELECTED — shootBias rails to ~0.1-0.4 by gen 23 (refuse the range
+strike, carry to the tap-in) and the governing margin is LAUNCH VOLUME
+(13-17 final-15m entries/match), which no post-launch defensive or
+keeper pricing we swept could touch (all ≤ re-roll noise on 24-gen
+warming). Sim diff = comments only; fingerprint IDENTITY `f4750bb9…`.
+⭐ Hand-off: 109 (offside trap) is the school built for exactly the
+launch channel — RECOMMENDED pre-work there = a LAUNCH-anatomy probe
+(what serves the gs=0 band entry: through-ball / carry-through /
+keeper sling / long punt), extending `final15-anatomy.ts`.
 
 **107 — N5 FORMATION LIBRARY expansion** (blueprint queue, ungated
 since 65): 2×2×2 shapes is the hard ceiling on visible structural

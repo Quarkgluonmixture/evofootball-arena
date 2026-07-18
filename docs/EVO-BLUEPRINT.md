@@ -1554,6 +1554,22 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅⚠⚠ **phase-106 SHIPPED — PROBE-ONLY** (the attack-side cut; the
+  phase-99 shape: instrument + honest negatives + a diagnosis that
+  re-aims the queue; sim diff = comments only, fingerprint IDENTITY
+  `f4750bb9…`). `final15-anatomy.ts` traced the walk-in end to end:
+  60-75% of late-gen goals, 71-92% entering with the WHOLE line beaten,
+  struck 6.5m out vs a keeper 3.4m off, conversion 72-79%. All three
+  queue candidates measured out (recovery hurry / last-defender delay /
+  retreat geometry), the data-picked closeIn difficulty floor swept at
+  two coefficients and deleted (warming totals never left re-roll
+  noise; adoption unmoved). **The finding that matters: the walk-in is
+  SELECTED — shootBias rails to ~0.1-0.4 by gen 23, pressIntensity to
+  0.5-0.9, goals overperform xG 2.2×; the governing margin is launch
+  VOLUME (13-17 entries/match), which post-launch pricing cannot touch.
+  → 109 (offside trap) is the school for that channel; pre-work there =
+  a launch-anatomy probe.** Full entry at ROADMAP head ("THE 106
+  RESULT").
 - ⭐ **2026-07-18 AFTERNOON GAP REVIEW + THE NEXT 自走 QUEUE** (user:
   "现在整个和我的预想蓝图还差哪些" → the gap map, then "我compact之后
   自走"): the remaining distance to the vision concentrates in ①the
