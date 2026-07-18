@@ -1,6 +1,6 @@
 import { clamp, clamp01 } from '../utils/math';
 import {
-  add, closestPointOnSegment, dist, dot, fromAngle, len, norm, rotate, scale, sub, v2, type V2,
+  add, closestPointOnSegment, dist, dot, len, norm, rotate, scale, sub, v2, type V2,
 } from '../utils/vec';
 import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
@@ -1517,7 +1517,11 @@ export function trySlideTackle(match: Match): void {
     match.stat(slider.gid).recoveries++;
     match.ball.owner = null;
     match.ball.lastTouch = slider;
-    match.ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(5.5, 10));
+    // Directional like the standing tackle (the 乱抢 fix): the sweeping leg
+    // carries the slider's momentum — a recovery slide hooks the ball on
+    // down-pitch (often out, often to the keeper), it does not spray it
+    // uniformly. Same ±~69° noise cone, same speed band.
+    match.ball.vel = scale(rotate(slider.heading, match.rng.range(-1.2, 1.2)), match.rng.range(5.5, 10));
     owner.kickCooldown = 0.3;
     owner.stunTimer = 0.6;
     match.possessionSide = -1;
@@ -1697,7 +1701,22 @@ export function tryTackles(match: Match): void {
     // knocks it CLEAR of the boot zone — short squirts re-fed the same
     // scramble endlessly, and the offside-compressed midfield made every
     // re-contest pull in more bodies.
-    ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(5.5, 10));
+    // DIRECTIONAL (the 乱抢 re-examination): a standing tackle is won with
+    // INTENT — the winner steers the poke toward safety the way real
+    // hurried defensive contacts go: WIDE, toward the near touchline, never
+    // through the middle. ±~69° of noise keeps it far too wild to be a
+    // pass. Two prior models were A/B-refuted on the way here: a pure
+    // heading-cone (chase-from-behind tacklers face their own goal — their
+    // pokes fed the very walk-ins this fix hunts) and a straight
+    // away-from-own-goal cone (a free VERTICAL out-ball over the press to
+    // the deliberately-high defend-shape ST — goals-warming re-inflated to
+    // the arc highs and evolution railed press/transitionPress to 0.75+).
+    // The slide keeps its momentum physics below — you cannot steer from
+    // the grass. scramble-anatomy.ts is the A/B yardstick.
+    const clear = norm(sub(ball.pos, oppTeam.ownGoal()));
+    const toTouch = Math.sign(ball.pos.y) || 1;
+    const wide = norm(v2(clear.x, clear.y + toTouch));
+    ball.vel = scale(rotate(wide, match.rng.range(-1.2, 1.2)), match.rng.range(5.5, 10));
     owner.kickCooldown = 0.3;
     owner.stunTimer = 0.6; // dispossessed: stumble before rejoining play (Phase 27)
     tackler.tackleCooldown = 0.5;

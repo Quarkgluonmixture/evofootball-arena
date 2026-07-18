@@ -1838,3 +1838,35 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   off, zonal did not gain share and goals rose. `breakaway-origin.ts`
   kept its zonal/goals readout. (Interpretation left to the next
   session — the numbers are above.)
+- ⭐ **2026-07-18 THE 乱抢 RE-EXAMINATION → PHASE-119e SHIPPED (the
+  directional tackle poke + the squirt-direction COUPLING LAW).**
+  `scramble-anatomy.ts` (new probe, kept) made the user's complaint
+  quantitative at gen 21: scramble episodes (≥2 possession flips,
+  <2s event gaps) run 8.15/8.90 per match · 2.9s · 60-63% in the
+  middle third · 5-6 bodies within 6m at peak · **21-24% of ALL
+  goals scramble-preceded**. Shape HELD during episodes → the 人堆
+  is structural density + converging assignments, not dereliction
+  (confirms the 119d-1 lesson: "return to spots harder" is not the
+  cure). Entries ~50% first-touch spills / 35-39% tackle squirts /
+  9-16% pass flights — half of all entries are ACCIDENTS, so no
+  selection gradient can remove the scramble; only the substrate
+  can stop MANUFACTURING it. The fix (user-ratified, "从健全且真实
+  的底座长出来" applied): the won-tackle squirt was a uniform-random
+  spray — physically dishonest — and is now steered WIDE (the
+  own-goal→ball ray bent toward the near touchline, ±69° noise);
+  the slide keeps pure momentum physics. Two models were refuted en
+  route, and the refutations are the durable knowledge: a HEADING
+  cone (back-chasers face their own net — fed the very walk-ins the
+  fix hunts) and a straight UP-PITCH clearance cone (scrambles −23%,
+  but the poke became a free vertical out-ball over the press to the
+  deliberately-high defend-shape ST — goals-warming re-inflated
+  11.18→15.4 and fresh evolution railed press/transitionPress to
+  0.75/0.8). ⭐ **THE COUPLING LAW: a loose-ball squirt's dispersal
+  power is inseparable from its counter danger; WIDE is the only
+  direction that passes the scramble gate and the goals gate at
+  once.** Shipped verdict: scrambles −5/−12% fresh-evolved (−3/−8%
+  frozen), goals-warming 11.48 ≈ the arc low, calibrate at noise,
+  vitest 441 zero re-anchors, visual 134+54, fingerprint
+  `5c6226fa…`. Scramble-goal SHARE is unmoved (21-24%) — the payoff
+  end of the scramble lives with the SPILL half of its entries and
+  the give-and-go frontier (119d), not with the squirt.

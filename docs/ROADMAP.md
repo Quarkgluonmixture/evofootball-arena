@@ -1318,12 +1318,13 @@ wall/dive/diagram/link coverage), build clean.
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
 ⭐⭐ SESSION HANDOFF (2026-07-18, preset-free — facts only, next
-session decides direction). Repo is CLEAN at fingerprint `848370ae`
-(= phase-119b). SHIPPED this session: 119a (player radar + 3D
+session decides direction). Repo is CLEAN at fingerprint `5c6226fa`
+(= phase-119e). SHIPPED this session: 119a (player radar + 3D
 showcase), 119a.5 (settings screen + topbar nav), 119b (keeper
-honesty — fingertip stretch + angle coverage; the last behavioral
-change that stuck). ATTEMPTED + REVERTED this session (all A/B'd,
-none committed, all left `848370ae` untouched): 119c per-opponent
+honesty — fingertip stretch + angle coverage), 119e (the DIRECTIONAL
+TACKLE POKE — the 乱抢 re-examination made quantitative; see its
+entry + the coupling law). ATTEMPTED + REVERTED this session (all
+A/B'd, none committed): 119c per-opponent
 game-plan (defensive gene-bend); 119d-1 off-ball supply (peel /
 show-for-it / pitch-wide marker-lag, four cuts); the 1v1 keeper
 angle-cut; the marking-scheme freeing (lifted the zonal cap + entry
@@ -1345,12 +1346,15 @@ adversarial (对抗) environment; and wants a 赛前布置/赛前报告
 before deciding): the 赛前报告 (a UI matchday report — the clash
 banner enrichment, safe/UI-only) and/or a mild pre-match behavioural
 plan measured only against no-regression; the give-and-go as a second
-scoring weapon; a shape-preserving scramble fix; 11v11 (parked,
-engine-scale); phase 120 home-advantage → memory commentary (clean
-Stage-4). No recommendation is baked in here — read the entries +
-probe numbers and choose fresh.
-(112 through 119b ALL shipped 2026-07-18; 119c + 119d all ATTEMPTED +
-REVERTED same day; fingerprint baseline `848370ae…` UNCHANGED.)**
+scoring weapon; the SPILL half of the scramble (~50% of entries —
+119e fixed the tackle-squirt half; scramble-goal SHARE sits with
+this + the give-and-go); 11v11 (parked, engine-scale); phase 120
+home-advantage → memory commentary (clean Stage-4). No
+recommendation is baked in here — read the entries + probe numbers
+and choose fresh.
+(112 through 119b + 119e ALL shipped 2026-07-18; 119c + 119d-1
+ATTEMPTED + REVERTED same day; fingerprint baseline now `5c6226fa…`
+= phase-119e.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1661,6 +1665,44 @@ stands. ⭐ FOLLOW-ON (user, 2026-07-18): once a working game-plan
 lands, the clash banner becomes the MATCHDAY REPORT — this fixture's
 formations, the coach's counter-pick and why. (The clash overlay
 code was written + reverted with 119c; re-land it with 119d.)
+
+**119e — the DIRECTIONAL TACKLE POKE (the 中场乱抢 re-examination)**
+✅ **SHIPPED 2026-07-18 late (user-ratified "先A——符合现实,解围也
+一般有方向"; probe-first, two refuted models on the way).** NEW
+`scramble-anatomy.ts` (episode = a contest-event chain, gaps <2s,
+≥2 possession flips between the teams) quantified the pinball at
+HEAD first: **8.15/8.90 scrambles/match, mean 2.9s, 11-12% of open
+play, 60-63% in the MIDDLE third, 5-6 bodies within 6m at the peak**
+(open-play baseline 2.4-2.6), and **21-24% of ALL goals
+scramble-preceded** (a breakaway forms <5s after 20-26% of them).
+Shape HELD during scrambles (12.1 vs 11.1m off-spot) — the 人堆 is
+structural midfield density + converging assignments, NOT shape
+abandonment (the 119d-1 lesson holds). Entries: ~50% first-touch
+spills · 35-39% tackle squirts · 9-16% contested pass flights — half
+the entries are ACCIDENTS, which is why no selection gradient ever
+removes the scramble on its own. THE LEVER: the won-tackle squirt
+was `fromAngle(rng 0..2π)` — a physically dishonest uniform spray,
+half of it handed back toward the winner's own net. Now a standing
+tackle steers WIDE — the away-from-own-goal ray bent toward the near
+touchline, ±69° noise (far too wild to be a pass); the slide keeps
+momentum/heading physics (you cannot steer from the grass). ⭐ TWO
+REFUTED MODELS mapped the design space first (both A/B'd, both
+discarded pre-commit): v1 heading-cone (chase-from-behind tacklers
+face their own goal — scrambles AND scramble-goals ROSE), v2
+straight up-pitch clearance (scrambles −23% BUT the poke became a
+free VERTICAL out-ball over the press to the deliberately-high
+defend-shape ST: goals-warming re-inflated 11.18→15.4 and fresh
+evolution railed press/transitionPress to 0.75/0.8). **THE COUPLING
+LAW: a squirt's dispersal power is inseparable from its counter
+danger — WIDE is the only direction that passes the scramble gate
+AND the goals gate.** Measured (v3, all gates green): scrambles
+7.75/7.86 fresh-evolved (−5/−12%) · 7.49/8.66 frozen-gene;
+scramble-goal SHARE ~flat (the payoff end is untouched — that's the
+spill/give-and-go frontier, 119d); goals-warming **11.48
+(2.93/4.71/3.84)** ≈ the 119b arc low 11.18, 424242's 2.93 the
+lowest single world of the arc; calibrate 2.01/2.36/2.30 vs 119b's
+1.88/2.36/2.32 (noise); vitest 441 with ZERO re-anchors (draw count
+preserved); visual 134+54; fingerprint REBASELINED `5c6226fa…`.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 
