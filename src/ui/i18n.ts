@@ -324,6 +324,16 @@ const ZH: Record<string, string> = {
   Continue: '继续',
   'league mean': '联赛均值',
   'tap to dismiss': '点按关闭',
+  // ---- the matchday report (Phase 119g) ---- ('pts' already defined below)
+  'this season': '本赛季交手',
+  '1st': '第1',
+  '2nd': '第2',
+  '3rd': '第3',
+  '4th': '第4',
+  '5th': '第5',
+  '6th': '第6',
+  '7th': '第7',
+  '8th': '第8',
 
   // ---- the club center (Phase 113.5) ----
   Clubs: '球队',

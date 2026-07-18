@@ -87,6 +87,10 @@ await page.click('button:has-text("⏭ skip")');
 // canvas clicks are never intercepted.
 check('pre-match clash shows on the next fixture (32.5)', await page.evaluate(() => window.__evo.clashVisible()), '');
 check('clash banner carries two DNA radars', (await page.locator('#clash-banner svg.radar').count()) === 2, '');
+// The matchday report (119g): the league fixture enriches the tape with the
+// dugout, recent form and the standing (a friendly would show none of these).
+check('clash names both coaches (119g)', (await page.locator('#clash-banner .clash-coach').count()) === 2, '');
+check('clash carries form + standing rows (119g)', (await page.locator('#clash-banner .clash-record').count()) === 2, '');
 await page.screenshot({ path: `${OUT}/2b-clash.png` });
 await page.click('#clash-banner');
 await page.waitForTimeout(200);

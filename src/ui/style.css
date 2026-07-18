@@ -318,6 +318,11 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
   position: absolute; bottom: 4px; left: 0; right: 0;
   text-align: center; font-size: 9px;
 }
+/* The matchday report (119g): coach, form, standing, head-to-head. */
+.clash-coach { font-size: 10px; }
+.clash-record { display: flex; align-items: center; gap: 6px; font-size: 10px; margin-top: 2px; }
+.clash-pos { font-size: 10px; white-space: nowrap; }
+.clash-h2h { font-size: 10px; text-align: center; }
 
 /* ---------- league screen tabs & report ---------- */
 .tab-nav {

@@ -1324,10 +1324,15 @@ showcase), 119a.5 (settings screen + topbar nav), 119b (keeper
 honesty — fingertip stretch + angle coverage), 119e (the DIRECTIONAL
 TACKLE POKE — the 乱抢 re-examination made quantitative; see its
 entry + the coupling law), 119f (the KEEPER-RELEASE lane read — a
-keeper looks before he throws; the throw-AT-opponent bounce-back).
-⭐ QUEUED NEXT: 119f-spill (the first-touch 停球失误, the bigger
-supply-side cause) + 119g (赛前 UI + pre-match — the 119c
-revert→reframe). ATTEMPTED + REVERTED
+keeper looks before he throws; the throw-AT-opponent bounce-back),
+119g (the 赛前 MATCHDAY REPORT — clash banner gains coach + form +
+standing + head-to-head; the 119c revert→reframe's SAFE UI half,
+zero-sim). PROBED → NO-FIX this session: 119f-spill (the first-touch
+停球失误 is HONEST football — 90% hard receptions; nerfing it would
+trip the 119d-1 iron law; the ugliness is the spill FEEDING a
+scramble, = the give-and-go/119d frontier). ⭐ QUEUED NEXT: the 119g
+(b) pre-match BEHAVIOURAL plan (attacking-side/upstream only, per
+119z), the give-and-go co-weapon (119d). ATTEMPTED + REVERTED
 this session (all A/B'd, none committed): 119c per-opponent
 game-plan (defensive gene-bend); 119d-1 off-ball supply (peel /
 show-for-it / pitch-wide marker-lag, four cuts); the 1v1 keeper
@@ -1754,18 +1759,25 @@ FEEDING a scramble — that's the scramble PAYOFF frontier (give-and-go
 / 119d), not the reception. `spill-anatomy.ts` kept for whenever the
 give-and-go co-weapon is picked up.
 
-**119g — the 赛前 UI + 赛前准备 (matchday report + pre-match)** ⏳
-**QUEUED (user, 2026-07-18 night — "赛前ui和赛前准备,这个也得排号").**
-Two layers: (a) the SAFE UI-only matchday report — the clash-banner
-enrichment (this fixture's formations, both coaches' identities, form
-strips, head-to-head, the era/title stakes) written + reverted with
-119c is re-landable standalone with ZERO sim change; (b) a mild
-pre-match BEHAVIOURAL plan — but 119c already REFUTED defensive
-gene-bend counter-picking (it fed the terminal breakaway). So (b), if
-built, must follow the 119z lesson (the working counter-pick is
-ATTACKING-side / upstream, not defensive gene-bend) and be measured
-strictly against no-regression. Recommendation: ship (a) first
-(pure win, no risk), treat (b) as a separate probe-gated attempt.
+**119g — the 赛前 UI (matchday report)** ✅ **SHIPPED 2026-07-18 night
+(the revert→reframe of 119c: its SAFE UI half, standalone, ZERO sim).**
+The existing pre-match ClashBanner (two DNA radars + formation pair +
+scheme + morale + nameplate) is now the MATCHDAY REPORT: each side card
+gains the DUGOUT figure (👔 coach name), a recent FORM strip (last 5
+league W/D/L, the 114 data), and the LEAGUE STANDING (division rank +
+points); the middle gains this season's HEAD-TO-HEAD (played fixtures
+between the two, normalized to the home perspective). `show()` now
+takes a `ClashContext { population, league, fixture }`; friendlies /
+cup ties / exhibitions degrade cleanly to the DNA-only view (no fake
+standings). Pure reads off league + fixture — fingerprint IDENTICAL
+`ab2e43bd…`. Gates: vitest 441, visual 136 (+2: coaches named, form+
+standing rows) + 3D 54, phone 390px still fits, build clean.
+⭐ NOT DONE (the (b) half, deliberately deferred): the mild pre-match
+BEHAVIOURAL plan. 119c REFUTED defensive gene-bend counter-picking
+(fed the terminal breakaway); per 119z + [[feedback-revert-reframe]] a
+working plan must be ATTACKING-side / upstream and probe-gated against
+no-regression (the revert→reframe rule) — a separate future attempt,
+not bundled with the UI.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

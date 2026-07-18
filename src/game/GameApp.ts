@@ -550,7 +550,11 @@ export class GameApp implements GameActions {
     this.clash.show(
       this.match,
       this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
-      this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
+      {
+        population: this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
+        league: this.league,
+        fixture: this.fixture,
+      },
     );
     this.updateMusic();
   }
@@ -575,7 +579,11 @@ export class GameApp implements GameActions {
         : this.fixture.cup
           ? `${CUP_ROUND_NAMES[this.fixture.round]}`
           : this.league.roundLabel(),
-      this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
+      {
+        population: this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
+        league: this.league,
+        fixture: this.exhibition ? null : this.fixture,
+      },
     );
     this.updateMusic();
   }
@@ -701,6 +709,11 @@ export class GameApp implements GameActions {
       this.clash.show(
         this.match,
         this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
+        {
+          population: this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
+          league: this.league,
+          fixture: this.fixture,
+        },
       );
       this.updateMusic();
     }
