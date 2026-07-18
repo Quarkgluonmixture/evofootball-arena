@@ -1554,6 +1554,16 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ⭐ **2026-07-18 AFTERNOON GAP REVIEW + THE NEXT 自走 QUEUE** (user:
+  "现在整个和我的预想蓝图还差哪些" → the gap map, then "我compact之后
+  自走"): the remaining distance to the vision concentrates in ①the
+  ATTACK-side inflation cut (93-104 pressed only defence; late conv
+  still 48-60%), ②N5 formation library (the last big queue item),
+  ③entity links, ④the offside-trap gene (school #1, last unbuilt),
+  ⑤Stage-4 pull items. **The ordered, ratified queue + full state
+  snapshot live at the TOP of ROADMAP.md ("THE NEXT 自走 QUEUE") —
+  resume there.** Waiting-on-user: 105 audio ears, itch push, amb
+  seam, extra BGM tracks.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

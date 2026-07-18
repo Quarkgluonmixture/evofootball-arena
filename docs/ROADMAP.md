@@ -1009,6 +1009,75 @@ session trick) + visibilitychange re-resume for backgrounding.
 ④ SFX default ON at 70 (user ask), slider still rules. UI-only;
 fingerprint IDENTITY `f4750bb9…`; vitest 421; visual 109+52. Final
 gain judgement = the user's ears; every number has a dB paper trail.)
+⭐⭐⭐ **THE NEXT 自走 QUEUE (2026-07-18 afternoon — ⭐ THE RESUME POINT
+after the user's compact; user said "我compact之后自走" against the gap
+review below, order = Claude's recommendation left unchallenged).**
+State at queue-writing: phases 93-105 all shipped+pushed+deployed; HEAD
+fingerprint `f4750bb9…` (phase-104; 105 UI-only); calibrate 2.94/2.90/
+3.09; vitest 421; the morning decisions LANDED (anchor dead at λ=0 ·
+Route A shipped as the outnumbered duel · chaser-count stays · keeper
+出击 = closeIn physics). Execute IN ORDER, one phase = one commit+tag+
+push, full gates each (vitest · both visual suites · calibrate ×3 on
+behavioral changes · fingerprint identity-or-rebaseline · both ledgers);
+probe-first everywhere; the user PLAYS CONTINUOUSLY — casual
+observations ARE the play reports and may re-order this queue.
+
+**106 — the ATTACK-SIDE inflation cut (probe FIRST, lever unknown)**:
+the whole 93-104 arc pressed the DEFENSIVE side; late-gen conv is still
+48-60% because the walk-in carrier's PATH to point-blank goes
+ungoverned. Probe the anatomy of the final 15m (who could have stepped
+out, what the last defender did, where the line stood — extend
+`shot-context-anatomy`/`pinned-winger` scaffolding) and let the data
+pick the lever; candidates from the arc: the beaten line's RECOVERY
+run pricing, the last defender's delay physics, retreat geometry.
+Emergence rule in force: fix substrate/pricing, never script behavior.
+Gates: warming 24×3 late means (the ≤~3.8 bar stands), calibrate band,
+adoption where a gene is touched.
+
+**107 — N5 FORMATION LIBRARY expansion** (blueprint queue, ungated
+since 65): 2×2×2 shapes is the hard ceiling on visible structural
+diversity — add 6v6-honest attack shapes (asymmetry, twin ST,
+deep-forward) as RARE mutations under an ecology budget (the zonal
+lesson, fm 21; mind the phase-64 def-menu watch). Save-touching
+(genome shape enum?) — chain-test migrations.
+
+**108 — ENTITY LINKS across screens** (blueprint cross-cutting item):
+click a player anywhere (chronicle, market, dynasty wall) → his deep
+dive; club names → club deep dive. UI-only, fingerprint identity,
+phone-checked at 390px.
+
+**109 — the OFFSIDE-TRAP gene** (the user's defensive school #1, the
+last unbuilt): hold-the-line vs track-runner, natural tension with
+coverBias (the libero plays everyone onside); through-pipe is only
+~3% of goals so expectations are honest — school completeness, not an
+inflation lever. 21st gene → save bump + migration + adoption gate.
+
+**110+ — Stage 4 pull items, one at a time, each passing "does it give
+genes a NEW payoff surface?"**: form/morale → injuries (N2
+infrastructure ready) → home advantage → memory commentary.
+
+**STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
+EARS (every gain has a dB paper trail in the 105 entry — report by
+layer name); ② itch push is manual+theirs (Pages auto-deploys); ③
+amb-loop seam listen; ④ prematch/reel/shootout BGM slots when tracks
+arrive; ⑤ render pageantry parked (foot IK/cloth/celebrations);
+⑥ 11v11 deliberately parked (engine-scale).
+
+⭐⭐⭐ **THE MORNING RUN RESULT (2026-07-18 06:00-12:00, phases 102-105
+— the user's morning ratification executed: "1.删掉…2.路线a…go自走" +
+the audio round)**: **102** ✅ anchor dead (λ=0, purity back) · **103**
+✅⚠ closeIn — the save model's missing closing-down credit (probed the
+whole design space first: extended charge REJECTED at GA 5.13, custom
+poke deleted by its own measurement; aggr gains an interior optimum;
+adoption still ecology-dependent) · **103.5** ✅ jockey A/B re-read:
+gap narrowed to noise · **104** ✅⚠ Route A = the OUTNUMBERED DUEL
+(stalled carrier + helper ≤3m ⇒ +0.12; dribble-meta A/B parity — first
+non-loss; late means 15.72 total = the arc's low, no blowout world;
+991 evolved a cover+pace school instead of jockey = defensive
+DIVERSITY) · **105** ✅ the measured audio mix + title-anthem
+pause-lifecycle + mobile dual-context unlock + SFX default ON.
+The inflation arc REMAINS OPEN (late conv 48-60%) — queue item 106.
+
 ⭐⭐⭐ **THE OVERNIGHT RESULT (2026-07-18 02:00-04:40 — the queue below
 EXECUTED, phases 93-101, nine commits+tags all pushed, every gate
 green).** One-line map: **93** ✅ composure earned (composed-1v1 share
@@ -1105,7 +1174,7 @@ chaser-count hardcode; N6 follow-through (fitBias drift watch).
 
 Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
 play reports; goals-band verdict = theirs; amb-loop human listen
-still open. HEAD fingerprint `3249ad64…` (phase-101). The user PLAYS CONTINUOUSLY —
+still open. HEAD fingerprint `f4750bb9…` (phase-104; 105 is UI-only identity). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
