@@ -869,6 +869,7 @@ function performHeaderShot(match: Match, shooter: Player): void {
   match.pendingShot = {
     side: shooter.side,
     shooterGid: shooter.gid,
+    closeIn: clamp01((7 - dist(gk.pos, shooter.pos)) / 7),
     xg: q,
     t: match.simTime,
     resolved: false,
@@ -1139,6 +1140,7 @@ export function performShot(match: Match, shooter: Player): void {
     logIndex: match.shotLog.length - 1,
     difficulty,
     assistGid,
+    closeIn: clamp01((7 - dist(gk.pos, shooter.pos)) / 7),
   };
 
   // Key pass: shot within 3s of receiving.
@@ -1378,8 +1380,13 @@ export function trySmother(match: Match): void {
   // Hands only inside the box (Phase 28.5, user report "门将出击到禁区外用手
   // 接球了"): the smother IS a dive ONTO the ball with the hands, so it may
   // only happen in the keeper's own area — even mid-rush. A sweeper who
-  // rushes past his line closes the angle, but a ball out there he takes with
-  // his feet (giveBall) or not at all; he cannot claim it here.
+  // rushes past his line closes the angle, but a ball out there he takes
+  // with his feet — and his FEET were always live: the tryTackles tackler
+  // scan never excluded keepers, so a rushing keeper duels the carrier on
+  // the phase-41 substrate like any defender (Phase 103 verified this and
+  // DELETED its own first cut — a custom out-box poke layered a worse-
+  // priced coin flip with a 0.9s stun on top of the tuned duel, and the
+  // sweeper school bled goals through exactly that branch).
   if (!match.inPenaltyBox(match.ball.pos, gk.side)) return;
   if (dist(gk.pos, match.ball.pos) >= 1.3) return;
 
@@ -1688,7 +1695,7 @@ export function tryKeeperSave(match: Match): void {
   // the base is a set keeper's, not a scrambling one's. Without this the
   // far-corner curl carried difficulty ~0.25 and 67% of on-target free
   // kicks went in (probed) — real keepers save most on-frame FKs.
-  const saveP = shot.placed
+  let saveP = shot.placed
     ? clamp(0.7 - shot.xg * 0.6 + (gk.attrs.reflexes - 0.5) * 0.22, 0.08, 0.92) *
       Math.max(shot.difficulty, 0.85)
     // Phase 85: the xG discount collapsed saveP to the floor at the meta's
@@ -1698,6 +1705,14 @@ export function tryKeeperSave(match: Match): void {
     // keepers now save SOME big chances (real big-chance save% 15-45%),
     // early-gen shots (xG≈0.16) move ≤+2pp.
     : clamp(0.48 - shot.xg * 0.45 + (gk.attrs.reflexes - 0.5) * 0.28, 0.1, 0.92) * shot.difficulty;
+
+  // ANGLE CLOSED (Phase 103): a keeper who stood NEAR the shooter at the
+  // strike made the goal small — the one credit the save model never paid,
+  // which is why closing down (and the whole 出击 school) could never win.
+  // Frozen at shot time; chips and placed balls carry 0 (the chip is the
+  // designed counter to the advanced keeper). Early-gen shots from range
+  // are untouched by construction (closeIn ≈ 0 beyond 7m).
+  saveP = Math.min(0.95, saveP * (1 + (shot.closeIn ?? 0) * 0.9));
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;

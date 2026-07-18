@@ -75,6 +75,17 @@ export interface PendingShot {
    * treating the far-corner curl like an open-play reaction save.
    */
   placed?: boolean;
+  /**
+   * ANGLE CLOSED (Phase 103, the sweeper's missing physics): how near the
+   * keeper stood to the SHOOTER at the strike (1 at his feet, 0 beyond 7m).
+   * Frozen at shot time like `difficulty`. The save model was blind to
+   * closing down — a keeper at the striker's toes saved at the same rate
+   * as one on his line, so 出击 could never pay and the walk-in pipe had
+   * no keeper answer. The xG model stays keeper-blind (phase-85's rule:
+   * evolved defending shows up as UNDER-performance, like real xG).
+   * Chips and placed balls carry 0 — the chip IS the counter.
+   */
+  closeIn?: number;
 }
 
 /** One shot for the analytics timeline (xG race chart). */

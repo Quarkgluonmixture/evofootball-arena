@@ -885,19 +885,41 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
   // 1v1 rush (Phase 27.5): an opponent carrier bearing down with nobody
   // goal-side — charge them down and make the goal small. keeperAggression
   // sets how far out the keeper is willing to leave the line.
+  // Phase 103 (user design, 门将出击到禁区外) probed BOTH extensions and
+  // kept one: charging a CONTROLLED carrier far out is bad football — the
+  // rush-anatomy A/B measured the extended charge at GA +1.3-1.8 vs the
+  // timid school in both regimes (attackers simply shoot past the
+  // advancing keeper: xg/shot faced 0.16→0.20). The carrier charge keeps
+  // its classic range; the sweeper's REAL range gain is the loose-ball
+  // interception below (through balls are where 出击 pays).
   const carrier = ball.owner;
   if (carrier && carrier.side !== p.side) {
+    const aggr = team.genome.keeperAggression;
     const dGoal = dist(carrier.pos, ownGoal);
-    if (dGoal < 9 + team.genome.keeperAggression * 8) {
+    if (dGoal < 9 + aggr * 8) {
       let goalside = 0;
       for (const mate of team.players) {
         if (mate === p || mate.sentOff) continue;
         if (dist(mate.pos, ownGoal) < dGoal - 1) goalside++;
       }
-      if (goalside === 0) {
+      // The RACE READ (Phase 103): charge only when he can MEET the carrier
+      // before the shot. Inside the box the old reflex stands (make the
+      // goal small); outside it, an unwinnable charge just opens an empty
+      // net — probed: an always-charge sweeper conceded 5.13/match vs the
+      // timid school's 2.05. The gene prices the accepted margin, the
+      // physics decide the race.
+      let raceWon = true;
+      if (goalside === 0 && !match.inPenaltyBox(carrier.pos, p.side)) {
+        const toGoal = norm(sub(ownGoal, carrier.pos));
+        const closing = carrier.vel.x * toGoal.x + carrier.vel.y * toGoal.y;
+        raceWon =
+          closing > 1.2 &&
+          timeToPoint(p, carrier.pos) < (dGoal - 11) / closing + (aggr - 0.5) * 0.4;
+      }
+      if (goalside === 0 && raceWon) {
         p.action = {
           type: 'GoalkeeperRush',
-          scores: [{ action: 'GoalkeeperRush', score: 1, why: `1v1 — rushing out · aggr ${team.genome.keeperAggression.toFixed(2)}` }],
+          scores: [{ action: 'GoalkeeperRush', score: 1, why: `1v1 — rushing out · aggr ${aggr.toFixed(2)}` }],
         };
         return;
       }
@@ -909,7 +931,10 @@ function decideGoalkeeper(p: Player, team: Team, match: Match): void {
   // the keeper off the line to meet it even while it's still out wide.
   if (ball.owner === null) {
     const sol = interceptBall(p, ball);
-    if (dist(sol.point, ownGoal) < 15) {
+    // The sweeper's interception range (Phase 103): a through ball coming
+    // down 20-27m out is the high-line keeper's to eat — feet only out
+    // there (the 28.5 giveBall gate). Timid keepers keep the old 15m.
+    if (dist(sol.point, ownGoal) < 15 + Math.max(0, team.genome.keeperAggression - 0.5) * 24) {
       // Running min over the same values in the same order — the old
       // filter/map/spread allocated two arrays per GK decision.
       let rivalT = Infinity;

@@ -1529,6 +1529,15 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   priced only AFTER 103 lands + jockey A/B re-run (the 93→94 lesson:
   103 will devalue containment's prey further — sequence matters);
   ④ chaser-count hardcode stays (user call).
+- ✅⚠ **phase-103 SHIPPED** (**closeIn — closing down finally pays**;
+  fingerprint REBASELINED `5707cc92…`, zero re-anchors). The save
+  model's missing physics: saveP × (1+closeIn·0.9) frozen at strike,
+  0 beyond 7m; chips/placed = 0. Probe-driven design: extended
+  carrier-charge REJECTED (GA 5.13), custom poke DELETED (keepers
+  always had tryTackles feet), race read + interception range kept.
+  Every school's point-blank saves honest now; aggr has an interior
+  optimum. Gate honest: aggr not adopted, late means unbent — the
+  arc hands to the LINE (104 Route A).
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

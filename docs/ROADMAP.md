@@ -934,6 +934,35 @@ for the inflation engine is IN-ECOLOGY: the keeper RUSH-OUT (103,
 user-designed) — attack the xg/shot proximity climb on the pitch,
 not on the scoreboard. Calibrate 2.96/2.69/3.38 (in band); vitest
 421; visual 109+54; fingerprint REBASELINED `7c896768…`.)
++ ✅⚠ **phase-103 SHIPPED** (**the keeper's missing physics — 出击
+finally has a real price tag** (user design, morning decision):
+the save model carried NO closing-down credit — a keeper at the
+striker's toes saved at the SAME rate as one on his line, so the
+出击 school could never pay and the walk-in pipe had no keeper
+answer. Now `closeIn` (frozen at strike, like `difficulty`): saveP
+× (1 + closeIn·0.9), 0 beyond 7m — early-gen shots untouched by
+construction; chips and placed balls carry 0 (the chip IS the
+counter, phase-69). Probed the whole design space first
+(`rush-anatomy.ts`, 3 schools × 2 attack regimes): ① an
+always-charge extended rush = GA 5.13 (attackers shoot past the
+advancing keeper) → the carrier-charge keeps its CLASSIC range +
+a RACE READ (charge only when he can meet the carrier before the
+shot; gene prices the accepted margin); ② the custom out-box foot
+poke DELETED by its own measurement — tryTackles never excluded
+keepers, so the rushing keeper always had tuned feet and the poke
+just layered a worse coin flip on top; ③ the through-ball
+interception range extends for aggr>0.5 (the sweeper's real food).
+MEASURED: point-blank honesty helps EVERY school (timid GA
+3.57→3.27 vs the dribble meta) and the aggr dial gains an interior
+optimum (neutral 2.72 beats timid 3.27 AND sweeper 4.53) — a real
+tradeoff axis at last. THE GATE, honestly: 24g adoption FAILS
+(aggr 0.44/0.18/0.21) and late means 6.13/6.35/4.62 don't bend —
+the keeper's honest price alone doesn't close the arc; the
+defensive LINE's answer is next (104, Route A as ratified).
+Calibrate 2.28/3.01/3.07 (default-seed dip below the 2.3 floor =
+watch-not-chase per the 62 precedent; warming early means
+2.66-2.98 healthy); vitest 421 (zero re-anchors); visual 109+52;
+fingerprint REBASELINED `5707cc92…`.)
 ⭐⭐⭐ **THE OVERNIGHT RESULT (2026-07-18 02:00-04:40 — the queue below
 EXECUTED, phases 93-101, nine commits+tags all pushed, every gate
 green).** One-line map: **93** ✅ composure earned (composed-1v1 share
