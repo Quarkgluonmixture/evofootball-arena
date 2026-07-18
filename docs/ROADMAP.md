@@ -963,6 +963,27 @@ Calibrate 2.28/3.01/3.07 (default-seed dip below the 2.3 floor =
 watch-not-chase per the 62 precedent; warming early means
 2.66-2.98 healthy); vitest 421 (zero re-anchors); visual 109+52;
 fingerprint REBASELINED `5707cc92…`.)
++ ✅⚠ **phase-104 SHIPPED** (**Route A — the OUTNUMBERED DUEL**
+(user-ratified): tryTackles priced every duel 1v1 no matter how many
+bodies converged, so the containment that DELAYED UNTIL HELP ARRIVED
+(the whole 87/92 design) won its own collapse at coin-flip rates.
+Now a STALLED carrier (drive<0.45) with a second defender inside 3m
+concedes +0.12 — pure physics, no gene named (a flat, un-gated +0.10
+was tried first and REJECTED by A/B: it fed the press swarm and cost
+the jockey side the neutral arm). A/B at this HEAD: dribble-meta
+PARITY 1.37 vs 1.37 (the school's target regime — first non-loss in
+the whole investigation), neutral −0.14 (noise-band). 24g×3:
+**late means 5.60/4.92/5.20 — the LOWEST sum of the entire arc**
+(94: 16.31 · 95-anchor: 18.39 · 103: 17.10 · now 15.72), no blowout
+world for the first time. Adoption: 777 HOLDS 0.67; 424242 half-buys
+the package (jockey 0.43, def 0.60); 991 evolves a DIFFERENT defence
+instead (cover 0.53 + pace 0.60 — a sweeping school). The strict
+≥2/3-hold gate fails, but the honest reading has moved: containment
+is now FAIRLY PRICED and ecology-dependent — worlds choose among
+REAL defensive identities rather than uniformly abandoning defence.
+Calibrate 2.94/2.90/3.09 (the 103 default-seed dip RESOLVES); vitest
+421 (zero re-anchors); visual 109+50; fingerprint REBASELINED
+`f4750bb9…`.)
 ⭐⭐⭐ **THE OVERNIGHT RESULT (2026-07-18 02:00-04:40 — the queue below
 EXECUTED, phases 93-101, nine commits+tags all pushed, every gate
 green).** One-line map: **93** ✅ composure earned (composed-1v1 share

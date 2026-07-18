@@ -1538,6 +1538,16 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   Every school's point-blank saves honest now; aggr has an interior
   optimum. Gate honest: aggr not adopted, late means unbent — the
   arc hands to the LINE (104 Route A).
+- ✅⚠ **phase-104 SHIPPED** (**Route A: the outnumbered duel**;
+  fingerprint REBASELINED `f4750bb9…`). Stalled carrier + helper
+  ≤3m ⇒ +0.12 in tryTackles (flat +0.10 rejected by A/B — fed the
+  press swarm). Dribble-meta A/B parity (first non-loss); warming
+  late means 15.72 total = the arc's low, no blowout world;
+  adoption ecology-dependent but REAL (777 jockey 0.67; 424242
+  jockey 0.43+def 0.60; 991 evolves a cover+pace sweeping school
+  instead — defensive DIVERSITY, not uniform abandonment). The
+  inflation battle's cumulative state: conv still 48-60% late —
+  the arc stays open, but every school is now honestly priced.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

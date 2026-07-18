@@ -1565,6 +1565,17 @@ export function tryTackles(match: Match): void {
     owner.attrs.pace * drive * 0.16;
   if (oppTeam.mode === 'Press') p += 0.06;
   if (tackler.traits.includes('enforcer')) p += 0.04; // the destroyer (Phase 39)
+  // THE OUTNUMBERED DUEL (Phase 104, Route A user-ratified): a STALLED
+  // carrier with a second defender inside 3m has his escape angles cut —
+  // the duel was priced 1v1 no matter how many bodies converged, so a
+  // containment that DELAYED until help arrived (the whole jockey design,
+  // 87/92) won its collapse at coin-flip rates and the school starved.
+  // Physics, no gene named: the momentum gate still lets a DRIVING carrier
+  // burn through a double (a flat +0.1 also fed the press swarm and cost
+  // the jockey side the neutral A/B — measured, then narrowed); it is the
+  // stopped-and-doubled carrier who is dead meat, and engineering exactly
+  // that situation is what the contain school does for a living.
+  if (helpClose && drive < 0.45) p += 0.12;
   p = clamp(p, 0.06, 0.7);
 
   if (match.rng.chance(p)) {
