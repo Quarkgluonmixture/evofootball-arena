@@ -1554,6 +1554,17 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅ **phase-107 SHIPPED** (**N5 library expansion**: `overload` — the
+  first ASYMMETRIC shape, flank triangle + isolation outlet — and
+  `target-man` — the 埃弗顿高塔 the user named in the N1.5 reframe,
+  the Phase-63 aerial channel's own shape; ×0.35 rare entry, founders
+  classic, playability + entry-channel verified, no save bump). ⭐ The
+  phase-106-tag counterfactual showed gen-60 attack consolidation to
+  ONE shape under BOTH menus (novels win 2 of 4 world-runs, classics
+  the rest) — the walk-in meta consolidating onto launch platforms,
+  more evidence for 109. Also fixed: the def share-strip had been
+  missing the phase-79 labels since 79. Fingerprint identity-by-window
+  `f4750bb9…`; details at ROADMAP head ("THE 107 RESULT").
 - ✅⚠⚠ **phase-106 SHIPPED — PROBE-ONLY** (the attack-side cut; the
   phase-99 shape: instrument + honest negatives + a diagnosis that
   re-aims the queue; sim diff = comments only, fingerprint IDENTITY

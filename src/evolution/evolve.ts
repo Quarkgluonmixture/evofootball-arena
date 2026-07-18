@@ -102,6 +102,9 @@ function mutateStyle(style: TeamStyle, rng: Rng, zonal?: { room: number }): stri
     const menu: Array<{ id: AttackFormationId; w: number }> = [
       { id: 'wide-212', w: 1 }, { id: 'narrow-122', w: 1 },
       { id: 'twin-st', w: 0.35 }, { id: 'false-nine', w: 0.35 },
+      // Phase 107 (N5 expansion): asymmetry and the aerial tower join the
+      // discoverable library at the same rare entry weight.
+      { id: 'overload', w: 0.35 }, { id: 'target-man', w: 0.35 },
     ];
     const options = menu.filter((o) => o.id !== style.formationAtk);
     let r = rng.next() * options.reduce((s, o) => s + o.w, 0);

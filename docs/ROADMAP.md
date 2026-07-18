@@ -1009,6 +1009,40 @@ session trick) + visibilitychange re-resume for backgrounding.
 ④ SFX default ON at 70 (user ask), slider still rules. UI-only;
 fingerprint IDENTITY `f4750bb9…`; vitest 421; visual 109+52. Final
 gain judgement = the user's ears; every number has a dB paper trail.)
+⭐⭐⭐ **THE 107 RESULT (2026-07-18 afternoon — N5 library expansion,
+SHIPPED)**: two novel attack shapes join the discoverable menu at the
+×0.35 rare-entry weight — **`overload`** (the library's first ASYMMETRY:
+a three-man left-flank triangle + the right winger alone at max width
+as the isolation outlet) and **`target-man`** (the user's 埃弗顿高塔:
+the lone tower at +9 — highest ST of any shape — wingers mid-height
+arriving on the knock-down; the Phase-63 aerial channel finally gets a
+shape built around it). Same discovery discipline as 67: founders stay
+classic, reborn clubs copy parents, mutation-only entry, reversible.
+**Verdicts**: playability PASSES for both (real attacks both ways over
+a side-balanced seed pool); the entry channel verified twice (weighted
+draw-check: each novel takes 14.3% of attack switches; lineage census:
+9-11 attack switches per 60-gen world → ~1.3 expected tries per shape —
+target-man realized 2 entries in the verdict worlds, overload drew a
+legitimate zero at ~25%/world odds). ⭐ **The important finding came
+from the COUNTERFACTUAL** (phase-106 tag re-run in a worktree, same
+worlds): gen-60 ATTACK CONSOLIDATION to a single shape happens under
+BOTH menus — baseline 424242→twin-st 16/16, 991→narrow-122 16/16 (+
+low-32 16/0, the old def watch re-fires); with 107, 424242→wide-212
+16/16, 991→false-nine 16/16 (def mid-41 14 — a 79 shape finally wins a
+world). The monoculture is the late-gen walk-in meta expressing
+structurally (the 106 diagnosis again: everything consolidates onto
+the best LAUNCH platform), NOT a library defect — novels win 2 of 4
+world-runs, classics the other 2, no systematic edge. Evidence feeds
+109. Also: the EvolutionScreen def share-strip was missing the phase-79
+labels entirely (bands invisible since 79) — fixed alongside the four
+new labels. Gates: vitest 421 (quiet re-run; a contended 4-sims+vitest
+first run produced phantom errors — measurement discipline note);
+visual 109+51 quiet; calibrate 3.06/2.90/3.09 in band (424242/2024
+streams IDENTICAL to 105 — mutation-only change); warming 15.63 ≈
+baseline 15.72; fingerprint IDENTITY-BY-WINDOW `f4750bb9…` (the
+2-season window contains no divergent attack pick). No save bump —
+enum widening is schema-compatible (the 79 precedent).
+
 ⭐⭐⭐ **THE 106 RESULT (2026-07-18 afternoon — the attack-side cut,
 executed probe-first as ratified; verdict: PROBE-ONLY, negative results
 shipped honestly, the diagnosis re-aims the queue).**
@@ -1079,12 +1113,12 @@ launch channel — RECOMMENDED pre-work there = a LAUNCH-anatomy probe
 (what serves the gs=0 band entry: through-ball / carry-through /
 keeper sling / long punt), extending `final15-anatomy.ts`.
 
-**107 — N5 FORMATION LIBRARY expansion** (blueprint queue, ungated
-since 65): 2×2×2 shapes is the hard ceiling on visible structural
-diversity — add 6v6-honest attack shapes (asymmetry, twin ST,
-deep-forward) as RARE mutations under an ecology budget (the zonal
-lesson, fm 21; mind the phase-64 def-menu watch). Save-touching
-(genome shape enum?) — chain-test migrations.
+**107 — N5 FORMATION LIBRARY expansion** ✅ **DONE 2026-07-18** — the
+two genuinely-missing shapes shipped (`overload` asymmetry +
+`target-man` tower; twin-ST/deep-forward were already 67's). Full
+entry above ("THE 107 RESULT"). No save bump needed (enum widening).
+⭐ The counterfactual run's finding — gen-60 single-shape consolidation
+under EITHER menu — is 109's evidence base.
 
 **108 — ENTITY LINKS across screens** (blueprint cross-cutting item):
 click a player anywhere (chronicle, market, dynasty wall) → his deep

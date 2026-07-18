@@ -503,14 +503,20 @@ export class EvolutionScreen {
       grid.appendChild(stackedShareStrip(t('Attack formation'), [
         { label: 'wide-212', color: '#60a5fa' },
         { label: 'narrow-122', color: '#f59e0b' },
-        // The discovered shapes (Phase 67) — most eras show none; a colored
-        // band appearing IS the event.
+        // The discovered shapes (Phase 67 + 107) — most eras show none; a
+        // colored band appearing IS the event.
         { label: 'twin-st', color: '#4ade80' },
         { label: 'false-nine', color: '#a78bfa' },
+        { label: 'overload', color: '#fb7185' },
+        { label: 'target-man', color: '#facc15' },
       ], withStyles.map((r) => r.styleShares!.atk)));
       grid.appendChild(stackedShareStrip(t('Defend formation'), [
         { label: 'low-32', color: '#60a5fa' },
         { label: 'press-23', color: '#f472b6' },
+        // The phase-79 discoveries were invisible here (labels never added
+        // — a 107 catch): their bands now render like the attack ones.
+        { label: 'mid-41', color: '#4ade80' },
+        { label: 'high-line', color: '#facc15' },
       ], withStyles.map((r) => r.styleShares!.def)));
       grid.appendChild(stackedShareStrip(t('Marking'), [
         { label: 'man', color: '#4ade80' },

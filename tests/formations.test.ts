@@ -322,8 +322,8 @@ describe('the discovered shapes (Phase 67, N5)', () => {
     }
   });
 
-  it('twin-st and false-nine play REAL football — attack both ways over a seed pool', { timeout: 60000 }, () => {
-    for (const shape of ['twin-st', 'false-nine'] as const) {
+  it('the novel shapes play REAL football — attack both ways over a seed pool', { timeout: 120000 }, () => {
+    for (const shape of ['twin-st', 'false-nine', 'overload', 'target-man'] as const) {
       const novel = team('N', neutral(), { formationAtk: shape, formationDef: 'press-23', scheme: 'man' });
       const classic = team('C', neutral(), { formationAtk: 'wide-212', formationDef: 'press-23', scheme: 'man' });
       let goalsN = 0;

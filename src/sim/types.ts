@@ -45,7 +45,8 @@ export type TeamMode = 'BuildUp' | 'Attack' | 'Defend' | 'Press' | 'CounterAttac
  * mutation at reduced weight (the zonal entry lesson) and survive purely on
  * results. Structural diversity is earned, never seeded.
  */
-export type AttackFormationId = 'wide-212' | 'narrow-122' | 'twin-st' | 'false-nine';
+export type AttackFormationId =
+  | 'wide-212' | 'narrow-122' | 'twin-st' | 'false-nine' | 'overload' | 'target-man';
 export type DefendFormationId = 'low-32' | 'press-23' | 'mid-41' | 'high-line';
 export type MarkScheme = 'man' | 'zonal';
 

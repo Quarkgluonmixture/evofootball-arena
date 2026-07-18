@@ -42,6 +42,20 @@ export const ATTACK_FORMATIONS: Record<AttackFormationId, V2[]> = {
   // high and very wide — the runners the false nine releases into the
   // space he vacated.
   'false-nine': [v2(-41, 0), v2(-17, -5), v2(-12, 5), v2(12, -18), v2(12, 18), v2(-2, 0)],
+  // NOVEL (Phase 107, N5 — mutation-discovered only). The OVERLOAD: the
+  // library's first ASYMMETRIC shape — a three-man left-flank triangle
+  // (MF half-space, WGL wide, ST shading in) with the right winger ALONE
+  // at maximum width as the isolation outlet (overload to isolate: the
+  // switch finds him 1v1). The anchor shades right-center to cover the
+  // side the triangle vacates.
+  'overload': [v2(-41, 0), v2(-17, 3), v2(-7, -9), v2(9, -17), v2(8, 17), v2(5, -7)],
+  // NOVEL. The TARGET MAN (the user's N1.5 reference point — 埃弗顿高塔):
+  // the lone tower stands HIGHEST of any shape (+9) as the long ball's
+  // destination — the Phase-63 aerial channel finally gets a shape built
+  // around it (strength/aerialSense own the descent) — with both wingers
+  // at mid-height arriving onto the knock-down, staggered double base
+  // behind (no stacked central spine, the 27.1 lesson).
+  'target-man': [v2(-41, 0), v2(-18, -4), v2(-10, 5), v2(0, -14), v2(0, 14), v2(9, 0)],
 };
 
 // Defend tables keep the STRIKER HIGH on purpose (30.4). The first cut
