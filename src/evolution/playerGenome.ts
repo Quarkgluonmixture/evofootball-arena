@@ -148,10 +148,25 @@ export function enforceBudget(squad: PlayerAttributes[]): PlayerAttributes[] {
  * selection has nothing to work with yet): what a club's left winger IS is
  * now bloodline, discovered by evolution, not set by us. The age curve
  * regrows a 17-year-old's inherited profile from there.
+ *
+ * School-linked variation (Phase 94): the academy grows what the coach's
+ * philosophy NEEDS. The jockey school's problem was DISCOVERY, not payoff —
+ * containment only pays as a defending+jockeyBias PACKAGE, a two-locus
+ * valley that drift rarely crosses in a 16-club population (phases 88/92).
+ * So the newgen intake drifts along the philosophy axis: a containment
+ * coach (jockeyBias>0.5) pulls the heir toward defending, a dive-in coach
+ * pulls toward pace — a zero-sum transfer on one axis (max ±0.12, one
+ * mutation σ), on top of unbiased bloodline noise. Fitness stays pure
+ * results and founders stay random: this biases VARIATION, not selection.
  */
-export function newgenFromBloodline(retiree: PlayerAttributes, rng: Rng): PlayerAttributes {
+export function newgenFromBloodline(
+  retiree: PlayerAttributes, rng: Rng, coachJockeyBias = 0.5,
+): PlayerAttributes {
   const out = {} as PlayerAttributes;
   for (const k of ATTR_KEYS) out[k] = clamp01(retiree[k] + rng.gaussian() * 0.12);
+  const pull = (coachJockeyBias - 0.5) * 0.24;
+  out.defending = clamp01(out.defending + pull);
+  out.pace = clamp01(out.pace - pull);
   return out;
 }
 

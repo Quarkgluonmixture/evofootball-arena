@@ -755,6 +755,27 @@ seeds re-anchored 58/182/207→24/42/44 (6th dance; card pins held).
 vitest 415; visual 109+51 (the 3D count is data-dependent — the
 conditional refCall check didn't fire on this stream); fingerprint
 REBASELINED `a3120f75…`.)
++ ⚠ **phase-94 SHIPPED** (**school-linked variation — the academy
+follows the philosophy, and a hard finding** (queue item C):
+`newgenFromBloodline` gains the philosophy pull — a containment
+coach (jockeyBias>0.5) drifts heirs toward defending, a dive-in
+coach toward pace; zero-sum on one axis, max ±0.12 (one mutation σ),
+budget-clamped structurally by the existing intake `enforceBudget`;
+founders/fitness untouched, RNG-stream NEUTRAL by construction
+(zero seed re-anchors — first behavioral phase since 61 without a
+dance). The MECHANISM works: def attr follows the school (991's
+def hit 0.61 — the highest any warming run has shown; unit test
+pins the transfer). THE GATE FAILS: 24g adoption = jockey 0.41/
+0.09/0.30 at gen 23 — 0/3 worlds hold >0.5, and even 777 (0.74
+at 93-HEAD) abandons. Reading: phase-93 devalued exactly what
+containment prevents — with the composed-1v1 gift finishing-gated,
+a 0.5-finisher's breakaway is no longer lethal, so goal-side
+standoff pays LESS; dive-in is honestly optimal again (red-queen,
+directly re-observed). Verdict input for 95: late means 6.72/4.90/
+4.69 (≫3.8) → the PRE-AUTHORIZED fitness anchor fires next.
+Calibrate 2.57/2.64/3.16 (all in band — 93's default-seed watch
+RESOLVES). vitest 416; visual 109+51; fingerprint REBASELINED
+`bed80ef1…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
@@ -826,7 +847,7 @@ chaser-count hardcode; N6 follow-through (fitBias drift watch).
 
 Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
 play reports; goals-band verdict = theirs; amb-loop human listen
-still open. HEAD fingerprint `a3120f75…` (phase-93). The user PLAYS CONTINUOUSLY —
+still open. HEAD fingerprint `bed80ef1…` (phase-94). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

@@ -95,6 +95,31 @@ describe('player genome operators', () => {
     expect(topStaysReflexes / N).toBeGreaterThan(0.9); // the bloodline holds
   });
 
+  it('newgenFromBloodline: the academy grows what the philosophy needs (94)', () => {
+    // Same retiree, same rng stream — the philosophy pull is a pure shift:
+    // a containment coach's heir gains defending and sheds pace, a dive-in
+    // coach's heir mirrors it, and a neutral 0.5 coach is a no-op vs the
+    // two-arg legacy call. Zero-sum on the axis, everything else untouched.
+    const retiree = {} as PlayerAttributes;
+    for (const k of ATTR_KEYS) retiree[k] = 0.5;
+    for (let s = 0; s < 20; s++) {
+      const neutral = newgenFromBloodline(retiree, new Rng(2000 + s));
+      const legacy = newgenFromBloodline(retiree, new Rng(2000 + s), 0.5);
+      const jockey = newgenFromBloodline(retiree, new Rng(2000 + s), 0.9);
+      const divein = newgenFromBloodline(retiree, new Rng(2000 + s), 0.1);
+      for (const k of ATTR_KEYS) expect(legacy[k]).toBe(neutral[k]);
+      expect(jockey.defending).toBeCloseTo(Math.min(1, neutral.defending + 0.4 * 0.24), 9);
+      expect(jockey.pace).toBeCloseTo(Math.max(0, neutral.pace - 0.4 * 0.24), 9);
+      expect(divein.pace).toBeCloseTo(Math.min(1, neutral.pace + 0.4 * 0.24), 9);
+      expect(divein.defending).toBeCloseTo(Math.max(0, neutral.defending - 0.4 * 0.24), 9);
+      for (const k of ATTR_KEYS) {
+        if (k === 'defending' || k === 'pace') continue;
+        expect(jockey[k]).toBe(neutral[k]);
+        expect(divein[k]).toBe(neutral[k]);
+      }
+    }
+  });
+
   it('squadSummary averages attributes', () => {
     const squad = randomSquad(new Rng(11));
     const s = squadSummary(squad);

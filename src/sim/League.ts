@@ -886,8 +886,10 @@ export class League {
           // Academy heredity (Phase 48): the successor is grown in the
           // club's image — the retiree's profile mutated, NOT a random
           // role-biased roll. What this slot's player IS is bloodline now —
-          // and so is HOW he likes to play (Phase 54).
-          f.squad[i] = newgenFromBloodline(f.squad[i], ageRng);
+          // and so is HOW he likes to play (Phase 54). The current coach's
+          // philosophy steers the academy's axis (Phase 94): containment
+          // schools raise defenders, dive-in schools raise runners.
+          f.squad[i] = newgenFromBloodline(f.squad[i], ageRng, f.coach.genome.jockeyBias ?? 0.5);
           f.squadStyles[i] = styleFromBloodline(f.squadStyles[i], ageRng);
           f.ages[i] = rookieAge(ageRng);
           f.careers[i] = emptyCareer();

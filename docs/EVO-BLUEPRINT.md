@@ -1445,6 +1445,19 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   finishing flat at ~0.5, so the gift was an accelerant, not the
   engine). Calibrate 2.40/2.59/2.99 (default ~0.1 under the soft
   edge — watch, not chase). Throw seeds re-anchored 24/42/44 (6th).
+- ⚠ **phase-94 SHIPPED** (**school-linked variation + the
+  devaluation finding**; fingerprint REBASELINED `bed80ef1…`, no
+  seed re-anchors — RNG-stream neutral by construction). The
+  academy grows what the philosophy needs: newgen heirs drift
+  defending↔pace along (jockeyBias−0.5), ±0.12 max, zero-sum,
+  budget-clamped; founders/fitness pure. Mechanism VERIFIED (def
+  follows the school; 991 def 0.61 = record) but adoption still
+  fails 0/3 (jockey 0.41/0.09/0.30) — because phase-93 devalued
+  what containment prevents: an average finisher's breakaway no
+  longer converts freely, so goal-side standoff pays less. The
+  two-phase interaction = the red-queen loop observed end-to-end.
+  Verdict input for 95: late means 6.72/4.90/4.69 ≫ 3.8 → the
+  pre-authorized anchor fires.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure
