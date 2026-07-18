@@ -11,6 +11,7 @@ import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import type { League } from '../sim/League';
 import { attrHeatmap, geneRadar, sparklineTile, stackedShareStrip, type RadarSeries } from './charts';
 import { bar, button, colorHex, el } from './dom';
+import { channelWindow, goalChannelTile } from './goalChannels';
 import { lang, t } from './i18n';
 import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
 
@@ -417,6 +418,9 @@ export class EvolutionScreen {
       row.appendChild(b);
       driftCol.appendChild(row);
     }
+    // Goal channels (Phase 113): how this identity actually cashes out —
+    // scores AND concedes — over the recent window.
+    driftCol.appendChild(goalChannelTile(channelWindow(league, f.slot)));
     driftCol.appendChild(el('div', 'muted',
       f.playerNames.map((n, i) => {
         const tr = traitsOf(f.squad[i], ROSTER_ROLES[i], f.squadStyles?.[i]).map((tt) => TRAIT_EMOJI[tt]).join('');

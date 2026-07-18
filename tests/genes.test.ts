@@ -46,8 +46,14 @@ function team(name: string, genome: TacticalGenome): TeamInfo {
 
 function totals(gA: TacticalGenome, gB: TacticalGenome, seeds: number[]): [TeamMatchStats, TeamMatchStats] {
   const sum = (a: TeamMatchStats, b: TeamMatchStats): TeamMatchStats => {
-    const out = { ...a };
-    for (const k of Object.keys(out) as Array<keyof TeamMatchStats>) out[k] += b[k];
+    // Numeric counters sum; goalChannels (Phase 113) merges per channel.
+    const out = { ...a, goalChannels: { ...a.goalChannels } };
+    const on = out as unknown as Record<string, number>;
+    const bn = b as unknown as Record<string, number>;
+    for (const k of Object.keys(out)) if (k !== 'goalChannels') on[k] += bn[k];
+    for (const c of Object.keys(out.goalChannels) as Array<keyof typeof out.goalChannels>) {
+      out.goalChannels[c] += b.goalChannels[c];
+    }
     return out;
   };
   // Side-balanced: each seed runs both home/away orders so iteration- or

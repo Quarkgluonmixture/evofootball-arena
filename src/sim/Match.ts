@@ -22,7 +22,8 @@ import { matchRating } from './ratings';
 import { Team } from './Team';
 import {
   ROSTER_SIZE, SUBS_MAX, TEAM_SIZE, emptyPlayerStats,
-  type EventType, type MatchEvent, type MatchPhase, type MatchResult, type PlayerMatchStats,
+  type EventType, type GoalChannel, type MatchEvent, type MatchPhase, type MatchResult,
+  type PlayerMatchStats,
   type CornerRoutine, type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
 
@@ -105,6 +106,9 @@ export interface ShotLogEntry {
   /** The lofted finish over an advanced keeper (Phase 69) — probes and the
    * feed tell the chip apart from the placed ground strike. */
   chip?: boolean;
+  /** What CREATED the chance (Phase 113) — priced at the strike, banked
+   * into the club's goal-channel ledger only if this shot scores. */
+  channel?: GoalChannel;
 }
 
 export interface MatchConfig {
@@ -193,6 +197,19 @@ export class Match {
   /** Telemetry (Phase 86): the most recent pass launch's kind — shot-context
    * anatomy reads it; zero RNG, zero behavior. */
   lastPassKind: { kind: 'pass' | 'through' | 'cross' | 'lofted'; t: number } | null = null;
+  /* ---- Goal-channel telemetry (Phase 113) — the launch-anatomy probe's
+   * band-entry classifier moved in-engine so every GOAL carries a channel
+   * tag. All four fields are written from state the step already computed
+   * and read ONLY by the shot log: zero RNG, zero behavior. ---- */
+  /** The current owner's possession start (team-local x) — the carry clock. */
+  carryStart: { gid: number; t: number; x: number } | null = null;
+  /** The owner already counted for the final-15m band this possession. */
+  private bandInside = false;
+  /** The live attack's fresh BREAKAWAY band entry (nobody goal-side but the
+   * keeper) and what launched it. A turnover or kickoff kills it. */
+  attackEntry: { side: Side; kind: GoalChannel; t: number } | null = null;
+  /** The most recent SET-PIECE first touch (corner/free kick/penalty only). */
+  lastRestartKick: { kind: RestartKind; side: Side; t: number } | null = null;
 
   private kickoffSide: Side = 0;
   private stepCount = 0;
@@ -442,6 +459,8 @@ export class Match {
       }
     }
 
+    this.trackAttackEntry();
+
     // Stale in-flight bookkeeping expires.
     if (this.pendingPass && this.simTime - this.pendingPass.t > 3.5) this.pendingPass = null;
     if (this.dribbleTouch && this.simTime > this.dribbleTouch.until) this.dribbleTouch = null;
@@ -556,6 +575,81 @@ export class Match {
   }
   performClear(p: Player): void {
     mech.performClear(this, p);
+  }
+
+  /* ---------------- goal-channel telemetry (Phase 113) ---------------- */
+
+  /**
+   * Per-step band-entry tracker — the launch-anatomy probe's loop, in-engine.
+   * Watches the carrier: a FRESH crossing into the final 15m with zero
+   * goal-side outfielders is a breakaway entry, classified by what served it.
+   * Pure observation of already-computed state; nothing reads the result but
+   * the shot log.
+   */
+  private trackAttackEntry(): void {
+    const o = this.ball.owner;
+    // No owner (incl. his own pushed touch in flight) or dead ball: the
+    // carry clock and any live entry simply persist — same as the probe.
+    if (!o || this.phase !== 'playing') return;
+    const team = this.teams[o.side];
+    const ox = team.localX(o.pos.x);
+    if (!this.carryStart || this.carryStart.gid !== o.gid) {
+      this.carryStart = { gid: o.gid, t: this.simTime, x: ox };
+      // Took over already inside the band (or is the keeper) — not a fresh
+      // entry; only a crossing observed from OUTSIDE counts.
+      this.bandInside = ox >= HALF_L - 15 || o.role === 'GK';
+      // A turnover kills the other side's live entry — the attack it
+      // classified is over.
+      if (this.attackEntry && this.attackEntry.side !== o.side) this.attackEntry = null;
+    }
+    if (!this.bandInside && ox >= HALF_L - 15) {
+      this.bandInside = true;
+      // Breakaway only: zero goal-side outfielders (the walk-in pipe).
+      const goalSide = this.teams[1 - o.side].players.some(
+        (q) => q.role !== 'GK' && !q.sentOff && team.localX(q.pos.x) > ox,
+      );
+      if (!goalSide && this.restartKickGid !== o.gid) {
+        this.attackEntry = { side: o.side, kind: this.classifyBandEntry(o, ox), t: this.simTime };
+      }
+    }
+  }
+
+  /** What LAUNCHED a fresh breakaway band entry (launch-anatomy classes;
+   * lofted long balls fold into `through` — both are balls IN BEHIND — and
+   * short-pass/loose service folds into `walkin`: the line was simply beaten). */
+  private classifyBandEntry(p: Player, ox: number): GoalChannel {
+    const cs = this.carryStart;
+    if (cs && cs.gid === p.gid && this.simTime - cs.t > 2.2 && ox - cs.x > 9) return 'carry';
+    const lp = this.lastCompletedPass;
+    if (lp && lp.receiverGid === p.gid && this.simTime - lp.t < 3.5) {
+      if (this.allPlayers[lp.passerGid].role === 'GK') return 'keeper';
+      const kind =
+        this.lastPassKind && this.simTime - this.lastPassKind.t < 3.5
+          ? this.lastPassKind.kind
+          : 'pass';
+      if (kind === 'through' || kind === 'lofted') return 'through';
+      if (kind === 'cross') return 'cross';
+    }
+    return 'walkin';
+  }
+
+  /**
+   * The channel a shot by `shooter` would bank if it scores — priced at the
+   * STRIKE (context is freshest there; a rebound re-prices on the live
+   * entry). Priority: set piece → the live breakaway entry's launch class →
+   * cross/cutback service → worked buildup.
+   */
+  goalChannelFor(shooter: Player): GoalChannel {
+    const rk = this.lastRestartKick; // only ever corner / freeKick / penalty
+    if (rk && rk.side === shooter.side && this.simTime - rk.t < 6) return 'setpiece';
+    const e = this.attackEntry;
+    if (e && e.side === shooter.side && this.simTime - e.t < 12) return e.kind;
+    if (this.lastCutback && this.lastCutback.side === shooter.side && this.simTime - this.lastCutback.t < 5) {
+      return 'cross';
+    }
+    const pk = this.lastPassKind;
+    if (pk && pk.kind === 'cross' && this.simTime - pk.t < 2.5) return 'cross';
+    return 'buildup';
   }
 
   /** Resolve the in-flight shot's timeline entry (first outcome wins). */
@@ -937,6 +1031,13 @@ export class Match {
     this.score[side]++;
     team.stats.goals++;
     this.markShotOutcome(this.pendingShot?.side === side ? 'goal' : 'miss');
+    // Bank the goal channel (Phase 113): the tag priced at the strike; an
+    // own goal / untracked scramble falls back to `buildup`.
+    const channel =
+      this.pendingShot && this.pendingShot.side === side
+        ? this.shotLog[this.pendingShot.logIndex]?.channel ?? 'buildup'
+        : 'buildup';
+    team.stats.goalChannels[channel]++;
     // Cutback payoff bookkeeping (Phase 31): a goal within 5s of the
     // pull-back credits the routine (the directional test's metric).
     if (this.lastCutback && this.lastCutback.side === side && this.simTime - this.lastCutback.t < 5) {
@@ -1708,6 +1809,10 @@ export class Match {
     this.pendingOut = null; // drop any ball still coasting out (e.g. at the whistle)
     this.restartKickGid = null;
     this.restartKickKind = null;
+    this.carryStart = null; // goal-channel telemetry resets with the dead ball
+    this.bandInside = false;
+    this.attackEntry = null;
+    this.lastRestartKick = null;
     this.ball.reset();
 
     for (const team of this.teams) {

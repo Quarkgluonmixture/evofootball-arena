@@ -288,6 +288,34 @@ export type RestartKind = 'kickIn' | 'corner' | 'goalKick' | 'freeKick' | 'penal
  */
 export type CornerRoutine = 'nearPost' | 'farPost' | 'short' | 'arcCutback';
 
+/**
+ * GOAL CHANNEL (Phase 113): what CREATED a goal — the launch-anatomy
+ * probe's classes, gone player-facing. Priced at shot time from telemetry
+ * the match already keeps (zero RNG, zero behavior), one exclusive bucket
+ * per goal, priority top-down:
+ *   setpiece — within 6s of a corner / free kick / penalty kick
+ *   keeper   — a fresh final-15m breakaway entry launched by the keeper's
+ *              distribution (the phase-98 roll/sling/punt)
+ *   through  — the entry came on a ball IN BEHIND (ground through-ball or
+ *              the lofted launch — the trap school's prey, both timings)
+ *   carry    — the carrier dribbled through the line himself (>2.2s, >9m)
+ *   cross    — entered on a cross, or served by a cross/cutback at the shot
+ *   walkin   — a breakaway entry with no classifiable service: the line
+ *              was simply BEATEN (short pass into space, loose ball, ...)
+ *   buildup  — everything else (worked goals against a set line; also the
+ *              own-goal/scramble fallback when no tracked shot scored)
+ */
+export type GoalChannel =
+  | 'setpiece' | 'keeper' | 'through' | 'carry' | 'cross' | 'walkin' | 'buildup';
+
+export const GOAL_CHANNELS: readonly GoalChannel[] = [
+  'setpiece', 'keeper', 'through', 'carry', 'cross', 'walkin', 'buildup',
+];
+
+export const emptyChannels = (): Record<GoalChannel, number> => ({
+  setpiece: 0, keeper: 0, through: 0, carry: 0, cross: 0, walkin: 0, buildup: 0,
+});
+
 export interface RestartState {
   kind: RestartKind;
   /** Team taking the restart. */
@@ -390,6 +418,8 @@ export interface TeamMatchStats {
   thirdMan: number;
   /** Completed overlap releases: the wide ball found the overlapping runner (Phase 34). */
   overlaps: number;
+  /** Goals scored by channel (Phase 113) — the against side is the opponent's row. */
+  goalChannels: Record<GoalChannel, number>;
 }
 
 export const emptyStats = (): TeamMatchStats => ({
@@ -428,6 +458,7 @@ export const emptyStats = (): TeamMatchStats => ({
   oneTwos: 0,
   thirdMan: 0,
   overlaps: 0,
+  goalChannels: emptyChannels(),
 });
 
 /** Per-player counters for awards/records — passive, never read by the sim. */

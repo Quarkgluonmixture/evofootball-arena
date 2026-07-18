@@ -352,6 +352,15 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 75%;
 }
 
+/* ---------- goal channels (Phase 113) ---------- */
+.goal-channel { margin: 6px 0; }
+.chan-row { display: grid; grid-template-columns: 24px 1fr; gap: 6px; align-items: center; margin: 3px 0; }
+.chan-row .g-name { color: var(--muted); font-size: 11px; }
+.chan-bar { display: flex; height: 9px; background: #0d1526; border-radius: 3px; overflow: hidden; }
+.chan-seg { height: 100%; }
+.chan-chips { display: flex; gap: 10px; flex-wrap: wrap; font-size: 10px; color: var(--muted); margin-top: 2px; }
+.chan-chips .cdot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 3px; }
+
 .dynasty-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; font-size: 12px; }
 .dynasty-row:hover { background: rgba(36, 48, 74, 0.3); border-radius: 4px; }
 .dynasty-row .g-name { width: 130px; }

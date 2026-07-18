@@ -1,4 +1,4 @@
-import { deriveTeamStyle } from '../sim/types';
+import { deriveTeamStyle, emptyChannels, type GoalChannel } from '../sim/types';
 import type { Rng } from '../utils/rng';
 import { emptyCareer, veteranAge, type PlayerCareer } from './careers';
 import { createCoach, type Coach } from './coach';
@@ -122,6 +122,10 @@ export interface SeasonAggregates {
   reds: number;
   /** Longest completed-pass chain in one move this season (Phase 33). */
   longestChain: number;
+  /** Goals scored/conceded by channel (Phase 113) — the 进球管道 ledgers.
+   * Passive: displayed, never read by fitness. */
+  chFor: Record<GoalChannel, number>;
+  chAgainst: Record<GoalChannel, number>;
   /** Per-match style samples for consistency scoring. */
   styleSamples: Array<{ passVol: number; pressVol: number }>;
 }
@@ -144,5 +148,7 @@ export const emptyAggregates = (): SeasonAggregates => ({
   yellows: 0,
   reds: 0,
   longestChain: 0,
+  chFor: emptyChannels(),
+  chAgainst: emptyChannels(),
   styleSamples: [],
 });

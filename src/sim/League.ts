@@ -38,8 +38,9 @@ import { styleValues } from '../evolution/styleSpace';
 import { MATCH_DURATION } from './constants';
 import { Match } from './Match';
 import {
-  ROLES, ROSTER_ROLES, ROSTER_SIZE, TEAM_SIZE, deriveTeamStyle, emptyPlayerStats,
-  type MatchResult, type PlayerMatchStats, type TeamInfo, type TeamStyle,
+  GOAL_CHANNELS, ROLES, ROSTER_ROLES, ROSTER_SIZE, TEAM_SIZE, deriveTeamStyle, emptyChannels,
+  emptyPlayerStats,
+  type GoalChannel, type MatchResult, type PlayerMatchStats, type TeamInfo, type TeamStyle,
 } from './types';
 
 /** Raw pre-v15 franchise shape inside the migration chain: the philosophy
@@ -135,6 +136,8 @@ export interface SeasonRecord {
   table: Array<{
     slot: number; name: string; pts: number; w: number; d: number; l: number;
     gf: number; ga: number; elo?: number; division?: Division;
+    /** Goals for/against by channel (Phase 113) — absent on old records. */
+    ch?: { f: Record<GoalChannel, number>; a: Record<GoalChannel, number> };
   }>;
   fitness: Array<FitnessBreakdown & { name: string }>;
   evolution: EvolutionReport;
@@ -183,7 +186,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 27;
+export const SAVE_VERSION = 28;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -582,6 +585,10 @@ export class League {
       a.yellows += s.yellows;
       a.reds += s.reds;
       if (s.bestPassChain > a.longestChain) a.longestChain = s.bestPassChain;
+      for (const c of GOAL_CHANNELS) {
+        a.chFor[c] += s.goalChannels[c];
+        a.chAgainst[c] += so.goalChannels[c];
+      }
       const possMin = Math.max(s.possessionTime / 60, 0.25);
       const oppPossMin = Math.max(so.possessionTime / 60, 0.25);
       a.styleSamples.push({
@@ -739,6 +746,9 @@ export class League {
         slot: r.slot, name: r.franchise.name, pts: r.pts, w: r.w, d: r.d, l: r.l,
         gf: r.gf, ga: r.ga, elo: Math.round(r.franchise.elo),
         division: r.franchise.division,
+        // Cloned — the live agg objects are replaced next season, but the
+        // record must own its numbers either way.
+        ch: { f: { ...this.agg[r.slot].chFor }, a: { ...this.agg[r.slot].chAgainst } },
       })),
       fitness: [...fit1, ...fit2]
         .map((x) => ({ ...x, name: this.franchise(x.slot).name }))
@@ -1665,6 +1675,15 @@ export class League {
         }
       }
       data.version = 27;
+    }
+    if (data.version === 27) {
+      // v27 -> v28: goal-channel ledgers (Phase 113). The in-progress season
+      // simply starts counting from here; old history rows just lack `ch`.
+      for (const a of data.agg as Array<Record<string, unknown>>) {
+        a.chFor ??= emptyChannels();
+        a.chAgainst ??= emptyChannels();
+      }
+      data.version = 28;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

@@ -869,6 +869,7 @@ function performHeaderShot(match: Match, shooter: Player): void {
   match.shotLog.push({
     t: match.simTime, minute: match.minute(), side: shooter.side, xg: q, outcome: 'pending',
     blockers: laneBlockers(ball.pos, team.oppGoal(), opp.players),
+    channel: match.goalChannelFor(shooter),
   });
   match.pendingShot = {
     side: shooter.side,
@@ -974,6 +975,7 @@ function tryChip(match: Match, shooter: Player, qGround: number, pressure: numbe
     t: match.simTime, minute: match.minute(), side: shooter.side, xg: qChip, outcome: 'pending',
     blockers: laneBlockers(shooter.pos, goalCenterFor(team), opp.players),
     chip: true,
+    channel: match.goalChannelFor(shooter),
   });
   match.pendingShot = {
     side: shooter.side,
@@ -1135,6 +1137,7 @@ export function performShot(match: Match, shooter: Player): void {
         : match.lastPassKind && match.simTime - match.lastPassKind.t < 2.5
           ? match.lastPassKind.kind
           : 'none',
+    channel: match.goalChannelFor(shooter),
   });
   match.pendingShot = {
     side: shooter.side,
@@ -1240,6 +1243,7 @@ export function performFreeKick(match: Match, taker: Player): void {
   match.shotLog.push({
     t: match.simTime, minute: match.minute(), side: taker.side, xg: q, outcome: 'pending',
     blockers: 0, // the wall is cleared by construction; blocks don't apply
+    channel: match.goalChannelFor(taker), // the FK stamp lands it as `setpiece`
   });
   match.pendingShot = {
     side: taker.side,

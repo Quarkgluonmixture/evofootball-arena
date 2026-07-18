@@ -1671,3 +1671,16 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   throw/pass/hoof tree is the next redemption), and the
   hand-patch audit (user question ④) is now a standing lens — the
   composed-1v1 gift was found BY that audit.
+- ⭐ **2026-07-18 THE 113 LEDGER (goal channels player-facing) — an
+  ecology reading the schools can be built against**: the launch
+  anatomy moved in-engine (seven exclusive per-goal channels, zero
+  behavior, census-validated vs the probe at the same HEAD). Late-gen
+  mix: carry 47-55% of ALL goals, setpiece 17-19%, walkin 11-15%,
+  buildup 12-20%, **through-ball and keeper-launch ≈0 — NOT a bug: the
+  109 trap + 103 closeIn priced those launches out, so the walk-in
+  engine today is the CARRY**, and the clubs bleeding worst concede
+  66-83% through it (the jockey/recovery-slide gap made visible).
+  Every future defensive-school phase now has a per-club scored/conceded
+  channel ledger (`SeasonAggregates.chFor/chAgainst`, save v28) to
+  measure against — the trap's prey can return only if a pass-first
+  attacking school re-evolves; watch `through` in the census.

@@ -1266,10 +1266,40 @@ column. Gates: vitest 426, visual 111+52, calibrate 2.86/2.45/3.12
 4.8-5.0/world — but a NEW draw, not directly comparable to 111's
 15.68); fingerprint REBASELINED `8e02a9cb…`.
 
+⭐⭐⭐ **THE 113 RESULT (2026-07-18 evening) — GOAL-CHANNEL
+visualization: the probe-grade anatomy goes player-facing.** The
+launch-anatomy band-entry classifier moved IN-ENGINE as pure telemetry
+(`Match.trackAttackEntry` + `goalChannelFor`, zero RNG, zero behavior):
+every goal banks ONE of seven exclusive channels — `setpiece` (≤6s off
+a corner/FK/pen first touch) → the live breakaway entry's launch class
+(`keeper`/`through`=in-behind incl. lofted/`carry` >2.2s+9m/`cross`/
+`walkin`=line simply beaten) → cross/cutback service → `buildup`
+(residual; own goals land here). Banked in `TeamMatchStats.goalChannels`
+→ `SeasonAggregates.chFor/chAgainst` → `SeasonRecord.table[].ch`; save
+v28 + migration test. UI: `goalChannelTile` (进球管道, scored+conceded
+100%-stacked strips + top-3 color chips, segment tooltips carry counts)
+on every league-center team card AND the club deep dive.
+**Census probe (`goal-channel-census.ts`, gens 20→22, zero sum
+mismatches over 1436 goals): 991 = setpiece 17 · carry 55 · walkin 15 ·
+buildup 12 · through 0 · keeper 0 · cross 1 (%); 424242 = 19/47/11/20/
+2/0/1. Breakaway family 71%/60% ✓ matches the 106 anatomy.
+launch-anatomy at the SAME HEAD confirms the port is faithful (carry
+74-77% of entries, through 1-2%, keeper 0, cross ~0): the
+through/keeper drought is the ECOLOGY — 109's trap + 103's closeIn
+priced those launches out and the walk-in engine TODAY is the carry.
+The defensive read the phase was for: the worst bleeders concede 66-83%
+through `carry` — the recovery-slide/jockey-less schools, visible to
+the player at last.** Gates: vitest 430 (+4), visual 113+54 (2 new 2D
+checks), calibrate N/A (zero-behavior, proven stronger:) fingerprint
+sim-IDENTICAL under the invariant-2 strip protocol (v28 save minus
+ch-fields re-hashes to `8e02a9cb…` EXACTLY); full-JSON baseline
+REBASELINED `8c6330b2…` (format-only).
+
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 113 (112 shipped 2026-07-18).**
+⭐ HEAD OF QUEUE IS NOW 113.5 (112+113 shipped 2026-07-18; 113.5 =
+the user's mid-113 IA direction, scope confirm pending their reply).**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1282,14 +1312,25 @@ the first-3-seconds-after-turnover axis; the 23rd gene, save v27; A/B
 verified a real no-dominant-side tradeoff, adoption near-neutral,
 gates green, fingerprint `8e02a9cb…`.)
 
-**113 — GOAL-CHANNEL visualization (the probe-grade anatomy goes
-player-facing).** The launch/shot classification we built for
-ourselves (walk-in / carry-through / through-ball / cross / set piece
-/ keeper-launch) becomes a per-club "进球管道" breakdown in the league
-center + club deep dive — how a team scores AND how it concedes; the
-defensive schools finally read. Needs a lightweight per-goal channel
-tag recorded at markShotOutcome time (save-touching? keep it in
-SeasonRecord aggregates).
+**113 — GOAL-CHANNEL visualization** ✅✅ **SHIPPED 2026-07-18 — see
+the full result entry ABOVE this queue block.** (Seven-channel
+in-engine classifier, save v28, 进球管道 tile on team cards + deep
+dive; census validated vs launch-anatomy; fingerprint sim-identical
+by strip protocol, full baseline `8c6330b2…`.)
+
+**113.5 — CLUB TAB + IA reorganization (user direction mid-113,
+2026-07-18: "球队应该和球员一样单开" + "演化就单独放演化…专门有球员,
+球队的tab" — SCOPE CONFIRM PENDING their reply to the proposal).**
+Proposed cut: ① new top-bar 球队 tab (like Players): card grid → club
+detail — identity (radar, nameplates, formation DIAGRAMS from the
+`ATTACK_FORMATIONS`/`DEFEND_FORMATIONS` spot tables — the 阵型图 ask),
+dugout, squad+budget, goal channels, honours/lineage; the league-tab
+team cards MOVE here, league center slims to standings/cup/report/
+chronicle/hall; ② Evolution screen sheds club-identity duty, keeps
+ONLY change-over-generations (population trends, drift, dynasty, eras)
+— which makes 116's enrichment land in a purified home; ③ the club
+deep dive relocates from Evolution → 球队 tab (Evolution keeps a link).
+114/115 then land in the new homes.
 
 **114 — FORM STRIP + morale visibility.** Last-5 W/D/L dots + a morale
 sparkline on the league table rows and club cards (the 111 data is all

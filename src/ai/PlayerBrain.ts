@@ -80,6 +80,12 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     match.restartKickGid = null;
     match.restartKickKind = null;
     match.restartKickRoutine = null;
+    // Goal-channel telemetry (Phase 113): stamp the SET-PIECE first touch —
+    // a goal within the window banks as `setpiece`. Kick-ins and goal kicks
+    // are restarts but not set pieces.
+    if (kickKind === 'corner' || kickKind === 'freeKick' || kickKind === 'penalty') {
+      match.lastRestartKick = { kind: kickKind, side: p.side, t: match.simTime };
+    }
   }
   // A penalty's first touch IS the shot — no utility scoring from the spot.
   if (kickKind === 'penalty') {

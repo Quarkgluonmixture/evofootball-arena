@@ -141,6 +141,8 @@ const plateTags = await page.locator('#league-screen .team-card .tag.nameplate')
 check('data-driven nameplates on team cards (49)', plateTags >= 16, `${plateTags} tags`);
 const coachLines = await page.locator('#league-screen .team-card .coach-line').count();
 check('every team card names its coach (53)', coachLines === 16, `${coachLines} coaches`);
+const chanTiles = await page.locator('#league-screen .team-card .goal-channel').count();
+check('every team card carries a goal-channel tile (113)', chanTiles === 16, `${chanTiles} tiles`);
 check('division badges on team cards', (await page.locator('#league-screen .tag.div-badge-1').count()) === 8);
 check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 4);
 check('cup draw rule selector present', (await page.locator('#league-screen .rules-row').count()) === 2);
@@ -325,6 +327,7 @@ await page.waitForTimeout(200);
 check('club deep-dive selects from the wall', (await page.locator('#evolution-screen .dyn-row-line.selected').count()) === 1, '');
 check('club panel carries nameplate tags', (await page.locator('#evolution-screen .evo-club .tag.nameplate').count()) >= 1, '');
 check('club deep dive shows the dugout record (53)', (await page.locator('#evolution-screen .evo-club .coach-block').count()) === 1, '');
+check('club deep dive carries the goal-channel tile (113)', (await page.locator('#evolution-screen .evo-club .goal-channel').count()) === 1, '');
 const heatCells = await page.locator('#evolution-screen .attr-heatmap rect').count();
 check('budget heatmap renders 16×8 cells', heatCells === 128, `${heatCells} cells`);
 const tiles = await page.locator('#evolution-screen .spark-tile').count();

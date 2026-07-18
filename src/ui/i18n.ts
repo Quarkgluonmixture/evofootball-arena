@@ -326,6 +326,19 @@ const ZH: Record<string, string> = {
   'league mean': '联赛均值',
   'tap to dismiss': '点按关闭',
 
+  // ---- goal channels (Phase 113) ----
+  'Goal channels': '进球管道',
+  scored: '攻',
+  conceded: '失',
+  window: '统计窗口(季)',
+  'Carry through': '带球突破',
+  'In behind': '身后球',
+  'Walk-in': '单刀直入',
+  'Keeper launch': '门将发动',
+  'Cross service': '传中·回做',
+  'Set piece': '定位球',
+  Buildup: '阵地攻坚',
+
   // ---- league screen extras ----
   'Season report': '赛季报告',
   Evolution: '演化',

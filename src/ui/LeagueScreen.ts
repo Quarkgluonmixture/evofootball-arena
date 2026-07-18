@@ -20,6 +20,7 @@ import {
   movementCounts, premierTitles, seasonStories,
 } from '../sim/records';
 import { geneRadar, raceChart, sparklineTile, type RadarSeries } from './charts';
+import { channelWindow, goalChannelTile } from './goalChannels';
 import { bar, button, colorHex, el } from './dom';
 import { lang, t } from './i18n';
 import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
@@ -263,6 +264,10 @@ export class LeagueScreen {
       ];
       card.appendChild(geneRadar(axes, series, { size: 190 }));
       card.appendChild(el('div', 'radar-cap muted', `┄ ${t('league mean')}`));
+
+      // Goal channels (Phase 113): the radar is INTENT — this is outcome,
+      // how the club actually scores and concedes.
+      card.appendChild(goalChannelTile(channelWindow(league, f.slot)));
 
       // The dugout (Phase 53): the person the radar actually describes.
       const c = f.coach;
