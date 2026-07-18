@@ -1412,3 +1412,14 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   mute the stadium; the clash keeps it). Audio sources untracked +
   gitignored (masters live in the author archive; the game ships
   public/audio).
+- ⚠⚠ **phase-91 SHIPPED** (**jockey A/B — the mechanism is
+  mispriced, not red-queen**; probe-only, fingerprint untouched).
+  0.9-jockey loses to 0.1 head-to-head in BOTH environments (1.35
+  vs 1.45 pts neutral; 1.28 vs 1.50 in the dribble-meta where it
+  should shine, conceding MORE). Phase-88's abandonment was correct
+  selection. Two implementation flaws identified: pursuers from
+  behind also take the goal-side detour (free escort — only the
+  contain man should jockey), and the delay never ENDS (real
+  jockeying delays until help arrives; gate should lift when a
+  second defender closes to ~3m). Decision with the user: fix
+  mechanism (recommended) / fitness anchor / both.

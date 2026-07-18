@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-90 (audio COMPLETE: every recorded sample wired, the stands live, sources archived)
+# Roadmap — shipped through phase-91 (jockey A/B: containment LOSES head-to-head — the mechanism is mispriced, not red-queen)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -695,9 +695,26 @@ nothing deleted). NOT wired, honestly: the crossbar sample — the
 sim has NO woodwork mechanic; queued as a future behavioral phase
 rather than faking it. UI-only; fingerprint IDENTITY `99ed8ed7…`;
 visual 109+52.)
-⭐ **Next: jockey A/B head-to-head probe → (mechanism rebalance |
-fitness anchor decision) → offside trap → woodwork sim mechanic
-(unlocks the crossbar sample).** The user PLAYS CONTINUOUSLY —
++ ⚠⚠ **phase-91 SHIPPED** (**jockey A/B — containment LOSES
+head-to-head, overturning the red-queen reading**: `jockey-ab.ts`,
+150 paired matches × 2 environments, sides alternated. Neutral:
+0.9-jockey W57 D31 L62, 1.35 vs 1.45 pts. Dribble-meta (where it
+should shine): W53 L64, 1.28 vs 1.50 pts, and it concedes MORE
+(GA 1.61) — so phase-88's two worlds ABANDONING jockey was
+evolution judging correctly; 777's adoption was drift. Mechanism
+audit found two mispricings: ① EVERY chaser of a jockeying team
+takes the goal-side standoff point — including pursuers from
+BEHIND, who detour around the carrier instead of pressuring the
+ball: a free escort downfield; ② the delay has no ENDGAME — real
+jockeying delays UNTIL HELP ARRIVES, but the tackle gate only
+lifts when the carrier slows, so a patient carrier is never
+dispossessed. DECISION TABLE presented to the user: (1) fix the
+mechanism (contain-man-only jockeys + gate lifts when a second
+defender is within ~3m) then re-run A/B + warming — recommended;
+(2) skip to the fitness anchor — data does NOT currently support
+it; (3) both. Probe-only, fingerprint untouched `99ed8ed7…`.)
+⭐ **Next: USER DECISION (1/2/3) → then execute → offside trap →
+woodwork sim mechanic.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
