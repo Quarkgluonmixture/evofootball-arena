@@ -1317,10 +1317,11 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 118+ — Stage 4 pull items resume: INJURIES
-(N2 infrastructure ready) → home advantage → memory commentary. (112
-through 117 ALL shipped 2026-07-18; fingerprint baseline `f032c705…`
-since the v29 shape-history field.)**
+⭐ HEAD OF QUEUE IS NOW 119b — the attack-diversity/collapse probe
+(negative frequency dependence; per-opponent game-planning is the
+big lever), then 120+ home advantage → memory commentary. (112
+through 119a.5 ALL shipped 2026-07-18; fingerprint baseline
+`093da5bd…` since the v31 budget-snapshot field, 118.5.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1471,6 +1472,26 @@ materials disposed while the match renderer's shared GEO/MAT caches
 stay untouched. UI-only: fingerprint IDENTICAL `093da5bd…`. Gates:
 vitest 441, visual 129 (+2: radar + live showcase canvas) + 3D
 suite, build clean.
+
+**119a.5 — SETTINGS SCREEN + chrome cleanup** ✅ **SHIPPED 2026-07-18
+(user asks: 删掉截图键 · 保存/种子/调试图层/语言进单独设置界面 ·
+腾出来之后美化).** The topbar carries DESTINATIONS only now — 🏆
+联赛中心 · 🧬 演化 · 🏟 球队 · 👥 球员 · ⚙ 设置 — and each button
+LIGHTS UP while its screen is open (nav state was invisible before;
+one honesty hook: every screen change already funnels through
+updateMusic, so the nav refresh lives there). The NEW ⚙ settings
+screen (`ui/SettingsScreen.ts`, stage-overlay pattern, one quiet
+card per concern): saves (Save/Load/Export/Import), new-league
+(seed + Reset with plain-language warnings), language, and the 7
+debug-overlay flags — all moved off the topbar and the match panel.
+The 📸 screenshot button DELETED end-to-end (button, GameActions
+entry, GameApp.takeScreenshot, ThreeMatchRenderer.captureScreenshot
+— the OS tool won); the LeftPanel is now only what you touch while
+watching (scoreboard/control/camera/sim/presentation). Dead CSS
+swept (debug-section, topbar input rules). UI-only: fingerprint
+IDENTICAL `093da5bd…`. Gates: vitest 441, visual 134 (+5 settings
+checks, screenshot check inverted to assert-gone) + 3D 54, build
+clean.
 
 **119b — ATTACK DIVERSITY / the collapse probe (the blueprint's
 core gap, discussed 2026-07-18 night)**: probe-first — why does

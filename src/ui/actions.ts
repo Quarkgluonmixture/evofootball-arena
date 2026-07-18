@@ -59,5 +59,7 @@ export interface GameActions {
   /** HT/FT auto-highlight reels (Phase 33) — on by default, ⏭ skips. */
   setAutoHighlights(v: boolean): void;
   setFxQuality(q: FxQuality): void;
-  takeScreenshot(): void;
+  /** Save file down/upload (119a.5: the settings screen owns these now). */
+  exportSave(): void;
+  importSave(): void;
 }

@@ -71,7 +71,6 @@ const ZH: Record<string, string> = {
   'Tac feed': '战术流',
   Presentation: '演出',
   '🎥 Cinematic': '🎥 影院模式',
-  '📸 Screenshot': '📸 截图',
   'FX quality': '特效质量',
   Low: '低',
   Med: '中',
@@ -340,6 +339,17 @@ const ZH: Record<string, string> = {
   // ---- player card upgrade (Phase 119a) ----
   'role mean': '同位置均值',
   'drag to rotate': '拖动旋转',
+
+  // ---- the settings screen (Phase 119a.5) ----
+  Settings: '设置',
+  Saves: '存档',
+  'Saves live in this browser. Export downloads a JSON you can import anywhere.':
+    '存档保存在本浏览器;导出会下载 JSON 文件,可在任意设备导入。',
+  'Same seed, same world — words work too.': '相同种子=相同世界,输入任意文字也可以。',
+  'Reset wipes the save and starts the default world.': '重置会清除存档并回到默认世界。',
+  Language: '语言',
+  'Switching language reloads the page.': '切换语言会刷新页面。',
+  'Paints tactical internals onto the pitch view.': '把战术内部状态画到球场视图上。',
 
   // ---- evolution center enrichment (Phase 116) ----
   'Formation history': '阵型史',

@@ -105,9 +105,22 @@ await page.waitForTimeout(200);
 check('scoreboard tap closes it again', !(await page.evaluate(() => window.__evo.clashVisible())), '');
 check('auto-highlights toggle present (33)', (await page.locator('label:has-text("Auto highlights")').count()) === 1, '');
 
+// Debug overlays live on the ⚙ SETTINGS screen since 119a.5 — along with
+// saves, the seed and the language toggle. Check the room, flip the flags.
+await page.click('#topbar button:has-text("Settings")');
+await page.waitForTimeout(250);
+check('settings screen opens (119a.5)', await page.locator('#settings-screen').isVisible(), '');
+check('settings nav button lights up while open (119a.5)',
+  (await page.locator('#topbar button.active:has-text("Settings")').count()) === 1, '');
+const settingsTxt = await page.textContent('#settings-screen');
+check('settings owns saves + language (119a.5)', settingsTxt.includes('Saves') && settingsTxt.includes('Language'), '');
+check('settings owns the seed input (119a.5)', (await page.locator('#settings-screen input[type="text"]').count()) === 1, '');
+check('settings owns all 7 debug overlay flags (119a.5)', (await page.locator('#settings-screen label.chk').count()) === 7, '');
 for (const label of ['Formation targets', 'Marking lines', 'Press assignments', 'Ball heatmap']) {
-  await page.click(`label:has-text("${label}")`);
+  await page.click(`#settings-screen label:has-text("${label}")`);
 }
+await page.click('#topbar button:has-text("Settings")'); // close — flags persist
+await page.waitForTimeout(200);
 await page.evaluate(() => window.__evo.app.setSpeed(2));
 await page.waitForTimeout(2500);
 await page.screenshot({ path: `${OUT}/3-overlays.png` });
@@ -226,10 +239,8 @@ await page.click('.cinematic-exit');
 await page.waitForTimeout(300);
 check('cinematic exits back to full UI', await page.locator('#left-panel').isVisible(), '');
 
-await page.click('button:has-text("📸 Screenshot")');
-await page.waitForTimeout(500);
-const feedAfterShot = await page.textContent('#event-feed');
-check('screenshot control is real (feed confirms)', /Screenshot (saved|not supported)/.test(feedAfterShot), '');
+// The screenshot button was removed in 119a.5 (user call — the OS tool won).
+check('screenshot button is gone (119a.5)', (await page.locator('button:has-text("Screenshot")').count()) === 0, '');
 
 // Share summary was removed in 34.1 (user call) — assert it stays gone.
 check('share summary is gone (34.1)', (await page.locator('button:has-text("Share summary")').count()) === 0, '');

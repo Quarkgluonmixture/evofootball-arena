@@ -48,10 +48,8 @@ html, body {
 #topbar h1 { font-size: 15px; margin: 0 12px 0 0; color: var(--accent); letter-spacing: 1px; }
 #topbar .spacer { flex: 1; }
 #topbar .status { color: var(--muted); font-size: 12px; }
-#topbar input[type='text'] {
-  width: 90px; background: var(--panel-2); border: 1px solid var(--border);
-  color: var(--text); padding: 3px 6px; border-radius: 4px; font: inherit;
-}
+/* Destinations only since 119a.5 — five buttons deserve real touch targets. */
+#topbar .nav-btn { padding: 7px 14px; font-size: 13px; border-radius: 8px; }
 
 /* ---------- layout ---------- */
 #layout { display: flex; flex: 1; min-height: 0; }
@@ -156,8 +154,6 @@ button.danger:hover { border-color: var(--danger); color: var(--danger); }
   margin: 0; font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 1px;
   color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 4px;
 }
-.section.debug-section { border-style: dashed; opacity: 0.9; background: transparent; }
-.section.debug-section h3::before { content: '⚙ '; }
 .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 /* Match control (29.1): two big equal buttons — pause/play and skip. */
 .speed-row button { flex: 1; min-height: 40px; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; }
@@ -501,7 +497,6 @@ body.cinematic .cinematic-enter { display: none; }
   /* Real thumbs (Phase 28.1): every control keeps a ≥34px tap target —
      the old 3px-padding buttons were desktop-cursor sized. */
   #topbar button { padding: 6px 10px; font-size: 12px; min-height: 34px; }
-  #topbar input { min-height: 34px; }
   aside button { padding: 7px 11px; font-size: 12px; min-height: 36px; }
   aside label { padding: 5px 0; min-height: 30px; display: flex; align-items: center; gap: 6px; }
   aside input[type='checkbox'] { width: 18px; height: 18px; }
@@ -611,21 +606,39 @@ body.cinematic .cinematic-enter { display: none; }
 .coach-line { margin: 4px 0; }
 .player-plate { margin: 3px 0; color: #f5c542; font-size: 13px; }
 
-/* ---- the player center (Phase 56) + the club center (113.5) ---- */
+/* ---- the player center (56) + club center (113.5) + settings (119a.5) ---- */
 #player-screen,
-#clubs-screen {
+#clubs-screen,
+#settings-screen {
   position: absolute; inset: 0; overflow-y: auto;
   background: #080c16; padding: 18px 22px; z-index: 10;
   animation: feed-in 0.2s ease-out;
 }
 #player-screen.hidden,
-#clubs-screen.hidden { display: none; }
+#clubs-screen.hidden,
+#settings-screen.hidden { display: none; }
 #player-screen h2,
-#clubs-screen h2 {
+#clubs-screen h2,
+#settings-screen h2 {
   margin: 14px 0 10px; color: var(--accent); font-size: var(--fs-lg);
 }
 #player-screen h2:first-child,
-#clubs-screen h2:first-child { margin-top: 0; }
+#clubs-screen h2:first-child,
+#settings-screen h2:first-child { margin-top: 0; }
+
+/* The settings rooms: one quiet card per concern. */
+.settings-section {
+  max-width: 560px; margin: 0 0 16px; padding: 12px 16px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+}
+.settings-section h3 { margin: 0 0 10px; font-size: 13px; color: var(--text); }
+.settings-section .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.settings-section .muted { font-size: 12px; }
+.settings-section input[type='text'] {
+  width: 140px; background: var(--panel-2); border: 1px solid var(--border);
+  color: var(--text); padding: 6px 8px; border-radius: 6px; font: inherit;
+}
+.settings-section label.chk { display: block; margin: 6px 0; }
 
 /* ---- the club center (113.5): selector wall + formation diagrams ---- */
 .clubs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }

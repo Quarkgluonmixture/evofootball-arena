@@ -4,7 +4,7 @@ import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import { button, checkbox, colorHex, el } from './dom';
 import { halfLabel, t } from './i18n';
-import type { FxQuality, GameActions, UiFlags, ViewMode } from './actions';
+import type { FxQuality, GameActions, ViewMode } from './actions';
 
 const FX_LABELS: Array<[FxQuality, string]> = [
   ['low', t('Low')],
@@ -20,17 +20,10 @@ const CAMERA_LABELS: Array<[CameraMode, string]> = [
   ['orbit', t('Orbit')],
 ];
 
-const FLAG_LABELS: Array<[keyof UiFlags, string]> = [
-  ['actionLabels', t('Player action labels')],
-  ['formation', t('Formation targets')],
-  ['passLines', t('Pass target line')],
-  ['shotVector', t('Shot vector')],
-  ['marking', t('Marking lines')],
-  ['chasers', t('Press assignments')],
-  ['heatmap', t('Ball heatmap')],
-];
-
-/** Match control panel: scoreboard, speed, sim buttons, debug toggles. */
+/** Match control panel: scoreboard, speed, camera, sim buttons, sound.
+ * Administrative controls (saves/seed/language) and the debug overlays
+ * live on the SETTINGS screen since 119a.5 — this panel is only what you
+ * touch while actually watching. */
 export class LeftPanel {
   private nameA: HTMLElement;
   private nameB: HTMLElement;
@@ -46,7 +39,7 @@ export class LeftPanel {
   private threeOnly: HTMLButtonElement[] = [];
   private fxButtons = new Map<FxQuality, HTMLButtonElement>();
 
-  constructor(root: HTMLElement, actions: GameActions, flags: UiFlags) {
+  constructor(root: HTMLElement, actions: GameActions) {
     const scoreboard = el('div', 'section');
     scoreboard.id = 'scoreboard';
     const names = el('div', 'names');
@@ -106,12 +99,10 @@ export class LeftPanel {
     viewSec.appendChild(camRow2);
 
     // Presentation: cinematic lives ON THE STAGE now (used constantly —
-    // one tap, no panel dive); Share summary is gone (user call).
+    // one tap, no panel dive); Share summary and the screenshot button are
+    // gone (user calls, 34.1 / 119a.5 — the OS screenshot tool won).
     const presSec = el('div', 'section');
     presSec.append(el('h3', '', t('Presentation')));
-    const presRow = el('div', 'row');
-    presRow.appendChild(button(t('📸 Screenshot'), () => actions.takeScreenshot()));
-    presSec.appendChild(presRow);
     // HT/FT auto-highlights (Phase 33): watched 3D matches replay their
     // goals + big saves at the whistles; ⏭ skips a running reel.
     presSec.appendChild(checkbox(t('🎬 Auto highlights (HT/FT)'), false, (v) => actions.setAutoHighlights(v)));
@@ -187,14 +178,7 @@ export class LeftPanel {
     }
     presSec.appendChild(fxRow);
 
-    const dbgSec = el('div', 'section');
-    dbgSec.className = 'section debug-section';
-    dbgSec.append(el('h3', '', t('Debug overlays')));
-    for (const [key, label] of FLAG_LABELS) {
-      dbgSec.appendChild(checkbox(label, flags[key], (v) => actions.setFlag(key, v)));
-    }
-
-    root.append(scoreboard, speedSec, viewSec, simSec, presSec, dbgSec);
+    root.append(scoreboard, speedSec, viewSec, simSec, presSec);
     this.setViewUI('2d', 'tactical');
     this.setFxQualityUI('medium');
   }

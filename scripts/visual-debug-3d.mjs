@@ -249,10 +249,14 @@ for (const t of targets.slice(2, 8)) {
 }
 check('player click-to-select works in 3D', selected);
 
-// ---- overlays ----
+// ---- overlays (flags live on the ⚙ settings screen since 119a.5) ----
+await page.click('#topbar button:has-text("Settings")');
+await page.waitForTimeout(250);
 for (const label of ['Formation targets', 'Marking lines', 'Press assignments']) {
-  await page.click(`label:has-text("${label}")`);
+  await page.click(`#settings-screen label:has-text("${label}")`);
 }
+await page.click('#topbar button:has-text("Settings")'); // close — flags persist
+await page.waitForTimeout(200);
 await page.evaluate(() => window.__evo.app.setSpeed(2));
 await page.waitForTimeout(1500);
 await page.screenshot({ path: `${OUT}/4-overlays.png` });

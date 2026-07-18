@@ -583,16 +583,6 @@ export class ThreeMatchRenderer {
     return this.fx.quality;
   }
 
-  /**
-   * Capture the current 3D frame as a PNG data URL. Renders synchronously
-   * first — reading a WebGL canvas outside the same task returns blank
-   * (see ARCHITECTURE failure mode 9).
-   */
-  captureScreenshot(): string {
-    this.renderer.render(this.scene, this.cameraCtl.camera);
-    return this.renderer.domElement.toDataURL('image/png');
-  }
-
   setCameraMode(mode: CameraMode): void {
     this.cameraCtl.setMode(mode);
   }

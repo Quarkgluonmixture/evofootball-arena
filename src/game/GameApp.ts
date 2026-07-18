@@ -19,7 +19,7 @@ import { momentWindow, pickHighlights } from '../replay/highlights';
 import { ReplayBuffer, type ReplayArchive } from '../replay/ReplayBuffer';
 import { DT } from '../sim/constants';
 import { CUP_ROUND_NAMES, resolveShootout, shootoutLineup, type ShootoutKick } from '../sim/cup';
-import { lang, setLang, t } from '../ui/i18n';
+import { t } from '../ui/i18n';
 import { League, type Fixture, type SeasonRecord } from '../sim/League';
 import { cupDrawLines, cupResultLines, seasonRecordLines } from './announcements';
 import { Match } from '../sim/Match';
@@ -38,6 +38,7 @@ import { PlayerScreen } from '../ui/PlayerScreen';
 import { LeagueScreen } from '../ui/LeagueScreen';
 import { ClubsScreen } from '../ui/ClubsScreen';
 import { RebirthCeremony } from '../ui/RebirthCeremony';
+import { SettingsScreen } from '../ui/SettingsScreen';
 import { LeftPanel } from '../ui/LeftPanel';
 import { ReplayBar } from '../ui/ReplayBar';
 import { RightPanel } from '../ui/RightPanel';
@@ -73,6 +74,7 @@ export class GameApp implements GameActions {
   private clubsScreen!: ClubsScreen;
   private evolutionScreen!: EvolutionScreen;
   private playerScreen!: PlayerScreen;
+  private settingsScreen!: SettingsScreen;
   private ceremony!: RebirthCeremony;
   private clash!: ClashBanner;
   /** Pre-match clash auto-hides at kickoff; scoreboard-opened ones are pinned. */
@@ -80,7 +82,8 @@ export class GameApp implements GameActions {
   /** Pause state to restore when the auto-shown rebirth ceremony closes. */
   private ceremonyPrevPaused = false;
   private statusEl!: HTMLElement;
-  private seedInput!: HTMLInputElement;
+  /** Topbar nav buttons + their "is my screen open" probes (119a.5). */
+  private navEntries: Array<[HTMLButtonElement, () => boolean]> = [];
 
   private paused = true;
   private speed = 1;
@@ -152,24 +155,21 @@ export class GameApp implements GameActions {
     window.addEventListener('resize', setTopbarVar);
     requestAnimationFrame(setTopbarVar);
     topbar.appendChild(el('h1', '', 'EVOFOOTBALL ARENA'));
-    // Top-bar order is the user's reading order (118.5): 联赛中心 · 演化 · 球队 · 球员.
-    topbar.appendChild(button(t('League table'), () => this.toggleLeagueScreen()));
-    topbar.appendChild(button(`🧬 ${t('Evolution')}`, () => this.toggleEvolutionScreen()));
-    topbar.appendChild(button(`🏟 ${t('Clubs')}`, () => this.toggleClubsScreen()));
-    topbar.appendChild(button(`👥 ${t('Players')}`, () => this.togglePlayerScreen()));
-    topbar.appendChild(button(t('Save'), () => this.saveNow()));
-    topbar.appendChild(button(t('Load'), () => this.loadNow()));
-    topbar.appendChild(button(t('Export'), () => this.exportSave()));
-    topbar.appendChild(button(t('Import'), () => this.importSave()));
-    this.seedInput = el('input');
-    this.seedInput.type = 'text';
-    this.seedInput.placeholder = t('seed');
-    topbar.appendChild(this.seedInput);
-    topbar.appendChild(button(t('New league'), () => this.newLeague(this.seedInput.value)));
-    topbar.appendChild(button(t('Reset'), () => this.resetAll(), 'danger'));
-    // Language toggle (Phase 28.1) — persists and reloads (panels build once).
-    topbar.appendChild(button(lang === 'zh' ? 'EN' : '中文', () => setLang(lang === 'zh' ? 'en' : 'zh')));
+    // The topbar carries DESTINATIONS only (119a.5): the four screens in the
+    // user's reading order (118.5) + ⚙. Saves, seed, language and the debug
+    // overlays all moved to the settings screen. Each button lights up while
+    // its screen is open (nav state was invisible before).
+    const navTab = (label: string, on: () => void, active: () => boolean) => {
+      const b = button(label, on, 'nav-btn');
+      this.navEntries.push([b, active]);
+      topbar.appendChild(b);
+    };
+    navTab(`🏆 ${t('League table')}`, () => this.toggleLeagueScreen(), () => this.leagueScreen?.isVisible ?? false);
+    navTab(`🧬 ${t('Evolution')}`, () => this.toggleEvolutionScreen(), () => this.evolutionScreen?.isVisible ?? false);
+    navTab(`🏟 ${t('Clubs')}`, () => this.toggleClubsScreen(), () => this.clubsScreen?.isVisible ?? false);
+    navTab(`👥 ${t('Players')}`, () => this.togglePlayerScreen(), () => this.playerScreen?.isVisible ?? false);
     topbar.appendChild(el('div', 'spacer'));
+    navTab(`⚙ ${t('Settings')}`, () => this.toggleSettingsScreen(), () => this.settingsScreen?.isVisible ?? false);
     this.statusEl = el('span', 'status', '');
     topbar.appendChild(this.statusEl);
 
@@ -253,7 +253,7 @@ export class GameApp implements GameActions {
     };
 
     // ---- Panels ----
-    this.left = new LeftPanel(leftEl, this, this.flags);
+    this.left = new LeftPanel(leftEl, this);
     this.right = new RightPanel(rightEl);
     // Player identity context (Phase 54): traits + data-driven nameplate
     // (z vs the CURRENT 144-player population) + the career highlight —
@@ -312,6 +312,7 @@ export class GameApp implements GameActions {
     // (auto-shown, reopenable from the Evolution tab) and the pre-match clash.
     this.ceremony = new RebirthCeremony(stage, () => this.onCeremonyClosed());
     this.leagueScreen.onShowCeremony = () => this.showCeremony();
+    this.settingsScreen = new SettingsScreen(stage, this, this.flags);
     this.evolutionScreen = new EvolutionScreen(stage);
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
@@ -1068,6 +1069,7 @@ export class GameApp implements GameActions {
     this.evolutionScreen.hide();
     this.playerScreen.hide();
     this.clubsScreen.hide();
+    this.settingsScreen.hide();
     this.leagueScreen.toggle(this.league);
     this.updateMusic();
   }
@@ -1077,6 +1079,7 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
     this.playerScreen.hide();
+    this.settingsScreen.hide();
     this.clubsScreen.toggle(this.league);
     this.updateMusic();
   }
@@ -1086,6 +1089,7 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.playerScreen.hide();
     this.clubsScreen.hide();
+    this.settingsScreen.hide();
     this.evolutionScreen.toggle(this.league);
     this.updateMusic();
   }
@@ -1095,7 +1099,18 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
     this.clubsScreen.hide();
+    this.settingsScreen.hide();
     this.playerScreen.toggle(this.league);
+    this.updateMusic();
+  }
+
+  /** The SETTINGS room (119a.5) — saves, seed, language, debug overlays. */
+  toggleSettingsScreen(): void {
+    if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
+    this.evolutionScreen.hide();
+    this.playerScreen.hide();
+    this.clubsScreen.hide();
+    this.settingsScreen.toggle();
     this.updateMusic();
   }
 
@@ -1105,6 +1120,7 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.playerScreen.hide();
     this.evolutionScreen.hide();
+    this.settingsScreen.hide();
     this.clubsScreen.focusClub(this.league, slot);
     this.updateMusic();
   }
@@ -1114,6 +1130,7 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
     this.clubsScreen.hide();
+    this.settingsScreen.hide();
     this.playerScreen.focusPlayer(this.league, slot, index);
     this.updateMusic();
   }
@@ -1164,7 +1181,7 @@ export class GameApp implements GameActions {
       ? ['title', 1]
       : this.ceremony?.isVisible
         ? ['victory', 1]
-        : this.leagueScreen?.isVisible || this.evolutionScreen?.isVisible || this.playerScreen?.isVisible || this.clubsScreen?.isVisible
+        : this.leagueScreen?.isVisible || this.evolutionScreen?.isVisible || this.playerScreen?.isVisible || this.clubsScreen?.isVisible || this.settingsScreen?.isVisible
           ? ['league', 1]
           : pauseMusic // the clash no longer keeps the anthem by itself —
             // live play is crowd-only the moment ▶ is pressed (105), and
@@ -1178,6 +1195,9 @@ export class GameApp implements GameActions {
     // launch overlay is a TITLE SCREEN: synthwave only, no crowd under it.
     this.sound.stadiumVisible =
       (slot === null || slot === 'title') && !this.titleScreen?.isVisible;
+    // Every screen change funnels through here — cheapest single place to
+    // keep the topbar nav state honest (119a.5).
+    for (const [b, active] of this.navEntries) b.classList.toggle('active', active());
   }
 
   /* ---------------- presentation (Phase 15) ---------------- */
@@ -1193,31 +1213,6 @@ export class GameApp implements GameActions {
     this.fxQuality = q;
     this.three?.setFxQuality(q);
     this.left.setFxQualityUI(q);
-  }
-
-  takeScreenshot(): void {
-    try {
-      let dataUrl: string;
-      if (this.viewMode === '3d' && this.three) {
-        dataUrl = this.three.captureScreenshot();
-      } else {
-        // Pixi: extract renders synchronously into a fresh canvas — safe to read.
-        const canvas = this.app.renderer.extract.canvas(this.app.stage) as HTMLCanvasElement;
-        dataUrl = canvas.toDataURL('image/png');
-      }
-      const m = this.match;
-      const name = m
-        ? `evofootball-${m.teams[0].info.short}-${m.score[0]}-${m.score[1]}-${m.teams[1].info.short}-${m.minute()}min.png`
-        : 'evofootball.png';
-      const a = document.createElement('a');
-      a.href = dataUrl;
-      a.download = name;
-      a.click();
-      this.feed.pushSystem(`📸 Screenshot saved: ${name}`);
-    } catch (err) {
-      console.error('Screenshot failed:', err);
-      this.feed.pushSystem('⚠️ Screenshot not supported in this browser — try the OS screenshot tool.');
-    }
   }
 
   saveNow(): void {
@@ -1246,7 +1241,7 @@ export class GameApp implements GameActions {
   }
 
   /** Download the current league as a .json save file (Phase 21). */
-  private exportSave(): void {
+  exportSave(): void {
     if (this.busy) {
       this.feed.pushSystem('⏳ Simulation running — export again in a moment.');
       return;
@@ -1266,7 +1261,7 @@ export class GameApp implements GameActions {
    * running league — the localStorage slot is untouched until the next
    * Save/auto-save, so a bad import can't destroy the existing league.
    */
-  private importSave(): void {
+  importSave(): void {
     if (this.busy) {
       this.feed.pushSystem('⏳ Simulation running — import again in a moment.');
       return;
