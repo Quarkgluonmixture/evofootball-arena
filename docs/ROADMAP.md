@@ -1317,12 +1317,15 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 119d — the counter-pick loop needs a
-DIFFERENT shape than 119c's reverted defensive gene-bend (see the
-119c ATTEMPT+REVERT entry below); then 120+ home advantage → memory
-commentary. (112 through 119b ALL shipped 2026-07-18; 119c
-ATTEMPTED + REVERTED same day; fingerprint baseline `848370ae…`
-since the 119b keeper-honesty lever — 119c left it UNCHANGED.)**
+⭐ HEAD OF QUEUE IS NOW 119d — carry + give-and-go CO-DOMINANCE (the
+REFRAME: carry-lean is realistic for 6v6; the missing piece is the
+give-and-go as a co-weapon + honest 1v1, NOT passing dominance — see
+the 119d-1 ATTEMPT+REVERT entry); then 120+ home advantage → memory
+commentary. (112 through 119b ALL shipped 2026-07-18; 119c AND 119d-1
+ATTEMPTED + REVERTED same day — supply-side and defensive levers both
+refuted, the carry is endpoint-EV + 6v6-space locked; fingerprint
+baseline `848370ae…` since the 119b keeper-honesty lever — 119c and
+119d-1 left it UNCHANGED.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1566,7 +1569,57 @@ substrate); reverted rather than shipped. Full-revert: `gameplan.ts`
 ClashBanner/i18n/css restored — tree clean, vitest 441, fingerprint
 `848370ae` UNCHANGED.
 
-**119d — the counter-pick loop, a WORKING shape (the 119c lesson
+**119d-1 — OFF-BALL SEPARATION (supply side)** ⚠️ **ATTEMPTED +
+REVERTED 2026-07-18 (four measured cuts, honest negative; fingerprint
+left at `848370ae`).** The user's playtest diagnosis (VERIFIED by the
+new `supply-side.ts` probe): a pressed carrier has a clean forward
+outlet only ~30% of the time (zero options 67%/76%), passes under
+pressure just 14-16%, and dribbles/loses the rest — off-ball players
+sit in covered lanes, not moving into open ones ("保持阵型有点呆").
+The asymmetry: the engine rewards beating your marker WITH the ball
+(momentum gate) but not WITHOUT it, so all "beat your man" value
+concentrates in the carry. Cuts measured: ① support-spot peel off the
+marker (null); ② peel + a "come show for it when the carrier is
+pressed" boost + the marker reaction-lag generalized pitch-wide
+(Phase 31.9's near-goal lag) — zero-options DID fall (61/62%) and
+off-ball adhesion rose (65→77%), BUT the pitch-wide lag ALSO buffs the
+carrier (a beaten defender recovers slower → the breakaway is easier),
+so the re-evolved meta dribbled MORE (37→57%) and goals rose; ③ the
+same without the lag = back to noise (the lag is what actually creates
+separation — confirming the coupling — but it's double-edged). **The
+iron law across 119b/c/d (four attempts): the carry's endpoint EV is
+positive (a pressed dribble loses 43-49% but the ~38% that survive
+reach a 1v1 that still pays) + 6v6 space (beat one man = through), so
+ANY change that adds space/separation helps the carry ≥ it helps
+passing. Supply-side AND defensive-side levers cannot move it.**
+⭐ THE REFRAME (user, 2026-07-18 — "现实6v6会出现这种情况吗"): a
+carry-LEAN meta is REALISTIC for small-sided football (dribbling/1v1
+matter more the smaller the pitch) — chasing "passing dominance" was
+the wrong target (it would make it play like 11v11). What real
+futsal/6v6 has that ours lacks: (1) the GIVE-AND-GO as a co-weapon
+(the pass beats the dribble over distance AND the passer bursts —
+pass-and-move as ONE linked action, relentless rotation), and (2)
+honest 1v1 conversion (~30-45%, ours 56-67%). The give-and-go
+substrate EXISTS (`wallRun`/2过1, Phase 34) but is throttled: gene-
+gated to fast/passing sides `(tempo+passBias)/2·wallPassW > 0.35`,
+and the burst hits the same off-ball-separation wall — 89% of late
+goals are unassisted (119b). Reverted clean; `supply-side.ts` probe
+kept.
+
+**119d — the REALISTIC target (the reframe applied): carry +
+give-and-go CO-DOMINANCE, not passing dominance**: make the
+give-and-go a genuine second scoring weapon (widen the wallRun gate
+so it's not only a fast-team toy; give the "go" burst a real chance
+to earn the return — the timed pass-and-move that draws the presser,
+distinct from the static "get open" that 119d-1 refuted) + finish the
+1v1 honesty (119b's keeper lever got conv to 56-67%; real is lower).
+Measured by: give-and-go goal share UP in the census, carry share
+eased toward a co-weapon (NOT eliminated — carry-lean is realistic),
+goals floor held. Probe-first, A/B before commit (the 119c/119d-1
+discipline). Structural fallback if this also fails: the carry is
+6v6-space-locked and only 11v11 (parked) breaks it.
+
+**119z — the counter-pick loop, a WORKING shape (the 119c lesson
 applied)**: negative frequency dependence can't come from bending
 DEFENSIVE genes toward a terminal breakaway. The lesson points
 UPSTREAM/attacking-side instead — candidates: (a) game-plan the

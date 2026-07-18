@@ -1745,3 +1745,31 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   `848370ae` untouched); the emergence-memo trap (a hand-set bias
   fighting the substrate) caught in the A/B before it shipped. 119d
   carries the working-shape hunt.
+- ⭐ **2026-07-18 THE 119d-1 NEGATIVE RESULT + THE REFRAME (off-ball
+  supply, four cuts refuted → the carry is structurally locked, and
+  carry-lean is REALISTIC)**: the user's playtest read (a ball-winner
+  stalls because off-ball mates don't move into lanes → dribble is the
+  only out) was VERIFIED by `supply-side.ts` (pressed carrier: clean
+  outlet ~30%, passes 14-16%, the rest dribble/lost). The asymmetry
+  named: the engine pays beating your marker WITH the ball, never
+  WITHOUT it. But four measured cuts (peel; peel+show+pitch-wide
+  marker-lag; without lag; recombinations) all failed the headline —
+  the lag is what actually creates off-ball separation, but it buffs
+  the CARRIER too (beaten defenders recover slower → easier
+  breakaways), so the re-evolved meta dribbled MORE, not passed more.
+  **The iron law, now proven from BOTH sides (119c defensive + 119d
+  supply): the carry's endpoint EV is positive (pressed dribble loses
+  ~45% but the ~38% that survive reach a still-paying 1v1) and 6v6
+  space makes beating one man a through-ball, so any space/separation
+  added helps the carry ≥ passing. Neither supply nor defence can move
+  it.** ⭐ THE REFRAME (user's question "现实6v6会出现这种情况吗"):
+  small-sided football IS carry-lean — dribbling/1v1 matter more the
+  smaller the pitch — so "make passing dominant" was the WRONG target
+  (that's 11v11). Real futsal's diversity comes from the GIVE-AND-GO as
+  a CO-weapon (pass-and-move as one linked action) + honest 1v1
+  (~30-45%, ours 56-67%). The give-and-go substrate exists (`wallRun`/
+  2过1) but is throttled (gene-gated + the same off-ball wall on the
+  burst; 89% of goals unassisted). The realistic 119d target is thus
+  carry + give-and-go co-dominance, not passing dominance — a second
+  scoring pattern, honest to the format. Reverted clean (`848370ae`
+  untouched); `supply-side.ts` probe kept for the give-and-go work.
