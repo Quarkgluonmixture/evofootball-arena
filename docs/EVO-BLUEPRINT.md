@@ -1554,6 +1554,14 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅ **phase-111 SHIPPED** (**FORM/MORALE** — Stage 4 opens: rolling,
+  upset-weighted, mean-reverting team confidence + the 22nd gene
+  `moraleSensitivity` pricing what it does (±9.6% pass/shot noise at
+  extremes; +11% goals hot-vs-cold at max spread). Adoption: one world
+  grew a confidence-team culture (0.73), one immune — the new-payoff-
+  surface gate passes. Save v26; 🔥/❄ on the clash tape; advantage
+  fouls no longer whistle (user report). Fingerprint `793d0dab…`;
+  full entry at ROADMAP head.)
 - ✅⭐ **phase-110 SHIPPED** (**the RECOVERY SLIDE** — the carry-through
   counter, queue re-ordered by the user's 射门趋同 session: a
   from-behind desperation challenge in the measured 1.2-2.2m pursuit

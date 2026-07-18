@@ -69,6 +69,9 @@ export class ClashBanner {
     tags.appendChild(el('span', 'tag', `⚔ ${style.formationAtk}`));
     tags.appendChild(el('span', 'tag', `🛡 ${style.formationDef}`));
     tags.appendChild(el('span', 'tag', t(style.scheme === 'man' ? 'man-marking' : 'zonal')));
+    // Morale on the tape (Phase 111) — only when the streak is REAL.
+    if ((info.morale ?? 0.5) >= 0.7) tags.appendChild(el('span', 'tag', `🔥 ${t('on a run')}`));
+    else if ((info.morale ?? 0.5) <= 0.3) tags.appendChild(el('span', 'tag', `❄ ${t('in a slump')}`));
     // Data-driven nameplate (Phase 49): identity relative to the current
     // league population; both teams appended so exhibition sides still rank.
     const pool: StyleSource[] = [

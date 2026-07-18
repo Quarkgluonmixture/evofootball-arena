@@ -239,6 +239,9 @@ function buildFx(match: Match): FxEvent[] {
       ev.type === 'interception' || ev.type === 'corner' ||
       ev.type === 'foul' || ev.type === 'card' || ev.type === 'woodwork'
     ) {
+      // ADVANTAGE fouls never stop play (27.2) — no whistle, in sound or
+      // animation (user report, Phase 111 session). The feed line stays.
+      if (ev.type === 'foul' && ev.text.endsWith('— advantage')) continue;
       const fx: FxEvent = { type: ev.type, side: ev.side as Side, t: ev.t };
       // The card's color lives only in the feed text — mine it (Phase 75).
       if (ev.type === 'card') fx.red = /SENT OFF|STRAIGHT RED/.test(ev.text);

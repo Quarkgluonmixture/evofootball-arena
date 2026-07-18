@@ -142,12 +142,16 @@ describe('RenderStateAdapter', () => {
   it('surfaces fouls and cards to the fx stream, mining the card color (75)', () => {
     const match = makeMatch();
     for (let i = 0; i < 100; i++) match.step(DT);
-    match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 0, text: 'Foul by A on B — advantage' });
+    match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 0, text: 'Foul by A on B — free kick in range' });
     match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 1, text: 'Offside — Ovie (Alpha)' });
+    // ADVANTAGE fouls never reach the fx stream (Phase 111, user report):
+    // play never stopped, so neither the whistle sound nor the ref blows.
+    match.events.push({ t: match.simTime, minute: 1, type: 'foul', side: 0, text: 'Foul by X on Y — advantage' });
     match.events.push({ t: match.simTime, minute: 1, type: 'card', side: 0, text: 'A is booked' });
     match.events.push({ t: match.simTime, minute: 1, type: 'card', side: 1, text: 'STRAIGHT RED! C is sent off' });
     const fx = buildRenderState(match, false).fx;
     expect(fx.some((f) => f.type === 'foul')).toBe(true);
+    expect(fx.filter((f) => f.type === 'foul' && f.side === 0)).toHaveLength(1); // advantage filtered
     expect(fx.find((f) => f.type === 'card' && f.side === 0)?.red).toBe(false);
     expect(fx.find((f) => f.type === 'card' && f.side === 1)?.red).toBe(true);
     // Offside rides the foul channel, marked from its text (77).

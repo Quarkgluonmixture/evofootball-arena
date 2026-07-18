@@ -1207,9 +1207,30 @@ RESOLVES on the re-roll. Foul economy: 4.24 fouls / 1.47🟨 0.09🟥 /
 422, visual 111+50, fingerprint REBASELINED `af7ea229…`.
 Then lever 2 (if needed): rest-defense NUMBERS vs attack commitment.
 
-**111+ — Stage 4 pull items, one at a time, each passing "does it give
-genes a NEW payoff surface?"**: form/morale → injuries (N2
-infrastructure ready) → home advantage → memory commentary.
+**111 — FORM/MORALE** ✅ **DONE 2026-07-18 night (Stage 4's first pull
+item; the 22nd gene).** `Franchise.morale` — rolling confidence in
+[0.1, 0.9], result-driven with UPSETS weighing more (the Elo `expected`
+prices the surprise), mean-reverting ×0.8/round (streaks fade); save
+v26 + migration test. What morale DOES is the gene's to price:
+`moraleSensitivity` scales a ±9.6%-at-extremes noise channel on ALL
+four pass variants + the shot spread (one chokepoint: the shared
+passBias tightness factor). Probe `morale-ab.ts`: hot-vs-cold at max
+spread = +11% goals, +2.3% passes — real but modest by design.
+**Adoption (24×3): 0.41→0.55 / 0.50→0.49 / 0.50→0.73 — one world grew
+a genuine CONFIDENCE-TEAM culture, one is immune, selection alive with
+spread — the "new payoff surface" gate PASSES.** Visible face: 🔥
+on-a-run / ❄ in-a-slump tags on the clash tape (morale ≥0.7 / ≤0.3).
+Warming 15.68 ≈ the slide's 15.38 (no inflation); calibrate 3.25/3.64
+⚠/2.82 (424242 over the top — re-roll watch); vitest 424 (the fx test
+UPDATED for the new advantage contract, below); visual 111+54;
+fingerprint REBASELINED `793d0dab…`. **Also shipped (user report
+mid-phase): ADVANTAGE fouls no longer whistle** — the fx stream
+filters "— advantage" fouls (RenderStateAdapter), so neither the SFX
+nor the 3D referee blows while play runs on; the feed line stays.
+
+**112+ — Stage 4 pull items, one at a time, each passing "does it give
+genes a NEW payoff surface?"**: injuries (N2 infrastructure ready) →
+home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
 EARS (every gain has a dB paper trail in the 105 entry — report by

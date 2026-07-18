@@ -262,6 +262,7 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
     match.rng.gaussian() *
     (0.02 + pressure * 0.07 + d * 0.0015) *
     (1.15 - team.genome.passBias * 0.3) *
+    (1 - team.confidence * 0.12) * // morale sharpens/frays the pass (Phase 111)
     (1.25 - passer.attrs.passing * 0.5) *
     oneTouchMul(passer) *
     orientationNoiseMul(misalign, passer.attrs.passing);
@@ -357,6 +358,7 @@ export function performThroughBall(
       match.rng.gaussian() *
       (0.025 + pressure * 0.07 + d * 0.0017) *
       (1.15 - team.genome.passBias * 0.3) *
+    (1 - team.confidence * 0.12) * // morale sharpens/frays the pass (Phase 111)
       (1.25 - passer.attrs.passing * 0.5) *
       oneTouchMul(passer) *
       orientationNoiseMul(misalign, passer.attrs.passing);
@@ -399,6 +401,7 @@ function loftKick(
     match.rng.gaussian() *
     (0.03 + pressure * 0.05 + d * 0.0011) * noiseMul *
     (1.15 - team.genome.passBias * 0.3) *
+    (1 - team.confidence * 0.12) * // morale sharpens/frays the pass (Phase 111)
     (1.3 - p.attrs.passing * 0.55) *
     oneTouchMul(p) *
     orientationNoiseMul(misalign, p.attrs.passing);
@@ -508,6 +511,7 @@ export function performCutback(match: Match, passer: Player, mate: Player): void
     match.rng.gaussian() *
     (0.02 + pressure * 0.06 + d * 0.0012) *
     (1.15 - team.genome.passBias * 0.3) *
+    (1 - team.confidence * 0.12) * // morale sharpens/frays the pass (Phase 111)
     (1.25 - passer.attrs.passing * 0.5) *
     oneTouchMul(passer) *
     orientationNoiseMul(misalign, passer.attrs.passing);
@@ -1086,6 +1090,7 @@ export function performShot(match: Match, shooter: Player): void {
   const spread =
     (0.022 + d * 0.0028 + contest * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
+    (1 - team.confidence * 0.12) * // the finish rides confidence too (Phase 111)
     (oneVone ? 1 - 0.3 * composure : 1) *
     orientationNoiseMul(misalign, shooter.attrs.dribbling);
   const dir = rotate(aim, match.rng.gaussian() * spread);

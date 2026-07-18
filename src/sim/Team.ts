@@ -45,6 +45,9 @@ export class Team {
   /** Tactical identity (Phase 30): formations + marking scheme, resolved once. */
   readonly style: TeamStyle;
 
+  /** Morale × sensitivity in [-1, 1] (Phase 111); 0 = the neutral game. */
+  readonly confidence: number;
+
   mode: TeamMode = 'ResetShape';
   modeTime = 0;
   brainTimer = 0;
@@ -144,6 +147,12 @@ export class Team {
     this.side = side;
     this.attackDir = side === 0 ? 1 : -1;
     this.info = info;
+    // CONFIDENCE (Phase 111): morale × the moraleSensitivity gene, frozen
+    // for the match. Positive = riding a run (sharper passing/finishing),
+    // negative = a slump fraying the same. Neutral (0) for ad-hoc teams,
+    // probes and steady-pro genomes — the whole channel prices to zero.
+    this.confidence =
+      ((info.morale ?? 0.5) - 0.5) * 2 * (info.genome.moraleSensitivity ?? 0.5);
     // Explicit policies are merged over the defaults so a vector trained
     // before new weights existed (Phase 28 added five) stays usable — the
     // missing keys read as the hand-tuned constants. Teams WITHOUT a policy

@@ -1,3 +1,4 @@
+import { clamp } from '../utils/math';
 import { hashSeed, Rng } from '../utils/rng';
 import {
   CUP_ROUND_SHORT, CUP_SEED_TAG, CUP_SHOOTOUT_TAG, buildCup, buildCupRecord, cupRoundComplete,
@@ -182,7 +183,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 25;
+export const SAVE_VERSION = 26;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -409,6 +410,7 @@ export class League {
       ages: f.ages, style: f.coach.style, policy: f.coach.policy,
       coachName: f.coach.name, // feed attribution + the touchline figure (Phase 66)
       elo: f.elo, // the underdog shift's strength reading (Phase 64)
+      morale: f.morale, // confidence carried into the match (Phase 111)
       // The personal-style wire (Phase 54): each slot's brain runs the
       // coach's policy through the player's own appetites.
       rolePolicies: f.squadStyles?.map((s) => applyPlayerStyle(f.coach.policy, s)),
@@ -622,6 +624,14 @@ export class League {
     const delta = 28 * (actual - expected);
     fh.elo += delta;
     fa.elo -= delta;
+
+    // MORALE (Phase 111): confidence follows results — mean-revert first
+    // (streaks fade on their own), then the result moves it. An UPSET
+    // moves morale harder (beating a stronger side lifts more; losing to
+    // a weaker one stings more) — expected already encodes that.
+    const swing = 0.14;
+    fh.morale = clamp(0.5 + (fh.morale - 0.5) * 0.8 + (actual - expected) * swing, 0.1, 0.9);
+    fa.morale = clamp(0.5 + (fa.morale - 0.5) * 0.8 + (expected - actual) * swing, 0.1, 0.9);
 
     this.cursor++;
   }
@@ -1618,6 +1628,26 @@ export class League {
         }
       }
       data.version = 25;
+    }
+    if (data.version === 25) {
+      // v25 -> v26: morale (Phase 111 — Stage 4's first pull item) +
+      // moraleSensitivity. Backfilled neutral: 0.5 = no streak, no effect.
+      const fixG = (g: TacticalGenome | undefined): void => {
+        if (g) g.moraleSensitivity ??= 0.5;
+      };
+      for (const f of data.franchises as Franchise[]) {
+        f.morale ??= 0.5;
+        fixG(f.coach.genome);
+      }
+      for (const e of (data.coachPool ?? []) as PoolEntry[]) fixG(e.coach.genome);
+      for (const r of ((data.history ?? []) as SeasonRecord[])) {
+        if (r.geneMeans) (r.geneMeans as Record<string, number>).moraleSensitivity ??= 0.5;
+        for (const e of r.evolution?.entries ?? []) {
+          fixG(e.childGenome);
+          if (e.parentGenomes) e.parentGenomes.forEach(fixG);
+        }
+      }
+      data.version = 26;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

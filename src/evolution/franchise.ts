@@ -57,6 +57,14 @@ export interface Franchise {
    */
   suspensions: number[];
   elo: number;
+  /**
+   * TEAM MORALE (Phase 111, Stage 4): rolling confidence in [0.1, 0.9],
+   * neutral 0.5 — wins lift it, losses sink it, and it mean-reverts every
+   * round (streaks fade). What morale DOES to the football is priced by
+   * the moraleSensitivity gene: the steady pros ignore it, the confidence
+   * team rides highs and crumbles in slumps. Persisted (save v26).
+   */
+  morale: number;
   /** 0 = top flight, 1 = second division. Changes via promotion/relegation. */
   division: 0 | 1;
   lineage: LineageEntry[];
@@ -87,6 +95,7 @@ export function createFranchise(
     careers: ROSTER_ROLES.map(() => emptyCareer()),
     suspensions: ROSTER_ROLES.map(() => 0),
     elo: 1500,
+    morale: 0.5,
     division,
     lineage: [{ generation, event: 'founded' }],
   };

@@ -134,6 +134,8 @@ const ZH: Record<string, string> = {
   'formation 🛡': '🛡 防守阵型',
   marking: '盯人方案',
   'man-marking': '盯人',
+  'on a run': '连胜势头',
+  'in a slump': '低谷',
   zonal: '区域',
 
   // ---- team modes ----

@@ -112,6 +112,17 @@ export interface TacticalGenome {
    * governs the pass-served pipe only (launch-anatomy.ts has the shares).
    */
   trapBias: number;
+  /**
+   * MORALE SENSITIVITY (Phase 111, Stage 4 — the first pull item): how
+   * much this team's football depends on its CONFIDENCE. Franchise morale
+   * (rolling, result-driven, mean-reverting) exists for everyone; this
+   * gene prices what it does — 0 = the steady professionals who play the
+   * same game at 0-3 down in a slump, 1 = the confidence team whose
+   * passing and finishing sharpen on a run and fray in a crisis (both
+   * directions, the honest trade: snowball wins bought with fragile
+   * slumps). 0.5 = a mild middle. Neither is a virtue — evolution's call.
+   */
+  moraleSensitivity: number;
 }
 
 export const GENE_KEYS = [
@@ -136,6 +147,7 @@ export const GENE_KEYS = [
   'jockeyBias',
   'coverBias',
   'trapBias',
+  'moraleSensitivity',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -214,6 +226,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if ((g.coverBias ?? 0.5) < 0.28) tags.push('Stopper steps up');
   if ((g.trapBias ?? 0.5) > 0.72) tags.push('Offside trap');
   if ((g.trapBias ?? 0.5) < 0.28) tags.push('Tracks runners home');
+  if ((g.moraleSensitivity ?? 0.5) > 0.72) tags.push('Confidence team');
+  if ((g.moraleSensitivity ?? 0.5) < 0.28) tags.push('Steady pros');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

@@ -248,6 +248,9 @@ export interface TeamInfo {
    * teams, probes and old replays keep pure-identity tactics).
    */
   elo?: number;
+  /** Confidence carried into the match (Phase 111) — 0.5 when absent, so
+   * ad-hoc teams, probes and old replays play at neutral morale. */
+  morale?: number;
   /** Evolvable / learned utility-policy weights; MISSING keys fall back to
    * DEFAULT_POLICY (Phase 42 franchises carry the attacking-style subset). */
   policy?: Partial<PolicyParams>;

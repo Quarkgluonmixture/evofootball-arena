@@ -168,6 +168,41 @@ describe('tactical genes influence behavior', () => {
   });
 });
 
+describe('moraleSensitivity (Phase 111, the 22nd gene)', () => {
+  it('v25 saves migrate: morale + moraleSensitivity backfill neutral', () => {
+    const league = new League({ seed: 9, matchDuration: 30 });
+    const data = league.toJSON() as Record<string, unknown> & {
+      version: number;
+      franchises: Array<{ morale?: number; coach: { genome: Record<string, number> } }>;
+    };
+    data.version = 25; // forge a pre-morale save
+    for (const f of data.franchises) {
+      delete f.morale;
+      delete f.coach.genome.moraleSensitivity;
+    }
+    const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
+    for (const f of loaded.franchises) {
+      expect(f.morale).toBe(0.5);
+      expect(f.coach.genome.moraleSensitivity).toBe(0.5);
+    }
+  });
+
+  it('results move morale and streaks mean-revert', () => {
+    const league = new League({ seed: 11, matchDuration: 30 });
+    const fx = league.nextFixture()!;
+    const before = league.franchise(fx.home).morale;
+    const res = league.createMatch(fx).runToCompletion();
+    league.applyResult(fx, res);
+    const after = league.franchise(fx.home).morale;
+    if (res.score[0] !== res.score[1]) {
+      expect(after).not.toBe(before);
+      expect(res.score[0] > res.score[1] ? after > before : after < before).toBe(true);
+    }
+    expect(after).toBeGreaterThanOrEqual(0.1);
+    expect(after).toBeLessThanOrEqual(0.9);
+  });
+});
+
 describe('trapBias (Phase 109, the 21st gene)', () => {
   it('v24 saves migrate: trapBias backfills at 0.5', () => {
     const league = new League({ seed: 7, matchDuration: 30 });
