@@ -1317,15 +1317,18 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 119d — carry + give-and-go CO-DOMINANCE (the
-REFRAME: carry-lean is realistic for 6v6; the missing piece is the
-give-and-go as a co-weapon + honest 1v1, NOT passing dominance — see
-the 119d-1 ATTEMPT+REVERT entry); then 120+ home advantage → memory
-commentary. (112 through 119b ALL shipped 2026-07-18; 119c AND 119d-1
-ATTEMPTED + REVERTED same day — supply-side and defensive levers both
-refuted, the carry is endpoint-EV + 6v6-space locked; fingerprint
-baseline `848370ae…` since the 119b keeper-honesty lever — 119c and
-119d-1 left it UNCHANGED.)**
+⭐ HEAD OF QUEUE IS NOW 120 — home advantage → memory commentary
+(clean Stage-4 progress). The carry-diversity arc is CLOSED for now:
+119b shipped (keeper honesty, the lever that stuck), then ~7 levers
+REFUTED by A/B (119c defensive game-plan, four 119d-1 supply cuts, the
+1v1 angle-cut) — the carry/1v1 equilibrium is 6v6-space + endpoint-EV
+LOCKED, and the meta is already reasonably diverse post-119b with
+near-realistic 1v1 conversion. The remaining gap is play-FEEL (judge
+by PLAYING) + the parked 11v11; the give-and-go co-weapon stays a
+candidate (probes kept: supply-side, breakaway-origin, give-and-go).
+(112 through 119b ALL shipped 2026-07-18; 119c + 119d all ATTEMPTED +
+REVERTED same day; fingerprint baseline `848370ae…` UNCHANGED through
+the whole arc.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top

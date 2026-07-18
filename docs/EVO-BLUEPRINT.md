@@ -1796,3 +1796,29 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   the failed space-adders. Candidate for the real 119d; probe-first +
   A/B (goals floor + gene-drain watch — a permanent sweeper could
   over-suppress or be selected away). `breakaway-origin.ts` kept.
+- ⭐ **2026-07-18 THE 1v1-CONTEST SUB-ATTEMPT + THE ARC'S HONEST CLOSE
+  (keeper angle-cut REVERTED; the carry/1v1 equilibrium is robust)**:
+  the user's method — fix the MECHANISM into a healthy CONTEST, let
+  outcomes emerge — pointed at the 40%/33% of 1v1 GOALS the keeper
+  never gets a hand to (untouchable walk-ins, not duels). Built a
+  1v1 angle-cut (the keeper advances past the halfway `d·0.5` cap on a
+  clean 1v1 to narrow the target, gene-priced, chip as the counter).
+  A/B REFUTED it — untouchable% went UP (25→29 / 17→25), goals UP
+  (3.31→3.45 / 2.89→3.89), the ball's closest approach to the keeper
+  got FARTHER: exactly Phase 103's law (advancing on a controlled 1v1
+  loses — the re-evolved shooters shoot past the committed keeper).
+  Reverted (`848370ae`). ⭐ **The honest close of the carry-diversity
+  arc**: across 119b (shipped — keeper honesty, the one that stuck) +
+  ~7 REFUTED levers (119c defensive game-plan, four 119d-1 supply
+  cuts, the 1v1 angle-cut), the equilibrium held. The verified reasons
+  it's LOCKED: (1) 6v6 space (beat/win one man = through — only ~2
+  lines), (2) the carry endpoint EV stays positive, (3) ~half of 1v1s
+  are transition/scramble-born (win it → through), which is REALISTIC
+  for small-sided. And the clean gen-21 data says the meta is already
+  reasonably diverse post-119b (one world buildup-led, one carry+
+  setpiece-mixed) with near-realistic 1v1 conv (45-55%). CONCLUSION:
+  the remaining gap is play-FEEL (cheap-feeling breakaways, wooden
+  off-ball movement) — best judged by PLAYING, not headless levers —
+  and the only structural break left is 11v11 (parked). Probes kept
+  (`supply-side`, `breakaway-origin`, `give-and-go`) for whenever the
+  give-and-go co-weapon or 11v11 is picked up.
