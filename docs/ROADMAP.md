@@ -1317,8 +1317,9 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 116 (112 through 115 shipped 2026-07-18; the
-club center from 113.5 is the new home of all club-identity viz).**
+⭐ HEAD OF QUEUE IS NOW 117 — AUDIO housekeeping (112 through 116
+shipped 2026-07-18; fingerprint baseline now `f032c705…` after the
+v29 shape-history field).**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1372,12 +1373,27 @@ line never does). Events aren't saved → fingerprint IDENTICAL
 `8c6330b2…`. Gates: vitest 434 (+2), visual 125+52 (the 3D count
 breathes with match events), build clean.
 
-**116 — the EVOLUTION CENTER enrichment (user: "演化页面不够丰富").**
-Per-club FORMATION/STYLE history (shape switches over generations — a
-timeline like the era strip, from lineage notes); player PERSONAL-
-style evolution (appetite drift across a career, the 54 wire has the
-data); coach philosophy drift; whatever else the 51-56 screens never
-surfaced about how identities CHANGE, not just what they are.
+**116 — the EVOLUTION CENTER enrichment** ✅⚠ **SHIPPED 2026-07-18
+(data-inventory-first — two queue premises corrected).** ① SHAPE
+TIMELINE per club (阵型史): the discrete formation identity was NOT
+reconstructable ("from lineage notes" refuted: sack/hire style swaps
+leave no note; only rebirths snapshot style) → now RECORDED per
+season on `styleMatrix` rows (`style: TeamStyle`, save v29,
+migration + tests; strip-proof: v29 minus the field re-hashes to
+`8c6330b2…` EXACTLY, new baseline `f032c705…`) — drift panel shows
+⚔/🛡 era-strip-style timelines (palettes now shared consts with the
+population strips), growing from v29 on. ② PERFORMANCE TRAJECTORY:
+per-club ELO + FITNESS across generations — both sat fully recorded
+in history (`table[].elo`, `fitness[].total`), never plotted;
+self-normalized sparklines with raw latest in the head
+(`sparklineTile` gains `latestLabel`). ③ the DUGOUT on the wall:
+lineage's sacked/hired/coach-retired events (recorded since 53,
+invisible — no icon/color) now render 🪓/👔/🌅 + legend. ④ player
+personal-style evolution: queue premise REFUTED — styles are
+career-FIXED by design (`playerStyle.ts:17`), drift is
+bloodline-level and unrecorded; not built, documented (would need
+its own recording seam if ever wanted). Gates: vitest 436 (+2),
+visual 126+53, build clean.
 
 **117 — AUDIO housekeeping (user report).** ① the two amb beds are
 both wired but `Math.random()` picks ONE per session — the other never

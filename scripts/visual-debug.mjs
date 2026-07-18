@@ -355,6 +355,7 @@ await page.waitForTimeout(200);
 check('club deep-dive selects from the wall', (await page.locator('#evolution-screen .dyn-row-line.selected').count()) === 1, '');
 check('club drift panel present (113.5 — identity moved to the club center)', (await page.locator('#evolution-screen .evo-club').count()) === 1, '');
 check('drift panel links to the club center (113.5)', (await page.locator('#evolution-screen .evo-club button.club-link').count()) === 1, '');
+check('drift panel carries the shape-history strip (116)', (await page.locator('#evolution-screen .evo-club .shape-history').count()) === 1, '');
 const heatCells = await page.locator('#evolution-screen .attr-heatmap rect').count();
 check('budget heatmap renders 16×8 cells', heatCells === 128, `${heatCells} cells`);
 const tiles = await page.locator('#evolution-screen .spark-tile').count();

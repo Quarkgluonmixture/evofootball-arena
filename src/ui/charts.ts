@@ -11,13 +11,17 @@ const INK_MUTED = '#8294b5';
 const GRID = '#24304a';
 const SURFACE = '#0d1526';
 
-/** Single-series sparkline tile: name + latest value + trend line. */
-export function sparklineTile(name: string, values: number[], color = '#60a5fa'): HTMLDivElement {
+/** Single-series sparkline tile: name + latest value + trend line.
+ * `latestLabel` (Phase 116) overrides the head value for series that are
+ * plotted normalized but read raw (Elo, fitness). */
+export function sparklineTile(
+  name: string, values: number[], color = '#60a5fa', latestLabel?: string,
+): HTMLDivElement {
   const tile = el('div', 'spark-tile');
   const head = el('div', 'spark-head');
   head.append(
     el('span', 'g-name', name),
-    el('span', 'spark-val', values.length ? values[values.length - 1].toFixed(2) : '—'),
+    el('span', 'spark-val', latestLabel ?? (values.length ? values[values.length - 1].toFixed(2) : '—')),
   );
   tile.appendChild(head);
 

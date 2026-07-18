@@ -637,6 +637,13 @@ body.cinematic .cinematic-enter { display: none; }
 .club-mini:hover { border-color: var(--accent); }
 .club-mini.selected { border-color: var(--accent); }
 .diagram-row { display: flex; gap: 8px; margin: 8px 0; }
+/* Shape timeline (Phase 116) — era-strip grammar, per club. */
+.shape-history { margin: 8px 0; }
+.shape-strip { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+.shape-strip .g-name { width: 18px; }
+.shape-cells { display: inline-flex; gap: 2px; flex-wrap: wrap; }
+.shape-cell { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
 /* Budget split + attr delta bars (Phase 115). */
 .budget-split { display: flex; }
 .split-seg { height: 100%; }

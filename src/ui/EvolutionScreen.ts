@@ -30,9 +30,25 @@ const EVENT_COLOR: Record<string, string> = {
   reborn: '#ef4444',
   promoted: '#34d399',
   relegated: '#f59e0b',
+  // The dugout events (Phase 116) — recorded in lineage since Phase 53,
+  // invisible on the wall until now.
+  sacked: '#b91c1c',
+  hired: '#7dd3fc',
+  'coach-retired': '#8294b5',
 };
 const EVENT_ICON: Record<string, string> = {
   founded: '·', elite: '👑', mutated: '·', reborn: '💀', promoted: '⬆', relegated: '⬇',
+  sacked: '🪓', hired: '👔', 'coach-retired': '🌅',
+};
+
+/** Formation palettes (Phase 116): one source for the population share
+ * strips and the per-club shape timeline. */
+const ATK_COLORS: Record<string, string> = {
+  'wide-212': '#60a5fa', 'narrow-122': '#f59e0b', 'twin-st': '#4ade80',
+  'false-nine': '#a78bfa', 'overload': '#fb7185', 'target-man': '#facc15',
+};
+const DEF_COLORS: Record<string, string> = {
+  'low-32': '#60a5fa', 'press-23': '#f472b6', 'mid-41': '#4ade80', 'high-line': '#facc15',
 };
 
 /**
@@ -356,6 +372,66 @@ export class EvolutionScreen {
     } else {
       driftCol.appendChild(el('div', 'muted empty', t('Finish a season to see this club\'s drift.')));
     }
+
+    // The SHAPE timeline (Phase 116): which formations this club actually
+    // RAN, season by season — the discrete identity the continuous style
+    // vector can't say. Recorded since save v29; the strip grows as
+    // seasons play (old records simply lack it).
+    const shapeWrap = el('div', 'shape-history');
+    shapeWrap.appendChild(el('div', 'muted', t('Formation history')));
+    const shapeRows = league.history
+      .map((r) => ({ gen: r.generation, row: r.styleMatrix?.find((x) => x.slot === f.slot) }))
+      .filter((x) => x.row?.style);
+    if (shapeRows.length > 0) {
+      const phases = [
+        { key: 'formationAtk', colors: ATK_COLORS, label: '⚔' },
+        { key: 'formationDef', colors: DEF_COLORS, label: '🛡' },
+      ] as const;
+      for (const ph of phases) {
+        const strip = el('div', 'shape-strip');
+        strip.appendChild(el('span', 'g-name', ph.label));
+        const cells = el('span', 'shape-cells');
+        for (const x of shapeRows) {
+          const st = x.row!.style!;
+          const cell = el('span', 'shape-cell');
+          cell.style.background = ph.colors[st[ph.key]] ?? '#4a5a7a';
+          cell.title = `${t('Gen')} ${x.gen} · ⚔ ${st.formationAtk} / 🛡 ${st.formationDef} · ${st.scheme}`;
+          cells.appendChild(cell);
+        }
+        strip.appendChild(cells);
+        shapeWrap.appendChild(strip);
+      }
+    } else {
+      shapeWrap.appendChild(el('div', 'muted empty', t('Shape history records from here on — play a season.')));
+    }
+    driftCol.appendChild(shapeWrap);
+
+    // Performance trajectory (Phase 116): Elo + fitness across the
+    // generations — both sat fully-recorded in history, never plotted.
+    // Self-normalized for shape; the head reads the raw latest value.
+    const eloSeries = league.history
+      .map((r) => r.table.find((x) => x.slot === f.slot)?.elo)
+      .filter((v): v is number => v !== undefined);
+    const fitSeries = league.history
+      .map((r) => r.fitness.find((x) => x.slot === f.slot)?.total)
+      .filter((v): v is number => v !== undefined);
+    const norm = (vs: number[]): number[] => {
+      const lo = Math.min(...vs);
+      const hi = Math.max(...vs);
+      return vs.map((v) => (hi - lo < 1e-9 ? 0.5 : (v - lo) / (hi - lo)));
+    };
+    if (eloSeries.length >= 2 || fitSeries.length >= 2) {
+      const perf = el('div', 'spark-grid');
+      if (eloSeries.length >= 2) {
+        perf.appendChild(sparklineTile('Elo', norm(eloSeries), colorHex(f.colors.primary),
+          String(Math.round(eloSeries[eloSeries.length - 1]))));
+      }
+      if (fitSeries.length >= 2) {
+        perf.appendChild(sparklineTile(t('fitness'), norm(fitSeries), '#f5c542',
+          fitSeries[fitSeries.length - 1].toFixed(3)));
+      }
+      driftCol.appendChild(perf);
+    }
     panel.appendChild(driftCol);
 
     this.root.appendChild(panel);
@@ -365,7 +441,7 @@ export class EvolutionScreen {
   private renderDynastyWall(league: League, clubs: Franchise[]): void {
     this.root.appendChild(el('h2', '', t('Dynasty wall')));
     this.root.appendChild(el('div', 'muted',
-      `👑 ${t('elite')} · 💀 ${t('reborn')} · ⬆⬇ ${t('promotion/relegation')} — ${t('tap a row to inspect the club')}`));
+      `👑 ${t('elite')} · 💀 ${t('reborn')} · ⬆⬇ ${t('promotion/relegation')} · 🪓 ${t('sacked')} · 👔 ${t('hired')} — ${t('tap a row to inspect the club')}`));
     const wall = el('div', 'dyn-wall');
     const maxGen = league.generation;
 
@@ -444,24 +520,15 @@ export class EvolutionScreen {
     grid.appendChild(sparklineTile(`${t('style divergence')} ×5`, spreadSeries.map((v) => v * 5), '#f59e0b'));
     const withStyles = league.history.filter((r) => r.styleShares);
     if (withStyles.length > 0) {
-      grid.appendChild(stackedShareStrip(t('Attack formation'), [
-        { label: 'wide-212', color: '#60a5fa' },
-        { label: 'narrow-122', color: '#f59e0b' },
-        // The discovered shapes (Phase 67 + 107) — most eras show none; a
-        // colored band appearing IS the event.
-        { label: 'twin-st', color: '#4ade80' },
-        { label: 'false-nine', color: '#a78bfa' },
-        { label: 'overload', color: '#fb7185' },
-        { label: 'target-man', color: '#facc15' },
-      ], withStyles.map((r) => r.styleShares!.atk)));
-      grid.appendChild(stackedShareStrip(t('Defend formation'), [
-        { label: 'low-32', color: '#60a5fa' },
-        { label: 'press-23', color: '#f472b6' },
-        // The phase-79 discoveries were invisible here (labels never added
-        // — a 107 catch): their bands now render like the attack ones.
-        { label: 'mid-41', color: '#4ade80' },
-        { label: 'high-line', color: '#facc15' },
-      ], withStyles.map((r) => r.styleShares!.def)));
+      // The discovered shapes (Phase 67 + 107) — most eras show none; a
+      // colored band appearing IS the event. Palettes shared with the
+      // per-club shape timeline (Phase 116).
+      grid.appendChild(stackedShareStrip(t('Attack formation'),
+        Object.entries(ATK_COLORS).map(([label, color]) => ({ label, color })),
+        withStyles.map((r) => r.styleShares!.atk)));
+      grid.appendChild(stackedShareStrip(t('Defend formation'),
+        Object.entries(DEF_COLORS).map(([label, color]) => ({ label, color })),
+        withStyles.map((r) => r.styleShares!.def)));
       grid.appendChild(stackedShareStrip(t('Marking'), [
         { label: 'man', color: '#4ade80' },
         { label: 'zonal', color: '#a78bfa' },

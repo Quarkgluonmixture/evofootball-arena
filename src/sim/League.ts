@@ -163,7 +163,14 @@ export interface SeasonRecord {
   /** Per-club style vectors in STYLE_DIMS order (Phase 49), snapshotted
    * BEFORE evolution — the style-space map's trails and the divergence
    * curve read these. Optional: old records lack it. */
-  styleMatrix?: Array<{ slot: number; values: number[] }>;
+  styleMatrix?: Array<{
+    slot: number;
+    values: number[];
+    /** The DISCRETE formation identity that season (Phase 116, save v29) —
+     * the continuous vector can't say which SHAPE a club ran. Absent on
+     * pre-v29 records; the timeline grows as seasons play. */
+    style?: TeamStyle;
+  }>;
   /** Formation-identity counts of the population that PLAYED this season (Phase 31). */
   styleShares?: { atk: Record<string, number>; def: Record<string, number>; scheme: Record<string, number> };
   /** Longest completed-pass chain of the season (Phase 33 — the tiki-taka record). */
@@ -186,7 +193,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 28;
+export const SAVE_VERSION = 29;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -768,6 +775,7 @@ export class League {
       styleMatrix: this.franchises.map((f) => ({
         slot: f.slot,
         values: styleValues({ genome: f.coach.genome, policy: f.coach.policy }),
+        style: { ...f.coach.style }, // the shape identity (Phase 116)
       })),
       longestChain: this.longestChainRecord(),
       pointsTimeline: this.buildPointsTimeline(),
@@ -1684,6 +1692,12 @@ export class League {
         a.chAgainst ??= emptyChannels();
       }
       data.version = 28;
+    }
+    if (data.version === 28) {
+      // v28 -> v29: per-season formation identity on styleMatrix rows
+      // (Phase 116). Optional field, UI-guarded — old records simply lack
+      // it; the timeline grows from here. Nothing to backfill.
+      data.version = 29;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
