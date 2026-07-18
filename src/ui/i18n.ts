@@ -340,6 +340,7 @@ const ZH: Record<string, string> = {
   // ---- evolution center enrichment (Phase 116) ----
   'Formation history': '阵型史',
   'Shape history records from here on — play a season.': '阵型史从现在起记录——先打一个赛季。',
+  'Budget history records from here on — play a season.': '预算分配史从现在起记录——先打一个赛季。',
   fitness: '适应度',
   sacked: '下课',
   hired: '上任',

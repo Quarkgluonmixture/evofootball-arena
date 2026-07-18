@@ -19,6 +19,13 @@ describe('shape history (Phase 116)', () => {
       expect(Object.keys(ATTACK_FORMATIONS)).toContain(row.style!.formationAtk);
       expect(Object.keys(DEFEND_FORMATIONS)).toContain(row.style!.formationDef);
       expect(['man', 'zonal']).toContain(row.style!.scheme);
+      // The budget snapshot rides along (Phase 118.5, v31).
+      expect(row.attrs).toBeDefined();
+      expect(row.attrs!.length).toBe(8);
+      for (const v of row.attrs!) {
+        expect(v).toBeGreaterThan(0);
+        expect(v).toBeLessThanOrEqual(1);
+      }
     }
   });
 

@@ -67,6 +67,11 @@ check('set-piece stats row present (corners)', statsText.includes('corners'), ''
 check('combo stats rows present (34)', statsText.includes('one-twos') && statsText.includes('third man') && statsText.includes('overlaps'), '');
 await page.click('button:has-text("⏸")');
 check('pause toggles to play (29.1)', (await page.locator('button:has-text("▶")').count()) >= 1, '');
+await page.keyboard.press('Space');
+await page.waitForTimeout(150);
+check('spacebar resumes play (118.5)', (await page.locator('button:has-text("⏸")').count()) >= 1, '');
+await page.keyboard.press('Space'); // back to paused for the flow below
+await page.waitForTimeout(150);
 
 const feedRows = await page.locator('#event-feed .ev').count();
 check('event feed populates', feedRows > 3, `${feedRows} rows`);

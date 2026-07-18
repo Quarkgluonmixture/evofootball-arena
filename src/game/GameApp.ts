@@ -152,9 +152,10 @@ export class GameApp implements GameActions {
     window.addEventListener('resize', setTopbarVar);
     requestAnimationFrame(setTopbarVar);
     topbar.appendChild(el('h1', '', 'EVOFOOTBALL ARENA'));
+    // Top-bar order is the user's reading order (118.5): 联赛中心 · 演化 · 球队 · 球员.
     topbar.appendChild(button(t('League table'), () => this.toggleLeagueScreen()));
-    topbar.appendChild(button(`🏟 ${t('Clubs')}`, () => this.toggleClubsScreen()));
     topbar.appendChild(button(`🧬 ${t('Evolution')}`, () => this.toggleEvolutionScreen()));
+    topbar.appendChild(button(`🏟 ${t('Clubs')}`, () => this.toggleClubsScreen()));
     topbar.appendChild(button(`👥 ${t('Players')}`, () => this.togglePlayerScreen()));
     topbar.appendChild(button(t('Save'), () => this.saveNow()));
     topbar.appendChild(button(t('Load'), () => this.loadNow()));
@@ -234,6 +235,15 @@ export class GameApp implements GameActions {
     stage.appendChild(this.cineBug);
     window.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape' && this.cinematic) this.setCinematic(false);
+      // SPACE = pause/play (user ask, 118.5). Not while typing in the seed
+      // box, and not when a button/checkbox has focus (space already
+      // activates those — a double toggle reads as a no-op).
+      if (ev.key === ' ' || ev.code === 'Space') {
+        const t = ev.target as HTMLElement | null;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'BUTTON' || t.tagName === 'SELECT')) return;
+        ev.preventDefault(); // the page must not scroll
+        this.setPaused(!this.paused);
+      }
     });
 
     const pitch = new PitchRenderer();

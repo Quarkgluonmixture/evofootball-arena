@@ -1440,6 +1440,18 @@ THE ARC LOW (prior low 14.72): knocks blunt tired late-game legs
 exactly where the carry pipe lives. Gates: vitest 441 (+5), visual
 126+53, calibrate paired-A/B Δ≈noise, build clean.
 
+**118.5 — UX round (user reports, 2026-07-18 late)** ✅ **SHIPPED.**
+① BUDGET ALLOCATION JOINS THE TIME MACHINE ("预算分配在演化里面怎么
+没有变"): the heatmap was a live-only snapshot that ignored the
+generation scrubber — per-club attr summaries now RECORDED on
+styleMatrix rows (save v31; strip-proof: v31 minus `attrs` re-hashes
+to `e95c9d2b…` EXACTLY, new baseline `093da5bd…`), and the heatmap
+re-renders with the scrubbed frame (old records show the honest
+empty note; history grows from here). ② top-bar order = the user's
+reading order: 联赛中心 · 演化 · 球队 · 球员. ③ SPACEBAR toggles
+pause/play (guarded: not while typing / on a focused control;
+suite-checked). Gates: vitest 441 green, visual 127+53, build clean.
+
 **119+ — Stage 4 continues**: home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's

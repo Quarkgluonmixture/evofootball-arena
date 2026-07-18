@@ -21,6 +21,9 @@ const SURFACE = '#0d1526';
 interface StyleFrame {
   label: string;
   bySlot: Map<number, number[]>;
+  /** Squad attribute means per slot (Phase 118.5, recorded since v31) —
+   * the budget heatmap rides the scrubber. Absent on pre-v31 records. */
+  attrsBySlot?: Map<number, number[]>;
 }
 
 const EVENT_COLOR: Record<string, string> = {
@@ -79,6 +82,8 @@ export class EvolutionScreen {
   /** Cross-screen navigation (Phase 108/113.5) — the drift panel links to
    * the club center. Set by GameApp. */
   nav: EntityNav | null = null;
+  /** Scrubber → budget heatmap hook (118.5); set by renderPopulation. */
+  private heatmapUpdate: ((idx: number) => void) | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -125,9 +130,13 @@ export class EvolutionScreen {
     const out: StyleFrame[] = [];
     for (const r of league.history) {
       if (!r.styleMatrix) continue;
+      const withAttrs = r.styleMatrix.filter((row) => row.attrs);
       out.push({
         label: `${t('Gen')} ${r.generation}`,
         bySlot: new Map(r.styleMatrix.map((row) => [row.slot, row.values])),
+        attrsBySlot: withAttrs.length > 0
+          ? new Map(withAttrs.map((row) => [row.slot, row.attrs!]))
+          : undefined,
       });
     }
     out.push({
@@ -135,6 +144,10 @@ export class EvolutionScreen {
       bySlot: new Map(this.clubs(league).map((f) => [
         f.slot, styleValues({ genome: f.coach.genome, policy: f.coach.policy }),
       ])),
+      attrsBySlot: new Map(this.clubs(league).map((f) => {
+        const summary = squadSummary(f.squad);
+        return [f.slot, ATTR_KEYS.map((k) => summary[k])];
+      })),
     });
     return out;
   }
@@ -156,7 +169,7 @@ export class EvolutionScreen {
     this.renderHero(league, clubs, stats, frames, idx);
     this.renderClubPanel(league, clubs, stats, frames);
     this.renderDynastyWall(league, clubs);
-    this.renderPopulation(league, clubs, stats, frames);
+    this.renderPopulation(league, clubs, stats, frames, idx);
     this.renderLastEvolution(league);
   }
 
@@ -189,6 +202,7 @@ export class EvolutionScreen {
     heroWrap.appendChild(mapGrid);
     const drawAll = (frameIdx: number): void => {
       for (const lens of lenses) this.drawMap(lens.host, clubs, stats, frames, frameIdx, lens.dims);
+      this.heatmapUpdate?.(frameIdx); // the budget heatmap scrubs too (118.5)
     };
 
     // Controls: ◀ frame slider ▶ + play.
@@ -511,7 +525,7 @@ export class EvolutionScreen {
 
   /** Section 4 — population trends + the folded tile wall. */
   private renderPopulation(
-    league: League, clubs: Franchise[], stats: DimStat[], frames: StyleFrame[],
+    league: League, clubs: Franchise[], stats: DimStat[], frames: StyleFrame[], idx: number,
   ): void {
     this.root.appendChild(el('h2', '', t('Population trends')));
     const grid = el('div', 'spark-grid');
@@ -536,14 +550,33 @@ export class EvolutionScreen {
     }
     this.root.appendChild(grid);
 
+    // Budget allocation JOINS THE TIME MACHINE (Phase 118.5, user report
+    // "预算分配在演化里面怎么没有变"): the heatmap was a live-only snapshot
+    // that ignored the scrubber. Now it renders the SCRUBBED generation —
+    // recorded since v31, so old records show an honest empty note and the
+    // history grows from here. Slot lanes keep the CURRENT club's short
+    // (the dynasty-wall convention).
     this.root.appendChild(el('h2', '', t('Budget allocation')));
-    this.root.appendChild(attrHeatmap(
-      clubs.map((f) => {
-        const s = squadSummary(f.squad);
-        return { label: f.short, title: f.name, cells: ATTR_KEYS.map((k) => s[k]) };
-      }),
-      ATTR_KEYS.map((k) => t(k)),
-    ));
+    const heatHost = el('div', 'heat-host');
+    this.root.appendChild(heatHost);
+    this.heatmapUpdate = (i: number): void => {
+      heatHost.textContent = '';
+      const frame = frames[i];
+      heatHost.appendChild(el('div', 'muted', frame.label));
+      if (frame.attrsBySlot) {
+        heatHost.appendChild(attrHeatmap(
+          clubs.map((f) => ({
+            label: f.short,
+            title: f.name,
+            cells: frame.attrsBySlot!.get(f.slot) ?? ATTR_KEYS.map(() => 0),
+          })),
+          ATTR_KEYS.map((k) => t(k)),
+        ));
+      } else {
+        heatHost.appendChild(el('div', 'muted empty', t('Budget history records from here on — play a season.')));
+      }
+    };
+    this.heatmapUpdate(idx);
 
     const withGenes = league.history.filter((r) => r.geneMeans);
     if (withGenes.length > 0) {

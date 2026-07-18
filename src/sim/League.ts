@@ -24,7 +24,7 @@ import { GENE_KEYS, mutateGenome, type GeneKey, type TacticalGenome } from '../e
 import { newgenName } from '../evolution/names';
 import {
   ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer,
-  randomSquad, squadTotal, type AttrKey,
+  randomSquad, squadSummary, squadTotal, type AttrKey,
 } from '../evolution/playerGenome';
 import {
   FREE_AGENT_MAX_AGE, agentTotal, trimPool, type FreeAgent,
@@ -170,6 +170,10 @@ export interface SeasonRecord {
      * the continuous vector can't say which SHAPE a club ran. Absent on
      * pre-v29 records; the timeline grows as seasons play. */
     style?: TeamStyle;
+    /** Squad attribute means in ATTR_KEYS order (Phase 118.5, save v31) —
+     * the budget-allocation heatmap joins the generation scrubber. Absent
+     * on pre-v31 records. */
+    attrs?: number[];
   }>;
   /** Formation-identity counts of the population that PLAYED this season (Phase 31). */
   styleShares?: { atk: Record<string, number>; def: Record<string, number>; scheme: Record<string, number> };
@@ -193,7 +197,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 30;
+export const SAVE_VERSION = 31;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -791,11 +795,15 @@ export class League {
       geneMeans: this.geneMeans(),
       attrMeans: this.attrMeans(),
       styleShares: this.styleShares(),
-      styleMatrix: this.franchises.map((f) => ({
-        slot: f.slot,
-        values: styleValues({ genome: f.coach.genome, policy: f.coach.policy }),
-        style: { ...f.coach.style }, // the shape identity (Phase 116)
-      })),
+      styleMatrix: this.franchises.map((f) => {
+        const summary = squadSummary(f.squad);
+        return {
+          slot: f.slot,
+          values: styleValues({ genome: f.coach.genome, policy: f.coach.policy }),
+          style: { ...f.coach.style }, // the shape identity (Phase 116)
+          attrs: ATTR_KEYS.map((k) => summary[k]), // the budget's shape (118.5)
+        };
+      }),
       longestChain: this.longestChainRecord(),
       pointsTimeline: this.buildPointsTimeline(),
     };
@@ -1727,6 +1735,11 @@ export class League {
         f.injuries ??= (f.squad as unknown[]).map(() => 0);
       }
       data.version = 30;
+    }
+    if (data.version === 30) {
+      // v30 -> v31: budget-allocation snapshots on styleMatrix rows
+      // (Phase 118.5). Optional, UI-guarded — nothing to backfill.
+      data.version = 31;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
