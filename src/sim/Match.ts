@@ -812,6 +812,7 @@ export class Match {
       }
       mech.tryTackles(this);
       mech.tryTacticalFoul(this); // guards internally: owner may be gone
+      mech.trySlideTackle(this); // Phase 110 — the recovery slide
       mech.trySmother(this);
       return;
     }

@@ -1422,6 +1422,80 @@ export function trySmother(match: Match): void {
  * where the chasing pack could only eat exhaust fumes: pace still wins the
  * race (a >1.7m gap is uncatchable), but a caught runner gets fouled.
  */
+/**
+ * THE RECOVERY SLIDE (Phase 110, the carry-through counter — lever 1).
+ * The 106 anatomy measured the walk-in's pursuit converging at 1.7-2.4m
+ * behind the carrier and STAYING there: the tackle radius is 1.15m and
+ * the tactical grab 1.7m, so the duel never rolled (lunges fired in 2-4%
+ * of breakaway goals) and 69-78% of breakaways were clean carry-throughs.
+ * Real football's answer is the desperation slide: a from-behind lunge
+ * covering the 1.2-2.2m band that sometimes wins the ball, often fouls
+ * (the phase-62 card economics — in the box that is a PENALTY), and
+ * leaves the slider on the grass either way. Selection prices the
+ * appetite through markingAggression; a booked man holds off.
+ */
+export function trySlideTackle(match: Match): void {
+  const owner = match.ball.owner;
+  if (!owner || owner.gkHoldTimer > 0) return;
+  const attTeam = match.teams[owner.side];
+  const defTeam = match.teams[1 - owner.side];
+  const goal = attTeam.oppGoal();
+  const dGoal = dist(owner.pos, goal);
+  // The walk-in kill zone and its approach — deeper than the tactical
+  // grab dares (that band stops at 16m; the measured strikes land 6-9m).
+  if (dGoal > 30) return;
+  // Only a DRIVING carrier (the walk-in), and only from BEHIND — a set
+  // defender in front owns the honest tryTackles duel instead.
+  if (len(owner.vel) < 4.0) return;
+  if (dot(owner.vel, sub(goal, owner.pos)) <= 0) return;
+  let slider: Player | null = null;
+  let best = Infinity;
+  for (const o of defTeam.players) {
+    if (o.role === 'GK' || o.sentOff || o.tackleCooldown > 0 || o.stunTimer > 0) continue;
+    const d = dist(o.pos, match.ball.pos);
+    if (d < 1.2 || d > 2.2) continue; // inside 1.2 the standing tackle already rolls
+    const bx = o.pos.x - owner.pos.x;
+    const by = o.pos.y - owner.pos.y;
+    if (bx * owner.vel.x + by * owner.vel.y > 0) continue; // must be chasing
+    if (d < best) {
+      best = d;
+      slider = o;
+    }
+  }
+  if (!slider) return;
+  // The slide is a CHOICE, aggression-flavored and rare per chase — and a
+  // booked man mostly keeps his feet (the second yellow is the deterrent).
+  let attempt = 0.05 + defTeam.genome.markingAggression * 0.12;
+  if (slider.booked) attempt *= 0.35;
+  if (!match.rng.chance(attempt)) return;
+  slider.tackleCooldown = 2.5; // committed — he is on the grass either way
+  slider.tackleAnimTimer = 0.5;
+  slider.spendBurst(TACKLE_LUNGE_COST);
+  // Win small: reaching through a shielding body from behind at full tilt.
+  const win = clamp(
+    0.16 + slider.attrs.defending * 0.14 - owner.attrs.dribbling * 0.1,
+    0.05,
+    0.4,
+  );
+  if (match.rng.chance(win)) {
+    defTeam.stats.tackles++;
+    match.stat(slider.gid).recoveries++;
+    match.ball.owner = null;
+    match.ball.lastTouch = slider;
+    match.ball.vel = fromAngle(match.rng.range(0, Math.PI * 2), match.rng.range(5.5, 10));
+    owner.kickCooldown = 0.3;
+    owner.stunTimer = 0.6;
+    match.possessionSide = -1;
+    slider.stunTimer = 0.5; // he won it from the ground — up he gets
+    return;
+  }
+  slider.stunTimer = 0.8; // beaten and grounded — the carrier runs on
+  // Fouling from behind at speed: the whistle comes often. In the box the
+  // awardFoul machinery makes it the PENALTY; a card rides via maybeCard.
+  const foulP = 0.4 + defTeam.genome.markingAggression * 0.15;
+  if (match.rng.chance(foulP)) match.awardFoul(slider, owner);
+}
+
 export function tryTacticalFoul(match: Match): void {
   const owner = match.ball.owner;
   if (!owner || owner.gkHoldTimer > 0) return;

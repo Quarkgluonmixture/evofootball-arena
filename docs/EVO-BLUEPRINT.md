@@ -1554,6 +1554,14 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅⭐ **phase-110 SHIPPED** (**the RECOVERY SLIDE** — the carry-through
+  counter, queue re-ordered by the user's 射门趋同 session: a
+  from-behind desperation challenge in the measured 1.2-2.2m pursuit
+  band, low win / high foul / real cards, box ⇒ penalty). **The arc's
+  first working lever: breakaway conversion 72-78%→47-60%, warming
+  15.38 = first sub-baseline reading; calibrate all-in-band and the
+  109 watch resolves.** Fingerprint `af7ea229…`; full entry at ROADMAP
+  head (queue item 110).
 - ✅⚠ **phase-109 SHIPPED** (**the OFFSIDE-TRAP gene** — trapBias, the
   21st gene, save v25; defensive school #3 complete, ALL the user's
   named schools now built: jockey 87 / sweeper 88 / trap 109). Marker

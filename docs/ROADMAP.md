@@ -1177,7 +1177,37 @@ extremes; watch-not-chase per the 62/66 precedent, RE-READ next
 phase); fingerprint REBASELINED `dce857a3…` (21-gene rng re-rolls
 every stream; the throw test survived without re-anchor).
 
-**110+ — Stage 4 pull items, one at a time, each passing "does it give
+**110 — the CARRY-THROUGH counter-channels (queue RE-ORDERED
+2026-07-18 evening: the user's 射门趋同 question + the 106/109
+evidence chain + "gogogo自走" after the stated plan = the walk-in's
+counters come before Stage 4).** The arc's target: breakaway launches
+are 69-78% carry-through (launch-anatomy), the pursuer reaches 1.7-2.4m
+but the duel never rolls (tackle radius 1.15m, lunged 2-4% — 106
+anatomy). Lever 1: **the RECOVERY SLIDE** — a from-behind desperation
+challenge available in the 1.2-2.2m band: low win rate, HIGH foul
+chance (the 62 card economics), a last-man foul risks the red (DOGSO)
+— one mechanic opens both the pursuit-duel and the tactical-foul
+channels; selection (markingAggression + the situation) decides who
+slides. ✅ **SHIPPED 2026-07-18 evening — THE ARC'S FIRST WORKING LEVER.**
+`trySlideTackle` (mechanics.ts, after tryTacticalFoul in the step):
+driving carrier, dGoal ≤ 30, slider from BEHIND 1.2-2.2m off the ball
+— the exact band the 106 anatomy measured pursuit converging at while
+the 1.15m tackle radius kept the duel from ever rolling. Attempt
+0.05+mA·0.12 (booked ×0.35), win clamp(0.16+def·0.14−dr·0.1, .05,
+.40), miss = grounded 0.8s + foul 0.4+mA·0.15 via awardFoul (box ⇒
+PENALTY; maybeCard rides — the 62 economics finally reach the
+breakaway). Discovered en route: tryTacticalFoul's grab already owned
+16-34m; the slide covers the ≤30m kill zone the grab refuses.
+**Measured: late-gen breakaway conversion 72-78% → 47% (991) / 60%
+(424242); warming late means 15.38 — the FIRST reading below the
+15.72 baseline all arc (every prior lever: 15.88-17.71). Calibrate
+2.58/3.12/3.27 ALL in band — and the 109 2024-seed watch (1.96)
+RESOLVES on the re-roll. Foul economy: 4.24 fouls / 1.47🟨 0.09🟥 /
+0.19 pens per match — plausible, cards vitest green.** Gates: vitest
+422, visual 111+50, fingerprint REBASELINED `af7ea229…`.
+Then lever 2 (if needed): rest-defense NUMBERS vs attack commitment.
+
+**111+ — Stage 4 pull items, one at a time, each passing "does it give
 genes a NEW payoff surface?"**: form/morale → injuries (N2
 infrastructure ready) → home advantage → memory commentary.
 
