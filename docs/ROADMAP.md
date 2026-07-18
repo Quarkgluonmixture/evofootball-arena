@@ -919,6 +919,37 @@ repriced (a won containment must be worth possession value) or
 defensive worlds stay ecology-dependent. Morning decision item #2.
 Calibrate 2.63/2.97/3.26 (in band); vitest 421; visual 109+52;
 fingerprint REBASELINED `3249ad64…`.)
++ ✅ **the N6 fitBias watch CLOSES HEALTHY** (queue-tail follow-through,
+observation-only at 101-HEAD, `market-fit-anatomy.ts` 30g×2): the
+board-culture gene is ALIVE — 424242 drifts fit-seeking (mean
+0.55→0.72, spread [0.60..0.93]) while 991 keeps two coexisting board
+cultures (mean ~0.5, spread [0.14..1.00]); the market stays healthy
+(~1 signing/gen both worlds). No dead wire, no intervention needed.
+⭐⭐⭐ **THE OVERNIGHT RESULT (2026-07-18 02:00-04:40 — the queue below
+EXECUTED, phases 93-101, nine commits+tags all pushed, every gate
+green).** One-line map: **93** ✅ composure earned (composed-1v1 share
+78/82→75/73%) · **94** ⚠ school academies work, adoption still 0/3 —
+because 93 devalued containment's prey · **95** ⚠⚠ anchor swept+shipped
+λ=0.05 but REFUTED as the closer (3-world verdict; inflation's real
+engine = the xg/shot proximity climb 0.16→0.26) · **96** ✅ the synthwave
+TITLE SCREEN (click-to-enter starts the Title BGM; music born at 60) ·
+**97** ✅ hold-flutter measured & killed render-only (the 31.9 quanta
+gaps, 21.6% of distribution frames) · **98** ✅ keeper distribution
+GENETIFIED (roll/sling/PUNT — four school signatures) · **99** ✅
+probe-only: the pinned-winger premise refuted (escape already fires;
+turnover 3%) · **100** ✅ WOODWORK (0.38/match, your crossbar sample is
+live) · **101** ✅⚠⚠ contain hysteresis + the A/B re-read.
+⭐ **TWO DECISIONS WAIT FOR YOUR MORNING:**
+**#1 the anchor** — keep or kill `FITNESS_ANCHOR.conceded` (0.05,
+one line in evolution/fitness.ts): it stabilized only the sweep world;
+evidence in the 95 entry. **#2 containment's reward** — the phase-92
+neutral A/B win is GONE at current HEAD (0.9-jockey 1.16 vs 1.61):
+either a won containment gets a REWARD channel (possession value) or
+defensive worlds stay ecology-dependent; the offside-trap gene and
+chaser-count redemption are parked downstream of this call.
+Also parked: itch push (manual, yours); amb-loop human listen.
+HEAD `3249ad64…` (phase-101), calibrate 2.63/2.97/3.26, vitest 421,
+visual 109+52, Pages CI deploying phase-101.
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
