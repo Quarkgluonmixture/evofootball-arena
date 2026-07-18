@@ -334,6 +334,8 @@ const ZH: Record<string, string> = {
   pts: '分',
   'View club': '查看球队',
   'Club drift': '风格漂移',
+  form: '状态',
+  morale: '士气',
 
   // ---- goal channels (Phase 113) ----
   'Goal channels': '进球管道',

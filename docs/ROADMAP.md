@@ -1317,9 +1317,9 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 114 (112+113+113.5 shipped 2026-07-18); the
-114/115 viz items land in their NEW homes (club center / league
-table) after the 113.5 IA split.**
+⭐ HEAD OF QUEUE IS NOW 115 (112+113+113.5+114 shipped 2026-07-18);
+115's delta bars + trap-school feed credit land in the club center /
+feed after the 113.5 IA split.**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1345,9 +1345,18 @@ sheds cards, standings link through; evolution club panel = drift
 only + club-center link; entity links retargeted; zero sim,
 fingerprint identical.)
 
-**114 — FORM STRIP + morale visibility.** Last-5 W/D/L dots + a morale
-sparkline on the league table rows and club cards (the 111 data is all
-there; only the 🔥/❄ extremes show today).
+**114 — FORM STRIP + morale visibility** ✅ **SHIPPED 2026-07-18.**
+Last-5 league W/D/L dots (`recentForm`/`formStrip`, cup ties excluded,
+`src/ui/form.ts`) now ride every league-table row (new Form column +
+the 🔥/❄ extreme glyph with the exact value in its tooltip), every
+club-center wall mini, and the club dive — which also gets the MORALE
+METER (`moraleRow`: 0.1–0.9 bar, hot amber / cold ice / neutral ink).
+⭐ One conscious downgrade vs the queue text: "morale sparkline"
+needs a recorded per-round morale TIMELINE (save-touching, v29) —
+the 111 data that "is all there" is the scalar; shipped the meter
+instead, timeline is a cheap follow-up if the curve is wanted.
+UI-only: fingerprint IDENTICAL `8c6330b2…`. Gates: vitest 432 (+2
+form tests), visual 123+54, build clean.
 
 **115 — BUDGET viz done RIGHT (the user's call-out) + small viz
 debts.** Replace/augment the attr heatmap with per-club DELTA BARS vs

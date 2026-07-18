@@ -17,6 +17,7 @@ import {
 } from '../sim/records';
 import { raceChart } from './charts';
 import { button, colorHex, el } from './dom';
+import { formStrip, moraleGlyph, recentForm } from './form';
 import { t } from './i18n';
 
 type Tab = 'league' | 'cup' | 'report' | 'chronicle' | 'hall';
@@ -162,8 +163,8 @@ export class LeagueScreen {
     const table = el('table');
     const thead = el('thead');
     const hr = el('tr');
-    const cols = ['#', 'Team', 'P', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts', 'Elo'];
-    cols.forEach((c, i) => hr.appendChild(el('th', i >= 2 ? 'num' : '', c)));
+    const cols = ['#', 'Team', 'P', 'W', 'D', 'L', 'GF', 'GA', 'GD', 'Pts', 'Elo', 'Form'];
+    cols.forEach((c, i) => hr.appendChild(el('th', i >= 2 && c !== 'Form' ? 'num' : '', c)));
     thead.appendChild(hr);
     table.appendChild(thead);
 
@@ -205,6 +206,17 @@ export class LeagueScreen {
       for (const v of [row.played, row.w, row.d, row.l, row.gf, row.ga, row.gf - row.ga, row.pts, Math.round(row.franchise.elo)]) {
         tr.appendChild(el('td', 'num', String(v)));
       }
+      // Form & morale (Phase 114): last-5 dots + the 🔥/❄ extremes the
+      // clash tape already speaks, now visible where the season is read.
+      const formTd = el('td', 'form-cell');
+      formTd.appendChild(formStrip(recentForm(league, row.slot)));
+      const glyph = moraleGlyph(row.franchise.morale ?? 0.5);
+      if (glyph) {
+        const g = el('span', 'form-glyph', glyph);
+        g.title = `${t('morale')} ${(row.franchise.morale ?? 0.5).toFixed(2)}`;
+        formTd.appendChild(g);
+      }
+      tr.appendChild(formTd);
       tbody.appendChild(tr);
     });
     table.appendChild(tbody);

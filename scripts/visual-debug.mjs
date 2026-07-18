@@ -138,6 +138,7 @@ const cards = await page.locator('#league-screen .team-card').count();
 check('league tab no longer hosts team cards (113.5)', cards === 0, `${cards} cards`);
 const standingLinks = await page.locator('#league-screen tbody .entity-link').count();
 check('standings names link to the club center (113.5)', standingLinks === 16, `${standingLinks} links`);
+check('standings rows carry the form strip (114)', (await page.locator('#league-screen tbody .form-strip').count()) === 16, '');
 check('promotion rules selector present', (await page.locator('#league-screen .rules-row button').count()) === 4);
 check('cup draw rule selector present', (await page.locator('#league-screen .rules-row').count()) === 2);
 
@@ -181,6 +182,8 @@ await page.waitForTimeout(300);
 const secondName = await page.locator('#clubs-screen .evo-club .team-head span:not(.dot)').first().textContent();
 check('tapping the wall re-targets the dive', firstName !== secondName, `${firstName} → ${secondName}`);
 check('wall marks the selected club', (await page.locator('#clubs-screen .club-mini.selected').count()) === 1, '');
+check('wall minis carry form strips (114)', (await page.locator('#clubs-screen .club-mini .form-strip').count()) === 16, '');
+check('club dive carries the morale meter (114)', (await page.locator('#clubs-screen .evo-club .morale-row').count()) === 1, '');
 await page.screenshot({ path: `${OUT}/5c-clubs.png` });
 await page.click('#topbar button:has-text("Clubs")'); // close
 await page.waitForTimeout(200);

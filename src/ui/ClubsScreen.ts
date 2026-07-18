@@ -10,6 +10,7 @@ import { DIVISION_SHORT, type League } from '../sim/League';
 import { formationDiagram, geneRadar, type RadarSeries } from './charts';
 import { bar, colorHex, el } from './dom';
 import type { EntityNav } from './entityLinks';
+import { formStrip, moraleRow, recentForm } from './form';
 import { channelWindow, goalChannelTile } from './goalChannels';
 import { lang, t } from './i18n';
 import { geneAxisLabels, genomeValues, parentChain } from './rebirth';
@@ -162,6 +163,14 @@ export class ClubsScreen {
 
     // Outcome column — what the identity cashes out as, and who plays it.
     const outCol = el('div', 'evo-club-col');
+    // Form & morale (Phase 114): the last-5 tape and the confidence meter.
+    const formRow = el('div', 'gene-row');
+    formRow.appendChild(el('div', 'g-name', t('form')));
+    const strip = formStrip(recentForm(league, f.slot));
+    strip.style.gridColumn = '2 / 4';
+    formRow.appendChild(strip);
+    outCol.appendChild(formRow);
+    outCol.appendChild(moraleRow(f.morale ?? 0.5));
     outCol.appendChild(goalChannelTile(channelWindow(league, f.slot)));
 
     const spent = squadTotal(f.squad);
@@ -218,8 +227,11 @@ export class ClubsScreen {
       }
       mini.appendChild(tags);
       const row = league.table.find((r) => r.slot === f.slot);
-      mini.appendChild(el('div', 'muted',
-        (row ? `${row.w}-${row.d}-${row.l} · ${row.pts} ${t('pts')} · ` : '') + `👔 ${f.coach.name}`));
+      const line = el('div', 'muted');
+      line.appendChild(formStrip(recentForm(league, f.slot)));
+      line.appendChild(document.createTextNode(
+        (row ? ` ${row.w}-${row.d}-${row.l} · ${row.pts} ${t('pts')} · ` : ' ') + `👔 ${f.coach.name}`));
+      mini.appendChild(line);
       mini.addEventListener('click', () => {
         this.selectedSlot = f.slot;
         if (this.league) this.render(this.league);
