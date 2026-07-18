@@ -120,6 +120,15 @@ export class Player {
    * not the "handing it straight back" it would otherwise read as.
    */
   wallRun: { until: number; partnerGid: number } | null = null;
+  /**
+   * Containment hysteresis (Phase 101): whether this chaser is currently
+   * JOCKEYING the carrier. The phase-92 goal-side test was a razor-edge
+   * boolean — a chaser dancing on the −0.2 offset flipped between the
+   * standoff point and the ball 66-70 times/match (`hold-jitter.ts`), a
+   * brain-level whip the render reads as twitching. Enter containment only
+   * clearly goal-side, hold it until clearly not. Runtime-only state.
+   */
+  containing = false;
 
   /**
    * Slalom COMMITMENT (Phase 41.2, user report "带球转一大圈然后突然丢

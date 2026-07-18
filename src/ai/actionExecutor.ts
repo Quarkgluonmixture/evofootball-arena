@@ -57,20 +57,28 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // pursuer from behind detouring to the standoff point was a free
       // escort downfield (the mispricing that made 0.9-jockey LOSE the
       // head-to-head). Behind the carrier = chase the ball, old-style.
-      const goalSideOfCarrier =
-        carrier !== null && team.localX(p.pos.x) < team.localX(carrier.pos.x) - 0.2;
+      // Phase 101: with HYSTERESIS — the razor-edge −0.2 test flipped the
+      // target 66-70×/match for a chaser dancing on the boundary
+      // (hold-jitter.ts). Enter containment only clearly goal-side
+      // (gap > 0.6), hold it until clearly not (gap < 0.1).
+      const gap = carrier !== null
+        ? team.localX(carrier.pos.x) - team.localX(p.pos.x)
+        : -Infinity;
+      const goalSideOfCarrier = p.containing ? gap > 0.1 : gap > 0.6;
       // Phase 92 second cut: standoff at TACKLE-RANGE EDGE (2.1m parked the
       // contain man permanently outside the 1.15m challenge radius — the
       // collapse could never convert), and NO jockeying in the danger zone:
       // inside ~28m of the own goal, real defenders engage.
       const dangerZone = carrier !== null && team.localX(carrier.pos.x) < -17;
       if (carrier && carrier.side !== p.side && jockey > 0.25 && goalSideOfCarrier && !dangerZone) {
+        p.containing = true;
         const toGoal = norm(sub(team.ownGoal(), carrier.pos));
         const standoff = 0.9 + jockey * 0.5;
         target = add(carrier.pos, scale(toGoal, standoff));
         speedF = sprint;
         break;
       }
+      p.containing = false;
       const sol = interceptBall(p, ball);
       target = sol.point;
       speedF = sprint;

@@ -49,6 +49,7 @@ for (const seed of seeds.length ? seeds : [7, 21, 99]) {
   let movingFrames = 0;
   let pinnedFrames = 0;
   let desiredFlips = 0;
+  let ownedFlips = 0;
   let chaseFrames = 0;
   let receiveTriggers = 0;
   let receiveRestarts = 0;
@@ -100,7 +101,14 @@ for (const seed of seeds.length ? seeds : [7, 21, 99]) {
           const ps2 = pd.x * pd.x + pd.y * pd.y;
           if (ps2 > 1) {
             chaseFrames++;
-            if ((dv.x * pd.x + dv.y * pd.y) / Math.sqrt(ds2 * ps2) < 0) desiredFlips++;
+            if ((dv.x * pd.x + dv.y * pd.y) / Math.sqrt(ds2 * ps2) < 0) {
+              desiredFlips++;
+              // The contain dance specifically: the ball is OWNED (the
+              // intercept target is stable, so a flip = the jockey/chase
+              // boundary), vs the legit whip when a loose ball changes
+              // direction under the chaser's feet.
+              if (b.owner !== null) ownedFlips++;
+            }
           }
         }
         prevDesired.set(p.gid, { x: dv.x, y: dv.y });
@@ -140,7 +148,7 @@ for (const seed of seeds.length ? seeds : [7, 21, 99]) {
     `vel reversals ${reversals} over ${movingFrames} moving frames ` +
     `(${((reversals / Math.max(movingFrames, 1)) * 1000).toFixed(2)}/1k) | ` +
     `bubble-pinned frames ${pinnedFrames} | desired-flips ${desiredFlips}/${chaseFrames} chase frames ` +
-    `(${((desiredFlips / Math.max(chaseFrames, 1)) * 1000).toFixed(1)}/1k) | ` +
+    `(${((desiredFlips / Math.max(chaseFrames, 1)) * 1000).toFixed(1)}/1k, vs-carrier ${ownedFlips}) | ` +
     `receives ${receiveTriggers}, restarts<0.5s ${receiveRestarts}`,
   );
 }

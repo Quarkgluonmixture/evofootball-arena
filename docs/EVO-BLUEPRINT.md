@@ -1508,6 +1508,17 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   deadened ×0.4 + outward post ricochet after the lively first cut
   pushed a seed to 3.61. The recorded crossbar sample is live end
   to end (event→feed→fx→SFX, miss-deflation deduped).
+- ✅⚠⚠ **phase-101 SHIPPED** (**contain hysteresis + the A/B
+  re-read**; fingerprint REBASELINED `3249ad64…`). Hysteresis on
+  the goal-side boundary (enter >0.6, hold to <0.1): vs-carrier
+  brain-flips 12→5/match, A/B-neutral. Throw-test dance ended
+  (counter-school producers). ⭐⭐ The re-read: containment's
+  phase-92 neutral head-to-head WIN did not survive 93-100 —
+  0.9-jockey now loses 1.16-1.19 vs 1.56-1.61 in both arms.
+  Composure-earned devalued containment's prey; abandonment was
+  correct pricing. The defensive-school arc's real fork: reprice
+  containment's REWARD channel or accept ecology-dependence —
+  upstream of any fitness-anchor tuning. Morning item #2.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

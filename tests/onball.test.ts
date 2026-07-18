@@ -196,13 +196,27 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     // Hold-releases are ~1–2 per match; scan seeds until a throw shows up.
     // The no-hoof contract is asserted across EVERY scanned match.
     let sawThrow = false;
-    // Seeds 27/87/167 are the throw-producers under the phase-98
-    // genome-scored distribution (re-probed 1..250 — the perennial dance:
-    // 51.2, 58, 59, 41.2, 67, 70, 87, 92, 93 all reshuffled hold-release
-    // choices; throws are RARER now that the school pass/punt compete);
-    // they go LAST so the no-hoof contract first scans ordinary matches.
-    for (const seed of [8, 38, 6, 19, 29, 27, 87, 167]) {
-      const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 240 });
+    // The throw-verification half ENDED THE PERENNIAL DANCE (Phase 101,
+    // after eight re-anchors: 51.2, 58, 59, 41.2, 67, 70, 87, 92, 93, 98):
+    // neutral-genome throws got so rare under phase-98's school competition
+    // (2 producers in 1..300) that every behavioral phase reshuffled them.
+    // A COUNTER-SCHOOL keeper (counterAttackBias 0.9, passBias 0.2) slings
+    // by design — producers are dense (6 in seeds 1..14) and pinned to the
+    // mechanism itself, not to rng drift. Neutral matches still run first
+    // so the no-hoof contract covers ordinary keepers too.
+    const thrower = (name: string): TeamInfo => {
+      const info = team(name, 0.5);
+      info.genome.counterAttackBias = 0.9;
+      info.genome.passBias = 0.2;
+      return info;
+    };
+    for (const [seed, school] of [[8, 0], [38, 0], [6, 0], [19, 0], [7, 1], [8, 1], [10, 1]] as Array<[number, number]>) {
+      const m = new Match({
+        seed,
+        teamA: school ? thrower('A') : team('A', 0.5),
+        teamB: team('B', 0.5),
+        duration: 240,
+      });
       while (!m.finished) {
         m.step(DT);
         for (const t of m.teams) {
@@ -213,7 +227,7 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
           if (gk.gkDistributing) expect(gk.action.type).not.toBe('ClearBall');
         }
       }
-      if (sawThrow) break;
+      if (sawThrow && school) break;
     }
     expect(sawThrow).toBe(true);
   });

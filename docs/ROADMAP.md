@@ -897,6 +897,28 @@ real-football territory. Full wire: 'woodwork' event type → feed
 miss-deflation treats a frame hit as resolved (no double gasp).
 vitest 421 (4 new); visual 109+52; fingerprint REBASELINED
 `47f0e842…`.)
++ ✅⚠⚠ **phase-101 SHIPPED** (**contain hysteresis + the A/B re-read
+that moves the fork**: ① the phase-92 goal-side test was a
+razor-edge boolean — a chaser dancing on the −0.2 offset flipped
+between the standoff point and the ball; now ENTER containment
+only clearly goal-side (gap>0.6), HOLD until clearly not (<0.1) —
+paired: vs-carrier brain-flips 12→5/match (−58%; the rest of the
+66-70 total are LEGIT loose-ball whips — hold-jitter.ts now splits
+them). ② the throw-test dance ENDS after eight re-anchors: the
+verification half now uses a COUNTER-SCHOOL keeper (dense
+producers, pinned to the phase-98 mechanism, not rng drift).
+⭐⭐ ③ THE BIG ONE — the paired jockey A/B at current HEAD:
+containment's phase-92 neutral WIN is GONE — 0.9-jockey loses
+1.16-1.19 vs 1.56-1.61 pts in BOTH arms (hysteresis is
+noise-neutral: 1.19 vs 1.16). Phase-93 devalued exactly what
+containment prevents (the free composed-1v1), so the package's
+head-to-head payoff collapsed with it — evolution abandoning
+jockey (94/95) was CORRECT pricing, and the anchor debate is
+downstream of THIS: either containment's reward channel gets
+repriced (a won containment must be worth possession value) or
+defensive worlds stay ecology-dependent. Morning decision item #2.
+Calibrate 2.63/2.97/3.26 (in band); vitest 421; visual 109+52;
+fingerprint REBASELINED `3249ad64…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
@@ -968,7 +990,7 @@ chaser-count hardcode; N6 follow-through (fitBias drift watch).
 
 Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
 play reports; goals-band verdict = theirs; amb-loop human listen
-still open. HEAD fingerprint `47f0e842…` (phase-100; 96/97 rode 95's `3cd1253f…` identity, 98 rebaselined `fa984021…`). The user PLAYS CONTINUOUSLY —
+still open. HEAD fingerprint `3249ad64…` (phase-101). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
