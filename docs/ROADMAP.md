@@ -842,6 +842,26 @@ match (3/1k chase frames) — the hysteresis fix is BEHAVIORAL
 (fingerprint), parked at 100+ with baseline numbers in hand.
 Fingerprint IDENTITY `3cd1253f…`; vitest 417; visual 109+52;
 keeper-hands probe healthy.)
++ ✅ **phase-98 SHIPPED** (**keeper distribution GENETIFIED**
+(user-ratified "门将出球选择应该和战术有关"): the one-size throw
+becomes the coach's choice, all through EXISTING genes — ① the
+short roll to feet priced by passBias, ② the fast counter-sling
+priced by counterAttackBias × the TRANSITION WINDOW (opponents
+still committed in our half at the catch — a fast break launches
+from the hands or not at all), ③ the PUNT (new): closed outlets +
+low passBias/riskTolerance send a long lofted drop into the
+phase-63 aerial channel, and STRENGTH picks the target — the tall
+outlet man is a buyable package for punt-first coaches; ④ the
+hands-Pass now school-scaled (was gene-blind and won 83%
+regardless — a dead wire the probe caught: counter-sling share was
+0% until the transition term). Probe `keeper-distribution.ts`,
+four schools, distinct signatures: neutral Pass 83% · build-up
+Pass 100% · counter sling 18% · punt-first roll 42% + PUNT 25% +
+sling 25% (Pass 0%). The 28.3 no-hoof contract UNTOUCHED (every
+release still has a name on it). Throw seeds re-anchored
+24/42/44→27/87/167 (7th dance — throws rarer under school
+competition). Calibrate 2.91/3.10/3.30 (in band); vitest 417;
+visual 109+51; fingerprint REBASELINED `fa984021…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on

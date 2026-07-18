@@ -1486,6 +1486,14 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   the keeper's chest. Receive-restart/vel-reversal/pinning suspects
   eliminated by `hold-jitter.ts`; contain desired-flip hysteresis
   (66-70/match) parked as a 100+ behavioral item.
+- ✅ **phase-98 SHIPPED** (**keeper distribution genetified**;
+  fingerprint REBASELINED `fa984021…`, throw seeds 27/87/167).
+  Roll-to-feet=passBias, counter-sling=counterAttackBias×transition
+  window, PUNT=closed outlets+low build-up genes with strength
+  picking the target (aerial-channel linkage); the hands-Pass was a
+  gene-blind dead wire (83% everywhere) until school-scaled. Four
+  schools measurably distinct (`keeper-distribution.ts`); the 28.3
+  no-hoof contract intact.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

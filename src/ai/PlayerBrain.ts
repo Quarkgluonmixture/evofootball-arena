@@ -390,6 +390,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       }
     }
     if (pressure > 0.5) bestPass *= W.passOutletMul; // pass is the pressure outlet
+    // From the HANDS, the ground pass is a SCHOOL choice (Phase 98): the
+    // build-up keeper plays it constantly, the punt-first keeper barely
+    // trusts his feet. Outfield passing is untouched.
+    if (p.role === 'GK' && p.gkDistributing) bestPass *= 0.6 + g.passBias * 0.8;
     // The why string is built once for the winner — building it per improved
     // candidate inside the loop was pure string churn (toFixed × 3 each time).
     if (bestMate) {
@@ -661,19 +665,49 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     }
   }
 
-  // --- Keeper throw (Phase 28.3): a keeper who HELD the ball distributes
-  // by hand — quick, flat, accurate. Scored against pass/switch so the
-  // release finds a body instead of a hopeful hoof.
+  // --- Keeper distribution from the HANDS (Phase 28.3 → 98, user-ratified
+  // "门将出球选择应该和战术有关"): the one-size throw becomes the coach's
+  // choice — three genome-scored releases:
+  //   · the short roll to feet    — the build-up school (passBias): tempo
+  //     from the back, restart the pattern;
+  //   · the fast long sling       — the counter launch (counterAttackBias):
+  //     forward gain is the whole point, priced up with the gene;
+  //   · the PUNT (new)            — closed outlets + no build-up genes: a
+  //     long lofted drop the phase-63 aerial channel contests on descent —
+  //     STRENGTH picks the target, so the tall outlet man is a buyable
+  //     package for punt-first coaches.
+  // The 28.3 no-hoof contract stands: every release still has a NAME on it.
   let bestThrowMate: Player | null = null;
   let bestThrow = 0;
+  let puntCand: (typeof cands)[number] | null = null;
+  let puntMate: Player | null = null;
   if (p.role === 'GK' && p.gkDistributing && p.kickCooldown <= 0) {
+    let bestOpenNear = 0; // how playable the short game is right now
+    // The counter WINDOW: every opponent still committed in our half at the
+    // catch is a man the quick sling beats — the fast break is launched
+    // from the keeper's hands or it isn't a fast break at all.
+    let committed = 0;
+    let oppOutfield = 0;
+    for (const o of opp.players) {
+      if (o.role === 'GK' || o.sentOff) continue;
+      oppOutfield++;
+      if (team.localX(o.pos.x) < 0) committed++;
+    }
+    const transition = oppOutfield > 0 ? committed / oppOutfield : 0;
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;
       const d = dist(p.pos, mate.pos);
-      if (d < 8 || d > 30) continue;
       const open = opennessOf(mate, opp.players);
+      if (d >= 8 && d <= 16) bestOpenNear = Math.max(bestOpenNear, open);
+      if (d < 8 || d > 30) continue;
       const gain = clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
-      const sT = (0.3 + open * 0.5) * (1 + Math.max(gain, 0) * 0.3);
+      const sT =
+        d <= 16
+          ? (0.3 + open * 0.5) * (0.6 + g.passBias * 0.8)
+          : (0.3 + open * 0.5) *
+            (0.5 + g.counterAttackBias * 0.7) *
+            (1 + Math.max(gain, 0) * (0.2 + g.counterAttackBias * 0.55)) *
+            (1 + transition * g.counterAttackBias * 1.3);
       if (sT > bestThrow) {
         bestThrow = sT;
         bestThrowMate = mate;
@@ -683,8 +717,32 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       cands.push({
         action: 'ThrowOut',
         score: bestThrow,
-        why: `thrown to ${bestThrowMate.name} · open ${opennessOf(bestThrowMate, opp.players).toFixed(2)}`,
+        why: `thrown to ${bestThrowMate.name} · open ${opennessOf(bestThrowMate, opp.players).toFixed(2)} · ${dist(p.pos, bestThrowMate.pos) <= 16 ? `roll to feet · passBias ${g.passBias.toFixed(2)}` : `counter sling · counterBias ${g.counterAttackBias.toFixed(2)}`}`,
       });
+    }
+    let bestPuntFit = 0;
+    for (const mate of team.players) {
+      if (mate === p || mate.sentOff) continue;
+      const d = dist(p.pos, mate.pos);
+      if (d < 24) continue;
+      const fit = clamp01((team.localX(mate.pos.x) - localX) / 60) * 0.6 + mate.attrs.strength * 0.5;
+      if (fit > bestPuntFit) {
+        bestPuntFit = fit;
+        puntMate = mate;
+      }
+    }
+    if (puntMate) {
+      const closed = 1 - bestOpenNear;
+      const sP =
+        (0.2 + closed * 0.55) *
+        (1.4 - (g.passBias + g.riskTolerance) * 0.6) *
+        (0.7 + bestPuntFit * 0.45);
+      puntCand = {
+        action: 'LoftedPass',
+        score: sP,
+        why: `PUNT to ${puntMate.name} · outlets closed ${closed.toFixed(2)} · strength ${puntMate.attrs.strength.toFixed(2)}`,
+      };
+      cands.push(puntCand);
     }
   }
 
@@ -743,10 +801,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         match.performPass(p, bestMate!, offsideExemptKick);
       }
       break;
-    case 'LoftedPass':
-      p.action = { type: 'LoftedPass', targetIdx: bestLoftMate!.gid, scores };
-      match.performLoftedPass(p, bestLoftMate!, offsideExemptKick);
+    case 'LoftedPass': {
+      // The keeper's punt (Phase 98) routes to ITS target — the aerial
+      // outlet — not the ground game's best switch.
+      const loftTo = top === puntCand ? puntMate! : bestLoftMate!;
+      p.action = { type: 'LoftedPass', targetIdx: loftTo.gid, scores };
+      match.performLoftedPass(p, loftTo, offsideExemptKick);
       break;
+    }
     case 'Cross':
       p.action = { type: 'Cross', targetIdx: bestCrossMate!.gid, scores };
       // A routine corner delivers to the KEY ZONE, not to a led body

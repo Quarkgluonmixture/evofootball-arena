@@ -196,12 +196,12 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     // Hold-releases are ~1–2 per match; scan seeds until a throw shows up.
     // The no-hoof contract is asserted across EVERY scanned match.
     let sawThrow = false;
-    // Seeds 24/42/44 are the throw-producers under the phase-93
-    // earned-composure retune (re-probed 1..250 — the perennial dance:
-    // 51.2, 58, 59, 41.2, 67, 70, 87, 92 all reshuffled hold-release
-    // choices); they go LAST so the no-hoof contract first scans
-    // ordinary matches.
-    for (const seed of [8, 38, 6, 19, 29, 24, 42, 44]) {
+    // Seeds 27/87/167 are the throw-producers under the phase-98
+    // genome-scored distribution (re-probed 1..250 — the perennial dance:
+    // 51.2, 58, 59, 41.2, 67, 70, 87, 92, 93 all reshuffled hold-release
+    // choices; throws are RARER now that the school pass/punt compete);
+    // they go LAST so the no-hoof contract first scans ordinary matches.
+    for (const seed of [8, 38, 6, 19, 29, 27, 87, 167]) {
       const m = new Match({ seed, teamA: team('A', 0.5), teamB: team('B', 0.5), duration: 240 });
       while (!m.finished) {
         m.step(DT);
