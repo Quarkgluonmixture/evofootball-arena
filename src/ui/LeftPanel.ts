@@ -142,6 +142,33 @@ export class LeftPanel {
     soundText.textContent = t('Sound FX');
     soundRow.append(soundIcon, soundText, soundSlider);
     presSec.appendChild(soundRow);
+    // Music: same slider + click-to-mute pattern (Phase 89, the user's BGM).
+    const musicRow = document.createElement('div');
+    musicRow.className = 'sound-row';
+    const musicIcon = document.createElement('span');
+    musicIcon.className = 'sound-icon';
+    musicIcon.textContent = '\u{1F3B5}';
+    const musicSlider = document.createElement('input');
+    musicSlider.type = 'range';
+    musicSlider.min = '0';
+    musicSlider.max = '100';
+    musicSlider.value = '0';
+    let lastMusicVol = 60;
+    const applyMusic = (v: number): void => {
+      musicSlider.value = String(v);
+      musicIcon.style.opacity = v === 0 ? '0.45' : '1';
+      actions.setMusic(v / 100);
+    };
+    musicSlider.addEventListener('input', () => {
+      const v = Number(musicSlider.value);
+      if (v > 0) lastMusicVol = v;
+      applyMusic(v);
+    });
+    musicIcon.addEventListener('click', () => applyMusic(Number(musicSlider.value) === 0 ? lastMusicVol : 0));
+    const musicText = document.createElement('span');
+    musicText.textContent = t('Music');
+    musicRow.append(musicIcon, musicText, musicSlider);
+    presSec.appendChild(musicRow);
     const fxRow = el('div', 'row');
     fxRow.appendChild(el('span', 'muted g-name', t('FX quality')));
     const fxSeg = el('div', 'seg');

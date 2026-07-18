@@ -1393,3 +1393,12 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   mispriced — starved attack from fewer turnovers?), then the
   fitness-anchor fork (user's call) if the mechanism is honest but
   collectively unstable.
+- ✅ **phase-89 SHIPPED** (**BGM engine + SFX mix fix**; UI-only,
+  fingerprint IDENTITY `99ed8ed7…`). MusicSystem: context slots
+  (ceremony→victory entering at its 20s drop per the FILENAME's own
+  instruction, screens→league, clash→title, live→crowd), equal-power
+  crossfades, lazy loads, 🎵 slider. Mix: the five inaudible layers
+  raised (touch/pass/kick/net/ambience) + the fast-forward gate
+  (frequent layer skips above 4× — the machine-gun smear was likely
+  half the complaint). Open: 7 unused samples, arousal coupling,
+  match-only ambience.

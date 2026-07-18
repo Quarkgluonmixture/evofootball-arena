@@ -12,9 +12,9 @@ export type FxSoundType =
 
 /** Sample file(s) + gain per event; arrays play together (net + crowd). */
 const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>>> = {
-  shot: [{ file: 'sfx_kick_power_01.m4a', gain: 0.8 }],
+  shot: [{ file: 'sfx_kick_power_01.m4a', gain: 1.15 }],
   goal: [
-    { file: 'sfx_ball_hit_net_01.m4a', gain: 0.9 },
+    { file: 'sfx_ball_hit_net_01.m4a', gain: 1.35 },
     { file: 'sfx_crowd_goal_celebration_01.m4a', gain: 0.85 },
   ],
   save: [
@@ -23,16 +23,16 @@ const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>
   ],
   interception: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.7 }],
   pass: [
-    { file: 'sfx_pass_short_02-001.m4a', gain: 0.55 },
-    { file: 'sfx_pass_short_02-002.m4a', gain: 0.55 },
+    { file: 'sfx_pass_short_02-001.m4a', gain: 0.95 },
+    { file: 'sfx_pass_short_02-002.m4a', gain: 0.95 },
   ],
-  touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.35 }],
+  touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.75 }],
   corner: [{ file: 'sfx_pass_short_02-001.m4a', gain: 0.7 }],
   foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.55 }],
   // card: silent — the whistle already blew for the foul.
 };
 
-const AMBIENCE = { file: 'amb_stadium_crowd_low_loop_01.wav', gain: 0.22 };
+const AMBIENCE = { file: 'amb_stadium_crowd_low_loop_01.wav', gain: 0.5 };
 
 export class SoundFx {
   private ctx: AudioContext | null = null;
@@ -43,6 +43,9 @@ export class SoundFx {
   private master: GainNode | null = null;
   private on = false;
   private vol = 0.8;
+  /** Sim playback speed (Phase 89): at fast-forward the per-touch layer
+   * machine-guns — GameApp feeds the multiplier so play() can gate. */
+  simSpeed = 1;
 
   get enabled(): boolean {
     return this.on;
@@ -141,6 +144,12 @@ export class SoundFx {
       // Self-heal (user report "平时没有 amb"): if the bed never started
       // (fetch raced the first enable, tab was suspended...), start it now.
       if (!this.ambSrc) this.startAmbience();
+      // Fast-forward gate (Phase 89): the frequent layer (passes, touches)
+      // fires per sim event — at 8-32× it smears into noise. Big moments
+      // (goal, save, whistle) still play.
+      if (this.simSpeed > 4 && (type === 'pass' || type === 'touch' || type === 'interception' || type === 'corner')) {
+        return;
+      }
       let list = SAMPLES[type];
       if (type === 'pass' && list) {
         // Variation pool: one random take per pass, not all at once.

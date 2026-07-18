@@ -40,6 +40,7 @@ import { RebirthCeremony } from '../ui/RebirthCeremony';
 import { LeftPanel } from '../ui/LeftPanel';
 import { ReplayBar } from '../ui/ReplayBar';
 import { RightPanel } from '../ui/RightPanel';
+import { MusicSystem } from '../ui/MusicSystem';
 import { SoundFx } from '../ui/SoundFx';
 
 // Chosen so a fresh league OPENS with a banger (Phase 28.2): seed 1168's
@@ -105,6 +106,7 @@ export class GameApp implements GameActions {
   private buffer = new ReplayBuffer();
   private archive: ReplayArchive | null = null;
   private sound = new SoundFx();
+  private music = new MusicSystem();
   private replay = {
     active: false,
     playing: false,
@@ -412,6 +414,7 @@ export class GameApp implements GameActions {
       // itself once the match is properly under way (manual opens are pinned).
       if (this.clash.isVisible && this.clashAutoHide && this.match && this.match.simTime > 10) {
         this.clash.hide();
+        this.updateMusic();
       }
       this.updateCineBug();
     }
@@ -495,6 +498,7 @@ export class GameApp implements GameActions {
       this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
       this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
     );
+    this.updateMusic();
   }
 
   /**
@@ -505,6 +509,7 @@ export class GameApp implements GameActions {
   toggleClash(): void {
     if (this.clash.isVisible) {
       this.clash.hide();
+      this.updateMusic();
       return;
     }
     if (!this.match) return;
@@ -518,6 +523,7 @@ export class GameApp implements GameActions {
           : this.league.roundLabel(),
       this.league.franchises.map((f) => ({ genome: f.coach.genome, policy: f.coach.policy })),
     );
+    this.updateMusic();
   }
 
   private onWatchedMatchFinished(): void {
@@ -638,6 +644,7 @@ export class GameApp implements GameActions {
         this.match,
         this.fixture.cup ? `${CUP_ROUND_NAMES[this.fixture.round]}` : this.league.roundLabel(),
       );
+      this.updateMusic();
     }
   }
 
@@ -836,6 +843,7 @@ export class GameApp implements GameActions {
   }
 
   setSpeed(s: number): void {
+    this.sound.simSpeed = s;
     this.speed = s;
     this.paused = false;
     this.left.setSpeedUI(this.paused, this.speed);
@@ -996,6 +1004,7 @@ export class GameApp implements GameActions {
     this.evolutionScreen.hide();
     this.playerScreen.hide();
     this.leagueScreen.toggle(this.league);
+    this.updateMusic();
   }
 
   /** The evolution CENTER (Phase 51) — evolution's own stage, not a league tab. */
@@ -1003,6 +1012,7 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.playerScreen.hide();
     this.evolutionScreen.toggle(this.league);
+    this.updateMusic();
   }
 
   /** The PLAYER center (Phase 56) — the people's own stage. */
@@ -1010,6 +1020,7 @@ export class GameApp implements GameActions {
     if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league); // close
     this.evolutionScreen.hide();
     this.playerScreen.toggle(this.league);
+    this.updateMusic();
   }
 
   /* ---------------- rebirth ceremony (Phase 32.5) ---------------- */
@@ -1025,15 +1036,36 @@ export class GameApp implements GameActions {
     this.paused = true;
     this.left.setSpeedUI(true, this.speed);
     this.ceremony.show(this.league);
+    this.updateMusic();
   }
 
   private onCeremonyClosed(): void {
     this.paused = this.ceremonyPrevPaused;
     this.left.setSpeedUI(this.paused, this.speed);
+    this.updateMusic();
   }
 
   setSound(volume: number): void {
     this.sound.volume = volume;
+  }
+
+  setMusic(volume: number): void {
+    this.music.volume = volume;
+    this.updateMusic();
+  }
+
+  /** Context-driven BGM (Phase 89): ceremony = the victory track (enters
+   * at its 20s drop), management screens = the league track, the pre-match
+   * clash = the title anthem, live play = crowd only. */
+  private updateMusic(): void {
+    const slot = this.ceremony.isVisible
+      ? 'victory'
+      : this.leagueScreen.isVisible || this.evolutionScreen.isVisible || this.playerScreen.isVisible
+        ? 'league'
+        : this.clash.isVisible
+          ? 'title'
+          : null;
+    this.music.play(slot);
   }
 
   /* ---------------- presentation (Phase 15) ---------------- */

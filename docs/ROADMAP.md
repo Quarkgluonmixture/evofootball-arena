@@ -1,4 +1,4 @@
-# Roadmap — shipped through phase-88 (coverBias shipped; jockey adoption is UNSTABLE across worlds — the red-queen case hardens)
+# Roadmap — shipped through phase-89 (BGM engine + the SFX mix fix: the user's Suno tracks are in the game)
 
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
@@ -655,8 +655,27 @@ flips: the fitness anchor (c) — the user's call. Fire-sale signing
 seed re-anchored 41→1 (3rd reshuffle of this class). Calibrate
 2.69/2.77/3.15 (early band healthy); vitest 415; visual 109+52;
 fingerprint REBASELINED `99ed8ed7…`.)
++ ✅ **phase-89 SHIPPED** (**BGM + the mix fix** — the user's three
+Suno tracks landed (`audio/bgm/`): Title (368s), 联赛 (185s), and
+夺冠 whose filename carries its own cut ("从20s开始" — honored via
+`loopStart`/start-offset in config, the file untouched).
+`MusicSystem`: context-driven slots with 1.2s equal-power
+crossfades — ceremony → victory (enters at the drop), management
+screens → league, the pre-match clash → title, live play → crowd
+only; per-slot lazy load on the first nonzero volume; a second
+🎵 slider + click-mute in the panel; silent-fail everywhere.
+SFX MIX (user report "基本上听不到接球/球入网/射门/传球/人群"):
+touch 0.35→0.75, pass 0.55→0.95, kick 0.8→1.15, net 0.9→1.35,
+ambience 0.22→0.5 — plus the FAST-FORWARD GATE (the frequent layer
+skips above 4×; at 8-32× the per-touch sounds smeared into noise,
+likely half the audibility complaint). UI-only; fingerprint
+IDENTITY `99ed8ed7…`; visual 109+52. Still open on the audio side:
+7 unused samples (UI clicks/crossbar/disappointment/aerial/chants/
+dribble-loop/amb-2), arousal-coupled ambience, ambience-only-in-
+match, prematch/reel/shootout music slots when tracks arrive.)
 ⭐ **Next: jockey A/B head-to-head probe → (mechanism rebalance |
-fitness anchor decision) → offside trap → user's Suno BGM.** The user PLAYS CONTINUOUSLY —
+fitness anchor decision) → offside trap → audio polish round 2
+(unused samples + arousal coupling) as tracks/reports arrive.** The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
