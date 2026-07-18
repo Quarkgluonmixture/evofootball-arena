@@ -55,11 +55,18 @@ export const FITNESS_WEIGHTS: FitnessComponents = {
  * mean 6.72 rising): 0.05 → 5.33 FLAT with jockey adopted 0.85; 0.1 →
  * 5.22 still rising, jockey 0.48; 0.2 → 6.44, jockey 0.23 under an
  * extreme-press ecology (the anchor drowning the points signal buys
- * chaos, not defense). 0.05 is the least that stabilizes — and the only
- * one under which containment HOLDS.
+ * chaos, not defense).
+ *
+ * ⚰ KILLED at λ=0 (user ratification, 2026-07-18 morning): the 3-world
+ * verdict refuted generality — it stabilized only the sweep world (991
+ * 5.62, 777 7.44 WITH containment adopted). The mechanism + the sweep
+ * probe (`anchor-sweep.ts`) stay as lab instruments; the chosen fix for
+ * the inflation engine (the xg/shot proximity climb) is IN-ECOLOGY
+ * instead: the keeper rush-out (Phase 103). Fitness is pure results
+ * again.
  */
 export const FITNESS_ANCHOR = {
-  conceded: 0.05,
+  conceded: 0,
 };
 
 function minMax(values: number[]): number[] {

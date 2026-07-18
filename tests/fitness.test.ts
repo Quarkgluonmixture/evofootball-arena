@@ -58,11 +58,14 @@ describe('computeFitness', () => {
     expect(fit[0].total).toBeGreaterThan(fit[1].total);
   });
 
-  it('the conceded anchor is ABSOLUTE — a league that inflates together pays together (95)', () => {
+  it('the conceded anchor: ABSOLUTE when armed, a no-op at the shipped 0 (95→102)', () => {
     // Two groups identical in every relative sense (same pts/xg/style spread,
     // min-max components come out the same) but one concedes 3/match and the
     // other 1/match. Every other fitness component is season-normalized and
-    // cannot see collective inflation; the anchor must price it raw.
+    // cannot see collective inflation; an ARMED anchor prices it raw. The
+    // user killed the shipped λ to 0 (2026-07-18) — so the default must be
+    // a pure no-op, and the mechanism must still work when a lab probe
+    // (anchor-sweep.ts) arms it.
     const mkGroup = (gaPerMatch: number) =>
       [0, 1].map((slot) => {
         const agg = emptyAggregates();
@@ -77,10 +80,20 @@ describe('computeFitness', () => {
         ];
         return { slot, agg };
       });
-    const tight = computeFitness(mkGroup(1));
-    const leaky = computeFitness(mkGroup(3));
-    expect(tight[0].components.points).toBe(leaky[0].components.points); // relative view identical
-    expect(tight[0].total - leaky[0].total).toBeCloseTo(FITNESS_ANCHOR.conceded * 2, 9);
+    expect(FITNESS_ANCHOR.conceded).toBe(0); // the shipped default: pure results
+    const tight0 = computeFitness(mkGroup(1));
+    const leaky0 = computeFitness(mkGroup(3));
+    expect(tight0[0].total).toBe(leaky0[0].total); // no-op at λ=0
+    const prev = FITNESS_ANCHOR.conceded;
+    FITNESS_ANCHOR.conceded = 0.05;
+    try {
+      const tight = computeFitness(mkGroup(1));
+      const leaky = computeFitness(mkGroup(3));
+      expect(tight[0].components.points).toBe(leaky[0].components.points); // relative view identical
+      expect(tight[0].total - leaky[0].total).toBeCloseTo(0.05 * 2, 9);
+    } finally {
+      FITNESS_ANCHOR.conceded = prev;
+    }
   });
 
   it('components are normalized to [0,1] and weights sum to totals sanely', () => {

@@ -925,6 +925,15 @@ board-culture gene is ALIVE — 424242 drifts fit-seeking (mean
 0.55→0.72, spread [0.60..0.93]) while 991 keeps two coexisting board
 cultures (mean ~0.5, spread [0.14..1.00]); the market stays healthy
 (~1 signing/gen both worlds). No dead wire, no intervention needed.
++ ✅ **phase-102 SHIPPED** (**the anchor is DEAD — user ratification**
+(morning 2026-07-18, decision #1): `FITNESS_ANCHOR.conceded` 0.05→0 —
+fitness is pure results again. The mechanism + `anchor-sweep.ts` stay
+as lab instruments (the test arms λ locally and proves both the no-op
+default and the armed absoluteness). The user's chosen replacement
+for the inflation engine is IN-ECOLOGY: the keeper RUSH-OUT (103,
+user-designed) — attack the xg/shot proximity climb on the pitch,
+not on the scoreboard. Calibrate 2.96/2.69/3.38 (in band); vitest
+421; visual 109+54; fingerprint REBASELINED `7c896768…`.)
 ⭐⭐⭐ **THE OVERNIGHT RESULT (2026-07-18 02:00-04:40 — the queue below
 EXECUTED, phases 93-101, nine commits+tags all pushed, every gate
 green).** One-line map: **93** ✅ composure earned (composed-1v1 share
