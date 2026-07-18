@@ -707,13 +707,23 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (d >= 8 && d <= 16) bestOpenNear = Math.max(bestOpenNear, open);
       if (d < 8 || d > 30) continue;
       const gain = clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
-      const sT =
+      let sT =
         d <= 16
           ? (0.3 + open * 0.5) * (0.6 + g.passBias * 0.8)
           : (0.3 + open * 0.5) *
             (0.5 + g.counterAttackBias * 0.7) *
             (1 + Math.max(gain, 0) * (0.2 + g.counterAttackBias * 0.55)) *
             (1 + transition * g.counterAttackBias * 1.3);
+      // LOOK BEFORE YOU THROW (the keeper-release fix): the flat throw/sling
+      // is a GROUND ball — a body parked in the lane blocks it and it bounces
+      // back into the box (measured: hands releases blocked-lane 9-18% vs the
+      // lane-aware goal kick's 4-5%, lane-HITs landing 60-79% in our own
+      // defensive third). Every outfield pass already reads laneOpenness
+      // (`passBase + lane*passLaneW + …`); the hands distribution never did —
+      // it picked by receiver-openness alone. A clear lane is now required,
+      // not merely an open receiver. The lofted PUNT below clears heads and
+      // keeps its openness-of-landing logic.
+      sT *= 0.3 + laneOpenness(p.pos, mate.pos, opp.players) * 0.7;
       if (sT > bestThrow) {
         bestThrow = sT;
         bestThrowMate = mate;

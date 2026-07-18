@@ -1318,13 +1318,17 @@ wall/dive/diagram/link coverage), build clean.
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
 ⭐⭐ SESSION HANDOFF (2026-07-18, preset-free — facts only, next
-session decides direction). Repo is CLEAN at fingerprint `5c6226fa`
-(= phase-119e). SHIPPED this session: 119a (player radar + 3D
+session decides direction). Repo is CLEAN at fingerprint `ab2e43bd`
+(= phase-119f). SHIPPED this session: 119a (player radar + 3D
 showcase), 119a.5 (settings screen + topbar nav), 119b (keeper
 honesty — fingertip stretch + angle coverage), 119e (the DIRECTIONAL
 TACKLE POKE — the 乱抢 re-examination made quantitative; see its
-entry + the coupling law). ATTEMPTED + REVERTED this session (all
-A/B'd, none committed): 119c per-opponent
+entry + the coupling law), 119f (the KEEPER-RELEASE lane read — a
+keeper looks before he throws; the throw-AT-opponent bounce-back).
+⭐ QUEUED NEXT: 119f-spill (the first-touch 停球失误, the bigger
+supply-side cause) + 119g (赛前 UI + pre-match — the 119c
+revert→reframe). ATTEMPTED + REVERTED
+this session (all A/B'd, none committed): 119c per-opponent
 game-plan (defensive gene-bend); 119d-1 off-ball supply (peel /
 show-for-it / pitch-wide marker-lag, four cuts); the 1v1 keeper
 angle-cut; the marking-scheme freeing (lifted the zonal cap + entry
@@ -1703,6 +1707,58 @@ spill/give-and-go frontier, 119d); goals-warming **11.48
 lowest single world of the arc; calibrate 2.01/2.36/2.30 vs 119b's
 1.88/2.36/2.32 (noise); vitest 441 with ZERO re-anchors (draw count
 preserved); visual 134+54; fingerprint REBASELINED `5c6226fa…`.
+
+**119f — the KEEPER-RELEASE lane read (look before you throw)** ✅
+**SHIPPED 2026-07-18 night (user reports; substrate-honest asymmetry
+fix, all gates green).** `keeper-release.ts` (new probe, kept)
+decomposed the two release paths at gen 21: GOAL KICKS are taken from
+the FEET through the normal lane-aware pass loop (blocked-lane 4-5%,
+clean); the HANDS throw/sling was choosing its target by
+`opennessOf(receiver)` ALONE — it never read `laneOpenness` the way
+every outfield pass does (`PlayerBrain.ts:281`), so a "wide-open" mate
+with an opponent parked in the throwing lane got the ball thrown AT
+that opponent → the bounce-back the user sees (blocked-lane 9-18%,
+lane-HITs landing 60-79% in our OWN defensive third). THE FIX (one
+line, no new mechanic): the flat throw/sling score is multiplied by
+`0.3 + laneOpenness·0.7` — a keeper now looks before he throws, the
+same read the outfield already has; the lofted PUNT is left alone (it
+clears heads). ⭐ INSTRUMENT NOTE (the valid measure): FRESH-evolution
+is USELESS for this small lever — re-evolved worlds swing the GOAL
+KICK's blocked-lane 4%→28% between snapshots though its code was NEVER
+touched (ecology re-roll dominates, the [[grader-lever-noise]] lesson
+in football form). The FROZEN-gene A/B is the controlled instrument:
+hands blocked-lane 9→6% (991) / 18→13% (424242), lane-HITs 3→2% /
+7→4% — a real ~30-40% cut in throws-at-an-opponent. Safety gates:
+goals-warming 11.54 (3.36/4.43/3.75) ≈ 119e's 11.48 (no inflation);
+calibrate 2.21/2.30/1.96 (early band); vitest 441 green; visual
+134+54; fingerprint REBASELINED (behavioral — different keeper target
+picks → new draws). ⭐ HONEST SCOPE: this fixes the throw-AT-opponent
+case only; the DOMINANT keeper-turnover cause is the RECEIVER spilling
+the first touch (receiver-SPILL 8-13%), which is 119f-spill's job.
+
+**119f-spill — the first-touch SPILL (停球失误)** ⏳ **QUEUED (the
+bigger, separate question — 119e's "spill half" + 119f's honest
+remainder).** First-touch spills run 4-7/match league-wide and are
+the top keeper-turnover cause (receiver-SPILL 8-13%). This is the
+SUPPLY-SIDE hard problem (pressured / blind-side / awkward-body
+receptions — `attemptFirstTouch` in mechanics.ts prices speed ×
+pressure × misalign × technique). Probe FIRST (is the spill rate
+honest football, or is some term mispriced?), decide scope AFTER —
+and mind the 119d-1 iron law (anything that eases reception may ease
+the carry ≥ passing). Connected to the give-and-go frontier (119d).
+
+**119g — the 赛前 UI + 赛前准备 (matchday report + pre-match)** ⏳
+**QUEUED (user, 2026-07-18 night — "赛前ui和赛前准备,这个也得排号").**
+Two layers: (a) the SAFE UI-only matchday report — the clash-banner
+enrichment (this fixture's formations, both coaches' identities, form
+strips, head-to-head, the era/title stakes) written + reverted with
+119c is re-landable standalone with ZERO sim change; (b) a mild
+pre-match BEHAVIOURAL plan — but 119c already REFUTED defensive
+gene-bend counter-picking (it fed the terminal breakaway). So (b), if
+built, must follow the 119z lesson (the working counter-pick is
+ATTACKING-side / upstream, not defensive gene-bend) and be measured
+strictly against no-regression. Recommendation: ship (a) first
+(pure win, no risk), treat (b) as a separate probe-gated attempt.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 
