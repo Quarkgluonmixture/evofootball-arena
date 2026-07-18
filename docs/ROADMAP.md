@@ -1736,16 +1736,23 @@ picks → new draws). ⭐ HONEST SCOPE: this fixes the throw-AT-opponent
 case only; the DOMINANT keeper-turnover cause is the RECEIVER spilling
 the first touch (receiver-SPILL 8-13%), which is 119f-spill's job.
 
-**119f-spill — the first-touch SPILL (停球失误)** ⏳ **QUEUED (the
-bigger, separate question — 119e's "spill half" + 119f's honest
-remainder).** First-touch spills run 4-7/match league-wide and are
-the top keeper-turnover cause (receiver-SPILL 8-13%). This is the
-SUPPLY-SIDE hard problem (pressured / blind-side / awkward-body
-receptions — `attemptFirstTouch` in mechanics.ts prices speed ×
-pressure × misalign × technique). Probe FIRST (is the spill rate
-honest football, or is some term mispriced?), decide scope AFTER —
-and mind the 119d-1 iron law (anything that eases reception may ease
-the carry ≥ passing). Connected to the give-and-go frontier (119d).
+**119f-spill — the first-touch SPILL (停球失误)** ✅ **PROBED →
+NO-FIX (honest negative, `spill-anatomy.ts` kept).** The spill model
+is HONEST: at gen 21 the "SHOULD-NOT-SPILL" residual (unpressured +
+facing + controllable-speed) is only **10% of spills** (~0.5-0.7/
+match); the other 90% are genuinely hard receptions — 48-57% under
+HEAVY pressure (≥0.5), 36-39% blind-side, 90-95% at controllable
+speed but in the contested MIDDLE third (53-67%). Spill rate ≈ 1 in 9
+receptions (4.7/34 · 7.3/58 completed), concentrated exactly where
+real football miscontrols. `touchFailChance` (speed × pressure ×
+misalign × technique) prices a slow unpressured facing ball at <1%
+fail and a 14 m/s pressured blind ball at ~11% — the ramp is honest.
+⭐ VERDICT: NOT a substrate dishonesty → no fix. Nerfing it would (a)
+be un-football and (b) trip the 119d-1 iron law (easing reception
+helps the carry ≥ passing). The ugliness the user sees is the spill
+FEEDING a scramble — that's the scramble PAYOFF frontier (give-and-go
+/ 119d), not the reception. `spill-anatomy.ts` kept for whenever the
+give-and-go co-weapon is picked up.
 
 **119g — the 赛前 UI + 赛前准备 (matchday report + pre-match)** ⏳
 **QUEUED (user, 2026-07-18 night — "赛前ui和赛前准备,这个也得排号").**
