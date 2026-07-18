@@ -1494,6 +1494,13 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   gene-blind dead wire (83% everywhere) until school-scaled. Four
   schools measurably distinct (`keeper-distribution.ts`); the 28.3
   no-hoof contract intact.
+- ✅ **phase-99 RESOLVED PROBE-ONLY** (**pressed-winger escape:
+  premise refuted**; fingerprint untouched `fa984021…`). The
+  pinned-wide situation occurs (4.7/1.7 episodes per match, final
+  third/deep) but is NOT unused: cross 26-43% · pass 21-26% ·
+  through 6-18%, immediate turnover 3%. No appetite booster built —
+  the data doesn't ask for one. Next probe if play-feel disagrees:
+  through-ball quality deep, not appetite.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

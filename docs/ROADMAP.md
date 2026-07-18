@@ -862,6 +862,23 @@ release still has a name on it). Throw seeds re-anchored
 24/42/44→27/87/167 (7th dance — throws rarer under school
 competition). Calibrate 2.91/3.10/3.30 (in band); vitest 417;
 visual 109+51; fingerprint REBASELINED `fa984021…`.)
++ ✅ **phase-99 RESOLVED PROBE-ONLY** (**the pressed-winger escape —
+the premise didn't survive its own probe** (user question ①): the
+queue's condition was "does the situation occur and go UNUSED?" —
+`pinned-winger.ts` (120 matches): pinned-wide occurs 4.7
+episodes/match (final third) / 1.7 (deep byline squeeze), and it
+is NOT wasted — episode outcomes: cross 26%/43% · pass 21%/26% ·
+through ball 18%/6% · immediate turnover just 3%. The frame-level
+"Dribble 100%" read was an artifact (kicks resolve instantly and
+vanish from ownership before sampling — the outcome-at-episode-end
+view is the honest one). The escape toolkit already fires, and
+the deep-squeeze resolves through the phase-63 cross channel —
+building a through-ball appetite booster would hand-force a
+behavior the data doesn't ask for. NO sim change (the emergence
+rule: diagnose before designing; a 91-style negative result).
+If the user's play-feel still disagrees in the morning, the next
+probe is through-ball QUALITY deep (completion + what the channel
+runner does), not appetite. Fingerprint untouched `fa984021…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
