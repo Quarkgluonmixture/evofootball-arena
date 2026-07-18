@@ -31,12 +31,36 @@ function keeperReach(defTeam: { genome: { keeperAggression: number } }, gk: Play
   );
 }
 
+/** THE FINGERTIP STRETCH (Phase 119b): a save may be ATTEMPTED out to
+ * reach × this. The old hard cliff at reach meant a ball 5cm beyond was
+ * untouchable — onevone-anatomy measured 54%/23% of late-gen 1v1 shots
+ * (65%/36% of the GOALS) never rolling a save at all; the composed
+ * post-placed finish was engineered to shave exactly that boundary. The
+ * frozen dive difficulty already prices the distance (floor 0.25), the
+ * attempt fires only as the ball passes its closest approach (a catchable
+ * ball is never pre-empted), and a stretch save can only PARRY. */
+const SAVE_STRETCH = 1.35;
+
 /** Dive difficulty, frozen at the moment of the strike: how far off the
  * shot's line the keeper stands, priced against his reach. Shared by the
  * open-play shot, the header and the placed free kick. */
 function diveDifficulty(ballPos: V2, dir: V2, gk: Player, opp: { genome: { keeperAggression: number } }): number {
   const path = closestPointOnSegment(ballPos, add(ballPos, scale(dir, 40)), gk.pos);
   return clamp(1.15 - dist(path, gk.pos) / keeperReach(opp, gk), 0.25, 1);
+}
+
+/** ANGLE COVERED (Phase 119b): the share of the goal's angular window the
+ * keeper's POSITION cut at the strike — his depth up the shot cone over the
+ * shooter's distance, discounted as he stands off the shooter→goal line (a
+ * dragged keeper covers nothing). Phase 103's closeIn paid proximity to the
+ * SHOOTER; the anatomy probe caught evolution routing around it — striking
+ * from 8-10m where closeIn ≈ 0.1 while a keeper 3m up the cone still cut
+ * ~40% of the window for free. Frozen at shot time, like difficulty. */
+function angleCoverage(gk: Player, shooterPos: V2, goal: V2): number {
+  const sGoal = Math.max(dist(shooterPos, goal), 1);
+  const kGoal = dist(gk.pos, goal);
+  const lineOff = dist(closestPointOnSegment(shooterPos, goal, gk.pos), gk.pos);
+  return clamp01(Math.min(kGoal / sGoal, 1) * clamp01(1 - lineOff / 3));
 }
 
 /* ------------------------------------------------------------------ */
@@ -875,6 +899,7 @@ function performHeaderShot(match: Match, shooter: Player): void {
     side: shooter.side,
     shooterGid: shooter.gid,
     closeIn: clamp01((7 - dist(gk.pos, shooter.pos)) / 7),
+    coverage: angleCoverage(gk, shooter.pos, team.oppGoal()),
     xg: q,
     t: match.simTime,
     resolved: false,
@@ -1149,6 +1174,7 @@ export function performShot(match: Match, shooter: Player): void {
     difficulty,
     assistGid,
     closeIn: clamp01((7 - dist(gk.pos, shooter.pos)) / 7),
+    coverage: angleCoverage(gk, shooter.pos, goalCenterFor(team)),
   };
 
   // Key pass: shot within 3s of receiving.
@@ -1769,7 +1795,15 @@ export function tryKeeperSave(match: Match): void {
   if (dot(ball.vel, sub(goal, ball.pos)) <= 0) return;
 
   const reach = keeperReach(defTeam, gk);
-  if (dist(gk.pos, ball.pos) > reach) return;
+  const dNow = dist(gk.pos, ball.pos);
+  if (dNow > reach) {
+    // The fingertip stretch (119b): beyond reach, attempt ONLY as the ball
+    // passes its closest approach (receding) — inside-reach behavior is
+    // bit-identical, the new roll exists solely for the ball that would
+    // never have entered the corridor at all.
+    const receding = dot(ball.vel, sub(gk.pos, ball.pos)) <= 0;
+    if (dNow > reach * SAVE_STRETCH || !receding) return;
+  }
 
   shot.resolved = true;
   gk.saveAnimTimer = 0.7; // the dive is visible whether it saves or not (27.4)
@@ -1813,14 +1847,17 @@ export function tryKeeperSave(match: Match): void {
   // vs baseline 15.72 — re-roll noise), keeperAggression adoption didn't
   // shift, and one world held conv 72% regardless. Deleted per the
   // phase-95 anchor discipline; evidence in scripts/probes/final15-anatomy.ts.)
-  saveP = Math.min(0.95, saveP * (1 + (shot.closeIn ?? 0) * 0.9));
+  // Angle covered (119b) shares closeIn's slope via max() — the two credits
+  // describe the same physical fact (a smaller goal) from different ranges
+  // and must never compound.
+  saveP = Math.min(0.95, saveP * (1 + Math.max(shot.closeIn ?? 0, shot.coverage ?? 0) * 0.9));
 
   if (match.rng.chance(saveP)) {
     shooterTeam.stats.shotsOnTarget++;
     defTeam.stats.saves++;
     match.stat(gk.gid).saves++;
     match.markShotOutcome('saved');
-    if (speed < 21 && match.rng.chance(0.8)) {
+    if (dNow <= reach && speed < 21 && match.rng.chance(0.8)) {
       match.pushEvent('save', defSide, `${gk.name} catches it`);
       match.giveBall(gk);
     } else {

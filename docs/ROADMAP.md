@@ -1317,11 +1317,12 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 119b — the attack-diversity/collapse probe
-(negative frequency dependence; per-opponent game-planning is the
-big lever), then 120+ home advantage → memory commentary. (112
-through 119a.5 ALL shipped 2026-07-18; fingerprint baseline
-`093da5bd…` since the v31 budget-snapshot field, 118.5.)**
+⭐ HEAD OF QUEUE IS NOW 119c — per-opponent GAME-PLANNING (the
+counter-pick loop = negative frequency dependence; the user's
+赛前报告 rides on it), then 120+ home advantage → memory
+commentary. (112 through 119b ALL shipped 2026-07-18; fingerprint
+baseline `848370ae…` since the 119b keeper-honesty lever,
+behavioral.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1493,22 +1494,61 @@ IDENTICAL `093da5bd…`. Gates: vitest 441, visual 134 (+5 settings
 checks, screenshot check inverted to assert-gone) + 3D 54, build
 clean.
 
-**119b — ATTACK DIVERSITY / the collapse probe (the blueprint's
-core gap, discussed 2026-07-18 night)**: probe-first — why does
-carry out-pay passing in the late ecology (per-possession economics:
-meters/second/risk for carry vs pass chains); then re-price toward
-negative frequency dependence (the counter should GROW as the meta
-spreads). Candidate levers, smallest-first: cover/jockey payoff vs
-stalled carriers, per-opponent game-planning (the coach reads the
-opponent's profile — the counter-pick loop real football has),
-1v1 conversion honesty. Measured by the goal-channel census: success
-= `through`/`cross` return, no world falls below the goals floor.
-⭐ FOLLOW-ON (user, 2026-07-18): once per-opponent game-planning
-lands, the pre-match popup tactics board (the clash banner) should
-become a proper MATCHDAY REPORT — this fixture's formations, the
-coach's counter-pick and why, the arrangements for THIS opponent.
-The clash stops being a static DNA readout and starts narrating the
-game-plan the coach actually chose.
+**119b — ATTACK DIVERSITY: the collapse probe + the 1v1 HONESTY
+lever** ✅ **SHIPPED 2026-07-18.** Probe-first, two instruments:
+① `attack-economics.ts` (per-possession ledger, tick-traced): the
+collapse is DEMAND-SIDE — pass EXECUTION was never priced out
+(completion 78%→76-80% early→late, interceptions flat ~17%, carry
+steal rate flat ~12/100s); passing died of DISUSE (76→41 att/match)
+because the carry's ENDPOINT pays double: 1v1 conversion 29% (gen 3)
+→ 56-67% (gen 22), 89% of late goals unassisted. ② the smoking gun,
+`onevone-anatomy.ts`: **54%/23% of late-gen 1v1 shots — 65%/36% of
+the GOALS — never entered keeper reach at all** (hard cliff at
+`keeperReach`: a ball 5cm beyond was untouchable, no saveP roll),
+and evolution had routed AROUND the 103 closeIn credit by striking
+from 8-10m where closeIn ≈ 0.1. THE LEVER (one, physics, the D+C
+inflation-endgame's keeper side): ⑴ the FINGERTIP STRETCH — saves
+attempted out to reach×1.35, gated on the ball passing its closest
+approach (within-reach behavior bit-identical), parry-only; ⑵ ANGLE
+COVERED — `coverage` = keeper depth up the shot cone / shooter
+distance, discounted off-line, frozen at strike, sharing closeIn's
+×0.9 slope via max() (never compounds). Frozen-gene snapshot A/B:
+424242 58→50%, 991 71→68% (its keepers evolved under the old
+pricing — starved). **FRESH-EVOLUTION verdict (worlds re-evolved
+under the new physics; complete shotLog counts): 1v1 conv 67→59%
+(991) / 56→53% (424242), attempts 307→256 / 343→216, rolled-save
+23→35% / 20→43% (reflexes+keeperAggression finally worth buying),
+goals 3.66→3.31 / 3.97→2.89 — and 424242's ECOLOGY genuinely moved:
+channel mix FLIPPED to buildup 66 > carry 59 (first world where the
+carry monoculture broke), pass attempts recovered 41→64/match,
+pass progression share 34→43%. 991 stayed carry-first (96 from 113)
+— one world flipped, one held: honest split.** Early honesty bonus:
+gen-3 overperf 1.68×→1.21× (424242), conv 27→19%. (Instrument note:
+onevone-anatomy's single-slot tracker undercounts overlapping shot
+windows — its 45%/55% conv are subset figures; the reach/roll
+decomposition is what it's for.) through/cross still ≈0 — that's
+the NEXT lever's job (counter-pick), not this one's. calibrate
+1.88/2.36/2.32 vs 118's 1.93/2.61/2.32 (Δ within the seeds' measured
+re-roll noise); goals-warming **11.18 (3.79/3.77/3.62) — the ARC
+LOW** (prior low 12.62 at 118, highs 15.7+), early means
+2.35/2.39/2.86 intact. vitest 441 with ZERO re-anchors (the receding
+gate keeps in-reach rng behavior identical); visual 134+53; build
+clean. Fingerprint REBASELINED `848370ae…` (behavioral — new
+stretch rolls).
+
+**119c — PER-OPPONENT GAME-PLANNING (the counter-pick loop)**: the
+119b probes leave this as the standing lever for negative frequency
+dependence — the coach reads the opponent's channel ledger
+(`chFor/chAgainst`, recorded since 113) and bends match-day genes
+toward the counter, trust bounded by an evolved gene; the more the
+league carries, the more anti-carry gets bought — the counter GROWS
+with the meta. Success = `through`/`cross` return in the census.
+⭐ FOLLOW-ON (user, 2026-07-18): once game-planning lands, the
+pre-match popup tactics board (the clash banner) becomes a proper
+MATCHDAY REPORT — this fixture's formations, the coach's
+counter-pick and why, the arrangements for THIS opponent. The clash
+stops being a static DNA readout and starts narrating the game-plan
+the coach actually chose.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

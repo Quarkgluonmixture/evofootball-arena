@@ -1698,3 +1698,28 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   call ③). Census: 1.27/1.28 per club-season, economy intact, goals
   Δ ≈ noise on paired A/B. Watch in future censuses: does selection
   move rotationBias or bench spend now that depth has teeth?
+- ⭐ **2026-07-18 THE 119b LEDGER (collapse economics + the 1v1
+  honesty lever — the D+C endgame's KEEPER side)**: the carry
+  monoculture was DEMAND-side, not defense-side — attack-economics
+  measured pass execution never priced out (completion/interception
+  flat early→late) while the carry's ENDPOINT doubled its pay (1v1
+  conv 29%→56-67%, 89% of late goals unassisted, passing died of
+  disuse 76→41 att/match). The onevone-anatomy smoking gun: **54%/23%
+  of late 1v1 shots (65%/36% of the GOALS) never entered keeperReach
+  — the hard cliff meant no saveP roll existed**, and shooters had
+  evolved to strike from 8-10m exactly where the 103 closeIn credit
+  reads ≈0 (evolution ROUTES AROUND hand-patches; the standing-audit
+  lens strikes again). The lever, physics only: the FINGERTIP STRETCH
+  (attempts to reach×1.35 at closest approach, parry-only,
+  within-reach rng bit-identical — vitest 441 zero re-anchors) +
+  ANGLE COVERED (keeper depth up the shot cone / shooter distance,
+  max() with closeIn). Re-evolved verdict: 1v1 conv 67→59/56→53,
+  rolled-save 23→35%/20→43% — reflexes and keeperAggression became
+  REAL market goods — goals 3.31/2.89, **424242 flipped to
+  buildup > carry (the first broken monoculture) with pass attempts
+  recovering 41→64/match; 991 held carry-first: one flip, one hold**.
+  gen-3 overperf 1.68→1.21×. through/cross stayed ≈0 → the counter
+  that GROWS with the meta (negative frequency dependence) still
+  needs per-opponent GAME-PLANNING (119c: coach reads chFor/chAgainst,
+  bends match-day genes, trust = an evolved gene; then the clash
+  banner becomes the user's 赛前报告).

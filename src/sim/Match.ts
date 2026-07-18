@@ -97,6 +97,18 @@ export interface PendingShot {
    * Chips and placed balls carry 0 — the chip IS the counter.
    */
   closeIn?: number;
+  /**
+   * ANGLE COVERED (Phase 119b, the 1v1 honesty lever): how much of the
+   * goal's angular window the keeper's POSITION cut at the strike — his
+   * depth off the line over the shooter's distance, discounted when he
+   * stands off the shooter→goal line (a dragged keeper covers nothing).
+   * The onevone-anatomy probe caught evolution routing AROUND closeIn:
+   * late-gen shooters strike from 8-10m where closeIn ≈ 0.1, yet a keeper
+   * 3m up the cone still covers ~40% of the window — a credit the save
+   * model never paid. Frozen at shot time; shares closeIn's ×0.9 slope
+   * via max() so the two never double-count.
+   */
+  coverage?: number;
 }
 
 /** One shot for the analytics timeline (xG race chart). */
