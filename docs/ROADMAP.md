@@ -1331,11 +1331,17 @@ standing + head-to-head; the 119c revert→reframe's SAFE UI half,
 zero-sim). PROBED → NO-FIX this session: 119f-spill (the first-touch
 停球失误 is HONEST football — 90% hard receptions; nerfing it would
 trip the 119d-1 iron law; the ugliness is the spill FEEDING a
-scramble, = the give-and-go/119d frontier). ⭐ ACTIVE NOW: 119h FREE
-THE MARKING SCHEME (decouple scheme from markingAggression into its
-own gene — scheme-balance probe found the old zonal-dominance
-imbalance has CLOSED, freeing now safe-ish; the emergence-honest 乱抢
-payoff fix). ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
+scramble, = the give-and-go/119d frontier). ⭐⭐ THE UNIFIED FINDING
+(2026-07-19, `quadrant-balance.ts`): naive scheme-decouple is REFUTED
+— forcing all 4 quadrants shows aggressive-zonal (GF1.22/GA0.67)
+DOMINATES both ends → freeing → defensive monoculture, goals ~0.67.
+Root: the ATTACK has no zone-breaking primitive (a zone doesn't track
+men). The 乱抢 free-1v1, the off-ball wall (119d-1), the throttled
+give-and-go, AND zonal-dominance are ONE defect: the attack can't pull
+a defence apart. ⭐ REDIRECT: 119h (free scheme) BLOCKED until the
+attacking zone-breaker exists → the real lever is 119d give-and-go /
+movement-that-beats-a-zone (NOT "off-ball separation" — that helped
+the carry). ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
 FIFA/FM/PES (positioning attr = deepest missing; GK split;
 heading/accel/tackling splits). Also queued: 119g(b) pre-match
 behavioural plan (attacking-side/upstream only), give-and-go (119d).
@@ -1803,16 +1809,28 @@ gene), and markingAggression ALSO pays for tackle-win (+0.2) + fouls +
 press, so evolution keeps it high → man. The coupling HURTS zonal
 (forced low-aggression → holds shape but can't win the ball) and makes
 the AGGRESSIVE-ZONAL quadrant (hold shape AND tackle hard = the modern
-zonal press) UNREACHABLE in gene space. THE PLAN (probe-first): (1) a
-quadrant-balance probe forcing {man,zonal}×{aggressive,passive} to
-confirm freeing is safe + which quadrant is the good defence; (2)
-decouple scheme into its OWN free gene (append to GENE_KEYS end so
-founder draws are unshifted; save migration backfills; remove the
-rebirth cap + hire-conversion locks); (3) A/B + fresh evolution +
-goals-floor gate + scheme-diversity watch. Structural fallback if
-freeing collapses goals: the attack can't punish a zone (movement/
-overload that pays) — that becomes the next substrate lever. Behavioral
-→ fingerprint rebaseline; save version bump.
+zonal press) UNREACHABLE in gene space. THE PLAN was (1) quadrant probe → (2) decouple → (3) A/B. ⚠️ **STEP 1
+REFUTED STEP 2 — DECOUPLE BLOCKED (2026-07-19, `quadrant-balance.ts`).**
+Forcing all four {man,zonal}×{aggressive,passive} (neutral 0.5, only
+scheme+aggression varied): man-aggr GF1.06/GA1.22, man-pass 1.00/1.36,
+**zonal-aggr GF1.22/GA0.67 (5.7/4.1 shots) — DOMINANT on BOTH ends**,
+zonal-pass 0.92/0.94. The unreachable quadrant is a FREE LUNCH: hold
+shape (cover behind, 4.1 shots conceded) AND win the ball (aggression).
+So a naive decouple → evolution converges on aggressive-zonal = a
+DEFENSIVE MONOCULTURE with goals crushed to ~0.67 — exactly the
+collapse the hand-lock was hiding. The old man-vs-zonal imbalance
+didn't close; it MOVED into the coupling's blind spot. ⭐⭐ THE UNIFIED
+ROOT: aggressive-zonal is unbeatable because **the ATTACK has no
+zone-breaking primitive** — a zone doesn't track men, so you beat it
+with MOVEMENT / combination / give-and-go, and our off-ball players sit
+in covered lanes (the 119d-1 wall). The 乱抢 free-1v1, the off-ball
+wall, the throttled give-and-go, AND zonal-dominance are ONE root: the
+attack can't pull a defence apart (a zone especially). ⭐ REDIRECT:
+freeing the scheme is BLOCKED until the attacking counter exists;
+119h ⇒ folds into the ATTACKING-substrate lever (119d give-and-go /
+zone-breaking movement). Don't decouple first — build the zone-breaker
+first, THEN free the scheme and the four quadrants balance. Probes
+kept: `scheme-balance.ts`, `quadrant-balance.ts`.
 
 **STRATEGIC BACKLOG — the ATTRIBUTE/GENE AUDIT vs FIFA/FM/PES (user,
 2026-07-19).** We carry 8 player attrs (pace/passing/dribbling/

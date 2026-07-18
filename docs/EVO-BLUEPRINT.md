@@ -1908,6 +1908,32 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   subsumes). Probe-first (quadrant balance) → decouple gene → A/B +
   goals-floor + diversity watch; structural fallback if goals collapse
   = the attack can't punish a zone (the next substrate lever).
+- ⭐⭐ **2026-07-19 THE QUADRANT PROBE REFUTED THE NAIVE DECOUPLE — AND
+  UNIFIED THE WHOLE DIVERSITY PROBLEM.** `quadrant-balance.ts` forced
+  all four {man,zonal}×{aggressive,passive} (neutral 0.5 genome+squad,
+  only scheme+markingAggression varied, round-robin): man-aggr
+  GF1.06/GA1.22 · man-pass 1.00/1.36 · **zonal-aggr GF1.22/GA0.67,
+  5.7/4.1 shots — DOMINANT on BOTH ends** · zonal-pass 0.92/0.94. The
+  currently-UNREACHABLE aggressive-zonal quadrant is a FREE LUNCH (hold
+  shape → cover behind, 4.1 shots conceded; + aggression → win the
+  ball). So decoupling the scheme naively → evolution converges on it =
+  a DEFENSIVE MONOCULTURE, goals crushed to ~0.67 — the exact collapse
+  the hand-lock hid. The old man/zonal imbalance did not close, it MOVED
+  into the coupling's blind spot. ⭐⭐ THE UNIFIED ROOT (the session's
+  biggest finding): aggressive-zonal is unbeatable because **the ATTACK
+  has no zone-breaking primitive.** A zone does not track men → you beat
+  it with MOVEMENT / combination / give-and-go, and our off-ball players
+  sit in covered lanes (the 119d-1 wall). Therefore the 乱抢 free-1v1,
+  the off-ball-separation wall, the throttled give-and-go (wallRun), AND
+  zonal-dominance are all ONE substrate defect: **the attack cannot pull
+  a defence apart, a zone least of all.** ⭐ CONSEQUENCE: "free the
+  marking scheme" (119h) is BLOCKED until the attacking counter exists —
+  build the zone-breaker (give-and-go / off-ball movement that PAYS,
+  119d) FIRST, then free the scheme and the four quadrants balance. This
+  re-frames 119d: the target isn't "off-ball separation" (119d-1 helped
+  the carry) — it's specifically movement/combination that beats a ZONE
+  (pass-and-move as a linked action the zone can't track). The
+  positioning / off-ball-IQ MISSING attr sits directly under this too.
 - ⭐ **2026-07-19 THE ATTRIBUTE/GENE AUDIT vs FIFA/FM/PES (strategic
   backlog — full entry in ROADMAP).** 8 player attrs + 23 genes vs the
   standard taxonomies. PRESET-DEAD (coupled): heading/jumping (→
