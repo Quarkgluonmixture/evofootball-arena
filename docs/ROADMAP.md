@@ -1317,12 +1317,12 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 119c — per-opponent GAME-PLANNING (the
-counter-pick loop = negative frequency dependence; the user's
-赛前报告 rides on it), then 120+ home advantage → memory
-commentary. (112 through 119b ALL shipped 2026-07-18; fingerprint
-baseline `848370ae…` since the 119b keeper-honesty lever,
-behavioral.)**
+⭐ HEAD OF QUEUE IS NOW 119d — the counter-pick loop needs a
+DIFFERENT shape than 119c's reverted defensive gene-bend (see the
+119c ATTEMPT+REVERT entry below); then 120+ home advantage → memory
+commentary. (112 through 119b ALL shipped 2026-07-18; 119c
+ATTEMPTED + REVERTED same day; fingerprint baseline `848370ae…`
+since the 119b keeper-honesty lever — 119c left it UNCHANGED.)**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1536,19 +1536,53 @@ gate keeps in-reach rng behavior identical); visual 134+53; build
 clean. Fingerprint REBASELINED `848370ae…` (behavioral — new
 stretch rolls).
 
-**119c — PER-OPPONENT GAME-PLANNING (the counter-pick loop)**: the
-119b probes leave this as the standing lever for negative frequency
-dependence — the coach reads the opponent's channel ledger
-(`chFor/chAgainst`, recorded since 113) and bends match-day genes
-toward the counter, trust bounded by an evolved gene; the more the
-league carries, the more anti-carry gets bought — the counter GROWS
-with the meta. Success = `through`/`cross` return in the census.
-⭐ FOLLOW-ON (user, 2026-07-18): once game-planning lands, the
-pre-match popup tactics board (the clash banner) becomes a proper
-MATCHDAY REPORT — this fixture's formations, the coach's
-counter-pick and why, the arrangements for THIS opponent. The clash
-stops being a static DNA readout and starts narrating the game-plan
-the coach actually chose.
+**119c — PER-OPPONENT GAME-PLANNING** ⚠️ **ATTEMPTED + REVERTED
+2026-07-18 (honest negative result, fingerprint left at `848370ae`).**
+Built the full counter-pick loop: a `gameplan.ts` playbook + dossier
+(`TeamInfo.oppChannels` = the opponent's goal-channel ledger from
+113, injected in `createMatch`), the coach choosing a counter-shape
+from the opponent's dominant threat and bending his match-day genes
+by his tinkerBias (the 66 pragmatist axis, now paying twice), a
+`gameplan-anatomy` probe, and the clash-banner "tonight's shape"
+overlay (the user's 赛前报告 seed). **The PLUMBING all bound** — the
+`gameplan-anatomy` probe showed detection scaling correctly with the
+meta (as carry grew, plans increasingly read "breakaway": 12→64
+reads, fire-rate 25→53% of kickoffs). **But the LEVER failed its
+A/B** (`GAMEPLAN_OFF=1` toggle, same seeds, 22-gen fresh evolution):
+plans-ON vs -OFF — goals **3.63→6.03** (991) / **3.55→4.18**
+(424242), carry share went **UP** not down (40→50 / 27→32%), and
+evolution NEGATIVELY selected tinkerBias (0.61→0.30 / 0.66→0.41) —
+it correctly learned that planning HURTS. A retuned net-tightening
+playbook (drop the passive press/depth cuts, add compactness +
+marking) still failed: goals 4.69 / **5.77**, carry still up, tinker
+still punished. **Root cause = the engine's carry is a TERMINAL
+state**: a breakaway is a carrier already isolated with space, and no
+DEFENSIVE pre-kickoff gene-bend undoes that — raising jockey just
+backs off the fast carrier, and bending both teams' defenses toward
+passivity opens the game end-to-end (the goals blow-up). This is
+exactly the emergence-memo trap (a hand-set bias fighting the
+substrate); reverted rather than shipped. Full-revert: `gameplan.ts`
++ probe deleted, `oppChannels`/`createMatch`/`Match.plans`/
+ClashBanner/i18n/css restored — tree clean, vitest 441, fingerprint
+`848370ae` UNCHANGED.
+
+**119d — the counter-pick loop, a WORKING shape (the 119c lesson
+applied)**: negative frequency dependence can't come from bending
+DEFENSIVE genes toward a terminal breakaway. The lesson points
+UPSTREAM/attacking-side instead — candidates: (a) game-plan the
+ATTACK not the defense (a coach facing a compact/anti-carry league
+buys through-balls/width — the counter that GROWS is the attacking
+answer to the prevailing defense, reviving `through`/`cross` by
+demand); (b) prevent breakaway ISOLATION upstream (supportDistance /
+counterAttackBias cost when caught out) rather than answer it once
+it's happened; (c) accept that the real lever is structural (11v11
+space, parked) and pursue diversity elsewhere. Probe-first, A/B with
+the `GAMEPLAN_OFF`-style toggle BEFORE committing — the 119c
+discipline (measure adoption + goals + carry share, three gates)
+stands. ⭐ FOLLOW-ON (user, 2026-07-18): once a working game-plan
+lands, the clash banner becomes the MATCHDAY REPORT — this fixture's
+formations, the coach's counter-pick and why. (The clash overlay
+code was written + reverted with 119c; re-land it with 119d.)
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

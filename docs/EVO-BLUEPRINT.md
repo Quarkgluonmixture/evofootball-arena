@@ -1723,3 +1723,25 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   needs per-opponent GAME-PLANNING (119c: coach reads chFor/chAgainst,
   bends match-day genes, trust = an evolved gene; then the clash
   banner becomes the user's 赛前报告).
+- ⭐ **2026-07-18 THE 119c NEGATIVE RESULT (game-planning by
+  defensive gene-bend — ATTEMPTED, A/B-REFUTED, REVERTED)**: built
+  the full counter-pick loop (dossier from the 113 channel ledger →
+  threat classification → tinkerBias-scaled defensive bend → clash
+  "tonight's shape" overlay). The PLUMBING bound perfectly — as the
+  carry meta grew, coaches increasingly read "breakaway" and fired
+  more plans (25→53% of kickoffs). But the clean A/B (`GAMEPLAN_OFF`
+  toggle, same seeds, 22 gens) REFUTED the lever: goals INFLATED
+  (3.6→6.0 in 991), carry share went UP not down, and evolution
+  NEGATIVELY selected tinkerBias — it learned planning hurts. A
+  net-tightening retune still failed. **The lesson (a real substrate
+  fact): the carry is a TERMINAL state — a breakaway is a carrier
+  already isolated with space, and no defensive pre-kickoff gene-bend
+  undoes that; raising jockey backs off the fast man, and bending both
+  defenses passive opens the game end-to-end.** Negative frequency
+  dependence must come from the ATTACKING side (a coach buys the
+  attacking ANSWER to the prevailing defense — through-balls/width
+  revive by DEMAND) or from preventing isolation UPSTREAM, not from
+  answering the breakaway once it exists. Reverted clean (fingerprint
+  `848370ae` untouched); the emergence-memo trap (a hand-set bias
+  fighting the substrate) caught in the A/B before it shipped. 119d
+  carries the working-shape hunt.
