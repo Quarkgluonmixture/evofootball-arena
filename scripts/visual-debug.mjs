@@ -383,7 +383,19 @@ await page.waitForTimeout(300);
 const cupTxt = await page.textContent('#league-screen');
 check('cup tab: current + last-season brackets', (await page.locator('#league-screen .bracket').count()) === 2, '');
 check('cup tab: completed bracket crowns 15 winners', (await page.locator('#league-screen .cup-row.cup-win').count()) === 15, '');
-check('cup tab: giant killings marked', (await page.locator('#league-screen .cup-tie.upset').count()) >= 1, '');
+// Whether a giant killing HAPPENS is knife-edge world data (failure mode
+// 11 — the phase-112 gene re-roll produced two upset-free cups): assert the
+// marking PIPELINE instead — every upset tie in state carries the DOM flag.
+const upsetTiesInState = await page.evaluate(() => {
+  const lg = window.__evo.app.league;
+  const cups = [lg.cup, [...lg.history].reverse().find((r) => r.cup)?.cup].filter(Boolean);
+  return cups.reduce((n, c) => n + c.ties.filter((t) => t.upset).length, 0);
+});
+check(
+  'cup tab: giant killings marked (matches state)',
+  (await page.locator('#league-screen .cup-tie.upset').count()) === upsetTiesInState,
+  `${upsetTiesInState} in state`,
+);
 check('cup tab: roll of honour lists champions', cupTxt.includes('Roll of honour'), '');
 await page.screenshot({ path: `${OUT}/10-cup-bracket.png`, fullPage: true });
 await page.click('#league-screen button:has-text("League")');

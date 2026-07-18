@@ -203,6 +203,45 @@ describe('moraleSensitivity (Phase 111, the 22nd gene)', () => {
   });
 });
 
+describe('transitionPress (Phase 112, the 23rd gene)', () => {
+  it('v26 saves migrate: transitionPress backfills at 0.5', () => {
+    const league = new League({ seed: 13, matchDuration: 30 });
+    const data = league.toJSON() as Record<string, unknown> & {
+      version: number;
+      franchises: Array<{ coach: { genome: Record<string, number> } }>;
+    };
+    data.version = 26; // forge a pre-transition save
+    for (const f of data.franchises) delete f.coach.genome.transitionPress;
+    const loaded = League.fromJSON(JSON.parse(JSON.stringify(data)) as Record<string, unknown>);
+    for (const f of loaded.franchises) {
+      expect(f.coach.genome.transitionPress).toBe(0.5);
+    }
+  });
+
+  it('the loss window changes the chaser count: gegenpress +1, retreat holds one', () => {
+    const chasersInWindow = (tp: number): number => {
+      const g = neutral();
+      g.transitionPress = tp;
+      const m = new Match({ seed: 7, teamA: team('A', neutral()), teamB: team('B', g), duration: 120 });
+      while (m.phase !== 'playing') m.step(1 / 60);
+      const carrier = m.teams[0].players[2];
+      carrier.pos = { x: -20, y: 0 }; // deep in A's half — press territory for B
+      m.ball.owner = carrier;
+      m.ball.pos = { x: -19.6, y: 0 };
+      m.possessionSide = 0;
+      m.kickoffKickGid = null;
+      m.teams[0].possessionGainedAt = m.simTime; // B lost it THIS instant
+      for (let i = 0; i < 30; i++) m.step(1 / 60);
+      return m.teams[1].chasers.size;
+    };
+    // Neutral steady-state here is already Press (2 chasers) — the window
+    // sends the gegenpresser's third body and holds the retreater to one.
+    expect(chasersInWindow(0.9)).toBe(3);
+    expect(chasersInWindow(0.5)).toBe(2);
+    expect(chasersInWindow(0.1)).toBe(1);
+  });
+});
+
 describe('trapBias (Phase 109, the 21st gene)', () => {
   it('v24 saves migrate: trapBias backfills at 0.5', () => {
     const league = new League({ seed: 7, matchDuration: 30 });

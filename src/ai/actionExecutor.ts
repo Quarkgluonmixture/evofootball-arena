@@ -46,6 +46,18 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // this branch owns only ~12-18% of their frames — and 24-gen warming
       // totals didn't move. final15-anatomy.ts carries the evidence.)
       if (dist(p.pos, target) > 14) speedF = 0.95 - conserve * 0.2;
+      // THE RETREAT SCHOOL (Phase 112, drop-and-recover): for 3s after
+      // losing the ball the spot-holders RUN home instead of jogging —
+      // getting the shape set before the counter launches IS the school
+      // (the 106 hurry trigger failed because it fired on "beaten", not
+      // on the transition; this fires on the loss clock, for the gene
+      // that pays for it). tp ≥ 0 is exactly today's speeds.
+      if (!hasBall && match.phase === 'playing') {
+        const tp = ((g.transitionPress ?? 0.5) - 0.5) * 2;
+        if (tp < 0 && match.simTime - opp.possessionGainedAt < 3.0) {
+          speedF = Math.max(speedF, jog + -tp * (0.95 - conserve * 0.2 - jog));
+        }
+      }
       break;
     }
     case 'ChaseBall': {

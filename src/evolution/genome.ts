@@ -123,6 +123,24 @@ export interface TacticalGenome {
    * slumps). 0.5 = a mild middle. Neither is a virtue — evolution's call.
    */
   moraleSensitivity: number;
+  /**
+   * THE TRANSITION INSTANT (Phase 112 — the counter-defense audit's hole):
+   * what this team does in the 3 seconds AFTER LOSING THE BALL, the mirror
+   * of counterAttackBias on the same possession clock. 1 = gegenpress —
+   * surge an extra body at the ball and flip into Press before the counter
+   * can launch (the price: men committed high are DEAD if the escape pass
+   * beats them, and the sprint costs legs). 0 = drop-and-recover — refuse
+   * the counter-press entirely (one token chaser), spot-holders SPRINT
+   * home and deny the launch window (the price: the winner keeps the ball
+   * and arrives organized). 0.5 = today's behavior exactly: the window is
+   * whatever steady-state pressIntensity happens to produce.
+   * transition-anatomy.ts measured the coupling this gene breaks: the
+   * first-3s response was purely a side effect of steady-state pressing
+   * (hiPress retreat 2.4-4.8m vs loPress 6-10m) — mid-block sides that
+   * counter-press on loss, or high-press sides that drop on loss, could
+   * not exist in gene space. 69-78% of breakaways are born in this window.
+   */
+  transitionPress: number;
 }
 
 export const GENE_KEYS = [
@@ -148,6 +166,7 @@ export const GENE_KEYS = [
   'coverBias',
   'trapBias',
   'moraleSensitivity',
+  'transitionPress',
 ] as const;
 
 export type GeneKey = (typeof GENE_KEYS)[number];
@@ -199,7 +218,9 @@ export function geneDistance(a: TacticalGenome, b: TacticalGenome): number {
  */
 export function describeIdentity(g: TacticalGenome): string[] {
   const tags: string[] = [];
-  if (g.pressIntensity > 0.68) tags.push('Gegenpress');
+  // 'Gegenpress' moved to transitionPress at Phase 112 — counter-pressing
+  // the LOSS is what the word means; steady-state pressing is a high press.
+  if (g.pressIntensity > 0.68) tags.push('High press');
   if (g.passBias > 0.68 && g.tempo < 0.55) tags.push('Possession game');
   if (g.passBias > 0.68 && g.tempo >= 0.55) tags.push('Fast combinations');
   if (g.counterAttackBias > 0.65) tags.push('Counter-attack');
@@ -228,6 +249,8 @@ export function describeIdentity(g: TacticalGenome): string[] {
   if ((g.trapBias ?? 0.5) < 0.28) tags.push('Tracks runners home');
   if ((g.moraleSensitivity ?? 0.5) > 0.72) tags.push('Confidence team');
   if ((g.moraleSensitivity ?? 0.5) < 0.28) tags.push('Steady pros');
+  if ((g.transitionPress ?? 0.5) > 0.72) tags.push('Gegenpress');
+  if ((g.transitionPress ?? 0.5) < 0.28) tags.push('Drops & recovers');
   if (tags.length === 0) tags.push('Balanced');
   return tags.slice(0, 3);
 }

@@ -1554,10 +1554,27 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   to pause, mobile silence root-caused (SoundFx's second context never
   gesture-unlocked; + ringer-switch session trick + visibility
   re-resume), SFX default ON. `__evo.audioState()` for tooling.
+- ✅⭐ **phase-112 SHIPPED** (**the TRANSITION-PRESS gene** —
+  `transitionPress`, the 23rd gene, save v27; the counter-defense
+  audit's hole: the mirror of counterAttackBias on the loss clock,
+  gegenpress vs drop-and-recover in the first 3s after losing the
+  ball. Probe FIRST (`transition-anatomy.ts`) proved the window was a
+  pure side effect of steady-state pressIntensity — the gene decouples
+  it at 3 window-bounded sites: TeamBrain pressScore tilt, +1/−1 chaser
+  in the window (a bounded exception to the phase-31 swarm ban — that
+  banned the PERMANENT swarm, this expires with the window), and the
+  drop school's spot-holders SPRINTING home. A/B (`transition-ab.ts`):
+  a real no-dominant-side tradeoff — gegen concedes launches off 8.2%
+  of losses vs drop's 11.1% & regains HIGH 23% vs 17%, cost FT fatigue
+  0.185 vs 0.159, goals near-parity 147/151. Adoption near-neutral
+  (tprs 0.49/0.54/0.43 — mechanism bites, evolution ~indifferent this
+  draw, no poison/blowout). 'Gegenpress' tag moved here from
+  pressIntensity (now 'High press') +'Drops & recovers'. Gates: vitest
+  426, visual 111+52, calibrate 2.86/2.45/3.12; fingerprint REBASELINED
+  `8e02a9cb…`; full entry at ROADMAP head. Queue head now 113.)
 - ⭐ **2026-07-18 NIGHT — QUEUE v2 ratified** (user, against the UI
-  audit + counter-defense conversation): 112 transition-press gene
-  (the first-3s-after-turnover axis — the counter-defense audit's real
-  hole, sitting on the walk-in launch window) → 113 goal-channel viz
+  audit + counter-defense conversation): ~~112 transition-press gene~~
+  (SHIPPED, above) → 113 goal-channel viz
   (probe-grade anatomy goes player-facing) → 114 form strip → 115
   budget viz done right + trap-school feed credit → 116 Evolution
   Center enrichment (formation/style/appetite HISTORY — how identities

@@ -74,11 +74,19 @@ export function updateTeamBrain(team: Team, match: Match): void {
     // the pitch, hysteresis is stronger — the team commits to its mode.
     const steady =
       team.captain >= 0 && !team.players[team.captain].sentOff ? 0.04 : 0;
+    // THE TRANSITION WINDOW (Phase 112): the 3 seconds after LOSING the
+    // ball — the mirror of CounterAttack on the same possession clock.
+    // A gegenpress side flips into Press the instant it loses possession;
+    // a drop-and-recover side refuses the window and falls into Defend
+    // even if its steady-state press would fire. 0.5 = no term at all.
+    const sinceLoss = match.simTime - match.teams[1 - team.side].possessionGainedAt;
+    const tp = ((g.transitionPress ?? 0.5) - 0.5) * 2;
     const pressScore =
       g.pressIntensity +
       (ballLocalX > 0 ? 0.18 : -0.1) +
       (prevMode === 'Press' ? 0.08 + steady : prevMode === 'Defend' ? -steady : 0) +
-      (match.derby ? 0.04 : 0); // derbies bite (Phase 40)
+      (match.derby ? 0.04 : 0) + // derbies bite (Phase 40)
+      (sinceLoss < 3.0 ? tp * 0.22 : 0);
     mode = pressScore > 0.62 ? 'Press' : 'Defend';
   } else {
     // Loose ball: keep the previous shape decision (brief window anyway).
@@ -345,6 +353,21 @@ function assignChasers(team: Team, match: Match): void {
     // support/marking crowd already there, and the won-tackle squirt re-fed
     // the same pile — the reported "乱成一锅粥" loop.
     if (possession === -1) count = Math.min(count, 1);
+    // THE TRANSITION WINDOW (Phase 112): for 3s after losing the ball a
+    // gegenpress side throws ONE extra body at it — a deliberate, window-
+    // bounded exception to the phase-31 "never three" rule (the standing
+    // swarm it banned was permanent; the counter-press IS the momentary
+    // swarm, and it expires with the window). A drop-and-recover side
+    // refuses even its steady-state second presser until the shape is
+    // home. 0.5 leaves the phase-31 counts untouched.
+    if (match.phase === 'playing') {
+      const sinceLoss = match.simTime - match.teams[1 - team.side].possessionGainedAt;
+      if (sinceLoss < 3.0) {
+        const tp = ((team.genome.transitionPress ?? 0.5) - 0.5) * 2;
+        if (tp > 0.3) count = Math.min(count + 1, 3);
+        else if (tp < -0.3) count = Math.min(count, 1);
+      }
+    }
   }
   // Dead ball (Phase 28.3): you can't win a ball nobody may touch — ONE
   // player closes the taker down (blocking the short option, real-football

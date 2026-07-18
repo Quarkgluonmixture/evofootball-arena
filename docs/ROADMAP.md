@@ -1228,27 +1228,59 @@ mid-phase): ADVANTAGE fouls no longer whistle** — the fx stream
 filters "— advantage" fouls (RenderStateAdapter), so neither the SFX
 nor the 3D referee blows while play runs on; the feed line stays.
 
+**112 — the TRANSITION-PRESS gene** ✅ **DONE 2026-07-18 (the 23rd
+gene — the counter-defense audit's hole: no gene owned the first 3s
+after LOSING the ball).** `transitionPress` — the mirror of
+counterAttackBias on the same possession clock. Probe FIRST
+(`transition-anatomy.ts`, the finding that justified the gene): the
+first-3s response was PURELY a side effect of steady-state
+pressIntensity — hiPress sides retreat 2.4-4.8m in the window and
+launch counters off 26-50% of deep turnovers, loPress sides retreat
+6-10m; a mid-block that counter-presses on loss (or a high press that
+DROPS on loss) could not exist in gene space. The gene breaks the
+coupling at three sites, all window-bounded (3s off the loser's
+`possessionGainedAt`, 0.5 = today exactly): (1) TeamBrain pressScore
++tp·0.22 → a gegenpress side flips into Press the instant it loses it,
+a drop side falls to Defend even when its steady press would fire;
+(2) chaser count — gegen throws ONE extra body (a deliberate window-
+bounded exception to the phase-31 "never three" swarm ban — the ban
+was for the PERMANENT swarm; the counter-press expires with the
+window), drop refuses its second presser; (3) executor — drop's
+spot-holders SPRINT home instead of jog (the 106 hurry trigger failed
+because it fired on "beaten"; this fires on the transition clock, for
+the gene that pays). **A/B (`transition-ab.ts`, 120 matches): a real
+tradeoff with NO dominant side — gegen concedes launches off 8.2% of
+losses vs drop's 11.1% (the counter-press denies the launch window)
+and wins the ball back HIGH 23% vs 17% (the playmaker value), at the
+honest cost of FT fatigue 0.185 vs 0.159; goals near-parity 147 vs
+151.** Adoption (24×3): tprs gen-23 = 0.49 / 0.54 / 0.43 — near-neutral
+with mild spread; evolution is close to indifferent on this draw (a
+weaker school signal than morale's 0.24 spread) but the mechanism
+bites and neither extreme is poison or a blowout — school completeness,
+priced, no-op-free. Playbook: save v27 + migration test; 'Gegenpress'
+tag MOVED from pressIntensity (that's now 'High press') to
+transitionPress, +'Drops & recovers'; rebirth radar 反抢/tprs; warming
+column. Gates: vitest 426, visual 111+52, calibrate 2.86/2.45/3.12
+(mean 2.81, all in-band); warming late-means 14.72 on the fresh
+23rd-gene ecology re-roll (sub-baseline, no blowout world, tight
+4.8-5.0/world — but a NEW draw, not directly comparable to 111's
+15.68); fingerprint REBASELINED `8e02a9cb…`.
+
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
-UI-audit + counter-defense conversation, plus their own additions).**
+UI-audit + counter-defense conversation, plus their own additions).
+⭐ HEAD OF QUEUE IS NOW 113 (112 shipped 2026-07-18).**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
 re-roll watch). Execute IN ORDER, one phase = one commit+tag+push,
 full gates each, probe-first everywhere.
 
-**112 — the TRANSITION-PRESS gene (counter-press vs retreat — the
-first-3-seconds-after-turnover axis).** The real hole the counter-
-defense audit found: SIX channels answer a running counter (cover /
-jockey / chasers / slide / grab / keeper) but NO gene owns the
-transition INSTANT — gegenpress (win it back in 6s, at the price of
-being dead if beaten) vs drop-and-recover (concede the launch, keep
-the depth). It sits EXACTLY on the walk-in launch window
-(launch-anatomy: 69-78% of breakaways are carry-throughs born in that
-window) — school completeness AND arc-relevant. 23rd gene → save v27,
-migration, adoption gate, the full 109/111 playbook. Probe first: what
-do teams DO in the 3s after turnover today (chaser latency, retreat
-speed, presser count) — then let the gene price the choice.
+**112 — the TRANSITION-PRESS gene** ✅✅ **SHIPPED 2026-07-18 — see the
+full result entry ABOVE this queue block.** (counter-press vs retreat,
+the first-3-seconds-after-turnover axis; the 23rd gene, save v27; A/B
+verified a real no-dominant-side tradeoff, adoption near-neutral,
+gates green, fingerprint `8e02a9cb…`.)
 
 **113 — GOAL-CHANNEL visualization (the probe-grade anatomy goes
 player-facing).** The launch/shot classification we built for

@@ -40,7 +40,12 @@ describe('TacticalGenome', () => {
 
   it('identity tags reflect extreme genes', () => {
     const g = randomGenome(new Rng(6));
+    for (const k of GENE_KEYS) g[k] = 0.5; // flat — tags come only from the extremes set below
     g.pressIntensity = 0.9;
+    expect(describeIdentity(g)).toContain('High press');
+    g.transitionPress = 0.9;
     expect(describeIdentity(g)).toContain('Gegenpress');
+    g.transitionPress = 0.1;
+    expect(describeIdentity(g)).toContain('Drops & recovers');
   });
 });
