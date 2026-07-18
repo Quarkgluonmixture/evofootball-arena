@@ -7,9 +7,11 @@ import {
 } from '../evolution/playerStyle';
 import { TRAIT_EMOJI, TRAIT_KEYS, traitsOf } from '../evolution/traits';
 import type { Franchise } from '../evolution/franchise';
+import { PlayerShowcase } from '../render3d/PlayerShowcase';
 import type { League } from '../sim/League';
 import type { Role } from '../sim/types';
-import { bar, button, colorHex, el } from './dom';
+import { geneRadar } from './charts';
+import { button, colorHex, el } from './dom';
 import { buildEntityIndex, linkifyText, type EntityIndex, type EntityNav } from './entityLinks';
 import { t } from './i18n';
 
@@ -51,6 +53,9 @@ export class PlayerScreen {
   nav: EntityNav | null = null;
   private linkIdx: EntityIndex | null = null;
   private diveAnchor: HTMLElement | null = null;
+  /** One turntable for the screen's lifetime (Phase 119a) — mount() re-homes
+   * its single WebGL canvas into each fresh render. */
+  private showcase = new PlayerShowcase();
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -67,12 +72,14 @@ export class PlayerScreen {
     this.visible = !this.visible;
     this.root.classList.toggle('hidden', !this.visible);
     if (this.visible) this.render(league);
+    else this.showcase.stop();
   }
 
   hide(): void {
     if (!this.visible) return;
     this.visible = false;
     this.root.classList.add('hidden');
+    this.showcase.stop();
   }
 
   refreshIfVisible(league: League): void {
@@ -274,16 +281,23 @@ export class PlayerScreen {
     }
     panel.appendChild(idCol);
 
-    // Attributes + personal appetites (diverging around the coach's ×1.0).
+    // The ABILITY RADAR (Phase 119a, user ask 多边能力图): the 8 attributes
+    // against the same-role league mean — the fair silhouette (a keeper's
+    // shape means nothing next to a striker's). Exact values live in the
+    // axis tooltips; the bars this replaces carried no comparison at all.
     const barsCol = el('div', 'player-col');
-    for (const k of ATTR_KEYS) {
-      const r = el('div', 'gene-row');
-      r.appendChild(el('div', 'g-name', t(k)));
-      const b = bar(attrs[k], '#60a5fa');
-      b.style.gridColumn = '2 / 4';
-      r.appendChild(b);
-      barsCol.appendChild(r);
-    }
+    const peers = rows.filter((r) => ROSTER_ROLES[r.index] === ROSTER_ROLES[i]);
+    const roleMean = ATTR_KEYS.map(
+      (k) => peers.reduce((s, r) => s + r.franchise.squad[r.index][k], 0) / Math.max(peers.length, 1),
+    );
+    barsCol.appendChild(geneRadar(
+      ATTR_KEYS.map((k) => ({ label: t(k), title: t(k) })),
+      [
+        { values: roleMean, color: INK_MUTED, name: `${ROSTER_ROLES[i]} ${t('role mean')}`, dashed: true },
+        { values: ATTR_KEYS.map((k) => attrs[k]), color: colorHex(f.colors.primary), name: f.playerNames[i], fill: true },
+      ],
+      { size: 210 },
+    ));
     barsCol.appendChild(el('div', 'muted', t('personal appetites (vs the coach\'s ×1.0)')));
     for (const k of PLAYER_STYLE_KEYS) {
       const r = el('div', 'gene-row');
@@ -304,6 +318,21 @@ export class PlayerScreen {
       barsCol.appendChild(r);
     }
     panel.appendChild(barsCol);
+
+    // The man himself (Phase 119a): the match's own 3D model on a turntable —
+    // posed, breathing, drag-to-rotate. Same body rules as the pitch: height
+    // and skin off the name, bulk off evolved strength, keepers in the
+    // inverted kit with gloves.
+    const showCol = el('div', 'player-col player-showcase');
+    this.showcase.mount(showCol, {
+      name: f.playerNames[i],
+      role: ROSTER_ROLES[i],
+      strength: attrs.strength,
+      primary: f.colors.primary,
+      secondary: f.colors.secondary,
+    });
+    showCol.appendChild(el('div', 'muted showcase-hint', `🔄 ${t('drag to rotate')}`));
+    panel.appendChild(showCol);
     this.root.appendChild(panel);
   }
 

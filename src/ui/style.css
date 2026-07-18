@@ -665,8 +665,11 @@ body.cinematic .cinematic-enter { display: none; }
 .team-head button.club-link { margin-left: auto; font-size: 11px; padding: 2px 10px; }
 .player-map { max-width: 640px; }
 .player-lens button { padding: 4px 12px; border-radius: 12px; }
-.player-dive { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 18px; }
+.player-dive { display: grid; grid-template-columns: minmax(230px, 300px) minmax(220px, 1fr) minmax(190px, 250px); gap: 18px; }
 .player-col { min-width: 0; }
+/* The 3D turntable (119a): the canvas is a card of its own. */
+.player-showcase canvas { display: block; border-radius: 10px; border: 1px solid rgba(36, 48, 74, 0.8); }
+.showcase-hint { text-align: center; font-size: 11px; margin-top: 4px; }
 .style-diverge {
   position: relative; height: 10px; border-radius: 5px; background: rgba(36, 48, 74, 0.6);
   overflow: hidden;

@@ -337,6 +337,10 @@ const ZH: Record<string, string> = {
   form: '状态',
   morale: '士气',
 
+  // ---- player card upgrade (Phase 119a) ----
+  'role mean': '同位置均值',
+  'drag to rotate': '拖动旋转',
+
   // ---- evolution center enrichment (Phase 116) ----
   'Formation history': '阵型史',
   'Shape history records from here on — play a season.': '阵型史从现在起记录——先打一个赛季。',

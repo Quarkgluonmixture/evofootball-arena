@@ -1452,12 +1452,25 @@ reading order: 联赛中心 · 演化 · 球队 · 球员. ③ SPACEBAR toggles
 pause/play (guarded: not while typing / on a focused control;
 suite-checked). Gates: vitest 441 green, visual 127+53, build clean.
 
-**119a — PLAYER CARD upgrade (user ask, 2026-07-18 night)**: the
-player dive gets ① the 多边能力图 (attribute+appetite radar — the
-geneRadar grammar over PLAYER dims, data all live) and ② the player
-HIMSELF in 3D: posed, idle-animated, drag-to-rotate full body on a
-pedestal — reuse the match's render3d player model (kit, number,
-build, GK identity) in a small standalone three.js scene. One phase.
+**119a — PLAYER CARD upgrade** ✅ **SHIPPED 2026-07-18 (user ask:
+多边能力图 + 3D 可旋转全身).** ① the ABILITY RADAR: the 8 attributes
+vs the SAME-ROLE league mean (geneRadar grammar — role mean dashed,
+the player filled in kit color; replaces the comparison-free attr
+bars, exact values live in the axis tooltips — a keeper's silhouette
+finally means something because it's judged against keepers). ② the
+SHOWCASE (`render3d/PlayerShowcase.ts`): the MATCH's own PlayerModel
+on a studio turntable — kit + back number + the earned body
+(height/skin/hair off the name, bulk off evolved strength), keepers
+in the inverted kit with gloves in a ready crouch, outfielders at
+ease; breathing idle + lazy arm sway around the pose (base-pose
+offsets, so the stance survives the animation), drag-to-rotate via
+pointer events, auto-spin resumes 2.5s after release. ONE WebGL
+context for the screen's lifetime: mount() re-homes the canvas each
+render, the model swaps only when the occupant changes, per-instance
+materials disposed while the match renderer's shared GEO/MAT caches
+stay untouched. UI-only: fingerprint IDENTICAL `093da5bd…`. Gates:
+vitest 441, visual 129 (+2: radar + live showcase canvas) + 3D
+suite, build clean.
 
 **119b — ATTACK DIVERSITY / the collapse probe (the blueprint's
 core gap, discussed 2026-07-18 night)**: probe-first — why does
@@ -1469,6 +1482,12 @@ stalled carriers, per-opponent game-planning (the coach reads the
 opponent's profile — the counter-pick loop real football has),
 1v1 conversion honesty. Measured by the goal-channel census: success
 = `through`/`cross` return, no world falls below the goals floor.
+⭐ FOLLOW-ON (user, 2026-07-18): once per-opponent game-planning
+lands, the pre-match popup tactics board (the clash banner) should
+become a proper MATCHDAY REPORT — this fixture's formations, the
+coach's counter-pick and why, the arrangements for THIS opponent.
+The clash stops being a static DNA readout and starts narrating the
+game-plan the coach actually chose.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

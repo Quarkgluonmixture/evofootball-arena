@@ -390,8 +390,11 @@ check('role lens filters the map to one line', stDots === 32, `${stDots} ST dots
 await page.click('#player-screen .player-lens button:has-text("All")');
 await page.waitForTimeout(200);
 const diveRows = await page.locator('#player-screen .player-dive .gene-row').count();
-check('deep dive shows attributes + appetites', diveRows === 13, `${diveRows} rows`);
+check('deep dive shows the 5 appetite rows (attrs moved to the radar, 119a)', diveRows === 5, `${diveRows} rows`);
 check('personal appetites render as diverging bars', (await page.locator('#player-screen .style-diverge').count()) === 5, '');
+// Phase 119a — the ability radar + the 3D showcase turntable.
+check('ability radar renders in the dive (119a)', (await page.locator('#player-screen .player-dive .gene-radar').count()) === 1, '');
+check('3D showcase canvas is live (119a)', (await page.locator('#player-screen .player-showcase canvas').count()) === 1, '');
 const playerTxt = await page.textContent('#player-screen');
 check('transfers & market section renders', playerTxt.includes('Transfers'), '');
 check('census counts earned nameplates', playerTxt.includes('nameplate'), '');
