@@ -306,7 +306,11 @@ export class GameApp implements GameActions {
     // Title BGM, START reveals the game.
     this.titleScreen = new TitleScreen({
       onEnter: () => {
+        // The gesture unlocks BOTH audio contexts (Phase 105: SoundFx has
+        // its own — on iOS it was never resumed inside a gesture, which was
+        // the whole "手机端没有声音" report) + the ringer-switch session.
         this.music.unlock();
+        this.sound.unlock();
         this.updateMusic();
       },
       onStart: () => this.updateMusic(),
@@ -353,6 +357,7 @@ export class GameApp implements GameActions {
       debugShootout: () => this.debugShootout(),
       showCeremony: () => this.showCeremony(),
       clashVisible: () => this.clash.isVisible,
+      audioState: () => ({ ...this.music.state, paused: this.paused }),
       titleVisible: () => this.titleScreen?.isVisible ?? false,
       skipTitle: () => this.titleScreen?.skip(),
       reelActive: () => this.reel !== null,
@@ -560,6 +565,7 @@ export class GameApp implements GameActions {
       this.loadNextFixture();
       this.paused = true;
       this.left.setSpeedUI(true, this.speed);
+      this.updateMusic(); // between fixtures = paused: the ducked anthem (105)
       return;
     }
     if (!this.fixture || !this.match) return;
@@ -589,6 +595,7 @@ export class GameApp implements GameActions {
     if (!this.autoContinue) {
       this.paused = true;
       this.left.setSpeedUI(this.paused, this.speed);
+      this.updateMusic();
     }
     // The archive holds the finished match; the reel plays over the loaded
     // next fixture and hands control back where it found it.
@@ -615,6 +622,7 @@ export class GameApp implements GameActions {
     this.reel = { moments, idx: -1, endT: 0, prevCam: this.three.cameraMode, prevPaused: this.paused };
     this.paused = true;
     this.left.setSpeedUI(true, this.speed);
+    this.updateMusic(); // reel owns the stage: crowd, not anthem (105)
     this.replay = { active: true, playing: true, t: range[0], speed: 0.5, source, events: [] };
     this.feed.pushSystem('🎬 Highlights (⏭ skips).');
     this.nextReelMoment();
@@ -659,6 +667,7 @@ export class GameApp implements GameActions {
     }
     this.paused = reel.prevPaused;
     this.left.setSpeedUI(this.paused, this.speed);
+    this.updateMusic();
     // An FT reel covered the next fixture's pre-match clash — bring it back.
     if (this.match && this.match.simTime < 10 && this.fixture) {
       this.clashAutoHide = true;
@@ -686,6 +695,7 @@ export class GameApp implements GameActions {
     this.left.setViewUI(this.viewMode, 'penalty');
     this.paused = false;
     this.left.setSpeedUI(false, this.speed);
+    this.updateMusic();
     this.feed.pushSystem(
       `🥅 Level at full time — penalty shootout: ${m.teams[0].info.name} vs ${m.teams[1].info.name} (⏭ to skip).`,
     );
@@ -862,6 +872,7 @@ export class GameApp implements GameActions {
   setPaused(p: boolean): void {
     this.paused = p;
     this.left.setSpeedUI(this.paused, this.speed);
+    this.updateMusic(); // pause = the ducked anthem returns (Phase 105)
   }
 
   setSpeed(s: number): void {
@@ -869,6 +880,7 @@ export class GameApp implements GameActions {
     this.speed = s;
     this.paused = false;
     this.left.setSpeedUI(this.paused, this.speed);
+    this.updateMusic(); // play resumes = the anthem fades out (Phase 105)
   }
 
   skipMatch(): void {
@@ -1076,23 +1088,30 @@ export class GameApp implements GameActions {
     this.updateMusic();
   }
 
-  /** Context-driven BGM (Phase 89): the launch overlay (96) and the
-   * pre-match clash = the title anthem, ceremony = the victory track
-   * (enters at its 20s drop), management screens = the league track,
+  /** Context-driven BGM (Phase 89 → 105): the launch overlay = the title
+   * anthem FULL; the pre-match clash and any PAUSE = the same anthem
+   * DUCKED (user design: enter the game and it drops back naturally, fades
+   * out when play resumes, returns when you pause); ceremony = the victory
+   * track (enters at its 20s drop), management screens = the league track,
    * live play = crowd only. */
   private updateMusic(): void {
     // Optional chaining throughout: the music slider's build-time default
     // (Phase 96) calls this while the screens are still being constructed.
-    const slot = this.titleScreen?.isVisible
-      ? 'title'
+    const pauseMusic =
+      this.paused && !this.reel && !this.replay?.active && !this.theater;
+    const [slot, mul]: [Parameters<MusicSystem['play']>[0], number] = this.titleScreen?.isVisible
+      ? ['title', 1]
       : this.ceremony?.isVisible
-        ? 'victory'
+        ? ['victory', 1]
         : this.leagueScreen?.isVisible || this.evolutionScreen?.isVisible || this.playerScreen?.isVisible
-          ? 'league'
-          : this.clash?.isVisible
-            ? 'title'
-            : null;
-    this.music.play(slot);
+          ? ['league', 1]
+          : pauseMusic // the clash no longer keeps the anthem by itself —
+            // live play is crowd-only the moment ▶ is pressed (105), and
+            // between fixtures the game IS paused, so the clash still gets
+            // its anthem there.
+            ? ['title', 0.4]
+            : [null, 1];
+    this.music.play(slot, mul);
     // The stadium falls silent when a screen covers the stage (Phase 90);
     // the pre-match clash is a broadcast graphic — the crowd stays. The
     // launch overlay is a TITLE SCREEN: synthwave only, no crowd under it.

@@ -10,51 +10,69 @@ export type FxSoundType =
   | 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card'
   | 'pass' | 'touch' | 'miss' | 'header' | 'woodwork';
 
-/** Sample file(s) + gain per event; arrays play together (net + crowd). */
+/** Sample file(s) + gain per event; arrays play together (net + crowd).
+ *
+ * MIX PASS (Phase 105, user report round 3): every gain is now anchored to
+ * MEASURED source loudness (afconvert→RMS; see the phase-105 ledger table)
+ * instead of guessed. The recordings span a huge range — the ambience beds
+ * sit at −45 dB RMS while the crowd reactions hit −26 dB, which is exactly
+ * why the beds were inaudible and the cheers deafening at similar gains.
+ * Target hierarchy (effective RMS = source + 20·log10(gain), master at 1):
+ *   beds −29 · reactions −31..−33 · goal accents −28..−29 ·
+ *   per-touch layer −34..−35 · UI −33..−36 · BGM −16.  */
 const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>>> = {
-  shot: [{ file: 'sfx_kick_power_01.m4a', gain: 1.15 }],
+  shot: [{ file: 'sfx_kick_power_01.m4a', gain: 1.35 }],
   goal: [
-    { file: 'sfx_ball_hit_net_01.m4a', gain: 1.35 },
-    { file: 'sfx_crowd_goal_celebration_01.m4a', gain: 0.85 },
+    { file: 'sfx_ball_hit_net_01.m4a', gain: 1.6 },
+    { file: 'sfx_crowd_goal_celebration_01.m4a', gain: 0.66 },
   ],
   save: [
-    { file: 'sfx_keeper_save_01.m4a', gain: 0.9 },
-    { file: 'sfx_crowd_applause_01.m4a', gain: 0.5 },
+    { file: 'sfx_keeper_save_01.m4a', gain: 1.0 },
+    { file: 'sfx_crowd_applause_01.m4a', gain: 0.6 },
   ],
-  interception: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.7 }],
+  interception: [{ file: 'sfx_touch_heavy_01.m4a', gain: 2.5 }],
   pass: [
-    { file: 'sfx_pass_short_02-001.m4a', gain: 0.95 },
-    { file: 'sfx_pass_short_02-002.m4a', gain: 0.95 },
+    { file: 'sfx_pass_short_02-001.m4a', gain: 0.74 },
+    { file: 'sfx_pass_short_02-002.m4a', gain: 0.84 },
   ],
-  touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 0.75 }],
-  corner: [{ file: 'sfx_pass_short_02-001.m4a', gain: 0.7 }],
-  foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.55 }],
+  touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 2.2 }],
+  corner: [{ file: 'sfx_pass_short_02-001.m4a', gain: 0.6 }],
+  foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.9 }],
   // A near thing goes wide/over — the crowd deflates (Phase 90).
-  miss: [{ file: 'sfx_crowd_disappointment_01.m4a', gain: 0.6 }],
+  miss: [{ file: 'sfx_crowd_disappointment_01.m4a', gain: 0.45 }],
   // The clang the author recorded a phase range ago finally has its
   // mechanic (Phase 100): frame hit + the crowd's collective wince.
   woodwork: [
-    { file: 'sfx_ball_hit_crossbar_01.m4a', gain: 1.25 },
-    { file: 'sfx_crowd_disappointment_01.m4a', gain: 0.5 },
+    { file: 'sfx_ball_hit_crossbar_01.m4a', gain: 1.2 },
+    { file: 'sfx_crowd_disappointment_01.m4a', gain: 0.4 },
   ],
   // The aerial duel's thud (Phase 90) — header flags from the renderer.
-  header: [{ file: 'sfx_aerial_duel_contact_01.m4a', gain: 0.8 }],
+  header: [{ file: 'sfx_aerial_duel_contact_01.m4a', gain: 1.5 }],
   // card: silent — the whistle already blew for the foul.
 };
 
 /** UI sounds (Phase 90) — the recorded clicks, routed through the same
  * master so the volume slider governs them too. */
 const UI_SAMPLES: Record<'click' | 'toggle' | 'heavy', { file: string; gain: number }> = {
-  click: { file: 'ui_button_click_01.m4a', gain: 0.4 },
+  click: { file: 'ui_button_click_01.m4a', gain: 0.8 },
   toggle: { file: 'ui_toggle_01.m4a', gain: 0.45 },
   heavy: { file: 'ui_button_press_heavy_tonal_01.m4a', gain: 0.5 },
 };
 
 const CHANTS = ['amb_stadium_crowd_chant_01.m4a', 'amb_stadium_crowd_chant_02.m4a'];
-const AMB_BEDS = ['amb_stadium_crowd_low_loop_01.wav', 'amb_stadium_crowd_low_loop_02.wav'];
-const DRIBBLE = { file: 'sfx_dribble_fast_loop_01.m4a', gain: 0.3 };
+// The beds are recorded VERY quiet (−45.5/−44.8 dB RMS — 18 dB under every
+// reaction sample); per-bed gains lift both to ≈−29 dB effective, the
+// audible floor the reactions then sit just above. Peaks stay ≤−9 dB even
+// at the arousal ceiling (×1.6).
+const AMB_BEDS = [
+  { file: 'amb_stadium_crowd_low_loop_01.wav', gain: 6.7 },
+  { file: 'amb_stadium_crowd_low_loop_02.wav', gain: 6.2 },
+];
+// Source is near the noise floor (−62 dB RMS) — it needs this much just to
+// whisper under a sprint (was 0.3 = −72 dB effective, pure placebo).
+const DRIBBLE = { file: 'sfx_dribble_fast_loop_01.m4a', gain: 8 };
 
-const AMBIENCE_GAIN = 0.5;
+const AMBIENCE_GAIN = 1;
 
 export class SoundFx {
   private ctx: AudioContext | null = null;
@@ -78,9 +96,73 @@ export class SoundFx {
   setArousal(a: number): void {
     this.arousal = a;
     if (this.ambGain && this.ctx) {
-      this.ambGain.gain.setTargetAtTime(AMBIENCE_GAIN * (0.7 + a * 0.9), this.ctx.currentTime, 0.4);
+      this.ambGain.gain.setTargetAtTime(
+        AMBIENCE_GAIN * this.ambBed.gain * (0.7 + a * 0.9), this.ctx.currentTime, 0.4,
+      );
     }
   }
+
+  /**
+   * MOBILE UNLOCK (Phase 105, user report 手机端没有声音): call from a REAL
+   * user gesture (the title screen's enter click). Two iOS problems at once:
+   * ① SoundFx has its OWN AudioContext, created lazily inside play() — a
+   *   frame-driven call site, so on iOS the context was born suspended and
+   *   a non-gesture resume() never succeeds. The title click unlocked the
+   *   MUSIC context (phase-96) but never this one.
+   * ② The ringer switch: iOS mutes WebAudio while the phone is on silent
+   *   UNLESS the page also plays an HTML <audio> element — playing a short
+   *   silent loop flips the audio session to "playback" (the unmute.js
+   *   trick), and every context on the page becomes audible.
+   * Also re-resumes on visibilitychange — iOS suspends contexts when the
+   * app backgrounds and does not wake them for you.
+   */
+  unlock(): void {
+    try {
+      this.ctx ??= new AudioContext();
+      if (this.ctx.state === 'suspended') void this.ctx.resume();
+      // one-shot empty buffer INSIDE the gesture — the classic warm-up
+      const b = this.ctx.createBuffer(1, 1, 22050);
+      const s = this.ctx.createBufferSource();
+      s.buffer = b;
+      s.connect(this.ctx.destination);
+      s.start(0);
+      if (!this.silentEl) {
+        // ~46ms of silence, WAV built in code — loops forever, near-mute.
+        const rate = 22050;
+        const n = 1024;
+        const wav = new ArrayBuffer(44 + n * 2);
+        const v = new DataView(wav);
+        const tag = (o: number, s: string): void => {
+          for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i));
+        };
+        tag(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); tag(8, 'WAVE');
+        tag(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true);
+        v.setUint16(22, 1, true); v.setUint32(24, rate, true);
+        v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true);
+        v.setUint16(34, 16, true); tag(36, 'data'); v.setUint32(40, n * 2, true);
+        const el = document.createElement('audio');
+        el.src = URL.createObjectURL(new Blob([wav], { type: 'audio/wav' }));
+        el.loop = true;
+        el.volume = 0.01;
+        (el as HTMLAudioElement & { playsInline?: boolean }).playsInline = true;
+        void el.play().catch(() => undefined);
+        this.silentEl = el;
+      }
+      if (!this.visHooked) {
+        this.visHooked = true;
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible' && this.ctx?.state === 'suspended') {
+            void this.ctx.resume();
+          }
+        });
+      }
+    } catch {
+      /* no WebAudio — stay silent */
+    }
+  }
+
+  private silentEl: HTMLAudioElement | null = null;
+  private visHooked = false;
 
   /** Whether the match stage is on screen (Phase 90): management screens
    * and the ceremony cover it — the stadium falls silent there. */
@@ -181,7 +263,7 @@ export class SoundFx {
     }
     if (!this.loading && this.buffers.size === 0) {
       this.loading = true;
-      const files = new Set<string>([...AMB_BEDS, ...CHANTS, DRIBBLE.file]);
+      const files = new Set<string>([...AMB_BEDS.map((b) => b.file), ...CHANTS, DRIBBLE.file]);
       for (const u of Object.values(UI_SAMPLES)) files.add(u.file);
       for (const list of Object.values(SAMPLES)) for (const s of list) files.add(s.file);
       await Promise.all(
@@ -203,13 +285,15 @@ export class SoundFx {
   /** The stadium bed: the QA'd seamless-loop candidate, WAV (AAC's encoder
    * priming would click at the loop point), low in the mix. */
   private startAmbience(): void {
-    if (!this.ctx || this.ambSrc || !this.stadium || !this.buffers.has(this.ambBed)) return;
+    if (!this.ctx || this.ambSrc || !this.stadium || !this.buffers.has(this.ambBed.file)) return;
     const src = this.ctx.createBufferSource();
-    src.buffer = this.buffers.get(this.ambBed)!;
+    src.buffer = this.buffers.get(this.ambBed.file)!;
     src.loop = true;
     const g = this.ctx.createGain();
     g.gain.value = 0;
-    g.gain.linearRampToValueAtTime(AMBIENCE_GAIN * (0.7 + this.arousal * 0.9), this.ctx.currentTime + 1.2);
+    g.gain.linearRampToValueAtTime(
+      AMBIENCE_GAIN * this.ambBed.gain * (0.7 + this.arousal * 0.9), this.ctx.currentTime + 1.2,
+    );
     src.connect(g).connect(this.out());
     src.start();
     this.ambSrc = src;
@@ -230,7 +314,7 @@ export class SoundFx {
         const src = this.ctx.createBufferSource();
         src.buffer = buf;
         const g = this.ctx.createGain();
-        g.gain.value = 0.24 * (0.6 + this.arousal);
+        g.gain.value = 0.4 * (0.6 + this.arousal); // src −28 dB: lands ≈−32 eff
         src.connect(g).connect(this.out());
         src.start();
       }

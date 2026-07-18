@@ -142,6 +142,9 @@ export class LeftPanel {
     soundText.textContent = t('Sound FX');
     soundRow.append(soundIcon, soundText, soundSlider);
     presSec.appendChild(soundRow);
+    // Sound FX default ON (Phase 105, user ask 音效默认开启) — the context
+    // still waits for the title screen's enter gesture; the slider rules.
+    applyVol(70);
     // Music: same slider + click-to-mute pattern (Phase 89, the user's BGM).
     const musicRow = document.createElement('div');
     musicRow.className = 'sound-row';

@@ -984,6 +984,31 @@ REAL defensive identities rather than uniformly abandoning defence.
 Calibrate 2.94/2.90/3.09 (the 103 default-seed dip RESOLVES); vitest
 421 (zero re-anchors); visual 109+50; fingerprint REBASELINED
 `f4750bb9…`.)
++ ✅ **phase-105 SHIPPED** (**audio round 3 — the MEASURED mix** (user
+reports: title BGM should duck→fade→return with pause; beds inaudible;
+cheers too loud; balance everything; SFX default on; 手机端没有声音):
+① every gain now anchored to MEASURED source RMS (afconvert): the beds
+were recorded at −45 dB RMS — 18 dB under the reaction samples — which
+is the whole small-amb/loud-cheer complaint in one number. New targets:
+beds ≈−29 eff (gains 6.7/6.2), reactions −31..−33 (celebration
+0.85→0.66, disappointment 0.6→0.45), goal accents −28 (net 1.6), touch
+layer −34 (touch 0.75→2.2 — source −42!), dribble loop 0.3→8 (source
+−62, was −72 eff = placebo), chants 0.24→0.4, whistle 0.9, header 1.5;
+BGM equalized to −16 eff (title .94/league .68/victory .65 — victory
+was hottest source AND biggest gain). ② the TITLE ANTHEM lifecycle
+(user design): full on the launch screen → DUCKED ×0.4 on START (the
+game boots paused) → fades out the moment ▶ resumes (decoupled from
+the clash, which used to hold it 10 sim-seconds into play) → returns
+ducked on every pause; `MusicSystem.play(slot, mul)` retargets without
+restarting; headless-verified via the new `__evo.audioState()`.
+③ MOBILE SILENCE root-caused: SoundFx owns a SECOND AudioContext that
+was only ever resumed from frame-driven calls — never inside a gesture,
+so iOS kept it suspended forever; the title click now unlocks BOTH
+contexts + plays a code-built silent <audio> loop (the ringer-switch
+session trick) + visibilitychange re-resume for backgrounding.
+④ SFX default ON at 70 (user ask), slider still rules. UI-only;
+fingerprint IDENTITY `f4750bb9…`; vitest 421; visual 109+52. Final
+gain judgement = the user's ears; every number has a dB paper trail.)
 ⭐⭐⭐ **THE OVERNIGHT RESULT (2026-07-18 02:00-04:40 — the queue below
 EXECUTED, phases 93-101, nine commits+tags all pushed, every gate
 green).** One-line map: **93** ✅ composure earned (composed-1v1 share

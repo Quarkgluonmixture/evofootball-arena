@@ -1548,6 +1548,12 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   instead — defensive DIVERSITY, not uniform abandonment). The
   inflation battle's cumulative state: conv still 48-60% late —
   the arc stays open, but every school is now honestly priced.
+- ✅ **phase-105 SHIPPED** (**audio round 3**; UI-only, fingerprint
+  IDENTITY `f4750bb9…`). Measured mix (beds were −45 dB RMS sources —
+  the whole complaint), title-anthem duck/fade/return lifecycle keyed
+  to pause, mobile silence root-caused (SoundFx's second context never
+  gesture-unlocked; + ringer-switch session trick + visibility
+  re-resume), SFX default ON. `__evo.audioState()` for tooling.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure
