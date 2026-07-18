@@ -1062,8 +1062,17 @@ export function performShot(match: Match, shooter: Player): void {
       break;
     }
   }
+  // Composure EARNED (Phase 93): the 28.4 gift was attribute-blind — every
+  // breakaway shooter got the tighter aim + grouping for free, and the
+  // shot-context anatomy measured that pipe at 76-81% of late-gen goals.
+  // Scale the gift by finishing instead: at 0.5 the oneVone branch is a
+  // no-op (a plain shot), a 0.9+ finisher keeps the full old gift
+  // (aim ×0.72, spread ×0.7), and a 0.2 finisher PANICS — alone in front
+  // of goal with nothing to trust, he sprays WIDER than a contested shot.
+  // Composure is now a thing the budget must buy, not a flag.
+  const composure = clamp((shooter.attrs.finishing - 0.5) / 0.4, -0.75, 1);
   const aimTarget = oneVone
-    ? v2(goalX, (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin * 0.72))
+    ? v2(goalX, (gk.pos.y >= 0 ? -1 : 1) * (GOAL_WIDTH / 2 - aimMargin * (1 - 0.28 * composure)))
     : target;
   const aim = norm(sub(aimTarget, shooter.pos));
   // Long-range and pressured shots spray more; finishers spray less. A shot
@@ -1076,7 +1085,7 @@ export function performShot(match: Match, shooter: Player): void {
   const spread =
     (0.022 + d * 0.0028 + contest * 0.05) *
     (1.45 - shooter.attrs.finishing * 0.9) *
-    (oneVone ? 0.7 : 1) *
+    (oneVone ? 1 - 0.3 * composure : 1) *
     orientationNoiseMul(misalign, shooter.attrs.dribbling);
   const dir = rotate(aim, match.rng.gaussian() * spread);
 

@@ -1435,6 +1435,16 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   5.16. The fork is sharp: honest mechanism + unstable adoption =
   the anchor's regime, or accept ecology variance. Pins re-anchored
   (throw 58/182/207, cards seed 37 — containment cut lunge volume).
+- ✅ **phase-93 SHIPPED** (**composure earned — the 28.4 gift
+  dismantled**; fingerprint REBASELINED `a3120f75…`). The oneVone
+  aim/spread bonuses now scale with finishing (no-op at 0.5, full
+  gift at 0.9+, panic at 0.2) — composure is a budget line, not a
+  flag. Composed-1v1 goal share 78/82% → 75/73%; warming late means
+  6.0/6.7/5.16 → 5.82/5.52/5.31 (↓ but far from the ≤3.8 verdict
+  bar — the inflation now rides xg/shot 0.16→0.22-0.25 with
+  finishing flat at ~0.5, so the gift was an accelerant, not the
+  engine). Calibrate 2.40/2.59/2.99 (default ~0.1 under the soft
+  edge — watch, not chase). Throw seeds re-anchored 24/42/44 (6th).
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

@@ -738,6 +738,23 @@ re-anchored: keeper-throw 3/97/123→58/182/207 (5th), card sample
 seed 5→37 (containment cut desperate lunges = fewer cards).
 vitest 415; calibrate 2.95/2.97/3.43 (early band healthy);
 fingerprint REBASELINED `f971e8a0…`.)
++ ✅ **phase-93 SHIPPED** (**composure EARNED — the 28.4 gift
+dismantled** (queue item D): the oneVone aim ×0.72 + spread ×0.7
+were attribute-BLIND — every breakaway shooter got them free. Now
+scaled by finishing: `clamp((fin−0.5)/0.4, −0.75, 1)` — at 0.5 the
+branch is a NO-OP (plain shot), 0.9+ keeps the full old gift, 0.2
+PANICS (sprays ×1.225, aims safer ×1.21). Measured: composed-1v1
+goal share 78/82% → 75/73% (anatomy re-baselined at 92-HEAD first);
+warming late means 6.0/6.7/5.16 → 5.82/5.52/5.31 — direction ↓ but
+the arc is NOT closed: gen-23 finishing stays ~0.5, the pipe now
+rides shot QUALITY (xg/shot 0.16→0.22-0.25) rather than the gift,
+conv still 46-63%. Calibrate 2.40/2.59/2.99 — default seed ~0.1
+under the 2.5 soft edge, above the 2.3 floor: logged as a WATCH,
+not chased (the drop is the point; 94/95 re-measure). Keeper-throw
+seeds re-anchored 58/182/207→24/42/44 (6th dance; card pins held).
+vitest 415; visual 109+51 (the 3D count is data-dependent — the
+conditional refCall check didn't fire on this stream); fingerprint
+REBASELINED `a3120f75…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
@@ -809,7 +826,7 @@ chaser-count hardcode; N6 follow-through (fitBias drift watch).
 
 Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
 play reports; goals-band verdict = theirs; amb-loop human listen
-still open. HEAD fingerprint `f971e8a0…` (phase-92). The user PLAYS CONTINUOUSLY —
+still open. HEAD fingerprint `a3120f75…` (phase-93). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
