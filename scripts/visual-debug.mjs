@@ -184,6 +184,8 @@ check('tapping the wall re-targets the dive', firstName !== secondName, `${first
 check('wall marks the selected club', (await page.locator('#clubs-screen .club-mini.selected').count()) === 1, '');
 check('wall minis carry form strips (114)', (await page.locator('#clubs-screen .club-mini .form-strip').count()) === 16, '');
 check('club dive carries the morale meter (114)', (await page.locator('#clubs-screen .evo-club .morale-row').count()) === 1, '');
+check('attr rows are league-mean delta bars (115)', (await page.locator('#clubs-screen .evo-club .delta-bar').count()) === 8, '');
+check('budget bar splits XI vs bench (115)', (await page.locator('#clubs-screen .budget-split .split-seg').count()) === 2, '');
 await page.screenshot({ path: `${OUT}/5c-clubs.png` });
 await page.click('#topbar button:has-text("Clubs")'); // close
 await page.waitForTimeout(200);

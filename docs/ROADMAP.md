@@ -1317,9 +1317,8 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
-⭐ HEAD OF QUEUE IS NOW 115 (112+113+113.5+114 shipped 2026-07-18);
-115's delta bars + trap-school feed credit land in the club center /
-feed after the 113.5 IA split.**
+⭐ HEAD OF QUEUE IS NOW 116 (112 through 115 shipped 2026-07-18; the
+club center from 113.5 is the new home of all club-identity viz).**
 State at queue-writing: phases 106-111 ALL shipped+pushed (six in one
 day); HEAD fingerprint `793d0dab…` (phase-111); vitest 424; visual
 111+54; warming 15.68; calibrate 3.25/3.64⚠/2.82 (424242 over-top
@@ -1358,12 +1357,20 @@ instead, timeline is a cheap follow-up if the curve is wanted.
 UI-only: fingerprint IDENTICAL `8c6330b2…`. Gates: vitest 432 (+2
 form tests), visual 123+54, build clean.
 
-**115 — BUDGET viz done RIGHT (the user's call-out) + small viz
-debts.** Replace/augment the attr heatmap with per-club DELTA BARS vs
-the league mean (+pace −defending — stars-vs-balanced, the 48
-emergence, finally legible); the bench-vs-XI budget split (61);
-⭐ also: credit the TRAP SCHOOL in the feed when a high-trapBias
-defense wins an offside (109's visible face is missing).
+**115 — BUDGET viz done RIGHT + small viz debts** ✅ **SHIPPED
+2026-07-18.** ① Club-dive attr rows are now DELTA BARS vs the league
+mean (`deltaBar` in charts.ts: center tick, diverging ±0.2 full
+deflection, exact value+Δ in the row text) — the 48 stars-vs-balanced
+emergence finally legible per club; the Evolution population heatmap
+stays (it's the population lens). ② The budget bar splits XI vs 🪑
+bench (61 debt): two segments + `22.1 + 🪑7.5 / 36` text. ③ 🪤 TRAP
+CREDIT in the feed (109's visible face): when a committed trap side
+(raw `trapBias > 0.72`, the nameplate threshold) wins the flag,
+`callOffside` credits the SCHOOL — same single line, no feed spam;
+vitest-covered both ways (trap side gets 🪤 across seeds, neutral
+line never does). Events aren't saved → fingerprint IDENTICAL
+`8c6330b2…`. Gates: vitest 434 (+2), visual 125+52 (the 3D count
+breathes with match events), build clean.
 
 **116 — the EVOLUTION CENTER enrichment (user: "演化页面不够丰富").**
 Per-club FORMATION/STYLE history (shape switches over generations — a

@@ -637,6 +637,17 @@ body.cinematic .cinematic-enter { display: none; }
 .club-mini:hover { border-color: var(--accent); }
 .club-mini.selected { border-color: var(--accent); }
 .diagram-row { display: flex; gap: 8px; margin: 8px 0; }
+/* Budget split + attr delta bars (Phase 115). */
+.budget-split { display: flex; }
+.split-seg { height: 100%; }
+.delta-bar { position: relative; }
+.delta-tick {
+  position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px;
+  background: #8294b5; opacity: 0.8;
+}
+.delta-fill { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+.delta-txt { font-size: 11px; white-space: nowrap; }
+
 /* Form & morale (Phase 114). */
 .form-strip { display: inline-flex; gap: 3px; align-items: center; vertical-align: middle; }
 .form-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }

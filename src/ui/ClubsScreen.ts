@@ -7,8 +7,8 @@ import {
 import { nameplates } from '../evolution/styleSpace';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
 import { DIVISION_SHORT, type League } from '../sim/League';
-import { formationDiagram, geneRadar, type RadarSeries } from './charts';
-import { bar, colorHex, el } from './dom';
+import { deltaBar, formationDiagram, geneRadar, type RadarSeries } from './charts';
+import { colorHex, el } from './dom';
 import type { EntityNav } from './entityLinks';
 import { formStrip, moraleRow, recentForm } from './form';
 import { channelWindow, goalChannelTile } from './goalChannels';
@@ -173,21 +173,46 @@ export class ClubsScreen {
     outCol.appendChild(moraleRow(f.morale ?? 0.5));
     outCol.appendChild(goalChannelTile(channelWindow(league, f.slot)));
 
+    // Budget split (Phase 115, the 61 debt): where the wage cap actually
+    // sits — the starting XI vs the bench, two segments of one bar.
     const spent = squadTotal(f.squad);
+    const xiSpend = squadTotal(f.squad.slice(0, SQUAD_ROLES.length));
+    const benchSpend = spent - xiSpend;
     const budgetRow = el('div', 'gene-row');
     budgetRow.appendChild(el('div', 'g-name', t('budget')));
-    const budgetBar = bar(spent / SQUAD_BUDGET, spent >= SQUAD_BUDGET - 0.05 ? '#f59e0b' : '#34d399');
-    budgetBar.style.gridColumn = '2 / 3';
-    budgetRow.appendChild(budgetBar);
-    budgetRow.appendChild(el('div', 'muted', `${spent.toFixed(1)}/${SQUAD_BUDGET}`));
+    const split = el('div', 'bar budget-split');
+    const xiSeg = el('div', 'split-seg');
+    xiSeg.style.width = `${((xiSpend / SQUAD_BUDGET) * 100).toFixed(1)}%`;
+    xiSeg.style.background = spent >= SQUAD_BUDGET - 0.05 ? '#f59e0b' : '#34d399';
+    xiSeg.title = `XI ${xiSpend.toFixed(1)}`;
+    const benchSeg = el('div', 'split-seg');
+    benchSeg.style.width = `${((benchSpend / SQUAD_BUDGET) * 100).toFixed(1)}%`;
+    benchSeg.style.background = '#8294b5';
+    benchSeg.title = `🪑 ${benchSpend.toFixed(1)}`;
+    split.append(xiSeg, benchSeg);
+    split.style.gridColumn = '2 / 3';
+    budgetRow.appendChild(split);
+    budgetRow.appendChild(el('div', 'muted',
+      `${xiSpend.toFixed(1)} + 🪑${benchSpend.toFixed(1)} / ${SQUAD_BUDGET}`));
     outCol.appendChild(budgetRow);
+    // Attribute DELTA bars (Phase 115, the 48 emergence made legible):
+    // deviation from the LEAGUE MEAN, not the raw level — a stars club
+    // reads +pace −defending at a glance where absolute bars all looked
+    // the same. Exact value + delta ride each row's text.
     const summary = squadSummary(f.squad);
+    const allSummaries = ordered.map((c) => squadSummary(c.squad));
+    const meanOf = (k: (typeof ATTR_KEYS)[number]): number =>
+      allSummaries.reduce((a, s) => a + s[k], 0) / Math.max(allSummaries.length, 1);
     for (const k of ATTR_KEYS) {
       const row = el('div', 'gene-row');
       row.appendChild(el('div', 'g-name', t(k)));
-      const b = bar(summary[k], '#60a5fa');
-      b.style.gridColumn = '2 / 4';
+      const delta = summary[k] - meanOf(k);
+      const b = deltaBar(delta, 0.2);
+      b.style.gridColumn = '2 / 3';
+      b.title = `${t(k)} ${summary[k].toFixed(2)} · ${t('league mean')} ${meanOf(k).toFixed(2)}`;
       row.appendChild(b);
+      row.appendChild(el('div', 'muted delta-txt',
+        `${summary[k].toFixed(2)} (${delta >= 0 ? '+' : ''}${delta.toFixed(2)})`));
       outCol.appendChild(row);
     }
     // Careers (Phase 26): the people behind the bars — traits derived live,

@@ -307,6 +307,25 @@ export function styleScatter(
 }
 
 /**
+ * Diverging delta bar (Phase 115): deviation from a reference (the league
+ * mean) — a center tick, fill growing right (+, up-green) or left (−,
+ * down-red). `scale` is the full-deflection magnitude; the exact numbers
+ * belong in the caller's text/tooltip (color is never the only channel).
+ */
+export function deltaBar(delta: number, scale: number): HTMLDivElement {
+  const outer = el('div', 'bar delta-bar');
+  const tick = el('div', 'delta-tick');
+  outer.appendChild(tick);
+  const fill = el('div', 'delta-fill');
+  const half = Math.min(Math.abs(delta) / scale, 1) * 50;
+  fill.style.width = `${half.toFixed(1)}%`;
+  fill.style.left = delta >= 0 ? '50%' : `${(50 - half).toFixed(1)}%`;
+  fill.style.background = delta >= 0 ? 'var(--up)' : 'var(--down)';
+  outer.appendChild(fill);
+  return outer;
+}
+
+/**
  * Formation diagram (Phase 113.5, 阵型图): a mini pitch with a shape's six
  * spots, attacking left→right. Input is a raw spot table
  * (ATTACK_FORMATIONS / DEFEND_FORMATIONS: local coords, x −45..45 forward,

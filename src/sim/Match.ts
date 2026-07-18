@@ -1283,7 +1283,15 @@ export class Match {
     const attTeam = this.teams[offender.side];
     attTeam.stats.offsides++;
     const defSide = (1 - offender.side) as Side;
-    this.pushEvent('foul', defSide, `Offside — ${offender.name} (${attTeam.info.name})`);
+    // The trap school's visible face (Phase 115, the 109 debt): when a
+    // committed trap side (the 'Offside trap' nameplate threshold) wins the
+    // flag, the feed credits the SCHOOL, not the runner's error. Same one
+    // line either way — no feed spam. Read from the RAW genome: identity,
+    // not the mentality-bent view.
+    const trap = this.teams[defSide].info.genome.trapBias ?? 0.5;
+    this.pushEvent('foul', defSide, trap > 0.72
+      ? `🪤 The trap springs — ${offender.name} caught by the ${this.teams[defSide].info.name} line`
+      : `Offside — ${offender.name} (${attTeam.info.name})`);
     const goalLineX = -this.teams[defSide].attackDir * HALF_L;
     const pos = v2(goalLineX - Math.sign(goalLineX) * 7, 0);
     this.awardRestart('goalKick', defSide, pos);
