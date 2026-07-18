@@ -776,6 +776,34 @@ directly re-observed). Verdict input for 95: late means 6.72/4.90/
 Calibrate 2.57/2.64/3.16 (all in band — 93's default-seed watch
 RESOLVES). vitest 416; visual 109+51; fingerprint REBASELINED
 `bed80ef1…`.)
++ ⚠⚠ **phase-95 SHIPPED** (**the VERDICT gate + the anchor, and the
+anchor is REFUTED as the closer** — ⭐ **MORNING RATIFICATION
+NEEDED, see below**): the 24g×3 verdict at 94-HEAD read late means
+6.72/4.90/4.69 (≫3.8) → pre-authorized fallback A fired. The
+conceded-goals anchor: an ABSOLUTE λ·GA/match term in fitness
+(never min-max normalized — every other component is
+season-relative, so a league that inflates TOGETHER paid nothing;
+now the price of conceding scales with the collapse itself; unit
+test pins the absoluteness; probe `anchor-sweep.ts`). Swept
+{0.05, 0.1, 0.2} on 424242 per the ratified procedure: λ=0.05 →
+5.33 FLAT with jockey ADOPTED 0.85 (least-that-stabilizes on the
+sweep world); 0.1 → still rising; 0.2 → 6.44 with an extreme-press
+chaos meta. SHIPPED at 0.05. BUT the full 3-world verdict refutes
+robust stabilization: 424242 5.33✓(0.85), 991 5.62(0.05),
+777 7.44(0.61) — vs λ=0's 6.72/4.90/4.69; the ecology RE-ROLL
+variance (σ≈1) swamps the λ effect, and 777 inflates to 7.44 WITH
+containment adopted (def 0.56, jockey 0.61): **the remaining
+inflation engine is the xg/shot climb (0.16→0.26 — shooters walk
+it ever closer before striking), not the absence of defense**. The
+inflation arc is NOT closed. ⭐ **FOR THE MORNING**: ① ratify or
+kill the anchor (one line: `FITNESS_ANCHOR.conceded` → 0); the
+purity dent is real, the stabilization evidence is one world of
+three; ② the proposed NEXT lever is shot-proximity economics (why
+does walking it into the six-yard box pay so reliably late-gen —
+keeper 1v1 envelope vs the carry cone at point-blank), not more
+fitness engineering. Calibrate 2.50/2.46/2.97; vitest 417 (zero
+re-anchors again); visual 109+51; fingerprint REBASELINED
+`3cd1253f…`.)
 ⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
 到结束") — execute IN ORDER, one phase = one commit+tag+push, full
 gates each (vitest, both visual suites, calibrate 3 seeds on
@@ -847,7 +875,7 @@ chaser-count hardcode; N6 follow-through (fitBias drift watch).
 
 Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
 play reports; goals-band verdict = theirs; amb-loop human listen
-still open. HEAD fingerprint `bed80ef1…` (phase-94). The user PLAYS CONTINUOUSLY —
+still open. HEAD fingerprint `3cd1253f…` (phase-95). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).

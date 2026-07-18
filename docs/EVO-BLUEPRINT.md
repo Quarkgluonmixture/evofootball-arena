@@ -1458,6 +1458,20 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   two-phase interaction = the red-queen loop observed end-to-end.
   Verdict input for 95: late means 6.72/4.90/4.69 ≫ 3.8 → the
   pre-authorized anchor fires.
+- ⚠⚠ **phase-95 SHIPPED** (**the anchor, refuted as the closer**;
+  fingerprint REBASELINED `3cd1253f…`; ⭐ morning ratification
+  flagged). Fallback A fired (verdict 6.72/4.90/4.69 ≫ 3.8): an
+  ABSOLUTE λ·GA/match fitness term (the red-queen countermeasure —
+  relative components can't see collective inflation). Sweep on
+  424242: λ=0.05 = least-that-stabilizes (5.33 flat, jockey 0.85);
+  shipped at 0.05. The 3-world verdict then refuted generality:
+  991 5.62 (jockey 0.05), 777 7.44 WITH the def+jockey package
+  adopted — ecology re-roll variance swamps λ, and the remaining
+  engine is the xg/shot climb (shot proximity), not missing
+  defense. Arc NOT closed; the morning call = keep/kill the anchor
+  (`FITNESS_ANCHOR.conceded`) + whether the next lever is the
+  keeper-vs-carry point-blank economics. Phase-50 purity tradeoff
+  documented in fitness.ts itself.
 - ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
   inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
   (attribute-blind aim/spread bonuses — make composure

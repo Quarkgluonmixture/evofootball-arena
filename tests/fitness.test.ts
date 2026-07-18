@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeFitness } from '../src/evolution/fitness';
+import { computeFitness, FITNESS_ANCHOR } from '../src/evolution/fitness';
 import { emptyAggregates } from '../src/evolution/franchise';
 
 describe('computeFitness', () => {
@@ -56,6 +56,31 @@ describe('computeFitness', () => {
     const fit = computeFitness([steady, chaotic]);
     expect(fit[0].components.styleConsistency).toBeGreaterThan(fit[1].components.styleConsistency);
     expect(fit[0].total).toBeGreaterThan(fit[1].total);
+  });
+
+  it('the conceded anchor is ABSOLUTE — a league that inflates together pays together (95)', () => {
+    // Two groups identical in every relative sense (same pts/xg/style spread,
+    // min-max components come out the same) but one concedes 3/match and the
+    // other 1/match. Every other fitness component is season-normalized and
+    // cannot see collective inflation; the anchor must price it raw.
+    const mkGroup = (gaPerMatch: number) =>
+      [0, 1].map((slot) => {
+        const agg = emptyAggregates();
+        agg.played = 7;
+        agg.pts = 10 + slot;
+        agg.shots = 10;
+        agg.xg = 2;
+        agg.ga = gaPerMatch * 7;
+        agg.styleSamples = [
+          { passVol: 10, pressVol: 5 },
+          { passVol: 10, pressVol: 5 },
+        ];
+        return { slot, agg };
+      });
+    const tight = computeFitness(mkGroup(1));
+    const leaky = computeFitness(mkGroup(3));
+    expect(tight[0].components.points).toBe(leaky[0].components.points); // relative view identical
+    expect(tight[0].total - leaky[0].total).toBeCloseTo(FITNESS_ANCHOR.conceded * 2, 9);
   });
 
   it('components are normalized to [0,1] and weights sum to totals sanely', () => {
