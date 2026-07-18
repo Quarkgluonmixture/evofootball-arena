@@ -1319,7 +1319,8 @@ after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
 ⭐⭐ SESSION HANDOFF (2026-07-18, preset-free — facts only, next
 session decides direction). Repo is CLEAN at fingerprint `ab2e43bd`
-(= phase-119f). SHIPPED this session: 119a (player radar + 3D
+(= phase-119f; 119g + the spill probe are zero-sim, hash unchanged).
+SHIPPED this session: 119a (player radar + 3D
 showcase), 119a.5 (settings screen + topbar nav), 119b (keeper
 honesty — fingertip stretch + angle coverage), 119e (the DIRECTIONAL
 TACKLE POKE — the 乱抢 re-examination made quantitative; see its
