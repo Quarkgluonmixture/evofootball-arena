@@ -1435,3 +1435,16 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   5.16. The fork is sharp: honest mechanism + unstable adoption =
   the anchor's regime, or accept ecology variance. Pins re-anchored
   (throw 58/182/207, cards seed 37 — containment cut lunge volume).
+- ⭐ **2026-07-18 THE D+C RATIFICATION** (user: "同意dc"): the
+  inflation endgame = ① dismantle the 28.4 composed-1v1 hand gift
+  (attribute-blind aim/spread bonuses — make composure
+  finishing-earned); ② school-linked variation (the academy grows
+  what the philosophy needs: bloodline attr drift toward defending
+  scaled by jockeyBias) — fixing DISCOVERY across the two-locus
+  valley while fitness stays pure results; ③ the fitness anchor is
+  PRE-AUTHORIZED as fallback only if the 24-gen verdict gate still
+  fails (modest λ, swept, tradeoff documented). Also ratified:
+  keeper distribution belongs to the genome (the hardcoded
+  throw/pass/hoof tree is the next redemption), and the
+  hand-patch audit (user question ④) is now a standing lens — the
+  composed-1v1 gift was found BY that audit.

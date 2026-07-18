@@ -738,10 +738,78 @@ re-anchored: keeper-throw 3/97/123→58/182/207 (5th), card sample
 seed 5→37 (containment cut desperate lunges = fewer cards).
 vitest 415; calibrate 2.95/2.97/3.43 (early band healthy);
 fingerprint REBASELINED `f971e8a0…`.)
-⭐ **Next: USER decision — fitness anchor now, or accept
-ecology-variance? → title screen phase (user-designed synthwave
-launch: Title BGM, dynamic 120BPM visuals) → keeper-hold ball-bob
-+ player-twitch render bug → offside trap → woodwork.** The user PLAYS CONTINUOUSLY —
+⭐⭐ **THE RATIFIED OVERNIGHT QUEUE (user 2026-07-18 "同意dc…连夜自走
+到结束") — execute IN ORDER, one phase = one commit+tag+push, full
+gates each (vitest, both visual suites, calibrate 3 seeds on
+behavioral changes, fingerprint identity-or-rebaseline, both
+ledgers). The user is asleep: do NOT block on questions; every
+decision below is pre-ratified.**
+
+**93 — D: dismantle the composed-1v1 gift** (user-ratified de-patch).
+The 28.4 hand gift (aimMargin×0.72 + spread×0.7 for `oneVone`) is
+the inflation engine's core and is attribute-blind. Make composure
+EARNED: scale both bonuses with `finishing` (neutral at 0.5 —
+early-preserving; a 0.9 finisher keeps ~today's gift, a 0.2 panics).
+Gates: shot-context anatomy (composed-1v1 goal share ↓ from 76-81%),
+goals-warming 24g (direction: late means ↓), calibrate early band
+holds ~2.5-3.4. Expect keeper-throw/card seed re-anchors (6th dance).
+
+**94 — C: school-linked variation** (user-ratified). The two-locus
+valley: jockey needs defending. Fix DISCOVERY, not the objective:
+the academy grows what the coach's philosophy needs —
+`newgenFromBloodline` gains a philosophy pull (attr drift toward
+defending scaled by (jockeyBias−0.5), budget-clamped, and the
+mirror: dive-in coaches drift pace). Founders/fitness untouched.
+Gates: 24g warming — jockey ADOPTION stability (≥2/3 worlds hold
+>0.5 when it pays) + def attr movement; goals direction.
+
+**95 — the VERDICT gate**: rerun warming 24g×3 worlds clean. IF
+late-gen means land ≤~3.8 and falling → declare the inflation arc
+CLOSED (ledger the full story), skip the anchor. ELSE → the
+PRE-AUTHORIZED fallback A: a MODEST absolute conceded-goals term in
+fitness (λ small, swept {2-3 values} on one seed, pick the least
+that stabilizes; document the phase-50 purity tradeoff in the
+ledger; final ratification flagged for the user's morning).
+
+**96 — the TITLE SCREEN** (user-designed): synthwave/chiptune launch
+overlay — retro grid horizon + neon sun + pixel accents, animations
+pulsed at 120BPM (500ms multiples) to match the Title track;
+"click to enter" = the WebAudio gesture that starts the Title BGM
+(slot already in MusicSystem); START dismisses to the game (attract
+mode: the match runs beneath). ⚠ BOTH visual suites must dismiss
+the overlay first or all checks fail — add the dismiss step to
+each. Music volume default: raise to 60 so the title actually
+sounds (user intent); slider still rules.
+
+**97 — keeper-hold render bug** (user report: 球诡异上下颤动 +
+队员一下一下抽动): suspects — the held-ball hands anchor riding the
+keeper's idle bob each frame (BallModel heldY + hands blend), and
+the receive one-shot re-triggering / the phase-92 contain-target
+flipping across its goal-side threshold (hysteresis needed).
+Render-only, fingerprint identity.
+
+**98 — keeper distribution genetified** (user-ratified today:
+"门将出球选择应该和战术有关"): replace the hardcoded
+throw/pass/hoof tree with genome-scored options — buildUp/passBias
+→ short to feet; counterAttackBias → the fast long throw;
+pressured + no build-up genes → the punt (whose landing feeds the
+63 aerial channel = strength linkage). Behavioral: full gates.
+
+**99 — the pressed-winger escape** (user question ①): expose
+"beaten to the byline? play the fullback's shadow" — through-ball
+appetite behind the presser when the carrier is pinned wide, priced
+through existing pass scoring and gated by genes (passBias/risk),
+NOT a hand trigger. Probe first (does the situation occur and go
+unused?). Behavioral: full gates.
+
+**100+ (queue tail, order per judgment)**: offside-trap gene
+(hold-the-line vs track-runner, natural tension with coverBias);
+woodwork sim mechanic (unlocks the crossbar sample); redeem the
+chaser-count hardcode; N6 follow-through (fitBias drift watch).
+
+Standing: the user PLAYS CONTINUOUSLY — casual observations ARE the
+play reports; goals-band verdict = theirs; amb-loop human listen
+still open. HEAD fingerprint `f971e8a0…` (phase-92). The user PLAYS CONTINUOUSLY —
 casual observations ARE the play report stream. Parked: foot IK/
 skinned meshes/cloth, celebration choreography (sim-touching), amb
 loop human listen (user's ears).
