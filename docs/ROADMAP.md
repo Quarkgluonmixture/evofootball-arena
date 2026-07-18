@@ -1452,7 +1452,25 @@ reading order: 联赛中心 · 演化 · 球队 · 球员. ③ SPACEBAR toggles
 pause/play (guarded: not while typing / on a focused control;
 suite-checked). Gates: vitest 441 green, visual 127+53, build clean.
 
-**119+ — Stage 4 continues**: home advantage → memory commentary.
+**119a — PLAYER CARD upgrade (user ask, 2026-07-18 night)**: the
+player dive gets ① the 多边能力图 (attribute+appetite radar — the
+geneRadar grammar over PLAYER dims, data all live) and ② the player
+HIMSELF in 3D: posed, idle-animated, drag-to-rotate full body on a
+pedestal — reuse the match's render3d player model (kit, number,
+build, GK identity) in a small standalone three.js scene. One phase.
+
+**119b — ATTACK DIVERSITY / the collapse probe (the blueprint's
+core gap, discussed 2026-07-18 night)**: probe-first — why does
+carry out-pay passing in the late ecology (per-possession economics:
+meters/second/risk for carry vs pass chains); then re-price toward
+negative frequency dependence (the counter should GROW as the meta
+spreads). Candidate levers, smallest-first: cover/jockey payoff vs
+stalled carriers, per-opponent game-planning (the coach reads the
+opponent's profile — the counter-pick loop real football has),
+1v1 conversion honesty. Measured by the goal-channel census: success
+= `through`/`cross` return, no world falls below the goals floor.
+
+**120+ — Stage 4 continues**: home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
 EARS (every gain has a dB paper trail in the 105 entry — report by
