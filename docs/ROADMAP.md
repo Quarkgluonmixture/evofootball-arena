@@ -1905,13 +1905,31 @@ before peak**. Root: B receives under pressure (the license needs
 pressure>0.2) and tries to CONTROL/settle → pressed → lost, instead of
 playing the real give-and-go: a FIRST-TIME return into A's burst. B has
 no "I'm the wall, lay it back one-touch" behaviour. THE FIRST 119i
-ENRICHMENT (completing an existing primitive, gene-priced, not a new
-mechanic): when B receives a pass from a teammate A whose `wallRun`
-targets B and who is bursting, B plays a HIGH-priority FIRST-TIME return
-into A's run — before the settle touch. A/B metric = combination goals +
-goals vs the aggressive-zonal wall up, goals floor held, carry not
-merely re-fed (A bursts past a COMMITTED presser = a real dilemma, not
-generic space). Probes kept: `wallrun-anatomy.ts`.
+ENRICHMENT ⚠️ **ATTEMPTED + REVERTED 2026-07-19 (double FAIL, fingerprint
+back at `ab2e43bd`).** Made the wall B lay a FIRST-TIME return (a
+boosted through-ball led into A's burst, penetration filter bypassed,
+gene-priced). MECHANICALLY it fired: frozen-gene oneTwos 0.07→0.52/0.39,
+return-played 4%→33%, and it broke the aggressive press a little
+(quadrant zonal-aggr GA 0.67→0.93). BUT the two gates that matter both
+failed: (1) EVOLUTION DE-SELECTS IT — fresh-evolved, the wall-pass gene
+gate fell 7→2/16 (424242) and oneTwos collapsed to 0.01-0.06; given the
+choice, evolution drops the wall-pass appetite because the return is
+net-negative-EV (A receives cleanly only 6%, assists ~3% — B firing a
+through-ball into A's burst mostly gives it away or doesn't create a
+clean chance). (2) IT INFLATES GOALS — goals-warming 15.25 (5.19/5.96/
+4.10) vs the 11.54 baseline (+3.7, the refuted-v2-tackle-poke magnitude):
+the license fires ~3/match regardless, so the added through-balls feed
+converting chances once finishing maxes. ⭐ THE LESSON: making the
+return FIRE is not enough — the completed one-two must be POSITIVE-EV
+(reliably a better chance than the alternative) for evolution to select
+it; the frozen oneTwos 0.5 was an artifact of old genes that happened to
+carry wall-pass appetite. The missing piece is the RETURN QUALITY: A
+gets open (peak sep 5.5m, measured) but can't convert the received ball
+— which points back at A's off-ball run timing + first touch on the
+return = the MISSING positioning/off-ball-IQ attr. A/B metric for the
+next try = combination goals up AND evolution KEEPS the appetite (gate
+holds) AND goals floor held. Probes kept: `wallrun-anatomy.ts`,
+`quadrant-balance.ts`, `scheme-balance.ts`.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

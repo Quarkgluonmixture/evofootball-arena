@@ -18,9 +18,10 @@ import { League } from '../../src/sim/League';
 import { DEFAULT_POLICY } from '../../src/sim/types';
 
 const GENS = Number(process.argv[2] ?? 21);
+const TAG = process.env.SNAP_TAG ? `-${process.env.SNAP_TAG}` : '';
 
 function loadWorld(seed: number): League {
-  const path = `/tmp/evo-snap-${seed}-g${GENS}.json`;
+  const path = `/tmp/evo-snap${TAG}-${seed}-g${GENS}.json`;
   if (existsSync(path)) return League.fromJSON(JSON.parse(readFileSync(path, 'utf8')) as Record<string, unknown>);
   const league = new League({ seed });
   for (let g = 0; g < GENS; g++) {

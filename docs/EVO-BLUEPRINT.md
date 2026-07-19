@@ -1934,6 +1934,26 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   the carry) — it's specifically movement/combination that beats a ZONE
   (pass-and-move as a linked action the zone can't track). The
   positioning / off-ball-IQ MISSING attr sits directly under this too.
+- ⚠️ **2026-07-19 119i FIRST LEVER (the give-and-go RETURN) — ATTEMPTED
+  + REVERTED (double fail, `ab2e43bd` restored).** `wallrun-anatomy.ts`
+  found the give-and-go dies at the WALL not the go: licenses fire
+  ~3/match, the burster gets open (peak sep 5.5m), but the wall B is
+  dispossessed 80% before the return because he tries to CONTROL under
+  pressure. Fix tried: B lays a FIRST-TIME return (a boosted through-ball
+  led into A's burst). Mechanically worked — frozen oneTwos 0.07→0.5,
+  return-played 4%→33%, aggressive-press GA 0.67→0.93. But BOTH real
+  gates failed: (1) evolution DE-SELECTS it (fresh gate 7→2/16, oneTwos
+  →0.01-0.06) because the return is net-negative-EV (A receives cleanly
+  6%, assists 3%); (2) it INFLATES goals-warming to 15.25 vs 11.54
+  (+3.7) — the license fires regardless so the extra through-balls feed
+  converting chances late. ⭐ THE LESSON (durable): making a combination
+  FIRE ≠ making it PAY; the completed one-two must be POSITIVE-EV for
+  evolution to keep it, and the frozen oneTwos 0.5 was an artifact of
+  old genes carrying the appetite. The bottleneck is RETURN QUALITY —
+  A gets open but can't convert the received ball — which points at A's
+  off-ball run-timing + first touch = the MISSING positioning/off-ball-IQ
+  attr. So the seven's real enabler may be the positioning ATTRIBUTE
+  (let A's run + touch quality evolve), not a scoring boost on the pass.
 - ⭐ **2026-07-19 THE ATTRIBUTE/GENE AUDIT vs FIFA/FM/PES (strategic
   backlog — full entry in ROADMAP).** 8 player attrs + 23 genes vs the
   standard taxonomies. PRESET-DEAD (coupled): heading/jumping (→
