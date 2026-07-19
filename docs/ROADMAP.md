@@ -2022,6 +2022,22 @@ form of "make the seven emerge" for the attacking side; big, probe-
 first, maxed-test each primitive (does it create chances vs a set line
 without just feeding the carry). ⚠ The 119k lesson: do NOT hand-code a
 single run pattern; build the repertoire + let selection choose.
+⭐ BASELINE PROBED (2026-07-19, `run-repertoire.ts`, gen 21) — the
+PREMISE IS UNDERCUT: runs are TIGHTLY marked (83%/69% have a marker) and
+DO get open (peak separation 5.6m), but are FOUND (a pass aimed at the
+runner) only **14-16%** and convert ≈0%. So the bottleneck is NOT run
+variety — **runs aren't SERVED**: the carrier prefers to carry (the
+monoculture, 6v6-space-locked: beat one man = through, so carry-EV >
+pass-EV). A fancier repertoire helps ONLY if it makes runs SERVED — the
+run must DRAG the marker to open the LANE (not merely the runner's own
+separation), raising the found rate, AND the carrier's carry-vs-pass
+economy must shift. Same carry wall every attacking lever hit this
+session (119c, 119d-1×4, 119i, 119j, 119k). ⭐ IMPLICATION: try the run
+repertoire ONLY as "drag-the-marker-to-open-the-lane" (a served-run
+primitive, maxed-tested on the FOUND rate), not prettier in-behind runs.
+If that too hits the wall, the arc's terminal finding stands: the attack
+is carry-locked and only 11v11 (more space → beat one man ≠ through)
+structurally breaks it. `run-repertoire.ts` kept.
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 
