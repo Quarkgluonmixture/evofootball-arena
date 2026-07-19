@@ -2144,3 +2144,33 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   cross-gate attempt broke 3 invariant tests (finishing/onball/freeAgents) —
   this is a coordinated attacking change needing deliberate test re-anchoring +
   fingerprint rebaseline, NOT a one-liner. `width-funnel.ts` arg[4]=man|zonal.
+
+- ⭐⭐⭐⭐ **2026-07-19 (cont.5) THE STRUCTURAL ROOT — THE PITCH IS SIZED FOR
+  11v11 BUT HAS 6 PLAYERS. This is WHY every width lever fails.** After SIX
+  distinct width/cover levers this session (traffic wall · center-protect
+  shape · box-crash+cross-gate · variable winger width · compactness-cover ·
+  half-space run) all failed / backfired / broke tests — and the run
+  repertoire (119c/d/i/j/k) hit the same wall across prior sessions — the root
+  is not a missing mechanic. It is SPACE: PITCH 90×58 = 5220 m², 10 outfielders
+  → **522 m²/player**. Real 11v11 ≈ 357 m²/player; real small-sided 6v6 ≈
+  100-150. So the sim is a ~full-size pitch with 6-a-side personnel — ~1.5×
+  sparser than 11v11, ~4× sparser than real 6v6. At that sparsity: beat one man
+  = acres (carry-lock, carry-EV ≫ everything), defenders physically CANNOT
+  cover (过一个还有另一个 can't form — too much ground between them), and width
+  has no density to exploit (space is everywhere; overloads need not / can not
+  be manufactured). The ONE thing that beats the carry — the ZONAL lattice
+  (cover) — works only because it parks bodies in a block; man-marking, which
+  chases into the space, gets shredded.
+  - ⭐ **THE EMERGENCE-HONEST STRUCTURAL CURE: shrink the pitch toward real 6v6
+    proportions** (e.g. ~55-62 × 36-40). Denser players → cover forms naturally
+    (过一个还有另一个), the central carry meets bodies, width/combos have density
+    to exploit → the WHOLE repertoire (cross/cutback/half-space/triangle) +
+    declumping EMERGE from selection with ZERO hand-coded tactics. Preserves the
+    6v6 IDENTITY (unlike 8v8/11v11), one high-leverage parameter — BUT
+    rebaselines EVERYTHING (every tuned constant, goals-warming, fingerprint)
+    and affects the LIVE/shipped game → the user's call. Probe first (shrink →
+    carry-vs-width EV + pressure-by-zone cover) before committing.
+  - Alternatives: more players (8v8/11v11 — bigger identity change); or ACCEPT
+    the current substrate (carry-dominant + zonal-cover + scramble; the game is
+    fun & shipped) and spend elsewhere. ⚠ Do NOT keep throwing single width
+    levers — ~11 have now failed; the root is the pitch:player ratio.
