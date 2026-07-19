@@ -1,5 +1,6 @@
 # Roadmap — shipped through phase-92 (containment repriced: wins neutral head-to-head; adoption still unstable — the fork sharpens)
 
+## ⭐⭐⭐⭐ THE GOLD STANDARD IS [`VISION.md`](VISION.md) (2026-07-19) — measure every decision against it
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
 The user extended the emergence pivot into a full four-stage vision (Engine →

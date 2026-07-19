@@ -1,5 +1,9 @@
 # The EVO WORLD blueprint (2026-07-14, user-ratified) — the master plan
 
+> ⭐ **THE GOLD STANDARD is [`VISION.md`](VISION.md)** (2026-07-19) — the single
+> authority on what the user WANTS; every decision is measured against it. This
+> blueprint (the plan/state) serves that vision, not the reverse.
+
 This supersedes the *plan* half of [`EMERGENCE-PIVOT.md`](EMERGENCE-PIVOT.md)
 (whose rationale, substrate audit, gates and the turnkey attribute scope stay
 canonical — this doc sequences them). ROADMAP.md points here.
