@@ -12,7 +12,7 @@ const N = Number(process.argv[2] ?? 150);
 
 const attrs = (over: Partial<Record<string, number>> = {}) => ({
   pace: 0.5, passing: 0.5, dribbling: 0.5, finishing: 0.5,
-  defending: 0.5, strength: 0.5, stamina: 0.5, reflexes: 0.5, ...over,
+  defending: 0.5, strength: 0.5, stamina: 0.5, reflexes: 0.5, positioning: 0.5, ...over,
 });
 const genome = (over: Partial<TacticalGenome> = {}): TacticalGenome => {
   const g = {} as TacticalGenome;

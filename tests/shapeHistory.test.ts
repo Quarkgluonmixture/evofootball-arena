@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ATTACK_FORMATIONS, DEFEND_FORMATIONS } from '../src/ai/formations';
+import { ATTR_KEYS } from '../src/evolution/playerGenome';
 import { League } from '../src/sim/League';
 
 /** The shape timeline's data (Phase 116, save v29): styleMatrix rows carry
@@ -21,7 +22,7 @@ describe('shape history (Phase 116)', () => {
       expect(['man', 'zonal']).toContain(row.style!.scheme);
       // The budget snapshot rides along (Phase 118.5, v31).
       expect(row.attrs).toBeDefined();
-      expect(row.attrs!.length).toBe(8);
+      expect(row.attrs!.length).toBe(ATTR_KEYS.length);
       for (const v of row.attrs!) {
         expect(v).toBeGreaterThan(0);
         expect(v).toBeLessThanOrEqual(1);

@@ -197,7 +197,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 31;
+export const SAVE_VERSION = 32;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -1297,6 +1297,22 @@ export class League {
   }
 
   static fromJSON(data: Record<string, unknown>): League {
+    // POSITIONING backfill (Phase 119j) runs BEFORE the version chain: an
+    // intermediate step (v17→v18) calls enforceBudget → squadTotal sums every
+    // ATTR_KEY, so a pre-v32 squad missing `positioning` would poison the
+    // rescale with NaN long before a v31→v32 block could fix it. Backfilling
+    // the neutral 0.5 up front on any squad/free-agent that lacks it makes the
+    // whole chain robust (no-op for v32+ saves; v≤13 squads that predate the
+    // attr split re-assert it in the v13→v14 rebuilder below).
+    const backfillPos = (a: Record<string, unknown> | undefined): void => {
+      if (a && a.positioning === undefined) a.positioning = 0.5;
+    };
+    for (const f of (data.franchises as Array<Record<string, unknown>>) ?? []) {
+      for (const p of (f.squad as Array<Record<string, unknown>>) ?? []) backfillPos(p);
+    }
+    for (const fa of (data.freeAgents as Array<Record<string, unknown>>) ?? []) {
+      backfillPos(fa.attrs as Record<string, unknown> | undefined);
+    }
     if (data.version === 1) {
       // v1 -> v2: squads didn't exist yet — deal every franchise a fresh,
       // seed-derived squad so old leagues keep their tactical history.
@@ -1462,6 +1478,10 @@ export class League {
           strength: p.strength ?? 0.4,
           stamina: p.stamina ?? 0.4,
           reflexes: p.reflexes ?? 0.5,
+          // The rebuilder drops unlisted keys — carry positioning (Phase 119j;
+          // the top-of-chain backfill added it) so the v17→v18 budget pass
+          // downstream doesn't NaN on a missing 9th attr.
+          positioning: p.positioning ?? 0.5,
         };
       };
       for (const f of data.franchises as unknown as Array<{ squad: Array<Record<string, number>> }>) {
@@ -1740,6 +1760,12 @@ export class League {
       // v30 -> v31: budget-allocation snapshots on styleMatrix rows
       // (Phase 118.5). Optional, UI-guarded — nothing to backfill.
       data.version = 31;
+    }
+    if (data.version === 31) {
+      // v31 -> v32: the POSITIONING attribute (Phase 119j). The squad/free-agent
+      // backfill already ran at the TOP of the chain (it must precede the
+      // v17→v18 budget pass); nothing left to do here but advance the version.
+      data.version = 32;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;

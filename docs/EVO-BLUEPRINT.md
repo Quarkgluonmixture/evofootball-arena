@@ -1954,6 +1954,26 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   off-ball run-timing + first touch = the MISSING positioning/off-ball-IQ
   attr. So the seven's real enabler may be the positioning ATTRIBUTE
   (let A's run + touch quality evolve), not a scoring boost on the pass.
+- ⭐⭐ **2026-07-19 119j — the POSITIONING ATTRIBUTE SHIPPED (foundation +
+  reception wiring).** Added `positioning` as the 9th player attr
+  (appended LAST in ATTR_KEYS → founders' other attrs byte-identical),
+  SQUAD_BUDGET 36→40.5 (9×9×0.5, density-preserving = a real trade-off,
+  not free), save v32 with a TOP-OF-CHAIN backfill (⚠ durable gotcha:
+  the v17→v18 migration runs enforceBudget → a squad missing the 9th
+  attr NaN-poisons the rescale, so any new attr must be backfilled BEFORE
+  the whole migration chain). First of four wiring points: reception
+  under pressure (`touchFailChance` positioning term taming pressure+
+  blind penalties, neutral at 0.5). VERDICT — validated but WEAK on this
+  channel: maxed BITES (spills −19%) but goal-NEUTRAL; fresh-evo selects
+  only mildly (0.39→0.43-0.46) because possession-retention is weakly
+  rewarded here. Reception is the WEAKEST wiring point — the payoff is
+  the IMPACTFUL ones (run-timing + defensive reads, = 119k), then
+  re-attempt the give-and-go with positioning making A's reception clean.
+  Gates: goals-warming 11.67≈11.54 (zero inflation), vitest 441 (+2
+  re-anchors), visual 136+51, fingerprint `d309f250`, save v32. ⭐ LESSON:
+  an attribute's first wiring should target a WELL-REWARDED outcome
+  (chance creation/prevention), not a weakly-rewarded one (possession
+  retention). `positioning-bite.ts` kept (the maxed-genome yardstick).
 - ⭐ **2026-07-19 THE ATTRIBUTE/GENE AUDIT vs FIFA/FM/PES (strategic
   backlog — full entry in ROADMAP).** 8 player attrs + 23 genes vs the
   standard taxonomies. PRESET-DEAD (coupled): heading/jumping (→

@@ -1348,9 +1348,17 @@ QUALITY (A gets open at 5.5m but can't convert the received ball) =
 A's off-ball run-timing + first touch = ⭐⭐ THE MISSING POSITIONING /
 OFF-BALL-IQ ATTRIBUTE. Five levers now converge here (119c, 119d-1×4,
 119i): off-ball actions don't pay AND players can't individually
-create/exploit space. The real enabler = the positioning attr — but
-it re-prices SQUAD_BUDGET (parked at phase-47) = a foundational
-decision, NOT a small lever. ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
+create/exploit space. The real enabler = the positioning attr. ⭐⭐ 119j SHIPPED
+2026-07-19 (user "开始"): the POSITIONING attribute added (9th attr,
+SQUAD_BUDGET 36→40.5 density-preserving, save v32, fingerprint
+`d309f250`), first wiring point = reception-under-pressure. Validated
+but WEAK on this channel (maxed bites −19% spills but goal-neutral;
+fresh-evo selects mildly 0.39→0.43-0.46) — possession-retention is
+weakly rewarded here, so reception is the weakest wiring point. ZERO
+inflation (goals-warming 11.67≈11.54), vitest 441 (+2 re-anchors),
+visual 136+54. ⭐ NEXT 119k: the IMPACTFUL wiring — run-timing +
+defensive reads — then re-attempt the give-and-go with positioning
+making A's reception clean. ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
 FIFA/FM/PES (positioning attr = deepest missing; GK split;
 heading/accel/tackling splits). Also queued: 119g(b) pre-match
 behavioural plan (attacking-side/upstream only), give-and-go (119d).
@@ -1939,6 +1947,43 @@ return = the MISSING positioning/off-ball-IQ attr. A/B metric for the
 next try = combination goals up AND evolution KEEPS the appetite (gate
 holds) AND goals floor held. Probes kept: `wallrun-anatomy.ts`,
 `quadrant-balance.ts`, `scheme-balance.ts`.
+
+**119j — the POSITIONING ATTRIBUTE, foundation + reception wiring** ✅
+**SHIPPED 2026-07-19 (user "开始"; the 9th attribute, the enabler the
+seven need).** The give-and-go failed because the RETURN QUALITY (A
+can't convert the received ball) is un-evolvable — all off-ball quality
+was team-gene + formation-table + uniform brain logic, no PER-PLAYER
+"reads space / times runs / receives under pressure". So: added
+`positioning` as the 9th player attribute (appended LAST in ATTR_KEYS so
+founders' other attrs draw byte-identical), SQUAD_BUDGET raised 36→40.5
+(= 9×9×0.5, preserving the tuned 0.5 density so it's a real trade-off,
+not free), save v31→v32 with a TOP-OF-CHAIN backfill (the v17→v18 budget
+pass calls enforceBudget → a squad missing the 9th attr NaN-poisons the
+rescale, so the backfill must precede the whole chain; v13→v14 rebuilder
+carries it too). FIRST WIRING POINT (of four planned): reception under
+pressure — `touchFailChance` gains a positioning term that tames the
+PRESSURE + BLIND-SIDE penalties (neutral at 0.5, so backfilled saves +
+the tuned physics are bit-unchanged there). ⭐ VERDICT — validated but
+WEAK on this channel alone: maxed-genome BITES (pos-0.9 spills 3.83 vs
+pos-0.1 4.70, −19%) but is goal-NEUTRAL (pos-0.9 GF 1.67 ≈ pos-0.1
+1.66); fresh-evolution SELECTS it only mildly (0.39→0.43-0.46 by gen 23
+vs defending's 0.55-0.59) — because possession-retention is weakly
+rewarded in this engine (goals are scramble/carry/transition-born). So
+reception is the WEAKEST of the four wiring points; the payoff comes
+from the IMPACTFUL ones — run-timing (creates chances) + defensive reads
+(prevents them) — queued next. Gates: goals-warming 11.67 (3.47/4.07/
+4.13) ≈ 11.54 baseline (ZERO inflation — the density-preserving budget
+raise worked), calibrate 1.76/2.05/2.25 (early band), vitest 441 (+2
+re-anchors: shapeHistory attr-count → ATTR_KEYS.length, league v13
+migration robust to the new attr), visual 136+54 (radar auto-gains the
+9th axis), fingerprint REBASELINED `d309f250…`, save v32.
+⭐ NEXT (119k): the IMPACTFUL wiring — (1) run TIMING off the offside
+hold (positioning times the break: onside + arrives with the ball),
+(2) DEFENSIVE reads (interception/cover positioning — the shape-holding
+cover that also kills the 乱抢 free-1v1), then re-attempt the give-and-go
+with positioning making A's return-reception clean. A/B each: does a
+positioning archetype EMERGE and win, do the seven start appearing, is
+the aggressive-zonal wall finally breakable (quadrant metric).
 
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 

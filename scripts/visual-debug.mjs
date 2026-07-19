@@ -206,7 +206,7 @@ check('tapping the wall re-targets the dive', firstName !== secondName, `${first
 check('wall marks the selected club', (await page.locator('#clubs-screen .club-mini.selected').count()) === 1, '');
 check('wall minis carry form strips (114)', (await page.locator('#clubs-screen .club-mini .form-strip').count()) === 16, '');
 check('club dive carries the morale meter (114)', (await page.locator('#clubs-screen .evo-club .morale-row').count()) === 1, '');
-check('attr rows are league-mean delta bars (115)', (await page.locator('#clubs-screen .evo-club .delta-bar').count()) === 8, '');
+check('attr rows are league-mean delta bars (115)', (await page.locator('#clubs-screen .evo-club .delta-bar').count()) === 9, ''); // 9 attrs since 119j (positioning)
 check('budget bar splits XI vs bench (115)', (await page.locator('#clubs-screen .budget-split .split-seg').count()) === 2, '');
 await page.screenshot({ path: `${OUT}/5c-clubs.png` });
 await page.click('#topbar button:has-text("Clubs")'); // close
@@ -377,7 +377,7 @@ check('club drift panel present (113.5 — identity moved to the club center)', 
 check('drift panel links to the club center (113.5)', (await page.locator('#evolution-screen .evo-club button.club-link').count()) === 1, '');
 check('drift panel carries the shape-history strip (116)', (await page.locator('#evolution-screen .evo-club .shape-history').count()) === 1, '');
 const heatCells = await page.locator('#evolution-screen .attr-heatmap rect').count();
-check('budget heatmap renders 16×8 cells', heatCells === 128, `${heatCells} cells`);
+check('budget heatmap renders 16×9 cells', heatCells === 144, `${heatCells} cells`); // 9 attrs since 119j (positioning)
 const tiles = await page.locator('#evolution-screen .spark-tile').count();
 check('population trend tiles render', tiles >= 5, `${tiles} tiles`);
 await page.screenshot({ path: `${OUT}/8-evolution.png` });

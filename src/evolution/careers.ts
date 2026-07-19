@@ -54,8 +54,12 @@ export function veteranAge(rng: Rng): number {
 }
 
 /** Pace and stamina fade fastest with age; passing craft holds longest.
- * The weights MEAN 1.0 across the 8 keys (Phase 47) so a full career still
- * round-trips and league attribute means stay stable across generations. */
+ * The weights MEAN 1.0 across the keys (Phase 47) so a full career still
+ * round-trips and league attribute means stay stable across generations.
+ * Phase 119j adds positioning at 1.0 (average decline) — keeps the existing
+ * eight curves untouched and the 9-key sum at 9.0 (mean 1.0). A slower,
+ * mental-holds-with-age curve is a candidate refinement, deferred so the
+ * tuned physical/technical arcs don't move under this change. */
 const DECLINE_W: Record<AttrKey, number> = {
   pace: 1.5,
   passing: 0.6,
@@ -65,6 +69,7 @@ const DECLINE_W: Record<AttrKey, number> = {
   strength: 1.0,
   stamina: 1.2,
   reflexes: 1.1,
+  positioning: 1.0,
 };
 
 /**

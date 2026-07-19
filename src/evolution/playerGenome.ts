@@ -31,10 +31,24 @@ export interface PlayerAttributes {
   strength: number;
   stamina: number;
   reflexes: number;
+  /**
+   * POSITIONING (Phase 119j) — the mover's IQ, orthogonal to pace (how fast)
+   * and dribbling/passing (how clean the touch): WHERE to be, WHEN to move,
+   * and how well to receive under pressure. It scales OUTCOMES that were
+   * uniform before (first-touch reception the first wiring point; run timing,
+   * space-finding and defensive reads to follow), so the off-ball
+   * dilemma-creators (overload / seam run / give-and-go / cover) become
+   * evolvable and can PAY — the enabler five failed levers (119c, 119d-1,
+   * 119i) all lacked. Appended LAST in ATTR_KEYS so founders' other attrs
+   * draw byte-identical; SQUAD_BUDGET raised 36→40.5 to keep the tuned 0.5
+   * density, so positioning is a real budget TRADE-OFF, not free.
+   */
+  positioning: number;
 }
 
 export const ATTR_KEYS = [
   'pace', 'passing', 'dribbling', 'finishing', 'defending', 'strength', 'stamina', 'reflexes',
+  'positioning',
 ] as const;
 export type AttrKey = (typeof ATTR_KEYS)[number];
 
@@ -115,12 +129,14 @@ export function crossoverSquads(a: PlayerAttributes[], b: PlayerAttributes[], rn
  * one attribute COSTS another and specialisation is forced. SQUAD-level on
  * purpose: star-plus-role-players vs a balanced six is itself an evolvable
  * axis. Phase 61 (the bench): the budget covers the whole 9-man ROSTER —
- * 36 = 9 players × 8 attrs × 0.5, the same density 24 bought six. That
+ * 40.5 = 9 players × 9 attrs × 0.5 (Phase 119j raised it 36→40.5 with the
+ * positioning attr, keeping the tuned 0.5 density so the existing physics
+ * still centres on 0.5 and positioning is a real trade-off, not free). That
  * makes rotation a REAL trade-off: a deep bench is funded by shaving the
  * starting six, a star XI leaves its bench (and its fresh legs) thin.
- * Founding rosters roll ~31, so there is headroom before the cap bites.
+ * Founding rosters roll ~0.4 density, so there is headroom before the cap bites.
  */
-export const SQUAD_BUDGET = 36;
+export const SQUAD_BUDGET = 40.5;
 
 export function squadTotal(squad: PlayerAttributes[]): number {
   let t = 0;

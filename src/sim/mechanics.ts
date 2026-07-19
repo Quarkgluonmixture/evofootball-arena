@@ -92,8 +92,17 @@ export function orientationPowerMul(misalign: number, technique: number): number
  * behind the body; technique tames all of it. This is where pressing turns
  * into forced errors.
  */
-export function touchFailChance(speed: number, pressure: number, misalign: number, technique: number): number {
-  const raw = 0.01 + clamp01((speed - 6) / 8) * 0.07 + pressure * 0.1 + misalign * 0.05;
+export function touchFailChance(
+  speed: number, pressure: number, misalign: number, technique: number, positioning = 0.5,
+): number {
+  // POSITIONING (Phase 119j) reads the ball and shapes the body EARLY, so it
+  // tames the PRESSURE and BLIND-SIDE penalties (the awareness half of a first
+  // touch); technique still tames the whole thing (the clean contact). Neutral
+  // at 0.5 — `aware` = 1.0 there, so the pre-119j curve is bit-for-bit intact
+  // and backfilled 0.5 saves play unchanged; a reader (1.0) cuts the
+  // pressure/blind penalty ~30%, a spatially-blind player (0) pays ~30% more.
+  const aware = 1 - (positioning - 0.5) * 0.6; // 0.7 .. 1.3
+  const raw = 0.01 + clamp01((speed - 6) / 8) * 0.07 + (pressure * 0.1 + misalign * 0.05) * aware;
   return clamp(raw * (1.3 - technique * 0.85), 0, 0.4);
 }
 
@@ -115,7 +124,7 @@ export function attemptFirstTouch(match: Match, p: Player): boolean {
   // Ball arriving at the face = 0, arriving from behind the body = 1.
   const misalign = (1 + (inx * p.heading.x + iny * p.heading.y)) / 2;
   const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
-  let pFail = touchFailChance(speed, pressure, misalign, p.attrs.dribbling);
+  let pFail = touchFailChance(speed, pressure, misalign, p.attrs.dribbling, p.attrs.positioning);
   // Re-collecting your OWN pushed touch (Phase 36): the ball rolls away
   // from the body, which reads as a blind-side reception to the misalign
   // term — but he watched it leave his own boot. Priced well down, not
@@ -836,7 +845,7 @@ function tryChestTrap(match: Match, order: Player[]): boolean {
   const misalign = (1 + (inx * trapper.heading.x + iny * trapper.heading.y)) / 2;
   const pressure = pressureAt(trapper.pos, match.teams[1 - trapper.side].players);
   const pFail = clamp(
-    touchFailChance(speed, pressure, misalign, trapper.attrs.dribbling) + 0.05, 0, 0.5,
+    touchFailChance(speed, pressure, misalign, trapper.attrs.dribbling, trapper.attrs.positioning) + 0.05, 0, 0.5,
   );
   trapper.kickCooldown = 0.3; // committed to the touch either way
   if (!match.rng.chance(pFail)) {
