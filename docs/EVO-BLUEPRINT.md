@@ -2269,3 +2269,21 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     / strong-weak side / un-clumped?). Recommended first: wire a BROWSER toggle
     (`process.env.EMERGENT_POS` is Node-only; the game is Vite/browser) so the
     user PLAY-TESTS the field before the irreversible retire+rebaseline.
+  - ⭐⭐ **CORRECTION (2026-07-20, `dribble-vs-scramble.ts` — the user's reframe
+    was RIGHT, my census verdict was WRONG).** The census counted a
+    "breakaway family (walkin+carry+through)" and I read its rise as "more
+    乱抢." But 乱抢 (scramble = pinball → breakaway) and 盘带 (clean dribble, a
+    skill) are DIFFERENT. Measuring goals by whether ≥2 possession FLIPS
+    preceded them in 4s: **SCRAMBLE-born goals are TINY and barely move — OFF
+    2-3% → ON 5%**; 95-98% of goals are CLEAN in both. The field's carry rise
+    (35→51%, 42→59%) is **almost ENTIRELY clean dribble** (clean-carry 51/58%,
+    scramble-carry ~1%). So the field does NOT worsen 乱抢 — it adds clean
+    dribbling, which per the user is FINE (a skill). The real remaining concern
+    is VARIETY (solo-dribble share is high; VISION §3 wants cross/cutback/
+    combination too) — that's the attack-repertoire / defect-A work, NOT 乱抢.
+    ⚠ Caveat: this is goal-SOURCE; the VISUAL clumping/pinball frequency (what
+    the user sees + dislikes) is judged by the Pages play-test, not this probe.
+  - Keeper-dive render bugs fixed + DEPLOYED (feet-drift-after-landing → freeze
+    dive-root; then teleport-on-claim → ease the root back). Emergent toggle
+    now STICKY (localStorage), opt-in, live on Pages. `dribble-vs-scramble.ts`
+    kept.
