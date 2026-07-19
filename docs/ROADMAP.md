@@ -1317,6 +1317,36 @@ wall/dive/diagram/link coverage), build clean.
 ⭐⭐⭐ **THE NEXT 自走 QUEUE v2 (2026-07-18 night — ⭐ THE RESUME POINT
 after the user's compact; user-ratified: "这几个写入吧" against the
 UI-audit + counter-defense conversation, plus their own additions).
+⭐⭐ SESSION HANDOFF (2026-07-19 cont., width investigation). Repo is
+CLEAN at fingerprint `d309f250` (= phase-119j); this session shipped NO
+sim change — both fix prongs were ATTEMPTED, A/B-tested, and REVERTED.
+Only additions: `scripts/probes/width-funnel.ts` (kept) + these ledger
+notes. ⭐ WHAT WE LEARNED (full anatomy in EVO-BLUEPRINT under "THE
+WIDTH-FUNNEL DIAGNOSIS"): the user asked whether 下底传中/45°/内切/套边
+can EMERGE, why central dribble penetrates, and about 补防. (1) **补防
+(carry-into-traffic tackle nerf) — REVERTED, wrong mechanism**: the
+scramble is a SPILL-driven pinball (spill 48-56% of entries), so a
+tackle-economy fix can't touch it; and the carry team attacks a SPREAD
+defense (no wall to bite). (2) **Carry is the UNIVERSAL weapon; width's
+only UNIQUE weapon (the cross) is broken** → width has no gradient, so
+everyone narrows. `width-funnel.ts` proved it: WIDE crosses 3.0/m →
+**0.0 shots** (2.27 go LOOSE); the box is EMPTY at delivery (0.24 att
+vs 0.64 def) because open-play box-crashing never existed + crashers
+arrive 1.2s late. (3) **The winger already WINS — by CARRYING**: WING
+(width 0.95 + dribble 0.8) beats CLUMP 2.90:2.27 via carry 1.52 / cross
+0.02. So 内切/carry-wide EMERGE; the aerial cross does not. (4) **Prong 2
+(box-crash + don't-cross-empty-box) — REVERTED**: cut wasteful crosses +
+lifted box population but the cross STILL didn't convert (0.02 goals — the
+aerial contest goes loose even with bodies there) AND broke 3 invariant
+tests. ⭐⭐ REFRAME / NEXT: the high aerial cross is low-percentage BY
+DESIGN (realistic 6v6 = cutback+combination, not crossing). **The next
+lever is the CUTBACK (倒三角, ground, to the arc arriver)** — strengthen it
+so it out-competes the deep carry from wide positions, done WITH box-timing
+and the fragile tests (finishing/onball/freeAgents) re-anchored on purpose.
+NOT the aerial cross. Standing: 119l run-repertoire; 11v11 as structural
+cure (parked); Stage-4 home-advantage→memory-commentary.
+
+---
 ⭐⭐ SESSION HANDOFF (2026-07-18, preset-free — facts only, next
 session decides direction). Repo is CLEAN at fingerprint `ab2e43bd`
 (= phase-119f; 119g + the spill probe are zero-sim, hash unchanged).

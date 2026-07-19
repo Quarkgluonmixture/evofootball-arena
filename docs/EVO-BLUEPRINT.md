@@ -2013,3 +2013,50 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   make WIDTH create real threat (so spreading pays → teams spread →
   declump). ⚠ Mind the iron law (past width buffs added space that fed
   the carry) — the two must move together. `clump-vs-wide.ts` kept.
+
+- ⭐⭐⭐ **2026-07-19 (cont.) THE WIDTH-FUNNEL DIAGNOSIS — carry is the
+  UNIVERSAL weapon; width's only UNIQUE weapon (the cross) is broken, so
+  width has no gradient to climb (`width-funnel.ts`, both prongs ATTEMPTED
+  + REVERTED).** The user asked whether real wide weapons (下底传中 / 45° /
+  内切 / 套边) can EMERGE, why central dribble penetrates, and about 补防.
+  Findings, all probe-measured:
+  - **补防 (prong 1) — REVERTED, wrong mechanism.** Extended `tryTackles`
+    so a carrier with 2+ defenders inside 2.6m loses it (regardless of
+    drive, scaling with the crowd — 过一堵墙不行). Moved clump-vs-wide ~0
+    (CLUMP attacks a SPREAD defense → carriers meet ISOLATED men, no wall)
+    AND the scramble ~0 (scramble-anatomy 2-world stash-A/B disagreed
+    within ~5pp noise). ROOT: the scramble is a **spill-driven pinball**
+    (entry: spill/other 48-56%, tackle-squirt 33-38%), so a tackle-economy
+    nerf can't touch it. The wall only exists in a COMPACT block (which the
+    carry team never ATTACKS). Parked.
+  - **Width's impotence is a FUNNEL that dies at the box.** WIDE (poss)
+    delivers 3.0 crosses/m → **0.0 become shots**; 2.27 of them go LOOSE
+    (nobody meets them). Byline reach: WIDE(poss) **0.15s/m** vs CLUMP
+    **1.06s/m** — the CENTRAL-dribble team reaches the byline 7× more than
+    the "wide" team, because possession-width (dribbleBias 0.3) gets broken
+    up in midfield and crosses hopefully from deep.
+  - **⭐ The winger archetype ALREADY wins — but by CARRYING, not crossing.**
+    A WING team (width 0.95 + **dribble 0.8**) BEATS CLUMP **2.90 : 2.27**,
+    reaches the byline 0.97s/m — but its goals are **carry 1.52 / cross
+    0.02**. So 内切 / carry-wide DO emerge; the aerial cross does not.
+  - **Why the cross dies: the box is EMPTY at delivery** (0.24 attackers vs
+    0.64 defenders per cross) — open-play box-crashing didn't exist (runners
+    make in-behind through-runs held wide at the offside line, never
+    converging central). The crashers arrive ~1.2s too LATE (box fills to
+    0.83 only AFTER the ball has gone).
+  - **Prong 2 (open-play box-crash + don't-cross-into-empty-box) — REVERTED.**
+    It cut wasteful crosses (3.42→1.50) and lifted box@delivery (0.26→0.57),
+    but the cross STILL didn't convert (0.02 goals): even with bodies there,
+    the attacker never wins the aerial cleanly (goes loose). And it broke 3
+    invariant tests (finishing, onball, freeAgents) via behavioral drift —
+    not worth re-anchoring for a marginal, non-solving change.
+  - ⭐ **REFRAME (the honest conclusion):** the high AERIAL cross is
+    low-percentage BY DESIGN and that's realistic — real 6v6 (small pitch,
+    small goals) is a cutback-and-combination game, not a crossing game. The
+    width weapons that DO / SHOULD emerge: **carry-wide + 内切 (already
+    emerges), the CUTBACK (倒三角, ground, to the arc arriver — the realistic
+    byline weapon, improvable), and 套边/overlap (gene exists).** Future
+    phase = strengthen the CUTBACK (ground, no broken aerial contest) so it
+    out-competes the deep carry from wide positions, done WITH box-timing +
+    the fragile tests re-anchored deliberately. The aerial cross is NOT the
+    lever. `width-funnel.ts` kept (arg[3] = poss | wing).
