@@ -2174,3 +2174,35 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     the current substrate (carry-dominant + zonal-cover + scramble; the game is
     fun & shipped) and spend elsewhere. ⚠ Do NOT keep throwing single width
     levers — ~11 have now failed; the root is the pitch:player ratio.
+
+- ⭐⭐⭐⭐ **2026-07-19 (cont.6) PITCH-SHRINK PROBE (user-directed, TEMP edits
+  measured + reverted) — the density hypothesis is CONFIRMED, but ONLY the
+  COORDINATED shrink works; a naive pitch-only shrink WORSENS the scramble
+  (the user's exact fear, measured).** Test A — shrink pitch only (90×58→56×38,
+  box scaled, formations scaled proportionally, physics UNCHANGED): goals
+  EXPLODED (clump-vs-wide 3.02→4.33, 15.4 shots/m), the extra goals nearly all
+  walk-in + buildup (SCRAMBLE) — same-speed players on a small pitch are
+  relatively too fast → frantic, more turnovers, more pinball. So naive shrink
+  = MORE 乱抢, tactics BLURRED, carry still wins. Test B — COORDINATED shrink
+  (also scale player BASE_SPEED ×0.62 to preserve tempo; keep physical sizes —
+  tackle radius / body / header / goal — FIXED = the density lever): chaos
+  TAMED (clump shots 15.4→8.1, walk-in 61→20, GF back to 2.50), cover DOUBLES
+  (carry-vs-block goal-side cover 0.62→1.25, central within-6m 1.53→1.97),
+  carry channel CRUSHED (clump carry 75→17; scheme DRIBBLE carry 47→11), WIDTH
+  ~doubles (scheme 0.72→1.02 vs man, 0.38→0.82 vs zonal; clump WIDE 0.40→0.93).
+  ⭐ **VERDICT: the coordinated pitch-shrink is the structural cure DIRECTION —
+  the ONE lever (of ~11) that forms cover + tames chaos + crushes the carry +
+  lifts width, and it does NOT worsen the scramble when done coordinated.** BUT
+  it is NOT a complete cure yet: the RPS still isn't closed (narrow/dribble
+  still wins ~2.1 vs width ~1.0, now via SET-PIECES + buildup), and set-pieces
+  became over-strong (the 7m GOAL on a 38m pitch is relatively huge — the probe
+  did NOT scale the goal / ball speeds / the many tuned offsets). Those
+  residuals point to the FULL scope: a coordinated rebalance of pitch + box +
+  GOAL + player speed + ball speeds + every tuned offset + set-piece geometry +
+  full goals-warming re-derive + fingerprint rebaseline — a big, staged,
+  multi-constant, likely multi-session effort on the LIVE game, possibly still
+  needing width-conversion polish to fully close the RPS. The user's call:
+  commit to that staged rebalance, or accept the current substrate. Probes used:
+  temp edits to `constants.ts` (PITCH/BOX) + `formations.ts` (base scale) +
+  `Player.ts` (BASE_SPEED) — ALL REVERTED; the 6 committed probes are the
+  yardsticks for it.
