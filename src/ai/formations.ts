@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { v2, type V2 } from '../utils/vec';
-import { CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
+import { BOX_DEPTH, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -247,6 +247,32 @@ function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean): V
   // halving spreadY). The whole shape slides over, keeping its width.
   const ballSideShift = hasBall ? 0.18 + g.attackingWidth * 0.22 : 0.18 + g.defensiveCompactness * 0.25;
   y += ball.pos.y * ballSideShift;
+
+  // ⭐ B1-b: ANTI-CLUMP + position by VALUE (the user's "一堆人挤自家禁区,防守
+  // 帮助 0" / "别扎堆"). Stations REPEL each other, so bodies SPREAD to cover
+  // space instead of piling into the same zone — the emergent alternative to a
+  // fixed lattice AND to the bus box-crowd. Computed in the local-x / world-y
+  // frame (x is local, y unflipped). Plus a box-crowd relief: with no ball
+  // threat to our box, nobody buries INSIDE it — hold the useful edge.
+  if (p.role !== 'GK') {
+    let rx = 0;
+    let ry = 0;
+    for (const q of team.players) {
+      if (q === p || q.role === 'GK' || q.sentOff) continue;
+      const dxL = x - team.localX(q.pos.x);
+      const dyL = y - q.pos.y;
+      const d = Math.hypot(dxL, dyL);
+      if (d < 9 && d > 1e-3) {
+        const f = (9 - d) / 9;
+        rx += (dxL / d) * f;
+        ry += (dyL / d) * f;
+      }
+    }
+    x += clamp(rx * 2.6, -7, 7);
+    y += clamp(ry * 2.6, -7, 7);
+    // no useless burying in our own box when the ball isn't threatening it
+    if (team.localX(ball.pos.x) > -20 && x < -HALF_L + BOX_DEPTH) x = -HALF_L + BOX_DEPTH + 2;
+  }
 
   if (p.role === 'GK') {
     x = clamp(-HALF_L + 4 + (g.keeperAggression - 0.5) * 4, -HALF_L + 1, -HALF_L + 11);
