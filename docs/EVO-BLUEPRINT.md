@@ -2123,3 +2123,24 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     Then: DRIBBLE>MAN, WIDTH>ZONAL, neither dominates → RPS → declumping, all
     emergent from the scheme gene. `scheme-matchup.ts` + `carry-vs-block.ts`
     kept as yardsticks.
+
+- ⭐⭐⭐ **2026-07-19 (cont.4) WHY WIDTH LOSES TO ZONAL = the SAME delivery-
+  conversion wall (`width-funnel.ts` arg[4]=zonal).** WING (width+dribble) vs a
+  ZONAL defence: byline occupancy 1.13s/m (REACHES fine), crosses 5.00/m
+  (SPAMS them), carry crushed to 0.22 (zonal cover works ✓) — but box@delivery
+  0.12 attackers vs 0.65 defenders (EMPTIER than vs man), cross→goal 0.00,
+  cutback 0.07 shots. So width vs zonal is NOT a reach/creation problem — it
+  REACHES the byline and delivers, but the box is EMPTY and it all goes loose
+  (3.48/5). Zonal kills the carry, and width can't capitalise because the
+  DELIVERY doesn't convert into a populated box — the SAME wall as the cross
+  funnel. Also: at the byline the CROSS out-scores the CUTBACK in the utility
+  (5.0 crosses vs 0.07 cutback shots), so the carrier spams the worthless
+  aerial instead of the ground cutback to the (open, in a zonal seam) arriver.
+  ⭐ **The single remaining blocker for the WHOLE center/flank asymmetry: make
+  the CUTBACK convert vs a held lattice** — arriver reliably in the seam + the
+  cutback out-competes the cross/carry from wide + box presence. Zonal already
+  does the hard half (kills the carry); width only needs a working ground
+  delivery to pull ahead of dribble-vs-zonal (2.00). ⚠ COST: the box-crash +
+  cross-gate attempt broke 3 invariant tests (finishing/onball/freeAgents) —
+  this is a coordinated attacking change needing deliberate test re-anchoring +
+  fingerprint rebaseline, NOT a one-liner. `width-funnel.ts` arg[4]=man|zonal.

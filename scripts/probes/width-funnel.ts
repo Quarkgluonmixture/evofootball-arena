@@ -17,7 +17,7 @@ import { Match } from '../../src/sim/Match';
 import { DT } from '../../src/sim/constants';
 import { GENE_KEYS, type TacticalGenome } from '../../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../../src/evolution/playerGenome';
-import { TEAM_SIZE, type TeamInfo } from '../../src/sim/types';
+import { TEAM_SIZE, type MarkScheme, type TeamInfo, type TeamStyle } from '../../src/sim/types';
 
 const K = Number(process.argv[2] ?? 40);
 
@@ -42,11 +42,15 @@ const WIDE = ARCH === 'wing'
   ? genome({ attackingWidth: 0.95, defensiveCompactness: 0.5, dribbleBias: 0.8, passBias: 0.45, overlapW: 1, tempo: 0.6 })
   : genome({ attackingWidth: 0.95, defensiveCompactness: 0.3, dribbleBias: 0.3, passBias: 0.85, tempo: 0.7 });
 
+// arg[4] forces the CLUMP defence's scheme (man | zonal); default man.
+const DEF_SCHEME = (process.argv[4] as MarkScheme) ?? 'man';
+const clumpStyle: TeamStyle = { formationAtk: 'narrow-122', formationDef: 'low-32', scheme: DEF_SCHEME };
 const info = (name: string, g: TacticalGenome): TeamInfo => ({
   id: name, name, short: name.slice(0, 3).toUpperCase(),
   colors: { primary: 0xff0000, secondary: 0xffffff },
   playerNames: Array.from({ length: TEAM_SIZE }, (_, i) => `P${i}`),
   genome: g, squad: squad(),
+  ...(name === 'CLUMP' ? { style: clumpStyle } : {}),
 });
 
 type Bucket = {
