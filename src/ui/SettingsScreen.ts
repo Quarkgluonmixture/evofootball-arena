@@ -83,6 +83,15 @@ export class SettingsScreen {
     }
     dbg.appendChild(el('div', 'muted', t('Paints tactical internals onto the pitch view.')));
     this.root.appendChild(dbg);
+
+    // ---- experimental (Phase B — the emergent positioning field) ----
+    const exp = el('div', 'settings-section');
+    exp.appendChild(el('h3', '', `🧬 ${t('Experimental')}`));
+    exp.appendChild(checkbox(t('Emergent positioning (no fixed formations)'), false,
+      (v) => actions.setEmergentPos(v)));
+    exp.appendChild(el('div', 'muted',
+      t('Positions grow from role + genes + the live game instead of fixed formation tables. To judge it: enable, START A NEW LEAGUE, watch a few gen-0 matches (rough), let it evolve ~10 seasons, then watch again — good shape should EMERGE. Old saves were evolved for the fixed system.')));
+    this.root.appendChild(exp);
   }
 
   get isVisible(): boolean {

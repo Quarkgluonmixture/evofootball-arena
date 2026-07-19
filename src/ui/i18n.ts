@@ -76,6 +76,10 @@ const ZH: Record<string, string> = {
   Med: '中',
   High: '高',
   'Debug overlays': '调试图层',
+  'Experimental': '实验性',
+  'Emergent positioning (no fixed formations)': '涌现定位(不用固定阵型)',
+  'Positions grow from role + genes + the live game instead of fixed formation tables. To judge it: enable, START A NEW LEAGUE, watch a few gen-0 matches (rough), let it evolve ~10 seasons, then watch again — good shape should EMERGE. Old saves were evolved for the fixed system.':
+    '站位由「角色 + 基因 + 实时局势」长出来,取代固定阵型表。怎么看:打开开关 → 新建联赛 → 先看几场第 0 代(会比较乱)→ 让它自己演化约 10 个赛季 → 再看几场——好的形状应该「长」出来。旧存档是按固定系统进化的,直接开会不匹配。',
   'Player action labels': '球员动作标签',
   'Formation targets': '阵型落点',
   'Pass target line': '传球目标线',

@@ -44,6 +44,10 @@ export interface GameActions {
   simSeasons(n: number): void;
   setAutoContinue(v: boolean): void;
   setFlag(key: keyof UiFlags, v: boolean): void;
+  /** Experimental (Phase B): toggle the emergent positioning field (vs the
+   * fixed formation tables). Affects new sims incl. evolution — enable, then
+   * start a fresh league for a clean test. */
+  setEmergentPos(v: boolean): void;
   toggleLeagueScreen(): void;
   /** Pop the tactical-DNA clash for the current match (Phase 33: the scoreboard is the button). */
   toggleClash(): void;

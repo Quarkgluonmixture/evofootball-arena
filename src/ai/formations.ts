@@ -81,6 +81,20 @@ export const DEFEND_FORMATIONS: Record<DefendFormationId, V2[]> = {
   'high-line': [v2(-41, 0), v2(-14, -3), v2(-9, 3), v2(-13, -12), v2(-13, 12), v2(6, 0)],
 };
 
+// EMERGENT POSITIONING FIELD toggle (Phase B, WIP). A module flag settable
+// from the UI (settings → experimental) so the user can PLAY-test it, plus a
+// browser-safe read of the Node env var so probes (`EMERGENT_POS=1`) work too.
+// OFF by default = the fixed formation tables (today's shipped behavior).
+let _emergentPos = false;
+export function setEmergentPos(on: boolean): void {
+  _emergentPos = on;
+}
+export function emergentPosOn(): boolean {
+  if (_emergentPos) return true;
+  // typeof guard: `process` is undefined in the browser bundle — never throw.
+  return typeof process !== 'undefined' && !!(process.env && process.env.EMERGENT_POS);
+}
+
 /** How far up/down the pitch each tactical mode pushes the block. */
 const MODE_SHIFT: Record<TeamMode, number> = {
   Attack: 10,
@@ -98,9 +112,9 @@ const MODE_SHIFT: Record<TeamMode, number> = {
 export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team): V2 {
   // EMERGENT POSITIONING FIELD (Phase B1, toggle — the user's #1 emergence
   // ask: shape must grow from role + genes + live state, not a hand-authored
-  // MENU). Behind an env flag so it A/Bs cleanly against the fixed tables
+  // MENU). Behind a flag so it A/Bs cleanly against the fixed tables
   // (positioning-shape.ts) before it can replace them. OFF = today's behavior.
-  if (process.env.EMERGENT_POS) return emergentStation(p, team, ball, hasBall, opp);
+  if (emergentPosOn()) return emergentStation(p, team, ball, hasBall, opp);
   const g = team.genome;
   const base = hasBall
     ? ATTACK_FORMATIONS[team.style.formationAtk][p.index]

@@ -2,6 +2,7 @@ import { Application, type Ticker } from 'pixi.js';
 import {
   clearSave, exportLeagueJSON, hasSave, importLeagueJSON, loadLeague, saveLeague,
 } from '../data/save';
+import { setEmergentPos } from '../ai/formations';
 import { DebugOverlay } from '../render/DebugOverlay';
 import { MatchRenderer } from '../render/MatchRenderer';
 import { PitchRenderer } from '../render/PitchRenderer';
@@ -1076,6 +1077,10 @@ export class GameApp implements GameActions {
 
   setFlag(key: keyof UiFlags, v: boolean): void {
     this.flags[key] = v;
+  }
+
+  setEmergentPos(v: boolean): void {
+    setEmergentPos(v);
   }
 
   toggleLeagueScreen(): void {
