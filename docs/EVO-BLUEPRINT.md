@@ -2060,3 +2060,38 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     out-competes the deep carry from wide positions, done WITH box-timing +
     the fragile tests re-anchored deliberately. The aerial cross is NOT the
     lever. `width-funnel.ts` kept (arg[3] = poss | wing).
+
+- ⭐⭐⭐ **2026-07-19 (cont.2) THE LEVERS ARE COUPLED — "width first" BACKFIRES
+  (the user's center/flank-asymmetry directive + 3 new probes).** The user
+  reframed the goal: the asymmetry ("中路易被夹击 / 边路有空间+人数优势") must
+  EMERGE from selectable structure + an operable flank, NOT be hardcoded (some
+  teams choose to pack the center and win; those who don't get carved — "底座
+  允许 X" not "我们替球队定 X"). Three probes + two reverts pinned the structure:
+  - **`pressure-by-zone.ts`**: the center/flank pressure asymmetry is WEAK and
+    INVERTED — a central·mid carrier draws only 0.83 defenders within 2.6m vs
+    wide 0.56, and WIDE-third carries are dispossessed MORE (38/1k frames vs
+    central 21). The flank is currently the DANGEROUS place, backwards from 6v6.
+  - **Hardcoded "defense holds central vs a wide ball" — REVERTED** (per the
+    user: don't mandate the collapse; it must be gene/selection-driven).
+  - **`reception-by-width.ts`**: the winger barely gets SERVED wide (extreme
+    receptions 137 vs central 1784) and when wide is the LEAST pressured
+    (0.172) — the flank is a dead-end because SERVICE doesn't go there, not
+    because it's crowded. "被贴身" refuted; "拿不到球" confirmed.
+  - **Lever 1 (variable winger width — the winger checks IN toward the ball,
+    positioning-gated, then attacks wide) — REVERTED, MEASURED BACKFIRE.** It
+    worked mechanically (total receptions +147, winger served more) BUT the
+    served winger just CARRIES CENTRALLY (the carry is universal): WING carry
+    goals 1.52→1.83, byline occupancy FELL 0.97→0.83, POSS stayed dead (cross
+    0.00). Improving wide service without a unique wide payoff FEEDS the carry.
+  - ⭐⭐ **THE KEYSTONE:** the central carry is the UNIVERSAL dominant weapon
+    (6v6 space-lock — beat one man = through, no cover layer: 过一个 = 直接穿).
+    Width can ONLY pay via a payoff the center CANNOT replicate. Two ways:
+    **(A) make central carrying FAIL — the emergent cover layer 过一个还有另一
+    个, so packing the center is rewarded and spreading is carved (the
+    selectable tradeoff);** and/or **(B) make the CUTBACK (ground, the realistic
+    6v6 byline weapon — NOT the aerial cross) convert.** Everything else
+    (variable width, combinations, service) is POLISH that only helps AFTER A
+    and/or B — done first it feeds the carry. So the user's order (width →
+    combos → cover) INVERTS: the cover/cutback keystone (listed last) is
+    actually FIRST. `pressure-by-zone.ts` + `reception-by-width.ts` kept as
+    yardsticks.
