@@ -1339,9 +1339,18 @@ Root: the ATTACK has no zone-breaking primitive (a zone doesn't track
 men). The 乱抢 free-1v1, the off-ball wall (119d-1), the throttled
 give-and-go, AND zonal-dominance are ONE defect: the attack can't pull
 a defence apart. ⭐ REDIRECT: 119h (free scheme) BLOCKED until the
-attacking zone-breaker exists → the real lever is 119d give-and-go /
-movement-that-beats-a-zone (NOT "off-ball separation" — that helped
-the carry). ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
+attacking zone-breaker exists → 119i. ⭐ 119i FIRST LEVER (give-and-go
+return) ATTEMPTED + REVERTED 2026-07-19: it FIRES (frozen oneTwos
+0.07→0.5) but FAILS both gates — evolution DE-SELECTS it (net-neg-EV,
+fresh gate 7→2/16) AND it inflates goals-warming 11.54→15.25. Lesson:
+making a combination fire ≠ making it PAY; the bottleneck is RETURN
+QUALITY (A gets open at 5.5m but can't convert the received ball) =
+A's off-ball run-timing + first touch = ⭐⭐ THE MISSING POSITIONING /
+OFF-BALL-IQ ATTRIBUTE. Five levers now converge here (119c, 119d-1×4,
+119i): off-ball actions don't pay AND players can't individually
+create/exploit space. The real enabler = the positioning attr — but
+it re-prices SQUAD_BUDGET (parked at phase-47) = a foundational
+decision, NOT a small lever. ⭐ STRATEGIC BACKLOG written: attribute/gene audit vs
 FIFA/FM/PES (positioning attr = deepest missing; GK split;
 heading/accel/tackling splits). Also queued: 119g(b) pre-match
 behavioural plan (attacking-side/upstream only), give-and-go (119d).
