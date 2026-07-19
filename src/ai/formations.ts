@@ -271,6 +271,12 @@ function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean, op
   // fixed lattice AND to the bus box-crowd. Computed in the local-x / world-y
   // frame (x is local, y unflipped). Plus a box-crowd relief: with no ball
   // threat to our box, nobody buries INSIDE it — hold the useful edge.
+  // Defensive THREAT = how close the ball is to OUR goal (0 at/above halfway,
+  // ~1 deep in our third). Spread when there's no threat (cover space, no
+  // bus-crowd); COMPACT the last line under threat (B-continued — the first
+  // B1-b spread even the back line → clean chances → goals-warming inflated
+  // to overperf 2.1×; solidity restored here).
+  const threat = clamp((-team.localX(ball.pos.x) - 8) / 26, 0, 1);
   if (p.role !== 'GK') {
     let rx = 0;
     let ry = 0;
@@ -285,10 +291,19 @@ function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean, op
         ry += (dyL / d) * f;
       }
     }
-    x += clamp(rx * 2.6, -7, 7);
-    y += clamp(ry * 2.6, -7, 7);
+    const spread = 2.6 * (1 - threat * 0.7); // don't spread the last line under threat
+    x += clamp(rx * spread, -7, 7);
+    y += clamp(ry * spread, -7, 7);
     // no useless burying in our own box when the ball isn't threatening it
     if (team.localX(ball.pos.x) > -20 && x < -HALF_L + BOX_DEPTH) x = -HALF_L + BOX_DEPTH + 2;
+    // SOLIDITY under threat: the back/mid block collapses goal-ward + central
+    // as the ball bears down, so the last line stays compact and denies the
+    // clean chance (the ST stays high as the outlet).
+    if (!hasBall && p.role !== 'ST' && threat > 0) {
+      const kk = threat * (0.3 + g.defensiveCompactness * 0.5);
+      x += (-HALF_L + 11 - x) * kk * 0.45;
+      y += (0 - y) * kk * 0.3;
+    }
   }
 
   if (p.role === 'GK') {
