@@ -1864,6 +1864,55 @@ Priority order: scheme-gene (119h, in flight) → positioning attr (its
 own big project, budget impact) → GK split (rides the keeper line) →
 heading / accel / tackling splits.
 
+**119i — THE ATTACKING ZONE-BREAKER: make the seven dilemma-creators
+EMERGE** ⏳ **ACTIVE (user, 2026-07-19 — "我希望这七个能在我们的世界
+都涌现出来").** The real form of 119d and the UNBLOCKER for 119h. Real
+football breaks a defence by manufacturing a DILEMMA (space+time the
+defence can't deny in two places at once); against a ZONE specifically
+(which defends space, not men) the seven tools are: (1) OVERLOAD /
+local 2v1, (2) TIMED third-man run into a seam, (3) GIVE-AND-GO /
+combination that beats the shift, (4) SWITCH of play (punish the
+ball-side compaction), (5) DRAG / decoy run, (6) DRIBBLE-to-commit,
+(7) WIDTH→penetrate. ⭐ EMERGENCE FRAME (not hand-coded): the unified
+substrate defect is that **off-ball dilemma-creation does not PAY** —
+the engine rewards beating your man WITH the ball (momentum gate →
+carry → 1v1) but NOT without it (119d-1), so the only space-manufacturer
+that pays is the dribble, and a held zone (cover right there in 6v6)
+kills it → aggressive-zonal is unbeatable (quadrant probe). The job:
+make each dilemma-creator PAY so evolution SELECTS it — enrich the
+gene-driven, unbiased primitives + retire hand-set suppression + run
+evolution and OBSERVE which of the seven emerge. NOT script "do a
+give-and-go here". ⚠ The 119d-1 iron-law trap: the target is movement
+that creates a DILEMMA (commits/overloads a defender), NOT generic
+separation/space (that helped the carry). Success metric: the attack's
+goals vs the FIXED aggressive-zonal wall rise (quadrant-balance as the
+yardstick), goals floor held, carry share eased toward co-dominance
+(not eliminated). PLAN: probe-first inventory (which of the seven fire
+/ pay today, measured against the zonal wall) → enrich the highest-
+leverage primitive → A/B + fresh-evolution + goals-floor + the zonal-
+break metric. Realism note: small-sided football breaks compact
+defences via ROTATION + give-and-go + 2v1, not dribbling alone — these
+are futsal-honest, NOT an 11v11 import. Deep enabler behind all seven =
+the MISSING positioning / off-ball-IQ attr (its own project).
+⭐ FIRST LEVER PROBED (2026-07-19, `wallrun-anatomy.ts` + `give-and-go`):
+the give-and-go is the sharpest zone-breaker (it beats a PRESS, incl.
+aggressive-zonal) and its substrate EXISTS (`wallRun`) but is toothless
+— oneTwos 0.07/match. Anatomy: licenses fire ~3/match, the burster DOES
+get open (peak separation ≥4m in 55-68%, x̄ 5.5m — the "GO" works), the
+carrier chooses to return only 3-4% — because **the WALL (B, who
+received A's pass) LOSES the ball before the return: 80-81% dispossessed
+before peak**. Root: B receives under pressure (the license needs
+pressure>0.2) and tries to CONTROL/settle → pressed → lost, instead of
+playing the real give-and-go: a FIRST-TIME return into A's burst. B has
+no "I'm the wall, lay it back one-touch" behaviour. THE FIRST 119i
+ENRICHMENT (completing an existing primitive, gene-priced, not a new
+mechanic): when B receives a pass from a teammate A whose `wallRun`
+targets B and who is bursting, B plays a HIGH-priority FIRST-TIME return
+into A's run — before the settle touch. A/B metric = combination goals +
+goals vs the aggressive-zonal wall up, goals floor held, carry not
+merely re-fed (A bursts past a COMMITTED presser = a real dilemma, not
+generic space). Probes kept: `wallrun-anatomy.ts`.
+
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
