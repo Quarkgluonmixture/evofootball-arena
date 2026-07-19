@@ -459,7 +459,7 @@ function assignMarks(team: Team, match: Match): void {
 
   const free = team.players.filter((p) => p.role !== 'GK' && !team.chasers.has(p.index) && !p.sentOff);
   // Zonal: each free defender's zone is centered on their DEFENDING spot.
-  const zones = zonal ? new Map(free.map((p) => [p.index, formationSpot(p, team, match.ball, false)])) : null;
+  const zones = zonal ? new Map(free.map((p) => [p.index, formationSpot(p, team, match.ball, false, match.teams[1 - team.side])])) : null;
   const used = new Set<number>();
   for (const threat of threats) {
     const boxThreat = inOurBox(threat.pos.x, threat.pos.y);

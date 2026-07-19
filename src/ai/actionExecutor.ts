@@ -39,7 +39,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   switch (p.action.type) {
     case 'MoveToFormationSpot':
     case 'HoldPosition': {
-      target = formationSpot(p, team, ball, hasBall);
+      target = formationSpot(p, team, ball, hasBall, opp);
       // Hurry back if badly out of position. (A phase-106 "hurry when
       // beaten" trigger was built and MEASURED OUT here: during walk-in
       // breakaways the beaten men are 60-88% in MarkOpponent/ChaseBall —
@@ -198,7 +198,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         const trapHold = ((g.trapBias ?? 0.5) - 0.5) * 2;
         const ballDeep = team.localX(ball.pos.x) < -17;
         if (trapHold > 0 && !ballDeep && ball.owner && ball.owner.side !== p.side && ball.owner !== mark) {
-          const spot = formationSpot(p, team, ball, hasBall);
+          const spot = formationSpot(p, team, ball, hasBall, opp);
           if (team.localX(target.x) < team.localX(spot.x)) {
             target = { x: target.x + (spot.x - target.x) * trapHold, y: target.y };
           }
@@ -227,7 +227,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         }
         speedF = 0.85 + g.markingAggression * 0.15;
       } else {
-        target = formationSpot(p, team, ball, hasBall);
+        target = formationSpot(p, team, ball, hasBall, opp);
       }
       break;
     }

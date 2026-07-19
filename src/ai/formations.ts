@@ -95,12 +95,12 @@ const MODE_SHIFT: Record<TeamMode, number> = {
  * World-space formation target for a player. `hasBall` decides whether width
  * (attackingWidth) or compactness (defensiveCompactness) shapes the block.
  */
-export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolean): V2 {
+export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team): V2 {
   // EMERGENT POSITIONING FIELD (Phase B1, toggle — the user's #1 emergence
   // ask: shape must grow from role + genes + live state, not a hand-authored
   // MENU). Behind an env flag so it A/Bs cleanly against the fixed tables
   // (positioning-shape.ts) before it can replace them. OFF = today's behavior.
-  if (process.env.EMERGENT_POS) return emergentStation(p, team, ball, hasBall);
+  if (process.env.EMERGENT_POS) return emergentStation(p, team, ball, hasBall, opp);
   const g = team.genome;
   const base = hasBall
     ? ATTACK_FORMATIONS[team.style.formationAtk][p.index]
@@ -204,7 +204,7 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
  * B1-b. Opponent-relative positioning is B2. Same sensible modifiers as the
  * table path (slide/depth/press/rest-defence/width) so shape stays sane.
  */
-function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean): V2 {
+function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team): V2 {
   const g = team.genome;
   // Role → coarse (depth fraction of HALF_L, lane fraction of HALF_W). WGs take
   // a side from their slot (L=3, R=4); everyone else holds a central lane.
@@ -247,6 +247,23 @@ function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean): V
   // halving spreadY). The whole shape slides over, keeping its width.
   const ballSideShift = hasBall ? 0.18 + g.attackingWidth * 0.22 : 0.18 + g.defensiveCompactness * 0.25;
   y += ball.pos.y * ballSideShift;
+
+  // ⭐ B2: the block tracks the OPPONENT's push, not just the ball (the user's
+  // "阵型也不会随着对面的移动而移动"). The defensive spine (DF/MF) holds a line
+  // just goal-side of the opponents' advanced players — step UP when they sit
+  // deep, DROP when they push. A modest convergence, so the block MOVES WITH
+  // the opponent line while keeping its own depth structure. Only when we have
+  // an opponent reference (executor/marking path); attack + supportSpot skip it.
+  if (!hasBall && opp && (p.role === 'DF' || p.role === 'MF')) {
+    const adv = opp.players
+      .filter((o) => o.role !== 'GK' && !o.sentOff)
+      .map((o) => team.localX(o.pos.x))
+      .sort((a, b) => a - b);
+    if (adv.length >= 2) {
+      const holdLine = adv[1] - 3; // goal-side of their 2nd-deepest attacker
+      x += (holdLine - x) * 0.14;
+    }
+  }
 
   // ⭐ B1-b: ANTI-CLUMP + position by VALUE (the user's "一堆人挤自家禁区,防守
   // 帮助 0" / "别扎堆"). Stations REPEL each other, so bodies SPREAD to cover
