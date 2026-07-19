@@ -2230,9 +2230,25 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     green. Structural swap done: shape = role-field + gene weights, not the
     menu. ⚠ field-ON alone does NOT fix width/carry (that's defect A density +
     B1-b/B2) — B1-a's job was the swap + real strong side, achieved.
-  - **NEXT: B1-b** anti-clump repulsion + space-VALUE term (kill the bus
-    box-crowd 0.72, no clumping) → **B2** opponent-relative positioning (cover
-    space / hold line vs the opponent shape, not just the ball) → **B3** retire
-    the formation tables; "style" = gene weights; full gates + fingerprint
-    rebaseline. Yardstick: `positioning-shape.ts` (+ width/scheme/scramble
-    probes) with `EMERGENT_POS=1`.
+  - **B1-b DONE** (committed): anti-clump station repulsion + box-value relief
+    — BUS own-box crowd 0.72→0.48, spacing sane, still toggle-OFF.
+  - **B2-lite DONE** (committed): threaded optional `opp` into formationSpot;
+    the defensive spine (DF/MF) tracks a line goal-side of the opponents'
+    advanced players (阵型随对面移动). Shape sane, goals sane.
+  - ⭐⭐ **B3 GATE VERDICT (2026-07-19): the field FAILS goals-warming — do NOT
+    ship as-is.** Real-gate A/B (`EMERGENT_POS=1` vs OFF, same worlds):
+    calibrate goals 1.76→2.23 (+27%, viable); but **goals-warming inflates
+    badly — world991 late-mean 4.07→5.54, world777 4.13→5.18, generational
+    drift ~2× (Δ 1.3-1.45 → 2.2-3.1), conv 25→55%, overperf 1.5→2.1×.**
+    Evolution exploits the field into a goal-fest. DIAGNOSIS: overperf 2.1×
+    (goals ≫ xG) = chances too CLEAN → the B1-b anti-clump + box-relief spread
+    the defence too thin, thinning the LAST LINE near own goal, so attackers
+    get unopposed looks and evolution drives finishing/pace to cash them. The
+    "don't clump" win over-corrected into "no defensive solidity."
+  - **NEXT (B-continued, if pursued): restore defensive solidity** — dampen the
+    anti-clump + box-relief in the defensive third / near own goal so the last
+    line stays compact and protects the goal (keep the spread in midfield /
+    attack). Re-run goals-warming; target the baseline arc (late-mean ~4).
+    THEN B3 retire-tables + fingerprint rebaseline. The field stays toggle-OFF
+    (WIP, zero production impact) until it passes goals-warming. Yardsticks:
+    `goals-warming.ts` + `positioning-shape.ts` + calibrate, `EMERGENT_POS=1`.
