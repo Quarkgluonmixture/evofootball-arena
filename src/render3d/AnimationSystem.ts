@@ -330,6 +330,8 @@ export class AnimationSystem {
       model.diveSide = Math.sign(Math.sin(toBall - p.yaw)) || 1;
       model.diveT = 0;
       model.yawLock = p.yaw;
+      model.diveX = p.x;
+      model.diveZ = p.z;
     }
     // The dive freezes the FACING too (34.1, user report: the keeper kept
     // rotating with the ball mid-save — sim heading tracks the ball and
@@ -338,6 +340,11 @@ export class AnimationSystem {
     if (anim === 'gkDive') {
       model.root.rotation.y = model.yawLock;
       model.yawEase = 1;
+      // Plant the root where he dove — don't let the sim keeper's drift back
+      // toward his spot drag the grounded body backward (user report: the
+      // feet slid back after landing). Pure display; the sim is untouched.
+      model.root.position.x = model.diveX;
+      model.root.position.z = model.diveZ;
     } else if (model.yawEase > 0) {
       model.yawEase = Math.max(0, model.yawEase - dt / 0.45);
       model.root.rotation.y = lerpAngle(p.yaw, model.yawLock, model.yawEase);

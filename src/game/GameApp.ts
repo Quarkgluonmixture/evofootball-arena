@@ -52,6 +52,17 @@ import { SoundFx } from '../ui/SoundFx';
 // first thing a new player watches should sell the game.
 const DEFAULT_SEED = 1168;
 
+/** Sticky opt-in for the emergent positioning field (Phase B) — persists the
+ * user's toggle across reloads so it can be examined over many sessions,
+ * without hard-coding it as the global default (it's still WIP). */
+function readEmergentPos(): boolean {
+  try {
+    return localStorage.getItem('evo:emergentPos') === '1';
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Top-level orchestrator: owns the League, the currently watched Match, the
  * Pixi renderers and the DOM panels. The watched match advances on a fixed
@@ -313,7 +324,14 @@ export class GameApp implements GameActions {
     // (auto-shown, reopenable from the Evolution tab) and the pre-match clash.
     this.ceremony = new RebirthCeremony(stage, () => this.onCeremonyClosed());
     this.leagueScreen.onShowCeremony = () => this.showCeremony();
-    this.settingsScreen = new SettingsScreen(stage, this, this.flags);
+    // Emergent positioning field (Phase B): restore the sticky toggle so it
+    // survives reloads (the user examines it across sessions) without being a
+    // hard-coded global default — the field is still WIP and evolved play
+    // leans MORE on carry, so it must be an OPT-IN the user turns on, not the
+    // shipped default.
+    const emergentSticky = readEmergentPos();
+    setEmergentPos(emergentSticky);
+    this.settingsScreen = new SettingsScreen(stage, this, this.flags, emergentSticky);
     this.evolutionScreen = new EvolutionScreen(stage);
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
@@ -1081,6 +1099,9 @@ export class GameApp implements GameActions {
 
   setEmergentPos(v: boolean): void {
     setEmergentPos(v);
+    try {
+      localStorage.setItem('evo:emergentPos', v ? '1' : '0');
+    } catch { /* private mode / no storage — the flag still applies this session */ }
   }
 
   toggleLeagueScreen(): void {

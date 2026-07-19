@@ -236,6 +236,12 @@ export class PlayerModel {
   /** Facing frozen at dive start (34.1) — the sim heading keeps tracking
    * the ball, and applying it raw ROTATED the horizontal body mid-save. */
   yawLock = 0;
+  /** Ground position frozen at dive start (Phase B, user report: keeper's
+   * feet drifted BACKWARD after landing). The save is a probability roll —
+   * the sim keeper keeps steering back to his spot while the dive pose plays,
+   * dragging the horizontal body with it. Plant the root where he dove. */
+  diveX = 0;
+  diveZ = 0;
   /** Recovery blend: 1 → still facing the lock, eases to the live heading. */
   yawEase = 0;
   /** One-shot trap clock (Phase 73): reaches for an arriving ball, gives. */

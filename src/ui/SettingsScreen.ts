@@ -27,7 +27,7 @@ export class SettingsScreen {
   readonly root: HTMLElement;
   private visible = false;
 
-  constructor(host: HTMLElement, actions: GameActions, flags: UiFlags) {
+  constructor(host: HTMLElement, actions: GameActions, flags: UiFlags, emergentInitial = false) {
     this.root = el('div');
     this.root.id = 'settings-screen';
     this.root.classList.add('hidden');
@@ -87,7 +87,7 @@ export class SettingsScreen {
     // ---- experimental (Phase B — the emergent positioning field) ----
     const exp = el('div', 'settings-section');
     exp.appendChild(el('h3', '', `🧬 ${t('Experimental')}`));
-    exp.appendChild(checkbox(t('Emergent positioning (no fixed formations)'), false,
+    exp.appendChild(checkbox(t('Emergent positioning (no fixed formations)'), emergentInitial,
       (v) => actions.setEmergentPos(v)));
     exp.appendChild(el('div', 'muted',
       t('Positions grow from role + genes + the live game instead of fixed formation tables. To judge it: enable, START A NEW LEAGUE, watch a few gen-0 matches (rough), let it evolve ~10 seasons, then watch again — good shape should EMERGE. Old saves were evolved for the fixed system.')));
