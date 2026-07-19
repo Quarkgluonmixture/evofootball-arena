@@ -1985,6 +1985,44 @@ with positioning making A's return-reception clean. A/B each: does a
 positioning archetype EMERGE and win, do the seven start appearing, is
 the aggressive-zonal wall finally breakable (quadrant metric).
 
+**119k — POSITIONING wiring points 2-3 (run-timing + defensive reads)**
+⚠️ **PROBED → BOTH MARGINAL, NOT SHIPPED (fast maxed-test caught them
+before any evolution burn; fingerprint stays `d309f250`).** Two more
+wiring points tried, each killed by the `positioning-bite.ts` maxed
+test: ① SEAM RUN (runTarget pulls a high-positioning runner's Y toward
+the largest gap in the defensive line) — REFUTED, pos-0.9 scored LEAST
+(GF 1.35 vs pos-0.1 1.50) and conceded MOST (1.56): "run to the biggest
+gap" is a hand-coded SINGLE pattern that disrupts shape, not a chance-
+creator (the ball must arrive there AND the space ahead is still
+defended). ② INTERCEPTION READ (canInterceptPass timing margin scaled
+by positioning) — WEAK, pos-0.9 GA 1.43 vs pos-0.1 1.48 (−0.05, noise).
+⭐ THE PATTERN (three wiring points now: 119j reception weak, seam-run
+negative, interception weak): individual positioning quality-scalers
+all move only the MARGINS, because the engine's scoring is dominated by
+the carry / scramble / transition economy — improving reception /
+interception / run-target quality doesn't touch it. ⭐⭐ THE USER'S
+REFRAME (2026-07-19, mid-119k — "跑位其实也很多变…鱼钩跑,肋部跑,拉边,
+套边"): the seam-run failed for a DEEPER reason — I hand-coded ONE run.
+Real off-ball movement is a VARIED REPERTOIRE (fish-hook / check-and-go,
+half-space 肋部, pull-wide 拉边, overlap 套边…), and WHICH run fits the
+moment must EMERGE from the substrate + genes + positioning, not be
+hand-set. So the attacking side becomes 119l (a real emergence project),
+NOT more single-pattern wiring.
+
+**119l — the RUN REPERTOIRE (emergence, per the user's reframe)** ⏳
+**QUEUED.** Enrich the off-ball run substrate into gene-driven, unbiased
+PRIMITIVES so a variety of runs (fish-hook / check-away-then-burst,
+half-space, pull-wide, overlap, near/far-post, drop-and-spin…) can
+EMERGE and be SELECTED per situation — positioning = the player's
+ability to read which the moment calls for and execute it. Some already
+exist hand-licensed at the team level (overlap 套边, the arriver, the
+weak-side far-post pull) — the project is to make the repertoire
+per-player + evolvable, not TeamBrain-thresholded. This is the honest
+form of "make the seven emerge" for the attacking side; big, probe-
+first, maxed-test each primitive (does it create chances vs a set line
+without just feeding the carry). ⚠ The 119k lesson: do NOT hand-code a
+single run pattern; build the repertoire + let selection choose.
+
 **120+ — Stage 4 continues**: home advantage → memory commentary.
 
 **STANDING / WAITING-ON-USER**: ① the 105 audio mix needs the user's
