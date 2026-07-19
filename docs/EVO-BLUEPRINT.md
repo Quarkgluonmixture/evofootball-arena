@@ -1989,3 +1989,27 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   every new attr (why 5→8 was parked) — add deliberately, each earns
   its place. Priority: scheme-gene (119h) → positioning attr → GK
   split → heading/accel/tackling splits.
+
+- ⭐⭐⭐ **2026-07-19 THE CLUMP IS NOT AN EQUILIBRIUM — IT'S carry-OP +
+  width-IMPOTENT (`clump-vs-wide.ts`, the user's challenge answered).**
+  The user rejected "central clumping is the optimal equilibrium" as a
+  cop-out: real 6v6 champions do NOT clump centrally (a clump is punished
+  by width/combination). Head-to-head test — a CLUMP team (narrow +
+  compact + central dribble) vs a WIDE team (wide + pass + flanks),
+  neutral 0.5 squads: **CLUMP wins 3.30 : 0.45**, a blowout. Channel mix:
+  CLUMP scores carry 72 / buildup 24 / setpiece 23 / walkin 12 / **cross 1**;
+  WIDE scores ~0.45/match total, **cross 0**, 4.1 shots vs CLUMP's 9.3.
+  ⭐ TWO substrate DEFECTS (not an equilibrium): (1) the central CARRY is
+  overpowered — it carves ANY defense: a compact one via the scramble→
+  breakaway, a SPREAD one straight through the thinned middle (so
+  spreading = getting carved centrally → nobody dares spread); (2) WIDTH
+  is impotent — wide play creates ~zero goals (cross channel dead). Real
+  6v6 inverts BOTH (you can't dribble through a compact center — you lose
+  it; and width scores). So the clump/scramble/cheap-breakaway the user
+  hates is NOT the 6v6 optimum — it's carry-OP + width-impotent, and it's
+  FIXABLE at the substrate. Fix direction (the real root, replacing all
+  the mechanical scramble chips): make a central carry into TRAFFIC
+  reliably fail (a compact center wins the ball cleanly, as in reality) +
+  make WIDTH create real threat (so spreading pays → teams spread →
+  declump). ⚠ Mind the iron law (past width buffs added space that fed
+  the carry) — the two must move together. `clump-vs-wide.ts` kept.
