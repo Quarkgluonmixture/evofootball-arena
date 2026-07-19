@@ -2210,3 +2210,29 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
   temp edits to `constants.ts` (PITCH/BOX) + `formations.ts` (base scale) +
   `Player.ts` (BASE_SPEED) — ALL REVERTED; the 6 committed probes are the
   yardsticks for it.
+
+- ⭐⭐⭐⭐ **2026-07-19 (cont.7) PROJECT B — THE EMERGENT POSITIONING FIELD
+  (user chose "B 优先,先开工"; the 2nd foundational defect from VISION §1).**
+  The formation is a hand-authored MENU + affine transforms → shape can't
+  self-adapt, positions fixed (no drop), follows the ball not the opponent,
+  ~no strong/weak side, "styles" are OUR tables. Staged, toggle-gated, A/B vs
+  the tables, VISION-gated (§2 watchability + §1 emergence + §3 realism):
+  - **B0 DONE — `positioning-shape.ts` baseline** (committed): current shape
+    quantified — ball-side shift weak ~2m & gene-flat (the compactness×0.25
+    drag, not a real strong side); BUS crowds own box 0.72 vs neutral 0.39
+    ("防守帮助 0"); resting spacing sane ~11m (clumping is dynamic). A/B
+    yardstick + targets.
+  - **B1-a DONE — `emergentStation()` behind `process.env.EMERGENT_POS`, ships
+    OFF** (committed, WIP): role-anchored field (role = coarse depth+lane
+    dimension) + sane modifiers + a REAL gene-weighted ball-side TRANSLATION.
+    A/B: strong-side shift 2.0→3.0-3.6m + gene-differentiated (WIDE>NEUTRAL),
+    spread/spacing preserved, goals sane (clump 3.15:0.70), default-off tests
+    green. Structural swap done: shape = role-field + gene weights, not the
+    menu. ⚠ field-ON alone does NOT fix width/carry (that's defect A density +
+    B1-b/B2) — B1-a's job was the swap + real strong side, achieved.
+  - **NEXT: B1-b** anti-clump repulsion + space-VALUE term (kill the bus
+    box-crowd 0.72, no clumping) → **B2** opponent-relative positioning (cover
+    space / hold line vs the opponent shape, not just the ball) → **B3** retire
+    the formation tables; "style" = gene weights; full gates + fingerprint
+    rebaseline. Yardstick: `positioning-shape.ts` (+ width/scheme/scramble
+    probes) with `EMERGENT_POS=1`.
