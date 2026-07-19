@@ -2252,3 +2252,20 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     THEN B3 retire-tables + fingerprint rebaseline. The field stays toggle-OFF
     (WIP, zero production impact) until it passes goals-warming. Yardsticks:
     `goals-warming.ts` + `positioning-shape.ts` + calibrate, `EMERGENT_POS=1`.
+  - ⭐⭐ **B-continued DONE — SOLIDITY FIX PASSES goals-warming (committed).**
+    Threat-scaled: spread when no threat (no bus-crowd), the back/mid block
+    compacts goal-ward+central under threat (deny the clean chance). A/B
+    (field ON, fixed) vs baseline, same worlds: goals-warming late-means
+    424242 3.97 / 991 3.50 / 777 4.36 ≈ baseline 3.47 / 4.07 / 4.13 (inflation
+    TAMED — was 5.5/5.2 pre-fix), calibrate 1.92 ≈ 1.76. **The emergent field
+    now PASSES the scoring gates and is ship-viable**: field-not-menu + real
+    strong/weak side + anti-clump + position-by-value + opponent-tracking +
+    threat-solidity, goals healthy, still toggle-OFF.
+  - ⭐⭐⭐ **B3 = THE SHIP DECISION (user's — changes the LIVE game).** Remaining
+    to ship: flip `EMERGENT_POS` default ON + retire the formation TABLES
+    ("style" = gene weights) + remaining gates (vitest — expect fragile test
+    re-anchors; visual×2) + fingerprint REBASELINE + ⭐ the WATCHABILITY check
+    (VISION §2 — only the user can judge play-feel: is the shape visibly fluid
+    / strong-weak side / un-clumped?). Recommended first: wire a BROWSER toggle
+    (`process.env.EMERGENT_POS` is Node-only; the game is Vite/browser) so the
+    user PLAY-TESTS the field before the irreversible retire+rebaseline.
