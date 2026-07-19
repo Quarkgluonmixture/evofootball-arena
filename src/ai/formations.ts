@@ -96,6 +96,11 @@ const MODE_SHIFT: Record<TeamMode, number> = {
  * (attackingWidth) or compactness (defensiveCompactness) shapes the block.
  */
 export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolean): V2 {
+  // EMERGENT POSITIONING FIELD (Phase B1, toggle — the user's #1 emergence
+  // ask: shape must grow from role + genes + live state, not a hand-authored
+  // MENU). Behind an env flag so it A/Bs cleanly against the fixed tables
+  // (positioning-shape.ts) before it can replace them. OFF = today's behavior.
+  if (process.env.EMERGENT_POS) return emergentStation(p, team, ball, hasBall);
   const g = team.genome;
   const base = hasBall
     ? ATTACK_FORMATIONS[team.style.formationAtk][p.index]
@@ -182,6 +187,72 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
     return v2(x * team.attackDir, y);
   }
 
+  x = clamp(x, -HALF_L + 3, HALF_L - 7);
+  y = clamp(y, -HALF_W + 2, HALF_W - 2);
+  return v2(x * team.attackDir, y);
+}
+
+/**
+ * EMERGENT POSITIONING FIELD (Phase B1-a). Replaces the fixed formation TABLE
+ * with a ROLE-anchored field: a role gives a coarse depth+lane TENDENCY (a
+ * dimension, like an attribute — not a hand-drawn shape), and the actual
+ * station grows from that + the live game state, weighted by GENES. So the
+ * team's SHAPE and "style" emerge from gene weights, not from us picking
+ * wide-212 vs low-32. B1-a lands the structural swap + a REAL, gene-weighted
+ * strong/weak-side shift (the B0 probe found the old ~2m drag was token). The
+ * anti-clump / space-value terms (kill the bus box-crowd, no clumping) are
+ * B1-b. Opponent-relative positioning is B2. Same sensible modifiers as the
+ * table path (slide/depth/press/rest-defence/width) so shape stays sane.
+ */
+function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean): V2 {
+  const g = team.genome;
+  // Role → coarse (depth fraction of HALF_L, lane fraction of HALF_W). WGs take
+  // a side from their slot (L=3, R=4); everyone else holds a central lane.
+  const laneSign = p.index === 3 ? -1 : p.index === 4 ? 1 : 0;
+  let depthFrac: number;
+  let laneFrac: number;
+  switch (p.role) {
+    case 'GK': depthFrac = -0.91; laneFrac = 0; break;
+    case 'DF': depthFrac = -0.45; laneFrac = 0; break;
+    case 'MF': depthFrac = -0.12; laneFrac = laneSign * 0.12; break;
+    case 'WG': depthFrac = 0.05; laneFrac = laneSign * 0.6; break;
+    default: depthFrac = 0.12; laneFrac = 0; break; // ST
+  }
+
+  const ballLocalX = team.localX(ball.pos.x);
+  const slide = clamp(ballLocalX * 0.3, -10, 10);
+  const depth = (g.formationDepth - 0.5) * 12;
+  const pressUp = hasBall || p.role === 'GK' ? 0 : (g.pressIntensity - 0.5) * 8;
+  let x = depthFrac * HALF_L + slide + depth + pressUp + MODE_SHIFT[team.mode];
+
+  // Rest defence — the DF slot never joins the siege (same as the table path).
+  if (p.index === 1 && p.role !== 'GK') {
+    if (hasBall) x = Math.min(x, -8 - (g.coverBias ?? 0.5) * 8);
+    else x -= ((g.coverBias ?? 0.5) - 0.5) * 8;
+  }
+
+  // Width: stretch in possession, squeeze out of it.
+  let widthMul = hasBall ? 1.0 + g.attackingWidth * 0.55 : 1.15 - g.defensiveCompactness * 0.6;
+  if (!hasBall && team.style.scheme === 'zonal') widthMul = Math.max(widthMul, 0.95);
+  let y = laneFrac * HALF_W * widthMul;
+
+  // ⭐ STRONG / WEAK SIDE (B1-a, the real thing): the block slides toward the
+  // BALL'S y — overload the ball side in attack, protect it in defence —
+  // weighted by width (attack) / compactness (defence). The B0 probe measured
+  // the old drag at only ~2m and gene-flat; this is a genuine, selectable
+  // ball-side shift, so a team that commits to it gets a real strong side and
+  // leaves a weak side (which width/switches then punish — emergent).
+  // TRANSLATE the block ball-side (add a common offset) — do NOT converge each
+  // man onto ball.y (that collapses the lateral spread; the first B1-a cut did,
+  // halving spreadY). The whole shape slides over, keeping its width.
+  const ballSideShift = hasBall ? 0.18 + g.attackingWidth * 0.22 : 0.18 + g.defensiveCompactness * 0.25;
+  y += ball.pos.y * ballSideShift;
+
+  if (p.role === 'GK') {
+    x = clamp(-HALF_L + 4 + (g.keeperAggression - 0.5) * 4, -HALF_L + 1, -HALF_L + 11);
+    y = clamp(ball.pos.y * 0.25, -GOAL_WIDTH / 2, GOAL_WIDTH / 2);
+    return v2(x * team.attackDir, y);
+  }
   x = clamp(x, -HALF_L + 3, HALF_L - 7);
   y = clamp(y, -HALF_W + 2, HALF_W - 2);
   return v2(x * team.attackDir, y);
