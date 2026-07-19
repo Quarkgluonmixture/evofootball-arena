@@ -15,12 +15,15 @@ export interface UiFlags {
   chasers: boolean;
 }
 
+// Default view is CLEAN (2026-07-19, user: "把默认调试图层都关闭"): every dev
+// overlay ships OFF so a first look is the football, not the diagnostics. All
+// remain toggleable in the debug panel.
 export const defaultFlags = (): UiFlags => ({
-  actionLabels: true,
+  actionLabels: false,
   heatmap: false,
   formation: false,
-  passLines: true,
-  shotVector: true,
+  passLines: false,
+  shotVector: false,
   marking: false,
   chasers: false,
 });
