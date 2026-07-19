@@ -348,6 +348,12 @@ export class AnimationSystem {
     } else if (model.yawEase > 0) {
       model.yawEase = Math.max(0, model.yawEase - dt / 0.45);
       model.root.rotation.y = lerpAngle(p.yaw, model.yawLock, model.yawEase);
+      // EASE the root back from the planted dive spot to the live position
+      // (the same recovery blend as the facing) — without this the model
+      // TELEPORTED from the dive spot to where the sim keeper drifted the
+      // instant the dive ended (user report: 门将拿球瞬间瞬移).
+      model.root.position.x = p.x + (model.diveX - p.x) * model.yawEase;
+      model.root.position.z = p.z + (model.diveZ - p.z) * model.yawEase;
     }
     model.prevAnim = anim;
 
