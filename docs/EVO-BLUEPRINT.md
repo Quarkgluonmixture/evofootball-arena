@@ -2095,3 +2095,31 @@ read "phase-56-3-…" until back-tagged — confusing in play reports).
     combos → cover) INVERTS: the cover/cutback keystone (listed last) is
     actually FIRST. `pressure-by-zone.ts` + `reception-by-width.ts` kept as
     yardsticks.
+
+- ⭐⭐⭐ **2026-07-19 (cont.3) REALITY ANCHOR — 过一个还有另一个 = ZONAL cover
+  vs 盯人 = MAN-marking (the user's directive), MEASURED. This PARTLY REFUTES
+  the "build central cover" premise: zonal cover ALREADY exists and bites.**
+  The scheme is `team.style.scheme` ('man' | 'zonal', derived from
+  markingAggression ≥ 0.3). Reality's rock-paper-scissors: DRIBBLE beats MAN
+  (beat your marker = through, no cover) but loses to ZONAL (过一个还有另一个);
+  WIDTH/COMBO beats ZONAL (stretch + seams + overload) but is tracked by MAN.
+  - **`scheme-matchup.ts`** (defender genome fixed, ONLY style.scheme varies):
+    · DRIBBLE vs MAN — GF 2.65, **carry 47** · DRIBBLE vs ZONAL — GF 2.00,
+    **carry 6**. · WIDTH vs MAN — GF 0.72 · WIDTH vs ZONAL — GF **0.38**.
+  - ⭐ **Finding 1: ZONAL cover ALREADY works — it crushes the carry channel
+    47→6.** So "过一个还有另一个" is NOT missing; it's the zonal scheme's
+    property and it bites hard. My tackle-only cover-wall (compactness-gated)
+    was the WRONG gate AND unnecessary — REVERTED.
+  - ⭐ **Finding 2: but the DRIBBLE team still scores 2.00 vs zonal — via
+    BUILDUP (44) / setpiece.** Zonal converts carry-goals into worked/scramble
+    goals (buildup = the 乱抢 the user hates). So zonal stops the clean carry
+    but the ball pinballs to a scrappy goal anyway.
+  - ⭐⭐ **Finding 3 (THE REAL GAP): WIDTH beats NEITHER scheme (0.72 / 0.38),
+    and is WORST vs ZONAL — backwards from reality.** Width is zonal's natural
+    counter (stretch the zones, exploit the seams, overload) yet here loses to
+    it (fewer shots, 1.7 vs 3.1). The RPS is broken on the WIDTH arm. **So the
+    keystone is NOT "build cover" — it's the precise old wall: make WIDTH BEAT
+    ZONAL** (exploit the seams/overloads a held lattice concedes, and convert).
+    Then: DRIBBLE>MAN, WIDTH>ZONAL, neither dominates → RPS → declumping, all
+    emergent from the scheme gene. `scheme-matchup.ts` + `carry-vs-block.ts`
+    kept as yardsticks.
