@@ -3,6 +3,19 @@ import type { TacticalGenome } from '../evolution/genome';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 
 export type Side = 0 | 1;
+
+/**
+ * First-class possession phase (S0 — docs/SUBSTRATE-MAP.md). A DERIVED, read-only
+ * classification of who has the ball RIGHT NOW, making the implicit `owner===null`
+ * scramble explicit + testable. Introduced (slice-1a) as pure observation — nothing
+ * in the decision path reads it yet, so it is bit-identical. Later cuts drive the
+ * physical 50-50 contest off `contested`, replacing the instant 1.25m owner-flip.
+ */
+export type PossessionPhase =
+  | { kind: 'controlled'; side: Side; gid: number }
+  | { kind: 'contested'; near: [number, number] } // bodies within CONTEST_RADIUS, per side
+  | { kind: 'loose'; likelyFirst: Side | -1 }
+  | { kind: 'deadBall' };
 export type Role = 'GK' | 'DF' | 'MF' | 'WG' | 'ST';
 /**
  * Squad slot order (Phase 30: 6v6). The Role SET is unchanged — WG simply

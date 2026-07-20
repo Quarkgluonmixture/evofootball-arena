@@ -293,8 +293,11 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
   **slice-1b** (receiver offers) and **later** (S8).
 
 **Sub-steps (each: probe-gated, honest-revert, per PROBE-CONTRACTS six-layer chain):**
-1. First-class contest/possession phase (S0) + `contest-anatomy` ledger. (Mostly a
-   representation change; should be §2-neutral-ish — the honest first cut.)
+1. ✅ **DONE** — First-class `possessionPhase` state (S0): a derived, read-only
+   classification (controlled / contested / loose / deadBall) recomputed each step,
+   `CONTEST_RADIUS`-based. Nothing in the decision path reads it yet ⇒ **bit-identical
+   (443/443, incl. the determinism/byte-identical guards) + perf-neutral** (5.3µs/step).
+   Anchor for the physical 50-50 to come. (The honest §2-neutral representation cut.)
 2. Minimal `timeToReach` (S1) + `arrival-calibration` reliability curve on current
    behaviour (baseline).
 3. Minimal stale `PerceptionSnapshot` for the passer only (S3), gated by

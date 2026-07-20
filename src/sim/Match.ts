@@ -15,7 +15,7 @@ import {
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
   KICK_COOLDOWN, MATCH_DURATION, OUT_PLAY_COAST,
   PENALTY_CLEARANCE, PENALTY_SPOT_DIST, PLAYER_MIN_DIST, RESTART_CLEARANCE, RESTART_MIN_SETUP,
-  RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
+  CONTEST_RADIUS, RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
 } from './constants';
 import * as mech from './mechanics';
 import { Player } from './Player';
@@ -25,7 +25,7 @@ import {
   ROSTER_SIZE, SUBS_MAX, TEAM_SIZE, emptyPlayerStats,
   type EventType, type GoalChannel, type MatchEvent, type MatchPhase, type MatchResult,
   type PlayerMatchStats,
-  type CornerRoutine, type RestartKind, type RestartState, type Side, type TeamInfo,
+  type CornerRoutine, type PossessionPhase, type RestartKind, type RestartState, type Side, type TeamInfo,
 } from './types';
 
 /**
@@ -167,6 +167,13 @@ export class Match {
 
   /** Which side has effective possession; -1 while the ball is loose. */
   possessionSide: Side | -1 = -1;
+  /**
+   * S0 first-class possession phase (docs/SUBSTRATE-MAP.md) — a DERIVED, read-only
+   * classification recomputed each step (reflects post-step state). Nothing in the
+   * decision path reads it yet (bit-identical); it is the anchor for the physical
+   * 50-50 contest that will replace the instant owner-flip.
+   */
+  possessionPhase: PossessionPhase = { kind: 'deadBall' };
   /**
    * Discrete dribble touch in flight (Phase 36): the carrier pushed the
    * ball ahead and is chasing it. The tag keeps his brain on the chase and
@@ -359,6 +366,7 @@ export class Match {
   step(dt: number): void {
     if (this.finished) return;
     this.stepCount++;
+    this.possessionPhase = { kind: 'deadBall' }; // S0 default; the playing path overwrites it below
     // Hard safety net: even a wedged state machine terminates deterministically.
     if (this.stepCount * dt > this.duration * 4) {
       this.endMatch();
@@ -376,6 +384,7 @@ export class Match {
           this.setupKickoff(1);
         }
       }
+      this.possessionPhase = this.computePossessionPhase(); // covers the kickoff→playing flip tick
       return;
     }
     if (this.phase === 'fulltime') return;
@@ -524,8 +533,30 @@ export class Match {
     } else if (this.half === 2 && this.simTime >= this.secondHalfStart + this.duration / 2) {
       if (this.refBlowsNow(this.secondHalfStart + this.duration / 2)) this.endMatch();
     }
+    this.possessionPhase = this.computePossessionPhase();
     prof.add('book', _tBook);
     prof.stepDone();
+  }
+
+  /** S0: classify the current possession phase — pure fn of live state, no RNG, no writes. */
+  private computePossessionPhase(): PossessionPhase {
+    if (this.phase !== 'playing') return { kind: 'deadBall' };
+    const o = this.ball.owner;
+    if (o) return { kind: 'controlled', side: o.side, gid: o.gid };
+    const r2 = CONTEST_RADIUS * CONTEST_RADIUS;
+    const near: [number, number] = [0, 0];
+    let bestSide: Side | -1 = -1;
+    let bestD2 = Infinity;
+    for (const p of this.allPlayers) {
+      if (p.sentOff) continue;
+      const dx = p.pos.x - this.ball.pos.x;
+      const dy = p.pos.y - this.ball.pos.y;
+      const d2 = dx * dx + dy * dy; // squared — avoids a per-tick sqrt on the hot path
+      if (d2 < r2) near[p.side]++;
+      if (d2 < bestD2) { bestD2 = d2; bestSide = p.side; }
+    }
+    if (near[0] > 0 && near[1] > 0) return { kind: 'contested', near };
+    return { kind: 'loose', likelyFirst: bestSide };
   }
 
   /**

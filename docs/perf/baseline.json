@@ -1,45 +1,45 @@
 {
-  "head": "73310f1",
+  "head": "c07a19b",
   "seed": 20260702,
   "seasons": 1,
   "determinismOk": true,
-  "usPerStep": 5.23,
-  "stepP50Us": 4.7,
-  "stepP95Us": 9.1,
-  "stepP99Us": 16.3,
+  "usPerStep": 5.32,
+  "stepP50Us": 4.8,
+  "stepP95Us": 9,
+  "stepP99Us": 15.8,
   "phases": [
     {
       "phase": "execute",
-      "usPerStep": 3.42,
-      "pct": 65.4
+      "usPerStep": 3.46,
+      "pct": 64.9
     },
     {
       "phase": "physics",
-      "usPerStep": 0.75,
-      "pct": 14.3
+      "usPerStep": 0.77,
+      "pct": 14.4
     },
     {
       "phase": "decide",
       "usPerStep": 0.54,
-      "pct": 10.3
+      "pct": 10
     },
     {
       "phase": "ball",
-      "usPerStep": 0.26,
+      "usPerStep": 0.27,
       "pct": 5
     },
     {
       "phase": "teamBrain",
       "usPerStep": 0.21,
-      "pct": 4
+      "pct": 3.9
     },
     {
       "phase": "book",
-      "usPerStep": 0.05,
-      "pct": 1
+      "usPerStep": 0.09,
+      "pct": 1.7
     }
   ],
-  "tenSeasonSec": 47,
-  "matchesPerSec": 15.1,
-  "heapGrowthMb": 18.4
+  "tenSeasonSec": 47.4,
+  "matchesPerSec": 15,
+  "heapGrowthMb": 3
 }

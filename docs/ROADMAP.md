@@ -8,7 +8,7 @@
 > ENGINE REBUILD; reference docs WRITTEN + tree SETTLED — clean baseline `f192a08`; NEXT
 > = build-order step 3 · **`Match.step` profiler + perf baseline DONE (`8c97ac4`,
 > `docs/perf/baseline.json`: 5.2µs/step, execute 65% / physics 14% / decide 10%; perf is
-> now a hard gate)** → step-3 BASELINE-NOW probes DONE (5 → `docs/baselines/BASELINE-NOW.md`) + step-4 counterfactual spike DONE (replay-to-T, PROBE-CONTRACTS §8). NEXT = slice-1a (behavioral — needs the user's play-test)).**
+> now a hard gate)** → step-3 BASELINE-NOW probes DONE (5 → `docs/baselines/BASELINE-NOW.md`) + step-4 counterfactual DONE (**deep-clone Option A** — POC on branch `worktree-poc-clone-probe`, PROBE-CONTRACTS §8). **slice-1a sub-step 1 (S0 `possessionPhase` state) DONE** — bit-identical + perf-neutral (5.3µs/step, 443/443 + invariant test). **NEXT = slice-1a sub-step 2 = the BEHAVIORAL 50-50 contest** (drives `possessionPhase.contested`, replaces the instant 1.25m owner-flip) — needs the user's play-test).**
 > ✅ **Step 2 DONE:** kept position-aware budget (`SQUAD_BUDGET 35.5`, not 40.0 — vision's
 > +9 slots removed) + keeper arc; reverted the whole `vision`/positioning reading-split
 > (co-evo files → HEAD; vision stripped from playerGenome/League); tsc + 441 tests +

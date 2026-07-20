@@ -183,6 +183,9 @@ export const RESTART_TIMEOUT = 6;
 
 /** A player controls a free ball inside this radius... */
 export const CONTROL_RADIUS = 1.25;
+// S0 (docs/SUBSTRATE-MAP.md): both sides with a body within this of a loose ball =
+// a genuine contest. Classification-only today; the physical 50-50 will use it later.
+export const CONTEST_RADIUS = 3;
 /** ...if it is slower than this (outfield) — keepers can handle faster balls. */
 export const CONTROL_MAX_SPEED = 14;
 export const GK_CONTROL_MAX_SPEED = 23;
