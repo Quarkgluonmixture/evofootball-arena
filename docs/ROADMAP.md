@@ -4,6 +4,66 @@
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
 ---
+⭐⭐⭐⭐⭐ **2026-07-20 SESSION WRAP — GAP BASELINE + SELF-DRIVE QUEUE (⭐ RESUME HERE FIRST).**
+
+**LIVE STATE (HEAD `163f16b`, on Pages):** the density 相变 is SHIPPED as a
+candidate (pitch scale 0.70 + emergent positioning DEFAULT — see the block
+below). Render/view fixes also shipped: the 3D renderer is now RESPONSIVE
+(fills the viewport, cinematic fills the page — `ThreeMatchRenderer.resize()` +
+ResizeObserver, NO fullscreen API) and the green adboard "beams" scale with the
+pitch. Iterate render/feel with **`npm run dev`** (localhost:5173, fast HMR — no
+CI wait); commit+push (personal acct `Quarkgluonmixture`, `gh auth switch`) when
+confirmed; trust the browser for pixels (headless flaky).
+
+⏳ **#1 OPEN DECISION — the density WATCHABILITY VERDICT (留/退).** Data says GO
+(scramble-born goals stay 4–7% to scale 0.70, cliff at 0.55; cutbacks +235% at
+gen-scale; goal inflation DOWN), but VISION §2 (does it LOOK good / not more
+乱抢 / tactics legible) is the USER'S eyes. Honest-revert if it fails visually —
+`PITCH_SCALE=1` restores the old pitch. **Get this verdict, then proceed.**
+
+**GAP BASELINE (code-verified inventory 2026-07-20). The substrate is FAR more
+complete than a "missing systems" story — most of real football's repertoire
+already EXISTS and is gene/attr-driven** (shooting: long/chip/header · dribbling:
+knock-and-run/shield/slalom · link: lay-off/one-two/overlap/third-man/cutback ·
+set-plays: corners 4-routine/FK/penalty · transition: counter + gegenpress-vs-
+drop). So the distance to real football / VISION §3 is mostly EXECUTION QUALITY
++ a few missing abilities + feel, NOT missing systems:
+- **QUALITY gaps (why it still "looks not-real"):** ① combos unreliable — 二过一/
+  做球/倒三角 mechanics exist but pass力学 (short-pass ~9 m/s floor + lateral
+  `orientationNoiseMul` + one-touch `oneTouchMul`) makes them physically miss
+  (obs8; naive fix REVERTED — redo RIGHT on the denser pitch where passes are
+  shorter). ② possession too discrete — capture = geometric nearest-within-1.25 m
+  INSTANT owner-flip (`Match.ts:1776-1842`), no physical 50-50 contest/jostle
+  (user-flagged). ③ no transition urgency — `MarkOpponent` has no counter/track
+  sprint lever (obs5). ④ goal-kick pinball (obs2), keeper throw too flat (hits
+  mates), keeper can't walk while holding (Bug3).
+- **Genuinely MISSING abilities (add as GENE-GATED abilities, not scripts):**
+  **check-to-ball / drop-to-receive (回撤接应, proactive — supportSpot is always
+  AHEAD of the ball; this is ALSO the upstream of combos, obs7)**, cut-inside
+  (内切 — dribble only goes down the line), volley, underlap; + decision richness
+  (place-vs-power & near/far-post are AUTO in open play, not chosen).
+- **§1 cleanup:** retire the compensating hand-biases (the width levers) on the
+  denser pitch, then re-run evo + OBSERVE diversity.
+- **Feel/visual:** dribble touch cadence (DECIDED = 忠于脚, SIM-level carry
+  cadence, not a render fake), keeper throw ARC (raise it), keeper walk-holding.
+- **Deliberate arcade deviations — do NOT "fix"** (VISION §3): throw-in→kick-in,
+  offside→goal-kick, no indirect FK.
+
+**SELF-DRIVE SEQUENCE (one lever · probe-first · A/B · emergence, VISION is the
+acceptance test):**
+1. Land the density verdict (user play — 留/退).
+2. Retire compensating hand-biases + re-observe diversity on the denser pitch.
+3. **QUALITY CLUSTER (the biggest step to "looks real"):** combo reliability
+   (pass力学, done right on the denser pitch) → physical possession contest
+   (capture 50-50 duel) → transition sprint urgency.
+4. **MISSING abilities:** check-to-ball (回撤接应) → cut-inside.
+5. **Feel polish:** 忠于脚 touch cadence → keeper throw arc + walk-holding →
+   goal-kick targeting.
+
+(This session's play-triage + all the shipped fixes are in the dated blocks
+below; VISION.md stays the gold standard, this is the current gap snapshot.)
+
+---
 ⭐⭐⭐⭐ **2026-07-20 THE DENSITY 相变 — SHIPPED AS A PLAY-TEST CANDIDATE (⭐ NEWEST RESUME POINT).**
 VISION §1 named two load-bearing substrate roots behind the endless width/position
 reverts: (A) space/density + (B) emergent positioning. This phase does BOTH,
