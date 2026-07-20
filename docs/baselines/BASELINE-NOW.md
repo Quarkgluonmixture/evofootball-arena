@@ -69,3 +69,38 @@ receiveToProgression@1.5s (ball +2m upfield): 67.7%
 - **68% of receptions progress the ball ≥2m upfield within 1.5s** — circulation does
   move forward; the question slice-1 asks is whether it can do so through the CENTER
   under pressure, not only by recycling.
+
+---
+
+## arrival-calibration — margin → outcome reliability curve
+`npx tsx scripts/probes/arrival-calibration.ts 120 0`
+
+```
+n=120 (seeds 0-119)   passes tracked 92.3/match
+
+reliability curve — arrival margin (defenderETA − receiverETA) → outcome:
+  margin        share   received  interc.  died   stable@1.5s(of recv)
+  <-0.5          9%      38%     57%     5%     67%
+  -0.5..-0.2     9%      58%     39%     3%     65%
+  -0.2..0       12%      63%     33%     4%     68%
+  0..0.2        17%      75%     22%     2%     67%
+  0.2..0.5      16%      86%     12%     2%     69%
+  >0.5          36%      92%      4%     4%     76%
+
+by pass kind:  pass 78.7/m recv 79% int 17% · through 9.8/m recv 57% int 38% · cross 3.9/m recv 69% int 29%
+```
+
+**Reads (the structural backbone):**
+- **The curve is MONOTONIC and well-calibrated:** as the receiver's arrival advantage
+  (defenderETA − receiverETA) grows from <−0.5s to >+0.5s, **received rises 38%→92%
+  and intercepted falls 57%→4%.** Pass success today is cleanly governed by
+  who-arrives-first — this is the relationship slice-1 must PRESERVE.
+- **36% of passes already have a >+0.5s cushion** (92% received) — safe recycling
+  dominates; the risky end (<0s margin, ~30% of passes) is where interceptions live.
+- **The passer doesn't yet USE this** — it reads current-position lane openness, not
+  arrival margin (S4 doesn't exist). Slice-1's win = the passer's read matches this
+  curve so the pass MIX shifts toward +margin lanes that BREAK lines, **not** just
+  more safe square balls. Watch: received% holding while through/line-breaking share
+  rises (richer, not safer).
+- **through-balls are the honest risky tail** (57% received / 38% intercepted);
+  `stable@1.5s` ≈ 67–76% across buckets (matches reception-survival's 71%).
