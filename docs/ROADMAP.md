@@ -6,7 +6,9 @@
 
 > 🎯🎯🎯 **RESUME (2026-07-20 — the "team-gene overhaul" resolved into a SUBSTRATE-FIRST
 > ENGINE REBUILD; reference docs WRITTEN + tree SETTLED — clean baseline `f192a08`; NEXT
-> = build-order step 3 [BASELINE-NOW probes + `Match.step` profiler + freeze baselines]).**
+> = build-order step 3 · **`Match.step` profiler + perf baseline DONE (`8c97ac4`,
+> `docs/perf/baseline.json`: 5.2µs/step, execute 65% / physics 14% / decide 10%; perf is
+> now a hard gate)** → remaining step 3 = BASELINE-NOW probes + freeze baselines).**
 > ✅ **Step 2 DONE:** kept position-aware budget (`SQUAD_BUDGET 35.5`, not 40.0 — vision's
 > +9 slots removed) + keeper arc; reverted the whole `vision`/positioning reading-split
 > (co-evo files → HEAD; vision stripped from playerGenome/League); tsc + 441 tests +
