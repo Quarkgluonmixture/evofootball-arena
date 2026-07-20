@@ -340,9 +340,20 @@ export class AnimationSystem {
     if (anim === 'gkDive') {
       model.root.rotation.y = model.yawLock;
       model.yawEase = 1;
-      // Plant the root where he dove — don't let the sim keeper's drift back
-      // toward his spot drag the grounded body backward (user report: the
-      // feet slid back after landing). Pure display; the sim is untouched.
+      // TRACK the sim keeper through the LUNGE (diveT < ~full stretch) so he
+      // actually reaches the ball and catches it in-hand: freezing at the
+      // dive-START spot (below) left the model up to ~3m BEHIND the catch
+      // point (the sim keeper steers to the save at full speed during the
+      // dive), so at the claim the ball snapped onto the sim keeper away from
+      // the frozen model and the root then lurched over when the save timer
+      // expired (user report: "最后一刻拿到球突然瞬移"). Once GROUNDED we pin
+      // the spot so the sim keeper's drift BACK toward his position can't slide
+      // the lying body (the original "feet slid back after landing" fix). Pure
+      // display; the sim is untouched.
+      if (model.diveT < 0.45) {
+        model.diveX = p.x;
+        model.diveZ = p.z;
+      }
       model.root.position.x = model.diveX;
       model.root.position.z = model.diveZ;
     } else if (model.yawEase > 0) {
