@@ -8,7 +8,18 @@
 > ENGINE REBUILD; reference docs WRITTEN + tree SETTLED — clean baseline `f192a08`; NEXT
 > = build-order step 3 · **`Match.step` profiler + perf baseline DONE (`8c97ac4`,
 > `docs/perf/baseline.json`: 5.2µs/step, execute 65% / physics 14% / decide 10%; perf is
-> now a hard gate)** → step-3 BASELINE-NOW probes DONE (5 → `docs/baselines/BASELINE-NOW.md`) + step-4 counterfactual DONE (**deep-clone Option A** — POC on branch `worktree-poc-clone-probe`, PROBE-CONTRACTS §8). **slice-1a sub-step 1 (S0 `possessionPhase` state) DONE** — bit-identical + perf-neutral (5.3µs/step, 443/443 + invariant test). **NEXT = slice-1a sub-step 2 = the BEHAVIORAL 50-50 contest** (drives `possessionPhase.contested`, replaces the instant 1.25m owner-flip) — needs the user's play-test).**
+> now a hard gate)** → step-3 BASELINE-NOW probes DONE (5 → `docs/baselines/BASELINE-NOW.md`) + step-4 counterfactual DONE (**deep-clone Option A** — POC on branch `worktree-poc-clone-probe`, PROBE-CONTRACTS §8). **slice-1a sub-step 1 (S0 `possessionPhase` state) DONE** — bit-identical + perf-neutral (5.3µs/step, 443/443 + invariant test). ⭐⭐ **REFRAMED 2026-07-20 (user + GPT + Claude world-model audit): the "50-50 winner
+> resolver" is PAUSED — the deeper gap is that the player is a POINT, not a body.** NEXT =
+> the **World-Model Foundation slice → [`docs/world-model/FOUNDATION.md`](world-model/FOUNDATION.md)**
+> (THE resume doc for this work). Target = **Kinematic Disc + Oriented Shell**, run as the
+> **Minimum Embodied Contest Slice**: M0 (representation + `PITCH_SCALE` decompose,
+> byte-identical) → M1 (contact-solver velocity fix — §2-GATED **alone** before stacking) →
+> M2 (ball-access/screening world-fact) → M3 (touch≠control) → M4 (play-test, then **RETURN
+> to S3–S8 = the mainline**). The body model is a LOCAL substrate, NOT the north star.
+> Real distinction locked = **which causal variables are in world state + do they support the
+> counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
+> `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral
+> 50-50 contest" framing SUPERSEDED.)).**
 > ✅ **Step 2 DONE:** kept position-aware budget (`SQUAD_BUDGET 35.5`, not 40.0 — vision's
 > +9 slots removed) + keeper arc; reverted the whole `vision`/positioning reading-split
 > (co-evo files → HEAD; vision stripped from playerGenome/League); tsc + 441 tests +

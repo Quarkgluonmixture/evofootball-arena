@@ -110,7 +110,14 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   `cushion.test`. → **P0. Promote the concept from tests into a sim state + ledger
   (see `contest-anatomy` in PROBE-CONTRACTS).**
 
-### S1 — Body dynamics & reachability · 🟡
+### S1 — Body dynamics & reachability · 🟡🔴
+- ⭐⭐ **2026-07-20: the player is a POINT, not a body** — `resolveOverlaps` (`Match.ts:1897`)
+  is an isotropic, MASSLESS push at `PLAYER_MIN_DIST=1.05`, **position-only (never touches
+  velocity)**; movement is one isotropic accel envelope + a separately-rotating `heading`.
+  No body volume / orientation-in-collision / screening / mass. Deepest gap under the contest
+  work → its OWN plan: **[`world-model/FOUNDATION.md`](world-model/FOUNDATION.md)** (target =
+  **Kinematic Disc + Oriented Shell**; the Minimum Embodied Contest Slice M0–M4). `strength`
+  has no body-layer causality here (a coefficient, not an embodied cause).
 - **Provides:** top speed, accel/decel, turn rate, facing, inertia, balance,
   contact, fatigue's effect on all of these, **body state on arrival**.
 - **Hooks:** `pace`(speed/accel), `agility`(turn/adjust — currently a **flat
@@ -278,6 +285,13 @@ attrs. `vision`/`defensiveAwareness` are **UI-derived indicators**; underneath,
 ---
 
 ## 5. Slice-1 — Pass–Arrival–Contest (the first vertical slice)
+
+> ⭐ **REFRAMED 2026-07-20:** the **CONTEST** half needs a deeper physical foundation (the
+> player is a POINT, not a body) → it is now the **World-Model Foundation slice**,
+> [`world-model/FOUNDATION.md`](world-model/FOUNDATION.md) (Kinematic Disc + Oriented Shell;
+> M0–M4), done FIRST. The **Pass/Arrival** half (perception → affordance → pass-valuation) is
+> the S3–S8 mainline we RETURN to after. Sub-step 1 (S0 `possessionPhase`) below is DONE and
+> feeds both.
 
 The first cut is **one closed causal loop**, not a full engine. It exercises S3→S4
 →S5→S7→S2→S0 and is the actual root of the combo/box/interception problems.
