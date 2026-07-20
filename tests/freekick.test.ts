@@ -3,7 +3,7 @@ import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { Match } from '../src/sim/Match';
-import { DT, HALF_L, RESTART_CLEARANCE } from '../src/sim/constants';
+import { DT, HALF_L, PITCH_SCALE, RESTART_CLEARANCE } from '../src/sim/constants';
 import { TEAM_SIZE, type Side, type TeamInfo } from '../src/sim/types';
 import { v2, type V2 } from '../src/utils/vec';
 
@@ -45,7 +45,7 @@ function dangerFK(seed: number, pos: V2, side: Side = 0, squadA?: PlayerAttribut
   const att = m.teams[side];
   const def = m.teams[1 - side];
   const dir = m.teams[side].attackDir;
-  const goalX = dir * 45;
+  const goalX = dir * HALF_L; // real goal line (scales; 2026-07-20 density相变)
   // Attackers loiter around the box edge, each with a marker on his
   // shoulder — the league picture at a danger FK (open mates everywhere
   // made the pass outscore the strike and the harness measured nothing).
@@ -70,10 +70,10 @@ const breathe = (i: number): Promise<void> | undefined =>
 
 describe('free kicks become REAL (Phase 32)', () => {
   it('a danger FK arms a wall sized by range; out of range there is none', () => {
-    const near = dangerFK(11, v2(45 - 17, 2)); // 17m out → 3 bodies
+    const near = dangerFK(11, v2(HALF_L -17, 2)); // 17m out → 3 bodies
     expect(near.fkWall).not.toBeNull();
     expect(near.fkWall!.gids.length).toBe(3);
-    const far = dangerFK(11, v2(45 - 25, 2)); // 25m out → 2 bodies
+    const far = dangerFK(11, v2(HALF_L -25, 2)); // 25m out → 2 bodies
     expect(far.fkWall!.gids.length).toBe(2);
     const harmless = dangerFK(11, v2(0, 8)); // halfway line → no wall
     expect(harmless.fkWall).toBeNull();
@@ -83,7 +83,7 @@ describe('free kicks become REAL (Phase 32)', () => {
     let formed = 0;
     let checked = 0;
     for (let seed = 0; seed < 12; seed++) {
-      const pos = v2(45 - 19, seed % 2 === 0 ? 3 : -5);
+      const pos = v2(HALF_L -19, seed % 2 === 0 ? 3 : -5);
       const m = dangerFK(seed, pos);
       if (!m.fkWall) continue;
       const wall = m.fkWall;
@@ -116,7 +116,7 @@ describe('free kicks become REAL (Phase 32)', () => {
   it('the specialist takes it: best finishing + technique/2 steps up in range', () => {
     const squad = Array.from({ length: TEAM_SIZE }, () => attrs());
     squad[5] = attrs({ finishing: 0.95, passing: 0.9 }); // the ST slot
-    const m = dangerFK(7, v2(45 - 20, 4), 0, squad);
+    const m = dangerFK(7, v2(HALF_L -20, 4), 0, squad);
     expect(m.restart).not.toBeNull();
     expect(m.restart!.takerGid).toBe(m.teams[0].players[5].gid);
   });
@@ -126,7 +126,13 @@ describe('free kicks become REAL (Phase 32)', () => {
     let goals = 0;
     for (let seed = 0; seed < 250; seed++) {
       await breathe(seed);
-      const m = dangerFK(seed, v2(45 - 19, 3));
+      // density相变 re-baseline (2026-07-20): a "danger FK" distance is
+      // PROPORTIONAL — 19m scales with the pitch. At the absolute 19m the
+      // narrow (4.9m) goal past the law-distance (unscaled 9.15m) wall makes
+      // the direct hit near-extinct (~1%); at the scaled ~13.3m it is the
+      // regular option again (the wall-arming range tests keep the ABSOLUTE
+      // 19m body-count threshold, which the sim did not scale).
+      const m = dangerFK(seed, v2(HALF_L - 19 * PITCH_SCALE, 3));
       if (!m.fkWall) continue;
       const shots0 = m.shotLog.length;
       let guard = 0;
@@ -166,7 +172,8 @@ describe('free kicks become REAL (Phase 32)', () => {
     // the reaction gate (see the volume test above), so the scan needs a
     // bigger pool to keep >12 genuine strikes for the no-contest contract.
     for (let seed = 0; seed < 65; seed++) {
-      const m = dangerFK(seed, v2(45 - 19, 3));
+      // Scaled danger-FK distance (2026-07-20 density相变 — see the volume test).
+      const m = dangerFK(seed, v2(HALF_L - 19 * PITCH_SCALE, 3));
       if (!m.fkWall) continue;
       // A deep defender heading the DIPPER near the goal is honest defence;
       // only the WALL free-heading the climb is the forbidden failure.
@@ -206,7 +213,7 @@ describe('free kicks become REAL (Phase 32)', () => {
     const m = new Match({ seed: 3, teamA: team('A'), teamB: team('B'), duration: 120 });
     for (let t = 0; t < 60 * 3; t++) m.step(DT);
     // In the band: whistle → free kick restart.
-    m.ball.pos = v2(45 - 20, 2);
+    m.ball.pos = v2(HALF_L -20, 2);
     m.awardFoul(m.teams[1].players[1], m.teams[0].players[5]);
     expect(m.restart?.kind).toBe('freeKick');
     // Outside the band (own half): advantage — play continues.
@@ -220,7 +227,7 @@ describe('free kicks become REAL (Phase 32)', () => {
 
   it('determinism: the same seed replays the same free kick, watched or skipped', () => {
     const run = () => {
-      const m = dangerFK(42, v2(45 - 19, 3));
+      const m = dangerFK(42, v2(HALF_L -19, 3));
       let guard = 0;
       while (m.restart && guard++ < 60 * 12 && !m.finished) m.step(DT);
       for (let t = 0; t < 60 * 4 && !m.finished; t++) m.step(DT);

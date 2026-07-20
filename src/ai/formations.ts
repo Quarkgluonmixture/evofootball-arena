@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { v2, type V2 } from '../utils/vec';
-import { BOX_DEPTH, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
+import { BOX_DEPTH, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W, PITCH_SCALE } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -81,18 +81,35 @@ export const DEFEND_FORMATIONS: Record<DefendFormationId, V2[]> = {
   'high-line': [v2(-41, 0), v2(-14, -3), v2(-9, 3), v2(-13, -12), v2(-13, 12), v2(6, 0)],
 };
 
-// EMERGENT POSITIONING FIELD toggle (Phase B, WIP). A module flag settable
-// from the UI (settings → experimental) so the user can PLAY-test it, plus a
-// browser-safe read of the Node env var so probes (`EMERGENT_POS=1`) work too.
-// OFF by default = the fixed formation tables (today's shipped behavior).
-let _emergentPos = false;
+// Density相变 (2026-07-20): the fixed tables above were tuned in ABSOLUTE
+// metres for the 90×58 pitch, so on a shrunk pitch (PITCH_SCALE<1) they fall
+// out of bounds. Scale them to stay proportional + in-bounds. The DEFAULT path
+// is emergentStation (fractional, already fits); this keeps the legacy fixed
+// path + the pre-match shape diagrams valid when the field is scaled.
+if (PITCH_SCALE !== 1) {
+  for (const table of [ATTACK_FORMATIONS, DEFEND_FORMATIONS] as Record<string, V2[]>[]) {
+    for (const key of Object.keys(table)) {
+      table[key] = table[key].map((p) => v2(p.x * PITCH_SCALE, p.y * PITCH_SCALE));
+    }
+  }
+}
+
+// EMERGENT POSITIONING FIELD (Phase B → DEFAULT 2026-07-20, the coordinated
+// density相变). Positions grow from role + genes + live state, not a fixed
+// formation menu — VISION §1's #1 violation retired. It is REQUIRED on the
+// shrunk pitch (PITCH_SCALE<1): emergent stations are fractional and auto-fit,
+// the fixed tables use absolute coords and would fall off a smaller pitch.
+// The UI toggle (settings → experimental) can still turn it OFF for A/B, and
+// probes can force-OFF with EMERGENT_POS=0.
+let _emergentPos: boolean | null = null; // null = use the default (ON)
 export function setEmergentPos(on: boolean): void {
   _emergentPos = on;
 }
 export function emergentPosOn(): boolean {
-  if (_emergentPos) return true;
+  if (_emergentPos !== null) return _emergentPos; // explicit UI / probe override
   // typeof guard: `process` is undefined in the browser bundle — never throw.
-  return typeof process !== 'undefined' && !!(process.env && process.env.EMERGENT_POS);
+  if (typeof process !== 'undefined' && process.env && process.env.EMERGENT_POS === '0') return false;
+  return true; // DEFAULT ON
 }
 
 /** How far up/down the pitch each tactical mode pushes the block. */

@@ -99,6 +99,13 @@ describe('fouls — award rules (Phase 20)', () => {
     m.ball.pos = v2(HALF_L - 5, 2);
     m.awardFoul(m.teams[1].players[3], m.teams[0].players[4]);
     const takerGid = m.restart!.takerGid;
+    // density相变 re-baseline (2026-07-20): on the shrunk pitch the picked
+    // taker is a full half from the spot and can't walk there inside
+    // RESTART_TIMEOUT, so stand him over the ball (the realistic penalty
+    // scene) to exercise the first-touch-is-a-shot mechanic itself.
+    const taker = m.allPlayers.find((p) => p.gid === takerGid)!;
+    taker.pos = v2(m.restart!.pos.x - 1, m.restart!.pos.y);
+    taker.vel = v2(0, 0);
     const takerShotsBefore = m.stat(takerGid).shots;
     const teamShotsBefore = m.teams[0].stats.shots;
 

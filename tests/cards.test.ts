@@ -17,6 +17,7 @@ const neutralSquad = (): PlayerAttributes[] =>
   });
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
+import { HALF_W } from '../src/sim/constants';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 
 const team = (name: string, genes: Partial<ReturnType<typeof neutralGenome>> = {}): TeamInfo => ({
@@ -154,7 +155,7 @@ describe('cards (Phase 25)', () => {
     m.sendOff(victim);
     const r = m.runToCompletion();
     expect(victim.sentOff).toBe(true);
-    expect(Math.abs(victim.pos.y)).toBeGreaterThan(29); // beyond the touchline
+    expect(Math.abs(victim.pos.y)).toBeGreaterThan(HALF_W); // beyond the touchline (parked at HALF_W + 4)
     // He touched nothing after going off: no kickoff, no restart, no capture.
     expect(m.ball.owner).not.toBe(victim);
     expect(r.duration).toBe(240);

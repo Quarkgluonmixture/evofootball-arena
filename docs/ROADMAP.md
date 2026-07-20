@@ -4,7 +4,38 @@
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
 ---
-⭐⭐⭐ **2026-07-20 PLAY-TEST TRIAGE + 画面 BATCH (RESUME POINT).** User play-tested
+⭐⭐⭐⭐ **2026-07-20 THE DENSITY 相变 — SHIPPED AS A PLAY-TEST CANDIDATE (⭐ NEWEST RESUME POINT).**
+VISION §1 named two load-bearing substrate roots behind the endless width/position
+reverts: (A) space/density + (B) emergent positioning. This phase does BOTH,
+probe-validated first:
+- **Probe** (`scripts/probes/density-probe.ts`, scale-invariant, goal scaled with
+  pitch): swept PITCH_SCALE 1.0→0.55 with emergent ON. Clean gradient — cutbacks
+  MONOTONICALLY up (1.59→3.89@0.70, +145%), strong-side r up (0.78→0.86),
+  proportional clumping DOWN, scramble-born goals flat 4–7% until 0.55 where it
+  JUMPS to 16% (the 乱抢 cliff). **Sweet spot ≈ 0.70** (213 m²/player) — passes
+  VISION §1+§2+§3 together (my first confounded run wrongly said §2 worsened; the
+  fix was scaling the clump radius + the goal).
+- **SHIPPED (candidate, uncommitted→committing):** `PITCH_SCALE` default **0.70**
+  in `constants.ts` (scales PITCH_LENGTH/WIDTH/BOX/CENTER/GOAL — physical sizes
+  fixed); **emergent positioning is now the DEFAULT** (`formations.ts`
+  emergentPosOn()→true; fixed tables scaled by PITCH_SCALE for the legacy path +
+  diagrams; `GameApp.readEmergentPos` default true). 26 tests re-baselined for the
+  new geometry (subagent, only tests/, no assertion gutted, verified). Gates at the
+  new default: **calibrate cutbacks 1.10→3.69 (+235%)**, completion 75%, goals 2.00,
+  balanced; **goals-warming late-mean 4.35 avg (DOWN from the old pitch's 5.07 —
+  LESS inflation)**. tsc+build+441 tests green.
+- ⚠ **NOT yet the final verdict:** VISION §2 watchability is the USER'S eyes
+  (trust the browser). Awaiting the play-test: does 0.70 look good / not cramped /
+  tactics legible? goals 2.00 is a touch low (small goal) — nudge goal scale up if
+  they want more scoring. **Honest-revert if §2 fails visually.** PITCH_SCALE=1
+  restores the old pitch.
+- **Dribble philosophy DECIDED: 忠于脚 (real touch cadence, sim-level)** — queued
+  AFTER density. My render-only fake cadence (obs4) made the ball "roll backwards";
+  REVERTED to the always-ahead glue. A true touch rhythm needs the SIM to vary the
+  carry distance (foot↔knock), not a render trick.
+
+---
+⭐⭐⭐ **2026-07-20 PLAY-TEST TRIAGE + 画面 BATCH (earlier today).** User play-tested
 on Pages **with the emergent field ON** and reported 8 observations + 3 keeper
 notes + an evolution-UI ask. Root-caused every item (5 Explore probes). Priority
 was "画面 bug first"; that batch is **SHIPPED+PUSHED, HEAD `e4cb39a`** (CI deploying):

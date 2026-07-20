@@ -34,6 +34,10 @@ const team = (name: string): TeamInfo => ({
 function openMatch(): Match {
   const m = new Match({ seed: 5, teamA: team('A'), teamB: team('B'), duration: 600 });
   for (let i = 0; i < 300; i++) m.step(DT); // past kickoff into open play
+  // density相变 re-baseline (2026-07-20): on the shrunk pitch seed-5 sits in a
+  // restart at step 300, which would overwrite the fired ball — step on until
+  // the ball is live in open play (the scene this helper promises).
+  while (m.phase !== 'playing') m.step(DT);
   for (const p of m.allPlayers) {
     p.pos = { x: -40, y: p.gid * 2 - 12 };
     p.vel = { x: 0, y: 0 };

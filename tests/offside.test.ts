@@ -4,7 +4,7 @@ import { offsideLineLocalX } from '../src/ai/formations';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
-import { DT } from '../src/sim/constants';
+import { DT, HALF_L } from '../src/sim/constants';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { performPass, tryAerial } from '../src/sim/mechanics';
@@ -107,7 +107,7 @@ describe('offside judgment at kick time', () => {
     expect(m.restart?.kind).toBe('goalKick');
     expect(m.restart?.offside).toBe(true);
     expect(m.restart?.side).toBe(1); // defenders take it
-    expect(m.restart?.pos.x).toBeCloseTo(38, 5); // their goal area (45 − 7)
+    expect(m.restart?.pos.x).toBeCloseTo(HALF_L - 7, 5); // their goal area (HALF_L − 7)
     expect(A.stats.offsides).toBe(1);
     expect(m.teams[1].stats.offsides).toBe(0);
     expect(A.stats.passesCompleted).toBe(0); // an offside ball is not a completed pass

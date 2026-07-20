@@ -52,14 +52,14 @@ import { SoundFx } from '../ui/SoundFx';
 // first thing a new player watches should sell the game.
 const DEFAULT_SEED = 1168;
 
-/** Sticky opt-in for the emergent positioning field (Phase B) — persists the
- * user's toggle across reloads so it can be examined over many sessions,
- * without hard-coding it as the global default (it's still WIP). */
+/** Emergent positioning is the DEFAULT now (2026-07-20 density相变); this
+ * persists the user's A/B toggle across reloads. Default ON — only an explicit
+ * '0' (they turned it off) opts out. */
 function readEmergentPos(): boolean {
   try {
-    return localStorage.getItem('evo:emergentPos') === '1';
+    return localStorage.getItem('evo:emergentPos') !== '0';
   } catch {
-    return false;
+    return true;
   }
 }
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
-import { DT, GOAL_HEIGHT, GRAVITY, HALF_L } from '../src/sim/constants';
+import { DT, GOAL_HEIGHT, GRAVITY, HALF_L, HALF_W } from '../src/sim/constants';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { tryAerial } from '../src/sim/mechanics';
@@ -104,9 +104,11 @@ describe('ball flight physics', () => {
   it('a fast landing bounces with damped restitution', () => {
     const m = liveMatch(4);
     const ball = m.ball;
-    // Drop into empty midfield space, far from every formation spot.
+    // Drop into empty midfield space, far from every formation spot. On the
+    // shrunk pitch −22 is over the touchline (HALF_W≈20.3); hold it just
+    // inside the wide channel so it lands in play, not out (2026-07-20).
     ball.owner = null;
-    ball.pos = { x: 0, y: -22 };
+    ball.pos = { x: 0, y: -(HALF_W - 2) };
     ball.vel = { x: 6, y: 0 };
     ball.z = 3;
     ball.vz = -8; // slamming down — lands at √(8² + 2g·3) ≈ 11.1 m/s

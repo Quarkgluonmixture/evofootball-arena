@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { updateTeamBrain } from '../src/ai/TeamBrain';
 import {
-  ATTACK_FORMATIONS, DEFEND_FORMATIONS, formationSpot,
+  ATTACK_FORMATIONS, DEFEND_FORMATIONS, formationSpot, setEmergentPos,
 } from '../src/ai/formations';
 import { GENE_KEYS, type TacticalGenome } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
-import { DT, HALF_L, HALF_W } from '../src/sim/constants';
+import { DT, HALF_L, HALF_W, PITCH_SCALE } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import {
   TEAM_SIZE, deriveTeamStyle,
@@ -65,12 +65,17 @@ describe('tactical identity derivation', () => {
         expect(Math.abs(spot.x)).toBeLessThan(HALF_L);
         expect(Math.abs(spot.y)).toBeLessThan(HALF_W);
       }
-      expect(table[0].x).toBeLessThan(-38); // slot 0 is always the keeper
+      expect(table[0].x).toBeLessThan(-38 * PITCH_SCALE); // slot 0 is always the keeper (tables scale)
     }
   });
 });
 
 describe('formationSpot reads the team tables', () => {
+  // This suite validates the FIXED formation TABLES; emergent positioning is
+  // the default now, so force the fixed path (2026-07-20 density相变).
+  beforeEach(() => setEmergentPos(false));
+  afterEach(() => setEmergentPos(true));
+
   it('attack uses formationAtk, defence uses formationDef, wingers split wings', () => {
     const m = new Match({
       seed: 3,
@@ -85,13 +90,14 @@ describe('formationSpot reads the team tables', () => {
     const wgl = formationSpot(A.players[3], A, m.ball, true);
     const wgr = formationSpot(A.players[4], A, m.ball, true);
     // wide-212 wingers: high (+x for side 0) and on OPPOSITE touchlines.
+    // Widths/depths scale with the pitch (2026-07-20 density相变).
     expect(Math.sign(wgl.y)).toBe(-Math.sign(wgr.y));
-    expect(Math.abs(wgl.y)).toBeGreaterThan(15);
+    expect(Math.abs(wgl.y)).toBeGreaterThan(15 * PITCH_SCALE);
     expect(wgl.x).toBeGreaterThan(0);
 
     // Defence reads the OTHER table: low-32 drops the same winger deep.
     const wglDef = formationSpot(A.players[3], A, m.ball, false);
-    expect(wglDef.x).toBeLessThan(-15);
+    expect(wglDef.x).toBeLessThan(-15 * PITCH_SCALE);
     expect(wglDef.x).toBeLessThan(wgl.x);
   });
 });
@@ -151,6 +157,13 @@ describe('marking schemes', () => {
 });
 
 describe('the keeper waits for shape (Phase 30.3)', () => {
+  // The release GATE is what's under test (shapeReady + the hold budget), not
+  // the positioning system. Force the fixed path so placing a player AT its
+  // spot is idempotent — the emergent field's anti-clump term reads live
+  // teammate positions, so place≠check by construction (2026-07-20 density相变).
+  beforeEach(() => setEmergentPos(false));
+  afterEach(() => setEmergentPos(true));
+
   const SPOT_RADIUS = 6;
 
   /** Mean/settled-count of team 0's outfielders vs their attacking spots. */
@@ -171,23 +184,30 @@ describe('the keeper waits for shape (Phase 30.3)', () => {
     for (let i = 0; i < 70; i++) m.step(DT);
     const A = m.teams[0];
     const gk = A.goalkeeper;
-    const pos = { x: -40, y: 0 };
-    gk.pos = { x: -40, y: 0.5 }; // taker already at the spot
+    // On-pitch goal-area spot (2026-07-20 density相变): the old literal −40 is
+    // behind the shrunk goal line (−HALF_L), so the taker got clamped onto the
+    // pitch away from the spot and never read as "at the ball" — the gate then
+    // only ever released on the timeout. Re-express via the goal area.
+    const pos = { x: -HALF_L + 7, y: 0 };
+    gk.pos = { x: -HALF_L + 7, y: 0.5 }; // taker already at the spot
+    // Set the ball to the spot BEFORE laying out the shape, so a pre-settled
+    // player placed at its attacking spot is measured against the SAME ball
+    // position by shapeReady (place == check).
+    m.ball.pos = { ...pos };
     for (const p of m.allPlayers) {
       if (p === gk) continue;
       if (p.side === 0) {
         p.pos = scatter
-          ? { x: 38, y: p.index % 2 === 0 ? 24 : -24 } // far corner, way off shape
+          ? { x: HALF_L - 4, y: p.index % 2 === 0 ? HALF_W - 3 : -(HALF_W - 3) } // far corner, way off shape
           : formationSpot(p, A, m.ball, true);
       } else {
-        p.pos = { x: 30, y: -20 + p.index * 6 };
+        p.pos = { x: HALF_L - 3, y: -20 + p.index * 6 };
       }
       p.vel = { x: 0, y: 0 };
     }
     m.phase = 'restart';
     m.restart = { kind: 'goalKick', side: 0, pos, timer: 0, takerGid: gk.gid };
     m.possessionSide = 0;
-    m.ball.pos = { ...pos };
     return m;
   };
 
@@ -267,6 +287,12 @@ describe('the keeper waits for shape (Phase 30.3)', () => {
 });
 
 describe('formations are tactics, not paint (directional)', () => {
+  // Defensive HEIGHT separates the fixed formationDef tables; emergent is the
+  // default now and ignores those tables, so force the fixed path here
+  // (2026-07-20 density相变).
+  beforeEach(() => setEmergentPos(false));
+  afterEach(() => setEmergentPos(true));
+
   // Metric choice (probed, §10.5): outcome soups don't carry the signal at
   // any affordable n — conceded shots/xG/goals and opponent completion all
   // flipped direction between seed pools. What separates robustly (5–8m gap
@@ -310,7 +336,7 @@ describe('formations are tactics, not paint (directional)', () => {
       }
       height[def] = sum / n;
     }
-    expect(height['press-23']).toBeGreaterThan(height['low-32'] + 3);
+    expect(height['press-23']).toBeGreaterThan(height['low-32'] + 3 * PITCH_SCALE);
   });
 });
 

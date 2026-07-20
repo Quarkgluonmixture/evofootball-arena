@@ -6,8 +6,22 @@
  * over the goal line a corner or goal kick. Restarts are live dead-ball
  * phases — the clock runs while the taker walks over and defenders reshape.
  */
-export const PITCH_LENGTH = 90;
-export const PITCH_WIDTH = 58;
+/** Probe/dev knob (2026-07-20): scale the PLAYING-FIELD geometry to test 6v6
+ * DENSITY (players per area). Physical sizes (player/ball/control radius/touch
+ * distances/goal) stay FIXED, so a scale < 1 packs the same 12 players into a
+ * smaller field = higher density. Default 1.0 = no change (tests + ship
+ * unaffected). Set PITCH_SCALE in the coordinated-density probe. NB: the fixed
+ * formation tables use ABSOLUTE coords and do NOT rescale — density runs must
+ * pair with EMERGENT_POS=1 (emergent stations are fractional, so they fit). */
+export const PITCH_SCALE = (() => {
+  const v = typeof process !== 'undefined' && process.env ? Number(process.env.PITCH_SCALE) : NaN;
+  // DEFAULT 0.70 (2026-07-20 density相变, probe sweet spot: 213 m²/player —
+  // cutbacks +145%, shape sharper, clumping down, scramble still ~6%; 0.55
+  // tips into 乱抢). Override via env for probes (PITCH_SCALE=1 = the old pitch).
+  return Number.isFinite(v) && v > 0 ? v : 0.7;
+})();
+export const PITCH_LENGTH = 90 * PITCH_SCALE;
+export const PITCH_WIDTH = 58 * PITCH_SCALE;
 export const HALF_L = PITCH_LENGTH / 2;
 export const HALF_W = PITCH_WIDTH / 2;
 
@@ -18,13 +32,13 @@ export const HALF_W = PITCH_WIDTH / 2;
  * so a wide ball drifting behind the line can never register a phantom goal. */
 export const OUT_PLAY_COAST = 0.5;
 
-export const GOAL_WIDTH = 7;
+export const GOAL_WIDTH = 7 * PITCH_SCALE;
 export const GOAL_DEPTH = 2.2;
 /** Crossbar height (m) — a ball crossing the goal line above this is OVER the bar. */
 export const GOAL_HEIGHT = 2.44;
-export const BOX_DEPTH = 13;
-export const BOX_WIDTH = 28;
-export const CENTER_CIRCLE_R = 7;
+export const BOX_DEPTH = 13 * PITCH_SCALE;
+export const BOX_WIDTH = 28 * PITCH_SCALE;
+export const CENTER_CIRCLE_R = 7 * PITCH_SCALE;
 
 /** Fixed simulation timestep (s). */
 export const DT = 1 / 60;

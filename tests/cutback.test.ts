@@ -1,13 +1,13 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { decidePlayer } from '../src/ai/PlayerBrain';
 import { updateTeamBrain } from '../src/ai/TeamBrain';
-import { formationSpot } from '../src/ai/formations';
+import { formationSpot, setEmergentPos } from '../src/ai/formations';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
-import { DT, HALF_L } from '../src/sim/constants';
+import { DT, HALF_L, PITCH_SCALE } from '../src/sim/constants';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { v2 } from '../src/utils/vec';
 
@@ -86,14 +86,20 @@ describe('the arriving runner (Phase 31)', () => {
 });
 
 describe('the weak-side far-post pull (Phase 31)', () => {
+  // The far-post pull is a FIXED-table feature of formationSpot; emergent
+  // positioning (now the default) has no explicit pull, so force the fixed
+  // path here (2026-07-20 density相变). Thresholds scale with the pitch.
+  beforeEach(() => setEmergentPos(false));
+  afterEach(() => setEmergentPos(true));
+
   it('with the attack wide right, the LEFT winger tucks toward the back post', () => {
     const { m } = bylineScene();
     const wgl = m.teams[0].players[3];
     const wgr = m.teams[0].players[4];
     const weak = formationSpot(wgl, m.teams[0], m.ball, true);
     const strong = formationSpot(wgr, m.teams[0], m.ball, true);
-    expect(Math.abs(weak.y)).toBeLessThan(8); // attacking the frame
-    expect(Math.abs(strong.y)).toBeGreaterThan(14); // width held
+    expect(Math.abs(weak.y)).toBeLessThan(8 * PITCH_SCALE); // attacking the frame
+    expect(Math.abs(strong.y)).toBeGreaterThan(14 * PITCH_SCALE); // width held
   });
 });
 
