@@ -2,6 +2,279 @@
 
 ## ⭐⭐⭐⭐ THE GOLD STANDARD IS [`VISION.md`](VISION.md) (2026-07-19) — measure every decision against it
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
+## ⭐⭐⭐⭐ THE SUBSTRATE REBUILD: [`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md) + [`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md) (2026-07-20)
+
+> 🎯🎯🎯 **RESUME (2026-07-20 — the "team-gene overhaul" resolved into a SUBSTRATE-FIRST
+> ENGINE REBUILD; reference docs WRITTEN, code NOT yet touched).** User + GPT + Claude,
+> three-way. The "缺一个行为就加一个 gene" era is over. Two new reference docs:
+> - **[`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md)** — S0–S12 causal layers + the gene→hook
+>   HARD-CONSTRAINT table. ⭐ Key reframe: **VISION §1's value-field "eye" was NEVER
+>   shipped** — live `emergentStation` (`formations.ts:238-348`) is a hand-tuned
+>   procedural interim, **no `spaceValue` symbol exists**; the three value-field reverts
+>   failed because ONE S5 function was made to carry SIX layers. "team gene" isn't
+>   missing, it's fragmented across `TacticalGenome`(23) + `PolicyGenes`(22) + `TeamStyle`.
+> - **[`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md)** — the six-layer acceptance chain
+>   (`fires≠works≠pays≠selected≠good-football`), five threshold types, **NO single
+>   VisionScore**, the per-phase contract template, probe roster classified
+>   BASELINE-NOW / LAYER-GATE / REUSABLE-WORKHORSE / FRAMEWORK-LATER, replay-clip sampling.
+>
+> **FIRST SLICE = Pass–Arrival–Contest.** slice-1a scope (deliberately narrow): on-ball
+> passer perception (S3 stale) + affordance pass-valuation (S5/S7) + contest-at-arrival
+> state (S0) + defender co-evolving read (S4). Does **NOT** touch off-ball receiver
+> offer-movement (slice-1b) or the TeamBrain→task-bidding refactor (later) — protects the
+> play-test-approved `emergentStation` baseline. Build order = PROBE-CONTRACTS §9.
+>
+> **NEXT (approved in principle, NOT yet done):** ① **settle the tree** — commit
+> position-aware budget + keeper; **revert the `vision` 10th-attr** (1 call site
+> `PlayerBrain.ts:285`; the map judges it the wrong single-sided fork — use a shared
+> awareness+anticipation trunk instead, attack/def asymmetry emerges from spatialIQ/
+> decisions/technique) → clean baseline HEAD. ② build BASELINE-NOW probes + freeze
+> baseline JSON. ③ `counterfactual-value` feasibility spike (mid-match rollout: deep-clone
+> vs replay-to-T — see PROBE-CONTRACTS §8). ④ start slice-1a, six-layer gated, honest-revert.
+> **Acceptance = probes + user's eyes JOINTLY** (goals WILL move; §2 = watchability call,
+> not goals≈2.0). Detail on the pre-existing uncommitted tree is in the session-wrap block below.
+
+> 🎯🎯 **RESUME (2026-07-20, SESSION WRAP) — user is pivoting to a BIG "球队基因 / team-gene" OVERHAUL
+> next.** Read this pointer; the dated blocks below are the detailed session journey (history).
+>
+> **UNCOMMITTED TREE STATE (no branch; decide keep/commit/revert/fold-into-overhaul BEFORE the
+> overhaul, since it edits the same genome files):**
+> 1. ✅ **Position-aware budget — VALIDATED, keep-worthy.** `playerGenome.countsForBudget`+`squadTotal`;
+>    `League` fire-sale headroom + v32→v33 migration; SAVE_VERSION 33. reflexes keeper-only;
+>    finishing/defending free for the GK. §2 bit-identical @8, tracks OLD @25. (SQUAD_BUDGET landed at
+>    40.0 once vision was added — see #2.)
+> 2. 🟡 **vision/positioning co-evo SPLIT — PLAY-TEST CANDIDATE, VERDICT STILL PENDING.** `vision`
+>    (NEW 10th attr) = ATTACKING anticipation (passer velocity-lookahead in laneOpenness/opennessOf,
+>    FIDELITY — retires the reverted ×1.15 optimism); `positioning` = DEFENSIVE reading
+>    (`canInterceptPass` readMargin `0.5·(pos−0.5)` + reach `10+6·(pos−0.5)`, high-leverage). SEPARATE
+>    budget lines (SQUAD_BUDGET 35.5→40.0; SAVE_VER stays 33, vision backfilled 0.5). playmaker
+>    re-derived from vision. **CO-EVO CONFIRMED: goals @8 2.47 (attack leads) → @25 3.09 (lead closes)
+>    + interceptions @25 19.81 vs base 15.62 (+27% — a reading defence gets selected).** ⚠ user never
+>    gave the play-feel 留/调/撤 verdict — the dev server (was localhost:5174) is now stopped.
+> 3. ✅ **keeper throw arc — feel, §2-NEUTRAL** (goals 2.47 unchanged). `loftKick` T-floor 0.7→0.9.
+> tsc clean · 441/441 tests (the recurring "1 error" = RPC-heartbeat artifact under CPU contention,
+> not a failure). Files touched: playerGenome, League, perception, PlayerBrain, traits, careers,
+> playerStyle, mechanics, ui/i18n, scripts/probes/jockey-ab + docs.
+>
+> **⭐ HARD-WON LESSONS (durable — also in memory `feedback-evofootball-emergence`):** the sim is a
+> finely-TUNED ~2.0-goal equilibrium; **ANY one-sided behavioral attr change inflates goals** (4
+> reverts this session: vision-optimism ×2, awareness-symmetric-but-narrow-defence ×1,
+> engine-trait-fix ×1). The FIX = **SEPARATE attack/defence reading genes that CO-EVOLVE** (defence
+> gets selected to counter a smarter attack) — the balance EMERGES, don't hand-tune it, and **don't
+> gate on §2 at gen 8: watchability is the user's PLAY-TEST call** (§2-as-veto loosened, like the
+> density verdict). cross-AI (Codex 5.6-sol ×2, zero-preset → `docs/cross-ai-audits/`) = perception =
+> FIDELITY not optimism + separate genes; it also VERIFIED 3 bugs (see backlog).
+>
+> **📋 BACKLOG / NOT-YET-DONE (held this session; also tasks #2–#7):**
+> - **Feel polish (task #4, §2-adjacent → do 1-at-a-time, HMR'd for the user to feel):**
+>   walk-while-holding (keeper is FROZEN in `HoldPosition` PlayerBrain.ts:98 while holding),
+>   goal-kick "pinball" targeting (runs through the normal vision-gated pass loop; needs a probe to
+>   root-cause), 忠于脚 sim carry cadence (vary carry foot↔knock; the render-only version rolled the
+>   ball BACKWARD → reverted; §2-touching).
+> - **顺手修bug (VERIFIED vs code):** ① `engine` trait gated on `pace` (traits.ts:68) but cuts stamina
+>   drain (Player.ts:176) → pace = fast-AND-tireless super-stat (tried gate→stamina: +24% goals + a
+>   test broke → needs care/re-tune); ② GK `positioning` DEAD (first-touch returns early for GK
+>   mechanics.ts:31) → keeper pays budget for nothing; ③ `mutateSquad` UNUSED in production (variation
+>   only via careers/newgens; no post-crossover mutation) = dead fn + a real evolution-variation gap.
+> - **Deferred attribute program (Codex-A, bigger):** split pace/agility, split control/dribbling,
+>   make strength a physical mass/duel effect + retire hand-authored AERIAL_ROLE, weak-foot/pref-foot.
+> - **Emergence-blueprint work:** cut-inside (#3), off-ball eyes / box-arrival + check-to-ball (#2),
+>   coach-global value field (#6), possession 50-50 + transition urgency (#7), width-floor retire
+>   (#5, blocked on width paying). ⚠ FOUNDATIONAL DEFECT B still open: formations are a hand-authored
+>   rigid table (no emergent shape / opponent-response / drop-to-receive) — see the emergence memory.
+>
+> **→ NEXT = the OUTFIELD BASE (user 2026-07-20: "门将底座没必要大手笔…但场上踢的是真的影响,
+> 底座需要做的很好" = keep GK LIGHT ✓done, invest the real substrate work in the OUTFIELD).**
+> ⚠️ **Sub-step 2 (vision attr) FIRST CUT = "读数精度 on PASSING" — TRIED + REVERTED (honest-revert,
+> §2 hard gate).** Added `vision` (10th attr, budget 35.5→40.0) + wired it as a continuous
+> lane-read multiplier replacing the binary `playmaker` ×1.15. BOTH tunings FAILED §2: goals
+> +23% (lane+open) / +17% (lane-only, mean-centred), headers −25–34%, aerial route collapses.
+> **STRUCTURAL, not a tuning miss: passing→goals is CONVEX, so making the best passers sharper
+> inflates scoring even with a mean-preserving spread — a one-sided attacking buff.** Fully
+> reverted → tree bit-identical to sub-step-1 baseline again. **→ the fix (user's call, asked):
+> vision must be applied SYMMETRICALLY (gate the DEFENDER's interception/anticipation read too,
+> so attack↑ is balanced by defense↑ → §2-neutral), OR defense-read FIRST (likely §2-neutral-or-
+> better), OR defer vision & do `positioning`-live (sub-step 3) next.** Sub-step 3 = wire
+> `positioning` LIVE off-ball (today only a first-touch sub-term). De-dead-weight `strength`.
+> One sub-step, §2-gated, honest-revert. Fork B (distinct GK attr template) DEFERRED — chose light A.
+>
+> ✅ **CROSS-AI CONSULT DONE (2026-07-20, user-directed; Codex gpt-5.6-sol xhigh ×2 zero-preset +
+> my own take → `docs/cross-ai-audits/2026-07-20-attr-vision-engine/SYNTHESIS.md`). UNANIMOUS:**
+> **DON'T add a `vision` attr — REPURPOSE the near-dead `positioning` gene into "AWARENESS/意识"**
+> (keep the serialized key). Model perception **FIDELITY** (the player's ESTIMATE of state), NOT
+> optimism: **retire the `playmaker` ×1.15**; awareness affects READING/REACTION only (never speed/
+> pass/shot/tackle/reach — no double-pay). **SYMMETRIC — ship attacking + defensive reads TOGETHER**
+> (passer's lane read AND defender's interception/marker read) = the balance keeper; that's why my
+> one-sided vision inflated goals (convex + max-over-~5-candidates). Determinism-safe (bounded
+> velocity lookahead and/or seeded persistent epoch error; never Math.random). Route-gate not just
+> goals~2 (headers/combos/carry/through/build-up).
+> **3 VERIFIED bugs (checked vs code) = the "顺手修" backlog:** ① `engine` trait gated on `pace`
+> (traits.ts:68) but cuts stamina drain (Player.ts:176) → pace is a fast-AND-tireless super-stat;
+> ② GK `positioning` DEAD (first-touch returns early for GK mechanics.ts:31) → keeper pays budget
+> for nothing (the awareness repurpose fixes this IF GK awareness gets wired); ③ `mutateSquad`
+> UNUSED in production (variation only via careers/newgens; no post-crossover mutation).
+> **DEFERRED backlog (Codex-A's broader program, NOT now):** split pace/agility, split control/
+> dribbling, make strength a physical mass/duel effect + retire hand-authored AERIAL_ROLE, weak-foot.
+>
+> **→ USER DECIDED: NARROW (意识优先 + 顺手修bug).** DO next, one §2-gated lever at a time,
+> honest-revert: **(L1) repurpose `positioning`→awareness = perception FIDELITY, SYMMETRIC (passer
+> lane/openness read + defender interception read use awareness-perceived positions), retire the
+> playmaker ×1.15.** Mechanism (my call): start with the DETERMINISTIC anticipation lookahead
+> (`perceivedPos = pos + vel·0.30·(aware−0.5)·T`, T bounded ~0.8s, aware 0.5 = today exactly, zero
+> RNG), plugged into the shared pass/intercept read first (B-rank1). §2-gate (goals ~2.0 + route
+> mix intact); genome KEY unchanged (positioning stays) so NO new save-ver/rebaseline for L1.
+> Then (L2/L3) the 3 bug fixes as separate clean levers. Attribute splits = deferred backlog above.
+>
+> ⚠️⚠️ **OUTCOME (2026-07-20): L1 awareness TRIED+REVERTED (goals +32%, worse than vision); engine-
+> trait bugfix (pace→stamina) TRIED+REVERTED (goals +24% + broke a test). That's FOUR §2 failures
+> this session (vision×2, awareness×1, engine-trait×1) — a META-PATTERN, not bad luck.** ⭐ **THE
+> LESSON: the sim is a finely-TUNED ~2.0-goal equilibrium, and essentially EVERY behavioral
+> attribute change inflates goals** — because (a) improving option-SELECTION is convex→goals; (b)
+> the goal-SUPPRESSION side (keeper/marking/interception) is far LOWER-leverage in the code than the
+> attacking side, so perturbations bias UP; (c) the equilibrium was tuned WITH the current quirks
+> (even "fixing" engine-on-pace de-tuned it). The ONLY §2-safe change this session (position-aware
+> budget) was safe precisely because it was bit-identical @8 (changed no decisions). **→ IMPLICATION:
+> "make every outfield attr bite MORE" (甲's premise) inherently fights the §2 tuning. Unblocking it
+> needs a STRATEGY decision (put to user): (A) treat §2 as a JOINT target — pair each attr-enrichment
+> with a compensating goal-suppression re-tune (keeper save / xG / defensive success) to hold ~2.0;
+> (B) only §2-neutral-by-construction changes (very limited); (C) STOP per-attr enrichment, COMMIT
+> the validated budget win, redirect to the emergent-positioning foundational defect B or play-feel;
+> (D) RE-BASELINE the §2 tolerance — maybe 2.2–2.5 goals is still watchable if the football is richer
+> (user's call — I'd been treating ~2.0 as inviolable, but watchability is the user's to define).**
+> Tree = validated sub-step-1 (position-aware budget) + docs + `docs/cross-ai-audits/` only.
+>
+> 📌 **Current PASS model (answer to user 2026-07-20 "能按队友/对手位置+下一步动向传吗"): POSITIONS
+> yes (candidate loop scores each mate by `laneOpenness`=opponent-blocked lane + `opennessOf`=nearest
+> marker + forward-gain); NEXT-MOVEMENT/anticipation mostly NO (reads are CURRENT-position snapshots;
+> only through-balls project space ahead + execution leads the receiver). Adding velocity-anticipation
+> to the passer's read is exactly L1 (reverted, +32%).**
+>
+> ✅✅ **RESOLUTION (2026-07-20) — user reframed: "进球多是应该的,但防守也要能进化来平衡" + chose
+> SEPARATE attack/defence reading genes + LOOSEN the §2 goal-veto (user play-tests watchability like
+> density). LANDED (uncommitted, PLAY-TEST CANDIDATE):**
+> **`vision` (NEW 10th attr) = ATTACKING reading** (passer's velocity-lookahead anticipation in
+> `laneOpenness`/`opennessOf`, FIDELITY not the reverted ×1.15 optimism; `PlayerBrain` passLook =
+> `0.3·(vision−0.5)·0.7`); **`positioning` (existing) = DEFENSIVE reading** (`canInterceptPass`
+> readMargin `0.5·(pos−0.5)` + reach `10+6·(pos−0.5)` — sized HIGH-leverage on purpose). Separate
+> budget lines (SQUAD_BUDGET 35.5→40.0; SAVE_VER stays 33, vision backfilled 0.5) so the balance
+> CO-EVOLVES. Playmaker trait re-derived from vision. **✅ CO-EVOLUTION CONFIRMED (the whole point):
+> goals @8 = 2.47 (attack leads early, +0.47 vs base 2.00) → @25 = 3.09 (≈ base deep 3.19; the lead
+> CLOSED) while interceptions @25 = 19.81 vs base 15.62 (+27% — a reading defence got SELECTED).**
+> tsc clean · 441/441. Richer football (anticipatory passing + ball-reading defence + more
+> interceptions) WITHOUT goals running away. **→ AWAITING USER PLAY-TEST verdict** (`npm run dev`
+> localhost; or push live for phone). If kept: this is the vision attr done right (co-evolving split,
+> not the one-sided optimism trap). ⚠ genome now has vision → real save-ver/rebaseline lives here
+> (SAVE_VER 33 batches position-aware budget + vision). NOTE: earlier §2-as-hard-veto framing above
+> is SUPERSEDED for behavioral levers — watchability is the user's play-test call now.
+> **顺手修bug backlog still open:** engine-trait-on-pace (tried→+24%, needs care), GK-positioning-
+> dead, mutateSquad-unused. Attribute-splits = deferred backlog.
+
+---
+⭐⭐⭐⭐⭐ **2026-07-20 SELF-DRIVE — density KEPT (user 留) + step-2 lever REVERTED→REFRAMED (⭐ NEWEST).**
+
+**Density verdict:** user play-tested → "观赏性我觉得没问题,可以go,你自走吧" = **KEEP**.
+PITCH_SCALE 0.70 + emergent-default are the CONFIRMED baseline now (see #1 above),
+not a candidate. Sequence unblocked.
+
+**Step-2 lever tried = RETIRE the in-possession width FLOOR (`formations.ts:266`,
+`widthMul` floor 1.0 → gene-driven 0.55..1.55). REVERTED (honest-revert, §2 hard
+gate).** Clean single-lever A/B vs HEAD (baselines captured):
+- ✅ **§4 diversity WIN** — `positioning-shape` WIDE−NARROW spreadY divergence
+  **1.2m → 2.1m (+75%)**; WIDE stays wide (6.0), NARROW gets genuinely narrow
+  (3.9). Width finally expresses across the `attackingWidth` gene.
+- ❌ **§2 watchability FAIL** — the SAME change congests the middle: `calibrate 8`
+  **goals 2.00→2.26 (+13%)**, shots +11%, **headers +24%** (10.5→13.0), fouls/cards
+  up, through-balls down; `positioning-shape` nn-dist tighter across the board;
+  `clump-vs-wide` gap **WIDENED 3.4×→5.4×** (CLUMP 3.48/WIDE 1.02 → 3.38/0.63).
+- ⭐ **DIAGNOSIS (the reframe):** the width floor is a genuine COMPENSATING bias —
+  but it compensates for **width-not-paying**, and that root cause is UNFIXED.
+  Retire the floor before width pays → the meta just slides NARROWER into the
+  中路乱抢 the user hates. **So step-2 (retire width biases) is BLOCKED on step-3
+  (QUALITY CLUSTER must make wide play connect/pay FIRST — attack the box, combos
+  reliable — THEN retire the floor and re-observe).** Queue RE-SEQUENCED: 3 → 2.
+- ⭐⭐ **ROOT CAUSE PINNED (2026-07-20 diagnostic probes, dense pitch):** WHY
+  width doesn't pay = **the final ball into the box finds too few attacking bodies
+  + a third of deliveries die in flight.** `cross-anatomy`: crosses convert ~5%
+  (NOT ≈0 — the clump-vs-wide extreme overstated it), but **46–54% of crosses are
+  `noAerial` = NOBODY contests them** (vs BUS 54%, atkHeader 25%→18% — the box is
+  under-crashed, worst vs a packed block). `cutback-anatomy`: cutback→goal 5.3%,
+  only 20% → shot, **35% die in flight (mostly intercepted)**, 39% of arrivals
+  lost. **→ The true upstream lever = OFF-BALL MOVEMENT INTO DANGEROUS SPACE
+  (crash the box on a delivery; proactive drop/arrive to receive) — the SAME root
+  as combo-reliability + check-to-ball (step-4). `supportSpot` is always AHEAD of
+  the ball & nobody attacks the 6-yd/penalty-spot on a wide ball.** This is the
+  next probe-first lever (gene-gated arrival, NOT a scripted run). cf. the earlier
+  obs8 pass-power revert — same lesson, combo bottleneck is upstream positioning.
+- ⭐⭐ **DESIGN + VISION UPDATED → "让球员/教练自己长眼睛" (gene-weighted SPACE-VALUE
+  field, two levels: player-local + coach-global). VISION §1 rewritten with the
+  user's words (内切/包抄/回撤 should EMERGE from ONE value field, not be hand-added).
+  Tasks re-cut (#2 player value field · #3 cut-inside via same logic on carry
+  direction · #5 width-floor deferred · #6 coach-global value field · #7 possession
+  contest+transition).**
+- ⭐⭐ **FIRST CUT of the value field REVERTED (honest-revert, 2nd this session) — but
+  a KEY DESIGN CORRECTION.** Rewrote `supportSpot` into a gene-weighted candidate
+  scorer (base + box-crash + drop candidates, scored by openness+receivability−clump
+  + gene/attr appetite). A/B: box-arrival did NOT emerge (`cross-anatomy` noAerial
+  46→50% / 54→59% — box got EMPTIER), §2 regressed (`calibrate` goals 2.00→2.42 +21%,
+  cutbacks 3.69→3.29, headers 10.5→7.8), width didn't rise (`scheme-matchup` W-v-Z
+  0.67→0.48). **LESSON: an openness-maximizing value field is the WRONG model for
+  BOX-ARRIVAL — the box is a LOW-openness contested zone, so the scorer AVOIDS it +
+  scatters supporters into empty pockets (→ emptier box, +turnovers, +goals).**
+  → **Split the design: (a) CHECK-TO-BALL / support / overload / drop = genuinely a
+  space-value(openness) field ✅; (b) BOX-ARRIVAL = delivery-ANTICIPATION, NOT
+  openness — must be COUPLED to an imminent wide delivery (extend `TeamBrain.
+  assignRunners` arriver → gene-scaled multi-body crash, TIMED like the corner
+  hold→burst), the cutback-arriver mechanism generalized.** Do box-arrival (a
+  delivery-coupled licensing change) as the next cut; keep the value-field for
+  check-to-ball separate.
+- ⭐⭐⭐ **CUT 2 (two-eye value field: space + BALL, per user "得知道空间在哪+球在哪")
+  ALSO REVERTED — same signature. → STOP hammering box-arrival-via-supportSpot;
+  RE-DIAGNOSE.** Both cuts: box did NOT fill (`cross-anatomy` noAerial 46→51%), §2
+  regressed (goals 2.00→2.41 +20%, **offsides 2.20→3.36 +50%**), width did NOT rise
+  (`scheme-matchup` W-v-Z 0.67→0.48). **THE OFFSIDES SPIKE is the tell: bodies DO try
+  to attack the box now but arrive OFFSIDE (uncoordinated with the delivery) → box
+  stays empty + structure disrupted → goals inflate via broken play.**
+- ⭐⭐⭐ **KEY under-weighted data + the REFRAME:** (1) a BALANCED team ALREADY fills
+  the box fine (`cross-anatomy` BAL: noAerial **26%**, atkHeader **33%**, goal/shot
+  16%) — box-arrival is NOT universally broken; it's CROSS-SPAM (early/excess crosses
+  outrun arrival) + the extreme WIDE genome being a bad archetype. (2) **WIDTH is a
+  LOW-EV mode vs EVERY defense (0.5–1.0) while central CARRY is HIGH-EV (2.2–3.2) —
+  because CROSSING IS INHERENTLY LOW-YIELD (cross→goal ~5%), which is REALISTIC (real
+  open-play crosses are ~1–2%).** So "make crosses out-score central carry" is the
+  WRONG goal — unrealistic. Real width's value = STRETCH the defense to OPEN the
+  center + let wide men CUT INSIDE into the high-EV central space (inverted winger),
+  NOT out-cross the middle. The unrealistic thing is CENTRAL CARRY being TOO strong
+  vs non-zonal defenses (zonal already bites it 58→14; man/default gets shredded; only
+  1–2/16 play zonal). **Two candidate realistic levers to STEER on: (A) CUT-INSIDE —
+  wide→cut into the opened center (taps the high-EV carry from wide, validates the
+  user's earlier instinct); (B) punish CENTRAL CARRY through congestion vs non-zonal
+  too (过一个还有另一个, so the clump stops being a free lunch). Box-arrival/crossing =
+  accept it as the low-yield supporting weapon it realistically is.** Awaiting user steer.
+- Tree left CLEAN at HEAD `ed62978` (only ledger/VISION docs changed). Baselines
+  saved this session: calibrate goals 2.00 / cutbacks 3.69 / compl 75%; posshape
+  WIDE 6.4 / NARROW 5.2; clump-vs-wide 3.48/1.02; cross noAerial 46/54%; cutback
+  20%→shot 5.3% goal; scheme-matchup W-v-Z 0.67 / W-v-M 1.02 / D-v-M 3.18 / D-v-Z 2.23.
+- ⭐⭐⭐ **VISION §1 EXTENDED to the full perception→value→action ENGINE (user ratified
+  "从底层做了一个足球引擎,方向是对的").** Eyes = 球+对手+队友+场地+**自身**(朝向/我的属性/
+  体能)+**动态·预判**(对手结构=提前观察+预判);space is DERIVED; inputs feed multi-dims
+  (space/threat/receive/goal); **eye-QUALITY = an attribute** (长眼睛本身分化). Honest cost
+  named: engine-first is 承重级/slower/"worse-before-better" → build incrementally, keep the
+  baseline revertible, each engine piece must BEAT §2 to ship.
+- ⭐⭐⭐ **ATTRIBUTE AUDIT (the engine's INPUTS; ATTR_KEYS ×9, budget SQUAD_BUDGET 40.5):
+  3 wasteful + 1 missing + 3 attr-blind.** DEAD/WEAK (eat budget, ~no effect): **`reflexes`
+  = DEAD for 8/9 (GK-only reads)**; **`positioning` = near-inert** (only a first-touch
+  sub-term; its docstring's off-ball IQ never shipped) — ironically the attr the SELF/off-ball
+  eye needs; **`strength` = one-trick** (aerialSense 0.30, near-decorative on the ground).
+  STRONG/live: pace · passing · dribbling · finishing · defending (stamina medium). ATTR-BLIND
+  mechanics (flat constant an attr could bite NOW): **`TURN_RATE` 6.5** (agility — everyone
+  turns identically; bites cut-inside/1v1), **`SHOT_SPEED` 27** (open-play shot power flat),
+  and **perception = PERFECT full-field for ALL — NO vision/awareness attr** (only the
+  `playmaker` trait) = the biggest gap + exactly the "eye-quality" the eyes model needs.
+  Gaps ranked: vision/awareness(1) · agility/turn(2) · positioning-made-live(3, fix-not-add) ·
+  composure(4) · raw aerial/jump(5) · shot-power(6) · tackle-vs-mark(7) · accel-vs-topspeed(8) ·
+  weak-foot(10, needs NEW mechanics). → **engine-input cleanup = reclaim reflexes budget +
+  add `vision` (eye-quality) + wire `positioning` live; genome change = save-ver bump +
+  fingerprint rebaseline = USER's architectural call.**
 
 ---
 ⭐⭐⭐⭐⭐ **2026-07-20 SESSION WRAP — GAP BASELINE + SELF-DRIVE QUEUE (⭐ RESUME HERE FIRST).**
@@ -15,11 +288,13 @@ pitch. Iterate render/feel with **`npm run dev`** (localhost:5173, fast HMR — 
 CI wait); commit+push (personal acct `Quarkgluonmixture`, `gh auth switch`) when
 confirmed; trust the browser for pixels (headless flaky).
 
-⏳ **#1 OPEN DECISION — the density WATCHABILITY VERDICT (留/退).** Data says GO
-(scramble-born goals stay 4–7% to scale 0.70, cliff at 0.55; cutbacks +235% at
-gen-scale; goal inflation DOWN), but VISION §2 (does it LOOK good / not more
-乱抢 / tactics legible) is the USER'S eyes. Honest-revert if it fails visually —
-`PITCH_SCALE=1` restores the old pitch. **Get this verdict, then proceed.**
+✅ **#1 DECIDED 2026-07-20 — the density 相变 is a KEEP.** User play-tested and
+判决: "观赏性我觉得没问题,可以go,你自走吧" (watchability is fine → GO; self-drive).
+PITCH_SCALE 0.70 + emergent positioning DEFAULT are now the confirmed baseline,
+not a candidate. Data said GO (cutbacks +235%, scramble-born goals flat 4–7% to
+0.70, goal inflation DOWN) and the user's eyes agree on VISION §2. Sequence
+unblocked → now on **step 2: retire the compensating width hand-biases + re-run
+evo + OBSERVE diversity on the denser pitch.**
 
 **GAP BASELINE (code-verified inventory 2026-07-20). The substrate is FAR more
 complete than a "missing systems" story — most of real football's repertoire

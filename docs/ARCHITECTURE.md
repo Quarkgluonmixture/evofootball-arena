@@ -1002,3 +1002,77 @@ Checklist — do these in order:
    if you changed architecture, invariants, seeds, or added a failure mode
    worth remembering. There is no separate CHANGELOG — README + git history
    serve that role.
+
+---
+
+## Scaling & runtime (2026-07-20 verdict — before the substrate rebuild)
+
+Companion to [`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md) (causal layers) and
+[`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md) (acceptance). Ratified user + GPT + Claude
+before the perception→value→action engine work begins.
+
+**Verdict: do NOT switch stacks or rewrite as a native app.** The determinism contract
+(fixed step · single RNG · `watched===headless` · read-only renderers · Node probes ·
+TS full-stack · Pages distribution) is the ENTIRE value proposition — same-seed A/B,
+explainable `why`, probeability, a long world. Unity/Godot/Rust would destroy exactly
+that. 12 players in Pixi/Three is trivial render load; the browser is not the near-term
+bottleneck. **App = distribution shell only, later:** Capacitor for a mobile store,
+Tauri/Electron only if a desktop lab/store is wanted — never for performance.
+
+**The two real "卡" (both solvable in-place; evolution-stall is the deeper one):**
+
+1. **Runtime compute explosion.** As perception/prediction/affordance/candidates land,
+   per-decision-tick work grows. Enabling refactors, sequenced:
+   - **SDRA = the shared-cache refactor (they are ONE thing).** Move AI from
+     read-while-write to **Snapshot → Decide → Resolve → Apply**: freeze the decision
+     tick's world truth, all players read that frozen snapshot, resolve task/contest
+     conflicts once, apply simultaneously. The frozen snapshot IS where the shared
+     caches live (`ReachabilityCache`/`BallTrajectory`/`PitchControl`/`Lane`/`Threat`
+     computed ONCE per tick; each player only does "for-me" interpretation). It is a
+     fingerprint-changing correctness+perf change → its own phase.
+   - **Sequencing:** SDRA is **NOT** a slice-1a prerequisite (single passer + local
+     contest; the existing alternating-traversal hack holds). It becomes REQUIRED at
+     slice-1b (receiver offers) / S8 (team task-bidding) — the first simultaneous
+     multi-agent decisions. The contest RESOLVE stage is SDRA's natural first use;
+     generalise at slice-1b. Do not inflate slice-1a with it.
+   - **Multi-timescale as an invariant:** physics 60Hz · steering/contest 30–60Hz ·
+     player decision 5–8Hz · perception 4–10Hz (by awareness) · affordance 3–6Hz ·
+     team-intent 2–3Hz. Cadence is TICK-based (deterministic), not wall-clock. Formalise
+     the constants in one place (they're already scattered: TeamBrain/PlayerBrain/executor).
+   - **watched match → Worker only after the profiler proves the main thread is the
+     bottleneck** (batch sim is already in a Worker; watched still loops `match.step`
+     on the main thread). Deferred, not now — snapshot-interpolation latency is a real
+     UX change to earn.
+   - **Telemetry trace: flag-gated, pure-observational, OFF by default** (see
+     PROBE-CONTRACTS §5.5) — never changes results, never in the hot path.
+
+2. **Evolution search stall** (deeper). ~15–20 gene dims × 16 teams × limited
+   matches/season is a TINY population.
+   - **Deceptive valleys** (二过一: A alone −, B alone −, A+B +): the FIRST-LINE fix is
+     **substrate design that gives partial gradients** (a better first-touch pays a
+     little even without the full combo) — the Pass–Arrival–Contest slice reduces valley
+     depth by construction. QD/offline search is the safety-net, not the primary fix.
+   - **Credit assignment** IS the PROBE-CONTRACTS six-layer chain
+     (gene→mediator→behaviour→local-payoff→outcome→retention) — use it per lever, not
+     "did the gene mean rise."
+   - **Expectation reset:** the LIVE 16-team league's job is **ecology + story, not
+     global search**; multi-style coexistence is the goal, not a global champion. An
+     **offline discovery lab** (large pop · frozen opponents · MAP-Elites/QD/CMA-ES)
+     answers "does the substrate ALLOW this style to be found?" — it never dictates
+     "these styles must exist" (that would violate §1). ⚠ **The lab is FRAMEWORK-LATER,
+     not now** — slice-1 uses the existing `evo-drift`/`freq-dependence` + fresh-evo
+     gate.
+   - **Module-boundary crossover** (later): genes cross by real-ownership modules
+     (player-capacity / player-preference / learned-knowledge / coach-philosophy /
+     club) — don't bit-splice a coach policy into a player's ability. Protects entity
+     boundaries, not hand-authored tactics.
+
+**Do NOT restructure into a `packages/` monorepo for slice-1** — pure churn, zero
+behavioural payoff, and it risks the Pages/CI pipeline. The `ai`/`sim`/`evolution`
+boundaries already exist; enforce by discipline. Monorepo = FRAMEWORK-LATER.
+
+**Cheapest, do-it-FIRST action:** add a phase-level profiler to `Match.step`
+(physics/perception/prediction/candidates/coordination/mechanics/snapshot) and capture a
+RELATIVE per-tag perf baseline (live-frame p95 · sim-step p95 · allocations · headless
+matches·s⁻¹ · 10-season runtime · memory) BEFORE any per-tick compute is added. This is
+now a hard gate (PROBE-CONTRACTS §3).
