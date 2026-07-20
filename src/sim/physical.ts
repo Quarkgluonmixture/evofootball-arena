@@ -1,4 +1,8 @@
 import type { V2 } from '../utils/vec';
+import {
+  BALL_ACCESS_BACK_EXTENSION_FACTOR,
+  BALL_ACCESS_SIDE_EXTENSION_FACTOR,
+} from './constants';
 import type { Side } from './types';
 
 /**
@@ -58,6 +62,28 @@ export interface AccessLineGeometry {
   readonly blockerDistance: number;
   readonly clearance: number;
   readonly blocked: boolean;
+}
+
+/** A body that may occupy an actor's direct route to the ball. */
+export interface BallAccessBody extends OrientedBody {
+  readonly gid: number;
+  readonly side: Side;
+}
+
+/**
+ * One M2 world-fact: can this oriented body touch this ball directly from the
+ * current snapshot, or must it first turn / go around an opponent core?
+ */
+export interface DirectBallAccess {
+  readonly geometry: BallAccessGeometry;
+  /** Centre reach after applying the front/side/back interaction shell. */
+  readonly sectorCenterReach: number;
+  readonly withinPlayingDistance: boolean;
+  readonly blockedByGid: number | null;
+  readonly blockerGeometry: AccessLineGeometry | null;
+  readonly mustTurn: boolean;
+  readonly mustGoAround: boolean;
+  readonly canDirectlyContact: boolean;
 }
 
 /**
@@ -158,6 +184,55 @@ export function accessLineGeometry(
     clearance,
     // The actor endpoint is excluded; a body occupying the ball endpoint blocks.
     blocked: rawT > 0 && rawT <= 1 && blockerDistance <= clearance,
+  };
+}
+
+/**
+ * Compose oriented reach and opponent screening into one deterministic query.
+ * Teammates do not deny access; every opponent core does, even if that player
+ * is in a cooldown and cannot claim the ball themself. The first blocker is
+ * the one nearest the actor along the access line, with input order breaking
+ * exact ties. This function reports geometry only and never awards control.
+ */
+export function directBallAccess(
+  actor: BallAccessBody,
+  ball: PhysicalBall,
+  bodies: readonly BallAccessBody[],
+  maxCenterReach: number,
+): DirectBallAccess {
+  const geometry = ballAccessGeometry(actor, ball, maxCenterReach);
+  const extension = Math.max(0, maxCenterReach - actor.coreRadius - ball.radius);
+  const extensionFactor = geometry.sector === 'front'
+    ? 1
+    : geometry.sector === 'side'
+      ? BALL_ACCESS_SIDE_EXTENSION_FACTOR
+      : BALL_ACCESS_BACK_EXTENSION_FACTOR;
+  const sectorCenterReach = actor.coreRadius + ball.radius + extension * extensionFactor;
+  const withinPlayingDistance = geometry.centerDistance <= sectorCenterReach;
+
+  let blockedByGid: number | null = null;
+  let blockerGeometry: AccessLineGeometry | null = null;
+  for (const candidate of bodies) {
+    if (candidate.gid === actor.gid || candidate.side === actor.side) continue;
+    const line = accessLineGeometry(actor.pos, ball, candidate.pos, candidate.coreRadius);
+    if (!line.blocked) continue;
+    if (blockerGeometry === null || line.closestT < blockerGeometry.closestT) {
+      blockedByGid = candidate.gid;
+      blockerGeometry = line;
+    }
+  }
+
+  const mustTurn = geometry.withinCenterReach && !withinPlayingDistance;
+  const mustGoAround = blockedByGid !== null;
+  return {
+    geometry,
+    sectorCenterReach,
+    withinPlayingDistance,
+    blockedByGid,
+    blockerGeometry,
+    mustTurn,
+    mustGoAround,
+    canDirectlyContact: withinPlayingDistance && !mustGoAround,
   };
 }
 

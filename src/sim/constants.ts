@@ -224,6 +224,15 @@ export const RESTART_TIMEOUT = 6;
 
 /** A player controls a free ball inside this radius... */
 export const CONTROL_RADIUS = 1.25 * CONTROL_REACH_SCALE;
+/**
+ * M2 oriented interaction shell. The stable core and ball radius are never
+ * scaled by these values — only the leg/foot extension outside them is.
+ * Front and lateral contact keep the old CONTROL_RADIUS exactly. Rear contact
+ * keeps 90% of the outer extension: close back-heels remain possible, while an
+ * edge-of-envelope ball directly behind the body requires a small turn.
+ */
+export const BALL_ACCESS_SIDE_EXTENSION_FACTOR = 1;
+export const BALL_ACCESS_BACK_EXTENSION_FACTOR = 0.9;
 // S0 (docs/SUBSTRATE-MAP.md): both sides with a body within this of a loose ball =
 // a genuine contest. Classification-only today; the physical 50-50 will use it later.
 export const CONTEST_RADIUS = 3;

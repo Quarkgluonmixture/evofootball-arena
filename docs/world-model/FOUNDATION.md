@@ -172,11 +172,29 @@ months** — this narrowed slice is.
   accepted:** players felt “像抹了一点润滑油的轻微弹性球一样”; no sticking, congestion, or
   density veto was reported. That feel is the M1 baseline. M2 may now start as the next
   isolated lever.
-- **M2 — ball-access / screening world-fact.** One general query: *from this body's pos +
-  dir, can it directly contact the ball?* Reads ball distance, ball front/side/back, whether
-  an opponent core sits on the access line, must-go-around, legal playing distance. **This is
-  the crux Path-B cannot represent** — it makes "standing between the ball and the opponent"
-  a world fact. No shoulder-charge / balance / mass yet.
+- ✅ **M2 — ball-access / screening world-fact. DONE 2026-07-20.**
+  `directBallAccess` is the one pure query: *from this body's position + direction, can it
+  directly contact the ball?* It composes ball distance and front/side/back sector, legal
+  oriented reach, the nearest opponent core on the actor→ball line, `mustTurn`,
+  `mustGoAround`, and `canDirectlyContact`. Front + side preserve the old 1.25m centre reach;
+  rear contact keeps 90% of the extension outside body+ball radii (a close back-heel works,
+  an edge-of-envelope ball directly behind requires a turn). An opponent still occupies the
+  access line while cooldown/stun prevents its own claim; teammates do not deny access.
+  `tryCapture` now consumes this fact for ground control/deflection eligibility **only** — it
+  does not change the existing nearest-player order, first-touch roll, or aerial paths; the
+  query itself never hands out ownership (M3 remains untouched). **Counterfactual proof:** at
+  the same 1.2m distance,
+  front/side are directly reachable while back requires a turn; holding an opponent core on
+  the line flips direct access yes→no, moving it 0.7m laterally flips no→yes. Live census:
+  access-gated lingering is only 0.35s/match (0.2% of live frames), so the fact bites without
+  dominating play. **Honest tuning:** the first side/back extension factors 0.85/0.45 failed
+  the existing policy-bite and stamina-economy hard gates; they were rejected, not papered
+  over. Final 1.00/0.90 passes both. Same-seed M1→M2 guardrails: contests 17.57→17.23/match,
+  pinball max 7→5, churn goals 2.41→2.42, mean spell 5.54→5.59s. Gates: clean tsc/build ·
+  457/457 tests · repeated fingerprints stable (`d59185df…` seed 1337, `3c82b572…` seed 42)
+  · profiler determinism OK · 5.12µs/step vs frozen 5.32, 15.2 matches/s · two-seed
+  8-season calibrate 2.38/2.35 goals per match, both 50/50 possession. No shoulder-charge,
+  balance, mass, contact-claim, or touch→control change yet.
 - **M3 — touch ≠ control.** `contact claims` (from one snapshot, ALL eligible players, NO
   pre-selected winner, NOT capped at two) → first contact → **ball impulse** (a new physical
   state, not an owner) → **separate control attempt** (relative ball speed, body facing,

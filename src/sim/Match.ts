@@ -19,6 +19,7 @@ import {
   CONTEST_RADIUS, RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
 } from './constants';
 import * as mech from './mechanics';
+import { directBallAccess } from './physical';
 import { Player } from './Player';
 import { matchRating } from './ratings';
 import { Team } from './Team';
@@ -1830,6 +1831,13 @@ export class Match {
       if (dy >= CONTROL_RADIUS || dy <= -CONTROL_RADIUS) continue;
       const d = Math.sqrt(dx * dx + dy * dy);
       if (d >= CONTROL_RADIUS) continue;
+      // M2 World-Model Foundation: distance alone is not contact. The body
+      // must have oriented foot reach and an unobstructed route to the ball;
+      // an opponent core still screens while cooldown/stun prevents its own
+      // claim. This changes eligibility only — M3 will replace the existing
+      // nearest-player winner/control path with snapshot contact claims.
+      const access = directBallAccess(p, ball, this.allPlayers, CONTROL_RADIUS);
+      if (!access.canDirectlyContact) continue;
       // The cushioned trap (Phase 31.7, user report "长球停不住"): the
       // pass's INTENDED receiver is set for the ball and may take down a
       // driven delivery a bystander can't — the 30.5 driven switch lands

@@ -23,8 +23,14 @@
 > Mechanism: inward 8→0m/s, 120f penetration 0.133333→0.007517m; full 453/453, stable
 > repeated fingerprints, perf 5.28µs/step, two-seed calibrate 2.22/2.30. User feel verdict:
 > “像抹了一点润滑油的轻微弹性球一样” — accepted, with no sticking/congestion veto.
-> **NEXT = M2 ball-access/screening world-fact, as one isolated lever.** Sequence remains
-> M2 (ball-access/screening world-fact) → M3 (touch≠control) → M4 (play-test, then **RETURN
+> ✅ **M2 DONE (2026-07-20):** one `directBallAccess` world-fact now composes oriented
+> reach + opponent access-line screening; ground `tryCapture` reads eligibility without
+> changing nearest-player order or touch/control semantics. Static counterfactuals pass;
+> live delay is only 0.35s/match (0.2% frames); contests 17.57→17.23, pinball max 7→5,
+> spell 5.54→5.59s. Initial side/back reach 0.85/0.45 honestly failed policy+stamina and
+> was rejected; final 1.00/0.90 passes tsc/build · 457/457 · repeated deterministic
+> fingerprints · perf 5.12µs/step · calibrate 2.38/2.35. **NEXT = M3 touch≠control, as
+> a separate commit/lever.** Sequence remains M3 (touch≠control) → M4 (play-test, then **RETURN
 > to S3–S8 = the mainline**). The body model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
