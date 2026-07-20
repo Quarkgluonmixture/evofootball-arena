@@ -3,6 +3,7 @@ import { add, clone, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import { decidePlayer } from '../ai/PlayerBrain';
 import { applyMentality, applyUnderdogShift, mentalityOf } from '../ai/mentality';
 import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
+import { PROFILER as prof } from './profiler';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeReady } from '../ai/formations';
 import { opennessOf } from '../ai/perception';
@@ -382,6 +383,7 @@ export class Match {
     // ---- playing or restart (a restart is live: clock runs, players move) ----
     this.simTime += dt;
 
+    const _tBrain = prof.mark();
     for (const team of this.teams) {
       team.brainTimer -= dt;
       team.modeTime += dt;
@@ -419,6 +421,8 @@ export class Match {
     // (they see earlier kicks and reactions). Measured effect: the team
     // iterated second converted ~10pp more of its shots. Alternating the
     // iteration direction every step cancels the asymmetry, deterministically.
+    prof.add('teamBrain', _tBrain);
+    const _tDecide = prof.mark();
     const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
     for (const p of order) {
       if (p.sentOff) continue;
@@ -428,14 +432,20 @@ export class Match {
       }
     }
 
+    prof.add('decide', _tDecide);
+    const _tExec = prof.mark();
     for (const p of order) {
       if (!p.sentOff) executeAction(p, this, dt);
     }
+    prof.add('execute', _tExec);
+    const _tPhys = prof.mark();
     for (const p of order) {
       if (!p.sentOff) p.physicsStep(dt);
     }
     this.resolveOverlaps();
     this.clampPlayersToPitch();
+    prof.add('physics', _tPhys);
+    const _tBall = prof.mark();
     // Kick protection (Phase 31.9): the clearance circle must survive the
     // hand-off — the restart clears ~0.2–0.5s before the taker's kick, and
     // in that gap defenders rushed the taker, so the launch (its first
@@ -465,6 +475,8 @@ export class Match {
     }
     if (this.phase === 'restart') this.stepRestart(dt);
     else this.stepBall(dt);
+    prof.add('ball', _tBall);
+    const _tBook = prof.mark();
 
     // Possession only accrues in open play — restarts are dead-ball time,
     // so the calibrate "ball-in-play share" stays an honest metric.
@@ -512,6 +524,8 @@ export class Match {
     } else if (this.half === 2 && this.simTime >= this.secondHalfStart + this.duration / 2) {
       if (this.refBlowsNow(this.secondHalfStart + this.duration / 2)) this.endMatch();
     }
+    prof.add('book', _tBook);
+    prof.stepDone();
   }
 
   /**

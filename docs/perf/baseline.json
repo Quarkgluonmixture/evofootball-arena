@@ -1,0 +1,45 @@
+{
+  "head": "73310f1",
+  "seed": 20260702,
+  "seasons": 1,
+  "determinismOk": true,
+  "usPerStep": 5.23,
+  "stepP50Us": 4.7,
+  "stepP95Us": 9.1,
+  "stepP99Us": 16.3,
+  "phases": [
+    {
+      "phase": "execute",
+      "usPerStep": 3.42,
+      "pct": 65.4
+    },
+    {
+      "phase": "physics",
+      "usPerStep": 0.75,
+      "pct": 14.3
+    },
+    {
+      "phase": "decide",
+      "usPerStep": 0.54,
+      "pct": 10.3
+    },
+    {
+      "phase": "ball",
+      "usPerStep": 0.26,
+      "pct": 5
+    },
+    {
+      "phase": "teamBrain",
+      "usPerStep": 0.21,
+      "pct": 4
+    },
+    {
+      "phase": "book",
+      "usPerStep": 0.05,
+      "pct": 1
+    }
+  ],
+  "tenSeasonSec": 47,
+  "matchesPerSec": 15.1,
+  "heapGrowthMb": 18.4
+}

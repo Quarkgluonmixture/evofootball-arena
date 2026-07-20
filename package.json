@@ -20,6 +20,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "calibrate": "tsx scripts/calibrate.ts",
+    "perf": "tsx scripts/perf-baseline.ts",
     "fingerprint": "tsx scripts/fingerprint.ts",
     "evolve-check": "tsx scripts/evolve-check.ts",
     "debug:visual": "node scripts/visual-debug.mjs",
