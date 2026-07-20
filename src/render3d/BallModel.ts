@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import type { RenderBall, RenderPlayer } from './RenderStateAdapter';
+import {
+  BALL_SHADOW_RADIUS, BALL_VISUAL_RADIUS, type ContactCue,
+} from './ballPresentation';
 
-const RADIUS = 0.42; // slightly oversized for readability at tactical distance
 const TRAIL_N = 16;
 const UP = new THREE.Vector3(0, 1, 0); // sidespin axis (Phase 74)
 
@@ -31,25 +33,47 @@ export class BallModel {
   private markerPhase = 0;
   private carryCur = { x: 0, z: 0 };
   private blob: THREE.Mesh;
+  private contactRing: THREE.Mesh;
+  private contactMat: THREE.MeshBasicMaterial;
+  private contactT = 0;
 
   constructor() {
     this.mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(RADIUS, 20, 14),
+      new THREE.SphereGeometry(BALL_VISUAL_RADIUS, 20, 14),
       new THREE.MeshStandardMaterial({ map: ballTexture(), roughness: 0.4 }),
     );
     this.mesh.castShadow = true;
-    this.mesh.position.y = RADIUS;
+    this.mesh.position.y = BALL_VISUAL_RADIUS;
     this.root.add(this.mesh);
 
     // Grounding blob under the ball (follows the carry offset too).
     const blob = new THREE.Mesh(
-      new THREE.CircleGeometry(0.34, 14),
+      new THREE.CircleGeometry(BALL_SHADOW_RADIUS, 14),
       new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.25, depthWrite: false }),
     );
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.03;
     this.blob = blob;
     this.root.add(blob);
+
+    // A short ground ripple marks the exact authoritative contact point.
+    // It distinguishes a successful tackle/contact from bodies merely
+    // overlapping on camera without inventing a sim event.
+    this.contactMat = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+    });
+    this.contactRing = new THREE.Mesh(
+      new THREE.RingGeometry(BALL_VISUAL_RADIUS * 1.15, BALL_VISUAL_RADIUS * 1.55, 24),
+      this.contactMat,
+    );
+    this.contactRing.rotation.x = -Math.PI / 2;
+    this.contactRing.position.y = 0.04;
+    this.contactRing.visible = false;
+    this.contactRing.renderOrder = 8;
+    this.root.add(this.contactRing);
 
     // Motion trail (world-space, so it is a sibling-independent child of root's parent — we
     // keep it in root but write absolute-relative positions each frame instead).
@@ -82,6 +106,11 @@ export class BallModel {
 
   get trailVisible(): boolean {
     return this.trail.visible;
+  }
+
+  pulseContact(kind: ContactCue): void {
+    this.contactT = 0.24;
+    this.contactMat.color.setHex(kind === 'tackle' ? 0xfacc15 : 0xffffff);
   }
 
   update(
@@ -125,9 +154,10 @@ export class BallModel {
     this.heldY = ball.heldByGk
       ? Math.min(0.95, this.heldY + dt * 5)
       : Math.max(0, this.heldY - dt * 5);
-    this.mesh.position.set(this.carryCur.x, RADIUS + h + this.heldY, this.carryCur.z);
+    this.mesh.position.set(this.carryCur.x, BALL_VISUAL_RADIUS + h + this.heldY, this.carryCur.z);
     this.blob.position.x = this.carryCur.x;
     this.blob.position.z = this.carryCur.z;
+    this.updateContact(dt);
     // A tilted owner's hands carry it (31.9): blend the held ball toward
     // the hands anchor by tilt fraction — a diving keeper's catch sweeps
     // with the dive and eases back as he picks himself up. Render-only.
@@ -142,7 +172,7 @@ export class BallModel {
     // Roll around the axis perpendicular to travel.
     if (ball.speed > 0.2 && h < 0.05) {
       this.axis.set(-ball.vz, 0, ball.vx).normalize();
-      this.mesh.rotateOnWorldAxis(this.axis, (ball.speed * dt) / RADIUS);
+      this.mesh.rotateOnWorldAxis(this.axis, (ball.speed * dt) / BALL_VISUAL_RADIUS);
     }
     // Visible sidespin (Phase 74): a curled ball rotates about the vertical
     // axis. The sim's `spin` is the PATH's turn rate (rad/s) — small by
@@ -162,7 +192,7 @@ export class BallModel {
   private updateTrail(ball: RenderBall, h: number): void {
     // Record while the ball travels fast; fade out when it settles.
     if (ball.speed > 7 && ball.ownerGid === null) {
-      this.trailPts.push({ x: ball.x, y: RADIUS + h, z: ball.z });
+      this.trailPts.push({ x: ball.x, y: BALL_VISUAL_RADIUS + h, z: ball.z });
       if (this.trailPts.length > TRAIL_N) this.trailPts.shift();
     } else if (this.trailPts.length > 0) {
       this.trailPts.shift(); // shrink from the tail when slow
@@ -177,6 +207,20 @@ export class BallModel {
     // Shots burn hotter than passes.
     this.trailMat.color.setHex(ball.isShot ? 0xffb14d : 0xffffff);
     this.trailMat.opacity = ball.isShot ? 0.85 : 0.4;
+  }
+
+  private updateContact(dt: number): void {
+    if (this.contactT <= 0) {
+      this.contactRing.visible = false;
+      return;
+    }
+    this.contactT = Math.max(0, this.contactT - dt);
+    const p = 1 - this.contactT / 0.24;
+    this.contactRing.visible = true;
+    this.contactRing.position.x = this.carryCur.x;
+    this.contactRing.position.z = this.carryCur.z;
+    this.contactRing.scale.setScalar(1 + p * 1.2);
+    this.contactMat.opacity = 0.9 * (1 - p);
   }
 
   private updateMarker(ball: RenderBall, players: RenderPlayer[], dt: number): void {

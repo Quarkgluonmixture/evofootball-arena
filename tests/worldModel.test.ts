@@ -136,6 +136,7 @@ describe('world-model M0 representation', () => {
       startedTick: 120,
       origin: 'looseBall',
       initialBallMode: 'freeGround',
+      possessionSideAtStart: -1,
       contenderGids: [1, 7, 4],
       contacts: [],
     };

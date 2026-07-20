@@ -1,13 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
-import { BALL_RADIUS, CONTROL_RADIUS, PLAYER_CORE_RADIUS } from '../src/sim/constants';
+import {
+  BALL_RADIUS, CONTACT_CONTROL_DELAY_TICKS, CONTROL_RADIUS, PLAYER_CORE_RADIUS,
+} from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import { directBallAccess, type BallAccessBody } from '../src/sim/physical';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 
-type CaptureAccess = { tryCapture(): void };
+type CaptureAccess = { stepCount: number; tryCapture(): void };
 
 const body = (
   gid: number,
@@ -113,6 +115,10 @@ describe('M2 direct ball-access world fact', () => {
     near.ball.owner = null;
     near.ball.pos = { x: 0.9, y: 0 };
     near.ball.vel = { x: 0, y: 0 };
+    capture(near);
+    expect(near.ball.owner).toBeNull(); // M3: contact is not control
+    expect(near.ball.lastTouch).toBe(nearActor);
+    (near as unknown as CaptureAccess).stepCount += CONTACT_CONTROL_DELAY_TICKS;
     capture(near);
     expect(near.ball.owner).toBe(nearActor);
   });

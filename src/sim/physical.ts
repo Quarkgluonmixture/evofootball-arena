@@ -271,6 +271,8 @@ export interface ContestEpisode {
   readonly startedTick: number;
   readonly origin: ContestOrigin;
   readonly initialBallMode: BallPhysicalMode;
+  /** Sticky possession context when the episode opened; -1 means unassigned. */
+  readonly possessionSideAtStart: Side | -1;
   readonly contenderGids: readonly number[];
   readonly contacts: readonly ContestContact[];
   readonly resolution?: ContestResolution;

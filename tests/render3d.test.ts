@@ -5,6 +5,9 @@ import { describe, expect, it } from 'vitest';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
 import { animFor, bankFor, jostling, lateralSlot, rideSide } from '../src/render3d/AnimationSystem';
+import {
+  BALL_VISUAL_RADIUS, BALL_VISUAL_SCALE, carryDisplayOffset, contactCue,
+} from '../src/render3d/ballPresentation';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import { defensiveLineX, linesmanTargetX } from '../src/render3d/LinesmanModel';
@@ -15,7 +18,7 @@ import {
   type RenderPlayer, type RenderState,
 } from '../src/render3d/RenderStateAdapter';
 import { ReplayBuffer } from '../src/replay/ReplayBuffer';
-import { DT, FIELD_SCALE, HALF_L } from '../src/sim/constants';
+import { BALL_RADIUS, DT, FIELD_SCALE, HALF_L } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -202,6 +205,33 @@ describe('RenderStateAdapter', () => {
     // Angle wrap: 175deg -> -175deg should pass through 180deg, not 0.
     const wrapped = lerpAngle((175 * Math.PI) / 180, (-175 * Math.PI) / 180, 0.5);
     expect(Math.abs(Math.abs(wrapped) - Math.PI)).toBeLessThan(1e-6);
+  });
+});
+
+describe('ball presentation tells the same truth as the sim', () => {
+  it('keeps the tactical-readability sphere close to the physical ball scale', () => {
+    expect(BALL_VISUAL_SCALE).toBe(2.6);
+    expect(BALL_VISUAL_RADIUS).toBe(BALL_RADIUS * BALL_VISUAL_SCALE);
+    expect(BALL_VISUAL_RADIUS).toBeLessThan(0.42);
+  });
+
+  it('never moves an outfield-controlled display ball away from its authoritative position', () => {
+    const ball = { x: 4, z: -2, ownerGid: 5, heldByGk: false };
+    const owner = { x: 3.2, z: -2, yaw: Math.PI / 2 };
+    expect(carryDisplayOffset(ball, owner)).toBeNull();
+
+    const held = carryDisplayOffset({ ...ball, ownerGid: 0, heldByGk: true }, owner);
+    expect(held).toEqual({ dx: -0.5, dz: 0 }); // keeper hands remain a render-only height/pose anchor
+  });
+
+  it('distinguishes a real tackle contact from an ordinary loose-ball touch', () => {
+    const base = {
+      x: 0, z: 0, vx: 0, vz: 0, speed: 0,
+      ownerGid: null, isShot: false, isPass: false,
+    };
+    expect(contactCue(2, { ...base, lastTouchGid: 7 }, [{ gid: 7, tackling: true }])).toBe('tackle');
+    expect(contactCue(2, { ...base, lastTouchGid: 5 }, [{ gid: 5, tackling: false }])).toBe('touch');
+    expect(contactCue(5, { ...base, lastTouchGid: 5 }, [{ gid: 5, tackling: true }])).toBeNull();
   });
 });
 

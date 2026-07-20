@@ -8,7 +8,7 @@
  */
 export type FxSoundType =
   | 'goal' | 'save' | 'shot' | 'interception' | 'corner' | 'foul' | 'card'
-  | 'pass' | 'touch' | 'miss' | 'header' | 'woodwork';
+  | 'pass' | 'touch' | 'tackle' | 'miss' | 'header' | 'woodwork';
 
 /** Sample file(s) + gain per event; arrays play together (net + crowd).
  *
@@ -36,6 +36,7 @@ const SAMPLES: Partial<Record<FxSoundType, Array<{ file: string; gain: number }>
     { file: 'sfx_pass_short_02-002.m4a', gain: 0.84 },
   ],
   touch: [{ file: 'sfx_touch_heavy_01.m4a', gain: 2.2 }],
+  tackle: [{ file: 'sfx_touch_heavy_01.m4a', gain: 2.6 }],
   corner: [{ file: 'sfx_pass_short_02-001.m4a', gain: 0.6 }],
   foul: [{ file: 'sfx_referee_whistle_01.m4a', gain: 0.9 }],
   // A near thing goes wide/over — the crowd deflates (Phase 90).

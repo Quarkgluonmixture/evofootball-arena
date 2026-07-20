@@ -195,13 +195,36 @@ months** — this narrowed slice is.
   · profiler determinism OK · 5.12µs/step vs frozen 5.32, 15.2 matches/s · two-seed
   8-season calibrate 2.38/2.35 goals per match, both 50/50 possession. No shoulder-charge,
   balance, mass, contact-claim, or touch→control change yet.
-- **M3 — touch ≠ control.** `contact claims` (from one snapshot, ALL eligible players, NO
-  pre-selected winner, NOT capped at two) → first contact → **ball impulse** (a new physical
-  state, not an owner) → **separate control attempt** (relative ball speed, body facing,
-  balance, pressure, first-touch) → `controlled / loose / recontest`, **third player allowed
-  to take it**. `ContestEpisode` is a LEDGER (dedup / probe / replay / keyed noise), never a
-  script that decides the outcome up front.
-- **M4 — play-test + probes, then RETURN to S3–S8.** If not clearly better, stop deepening.
+- ✅ **M3 — touch ≠ control. DONE 2026-07-21.** `contact claims` are collected from one
+  snapshot for ALL eligible ground players (no cap and no pre-selected winner). Reach margin
+  determines physical first contact; contact changes the independent ball's velocity but
+  never awards ownership. Stable control is attempted three ticks later, so a different or
+  third player may recontact and establish control. `ContestEpisode` remains a passive ledger
+  behind `traceContests`, never an outcome script. In 120 matches all 14,029 episodes resolved:
+  1.25 contacts/episode, 0.25 recontacts (max 8), 97.5% contact→control, first contact differed
+  from final controller 10.5%, and a third-or-later player controlled 0.4%. Outcome mix was
+  70.4% clean / 15.1% poke / 4.7% deflect / 9.8% neutral; the worst body-stuck mean was
+  0.370s. Gates: clean tsc/build · full sim suite 461/461, plus the final focused world-model
+  and render suite 61/61 · repeated fingerprints stable (`57b0bdab…` seed 1337,
+  `b13d6c18…` seed 42) · perf 5.37µs/step vs frozen 5.32 (profiler determinism OK) · default
+  calibrate 2.39 goals/match, with two extra seeds 2.14/2.84. A later full-suite runner lost
+  its terminal result after exit; per the retry policy it was not looped—the changed render
+  contracts were run directly and the production build is clean.
+- 🟡 **M4 — play-test + probes, then RETURN to S3–S8. ACTIVE 2026-07-21.** The first
+  play-test exposed a presentation lie: the physical ball is radius 0.11m, but 3D rendered
+  0.42m and displaced an owned ball 0.45–0.75m away from its authoritative sim position.
+  Outfield rendering now uses the true ball position; 3D radius is a user-accepted 0.286m
+  readability shell (2.6× physical, still below the old 0.42m), 2D is ~2.86px, and actual
+  loose contacts show a white pulse or yellow tackle pulse with a distinct heavy-touch cue.
+  These are render-only and leave the sim fingerprint unchanged. A continuous sine carry
+  experiment was honestly rejected: the broad version raised max contact chains 8→28 and
+  the narrowed version phase-locked one episode to 141 contacts; both were fully reverted.
+  One bounded M3b remains user-authorised before closing M4: represent **忠于脚** as discrete
+  controlled contact→release events, because the counterfactual “same defender distance,
+  ball at foot vs knocked ahead” is currently unrepresentable. It must pass the existing
+  contact-chain/turnover gates and get its own play-test; no periodic render trick or deeper
+  body system is allowed.
+  If not clearly better, stop deepening.
   If clearly better, add attributes ONE at a time, each justified by an *unrepresentable*
   counterfactual: agility→motion envelope · strength→legal-contact resist-displacement ·
   firstTouch→contact-to-control · tackling→ball-contact direction + foul · awareness/

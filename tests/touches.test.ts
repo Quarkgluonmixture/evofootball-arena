@@ -36,8 +36,8 @@ const team = (name: string): TeamInfo => ({
 });
 
 /** A live match with the striker on the ball in open field, driving. */
-function openCarry(seed: number): Match {
-  const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 });
+function openCarry(seed: number, traceContests = false): Match {
+  const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120, traceContests });
   while (m.phase !== 'playing') m.step(DT);
   m.kickoffKickGid = null;
   const st = m.teams[0].players[5];
@@ -142,13 +142,15 @@ describe('discrete dribble touches (Phase 36)', () => {
     expect(gkSpeed).toBeLessThan(dfSpeed);
   });
 
-  it('the poke: an opponent in the rolling ball\'s path wins it clean', () => {
+  it('the poke: an opponent makes first contact, then control is earned separately', () => {
     // Unit-level: fire the push directly (in play the control gate keeps
     // defenders this close from ever seeing a push — a staged full-flow
     // version showed the carrier correctly gluing and laying off instead).
-    let pokes = 0;
+    let firstContacts = 0;
+    let finalControls = 0;
+    let recontests = 0;
     for (let seed = 0; seed < 8; seed++) {
-      const m = openCarry(seed);
+      const m = openCarry(seed, true);
       const st = m.teams[0].players[5];
       st.vel = v2(5, 0);
       st.heading = v2(1, 0);
@@ -157,16 +159,22 @@ describe('discrete dribble touches (Phase 36)', () => {
       const df = m.teams[1].players[1];
       df.pos = v2(st.pos.x + 2.6, st.pos.y); // in the lane, inside the roll
       df.vel = v2(0, 0);
+      const episodeStart = m.contestEpisodes.length;
       for (let t = 0; t < 60 && !m.finished; t++) {
         m.step(DT);
-        if (m.ball.owner === df) {
-          pokes++;
-          break;
-        }
+        if (m.ball.owner === df) break;
         if (m.ball.owner !== null) break;
       }
+      const episode = m.contestEpisodes[episodeStart];
+      const first = episode?.contacts[0]?.gid ?? -1;
+      const final = episode?.resolution?.kind === 'controlled' ? episode.resolution.gid : -1;
+      if (first === df.gid) firstContacts++;
+      if (final === df.gid) finalControls++;
+      if (first === df.gid && final === st.gid) recontests++;
     }
-    expect(pokes).toBeGreaterThan(5); // the toucher's cooldown is the window
+    expect(firstContacts).toBeGreaterThan(5); // the lane poke still bites
+    expect(finalControls).toBeGreaterThan(2); // a poke can become stable possession
+    expect(recontests).toBeGreaterThan(0); // first contact is not a scripted winner
   });
 
   it('our loose ball is CONTESTED, designed balls are not (36.2)', () => {

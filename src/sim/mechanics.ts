@@ -106,21 +106,31 @@ export function touchFailChance(
   return clamp(raw * (1.3 - technique * 0.85), 0, 0.4);
 }
 
+/** Frozen physical facts from the earlier contact, used by M3's later control attempt. */
+export interface FirstTouchContactContext {
+  readonly relativeSpeed: number;
+  readonly incomingDir: Readonly<V2>;
+}
+
 /**
  * Roll the first touch for a player about to control a moving ball. Returns
  * true if the touch is clean (caller gives them the ball). A failed touch
  * knocks the ball loose ahead of the receiver — anyone can pounce on it.
  * Keepers are exempt (they catch); slow balls are trivially trapped.
  */
-export function attemptFirstTouch(match: Match, p: Player): boolean {
+export function attemptFirstTouch(
+  match: Match,
+  p: Player,
+  contact?: FirstTouchContactContext,
+): boolean {
   const ball = match.ball;
   // A dropping ball is harder to kill than a rolled one (Phase 28): the
   // vertical speed counts toward touch difficulty. Ground balls: vz = 0.
-  const speed = len(ball.vel) + Math.abs(ball.vz) * 0.6;
+  const speed = contact?.relativeSpeed ?? (len(ball.vel) + Math.abs(ball.vz) * 0.6);
   if (p.role === 'GK' || speed <= 6) return true;
   const hSpeed = Math.max(len(ball.vel), 1e-6);
-  const inx = ball.vel.x / hSpeed;
-  const iny = ball.vel.y / hSpeed;
+  const inx = contact?.incomingDir.x ?? ball.vel.x / hSpeed;
+  const iny = contact?.incomingDir.y ?? ball.vel.y / hSpeed;
   // Ball arriving at the face = 0, arriving from behind the body = 1.
   const misalign = (1 + (inx * p.heading.x + iny * p.heading.y)) / 2;
   const pressure = pressureAt(p.pos, match.teams[1 - p.side].players);
@@ -1397,7 +1407,7 @@ export function performClear(match: Match, p: Player): void {
  * pays off even when the pass is hit hard. Rolled once per crossing (the
  * kick cooldown stops re-rolls while the ball is still in reach).
  */
-export function tryDeflection(match: Match, p: Player): void {
+export function tryDeflection(match: Match, p: Player): boolean {
   const ball = match.ball;
   const speed = len(ball.vel);
   // Committed to the stretch either way — no second bite at the same ball.
@@ -1412,10 +1422,11 @@ export function tryDeflection(match: Match, p: Player): void {
   const pDef = clamp(
     (0.24 + p.attrs.defending * 0.4 - (speed - 14) * 0.02) * (1 - blind * DEFLECT_BLIND_PEN),
     0.05, 0.6);
-  if (!match.rng.chance(pDef)) return; // it zips past the outstretched leg
+  if (!match.rng.chance(pDef)) return false; // it zips past the outstretched leg
   ball.lastTouch = p;
   ball.vel = scale(rotate(norm(ball.vel), match.rng.range(-1.2, 1.2)), match.rng.range(4, 8));
   p.tackleAnimTimer = 0.4; // the stretch is visible (display only)
+  return true;
 }
 
 /**

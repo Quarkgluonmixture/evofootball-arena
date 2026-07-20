@@ -12,6 +12,9 @@ import {
   AI_INTERVAL, BALL_AIR_SPIN_DECAY, BALL_BOUNCE, BALL_BOUNCE_SPIN_RETENTION, BALL_FRICTION_K,
   BALL_GROUND_SPIN_DECAY, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
   CONTACT_BLIND_PEN, CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS, CORNER_CLEARANCE,
+  CONTACT_COMMIT_TIME, CONTACT_CONTROL_DELAY_TICKS, CONTACT_CONTROL_RETENTION_MARGIN,
+  CONTACT_RELEASE_INCOMING_SHARE,
+  CONTACT_RELEASE_MAX_SPEED, CONTACT_RELEASE_MIN_SPEED, CONTACT_TANGENTIAL_RETENTION,
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
   KICK_COOLDOWN, MATCH_DURATION, OUT_PLAY_COAST,
@@ -19,7 +22,14 @@ import {
   CONTEST_RADIUS, RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
 } from './constants';
 import * as mech from './mechanics';
-import { directBallAccess } from './physical';
+import {
+  directBallAccess,
+  type ContestContact,
+  type ContestEpisode,
+  type ContestOrigin,
+  type ContestResolution,
+  type DirectBallAccess,
+} from './physical';
 import { Player } from './Player';
 import { matchRating } from './ratings';
 import { Team } from './Team';
@@ -144,6 +154,35 @@ export interface MatchConfig {
   duration?: number;
   /** Armed rivalry fixture (Phase 40): a touch more press and bite, 🔥 banner. */
   derby?: boolean;
+  /** Pure-observational M3 contest ledger; OFF in live/headless play by default. */
+  traceContests?: boolean;
+}
+
+interface GroundContactClaim {
+  readonly player: Player;
+  readonly access: DirectBallAccess;
+  readonly reachMargin: number;
+  readonly kind: 'controlAttempt' | 'deflection';
+  readonly relativeSpeed: number;
+  readonly incomingDir: V2;
+}
+
+interface PendingControlAttempt {
+  readonly gid: number;
+  readonly readyTick: number;
+  readonly relativeSpeed: number;
+  readonly incomingDir: V2;
+}
+
+interface MutableContestEpisode {
+  readonly id: number;
+  readonly startedTick: number;
+  readonly origin: ContestOrigin;
+  readonly initialBallMode: ContestEpisode['initialBallMode'];
+  readonly possessionSideAtStart: ContestEpisode['possessionSideAtStart'];
+  readonly contenderGids: number[];
+  readonly contacts: ContestContact[];
+  resolution?: ContestResolution;
 }
 
 /**
@@ -176,6 +215,13 @@ export class Match {
    * 50-50 contest that will replace the instant owner-flip.
    */
   possessionPhase: PossessionPhase = { kind: 'deadBall' };
+  /** Finalized + active M3 ledgers when traceContests is explicitly enabled. */
+  readonly contestEpisodes: ContestEpisode[] = [];
+  private readonly traceContests: boolean;
+  private activeContest: MutableContestEpisode | null = null;
+  private nextContestId = 1;
+  /** Physical contact has happened; stable ownership has not. */
+  private pendingControl: PendingControlAttempt | null = null;
   /**
    * Discrete dribble touch in flight (Phase 36): the carrier pushed the
    * ball ahead and is chasing it. The tag keeps his brain on the chase and
@@ -261,6 +307,7 @@ export class Match {
     this.rng = new Rng(cfg.seed);
     this.duration = cfg.duration ?? MATCH_DURATION;
     this.derby = cfg.derby ?? false;
+    this.traceContests = cfg.traceContests ?? false;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     // The underdog shift (Phase 64): with both clubs' Elo on the team
     // sheet, the outgunned coach bends toward the bus by his gene. Read
@@ -733,12 +780,62 @@ export class Match {
     if (entry && entry.outcome === 'pending') entry.outcome = outcome;
   }
 
+  private contestOrigin(): ContestOrigin {
+    if (this.pendingPass !== null) return 'passArrival';
+    if (this.dribbleTouch !== null) return 'looseBall';
+    return 'looseBall';
+  }
+
+  /** Passive M3 ledger write. Never read by contact/control decisions. */
+  private traceContact(
+    claims: readonly GroundContactClaim[],
+    player: Player,
+    kind: ContestContact['kind'],
+  ): void {
+    if (!this.traceContests) return;
+    if (this.activeContest === null) {
+      const episode: MutableContestEpisode = {
+        id: this.nextContestId++,
+        startedTick: this.stepCount,
+        origin: this.contestOrigin(),
+        initialBallMode: this.ball.physicalMode,
+        possessionSideAtStart: this.possessionSide,
+        contenderGids: [],
+        contacts: [],
+      };
+      this.activeContest = episode;
+      this.contestEpisodes.push(episode);
+    }
+    for (const claim of claims) {
+      const gid = claim.player.gid;
+      if (!this.activeContest.contenderGids.includes(gid)) this.activeContest.contenderGids.push(gid);
+    }
+    this.activeContest.contacts.push({
+      tick: this.stepCount,
+      gid: player.gid,
+      side: player.side,
+      kind,
+      ballModeAfter: this.ball.physicalMode,
+    });
+  }
+
+  private resolveContest(resolution: ContestResolution): void {
+    if (this.activeContest === null) return;
+    this.activeContest.resolution = resolution;
+    this.activeContest = null;
+  }
+
+  private resolveContestControlled(player: Player): void {
+    this.resolveContest({ kind: 'controlled', tick: this.stepCount, gid: player.gid, side: player.side });
+  }
+
   /**
    * Low-level kick: releases the ball with velocity and a re-capture cooldown.
    * `loft` (Phase 28) is the vertical launch speed — 0 keeps it on the grass.
    */
   kickBall(p: Player, dir: V2, speed: number, loft = 0): void {
     const ball = this.ball;
+    this.pendingControl = null;
     ball.owner = null;
     ball.lastTouch = p;
     ball.vel = scale(dir, speed);
@@ -762,7 +859,9 @@ export class Match {
     // pass, it's a dead ball.
     const flagged = this.pendingPass;
     if (flagged && flagged.offside && p.side === flagged.side && p.gid === flagged.targetGid) {
+      this.pendingControl = null;
       this.pendingPass = null;
+      this.resolveContest({ kind: 'deadBall', tick: this.stepCount });
       this.callOffside(p, flagged.offsideSpot ?? p.pos);
       return;
     }
@@ -897,6 +996,8 @@ export class Match {
       this.teams[0].brainTimer = Math.min(this.teams[0].brainTimer, 0.05);
       this.teams[1].brainTimer = Math.min(this.teams[1].brainTimer, 0.05);
     }
+    this.pendingControl = null;
+    this.resolveContestControlled(p);
   }
 
   /* ---------------- ball physics ---------------- */
@@ -1459,6 +1560,12 @@ export class Match {
         Math.max(-HALF_W + 0.2, Math.min(HALF_W - 0.2, pos.y)),
       );
     }
+    this.pendingControl = null;
+    this.resolveContest(
+      kind === 'kickIn' || kind === 'corner' || kind === 'goalKick'
+        ? { kind: 'out', tick: this.stepCount }
+        : { kind: 'deadBall', tick: this.stepCount },
+    );
     const team = this.teams[side];
     // A shot that went out is a miss; any pass in flight is dead.
     this.markShotOutcome('miss');
@@ -1804,103 +1911,161 @@ export class Match {
     }
   }
 
-  private tryCapture(): void {
+  /** M3: collect every contact claim from one immutable post-physics snapshot. */
+  private collectGroundContactClaims(
+    order: Player[],
+    speed: number,
+    deflectable: boolean,
+  ): GroundContactClaim[] {
     const ball = this.ball;
-    const speed = Math.hypot(ball.vel.x, ball.vel.y);
-    let best: Player | null = null;
-    let bestD = Infinity;
-    let deflector: Player | null = null;
-    let deflectorD = Infinity;
-    // Lane anticipation was always meant for drilled PASSES, not shots
-    // ("non-shot" below) — shots left the foot at 27 m/s, above the window.
-    // But friction decays a shot into 14–24 m/s within ~5m of flight, and
-    // once formations parked bodies on every shot path (Phase 30), the legs
-    // silently swallowed the league's goals (measured: conversion ~28% of
-    // on-target while saveP said ~50%). A shot in flight is the KEEPER's
-    // problem; blocks want lane-aware shot selection first (roadmap).
-    const shotInFlight = this.pendingShot !== null && !this.pendingShot.resolved;
-    const deflectable = speed > CONTROL_MAX_SPEED && speed <= DEFLECT_MAX_SPEED && !shotInFlight;
-    // Alternate scan direction so equal-distance ties don't favor one team.
-    const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
+    const claims: GroundContactClaim[] = [];
     for (const p of order) {
       if (p.sentOff || p.kickCooldown > 0 || p.stunTimer > 0) continue;
-      // Same cheap reject as resolveOverlaps: |dx| ≥ radius ⇒ d ≥ radius.
       const dx = p.pos.x - ball.pos.x;
       if (dx >= CONTROL_RADIUS || dx <= -CONTROL_RADIUS) continue;
       const dy = p.pos.y - ball.pos.y;
       if (dy >= CONTROL_RADIUS || dy <= -CONTROL_RADIUS) continue;
       const d = Math.sqrt(dx * dx + dy * dy);
       if (d >= CONTROL_RADIUS) continue;
-      // M2 World-Model Foundation: distance alone is not contact. The body
-      // must have oriented foot reach and an unobstructed route to the ball;
-      // an opponent core still screens while cooldown/stun prevents its own
-      // claim. This changes eligibility only — M3 will replace the existing
-      // nearest-player winner/control path with snapshot contact claims.
       const access = directBallAccess(p, ball, this.allPlayers, CONTROL_RADIUS);
       if (!access.canDirectlyContact) continue;
-      // The cushioned trap (Phase 31.7, user report "长球停不住"): the
-      // pass's INTENDED receiver is set for the ball and may take down a
-      // driven delivery a bystander can't — the 30.5 driven switch lands
-      // at ~19.5 m/s, above CONTROL_MAX_SPEED, so it skipped past every
-      // winger it was aimed at. attemptFirstTouch prices the attempt (the
-      // fail chance grows with speed and caps at 0.4, so hot deliveries
-      // still squirt plenty); interceptors keep the old ceiling, so lane
-      // dynamics don't change.
+
       const intended =
         this.pendingPass !== null &&
         this.pendingPass.targetGid === p.gid &&
         this.pendingPass.side === p.side;
-      // 22 → 24 (31.8, user report "门将开长球穿模接不到"): a 40m goal
-      // kick arrives at ~21 m/s horizontal with a steep drop — the ball
-      // sailed THROUGH the target's model and skipped away untouchable.
-      // 24 matches the through-ball pace cap: every delivery the game
-      // DESIGNS is takeable by its intended man, priced by the touch roll
-      // (a dropping ball's vz counts extra there, so long kicks still get
-      // away plenty — and the aerial duel fires first when contested).
-      const maxSpeed =
-        p.role === 'GK' ? GK_CONTROL_MAX_SPEED : intended ? 24 : CONTROL_MAX_SPEED;
-      if (speed <= maxSpeed) {
-        if (d < bestD) {
-          best = p;
-          bestD = d;
-        }
-      } else if (deflectable && d < deflectorD) {
-        deflector = p;
-        deflectorD = d;
-      }
+      const maxSpeed = p.role === 'GK' ? GK_CONTROL_MAX_SPEED : intended ? 24 : CONTROL_MAX_SPEED;
+      const kind = speed <= maxSpeed ? 'controlAttempt' : deflectable ? 'deflection' : null;
+      if (kind === null) continue;
+
+      const rvx = ball.vel.x - p.vel.x;
+      const rvy = ball.vel.y - p.vel.y;
+      const horizontalRelative = Math.sqrt(rvx * rvx + rvy * rvy);
+      claims.push({
+        player: p,
+        access,
+        reachMargin: access.sectorCenterReach - d,
+        kind,
+        relativeSpeed: horizontalRelative + Math.abs(ball.vz) * 0.6,
+        incomingDir: horizontalRelative > 1e-8
+          ? { x: rvx / horizontalRelative, y: rvy / horizontalRelative }
+          : { x: -access.geometry.direction.x, y: -access.geometry.direction.y },
+      });
     }
-    // First touch (Phase 27): a firm ball can get away from the receiver —
-    // pressing and blind-side receptions turn into real turnovers.
-    if (best) {
-      // Reaction gate (Phase 59): a BYSTANDER only gets a foot on a live
-      // pass he can react to — priced by ball speed and blind-side arrival,
-      // the same principle as tryDeflection's stretch. The intended
-      // receiver is SET for it (exempt), and a dead/loose ball (no pass in
-      // flight) keeps the old scramble physics. A failed gate commits the
-      // step (kickCooldown) — the ball beat him, no second bite.
-      const intendedBest =
+    return claims;
+  }
+
+  /** Contact changes the independent ball; it never assigns owner. */
+  private applyControlContact(claim: GroundContactClaim, allClaims: readonly GroundContactClaim[]): void {
+    const ball = this.ball;
+    const p = claim.player;
+    const n = claim.access.geometry.direction;
+    const rvx = ball.vel.x - p.vel.x;
+    const rvy = ball.vel.y - p.vel.y;
+    const relativeNormal = rvx * n.x + rvy * n.y;
+    const tx = rvx - relativeNormal * n.x;
+    const ty = rvy - relativeNormal * n.y;
+    const release = Math.min(
+      CONTACT_RELEASE_MAX_SPEED,
+      Math.max(
+        CONTACT_RELEASE_MIN_SPEED,
+        CONTACT_RELEASE_MIN_SPEED + Math.abs(relativeNormal) * CONTACT_RELEASE_INCOMING_SHARE,
+      ),
+    );
+    ball.vel.x = p.vel.x + n.x * release + tx * CONTACT_TANGENTIAL_RETENTION;
+    ball.vel.y = p.vel.y + n.y * release + ty * CONTACT_TANGENTIAL_RETENTION;
+    ball.vz *= 0.25;
+    ball.spin *= 0.4;
+    ball.lastTouch = p;
+    p.kickCooldown = Math.max(p.kickCooldown, CONTACT_COMMIT_TIME);
+    this.traceContact(allClaims, p, 'controlAttempt');
+
+    const flagged = this.pendingPass;
+    if (flagged && flagged.offside && p.side === flagged.side && p.gid === flagged.targetGid) {
+      this.pendingPass = null;
+      this.pendingControl = null;
+      this.resolveContest({ kind: 'deadBall', tick: this.stepCount });
+      this.callOffside(p, flagged.offsideSpot ?? p.pos);
+      return;
+    }
+    this.pendingControl = {
+      gid: p.gid,
+      readyTick: this.stepCount + CONTACT_CONTROL_DELAY_TICKS,
+      relativeSpeed: claim.relativeSpeed,
+      incomingDir: claim.incomingDir,
+    };
+  }
+
+  private resolvePendingControlAttempt(): boolean {
+    const attempt = this.pendingControl;
+    if (attempt === null || this.stepCount < attempt.readyTick) return false;
+    this.pendingControl = null;
+    const p = this.allPlayers[attempt.gid];
+    if (!p || p.sentOff || p.stunTimer > 0) return false;
+    const access = directBallAccess(p, this.ball, this.allPlayers, CONTROL_RADIUS);
+    // Screening gates the EARLIER contact claim. Once this body has actually
+    // touched the ball, re-applying the blocker test makes two nearby cores
+    // mutually veto control forever. A rival must submit a real new contact
+    // during the window; mere presence does not cancel an established touch.
+    if (access.geometry.centerDistance > access.sectorCenterReach + CONTACT_CONTROL_RETENTION_MARGIN) return false;
+    p.kickCooldown = 0; // this player's contact commitment has completed
+    const clean = mech.attemptFirstTouch(this, p, {
+      relativeSpeed: attempt.relativeSpeed,
+      incomingDir: attempt.incomingDir,
+    });
+    if (clean) this.giveBall(p);
+    return true; // clean or spilled: this control attempt consumed the tick
+  }
+
+  private tryCapture(): void {
+    if (this.resolvePendingControlAttempt()) return;
+    const ball = this.ball;
+    const speed = Math.hypot(ball.vel.x, ball.vel.y);
+    // Lane anticipation remains for drilled passes, never shots.
+    const shotInFlight = this.pendingShot !== null && !this.pendingShot.resolved;
+    const deflectable = speed > CONTROL_MAX_SPEED && speed <= DEFLECT_MAX_SPEED && !shotInFlight;
+    const order = this.stepCount % 2 === 0 ? this.allPlayers : this.allPlayersReversed;
+    const claims = this.collectGroundContactClaims(order, speed, deflectable);
+    const remaining = [...claims];
+
+    // Reach margin is the physical first-contact mediator, not a duel score.
+    // Exact ties keep the already-alternating snapshot order.
+    while (remaining.length > 0) {
+      let first = 0;
+      for (let i = 1; i < remaining.length; i++) {
+        if (remaining[i].reachMargin > remaining[first].reachMargin) first = i;
+      }
+      const claim = remaining.splice(first, 1)[0];
+      const p = claim.player;
+      if (claim.kind === 'deflection') {
+        if (mech.tryDeflection(this, p)) {
+          this.pendingControl = null;
+          this.traceContact(claims, p, 'deflection');
+          return;
+        }
+        continue; // a whiff is not contact; the next snapshot claim may meet it
+      }
+
+      const intended =
         this.pendingPass !== null &&
-        this.pendingPass.targetGid === best.gid &&
-        this.pendingPass.side === best.side;
-      if (!intendedBest && this.pendingPass !== null && speed > 7) {
+        this.pendingPass.targetGid === p.gid &&
+        this.pendingPass.side === p.side;
+      if (!intended && this.pendingPass !== null && speed > 7) {
         const bx = ball.vel.x / speed;
         const by = ball.vel.y / speed;
-        const blind = (1 + (bx * best.heading.x + by * best.heading.y)) / 2;
+        const blind = (1 + (bx * p.heading.x + by * p.heading.y)) / 2;
         const pContact = Math.min(0.95, Math.max(
           0.1,
           (0.95 - (speed - 7) * 0.04) * (1 - blind * CONTACT_BLIND_PEN),
         ));
         if (!this.rng.chance(pContact)) {
-          best.kickCooldown = 0.3;
-          return;
+          p.kickCooldown = 0.3;
+          continue;
         }
       }
-      if (mech.attemptFirstTouch(this, best)) this.giveBall(best);
+      this.applyControlContact(claim, claims);
       return;
     }
-    // Nobody can control it — but a player in the path of a drilled (non-shot)
-    // ball can stick a leg in and knock it loose (Phase 27 lane anticipation).
-    if (deflector) mech.tryDeflection(this, deflector);
   }
 
   /* ---------------- player constraints ---------------- */
@@ -1991,6 +2156,8 @@ export class Match {
   /* ---------------- phases ---------------- */
 
   private setupKickoff(kickSide: Side): void {
+    this.pendingControl = null;
+    this.resolveContest({ kind: 'deadBall', tick: this.stepCount });
     this.phase = 'kickoff';
     this.phaseTimer = 0.9;
     this.kickoffSide = kickSide;
@@ -2046,6 +2213,8 @@ export class Match {
 
   private endMatch(): void {
     if (this.finished) return;
+    this.pendingControl = null;
+    this.resolveContest({ kind: 'stillLoose', tick: this.stepCount });
     this.markShotOutcome('miss'); // a shot in flight at the whistle didn't go in
     this.endPassMove(0);
     this.endPassMove(1);

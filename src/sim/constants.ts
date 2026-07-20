@@ -240,6 +240,21 @@ export const CONTEST_RADIUS = 3;
 export const CONTROL_MAX_SPEED = 14;
 export const GK_CONTROL_MAX_SPEED = 23;
 /**
+ * M3 contact→control separation. A foot contact leaves the ball physically
+ * free for three fixed ticks before the same body may establish control;
+ * another body can contact it during that window and replace the attempt.
+ */
+export const CONTACT_CONTROL_DELAY_TICKS = 3;
+export const CONTACT_COMMIT_TIME = 0.08;
+/** Foot follow-through retained after real contact; not available to a fresh claim. */
+export const CONTACT_CONTROL_RETENTION_MARGIN = 0.02;
+/** Relative normal speed left after a cushioning contact. */
+export const CONTACT_RELEASE_MIN_SPEED = 0.25;
+export const CONTACT_RELEASE_MAX_SPEED = 1.2;
+export const CONTACT_RELEASE_INCOMING_SHARE = 0.12;
+/** Tangential relative ball motion survives the contact at this share. */
+export const CONTACT_TANGENTIAL_RETENTION = 0.35;
+/**
  * Faster balls (hard passes, not shots — SHOT_SPEED is 27) can still be
  * DEFLECTED by a player in their path (Phase 27 lane anticipation).
  */

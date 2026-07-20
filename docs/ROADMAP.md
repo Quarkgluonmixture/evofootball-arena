@@ -29,9 +29,19 @@
 > live delay is only 0.35s/match (0.2% frames); contests 17.57→17.23, pinball max 7→5,
 > spell 5.54→5.59s. Initial side/back reach 0.85/0.45 honestly failed policy+stamina and
 > was rejected; final 1.00/0.90 passes tsc/build · 457/457 · repeated deterministic
-> fingerprints · perf 5.12µs/step · calibrate 2.38/2.35. **NEXT = M3 touch≠control, as
-> a separate commit/lever.** Sequence remains M3 (touch≠control) → M4 (play-test, then **RETURN
-> to S3–S8 = the mainline**). The body model is a LOCAL substrate, NOT the north star.
+> fingerprints · perf 5.12µs/step · calibrate 2.38/2.35. ✅ **M3 DONE (2026-07-21):** all
+> eligible ground contacts claim from one snapshot; first contact gives the ball an impulse,
+> never ownership; stable control is a separate attempt three ticks later and may belong to a
+> different/third player. 120-match ledger: 14,029/14,029 resolved, 1.25 contacts/episode,
+> recontact max 8, contact→control 97.5%, first≠final 10.5%, third+ final 0.4%; full sim tests
+> 461/461, final focused 61/61, stable repeated fingerprints, perf 5.37µs/step. 🟡 **M4
+> ACTIVE:** render truth aligned (outfield ball at authoritative sim position; old 0.42m ball
+> reduced to user-accepted 0.286m; real touch/tackle pulses + tackle cue). Continuous carry
+> sine was rejected and fully reverted after max contact chains worsened 8→28 then 141.
+> **NEXT = one bounded M3b 忠于脚 slice:** discrete controlled contact→release, not a render
+> trick; same-defender-distance foot-vs-knock counterfactual + contact-chain gates + user
+> play-test. Then close M4 and **RETURN to S3–S8 = the mainline**. The body model is a LOCAL
+> substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

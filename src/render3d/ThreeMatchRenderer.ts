@@ -6,6 +6,7 @@ import type { UiFlags } from '../ui/actions';
 import { colorHex } from '../ui/dom';
 import { AnimationSystem } from './AnimationSystem';
 import { BallModel } from './BallModel';
+import { carryDisplayOffset, contactCue } from './ballPresentation';
 import { BroadcastLayer } from './BroadcastLayer';
 import { CameraController, type CameraMode } from './CameraController';
 import { CoachModel } from './CoachModel';
@@ -50,6 +51,7 @@ export class ThreeMatchRenderer {
   /** The on-pitch referee (Phase 75) — position synthesized render-side. */
   private referee = new RefereeModel();
   private prevOwnerG: number | null = null;
+  private prevLastTouchG: number | null | undefined = undefined;
   private prevHeaderCount = 0;
   private prevIsShot = false;
   private prevCarrying = false;
@@ -91,7 +93,7 @@ export class ThreeMatchRenderer {
   onSelectPlayer: ((gid: number) => void) | null = null;
   /** Optional external hook (sound etc.) fired once per fx event — plus
    * the render-detected 'pass'/'touch' ball transitions (78.1). */
-  onFxEvent: ((type: FxEvent['type'] | 'pass' | 'touch' | 'miss' | 'header') => void) | null = null;
+  onFxEvent: ((type: FxEvent['type'] | 'pass' | 'touch' | 'tackle' | 'miss' | 'header') => void) | null = null;
   /** Crowd arousal bridge (Phase 90) — throttled, drives the ambience swell. */
   onArousal: ((a: number) => void) | null = null;
   /** A fast carry started/ended (Phase 90) — the dribble-step loop. */
@@ -256,6 +258,11 @@ export class ThreeMatchRenderer {
     for (const lm of this.linesmen) lm.reset();
     this.hideBanner();
     this.lastState = null;
+    this.prevOwnerG = null;
+    this.prevLastTouchG = undefined;
+    this.prevHeaderCount = 0;
+    this.prevIsShot = false;
+    this.prevCarrying = false;
   }
 
   update(state: RenderState | null, dt: number, flags: UiFlags, selectedGid: number | null): void {
@@ -302,72 +309,33 @@ export class ThreeMatchRenderer {
           hands = { x: v.x, y: v.y, z: v.z, t: Math.min(1, tilt / 0.9) };
         }
       }
-      // The dribble READ (Phase 76, user report "两个人和球挤来挤去,没有
-      // 盘带的感觉"): at speed the displayed ball is pushed AHEAD in
-      // stride-synced touches (the carrier's own gait clock); under
-      // pressure at low speed it is SCREENED to the far side from the
-      // nearest opponent — the shield finally has a ball on the far foot.
-      // Display-only: the sim ball stays authoritative underneath.
-      let carry: { dx: number; dz: number } | null = null;
-      if (state.ball.ownerGid !== null && state.ball.heldByGk) {
-        // A HELD ball rides the keeper's chest (Phase 97): the sim parks it
-        // 0.3m ahead while the hold timer runs but 0.85m (the feet) in the
-        // 0.25s re-arm gaps — a 0.55m 4Hz teleport on screen. Display-only
-        // pin to the keeper's own pose (the sim ball stays authoritative
-        // underneath, same contract as the dribble read below).
-        const owner = state.players.find((q) => q.gid === state.ball.ownerGid);
-        if (owner) {
-          carry = {
-            dx: owner.x + Math.sin(owner.yaw) * 0.3 - state.ball.x,
-            dz: owner.z + Math.cos(owner.yaw) * 0.3 - state.ball.z,
-          };
-        }
-      } else if (state.ball.ownerGid !== null && !state.ball.heldByGk) {
-        const owner = state.players.find((q) => q.gid === state.ball.ownerGid);
-        const om = this.players.get(state.ball.ownerGid);
-        if (owner && om) {
-          if (owner.speed > 3.2) {
-            // The ball rides AHEAD of the carrier, a mild stride pulse on top
-            // (always forward — never pulled back toward the foot; a render-
-            // only fake cadence read as the ball "rolling backwards", 2026-07-
-            // 20). A real touch rhythm (ball to the foot ↔ knocked ahead) can
-            // only come from the SIM varying the carry distance, not here.
-            const push =
-              Math.min(0.75, 0.2 + owner.speed * 0.055) *
-              (0.72 + 0.28 * Math.abs(Math.sin(om.phase)));
-            carry = { dx: Math.sin(owner.yaw) * push, dz: Math.cos(owner.yaw) * push };
-          } else {
-            let qx = 0;
-            let qz = 0;
-            let best = 2.4 * 2.4;
-            for (const q of state.players) {
-              if (q.side === owner.side) continue;
-              const ddx = q.x - owner.x;
-              const ddz = q.z - owner.z;
-              const d2 = ddx * ddx + ddz * ddz;
-              if (d2 < best) {
-                best = d2;
-                qx = ddx;
-                qz = ddz;
-              }
-            }
-            if (best < 2.4 * 2.4) {
-              const d = Math.sqrt(best) || 1e-6;
-              carry = { dx: (-qx / d) * 0.45, dz: (-qz / d) * 0.45 };
-            }
-          }
-        }
-      }
+      // Outfield possession is rendered at the authoritative sim position.
+      // Only a held keeper ball gets a pose/height anchor; the old 0.45–0.75m
+      // outfield offset made the viewer watch a different ball from the one
+      // the tackle and contact substrate queried.
+      const owner = state.ball.ownerGid === null
+        ? undefined
+        : state.players.find((q) => q.gid === state.ball.ownerGid);
+      const carry = carryDisplayOffset(state.ball, owner);
       // Audio transitions (78.1, user report "pass/touch 听不到"): a
       // release at speed is a PASS (shots already fire their own event);
       // a pickup is a TOUCH. Render-side detection, same as the ball hop.
       const og = state.ball.ownerGid;
-      if (this.prevOwnerG !== null && og === null && state.ball.speed > 8 && !state.ball.isShot) {
+      const contact = contactCue(this.prevLastTouchG, state.ball, state.players);
+      if (contact !== null) {
+        this.ball.pulseContact(contact);
+        if (contact === 'tackle') this.onFxEvent?.('tackle');
+      }
+      if (
+        contact !== 'tackle' && this.prevOwnerG !== null && og === null &&
+        state.ball.speed > 8 && !state.ball.isShot
+      ) {
         this.onFxEvent?.('pass');
       } else if (og !== null && og !== this.prevOwnerG) {
         this.onFxEvent?.('touch');
       }
       this.prevOwnerG = og;
+      this.prevLastTouchG = state.ball.lastTouchGid;
       // Header thud (Phase 90): a header flag rose this frame.
       let headerCount = 0;
       for (const q of state.players) if (q.header) headerCount++;

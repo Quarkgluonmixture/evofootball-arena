@@ -53,6 +53,8 @@ export interface RenderBall {
    * Absent in pre-curve replays. */
   spin?: number;
   ownerGid: number | null;
+  /** Most recent physical touch, distinct from stable ownership (M3). */
+  lastTouchGid?: number | null;
   /** A shot is currently in flight (drives trail emphasis + camera pulse). */
   isShot: boolean;
   /** A pass is currently in flight. */
@@ -190,6 +192,7 @@ export function buildRenderState(match: Match, includeOverlays: boolean): Render
     speed: Math.hypot(match.ball.vel.x, match.ball.vel.y),
     spin: match.ball.spin,
     ownerGid: match.ball.owner ? match.ball.owner.gid : null,
+    lastTouchGid: match.ball.lastTouch ? match.ball.lastTouch.gid : null,
     isShot: match.pendingShot !== null,
     isPass: match.pendingPass !== null,
     // gkDistributing too (Phase 97 — the LAST raw-timer consumer): the
@@ -377,6 +380,7 @@ export function interpolateStates(a: RenderState, b: RenderState, alpha: number)
       // `?? 0` maps pre-Phase-74 replay snapshots onto no-spin.
       spin: lerp(a.ball.spin ?? 0, b.ball.spin ?? 0, t),
       ownerGid: late.ball.ownerGid,
+      lastTouchGid: late.ball.lastTouchGid ?? null,
       isShot: late.ball.isShot,
       isPass: late.ball.isPass,
       heldByGk: late.ball.heldByGk === true,

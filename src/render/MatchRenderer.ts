@@ -1,7 +1,8 @@
 import { Circle, Container, Graphics, Text } from 'pixi.js';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
-import { HALF_L, HALF_W, PITCH_LENGTH, PITCH_WIDTH } from '../sim/constants';
+import { BALL_RADIUS, HALF_L, HALF_W, PITCH_LENGTH, PITCH_WIDTH } from '../sim/constants';
+import { BALL_VISUAL_SCALE } from '../render3d/ballPresentation';
 import type { UiFlags } from '../ui/actions';
 import { ACTION_SHORT } from './actionLabels';
 import { CANVAS_H, CANVAS_W, MARGIN, SCALE, toPx } from './transform';
@@ -209,7 +210,9 @@ export class MatchRenderer {
       const sh = Math.max(2.2, 3.8 - z * 0.18);
       this.ballG.ellipse(px.x, px.y, sh, sh * 0.62).fill({ color: 0x000000, alpha: 0.35 });
     }
-    const r = 4 * (1 + Math.min(z, 8) * 0.13);
+    // Keep a phone-readable minimum, but stay near the M0 physical scale:
+    // the old 4px radius represented a 0.40m-radius ball at SCALE=10.
+    const r = Math.max(2.4, BALL_RADIUS * SCALE * BALL_VISUAL_SCALE) * (1 + Math.min(z, 8) * 0.13);
     this.ballG.circle(px.x, px.y - z * 2.4, r).fill(0xffffff).stroke({ width: 1, color: 0x333333 });
 
     // Heatmap accumulation (weighted by sim steps so fast-forward still counts).
