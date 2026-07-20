@@ -1,9 +1,11 @@
+import { ATTACK_FORMATIONS, DEFEND_FORMATIONS } from '../ai/formations';
 import { GENE_KEYS } from '../evolution/genome';
+import { SQUAD_ROLES } from '../evolution/playerGenome';
 import { nameplates, type StyleSource } from '../evolution/styleSpace';
 import type { Fixture, League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import { deriveTeamStyle } from '../sim/types';
-import { geneRadar } from './charts';
+import { formationDiagram, geneRadar } from './charts';
 import { colorHex, el } from './dom';
 import { formStrip, recentForm } from './form';
 import { lang, t } from './i18n';
@@ -17,13 +19,15 @@ export interface ClashContext {
 }
 
 /**
- * Pre-match clash (Phase 32.5 → 119g the MATCHDAY REPORT): both teams' DNA
- * side by side — gene radar, identity tags, formation pair + scheme — plus,
- * for a league fixture, the broadcast pre-match furniture: the coach in the
- * dugout, recent FORM, the league standing, and this season's head-to-head.
- * A broadcast graphic, not a modal: it never blocks play, auto-dismisses
- * shortly after kickoff (GameApp watches sim time), a tap closes it. Zero sim
- * — pure reads off the league + fixture (friendlies degrade to the DNA view).
+ * Pre-match MATCHUP CARD (Phase 32.5 → 119g report → 2026-07-20 full-screen):
+ * the two evolved teams side by side, full-screen over the pitch. Each side
+ * LEADS with its EMERGENT identity (nameplate = z-score vs the current
+ * population, earned by selection — not an imposed attribute), then the gene
+ * radar, the evolved formation SHAPE drawn as a pair of pitch diagrams, scheme
+ * + morale, and — for a league fixture — coach, recent FORM, standing, and the
+ * season head-to-head. It holds while the game is PAUSED between fixtures (read
+ * the shapes); ▶ kicks off and clears it (GameApp hides on !paused), a tap
+ * dismisses. Zero sim — pure reads (friendlies degrade to the DNA view).
  */
 export class ClashBanner {
   readonly root: HTMLElement;
@@ -61,42 +65,56 @@ export class ClashBanner {
   private sideCard(match: Match, side: 0 | 1, ctx: ClashContext): HTMLElement {
     const info = match.teams[side].info;
     const style = info.style ?? deriveTeamStyle(info.genome);
+    const kit = colorHex(info.colors.primary);
     const card = el('div', 'clash-card');
 
     const head = el('div', 'team-head');
     const dot = el('span', 'dot');
-    dot.style.background = colorHex(info.colors.primary);
+    dot.style.background = kit;
     head.append(dot, el('span', '', info.name));
     card.appendChild(head);
 
     // The dugout figure (Phase 66): the philosophy has a name and a face.
     if (info.coachName) card.appendChild(el('div', 'clash-coach muted', `👔 ${info.coachName}`));
 
-    const labels = geneAxisLabels(lang);
-    const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
-    card.appendChild(geneRadar(axes, [{
-      values: genomeValues(info.genome),
-      color: colorHex(info.colors.primary),
-      name: info.name,
-      fill: true,
-    }], { size: 150 }));
-
-    const tags = el('div', 'tags');
-    tags.appendChild(el('span', 'tag', `⚔ ${style.formationAtk}`));
-    tags.appendChild(el('span', 'tag', `🛡 ${style.formationDef}`));
-    tags.appendChild(el('span', 'tag', t(style.scheme === 'man' ? 'man-marking' : 'zonal')));
-    // Morale on the tape (Phase 111) — only when the streak is REAL.
-    if ((info.morale ?? 0.5) >= 0.7) tags.appendChild(el('span', 'tag', `🔥 ${t('on a run')}`));
-    else if ((info.morale ?? 0.5) <= 0.3) tags.appendChild(el('span', 'tag', `❄ ${t('in a slump')}`));
-    // Data-driven nameplate (Phase 49): identity relative to the current
-    // league population; both teams appended so exhibition sides still rank.
+    // The EMERGENT identity LEADS (2026-07-20, user ask: labels should read as
+    // descriptions of a team's evolved traits, not hand-imposed attributes).
+    // The nameplate is the club's biggest deviations from the CURRENT league
+    // population (z-score) — earned by selection, not a fixed threshold bucket.
     const pool: StyleSource[] = [
       ...(ctx.population ?? []),
       { genome: match.teams[0].info.genome, policy: match.teams[0].info.policy },
       { genome: match.teams[1].info.genome, policy: match.teams[1].info.policy },
     ];
     const plate = nameplates(pool)[pool.length - 2 + side];
-    for (const word of plate) tags.appendChild(el('span', 'tag nameplate', t(word)));
+    const identity = el('div', 'clash-identity');
+    if (plate.length) for (const word of plate) identity.appendChild(el('span', 'plate', t(word)));
+    else identity.appendChild(el('span', 'plate plate-none', t('Balanced')));
+    card.appendChild(identity);
+
+    const labels = geneAxisLabels(lang);
+    const axes = GENE_KEYS.map((k, i) => ({ label: labels[i], title: t(k) }));
+    card.appendChild(geneRadar(axes, [{
+      values: genomeValues(info.genome),
+      color: kit,
+      name: info.name,
+      fill: true,
+    }], { size: 150 }));
+
+    // The evolved SHAPE, drawn (阵型): the read is the picture, the formation
+    // id is demoted to the diagram caption instead of a standalone slug tag.
+    const shapes = el('div', 'clash-shapes');
+    shapes.append(
+      formationDiagram(`⚔ ${style.formationAtk}`, ATTACK_FORMATIONS[style.formationAtk], SQUAD_ROLES, kit),
+      formationDiagram(`🛡 ${style.formationDef}`, DEFEND_FORMATIONS[style.formationDef], SQUAD_ROLES, kit),
+    );
+    card.appendChild(shapes);
+
+    const tags = el('div', 'tags');
+    tags.appendChild(el('span', 'tag', t(style.scheme === 'man' ? 'man-marking' : 'zonal')));
+    // Morale on the tape (Phase 111) — only when the streak is REAL.
+    if ((info.morale ?? 0.5) >= 0.7) tags.appendChild(el('span', 'tag', `🔥 ${t('on a run')}`));
+    else if ((info.morale ?? 0.5) <= 0.3) tags.appendChild(el('span', 'tag', `❄ ${t('in a slump')}`));
     card.appendChild(tags);
 
     // The matchday record row (119g): recent FORM + the league standing —

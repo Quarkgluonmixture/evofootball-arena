@@ -483,9 +483,11 @@ export class GameApp implements GameActions {
     if (this.panelTimer > 0.12) {
       this.panelTimer = 0;
       if (this.match) this.right.updateDynamic(this.match, this.selectedGid);
-      // The pre-match clash is a broadcast graphic, not a modal: it clears
-      // itself once the match is properly under way (manual opens are pinned).
-      if (this.clash.isVisible && this.clashAutoHide && this.match && this.match.simTime > 10) {
+      // The pre-match clash is now a FULL-SCREEN matchup card (2026-07-20): it
+      // holds while the game is paused (between fixtures — study the evolved
+      // shapes) and clears the instant ▶ is pressed, so it never covers the
+      // opening play. Manual mid-match opens are pinned (clashAutoHide=false).
+      if (this.clash.isVisible && this.clashAutoHide && this.match && !this.paused) {
         this.clash.hide();
         this.updateMusic();
       }

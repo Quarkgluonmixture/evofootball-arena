@@ -3,6 +3,61 @@
 ## ⭐⭐⭐⭐ THE GOLD STANDARD IS [`VISION.md`](VISION.md) (2026-07-19) — measure every decision against it
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 
+---
+⭐⭐⭐ **2026-07-20 PLAY-TEST TRIAGE + 画面 BATCH (RESUME POINT).** User play-tested
+on Pages **with the emergent field ON** and reported 8 observations + 3 keeper
+notes + an evolution-UI ask. Root-caused every item (5 Explore probes). Priority
+was "画面 bug first"; that batch is **SHIPPED+PUSHED, HEAD `e4cb39a`** (CI deploying):
+- **obs4 dribble ball cadence** (render): ball floated at constant distance +
+  rolled smooth → per-stride fore-aft touch cadence around the 0.85m glue.
+- **obs1 "转身球飞出去"** (sim): `performDribbleTouch` knocked along `heading`
+  (rate-capped, lags velocity through a turn) → aim along **velocity/travel**.
+  A/B: recollect 80.4→82.4%, poke 13.6→12.8%, goals calib-8 2.40→2.26,
+  cutbacks 1.10→1.30; the baseline 'knock' regime 3.2% was largely the
+  fly-away artifact (maxGap≥2.4m) → 0.1%, genuine big pushes remain.
+- **keeper catch-lurch** (render): model was planted at the dive-START spot
+  (up to ~3m behind the catch) → now TRACKS sim through the lunge (diveT<0.45),
+  pins only once grounded (keeps the "feet don't slide" fix).
+- **keeper hold-jitter "一抽一抽"** (sim): held-ball carry keyed on gkHoldTimer
+  only → sawtoothed 0.3↔0.85 in the 21% re-arm gaps → now spans gkDistributing
+  (like the other Phase-31.9 consumers). NOTE: hold-jitter probe's carry-flip
+  metric is BROKEN (resets prevHeld via the non-owning keeper each frame,
+  always 0) — verified by code logic, not measurement.
+- ⚠ Fingerprint drifts (2 sim changes); no stored baseline; determinism is
+  test-covered (441 green).
+
+**NEXT 自走 QUEUE (2026-07-20):** user said "自走,有问题再找我".
+1. **Evolution pre-match FULL-SCREEN UI** — ✅ **v1 SHIPPED**: ClashBanner
+   restyled full-screen (inset:0 over the pitch, holds while paused between
+   fixtures, hides on ▶); each side now LEADS with the emergent nameplate
+   identity (z-score, not imposed) + draws the evolved formation SHAPE via
+   `formationDiagram` (atk+def); formation slug demoted to the diagram caption.
+   Pure UI, fingerprint untouched. NOTE: chose the SAFE half — did NOT add a
+   hard pause-on-show (avoids autoHighlights/binge interference); it relies on
+   the existing between-fixtures pause. If the user wants pause-until-tap
+   (blocking), that's the follow-up. Emergent shape (emergentStation) has no
+   static 6-spot table → the diagram draws the fixed-table shape; drawing the
+   TRUE emergent shape needs a live-Team/Ball sample (future).
+2. **B-group SUBSTRATE (needs A/B — user should steer; this is the "combination
+   football is structurally weak" story = VISION §3):**
+   - **obs8 combo-pass overhit** (倒三角/二过一, esp. lateral): short-pass ~9m/s
+     power FLOOR + capture is a 1.25m geometric disk + lateral orientationNoiseMul
+     ~×1.3 + one-touch oneTouchMul ~×2 → combos physically unreliable → evolution
+     can't SELECT combination play. **The entry lever** (unlocks variety + obs7).
+   - **obs7 迎球接球**: reactive meet-the-pass EXISTS (interceptBall); missing =
+     proactive check-to-ball / offer as outlet (support-shape).
+   - **obs5 transition urgency**: `MarkOpponent` speed has NO counter/transition
+     sprint lever — a defender tracking a breakaway runs at normal pace. Substrate
+     GAP (nothing to select), not a local optimum.
+   - **obs6 CBs clump on goal kick** (field WAS ON): emergent B1-b anti-clump too
+     weak in the deep-central goal-kick band → strengthen repulsion there.
+   - **obs2 goal-kick pinball**: hoof = upfield+random, no target/min-dist;
+     ground goal-kick has only a soft d<5 penalty and laneOpenness ignores
+     teammates in the landing zone.
+3. **keeper Bug3**: keeper can WALK while holding (feature; HoldPosition target
+   is locked to the goal band — hook a short walk-out target).
+
+
 The user extended the emergence pivot into a full four-stage vision (Engine →
 Visibility → World → Substrate): tactics, players, COACHES, seasons and cups
 all evolving with earned identities, fast + visible divergence, on a
