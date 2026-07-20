@@ -5,7 +5,12 @@
 ## ⭐⭐⭐⭐ THE SUBSTRATE REBUILD: [`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md) + [`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md) (2026-07-20)
 
 > 🎯🎯🎯 **RESUME (2026-07-20 — the "team-gene overhaul" resolved into a SUBSTRATE-FIRST
-> ENGINE REBUILD; reference docs WRITTEN, code NOT yet touched).** User + GPT + Claude,
+> ENGINE REBUILD; reference docs WRITTEN + tree SETTLED — clean baseline `f192a08`; NEXT
+> = build-order step 3 [BASELINE-NOW probes + `Match.step` profiler + freeze baselines]).**
+> ✅ **Step 2 DONE:** kept position-aware budget (`SQUAD_BUDGET 35.5`, not 40.0 — vision's
+> +9 slots removed) + keeper arc; reverted the whole `vision`/positioning reading-split
+> (co-evo files → HEAD; vision stripped from playerGenome/League); tsc + 441 tests +
+> saveFile-roundtrip green; NOT pushed/tagged. User + GPT + Claude,
 > three-way. The "缺一个行为就加一个 gene" era is over. Two new reference docs:
 > - **[`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md)** — S0–S12 causal layers + the gene→hook
 >   HARD-CONSTRAINT table. ⭐ Key reframe: **VISION §1's value-field "eye" was NEVER
