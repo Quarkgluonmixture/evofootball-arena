@@ -42,8 +42,18 @@ was "画面 bug first"; that batch is **SHIPPED+PUSHED, HEAD `e4cb39a`** (CI dep
    football is structurally weak" story = VISION §3):**
    - **obs8 combo-pass overhit** (倒三角/二过一, esp. lateral): short-pass ~9m/s
      power FLOOR + capture is a 1.25m geometric disk + lateral orientationNoiseMul
-     ~×1.3 + one-touch oneTouchMul ~×2 → combos physically unreliable → evolution
-     can't SELECT combination play. **The entry lever** (unlocks variety + obs7).
+     ~×1.3 + one-touch oneTouchMul ~×2. ⚠ **ATTEMPT-1 REVERTED (2026-07-20)**:
+     softened sub-5m pass power (`×0.65+d·0.07`). A/B: calibrate-8 goals
+     2.26→2.63 (+16%, WRONG direction / evolutionary divergence), cutbacks
+     1.30→1.08 (−17%), completion flat; combo-rates oneTwos/overlaps flat-to-down
+     but those counts (0–0.33/match, random genomes) are pure NOISE. Verdict: NOT
+     the combo lever — cutbacks fell, no combo lift, unintended goal inflation.
+     **Reframe:** the combo bottleneck is UPSTREAM — combo INITIATION + support
+     POSITIONING (players don't get close enough / don't offer), i.e. the SPACE
+     defect + obs7 check-to-ball, NOT isolated pass execution. The real lever is
+     the support-shape/density substrate (needs the coordinated pitch-shrink call
+     per the emergence memory), not a pass-power tweak. ← DEEP substrate, user
+     should steer.
    - **obs7 迎球接球**: reactive meet-the-pass EXISTS (interceptBall); missing =
      proactive check-to-ball / offer as outlet (support-shape).
    - **obs5 transition urgency**: `MarkOpponent` speed has NO counter/transition
