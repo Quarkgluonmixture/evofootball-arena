@@ -392,13 +392,14 @@ describe('cameraGoalFor', () => {
   it('broadcast pans with the ball but clamps its travel', () => {
     const left = cameraGoalFor('broadcast', { x: -100, z: 0, vx: 0, vz: 0 });
     const right = cameraGoalFor('broadcast', { x: 100, z: 0, vx: 0, vz: 0 });
-    expect(left.px).toBe(-28);
-    expect(right.px).toBe(28);
+    // clamp scales with the pitch (2026-07-20 density相变)
+    expect(left.px).toBe(-28 * PITCH_SCALE);
+    expect(right.px).toBe(28 * PITCH_SCALE);
   });
 
   it('tacfeed is the near-vertical everyone-in-frame analyst view (72)', () => {
     const g = cameraGoalFor('tacfeed', { x: 30, z: 10, vx: 5, vz: 0 });
-    expect(g.py).toBeGreaterThan(70); // higher than every other mode
+    expect(g.py).toBeGreaterThan(70 * PITCH_SCALE); // higher than every other mode (scales)
     expect(g.px).toBe(0); // static — the shapes carry the information
     expect(g.lx).toBe(0);
   });

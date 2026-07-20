@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { HALF_L } from '../sim/constants';
+import { HALF_L, PITCH_SCALE } from '../sim/constants';
 import { clamp } from '../utils/math';
 
 export type CameraMode = 'tactical' | 'tacfeed' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty';
@@ -23,39 +23,45 @@ export function cameraGoalFor(
   mode: Exclude<CameraMode, 'orbit'>,
   ball: { x: number; z: number; vx: number; vz: number },
 ): CameraGoal {
+  // Camera distances/heights were tuned for the 90×58 pitch; scale the ABSOLUTE
+  // ones with the field (2026-07-20 density相变) so framing stays proportional
+  // on the shrunk pitch (else the pitch renders small + far). HALF_L / ball.x
+  // terms already live in scaled world coords; look-at HEIGHTS (ly ≈ player /
+  // goal height) are physical and stay fixed.
+  const s = PITCH_SCALE;
   switch (mode) {
     case 'tactical':
       // High angled full-pitch view: formations readable, both goals + corner
       // flags inside the frame.
-      return { px: 0, py: 62, pz: 47, lx: 0, ly: 0, lz: 2 };
+      return { px: 0, py: 62 * s, pz: 47 * s, lx: 0, ly: 0, lz: 2 * s };
     case 'tacfeed':
       // The ANALYST feed (Phase 72, user design): the UEFA-tactical-cam
       // lesson — near-vertical, static, every player in frame at once, so
       // the SHAPES carry the information. The one camera where the
       // broadcast layer draws its tactical elements.
-      return { px: 0, py: 84, pz: 26, lx: 0, ly: 0, lz: 0 };
+      return { px: 0, py: 84 * s, pz: 26 * s, lx: 0, ly: 0, lz: 0 };
     case 'broadcast': {
       // TV gantry on the +z sideline. Pans with play, pushes in as the ball
       // enters a final third (attack), pulls back through midfield
       // transitions. Look-ahead follows ball velocity so play leads the frame.
-      const attack = clamp((Math.abs(ball.x) - 12) / 28, 0, 1);
-      const px = clamp(ball.x * 0.72 + ball.vx * 0.35, -28, 28);
+      const attack = clamp((Math.abs(ball.x) - 12 * s) / (28 * s), 0, 1);
+      const px = clamp(ball.x * 0.72 + ball.vx * 0.35, -28 * s, 28 * s);
       return {
         px,
-        py: 19 - attack * 4.5,
-        pz: 39 - attack * 7,
-        lx: clamp(ball.x * 0.88 + ball.vx * 0.45, -38, 38),
+        py: (19 - attack * 4.5) * s,
+        pz: (39 - attack * 7) * s,
+        lx: clamp(ball.x * 0.88 + ball.vx * 0.45, -38 * s, 38 * s),
         ly: 0.5,
-        lz: clamp(ball.z * 0.55, -9, 9),
+        lz: clamp(ball.z * 0.55, -9 * s, 9 * s),
       };
     }
     case 'follow': {
       // Chase cam: higher and further back than a drone shot, with velocity
       // look-ahead — damped hard in update() to avoid motion sickness.
       return {
-        px: clamp(ball.x, -HALF_L + 4, HALF_L - 4),
-        py: 13,
-        pz: ball.z + 18,
+        px: clamp(ball.x, -HALF_L + 4 * s, HALF_L - 4 * s),
+        py: 13 * s,
+        pz: ball.z + 18 * s,
         lx: ball.x + ball.vx * 0.6,
         ly: 0.4,
         lz: ball.z + ball.vz * 0.6,
@@ -70,9 +76,9 @@ export function cameraGoalFor(
       const sign = ball.x >= 0 ? 1 : -1;
       const goalX = sign * HALF_L;
       return {
-        px: sign * (HALF_L + 12),
-        py: 5.0,
-        pz: clamp(ball.z * 0.35, -6, 6),
+        px: sign * (HALF_L + 12 * s),
+        py: 5.0 * s,
+        pz: clamp(ball.z * 0.35, -6 * s, 6 * s),
         lx: goalX * 0.45 + ball.x * 0.55,
         ly: 1.0,
         lz: ball.z * 0.65,
@@ -85,9 +91,9 @@ export function cameraGoalFor(
       // gentle damped push-in as the kick flies.
       const sign = ball.x >= 0 ? 1 : -1;
       return {
-        px: ball.x - sign * 10.5,
-        py: 4.6,
-        pz: 5.2,
+        px: ball.x - sign * 10.5 * s,
+        py: 4.6 * s,
+        pz: 5.2 * s,
         lx: sign * HALF_L,
         ly: 1.3,
         lz: 0,
