@@ -313,10 +313,17 @@ export class ThreeMatchRenderer {
         const om = this.players.get(state.ball.ownerGid);
         if (owner && om) {
           if (owner.speed > 3.2) {
-            const push =
-              Math.min(0.75, 0.2 + owner.speed * 0.055) *
-              (0.72 + 0.28 * Math.abs(Math.sin(om.phase)));
-            carry = { dx: Math.sin(owner.yaw) * push, dz: Math.cos(owner.yaw) * push };
+            // 一步一带 (play report: the ball floated at a CONSTANT distance
+            // ahead and rolled smoothly, like on a string). Give it a per-
+            // stride TOUCH cadence instead: knocked ahead on the stride, then
+            // riding back CLOSE to the foot as the carrier runs onto it before
+            // the next touch — the fore-aft gap now OSCILLATES around the glue
+            // (and pulls the ball back underfoot at the near phase) instead of
+            // sitting far out. The knock grows with pace. Display-only; the
+            // sim's 0.85m glue underneath stays authoritative for tackles.
+            const reach = Math.min(0.55, 0.18 + owner.speed * 0.045);
+            const along = Math.sin(om.phase) * reach;
+            carry = { dx: Math.sin(owner.yaw) * along, dz: Math.cos(owner.yaw) * along };
           } else {
             let qx = 0;
             let qz = 0;
