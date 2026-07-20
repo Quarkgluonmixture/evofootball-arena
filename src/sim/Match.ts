@@ -889,7 +889,16 @@ export class Match {
       // tight to the chest while a keeper holds it in their hands (27.2).
       // In-place writes (was add/scale/clone — 3 vectors per step); ball.pos
       // and ball.vel are never aliased, all other writers assign fresh objects.
-      const carry = ball.owner.gkHoldTimer > 0 ? 0.3 : 0.85;
+      // Span the WHOLE hold/distribute, not just the gkHoldTimer window: the
+      // timer re-arms in 0.25s quanta and hits 0 in the gaps, which sawtoothed
+      // the held ball 0.3↔0.85m at ~3Hz — the keeper (whose spot tracks
+      // ball.pos.y) and nearby teammates (who reference the ball) jittered with
+      // it (user report "门将拿球一抽一抽,队友也抽"). gkDistributing already
+      // spans the hold for the other consumers (clearance guard, heldByGk).
+      const carry =
+        ball.owner.gkHoldTimer > 0 || (ball.owner.role === 'GK' && ball.owner.gkDistributing)
+          ? 0.3
+          : 0.85;
       ball.pos.x = ball.owner.pos.x + ball.owner.heading.x * carry;
       ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * carry;
       ball.vel.x = ball.owner.vel.x;
