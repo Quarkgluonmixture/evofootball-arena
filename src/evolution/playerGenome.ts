@@ -20,7 +20,10 @@ import type { Role } from '../sim/types';
  *   defending  tackle success + tighter marking
  *   strength   aerial power, shielding, the 50/50 shove
  *   stamina    fatigue drain & recovery rate
- *   reflexes   keeper save probability & reach (matters mostly for the GK)
+ *   reflexes   keeper save probability & reach — GK-ONLY. Only the keeper
+ *              (squad[0]) ever reads it; for the eight outfielders it is a
+ *              DEAD stat, so `squadTotal` no longer charges them for it
+ *              (Phase-120 engine-input cleanup — see squadTotal below).
  */
 export interface PlayerAttributes {
   pace: number;
@@ -135,12 +138,44 @@ export function crossoverSquads(a: PlayerAttributes[], b: PlayerAttributes[], rn
  * makes rotation a REAL trade-off: a deep bench is funded by shaving the
  * starting six, a star XI leaves its bench (and its fresh legs) thin.
  * Founding rosters roll ~0.4 density, so there is headroom before the cap bites.
+ *
+ * Phase-120 (POSITION-AWARE budget — 门将底座和外场不一样): the budget now
+ * charges each slot only for the attributes that actually FIRE for its
+ * position. `reflexes` is keeper-only (the 8 outfielders never read it), and
+ * symmetrically `finishing` + `defending` are DEAD for the keeper (a GK never
+ * shoots, and its 1v1s/claims resolve on reflexes, not tackles) — so the
+ * keeper's budget base is its OWN: reflexes + distribution + physique +
+ * positioning, not the outfield scoring/tackling stats. The cap dropped
+ * 40.5 → 35.5 IN LOCKSTEP (was 81 attr-slots × 0.5; now 8 outfield-reflexes +
+ * GK-finishing + GK-defending = 10 dead slots are free → 71 counted × 0.5 =
+ * 35.5) so USEFUL-attr density stays the tuned 0.5 and physics is unmoved.
+ * The point is not more quality — it closes the "dump" (evolution could park
+ * points in a dead stat to dodge the cap); now every point trades against a
+ * LIVE attribute, sharpening specialisation.
  */
-export const SQUAD_BUDGET = 40.5;
+export const SQUAD_BUDGET = 35.5;
+
+/**
+ * Which attributes cost budget for a slot (Phase-120 position-aware). The
+ * keeper (index 0 by invariant — Team.goalkeeper === players[0], ROSTER_ROLES
+ * [0] === 'GK', retirees replaced like-for-like at the same slot) pays for
+ * everything EXCEPT finishing/defending (dead for a GK); every outfielder pays
+ * for everything EXCEPT reflexes (keeper-only). The uncounted attrs still
+ * exist and still get scaled by enforceBudget — they just ride along free, so
+ * the counted total lands exactly on the cap.
+ */
+export function countsForBudget(k: AttrKey, isGK: boolean): boolean {
+  if (isGK) return k !== 'finishing' && k !== 'defending';
+  return k !== 'reflexes';
+}
 
 export function squadTotal(squad: PlayerAttributes[]): number {
   let t = 0;
-  for (const p of squad) for (const k of ATTR_KEYS) t += p[k];
+  for (let i = 0; i < squad.length; i++) {
+    const p = squad[i];
+    const isGK = i === 0;
+    for (const k of ATTR_KEYS) if (countsForBudget(k, isGK)) t += p[k];
+  }
   return t;
 }
 

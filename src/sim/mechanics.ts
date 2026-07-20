@@ -505,16 +505,20 @@ export function performCross(
 }
 
 /**
- * Keeper throw (Phase 28.3): an ACCURATE hand distribution — flat, quick,
- * half the noise of a kicked ball, 8–30m. This is what a keeper who held
- * the ball does instead of hoofing 50/50s: find a body, hit the body.
+ * Keeper throw (Phase 28.3): an ACCURATE hand distribution — a gentle ARC
+ * (Phase-120, feel: overarm throw, not a flat drive), half the noise of a
+ * kicked ball, 8–30m. What a keeper who held the ball does instead of hoofing
+ * 50/50s: find a body, hit the body.
  */
 export function performKeeperThrow(match: Match, gk: Player, mate: Player): void {
   if (match.ball.owner !== gk || gk.kickCooldown > 0) return;
   const team = match.teams[gk.side];
-  const flight0 = clamp(0.5 + dist(gk.pos, mate.pos) * 0.03, 0.7, 1.4);
+  const flight0 = clamp(0.62 + dist(gk.pos, mate.pos) * 0.03, 0.9, 1.5);
   const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));
-  loftKick(match, gk, lead, 0.5, 0.03, 0.7, 1.4, 0.45);
+  // Phase-120 (feel): raise the ARC of the hand throw — the flat-quick tune
+  // read like a drive, not a thrown ball. Higher T floor (0.7→0.9) lofts it to
+  // a visible ~1.1m peak at short range; still accurate (noiseMul 0.45).
+  loftKick(match, gk, lead, 0.62, 0.03, 0.9, 1.5, 0.45);
   team.stats.passes++;
   if (team.localX(mate.pos.x) - team.localX(gk.pos.x) > 2) team.stats.passesForward++;
   registerPass(match, gk, mate, false); // a hand throw is regular play — offside applies

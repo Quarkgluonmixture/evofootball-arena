@@ -23,8 +23,8 @@ import {
 import { GENE_KEYS, mutateGenome, type GeneKey, type TacticalGenome } from '../evolution/genome';
 import { newgenName } from '../evolution/names';
 import {
-  ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, enforceBudget, newgenFromBloodline, randomPlayer,
-  randomSquad, squadSummary, squadTotal, type AttrKey,
+  ATTR_KEYS, SQUAD_BUDGET, SQUAD_ROLES, countsForBudget, enforceBudget, newgenFromBloodline,
+  randomPlayer, randomSquad, squadSummary, squadTotal, type AttrKey,
 } from '../evolution/playerGenome';
 import {
   FREE_AGENT_MAX_AGE, agentTotal, trimPool, type FreeAgent,
@@ -197,7 +197,7 @@ export interface SeasonRecord {
   }>;
 }
 
-export const SAVE_VERSION = 32;
+export const SAVE_VERSION = 33;
 const TEAMS_PER_DIVISION = 8;
 const TOTAL_TEAMS = 16;
 
@@ -907,7 +907,13 @@ export class League {
           // when he clearly beats the academy option (the newgen would be
           // ≈ the retiree's profile) AND fits under the budget without
           // taxing the rest of the squad. Otherwise: academy as always.
-          const retireeTotal = ATTR_KEYS.reduce((a, k) => a + f.squad[i][k], 0);
+          // Budget currency (Phase-120 position-aware): sum only the attrs that
+          // cost budget for THIS slot (GK: not finishing/defending; outfield:
+          // not reflexes) so headroom = cap − used + freed stays in squadTotal's
+          // units.
+          const retireeTotal = ATTR_KEYS.reduce(
+            (a, k) => (countsForBudget(k, i === 0) ? a + f.squad[i][k] : a), 0,
+          );
           const headroom = SQUAD_BUDGET - squadTotal(f.squad) + retireeTotal;
           // Style fit as a MARKET SIGNAL (Phase 80, N6): the board weighs a
           // candidate's appetites against the retiree's — the club's evolved
@@ -1766,6 +1772,15 @@ export class League {
       // backfill already ran at the TOP of the chain (it must precede the
       // v17→v18 budget pass); nothing left to do here but advance the version.
       data.version = 32;
+    }
+    if (data.version === 32) {
+      // v32 -> v33 (Phase-120): the budget went POSITION-AWARE (reflexes
+      // keeper-only, finishing/defending free for the keeper), so the cap moved
+      // 40.5 → 35.5. Squads built under the old cap may sit off the new one, so
+      // re-enforce the budget once on load; season-end (applyResult) does it
+      // every year thereafter.
+      for (const f of data.franchises as Franchise[]) f.squad = enforceBudget(f.squad);
+      data.version = 33;
     }
     if (data.version !== SAVE_VERSION) throw new Error(`Unsupported save version: ${String(data.version)}`);
     const lg = Object.create(League.prototype) as League;
