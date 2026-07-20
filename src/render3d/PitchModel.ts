@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {
-  BOX_DEPTH, BOX_WIDTH, CENTER_CIRCLE_R, GOAL_WIDTH, HALF_L, HALF_W,
+  BOX_DEPTH, BOX_WIDTH, CENTER_CIRCLE_R, GOAL_WIDTH, HALF_L, HALF_W, PITCH_SCALE,
 } from '../sim/constants';
 
 /**
@@ -27,19 +27,22 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
   group.add(ground);
 
   // Adboards: low procedural boards along the far side and behind the goals —
-  // grounds the diorama without heavy assets.
-  const boardGeo = new THREE.BoxGeometry(24, 0.9, 0.25);
+  // grounds the diorama without heavy assets. Widths + positions scale with
+  // PITCH_SCALE (2026-07-20 density相变): the fixed 24m board at ±30 spilled
+  // past the shrunk pitch/stands (the green top-stripe "beams" poking out).
+  const s = PITCH_SCALE;
+  const boardGeo = new THREE.BoxGeometry(24 * s, 0.9, 0.25);
   const boardMats = [0x16223a, 0x1d3a5f, 0x24304a].map(
     (c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.85 }),
   );
   const boards: Array<{ x: number; z: number; rot: number }> = [
-    { x: -30, z: -HALF_W - 3.4, rot: 0 },
-    { x: 0, z: -HALF_W - 3.4, rot: 0 },
-    { x: 30, z: -HALF_W - 3.4, rot: 0 },
-    { x: -HALF_L - 3.6, z: -18, rot: Math.PI / 2 },
-    { x: -HALF_L - 3.6, z: 18, rot: Math.PI / 2 },
-    { x: HALF_L + 3.6, z: -18, rot: Math.PI / 2 },
-    { x: HALF_L + 3.6, z: 18, rot: Math.PI / 2 },
+    { x: -30 * s, z: -HALF_W - 3.4 * s, rot: 0 },
+    { x: 0, z: -HALF_W - 3.4 * s, rot: 0 },
+    { x: 30 * s, z: -HALF_W - 3.4 * s, rot: 0 },
+    { x: -HALF_L - 3.6 * s, z: -18 * s, rot: Math.PI / 2 },
+    { x: -HALF_L - 3.6 * s, z: 18 * s, rot: Math.PI / 2 },
+    { x: HALF_L + 3.6 * s, z: -18 * s, rot: Math.PI / 2 },
+    { x: HALF_L + 3.6 * s, z: 18 * s, rot: Math.PI / 2 },
   ];
   boards.forEach((b, i) => {
     const mesh = new THREE.Mesh(boardGeo, boardMats[i % boardMats.length]);
@@ -49,7 +52,7 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
     group.add(mesh);
     // Accent stripe along the top edge.
     const stripe = new THREE.Mesh(
-      new THREE.BoxGeometry(24, 0.08, 0.27),
+      new THREE.BoxGeometry(24 * s, 0.08, 0.27),
       new THREE.MeshStandardMaterial({ color: 0x4ade80, roughness: 0.6 }),
     );
     stripe.position.set(b.x, 0.92, b.z);

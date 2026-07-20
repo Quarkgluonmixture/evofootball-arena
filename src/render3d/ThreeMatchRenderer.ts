@@ -83,6 +83,10 @@ export class ThreeMatchRenderer {
   private scoreBugText = '';
   private vignette: HTMLDivElement;
   private tacmap: HTMLCanvasElement;
+  private host: HTMLElement;
+  private viewW = 0;
+  private viewH = 0;
+  private resizeObs: ResizeObserver | null = null;
 
   onSelectPlayer: ((gid: number) => void) | null = null;
   /** Optional external hook (sound etc.) fired once per fx event — plus
@@ -96,6 +100,7 @@ export class ThreeMatchRenderer {
   onScoreBugTap: (() => void) | null = null;
 
   constructor(host: HTMLElement) {
+    this.host = host;
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     // Named so tools can tell the stage apart from the tacmap inset (68) —
     // '#three-host canvas' alone matches both since the broadcast layer.
@@ -141,6 +146,15 @@ export class ThreeMatchRenderer {
     this.tacmap.width = 168;
     this.tacmap.height = 112;
     host.append(this.vignette, this.scoreBug, this.banner, this.tacmap);
+
+    // RESPONSIVE renderer (2026-07-20): size the WebGL buffer + camera aspect
+    // to the HOST box, not a fixed CANVAS_W×H — so the pitch fills whatever
+    // space it has and grows to fill the viewport in cinematic (the host box
+    // changes when the panels hide). One observer covers window resize AND the
+    // cinematic toggle; no per-caller resize wiring needed.
+    this.resize();
+    this.resizeObs = new ResizeObserver(() => this.resize());
+    this.resizeObs.observe(host);
 
     // Renderer-owned event feedback.
     this.fx.hooks = {
@@ -457,6 +471,18 @@ export class ThreeMatchRenderer {
       state,
       dt,
     );
+  }
+
+  /** Size the WebGL buffer + camera aspect to the host box (responsive). */
+  private resize(): void {
+    const w = Math.round(this.host.clientWidth) || CANVAS_W;
+    const h = Math.round(this.host.clientHeight) || CANVAS_H;
+    if (w === this.viewW && h === this.viewH) return;
+    this.viewW = w;
+    this.viewH = h;
+    this.renderer.setSize(w, h);
+    this.cameraCtl.camera.aspect = w / h;
+    this.cameraCtl.camera.updateProjectionMatrix();
   }
 
   /** Hide low-priority labels that would overlap on screen. */
