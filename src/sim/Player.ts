@@ -1,5 +1,5 @@
 import { v2, type V2 } from '../utils/vec';
-import { STAMINA_DRAIN, STAMINA_RECOVERY } from './constants';
+import { PLAYER_CORE_RADIUS, STAMINA_DRAIN, STAMINA_RECOVERY } from './constants';
 import type { PlayerAttributes } from '../evolution/playerGenome';
 import { traitsOf, type Trait } from '../evolution/traits';
 import { TEAM_SIZE, type ActionState, type Role, type Side } from './types';
@@ -42,6 +42,18 @@ export class Player {
   pos = v2();
   vel = v2();
   heading = v2(1, 0);
+  /**
+   * World-model body direction (M0): the existing capped-rate heading is the
+   * canonical facing state. Exposing it by semantic name adds no second state
+   * that could drift, and it remains independent of velocity direction.
+   */
+  get bodyDir(): Readonly<V2> {
+    return this.heading;
+  }
+  /** Stable kinematic core; interaction reach lives outside this disc. */
+  get coreRadius(): number {
+    return PLAYER_CORE_RADIUS;
+  }
   /** Set every frame by the action executor; physics chases it. */
   desiredVel = v2();
   /**

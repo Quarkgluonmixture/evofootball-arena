@@ -3,7 +3,7 @@ import type { TacticalGenome } from '../src/evolution/genome';
 import { GENE_KEYS } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
 import { Match } from '../src/sim/Match';
-import { DT, HALF_L, PITCH_SCALE, RESTART_CLEARANCE } from '../src/sim/constants';
+import { DT, FIELD_SCALE, HALF_L, RESTART_CLEARANCE } from '../src/sim/constants';
 import { TEAM_SIZE, type Side, type TeamInfo } from '../src/sim/types';
 import { v2, type V2 } from '../src/utils/vec';
 
@@ -132,7 +132,7 @@ describe('free kicks become REAL (Phase 32)', () => {
       // the direct hit near-extinct (~1%); at the scaled ~13.3m it is the
       // regular option again (the wall-arming range tests keep the ABSOLUTE
       // 19m body-count threshold, which the sim did not scale).
-      const m = dangerFK(seed, v2(HALF_L - 19 * PITCH_SCALE, 3));
+      const m = dangerFK(seed, v2(HALF_L - 19 * FIELD_SCALE, 3));
       if (!m.fkWall) continue;
       const shots0 = m.shotLog.length;
       let guard = 0;
@@ -173,7 +173,7 @@ describe('free kicks become REAL (Phase 32)', () => {
     // bigger pool to keep >12 genuine strikes for the no-contest contract.
     for (let seed = 0; seed < 65; seed++) {
       // Scaled danger-FK distance (2026-07-20 density相变 — see the volume test).
-      const m = dangerFK(seed, v2(HALF_L - 19 * PITCH_SCALE, 3));
+      const m = dangerFK(seed, v2(HALF_L - 19 * FIELD_SCALE, 3));
       if (!m.fkWall) continue;
       // A deep defender heading the DIPPER near the goal is honest defence;
       // only the WALL free-heading the climb is the forbidden failure.

@@ -12,8 +12,15 @@
 > resolver" is PAUSED — the deeper gap is that the player is a POINT, not a body.** NEXT =
 > the **World-Model Foundation slice → [`docs/world-model/FOUNDATION.md`](world-model/FOUNDATION.md)**
 > (THE resume doc for this work). Target = **Kinematic Disc + Oriented Shell**, run as the
-> **Minimum Embodied Contest Slice**: M0 (representation + `PITCH_SCALE` decompose,
-> byte-identical) → M1 (contact-solver velocity fix — §2-GATED **alone** before stacking) →
+> **Minimum Embodied Contest Slice**. ✅ **M0 DONE (2026-07-20, byte-identical):** scale
+> authority split (`FIELD/GOAL_AND_BOX/BODY/CONTROL_REACH/SPEED_TIME/SURFACE`), plus
+> derived `bodyDir`/`coreRadius`/ball mode, `BALL_RADIUS=0.11`, pure contact/access
+> geometry, and type-only `ContestEpisode`. Gates: tsc/build clean · 450/450 · two
+> before/after fingerprints identical (`2821d2d9…`, `8d0cfb08…`) · paired perf neutral
+> (5.4→5.5µs/step; 14.7→14.4 matches/s, profiler determinism OK). **STOP boundary held:**
+> no AI consumer, capture/ownership change, or overlap velocity response. **NEXT = M1,
+> but M1 is the FIRST BEHAVIOURAL change and must be §2-GATED ALONE on the user's
+> play-test before stacking M2/M3.** Sequence remains M1 (contact-solver velocity fix) →
 > M2 (ball-access/screening world-fact) → M3 (touch≠control) → M4 (play-test, then **RETURN
 > to S3–S8 = the mainline**). The body model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the

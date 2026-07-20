@@ -137,18 +137,26 @@ shoulder impulse, animation stumbling, muscle forces, cleat-turf contact.
 Run in order; each stage names its acceptance. **W3–W7 of the full audit are NOT the next
 months** — this narrowed slice is.
 
-- **M0 — representation + param authority (BYTE-IDENTICAL).**
+- ✅ **M0 — representation + param authority (BYTE-IDENTICAL). DONE 2026-07-20.**
   1. This doc (+ split into `docs/world-model/` family as it grows).
-  2. **Decompose `PITCH_SCALE`** into `FIELD_SCALE / GOAL_AND_BOX_SCALE / BODY_SCALE /
+  2. **Decomposed `PITCH_SCALE`** into `FIELD_SCALE / GOAL_AND_BOX_SCALE / BODY_SCALE /
      CONTROL_REACH_SCALE / SPEED_TIME_SCALE / SURFACE_PROFILE`, backfilled to today's
-     values (byte-identical). Future scale work is factorial, not one entangled knob. NB:
-     the current `PITCH_SCALE 0.70` density is **play-test-locked** — this only untangles
-     the knob, it does not reopen that decision.
+     effective values: field `0.70`, goal+box `0.70`, body/reach/speed-time `1.00`, and
+     the existing friction/bounce/spin surface. `PITCH_SCALE` remains only as a legacy
+     env fallback for old probe commands; no source consumer reads an ambiguous shared
+     scale. Future scale work is factorial, not one entangled knob. NB: the current
+     `FIELD_SCALE 0.70` density is **play-test-locked** — this only untangles the knob,
+     it does not reopen that decision.
   3. **Representation layer:** `bodyDir` semantics, `coreRadius`, `BALL_RADIUS` (~0.11 m,
      IFAB), a `BallPhysicalMode`, contact / ball-access geometry helpers, a `ContestEpisode`
      ledger. `possessionPhase` already exists (committed `4e910ce`). Nothing in the
-     decision path reads the new facts yet → **byte-identical** (guard with the full suite +
-     a possessionPhase-style invariant test).
+     decision path reads the new facts yet. Landed as derived getters + pure helpers in
+     `src/sim/physical.ts`; `ContestEpisode` is type-only and accepts any number of
+     contenders. **Proof:** 450/450 tests (443 existing + 7 M0 invariants), clean tsc/build,
+     and both before/after save fingerprints are byte-identical (`2821d2d9…` at seed 1337,
+     `8d0cfb08…` at seed 42). Paired same-machine perf against `f3c29ad`: 5.4→5.5µs/step
+     and 14.7→14.4 matches/s (≈2% wall-clock noise; phase profile unchanged), profiler
+     determinism OK; the frozen `docs/perf/baseline.json` remains untouched.
 - **M1 — contact solver: kill interpenetration velocity (FIRST BEHAVIOURAL, §2-GATED).**
   `resolveOverlaps`: keep the position separation, **also remove the mutual normal-velocity
   component** so bodies stop re-penetrating next frame. **Fixed iteration count, fixed pair

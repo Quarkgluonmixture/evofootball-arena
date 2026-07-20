@@ -7,7 +7,7 @@ import { updateTeamBrain } from '../src/ai/TeamBrain';
 import { formationSpot, setEmergentPos } from '../src/ai/formations';
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
-import { DT, HALF_L, PITCH_SCALE } from '../src/sim/constants';
+import { DT, FIELD_SCALE, HALF_L } from '../src/sim/constants';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { v2 } from '../src/utils/vec';
 
@@ -98,8 +98,8 @@ describe('the weak-side far-post pull (Phase 31)', () => {
     const wgr = m.teams[0].players[4];
     const weak = formationSpot(wgl, m.teams[0], m.ball, true);
     const strong = formationSpot(wgr, m.teams[0], m.ball, true);
-    expect(Math.abs(weak.y)).toBeLessThan(8 * PITCH_SCALE); // attacking the frame
-    expect(Math.abs(strong.y)).toBeGreaterThan(14 * PITCH_SCALE); // width held
+    expect(Math.abs(weak.y)).toBeLessThan(8 * FIELD_SCALE); // attacking the frame
+    expect(Math.abs(strong.y)).toBeGreaterThan(14 * FIELD_SCALE); // width held
   });
 });
 

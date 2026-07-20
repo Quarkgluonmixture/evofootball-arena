@@ -7,7 +7,7 @@ import { blockReadiness, effectiveBlockers, laneBlockers } from '../src/ai/perce
 import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import type { Player } from '../src/sim/Player';
-import { DT, HALF_L, PITCH_SCALE, UNSET_BLOCK_WEIGHT } from '../src/sim/constants';
+import { DT, FIELD_SCALE, HALF_L, UNSET_BLOCK_WEIGHT } from '../src/sim/constants';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { v2 } from '../src/utils/vec';
 
@@ -111,23 +111,23 @@ describe('shot blocks (Phase 31)', () => {
       const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 });
       while (m.phase !== 'playing') m.step(DT);
       const shooter = m.teams[0].players[5];
-      // Pitch-x coords scale with PITCH_SCALE (2026-07-20 density相变): at the
+      // Pitch-x coords scale with FIELD_SCALE (2026-07-20 density相变): at the
       // old literals the wall at 27.5 now sits inside the shrunk goalmouth (the
       // keeper's zone, dist<6), so tryShotBlock skipped it entirely.
-      shooter.pos = v2(24 * PITCH_SCALE, 0);
+      shooter.pos = v2(24 * FIELD_SCALE, 0);
       shooter.heading = { x: 1, y: 0 };
       // Park everyone else far away so only the one wall body is in play.
       for (const p of [...m.teams[0].players, ...m.teams[1].players]) {
         if (p === shooter || p.role === 'GK') continue;
-        p.pos = v2(-30 * PITCH_SCALE, (p.gid % 2 === 0 ? 20 : -20) * PITCH_SCALE);
+        p.pos = v2(-30 * FIELD_SCALE, (p.gid % 2 === 0 ? 20 : -20) * FIELD_SCALE);
         p.vel = v2(0, 0);
       }
       const wall = m.teams[1].players[1];
-      wall.pos = v2(27.5 * PITCH_SCALE, 0); // square on the corridor, 3.5m ahead
+      wall.pos = v2(27.5 * FIELD_SCALE, 0); // square on the corridor, 3.5m ahead
       wall.vel = v2(0, 0);
       wall.heading = { x: -1, y: 0 }; // SET and facing the strike (Phase 60 readiness)
       m.ball.owner = shooter;
-      m.ball.pos = v2(24.8 * PITCH_SCALE, 0);
+      m.ball.pos = v2(24.8 * FIELD_SCALE, 0);
       m.possessionSide = 0;
       m.performShot(shooter);
       shots++;
@@ -147,18 +147,18 @@ describe('shot blocks (Phase 31)', () => {
       const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 });
       while (m.phase !== 'playing') m.step(DT);
       const shooter = m.teams[0].players[5];
-      shooter.pos = v2(24 * PITCH_SCALE, 0); // pitch-x scales (2026-07-20 density相变)
+      shooter.pos = v2(24 * FIELD_SCALE, 0); // pitch-x scales (2026-07-20 density相变)
       shooter.heading = { x: 1, y: 0 };
       for (const p of [...m.teams[0].players, ...m.teams[1].players]) {
         if (p === shooter || p.role === 'GK') continue;
-        p.pos = v2(-30 * PITCH_SCALE, (p.gid % 2 === 0 ? 20 : -20) * PITCH_SCALE);
+        p.pos = v2(-30 * FIELD_SCALE, (p.gid % 2 === 0 ? 20 : -20) * FIELD_SCALE);
         p.vel = v2(0, 0);
       }
       const wall = m.teams[1].players[1];
-      wall.pos = v2(27.5 * PITCH_SCALE, 0);
+      wall.pos = v2(27.5 * FIELD_SCALE, 0);
       wall.vel = v2(0, 0);
       m.ball.owner = shooter;
-      m.ball.pos = v2(24.8 * PITCH_SCALE, 0);
+      m.ball.pos = v2(24.8 * FIELD_SCALE, 0);
       m.possessionSide = 0;
       m.performShot(shooter);
       for (let i = 0; i < 30 && m.pendingShot; i++) m.step(DT);
@@ -189,22 +189,22 @@ describe('shot blocks (Phase 31)', () => {
         const m = new Match({ seed, teamA: team('A'), teamB: team('B'), duration: 120 });
         while (m.phase !== 'playing') m.step(DT);
         const shooter = m.teams[0].players[5];
-        // Pitch-x coords scale with PITCH_SCALE (2026-07-20 density相变) — the
+        // Pitch-x coords scale with FIELD_SCALE (2026-07-20 density相变) — the
         // angled 13.6m strike keeps its proportions on the shrunk pitch.
-        const sx = 32 * PITCH_SCALE;
-        const sy = 4 * PITCH_SCALE;
+        const sx = 32 * FIELD_SCALE;
+        const sy = 4 * FIELD_SCALE;
         shooter.pos = v2(sx, sy);
         const goal = v2(HALF_L, 0);
         const hd = Math.hypot(goal.x - sx, goal.y - sy);
         shooter.heading = { x: (goal.x - sx) / hd, y: (goal.y - sy) / hd };
         for (const p of [...m.teams[0].players, ...m.teams[1].players]) {
           if (p === shooter || p.role === 'GK') continue;
-          p.pos = v2(-30 * PITCH_SCALE, (p.gid % 2 === 0 ? 20 : -20) * PITCH_SCALE);
+          p.pos = v2(-30 * FIELD_SCALE, (p.gid % 2 === 0 ? 20 : -20) * FIELD_SCALE);
           p.vel = v2(0, 0);
         }
         if (walls) {
-          m.teams[1].players[1].pos = v2(35 * PITCH_SCALE, 3.08 * PITCH_SCALE); // both dead on the corridor
-          m.teams[1].players[2].pos = v2(36.8 * PITCH_SCALE, 2.52 * PITCH_SCALE);
+          m.teams[1].players[1].pos = v2(35 * FIELD_SCALE, 3.08 * FIELD_SCALE); // both dead on the corridor
+          m.teams[1].players[2].pos = v2(36.8 * FIELD_SCALE, 2.52 * FIELD_SCALE);
           m.teams[1].players[1].vel = v2(0, 0);
           m.teams[1].players[2].vel = v2(0, 0);
           // SET walls face the strike (Phase 60 readiness) — the test's
@@ -215,7 +215,7 @@ describe('shot blocks (Phase 31)', () => {
           }
         }
         m.ball.owner = shooter;
-        m.ball.pos = v2(32.6 * PITCH_SCALE, 3.8 * PITCH_SCALE);
+        m.ball.pos = v2(32.6 * FIELD_SCALE, 3.8 * FIELD_SCALE);
         m.possessionSide = 0;
         m.performShot(shooter);
         const scoreBefore = m.score[0];

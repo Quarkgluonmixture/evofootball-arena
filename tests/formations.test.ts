@@ -5,7 +5,7 @@ import {
 } from '../src/ai/formations';
 import { GENE_KEYS, type TacticalGenome } from '../src/evolution/genome';
 import { ATTR_KEYS, type PlayerAttributes } from '../src/evolution/playerGenome';
-import { DT, HALF_L, HALF_W, PITCH_SCALE } from '../src/sim/constants';
+import { DT, FIELD_SCALE, HALF_L, HALF_W } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import {
   TEAM_SIZE, deriveTeamStyle,
@@ -65,7 +65,7 @@ describe('tactical identity derivation', () => {
         expect(Math.abs(spot.x)).toBeLessThan(HALF_L);
         expect(Math.abs(spot.y)).toBeLessThan(HALF_W);
       }
-      expect(table[0].x).toBeLessThan(-38 * PITCH_SCALE); // slot 0 is always the keeper (tables scale)
+      expect(table[0].x).toBeLessThan(-38 * FIELD_SCALE); // slot 0 is always the keeper (tables scale)
     }
   });
 });
@@ -92,12 +92,12 @@ describe('formationSpot reads the team tables', () => {
     // wide-212 wingers: high (+x for side 0) and on OPPOSITE touchlines.
     // Widths/depths scale with the pitch (2026-07-20 density相变).
     expect(Math.sign(wgl.y)).toBe(-Math.sign(wgr.y));
-    expect(Math.abs(wgl.y)).toBeGreaterThan(15 * PITCH_SCALE);
+    expect(Math.abs(wgl.y)).toBeGreaterThan(15 * FIELD_SCALE);
     expect(wgl.x).toBeGreaterThan(0);
 
     // Defence reads the OTHER table: low-32 drops the same winger deep.
     const wglDef = formationSpot(A.players[3], A, m.ball, false);
-    expect(wglDef.x).toBeLessThan(-15 * PITCH_SCALE);
+    expect(wglDef.x).toBeLessThan(-15 * FIELD_SCALE);
     expect(wglDef.x).toBeLessThan(wgl.x);
   });
 });
@@ -336,7 +336,7 @@ describe('formations are tactics, not paint (directional)', () => {
       }
       height[def] = sum / n;
     }
-    expect(height['press-23']).toBeGreaterThan(height['low-32'] + 3 * PITCH_SCALE);
+    expect(height['press-23']).toBeGreaterThan(height['low-32'] + 3 * FIELD_SCALE);
   });
 });
 

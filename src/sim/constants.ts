@@ -6,22 +6,33 @@
  * over the goal line a corner or goal kick. Restarts are live dead-ball
  * phases — the clock runs while the taker walks over and defenders reshape.
  */
-/** Probe/dev knob (2026-07-20): scale the PLAYING-FIELD geometry to test 6v6
- * DENSITY (players per area). Physical sizes (player/ball/control radius/touch
- * distances/goal) stay FIXED, so a scale < 1 packs the same 12 players into a
- * smaller field = higher density. Default 1.0 = no change (tests + ship
- * unaffected). Set PITCH_SCALE in the coordinated-density probe. NB: the fixed
- * formation tables use ABSOLUTE coords and do NOT rescale — density runs must
- * pair with EMERGENT_POS=1 (emergent stations are fractional, so they fit). */
-export const PITCH_SCALE = (() => {
-  const v = typeof process !== 'undefined' && process.env ? Number(process.env.PITCH_SCALE) : NaN;
-  // DEFAULT 0.70 (2026-07-20 density相变, probe sweet spot: 213 m²/player —
-  // cutbacks +145%, shape sharper, clumping down, scramble still ~6%; 0.55
-  // tips into 乱抢). Override via env for probes (PITCH_SCALE=1 = the old pitch).
-  return Number.isFinite(v) && v > 0 ? v : 0.7;
-})();
-export const PITCH_LENGTH = 90 * PITCH_SCALE;
-export const PITCH_WIDTH = 58 * PITCH_SCALE;
+/** Read a positive probe-only scale without introducing browser assumptions. */
+const positiveEnv = (key: string): number | undefined => {
+  const raw = typeof process !== 'undefined' && process.env ? Number(process.env[key]) : NaN;
+  return Number.isFinite(raw) && raw > 0 ? raw : undefined;
+};
+
+/**
+ * World-model parameter authority (M0, docs/world-model/FOUNDATION.md).
+ *
+ * `PITCH_SCALE` used to couple field density, goal width, penalty-box geometry,
+ * and the centre circle. These independent dimensions are backfilled to the
+ * exact values that shipped before M0: field + goal/box at 0.70; bodies,
+ * control reach, and speed/time at their unscaled 1.00 values. A legacy
+ * PITCH_SCALE env value still feeds the two formerly-coupled geometry scales
+ * when their new explicit env keys are absent, so old density-probe commands
+ * remain reproducible without keeping an ambiguous runtime constant.
+ */
+const LEGACY_PITCH_SCALE = positiveEnv('PITCH_SCALE');
+export const FIELD_SCALE = positiveEnv('FIELD_SCALE') ?? LEGACY_PITCH_SCALE ?? 0.7;
+export const GOAL_AND_BOX_SCALE =
+  positiveEnv('GOAL_AND_BOX_SCALE') ?? LEGACY_PITCH_SCALE ?? 0.7;
+export const BODY_SCALE = positiveEnv('BODY_SCALE') ?? 1;
+export const CONTROL_REACH_SCALE = positiveEnv('CONTROL_REACH_SCALE') ?? 1;
+export const SPEED_TIME_SCALE = positiveEnv('SPEED_TIME_SCALE') ?? 1;
+
+export const PITCH_LENGTH = 90 * FIELD_SCALE;
+export const PITCH_WIDTH = 58 * FIELD_SCALE;
 export const HALF_L = PITCH_LENGTH / 2;
 export const HALF_W = PITCH_WIDTH / 2;
 
@@ -32,13 +43,13 @@ export const HALF_W = PITCH_WIDTH / 2;
  * so a wide ball drifting behind the line can never register a phantom goal. */
 export const OUT_PLAY_COAST = 0.5;
 
-export const GOAL_WIDTH = 7 * PITCH_SCALE;
+export const GOAL_WIDTH = 7 * GOAL_AND_BOX_SCALE;
 export const GOAL_DEPTH = 2.2;
 /** Crossbar height (m) — a ball crossing the goal line above this is OVER the bar. */
 export const GOAL_HEIGHT = 2.44;
-export const BOX_DEPTH = 13 * PITCH_SCALE;
-export const BOX_WIDTH = 28 * PITCH_SCALE;
-export const CENTER_CIRCLE_R = 7 * PITCH_SCALE;
+export const BOX_DEPTH = 13 * GOAL_AND_BOX_SCALE;
+export const BOX_WIDTH = 28 * GOAL_AND_BOX_SCALE;
+export const CENTER_CIRCLE_R = 7 * FIELD_SCALE;
 
 /** Fixed simulation timestep (s). */
 export const DT = 1 / 60;
@@ -50,8 +61,38 @@ export const MATCH_DURATION = 240;
  */
 export const STOPPAGE_MAX = 8;
 
+/**
+ * The currently shipped turf response, named as one authority so a later
+ * factorial can compare surfaces without scattering friction/bounce edits.
+ * M0 adds no alternative profile and no runtime selection.
+ */
+export interface SurfaceProfile {
+  readonly id: 'current';
+  readonly ballFrictionK: number;
+  readonly ballBounce: number;
+  readonly bounceDamp: number;
+  readonly bounceMinVz: number;
+  readonly airSpinDecay: number;
+  readonly groundSpinDecay: number;
+  readonly bounceSpinRetention: number;
+}
+
+export const SURFACE_PROFILE: SurfaceProfile = Object.freeze({
+  id: 'current',
+  ballFrictionK: 0.55,
+  ballBounce: 0.45,
+  bounceDamp: 0.72,
+  bounceMinVz: 2.2,
+  airSpinDecay: 0.25,
+  groundSpinDecay: 1.5,
+  bounceSpinRetention: 0.55,
+});
+
 /** Ball exponential velocity decay per second: v *= exp(-K * dt). */
-export const BALL_FRICTION_K = 0.55;
+export const BALL_FRICTION_K = SURFACE_PROFILE.ballFrictionK;
+export const BALL_AIR_SPIN_DECAY = SURFACE_PROFILE.airSpinDecay;
+export const BALL_GROUND_SPIN_DECAY = SURFACE_PROFILE.groundSpinDecay;
+export const BALL_BOUNCE_SPIN_RETENTION = SURFACE_PROFILE.bounceSpinRetention;
 
 /* ---- The energy economy (Phase 58 — it BINDS now) ---- */
 /**
@@ -127,11 +168,11 @@ export const CROSS_LEAD_MAX = 3.5;
 /** Gravity on the lofted ball (m/s²). Airborne balls fly friction-free. */
 export const GRAVITY = 9.81;
 /** Vertical restitution on landing: bounce vz = -vz · this. */
-export const BALL_BOUNCE = 0.45;
+export const BALL_BOUNCE = SURFACE_PROFILE.ballBounce;
 /** Horizontal speed kept per bounce (the turf bites). */
-export const BOUNCE_DAMP = 0.72;
+export const BOUNCE_DAMP = SURFACE_PROFILE.bounceDamp;
 /** Landing slower than this vertically just settles into a roll. */
-export const BOUNCE_MIN_VZ = 2.2;
+export const BOUNCE_MIN_VZ = SURFACE_PROFILE.bounceMinVz;
 /** Above this height a ball can't be trapped or deflected — only headed. */
 export const CONTROL_MAX_HEIGHT = 1.3;
 /** Header contest window: ball height where outfielders can attack it... */
@@ -182,7 +223,7 @@ export const RESTART_MIN_SETUP = 1.0;
 export const RESTART_TIMEOUT = 6;
 
 /** A player controls a free ball inside this radius... */
-export const CONTROL_RADIUS = 1.25;
+export const CONTROL_RADIUS = 1.25 * CONTROL_REACH_SCALE;
 // S0 (docs/SUBSTRATE-MAP.md): both sides with a body within this of a loose ball =
 // a genuine contest. Classification-only today; the physical 50-50 will use it later.
 export const CONTEST_RADIUS = 3;
@@ -241,4 +282,8 @@ export const TEAM_AI_INTERVAL = 0.4;
 
 export const SHOT_SPEED = 27;
 /** Minimum distance between player centers (hard separation). */
-export const PLAYER_MIN_DIST = 1.05;
+export const PLAYER_MIN_DIST = 1.05 * BODY_SCALE;
+/** Radius of the stable kinematic core disc represented by PLAYER_MIN_DIST. */
+export const PLAYER_CORE_RADIUS = PLAYER_MIN_DIST / 2;
+/** IFAB size-5 ball: circumference 68–70cm ⇒ radius approximately 0.11m. */
+export const BALL_RADIUS = 0.11;

@@ -9,7 +9,8 @@ import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeR
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
-  AI_INTERVAL, BALL_BOUNCE, BALL_FRICTION_K, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
+  AI_INTERVAL, BALL_AIR_SPIN_DECAY, BALL_BOUNCE, BALL_BOUNCE_SPIN_RETENTION, BALL_FRICTION_K,
+  BALL_GROUND_SPIN_DECAY, BOUNCE_DAMP, BOUNCE_MIN_VZ, BOX_DEPTH, BOX_WIDTH,
   CONTACT_BLIND_PEN, CONTROL_MAX_HEIGHT, CONTROL_MAX_SPEED, CONTROL_RADIUS, CORNER_CLEARANCE,
   DEFLECT_MAX_SPEED, DT,
   GK_CONTROL_MAX_SPEED, GK_HOLD_CLEARANCE, GOAL_HEIGHT, GOAL_WIDTH, GRAVITY, HALF_L, HALF_W,
@@ -1000,7 +1001,9 @@ export class Match {
       const vx = ball.vel.x;
       ball.vel.x = vx * c - ball.vel.y * s;
       ball.vel.y = vx * s + ball.vel.y * c;
-      ball.spin *= Math.exp(-(ball.z > 0 ? 0.25 : 1.5) * dt);
+      ball.spin *= Math.exp(
+        -(ball.z > 0 ? BALL_AIR_SPIN_DECAY : BALL_GROUND_SPIN_DECAY) * dt,
+      );
       if (ball.spin > -0.02 && ball.spin < 0.02) ball.spin = 0;
     }
     ball.pos.x += ball.vel.x * dt;
@@ -1016,7 +1019,7 @@ export class Match {
           ball.vz = -ball.vz * BALL_BOUNCE;
           ball.vel.x *= BOUNCE_DAMP;
           ball.vel.y *= BOUNCE_DAMP;
-          ball.spin *= 0.55;
+          ball.spin *= BALL_BOUNCE_SPIN_RETENTION;
         } else {
           ball.vz = 0;
         }

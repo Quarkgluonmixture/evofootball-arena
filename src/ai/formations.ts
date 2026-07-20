@@ -1,6 +1,6 @@
 import { clamp } from '../utils/math';
 import { v2, type V2 } from '../utils/vec';
-import { BOX_DEPTH, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W, PITCH_SCALE } from '../sim/constants';
+import { BOX_DEPTH, CORNER_CLEARANCE, FIELD_SCALE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -82,14 +82,14 @@ export const DEFEND_FORMATIONS: Record<DefendFormationId, V2[]> = {
 };
 
 // Density相变 (2026-07-20): the fixed tables above were tuned in ABSOLUTE
-// metres for the 90×58 pitch, so on a shrunk pitch (PITCH_SCALE<1) they fall
+// metres for the 90×58 pitch, so on a shrunk pitch (FIELD_SCALE<1) they fall
 // out of bounds. Scale them to stay proportional + in-bounds. The DEFAULT path
 // is emergentStation (fractional, already fits); this keeps the legacy fixed
 // path + the pre-match shape diagrams valid when the field is scaled.
-if (PITCH_SCALE !== 1) {
+if (FIELD_SCALE !== 1) {
   for (const table of [ATTACK_FORMATIONS, DEFEND_FORMATIONS] as Record<string, V2[]>[]) {
     for (const key of Object.keys(table)) {
-      table[key] = table[key].map((p) => v2(p.x * PITCH_SCALE, p.y * PITCH_SCALE));
+      table[key] = table[key].map((p) => v2(p.x * FIELD_SCALE, p.y * FIELD_SCALE));
     }
   }
 }
@@ -97,7 +97,7 @@ if (PITCH_SCALE !== 1) {
 // EMERGENT POSITIONING FIELD (Phase B → DEFAULT 2026-07-20, the coordinated
 // density相变). Positions grow from role + genes + live state, not a fixed
 // formation menu — VISION §1's #1 violation retired. It is REQUIRED on the
-// shrunk pitch (PITCH_SCALE<1): emergent stations are fractional and auto-fit,
+// shrunk pitch (FIELD_SCALE<1): emergent stations are fractional and auto-fit,
 // the fixed tables use absolute coords and would fall off a smaller pitch.
 // The UI toggle (settings → experimental) can still turn it OFF for A/B, and
 // probes can force-OFF with EMERGENT_POS=0.

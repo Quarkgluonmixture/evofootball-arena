@@ -15,7 +15,7 @@ import {
   type RenderPlayer, type RenderState,
 } from '../src/render3d/RenderStateAdapter';
 import { ReplayBuffer } from '../src/replay/ReplayBuffer';
-import { DT, HALF_L, PITCH_SCALE } from '../src/sim/constants';
+import { DT, FIELD_SCALE, HALF_L } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -310,17 +310,17 @@ describe('the linesman law (Phase 77, pure)', () => {
 
   it('linesmanTargetX stays level with the line or the ball, inside his half', () => {
     // density相变 re-baseline (2026-07-20): coordinates are pitch-x, so they
-    // scale with PITCH_SCALE; the clamp is HALF_L. Same law, scaled inputs.
+    // scale with FIELD_SCALE; the clamp is HALF_L. Same law, scaled inputs.
     // Level with the second-last defender.
-    expect(linesmanTargetX(1, 30 * PITCH_SCALE, 10 * PITCH_SCALE)).toBe(30 * PITCH_SCALE);
+    expect(linesmanTargetX(1, 30 * FIELD_SCALE, 10 * FIELD_SCALE)).toBe(30 * FIELD_SCALE);
     // The ball is nearer the goal line — track the ball instead.
-    expect(linesmanTargetX(1, 30 * PITCH_SCALE, 41 * PITCH_SCALE)).toBe(41 * PITCH_SCALE);
+    expect(linesmanTargetX(1, 30 * FIELD_SCALE, 41 * FIELD_SCALE)).toBe(41 * FIELD_SCALE);
     // Play in the other half: he waits at halfway, never crosses.
-    expect(linesmanTargetX(1, -20 * PITCH_SCALE, -30 * PITCH_SCALE)).toBe(0);
+    expect(linesmanTargetX(1, -20 * FIELD_SCALE, -30 * FIELD_SCALE)).toBe(0);
     // Never past the goal line; mirrored end works the same.
     expect(linesmanTargetX(1, 60, 0)).toBeLessThanOrEqual(HALF_L);
-    expect(linesmanTargetX(-1, -30 * PITCH_SCALE, -41 * PITCH_SCALE)).toBe(-41 * PITCH_SCALE);
-    expect(linesmanTargetX(-1, 20 * PITCH_SCALE, 30 * PITCH_SCALE)).toBe(-0);
+    expect(linesmanTargetX(-1, -30 * FIELD_SCALE, -41 * FIELD_SCALE)).toBe(-41 * FIELD_SCALE);
+    expect(linesmanTargetX(-1, 20 * FIELD_SCALE, 30 * FIELD_SCALE)).toBe(-0);
   });
 });
 
@@ -379,7 +379,7 @@ describe('cameraGoalFor', () => {
     for (const sign of [1, -1] as const) {
       // density相变 re-baseline (2026-07-20): the penalty spot is a pitch-x
       // (scales), and the look-at is the goal line HALF_L (scales too).
-      const spot = { x: sign * 35.6 * PITCH_SCALE, z: 0, vx: 0, vz: 0 };
+      const spot = { x: sign * 35.6 * FIELD_SCALE, z: 0, vx: 0, vz: 0 };
       const g = cameraGoalFor('penalty', spot);
       expect(g.lx).toBe(sign * HALF_L); // frames the goal
       // Camera between halfway and the spot — behind the kicker, not the net.

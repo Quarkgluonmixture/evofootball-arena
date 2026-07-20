@@ -2,7 +2,7 @@
  * COORDINATED-DENSITY PROBE (2026-07-20). VISION §1 names two load-bearing
  * substrate roots behind the endless width/position reverts: (A) space/density
  * and (B) emergent positioning. This probe tests defect A *coordinated with* B:
- * shrink the playing field (PITCH_SCALE, set via env) with EMERGENT positioning
+ * shrink the playing field (FIELD_SCALE, set via env) with EMERGENT positioning
  * ON (fractional stations auto-fit the smaller pitch; the fixed tables can't),
  * and measure against the VISION acceptance table — SHIP ONLY IF ALL THREE PASS:
  *
@@ -18,8 +18,8 @@
  * The metrics are SCALE-INVARIANT (clump radius ×scale, spread ÷scale, goal
  * scaled with the pitch so scoring difficulty is constant) so the two arms are
  * comparable. Run both and diff (same seeds/teams; only the field scale differs):
- *   EMERGENT_POS=1 PITCH_SCALE=1    npx tsx scripts/probes/density-probe.ts [gens]
- *   EMERGENT_POS=1 PITCH_SCALE=0.82 npx tsx scripts/probes/density-probe.ts [gens]
+ *   EMERGENT_POS=1 FIELD_SCALE=1 GOAL_AND_BOX_SCALE=1 npx tsx scripts/probes/density-probe.ts [gens]
+ *   EMERGENT_POS=1 FIELD_SCALE=0.82 GOAL_AND_BOX_SCALE=0.82 npx tsx scripts/probes/density-probe.ts [gens]
  *
  * Naive shrink is BANNED by VISION §2 if it worsens 乱抢 — this probe is the gate.
  */

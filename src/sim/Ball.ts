@@ -1,5 +1,7 @@
 import { v2 } from '../utils/vec';
+import { BALL_RADIUS } from './constants';
 import type { Player } from './Player';
+import type { BallPhysicalMode } from './physical';
 
 /**
  * The ball is either free (integrated by Match physics with friction and wall
@@ -10,6 +12,10 @@ import type { Player } from './Player';
 export class Ball {
   pos = v2();
   vel = v2();
+  /** IFAB-sized physical radius; M0 does not feed it into line/goal/capture laws. */
+  get radius(): number {
+    return BALL_RADIUS;
+  }
   /** Height above the pitch (m). 0 for ground balls. */
   z = 0;
   /** Vertical velocity (m/s, + up). 0 for ground balls. */
@@ -28,6 +34,12 @@ export class Ball {
   /** In the air right now (grounded balls take the exact pre-Phase-28 path). */
   get airborne(): boolean {
     return this.z > 0 || this.vz !== 0;
+  }
+
+  /** Pure physical classification; match-law possessionPhase stays separate. */
+  get physicalMode(): BallPhysicalMode {
+    if (this.owner !== null) return 'controlled';
+    return this.airborne ? 'freeAirborne' : 'freeGround';
   }
 
   reset(): void {

@@ -9,7 +9,7 @@ import {
   tryTacticalFoul,
 } from '../src/sim/mechanics';
 import { Player, TURN_RATE } from '../src/sim/Player';
-import { DT, GK_HOLD_CLEARANCE, PITCH_SCALE } from '../src/sim/constants';
+import { DT, FIELD_SCALE, GK_HOLD_CLEARANCE } from '../src/sim/constants';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { dist, v2 } from '../src/utils/vec';
 
@@ -309,14 +309,14 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
       // shoulder from BEHIND. Pitch-x scales (2026-07-20 density相变); at the
       // old x=16 the carrier is now only 15.5m out (below the band floor).
       for (const p of m.teams[1].players) {
-        if (p.role !== 'GK') p.pos = { x: -10 * PITCH_SCALE, y: (p.index * 6 - 12) * PITCH_SCALE };
+        if (p.role !== 'GK') p.pos = { x: -10 * FIELD_SCALE, y: (p.index * 6 - 12) * FIELD_SCALE };
       }
-      striker.pos = { x: 16 * PITCH_SCALE, y: 0 };
+      striker.pos = { x: 16 * FIELD_SCALE, y: 0 };
       striker.vel = { x: 7, y: 0 };
       m.ball.owner = striker;
-      m.ball.pos = { x: 16.8 * PITCH_SCALE, y: 0 };
+      m.ball.pos = { x: 16.8 * FIELD_SCALE, y: 0 };
       m.possessionSide = 0;
-      chaser.pos = { x: 14.9 * PITCH_SCALE, y: 0.3 * PITCH_SCALE };
+      chaser.pos = { x: 14.9 * FIELD_SCALE, y: 0.3 * FIELD_SCALE };
       chaser.vel = { x: 7.5, y: 0 };
       chaser.tackleCooldown = 0;
       chaser.stunTimer = 0;
@@ -409,18 +409,18 @@ describe('first touch and forward pressure in match play (Phase 27)', () => {
     const striker = m.teams[0].players[4];
     // Pitch-x scales (2026-07-20 density相变): at the old x=38/42 both the
     // carrier and the "goal-side" defender sit BEHIND the shrunk goal line.
-    striker.pos = { x: 38 * PITCH_SCALE, y: 0 };
+    striker.pos = { x: 38 * FIELD_SCALE, y: 0 };
     m.ball.owner = striker;
-    m.ball.pos = { x: 38.8 * PITCH_SCALE, y: 0 };
+    m.ball.pos = { x: 38.8 * FIELD_SCALE, y: 0 };
     m.possessionSide = 0;
     // Clear team 1 out of the danger zone: a true 1v1.
     for (const p of m.teams[1].players) {
-      if (p.role !== 'GK') p.pos = { x: -20 * PITCH_SCALE, y: p.pos.y };
+      if (p.role !== 'GK') p.pos = { x: -20 * FIELD_SCALE, y: p.pos.y };
     }
     decidePlayer(gk, m);
     expect(gk.action.type).toBe('GoalkeeperRush');
     // Now park a defender goal-side: the keeper stays home.
-    m.teams[1].players[1].pos = { x: 42 * PITCH_SCALE, y: 0 };
+    m.teams[1].players[1].pos = { x: 42 * FIELD_SCALE, y: 0 };
     decidePlayer(gk, m);
     expect(gk.action.type).not.toBe('GoalkeeperRush');
   });

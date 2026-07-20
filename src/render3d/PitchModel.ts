@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {
-  BOX_DEPTH, BOX_WIDTH, CENTER_CIRCLE_R, GOAL_WIDTH, HALF_L, HALF_W, PITCH_SCALE,
+  BOX_DEPTH, BOX_WIDTH, CENTER_CIRCLE_R, FIELD_SCALE, GOAL_WIDTH, HALF_L, HALF_W,
 } from '../sim/constants';
 
 /**
@@ -28,9 +28,9 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
 
   // Adboards: low procedural boards along the far side and behind the goals —
   // grounds the diorama without heavy assets. Widths + positions scale with
-  // PITCH_SCALE (2026-07-20 density相变): the fixed 24m board at ±30 spilled
+  // FIELD_SCALE (2026-07-20 density相变): the fixed 24m board at ±30 spilled
   // past the shrunk pitch/stands (the green top-stripe "beams" poking out).
-  const s = PITCH_SCALE;
+  const s = FIELD_SCALE;
   const boardGeo = new THREE.BoxGeometry(24 * s, 0.9, 0.25);
   const boardMats = [0x16223a, 0x1d3a5f, 0x24304a].map(
     (c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.85 }),
