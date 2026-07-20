@@ -245,12 +245,6 @@ export class GameApp implements GameActions {
     this.cineBug.className = 'score-bug cine-bug hidden';
     this.cineBug.addEventListener('click', () => this.toggleClash());
     stage.appendChild(this.cineBug);
-    // Keep cinematic in sync with the browser's OWN fullscreen (Esc leaves
-    // fullscreen natively, often without firing our keydown): drop cinematic
-    // when fullscreen is exited while it's on (2026-07-20).
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement && this.cinematic) this.setCinematic(false);
-    });
     window.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape' && this.cinematic) this.setCinematic(false);
       // SPACE = pause/play (user ask, 118.5). Not while typing in the seed
@@ -1253,20 +1247,6 @@ export class GameApp implements GameActions {
     this.cinematic = v;
     document.body.classList.toggle('cinematic', v);
     this.updateCineBug();
-    // TRUE fullscreen (2026-07-20, user: 影院模式也不是全屏): the class alone
-    // only hides the chrome — actually go fullscreen so the pitch fills the
-    // whole SCREEN. Invoked from the 🎥 button gesture, so requestFullscreen is
-    // permitted; swallow rejections (blocked in some embeds/iframes — the CSS
-    // cinematic layout still applies as a fallback).
-    try {
-      if (v && !document.fullscreenElement) {
-        document.documentElement.requestFullscreen?.().catch(() => {});
-      } else if (!v && document.fullscreenElement) {
-        document.exitFullscreen?.().catch(() => {});
-      }
-    } catch {
-      /* fullscreen API unavailable — CSS cinematic still applies */
-    }
     if (v) this.feed.pushSystem('🎥 Cinematic mode — press Esc or ✕ to exit.');
   }
 
