@@ -1340,10 +1340,19 @@ export function performDribbleTouch(match: Match, p: Player): void {
   ) {
     push *= 0.5;
   }
-  const speed = Math.hypot(p.vel.x, p.vel.y) + Math.max(push, 0.8);
+  const vmag = Math.hypot(p.vel.x, p.vel.y);
+  const speed = vmag + Math.max(push, 0.8);
   // A heavy first touch is a WOBBLY one: direction noise priced by technique.
   const noise = match.rng.gaussian() * 0.07 * (1.35 - p.attrs.dribbling * 0.7);
-  const dir = rotate(v2(hx, hy), noise);
+  // Knock it along the direction of TRAVEL, not the instantaneous facing.
+  // `heading` is rate-capped (TURN_RATE) and lags the velocity through a turn,
+  // so aiming at the old facing sent the freed ball off on a line the carrier
+  // was already turning away from — it "flew out" on a spin (play report:
+  // "带球转身,球偶尔会飞出去"). The ball now follows where he is actually
+  // running, so it stays on his path through the turn (gate needs v>2.5 m/s,
+  // so `travel` is always well-defined here; heading is only the slow fallback).
+  const travel = vmag > 0.5 ? v2(p.vel.x / vmag, p.vel.y / vmag) : v2(hx, hy);
+  const dir = rotate(travel, noise);
   ball.owner = null;
   ball.lastTouch = p;
   ball.vel = scale(dir, speed);
