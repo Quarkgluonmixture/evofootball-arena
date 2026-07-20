@@ -212,17 +212,24 @@ vision wants **multiple readable routes**, not forced tiki-taka.
   clone-and-rollout inside the live sim — it explodes exponentially and reads like a
   god-compute chess engine (violates §1's "long eyes," not omniscient search).
 
-- **⚠ `counterfactual-value` needs mid-match rollout — impl path unverified.** Two
-  options: **(a) deep-clone `Match` at tick T** and branch; **(b) replay from seed
-  to tick T, then branch.** Determinism tests confirm (b)'s seed-replay is exact
-  (`match.test` "watched === headless", `simRunner.test` byte-identical). But (a)'s
-  **mid-MATCH** clone-ability is NOT established — `save.ts` serialises **between
-  seasons**, `fingerprint` hashes the **post-season** save; no mid-match snapshot
-  exists today. → **Run a feasibility spike before scheduling `counterfactual-value`:**
-  can `Match` state be deep-cloned/serialised mid-tick, or must we replay-to-T?
-  (Replay-to-T is O(T) per branch — acceptable for a probe, maybe not per-tick in
-  the live sim; that difference decides whether S7 bounded-lookahead can use the
-  same machinery.)
+- **✅ FEASIBILITY SPIKE DONE (2026-07-20) — use REPLAY-TO-T; defer `Match.clone()`.**
+  Findings (from code): `Match` holds a single `readonly rng: Rng` (`Match.ts:153`,
+  `new Rng(seed)`) plus a graph of `Player`/`Team`/`Ball` **class instances with methods
+  and cross-refs** (`Ball.owner→Player`, `Team.players`, `allPlayers`) and has **no
+  clone/snapshot/toJSON**. So (a) deep-clone = a hand-written, maintenance-heavy
+  `Match.clone()` (every mutable field + ref rewiring; miss one → SILENT divergence) —
+  a real footgun. (b) **replay-from-seed-to-T is exact and free**: the determinism
+  tests (`match.test` same-seed-identical, `simRunner.test` byte-identical) guarantee
+  `new Match({seed,teamA,teamB})` stepped T times reproduces the state at T bit-for-bit;
+  branch by applying the candidate action and continuing. Cost O(T)/branch (~35 ms to
+  replay ~7000 steps at the 5 µs/step perf baseline) — fine OFFLINE, and the rollout
+  tail after T is cheap (~120–240 steps). → **Build `counterfactual-value` on
+  replay-to-T; invest in a `Match.clone()` optimisation ONLY if the offline probe
+  proves too slow, gated by a clone==replay determinism test.**
+- ⭐ **This does NOT gate S7.** Live bounded-lookahead uses the CHEAP analytic estimator
+  (ETA / pitch-control / next-options), never a Match rollout (too slow per-tick under
+  either scheme) — the clone-vs-replay choice only touches the offline oracle, so the
+  online=never / offline=oracle boundary above holds cleanly.
 
 ---
 
