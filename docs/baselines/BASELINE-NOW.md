@@ -132,3 +132,29 @@ type through   n/match 14.3  comp 50%  fails 7.2/m (cut 76%)  line-brk 79%  fwd 
   and its comp% ↑ together, not just more safe `short`/`lateral`.
 - `one-touch ≈ 0` today: the sim rarely kicks a pass inside the first-touch window —
   a genuine gap (one-touch combos) the substrate should let emerge.
+
+---
+
+## perception-calibration — the perfect-info baseline (S3 gate seed)
+`npx tsx scripts/probes/perception-calibration.ts 120 0`
+
+```
+observation error (position MAE): 0.00 m  — PERFECT INFORMATION (AI reads Match truth; no S3 layer)
+perfect-info exposure (headroom S3 removes):
+  ball behind the player's facing: 26.5%
+  ball > 20m away:                 28.0%
+  either (limited-eye would degrade): 46.2%
+```
+
+**Reads:**
+- **Observation error is 0.00 by construction** — every player reads the true `Match`
+  state; there is no perception layer. This is the "before" the S3 gate compares to:
+  when awareness-gated stale/limited perception lands, this probe must show obs-error
+  rising from 0 as awareness < 1 (and the balance test: it must NOT change speed/pass/
+  tackle — reading only).
+- **46% of player-decision-ticks use ball info a limited eye would lack** (26.5% the
+  ball is BEHIND the player's facing, 28% it's >20m away). Nearly half of decisions
+  lean on omniscient info — that's the headroom S3 removes, and mechanically why
+  perfect info collapses things like natural offside timing. When S3 lands, the win is
+  decisions degrading GRACEFULLY (worse reads for low-awareness players), not the sim
+  falling apart.
