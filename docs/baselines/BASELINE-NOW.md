@@ -104,3 +104,31 @@ by pass kind:  pass 78.7/m recv 79% int 17% · through 9.8/m recv 57% int 38% ·
   rises (richer, not safer).
 - **through-balls are the honest risky tail** (57% received / 38% intercepted);
   `stable@1.5s` ≈ 67–76% across buckets (matches reception-survival's 71%).
+
+---
+
+## probe-pass (extended) — completion by NAMED pass type
+`npx tsx scripts/probe-pass.ts 120 20260702` (the `type …` rows; the probe also still
+prints its original kind/dist/lane/kind×lane rows)
+
+```
+120 matches, 11673 tracked passes (97.3/match)
+type cross     n/match  2.5  comp 35%  fails 1.6/m (cut 95%)  line-brk 10%  fwd  -5.8m
+type lateral   n/match  7.7  comp 82%  fails 1.4/m (cut 88%)  line-brk  5%  fwd   0.3m
+type long      n/match 47.2  comp 80%  fails 9.6/m (cut 88%)  line-brk 55%  fwd   5.1m
+type short     n/match 25.5  comp 83%  fails 4.3/m (cut 84%)  line-brk 35%  fwd   1.3m
+type through   n/match 14.3  comp 50%  fails 7.2/m (cut 76%)  line-brk 79%  fwd  16.1m
+(one-touch ≈ 0 — firstTouchWindow rarely open at a pass kick)
+```
+
+**Reads:**
+- **`through` is the line-breaker: beats ≥1 defender 79% of the time and gains +16m —
+  but completes only 50%** (risk/reward). `cross` is the low-yield wide delivery (35%
+  comp, fwd −5.8m = sideways/back in the attack frame). `short`/`long` are the safe
+  80–83% bulk.
+- **line-brk% + fwd are the "was this a PROGRESSIVE pass" signal** (added by the
+  extension). Slice-1's affordance/pass-valuation win = the passer picks more
+  through/line-breaking lanes **while holding completion** — i.e. `through` share ↑
+  and its comp% ↑ together, not just more safe `short`/`lateral`.
+- `one-touch ≈ 0` today: the sim rarely kicks a pass inside the first-touch window —
+  a genuine gap (one-touch combos) the substrate should let emerge.
