@@ -1921,8 +1921,10 @@ export class Match {
         }
         // Flat form of the old norm/scale/add push — same op order, in place.
         const k = (PLAYER_MIN_DIST - d) / 2;
-        const px = (dx / d) * k;
-        const py = (dy / d) * k;
+        const nx = dx / d;
+        const ny = dy / d;
+        const px = nx * k;
+        const py = ny * k;
         // A keeper stands their ground in their own box against opponents
         // (Phase 28): the carrier bounces off — nobody bulldozes the keeper
         // back into the net a half-push at a time.
@@ -1939,6 +1941,32 @@ export class Match {
           a.pos.y += py;
           b.pos.x -= px;
           b.pos.y -= py;
+        }
+
+        // M1 (World-Model Foundation): position-only separation left the
+        // pair's velocity driving straight back into penetration next frame.
+        // Remove ONLY closing relative velocity along the contact normal:
+        // tangential motion and already-separating pairs stay untouched. Equal
+        // bodies share the correction (mean normal velocity is conserved); an
+        // anchored in-box keeper gives the whole correction to the opponent.
+        // Pair order + one fixed pass remain the determinism contract — no
+        // convergence tolerance or early-stop loop.
+        const relativeNormal = (a.vel.x - b.vel.x) * nx + (a.vel.y - b.vel.y) * ny;
+        if (relativeNormal < 0) {
+          const remove = -relativeNormal;
+          if (gkA && !gkB) {
+            b.vel.x -= nx * remove;
+            b.vel.y -= ny * remove;
+          } else if (gkB && !gkA) {
+            a.vel.x += nx * remove;
+            a.vel.y += ny * remove;
+          } else {
+            const half = remove / 2;
+            a.vel.x += nx * half;
+            a.vel.y += ny * half;
+            b.vel.x -= nx * half;
+            b.vel.y -= ny * half;
+          }
         }
       }
     }

@@ -157,13 +157,21 @@ months** — this narrowed slice is.
      `8d0cfb08…` at seed 42). Paired same-machine perf against `f3c29ad`: 5.4→5.5µs/step
      and 14.7→14.4 matches/s (≈2% wall-clock noise; phase profile unchanged), profiler
      determinism OK; the frozen `docs/perf/baseline.json` remains untouched.
-- **M1 — contact solver: kill interpenetration velocity (FIRST BEHAVIOURAL, §2-GATED).**
-  `resolveOverlaps`: keep the position separation, **also remove the mutual normal-velocity
-  component** so bodies stop re-penetrating next frame. **Fixed iteration count, fixed pair
-  order, no convergence-tolerance early-stop** (determinism). PBD-style position+velocity
-  correction. This is NOT byte-identical (changes jostle/separation → pressing/congestion →
-  §2). ⭐ **Gate M1 ALONE (calibrate + user play-test) BEFORE stacking M2/M3** — one lever,
-  gate, then next; don't discover a wrecked density feel at M4 after 3 stacked pieces.
+- ✅ **M1 — contact solver: kill interpenetration velocity (FIRST BEHAVIOURAL). DONE
+  2026-07-20; §2 USER-GATED.** `resolveOverlaps` keeps the same position separation, one
+  fixed pass, and fixed pair order, then removes only closing relative velocity along the
+  contact normal. Equal bodies share the correction; the opponent takes the whole correction
+  against an anchored in-box keeper. Tangential and already-separating motion are untouched;
+  there is no convergence tolerance or early-stop loop. **Direct mechanism proof:** an 8m/s
+  closing pair leaves with 0m/s inward speed; 120-frame mean pre-solve penetration fell
+  `0.133333→0.007517m` (-94.4%). Same-seed contest/churn stayed neutral while the contest
+  pinball extreme fell `19→7` (mean `1.47→1.45`). Gates: clean tsc/build · 453/453 tests ·
+  repeated fingerprints stable (`6f58fa45…` seed 1337, `eda26d6f…` seed 42) · profiler
+  determinism OK · 5.28µs/step vs frozen 5.32 (14.4 matches/s, equal to the same-session M0
+  run) · 8-season calibrate at two seeds 2.22/2.30 goals per match. ⭐ **User play-test
+  accepted:** players felt “像抹了一点润滑油的轻微弹性球一样”; no sticking, congestion, or
+  density veto was reported. That feel is the M1 baseline. M2 may now start as the next
+  isolated lever.
 - **M2 — ball-access / screening world-fact.** One general query: *from this body's pos +
   dir, can it directly contact the ball?* Reads ball distance, ball front/side/back, whether
   an opponent core sits on the access line, must-go-around, legal playing distance. **This is

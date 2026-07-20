@@ -17,10 +17,13 @@
 > derived `bodyDir`/`coreRadius`/ball mode, `BALL_RADIUS=0.11`, pure contact/access
 > geometry, and type-only `ContestEpisode`. Gates: tsc/build clean · 450/450 · two
 > before/after fingerprints identical (`2821d2d9…`, `8d0cfb08…`) · paired perf neutral
-> (5.4→5.5µs/step; 14.7→14.4 matches/s, profiler determinism OK). **STOP boundary held:**
-> no AI consumer, capture/ownership change, or overlap velocity response. **NEXT = M1,
-> but M1 is the FIRST BEHAVIOURAL change and must be §2-GATED ALONE on the user's
-> play-test before stacking M2/M3.** Sequence remains M1 (contact-solver velocity fix) →
+> (5.4→5.5µs/step; 14.7→14.4 matches/s, profiler determinism OK). ✅ **M1 DONE + USER
+> ACCEPTED (2026-07-20):** the fixed-order overlap solver now removes only closing normal
+> relative velocity (tangent/separating motion preserved; keeper anchoring preserved).
+> Mechanism: inward 8→0m/s, 120f penetration 0.133333→0.007517m; full 453/453, stable
+> repeated fingerprints, perf 5.28µs/step, two-seed calibrate 2.22/2.30. User feel verdict:
+> “像抹了一点润滑油的轻微弹性球一样” — accepted, with no sticking/congestion veto.
+> **NEXT = M2 ball-access/screening world-fact, as one isolated lever.** Sequence remains
 > M2 (ball-access/screening world-fact) → M3 (touch≠control) → M4 (play-test, then **RETURN
 > to S3–S8 = the mainline**). The body model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
