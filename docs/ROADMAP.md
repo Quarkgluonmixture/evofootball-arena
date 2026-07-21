@@ -468,6 +468,13 @@
 > transition-estimator inference programme, or **C)** dormant dynamic team task allocation.
 > No option has been silently started. The evidence, boundaries and recommendation are in
 > [`world-model/OFFBALL-MAINLINE-DECISION.md`](world-model/OFFBALL-MAINLINE-DECISION.md).
+> 🔬 **USER SELECTED D — CENTRAL DEMAND PUBLICATION PARKED:** C0 remains dormant
+> accounting language. No task menu or commander rewrite follows. Work returns to the
+> player-level perception→affordance→value chain. First cut is a read-only anatomy of T0b's
+> failed relative-calibration gate on the already-open training/internal population; external
+> validation and final test stay sealed, and no temperature/Dirichlet/centred-logit correction
+> may be tried. Authority:
+> [`world-model/TRANSITION-CALIBRATION-FAILURE-AUDIT.md`](world-model/TRANSITION-CALIBRATION-FAILURE-AUDIT.md).
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and

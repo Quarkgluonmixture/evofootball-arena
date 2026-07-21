@@ -278,5 +278,9 @@ Do not derive C0 demands from `team.runners`, `team.arriver`, `team.overlapper`,
 `team.chasers`, marks, formation slots or their current thresholds. That would
 reproduce the commander exactly while making the migration debt harder to see.
 
-The implementation stops here pending D versus G. The accepted live baseline is
-unchanged either way.
+The user selected **D**. C0 is now parked as dormant coordination language; no
+central demand publisher follows. The next cut returns to player-level
+perception/affordance/value and begins with the read-only T0b calibration failure
+audit in
+[`TRANSITION-CALIBRATION-FAILURE-AUDIT.md`](TRANSITION-CALIBRATION-FAILURE-AUDIT.md).
+That audit cannot patch T0b or open the sealed validation/test ranges.
