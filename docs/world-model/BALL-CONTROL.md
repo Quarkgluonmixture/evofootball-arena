@@ -1,8 +1,9 @@
 # Ball-Control Foundation — authoritative ball, readable touches
 
 Status: **B0 remains the accepted live path; B1a/B1b and B1c-3 were
-honest-reverted; B1c-0 representation + B1c-1/B1c-2 isolated mechanisms are
-retained. The bounded B1c retry is closed; return to S3–S8.**
+honest-reverted; B1c-0/B1c-1/B1c-2 and the causally new B1d-0 fixed-rendezvous
+lab are retained as isolated evidence. No B1d live stage is authorised; return
+to S3–S8.**
 This is a bounded S2 foundation slice, not an extension of the completed M0–M4 body
 campaign. The implementation authority for the retry is
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
@@ -90,6 +91,19 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
   Exact-zero own-touch→M3/possession/pass-arrival invariants did pass, so the
   lease boundary itself was not the failure; live movement↔recovery prediction
   was. No threshold/timer retry and no play-test candidate.
+- ✅ **B1d-0 — fixed-rendezvous integrator parity. PASSED 2026-07-21 as an
+  isolated falsification lab, not live wiring.** One fixed, velocity-only ball
+  impulse and an immutable future foot contact are planned using complete shadow
+  `Player` instances running the real `physicsStep`; execution can alter only
+  `desiredVel`. All five frozen no-opponent scenes contact with zero planned-foot
+  error. With recovery removed, braking/45°/90°/low-stamina scenes honestly miss;
+  straight jog remains the negative control. Stun, perturbation, intent-change,
+  determinism and exact-zero anti-magnet gates pass. Full 509/509, both frozen
+  fingerprints exact, and live `control-sequence-anatomy` stays all zero. This
+  proves only that normal locomotion can complete a fixed recovery. It does not
+  authorise cadence, opponents, possession continuity, retime, swept contact or
+  any `Match` consumer. Authority:
+  [`B1D-FIXED-RENDEZVOUS.md`](B1D-FIXED-RENDEZVOUS.md).
 
 ## 4. B1 experimental record (2026-07-21)
 
@@ -132,5 +146,5 @@ only because it changes the causal representation and starts with a
 byte-identical consumer census. If any live B1c stage still multiplies M3,
 pass-arrival contacts or possession churn—or breaks policy/style/stamina
 directionality—fully revert it. That happened at B1c-3: the accepted live HEAD
-remains B0, while the isolated B1c mechanisms stay as evidence. There is no
-automatic B1c-4 or follow-on body campaign; resume S3–S8.
+remains B0, while the isolated B1c mechanisms and B1d-0 result stay as evidence.
+There is no automatic B1c-4/B1d-1 or follow-on body campaign; resume S3–S8.

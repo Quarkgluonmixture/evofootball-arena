@@ -345,6 +345,14 @@ rule, there is no B1c-4 and no user play-test of a candidate that already fails
 objective football contracts. Return to S3–S8; only a future causally new
 reachability/recovery model may justify reopening this boundary.
 
+**Later evidence, still isolated:** the causally new B1d-0 fixed-rendezvous lab
+did justify testing the missing recovery mediator without reopening B1c-3. Five
+frozen no-opponent plans completed through desiredVel-only recovery and the real
+`Player.physicsStep`; four corresponding original-intent ablations missed. It
+uses no `Match`, M3, possession, sequence, opponent, retime or swept contact and
+therefore does not authorise a live B1d stage. Full authority and gates:
+[`B1D-FIXED-RENDEZVOUS.md`](B1D-FIXED-RENDEZVOUS.md).
+
 ## 8. `control-sequence-anatomy`
 
 At minimum emit:

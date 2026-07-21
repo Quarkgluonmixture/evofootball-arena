@@ -161,6 +161,18 @@
 > formulate one offline future-state cause (execution risk, threat created/conceded,
 > structure/rest-defence cost or option quality), pass the counterfactual payoff oracle,
 > and only then consider a live consumer.
+> ✅ **B1d-0 FIXED-RENDEZVOUS LAB PASSED (2026-07-21; isolated, NOT live):** an
+> external hostile audit authorised only the causally new recovery mediator. A single
+> bounded ball impulse targets one immutable contact tick/point; a complete shadow and
+> executor both run real `Player.physicsStep`, and recovery writes only `desiredVel`.
+> Frozen straight/brake/45°/90°/low-stamina scenes contact 5/5; disabling recovery makes
+> 4/5 miss, while straight jog is the expected negative control. Stun, lateral perturbation,
+> intent invalidation, no-replan and all anti-magnet exact-zero gates pass. There is no
+> `Match`/AI/M3/possession/ControlSequence/opponent/swept-contact import. Build + full
+> 509/509 pass, both fingerprints remain exact, and the live 120-match sequence ledger
+> remains all zero. **This proves the player can physically recover one planned touch; it
+> does not authorise B1d-1, live cadence or play-test.** Authority:
+> [`world-model/B1D-FIXED-RENDEZVOUS.md`](world-model/B1D-FIXED-RENDEZVOUS.md).
 > ❌ **FIRST RETURN-TO-S7 HYPOTHESIS FAILED + REVERTED (S7c, 2026-07-21):** a
 > pre-registered offline extension added separate clean-reception shooting-window threat
 > and turnover-corridor/rest-defence safety dimensions. Its static directional tests passed,
