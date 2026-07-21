@@ -79,6 +79,37 @@ export function capturePerceptionTruth(match: Match): PerceptionTruth {
   };
 }
 
+/** Full-truth snapshot for offline oracle probes; never a live perception path. */
+export function oraclePerceptionSnapshot(
+  truth: PerceptionTruth,
+  observerGid: number,
+): PerceptionSnapshot {
+  if (!truth.players.some((player) => player.gid === observerGid && !player.sentOff)) {
+    throw new Error(`Unknown perception observer gid ${observerGid}`);
+  }
+  return {
+    tick: truth.tick,
+    observerGid,
+    awareness: 1,
+    ball: {
+      pos: { x: truth.ball.pos.x, y: truth.ball.pos.y },
+      vel: { x: truth.ball.vel.x, y: truth.ball.vel.y },
+      ownerGid: truth.ball.ownerGid,
+      observedTick: truth.tick,
+      ageTicks: 0,
+    },
+    players: truth.players.filter((player) => !player.sentOff).map((player) => ({
+      gid: player.gid,
+      side: player.side,
+      pos: { x: player.pos.x, y: player.pos.y },
+      vel: { x: player.vel.x, y: player.vel.y },
+      bodyDir: { x: player.bodyDir.x, y: player.bodyDir.y },
+      observedTick: truth.tick,
+      ageTicks: 0,
+    })),
+  };
+}
+
 const clamp01 = (v: number): number => Math.max(0, Math.min(1, v));
 
 /** Stable functional noise: no RNG state and no call-order dependence. */

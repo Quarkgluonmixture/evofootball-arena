@@ -209,7 +209,7 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
 - **Code:** many actions, but too many **named-behaviour** switches + role branches
   (`wallPassW/thirdManW/overlapW`, `RUN_ROLE_W`, role bonuses).
 
-### S7 — Action value & bounded lookahead · 🟡🔴
+### S7 — Action value & bounded lookahead · 🟡🔴 (pass Pareto boundary exists offline)
 - **Provides:** not "how good does this look NOW" but "what does it turn the NEXT
   state into." Minimal lookahead (1–2 key events, **no MCTS**):
   `action → ball/people arrive → possession outcome → next high-value choice`.
@@ -219,8 +219,14 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
 - **`decisions` acts here:** smaller valuation error / fewer missed high-value
   candidates / less fooled by surface EV / slower degradation under time pressure —
   **NOT a flat success buff.**
-- **Code:** utility scoring exists (`PlayerBrain` `cands: UtilityScore[]`, with
-  `why`); it is a **score table**, not a predicted-outcome estimator.
+- **Code:** `ai/passValue.ts` now maps viable ordinary-pass affordances into eight
+  separately oriented next-state dimensions and computes a stable Pareto frontier. A
+  candidate is removed only when another is no worse in every dimension; the provisional
+  S5 control prior is deliberately excluded. The 120-match offline gate finds 4.8% of
+  current live targets unambiguously dominated, with awareness improving relation fidelity.
+  This is not a live consumer and the dominated-vs-frontier outcome split is observational,
+  not the required counterfactual payoff proof. Existing `PlayerBrain` still uses its
+  `UtilityScore[]` score table, not this predicted-outcome boundary.
 
 ### S8 — Team task & dynamic coordination · 🟡🔴
 - **Provides:** `TeamIntent{ phase, priorities, taskDemand[], structuralConstraints[] }`
@@ -354,15 +360,20 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
      unscored pass-affordance vector, plus `pass-affordance-calibration`. The raw arrival
      margin works and awareness improves its fidelity; the control prior is explicitly
      not accepted as a live scalar. Feature-off fingerprints remain byte-identical.
-   - **NEXT:** define the smallest S7 next-state comparator, then replace the single
-     `laneOpenness`/`opennessOf` surface scores in one closed S3→S4→S5→S7 pass cut
-     (`PlayerBrain.ts:272+`). Do not wire one raw dimension as a hand-authored bonus.
+   - ✅ **S7a OFFLINE DONE 2026-07-21:** weight-free Pareto dominance over eight raw
+     next-state dimensions, plus `pass-value-frontier`. It conservatively removes only
+     4.8% of current targets and preserves genuine risk/progression tradeoffs. Its outcome
+     split is diagnostic only, not layer-4 proof.
+   - **NEXT:** replace the single `laneOpenness`/`opennessOf` surface scores only as one
+     closed S3→S4→S5→S7 behavioural pass cut (`PlayerBrain.ts:272+`), paired with the
+     shared defensive S4 read. Do not wire one raw dimension as a hand-authored bonus.
 5. Defender interception/contest read off the same S4 prediction (`canInterceptPass`,
    `PlayerBrain.ts:1074`) — **the co-evolving defensive half** (balances the attack
    read, per the "finely-tuned equilibrium" lesson).
 
 **Files in scope:** `sim/Match.ts` (capture→contest), `ai/reachability.ts`
 (timeToReach), `ai/perceptionSnapshot.ts`, `ai/prediction.ts`, `ai/passAffordance.ts`,
+`ai/passValue.ts`,
 `ai/perception.ts` (`laneOpenness`/`opennessOf`/`canInterceptPass`), and
 `ai/PlayerBrain.ts` (pass loop + intercept). **SAVE_VERSION
 bumps** only if a gene struct changes (the `vision` revert + any new shared

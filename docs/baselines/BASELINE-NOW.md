@@ -240,3 +240,39 @@ exact-truth arrival margin   share   target received   intercepted
   samples land in 0.75–1.0 (actual target reception there is 76.4%; Brier 0.210). It is a
   monotonic prior, not a calibrated pass-success score, and must not be wired alone into
   the action table. The accepted S5 artifact is the raw vector.
+
+---
+
+## pass-value-frontier — S7a offline capability gate
+`npx tsx scripts/probes/pass-value-frontier.ts 120 0`
+
+S7a deliberately stops before utility weighting. It orients eight raw next-state
+dimensions so “larger is better,” then keeps every non-dominated target. It does not use
+the under-dispersed control prior and never chooses a winner among real tradeoffs.
+
+```
+n=120 (seeds 0–119)   comparable ordinary-pass choices 9,330
+exact truth: 4.88 candidates/set → 4.39 on Pareto frontier
+live chosen target: frontier 95.2% · dominated 4.8%
+dominated target: 1.11 unambiguously better alternatives on average
+
+awareness   candidate coverage   pair-relation agreement   frontier-membership agreement
+0.2               57.3%                   88.8%                        89.5%
+0.5               71.0%                   91.2%                        90.1%
+0.8               80.3%                   94.1%                        92.5%
+
+classification   n       target received   intercepted
+frontier        8,885         75.6%           18.4%
+dominated         445         68.5%           24.5%
+```
+
+**Reads:**
+- The frontier is intentionally broad: it removes only 4.8% of current targets. Safe
+  recycling and risky progression normally remain incomparable, so a future evolved
+  preference can express style instead of inheriting one author-written answer.
+- Awareness improves both pairwise next-state relations and frontier classification via
+  the intended S3→S4→S5→S7 path. This is a mechanism/capability gate, not gene bite.
+- Dominated choices correlate with 7.1pp fewer intended receptions and 6.1pp more
+  interceptions. That is useful headroom evidence, but **not causal layer-4 proof**:
+  different match contexts chose those targets. A paired offline rollout is still required
+  before claiming that replacing the live choice pays.

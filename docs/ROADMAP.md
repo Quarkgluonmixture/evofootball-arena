@@ -82,9 +82,23 @@
 > is still under-dispersed (95.2% of truth samples in its top quartile), so it is **not ready
 > to act as a live success score**; the raw vector is the accepted output. Gates: build clean ·
 > 480/480 · both fingerprints unchanged (`a9412f22…`, `d14a471f…`) · perf 5.38µs/step,
-> 14.4 matches/s, profiler determinism OK. **NEXT = define the smallest S7 next-state
-> comparator over this vector, then retry one closed S3→S4→S5→S7 behavioural cut; do not
-> wire the under-dispersed control prior as a new hand-authored pass bonus.** The body
+> 14.4 matches/s, profiler determinism OK. ✅ **S7a OFFLINE PARETO BOUNDARY DONE
+> (2026-07-21, byte-identical):** `passValue.ts` converts viable pass affordances into
+> eight separately oriented next-state dimensions and removes a target only when another
+> is no worse in every dimension. There is no aggregate score, tactical label, or use of
+> the under-dispersed control prior; safe recycling vs risky progression remains a real
+> tradeoff for evolution to price. At 120 matches / 9,330 comparable choices, the current
+> live target is on the truth Pareto frontier 95.2% and unambiguously dominated 4.8%
+> (1.11 dominators each). The dominated group is observationally associated with worse
+> outcomes (target received 68.5% vs 75.6%; intercepted 24.5% vs 18.4%), but this is
+> explicitly **not** a layer-4 counterfactual claim. Awareness 0.2→0.8 improves pair-relation
+> agreement 88.8→94.1% and frontier-membership agreement 89.5→92.5%. Gates: build clean ·
+> 485/485 (the first run's assertions all passed but the known Vitest worker RPC heartbeat
+> timed out; the single allowed infra retry exited clean) · both fingerprints unchanged ·
+> perf 5.23µs/step and 14.9 matches/s, profiler determinism OK. **NEXT = the first
+> behavioural work must be one closed S3→S4→S5→S7 cut (plus the shared defensive S4 read),
+> with a real payoff oracle before gene/evolution claims; do not ship Pareto association as
+> if it proved PAYS.** The body
 > model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,

@@ -9,7 +9,7 @@ import {
 } from '../../src/ai/passAffordance';
 import {
   capturePerceptionTruth, createPerceptionMemory, perceiveSnapshot,
-  type PerceptionMemory, type PerceptionSnapshot, type PerceptionTruth,
+  oraclePerceptionSnapshot, type PerceptionMemory,
 } from '../../src/ai/perceptionSnapshot';
 import { randomGenome } from '../../src/evolution/genome';
 import { randomSquad } from '../../src/evolution/playerGenome';
@@ -67,28 +67,6 @@ const calibration = (): Calibration => ({
 
 const oracleMetric = calibration();
 const metrics = new Map<number, Calibration>(AWARENESS.map((a) => [a, calibration()]));
-
-const truthSnapshot = (truth: PerceptionTruth, observerGid: number): PerceptionSnapshot => ({
-  tick: truth.tick,
-  observerGid,
-  awareness: 1,
-  ball: {
-    pos: truth.ball.pos,
-    vel: truth.ball.vel,
-    ownerGid: truth.ball.ownerGid,
-    observedTick: truth.tick,
-    ageTicks: 0,
-  },
-  players: truth.players.filter((p) => !p.sentOff).map((p) => ({
-    gid: p.gid,
-    side: p.side,
-    pos: p.pos,
-    vel: p.vel,
-    bodyDir: p.bodyDir,
-    observedTick: truth.tick,
-    ageTicks: 0,
-  })),
-});
 
 const boundedMargin = (value: number): number => Number.isFinite(value)
   ? Math.max(-5, Math.min(5, value))
@@ -219,7 +197,7 @@ for (let seed = OFF; seed < OFF + N; seed++) {
             });
           }
           const oracle = evaluatePassAffordance({
-            snapshot: truthSnapshot(truth, passer.gid),
+            snapshot: oraclePerceptionSnapshot(truth, passer.gid),
             passerGid: passer.gid,
             targetGid: target.gid,
             attackDir: match.teams[passer.side].attackDir,

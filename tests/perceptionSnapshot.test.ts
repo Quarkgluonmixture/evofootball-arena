@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
-  capturePerceptionTruth, createPerceptionMemory, perceiveSnapshot, type PerceptionTruth,
+  capturePerceptionTruth, createPerceptionMemory, oraclePerceptionSnapshot,
+  perceiveSnapshot, type PerceptionTruth,
 } from '../src/ai/perceptionSnapshot';
 import type { Match } from '../src/sim/Match';
 
@@ -43,6 +44,14 @@ describe('S3 PerceptionSnapshot', () => {
     expect(captured.tick).toBe(19);
     expect(captured.ball.pos).toEqual({ x: 2, y: 3 });
     expect(captured.players[0].pos).toEqual({ x: 6, y: 7 });
+  });
+
+  it('builds a copied full-truth snapshot only for offline oracle probes', () => {
+    const world = truth(19);
+    const snapshot = oraclePerceptionSnapshot(world, 0);
+    expect(snapshot).toMatchObject({ tick: 19, observerGid: 0, awareness: 1 });
+    expect(snapshot.players.every((player) => player.ageTicks === 0)).toBe(true);
+    expect(snapshot.players[0].pos).not.toBe(world.players[0].pos);
   });
 
   it('is deterministic for the same keyed world and independent memories', () => {
