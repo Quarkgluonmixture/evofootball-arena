@@ -110,14 +110,18 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   `cushion.test`. → **P0. Promote the concept from tests into a sim state + ledger
   (see `contest-anatomy` in PROBE-CONTRACTS).**
 
-### S1 — Body dynamics & reachability · 🟡🔴
-- ⭐⭐ **2026-07-20: the player is a POINT, not a body** — `resolveOverlaps` (`Match.ts:1897`)
-  is an isotropic, MASSLESS push at `PLAYER_MIN_DIST=1.05`, **position-only (never touches
-  velocity)**; movement is one isotropic accel envelope + a separately-rotating `heading`.
-  No body volume / orientation-in-collision / screening / mass. Deepest gap under the contest
-  work → its OWN plan: **[`world-model/FOUNDATION.md`](world-model/FOUNDATION.md)** (target =
-  **Kinematic Disc + Oriented Shell**; the Minimum Embodied Contest Slice M0–M4). `strength`
-  has no body-layer causality here (a coefficient, not an embodied cause).
+### S1 — Body dynamics & reachability · 🟡
+- ⭐⭐ **M0–M4 DONE 2026-07-21:** the former point-body diagnosis produced the bounded
+  **Kinematic Disc + Oriented Shell** slice in
+  [`world-model/FOUNDATION.md`](world-model/FOUNDATION.md). Core contact now removes closing
+  normal velocity; loose-ground `directBallAccess` reads body direction and opponent-core
+  screening; M3 separates contact from control. This is not the whole S1 model: movement
+  remains one isotropic accel envelope + a separately rotating heading, and secured-ball
+  standing tackles do not yet consume the access/screening fact. Exact supported and missing
+  counterfactuals: [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md).
+- `strength` has an honest future attachment point, but is **not activated** in the new contact
+  solver/access system. It remains a coefficient in existing standing-tackle and aerial
+  formulas, not embodied mass/balance/screening stability.
 - **Provides:** top speed, accel/decel, turn rate, facing, inertia, balance,
   contact, fatigue's effect on all of these, **body state on arrival**.
 - **Hooks:** `pace`(speed/accel), `agility`(turn/adjust — currently a **flat
@@ -139,13 +143,15 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   tolerance to pressure & body-orientation / the failure result** — **NOT "is this
   action worth doing."** `finishing` already obeys this (`PlayerBrain.ts:191-194`).
 - **Code:** rich mechanics; attr coupling too coarse (see the attribute-split
-  backlog). [`world-model/BALL-CONTROL.md`](world-model/BALL-CONTROL.md) now
-  formalises the existing `secured | knocked | free` control truth and freezes
-  a 120-match baseline. Two B1 live cuts were rejected: moving the authoritative
-  owned-ball offset produced a 113-contact pass-arrival tail, while physically
-  releasing every pressured footbeat produced 52.92 knocks/match and raised
-  midfield churn. Current live mechanics remain unchanged; a genuine close-
-  control cadence is still an S2 representation gap, not a timer-tuning task.
+  backlog). [`world-model/BALL-CONTROL.md`](world-model/BALL-CONTROL.md) formalises
+  the existing `secured | knocked | free` truth and freezes a 120-match baseline.
+  Two B1 shortcuts were rejected: moving the authoritative owned-ball offset produced a
+  113-contact pass-arrival tail, while physically releasing every pressured footbeat produced
+  52.92 knocks/match and raised midfield churn. Current live mechanics remain unchanged.
+  One causally different retry is now specified in
+  [`world-model/CONTROLLED-BALL-COUPLING.md`](world-model/CONTROLLED-BALL-COUPLING.md):
+  continuous `ControlSequence` + independent ball + discrete touches + derived macro
+  `PossessionLocus`. B1c-0 is byte-identical representation first, not another timer tune.
 
 ### S3 — Perception · 🟡🔴 (representation exists; live AI is still omniscient)
 - **Provides:** each player reads a `PerceptionSnapshot` (observed ball/players +

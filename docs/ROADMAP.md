@@ -122,9 +122,19 @@
 > knocks/match, contests 17.00→24.96, max recontacts 8→68, midfield loose touches
 > 81.27→92.31/match and shortened possession 5.73→5.04s. Both code/test changes were
 > fully removed and both fingerprints restored. Per the stop rule there is no third
-> distance/timer retry; B2/B3 are blocked until a representation explains visible cadence
-> without perturbing pass-arrival control or multiplying ownership transitions.
-> After B3 user play-test, return to S7's missing future-state causes: S2
+> distance/timer retry. ✅ **B1c ARCHITECTURE RATIFIED (2026-07-21; no live code yet):** the
+> causally new boundary is `independent physical ball + continuous ControlSequence + discrete
+> own touches`, with a derived `PossessionLocus` for explicitly classified macro consumers.
+> Own planned touch must never open M3/change possession/create pass-arrival; an opponent's real
+> touch breaks the lease into existing M3. Authority:
+> [`world-model/CONTROLLED-BALL-COUPLING.md`](world-model/CONTROLLED-BALL-COUPLING.md).
+> **NEXT = B1c-0 ONLY:** census every `ball.owner`/`ball.pos`/possession/pass-arrival consumer,
+> add pure-data `ControlSequence` + `derivePossessionLocus` + probe shell, and prove
+> byte-identical. No touch impulse, no AI consumer and no play-test candidate in B1c-0.
+> M0–M4's honest remaining scope is frozen in
+> [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
+> body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to
+> S7's missing future-state causes: S2
 > execution risk, threat created/conceded, structure/rest-defence cost and option quality.
 > Add those only as a new offline hypothesis, then require this same oracle to pass before
 > any closed S3→S4→S5→S7 behavioural cut.** The body

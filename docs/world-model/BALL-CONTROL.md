@@ -1,7 +1,9 @@
 # Ball-Control Foundation — authoritative ball, readable touches
 
-Status: **B0 done; B1 tried twice and honest-reverted; B2–B3 blocked.** This is a new bounded S2 foundation slice,
-not an extension of the completed M0–M4 body campaign.
+Status: **B0 done; B1a/B1b honest-reverted; B1c architecture approved; B1c-0 is next.**
+This is a bounded S2 foundation slice, not an extension of the completed M0–M4 body
+campaign. The implementation authority for the retry is
+[`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
 
 ## 1. Why this slice exists
 
@@ -11,9 +13,11 @@ existing Phase-36 mechanic already releases long open-field knocks; under
 pressure it falls back to a binary owner plus a ball fixed 0.85m ahead of the
 body. `dribbleTouch` is a chase tag, not a complete control process.
 
-The missing world fact is the middle between magnetic ownership and a fully
-free ball: a ball that is in a player's control process but physically exposed
-between touches.
+The two failed live cuts made the missing world fact more precise: **a ball may
+be physically between the same player's planned touches without the control
+process ending or a new loose-ball contest beginning.** `ball.owner` cannot
+continue carrying physical constraint, controller identity, pass-chain lifetime
+and macro possession by itself.
 
 ## 2. Boundary
 
@@ -25,7 +29,11 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
 - attributes may change execution range/error/time, never declare success or
   make dribbling valuable;
 - keep the accepted ball display size and M1 contact feel;
-- one behavioural lever per stage, deterministic fixed-order mechanics.
+- one behavioural lever per stage, deterministic fixed-order mechanics;
+- own planned micro-touches continue one control sequence; only a real break
+  enters M3 contact→control;
+- macro possession may eventually read a derived `possessionLocus`, but physical
+  contact, rules, kick release and render always read authoritative `ball.pos`.
 
 ## 3. Build plan
 
@@ -40,17 +48,22 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
   per match; they last 0.656s, reach 1.277m from the carrier and end in 85.1%
   self-regathers / 11.3% opponent gathers. This freezes the existing open-field
   value while B1 addresses close control.
-- ❌ **B1 — single-player controlled touch cycle. TRIED + REVERTED.** Replace the fixed 0.85m
-  outfield carry pose with an authoritative close-control cadence. Prove that
-  the ball advances, the carrier catches it, and turn/walk/run regimes remain
-  bounded before adding any new opponent outcome.
-- ⬜ **B2 — physical disruption + explanation.** Opponents contact the ball at
-  its real location; record touch/disruption/loss cause. Existing body access
-  and M3 contact→control remain the ownership boundary. No direct attr winner.
-- ⬜ **B3 — probes + user play-test.** Gate contact-chain tails, possession
-  economy, policy/style directionality, determinism and perf. The user decides
-  whether touches and steals are readable. Honest-revert any candidate that
-  merely looks attached while breaking selection or football.
+- ❌ **B1a/B1b — two live shortcuts. TRIED + REVERTED.** See §4. They prove that
+  neither moving an owned-ball offset nor making every close touch a free-ball
+  event provides the required semantics.
+- ⬜ **B1c-0 — consumer census + representation (BYTE-IDENTICAL). NEXT.** Map
+  every `ball.owner` / `ball.pos` / possession / pass-arrival consumer; add the
+  minimal `ControlSequence`, break-cause vocabulary and pure
+  `derivePossessionLocus`; add the observational probe shell. Nothing live reads
+  the new facts.
+- ⬜ **B1c-1 — single-player coupling.** A real ball moves only by bounded
+  impulses inside one continuous sequence. Prove speed/turn cadence and zero
+  possession transitions with no opponent.
+- ⬜ **B1c-2 — physical disruption.** A real opponent touch breaks the lease and
+  enters existing M3; an own planned touch does neither. No direct attr winner.
+- ⬜ **B1c-3 — live A/B + user play-test.** Gate contact tails, possession
+  economy, policy/style/stamina, determinism and perf. The user decides whether
+  touches and steals are readable. Pass or full revert, then return to S3–S8.
 
 ## 4. B1 experimental record (2026-07-21)
 
@@ -73,14 +86,24 @@ Two causally different candidates were tested; neither landed.
 
 This rejects both common shortcuts: continuously rewriting the authoritative
 owned-ball offset, and representing every visible footbeat as a possession
-release. The next retry must first explain how a visible contact cadence can
-exist without perturbing pass-arrival control or multiplying ownership
-transitions. B2/B3 do not proceed until that representation exists.
+release. The approved B1c hypothesis adds the missing boundary:
+
+```text
+independent physical ball
++ continuous ControlSequence / lease
++ derived PossessionLocus for macro consumers
++ own touch stays inside the sequence; opponent touch breaks it into M3
+```
+
+This remains a hypothesis until each isolated B1c stage passes. Full semantics,
+gates and non-goals are in
+[`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
 
 ## 5. Stop rule
 
-Do not repeat the rejected M3b distance/timer variants. A retry must change the
-causal representation: keep controlled cadence distinct from M3 loose-ball
-capture, so every close touch does not reopen a new possession contest. If that
-boundary still fails the gates, stop the slice and report it. That condition
-was met by the retained-control candidate; the accepted HEAD remains B0.
+Do not repeat the rejected M3b/B1a/B1b distance or timer variants. B1c is allowed
+only because it changes the causal representation and starts with a
+byte-identical consumer census. If any live B1c stage still multiplies M3,
+pass-arrival contacts or possession churn—or breaks policy/style/stamina
+directionality—fully revert it. The accepted live HEAD remains B0 until B1c-3
+passes the user's play-test. There is no automatic follow-on body campaign.

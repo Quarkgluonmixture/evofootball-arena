@@ -1,0 +1,360 @@
+# Controlled Ball Coupling — B1c architecture contract
+
+Status: **approved bounded hypothesis; no live implementation yet.** This is the
+only authorised retry of the Ball-Control Foundation after the two rejected B1
+candidates in [`BALL-CONTROL.md`](BALL-CONTROL.md).
+
+## 0. Verdict
+
+> Reopen “球忠于脚” only as **Controlled Ball Coupling**:
+> **independent physical ball + continuous control sequence + discrete real
+> touches.**
+
+Do not tune the old carry distance or add another timer. Do not glue the ball to
+a foot. The new causal boundary is:
+
+```text
+ball physically leaves the foot
+≠ control process has ended
+≠ a new loose-ball contest should open
+```
+
+The ball need not stay at one fixed foot point. It must stay faithful to the
+controller's **recoverable future**: between planned touches it may roll away,
+but the same control sequence remains active only while the player still has a
+credible next touch.
+
+## 1. Why a retry is allowed
+
+The two B1 failures were not random bad numbers:
+
+1. Moving the still-owned authoritative ball through a foot cadence leaked
+   high-frequency carry position into pass-arrival and produced a 113-contact
+   chain (B0 maximum: 8).
+2. Making each pressured close touch a physically free ball, even with a narrow
+   self-retention exception, raised knocks `7.10→52.92` per match, contests
+   `17.00→24.96`, maximum M3 recontacts `8→68`, and shortened mean possession
+   `5.73→5.04s`.
+
+Together they identify a missing representation between micro-touch physics and
+possession transition. B1c satisfies the existing retry rule because it changes
+that causal representation. It is not a third distance/timer variant.
+
+## 2. Three different meanings of “faithful to the foot”
+
+### Rejected: presentation-only fidelity
+
+Drawing the ball at the shoe while simulation says it is elsewhere is a lie.
+M4 removed that split: renderers, contacts and rules must use the authoritative
+ball position.
+
+### Rejected: position-lock fidelity
+
+Writing `ball.pos` to a virtual left/right foot every frame makes gait phase
+silently control tackle distance, pass arrival, shot origin and TeamBrain. It
+also lets an animation cycle alter deterministic football outcomes.
+
+### Target: control-process fidelity
+
+The authoritative ball remains free to move under physics. A sequence of real,
+discrete impulses maintains a recoverable player–ball relationship. An opponent
+can interrupt it at the real ball position.
+
+## 3. State separation
+
+Today `ball.owner` carries too many meanings: current controller, physical carry
+constraint, capture exemption, on-ball actor, pass-chain lifetime and team
+possession. B1c introduces a separate process without immediately deleting the
+legacy field.
+
+The exact TypeScript shape may change during B1c-0, but its semantics must not:
+
+```ts
+interface ControlSequence {
+  id: number;
+  controller: Gid;
+  origin: 'reception' | 'interception' | 'looseControl' | 'selfRegather';
+  startedAt: number;
+  lastOwnTouchAt: number;
+  touchIndex: number;
+  status: 'active' | 'broken' | 'released';
+  breakCause?: ControlBreakCause;
+}
+
+type BallControlState =
+  | { kind: 'secured'; controller: Gid; sequenceId: number }
+  | {
+      kind: 'carried';
+      controller: Gid;
+      sequenceId: number;
+      gaitPhase: number;
+      nextTouchTarget: Vec2;
+    }
+  | {
+      kind: 'knocked';
+      controller: Gid;
+      sequenceId: number;
+      regatherDeadline: number;
+    }
+  | { kind: 'free' };
+```
+
+This is an architecture contract, not permission to add all fields at once.
+B1c-0 should land the smallest pure-data form that can prove the invariants.
+
+### Control lease
+
+“Lease” is the rule governing an active `ControlSequence`, not magical ownership.
+It says only that own planned micro-touches continue the same control process.
+
+An own planned touch:
+
+```text
+apply a real bounded ball impulse
+→ record carryTouch
+→ increment touchIndex
+→ continue the same sequence
+```
+
+It must **not**:
+
+- call the generic `giveBall()` transition;
+- create a `pendingPass` / pass-arrival lifecycle;
+- open a new `ContestEpisode`;
+- change possession side or possession spell;
+- count as losing and reacquiring the ball.
+
+An opponent's real touch:
+
+```text
+break lease with a cause
+→ enter normal M3 contact → control
+→ controlled / loose / recontest
+```
+
+An own sequence also ends explicitly on pass, shot, genuine open-field knock,
+out/dead ball, or when the recoverable-future invariant fails.
+
+## 4. PossessionLocus — semantic projection, not a second ball
+
+The second structural boundary is consumer frequency. High-frequency physical
+ball motion and macro possession meaning cannot be forced to share every
+centimetre of left/right touch movement.
+
+`possessionLocus` is a deterministic derived projection:
+
+```text
+active control sequence
+  ? controller-centred / low-frequency control locus
+  : ball.pos
+```
+
+It is not rendered, does not collide and never replaces the ball in rules or
+execution. It exists so the team model does not treat a 40cm foot switch as a
+new attack state.
+
+It is derived—not a second independently integrated position. B1c-0 must not
+add a hidden smoothing clock or a mutable second trajectory. If later evidence
+requires temporal filtering rather than a controller-centred projection, that
+is a separate stateful lever with its own determinism and lag tests.
+
+| Must read authoritative `ball.pos` | May consume `ControlSequence` / `possessionLocus` after an isolated change |
+|---|---|
+| ball/foot contact and exposure | possession side and possession spell |
+| opponent poke, tackle, interception | coarse progression position |
+| out-of-play, goal line, posts/crossbar | TeamBrain tactical phase |
+| pass/shot release position | on-ball actor identity |
+| renderer and replay | formation and team-mode context |
+| M3 contact claims | pass-chain continuity |
+
+This table is a hard boundary. Before any consumer is switched, B1c-0 must make
+an explicit census of every `ball.pos` and `ball.owner` read and classify it.
+Unknown consumers stay on authoritative state.
+
+## 5. Touch generation without simulated legs
+
+### Virtual gait phase
+
+Touch cadence must come from movement, not an independent fixed timer:
+
+```text
+gaitPhase += distanceTravelled /
+             strideLength(speed, turnDemand, pressure)
+```
+
+The phase is authoritative sim state. Renderer and probes may read it; the
+renderer must not invent a separate phase. A left/right phase is enough for the
+first slice—there is no preferred-foot gene.
+
+### Virtual foot anchor
+
+```text
+footAnchor = player.pos
+           + bodyDir * forwardOffset
+           + perpendicular(bodyDir) * footSide * lateralOffset
+```
+
+It is a query point, not a collider, magnet or per-frame position target. It may
+answer whether a planned touch is geometrically plausible and give the contact
+impulse a direction.
+
+### Control corridor
+
+The next touch aims into a corridor, not an exact foot coordinate:
+
+- low speed / pressure / hard turn → short horizon, frequent touch, narrow
+  lateral error;
+- jog → medium horizon;
+- open-space sprint → longer touch and eventually the existing genuine
+  kick–chase–regather regime;
+- sharp change of direction → lateral effort touch.
+
+Each micro-touch modifies velocity only:
+
+```text
+desiredBallVelocity = velocityToReach(nextTouchTarget, horizon)
+ball.vel += boundedImpulse(desiredBallVelocity - ball.vel)
+```
+
+No B1c behavioural stage writes `ball.pos` to a foot anchor.
+
+## 6. Two regimes, one ball
+
+```text
+close control
+  = persistent ControlSequence with discrete own touches
+
+open-space knock
+  = existing kick → chase → regather
+```
+
+Do not convert every close-control footbeat into a miniature pass-arrival or
+open knock. Do not erase the existing Phase-36 knock, whose B0 outcome mix is
+already frozen.
+
+## 7. Build order and gates
+
+### B1c-0 — consumer census + representation · BYTE-IDENTICAL
+
+This is the exact starting point.
+
+1. Map every simulation reader/writer of `ball.owner`, `ball.pos`,
+   `possessionSide`, `pendingPass`, `dribbleTouch` and the M3 contest lifecycle.
+   Classify each as physical truth, control-process truth or macro possession.
+2. Add the minimal `ControlSequence` / break-cause event vocabulary and a pure
+   `derivePossessionLocus` helper. No AI, physics, tackle, possession or renderer
+   consumer reads the new state.
+3. Add clone/save/invariant coverage as required. Prove feature-off and normal
+   runs are byte-identical at both frozen fingerprint seeds.
+4. Add the observational `control-sequence-anatomy` ledger/probe shell. On B0 it
+   must report no fabricated active sequences or transitions.
+
+Gate: clean tsc/build/full Vitest, exact fingerprints, watched=headless,
+deterministic clone continuation, no perf regression. No user play-test yet
+because no behaviour should change.
+
+### B1c-1 — single-player coupling
+
+In an isolated no-opponent mechanism scene, activate one sequence and advance
+the authoritative ball only through bounded impulses. Prove variable cadence
+across speed/turn regimes, recoverability, and **zero possession transitions**.
+
+This stage must not switch macro AI consumers. If a macro consumer must change,
+that is a separately measured lever after the physical mechanism is stable.
+
+### B1c-2 — one opponent and lease break
+
+Add one opponent. A real opponent ball contact breaks the sequence and enters
+the existing M3 contact→control path. Own planned touches remain inside the
+sequence. Prove shielding/access at the real ball location without adding a
+direct winner formula or a new dribble decision.
+
+### B1c-3 — live A/B and user play-test
+
+Run the complete probe stack, then ship one live candidate for desktop and
+phone play-test. The user decides whether cadence and steals are readable and
+feel like football. Passing the statistics alone is insufficient.
+
+Pass → freeze B1c and return to S3–S8. Fail → complete revert and return to
+S3–S8. There is no automatic B1c-4.
+
+## 8. `control-sequence-anatomy`
+
+At minimum emit:
+
+- sequences per match and origin;
+- micro-touches per sequence;
+- cadence by speed, pressure and turn demand;
+- ball↔controller and ball↔virtual-foot distance distributions;
+- relative ball velocity and exposure duration;
+- opponent touches that break a lease, by cause;
+- genuine release / loss / self-regather outcomes;
+- fast reacquire after loss.
+
+The following are exact-zero invariants:
+
+```text
+ownTouchOpenedM3
+ownTouchChangedPossession
+passArrivalContactsAfterControl
+duplicateSequenceStart
+```
+
+Standing guardrails:
+
+- M3 maximum recontacts must not exceed the frozen B0 maximum of 8 without an
+  explicit user-ratified replacement threshold;
+- the 113-contact pass-arrival chain must not return;
+- knocks must not trend toward the rejected 50+ per match regime;
+- possession spell count/churn and mean spell duration must not materially
+  regress;
+- policy, style and stamina directional contracts remain hard gates;
+- sim and renderer must agree on the authoritative touch frame;
+- determinism, watched=headless, clone continuation and performance remain
+  hard gates.
+
+## 9. Non-goals
+
+B1c does not authorise:
+
+- leg IK, real foot colliders or skeletal physics;
+- preferred/weak-foot genome fields;
+- named skill moves or a new dribble decision policy;
+- complete animation-state machinery;
+- strength, balance, shoulder-charge or locomotion expansion;
+- whole-ball-over-line or post physics;
+- broad TeamBrain rewrites hidden inside `possessionLocus` adoption.
+
+## 10. Evidence and interpretation
+
+External material informs the abstraction; EvoFootball's deterministic probes
+and user play-test decide acceptance.
+
+- [FIFA Training Centre: Mastering ball control](https://www.fifatrainingcentre.com/en/practice/elite-sessions/in-possession/mastering-ball-control.php)
+  distinguishes close control under pressure from driving into opening space,
+  and treats body movement, touch and reading space as coupled skills.
+- [EA SPORTS FC 26 gameplay notes](https://www.ea.com/games/ea-sports-fc/fc-26/news/pitch-notes-fc26-gameplay-deep-dive)
+  explicitly vary dribble-touch intervals and describe first-touch difficulty as
+  depending on relative speed, height, exit angle, pressure, body part, stretch
+  and attributes. This supports separating movement regime, contact and control;
+  it is not an implementation recipe.
+- [eFootball v3.0 notes](https://www.konami.com/efootball/en/page/2024/versioninfo_v3-00)
+  separately discuss finer post-touch response, body orientation and knock-on
+  behaviour. [eFootball v4.0 notes](https://www.konami.com/efootball/en-us/page/v4/versioninfo_v4-00)
+  separately expose fine-touch dribbling and physical-contact/shield behaviour.
+- [Measuring skill via player dynamics in football dribbling](https://doi.org/10.1038/s41598-023-45914-6)
+  models the dribbler and ball as a coupled dynamical system in a continuous 1v1
+  event. This motivates the process view; EvoFootball keeps a far cheaper
+  deterministic abstraction.
+- [PhysicsFC](https://doi.org/10.1145/3731425) uses separate Move, Trap, Dribble
+  and Kick policies with a finite-state skill transition system. Its full-body
+  RL solution is out of scope; the useful lesson is that control is a managed
+  process across distinct skills, not a permanent ball attachment.
+- [GameplayFootball](https://github.com/BazkieBumpercar/GameplayFootball) is a
+  useful open-source engine comparison, not a code dependency or authority. Any
+  mechanism borrowed from it still has to be re-derived for EvoFootball's fixed
+  timestep and determinism contract.
+
+The architecture above is an EvoFootball engineering inference from those
+sources plus the two rejected same-engine experiments. Claims about what B1c
+will do to live football remain hypotheses until the repo's gates pass.

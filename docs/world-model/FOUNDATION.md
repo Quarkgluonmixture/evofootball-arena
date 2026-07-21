@@ -10,6 +10,11 @@
 > **This SUPERSEDES the earlier "slice-1a.2 = 50-50 winner resolver" plan.** We do NOT
 > design "who wins the contest" next; we first make the player a physical subject — but
 > only the **minimal embodied part** the current football problems actually need.
+>
+> **Scope note (2026-07-21):** M0–M4 are complete, but they complete only the minimal
+> *loose-ball contest* slice—not the whole world model. The authoritative remainder is
+> [`COVERAGE-GAPS.md`](COVERAGE-GAPS.md). The one approved bounded follow-up is
+> [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
 
 ---
 
@@ -89,8 +94,9 @@ replaces the other.**
   `GOAL_WIDTH`, `BOX_DEPTH/WIDTH`, `CENTER_CIRCLE_R` together (`GOAL_HEIGHT 2.44` is fixed).
   So past scale experiments confounded per-player-space + goal-relative-width + box +
   shot-angle + goal-distance + speed-relative-to-length.
-- **Ball has no explicit radius**; out-of-play / goal use the ball **centre** vs `HALF_L`
-  (`Match.ts:1067`), not whole-ball-over-line.
+- **Ball now has an explicit physical radius** (`BALL_RADIUS = 0.11`, M0), used by access
+  geometry. Out-of-play / goal still use the ball **centre** vs `HALF_L/HALF_W`, not
+  whole-ball-over-line. Representation landed; laws-of-play geometry has not.
 - **`strength` is a coefficient without body-layer causality** — it lowers standing-tackle
   dispossession + enters aerial scoring, but cannot express "holds position / gets shoved
   off / screens the ball with the body / loses balance on contact." A probability patch,
@@ -229,26 +235,33 @@ months** — this narrowed slice is.
   thresholds were weakened; every candidate and the deadline change were removed, and the
   committed M3 fingerprint was restored. **Stop-rule applied:** true foot↔knock cadence remains
   a documented substrate gap, not a shipped fake. It needs a future control-state design that
-  passes policy expression and selection—not another local distance/timer tune. The body-model
-  campaign now stops here and returns to the mainline: **S3–S8 decision engine**.
+  passes policy expression and selection—not another local distance/timer tune. A later
+  architecture audit has now authorised exactly one causally different retry—**B1c Controlled
+  Ball Coupling** (`independent ball + continuous ControlSequence + discrete real touches`),
+  specified in [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md). This does not
+  reopen the body campaign or approve B1c behaviour in advance.
 
 ## 6. Priority — the body model is a LOCAL substrate, not the mainline
 
 The project's north star (VISION §0/§1) is **emergent, identifiable tactics** — that's
 S3–S8 (perception / prediction / affordance / off-ball / coordination), and it's the half
 of §2 ("no tactics / clumping") the body model does **not** fix. The body model fixes the
-*other* half — **ugly contests + instant magnetic possession** — plus it activates
-`strength` and gives a real physical-style axis (feeding §4 diversity). So:
+*other* half — **ugly contests + instant magnetic possession** — plus it creates a causal
+**attachment point** for future `strength` / physical-style work (feeding §4 diversity).
+It did **not** activate `strength` in the new contact/access system; `strength` still pays
+through the old standing-tackle probability and aerial formulas. So:
 
 ```
 Minimum Embodied Contest Slice (M0–M4)
   → fixes ugly contests + instant possession flips
+  → bounded B1c only because two live failures exposed a missing control-process fact
   → RETURN to Pass–Arrival–Contest / S3–S8 (the mainline)
 ```
 
 **Do NOT, after M3, keep drilling into height/weight, full shoulder systems, stumbles,
 dozens of tackle contacts, complex player shapes, or surface physics.** The body model's
 ROI must serve watchability + realism + style diversity, but it must not usurp the mainline.
+See [`COVERAGE-GAPS.md`](COVERAGE-GAPS.md) for what remains real but deliberately deferred.
 
 ## 7. Probes
 
