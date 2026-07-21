@@ -161,6 +161,27 @@
 > formulate one offline future-state cause (execution risk, threat created/conceded,
 > structure/rest-defence cost or option quality), pass the counterfactual payoff oracle,
 > and only then consider a live consumer.
+> ❌ **FIRST RETURN-TO-S7 HYPOTHESIS FAILED + REVERTED (S7c, 2026-07-21):** a
+> pre-registered offline extension added separate clean-reception shooting-window threat
+> and turnover-corridor/rest-defence safety dimensions. Its static directional tests passed,
+> but the unchanged 120-match oracle did not: 363 pairs, alternative/chosen dominance
+> 34.4/35.0%, own possession 53.4→47.1% (progression +0.443m, xG +0.001, zero force
+> failures). No formula/tolerance sweep followed; all S7c code was removed. Authority:
+> [`world-model/S7C-THREAT-POTENTIAL.md`](world-model/S7C-THREAT-POTENTIAL.md).
+> ❌ **SECOND RETURN-TO-S7 HYPOTHESIS FAILED + REVERTED (S7d, 2026-07-21):** expanded
+> `pass-target-counterfactual` anatomy proved the first omitted temporal cause: S7b's
+> endpoint dominators let the intended receiver control only 52.5% vs chosen 68.0%, while
+> opponent first-control rose 26.3→39.1%. A fixed-step flight interception margin then
+> strongly calibrated on 934 passes (risky: received/intercepted 64.7/28.6%; safe:
+> 88.7/3.5%), but still failed complete payoff at 120 matches / 219 pairs: alternative/chosen
+> dominance 36.5/35.6%, own possession 51.1→47.0%, xG −0.007; first-control direction also
+> failed. No tuning followed; the S7 dimension and implementation were removed. The retained
+> anatomy probe is observational only; build + 502/502 passed and both frozen fingerprints
+> remain exact (`57b0bdab…`, `4ac9408d…`). Authority:
+> [`world-model/S7D-FLIGHT-INTERCEPTION.md`](world-model/S7D-FLIGHT-INTERCEPTION.md).
+> **NEXT remains offline S3–S8 diagnosis, now narrowed to post-reception state transitions
+> and option dynamics. Do not retry another static endpoint/corridor term or wire any S7
+> candidate live before the same payoff oracle passes.**
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

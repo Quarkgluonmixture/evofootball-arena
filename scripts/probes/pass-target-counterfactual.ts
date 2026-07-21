@@ -43,6 +43,23 @@ interface RolloutOutcome {
   exitOptionCount: number;
 }
 
+type PassResolution = 'target' | 'teammate' | 'opponent' | 'deadBall' | 'other' | 'unresolved';
+type FirstController = 'target' | 'teammate' | 'opponent' | 'none';
+
+interface RolloutAnatomy {
+  resolution: PassResolution;
+  firstController: FirstController;
+  firstControlSeconds: number | null;
+  ownMiscontrols: number;
+  /** Physical ball owner at 1/2/3s: +1 own, 0 free, -1 opponent. */
+  ownerAtSeconds: readonly [number, number, number];
+}
+
+interface RolloutResult {
+  outcome: RolloutOutcome;
+  anatomy: RolloutAnatomy;
+}
+
 type OutcomeDimension = keyof RolloutOutcome;
 const OUTCOME_DIMENSIONS: readonly OutcomeDimension[] = [
   'possession', 'goalDelta', 'xgDelta', 'progressionMetres', 'exitOptionCount',
@@ -132,7 +149,7 @@ const rollout = (
   passerGid: number,
   targetGid: number,
   side: Side,
-): RolloutOutcome | null => {
+): RolloutResult | null => {
   const branch = cloneSimulationState(frozen);
   const passer = branch.allPlayers[passerGid];
   const target = branch.allPlayers[targetGid];
@@ -141,19 +158,144 @@ const rollout = (
   const startX = branch.teams[side].localX(branch.ball.pos.x);
   const score0 = branch.score[side] - branch.score[1 - side];
   const xg0 = xgFor(branch, side) - xgFor(branch, (1 - side) as Side);
+  const interceptions0 = branch.teams[1 - side].stats.interceptions;
+  const miscontrols0 = branch.teams[side].stats.miscontrols;
+  const kickTime = branch.simTime;
   branch.performPass(passer, target);
   if (branch.pendingPass?.targetGid !== targetGid) return null;
-  for (let step = 0; step < ROLLOUT_STEPS && !branch.finished; step++) branch.step(DT);
+  let resolution: PassResolution = 'unresolved';
+  let firstController: FirstController = 'none';
+  let firstControlSeconds: number | null = null;
+  const ownerAtSeconds: [number, number, number] = [0, 0, 0];
+  for (let step = 0; step < ROLLOUT_STEPS && !branch.finished; step++) {
+    branch.step(DT);
+    const owner = branch.ball.owner;
+    if (firstController === 'none' && owner !== null) {
+      firstController = owner.side !== side
+        ? 'opponent'
+        : owner.gid === targetGid ? 'target' : 'teammate';
+      firstControlSeconds = branch.simTime - kickTime;
+    }
+    if (resolution === 'unresolved' && branch.pendingPass === null) {
+      const completed = branch.lastCompletedPass;
+      if (completed && completed.passerGid === passerGid && completed.t >= kickTime) {
+        resolution = completed.receiverGid === targetGid ? 'target' : 'teammate';
+      } else if (branch.teams[1 - side].stats.interceptions > interceptions0) {
+        resolution = 'opponent';
+      } else if (branch.phase !== 'playing') {
+        resolution = 'deadBall';
+      } else {
+        resolution = 'other';
+      }
+    }
+    if (step === 59 || step === 119 || step === 179) {
+      const index = step === 59 ? 0 : step === 119 ? 1 : 2;
+      ownerAtSeconds[index] = owner === null ? 0 : owner.side === side ? 1 : -1;
+    }
+  }
 
   return {
-    possession: branch.possessionSide === side
-      ? 1
-      : branch.possessionSide === 1 - side ? -1 : 0,
-    goalDelta: (branch.score[side] - branch.score[1 - side]) - score0,
-    xgDelta: (xgFor(branch, side) - xgFor(branch, (1 - side) as Side)) - xg0,
-    progressionMetres: branch.teams[side].localX(branch.ball.pos.x) - startX,
-    exitOptionCount: optionCount(branch, side),
+    outcome: {
+      possession: branch.possessionSide === side
+        ? 1
+        : branch.possessionSide === 1 - side ? -1 : 0,
+      goalDelta: (branch.score[side] - branch.score[1 - side]) - score0,
+      xgDelta: (xgFor(branch, side) - xgFor(branch, (1 - side) as Side)) - xg0,
+      progressionMetres: branch.teams[side].localX(branch.ball.pos.x) - startX,
+      exitOptionCount: optionCount(branch, side),
+    },
+    anatomy: {
+      resolution,
+      firstController,
+      firstControlSeconds,
+      ownMiscontrols: branch.teams[side].stats.miscontrols - miscontrols0,
+      ownerAtSeconds,
+    },
   };
+};
+
+interface AnatomyAggregate {
+  n: number;
+  resolutions: Record<PassResolution, number>;
+  firstControllers: Record<FirstController, number>;
+  firstControlSeconds: number;
+  firstControlCount: number;
+  ownMiscontrols: number;
+  ownerAtSeconds: {
+    own: [number, number, number];
+    opponent: [number, number, number];
+    free: [number, number, number];
+  };
+}
+
+const anatomyAggregate = (): AnatomyAggregate => ({
+  n: 0,
+  resolutions: { target: 0, teammate: 0, opponent: 0, deadBall: 0, other: 0, unresolved: 0 },
+  firstControllers: { target: 0, teammate: 0, opponent: 0, none: 0 },
+  firstControlSeconds: 0,
+  firstControlCount: 0,
+  ownMiscontrols: 0,
+  ownerAtSeconds: {
+    own: [0, 0, 0],
+    opponent: [0, 0, 0],
+    free: [0, 0, 0],
+  },
+});
+
+const addAnatomy = (aggregate: AnatomyAggregate, anatomy: RolloutAnatomy): void => {
+  aggregate.n++;
+  aggregate.resolutions[anatomy.resolution]++;
+  aggregate.firstControllers[anatomy.firstController]++;
+  if (anatomy.firstControlSeconds !== null) {
+    aggregate.firstControlSeconds += anatomy.firstControlSeconds;
+    aggregate.firstControlCount++;
+  }
+  aggregate.ownMiscontrols += anatomy.ownMiscontrols;
+  for (let i = 0; i < 3; i++) {
+    if (anatomy.ownerAtSeconds[i] > 0) aggregate.ownerAtSeconds.own[i]++;
+    else if (anatomy.ownerAtSeconds[i] < 0) aggregate.ownerAtSeconds.opponent[i]++;
+    else aggregate.ownerAtSeconds.free[i]++;
+  }
+};
+
+type FirstControlStratum =
+  | 'bothTarget'
+  | 'alternativeTargetChosenOpponent'
+  | 'alternativeOpponentChosenTarget'
+  | 'bothOpponent'
+  | 'other';
+
+interface StratumMetric {
+  n: number;
+  alternativeDominates: number;
+  chosenDominates: number;
+  alternativeOwnPossession: number;
+  chosenOwnPossession: number;
+  possessionDelta: number;
+  progressionDelta: number;
+  xgDelta: number;
+}
+
+const stratumMetric = (): StratumMetric => ({
+  n: 0,
+  alternativeDominates: 0,
+  chosenDominates: 0,
+  alternativeOwnPossession: 0,
+  chosenOwnPossession: 0,
+  possessionDelta: 0,
+  progressionDelta: 0,
+  xgDelta: 0,
+});
+
+const firstControlStratum = (
+  chosen: FirstController,
+  alternative: FirstController,
+): FirstControlStratum => {
+  if (chosen === 'target' && alternative === 'target') return 'bothTarget';
+  if (chosen === 'opponent' && alternative === 'target') return 'alternativeTargetChosenOpponent';
+  if (chosen === 'target' && alternative === 'opponent') return 'alternativeOpponentChosenTarget';
+  if (chosen === 'opponent' && alternative === 'opponent') return 'bothOpponent';
+  return 'other';
 };
 
 const relationCounts: Record<OutcomeRelation, number> = {
@@ -174,6 +316,17 @@ let rolloutPairs = 0;
 let forceFailures = 0;
 let chosenPossession = 0;
 let alternativePossession = 0;
+const anatomy = {
+  chosen: anatomyAggregate(),
+  alternative: anatomyAggregate(),
+};
+const strata: Record<FirstControlStratum, StratumMetric> = {
+  bothTarget: stratumMetric(),
+  alternativeTargetChosenOpponent: stratumMetric(),
+  alternativeOpponentChosenTarget: stratumMetric(),
+  bothOpponent: stratumMetric(),
+  other: stratumMetric(),
+};
 
 for (let seed = OFF; seed < OFF + N; seed++) {
   const match = new Match({
@@ -211,20 +364,37 @@ for (let seed = OFF; seed < OFF + N; seed++) {
         if (alternatives.length > 0) {
           dominatedChoices++;
           const side = frozen.allPlayers[pass.passerGid].side;
-          const chosenOutcome = rollout(frozen, pass.passerGid, pass.targetGid, side);
-          if (!chosenOutcome) {
+          const chosenResult = rollout(frozen, pass.passerGid, pass.targetGid, side);
+          if (!chosenResult) {
             forceFailures += alternatives.length;
           } else {
             for (const alternative of alternatives) {
-              const alternativeOutcome = rollout(
+              const alternativeResult = rollout(
                 frozen, pass.passerGid, alternative.targetGid, side,
               );
-              if (!alternativeOutcome) {
+              if (!alternativeResult) {
                 forceFailures++;
                 continue;
               }
+              const chosenOutcome = chosenResult.outcome;
+              const alternativeOutcome = alternativeResult.outcome;
               rolloutPairs++;
-              relationCounts[compareOutcomes(alternativeOutcome, chosenOutcome)]++;
+              addAnatomy(anatomy.chosen, chosenResult.anatomy);
+              addAnatomy(anatomy.alternative, alternativeResult.anatomy);
+              const relation = compareOutcomes(alternativeOutcome, chosenOutcome);
+              relationCounts[relation]++;
+              const stratum = strata[firstControlStratum(
+                chosenResult.anatomy.firstController,
+                alternativeResult.anatomy.firstController,
+              )];
+              stratum.n++;
+              if (relation === 'alternativeDominates') stratum.alternativeDominates++;
+              if (relation === 'chosenDominates') stratum.chosenDominates++;
+              if (alternativeOutcome.possession === 1) stratum.alternativeOwnPossession++;
+              if (chosenOutcome.possession === 1) stratum.chosenOwnPossession++;
+              stratum.possessionDelta += alternativeOutcome.possession - chosenOutcome.possession;
+              stratum.progressionDelta += alternativeOutcome.progressionMetres - chosenOutcome.progressionMetres;
+              stratum.xgDelta += alternativeOutcome.xgDelta - chosenOutcome.xgDelta;
               if (chosenOutcome.possession === 1) chosenPossession++;
               if (alternativeOutcome.possession === 1) alternativePossession++;
               for (const dimension of OUTCOME_DIMENSIONS) {
@@ -255,3 +425,38 @@ console.log('\npaired mean delta (alternative − chosen; larger is better):');
 console.log(`  possession ${meanDelta('possession')} · goals ${meanDelta('goalDelta')} · xG ${meanDelta('xgDelta')}`);
 console.log(`  progression ${meanDelta('progressionMetres')}m · exit options ${meanDelta('exitOptionCount')}`);
 console.log(`  own possession at 3.0s: chosen ${pct(chosenPossession, rolloutPairs)} → alternative ${pct(alternativePossession, rolloutPairs)}`);
+
+console.log('\npass-resolution anatomy (diagnostic, not a new S7 dimension):');
+for (const branch of ['chosen', 'alternative'] as const) {
+  const metric = anatomy[branch];
+  const resolutions = (Object.keys(metric.resolutions) as PassResolution[])
+    .map((kind) => `${kind} ${pct(metric.resolutions[kind], metric.n)}`)
+    .join(' · ');
+  const controls = (Object.keys(metric.firstControllers) as FirstController[])
+    .map((kind) => `${kind} ${pct(metric.firstControllers[kind], metric.n)}`)
+    .join(' · ');
+  const meanControl = metric.firstControlSeconds / Math.max(metric.firstControlCount, 1);
+  const meanMiscontrols = metric.ownMiscontrols / Math.max(metric.n, 1);
+  console.log(`  ${branch}: resolution ${resolutions}`);
+  console.log(`    first controller ${controls} · mean ${meanControl.toFixed(3)}s · own miscontrols ${meanMiscontrols.toFixed(3)}/branch`);
+  for (let second = 0; second < 3; second++) {
+    console.log(
+      `    physical owner ${second + 1}s: own ${pct(metric.ownerAtSeconds.own[second], metric.n)} · `
+      + `opponent ${pct(metric.ownerAtSeconds.opponent[second], metric.n)} · `
+      + `free ${pct(metric.ownerAtSeconds.free[second], metric.n)}`,
+    );
+  }
+}
+
+console.log('\npaired payoff by first physical controller:');
+for (const name of Object.keys(strata) as FirstControlStratum[]) {
+  const metric = strata[name];
+  if (metric.n === 0) continue;
+  console.log(
+    `  ${name.padEnd(34)} n=${metric.n.toString().padStart(4)} · `
+    + `alt/chosen dominate ${pct(metric.alternativeDominates, metric.n)}/${pct(metric.chosenDominates, metric.n)} · `
+    + `own possession ${pct(metric.chosenOwnPossession, metric.n)}→${pct(metric.alternativeOwnPossession, metric.n)} · `
+    + `mean Δ possession ${(metric.possessionDelta / metric.n).toFixed(3)}, `
+    + `progression ${(metric.progressionDelta / metric.n).toFixed(3)}m, xG ${(metric.xgDelta / metric.n).toFixed(3)}`,
+  );
+}

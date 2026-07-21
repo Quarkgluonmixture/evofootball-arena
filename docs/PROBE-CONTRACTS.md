@@ -242,6 +242,20 @@ vision wants **multiple readable routes**, not forced tiki-taka.
     from identical RNG. The first S7 run correctly **failed** payoff (509 pairs:
     alternative/chosen dominance 34.4/35.6%; team possession 53.4→49.1%), proving the
     oracle can veto a plausible-looking estimator rather than rubber-stamp it.
+  - ❌ **S7c static two-sided threat also failed honestly (2026-07-21):** a
+    pre-registered shooting-window + turnover-corridor extension left 363 paired
+    rollouts, but alternative/chosen dominance was 34.4/35.0% and own-team
+    possession fell 53.4→47.1%. The implementation was fully reverted with no
+    coefficient/tolerance sweep; the negative audit remains in
+    `world-model/S7C-THREAT-POTENTIAL.md`.
+  - ❌ **S7d temporal flight interception also failed complete payoff
+    (2026-07-21):** the route margin itself calibrated strongly (risky pass
+    received/intercepted 64.7/28.6%; safe 88.7/3.5%), but adding it to S7 left
+    only a +0.9pp alternative dominance edge and reduced own possession
+    51.1→47.0% over 219 paired rollouts. Its implementation was fully reverted;
+    `pass-target-counterfactual` retains first-controller/pass-resolution anatomy
+    so the next hypothesis can distinguish flight failure from post-reception
+    failure. See `world-model/S7D-FLIGHT-INTERCEPTION.md`.
 - ⭐ **This does NOT gate S7.** Live bounded-lookahead uses the CHEAP analytic estimator
   (ETA / pitch-control / next-options), never a Match rollout (too slow per-tick under
   either scheme) — the clone-vs-replay choice only touches the offline oracle, so the
