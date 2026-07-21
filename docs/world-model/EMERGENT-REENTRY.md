@@ -247,3 +247,15 @@ and shared-intent language remain generic.
 No historical named action becomes a training label or reward. If an evolved
 preference later produces an overlap, underlap, check, peel, third-player arrival
 or cut-inside trajectory, those names remain post-hoc telemetry only.
+
+D2a then tested whether the same multi-layer loop merely needed its generic
+preference weights selected from outcomes. The deterministic development search
+improved reception coverage by 7.8pp and reduced opponent first control, so the
+representation contains some real signal. It still missed the frozen +15pp gate
+and completed only 44/64 movement states. Validation and final remained sealed.
+
+This preserves the migration debt and narrows the next admissible re-entry again:
+a single universal spatial weighting is not enough. A future replacement must let
+the same generic dimension matter differently in different observed situations or
+across time, while tactical pattern names remain absent from state, genes and
+fitness.

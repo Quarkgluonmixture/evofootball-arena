@@ -341,3 +341,17 @@ clusters before any final test. Perception, candidates, commitments, movement,
 contact and transition remain D1-exact. Even a full pass authorises only a later
 default-off full-match ecology contract; it cannot ship the learned vector or add
 production genes.
+
+D2a is now complete and stopped before validation. Its static preference search
+raised development portfolio coverage from 26/128 to 36/128 (+7.8pp) and reduced
+opponent first controls from 184 to 180, proving a small real learnable signal.
+But the frozen primary required +15pp, and movement completed only 44/64 states
+(68.75%) against the 70% gate. Two runs were byte-identical
+(`359c0c6b…193fd`); every low-level validity gate passed, while seeds 48,000+ and
+49,000+ remained unread.
+
+The decentralised programme therefore does not return to isolated feature
+audits, but this static universal rank-weight family is finished. Any next
+composition contract must add a genuinely different selection state—such as
+generic context-conditioned preference or bounded temporal intent—without
+changing the frozen candidate facts, publishing central tasks or tuning D2a.

@@ -1,7 +1,8 @@
 # D2a — Decentralised Preference Learnability Lab
 
-Status: **PRE-REGISTERED — offline train/validation/test composition experiment;
-no production gene, full-match consumer or live selector.**
+Status: **FAILED AT DEVELOPMENT GATES — static nine-weight selection learned a
+small real edge but missed the frozen effect and movement-support thresholds;
+validation/final stayed sealed and no live selector follows.**
 
 Date: 2026-07-21
 
@@ -332,3 +333,68 @@ save data and UI have zero importers or writes. The default fingerprint must sta
 ```
 
 No play-test is requested because no live behaviour changes.
+
+## 9. Frozen result
+
+Two complete development runs were byte-identical:
+
+```text
+canonical SHA-256
+359c0c6b6604ef0af8562078fbf09f64b05c2709249335e0d8dc1787f4d193fd
+
+development states          64 / 64 (first 64 of the fixed 128-seed range)
+evaluations                 72 / 72
+validation states read       0
+final-test states read       0
+```
+
+The deterministic search improved for three generations and then plateaued:
+
+```text
+generation       0     1     2     3     4     5
+coverage        30    35    35    36    36    36  / 128
+completed       44    44    44    44    44    44  / 64
+opponent       187   185   185   180   180   180
+dead            17    16    16    17    17    17
+```
+
+The frozen winning probe genome was:
+
+```text
+[1,
+ 0.7784413502195835,
+ 0.11706258127164611,
+ 0.643690919603912,
+ 0.8833353468576151,
+ 0.5083193550762336,
+ 0.9833536787874886,
+ 0.022776524256243463,
+ 0.4995849373628807]
+```
+
+Against the exact neutral member of the same family:
+
+```text
+                                neutral     learned       effect / gate
+portfolio reception             26/128      36/128        +7.8pp / >= +15pp FAIL
+movement completion              43/64       44/64         68.75% / >= 70% FAIL
+opponent first controls            184         180         -1.0pp / <= 0pp PASS
+dead balls                          15          17         +0.5pp / <= +5pp PASS
+```
+
+Every collection, selection, Oracle, RNG, finite-state and intervention validity
+gate passed. The learned weights moved materially away from neutral, changed the
+selected portfolio often enough and retained non-hold choices. The failure is
+therefore not a dead optimizer or invalid experiment.
+
+The causal conclusion is narrower and more useful:
+
+* the nine generic facts contain some selectable outcome signal;
+* one global static rank-weight vector cannot recover enough receiving value;
+* longer search or different mutation cannot repair the frozen hypothesis; and
+* the sealed partitions must not be opened to choose a more flattering family.
+
+D2a is stopped. A future composition experiment needs a substantively different
+selection state—most plausibly context-conditional preference, bounded temporal
+memory or actual full-match frequency-dependent ecology. It may not add another
+isolated spatial fact or retry this static vector with more search.
