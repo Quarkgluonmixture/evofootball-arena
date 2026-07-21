@@ -144,8 +144,15 @@
 > id and zero possession/pass/M3 transition. The module has no Match/AI/render consumer; live
 > 120-match probe remains all zero. Gates: build clean · 499/499 · both fingerprints exact ·
 > profiler determinism OK · 5.34µs/step vs frozen 5.32, 14.5 vs 15.0 matches/s (no live import).
-> **NEXT = B1c-2 one-opponent mechanism only:** real opponent ball contact breaks the lease
-> into the existing M3 boundary; own touches must not. No live-match candidate yet.
+> ✅ **B1c-2 DONE (2026-07-21; isolated, not live):** the shared real-ball
+> access/screening query now feeds a pure lease boundary. Own contact keeps sequence 12 and
+> advances touch 2→3 without M3; exposed opponent contact breaks it into an M3 handoff;
+> a controller screening the access line prevents the break. No owner/winner is assigned.
+> Gates: tsc/build clean · 502/502 clean single-worker full run · both fingerprints exact ·
+> live 120-match sequence probe still all zero · profiler determinism OK · 5.22µs/step,
+> 14.8 matches/s. **NEXT = B1c-3 live A/B candidate:** wire the already-proved sequence,
+> impulse and lease boundaries into normal close control as one behavioural lever; run the
+> complete probe stack, then stop for the user's desktop/phone play-test or fully revert.
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

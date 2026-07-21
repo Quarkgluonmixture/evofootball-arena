@@ -1,7 +1,7 @@
 # Controlled Ball Coupling — B1c architecture contract
 
-Status: **B1c-0 representation + B1c-1 isolated solo mechanism complete; B1c-2
-not started.** Live behaviour is still the accepted B0 path. This is the only
+Status: **B1c-0 representation + B1c-1/B1c-2 isolated mechanisms complete;
+B1c-3 live A/B is next.** Live behaviour is still the accepted B0 path. This is the only
 authorised retry of the Ball-Control Foundation after the two rejected B1 candidates in
 [`BALL-CONTROL.md`](BALL-CONTROL.md).
 
@@ -299,6 +299,22 @@ Add one opponent. A real opponent ball contact breaks the sequence and enters
 the existing M3 contact→control path. Own planned touches remain inside the
 sequence. Prove shielding/access at the real ball location without adding a
 direct winner formula or a new dribble decision.
+
+**✅ DONE 2026-07-21 as an isolated mechanism, not live wiring.**
+`resolveControlLeaseContact` composes the existing oriented reach + screening
+query with the sequence boundary. Own contact advances the existing sequence
+without a handoff; exposed opponent contact marks it broken with
+`opponentContact` and returns only an `m3` handoff request; screened access leaves
+it active. It never chooses a controller or winner. The deterministic mechanism
+probe records: own sequence 12→12 and touches 2→3; exposed access=yes,
+status=broken, handoff=M3; screened access=no, `blockedBy=3`, status=active. All
+five violations are exactly zero (`ownTouchOpenedM3`, sequence change on own
+touch, missed opponent break, screened break, winner fields). No `Match`, AI or
+renderer path imports it, so the 120-match live probe remains entirely zero.
+Gates: tsc/build clean · clean single-worker full run 502/502 · both fingerprints
+exact (`57b0bdab…`, `4ac9408d…`) · profiler determinism OK · 5.22µs/step versus
+frozen 5.32, 14.8 versus 15.0 matches/s. Frozen perf JSON restored. B1c-3 is the
+first live behavioural cut and must stand or revert as one candidate.
 
 ### B1c-3 — live A/B and user play-test
 

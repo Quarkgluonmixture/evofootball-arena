@@ -6,6 +6,7 @@ import {
   applyControlledTouchImpulse,
   controlledTouchSpacing,
   planControlledTouch,
+  resolveControlLeaseContact,
   virtualFootAnchor,
   virtualFootForTouch,
 } from '../src/sim/controlCoupling';
@@ -139,5 +140,131 @@ describe('B1c-1 isolated controlled-ball coupling', () => {
     expect(match.possessionSide).toBe(possessionBefore);
     expect(match.pendingPass).toBe(passBefore);
     expect(match.contestEpisodes).toHaveLength(contestsBefore);
+  });
+
+  it('keeps an own real contact inside the same lease and outside M3', () => {
+    const controller = {
+      gid: 3,
+      side: 0 as const,
+      pos: { x: 0, y: 0 },
+      bodyDir: { x: 1, y: 0 },
+      coreRadius: 0.525,
+    };
+    const sequence: ActiveControlSequence = {
+      id: 8,
+      controllerGid: controller.gid,
+      origin: 'reception',
+      startedTick: 10,
+      lastOwnTouchTick: 10,
+      touchIndex: 2,
+      status: 'active',
+    };
+    const result = resolveControlLeaseContact({
+      sequence,
+      actor: controller,
+      controllerSide: controller.side,
+      ball: { pos: { x: 0.75, y: 0 }, radius: 0.11 },
+      bodies: [controller],
+      maxCenterReach: 1.25,
+      tick: 20,
+    });
+
+    expect(result.kind).toBe('ownTouch');
+    expect(result.handoff).toBeNull();
+    expect(result.sequence).toMatchObject({
+      id: 8,
+      status: 'active',
+      touchIndex: 3,
+      lastOwnTouchTick: 20,
+    });
+  });
+
+  it('breaks the lease on an exposed opponent contact without awarding ownership', () => {
+    const controller = {
+      gid: 3,
+      side: 0 as const,
+      pos: { x: 0, y: 0 },
+      bodyDir: { x: 1, y: 0 },
+      coreRadius: 0.525,
+    };
+    const opponent = {
+      gid: 9,
+      side: 1 as const,
+      pos: { x: 1.45, y: 0 },
+      bodyDir: { x: -1, y: 0 },
+      coreRadius: 0.525,
+    };
+    const sequence: ActiveControlSequence = {
+      id: 8,
+      controllerGid: controller.gid,
+      origin: 'reception',
+      startedTick: 10,
+      lastOwnTouchTick: 10,
+      touchIndex: 2,
+      status: 'active',
+    };
+    const result = resolveControlLeaseContact({
+      sequence,
+      actor: opponent,
+      controllerSide: controller.side,
+      ball: { pos: { x: 0.8, y: 0 }, radius: 0.11 },
+      bodies: [controller, opponent],
+      maxCenterReach: 1.25,
+      tick: 24,
+    });
+
+    expect(result).toMatchObject({
+      kind: 'opponentContact',
+      handoff: 'm3',
+      sequence: {
+        id: 8,
+        status: 'broken',
+        endedTick: 24,
+        breakCause: 'opponentContact',
+      },
+    });
+    expect(result).not.toHaveProperty('ownerGid');
+    expect(result).not.toHaveProperty('winnerGid');
+  });
+
+  it('does not break the lease when the controller core screens the access line', () => {
+    const controller = {
+      gid: 3,
+      side: 0 as const,
+      pos: { x: 0, y: 0 },
+      bodyDir: { x: 1, y: 0 },
+      coreRadius: 0.525,
+    };
+    const opponent = {
+      gid: 9,
+      side: 1 as const,
+      pos: { x: -0.9, y: 0 },
+      bodyDir: { x: 1, y: 0 },
+      coreRadius: 0.525,
+    };
+    const sequence: ActiveControlSequence = {
+      id: 8,
+      controllerGid: controller.gid,
+      origin: 'reception',
+      startedTick: 10,
+      lastOwnTouchTick: 10,
+      touchIndex: 2,
+      status: 'active',
+    };
+    const result = resolveControlLeaseContact({
+      sequence,
+      actor: opponent,
+      controllerSide: controller.side,
+      ball: { pos: { x: 0.2, y: 0 }, radius: 0.11 },
+      bodies: [controller, opponent],
+      maxCenterReach: 1.25,
+      tick: 24,
+    });
+
+    expect(result.kind).toBe('noContact');
+    expect(result.handoff).toBeNull();
+    expect(result.sequence).toBe(sequence);
+    expect(result.access.blockedByGid).toBe(controller.gid);
+    expect(result.access.mustGoAround).toBe(true);
   });
 });

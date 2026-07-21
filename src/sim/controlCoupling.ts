@@ -1,5 +1,13 @@
 import type { V2 } from '../utils/vec';
 import { BALL_RADIUS, PLAYER_CORE_RADIUS } from './constants';
+import {
+  directBallAccess,
+  recordOwnControlTouch,
+  type ActiveControlSequence,
+  type BallAccessBody,
+  type DirectBallAccess,
+  type PhysicalBall,
+} from './physical';
 
 export type VirtualFootSide = 'left' | 'right';
 
@@ -54,6 +62,37 @@ export interface ControlledTouchImpulse {
   readonly magnitude: number;
   readonly velocityAfter: V2;
 }
+
+export interface ControlLeaseContactInput {
+  readonly sequence: ActiveControlSequence;
+  readonly actor: BallAccessBody;
+  readonly controllerSide: 0 | 1;
+  readonly ball: PhysicalBall;
+  readonly bodies: readonly BallAccessBody[];
+  readonly maxCenterReach: number;
+  readonly tick: number;
+}
+
+export type ControlLeaseContactResult =
+  | {
+      readonly kind: 'noContact';
+      readonly sequence: ActiveControlSequence;
+      readonly access: DirectBallAccess;
+      readonly handoff: null;
+    }
+  | {
+      readonly kind: 'ownTouch';
+      readonly sequence: ActiveControlSequence;
+      readonly access: DirectBallAccess;
+      readonly handoff: null;
+    }
+  | {
+      readonly kind: 'opponentContact';
+      readonly sequence: ReturnType<typeof breakControlSequenceOnOpponentContact>;
+      readonly access: DirectBallAccess;
+      /** The existing M3 contact→control process is the only next resolver. */
+      readonly handoff: 'm3';
+    };
 
 const clamp01 = (value: number): number => Math.max(0, Math.min(1, value));
 
@@ -198,4 +237,49 @@ export function applyControlledTouchImpulse(
     magnitude,
     velocityAfter: { x: ball.vel.x, y: ball.vel.y },
   };
+}
+
+/** Break the lease only; this never assigns the ball to the opponent. */
+export function breakControlSequenceOnOpponentContact(
+  sequence: ActiveControlSequence,
+  tick: number,
+) {
+  return {
+    ...sequence,
+    status: 'broken' as const,
+    endedTick: tick,
+    breakCause: 'opponentContact' as const,
+  };
+}
+
+/**
+ * B1c-2 boundary: geometry proves a real contact before sequence semantics
+ * react. The controller's own contact advances the same lease; an opponent's
+ * contact breaks it and hands the physical event to M3. Proximity alone and
+ * deferred teammate transfers do neither.
+ */
+export function resolveControlLeaseContact(
+  input: ControlLeaseContactInput,
+): ControlLeaseContactResult {
+  const access = directBallAccess(input.actor, input.ball, input.bodies, input.maxCenterReach);
+  if (!access.canDirectlyContact) {
+    return { kind: 'noContact', sequence: input.sequence, access, handoff: null };
+  }
+  if (input.actor.gid === input.sequence.controllerGid) {
+    return {
+      kind: 'ownTouch',
+      sequence: recordOwnControlTouch(input.sequence, input.tick),
+      access,
+      handoff: null,
+    };
+  }
+  if (input.actor.side !== input.controllerSide) {
+    return {
+      kind: 'opponentContact',
+      sequence: breakControlSequenceOnOpponentContact(input.sequence, input.tick),
+      access,
+      handoff: 'm3',
+    };
+  }
+  return { kind: 'noContact', sequence: input.sequence, access, handoff: null };
 }

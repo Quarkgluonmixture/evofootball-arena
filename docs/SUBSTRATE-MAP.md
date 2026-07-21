@@ -153,8 +153,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   continuous `ControlSequence` + independent ball + discrete touches + derived macro
   `PossessionLocus`. ✅ B1c-0 landed byte-identically: consumer census + null live sequence
   state + pure locus + probe shell, with no existing consumer. ✅ B1c-1 landed as an isolated
-  distance-driven gait + real velocity-impulse mechanism, still with no live consumer. B1c-2
-  is the next one-opponent mechanism, not another timer tune and not live-match approval.
+  distance-driven gait + real velocity-impulse mechanism, still with no live consumer.
+  ✅ B1c-2 composes real-ball access/screening with an isolated lease boundary: own
+  contact continues one sequence, exposed opponent contact requests M3, and screened
+  contact does nothing; it assigns no winner and remains outside `Match`. B1c-3 is the
+  first live A/B candidate, not another timer tune or a broader body campaign.
 
 ### S3 — Perception · 🟡🔴 (representation exists; live AI is still omniscient)
 - **Provides:** each player reads a `PerceptionSnapshot` (observed ball/players +

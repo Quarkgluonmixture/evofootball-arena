@@ -42,6 +42,22 @@ gates deterministic=yes · all recoverable=yes · sequence id stable=yes · pres
 This is not a live-match baseline: it proves the B1c-1 causal mechanism in a
 solo scene while the 120-match B1c-0 block above remains exactly zero.
 
+### B1c-2 isolated opponent-boundary addendum
+
+`npx tsx scripts/probes/control-opponent-mechanism.ts`
+
+```
+own contact: kind=ownTouch · handoff=none · sequence 12→12 · touches 2→3
+exposed opponent: access=yes · kind=opponentContact · status=broken · handoff=m3
+screened opponent: access=no · blockedBy=3 · status=active · handoff=none
+EXACT ZERO ownTouchOpenedM3=0 · ownTouchChangedSequence=0 ·
+opponentContactDidNotBreak=0 · blockedContactBrokeLease=0 · winnerFields=0
+```
+
+This is also not a live-match baseline. It proves the lease transition and
+screening counterfactual without choosing a duel winner; normal matches still
+create zero sequences until the separately gated B1c-3 candidate.
+
 ---
 
 ## contest-anatomy — S0 loose-ball / contest ledger

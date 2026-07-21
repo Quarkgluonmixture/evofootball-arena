@@ -1,7 +1,7 @@
 # Ball-Control Foundation — authoritative ball, readable touches
 
-Status: **B0 done; B1a/B1b honest-reverted; B1c-0 representation + B1c-1 isolated
-solo mechanism done; B1c-2 is next but not started.**
+Status: **B0 done; B1a/B1b honest-reverted; B1c-0 representation + B1c-1/B1c-2
+isolated mechanisms done; B1c-3 live A/B is next.**
 This is a bounded S2 foundation slice, not an extension of the completed M0–M4 body
 campaign. The implementation authority for the retry is
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
@@ -68,8 +68,14 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
   pressure-turn/sprint, 100% recoverability, ≤0.197m foot error and stable
   sequence identity. No live consumer exists; full 499/499 and both fingerprints
   remain exact.
-- ⬜ **B1c-2 — physical disruption.** A real opponent touch breaks the lease and
-  enters existing M3; an own planned touch does neither. No direct attr winner.
+- ✅ **B1c-2 — physical disruption. DONE as an isolated one-opponent mechanism.**
+  The same `directBallAccess` geometry used by the world model decides whether
+  contact is real at the authoritative ball. An own contact keeps sequence 12,
+  advances touch 2→3 and opens no handoff; an exposed opponent contact breaks
+  the lease with `opponentContact` and requests M3; a controller screening the
+  access line prevents the break. The boundary returns no owner/winner. It is
+  still not imported by live `Match`; 502/502 tests, both fingerprints exact,
+  and the 120-match live sequence probe remains all zero.
 - ⬜ **B1c-3 — live A/B + user play-test.** Gate contact tails, possession
   economy, policy/style/stamina, determinism and perf. The user decides whether
   touches and steals are readable. Pass or full revert, then return to S3–S8.
