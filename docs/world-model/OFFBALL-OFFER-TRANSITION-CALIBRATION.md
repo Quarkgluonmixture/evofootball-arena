@@ -1,6 +1,7 @@
 # O4b — Offer Fact to Reception-transition Calibration
 
-Status: **PRE-REGISTERED. Not yet run. No live selector.**
+Status: **PASS at truth ceiling. Observer-specific replication authorised; no
+live selector.**
 
 Date: 2026-07-21
 
@@ -145,3 +146,50 @@ selector contract be proposed.
 No `cutInside`, overlap, check-back, underlap, third-man or role label enters the
 world state or policy. Named football patterns may later be detected from generic
 trajectories for telemetry and play-test clips only.
+
+## 9. Frozen result
+
+The fresh 128-state run at seed offset 24000 passed every pre-registered gate:
+
+```text
+successful forced-pass records                 490
+clone / deterministic / intervention failures 0 / 0 / 0
+oracle force failures                          0
+non-finite calibration facts                   0
+
+opponentArrivalMargin Q4-Q1:
+  intended reception                           +12.7pp
+  opponent interception                        -11.9pp
+```
+
+Two complete calibration runs produced the identical output hash
+`bb32a1e7b54cb7fbc36e50bd06668affbc51f0b708269146eb2188a319e06fae`.
+The default O4a invocation still produces its frozen hash
+`a0bfb58f2b7c9f5e111a613bcc21e7103a51b591ab3d1910d2c6f4d617eac645`.
+The production fingerprint remains
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+
+| opponent-margin quartile | n | mean margin | intended | opponent | other |
+|---|---:|---:|---:|---:|---:|
+| Q1 | 123 | -0.826s | 43.9% | 50.4% | 5.7% |
+| Q2 | 122 | 0.152s | 45.9% | 50.8% | 3.3% |
+| Q3 | 123 | 0.403s | 48.8% | 48.0% | 3.3% |
+| Q4 | 122 | 1.140s | 56.6% | 38.5% | 4.9% |
+
+The fresh geometry anatomy also remained non-vacuous: hold/legacy/forward/
+lateral/backward intended-reception rates were 46.4/42.4/50.5/49.0/55.7%, a
+13.2pp range. This is diagnostic only and does not establish a preferred
+direction.
+
+The strongest diagnostic split was nearest-teammate distance at arrival:
+intended reception rose from 30.9% in Q1 to 64.8% in Q4 while opponent control
+fell from 65.9% to 31.1%. Per the frozen contract this remains explanatory. It
+was not promoted into the primary hypothesis, combined with margin, or converted
+into a selector weight.
+
+O4b therefore establishes one usable truth-ceiling mediator: a generic target's
+relative opponent-arrival margin predicts who first establishes stable control
+after the mover executes that target and receives the existing ordinary pass.
+It does not show that an individual player can observe this fact accurately, or
+that choosing the highest margin produces better football. The only authorised
+next step is observer-specific calibration on fresh states.

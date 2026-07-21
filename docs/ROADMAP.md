@@ -323,6 +323,15 @@
 > causally changes the next stable-control transition, but no direction is a universal winner
 > and no live selector is authorised. Authority:
 > [`world-model/OFFBALL-OFFER-TO-RECEPTION.md`](world-model/OFFBALL-OFFER-TO-RECEPTION.md).
+> ✅ **O4b TRUTH-CEILING OFFER-FACT CALIBRATION PASSED (2026-07-21,
+> offline only):** on 128 fresh states / 490 successful forced-pass records, the frozen
+> O0 `opponentArrivalMargin` separated real Oracle-v2 first transitions: Q4 versus Q1
+> produced **+12.7pp intended reception** and **−11.9pp opponent interception**, clearing
+> the pre-registered ±10pp gates with zero clone/oracle/determinism/intervention/non-finite
+> failures. Default O4a output stayed byte-identical. Teammate spacing showed a stronger
+> diagnostic split but was not promoted or combined after the result. This authorises only
+> an observer-specific replication—not a score, selector or live consumer. Authority:
+> [`world-model/OFFBALL-OFFER-TRANSITION-CALIBRATION.md`](world-model/OFFBALL-OFFER-TRANSITION-CALIBRATION.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

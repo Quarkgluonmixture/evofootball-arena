@@ -1,7 +1,10 @@
 // O4a OFFER MOVEMENT -> FORCED PASS -> FIRST TRANSITION (offline only).
 //   npx tsx scripts/probes/offball-offer-to-reception.ts [states] [seedOffset]
+// O4b truth-ceiling fact calibration (explicit mode; O4a default stays frozen).
+//   npx tsx scripts/probes/offball-offer-to-reception.ts 128 24000 calibration
 import {
-  evaluateOffBallAffordances, type OffBallAffordance, type OffBallCandidatePoint,
+  evaluateOffBallAffordances, evaluateOffBallCandidate,
+  type OffBallAffordance, type OffBallCandidatePoint,
 } from '../../src/ai/offBallAffordance';
 import { capturePerceptionTruth, oraclePerceptionSnapshot } from '../../src/ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../../src/ai/reachability';
@@ -19,6 +22,7 @@ import {
 
 const REQUIRED = Number(process.argv[2] ?? 128);
 const OFF = Number(process.argv[3] ?? 23000);
+const CALIBRATION = process.argv[4] === 'calibration';
 const MOVE_STEPS = 90;
 const SAMPLE_TICKS = Math.round(1 / DT);
 const O4_NAMESPACE = 0x04a00001;
@@ -70,6 +74,28 @@ interface Aggregate {
   readonly transitionOutcome: Map<FirstTransitionOutcome, number>;
 }
 
+type CalibrationFact =
+  | 'opponentArrivalMargin'
+  | 'carrierLaneClearance'
+  | 'nearestTeammateDistanceAtArrival'
+  | 'selfArrival'
+  | 'forwardDelta';
+
+const CALIBRATION_FACTS: readonly CalibrationFact[] = [
+  'opponentArrivalMargin',
+  'carrierLaneClearance',
+  'nearestTeammateDistanceAtArrival',
+  'selfArrival',
+  'forwardDelta',
+];
+
+interface CalibrationRecord {
+  readonly ordinal: number;
+  readonly branch: BranchKind;
+  readonly outcome: FirstTransitionOutcome | 'censored';
+  readonly facts: Readonly<Record<CalibrationFact, number>>;
+}
+
 const aggregate = (): Aggregate => ({
   prePass: new Map<PrePassStatus, number>(),
   forced: 0,
@@ -100,15 +126,25 @@ const sector = (value: OffBallAffordance): Exclude<BranchKind, 'hold' | 'legacy'
   return null;
 };
 
-const qualifyingPoint = (
+const qualifyingAffordance = (
   values: readonly OffBallAffordance[],
   wanted: Exclude<BranchKind, 'hold' | 'legacy'>,
-): OffBallCandidatePoint | null => values
+): OffBallAffordance | null => values
   .filter((value) => (
     sector(value) === wanted && value.offsideMargin <= 0 && value.opponentArrivalMargin > 0
   ))
   .sort((a, b) => a.selfArrival - b.selfArrival || a.candidate.id.localeCompare(b.candidate.id))[0]
-  ?.candidate ?? null;
+  ?? null;
+
+const calibrationFactsOf = (
+  value: OffBallAffordance,
+): Readonly<Record<CalibrationFact, number>> => ({
+  opponentArrivalMargin: value.opponentArrivalMargin,
+  carrierLaneClearance: value.carrierLaneClearance,
+  nearestTeammateDistanceAtArrival: value.nearestTeammateDistanceAtArrival,
+  selfArrival: value.selfArrival,
+  forwardDelta: value.candidate.forwardDelta,
+});
 
 const runBranch = (
   frozen: Match,
@@ -234,6 +270,8 @@ let deterministicDifferences = 0;
 let targetChanges = 0;
 let unexpectedActionChanges = 0;
 let nonFiniteFacts = 0;
+let calibrationNonFiniteFacts = 0;
+const calibrationRecords: CalibrationRecord[] = [];
 
 for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
   const match = new Match({
@@ -253,7 +291,7 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
     const attackingTeam = match.teams[carrier.side];
     const truth = capturePerceptionTruth(match);
     const profiles = profilesOf(match);
-    let selected: { moverGid: number; targets: Record<BranchKind, OffBallCandidatePoint> } | null = null;
+    let selected: { moverGid: number; offers: Record<BranchKind, OffBallAffordance> } | null = null;
 
     for (const mover of attackingTeam.players) {
       if (
@@ -268,24 +306,30 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
         reachProfiles: profiles,
       });
       if (!values) continue;
-      const forward = qualifyingPoint(values, 'forward');
-      const lateral = qualifyingPoint(values, 'lateral');
-      const backward = qualifyingPoint(values, 'backward');
+      const hold = values.find((value) => value.candidate.id === 'hold') ?? null;
+      const forward = qualifyingAffordance(values, 'forward');
+      const lateral = qualifyingAffordance(values, 'lateral');
+      const backward = qualifyingAffordance(values, 'backward');
       if (!forward || !lateral || !backward) continue;
       const legacyPoint = supportSpot(mover, attackingTeam, match.ball);
+      const legacy = evaluateOffBallCandidate({
+        snapshot: oraclePerceptionSnapshot(truth, mover.gid),
+        playerGid: mover.gid,
+        carrierGid: carrier.gid,
+        attackDir: attackingTeam.attackDir,
+        reachProfiles: profiles,
+      }, {
+        id: 'legacy', point: { x: legacyPoint.x, y: legacyPoint.y }, sampleHorizon: 0,
+        directionIndex: null,
+        forwardDelta: (legacyPoint.x - mover.pos.x) * attackingTeam.attackDir,
+        lateralDelta: legacyPoint.y - mover.pos.y,
+      });
+      if (!hold || !legacy) continue;
       selected = {
         moverGid: mover.gid,
-        targets: {
-          hold: {
-            id: 'hold', point: { x: mover.pos.x, y: mover.pos.y }, sampleHorizon: 0,
-            directionIndex: null, forwardDelta: 0, lateralDelta: 0,
-          },
-          legacy: {
-            id: 'legacy', point: { x: legacyPoint.x, y: legacyPoint.y }, sampleHorizon: 0,
-            directionIndex: null,
-            forwardDelta: (legacyPoint.x - mover.pos.x) * attackingTeam.attackDir,
-            lateralDelta: legacyPoint.y - mover.pos.y,
-          },
+        offers: {
+          hold,
+          legacy,
           forward,
           lateral,
           backward,
@@ -300,12 +344,17 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
     );
     for (const kind of BRANCHES) {
       try {
+        const offer = selected.offers[kind];
+        const facts = calibrationFactsOf(offer);
+        if (CALIBRATION && !Object.values(facts).every(Number.isFinite)) {
+          calibrationNonFiniteFacts++;
+        }
         const first = runBranch(
-          match, carrier.gid, selected.moverGid, selected.targets[kind], kind,
+          match, carrier.gid, selected.moverGid, offer.candidate, kind,
           carrier.side, childSeed,
         );
         const second = runBranch(
-          match, carrier.gid, selected.moverGid, selected.targets[kind], kind,
+          match, carrier.gid, selected.moverGid, offer.candidate, kind,
           carrier.side, childSeed,
         );
         if (JSON.stringify(first) !== JSON.stringify(second)) deterministicDifferences++;
@@ -318,6 +367,14 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
           sum.forced++;
           if (first.forceFailure) sum.forceFailures++;
           else {
+            if (CALIBRATION) calibrationRecords.push({
+              ordinal: calibrationRecords.length,
+              branch: kind,
+              outcome: first.transitionStatus === 'censored'
+                ? 'censored'
+                : first.transitionOutcome!,
+              facts,
+            });
             sum.progressionAtKick += first.progressionAtKick!;
             sum.transitionStatus.set(
               first.transitionStatus!,
@@ -366,11 +423,71 @@ for (const kind of BRANCHES) {
 }
 console.log(`intended-reception range ${((maxIntendedRate - minIntendedRate) * 100).toFixed(1)}pp`);
 
+interface QuartileResult {
+  readonly count: number;
+  readonly intendedRate: number;
+  readonly opponentRate: number;
+}
+
+const reportCalibrationFact = (fact: CalibrationFact): readonly QuartileResult[] => {
+  const sorted = calibrationRecords.slice().sort((a, b) =>
+    a.facts[fact] - b.facts[fact] || a.ordinal - b.ordinal);
+  const buckets = Array.from({ length: 4 }, () => [] as CalibrationRecord[]);
+  sorted.forEach((record, index) => {
+    buckets[Math.min(3, Math.floor(index * 4 / sorted.length))].push(record);
+  });
+  console.log(`  ${fact}${fact === 'opponentArrivalMargin' ? ' [PRIMARY]' : ' [diagnostic]'}`);
+  return buckets.map((bucket, index) => {
+    const intended = bucket.filter((record) => record.outcome === 'intendedReception').length;
+    const opponent = bucket.filter((record) => record.outcome === 'opponentInterception').length;
+    const outcomeCounts = new Map<string, number>();
+    const branchCounts = new Map<BranchKind, number>();
+    let total = 0;
+    for (const record of bucket) {
+      total += record.facts[fact];
+      outcomeCounts.set(record.outcome, (outcomeCounts.get(record.outcome) ?? 0) + 1);
+      branchCounts.set(record.branch, (branchCounts.get(record.branch) ?? 0) + 1);
+    }
+    console.log(
+      `    Q${index + 1} n=${bucket.length} mean=${(total / Math.max(1, bucket.length)).toFixed(4)}`
+      + ` · intended=${pct(intended, bucket.length)}`
+      + ` · opponent=${pct(opponent, bucket.length)}`
+      + ` · other=${pct(bucket.length - intended - opponent, bucket.length)}`,
+    );
+    console.log(`       outcomes ${mapLine(outcomeCounts)} · branches ${mapLine(branchCounts)}`);
+    return {
+      count: bucket.length,
+      intendedRate: intended / Math.max(1, bucket.length),
+      opponentRate: opponent / Math.max(1, bucket.length),
+    };
+  });
+};
+
+let calibrationPassed = true;
+if (CALIBRATION) {
+  console.log(`O4b TRUTH-CEILING TRANSITION CALIBRATION · records ${calibrationRecords.length}`);
+  console.log(`calibration non-finite facts ${calibrationNonFiniteFacts}`);
+  let primary: readonly QuartileResult[] = [];
+  for (const fact of CALIBRATION_FACTS) {
+    const quartiles = reportCalibrationFact(fact);
+    if (fact === 'opponentArrivalMargin') primary = quartiles;
+  }
+  const intendedDelta = primary[3].intendedRate - primary[0].intendedRate;
+  const opponentDelta = primary[3].opponentRate - primary[0].opponentRate;
+  console.log(
+    `primary Q4-Q1 intended ${(intendedDelta * 100).toFixed(1)}pp`
+    + ` · opponent ${(opponentDelta * 100).toFixed(1)}pp`,
+  );
+  calibrationPassed = calibrationRecords.length >= 400 && calibrationNonFiniteFacts === 0
+    && intendedDelta >= 0.10 && opponentDelta <= -0.10;
+}
+
 const minimumForced = BRANCHES.every((kind) =>
   totals.get(kind)!.forced >= Math.min(64, REQUIRED));
 const forceFailures = [...totals.values()].reduce((sum, value) => sum + value.forceFailures, 0);
 if (
   frozenStates !== REQUIRED || cloneFailures > 0 || deterministicDifferences > 0 ||
   targetChanges > 0 || unexpectedActionChanges > 0 || nonFiniteFacts > 0 ||
-  forceFailures > 0 || !minimumForced || maxIntendedRate - minIntendedRate < 0.05
+  forceFailures > 0 || !minimumForced ||
+  (CALIBRATION ? !calibrationPassed : maxIntendedRate - minIntendedRate < 0.05)
 ) process.exitCode = 1;
