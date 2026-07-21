@@ -34,6 +34,39 @@ export interface OffBallOfferCoordinationInput {
   readonly currentTick: number;
 }
 
+export interface OffBallOfferPortfolioPair {
+  readonly leftPlayerGid: number;
+  readonly rightPlayerGid: number;
+  readonly targetDistance: number;
+  readonly bearingSeparation: number | null;
+  readonly arrivalTimeSeparation: number;
+  readonly corridorSeparation: number;
+}
+
+export interface OffBallOfferPortfolioRange {
+  readonly min: number;
+  readonly max: number;
+  readonly minPair: readonly [number, number];
+  readonly maxPair: readonly [number, number];
+}
+
+export interface OffBallOfferPortfolio {
+  readonly carrierGid: number;
+  readonly commitments: readonly OffBallOfferCommitment[];
+  readonly pairs: readonly OffBallOfferPortfolioPair[];
+  readonly targetDistance: OffBallOfferPortfolioRange | null;
+  readonly bearingSeparation: OffBallOfferPortfolioRange | null;
+  readonly arrivalTimeSeparation: OffBallOfferPortfolioRange | null;
+  readonly corridorSeparation: OffBallOfferPortfolioRange | null;
+}
+
+export interface OffBallOfferPortfolioInput {
+  readonly carrierGid: number;
+  readonly carrierPoint: Readonly<V2>;
+  readonly commitments: readonly OffBallOfferCommitment[];
+  readonly currentTick: number;
+}
+
 const finitePoint = (point: Readonly<V2>): boolean =>
   Number.isFinite(point.x) && Number.isFinite(point.y);
 
@@ -186,5 +219,99 @@ export function evaluateOffBallOfferCoordination(
     nearestArrivalPlayerGid,
     nearestCorridorSeparation,
     nearestCorridorPlayerGid,
+  };
+}
+
+const rangeOf = (
+  pairs: readonly OffBallOfferPortfolioPair[],
+  valueOf: (pair: OffBallOfferPortfolioPair) => number | null,
+): OffBallOfferPortfolioRange | null => {
+  let min = Infinity;
+  let max = -Infinity;
+  let minPair: readonly [number, number] | null = null;
+  let maxPair: readonly [number, number] | null = null;
+  for (const pair of pairs) {
+    const value = valueOf(pair);
+    if (value === null) continue;
+    const gids = [pair.leftPlayerGid, pair.rightPlayerGid] as const;
+    if (value < min) {
+      min = value;
+      minPair = gids;
+    }
+    if (value > max) {
+      max = value;
+      maxPair = gids;
+    }
+  }
+  return minPair && maxPair ? { min, max, minPair, maxPair } : null;
+};
+
+/**
+ * Freeze all active same-carrier commitments into one deterministic portfolio.
+ * Pairwise facts remain separate and named-pattern-free; this never allocates.
+ */
+export function evaluateOffBallOfferPortfolio(
+  input: OffBallOfferPortfolioInput,
+): OffBallOfferPortfolio | null {
+  const { carrierGid, carrierPoint, commitments, currentTick } = input;
+  if (
+    !Number.isInteger(carrierGid)
+    || !finitePoint(carrierPoint)
+    || !Number.isInteger(currentTick)
+  ) return null;
+
+  const active: OffBallOfferCommitment[] = [];
+  const players = new Set<number>();
+  for (const commitment of commitments) {
+    if (
+      Number.isInteger(commitment.validUntilTick)
+      && commitment.validUntilTick < currentTick
+    ) continue;
+    if (
+      !validCommitment(commitment)
+      || commitment.carrierGid !== carrierGid
+      || players.has(commitment.playerGid)
+    ) return null;
+    players.add(commitment.playerGid);
+    active.push({
+      ...commitment,
+      targetPoint: { x: commitment.targetPoint.x, y: commitment.targetPoint.y },
+    });
+  }
+  active.sort((a, b) => a.playerGid - b.playerGid);
+
+  const pairs: OffBallOfferPortfolioPair[] = [];
+  for (let leftIndex = 0; leftIndex < active.length; leftIndex++) {
+    const left = active[leftIndex];
+    for (let rightIndex = leftIndex + 1; rightIndex < active.length; rightIndex++) {
+      const right = active[rightIndex];
+      const leftBearing = bearingFrom(carrierPoint, left.targetPoint);
+      const rightBearing = bearingFrom(carrierPoint, right.targetPoint);
+      pairs.push({
+        leftPlayerGid: left.playerGid,
+        rightPlayerGid: right.playerGid,
+        targetDistance: Math.hypot(
+          left.targetPoint.x - right.targetPoint.x,
+          left.targetPoint.y - right.targetPoint.y,
+        ),
+        bearingSeparation: leftBearing === null || rightBearing === null
+          ? null
+          : angleSeparation(leftBearing, rightBearing),
+        arrivalTimeSeparation: Math.abs(left.arrivalTime - right.arrivalTime),
+        corridorSeparation: corridorSeparation(
+          carrierPoint, left.targetPoint, right.targetPoint,
+        ),
+      });
+    }
+  }
+
+  return {
+    carrierGid,
+    commitments: active,
+    pairs,
+    targetDistance: rangeOf(pairs, (pair) => pair.targetDistance),
+    bearingSeparation: rangeOf(pairs, (pair) => pair.bearingSeparation),
+    arrivalTimeSeparation: rangeOf(pairs, (pair) => pair.arrivalTimeSeparation),
+    corridorSeparation: rangeOf(pairs, (pair) => pair.corridorSeparation),
   };
 }

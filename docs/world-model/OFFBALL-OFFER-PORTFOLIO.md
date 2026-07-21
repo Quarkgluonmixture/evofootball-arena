@@ -1,6 +1,7 @@
 # O5 — Team Off-ball Offer Portfolio
 
-Status: **PRE-REGISTERED. Representation only; no allocation or live consumer.**
+Status: **O5 COMPLETE as representation-only team substrate. No allocation or
+live consumer.**
 
 Date: 2026-07-21
 
@@ -23,6 +24,7 @@ concentration or spread is better.
 Add a pure `evaluateOffBallOfferPortfolio()` over:
 
 ```text
+carrier gid
 carrier point
 current tick
 explicit OffBallOfferCommitment[]
@@ -95,3 +97,24 @@ concentrated and spread generic commitment sets.
 
 It does not authorise a live bidder, `supportSpot` replacement, TeamBrain rewrite,
 gene, preference or retirement of named scripts.
+
+## 7. Frozen result
+
+O5 passed:
+
+* empty and singleton portfolios stay valid without fabricated pairwise facts;
+* three commitments produce exactly three stable gid-ordered pairs;
+* identical, same-ray, orthogonal and carrier-point geometry preserve the
+  expected separate target/bearing/timing/corridor facts;
+* min/max ranges retain the exact supplying player pair;
+* expired intent is ignored while mixed-carrier, duplicate-player and malformed
+  active intent returns unsupported;
+* mirrored input preserves every unsigned result;
+* the result owns target copies, repeated evaluation is identical and inputs
+  remain unchanged;
+* all 16 focused O3/O5 tests and TypeScript pass;
+* source imports remain free of Match, Team, brains, roles, genes, policies and
+  named football patterns.
+
+No production caller exists. O5 authorises only a portfolio census and a later
+separately contracted clone intervention.
