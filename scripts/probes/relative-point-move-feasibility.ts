@@ -3,6 +3,8 @@
 import { relativePointTarget } from '../../src/ai/actionExecutor';
 import { randomGenome } from '../../src/evolution/genome';
 import { randomSquad } from '../../src/evolution/playerGenome';
+import { offsideLineLocalX } from '../../src/ai/formations';
+import { estimateReach } from '../../src/ai/reachability';
 import { cloneSimulationState } from '../../src/sim/cloneState';
 import { DT, HALF_L, HALF_W } from '../../src/sim/constants';
 import { Match } from '../../src/sim/Match';
@@ -12,6 +14,7 @@ import { Rng } from '../../src/utils/rng';
 
 const REQUIRED = Number(process.argv[2] ?? 64);
 const OFF = Number(process.argv[3] ?? 32000);
+const AUDIT = process.argv[4] === 'audit';
 const MAX_SEEDS = 128;
 const STEPS = 90;
 const REFERENCE_FORWARD = 5;
@@ -56,6 +59,16 @@ interface BranchSummary {
   readonly offsetChanges: number;
   readonly referenceChanges: number;
   readonly nonFiniteFacts: number;
+}
+
+interface AuditRecord {
+  readonly closed: boolean;
+  readonly eta: number;
+  readonly etaMargin: number;
+  readonly offsideMargin: number;
+  readonly distance: number;
+  readonly requiredMeanSpeed: number;
+  readonly warning: boolean;
 }
 
 const team = (name: string, seed: number): TeamInfo => {
@@ -243,6 +256,43 @@ const runBranch = (frozen: FrozenState, kind: BranchKind): BranchSummary => {
   };
 };
 
+const auditForwardCommit = (frozen: FrozenState): Omit<AuditRecord, 'closed'> | null => {
+  const match = frozen.match;
+  const mover = match.allPlayers[frozen.moverGid];
+  const side = match.teams[mover.side];
+  const offset = {
+    x: frozen.baseOffset.x + OFFSET_DELTA,
+    y: frozen.baseOffset.y,
+  };
+  const terminalTarget = relativePointTarget(frozen.referenceTarget, side.attackDir, offset);
+  if (!terminalTarget) return null;
+  const reach = estimateReach({
+    pos: mover.pos,
+    vel: mover.vel,
+    bodyDir: mover.bodyDir,
+    topSpeed: mover.topSpeed,
+    accel: mover.accel,
+    attrs: { dribbling: mover.attrs.dribbling },
+  }, terminalTarget);
+  const offsideLine = offsideLineLocalX(
+    side,
+    match.teams[1 - mover.side].players,
+    side.localX(match.ball.pos.x),
+  );
+  const offsideMargin = side.localX(terminalTarget.x) - offsideLine;
+  const terminalDistance = distance(mover.pos, terminalTarget);
+  const values = [reach.eta, offsideMargin, terminalDistance];
+  if (!values.every(Number.isFinite)) return null;
+  return {
+    eta: reach.eta,
+    etaMargin: STEPS * DT - reach.eta,
+    offsideMargin,
+    distance: terminalDistance,
+    requiredMeanSpeed: terminalDistance / (STEPS * DT),
+    warning: reach.eta > STEPS * DT || offsideMargin > 0,
+  };
+};
+
 const statuses = new Map<BranchKind, Map<BranchStatus, number>>(
   DELTAS.map(({ kind }) => [kind, new Map()]),
 );
@@ -251,6 +301,8 @@ let frozenStates = 0;
 let scannedSeeds = 0;
 let cloneFailures = 0;
 let deterministicDifferences = 0;
+const auditRecords: AuditRecord[] = [];
+let auditFailures = 0;
 
 for (let seed = OFF; seed < OFF + MAX_SEEDS && frozenStates < REQUIRED; seed++) {
   scannedSeeds++;
@@ -267,6 +319,8 @@ for (let seed = OFF; seed < OFF + MAX_SEEDS && frozenStates < REQUIRED; seed++) 
     if (!frozen) continue;
     accepted = true;
     frozenStates++;
+    const forwardAudit = AUDIT ? auditForwardCommit(frozen) : null;
+    if (AUDIT && !forwardAudit) auditFailures++;
     for (const { kind } of DELTAS) {
       try {
         const first = runBranch(frozen, kind);
@@ -275,6 +329,16 @@ for (let seed = OFF; seed < OFF + MAX_SEEDS && frozenStates < REQUIRED; seed++) 
         summaries.get(kind)!.push(first);
         const statusMap = statuses.get(kind)!;
         statusMap.set(first.status, (statusMap.get(first.status) ?? 0) + 1);
+        if (AUDIT && kind === 'forward' && first.status === 'completed') {
+          if (!forwardAudit) {
+            auditFailures++;
+          } else {
+            auditRecords.push({
+              ...forwardAudit,
+              closed: first.finalMoverDistance < first.initialMoverDistance,
+            });
+          }
+        }
       } catch {
         cloneFailures++;
       }
@@ -361,6 +425,39 @@ console.log(
   + ` · identity failures ${identityFailures} · non-finite ${nonFiniteTotal}`,
 );
 
+if (AUDIT) {
+  const missed = auditRecords.filter((record) => !record.closed);
+  const closed = auditRecords.filter((record) => record.closed);
+  const missedWarned = missed.filter((record) => record.warning).length;
+  const closedWarned = closed.filter((record) => record.warning).length;
+  const missedEta = missed.filter((record) => record.eta > STEPS * DT).length;
+  const missedOffside = missed.filter((record) => record.offsideMargin > 0).length;
+  const classification = missedWarned >= 5 && closedWarned / Math.max(1, closed.length) <= 0.20
+    ? 'KNOWN_COMMIT_FEASIBILITY_GAP'
+    : missed.length - missedWarned >= 5
+      ? 'JOINT_DYNAMIC_RELATION_GAP'
+      : 'MIXED_OR_UNRESOLVED';
+  console.log('R0b FORWARD RELATION FAILURE AUDIT');
+  console.log(
+    `audit records/failures ${auditRecords.length}/${auditFailures}`
+    + ` · closed/missed ${closed.length}/${missed.length}`,
+  );
+  console.log(
+    `pre-commit warnings closed ${closedWarned}/${closed.length} (${pct(closedWarned, closed.length)})`
+    + ` · missed ${missedWarned}/${missed.length} (${pct(missedWarned, missed.length)})`
+    + ` · missed ETA/offside ${missedEta}/${missedOffside}`,
+  );
+  summary('closed ETA margin', closed.map((record) => record.etaMargin), 's');
+  summary('missed ETA margin', missed.map((record) => record.etaMargin), 's');
+  summary('closed offside margin', closed.map((record) => record.offsideMargin), 'm');
+  summary('missed offside margin', missed.map((record) => record.offsideMargin), 'm');
+  summary('closed terminal distance', closed.map((record) => record.distance), 'm');
+  summary('missed terminal distance', missed.map((record) => record.distance), 'm');
+  summary('closed required speed', closed.map((record) => record.requiredMeanSpeed), 'm/s');
+  summary('missed required speed', missed.map((record) => record.requiredMeanSpeed), 'm/s');
+  console.log(`AUDIT CLASSIFICATION ${classification}`);
+}
+
 if (
   frozenStates !== REQUIRED
   || scannedSeeds > MAX_SEEDS
@@ -375,4 +472,9 @@ if (
   || referenceChangesTotal > 0
   || identityFailures > 0
   || nonFiniteTotal > 0
+  || (AUDIT && (
+    auditRecords.length !== 51
+    || auditRecords.filter((record) => !record.closed).length !== 6
+    || auditFailures > 0
+  ))
 ) process.exitCode = 1;

@@ -1,6 +1,6 @@
 # R0b — Forward Relative-point Failure Audit
 
-Status: **PRE-REGISTERED. Read-only diagnosis; R0a remains failed.**
+Status: **COMPLETE — KNOWN COMMIT FEASIBILITY GAP (offside). R0a remains failed.**
 
 Date: 2026-07-21
 
@@ -82,3 +82,51 @@ Match/AI/action/physics changes                    = 0
 R0b may only narrow the blocker. It cannot authorise a candidate set, filter,
 new reach coefficient, offside exception, smaller offset, shorter reference
 move, live emitter, overlap migration or another R0a run.
+
+## 5. Frozen result
+
+Two complete audit runs produced the identical output hash
+`2ab810c7ba060e1e8cf9ffac5bca22e26f6d14cc5a010ca1bef3e1f47c160eb8`.
+The default R0a output remained byte-identical at
+`6327988d08ad444d57236d70aff85f2655957485fc5393d98b224e7e3a690bf3`.
+
+```text
+forward completed / closed / missed              51 / 45 / 6
+audit records / failures                          51 / 0
+pre-commit warning among closed                    4 / 45 (8.9%)
+pre-commit warning among missed                    5 / 6 (83.3%)
+misses warned by ETA / offside                     0 / 5
+```
+
+The static terminal distance was exactly 9m in every branch and required mean
+speed was exactly 6m/s. Current-model reach did not distinguish the groups:
+
+| group | mean ETA margin | mean terminal offside margin |
+|---|---:|---:|
+| closed | +0.195s | −6.012m |
+| missed | +0.185s | **+2.209m** |
+
+All six misses were predicted physically reachable within the 1.5-second
+window. Five of them instead committed a terminal relation beyond the current
+offside line, where the accepted common executor correctly clamps the mover's
+target. Only one miss remained both statically reachable and onside.
+
+## 6. Verdict
+
+The pre-registered classification is:
+
+```text
+KNOWN_COMMIT_FEASIBILITY_GAP
+```
+
+More precisely, it is a **law/constraint feasibility** gap rather than a body
+speed ETA gap. The raw symmetric relation was mechanically representable, but
+its caller did not ask whether the implied terminal state was legal under the
+same onside discipline that would execute it.
+
+This does not retroactively pass R0a. Adding an onside filter now would select
+away five observed misses after the result and violate the stop rule. The audit
+only banks a future design requirement: any genuinely new relative-affordance
+contract must treat endpoint legality as an input before commitment, while
+leaving the one remaining onside miss as honest dynamic failure. No candidate,
+filter, live action, overlap migration or payoff work is authorised here.

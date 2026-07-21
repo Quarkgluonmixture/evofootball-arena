@@ -441,11 +441,15 @@
 > mover+reference recoverability model, not smaller offsets, shorter motion or a lower gate.
 > Authority:
 > [`world-model/RELATIVE-POINT-MOVEMENT-FEASIBILITY.md`](world-model/RELATIVE-POINT-MOVEMENT-FEASIBILITY.md).
-> 🔬 **R0b FORWARD-RELATION FAILURE AUDIT PRE-REGISTERED
-> (2026-07-21, read-only):** rerun the exact failed R0a sample and attach frozen-commit
-> terminal ETA and offside-line facts to the 51 completed forward branches. This asks whether
-> the six misses were already knowably infeasible or instead expose a joint moving-relation
-> gap. It cannot change R0a's verdict or authorise filtering/live work. Authority:
+> ✅ **R0b FORWARD-RELATION FAILURE AUDIT COMPLETE — KNOWN OFFSIDE
+> FEASIBILITY GAP (2026-07-21, read-only):** the exact 51 forward completions retained six
+> misses. **5/6 misses** had a pre-commit terminal target beyond the offside line, versus
+> only 4/45 closures; all six were physically ETA-reachable, so current speed ETA was not the
+> separator. The audit was valid and byte-identical (`2ab810c7…0eb8`), with the default R0a
+> hash unchanged. This explains the dominant miss as common onside discipline correctly
+> truncating a legally invalid relation, but cannot retroactively add an onside filter or pass
+> R0a. Any future relative-affordance contract must include endpoint legality before
+> commitment and preserve the remaining honest dynamic miss. Authority:
 > [`world-model/RELATIVE-POINT-FAILURE-AUDIT.md`](world-model/RELATIVE-POINT-FAILURE-AUDIT.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.

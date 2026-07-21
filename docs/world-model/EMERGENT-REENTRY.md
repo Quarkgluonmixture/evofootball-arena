@@ -186,3 +186,11 @@ closed only 45/51 (88.2%) against its frozen 90% gate. A moving relation is
 therefore expressible but not uniformly maintainable. No candidate set follows.
 Any revisit must predict joint mover/reference recoverability before commitment,
 not shrink the observed test until it passes.
+
+R0b narrowed five of the six forward misses further: the endpoint relation was
+physically ETA-reachable but already beyond the offside line at commitment, so
+the common executor correctly refused the raw target. This is useful design
+evidence, not permission to filter the failed sample post hoc. A future new
+relative-affordance contract must combine moving-relation reachability with
+endpoint legality before commitment; R0a stays failed and no candidate set is
+currently authorised.
