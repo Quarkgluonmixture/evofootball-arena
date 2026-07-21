@@ -410,6 +410,13 @@
 > not authorise S7e re-entry. A fixed-point query-domain bug discovered by the audit was
 > repaired without changing candidate generation or live selection. Authority:
 > [`world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md`](world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md).
+> 🔬 **E3 NATURAL OVERLAP-TRAJECTORY CENSUS PRE-REGISTERED (2026-07-21,
+> telemetry only):** observe wide stable-owner spells and classify, after the fact, whether
+> a trailing teammate runs materially around the carrier's outside and ahead. Split all such
+> trajectories by exposure to the named `team.overlapper` licence and other run/support
+> authorities. The probe cannot change AI, infer payoff or retire the named baseline.
+> Authority:
+> [`world-model/EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md`](world-model/EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
