@@ -159,4 +159,10 @@ an assigned macro possession side. See
 
 This does not yet implement S7e. No additional static endpoint/corridor dimension,
 tolerance sweep or live target filter is authorised; the replicated continuation
-and contingent-tree payoff contract remains the next gate.
+and contingent-tree payoff contract remains the next gate. Its statistical design
+is now pre-registered in
+[`S7E-REPLICATED-ORACLE-CEILING.md`](S7E-REPLICATED-ORACLE-CEILING.md), but a
+preflight conflict remains: Oracle v2 correctly marks owner-dependent endpoint
+fields null on 625/1018 records, while the frozen five-dimensional relation requires
+numbers everywhere. No pilot may run until that estimand is made total without
+silently restoring macro-possession/zero-option proxies.

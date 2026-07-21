@@ -220,6 +220,18 @@
 > **NEXT = the separately bounded replicated-continuation/outcome-tree oracle contract; this
 > does not authorise S7e or live wiring.** Authority:
 > [`world-model/COUNTERFACTUAL-ORACLE-V2.md`](world-model/COUNTERFACTUAL-ORACLE-V2.md).
+> ⏸️ **S7e-0C REPLICATED-ORACLE CONTRACT PRE-REGISTERED, PREFLIGHT BLOCKED
+> (2026-07-21):** Prompt-7 correctly removes the statistically invalid 16-fit/16-held-out
+> per-state probability claim. The bounded design is now an R=32 direct empirical oracle
+> ceiling with raw transition anatomy, an independent 64-pair/64-continuation pilot,
+> split-half relation agreement ≥52/64 and projected MC half-width ≤1.25pp. But the existing
+> frozen Pareto input is not total under accepted Oracle v2 semantics: 625/1018 kick+3s records
+> have no physical owner, so possession/options are correctly null, while old
+> `compareOutcomes` requires five numbers. Macro-possession, zero-fill, sample deletion and
+> dimension changes are all currently forbidden. **No 8,192-branch pilot was burned on an
+> undefined estimand. NEXT = one external authority decision on owner-free numeric outcome
+> semantics; this is not a failure of the S7e hypothesis.** Contract:
+> [`world-model/S7E-REPLICATED-ORACLE-CEILING.md`](world-model/S7E-REPLICATED-ORACLE-CEILING.md).
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to
