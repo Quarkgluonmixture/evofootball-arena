@@ -313,3 +313,23 @@ possession outcome moves the wrong way. No tolerance or scalar coefficient was t
 causes needed to value what happens after arrival: passer/S2 execution risk, threat created,
 threat conceded if lost, structure/rest-defence cost, and next-option quality. Those are
 the only honest basis for a future offline retry; awareness/gene/live wiring remains blocked.
+
+---
+
+## ball-control-anatomy — B0 controlled-ball baseline
+`npx tsx scripts/probes/ball-control-anatomy.ts 120 0`
+
+```
+n=120 (seeds 0-119)  goals/match 2.13
+outfield secured: 23.8% of playing frames · moving 76.3% · pressured 80.6%
+secured ball distance: mean 0.859m · pressured 0.858m · visible distance changes 111.96/match
+knocks: 7.10/match · duration 0.656s · max carrier distance 1.277m
+knock outcomes: self 85.1% · teammate 2.8% · opponent 11.3% · unresolved/dead 0.8%
+```
+
+**Reads:** the existing Phase-36 open-field knock is real and usually recoverable,
+but rare. Four fifths of secured outfield frames are inside the current pressure
+gate, where the ball remains essentially fixed at 0.86m. B1 must make that large
+close-control surface readable without sacrificing the frozen M3 maximum recontact
+tail of 8. The two rejected B1 candidates are recorded in
+`world-model/BALL-CONTROL.md`; neither changed this accepted baseline.

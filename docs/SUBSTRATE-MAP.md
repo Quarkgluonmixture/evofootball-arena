@@ -139,7 +139,13 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   tolerance to pressure & body-orientation / the failure result** — **NOT "is this
   action worth doing."** `finishing` already obeys this (`PlayerBrain.ts:191-194`).
 - **Code:** rich mechanics; attr coupling too coarse (see the attribute-split
-  backlog).
+  backlog). [`world-model/BALL-CONTROL.md`](world-model/BALL-CONTROL.md) now
+  formalises the existing `secured | knocked | free` control truth and freezes
+  a 120-match baseline. Two B1 live cuts were rejected: moving the authoritative
+  owned-ball offset produced a 113-contact pass-arrival tail, while physically
+  releasing every pressured footbeat produced 52.92 knocks/match and raised
+  midfield churn. Current live mechanics remain unchanged; a genuine close-
+  control cadence is still an S2 representation gap, not a timer-tuning task.
 
 ### S3 — Perception · 🟡🔴 (representation exists; live AI is still omniscient)
 - **Provides:** each player reads a `PerceptionSnapshot` (observed ball/players +

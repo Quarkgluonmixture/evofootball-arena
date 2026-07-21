@@ -115,6 +115,15 @@
 > The existing Phase-36 open knock is preserved and formally recognised; B1 must address the
 > fixed 0.85m pressured carry without turning every close touch into a new M3 loose-ball contest.
 > Two fingerprints stayed exact (`57b0bdab…`, `4ac9408d…`), focused 12/12 + tsc clean.
+> ❌ **B1 TRIED TWICE + HONEST-REVERTED:** (1) an authoritative owned foot→knock→foot
+> cadence passed its local geometry test but created a 113-contact pass-arrival chain
+> (same-seed B0 max 8); (2) a physically free but retained-control close touch avoided
+> reopening M3 on the carrier's own next foot contact, yet exploded cadence 7.10→52.92
+> knocks/match, contests 17.00→24.96, max recontacts 8→68, midfield loose touches
+> 81.27→92.31/match and shortened possession 5.73→5.04s. Both code/test changes were
+> fully removed and both fingerprints restored. Per the stop rule there is no third
+> distance/timer retry; B2/B3 are blocked until a representation explains visible cadence
+> without perturbing pass-arrival control or multiplying ownership transitions.
 > After B3 user play-test, return to S7's missing future-state causes: S2
 > execution risk, threat created/conceded, structure/rest-defence cost and option quality.
 > Add those only as a new offline hypothesis, then require this same oracle to pass before
