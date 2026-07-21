@@ -312,8 +312,17 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
    `CONTEST_RADIUS`-based. Nothing in the decision path reads it yet ⇒ **bit-identical
    (443/443, incl. the determinism/byte-identical guards) + perf-neutral** (5.3µs/step).
    Anchor for the physical 50-50 to come. (The honest §2-neutral representation cut.)
-2. Minimal `timeToReach` (S1) + `arrival-calibration` reliability curve on current
-   behaviour (baseline).
+2. ✅ **DONE 2026-07-21** — minimal `timeToReach` (S1) + `arrival-calibration`
+   reliability curve on current behaviour. `ai/reachability.ts` analytically mirrors
+   the current desired-velocity acceleration envelope and reads live momentum,
+   fatigue-adjusted top speed, acceleration, independently turning `bodyDir`, optional
+   control radius, and the existing carry-speed envelope. It returns movement ETA and
+   body-ready ETA separately; no decision-path consumer reads it yet. Directional unit
+   gates cover toward/still/away momentum, pace/fatigue, accel, carry, facing and purity.
+   The probe now prints the frozen legacy curve and the new kinematic curve side-by-side;
+   at 120 matches the S1 curve is monotonic (received 33%→92%, intercepted 63%→5% from
+   `<−0.5s` to `>+0.5s`). Feature-off fingerprints remain byte-identical
+   (`a9412f22…` / `d14a471f…`), so this is representation/probe only.
 3. Minimal stale `PerceptionSnapshot` for the passer only (S3), gated by
    `awareness`; `perception-calibration` confirms obs-error rises from ≈0.
 4. Affordance vector for pass targets (S5) replacing the single `laneOpenness`/
@@ -323,7 +332,7 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
    `PlayerBrain.ts:1074`) — **the co-evolving defensive half** (balances the attack
    read, per the "finely-tuned equilibrium" lesson).
 
-**Files in scope:** `sim/Match.ts` (capture→contest), new `ai/reachability.ts`
+**Files in scope:** `sim/Match.ts` (capture→contest), `ai/reachability.ts`
 (timeToReach), `ai/perception.ts` (snapshot + `laneOpenness`/`opennessOf`/
 `canInterceptPass`), `ai/PlayerBrain.ts` (pass loop + intercept), a new affordance
 scorer (inline first, extract to `ai/affordances.ts` once stable). **SAVE_VERSION

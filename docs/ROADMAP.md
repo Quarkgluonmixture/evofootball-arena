@@ -43,8 +43,15 @@
 > attached three-tick foot phase passed contact anatomy but broke policy/stamina directionality.
 > A non-extending M3 control deadline capped recontacts at 5 but broke the player-style→selection
 > contract, so it too was removed. Current HEAD is the accepted M3 behavior; 忠于脚 remains a
-> real substrate gap, explicitly not a render fake. **NEXT = RETURN to S3–S8 mainline / the
-> Pass–Arrival–Contest slice.** The body model is a LOCAL substrate, NOT the north star.
+> real substrate gap, explicitly not a render fake. ✅ **Pass–Arrival–Contest sub-step 2
+> DONE (2026-07-21, byte-identical):** new pure `ai/reachability.ts` provides analytic
+> current-velocity/accel/fatigue/facing/carry `timeToReach`; no live AI reads it. Directional
+> mechanism tests 4/4; the 120-match S1 reliability curve remains monotonic (received
+> 33%→92%, intercepted 63%→5%); repeated save fingerprints unchanged (`a9412f22…`,
+> `d14a471f…`); perf 5.2µs/step vs frozen 5.32, 14.5 vs 15.0 matches/s. **NEXT = sub-step 3:
+> minimal stale `PerceptionSnapshot` for the ON-BALL passer only, gated by shared awareness;
+> perception-calibration must move honestly off the 0.00m perfect-info baseline.** The body
+> model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

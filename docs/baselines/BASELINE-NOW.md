@@ -105,6 +105,25 @@ by pass kind:  pass 78.7/m recv 79% int 17% · through 9.8/m recv 57% int 38% ·
 - **through-balls are the honest risky tail** (57% received / 38% intercepted);
   `stable@1.5s` ≈ 67–76% across buckets (matches reception-survival's 71%).
 
+**Post-M3 S1 addendum (2026-07-21, slice-1a sub-step 2):** the frozen table above
+remains the before-baseline. The probe now also emits a second, observational curve using
+the new kinematic `timeToReach` (current velocity + acceleration + fatigue-adjusted speed +
+body turn + control radius). On accepted M3 HEAD, 120 matches / 98.2 passes per match:
+
+```
+S1 kinematic margin   share   received  intercepted  died  stable@1.5s
+<-0.5                  13%       33%         63%       4%       70%
+-0.5..-0.2              9%       51%         46%       3%       65%
+-0.2..0                10%       60%         36%       3%       66%
+0..0.2                 14%       75%         22%       3%       70%
+0.2..0.5               15%       84%         14%       2%       72%
+>0.5                   39%       92%          5%       4%       78%
+```
+
+The intended structural direction is preserved before any AI consumer exists. This is
+not yet S4 prediction accuracy: actual-vs-predicted ETA MAE comes online with the shared
+short-horizon predictor.
+
 ---
 
 ## probe-pass (extended) — completion by NAMED pass type
