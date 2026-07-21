@@ -163,4 +163,5 @@ live importers:           0
 
 K0 therefore passes exactly its representation gate. It does not establish that
 any candidate is useful or authorise a selector. The next admissible work is the
-separately pre-registered fresh-state support/tradeoff census described above.
+separately pre-registered fresh-state support/tradeoff census in
+[`CARRY-AFFORDANCE-CENSUS.md`](CARRY-AFFORDANCE-CENSUS.md).
