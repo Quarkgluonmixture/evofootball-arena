@@ -398,6 +398,12 @@
 > the old instruction without solving coordinated access. Two runs were byte-identical
 > (`f3c00651…c2b`); no handoff representation or live work is authorised. Authority:
 > [`world-model/OFFBALL-PASS-HANDOFF-CONTINUATION.md`](world-model/OFFBALL-PASS-HANDOFF-CONTINUATION.md).
+> 🔬 **H0a FAILURE AUDIT PRE-REGISTERED (2026-07-21, read-only):** rerun the
+> exact H0 branches and, immediately before the frozen forced pass, re-evaluate the immutable
+> target's truth O0 access/line facts. This distinguishes a stale 1.5s commitment from the
+> deeper boundary `target access != pass-transition access`; it cannot change H0's failure or
+> authorise another selector. Authority:
+> [`world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md`](world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
