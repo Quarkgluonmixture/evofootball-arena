@@ -282,6 +282,9 @@ This was a hard correction to the old endpoint, where macro `possessionSide` and
 zero option count silently stood in for missing physical control. In the frozen
 v2-0 census, **625 of 1018 kick+3s branch records** have no physical owner while a
 macro side remains assigned. This is the majority of the sample, not a rare edge.
+The same schema also marks progression null while the ball is in a dead phase or
+the deliberate out-of-play coast, so possession/options are not the only possible
+holes in the proposed `R⁵` vector.
 
 The existing `compareOutcomes()` instead requires a complete numeric `R⁵` vector.
 The current contracts simultaneously forbid all available conversions:
