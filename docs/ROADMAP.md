@@ -95,10 +95,22 @@
 > agreement 88.8→94.1% and frontier-membership agreement 89.5→92.5%. Gates: build clean ·
 > 485/485 (the first run's assertions all passed but the known Vitest worker RPC heartbeat
 > timed out; the single allowed infra retry exited clean) · both fingerprints unchanged ·
-> perf 5.23µs/step and 14.9 matches/s, profiler determinism OK. **NEXT = the first
-> behavioural work must be one closed S3→S4→S5→S7 cut (plus the shared defensive S4 read),
-> with a real payoff oracle before gene/evolution claims; do not ship Pareto association as
-> if it proved PAYS.** The body
+> perf 5.23µs/step and 14.9 matches/s, profiler determinism OK. ❌ **S7b LAYER-4
+> PAYOFF GATE FAILED — NO LIVE WIRING (2026-07-21):** the validated structural clone is now
+> a reusable mainline offline primitive, and `pass-target-counterfactual` freezes the true
+> pre-decision state then forces chosen-target vs S7-dominator branches with identical RNG.
+> In 120 matches / 509 paired 3s rollouts, the proposed alternative dominated the chosen
+> branch 34.4% while the chosen branch dominated it 35.6% (no predictive edge); own-team
+> possession fell 53.4→49.1%, with mean progression −0.36m and xG −0.001. Therefore the
+> tempting observational 68.5% vs 75.6% split was context selection, not causal payoff.
+> Stop-rule applied: no tolerance tuning, awareness gene, live pass filter, or play-test
+> candidate. Oracle gates: clone continuation 2/2 · build clean · all 487 assertions passed
+> in both full runs, but both runners ended on the same known Vitest `onTaskUpdate` RPC
+> timeout (one retry only, then stop) · fingerprints unchanged · perf 5.25µs/step,
+> 14.8 matches/s, profiler determinism OK. **NEXT = S7 is missing genuine future-state causes named in the map — S2
+> execution risk, threat created/conceded, structure/rest-defence cost and option quality.
+> Add those only as a new offline hypothesis, then require this same oracle to pass before
+> any closed S3→S4→S5→S7 behavioural cut.** The body
 > model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,

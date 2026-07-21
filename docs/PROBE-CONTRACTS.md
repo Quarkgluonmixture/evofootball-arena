@@ -231,10 +231,13 @@ vision wants **multiple readable routes**, not forced tiki-taka.
     negative control (1-bit RNG nudge) **DIVERGES** (assertion non-vacuous). Cost
     **~275 µs/clone vs ~94 ms replay-to-T ≈ 342× cheaper**; replay-to-T stays the
     trivial fallback.
-  - ⚠ Lives on branch `worktree-poc-clone-probe` (commit `a364e76`,
-    `docs/COUNTERFACTUAL-CLONE-FINDINGS.md`) — **NOT yet merged/pushed** (blocked on gh
-    push perms; `gh auth switch --user Quarkgluonmixture` then push + PR). → **Build
-    `counterfactual-value` on the clone once that branch lands.**
+  - ✅ **Mainline primitive now landed (2026-07-21):** `sim/cloneState.ts` promotes the
+    field-agnostic cloner with a 4s byte-identical continuation regression, and
+    `pass-target-counterfactual` is its first real consumer. It freezes the state just
+    before a live pass decision and forces chosen-target vs alternative-target branches
+    from identical RNG. The first S7 run correctly **failed** payoff (509 pairs:
+    alternative/chosen dominance 34.4/35.6%; team possession 53.4→49.1%), proving the
+    oracle can veto a plausible-looking estimator rather than rubber-stamp it.
 - ⭐ **This does NOT gate S7.** Live bounded-lookahead uses the CHEAP analytic estimator
   (ETA / pitch-control / next-options), never a Match rollout (too slow per-tick under
   either scheme) — the clone-vs-replay choice only touches the offline oracle, so the

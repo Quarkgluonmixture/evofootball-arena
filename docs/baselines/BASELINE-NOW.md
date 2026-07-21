@@ -276,3 +276,40 @@ dominated         445         68.5%           24.5%
   interceptions. That is useful headroom evidence, but **not causal layer-4 proof**:
   different match contexts chose those targets. A paired offline rollout is still required
   before claiming that replacing the live choice pays.
+
+---
+
+## pass-target-counterfactual — S7b layer-4 payoff oracle
+`npx tsx scripts/probes/pass-target-counterfactual.ts 120 0`
+
+For each live ordinary pass whose chosen target S7a calls dominated, this probe retains
+the immediately pre-decision `Match`, clones it, and forces two otherwise symmetric
+branches: pass to the live chosen target vs pass to each predicted dominator. Both begin
+with identical RNG state and call the same `performPass`; only the target differs. Each
+branch runs for 3 seconds. This is offline only.
+
+```
+n=120 (seeds 0–119)   dominated live choices 454
+paired 3.0s rollouts 509 · force failures 0
+
+alternative vs chosen rollout relation:
+  alternative dominates   175   34.4%
+  chosen dominates        181   35.6%
+  equivalent               21    4.1%
+  tradeoff                132   25.9%
+
+paired mean delta (alternative − chosen; larger is better):
+  possession −0.079 · goals 0.000 · xG −0.001
+  progression −0.357m · exit options −0.010
+  own-team possession at 3s: chosen 53.4% → alternative 49.1%
+```
+
+**Verdict: FAIL at `PAYS`; do not wire S7a live.** The previous frontier-vs-dominated
+outcome association was selection by match context, not evidence that switching targets
+causes a better state. The paired oracle has no positive relation edge and the primary
+possession outcome moves the wrong way. No tolerance or scalar coefficient was tuned.
+
+**Structural diagnosis:** the current vector stops at arrival geometry. It omits the S7
+causes needed to value what happens after arrival: passer/S2 execution risk, threat created,
+threat conceded if lost, structure/rest-defence cost, and next-option quality. Those are
+the only honest basis for a future offline retry; awareness/gene/live wiring remains blocked.

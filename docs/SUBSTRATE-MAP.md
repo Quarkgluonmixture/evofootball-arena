@@ -224,9 +224,12 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   candidate is removed only when another is no worse in every dimension; the provisional
   S5 control prior is deliberately excluded. The 120-match offline gate finds 4.8% of
   current live targets unambiguously dominated, with awareness improving relation fidelity.
-  This is not a live consumer and the dominated-vs-frontier outcome split is observational,
-  not the required counterfactual payoff proof. Existing `PlayerBrain` still uses its
-  `UtilityScore[]` score table, not this predicted-outcome boundary.
+  **But S7b failed the paired payoff gate:** across 509 same-state/same-RNG 3s rollouts,
+  the predicted dominator beat the chosen branch 34.4% and lost 35.6%; team possession
+  fell 53.4→49.1%. The arrival-only vector therefore does not yet predict the next state.
+  Existing `PlayerBrain` still uses its `UtilityScore[]` table; no live consumer landed.
+  Missing S7 dimensions are now concrete: S2 execution risk, threat created/conceded,
+  structure/rest-defence cost and the quality (not count) of next options.
 
 ### S8 — Team task & dynamic coordination · 🟡🔴
 - **Provides:** `TeamIntent{ phase, priorities, taskDemand[], structuralConstraints[] }`
@@ -364,9 +367,10 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
      next-state dimensions, plus `pass-value-frontier`. It conservatively removes only
      4.8% of current targets and preserves genuine risk/progression tradeoffs. Its outcome
      split is diagnostic only, not layer-4 proof.
-   - **NEXT:** replace the single `laneOpenness`/`opennessOf` surface scores only as one
-     closed S3→S4→S5→S7 behavioural pass cut (`PlayerBrain.ts:272+`), paired with the
-     shared defensive S4 read. Do not wire one raw dimension as a hand-authored bonus.
+   - ❌ **S7b PAYOFF FAILED 2026-07-21:** the real paired clone oracle falsified the
+     observational association (509 branches: alternative/chosen dominance 34.4/35.6%,
+     possession 53.4→49.1%). No live filter or gene wiring. **NEXT:** add missing future
+     causes offline, then repeat the same layer-4 gate before touching `PlayerBrain`.
 5. Defender interception/contest read off the same S4 prediction (`canInterceptPass`,
    `PlayerBrain.ts:1074`) — **the co-evolving defensive half** (balances the attack
    read, per the "finely-tuned equilibrium" lesson).
@@ -375,7 +379,7 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
 (timeToReach), `ai/perceptionSnapshot.ts`, `ai/prediction.ts`, `ai/passAffordance.ts`,
 `ai/passValue.ts`,
 `ai/perception.ts` (`laneOpenness`/`opennessOf`/`canInterceptPass`), and
-`ai/PlayerBrain.ts` (pass loop + intercept). **SAVE_VERSION
+`ai/PlayerBrain.ts` (pass loop + intercept); `sim/cloneState.ts` is probe-only. **SAVE_VERSION
 bumps** only if a gene struct changes (the `vision` revert + any new shared
 awareness/anticipation attr).
 
