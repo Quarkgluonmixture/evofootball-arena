@@ -526,6 +526,14 @@
 > relations; wrapping current runner/arriver/chaser assignments as demands is forbidden.
 > Authority:
 > [`world-model/TEAM-TASK-OCCUPANCY-FOUNDATION.md`](world-model/TEAM-TASK-OCCUPANCY-FOUNDATION.md).
+> ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
+> cannot decide which needs should exist. **D (recommended)** parks central publication and
+> lets future player-level offers emerge from perception/affordance/value once S7 is
+> qualified. **G** separately authorises an offline world-anchored demand publisher, with
+> the acknowledged risk of becoming a generic-looking hand-written task menu. Translating
+> current runner/arriver/overlapper/chaser assignments into demands is forbidden. User
+> decision required; details in
+> [`world-model/OFFBALL-MAINLINE-DECISION.md`](world-model/OFFBALL-MAINLINE-DECISION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the

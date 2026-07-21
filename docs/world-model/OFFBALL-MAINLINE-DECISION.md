@@ -239,3 +239,44 @@ It passed all 12 focused representation tests, the full 588-test suite, build
 and the unchanged default fingerprint. The next bounded question is demand publication from
 generic world relations; copying current runner/arriver/chaser assignments into
 the new types is explicitly forbidden.
+
+## 7. C0 result and the demand-publication boundary
+
+C0 completes everything that can safely be built before deciding who may
+publish a team need. The next change is no longer neutral plumbing.
+
+### D — Decentralised player offers; park central demand publication (**recommended**)
+
+Treat O0/R1 candidate facts, O3 shared commitments and C0 occupancy as dormant
+interfaces. A future player sees ball, opponents, teammates, offside/field law,
+own reach and teammates' intent, then chooses among generic candidates. Central
+team demand is not invented first.
+
+This best matches the user's emergence model: the dimensions are hand-built,
+but the run, role and shape arise from individual choices plus shared occupancy.
+It also respects the current causal map: S7 value/transition must qualify before
+S8 can allocate. In practice this parks C0 and returns the next research cut to
+a genuinely new, pre-registered estimator/calibration authority; it is not
+permission to patch T0b's failed ECE gate.
+
+### G — World-anchored generic demand publisher, offline only
+
+Authorise a new representation for needs anchored only to world objects and
+relations—for example a point, moving reference, line or region—with no named
+football behaviour, role, priority, score or allocator. This could later express
+ball access, field coverage and teammate-relative occupation without saying
+“overlap” or “arriver”.
+
+The risk is architectural rather than mechanical: choosing which anchors,
+capacity and windows to publish already defines team tactics. Without a qualified
+value relation, G can become a hand-written task menu even if every type name is
+generic. It therefore needs explicit user authorisation and must remain offline.
+
+### Forbidden shortcut
+
+Do not derive C0 demands from `team.runners`, `team.arriver`, `team.overlapper`,
+`team.chasers`, marks, formation slots or their current thresholds. That would
+reproduce the commander exactly while making the migration debt harder to see.
+
+The implementation stops here pending D versus G. The accepted live baseline is
+unchanged either way.
