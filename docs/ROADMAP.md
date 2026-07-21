@@ -522,6 +522,13 @@
 > select a direction, use a pattern name or change live perception. Passing can authorise
 > only a separately contracted dormant point-carry execution primitive. Authority:
 > [`world-model/CARRY-AFFORDANCE-CENSUS.md`](world-model/CARRY-AFFORDANCE-CENSUS.md).
+> 🔬 **K0a-F INSET FAILURE AUDIT PRE-REGISTERED (2026-07-21):** the first frozen
+> K0a run passed every support/range/tradeoff gate but stopped on 204 candidate points
+> outside the two-metre inset. The only diagnostic now allowed reruns the identical
+> suite and partitions those points into current-position `hold` sentinels versus real
+> directional targets. K0a remains failed regardless; no exemption, new seeds or
+> execution primitive follows from the audit. Authority:
+> [`world-model/CARRY-AFFORDANCE-INSET-FAILURE-AUDIT.md`](world-model/CARRY-AFFORDANCE-INSET-FAILURE-AUDIT.md).
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and
