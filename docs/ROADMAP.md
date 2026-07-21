@@ -451,6 +451,13 @@
 > R0a. Any future relative-affordance contract must include endpoint legality before
 > commitment and preserve the remaining honest dynamic miss. Authority:
 > [`world-model/RELATIVE-POINT-FAILURE-AUDIT.md`](world-model/RELATIVE-POINT-FAILURE-AUDIT.md).
+> 🔬 **E4 NATURAL CENTRAL-ARRIVAL CENSUS PRE-REGISTERED
+> (2026-07-21, telemetry only):** on entry into the existing wide attacking channel,
+> observe whether teammates starting outside a fixed central edge-of-box zone move at least
+> 3m into it within four seconds. Split post-hoc arrivals by exposure to `team.arriver` and
+> all other named run/support authorities. This cannot change AI, infer payoff or retire the
+> cutback-arriver baseline. Authority:
+> [`world-model/EMERGENT-CENTRAL-ARRIVAL-CENSUS.md`](world-model/EMERGENT-CENTRAL-ARRIVAL-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
