@@ -215,7 +215,12 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   **No live AI reads it.** Its control prior is under-dispersed (95.2% in the top quartile),
   so S7 must use/calibrate the raw dimensions rather than treating it as a magic score.
   Full dynamic pitch control and off-ball affordances remain open; `emergentStation` is
-  still a hand-tuned proxy, not this.
+  still a hand-tuned proxy, not this. **O0 now adds the first off-ball representation-only
+  slice:** `ai/offBallAffordance.ts` generates role-neutral symmetric reachable-point samples
+  and emits separate self/opponent arrival, teammate occupancy, carrier-corridor, pitch and
+  offside facts from `PerceptionSnapshot`. It has no score and no live consumer; seven
+  counterfactual tests plus the unchanged full fingerprint prove byte-identical isolation.
+  Candidate payoff and live `supportSpot` replacement remain open.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull

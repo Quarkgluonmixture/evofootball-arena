@@ -1,4 +1,6 @@
-import { estimateReach, type ReachState } from './reachability';
+import {
+  estimateReach, type KnownReachProfile, type ReachState,
+} from './reachability';
 import { predictGroundPass, predictObservedPosition, type GroundPassPrediction } from './prediction';
 import type { ObservedPlayer, PerceptionSnapshot } from './perceptionSnapshot';
 import { CONTROL_RADIUS, DT, HALF_L } from '../sim/constants';
@@ -6,11 +8,7 @@ import { TURN_RATE } from '../sim/Player';
 import { clamp01 } from '../utils/math';
 import type { V2 } from '../utils/vec';
 
-export interface KnownReachProfile {
-  readonly topSpeed: number;
-  readonly accel: number;
-  readonly dribbling?: number;
-}
+export type { KnownReachProfile } from './reachability';
 
 /** S5 vector: deliberately no aggregate score or tactical label. */
 export interface PassAffordance {

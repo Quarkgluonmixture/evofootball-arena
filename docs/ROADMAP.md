@@ -253,6 +253,14 @@
 > no live `supportSpot` migration and no named `cutInside/overlap/checkBack` action. Reverted
 > phases may return only through causally new generic substrate, per
 > [`world-model/EMERGENT-REENTRY.md`](world-model/EMERGENT-REENTRY.md).
+> ✅ **O0 OFF-BALL OFFER FIELD REPRESENTATION COMPLETE (2026-07-21, byte-identical):**
+> role-neutral hold + symmetric numbered direction/time samples now feed an unscored vector
+> of self/opponent arrival, teammate occupancy, carrier-corridor clearance, pitch/offside and
+> observation facts. Fixed-world-point evaluation makes pace/acceleration counterfactuals
+> honest. Seven focused tests, all 537 tests, TypeScript/build and the frozen fingerprint pass;
+> import census confirms zero Match/brain/formation consumers. No score, gene, tactic label,
+> role check or live movement was added. Authority:
+> [`world-model/OFFBALL-OFFER-FIELD.md`](world-model/OFFBALL-OFFER-FIELD.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

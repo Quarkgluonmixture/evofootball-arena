@@ -1,6 +1,13 @@
 import type { V2 } from '../utils/vec';
 import { TURN_RATE } from '../sim/Player';
 
+/** Physical facts known by a perception/affordance consumer. */
+export interface KnownReachProfile {
+  readonly topSpeed: number;
+  readonly accel: number;
+  readonly dribbling?: number;
+}
+
 /** The kinematic facts S1 exposes to pitch-control and arrival prediction. */
 export interface ReachState {
   readonly pos: Readonly<V2>;
