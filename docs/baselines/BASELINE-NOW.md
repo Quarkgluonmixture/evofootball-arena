@@ -27,6 +27,21 @@ move the mechanism metrics off zero while every exact-zero violation stays zero.
 This baseline is read alongside `ball-control-anatomy` and post-M3
 `contest-anatomy`; it does not replace either.
 
+### B1c-1 isolated mechanism addendum
+
+`npx tsx scripts/probes/control-coupling-mechanism.ts`
+
+```
+walk-open         1.60 touches/s · foot error mean/max 0.194/0.197m · recoverable 100%
+jog-open          2.50 touches/s · foot error mean/max 0.181/0.185m · recoverable 100%
+jog-pressed-turn  3.30 touches/s · foot error mean/max 0.134/0.135m · recoverable 100%
+sprint-open        3.20 touches/s · foot error mean/max 0.189/0.192m · recoverable 100%
+gates deterministic=yes · all recoverable=yes · sequence id stable=yes · pressure/turn cadence↑=yes
+```
+
+This is not a live-match baseline: it proves the B1c-1 causal mechanism in a
+solo scene while the 120-match B1c-0 block above remains exactly zero.
+
 ---
 
 ## contest-anatomy — S0 loose-ball / contest ledger

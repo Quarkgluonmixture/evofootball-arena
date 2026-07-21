@@ -137,9 +137,15 @@
 > sequences/touches and exact-zero ownTouch→M3, ownTouch→possession, post-control
 > pass-arrival contacts and duplicate starts. Gates: build clean · 494/494 · both fingerprints
 > exact (`57b0bdab…`, `4ac9408d…`) · profiler determinism OK · 5.25µs/step vs frozen
-> 5.32, 14.8 vs 15.0 matches/s. **NEXT = B1c-1 isolated single-player mechanism only:**
-> real bounded ball impulses inside one sequence; no opponent, macro consumer migration or
-> live-match candidate. Stop and gate it separately before B1c-2.
+> 5.32, 14.8 vs 15.0 matches/s. ✅ **B1c-1 DONE (2026-07-21; isolated, not live):**
+> distance-integrated gait + alternating virtual-foot queries + future control target + bounded
+> velocity-only ball impulse. Solo 10s matrix: walk 1.60, jog 2.50, pressed-turn jog 3.30,
+> sprint 3.20 touches/s; 100% inside 1.25m recovery, max foot error 0.197m, one stable sequence
+> id and zero possession/pass/M3 transition. The module has no Match/AI/render consumer; live
+> 120-match probe remains all zero. Gates: build clean · 499/499 · both fingerprints exact ·
+> profiler determinism OK · 5.34µs/step vs frozen 5.32, 14.5 vs 15.0 matches/s (no live import).
+> **NEXT = B1c-2 one-opponent mechanism only:** real opponent ball contact breaks the lease
+> into the existing M3 boundary; own touches must not. No live-match candidate yet.
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

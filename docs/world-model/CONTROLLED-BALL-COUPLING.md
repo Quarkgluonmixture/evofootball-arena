@@ -1,8 +1,8 @@
 # Controlled Ball Coupling — B1c architecture contract
 
-Status: **B1c-0 representation complete; B1c-1 not started.** Live behaviour is
-still the accepted B0 path. This is the only authorised retry of the Ball-Control
-Foundation after the two rejected B1 candidates in
+Status: **B1c-0 representation + B1c-1 isolated solo mechanism complete; B1c-2
+not started.** Live behaviour is still the accepted B0 path. This is the only
+authorised retry of the Ball-Control Foundation after the two rejected B1 candidates in
 [`BALL-CONTROL.md`](BALL-CONTROL.md).
 
 ## 0. Verdict
@@ -278,6 +278,20 @@ across speed/turn regimes, recoverability, and **zero possession transitions**.
 
 This stage must not switch macro AI consumers. If a macro consumer must change,
 that is a separately measured lever after the physical mechanism is stable.
+
+**✅ DONE 2026-07-21 as an isolated mechanism, not live wiring.** Pure
+`controlCoupling.ts` now provides distance-integrated gait, alternating virtual
+foot query points, a future control target and bounded velocity-only impulse.
+It is not imported by `Match`, AI, mechanics or render. The 10s deterministic
+solo matrix produces: walk-open 1.60 touches/s, jog-open 2.50, pressed-turn jog
+3.30, sprint-open 3.20; every planned contact remains within the 1.25m recovery
+envelope. Mean foot error is 0.134–0.194m, maximum 0.197m; sequence id never
+changes, and applying a touch never writes ball position, possession, pending
+pass or M3. Live 120-match `control-sequence-anatomy` remains all zero. Gates:
+build clean · 499/499 · fingerprints exact (`57b0bdab…`, `4ac9408d…`) · profiler
+determinism OK · 5.34µs/step vs frozen 5.32, 14.5 vs 15.0 matches/s (no live
+import/phase delta; ordinary wall-clock variation). Frozen perf JSON restored.
+Stop here before the separately gated one-opponent B1c-2 mechanism.
 
 ### B1c-2 — one opponent and lease break
 

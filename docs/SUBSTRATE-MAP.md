@@ -152,8 +152,9 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   [`world-model/CONTROLLED-BALL-COUPLING.md`](world-model/CONTROLLED-BALL-COUPLING.md):
   continuous `ControlSequence` + independent ball + discrete touches + derived macro
   `PossessionLocus`. ✅ B1c-0 landed byte-identically: consumer census + null live sequence
-  state + pure locus + probe shell, with no existing consumer. B1c-1 is the next isolated
-  mechanism, not another timer tune and not live-match approval.
+  state + pure locus + probe shell, with no existing consumer. ✅ B1c-1 landed as an isolated
+  distance-driven gait + real velocity-impulse mechanism, still with no live consumer. B1c-2
+  is the next one-opponent mechanism, not another timer tune and not live-match approval.
 
 ### S3 — Perception · 🟡🔴 (representation exists; live AI is still omniscient)
 - **Provides:** each player reads a `PerceptionSnapshot` (observed ball/players +

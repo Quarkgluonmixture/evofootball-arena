@@ -1,7 +1,7 @@
 # Ball-Control Foundation — authoritative ball, readable touches
 
-Status: **B0 done; B1a/B1b honest-reverted; B1c-0 byte-identical representation done;
-B1c-1 is next but not started.**
+Status: **B0 done; B1a/B1b honest-reverted; B1c-0 representation + B1c-1 isolated
+solo mechanism done; B1c-2 is next but not started.**
 This is a bounded S2 foundation slice, not an extension of the completed M0–M4 body
 campaign. The implementation authority for the retry is
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
@@ -62,9 +62,12 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
   exactly zero. Gates: build clean · 494/494 · both frozen fingerprints exact ·
   profiler determinism OK · 5.25µs/step, 14.8 matches/s. Full record:
   [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
-- ⬜ **B1c-1 — single-player coupling.** A real ball moves only by bounded
-  impulses inside one continuous sequence. Prove speed/turn cadence and zero
-  possession transitions with no opponent.
+- ✅ **B1c-1 — single-player coupling. DONE as an isolated mechanism.** A real
+  ball moves only by bounded velocity impulses inside one continuous sequence.
+  The deterministic solo matrix gives 1.60–3.30 touches/s across walk/jog/
+  pressure-turn/sprint, 100% recoverability, ≤0.197m foot error and stable
+  sequence identity. No live consumer exists; full 499/499 and both fingerprints
+  remain exact.
 - ⬜ **B1c-2 — physical disruption.** A real opponent touch breaks the lease and
   enters existing M3; an own planned touch does neither. No direct attr winner.
 - ⬜ **B1c-3 — live A/B + user play-test.** Gate contact tails, possession

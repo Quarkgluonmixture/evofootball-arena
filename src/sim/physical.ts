@@ -79,23 +79,39 @@ interface ControlSequenceBase {
   readonly touchIndex: number;
 }
 
+export type ActiveControlSequence = ControlSequenceBase & { readonly status: 'active' };
+export type BrokenControlSequence = ControlSequenceBase & {
+  readonly status: 'broken';
+  readonly endedTick: number;
+  readonly breakCause: ControlBreakCause;
+};
+export type ReleasedControlSequence = ControlSequenceBase & {
+  readonly status: 'released';
+  readonly endedTick: number;
+  readonly releaseCause: ControlReleaseCause;
+};
+
 /**
  * B1c control-process representation. An own planned touch advances one
  * active sequence; it does not imply a possession transition or M3 contest.
  * B1c-0 adds the data contract only: live Match state stays null.
  */
 export type ControlSequence =
-  | (ControlSequenceBase & { readonly status: 'active' })
-  | (ControlSequenceBase & {
-      readonly status: 'broken';
-      readonly endedTick: number;
-      readonly breakCause: ControlBreakCause;
-    })
-  | (ControlSequenceBase & {
-      readonly status: 'released';
-      readonly endedTick: number;
-      readonly releaseCause: ControlReleaseCause;
-    });
+  | ActiveControlSequence
+  | BrokenControlSequence
+  | ReleasedControlSequence;
+
+/** Record one planned own touch without starting a new sequence. */
+export function recordOwnControlTouch(
+  sequence: ActiveControlSequence,
+  tick: number,
+): ActiveControlSequence {
+  return {
+    ...sequence,
+    lastOwnTouchTick: tick,
+    touchIndex: sequence.touchIndex + 1,
+  };
+}
 
 /**
  * Macro possession position derived from existing truth. It is not a second

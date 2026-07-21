@@ -129,6 +129,7 @@ Gates: `offside.test`, `cutback.test`, `oneTouch.test`, `cushion.test`,
 | `pass-value-frontier` | S7 next-state relation: Pareto-frontier size, dominated live choices, awareness→pair/frontier fidelity; outcome split is diagnostic, **not counterfactual payoff** | 1, 3 |
 | `cognition-factorial` | S3/S4 gene wiring — 2×2 `awareness×passing` (attack) & `awareness/anticipation × tackling/defending` (defence); proves the shared trunk serves BOTH sides while domain skill still differentiates | 2, 3, 4 |
 | `control-sequence-anatomy` | B1c continuous control: sequences/touches/cadence by speed-pressure-turn, ball↔controller/virtual-foot distance, relative velocity, exposure, opponent break causes and fast reacquire. Exact zero: `ownTouchOpenedM3`, `ownTouchChangedPossession`, `passArrivalContactsAfterControl`, `duplicateSequenceStart`. Read with `ball-control-anatomy` + `contest-anatomy`; B0 max M3 recontacts 8, no 113-contact arrival, no return to 50+ knocks/m. **B1c-0 baseline:** 120 matches, zero sequences/touches and all four violations exactly zero. | 1, 2, 3, 6 |
+| `control-coupling-mechanism` | B1c-1 isolated solo gate: distance-derived cadence, alternating query feet, bounded velocity-only impulse, ball↔foot/controller error, recovery-envelope rate and sequence-id continuity. It must leave live `control-sequence-anatomy` at zero until a later live cut. | 1, 2 |
 
 ### REUSABLE-WORKHORSE — the layer-4 engine for EVERY future lever
 | Probe | Emits | ⚠ |
