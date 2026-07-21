@@ -1,6 +1,6 @@
 # Q0 — Secured-ball Access Census
 
-Status: **PRE-REGISTERED — read-only geometry census; no tackle change.**
+Status: **Q0 FAILED primary non-vacuity — stopped; no tackle change.**
 
 Date: 2026-07-21
 
@@ -131,3 +131,26 @@ Passing Q0 authorises only a separately pre-registered offline clone interventio
 that changes standing-tackle **eligibility** from centre distance to direct access
 while preserving the existing success formula. It does not authorise that live
 change, strength/balance wiring, a new tackle animation or script retirement.
+
+## 6. Frozen result
+
+Two complete runs were byte-identical:
+
+```text
+episodes / represented matches     3,476 / 120
+can directly contact               3,330 (95.8%)
+cannot directly contact              146 (4.2%)
+denial: turn / around / both        50 / 91 / 5
+blocker: carrier / other attacker   56 / 40
+front / side / back access rate     98.1% / 96.2% / 85.8%
+validity violations                 all zero
+ledger sha256 b904b9e1bcef05ef683792d5117b6749669018d0b6c18804174ca075435e9943
+report sha256 f902384e8032d3e52eb8e0a36fee335aa0a0905b2780462ffe9a535f31acb7cd
+```
+
+All exact validity and accessible-support gates passed. The primary inaccessible
+support gate required at least 10%; the observed share was 4.2%. Q0 therefore
+fails and stops. The sector/body geometry is real—rear challenges were denied much
+more often—but it is too rare in this frozen population to justify changing live
+standing-tackle eligibility. No clone intervention follows and the 10% gate is not
+lowered after result.
