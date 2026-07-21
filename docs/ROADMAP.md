@@ -462,6 +462,12 @@
 > `ArriveForCutback`, retire `team.arriver`/`performCutback`, or infer ideal frequency.
 > Authority:
 > [`world-model/EMERGENT-CENTRAL-ARRIVAL-CENSUS.md`](world-model/EMERGENT-CENTRAL-ARRIVAL-CENSUS.md).
+> ⏸️ **OFF-BALL MAINLINE NOW REQUIRES A DIRECTION DECISION (2026-07-21):** the
+> completed evidence has isolated three distinct next substrates rather than one safe retry:
+> **A)** commit-time legal/reachable moving relations (recommended), **B)** a new
+> transition-estimator inference programme, or **C)** dormant dynamic team task allocation.
+> No option has been silently started. The evidence, boundaries and recommendation are in
+> [`world-model/OFFBALL-MAINLINE-DECISION.md`](world-model/OFFBALL-MAINLINE-DECISION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
