@@ -306,6 +306,14 @@
 > “is another teammate already providing the same function?” language, not a decision.
 > Authority:
 > [`world-model/OFFBALL-OFFER-COMMITMENTS.md`](world-model/OFFBALL-OFFER-COMMITMENTS.md).
+> ✅ **O3a 120-MATCH OFFER-COMMITMENT CENSUS COMPLETE (2026-07-21,
+> probe-only):** 10,590/10,689 (99.1%) real attacking team states supported at least two
+> simultaneous feasibility-only commitments; 43,060 multi-player evaluations had zero
+> missing, construction, conservation or non-finite failures. The near q10 tail was 1.554m
+> target distance, 2.808° bearing, 0.002s arrival and 0.240m corridor separation, while q90
+> remained widely separated. Shared occupancy is therefore non-vacuous and variable; no
+> post-hoc duplicate threshold or allocation rule was added. Authority:
+> [`world-model/OFFBALL-OFFER-COMMITMENT-CENSUS.md`](world-model/OFFBALL-OFFER-COMMITMENT-CENSUS.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

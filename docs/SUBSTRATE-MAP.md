@@ -282,7 +282,9 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   not coordination substrate. The "max ~2 runners" formula is a safety valve
   becoming a tactical ceiling. **O3 now adds a dormant shared-intent representation:**
   fixed target/arrival commitments expose separate target, bearing, timing and corridor
-  occupancy facts. No live commitment producer, allocator, task priority or score exists.
+  occupancy facts. O3a found at least two synthetic commitments in 99.1% of 10,689 real
+  attacking states, with a broad near-to-far occupancy distribution. No live commitment
+  producer, allocator, task priority or score exists.
 
 ### S9 — Shared intent, comms & familiarity · 🟡🔴
 - Receiver expresses intent; a run becomes a passer cue; carrier body-orientation
