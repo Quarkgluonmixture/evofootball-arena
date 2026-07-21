@@ -56,6 +56,7 @@ Every returning direction must satisfy all of these:
 | cut-inside | **trajectory emergence confirmed:** E1 found 398/574 wide-progressive carries moved materially inward, 386 without entering the explicit wide-drive zone | keep the name telemetry-only; next evidence may compare generic carry-direction outcomes, never add `CutInside` |
 | carry wide / reach byline | already observable from ordinary carry | trajectory and outcome anatomy only |
 | pass-return exchange | **generic pass-choice emergence confirmed:** E2 found 444/522 immediate A→B→A returns without `wallRun`; 93 advanced A by at least 2m | the return choice needs no named action; shared movement intent/payoff still requires generic substrate before the named script can retire |
+| overlap trajectory | **natural coverage failed:** E3 found only 4 qualifying paths in 120 matches, all still exposed to generic-named run/support actions and none strict-clean | retain the named baseline; only a dormant role-neutral moving-reference primitive may be studied next |
 | formation drift / local shape | `emergentStation` is live but remains a hand-tuned role-anchored interim | compare generic candidate coverage against the interim; do not call it a completed value field |
 
 The cut-inside observation is a valid play report, not yet a population-rate claim.
@@ -154,3 +155,19 @@ to a first stable controller, composed with the state created after that
 transition. Until that representation has a separately authorised path, named
 pass-and-move scripts remain migration debt rather than candidates for a cheap
 replacement.
+
+## 7. E3 audit update
+
+[`EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md`](EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md)
+found only four overlap-shaped teammate trajectories across 120 matches and
+8,058 eligible wide-carrier episodes. Although none used the dedicated
+`team.overlapper` licence, all four still used `MakeRun` or
+`SupportBallCarrier`, and no trajectory avoided every recorded run/support
+authority. The named overlap baseline therefore remains necessary today.
+
+The admissible re-entry is not another overlap instruction. The current generic
+primitive can move to a fixed world point; the missing causal ability is to
+follow a role-neutral spatial relation to a moving reference player. That
+primitive can be represented and tested dormant, with symmetric offsets and no
+live preference. Whether any offset later pays or becomes an overlap remains a
+separate question.

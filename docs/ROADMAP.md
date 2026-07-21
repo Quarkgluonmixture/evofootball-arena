@@ -410,12 +410,16 @@
 > not authorise S7e re-entry. A fixed-point query-domain bug discovered by the audit was
 > repaired without changing candidate generation or live selection. Authority:
 > [`world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md`](world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md).
-> 🔬 **E3 NATURAL OVERLAP-TRAJECTORY CENSUS PRE-REGISTERED (2026-07-21,
-> telemetry only):** observe wide stable-owner spells and classify, after the fact, whether
-> a trailing teammate runs materially around the carrier's outside and ahead. Split all such
-> trajectories by exposure to the named `team.overlapper` licence and other run/support
-> authorities. The probe cannot change AI, infer payoff or retire the named baseline.
-> Authority:
+> ⏸️ **E3 NATURAL OVERLAP-TRAJECTORY COVERAGE FAILED; STOPPED
+> (2026-07-21, telemetry only):** 17,492 carrier spells and 8,058 conserved eligible
+> episodes produced only **4** overlap-shaped trajectories in 4/120 matches, below the
+> frozen 10-event / 5-match gates. All four lacked the named `team.overlapper` licence but
+> still exposed `MakeRun` or `SupportBallCarrier`; strict no-authority coverage was zero.
+> Two runs were byte-identical (`6e57b255…4707`) with zero duplicate, unfinished or
+> non-finite facts. Unlike cut-inside and ordinary pass-return choice, overlap movement is
+> not yet naturally covered; the named baseline cannot retire. This permits only a separately
+> contracted dormant, role-neutral moving-reference primitive—not a wider overlap gate or
+> named action. Authority:
 > [`world-model/EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md`](world-model/EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.

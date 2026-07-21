@@ -1,6 +1,6 @@
 # E3 — Emergent Overlap-trajectory Census
 
-Status: **PRE-REGISTERED. Telemetry only; no live change.**
+Status: **COMPLETE — NATURAL COVERAGE FAILED; stopped. No live change.**
 
 Date: 2026-07-21
 
@@ -115,3 +115,54 @@ requires a separate contract.
 
 Do not modify `TeamBrain`, `PlayerBrain`, `actionExecutor`, formations, policy,
 roles, genes or Match to help the census pass.
+
+## 7. Frozen result
+
+Two complete runs produced the identical output hash
+`6e57b255df91779e5450f2a7098e2c9c0954f5799c9018607c5508a18c254707`.
+
+### Validity and coverage
+
+```text
+carrier spells / wide-at-start spells          17,492 / 4,615
+eligible episodes started / closed               8,058 / 8,058
+duplicate identities / unfinished / non-finite       0 / 0 / 0
+overlap-shaped trajectories                              4
+match coverage                                         4 / 120
+named-overlapper unlicensed                              4
+strict no recorded authority                             0
+```
+
+All four observed trajectories lacked the dedicated `team.overlapper` licence,
+but every one still used `MakeRun` or `SupportBallCarrier`; two also exposed a
+runner/arriver assignment. They therefore do not establish a clean generic
+movement path.
+
+| trajectory fact | mean | q10 | q50 | q90 |
+|---|---:|---:|---:|---:|
+| start trailing | 1.757m | 1.006m | 1.657m | 2.741m |
+| forward gain at success | 5.326m | 3.118m | 6.806m | 7.581m |
+| ahead of carrier | 2.440m | 2.033m | 2.218m | 3.437m |
+| outside carrier | 3.606m | 1.009m | 3.898m | 6.304m |
+| path length | 6.203m | 3.199m | 7.591m | 7.821m |
+| elapsed | 0.979s | 0.483s | 1.150s | 1.217s |
+
+The four paths show that the geometry is physically possible, but the frozen
+non-vacuity gates required at least ten trajectories and at least five
+unlicensed trajectories across five matches. Both gates failed.
+
+## 8. Verdict
+
+Unlike cut-inside carries and ordinary return-pass choice, overlap-shaped
+off-ball movement is **not yet naturally covered at population scale**. Removing
+the named overlap authority now would delete real football rather than reveal a
+generic replacement.
+
+The result does not authorise widening the live overlap gate or adding an
+`Overlap` action. It identifies a narrower substrate gap: the current generic
+movement vocabulary is dominated by fixed world points and legacy run/support
+targets; it does not reliably express a teammate-relative trajectory whose
+target moves with the carrier. A future dormant, role-neutral moving-reference
+movement primitive may be investigated under a separate representation and
+feasibility contract. It must expose no overlap label, offset preference, live
+emitter or payoff claim.
