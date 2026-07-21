@@ -256,6 +256,12 @@ vision wants **multiple readable routes**, not forced tiki-taka.
     `pass-target-counterfactual` retains first-controller/pass-resolution anatomy
     so the next hypothesis can distinguish flight failure from post-reception
     failure. See `world-model/S7D-FLIGHT-INTERCEPTION.md`.
+  - ✅ **The retained anatomy found the next causal boundary:** within the 212
+    paired branches where both intended targets first-controlled, the original
+    S7b alternative/chosen dominance becomes 38.2/28.8%, possession 65.6→67.5%,
+    progression +1.181m and xG +0.006. S7 therefore needs a contingent transition
+    model (`receive / teammate / opponent / dead / loose` → conditional next
+    state), not another independent Pareto feature and not another live cut.
 - ⭐ **This does NOT gate S7.** Live bounded-lookahead uses the CHEAP analytic estimator
   (ETA / pitch-control / next-options), never a Match rollout (too slow per-tick under
   either scheme) — the clone-vs-replay choice only touches the offline oracle, so the

@@ -116,6 +116,27 @@ simulation are restored exactly.
 
 The negative result is still informative: endpoint-only S7b omitted a large real
 flight-path cause, but correcting that cause merely removed many false dominators;
-it did not make the remaining Pareto relation a useful action-value oracle. The
-next audit should examine **post-reception state transitions and option dynamics**,
-not add another static endpoint or corridor geometry term.
+it did not make the remaining Pareto relation a useful total action-value oracle.
+
+### Post-revert conditional anatomy
+
+The accepted S7b 509-pair run was then stratified by the first physical controller,
+without changing candidates or rollouts. In the **212 pairs where both branches
+reached their intended target**, the S7b alternative did have a real edge:
+
+- alternative/chosen dominance: **38.2% / 28.8%**;
+- own possession: **65.6% → 67.5%**;
+- mean progression: **+1.181m**;
+- mean xG: **+0.006**.
+
+The asymmetric reception strata explain the aggregate failure. When only the
+alternative reached its target, it dominated 62.2/11.1%; when only the chosen
+branch reached its target, that inverted to 17.9/53.8%.
+
+This revises the next question. The conditional post-reception vector is not simply
+dead; it has payoff when its assumed transition actually occurs. What is missing is
+a principled composition of mutually exclusive transition states—intended reception,
+teammate recovery, opponent interception, dead ball and unresolved/loose—with the
+conditional value after each. Another independent Pareto dimension cannot perform
+that composition. S7e must research a distributional/contingent next-state model
+without collapsing football into one hand-written universal utility score.

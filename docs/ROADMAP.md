@@ -179,9 +179,15 @@
 > anatomy probe is observational only; build + 502/502 passed and both frozen fingerprints
 > remain exact (`57b0bdab…`, `4ac9408d…`). Authority:
 > [`world-model/S7D-FLIGHT-INTERCEPTION.md`](world-model/S7D-FLIGHT-INTERCEPTION.md).
-> **NEXT remains offline S3–S8 diagnosis, now narrowed to post-reception state transitions
-> and option dynamics. Do not retry another static endpoint/corridor term or wire any S7
-> candidate live before the same payoff oracle passes.**
+> ✅ **POST-REVERT S7b CONDITIONAL ANATOMY (2026-07-21):** the same unchanged 509 pairs
+> reveal that S7b is useful *conditional on both intended receptions*: n=212,
+> alternative/chosen dominance 38.2/28.8%, own possession 65.6→67.5%, progression +1.181m,
+> xG +0.006. The aggregate failure is dominated by asymmetric transition outcomes (only
+> alternative receives: 62.2/11.1%; only chosen receives: 17.9/53.8%). **NEXT = S7e research
+> on a distributional/contingent next-state representation that composes reception,
+> interception, loose/dead-ball transitions with their conditional future values—without
+> a universal hand-written utility score.** Do not retry another independent endpoint/
+> corridor dimension or wire any S7 candidate live before the same payoff oracle passes.
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to
