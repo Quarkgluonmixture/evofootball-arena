@@ -279,6 +279,14 @@
 > fingerprint pass. This authorises only an offline clone feasibility probe—not candidate
 > scoring or `supportSpot` replacement. Authority:
 > [`world-model/OFFBALL-MOVE-PRIMITIVE.md`](world-model/OFFBALL-MOVE-PRIMITIVE.md).
+> ✅ **O1a MOVE-TO-POINT CLONE FEASIBILITY PASSED (2026-07-21, offline only):**
+> 64 frozen attacking states × hold/legacy/forward/lateral/backward ran through cloned
+> `Match.step` for 1.5s with zero clone, determinism, active-target, unexplained-action or
+> non-finite failures. 319/320 interventions completed; one ended honestly when the forced
+> player became the physical controller. Forward/lateral/backward points closed their target
+> in 64/64 states; no Match hook, state write, score or football-value read was added. This
+> proves generic execution feasibility, **not** candidate payoff or live selection. Authority:
+> [`world-model/OFFBALL-MOVE-FEASIBILITY.md`](world-model/OFFBALL-MOVE-FEASIBILITY.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

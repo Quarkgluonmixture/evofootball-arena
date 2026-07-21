@@ -237,6 +237,9 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   dormant generic exception:** `MoveToPoint(targetPos)` uses the existing steering,
   onside discipline and `Player.physicsStep`, with no brain emitter, score, gene or role
   branch. It exists so offline counterfactuals can test O0 points without teleporting;
+  O1a has now shown in 64 frozen cloned states that fixed forward/lateral/backward O0
+  targets all close through the real movement stack (zero unexplained intervention drift).
+  This is execution feasibility only; no candidate payoff or live selector exists.
   it is not yet a live candidate.
 
 ### S7 — Action value & bounded lookahead · 🟡🔴 (pass Pareto boundary exists offline)
