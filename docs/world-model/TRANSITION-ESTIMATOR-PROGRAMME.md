@@ -282,3 +282,151 @@ ee3d58b10817e7ae904fe2d946f4bc015977b4e157f46d38acecae37b62ca84c
 T0a therefore passes and authorises only a pre-registered T0b estimator contract.
 The result does not yet show that any model can generalise, compose conditional
 payoff, or improve a pass decision.
+
+## 10. T0b — Five-transition probability estimator
+
+Status: **PRE-REGISTERED BEFORE READING SEEDS 41000–41119.**
+
+T0b asks only:
+
+> Can the frozen kick-time feature vector predict Oracle v2's five first-
+> transition classes on unseen match clusters, and does the candidate-specific
+> information add value beyond the general ecology of the decision state?
+
+It does not estimate `ComparablePassPayoffV1`, compare targets or choose a pass.
+
+### 10.1 Fit and evaluation partitions
+
+The already-observed training range is split deterministically:
+
+```text
+fit:              seed 40000–40239 where (seed - 40000) mod 4 != 3
+internal holdout: seed 40000–40239 where (seed - 40000) mod 4 == 3
+external validate: sealed seeds 41000–41119
+final test:         seeds 42000–42239 remain sealed
+```
+
+No row from one match may appear in another partition. The model, optimiser,
+bases and gates below are frozen before the internal holdout or external
+validation scores are computed.
+
+### 10.2 Fixed model basis
+
+For each of the 14 `kick-transition-features-v1` dimensions, calculate mean and
+population standard deviation on fit actions only. A standard deviation below
+`1e-12` is replaced with `1`; this keeps constant training facts as zero-valued
+features rather than deleting or filling rows. Standardised values are clipped
+to `[-6, 6]`.
+
+The model basis is fixed as:
+
+```text
+intercept
+14 standardised linear facts
+14 squared standardised facts
+```
+
+There are no cross-feature interactions, target identities, role labels or
+future facts. The estimator is one five-class multinomial logistic regression.
+
+Training is deterministic mini-batch Adam:
+
+```text
+loss: unweighted natural-frequency cross entropy
+L2: 1e-4 on non-intercept weights
+epochs: 30
+batch size: 1024
+learning rate: 0.01
+beta1 / beta2 / epsilon: 0.9 / 0.999 / 1e-8
+epoch order: deterministic Fisher–Yates from namespace 0x74306231 + epoch
+initial weights: exactly zero
+```
+
+Every class remains in the softmax denominator. There is no class weighting,
+oversampling, probability smoothing, temperature fitting, early stopping or
+hyperparameter search.
+
+### 10.3 Frozen baselines
+
+T0b compares three probability sources:
+
+1. **Global base rate:** raw five-class frequencies in fit actions. All classes
+   have positive fit support, so no smoothing is needed.
+2. **State-only model:** the same logistic model and optimiser, but every action
+   in a decision receives the component-wise mean of all candidate feature
+   vectors from that decision. It can learn match/state ecology but cannot tell
+   targets apart.
+3. **Action-aware model:** the candidate's own feature vector.
+
+Both learned models calculate separate fit-only standardisation authorities.
+Rows and natural class frequencies are otherwise identical.
+
+### 10.4 Frozen metrics
+
+For every resolved holdout/validation action, report:
+
+```text
+multiclass log loss
+multiclass Brier score
+five one-vs-rest Brier scores
+five equal-count-decile calibration errors
+top-class accuracy (diagnostic only)
+```
+
+Scores are first averaged per match seed. Inference uses a deterministic 10,000-
+draw cluster bootstrap over match seeds. For an improvement, positive means the
+baseline score minus the action-aware score.
+
+Action specificity is measured per multi-action decision as the maximum L1
+distance between any two candidate probability vectors. Report the median and
+the fraction above `1e-6`.
+
+### 10.5 Internal and external gates
+
+The same frozen gates apply first to the 60-cluster internal holdout and then to
+the 120-cluster external validation:
+
+```text
+semantic/identity/finite/determinism failures == 0
+all five outcomes present                    == yes
+
+action-aware vs global:
+  relative mean log-loss improvement         >= 5%
+  relative mean Brier improvement            >= 5%
+  95% cluster-bootstrap LCB on both           > 0
+
+action-aware vs state-only:
+  relative mean log-loss improvement         >= 2%
+  relative mean Brier improvement            >= 2%
+  95% cluster-bootstrap LCB on both           > 0
+
+classwise:
+  intended and opponent Brier improvement
+  vs state-only 95% cluster-bootstrap LCB     > 0
+  teammate/loose/dead Brier absolute change
+  vs state-only                               <= +0.001 each
+
+calibration:
+  action-aware macro classwise ECE            <= state-only macro ECE
+  action-aware macro classwise ECE            <= 0.04
+
+action specificity:
+  decisions with differing probability       >= 95%
+  median within-decision max L1 distance      >= 0.10
+```
+
+The internal holdout must pass before external validation is opened. Failure is
+a model-family stop, not permission to change the learning rate, basis,
+regularisation, epochs, clipping, seed split or gates.
+
+### 10.6 T0b verdict and authority
+
+`PASS` requires every internal and external gate. `FAIL` means this fixed cheap
+estimator does not generalise sufficiently and T0 returns to the mainline choice;
+the sealed final test remains unread. There is no statistical `INCONCLUSIVE`
+escape hatch because the cluster sizes, practical effects and bootstrap authority
+were fixed after T0a established ample support and before validation.
+
+Passing T0b authorises only a new conditional-payoff estimator contract. It does
+not authorise reading the final test, multiplying transition probabilities by
+payoff estimates, comparing targets or wiring a live decision.
