@@ -531,6 +531,14 @@
 > needs a versioned sentinel/travel-target contract and fresh ecology, not a same-suite
 > retry. Authority:
 > [`world-model/CARRY-AFFORDANCE-INSET-FAILURE-AUDIT.md`](world-model/CARRY-AFFORDANCE-INSET-FAILURE-AUDIT.md).
+> 🔬 **Q0 SECURED-BALL ACCESS CENSUS PRE-REGISTERED (2026-07-21):** the next
+> decentralised cut is causally separate from stopped K0a. Current standing tackles
+> treat every ready defender inside 1.15m of the owned ball as equally eligible, while
+> accepted M2 geometry can distinguish direct front/side/back access from a carrier
+> body screening the line. Fresh seeds 44,000–44,119 will census unique real proximity
+> episodes using the pure query only. No tackle gate, probability, attribute, ball state
+> or live decision changes. Authority:
+> [`world-model/SECURED-BALL-ACCESS-CENSUS.md`](world-model/SECURED-BALL-ACCESS-CENSUS.md).
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and

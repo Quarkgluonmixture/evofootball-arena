@@ -119,6 +119,9 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   remains one isotropic accel envelope + a separately rotating heading, and secured-ball
   standing tackles do not yet consume the access/screening fact. Exact supported and missing
   counterfactuals: [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md).
+  **Q0 pre-registers the first secured-ball composition audit:** real in-radius
+  challenger episodes will be partitioned by the already accepted
+  `directBallAccess` query, without modifying tackle mechanics or outcomes.
 - `strength` has an honest future attachment point, but is **not activated** in the new contact
   solver/access system. It remains a coefficient in existing standing-tackle and aerial
   formulas, not embodied mass/balance/screening stability.
