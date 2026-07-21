@@ -504,6 +504,16 @@
 > all zero; record hash `ee3d58b…a84c`. Nine fresh live passes remain honestly outside the
 > finite candidate boundary. T0b estimator-contract design is authorised; validation/test
 > seeds are still sealed and no live consumer follows.
+> ⏸️ **T0b INTERNAL HOLDOUT STOP — SIGNAL STRONG, CALIBRATION GATE FAILED
+> (2026-07-21):** the fixed quadratic softmax was deterministic and beat both global and
+> state-only baselines decisively on 60 unseen training-fold clusters (vs state-only:
+> log loss +8.79%, Brier +8.93%; all bootstrap lower bounds positive; median candidate
+> probability separation L1 `0.756`). But its macro calibration error was `0.007320`
+> versus the state-only model's `0.006991`, failing the exact pre-registered no-worse gate
+> despite passing the absolute 0.04 gate. The process stopped before opening external seeds
+> 41,000–41,119; final seeds 42,000+ remain sealed. No temperature patch, extra epochs or
+> gate change is authorised. The next direction is an explicit C (dormant dynamic task
+> representation) versus a later genuinely new estimator-calibration programme decision.
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the

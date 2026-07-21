@@ -291,7 +291,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   transitions with per-fold support, and 79.15% of resolved multi-action decisions
   changed transition when only the target changed. The versioned kick-time feature
   projection is dormant and unscored; validation/test clusters remain sealed. This
-  authorises only T0b estimator design, not action value or live selection.
+  authorised only T0b estimator design, not action value or live selection. T0b's
+  internal holdout then confirmed strong target-specific prediction (log loss and
+  Brier both improved about 9% over an otherwise identical state-only model), but
+  stopped at its exact relative-calibration gate before external validation. The
+  feature/model probes remain dormant; no S7 consumer or conditional payoff follows.
 
 ### S8 — Team task & dynamic coordination · 🟡🔴
 - **Provides:** `TeamIntent{ phase, priorities, taskDemand[], structuralConstraints[] }`

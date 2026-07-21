@@ -1,8 +1,9 @@
 # Off-ball Mainline Decision
 
-Status: **A WAS SELECTED and stopped at R1a's frozen 187<192 coverage gate. The
-user then selected B. T0a's fresh 240-match transition data census passed; T0b
-estimator design is authorised, but no estimator or live selector is.**
+Status: **A stopped at R1a's frozen coverage gate. User-selected B passed its
+data-support census, then stopped at T0b's strict relative-calibration gate before
+external validation. No movement selector or live pass estimator is authorised;
+the next mainline direction again requires an explicit decision.**
 
 Date: 2026-07-21
 
@@ -207,3 +208,23 @@ was only a training-support census and did not fit or wire an estimator. It pass
 with 19,164 decisions / 93,636 candidate actions, all five outcomes supported in
 every fixed fold, 79.15% within-decision outcome variation and zero Oracle or
 identity failures. Validation and test ranges remain unread.
+
+T0b then demonstrated a strong target-specific mediator on a 60-match internal
+holdout: action features improved log loss by 8.79% and Brier by 8.93% over the
+otherwise identical state-only model, and every multi-action decision received
+different probabilities. It nevertheless failed its pre-registered relative
+calibration gate (`ECE 0.007320` versus `0.006991`). Per stop rule, external
+validation and final test remain sealed; no post-result temperature fit or gate
+change is allowed.
+
+The remaining mainline fork is now explicit:
+
+```text
+C — start the dormant dynamic task/occupancy representation
+P — park implementation work and commission a genuinely new estimator-calibration audit
+```
+
+C has the highest visible tactical payoff but must remain representation-only;
+T0b did not authorise using its probabilities to score tasks or passes. P may use
+the banked target-specific signal, but cannot be an immediate patch to the failed
+ECE comparison.

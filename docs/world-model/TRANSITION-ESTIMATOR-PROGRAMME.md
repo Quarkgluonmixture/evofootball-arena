@@ -1,8 +1,9 @@
 # T0 — Kick-time Transition Estimator Programme
 
-Status: **T0a SUPPORT CENSUS PASSED on its frozen 240-cluster training range.
-T0b estimator-contract design is authorised; validation/test seeds remain sealed.
-No estimator, pass selector or live consumer is yet authorised.**
+Status: **T0a SUPPORT CENSUS PASSED. T0b STOPPED on its pre-registered internal
+holdout: action-specific transition signal was strong, but the strict relative-
+calibration gate failed. External validation and final test remain sealed. No
+pass selector or live consumer is authorised.**
 
 Date: 2026-07-21
 
@@ -430,3 +431,67 @@ were fixed after T0a established ample support and before validation.
 Passing T0b authorises only a new conditional-payoff estimator contract. It does
 not authorise reading the final test, multiplying transition probabilities by
 payoff estimates, comparing targets or wiring a live decision.
+
+## 11. Frozen T0b result — strong action signal, calibration stop
+
+The fixed training generator exactly reproduced T0a's population:
+
+```text
+240 clusters · 19,164 decisions · 93,636 actions
+69,922 fit rows · 22,974 internal-holdout rows · 740 administrative censors
+force / invariant / duplicate failures: 0 / 0 / 0
+training digest: 17eebdd52a883daabddc7d7a69c1c7455e398cf5ba2dd91f687a2df4befc0427
+```
+
+The action-aware model trained twice byte-identically. The frozen action/state
+models and global probabilities hash to:
+
+```text
+6e388d0a6263229a0dc6d8f74c96022c780168afb7e963f37e67bc6e25920865
+```
+
+All five outcomes were present in the 60-cluster internal holdout. The main
+predictive results were:
+
+| score | action-aware | state-only | global | improvement vs state-only |
+|---|---:|---:|---:|---:|
+| log loss | 0.784033 | 0.859588 | 0.906217 | 8.79% |
+| multiclass Brier | 0.458157 | 0.503100 | 0.516170 | 8.93% |
+| top-class accuracy (diagnostic) | 65.31% | 62.40% | 62.35% | +2.91pp |
+
+The cluster-bootstrap lower bounds were positive for both scores against both
+baselines. Intended-reception and opponent-interception classwise Brier lower
+bounds passed; all three rare-class non-regression gates passed. Every one of
+4,733 multi-action decisions received differing candidate probabilities, with a
+median within-decision maximum L1 distance of `0.756038` against the frozen
+minimum `0.10`.
+
+The one failed hard gate was calibration relative to the state-only model:
+
+```text
+macro equal-count-decile ECE
+action-aware: 0.007320
+state-only:   0.006991
+
+required:
+action-aware <= state-only
+```
+
+The action-aware model easily passed the absolute `ECE <= 0.04` gate, but the
+pre-registered relative gate admits no numerical grace band. T0b therefore fails
+and stops. Seeds `41000–41119` were not opened, and seeds `42000–42239` remain
+sealed. No temperature fitting, changed bins, longer training, new basis or
+relaxed comparison is authorised after seeing this result.
+
+This is not evidence that target-specific transition facts are useless. On the
+contrary, the action-vs-state predictive gains and specificity mediator are
+large. The narrower conclusion is:
+
+> This fixed uncalibrated quadratic-softmax authority did not meet every frozen
+> probability contract, so it cannot be promoted into conditional-value
+> composition or live pass selection.
+
+The probe and dormant feature projection remain research assets. Any future
+transition-estimator revisit must state a causally/inferentially new calibration
+authority before opening new validation clusters; immediately adding temperature
+scaling or changing the failed ECE gate would be an adaptive retry.
