@@ -381,3 +381,17 @@ a central demand or scores a football pattern.
 Only if the embodied mechanism is common across states may the programme open
 a separately pre-registered closed-loop possession-development lab. Until then,
 the accepted live commander remains unchanged.
+
+EOR-0 is now complete and stopped. Its two executions were byte-identical
+(`80f7a649…438c`). Explicit O3 intent was informative in 618/634 completed
+interventions (97.5%), but the full embodied chain occurred only 70/634 times
+(11.0%) across 22/96 states, below both frozen gates. A moved materially in
+503 cases and B's candidate response range changed in 234; the bottleneck was
+the defensive world. Only 111 interventions displaced any opponent by 0.25m,
+and mark/chaser assignments changed in just two.
+
+The attacking-selector line therefore remains closed. The next admissible
+contract must examine decentralised defender reaction from generic physical
+facts; it may not extend EOR-0's window, tune its thresholds or turn O3
+separation into an attacking bonus. The closed-loop possession-development lab
+is not authorised by this result.

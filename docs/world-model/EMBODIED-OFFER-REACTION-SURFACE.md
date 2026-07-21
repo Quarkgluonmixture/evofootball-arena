@@ -1,6 +1,7 @@
 # Embodied Offer Reaction Surface
 
-Status: **H/M/C contract pre-registered; probe not yet implemented or run.**
+Status: **EOR-0 completed and stopped. H1 failed; H2 passed. No selector,
+closed-loop process lab or live consumer is authorised.**
 
 Date: 2026-07-22
 
@@ -353,3 +354,83 @@ possession-development mechanism contract. It does not authorise:
 * removal of the accepted legacy commander;
 * a play-test build.
 
+## 14. Frozen result
+
+The probe is implemented at
+[`scripts/probes/embodied-offer-reaction-surface.ts`](../../scripts/probes/embodied-offer-reaction-surface.ts).
+Two complete executions were byte-identical:
+
+```text
+accepted states                         96 / 96
+scanned seeds                           96 / 192
+enumerated interventions               684
+jointly completed H/M                   634 / 684 = 92.7%
+
+material embodied reactions             70 / 634 = 11.0%
+states with a material reaction          22 / 96
+
+informative C commitments               618 / 634 = 97.5%
+commitment fact reads                    33,552
+
+H statuses                              completed 634 · loose 50
+M statuses                              completed 634 · loose 50
+
+SHA-256                                 80f7a649e5e33cc599bfdb973f9d5dcf63171a2fe593dcd20e27226e6c70438c
+```
+
+All validity, determinism, physical-identity, O0-immutability, candidate-order
+and intent-information gates passed. Both embodied gates failed:
+
+```text
+required material intervention rate     >= 25%
+observed                                 11.0%
+
+required states with any material link  >= 60 / 96
+observed                                 22 / 96
+```
+
+The failure anatomy separates the mediators:
+
+```text
+A made >=0.25m extra target progress             503 / 634
+an opponent moved >=0.25m between H and M        111 / 634
+B retained >=5 matched fixed candidates          618 / 634
+B's candidate response range was material        234 / 634
+all four                                          70 / 634
+
+B observed A                                      555 / 634
+B observed the carrier                            618 / 634
+B observed a materially displaced opponent        86 / 634
+opponent mark/chaser assignment changed             2 / 634
+```
+
+Median maximum opponent displacement was only `0.022m`; the 90th percentile
+was `0.364m`. Candidate effects were real but sparse: the median response range
+was nearly zero for all opponent-facing dimensions, although their upper tails
+were non-zero. Offside-line response was numerical zero because no relevant
+defensive-line change occurred within the frozen window.
+
+Direction anatomy did not reveal a single favourable direction carrying the
+result: every one of the eight symmetric direction indices produced only
+6–11 material interventions. This is not a hidden directional-filter problem.
+
+## 15. Interpretation
+
+The frozen interpretation is the pre-registered `H1 fail, H2 pass` branch:
+
+* A can move and B usually observes A;
+* the existing O0 surface can register a changed opponent world when that world
+  actually changes;
+* O3 exposes non-constant future-intent geometry without mutating O0 or Match;
+* ordinary defenders and their commander assignments do not commonly mediate
+  A's short movement into a changed world for B.
+
+Therefore the project must not train another attacking selector or open the
+closed-loop possession-development lab. O3's information capacity is banked,
+but information about separation is not yet evidence of a football reaction.
+
+The next admissible question is defensive and world-mediated: can a defender's
+own generic perception/access facts produce a local response to an opponent's
+changing trajectory without a central named mark assignment? That requires a
+new contract. Extending EOR-0's window, lowering its resolutions or using the
+same result to tune a response score is forbidden.
