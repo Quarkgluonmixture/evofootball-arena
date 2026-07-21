@@ -380,12 +380,14 @@
 > allocator or live state is authorised; changing to another O5 fact now would be an adaptive
 > retry rather than a new causal model. Authority:
 > [`world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md`](world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md).
-> 🔎 **E2 NATURAL PASS-RETURN CENSUS PRE-REGISTERED (2026-07-21,
-> telemetry only):** observe immediate stable A→B→A completions within 3s and derive the
-> original passer's real return trajectory after the fact. The probe separately flags the
-> explicit `wallRun` licence, team runner/arriver/overlapper assignments and legacy support
-> actions, so a named scripted completion cannot be called generic emergence. It changes no
-> behaviour and does not reward the pattern. Authority:
+> ✅ **E2 NATURAL PASS-RETURN CENSUS PASSED (2026-07-21, telemetry
+> only):** 120 matches produced 522 immediate stable A→B→A exchanges; **444 (85.1%)**
+> completed without the dedicated `wallRun` licence and 93 unlicensed returns received A at
+> least 2m farther upfield. So ordinary pass choice already contains the return-exchange
+> primitive. But the median return moved backward 1.191m, 453/522 exposed legacy support/run
+> actions, 216 exposed a named team assignment and only 45 avoided all recorded authorities.
+> The pass choice is natural; shared movement intent/payoff is not yet a clean replacement.
+> Two runs were byte-identical (`a2f83411…acbc`); no script was retired. Authority:
 > [`world-model/EMERGENT-PASS-RETURN-CENSUS.md`](world-model/EMERGENT-PASS-RETURN-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.

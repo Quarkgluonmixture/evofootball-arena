@@ -55,6 +55,7 @@ Every returning direction must satisfy all of these:
 |---|---|---|
 | cut-inside | **trajectory emergence confirmed:** E1 found 398/574 wide-progressive carries moved materially inward, 386 without entering the explicit wide-drive zone | keep the name telemetry-only; next evidence may compare generic carry-direction outcomes, never add `CutInside` |
 | carry wide / reach byline | already observable from ordinary carry | trajectory and outcome anatomy only |
+| pass-return exchange | **generic pass-choice emergence confirmed:** E2 found 444/522 immediate A→B→A returns without `wallRun`; 93 advanced A by at least 2m | the return choice needs no named action; shared movement intent/payoff still requires generic substrate before the named script can retire |
 | formation drift / local shape | `emergentStation` is live but remains a hand-tuned role-anchored interim | compare generic candidate coverage against the interim; do not call it a completed value field |
 
 The cut-inside observation is a valid play report, not yet a population-rate claim.
@@ -64,7 +65,7 @@ Do not add a `cutInside()` action to make its count rise.
 
 | pattern | current named authority | desired causal replacement |
 |---|---|---|
-| one-two / wall run | `Player.wallRun`, wall-pass weights | pass-and-move primitives + shared intent inferred from the pass event |
+| one-two / wall run | `Player.wallRun`, wall-pass weights; E2 proves the ordinary return-pass choice also exists, but most movement still touches legacy support/run authority | shared movement intent inferred from the pass event + conditional payoff; never another named return bonus |
 | third-man combination | `thirdManW` and bounce bookkeeping | teammate offer/task occupancy + conditional pass choice |
 | overlap | `Team.overlapper` assignment | open wide candidate + carrier/teammate occupancy + independent selection |
 | cutback box arrival | `Team.arriver` and `performCutback` | pass-to-space + dynamic arrival candidates + control/access outcome |
@@ -121,3 +122,15 @@ That banks the **phenomenon**, not a preferred frequency or policy. The old
 handwritten cut-inside direction should not return. In contrast, one-two,
 third-man, overlap and cutback-arrival remain named live migration debt today;
 their current frequency must not be cited as generic emergence.
+
+## 6. E2 audit update
+
+[`EMERGENT-PASS-RETURN-CENSUS.md`](EMERGENT-PASS-RETURN-CENSUS.md) found 522
+immediate stable A→B→A exchanges across 120 matches. Of these, 444 occurred
+without the dedicated `wallRun` licence and 93 returned to A at least 2m farther
+upfield. Thus the general pass policy can already choose the return naturally.
+
+This does not retire the one-two script: the median exchange moved backward and
+most original passers still touched legacy support/run movement authority. The
+remaining generic gap is shared pass-event → movement intent and its payoff, not
+a missing named return-pass action.
