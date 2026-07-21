@@ -1,6 +1,6 @@
 # C0 — Team Coordination Demand & Occupancy Foundation
 
-Status: **PRE-REGISTERED — representation only; implementation not started.**
+Status: **C0 COMPLETE — representation only; no producer, allocator or live consumer.**
 
 Date: 2026-07-21
 
@@ -159,3 +159,27 @@ authorise a demand producer, player allocator, live commitment, task gene,
 `TeamBrain` migration or play-test build. Those require separately frozen
 contracts and must preserve named football behaviours as post-hoc phenomena.
 
+## 7. Result
+
+C0 passed every frozen representation gate:
+
+* `teamTaskOccupancy.ts` imports only the shared vector type and contains no
+  simulation, brain, role, formation, policy, gene or RNG dependency;
+* empty, under-filled, adequately filled and over-filled capacities conserve
+  exactly from explicit matching claims;
+* other-demand, expired and future claims do not occupy a demand, while both
+  active tick boundaries remain inclusive;
+* duplicate active same-player claims and every malformed fact return `null`;
+* player arrival-window facts vary independently from occupancy, and other
+  active claims remain visible without becoming a penalty or conflict rule;
+* input claim order, target mirroring and repeated evaluation do not change
+  results; returned target geometry is copied and inputs remain unchanged;
+* all 12 focused tests and the full 82-file / 588-test suite pass; TypeScript
+  and the production build pass;
+* the default fingerprint remains
+  `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+
+This establishes only the demand/claim accounting language. The next offline
+question is whether real match states support a generic, label-free demand
+publication boundary. Current `TeamBrain` assignments must not be translated
+into C0 demands, because that would merely wrap the commander in new types.

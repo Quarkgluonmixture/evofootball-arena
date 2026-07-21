@@ -514,6 +514,18 @@
 > 41,000–41,119; final seeds 42,000+ remain sealed. No temperature patch, extra epochs or
 > gate change is authorised. The next direction is an explicit C (dormant dynamic task
 > representation) versus a later genuinely new estimator-calibration programme decision.
+> ✅ **USER SELECTED C — C0 TEAM DEMAND/OCCUPANCY REPRESENTATION COMPLETE
+> (2026-07-21, byte-identical):** a pure, opaque demand now carries only target, arrival
+> window, participant capacity and lifetime; explicit player claims produce exact missing/
+> excess occupancy and per-player arrival-window facts. No task producer, priority, score,
+> winner, role, named pattern, allocator or live consumer exists. Other-demand claims stay
+> visible without becoming a conflict penalty, and spatially similar targets are never
+> silently merged. All 12 focused tests, the full 82-file / 588-test suite,
+> TypeScript/build and fingerprint
+> `57b0bdab…c673` pass. The next offline boundary is generic demand publication from world
+> relations; wrapping current runner/arriver/chaser assignments as demands is forbidden.
+> Authority:
+> [`world-model/TEAM-TASK-OCCUPANCY-FOUNDATION.md`](world-model/TEAM-TASK-OCCUPANCY-FOUNDATION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the

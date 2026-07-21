@@ -2,9 +2,9 @@
 
 Status: **A stopped at R1a's frozen coverage gate. User-selected B passed its
 data-support census, then stopped at T0b's strict relative-calibration gate before
-external validation. The user selected C next; C0 is pre-registered as a dormant
-demand/claim occupancy representation. No movement selector, task allocator or
-live pass estimator is authorised.**
+external validation. The user selected C next; C0 completed as a dormant
+demand/claim occupancy representation. No demand producer, movement selector,
+task allocator or live pass estimator is authorised.**
 
 Date: 2026-07-21
 
@@ -235,3 +235,7 @@ The user selected **C**. Its first bounded authority is
 opaque demand with explicit capacity and arrival window, explicit player claims,
 and a pure conservation ledger for missing/excess participation. C0 deliberately
 does not publish demands, score players, allocate tasks or alter live movement.
+It passed all 12 focused representation tests, the full 588-test suite, build
+and the unchanged default fingerprint. The next bounded question is demand publication from
+generic world relations; copying current runner/arriver/chaser assignments into
+the new types is explicitly forbidden.
