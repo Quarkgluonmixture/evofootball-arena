@@ -284,3 +284,12 @@ perception/affordance/value and begins with the read-only T0b calibration failur
 audit in
 [`TRANSITION-CALIBRATION-FAILURE-AUDIT.md`](TRANSITION-CALIBRATION-FAILURE-AUDIT.md).
 That audit cannot patch T0b or open the sealed validation/test ranges.
+
+The audit is now complete. It reproduced the frozen authority and found the
+macro-ECE gap's 10,000-resample cluster interval to be `[-0.003229, +0.003031]`.
+The point gap is therefore below this binned audit's resolution; T0b remains
+failed exactly as frozen. The main structural mediator was a `0.115585` mean L1
+shift between each decision's mean action-aware probabilities and its state-only
+baseline. Work stays decentralised: C0 remains dormant, and any estimator revisit
+must separately freeze a factorised state-baseline + target-relative hypothesis
+instead of patching T0b or publishing central tasks.

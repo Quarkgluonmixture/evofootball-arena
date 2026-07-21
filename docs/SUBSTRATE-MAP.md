@@ -296,6 +296,13 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   Brier both improved about 9% over an otherwise identical state-only model), but
   stopped at its exact relative-calibration gate before external validation. The
   feature/model probes remain dormant; no S7 consumer or conditional payoff follows.
+  T0b-F then reproduced the frozen authority and placed the tiny macro-ECE gap
+  inside a cluster-bootstrap interval of `[-0.003229, +0.003031]`. T0b is not
+  retroactively passed. The audit instead localises a structural clue: the
+  unfactored action model changes decision-level base probability mass (mean L1
+  `0.115585`) while also separating targets. A future revisit needs a separately
+  frozen state-baseline + target-relative estimator contract; no patch or external
+  validation is authorised.
 
 ### S8 — Team task & dynamic coordination · 🟡🔴
 - **Provides:** `TeamIntent{ phase, priorities, taskDemand[], structuralConstraints[] }`

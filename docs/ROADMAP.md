@@ -475,6 +475,17 @@
 > validation and final test stay sealed, and no temperature/Dirichlet/centred-logit correction
 > may be tried. Authority:
 > [`world-model/TRANSITION-CALIBRATION-FAILURE-AUDIT.md`](world-model/TRANSITION-CALIBRATION-FAILURE-AUDIT.md).
+> ✅ **T0b-F READ-ONLY FAILURE ANATOMY COMPLETE (2026-07-21):** training/model
+> hashes and original ECE values matched exactly; external validation/test remained
+> sealed. Across 10,000 fixed-bin resamples of the 60 internal match clusters,
+> `ECE(action)-ECE(state)` had 95% interval `[-0.003229,+0.003031]`, so the tiny
+> `+0.000329` point loss is below this audit's resolution. T0b still fails its exact
+> frozen gate and is not rehabilitated. The useful structural mediator is that the
+> action model's decision-mean probability vector differs from the state baseline by
+> mean L1 `0.115585` (intended `-0.008823`, opponent `+0.010804`). Any revisit must
+> pre-register a genuinely factorised state-baseline + target-relative family and a
+> statistically supported calibration authority; no temperature patch, central task
+> publication, external-data opening or live consumer is authorised.
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and

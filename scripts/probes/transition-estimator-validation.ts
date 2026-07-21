@@ -26,6 +26,7 @@ import {
   predictTransitionProbabilitiesV1,
   type TransitionSoftmaxModelV1,
 } from './transition-probability-model';
+import { auditTransitionCalibrationV1 } from './transition-calibration-audit';
 
 const TRAIN_START = 40000;
 const TRAIN_MATCHES = 240;
@@ -448,6 +449,8 @@ const specificity = (rows: readonly ScoredRow[]): {
 interface EvaluationResult {
   readonly pass: boolean;
   readonly scoredRows: readonly ScoredRow[];
+  readonly actionEce: { readonly classwise: readonly number[]; readonly macro: number };
+  readonly stateEce: { readonly classwise: readonly number[]; readonly macro: number };
 }
 
 const evaluate = (
@@ -562,7 +565,7 @@ const evaluate = (
   );
   console.log(`gates ${Object.entries(gates).map(([gate, value]) => `${gate}=${value ? 'PASS' : 'FAIL'}`).join(' · ')}`);
   console.log(`${name} verdict: ${pass ? 'PASS' : 'FAIL — STOP'}`);
-  return { pass, scoredRows };
+  return { pass, scoredRows, actionEce, stateEce };
 };
 
 console.log('T0b five-transition probability estimator');
@@ -605,7 +608,55 @@ const internal = evaluate(
   100,
 );
 if (!internal.pass) {
-  process.exitCode = 2;
+  if (process.argv.includes('--calibration-audit')) {
+    const EXPECTED_TRAINING_DIGEST = '17eebdd52a883daabddc7d7a69c1c7455e398cf5ba2dd91f687a2df4befc0427';
+    const EXPECTED_MODEL_DIGEST = '6e388d0a6263229a0dc6d8f74c96022c780168afb7e963f37e67bc6e25920865';
+    const sourceAuthorityMatches = training.digest === EXPECTED_TRAINING_DIGEST
+      && modelDigest === EXPECTED_MODEL_DIGEST
+      && fitRows.length === 69922
+      && internalRows.length === 22974;
+    const audit = auditTransitionCalibrationV1(internal.scoredRows.map((row) => ({
+      matchSeed: row.row.matchSeed,
+      decisionId: row.row.decisionId,
+      label: row.row.label,
+      actionProbabilities: row.actionProbabilities,
+      stateProbabilities: row.stateProbabilities,
+    })));
+    const eceParity = audit.action.macroEce === internal.actionEce.macro
+      && audit.state.macroEce === internal.stateEce.macro
+      && audit.action.classes.every((value, index) =>
+        value.ece === internal.actionEce.classwise[index])
+      && audit.state.classes.every((value, index) =>
+        value.ece === internal.stateEce.classwise[index]);
+    const invariantFailures = Object.values(audit.invariants)
+      .reduce((sum, value) => sum + value, 0);
+    console.log('\nT0b-F calibration failure audit');
+    console.log(`source authority ${sourceAuthorityMatches ? 'MATCH' : 'MISMATCH'} · ECE parity ${eceParity ? 'MATCH' : 'MISMATCH'}`);
+    for (let klass = 0; klass < OUTCOMES.length; klass++) {
+      const action = audit.action.classes[klass];
+      const state = audit.state.classes[klass];
+      console.log(
+        `${OUTCOMES[klass]} ECE action/state/gap ${action.ece.toFixed(6)}/${state.ece.toFixed(6)}/${audit.classEceGaps[klass].toFixed(6)} · `
+        + `observed ${action.observedFrequency.toFixed(6)} · predicted action/state ${action.meanPredictedProbability.toFixed(6)}/${state.meanPredictedProbability.toFixed(6)} · `
+        + `signed residual action/state ${action.signedResidual.toFixed(6)}/${state.signedResidual.toFixed(6)}`,
+      );
+    }
+    console.log(
+      `decision mass shift L1 mean/median/p90 ${audit.decisionMassShift.meanL1.toFixed(6)}/`
+      + `${audit.decisionMassShift.medianL1.toFixed(6)}/${audit.decisionMassShift.p90L1.toFixed(6)} · `
+      + `class shift ${JSON.stringify(Object.fromEntries(OUTCOMES.map((outcome, index) => [outcome, Number(audit.decisionMassShift.meanSignedClassShift[index].toFixed(6))])))}`,
+    );
+    console.log(
+      `fixed-bin cluster bootstrap ECE gap 95% [${audit.bootstrap.lower95.toFixed(6)}, ${audit.bootstrap.upper95.toFixed(6)}] · `
+      + `n=${audit.bootstrap.samples} · sha256 ${audit.bootstrap.digest}`,
+    );
+    console.log(`audit invariants ${JSON.stringify(audit.invariants)}`);
+    const auditValid = sourceAuthorityMatches && eceParity && invariantFailures === 0;
+    console.log(`T0b-F verdict: ${auditValid ? 'VALID ANATOMY — T0b REMAINS FAILED' : 'AUDIT INVALID — STOP'}`);
+    process.exitCode = auditValid ? 0 : 2;
+  } else {
+    process.exitCode = 2;
+  }
 } else {
   console.log('\ninternal gates passed; opening pre-registered external validation seeds...');
   const validation = generateDataset(VALIDATION_START, VALIDATION_MATCHES);

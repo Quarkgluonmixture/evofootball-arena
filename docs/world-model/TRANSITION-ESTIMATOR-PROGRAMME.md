@@ -2,8 +2,10 @@
 
 Status: **T0a SUPPORT CENSUS PASSED. T0b STOPPED on its pre-registered internal
 holdout: action-specific transition signal was strong, but the strict relative-
-calibration gate failed. External validation and final test remain sealed. No
-pass selector or live consumer is authorised.**
+calibration gate failed. T0b-F later found that the tiny binned-ECE gap is below
+cluster-bootstrap resolution, but this does not reverse the frozen failure.
+External validation and final test remain sealed. No pass selector or live
+consumer is authorised.**
 
 Date: 2026-07-21
 
@@ -495,3 +497,23 @@ The probe and dormant feature projection remain research assets. Any future
 transition-estimator revisit must state a causally/inferentially new calibration
 authority before opening new validation clusters; immediately adding temperature
 scaling or changing the failed ECE gate would be an adaptive retry.
+
+### 11.1 T0b-F failure anatomy
+
+The separately pre-registered read-only audit reproduced the original population,
+training/model hashes and action/state ECE exactly, then resampled the 60 internal
+match clusters 10,000 times while preserving the original bins. Its interval for
+`ECE(action) - ECE(state)` was `[-0.003229, +0.003031]`; the frozen point gap was
+`+0.000329`. Therefore the exact T0b gate remains failed, but the audit cannot
+support the stronger statement that action-aware calibration is broadly worse.
+
+The anatomy also found a mean decision-level probability-mass shift of `0.115585`
+L1: averaging over target actions lowered intended reception by `0.008823` and
+raised opponent interception by `0.010804` relative to the shared state-only
+prediction. This suggests that one unfactored softmax is changing both the
+decision's base transition ecology and the target-relative differences. It is
+motivation—not authorisation—for a future state-baseline + centred target-effect
+family. Any such family needs a new pre-registered inference contract, proper
+scores and a statistically supported calibration diagnostic. No external seed
+was opened. Authority:
+[`TRANSITION-CALIBRATION-FAILURE-AUDIT.md`](TRANSITION-CALIBRATION-FAILURE-AUDIT.md).
