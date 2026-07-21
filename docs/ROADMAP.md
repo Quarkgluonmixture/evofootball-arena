@@ -441,6 +441,12 @@
 > mover+reference recoverability model, not smaller offsets, shorter motion or a lower gate.
 > Authority:
 > [`world-model/RELATIVE-POINT-MOVEMENT-FEASIBILITY.md`](world-model/RELATIVE-POINT-MOVEMENT-FEASIBILITY.md).
+> 🔬 **R0b FORWARD-RELATION FAILURE AUDIT PRE-REGISTERED
+> (2026-07-21, read-only):** rerun the exact failed R0a sample and attach frozen-commit
+> terminal ETA and offside-line facts to the 51 completed forward branches. This asks whether
+> the six misses were already knowably infeasible or instead expose a joint moving-relation
+> gap. It cannot change R0a's verdict or authorise filtering/live work. Authority:
+> [`world-model/RELATIVE-POINT-FAILURE-AUDIT.md`](world-model/RELATIVE-POINT-FAILURE-AUDIT.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
