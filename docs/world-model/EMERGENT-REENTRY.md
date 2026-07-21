@@ -134,3 +134,11 @@ This does not retire the one-two script: the median exchange moved backward and
 most original passers still touched legacy support/run movement authority. The
 remaining generic gap is shared pass-event → movement intent and its payoff, not
 a missing named return-pass action.
+
+H0 then tested the obvious generic-looking continuation rather than assuming it:
+after A→B, A moved to the lowest-ETA feasible forward O0 point and B was forced
+to return the ordinary pass. Movement succeeded in all 99 joint states, but
+intended reception fell 9.8→8.6% and opponent control rose 76.0→85.4%. Thus
+“recent passer always continues forward” is **not** the missing general rule.
+The exchange choice exists; a useful coordinated movement consequence remains
+unresolved.
