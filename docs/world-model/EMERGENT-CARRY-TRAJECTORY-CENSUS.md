@@ -1,6 +1,6 @@
 # E1 — Emergent Carry-trajectory Census
 
-Status: **PRE-REGISTERED. Not yet run. Telemetry only.**
+Status: **PASS as a telemetry-only natural-pattern census. No live change.**
 
 Date: 2026-07-21
 
@@ -122,3 +122,45 @@ generic carry-direction choice representation, both under a new contract.
 
 Do not modify `dribbleTarget`, `PlayerBrain`, policies, attributes, roles,
 movement physics or renderer to help the census pass.
+
+## 8. Frozen result
+
+The 120-match run at seed offset 26000 passed every validity and non-vacuity
+gate:
+
+```text
+completed ordinary carry episodes             16,203
+wide-start + material-goalward episodes       574 (116/120 matches)
+inward-only + mixed                            398 (69.3%)
+inward/mixed without explicit wideDrive zone  386 (97.0%)
+matches containing inward/mixed movement      111/120
+non-finite trajectory facts                   0
+```
+
+| post-hoc trajectory | count | share | mean forward | mean inward | mean path | mean duration |
+|---|---:|---:|---:|---:|---:|---:|
+| inward-only | 397 | 69.2% | 11.04m | 6.19m | 13.76m | 2.19s |
+| outward-only | 18 | 3.1% | 10.48m | 0.15m | 13.60m | 2.41s |
+| mixed arc | 1 | 0.2% | 14.85m | 4.06m | 51.61m | 3.30s |
+| straight | 158 | 27.5% | 5.27m | 1.52m | 6.19m | 1.13s |
+
+Wide-progressive episodes were side-balanced (283/291) and occurred mainly—but
+not exclusively—among players occupying the wing role (483 WG, 49 ST, 23 DF,
+19 MF). Role was recorded after the fact and never gated an episode.
+
+Two complete runs produced the identical output hash
+`1356d48ba3512a7cf76572aedef2078da603100eb1f827fe7a30faf5ff9d432f`.
+The production fingerprint remained
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+
+The narrow conclusion is strong: the current generic goal-directed carry plus
+ordinary opponent-relative steering already produces the trajectory commonly
+described as cutting inside, at population scale, without a `CutInside` action,
+gene or role licence. Ninety-seven percent of these trajectories never entered
+the current explicit down-the-line predicate's spatial zone.
+
+This does not prove that 69% is the right frequency, that the carries pay, or
+that teams deliberately choose an inverted-winger strategy. It proves that the
+football phenomenon no longer needs its old scripted implementation. Any future
+work should compare generic carry-direction affordances and outcomes, leaving
+the pattern name in telemetry.

@@ -53,7 +53,7 @@ Every returning direction must satisfy all of these:
 
 | pattern | current status | allowed next evidence |
 |---|---|---|
-| cut-inside | user-observed in the current engine; earlier probes also found inward carry can emerge | trajectory-only observer: start wide, carry moves materially goal-side/infield, no named action |
+| cut-inside | **trajectory emergence confirmed:** E1 found 398/574 wide-progressive carries moved materially inward, 386 without entering the explicit wide-drive zone | keep the name telemetry-only; next evidence may compare generic carry-direction outcomes, never add `CutInside` |
 | carry wide / reach byline | already observable from ordinary carry | trajectory and outcome anatomy only |
 | formation drift / local shape | `emergentStation` is live but remains a hand-tuned role-anchored interim | compare generic candidate coverage against the interim; do not call it a completed value field |
 
@@ -108,3 +108,16 @@ carrier lane clearance, progression, field legality and offside margin. It may n
 Passing this slice proves only that the missing choice space and its causal facts
 exist. Live selection, team coordination and script retirement each require their
 own later contract.
+
+## 5. E1 audit update
+
+[`EMERGENT-CARRY-TRAJECTORY-CENSUS.md`](EMERGENT-CARRY-TRAJECTORY-CENSUS.md)
+confirmed the user's cut-inside example under the strict re-entry rule. Across
+120 baseline matches, 398 of 574 wide-start, materially goalward ordinary carries
+moved at least 3m inward; 97% never entered the existing explicit wide-drive
+zone. No named action, gene or role gate defined the episode.
+
+That banks the **phenomenon**, not a preferred frequency or policy. The old
+handwritten cut-inside direction should not return. In contrast, one-two,
+third-man, overlap and cutback-arrival remain named live migration debt today;
+their current frequency must not be cited as generic emergence.

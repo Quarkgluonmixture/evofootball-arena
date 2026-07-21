@@ -343,6 +343,17 @@
 > path is parked; re-entry needs a genuinely new generalisation contract, not another run.
 > Authority:
 > [`world-model/OFFBALL-OFFER-OBSERVER-CALIBRATION.md`](world-model/OFFBALL-OFFER-OBSERVER-CALIBRATION.md).
+> ✅ **E1 NATURAL CARRY-TRAJECTORY CENSUS PASSED (2026-07-21, telemetry
+> only):** 120 baseline matches produced 574 wide-start, materially goalward ordinary
+> carries; **398 (69.3%) moved at least 3m inward**, across 111/120 matches, and 386/398
+> never entered the current explicit `wideDrive` down-the-line zone. Thus the cut-inside
+> phenomenon already emerges from generic goal-directed carry + opponent-relative steering
+> without a `CutInside` action/gene/role licence. This banks an observed trajectory, not its
+> payoff or ideal frequency. Named one-two/third-man/overlap/cutback-arriver authorities remain
+> migration debt. Authority:
+> [`world-model/EMERGENT-CARRY-TRAJECTORY-CENSUS.md`](world-model/EMERGENT-CARRY-TRAJECTORY-CENSUS.md).
+> Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
+> TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral
