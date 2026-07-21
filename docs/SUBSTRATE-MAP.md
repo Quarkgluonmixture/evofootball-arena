@@ -280,15 +280,19 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
 - **Code:** `TeamBrain.assignChasers/assignMarks/assignRunners` fill
   `team.chasers/marks/runners/arriver`; `PlayerBrain` gates on them = **commander**,
   not coordination substrate. The "max ~2 runners" formula is a safety valve
-  becoming a tactical ceiling.
+  becoming a tactical ceiling. **O3 now adds a dormant shared-intent representation:**
+  fixed target/arrival commitments expose separate target, bearing, timing and corridor
+  occupancy facts. No live commitment producer, allocator, task priority or score exists.
 
-### S9 — Shared intent, comms & familiarity · 🔴
+### S9 — Shared intent, comms & familiarity · 🟡🔴
 - Receiver expresses intent; a run becomes a passer cue; carrier body-orientation
   is a cue; is a task already taken; explicit/implicit comms; predicting a
   familiar mate's run; trained set-plays as shared conventions.
 - **Hooks:** `teamwork`(mate-benefit weight, responds to shared task),
   `roleFamiliarity`, teammate familiarity, coach tactical familiarity, learned
   patterns.
+- **Code:** O3 provides a role-neutral `OffBallOfferCommitment` and pure occupancy
+  query, but no live player publishes or consumes one and no familiarity affects it.
 
 ### S10 — Match phase, transition & opponent model · 🟡
 - Dynamic phases (build-up / progression / final-third / counter / block / press /

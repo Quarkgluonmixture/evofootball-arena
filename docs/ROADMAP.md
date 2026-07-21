@@ -297,6 +297,15 @@
 > distinct conditional receiving states; it does **not** prove total action payoff or
 > authorise live selection. Authority:
 > [`world-model/OFFBALL-OFFER-STATE-ANATOMY.md`](world-model/OFFBALL-OFFER-STATE-ANATOMY.md).
+> ✅ **O3 SHARED OFFER-COMMITMENT REPRESENTATION COMPLETE (2026-07-21,
+> byte-identical):** a generic commitment now records only player/carrier, immutable target,
+> expected arrival and caller-owned lifetime. Candidate coordination emits separate nearest
+> target, bearing, arrival-time and corridor separations; no duplicate threshold, allocator,
+> role, tactic name, score, gene or live consumer exists. Nine focused counterfactual tests,
+> TypeScript/build, import census and the frozen fingerprint pass. This is the missing
+> “is another teammate already providing the same function?” language, not a decision.
+> Authority:
+> [`world-model/OFFBALL-OFFER-COMMITMENTS.md`](world-model/OFFBALL-OFFER-COMMITMENTS.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral
