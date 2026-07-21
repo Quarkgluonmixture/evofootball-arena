@@ -1,7 +1,7 @@
 # Off-ball Mainline Decision
 
-Status: **EVIDENCE COMPLETE; USER DIRECTION REQUIRED BEFORE A NEW CAUSAL
-CONTRACT. No live change authorised.**
+Status: **DECIDED — A selected by the user. R1 relative-affordance foundation
+pre-registered; no live change authorised.**
 
 Date: 2026-07-21
 
@@ -161,11 +161,12 @@ The accepted live baseline remains unchanged and deterministic. Named
 debt rather than being removed early. B1c stays closed, B1d stays isolated and
 S7e stays parked.
 
-The user decision is only which new causal contract to open:
+The user selected A on 2026-07-21. Its authority and frozen gates are now in
+[`RELATIVE-AFFORDANCE-FOUNDATION.md`](RELATIVE-AFFORDANCE-FOUNDATION.md).
+The other choices remain parked rather than rejected:
 
 ```text
-A — legal/reachable moving relations (recommended)
+A — legal/reachable moving relations (selected)
 B — transition estimator
 C — dynamic team task allocation
 ```
-

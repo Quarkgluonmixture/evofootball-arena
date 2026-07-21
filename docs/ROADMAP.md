@@ -468,6 +468,14 @@
 > transition-estimator inference programme, or **C)** dormant dynamic team task allocation.
 > No option has been silently started. The evidence, boundaries and recommendation are in
 > [`world-model/OFFBALL-MAINLINE-DECISION.md`](world-model/OFFBALL-MAINLINE-DECISION.md).
+> 🔬 **R1 RELATIVE-AFFORDANCE FOUNDATION PRE-REGISTERED; USER SELECTED A
+> (2026-07-21):** add only a dormant pure query that combines a shared/predicted teammate
+> endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and
+> existing O0/O3 access/occupancy facts. It emits no score, preferred direction or named
+> pattern. R1a then uses fresh seeds 36,000+ and executes every symmetric branch—including
+> those the query rejects—under frozen gates. No live brain/Match consumer is authorised.
+> Authority:
+> [`world-model/RELATIVE-AFFORDANCE-FOUNDATION.md`](world-model/RELATIVE-AFFORDANCE-FOUNDATION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
