@@ -1,7 +1,8 @@
 # R1 — Relative-affordance Foundation
 
-Status: **PRE-REGISTERED. Dormant representation first; fresh offline
-validation second. No live selector or named football behaviour.**
+Status: **R1 DORMANT REPRESENTATION COMPLETE. R1a STOPPED: core prediction
+gates passed, but the frozen completed-branch coverage gate failed 187<192.
+No candidate set or live selector authorised.**
 
 Date: 2026-07-21
 
@@ -229,3 +230,61 @@ production fingerprint 57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215
 
 Import/construction search finds no PlayerBrain, TeamBrain or Match emitter.
 R1 therefore authorises only the already-frozen R1a fresh clone validation.
+
+## 9. R1a frozen result
+
+Two complete runs were byte-identical:
+
+```text
+sha256 11c5efd37743110f364632715ba421cb07406fa7698844078443ec27dd3a947d
+```
+
+Every representation and execution validity invariant passed:
+
+```text
+frozen states / scanned independent seeds        64 / 64
+query / clone failures                             0 / 0
+determinism differences                               0
+action / offset / reference / intent drift      0 / 0 / 0 / 0
+target-displacement identity / non-finite         0 / 0
+reference moved >=3m                         187 / 187
+```
+
+The eligibility mediator retained working relations rather than deleting them:
+
+| axis | completed | eligible | eligible closed | all closed |
+|---|---:|---:|---:|---:|
+| forward | 47 | 29 | **29/29 (100%)** | 39/47 |
+| backward | 46 | 44 | **44/44 (100%)** | 46/46 |
+| lateral+ | 47 | 42 | **40/42 (95.2%)** | 45/47 |
+| lateral− | 47 | 28 | **28/28 (100%)** | 45/47 |
+
+```text
+eligible closure overall                 141 / 143 (98.6%; gate >=92%)
+retained actual closures                 141 / 175 (80.6%; gate >=70%)
+ineligible completed branches                         44 (gate >=8)
+eligible completed per axis                    28–44 (gate >=24)
+```
+
+All causal precision/retention gates passed. However, only **187/256** branches
+completed the full 1.5-second intervention, below the frozen minimum of 192.
+Sixty-eight branches ended when the carrier lost stable control and one ended
+on dead ball/restart. The result therefore fails the pre-registered coverage
+gate even though the observed eligible subset was 98.6% precise.
+
+## 10. Verdict
+
+R1 remains a valid dormant world-model fact: knowing teammate intent, mover
+reach and projected constraints can distinguish maintainable relative movement
+without a named pattern. R1a does **not** authorise a relative candidate set or
+live selection because its required full-horizon sample coverage was not met.
+
+Do not enlarge the sample, ignore control-ended branches, lower 192, shorten the
+horizon or rerun with another carrier-hold rule. Those would adapt the experiment
+after seeing the result. The honest banked result is:
+
+```text
+representation/mechanism evidence: strong
+pre-registered R1a verdict: FAIL — insufficient completed-branch coverage
+production authority: dormant R1 only
+```

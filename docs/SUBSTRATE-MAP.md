@@ -234,7 +234,9 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   plus an immutable attack-frame relation is composed with mover ETA/slack, current and
   projected offside lines, physical-pitch/barred-box legality and the existing O0/O3
   access/occupancy facts. Every fact remains separate; there is no aggregate feasibility
-  authority, score, named pattern or live consumer. Fresh clone validation is still pending.
+  authority, score, named pattern or live consumer. R1a's eligible subset closed 141/143
+  targets, but only 187 branches completed against its frozen 192 coverage gate; the
+  representation remains dormant and no relative candidate set is authorised.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull

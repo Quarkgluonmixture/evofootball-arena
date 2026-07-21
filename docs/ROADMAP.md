@@ -478,6 +478,15 @@
 > consumer is authorised.
 > Authority:
 > [`world-model/RELATIVE-AFFORDANCE-FOUNDATION.md`](world-model/RELATIVE-AFFORDANCE-FOUNDATION.md).
+> ⏸️ **R1a FRESH CLONE VALIDATION STOPPED AT COVERAGE GATE
+> (2026-07-21, offline only):** the mechanism evidence was strong: all query/clone/
+> determinism/identity/drift invariants passed; eligible relations closed **141/143 (98.6%)**,
+> every axis cleared 95.2%, and the gate retained 80.6% of all actual closures. But only
+> **187** branches completed the full window versus the frozen minimum **192**; 68 lost
+> carrier control and one reached dead ball. Two runs were byte-identical
+> (`11c5efd3…a947d`). The count cannot be enlarged or redefined after result. R1 remains
+> dormant; no relative candidate set or live selector follows. The mainline now needs an
+> explicit B (transition estimator) versus C (dynamic task representation) choice.
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the

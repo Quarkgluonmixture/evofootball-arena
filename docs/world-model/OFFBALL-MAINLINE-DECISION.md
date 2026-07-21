@@ -1,7 +1,8 @@
 # Off-ball Mainline Decision
 
-Status: **DECIDED — A selected by the user. R1 relative-affordance foundation
-pre-registered; no live change authorised.**
+Status: **A WAS SELECTED. R1 representation landed, but R1a stopped at its
+frozen 187<192 coverage gate. A candidate set is not authorised; the next
+mainline choice is again explicit.**
 
 Date: 2026-07-21
 
@@ -170,3 +171,30 @@ A — legal/reachable moving relations (selected)
 B — transition estimator
 C — dynamic team task allocation
 ```
+
+## 6. A result and renewed decision boundary
+
+R1 successfully added the dormant fact boundary. On fresh states, its
+pre-commit eligibility was followed by real target closure in 141/143 completed
+branches (98.6%), retained 80.6% of all real closures, and passed every
+directional precision gate. But only 187 branches completed the full window;
+the frozen contract required 192. Most attrition was the carrier losing control,
+not a query or movement error.
+
+The stop rule still binds. Do not convert this near-pass into authority by adding
+states, ignoring possession loss or changing the horizon. R1 remains available
+as a dormant fact, while relative candidate generation/live selection remains
+closed.
+
+The next mainline choice is therefore between the two previously parked causal
+layers:
+
+```text
+B — invest in a new transition-estimator programme before movement selection
+C — build dormant dynamic team-task/occupancy representation before payoff
+```
+
+Neither has been started automatically. B directly addresses carrier→ball→
+controller value but is an expensive inference project. C follows VISION's
+largest visible positioning gap but carries higher risk of becoming another
+hand-written commander until transition value exists.

@@ -196,6 +196,13 @@ relative-affordance contract must combine moving-relation reachability with
 endpoint legality before commitment; R0a stays failed and no candidate set is
 currently authorised.
 
+R1 subsequently represented exactly those pre-commit facts on fresh states.
+Its eligible subset closed 141/143 real moving targets (98.6%) and retained
+80.6% of all completed closures, but the full-window branch count was 187
+against the frozen minimum of 192 because 68 branches lost carrier control and
+one reached dead ball. The representation remains useful and dormant; the
+coverage-gate failure prevents a relative candidate set or live selector.
+
 ## 8. E4 audit update
 
 [`EMERGENT-CENTRAL-ARRIVAL-CENSUS.md`](EMERGENT-CENTRAL-ARRIVAL-CENSUS.md)
