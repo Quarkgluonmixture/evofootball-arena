@@ -504,6 +504,13 @@
 > The hard validity gate therefore fails. No post-result increase to 256, floor/
 > tolerance change, final-test read, conditional payoff or live consumer is allowed.
 > The transition-estimator line is parked; work returns to decentralised S3–S8.
+> 🔬 **K0 GENERIC CARRY-DIRECTION AFFORDANCE PRE-REGISTERED (2026-07-21):** the
+> next decentralised cut does not depend on the failed pass estimator. Every stable
+> controller receives the same symmetric direction candidates; S3/S4/S1 derive
+> separate opponent, teammate, body, goal, corridor and field facts. `CutInside`,
+> down-line and take-on remain telemetry names only. K0 is representation-only:
+> no selector, gene, role gate, action type or `dribbleTarget` change. Authority:
+> [`world-model/CARRY-DIRECTION-AFFORDANCE.md`](world-model/CARRY-DIRECTION-AFFORDANCE.md).
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and
