@@ -27,6 +27,11 @@ import {
   type TransitionSoftmaxModelV1,
 } from './transition-probability-model';
 import { auditTransitionCalibrationV1 } from './transition-calibration-audit';
+import {
+  fitFactorizedTransitionModelV1,
+  predictFactorizedTransitionDecisionV1,
+  type FactorizedTransitionModelV1,
+} from './factorized-transition-model';
 
 const TRAIN_START = 40000;
 const TRAIN_MATCHES = 240;
@@ -568,6 +573,176 @@ const evaluate = (
   return { pass, scoredRows, actionEce, stateEce };
 };
 
+const evaluateFactorized = (
+  name: string,
+  rows: readonly DatasetRow[],
+  model: FactorizedTransitionModelV1,
+  globalProbabilities: readonly number[],
+  datasetValidity: boolean,
+  deterministicModel: boolean,
+  channelOffset: number,
+): { readonly pass: boolean } => {
+  const byDecision = new Map<string, DatasetRow[]>();
+  for (const row of rows) {
+    const values = byDecision.get(row.decisionId) ?? [];
+    values.push(row);
+    byDecision.set(row.decisionId, values);
+  }
+  const probabilitiesByIdentity = new Map<string, readonly number[]>();
+  const stateByIdentity = new Map<string, readonly number[]>();
+  let balanceFailures = 0;
+  let permutationFailures = 0;
+  let modelNonFinite = 0;
+  for (const values of byDecision.values()) {
+    const candidates = values.map((row) => ({
+      candidateKey: row.targetGid,
+      actionFeatures: row.actionFeatures,
+      stateFeatures: row.stateFeatures,
+    }));
+    const prediction = predictFactorizedTransitionDecisionV1(model, candidates);
+    const reversed = predictFactorizedTransitionDecisionV1(model, [...candidates].reverse());
+    if (JSON.stringify(reversed) !== JSON.stringify(prediction)) permutationFailures++;
+    if (
+      prediction.maxRowSumError > 1e-12
+      || prediction.meanVectorL1Error > 1e-10
+    ) balanceFailures++;
+    for (const candidate of prediction.candidates) {
+      if (!candidate.probabilities.every(Number.isFinite)) modelNonFinite++;
+      const identity = `${values[0].decisionId}:${candidate.candidateKey}`;
+      probabilitiesByIdentity.set(identity, candidate.probabilities);
+      stateByIdentity.set(identity, prediction.stateProbabilities);
+    }
+  }
+  const scoredRows = rows.map((row): ScoredRow => {
+    const identity = `${row.decisionId}:${row.targetGid}`;
+    const actionProbabilities = probabilitiesByIdentity.get(identity);
+    const stateProbabilities = stateByIdentity.get(identity);
+    if (actionProbabilities === undefined || stateProbabilities === undefined) {
+      throw new Error(`missing factorized prediction for ${identity}`);
+    }
+    return {
+      row,
+      actionProbabilities,
+      stateProbabilities,
+      globalProbabilities,
+      action: score(actionProbabilities, row.label),
+      state: score(stateProbabilities, row.label),
+      global: score(globalProbabilities, row.label),
+    };
+  });
+  const matches = matchMetrics(scoredRows);
+  const outcomeCounts = Array(5).fill(0) as number[];
+  for (const row of rows) outcomeCounts[row.label]++;
+  const actionLog = meanMatchMetric(matches, (metric) => metric.actionLog);
+  const stateLog = meanMatchMetric(matches, (metric) => metric.stateLog);
+  const globalLog = meanMatchMetric(matches, (metric) => metric.globalLog);
+  const actionBrier = meanMatchMetric(matches, (metric) => metric.actionBrier);
+  const stateBrier = meanMatchMetric(matches, (metric) => metric.stateBrier);
+  const globalBrier = meanMatchMetric(matches, (metric) => metric.globalBrier);
+  const globalLogImprovement = (globalLog - actionLog) / globalLog;
+  const globalBrierImprovement = (globalBrier - actionBrier) / globalBrier;
+  const stateLogImprovement = (stateLog - actionLog) / stateLog;
+  const stateBrierImprovement = (stateBrier - actionBrier) / stateBrier;
+  const globalLogLcb = bootstrapLcb(matches, (metric) => metric.globalLog - metric.actionLog, channelOffset);
+  const globalBrierLcb = bootstrapLcb(matches, (metric) => metric.globalBrier - metric.actionBrier, channelOffset + 1);
+  const stateLogLcb = bootstrapLcb(matches, (metric) => metric.stateLog - metric.actionLog, channelOffset + 2);
+  const stateBrierLcb = bootstrapLcb(matches, (metric) => metric.stateBrier - metric.actionBrier, channelOffset + 3);
+  const classImprovement = OUTCOMES.map((_, klass) => meanMatchMetric(
+    matches,
+    (metric) => metric.stateClass[klass] - metric.actionClass[klass],
+  ));
+  const classLcb = OUTCOMES.map((_, klass) => bootstrapLcb(
+    matches,
+    (metric) => metric.stateClass[klass] - metric.actionClass[klass],
+    channelOffset + 10 + klass,
+  ));
+  const actionEce = ece(scoredRows, (row) => row.actionProbabilities);
+  const stateEce = ece(scoredRows, (row) => row.stateProbabilities);
+  const actionSpecificity = specificity(scoredRows);
+  const calibration = auditTransitionCalibrationV1(scoredRows.map((row) => ({
+    matchSeed: row.row.matchSeed,
+    decisionId: row.row.decisionId,
+    label: row.row.label,
+    actionProbabilities: row.actionProbabilities,
+    stateProbabilities: row.stateProbabilities,
+  })));
+  const calibrationParity = calibration.action.macroEce === actionEce.macro
+    && calibration.state.macroEce === stateEce.macro;
+  const accuracy = {
+    action: meanMatchMetric(matches, (metric) => metric.actionCorrect),
+    state: meanMatchMetric(matches, (metric) => metric.stateCorrect),
+    global: meanMatchMetric(matches, (metric) => metric.globalCorrect),
+  };
+  const residualLimits = [0.02, 0.01, 0.02, 0.01, 0.01];
+  const gates = {
+    validity: datasetValidity
+      && deterministicModel
+      && modelNonFinite === 0
+      && balanceFailures === 0
+      && permutationFailures === 0
+      && calibrationParity
+      && Object.values(calibration.invariants).every((value) => value === 0),
+    allOutcomes: outcomeCounts.every((count) => count > 0),
+    globalLogMean: globalLogImprovement >= 0.05,
+    globalBrierMean: globalBrierImprovement >= 0.05,
+    globalLogLcb: globalLogLcb > 0,
+    globalBrierLcb: globalBrierLcb > 0,
+    stateLogMean: stateLogImprovement >= 0.02,
+    stateBrierMean: stateBrierImprovement >= 0.02,
+    stateLogLcb: stateLogLcb > 0,
+    stateBrierLcb: stateBrierLcb > 0,
+    intendedBrierLcb: classLcb[0] > 0,
+    opponentBrierLcb: classLcb[2] > 0,
+    teammateNonRegression: -classImprovement[1] <= 0.001,
+    looseNonRegression: -classImprovement[3] <= 0.001,
+    deadNonRegression: -classImprovement[4] <= 0.001,
+    calibrationAbsolute: actionEce.macro <= 0.04,
+    calibrationNonInferiority: calibration.bootstrap.upper95 <= 0.005,
+    calibrationInTheLarge: calibration.action.classes.every((value, index) =>
+      Math.abs(value.signedResidual) <= residualLimits[index]),
+    specificityCoverage: actionSpecificity.differing / Math.max(actionSpecificity.decisions, 1) >= 0.95,
+    specificityMagnitude: actionSpecificity.medianMaxL1 >= 0.10,
+    stateMarginalConservation: calibration.decisionMassShift.meanL1 <= 1e-10,
+  };
+  const pass = Object.values(gates).every(Boolean);
+
+  console.log(`\n${name}: clusters ${matches.size} · rows ${rows.length} · outcomes ${JSON.stringify(Object.fromEntries(OUTCOMES.map((outcome, index) => [outcome, outcomeCounts[index]])))}`);
+  console.log(
+    `log loss factor/state/global ${actionLog.toFixed(6)}/${stateLog.toFixed(6)}/${globalLog.toFixed(6)} · `
+    + `improvement vs state/global ${(stateLogImprovement * 100).toFixed(2)}%/${(globalLogImprovement * 100).toFixed(2)}%`,
+  );
+  console.log(
+    `Brier factor/state/global ${actionBrier.toFixed(6)}/${stateBrier.toFixed(6)}/${globalBrier.toFixed(6)} · `
+    + `improvement vs state/global ${(stateBrierImprovement * 100).toFixed(2)}%/${(globalBrierImprovement * 100).toFixed(2)}%`,
+  );
+  console.log(
+    `bootstrap LCB global log/Brier ${globalLogLcb.toFixed(6)}/${globalBrierLcb.toFixed(6)} · `
+    + `state log/Brier ${stateLogLcb.toFixed(6)}/${stateBrierLcb.toFixed(6)}`,
+  );
+  console.log(
+    `class Brier improvement ${JSON.stringify(Object.fromEntries(OUTCOMES.map((outcome, index) => [outcome, Number(classImprovement[index].toFixed(6))])))} · `
+    + `LCB ${JSON.stringify(Object.fromEntries(OUTCOMES.map((outcome, index) => [outcome, Number(classLcb[index].toFixed(6))])))}`,
+  );
+  console.log(
+    `macro ECE factor/state ${actionEce.macro.toFixed(6)}/${stateEce.macro.toFixed(6)} · `
+    + `gap bootstrap 95% [${calibration.bootstrap.lower95.toFixed(6)}, ${calibration.bootstrap.upper95.toFixed(6)}] · `
+    + `signed residual ${JSON.stringify(Object.fromEntries(OUTCOMES.map((outcome, index) => [outcome, Number(calibration.action.classes[index].signedResidual.toFixed(6))])))}`,
+  );
+  console.log(
+    `specificity differing ${actionSpecificity.differing}/${actionSpecificity.decisions} · `
+    + `median max-L1 ${actionSpecificity.medianMaxL1.toFixed(6)} · `
+    + `state-marginal mean L1 ${calibration.decisionMassShift.meanL1.toExponential(3)}`,
+  );
+  console.log(
+    `accuracy factor/state/global ${(accuracy.action * 100).toFixed(2)}%/`
+    + `${(accuracy.state * 100).toFixed(2)}%/${(accuracy.global * 100).toFixed(2)}% · `
+    + `balance/permutation/nonfinite failures ${balanceFailures}/${permutationFailures}/${modelNonFinite}`,
+  );
+  console.log(`gates ${Object.entries(gates).map(([gate, value]) => `${gate}=${value ? 'PASS' : 'FAIL'}`).join(' · ')}`);
+  console.log(`${name} verdict: ${pass ? 'PASS' : 'FAIL — STOP'}`);
+  return { pass };
+};
+
 console.log('T0b five-transition probability estimator');
 console.log('generating frozen training/internal data...');
 const training = generateDataset(TRAIN_START, TRAIN_MATCHES);
@@ -583,6 +758,63 @@ console.log(
   + `hash ${training.digest}`,
 );
 
+if (process.argv.includes('--factorized')) {
+  const EXPECTED_TRAINING_DIGEST = '17eebdd52a883daabddc7d7a69c1c7455e398cf5ba2dd91f687a2df4befc0427';
+  const sourceAuthorityMatches = training.digest === EXPECTED_TRAINING_DIGEST
+    && fitRows.length === 69922
+    && internalRows.length === 22974;
+  const factorizedModel = fitFactorizedTransitionModelV1(fitRows);
+  const factorizedModelRepeat = fitFactorizedTransitionModelV1(fitRows);
+  const deterministicFactorizedModel = JSON.stringify(factorizedModel)
+    === JSON.stringify(factorizedModelRepeat);
+  const factorizedClassCounts = Array(5).fill(0) as number[];
+  for (const row of fitRows) factorizedClassCounts[row.label]++;
+  const factorizedGlobalProbabilities = factorizedClassCounts.map((count) =>
+    count / fitRows.length);
+  const factorizedModelDigest = createHash('sha256')
+    .update(JSON.stringify({ factorizedModel, globalProbabilities: factorizedGlobalProbabilities }))
+    .digest('hex');
+  console.log(
+    `T0b-R source authority ${sourceAuthorityMatches ? 'MATCH' : 'MISMATCH'} · `
+    + `model deterministic ${deterministicFactorizedModel ? 'yes' : 'NO'} · sha256 ${factorizedModelDigest}`,
+  );
+  const preflight = evaluateFactorized(
+    'factorized development preflight',
+    internalRows,
+    factorizedModel,
+    factorizedGlobalProbabilities,
+    trainingValid && sourceAuthorityMatches,
+    deterministicFactorizedModel,
+    2000,
+  );
+  if (!preflight.pass) {
+    console.log('\nT0b-R verdict: FAIL — ESTIMATOR LINE PARKED; EXTERNAL REMAINS SEALED');
+    process.exitCode = 2;
+  } else {
+    console.log('\ndevelopment preflight passed; opening pre-registered external validation seeds...');
+    const validation = generateDataset(VALIDATION_START, VALIDATION_MATCHES);
+    const validationValid = validation.forceFailures === 0
+      && validation.invariantFailures === 0
+      && validation.duplicateIdentities === 0;
+    console.log(
+      `validation data clusters ${validation.clusters} · decisions ${validation.decisions} · actions ${validation.actions} · `
+      + `rows ${validation.rows.length} · censors ${validation.censors} · unrepresented ${validation.unrepresented} · `
+      + `force/invariant/duplicate ${validation.forceFailures}/${validation.invariantFailures}/${validation.duplicateIdentities} · `
+      + `hash ${validation.digest}`,
+    );
+    const external = evaluateFactorized(
+      'factorized external validation',
+      validation.rows,
+      factorizedModel,
+      factorizedGlobalProbabilities,
+      validationValid,
+      deterministicFactorizedModel,
+      3000,
+    );
+    console.log(`\nT0b-R verdict: ${external.pass ? 'PASS' : 'FAIL — ESTIMATOR LINE PARKED'}`);
+    if (!external.pass) process.exitCode = 2;
+  }
+} else {
 const actionInputs = fitRows.map((row) => row.actionFeatures);
 const stateInputs = fitRows.map((row) => row.stateFeatures);
 const fitLabels = fitRows.map((row) => row.label);
@@ -680,4 +912,5 @@ if (!internal.pass) {
   );
   console.log(`\nT0b verdict: ${external.pass ? 'PASS' : 'FAIL — STOP'}`);
   if (!external.pass) process.exitCode = 2;
+}
 }

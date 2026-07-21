@@ -301,3 +301,11 @@ relative model may only redistribute it among candidate targets through a fixed
 deterministic balancing operator. External validation remains sealed until its
 development preflight passes, and failure parks the estimator line rather than
 triggering another immediate model family.
+
+T0b-R is now complete and stopped. Its factorisation retained strong unseen
+target signal and improved external calibration, but two of 9,535 multi-action
+decisions failed the exact fixed-iteration marginal-conservation invariant. The
+contract forbids increasing iterations after this result. The estimator line is
+therefore parked exactly as promised. D now resumes at the decentralised
+player-level S3–S8 chain; C0 remains dormant and no central demand publisher or
+live pass selector follows.

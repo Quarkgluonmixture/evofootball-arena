@@ -303,6 +303,13 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   `0.115585`) while also separating targets. A future revisit needs a separately
   frozen state-baseline + target-relative estimator contract; no patch or external
   validation is authorised.
+  The one bounded T0b-R revisit then separated state probability from target-
+  relative redistribution. It passed all development gates and showed strong
+  external predictive/calibration payoff, but **stopped** because 2/9,535
+  external decisions missed the fixed per-decision marginal tolerance after the
+  frozen 128 balancing iterations. Increasing iterations is forbidden. The
+  factorised model remains an offline research asset; final test, conditional
+  payoff and live consumers remain sealed. Work returns to decentralised S3–S8.
 
 ### S8 — Team task & dynamic coordination · 🟡🔴
 - **Provides:** `TeamIntent{ phase, priorities, taskDemand[], structuralConstraints[] }`

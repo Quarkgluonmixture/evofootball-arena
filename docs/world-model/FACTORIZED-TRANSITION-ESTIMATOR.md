@@ -1,9 +1,71 @@
 # T0b-R — Factorised State-Baseline + Target-Relative Transition Estimator
 
-Status: **PRE-REGISTERED — one bounded estimator-family revisit. No external
-validation row may be read until the development preflight passes.**
+Status: **STOPPED — development preflight passed and external validation was
+opened. Predictive/calibration gates passed externally, but two decisions missed
+the fixed per-decision balancing invariant after 128 iterations. The estimator
+line is parked; final test and all live consumers remain sealed.**
 
 Date: 2026-07-21
+
+## 0. Frozen result
+
+The development authority matched exactly and the model fitted twice
+byte-identically:
+
+```text
+model sha256: 70a22c03a661a11c6e3349bff894a9edac99c53d3f4f643242da984d31d7714c
+development rows: 69,922 fit / 22,974 preflight
+```
+
+The 60-cluster development preflight passed every gate:
+
+```text
+log loss factor/state/global: 0.781980 / 0.859588 / 0.906217
+Brier factor/state/global:   0.458733 / 0.503100 / 0.516170
+macro ECE factor/state:      0.006595 / 0.006991
+ECE-gap bootstrap 95%:       [-0.003153, +0.002023]
+specificity:                 4,733 / 4,733 decisions
+median max candidate L1:     0.797638
+mean state-marginal L1:      1.015e-16
+balance/permutation failures: 0 / 0
+```
+
+This authorised opening the pre-registered external range. The fresh 120-cluster
+validation authority was:
+
+```text
+9,569 decisions · 46,820 actions · 46,519 resolved rows · 301 censors
+external digest: cf3404e71175655a6e9b1b4cba10c240c94e034ceb912eeacb0d794ad1eab944
+```
+
+Its predictive and calibration results also passed every numerical payoff gate:
+
+```text
+log loss factor/state/global: 0.778499 / 0.858159 / 0.904554
+  improvement vs state/global: 9.28% / 13.94%
+
+Brier factor/state/global:   0.455229 / 0.499154 / 0.511339
+  improvement vs state/global: 8.80% / 10.97%
+
+macro ECE factor/state:      0.007336 / 0.008231
+ECE-gap bootstrap 95%:       [-0.003083, +0.000585]
+specificity:                 9,535 / 9,535 decisions
+median max candidate L1:     0.799881
+mean state-marginal L1:      4.750e-14
+```
+
+However, exactly two external multi-action decisions exceeded the fixed
+per-decision balancing tolerance after the pre-registered 128 iterations. There
+were zero permutation or non-finite failures, and the population-wide mean
+marginal error still passed; the contract nevertheless required **zero**
+per-decision balance failures. Therefore `validity=FAIL` and T0b-R stops.
+
+The result supports the causal factorisation but rejects this fixed numerical
+operator as an authority. Increasing iterations, changing the floor or weakening
+the tolerance after seeing the two cases is forbidden. No conditional-payoff
+estimator, final-test read or live pass consumer follows. Per the stop rule, the
+transition-estimator line now parks and work returns to the decentralised S3–S8
+mainline.
 
 ## 1. Why this is causally different
 

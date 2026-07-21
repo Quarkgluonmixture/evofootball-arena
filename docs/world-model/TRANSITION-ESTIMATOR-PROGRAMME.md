@@ -9,11 +9,15 @@ consumer is authorised.**
 
 Date: 2026-07-21
 
-The next bounded estimator-family contract is now frozen in
+The bounded estimator-family revisit in
 [`FACTORIZED-TRANSITION-ESTIMATOR.md`](FACTORIZED-TRANSITION-ESTIMATOR.md). It
 separates decision-state probability from target-relative redistribution and
-enforces the former as an exact per-decision marginal. This is not yet an
-implementation result and does not open external validation by itself.
+enforces the former as an exact per-decision marginal. Its development preflight
+passed and opened external validation. All external predictive and calibration
+gates passed, but two of 9,535 multi-action decisions missed the fixed balancing
+tolerance after 128 iterations. It therefore stopped on validity. Final test,
+conditional payoff and live selection remain unauthorised; the estimator line is
+now parked.
 
 ## 1. Why this is a new programme
 

@@ -7,6 +7,7 @@ export const TRANSITION_MODEL_BATCH_SIZE = 1024;
 export const TRANSITION_MODEL_LEARNING_RATE = 0.01;
 export const TRANSITION_MODEL_L2 = 1e-4;
 export const TRANSITION_MODEL_SHUFFLE_NAMESPACE = 0x74306231;
+export const RELATIVE_TRANSITION_MODEL_SHUFFLE_NAMESPACE = 0x74306272;
 
 export interface TransitionSoftmaxModelV1 {
   readonly version: typeof TRANSITION_MODEL_VERSION;
@@ -107,10 +108,11 @@ const probabilitiesFromBasis = (
   return logits.map((value) => value / denominator);
 };
 
-export function fitTransitionSoftmaxV1(
+const fitTransitionSoftmaxWithNamespaceV1 = (
   inputs: readonly (readonly number[])[],
   labels: readonly number[],
-): TransitionSoftmaxModelV1 {
+  shuffleNamespace: number,
+): TransitionSoftmaxModelV1 => {
   const inputDimensions = assertRows(inputs, labels);
   const { means, scales } = fitStandardizer(inputs, inputDimensions);
   const basisRows = inputs.map((input) => basisOf(input, means, scales));
@@ -125,7 +127,7 @@ export function fitTransitionSoftmaxV1(
 
   for (let epoch = 0; epoch < TRANSITION_MODEL_EPOCHS; epoch++) {
     for (let index = 0; index < order.length; index++) order[index] = index;
-    new Rng(hashSeed(TRANSITION_MODEL_SHUFFLE_NAMESPACE, epoch)).shuffle(order);
+    new Rng(hashSeed(shuffleNamespace, epoch)).shuffle(order);
     for (let start = 0; start < order.length; start += TRANSITION_MODEL_BATCH_SIZE) {
       gradient.fill(0);
       const end = Math.min(start + TRANSITION_MODEL_BATCH_SIZE, order.length);
@@ -171,6 +173,28 @@ export function fitTransitionSoftmaxV1(
     scales,
     weights: [...weights],
   };
+};
+
+export function fitTransitionSoftmaxV1(
+  inputs: readonly (readonly number[])[],
+  labels: readonly number[],
+): TransitionSoftmaxModelV1 {
+  return fitTransitionSoftmaxWithNamespaceV1(
+    inputs,
+    labels,
+    TRANSITION_MODEL_SHUFFLE_NAMESPACE,
+  );
+}
+
+export function fitRelativeTransitionSoftmaxV1(
+  inputs: readonly (readonly number[])[],
+  labels: readonly number[],
+): TransitionSoftmaxModelV1 {
+  return fitTransitionSoftmaxWithNamespaceV1(
+    inputs,
+    labels,
+    RELATIVE_TRANSITION_MODEL_SHUFFLE_NAMESPACE,
+  );
 }
 
 export function predictTransitionProbabilitiesV1(

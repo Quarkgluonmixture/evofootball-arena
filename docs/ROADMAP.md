@@ -495,6 +495,15 @@
 > sealed until every preflight gate passes. Any failure parks this estimator line;
 > no second immediate family or live consumer follows. Authority:
 > [`world-model/FACTORIZED-TRANSITION-ESTIMATOR.md`](world-model/FACTORIZED-TRANSITION-ESTIMATOR.md).
+> ⏸️ **T0b-R EXTERNAL VALIDATION STOP — PAYOFF STRONG, EXACT BALANCE FAILED
+> (2026-07-21):** development preflight passed every gate and legitimately opened
+> seeds 41,000–41,119. On 120 fresh matches the factorised model improved log loss
+> 9.28% and Brier 8.80% over state-only, with macro ECE `0.007336` versus `0.008231`
+> and specificity in 9,535/9,535 multi-action decisions. But two decisions missed
+> the frozen per-decision marginal tolerance after exactly 128 balancing iterations.
+> The hard validity gate therefore fails. No post-result increase to 256, floor/
+> tolerance change, final-test read, conditional payoff or live consumer is allowed.
+> The transition-estimator line is parked; work returns to decentralised S3–S8.
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and
