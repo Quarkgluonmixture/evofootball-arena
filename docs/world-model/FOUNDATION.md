@@ -210,25 +210,27 @@ months** — this narrowed slice is.
   calibrate 2.39 goals/match, with two extra seeds 2.14/2.84. A later full-suite runner lost
   its terminal result after exit; per the retry policy it was not looped—the changed render
   contracts were run directly and the production build is clean.
-- 🟡 **M4 — play-test + probes, then RETURN to S3–S8. ACTIVE 2026-07-21.** The first
+- ✅ **M4 — play-test + probes, then RETURN to S3–S8. DONE 2026-07-21.** The first
   play-test exposed a presentation lie: the physical ball is radius 0.11m, but 3D rendered
   0.42m and displaced an owned ball 0.45–0.75m away from its authoritative sim position.
   Outfield rendering now uses the true ball position; 3D radius is a user-accepted 0.286m
   readability shell (2.6× physical, still below the old 0.42m), 2D is ~2.86px, and actual
   loose contacts show a white pulse or yellow tackle pulse with a distinct heavy-touch cue.
-  These are render-only and leave the sim fingerprint unchanged. A continuous sine carry
-  experiment was honestly rejected: the broad version raised max contact chains 8→28 and
-  the narrowed version phase-locked one episode to 141 contacts; both were fully reverted.
-  One bounded M3b remains user-authorised before closing M4: represent **忠于脚** as discrete
-  controlled contact→release events, because the counterfactual “same defender distance,
-  ball at foot vs knocked ahead” is currently unrepresentable. It must pass the existing
-  contact-chain/turnover gates and get its own play-test; no periodic render trick or deeper
-  body system is allowed.
-  If not clearly better, stop deepening.
-  If clearly better, add attributes ONE at a time, each justified by an *unrepresentable*
-  counterfactual: agility→motion envelope · strength→legal-contact resist-displacement ·
-  firstTouch→contact-to-control · tackling→ball-contact direction + foul · awareness/
-  anticipation→claim timing. **Then return to the mainline: S3–S8 decision engine.**
+  These are render-only and leave the sim fingerprint unchanged. **The bounded M3b 忠于脚
+  spike did not pass and was fully reverted.** Continuous carry offsets raised max contact
+  chains 8→28, then phase-locked an episode to 141. Releasing every running close touch
+  produced 54.60 touches/match, goals 2.63 and an 85-contact chain; moving the permanently
+  owned ball to physical foot distance alone still raised the chain to 32. A density-narrowed
+  discrete release reached 27.55 touches/match but exposed a 63-contact arrival. Holding the
+  ball at the boot for a three-tick owned phase looked mechanically safer (75.42 contacts,
+  only 3.76s/match at the boot; pinball max 6), but failed the existing policy and stamina
+  directional contracts. A fixed first-contact control deadline capped M3 recontacts at 5,
+  yet independently failed the player-style→selection contract. No assertions or economy
+  thresholds were weakened; every candidate and the deadline change were removed, and the
+  committed M3 fingerprint was restored. **Stop-rule applied:** true foot↔knock cadence remains
+  a documented substrate gap, not a shipped fake. It needs a future control-state design that
+  passes policy expression and selection—not another local distance/timer tune. The body-model
+  campaign now stops here and returns to the mainline: **S3–S8 decision engine**.
 
 ## 6. Priority — the body model is a LOCAL substrate, not the mainline
 

@@ -34,14 +34,17 @@
 > never ownership; stable control is a separate attempt three ticks later and may belong to a
 > different/third player. 120-match ledger: 14,029/14,029 resolved, 1.25 contacts/episode,
 > recontact max 8, contact→control 97.5%, first≠final 10.5%, third+ final 0.4%; full sim tests
-> 461/461, final focused 61/61, stable repeated fingerprints, perf 5.37µs/step. 🟡 **M4
-> ACTIVE:** render truth aligned (outfield ball at authoritative sim position; old 0.42m ball
+> 461/461, final focused 61/61, stable repeated fingerprints, perf 5.37µs/step. ✅ **M4
+> DONE (2026-07-21):** render truth aligned (outfield ball at authoritative sim position; old 0.42m ball
 > reduced to user-accepted 0.286m; real touch/tackle pulses + tackle cue). Continuous carry
 > sine was rejected and fully reverted after max contact chains worsened 8→28 then 141.
-> **NEXT = one bounded M3b 忠于脚 slice:** discrete controlled contact→release, not a render
-> trick; same-defender-distance foot-vs-knock counterfactual + contact-chain gates + user
-> play-test. Then close M4 and **RETURN to S3–S8 = the mainline**. The body model is a LOCAL
-> substrate, NOT the north star.
+> The bounded M3b 忠于脚 spike also honest-reverted: all-close release hit 54.60 touches/match
+> and an 85-contact chain; fixed foot distance alone hit 32; narrowed release hit 63; an
+> attached three-tick foot phase passed contact anatomy but broke policy/stamina directionality.
+> A non-extending M3 control deadline capped recontacts at 5 but broke the player-style→selection
+> contract, so it too was removed. Current HEAD is the accepted M3 behavior; 忠于脚 remains a
+> real substrate gap, explicitly not a render fake. **NEXT = RETURN to S3–S8 mainline / the
+> Pass–Arrival–Contest slice.** The body model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral
