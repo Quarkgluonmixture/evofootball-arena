@@ -1,6 +1,7 @@
 # O4c — Observer-specific Offer-transition Calibration
 
-Status: **PRE-REGISTERED. Not yet run. No live consumer.**
+Status: **INCONCLUSIVE at the fresh truth-replication gate. Observer selector
+work stopped; no live consumer.**
 
 Date: 2026-07-21
 
@@ -148,3 +149,49 @@ movement.
 Candidate directions remain numbered geometry. Named patterns such as cut-inside,
 overlap, underlap, check-back or third-man movement are forbidden as policy inputs.
 They may later classify realised trajectories for telemetry and play-test clips.
+
+## 9. Frozen result
+
+The 128-state run at seed offset 25000 passed every mechanism and observation
+validity gate, but stopped at the pre-registered fresh truth-replication gate:
+
+```text
+successful forced-pass truth records          502
+clone / deterministic / intervention failures 0 / 0 / 0
+oracle force failures                          0
+truth / observer non-finite facts              0 / 0
+
+fresh truth opponentArrivalMargin Q4-Q1:
+  intended reception                           +3.6pp  (required +10pp)
+  opponent interception                        +1.1pp  (required -10pp)
+```
+
+This is `INCONCLUSIVE — truth-ceiling ecology did not replicate`, exactly as
+pre-registered. It is not a perception failure. The state count, seed range,
+primary fact and thresholds were not changed, and no alternative diagnostic was
+promoted.
+
+The observer representation itself remained well behaved:
+
+| awareness | coverage | margin MAE | sign agreement | carrier age | opponents seen |
+|---:|---:|---:|---:|---:|---:|
+| 0.2 | 82.1% | 0.141s | 91.5% | 6.68 ticks | 4.03 |
+| 0.5 | 93.0% | 0.098s | 92.7% | 6.90 ticks | 4.78 |
+| 0.8 | 95.0% | 0.096s | 92.9% | 6.27 ticks | 5.34 |
+
+At awareness 0.8 the perceived-margin Q4-Q1 split was -3.8pp intended reception
+and +5.4pp opponent control. Those rates do **not** diagnose perception because
+the matching supported truth subset was also non-predictive (+3.8pp intended,
++1.2pp opponent). High numerical fidelity cannot manufacture an outcome gradient
+absent from the sampled physical ecology.
+
+Two complete O4c runs produced the identical output hash
+`04563c9bf4da0ff2f113ab9f2c09cb8a5b6e0501bbd8b6e26d4d8c2b27650ce9`.
+The previously frozen O4a and O4b hashes remained unchanged.
+
+The cheap single-fact selector path therefore stops here. O4b remains a valid
+finite-suite causal result, but O4c shows it is not yet robust enough across a
+fresh 128-state ecology to become an observation or policy authority. Re-entry
+would require a genuinely different, pre-registered generalisation contract—not
+another seed range, a larger sample, a new threshold or post-hoc substitution of
+teammate spacing.

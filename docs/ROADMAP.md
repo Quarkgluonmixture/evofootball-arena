@@ -332,6 +332,17 @@
 > diagnostic split but was not promoted or combined after the result. This authorises only
 > an observer-specific replication—not a score, selector or live consumer. Authority:
 > [`world-model/OFFBALL-OFFER-TRANSITION-CALIBRATION.md`](world-model/OFFBALL-OFFER-TRANSITION-CALIBRATION.md).
+> ⏸️ **O4c OBSERVER CALIBRATION INCONCLUSIVE; CHEAP SELECTOR STOPPED
+> (2026-07-21):** the 128-state fresh run passed all mechanism/perception validity gates
+> and high-awareness observation fidelity was strong (95.0% coverage, 0.096s margin MAE,
+> 92.9% sign agreement), but the required fresh truth replication failed before perception
+> could be judged: truth Q4−Q1 was only **+3.6pp intended reception / +1.1pp opponent
+> control**, versus required +10/−10pp. The matching high-awareness supported truth subset
+> was likewise flat, so its reversed perceived rates cannot be blamed on S3. No seed/sample/
+> fact/threshold was changed and teammate spacing was not promoted. The single-fact selector
+> path is parked; re-entry needs a genuinely new generalisation contract, not another run.
+> Authority:
+> [`world-model/OFFBALL-OFFER-OBSERVER-CALIBRATION.md`](world-model/OFFBALL-OFFER-OBSERVER-CALIBRATION.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

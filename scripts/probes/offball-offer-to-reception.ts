@@ -2,11 +2,16 @@
 //   npx tsx scripts/probes/offball-offer-to-reception.ts [states] [seedOffset]
 // O4b truth-ceiling fact calibration (explicit mode; O4a default stays frozen).
 //   npx tsx scripts/probes/offball-offer-to-reception.ts 128 24000 calibration
+// O4c observer-specific fact calibration (explicit mode; execution remains truth-frozen).
+//   npx tsx scripts/probes/offball-offer-to-reception.ts 128 25000 observer
 import {
   evaluateOffBallAffordances, evaluateOffBallCandidate,
   type OffBallAffordance, type OffBallCandidatePoint,
 } from '../../src/ai/offBallAffordance';
-import { capturePerceptionTruth, oraclePerceptionSnapshot } from '../../src/ai/perceptionSnapshot';
+import {
+  capturePerceptionTruth, createPerceptionMemory, oraclePerceptionSnapshot, perceiveSnapshot,
+  type PerceptionMemory,
+} from '../../src/ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../../src/ai/reachability';
 import { supportSpot } from '../../src/ai/formations';
 import { randomGenome } from '../../src/evolution/genome';
@@ -23,9 +28,12 @@ import {
 const REQUIRED = Number(process.argv[2] ?? 128);
 const OFF = Number(process.argv[3] ?? 23000);
 const CALIBRATION = process.argv[4] === 'calibration';
+const OBSERVER = process.argv[4] === 'observer';
+const REPORT_CALIBRATION = CALIBRATION || OBSERVER;
 const MOVE_STEPS = 90;
 const SAMPLE_TICKS = Math.round(1 / DT);
 const O4_NAMESPACE = 0x04a00001;
+const AWARENESS = [0.2, 0.5, 0.8] as const;
 
 const team = (name: string, seed: number): TeamInfo => {
   const rng = new Rng(seed);
@@ -94,6 +102,13 @@ interface CalibrationRecord {
   readonly branch: BranchKind;
   readonly outcome: FirstTransitionOutcome | 'censored';
   readonly facts: Readonly<Record<CalibrationFact, number>>;
+}
+
+interface ObserverCalibrationRecord extends CalibrationRecord {
+  readonly truthMargin: number;
+  readonly selfAgeTicks: number;
+  readonly carrierAgeTicks: number;
+  readonly observedOpponentCount: number;
 }
 
 const aggregate = (): Aggregate => ({
@@ -272,6 +287,10 @@ let unexpectedActionChanges = 0;
 let nonFiniteFacts = 0;
 let calibrationNonFiniteFacts = 0;
 const calibrationRecords: CalibrationRecord[] = [];
+let observerNonFiniteFacts = 0;
+const observerRecords = new Map<number, ObserverCalibrationRecord[]>(
+  AWARENESS.map((awareness) => [awareness, []]),
+);
 
 for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
   const match = new Match({
@@ -280,8 +299,31 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
     teamB: team('B', seed * 2 + 2),
     duration: 240,
   });
+  const memories = new Map<number, Map<number, PerceptionMemory>>(
+    AWARENESS.map((awareness) => [awareness, new Map()]),
+  );
+  const memoryFor = (awareness: number, gid: number): PerceptionMemory => {
+    const byPlayer = memories.get(awareness)!;
+    let memory = byPlayer.get(gid);
+    if (!memory) {
+      memory = createPerceptionMemory();
+      byPlayer.set(gid, memory);
+    }
+    return memory;
+  };
   while (!match.finished && frozenStates < REQUIRED) {
     match.step(DT);
+    if (OBSERVER) {
+      const warmTruth = capturePerceptionTruth(match);
+      for (const player of match.allPlayers) {
+        if (player.sentOff) continue;
+        for (const awareness of AWARENESS) {
+          perceiveSnapshot(
+            warmTruth, player.gid, awareness, seed, memoryFor(awareness, player.gid),
+          );
+        }
+      }
+    }
     if (
       match.simTick % SAMPLE_TICKS !== 0 || match.phase !== 'playing' ||
       match.simTime > match.duration - 6
@@ -291,7 +333,11 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
     const attackingTeam = match.teams[carrier.side];
     const truth = capturePerceptionTruth(match);
     const profiles = profilesOf(match);
-    let selected: { moverGid: number; offers: Record<BranchKind, OffBallAffordance> } | null = null;
+    let selected: {
+      moverGid: number;
+      offers: Record<BranchKind, OffBallAffordance>;
+      perceivedOffers: ReadonlyMap<number, ReadonlyMap<BranchKind, OffBallAffordance | null>>;
+    } | null = null;
 
     for (const mover of attackingTeam.players) {
       if (
@@ -325,15 +371,36 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
         lateralDelta: legacyPoint.y - mover.pos.y,
       });
       if (!hold || !legacy) continue;
+      const offers: Record<BranchKind, OffBallAffordance> = {
+        hold,
+        legacy,
+        forward,
+        lateral,
+        backward,
+      };
+      const perceivedOffers = new Map<number, ReadonlyMap<BranchKind, OffBallAffordance | null>>();
+      if (OBSERVER) {
+        for (const awareness of AWARENESS) {
+          const snapshot = perceiveSnapshot(
+            truth, mover.gid, awareness, seed, memoryFor(awareness, mover.gid),
+          );
+          const byBranch = new Map<BranchKind, OffBallAffordance | null>();
+          for (const kind of BRANCHES) {
+            byBranch.set(kind, evaluateOffBallCandidate({
+              snapshot,
+              playerGid: mover.gid,
+              carrierGid: carrier.gid,
+              attackDir: attackingTeam.attackDir,
+              reachProfiles: profiles,
+            }, offers[kind].candidate));
+          }
+          perceivedOffers.set(awareness, byBranch);
+        }
+      }
       selected = {
         moverGid: mover.gid,
-        offers: {
-          hold,
-          legacy,
-          forward,
-          lateral,
-          backward,
-        },
+        offers,
+        perceivedOffers,
       };
       break;
     }
@@ -346,7 +413,7 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
       try {
         const offer = selected.offers[kind];
         const facts = calibrationFactsOf(offer);
-        if (CALIBRATION && !Object.values(facts).every(Number.isFinite)) {
+        if (REPORT_CALIBRATION && !Object.values(facts).every(Number.isFinite)) {
           calibrationNonFiniteFacts++;
         }
         const first = runBranch(
@@ -367,14 +434,37 @@ for (let seed = OFF; frozenStates < REQUIRED && seed < OFF + 128; seed++) {
           sum.forced++;
           if (first.forceFailure) sum.forceFailures++;
           else {
-            if (CALIBRATION) calibrationRecords.push({
-              ordinal: calibrationRecords.length,
+            const ordinal = calibrationRecords.length;
+            const outcome = first.transitionStatus === 'censored'
+              ? 'censored'
+              : first.transitionOutcome!;
+            if (REPORT_CALIBRATION) calibrationRecords.push({
+              ordinal,
               branch: kind,
-              outcome: first.transitionStatus === 'censored'
-                ? 'censored'
-                : first.transitionOutcome!,
+              outcome,
               facts,
             });
+            if (OBSERVER) {
+              for (const awareness of AWARENESS) {
+                const perceived = selected.perceivedOffers.get(awareness)!.get(kind);
+                if (!perceived) continue;
+                const perceivedFacts = calibrationFactsOf(perceived);
+                if (!Object.values(perceivedFacts).every(Number.isFinite)) {
+                  observerNonFiniteFacts++;
+                  continue;
+                }
+                observerRecords.get(awareness)!.push({
+                  ordinal,
+                  branch: kind,
+                  outcome,
+                  facts: perceivedFacts,
+                  truthMargin: facts.opponentArrivalMargin,
+                  selfAgeTicks: perceived.selfObservationAgeTicks,
+                  carrierAgeTicks: perceived.carrierObservationAgeTicks,
+                  observedOpponentCount: perceived.observedOpponentCount,
+                });
+              }
+            }
             sum.progressionAtKick += first.progressionAtKick!;
             sum.transitionStatus.set(
               first.transitionStatus!,
@@ -429,8 +519,11 @@ interface QuartileResult {
   readonly opponentRate: number;
 }
 
-const reportCalibrationFact = (fact: CalibrationFact): readonly QuartileResult[] => {
-  const sorted = calibrationRecords.slice().sort((a, b) =>
+const reportCalibrationFact = (
+  fact: CalibrationFact,
+  records: readonly CalibrationRecord[],
+): readonly QuartileResult[] => {
+  const sorted = records.slice().sort((a, b) =>
     a.facts[fact] - b.facts[fact] || a.ordinal - b.ordinal);
   const buckets = Array.from({ length: 4 }, () => [] as CalibrationRecord[]);
   sorted.forEach((record, index) => {
@@ -469,7 +562,7 @@ if (CALIBRATION) {
   console.log(`calibration non-finite facts ${calibrationNonFiniteFacts}`);
   let primary: readonly QuartileResult[] = [];
   for (const fact of CALIBRATION_FACTS) {
-    const quartiles = reportCalibrationFact(fact);
+    const quartiles = reportCalibrationFact(fact, calibrationRecords);
     if (fact === 'opponentArrivalMargin') primary = quartiles;
   }
   const intendedDelta = primary[3].intendedRate - primary[0].intendedRate;
@@ -482,6 +575,91 @@ if (CALIBRATION) {
     && intendedDelta >= 0.10 && opponentDelta <= -0.10;
 }
 
+let observerPassed = true;
+if (OBSERVER) {
+  console.log(`O4c OBSERVER-SPECIFIC TRANSITION CALIBRATION · truth records ${calibrationRecords.length}`);
+  console.log(
+    `truth/observer non-finite facts ${calibrationNonFiniteFacts}/${observerNonFiniteFacts}`,
+  );
+  console.log('  truth ceiling on fresh states');
+  const truthQuartiles = reportCalibrationFact('opponentArrivalMargin', calibrationRecords);
+  const truthIntendedDelta = truthQuartiles[3].intendedRate - truthQuartiles[0].intendedRate;
+  const truthOpponentDelta = truthQuartiles[3].opponentRate - truthQuartiles[0].opponentRate;
+  console.log(
+    `  truth Q4-Q1 intended ${(truthIntendedDelta * 100).toFixed(1)}pp`
+    + ` · opponent ${(truthOpponentDelta * 100).toFixed(1)}pp`,
+  );
+  const truthReplicated = calibrationRecords.length >= 400 && calibrationNonFiniteFacts === 0
+    && truthIntendedDelta >= 0.10 && truthOpponentDelta <= -0.10;
+
+  let highCoverage = 0;
+  let highIntendedDelta = -Infinity;
+  let highOpponentDelta = Infinity;
+  for (const awareness of AWARENESS) {
+    const records = observerRecords.get(awareness)!;
+    const coverage = records.length / Math.max(1, calibrationRecords.length);
+    let marginError = 0;
+    let signMatches = 0;
+    let selfAge = 0;
+    let carrierAge = 0;
+    let opponents = 0;
+    for (const record of records) {
+      marginError += Math.abs(record.facts.opponentArrivalMargin - record.truthMargin);
+      if ((record.facts.opponentArrivalMargin >= 0) === (record.truthMargin >= 0)) signMatches++;
+      selfAge += record.selfAgeTicks;
+      carrierAge += record.carrierAgeTicks;
+      opponents += record.observedOpponentCount;
+    }
+    console.log(
+      `  awareness ${awareness.toFixed(1)} coverage ${records.length}/${calibrationRecords.length}`
+      + ` (${(coverage * 100).toFixed(1)}%)`
+      + ` · margin MAE ${(marginError / Math.max(1, records.length)).toFixed(4)}s`
+      + ` · sign agreement ${pct(signMatches, records.length)}`
+      + ` · ages self/carrier ${(selfAge / Math.max(1, records.length)).toFixed(2)}`
+      + `/${(carrierAge / Math.max(1, records.length)).toFixed(2)} ticks`
+      + ` · opponents ${(opponents / Math.max(1, records.length)).toFixed(2)}`,
+    );
+    const perceivedQuartiles = reportCalibrationFact('opponentArrivalMargin', records);
+    const intendedDelta = perceivedQuartiles[3].intendedRate
+      - perceivedQuartiles[0].intendedRate;
+    const opponentDelta = perceivedQuartiles[3].opponentRate
+      - perceivedQuartiles[0].opponentRate;
+    console.log(
+      `    perceived Q4-Q1 intended ${(intendedDelta * 100).toFixed(1)}pp`
+      + ` · opponent ${(opponentDelta * 100).toFixed(1)}pp`,
+    );
+    const supportedTruthRecords: CalibrationRecord[] = records.map((record) => ({
+      ordinal: record.ordinal,
+      branch: record.branch,
+      outcome: record.outcome,
+      facts: { ...record.facts, opponentArrivalMargin: record.truthMargin },
+    }));
+    console.log('    paired truth within supported records');
+    const supportedTruthQuartiles = reportCalibrationFact(
+      'opponentArrivalMargin', supportedTruthRecords,
+    );
+    console.log(
+      `    paired-truth Q4-Q1 intended ${((supportedTruthQuartiles[3].intendedRate
+        - supportedTruthQuartiles[0].intendedRate) * 100).toFixed(1)}pp`
+      + ` · opponent ${((supportedTruthQuartiles[3].opponentRate
+        - supportedTruthQuartiles[0].opponentRate) * 100).toFixed(1)}pp`,
+    );
+    if (awareness === 0.8) {
+      highCoverage = coverage;
+      highIntendedDelta = intendedDelta;
+      highOpponentDelta = opponentDelta;
+    }
+  }
+  console.log(
+    `observer verdict truth=${truthReplicated ? 'PASS' : 'INCONCLUSIVE'}`
+    + ` · high-awareness coverage ${(highCoverage * 100).toFixed(1)}%`
+    + ` · intended ${(highIntendedDelta * 100).toFixed(1)}pp`
+    + ` · opponent ${(highOpponentDelta * 100).toFixed(1)}pp`,
+  );
+  observerPassed = truthReplicated && observerNonFiniteFacts === 0
+    && highCoverage >= 0.80 && highIntendedDelta >= 0.08 && highOpponentDelta <= -0.08;
+}
+
 const minimumForced = BRANCHES.every((kind) =>
   totals.get(kind)!.forced >= Math.min(64, REQUIRED));
 const forceFailures = [...totals.values()].reduce((sum, value) => sum + value.forceFailures, 0);
@@ -489,5 +667,7 @@ if (
   frozenStates !== REQUIRED || cloneFailures > 0 || deterministicDifferences > 0 ||
   targetChanges > 0 || unexpectedActionChanges > 0 || nonFiniteFacts > 0 ||
   forceFailures > 0 || !minimumForced ||
-  (CALIBRATION ? !calibrationPassed : maxIntendedRate - minIntendedRate < 0.05)
+  (CALIBRATION
+    ? !calibrationPassed
+    : OBSERVER ? !observerPassed : maxIntendedRate - minIntendedRate < 0.05)
 ) process.exitCode = 1;
