@@ -1,8 +1,8 @@
 # Off-ball Mainline Decision
 
 Status: **A WAS SELECTED and stopped at R1a's frozen 187<192 coverage gate. The
-user then selected B. T0a kick-time transition-estimator support census is now
-pre-registered; no estimator or live selector is authorised.**
+user then selected B. T0a's fresh 240-match transition data census passed; T0b
+estimator design is authorised, but no estimator or live selector is.**
 
 Date: 2026-07-21
 
@@ -203,4 +203,7 @@ The user selected **B** after the R1a stop. Its new inferential authority is
 [`TRANSITION-ESTIMATOR-PROGRAMME.md`](TRANSITION-ESTIMATOR-PROGRAMME.md). Unlike
 the parked replicated ceiling, T0 pools kick-time state/action examples across
 fresh independent match clusters and seals separate validation/test ranges. T0a
-is only a training-support census; it does not fit or wire an estimator.
+was only a training-support census and did not fit or wire an estimator. It passed
+with 19,164 decisions / 93,636 candidate actions, all five outcomes supported in
+every fixed fold, 79.15% within-decision outcome variation and zero Oracle or
+identity failures. Validation and test ranges remain unread.

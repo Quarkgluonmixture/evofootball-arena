@@ -285,6 +285,13 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   Existing `PlayerBrain` still uses its `UtilityScore[]` table; no live consumer landed.
   Missing S7 dimensions are now concrete: S2 execution risk, threat created/conceded,
   structure/rest-defence cost and the quality (not count) of next options.
+  **T0a now establishes a new estimator data boundary rather than retrying S7e's
+  repeated per-pair means:** 240 fresh training match clusters yielded 19,164
+  ordinary-pass decisions / 93,636 viable target actions. Oracle v2 labels all five
+  transitions with per-fold support, and 79.15% of resolved multi-action decisions
+  changed transition when only the target changed. The versioned kick-time feature
+  projection is dormant and unscored; validation/test clusters remain sealed. This
+  authorises only T0b estimator design, not action value or live selection.
 
 ### S8 — Team task & dynamic coordination · 🟡🔴
 - **Provides:** `TeamIntent{ phase, priorities, taskDemand[], structuralConstraints[] }`

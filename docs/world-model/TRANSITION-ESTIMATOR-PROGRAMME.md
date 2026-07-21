@@ -1,8 +1,8 @@
 # T0 — Kick-time Transition Estimator Programme
 
-Status: **T0a PRE-REGISTERED. User selected transition-estimator research after
-R1a reached its frozen stop. No estimator, pass selector or live consumer is yet
-authorised.**
+Status: **T0a SUPPORT CENSUS PASSED on its frozen 240-cluster training range.
+T0b estimator-contract design is authorised; validation/test seeds remain sealed.
+No estimator, pass selector or live consumer is yet authorised.**
 
 Date: 2026-07-21
 
@@ -223,3 +223,62 @@ Stop T0 and leave live football unchanged if T0a misses any frozen gate. Do not:
 If T0a passes, T0b remains offline and still cannot select a pass. A future live
 consumer would require a separate observer-specific, counterfactual-payoff and
 play-test contract after estimator generalisation has passed.
+
+## 9. Frozen T0a result
+
+The pre-registered training-only command completed all 240 match clusters:
+
+```text
+fresh ordinary live passes:       19,173
+represented decision events:      19,164
+unrepresented live passes:             9
+unique candidate-action records:  93,636
+resolved estimator rows:          92,896
+administrative censors:               740 (0.79%)
+mean candidates per decision:       4.89
+```
+
+Every retained decision had at least two candidates and action-dependent feature
+variation. Among 19,058 decisions with at least two resolved branches, 15,084
+(79.15%) produced more than one first-transition outcome when only the target
+action changed.
+
+The five-class support was:
+
+| outcome | records |
+|---|---:|
+| intended reception | 58,611 |
+| teammate recovery | 4,379 |
+| opponent interception | 27,762 |
+| loose | 651 |
+| dead ball | 1,493 |
+
+Every fixed fold retained at least 151 loose records and 363 dead-ball records;
+all other classes were above 1,000 per fold. The rare classes therefore remain
+real estimator targets rather than being merged or manufactured with repeated
+continuations.
+
+All semantic/mechanism gates passed:
+
+```text
+force failures / conservation failures / duplicate identities: 0 / 0 / 0
+non-finite features or payoffs: 0
+censored rows admitted to estimator: 0
+deterministic audit differences: 0 across 8/8 audit decisions
+sealed validation/test seeds read: 0
+```
+
+Nine fresh live passes did not contain their chosen target in the frozen finite
+candidate representation, consistent with the already-known tiny intended-flight
+reachability tail. They are reported and excluded from T0 training; the candidate
+boundary was not enlarged after observation.
+
+The complete ordered record digest is:
+
+```text
+ee3d58b10817e7ae904fe2d946f4bc015977b4e157f46d38acecae37b62ca84c
+```
+
+T0a therefore passes and authorises only a pre-registered T0b estimator contract.
+The result does not yet show that any model can generalise, compose conditional
+payoff, or improve a pass decision.

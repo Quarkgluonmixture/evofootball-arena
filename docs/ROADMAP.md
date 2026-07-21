@@ -495,6 +495,15 @@
 > ordinary-pass target; validation 41,000+ and test 42,000+ remain sealed. No estimator,
 > score, gene or live consumer is yet authorised. Authority:
 > [`world-model/TRANSITION-ESTIMATOR-PROGRAMME.md`](world-model/TRANSITION-ESTIMATOR-PROGRAMME.md).
+> ✅ **T0a TRAINING-SUPPORT CENSUS PASSED (2026-07-21, OFFLINE ONLY):** fresh seeds
+> 40,000–40,239 produced 19,164 represented ordinary-pass decisions and 93,636 unique
+> candidate actions. Five-class support is 58,611 intended / 4,379 teammate / 27,762
+> opponent / 651 loose / 1,493 dead, with every class present in every fixed fold.
+> Changing only the forced target produced different first-transition outcomes in 79.15%
+> of resolved multi-action decisions. Oracle/identity/non-finite/determinism violations are
+> all zero; record hash `ee3d58b…a84c`. Nine fresh live passes remain honestly outside the
+> finite candidate boundary. T0b estimator-contract design is authorised; validation/test
+> seeds are still sealed and no live consumer follows.
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
