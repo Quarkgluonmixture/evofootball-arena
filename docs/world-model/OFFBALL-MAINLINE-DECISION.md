@@ -1,8 +1,8 @@
 # Off-ball Mainline Decision
 
-Status: **A WAS SELECTED. R1 representation landed, but R1a stopped at its
-frozen 187<192 coverage gate. A candidate set is not authorised; the next
-mainline choice is again explicit.**
+Status: **A WAS SELECTED and stopped at R1a's frozen 187<192 coverage gate. The
+user then selected B. T0a kick-time transition-estimator support census is now
+pre-registered; no estimator or live selector is authorised.**
 
 Date: 2026-07-21
 
@@ -198,3 +198,9 @@ Neither has been started automatically. B directly addresses carrier→ball→
 controller value but is an expensive inference project. C follows VISION's
 largest visible positioning gap but carries higher risk of becoming another
 hand-written commander until transition value exists.
+
+The user selected **B** after the R1a stop. Its new inferential authority is
+[`TRANSITION-ESTIMATOR-PROGRAMME.md`](TRANSITION-ESTIMATOR-PROGRAMME.md). Unlike
+the parked replicated ceiling, T0 pools kick-time state/action examples across
+fresh independent match clusters and seals separate validation/test ranges. T0a
+is only a training-support census; it does not fit or wire an estimator.

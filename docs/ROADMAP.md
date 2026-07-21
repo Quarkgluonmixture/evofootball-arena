@@ -487,6 +487,14 @@
 > (`11c5efd3…a947d`). The count cannot be enlarged or redefined after result. R1 remains
 > dormant; no relative candidate set or live selector follows. The mainline now needs an
 > explicit B (transition estimator) versus C (dynamic task representation) choice.
+> 🔬 **USER SELECTED B — T0a TRANSITION-ESTIMATOR PROGRAMME PRE-REGISTERED
+> (2026-07-21):** this is not an adaptive retry of S7e's unstable per-pair continuation
+> means. T0 will pool kick-time state/action facts across fresh independent match clusters,
+> predict the five Oracle-v2 transitions, and validate on sealed unseen matches. The first
+> slice reads only seeds 40,000–40,239 and runs a support/identity census over every viable
+> ordinary-pass target; validation 41,000+ and test 42,000+ remain sealed. No estimator,
+> score, gene or live consumer is yet authorised. Authority:
+> [`world-model/TRANSITION-ESTIMATOR-PROGRAMME.md`](world-model/TRANSITION-ESTIMATOR-PROGRAMME.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
