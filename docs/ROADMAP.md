@@ -314,6 +314,15 @@
 > remained widely separated. Shared occupancy is therefore non-vacuous and variable; no
 > post-hoc duplicate threshold or allocation rule was added. Authority:
 > [`world-model/OFFBALL-OFFER-COMMITMENT-CENSUS.md`](world-model/OFFBALL-OFFER-COMMITMENT-CENSUS.md).
+> ✅ **O4a OFFER-MOVEMENT → RECEPTION TRANSITION PASSED (2026-07-21,
+> offline only):** after 1.5s of real hold/legacy/forward/lateral/backward movement, 95–96
+> same-carrier branches each forced the existing ordinary pass through Oracle v2 with zero
+> force/determinism/intervention failures. Intended reception was 45.8/47.4/50.5/54.2/50.0%
+> (8.3pp range); opponent control and progression changed independently. Pre-pass loose/dead
+> states stayed categorical and out of the pass denominator. Generic movement therefore
+> causally changes the next stable-control transition, but no direction is a universal winner
+> and no live selector is authorised. Authority:
+> [`world-model/OFFBALL-OFFER-TO-RECEPTION.md`](world-model/OFFBALL-OFFER-TO-RECEPTION.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

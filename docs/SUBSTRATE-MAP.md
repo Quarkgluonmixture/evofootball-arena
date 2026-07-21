@@ -226,6 +226,10 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   were non-equivalent to hold in 100.0/98.7/100.0% of paired cases. The directions
   formed different tradeoffs rather than one universal winner. Full action payoff,
   task occupancy and live selection remain open.
+  **O4a closes one additional offline edge:** real generic movement followed by the same
+  forced ordinary pass changed intended stable-reception rates across geometries by 8.3pp,
+  with distinct interception/progression tradeoffs. A cheap live predictor and selector are
+  still absent; the transition result must not be collapsed into a universal direction bonus.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull
