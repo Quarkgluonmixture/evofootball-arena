@@ -116,5 +116,8 @@ O5 passed:
 * source imports remain free of Match, Team, brains, roles, genes, policies and
   named football patterns.
 
-No production caller exists. O5 authorises only a portfolio census and a later
-separately contracted clone intervention.
+No production caller exists. O5a has since confirmed portfolio support and
+internal range on the frozen 120-match ecology with zero evaluation,
+conservation, identity or non-finite failures; see
+[`OFFBALL-OFFER-PORTFOLIO-CENSUS.md`](OFFBALL-OFFER-PORTFOLIO-CENSUS.md).
+O5/O5a authorise only a later separately contracted clone intervention.

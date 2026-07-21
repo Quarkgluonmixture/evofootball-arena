@@ -2,9 +2,10 @@
 //
 // Synthetic independent feasibility commitments exercise O3 in real attacking
 // states. No selector, duplicate threshold or live state is written.
-//   npx tsx scripts/probes/offball-offer-commitment-census.ts [matches] [seedOffset]
+//   npx tsx scripts/probes/offball-offer-commitment-census.ts [matches] [seedOffset] [portfolio]
 import {
   createOffBallOfferCommitment, evaluateOffBallOfferCoordination,
+  evaluateOffBallOfferPortfolio, type OffBallOfferPortfolioRange,
 } from '../../src/ai/offBallCoordination';
 import { evaluateOffBallAffordances, type OffBallAffordance } from '../../src/ai/offBallAffordance';
 import { capturePerceptionTruth, oraclePerceptionSnapshot } from '../../src/ai/perceptionSnapshot';
@@ -18,6 +19,7 @@ import { Rng } from '../../src/utils/rng';
 
 const MATCHES = Number(process.argv[2] ?? 120);
 const OFF = Number(process.argv[3] ?? 0);
+const PORTFOLIO = process.argv[4] === 'portfolio';
 const SAMPLE_TICKS = Math.round(1 / DT);
 const COMMITMENT_TICKS = 90;
 
@@ -71,6 +73,47 @@ let coordinationFailures = 0;
 let activeCountViolations = 0;
 let nonFiniteFacts = 0;
 
+const portfolioMemberCounts: number[] = [];
+const portfolioPairCounts: number[] = [];
+const portfolioTargetMins: number[] = [];
+const portfolioTargetMaxes: number[] = [];
+const portfolioTargetRanges: number[] = [];
+const portfolioBearingMins: number[] = [];
+const portfolioBearingMaxes: number[] = [];
+const portfolioBearingRanges: number[] = [];
+const portfolioArrivalMins: number[] = [];
+const portfolioArrivalMaxes: number[] = [];
+const portfolioArrivalRanges: number[] = [];
+const portfolioCorridorMins: number[] = [];
+const portfolioCorridorMaxes: number[] = [];
+const portfolioCorridorRanges: number[] = [];
+let portfolioEligible = 0;
+let portfolioFailures = 0;
+let portfolioConservationFailures = 0;
+let portfolioIdentityFailures = 0;
+let portfolioNonFinite = 0;
+
+const pairKey = (left: number, right: number): string => `${left}:${right}`;
+
+const recordPortfolioRange = (
+  range: OffBallOfferPortfolioRange | null,
+  pairValues: ReadonlyMap<string, number>,
+  mins: number[],
+  maxes: number[],
+  ranges: number[],
+): boolean => {
+  if (!range) return false;
+  const values = [range.min, range.max, range.max - range.min];
+  if (values.some((value) => !Number.isFinite(value)) || range.max < range.min) return false;
+  const minKey = pairKey(range.minPair[0], range.minPair[1]);
+  const maxKey = pairKey(range.maxPair[0], range.maxPair[1]);
+  if (pairValues.get(minKey) !== range.min || pairValues.get(maxKey) !== range.max) return false;
+  mins.push(range.min);
+  maxes.push(range.max);
+  ranges.push(range.max - range.min);
+  return true;
+};
+
 for (let seed = OFF; seed < OFF + MATCHES; seed++) {
   const match = new Match({
     seed,
@@ -118,6 +161,98 @@ for (let seed = OFF; seed < OFF + MATCHES; seed++) {
     });
     totalCommitments += commitments.length;
     if (commitments.length >= 2) statesWithTwo++;
+
+    if (PORTFOLIO && commitments.length >= 2) {
+      portfolioEligible++;
+      const portfolio = evaluateOffBallOfferPortfolio({
+        carrierGid: carrier.gid,
+        carrierPoint: carrier.pos,
+        commitments,
+        currentTick: match.simTick,
+      });
+      if (!portfolio) {
+        portfolioFailures++;
+      } else {
+        const expectedGids = commitments.map((commitment) => commitment.playerGid)
+          .sort((a, b) => a - b);
+        const actualGids = portfolio.commitments.map((commitment) => commitment.playerGid);
+        const expectedPairCount = commitments.length * (commitments.length - 1) / 2;
+        portfolioMemberCounts.push(portfolio.commitments.length);
+        portfolioPairCounts.push(portfolio.pairs.length);
+        if (
+          portfolio.commitments.length !== commitments.length
+          || portfolio.pairs.length !== expectedPairCount
+        ) portfolioConservationFailures++;
+        if (
+          portfolio.carrierGid !== carrier.gid
+          || actualGids.length !== expectedGids.length
+          || actualGids.some((gid, index) => gid !== expectedGids[index])
+          || portfolio.commitments.some((commitment) => commitment.carrierGid !== carrier.gid)
+        ) portfolioIdentityFailures++;
+
+        const expectedPairs = new Set<string>();
+        for (let left = 0; left < expectedGids.length; left++) {
+          for (let right = left + 1; right < expectedGids.length; right++) {
+            expectedPairs.add(pairKey(expectedGids[left], expectedGids[right]));
+          }
+        }
+        const observedPairs = new Set<string>();
+        const targetPairValues = new Map<string, number>();
+        const bearingPairValues = new Map<string, number>();
+        const arrivalPairValues = new Map<string, number>();
+        const corridorPairValues = new Map<string, number>();
+        let invalidPair = false;
+        for (const pair of portfolio.pairs) {
+          const key = pairKey(pair.leftPlayerGid, pair.rightPlayerGid);
+          const numeric = [
+            pair.targetDistance,
+            pair.bearingSeparation,
+            pair.arrivalTimeSeparation,
+            pair.corridorSeparation,
+          ];
+          if (
+            pair.leftPlayerGid >= pair.rightPlayerGid
+            || !expectedPairs.has(key)
+            || observedPairs.has(key)
+          ) invalidPair = true;
+          if (numeric.some((value) => value === null || !Number.isFinite(value))) {
+            invalidPair = true;
+            portfolioNonFinite++;
+            continue;
+          }
+          observedPairs.add(key);
+          targetPairValues.set(key, pair.targetDistance);
+          bearingPairValues.set(key, pair.bearingSeparation!);
+          arrivalPairValues.set(key, pair.arrivalTimeSeparation);
+          corridorPairValues.set(key, pair.corridorSeparation);
+        }
+        if (
+          invalidPair
+          || observedPairs.size !== expectedPairs.size
+          || [...expectedPairs].some((key) => !observedPairs.has(key))
+        ) portfolioIdentityFailures++;
+
+        const rangesValid = [
+          recordPortfolioRange(
+            portfolio.targetDistance, targetPairValues,
+            portfolioTargetMins, portfolioTargetMaxes, portfolioTargetRanges,
+          ),
+          recordPortfolioRange(
+            portfolio.bearingSeparation, bearingPairValues,
+            portfolioBearingMins, portfolioBearingMaxes, portfolioBearingRanges,
+          ),
+          recordPortfolioRange(
+            portfolio.arrivalTimeSeparation, arrivalPairValues,
+            portfolioArrivalMins, portfolioArrivalMaxes, portfolioArrivalRanges,
+          ),
+          recordPortfolioRange(
+            portfolio.corridorSeparation, corridorPairValues,
+            portfolioCorridorMins, portfolioCorridorMaxes, portfolioCorridorRanges,
+          ),
+        ].every(Boolean);
+        if (!rangesValid) portfolioNonFinite++;
+      }
+    }
 
     for (const choice of choices) {
       const facts = evaluateOffBallOfferCoordination({
@@ -186,6 +321,36 @@ summary('bearing separation', bearingSeparations.map((value) => value * 180 / Ma
 summary('arrival separation', arrivalSeparations, 's');
 summary('corridor separation', corridorSeparations, 'm');
 
+if (PORTFOLIO) {
+  console.log('O5a TEAM OFFER-PORTFOLIO CENSUS');
+  console.log(
+    `portfolio eligible ${portfolioEligible} (${pct(portfolioEligible, sampledStates)})`
+    + ` · evaluation / conservation / identity / non-finite failures `
+    + `${portfolioFailures}/${portfolioConservationFailures}/${portfolioIdentityFailures}/${portfolioNonFinite}`,
+  );
+  summary('member count', portfolioMemberCounts, '');
+  summary('pair count', portfolioPairCounts, '');
+  summary('target min', portfolioTargetMins, 'm');
+  summary('target max', portfolioTargetMaxes, 'm');
+  summary('target range', portfolioTargetRanges, 'm');
+  summary('bearing min', portfolioBearingMins.map((value) => value * 180 / Math.PI), 'deg');
+  summary('bearing max', portfolioBearingMaxes.map((value) => value * 180 / Math.PI), 'deg');
+  summary('bearing range', portfolioBearingRanges.map((value) => value * 180 / Math.PI), 'deg');
+  summary('arrival min', portfolioArrivalMins, 's');
+  summary('arrival max', portfolioArrivalMaxes, 's');
+  summary('arrival range', portfolioArrivalRanges, 's');
+  summary('corridor min', portfolioCorridorMins, 'm');
+  summary('corridor max', portfolioCorridorMaxes, 'm');
+  summary('corridor range', portfolioCorridorRanges, 'm');
+  console.log(
+    `positive internal range target/bearing/arrival/corridor `
+    + `${pct(portfolioTargetRanges.filter((value) => value > 0).length, portfolioTargetRanges.length)}/`
+    + `${pct(portfolioBearingRanges.filter((value) => value > 0).length, portfolioBearingRanges.length)}/`
+    + `${pct(portfolioArrivalRanges.filter((value) => value > 0).length, portfolioArrivalRanges.length)}/`
+    + `${pct(portfolioCorridorRanges.filter((value) => value > 0).length, portfolioCorridorRanges.length)}`,
+  );
+}
+
 const distributions = [
   targetDistances,
   bearingSeparations,
@@ -200,3 +365,28 @@ if (
   activeCountViolations > 0 || nonFiniteFacts > 0 ||
   statesWithTwo < sampledStates * 0.8 || !spreadGate
 ) process.exitCode = 1;
+
+if (PORTFOLIO) {
+  const portfolioDistributions = [
+    [portfolioTargetMins, portfolioTargetMaxes, portfolioTargetRanges],
+    [portfolioBearingMins, portfolioBearingMaxes, portfolioBearingRanges],
+    [portfolioArrivalMins, portfolioArrivalMaxes, portfolioArrivalRanges],
+    [portfolioCorridorMins, portfolioCorridorMaxes, portfolioCorridorRanges],
+  ];
+  const portfolioSpreadGate = portfolioDistributions.every(([mins, maxes, ranges]) => (
+    mins.length > 0
+    && maxes.length > 0
+    && quantile(mins, 0.9) > quantile(mins, 0.1)
+    && quantile(maxes, 0.9) > quantile(maxes, 0.1)
+    && ranges.filter((value) => value > 0).length >= ranges.length * 0.5
+  ));
+  if (
+    MATCHES !== 120
+    || portfolioEligible < sampledStates * 0.8
+    || portfolioFailures > 0
+    || portfolioConservationFailures > 0
+    || portfolioIdentityFailures > 0
+    || portfolioNonFinite > 0
+    || !portfolioSpreadGate
+  ) process.exitCode = 1;
+}

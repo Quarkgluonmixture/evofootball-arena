@@ -352,6 +352,23 @@
 > payoff or ideal frequency. Named one-two/third-man/overlap/cutback-arriver authorities remain
 > migration debt. Authority:
 > [`world-model/EMERGENT-CARRY-TRAJECTORY-CENSUS.md`](world-model/EMERGENT-CARRY-TRAJECTORY-CENSUS.md).
+> ✅ **O5 TEAM OFFER-PORTFOLIO REPRESENTATION COMPLETE (2026-07-21,
+> byte-identical):** active same-carrier commitments now form one deterministic,
+> gid-ordered team object containing every unordered player pair plus separate target,
+> carrier-bearing, arrival-time and corridor facts and their exact min/max supplying pairs.
+> No score, duplicate threshold, task name, role/gene/policy check, allocator or live caller
+> exists. All 16 focused O3/O5 tests, TypeScript and the frozen fingerprint pass. Authority:
+> [`world-model/OFFBALL-OFFER-PORTFOLIO.md`](world-model/OFFBALL-OFFER-PORTFOLIO.md).
+> ✅ **O5a 120-MATCH TEAM PORTFOLIO CENSUS COMPLETE (2026-07-21,
+> probe-only):** 10,590/10,689 (99.1%) real attacking states formed a portfolio with at
+> least two commitments, with zero evaluation, conservation, identity or non-finite
+> failures. Mean portfolio size was 4.066 members / 6.593 pairs; target, bearing, arrival
+> and corridor ranges were strictly positive in 94.9% of eligible states and all min/max
+> distributions had nonzero q10–q90 spread. Both portfolio runs were byte-identical
+> (`37ba0a4c…e44c`), while default O3a retained its frozen `45613364…be2` hash. This proves
+> supported variable team state, **not** that spread beats concentration. Only a separately
+> pre-registered portfolio-level clone intervention is authorised. Authority:
+> [`world-model/OFFBALL-OFFER-PORTFOLIO-CENSUS.md`](world-model/OFFBALL-OFFER-PORTFOLIO-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the

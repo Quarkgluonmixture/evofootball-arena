@@ -1,6 +1,6 @@
 # O5a — Team Offer-portfolio Census
 
-Status: **PRE-REGISTERED. Probe only; no allocator.**
+Status: **COMPLETE. Coverage/non-vacuity passed; probe only, no allocator.**
 
 Date: 2026-07-21
 
@@ -73,3 +73,38 @@ Stop before a clone intervention if:
 Passing O5a authorises only a separately pre-registered clone experiment that
 constructs deliberately concentrated and spread generic portfolios as causal
 extremes. It does not authorise an allocator or live commitment.
+
+## 6. Frozen result
+
+The pre-registered 120-match run passed:
+
+```text
+sampled attacking team states             10,689
+portfolio-eligible states                 10,590 (99.1%)
+portfolio evaluation failures                  0
+member/pair conservation failures              0
+carrier/player identity failures               0
+non-finite pair/range facts                     0
+```
+
+| fact | min mean | min q10/q50/q90 | max mean | max q10/q50/q90 | range mean | range q10/q50/q90 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| target distance | 6.272m | 1.157/4.824/12.941m | 27.188m | 15.216/26.400/41.025m | 20.917m | 7.648/19.208/38.067m |
+| bearing separation | 16.752° | 1.372/9.577/39.957° | 107.314° | 52.694/101.753/169.393° | 90.562° | 36.255/86.319/152.491° |
+| arrival separation | 0.026s | 0.001/0.009/0.061s | 0.199s | 0.045/0.171/0.359s | 0.173s | 0.033/0.144/0.320s |
+| corridor separation | 1.989m | 0.128/0.986/5.044m | 12.486m | 6.333/12.343/18.368m | 10.498m | 2.972/10.859/17.201m |
+
+The mean portfolio contained 4.066 members and 6.593 unordered pairs. For every
+fact, 94.9% of eligible portfolios had a strictly positive internal range. The
+remaining 5.1% are principally two-member portfolios, which contain one pair and
+therefore correctly have `max - min = 0`; zero was not treated as invalid.
+
+Two full portfolio-mode reruns produced the identical output hash
+`37ba0a4c8f94c09b7f4ca26c94c91f9b87c7e21c93c3bb479f6119fc05ce44c2`.
+The legacy O3a mode retained its exact frozen hash
+`456133643e93fdae4007f9b131e9a51983a94872e4c310b8794d121fa3221be2`.
+
+O5a therefore proves that the generic portfolio object is supported, conserved
+and internally variable in the current 6v6 ecology. It does **not** show that a
+larger separation is better. The next authorised work remains a separately
+pre-registered portfolio-level clone intervention.
