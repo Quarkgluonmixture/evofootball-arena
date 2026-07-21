@@ -11,6 +11,21 @@ import {
 import { ballLanding, escapeCarry, interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
 
+/** Pure coordinate transform for the dormant moving-reference primitive. */
+export function relativePointTarget(
+  reference: Readonly<V2>,
+  attackDir: 1 | -1,
+  offset: Readonly<V2>,
+): V2 | null {
+  if (![
+    reference.x, reference.y, offset.x, offset.y,
+  ].every(Number.isFinite)) return null;
+  return {
+    x: reference.x + attackDir * offset.x,
+    y: reference.y + offset.y,
+  };
+}
+
 /**
  * Turns the player's current (discrete) action into a desired velocity every
  * frame. Dynamic targets — moving balls, moving opponents, sliding formation
@@ -42,6 +57,24 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // Existing common post-switch rules still own onside discipline,
       // steering, collision avoidance, pitch limits and physical integration.
       target = p.action.targetPos ?? p.pos;
+      speedF = 1;
+      break;
+    }
+    case 'TrackRelativePoint': {
+      // Generic S6 relation primitive: a fixed attack-frame offset follows
+      // any moving physical player. The action does not decide which relation
+      // is useful; missing/invalid references honestly reduce to holding here.
+      const refGid = p.action.relativeToGid;
+      const ref = refGid === undefined ? null : match.allPlayers[refGid] ?? null;
+      const offset = p.action.relativeOffset;
+      const derived = ref !== null && offset !== undefined
+        ? relativePointTarget(ref.pos, team.attackDir, offset)
+        : null;
+      const valid = ref !== null
+        && ref !== p
+        && !ref.sentOff
+        && derived !== null;
+      target = valid ? derived : p.pos;
       speedF = 1;
       break;
     }
@@ -504,6 +537,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   }
   if (
     p.action.type === 'MoveToPoint' ||
+    p.action.type === 'TrackRelativePoint' ||
     p.action.type === 'MoveToFormationSpot' ||
     p.action.type === 'SupportBallCarrier'
   ) {

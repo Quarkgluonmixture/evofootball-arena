@@ -172,7 +172,7 @@ primitive can be represented and tested dormant, with symmetric offsets and no
 live preference. Whether any offset later pays or becomes an overlap remains a
 separate question.
 
-R0 records that next boundary in
+R0 now implements that dormant boundary in
 [`RELATIVE-POINT-MOVEMENT-PRIMITIVE.md`](RELATIVE-POINT-MOVEMENT-PRIMITIVE.md).
 The primitive is deliberately broader than attacking combinations: it only maps
 a moving reference plus an attack-frame offset to the existing movement stack.

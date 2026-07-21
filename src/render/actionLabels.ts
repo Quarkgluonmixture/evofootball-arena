@@ -4,6 +4,7 @@ import type { ActionType } from '../sim/types';
 export const ACTION_SHORT: Record<ActionType, string> = {
   MoveToFormationSpot: 'form',
   MoveToPoint: 'point',
+  TrackRelativePoint: 'relative',
   ChaseBall: 'chase',
   ReceivePass: 'recv',
   MakeRun: 'run!',

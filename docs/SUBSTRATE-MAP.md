@@ -249,6 +249,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   O1a has now shown in 64 frozen cloned states that fixed forward/lateral/backward O0
   targets all close through the real movement stack (zero unexplained intervention drift).
   This is execution feasibility only; no candidate payoff or live selector exists.
+  **R0 adds a second dormant generic primitive:** `TrackRelativePoint` follows a fixed
+  attack-frame offset from any moving player through the same execution stack. It has no
+  live emitter, reference/offset chooser, role/gene branch or football-pattern label. This
+  represents a moving spatial relation; it does not yet prove feasibility or value for any
+  relative trajectory.
   it is not yet a live candidate.
 
 ### S7 — Action value & bounded lookahead · 🟡🔴 (pass Pareto boundary exists offline)

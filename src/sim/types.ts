@@ -93,6 +93,7 @@ export function deriveTeamStyle(genome: TacticalGenome): TeamStyle {
 export type ActionType =
   | 'MoveToFormationSpot'
   | 'MoveToPoint'
+  | 'TrackRelativePoint'
   | 'ChaseBall'
   | 'ReceivePass'
   | 'MakeRun'
@@ -125,6 +126,10 @@ export interface ActionState {
   type: ActionType;
   /** Static target (dribble direction, clear direction...). Dynamic targets are recomputed each frame. */
   targetPos?: V2;
+  /** Moving-player reference for the dormant generic TrackRelativePoint primitive. */
+  relativeToGid?: number;
+  /** x = attack-frame forward metres; y = fixed pitch-axis lateral metres. */
+  relativeOffset?: V2;
   /** Opponent index (for marking) or teammate gid (for receive). */
   targetIdx?: number;
   /** Top candidates from the last decision, for explainability. */

@@ -1,6 +1,6 @@
 # R0 — Relative-point Movement Primitive
 
-Status: **PRE-REGISTERED. Dormant representation/execution only.**
+Status: **COMPLETE — dormant, byte-identical, no live emitter.**
 
 Date: 2026-07-21
 
@@ -91,3 +91,37 @@ Passing R0 authorises only a separate offline clone-feasibility probe with
 pre-registered symmetric relative offsets and a mechanically moving reference.
 It does not authorise a candidate set, live commitment, selector, task allocator,
 script retirement or play-test build.
+
+## 6. Frozen result
+
+R0 landed exactly at the registered boundary:
+
+* `TrackRelativePoint` carries only a reference gid and fixed attack-frame
+  offset;
+* `relativePointTarget()` is a pure finite coordinate transform;
+* the executor recomputes the world target from the current reference position
+  and then uses the existing arrival, onside, barred-box, opponent-avoidance and
+  player-physics path;
+* invalid, sent-off and self references and invalid/missing offsets hold the
+  actor's current point;
+* the renderer has only a neutral debug label;
+* no PlayerBrain, TeamBrain, Match or probe consumer emits the action.
+
+Six focused tests cover attack-direction mirroring, fixed pitch-lateral
+semantics, reference motion, zero direct body movement, the existing
+acceleration/top-speed envelope, input immutability and all invalid-reference
+cases. The existing three `MoveToPoint` tests remain green. Full tests,
+TypeScript/build and the production fingerprint pass:
+
+```text
+sha256 57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+```
+
+The first test draft incorrectly expected final desired-y symmetry after the
+shared teammate-separation force had been applied. The mechanism was not
+changed to satisfy that false assertion; the pure transform is now tested
+directly while executor tests separately verify physical bounds.
+
+R0 proves only that the engine can express and execute a moving spatial
+relation without a named tactic. The next permitted work is a separately
+pre-registered clone-feasibility probe; no offset is preferred yet.
