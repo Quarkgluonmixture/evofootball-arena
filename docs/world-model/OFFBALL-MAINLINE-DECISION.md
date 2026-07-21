@@ -332,3 +332,12 @@ programme is a separately pre-registered decentralised selection-learning/ecolog
 contract with fixed generic dimensions and sealed match-cluster validation. It is
 not permission to tune D1 weights, publish central demands, restore named runs or
 wire a live selector.
+
+That first learnability boundary is now frozen in
+[`DECENTRALISED-PREFERENCE-LEARNABILITY.md`](DECENTRALISED-PREFERENCE-LEARNABILITY.md).
+D2a changes only the probe-local nine-weight preference authority, selects it on
+64 independent development match states and validates it on sealed 96-state
+clusters before any final test. Perception, candidates, commitments, movement,
+contact and transition remain D1-exact. Even a full pass authorises only a later
+default-off full-match ecology contract; it cannot ship the learned vector or add
+production genes.
