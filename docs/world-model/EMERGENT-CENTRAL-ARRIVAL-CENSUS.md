@@ -1,6 +1,7 @@
 # E4 — Emergent Central-arrival Census
 
-Status: **PRE-REGISTERED. Telemetry only; no live change.**
+Status: **COMPLETE — NATURAL MOVEMENT COVERAGE CONFIRMED; SCRIPT RETIREMENT NOT
+AUTHORISED. Telemetry only; no live change.**
 
 Date: 2026-07-21
 
@@ -102,3 +103,43 @@ If unlicensed trajectories exist, bank only primitive coverage. Do not infer
 payoff, ideal frequency, delivery choice or script retirement. Any later
 movement-intent, transition payoff, live selection or migration needs a separate
 contract.
+
+## 6. Result
+
+Two complete runs were byte-identical:
+
+```text
+sha256 eeb9786f8f1281ad2f3ee9011480e8a13c9200d1617370c98e681af3ed1a0914
+```
+
+The 120 matches produced 1,602 wide-channel events and 4,946 conserved mover
+episodes. There were zero duplicate identities, unfinished episodes or
+non-finite facts.
+
+```text
+central arrivals                         1,188 (9.900/match; 120/120 matches)
+without team.arriver exposure              844 (71.0%; 118/120 matches)
+strictly without any recorded authority       8
+with runner/overlapper exposure             784
+with MakeRun/SupportBallCarrier exposure   1,137
+with wallRun exposure                         34
+```
+
+Every frozen coverage gate passed. The unlicensed trajectories were not a
+single-role artefact: they included 385 strikers, 455 midfielders, 279 wingers
+and 69 defenders. Their median path was 5.292m and median elapsed time 1.200s.
+
+## 7. Verdict
+
+The generic live movement stack already permits teammates to arrive in the
+central edge-of-box zone after wide entry without the dedicated
+`team.arriver` identity. This banks the **movement phenomenon** and means a
+future generic replacement does not need an `ArriveForCutback` action.
+
+It does not prove that the arriving player caused or received a useful
+delivery, that the frequency is desirable, or that the current named baseline
+is redundant. Most arrivals still exposed another named or generic run/support
+authority and only eight were strict-clean. Retain `team.arriver` and
+`performCutback` until a separately pre-registered transition/payoff and
+migration contract proves that ordinary selection can create the useful
+carrier-to-arriver outcome.

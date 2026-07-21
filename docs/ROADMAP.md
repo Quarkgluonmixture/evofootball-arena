@@ -451,12 +451,16 @@
 > R0a. Any future relative-affordance contract must include endpoint legality before
 > commitment and preserve the remaining honest dynamic miss. Authority:
 > [`world-model/RELATIVE-POINT-FAILURE-AUDIT.md`](world-model/RELATIVE-POINT-FAILURE-AUDIT.md).
-> 🔬 **E4 NATURAL CENTRAL-ARRIVAL CENSUS PRE-REGISTERED
-> (2026-07-21, telemetry only):** on entry into the existing wide attacking channel,
-> observe whether teammates starting outside a fixed central edge-of-box zone move at least
-> 3m into it within four seconds. Split post-hoc arrivals by exposure to `team.arriver` and
-> all other named run/support authorities. This cannot change AI, infer payoff or retire the
-> cutback-arriver baseline. Authority:
+> ✅ **E4 NATURAL CENTRAL-ARRIVAL MOVEMENT COVERAGE CONFIRMED
+> (2026-07-21, telemetry only):** 1,602 wide-channel entries produced **1,188** conserved
+> central arrivals (9.900/match; all 120 matches), including **844 without `team.arriver`**
+> across 118/120 matches. Roles were ST 385 / MF 455 / WG 279 / DF 69, so the phenomenon is
+> not tied to a single named role. All frozen coverage gates passed; two runs were
+> byte-identical (`eeb9786f…a0914`) with zero duplicate, unfinished or non-finite facts.
+> Only eight arrivals avoided every recorded runner/overlapper/run/support/wall authority,
+> and no delivery transition or payoff was tested. Bank the movement phenomenon; do not add
+> `ArriveForCutback`, retire `team.arriver`/`performCutback`, or infer ideal frequency.
+> Authority:
 > [`world-model/EMERGENT-CENTRAL-ARRIVAL-CENSUS.md`](world-model/EMERGENT-CENTRAL-ARRIVAL-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.

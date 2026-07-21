@@ -57,6 +57,7 @@ Every returning direction must satisfy all of these:
 | carry wide / reach byline | already observable from ordinary carry | trajectory and outcome anatomy only |
 | pass-return exchange | **generic pass-choice emergence confirmed:** E2 found 444/522 immediate A→B→A returns without `wallRun`; 93 advanced A by at least 2m | the return choice needs no named action; shared movement intent/payoff still requires generic substrate before the named script can retire |
 | overlap trajectory | **natural coverage failed:** E3 found only 4 qualifying paths in 120 matches, all still exposed to generic-named run/support actions and none strict-clean | retain the named baseline; only a dormant role-neutral moving-reference primitive may be studied next |
+| central arrival after wide entry | **movement coverage confirmed:** E4 found 1,188 qualifying arrivals, 844 without `team.arriver`, across 118/120 matches; only 8 avoided every recorded authority | bank the role-neutral movement phenomenon; retain the named baseline until delivery transition/payoff and migration are separately proved |
 | formation drift / local shape | `emergentStation` is live but remains a hand-tuned role-anchored interim | compare generic candidate coverage against the interim; do not call it a completed value field |
 
 The cut-inside observation is a valid play report, not yet a population-rate claim.
@@ -194,3 +195,20 @@ evidence, not permission to filter the failed sample post hoc. A future new
 relative-affordance contract must combine moving-relation reachability with
 endpoint legality before commitment; R0a stays failed and no candidate set is
 currently authorised.
+
+## 8. E4 audit update
+
+[`EMERGENT-CENTRAL-ARRIVAL-CENSUS.md`](EMERGENT-CENTRAL-ARRIVAL-CENSUS.md)
+found 1,188 central edge-of-box arrivals after 1,602 wide-channel entries. Of
+these, 844 occurred without the dedicated `team.arriver` identity and covered
+118/120 matches. The movement phenomenon therefore already exists across
+strikers, midfielders, wingers and defenders; a future substrate must not
+reintroduce it as a named `ArriveForCutback` action.
+
+This is not yet script-retirement evidence. Most trajectories still exposed
+`team.runners`, `team.overlapper`, `MakeRun`, `SupportBallCarrier` or `wallRun`,
+and only eight avoided every recorded authority. More importantly, E4 did not
+ask whether the wide carrier could deliver through ball flight/contact to that
+arrival or whether the resulting state paid. The remaining debt is generic
+movement intent plus transition-conditioned delivery value and then a live
+migration A/B—not a missing central-arrival coordinate.
