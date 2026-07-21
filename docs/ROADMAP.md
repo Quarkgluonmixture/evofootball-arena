@@ -208,6 +208,18 @@
 > Therefore total payoff needs transition composition; one fixed macro-possession endpoint
 > is not sufficient authority. Details:
 > [`world-model/S7E-TRANSITION-COMPOSITION.md`](world-model/S7E-TRANSITION-COMPOSITION.md).
+> ✅ **COUNTERFACTUAL ORACLE v2-0 EVENT SEMANTICS PASSED (2026-07-21, probe-only):**
+> the unchanged 120-match S7b path reproduced exactly 509 pairs / 1018 forced branches.
+> One post-step authority now partitions `intended / teammate / opponent / loose / dead`
+> separately from administrative censoring: zero residual `other/unresolved`, zero force
+> failures and zero conservation errors. Chosen→alternative intended receptions fall
+> 345→265 while opponent first stable control rises 125→194; this is the missing transition
+> layer hidden by the aggregate S7b endpoint. At kick+3s, 316/309 branches respectively have
+> no physical owner while macro possession remains assigned, so owner-dependent possession
+> and option fields are now honestly null. No Match/RNG/candidate/relation/tolerance changed.
+> **NEXT = the separately bounded replicated-continuation/outcome-tree oracle contract; this
+> does not authorise S7e or live wiring.** Authority:
+> [`world-model/COUNTERFACTUAL-ORACLE-V2.md`](world-model/COUNTERFACTUAL-ORACLE-V2.md).
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

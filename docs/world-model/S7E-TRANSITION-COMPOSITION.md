@@ -1,7 +1,8 @@
 # S7e — Transition Distribution × Conditional Next State
 
-Status: **design and oracle audit only; no estimator implementation and no live
-consumer.**
+Status: **design and oracle audit only; Oracle v2-0 first-transition semantics are
+defined and passed in [`COUNTERFACTUAL-ORACLE-V2.md`](COUNTERFACTUAL-ORACLE-V2.md),
+with no estimator implementation and no live consumer.**
 
 Date: 2026-07-21
 
@@ -60,7 +61,7 @@ intendedTargetControl
 otherTeammateControl
 opponentControl
 deadBall
-looseOrUnresolved
+loose
 ```
 
 For each outcome it must distinguish:
@@ -149,5 +150,13 @@ chooses both:
 - the transition-distribution representation;
 - the payoff oracle semantics that will judge it.
 
-No additional static endpoint/corridor dimension, tolerance sweep or live target
-filter is authorised by this document.
+Oracle v2-0 has now passed that narrow semantics gate over the unchanged 509 pairs:
+1018 records partitioned with zero residual, force failure or conservation error.
+Chosen/alternative intended receptions were 345/265 and opponent first stable
+controls 125/194, while 625 kick+3s records combined had no physical owner despite
+an assigned macro possession side. See
+[`COUNTERFACTUAL-ORACLE-V2.md`](COUNTERFACTUAL-ORACLE-V2.md).
+
+This does not yet implement S7e. No additional static endpoint/corridor dimension,
+tolerance sweep or live target filter is authorised; the replicated continuation
+and contingent-tree payoff contract remains the next gate.
