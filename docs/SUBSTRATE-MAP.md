@@ -233,7 +233,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   "execute a cut-inside."** 内切/overlap/third-man/box-arrival are **patterns
   recognised after the fact** from trajectories, never labelled genes.
 - **Code:** many actions, but too many **named-behaviour** switches + role branches
-  (`wallPassW/thirdManW/overlapW`, `RUN_ROLE_W`, role bonuses).
+  (`wallPassW/thirdManW/overlapW`, `RUN_ROLE_W`, role bonuses). **O1 now adds one
+  dormant generic exception:** `MoveToPoint(targetPos)` uses the existing steering,
+  onside discipline and `Player.physicsStep`, with no brain emitter, score, gene or role
+  branch. It exists so offline counterfactuals can test O0 points without teleporting;
+  it is not yet a live candidate.
 
 ### S7 — Action value & bounded lookahead · 🟡🔴 (pass Pareto boundary exists offline)
 - **Provides:** not "how good does this look NOW" but "what does it turn the NEXT

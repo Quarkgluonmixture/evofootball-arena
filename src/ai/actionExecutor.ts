@@ -37,6 +37,14 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   }
 
   switch (p.action.type) {
+    case 'MoveToPoint': {
+      // Generic S6 primitive: the chooser supplies only a world coordinate.
+      // Existing common post-switch rules still own onside discipline,
+      // steering, collision avoidance, pitch limits and physical integration.
+      target = p.action.targetPos ?? p.pos;
+      speedF = 1;
+      break;
+    }
     case 'MoveToFormationSpot':
     case 'HoldPosition': {
       target = formationSpot(p, team, ball, hasBall, opp);
@@ -494,7 +502,11 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     desired.x += sep.x;
     desired.y += sep.y;
   }
-  if (p.action.type === 'MoveToFormationSpot' || p.action.type === 'SupportBallCarrier') {
+  if (
+    p.action.type === 'MoveToPoint' ||
+    p.action.type === 'MoveToFormationSpot' ||
+    p.action.type === 'SupportBallCarrier'
+  ) {
     const av = avoidOpponents(p, desired, opp.players);
     desired.x += av.x;
     desired.y += av.y;

@@ -271,6 +271,14 @@
 > (`97427c50…ba9a`). **Coverage passed; payoff and live selection remain unproved and
 > unauthorised.** Authority:
 > [`world-model/OFFBALL-OFFER-FIELD-CENSUS.md`](world-model/OFFBALL-OFFER-FIELD-CENSUS.md).
+> ✅ **O1 GENERIC `MoveToPoint` PRIMITIVE COMPLETE (2026-07-21, dormant and
+> byte-identical):** a target world coordinate now flows through the existing executor,
+> common onside/barred-box/steering rules and `Player.physicsStep`; it never writes player
+> physics directly. No PlayerBrain/TeamBrain emitter, role/gene/policy/tactic branch or live
+> selection exists. Three focused tests, all 540 tests, TypeScript/build and the frozen
+> fingerprint pass. This authorises only an offline clone feasibility probe—not candidate
+> scoring or `supportSpot` replacement. Authority:
+> [`world-model/OFFBALL-MOVE-PRIMITIVE.md`](world-model/OFFBALL-MOVE-PRIMITIVE.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral

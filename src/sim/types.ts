@@ -92,6 +92,7 @@ export function deriveTeamStyle(genome: TacticalGenome): TeamStyle {
 
 export type ActionType =
   | 'MoveToFormationSpot'
+  | 'MoveToPoint'
   | 'ChaseBall'
   | 'ReceivePass'
   | 'MakeRun'

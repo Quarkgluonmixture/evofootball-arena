@@ -3,6 +3,7 @@ import type { ActionType } from '../sim/types';
 /** Short human labels for player actions — shared by the 2D and 3D views. */
 export const ACTION_SHORT: Record<ActionType, string> = {
   MoveToFormationSpot: 'form',
+  MoveToPoint: 'point',
   ChaseBall: 'chase',
   ReceivePass: 'recv',
   MakeRun: 'run!',
