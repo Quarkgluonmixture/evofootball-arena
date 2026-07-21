@@ -221,6 +221,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   offside facts from `PerceptionSnapshot`. It has no score and no live consumer; seven
   counterfactual tests plus the unchanged full fingerprint prove byte-identical isolation.
   Candidate payoff and live `supportSpot` replacement remain open.
+  **O2a now validates the next mediator:** after real cloned movement, generic
+  forward/lateral/backward targets produced supported conditional pass states that
+  were non-equivalent to hold in 100.0/98.7/100.0% of paired cases. The directions
+  formed different tradeoffs rather than one universal winner. Full action payoff,
+  task occupancy and live selection remain open.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull

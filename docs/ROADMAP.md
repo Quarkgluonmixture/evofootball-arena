@@ -287,6 +287,16 @@
 > in 64/64 states; no Match hook, state write, score or football-value read was added. This
 > proves generic execution feasibility, **not** candidate payoff or live selection. Authority:
 > [`world-model/OFFBALL-MOVE-FEASIBILITY.md`](world-model/OFFBALL-MOVE-FEASIBILITY.md).
+> ✅ **O2a OFF-BALL OFFER-STATE ANATOMY PASSED (2026-07-21, offline only):**
+> 128 fresh frozen states produced 77/77/78 supported forward/lateral/backward-vs-hold
+> conditional comparisons with zero clone, determinism, target, unexplained-action or
+> non-finite failures. Non-equivalent relations were 100.0/98.7/100.0%; candidate/hold
+> dominance was 20.8/0.0% forward, 40.3/13.0% lateral and 0.0/6.4% backward, with the
+> remainder predominantly honest tradeoffs. Owner-free and dead-ball branches stayed
+> categorical and received no fake zero vector. This proves that generic movement creates
+> distinct conditional receiving states; it does **not** prove total action payoff or
+> authorise live selection. Authority:
+> [`world-model/OFFBALL-OFFER-STATE-ANATOMY.md`](world-model/OFFBALL-OFFER-STATE-ANATOMY.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral
