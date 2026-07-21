@@ -1,7 +1,8 @@
 # Ball-Control Foundation — authoritative ball, readable touches
 
-Status: **B0 done; B1a/B1b honest-reverted; B1c-0 representation + B1c-1/B1c-2
-isolated mechanisms done; B1c-3 live A/B is next.**
+Status: **B0 remains the accepted live path; B1a/B1b and B1c-3 were
+honest-reverted; B1c-0 representation + B1c-1/B1c-2 isolated mechanisms are
+retained. The bounded B1c retry is closed; return to S3–S8.**
 This is a bounded S2 foundation slice, not an extension of the completed M0–M4 body
 campaign. The implementation authority for the retry is
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
@@ -76,9 +77,19 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
   access line prevents the break. The boundary returns no owner/winner. It is
   still not imported by live `Match`; 502/502 tests, both fingerprints exact,
   and the 120-match live sequence probe remains all zero.
-- ⬜ **B1c-3 — live A/B + user play-test.** Gate contact tails, possession
-  economy, policy/style/stamina, determinism and perf. The user decides whether
-  touches and steals are readable. Pass or full revert, then return to S3–S8.
+- ❌ **B1c-3 — live A/B. TRIED + FULLY REVERTED 2026-07-21 before user
+  play-test.** Wiring the independent ball, distance gait and lease boundary
+  into normal carries produced 527 overruns in 12 matches (~44/match) in the
+  bounded current-velocity cut. Migrating the broad macro formation family to
+  `PossessionLocus` restored the frozen M3 max of 8 but inverted the zonal
+  press-height contract and still failed stamina (FT mean 0.934, gate <0.93).
+  The narrower TeamBrain-only cut left M3 max at 19 and failed formation +
+  stamina. Replacing per-frame distance loss with “next planned footbeat is
+  unreachable” reduced overruns to 283 but exposed 48.6s of >1.25m distance
+  over 12 matches, raised M3 max to 98 and failed marking + stamina (0.962).
+  Exact-zero own-touch→M3/possession/pass-arrival invariants did pass, so the
+  lease boundary itself was not the failure; live movement↔recovery prediction
+  was. No threshold/timer retry and no play-test candidate.
 
 ## 4. B1 experimental record (2026-07-21)
 
@@ -120,5 +131,6 @@ Do not repeat the rejected M3b/B1a/B1b distance or timer variants. B1c is allowe
 only because it changes the causal representation and starts with a
 byte-identical consumer census. If any live B1c stage still multiplies M3,
 pass-arrival contacts or possession churn—or breaks policy/style/stamina
-directionality—fully revert it. The accepted live HEAD remains B0 until B1c-3
-passes the user's play-test. There is no automatic follow-on body campaign.
+directionality—fully revert it. That happened at B1c-3: the accepted live HEAD
+remains B0, while the isolated B1c mechanisms stay as evidence. There is no
+automatic B1c-4 or follow-on body campaign; resume S3–S8.

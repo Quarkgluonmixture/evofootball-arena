@@ -1,8 +1,8 @@
 # Controlled Ball Coupling — B1c architecture contract
 
-Status: **B1c-0 representation + B1c-1/B1c-2 isolated mechanisms complete;
-B1c-3 live A/B is next.** Live behaviour is still the accepted B0 path. This is the only
-authorised retry of the Ball-Control Foundation after the two rejected B1 candidates in
+Status: **B1c-0 representation + B1c-1/B1c-2 isolated mechanisms retained;
+B1c-3 live A/B tried and fully reverted. B1c is closed and live behaviour remains
+the accepted B0 path.** This was the only authorised retry of the Ball-Control Foundation after the two rejected B1 candidates in
 [`BALL-CONTROL.md`](BALL-CONTROL.md).
 
 ## 0. Verdict
@@ -324,6 +324,26 @@ feel like football. Passing the statistics alone is insufficient.
 
 Pass → freeze B1c and return to S3–S8. Fail → complete revert and return to
 S3–S8. There is no automatic B1c-4.
+
+**❌ TRIED + FULLY REVERTED 2026-07-21.** The live candidate correctly kept
+own touches outside M3 and possession, but failed before the subjective gate.
+At 12 matches, the bounded current-velocity version generated 527 overruns
+(~44/match). A broad `PossessionLocus` migration returned the M3 tail to max 8,
+but failed zonal press-height and stamina directionality. A one-family
+TeamBrain migration left M3 max 19 and the same hard-gate failures. Defining
+loss only at an unreachable planned footbeat reduced overrun count to 283, but
+left 48.6 aggregate seconds outside 1.25m, produced an M3 max-98 chain and
+failed marking plus stamina (FT 0.962; required <0.93). A desired-velocity aim
+variant worsened overruns to 920 and was stopped immediately.
+
+Interpretation: `ControlSequence` successfully separates an own touch from a
+possession transition, but the live engine still lacks a reliable
+movement↔ball recovery prediction. The isolated B1c-1/B1c-2 mechanisms are
+valid; composing them by cadence alone is not. All live code, tests and probe
+switches were removed, restoring the exact `936b350` sim. Per the precommitted
+rule, there is no B1c-4 and no user play-test of a candidate that already fails
+objective football contracts. Return to S3–S8; only a future causally new
+reachability/recovery model may justify reopening this boundary.
 
 ## 8. `control-sequence-anatomy`
 

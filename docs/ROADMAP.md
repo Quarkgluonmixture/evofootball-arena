@@ -150,9 +150,17 @@
 > a controller screening the access line prevents the break. No owner/winner is assigned.
 > Gates: tsc/build clean · 502/502 clean single-worker full run · both fingerprints exact ·
 > live 120-match sequence probe still all zero · profiler determinism OK · 5.22µs/step,
-> 14.8 matches/s. **NEXT = B1c-3 live A/B candidate:** wire the already-proved sequence,
-> impulse and lease boundaries into normal close control as one behavioural lever; run the
-> complete probe stack, then stop for the user's desktop/phone play-test or fully revert.
+> 14.8 matches/s. ❌ **B1c-3 LIVE A/B TRIED + FULLY REVERTED (2026-07-21):** own
+> micro-touches correctly stayed outside M3/possession/pass-arrival, but composition failed
+> before play-test. The bounded current-velocity cut produced 527 overruns/12 matches;
+> broad `PossessionLocus` migration restored M3 max 8 but broke zonal press-height + stamina;
+> TeamBrain-only left max 19; next-foot-unreachable loss reduced overruns to 283 but produced
+> M3 max 98 and failed marking/stamina (FT 0.962 vs <0.93). Desired-velocity aim worsened
+> overruns to 920. All live code/probe switches were removed; sim is exactly `936b350`.
+> **B1c CLOSED, NO B1c-4, NO FAILED-CANDIDATE PLAY-TEST. NEXT = return to S3–S8:**
+> formulate one offline future-state cause (execution risk, threat created/conceded,
+> structure/rest-defence cost or option quality), pass the counterfactual payoff oracle,
+> and only then consider a live consumer.
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

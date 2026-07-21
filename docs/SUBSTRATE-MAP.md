@@ -156,8 +156,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   distance-driven gait + real velocity-impulse mechanism, still with no live consumer.
   ✅ B1c-2 composes real-ball access/screening with an isolated lease boundary: own
   contact continues one sequence, exposed opponent contact requests M3, and screened
-  contact does nothing; it assigns no winner and remains outside `Match`. B1c-3 is the
-  first live A/B candidate, not another timer tune or a broader body campaign.
+  contact does nothing; it assigns no winner and remains outside `Match`. ❌ B1c-3 live
+  composition was fully reverted: it preserved the own-touch invariants but caused
+  23–77 overruns/match across causal variants, M3 tails up to 98, and formation/stamina
+  contract failures. Live remains B0; the missing prerequisite is movement↔ball recovery
+  prediction, not another cadence or distance tune. B1c is closed; resume S3–S8.
 
 ### S3 — Perception · 🟡🔴 (representation exists; live AI is still omniscient)
 - **Provides:** each player reads a `PerceptionSnapshot` (observed ball/players +
