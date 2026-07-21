@@ -7,14 +7,25 @@ import { TEAM_SIZE, type MatchPhase, type Side, type TeamInfo } from '../src/sim
 import { Rng } from '../src/utils/rng';
 import {
   capturePassLifecycle,
-  capturePayoffOrigin,
-  captureSupportedOutcome,
+  captureProjectedPayoff,
+  captureRawPayoffObservation,
   censorAtObservationHorizon,
   classifyFirstTransition,
+  createPayoffPathState,
+  projectComparablePassPayoffV1,
   runOracleV2Branch,
   type OraclePassKey,
   type PassLifecycleSnapshot,
+  type RawOraclePayoffObservation,
 } from '../scripts/probes/oracle-v2';
+import {
+  COMPARABLE_PAYOFF_DIMENSIONS,
+  compareComparablePassPayoffs,
+  compareLegacyPassPayoffs,
+  meanComparablePassPayoffs,
+  type LegacyRolloutOutcome,
+  type PayoffRelation,
+} from '../scripts/probes/pass-payoff-relation';
 
 const key: OraclePassKey = {
   passerGid: 1,
@@ -227,13 +238,18 @@ describe('Counterfactual Oracle v2-0 first-transition semantics', () => {
     match.ball.owner = null;
     match.possessionSide = 0;
     match.phase = 'playing';
-    const origin = capturePayoffOrigin(match, 0);
-    const snapshot = captureSupportedOutcome(match, 0, origin);
-    expect(snapshot).toMatchObject({
+    const path = createPayoffPathState(match, 0);
+    const raw = captureRawPayoffObservation(match, 0, path, match.simTime + 3);
+    const comparable = projectComparablePassPayoffV1(raw);
+    expect(raw).toMatchObject({
       physicalControl: 'none',
       macroPossessionSide: 0,
       possession: null,
-      exitOptionCount: null,
+      attackingExitOptionCount: null,
+    });
+    expect(comparable).toMatchObject({
+      physicalControlValue: 0,
+      ownExecutableExitOptions: 0,
     });
   });
 
@@ -272,5 +288,233 @@ describe('Counterfactual Oracle v2-0 first-transition semantics', () => {
     expect(first).toEqual(second);
     expect(first.ok).toBe(true);
     expect(capturePassLifecycle(match)).toEqual(frozenBefore);
+  });
+});
+
+const rawPayoff = (
+  overrides: Partial<RawOraclePayoffObservation> = {},
+): RawOraclePayoffObservation => ({
+  tick: 180,
+  observedSimTime: 13,
+  authoritySimTime: 13,
+  authority: 'kickPlus3s',
+  phase: 'playing',
+  finished: false,
+  ballCoastingOut: false,
+  restartKind: null,
+  physicalControl: 'none',
+  ownerGid: null,
+  macroPossessionSide: 0,
+  possession: null,
+  goalDelta: 0,
+  xgDelta: 0,
+  currentPlayableProgressionMetres: 4,
+  lastPlayableProgressionMetres: 4,
+  attackingExitOptionCount: null,
+  ballControlPhase: 'free',
+  ...overrides,
+});
+
+describe('ComparablePassPayoffV1 preflight semantics', () => {
+  it('does not read macro possession and preserves nullable raw facts', () => {
+    const base = rawPayoff();
+    const before = structuredClone(base);
+    const projections = ([-1, 0, 1] as const).map((macroPossessionSide) =>
+      projectComparablePassPayoffV1({ ...base, macroPossessionSide }));
+
+    expect(projections[0]).toEqual(projections[1]);
+    expect(projections[1]).toEqual(projections[2]);
+    expect(projections[0]).toMatchObject({
+      physicalControlValue: 0,
+      ownExecutableExitOptions: 0,
+    });
+    expect(base).toEqual(before);
+    expect(base.possession).toBeNull();
+    expect(base.attackingExitOptionCount).toBeNull();
+  });
+
+  it('distinguishes own control with zero lanes, no controller, and opponent control', () => {
+    const own = projectComparablePassPayoffV1(rawPayoff({
+      physicalControl: 'own',
+      ownerGid: 2,
+      possession: 1,
+      attackingExitOptionCount: 0,
+    }));
+    const none = projectComparablePassPayoffV1(rawPayoff());
+    const opponent = projectComparablePassPayoffV1(rawPayoff({
+      physicalControl: 'opponent',
+      ownerGid: 8,
+      possession: -1,
+      attackingExitOptionCount: 0,
+    }));
+    expect(own).toMatchObject({ physicalControlValue: 1, ownExecutableExitOptions: 0 });
+    expect(none).toMatchObject({ physicalControlValue: 0, ownExecutableExitOptions: 0 });
+    expect(opponent).toMatchObject({ physicalControlValue: -1, ownExecutableExitOptions: 0 });
+  });
+
+  it('uses the last playable progression during dead state and live progression after restart', () => {
+    const dead = projectComparablePassPayoffV1(rawPayoff({
+      phase: 'restart',
+      restartKind: 'goalKick',
+      currentPlayableProgressionMetres: null,
+      lastPlayableProgressionMetres: 12,
+      ballControlPhase: 'deadBall',
+    }));
+    const resumed = projectComparablePassPayoffV1(rawPayoff({
+      phase: 'playing',
+      restartKind: null,
+      currentPlayableProgressionMetres: -3,
+      lastPlayableProgressionMetres: 12,
+    }));
+    expect(dead.actionProgressionMetres).toBe(12);
+    expect(resumed.actionProgressionMetres).toBe(-3);
+  });
+
+  it('is invariant to dead-ball reset position in the capture path', () => {
+    const match = makeMatch();
+    const path = createPayoffPathState(match, 0);
+    path.lastPlayableProgressionMetres = 12;
+    match.phase = 'restart';
+    match.ball.owner = null;
+    const values = [-30, 0, 30].map((x) => {
+      match.ball.pos = { x, y: 0 };
+      return captureProjectedPayoff(match, 0, path, match.simTime + 3).comparable;
+    });
+    expect(values.map((value) => value.actionProgressionMetres)).toEqual([12, 12, 12]);
+  });
+
+  it('creates a total absorbing terminal payoff at the fixed authority time', () => {
+    const match = makeMatch();
+    const path = createPayoffPathState(match, 0);
+    path.lastPlayableProgressionMetres = 7;
+    match.finished = true;
+    match.phase = 'fulltime';
+    match.ball.owner = null;
+    const authority = match.simTime + 3;
+    const payoff = captureProjectedPayoff(
+      match,
+      0,
+      path,
+      authority,
+      'absorbedAdministrativeTerminal',
+    );
+    expect(payoff.raw).toMatchObject({
+      observedSimTime: match.simTime,
+      authoritySimTime: authority,
+      authority: 'absorbedAdministrativeTerminal',
+      possession: null,
+      attackingExitOptionCount: null,
+    });
+    expect(payoff.comparable).toMatchObject({
+      physicalControlValue: 0,
+      actionProgressionMetres: 7,
+      ownExecutableExitOptions: 0,
+    });
+    expect(Object.values(payoff.comparable).every(Number.isFinite)).toBe(true);
+  });
+
+  it('uses all 32 records as the denominator for all five means', () => {
+    const samples = Array.from({ length: 32 }, (_, index) => ({
+      physicalControlValue: (index % 3) - 1 as -1 | 0 | 1,
+      goalDelta: index === 31 ? 1 : 0,
+      xgDelta: index / 100,
+      actionProgressionMetres: index,
+      ownExecutableExitOptions: index % 5,
+    }));
+    const mean = meanComparablePassPayoffs(samples);
+    for (const dimension of COMPARABLE_PAYOFF_DIMENSIONS) {
+      const direct = samples.reduce((sum, sample) => sum + sample[dimension], 0) / 32;
+      expect(mean[dimension]).toBe(direct);
+    }
+  });
+
+  it('preserves the outcome-tree mixture identity with nullable raw strata', () => {
+    const records = [
+      { outcome: 'intended', raw: rawPayoff({
+        physicalControl: 'own', ownerGid: 2, possession: 1, attackingExitOptionCount: 3,
+      }) },
+      { outcome: 'opponent', raw: rawPayoff({
+        physicalControl: 'opponent', ownerGid: 8, possession: -1, attackingExitOptionCount: 0,
+      }) },
+      { outcome: 'loose', raw: rawPayoff() },
+      { outcome: 'dead', raw: rawPayoff({
+        phase: 'restart', currentPlayableProgressionMetres: null,
+        lastPlayableProgressionMetres: 9, ballControlPhase: 'deadBall',
+      }) },
+    ];
+    const projected = records.map((record) => ({
+      outcome: record.outcome,
+      value: projectComparablePassPayoffV1(record.raw),
+    }));
+    const direct = meanComparablePassPayoffs(projected.map((record) => record.value));
+    const groups = new Map<string, typeof projected>();
+    for (const record of projected) {
+      const group = groups.get(record.outcome) ?? [];
+      group.push(record);
+      groups.set(record.outcome, group);
+    }
+    for (const dimension of COMPARABLE_PAYOFF_DIMENSIONS) {
+      let mixture = 0;
+      for (const group of groups.values()) {
+        const conditional = meanComparablePassPayoffs(group.map((record) => record.value));
+        mixture += (group.length / projected.length) * conditional[dimension];
+      }
+      expect(mixture).toBe(direct[dimension]);
+    }
+  });
+
+  it('keeps the extracted comparator bit-for-bit equivalent to the legacy algorithm', () => {
+    const oldComparator = (
+      alternative: LegacyRolloutOutcome,
+      chosen: LegacyRolloutOutcome,
+    ): PayoffRelation => {
+      const dimensions = [
+        ['possession', 0],
+        ['goalDelta', 0],
+        ['xgDelta', 0.01],
+        ['progressionMetres', 0.5],
+        ['exitOptionCount', 0],
+      ] as const;
+      let altNoWorse = true;
+      let chosenNoWorse = true;
+      let altStrict = false;
+      let chosenStrict = false;
+      for (const [dimension, tolerance] of dimensions) {
+        const delta = alternative[dimension] - chosen[dimension];
+        if (delta < -tolerance) altNoWorse = false;
+        if (delta > tolerance) chosenNoWorse = false;
+        if (delta > tolerance) altStrict = true;
+        if (delta < -tolerance) chosenStrict = true;
+      }
+      if (altNoWorse && altStrict) return 'alternativeDominates';
+      if (chosenNoWorse && chosenStrict) return 'chosenDominates';
+      if (!altStrict && !chosenStrict) return 'equivalent';
+      return 'tradeoff';
+    };
+    const samples: LegacyRolloutOutcome[] = [];
+    for (const possession of [-1, 0, 1]) {
+      for (const xgDelta of [-0.02, -0.01, 0, 0.01, 0.02]) {
+        for (const progressionMetres of [-1, -0.5, 0, 0.5, 1]) {
+          samples.push({
+            possession,
+            goalDelta: 0,
+            xgDelta,
+            progressionMetres,
+            exitOptionCount: possession + 1,
+          });
+        }
+      }
+    }
+    for (const alternative of samples) {
+      for (const chosen of samples) {
+        expect(compareLegacyPassPayoffs(alternative, chosen)).toBe(
+          oldComparator(alternative, chosen),
+        );
+      }
+    }
+    expect(compareComparablePassPayoffs(
+      projectComparablePassPayoffV1(rawPayoff({ currentPlayableProgressionMetres: 1 })),
+      projectComparablePassPayoffV1(rawPayoff({ currentPlayableProgressionMetres: 0 })),
+    )).toBe('alternativeDominates');
   });
 });

@@ -1,7 +1,8 @@
 # Counterfactual Oracle v2-0 — First-Transition Semantics
 
-Status: **v2-0 event-semantics gate passed; probe-only, with no S7e estimator or
-live consumer.**
+Status: **v2-0 event semantics and Comparable V1 preflight passed; the later
+replicated pilot was statistically inconclusive. Probe-only, with no S7e
+estimator or live consumer.**
 
 Date: 2026-07-21
 
@@ -183,16 +184,22 @@ merged bucket.
 
 Mean first-transition time was 0.702s for chosen and 0.776s for alternative.
 Post-control snapshots were supported on exactly the stable-controller branches:
-96.5% and 97.2%. Fixed kick+3s snapshots were available for 98.8% of both branches;
-transition+3s was available for 98.6% / 98.4%, with the shortfall caused by match
-administrative termination rather than a result-dependent horizon.
+96.5% and 97.2%. The original nullable kick+3s capture was available for 98.8% of
+both branches; transition+3s was available for 98.6% / 98.4%, with the shortfall
+caused by match administrative termination rather than a result-dependent horizon.
+The later Comparable V1 preflight absorbed the six early-fulltime records on each
+branch to the same fixed kick+3s authority time, so primary payoff availability is
+now 100% without changing the first-transition partition or choosing a shorter
+horizon.
 
-The support mask is not cosmetic. At kick+3s, **316 chosen and 309 alternative
+The support mask is not cosmetic. In the Comparable preflight, **317 chosen and 309 alternative
 branches had no physical owner while macro possession still named a side**. They
-now carry `possession=null` and `exitOptionCount=null`, rather than silently
+retain raw `possession=null` and `exitOptionCount=null`, rather than silently
 turning the macro label into physical possession or treating undefined options as
-zero. Whenever a physical owner existed, its side agreed with macro possession in
-this census.
+zero. A separate versioned `ComparablePassPayoffV1` projects these raw facts into
+the total questions required by the replicated oracle; it does not overwrite the
+raw record or read macro possession. Whenever a physical owner existed, its side
+agreed with macro possession in this census.
 
 The transition anatomy also confirms the reason S7 needs composition: compared
 with chosen, the S7b alternatives reach their intended target much less often
@@ -200,12 +207,13 @@ with chosen, the S7b alternatives reach their intended target much less often
 (194 vs 125). Conditional next-state value cannot be interpreted as complete
 action value without this transition layer.
 
-Oracle v2-0 therefore passes its narrow semantics gate. The next authorised design
-question is the fixed replicated-continuation/outcome-tree contract; no estimator,
-dominance claim or live consumer follows automatically.
+Oracle v2-0 therefore passes its narrow semantics gate. The subsequent replicated
+pilot also passed event/projection validity, but its two R=32 halves were not stable
+enough (39/64 relation agreement; 3.222pp projected MC half-width). Its final suite
+was consequently not run. No estimator, dominance claim or live consumer follows.
 
 Repository gates also pass: TypeScript and the production build are clean; the
-focused event suite passes 13/13; the full suite passes **522/522 across 74 files**;
+focused Oracle suite passes 21/21; the full suite passes **530/530 across 74 files**;
 the default two-season fingerprint remains exactly
 `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
 Profiler-on/off determinism passes. The measured run was 5.34µs/step and 14.6

@@ -1,8 +1,9 @@
 # S7e-0C — Replicated Counterfactual Oracle Ceiling
 
-Status: **statistical contract pre-registered; execution blocked by one unresolved
-outcome-support conflict identified in §10. No pilot or final run is authorised
-until that conflict is resolved explicitly.**
+Status: **ComparablePassPayoffV1 preflight and pilot validity passed, but the
+pre-registered pilot was statistically INCONCLUSIVE: R=32 did not meet either
+stability gate. The 32,576-branch final was not run; no adaptive retry, estimator
+or live consumer is authorised.**
 
 Date: 2026-07-21
 
@@ -32,18 +33,18 @@ The primary estimand is only the fixed set of 509 pairs. For pair `i`, branch
 `b ∈ {chosen, alternative}` and continuation `r`, the proposed outcome is
 `Y[i,b,r]`. Each branch mean is taken over a fixed `R=32` child-stream set.
 
-The frozen five dimensions and tolerances are intended to remain:
+Comparable V1 retains five dimensions and the frozen numeric tolerances:
 
 | dimension | tolerance |
 |---|---:|
-| possession | 0 |
+| physical control value | 0 |
 | goal delta | 0 |
 | xG delta | 0.01 |
-| progression metres | 0.5 |
-| exit-option count | 0 |
+| action progression metres | 0.5 |
+| own executable exit options | 0 |
 
-Section 10 records why the current Oracle v2 support mask prevents this vector
-from yet being a valid `R⁵` value on every continuation.
+Section 10 records why the legacy vector was not total; §11 defines the accepted
+replacement projection.
 
 ### Diagnostic: match-ecology generalisation
 
@@ -162,6 +163,10 @@ pair/child RNG collisions
 clone or deterministic-rerun differences
 ```
 
+Determinism is pre-registered as one complete rerun of replicate 0 for both
+branches of every pilot pair. The rerun record must be byte-identical. This tests
+all 64 frozen states without doubling the whole 8,192-branch pilot.
+
 ### Relation-stability gate
 
 For each half, compute the two 32-continuation branch means and apply the existing
@@ -267,7 +272,7 @@ may authorise a later **transition-estimator design contract**. It still cannot
 authorise estimator code, live AI, a preference gene, scalar utility, candidate
 changes or tolerance tuning.
 
-## 10. Preflight blocker — the five-vector is not currently total
+## 10. Historical preflight blocker — the old five-vector was not total
 
 Oracle v2-0 deliberately made physical control and support honest:
 
@@ -297,13 +302,12 @@ The current contracts simultaneously forbid all available conversions:
   both the direct-mean estimand and the outcome-tree identity;
 - removing or redefining dimensions would change the frozen relation/tolerance.
 
-Therefore the pilot relation and its split-half stability are presently
+Therefore the pilot relation and its split-half stability were
 **undefined**. Running 8,192 pilot branches cannot resolve a type/estimand
 contradiction.
 
-Before code or rollout, a separate authority decision must define a universally
-supported numeric outcome semantics, or explicitly replace the frozen relation.
-Until then:
+The external Prompt-8 audit selected the explicit replacement described in §11.
+Before that replacement passed preflight, the state was:
 
 ```text
 oracleValidity: PASS for v2-0 event semantics
@@ -313,3 +317,114 @@ matchGeneralization: NOT RUN
 ```
 
 This is a contract blocker, not evidence that transition composition lacks value.
+
+## 11. ComparablePassPayoffV1 resolution and preflight result
+
+Raw observations remain nullable. A separate pure, versioned projection asks
+different total questions:
+
+```text
+physicalControlValue:
+  own = +1 · none = 0 · opponent = -1
+
+ownExecutableExitOptions:
+  actual own-controller option count, otherwise exactly 0
+
+actionProgressionMetres:
+  current live progression, else the last playable progression
+```
+
+The zeroes are world answers, not raw imputation: no stable controller is the
+middle physical-control state, and without an attacking controller there are zero
+immediately executable attacking exits. Raw `possession` and raw controller option
+count stay null. The projection does not read macro `possessionSide`.
+
+`lastPlayableProgressionMetres` starts at 0 on the kick snapshot and updates only
+after a complete live, non-coasting step. A dead/restart reset therefore cannot
+move it. If fulltime arrives before kick+3s, the final state is absorbed to the
+fixed authority time; no action-dependent short horizon is introduced.
+
+The frozen 120-match preflight reproduced 509 pairs / 1018 records and passed:
+
+```text
+candidate partition / event conservation: PASS
+force failures: 0
+missing or non-finite comparable vectors: 0
+macro-possession projection reads: 0
+raw null overwrites: 0
+dead/reset position reads: 0
+administrative terminal unsupported: 0
+projection-version mismatches: 0
+per-dimension denominator mismatch: 0
+```
+
+All 1018 records now have a total vector; 12 early-fulltime records use the
+absorbing terminal. Owner-free plus macro-assigned endpoints are 317 chosen and
+309 alternative, while their raw owner-dependent fields remain null. Focused
+tests cover macro mutation, raw preservation, the three control states, dead-reset
+invariance, restart resumption, terminal absorption, one denominator, outcome-tree
+identity and exhaustive legacy-comparator algorithm parity.
+
+Comparable V1 retains five dimensions and the numeric tolerances, but it is a new
+estimand. Legacy S7b relation counts remain historical and cannot be spliced into
+the replicated Comparable V1 series. This preflight authorised only the independent
+pilot in §6.
+
+## 12. Frozen pilot result — valid mechanism, insufficient R=32 stability
+
+The pilot ran exactly as pre-registered. The deterministic discovery path found
+64 valid pairs by match seed 10016. Each branch used all 64 committed child
+streams; H0 and H1 were the fixed 0–31 and 32–63 halves. Replicate 0 for both
+branches of every pair was independently rerun byte-identically.
+
+All mechanism and semantic gates passed:
+
+```text
+pairs discovered: 64 / 64
+branch continuations: 8,192
+force failures / residual outcomes / double classifications: 0
+missing or non-finite comparable vectors: 0
+pair or child-seed collisions: 0
+deterministic-rerun differences: 0
+projection/null/denominator/terminal violations: 0
+oracleValidity: PASS
+```
+
+The two statistical feasibility gates both failed:
+
+```text
+relation agreement: 39 / 64       required: >= 52 / 64
+projected MC half-width: 3.222pp   required: <= 1.25pp
+
+H0 relation: alternative 11 · chosen 10 · equivalent 0 · tradeoff 43
+H1 relation: alternative 16 · chosen 10 · equivalent 0 · tradeoff 38
+dominance edge: +1.56pp / +9.38pp
+```
+
+The descriptive transition ledger over 4,096 continuations per action was:
+
+| branch | intended | teammate | opponent | loose | dead | censor |
+|---|---:|---:|---:|---:|---:|---:|
+| chosen | 2545 | 355 | 1047 | 13 | 136 | 0 |
+| alternative | 2118 | 647 | 1195 | 15 | 121 | 0 |
+
+This is not a semantic failure and does not falsify transition composition. It
+means the pre-registered R=32 branch means do not classify the five-dimensional
+Pareto relation reliably enough for the frozen +5pp experiment. Per the stop rule:
+
+```text
+pilotFeasibility: INCONCLUSIVE — R=32 insufficient
+finiteSuitePayoff: NOT RUN
+matchGeneralization: NOT RUN
+```
+
+The final suite was not run. R was not raised to 48/64, and no tolerance,
+candidate, relation or threshold was changed. Any future revisit needs a new
+authority and a different inferential design; this contract cannot be retried by
+spending more continuations after seeing the result.
+
+Repository gates remain clean: TypeScript, production build and all 530 tests
+pass, and the default two-season fingerprint remains exactly
+`57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+The profiler determinism check also passes; 5.37µs/step versus the frozen
+5.32µs/step baseline is within run noise and shows no material regression.

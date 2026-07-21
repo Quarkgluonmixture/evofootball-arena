@@ -18,6 +18,10 @@ import { cloneSimulationState } from '../../src/sim/cloneState';
 import { DT } from '../../src/sim/constants';
 import { TEAM_SIZE, type Side, type TeamInfo } from '../../src/sim/types';
 import { Rng } from '../../src/utils/rng';
+import {
+  compareLegacyPassPayoffs as compareOutcomes,
+  type PayoffRelation as OutcomeRelation,
+} from './pass-payoff-relation';
 
 const team = (name: string, seed: number): TeamInfo => {
   const rng = new Rng(seed);
@@ -68,35 +72,6 @@ type OutcomeDimension = keyof RolloutOutcome;
 const OUTCOME_DIMENSIONS: readonly OutcomeDimension[] = [
   'possession', 'goalDelta', 'xgDelta', 'progressionMetres', 'exitOptionCount',
 ];
-const OUTCOME_TOLERANCE: Readonly<Record<OutcomeDimension, number>> = {
-  possession: 0,
-  goalDelta: 0,
-  xgDelta: 0.01,
-  progressionMetres: 0.5,
-  exitOptionCount: 0,
-};
-
-type OutcomeRelation = 'alternativeDominates' | 'chosenDominates' | 'equivalent' | 'tradeoff';
-
-const compareOutcomes = (alternative: RolloutOutcome, chosen: RolloutOutcome): OutcomeRelation => {
-  let alternativeNoWorse = true;
-  let chosenNoWorse = true;
-  let alternativeStrict = false;
-  let chosenStrict = false;
-  for (const dimension of OUTCOME_DIMENSIONS) {
-    const delta = alternative[dimension] - chosen[dimension];
-    const tolerance = OUTCOME_TOLERANCE[dimension];
-    if (delta < -tolerance) alternativeNoWorse = false;
-    if (delta > tolerance) chosenNoWorse = false;
-    if (delta > tolerance) alternativeStrict = true;
-    if (delta < -tolerance) chosenStrict = true;
-  }
-  if (alternativeNoWorse && alternativeStrict) return 'alternativeDominates';
-  if (chosenNoWorse && chosenStrict) return 'chosenDominates';
-  if (!alternativeStrict && !chosenStrict) return 'equivalent';
-  return 'tradeoff';
-};
-
 const profilesOf = (match: Match): Map<number, KnownReachProfile> => {
   const profiles = new Map<number, KnownReachProfile>();
   for (const player of match.allPlayers) {

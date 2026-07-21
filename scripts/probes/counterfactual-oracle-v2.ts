@@ -1,4 +1,4 @@
-// Counterfactual Oracle v2-0 — event semantics and support-mask audit only.
+// Counterfactual Oracle v2-0 — event semantics + Comparable V1 preflight only.
 // No ensemble, S7 relation, tolerance or live consumer is changed here.
 //   npx tsx scripts/probes/counterfactual-oracle-v2.ts [matches] [seedOffset]
 import { evaluatePassAffordance, type KnownReachProfile } from '../../src/ai/passAffordance';
@@ -16,6 +16,7 @@ import { DT } from '../../src/sim/constants';
 import { TEAM_SIZE, type Side, type TeamInfo } from '../../src/sim/types';
 import { Rng } from '../../src/utils/rng';
 import {
+  projectComparablePassPayoffV1,
   runOracleV2Branch,
   type FirstTransitionOutcome,
   type OracleCensorCause,
@@ -105,6 +106,7 @@ interface BranchAggregate {
   transitionSecondsCount: number;
   postControlSupported: number;
   primarySupported: number;
+  primaryAbsorbed: number;
   diagnosticSupported: number;
   physicalNoneMacroAssigned: number;
   physicalMacroDisagreement: number;
@@ -120,6 +122,7 @@ const aggregate = (): BranchAggregate => ({
   transitionSecondsCount: 0,
   postControlSupported: 0,
   primarySupported: 0,
+  primaryAbsorbed: 0,
   diagnosticSupported: 0,
   physicalNoneMacroAssigned: 0,
   physicalMacroDisagreement: 0,
@@ -135,6 +138,16 @@ let candidatePairs = 0;
 let pairForceFailures = 0;
 let conservationViolations = 0;
 let matchingCompletionCorroborations = 0;
+const projectionViolations = {
+  missingComparableVectors: 0,
+  nonFiniteComparableFields: 0,
+  macroPossessionProjectionReads: 0,
+  rawNullFieldsOverwritten: 0,
+  deadResetPositionReads: 0,
+  administrativeTerminalUnsupported: 0,
+  projectionVersionMismatch: 0,
+  perDimensionDenominatorMismatch: 0,
+};
 
 const controlledOutcome = (outcome: FirstTransitionOutcome | null): boolean =>
   outcome === 'intendedReception'
@@ -211,23 +224,80 @@ const validateRecord = (record: OracleV2BranchRecord): string[] => {
     ) errors.push('loose lifecycle');
   }
   const checkOutcome = (snapshot: OracleV2BranchRecord['payoffFromKick3s']): void => {
-    if (!snapshot.supported) return;
-    if (snapshot.physicalControl === 'none') {
-      if (snapshot.possession !== null || snapshot.exitOptionCount !== null) {
-        errors.push('owner-null fields are not null');
+    const { raw, comparable } = snapshot;
+    if (snapshot.projectionVersion !== 'comparable-pass-payoff-v1') {
+      projectionViolations.projectionVersionMismatch++;
+      errors.push('projection version');
+    }
+    if (raw.physicalControl === 'none') {
+      if (raw.possession !== null || raw.attackingExitOptionCount !== null) {
+        projectionViolations.rawNullFieldsOverwritten++;
+        errors.push('owner-null raw fields are not null');
       }
-    } else if (snapshot.possession === null || snapshot.exitOptionCount === null) {
-      errors.push('controlled fields unexpectedly null');
+      if (
+        comparable.physicalControlValue !== 0
+        || comparable.ownExecutableExitOptions !== 0
+      ) errors.push('owner-null comparable state');
+    } else if (
+      raw.possession === null
+      || raw.attackingExitOptionCount === null
+    ) errors.push('controlled raw fields unexpectedly null');
+    if (
+      raw.physicalControl === 'own'
+      && (raw.possession !== 1 || comparable.physicalControlValue !== 1)
+    ) errors.push('own control projection');
+    if (
+      raw.physicalControl === 'opponent'
+      && (
+        raw.possession !== -1
+        || raw.attackingExitOptionCount !== 0
+        || comparable.physicalControlValue !== -1
+        || comparable.ownExecutableExitOptions !== 0
+      )
+    ) errors.push('opponent control projection');
+    const finite = Object.values(comparable).every(Number.isFinite);
+    if (!finite) {
+      projectionViolations.nonFiniteComparableFields++;
+      errors.push('non-finite comparable field');
+    }
+    const projectedUnderMacro = (macroPossessionSide: Side | -1) =>
+      projectComparablePassPayoffV1({ ...raw, macroPossessionSide });
+    if (
+      JSON.stringify(projectedUnderMacro(-1)) !== JSON.stringify(comparable)
+      || JSON.stringify(projectedUnderMacro(0)) !== JSON.stringify(comparable)
+      || JSON.stringify(projectedUnderMacro(1)) !== JSON.stringify(comparable)
+    ) {
+      projectionViolations.macroPossessionProjectionReads++;
+      errors.push('macro possession projection read');
+    }
+    if (
+      raw.currentPlayableProgressionMetres === null
+      && comparable.actionProgressionMetres !== raw.lastPlayableProgressionMetres
+    ) {
+      projectionViolations.deadResetPositionReads++;
+      errors.push('dead/reset progression read');
+    }
+    if (raw.authority === 'absorbedAdministrativeTerminal') {
+      if (
+        !raw.finished
+        || raw.phase !== 'fulltime'
+        || raw.observedSimTime >= raw.authoritySimTime
+      ) {
+        projectionViolations.administrativeTerminalUnsupported++;
+        errors.push('administrative terminal absorption');
+      }
     }
   };
   checkOutcome(record.payoffFromKick3s);
-  checkOutcome(record.payoffFromTransition3s);
-  if (record.payoffFromKick3s.supported) {
-    const delta = record.payoffFromKick3s.simTime - record.passKey.kickTime;
+  const primaryRaw = record.payoffFromKick3s.raw;
+  if (primaryRaw.authority === 'kickPlus3s') {
+    const delta = primaryRaw.observedSimTime - record.passKey.kickTime;
     if (delta < 3 - 1e-9 || delta >= 3 + DT + 1e-9) errors.push('kick horizon');
+  } else if (primaryRaw.authoritySimTime !== record.passKey.kickTime + 3) {
+    errors.push('absorbed authority horizon');
   }
-  if (record.payoffFromTransition3s.supported) {
-    const delta = record.payoffFromTransition3s.simTime - transition.simTime;
+  if ('projectionVersion' in record.payoffFromTransition3s) {
+    const delta = record.payoffFromTransition3s.raw.observedSimTime - transition.simTime;
     if (delta < 3 - 1e-9 || delta >= 3 + DT + 1e-9) errors.push('transition horizon');
   }
   return errors;
@@ -247,9 +317,10 @@ const addRecord = (record: OracleV2BranchRecord): void => {
   if (transition.lastCompletedPassMatchesKick) matchingCompletionCorroborations++;
   if (transition.deadEvidence !== null) target.deadEvidence[transition.deadEvidence]++;
   if (record.postControl.supported) target.postControlSupported++;
-  if (record.payoffFromKick3s.supported) {
+  {
     target.primarySupported++;
-    const snapshot = record.payoffFromKick3s;
+    const snapshot = record.payoffFromKick3s.raw;
+    if (snapshot.authority === 'absorbedAdministrativeTerminal') target.primaryAbsorbed++;
     if (snapshot.physicalControl === 'none' && snapshot.macroPossessionSide !== -1) {
       target.physicalNoneMacroAssigned++;
     }
@@ -262,7 +333,7 @@ const addRecord = (record: OracleV2BranchRecord): void => {
       target.physicalMacroDisagreement++;
     }
   }
-  if (record.payoffFromTransition3s.supported) target.diagnosticSupported++;
+  if ('projectionVersion' in record.payoffFromTransition3s) target.diagnosticSupported++;
   const errors = validateRecord(record);
   conservationViolations += errors.length;
   if (errors.length > 0 && conservationViolations <= 10) {
@@ -355,7 +426,7 @@ for (const branch of ['chosen', 'alternative'] as const) {
   console.log(
     `  transition mean ${(value.transitionSeconds / Math.max(value.transitionSecondsCount, 1)).toFixed(3)}s · `
     + `post-control support ${pct(value.postControlSupported, value.n)} · `
-    + `kick+3s ${pct(value.primarySupported, value.n)} · `
+    + `kick+3s ${pct(value.primarySupported, value.n)} (${value.primaryAbsorbed} absorbed) · `
     + `transition+3s ${pct(value.diagnosticSupported, value.n)}`,
   );
   console.log(
@@ -378,6 +449,8 @@ const totalRecords = metrics.chosen.n + metrics.alternative.n;
 const recordForceFailures =
   metrics.chosen.statuses.forceFailure + metrics.alternative.statuses.forceFailure;
 const candidateSetExpected = N !== 120 || OFF !== 0 || candidatePairs === 509;
+const projectionViolationTotal = Object.values(projectionViolations)
+  .reduce((sum, count) => sum + count, 0);
 const partitioned = (['chosen', 'alternative'] as const).every((branch) => {
   const value = metrics[branch];
   const outcomeTotal = Object.values(value.outcomes).reduce((sum, count) => sum + count, 0);
@@ -390,11 +463,18 @@ console.log(
   + `conservation violations=${conservationViolations} · force failures=${pairForceFailures} · `
   + `records=${totalRecords} · completion corroborations=${matchingCompletionCorroborations}`,
 );
+console.log(
+  'projection exact-zero gates '
+  + (Object.keys(projectionViolations) as Array<keyof typeof projectionViolations>)
+    .map((key) => `${key}=${projectionViolations[key]}`)
+    .join(' · '),
+);
 
 if (
   !candidateSetExpected
   || !partitioned
   || conservationViolations !== 0
+  || projectionViolationTotal !== 0
   || pairForceFailures !== 0
   || recordForceFailures !== 0
 ) {

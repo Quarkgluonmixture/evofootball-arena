@@ -80,23 +80,62 @@ export interface FirstTransitionSnapshot extends FirstTransitionClassification {
   readonly possessionSide: Side | -1;
 }
 
-export interface SupportedOutcomeSnapshot {
-  readonly supported: true;
+export type PhysicalControlState = 'own' | 'none' | 'opponent';
+export type PayoffObservationAuthority =
+  | 'kickPlus3s'
+  | 'absorbedAdministrativeTerminal';
+
+/** Honest comparable facts. Missing physical subjects remain null. */
+export interface RawPayoffFacts {
   readonly tick: number;
-  readonly simTime: number;
-  readonly physicalControl: 'own' | 'opponent' | 'none';
-  readonly macroPossessionSide: Side | -1;
-  /** Null when no stable physical controller exists. */
-  readonly possession: number | null;
-  readonly goalDelta: number;
-  /** Event-history value; unlike owner-dependent fields it remains defined. */
-  readonly xgDelta: number;
-  /** Null during a dead-ball phase or the deliberate out-of-play coast. */
-  readonly progressionMetres: number | null;
-  /** Null when there is no stable controller. */
-  readonly exitOptionCount: number | null;
-  readonly ballControlPhase: BallControlPhase['kind'];
+  readonly observedSimTime: number;
   readonly phase: MatchPhase;
+  readonly finished: boolean;
+  readonly ballCoastingOut: boolean;
+  readonly restartKind: RestartKind | null;
+  readonly physicalControl: PhysicalControlState;
+  readonly ownerGid: number | null;
+  /** Diagnostic only. ComparablePassPayoffV1 must never read this field. */
+  readonly macroPossessionSide: Side | -1;
+  readonly possession: 1 | -1 | null;
+  readonly goalDelta: number;
+  readonly xgDelta: number;
+  readonly currentPlayableProgressionMetres: number | null;
+  readonly lastPlayableProgressionMetres: number;
+  readonly attackingExitOptionCount: number | null;
+  readonly ballControlPhase: BallControlPhase['kind'];
+}
+
+/** Fixed-from-kick authority used by the replicated oracle. */
+export interface RawOraclePayoffObservation extends RawPayoffFacts {
+  readonly authoritySimTime: number;
+  readonly authority: PayoffObservationAuthority;
+}
+
+/** Separate event-relative anatomy; never substitutes for the primary horizon. */
+export interface RawTransitionPayoffDiagnostic extends RawPayoffFacts {
+  readonly transitionAuthoritySimTime: number;
+}
+
+/** Versioned, total comparison projection. This is not the raw observation. */
+export interface ComparablePassPayoffV1 {
+  readonly physicalControlValue: -1 | 0 | 1;
+  readonly goalDelta: number;
+  readonly xgDelta: number;
+  readonly actionProgressionMetres: number;
+  readonly ownExecutableExitOptions: number;
+}
+
+export interface ProjectedOraclePayoff {
+  readonly projectionVersion: 'comparable-pass-payoff-v1';
+  readonly raw: RawOraclePayoffObservation;
+  readonly comparable: ComparablePassPayoffV1;
+}
+
+export interface ProjectedTransitionPayoffDiagnostic {
+  readonly projectionVersion: 'comparable-pass-payoff-v1';
+  readonly raw: RawTransitionPayoffDiagnostic;
+  readonly comparable: ComparablePassPayoffV1;
 }
 
 export interface UnsupportedOutcomeSnapshot {
@@ -104,7 +143,9 @@ export interface UnsupportedOutcomeSnapshot {
   readonly reason: OracleCensorCause | 'notResolved';
 }
 
-export type OutcomeSnapshot = SupportedOutcomeSnapshot | UnsupportedOutcomeSnapshot;
+export type DiagnosticOutcomeSnapshot =
+  | ProjectedTransitionPayoffDiagnostic
+  | UnsupportedOutcomeSnapshot;
 
 export interface ConditionalPostControlSnapshot {
   readonly supported: true;
@@ -114,7 +155,6 @@ export interface ConditionalPostControlSnapshot {
   readonly controllerPos: Readonly<V2>;
   readonly controllerVel: Readonly<V2>;
   readonly controllerBodyDir: Readonly<V2>;
-  readonly outcomeVectorAtControl: SupportedOutcomeSnapshot;
 }
 
 export interface UnsupportedPostControlSnapshot {
@@ -131,8 +171,8 @@ export interface OracleV2BranchRecord {
   readonly passKey: OraclePassKey;
   readonly firstTransition: FirstTransitionSnapshot;
   readonly postControl: PostControlSnapshot;
-  readonly payoffFromKick3s: OutcomeSnapshot;
-  readonly payoffFromTransition3s: OutcomeSnapshot;
+  readonly payoffFromKick3s: ProjectedOraclePayoff;
+  readonly payoffFromTransition3s: DiagnosticOutcomeSnapshot;
 }
 
 export interface PayoffOrigin {
@@ -141,12 +181,21 @@ export interface PayoffOrigin {
   readonly localBallX: number;
 }
 
+export interface PayoffPathState {
+  readonly origin: PayoffOrigin;
+  lastPlayableProgressionMetres: number;
+}
+
 export interface RunOracleV2BranchInput {
   readonly frozen: Match;
   readonly passerGid: number;
   readonly targetGid: number;
   readonly side: Side;
   readonly branch: 'chosen' | 'alternative';
+  /** Probe-only child stream; never mutates the supplied frozen Match. */
+  readonly childRngState?: number;
+  /** Replicated ceiling needs only first transition + kick+3s primary payoff. */
+  readonly includeTransitionDiagnostic?: boolean;
 }
 
 export type RunOracleV2BranchResult =
@@ -156,6 +205,11 @@ export type RunOracleV2BranchResult =
 /** Probe-only cap. Live pendingPass expires at 3.5s; this adds bounded slack. */
 export const FIRST_TRANSITION_CAP_SECONDS = 4;
 export const PAYOFF_SECONDS = 3;
+
+const setRngState = (match: Match, state: number): void => {
+  const canonical = (state >>> 0) === 0 ? 0x9e3779b9 : state >>> 0;
+  (match.rng as unknown as { s: number }).s = canonical;
+};
 
 const cloneV2 = (value: Readonly<V2>): V2 => ({ x: value.x, y: value.y });
 
@@ -373,6 +427,34 @@ export const capturePayoffOrigin = (match: Match, side: Side): PayoffOrigin => (
   localBallX: match.teams[side].localX(match.ball.pos.x),
 });
 
+export const createPayoffPathState = (
+  match: Match,
+  side: Side,
+): PayoffPathState => ({
+  origin: capturePayoffOrigin(match, side),
+  // The kick snapshot is the zero-progress reference. Only completed live
+  // steps may advance this ledger.
+  lastPlayableProgressionMetres: 0,
+});
+
+const playableProgression = (
+  match: Match,
+  side: Side,
+  origin: PayoffOrigin,
+): number | null => match.phase === 'playing' && !match.ballCoastingOut
+  ? match.teams[side].localX(match.ball.pos.x) - origin.localBallX
+  : null;
+
+/** Call once after every complete branch.step(DT), before any payoff capture. */
+export function updatePayoffPathState(
+  match: Match,
+  side: Side,
+  path: PayoffPathState,
+): void {
+  const progression = playableProgression(match, side, path.origin);
+  if (progression !== null) path.lastPlayableProgressionMetres = progression;
+}
+
 const optionCount = (match: Match, side: Side): number | null => {
   const owner = match.ball.owner;
   if (owner === null) return null;
@@ -388,35 +470,117 @@ const optionCount = (match: Match, side: Side): number | null => {
   return options;
 };
 
-export function captureSupportedOutcome(
+const captureRawPayoffFacts = (
   match: Match,
   side: Side,
-  origin: PayoffOrigin,
-): SupportedOutcomeSnapshot {
+  path: PayoffPathState,
+): RawPayoffFacts => {
   const owner = match.ball.owner;
   const physicalControl = owner === null
     ? 'none'
     : owner.side === side ? 'own' : 'opponent';
-  const liveBallPosition = match.phase === 'playing' && !match.ballCoastingOut;
   return {
-    supported: true,
     tick: match.simTick,
-    simTime: match.simTime,
+    observedSimTime: match.simTime,
+    phase: match.phase,
+    finished: match.finished,
+    ballCoastingOut: match.ballCoastingOut,
+    restartKind: match.restart?.kind ?? null,
     physicalControl,
+    ownerGid: owner?.gid ?? null,
     macroPossessionSide: match.possessionSide,
     possession: owner === null ? null : owner.side === side ? 1 : -1,
     goalDelta:
-      (match.score[side] - match.score[1 - side]) - origin.scoreDiff,
+      (match.score[side] - match.score[1 - side]) - path.origin.scoreDiff,
     xgDelta:
-      (xgFor(match, side) - xgFor(match, (1 - side) as Side)) - origin.xgDiff,
-    progressionMetres: liveBallPosition
-      ? match.teams[side].localX(match.ball.pos.x) - origin.localBallX
-      : null,
-    exitOptionCount: optionCount(match, side),
+      (xgFor(match, side) - xgFor(match, (1 - side) as Side)) - path.origin.xgDiff,
+    currentPlayableProgressionMetres: playableProgression(
+      match,
+      side,
+      path.origin,
+    ),
+    lastPlayableProgressionMetres: path.lastPlayableProgressionMetres,
+    attackingExitOptionCount: optionCount(match, side),
     ballControlPhase: match.ballControlPhase.kind,
-    phase: match.phase,
+  };
+};
+
+export function captureRawPayoffObservation(
+  match: Match,
+  side: Side,
+  path: PayoffPathState,
+  authoritySimTime: number,
+  authority: PayoffObservationAuthority = 'kickPlus3s',
+): RawOraclePayoffObservation {
+  return {
+    ...captureRawPayoffFacts(match, side, path),
+    authoritySimTime,
+    authority,
   };
 }
+
+/**
+ * Pure total projection. Deliberately never reads macroPossessionSide, phase,
+ * ball position or restart placement.
+ */
+export function projectComparablePassPayoffV1(
+  raw: RawPayoffFacts,
+): ComparablePassPayoffV1 {
+  if (raw.physicalControl === 'own' && raw.attackingExitOptionCount === null) {
+    throw new Error('own physical controller requires an exit-option count');
+  }
+  return {
+    physicalControlValue: raw.physicalControl === 'own'
+      ? 1
+      : raw.physicalControl === 'opponent' ? -1 : 0,
+    goalDelta: raw.goalDelta,
+    xgDelta: raw.xgDelta,
+    actionProgressionMetres:
+      raw.currentPlayableProgressionMetres ?? raw.lastPlayableProgressionMetres,
+    ownExecutableExitOptions: raw.physicalControl === 'own'
+      ? raw.attackingExitOptionCount as number
+      : 0,
+  };
+}
+
+export const projectRawPayoff = (
+  raw: RawOraclePayoffObservation,
+): ProjectedOraclePayoff => ({
+  projectionVersion: 'comparable-pass-payoff-v1',
+  raw,
+  comparable: projectComparablePassPayoffV1(raw),
+});
+
+export const captureProjectedPayoff = (
+  match: Match,
+  side: Side,
+  path: PayoffPathState,
+  authoritySimTime: number,
+  authority: PayoffObservationAuthority = 'kickPlus3s',
+): ProjectedOraclePayoff => projectRawPayoff(captureRawPayoffObservation(
+  match,
+  side,
+  path,
+  authoritySimTime,
+  authority,
+));
+
+export const captureTransitionPayoffDiagnostic = (
+  match: Match,
+  side: Side,
+  path: PayoffPathState,
+  transitionAuthoritySimTime: number,
+): ProjectedTransitionPayoffDiagnostic => {
+  const raw: RawTransitionPayoffDiagnostic = {
+    ...captureRawPayoffFacts(match, side, path),
+    transitionAuthoritySimTime,
+  };
+  return {
+    projectionVersion: 'comparable-pass-payoff-v1',
+    raw,
+    comparable: projectComparablePassPayoffV1(raw),
+  };
+};
 
 const makeFirstTransitionSnapshot = (
   classification: FirstTransitionClassification,
@@ -449,8 +613,6 @@ const unsupportedPostControl = (
 const makePostControl = (
   match: Match,
   transition: FirstTransitionSnapshot,
-  side: Side,
-  kickOrigin: PayoffOrigin,
 ): PostControlSnapshot => {
   if (
     transition.status !== 'resolved'
@@ -471,7 +633,6 @@ const makePostControl = (
     controllerPos: cloneV2(controller.pos),
     controllerVel: cloneV2(controller.vel),
     controllerBodyDir: cloneV2(controller.bodyDir),
-    outcomeVectorAtControl: captureSupportedOutcome(match, side, kickOrigin),
   };
 };
 
@@ -484,6 +645,7 @@ export function runOracleV2Branch(
   input: RunOracleV2BranchInput,
 ): RunOracleV2BranchResult {
   const branch = cloneSimulationState(input.frozen);
+  if (input.childRngState !== undefined) setRngState(branch, input.childRngState);
   const passer = branch.allPlayers[input.passerGid];
   const target = branch.allPlayers[input.targetGid];
   if (
@@ -494,8 +656,8 @@ export function runOracleV2Branch(
     || passer.kickCooldown > 0
   ) return { ok: false, reason: 'invalid forced-pass precondition' };
 
-  const kickOrigin = capturePayoffOrigin(branch, input.side);
-  const startScoreDiff = kickOrigin.scoreDiff;
+  const kickPath = createPayoffPathState(branch, input.side);
+  const startScoreDiff = kickPath.origin.scoreDiff;
   branch.performPass(passer, target);
   const pending = branch.pendingPass;
   const kind = branch.lastPassKind?.kind;
@@ -518,13 +680,19 @@ export function runOracleV2Branch(
   let before = capturePassLifecycle(branch);
   let firstTransition: FirstTransitionSnapshot | null = null;
   let postControl: PostControlSnapshot | null = null;
-  let transitionOrigin: PayoffOrigin | null = null;
-  let primary: OutcomeSnapshot | null = null;
-  let diagnostic: OutcomeSnapshot | null = null;
+  let transitionPath: PayoffPathState | null = null;
+  let primary: ProjectedOraclePayoff | null = null;
+  let diagnostic: DiagnosticOutcomeSnapshot | null = null;
+  const includeDiagnostic = input.includeTransitionDiagnostic ?? true;
+  const primaryAuthorityTime = key.kickTime + PAYOFF_SECONDS;
   const absoluteStop = key.kickTime + FIRST_TRANSITION_CAP_SECONDS + PAYOFF_SECONDS + DT * 2;
 
   while (!branch.finished && branch.simTime < absoluteStop) {
     branch.step(DT);
+    updatePayoffPathState(branch, input.side, kickPath);
+    if (transitionPath !== null) {
+      updatePayoffPathState(branch, input.side, transitionPath);
+    }
     const after = capturePassLifecycle(branch);
 
     if (firstTransition === null) {
@@ -540,27 +708,50 @@ export function runOracleV2Branch(
           key,
           startScoreDiff,
         );
-        transitionOrigin = capturePayoffOrigin(branch, input.side);
-        postControl = makePostControl(branch, firstTransition, input.side, kickOrigin);
+        transitionPath = createPayoffPathState(branch, input.side);
+        postControl = makePostControl(branch, firstTransition);
       }
     }
 
-    if (primary === null && after.simTime + 1e-12 >= key.kickTime + PAYOFF_SECONDS) {
-      primary = captureSupportedOutcome(branch, input.side, kickOrigin);
+    if (primary === null && after.simTime + 1e-12 >= primaryAuthorityTime) {
+      primary = captureProjectedPayoff(
+        branch,
+        input.side,
+        kickPath,
+        primaryAuthorityTime,
+      );
+    } else if (primary === null && branch.finished) {
+      primary = captureProjectedPayoff(
+        branch,
+        input.side,
+        kickPath,
+        primaryAuthorityTime,
+        'absorbedAdministrativeTerminal',
+      );
     }
     if (
       diagnostic === null
       && firstTransition !== null
       && firstTransition.status === 'resolved'
-      && transitionOrigin !== null
+      && transitionPath !== null
+      && includeDiagnostic
       && after.simTime + 1e-12 >= firstTransition.simTime + PAYOFF_SECONDS
-    ) diagnostic = captureSupportedOutcome(branch, input.side, transitionOrigin);
+    ) diagnostic = captureTransitionPayoffDiagnostic(
+      branch,
+      input.side,
+      transitionPath,
+      firstTransition.simTime + PAYOFF_SECONDS,
+    );
 
     before = after;
     if (
       firstTransition !== null
       && primary !== null
-      && (firstTransition.status !== 'resolved' || diagnostic !== null)
+      && (
+        !includeDiagnostic
+        || firstTransition.status !== 'resolved'
+        || diagnostic !== null
+      )
     ) break;
   }
 
@@ -578,11 +769,10 @@ export function runOracleV2Branch(
     );
     postControl = unsupportedPostControl(firstTransition);
   }
-  if (primary === null) {
-    primary = unsupportedOutcome(
-      firstTransition.censorCause ?? 'continuationStopped',
-    );
-  }
+  if (primary === null) return {
+    ok: false,
+    reason: `primary payoff missing: ${firstTransition.censorCause ?? 'continuationStopped'}`,
+  };
   if (diagnostic === null) {
     diagnostic = unsupportedOutcome(
       firstTransition.status === 'resolved'

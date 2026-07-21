@@ -220,25 +220,29 @@
 > **NEXT = the separately bounded replicated-continuation/outcome-tree oracle contract; this
 > does not authorise S7e or live wiring.** Authority:
 > [`world-model/COUNTERFACTUAL-ORACLE-V2.md`](world-model/COUNTERFACTUAL-ORACLE-V2.md).
-> ⏸️ **S7e-0C REPLICATED-ORACLE CONTRACT PRE-REGISTERED, PREFLIGHT BLOCKED
-> (2026-07-21):** Prompt-7 correctly removes the statistically invalid 16-fit/16-held-out
-> per-state probability claim. The bounded design is now an R=32 direct empirical oracle
-> ceiling with raw transition anatomy, an independent 64-pair/64-continuation pilot,
-> split-half relation agreement ≥52/64 and projected MC half-width ≤1.25pp. But the existing
-> frozen Pareto input is not total under accepted Oracle v2 semantics: 625/1018 kick+3s records
-> have no physical owner, so possession/options are correctly null, while old
-> `compareOutcomes` requires five numbers. Macro-possession, zero-fill, sample deletion and
-> dimension changes are all currently forbidden. **No 8,192-branch pilot was burned on an
-> undefined estimand. NEXT = one external authority decision on owner-free numeric outcome
-> semantics; this is not a failure of the S7e hypothesis.** Contract:
+> ⏸️ **S7e-0C COMPARABLE PREFLIGHT PASSED; PILOT INCONCLUSIVE, FINAL NOT RUN
+> (2026-07-21):** Prompt-8 authorised a separate, versioned
+> `ComparablePassPayoffV1`: raw owner-free possession/options remain null, while the total
+> comparison projection encodes physical control `+1/0/−1`, executable attacking options,
+> current-or-last-playable progression, goals and xG. The 120-match preflight reproduced
+> 509 pairs / 1018 records; every record produced a finite vector, all projection/null/reset/
+> terminal/denominator gates were exactly zero, and the legacy comparator algorithm remained
+> unchanged. The independent 64-pair × 64-continuation pilot then passed every semantic,
+> RNG and determinism gate, but split-half relation agreement was only **39/64** (required
+> 52/64) and projected MC half-width was **3.222pp** (required 1.25pp). H0/H1 dominance edges
+> were +1.56/+9.38pp. Therefore `pilotFeasibility = INCONCLUSIVE — R=32 insufficient`:
+> the 32,576-branch final was not run, R was not increased, and no relation/tolerance/threshold
+> was changed. This is not an oracle-validity failure or proof that transition composition is
+> useless; it is the pre-registered statistical stop. Any revisit needs a new inferential
+> contract, not more continuations under this one.** Authority:
 > [`world-model/S7E-REPLICATED-ORACLE-CEILING.md`](world-model/S7E-REPLICATED-ORACLE-CEILING.md).
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
-> body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to
-> S7's missing future-state causes: S2
-> execution risk, threat created/conceded, structure/rest-defence cost and option quality.
-> Add those only as a new offline hypothesis, then require this same oracle to pass before
-> any closed S3→S4→S5→S7 behavioural cut.** The body
+> body/locomotion campaign. B1c remains closed and B1d remains an isolated mechanism only.
+> S7e-0C has now reached its pre-registered stop, so it must not be retried by adding
+> continuations or dimensions. **NEXT requires a new bounded authority: either a genuinely
+> different estimator/inference contract, or a return to the broader S3–S8 representation
+> line without claiming this oracle has authorised live wiring.** The body
 > model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,

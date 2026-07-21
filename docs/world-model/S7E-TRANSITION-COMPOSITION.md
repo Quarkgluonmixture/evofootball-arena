@@ -1,8 +1,8 @@
 # S7e — Transition Distribution × Conditional Next State
 
-Status: **design and oracle audit only; Oracle v2-0 first-transition semantics are
-defined and passed in [`COUNTERFACTUAL-ORACLE-V2.md`](COUNTERFACTUAL-ORACLE-V2.md),
-with no estimator implementation and no live consumer.**
+Status: **design and oracle audit only; Oracle v2-0 and Comparable V1 are valid,
+but the replicated R=32 pilot was statistically inconclusive. No final,
+estimator implementation or live consumer is authorised.**
 
 Date: 2026-07-21
 
@@ -158,11 +158,15 @@ an assigned macro possession side. See
 [`COUNTERFACTUAL-ORACLE-V2.md`](COUNTERFACTUAL-ORACLE-V2.md).
 
 This does not yet implement S7e. No additional static endpoint/corridor dimension,
-tolerance sweep or live target filter is authorised; the replicated continuation
-and contingent-tree payoff contract remains the next gate. Its statistical design
-is now pre-registered in
-[`S7E-REPLICATED-ORACLE-CEILING.md`](S7E-REPLICATED-ORACLE-CEILING.md), but a
-preflight conflict remains: Oracle v2 correctly marks owner-dependent endpoint
-fields null on 625/1018 records, while the frozen five-dimensional relation requires
-numbers everywhere. No pilot may run until that estimand is made total without
-silently restoring macro-possession/zero-option proxies.
+tolerance sweep or live target filter is authorised. The Prompt-8 audit resolved
+the old nullable-input conflict with a separate `ComparablePassPayoffV1`: raw facts
+stay nullable, while the versioned comparison projection is total and does not read
+macro possession. Its 509-pair / 1018-record preflight passed every semantic gate.
+
+The independently pre-registered replicated pilot then passed oracle validity but
+was statistically inconclusive. Only 39/64 pair relations agreed between the two
+32-continuation halves (gate 52/64), and projected Monte Carlo half-width was
+3.222pp (gate 1.25pp). Therefore the final suite was not run and no estimator or
+live consumer is authorised. See
+[`S7E-REPLICATED-ORACLE-CEILING.md`](S7E-REPLICATED-ORACLE-CEILING.md). A revisit
+requires a new inferential contract, not an adaptive continuation increase.
