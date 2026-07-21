@@ -369,15 +369,16 @@
 > supported variable team state, **not** that spread beats concentration. Only a separately
 > pre-registered portfolio-level clone intervention is authorised. Authority:
 > [`world-model/OFFBALL-OFFER-PORTFOLIO-CENSUS.md`](world-model/OFFBALL-OFFER-PORTFOLIO-CENSUS.md).
-> 🧪 **O6 PAIRED OFFER-PORTFOLIO INTERVENTION PRE-REGISTERED (2026-07-21,
-> offline only):** from each independent frozen match, the same two players receive either
-> a lower- or higher-carrier-bearing pair of individually feasible O0 targets, separated by
-> at least 45°. Both move for 1.5s through real `MoveToPoint`; four paired child streams then
-> force the existing ordinary pass separately to each receiver. Primary = whether the
-> higher-bearing portfolio raises the chance that at least one of the two pass options reaches
-> intended stable control by ≥5pp, without >5pp opponent-control regression. No named run,
-> score, role/gene gate, live state or later payoff is read. Passing authorises only another
-> offline allocator contract. Authority:
+> ⏸️ **O6 BEARING-ONLY PORTFOLIO INTERVENTION FAILED PAYOFF; STOPPED
+> (2026-07-21, offline only):** the two-player intervention itself was clean—128 independent
+> states, 102 joint completions, 816 forced-pass opportunities/branch, 100% target closure,
+> 99.0% preservation of the intended direction difference and zero construction/identity/
+> clone/determinism/target/action/Oracle failures. But higher-bearing portfolios raised
+> “at least one intended reception” only **20.3→24.3% (+3.9pp)**, below the frozen +5pp gate.
+> Opponent control fell 77.2→59.1%, but dead balls rose 2.0→17.5%; that diagnostic cannot be
+> promoted into a post-hoc win. Both full runs were byte-identical (`b6fa4bd0…419d`). No
+> allocator or live state is authorised; changing to another O5 fact now would be an adaptive
+> retry rather than a new causal model. Authority:
 > [`world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md`](world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.

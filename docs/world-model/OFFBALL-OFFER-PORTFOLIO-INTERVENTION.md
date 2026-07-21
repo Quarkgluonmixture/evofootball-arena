@@ -1,6 +1,6 @@
 # O6 — Paired Offer-portfolio Intervention
 
-Status: **PRE-REGISTERED. Offline clone experiment only.**
+Status: **COMPLETE — PRIMARY PAYOFF FAILED; bearing-only portfolio path stopped.**
 
 Date: 2026-07-21
 
@@ -170,3 +170,54 @@ Passing O6 authorises only a separately pre-registered **offline** portfolio
 relation/allocator experiment. It does not authorise live commitments,
 `supportSpot` replacement, team bidding, genes or a play-test build.
 
+## 9. Frozen result
+
+The full pre-registered run completed twice with identical output hash
+`b6fa4bd03f932b29f23b716f788291b1cabe6fbe89bbe7614bbd4d02232f419d`.
+
+### Validity and mechanism
+
+```text
+independent frozen match seeds                 128 / 128
+jointly completed movement states              102 (gate >= 96)
+lower / higher movement completions            103 / 102
+successful forced-pass opportunities           816 / 816
+portfolio / identity / non-finite failures       0 / 0 / 0
+clone / determinism / target / action failures   0 / 0 / 0 / 0
+movement non-finite / Oracle failures            0 / 0
+movers closing immutable targets               410 / 410 (100.0%)
+actual higher-bearing direction                101 / 102 (99.0%)
+```
+
+The planned bearing difference averaged 100.764° and the real post-movement
+difference averaged 62.114°. The intervention therefore worked physically.
+
+### Primary payoff
+
+| branch | at least one intended reception | intended per option | opponent control | dead ball |
+|---|---:|---:|---:|---:|
+| lower bearing | 83/408 (20.3%) | 88/816 (10.8%) | 630/816 (77.2%) | 16/816 (2.0%) |
+| higher bearing | 99/408 (24.3%) | 104/816 (12.7%) | 482/816 (59.1%) | 143/816 (17.5%) |
+
+```text
+primary coverage edge          +3.9pp  (required >= +5pp)  FAIL
+opponent-control edge          -18.1pp (allowed <= +5pp)   PASS
+```
+
+The lower opponent-control rate cannot be promoted after the result. Much of
+that apparent improvement changed into dead balls rather than intended stable
+receptions. The higher-bearing construction also covaried with +13.390m target
+distance and +6.640m corridor separation, exactly why O6 pre-registered those
+facts as diagnostics rather than silently calling direction spread valuable.
+
+## 10. Verdict
+
+O6 proved that generic portfolio geometry can be represented and physically
+executed by two players, but **bearing separation alone did not clear its football
+payoff gate**. No allocator, relation, live commitment, gene or `supportSpot`
+migration is authorised.
+
+This result stops only the bearing-extremes hypothesis. Re-entry requires a
+causally new portfolio representation; swapping in target/corridor/arrival after
+seeing this result, changing the 5pp gate, or promoting opponent-control reduction
+would be the prohibited adaptive retry.
