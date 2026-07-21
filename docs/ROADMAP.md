@@ -65,9 +65,26 @@
 > (4-season same-world A/B: headers 6.39→4.05, cutbacks 3.96→2.46). One pitch-scale
 > sight-range correction restored the overall pass/tackle economy but not payoff or
 > route richness, so tuning stopped. All S3b code/schema changes were reverted; HEAD
-> remains the byte-identical S3a representation. **NEXT = build S4/S5 pass prediction +
-> affordance OFFLINE on S1 ETA and S3 snapshots, so better information has a real
-> next-state value to buy before retrying one closed S3→S4→S5 behavioural cut.** The body
+> remains the byte-identical S3a representation. ✅ **S4a/S5a OFFLINE FOUNDATION DONE
+> (2026-07-21, byte-identical):** pure `prediction.ts` mirrors ordinary ground-pass lead,
+> launch speed and fixed-step exponential friction; pure `passAffordance.ts` composes S3 observations
+> with S1 arrival into an explicitly unscored vector (receiver/opponent ETA, arrival margin,
+> control prior, pressure, receive-facing, progression, line breaks, offside and exits).
+> Missing observed facts return `null`, never Match truth. Two representation invariants were
+> closed alongside it: self-body proprioception is fresh between visual scans, and being
+> inside reach radius no longer erases a required body turn. At 120 matches / 9,334 ordinary
+> passes, exact-truth arrival-margin buckets are monotonic (target received 30.8→80.0%,
+> intercepted 69.2→13.7%); awareness 0.2→0.8 improves usable target coverage 59.5→81.1%
+> and arrival-margin MAE 0.160→0.097s while unknown defence is never treated as open.
+> Intended-flight error on 7,020 receptions is 0.278s /
+> 3.18m (the latter honestly includes kick error + early capture); only 4/9,334 intended
+> flights exceed the engine's friction limit. The scalar control prior
+> is still under-dispersed (95.2% of truth samples in its top quartile), so it is **not ready
+> to act as a live success score**; the raw vector is the accepted output. Gates: build clean ·
+> 480/480 · both fingerprints unchanged (`a9412f22…`, `d14a471f…`) · perf 5.38µs/step,
+> 14.4 matches/s, profiler determinism OK. **NEXT = define the smallest S7 next-state
+> comparator over this vector, then retry one closed S3→S4→S5→S7 behavioural cut; do not
+> wire the under-dispersed control prior as a new hand-authored pass bonus.** The body
 > model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,

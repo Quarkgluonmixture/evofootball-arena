@@ -54,5 +54,11 @@ describe('S1 timeToReach', () => {
     expect(backTurned.eta).toBeGreaterThan(facing.eta);
     expect(movementOnly.eta).toBe(backTurned.movementEta);
     expect(timeToReach(body(), point, { reachRadius: 1 })).toBe(0);
+    expect(timeToReach(body({ bodyDir: { x: -1, y: 0 } }), point, { reachRadius: 1 }))
+      .toBeGreaterThan(0);
+    expect(timeToReach(body({ bodyDir: { x: -1, y: 0 } }), point, {
+      reachRadius: 1,
+      requireFacing: false,
+    })).toBe(0);
   });
 });

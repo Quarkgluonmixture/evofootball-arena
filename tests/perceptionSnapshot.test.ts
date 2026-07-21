@@ -83,4 +83,27 @@ describe('S3 PerceptionSnapshot', () => {
     const snap = perceiveSnapshot(next, 0, 0, 4, memory);
     expect(snap.ball).toMatchObject({ pos: { x: 0.8, y: 0 }, ownerGid: 0, observedTick: 13, ageTicks: 0 });
   });
+
+  it('keeps the observer body exact and fresh between visual scans', () => {
+    const memory = createPerceptionMemory();
+    perceiveSnapshot(truth(12), 0, 0, 4, memory);
+    const base = truth(13);
+    const next: PerceptionTruth = {
+      ...base,
+      players: base.players.map((p) => p.gid === 0 ? {
+        ...p,
+        pos: { x: 0.25, y: -0.1 },
+        vel: { x: 3, y: 1 },
+        bodyDir: { x: 0, y: 1 },
+      } : p),
+    };
+    const observer = perceiveSnapshot(next, 0, 0, 4, memory).players.find((p) => p.gid === 0)!;
+    expect(observer).toMatchObject({
+      pos: { x: 0.25, y: -0.1 },
+      vel: { x: 3, y: 1 },
+      bodyDir: { x: 0, y: 1 },
+      observedTick: 13,
+      ageTicks: 0,
+    });
+  });
 });

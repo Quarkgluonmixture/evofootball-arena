@@ -199,6 +199,10 @@ export function perceiveSnapshot(
     }
   }
 
+  // Proprioception is continuous too: the observer does not need a visual
+  // scan to know their own body position, velocity, or facing.
+  memory.players.set(observer.gid, observePlayer(seed, observer, observer, awareness, truth.tick));
+
   // Touch/proprioception is continuous: the carrier does not wait for a visual
   // scan to know the authoritative location and motion of the ball at their feet.
   if (ownsBall) {

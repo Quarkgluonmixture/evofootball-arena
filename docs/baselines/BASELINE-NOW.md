@@ -194,3 +194,49 @@ This passes the S3 layer-gate directionally: awareness improves fidelity, freshn
 coverage and threat reads through the intended mediator, without changing speed, pass or
 tackle mechanics. It does **not** yet prove that decisions use the information or that the
 gene pays/selects; those are S3b's cognition-factorial and pass/arrival gates.
+
+---
+
+## pass-affordance-calibration — S4a/S5a offline layer gate
+`npx tsx scripts/probes/pass-affordance-calibration.ts 120 0`
+
+This samples only ordinary ground passes. At launch it evaluates the named target once
+from exact copied truth and once through each synthetic S3 awareness level, then observes
+the real intended-target reception/interception. It consumes no Match RNG and no result is
+read by live AI.
+
+```
+n=120 (seeds 0–119)   ordinary passes 77.8/match (9,334 total)
+S4 intended-flight, 7,020 target receptions:
+  finite time MAE 0.278s · intended point→actual reception point MAE 3.18m
+  friction-unreachable: 4/9,334 launches (one target still met it before the intended point)
+
+awareness   usable coverage   margin MAE vs truth   control MAE   target age   no-opponent snapshot
+0.2             59.5%               0.160s             0.024        7.3t              3.0%
+0.5             73.0%               0.162s             0.024        7.7t              1.1%
+0.8             81.1%               0.097s             0.015        4.7t              0.5%
+
+exact-truth arrival margin   share   target received   intercepted
+<−0.5s                         0.3%        30.8%           69.2%
+−0.5..−0.2                     1.1%        43.1%           52.9%
+−0.2..0                        2.4%        54.2%           39.2%
+0..0.2                         7.5%        61.6%           32.4%
+0.2..0.5                      21.7%        69.5%           24.7%
+>0.5                          67.0%        80.0%           13.7%
+```
+
+**Reads:**
+- The raw arrival margin passes the structural gate cleanly: all six reception buckets
+  rise and all six interception buckets fall. This is useful information S7 can price.
+- Better awareness buys both usable target coverage and, end-to-end, a more faithful
+  affordance vector. A snapshot with no observed defender is rejected as unknown rather
+  than mispriced as perfectly open. This
+  establishes `FIRES→WORKS`; it still says nothing about `PAYS→SELECTED` because there is
+  deliberately no live consumer or gene.
+- The 3.18m point error is not presented as pure ball-physics error: it includes ordinary
+  pass aim noise and receivers capturing the ball before the intended lead point. S2
+  execution quality must remain a separate value dimension.
+- The provisional `controlProbability` is **under-dispersed**: 95.2% of exact-truth
+  samples land in 0.75–1.0 (actual target reception there is 76.4%; Brier 0.210). It is a
+  monotonic prior, not a calibrated pass-success score, and must not be wired alone into
+  the action table. The accepted S5 artifact is the raw vector.

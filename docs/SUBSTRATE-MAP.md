@@ -154,13 +154,13 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
 - **Code:** `ai/perceptionSnapshot.ts` now provides the pure deterministic snapshot,
   scan clock, FOV/range, keyed functional error and last-known memory. Its S3a layer-gate
   is directional at 120 matches (awareness 0.2→0.8: position MAE 0.54→0.38m; missed
-  ≤6m threats 15.1%→8.3%). **No live AI reads it yet:** `decideCarrier`/`decideOffBall`
+  ≤6m threats 15.1%→8.3%); observer body proprioception and an owned ball cue remain
+  exact/fresh between scans. **No live AI reads it yet:** `decideCarrier`/`decideOffBall`
   still read real coordinates, and awareness is currently an explicit probe parameter,
-  not a gene. The next isolated lever is the on-ball passer consumer + shared awareness
-  trunk. (Perfect info is why offside v1 went to zero — decider & referee read the same
-  truth in the same frame.)
+  not a gene. (Perfect info is why offside v1 went to zero — decider & referee read the
+  same truth in the same frame.)
 
-### S4 — Short-horizon prediction · 🔴
+### S4 — Short-horizon prediction · 🟡🔴 (ordinary-pass offline slice exists)
 - **Provides:** `predictBall(t)`, `predictPlayer(p,t)`, `predictArrival(p,point)`,
   `predictControlAt(point, ballArrivalT)`.
 - **Hooks:** `anticipation`(window & error), `awareness`(input quality), body
@@ -169,9 +169,13 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   ATTACK and moves to the pass-landing earlier ON DEFENCE — **the shared
   attack/defence reading trunk** (this is what the reverted single-sided `vision`
   attr should have been).
-- **Code:** immediate geometry only.
+- **Code:** `ai/prediction.ts` now has pure constant-velocity observed-player projection,
+  exact fixed-step exponential ground-ball travel time, and the ordinary-pass intended lead/launch
+  model; it is used only by tests and `pass-affordance-calibration`. At 120 matches,
+  finite flight-time MAE on actual target receptions is 0.278s. Ball trajectory, aerial
+  flight and a live attack/defence consumer remain open; no anticipation gene exists.
 
-### S5 — Affordance & pitch control · 🔴 (never shipped)
+### S5 — Affordance & pitch control · 🟡🔴 (pass vector exists offline)
 - **Provides:** for a candidate point `p`, a **VECTOR** (not one score):
   `selfArrival, teammateArrival, opponentArrival, controlProbability,
   receivePressure, bodyOrientationOnArrival, lineBreakValue, goalThreat,
@@ -181,8 +185,16 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
 - **Hooks:** `spatialIQ`(which dims matter, structure recognition),
   `anticipation`(arrival times), `decisions`(compare affordances), body/technique
   (feasibility "for me").
-- **Code:** `laneOpenness`/`pressure`/xG exist as **separate** scores; no unified
-  dynamic pitch-control model. `emergentStation` is a hand-tuned proxy, not this.
+- **Code:** `ai/passAffordance.ts` now emits an explicitly unscored ordinary-pass vector:
+  receiver/opponent arrival, arrival margin, control prior, pressure, receive-facing,
+  progression, line breaks, offside risk and exit count. It consumes only S3 observations
+  plus known physical reach profiles and returns `null` when facts are missing. The
+  120-match truth curve is monotonic (arrival margin low→high: target received 30.8→80.0%,
+  intercepted 69.2→13.7%), and higher synthetic awareness improves vector fidelity.
+  **No live AI reads it.** Its control prior is under-dispersed (95.2% in the top quartile),
+  so S7 must use/calibrate the raw dimensions rather than treating it as a magic score.
+  Full dynamic pitch control and off-ball affordances remain open; `emergentStation` is
+  still a hand-tuned proxy, not this.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull
@@ -327,7 +339,7 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
    at 120 matches the S1 curve is monotonic (received 33%→92%, intercepted 63%→5% from
    `<−0.5s` to `>+0.5s`). Feature-off fingerprints remain byte-identical
    (`a9412f22…` / `d14a471f…`), so this is representation/probe only.
-3. **IN PROGRESS — split at the behavioural boundary.**
+3. **DONE at the representation boundary; live cut remains rejected.**
    - ✅ **S3a representation/layer-gate DONE 2026-07-21:** pure stale
      `PerceptionSnapshot`, explicit awareness input, deterministic error + memory, and
      `perception-calibration`; probe-only, so the live passer remains byte-identical.
@@ -337,17 +349,22 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
      constant tuning. **Dependency learned:** build S4 prediction + S5 pass affordance
      offline first; then retry S3→S4→S5 as one closed causal cut where fidelity can
      improve a predicted next state, rather than feeding the old surface score table.
-4. Affordance vector for pass targets (S5) replacing the single `laneOpenness`/
-   `opennessOf` scores in the pass loop (`PlayerBrain.ts:272+`); valuation via S7
-   next-state estimate.
+4. **SPLIT at the behavioural boundary.**
+   - ✅ **S4a/S5a OFFLINE DONE 2026-07-21:** pure ordinary ground-pass prediction and
+     unscored pass-affordance vector, plus `pass-affordance-calibration`. The raw arrival
+     margin works and awareness improves its fidelity; the control prior is explicitly
+     not accepted as a live scalar. Feature-off fingerprints remain byte-identical.
+   - **NEXT:** define the smallest S7 next-state comparator, then replace the single
+     `laneOpenness`/`opennessOf` surface scores in one closed S3→S4→S5→S7 pass cut
+     (`PlayerBrain.ts:272+`). Do not wire one raw dimension as a hand-authored bonus.
 5. Defender interception/contest read off the same S4 prediction (`canInterceptPass`,
    `PlayerBrain.ts:1074`) — **the co-evolving defensive half** (balances the attack
    read, per the "finely-tuned equilibrium" lesson).
 
 **Files in scope:** `sim/Match.ts` (capture→contest), `ai/reachability.ts`
-(timeToReach), `ai/perception.ts` (snapshot + `laneOpenness`/`opennessOf`/
-`canInterceptPass`), `ai/PlayerBrain.ts` (pass loop + intercept), a new affordance
-scorer (inline first, extract to `ai/affordances.ts` once stable). **SAVE_VERSION
+(timeToReach), `ai/perceptionSnapshot.ts`, `ai/prediction.ts`, `ai/passAffordance.ts`,
+`ai/perception.ts` (`laneOpenness`/`opennessOf`/`canInterceptPass`), and
+`ai/PlayerBrain.ts` (pass loop + intercept). **SAVE_VERSION
 bumps** only if a gene struct changes (the `vision` revert + any new shared
 awareness/anticipation attr).
 

@@ -54,10 +54,17 @@ export function estimateReach(
   const reactionDelay = Math.max(0, options.reactionDelay ?? 0);
 
   if (centerDistance < 1e-9 || distance === 0) {
+    let turnTime = 0;
+    if (centerDistance >= 1e-9) {
+      const ux = dx / centerDistance;
+      const uy = dy / centerDistance;
+      const facingDot = Math.max(-1, Math.min(1, state.bodyDir.x * ux + state.bodyDir.y * uy));
+      turnTime = Math.acos(facingDot) / TURN_RATE;
+    }
     return {
-      eta: reactionDelay,
+      eta: reactionDelay + (options.requireFacing === false ? 0 : turnTime),
       movementEta: 0,
-      turnTime: 0,
+      turnTime,
       distance,
       speedLimit: Math.max(state.topSpeed, 0.1),
     };
