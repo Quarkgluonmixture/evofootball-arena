@@ -421,6 +421,13 @@
 > contracted dormant, role-neutral moving-reference primitive—not a wider overlap gate or
 > named action. Authority:
 > [`world-model/EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md`](world-model/EMERGENT-OVERLAP-TRAJECTORY-CENSUS.md).
+> 🔬 **R0 ROLE-NEUTRAL RELATIVE-POINT PRIMITIVE PRE-REGISTERED
+> (2026-07-21, dormant):** E3 exposed a generic vocabulary gap rather than an overlap
+> licence gap. Add one action that tracks a fixed attack-frame offset from any moving player
+> through the existing steering/physics stack. It chooses neither reference nor offset and
+> has no role, tactic, gene, score or live emitter. Passing only permits a later symmetric
+> offline feasibility probe. Authority:
+> [`world-model/RELATIVE-POINT-MOVEMENT-PRIMITIVE.md`](world-model/RELATIVE-POINT-MOVEMENT-PRIMITIVE.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
