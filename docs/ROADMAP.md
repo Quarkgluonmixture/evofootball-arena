@@ -486,6 +486,15 @@
 > pre-register a genuinely factorised state-baseline + target-relative family and a
 > statistically supported calibration authority; no temperature patch, central task
 > publication, external-data opening or live consumer is authorised.
+> 🔬 **T0b-R FACTORISED ESTIMATOR CONTRACT FROZEN (2026-07-21, OFFLINE):** one
+> model now owns the decision-state base transition probabilities; a separate model
+> sees only candidate-minus-decision-mean facts. A fixed 128-iteration balancing
+> operator must preserve the state vector as the exact mean across targets while
+> allowing target-specific differences. The old development holdout is explicitly
+> only a seen preflight; seeds 41,000+ remain the first unseen validation and stay
+> sealed until every preflight gate passes. Any failure parks this estimator line;
+> no second immediate family or live consumer follows. Authority:
+> [`world-model/FACTORIZED-TRANSITION-ESTIMATOR.md`](world-model/FACTORIZED-TRANSITION-ESTIMATOR.md).
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
 > endpoint with mover ETA, current/projected offside line, pitch/barred-area legality and

@@ -293,3 +293,11 @@ shift between each decision's mean action-aware probabilities and its state-only
 baseline. Work stays decentralised: C0 remains dormant, and any estimator revisit
 must separately freeze a factorised state-baseline + target-relative hypothesis
 instead of patching T0b or publishing central tasks.
+
+That one bounded hypothesis is now pre-registered in
+[`FACTORIZED-TRANSITION-ESTIMATOR.md`](FACTORIZED-TRANSITION-ESTIMATOR.md).
+The state model owns the decision's total five-class probability mass; a separate
+relative model may only redistribute it among candidate targets through a fixed
+deterministic balancing operator. External validation remains sealed until its
+development preflight passes, and failure parks the estimator line rather than
+triggering another immediate model family.

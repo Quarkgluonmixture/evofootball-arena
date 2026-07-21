@@ -9,6 +9,12 @@ consumer is authorised.**
 
 Date: 2026-07-21
 
+The next bounded estimator-family contract is now frozen in
+[`FACTORIZED-TRANSITION-ESTIMATOR.md`](FACTORIZED-TRANSITION-ESTIMATOR.md). It
+separates decision-state probability from target-relative redistribution and
+enforces the former as an exact per-decision marginal. This is not yet an
+implementation result and does not open external validation by itself.
+
 ## 1. Why this is a new programme
 
 The parked S7e-0C experiment repeatedly rolled the same 509 chosen-versus-
