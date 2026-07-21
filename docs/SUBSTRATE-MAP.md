@@ -331,9 +331,12 @@ The first cut is **one closed causal loop**, not a full engine. It exercises S3�
    - ✅ **S3a representation/layer-gate DONE 2026-07-21:** pure stale
      `PerceptionSnapshot`, explicit awareness input, deterministic error + memory, and
      `perception-calibration`; probe-only, so the live passer remains byte-identical.
-   - **NEXT S3b:** add the shared awareness trunk and make only the on-ball passer's
-     read consume the snapshot. This is the first behavioural/gene-wiring cut and must
-     independently pass mediator, cognition-factorial, pass/arrival and play-test gates.
+   - ❌ **S3b live consumer TRIED + REVERTED 2026-07-21:** the mediator worked, but
+     awareness did not pay in 120-match head-to-head and the existing pass score table
+     shed headed/cutback route richness when deprived of truth. No more sight/error
+     constant tuning. **Dependency learned:** build S4 prediction + S5 pass affordance
+     offline first; then retry S3→S4→S5 as one closed causal cut where fidelity can
+     improve a predicted next state, rather than feeding the old surface score table.
 4. Affordance vector for pass targets (S5) replacing the single `laneOpenness`/
    `opennessOf` scores in the pass loop (`PlayerBrain.ts:272+`); valuation via S7
    next-state estimate.

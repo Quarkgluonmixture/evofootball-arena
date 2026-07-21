@@ -54,9 +54,20 @@
 > memory; the on-ball passer keeps an exact ball cue. It is probe-only: no AI consumer, gene,
 > save or budget change yet. At 120 matches, synthetic awareness 0.2→0.8 gives position MAE
 > 0.54→0.38m, velocity MAE 1.00→0.63m/s, visible players 5.7→8.1 and missed ≤6m threats
-> 15.1%→8.3%. **NEXT = S3b as its own behavioural lever: introduce the shared awareness
-> trunk and make only the on-ball pass read consume the snapshot; gate the mediator first,
-> then cognition-factorial + pass/arrival probes before keeping it.** The body
+> 15.1%→8.3%. ❌ **S3b LIVE CONSUMER TRIED + HONEST-REVERTED (2026-07-21):** shared
+> `awareness` attr/save/budget wiring and the on-ball pass consumer passed the mediator
+> (awareness 0.2→0.8: target error 0.39→0.13m; lane error 0.063→0.035) plus 74/74
+> focused causal tests, but failed the six-layer chain at **PAYS**. At passing 0.8,
+> high-awareness lost the 120-match side-alternated duel (pts 1.31 vs 1.46; goals
+> 1.48 vs 1.56; completion 73.0% vs 74.4%). Ordinary-Pass-only wiring leaked into
+> an omniscient ThroughBall bypass; sharing the snapshot across all pass candidates
+> removed that bypass but exposed the existing score table's dependence on omniscience
+> (4-season same-world A/B: headers 6.39→4.05, cutbacks 3.96→2.46). One pitch-scale
+> sight-range correction restored the overall pass/tackle economy but not payoff or
+> route richness, so tuning stopped. All S3b code/schema changes were reverted; HEAD
+> remains the byte-identical S3a representation. **NEXT = build S4/S5 pass prediction +
+> affordance OFFLINE on S1 ETA and S3 snapshots, so better information has a real
+> next-state value to buy before retrying one closed S3→S4→S5 behavioural cut.** The body
 > model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
