@@ -1,6 +1,8 @@
 # D1 — Decentralised Offer-loop Composition Lab
 
-Status: **PRE-REGISTERED — offline three-branch composition experiment; no live selector.**
+Status: **FAILED AT FROZEN PAYOFF/BASELINE GATES — composition is mechanically
+non-vacuous, but synthetic preferences are not a football selection authority;
+stopped with no live selector.**
 
 Date: 2026-07-21
 
@@ -221,3 +223,63 @@ fails. It may not be rescued by:
 Passing D1 authorises only a separately pre-registered experimental full-match
 consumer behind a default-off switch. It does not authorise live default wiring,
 new genes, `supportSpot` retirement, C0 demand publication or a play-test build.
+
+## 8. Frozen result
+
+Two complete runs were byte-identical with canonical SHA-256:
+
+```text
+64db4d1c12e23023e7172d3a76ddcaacad625ce8fd6ad56822a9a5cb55665545
+```
+
+The mechanism was real rather than vacuous:
+
+```text
+accepted states                         128 / 128
+selection changed between I and C       114 / 128 (89.1%)
+coordination facts informative          128 / 128
+first-mover mismatches                    0
+target satisfaction                     539 / 567 (95.1%)
+```
+
+Commitment-aware selection also changed the portfolio outcome in the predicted
+direction relative to independent selection:
+
+```text
+                              L legacy    I independent    C coordinated
+portfolio reception coverage   84.3%          26.9%            31.0%
+opponent first controls          534            830              762
+dead balls                         6             30               67
+
+C - I coverage                  +4.1pp   (required >= +5pp)  FAIL
+C - L coverage                 -53.3pp   (required >= -2pp)  FAIL
+C - I opponent control          -6.2pp                         PASS
+C - I dead ball                 +3.4pp                         PASS
+```
+
+Only 91 states completed all three movement branches, below the frozen 96-state
+gate, so each branch produced 1,092 rather than the required 1,152 Oracle
+opportunities. All construction, perception-RNG, clone, identity, intervention,
+movement-finiteness, Oracle and child-seed validity counters were exactly zero.
+
+The causal reading is deliberately narrow:
+
+* shared teammate commitments can alter decentralised choices and improve them
+  relative to otherwise identical independent choices;
+* generic candidate, perception, commitment, locomotion and transition layers can
+  therefore compose in one executable loop;
+* the probe's outcome-independent hashed rank weights produce different shapes,
+  but not useful football options; and
+* candidate preference/selection authority—not another isolated candidate fact—is
+  now the blocking layer.
+
+D1 remains failed. The `+4.1pp` edge is not rounded to the `+5pp` gate and the
+`-53.3pp` baseline loss cannot be excused by the mechanism signal. No weight,
+awareness, rank, mover-count or horizon tuning follows, and no live consumer or
+play-test build is authorised.
+
+A qualifying re-entry must pose a causally new selection-learning contract. It
+must keep the generic layers fixed, derive player preference from independent
+match/ecology outcomes, validate on sealed match clusters and preserve
+decentralised choice. Hand-picked weights, named tactical rewards, central demand
+publication and an adaptive retry of this suite do not qualify.

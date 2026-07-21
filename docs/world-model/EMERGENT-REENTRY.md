@@ -227,3 +227,23 @@ ask whether the wide carrier could deliver through ball flight/contact to that
 arrival or whether the resulting state paid. The remaining debt is generic
 movement intent plus transition-conditioned delivery value and then a live
 migration A/B—not a missing central-arrival coordinate.
+
+## 9. D1 multi-layer composition update
+
+D1 is the first experiment here that deliberately combined perception,
+role-neutral candidates, heterogeneous individual preference, visible teammate
+commitments, normal movement/contact and real pass transitions. The composition
+was non-vacuous: commitment-aware choices differed in 89.1% of states and beat
+commitment-blind choices by 4.1pp reception coverage while reducing opponent
+control by 6.2pp.
+
+It nevertheless failed the frozen primary gate and fell 53.3pp below the legacy
+coverage baseline. This means named live scripts cannot yet retire, but it also
+means the next missing object is not another named movement or isolated spatial
+feature. It is a decentralised preference authority whose weights can be selected
+by real match outcomes and survive sealed ecology, while the candidate dimensions
+and shared-intent language remain generic.
+
+No historical named action becomes a training label or reward. If an evolved
+preference later produces an overlap, underlap, check, peel, third-player arrival
+or cut-inside trajectory, those names remain post-hoc telemetry only.

@@ -309,3 +309,26 @@ contract forbids increasing iterations after this result. The estimator line is
 therefore parked exactly as promised. D now resumes at the decentralised
 player-level S3–S8 chain; C0 remains dormant and no central demand publisher or
 live pass selector follows.
+
+## 8. D1 composition result and the next boundary
+
+[`DECENTRALISED-OFFER-LOOP-LAB.md`](DECENTRALISED-OFFER-LOOP-LAB.md) closed the
+first bounded multi-layer loop: observer-specific perception, generic O0
+candidates, O3 teammate commitments, real locomotion/contact and Oracle-v2
+transitions. Commitment-aware players changed at least one selection in 114/128
+states and improved portfolio reception coverage from 26.9% to 31.0% relative to
+the commitment-blind branch, while reducing opponent first control by 6.2pp.
+
+The experiment still failed exactly as frozen. The primary edge was +4.1pp rather
+than +5pp, only 91 joint states completed, and coordinated coverage was 53.3pp
+below the 84.3% legacy baseline. Two runs were byte-identical and all low-level
+validity counters were zero.
+
+This changes the research boundary. The project should stop serially adding one
+more isolated off-ball fact: D1 proved that the existing facts compose and that
+shared intent has causal effect. It also proved that outcome-independent synthetic
+preference weights are not a football-selection authority. The next admissible
+programme is a separately pre-registered decentralised selection-learning/ecology
+contract with fixed generic dimensions and sealed match-cluster validation. It is
+not permission to tune D1 weights, publish central demands, restore named runs or
+wire a live selector.
