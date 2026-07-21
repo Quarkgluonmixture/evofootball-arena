@@ -1,6 +1,6 @@
 # K0 — Generic Carry-direction Affordance
 
-Status: **PRE-REGISTERED — representation only; no live direction selector.**
+Status: **K0 COMPLETE — representation only; no live direction selector.**
 
 Date: 2026-07-21
 
@@ -141,3 +141,26 @@ tradeoff census. It does not authorise:
 Later trajectory names remain telemetry only. The eventual live A/B must prove
 mechanism, possession/outcome payoff, evolved selection and watchability before
 the handwritten direction baseline can retire.
+
+## 8. K0 result
+
+Implemented in `src/ai/carryAffordance.ts` without a live importer. The pure query
+generates the frozen hold + symmetric direction/time set and exposes every
+pre-registered fact separately. Counterfactual tests verify direction mirroring,
+boundary rejection, endpoint and travel-corridor pressure, teammate occupancy,
+goal geometry, body orientation, physical reach, missing-fact rejection,
+immutability and the absence of selector output.
+
+Validation:
+
+```text
+focused K0/O0/S1 tests: 20/20
+full repository tests:  604/604 (85 files)
+TypeScript/Vite build:   pass
+production fingerprint:  57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+live importers:           0
+```
+
+K0 therefore passes exactly its representation gate. It does not establish that
+any candidate is useful or authorise a selector. The next admissible work is the
+separately pre-registered fresh-state support/tradeoff census described above.

@@ -237,10 +237,12 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   authority, score, named pattern or live consumer. R1a's eligible subset closed 141/143
   targets, but only 187 branches completed against its frozen 192 coverage gate; the
   representation remains dormant and no relative candidate set is authorised.
-  **K0 now pre-registers the first on-ball directional counterpart:** symmetric
-  role-neutral carry points will expose separate controller reach/body alignment,
+  **K0 now completes the first on-ball directional counterpart:** symmetric
+  role-neutral carry points expose separate controller reach/body alignment,
   opponent access, teammate occupancy, travel/goal corridors and field/goal facts.
-  It is representation-only and cannot change `Dribble` until later payoff,
+  Eight focused counterfactual tests, all 604 repository tests, build and the
+  unchanged production fingerprint pass; no live producer imports it. It remains
+  representation-only and cannot change `Dribble` until later support, payoff,
   selection, evolution and watchability contracts pass.
 
 ### S6 — Action primitives & candidate generation · 🟡

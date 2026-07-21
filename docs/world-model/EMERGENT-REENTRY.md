@@ -5,8 +5,10 @@ Status: **active migration authority for reverted or scripted football patterns.
 Date: 2026-07-21
 
 Current bounded re-entry: [`CARRY-DIRECTION-AFFORDANCE.md`](CARRY-DIRECTION-AFFORDANCE.md)
-pre-registers a role-neutral, unscored carry-direction field. It follows E1's
-allowed next evidence and does not restore a named cut-inside implementation.
+now implements a role-neutral, unscored carry-direction field with no live importer.
+It follows E1's allowed next evidence and does not restore a named cut-inside
+implementation. Its next authorised gate is a fresh-state support/tradeoff census,
+not a direction selector.
 
 ## 1. Binding principle
 
