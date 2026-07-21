@@ -392,13 +392,21 @@ the defender can move to different legal generic points
 -> ball flight/contact/control sometimes pays that difference
 ```
 
-Therefore the missing layer is selection under a real dilemma, not another named
-marking position and not more attacking separation facts.
+Therefore the next missing layer is not another named marking position or more
+attacking separation facts. DDD-0 proved the atomic one-body capacity constraint;
+it did not prove that a lone defender should solve the whole dilemma.
 
-DDD-0 authorises one separately pre-registered **sealed selection/ecology**
-contract. That contract must preserve both outlets and the partial trade-off; it
-may not learn a universal “best defensive point,” collapse the tensor to a named
-marking rule, publish central assignments or enter production. A static global
-weight vector is especially disfavoured by D2a's previous failure. The most
-VISION-aligned next hypothesis is a bounded two-sided micro-ecology in which
-attacking outlet choice and defender response co-adapt on unseen state clusters.
+Reality/VISION review after DDD-0 changes the ordering. Defensive pressure,
+cover and balance are rotating relationships among several finite bodies. Before
+selection or ecology, the world needs a defender-side counterpart to O3: one
+player can publish a short-lived, observer-grounded movement commitment and a
+team-mate can evaluate which outlet/corridor that body is expected to occupy.
+`press`, `cover`, `first defender`, `second defender` and `balance` remain
+post-hoc telemetry names only.
+
+DDD-0 therefore authorises the separately pre-registered **D-COVER-0 shared-cover
+handoff lab**. It must preserve both outlets and the partial trade-off; it may
+not choose a universal best point, publish central assignments, read current
+marks/chasers as intent, or enter production. Only after a real two-body handoff
+surface exists may a sealed two-sided micro-ecology ask which responses survive
+competition.

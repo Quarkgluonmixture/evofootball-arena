@@ -5,8 +5,10 @@ Embodied Contest Slice. They did **not** complete the whole World-Model
 Foundation.
 
 Read with [`FOUNDATION.md`](FOUNDATION.md), which records what landed, and
-[`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md), which defines the
-next bounded S2 hypothesis.
+[`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md), which records the
+closed B1c line and the isolated B1d recovery result. The current mainline is
+the decentralised S3–S9 work recorded in
+[`OFFBALL-MAINLINE-DECISION.md`](OFFBALL-MAINLINE-DECISION.md).
 
 ## 1. The honest boundary
 
@@ -61,7 +63,7 @@ The operating rule remains the Foundation counterfactual criterion:
 
 ## 3. Missing foundation facts
 
-### G1 — controlled-ball coupling · B1c-0 representation done
+### G1 — controlled-ball coupling · representation and isolated recovery done; live closed
 
 `ball.owner` still conflates controller, physical carry constraint, ordinary
 capture exemption and macro possession. The engine has no state meaning:
@@ -75,8 +77,13 @@ Both rejected B1 candidates exposed this exact gap: moving an owned ball leaked
 micro-position into pass-arrival, while representing each close touch as a free
 ball multiplied knocks and M3 contests. The proposed boundary is documented in
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
-The byte-identical consumer census and representation are now complete; the
-first behavioural claim remains untested until the isolated B1c-1 mechanism.
+The byte-identical consumer census and representation are complete. B1c's
+isolated touch/access boundary worked, but every live composition failed through
+overrun, contest-tail, formation or stamina regressions and was reverted. B1d
+then proved one causally different fact in isolation: the existing player
+integrator can recover a single fixed rendezvous through desired-velocity-only
+movement. It did **not** authorise cadence, opponent claims, possession
+continuity or Match wiring. Live remains B0 and this gap is parked.
 
 ### G2 — shielding and ball access while possession is secured
 
@@ -188,9 +195,13 @@ counterfactual with an acceptance probe and an honest-revert boundary.
 Current order:
 
 ```text
-B1c Controlled Ball Coupling (strictly bounded)
-→ user play-test + probes
-→ return to S3–S8
+DDD-0 one-body defensive dilemma (complete)
+→ D-COVER-0 multi-defender shared-cover handoff (offline)
+→ default-off visual sandbox only if D-COVER-0 passes
+→ sealed two-sided ecology only after the shared-cover substrate exists
 ```
 
-If B1c fails, revert it and return to S3–S8. Do not roll directly into G2–G9.
+B1c already failed its live boundary and was reverted. Do not roll directly
+into G2–G9. The active question is whether observer-specific teammate intent can
+let multiple finite bodies create local defensive cover without rebuilding the
+current commander under new names.
