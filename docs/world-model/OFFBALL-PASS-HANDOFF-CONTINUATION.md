@@ -1,0 +1,117 @@
+# H0 — Recent-handoff Continuation Intervention
+
+Status: **PRE-REGISTERED. Offline clone experiment only.**
+
+Date: 2026-07-21
+
+## 1. Hypothesis
+
+E2 proved that ordinary pass choice often returns the ball without `wallRun`,
+but most original passers still move through named legacy support/run authority.
+The missing generic fact is temporal shared context:
+
+```text
+A has just transferred stable control to B
+```
+
+H0 asks whether, in that exact context, moving A through the already accepted
+role-neutral O0/O1 substrate to a feasible forward point makes a later ordinary
+B→A pass more likely to reach stable intended control than keeping A at the
+handoff point.
+
+This is not a one-two action, return-pass bonus or live selector. The football
+name remains observational.
+
+## 2. Frozen sample
+
+Use the first 128 eligible match seeds beginning at 29,000, scanning at most 256
+seeds and accepting at most one state per seed.
+
+Freeze immediately after a new live stable completed pass A→B when:
+
+* A and B are same-team outfielders and still on the pitch;
+* B is the current stable owner and ordinary dribbler;
+* at least six seconds remain;
+* truth O0 for A, with B as carrier, supports `hold` and at least one candidate
+  satisfying `forwardDelta > 0`, `onside`, and
+  `opponentArrivalMargin > 0`.
+
+Choose the forward candidate with lowest self ETA, then candidate ID. This is
+the same transparent feasibility ordering used in earlier O0/O4 probes. No
+`wallRun`, role, gene, policy, named assignment, pass outcome or later value is
+read by candidate selection.
+
+## 3. Paired movement branches
+
+From the same frozen post-handoff Match:
+
+```text
+hold branch          A MoveToPoint at current world point
+continuation branch  A MoveToPoint at selected forward O0 point
+```
+
+In both branches B uses the existing `HoldPosition` action. A and B decision
+timers alone are frozen. Run exactly 90 normal `Match.step(DT)` ticks. The probe
+never writes position, velocity, heading, speed, acceleration or ball state.
+
+Terminate categorically if B loses stable control, play stops, A/B is
+removed/substituted or the intervention action changes unexpectedly. Excluded
+states remain in the attrition ledger.
+
+## 4. Forced return transition
+
+When both movement branches remain valid, force the existing ordinary B→A pass
+through Oracle v2 using four fixed child streams:
+
+```text
+childSeed = hashSeed(H0_NAMESPACE, matchSeed, freezeTick, replicate)
+replicate = 0..3
+```
+
+The same child stream is used in both branches. Every pass begins from its own
+unchanged post-movement clone. No `wallRun`, one-touch, target priority or
+controller privilege is injected by the probe.
+
+## 5. Primary outcome and mediators
+
+Primary:
+
+```text
+continuation intended-reception rate - hold intended-reception rate >= +5pp
+```
+
+Hard mediators:
+
+* continuation A closes its immutable target in at least 95% of completed
+  interventions;
+* continuation-minus-hold A local-x at pass time is positive in at least 90%
+  of jointly completed states;
+* target/action changes, clone failures, determinism differences, non-finite
+  facts and Oracle force failures are exactly zero;
+* continuation opponent-control rate may not increase by more than 5pp.
+
+Report all five first-transition outcomes plus censoring, movement distance,
+forward displacement, pre-pass attrition and the O0 candidate facts. Later
+possession/xG/goals are outside H0.
+
+## 6. Coverage gates
+
+```text
+eligible independent match seeds                 = 128
+scanned match seeds                              <= 256
+jointly completed movement states                >= 96
+successful forced-pass opportunities per branch >= 96 * 4
+hold/continuation completion-rate difference     <= 5pp
+```
+
+## 7. Stop rule
+
+Stop without live or representation work if the +5pp reception gate fails, the
+movement mediator fails, opponent control regresses, or validity/coverage fails.
+Do not then change to lateral/backward, maximize another O0 fact, widen the
+sample, alter the child count or lower the threshold.
+
+Passing H0 authorises only a separate byte-identical representation contract
+for recent control-transfer context. It does not authorise live pass-and-move,
+`supportSpot` replacement, retiring `wallRun`, a gene or a play-test build.
+

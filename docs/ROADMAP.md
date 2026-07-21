@@ -389,6 +389,15 @@
 > The pass choice is natural; shared movement intent/payoff is not yet a clean replacement.
 > Two runs were byte-identical (`a2f83411…acbc`); no script was retired. Authority:
 > [`world-model/EMERGENT-PASS-RETURN-CENSUS.md`](world-model/EMERGENT-PASS-RETURN-CENSUS.md).
+> 🧪 **H0 RECENT-HANDOFF CONTINUATION PRE-REGISTERED (2026-07-21,
+> offline only):** immediately after a stable A→B completion, compare A holding its handoff
+> point with A moving through real `MoveToPoint` to the lowest-ETA feasible forward O0 point;
+> B holds for 1.5s, then four paired child streams force the ordinary B→A pass. Primary =
+> intended stable reception +5pp without >5pp opponent-control regression. The intervention
+> reads the generic recent-transfer identity and O0 geometry, never `wallRun`, roles, genes,
+> named assignments or live value. Passing authorises only a later representation contract.
+> Authority:
+> [`world-model/OFFBALL-PASS-HANDOFF-CONTINUATION.md`](world-model/OFFBALL-PASS-HANDOFF-CONTINUATION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
