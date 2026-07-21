@@ -294,6 +294,8 @@ export class Match {
 
   private kickoffSide: Side = 0;
   private stepCount = 0;
+  /** Deterministic discrete simulation clock for pure observational layers. */
+  get simTick(): number { return this.stepCount; }
   /** One "stoppage time" feed line per half (Phase 27.4). */
   private stoppageAnnounced = false;
   /** Sim time when the second half kicked off — first-half stoppage must not

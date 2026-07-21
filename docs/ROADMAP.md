@@ -48,9 +48,15 @@
 > current-velocity/accel/fatigue/facing/carry `timeToReach`; no live AI reads it. Directional
 > mechanism tests 4/4; the 120-match S1 reliability curve remains monotonic (received
 > 33%→92%, intercepted 63%→5%); repeated save fingerprints unchanged (`a9412f22…`,
-> `d14a471f…`); perf 5.2µs/step vs frozen 5.32, 14.5 vs 15.0 matches/s. **NEXT = sub-step 3:
-> minimal stale `PerceptionSnapshot` for the ON-BALL passer only, gated by shared awareness;
-> perception-calibration must move honestly off the 0.00m perfect-info baseline.** The body
+> `d14a471f…`); perf 5.2µs/step vs frozen 5.32, 14.5 vs 15.0 matches/s. ✅ **S3a
+> PerceptionSnapshot representation + layer-gate DONE (2026-07-21, byte-identical):** pure
+> copied truth, deterministic keyed observation error, FOV/range, scan latency and last-known
+> memory; the on-ball passer keeps an exact ball cue. It is probe-only: no AI consumer, gene,
+> save or budget change yet. At 120 matches, synthetic awareness 0.2→0.8 gives position MAE
+> 0.54→0.38m, velocity MAE 1.00→0.63m/s, visible players 5.7→8.1 and missed ≤6m threats
+> 15.1%→8.3%. **NEXT = S3b as its own behavioural lever: introduce the shared awareness
+> trunk and make only the on-ball pass read consume the snapshot; gate the mediator first,
+> then cognition-factorial + pass/arrival probes before keeping it.** The body
 > model is a LOCAL substrate, NOT the north star.
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,

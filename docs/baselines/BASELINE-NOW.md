@@ -177,3 +177,20 @@ perfect-info exposure (headroom S3 removes):
   perfect info collapses things like natural offside timing. When S3 lands, the win is
   decisions degrading GRACEFULLY (worse reads for low-awareness players), not the sim
   falling apart.
+
+**S3a representation addendum (2026-07-21, accepted M3 behaviour):** the frozen
+perfect-information block above remains the live-AI before-baseline. The same probe now
+also runs the new `PerceptionSnapshot` offline for the on-ball outfield passer; nothing in
+the decision path reads it yet. At 120 matches / seeds 0–119:
+
+```
+awareness   players/snapshot   pos MAE   vel MAE    age    missed ≤6m threats
+0.2               5.7           0.54m    1.00m/s   5.7t          15.1%
+0.5               7.0           0.46m    0.81m/s   5.4t          11.5%
+0.8               8.1           0.38m    0.63m/s   5.2t           8.3%
+```
+
+This passes the S3 layer-gate directionally: awareness improves fidelity, freshness,
+coverage and threat reads through the intended mediator, without changing speed, pass or
+tackle mechanics. It does **not** yet prove that decisions use the information or that the
+gene pays/selects; those are S3b's cognition-factorial and pass/arrival gates.
