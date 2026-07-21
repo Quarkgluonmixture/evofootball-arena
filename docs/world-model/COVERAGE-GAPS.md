@@ -105,6 +105,14 @@ This is not a demand to build full locomotion now. Add one of these only when a
 Pass–Arrival–Contest or off-ball counterfactual proves the current ETA is
 insufficient.
 
+A0 tested the first narrow residual on 8,370 fresh chosen-pass branches. After
+fixed stratification by current arrival margin, body readiness and flight time,
+lower kick-time ball–receiver relative speed changed intended reception by
+`-0.5pp` rather than the pre-registered `+10pp`; only 14/28 cells had the expected
+sign. Exact validity and support passed. This hypothesis is therefore stopped:
+G3 remains a real coverage description, not authority to add arrival velocity,
+braking or `controlReadyAt` without a different future counterfactual.
+
 ### G4 — tackle execution geometry and contact cause
 
 Standing and sliding tackles have useful directionality and loose-ball outcomes,

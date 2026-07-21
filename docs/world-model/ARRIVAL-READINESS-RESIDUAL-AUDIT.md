@@ -1,6 +1,6 @@
 # A0 — Arrival-readiness Residual Audit
 
-Status: **PRE-REGISTERED — read-only; no G3 representation or live consumer authorised.**
+Status: **FAILED primary residual and sign-consistency gates — stopped; G3 remains deferred.**
 
 Date: 2026-07-21
 
@@ -168,3 +168,30 @@ Passing A0 authorises only a separately pre-registered pure representation that
 adds a relative-arrival-speed fact to S4/S5. It does not authorise a probability,
 score, selector, locomotion rewrite, `controlReadyAt`, live perception wiring or
 play-test build.
+
+## 7. Frozen result
+
+Two complete runs were byte-identical:
+
+```text
+matches represented / eligible records       120 / 8,370
+ordinary passes seen                         9,623
+first transitions: intended / teammate       6,405 / 403
+first transitions: opponent / loose / dead   1,549 / 1 / 12
+supported / informative cells                28 / 28
+low + high extreme records                   3,988
+positive intended-reception cells            14 / 28 (50.0%)
+intended reception, low / high relative       76.9% / 77.4%
+primary edge                                  -0.5pp (required >= +10pp)
+opponent control, low / high relative          17.0% / 17.3%
+validity / mutation / RNG failures             all zero
+ledger sha256 ad33f746004f260b02377fa7e237d0f59021d8ccdf6daef525c92d4f8de9ad52
+report sha256 41f027558b47e6a6b04b0c4e6f1336c35c3746e25e7d49b48a4d65a55842fcb0
+```
+
+Support and exact validity were ample, so this is not an underpowered or broken
+probe result. The primary effect was essentially flat and slightly reversed,
+while only half the cells had the hypothesised sign. Kick-time relative-arrival
+speed therefore does not justify a new arrival-readiness representation in this
+ecology. The audit stops without adding a feature, predictor, movement change or
+live consumer; the +10pp and 60% gates are not lowered after result.
