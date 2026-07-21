@@ -395,3 +395,13 @@ contract must examine decentralised defender reaction from generic physical
 facts; it may not extend EOR-0's window, tune its thresholds or turn O3
 separation into an attacking bonus. The closed-loop possession-development lab
 is not authorised by this result.
+
+That next contract is now frozen in
+[`DECENTRALISED-DEFENSIVE-DILEMMA-LAB.md`](DECENTRALISED-DEFENSIVE-DILEMMA-LAB.md).
+DDD-0 enumerates a physically relevant defender's symmetric generic movements
+against the same A run, then forces the unchanged carrier to pass separately to
+A and B from every response world. It asks whether defender positions create a
+real two-outlet arrival and stable-control trade-off. It learns no score and
+does not allocate or wire a defender. Passing can authorise only a later
+selection/ecology contract; failure keeps the current commander and closes this
+generic point-response attempt.
