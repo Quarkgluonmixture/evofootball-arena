@@ -40,6 +40,8 @@ target from the frozen pre-decision state. The target must:
 * be a non-goalkeeper teammate represented by the oracle pass-affordance query;
 * have a finite predicted ground-ball flight;
 * have `offsideMargin <= -0.2m` at the frozen kick state;
+* be at least five simulated seconds before the current half's nominal
+  administrative boundary, measured from frozen match state;
 * produce one valid Oracle-v2 forced branch for that same target.
 
 The forced branch is used only to obtain the existing five-class first stable
@@ -139,6 +141,7 @@ duplicate record identities                 = 0
 non-finite pre-treatment facts              = 0
 Oracle force failures                       = 0
 Oracle transition conservation failures     = 0
+administratively censored transitions        = 0
 frozen/live Match mutations from audit       = 0
 RNG draws caused by fact evaluation          = 0
 outcome-dependent eligibility decisions      = 0
@@ -165,4 +168,3 @@ Passing A0 authorises only a separately pre-registered pure representation that
 adds a relative-arrival-speed fact to S4/S5. It does not authorise a probability,
 score, selector, locomotion rewrite, `controlReadyAt`, live perception wiring or
 play-test build.
-
