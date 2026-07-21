@@ -1,6 +1,7 @@
 # Ball-Control Foundation — authoritative ball, readable touches
 
-Status: **B0 done; B1a/B1b honest-reverted; B1c architecture approved; B1c-0 is next.**
+Status: **B0 done; B1a/B1b honest-reverted; B1c-0 byte-identical representation done;
+B1c-1 is next but not started.**
 This is a bounded S2 foundation slice, not an extension of the completed M0–M4 body
 campaign. The implementation authority for the retry is
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
@@ -51,11 +52,16 @@ Build the smallest process that makes foot↔knock cadence and disruption true:
 - ❌ **B1a/B1b — two live shortcuts. TRIED + REVERTED.** See §4. They prove that
   neither moving an owned-ball offset nor making every close touch a free-ball
   event provides the required semantics.
-- ⬜ **B1c-0 — consumer census + representation (BYTE-IDENTICAL). NEXT.** Map
+- ✅ **B1c-0 — consumer census + representation (BYTE-IDENTICAL). DONE
+  2026-07-21.** Mapped
   every `ball.owner` / `ball.pos` / possession / pass-arrival consumer; add the
   minimal `ControlSequence`, break-cause vocabulary and pure
-  `derivePossessionLocus`; add the observational probe shell. Nothing live reads
-  the new facts.
+  `derivePossessionLocus`; added the observational probe shell. Nothing live reads
+  the new facts. Census: 110 owner + 165 position occurrences across 12 production
+  files. The 120-match shell reports zero sequences and all four own-touch violations
+  exactly zero. Gates: build clean · 494/494 · both frozen fingerprints exact ·
+  profiler determinism OK · 5.25µs/step, 14.8 matches/s. Full record:
+  [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
 - ⬜ **B1c-1 — single-player coupling.** A real ball moves only by bounded
   impulses inside one continuous sequence. Prove speed/turn cadence and zero
   possession transitions with no opponent.

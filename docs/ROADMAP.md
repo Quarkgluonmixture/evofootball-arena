@@ -128,9 +128,18 @@
 > Own planned touch must never open M3/change possession/create pass-arrival; an opponent's real
 > touch breaks the lease into existing M3. Authority:
 > [`world-model/CONTROLLED-BALL-COUPLING.md`](world-model/CONTROLLED-BALL-COUPLING.md).
-> **NEXT = B1c-0 ONLY:** census every `ball.owner`/`ball.pos`/possession/pass-arrival consumer,
-> add pure-data `ControlSequence` + `derivePossessionLocus` + probe shell, and prove
-> byte-identical. No touch impulse, no AI consumer and no play-test candidate in B1c-0.
+> ✅ **B1c-0 DONE (2026-07-21, byte-identical):** the new
+> [`CONTROL-CONSUMER-CENSUS.md`](world-model/CONTROL-CONSUMER-CENSUS.md) classifies 110
+> `ball.owner` + 165 `ball.pos` production occurrences across physical truth, control-process
+> truth and macro possession. `ControlSequence`/break/release vocabulary landed;
+> `Match.controlSequence` stays null in normal play and pure `possessionLocus` falls back to
+> the authoritative ball. No existing consumer moved. The 120-match probe reports zero
+> sequences/touches and exact-zero ownTouch→M3, ownTouch→possession, post-control
+> pass-arrival contacts and duplicate starts. Gates: build clean · 494/494 · both fingerprints
+> exact (`57b0bdab…`, `4ac9408d…`) · profiler determinism OK · 5.25µs/step vs frozen
+> 5.32, 14.8 vs 15.0 matches/s. **NEXT = B1c-1 isolated single-player mechanism only:**
+> real bounded ball impulses inside one sequence; no opponent, macro consumer migration or
+> live-match candidate. Stop and gate it separately before B1c-2.
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

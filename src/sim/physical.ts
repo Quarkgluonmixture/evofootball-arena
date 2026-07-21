@@ -46,6 +46,99 @@ export type BallControlEvent =
   | { readonly tick: number; readonly kind: 'lost'; readonly gid: number; readonly cause: 'overrun' | 'tackle' | 'opponentContact' | 'out' }
   | { readonly tick: number; readonly kind: 'released'; readonly gid: number; readonly cause: 'pass' | 'shot' | 'clearance' };
 
+/** How one continuous controlled-ball process began. */
+export type ControlSequenceOrigin =
+  | 'reception'
+  | 'interception'
+  | 'looseControl'
+  | 'selfRegather';
+
+/** A physical interruption of control; none of these awards a new owner. */
+export type ControlBreakCause =
+  | 'overrun'
+  | 'tackle'
+  | 'opponentContact'
+  | 'out'
+  | 'deadBall';
+
+/** A deliberate end to control rather than a loss of it. */
+export type ControlReleaseCause =
+  | 'pass'
+  | 'shot'
+  | 'clearance'
+  | 'openKnock'
+  | 'out'
+  | 'deadBall';
+
+interface ControlSequenceBase {
+  readonly id: number;
+  readonly controllerGid: number;
+  readonly origin: ControlSequenceOrigin;
+  readonly startedTick: number;
+  readonly lastOwnTouchTick: number;
+  readonly touchIndex: number;
+}
+
+/**
+ * B1c control-process representation. An own planned touch advances one
+ * active sequence; it does not imply a possession transition or M3 contest.
+ * B1c-0 adds the data contract only: live Match state stays null.
+ */
+export type ControlSequence =
+  | (ControlSequenceBase & { readonly status: 'active' })
+  | (ControlSequenceBase & {
+      readonly status: 'broken';
+      readonly endedTick: number;
+      readonly breakCause: ControlBreakCause;
+    })
+  | (ControlSequenceBase & {
+      readonly status: 'released';
+      readonly endedTick: number;
+      readonly releaseCause: ControlReleaseCause;
+    });
+
+/**
+ * Macro possession position derived from existing truth. It is not a second
+ * integrated ball trajectory and has no physics or rendering authority.
+ */
+export interface PossessionLocus {
+  readonly pos: Readonly<V2>;
+  readonly source: 'ball' | 'controller';
+  readonly sequenceId: number | null;
+  readonly controllerGid: number | null;
+}
+
+export interface PossessionLocusFacts {
+  readonly ballPos: Readonly<V2>;
+  readonly controlSequence: ControlSequence | null;
+  /** Position of controlSequence.controllerGid, or null if unavailable. */
+  readonly controllerPos: Readonly<V2> | null;
+}
+
+/**
+ * B1c-0 semantic projection. Only an ACTIVE, resolvable sequence selects the
+ * controller position; terminal/missing state falls straight back to the real
+ * ball. The returned position is a read-only reference, never a copied or
+ * independently advanced trajectory.
+ */
+export function derivePossessionLocus(facts: PossessionLocusFacts): PossessionLocus {
+  const sequence = facts.controlSequence;
+  if (sequence !== null && sequence.status === 'active' && facts.controllerPos !== null) {
+    return {
+      pos: facts.controllerPos,
+      source: 'controller',
+      sequenceId: sequence.id,
+      controllerGid: sequence.controllerGid,
+    };
+  }
+  return {
+    pos: facts.ballPos,
+    source: 'ball',
+    sequenceId: null,
+    controllerGid: null,
+  };
+}
+
 /** Derive control truth from existing state without creating duplicate state. */
 export function classifyBallControl(facts: BallControlFacts): BallControlPhase {
   if (!facts.live) return { kind: 'deadBall' };

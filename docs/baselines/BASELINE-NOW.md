@@ -8,6 +8,27 @@
 
 ---
 
+## control-sequence-anatomy — B1c-0 empty representation baseline
+`npx tsx scripts/probes/control-sequence-anatomy.ts 120 0`
+
+```
+n=120 (seeds 0-119)
+sequences 0.00/match · active 0.000s/match · touches 0.00/match · touches/sequence n/a
+origin reception/interception/loose/self 0/0/0/0 · broken 0 · released 0 · unresolved 0
+controller distance n/a · relative speed n/a · exposure 0.000s · virtual-foot distance n/a (B1c-1)
+cadence n/a · opponent breaks 0 · fast reacquire 0
+EXACT ZERO ownTouchOpenedM3=0 · ownTouchChangedPossession=0 ·
+passArrivalContactsAfterControl=0 · duplicateSequenceStart=0
+```
+
+**Reads:** B1c-0 is genuinely representation-only. Normal matches fabricate no
+control sequences, no micro-touches and no possession/contest events. B1c-1 must
+move the mechanism metrics off zero while every exact-zero violation stays zero.
+This baseline is read alongside `ball-control-anatomy` and post-M3
+`contest-anatomy`; it does not replace either.
+
+---
+
 ## contest-anatomy — S0 loose-ball / contest ledger
 `npx tsx scripts/probes/contest-anatomy.ts 120 0`
 

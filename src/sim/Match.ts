@@ -24,13 +24,16 @@ import {
 import * as mech from './mechanics';
 import {
   classifyBallControl,
+  derivePossessionLocus,
   directBallAccess,
   type BallControlPhase,
+  type ControlSequence,
   type ContestContact,
   type ContestEpisode,
   type ContestOrigin,
   type ContestResolution,
   type DirectBallAccess,
+  type PossessionLocus,
 } from './physical';
 import { Player } from './Player';
 import { matchRating } from './ratings';
@@ -231,6 +234,24 @@ export class Match {
    * any other capture, kick or dead ball clears it.
    */
   dribbleTouch: { gid: number; until: number } | null = null;
+  /**
+   * B1c-0 representation only. No live system creates or consumes a control
+   * sequence yet; null therefore preserves the complete B0 match path.
+   */
+  controlSequence: ControlSequence | null = null;
+  /**
+   * Pure macro projection for future explicitly-classified consumers. In B1c-0
+   * the sequence is always null, so this is exactly the authoritative ball.
+   */
+  get possessionLocus(): PossessionLocus {
+    const sequence = this.controlSequence;
+    const controller = sequence === null ? null : this.allPlayers[sequence.controllerGid] ?? null;
+    return derivePossessionLocus({
+      ballPos: this.ball.pos,
+      controlSequence: sequence,
+      controllerPos: controller?.pos ?? null,
+    });
+  }
   /**
    * B0 observational control phase derived from existing authoritative state.
    * No live decision or physics path reads it.

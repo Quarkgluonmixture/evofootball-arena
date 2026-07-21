@@ -61,7 +61,7 @@ The operating rule remains the Foundation counterfactual criterion:
 
 ## 3. Missing foundation facts
 
-### G1 — controlled-ball coupling · next bounded hypothesis
+### G1 — controlled-ball coupling · B1c-0 representation done
 
 `ball.owner` still conflates controller, physical carry constraint, ordinary
 capture exemption and macro possession. The engine has no state meaning:
@@ -75,6 +75,8 @@ Both rejected B1 candidates exposed this exact gap: moving an owned ball leaked
 micro-position into pass-arrival, while representing each close touch as a free
 ball multiplied knocks and M3 contests. The proposed boundary is documented in
 [`CONTROLLED-BALL-COUPLING.md`](CONTROLLED-BALL-COUPLING.md).
+The byte-identical consumer census and representation are now complete; the
+first behavioural claim remains untested until the isolated B1c-1 mechanism.
 
 ### G2 — shielding and ball access while possession is secured
 

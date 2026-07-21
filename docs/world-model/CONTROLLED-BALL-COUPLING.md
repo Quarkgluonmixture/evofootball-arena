@@ -1,8 +1,9 @@
 # Controlled Ball Coupling — B1c architecture contract
 
-Status: **approved bounded hypothesis; no live implementation yet.** This is the
-only authorised retry of the Ball-Control Foundation after the two rejected B1
-candidates in [`BALL-CONTROL.md`](BALL-CONTROL.md).
+Status: **B1c-0 representation complete; B1c-1 not started.** Live behaviour is
+still the accepted B0 path. This is the only authorised retry of the Ball-Control
+Foundation after the two rejected B1 candidates in
+[`BALL-CONTROL.md`](BALL-CONTROL.md).
 
 ## 0. Verdict
 
@@ -70,16 +71,16 @@ legacy field.
 The exact TypeScript shape may change during B1c-0, but its semantics must not:
 
 ```ts
-interface ControlSequence {
+type ControlSequence = {
   id: number;
-  controller: Gid;
+  controllerGid: number;
   origin: 'reception' | 'interception' | 'looseControl' | 'selfRegather';
-  startedAt: number;
-  lastOwnTouchAt: number;
+  startedTick: number;
+  lastOwnTouchTick: number;
   touchIndex: number;
   status: 'active' | 'broken' | 'released';
   breakCause?: ControlBreakCause;
-}
+};
 
 type BallControlState =
   | { kind: 'secured'; controller: Gid; sequenceId: number }
@@ -241,6 +242,8 @@ This is the exact starting point.
 1. Map every simulation reader/writer of `ball.owner`, `ball.pos`,
    `possessionSide`, `pendingPass`, `dribbleTouch` and the M3 contest lifecycle.
    Classify each as physical truth, control-process truth or macro possession.
+   The landed census is
+   [`CONTROL-CONSUMER-CENSUS.md`](CONTROL-CONSUMER-CENSUS.md).
 2. Add the minimal `ControlSequence` / break-cause event vocabulary and a pure
    `derivePossessionLocus` helper. No AI, physics, tackle, possession or renderer
    consumer reads the new state.
@@ -252,6 +255,20 @@ This is the exact starting point.
 Gate: clean tsc/build/full Vitest, exact fingerprints, watched=headless,
 deterministic clone continuation, no perf regression. No user play-test yet
 because no behaviour should change.
+
+**✅ DONE 2026-07-21.** The production census found 110 `ball.owner` and 165
+`ball.pos` occurrences across 12 source files and classifies every consumer
+family in [`CONTROL-CONSUMER-CENSUS.md`](CONTROL-CONSUMER-CENSUS.md). The landed
+runtime state is exactly `Match.controlSequence = null`; `possessionLocus` is a
+pure getter that returns the authoritative ball unless an active, resolvable
+sequence exists. No existing AI, physics, tackle, possession or renderer path
+reads either fact. Four new invariants cover ball fallback, active-controller
+projection, terminal/missing-controller fallback and structural clone identity.
+The 120-match probe reports zero sequences/touches and all four violation
+counters exactly zero. Gates: build clean · 494/494 tests · fingerprints unchanged
+(`57b0bdab…`, `4ac9408d…`) · profiler determinism OK · 5.25µs/step versus frozen
+5.32, 14.8 versus 15.0 matches/s. The frozen perf JSON was restored after the
+measurement. Stop here; B1c-1 is the next isolated behavioural mechanism.
 
 ### B1c-1 — single-player coupling
 

@@ -151,7 +151,9 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   One causally different retry is now specified in
   [`world-model/CONTROLLED-BALL-COUPLING.md`](world-model/CONTROLLED-BALL-COUPLING.md):
   continuous `ControlSequence` + independent ball + discrete touches + derived macro
-  `PossessionLocus`. B1c-0 is byte-identical representation first, not another timer tune.
+  `PossessionLocus`. ✅ B1c-0 landed byte-identically: consumer census + null live sequence
+  state + pure locus + probe shell, with no existing consumer. B1c-1 is the next isolated
+  mechanism, not another timer tune and not live-match approval.
 
 ### S3 — Perception · 🟡🔴 (representation exists; live AI is still omniscient)
 - **Provides:** each player reads a `PerceptionSnapshot` (observed ball/players +
