@@ -380,6 +380,13 @@
 > allocator or live state is authorised; changing to another O5 fact now would be an adaptive
 > retry rather than a new causal model. Authority:
 > [`world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md`](world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md).
+> 🔎 **E2 NATURAL PASS-RETURN CENSUS PRE-REGISTERED (2026-07-21,
+> telemetry only):** observe immediate stable A→B→A completions within 3s and derive the
+> original passer's real return trajectory after the fact. The probe separately flags the
+> explicit `wallRun` licence, team runner/arriver/overlapper assignments and legacy support
+> actions, so a named scripted completion cannot be called generic emergence. It changes no
+> behaviour and does not reward the pattern. Authority:
+> [`world-model/EMERGENT-PASS-RETURN-CENSUS.md`](world-model/EMERGENT-PASS-RETURN-CENSUS.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
