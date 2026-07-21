@@ -1,9 +1,10 @@
 # S7e-0C — Replicated Counterfactual Oracle Ceiling
 
-Status: **ComparablePassPayoffV1 preflight and pilot validity passed, but the
-pre-registered pilot was statistically INCONCLUSIVE: R=32 did not meet either
+Status: **PARKED. ComparablePassPayoffV1 preflight and pilot validity passed, but
+the pre-registered pilot was statistically INCONCLUSIVE: R=32 did not meet either
 stability gate. The 32,576-branch final was not run; no adaptive retry, estimator
-or live consumer is authorised.**
+or live consumer is authorised. Mainline has returned to S3–S8 off-ball substrate
+work.**
 
 Date: 2026-07-21
 
@@ -428,3 +429,22 @@ pass, and the default two-season fingerprint remains exactly
 `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
 The profiler determinism check also passes; 5.37µs/step versus the frozen
 5.32µs/step baseline is within run noise and shows no material regression.
+
+## 13. Parking decision
+
+This experiment reached its pre-registered stop. It is parked rather than
+falsified: the event semantics and Comparable V1 remain valid probe assets, but
+changing the estimand immediately after seeing the pilot would be an adaptive
+retry of the same causal claim.
+
+Re-entry requires a genuinely new, pre-registered inferential contract that both:
+
+1. composes transition probability with conditional next-state value rather than
+   adding another independent Pareto dimension; and
+2. addresses the between-match generalisation ceiling—the current suite contains
+   only 120 defensible match clusters.
+
+Increasing `R`, changing tolerances, running the withheld final or swapping the
+relation after observing this pilot does not qualify. Until those conditions are
+met, S7e is not the project mainline and must not block independent S3–S8
+representation work.

@@ -1,8 +1,9 @@
 # S7e — Transition Distribution × Conditional Next State
 
-Status: **design and oracle audit only; Oracle v2-0 and Comparable V1 are valid,
-but the replicated R=32 pilot was statistically inconclusive. No final,
-estimator implementation or live consumer is authorised.**
+Status: **PARKED after the pre-registered R=32 pilot was statistically
+inconclusive. Oracle v2-0 and Comparable V1 remain valid probe assets, but no
+final, estimator implementation or live consumer is authorised. Mainline has
+returned to S3–S8 off-ball substrate work.**
 
 Date: 2026-07-21
 
@@ -170,3 +171,8 @@ was statistically inconclusive. Only 39/64 pair relations agreed between the two
 live consumer is authorised. See
 [`S7E-REPLICATED-ORACLE-CEILING.md`](S7E-REPLICATED-ORACLE-CEILING.md). A revisit
 requires a new inferential contract, not an adaptive continuation increase.
+
+That future contract must be causally and inferentially new: it must explicitly
+compose transition probability with conditional next-state value and address the
+120-match-cluster generalisation ceiling. More continuations, changed tolerances,
+the withheld final or a post-result comparator redesign do not reopen S7e.
