@@ -1,6 +1,6 @@
 # R0a — Relative-point Clone Feasibility
 
-Status: **PRE-REGISTERED. Offline mechanism only.**
+Status: **COMPLETE — FORWARD AXIS FAILED; stopped.**
 
 Date: 2026-07-21
 
@@ -105,3 +105,53 @@ physics, if the target/offset must be retimed, or if validity/coverage fails.
 Passing authorises only a later representation-only symmetric relative-candidate
 set. It does not authorise a live emitter, offset preference, task commitment,
 off-ball selector, overlap migration, payoff probe or play-test build.
+
+## 6. Frozen result
+
+Two complete runs produced the identical output hash
+`6327988d08ad444d57236d70aff85f2655957485fc5393d98b224e7e3a690bf3`.
+
+### Validity and attrition
+
+```text
+independent frozen states / scanned seeds       64 / 64
+completed branches                             203 / 256
+control-ended attrition                         53 / 256
+clone / determinism failures                     0 / 0
+action / offset / reference drift                0 / 0 / 0
+moving-target identity / non-finite failures     0 / 0
+```
+
+The transform and composition were exact: every derived target moved by the
+same vector as its reference, and all interventions remained immutable.
+
+### Per-axis result
+
+| axis | completed | reference moved ≥3m | mover ended closer | mean final error |
+|---|---:|---:|---:|---:|
+| forward | 51 | 50/51 (98.0%) | **45/51 (88.2%)** | 1.796m |
+| backward | 51 | 49/51 (96.1%) | 50/51 (98.0%) | 1.060m |
+| lateral+ | 50 | 50/50 (100.0%) | 50/50 (100.0%) | 1.021m |
+| lateral− | 51 | 49/51 (96.1%) | 51/51 (100.0%) | 0.697m |
+
+Across all axes, references moved at least 3m in 97.5% of completed branches
+and movers closed the moving target in 96.6%. Those aggregate numbers do not
+override the frozen per-axis rule. The forward relation closed in only 88.2%,
+below the required 90%; six forward cases finished the full intervention yet
+ended at least as far from the target as they started.
+
+## 7. Verdict
+
+R0's dormant vocabulary remains valid, but R0a does **not** authorise a symmetric
+relative-candidate representation. A raw fixed offset that moves forward with
+another already-moving player can outrun the actor under current speed,
+acceleration, onside and avoidance constraints. The other axes cannot average
+that failure away.
+
+Do not lower the forward gate, shorten the reference move, reduce the offset,
+add speed or filter these same branches after observing the result. A future
+re-entry would need a genuinely new mover+reference recoverability model that
+predicts whether a relation is dynamically maintainable before commitment. That
+is a new reachability/inference contract, not R0a-2, and is not authorised here.
+No live emitter, candidate set, task allocation, overlap migration or play-test
+build follows from this result.

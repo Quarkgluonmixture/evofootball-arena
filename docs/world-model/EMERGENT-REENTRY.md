@@ -178,3 +178,11 @@ The primitive is deliberately broader than attacking combinations: it only maps
 a moving reference plus an attack-frame offset to the existing movement stack.
 No caller is yet allowed to prefer “outside”, “ahead” or any named football
 interpretation.
+
+R0a then tested that primitive through real cloned match composition. The
+moving-target identity and intervention were exact, and backward/lateral
+relations closed in 98–100% of completed branches, but the forward relation
+closed only 45/51 (88.2%) against its frozen 90% gate. A moving relation is
+therefore expressible but not uniformly maintainable. No candidate set follows.
+Any revisit must predict joint mover/reference recoverability before commitment,
+not shrink the observed test until it passes.
