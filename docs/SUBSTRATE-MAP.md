@@ -230,6 +230,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   forced ordinary pass changed intended stable-reception rates across geometries by 8.3pp,
   with distinct interception/progression tradeoffs. A cheap live predictor and selector are
   still absent; the transition result must not be collapsed into a universal direction bonus.
+  **R1 adds a dormant moving-relation affordance:** one explicit teammate intent endpoint
+  plus an immutable attack-frame relation is composed with mover ETA/slack, current and
+  projected offside lines, physical-pitch/barred-box legality and the existing O0/O3
+  access/occupancy facts. Every fact remains separate; there is no aggregate feasibility
+  authority, score, named pattern or live consumer. Fresh clone validation is still pending.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull
@@ -252,9 +257,10 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   **R0 adds a second dormant generic primitive:** `TrackRelativePoint` follows a fixed
   attack-frame offset from any moving player through the same execution stack. It has no
   live emitter, reference/offset chooser, role/gene branch or football-pattern label. This
-  represents a moving spatial relation; it does not yet prove feasibility or value for any
-  relative trajectory.
-  it is not yet a live candidate.
+  represents a moving spatial relation. R0a showed backward/lateral execution at 98–100%
+  but failed the frozen forward gate at 88.2%; R0b attributed five of six misses to an
+  offside endpoint already knowable at commitment. R1 now represents that missing
+  reachability/legality boundary, but it is not yet a live candidate.
 
 ### S7 — Action value & bounded lookahead · 🟡🔴 (pass Pareto boundary exists offline)
 - **Provides:** not "how good does this look NOW" but "what does it turn the NEXT

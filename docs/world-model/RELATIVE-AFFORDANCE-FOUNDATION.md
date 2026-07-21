@@ -211,3 +211,21 @@ Passing R1a would bank only a generic, legality-aware relative-affordance
 representation. A candidate set, observer-specific use, transition payoff,
 task allocation, live selection and migration each need later contracts.
 
+## 8. R1 representation result
+
+R1 landed at the registered dormant boundary in `ai/relativeAffordance.ts`.
+It accepts one explicit generic reference intent and fixed relation, then
+returns separate reach, current/projected offside, pitch, barred-box, O0 access
+and O3 occupancy facts. It contains no score, `committable` field, tactical
+name, offset preference or live consumer.
+
+Seven focused R1 tests plus the existing O0/O3/R0 suites pass (37 focused tests
+in total). Full single-worker regression, build and fingerprint are green:
+
+```text
+test files / tests     79 / 570
+production fingerprint 57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
+```
+
+Import/construction search finds no PlayerBrain, TeamBrain or Match emitter.
+R1 therefore authorises only the already-frozen R1a fresh clone validation.
