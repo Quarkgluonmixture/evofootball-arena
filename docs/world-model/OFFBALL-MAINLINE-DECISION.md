@@ -355,3 +355,29 @@ audits, but this static universal rank-weight family is finished. Any next
 composition contract must add a genuinely different selection state—such as
 generic context-conditioned preference or bounded temporal intent—without
 changing the frozen candidate facts, publishing central tasks or tuning D2a.
+
+## 9. Embodied reaction surface before another selector
+
+The next contract does not train a more elaborate selector. D1 and D2a did not
+yet establish that one player's generic movement creates a world-mediated
+reaction surface for another player; O3's current facts can still describe
+separation without proving that defenders or candidate access actually react.
+
+[`EMBODIED-OFFER-REACTION-SURFACE.md`](EMBODIED-OFFER-REACTION-SURFACE.md)
+therefore freezes an H/M/C experiment:
+
+```text
+H — A holds its initial point
+M — A performs the same generic physical movement used by the substrate
+C — the identical M world is queried with A's explicit O3 commitment
+```
+
+`M-H` measures whether A's body and the ordinary defensive world change B's
+fixed candidate affordances. `C-M` measures whether explicit future intent adds
+information beyond that same visible motion. A's short-horizon candidates are
+enumerated symmetrically; no branch chooses a winner, learns weights, publishes
+a central demand or scores a football pattern.
+
+Only if the embodied mechanism is common across states may the programme open
+a separately pre-registered closed-loop possession-development lab. Until then,
+the accepted live commander remains unchanged.
