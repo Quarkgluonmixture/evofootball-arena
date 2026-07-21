@@ -405,3 +405,17 @@ real two-outlet arrival and stable-control trade-off. It learns no score and
 does not allocate or wire a defender. Passing can authorise only a later
 selection/ecology contract; failure keeps the current commander and closes this
 generic point-response attempt.
+
+DDD-0 is now complete and passed with two byte-identical runs
+(`bd2b4b1e…b4068`). Of 419 supported A interventions, 398 (95.0%) contained a
+defender arrival cross-over and 103 (24.6%) also contained a real Oracle-v2
+opponent-control cross-over between A and B. The coupled result appeared in
+35/64 states; 82 interventions carried both effects in the same response pair.
+All validity and execution gates passed.
+
+This changes the boundary: generic defensive movement can express a real
+one-body/two-outlet dilemma. The missing layer is context-dependent selection,
+not another named marking coordinate. The next authority may be a sealed,
+two-sided selection/ecology contract only. It may not install a static universal
+defender score, publish central assignments, remove the commander or enter live
+play.

@@ -1,6 +1,8 @@
 # Decentralised Defensive Dilemma Lab
 
-Status: **DDD-0 contract pre-registered; probe not yet implemented or run.**
+Status: **DDD-0 completed and passed. A generic defender response set creates
+real two-outlet arrival and stable-control trade-offs. No live selector, gene or
+commander replacement is authorised.**
 
 Date: 2026-07-22
 
@@ -331,3 +333,72 @@ Passing DDD-0 does not authorise live wiring, genes, central allocation, removal
 of `marks/chasers`, full-match evolution or play-test. It authorises only the
 next separately frozen selection/ecology question.
 
+## 15. Frozen result
+
+The probe is implemented at
+[`scripts/probes/decentralised-defensive-dilemma-lab.ts`](../../scripts/probes/decentralised-defensive-dilemma-lab.ts).
+Two complete executions were byte-identical:
+
+```text
+accepted states                          64 / 64
+scanned seeds                            64 / 128
+A interventions                         467
+
+completed D responses                 3,744 / 4,161 = 90.0%
+valid Oracle opportunities            29,952 / 29,952 = 100.0%
+D target-progress mediator             3,061 / 3,315 = 92.3%
+
+supported A interventions                419
+arrival cross-over                       398 / 419 = 95.0%
+states with arrival cross-over            60 / 64
+
+arrival + transition cross-over          103 / 419 = 24.6%
+states with coupled cross-over             35 / 64
+same response pair carried both facts      82
+
+response status
+  completed                            3,744
+  loose                                  343
+  deadBallOrRestart                       74
+
+SHA-256                                bd2b4b1ee595d382552f3a70e77eb07589454c4130f61586d8e06c57e69b4068
+```
+
+Every frozen gate passed:
+
+* accepted-state, A-intervention and D-response support;
+* physical completion and Oracle opportunity coverage;
+* zero force failures, non-finite facts, action/target mutations, clone failures
+  and child-seed collisions;
+* perception RNG purity, physical and Oracle deterministic reruns, response and
+  child-order invariance;
+* defender execution, arrival cross-over rate/state support and coupled
+  transition cross-over rate/state support.
+
+The primary coupled rate cleared its 20% threshold at 24.6%; state support
+cleared 32/64 at 35/64. The result is not carried only by analytic geometry: 103
+interventions changed the real first-stable-controller tensor, and 82 contained
+one response pair that simultaneously carried both the arrival and transition
+cross-over.
+
+## 16. Interpretation and next authority
+
+EOR-0 showed that the current commander rarely selects a short embodied reaction.
+DDD-0 now shows that the generic physical response capacity itself is present:
+
+```text
+the defender can move to different legal generic points
+-> one outlet closes while another opens
+-> ball flight/contact/control sometimes pays that difference
+```
+
+Therefore the missing layer is selection under a real dilemma, not another named
+marking position and not more attacking separation facts.
+
+DDD-0 authorises one separately pre-registered **sealed selection/ecology**
+contract. That contract must preserve both outlets and the partial trade-off; it
+may not learn a universal “best defensive point,” collapse the tensor to a named
+marking rule, publish central assignments or enter production. A static global
+weight vector is especially disfavoured by D2a's previous failure. The most
+VISION-aligned next hypothesis is a bounded two-sided micro-ecology in which
+attacking outlet choice and defender response co-adapt on unseen state clusters.
