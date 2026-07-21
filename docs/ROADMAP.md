@@ -430,6 +430,15 @@
 > emitter and no role, tactic, gene, score or offset preference. Only a separately
 > pre-registered symmetric offline feasibility probe is authorised. Authority:
 > [`world-model/RELATIVE-POINT-MOVEMENT-PRIMITIVE.md`](world-model/RELATIVE-POINT-MOVEMENT-PRIMITIVE.md).
+> 🔬 **R0a RELATIVE-POINT CLONE FEASIBILITY PRE-REGISTERED
+> (2026-07-21, offline only):** 64 independent live states will move one off-ball reference
+> 5m through dormant `MoveToPoint` while another tracks four symmetric perturbations of
+> their frozen relative relation through dormant `TrackRelativePoint`. Real Match stepping,
+> common constraints and attrition remain active. Gates require moving-target identity,
+> reference movement, target closure, determinism and zero intervention drift. Passing can
+> authorise only a later symmetric candidate representation, not live use or payoff.
+> Authority:
+> [`world-model/RELATIVE-POINT-MOVEMENT-FEASIBILITY.md`](world-model/RELATIVE-POINT-MOVEMENT-FEASIBILITY.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
