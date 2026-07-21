@@ -312,7 +312,10 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   fixed target/arrival commitments expose separate target, bearing, timing and corridor
   occupancy facts. O3a found at least two synthetic commitments in 99.1% of 10,689 real
   attacking states, with a broad near-to-far occupancy distribution. No live commitment
-  producer, allocator, task priority or score exists.
+  producer, allocator, task priority or score exists. **C0 is now pre-registered**
+  as the next dormant layer: an opaque demand publishes an explicit target,
+  arrival window, participant capacity and lifetime; explicit claims then conserve
+  missing/excess occupancy without naming, producing, ranking or allocating tasks.
 
 ### S9 — Shared intent, comms & familiarity · 🟡🔴
 - Receiver expresses intent; a run becomes a passer cue; carrier body-orientation

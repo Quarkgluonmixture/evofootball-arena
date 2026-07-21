@@ -2,8 +2,9 @@
 
 Status: **A stopped at R1a's frozen coverage gate. User-selected B passed its
 data-support census, then stopped at T0b's strict relative-calibration gate before
-external validation. No movement selector or live pass estimator is authorised;
-the next mainline direction again requires an explicit decision.**
+external validation. The user selected C next; C0 is pre-registered as a dormant
+demand/claim occupancy representation. No movement selector, task allocator or
+live pass estimator is authorised.**
 
 Date: 2026-07-21
 
@@ -228,3 +229,9 @@ C has the highest visible tactical payoff but must remain representation-only;
 T0b did not authorise using its probabilities to score tasks or passes. P may use
 the banked target-specific signal, but cannot be an immediate patch to the failed
 ECE comparison.
+
+The user selected **C**. Its first bounded authority is
+[`TEAM-TASK-OCCUPANCY-FOUNDATION.md`](TEAM-TASK-OCCUPANCY-FOUNDATION.md): an
+opaque demand with explicit capacity and arrival window, explicit player claims,
+and a pure conservation ledger for missing/excess participation. C0 deliberately
+does not publish demands, score players, allocate tasks or alter live movement.
