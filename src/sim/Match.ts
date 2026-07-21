@@ -23,7 +23,9 @@ import {
 } from './constants';
 import * as mech from './mechanics';
 import {
+  classifyBallControl,
   directBallAccess,
+  type BallControlPhase,
   type ContestContact,
   type ContestEpisode,
   type ContestOrigin,
@@ -229,6 +231,22 @@ export class Match {
    * any other capture, kick or dead ball clears it.
    */
   dribbleTouch: { gid: number; until: number } | null = null;
+  /**
+   * B0 observational control phase derived from existing authoritative state.
+   * No live decision or physics path reads it.
+   */
+  get ballControlPhase(): BallControlPhase {
+    const owner = this.ball.owner;
+    return classifyBallControl({
+      live: this.phase === 'playing',
+      ownerGid: owner?.gid ?? null,
+      ownerIsKeeper: owner?.role === 'GK',
+      keeperHolding:
+        owner !== null && owner.role === 'GK' && (owner.gkHoldTimer > 0 || owner.gkDistributing),
+      knockedByGid: this.dribbleTouch?.gid ?? null,
+      knockExpiresAt: this.dribbleTouch?.until ?? null,
+    });
+  }
   /** Live dead-ball restart (kick-in/corner/goal kick); null in open play. */
   restart: RestartState | null = null;
   /** A ball over the goal line, coasting clear before its corner/goal-kick is

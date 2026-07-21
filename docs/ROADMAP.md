@@ -107,7 +107,15 @@
 > candidate. Oracle gates: clone continuation 2/2 · build clean · all 487 assertions passed
 > in both full runs, but both runners ended on the same known Vitest `onTaskUpdate` RPC
 > timeout (one retry only, then stop) · fingerprints unchanged · perf 5.25µs/step,
-> 14.8 matches/s, profiler determinism OK. **NEXT = S7 is missing genuine future-state causes named in the map — S2
+> 14.8 matches/s, profiler determinism OK.
+> ⭐ **USER-PRIORITISED FOUNDATION INSERT (2026-07-21):** before another live S7 cut,
+> build the bounded [`Ball-Control Foundation`](world-model/BALL-CONTROL.md). ✅ **B0 DONE,
+> byte-identical:** `BallControlPhase` now derives `deadBall / keeperHeld / secured / knocked /
+> free` from existing state; the event vocabulary is type-only and no AI/physics path reads it.
+> The existing Phase-36 open knock is preserved and formally recognised; B1 must address the
+> fixed 0.85m pressured carry without turning every close touch into a new M3 loose-ball contest.
+> Two fingerprints stayed exact (`57b0bdab…`, `4ac9408d…`), focused 12/12 + tsc clean.
+> After B3 user play-test, return to S7's missing future-state causes: S2
 > execution risk, threat created/conceded, structure/rest-defence cost and option quality.
 > Add those only as a new offline hypothesis, then require this same oracle to pass before
 > any closed S3→S4→S5→S7 behavioural cut.** The body

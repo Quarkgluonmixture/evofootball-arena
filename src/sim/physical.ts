@@ -12,6 +12,59 @@ import type { Side } from './types';
  */
 export type BallPhysicalMode = 'controlled' | 'freeGround' | 'freeAirborne';
 
+/**
+ * B0 ball-control truth. This is deliberately finer than `BallPhysicalMode`:
+ * an outfielder chasing their own knock is still in a control process even
+ * though the ball is physically free. The classifier is observational only;
+ * it never grants ownership or changes how a player acts.
+ */
+export type BallControlPhase =
+  | { readonly kind: 'deadBall' }
+  | { readonly kind: 'keeperHeld'; readonly controllerGid: number }
+  | { readonly kind: 'secured'; readonly controllerGid: number }
+  | { readonly kind: 'knocked'; readonly controllerGid: number; readonly expiresAt: number }
+  | { readonly kind: 'free' };
+
+/** Minimal existing facts required to derive `BallControlPhase`. */
+export interface BallControlFacts {
+  readonly live: boolean;
+  readonly ownerGid: number | null;
+  readonly ownerIsKeeper: boolean;
+  readonly keeperHolding: boolean;
+  readonly knockedByGid: number | null;
+  readonly knockExpiresAt: number | null;
+}
+
+/**
+ * Why a future controlled-ball process changed. Type-only in B0 so probes
+ * and replay can share one vocabulary before any behavioural implementation.
+ */
+export type BallControlEvent =
+  | { readonly tick: number; readonly kind: 'secured'; readonly gid: number }
+  | { readonly tick: number; readonly kind: 'knocked'; readonly gid: number }
+  | { readonly tick: number; readonly kind: 'disrupted'; readonly gid: number; readonly byGid: number }
+  | { readonly tick: number; readonly kind: 'lost'; readonly gid: number; readonly cause: 'overrun' | 'tackle' | 'opponentContact' | 'out' }
+  | { readonly tick: number; readonly kind: 'released'; readonly gid: number; readonly cause: 'pass' | 'shot' | 'clearance' };
+
+/** Derive control truth from existing state without creating duplicate state. */
+export function classifyBallControl(facts: BallControlFacts): BallControlPhase {
+  if (!facts.live) return { kind: 'deadBall' };
+  if (facts.ownerGid !== null) {
+    if (facts.ownerIsKeeper && facts.keeperHolding) {
+      return { kind: 'keeperHeld', controllerGid: facts.ownerGid };
+    }
+    return { kind: 'secured', controllerGid: facts.ownerGid };
+  }
+  if (facts.knockedByGid !== null && facts.knockExpiresAt !== null) {
+    return {
+      kind: 'knocked',
+      controllerGid: facts.knockedByGid,
+      expiresAt: facts.knockExpiresAt,
+    };
+  }
+  return { kind: 'free' };
+}
+
 /** Minimal body facts used by the M0 geometry layer. */
 export interface OrientedBody {
   readonly pos: Readonly<V2>;
