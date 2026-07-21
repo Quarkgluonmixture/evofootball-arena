@@ -1,6 +1,6 @@
 # K0a-F — Carry-affordance Inset Failure Audit
 
-Status: **PRE-REGISTERED — read-only diagnosis; K0a remains failed.**
+Status: **COMPLETE — diagnosis A; K0a remains failed.**
 
 Date: 2026-07-21
 
@@ -93,3 +93,28 @@ K0a-F may not:
 * rerun K0a on new seeds;
 * claim support/tradeoff PASS;
 * authorise `DribbleToPoint`, a selector, gene or live consumer.
+
+## 6. Frozen result
+
+Two byte-identical audit runs produced:
+
+```text
+eligible states                 5,873
+outside inset                   204
+hold outside inset              204
+directional outside inset         0
+hold point != controller point    0
+physical-pitch violations         0
+conservation                      pass
+canonical sha256 6e296cd111d13f13815ed0c2c22587ce0eeb1770bd4d759f3c7a90520b1ca004
+```
+
+The diagnosis is **A — sentinel-domain mismatch**. K0's generated directional
+targets all obeyed the inset. Every violation was the unchanged current-position
+`hold` sentinel for a controller already inside the boundary band, and every such
+point remained inside the physical pitch.
+
+This does not retroactively pass K0a. The carry line stops before an execution
+primitive. A future revisit would need a versioned representation contract that
+types `hold/current state` separately from generated travel targets and a fresh,
+pre-registered ecology; an immediate exemption or same-suite rerun is forbidden.

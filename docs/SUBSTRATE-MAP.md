@@ -243,7 +243,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   Eight focused counterfactual tests, all 604 repository tests, build and the
   unchanged production fingerprint pass; no live producer imports it. It remains
   representation-only and cannot change `Dribble` until later support, payoff,
-  selection, evolution and watchability contracts pass.
+  selection, evolution and watchability contracts pass. K0a then found strong
+  real-state support and progress/access tradeoffs in 99.8% of 5,873 states, but
+  failed its exact inset gate because 204 current-position `hold` sentinels lay in
+  the legal boundary band. The audit found zero generated directional violations;
+  K0a nevertheless remains failed and no point-carry executor is authorised.
 
 ### S6 — Action primitives & candidate generation · 🟡
 - **Provides:** enough primitives, never tactical answers. Move: approach / pull

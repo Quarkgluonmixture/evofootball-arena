@@ -1,6 +1,6 @@
 # K0a — Carry-affordance Support and Tradeoff Census
 
-Status: **PRE-REGISTERED — fresh-state observational census only.**
+Status: **K0a FAILED at an exact inset invariant — stopped before execution.**
 
 Date: 2026-07-21
 
@@ -151,3 +151,35 @@ K0a fails and stops before any execution primitive if:
 Passing K0a authorises only a separately pre-registered dormant
 `DribbleToPoint`-style execution-feasibility slice. It does not authorise a live
 selector, candidate payoff claim, gene, script retirement or play-test build.
+
+## 7. Frozen result
+
+The two complete runs were byte-identical:
+
+```text
+canonical sha256 aea16576bfd9c4673df4c18e2a039cffc9df1623775f077084478d35bfe4edf9
+```
+
+The representation signal itself was broad:
+
+```text
+eligible states / represented matches        5,873 / 120
+candidate count q10 / median / q90            28 / 33 / 33
+all 32 direction-time IDs                     >5,100 states, all 120 matches
+progress/access tradeoff                      5,862 / 5,873 (99.8%)
+endpoint/corridor tradeoff diagnostic         5,756 / 5,873 (98.0%)
+progress/field tradeoff diagnostic            5,813 / 5,873 (99.0%)
+null/non-finite/duplicate/mutation/RNG errors  0
+```
+
+Every support, fact-range and primary-tradeoff gate passed. The exact validity
+gate did not:
+
+```text
+candidate points outside the 2m inset  204
+required                              0
+```
+
+K0a is therefore `FAIL — STOP`; those strong diagnostics cannot override the
+invariant. The separately pre-registered K0a-F audit classified the 204 points
+without changing this result.

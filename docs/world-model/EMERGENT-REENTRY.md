@@ -7,8 +7,10 @@ Date: 2026-07-21
 Current bounded re-entry: [`CARRY-DIRECTION-AFFORDANCE.md`](CARRY-DIRECTION-AFFORDANCE.md)
 now implements a role-neutral, unscored carry-direction field with no live importer.
 It follows E1's allowed next evidence and does not restore a named cut-inside
-implementation. Its next authorised gate is a fresh-state support/tradeoff census,
-not a direction selector.
+implementation. Its K0a census found broad support/tradeoffs but failed an exact
+inset invariant; the audit isolated the failure to current-position `hold`
+sentinels. The carry line is parked before execution, not converted into a named
+direction selector.
 
 ## 1. Binding principle
 

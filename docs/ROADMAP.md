@@ -514,20 +514,22 @@
 > role gate, action type or `dribbleTarget` change landed. Only a separately
 > pre-registered fresh-state support/tradeoff census is authorised. Authority:
 > [`world-model/CARRY-DIRECTION-AFFORDANCE.md`](world-model/CARRY-DIRECTION-AFFORDANCE.md).
-> 🔬 **K0a CARRY-AFFORDANCE SUPPORT/TRADEOFF CENSUS PRE-REGISTERED
-> (2026-07-21):** fresh seeds 43,000–43,119 sample stable outfield controllers once
-> per simulated second. The observer gets the unchanged K0 candidate field; the probe
-> measures real-ecology direction support, separate fact ranges and one frozen
-> progress-vs-opponent-access tradeoff. It does not move the player or ball, score or
-> select a direction, use a pattern name or change live perception. Passing can authorise
-> only a separately contracted dormant point-carry execution primitive. Authority:
+> ⏸️ **K0a CARRY-AFFORDANCE CENSUS FAILED AN EXACT INSET GATE; STOPPED
+> (2026-07-21, offline only):** 5,873 stable-controller states across all 120 fresh
+> matches had broad candidate support and non-vacuous facts; 5,862 (99.8%) contained
+> the frozen progress-vs-opponent-access tradeoff. But 204 candidate points were outside
+> the two-metre inset, where the contract required zero. Two runs were byte-identical
+> (`aea16576…edf9`). The strong signal cannot override that validity failure; no point-carry
+> executor or selector is authorised. Authority:
 > [`world-model/CARRY-AFFORDANCE-CENSUS.md`](world-model/CARRY-AFFORDANCE-CENSUS.md).
-> 🔬 **K0a-F INSET FAILURE AUDIT PRE-REGISTERED (2026-07-21):** the first frozen
-> K0a run passed every support/range/tradeoff gate but stopped on 204 candidate points
-> outside the two-metre inset. The only diagnostic now allowed reruns the identical
-> suite and partitions those points into current-position `hold` sentinels versus real
-> directional targets. K0a remains failed regardless; no exemption, new seeds or
-> execution primitive follows from the audit. Authority:
+> ✅ **K0a-F FAILURE AUDIT COMPLETE — HOLD SENTINEL DOMAIN MISMATCH
+> (2026-07-21, read-only):** all 204 violations were `hold` at the controller's exact
+> current position after the live player had already entered the legal boundary band.
+> Generated directional violations, unequal hold points and physical-pitch violations
+> were all zero. Two runs were byte-identical (`6e296cd1…a004`). This explains the
+> failure but does not exempt or retroactively pass it. K0a stays stopped; any revisit
+> needs a versioned sentinel/travel-target contract and fresh ecology, not a same-suite
+> retry. Authority:
 > [`world-model/CARRY-AFFORDANCE-INSET-FAILURE-AUDIT.md`](world-model/CARRY-AFFORDANCE-INSET-FAILURE-AUDIT.md).
 > ✅ **R1 DORMANT RELATIVE-AFFORDANCE REPRESENTATION COMPLETE; USER SELECTED A
 > (2026-07-21):** a pure query now combines a shared/predicted teammate
