@@ -77,6 +77,9 @@ const reachState = (observed: ObservedPlayer, profile: KnownReachProfile): Reach
 const insideCandidatePitch = (point: Readonly<V2>): boolean =>
   Math.abs(point.x) <= HALF_L - PITCH_INSET && Math.abs(point.y) <= HALF_W - PITCH_INSET;
 
+const insidePhysicalPitch = (point: Readonly<V2>): boolean =>
+  Math.abs(point.x) <= HALF_L && Math.abs(point.y) <= HALF_W;
+
 /**
  * Generate symmetric, role-neutral spatial samples from observed physical state.
  * `attackDir` rotates the sampling frame; it does not remove backward or lateral
@@ -231,7 +234,10 @@ export function evaluateOffBallCandidate(
   candidate: OffBallCandidatePoint,
 ): OffBallAffordance | null {
   const context = prepareEvaluation(input);
-  if (!context || !insideCandidatePitch(candidate.point)) return null;
+  // The 2m inset belongs to candidate generation, not to the physical domain
+  // of an already-committed fixed point. A legal point can move into that
+  // boundary band after generation and must remain observable there.
+  if (!context || !insidePhysicalPitch(candidate.point)) return null;
   return evaluateCandidate(input, context, candidate);
 }
 

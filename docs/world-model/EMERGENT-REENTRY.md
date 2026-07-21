@@ -142,3 +142,15 @@ intended reception fell 9.8→8.6% and opponent control rose 76.0→85.4%. Thus
 “recent passer always continues forward” is **not** the missing general rule.
 The exchange choice exists; a useful coordinated movement consequence remains
 unresolved.
+
+The H0a read-only failure audit then ruled out the simplest staleness story.
+At pass time, 87/99 continuation points still gave A a positive local
+opponent-arrival margin, with mean margin increasing to 0.607s. Forced return
+passes nevertheless ended in opponent stable control 85.4% of the time; even
+the widest carrier-lane quartile was intercepted 86.9%. The missing generic
+fact is therefore not another point-access feature or an instruction to keep
+running. It is the action transition from carrier through ball flight/contact
+to a first stable controller, composed with the state created after that
+transition. Until that representation has a separately authorised path, named
+pass-and-move scripts remain migration debt rather than candidates for a cheap
+replacement.

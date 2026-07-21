@@ -1,7 +1,8 @@
 // H0 RECENT-HANDOFF CONTINUATION INTERVENTION (offline only).
 //   npx tsx scripts/probes/offball-pass-handoff-continuation.ts [states] [seedOffset]
 import {
-  evaluateOffBallAffordances, type OffBallAffordance, type OffBallCandidatePoint,
+  evaluateOffBallAffordances, evaluateOffBallCandidate,
+  type OffBallAffordance, type OffBallCandidatePoint,
 } from '../../src/ai/offBallAffordance';
 import { capturePerceptionTruth, oraclePerceptionSnapshot } from '../../src/ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../../src/ai/reachability';
@@ -18,6 +19,7 @@ import {
 
 const REQUIRED = Number(process.argv[2] ?? 128);
 const OFF = Number(process.argv[3] ?? 29000);
+const AUDIT = process.argv[4] === 'audit';
 const MAX_SEEDS = 256;
 const MOVE_STEPS = 90;
 const REPLICATES = 4;
@@ -49,6 +51,16 @@ interface MovementSummary {
 interface MovementBranch {
   readonly summary: MovementSummary;
   readonly match: Match;
+}
+
+interface AuditRecord {
+  readonly kind: BranchKind;
+  readonly outcome: RecordedOutcome;
+  readonly initialMargin: number;
+  readonly postMargin: number;
+  readonly postSelfArrival: number;
+  readonly postOpponentDistance: number;
+  readonly postLaneClearance: number;
 }
 
 const team = (name: string, seed: number): TeamInfo => {
@@ -221,6 +233,15 @@ let targetChanges = 0;
 let unexpectedActionChanges = 0;
 let nonFiniteFacts = 0;
 let oracleForceFailures = 0;
+const auditRecords: AuditRecord[] = [];
+const auditInitialMargins: number[] = [];
+const auditPostMargins: number[] = [];
+const auditPostSelfArrivals: number[] = [];
+const auditPostOpponentDistances: number[] = [];
+const auditPostLaneClearances: number[] = [];
+let auditEvaluations = 0;
+let auditFailures = 0;
+let auditRetainedPositive = 0;
 
 for (let seed = OFF; seed < OFF + MAX_SEEDS && frozenStates < REQUIRED; seed++) {
   scannedSeeds++;
@@ -318,6 +339,42 @@ for (let seed = OFF; seed < OFF + MAX_SEEDS && frozenStates < REQUIRED; seed++) 
     passTimeForwardDeltas.push(passTimeForwardDelta);
     if (passTimeForwardDelta > 0) positivePassTimeForwardDelta++;
 
+    const postMoveFacts = new Map<BranchKind, OffBallAffordance>();
+    if (AUDIT) {
+      for (const kind of ['hold', 'continuation'] as const) {
+        const branch = movement.get(kind)!.match;
+        const target = kind === 'hold' ? hold.candidate : continuation.candidate;
+        const fact = evaluateOffBallCandidate({
+          snapshot: oraclePerceptionSnapshot(
+            capturePerceptionTruth(branch), mover.gid,
+          ),
+          playerGid: mover.gid,
+          carrierGid: carrier.gid,
+          attackDir: attackingTeam.attackDir,
+          reachProfiles: profilesOf(branch),
+        }, target);
+        if (!fact || ![
+          fact.selfArrival,
+          fact.opponentArrivalMargin,
+          fact.nearestOpponentDistanceAtArrival,
+          fact.carrierLaneClearance,
+        ].every(Number.isFinite)) {
+          auditFailures++;
+          continue;
+        }
+        postMoveFacts.set(kind, fact);
+        auditEvaluations++;
+        if (kind === 'continuation') {
+          auditInitialMargins.push(continuation.opponentArrivalMargin);
+          auditPostMargins.push(fact.opponentArrivalMargin);
+          auditPostSelfArrivals.push(fact.selfArrival);
+          auditPostOpponentDistances.push(fact.nearestOpponentDistanceAtArrival);
+          auditPostLaneClearances.push(fact.carrierLaneClearance);
+          if (fact.opponentArrivalMargin > 0) auditRetainedPositive++;
+        }
+      }
+    }
+
     for (let replicate = 0; replicate < REPLICATES; replicate++) {
       const childSeed = hashSeed(H0_NAMESPACE, seed, match.simTick, replicate);
       for (const kind of ['hold', 'continuation'] as const) {
@@ -343,6 +400,23 @@ for (let seed = OFF; seed < OFF + MAX_SEEDS && frozenStates < REQUIRED; seed++) 
           : first.record.firstTransition.outcome!;
         const outcomeMap = outcomes.get(kind)!;
         outcomeMap.set(outcome, (outcomeMap.get(outcome) ?? 0) + 1);
+        if (AUDIT) {
+          const post = postMoveFacts.get(kind);
+          const initial = kind === 'hold' ? hold : continuation;
+          if (!post) {
+            auditFailures++;
+          } else {
+            auditRecords.push({
+              kind,
+              outcome,
+              initialMargin: initial.opponentArrivalMargin,
+              postMargin: post.opponentArrivalMargin,
+              postSelfArrival: post.selfArrival,
+              postOpponentDistance: post.nearestOpponentDistanceAtArrival,
+              postLaneClearance: post.carrierLaneClearance,
+            });
+          }
+        }
       }
     }
   }
@@ -391,6 +465,51 @@ console.log(
   + ` · opponent-control ${(opponentDelta * 100).toFixed(1)}pp`,
 );
 
+const reportAuditQuartiles = (
+  name: string,
+  valueOf: (record: AuditRecord) => number,
+): void => {
+  const records = auditRecords.filter((record) => record.kind === 'continuation')
+    .sort((a, b) => valueOf(a) - valueOf(b));
+  const buckets = Array.from({ length: 4 }, () => [] as AuditRecord[]);
+  records.forEach((record, index) => {
+    buckets[Math.min(3, Math.floor(index * 4 / records.length))].push(record);
+  });
+  console.log(`  ${name}`);
+  buckets.forEach((bucket, index) => {
+    const intended = bucket.filter((record) => record.outcome === 'intendedReception').length;
+    const opponent = bucket.filter((record) => record.outcome === 'opponentInterception').length;
+    console.log(
+      `    Q${index + 1} n=${bucket.length} mean=${mean(bucket.map(valueOf)).toFixed(4)}`
+      + ` · intended=${pct(intended, bucket.length)}`
+      + ` · opponent=${pct(opponent, bucket.length)}`,
+    );
+  });
+};
+
+if (AUDIT) {
+  console.log('H0a HANDOFF FAILURE AUDIT');
+  console.log(
+    `audit evaluations/records/failures ${auditEvaluations}/${auditRecords.length}/${auditFailures}`
+    + ` · positive margin retained ${auditRetainedPositive}/${jointlyCompleted}`
+    + ` (${pct(auditRetainedPositive, jointlyCompleted)})`,
+  );
+  summary('initial continuation margin', auditInitialMargins, 's');
+  summary('post continuation margin', auditPostMargins, 's');
+  summary('post self arrival', auditPostSelfArrivals, 's');
+  summary('post opponent distance', auditPostOpponentDistances, 'm');
+  summary('post lane clearance', auditPostLaneClearances, 'm');
+  reportAuditQuartiles('post opponent-arrival margin', (record) => record.postMargin);
+  reportAuditQuartiles('post carrier-lane clearance', (record) => record.postLaneClearance);
+  const retentionRate = auditRetainedPositive / Math.max(1, jointlyCompleted);
+  const classification = retentionRate <= 0.5
+    ? 'STALE_ACCESS'
+    : retentionRate >= 0.8 && opponentRate('continuation') >= 0.7
+      ? 'TARGET_ACCESS_IS_NOT_TRANSITION_ACCESS'
+      : 'MIXED_OR_UNRESOLVED';
+  console.log(`AUDIT CLASSIFICATION ${classification}`);
+}
+
 const holdCompleted = movementStatuses.get('hold')!.get('completed') ?? 0;
 const continuedCompleted = movementStatuses.get('continuation')!.get('completed') ?? 0;
 const completionDelta = Math.abs(holdCompleted - continuedCompleted) / Math.max(1, frozenStates);
@@ -411,4 +530,9 @@ if (
   || positivePassTimeForwardDelta < jointlyCompleted * 0.90
   || intendedDelta < 0.05
   || opponentDelta > 0.05
+  || (AUDIT && (
+    auditEvaluations !== jointlyCompleted * 2
+    || auditRecords.length !== jointlyCompleted * REPLICATES * 2
+    || auditFailures > 0
+  ))
 ) process.exitCode = 1;

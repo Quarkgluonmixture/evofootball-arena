@@ -398,11 +398,17 @@
 > the old instruction without solving coordinated access. Two runs were byte-identical
 > (`f3c00651…c2b`); no handoff representation or live work is authorised. Authority:
 > [`world-model/OFFBALL-PASS-HANDOFF-CONTINUATION.md`](world-model/OFFBALL-PASS-HANDOFF-CONTINUATION.md).
-> 🔬 **H0a FAILURE AUDIT PRE-REGISTERED (2026-07-21, read-only):** rerun the
-> exact H0 branches and, immediately before the frozen forced pass, re-evaluate the immutable
-> target's truth O0 access/line facts. This distinguishes a stale 1.5s commitment from the
-> deeper boundary `target access != pass-transition access`; it cannot change H0's failure or
-> authorise another selector. Authority:
+> ✅ **H0a FAILURE AUDIT COMPLETE — TARGET ACCESS IS NOT TRANSITION ACCESS
+> (2026-07-21, read-only):** all 198 post-movement O0 evaluations and 792 outcome-linked
+> records were valid, with two byte-identical audit runs (`82d1af1c…5a44`) and the frozen
+> default H0 hash unchanged. **87/99 (87.9%)** continuation states still had positive
+> opponent-arrival margin at pass time; mean margin improved from 0.231s to 0.607s. Yet even
+> the widest carrier-lane quartile suffered **86.9% opponent first control**, and neither
+> margin nor lane quartiles produced a monotone transition result. The mover can locally
+> access the target; O0 does not represent whether the ball can complete the carrier→target
+> transition through flight/contact/control. This closes cheap H0 selector retries and does
+> not authorise S7e re-entry. A fixed-point query-domain bug discovered by the audit was
+> repaired without changing candidate generation or live selection. Authority:
 > [`world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md`](world-model/OFFBALL-HANDOFF-FAILURE-AUDIT.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.

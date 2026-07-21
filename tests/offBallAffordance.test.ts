@@ -146,6 +146,33 @@ describe('O0 off-ball affordance vector', () => {
     expect(fast.opponentArrivalMargin).toBeGreaterThan(slow.opponentArrivalMargin);
   });
 
+  it('re-evaluates a fixed legal point inside the generation inset', () => {
+    const players = basePlayers();
+    const reachProfiles = profiles([
+      [0, profile()], [1, profile()], [2, profile()], [6, profile()], [7, profile()],
+    ]);
+    const input = {
+      snapshot: snapshot(players), playerGid: 1, carrierGid: 0, attackDir: 1 as const,
+      reachProfiles,
+    };
+    const boundaryPoint = {
+      id: 'fixed-boundary-point',
+      point: { x: 0, y: HALF_W - 1 },
+      sampleHorizon: 0,
+      directionIndex: null,
+      forwardDelta: 0,
+      lateralDelta: HALF_W - 1,
+    };
+    const outsidePoint = {
+      ...boundaryPoint,
+      id: 'outside-physical-pitch',
+      point: { x: 0, y: HALF_W + 0.01 },
+    };
+
+    expect(evaluateOffBallCandidate(input, boundaryPoint)).not.toBeNull();
+    expect(evaluateOffBallCandidate(input, outsidePoint)).toBeNull();
+  });
+
   it('exposes offside as a fact without filtering or labelling the candidate', () => {
     const values = evaluate([
       observed(0, 0, 2, 0),

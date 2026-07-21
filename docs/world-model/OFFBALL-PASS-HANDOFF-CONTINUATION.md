@@ -162,3 +162,9 @@ retirement is authorised. Changing direction, maximizing a different O0 fact,
 or lowering the threshold after this result would violate the stop rule. A
 separate read-only failure audit may inspect whether the 1.5s commitment made
 the initial affordance stale; it cannot retroactively turn H0 into a pass.
+
+That audit is now complete in
+[`OFFBALL-HANDOFF-FAILURE-AUDIT.md`](OFFBALL-HANDOFF-FAILURE-AUDIT.md).
+It found that 87.9% of continuation points still had positive local access
+margin at pass time. H0 therefore failed at the carrier→ball→controller
+transition boundary, not primarily because its point commitment went stale.
