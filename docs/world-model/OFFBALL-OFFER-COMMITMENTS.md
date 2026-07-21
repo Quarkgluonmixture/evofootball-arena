@@ -108,6 +108,8 @@ O3 passed:
   consumer/import;
 * the default fingerprint remains
   `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
+* the completed O0–O4 milestone passes all 549 repository tests in a
+  low-concurrency run (77 files), avoiding the known local worker-RPC timeout.
 
 This result provides a language for shared spatial intent. It does not create an
 intent in live play or decide whether two nearby offers are harmful duplication.

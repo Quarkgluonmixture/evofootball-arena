@@ -127,6 +127,8 @@ intended-reception range                           8.3pp
 
 Two complete reruns produced the identical output hash
 `a0bfb58f2b7c9f5e111a613bcc21e7103a51b591ab3d1910d2c6f4d617eac645`.
+The full low-concurrency milestone regression passed all 549 tests across 77
+files; TypeScript, production build and the default fingerprint also pass.
 
 | movement branch | forced | intended | teammate | opponent | loose | dead | censored | mean progression |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
