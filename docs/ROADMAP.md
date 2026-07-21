@@ -261,6 +261,16 @@
 > import census confirms zero Match/brain/formation consumers. No score, gene, tactic label,
 > role check or live movement was added. Authority:
 > [`world-model/OFFBALL-OFFER-FIELD.md`](world-model/OFFBALL-OFFER-FIELD.md).
+> ✅ **O0a 120-MATCH OFFER-FIELD CENSUS COMPLETE (2026-07-21, probe-only):**
+> all 46,920 attacking off-ball states evaluated with zero missing/non-finite facts and
+> 15.577 generic candidates/state. At least one onside, positive-opponent-margin candidate
+> existed forward/lateral/backward in 40.5/64.4/70.7% of states. Legacy `supportSpot` was
+> 55.0% forward and 45.0% backward relative to the player (ahead of the ball does not mean
+> ahead of the player) and never supplied a pure lateral point. Hold was split from lateral
+> after the first draft exposed a vacuous zero-ETA conflation. Two full runs were byte-identical
+> (`97427c50…ba9a`). **Coverage passed; payoff and live selection remain unproved and
+> unauthorised.** Authority:
+> [`world-model/OFFBALL-OFFER-FIELD-CENSUS.md`](world-model/OFFBALL-OFFER-FIELD-CENSUS.md).
 > Real distinction locked = **which causal variables are in world state + do they support the
 > counterfactuals we need** (not "formula vs emergence"). Confirmed facts: `PLAYER_MIN_DIST=1.05`,
 > `PITCH_SCALE` scales field+goal+box+center, out/goal use ball-center. (Prior "behavioral
