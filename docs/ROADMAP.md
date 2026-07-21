@@ -369,6 +369,16 @@
 > supported variable team state, **not** that spread beats concentration. Only a separately
 > pre-registered portfolio-level clone intervention is authorised. Authority:
 > [`world-model/OFFBALL-OFFER-PORTFOLIO-CENSUS.md`](world-model/OFFBALL-OFFER-PORTFOLIO-CENSUS.md).
+> 🧪 **O6 PAIRED OFFER-PORTFOLIO INTERVENTION PRE-REGISTERED (2026-07-21,
+> offline only):** from each independent frozen match, the same two players receive either
+> a lower- or higher-carrier-bearing pair of individually feasible O0 targets, separated by
+> at least 45°. Both move for 1.5s through real `MoveToPoint`; four paired child streams then
+> force the existing ordinary pass separately to each receiver. Primary = whether the
+> higher-bearing portfolio raises the chance that at least one of the two pass options reaches
+> intended stable control by ≥5pp, without >5pp opponent-control regression. No named run,
+> score, role/gene gate, live state or later payoff is read. Passing authorises only another
+> offline allocator contract. Authority:
+> [`world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md`](world-model/OFFBALL-OFFER-PORTFOLIO-INTERVENTION.md).
 > Milestone regression after O4c: **77 files / 549 tests passed** at low concurrency;
 > TypeScript/build and fingerprint `57b0bdab…c673` remain green.
 > Real distinction locked = **which causal variables are in world state + do they support the
