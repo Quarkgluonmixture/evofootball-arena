@@ -188,6 +188,14 @@
 > interception, loose/dead-ball transitions with their conditional future values—without
 > a universal hand-written utility score.** Do not retry another independent endpoint/
 > corridor dimension or wire any S7 candidate live before the same payoff oracle passes.
+> ✅ **S7 ORACLE HORIZON AUDIT (2026-07-21, probe-only):** the same 509 pairs at
+> 3.0/4.5/6.0s never pass complete payoff (dominance gaps −1.2/−3.5/+2.2pp;
+> progression and xG stay non-positive), while endpoint possession flips from −4.3pp to
+> +3.5/+2.3pp. In contrast, `bothTarget` stays positive at all horizons: dominance gaps
+> +9.4/+5.6/+8.0pp, progression +1.181/+0.937/+1.053m, xG +0.006/+0.009/+0.007.
+> Therefore total payoff needs transition composition; one fixed macro-possession endpoint
+> is not sufficient authority. Details:
+> [`world-model/S7E-TRANSITION-COMPOSITION.md`](world-model/S7E-TRANSITION-COMPOSITION.md).
 > M0–M4's honest remaining scope is frozen in
 > [`world-model/COVERAGE-GAPS.md`](world-model/COVERAGE-GAPS.md); it does not authorise a broad
 > body/locomotion campaign. After B1c-3 user play-test—or a full revert on failure—return to

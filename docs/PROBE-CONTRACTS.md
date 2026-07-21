@@ -262,6 +262,12 @@ vision wants **multiple readable routes**, not forced tiki-taka.
     progression +1.181m and xG +0.006. S7 therefore needs a contingent transition
     model (`receive / teammate / opponent / dead / loose` → conditional next
     state), not another independent Pareto feature and not another live cut.
+  - ✅ **Horizon sensitivity confirms the split:** at 3.0/4.5/6.0s, aggregate
+    dominance gaps are −1.2/−3.5/+2.2pp and never pass, while macro-possession
+    direction flips. The `bothTarget` conditional gap stays +9.4/+5.6/+8.0pp
+    with positive progression and xG throughout. Keep 3.0s as the frozen total
+    baseline; use event-anchored diagnostics to design S7e, not to cherry-pick
+    a favourable fixed horizon.
 - ⭐ **This does NOT gate S7.** Live bounded-lookahead uses the CHEAP analytic estimator
   (ETA / pitch-control / next-options), never a Match rollout (too slow per-tick under
   either scheme) — the clone-vs-replay choice only touches the offline oracle, so the

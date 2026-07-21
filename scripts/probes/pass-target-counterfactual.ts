@@ -4,7 +4,7 @@
 // that same state and force two symmetric branches: chosen target vs each
 // unambiguously better target. Both call the same performPass with the same RNG
 // state, then roll 3 seconds. The live sim never reads these branches.
-//   npx tsx scripts/probes/pass-target-counterfactual.ts [matches] [seedOffset]
+//   npx tsx scripts/probes/pass-target-counterfactual.ts [matches] [seedOffset] [horizonSeconds]
 import { evaluatePassAffordance, type KnownReachProfile } from '../../src/ai/passAffordance';
 import {
   comparePassNextStates, passNextStateValue, type PassNextStateValue,
@@ -32,7 +32,11 @@ const team = (name: string, seed: number): TeamInfo => {
 
 const N = Number(process.argv[2] ?? 120);
 const OFF = Number(process.argv[3] ?? 0);
-const ROLLOUT_STEPS = 180;
+const requestedHorizon = Number(process.argv[4] ?? 3);
+const ROLLOUT_SECONDS = Number.isFinite(requestedHorizon)
+  ? Math.max(1, requestedHorizon)
+  : 3;
+const ROLLOUT_STEPS = Math.max(1, Math.round(ROLLOUT_SECONDS / DT));
 
 interface RolloutOutcome {
   /** +1 own team possession, 0 unresolved, −1 opponent possession at horizon. */
@@ -415,7 +419,7 @@ const meanDelta = (dimension: OutcomeDimension): string =>
   (deltaSums[dimension] / Math.max(rolloutPairs, 1)).toFixed(3);
 
 console.log(`n=${N} (seeds ${OFF}-${OFF + N - 1})   dominated live choices ${dominatedChoices}`);
-console.log(`paired 3.0s rollouts ${rolloutPairs}, force failures ${forceFailures}`);
+console.log(`paired ${ROLLOUT_SECONDS.toFixed(1)}s rollouts ${rolloutPairs}, force failures ${forceFailures}`);
 console.log('Each pair starts from one pre-decision clone and identical RNG; only pass target differs.');
 console.log('\nrollout Pareto relation (alternative vs chosen):');
 for (const relation of Object.keys(relationCounts) as OutcomeRelation[]) {
@@ -424,7 +428,7 @@ for (const relation of Object.keys(relationCounts) as OutcomeRelation[]) {
 console.log('\npaired mean delta (alternative − chosen; larger is better):');
 console.log(`  possession ${meanDelta('possession')} · goals ${meanDelta('goalDelta')} · xG ${meanDelta('xgDelta')}`);
 console.log(`  progression ${meanDelta('progressionMetres')}m · exit options ${meanDelta('exitOptionCount')}`);
-console.log(`  own possession at 3.0s: chosen ${pct(chosenPossession, rolloutPairs)} → alternative ${pct(alternativePossession, rolloutPairs)}`);
+console.log(`  own possession at ${ROLLOUT_SECONDS.toFixed(1)}s: chosen ${pct(chosenPossession, rolloutPairs)} → alternative ${pct(alternativePossession, rolloutPairs)}`);
 
 console.log('\npass-resolution anatomy (diagnostic, not a new S7 dimension):');
 for (const branch of ['chosen', 'alternative'] as const) {
