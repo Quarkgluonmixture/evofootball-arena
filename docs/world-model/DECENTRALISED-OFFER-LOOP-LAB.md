@@ -169,8 +169,9 @@ percentage points.
 
 * at least 50% of accepted states change one or more mover selections between I
   and C;
-* every completed I/C mover closes distance to its immutable target in at least
-  95% of interventions;
+* target satisfaction holds in at least 95% of completed I/C interventions:
+  a non-hold mover reduces target distance by at least `0.25m`, while a `hold`
+  choice remains within `0.5m` of its committed point;
 * commitment-aware scoring reads at least one non-constant O3 fact for the
   second and third mover in at least 95% of accepted states;
 * the first mover's selected candidate is exactly identical in I and C.
@@ -220,4 +221,3 @@ fails. It may not be rescued by:
 Passing D1 authorises only a separately pre-registered experimental full-match
 consumer behind a default-off switch. It does not authorise live default wiring,
 new genes, `supportSpot` retirement, C0 demand publication or a play-test build.
-
