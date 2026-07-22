@@ -52,8 +52,9 @@ const EXTERNAL_START = numericArguments[4] ?? 74_000;
 const EXTERNAL_MATCHES = numericArguments[5] ?? 120;
 const ALTERNATIVE_AUDIT = process.argv.includes('--alternative-audit');
 const INTERVENTION_TRAINING = process.argv.includes('--intervention-training');
+const PAIRED_RISK_AUDIT = process.argv.includes('--paired-risk-audit');
 const USE_CORRIDOR_FEATURES = process.argv.includes('--corridor')
-  || ALTERNATIVE_AUDIT || INTERVENTION_TRAINING;
+  || ALTERNATIVE_AUDIT || INTERVENTION_TRAINING || PAIRED_RISK_AUDIT;
 const ENGINEERING_EXTERNAL = process.argv.includes('--engineering-external');
 const ALTERNATIVE_START = ALTERNATIVE_AUDIT ? numericArguments[2] ?? 77_000 : 77_000;
 const ALTERNATIVE_MATCHES = ALTERNATIVE_AUDIT ? numericArguments[3] ?? 120 : 120;
@@ -61,6 +62,8 @@ const ALTERNATIVE_NAMESPACE = 0x7a170001;
 const RANDOM_VALIDATION_START = 78_000;
 const SELECTED_VALIDATION_START = 81_000;
 const INTERVENTION_VALIDATION_MATCHES = 120;
+const PAIRED_AUDIT_START = 83_000;
+const PAIRED_AUDIT_MATCHES = 120;
 const MATCH_DURATION = 240;
 const AWARENESS = 0.8;
 const ADMIN_GUARD = 5;
@@ -898,6 +901,229 @@ const alternativeLearningGates = (evaluation: Evaluation): Record<string, boolea
   };
 };
 
+interface PairedPrediction {
+  readonly identity: string;
+  readonly matchSeed: number;
+  readonly selectedTeacher: readonly number[];
+  readonly alternativeTeacher: readonly number[];
+  /** Source order: student, corridor, global. */
+  readonly selectedSources: readonly (readonly number[])[];
+  readonly alternativeSources: readonly (readonly number[])[];
+  readonly selectedLabel: number;
+  readonly alternativeLabel: number;
+}
+
+interface PairedMatchMetric {
+  n: number;
+  teacherSq: number[];
+  actualSq: number[];
+}
+
+const pairedPrediction = (
+  selected: StudentRow,
+  alternative: StudentRow,
+  model: SoftTransitionSoftmaxModelV1,
+  priors: Priors,
+): PairedPrediction => {
+  const sources = (row: StudentRow): readonly (readonly number[])[] => [
+    predictSoftTransitionProbabilitiesV1(model, row.features),
+    row.corridorPresent ? priors.corridorPresent : priors.corridorEmpty,
+    priors.global,
+  ];
+  return {
+    identity: selected.identity,
+    matchSeed: selected.matchSeed,
+    selectedTeacher: teacherOf(selected, priors.global),
+    alternativeTeacher: teacherOf(alternative, priors.global),
+    selectedSources: sources(selected),
+    alternativeSources: sources(alternative),
+    selectedLabel: selected.label,
+    alternativeLabel: alternative.label,
+  };
+};
+
+const deltaOf = (
+  alternative: readonly number[], selected: readonly number[],
+): readonly number[] => alternative.map((value, klass) => value - selected[klass]);
+
+const pairBootstrapBound = (
+  metrics: ReadonlyMap<number, PairedMatchMetric>,
+  read: (metric: PairedMatchMetric) => number,
+  quantile: number,
+  channel: number,
+): number => {
+  const values = [...metrics.values()].map((metric) => read(metric) / metric.n);
+  const rng = new Rng(hashSeed(BOOTSTRAP_NAMESPACE, 0x50414952, channel));
+  const samples = Array<number>(BOOTSTRAPS);
+  for (let bootstrap = 0; bootstrap < BOOTSTRAPS; bootstrap++) {
+    let sum = 0;
+    for (let draw = 0; draw < values.length; draw++) {
+      sum += values[rng.int(0, values.length - 1)];
+    }
+    samples[bootstrap] = sum / values.length;
+  }
+  samples.sort((left, right) => left - right);
+  return samples[Math.floor(quantile * (samples.length - 1))];
+};
+
+const pairMean = (
+  metrics: ReadonlyMap<number, PairedMatchMetric>,
+  read: (metric: PairedMatchMetric) => number,
+): number => [...metrics.values()].reduce((sum, metric) => sum + read(metric) / metric.n, 0)
+  / Math.max(metrics.size, 1);
+
+const deltaCalibrationError = (
+  rows: readonly PairedPrediction[], klass: number,
+): { inLarge: number; ece: number } => {
+  const samples = rows.map((row) => {
+    const predicted = row.alternativeSources[0][klass] - row.selectedSources[0][klass];
+    const actual = (row.alternativeLabel === klass ? 1 : 0)
+      - (row.selectedLabel === klass ? 1 : 0);
+    return { predicted, actual };
+  });
+  const meanPredicted = samples.reduce((sum, sample) => sum + sample.predicted, 0)
+    / Math.max(samples.length, 1);
+  const meanActual = samples.reduce((sum, sample) => sum + sample.actual, 0)
+    / Math.max(samples.length, 1);
+  let ece = 0;
+  for (let bin = 0; bin < 10; bin++) {
+    const lower = -1 + bin * 0.2;
+    const upper = lower + 0.2;
+    const members = samples.filter((sample) => sample.predicted >= lower
+      && (bin === 9 ? sample.predicted <= upper : sample.predicted < upper));
+    if (members.length === 0) continue;
+    const predicted = members.reduce((sum, sample) => sum + sample.predicted, 0) / members.length;
+    const actual = members.reduce((sum, sample) => sum + sample.actual, 0) / members.length;
+    ece += members.length / samples.length * Math.abs(predicted - actual);
+  }
+  return { inLarge: Math.abs(meanPredicted - meanActual), ece };
+};
+
+const pairedDirection = (
+  rows: readonly PairedPrediction[], klass: number,
+): {
+  teacherSignStudent: number;
+  teacherSignCorridor: number;
+  teacherQuintileSeparation: number;
+  actualQuintileSeparation: number;
+  calibrationInLarge: number;
+  calibrationEce: number;
+} => {
+  const withDeltas = rows.map((row) => {
+    const teacher = row.alternativeTeacher[klass] - row.selectedTeacher[klass];
+    const student = row.alternativeSources[0][klass] - row.selectedSources[0][klass];
+    const corridor = row.alternativeSources[1][klass] - row.selectedSources[1][klass];
+    const actual = (row.alternativeLabel === klass ? 1 : 0)
+      - (row.selectedLabel === klass ? 1 : 0);
+    return { row, teacher, student, corridor, actual };
+  });
+  const nonZero = withDeltas.filter((value) => Math.abs(value.teacher) > 1e-12);
+  const signRate = (source: 'student' | 'corridor'): number => nonZero.reduce((sum, value) =>
+    sum + (Math.sign(value[source]) === Math.sign(value.teacher) ? 1 : 0), 0)
+    / Math.max(nonZero.length, 1);
+  const ranked = [...withDeltas].sort((left, right) =>
+    left.student - right.student || left.row.identity.localeCompare(right.row.identity));
+  const fifth = Math.floor(ranked.length / 5);
+  const bottom = ranked.slice(0, fifth);
+  const top = ranked.slice(ranked.length - fifth);
+  const mean = (values: readonly typeof ranked[number][], field: 'teacher' | 'actual'): number =>
+    values.reduce((sum, value) => sum + value[field], 0) / Math.max(values.length, 1);
+  const calibrated = deltaCalibrationError(rows, klass);
+  return {
+    teacherSignStudent: signRate('student'),
+    teacherSignCorridor: signRate('corridor'),
+    teacherQuintileSeparation: mean(top, 'teacher') - mean(bottom, 'teacher'),
+    actualQuintileSeparation: mean(top, 'actual') - mean(bottom, 'actual'),
+    calibrationInLarge: calibrated.inLarge,
+    calibrationEce: calibrated.ece,
+  };
+};
+
+const runPairedRiskEvaluation = (
+  selectedDataset: Dataset,
+  alternativeDataset: Dataset,
+  model: SoftTransitionSoftmaxModelV1,
+  priors: Priors,
+) => {
+  const selectedByIdentity = new Map(selectedDataset.rows.map((row) => [row.identity, row]));
+  const alternativeByIdentity = new Map(alternativeDataset.rows.map((row) => [row.identity, row]));
+  const identities = [...selectedByIdentity.keys()]
+    .filter((identity) => alternativeByIdentity.has(identity))
+    .sort();
+  const rows = identities.map((identity) => pairedPrediction(
+    selectedByIdentity.get(identity)!, alternativeByIdentity.get(identity)!, model, priors,
+  ));
+  const metrics = new Map<number, PairedMatchMetric>();
+  let nonFiniteDeltaVectors = 0;
+  for (const row of rows) {
+    let metric = metrics.get(row.matchSeed);
+    if (!metric) {
+      metric = { n: 0, teacherSq: Array(3).fill(0), actualSq: Array(3).fill(0) };
+      metrics.set(row.matchSeed, metric);
+    }
+    metric.n++;
+    const teacherDelta = deltaOf(row.alternativeTeacher, row.selectedTeacher);
+    const actualDelta = Array.from({ length: 5 }, (_, klass) =>
+      (row.alternativeLabel === klass ? 1 : 0) - (row.selectedLabel === klass ? 1 : 0));
+    for (let source = 0; source < 3; source++) {
+      const predictedDelta = deltaOf(row.alternativeSources[source], row.selectedSources[source]);
+      if (![teacherDelta, actualDelta, predictedDelta].every((values) => values.every(Number.isFinite))) {
+        nonFiniteDeltaVectors++;
+      }
+      metric.teacherSq[source] += predictedDelta.reduce((sum, value, klass) =>
+        sum + (value - teacherDelta[klass]) ** 2, 0);
+      metric.actualSq[source] += predictedDelta.reduce((sum, value, klass) =>
+        sum + (value - actualDelta[klass]) ** 2, 0);
+    }
+  }
+  const means = (field: 'teacherSq' | 'actualSq'): readonly number[] =>
+    Array.from({ length: 3 }, (_, source) => pairMean(metrics, (metric) => metric[field][source]));
+  const teacherSq = means('teacherSq');
+  const actualSq = means('actualSq');
+  const lcb = {
+    teacherGlobal: pairBootstrapBound(metrics,
+      (metric) => metric.teacherSq[2] - metric.teacherSq[0], 0.025, 0),
+    teacherCorridor: pairBootstrapBound(metrics,
+      (metric) => metric.teacherSq[1] - metric.teacherSq[0], 0.025, 1),
+    actualGlobal: pairBootstrapBound(metrics,
+      (metric) => metric.actualSq[2] - metric.actualSq[0], 0.025, 2),
+    actualCorridor: pairBootstrapBound(metrics,
+      (metric) => metric.actualSq[1] - metric.actualSq[0], 0.025, 3),
+  };
+  const intended = pairedDirection(rows, 0);
+  const opponent = pairedDirection(rows, 2);
+  const opponentDeltas = rows.map((row) =>
+    row.alternativeSources[0][2] - row.selectedSources[0][2]);
+  return {
+    pairs: rows.length,
+    representedMatches: metrics.size,
+    selectedOnly: selectedDataset.rows.length - rows.length,
+    alternativeOnly: alternativeDataset.rows.length - rows.length,
+    pairedSupport: rows.length / Math.max(
+      Math.min(selectedDataset.rows.length, alternativeDataset.rows.length), 1,
+    ),
+    nonFiniteDeltaVectors,
+    teacherSq,
+    actualSq,
+    improvement: {
+      teacherGlobal: (teacherSq[2] - teacherSq[0]) / teacherSq[2],
+      teacherCorridor: (teacherSq[1] - teacherSq[0]) / teacherSq[1],
+      actualGlobal: (actualSq[2] - actualSq[0]) / actualSq[2],
+      actualCorridor: (actualSq[1] - actualSq[0]) / actualSq[1],
+    },
+    lcb,
+    intended,
+    opponent,
+    antiVacuity: {
+      medianAbsoluteOpponentDelta: median(opponentDeltas.map(Math.abs)),
+      positiveOpponentDeltaShare: opponentDeltas.filter((value) => value > 0).length
+        / Math.max(opponentDeltas.length, 1),
+      negativeOpponentDeltaShare: opponentDeltas.filter((value) => value < 0).length
+        / Math.max(opponentDeltas.length, 1),
+    },
+  };
+};
+
 const fitOnce = (dataset: Dataset, priors: Priors): SoftTransitionSoftmaxModelV1 =>
   fitRows(dataset.rows, priors);
 const fitRows = (
@@ -922,6 +1148,115 @@ const datasetSummary = (dataset: Dataset) => {
 };
 
 const fitA = collect(FIT_START, FIT_MATCHES);
+if (PAIRED_RISK_AUDIT) {
+  const randomFit = collect(77_000, 120, 'randomAlternative');
+  const unionRows = [...fitA.rows, ...randomFit.rows];
+  const unionPriors = fitPriors(unionRows);
+  const model = fitRows(unionRows, unionPriors);
+  const repeatedModel = fitRows(unionRows, unionPriors);
+  const fitGates = {
+    selectedAuthority: fitA.digest
+      === 'c99d3be12c7c2d65d35cc1be6b2aec88f7b5fc2ba0c863710e6ed20e10fd9547',
+    randomAuthority: randomFit.digest
+      === '817543fd3c5c746235b917fe4d30d12a9cdab1238be86740e90bdc24427cbda3',
+    selectedExact: allTrue(datasetGates(fitA, FIT_MATCHES)),
+    randomExact: allTrue({
+      ...datasetGates(randomFit, 120),
+      alternativeOpportunities: randomFit.alternativeOpportunities >= 7_000,
+      noSelectedTargetReuse: randomFit.selectedTargetReuses === 0,
+    }),
+    deterministicModel: modelDigest(model) === modelDigest(repeatedModel),
+    modelDimensions: model.inputDimensions === 19,
+    modelParameters: model.weights.length === 195,
+  };
+  const selectedAudit = allTrue(fitGates)
+    ? collect(PAIRED_AUDIT_START, PAIRED_AUDIT_MATCHES, 'selected') : null;
+  const alternativeAudit = allTrue(fitGates)
+    ? collect(PAIRED_AUDIT_START, PAIRED_AUDIT_MATCHES, 'randomAlternative') : null;
+  const selectedExactGates = selectedAudit === null
+    ? null : datasetGates(selectedAudit, PAIRED_AUDIT_MATCHES);
+  const alternativeExactGates = alternativeAudit === null ? null : {
+    ...datasetGates(alternativeAudit, PAIRED_AUDIT_MATCHES),
+    alternativeOpportunities: alternativeAudit.alternativeOpportunities >= 7_000,
+    noSelectedTargetReuse: alternativeAudit.selectedTargetReuses === 0,
+  };
+  const evaluation = selectedAudit === null || alternativeAudit === null
+    ? null : runPairedRiskEvaluation(selectedAudit, alternativeAudit, model, unionPriors);
+  const pairedGates = evaluation === null ? null : {
+    representedMatches: evaluation.representedMatches === PAIRED_AUDIT_MATCHES,
+    pairSupport: evaluation.pairs >= 7_000 && evaluation.pairedSupport >= 0.98,
+    finiteDeltaVectors: evaluation.nonFiniteDeltaVectors === 0,
+    teacherGlobalMean: evaluation.improvement.teacherGlobal >= 0.10,
+    teacherCorridorMean: evaluation.improvement.teacherCorridor >= 0.05,
+    teacherGlobalLcb: evaluation.lcb.teacherGlobal > 0,
+    teacherCorridorLcb: evaluation.lcb.teacherCorridor > 0,
+    actualGlobalMean: evaluation.improvement.actualGlobal >= 0.05,
+    actualCorridorMean: evaluation.improvement.actualCorridor >= 0.02,
+    actualGlobalLcb: evaluation.lcb.actualGlobal > 0,
+    actualCorridorLcb: evaluation.lcb.actualCorridor > 0,
+    intendedSign: evaluation.intended.teacherSignStudent >= 0.60,
+    intendedSignEdge: evaluation.intended.teacherSignStudent
+      - evaluation.intended.teacherSignCorridor >= 0.05,
+    opponentSign: evaluation.opponent.teacherSignStudent >= 0.60,
+    opponentSignEdge: evaluation.opponent.teacherSignStudent
+      - evaluation.opponent.teacherSignCorridor >= 0.05,
+    intendedTeacherSeparation: evaluation.intended.teacherQuintileSeparation >= 0.10,
+    intendedActualSeparation: evaluation.intended.actualQuintileSeparation >= 0.08,
+    opponentTeacherSeparation: evaluation.opponent.teacherQuintileSeparation >= 0.10,
+    opponentActualSeparation: evaluation.opponent.actualQuintileSeparation >= 0.08,
+    intendedCalibrationInLarge: evaluation.intended.calibrationInLarge <= 0.03,
+    intendedCalibrationEce: evaluation.intended.calibrationEce <= 0.05,
+    opponentCalibrationInLarge: evaluation.opponent.calibrationInLarge <= 0.03,
+    opponentCalibrationEce: evaluation.opponent.calibrationEce <= 0.05,
+    opponentDeltaVariation: evaluation.antiVacuity.medianAbsoluteOpponentDelta >= 0.03,
+    opponentPositiveSupport: evaluation.antiVacuity.positiveOpponentDeltaShare >= 0.20,
+    opponentNegativeSupport: evaluation.antiVacuity.negativeOpponentDeltaShare >= 0.20,
+  };
+  const pass = allTrue(fitGates)
+    && selectedExactGates !== null && alternativeExactGates !== null && pairedGates !== null
+    && allTrue(selectedExactGates) && allTrue(alternativeExactGates) && allTrue(pairedGates);
+  const report = {
+    authority: 'T-PAIR-0 within-decision transition-risk audit',
+    parameters: {
+      selectedFitStart: FIT_START,
+      randomFitStart: 77_000,
+      pairedAuditStart: PAIRED_AUDIT_START,
+      matches: PAIRED_AUDIT_MATCHES,
+      alternativeNamespace: ALTERNATIVE_NAMESPACE,
+      replicates: REPLICATES,
+      childNamespace: CHILD_NAMESPACE,
+      featureVersion: KICK_TRANSITION_CORRIDOR_FEATURE_VERSION,
+    },
+    unionRows: unionRows.length,
+    modelDigest: modelDigest(model),
+    fitGates,
+    selectedAudit: selectedAudit === null ? null : datasetSummary(selectedAudit),
+    alternativeAudit: alternativeAudit === null ? null : datasetSummary(alternativeAudit),
+    selectedExactGates,
+    alternativeExactGates,
+    evaluation,
+    pairedGates,
+    pass,
+  };
+  const canonical = JSON.stringify(report);
+  const sha = createHash('sha256').update(canonical).digest('hex');
+  console.log('T-PAIR-0 WITHIN-DECISION TRANSITION-RISK AUDIT');
+  console.log(`union rows ${unionRows.length} · fit gates ${JSON.stringify(fitGates)}`);
+  if (evaluation !== null) {
+    console.log(`pairs ${evaluation.pairs} · matches ${evaluation.representedMatches}`
+      + ` · support ${evaluation.pairedSupport.toFixed(6)}`);
+    console.log(`teacher delta Sq student/corridor/global ${evaluation.teacherSq.map((value) => value.toFixed(6)).join('/')}`);
+    console.log(`actual delta Sq student/corridor/global ${evaluation.actualSq.map((value) => value.toFixed(6)).join('/')}`);
+    console.log(`intended ${JSON.stringify(evaluation.intended)}`);
+    console.log(`opponent ${JSON.stringify(evaluation.opponent)}`);
+    console.log(`anti-vacuity ${JSON.stringify(evaluation.antiVacuity)}`);
+    console.log(`gates ${JSON.stringify(pairedGates)}`);
+  }
+  console.log(`PASS ${pass}`);
+  console.log(`SHA256 ${sha}`);
+  if (process.argv.includes('--json')) console.log(`REPORT ${canonical}`);
+  process.exit(0);
+}
 if (INTERVENTION_TRAINING) {
   const randomFit = collect(77_000, 120, 'randomAlternative');
   const unionRows = [...fitA.rows, ...randomFit.rows];
