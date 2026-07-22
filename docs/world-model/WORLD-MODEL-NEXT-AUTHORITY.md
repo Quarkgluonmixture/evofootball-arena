@@ -318,5 +318,32 @@ no new selector
 C-AC/C-OBS banked as shared-RNG oracle ceiling
 C-RNG failed independent-future portability
 portable shadow CLOSED
-next authority requires a genuinely new programme, not another Option C patch
+next: process-distilled observer student contract (offline only)
 ```
+
+The user selected the probability-distribution route after C-RNG. The new,
+causally distinct authority is
+[`REPLICATED-POLICY-TRANSITION-DISTRIBUTION.md`](REPLICATED-POLICY-TRANSITION-DISTRIBUTION.md).
+T-DIST-0 does not retry the fixed race or its modal-winner gate. It leaves the
+post-kick live policy untouched, samples eight independent futures, and asks on
+fresh match clusters whether that five-class vector is a calibrated predictive
+distribution under proper scores. Development can establish only priors and
+validity; external seeds remain sealed until preflight passes. A pass can
+authorise only a separate process-distilled observer estimator contract.
+
+T-DIST-0 is now complete. Two full runs were byte-identical with SHA
+`7a6310d7…97c`. On 7,083 fresh external passes its full-policy distribution
+improved log loss by 51.43% versus global and 49.55% versus the observer
+corridor; Brier improved by 47.98% and 46.03%. Absolute macro ECE was 0.69%,
+median state-specific L1 separation from the global prior was 0.420, and the
+opponent-risk quintiles separated realised interception by 59.25pp. Every
+exact, support, score and absolute-calibration gate passed.
+
+The strict contract nevertheless remains **FAIL** because
+`UCB95(process ECE - corridor ECE) = 0.006805` exceeded the frozen `0.005`
+relative-ECE limit. The user explicitly chose not to discard the overwhelming
+proper-score evidence for this single conservative secondary miss. The result
+is therefore banked as a strong offline teacher under an engineering
+continuation, not relabelled PASS. Final seeds `73000..73119` remain sealed.
+Only a new, pre-registered observer-student experiment is authorised; live use
+and target selection remain closed.

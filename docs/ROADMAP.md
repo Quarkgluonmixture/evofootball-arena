@@ -705,6 +705,30 @@
 > portable shadow work is **CLOSED**. Do not add R, fit a post-hoc cutoff, smooth masses or
 > expose Match RNG. A future distributional transition estimator would require a genuinely
 > new unseen-state/calibration programme; it is not an Option-C continuation.
+> 🔬 **2026-07-22 T-DIST-0 REPLICATED-POLICY PROBABILITY CONTRACT FROZEN.** The
+> user selected the genuinely new probability estimand after C-RNG: do not predict one
+> modal winner. T-DIST-0 keeps the actual post-kick PlayerBrain/TeamBrain policy unchanged
+> and samples eight fixed independent futures for each observer-supported selected pass.
+> A one-effective-observation global prior turns the raw five counts into a finite vector.
+> Development seeds 71,000–71,119 may establish only priors/support; external seeds
+> 72,000–72,119 stay sealed until exact preflight passes, and 73,000+ remain final-sealed.
+> External authority is proper log-loss/Brier, fixed-width calibration and match-cluster
+> uncertainty against global and observer-corridor baselines—never top-class accuracy.
+> PASS can authorise only a separate process-distilled observer-estimator design; no live
+> consumer or target selection. Authority:
+> [`world-model/REPLICATED-POLICY-TRANSITION-DISTRIBUTION.md`](world-model/REPLICATED-POLICY-TRANSITION-DISTRIBUTION.md).
+> ⚠️ **2026-07-22 T-DIST-0 COMPLETE — STRICT FAIL, STRONG TEACHER RETAINED.**
+> Two complete runs were byte-identical (SHA `7a6310d7…97c`). On 7,083 external
+> passes the eight-future process distribution cut log loss by 51.43% versus global
+> and 49.55% versus corridor, and cut Brier by 47.98% / 46.03%. Absolute macro ECE
+> was 0.69%; opponent-risk quintiles separated realised interception by 59.25pp.
+> Every validity, support, proper-score, classwise, absolute-calibration and non-vacuity
+> gate passed. The frozen verdict is still **FAIL** because the sole relative-ECE UCB
+> was `0.006805`, missing its `0.005` ceiling by 0.18 percentage points. This is not
+> retroactively called PASS and final seeds remain sealed. The user explicitly authorised
+> an engineering continuation because the low-resolution corridor can be slightly better
+> calibrated while throwing away roughly half the proper-score information. Authority is
+> limited to a fresh offline observer-student contract; no live consumer or target choice.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
