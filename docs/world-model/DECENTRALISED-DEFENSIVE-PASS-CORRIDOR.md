@@ -1,8 +1,17 @@
 # D-LANE-0 — Observer-Grounded Space-Time Pass Corridor Lab
 
-Status: **PRE-REGISTERED — offline/probe-only; no live authority.**
+Status: **COMPLETE — FAIL; point-response defensive line parked.**
 
 Date: 2026-07-22
+
+Verification at the frozen result commit:
+
+* typecheck and production build pass;
+* corridor plus shared-cover focused tests: `18/18` pass;
+* the unchanged D-COVER mode still produces its accepted historical SHA
+  `f082ae8ebb4a2e374182002c57453e23ef67403d3cb0016d734006b4a6c5943b`;
+* default football fingerprint remains
+  `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
 
 ## 1. Causal question
 
@@ -277,3 +286,55 @@ Passing authorises only a separate default-off live-sandbox contract in which
 the same corridor facts can be read. It does not authorise production wiring,
 commander removal, genes, a named defensive role, ecology, league evolution or
 script retirement.
+
+## 10. Result
+
+Two complete executions were byte-identical:
+
+```text
+SHA-256  5d9a904a67f438d72382b2ee455a141441c7deba8aa45c1cde56173a7efcb421
+```
+
+All exact validity gates passed. The helper remained observer-grounded and
+read-only; the 35,288 Oracle opportunities completed without force failure;
+actions, targets, Match RNG and physical outcomes were unchanged by the query.
+
+```text
+accepted states                         64 / 64
+completed two-defender branches       4411 / 5086   86.7%
+supported pass-time corridor worlds   2455 / 4411   55.7%  FAIL (>=70%)
+Oracle opportunities                 35288 / 35288 100.0%
+
+D1 corridor dilemmas                     74 / 262    28.2%  FAIL (>=35%)
+states with both exposed directions       12 / 64            FAIL (>=24)
+corridor handoffs                          41
+states with a corridor handoff             13 / 64            FAIL (>=40)
+
+transition-changing corridor handoffs       2 / 41      4.9%  FAIL (>=13%)
+states with transition corridor handoff     2 / 64             FAIL (>=20)
+
+late margin observations                 1584 @ 45.5% opponent first control
+borderline observations                   733 @ 49.5%
+early margin observations                2593 @ 48.8%
+early − late calibration edge                    +3.3pp        FAIL (>=15pp)
+```
+
+The result is stronger than a support-only failure. Even among thousands of
+supported response-world/outlet observations, the predicted ability to arrive
+early somewhere on the intended pass path barely separated actual opponent
+first control. Corridor handoffs changed real transitions less often than the
+already failed endpoint handoffs (`4.9%` versus `8.0%`) and in only `2/64`
+states rather than `13/64`.
+
+Therefore the missing mechanism is not another static spatial target or a
+cheaper path-scanning ETA. Current first control also depends on a coupled
+sequence of body orientation, arrival velocity, contact readiness, ball timing,
+other bodies and decisions that change while the pressure develops. Encoding
+those consequences into one more fixed response fact would repeat the failed
+single-feature pattern.
+
+D-LANE-0 is closed. Its thresholds, support window and representation must not
+be tuned. No live sandbox, selector, ecology or commander removal is authorised.
+The point-response defensive line is parked; any restart requires a causally
+different temporal multi-body process contract, or a return to another ranked
+world-model gap.

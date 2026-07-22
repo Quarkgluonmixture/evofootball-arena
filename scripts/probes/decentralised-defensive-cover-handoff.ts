@@ -26,6 +26,10 @@ import {
   type KnownReachProfile,
   type ReachState,
 } from '../../src/ai/reachability';
+import {
+  evaluatePassCorridorInterception,
+  type PassCorridorInterceptionFacts,
+} from '../../src/ai/passCorridorInterception';
 import { randomGenome } from '../../src/evolution/genome';
 import { randomSquad } from '../../src/evolution/playerGenome';
 import { Match } from '../../src/sim/Match';
@@ -47,7 +51,9 @@ const SAMPLE_TICKS = Math.round(1 / DT);
 const MOVE_STEPS = Math.round(0.75 / DT);
 const REPLICATES = 4;
 const DCOVER_NAMESPACE = 0xdc0e0001;
+const DLANE_NAMESPACE = 0xd1a0e001;
 const EPS = 1e-9;
+const LANE_MODE = process.argv.includes('--lane');
 
 const MIN_SHORT_OFFERS = 4;
 const MIN_NON_HOLD = 6;
@@ -87,6 +93,7 @@ interface FrozenState {
   readonly aOffer: OffBallAffordance;
   readonly d1: DefenderOption;
   readonly d2: DefenderOption;
+  readonly d2Memory: PerceptionMemory;
   readonly profiles: ReadonlyMap<number, KnownReachProfile>;
 }
 
@@ -96,6 +103,13 @@ interface TransitionTensor {
   readonly opportunities: number;
   readonly forceFailures: number;
   readonly deterministicDifferences: number;
+}
+
+interface PairCorridorFacts {
+  readonly d1A: PassCorridorInterceptionFacts;
+  readonly d1B: PassCorridorInterceptionFacts;
+  readonly d2A: PassCorridorInterceptionFacts;
+  readonly d2B: PassCorridorInterceptionFacts;
 }
 
 interface PhysicalPairResponse {
@@ -121,6 +135,7 @@ interface PhysicalPairResponse {
   readonly d2Travel: number | null;
   readonly pairDistance: number | null;
   readonly transitions: TransitionTensor | null;
+  readonly corridor: PairCorridorFacts | null;
 }
 
 interface D1DilemmaRecord {
@@ -139,6 +154,22 @@ interface StateRecord {
   readonly d2Gid: number;
   readonly exposedDirections: readonly Outlet[];
   readonly dilemmas: readonly D1DilemmaRecord[];
+}
+
+interface LaneDilemmaRecord {
+  readonly d1CandidateId: string;
+  readonly exposedOutlet: Outlet;
+  readonly handoffCandidateIds: readonly string[];
+  readonly transitionCandidateIds: readonly string[];
+}
+
+interface LaneStateRecord {
+  readonly key: string;
+  readonly seed: number;
+  readonly d1Gid: number;
+  readonly d2Gid: number;
+  readonly exposedDirections: readonly Outlet[];
+  readonly dilemmas: readonly LaneDilemmaRecord[];
 }
 
 const team = (name: string, seed: number): TeamInfo => {
@@ -166,6 +197,21 @@ const profilesOf = (match: Match): Map<number, KnownReachProfile> => {
   }
   return result;
 };
+
+const clonePerceptionMemory = (memory: PerceptionMemory): PerceptionMemory => ({
+  nextScanTick: memory.nextScanTick,
+  ball: memory.ball === null ? null : {
+    ...memory.ball,
+    pos: { x: memory.ball.pos.x, y: memory.ball.pos.y },
+    vel: { x: memory.ball.vel.x, y: memory.ball.vel.y },
+  },
+  players: new Map([...memory.players.entries()].map(([gid, entry]) => [gid, {
+    ...entry,
+    pos: { x: entry.pos.x, y: entry.pos.y },
+    vel: { x: entry.vel.x, y: entry.vel.y },
+    bodyDir: { x: entry.bodyDir.x, y: entry.bodyDir.y },
+  }])),
+});
 
 const reachState = (player: ObservedPlayer, profile: KnownReachProfile): ReachState => ({
   pos: player.pos,
@@ -386,6 +432,39 @@ const runTransitions = (
   return result;
 };
 
+const capturePairCorridorFacts = (
+  match: Match,
+  state: FrozenState,
+): PairCorridorFacts | null => {
+  if (!LANE_MODE) return null;
+  const rngBefore = (match.rng as unknown as { s: number }).s;
+  const snapshot = perceiveSnapshot(
+    capturePerceptionTruth(match),
+    state.d2.gid,
+    AWARENESS,
+    hashSeed(DLANE_NAMESPACE, state.seed, state.frozen.simTick),
+    clonePerceptionMemory(state.d2Memory),
+  );
+  const rngAfter = (match.rng as unknown as { s: number }).s;
+  if (rngBefore !== rngAfter) lanePerceptionRngChanges++;
+  const profiles = profilesOf(match);
+  const evaluate = (
+    defenderGid: number,
+    targetGid: number,
+  ): PassCorridorInterceptionFacts | null => evaluatePassCorridorInterception({
+    snapshot,
+    passerGid: state.carrierGid,
+    targetGid,
+    defenderGid,
+    reachProfiles: profiles,
+  });
+  const d1A = evaluate(state.d1.gid, state.aGid);
+  const d1B = evaluate(state.d1.gid, state.bGid);
+  const d2A = evaluate(state.d2.gid, state.aGid);
+  const d2B = evaluate(state.d2.gid, state.bGid);
+  return d1A && d1B && d2A && d2B ? { d1A, d1B, d2A, d2B } : null;
+};
+
 const executePair = (
   state: FrozenState,
   d1Candidate: OffBallCandidatePoint,
@@ -507,6 +586,7 @@ const executePair = (
   let d2Travel: number | null = null;
   let pairDistance: number | null = null;
   let transitions: TransitionTensor | null = null;
+  let corridor: PairCorridorFacts | null = null;
   if (status === 'completed') {
     d1FinalTargetDistance = Math.hypot(d1.pos.x - fixedD1.x, d1.pos.y - fixedD1.y);
     d2FinalTargetDistance = Math.hypot(d2.pos.x - fixedD2.x, d2.pos.y - fixedD2.y);
@@ -530,6 +610,7 @@ const executePair = (
     d1Travel = Math.hypot(d1.pos.x - initialD1.x, d1.pos.y - initialD1.y);
     d2Travel = Math.hypot(d2.pos.x - initialD2.x, d2.pos.y - initialD2.y);
     pairDistance = Math.hypot(d1.pos.x - d2.pos.x, d1.pos.y - d2.pos.y);
+    corridor = capturePairCorridorFacts(branch, state);
     transitions = runTransitions(branch, state);
   }
 
@@ -556,6 +637,7 @@ const executePair = (
     d2Travel,
     pairDistance,
     transitions,
+    corridor,
   };
 };
 
@@ -573,6 +655,24 @@ const finiteResponse = (response: PhysicalPairResponse): boolean => [
   response.d2Travel,
   response.pairDistance,
 ].every((value) => value !== null && Number.isFinite(value));
+
+const corridorMargin = (
+  response: PhysicalPairResponse,
+  defender: 'd1' | 'd2',
+  outlet: Outlet,
+): number | null => {
+  const facts = response.corridor?.[`${defender}${outlet.toUpperCase()}` as keyof PairCorridorFacts];
+  return facts?.strongestMargin ?? null;
+};
+
+const combinedCorridorMargin = (
+  response: PhysicalPairResponse,
+  outlet: Outlet,
+): number | null => {
+  const d1 = corridorMargin(response, 'd1', outlet);
+  const d2 = corridorMargin(response, 'd2', outlet);
+  return d1 === null || d2 === null ? null : Math.max(d1, d2);
+};
 
 const responseKey = (d1: OffBallCandidatePoint, d2: OffBallCandidatePoint): string =>
   `${d1.id}|${d2.id}`;
@@ -608,6 +708,14 @@ let candidateConstructionFailures = 0;
 let responseOrderDifferences = 0;
 let childOrderDifferences = 0;
 let childOrderControlUsed = false;
+let lanePerceptionRngChanges = 0;
+let laneSupportedResponses = 0;
+let laneNonFiniteFacts = 0;
+let laneNonHoldD1Responses = 0;
+let laneD1Dilemmas = 0;
+let lanePhysicalHandoffs = 0;
+let laneTransitionHandoffs = 0;
+let laneResponseOrderDifferences = 0;
 let nonHoldD1Responses = 0;
 let d1Dilemmas = 0;
 let d1DilemmasWithHandoff = 0;
@@ -618,8 +726,17 @@ let commitmentDilemmaSupported = 0;
 const statesWithBothDirections = new Set<string>();
 const statesWithPhysicalHandoff = new Set<string>();
 const statesWithTransitionHandoff = new Set<string>();
+const laneStatesWithBothDirections = new Set<string>();
+const laneStatesWithPhysicalHandoff = new Set<string>();
+const laneStatesWithTransitionHandoff = new Set<string>();
+const laneBins = {
+  late: { observations: 0, opponentRateSum: 0 },
+  borderline: { observations: 0, opponentRateSum: 0 },
+  early: { observations: 0, opponentRateSum: 0 },
+};
 const statuses = new Map<BranchStatus, number>();
 const records: StateRecord[] = [];
+const laneRecords: LaneStateRecord[] = [];
 
 for (
   let seed = SEED_START;
@@ -701,6 +818,7 @@ for (
       aOffer,
       d1: defenders[0],
       d2: defenders[1],
+      d2Memory: clonePerceptionMemory(memories.get(defenders[1].gid)!),
       profiles,
     };
     acceptedThisSeed = true;
@@ -728,6 +846,23 @@ for (
           if (response.status === 'completed') {
             completedBranches++;
             if (!finiteResponse(response)) nonFiniteFacts++;
+            if (LANE_MODE && response.corridor !== null) {
+              laneSupportedResponses++;
+              for (const outlet of ['a', 'b'] as const) {
+                const margin = combinedCorridorMargin(response, outlet)!;
+                if (!Number.isFinite(margin)) {
+                  laneNonFiniteFacts++;
+                  continue;
+                }
+                const bin = margin <= -ARRIVAL_HANDOFF_SECONDS
+                  ? laneBins.late
+                  : margin >= ARRIVAL_HANDOFF_SECONDS
+                    ? laneBins.early
+                    : laneBins.borderline;
+                bin.observations++;
+                bin.opponentRateSum += opponentRate(response.transitions!, outlet);
+              }
+            }
             expectedOracleOpportunities += REPLICATES * 2;
             oracleOpportunities += response.transitions!.opportunities;
             oracleForceFailures += response.transitions!.forceFailures;
@@ -811,6 +946,97 @@ for (
 
     if (stateDirections.size === 2) statesWithBothDirections.add(state.key);
 
+    const laneDilemmas: LaneDilemmaRecord[] = [];
+    const laneDirections = new Set<Outlet>();
+    if (LANE_MODE && hold?.status === 'completed' && hold.corridor !== null) {
+      for (const d1Candidate of state.d1.candidates) {
+        if (d1Candidate.id === 'hold') continue;
+        const solo = responses.get(responseKey(d1Candidate, holdD2));
+        if (!solo || solo.status !== 'completed' || solo.corridor === null) continue;
+        laneNonHoldD1Responses++;
+        const holdA = corridorMargin(hold, 'd1', 'a')!;
+        const holdB = corridorMargin(hold, 'd1', 'b')!;
+        const soloA = corridorMargin(solo, 'd1', 'a')!;
+        const soloB = corridorMargin(solo, 'd1', 'b')!;
+        const improveA = soloA - holdA;
+        const improveB = soloB - holdB;
+        let exposed: Outlet | null = null;
+        if (improveA >= ARRIVAL_HANDOFF_SECONDS && improveB <= -ARRIVAL_HANDOFF_SECONDS) {
+          exposed = 'b';
+        }
+        if (improveB >= ARRIVAL_HANDOFF_SECONDS && improveA <= -ARRIVAL_HANDOFF_SECONDS) {
+          exposed = 'a';
+        }
+        if (exposed === null) continue;
+        laneD1Dilemmas++;
+        laneDirections.add(exposed);
+        const occupied: Outlet = exposed === 'a' ? 'b' : 'a';
+        const soloExposed = combinedCorridorMargin(solo, exposed)!;
+        const soloOccupied = combinedCorridorMargin(solo, occupied)!;
+        const handoffCandidateIds: string[] = [];
+        const transitionCandidateIds: string[] = [];
+        for (const d2Candidate of state.d2.candidates) {
+          if (d2Candidate.id === 'hold') continue;
+          const response = responses.get(responseKey(d1Candidate, d2Candidate));
+          if (!response || response.status !== 'completed' || response.corridor === null) continue;
+          const responseExposed = combinedCorridorMargin(response, exposed)!;
+          const responseOccupied = combinedCorridorMargin(response, occupied)!;
+          const holdDistanceToCandidate = Math.hypot(
+            solo.match.allPlayers[state.d2.gid].pos.x - d2Candidate.point.x,
+            solo.match.allPlayers[state.d2.gid].pos.y - d2Candidate.point.y,
+          );
+          const holdProgress = response.d2InitialTargetDistance - holdDistanceToCandidate;
+          const responseProgress = response.d2InitialTargetDistance - response.d2FinalTargetDistance!;
+          const handoff = responseExposed - soloExposed >= ARRIVAL_HANDOFF_SECONDS
+            && responseOccupied - soloOccupied >= -ARRIVAL_HANDOFF_SECONDS
+            && responseProgress - holdProgress >= TARGET_PROGRESS_METRES;
+          if (!handoff) continue;
+          lanePhysicalHandoffs++;
+          handoffCandidateIds.push(d2Candidate.id);
+          const exposedDelta = opponentRate(response.transitions!, exposed)
+            - opponentRate(solo.transitions!, exposed);
+          const occupiedDelta = opponentRate(response.transitions!, occupied)
+            - opponentRate(solo.transitions!, occupied);
+          if (exposedDelta >= TRANSITION_STEP && occupiedDelta >= -TRANSITION_STEP) {
+            laneTransitionHandoffs++;
+            transitionCandidateIds.push(d2Candidate.id);
+            laneStatesWithTransitionHandoff.add(state.key);
+          }
+        }
+        if (handoffCandidateIds.length > 0) laneStatesWithPhysicalHandoff.add(state.key);
+        laneDilemmas.push({
+          d1CandidateId: d1Candidate.id,
+          exposedOutlet: exposed,
+          handoffCandidateIds: [...handoffCandidateIds].sort(),
+          transitionCandidateIds: [...transitionCandidateIds].sort(),
+        });
+      }
+      if (laneDirections.size === 2) laneStatesWithBothDirections.add(state.key);
+      const forwardLane = laneDilemmas.map((entry) => ({
+        d1: entry.d1CandidateId,
+        exposed: entry.exposedOutlet,
+        handoff: entry.handoffCandidateIds,
+        transition: entry.transitionCandidateIds,
+      }));
+      const reverseLane = [...laneDilemmas].reverse().map((entry) => ({
+        d1: entry.d1CandidateId,
+        exposed: entry.exposedOutlet,
+        handoff: [...entry.handoffCandidateIds].reverse().sort(),
+        transition: [...entry.transitionCandidateIds].reverse().sort(),
+      })).reverse();
+      if (JSON.stringify(forwardLane) !== JSON.stringify(reverseLane)) {
+        laneResponseOrderDifferences++;
+      }
+      laneRecords.push({
+        key: state.key,
+        seed,
+        d1Gid: state.d1.gid,
+        d2Gid: state.d2.gid,
+        exposedDirections: [...laneDirections].sort(),
+        dilemmas: laneDilemmas,
+      });
+    }
+
     if (hold?.status === 'completed') {
       for (const d1Candidate of state.d1.candidates) {
         if (d1Candidate.id === 'hold') continue;
@@ -870,6 +1096,16 @@ const dilemmaRate = d1Dilemmas / Math.max(1, nonHoldD1Responses);
 const handoffDilemmaRate = d1DilemmasWithHandoff / Math.max(1, d1Dilemmas);
 const transitionHandoffRate = transitionHandoffs / Math.max(1, physicalHandoffs);
 const commitmentMatchRate = commitmentDilemmaMatches / Math.max(1, commitmentDilemmaSupported);
+const laneObservationRate = laneSupportedResponses / Math.max(1, completedBranches);
+const laneDilemmaRate = laneD1Dilemmas / Math.max(1, laneNonHoldD1Responses);
+const laneTransitionHandoffRate = laneTransitionHandoffs / Math.max(1, lanePhysicalHandoffs);
+const lateOpponentRate = laneBins.late.opponentRateSum
+  / Math.max(1, laneBins.late.observations);
+const borderlineOpponentRate = laneBins.borderline.opponentRateSum
+  / Math.max(1, laneBins.borderline.observations);
+const earlyOpponentRate = laneBins.early.opponentRateSum
+  / Math.max(1, laneBins.early.observations);
+const laneCalibrationEdge = earlyOpponentRate - lateOpponentRate;
 
 const gates = {
   acceptedStates: acceptedStates === REQUIRED_STATES,
@@ -899,6 +1135,38 @@ const gates = {
   orderInvariance: responseOrderDifferences === 0 && childOrderDifferences === 0,
 };
 const pass = Object.values(gates).every(Boolean);
+
+const laneGates = {
+  acceptedStates: acceptedStates === REQUIRED_STATES,
+  scannedSeeds: scannedSeeds <= MAX_SEEDS,
+  completionSupport: completionRate >= 0.70,
+  corridorObservationSupport: laneObservationRate >= 0.70,
+  oracleOpportunitySupport: oracleSupportRate >= 0.90,
+  d1TargetProgress: d1ProgressRate >= 0.90,
+  d2TargetProgress: d2ProgressRate >= 0.90,
+  bothExposedDirections: laneStatesWithBothDirections.size >= 24,
+  d1CorridorDilemmaRate: laneDilemmaRate >= 0.35,
+  physicalHandoffStates: laneStatesWithPhysicalHandoff.size >= 40,
+  lateBinSupport: laneBins.late.observations >= 100,
+  earlyBinSupport: laneBins.early.observations >= 100,
+  corridorCalibration: laneCalibrationEdge >= 0.15,
+  transitionHandoffRate: laneTransitionHandoffRate >= 0.13,
+  transitionHandoffStates: laneStatesWithTransitionHandoff.size >= 20,
+  endpointRateEnrichment: laneTransitionHandoffRate - 0.08 >= 0.05,
+  endpointStateEnrichment: laneStatesWithTransitionHandoff.size - 13 >= 5,
+  oracleValidity: oracleForceFailures === 0,
+  perceptionRngPurity: perceptionRngChanges === 0 && lanePerceptionRngChanges === 0,
+  interventionIntegrity: actionChanges === 0 && targetChanges === 0,
+  finiteFacts: nonFiniteFacts === 0 && laneNonFiniteFacts === 0,
+  cloneAndIdentityValidity: cloneFailures === 0,
+  childSeedUniqueness: childSeedCollisions === 0,
+  deterministicReruns: physicalDeterministicDifferences === 0
+    && oracleDeterministicDifferences === 0,
+  orderInvariance: responseOrderDifferences === 0
+    && childOrderDifferences === 0
+    && laneResponseOrderDifferences === 0,
+};
+const lanePass = Object.values(laneGates).every(Boolean);
 
 const report = {
   authority: 'D-COVER-0 decentralised defensive cover handoff lab',
@@ -968,33 +1236,136 @@ const report = {
   pass,
 };
 
+const laneReport = {
+  authority: 'D-LANE-0 observer-grounded space-time pass corridor lab',
+  parameters: {
+    seedStart: SEED_START,
+    requiredStates: REQUIRED_STATES,
+    maxSeeds: MAX_SEEDS,
+    awareness: AWARENESS,
+    moveSteps: MOVE_STEPS,
+    moveSeconds: MOVE_STEPS * DT,
+    replicates: REPLICATES,
+    materialMarginSeconds: ARRIVAL_HANDOFF_SECONDS,
+    targetProgressMetres: TARGET_PROGRESS_METRES,
+    transitionStep: TRANSITION_STEP,
+    endpointHistoricalRate: 0.08,
+    endpointHistoricalStates: 13,
+  },
+  support: {
+    scannedSeeds,
+    acceptedStates,
+    enumeratedBranches,
+    completedBranches,
+    completionRate,
+    laneSupportedResponses,
+    laneObservationRate,
+    oracleOpportunities,
+    expectedOracleOpportunities,
+    oracleSupportRate,
+    d1ProgressRate,
+    d2ProgressRate,
+    laneNonHoldD1Responses,
+    laneD1Dilemmas,
+    laneDilemmaRate,
+    statesWithBothDirections: laneStatesWithBothDirections.size,
+    lanePhysicalHandoffs,
+    statesWithPhysicalHandoff: laneStatesWithPhysicalHandoff.size,
+    laneTransitionHandoffs,
+    laneTransitionHandoffRate,
+    statesWithTransitionHandoff: laneStatesWithTransitionHandoff.size,
+  },
+  calibration: {
+    late: { ...laneBins.late, opponentRate: lateOpponentRate },
+    borderline: { ...laneBins.borderline, opponentRate: borderlineOpponentRate },
+    early: { ...laneBins.early, opponentRate: earlyOpponentRate },
+    earlyMinusLate: laneCalibrationEdge,
+  },
+  validity: {
+    perceptionRngChanges,
+    lanePerceptionRngChanges,
+    actionChanges,
+    targetChanges,
+    nonFiniteFacts,
+    laneNonFiniteFacts,
+    cloneFailures,
+    childSeedCollisions,
+    physicalDeterministicDifferences,
+    oracleForceFailures,
+    oracleDeterministicDifferences,
+    responseOrderDifferences,
+    laneResponseOrderDifferences,
+    childOrderDifferences,
+  },
+  records: laneRecords,
+  gates: laneGates,
+  pass: lanePass,
+};
+
 const canonical = JSON.stringify(report);
 const digest = createHash('sha256').update(canonical).digest('hex');
+const laneCanonical = JSON.stringify(laneReport);
+const laneDigest = createHash('sha256').update(laneCanonical).digest('hex');
 const pct = (value: number): string => `${(value * 100).toFixed(1)}%`;
 
-console.log('D-COVER-0 DECENTRALISED DEFENSIVE COVER HANDOFF LAB');
-console.log(
-  `accepted ${acceptedStates}/${REQUIRED_STATES} · scanned ${scannedSeeds}/${MAX_SEEDS}`
-  + ` · branches ${completedBranches}/${enumeratedBranches} (${pct(completionRate)})`,
-);
-console.log(
-  `oracle ${oracleOpportunities}/${expectedOracleOpportunities} (${pct(oracleSupportRate)})`
-  + ` · commitments ${validCommitments}/${commitmentAttempts} (${pct(commitmentRate)})`,
-);
-console.log(
-  `D1 dilemmas ${d1Dilemmas}/${nonHoldD1Responses} (${pct(dilemmaRate)})`
-  + ` · both directions ${statesWithBothDirections.size}/${acceptedStates}`,
-);
-console.log(
-  `physical handoff ${d1DilemmasWithHandoff}/${d1Dilemmas} (${pct(handoffDilemmaRate)})`
-  + ` · states ${statesWithPhysicalHandoff.size}/${acceptedStates}`,
-);
-console.log(
-  `transition handoffs ${transitionHandoffs}/${physicalHandoffs} (${pct(transitionHandoffRate)})`
-  + ` · states ${statesWithTransitionHandoff.size}/${acceptedStates}`
-  + ` · commitment match ${pct(commitmentMatchRate)}`,
-);
-console.log(`gates ${JSON.stringify(gates)}`);
-console.log(`PASS ${pass}`);
-console.log(`SHA256 ${digest}`);
-if (process.argv.includes('--json')) console.log(`REPORT ${canonical}`);
+if (LANE_MODE) {
+  console.log('D-LANE-0 OBSERVER-GROUNDED SPACE-TIME PASS CORRIDOR LAB');
+  console.log(
+    `accepted ${acceptedStates}/${REQUIRED_STATES} · scanned ${scannedSeeds}/${MAX_SEEDS}`
+    + ` · branches ${completedBranches}/${enumeratedBranches} (${pct(completionRate)})`,
+  );
+  console.log(
+    `corridor ${laneSupportedResponses}/${completedBranches} (${pct(laneObservationRate)})`
+    + ` · oracle ${oracleOpportunities}/${expectedOracleOpportunities} (${pct(oracleSupportRate)})`,
+  );
+  console.log(
+    `D1 corridor dilemmas ${laneD1Dilemmas}/${laneNonHoldD1Responses} (${pct(laneDilemmaRate)})`
+    + ` · both directions ${laneStatesWithBothDirections.size}/${acceptedStates}`,
+  );
+  console.log(
+    `corridor handoffs ${lanePhysicalHandoffs}`
+    + ` · states ${laneStatesWithPhysicalHandoff.size}/${acceptedStates}`,
+  );
+  console.log(
+    `transition handoffs ${laneTransitionHandoffs}/${lanePhysicalHandoffs}`
+    + ` (${pct(laneTransitionHandoffRate)})`
+    + ` · states ${laneStatesWithTransitionHandoff.size}/${acceptedStates}`,
+  );
+  console.log(
+    `calibration late ${laneBins.late.observations}@${pct(lateOpponentRate)}`
+    + ` · borderline ${laneBins.borderline.observations}@${pct(borderlineOpponentRate)}`
+    + ` · early ${laneBins.early.observations}@${pct(earlyOpponentRate)}`
+    + ` · edge ${pct(laneCalibrationEdge)}`,
+  );
+  console.log(`gates ${JSON.stringify(laneGates)}`);
+  console.log(`PASS ${lanePass}`);
+  console.log(`SHA256 ${laneDigest}`);
+  if (process.argv.includes('--json')) console.log(`REPORT ${laneCanonical}`);
+} else {
+  console.log('D-COVER-0 DECENTRALISED DEFENSIVE COVER HANDOFF LAB');
+  console.log(
+    `accepted ${acceptedStates}/${REQUIRED_STATES} · scanned ${scannedSeeds}/${MAX_SEEDS}`
+    + ` · branches ${completedBranches}/${enumeratedBranches} (${pct(completionRate)})`,
+  );
+  console.log(
+    `oracle ${oracleOpportunities}/${expectedOracleOpportunities} (${pct(oracleSupportRate)})`
+    + ` · commitments ${validCommitments}/${commitmentAttempts} (${pct(commitmentRate)})`,
+  );
+  console.log(
+    `D1 dilemmas ${d1Dilemmas}/${nonHoldD1Responses} (${pct(dilemmaRate)})`
+    + ` · both directions ${statesWithBothDirections.size}/${acceptedStates}`,
+  );
+  console.log(
+    `physical handoff ${d1DilemmasWithHandoff}/${d1Dilemmas} (${pct(handoffDilemmaRate)})`
+    + ` · states ${statesWithPhysicalHandoff.size}/${acceptedStates}`,
+  );
+  console.log(
+    `transition handoffs ${transitionHandoffs}/${physicalHandoffs} (${pct(transitionHandoffRate)})`
+    + ` · states ${statesWithTransitionHandoff.size}/${acceptedStates}`
+    + ` · commitment match ${pct(commitmentMatchRate)}`,
+  );
+  console.log(`gates ${JSON.stringify(gates)}`);
+  console.log(`PASS ${pass}`);
+  console.log(`SHA256 ${digest}`);
+  if (process.argv.includes('--json')) console.log(`REPORT ${canonical}`);
+}

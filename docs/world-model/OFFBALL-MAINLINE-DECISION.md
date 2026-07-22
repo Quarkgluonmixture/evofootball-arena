@@ -447,3 +447,20 @@ but replaces endpoint arrival with a fixed-step race to every observed point
 along the intended ground-pass trajectory. It must beat the frozen `8.0%` /
 `13-state` endpoint result by pre-registered practical margins before any
 default-off live sandbox can be proposed.
+
+D-LANE-0 completed twice with byte-identical output
+(`5d9a904a…b421`) and failed decisively. Only 55.7% of completed worlds retained
+all required observer facts at pass time; corridor dilemmas appeared in 28.2%
+of supported D1 movements and both exposure directions in 12/64 states. More
+importantly, an `early` corridor margin raised actual opponent first control by
+only 3.3 percentage points over a `late` margin. Just 2/41 corridor handoffs
+changed the coupled two-outlet transition result across 2/64 states—worse than
+the failed endpoint baseline.
+
+No threshold, memory lifetime, movement window or margin may be tuned. The
+point-response branch is now parked: neither a receiver endpoint nor a static
+space-time lane race represents the evolving multi-body pressure process well
+enough to select defensive behaviour. A restart must be temporal and
+multi-body—delay, cover arrival and responsibility rotation through world
+events—or the mainline must move to another ranked world-model gap. No live
+sandbox or ecology is authorised by D-LANE.

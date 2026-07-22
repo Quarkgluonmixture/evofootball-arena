@@ -196,12 +196,16 @@ Current order:
 
 ```text
 DDD-0 one-body defensive dilemma (complete)
-→ D-COVER-0 multi-defender shared-cover handoff (offline)
-→ default-off visual sandbox only if D-COVER-0 passes
-→ sealed two-sided ecology only after the shared-cover substrate exists
+→ D-COVER-0 endpoint-arrival handoff (complete, FAIL)
+→ D-LANE-0 space-time corridor handoff (complete, FAIL)
+→ point-response defensive branch parked
+→ any restart must model a temporal multi-body process, not another static point fact
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
-into G2–G9. The active question is whether observer-specific teammate intent can
-let multiple finite bodies create local defensive cover without rebuilding the
-current commander under new names.
+into G2–G9. Shared intent and legal two-body motion were both non-vacuous, but
+neither receiver-endpoint arrival nor a fixed-step corridor ETA calibrated well
+enough to real first control. No defensive live sandbox or ecology is currently
+authorised. The remaining VISION-level question is whether a genuinely temporal
+process—one body delays, another arrives, and responsibility rotates on world
+events—can be represented without rebuilding the commander under new names.
