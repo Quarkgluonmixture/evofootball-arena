@@ -729,6 +729,36 @@
 > an engineering continuation because the low-resolution corridor can be slightly better
 > calibrated while throwing away roughly half the proper-score information. Authority is
 > limited to a fresh offline observer-student contract; no live consumer or target choice.
+> ⏸️ **2026-07-22 T-STUDENT-0 INTERNAL STOP — PORTABLE SIGNAL, INSUFFICIENT
+> TEACHER COMPRESSION.** The deterministic 14-fact student used 7,144 fit and 7,069
+> internal rows with zero validity failures. Against independently realised labels it
+> passed every frozen proper-score gate (log loss +6.60% global / +3.00% corridor;
+> Brier +6.11% / +2.60%), absolute macro ECE was 0.95%, and opponent-risk quintiles
+> separated by 27.74pp. But soft-teacher CE improved only 4.86% / 1.96% and squared
+> error 9.98% / 4.10%, below the frozen 15%/5% effect gates despite positive cluster
+> LCBs. External 74k and final 75k stayed sealed. Required KL anatomy confirmed the
+> shortfall after subtracting teacher entropy. The 14 endpoint-oriented features are
+> parked; one causally new observer corridor-field representation audit is permitted,
+> with the same learner/gates and no live authority.
+> ✅/⚠️ **2026-07-22 T-CORRIDOR-0 — STRICT FAIL, ENGINEERING ROBUSTNESS PASS.**
+> Adding only five observer-grounded pathwise corridor facts materially deepened the
+> frozen student. On 7,035 fresh 74k actions, realised log loss improved 12.38%/8.81%
+> versus global/corridor, Brier 10.91%/7.37%, teacher squared error 18.92%/13.20%,
+> and reducible teacher KL 18.56%/12.99%; ECE was 1.14% and opponent separation
+> 35.11pp. All exact/classwise gates passed. The sole strict failure remained total
+> teacher CE vs global (`9.28% < 15%`), whose denominator includes irreducible teacher
+> entropy. The scientific verdict is not relabelled. Per the user's explicit
+> no-因噎废食 engineering authority, robustness passes with only that known gate excluded.
+> Final 75k remains sealed; only an offline alternative-action coverage audit follows.
+> ⏸️ **2026-07-22 T-ALT-0 — STRONG RANKING, ACTION-DISTRIBUTION CALIBRATION
+> FAIL.** On 8,243 fresh deterministic-random visible targets, every exact and proper-
+> score gate passed: teacher KL +22.7%/+13.5% versus global/corridor, realised log loss
+> +12.7%/+7.1%, Brier +17.7%/+11.8%, opponent separation 46.97pp. But intended and
+> opponent calibration-in-the-large missed by 5.75pp/6.70pp. Random alternatives were
+> much riskier (60.3% intended, 34.2% opponent) than selected-policy training actions.
+> The model may rank risk but cannot yet publish calibrated alternative probabilities.
+> A causally new selected+randomised training-support contract is the only justified
+> revisit; no post-hoc calibrator or live target selection.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

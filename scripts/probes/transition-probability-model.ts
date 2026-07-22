@@ -8,9 +8,20 @@ export const TRANSITION_MODEL_LEARNING_RATE = 0.01;
 export const TRANSITION_MODEL_L2 = 1e-4;
 export const TRANSITION_MODEL_SHUFFLE_NAMESPACE = 0x74306231;
 export const RELATIVE_TRANSITION_MODEL_SHUFFLE_NAMESPACE = 0x74306272;
+export const SOFT_TRANSITION_MODEL_VERSION = 'transition-softmax-soft-v1' as const;
+export const SOFT_TRANSITION_MODEL_SHUFFLE_NAMESPACE = 0x7d157501;
 
 export interface TransitionSoftmaxModelV1 {
   readonly version: typeof TRANSITION_MODEL_VERSION;
+  readonly inputDimensions: number;
+  readonly basisDimensions: number;
+  readonly means: readonly number[];
+  readonly scales: readonly number[];
+  readonly weights: readonly number[];
+}
+
+export interface SoftTransitionSoftmaxModelV1 {
+  readonly version: typeof SOFT_TRANSITION_MODEL_VERSION;
   readonly inputDimensions: number;
   readonly basisDimensions: number;
   readonly means: readonly number[];
@@ -206,6 +217,106 @@ export function predictTransitionProbabilitiesV1(
     || input.length !== model.inputDimensions
     || !input.every(Number.isFinite)
   ) throw new Error('invalid transition prediction input');
+  return probabilitiesFromBasis(
+    basisOf(input, model.means, model.scales),
+    model.weights,
+  );
+}
+
+/**
+ * Probe-only quadratic softmax trained against a complete probability vector.
+ * This deliberately does not reuse or alter the frozen one-hot T0b trainer.
+ */
+export function fitSoftTransitionSoftmaxV1(
+  inputs: readonly (readonly number[])[],
+  targets: readonly (readonly number[])[],
+): SoftTransitionSoftmaxModelV1 {
+  if (inputs.length === 0 || inputs.length !== targets.length) {
+    throw new Error('soft transition model needs matching non-empty inputs and targets');
+  }
+  const inputDimensions = inputs[0].length;
+  if (inputDimensions === 0) throw new Error('soft transition model needs input dimensions');
+  for (let row = 0; row < inputs.length; row++) {
+    const targetSum = targets[row].reduce((sum, value) => sum + value, 0);
+    if (
+      inputs[row].length !== inputDimensions
+      || !inputs[row].every(Number.isFinite)
+      || targets[row].length !== TRANSITION_CLASS_COUNT
+      || !targets[row].every((value) => Number.isFinite(value) && value > 0 && value < 1)
+      || Math.abs(targetSum - 1) > 1e-12
+    ) throw new Error(`invalid soft transition training row ${row}`);
+  }
+
+  const { means, scales } = fitStandardizer(inputs, inputDimensions);
+  const basisRows = inputs.map((input) => basisOf(input, means, scales));
+  const basisDimensions = basisRows[0].length;
+  const weightCount = TRANSITION_CLASS_COUNT * basisDimensions;
+  const weights = new Float64Array(weightCount);
+  const firstMoment = new Float64Array(weightCount);
+  const secondMoment = new Float64Array(weightCount);
+  const gradient = new Float64Array(weightCount);
+  const order = Array.from({ length: inputs.length }, (_, index) => index);
+  let update = 0;
+
+  for (let epoch = 0; epoch < TRANSITION_MODEL_EPOCHS; epoch++) {
+    for (let index = 0; index < order.length; index++) order[index] = index;
+    new Rng(hashSeed(SOFT_TRANSITION_MODEL_SHUFFLE_NAMESPACE, epoch)).shuffle(order);
+    for (let start = 0; start < order.length; start += TRANSITION_MODEL_BATCH_SIZE) {
+      gradient.fill(0);
+      const end = Math.min(start + TRANSITION_MODEL_BATCH_SIZE, order.length);
+      const batchSize = end - start;
+      for (let position = start; position < end; position++) {
+        const row = order[position];
+        const basis = basisRows[row];
+        const probabilities = probabilitiesFromBasis(basis, weights);
+        for (let klass = 0; klass < TRANSITION_CLASS_COUNT; klass++) {
+          const error = probabilities[klass] - targets[row][klass];
+          const offset = klass * basisDimensions;
+          for (let dimension = 0; dimension < basisDimensions; dimension++) {
+            gradient[offset + dimension] += error * basis[dimension];
+          }
+        }
+      }
+
+      update++;
+      const beta1Correction = 1 - 0.9 ** update;
+      const beta2Correction = 1 - 0.999 ** update;
+      for (let index = 0; index < weightCount; index++) {
+        const dimension = index % basisDimensions;
+        const regularisation = dimension === 0 ? 0 : 2 * TRANSITION_MODEL_L2 * weights[index];
+        const value = gradient[index] / batchSize + regularisation;
+        firstMoment[index] = 0.9 * firstMoment[index] + 0.1 * value;
+        secondMoment[index] = 0.999 * secondMoment[index] + 0.001 * value * value;
+        const correctedFirst = firstMoment[index] / beta1Correction;
+        const correctedSecond = secondMoment[index] / beta2Correction;
+        weights[index] -= TRANSITION_MODEL_LEARNING_RATE
+          * correctedFirst / (Math.sqrt(correctedSecond) + 1e-8);
+      }
+    }
+  }
+
+  if (![...weights].every(Number.isFinite)) {
+    throw new Error('soft transition model produced non-finite weights');
+  }
+  return {
+    version: SOFT_TRANSITION_MODEL_VERSION,
+    inputDimensions,
+    basisDimensions,
+    means,
+    scales,
+    weights: [...weights],
+  };
+}
+
+export function predictSoftTransitionProbabilitiesV1(
+  model: SoftTransitionSoftmaxModelV1,
+  input: readonly number[],
+): readonly number[] {
+  if (
+    model.version !== SOFT_TRANSITION_MODEL_VERSION
+    || input.length !== model.inputDimensions
+    || !input.every(Number.isFinite)
+  ) throw new Error('invalid soft transition prediction input');
   return probabilitiesFromBasis(
     basisOf(input, model.means, model.scales),
     model.weights,

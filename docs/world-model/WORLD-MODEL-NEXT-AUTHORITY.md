@@ -347,3 +347,41 @@ is therefore banked as a strong offline teacher under an engineering
 continuation, not relabelled PASS. Final seeds `73000..73119` remain sealed.
 Only a new, pre-registered observer-student experiment is authorised; live use
 and target selection remain closed.
+
+T-STUDENT-0 is now complete and stopped internally. Its 14-fact quadratic
+softmax was deterministic, finite and well calibrated. It improved realised
+log loss by 6.60% versus global and 3.00% versus corridor, improved Brier by
+6.11% / 2.60%, and separated opponent-risk quintiles by 27.74pp. It therefore
+banked a real portable signal. But it reduced the soft teacher's cross entropy
+by only 4.86% versus global and 1.96% versus corridor, below the frozen 15%/5%
+compression gates; squared-error improvement was 9.98% / 4.10%. Fresh 74k and
+final 75k seeds stayed sealed.
+
+This parks the original 14-feature student, not all observer estimation. The
+causal deficit is now localised: endpoint arrival/readiness facts omit the
+pathwise interception geometry already shown non-vacuous by C-OBS and T-DIST.
+A single bounded corridor-field representation audit is permissible under the
+T-STUDENT stop rule's “new observer state” clause. It must reuse the same model,
+data boundaries and gates; no larger learner or live consumer is authorised.
+
+T-CORRIDOR-0 completed that bounded audit. The sole strict internal failure was
+the entropy-denominated teacher-CE improvement versus global (`8.30% < 15%`).
+The unchanged model was nevertheless read once on the explicitly authorised
+fresh 74k engineering partition. There it improved realised log loss by
+12.38%/8.81% versus global/corridor, Brier by 10.91%/7.37%, teacher squared
+error by 18.92%/13.20%, and reducible teacher KL by 18.56%/12.99%. Absolute ECE
+was 1.14%, opponent-risk separation 35.11pp, and every exact/classwise gate
+passed. Strict PASS remains false; engineering robustness is banked as PASS
+with only the known total-CE effect gate excluded. This authorises one offline
+alternative-action coverage/invariance audit, not live selection.
+
+T-ALT-0 then tested the frozen model on 8,243 deterministic-random visible
+targets from 120 fresh matches. All exact and proper-score gates passed:
+teacher KL improved 22.7%/13.5% versus global/corridor, realised log loss
+12.7%/7.1%, Brier 17.7%/11.8%, and opponent-risk separation reached 46.97pp.
+But intended/opponent calibration-in-the-large missed by 5.75pp/6.70pp. Random
+alternatives were materially riskier than selected-policy training actions.
+Thus the representation ranks alternative risk but is not a calibrated target
+selector. The causal next fork is intervention-supported training on both
+selected and neutral-random actions, validated separately on fresh random and
+selected strata; post-hoc scaling and live use remain forbidden.

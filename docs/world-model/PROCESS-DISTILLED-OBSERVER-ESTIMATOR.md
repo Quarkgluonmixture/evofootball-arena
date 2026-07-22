@@ -1,6 +1,6 @@
 # T-STUDENT-0 — Process-Distilled Observer Transition Estimator
 
-Status: **PRE-REGISTERED — model/thresholds frozen; fresh external seeds unopened.**
+Status: **COMPLETE — INTERNAL FAIL; fresh external and final seeds remain sealed.**
 
 Date: 2026-07-22
 
@@ -241,3 +241,60 @@ FAIL parks this student representation. Do not add layers, tune temperature,
 change class weights, relax calibration, expand seeds or open final. A restart
 requires new observer state or a different causal representation, not a larger
 model.
+
+## 13. Frozen result
+
+The fit population and the 145 model weights reproduced byte-identically:
+
+```text
+fit rows / matches                       7,144 / 120
+internal rows / matches                  7,069 / 120
+feature-unsupported complete rows        14 fit / 14 internal
+force / censor / identity failures       0
+model SHA-256                             26318eaa6c22a7a40aee0aff32ca49c6677516e3d7390a725c359065f35f2a70
+report SHA-256                            228021b4fc456a6b6fd6caaf988932c7fbc057fdeabb130f9665ed803c58e872
+```
+
+Internal proper scores were:
+
+```text
+soft-teacher cross entropy:
+  student / corridor / global            0.675555 / 0.689070 / 0.710054
+  improvement vs corridor / global       1.96% / 4.86%
+
+soft-teacher squared error:
+  student / corridor / global            0.157801 / 0.164551 / 0.175286
+  improvement vs corridor / global       4.10% / 9.98%
+
+realised-label log loss:
+  student / corridor / global            0.667337 / 0.687981 / 0.714489
+  improvement vs corridor / global       3.00% / 6.60%
+
+realised-label Brier:
+  student / corridor / global            0.357768 / 0.367313 / 0.381051
+  improvement vs corridor / global       2.60% / 6.11%
+
+absolute macro ECE                       0.009547
+median L1(student, global)                0.1898
+opponent quintile realised separation    27.74 percentage points
+```
+
+Every exact, support, determinism, realised-label proper-score, absolute-
+calibration and non-vacuity gate passed. All eight teacher-imitation
+improvements had positive match-cluster lower confidence bounds, but the four
+frozen effect-size gates failed: `4.86% < 15%`, `9.98% < 15%`, `1.96% < 5%`
+and `4.10% < 5%`. External `74000..74119` therefore did not open; final
+`75000..75119` remains sealed.
+
+A required read-only KL anatomy was added without changing any gate. The
+teacher's own entropy was `0.360589`; student/corridor/global KL was
+`0.314966 / 0.328481 / 0.349465`. Deducting irreducible teacher entropy does
+not reverse the result: the student reduced excess divergence by about 4.1%
+versus corridor and 9.9% versus global.
+
+The honest conclusion is not that kick-time observation contains no signal.
+The student predicted independently realised outcomes materially better and
+was well calibrated. It is that the frozen 14 endpoint-oriented affordance
+facts do not compress enough of the unchanged policy's pathwise transition
+distribution. The representation is parked. Any bounded revisit must add a
+causally distinct observer fact family; it may not enlarge or tune this model.
