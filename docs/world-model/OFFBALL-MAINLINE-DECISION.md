@@ -439,3 +439,11 @@ future contract may test observer-grounded space-time corridor interception as
 a causally different representation. It may not lower D-COVER's thresholds,
 extend the movement window, fit a response selector, publish central assignments,
 remove the commander or enter live play.
+
+That future contract is now frozen as
+[`DECENTRALISED-DEFENSIVE-PASS-CORRIDOR.md`](DECENTRALISED-DEFENSIVE-PASS-CORRIDOR.md).
+D-LANE-0 keeps the exact D-COVER worlds and actual first-transition authority,
+but replaces endpoint arrival with a fixed-step race to every observed point
+along the intended ground-pass trajectory. It must beat the frozen `8.0%` /
+`13-state` endpoint result by pre-registered practical margins before any
+default-off live sandbox can be proposed.
