@@ -488,3 +488,12 @@ a motion classifier, a renewed D-PROC-1 consumer, D-PROC-2, familiarity or coach
 priors. Its failure identifies an honest information-availability boundary in
 the existing observer-specific scan/FOV process; that boundary may not be erased
 by adding samples, lengthening the window or reading private action state.
+
+The next independent lower-layer gate is pre-registered in
+[`ACTIVE-GAZE-FOUNDATION.md`](ACTIVE-GAZE-FOUNDATION.md). S3-G0 separates an
+observer's own gaze from body direction while freezing the existing visual
+range, cone, scan clock, memory and keyed error. It tests only whether fixed
+world/body state can yield different honest evidence under different gaze and
+whether a gaze switch still obeys scan latency. It does not rerun the temporal
+motion experiment or allow a coach/familiarity prior to manufacture unseen
+facts.

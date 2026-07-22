@@ -826,6 +826,12 @@
 > may be read. The representation is parked, D-PROC-1/D-PROC-2 remain closed, and
 > no fourth sample, longer window, coach/familiarity bonus or consumer rescue is
 > authorised.
+> 🔬 **S3-G0 ACTIVE GAZE PRE-REGISTERED.** The next slice is causally lower and
+> independent: current FOV is locked to body direction, so a player cannot run
+> while scanning elsewhere. Fresh 87k will hold world/body state fixed and vary
+> only observer-owned gaze, testing current visibility, scan latency and aged
+> memory. It does not rerun D-PROC-1M, choose where to look, read coach/familiarity
+> or enter a production brain.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
