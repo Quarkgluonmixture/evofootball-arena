@@ -813,6 +813,12 @@
 > temporal motion-phase representation (start/continue/brake/redirect), measurement
 > first—not a threshold/sample rescue. Coach doctrine, familiarity, payoff, live AI
 > and evolution remain closed.
+> 🔬 **D-PROC-1M TEMPORAL MOTION EVIDENCE FROZEN.** Fresh 86k returns to
+> representation-only measurement: three strictly newer observer-local samples
+> produce separate displacement, speed-delta, velocity-turn, body-turn and
+> persistence facts. H/E/R compare braking inertia, continued movement and
+> redirection while keeping the failed reopening consumer closed. No phase label,
+> score, action, coach/familiarity effect, payoff or live path is allowed.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

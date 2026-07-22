@@ -466,3 +466,10 @@ observer-local temporal motion phase that distinguishes initiation,
 continuation, braking and redirection from multiple external observations. It
 must be tested as representation/measurement before any renewed response; the
 failed consumer may not be rescued by another sample or a changed threshold.
+
+The causally different measurement gate is now pre-registered in
+[`TEMPORAL-MOTION-EVIDENCE.md`](TEMPORAL-MOTION-EVIDENCE.md). D-PROC-1M records
+three strictly newer observer-local body samples and emits separate speed,
+displacement, turn and persistence facts. It has no motion label and no
+consumer. Fresh 86k H/E/R arms ask only whether continued movement, braking
+inertia and redirection are externally distinguishable.
