@@ -467,9 +467,24 @@ continuation, braking and redirection from multiple external observations. It
 must be tested as representation/measurement before any renewed response; the
 failed consumer may not be rescued by another sample or a changed threshold.
 
-The causally different measurement gate is now pre-registered in
+The causally different measurement gate was pre-registered in
 [`TEMPORAL-MOTION-EVIDENCE.md`](TEMPORAL-MOTION-EVIDENCE.md). D-PROC-1M records
 three strictly newer observer-local body samples and emits separate speed,
 displacement, turn and persistence facts. It has no motion label and no
 consumer. Fresh 86k H/E/R arms ask only whether continued movement, braking
 inertia and redirection are externally distinguishable.
+
+D-PROC-1M strictly failed. It accepted 96 states but only 59 jointly completed
+all H/E/R arms, below 72. Only 137/177 completed arms supplied at least four
+new actor observations, below the frozen 95% support requirement. Thirteen
+states were interrupted by loose/dead-ball events; 22 lost observer support in
+all arms and two more only in H. All exact, privacy, RNG, intervention and
+determinism gates passed. There was descriptive signal—51/59 E/H and 45/59
+post-switch R/E evidence sequences differed—but the frozen displacement,
+final-speed and turn-count gates also missed. Report SHA: `991f641e…c09e`.
+
+The three-observation representation is therefore parked. It does not authorise
+a motion classifier, a renewed D-PROC-1 consumer, D-PROC-2, familiarity or coach
+priors. Its failure identifies an honest information-availability boundary in
+the existing observer-specific scan/FOV process; that boundary may not be erased
+by adding samples, lengthening the window or reading private action state.

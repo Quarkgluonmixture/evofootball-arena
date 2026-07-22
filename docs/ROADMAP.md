@@ -813,12 +813,19 @@
 > temporal motion-phase representation (start/continue/brake/redirect), measurement
 > first—not a threshold/sample rescue. Coach doctrine, familiarity, payoff, live AI
 > and evolution remain closed.
-> 🔬 **D-PROC-1M TEMPORAL MOTION EVIDENCE FROZEN.** Fresh 86k returns to
-> representation-only measurement: three strictly newer observer-local samples
-> produce separate displacement, speed-delta, velocity-turn, body-turn and
-> persistence facts. H/E/R compare braking inertia, continued movement and
-> redirection while keeping the failed reopening consumer closed. No phase label,
-> score, action, coach/familiarity effect, payoff or live path is allowed.
+> ⛔ **D-PROC-1M TEMPORAL MOTION EVIDENCE STRICT FAIL.** Fresh 86k accepted
+> 96 states but only 59 jointly completed H/E/R (need 72); only 137/177 completed
+> arms supplied four new observations (77.4%, need 95%). All exact/privacy/RNG/
+> intervention gates passed and E/R pre-switch parity was 59/59. Descriptive
+> temporal signal existed—51/59 E/H and 45/59 post-switch R/E sequences differed,
+> with the latter clearing its 75% gate—but displacement, final-speed and both
+> turn-count gates missed. Thirteen states were interrupted by loose/dead-ball
+> events; 22 lost observer support in every arm and two more only in H. Deterministic
+> SHA `991f641e…c09e`. The result says current observer-specific scanning does not
+> reliably expose the required three-sample history; it does not say private intent
+> may be read. The representation is parked, D-PROC-1/D-PROC-2 remain closed, and
+> no fourth sample, longer window, coach/familiarity bonus or consumer rescue is
+> authorised.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
