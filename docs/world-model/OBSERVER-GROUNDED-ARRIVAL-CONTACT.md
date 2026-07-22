@@ -1,7 +1,8 @@
 # C-OBS-0 — Observer-Grounded Coupled Race Audit
 
-Status: **COMPLETE — PASS. Portable exact-shadow design contract authorised;
-no live authority.**
+Status: **COMPLETE — OBSERVER GROUNDING PASSED, PORTABLE AUTHORITY LATER
+REVOKED.** C-RNG-0 showed that the retained signal depended on sharing the
+actual branch's post-kick RNG; no portable shadow or live authority remains.
 
 Date: 2026-07-22
 
@@ -173,6 +174,8 @@ had no brain or coordination publication, action drift or target write.
 The observer result lost only one percentage point of balanced accuracy versus
 the truth ceiling even though 952 candidate sets differed. This establishes
 that full omniscience is not required to preserve the coupled-process signal.
-It does not establish that a Match clone is an acceptable live predictor. The
-next authorised step is only a portable micro-state/shadow contract that must
-reproduce this race without importing `Match`, AI, possession or payoff.
+It did not establish robustness to unknown future contact/control randomness.
+C-RNG-0 subsequently reduced the independent-stream modal predictor to 66.9%
+balanced accuracy and 41.2% opponent recall. The former portable-shadow
+authorisation is therefore revoked; this document remains evidence only about
+observer identity support inside the shared-RNG oracle ceiling.

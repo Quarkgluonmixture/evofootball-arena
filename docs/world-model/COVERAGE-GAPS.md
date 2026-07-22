@@ -205,7 +205,9 @@ DDD-0 one-body defensive dilemma (complete)
 → defensive local-process branch CLOSED before payoff/selection
 → C-AC0 coupled arrival/contact race ceiling (complete, PASS)
 → C-OBS-0 observer-grounded race (complete, PASS)
-→ portable exact-shadow design only authorised
+→ C-RNG-0 independent-future robustness (complete, FAIL)
+→ C-AC/C-OBS retained only as shared-RNG oracle ceiling
+→ portable exact-shadow work CLOSED
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
@@ -243,9 +245,17 @@ raised balanced accuracy from the corridor baseline's 64.1% to 87.2%, with
 defensive selector branch. It authorises only an offline audit of whether the
 same narrowphase survives observer-specific inputs instead of oracle truth.
 
-C-OBS-0 answered that grounding question positively. Passer-specific
+C-OBS-0 answered that grounding question positively inside the paired-future
+oracle. Passer-specific
 awareness-0.8 snapshots supported 80.6% of eligible targets; on 6,300 direct
 contests the observer race retained 86.2% balanced accuracy, only one point
 below the truth ceiling, and agreed with the actual first-controller identity
-91.9% of the time. This authorises a portable micro-state shadow design, not a
-live Match clone or decision score.
+91.9% of the time.
+
+C-RNG-0 then removed the actual branch's future random draws from the race.
+Across 54,696 independently seeded child transitions, the eight-stream modal
+prediction fell to 66.9% balanced accuracy and only 41.2% opponent recall,
+versus 86.5% for one shared-RNG race. All validity and determinism gates passed.
+The race still stratified risk, but did not predict the realised first
+controller well enough at kick time. This revokes portable-shadow authority;
+C-AC/C-OBS remain useful paired-future mechanism evidence only.

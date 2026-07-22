@@ -282,6 +282,31 @@ This authorises only a portable exact-shadow design. The live AI may not run
 Match clones, read global truth, inherit the probe's forced race actions or use
 the race as a pass score.
 
+Before shadow implementation, a hostile RNG audit is required. The passed race
+and actual branch inherited the same post-kick RNG state, which can correlate
+contact and first-touch draws. The frozen authority is
+[`COUPLED-RACE-RNG-ROBUSTNESS.md`](COUPLED-RACE-RNG-ROBUSTNESS.md): eight fixed
+independent child streams per observer-supported pass, forked only after the
+kick. Failure downgrades C-AC/C-OBS to a shared-randomness oracle ceiling and
+stops portable shadow work.
+
+C-RNG-0 is now complete and failed causally while all validity gates passed.
+Across 6,453 actual intended-versus-opponent transitions, the shared-RNG race
+again reached 86.5% balanced accuracy. Eight fixed independent post-kick child
+streams reduced the empirical modal predictor to 66.9%, only `+2.0pp` over the
+corridor baseline, with opponent recall falling to 41.2%. All 54,696 child
+transitions resolved; kicks, conservation, observer support, action isolation,
+RNG purity and two-run determinism passed with SHA `e9e60d75…984b`.
+
+The distribution still contains descriptive risk signal (89.7% mean modal
+mass, 62.7% unanimous records and 58.4pp realised opponent-rate separation),
+but it cannot identify the realised single future without sharing that
+future's random draws. C-AC/C-OBS are therefore banked only as a paired-future
+oracle ceiling. Portable exact-shadow work is stopped. Do not add streams,
+fit a post-hoc probability cutoff or expose Match RNG; any future probability
+model is a new transition-estimator programme requiring unseen-state
+calibration, not a continuation of Option C.
+
 Until that decision, the accepted authority is:
 
 ```text
@@ -290,5 +315,8 @@ D-COVER/D-LANE/D-ROTATE/D-INTENT/D-HANDOVER parked
 no defensive sandbox
 no ecology
 no new selector
-next: observer-ground the passed C-AC0 narrowphase (offline only)
+C-AC/C-OBS banked as shared-RNG oracle ceiling
+C-RNG failed independent-future portability
+portable shadow CLOSED
+next authority requires a genuinely new programme, not another Option C patch
 ```

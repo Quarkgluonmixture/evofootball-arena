@@ -1,7 +1,8 @@
 # C-AC0 — Coupled Arrival/Contact Race Ceiling
 
-Status: **COMPLETE — PASS. Observer-grounded narrowphase contract authorised;
-no live authority.**
+Status: **COMPLETE — PASS AS SHARED-RNG ORACLE CEILING.** C-RNG-0 later failed
+independent-post-kick robustness, so no portable shadow or live authority
+remains.
 
 Date: 2026-07-22
 

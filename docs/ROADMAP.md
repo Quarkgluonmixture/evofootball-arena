@@ -684,6 +684,27 @@
 > was not vacuous; all identity-fallback, mutation, RNG, brain and determinism gates
 > passed. SHA `8836634c…0a77`. Only a portable exact-shadow design is now authorised;
 > Match clones, forced race actions and live pass scoring remain forbidden.
+> 🔬 **2026-07-22 C-RNG-0 HOSTILE AUDIT FROZEN.** C-AC/C-OBS branches inherited
+> the same post-kick Match RNG state, so correlated contact/first-touch draws must be
+> excluded before portable shadow work. On 120 new matches, every observer-grounded race
+> runs eight fixed child streams forked only after an identical kick. The empirical
+> majority must retain >=80% balanced accuracy, beat corridor by >=10pp, preserve both
+> recalls, and show >=75% mean modal mass without smoothing or adaptive R. Failure stops
+> shadow work; agents may never read Match RNG. Authority:
+> [`world-model/COUPLED-RACE-RNG-ROBUSTNESS.md`](world-model/COUPLED-RACE-RNG-ROBUSTNESS.md).
+> ⛔ **2026-07-22 C-RNG-0 STOP — COUPLED RACE DOES NOT SURVIVE AN UNKNOWN
+> FUTURE.** Two byte-identical 120-match runs executed and resolved all 54,696 fixed
+> post-kick child transitions. On 6,453 actual intended/opponent records, the one shared-
+> RNG race again reached 86.5% balanced accuracy, but the eight-independent-stream modal
+> predictor fell to 66.9%, only `+2.0pp` over corridor, with opponent recall 41.2%.
+> Every kick-parity, controller-conservation, perception, mutation, child-seed, action-
+> isolation and determinism gate passed; SHA `e9e60d75…984b`. The distributions remained
+> concentrated (89.7% mean modal mass, 62.7% unanimous) and separated realised risk by
+> 58.4pp, but cannot identify the single realised future without sharing its random draws.
+> Per the frozen stop rule, C-AC/C-OBS are downgraded to a shared-RNG oracle ceiling and
+> portable shadow work is **CLOSED**. Do not add R, fit a post-hoc cutoff, smooth masses or
+> expose Match RNG. A future distributional transition estimator would require a genuinely
+> new unseen-state/calibration programme; it is not an Option-C continuation.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
