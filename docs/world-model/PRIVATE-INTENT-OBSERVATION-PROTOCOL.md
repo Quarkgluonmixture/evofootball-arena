@@ -191,8 +191,15 @@ R — private revocation before external redirection
 ```
 
 The fixed 12/24-tick probe boundaries are observation windows, not gameplay
-coefficients. No branch changes decision cadence, speed, acceleration, target
-after commitment, opponent assignment, ball state or RNG.
+coefficients. At freeze, every arm applies the same probe-local isolation:
+the carrier holds its current point and the actor's existing decision timer is
+held beyond the window so production brains cannot overwrite the intervention.
+H/X hold the actor's initial point; E follows the first frozen target; R follows
+that same target until its pre-registered tick-12 revocation and then follows
+the already-frozen alternate target. These are the only permitted action/target
+writes. No branch writes position, velocity, desired velocity, heading, speed,
+acceleration, opponent assignment, ball state or RNG, and no new recurring
+decision cadence is introduced.
 
 ## 7. Hypotheses and gates
 
@@ -235,6 +242,13 @@ at least one non-intended hypothesis remains finite    >= 95% completed
 
 The `true-intent` label is used only by the auditor after inference; it is never
 an observer input or action selector.
+
+For this frozen audit, `candidate-dependent` means a range of at least `0.10`
+in any finite bearing-alignment field across the observer's hypotheses.
+`true-intent bearing evidence improves` means E has a finite true-target
+displacement or velocity alignment of at least `0.50`, while H has no such
+embodied field or is at least `0.10` lower. These are probe resolutions, not
+gameplay thresholds and may not be adjusted after opening the 84k states.
 
 ### H3 — belief is observer-specific
 
@@ -291,4 +305,3 @@ payoff, alter the carrier, remove TeamBrain, add genes or enter live production.
 
 D-PROC-2 selection, real results and evolution remain closed until D-PROC-1
 proves a non-oscillatory mutual-response chain.
-
