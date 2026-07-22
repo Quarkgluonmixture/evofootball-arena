@@ -1,6 +1,7 @@
 # T-PAIR-0 — Within-Decision Transition-Risk Audit
 
-Status: **PRE-REGISTERED — fresh 83k paired seeds unopened.**
+Status: **COMPLETE — strict FAIL; strong ordinal paired-risk signal retained,
+calibrated counterfactual probability closed.**
 
 Date: 2026-07-22
 
@@ -133,3 +134,59 @@ FAIL closes this estimator family. Do not add features, adjust calibration,
 choose easier alternatives, change thresholds or open final. The remaining
 missing state would be explicit temporal policy/intent or a different dynamic
 decision representation—not another static kick vector.
+
+## 6. Frozen result
+
+The fresh 83k audit produced:
+
+```text
+supported pairs / matches                         6,635 / 120
+paired support of smaller arm                     96.8896%
+report SHA-256                                    3f3d326a324b20c031de2b4a3434e2dfbf6f925a295935e832950d6f36d74861
+
+teacher-delta squared error:
+  student / corridor / global                     0.296793 / 0.356649 / 0.415146
+  improvement vs corridor / global                16.78% / 28.51%
+
+actual-delta squared error:
+  student / corridor / global                     0.660395 / 0.734062 / 0.802597
+  improvement vs corridor / global                10.04% / 17.72%
+```
+
+All complete-vector mean and cluster-LCB gates passed. The within-decision
+directional signal was large and non-vacuous:
+
+```text
+teacher sign concordance, intended:
+  student / corridor                              75.18% / 34.70%
+teacher sign concordance, opponent:
+  student / corridor                              75.76% / 35.15%
+
+student top-bottom quintile separation:
+  intended teacher / realised delta               58.23pp / 64.96pp
+  opponent teacher / realised delta               47.64pp / 53.28pp
+
+median absolute predicted opponent delta          15.25pp
+positive / negative opponent deltas               74.45% / 25.55%
+```
+
+The strict verdict is nevertheless **FAIL** for four frozen gates:
+
+```text
+pairs                                               6,635 < 7,000
+paired support                                      96.89% < 98%
+intended delta calibration-in-large                 4.740% > 3%
+opponent delta calibration-in-large                 4.593% > 3%
+```
+
+Both 10-bin delta ECE gates passed just under 5%, so the failure is a coherent
+aggregate offset rather than absent ranking. That distinction matters:
+
+* the representation is banked as a strong **ordinal counterfactual risk
+  signal**;
+* it is not a calibrated transition-probability authority;
+* it cannot be multiplied by conditional payoff or used to choose a live pass.
+
+Per the frozen stop rule, the static kick-vector estimator programme is now
+closed. Final `82k` remains sealed. No threshold relaxation, extra action
+support, calibration map, feature, model or paired rerun follows.

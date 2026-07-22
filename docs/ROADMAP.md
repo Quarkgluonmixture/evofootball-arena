@@ -771,6 +771,17 @@
 > explicit no-因噎废食 authority, this is banked as a strong offline risk representation,
 > not a selector. One pre-registered within-decision paired-risk audit is allowed;
 > feature/model tuning, post-hoc calibration, payoff and live use remain closed.
+> ⛔ **2026-07-22 T-PAIR-0 — ORDINAL RISK PASSED, CALIBRATED PAIR PROBABILITY
+> FAILED.** On 6,635 fresh same-decision selected-vs-random pairs, the unchanged
+> student reduced five-class teacher-delta squared error by 28.51%/16.78% versus
+> global/corridor and realised-delta error by 17.72%/10.04%, with every mean and
+> cluster-LCB gate passing. Intended/opponent direction concordance was
+> 75.18%/75.76% versus the corridor's 34.70%/35.15%; realised top-bottom
+> separations were 64.96pp/53.28pp. But support was `6,635` and `96.89%` against
+> `7,000/98%`, and intended/opponent probability-delta bias remained
+> 4.740pp/4.593pp against 3pp. SHA `3f3d326a…4861`. Bank the model as a strong
+> ordinal offline risk signal, not calibrated probability. Static kick-vector
+> estimation now closes; final 82k, payoff composition and live selection remain sealed.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

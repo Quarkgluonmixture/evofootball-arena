@@ -402,3 +402,22 @@ than discarded. Exactly one separately frozen within-decision paired-risk
 audit may test whether the small aggregate offsets damage action comparisons.
 This is not authority for payoff, live selection, calibration maps or another
 feature/model iteration.
+
+T-PAIR-0 directly tested whether the small aggregate offsets damaged paired
+action comparisons. On 6,635 fresh same-decision selected-versus-random pairs,
+the unchanged student reduced complete five-class teacher-delta error by
+`28.51%/16.78%` versus global/corridor and realised-delta error by
+`17.72%/10.04%`; every mean and cluster-LCB gate passed. Intended/opponent
+teacher-direction concordance was `75.18%/75.76%`, versus only
+`34.70%/35.15%` for the corridor. Realised top-bottom separations were
+`64.96pp/53.28pp`.
+
+The strict result still failed: paired support was `6,635` and `96.89%` against
+`7,000/98%`, while intended/opponent delta calibration-in-large was
+`4.740pp/4.593pp` against `3pp`. The accurate conclusion is therefore neither
+“useless” nor “ready”: the observer representation robustly orders
+counterfactual risk but does not provide calibrated counterfactual probability
+magnitudes. It is banked as an ordinal offline signal only. The static
+kick-vector estimator programme is closed; final `82k`, payoff composition and
+live selection remain closed. Any future revisit needs explicit temporal
+policy/intent state or a different dynamic decision representation.
