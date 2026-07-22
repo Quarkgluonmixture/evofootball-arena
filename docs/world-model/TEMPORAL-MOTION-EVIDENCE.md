@@ -199,7 +199,7 @@ reference-epoch leakage                              = 0
 ```text
 completed arms with >= 4 distinct actor observations >= 95%
 completed states with at least one aged observation  >= 20
-all three arms share identical evidence before R's
+E and R share identical evidence before R's
   first post-switch physical observation             = 100%
 ```
 
