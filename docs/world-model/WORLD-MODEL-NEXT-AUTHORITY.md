@@ -421,3 +421,17 @@ magnitudes. It is banked as an ordinal offline signal only. The static
 kick-vector estimator programme is closed; final `82k`, payoff composition and
 live selection remain closed. Any future revisit needs explicit temporal
 policy/intent state or a different dynamic decision representation.
+
+The user selected that temporal route and ratified its authority model: each
+player knows its own private intent and body state, observes only other bodies
+and external cues, and updates its own internal belief continuously. Familiarity
+may improve how quickly and stably external evidence is interpreted but may not
+create telepathy. Coach tactics are an own-team shared prior/constraint, not a
+coordinate commander; opponents infer them from behaviour.
+
+The first authority is therefore
+[`PRIVATE-INTENT-OBSERVATION-PROTOCOL.md`](PRIVATE-INTENT-OBSERVATION-PROTOCOL.md).
+D-PROC-0T is deliberately below a closed-loop consumer: it separates private
+intent, embodied evidence and observer-owned hypothesis evidence, and tests
+privacy, embodiment, observer specificity and non-telepathic revocation. It
+does not reopen EOR/D-HANDOVER, score a candidate or change a live action.

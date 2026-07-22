@@ -782,6 +782,15 @@
 > 4.740pp/4.593pp against 3pp. SHA `3f3d326a…4861`. Bank the model as a strong
 > ordinal offline risk signal, not calibrated probability. Static kick-vector
 > estimation now closes; final 82k, payoff composition and live selection remain sealed.
+> 🔬 **2026-07-22 D-PROC-0T PRIVATE-INTENT PROTOCOL FROZEN.** The user selected
+> the temporal route and supplied the governing ontology: a player knows its own
+> internal intent and body, sees only others' external state, and forms its own
+> changing belief from observed movement; familiarity improves inference rather
+> than revealing truth. Coach tactics are an own-team shared prior/constraint,
+> never per-player coordinate commands, and opponents infer them from behaviour.
+> D-PROC-0T first separates private transaction, embodied evidence and
+> observer-owned candidate evidence in a probe-only privacy/observability gate.
+> It does not select an action, use payoff, enable familiarity or reopen a live loop.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

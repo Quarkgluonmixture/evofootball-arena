@@ -352,11 +352,19 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
 - Receiver expresses intent; a run becomes a passer cue; carrier body-orientation
   is a cue; is a task already taken; explicit/implicit comms; predicting a
   familiar mate's run; trained set-plays as shared conventions.
+- **Authority split (user-ratified 2026-07-22):** a player owns private internal
+  intent and self state; team-mates/opponents expose only embodied evidence and
+  local cues. Every observer forms its own internal belief from its own snapshot
+  and history. Coach doctrine is an own-team shared prior/constraint, never a
+  coordinate command; opponents infer it only from external behaviour.
 - **Hooks:** `teamwork`(mate-benefit weight, responds to shared task),
   `roleFamiliarity`, teammate familiarity, coach tactical familiarity, learned
-  patterns.
+  patterns. Familiarity may improve inference latency/stability under the same
+  evidence; it may not reveal hidden truth or modify physical success.
 - **Code:** O3 provides a role-neutral `OffBallOfferCommitment` and pure occupancy
-  query, but no live player publishes or consumes one and no familiarity affects it.
+  query, but currently treats explicit commitment as caller-supplied shared data.
+  There is no private-intent authority, embodied-evidence lifecycle, observer-local
+  inferred-intent memory or familiarity effect.
 
 ### S10 — Match phase, transition & opponent model · 🟡
 - Dynamic phases (build-up / progression / final-third / counter / block / press /
