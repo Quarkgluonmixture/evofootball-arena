@@ -241,6 +241,28 @@ Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
 outranks tactical emergence.
 
+After D-HANDOVER closed Option A's defensive branch, Option C is selected for
+the next bounded cut. Option B is not reopened: T0b and T0b-R already stopped
+two estimator forms, while S7e remains parked. The new authority is
+[`COUPLED-ARRIVAL-CONTACT-RACE.md`](COUPLED-ARRIVAL-CONTACT-RACE.md). C-AC0 keeps
+the existing corridor query only as a broadphase and tests whether the real
+fixed-step movement/contact/control process is a materially better narrowphase
+ceiling on fresh ordinary passes. It remains offline and cannot select an
+action.
+
+C-AC0 is now complete and passed all frozen gates twice with SHA
+`1780f027…db9`. Across 8,223 actual intended-versus-opponent transitions, the
+static corridor baseline reached 64.1% balanced accuracy while the coupled
+race reached 87.2% (`+23.2pp`). On the 46.5% of records where they differed,
+correctness changed from 6.7% to 92.6%; exact first-controller identity agreed
+91.9% of the time. All mutation, RNG, controller-conservation, no-brain and
+no-central-publication gates passed.
+
+This reopens no defensive selector and does not revive Option A. It banks the
+physical-process mediator required by Option C and authorises only an
+observer-grounding narrowphase contract. Global-truth coupled rollouts remain
+an offline ceiling, not a live decision primitive.
+
 Until that decision, the accepted authority is:
 
 ```text
@@ -249,4 +271,5 @@ D-COVER/D-LANE/D-ROTATE/D-INTENT/D-HANDOVER parked
 no defensive sandbox
 no ecology
 no new selector
+next: observer-ground the passed C-AC0 narrowphase (offline only)
 ```

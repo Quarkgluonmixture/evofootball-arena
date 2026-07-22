@@ -203,6 +203,8 @@ DDD-0 one-body defensive dilemma (complete)
 → D-INTENT-0 local relation negotiation (complete, allocation works / rotation FAIL)
 → D-HANDOVER-0 established-before-release (complete, weak signal / FAIL)
 → defensive local-process branch CLOSED before payoff/selection
+→ C-AC0 coupled arrival/contact race ceiling (complete, PASS)
+→ observer-grounded narrowphase only authorised
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
@@ -231,3 +233,11 @@ missed the frozen establishment, handover and recovery gates while every
 anti-commander and determinism invariant passed. The local defensive process
 branch is now closed; it cannot be reopened by retuning timing, signals or the
 existing jockey executor.
+
+C-AC0 then moved to the separately ranked arrival/contact gap and produced the
+first strong coupled-process result. On 8,223 fresh intended-versus-opponent
+transitions, exact movement + ball ticks + oriented contact + delayed control
+raised balanced accuracy from the corridor baseline's 64.1% to 87.2%, with
+91.9% exact first-controller identity agreement. This does not reopen the
+defensive selector branch. It authorises only an offline audit of whether the
+same narrowphase survives observer-specific inputs instead of oracle truth.

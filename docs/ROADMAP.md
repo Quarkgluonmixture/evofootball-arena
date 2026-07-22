@@ -645,6 +645,27 @@
 > cadence, window, `containing`, signal or recovery-threshold changes. The authority
 > returns to the explicit fork: a new transition-estimator programme or a coupled
 > arrival/contact foundation.
+> 🔬 **2026-07-22 C-AC0 COUPLED ARRIVAL/CONTACT RACE CONTRACT FROZEN.** Option C
+> is selected; the stopped T0b/T0b-R estimator family is not reopened. On 120 fresh
+> ordinary-pass matches, the existing corridor query supplies only a zero-margin
+> broadphase candidate set. A probe-only clone then runs those candidates through the
+> unchanged fixed-step locomotion, ball, oriented access/screening, M3 contact and delayed
+> control process with existing ReceivePass/InterceptPass actions and no brain re-decisions.
+> Primary = actual intended-vs-opponent balanced accuracy at least 60% and at least +5pp
+> over the corridor baseline, with both recalls >=50% and a non-vacuous changed-prediction
+> mediator. No live predictor, selector or production import is authorised. Authority:
+> [`world-model/COUPLED-ARRIVAL-CONTACT-RACE.md`](world-model/COUPLED-ARRIVAL-CONTACT-RACE.md).
+> ✅ **2026-07-22 C-AC0 COUPLED ARRIVAL/CONTACT RACE PASSED.** Two byte-identical
+> 120-match runs produced 8,223 actual intended-vs-opponent transitions. The frozen
+> corridor baseline reached 64.1% balanced accuracy (46.2% intended / 81.9% opponent
+> recall); the exact coupled narrowphase reached 87.2% (97.4% / 77.0%), a `+23.2pp`
+> edge. Predictions differed on 46.5% of records; there the old corridor was correct
+> 6.7% and the coupled process 92.6%. Exact first-controller identity agreed 91.9%.
+> All transition, mutation, RNG, no-brain, no-central-publication and determinism gates
+> passed; SHA `1780f027…db9`. This banks the first strong post-D-LANE mediator: actual
+> fixed-step movement + ball + oriented contact + delayed control, not another point ETA.
+> PASS authorises only a separately frozen observer-grounding narrowphase audit—no live
+> chase policy, pass selector, payoff, commander removal or ecology.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
