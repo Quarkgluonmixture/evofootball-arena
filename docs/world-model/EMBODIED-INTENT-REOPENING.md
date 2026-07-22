@@ -1,6 +1,8 @@
 # D-PROC-1 — Observer-local embodied-intent reopening
 
-Status: **PRE-REGISTERED — fresh 85k mechanism states unopened.**
+Status: **STRICT FAIL — response and anti-oscillation mechanisms worked, but
+held-exterior false reopening was `7/96` against the frozen `<=4/96` gate. No
+selection/ecology or live consumer is authorised.**
 
 Date: 2026-07-22
 
@@ -273,3 +275,68 @@ observer-triggered adjustment without oscillation. It authorises one separate
 D-PROC-2 selection/ecology design contract. It does not authorise live wiring,
 TeamBrain removal, a production tie-break, payoff claims, genes, coach tactics,
 familiarity, communication or evolution.
+
+## 12. Frozen result
+
+Implementation:
+
+* `src/ai/intentResponse.ts` provides set-valued observer belief support and a
+  pure physical-admissibility reopening query;
+* `tests/intentResponse.test.ts` contains the 12 hostile tests above;
+* `scripts/probes/embodied-intent-reopening.ts` runs H/I/C.
+
+The unchanged 85k suite scanned 162 seeds, accepted 96 states and jointly
+completed 76. Paired attrition remained explicit: 11 loose-ball state-equivalents,
+five arm-level dead/restart terminations and 21 arm-level observer-unsupported
+terminations. There were zero schema failures.
+
+All exact gates passed:
+
+```text
+I/C pre-reopening physical equality                 96 / 96
+I/C pre-reopening evidence equality                 96 / 96
+schema / non-finite / perception-RNG failures        0 / 0 / 0
+forbidden intervention changes                              0
+duplicate-observation revisions                              0
+admissibility / frozen-candidate violations           0 / 0
+candidate oscillation cycles                                0
+maximum C revisions in one state                            2
+```
+
+The main response mechanism was non-vacuous:
+
+```text
+C states with non-empty embodied support             83 / 96
+C ordered response fingerprints                      59 / 96
+I signal-blind response fingerprints                  0 / 96
+C - H ordered-response edge                         +52 states
+C revised completed states                           75
+replacement progress >= 0.25m                        59 / 75
+C/I body separation >= 0.25m                         69 / 75
+```
+
+The one failed gate was:
+
+```text
+H held-target false reopenings                        7 / 96
+frozen ceiling                                       4 / 96
+```
+
+H did not leak private state: its actor still moved under existing velocity,
+acceleration and braking while targeting its initial point. In seven states a
+single newly observed displacement exceeded the frozen support rule, so B
+responded to real external motion that was not a persistent run. The consumer
+therefore cannot yet distinguish active continuation from braking inertia.
+
+Two executions were byte-identical. Canonical report SHA-256:
+
+```text
+74c02658c6dbf1e14d520e7abbe29f3ee1d95601b26b6ec9aac76b9a7ccd71c9
+```
+
+Per the frozen stop rule, the response consumer stops. The result does not
+authorise D-PROC-2. A future revisit must first establish a causally different,
+observer-local temporal motion-phase representation—initiation, continuation,
+braking and redirection—from multiple external observations. Requiring another
+sample or changing the threshold inside this failed consumer would be an
+adaptive rescue and is forbidden.

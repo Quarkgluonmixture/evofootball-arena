@@ -798,13 +798,21 @@
 > finite/write failures; deterministic SHA `25afb791…baf1`. This authorises only a
 > separately pre-registered D-PROC-1 probe-local response consumer. It does not use
 > payoff, enable familiarity/coach bonuses or reopen a live loop.
-> 🔬 **D-PROC-1 EMBODIED-INTENT REOPENING FROZEN.** Fresh 85k tests one consumer:
+> ⛔ **D-PROC-1 EMBODIED-INTENT REOPENING STRICT FAIL.** Fresh 85k tested one consumer:
 > B may reopen its own frozen generic candidates only when B's own new observation
 > supports A's embodied direction and makes B's current target physically conflict
 > under existing `PLAYER_MIN_DIST`. The replacement is a probe-only cyclic candidate
 > tie-break, not a football selector. H/I/C isolate held exterior, signal blindness
-> and observer-local response. Coach doctrine, familiarity, payoff, live AI and
-> evolution remain closed.
+> and observer-local response. It scanned 162 seeds, accepted 96 and completed 76.
+> Exact/causal/anti-oscillation gates all passed: 59 ordered responses, zero blind
+> responses, 59/75 replacement progress, 69/75 C/I body separation, no cycles and
+> max two revisions. The sole failure was H false reopening `7/96` against `<=4`:
+> normal braking inertia produced real displacement that one observation could not
+> distinguish from an active run. SHA `74c02658…d71c9`. The consumer and D-PROC-2
+> remain closed. Next authority, if pursued, is a causally different observer-local
+> temporal motion-phase representation (start/continue/brake/redirect), measurement
+> first—not a threshold/sample rescue. Coach doctrine, familiarity, payoff, live AI
+> and evolution remain closed.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

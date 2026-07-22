@@ -452,3 +452,17 @@ only whether B can detect that its own current candidate physically conflicts
 with a set of A hypotheses supported by B's observed displacement, reopen the
 same generic O0 set, and embody one probe-owned admissible replacement. Coach
 doctrine and familiarity remain neutral; no payoff or production path is read.
+
+D-PROC-1 strictly failed one gate. It accepted 96 states and completed 76; all
+exact, causality and anti-oscillation gates passed, with 59 ordered response
+fingerprints, zero signal-blind responses, `59/75` replacement progress and
+`69/75` C/I physical separation. But H produced seven held-target reopenings
+against a frozen ceiling of four. The actor's private state did not leak: normal
+braking inertia created real displacement that the one-observation support rule
+mistook for a persistent run. Report SHA: `74c02658…d71c9`.
+
+The consumer and D-PROC-2 remain closed. The new identified state gap is an
+observer-local temporal motion phase that distinguishes initiation,
+continuation, braking and redirection from multiple external observations. It
+must be tested as representation/measurement before any renewed response; the
+failed consumer may not be rescued by another sample or a changed threshold.
