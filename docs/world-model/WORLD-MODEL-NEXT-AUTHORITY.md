@@ -214,6 +214,15 @@ Option B (a new transition-estimator programme) or Option C (a coupled
 arrival/contact process), unless a future contract supplies a genuinely new
 multi-body temporal state rather than another local relation selector.
 
+External reality/code review identified one final causally distinct execution
+boundary already latent in the engine: `ChaseBall` owns a real
+`Player.containing` state, but D-INTENT treated a new commitment as if pressure
+were already established. The final local-process authority is therefore
+[`DECENTRALISED-DEFENSIVE-HANDOVER.md`](DECENTRALISED-DEFENSIVE-HANDOVER.md).
+It freezes D-INTENT's A→B choice and tests only established-before-release with
+an epoch-safe explicit signal. If this gate fails, the defensive local-process
+branch closes and the choice returns to Option B or C.
+
 Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
 outranks tactical emergence.

@@ -504,3 +504,11 @@ formed an event-associated rotation fingerprint (gate 16/64), one state above
 the no-consumer control (required edge 12). The relation-negotiation family is
 therefore closed without payoff or ecology. It made defenders distribute
 themselves; it did not make them hand responsibility through time.
+
+Reality and public-engine review localised one final execution distinction:
+assignment says B should chase, while the existing executor's
+`Player.containing` says whether B has actually established jockey pressure.
+[`DECENTRALISED-DEFENSIVE-HANDOVER.md`](DECENTRALISED-DEFENSIVE-HANDOVER.md)
+pre-registers the last mechanism-only gate: A retains its old ChaseBall action
+until it observes an epoch-valid B containment signal, then adopts the already
+frozen D-INTENT superseding action. It does not reconsider A/B or add payoff.
