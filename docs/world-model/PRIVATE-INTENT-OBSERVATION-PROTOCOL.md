@@ -192,14 +192,15 @@ R — private revocation before external redirection
 
 The fixed 12/24-tick probe boundaries are observation windows, not gameplay
 coefficients. At freeze, every arm applies the same probe-local isolation:
-the carrier holds its current point and the actor's existing decision timer is
-held beyond the window so production brains cannot overwrite the intervention.
+the carrier holds, each designated observer holds its initial point, and their
+existing decision timers plus the actor's are held beyond the window so
+production brains cannot overwrite the intervention.
 H/X hold the actor's initial point; E follows the first frozen target; R follows
 that same target until its pre-registered tick-12 revocation and then follows
 the already-frozen alternate target. These are the only permitted action/target
-writes. No branch writes position, velocity, desired velocity, heading, speed,
-acceleration, opponent assignment, ball state or RNG, and no new recurring
-decision cadence is introduced.
+writes; observer holds are identical in all arms. No branch writes position,
+velocity, desired velocity, heading, speed, acceleration, opponent assignment,
+ball state or RNG, and no new recurring decision cadence is introduced.
 
 ## 7. Hypotheses and gates
 
