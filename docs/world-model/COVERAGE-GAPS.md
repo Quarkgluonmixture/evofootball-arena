@@ -200,7 +200,8 @@ DDD-0 one-body defensive dilemma (complete)
 → D-LANE-0 space-time corridor handoff (complete, FAIL)
 → point-response defensive branch parked
 → D-ROTATE-0 assignment-blind temporal process (complete, FAIL)
-→ next missing representation: dormant local defensive intent/occupancy language
+→ D-INTENT-0 local relation negotiation (complete, allocation works / rotation FAIL)
+→ defensive local-process branch parked before payoff/selection
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
@@ -213,3 +214,10 @@ only `2/64` states produced the frozen full process fingerprint. The remaining
 VISION-level question is now representational: whether defenders can express
 and observe complementary, role-neutral movement intent/occupancy without
 rebuilding first/second/third assignments under new names.
+
+D-INTENT answered the narrower expression question positively but the process
+question negatively: all 64 states produced multiple settled commitments, yet
+only one produced the complete rotation fingerprint. The engine can distribute
+existing chase/mark actions without the commander; it still cannot express the
+time-dependent delay/takeover/cover state that makes those assignments rotate.
+This defensive sub-branch is parked before selection or payoff.

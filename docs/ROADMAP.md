@@ -622,6 +622,16 @@
 > authority; knowing who is closest does not create step-and-cover. Selection, real-result
 > fitness, ecology and live wiring remain closed. Any restart must first establish a
 > dormant, role-neutral local defensive intent/occupancy language, not retune D-ROTATE.
+> ⏸️ **2026-07-22 D-INTENT-0 STOP — DISTRIBUTED ASSIGNMENT IS NOT ROTATING
+> COVER.** A separately pre-registered probe-only consumer let each defender use its own
+> snapshot, existing chase/mark preferences and explicit teammate commitments to settle
+> duplicate opponent relations. The mechanism was real: 64/64 states formed multiple
+> commitments, 64/64 changed duplicate proposals, 61/64 executed at least two action
+> types, and all anti-commander/determinism/identity/RNG gates passed. But only `1/64`
+> states produced the full temporal rotation fingerprint (gate `16/64`; no-consumer
+> control `0/64`), report SHA `a6bde4fa…59f5`. The family is parked without payoff,
+> selection, ecology or live wiring. Faster renegotiation, extra claimants and target
+> bonuses are explicitly not authorised.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

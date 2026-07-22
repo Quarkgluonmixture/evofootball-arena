@@ -1,8 +1,60 @@
 # D-INTENT-0 — Local Defensive Intent Negotiation Mechanism Gate
 
-Status: **PRE-REGISTERED — probe-only action consumer; no payoff or selection.**
+Status: **COMPLETE — FAIL; local relation allocation works, temporal rotation does not.**
 
 Date: 2026-07-22
+
+## 0. Result
+
+The formal 64-state experiment completed twice with byte-identical output:
+
+```text
+accepted / completed states              64 / 64
+eventful states                           64 / 64
+ticks with >=2 supported local bids       4163 / 4163 (100.0%)
+states with >=2 stable leader tenures     26 / 64
+
+states with >=2 commitments               64 / 64
+states where duplicate settlement fired  64 / 64
+states with >=2 executed action types     61 / 64
+
+intent rotation fingerprints               1 in 1 / 64
+no-consumer rotation fingerprints           0 in 0 / 64
+eventful-state intent rotation rate         1.6%
+largest single defender share             100.0%
+```
+
+The report SHA-256 is:
+
+```text
+a6bde4fad590e953c43a846b14afa356f3f6f726a2901a3811019b39bb3559f5
+```
+
+All validity and mediator gates passed. Negotiations converged, removed every
+duplicate opponent claim, were input-order invariant, used finite supported
+identities, changed no `targetPos`, consumed no Match RNG and published no
+chaser/mark assignment. The probe-only action consumer fired, while TeamBrain
+remained non-firing. The unchanged D-ROTATE mode still reproduces its historical
+`0e7017c8…a44d` report.
+
+The mechanism claim nevertheless failed decisively. Explicit commitments and
+one-to-one opponent relations can distribute existing chase/mark actions, but
+that static distribution almost never becomes an embodied event-associated
+handoff. The intent arm produced only one full rotation state against the
+frozen 16-state gate and improved the no-consumer control by only one state
+against a 12-state gate.
+
+This distinguishes two facts:
+
+```text
+decentralised relation allocation        supported
+temporal step/delay/takeover/cover chain unsupported
+```
+
+Per the stop rule, the experiment is not reopened with faster re-negotiation,
+another claimant, a target bonus, a longer window or weaker fingerprint. The
+local opponent-relation negotiation family is parked. It authorises no payoff,
+selection, result fitness, ecology, production consumer or visual sandbox.
 
 ## 1. Causal boundary
 

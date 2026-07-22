@@ -200,6 +200,20 @@ settle duplicate opponent relations from their own perception and explicit
 team-mate commitments, then execute only existing chase/mark/shape actions.
 It remains a mechanism gate: no payoff, learning, results or ecology.
 
+D-INTENT-0 is now complete and failed its primary mechanism gates. The local
+consumer successfully formed multiple unique commitments in 64/64 states,
+settled duplicate proposals in 64/64 and executed at least two defensive action
+types in 61/64. Yet only 1/64 states produced the frozen temporal rotation
+fingerprint. Decentralised allocation to opponent relations is therefore not
+the missing temporal process.
+
+This closes Option A's current defensive sub-branch before payoff or selection.
+The project should not turn the same family into faster re-planning or add a
+space/target score post hoc. The remaining already-ranked authorities are now
+Option B (a new transition-estimator programme) or Option C (a coupled
+arrival/contact process), unless a future contract supplies a genuinely new
+multi-body temporal state rather than another local relation selector.
+
 Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
 outranks tactical emergence.
@@ -208,7 +222,7 @@ Until that decision, the accepted authority is:
 
 ```text
 live B0 + existing commander
-D-COVER/D-LANE/D-ROTATE parked
+D-COVER/D-LANE/D-ROTATE/D-INTENT parked
 no defensive sandbox
 no ecology
 no new selector

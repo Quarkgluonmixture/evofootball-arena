@@ -495,3 +495,12 @@ tests that exact boundary. It lets each defender use only its own observation,
 the existing chase/mark preferences and explicit team-mate commitments to
 settle duplicate opponent relations. It neither names roles nor reads payoff,
 and still cannot enter production.
+
+D-INTENT-0 completed twice with byte-identical SHA `a6bde4fa…59f5` and
+separated allocation from process. Multiple unique local commitments appeared
+in 64/64 states, duplicate settlement fired in 64/64 and 61/64 states executed
+both chase and mark actions. Despite that strong mediator, only 1/64 states
+formed an event-associated rotation fingerprint (gate 16/64), one state above
+the no-consumer control (required edge 12). The relation-negotiation family is
+therefore closed without payoff or ecology. It made defenders distribute
+themselves; it did not make them hand responsibility through time.

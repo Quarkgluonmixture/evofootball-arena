@@ -1,5 +1,8 @@
 // D-ROTATE-0 ASSIGNMENT-BLIND DEFENSIVE ROTATION PROCESS GATE.
-// Authority: docs/world-model/DECENTRALISED-DEFENSIVE-ROTATION-PROCESS.md
+// D-INTENT-0 adds a separate probe-only local-intent consumer mode.
+// Authorities:
+//   docs/world-model/DECENTRALISED-DEFENSIVE-ROTATION-PROCESS.md
+//   docs/world-model/DECENTRALISED-DEFENSIVE-INTENT-NEGOTIATION.md
 import { createHash } from 'node:crypto';
 import {
   capturePerceptionTruth,
@@ -22,7 +25,8 @@ import { TEAM_SIZE, type Side, type TeamInfo } from '../../src/sim/types';
 import { hashSeed, Rng } from '../../src/utils/rng';
 
 const REQUIRED_STATES = Number(process.argv[2] ?? 64);
-const SEED_START = Number(process.argv[3] ?? 64_000);
+const INTENT_MODE = process.argv.includes('--intent');
+const SEED_START = Number(process.argv[3] ?? (INTENT_MODE ? 65_000 : 64_000));
 const MAX_SEEDS = 128;
 const MATCH_DURATION = 240;
 const AWARENESS = 0.8;
@@ -33,7 +37,7 @@ const EVENT_WINDOW_TICKS = Math.round(0.50 / DT);
 const MATERIAL_MOVEMENT = 0.25;
 const DROTATE_NAMESPACE = 0xd207a7e1;
 
-type Arm = 'commander' | 'local';
+type Arm = 'commander' | 'local' | 'intent';
 type WorldEventKind = 'passStarted' | 'ballReleased' | 'carrierChanged' | 'possessionChanged';
 
 interface FrozenState {
@@ -80,6 +84,31 @@ interface RotationFingerprint {
   readonly movement: number;
 }
 
+interface RelationCandidate {
+  readonly playerGid: number;
+  readonly opponentGid: number;
+  readonly opponentIndex: number;
+  readonly arrivalTime: number;
+  readonly preference: number;
+  readonly action: 'ChaseBall' | 'MarkOpponent';
+  readonly targetPoint: Readonly<{ x: number; y: number }>;
+}
+
+interface RelationCommitment extends RelationCandidate {
+  readonly committedTick: number;
+}
+
+interface NegotiationResult {
+  readonly commitments: readonly RelationCommitment[];
+  readonly proposalChanges: number;
+  readonly rounds: number;
+  readonly converged: boolean;
+  readonly duplicateOpponentClaims: number;
+  readonly unsupportedIdentities: number;
+  readonly nonFiniteCandidates: number;
+  readonly inputOrderDifference: number;
+}
+
 interface TimelineAnalysis {
   readonly stableTenures: readonly StableTenure[];
   readonly fingerprints: readonly RotationFingerprint[];
@@ -101,6 +130,14 @@ interface ArmResult {
   readonly probeActionWrites: number;
   readonly probeTargetWrites: number;
   readonly orderDifferences: number;
+  readonly maxCommitments: number;
+  readonly duplicateSettlementChanges: number;
+  readonly actionTypes: readonly string[];
+  readonly negotiationNonConvergence: number;
+  readonly duplicateOpponentClaims: number;
+  readonly unsupportedIdentities: number;
+  readonly nonFiniteCandidates: number;
+  readonly negotiationOrderDifferences: number;
 }
 
 interface StateRecord {
@@ -329,19 +366,169 @@ const analyseTimeline = (
   return { stableTenures, fingerprints };
 };
 
+const sameProposal = (
+  left: RelationCandidate | undefined,
+  right: RelationCandidate | undefined,
+): boolean => left?.playerGid === right?.playerGid
+  && left?.opponentGid === right?.opponentGid
+  && left?.action === right?.action;
+
+const proposalBeats = (
+  left: RelationCandidate,
+  right: RelationCandidate,
+): boolean => left.arrivalTime < right.arrivalTime
+  || (left.arrivalTime === right.arrivalTime && left.playerGid < right.playerGid);
+
+const settleRelationCandidates = (
+  source: readonly (readonly [number, readonly RelationCandidate[]])[],
+  committedTick: number,
+  reverseInput = false,
+): Omit<NegotiationResult, 'unsupportedIdentities' | 'nonFiniteCandidates' | 'inputOrderDifference'> => {
+  const entries = reverseInput ? [...source].reverse() : [...source];
+  let proposals = new Map<number, RelationCandidate>();
+  for (const [gid, candidates] of entries) {
+    const candidate = candidates[0];
+    if (candidate) proposals.set(gid, candidate);
+  }
+  let proposalChanges = 0;
+  let converged = false;
+  let rounds = 0;
+  const maxRounds = entries.length + 1;
+  for (let round = 1; round <= maxRounds; round++) {
+    rounds = round;
+    const next = new Map<number, RelationCandidate>();
+    for (const [gid, candidates] of entries) {
+      const chosen = candidates.find((candidate) => ![...proposals.values()].some((other) =>
+        other.playerGid !== gid
+        && other.opponentGid === candidate.opponentGid
+        && proposalBeats(other, candidate)));
+      if (chosen) next.set(gid, chosen);
+    }
+    const gids = new Set([...proposals.keys(), ...next.keys()]);
+    let changed = false;
+    for (const gid of gids) {
+      if (!sameProposal(proposals.get(gid), next.get(gid))) {
+        changed = true;
+        proposalChanges++;
+      }
+    }
+    proposals = next;
+    if (!changed) {
+      converged = true;
+      break;
+    }
+  }
+  const commitments = [...proposals.values()]
+    .sort((left, right) => left.playerGid - right.playerGid)
+    .map((candidate) => ({ ...candidate, committedTick }));
+  const counts = new Map<number, number>();
+  for (const commitment of commitments) {
+    counts.set(commitment.opponentGid, (counts.get(commitment.opponentGid) ?? 0) + 1);
+  }
+  const duplicateOpponentClaims = [...counts.values()]
+    .reduce((total, count) => total + Math.max(0, count - 1), 0);
+  return {
+    commitments,
+    proposalChanges,
+    rounds,
+    converged,
+    duplicateOpponentClaims,
+  };
+};
+
+const negotiateRelations = (
+  match: Match,
+  state: FrozenState,
+  memories: Map<number, PerceptionMemory>,
+): { result: NegotiationResult; perceptionRngChanged: boolean } => {
+  const defendingTeam = match.teams[state.defendingSide];
+  const truth = capturePerceptionTruth(match);
+  const profiles = profilesOf(match);
+  const actualByGid = new Map(match.allPlayers.map((player) => [player.gid, player]));
+  const source: Array<readonly [number, readonly RelationCandidate[]]> = [];
+  let unsupportedIdentities = 0;
+  let nonFiniteCandidates = 0;
+  const rngBefore = (match.rng as unknown as { s: number }).s;
+  for (const defender of defendingTeam.players) {
+    if (defender.role === 'GK' || defender.sentOff) continue;
+    let memory = memories.get(defender.gid);
+    if (!memory) {
+      memory = createPerceptionMemory();
+      memories.set(defender.gid, memory);
+    }
+    const snapshot = perceiveSnapshot(
+      truth,
+      defender.gid,
+      AWARENESS,
+      hashSeed(DROTATE_NAMESPACE, state.seed),
+      memory,
+    );
+    const self = snapshot.players.find((entry) => entry.gid === defender.gid);
+    const profile = profiles.get(defender.gid);
+    if (!self || !profile) continue;
+    const policy = defendingTeam.policies[defender.index];
+    const candidates: RelationCandidate[] = [];
+    for (const opponent of snapshot.players) {
+      if (opponent.side === state.defendingSide) continue;
+      const actual = actualByGid.get(opponent.gid);
+      if (!actual || actual.sentOff) {
+        unsupportedIdentities++;
+        continue;
+      }
+      if (actual.role === 'GK') continue;
+      const observedOwner = snapshot.ball?.ownerGid ?? null;
+      const chase = observedOwner === opponent.gid;
+      const arrivalTime = estimateReach(reachState(self, profile), opponent.pos, {
+        reachRadius: CONTROL_RADIUS,
+      }).eta;
+      const preference = chase
+        ? policy.chaseBase + defendingTeam.genome.pressIntensity * 0.15
+        : policy.markBase + defendingTeam.genome.markingAggression * 0.15;
+      if (!Number.isFinite(arrivalTime) || !Number.isFinite(preference)) {
+        nonFiniteCandidates++;
+        continue;
+      }
+      candidates.push({
+        playerGid: defender.gid,
+        opponentGid: opponent.gid,
+        opponentIndex: actual.index,
+        arrivalTime,
+        preference,
+        action: chase ? 'ChaseBall' : 'MarkOpponent',
+        targetPoint: { x: opponent.pos.x, y: opponent.pos.y },
+      });
+    }
+    candidates.sort((left, right) =>
+      right.preference - left.preference
+      || left.arrivalTime - right.arrivalTime
+      || left.opponentGid - right.opponentGid);
+    source.push([defender.gid, candidates]);
+  }
+  const rngAfter = (match.rng as unknown as { s: number }).s;
+  const forward = settleRelationCandidates(source, match.simTick);
+  const reverse = settleRelationCandidates(source, match.simTick, true);
+  const stable = (result: typeof forward): string => JSON.stringify({
+    commitments: result.commitments,
+    proposalChanges: result.proposalChanges,
+    rounds: result.rounds,
+    converged: result.converged,
+    duplicateOpponentClaims: result.duplicateOpponentClaims,
+  });
+  return {
+    result: {
+      ...forward,
+      unsupportedIdentities,
+      nonFiniteCandidates,
+      inputOrderDifference: stable(forward) === stable(reverse) ? 0 : 1,
+    },
+    perceptionRngChanged: rngBefore !== rngAfter,
+  };
+};
+
 const runArm = (state: FrozenState, arm: Arm): ArmResult => {
   const match = cloneSimulationState(state.frozen);
   const defendingTeam = match.teams[state.defendingSide];
   const memories = cloneMemories(state.memories);
-  if (arm === 'local') {
-    defendingTeam.chasers.clear();
-    defendingTeam.marks.clear();
-    defendingTeam.brainTimer = Number.POSITIVE_INFINITY;
-    for (const player of defendingTeam.players) {
-      if (player.role !== 'GK' && !player.sentOff) player.decisionTimer = 0;
-    }
-  }
-
   const frames: ResponsibilityFrame[] = [];
   const events: WorldEvent[] = [];
   let eligibleTicks = 0;
@@ -353,24 +540,97 @@ const runArm = (state: FrozenState, arm: Arm): ArmResult => {
   let nonFiniteBids = 0;
   let probeActionWrites = 0;
   let probeTargetWrites = 0;
+  let maxCommitments = 0;
+  let duplicateSettlementChanges = 0;
+  const actionTypes = new Set<string>();
+  let negotiationNonConvergence = 0;
+  let duplicateOpponentClaims = 0;
+  let unsupportedIdentities = 0;
+  let nonFiniteCandidates = 0;
+  let negotiationOrderDifferences = 0;
   let completed = true;
   let previousOwner = match.ball.owner?.gid ?? null;
+  let lastStableOwner = previousOwner;
   let previousPending = match.pendingPass !== null;
   let previousPossession = match.possessionSide;
+
+  const applyIntentNegotiation = (): void => {
+    const { result, perceptionRngChanged } = negotiateRelations(match, state, memories);
+    if (perceptionRngChanged) perceptionRngChanges++;
+    if (!result.converged) negotiationNonConvergence++;
+    duplicateOpponentClaims += result.duplicateOpponentClaims;
+    unsupportedIdentities += result.unsupportedIdentities;
+    nonFiniteCandidates += result.nonFiniteCandidates;
+    negotiationOrderDifferences += result.inputOrderDifference;
+    duplicateSettlementChanges += result.proposalChanges;
+    maxCommitments = Math.max(maxCommitments, result.commitments.length);
+    const byPlayer = new Map(result.commitments.map((commitment) => [
+      commitment.playerGid,
+      commitment,
+    ]));
+    for (const player of defendingTeam.players) {
+      if (player.role === 'GK' || player.sentOff) continue;
+      const commitment = byPlayer.get(player.gid);
+      if (commitment?.action === 'ChaseBall') {
+        player.action = {
+          type: 'ChaseBall',
+          scores: [{
+            action: 'ChaseBall',
+            score: commitment.preference,
+            why: 'local relation commitment',
+          }],
+        };
+      } else if (commitment?.action === 'MarkOpponent') {
+        player.action = {
+          type: 'MarkOpponent',
+          targetIdx: commitment.opponentIndex,
+          scores: [{
+            action: 'MarkOpponent',
+            score: commitment.preference,
+            why: 'local relation commitment',
+          }],
+        };
+      } else {
+        player.action = {
+          type: 'MoveToFormationSpot',
+          scores: [{
+            action: 'MoveToFormationSpot',
+            score: 0,
+            why: 'no supported local relation commitment',
+          }],
+        };
+      }
+      player.decisionTimer = Number.POSITIVE_INFINITY;
+      actionTypes.add(player.action.type);
+      probeActionWrites++;
+      if (player.action.targetPos !== undefined) probeTargetWrites++;
+    }
+  };
+
+  if (arm !== 'commander') {
+    defendingTeam.chasers.clear();
+    defendingTeam.marks.clear();
+    defendingTeam.brainTimer = Number.POSITIVE_INFINITY;
+    for (const player of defendingTeam.players) {
+      if (player.role === 'GK' || player.sentOff) continue;
+      player.decisionTimer = arm === 'intent' ? Number.POSITIVE_INFINITY : 0;
+    }
+    if (arm === 'intent') applyIntentNegotiation();
+  }
 
   for (let step = 0; step < WINDOW_TICKS; step++) {
     if (match.finished) {
       completed = false;
       break;
     }
-    if (arm === 'local') {
+    if (arm !== 'commander') {
       if (Number.isFinite(defendingTeam.brainTimer)) brainTimerSuppressions++;
       defendingTeam.brainTimer = Number.POSITIVE_INFINITY;
       defendingTeam.chasers.clear();
       defendingTeam.marks.clear();
     }
     match.step(DT);
-    if (arm === 'local') {
+    if (arm !== 'commander') {
       if (defendingTeam.chasers.size > 0 || defendingTeam.marks.size > 0) {
         assignmentPublications += defendingTeam.chasers.size + defendingTeam.marks.size;
       }
@@ -387,15 +647,23 @@ const runArm = (state: FrozenState, arm: Arm): ArmResult => {
     if (previousOwner !== null && owner === null) {
       events.push({ tick: match.simTick, kind: 'ballReleased' });
     }
-    if (previousOwner !== null && owner !== null && previousOwner !== owner) {
+    const carrierChanged = INTENT_MODE
+      ? owner !== null && lastStableOwner !== null && lastStableOwner !== owner
+      : previousOwner !== null && owner !== null && previousOwner !== owner;
+    if (carrierChanged) {
       events.push({ tick: match.simTick, kind: 'carrierChanged' });
     }
-    if (previousPossession !== match.possessionSide) {
+    const possessionChanged = previousPossession !== match.possessionSide;
+    if (possessionChanged) {
       events.push({ tick: match.simTick, kind: 'possessionChanged' });
     }
     previousOwner = owner;
+    if (owner !== null) lastStableOwner = owner;
     previousPending = pending;
     previousPossession = match.possessionSide;
+    if (arm === 'intent' && (carrierChanged || possessionChanged)) {
+      applyIntentNegotiation();
+    }
 
     const carrier = match.ball.owner;
     if (!carrier || carrier.side === state.defendingSide) continue;
@@ -464,6 +732,14 @@ const runArm = (state: FrozenState, arm: Arm): ArmResult => {
     probeActionWrites,
     probeTargetWrites,
     orderDifferences,
+    maxCommitments,
+    duplicateSettlementChanges,
+    actionTypes: [...actionTypes].sort(),
+    negotiationNonConvergence,
+    duplicateOpponentClaims,
+    unsupportedIdentities,
+    nonFiniteCandidates,
+    negotiationOrderDifferences,
   };
 };
 
@@ -488,6 +764,15 @@ let probeActionWrites = 0;
 let probeTargetWrites = 0;
 let orderDifferences = 0;
 const localRotationStates = new Set<string>();
+const controlRotationStates = new Set<string>();
+let statesWithTwoCommitments = 0;
+let statesWithDuplicateSettlement = 0;
+let statesWithTwoActionTypes = 0;
+let negotiationNonConvergence = 0;
+let duplicateOpponentClaims = 0;
+let unsupportedIdentities = 0;
+let nonFiniteCandidates = 0;
+let negotiationOrderDifferences = 0;
 const eventKindStates = new Map<WorldEventKind, Set<string>>();
 const defenderRotationCounts = new Map<number, number>();
 const records: StateRecord[] = [];
@@ -544,9 +829,9 @@ for (
     accepted = true;
     acceptedStates++;
     try {
-      const commander = runArm(state, 'commander');
-      const local = runArm(state, 'local');
-      const localReplay = runArm(state, 'local');
+      const commander = runArm(state, INTENT_MODE ? 'local' : 'commander');
+      const local = runArm(state, INTENT_MODE ? 'intent' : 'local');
+      const localReplay = runArm(state, INTENT_MODE ? 'intent' : 'local');
       if (JSON.stringify(local) !== JSON.stringify(localReplay)) deterministicDifferences++;
       if (local.completed) completedLocalWindows++;
       if (local.events.length > 0) eventfulLocalStates++;
@@ -556,6 +841,15 @@ for (
       localRotationFingerprints += local.analysis.fingerprints.length;
       commanderRotationFingerprints += commander.analysis.fingerprints.length;
       if (local.analysis.fingerprints.length > 0) localRotationStates.add(state.key);
+      if (commander.analysis.fingerprints.length > 0) controlRotationStates.add(state.key);
+      if (local.maxCommitments >= 2) statesWithTwoCommitments++;
+      if (local.duplicateSettlementChanges > 0) statesWithDuplicateSettlement++;
+      if (local.actionTypes.length >= 2) statesWithTwoActionTypes++;
+      negotiationNonConvergence += local.negotiationNonConvergence;
+      duplicateOpponentClaims += local.duplicateOpponentClaims;
+      unsupportedIdentities += local.unsupportedIdentities;
+      nonFiniteCandidates += local.nonFiniteCandidates;
+      negotiationOrderDifferences += local.negotiationOrderDifferences;
       localAssignmentPublications += local.assignmentPublications;
       localBrainFirings += local.brainFirings;
       localBrainTimerSuppressions += local.brainTimerSuppressions;
@@ -606,7 +900,7 @@ const eventKindsWithFourStates = [...eventKindStates.values()]
   .filter((states) => states.size >= 4).length;
 const largestDefenderShare = Math.max(0, ...defenderRotationCounts.values())
   / Math.max(1, localRotationFingerprints);
-const gates = {
+const rotateGates = {
   acceptedStates: acceptedStates === REQUIRED_STATES,
   scannedSeeds: scannedSeeds <= MAX_SEEDS,
   completedLocalWindows: completedLocalWindows >= 56,
@@ -629,19 +923,58 @@ const gates = {
   deterministicReruns: deterministicDifferences === 0,
   inputOrderInvariance: orderDifferences === 0,
 };
+const intentGates = {
+  acceptedStates: acceptedStates === REQUIRED_STATES,
+  scannedSeeds: scannedSeeds <= MAX_SEEDS,
+  completedIntentWindows: completedLocalWindows >= 56,
+  eventfulIntentStates: eventfulLocalStates >= 40,
+  supportedBidTicks: supportedBidRate >= 0.70,
+  stableLeaderStates: localStatesWithStableTenures >= 24,
+  simultaneousCommitments: statesWithTwoCommitments >= 48,
+  duplicateSettlement: statesWithDuplicateSettlement >= 24,
+  actionDiversity: statesWithTwoActionTypes >= 40,
+  rotationStates: localRotationStates.size >= 16,
+  rotationFingerprints: localRotationFingerprints >= 20,
+  eventfulRotationRate: eventfulRotationRate >= 0.30,
+  eventKindDiversity: eventKindStates.size >= 2,
+  eventKindStateSupport: eventKindsWithFourStates >= 2,
+  roleNeutrality: largestDefenderShare <= 0.60,
+  rotationStateEdge: localRotationStates.size - controlRotationStates.size >= 12,
+  rotationFingerprintEdge:
+    localRotationFingerprints - commanderRotationFingerprints >= 16,
+  assignmentBlind: localAssignmentPublications === 0,
+  teamBrainNonFiring: localBrainFirings === 0,
+  perceptionRngPurity:
+    perceptionRngChanges === 0 && discoveryPerceptionRngChanges === 0,
+  finiteBids: nonFiniteBids === 0,
+  negotiationConvergence: negotiationNonConvergence === 0,
+  uniqueOpponentClaims: duplicateOpponentClaims === 0,
+  supportedIdentities: unsupportedIdentities === 0,
+  finiteCandidates: nonFiniteCandidates === 0,
+  probeTargetPurity: probeTargetWrites === 0,
+  actionConsumerFired: probeActionWrites > 0,
+  cloneValidity: cloneFailures === 0,
+  deterministicReruns: deterministicDifferences === 0,
+  inputOrderInvariance:
+    orderDifferences === 0 && negotiationOrderDifferences === 0,
+};
+const gates = INTENT_MODE ? intentGates : rotateGates;
 const pass = Object.values(gates).every(Boolean);
-const report = {
+const commonParameters = {
+  seedStart: SEED_START,
+  requiredStates: REQUIRED_STATES,
+  maxSeeds: MAX_SEEDS,
+  awareness: AWARENESS,
+  windowTicks: WINDOW_TICKS,
+  windowSeconds: WINDOW_TICKS * DT,
+  stableTicks: STABLE_TICKS,
+  eventWindowTicks: EVENT_WINDOW_TICKS,
+  materialMovement: MATERIAL_MOVEMENT,
+};
+const rotateReport = {
   authority: 'D-ROTATE-0 assignment-blind defensive rotation process gate',
   parameters: {
-    seedStart: SEED_START,
-    requiredStates: REQUIRED_STATES,
-    maxSeeds: MAX_SEEDS,
-    awareness: AWARENESS,
-    windowTicks: WINDOW_TICKS,
-    windowSeconds: WINDOW_TICKS * DT,
-    stableTicks: STABLE_TICKS,
-    eventWindowTicks: EVENT_WINDOW_TICKS,
-    materialMovement: MATERIAL_MOVEMENT,
+    ...commonParameters,
   },
   support: {
     scannedSeeds,
@@ -675,14 +1008,66 @@ const report = {
     orderDifferences,
   },
   records,
-  gates,
+  gates: rotateGates,
   pass,
 };
+const intentReport = {
+  authority: 'D-INTENT-0 local defensive intent negotiation mechanism gate',
+  parameters: commonParameters,
+  support: {
+    scannedSeeds,
+    acceptedStates,
+    completedIntentWindows: completedLocalWindows,
+    eventfulIntentStates: eventfulLocalStates,
+    localEligibleTicks,
+    localSupportedBidTicks,
+    supportedBidRate,
+    intentStatesWithStableTenures: localStatesWithStableTenures,
+    intentRotationStates: localRotationStates.size,
+    intentRotationFingerprints: localRotationFingerprints,
+    noConsumerRotationStates: controlRotationStates.size,
+    noConsumerRotationFingerprints: commanderRotationFingerprints,
+    rotationStateEdge: localRotationStates.size - controlRotationStates.size,
+    rotationFingerprintEdge: localRotationFingerprints - commanderRotationFingerprints,
+    eventfulRotationRate,
+    eventKindStates: Object.fromEntries([...eventKindStates.entries()]
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([kind, states]) => [kind, states.size])),
+    largestDefenderShare,
+    statesWithTwoCommitments,
+    statesWithDuplicateSettlement,
+    statesWithTwoActionTypes,
+  },
+  validity: {
+    localAssignmentPublications,
+    localBrainFirings,
+    localBrainTimerSuppressions,
+    perceptionRngChanges,
+    discoveryPerceptionRngChanges,
+    nonFiniteBids,
+    probeActionWrites,
+    probeTargetWrites,
+    negotiationNonConvergence,
+    duplicateOpponentClaims,
+    unsupportedIdentities,
+    nonFiniteCandidates,
+    cloneFailures,
+    deterministicDifferences,
+    orderDifferences,
+    negotiationOrderDifferences,
+  },
+  records,
+  gates: intentGates,
+  pass,
+};
+const report = INTENT_MODE ? intentReport : rotateReport;
 const canonical = JSON.stringify(report);
 const digest = createHash('sha256').update(canonical).digest('hex');
 const pct = (value: number): string => `${(value * 100).toFixed(1)}%`;
 
-console.log('D-ROTATE-0 ASSIGNMENT-BLIND DEFENSIVE ROTATION PROCESS GATE');
+console.log(INTENT_MODE
+  ? 'D-INTENT-0 LOCAL DEFENSIVE INTENT NEGOTIATION MECHANISM GATE'
+  : 'D-ROTATE-0 ASSIGNMENT-BLIND DEFENSIVE ROTATION PROCESS GATE');
 console.log(
   `accepted ${acceptedStates}/${REQUIRED_STATES} · scanned ${scannedSeeds}/${MAX_SEEDS}`
   + ` · completed local ${completedLocalWindows}/${acceptedStates}`,
@@ -692,11 +1077,21 @@ console.log(
   + ` · supported bids ${localSupportedBidTicks}/${localEligibleTicks} (${pct(supportedBidRate)})`
   + ` · stable-tenure states ${localStatesWithStableTenures}/${acceptedStates}`,
 );
-console.log(
-  `rotations local ${localRotationFingerprints} in ${localRotationStates.size}/${acceptedStates}`
-  + ` · commander ${commanderRotationFingerprints}`
-  + ` · eventful rate ${pct(eventfulRotationRate)}`,
+console.log(INTENT_MODE
+  ? `rotations intent ${localRotationFingerprints} in ${localRotationStates.size}/${acceptedStates}`
+    + ` · no-consumer ${commanderRotationFingerprints} in ${controlRotationStates.size}/${acceptedStates}`
+    + ` · eventful rate ${pct(eventfulRotationRate)}`
+  : `rotations local ${localRotationFingerprints} in ${localRotationStates.size}/${acceptedStates}`
+    + ` · commander ${commanderRotationFingerprints}`
+    + ` · eventful rate ${pct(eventfulRotationRate)}`,
 );
+if (INTENT_MODE) {
+  console.log(
+    `commitment states ${statesWithTwoCommitments}/${acceptedStates}`
+    + ` · duplicate-settlement states ${statesWithDuplicateSettlement}/${acceptedStates}`
+    + ` · action-diverse states ${statesWithTwoActionTypes}/${acceptedStates}`,
+  );
+}
 console.log(
   `event kinds ${JSON.stringify(Object.fromEntries([...eventKindStates.entries()]
     .map(([kind, states]) => [kind, states.size])))}`
