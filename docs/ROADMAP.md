@@ -611,6 +611,17 @@
 > local micro-ecology (recommended for VISION, but needs user authority), **B** a genuinely
 > new transition-estimator programme, or **C** a coupled arrival/contact foundation. See
 > [`world-model/WORLD-MODEL-NEXT-AUTHORITY.md`](world-model/WORLD-MODEL-NEXT-AUTHORITY.md).
+> ⏸️ **2026-07-22 D-ROTATE-0 MECHANISM STOP — LOCAL AWARENESS IS NOT A DEFENSIVE
+> LANGUAGE.** The user split temporal process from selection/payoff and authorised only
+> an assignment-blind live-ball mechanism census. All 64 fresh states completed; >=2
+> local carrier-responsibility bids were supported on `3412/3440` eligible ticks and
+> `34/64` states formed multiple stable leaders. Yet only `2/64` states produced the
+> frozen event-associated movement/action rotation fingerprint (gate `16/64`), with
+> report SHA `0e7017c8…a44d`. Exact anti-commander, RNG, clone, order and determinism
+> gates all passed. The existing PlayerBrain depends on commander-published chaser/mark
+> authority; knowing who is closest does not create step-and-cover. Selection, real-result
+> fitness, ecology and live wiring remain closed. Any restart must first establish a
+> dormant, role-neutral local defensive intent/occupancy language, not retune D-ROTATE.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

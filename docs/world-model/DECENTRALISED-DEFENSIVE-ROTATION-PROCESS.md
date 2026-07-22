@@ -1,8 +1,57 @@
 # D-ROTATE-0 — Assignment-Blind Defensive Rotation Process Gate
 
-Status: **PRE-REGISTERED — mechanism/measurement only; no selection or payoff.**
+Status: **COMPLETE — FAIL; existing local action substrate does not produce common rotation.**
 
 Date: 2026-07-22
+
+## 0. Result
+
+The frozen 64-state run completed twice with byte-identical output:
+
+```text
+accepted states                         64 / 64
+completed local windows                 64 / 64
+states with world events                64 / 64
+ticks with >=2 supported local bids     3412 / 3440 (99.2%)
+states with >=2 stable leader tenures   34 / 64
+
+states with rotation fingerprint        2 / 64   (gate: 16)
+total rotation fingerprints              2         (gate: 20)
+eventful-state rotation rate             3.1%      (gate: 30%)
+associated event kinds                   2
+event kinds with >=4 states              0         (gate: 2)
+largest single defender share          100.0%      (gate: <=60%)
+```
+
+Exact validity stayed green: no chaser/mark publication, TeamBrain firing,
+probe-written action or movement target, Match-RNG consumption, non-finite bid,
+clone failure, rerun difference or input-order difference occurred. The formal
+report SHA-256 is:
+
+```text
+0e7017c8598f416ae2749a81ef885ce9e159b039c52ad133575e1b7732d9a44d
+```
+
+The negative result is well supported rather than a coverage failure. Defenders
+could observe the carrier and form at least two finite local bids on 99.2% of
+eligible ticks; stable responsibility identities also appeared in 34 states.
+What did not appear was the embodied sequence in which one player changes the
+world, another takes responsibility and the former remains as cover.
+
+Code anatomy explains the boundary. Existing `PlayerBrain` grants normal chase
+and mark actions through `team.chasers` and `team.marks`. When those commander
+assignments are absent, defenders mostly return to formation; only one narrow
+goal-side contain fallback can act without them. Local ETA facts therefore do
+not constitute a language for publishing and executing complementary defensive
+intent.
+
+Per the frozen stop rule, the process window, stable-tenure duration, event
+window and movement threshold are not changed. D-ROTATE-0 does not authorise
+selection, results-based fitness, ecology, a live sandbox or commander removal.
+A future restart must be causally different: it must first introduce a dormant,
+role-neutral local defensive intent/occupancy language and prove that players
+can express complementary commitments without central first/second/third
+assignments. Merely rerunning the same action substrate is closed.
 
 ## 1. Why this is causally different
 

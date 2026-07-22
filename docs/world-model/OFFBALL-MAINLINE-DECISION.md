@@ -471,3 +471,18 @@ selection problems to remain separate. The next frozen authority is
 an assignment-blind, live-ball process census that removes defensive chaser/mark
 publication inside a clone and measures only post-hoc responsibility rotation.
 It does not learn, evolve, score possession, read wins or choose a response.
+
+D-ROTATE-0 completed twice with byte-identical report SHA
+`0e7017c8…a44d` and failed its mechanism gate. Although at least two local
+responsibility bids existed on 99.2% of eligible ticks and 34/64 states contained
+multiple stable leaders, only 2/64 states produced a full event-associated
+rotation fingerprint (gate 16/64). Both fingerprints concentrated on one
+defender identity, so the role-neutrality gate also failed.
+
+This closes the idea that removing assignments while retaining the existing
+PlayerBrain is enough for rotation to emerge. `PlayerBrain` currently obtains
+normal chase/mark action authority from the commander's `chasers` and `marks`;
+without them it has no shareable, complementary defensive-intent language. No
+selection, result fitness, ecology or live sandbox follows. A future restart
+must add and test that dormant local language first, not loosen D-ROTATE's time
+or fingerprint thresholds.

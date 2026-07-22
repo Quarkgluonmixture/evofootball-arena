@@ -199,13 +199,17 @@ DDD-0 one-body defensive dilemma (complete)
 → D-COVER-0 endpoint-arrival handoff (complete, FAIL)
 → D-LANE-0 space-time corridor handoff (complete, FAIL)
 → point-response defensive branch parked
-→ any restart must model a temporal multi-body process, not another static point fact
+→ D-ROTATE-0 assignment-blind temporal process (complete, FAIL)
+→ next missing representation: dormant local defensive intent/occupancy language
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
 into G2–G9. Shared intent and legal two-body motion were both non-vacuous, but
 neither receiver-endpoint arrival nor a fixed-step corridor ETA calibrated well
 enough to real first control. No defensive live sandbox or ecology is currently
-authorised. The remaining VISION-level question is whether a genuinely temporal
-process—one body delays, another arrives, and responsibility rotates on world
-events—can be represented without rebuilding the commander under new names.
+authorised. D-ROTATE then showed that broad local carrier awareness and stable
+ETA leadership do not make the existing action substrate rotate responsibility:
+only `2/64` states produced the frozen full process fingerprint. The remaining
+VISION-level question is now representational: whether defenders can express
+and observe complementary, role-neutral movement intent/occupancy without
+rebuilding first/second/third assignments under new names.

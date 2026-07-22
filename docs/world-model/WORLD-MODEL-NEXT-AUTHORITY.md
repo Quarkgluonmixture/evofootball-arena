@@ -1,6 +1,6 @@
 # World-Model Next Authority after D-COVER / D-LANE
 
-Status: **OPTION A MECHANISM GATE AUTHORISED; selection/payoff remain closed.**
+Status: **OPTION A MECHANISM GATE COMPLETE — FAIL; selection/payoff remain closed.**
 
 Date: 2026-07-22
 
@@ -177,6 +177,20 @@ measures only whether local observation plus the existing live action cadence
 produces a stable responsibility-rotation fingerprint. It contains no payoff,
 preference, gene or evolution.
 
+D-ROTATE-0 is now complete and failed without validity ambiguity. Local
+responsibility facts were broadly observable (`3412/3440` eligible ticks) and
+stable leaders existed in `34/64` states, but full rotation fingerprints appeared
+in only `2/64` states against a frozen `16/64` gate. The existing local action
+substrate therefore cannot replace commander assignments simply by knowing who
+is closest. Selection and real-result filtering remain unopened.
+
+The next causally distinct representation question is narrower than ecology:
+can defenders publish and observe role-neutral movement intent/occupancy from
+their own perception, so complementary pressure/cover relationships are
+expressible without naming or allocating first/second/third defenders? That
+language must be dormant and probe-only before any closed-loop consumer is
+authorised.
+
 Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
 outranks tactical emergence.
@@ -185,7 +199,7 @@ Until that decision, the accepted authority is:
 
 ```text
 live B0 + existing commander
-D-COVER/D-LANE parked
+D-COVER/D-LANE/D-ROTATE parked
 no defensive sandbox
 no ecology
 no new selector
