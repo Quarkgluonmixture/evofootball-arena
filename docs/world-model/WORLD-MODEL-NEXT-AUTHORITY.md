@@ -489,7 +489,7 @@ priors. Its failure identifies an honest information-availability boundary in
 the existing observer-specific scan/FOV process; that boundary may not be erased
 by adding samples, lengthening the window or reading private action state.
 
-The next independent lower-layer gate is pre-registered in
+The next independent lower-layer gate was pre-registered in
 [`ACTIVE-GAZE-FOUNDATION.md`](ACTIVE-GAZE-FOUNDATION.md). S3-G0 separates an
 observer's own gaze from body direction while freezing the existing visual
 range, cone, scan clock, memory and keyed error. It tests only whether fixed
@@ -497,3 +497,15 @@ world/body state can yield different honest evidence under different gaze and
 whether a gaze switch still obeys scan latency. It does not rerun the temporal
 motion experiment or allow a coach/familiarity prior to manufacture unseen
 facts.
+
+S3-G0 passed all frozen gates on 96 fresh states. Each designated teammate or
+opponent was current only in its gaze arm, opposite far targets were absent,
+shared visible facts were byte-identical and observer proprioception stayed
+fresh. Gaze changes before the next scan revealed no new target; the scheduled
+scan then made the new target current while retaining the old target as aged
+memory. World and RNG state were unchanged. Report SHA: `d2ce8771…b5bc7`.
+
+Independent gaze is now a banked dormant information channel. No production
+caller chooses gaze. PASS authorises only a separately pre-registered attention
+policy experiment; it does not reopen temporal intent response or permit coach
+doctrine/familiarity to act as visibility bonuses.

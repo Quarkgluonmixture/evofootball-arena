@@ -1,6 +1,6 @@
 # S3-G0 — Observer-local active gaze foundation
 
-Status: **PRE-REGISTERED — fresh 87k states unopened.**
+Status: **PASS — independent gaze substrate banked; no attention policy authorised.**
 
 Date: 2026-07-22
 
@@ -192,3 +192,35 @@ It authorises at most a separately pre-registered attention-policy experiment.
 It does not authorise D-PROC-1M/D-PROC-1 reruns, a live consumer, automatic
 scanning rules, coach doctrine, familiarity, communication, payoff, genes or
 evolution.
+
+## 8. Frozen result
+
+Fresh seeds `87,000..87,095` supplied 96/96 accepted states. Both full audits
+were byte-identical. Every exact, gaze-mechanism and scan/memory gate passed:
+
+```text
+teammate-gaze target current                            96 / 96
+opponent-gaze target current                            96 / 96
+opposite target absent from empty-memory arm            96 / 96 each
+observer proprioception current in both                 96 / 96
+shared current facts byte-identical                      96 / 96
+world and Match RNG unchanged                            96 / 96
+
+pre-scan gaze switch revealed no new target              96 / 96
+old target aged before scheduled scan                    96 / 96
+new target current at scheduled scan                     96 / 96
+old target retained as aged memory after scan            96 / 96
+non-finite observations                                   0
+```
+
+Canonical report SHA-256:
+
+```text
+d2ce8771a2080bfc086841b75eb0928111344358bb5077b46cad153f848b5bc7
+```
+
+The result banks one real capability: body direction and observer-owned gaze
+can now differ without changing the existing perception envelope. It does not
+show where, when or why a footballer should look. Per the authority boundary,
+no production caller supplies gaze and the absent-gaze path remains the old
+body-facing path exactly.

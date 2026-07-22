@@ -826,12 +826,16 @@
 > may be read. The representation is parked, D-PROC-1/D-PROC-2 remain closed, and
 > no fourth sample, longer window, coach/familiarity bonus or consumer rescue is
 > authorised.
-> 🔬 **S3-G0 ACTIVE GAZE PRE-REGISTERED.** The next slice is causally lower and
-> independent: current FOV is locked to body direction, so a player cannot run
-> while scanning elsewhere. Fresh 87k will hold world/body state fixed and vary
-> only observer-owned gaze, testing current visibility, scan latency and aged
-> memory. It does not rerun D-PROC-1M, choose where to look, read coach/familiarity
-> or enter a production brain.
+> ✅ **S3-G0 ACTIVE GAZE PASSED.** Fresh 87k held world/body state fixed and
+> varied only observer-owned gaze. All 96/96 teammate/opponent targets became
+> current only in their designated gaze arm; opposite far targets stayed absent,
+> shared current facts were byte-identical, and proprioception remained current.
+> A pre-scan gaze switch revealed nothing early; at the scheduled scan the new
+> target became current while the old target survived as aged memory in 96/96.
+> World/RNG stayed unchanged; deterministic SHA `d2ce8771…b5bc7`. The absent-gaze
+> path remains body-facing and no production caller supplies gaze. This banks
+> independent looking only; it authorises at most a separate attention-policy
+> experiment, not D-PROC rescue, coach/familiarity, payoff or live AI.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

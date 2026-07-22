@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  capturePerceptionTruth, createPerceptionMemory, oraclePerceptionSnapshot,
+  capturePerceptionTruth, createObserverGaze, createPerceptionMemory, oraclePerceptionSnapshot,
   perceiveSnapshot, type PerceptionTruth,
 } from '../src/ai/perceptionSnapshot';
 import type { Match } from '../src/sim/Match';
@@ -114,5 +114,125 @@ describe('S3 PerceptionSnapshot', () => {
       observedTick: 13,
       ageTicks: 0,
     });
+  });
+
+  it('rejects invalid gaze and copies a normalised valid direction', () => {
+    expect(createObserverGaze(0, { x: 0, y: 0 }, 0)).toBeNull();
+    expect(createObserverGaze(0, { x: Number.NaN, y: 1 }, 0)).toBeNull();
+    expect(createObserverGaze(0, { x: Number.POSITIVE_INFINITY, y: 1 }, 0)).toBeNull();
+    const source = { x: 3, y: 4 };
+    const gaze = createObserverGaze(0, source, 2)!;
+    source.x = 99;
+    expect(gaze).toEqual({ observerGid: 0, gazeDir: { x: 0.6, y: 0.8 }, establishedTick: 2 });
+  });
+
+  it('rejects a wrong-observer, future or forged non-unit gaze', () => {
+    const world = truth(4);
+    expect(() => perceiveSnapshot(
+      world, 0, 0.8, 7, createPerceptionMemory(), createObserverGaze(1, { x: 1, y: 0 }, 0),
+    )).toThrow(/Invalid gaze/);
+    expect(() => perceiveSnapshot(
+      world, 0, 0.8, 7, createPerceptionMemory(), createObserverGaze(0, { x: 1, y: 0 }, 5),
+    )).toThrow(/Invalid gaze/);
+    expect(() => perceiveSnapshot(
+      world, 0, 0.8, 7, createPerceptionMemory(), {
+        observerGid: 0, gazeDir: { x: 2, y: 0 }, establishedTick: 0,
+      },
+    )).toThrow(/Invalid gaze/);
+  });
+
+  it('keeps absent gaze byte-equivalent to the body-facing path', () => {
+    const world = truth(24);
+    expect(perceiveSnapshot(world, 0, 0.8, 9, createPerceptionMemory()))
+      .toEqual(perceiveSnapshot(world, 0, 0.8, 9, createPerceptionMemory(), null));
+  });
+
+  it('separates gaze from body direction without changing external body state', () => {
+    const world: PerceptionTruth = {
+      tick: 0,
+      ball: { pos: { x: 0, y: 6 }, vel: { x: 0, y: 0 }, ownerGid: null },
+      players: [
+        { gid: 0, side: 0, pos: { x: 0, y: 0 }, vel: { x: 1, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+        { gid: 1, side: 0, pos: { x: 12, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+        { gid: 7, side: 1, pos: { x: -12, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: -1, y: 0 }, sentOff: false },
+      ],
+    };
+    const before = JSON.stringify(world);
+    const right = perceiveSnapshot(
+      world, 0, 0.8, 11, createPerceptionMemory(), createObserverGaze(0, { x: 1, y: 0 }, 0),
+    );
+    const left = perceiveSnapshot(
+      world, 0, 0.8, 11, createPerceptionMemory(), createObserverGaze(0, { x: -1, y: 0 }, 0),
+    );
+    expect(right.players.some((player) => player.gid === 1 && player.ageTicks === 0)).toBe(true);
+    expect(right.players.some((player) => player.gid === 7)).toBe(false);
+    expect(left.players.some((player) => player.gid === 7 && player.ageTicks === 0)).toBe(true);
+    expect(left.players.some((player) => player.gid === 1)).toBe(false);
+    expect(right.players.find((player) => player.gid === 0)?.bodyDir).toEqual({ x: 1, y: 0 });
+    expect(left.players.find((player) => player.gid === 0)?.bodyDir).toEqual({ x: 1, y: 0 });
+    expect(JSON.stringify(world)).toBe(before);
+  });
+
+  it('keeps near-field bodies and an owned ball fresh behind gaze', () => {
+    const world: PerceptionTruth = {
+      tick: 0,
+      ball: { pos: { x: 0.4, y: 0 }, vel: { x: 1, y: 0 }, ownerGid: 0 },
+      players: [
+        { gid: 0, side: 0, pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+        { gid: 1, side: 0, pos: { x: -3, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+      ],
+    };
+    const snap = perceiveSnapshot(
+      world, 0, 0.8, 13, createPerceptionMemory(), createObserverGaze(0, { x: 1, y: 0 }, 0),
+    );
+    expect(snap.players.find((player) => player.gid === 1)?.ageTicks).toBe(0);
+    expect(snap.ball).toMatchObject({ pos: { x: 0.4, y: 0 }, observedTick: 0, ageTicks: 0 });
+  });
+
+  it('applies gaze only on the scan clock and retains old facts as aged memory', () => {
+    const world: PerceptionTruth = {
+      tick: 0,
+      ball: { pos: { x: 0, y: 8 }, vel: { x: 0, y: 0 }, ownerGid: null },
+      players: [
+        { gid: 0, side: 0, pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+        { gid: 1, side: 0, pos: { x: 12, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+        { gid: 7, side: 1, pos: { x: -12, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: -1, y: 0 }, sentOff: false },
+      ],
+    };
+    const memory = createPerceptionMemory();
+    perceiveSnapshot(
+      world, 0, 0.8, 17, memory, createObserverGaze(0, { x: 1, y: 0 }, 0),
+    );
+    const tick1 = { ...world, tick: 1 };
+    const beforeScan = perceiveSnapshot(
+      tick1, 0, 0.8, 17, memory, createObserverGaze(0, { x: -1, y: 0 }, 1),
+    );
+    expect(beforeScan.players.some((player) => player.gid === 7)).toBe(false);
+    expect(beforeScan.players.find((player) => player.gid === 1)?.ageTicks).toBe(1);
+    const tick8 = { ...world, tick: 8 };
+    const afterScan = perceiveSnapshot(
+      tick8, 0, 0.8, 17, memory, createObserverGaze(0, { x: -1, y: 0 }, 1),
+    );
+    expect(afterScan.players.find((player) => player.gid === 7)?.ageTicks).toBe(0);
+    expect(afterScan.players.find((player) => player.gid === 1)?.ageTicks).toBe(8);
+  });
+
+  it('preserves keyed observations for entities visible under two gazes', () => {
+    const world: PerceptionTruth = {
+      tick: 0,
+      ball: { pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 }, ownerGid: null },
+      players: [
+        { gid: 0, side: 0, pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 }, bodyDir: { x: 1, y: 0 }, sentOff: false },
+        { gid: 4, side: 0, pos: { x: 0, y: 12 }, vel: { x: 1, y: 1 }, bodyDir: { x: 0, y: 1 }, sentOff: false },
+      ],
+    };
+    const northeast = perceiveSnapshot(
+      world, 0, 0.8, 19, createPerceptionMemory(), createObserverGaze(0, { x: 1, y: 1 }, 0),
+    );
+    const northwest = perceiveSnapshot(
+      world, 0, 0.8, 19, createPerceptionMemory(), createObserverGaze(0, { x: -1, y: 1 }, 0),
+    );
+    expect(northeast.players.find((player) => player.gid === 4))
+      .toEqual(northwest.players.find((player) => player.gid === 4));
   });
 });

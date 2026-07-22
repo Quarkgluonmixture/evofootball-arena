@@ -182,8 +182,11 @@ the substrate must PROVIDE · gene/attr hooks · code status (with evidence) · 
   ≤6m threats 15.1%→8.3%); observer body proprioception and an owned ball cue remain
   exact/fresh between scans. **No live AI reads it yet:** `decideCarrier`/`decideOffBall`
   still read real coordinates, and awareness is currently an explicit probe parameter,
-  not a gene. (Perfect info is why offside v1 went to zero — decider & referee read the
-  same truth in the same frame.)
+  not a gene. S3-G0 additionally separates an optional observer-owned gaze from body
+  direction: fixed-body opposite-gaze counterfactuals passed 96/96 current-visibility,
+  scan-latency and aged-memory gates with no production caller. It is a dormant attention
+  capability, not an automatic scanning policy. (Perfect info is why offside v1 went to
+  zero — decider & referee read the same truth in the same frame.)
 
 ### S4 — Short-horizon prediction · 🟡🔴 (ordinary-pass offline slice exists)
 - **Provides:** `predictBall(t)`, `predictPlayer(p,t)`, `predictArrival(p,point)`,

@@ -47,6 +47,13 @@ export interface PerceptionSnapshot {
   readonly players: readonly ObservedPlayer[];
 }
 
+/** Observer-owned attention pose. It changes only the visual cone, never body truth. */
+export interface ObserverGaze {
+  readonly observerGid: number;
+  readonly gazeDir: Readonly<V2>;
+  readonly establishedTick: number;
+}
+
 interface StoredPlayer extends Omit<ObservedPlayer, 'ageTicks'> {}
 interface StoredBall extends Omit<ObservedBall, 'ageTicks'> {}
 
@@ -58,6 +65,29 @@ export interface PerceptionMemory {
 
 export function createPerceptionMemory(): PerceptionMemory {
   return { nextScanTick: -1, ball: null, players: new Map() };
+}
+
+/** Validate, normalise and copy one private gaze choice. */
+export function createObserverGaze(
+  observerGid: number,
+  gazeDir: Readonly<V2>,
+  establishedTick: number,
+): ObserverGaze | null {
+  const length = Math.hypot(gazeDir.x, gazeDir.y);
+  if (
+    !Number.isInteger(observerGid)
+    || observerGid < 0
+    || !Number.isInteger(establishedTick)
+    || establishedTick < 0
+    || !Number.isFinite(gazeDir.x)
+    || !Number.isFinite(gazeDir.y)
+    || length <= 1e-9
+  ) return null;
+  return {
+    observerGid,
+    gazeDir: { x: gazeDir.x / length, y: gazeDir.y / length },
+    establishedTick,
+  };
 }
 
 export function capturePerceptionTruth(match: Match): PerceptionTruth {
@@ -123,7 +153,12 @@ function keyedNoise(seed: number, observerGid: number, entityGid: number, tick: 
   return ((h >>> 0) / 0xffffffff) * 2 - 1;
 }
 
-function visible(observer: PerceptionTruthPlayer, entity: PerceptionTruthPlayer, awareness: number): boolean {
+function visible(
+  observer: PerceptionTruthPlayer,
+  entity: PerceptionTruthPlayer,
+  awareness: number,
+  viewDir: Readonly<V2>,
+): boolean {
   if (entity.gid === observer.gid) return true;
   const dx = entity.pos.x - observer.pos.x;
   const dy = entity.pos.y - observer.pos.y;
@@ -131,7 +166,7 @@ function visible(observer: PerceptionTruthPlayer, entity: PerceptionTruthPlayer,
   if (d <= 4) return true; // near-field bodies are felt/heard even outside the cone
   const range = 18 + awareness * 22;
   if (d > range) return false;
-  const facing = d > 1e-9 ? (observer.bodyDir.x * dx + observer.bodyDir.y * dy) / d : 1;
+  const facing = d > 1e-9 ? (viewDir.x * dx + viewDir.y * dy) / d : 1;
   return facing >= -0.2 - awareness * 0.5;
 }
 
@@ -189,10 +224,21 @@ export function perceiveSnapshot(
   awarenessInput: number,
   seed: number,
   memory: PerceptionMemory,
+  gaze: ObserverGaze | null = null,
 ): PerceptionSnapshot {
   const awareness = clamp01(awarenessInput);
   const observer = truth.players.find((p) => p.gid === observerGid);
   if (!observer) throw new Error(`Unknown perception observer gid ${observerGid}`);
+  if (gaze !== null && (
+    gaze.observerGid !== observerGid
+    || !Number.isInteger(gaze.establishedTick)
+    || gaze.establishedTick < 0
+    || gaze.establishedTick > truth.tick
+    || !Number.isFinite(gaze.gazeDir.x)
+    || !Number.isFinite(gaze.gazeDir.y)
+    || Math.abs(Math.hypot(gaze.gazeDir.x, gaze.gazeDir.y) - 1) > 1e-9
+  )) throw new Error(`Invalid gaze for observer gid ${observerGid}`);
+  const viewDir = gaze?.gazeDir ?? observer.bodyDir;
   const intervalTicks = Math.round(15 - awareness * 9); // 4–10 Hz at 60 Hz sim
   const retentionTicks = Math.round(15 + awareness * 45); // 0.25–1.0 s memory
   const scan = memory.nextScanTick < 0 || truth.tick >= memory.nextScanTick;
@@ -205,14 +251,14 @@ export function perceiveSnapshot(
         memory.players.delete(entity.gid);
         continue;
       }
-      if (visible(observer, entity, awareness)) {
+      if (visible(observer, entity, awareness, viewDir)) {
         memory.players.set(entity.gid, observePlayer(seed, observer, entity, awareness, truth.tick));
       }
     }
     const bdx = truth.ball.pos.x - observer.pos.x;
     const bdy = truth.ball.pos.y - observer.pos.y;
     const bd = Math.hypot(bdx, bdy);
-    const ballFacing = bd > 1e-9 ? (observer.bodyDir.x * bdx + observer.bodyDir.y * bdy) / bd : 1;
+    const ballFacing = bd > 1e-9 ? (viewDir.x * bdx + viewDir.y * bdy) / bd : 1;
     if (!ownsBall && (bd <= 4 || (bd <= 18 + awareness * 22 && ballFacing >= -0.2 - awareness * 0.5))) {
       const ballError = (0.12 + bd * 0.015) * (1 - awareness);
       memory.ball = {
