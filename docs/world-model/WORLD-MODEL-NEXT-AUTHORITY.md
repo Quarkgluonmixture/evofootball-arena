@@ -191,6 +191,15 @@ expressible without naming or allocating first/second/third defenders? That
 language must be dormant and probe-only before any closed-loop consumer is
 authorised.
 
+The existing `DefensiveMovementCommitment` and C0 occupancy primitives already
+cover the storage/accounting half of that language. The next frozen authority
+therefore does not create another fact-only census. It is
+[`DECENTRALISED-DEFENSIVE-INTENT-NEGOTIATION.md`](DECENTRALISED-DEFENSIVE-INTENT-NEGOTIATION.md):
+a probe-only, world-event-triggered consumer in which defenders independently
+settle duplicate opponent relations from their own perception and explicit
+team-mate commitments, then execute only existing chase/mark/shape actions.
+It remains a mechanism gate: no payoff, learning, results or ecology.
+
 Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
 outranks tactical emergence.

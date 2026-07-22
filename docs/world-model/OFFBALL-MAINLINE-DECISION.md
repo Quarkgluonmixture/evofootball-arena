@@ -486,3 +486,12 @@ without them it has no shareable, complementary defensive-intent language. No
 selection, result fitness, ecology or live sandbox follows. A future restart
 must add and test that dormant local language first, not loosen D-ROTATE's time
 or fingerprint thresholds.
+
+The storage primitives are not actually absent: dormant defensive movement
+commitments and generic team occupancy already exist. What remains absent is a
+bounded local consumer. The separately frozen
+[`DECENTRALISED-DEFENSIVE-INTENT-NEGOTIATION.md`](DECENTRALISED-DEFENSIVE-INTENT-NEGOTIATION.md)
+tests that exact boundary. It lets each defender use only its own observation,
+the existing chase/mark preferences and explicit team-mate commitments to
+settle duplicate opponent relations. It neither names roles nor reads payoff,
+and still cannot enter production.
