@@ -431,7 +431,17 @@ coordinate commander; opponents infer them from behaviour.
 
 The first authority is therefore
 [`PRIVATE-INTENT-OBSERVATION-PROTOCOL.md`](PRIVATE-INTENT-OBSERVATION-PROTOCOL.md).
-D-PROC-0T is deliberately below a closed-loop consumer: it separates private
-intent, embodied evidence and observer-owned hypothesis evidence, and tests
-privacy, embodiment, observer specificity and non-telepathic revocation. It
-does not reopen EOR/D-HANDOVER, score a candidate or change a live action.
+D-PROC-0T passed on the frozen 84k suite. Across all 96 accepted states,
+different hidden targets with identical bodies produced byte-identical physical
+histories and observer evidence. Eighty states completed all four arms; all 80
+produced candidate-dependent, observer-specific evidence, 69 produced at least
+0.25m extra target progress, 47 improved true-target bearing evidence, and all
+80 changed only after embodied revocation. There were zero schema failures,
+private-state leaks, RNG changes, non-finite facts or forbidden writes. Report
+SHA: `25afb791…baf1`.
+
+This banks the missing information boundary and authorises D-PROC-1 only: one
+separately pre-registered, probe-local consumer may reopen its own generic
+candidate set when its observer belief changes. D-PROC-0T still does not reopen
+EOR/D-HANDOVER, score a candidate, enable familiarity/coach bonuses or change a
+live action.

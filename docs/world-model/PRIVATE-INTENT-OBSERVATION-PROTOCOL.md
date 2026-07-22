@@ -1,6 +1,7 @@
 # D-PROC-0T — Private Intent, Embodied Evidence and Observer Belief
 
-Status: **PRE-REGISTERED — fresh 84k mechanism states unopened.**
+Status: **PASS — private intent stays private; embodied evidence is observable
+and observer-specific. D-PROC-1 only is authorised; no live consumer.**
 
 Date: 2026-07-22
 
@@ -306,3 +307,53 @@ payoff, alter the carrier, remove TeamBrain, add genes or enter live production.
 
 D-PROC-2 selection, real results and evolution remain closed until D-PROC-1
 proves a non-oscillatory mutual-response chain.
+
+## 9. Frozen result
+
+Implementation:
+
+* `src/ai/intentProcess.ts` contains the private lifecycle and the pure
+  snapshot-to-evidence projection;
+* `tests/intentProcess.test.ts` contains 11 hostile privacy, lifecycle,
+  ordering and mutation tests;
+* `scripts/probes/private-intent-observation.ts` runs the four frozen arms.
+
+The unchanged `84,000..84,191` suite accepted the first `96/96` eligible
+states after scanning 96 seeds. `80/96` completed all four arms; the remaining
+paired attrition was 11 loose-ball states, one dead/restart state and four
+legitimate observer-unsupported states. There were zero schema failures.
+
+Exact privacy held in every accepted state:
+
+```text
+different private targets                              96 / 96
+H/X physical histories byte-identical                  96 / 96
+H/X observer evidence byte-identical                   96 / 96
+H/X hypothesis evidence byte-identical                 96 / 96
+private revocation leaks before body change              0
+perception RNG changes / non-finite facts                 0 / 0
+forbidden action or physical writes                       0
+```
+
+Among the 80 jointly completed states:
+
+```text
+E target-progress advantage >= 0.25m                  69 / 80
+candidate-dependent evidence                          80 / 80
+true-target bearing improvement                       47 / 80
+finite non-intended hypotheses                        80 / 80
+two observers formed different evidence               80 / 80
+states with aged supported observations               80 / 80
+embodied post-revocation evidence change               80 / 80
+```
+
+Two complete executions were byte-identical. Canonical report SHA-256:
+
+```text
+25afb791df29527f360946a7afc9add0badf7cca22024189e2a317ec7aa0baf1
+```
+
+The result proves the information boundary, not football payoff. Coach doctrine
+and familiarity remain frozen: they may later shape a player's private prior
+or inference persistence, but did not alter external evidence, physics or
+success in this gate.
