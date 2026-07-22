@@ -798,6 +798,13 @@
 > finite/write failures; deterministic SHA `25afb791…baf1`. This authorises only a
 > separately pre-registered D-PROC-1 probe-local response consumer. It does not use
 > payoff, enable familiarity/coach bonuses or reopen a live loop.
+> 🔬 **D-PROC-1 EMBODIED-INTENT REOPENING FROZEN.** Fresh 85k tests one consumer:
+> B may reopen its own frozen generic candidates only when B's own new observation
+> supports A's embodied direction and makes B's current target physically conflict
+> under existing `PLAYER_MIN_DIST`. The replacement is a probe-only cyclic candidate
+> tie-break, not a football selector. H/I/C isolate held exterior, signal blindness
+> and observer-local response. Coach doctrine, familiarity, payoff, live AI and
+> evolution remain closed.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

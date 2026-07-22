@@ -445,3 +445,10 @@ separately pre-registered, probe-local consumer may reopen its own generic
 candidate set when its observer belief changes. D-PROC-0T still does not reopen
 EOR/D-HANDOVER, score a candidate, enable familiarity/coach bonuses or change a
 live action.
+
+That consumer is now frozen in
+[`EMBODIED-INTENT-REOPENING.md`](EMBODIED-INTENT-REOPENING.md). D-PROC-1 tests
+only whether B can detect that its own current candidate physically conflicts
+with a set of A hypotheses supported by B's observed displacement, reopen the
+same generic O0 set, and embody one probe-owned admissible replacement. Coach
+doctrine and familiarity remain neutral; no payoff or production path is read.
