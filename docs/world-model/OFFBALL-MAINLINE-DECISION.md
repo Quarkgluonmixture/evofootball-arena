@@ -464,3 +464,10 @@ enough to select defensive behaviour. A restart must be temporal and
 multi-body—delay, cover arrival and responsibility rotation through world
 events—or the mainline must move to another ranked world-model gap. No live
 sandbox or ecology is authorised by D-LANE.
+
+The user authorised that temporal direction but required the mechanism and
+selection problems to remain separate. The next frozen authority is
+[`DECENTRALISED-DEFENSIVE-ROTATION-PROCESS.md`](DECENTRALISED-DEFENSIVE-ROTATION-PROCESS.md):
+an assignment-blind, live-ball process census that removes defensive chaser/mark
+publication inside a clone and measures only post-hoc responsibility rotation.
+It does not learn, evolve, score possession, read wins or choose a response.

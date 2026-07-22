@@ -1,6 +1,6 @@
 # World-Model Next Authority after D-COVER / D-LANE
 
-Status: **DECISION REQUIRED — no further behavioural implementation authorised.**
+Status: **OPTION A MECHANISM GATE AUTHORISED; selection/payoff remain closed.**
 
 Date: 2026-07-22
 
@@ -168,6 +168,14 @@ Choose **Option A** if the priority remains the VISION north star: visible,
 emergent, competing team identities. The project has already learned that
 single snapshots and global static weights cannot produce mutual adaptation.
 The next meaningful hypothesis is the process itself.
+
+The user selected Option A with an additional hard split: do not bundle the
+closed process with competitive selection. The first authority is therefore
+[`DECENTRALISED-DEFENSIVE-ROTATION-PROCESS.md`](DECENTRALISED-DEFENSIVE-ROTATION-PROCESS.md).
+D-ROTATE-0 removes defensive mark/chaser publication in an isolated arm and
+measures only whether local observation plus the existing live action cadence
+produces a stable responsibility-rotation fingerprint. It contains no payoff,
+preference, gene or evolution.
 
 Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
