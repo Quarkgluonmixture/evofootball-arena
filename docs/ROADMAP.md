@@ -597,6 +597,20 @@
 > relations; wrapping current runner/arriver/chaser assignments as demands is forbidden.
 > Authority:
 > [`world-model/TEAM-TASK-OCCUPANCY-FOUNDATION.md`](world-model/TEAM-TASK-OCCUPANCY-FOUNDATION.md).
+> ⏸️ **2026-07-22 DECENTRALISED COMPOSITION BOUNDARY REACHED.** The user selected
+> player-level offers rather than central demand publication. D1 then showed shared intent
+> has a small real effect but failed the frozen payoff/baseline gates; D2a showed a small
+> learnable signal but stopped its static-weight family; EOR-0 localised the attacking
+> reaction bottleneck to an unresponsive defensive world. DDD-0 passed the atomic one-body
+> defensive dilemma, but the two causally different multi-body follow-ups both failed:
+> D-COVER endpoint handoffs changed real transitions in only `25/314` cases (`8.0%`,
+> `13/64` states), and D-LANE space-time corridor handoffs fell to `2/41` (`4.9%`,
+> `2/64` states) with only a `+3.3pp` early-vs-late calibration edge. All validity gates,
+> determinism, build and fingerprint remained green; no live consumer landed. Static
+> point-response defending is parked. The remaining choice is now explicit: **A** temporal
+> local micro-ecology (recommended for VISION, but needs user authority), **B** a genuinely
+> new transition-estimator programme, or **C** a coupled arrival/contact foundation. See
+> [`world-model/WORLD-MODEL-NEXT-AUTHORITY.md`](world-model/WORLD-MODEL-NEXT-AUTHORITY.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
