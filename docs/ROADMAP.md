@@ -666,6 +666,24 @@
 > fixed-step movement + ball + oriented contact + delayed control, not another point ETA.
 > PASS authorises only a separately frozen observer-grounding narrowphase audit—no live
 > chase policy, pass selector, payoff, commander removal or ecology.
+> 🔬 **2026-07-22 C-OBS-0 OBSERVER-GROUNDING CONTRACT FROZEN.** The passed
+> global-truth race remains only a ceiling. On 120 fresh matches, the actual passer's
+> awareness-0.8 memory is warmed every live tick; only target/opponent identities in that
+> pre-kick snapshot may enter the corridor set. The resulting physical race must retain
+> >=80% balanced accuracy, beat the observer corridor by >=10pp, stay within 5pp of the
+> truth ceiling, and preserve both-class recall. Missing identities are unsupported, never
+> repaired from Match truth. PASS can authorise only a portable exact-shadow design—not
+> live Match clones or a selector. Authority:
+> [`world-model/OBSERVER-GROUNDED-ARRIVAL-CONTACT.md`](world-model/OBSERVER-GROUNDED-ARRIVAL-CONTACT.md).
+> ✅ **2026-07-22 C-OBS-0 OBSERVER-GROUNDED RACE PASSED.** Across 8,318 fresh
+> eligible ordinary passes, the actual passer's awareness-0.8 memory supported 6,708
+> targets (80.6%). On 6,300 direct intended/opponent transitions, the observer race
+> retained 86.2% balanced accuracy versus 87.2% with global truth, with 97.4% intended
+> recall, 75.1% opponent recall, 99.1% truth-race agreement and 91.9% exact actual-
+> controller identity agreement. Candidate sets differed on 952 records, so perception
+> was not vacuous; all identity-fallback, mutation, RNG, brain and determinism gates
+> passed. SHA `8836634c…0a77`. Only a portable exact-shadow design is now authorised;
+> Match clones, forced race actions and live pass scoring remain forbidden.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

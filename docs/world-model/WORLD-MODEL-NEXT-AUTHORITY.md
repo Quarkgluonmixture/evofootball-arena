@@ -263,6 +263,25 @@ physical-process mediator required by Option C and authorises only an
 observer-grounding narrowphase contract. Global-truth coupled rollouts remain
 an offline ceiling, not a live decision primitive.
 
+That next contract is now frozen as
+[`OBSERVER-GROUNDED-ARRIVAL-CONTACT.md`](OBSERVER-GROUNDED-ARRIVAL-CONTACT.md).
+C-OBS-0 warms the actual passer's 0.8-awareness memory, permits only observed
+target/opponent identities to enter the corridor broadphase, and measures how
+much of the C-AC0 ceiling survives. It cannot impute missing players or import a
+Match clone into live AI.
+
+C-OBS-0 is now complete and passed twice with SHA `8836634c…0a77`. Of 8,318
+eligible ordinary passes, 6,708 (80.6%) had observer-supported targets. On 6,300
+direct binary transitions the observer-grounded race retained 86.2% balanced
+accuracy versus the 87.2% truth ceiling, with 99.1% truth-race agreement and
+91.9% exact actual-controller identity agreement. Candidate sets differed in
+952 records, so perception was non-vacuous; no identity fallback or Match/RNG
+mutation occurred.
+
+This authorises only a portable exact-shadow design. The live AI may not run
+Match clones, read global truth, inherit the probe's forced race actions or use
+the race as a pass score.
+
 Until that decision, the accepted authority is:
 
 ```text

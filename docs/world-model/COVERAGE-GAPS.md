@@ -204,7 +204,8 @@ DDD-0 one-body defensive dilemma (complete)
 → D-HANDOVER-0 established-before-release (complete, weak signal / FAIL)
 → defensive local-process branch CLOSED before payoff/selection
 → C-AC0 coupled arrival/contact race ceiling (complete, PASS)
-→ observer-grounded narrowphase only authorised
+→ C-OBS-0 observer-grounded race (complete, PASS)
+→ portable exact-shadow design only authorised
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
@@ -241,3 +242,10 @@ raised balanced accuracy from the corridor baseline's 64.1% to 87.2%, with
 91.9% exact first-controller identity agreement. This does not reopen the
 defensive selector branch. It authorises only an offline audit of whether the
 same narrowphase survives observer-specific inputs instead of oracle truth.
+
+C-OBS-0 answered that grounding question positively. Passer-specific
+awareness-0.8 snapshots supported 80.6% of eligible targets; on 6,300 direct
+contests the observer race retained 86.2% balanced accuracy, only one point
+below the truth ceiling, and agreed with the actual first-controller identity
+91.9% of the time. This authorises a portable micro-state shadow design, not a
+live Match clone or decision score.
