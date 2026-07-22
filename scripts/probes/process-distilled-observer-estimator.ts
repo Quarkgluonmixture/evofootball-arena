@@ -51,11 +51,16 @@ const INTERNAL_MATCHES = numericArguments[3] ?? 120;
 const EXTERNAL_START = numericArguments[4] ?? 74_000;
 const EXTERNAL_MATCHES = numericArguments[5] ?? 120;
 const ALTERNATIVE_AUDIT = process.argv.includes('--alternative-audit');
-const USE_CORRIDOR_FEATURES = process.argv.includes('--corridor') || ALTERNATIVE_AUDIT;
+const INTERVENTION_TRAINING = process.argv.includes('--intervention-training');
+const USE_CORRIDOR_FEATURES = process.argv.includes('--corridor')
+  || ALTERNATIVE_AUDIT || INTERVENTION_TRAINING;
 const ENGINEERING_EXTERNAL = process.argv.includes('--engineering-external');
 const ALTERNATIVE_START = ALTERNATIVE_AUDIT ? numericArguments[2] ?? 77_000 : 77_000;
 const ALTERNATIVE_MATCHES = ALTERNATIVE_AUDIT ? numericArguments[3] ?? 120 : 120;
 const ALTERNATIVE_NAMESPACE = 0x7a170001;
+const RANDOM_VALIDATION_START = 78_000;
+const SELECTED_VALIDATION_START = 81_000;
+const INTERVENTION_VALIDATION_MATCHES = 120;
 const MATCH_DURATION = 240;
 const AWARENESS = 0.8;
 const ADMIN_GUARD = 5;
@@ -894,9 +899,13 @@ const alternativeLearningGates = (evaluation: Evaluation): Record<string, boolea
 };
 
 const fitOnce = (dataset: Dataset, priors: Priors): SoftTransitionSoftmaxModelV1 =>
+  fitRows(dataset.rows, priors);
+const fitRows = (
+  rows: readonly StudentRow[], priors: Priors,
+): SoftTransitionSoftmaxModelV1 =>
   fitSoftTransitionSoftmaxV1(
-    dataset.rows.map((row) => row.features),
-    dataset.rows.map((row) => teacherOf(row, priors.global)),
+    rows.map((row) => row.features),
+    rows.map((row) => teacherOf(row, priors.global)),
   );
 
 const modelDigest = (model: SoftTransitionSoftmaxModelV1): string =>
@@ -913,6 +922,134 @@ const datasetSummary = (dataset: Dataset) => {
 };
 
 const fitA = collect(FIT_START, FIT_MATCHES);
+if (INTERVENTION_TRAINING) {
+  const randomFit = collect(77_000, 120, 'randomAlternative');
+  const unionRows = [...fitA.rows, ...randomFit.rows];
+  const unionPriors = fitPriors(unionRows);
+  const model = fitRows(unionRows, unionPriors);
+  const repeatedModel = fitRows(unionRows, unionPriors);
+  const selectedFitGates = datasetGates(fitA, FIT_MATCHES);
+  const randomFitGates = {
+    ...datasetGates(randomFit, 120),
+    alternativeOpportunities: randomFit.alternativeOpportunities >= 7_000,
+    noSelectedTargetReuse: randomFit.selectedTargetReuses === 0,
+  };
+  const fitGates = {
+    selectedAuthority: fitA.digest
+      === 'c99d3be12c7c2d65d35cc1be6b2aec88f7b5fc2ba0c863710e6ed20e10fd9547',
+    randomAuthority: randomFit.digest
+      === '817543fd3c5c746235b917fe4d30d12a9cdab1238be86740e90bdc24427cbda3',
+    selectedExact: allTrue(selectedFitGates),
+    randomExact: allTrue(randomFitGates),
+    deterministicModel: modelDigest(model) === modelDigest(repeatedModel),
+    modelDimensions: model.inputDimensions === 19,
+    modelParameters: model.weights.length === 195,
+  };
+  const randomValidation = allTrue(fitGates)
+    ? collect(RANDOM_VALIDATION_START, INTERVENTION_VALIDATION_MATCHES, 'randomAlternative')
+    : null;
+  const selectedValidation = allTrue(fitGates)
+    ? collect(SELECTED_VALIDATION_START, INTERVENTION_VALIDATION_MATCHES, 'selected')
+    : null;
+  const randomEvaluation = randomValidation === null
+    ? null : evaluate(randomValidation, model, unionPriors);
+  const selectedEvaluation = selectedValidation === null
+    ? null : evaluate(selectedValidation, model, unionPriors);
+  const randomExactGates = randomValidation === null ? null : {
+    ...datasetGates(randomValidation, INTERVENTION_VALIDATION_MATCHES),
+    alternativeOpportunities: randomValidation.alternativeOpportunities >= 7_000,
+    noSelectedTargetReuse: randomValidation.selectedTargetReuses === 0,
+  };
+  const selectedExactGates = selectedValidation === null
+    ? null : datasetGates(selectedValidation, INTERVENTION_VALIDATION_MATCHES);
+  const randomPredictiveGates = randomEvaluation === null
+    ? null : alternativeLearningGates(randomEvaluation);
+  const selectedPredictiveGates = selectedEvaluation === null
+    ? null : alternativeLearningGates(selectedEvaluation);
+  const crossStratumGates = randomEvaluation === null || selectedEvaluation === null ? null : {
+    intendedCalibrationDifference: Math.abs(
+      randomEvaluation.calibration.inLarge[0] - selectedEvaluation.calibration.inLarge[0],
+    ) <= 0.03,
+    opponentCalibrationDifference: Math.abs(
+      randomEvaluation.calibration.inLarge[2] - selectedEvaluation.calibration.inLarge[2],
+    ) <= 0.03,
+  };
+  const pass = allTrue(fitGates)
+    && randomExactGates !== null && selectedExactGates !== null
+    && randomPredictiveGates !== null && selectedPredictiveGates !== null
+    && crossStratumGates !== null
+    && allTrue(randomExactGates) && allTrue(selectedExactGates)
+    && allTrue(randomPredictiveGates) && allTrue(selectedPredictiveGates)
+    && allTrue(crossStratumGates);
+  const report = {
+    authority: 'T-INTERVENE-0 intervention-supported transition estimator',
+    parameters: {
+      selectedFitStart: FIT_START,
+      randomFitStart: 77_000,
+      randomValidationStart: RANDOM_VALIDATION_START,
+      selectedValidationStart: SELECTED_VALIDATION_START,
+      matchesPerPartition: INTERVENTION_VALIDATION_MATCHES,
+      alternativeNamespace: ALTERNATIVE_NAMESPACE,
+      awareness: AWARENESS,
+      replicates: REPLICATES,
+      childNamespace: CHILD_NAMESPACE,
+      featureVersion: KICK_TRANSITION_CORRIDOR_FEATURE_VERSION,
+    },
+    selectedFit: datasetSummary(fitA),
+    randomFit: datasetSummary(randomFit),
+    unionRows: unionRows.length,
+    model: {
+      version: model.version,
+      inputDimensions: model.inputDimensions,
+      basisDimensions: model.basisDimensions,
+      weights: model.weights.length,
+      digest: modelDigest(model),
+    },
+    unionPriors,
+    fitGates,
+    selectedFitGates,
+    randomFitGates,
+    randomValidation: randomValidation === null ? null : datasetSummary(randomValidation),
+    selectedValidation: selectedValidation === null ? null : datasetSummary(selectedValidation),
+    randomEvaluation,
+    selectedEvaluation,
+    randomExactGates,
+    selectedExactGates,
+    randomPredictiveGates,
+    selectedPredictiveGates,
+    crossStratumGates,
+    pass,
+  };
+  const canonical = JSON.stringify(report);
+  const sha = createHash('sha256').update(canonical).digest('hex');
+  console.log('T-INTERVENE-0 INTERVENTION-SUPPORTED TRANSITION ESTIMATOR');
+  console.log(`union rows ${unionRows.length} · fit gates ${JSON.stringify(fitGates)}`);
+  if (randomEvaluation !== null && selectedEvaluation !== null) {
+    console.log(`random actual log/Brier ${randomEvaluation.scores.actualLog[0].toFixed(6)}`
+      + `/${randomEvaluation.scores.actualBrier[0].toFixed(6)}`
+      + ` · ECE ${randomEvaluation.calibration.macroEce.toFixed(6)}`);
+    console.log(`random teacher KL ${randomEvaluation.scores.teacherKl.map((value) => value.toFixed(6)).join('/')}`
+      + ` · teacher squared ${randomEvaluation.scores.teacherSq.map((value) => value.toFixed(6)).join('/')}`
+      + ` · actual log ${randomEvaluation.scores.actualLog.map((value) => value.toFixed(6)).join('/')}`
+      + ` · actual Brier ${randomEvaluation.scores.actualBrier.map((value) => value.toFixed(6)).join('/')}`
+      + ` · calibration-in-large ${randomEvaluation.calibration.inLarge.map((value) => value.toFixed(6)).join('/')}`);
+    console.log(`selected actual log/Brier ${selectedEvaluation.scores.actualLog[0].toFixed(6)}`
+      + `/${selectedEvaluation.scores.actualBrier[0].toFixed(6)}`
+      + ` · ECE ${selectedEvaluation.calibration.macroEce.toFixed(6)}`);
+    console.log(`selected teacher KL ${selectedEvaluation.scores.teacherKl.map((value) => value.toFixed(6)).join('/')}`
+      + ` · teacher squared ${selectedEvaluation.scores.teacherSq.map((value) => value.toFixed(6)).join('/')}`
+      + ` · actual log ${selectedEvaluation.scores.actualLog.map((value) => value.toFixed(6)).join('/')}`
+      + ` · actual Brier ${selectedEvaluation.scores.actualBrier.map((value) => value.toFixed(6)).join('/')}`
+      + ` · calibration-in-large ${selectedEvaluation.calibration.inLarge.map((value) => value.toFixed(6)).join('/')}`);
+    console.log(`random gates ${JSON.stringify({ ...randomExactGates, ...randomPredictiveGates })}`);
+    console.log(`selected gates ${JSON.stringify({ ...selectedExactGates, ...selectedPredictiveGates })}`);
+    console.log(`cross-stratum gates ${JSON.stringify(crossStratumGates)}`);
+  }
+  console.log(`PASS ${pass}`);
+  console.log(`SHA256 ${sha}`);
+  if (process.argv.includes('--json')) console.log(`REPORT ${canonical}`);
+  process.exit(0);
+}
 const priors = fitPriors(fitA.rows);
 const modelA = fitOnce(fitA, priors);
 const fitB = collect(FIT_START, FIT_MATCHES);

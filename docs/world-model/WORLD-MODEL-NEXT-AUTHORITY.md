@@ -385,3 +385,20 @@ Thus the representation ranks alternative risk but is not a calibrated target
 selector. The causal next fork is intervention-supported training on both
 selected and neutral-random actions, validated separately on fresh random and
 selected strata; post-hoc scaling and live use remain forbidden.
+
+T-INTERVENE-0 completed that action-support test with 15,385 unweighted selected
+plus random fit rows and two fresh validation ecologies. Random alternatives
+passed every gate: realised log loss improved from `0.903673/0.873890` to
+`0.780290` versus global/corridor, Brier from `0.538622/0.513780` to `0.462454`,
+and intended/opponent calibration residuals fell to `2.13pp/2.49pp`. Selected
+actions also passed every proper-score, LCB, classwise, ECE and cross-stratum
+gate, but their intended/opponent calibration residuals were `3.588pp/3.114pp`
+against the frozen `3pp` limit.
+
+Strict verdict therefore remains **FAIL**; final `82k` is sealed and the static
+feature/model family is closed to further tuning. Per the user's explicit
+no-因噎废食 authority, the strong two-ecology risk signal is retained rather
+than discarded. Exactly one separately frozen within-decision paired-risk
+audit may test whether the small aggregate offsets damage action comparisons.
+This is not authority for payoff, live selection, calibration maps or another
+feature/model iteration.

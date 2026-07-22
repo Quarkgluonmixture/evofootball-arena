@@ -759,6 +759,18 @@
 > The model may rank risk but cannot yet publish calibrated alternative probabilities.
 > A causally new selected+randomised training-support contract is the only justified
 > revisit; no post-hoc calibrator or live target selection.
+> ⚠️ **2026-07-22 T-INTERVENE-0 — STRICT FAIL, TWO-ECOLOGY RISK MODEL RETAINED.**
+> The unchanged 19-feature model was fitted on 15,385 unweighted selected+random
+> interventions and validated separately on fresh 78k random alternatives and 81k
+> selected actions. Random alternatives passed every gate (log loss
+> `0.780290/0.873890/0.903673`, Brier `0.462454/0.513780/0.538622`, ECE 1.41%,
+> intended/opponent residuals 2.13pp/2.49pp). Selected actions passed every
+> proper-score, bootstrap, classwise and cross-stratum gate, but intended/opponent
+> residuals were 3.588pp/3.114pp against the frozen 3pp ceiling. Report SHA
+> `7c5f10ac…35b1`; strict PASS remains false and final 82k is sealed. Under the user's
+> explicit no-因噎废食 authority, this is banked as a strong offline risk representation,
+> not a selector. One pre-registered within-decision paired-risk audit is allowed;
+> feature/model tuning, post-hoc calibration, payoff and live use remain closed.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
