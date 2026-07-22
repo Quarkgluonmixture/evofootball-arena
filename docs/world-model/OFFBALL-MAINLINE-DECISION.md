@@ -413,9 +413,29 @@ opponent-control cross-over between A and B. The coupled result appeared in
 35/64 states; 82 interventions carried both effects in the same response pair.
 All validity and execution gates passed.
 
-This changes the boundary: generic defensive movement can express a real
-one-body/two-outlet dilemma. The missing layer is context-dependent selection,
-not another named marking coordinate. The next authority may be a sealed,
-two-sided selection/ecology contract only. It may not install a static universal
-defender score, publish central assignments, remove the commander or enter live
-play.
+This establishes the atomic boundary: generic defensive movement can express a
+real one-body/two-outlet dilemma. A reality/VISION review then rejected jumping
+straight to selection: real pressure is sustained by rotating multi-body cover,
+and the defender side had no O3-like intent language.
+
+[`DECENTRALISED-DEFENSIVE-COVER-HANDOFF.md`](DECENTRALISED-DEFENSIVE-COVER-HANDOFF.md)
+therefore froze D-COVER-0 before any ecology. It composed observer-specific
+snapshots, generic D1/D2 candidates, a pure short-lived defensive movement
+commitment, two real locomotions and Oracle-v2 transitions without choosing a
+response.
+
+D-COVER-0 completed twice with byte-identical output
+(`f082ae8e…943b`). The representation and physical handoff were real: all 5,086
+commitments were valid; opposite exposed-outlet directions appeared in 32/64
+states; 126/147 D1 dilemmas had a legal D2 arrival handoff across 49/64 states.
+But the full contract failed. D1-vs-hold dilemmas were 29.1% against the frozen
+35% gate, and only 25/314 physical handoffs (8.0%) changed real first control
+across 13/64 states, below the 10% / 16-state gates.
+
+No live sandbox or ecology is authorised. The failure localises a new missing
+mediator: D-COVER aimed the second body toward a receiver endpoint, while real
+interception is a race to the moving ball somewhere along its flight path. A
+future contract may test observer-grounded space-time corridor interception as
+a causally different representation. It may not lower D-COVER's thresholds,
+extend the movement window, fit a response selector, publish central assignments,
+remove the commander or enter live play.

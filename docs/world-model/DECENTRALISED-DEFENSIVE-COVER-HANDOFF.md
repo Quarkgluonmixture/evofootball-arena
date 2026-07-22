@@ -1,8 +1,20 @@
 # D-COVER-0 — Decentralised Defensive Cover Handoff Lab
 
-Status: **PRE-REGISTERED — offline/probe-only; no live authority.**
+Status: **COMPLETE — FAIL at frozen H1/H3 gates; no live sandbox or ecology authorised.**
 
 Date: 2026-07-22
+
+Verification at the frozen result commit:
+
+* typecheck and production build pass;
+* focused defensive-coordination tests: `10/10` pass;
+* full suite: `613/614` pass on the first parallel run; the sole failure was an
+  unchanged careers test hitting its existing 20-second timeout while the
+  worker pool was saturated;
+* the required isolated retry passes `9/9` in `37.79s`, including the timed-out
+  determinism case in `7.06s`;
+* default football fingerprint remains
+  `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673`.
 
 ## 1. Why this is the next cut
 
@@ -286,3 +298,53 @@ Passing authorises only:
 
 It does not authorise production wiring, commander removal, genes, a live
 selector, a named defensive task, full-league evolution or script retirement.
+
+## 10. Result
+
+Two complete executions were byte-identical:
+
+```text
+SHA-256  f082ae8ebb4a2e374182002c57453e23ef67403d3cb0016d734006b4a6c5943b
+```
+
+All exact validity gates passed. Observer snapshots consumed no Match RNG;
+5,086 commitments were valid; annotating a response with the pure coordination
+query changed no physical signature; all 35,288 expected Oracle opportunities
+completed without force failure or nondeterminism.
+
+```text
+accepted states                         64 / 64
+completed two-defender branches       4411 / 5086   86.7%
+Oracle opportunities                 35288 / 35288 100.0%
+valid commitments                      5086 / 5086  100.0%
+
+D1 dilemmas                              147 / 506    29.1%  FAIL (>=35%)
+states with both exposed directions       32 / 64            PASS (>=24)
+
+dilemmas with a physical D2 handoff       126 / 147   85.7%  PASS (>=50%)
+states with a physical handoff              49 / 64           PASS (>=40)
+
+transition-changing physical handoffs       25 / 314    8.0%  FAIL (>=10%)
+states with a transition handoff             13 / 64           FAIL (>=16)
+```
+
+The result preserves two important facts:
+
+1. shared movement intent is not vacuous—32 states required opposite D2
+   reactions under different D1 commitments while D2's initial self-state was
+   unchanged;
+2. two normal kinematic bodies can complete a local arrival handoff in 49/64
+   states without central assignments or extra locomotion authority.
+
+But the accepted handoff definition aimed D2 toward the **receiver endpoint**.
+That geometry reached real first-transition consequences only 8.0% of the time.
+The missing mediator is therefore not permission to lower the gate or fit a
+response selector. A pass can be intercepted before its endpoint; the defender
+must compare arrival to the moving ball along a space-time corridor. Existing
+`carrierLaneClearance` is static distance, and live `canInterceptPass` is a
+crude current-ball helper rather than an observer-grounded candidate prediction.
+
+D-COVER-0 is closed. A causally different future contract may test a pure
+space-time pass-corridor interception margin against these real response worlds.
+It must keep the failed endpoint gates as historical controls and may not alter
+the movement window, candidate set, Oracle replicates or live contact semantics.
