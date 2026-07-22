@@ -1,6 +1,6 @@
 # D-HANDOVER-0 — Containment-Established Defensive Release
 
-Status: **PRE-REGISTERED — final defensive local-process mechanism gate.**
+Status: **COMPLETE — FAIL. Defensive local-process branch CLOSED.**
 
 Date: 2026-07-22
 
@@ -197,3 +197,40 @@ not add bad-touch/back-pass tables, protection scores or TeamCoordinationDemand.
 On PASS, authorise only an observer-grounding robustness audit. PASS does not
 authorise live PlayerBrain, TeamBrain removal, a signal bus, payoff, selection,
 evolution, genes, ecology or a visual sandbox.
+
+## 9. Frozen result
+
+The sealed 64-opportunity suite completed twice with byte-identical output:
+
+```text
+accepted opportunities / scanned seeds       64 / 64
+completed four-second H windows                0 / 64
+B published epoch-valid seeking               34 / 64
+B reached established containment             17 / 64
+A supported established                       17 / 64
+seeking-only opportunities                    17 / 64
+ordered handovers H / I                        8 / 0
+complete recovery fingerprints H / I           1 / 0
+largest holder/replacement share              25.0%
+report sha256  abef823c1b2ec88b28098f5fbb7c732836e382b6045c2ef7bf1acbfcec06346c
+```
+
+All exact anti-commander gates passed: there were no premature, seeking-only,
+blind or stale releases; H and U were identical before the supported release;
+snapshot reads consumed no Match RNG; no TeamBrain coordination publication or
+new action vocabulary appeared; and the rerun was byte-identical.
+
+The causal distinction is therefore real but too weak to carry the branch. An
+epoch-valid replacement established the existing jockey containment in 17
+states and eight strict established-before-release chains occurred, so intent
+and execution are not identical. But the frozen gates required at least 24
+establishments, 16 ordered handovers and 16 complete recoveries. Only one old
+presser both released in order and formed the required visible recovery. Every
+four-second transaction was also cancelled before the same carrier epoch
+survived to the boundary.
+
+Per the pre-registered stop rule, the defensive local-process branch is closed.
+The result may not be retried by changing the window, cadence, `containing`
+hysteresis, signal lifetime, seed range, release rule or recovery threshold.
+No observer-grounding audit, live signal bus, ecology or payoff stage is
+authorised. The accepted live authority remains the existing commander.

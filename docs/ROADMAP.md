@@ -632,6 +632,19 @@
 > control `0/64`), report SHA `a6bde4fa…59f5`. The family is parked without payoff,
 > selection, ecology or live wiring. Faster renegotiation, extra claimants and target
 > bonuses are explicitly not authorised.
+> ⛔ **2026-07-22 D-HANDOVER-0 STOP — ESTABLISHED-BEFORE-RELEASE IS REAL BUT
+> NOT A ROBUST ROTATION SUBSTRATE.** The final mechanism-only gate froze D-INTENT's
+> A→B assignment and changed only when A could release its old ChaseBall action. B had
+> to publish `seeking`, later enter the existing `Player.containing=true`, and remain
+> observer-supported through A's next normal update. In 64 sealed opportunities B
+> established in `17/64` (gate `24`), strict ordered handovers formed in `8/64` (gate
+> `16`), and only `1/64` also produced visible recovery (gate `16`). All premature,
+> blind, stale, central-publication, RNG, paired-prefix and determinism gates passed;
+> two runs shared SHA `abef823c…346c`. Per the frozen stop rule, the defensive local-
+> process branch is **CLOSED** before payoff, ecology or live wiring. Do not retry via
+> cadence, window, `containing`, signal or recovery-threshold changes. The authority
+> returns to the explicit fork: a new transition-estimator programme or a coupled
+> arrival/contact foundation.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

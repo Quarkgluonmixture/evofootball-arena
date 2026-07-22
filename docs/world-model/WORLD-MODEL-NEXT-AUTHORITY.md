@@ -223,6 +223,20 @@ It freezes D-INTENT's A→B choice and tests only established-before-release wit
 an epoch-safe explicit signal. If this gate fails, the defensive local-process
 branch closes and the choice returns to Option B or C.
 
+D-HANDOVER-0 is now complete and failed without validity ambiguity. B reached
+epoch-valid existing containment in `17/64` opportunities (gate `24/64`), only
+`8/64` formed the ordered established-before-release chain (gate `16/64`), and
+only `1/64` also formed the frozen visible recovery (gate `16/64`). All
+anti-commander, observer-support, ordering, RNG and determinism gates passed;
+the two runs shared SHA `abef823c…346c`.
+
+This closes Option A's defensive local-process branch exactly as
+pre-registered. The project banked a real distinction between seeking and
+established pressure, but the current action/observation substrate does not
+turn that distinction into a robust multi-body rotation process. No threshold,
+window, signal or executor parameter may be adjusted, and no payoff, ecology or
+live sandbox follows.
+
 Choose **Option B** only if trustworthy pass choice must precede visible
 positioning. Choose **Option C** only if physical first-control realism now
 outranks tactical emergence.
@@ -231,7 +245,7 @@ Until that decision, the accepted authority is:
 
 ```text
 live B0 + existing commander
-D-COVER/D-LANE/D-ROTATE/D-INTENT parked
+D-COVER/D-LANE/D-ROTATE/D-INTENT/D-HANDOVER parked
 no defensive sandbox
 no ecology
 no new selector

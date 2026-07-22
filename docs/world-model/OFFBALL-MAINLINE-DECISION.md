@@ -512,3 +512,17 @@ assignment says B should chase, while the existing executor's
 pre-registers the last mechanism-only gate: A retains its old ChaseBall action
 until it observes an epoch-valid B containment signal, then adopts the already
 frozen D-INTENT superseding action. It does not reconsider A/B or add payoff.
+
+D-HANDOVER-0 completed twice with byte-identical SHA `abef823c…346c` and
+failed the final local-process gate. The mechanism fired non-vacuously—17/64
+replacement defenders established epoch-valid existing containment and 8/64
+formed the strict established-before-release order—but support stopped below
+the frozen 24/64 establishment gate, ordered handovers stopped below 16/64, and
+only 1/64 also produced visible recovery. Exact anti-commander, signal-order,
+observer-support, RNG and paired-prefix gates all passed.
+
+The defensive local-process branch is therefore closed before payoff,
+selection, ecology or live wiring. The result must not be retried with a longer
+window, faster cadence, looser `containing`, signal lifetime or recovery gate.
+The remaining authority fork is the previously declared transition-estimator
+re-entry versus a genuinely coupled arrival/contact foundation.

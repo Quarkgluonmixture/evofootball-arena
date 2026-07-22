@@ -201,7 +201,8 @@ DDD-0 one-body defensive dilemma (complete)
 → point-response defensive branch parked
 → D-ROTATE-0 assignment-blind temporal process (complete, FAIL)
 → D-INTENT-0 local relation negotiation (complete, allocation works / rotation FAIL)
-→ defensive local-process branch parked before payoff/selection
+→ D-HANDOVER-0 established-before-release (complete, weak signal / FAIL)
+→ defensive local-process branch CLOSED before payoff/selection
 ```
 
 B1c already failed its live boundary and was reverted. Do not roll directly
@@ -220,4 +221,13 @@ question negatively: all 64 states produced multiple settled commitments, yet
 only one produced the complete rotation fingerprint. The engine can distribute
 existing chase/mark actions without the commander; it still cannot express the
 time-dependent delay/takeover/cover state that makes those assignments rotate.
-This defensive sub-branch is parked before selection or payoff.
+This result stopped selection and payoff from opening.
+
+D-HANDOVER then tested the last causally different execution boundary without
+changing allocation. Existing `Player.containing` did distinguish seeking from
+established pressure in 17/64 opportunities, and eight strict release chains
+occurred, but only one chain also produced the required visible recovery. This
+missed the frozen establishment, handover and recovery gates while every
+anti-commander and determinism invariant passed. The local defensive process
+branch is now closed; it cannot be reopened by retuning timing, signals or the
+existing jockey executor.
