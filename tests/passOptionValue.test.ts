@@ -15,17 +15,37 @@ import { BALL_FRICTION_K, DT } from '../src/sim/constants';
 
 describe('EDS E0 pass-option valuation', () => {
   it('MIRROR CONTRACT: the mirrored touch curve equals the real one', () => {
-    for (const speed of [0, 3, 6, 6.5, 8, 9.8, 11.1, 14, 18, 22, 26]) {
-      for (const pressure of [0, 0.25, 0.5, 0.75, 1]) {
-        for (const misalign of [0, 0.5, 1]) {
-          for (const technique of [0, 0.5, 1]) {
-            for (const positioning of [0, 0.5, 1]) {
-              expect(mirroredTouchFailChance(speed, pressure, misalign, technique, positioning))
-                .toBeCloseTo(touchFailChance(speed, pressure, misalign, technique, positioning), 12);
+    // EDS E1b: both curve states, because the flagged heavy curve is priced by
+    // the dormant evaluator for the always-heavy canary.
+    for (const heavy of [false, true]) {
+      for (const speed of [0, 3, 6, 6.5, 8, 9.8, 11.1, 14, 18, 22, 26]) {
+        for (const pressure of [0, 0.25, 0.5, 0.75, 1]) {
+          for (const misalign of [0, 0.5, 1]) {
+            for (const technique of [0, 0.5, 1]) {
+              for (const positioning of [0, 0.5, 1]) {
+                expect(
+                  mirroredTouchFailChance(speed, pressure, misalign, technique, positioning, heavy),
+                ).toBeCloseTo(
+                  touchFailChance(speed, pressure, misalign, technique, positioning, heavy), 12,
+                );
+              }
             }
           }
         }
       }
+    }
+  });
+
+  it('EDS E1b: the heavy curve costs more everywhere above the free threshold', () => {
+    // Below 6 m/s a rolled ball stays free by fiat in both curves; above it the
+    // heavy curve is strictly dearer until the base one saturates.
+    for (const speed of [0, 3, 6]) {
+      expect(mirroredTouchFailChance(speed, 0, 0, 0.5, 0.5, true))
+        .toBeCloseTo(mirroredTouchFailChance(speed, 0, 0, 0.5, 0.5, false), 12);
+    }
+    for (const speed of [7, 9, 11, 13, 18, 22]) {
+      expect(mirroredTouchFailChance(speed, 0, 0, 0.5, 0.5, true))
+        .toBeGreaterThan(mirroredTouchFailChance(speed, 0, 0, 0.5, 0.5, false));
     }
   });
 

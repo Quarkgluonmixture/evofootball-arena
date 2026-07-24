@@ -168,6 +168,12 @@ export interface MatchConfig {
    * observation, OFF by default — it must not change a single tick.
    */
   traceFirstTouch?: boolean;
+  /**
+   * EDS E1b flagged touch cost (docs/world-model/EDS-E1B-TOUCH-COST-CURVE.md):
+   * C1-B's honest speed-dependent control curve, OFF by default. With the flag
+   * off `touchFailChance` is bit-for-bit the shipped one.
+   */
+  edsTouchCost?: boolean;
 }
 
 interface GroundContactClaim {
@@ -232,6 +238,8 @@ export class Match {
   /** E1a: first-touch adjudications, appended to only when traceFirstTouch is on. */
   readonly firstTouchTrace: FirstTouchTraceEntry[] = [];
   readonly traceFirstTouch: boolean;
+  /** E1b: the heavy-touch curve, dormant unless a probe world asks for it. */
+  readonly edsTouchCost: boolean;
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;
@@ -360,6 +368,7 @@ export class Match {
     this.derby = cfg.derby ?? false;
     this.traceContests = cfg.traceContests ?? false;
     this.traceFirstTouch = cfg.traceFirstTouch ?? false;
+    this.edsTouchCost = cfg.edsTouchCost ?? false;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     // The underdog shift (Phase 64): with both clubs' Elo on the team
     // sheet, the outgunned coach bends toward the bus by his gene. Read

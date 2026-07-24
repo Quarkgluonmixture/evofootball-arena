@@ -1,6 +1,7 @@
 # EDS E1b — The flagged touch-cost curve
 
-Status: **PRE-REGISTERED — no run yet.** Drafted by the autonomous session
+Status: **RUN 2026-07-25 — §6 is the frozen result: PASS on every gate.**
+Drafted by the autonomous session
 under commander ruling #6 (2026-07-25), which opened E1b on I1's pass and
 handed the drafting constraints in
 [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md) §3.
@@ -227,3 +228,131 @@ rather than a surprise.
 * E1b authorises no live ship, no default-on flag, no §2 band claim, and no
   work on E2. On PASS the queue advances to E2's drafting; on any FAIL the
   fork returns to the commander per the design contract §5.
+
+## 6. FROZEN RESULT — PASS on every gate (2026-07-25)
+
+Run at HEAD `b8386cd`. Verdict **PASS**: 4/4 exact, 4/4 FIRES, 4/4
+decomposition, 3/3 canary. Two invocations byte-identical, shared SHA
+`ca192bc85b227bd9f4a4ded2d920187fd0553df5cc51c62a0e0c86fa56582d59`.
+Sweep: **191,100 staged passes per arm**, 110,031 adjudicated OFF (57.58%) and
+109,780 ON (57.45%) — the flag does not change how often the world adjudicates,
+only how the roll comes out.
+
+### Exact validity
+
+```text
+X1  production fingerprint, flag off   57b0bdab…c673 unchanged
+X2  flag OFF vs pre-E1b HEAD 19f7aa1   IDENTICAL on all three seeds, verified
+                                       cross-commit in a throwaway worktree:
+                                       b00f6d62… · eb1dc176… · 3aab42f5…
+X2b flag ON                            diverges on 7001 and 7003 (7002 holds,
+                                       exactly the coin-flip §4.1 predicted)
+X3  tsc + build clean · 709/709 green, mirror contract over both curve states
+X4  two invocations byte-identical     SHA above
+X5  REPRODUCTION                       the OFF arm's first 300 reps return
+                                       E1a's banked I1 run to the last digit:
+                                       2,780 / 4,302 / 4,478 / 2,864 events and
+                                       1.6906% / 3.2775% / 4.7566% / 6.4944%
+```
+
+X5 is the load-bearing one: the staging is a copy of E1a's, and it came back
+bit-exact, so every number below sits on the world E1a certified.
+
+### F1 — the curve lands exactly where the arithmetic said it would
+
+```text
+bucket   events OFF/ON     spill OFF → ON        measured Δ   predicted Δ   error
+ 7        12,205/12,311     1.696% →  2.437%      +0.741pp     +0.547pp     0.194pp
+ 9        18,305/18,346     3.278% →  4.818%      +1.541pp     +1.641pp     0.100pp
+11        19,522/19,637     4.820% →  7.853%      +3.032pp     +2.734pp     0.298pp
+13        12,221/12,346     6.162% → 10.465%      +4.303pp     +3.828pp     0.475pp
+```
+
+Every bucket clears its 11,300-event floor, the ON arm is strictly monotone,
+and the ON calibration |empirical − logged pFail| is 0.155 / 0.023 / 0.369 /
+0.494pp against the 2.0pp tolerance. The F1d interval holds with room: the
+worst error is 0.475pp inside a 1.25pp band, and in σ terms the four buckets
+land 1.07 / 0.34 / 0.85 / 1.35σ from prediction (σ_diff = 0.18 / 0.29 / 0.35 /
+0.35pp at the achieved n) — noise, not bias.
+
+The **logged** pFail is even tighter than the outcome, as it should be, because
+it carries no binomial noise: +0.586 / +1.634 / +2.753 / +3.786pp against the
+analytic +0.547 / +1.641 / +2.734 / +3.828pp. The residual is the in-bucket
+speed mean, not the curve: Δ is linear in arrival speed at 0.547pp per m/s
+above the 6 m/s threshold, so a window that is not perfectly centred shifts it
+by exactly this much.
+
+### F2 — the increase is carried by the speed channel alone
+
+```text
+bucket   Δ mean pFail   speed channel share   Δ pressure   Δ misalign   |Δ mean misalign|
+ 7        +0.586pp          99.996%             0.000pp      0.000pp        1e-5
+ 9        +1.634pp          99.999%             0.000pp      0.000pp        0
+11        +2.753pp         100.002%             0.000pp     -0.000pp        1e-5
+13        +3.786pp         100.000%             0.000pp     -0.000pp        0
+```
+
+The pressure channel is **identically zero in both arms** — this staging holds
+pressure at 0 by construction — so the measured increase provably cannot be the
+pressure-relief confound I2 refuted. The power-coupled misalign channel that I2
+discovered reads the same in both arms to within 1e-5: E1b touched the speed
+term and nothing else leaked.
+
+### F3 — the always-heavy canary
+
+```text
+C1  predicted touch-cost spread 0.85→1.15, E0's 65 priced states
+      old curve 3.95pp  →  new curve 6.53pp     (floor 6.0pp)          ✓
+C2  corridor read untouched: threat 0.843 / 0.586 / 0.446 s, flight
+      1.713 / 1.303 / 1.061 s, arrival 5.99 / 8.69 / 11.39 m/s          ✓ exact
+C3  flag-OFF reproduction of E0: 7.34% / 11.29% and safest-is-1.15 in
+      52/52 contested                                                   ✓ exact
+```
+
+C1 clears, but under its own floor rather than over the 6.90pp the §4
+arithmetic projected — the per-state arrival mix is slightly cooler than the
+three-power means suggested. That is why the floor was set 0.9pp below the
+projection.
+
+**The caveat the contract required this result to carry:** E0's "safest" is
+ranked by corridor threat alone, so C1 passing does **not** prove always-heavy
+is broken. What it proves is that the evaluator can now see a cost of the right
+order — 6.53pp of touch failure against the 21.2pp measured opponent-first
+swing that power buys. Heavy is still the safer option on the threat axis by a
+wide margin; whether 6.53pp is enough for E3's no-strict-dominance is E3's
+gate, now with an honest number in front of it instead of a surprise.
+
+### Diagnostics — reported, NEVER gates
+
+Twelve sealed 240-second matches per arm, same seeds:
+
+```text                        OFF        ON       delta
+miscontrols / match          7.25      10.08     +39.1%
+goals / match               2.833      2.167     -23.5%
+first-touch spill rate      9.67%     13.57%     +3.90pp
+mean logged pFail           9.81%     13.07%     +3.26pp
+  speed channel             3.39pp     6.53pp    +3.14pp
+  pressure channel          4.12pp     4.36pp    +0.24pp
+  misalign channel          1.40pp     1.28pp    -0.12pp
+```
+
+This is C1-B's live signature again — miscontrols up about a third, goals down
+— on twelve matches instead of 568, and it is recorded here only so E3 knows
+what it is walking into. **No §2 band claim is made or implied**; C1-B already
+measured that properly and its verdict stands. Note the channel row: in real
+play pressure is the largest single channel (4.12pp) and the curve did not
+touch it, while the blind-side channel is a real 1.3–1.4pp of every touch —
+the substrate seat C5's orientation craft will land on.
+
+### Verdict
+
+**E1b PASSES.** The flag is a flag (X1/X2/X5), the curve reaches the real
+adjudication exactly as specified (F1), the increase is carried by the channel
+the amendment names and by no other (F2), and the dormant evaluator can now
+price a cost of the right order (F3). Nothing shipped: `edsTouchCost` remains
+default OFF, the production fingerprint is unchanged, and the C1-B redraw has
+been spent here, in its correct home, on a measurement instead of a weight.
+
+Per the design contract §3 the queue advances to **E2** — both-sides
+perception, with the unseen-pricing amendment — whose stage contract drafts
+next.

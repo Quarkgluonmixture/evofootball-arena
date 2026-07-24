@@ -63,6 +63,8 @@ export interface PassOptionInput {
   readonly powerMultiplier: number;
   readonly attackDir: 1 | -1;
   readonly reachProfiles: ReadonlyMap<number, KnownReachProfile>;
+  /** EDS E1b: price the touch prior with the flagged heavy curve. */
+  readonly heavyTouchCost?: boolean;
 }
 
 /**
@@ -75,9 +77,15 @@ export interface PassOptionInput {
 export function mirroredTouchFailChance(
   speed: number, pressure: number, misalign: number,
   technique = GENERIC_RECEIVER_TECHNIQUE, positioning = GENERIC_RECEIVER_POSITIONING,
+  heavyTouchCost = false,
 ): number {
   const aware = 1 - (positioning - 0.5) * 0.6;
-  const raw = 0.01 + clamp01((speed - 6) / 8) * 0.07 + (pressure * 0.1 + misalign * 0.05) * aware;
+  // EDS E1b: mirrors `TOUCH_SPEED_COST`. Restated rather than imported for the
+  // same reason the rest of the curve is — the contract test pins them equal.
+  const span = heavyTouchCost ? 16 : 8;
+  const weight = heavyTouchCost ? 0.24 : 0.07;
+  const raw = 0.01 + clamp01((speed - 6) / span) * weight
+    + (pressure * 0.1 + misalign * 0.05) * aware;
   return clamp(raw * (1.3 - technique * 0.85), 0, 0.4);
 }
 
@@ -104,7 +112,9 @@ const flightDirection = (from: Readonly<V2>, flight: GroundPassPrediction): V2 |
  * flight, a degenerate geometry — never a guess.
  */
 export function evaluatePassOption(input: PassOptionInput): PassOptionValue | null {
-  const { snapshot, passerGid, targetGid, powerMultiplier, attackDir, reachProfiles } = input;
+  const {
+    snapshot, passerGid, targetGid, powerMultiplier, attackDir, reachProfiles,
+  } = input;
   const passer = snapshot.players.find((entry) => entry.gid === passerGid);
   const target = snapshot.players.find((entry) => entry.gid === targetGid);
   if (!passer || !target || passerGid === targetGid) return null;
@@ -136,6 +146,7 @@ export function evaluatePassOption(input: PassOptionInput): PassOptionValue | nu
     )) / 2);
   const touchFailPrior = mirroredTouchFailChance(
     receptionRelativeSpeed, affordance.receivePressure, misalign,
+    GENERIC_RECEIVER_TECHNIQUE, GENERIC_RECEIVER_POSITIONING, input.heavyTouchCost ?? false,
   );
 
   // The corridor read, per OBSERVED opponent: keep the worst (largest) slack.
