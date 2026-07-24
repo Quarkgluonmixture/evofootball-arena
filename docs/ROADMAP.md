@@ -3808,3 +3808,29 @@ blueprint above.
 > belongs in the **Embodied Decision Slice** where pass choice, pass power and
 > first touch go live together and can trade against each other. That fork is the
 > user's. Authority: [`world-model/PASS-POWER-SLICE.md`](world-model/PASS-POWER-SLICE.md) §12–13.
+> 🔺 **D-TRI-0 TRIADIC ROTATION — PASS: THREE BODIES COORDINATE ON OBSERVATION
+> ALONE (2026-07-24, SHA `d3624042…b435`, twice byte-identical, 96/96 accepted in
+> 366 seeds, **74/96 completed** against a gate of 40, ZERO `src/**` changes,
+> fingerprint `57b0bdab…c673` unchanged, 702/702).** Three teammates hold private
+> conflicting intents in a CHAIN (A–B, B–C); each reads its TWO partners only
+> through its own S3-G2 alternating gaze plus three-sample motion evidence, and
+> runs the UNCHANGED D-PROC-1G consumer once per partner with the first reopening
+> winning — no belief merging, no new admissibility semantics, no commander, no
+> communication. Materiality 72/74 = **97.3%** (mean pairwise 8.03m → 4.24m with
+> consumers off). **Resolution 57/74 = 77.0%** against a gate of 45% — and
+> *indistinguishable from D-MUT-0's two-body 76.9%*: the third body cost nothing,
+> because resolution needs only one party per link to move (responders A 38 · B 51
+> · C 50, all three revising in just 27% of states). **Second-order churn — the
+> failure mode this experiment existed to expose — was 0 of 145 revisions**;
+> combined revisions never exceeded 4, per player 2, zero cycles, zero duplicate
+> ticks. Purity, RNG, intervention and belief-identity audits were zero for each
+> of the three observers independently, and N/M pre-reopening equality held 96/96
+> physical plus 96/96 on all three evidence streams. Honest notes: the completion
+> gate was over-conservative in the safe direction (predicted ≈43 by assuming the
+> observer-unsupported channel would double; it *fell* to 6–7 of 96, since
+> requiring all three to see both partners and the carrier pre-selects surviving
+> geometries), and progress cleared by only 1.6pp (76.6% vs 75%). This banks the
+> first three-body temporal process. **The fork is the user's, exactly as
+> pre-laid: open A4 (coach doctrine / familiarity as latency-reducing priors) or
+> prioritise the Embodied Decision Slice.**
+> Authority: [`world-model/TRIADIC-MOTION-GATED-ROTATION.md`](world-model/TRIADIC-MOTION-GATED-ROTATION.md).

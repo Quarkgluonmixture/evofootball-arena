@@ -672,3 +672,45 @@ possible through private observation alone. It authorises exactly one user
 fork — a three-body rotation-shaped extension, or banking the brick and
 pivoting to Tracks B/C — and no live wiring, TeamBrain change, relevance
 selection, coach doctrine, familiarity, payoff, gene or evolution work.
+
+The ratified continuation ran in one autonomous stretch and reached the third
+body. **S3-G2 PASSED** ([`DUAL-TARGET-ATTENTION-SCHEDULE.md`](DUAL-TARGET-ATTENTION-SCHEDULE.md)):
+the contract's own geometry showed that at awareness 0.8 the 253.74° field means
+at most one target is ever out of field, so multi-target attention is a CADENCE
+problem with zero slack — six scans, two partners, strict alternation gives
+exactly the three samples the qualified predicate needs. Interleaved gaze held
+both partners' histories in 88.2% of windows and qualified support on both in
+74.2%, while single-target gaze starved the unattended partner in 92.5% of the
+same windows; the scarcity is real, since splitting cost the attended partner in
+86.0%. Run 1 died on an acceptance shortfall (69/96 in a 512-seed budget) — a
+hard escalation resolved by raising the SAMPLING BUDGET only, with Run 1's
+numbers recorded first so nothing could be tuned toward them.
+
+**D-TRI-0 then PASSED** ([`TRIADIC-MOTION-GATED-ROTATION.md`](TRIADIC-MOTION-GATED-ROTATION.md)),
+spending both banked bricks at once: three teammates in a CHAIN conflict (A–B,
+B–C), each reading its two partners through its own alternating gaze and running
+the UNCHANGED consumer once per partner, first reopening winning. Zero `src/**`
+changes; twice byte-identical (SHA `d3624042…b435`); 96/96 accepted in 366 seeds;
+74/96 completed against a gate of 40. Materiality 97.3%; **resolution 57/74 =
+77.0%, statistically indistinguishable from D-MUT-0's two-body 76.9%** even
+though the gate was priced at 45% expecting the two chain links and the
+dual-attention penalty to compound. They did not: resolution needs only one party
+per link to move, and **second-order churn — the failure mode this experiment
+existed to expose — was 0 of 145 revisions**. The naive first-reopening-wins
+composition sufficed, with combined revisions never exceeding 4, per player 2,
+and zero cycles. All purity and belief-identity audits were zero for each of the
+three observers independently, and N/M pre-reopening equality held 96/96 on
+physical state and 96/96 on all three evidence streams.
+
+Two honest notes carried forward: the completion derivation was wrong in the safe
+direction (it predicted ≈43 completed by assuming a third dual-attending observer
+would double the observer-unsupported channel; that channel *fell* to 6–7 of 96,
+because requiring all three to see both partners and the carrier at the freeze
+pre-selects surviving geometries), and progress cleared by only 1.6pp.
+
+What is banked is representation-and-response only: **coordination among three
+bodies is achievable on private observation alone.** The continuation is the fork
+the user pre-laid before the run: open **A4** (coach doctrine / familiarity as
+latency-reducing priors — never information) or prioritise the **Embodied
+Decision Slice**. Neither is authorised by this result; no live wiring, TeamBrain
+change, relevance selection, payoff, gene or evolution work is either.

@@ -1,6 +1,6 @@
 # D-TRI-0 — Triadic motion-gated rotation
 
-Status: **PRE-REGISTERED — no run yet.** (Authorised as S3-G2's single
+Status: **PASS 2026-07-24 (§7)** — the first three-body temporal process banked; the A4-versus-EDS fork is the user's. (Authorised as S3-G2's single
 continuation; ruling #2 ratified by the user 2026-07-24.)
 
 Date: 2026-07-24
@@ -181,5 +181,98 @@ PASS banks the first three-body temporal process — a rotation resolved by
 observation alone — and hands the user the choice their ruling already pre-laid:
 **open A4** (coach doctrine / familiarity as latency-reducing priors) or
 **prioritise the Embodied Decision Slice**. It authorises neither by itself, and
+authorises no live wiring, TeamBrain change, relevance selection, payoff, gene or
+evolution work.
+
+## 7. Frozen result — PASS (2026-07-24)
+
+Probe: `scripts/probes/triadic-motion-gated-rotation.ts`. Zero `src/**` changes.
+Two invocations byte-identical, **SHA-256
+`d3624042f1b59d860717086b9faf18c963bd24c7d769def4da50db008045b435`**. Production
+fingerprint `57b0bdab…c673` unchanged; `npx tsc --noEmit` clean; full suite
+702/702 (94 files).
+
+### Support and completion
+
+```text
+scanned seeds                 366   (<= 4096)        95,000..95,365
+accepted states                96   (= 96)           ~3.8 seeds per state
+jointly completed (N and M)    74   (>= 40)          gate cleared with room
+```
+
+Abort census, identical in both arms bar one state: loose ball 12, observer
+unsupported 6 (N) / 7 (M), dead ball 3. **The completion derivation was wrong in
+the safe direction**: it predicted ≈43 completed on the assumption that a third
+dual-attending observer would roughly double the observer-unsupported channel
+(16 → ~32). It fell instead, to 6–7 of 96. The reason is visible in the
+acceptance clause: requiring all three players to see BOTH partners *and* the
+carrier at the freeze pre-selects visibility geometries that survive the window.
+Recorded as an honest over-conservative gate, not adjusted.
+
+### Conflict materiality (N arm)
+
+```text
+mean pairwise distance shrinks          72/74 = 97.3%   (>= 70%)
+N-arm revisions                         0               (consumers disabled)
+mean pairwise distance 8.03m → 4.24m
+```
+
+### Primary mechanism (M arm, 74 completed states)
+
+```text
+resolved states                         57/74 = 77.0%   (>= 45%)   ✓
+replacement progress >= 0.25m         111/145 = 76.6%   (>= 75%)   ✓
+combined revisions per state            max 4, over-budget 0       (<= 6)
+per-player revisions                    max 2, over-budget 0       (<= 3)
+candidate cycles                        0
+duplicate revision ticks                0
+admissibility / frozen-candidate        0 / 0
+no-admissible-replacement retentions    0 (honest by construction)
+SECOND-ORDER CHURN revisions            0 of 145
+responder share (of 74)                 A 38 · B 51 · C 50 · all three 20 (27.0%)
+mean minimum final target separation    3.30m
+```
+
+### Exact validity
+
+All zero, for **each of the three observers independently**: schema failures,
+non-finite samples, perception RNG changes, forbidden action changes, duplicate
+revision ticks, admissibility violations, frozen-candidate violations, belief
+identity violations (every belief's `observerGid`/`actorGid` checked per tick),
+invalid gaze, non-normalised gaze, and gaze recompute mismatches against each
+observer's own logged snapshots *and its own alternation schedule*. N/M
+pre-reopening equality held at **96/96 physical and 96/96 evidence**, with all
+three evidence streams compared separately.
+
+### What the numbers say
+
+**The third body cost essentially nothing.** Resolution came in at 77.0% against
+D-MUT-0's two-body 76.9% — the gate was priced at 45% precisely because the
+derivation expected two chain links and a dual-attention penalty to compound
+(`0.769² × 0.92 ≈ 0.54`). They did not compound. Two mechanisms explain it and
+both are visible in the data:
+
+* **resolution needs only one party per link to move.** With three bodies there
+  are more candidate responders per conflict, not fewer — B and C (the chain's
+  middle and tail) each revised in ~2/3 of states, and all three revised in only
+  27%, so the chain usually settled on one or two moves rather than a scramble.
+* **second-order churn did not materialise at all: 0 of 145 revisions** landed on
+  the other partner's target. The naive first-reopening-wins composition was
+  enough; the cyclic tie-break's ordering plus the occupancy test kept
+  replacements clear of the second partner without ever being told about it.
+
+The honest caveats: progress cleared its gate by 1.6pp (76.6% vs 75%), the
+tightest margin in the run; and S3-G2's dual-attention cost is present but
+absorbed — the 6–7 observer-unsupported aborts are exactly the windows where an
+alternating gaze lost a partner.
+
+### Verdict
+
+**PASS.** This banks the first three-body temporal process in the world model: a
+rotation-shaped conflict resolved by observation alone — no commander, no
+communication, no shared state, no new production code. Per §6 the continuation
+is the choice the user's ruling already pre-laid: **open A4** (coach doctrine and
+familiarity as latency-reducing priors, never information) or **prioritise the
+Embodied Decision Slice**. This result authorises neither by itself, and
 authorises no live wiring, TeamBrain change, relevance selection, payoff, gene or
 evolution work.
