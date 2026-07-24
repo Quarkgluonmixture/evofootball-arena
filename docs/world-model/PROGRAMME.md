@@ -141,6 +141,38 @@ generalises.
 > Recommended queue on ratification: `E0 → E1 → E2 → E3 → E4(user)`, with
 > **D1 to a light parallel session anytime**. A4 and C5/C2/C4 queue behind
 > EDS's outcome.
+>
+> **COMMANDER RULING #5 (2026-07-24 — the D-TRI sync race + E1a re-stage):**
+>
+> 1. **Sync rule (governance, binds every session from now on):** before
+>    DRAFTING or EXECUTING any step, pull origin and check whether a
+>    contract/handoff already owns that step ID. Commander-authored contracts
+>    take precedence; on collision STOP and reconcile — never run a parallel
+>    variant under the same ID. (The D-TRI race: the commander's A5 contract
+>    landed at `04af61d` while the autonomous session was already running its
+>    own draft; the session disclosed it fully and kept the handoff — correct
+>    conduct after the fact.)
+> 2. **The triadic variant's result STANDS under its own honest claim** —
+>    all-three-alternating + first-open-wins chain resolution at 77.0%, zero
+>    churn under the WEAKER composition, and in one respect a HARSHER
+>    attention world than A5's (everyone pays the split, yet 77% held). It
+>    does **NOT consume A5**: `THREE-BODY-CHAIN-RESPONSE.md` + `HANDOFF-D-TRI-0.md`
+>    stay OPEN, queued at Track A resumption (post-EDS), where their
+>    unanswered questions — B's dual-support transfer inside a consumer,
+>    union admissibility vs first-open-wins, partial resolution — become
+>    direct inputs to A4 / rotation-at-scale design. The EDS-first decision
+>    did not depend on D-TRI specifics and is unaffected.
+> 3. **E1a re-stage GO**: a REAL intended pass, power-swept to foot speed
+>    (the intended receiver is where the world actually adjudicates,
+>    maxSpeed 24 vs 14); I1/I2 gates verbatim — this is re-staging, not
+>    gate-changing; E1b stays closed until I1 passes; run it in a FRESH
+>    session (the third-same-night quality stop was the right call).
+> 4. Two substrate boundaries REGISTERED (mirrored in the EDS design doc §4):
+>    receptions at ≤6 m/s are free BY FIAT (`mechanics.ts:130` returns clean
+>    before any roll — C1-A2 and E0b were equally blind there), and
+>    mid-speed loose balls often never reach adjudication at all (M3 contact
+>    cushioning; sweep buckets 9/11 produced zero events vs 60/60 in 7/13).
+>    Both are C5-adjacent substrate truths — registered, NOT touched in EDS v1.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 

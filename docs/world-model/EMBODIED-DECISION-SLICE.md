@@ -140,6 +140,12 @@ DIAGNOSTICS only — to name a failing component — never as partial ships.
 
 ## 4. Gate sources (named now, frozen per stage at pre-registration)
 
+* Known substrate boundaries (registered 2026-07-24 by E1a, NOT touched in
+  EDS v1): receptions at ≤6 m/s are free BY FIAT (`mechanics.ts:130` returns
+  clean before any roll), and mid-speed loose balls often never reach an
+  adjudication at all (M3 contact cushioning). All reception measurements —
+  C1-A2, E0b, E1a — are structurally blind below 6 m/s and on unrolled loose
+  balls; C5's future design must know both;
 * C1-A2 ledger: SHA `7e0ff4d5…257b` numbers as E0/E1 references;
 * C1-B audit: the §2 band values, the behavioural suite, the re-route
   signature (long balls +28.2%) as the E3 canary;
