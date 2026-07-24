@@ -836,6 +836,13 @@
 > path remains body-facing and no production caller supplies gaze. This banks
 > independent looking only; it authorises at most a separate attention-policy
 > experiment, not D-PROC rescue, coach/familiarity, payoff or live AI.
+> 📋 **S3-G1 MEMORY-GUIDED ATTENTION PRE-REGISTERED** (fresh 88k):
+> one pure dormant reflex aims gaze at the last-known remembered position of one
+> designated moving teammate (one-tick latency, unchanged perception envelope);
+> arms B/M/T share one recorded physical window, a truth-aimed ceiling separates
+> channel failure from policy failure, and frozen gates demand M >= 4 fresh
+> observations in >=95% of completed states while body-facing B stays <=50%.
+> Authority: [`world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md`](world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

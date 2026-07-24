@@ -509,3 +509,14 @@ Independent gaze is now a banked dormant information channel. No production
 caller chooses gaze. PASS authorises only a separately pre-registered attention
 policy experiment; it does not reopen temporal intent response or permit coach
 doctrine/familiarity to act as visibility bonuses.
+
+That attention-policy experiment is now pre-registered in
+[`OBSERVER-LOCAL-ATTENTION-POLICY.md`](OBSERVER-LOCAL-ATTENTION-POLICY.md).
+S3-G1 tests one pure, dormant, single-target reflex: aim gaze at the last-known
+remembered position of one probe-designated moving teammate, under the
+unchanged range, cone, scan clock, retention and keyed error, with a one-tick
+decision latency. A truth-aimed ceiling arm separates channel failure from
+policy failure and can never gate a pass. It does not choose which teammate
+matters, does not schedule attention across targets, and feeds no live
+consumer; PASS authorises at most a user fork toward a gaze-supported temporal
+motion evidence gate.
