@@ -17,6 +17,8 @@ export interface UiFlags {
   perception: boolean;
   /** B1 sub-toggle: overlay the hypothetical chooseAttentionGaze cone. */
   perceptionGaze: boolean;
+  /** B2: perceive at synthetic awareness 0.2 instead of 0.8 (the contrast). */
+  perceptionLowAwareness: boolean;
 }
 
 // Default view is CLEAN (2026-07-19, user: "把默认调试图层都关闭"): every dev
@@ -32,6 +34,7 @@ export const defaultFlags = (): UiFlags => ({
   chasers: false,
   perception: false,
   perceptionGaze: false,
+  perceptionLowAwareness: false,
 });
 
 /** The overlay-channel subset of UiFlags — shared by the 2D and 3D overlays. */

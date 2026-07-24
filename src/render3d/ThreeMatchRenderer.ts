@@ -44,6 +44,10 @@ export class ThreeMatchRenderer {
   private overlays = new Overlays3D();
   /** B1 read-only world-model overlay (default off; host set in constructor). */
   private perception: PerceptionSandbox3D;
+  /** B2: the overlay's awareness chip asks the host to flip the UI flag. */
+  set onPerceptionAwarenessToggle(fn: (() => void) | null) {
+    this.perception.onToggleAwareness = fn;
+  }
   private fx = new FxSystem();
   private goals: [Goal3D, Goal3D];
   private playersGroup = new THREE.Group();

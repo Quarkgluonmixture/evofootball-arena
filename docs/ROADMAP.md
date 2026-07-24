@@ -912,6 +912,16 @@
 > fingerprint exact (`57b0bdab…c673`). The user's viewing gate was waived
 > (first look showed ink-without-signal clutter) ⇒ B2 exception-based
 > rendering respec applies immediately on top.
+> 👁️ **B2 EXCEPTION-BASED RESPEC APPLIED (2026-07-24, same overlay):** the
+> sandbox now draws only where belief and truth DIVERGE, using the divergence
+> census' own thresholds — ghosts only at error > 1m or age > 15 ticks (the
+> ~90% that sits on truth is counted in the readout, not drawn), a flashing
+> warning ring at the TRUE position of any body absent from memory yet within
+> 12m, the ball only when lost/stale/misplaced, and the ~106° REAR BLIND wedge
+> in place of the 253° "can see nearly everything" cone. The awareness 0.2↔0.8
+> toggle is a button in the overlay itself (switching rebuilds the memory, since
+> awareness sets scan cadence and retention). Gates: tsc + build clean · 697/697
+> · fingerprint exact (`57b0bdab…c673`).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

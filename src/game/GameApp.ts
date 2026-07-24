@@ -118,6 +118,8 @@ export class GameApp implements GameActions {
    * observer, recreated on selection change / disable; fed once per new tick. */
   private perceptionMemory: PerceptionMemory | null = null;
   private perceptionMemoryGid: number | null = null;
+  /** The synthetic awareness the current memory was built at (B2 toggle). */
+  private perceptionAwareness: number | null = null;
   private perceptionView: PerceptionView | null = null;
   private acc = 0;
   private busy = false;
@@ -538,13 +540,16 @@ export class GameApp implements GameActions {
    * belief ages honestly and a paused frame re-renders the last snapshot.
    */
   private buildPerceptionView(steps: number): PerceptionView | null {
-    const AWARENESS = 0.8; // synthetic — no live awareness attribute exists
+    // Synthetic — no live awareness attribute exists. B2 exposes the 0.2↔0.8
+    // contrast, because that is where the world model becomes legible.
+    const AWARENESS = this.flags.perceptionLowAwareness ? 0.2 : 0.8;
     const SEED = 0x5eed; // fixed: read-only path, never touches sim RNG
     const m = this.match;
     const live = m !== null && !this.theater && !this.replay.active && !m.finished;
     if (!this.flags.perception || !live || this.selectedGid === null) {
       this.perceptionMemory = null;
       this.perceptionMemoryGid = null;
+      this.perceptionAwareness = null;
       this.perceptionView = null;
       return null;
     }
@@ -553,9 +558,13 @@ export class GameApp implements GameActions {
       this.perceptionView = null;
       return null;
     }
-    if (this.perceptionMemory === null || this.perceptionMemoryGid !== this.selectedGid) {
+    // Awareness changes scan cadence and retention, so a switched value gets a
+    // fresh memory rather than a half-and-half belief.
+    if (this.perceptionMemory === null || this.perceptionMemoryGid !== this.selectedGid
+      || this.perceptionAwareness !== AWARENESS) {
       this.perceptionMemory = createPerceptionMemory();
       this.perceptionMemoryGid = this.selectedGid;
+      this.perceptionAwareness = AWARENESS;
       this.perceptionView = null;
     }
     const mem = this.perceptionMemory;
@@ -1430,6 +1439,10 @@ export class GameApp implements GameActions {
           this.three.onArousal = (a) => this.sound.setArousal(a);
           this.three.onCarry = (on) => this.sound.setCarry(on);
           this.three.onScoreBugTap = () => this.toggleClash();
+          // B2: the sandbox's own awareness chip flips the synthetic value.
+          this.three.onPerceptionAwarenessToggle = () => {
+            this.flags.perceptionLowAwareness = !this.flags.perceptionLowAwareness;
+          };
           this.three.setFxQuality(this.fxQuality);
           if (this.match) this.three.attach(buildRenderTheme(this.match));
         }
