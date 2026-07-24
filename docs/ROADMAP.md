@@ -3780,3 +3780,31 @@ blueprint above.
 > three-body contract must price it at roughly three-quarters rather than at
 > freshness. **D-TRI-0 is now the single authorised continuation.**
 > Authority: [`world-model/DUAL-TARGET-ATTENTION-SCHEDULE.md`](world-model/DUAL-TARGET-ATTENTION-SCHEDULE.md).
+> ⛔ **C1-B HONEST REVERT — MAKING 停球 HONEST RE-ROUTES THE WHOLE GAME
+> (2026-07-24).** The mandated live slice was implemented exactly as
+> pre-registered (touchFailChance's arrival-speed term `clamp01((s-6)/8)*0.07` →
+> `clamp01((s-6)/16)*0.24`, so the curve's range covers the measured 7.5–11.1 m/s
+> arrival band), measured against every frozen gate, and **reverted**;
+> `src/sim/mechanics.ts` is back at the C1-A substrate and the fingerprint is
+> restored to `57b0bdab…c673` exactly (it was `33cc4ff2…c2f1` under the change).
+> **The mechanism bit:** 8-season paired calibrate, same seed, 568 matches —
+> miscontrols/match **6.9771 → 9.3785 (+34.4%)** inside the pre-registered bound,
+> pass completion 71.29% → 70.92%. 停不好重球 stopped being free. **But the §2
+> equilibrium band broke on two dimensions:** goals/match **2.3944 → 2.0264
+> (−15.37%**, band ±15%) and long balls **6.2042 → 7.9525 (+28.18%**, band ±25%),
+> with headers +23.22% sitting on the edge and tackles −12.6%. Three behavioural
+> suite contracts broke too — `aerial.test.ts` "wide teams cross more" **inverted**
+> (28 → 21), `stamina.test.ts` "a full match SPENDS the tank" (0.948 vs gate
+> 0.93), and a free-agent market test. Diagnosis: ground possession breaks down
+> more often, so the game re-routes itself into long balls and headers; the
+> decision layer never chose that, because it is speed-blind — the drift is
+> mechanical, i.e. **structural, not tunable**, exactly the four-revert pattern.
+> Second lesson, cheap and useful: **C1-A2's H2 metric cannot see this mechanism**
+> (12.5/10.4/12.0% after the change, still flat) because it asks "did the target
+> end up in control" and M3 recontact re-collects spilled balls — future attempts
+> must measure the FIRST TOUCH, not eventual possession. Nothing shipped, nothing
+> tuned, and the one permitted redraw is **deliberately unspent**: the honest
+> reading is that a solo touch-cost reprice is the wrong shape, and the touch cost
+> belongs in the **Embodied Decision Slice** where pass choice, pass power and
+> first touch go live together and can trade against each other. That fork is the
+> user's. Authority: [`world-model/PASS-POWER-SLICE.md`](world-model/PASS-POWER-SLICE.md) §12–13.

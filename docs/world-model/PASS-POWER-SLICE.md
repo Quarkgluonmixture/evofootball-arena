@@ -1,8 +1,11 @@
 # C1 — Pass power as a priced choice (substrate slice)
 
-Status: **PHASE 0 COMPLETE 2026-07-24 (§6) — the answers REVISE Phases 1–2.
-The premise survives; the Phase-2 shape written in §4 does not. Fork in §7 is
-the user's.** Phase 1–2 remain frozen-as-written text below for the record.
+Status: **C1-A substrate BANKED (§9) · C1-A2 ledger CLEAN (§11) · C1-B
+IMPLEMENTED, §2-BAND BROKEN, HONEST-REVERTED (§13).** Phase 0 (§6) refuted the
+drafted Phase-2 shape; C1-C is deferred into the Embodied Decision Slice. The
+open fork — fold the touch-cost fix into that bundle, or spend the one permitted
+redraw — is the user's (§13.4). Phases 1–2 remain frozen-as-written for the
+record.
 
 Date: 2026-07-24
 
@@ -547,3 +550,74 @@ report**, not something to silently re-baseline.
   report rather than raising the weight.
 * No parameter may be re-tuned after seeing results, and the play-test verdict
   may not be pre-empted by good numbers.
+
+## 13. C1-B RESULT — §2 BAND BREAK, HONEST REVERT (2026-07-24)
+
+The change was implemented exactly as §12.2 froze it, measured against every
+frozen gate, and **reverted**. `src/sim/mechanics.ts` is back at the C1-A
+substrate and the production fingerprint is restored to `57b0bdab…c673` exactly.
+Under the change it was `33cc4ff27bfdc55096b39e9c886fcece95a9ee2fe9f20ab43e18eba2b025c2f1`.
+
+### 13.1 The mechanism DID bite in live play
+
+8-season paired calibrate, same seed, 568 matches, 4-dp exact:
+
+```text                        baseline    C1-B      delta      gate
+miscontrols/match             6.9771      9.3785    +34.4%     >= +5%, <= +40%   ✓
+pass completion               71.29%      70.92%    -0.37pp    >= 68%            ✓
+```
+
+停不好重球 stopped being free: a third more miscontrols per match, inside the
+pre-registered bound. The WORKS layer passed.
+
+### 13.2 But the §2 equilibrium band broke on two dimensions
+
+```text                        baseline    C1-B      delta      band
+goals/match                   2.3944      2.0264    -15.37%    ±15%   ✗ BREAK
+long balls/match              6.2042      7.9525    +28.18%    ±25%   ✗ BREAK
+headers won/match             9.1039     11.2183    +23.22%    ±25%   ✓ (edge)
+crosses/match                 2.4894      2.5106     +0.85%    ±25%   ✓
+cutbacks/match                3.8151      3.9842     +4.43%    ±25%   ✓
+tackles/match                12.2077     10.6743    -12.6%     (no gate)
+```
+
+Three suite contracts also broke — and they are behavioural contracts, not
+brittle constants: `aerial.test.ts` "wide teams cross more" **inverted**
+(28 → 21), `stamina.test.ts` "a full match SPENDS the tank" (0.948 left, gate
+0.93 — less ground running to do), and a free-agent market test.
+
+### 13.3 What this actually taught
+
+**Making ground control honest does not stay local.** Ground possession broke
+down more often, so the game re-routed itself: long balls +28%, headers +23%,
+tackles −13%, goals −15%. The decision layer never chose any of that — it is
+speed-blind (§6 Q3) — so the drift is purely mechanical downstream of more
+spilled touches. That is the four-revert pattern exactly: **structural, not
+tunable.** Re-fitting the weight until the band closes would be fitting a number
+to a symptom.
+
+**A second, cheaper lesson: the C1-A2 probe cannot see this mechanism.** Its H2
+metric moved from 11.9/12.1/11.8% to 12.5/10.4/12.0% — still flat and now
+non-monotone — so FIRES failed even while live miscontrols rose 34%. The reason
+is that H2 asks "did the intended target end up in control", and a spilled ball
+is frequently re-collected by the same player through M3 recontact. Any future
+attempt must measure the **first touch itself**, not eventual possession.
+
+### 13.4 Verdict and fork
+
+**§2 band break ⇒ honest revert, per §12.5.** Nothing shipped; no parameter was
+re-tuned; the one permitted redraw is **deliberately unspent** and returned to
+the user, because the honest reading is that a solo touch-cost reprice is the
+wrong shape:
+
+* the cost side of pass weight is real football and still needs to exist;
+* but pricing it alone re-routes the whole game, and the routes cannot reprice
+  themselves while the evaluator is speed-blind;
+* which is precisely the bundle `PROGRAMME.md` §0.5 already names — the
+  **Embodied Decision Slice**, where perception-based pass choice, pass power
+  and the first-touch decision go live *together* and can trade against each
+  other.
+
+Recommendation to the user: fold C1-B into that bundle rather than spending a
+redraw on the weight. C1-A's dormant substrate stays banked and inert; C1-A2's
+ledger stays the reference measurement.
