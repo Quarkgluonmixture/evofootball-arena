@@ -520,3 +520,18 @@ policy failure and can never gate a pass. It does not choose which teammate
 matters, does not schedule attention across targets, and feeds no live
 consumer; PASS authorises at most a user fork toward a gaze-supported temporal
 motion evidence gate.
+
+S3-G1 passed all frozen gates on 96 fresh 88k states, twice byte-identically
+(SHA `c3d1308f…f554`). In all 87 completed windows the memory-guided reflex
+delivered six fresh observations — exactly matching the truth-aimed ceiling —
+while the body-facing baseline averaged 1.11 and cleared four observations in
+only 13/87. No gaze was invalid, no truth or RNG changed, and every M-arm gaze
+was recomputable from the logged snapshots alone. The information-availability
+deficit that failed D-PROC-1M is therefore closed **conditional on a designated
+relevance target**: given who matters, the existing envelope sustains the
+three-observation history. The open user fork is now exactly one experiment:
+a gaze-supported temporal motion evidence gate (fresh seeds, the parked
+D-PROC-1M representation re-tested as a NEW experiment under the qualified
+attention channel), or park the branch. Target-relevance selection, attention
+scheduling across several targets, live consumers, coach doctrine and
+familiarity remain closed.

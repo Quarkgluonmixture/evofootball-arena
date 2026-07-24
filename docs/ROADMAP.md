@@ -836,12 +836,16 @@
 > path remains body-facing and no production caller supplies gaze. This banks
 > independent looking only; it authorises at most a separate attention-policy
 > experiment, not D-PROC rescue, coach/familiarity, payoff or live AI.
-> 📋 **S3-G1 MEMORY-GUIDED ATTENTION PRE-REGISTERED** (fresh 88k):
-> one pure dormant reflex aims gaze at the last-known remembered position of one
-> designated moving teammate (one-tick latency, unchanged perception envelope);
-> arms B/M/T share one recorded physical window, a truth-aimed ceiling separates
-> channel failure from policy failure, and frozen gates demand M >= 4 fresh
-> observations in >=95% of completed states while body-facing B stays <=50%.
+> ✅ **S3-G1 MEMORY-GUIDED ATTENTION PASSED** (fresh 88k, 96/96 accepted,
+> 87 completed windows, twice byte-identical, SHA `c3d1308f…f554`): one pure
+> dormant reflex aiming gaze at the last-known remembered position of one
+> designated moving teammate delivered 6/6/6 fresh observations — exactly the
+> truth-aimed ceiling — while the body-facing baseline averaged 1.11 and cleared
+> four observations in only 13/87. Given a relevance target, the unchanged
+> envelope now sustains the three-observation history D-PROC-1M lacked; looking
+> away did not degrade ball freshness on average. No live consumer, no
+> target-relevance selection, no multi-target scheduling. The only open fork:
+> a gaze-supported temporal motion evidence gate (new experiment), or park.
 > Authority: [`world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md`](world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and

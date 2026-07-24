@@ -1,6 +1,6 @@
 # S3-G1 — Observer-local memory-guided attention
 
-Status: **PRE-REGISTERED — no run yet.**
+Status: **PASS — memory-guided single-target attention banked; no live consumer, no target selection.**
 
 Date: 2026-07-24
 
@@ -214,3 +214,48 @@ not a D-PROC-1M rerun), or park the branch. It does not authorise a live
 consumer, automatic production scanning, multi-target attention scheduling,
 target-relevance selection, coach/familiarity attention priors, payoff, genes
 or evolution.
+
+## 8. Frozen result
+
+Fresh seeds `88,000..88,095` supplied 96/96 accepted states in 96 scanned
+seeds. 87/96 windows completed (gate 72): five aborted on pinned-action
+mutation, two on near-field entry, two on play stoppage. Both full runs were
+byte-identical.
+
+```text
+M >= 4 fresh actor observations                        87 / 87 (gate >= 95%)
+T >= 4 fresh actor observations (channel ceiling)       87 / 87 (gate >= 95%)
+B >= 4 fresh actor observations                         13 / 87 (14.9%, gate <= 50%)
+M fresh count >= B                                      87 / 87 (gate >= 95%)
+M fresh count >  B                                      86 / 87 (gate >= 50%)
+
+M fresh observations per window                         6 / 6 / 6 (min/mean/max)
+T fresh observations per window                         6 / 6 / 6
+B fresh observations per window                         0 / 1.11 / 6
+ball-fact age, B arm mean                               10.23 ticks
+ball-fact age, M arm mean                               9.75 ticks
+actor memory age at freeze                              3 / 29.0 / 51 ticks
+
+invalid or non-normalised gaze                          0
+perception RNG changes                                  0
+recorded-truth mutations                                0
+policy recompute mismatches                             0
+non-finite observations                                 0
+```
+
+Canonical report SHA-256:
+
+```text
+c3d1308f5d5a5b04023e12cbd87b53031b958996bbf6da1db51ff24b09ff3554
+```
+
+The memory-guided reflex reached the truth-aimed ceiling exactly: aiming at a
+possibly-stale remembered position lost nothing against perfect aiming in
+every completed window, because one honest re-acquisition at the first
+scheduled scan keeps the memory fresh thereafter. The body-facing path kept
+losing the same actor (mean 1.11 fresh observations). Attending to the actor
+did not degrade ball freshness on average. This closes exactly the
+information-availability deficit D-PROC-1M identified (77.4% arm support):
+under a designated relevance target, the existing envelope now supports the
+three-observation history. Where relevance comes from remains undecided and
+unauthorised.
