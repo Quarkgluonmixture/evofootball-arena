@@ -108,6 +108,25 @@ export function touchFailChance(
   return clamp(raw * (1.3 - technique * 0.85), 0, 0.4);
 }
 
+/**
+ * EDS E1a: one first-touch adjudication, decomposed into the exact terms the
+ * roll used. Emitted only when `Match.traceFirstTouch` is on; nothing reads it
+ * back and no branch above it depends on it.
+ */
+export interface FirstTouchTraceEntry {
+  readonly tick: number;
+  readonly gid: number;
+  /** True when this body was the pending pass's intended target. */
+  readonly intendedTarget: boolean;
+  readonly relativeSpeed: number;
+  readonly pressure: number;
+  readonly misalign: number;
+  readonly technique: number;
+  readonly positioning: number;
+  readonly pFail: number;
+  readonly clean: boolean;
+}
+
 /** Frozen physical facts from the earlier contact, used by M3's later control attempt. */
 export interface FirstTouchContactContext {
   readonly relativeSpeed: number;
@@ -142,7 +161,27 @@ export function attemptFirstTouch(
   // term — but he watched it leave his own boot. Priced well down, not
   // free: overhit knock-and-runs still get away.
   if (match.dribbleTouch !== null && match.dribbleTouch.gid === p.gid) pFail *= 0.45;
-  if (!match.rng.chance(pFail)) return true;
+  const clean = !match.rng.chance(pFail);
+  // EDS E1a instrument: log the adjudication with the exact terms the roll used.
+  // The roll has already happened; this branch cannot influence it, and it is
+  // inert unless the trace flag was explicitly enabled.
+  if (match.traceFirstTouch) {
+    match.firstTouchTrace.push({
+      tick: match.simTick,
+      gid: p.gid,
+      intendedTarget: match.pendingPass !== null
+        && match.pendingPass.targetGid === p.gid
+        && match.pendingPass.side === p.side,
+      relativeSpeed: speed,
+      pressure,
+      misalign,
+      technique: p.attrs.dribbling,
+      positioning: p.attrs.positioning,
+      pFail,
+      clean,
+    });
+  }
+  if (clean) return true;
 
   match.teams[p.side].stats.miscontrols++;
   match.stat(p.gid).miscontrols++;

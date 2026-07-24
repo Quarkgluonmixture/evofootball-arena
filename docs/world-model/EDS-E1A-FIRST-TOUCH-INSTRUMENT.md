@@ -92,3 +92,51 @@ minimum sample                        >= 40 traced target-receptions per power
   explanation holds.
 * E1a authorises no curve change of any kind. E1b is a separate
   pre-registration, and it may only be drafted after I1 passes.
+
+## 5. E1a INTERIM — instrument built and behaviour-proven; I1's staging blocked (2026-07-24)
+
+**Not a verdict on the frozen gates.** I1 and I2 were not evaluated at their
+pre-registered samples, because the synthetic sweep cannot yet produce
+adjudications across all four buckets. What is established:
+
+### Established
+
+* **The instrument exists and is honest.** `Match.traceFirstTouch` (default off,
+  same pattern as `traceContests`) + a push inside `attemptFirstTouch` after its
+  own roll. Logged per event: tick, gid, intended-target flag, relative speed,
+  pressure, misalign, technique, positioning, pFail, clean.
+* **Zero-behaviour proof PASSES.** Three full matches (seeds 7001–7003) run with
+  the flag on and off produce identical result signatures — score, phase, ball
+  state, every player's position/velocity/heading, and the RNG state at full
+  time. Production fingerprint `57b0bdab…c673` unchanged with the flag off.
+* **It reads the physics where an adjudication happens.** A staged reception
+  logged `relativeSpeed 10.32, pressure 0.000, misalign 0.0001, pFail 0.0406,
+  clean true` — the decomposition E0/E0b lacked.
+
+### Two structural findings about where reception can be measured at all
+
+1. **Below 6 m/s the world does not adjudicate.** `attemptFirstTouch` returns
+   clean *before* the roll for `speed <= 6` (`mechanics.ts:130`), so no event
+   exists to log. The instrument is blind there by construction — and so is any
+   reception measurement, including C1-A2's and E0b's. Slow receptions are free
+   by fiat, not by outcome.
+2. **A loose rolled ball frequently never reaches an adjudication.** In the
+   sweeps the M3 contact cushions the ball out of the retention window
+   (`Match.ts:2051`), so the pending control attempt is abandoned and
+   `attemptFirstTouch` is never called — the ball simply rolls to a stop with
+   `lastTouch` set. Buckets 7 and 13 produced 60/60 events while 9 and 11
+   produced none, which is this effect, not sampling noise.
+
+Consequence: **I1 must stage a real intended pass** (`performPass` from a pinned
+passer, sweeping power to sweep arrival speed) rather than a rolled loose ball,
+because the intended target is the case the world actually adjudicates
+(`maxSpeed` 24 for the intended target vs `CONTROL_MAX_SPEED` 14, `Match.ts:1978`).
+That is a redesign of the sweep, not a gate change: I1's gates (monotone spill
+rate, |empirical − logged pFail| ≤ 2.0pp per bucket, ≥400 events/bucket) and
+I2's stand exactly as frozen.
+
+### Status
+
+`E1a` remains **in progress**: instrument accepted, sweep staging to be
+rebuilt, then I1 and I2 run at their pre-registered samples. No curve may be
+flipped until I1 passes — E1b stays unopened.

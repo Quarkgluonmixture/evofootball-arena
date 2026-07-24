@@ -22,6 +22,7 @@ import {
   CONTEST_RADIUS, RESTART_TIMEOUT, STOPPAGE_MAX, TEAM_AI_INTERVAL, TOUCH_CONTROL_DIST,
 } from './constants';
 import * as mech from './mechanics';
+import type { FirstTouchTraceEntry } from './mechanics';
 import {
   classifyBallControl,
   derivePossessionLocus,
@@ -161,6 +162,12 @@ export interface MatchConfig {
   derby?: boolean;
   /** Pure-observational M3 contest ledger; OFF in live/headless play by default. */
   traceContests?: boolean;
+  /**
+   * EDS E1a first-touch instrument (docs/world-model/EDS-E1A-FIRST-TOUCH-INSTRUMENT.md):
+   * log every first-touch adjudication with its own term decomposition. Pure
+   * observation, OFF by default — it must not change a single tick.
+   */
+  traceFirstTouch?: boolean;
 }
 
 interface GroundContactClaim {
@@ -222,6 +229,9 @@ export class Match {
   possessionPhase: PossessionPhase = { kind: 'deadBall' };
   /** Finalized + active M3 ledgers when traceContests is explicitly enabled. */
   readonly contestEpisodes: ContestEpisode[] = [];
+  /** E1a: first-touch adjudications, appended to only when traceFirstTouch is on. */
+  readonly firstTouchTrace: FirstTouchTraceEntry[] = [];
+  readonly traceFirstTouch: boolean;
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;
@@ -349,6 +359,7 @@ export class Match {
     this.duration = cfg.duration ?? MATCH_DURATION;
     this.derby = cfg.derby ?? false;
     this.traceContests = cfg.traceContests ?? false;
+    this.traceFirstTouch = cfg.traceFirstTouch ?? false;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     // The underdog shift (Phase 64): with both clubs' Elo on the team
     // sheet, the outgunned coach bends toward the bus by his gene. Read
