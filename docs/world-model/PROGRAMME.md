@@ -119,6 +119,33 @@ generalises.
 >    (recommended, `PASS-POWER-SLICE.md` §13.4) or spend the one unspent redraw.
 > 3. **D1** — still READY, still the user's eyes.
 > 4. **B2's render** — look whenever; feedback is small tweaks.
+>
+> **COMMANDER RULING #2 (2026-07-24, pending the user's one-word ratification):**
+>
+> 1. **S3-G2's escalation judgment APPROVED.** The budget raise could not have
+>    rescued a failing result: at the moment of the decision run 1's ratio gates
+>    were already passing (0.851/0.701 vs 0.80/0.60) and only the state COUNT was
+>    short; partials were recorded before the rerun; every gate/arm/acceptance
+>    condition stayed verbatim. **Codified rule:** *sampling budget is census
+>    infrastructure, not a gate — it may be raised with everything else verbatim,
+>    PROVIDED partial numbers are recorded first and no ratio gate was failing at
+>    decision time. If ratio gates were failing, a budget raise is seed-shopping
+>    and forbidden.*
+> 2. **Touch-cost fork → FOLD into the Embodied Decision Slice** (per
+>    `PASS-POWER-SLICE.md` §13.4); the unspent redraw stays unspent. C1-B's break
+>    pattern (game re-routes to long balls while the evaluator is speed-blind) is
+>    the strongest measured evidence yet for §0.5's bundling thesis — repricing
+>    touch alone would re-break the same way. The EDS design contract is the
+>    commander's next drafting task after D-TRI-0 lands.
+> 3. **D-TRI-0 DRAFTED and READY** (A5 row): chain conflict, not cluster — the
+>    dual-attention cost sits only at the middle body B, isolating S3-G2's new
+>    capability at its minimal seat; propagation (one response changing what
+>    another must do) is rotation's causal primitive. Gates derived from D-MUT's
+>    banked numbers × S3-G2's ¾ pricing; budget 2048 pre-authorised under the
+>    rule above; zero `src/**`.
+>
+> Recommended queue on ratification: `D-TRI-0` (→ on PASS the user forks A4
+> doctrine-priors vs EDS-first; on FAIL the axis name routes it), **D1 parallel**.
 
 ## Track A — the epistemology chain (information → decision)
 
@@ -128,7 +155,8 @@ generalises.
 | A2 ★ | Motion-gated response consumer (D-PROC-1G): D-PROC-1 verbatim with two causal substitutions — gaze channel + three-sample motion-phase support predicate (braking ≠ commitment); H false-reopening ceiling `<=4/96` is the crux gate | [`MOTION-GATED-INTENT-REOPENING.md`](MOTION-GATED-INTENT-REOPENING.md) | ⛔ **STRICT FAIL — CADENCE FINDING 2026-07-24** (`80a1a848…2748`): crux gate FIXED (held false reopening 7/96→2/96), but jointly-completed 59<72 and ordered 50<56 — response works, too slow inside the 48-tick window. Family parked; no tuning; NO D-PROC-2. **Fork returns to the user (self-drive stopped).** |
 | A3 ★ | Decision-layer wall, attempt 4 = **D-MUT-0 mutual motion-gated response** (attack-side entry). Commander CORRECTED the ratified fork's shape: the naive D-ROTATE re-pose is rejected by D-ROTATE-0's own anatomy (bids were 99.2% supported — observation was never the constraint; commander-gated action authority was, and its stop rule closes plain re-runs). Instead the banked 1G consumer is symmetrised: two off-ball teammates with conflicting private intents each read the other via gaze+motion evidence and each run the UNCHANGED 1G consumer — the first two-body mutual temporal process. Zero new src code; new coupled failure modes = mutual staleness + cross-player loops | [`MUTUAL-MOTION-GATED-RESPONSE.md`](MUTUAL-MOTION-GATED-RESPONSE.md) §7 | ✅ **PASS 2026-07-24 — THE WALL'S FIRST BRICK** (SHA `16e3867a…0097`, twice byte-identical, 96/96 accepted, zero `src/**` changes, fingerprint unchanged): materiality 65/65, **resolved 50/65 = 76.9%** (≥60%), progress 78.6%, combined revisions max 2, per-player max 1, zero cycles, gaze purity zero for BOTH observers. Cross-player loops absent; mutual staleness fails SAFE (all 15 unresolved states had zero revisions, honest retention). 20 states resolved with BOTH players revising. **Fork is the USER's** (§6): three-body extension, or bank and pivot to B/C |
 | A3b | **S3-G2 dual-target interleaved attention** (ratified entry to the three-body direction): with one gaze and 6 scans per 48-tick window, can an observer keep a qualified three-sample history alive on TWO moving teammates, where attending to one starves the other? Analytic groundwork inside the contract: the 253.74° field means at most one target is ever out of field, so this is a CADENCE problem with zero slack (strict alternation = exactly 3 samples each = the predicate's minimum). Zero `src/**` changes | [`DUAL-TARGET-ATTENTION-SCHEDULE.md`](DUAL-TARGET-ATTENTION-SCHEDULE.md) | ✅ **PASS 2026-07-24** (§9, SHA `bc242ff8…7d4c`, 96/96 accepted in 681 seeds, 93 completed, fingerprint unchanged, all purity audits zero): **dual fresh 88.2%** (≥80) · **dual qualified support 74.2%** (≥60) · single-target gaze starves the other partner in **92.5%** of the same windows (0.42 vs 2.81 fresh) · I never worse on A2 (100%) · and the cost is real — splitting hurt the attended partner in 86.0% (6.00→3.56). Run 1 was an **acceptance shortfall** (69/96 in the frozen 512-seed budget) = a hard escalation; resolved by raising the SAMPLING BUDGET only (§8.1, same seeds, every gate verbatim) — flagged for the user's veto. Carry-forwards for D-TRI-0: comparison is vs single-target gaze not vs no policy (body-facing holds both in 44.1%), and dual SUPPORT ceilings at 86% even truth-aimed. **D-TRI-0 authorised** |
-| A4 ★ | Relevance selection ("who deserves attention"), then coach doctrine / familiarity as separate interpretation priors — the layering Codex pinned: neither may reveal unobserved bodies | TBD | **UNBLOCKED by A3's PASS, awaiting the user's fork choice.** A3 §6 authorises exactly one continuation (three-body extension, or bank + pivot to B/C); A4 itself still needs a contract, which no executor may author |
+| A4 ★ | Relevance selection ("who deserves attention"), then coach doctrine / familiarity as separate interpretation priors — the layering Codex pinned: neither may reveal unobserved bodies | TBD | Awaiting D-TRI-0's outcome: a resolution-axis FAIL makes the prior layers the direct next hypothesis; a PASS makes A4 one arm of the user fork (vs EDS-first) |
+| A5 ★ | **D-TRI-0 three-body chain-conflict response**: targets chained A–B and B–C (A–C clear); A and C read B single-target (banked S3-G1), B reads BOTH via S3-G2 alternation — dual attention isolated at its minimal seat; all three run the unchanged 1G consumer, B's admissibility = union of both partners' supported sets (probe-level). Propagation is rotation's causal primitive | [`THREE-BODY-CHAIN-RESPONSE.md`](THREE-BODY-CHAIN-RESPONSE.md) + [`HANDOFF-D-TRI-0.md`](HANDOFF-D-TRI-0.md) | **READY** (commander-drafted; handing over = ratification). Key gates: completion ≥42/96, B dual-support transfer ≥55%, partial resolution ≥65%, full-chain ≥45%, combined revisions ≤6, budget 2048 pre-authorised |
 
 FAIL anywhere: the step's own stop rule binds; the fork returns to the user;
 do NOT improvise a rescue or skip ahead.
