@@ -644,3 +644,31 @@ Tracks B/C); FAIL parks the mutual-response family, naming WHICH coupled
 failure occurred, with no predicate, window, cadence, seed or tie-break
 adjustment permitted. It does not authorise live wiring, TeamBrain changes,
 relevance selection, coach doctrine, familiarity, payoff, genes or evolution.
+
+**D-MUT-0 PASSED (2026-07-24)** — the decision-layer wall's first honest brick,
+after three consecutive misses. Twice byte-identical (SHA
+`16e3867a…0097`), 96/96 accepted on seeds `91,000..91,095`, zero `src/**`
+changes, production fingerprint unchanged. With both consumers disabled the
+pinned conflicting pair converged in 65/65 completed states (mean separation
+8.75m → 4.39m), so the accepted conflicts were material. With both consumers
+enabled, 50/65 states resolved (76.9%, gate 60%): at the window edge both
+players' active targets were mutually clear of `PLAYER_MIN_DIST`, with at least
+one party having committed an admissible replacement through its own consumer.
+Replacement progress held at 55/70 revisions (78.6%), combined revisions never
+exceeded 2 (gate 4), per player never exceeded 1 (gate 3), and every exact
+gate — including gaze purity for BOTH observers independently and 96/96 N/M
+pre-reopening physical and evidence equality — was zero. The two coupled failure
+modes this experiment existed to expose resolved cleanly: cross-player response
+loops were absent (zero cycles), and mutual staleness fails SAFE — all 15
+unresolved states had zero revisions with honest retention, and no state ever
+saw a response fire while the conflict survived. In 20 states BOTH players
+revised, ending with the widest target separation (7.35m) — two bodies stepping
+off the same spot in opposite directions with no commander and no
+communication. Two template deviations are recorded in the contract's §7 (no
+initial-speed cap, since there is no held arm and §3 lists none; per-revision
+progress spans, since there are now multiple revisions). What this banks is a
+representation-and-response result only: mutual temporal coordination is
+possible through private observation alone. It authorises exactly one user
+fork — a three-body rotation-shaped extension, or banking the brick and
+pivoting to Tracks B/C — and no live wiring, TeamBrain change, relevance
+selection, coach doctrine, familiarity, payoff, gene or evolution work.

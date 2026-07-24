@@ -1,8 +1,7 @@
 # D-MUT-0 — Mutual motion-gated intent response
 
-Status: **PRE-REGISTERED — no run yet.** (Wall-attempt-4 fork ratified by the
-user 2026-07-24; shape corrected by the commander, see §1; flipped on
-handover.)
+Status: **✅ PASS 2026-07-24 — see §7.** (Wall-attempt-4 fork ratified by the
+user 2026-07-24; shape corrected by the commander, see §1.)
 
 Date: 2026-07-24
 
@@ -151,3 +150,108 @@ authorises at most one user fork: a three-body extension (rotation-shaped,
 either side of the ball), or banking the brick and pivoting to Tracks B/C.
 It does not authorise live wiring, TeamBrain changes, relevance selection,
 coach doctrine, familiarity, communication, payoff, genes or evolution.
+
+## 7. Frozen result — PASS (2026-07-24)
+
+Probe: `scripts/probes/mutual-motion-gated-response.ts`. Zero `src/**` changes.
+Two full invocations byte-identical, plus the internal double run:
+**SHA-256 `16e3867a76c9e7e4ac1e0c8f7fbfd0dafc4e51273e1208b02e6eeddffeda0097`**.
+Production fingerprint `57b0bdab…c673` unchanged; `npx tsc --noEmit` clean;
+full suite 697/697.
+
+### Support and completion
+
+```text
+scanned seeds                 96   (<= 192)          91,000..91,095
+accepted states               96   (= 96)            one state per seed
+jointly completed (N and M)   65   (>= 48)           gate cleared
+```
+
+Abort census (identical in both arms, as required): observer unsupported 16,
+loose ball 13, dead ball / restart 2.
+
+### Conflict materiality (N arm)
+
+```text
+final A–B truth distance < initial     65/65 = 100%   (>= 70%)
+N-arm revisions                        0              (consumers disabled)
+```
+
+Mean separation collapsed 8.75m → 4.39m over the 48-tick window: the accepted
+conflicts were real, and with both consumers off the two bodies walked into
+each other exactly as pinned.
+
+### Primary mechanism (M arm, on the 65 completed states)
+
+```text
+resolved states                        50/65 = 76.9%  (>= 60%)
+replacement progress >= 0.25m          55/70 = 78.6%  (>= 75%)
+combined revisions per state           max 2, over-budget states 0  (<= 4)
+per-player revisions                   max 1                        (<= 3)
+candidate cycles                       0
+duplicate revision ticks               0
+admissibility violations               0
+frozen-candidate violations            0
+no-admissible-replacement retentions   0 (none needed; retention honest)
+non-empty support (of 96)              A 70 · B 75
+responder share (of 65)                A only 19 · B only 11 · both 20
+mean final TARGET separation           5.08m (both-revised states: 7.35m)
+```
+
+### Exact validity
+
+All zero / all equal, as pre-registered: schema failures, non-finite samples,
+perception RNG changes, forbidden action changes, duplicate revision ticks,
+admissibility violations, frozen-candidate violations, unsupported-retention
+violations, and — **for BOTH observers independently** — invalid gaze 0,
+non-normalised gaze 0, gaze recompute mismatches 0. N/M pre-reopening equality
+held at **96/96 physical and 96/96 evidence** (both observers' evidence
+streams compared separately).
+
+### What the coupled failure modes actually did
+
+The two new failure modes this experiment existed to expose behaved as
+follows:
+
+* **Cross-player response loops: absent.** Zero candidate cycles, max one
+  revision per player, max two combined per state. Two independent consumers
+  reading each other did not chase each other around the candidate ring — the
+  unchanged occupancy admissibility test plus the cyclic tie-break was enough,
+  with no coordination and no communication.
+* **Mutual staleness: present, and it fails safe.** All 15 unresolved completed
+  states had **zero** revisions, and every one of them had non-empty support at
+  some tick — no tick presented a *supported* partner candidate conflicting
+  with that player's own current target, so both players honestly kept their
+  intents. There were **zero** states where a response fired and the conflict
+  survived. Mutual staleness therefore shows up as under-firing, never as
+  thrashing or as a false resolution.
+
+Notable asymmetry-free result: in 20 of the 50 resolved states BOTH players
+revised, and those states ended with the *widest* target separation (7.35m vs
+5.08m overall) — two bodies stepping off the same spot in opposite directions
+without either being told to.
+
+### Two honest deviations from the 1G template, recorded
+
+1. **No initial-speed cap.** D-PROC-1G required the actor to start nearly still
+   (`INITIAL_ACTOR_SPEED_MAX = 0.50`) because its H arm froze that actor in
+   place. D-MUT-0 has no held arm, and §3's acceptance list contains no speed
+   condition, so none was applied. Acceptance is therefore over the natural
+   distribution of moving teammates.
+2. **Per-revision progress.** 1G measured progress for its single revision only.
+   With up to two revisions across two players, each revision's progress is
+   measured over its own active span — distance still to run at commit minus
+   distance still to run when that revision's span ended (the next revision on
+   that player, or the window edge). The `>= 75%` gate is applied to all 70
+   revisions, not per state.
+
+### Verdict
+
+**PASS.** Every exact and mechanism gate cleared with nothing tuned. This banks
+the first multi-body temporal process in the world model: two players reaching
+complementary embodied targets through private observation alone — no
+commander, no communication, no shared state. Per §6 the fork is now the
+user's: a three-body (rotation-shaped) extension, or bank this brick and pivot
+to Tracks B/C. No live wiring, TeamBrain change, relevance selection, coach
+doctrine, familiarity, payoff, gene or evolution work is authorised by this
+result.

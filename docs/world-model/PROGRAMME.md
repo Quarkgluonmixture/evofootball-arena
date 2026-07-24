@@ -65,12 +65,18 @@ causal gap a prior FAIL named, (b) reuses banked machinery, (c) keeps the
 live baseline untouched. That instinct produced S3-G0→G1→1MG→1G→D-MUT; it
 generalises.
 
-> **Self-drive status (2026-07-24, third redraw — AUTONOMOUS MODE):** the
-> user waived the B1 gate and delegated continuous self-drive to a
-> Fable-grade session (see Autonomous mode below). Queue:
-> `ship B1 + apply B2 → C1-Phase0 → A3(D-MUT-0) → onward per Autonomous
-> mode`. C1-Phase0's report-back may now be judged by the autonomous session
-> itself under the C-track template; genuine user gates remain.
+> **Self-drive status (2026-07-24, autonomous run COMPLETE — queue drained to
+> user gates).** The delegated queue `ship B1 + apply B2 → C1-Phase0 →
+> A3(D-MUT-0)` was executed in one session: B1 shipped, B2 applied,
+> C1-Phase0 answered (drafted Phase-2 shape refuted; fork in the contract's
+> §7), A3 **PASSED** — the decision-layer wall's first brick. Everything now
+> READY needs the user:
+> * **A3's own fork** (§6): three-body rotation-shaped extension, or bank the
+>   brick and pivot to Tracks B/C. Only one is authorised.
+> * **C1's fork** (§7): C1-A dormant plumbing (executable autonomously), then
+>   C1-B live speed-dependent control cost (user gate), then C1-C redrawn.
+> * **B2's render** — look whenever; feedback is small tweaks, not a new step.
+> * **Track D1** — READY, but it changes what the user watches, so it is theirs.
 
 ## Track A — the epistemology chain (information → decision)
 
@@ -78,8 +84,8 @@ generalises.
 |----|------|----------|--------|
 | A1 | D-PROC-1MG gaze-supported motion evidence | [`GAZE-SUPPORTED-MOTION-EVIDENCE.md`](GAZE-SUPPORTED-MOTION-EVIDENCE.md) | ✅ **PASS 2026-07-24** (`58d6632`): support 77.4%→100%, every 1M gate cleared, SHA `28971096…1b58` |
 | A2 ★ | Motion-gated response consumer (D-PROC-1G): D-PROC-1 verbatim with two causal substitutions — gaze channel + three-sample motion-phase support predicate (braking ≠ commitment); H false-reopening ceiling `<=4/96` is the crux gate | [`MOTION-GATED-INTENT-REOPENING.md`](MOTION-GATED-INTENT-REOPENING.md) | ⛔ **STRICT FAIL — CADENCE FINDING 2026-07-24** (`80a1a848…2748`): crux gate FIXED (held false reopening 7/96→2/96), but jointly-completed 59<72 and ordered 50<56 — response works, too slow inside the 48-tick window. Family parked; no tuning; NO D-PROC-2. **Fork returns to the user (self-drive stopped).** |
-| A3 ★ | Decision-layer wall, attempt 4 = **D-MUT-0 mutual motion-gated response** (attack-side entry). Commander CORRECTED the ratified fork's shape: the naive D-ROTATE re-pose is rejected by D-ROTATE-0's own anatomy (bids were 99.2% supported — observation was never the constraint; commander-gated action authority was, and its stop rule closes plain re-runs). Instead the banked 1G consumer is symmetrised: two off-ball teammates with conflicting private intents each read the other via gaze+motion evidence and each run the UNCHANGED 1G consumer — the first two-body mutual temporal process. Zero new src code; new coupled failure modes = mutual staleness + cross-player loops | [`MUTUAL-MOTION-GATED-RESPONSE.md`](MUTUAL-MOTION-GATED-RESPONSE.md) + [`HANDOFF-D-MUT-0.md`](HANDOFF-D-MUT-0.md) | **READY** (fork ratified 2026-07-24; handing over = ratifying the corrected shape) |
-| A4 ★ | Relevance selection ("who deserves attention"), then coach doctrine / familiarity as separate interpretation priors — the layering Codex pinned: neither may reveal unobserved bodies | TBD | PARKED until A3 |
+| A3 ★ | Decision-layer wall, attempt 4 = **D-MUT-0 mutual motion-gated response** (attack-side entry). Commander CORRECTED the ratified fork's shape: the naive D-ROTATE re-pose is rejected by D-ROTATE-0's own anatomy (bids were 99.2% supported — observation was never the constraint; commander-gated action authority was, and its stop rule closes plain re-runs). Instead the banked 1G consumer is symmetrised: two off-ball teammates with conflicting private intents each read the other via gaze+motion evidence and each run the UNCHANGED 1G consumer — the first two-body mutual temporal process. Zero new src code; new coupled failure modes = mutual staleness + cross-player loops | [`MUTUAL-MOTION-GATED-RESPONSE.md`](MUTUAL-MOTION-GATED-RESPONSE.md) §7 | ✅ **PASS 2026-07-24 — THE WALL'S FIRST BRICK** (SHA `16e3867a…0097`, twice byte-identical, 96/96 accepted, zero `src/**` changes, fingerprint unchanged): materiality 65/65, **resolved 50/65 = 76.9%** (≥60%), progress 78.6%, combined revisions max 2, per-player max 1, zero cycles, gaze purity zero for BOTH observers. Cross-player loops absent; mutual staleness fails SAFE (all 15 unresolved states had zero revisions, honest retention). 20 states resolved with BOTH players revising. **Fork is the USER's** (§6): three-body extension, or bank and pivot to B/C |
+| A4 ★ | Relevance selection ("who deserves attention"), then coach doctrine / familiarity as separate interpretation priors — the layering Codex pinned: neither may reveal unobserved bodies | TBD | **UNBLOCKED by A3's PASS, awaiting the user's fork choice.** A3 §6 authorises exactly one continuation (three-body extension, or bank + pivot to B/C); A4 itself still needs a contract, which no executor may author |
 
 FAIL anywhere: the step's own stop rule binds; the fork returns to the user;
 do NOT improvise a rescue or skip ahead.

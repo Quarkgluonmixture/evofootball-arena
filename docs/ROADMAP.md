@@ -922,7 +922,32 @@
 > `57b0bdab…c673` unchanged. PASS banks the first multi-body temporal process
 > (one user fork after: three-body extension, or bank and pivot to Tracks B/C);
 > FAIL parks the family naming WHICH coupled failure occurred, with nothing
-> tunable. Authority: [`world-model/MUTUAL-MOTION-GATED-RESPONSE.md`](world-model/MUTUAL-MOTION-GATED-RESPONSE.md).
+> tunable.
+> ✅ **D-MUT-0 PASSED — THE DECISION-LAYER WALL'S FIRST BRICK (2026-07-24, SHA
+> `16e3867a…0097`, twice byte-identical, seeds `91,000..91,095`, 96/96 accepted,
+> ZERO `src/**` changes, fingerprint `57b0bdab…c673` unchanged, 697/697).**
+> Materiality: with both consumers disabled the pinned conflicting pair
+> converged in **65/65** completed states (mean separation 8.75m → 4.39m).
+> Mechanism: with both consumers enabled **50/65 = 76.9% resolved** (gate 60%) —
+> at the window edge both players' active targets were mutually clear of
+> `PLAYER_MIN_DIST` with at least one admissible replacement committed through
+> its own consumer. Replacement progress 55/70 = 78.6% (gate 75%); combined
+> revisions max 2 (gate 4); per-player max 1 (gate 3); zero candidate cycles,
+> zero duplicate ticks, zero admissibility/frozen-candidate violations; gaze
+> purity zero for BOTH observers; N/M pre-reopening equality 96/96 physical and
+> 96/96 evidence. The two coupled failure modes behaved: **cross-player loops
+> absent**, and **mutual staleness fails SAFE** — all 15 unresolved states had
+> zero revisions with honest retention, and no state ever fired a response while
+> the conflict survived. In 20 states BOTH players revised and those ended with
+> the widest target separation (7.35m vs 5.08m) — two bodies stepping off the
+> same spot in opposite directions with no commander and no communication.
+> Recorded deviations from 1G: no initial-speed cap (no held arm; §3 lists none)
+> and per-revision progress spans. This banks the first multi-body temporal
+> process. Per the stop rule the fork is the USER's: a three-body
+> rotation-shaped extension, or bank the brick and pivot to Tracks B/C. No live
+> wiring, TeamBrain change, relevance selection, coach doctrine, familiarity,
+> payoff, gene or evolution work is authorised.
+> Authority: [`world-model/MUTUAL-MOTION-GATED-RESPONSE.md`](world-model/MUTUAL-MOTION-GATED-RESPONSE.md).
 > 👁️ **B1 PERCEPTION SANDBOX SHIPPED (2026-07-24, Track B1 in
 > [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md)):** a default-off render
 > overlay (`src/render3d/PerceptionSandbox3D.ts`) that gives the selected player
