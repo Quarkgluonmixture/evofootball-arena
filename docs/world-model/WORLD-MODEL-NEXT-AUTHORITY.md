@@ -593,3 +593,30 @@ qualified three-sample gate), distinguishing a mechanism refutation from a
 cadence finding (a miss only on support/ordered-response counts while H holds
 its ceiling). No predicate component, window, cadence, seed or gate value may
 be tuned after first sight of results.
+
+D-PROC-1G STRICT FAILED as a **cadence finding, not a mechanism refutation**,
+twice byte-identically (SHA `80a1a848…2748`), on fresh seeds `90,000..90,186`
+(187 scanned, 96/96 accepted). The crux gate that failed D-PROC-1 was fixed:
+held-exterior false reopening fell from `7/96` to `2/96` (gate `<= 4`). The
+qualified three-sample motion-phase predicate did exactly its job — a held
+actor's residual braking motion no longer clears support, so B stops
+responding to inertia it mistook for a run; the signal-blind arm I fired zero,
+and every C response progressed (87.7%), separated (96.5%) and never
+oscillated (max 2 revisions). Non-empty support held at 78/96 (`>= 64`). Two
+gates missed, both tracing to the same structural cost: support cannot turn
+non-empty until three strictly-newer gaze observations accumulate, so among
+survivors only 50 reached an ordered response inside the window (`< 56`), and
+the pre-registered 48-tick window itself attrited joint completion from
+D-PROC-1's 76 to 59 (`< 72`), dominated by loose balls (63) and lost observer
+support (39 across the 288 arms). All exact/privacy/RNG/intervention gates and
+the three added gaze-purity gates were zero; I/C pre-reopening equalities 96/96.
+Per the stop rule the observer-triggered response family is parked with
+prejudice and no parameter may be tuned; D-PROC-2 is NOT authorised. Because
+the response *works* but is too slow inside the live window, the surviving
+routes are a differently-shaped response consumer (able to respond before a
+full three-sample history exists, without reintroducing braking confusion) or
+taking the qualified motion-evidence channel to the decision-layer wall
+directly. The fork returns to the user; an executor may author neither. This
+is the third consecutive decision-layer attempt to miss (D-PROC-1 one-sample,
+D-PROC-1M passive channel, D-PROC-1G qualified channel), though the failure
+mode has migrated from mechanism (braking confusion, now fixed) to cadence.

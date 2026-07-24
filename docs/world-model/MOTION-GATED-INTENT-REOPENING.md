@@ -1,6 +1,12 @@
 # D-PROC-1G — Motion-gated embodied-intent reopening
 
-Status: **PRE-REGISTERED — no run yet.**
+Status: **STRICT FAIL (cadence finding, NOT a mechanism refutation) — the
+crux held-exterior false-reopening gate PASSED at 2/96, but jointly-completed
+states (59) and ordered responses (50) fell short of their frozen counts. The
+evidence-gated response is too slow to fire inside the live window at the
+required rate, and the pre-registered 48-tick window attrits joint completion
+below 72. No live consumer or D-PROC-2 authorised; no tuning; the fork returns
+to the user. See §7.**
 
 Date: 2026-07-24 (drafted; the executor flips this to PRE-REGISTERED on
 ratification)
@@ -139,3 +145,90 @@ commitment. It authorises at most one user fork: a D-PROC-2-shaped
 selection/ecology design contract (Track A3 in `PROGRAMME.md`). It does not
 authorise live wiring, TeamBrain changes, payoff, coach doctrine,
 familiarity, communication, genes or evolution.
+
+## 7. Frozen result
+
+**STRICT FAIL — cadence finding, NOT a mechanism refutation.** Run 2026-07-24
+on fresh seeds `90,000..90,186` (187 scanned, `<= 192`), 96/96 accepted, twice
+byte-identical. Canonical report SHA-256:
+
+```text
+80a1a848b5426d47dec1ab0a9da51f8f00109a6060a61aac8221988c0302b748
+```
+
+Implementation:
+
+* `src/ai/motionGatedIntentResponse.ts` derives the set-valued belief from the
+  qualified three-sample motion history, then composes it with D-PROC-1's
+  UNCHANGED occupancy-admissibility + cyclic reopening query;
+* `tests/motionGatedIntentResponse.test.ts` holds the 17 hostile cases
+  (D-PROC-1's twelve re-targeted + the five brake / two-sample / continuation /
+  redirect-bearing / epoch cases);
+* `scripts/probes/motion-gated-intent-reopening.ts` runs H/I/C with the S3-G1
+  memory-guided gaze threaded through every arm.
+
+Two gates missed; every other gate — including the crux — held:
+
+```text
+GATE                                          FROZEN      ACTUAL     VERDICT
+jointly completed H/I/C states                >= 72       59         FAIL
+C ordered response fingerprints               >= 56       50         FAIL
+H held-exterior false reopenings              <= 4        2          PASS  (crux)
+C non-empty embodied support                  >= 64       78         PASS
+C - H response-fingerprint edge               >= 48       48         PASS
+I response fingerprints                        = 0         0         PASS
+C replacement progress >= 0.25m               >= 75%      50/57 87.7% PASS
+C/I B-body separation >= 0.25m                >= 60%      55/57 96.5% PASS
+non-oscillation cycles / max revisions        0 / <= 3    0 / 2      PASS
+accepted states                                = 96       96         PASS
+scanned seeds                                 <= 192      187        PASS
+```
+
+Every exact validity, privacy, RNG, intervention, admissibility and
+frozen-candidate check was zero, and both I/C pre-reopening equalities were
+96/96:
+
+```text
+schema / non-finite / perception-RNG failures        0 / 0 / 0
+forbidden intervention changes                              0
+duplicate-observation revisions                             0
+admissibility / frozen-candidate violations           0 / 0
+I/C pre-reopening physical / evidence equality      96 / 96 · 96 / 96
+```
+
+The three added S3-G1 gaze-purity gates also held exactly: invalid gaze `= 0`,
+non-normalised gaze `= 0`, policy recompute mismatches `= 0`. Arm-completion
+census across the 288 arms: 178 completed, 63 loose, 39 observer-unsupported,
+8 dead-ball/restart; per-arm completion H 60 / I 59 / C 59, so 59 jointly.
+
+**Why this is a cadence finding, not a refutation.** The one gate D-PROC-1
+failed — held-exterior false reopening, `7/96` against `<= 4/96` — is now
+`2/96`. The qualified three-sample motion-phase predicate did exactly what it
+was posed to do: a held actor's residual braking motion no longer clears the
+support rule, so B no longer responds to inertia it mistook for a run. The
+signal-blind arm I fired zero responses; every response B did make progressed
+(87.7%), separated its body from I (96.5%) and never oscillated (max 2
+revisions). The mechanism — private intent → embodied evidence →
+motion-qualified belief → non-telepathic, non-oscillating response — is intact.
+
+Both failing counts trace to the SAME structural cost, exactly as §6 and the
+handoff anticipated. Support cannot turn non-empty until three strictly-newer
+gaze observations accumulate; at the scan cadence that consumes most of the
+48-tick window before any response can fire, so among survivors only 50 reach
+an ordered response in time (`< 56`). And the 48-tick window — pre-registered,
+not adjustable — itself attrits joint completion from D-PROC-1's 76 (at 36
+ticks) to 59, below the 72 floor, dominated by loose balls (63) and lost
+observer support (39). H held its ceiling throughout, so per §6 this is a
+**cadence finding** (evidence-gated response too slow to fire inside the live
+window), with the completion shortfall its window-attrition companion — not a
+mechanism refutation.
+
+**Stop.** Per §6 the observer-triggered response family is parked; no predicate
+component, window, cadence or seed may be adjusted, and D-PROC-2 is NOT
+authorised. Because this is a cadence finding rather than a refutation, the
+distinction matters for the commander: the response *works* but is too slow
+within the live window, so the remaining routes are a differently-shaped
+response consumer (one that can respond before a full three-sample history
+exists, without reintroducing D-PROC-1's braking confusion) or taking the
+qualified motion-evidence channel to the decision-layer wall directly. The
+fork returns to the user; an executor may not author either route.

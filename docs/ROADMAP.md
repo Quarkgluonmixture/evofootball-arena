@@ -866,8 +866,9 @@
 > separately pre-registered response-consumer experiment. No target-relevance
 > selection, live consumer or D-PROC-1 rescue.
 > Authority: [`world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md`](world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md).
-> 📋 **D-PROC-1G MOTION-GATED INTENT REOPENING PRE-REGISTERED** (2026-07-24,
-> Track A2 in [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md)). Re-poses
+> ⛔ **D-PROC-1G MOTION-GATED INTENT REOPENING STRICT FAIL — CADENCE FINDING,
+> NOT A MECHANISM REFUTATION** (2026-07-24, Track A2 in
+> [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md)). Re-posed
 > D-PROC-1's unchanged response question — every response, edge, progress,
 > separation, anti-oscillation and exact gate value verbatim — with exactly two
 > causal substitutions: the observation channel becomes the S3-G1 memory-guided
@@ -885,6 +886,19 @@
 > authorises at most one D-PROC-2 selection/ecology fork; FAIL parks the
 > response family with prejudice (mechanism refutation vs cadence finding
 > distinguished). No tuning after first sight of results.
+> **RESULT (2026-07-24, SHA `80a1a848…2748`, twice byte-identical, fresh
+> `90,000..90,186`, 96/96 accepted):** the crux gate FIXED — held false
+> reopening `7/96 → 2/96` (`<= 4`); support 78/96, C-H edge 48, I fingerprints
+> 0, progress 87.7%, separation 96.5%, max 2 revisions, all exact/privacy/RNG
+> and the three gaze-purity gates zero, I/C pre-reopening equality 96/96. Two
+> gates missed: jointly completed **59 < 72** and ordered responses **50 < 56**
+> — both because support needs three fresh gaze observations to accumulate,
+> which eats most of the 48-tick window and (via the longer window) attrits
+> completion (loose 63, observer-unsupported 39 of 288 arms). H held its
+> ceiling throughout ⇒ a **cadence finding** (the response works but fires too
+> slowly in the live window), NOT a refutation. Family parked; no tuning; NO
+> D-PROC-2. Fork to the user: a faster-shaped response consumer or the
+> decision-layer wall directly with the qualified motion-evidence channel.
 > Authority: [`world-model/MOTION-GATED-INTENT-REOPENING.md`](world-model/MOTION-GATED-INTENT-REOPENING.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and

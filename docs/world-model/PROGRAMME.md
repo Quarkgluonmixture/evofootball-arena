@@ -26,16 +26,25 @@ memory-guided attention. Closed with prejudice: D-ROTATE/D-INTENT/D-HANDOVER
 estimators. Full narrative: [`WORLD-MODEL-NEXT-AUTHORITY.md`](WORLD-MODEL-NEXT-AUTHORITY.md).
 
 The three walls to VISION: **information** (nearly through), **decision
-layer** (0 successes pre-gaze; retry only with the new channel), **selection**
-(deliberately unopened). Everything below is sequenced against those walls.
+layer** (still 0 successes — but A2/D-PROC-1G moved the failure mode from
+*mechanism* to *cadence*: the crux braking-vs-commitment confusion that sank
+D-PROC-1 is now FIXED at 2/96, and the response works — it is merely too slow
+to fire inside the live window, and the three-sample requirement attrits joint
+completion; see the A2 row), **selection** (deliberately unopened). Everything
+below is sequenced against those walls.
+
+> **Self-drive status (2026-07-24):** HALTED after A2 by protocol rule 1 — a
+> cadence finding is a non-PASS verdict, so authority is reshaped and only the
+> commander drafts what follows. B1 (independent, Track B) was NOT auto-started;
+> it remains READY for a future run once the commander/user set direction.
 
 ## Track A — the epistemology chain (information → decision)
 
 | ID | Step | Contract | Status |
 |----|------|----------|--------|
 | A1 | D-PROC-1MG gaze-supported motion evidence | [`GAZE-SUPPORTED-MOTION-EVIDENCE.md`](GAZE-SUPPORTED-MOTION-EVIDENCE.md) | ✅ **PASS 2026-07-24** (`58d6632`): support 77.4%→100%, every 1M gate cleared, SHA `28971096…1b58` |
-| A2 ★ | Motion-gated response consumer (D-PROC-1G): D-PROC-1 verbatim with two causal substitutions — gaze channel + three-sample motion-phase support predicate (braking ≠ commitment); H false-reopening ceiling `<=4/96` is the crux gate | [`MOTION-GATED-INTENT-REOPENING.md`](MOTION-GATED-INTENT-REOPENING.md) + [`HANDOFF-D-PROC-1G.md`](HANDOFF-D-PROC-1G.md) | **READY** (★ handing over = ratification) |
-| A3 ★ | Decision-layer wall, attempt 4: one narrow decentralised defensive process re-posed WITH gaze+motion evidence (the three closed attempts all ran blind). Scope decided after A2 | TBD | TBD (gated on A2) |
+| A2 ★ | Motion-gated response consumer (D-PROC-1G): D-PROC-1 verbatim with two causal substitutions — gaze channel + three-sample motion-phase support predicate (braking ≠ commitment); H false-reopening ceiling `<=4/96` is the crux gate | [`MOTION-GATED-INTENT-REOPENING.md`](MOTION-GATED-INTENT-REOPENING.md) | ⛔ **STRICT FAIL — CADENCE FINDING 2026-07-24** (`80a1a848…2748`): crux gate FIXED (held false reopening 7/96→2/96), but jointly-completed 59<72 and ordered 50<56 — response works, too slow inside the 48-tick window. Family parked; no tuning; NO D-PROC-2. **Fork returns to the user (self-drive stopped).** |
+| A3 ★ | Decision-layer wall, attempt 4: one narrow decentralised defensive process re-posed WITH gaze+motion evidence (the three closed attempts all ran blind). Scope decided after A2 | TBD | **PARKED — A2 FAILed, so A3 does NOT open. Commander drafts the next route after the user chooses the fork** (faster response-consumer shape, or decision-wall directly with the qualified motion-evidence channel). |
 | A4 ★ | Relevance selection ("who deserves attention"), then coach doctrine / familiarity as separate interpretation priors — the layering Codex pinned: neither may reveal unobserved bodies | TBD | PARKED until A3 |
 
 FAIL anywhere: the step's own stop rule binds; the fork returns to the user;
