@@ -33,7 +33,7 @@ crowd out other football?"*
 
 ---
 
-## 2. Five threshold TYPES (never mix them)
+## 2. Six threshold TYPES (never mix them)
 
 Each gate belongs to exactly one type; state which when you write the contract.
 
@@ -48,6 +48,14 @@ Each gate belongs to exactly one type; state which when you write the contract.
   regress out of the agreed band. The verdict is *"not worse,"* not *"better."*
 - **Ecological** — multi-seed, multi-generation, **fresh** evo: divergence exists,
   **no runaway** axis, payoff is frequency-dependent.
+- **Equivalence / flatness** — the claim is *"no effect"* / *"no longer rises"*:
+  must be pre-registered as an INTERVAL test (an explicit equivalence band) with
+  a sample size computed against the predicted effect. A strict point inequality
+  where the per-arm SE swamps the predicted difference is structurally
+  undecidable — the gate can only ever return `unexplained`, whichever way the
+  world is. *(Registered from EDS E1a-I2, 2026-07-25: a 0.5pp endpoint gap was
+  coded as "rises" where the SE of that difference was ≈5.6pp at n≈60 — the
+  probe was honest, the predicate was unpowered by construction.)*
 
 ---
 

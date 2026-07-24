@@ -173,6 +173,37 @@ generalises.
 >    mid-speed loose balls often never reach adjudication at all (M3 contact
 >    cushioning; sweep buckets 9/11 produced zero events vs 60/60 in 7/13).
 >    Both are C5-adjacent substrate truths — registered, NOT touched in EDS v1.
+>
+> **COMMANDER RULING #6 (2026-07-25 — the E1a split verdict):**
+>
+> 1. **E1b OPEN on I1's pass alone.** The E1a contract's frozen §4 names I1
+>    as the sole drafting condition; I1 passed on untouched gates (6.9–11.2×
+>    floor, calibration ≤0.311pp / 2.0pp). Substantively: the one physics
+>    story that could have invalidated E1b's premise — pressure-relief as
+>    the dominant channel — was refuted by the logged decomposition
+>    (pressure −0.23pp vs speed +1.63pp). E1b consumes the instrument, not
+>    I2's verdict.
+> 2. **I2 RETIRED, not redrawn.** The E1a probe verdict stays FAIL as
+>    emitted — no predicate is rewritten after results, ever. But its
+>    question is settled by its own decomposition (pressure-relief refuted;
+>    the E0b inversion does not reproduce at the clean adjudication), and
+>    the powered flat-vs-rising test is SUBSUMED by E1b's same-seed OFF/ON
+>    contrast on the I1 staging (thousands of events per bucket, SE ≈0.5pp
+>    — more power than any standalone redraw). Disposition recorded in the
+>    E1a contract §7.
+> 3. **Discipline codified:** PROBE-CONTRACTS §2 gains a SIXTH threshold
+>    type — equivalence/flatness claims must be pre-registered as interval
+>    tests with pre-computed power; a strict point inequality where SE
+>    swamps the predicted effect is structurally undecidable and forbidden.
+> 4. **E1b two-channel amendment (design contract §3):** pace buys speed
+>    cost AND blind-side cost (misalign 0.100→0.348 with power — real
+>    embodied timing; I2 magnitude inflated by pinned receivers, so gate
+>    its DIRECTION never its size). E1b's decomposition gate = increase
+>    carried by speed and/or misalign channels, pressure channel bounded.
+>    OFF/ON contrast on the I1 staging; contested states diagnostics only;
+>    always-heavy canary unchanged. The executor drafts the E1b stage
+>    contract under these constraints (Autonomous mode) — no further
+>    commander input needed until E1b's result.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -282,21 +313,23 @@ bundle or ships it.
 | ID | Step | Contract | Status |
 |----|------|----------|--------|
 | E0 | Dormant pass-option valuation: observation-only, 2–3 power levels, priced in flight time / corridor interception margin / touch difficulty. Must reproduce the C1-A2 ledger **including the world's near-flat reception cost** — modelling the defect is the point | [`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md) + [`EDS-E0B-OPTION-VALUATION-REDRAW.md`](EDS-E0B-OPTION-VALUATION-REDRAW.md) | ⚠️ **E0 FAIL → E0b FAIL; no third re-pose authorised.** ✅ Banked twice on identical numbers: the evaluator models the interception physics — per-state ranking by predicted corridor threat moves the MEASURED opponent-first rate **0.558→0.346 (21.2pp)**, safest=1.15 in **52/52** contested, flight time and arrival speed monotone. ⭐ Banked finding: at awareness 0.8 the passer can price **nothing** in 55/120 states, split by distance (21.7m unpriced vs 16.8m priced) ⇒ observation DELETES ~46% of options, mostly long ones — the mechanism behind S3b's route collapse and **E2's central design problem**. ⛔ Unsettled: what the world charges for pace at reception — three metrics disagree (eventual control ~0, raw-4-tick INVERTED, formula +4pp), and E0b's reproduction gate caught the raw metric contaminating its companion. **E1 must be re-scoped to build a trustworthy reception measurement first — the user's call** |
-| E1 | ✅ **RE-SCOPE RULED 2026-07-24 (commander ruling #4, design contract §3 amended): E1a → E1b.** **E1a** = the trustworthy first-touch instrument at the real `attemptFirstTouch` adjudication, event-level, logging the TERM DECOMPOSITION (speed/pressure/misalign/technique) per event; must reproduce the formula's own speed term on controlled synthetic sweeps (an instrument that cannot see known physics is broken) and must SETTLE the E0b inversion (pressure-relief confound — faster ball ⇒ less closing time ⇒ lower pressure at touch — vs contamination); pure probe, zero physics. **E1b** = the flagged C1-B curve, default OFF, validated by E1a's instrument with the decomposition confirming the SPEED term moved; also run the E3 always-heavy canary cheaply here (if the dormant evaluator still prefers 1.15 in ~52/52 after E1b, the curve is too weak). Spends the C1-B redraw | [`EDS-E1A-FIRST-TOUCH-INSTRUMENT.md`](EDS-E1A-FIRST-TOUCH-INSTRUMENT.md) | ⚖️ **E1a RUN 2026-07-24 — I1 PASSES, I2 UNDECIDED, probe verdict FAIL** (§6, SHA `93897f79…9c09`, twice byte-identical, zero new `src/**`, fingerprint `57b0bdab…c673` unchanged, 708/708). Re-staged per ruling #5.3 as a REAL intended pass power-swept 0.85–1.15 × distance 6–30 m: 44,100 staged passes, 25,491 adjudicated (57.8%), held conditions genuinely held (**mean pressure exactly 0**, misalign ≤0.0005). **I1: events 2,780/4,302/4,478/2,864** (floor 400) · **spill 1.691/3.278/4.757/6.494%, strictly monotone** · **|empirical − logged pFail| ≤ 0.311pp** (tolerance 2.0pp) and within 0.31pp of the closed form ⇒ the instrument sees known physics. Extra staging truth: the frozen world must never be allowed to play on (parked bodies walk the ball into an empty net, and the restart corrupts the next staging). **I2 does NOT decide**: clean rate 0.8868/0.9000/0.8919 is flat and non-monotone while predicted pFail rises +2.4pp; **pressure-relief is REFUTED** (pressure term −0.23pp vs speed +1.63pp), and an unbooked term appeared — **misalign rises 0.100→0.348 with power** (a faster ball arrives before the receiver has turned). The coded discriminator read the 0.5pp endpoint gap (SE ≈ 5.6pp at n≈60) as "rises" ⇒ `unexplained`. Reported, NOT patched — I2 was underpowered by construction. **Fork is the USER's** (§6): does I1's pass alone unblock E1b (§4 says yes), and is I2 redrawn (powered, discriminator as an interval test) or retired now that its hypothesis is refuted? <br>Earlier: instrument BUILT and behaviour-proven (`traceFirstTouch` default off; flag on vs off identical over 3 full matches incl. RNG state; fingerprint unchanged; logs speed/pressure/misalign/technique/pFail/clean per adjudication). ⚠️ **I1's synthetic sweep needs a redesign before its gates can be evaluated** — two structural findings: (a) below 6 m/s the world returns clean BEFORE the roll (`mechanics.ts:130`), so no adjudication exists to measure — slow receptions are free by fiat; (b) a loose rolled ball often never reaches an adjudication at all, because the M3 contact cushions it out of the retention window (buckets 7 and 13 gave 60/60 events, 9 and 11 gave none). Fix = stage a REAL intended pass and sweep power. Gates unchanged. **E1b stays unopened until I1 passes** |
+| E1 | ✅ **RE-SCOPE RULED 2026-07-24 (commander ruling #4, design contract §3 amended): E1a → E1b.** **E1a** = the trustworthy first-touch instrument at the real `attemptFirstTouch` adjudication, event-level, logging the TERM DECOMPOSITION (speed/pressure/misalign/technique) per event; must reproduce the formula's own speed term on controlled synthetic sweeps (an instrument that cannot see known physics is broken) and must SETTLE the E0b inversion (pressure-relief confound — faster ball ⇒ less closing time ⇒ lower pressure at touch — vs contamination); pure probe, zero physics. **E1b** = the flagged C1-B curve, default OFF, validated by E1a's instrument with the decomposition confirming the SPEED term moved; also run the E3 always-heavy canary cheaply here (if the dormant evaluator still prefers 1.15 in ~52/52 after E1b, the curve is too weak). Spends the C1-B redraw | [`EDS-E1A-FIRST-TOUCH-INSTRUMENT.md`](EDS-E1A-FIRST-TOUCH-INSTRUMENT.md) | ✅ **DISPOSED by ruling #6 (2026-07-25): E1b OPEN on I1's pass; I2 RETIRED (decomposition settled it; powered flat-vs-rising subsumed by E1b's OFF/ON contrast); E1b gains the two-channel amendment (design contract §3).** ⚖️ **E1a RUN 2026-07-24 — I1 PASSES, I2 UNDECIDED, probe verdict FAIL** (§6, SHA `93897f79…9c09`, twice byte-identical, zero new `src/**`, fingerprint `57b0bdab…c673` unchanged, 708/708). Re-staged per ruling #5.3 as a REAL intended pass power-swept 0.85–1.15 × distance 6–30 m: 44,100 staged passes, 25,491 adjudicated (57.8%), held conditions genuinely held (**mean pressure exactly 0**, misalign ≤0.0005). **I1: events 2,780/4,302/4,478/2,864** (floor 400) · **spill 1.691/3.278/4.757/6.494%, strictly monotone** · **|empirical − logged pFail| ≤ 0.311pp** (tolerance 2.0pp) and within 0.31pp of the closed form ⇒ the instrument sees known physics. Extra staging truth: the frozen world must never be allowed to play on (parked bodies walk the ball into an empty net, and the restart corrupts the next staging). **I2 does NOT decide**: clean rate 0.8868/0.9000/0.8919 is flat and non-monotone while predicted pFail rises +2.4pp; **pressure-relief is REFUTED** (pressure term −0.23pp vs speed +1.63pp), and an unbooked term appeared — **misalign rises 0.100→0.348 with power** (a faster ball arrives before the receiver has turned). The coded discriminator read the 0.5pp endpoint gap (SE ≈ 5.6pp at n≈60) as "rises" ⇒ `unexplained`. Reported, NOT patched — I2 was underpowered by construction. **Fork is the USER's** (§6): does I1's pass alone unblock E1b (§4 says yes), and is I2 redrawn (powered, discriminator as an interval test) or retired now that its hypothesis is refuted? <br>Earlier: instrument BUILT and behaviour-proven (`traceFirstTouch` default off; flag on vs off identical over 3 full matches incl. RNG state; fingerprint unchanged; logs speed/pressure/misalign/technique/pFail/clean per adjudication). ⚠️ **I1's synthetic sweep needs a redesign before its gates can be evaluated** — two structural findings: (a) below 6 m/s the world returns clean BEFORE the roll (`mechanics.ts:130`), so no adjudication exists to measure — slow receptions are free by fiat; (b) a loose rolled ball often never reaches an adjudication at all, because the M3 contact cushions it out of the retention window (buckets 7 and 13 gave 60/60 events, 9 and 11 gave none). Fix = stage a REAL intended pass and sweep power. Gates unchanged. **E1b stays unopened until I1 passes** |
 | E2 | Both-sides perception (dormant build, probe-bundled): passer choice via E0 from perceived state, defender interception entry from perceived state, shared awareness trunk. Probe A/B with E1+E2 ON in probe worlds only. Includes the PERF gate | TBD (drafts after E1) | queued |
 | E3 | Co-evolution audit: sealed evo runs, full bundle ON — §2 band, route mix, the C1-B behavioural suite, no-strict-dominance (power usage must stay situational), co-evo restoration, style diversity | TBD (drafts after E2) | queued |
 | E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
 
-**Queue state (2026-07-24, after the E1a re-stage): stopped at a user gate.**
-E1a ran under ruling #5.3 and came back split — **I1 PASSES** (the first-touch
-instrument provably recovers the formula's own speed term: 2,780–4,478 events
-per bucket, strictly monotone spill, calibration inside 0.311pp of a 2.0pp
-tolerance) while **I2 does not decide** and the probe therefore reports FAIL.
-Per the self-drive protocol a non-PASS stops the queue. The two questions in
-[`EDS-E1A-FIRST-TOUCH-INSTRUMENT.md`](EDS-E1A-FIRST-TOUCH-INSTRUMENT.md) §6 —
-*does I1's pass alone open E1b* (§4 of that contract says yes) and *is I2
-redrawn or retired now that pressure-relief is refuted* — are the user's.
-E1b stays unopened until one of them is answered.
+**Queue state (2026-07-25, after ruling #6): E1b is the next step — the
+executor drafts its stage contract under Autonomous mode.** E1a came back
+split (I1 PASSES, I2 undecided, probe verdict FAIL — frozen in the contract
+§6) and ruling #6 disposed it: E1b OPEN on I1's pass (the contract's own §4
+condition), I2 RETIRED (question settled by its decomposition; the powered
+flat-vs-rising test is subsumed by E1b's OFF/ON contrast). E1b's drafting
+constraints are in the design contract §3 (two-channel amendment: speed
+and/or misalign carry the increase, pressure bounded; I1 staging, same-seed
+OFF/ON, interval-test predicates per PROBE-CONTRACTS' sixth threshold type;
+contested states diagnostics only; always-heavy canary unchanged). After
+E1b: E2 (unseen-pricing amendment) → E3 (co-evolution audit) → **STOP at E4
+for the user's play-test**.
 
 ## Track D — world-observatory UI (no sim contact, Sonnet-friendly)
 

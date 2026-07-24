@@ -1064,7 +1064,7 @@
 >   failed because ONE S5 function was made to carry SIX layers. "team gene" isn't
 >   missing, it's fragmented across `TacticalGenome`(23) + `PolicyGenes`(22) + `TeamStyle`.
 > - **[`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md)** — the six-layer acceptance chain
->   (`fires≠works≠pays≠selected≠good-football`), five threshold types, **NO single
+>   (`fires≠works≠pays≠selected≠good-football`), six threshold types, **NO single
 >   VisionScore**, the per-phase contract template, probe roster classified
 >   BASELINE-NOW / LAYER-GATE / REUSABLE-WORKHORSE / FRAMEWORK-LATER, replay-clip sampling.
 >

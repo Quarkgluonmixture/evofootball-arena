@@ -1,7 +1,8 @@
 # EDS E1a — The first-touch instrument
 
 Status: **RUN 2026-07-24 — §6 is the frozen result: I1 PASSES, I2 does not
-decide, probe verdict FAIL.** (Commander ruling #4, 2026-07-24:
+decide, probe verdict FAIL. DISPOSED 2026-07-25 by commander ruling #6 (§7):
+I1's pass opens E1b; I2 retired.** (Commander ruling #4, 2026-07-24:
 [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md) §3 amended to
 E1a → E1b, because E0/E0b measured their own instruments instead of the physics.)
 
@@ -244,3 +245,34 @@ the user / commander, in this order:
    point comparison, frozen before the run). Retiring it is also defensible:
    the decomposition already refuted the pressure-relief hypothesis it was
    built to test.
+
+## 7. Disposition — commander ruling #6 (2026-07-25)
+
+The §6 verdict stands exactly as emitted: **FAIL**. Nothing below rewrites it.
+
+1. **E1b is OPEN on I1's pass alone.** Grounds, in order of authority: (a)
+   §4's frozen text names I1 as the sole drafting condition, and I1 passed on
+   untouched gates at 6.9–11.2× its sample floor with calibration inside
+   0.311pp of a 2.0pp tolerance; (b) the only physics that could have
+   invalidated E1b's premise — pressure-relief as the DOMINANT channel, i.e.
+   heavy passes self-financing through reduced closing time — was directly
+   refuted by the logged decomposition (pressure −0.23pp vs speed +1.63pp);
+   (c) E1b consumes the instrument, not I2's adjudication.
+2. **I2 is RETIRED, not redrawn.** Its question is settled at the design
+   level by the decomposition it logged: pressure-relief refuted, and the
+   E0b inversion (raw 0.220/0.227/0.158) does not reproduce at the clean
+   adjudication (0.8868/0.9000/0.8919, flat and non-monotone) — consistent
+   with contamination, exactly what E0b's reproduction gate already caught.
+   The properly-powered flat-vs-rising test is SUBSUMED by E1b's validation:
+   a same-seed OFF/ON contrast on the I1 staging at thousands of events per
+   bucket (SE ≈ 0.5pp) has strictly more power than any standalone redraw
+   could pre-register, and runs where the answer matters. A redraw would
+   spend a full pre-registration cycle to re-answer an answered question.
+3. **The predicate failure is codified, not blamed**: PROBE-CONTRACTS §2
+   gains a sixth threshold type — equivalence/flatness claims must be
+   interval tests with pre-computed power; strict point inequalities where
+   SE swamps the predicted effect are structurally undecidable and forbidden.
+4. **The misalign discovery is booked as substrate truth** (design contract
+   §4) and amends E1b's decomposition gate (design contract §3): pace buys
+   speed cost AND blind-side cost; the pressure channel — the refuted
+   confound — must not carry E1b's measured increase.

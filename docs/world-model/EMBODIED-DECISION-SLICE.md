@@ -16,6 +16,17 @@ information-boundary decision inside E0 (receiver VELOCITY priceable as
 physics, receiver TECHNIQUE reserved for A4 familiarity, neutral 0.5) is
 endorsed as precedent.
 
+**Commander ruling #6 (2026-07-25): E1a's I1 PASSED on unmodified gates
+(instrument certified: 6.9–11.2× the sample floor, calibration ≤0.311pp
+against a 2.0pp tolerance) — E1b is OPEN per the E1a contract's own frozen
+§4. I2 is RETIRED, not redrawn: its question was settled by the
+decomposition it logged (pressure-relief refuted, −0.23pp vs +1.63pp speed;
+the E0b inversion does not reproduce at the clean adjudication), and the
+properly-powered flat-vs-rising test is subsumed by E1b's OFF/ON contrast on
+the I1 staging. The E1a probe verdict stays FAIL as emitted — retirement is
+a disposition, never a rewrite. The misalign discovery (blind-side cost
+rises with power) amends E1b's validation below.**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle
@@ -93,6 +104,26 @@ E1b FLAGGED PHYSICS — the C1-B touch-cost curve behind an EDS flag, default
     TOUCH, with the decomposition confirming the SPEED term is what moved.
     This stage spends the C1-B redraw in its correct home.
 
+    ⭐ TWO-CHANNEL AMENDMENT (commander ruling #6, from I2's decomposition,
+    2026-07-25): pace buys TWO real costs, not one — the formula's speed
+    term AND a blind-side cost (misalign rose 0.100→0.348 with power: a
+    faster ball arrives before the receiver completes its facing turn — the
+    mechanism is real embodied timing; its I2 magnitude is inflated by
+    pinned receivers that cannot turn, so gate on its DIRECTION never its
+    size). E1b's decomposition gate is therefore: the cost increase must be
+    carried by the speed and/or power-coupled misalign channels, with the
+    PRESSURE channel bounded (pressure-relief is the refuted confound — it
+    must not carry the increase). Drafting constraints for the stage
+    contract: (a) the OFF/ON contrast runs on the I1 staging (real intended
+    pass, power×distance sweep, same seeds both arms, I1-scale event counts
+    — thousands per bucket, SE ≈ 0.5pp — pre-registered as a powered
+    interval test per PROBE-CONTRACTS' equivalence/flatness type, never a
+    point inequality); (b) contested-state numbers (I2-style staging) are
+    diagnostics only, never gates; (c) the always-heavy canary below runs
+    here unchanged. Note the vision link: the misalign term is 身体朝向
+    already priced in the substrate — C5's one-touch/orientation craft has
+    a real seat waiting.
+
 E2  BOTH-SIDES PERCEPTION (dormant build, probe-bundled) — passer choice via
     E0 from perceived state; defender interception entry from perceived
     state; shared awareness trunk wiring. Probe A/B runs with E1+E2 flags ON
@@ -145,7 +176,10 @@ DIAGNOSTICS only — to name a failing component — never as partial ships.
   clean before any roll), and mid-speed loose balls often never reach an
   adjudication at all (M3 contact cushioning). All reception measurements —
   C1-A2, E0b, E1a — are structurally blind below 6 m/s and on unrolled loose
-  balls; C5's future design must know both;
+  balls; C5's future design must know both. Third registered fact (E1a-I2,
+  2026-07-25): the substrate already prices blind-side receptions — misalign
+  rises with power at the real adjudication, so orientation cost EXISTS as
+  physics before any craft layer touches it;
 * C1-A2 ledger: SHA `7e0ff4d5…257b` numbers as E0/E1 references;
 * C1-B audit: the §2 band values, the behavioural suite, the re-route
   signature (long balls +28.2%) as the E3 canary;
