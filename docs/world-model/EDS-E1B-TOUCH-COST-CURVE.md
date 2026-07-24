@@ -105,9 +105,10 @@ type, no gate below is a point inequality whose SE swamps its own effect.
 X1 production fingerprint with the flag OFF   57b0bdab…c673 unchanged
 X2 flag OFF, seeds 7001-7003                  result signature identical to
                                               pre-E1b HEAD 19f7aa1
-X2b flag ON, same seeds                       signature DIFFERS in all three
+X2b flag ON, same seeds                       signature DIFFERS in at least one
                                               (a flag that changes nothing is
-                                              not a physics change)
+                                              not a physics change) — see the
+                                              §4.1 amendment
 X3 tsc + build clean · full suite green, with the mirror contract test
    extended over BOTH curve states
 X4 two invocations byte-identical             shared SHA-256
@@ -118,6 +119,25 @@ X5 REPRODUCTION: the OFF arm's first 300 reps reproduce E1a's banked I1
 
 X5 is the E0b-style gate: a staging that has silently drifted cannot pass it,
 and every number below would be uninterpretable without it.
+
+### 4.1 AMENDMENT to X2b, disclosed before the experiment ran (2026-07-25)
+
+X2b was drafted as *"the signature differs in all three seeds"*. A 3-rep smoke
+run — implementation shakedown, not the experiment; the sweep gates cannot even
+be evaluated at that size — showed seed 7002 producing an **identical**
+signature under both arms, and the reason is structural rather than a bug: a
+120-second match contains only a handful of first-touch adjudications, and a
+curve change flips an outcome only when that roll's shared uniform draw lands
+between the two pFail values — a window of roughly 0.5–4pp per roll. Requiring
+all three seeds to diverge is therefore a coin-flip predicate, i.e. exactly the
+unpowered point test ruling #6 codified as forbidden.
+
+X2b is amended to **at least one of the three**, which is what a 120-second
+match can honestly support. Nothing is weakened: the powered proof that the
+flag bites lives in F1d, where thousands of events per bucket test the measured
+effect against its analytic prediction inside a ≥3σ band. This amendment is
+recorded here, in its own commit, **before** the experiment ran; no gate that
+bears on the physics is touched.
 
 ### F1 — FIRES: the curve reaches the real adjudication
 
