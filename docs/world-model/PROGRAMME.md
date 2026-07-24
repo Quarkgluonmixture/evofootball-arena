@@ -26,12 +26,13 @@ memory-guided attention. Closed with prejudice: D-ROTATE/D-INTENT/D-HANDOVER
 estimators. Full narrative: [`WORLD-MODEL-NEXT-AUTHORITY.md`](WORLD-MODEL-NEXT-AUTHORITY.md).
 
 The three walls to VISION: **information** (nearly through), **decision
-layer** (still 0 successes — but A2/D-PROC-1G moved the failure mode from
-*mechanism* to *cadence*: the crux braking-vs-commitment confusion that sank
-D-PROC-1 is now FIXED at 2/96, and the response works — it is merely too slow
-to fire inside the live window, and the three-sample requirement attrits joint
-completion; see the A2 row), **selection** (deliberately unopened). Everything
-below is sequenced against those walls.
+layer** (**first brick landed 2026-07-24** — A3/D-MUT-0 PASSED: two bodies
+resolve a private conflict through observation alone, 76.9% resolved, no
+commander and no communication. The road here: A2/D-PROC-1G fixed the
+braking-vs-commitment confusion that sank D-PROC-1 (2/96) but was too slow
+inside a unilateral 0.8s window; symmetrising it — where resolution needs only
+ONE party to fire — cleared the cadence problem), **selection** (deliberately
+unopened). Everything below is sequenced against those walls.
 
 ## 0.5 Direction (commander deep-think, 2026-07-24)
 
