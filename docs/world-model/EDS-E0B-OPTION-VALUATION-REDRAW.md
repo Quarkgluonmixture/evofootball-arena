@@ -84,3 +84,67 @@ against the neutral 0.5 the information boundary forces).
 * A third re-pose of E0 is NOT authorised. If E0b cannot settle the reception
   cost, the question goes to E1 as an explicit open item and the fork returns to
   the user.
+
+## 5. E0b RESULT — FAIL, and the stop rule binds (2026-07-24)
+
+`scripts/probes/eds-option-valuation-firsttouch.ts`, seeds `93,000..93,126`,
+120/120 accepted, 92 contested, 52 priced 3/3 (non-vacuity ✓), deterministic
+across two invocations, SHA `2b7d6a3b…44cb`. Fingerprint `57b0bdab…c673`
+unchanged; the module is still pure with zero live callers.
+
+```text
+P1 threat falls with power        0.843 → 0.586 → 0.446 s, safest=1.15 52/52  ✓
+P3 flight time falls             1.713 → 1.303 → 1.061 s                     ✓
+P4 arrival speed rises           5.99 → 8.69 → 11.39                         ✓
+P5 ranked selection agrees       measured opponent-first 0.558 → 0.346        ✓
+P2' agreement                    predicted +4.0pp vs measured RAW −6.2pp      ✗
+C1-A2 eventual-control reproduced  0.136 / 0.106 / 0.145 (was 0.119/0.121/0.118) ✗
+```
+
+### The reproduction gate caught an instrumentation error of mine
+
+The retained eventual-control diagnostic no longer matches C1-A2 — **because the
+new raw measurement perturbs it.** E0b steps the match four ticks to resolve the
+first touch *before* running the old up-to-12-tick ownership loop, so the second
+metric no longer starts where C1-A2 started it. The two reception metrics are not
+independent when measured in the same branch, and the exact gate that demanded
+C1-A2 be reproduced is what surfaced it. That is the gate doing its job on the
+experimenter.
+
+### And the raw metric came out INVERTED, not merely different
+
+Raw first-touch failure measured **0.220 / 0.227 / 0.158** — failure *falls* as
+the ball gets harder — against a predicted **+4.0pp** rise. A 10.2pp
+disagreement in the opposite direction is not a calibration gap; combined with
+the contamination above it says the instrumentation, not the physics, is what is
+being measured. A fixed four-tick window after "first contact" evidently does not
+line up with the M3 control attempt the same way for a rolled ball as for a
+drilled one.
+
+### Verdict: the reception-cost question leaves E0 unsettled, by rule
+
+**FAIL.** §4's stop rule is explicit and binds: *"A third re-pose of E0 is NOT
+authorised. If E0b cannot settle the reception cost, the question goes to E1 as an
+explicit open item and the fork returns to the user."* So:
+
+* **Banked and robust** (identical across E0 and E0b, two byte-identical runs
+  each): the evaluator models the interception physics — per-state ranking by
+  predicted corridor threat moves the measured opponent-first rate
+  **0.558 → 0.346 (21.2pp)**, with the safest option being 1.15 in **52/52**
+  contested states, and predicted flight time and arrival speed monotone in power.
+* **Banked finding** (unchanged by the redraw): at awareness 0.8 the passer can
+  price nothing at all in **55 of 120 states**, split by distance (21.7m unpriced
+  vs 16.8m priced) — observation deletes ~46% of today's options, mostly the long
+  ones. This is the mechanism behind S3b's route collapse and it is E2's central
+  design problem.
+* **Unsettled and handed to E1 as an explicit open item**: what the world charges
+  a receiver for pace. Three metrics now disagree — eventual control says ~0,
+  raw-four-tick says it *falls* with pace, the formula says it rises ~4pp — so
+  **E1's first job is a reception measurement that is trustworthy**, established
+  against the real `attemptFirstTouch` roll rather than inferred from ownership
+  timing. Until that exists, no touch-cost change can be validated, which is
+  precisely what C1-B's revert already implied.
+
+The fork returns to the user: E1 must be re-scoped around building that
+measurement first, and that is a change to the ratified ladder's content, so it
+is not the executor's call.
