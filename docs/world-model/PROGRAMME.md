@@ -70,14 +70,36 @@ generalises.
 > user gates).** The delegated queue `ship B1 + apply B2 → C1-Phase0 →
 > A3(D-MUT-0)` was executed in one session: B1 shipped, B2 applied,
 > C1-Phase0 answered (drafted Phase-2 shape refuted; fork in the contract's
-> §7), A3 **PASSED** — the decision-layer wall's first brick. Everything now
-> READY needs the user:
-> * **A3's own fork** (§6): three-body rotation-shaped extension, or bank the
->   brick and pivot to Tracks B/C. Only one is authorised.
-> * **C1's fork** (§7): C1-A dormant plumbing (executable autonomously), then
->   C1-B live speed-dependent control cost (user gate), then C1-C redrawn.
-> * **B2's render** — look whenever; feedback is small tweaks, not a new step.
-> * **Track D1** — READY, but it changes what the user watches, so it is theirs.
+> §7), A3 **PASSED** — the decision-layer wall's first brick.
+>
+> **COMMANDER RULING on the three open forks (2026-07-24, pending the user's
+> one-word ratification — on it, the autonomous queue below unlocks):**
+>
+> 1. **A3 fork → three-body direction, entered via S3-G2 first.** D-MUT's own
+>    data locates the next constraint: all 15 unresolved states were mutual-
+>    staleness safe-fails, and S3-G1 banked SINGLE-target attention only. A
+>    three-body process makes every player track TWO moving partners with one
+>    gaze — attention scheduling becomes the binding constraint before any
+>    rotation shape can be honest. Ladder: **S3-G2** (dual-target interleaved
+>    attention gate: can alternating memory-guided gaze sustain qualified
+>    evidence on two moving targets? same G-series pattern, ceiling arm,
+>    frozen support gates derived from S3-G1/1MG numbers) → **D-TRI-0**
+>    (three-body rotation-shaped mutual response, gates derived from D-MUT's
+>    banked numbers). Autonomous session drafts both contracts in that order
+>    under pre-registration discipline.
+> 2. **C1 fork → C1-A now (dormant, autonomous), C1-B GO as the next LIVE
+>    slice** (user play-test gate at the end stays): honest speed-dependent
+>    control cost is a standalone substrate-truth fix (heavy balls barely
+>    cost anything today — the +0.07 raw term saturates at 14 m/s) and is the
+>    prerequisite for the ENTIRE craft engine (C1-C, C5 both need reception
+>    cost to be real). Six-layer + §2 band + paired A/B, narrow slice, lands
+>    between Track-A experiments. **C1-C is DEFERRED into the Embodied
+>    Decision Slice** — teaching the evaluator to price time/speed belongs to
+>    the S3b-redo bundle, not a patch on `laneOpenness`.
+> 3. **D1 GO, parallel, Sonnet-tier** — pure UI, user's eyes accept.
+>
+> Recommended queue on ratification: `C1-A → S3-G2 → C1-B(≤user play-test) →
+> D-TRI-0`, D1 parallel. B2's render: user looks whenever; small tweaks only.
 
 ## Track A — the epistemology chain (information → decision)
 
