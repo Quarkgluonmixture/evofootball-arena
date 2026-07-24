@@ -69,6 +69,24 @@ and can run in parallel with Track A.
 | C2 ★ | Body orientation as a decision: outfield "open body / half-turn" — expose the existing capped-turn heading to the decision layer symmetrically (receive AND defend), gene/attr-priced. The S3-G0 twin: gaze freed the eyes; this frees the shoulders | **TBD — draft after C1 lands** (same convex-option-inflation risk family) | TBD |
 | C3 | 假动作/feints: **NOT a buildable step — do not hand-code.** Deception becomes selectable only when opponents act on observed evidence at a cost (A1+A2) and the body can express misdirection (C2). When those land, feinting is an EVOLUTION observation, not a mechanic. Any session proposing a feint mechanic violates the soul — refuse | doctrine note only | GUARD |
 
+## Track D — world-observatory UI (no sim contact, Sonnet-friendly)
+
+Direction doc: [`../UI-NORTHSTAR.md`](../UI-NORTHSTAR.md) (commander-curated
+from the user's + GPT's direction; events/time/lineage/evidence thesis
+adopted, behavior-narrative pages DEFERRED until the behaviors exist).
+
+| ID | Step | Contract | Status |
+|----|------|----------|--------|
+| D1 | Shell split: world-mode pages drop the match side-columns (floating mini-player instead); match-mode unchanged | UI-NORTHSTAR §全盘采纳 1 | READY (after B1 ships) |
+| D2 | Evolution scatter: season trails + ghost points + hover/lock + generation slider | UI-NORTHSTAR §全盘采纳 2 | READY (after D1) |
+| D3 ★ | WorldEvent v0 (honest event set only — champions/streaks/records/style-drift/ELO turns/counter flips) + world home + Dynasty Ribbon; every event carries real telemetry evidence, candidate→confirmed lifecycle | UI-NORTHSTAR §带纪律采纳 | TBD — commander drafts the event-detector contract before any narrative UI |
+| D4 | Behavior discovery archive | — | LOCKED until Track A is live in players |
+| D5 | Causal replay / counterfactual mode | — | LOCKED until counterfactual authority is productised |
+
+Track D rules: zero sim contact (fingerprint gate every step), acceptance =
+the user's eyes, never displaces a Track A experiment slot, and no narrative
+number may appear without a real detector behind it.
+
 ## Self-drive protocol (2026-07-24, user-delegated)
 
 Roles: **user** = play-test authority + final say on anything live/visible;
