@@ -535,3 +535,14 @@ D-PROC-1M representation re-tested as a NEW experiment under the qualified
 attention channel), or park the branch. Target-relevance selection, attention
 scheduling across several targets, live consumers, coach doctrine and
 familiarity remain closed.
+
+The user selected the gaze-supported fork. D-PROC-1MG is pre-registered in
+[`GAZE-SUPPORTED-MOTION-EVIDENCE.md`](GAZE-SUPPORTED-MOTION-EVIDENCE.md). Its
+estimand, three-observation representation and every frozen gate value are
+D-PROC-1M's, unchanged; only the observation channel differs — every `observe()`
+supplies the S3-G1 memory-guided gaze with one-tick latency instead of the
+passive body-facing path. Fresh seeds `89,000..89,191`. No production file
+changes. PASS authorises at most one further user fork toward a separately
+pre-registered, motion-evidence-gated response consumer (a new experiment, not
+a D-PROC-1 rescue); FAIL parks the three-observation temporal representation
+with prejudice under both the passive and the qualified active channel.

@@ -847,6 +847,18 @@
 > target-relevance selection, no multi-target scheduling. The only open fork:
 > a gaze-supported temporal motion evidence gate (new experiment), or park.
 > Authority: [`world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md`](world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md).
+> 📋 **D-PROC-1MG GAZE-SUPPORTED TEMPORAL MOTION EVIDENCE PRE-REGISTERED**
+> (2026-07-24, user-selected fork). Re-poses D-PROC-1M's exact estimand,
+> three-observation representation and every frozen gate value on fresh seeds
+> `89,000..89,191`; the *only* change is the observation channel — each
+> `observe()` supplies the S3-G1 memory-guided gaze with one-tick latency in
+> place of the passive body-facing scan. Adds the S3-G1 gaze-purity exact gates
+> (invalid gaze = 0, non-normalised = 0, recompute mismatches = 0). No
+> production file changes; no gate value may move after the first look at 89k.
+> PASS banks a qualified dormant motion-phase representation and authorises at
+> most one further pre-registered response-consumer experiment; FAIL parks the
+> three-observation representation with prejudice (failed under both channels).
+> Authority: [`world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md`](world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

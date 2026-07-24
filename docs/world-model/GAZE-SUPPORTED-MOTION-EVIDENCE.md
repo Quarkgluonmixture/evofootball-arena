@@ -1,8 +1,8 @@
 # D-PROC-1MG — Gaze-supported temporal motion evidence
 
-Status: **DRAFT — awaiting the user fork opened by S3-G1; not yet pre-registered.**
+Status: **PRE-REGISTERED — no run yet.**
 
-Date: 2026-07-24 (drafted; the executor flips this to PRE-REGISTERED on ratification)
+Date: 2026-07-24 (drafted and ratified; fork selected by the user)
 
 ## 1. Why this is a new experiment, not a D-PROC-1M rerun
 
