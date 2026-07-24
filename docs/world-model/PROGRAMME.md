@@ -121,6 +121,38 @@ generalises.
 > 3. **D1** — still READY, still the user's eyes.
 > 4. **B2's render** — look whenever; feedback is small tweaks.
 >
+> **COMMANDER RULING #3 (2026-07-24, pending the user's one-word ratification):**
+>
+> **The D-TRI fork → EDS-first; A4 parked with its quantified basis intact.**
+> Reasoning: the dormant stack's marginal value is now bounded by the live
+> wall — three independent measurements (S3b, vision-attr, C1-B) say partial
+> live entry breaks structurally, and D-TRI-0 just showed pure evidence
+> plateaus around ~77% coordination offline. A4's causal seat is LATENCY,
+> and latency only binds against live coordination — build A4 after a live
+> seam exists and it gets a real testbed instead of another offline probe.
+> The design contract is drafted:
+> [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md) — Track E below;
+> stages E0–E4, each pre-registered individually by the autonomous session;
+> E1 consumes the C1-B redraw in its correct home; NO partial ship in either
+> direction; E4 = the user's play-test, final.
+>
+> Recommended queue on ratification: `E0 → E1 → E2 → E3 → E4(user)`, with
+> **D1 to a light parallel session anytime**. A4 and C5/C2/C4 queue behind
+> EDS's outcome.
+
+## Track E — the Embodied Decision Slice (the integration milestone)
+
+Design contract: [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md)
+(commander-owned; stages pre-registered individually).
+
+| ID | Stage | Status |
+|----|-------|--------|
+| E0 | Dormant speed/time-aware pass-option evaluator, validated against the C1-A2 ledger | READY to pre-register on ratification |
+| E1 | Flagged touch-cost physics (C1-B's curve, default OFF); C1-A2 re-run with flag must turn H2 non-flat at the FIRST touch | after E0 |
+| E2 | Both-sides perception (passer choice + defensive read, shared awareness trunk), probe-bundled with E1; perf gate | after E1 |
+| E3 | Co-evolution audit, full bundle ON: §2 band, route mix, C1-B behavioural suite, no-strict-dominance, co-evo restoration | after E2 |
+| E4 ★ | Ship gate — user play-test of the whole bundle; ship or whole-bundle revert | USER |
+>
 > **COMMANDER RULING #2 (2026-07-24, pending the user's one-word ratification):**
 >
 > 1. **S3-G2's escalation judgment APPROVED.** The budget raise could not have
