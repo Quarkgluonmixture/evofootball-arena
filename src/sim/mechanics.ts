@@ -11,6 +11,8 @@ import {
   GK_RUSH_ENVELOPE,
   DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST, UNSET_BLOCK_WEIGHT,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
+  PASS_POWER_EXECUTED_MAX, PASS_POWER_EXECUTED_MIN, PASS_POWER_MAX, PASS_POWER_MIN,
+  PASS_POWER_NOISE_K,
 } from './constants';
 import type { Match } from './Match';
 import type { Player } from './Player';
@@ -278,7 +280,23 @@ function bentKick(match: Match, p: Player, dir: V2, speed: number, spin: number,
   match.ball.spin = spin;
 }
 
-export function performPass(match: Match, passer: Player, mate: Player, offsideExempt = false): void {
+/**
+ * C1-A (docs/world-model/PASS-POWER-SLICE.md §8): what the passer actually
+ * strikes, given what he MEANT. Weighting a ball away from its natural pace is
+ * a technique act, so the error grows with the reach and shrinks with passing.
+ * At an intended 1.0 this is exactly 1.0 and consumes no RNG — the reason the
+ * fingerprint gate can prove the plumbing inert.
+ */
+function executedPassPower(match: Match, passer: Player, intended: number): number {
+  if (intended === 1) return 1;
+  const error = match.rng.gaussian()
+    * Math.abs(intended - 1) * PASS_POWER_NOISE_K * (1.35 - passer.attrs.passing);
+  return clamp(intended + error, PASS_POWER_EXECUTED_MIN, PASS_POWER_EXECUTED_MAX);
+}
+
+export function performPass(
+  match: Match, passer: Player, mate: Player, offsideExempt = false, powerChoice = 1,
+): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
   const opp = match.teams[1 - passer.side];
@@ -286,7 +304,13 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   // Playing across/against the body (Phase 27) takes pace off the ball —
   // known up front, so the lead and the kick agree on the effective speed.
   const misalign = kickMisalignment(passer, norm(sub(mate.pos, passer.pos)));
-  const powerMul = orientationPowerMul(misalign, passer.attrs.passing);
+  const orientation = orientationPowerMul(misalign, passer.attrs.passing);
+  // Intended weight (C1-A) composes with the orientation loss. The lead uses
+  // the INTENDED power and the strike uses the EXECUTED one: a passer knows
+  // which way his body is turned, but not that he is about to overhit.
+  const intended = clamp(powerChoice, PASS_POWER_MIN, PASS_POWER_MAX);
+  const powerMul = orientation * intended;
+  const executedMul = orientation * executedPassPower(match, passer, intended);
 
   // Lead the receiver by a fraction of the expected flight time.
   const flight = dist(passer.pos, mate.pos) / (16 * powerMul);
@@ -295,7 +319,7 @@ export function performPass(match: Match, passer: Player, mate: Player, offsideE
   // d·0.55+7.5 → d·0.6+8.2 (31.6, user call 传球力度): zip beats the
   // in-flight interceptors (completion 64→68%) — the receiving cost is
   // priced by touchFailChance and stays mild.
-  const speed = clamp(d * 0.6 + 8.2, 9, 22) * powerMul;
+  const speed = clamp(d * 0.6 + 8.2, 9, 22) * executedMul;
 
   // Accuracy: pressure sprays passes; a drilled team (passBias) and a
   // technical passer tighten them; kicks against the body spray more.

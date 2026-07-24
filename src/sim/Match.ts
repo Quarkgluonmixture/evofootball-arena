@@ -709,8 +709,9 @@ export class Match {
   shotQuality(p: Player): number {
     return mech.shotQuality(this, p);
   }
-  performPass(p: Player, mate: Player, offsideExempt = false): void {
-    mech.performPass(this, p, mate, offsideExempt);
+  /** `powerChoice` is C1-A's dormant weight input; every live caller omits it. */
+  performPass(p: Player, mate: Player, offsideExempt = false, powerChoice = 1): void {
+    mech.performPass(this, p, mate, offsideExempt, powerChoice);
   }
   performThroughBall(p: Player, runner: Player, lofted = false, offsideExempt = false): void {
     mech.performThroughBall(this, p, runner, lofted, offsideExempt);

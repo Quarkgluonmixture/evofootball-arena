@@ -303,3 +303,118 @@ G3/G4 are near-tautological physics checks that catch a plumbing error.
 * Fingerprint drift: revert; the plumbing leaked into live behaviour.
 * No threshold shopping, no widening the power band, no re-running with
   different seeds after seeing results.
+
+## 9. C1-A RESULT — substrate LANDED, ledger FAILED (2026-07-24)
+
+Two separable things were gated. Splitting them is the whole content of this
+result.
+
+### 9.1 The substrate passed its own gates
+
+```text
+production fingerprint   57b0bdab…c673 UNCHANGED   ⇒ power 1.0 is inert
+tsc --noEmit             clean
+full suite               702/702 (5 new C1-A tests)
+```
+
+Power is now executable and mis-executable: `performPass` takes an intended
+`powerChoice` clamped to `[0.85, 1.15]`, leads the receiver on the power it
+MEANT, strikes at the executed power, and the technique-scaled magnitude error
+is drawn only off 1.0. Unit tests pin: no extra RNG draw at 1.0, the untouched
+17.2 m/s launch for a 15m straight pass, monotone launch speed in power, band
+clamping, technique-scaled spread inside `[0.70, 1.30]`, and the intended-power
+lead (a rolled ball is led ~19.4° ahead vs a drilled ball's ~14.6°).
+
+### 9.2 The anatomy ledger FAILED — and the cause is the measurement, not the ball
+
+`scripts/probes/pass-power-anatomy.ts`, 120/120 accepted on seeds
+`92,000..92,119`, 86 contested, deterministic across two invocations, SHA
+`249f7e41…c90a`. Verdict **FAIL**:
+
+```text
+G1 contested interception   0.477 / 0.570 / 0.430   ✗ not monotone
+G2 reception failure        0.458 / 0.500 / 0.392   ✗ wrong direction
+G3 mean arrival time        0.536 / 0.474 / 0.469s  ✓
+G4 mean arrival speed       7.99 / 9.84 / 11.33     ✓
+executed-power band         8 branch "violations"   ✗ (metric artifact, see below)
+```
+
+Paired per-state anatomy names the cause:
+
+* against the 1.00 arm, contested interceptions flip 22→controlled vs 8→
+  intercepted for **1.15**, and 16→controlled vs 7→intercepted for **0.85**.
+  *Both* deviations beat 1.00. A monotone speed effect cannot do that; a
+  privileged baseline can — and 1.00 is privileged by this contract's own
+  design, because it is the only arm that draws no execution gaussian, so it is
+  the only arm whose post-kick world is not RNG-shifted. Over a 180-tick
+  resolution window that divergence dwarfs the direct effect.
+* the pure touch-quality signal, measured only where the intended target
+  actually touched the ball, is **12.9% / 10.6% / 12.5%** spilled — tiny and
+  non-monotone, exactly the ~1–3pp magnitude Phase 0 predicted, and far below
+  what n≈70 can resolve. G2 additionally lumped interceptions into "reception
+  failure", so it was mostly measuring G1 again.
+* the 8 band "violations" are a proxy artifact: the probe inferred executed
+  power from `launchSpeed / referenceSpeed`, but the launch distance itself
+  changes with the intended power (the lead moves), so at the `clamp(…, 9, 22)`
+  boundaries the ratio is not the power ratio. The code-level clamp is exact and
+  is unit-tested directly on fixed geometry.
+
+Nothing was tuned and no gate was rewritten. Per §8.3, G2's failure fires the
+"reception cost is not measurably real" branch, which makes **C1-B mandatory
+rather than optional** — the same conclusion the commander ruling already
+reached, now on measured ground. G1's failure does NOT fire its stop rule's
+stated premise ("the choice layer would be pricing a phantom"): between 1.00 and
+1.15 interception falls 14pp in the predicted direction. What is refuted is this
+probe's ability to isolate the effect.
+
+## 10. C1-A2 — PRE-REGISTERED re-pose of the ledger (2026-07-24, no run yet)
+
+Same question, three confounds removed. Probe-only: **no `src/**` change is
+authorised**, so the fingerprint cannot move.
+
+### 10.1 The three fixes
+
+1. **No privileged baseline.** Every arm consumes exactly one execution
+   gaussian: the middle arm is struck at `1.00001`, whose noise σ ≈ 5e-6 is
+   arithmetically inert but consumes the same draw. A per-branch RNG-draw audit
+   asserts all three arms consume an identical count.
+2. **Fixed corridor.** Acceptance requires a near-stationary intended receiver
+   (`|vel| <= 0.5 m/s`), so the lead point — and therefore the corridor and the
+   pass distance — is the same for all three powers. Power then varies speed and
+   nothing else.
+3. **Judge the FLIGHT, not three seconds of world.** The outcome is decided by
+   the FIRST body to touch the ball (opponent / intended target / other), and
+   touch quality is measured only where the intended target is that first
+   toucher. Post-flight world evolution never enters a gate.
+
+### 10.2 Frozen gates
+
+```text
+accepted states                 120  (fresh seeds 93,000.., max 512)
+per-arm RNG draw counts equal   100% of states
+non-finite / not-struck         0
+two invocations byte-identical  shared SHA-256
+fingerprint                     57b0bdab…c673 unchanged
+
+H1 first-toucher-is-opponent, CONTESTED corridors (lane <= 0.50)
+      strictly decreasing 0.85 > 1.00 > 1.15, spread >= 3.0pp
+H2 touch failure | intended target is first toucher
+      strictly increasing 0.85 < 1.00 < 1.15, spread >= 1.0pp
+H3 mean flight time to first touch, strictly decreasing with power
+H4 mean speed at first touch, strictly increasing with power
+```
+
+H1/H2 keep C1-A's frozen spreads verbatim — they were derived from Phase 0's
+friction table and `touchFailChance`, not from anything seen since, and are
+deliberately not widened after a FAIL.
+
+### 10.3 Stop rules
+
+* **H1 fails** → the interception machinery genuinely does not price ball speed;
+  park the C1 choice layer for good and report (C1-B, being a reception-cost
+  fix, still stands on its own).
+* **H2 fails** → reception cost is architecturally negligible at current
+  thresholds. That is not a C1-A2 failure to rescue: it is the C1-B mandate,
+  confirmed on an isolated measurement. Do not fake the cost at the evaluator.
+* A third re-pose is NOT authorised. If C1-A2 cannot isolate the effect either,
+  the ledger question returns to the user.

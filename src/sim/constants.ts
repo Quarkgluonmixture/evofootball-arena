@@ -264,6 +264,27 @@ export const DEFLECT_MAX_SPEED = 24;
 export const KICK_COOLDOWN = 0.45;
 
 /**
+ * C1-A pass POWER as an executable input (docs/world-model/PASS-POWER-SLICE.md
+ * §8). Ordinary ground-pass weight stopped being a pure distance formula: a
+ * passer may mean 0.85 (rolled) .. 1.15 (drilled), leads the receiver on the
+ * power he MEANT, and the ball leaves at what he actually struck. Nothing
+ * chooses a power yet — every live call passes 1.0, which draws no RNG and
+ * changes no arithmetic (that is what the fingerprint gate proves).
+ */
+export const PASS_POWER_MIN = 0.85;
+export const PASS_POWER_MAX = 1.15;
+/**
+ * Weighting a ball away from its natural pace is a technique act: the error
+ * grows with how far from 1.0 the passer reaches and shrinks with passing.
+ * Same shape as bentKick's weight error. σ ≈ 7.7% of power for an average
+ * passer's 1.15 ball, ≈ 3.7% for an elite one.
+ */
+export const PASS_POWER_NOISE_K = 0.60;
+/** A mis-struck ball stays physically sane. */
+export const PASS_POWER_EXECUTED_MIN = 0.70;
+export const PASS_POWER_EXECUTED_MAX = 1.30;
+
+/**
  * Discrete dribble touches (Phase 36, 可见的触球): an outfield carrier
  * DRIVING in space pushes the ball ahead and chases it — between touches
  * the ball is a free body an opponent in the path may poke away. Under

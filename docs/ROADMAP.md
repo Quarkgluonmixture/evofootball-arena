@@ -993,6 +993,32 @@
 > through the receiver-side cost rather than by importing corridor interception
 > into the live decision (the S3b/S7b family that failed at PAYS twice).
 > Authority: [`world-model/PASS-POWER-SLICE.md`](world-model/PASS-POWER-SLICE.md) §6–7.
+> ⚖️ **C1-A: SUBSTRATE LANDED, LEDGER FAILED (2026-07-24, user-ratified queue).**
+> Pass power is now an executable, mis-executable input: `performPass` takes an
+> intended weight clamped to 0.85–1.15, leads the receiver on the power it MEANT
+> and strikes at the power actually produced, with technique-scaled magnitude
+> error drawn ONLY off 1.0 — so power 1.0 consumes no RNG and changes no
+> arithmetic. Gates: fingerprint `57b0bdab…c673` unchanged, tsc clean, 702/702
+> (5 new tests pinning inertness, monotone launch speed, band clamping,
+> technique-scaled spread and the intended-power lead). ⛔ The **anatomy ledger
+> FAILED** its own frozen gates (120/120 accepted, seeds `92,000..92,119`,
+> deterministic, SHA `249f7e41…c90a`): contested interception 0.477/0.570/0.430
+> is non-monotone and "reception failure" moved the wrong way. Paired anatomy
+> names the cause — BOTH deviations from 1.00 beat 1.00 (flips 22-vs-8 at 1.15
+> and 16-vs-7 at 0.85), which is the signature of a **privileged baseline**: the
+> 1.00 arm is the only one that draws no execution gaussian, so it is the only
+> arm whose post-kick world is not RNG-shifted, and a 3s resolution window lets
+> that divergence dwarf the effect. Two further confounds: the intended power
+> moves the LEAD (hence the corridor), and the reception-failure metric lumped
+> interceptions in. The clean signal — touch failure measured only where the
+> intended target actually touched the ball — is 12.9%/10.6%/12.5%: tiny,
+> non-monotone, exactly Phase 0's predicted 1–3pp. ⇒ **reception cost really is
+> near-free, so C1-B is mandated on measured ground rather than chosen.** Nothing
+> tuned; re-posed as **C1-A2** (probe-only, no `src` change): every arm draws one
+> gaussian (middle arm 1.00001), acceptance requires a near-stationary receiver
+> so the corridor is identical across arms, and outcomes are judged by the FIRST
+> body to touch the ball instead of three seconds of world evolution. H1/H2 keep
+> the original spreads verbatim; a third re-pose is not authorised.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
