@@ -883,3 +883,51 @@ body.cinematic .cinematic-enter { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .ts-grid, .ts-sun, .ts-stars::before, .ts-stars::after, .ts-start { animation: none; }
 }
+
+/* ---------- D1: the dual shell (UI-NORTHSTAR §全盘采纳 1) ---------- */
+/* Two shells, one page. MATCH mode is exactly as it was. WORLD mode (league /
+   evolution / clubs / players) drops the two match side-columns — ~35% of the
+   width back to the world pages — and keeps the live match running as a small
+   floating player in the stage's top-right corner, one tap from full size.
+   Pure chrome: no sim contact, so the fingerprint cannot move. */
+body.world-mode #left-panel,
+body.world-mode #right-panel { display: none; }
+body.world-mode #stage { padding: 0; }
+/* The mini player. The 3D renderer already sizes itself to this host box via
+   its ResizeObserver, so shrinking the box IS the whole mechanism; the 2D
+   fallback canvas is capped the same way. z-index clears the world page (10). */
+body.world-mode #three-host,
+body.world-mode #stage > canvas {
+  position: absolute; top: 10px; right: 12px;
+  z-index: 12; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+}
+body.world-mode #three-host { width: 288px; height: 162px; max-width: 40vw; }
+/* The 2D fallback canvas keeps its own aspect: fix the width, let height follow. */
+body.world-mode #stage > canvas { width: 288px; height: auto; max-width: 40vw; }
+/* Match chrome that has no business floating over a world page. The score bug
+   and banner live INSIDE the host, so they shrink with it and stay. */
+body.world-mode .cinematic-enter,
+body.world-mode #replay-bar,
+body.world-mode .reel-bug,
+body.world-mode canvas.tacmap,
+body.world-mode .perception-readout { display: none; }
+.mini-restore {
+  position: absolute; top: 14px; right: 16px; z-index: 13;
+  padding: 2px 7px; min-height: 0; font-size: 12px; line-height: 1.4;
+  background: rgba(8, 12, 22, 0.8); border: 1px solid var(--border);
+}
+.mini-restore.hidden { display: none; }
+/* Phones already stack the shell vertically (#layout column), so a floating
+   corner player would cover the page it is meant to sit beside. Keep the
+   stacked match strip there and only reclaim the columns. */
+@media (max-width: 900px) {
+  body.world-mode #three-host,
+  body.world-mode #stage > canvas {
+    position: static; width: 100%; max-width: 100%; max-height: 34vh; box-shadow: none;
+  }
+  body.world-mode #three-host { height: 34vh; }
+  body.world-mode #stage > canvas { height: auto; }
+  .mini-restore { display: none; }
+}

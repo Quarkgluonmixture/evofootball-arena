@@ -118,7 +118,9 @@ generalises.
 >    Decision Slice**. Nothing else in Track A is authorised until you pick.
 > 2. **The touch-cost fork** — fold C1-B into the Embodied Decision Slice
 >    (recommended, `PASS-POWER-SLICE.md` §13.4) or spend the one unspent redraw.
-> 3. **D1** — still READY, still the user's eyes.
+> 3. ✅ **D1 BUILT** (ruling #3) — dual shell in place, fingerprint unchanged.
+>    Waiting on your eyes; feedback is small CSS tweaks, not a new step. D2
+>    (evolution scatter trails) becomes READY behind it.
 > 4. **B2's render** — look whenever; feedback is small tweaks.
 >
 > **COMMANDER RULING #3 (2026-07-24, pending the user's one-word ratification):**
@@ -232,8 +234,8 @@ adopted, behavior-narrative pages DEFERRED until the behaviors exist).
 
 | ID | Step | Contract | Status |
 |----|------|----------|--------|
-| D1 | Shell split: world-mode pages drop the match side-columns (floating mini-player instead); match-mode unchanged | UI-NORTHSTAR §全盘采纳 1 | READY (after B1 ships) |
-| D2 | Evolution scatter: season trails + ghost points + hover/lock + generation slider | UI-NORTHSTAR §全盘采纳 2 | READY (after D1) |
+| D1 | Shell split: world-mode pages drop the match side-columns (floating mini-player instead); match-mode unchanged | UI-NORTHSTAR §全盘采纳 1 | ✅ **BUILT 2026-07-24** (ruling #3): `body.world-mode` toggles on the four world pages (+ settings and the entity-link deep dives resync it); both `aside` columns step aside, the live match shrinks to a 288×162 floating player top-right with a `⤢` restore control, and match-only chrome (cinematic enter, replay bar, reel bug, tacmap, perception readout) hides while the in-host score bug/banner shrink with it. Phones keep the stacked strip instead of a floating card. Zero sim contact: build clean, 702/702, fingerprint `57b0bdab…c673` unchanged. **Acceptance = the user's eyes** |
+| D2 | Evolution scatter: season trails + ghost points + hover/lock + generation slider | UI-NORTHSTAR §全盘采纳 2 | **READY** (D1 shipped 2026-07-24) |
 | D3 ★ | WorldEvent v0 (honest event set only — champions/streaks/records/style-drift/ELO turns/counter flips) + world home + Dynasty Ribbon; every event carries real telemetry evidence, candidate→confirmed lifecycle | UI-NORTHSTAR §带纪律采纳 | TBD — commander drafts the event-detector contract before any narrative UI |
 | D4 | Behavior discovery archive | — | LOCKED until Track A is live in players |
 | D5 | Causal replay / counterfactual mode | — | LOCKED until counterfactual authority is productised |

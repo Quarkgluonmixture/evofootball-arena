@@ -3834,3 +3834,20 @@ blueprint above.
 > pre-laid: open A4 (coach doctrine / familiarity as latency-reducing priors) or
 > prioritise the Embodied Decision Slice.**
 > Authority: [`world-model/TRIADIC-MOTION-GATED-ROTATION.md`](world-model/TRIADIC-MOTION-GATED-ROTATION.md).
+> 🖥️ **D1 DUAL SHELL BUILT (2026-07-24, Track D, ruling #3).** One page, two
+> shells: match mode is byte-for-byte the view it always was, and the four WORLD
+> pages (league / evolution / clubs / players) now drop BOTH match side-columns —
+> ~35% of the width handed back to the world content — while the live match keeps
+> running as a 288×162 floating player in the stage's top-right with a `⤢` control
+> to return. Mechanism: a `body.world-mode` class synced from the four page
+> toggles plus the settings room and the entity-link deep dives (9 call sites), so
+> the shell can never desync from what is on screen; the 3D renderer's existing
+> ResizeObserver does the rest, since shrinking the host box IS the mini-player.
+> Match-only chrome (cinematic enter, replay bar, reel bug, tacmap inset,
+> perception readout) hides in world mode, while the score bug and goal banner —
+> which live inside the host — shrink with it and stay. Phones keep the stacked
+> match strip rather than a floating card that would cover the page it sits beside.
+> Track D's hard rule held: **zero sim contact** — build clean, 702/702,
+> fingerprint `57b0bdab…c673` unchanged. Acceptance is the user's eyes; D2
+> (evolution scatter trails) is now READY behind it.
+> Authority: [`UI-NORTHSTAR.md`](UI-NORTHSTAR.md) §全盘采纳 1.

@@ -111,6 +111,8 @@ export class GameApp implements GameActions {
   private cinematic = false;
   private fxQuality: FxQuality = 'medium';
   private cineBug!: HTMLDivElement;
+  /** D1: the floating mini-player's "back to the match" control. */
+  private miniRestore!: HTMLButtonElement;
   private flags: UiFlags = defaultFlags();
   private selectedGid: number | null = null;
 
@@ -259,6 +261,11 @@ export class GameApp implements GameActions {
     this.cineBug.className = 'score-bug cine-bug hidden';
     this.cineBug.addEventListener('click', () => this.toggleClash());
     stage.appendChild(this.cineBug);
+    // D1 dual shell: the mini-player's own control, shown only in world mode.
+    this.miniRestore = button('⤢', () => this.closeWorldScreens()) as HTMLButtonElement;
+    this.miniRestore.className = 'mini-restore hidden';
+    this.miniRestore.title = t('Back to the match');
+    stage.appendChild(this.miniRestore);
     window.addEventListener('keydown', (ev) => {
       if (ev.key === 'Escape' && this.cinematic) this.setCinematic(false);
       // SPACE = pause/play (user ask, 118.5). Not while typing in the seed
@@ -1178,6 +1185,7 @@ export class GameApp implements GameActions {
     this.clubsScreen.hide();
     this.settingsScreen.hide();
     this.leagueScreen.toggle(this.league);
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1188,6 +1196,7 @@ export class GameApp implements GameActions {
     this.playerScreen.hide();
     this.settingsScreen.hide();
     this.clubsScreen.toggle(this.league);
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1198,6 +1207,7 @@ export class GameApp implements GameActions {
     this.clubsScreen.hide();
     this.settingsScreen.hide();
     this.evolutionScreen.toggle(this.league);
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1208,6 +1218,7 @@ export class GameApp implements GameActions {
     this.clubsScreen.hide();
     this.settingsScreen.hide();
     this.playerScreen.toggle(this.league);
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1218,6 +1229,7 @@ export class GameApp implements GameActions {
     this.playerScreen.hide();
     this.clubsScreen.hide();
     this.settingsScreen.toggle();
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1229,6 +1241,7 @@ export class GameApp implements GameActions {
     this.evolutionScreen.hide();
     this.settingsScreen.hide();
     this.clubsScreen.focusClub(this.league, slot);
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1239,6 +1252,7 @@ export class GameApp implements GameActions {
     this.clubsScreen.hide();
     this.settingsScreen.hide();
     this.playerScreen.focusPlayer(this.league, slot, index);
+    this.syncShellMode();
     this.updateMusic();
   }
 
@@ -1279,6 +1293,31 @@ export class GameApp implements GameActions {
    * out when play resumes, returns when you pause); ceremony = the victory
    * track (enters at its 20s drop), management screens = the league track,
    * live play = crowd only. */
+  /**
+   * D1 dual shell (UI-NORTHSTAR §全盘采纳 1): while a WORLD page is open the
+   * match side-columns step aside and the live match keeps running as a small
+   * floating player in the stage's top-right corner. Match mode is untouched.
+   * Pure chrome — the sim never learns which shell is on screen.
+   */
+  private syncShellMode(): void {
+    const world = this.leagueScreen?.isVisible
+      || this.evolutionScreen?.isVisible
+      || this.clubsScreen?.isVisible
+      || this.playerScreen?.isVisible;
+    document.body.classList.toggle('world-mode', !!world);
+    this.miniRestore.classList.toggle('hidden', !world);
+  }
+
+  /** The mini-player's ⤢ control: leave world mode, back to the match. */
+  private closeWorldScreens(): void {
+    if (this.leagueScreen.isVisible) this.leagueScreen.toggle(this.league);
+    this.evolutionScreen.hide();
+    this.clubsScreen.hide();
+    this.playerScreen.hide();
+    this.syncShellMode();
+    this.updateMusic();
+  }
+
   private updateMusic(): void {
     // Optional chaining throughout: the music slider's build-time default
     // (Phase 96) calls this while the screens are still being constructed.
