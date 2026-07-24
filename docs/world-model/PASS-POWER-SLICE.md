@@ -460,3 +460,90 @@ optional one, and the cost must be fixed in the substrate (M3 control), never
 faked at the evaluator. C1-C stays deferred into the Embodied Decision Slice as
 ratified. No third re-pose of the ledger is needed or authorised — the ledger is
 now trustworthy; it is the ball that is wrong.
+
+## 12. C1-B — PRE-REGISTERED: honest speed-dependent control cost (2026-07-24)
+
+The first LIVE gameplay change since M4. Mandated by C1-A2's H2 branch, ratified
+by the user in `PROGRAMME.md` §0.5. **The user's play-test is the final gate and
+is not delegated.**
+
+### 12.1 The diagnosis this fixes
+
+`touchFailChance` (`mechanics.ts:95-107`) prices arrival speed as
+`clamp01((speed - 6) / 8) * 0.07`: free below 6 m/s, saturated at 14, worth at
+most 0.07 raw. C1-A2 measured where ordinary passes actually live — **7.5 to
+11.1 m/s at first touch** — so the curve spends its dynamic range below and above
+the real distribution and charges a 3.6 m/s difference nothing measurable
+(11.9% / 12.1% / 11.8% spill across the whole power sweep). 停不好重球 is
+currently almost free, which is why the pass-power choice layer would degenerate
+into "always hit it harder".
+
+### 12.2 The change (one dimension, one line)
+
+```
+clamp01((speed - 6) / 8) * 0.07   →   clamp01((speed - 6) / 16) * 0.24
+```
+
+Nothing else moves: the free threshold stays at 6 m/s (a rolled ball is genuinely
+easy), and the pressure, blind-side, positioning and technique terms are
+untouched.
+
+Derivation, from measured numbers only:
+
+* **`8 → 16`** moves saturation from 14 m/s to 22 m/s — the ordinary ground-pass
+  launch cap — so the curve's slope covers the measured arrival band with
+  headroom for drilled balls, instead of flat-lining inside real play.
+* **`0.07 → 0.24`** sets the rolled-versus-drilled spread C1-A2 measured
+  (7.5 → 11.1 m/s) at ≈5.4pp of raw touch failure. That is the same order as the
+  17.4pp interception swing power buys, so neither side of the future choice
+  dominates by construction.
+* At the current live mean arrival (9.8 m/s) the raw term moves 0.033 → 0.057,
+  i.e. roughly +2pp of actual touch failure after technique scaling: a bounded
+  live cost, not a regime change.
+
+### 12.3 Frozen baseline (8-season calibrate, seed 20260702, 568 matches)
+
+```text
+goals/match 2.39 · xG 2.11 · passes 88.68 (completion 71%)
+crosses 2.49 · headers won 9.10 · long balls 6.20 · cutbacks 3.82
+miscontrols 6.98 · tackles 12.21 · interceptions 21.11
+fingerprint 57b0bdab…c673
+```
+
+### 12.4 Frozen gates
+
+```text
+FIRES  C1-A2 probe re-run, unchanged code and seeds 93,000..:
+       H2 now PASSES (touch failure strictly increasing with power,
+       spread >= 1.0pp), and H1/H3/H4 still pass
+
+WORKS  8-season calibrate, same seed:
+       miscontrols/match rises >= 5% relative      >= 7.33
+       miscontrols/match stays bounded             <= 9.77  (+40%)
+       pass completion falls at most 3pp           >= 68%
+
+PAYS / §2 EQUILIBRIUM BAND (hard abort, C1 §4 verbatim):
+       goals/match within ±15%                     2.03 .. 2.75
+       crosses within ±25% relative                1.87 .. 3.11
+       headers won within ±25% relative            6.83 .. 11.38
+       long balls within ±25% relative             4.65 .. 7.75
+       cutbacks within ±25% relative               2.87 .. 4.78
+
+EXACT  tsc clean · full suite green · fingerprint WILL move and is recorded ·
+       perf baseline re-run and recorded (governance rule 2)
+
+USER   play-test acceptance — the final gate, never delegated
+```
+
+A suite test that encodes the OLD touch numbers and fails is a **finding to
+report**, not something to silently re-baseline.
+
+### 12.5 Stop rules
+
+* §2 band break ⇒ **honest revert** to the C1-A substrate, report which
+  dimension broke. A second band break on any redraw returns the fork to the
+  user (the four-revert lesson: treat drift as structural, not tunable).
+* FIRES fail ⇒ the change did not reach the mechanism it targets; revert and
+  report rather than raising the weight.
+* No parameter may be re-tuned after seeing results, and the play-test verdict
+  may not be pre-empted by good numbers.
