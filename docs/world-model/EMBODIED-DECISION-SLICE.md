@@ -5,7 +5,16 @@ Status: **RATIFIED 2026-07-24 — the user chose EDS over A4-first and directed
 individually by the autonomous session; this doc fixes scope, order, boundaries
 and the ship gate. It is not itself a frozen experiment.**
 
-Stage progress: **E0 pre-registered** ([`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md)).
+Stage progress: **E0 built + banked dormant; its two measurement gates
+failed honestly (E0b: instrument contamination caught by the exact gate,
+inversion unresolved) and E0b forbids a third re-pose — the reception-cost
+question passes to E1 explicitly** ([`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md)).
+**Commander re-scope 2026-07-24: E1 split into E1a (trustworthy first-touch
+instrument) → E1b (flagged curve, validated by that instrument); E2 gains
+the unseen-pricing amendment; E3 gains the always-heavy canary.** The
+information-boundary decision inside E0 (receiver VELOCITY priceable as
+physics, receiver TECHNIQUE reserved for A4 familiarity, neutral 0.5) is
+endorsed as precedent.
 
 Date: 2026-07-24
 
@@ -62,18 +71,49 @@ E0  DORMANT EVALUATOR — a pure pass-option valuation reading flight time /
     outcomes (17.4pp risk spread), directional gates, zero live callers,
     fingerprint unchanged.
 
-E1  FLAGGED PHYSICS — the C1-B touch-cost curve behind an EDS flag,
-    default OFF (fingerprint unchanged with flag off). Validation: re-run
-    the C1-A2 ledger WITH the flag — H2 (receiver cost) must turn measurably
-    non-flat, measured at the FIRST TOUCH (the C1-B lesson: final-control
-    metrics are blind to it). This stage spends the C1-B redraw in its
-    correct home.
+E1a INSTRUMENT FIRST (commander re-scope 2026-07-24, after E0/E0b measured
+    their own instruments instead of the physics — three reception metrics
+    currently contradict each other: final-control ≈0, raw-4-tick INVERTED,
+    formula +4pp). Build a trustworthy first-touch measurement at the real
+    `attemptFirstTouch` adjudication (event-level, never inferred from who
+    owns the ball N ticks later), logging the TERM DECOMPOSITION per event
+    (speed / pressure / misalign / technique inputs). Validation: (i) on
+    synthetic controlled sweeps with pressure and misalign held, the
+    instrument must reproduce the formula's own speed term where it provably
+    exists — an instrument that cannot see known physics is broken; (ii) it
+    must SETTLE the E0b inversion: attribute "heavier arrives cleaner"
+    either to pressure-relief (faster ball ⇒ less closing time ⇒ lower
+    pressure term at touch — a REAL confound the decomposition can isolate)
+    or to contamination (it vanishes under the clean instrument); (iii)
+    pure probe/logging, zero physics change, two-run determinism.
+
+E1b FLAGGED PHYSICS — the C1-B touch-cost curve behind an EDS flag, default
+    OFF (fingerprint unchanged with flag off). Validation with the E1a
+    instrument: the receiver cost must turn measurably non-flat AT THE FIRST
+    TOUCH, with the decomposition confirming the SPEED term is what moved.
+    This stage spends the C1-B redraw in its correct home.
 
 E2  BOTH-SIDES PERCEPTION (dormant build, probe-bundled) — passer choice via
     E0 from perceived state; defender interception entry from perceived
     state; shared awareness trunk wiring. Probe A/B runs with E1+E2 flags ON
     together in probe worlds only. Includes a PERF gate (perceive at brain
     cadence, not per tick; budget derived from docs/perf/baseline.json).
+
+    ⭐ DESIGN AMENDMENT (from E0's all-or-nothing finding, 2026-07-24):
+    at awareness 0.8 observation does not blur the option set — it DELETES
+    ~46% of it, wholesale per state, and specifically the long/progressive
+    passes (unpriceable mean 21.7m vs priceable 16.8m). That is the concrete
+    mechanism of S3b's route collapse (headers 6.39→4.05, cutbacks
+    3.96→2.46). Therefore E2 MUST implement: **unseen ≠ unavailable —
+    unpriceable options are priced at an honest global base-rate prior
+    (population interception/touch rates at that distance band), never
+    deleted, never truth-fallback** (a legacy-evaluator fallback for unseen
+    targets would make not-looking informationally superior — worse than
+    S3b). Note the substrate fact: retention at 0.8 is only ~0.85s, so
+    stale-memory pricing has almost nothing to stand on; the base-rate prior
+    is the honest fallback, and A4's doctrine/familiarity later SHARPEN
+    these priors — exactly the layering §0.5 named. E2 gains an explicit
+    route-mix gate derived from S3b's collapse numbers.
 
 E3  CO-EVOLUTION AUDIT — sealed evo runs, full bundle ON: §2 band (goals
     ±15%), route mix (±25%), the C1-B behavioural contract suite
@@ -82,6 +122,13 @@ E3  CO-EVOLUTION AUDIT — sealed evo runs, full bundle ON: §2 band (goals
     always-heavy is what a cost-free world teaches), co-evo restoration
     (defence adapts across generations, the vision/positioning precedent),
     style diversification not collapsed.
+
+    Canary registered from E0: in the zero-cost world the evaluator's
+    per-state safest option was 1.15 in 52/52 — the evaluator correctly
+    learned always-heavy where heavy is free. If AFTER E1b the dormant
+    evaluator still prefers 1.15 near-universally, the curve is too weak to
+    break dominance and E3 will fail no-strict-dominance; check this cheaply
+    at E1b validation rather than discovering it in sealed evo runs.
 
 E4  SHIP GATE — user play-test of the whole bundle. Ship = flags default ON
     + fingerprint/perf rebaseline recorded. Revert = the WHOLE bundle; no

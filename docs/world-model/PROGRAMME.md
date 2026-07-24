@@ -144,16 +144,8 @@ generalises.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
-Design contract: [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md)
-(commander-owned; stages pre-registered individually).
-
-| ID | Stage | Status |
-|----|-------|--------|
-| E0 | Dormant speed/time-aware pass-option evaluator, validated against the C1-A2 ledger | READY to pre-register on ratification |
-| E1 | Flagged touch-cost physics (C1-B's curve, default OFF); C1-A2 re-run with flag must turn H2 non-flat at the FIRST touch | after E0 |
-| E2 | Both-sides perception (passer choice + defensive read, shared awareness trunk), probe-bundled with E1; perf gate | after E1 |
-| E3 | Co-evolution audit, full bundle ON: §2 band, route mix, C1-B behavioural suite, no-strict-dominance, co-evo restoration | after E2 |
-| E4 ★ | Ship gate — user play-test of the whole bundle; ship or whole-bundle revert | USER |
+(Superseded stub — the authoritative Track E table lives in the Track E
+section below, maintained by the executing sessions.)
 >
 > **COMMANDER RULING #2 (2026-07-24, pending the user's one-word ratification):**
 >
@@ -237,7 +229,7 @@ bundle or ships it.
 | ID | Step | Contract | Status |
 |----|------|----------|--------|
 | E0 | Dormant pass-option valuation: observation-only, 2–3 power levels, priced in flight time / corridor interception margin / touch difficulty. Must reproduce the C1-A2 ledger **including the world's near-flat reception cost** — modelling the defect is the point | [`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md) + [`EDS-E0B-OPTION-VALUATION-REDRAW.md`](EDS-E0B-OPTION-VALUATION-REDRAW.md) | ⚠️ **E0 FAIL → E0b FAIL; no third re-pose authorised.** ✅ Banked twice on identical numbers: the evaluator models the interception physics — per-state ranking by predicted corridor threat moves the MEASURED opponent-first rate **0.558→0.346 (21.2pp)**, safest=1.15 in **52/52** contested, flight time and arrival speed monotone. ⭐ Banked finding: at awareness 0.8 the passer can price **nothing** in 55/120 states, split by distance (21.7m unpriced vs 16.8m priced) ⇒ observation DELETES ~46% of options, mostly long ones — the mechanism behind S3b's route collapse and **E2's central design problem**. ⛔ Unsettled: what the world charges for pace at reception — three metrics disagree (eventual control ~0, raw-4-tick INVERTED, formula +4pp), and E0b's reproduction gate caught the raw metric contaminating its companion. **E1 must be re-scoped to build a trustworthy reception measurement first — the user's call** |
-| E1 | **RE-SCOPE NEEDED (E0b's finding): build a trustworthy reception measurement against the real `attemptFirstTouch` roll BEFORE flipping any curve.** Then flagged physics: C1-B's touch-cost curve behind an EDS flag, default OFF (fingerprint unchanged with the flag off). Validation re-runs the C1-A2 ledger WITH the flag, measured at the FIRST TOUCH — the C1-B lesson. Spends the C1-B redraw in its correct home | TBD (drafts after E0) | queued |
+| E1 | ✅ **RE-SCOPE RULED 2026-07-24 (commander ruling #4, design contract §3 amended): E1a → E1b.** **E1a** = the trustworthy first-touch instrument at the real `attemptFirstTouch` adjudication, event-level, logging the TERM DECOMPOSITION (speed/pressure/misalign/technique) per event; must reproduce the formula's own speed term on controlled synthetic sweeps (an instrument that cannot see known physics is broken) and must SETTLE the E0b inversion (pressure-relief confound — faster ball ⇒ less closing time ⇒ lower pressure at touch — vs contamination); pure probe, zero physics. **E1b** = the flagged C1-B curve, default OFF, validated by E1a's instrument with the decomposition confirming the SPEED term moved; also run the E3 always-heavy canary cheaply here (if the dormant evaluator still prefers 1.15 in ~52/52 after E1b, the curve is too weak). Spends the C1-B redraw | design §3 (E1a/E1b) | **READY to pre-register** |
 | E2 | Both-sides perception (dormant build, probe-bundled): passer choice via E0 from perceived state, defender interception entry from perceived state, shared awareness trunk. Probe A/B with E1+E2 ON in probe worlds only. Includes the PERF gate | TBD (drafts after E1) | queued |
 | E3 | Co-evolution audit: sealed evo runs, full bundle ON — §2 band, route mix, the C1-B behavioural suite, no-strict-dominance (power usage must stay situational), co-evo restoration, style diversity | TBD (drafts after E2) | queued |
 | E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
