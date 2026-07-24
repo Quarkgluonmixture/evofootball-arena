@@ -565,3 +565,31 @@ pre-registered, probe-local response consumer gated on motion-phase evidence (a
 new experiment, not a D-PROC-1 rescue); D-PROC-1's own thresholds stay closed.
 Target-relevance selection, multi-target attention, coach doctrine, familiarity,
 payoff, live AI and evolution remain closed and are later questions.
+
+The user selected the response-consumer fork. D-PROC-1G is pre-registered in
+[`MOTION-GATED-INTENT-REOPENING.md`](MOTION-GATED-INTENT-REOPENING.md). It
+re-poses D-PROC-1's unchanged response question — every response, edge,
+progress, separation, anti-oscillation and exact gate value inherited verbatim
+— with exactly two causal substitutions and nothing else: the observation
+channel becomes the S3-G1 memory-guided gaze (one-tick latency, previous-gaze
+threading, all purity audits), and the single-observation `0.25m` support
+trigger is REPLACED by a qualified three-sample motion-phase predicate (three
+strictly-newer samples, net observed displacement `>= 0.50m`, minimum
+inter-sample speed delta `> -0.10m/s` so a braking history is not support, and
+newest-step displacement-bearing alignment `>= 0.50`). The crux gate is
+unchanged: held-exterior false reopening `<= 4/96` — the one gate D-PROC-1
+failed at `7/96` because one displacement could not separate an active run from
+braking inertia. Window is pre-registered at 48 ticks (the qualified channel's
+banked window; the three-sample predicate is structurally impossible inside 36
+ticks at the existing scan cadence) — pre-registered here, not adjusted later.
+Fresh seeds `90,000..90,191`. The only permitted code addition is the dormant
+`src/ai/motionGatedIntentResponse.ts` composing the unchanged `motionEvidence.ts`
+history with the unchanged reopening query in `intentResponse.ts`; neither
+existing module changes. A pass or fail is attributable to the evidence gate
+alone. PASS authorises at most one user fork toward a D-PROC-2-shaped
+selection/ecology design contract; FAIL parks the observer-triggered response
+family with prejudice (mechanism refuted under both the one-sample and the
+qualified three-sample gate), distinguishing a mechanism refutation from a
+cadence finding (a miss only on support/ordered-response counts while H holds
+its ceiling). No predicate component, window, cadence, seed or gate value may
+be tuned after first sight of results.

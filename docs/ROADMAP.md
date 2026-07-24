@@ -866,6 +866,26 @@
 > separately pre-registered response-consumer experiment. No target-relevance
 > selection, live consumer or D-PROC-1 rescue.
 > Authority: [`world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md`](world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md).
+> 📋 **D-PROC-1G MOTION-GATED INTENT REOPENING PRE-REGISTERED** (2026-07-24,
+> Track A2 in [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md)). Re-poses
+> D-PROC-1's unchanged response question — every response, edge, progress,
+> separation, anti-oscillation and exact gate value verbatim — with exactly two
+> causal substitutions: the observation channel becomes the S3-G1 memory-guided
+> gaze (one-tick latency, previous-gaze threading, purity audits), and the
+> single-observation `0.25m` support trigger is REPLACED by a qualified
+> three-sample motion-phase predicate (3 strictly-newer samples, net observed
+> displacement `>= 0.50m`, min inter-sample speed delta `> -0.10m/s` so braking
+> is not support, newest-step alignment `>= 0.50`). Crux gate unchanged: held
+> false reopening `<= 4/96` (D-PROC-1 failed at 7/96 — one sample could not
+> separate a run from braking). Window pre-registered at 48 ticks (the qualified
+> channel's banked window; the three-sample predicate is structurally impossible
+> in 36 ticks at the scan cadence). Fresh seeds `90,000..90,191`. Only permitted
+> code addition: dormant `src/ai/motionGatedIntentResponse.ts` + tests; no
+> existing module changes; fingerprint `57b0bdab…c673` must stay put. PASS
+> authorises at most one D-PROC-2 selection/ecology fork; FAIL parks the
+> response family with prejudice (mechanism refutation vs cadence finding
+> distinguished). No tuning after first sight of results.
+> Authority: [`world-model/MOTION-GATED-INTENT-REOPENING.md`](world-model/MOTION-GATED-INTENT-REOPENING.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

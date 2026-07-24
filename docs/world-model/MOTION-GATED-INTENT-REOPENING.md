@@ -1,7 +1,6 @@
 # D-PROC-1G — Motion-gated embodied-intent reopening
 
-Status: **DRAFT — awaiting the user fork opened by D-PROC-1MG; not yet
-pre-registered.**
+Status: **PRE-REGISTERED — no run yet.**
 
 Date: 2026-07-24 (drafted; the executor flips this to PRE-REGISTERED on
 ratification)
