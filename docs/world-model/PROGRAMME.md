@@ -33,11 +33,11 @@ to fire inside the live window, and the three-sample requirement attrits joint
 completion; see the A2 row), **selection** (deliberately unopened). Everything
 below is sequenced against those walls.
 
-> **Self-drive status (2026-07-24, commander redraw after A2):** Track A is
-> PAUSED pending the user fork (see A3 row — commander recommends the decision
-> wall, not another consumer shape). Tracks B/C are UNAFFECTED by A2's
-> authority reshaping and are re-authorised: the self-drive queue is now
-> `B1 → C1-Phase0`, green-path rules unchanged.
+> **Self-drive status (2026-07-24, second redraw):** the user ratified wall
+> attempt 4; the commander corrected its shape to D-MUT-0 (see A3 row). The
+> self-drive queue is now `B1 → C1-Phase0 → A3(D-MUT-0)`, green-path rules
+> unchanged. B1's acceptance and C1-Phase0's answers still stop for
+> user/commander per protocol rules 4–5.
 
 ## Track A — the epistemology chain (information → decision)
 
@@ -45,7 +45,7 @@ below is sequenced against those walls.
 |----|------|----------|--------|
 | A1 | D-PROC-1MG gaze-supported motion evidence | [`GAZE-SUPPORTED-MOTION-EVIDENCE.md`](GAZE-SUPPORTED-MOTION-EVIDENCE.md) | ✅ **PASS 2026-07-24** (`58d6632`): support 77.4%→100%, every 1M gate cleared, SHA `28971096…1b58` |
 | A2 ★ | Motion-gated response consumer (D-PROC-1G): D-PROC-1 verbatim with two causal substitutions — gaze channel + three-sample motion-phase support predicate (braking ≠ commitment); H false-reopening ceiling `<=4/96` is the crux gate | [`MOTION-GATED-INTENT-REOPENING.md`](MOTION-GATED-INTENT-REOPENING.md) | ⛔ **STRICT FAIL — CADENCE FINDING 2026-07-24** (`80a1a848…2748`): crux gate FIXED (held false reopening 7/96→2/96), but jointly-completed 59<72 and ordered 50<56 — response works, too slow inside the 48-tick window. Family parked; no tuning; NO D-PROC-2. **Fork returns to the user (self-drive stopped).** |
-| A3 ★ | Decision-layer wall, attempt 4: D-ROTATE-0 re-posed with ONE substitution — each defender reads via the qualified attention+motion-evidence channel (the three closed attempts all ran blind). Single-variable discipline: no coach prior, no payoff, mechanism gate only; if it fails, the NEXT variable is the coach shared-prior layer (A4), never both at once | **TBD — commander drafts on user ratification** | **USER FORK OPEN.** Commander recommendation: choose this over another response-consumer shape — 1G proved the micro-mechanism (quality 87.7%/96.5%, false-fire 2/96, zero oscillation); its cadence deficit is timescale-relative (fatal in 0.8s probe windows, likely irrelevant on the 1–3s timescales of rotation/cover). Grinding the consumer family for +6 ordered responses is the "one more static fact" anti-pattern. A failed attempt 4 would cleanly indicate the missing piece is shared doctrine (A4), which is itself informative. |
+| A3 ★ | Decision-layer wall, attempt 4 = **D-MUT-0 mutual motion-gated response** (attack-side entry). Commander CORRECTED the ratified fork's shape: the naive D-ROTATE re-pose is rejected by D-ROTATE-0's own anatomy (bids were 99.2% supported — observation was never the constraint; commander-gated action authority was, and its stop rule closes plain re-runs). Instead the banked 1G consumer is symmetrised: two off-ball teammates with conflicting private intents each read the other via gaze+motion evidence and each run the UNCHANGED 1G consumer — the first two-body mutual temporal process. Zero new src code; new coupled failure modes = mutual staleness + cross-player loops | [`MUTUAL-MOTION-GATED-RESPONSE.md`](MUTUAL-MOTION-GATED-RESPONSE.md) + [`HANDOFF-D-MUT-0.md`](HANDOFF-D-MUT-0.md) | **READY** (fork ratified 2026-07-24; handing over = ratifying the corrected shape) |
 | A4 ★ | Relevance selection ("who deserves attention"), then coach doctrine / familiarity as separate interpretation priors — the layering Codex pinned: neither may reveal unobserved bodies | TBD | PARKED until A3 |
 
 FAIL anywhere: the step's own stop rule binds; the fork returns to the user;
