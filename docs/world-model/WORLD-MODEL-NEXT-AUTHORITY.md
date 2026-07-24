@@ -620,3 +620,27 @@ directly. The fork returns to the user; an executor may author neither. This
 is the third consecutive decision-layer attempt to miss (D-PROC-1 one-sample,
 D-PROC-1M passive channel, D-PROC-1G qualified channel), though the failure
 mode has migrated from mechanism (braking confusion, now fixed) to cadence.
+
+The user ratified wall attempt 4 — taking the qualified observation channel to
+the decision layer. The commander rejected the naive D-ROTATE re-pose on that
+experiment's own anatomy: D-ROTATE-0's defenders already formed supported local
+bids on 99.2% of eligible ticks, so observation was never the binding
+constraint — commander-gated action authority was, and its stop rule closes
+plain re-runs of the same action substrate. The corrected shape is **D-MUT-0**,
+pre-registered in [`MUTUAL-MOTION-GATED-RESPONSE.md`](MUTUAL-MOTION-GATED-RESPONSE.md):
+the banked D-PROC-1G consumer symmetrised into the first two-body mutual
+temporal process, attack-side and probe-only. Two off-ball teammates hold
+privately conflicting intents, each reads the other only through its own
+gaze-driven observations and motion-phase evidence, and each runs the UNCHANGED
+1G consumer — no commander, no communication, no telepathy. Zero `src/**`
+changes are authorised: the mutual configuration is probe-level composition of
+two consumer instances. Fresh seeds `91,000..91,191`, awareness 0.8, window 48
+ticks, arms N (both consumers disabled) and M (both enabled), byte-identical
+until M's first reopening. It exposes two coupled failure modes for the first
+time — mutual belief staleness and cross-player response loops. PASS banks the
+first multi-body temporal process and authorises at most one user fork (a
+three-body rotation-shaped extension, or banking the brick and pivoting to
+Tracks B/C); FAIL parks the mutual-response family, naming WHICH coupled
+failure occurred, with no predicate, window, cadence, seed or tie-break
+adjustment permitted. It does not authorise live wiring, TeamBrain changes,
+relevance selection, coach doctrine, familiarity, payoff, genes or evolution.

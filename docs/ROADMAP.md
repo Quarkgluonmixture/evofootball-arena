@@ -900,6 +900,29 @@
 > D-PROC-2. Fork to the user: a faster-shaped response consumer or the
 > decision-layer wall directly with the qualified motion-evidence channel.
 > Authority: [`world-model/MOTION-GATED-INTENT-REOPENING.md`](world-model/MOTION-GATED-INTENT-REOPENING.md).
+> 📋 **D-MUT-0 MUTUAL MOTION-GATED RESPONSE PRE-REGISTERED (2026-07-24, Track A3
+> — decision-layer wall attempt 4).** The user ratified taking the qualified
+> observation channel to the wall; the commander rejected the naive D-ROTATE
+> re-pose on D-ROTATE-0's own anatomy (bids were 99.2% supported — observation
+> was never the constraint, commander-gated action authority was). The corrected
+> shape symmetrises the banked 1G consumer: two off-ball teammates hold
+> privately conflicting intents, each reads the other ONLY through its own
+> gaze-driven observations plus motion-phase evidence, and each runs the
+> UNCHANGED consumer — no commander, no communication, no telepathy. First
+> two-body mutual temporal process; new coupled failure modes = mutual belief
+> staleness and cross-player response loops. **Zero `src/**` changes are
+> authorised** (probe-level composition of two consumer instances). Fresh seeds
+> `91,000..91,191`, awareness 0.8, window 48 ticks, arms N (both consumers off)
+> and M (both on), byte-identical until M's first reopening. Frozen gates:
+> accepted 96, jointly completed `>= 48/96`, N-arm conflict materiality
+> `>= 70%`, M-arm resolved states `>= 60%`, replacement progress `>= 0.25m` in
+> `>= 75%` of revisions, combined revisions `<= 4` in 100% of completed M
+> states, per-player anti-oscillation all zeros (max 3 each), gaze purity zero
+> for BOTH observers, two byte-identical runs, production fingerprint
+> `57b0bdab…c673` unchanged. PASS banks the first multi-body temporal process
+> (one user fork after: three-body extension, or bank and pivot to Tracks B/C);
+> FAIL parks the family naming WHICH coupled failure occurred, with nothing
+> tunable. Authority: [`world-model/MUTUAL-MOTION-GATED-RESPONSE.md`](world-model/MUTUAL-MOTION-GATED-RESPONSE.md).
 > 👁️ **B1 PERCEPTION SANDBOX SHIPPED (2026-07-24, Track B1 in
 > [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md)):** a default-off render
 > overlay (`src/render3d/PerceptionSandbox3D.ts`) that gives the selected player

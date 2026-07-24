@@ -1,8 +1,8 @@
 # D-MUT-0 — Mutual motion-gated intent response
 
-Status: **DRAFT — wall-attempt-4 fork ratified by the user 2026-07-24; shape
-corrected by the commander (see §1); the executor flips this to
-PRE-REGISTERED on handover.**
+Status: **PRE-REGISTERED — no run yet.** (Wall-attempt-4 fork ratified by the
+user 2026-07-24; shape corrected by the commander, see §1; flipped on
+handover.)
 
 Date: 2026-07-24
 
