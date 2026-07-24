@@ -100,6 +100,10 @@ generalises.
 >
 > Recommended queue on ratification: `C1-A → S3-G2 → C1-B(≤user play-test) →
 > D-TRI-0`, D1 parallel. B2's render: user looks whenever; small tweaks only.
+>
+> **RATIFIED by the user 2026-07-24** ("按指挥官裁决继续"). Queue is live and the
+> autonomous session drafts S3-G2 then D-TRI-0 under pre-registration
+> discipline. Progress of this run is tracked in the track tables below.
 
 ## Track A — the epistemology chain (information → decision)
 

@@ -217,3 +217,89 @@ Three honest continuations, in ascending risk — **the user's call**:
   twice. Needs its own pre-registration; not authored here.
 
 Recommended order: **C1-A → C1-B → re-ask C1-C on C1-B's ledger.**
+
+**User ratified 2026-07-24** (commander ruling in `PROGRAMME.md` §0.5): C1-A now
+(dormant, autonomous), **C1-B GO as the next LIVE slice** with the play-test
+gate kept, **C1-C DEFERRED into the Embodied Decision Slice** — teaching the
+evaluator to price time/speed belongs to the S3b-redo bundle, not a patch on
+`laneOpenness`.
+
+## 8. C1-A — PRE-REGISTERED (2026-07-24, no run yet)
+
+Dormant substrate: power becomes executable and mis-executable, while every
+live call stays at 1.0. Nothing chooses a power yet.
+
+### 8.1 Authorised change set
+
+* `src/sim/mechanics.ts` `performPass` only (ordinary ground passes; through
+  balls, lofted passes, cutbacks, crosses and shots are OUT of scope):
+  * an optional intended `powerChoice = 1`, clamped to
+    `[PASS_POWER_MIN, PASS_POWER_MAX] = [0.85, 1.15]` (the §3 sweep band);
+  * **intended vs executed asymmetry** — the passer leads the receiver on the
+    power he MEANT (he cannot know his own error, exactly as body misalignment
+    IS known up front and therefore already enters both), while the ball leaves
+    at the EXECUTED power. This is the causal seat of 力度 failure;
+  * technique-scaled magnitude noise, in `bentKick`'s existing weight-error
+    shape: `gaussian * |powerChoice - 1| * PASS_POWER_NOISE_K * (1.35 -
+    passing)` with `PASS_POWER_NOISE_K = 0.60`, so an average passer's 1.15 ball
+    carries σ ≈ 7.7% of power and an elite passer's ≈ 3.7%. Executed power is
+    clamped to `[0.70, 1.30]`.
+  * **The noise is drawn ONLY when `powerChoice !== 1`** — at power 1.0 no RNG
+    is consumed and every formula is arithmetically identical, which is what
+    makes the fingerprint gate meaningful.
+* `src/sim/Match.ts` `performPass` passthrough.
+* `src/sim/constants.ts`: the four constants above.
+* New `scripts/probes/pass-power-anatomy.ts` + new unit tests.
+
+Live callers are NOT touched: `PlayerBrain` keeps calling with no power
+argument. If anything else seems to need changing, that is an escalation.
+
+### 8.2 Frozen gates
+
+Exact validity:
+
+```text
+production fingerprint            57b0bdab…c673 unchanged   (proves power 1.0 is inert)
+tsc --noEmit + full suite         clean / all green
+probe runs                        two invocations byte-identical, shared SHA-256
+accepted states                   120   (max 384 seeds from 92,000)
+executed-power band violations    0
+non-finite / schema failures      0
+```
+
+Directional mechanism (sweep 0.85 / 1.00 / 1.15 on the SAME frozen state, each
+arm branching from identical RNG at the kick):
+
+```text
+G1 interception rate, CONTESTED corridors (freeze laneOpenness <= 0.50)
+      strictly decreasing 0.85 > 1.00 > 1.15, total spread >= 3.0pp
+G2 intended-target reception FAILURE rate (contacted but never controlled,
+   or never reached)
+      strictly increasing 0.85 < 1.00 < 1.15, total spread >= 1.0pp
+G3 mean arrival time strictly decreasing with power (sanity: the physics
+   actually delivers the benefit)
+G4 mean arrival speed strictly increasing with power
+```
+
+Derivation, from banked numbers only: Phase 0's friction table gives a 15m
+1.15 ball −0.20s of flight (−17%) and pushes mid-corridor speed past
+`CONTROL_MAX_SPEED = 14`, demoting an interceptor from `controlAttempt` to
+`deflection` — so G1's spread is set at a deliberately modest 3.0pp (the
+effect should be larger; the gate must not be vacuous, and must not be
+tuned upward after seeing results). G2's 1.0pp comes from the same table's
+`touchFailChance` speed term: +0.022 raw between 1.00 and 1.15 at 15m, scaled
+by technique to +0.010…+0.029 — a ~1–3pp effect, so 1.0pp is the honest floor.
+G3/G4 are near-tautological physics checks that catch a plumbing error.
+
+### 8.3 Stop rules
+
+* **G1 fails** (interception does not fall with power): the interception
+  machinery does not price speed the way `canInterceptPass` reads on paper →
+  park C1 entirely and report; the choice layer would be pricing a phantom.
+* **G2 fails** (a hot ball costs the receiver nothing measurable): this is the
+  §5 "reception cost architecturally absent" branch, and it makes **C1-B the
+  mandatory next step rather than an optional one** — do not fake the cost at
+  the evaluator layer.
+* Fingerprint drift: revert; the plumbing leaked into live behaviour.
+* No threshold shopping, no widening the power band, no re-running with
+  different seeds after seeing results.
