@@ -922,6 +922,29 @@
 > toggle is a button in the overlay itself (switching rebuilds the memory, since
 > awareness sets scan cadence and retention). Gates: tsc + build clean · 697/697
 > · fingerprint exact (`57b0bdab…c673`).
+> ⚠️ **C1 PHASE 0 (PASS POWER) COMPLETE — PREMISE SURVIVES, DRAFTED PHASE-2
+> SHAPE REFUTED (2026-07-24, no code written).** Mapped the live path with
+> file:line evidence: the passer chooses at `PlayerBrain.ts:272-420` on a score
+> built from `laneOpenness`/`opennessOf`, and executes immediately via
+> `mechanics.performPass:281`, where `orientationPowerMul` ALREADY scales both
+> the lead and the launch speed — so a chosen power multiplier costs almost no
+> plumbing. Reception cost exists (`touchFailChance` speed term, zero at ≤6 m/s
+> and saturated at 14) and real arrivals land at 8–12 m/s, so it is un-saturated
+> but small: a 1.15 ball at 15m costs +0.010 (elite) to +0.029 (poor) touch-fail
+> probability while buying −0.20s of flight (−17%) and demoting mid-corridor
+> interceptors from `controlAttempt` to `deflection` (CONTROL_MAX_SPEED 14 vs 24
+> for the intended target). Pass noise is technique-scaled but **direction-only**
+> — no weight/magnitude noise exists anywhere on the live kick path. Decisive
+> finding: the live evaluator contains no ball speed and no time at all, so
+> scoring a candidate at 0.85/1.00/1.15 returns three IDENTICAL scores — the
+> six-layer FIRES gate fails by construction, before any balance question.
+> Fork (§7 of the contract): **C1-A** dormant power plumbing + technique-scaled
+> magnitude noise + anatomy probe (bit-identical) → **C1-B** honest
+> speed-dependent M3 control cost (LIVE, user gate; 停不好重球 is currently
+> nearly free) → **C1-C** the choice layer redrawn on C1-B's ledger, priced
+> through the receiver-side cost rather than by importing corridor interception
+> into the live decision (the S3b/S7b family that failed at PAYS twice).
+> Authority: [`world-model/PASS-POWER-SLICE.md`](world-model/PASS-POWER-SLICE.md) §6–7.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is
