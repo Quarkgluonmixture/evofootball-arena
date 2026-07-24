@@ -847,17 +847,23 @@
 > target-relevance selection, no multi-target scheduling. The only open fork:
 > a gaze-supported temporal motion evidence gate (new experiment), or park.
 > Authority: [`world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md`](world-model/OBSERVER-LOCAL-ATTENTION-POLICY.md).
-> 📋 **D-PROC-1MG GAZE-SUPPORTED TEMPORAL MOTION EVIDENCE PRE-REGISTERED**
-> (2026-07-24, user-selected fork). Re-poses D-PROC-1M's exact estimand,
-> three-observation representation and every frozen gate value on fresh seeds
-> `89,000..89,191`; the *only* change is the observation channel — each
-> `observe()` supplies the S3-G1 memory-guided gaze with one-tick latency in
-> place of the passive body-facing scan. Adds the S3-G1 gaze-purity exact gates
-> (invalid gaze = 0, non-normalised = 0, recompute mismatches = 0). No
-> production file changes; no gate value may move after the first look at 89k.
-> PASS banks a qualified dormant motion-phase representation and authorises at
-> most one further pre-registered response-consumer experiment; FAIL parks the
-> three-observation representation with prejudice (failed under both channels).
+> ✅ **D-PROC-1MG GAZE-SUPPORTED TEMPORAL MOTION EVIDENCE PASSED** (2026-07-24,
+> fresh 89k, 96/96 accepted, 75 jointly completed, twice byte-identical, SHA
+> `28971096…1b58`). Re-posed D-PROC-1M's exact estimand, representation and every
+> gate value, changing *only* the observation channel — each `observe()` now
+> supplies the S3-G1 memory-guided gaze with one-tick latency in place of the
+> passive body-facing scan. The four-sample support gate that strictly failed
+> D-PROC-1M (137/177, 77.4%) now holds at **225/225 (100%)**; every downstream
+> separation gate cleared (E/H differ 75/75, displacement/final-speed 74/96,
+> braking 67/96, post-switch R/E 75/75, velocity/body turn 71/96 · 70/96). All
+> schema/privacy/RNG/intervention gates zero, plus the three new gaze-purity
+> gates (invalid = 0, non-normalised = 0, recompute mismatch = 0). No production
+> file changed; fingerprint `57b0bdab…c673` unmoved. Attributable to the gaze
+> channel alone: given a designated relevance target, the unchanged envelope now
+> sustains the three-observation motion history the body-facing scan could not.
+> Banks a qualified dormant motion-phase representation; the only open fork is a
+> separately pre-registered response-consumer experiment. No target-relevance
+> selection, live consumer or D-PROC-1 rescue.
 > Authority: [`world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md`](world-model/GAZE-SUPPORTED-MOTION-EVIDENCE.md).
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and

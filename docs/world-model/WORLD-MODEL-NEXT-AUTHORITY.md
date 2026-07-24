@@ -546,3 +546,22 @@ changes. PASS authorises at most one further user fork toward a separately
 pre-registered, motion-evidence-gated response consumer (a new experiment, not
 a D-PROC-1 rescue); FAIL parks the three-observation temporal representation
 with prejudice under both the passive and the qualified active channel.
+
+D-PROC-1MG PASSED, twice byte-identically (SHA `28971096…1b58`). Fresh seeds
+`89,000..89,121` supplied 96/96 accepted states; 75 jointly completed (gate 72).
+The four-sample support gate that strictly failed D-PROC-1M (137/177, 77.4%)
+now holds at 225/225 (100%), and every downstream separation gate cleared its
+frozen threshold: E/H evidence differed 75/75, displacement and final-speed
+separation 74/96 each, braking delta 67/96, post-switch R/E differed 75/75,
+velocity- and body-turn separation 71/96 and 70/96. All schema, privacy, RNG,
+intervention gates were zero, as were the three added gaze-purity gates (no
+invalid or non-normalised gaze, no recompute mismatch). Because only the
+observation channel differed from parked D-PROC-1M, the pass is attributable to
+the S3-G1 memory-guided gaze alone: given a designated relevance target, the
+unchanged envelope now sustains the three-observation motion history the
+body-facing scan could not. Observer-local motion-phase evidence is banked as a
+qualified dormant representation. The one open user fork is a separately
+pre-registered, probe-local response consumer gated on motion-phase evidence (a
+new experiment, not a D-PROC-1 rescue); D-PROC-1's own thresholds stay closed.
+Target-relevance selection, multi-target attention, coach doctrine, familiarity,
+payoff, live AI and evolution remain closed and are later questions.

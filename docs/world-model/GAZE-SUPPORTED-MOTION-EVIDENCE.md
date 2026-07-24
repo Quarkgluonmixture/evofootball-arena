@@ -1,6 +1,6 @@
 # D-PROC-1MG — Gaze-supported temporal motion evidence
 
-Status: **PRE-REGISTERED — no run yet.**
+Status: **PASS — gaze-supported motion evidence banked; consumer remains closed.**
 
 Date: 2026-07-24 (drafted and ratified; fork selected by the user)
 
@@ -95,4 +95,60 @@ pre-registered probe-local response consumer that requires motion-phase
 evidence before reopening its candidate set (a new experiment — not a
 D-PROC-1 rescue; D-PROC-1's own thresholds stay closed). It does not authorise
 target-relevance selection, multi-target attention, coach doctrine,
+familiarity, payoff, live AI or evolution.
+
+## 5. Frozen result
+
+Fresh seeds `89,000..89,121` (122 scanned, ≤192) supplied all 96 accepted
+states. The two full executions were byte-identical, and every schema, privacy,
+RNG, intervention, finite-value, sample-order, bounded-history and
+private-switch-invisibility check passed at zero. The three added gaze-purity
+gates also held exactly: no invalid gaze reached `perceiveSnapshot`, no stored
+gaze was non-normalised, and every M-style gaze was recomputable from the
+logged snapshot sequence alone. Canonical report SHA-256:
+
+```text
+28971096961320f1715147136e0974cc4e7ff02568ad7df0b82e2217d1ce1b58
+```
+
+The representation cleared every frozen D-PROC-1M gate under the qualified
+channel:
+
+```text
+accepted states                                        96 / 96    (need = 96)
+jointly completed H/E/R states                         75 / 96    (need >= 72)
+completed arms with >= 4 distinct observations        225 / 225   (100%; need 95%)
+states with an aged observation                        75 / 75    (need >= 20)
+E/R pre-switch evidence parity                         75 / 75    (need = 100%)
+
+E/H evidence sequences differed                        75 / 75    (100%; need 90%)
+E-H net displacement >= 0.50m                          74 / 96    (need >= 60)
+E-H final speed >= 0.50m/s                             74 / 96    (need >= 60)
+H negative observed speed delta <= -0.10m/s            67 / 96    (need >= 48)
+
+R/E post-switch evidence sequences differed            75 / 75    (100%; need 75%)
+R-E absolute velocity-turn sum >= 0.15rad              71 / 96    (need >= 48)
+R-E absolute body-turn sum >= 0.15rad                  70 / 96    (need >= 48)
+
+invalid / non-normalised gaze                           0
+policy recompute mismatches                             0
+schema / finite / RNG / intervention / privacy gates    0
+```
+
+Arm-completion census across the 288 arms: 225 completed, 36 lost the ball
+loose, 24 lost observer support, 3 hit a dead-ball/restart. The single change
+from D-PROC-1M — routing each observation through the S3-G1 memory-guided gaze
+with one-tick latency instead of the passive body-facing scan — was decisive:
+the four-sample support gate that strictly failed D-PROC-1M (137/177, 77.4%)
+now holds at 225/225 (100%), lifting jointly-completed states from 59 to 75 and
+carrying every downstream separation gate over its frozen threshold. Because
+the estimand, representation and every gate value were D-PROC-1M's and only the
+observation channel differed, the result is attributable to the channel alone.
+
+Per the stop rule, D-PROC-1MG banks observer-local motion-phase evidence as a
+qualified dormant representation. It authorises at most one further user fork:
+a separately pre-registered, probe-local response consumer that requires
+motion-phase evidence before reopening its candidate set (a new experiment, not
+a D-PROC-1 rescue — D-PROC-1's own thresholds stay closed). It does not
+authorise target-relevance selection, multi-target attention, coach doctrine,
 familiarity, payoff, live AI or evolution.
