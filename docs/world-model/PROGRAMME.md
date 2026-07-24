@@ -101,9 +101,24 @@ generalises.
 > Recommended queue on ratification: `C1-A → S3-G2 → C1-B(≤user play-test) →
 > D-TRI-0`, D1 parallel. B2's render: user looks whenever; small tweaks only.
 >
-> **RATIFIED by the user 2026-07-24** ("按指挥官裁决继续"). Queue is live and the
-> autonomous session drafts S3-G2 then D-TRI-0 under pre-registration
-> discipline. Progress of this run is tracked in the track tables below.
+> **RATIFIED by the user 2026-07-24** ("按指挥官裁决继续"), then executed in one
+> autonomous run: **C1-A** substrate banked (bit-identical) with its ledger
+> honestly failed and re-posed as **C1-A2** (which came back clean: pace buys
+> −17.4pp interception and costs the receiver nothing) → **S3-G2 PASSED** (dual
+> attention banked; one acceptance-shortfall escalation resolved by sampling
+> budget only, flagged for veto) → **C1-B implemented, §2 band broke on goals and
+> long balls, honest-reverted**.
+>
+> **Queue state: back at user gates.** Per the self-drive protocol C1-B's
+> non-PASS stops the queue. Open, all the user's:
+> 1. **D-TRI-0** — authorised by S3-G2's PASS as its single continuation, not yet
+>    drafted. Its derivation inputs are already recorded (D-MUT-0's banked numbers
+>    plus S3-G2 §9 limit 2: dual support ceilings at 86% even truth-aimed, so
+>    price it at roughly three-quarters). A planning-grade session drafts it.
+> 2. **The touch-cost fork** — fold C1-B into the Embodied Decision Slice
+>    (recommended, `PASS-POWER-SLICE.md` §13.4) or spend the one unspent redraw.
+> 3. **D1** — still READY, still the user's eyes.
+> 4. **B2's render** — look whenever; feedback is small tweaks.
 
 ## Track A — the epistemology chain (information → decision)
 
