@@ -3,6 +3,7 @@
 ## ⭐⭐⭐⭐ THE GOLD STANDARD IS [`VISION.md`](VISION.md) (2026-07-19) — measure every decision against it
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 ## ⭐⭐⭐⭐ THE SUBSTRATE REBUILD: [`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md) + [`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md) (2026-07-20)
+## ⭐⭐⭐ THE STEPWISE HANDOFF PLAN: [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md) (2026-07-24) — tracks A/B/C, one contract per step; executors start there
 
 > 🎯🎯🎯 **RESUME (2026-07-20 — the "team-gene overhaul" resolved into a SUBSTRATE-FIRST
 > ENGINE REBUILD; reference docs WRITTEN + tree SETTLED — clean baseline `f192a08`; NEXT
