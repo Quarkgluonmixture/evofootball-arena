@@ -1,9 +1,11 @@
 # EDS — Embodied Decision Slice (design contract, commander-owned)
 
-Status: **DESIGN RATIFICATION PENDING — the user forks A4-first vs EDS-first
-on this doc's existence. Stage contracts are pre-registered individually by
-the autonomous session; this doc fixes scope, order, boundaries and the ship
-gate. It is not itself a frozen experiment.**
+Status: **RATIFIED 2026-07-24 — the user chose EDS over A4-first and directed
+`E0→E1→E2→E3, stop at E4 for play-test`. Stage contracts are pre-registered
+individually by the autonomous session; this doc fixes scope, order, boundaries
+and the ship gate. It is not itself a frozen experiment.**
+
+Stage progress: **E0 pre-registered** ([`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md)).
 
 Date: 2026-07-24
 

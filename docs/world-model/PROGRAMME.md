@@ -226,6 +226,22 @@ rule → technique/attr-scaled execution noise → six-layer acceptance + §2
 equilibrium band + user play-test. Craft dimensions become choices; usage
 patterns become evolution's discovery.
 
+## Track E — the Embodied Decision Slice (the integration milestone)
+
+Design contract: [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md)
+(commander-owned; **user chose EDS over A4-first, 2026-07-24**, and directed
+`E0→E1→E2→E3, stop at E4 for play-test`). Each stage pre-registers its own
+contract. Nothing ships partially, in either direction: E4 reverts the WHOLE
+bundle or ships it.
+
+| ID | Step | Contract | Status |
+|----|------|----------|--------|
+| E0 | Dormant pass-option valuation: observation-only, 2–3 power levels, priced in flight time / corridor interception margin / touch difficulty. Must reproduce the C1-A2 ledger **including the world's near-flat reception cost** — modelling the defect is the point | [`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md) | **PRE-REGISTERED 2026-07-24** |
+| E1 | Flagged physics: C1-B's touch-cost curve behind an EDS flag, default OFF (fingerprint unchanged with the flag off). Validation re-runs the C1-A2 ledger WITH the flag, measured at the FIRST TOUCH — the C1-B lesson. Spends the C1-B redraw in its correct home | TBD (drafts after E0) | queued |
+| E2 | Both-sides perception (dormant build, probe-bundled): passer choice via E0 from perceived state, defender interception entry from perceived state, shared awareness trunk. Probe A/B with E1+E2 ON in probe worlds only. Includes the PERF gate | TBD (drafts after E1) | queued |
+| E3 | Co-evolution audit: sealed evo runs, full bundle ON — §2 band, route mix, the C1-B behavioural suite, no-strict-dominance (power usage must stay situational), co-evo restoration, style diversity | TBD (drafts after E2) | queued |
+| E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
+
 ## Track D — world-observatory UI (no sim contact, Sonnet-friendly)
 
 Direction doc: [`../UI-NORTHSTAR.md`](../UI-NORTHSTAR.md) (commander-curated
