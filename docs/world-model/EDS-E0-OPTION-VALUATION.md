@@ -110,3 +110,85 @@ selection should capture at least a third of it, so 5.0pp is conservative. P2's
 * No new tactical weight table, no scalar score, no use of
   `controlProbability` as a score (S4a: 95.2% of truth samples in its top
   quartile — it is an oriented dimension only).
+
+## 7. E0 RESULT — FAIL on two axes, with three findings that reshape E2 (2026-07-24)
+
+`scripts/probes/eds-option-valuation.ts`, seeds `93,000..93,126`, 120/120
+accepted, 92 contested, deterministic across two invocations, SHA
+`79ab8339…d3fa`. `npx tsc --noEmit` clean; the module is pure and has zero live
+callers; production fingerprint `57b0bdab…c673` unchanged.
+
+```text
+EXACT
+  C1-A2 opponent-first reproduced   0.565 / 0.489 / 0.391   ✓ exact
+  C1-A2 touch failure reproduced    0.119 / 0.121 / 0.118   ✓ exact
+  per-arm RNG draws equal           120/120                 ✓
+  null valuations                   165 (55 of 120 states)  ✗ gate was 0
+  every state priced                65 of 120               ✗
+
+PREDICTION
+  P1 threat falls with power        0.843 → 0.586 → 0.446 s ✓ and the per-state
+                                    safest option is 1.15 in 52/52 contested   ✓
+  P2 predicted touch-cost spread    7.34 → 11.29 = 3.95pp   ✗ gate was < 3.0pp
+  P3 flight time falls              1.713 → 1.303 → 1.061 s ✓
+  P4 arrival speed rises            5.99 → 8.69 → 11.39     ✓
+  P5 ranked selection agrees        measured opponent-first 0.558 (evaluator's
+                                    riskiest) → 0.346 (its safest) = 21.2pp    ✓
+```
+
+### Finding 1 — the evaluator genuinely models the interception physics
+
+P1 and P5 are not marginal. Ranking the three options by predicted corridor
+threat and taking the safest moves the **measured** opponent-first rate from
+55.8% to 34.6% — a **21.2pp** swing, *larger* than the 17.4pp available from any
+fixed power, because the ranking is per state. Pricing pass options in TIME
+works, and it works on observed facts alone.
+
+### Finding 2 — observation does not blur the option set, it DELETES it
+
+The 165 nulls are not scattered: they are **all-or-nothing per state**. 65 states
+priced all three options, 55 priced none, and the split is by distance — mean
+pass distance **21.7m for the unpriced states against 16.8m for the priced
+ones**. The cause is the information boundary doing its job: at awareness 0.8 a
+passer frequently has no observed fact for a distant teammate, and you cannot
+price a pass to a man you cannot see.
+
+**This is the concrete mechanism behind S3b's failure.** S3b's post-mortem
+recorded that route richness collapsed when candidates shared an observed
+snapshot (headers 6.39→4.05, cutbacks 3.96→2.46) and read it as "the score
+table's dependence on omniscience". E0 now shows the sharper version: replacing
+truth with observation removes **~46% of today's pass options, disproportionately
+the long progressive ones**. Any both-sides perception stage must therefore
+decide explicitly what a passer does about an unobserved teammate — vanishing
+them is what broke S3b, and no amount of evaluator quality fixes it.
+
+The pre-registered gate treated any null as a failure. That was the right gate to
+have set (it forced this finding into the open) and it fails honestly, but it
+conflated "the model cannot answer" with "the option genuinely does not exist".
+The redraw separates them.
+
+### Finding 3 — the touch-cost disagreement is most likely the METRIC, not the model
+
+The mirror is pinned to `touchFailChance` by a passing contract test across a
+5-dimensional input grid, so the curve is not in doubt. At the predicted arrival
+speeds the formula implies a 3.95pp cost spread from 0.85 to 1.15, while the
+measured spread is 0.0pp. But **C1-B already proved this measurement blind**
+(§13.3): "ended in control" absorbs a spilled touch that M3 recontact
+re-collects, and its own lesson was that future attempts must measure the FIRST
+TOUCH. The most likely reading is therefore that the world does charge a small
+reception cost, of roughly the predicted order, and that neither C1-A2 nor this
+probe has yet looked at the right event.
+
+If that is right it also sharpens C1-B's premise: the cost is not architecturally
+absent, it is **small and previously unmeasured** — which changes E1's job from
+"create a cost" to "make an existing small cost large enough to matter, and
+measure it where it actually happens".
+
+### Verdict and redraw
+
+**FAIL** — axes: `null valuations` and `P2`. Per the EDS design §5 the queue
+stops and the fork returns to the commander, which under autonomous mode is this
+session; the redraw is **E0b**, pre-registered in
+[`EDS-E0B-OPTION-VALUATION-REDRAW.md`](EDS-E0B-OPTION-VALUATION-REDRAW.md). The
+evaluator module is NOT changed by the redraw — nothing about it was refuted; two
+measurements were.
