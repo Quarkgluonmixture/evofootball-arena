@@ -14,6 +14,7 @@ import { DT } from '../../src/sim/constants';
 import { touchFailChance, type FirstTouchTraceEntry } from '../../src/sim/mechanics';
 import { randomGenome, type TacticalGenome, GENE_KEYS } from '../../src/evolution/genome';
 import { ATTR_KEYS, randomSquad, type PlayerAttributes } from '../../src/evolution/playerGenome';
+import type { Player } from '../../src/sim/Player';
 import { TEAM_SIZE, type TeamInfo } from '../../src/sim/types';
 import { Rng } from '../../src/utils/rng';
 import { v2 } from '../../src/utils/vec';
@@ -21,7 +22,6 @@ import { v2 } from '../../src/utils/vec';
 const SEED_START = Number(process.argv[2] ?? 93_000);
 const I2_STATES = Number(process.argv[3] ?? 120);
 const I2_MAX_SEEDS = 512;
-const SWEEP_SEEDS = Number(process.argv[4] ?? 700);
 const MATCH_DURATION = 240;
 const SAMPLE_TICKS = Math.round(1 / DT);
 const POWERS = [0.85, 1.00001, 1.15] as const;
@@ -34,6 +34,33 @@ const MIN_PASS_DISTANCE = 6;
 const MAX_PASS_DISTANCE = 30;
 const CONTESTED_LANE_MAX = 0.5;
 const FLIGHT_TICKS = 180;
+
+// --- I1 re-stage (commander ruling #5.3) -----------------------------------
+// The first cut rolled a LOOSE ball at the receiver, and the world mostly
+// declined to adjudicate it (M3 cushions the contact out of the retention
+// window; buckets 9 and 11 produced zero events). The intended target of a
+// REAL pass is where the world actually adjudicates — `maxSpeed` 24 there vs
+// `CONTROL_MAX_SPEED` 14 for anyone else (`Match.ts:1990`). So I1 now stages a
+// real `performPass` and sweeps the POWER to sweep the arrival speed; distance
+// is the second lever, because launch speed is `clamp(d*0.6+8.2, 9, 22)`.
+// Gates are untouched: same buckets, same tolerance, same monotonicity, same
+// 2.0pp calibration, same 400-event floor.
+const SWEEP_REPS = Number(process.argv[4] ?? 300);
+const SWEEP_POWERS = [0.85, 0.90, 0.95, 1.00, 1.05, 1.10, 1.15] as const;
+const SWEEP_DISTANCES = [6, 9, 12, 15, 18, 21, 24, 27, 30] as const;
+// Ex-ante weighting (the S3-G2 lesson: size the census generously BEFORE the
+// run). The base grid alone yields the top bucket ~10x slower than the middle
+// ones, so the hot and cold ends of the power range get extra passes. This
+// changes only how many events each bucket collects, never what a gate reads.
+const SWEEP_HOT_POWERS = [1.10, 1.15] as const;
+const SWEEP_HOT_DISTANCES = [12, 15, 18, 21, 24, 27] as const;
+const SWEEP_HOT_PASSES = 4;
+const SWEEP_COLD_POWERS = [0.85, 0.90] as const;
+const SWEEP_COLD_PASSES = 2;
+const SWEEP_PASSER_X = -24; // pass runs along y = 0, clear of both touchlines
+const SWEEP_FLIGHT_TICKS = 240;
+const SWEEP_MAX_PRESSURE = 0.05;
+const SWEEP_MAX_MISALIGN = 0.15;
 
 const team = (name: string, seed: number): TeamInfo => {
   const rng = new Rng(seed);
@@ -100,81 +127,108 @@ const behaviourIdentical = (seed: number): boolean => {
 };
 
 /**
- * I1 — the instrument against known physics. One isolated stationary receiver
- * facing an incoming ball, every opponent parked far away, so pressure and
- * blind-side are held near zero and only arrival speed varies.
+ * I1 — the instrument against known physics. A pinned passer plays a REAL pass
+ * to a pinned, isolated teammate who faces the ball; every other body is parked
+ * at the far ends, so pressure and blind-side are held at zero and only arrival
+ * speed varies. Power and distance sweep the arrival speed across the buckets.
  */
 const runSweeps = () => {
+  let match: Match | null = null;
+  let seedCounter = 5_100_000;
+  const freshMatch = (): Match => {
+    const created = new Match({
+      seed: seedCounter++,
+      teamA: staticTeam('A'),
+      teamB: staticTeam('B'),
+      duration: 6000,
+      traceFirstTouch: true,
+    });
+    // Get past the kickoff restart FIRST: a staged ball placed during a restart
+    // is reset by the engine. Only stage once the ball is genuinely in play.
+    for (let tick = 0; tick < 600 && created.phase !== 'playing'; tick++) created.step(DT);
+    return created;
+  };
+  /**
+   * Hold the world: every body but the two principals parked at the far ends,
+   * the receiver pinned still and facing the passer. Re-applied every tick —
+   * HoldPosition still drifts, and the drift showed up as misalign 0.24 in the
+   * first cut. Held means held. Nobody is ever unfrozen: a freely-playing
+   * frozen world walks the ball into an empty net, and the restart it triggers
+   * would corrupt the next staging.
+   */
+  const hold = (world: Match, passer: Player, receiver: Player, distance: number): void => {
+    for (const player of world.allPlayers) {
+      if (player === passer || player === receiver) continue;
+      player.pos = v2(player.side === 0 ? -44 : 44, player.gid % 2 === 0 ? -27 : 27);
+      player.vel = v2(0, 0);
+      player.action = { type: 'HoldPosition', scores: [] };
+      player.decisionTimer = Number.POSITIVE_INFINITY;
+    }
+    receiver.pos = v2(SWEEP_PASSER_X + distance, 0);
+    receiver.vel = v2(0, 0);
+    receiver.heading = v2(-1, 0); // facing the incoming ball
+    receiver.action = { type: 'HoldPosition', scores: [] };
+    receiver.decisionTimer = Number.POSITIVE_INFINITY;
+  };
+
   const events: FirstTouchTraceEntry[] = [];
-  for (let seed = 0; seed < SWEEP_SEEDS; seed++) {
-    for (const bucket of SPEED_BUCKETS) {
-      const match = new Match({
-        seed: seed * 31 + bucket * 7,
-        teamA: staticTeam('A'),
-        teamB: staticTeam('B'),
-        duration: 60,
-        traceFirstTouch: true,
-      });
-      // Get past the kickoff restart FIRST: a staged ball placed during a
-      // restart is reset by the engine, which is why the first cut logged zero
-      // events. Only stage once the ball is genuinely in play.
-      for (let tick = 0; tick < 600 && match.phase !== 'playing'; tick++) match.step(DT);
-      if (match.phase !== 'playing') continue;
-      const receiver = match.teams[0].players[3];
-      // Park everyone else out of the way: no pressure, no rival claim.
-      for (const player of match.allPlayers) {
-        if (player === receiver) continue;
-        player.pos = v2(player.side === 0 ? -45 : 45, player.gid % 2 === 0 ? -28 : 28);
-        player.vel = v2(0, 0);
-        player.action = { type: 'HoldPosition', scores: [] };
-        player.decisionTimer = Number.POSITIVE_INFINITY;
+  let attempts = 0;
+  let adjudicated = 0;
+  const trial = (distance: number, power: number): void => {
+    attempts++;
+    // A staged trial never lets the world restart; if it did leave play, this
+    // match is spent and a clean one takes over.
+    if (match === null || match.finished || match.phase !== 'playing') match = freshMatch();
+    if (match.phase !== 'playing') return;
+    const passer = match.teams[0].players[2];
+    const receiver = match.teams[0].players[3];
+    hold(match, passer, receiver, distance);
+    passer.pos = v2(SWEEP_PASSER_X, 0);
+    passer.vel = v2(0, 0);
+    passer.heading = v2(1, 0); // square to the pass: no orientation power loss
+    passer.action = { type: 'HoldPosition', scores: [] };
+    passer.decisionTimer = Number.POSITIVE_INFINITY;
+    passer.firstTouchWindow = 0;
+    receiver.kickCooldown = 0;
+    match.giveBall(passer);
+    passer.kickCooldown = 0;
+    const before = match.firstTouchTrace.length;
+    // offsideExempt: the staged pair is a physics rig, not a phase of play.
+    match.performPass(passer, receiver, true, power);
+    for (let tick = 0; tick < SWEEP_FLIGHT_TICKS; tick++) {
+      hold(match, passer, receiver, distance);
+      match.step(DT);
+      if (match.phase !== 'playing') break;
+      if (match.firstTouchTrace.length > before) break;
+    }
+    const event = match.firstTouchTrace
+      .slice(before)
+      .find((entry) => entry.gid === receiver.gid && entry.intendedTarget);
+    if (!event) return; // the world declined to adjudicate this one — counted, not hidden
+    adjudicated++;
+    events.push(event);
+  };
+
+  for (let rep = 0; rep < SWEEP_REPS; rep++) {
+    for (const power of SWEEP_POWERS) {
+      for (const distance of SWEEP_DISTANCES) trial(distance, power);
+    }
+    for (let pass = 0; pass < SWEEP_HOT_PASSES; pass++) {
+      for (const power of SWEEP_HOT_POWERS) {
+        for (const distance of SWEEP_HOT_DISTANCES) trial(distance, power);
       }
-      receiver.pos = v2(0, 0);
-      receiver.vel = v2(0, 0);
-      receiver.heading = v2(-1, 0); // facing the incoming ball
-      receiver.action = { type: 'HoldPosition', scores: [] };
-      receiver.decisionTimer = Number.POSITIVE_INFINITY;
-      receiver.kickCooldown = 0;
-      // Roll the ball at the receiver's face at the bucket's speed.
-      match.ball.owner = null;
-      // 2.2m: close enough that friction barely bites, so the ARRIVAL speed is
-      // the bucket speed. (First cut launched from 6m and every event landed
-      // between the buckets.)
-      match.ball.pos = v2(-2.2, 0);
-      // Launch a touch hot so the ARRIVAL speed lands on the bucket centre:
-      // 2.2m of the engine's friction costs ~0.75 m/s.
-      match.ball.vel = v2(bucket + 0.75, 0);
-      match.ball.z = 0;
-      match.ball.vz = 0;
-      const before = match.firstTouchTrace.length;
-      for (let tick = 0; tick < 90 && match.firstTouchTrace.length === before; tick++) {
-        // Hold the held conditions: everyone but the receiver stays parked, so
-        // pressure and rival claims cannot creep back in mid-flight.
-        for (const player of match.allPlayers) {
-          if (player === receiver) continue;
-          player.vel = v2(0, 0);
-          player.action = { type: 'HoldPosition', scores: [] };
-          player.decisionTimer = Number.POSITIVE_INFINITY;
-        }
-        // Pin the receiver outright: HoldPosition still drifts a little, and the
-        // drift showed up as misalign 0.24 in the first cut. Held means held.
-        receiver.pos = v2(0, 0);
-        receiver.vel = v2(0, 0);
-        receiver.heading = v2(-1, 0);
-        receiver.action = { type: 'HoldPosition', scores: [] };
-        receiver.decisionTimer = Number.POSITIVE_INFINITY;
-        match.step(DT);
-        if (match.phase !== 'playing') break;
-      }
-      for (let index = before; index < match.firstTouchTrace.length; index++) {
-        events.push(match.firstTouchTrace[index]);
+    }
+    for (let pass = 0; pass < SWEEP_COLD_PASSES; pass++) {
+      for (const power of SWEEP_COLD_POWERS) {
+        for (const distance of SWEEP_DISTANCES) trial(distance, power);
       }
     }
   }
-  return SPEED_BUCKETS.map((bucket) => {
+
+  const buckets = SPEED_BUCKETS.map((bucket) => {
     const inBucket = events.filter((event) => (
       Math.abs(event.relativeSpeed - bucket) <= BUCKET_TOLERANCE
-      && event.pressure <= 0.05 && event.misalign <= 0.15
+      && event.pressure <= SWEEP_MAX_PRESSURE && event.misalign <= SWEEP_MAX_MISALIGN
     ));
     const spilled = inBucket.filter((event) => !event.clean).length;
     return {
@@ -187,6 +241,15 @@ const runSweeps = () => {
       formulaAtBucket: touchFailChance(bucket, 0, 0, 0.5, 0.5),
     };
   });
+  return {
+    buckets,
+    staging: {
+      attempts,
+      adjudicated,
+      adjudicationRate: attempts === 0 ? 0 : adjudicated / attempts,
+      inBuckets: buckets.reduce((sum, entry) => sum + entry.events, 0),
+    },
+  };
 };
 
 /**
@@ -287,7 +350,8 @@ const canonical = (value: unknown): string => JSON.stringify(value);
 const runExperiment = () => {
   const behaviourSeeds = [7001, 7002, 7003];
   const behaviourIdenticalAll = behaviourSeeds.every(behaviourIdentical);
-  const sweeps = runSweeps();
+  const sweepRun = runSweeps();
+  const sweeps = sweepRun.buckets;
   const inversion = runInversion();
 
   const bucketsMonotone = sweeps.every((entry, index) =>
@@ -332,13 +396,16 @@ const runExperiment = () => {
       seedStart: SEED_START,
       i2States: I2_STATES,
       i2MaxSeeds: I2_MAX_SEEDS,
-      sweepSeeds: SWEEP_SEEDS,
+      sweepReps: SWEEP_REPS,
+      sweepPowers: SWEEP_POWERS,
+      sweepDistances: SWEEP_DISTANCES,
       speedBuckets: SPEED_BUCKETS,
       bucketTolerance: BUCKET_TOLERANCE,
       minBucketEvents: MIN_BUCKET_EVENTS,
       powers: POWERS,
     },
     behaviour: { seeds: behaviourSeeds, identical: behaviourIdenticalAll },
+    i1Staging: sweepRun.staging,
     i1Sweeps: sweeps,
     i2Inversion: inversion,
     adjudication: {
