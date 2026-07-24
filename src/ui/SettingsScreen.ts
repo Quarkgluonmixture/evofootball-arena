@@ -10,6 +10,8 @@ const FLAG_LABELS: Array<[keyof UiFlags, string]> = [
   ['marking', t('Marking lines')],
   ['chasers', t('Press assignments')],
   ['heatmap', t('Ball heatmap')],
+  ['perception', t('Perception sandbox (select a player · 3D)')],
+  ['perceptionGaze', t('  ↳ what-if gaze cone (hypothetical)')],
 ];
 
 /**

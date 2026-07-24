@@ -13,6 +13,10 @@ export interface UiFlags {
   shotVector: boolean;
   marking: boolean;
   chasers: boolean;
+  /** B1: read-only perception sandbox — the selected player's world model (3D only). */
+  perception: boolean;
+  /** B1 sub-toggle: overlay the hypothetical chooseAttentionGaze cone. */
+  perceptionGaze: boolean;
 }
 
 // Default view is CLEAN (2026-07-19, user: "把默认调试图层都关闭"): every dev
@@ -26,6 +30,8 @@ export const defaultFlags = (): UiFlags => ({
   shotVector: false,
   marking: false,
   chasers: false,
+  perception: false,
+  perceptionGaze: false,
 });
 
 /** The overlay-channel subset of UiFlags — shared by the 2D and 3D overlays. */

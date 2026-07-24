@@ -900,6 +900,18 @@
 > D-PROC-2. Fork to the user: a faster-shaped response consumer or the
 > decision-layer wall directly with the qualified motion-evidence channel.
 > Authority: [`world-model/MOTION-GATED-INTENT-REOPENING.md`](world-model/MOTION-GATED-INTENT-REOPENING.md).
+> 👁️ **B1 PERCEPTION SANDBOX SHIPPED (2026-07-24, Track B1 in
+> [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md)):** a default-off render
+> overlay (`src/render3d/PerceptionSandbox3D.ts`) that gives the selected player
+> its own `PerceptionMemory`, feeds it once per sim tick from
+> `capturePerceptionTruth` at synthetic awareness 0.8, and draws the returned
+> snapshot only — view cone, aged memory ghosts with belief-error lines, ball
+> fact, per-ghost staleness, plus a clearly-labelled hypothetical
+> `chooseAttentionGaze` cone. Read-only by construction: no sim/ai file changed,
+> no AI reads the overlay's snapshots. Gates: tsc + build clean · 697/697 ·
+> fingerprint exact (`57b0bdab…c673`). The user's viewing gate was waived
+> (first look showed ink-without-signal clutter) ⇒ B2 exception-based
+> rendering respec applies immediately on top.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

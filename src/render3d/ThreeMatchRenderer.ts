@@ -17,6 +17,7 @@ import { FxSystem, type FxQuality } from './FxSystem';
 import { Goal3D } from './GoalModel';
 import { declutterLabels, type LabelItem } from './labelDeclutter';
 import { Overlays3D } from './Overlays3D';
+import { PerceptionSandbox3D, type PerceptionView } from './PerceptionSandbox3D';
 import { createPitch } from './PitchModel';
 import {
   PlayerModel, disposeKit, makeKit, resetSharedPlayerResources, type KitMaterials,
@@ -41,6 +42,8 @@ export class ThreeMatchRenderer {
   private cameraCtl: CameraController;
   private ball = new BallModel();
   private overlays = new Overlays3D();
+  /** B1 read-only world-model overlay (default off; host set in constructor). */
+  private perception: PerceptionSandbox3D;
   private fx = new FxSystem();
   private goals: [Goal3D, Goal3D];
   private playersGroup = new THREE.Group();
@@ -103,6 +106,7 @@ export class ThreeMatchRenderer {
 
   constructor(host: HTMLElement) {
     this.host = host;
+    this.perception = new PerceptionSandbox3D(host);
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     // Named so tools can tell the stage apart from the tacmap inset (68) —
     // '#three-host canvas' alone matches both since the broadcast layer.
@@ -118,7 +122,7 @@ export class ThreeMatchRenderer {
     this.scene.add(createPitch(maxAniso));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
-    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);
+    this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.perception.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);
 
     // Possession indicator: pulsing team-colored ring under the ball carrier.
     this.possessionMat = new THREE.MeshBasicMaterial({
@@ -265,7 +269,10 @@ export class ThreeMatchRenderer {
     this.prevCarrying = false;
   }
 
-  update(state: RenderState | null, dt: number, flags: UiFlags, selectedGid: number | null): void {
+  update(
+    state: RenderState | null, dt: number, flags: UiFlags, selectedGid: number | null,
+    perception: PerceptionView | null = null,
+  ): void {
     if (state) {
       // Assign early so fx hooks (goal banner) see the post-event score.
       this.lastState = state;
@@ -389,6 +396,9 @@ export class ThreeMatchRenderer {
     const tacfeed = this.cameraCtl.mode === 'tacfeed';
     this.broadcast.update(state, tacfeed);
     this.updateTacmap(state, tacfeed);
+    // B1 read-only world-model overlay — draws the selected observer's belief,
+    // never the sim. Hidden (payload null) unless the sandbox flag is on.
+    this.perception.update(perception, dt);
     this.fx.update(dt);
     this.goals[0].update(dt);
     this.goals[1].update(dt);
@@ -696,6 +706,7 @@ export class ThreeMatchRenderer {
     this.scoreBug.remove();
     this.vignette.remove();
     this.tacmap.remove();
+    this.perception.dispose();
     this.scene.traverse((obj) => {
       const mesh = obj as THREE.Mesh;
       if (mesh.geometry) mesh.geometry.dispose();

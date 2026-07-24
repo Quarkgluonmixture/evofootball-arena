@@ -13,6 +13,12 @@ import {
 } from '../render3d/RenderStateAdapter';
 import { ShootoutTheater } from '../render3d/ShootoutTheater';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
+import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
+import {
+  capturePerceptionTruth, createPerceptionMemory, perceiveSnapshot,
+  type ObserverGaze, type PerceptionMemory,
+} from '../ai/perceptionSnapshot';
+import { chooseAttentionGaze } from '../ai/attentionPolicy';
 import { playerDimStats, playerNameplate, playerVector } from '../evolution/playerStyle';
 import { ROSTER_ROLES } from '../evolution/playerGenome';
 import { TRAIT_EMOJI, traitsOf } from '../evolution/traits';
@@ -107,6 +113,12 @@ export class GameApp implements GameActions {
   private cineBug!: HTMLDivElement;
   private flags: UiFlags = defaultFlags();
   private selectedGid: number | null = null;
+
+  /** B1 perception sandbox (read-only). Memory is owned here, one per selected
+   * observer, recreated on selection change / disable; fed once per new tick. */
+  private perceptionMemory: PerceptionMemory | null = null;
+  private perceptionMemoryGid: number | null = null;
+  private perceptionView: PerceptionView | null = null;
   private acc = 0;
   private busy = false;
   private panelTimer = 0;
@@ -466,7 +478,10 @@ export class GameApp implements GameActions {
     }
 
     if (this.viewMode === '3d' && this.three) {
-      this.three.update(this.currentRenderState(dtReal), dtReal, this.flags, this.selectedGid);
+      this.three.update(
+        this.currentRenderState(dtReal), dtReal, this.flags, this.selectedGid,
+        this.buildPerceptionView(steps),
+      );
     } else {
       this.matchRenderer.update(dtReal, this.flags, this.selectedGid, steps);
       const m = this.match;
@@ -514,6 +529,48 @@ export class GameApp implements GameActions {
       `<span class="sb-team">${m.teams[1].info.short}</span>` +
       `<span class="sb-chip" style="background:${colorHex(m.teams[1].info.colors.primary)}"></span>` +
       `<span class="sb-min">${m.clockText()}'</span>`;
+  }
+
+  /**
+   * B1: build the read-only perception payload for the selected observer, or
+   * null when the sandbox is off / no live selection. Reads Match only, never
+   * writes it; the memory advances once per new sim tick (steps > 0), so the
+   * belief ages honestly and a paused frame re-renders the last snapshot.
+   */
+  private buildPerceptionView(steps: number): PerceptionView | null {
+    const AWARENESS = 0.8; // synthetic — no live awareness attribute exists
+    const SEED = 0x5eed; // fixed: read-only path, never touches sim RNG
+    const m = this.match;
+    const live = m !== null && !this.theater && !this.replay.active && !m.finished;
+    if (!this.flags.perception || !live || this.selectedGid === null) {
+      this.perceptionMemory = null;
+      this.perceptionMemoryGid = null;
+      this.perceptionView = null;
+      return null;
+    }
+    const observer = m.allPlayers.find((p) => p.gid === this.selectedGid);
+    if (!observer || observer.sentOff) {
+      this.perceptionView = null;
+      return null;
+    }
+    if (this.perceptionMemory === null || this.perceptionMemoryGid !== this.selectedGid) {
+      this.perceptionMemory = createPerceptionMemory();
+      this.perceptionMemoryGid = this.selectedGid;
+      this.perceptionView = null;
+    }
+    const mem = this.perceptionMemory;
+    if (steps > 0 || this.perceptionView === null) {
+      const truth = capturePerceptionTruth(m);
+      const willScan = mem.nextScanTick < 0 || truth.tick >= mem.nextScanTick;
+      const snapshot = perceiveSnapshot(truth, this.selectedGid, AWARENESS, SEED, mem);
+      let whatIfGaze: ObserverGaze | null = null;
+      const carrier = truth.ball.ownerGid;
+      if (this.flags.perceptionGaze && carrier !== null && carrier !== this.selectedGid) {
+        whatIfGaze = chooseAttentionGaze(snapshot, carrier, null);
+      }
+      this.perceptionView = { truth, snapshot, awareness: AWARENESS, scanPulse: willScan, whatIfGaze };
+    }
+    return this.perceptionView;
   }
 
   /** What the 3D view should draw this frame: live sim, replay, or theater. */
