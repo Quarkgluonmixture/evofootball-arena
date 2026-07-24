@@ -1019,6 +1019,25 @@
 > so the corridor is identical across arms, and outcomes are judged by the FIRST
 > body to touch the ball instead of three seconds of world evolution. H1/H2 keep
 > the original spreads verbatim; a third re-pose is not authorised.
+> ⚖️ **C1-A2 — THE LEDGER, FINALLY CLEAN (2026-07-24, SHA `7e0ff4d5…257b`,
+> 120/120 accepted in 127 seeds `93,000..93,126`, 92 contested, every arm
+> spending exactly 4 uniforms at the kick, deterministic, no `src` change).**
+> Removing the confounds turned noise into a crisp monotone benefit: on contested
+> corridors an opponent touches the ball first **0.565 / 0.489 / 0.391** across
+> 0.85 / 1.00 / 1.15 — a **17.4pp** swing — and the ball reaches the intended man
+> first in **59 → 66 → 76** of 120 states. Flight time 1.187 → 1.126 → 1.023s,
+> speed at first touch 7.47 → 8.97 → 11.08. H1/H3/H4 all pass, so the
+> interception machinery genuinely prices ball speed and a choice layer would NOT
+> be pricing a phantom. ⛔ **H2 fails FLAT: touch failure 11.9% / 12.1% / 11.8%**
+> — a ball arriving 3.6 m/s hotter costs the receiver nothing measurable (the
+> formula predicts ~2.7pp, below this design's ±3.9pp resolution, and the point
+> estimate is dead flat). The four-revert convexity danger is therefore
+> **measured, not feared**: today the substrate offers a 17pp risk reduction for
+> an unmeasurable receiving penalty, so any choice layer would learn "always hit
+> it harder" — which is not football. Per the pre-registered H2 branch this
+> **mandates C1-B** (fix the cost in the M3 substrate, never at the evaluator);
+> C1-C stays deferred into the Embodied Decision Slice. The ledger is now
+> trustworthy — it is the ball that is wrong.
 > ⏸️ **C0 REACHES A REAL AUTHORITY FORK:** C0 can account for explicit needs but
 > cannot decide which needs should exist. **D (recommended)** parks central publication and
 > lets future player-level offers emerge from perception/affordance/value once S7 is

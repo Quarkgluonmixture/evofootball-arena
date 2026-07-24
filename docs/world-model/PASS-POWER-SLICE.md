@@ -418,3 +418,45 @@ deliberately not widened after a FAIL.
   confirmed on an isolated measurement. Do not fake the cost at the evaluator.
 * A third re-pose is NOT authorised. If C1-A2 cannot isolate the effect either,
   the ledger question returns to the user.
+
+## 11. C1-A2 RESULT — the ledger, finally clean (2026-07-24)
+
+`scripts/probes/pass-power-anatomy-isolated.ts`. 120/120 accepted in 127 scanned
+seeds (`93,000..93,126`), 92 contested, no `src` change, two invocations
+byte-identical, SHA `7e0ff4d5…257b`. Every arm spent exactly 4 uniforms at the
+kick (aim gaussian + execution gaussian) in 120/120 states — the privileged
+baseline is gone.
+
+```text
+H1 opponent touches first, CONTESTED    0.565 / 0.489 / 0.391   ✓ (spread 17.4pp, gate 3.0)
+H2 touch failure | target touched first 0.119 / 0.121 / 0.118   ✗ FLAT (gate: rising, 1.0pp)
+H3 mean flight time to first touch      1.187 / 1.126 / 1.023s  ✓
+H4 mean speed at first touch            7.47 / 8.97 / 11.08     ✓
+ball reaches the intended man first     59 / 66 / 76 of 120      (monotone, diagnostic)
+```
+
+**Verdict: FAIL on H2 — and it is the most useful failure available.** Removing
+the three confounds turned C1-A's noise into a crisp, monotone benefit: a
+drilled ball is cut out on contested corridors **17.4 percentage points less
+often** than a rolled one, and reaches the intended receiver first in 76 of 120
+states instead of 59. So H1's stop rule does NOT fire: the interception
+machinery prices ball speed exactly as `canInterceptPass` reads on paper, and a
+choice layer would not be pricing a phantom.
+
+The cost side, measured in isolation for the first time, is **nothing**. A ball
+arriving at 11.1 m/s instead of 7.5 m/s spills at 11.8% versus 11.9%. The
+formula predicts a ~2.7pp difference (`clamp01((speed-6)/8)*0.07` gives 0.013 at
+7.5 and 0.045 at 11.1, technique-scaled) — smaller than this design's resolution
+(SE ≈ 3.9pp per arm at n ≈ 70), and the point estimate is dead flat either way.
+
+So the four-revert convexity danger is now **measured, not feared**: today the
+substrate offers a 17pp risk reduction for an unmeasurable receiving penalty.
+Any choice layer built on this ledger would learn "always hit it harder", which
+is not football.
+
+Per §10.3 this fires the H2 branch precisely: reception cost is architecturally
+negligible at current thresholds ⇒ **C1-B is the mandated next step**, not an
+optional one, and the cost must be fixed in the substrate (M3 control), never
+faked at the evaluator. C1-C stays deferred into the Embodied Decision Slice as
+ratified. No third re-pose of the ledger is needed or authorised — the ledger is
+now trustworthy; it is the ball that is wrong.
