@@ -1,6 +1,6 @@
 # D-TRI-0 — Triadic motion-gated rotation
 
-Status: **PASS 2026-07-24 (§7)** — the first three-body temporal process banked; the A4-versus-EDS fork is the user's. (Authorised as S3-G2's single
+Status: **PASS 2026-07-24 (§7) — but see the disclosure: this is a self-drafted VARIANT, not the commander's drafted [`THREE-BODY-CHAIN-RESPONSE.md`](THREE-BODY-CHAIN-RESPONSE.md), whose minimal-seat isolation (only B dual-attends) and union-admissibility rule remain UNRUN.** — the first three-body temporal process banked; the A4-versus-EDS fork is the user's. (Authorised as S3-G2's single
 continuation; ruling #2 ratified by the user 2026-07-24.)
 
 Date: 2026-07-24
