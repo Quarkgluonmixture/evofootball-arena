@@ -33,11 +33,44 @@ to fire inside the live window, and the three-sample requirement attrits joint
 completion; see the A2 row), **selection** (deliberately unopened). Everything
 below is sequenced against those walls.
 
-> **Self-drive status (2026-07-24, second redraw):** the user ratified wall
-> attempt 4; the commander corrected its shape to D-MUT-0 (see A3 row). The
-> self-drive queue is now `B1 → C1-Phase0 → A3(D-MUT-0)`, green-path rules
-> unchanged. B1's acceptance and C1-Phase0's answers still stop for
-> user/commander per protocol rules 4–5.
+## 0.5 Direction (commander deep-think, 2026-07-24)
+
+**Two engines of emergence.** Track A builds the information→decision
+substrate (who sees what, believes what, responds how) — *tactics* live
+there. Track C builds the craft-choice substrate (pass weight, body shape,
+aerial timing, one-touch vs control) — *style* lives there. VISION needs
+both, and they must go LIVE together: S3b proved one-sided live perception
+fails at PAYS, and the vision-attr saga proved read/craft upgrades inflate
+goals unless attack and defence co-evolve.
+
+**The cadence reframe.** D-PROC-1G measured pure-evidence response at
+~0.3–0.5s. Real players act faster — on PRIORS, not on accumulated evidence.
+That is exactly what A4's layers are FOR, causally: coach doctrine = shared
+priors that let a player act safely on less evidence; familiarity = faster,
+stabler interpretation of the same external cues. Neither may reveal an
+unobserved body — they buy LATENCY, not information. D-MUT-0 measures how far
+pure evidence gets; whatever gap remains to football-speed coordination is
+the quantified value of doctrine/familiarity when A4 opens. The cadence
+finding was not a setback; it located the causal seat of coaching.
+
+**The integration milestone** (first visible VISION moment): an **Embodied
+Decision Slice** — one live, co-evolved bundle: perception-based pass choice
+(the S3b redo, both sides reading), pass power (C1), first-touch decision
+(C5), shipped only through six-layer + §2 band + user play-test. Until that
+bundle survives PAYS, everything stays dormant by design; after it, the
+discovery archive and "understand" UI (Track D4/D5) stop being fiction.
+
+**Sequencing instinct:** when in doubt, prefer the step that (a) closes a
+causal gap a prior FAIL named, (b) reuses banked machinery, (c) keeps the
+live baseline untouched. That instinct produced S3-G0→G1→1MG→1G→D-MUT; it
+generalises.
+
+> **Self-drive status (2026-07-24, third redraw — AUTONOMOUS MODE):** the
+> user waived the B1 gate and delegated continuous self-drive to a
+> Fable-grade session (see Autonomous mode below). Queue:
+> `ship B1 + apply B2 → C1-Phase0 → A3(D-MUT-0) → onward per Autonomous
+> mode`. C1-Phase0's report-back may now be judged by the autonomous session
+> itself under the C-track template; genuine user gates remain.
 
 ## Track A — the epistemology chain (information → decision)
 
@@ -55,8 +88,8 @@ do NOT improvise a rescue or skip ahead.
 
 | ID | Step | Contract | Status |
 |----|------|----------|--------|
-| B1 | Perception sandbox: default-off render overlay showing a selected player's FOV cone, memory ghosts (believed vs true positions), staleness — the first time the user can SEE the world model | [`HANDOFF-PERCEPTION-SANDBOX.md`](HANDOFF-PERCEPTION-SANDBOX.md) | **READY** |
-| B2 | Play-feel iteration on B1 (user-driven; small render tweaks on request) | user feedback loop, no contract needed | after B1 |
+| B1 | Perception sandbox: default-off render overlay (built, validation green, fingerprint unchanged) | [`HANDOFF-PERCEPTION-SANDBOX.md`](HANDOFF-PERCEPTION-SANDBOX.md) | **USER GATE WAIVED 2026-07-24** (user defers viewing; first look showed clutter — see B2). Ship as-is, then apply B2 immediately |
+| B2 | Exception-based rendering respec, grounded in `scripts/probes/perception-divergence-census.ts` data (at awareness 0.8: mean ghost error 0.45m ≈ 0.7% of pitch length, 9 near-truth ghosts/tick = ink without signal): ① render ONLY divergence — ghosts with error > 1m (8.6%), facts older than 15 ticks, an explicit warning marker for absent-but-within-12m bodies (0.27/tick, the real drama), lost/stale ball; hide the ~90% that matches truth; ② draw the ~106° rear BLIND wedge instead of the 254° cone; ③ prominent awareness 0.2↔0.8 toggle (at 0.2: 5 missing bodies, 28% lost ball — the legible contrast). Non-blocking; the user looks later | commander spec (this row) | READY (right after B1 ships) |
 
 B1 is deliberately independent: it renders banked dormant machinery read-only
 and can run in parallel with Track A.
@@ -68,6 +101,17 @@ and can run in parallel with Track A.
 | C1 ★ | Pass power as a priced choice: launch speed stops being a pure distance formula (`prediction.ts:65`); 2–3 power options per candidate pass priced by the EXISTING interception/receivability machinery; technique-scaled execution noise; receiver control difficulty already priced by M3 touch≠control. First LIVE change since M4 — six-layer PROBE-CONTRACTS treatment, user play-test is the final gate | [`PASS-POWER-SLICE.md`](PASS-POWER-SLICE.md) (draft frozen; execute after B1) | DRAFT |
 | C2 ★ | Body orientation as a decision: outfield "open body / half-turn" — expose the existing capped-turn heading to the decision layer symmetrically (receive AND defend), gene/attr-priced. The S3-G0 twin: gaze freed the eyes; this frees the shoulders | **TBD — draft after C1 lands** (same convex-option-inflation risk family) | TBD |
 | C3 | 假动作/feints: **NOT a buildable step — do not hand-code.** Deception becomes selectable only when opponents act on observed evidence at a cost (A1+A2) and the body can express misdirection (C2). When those land, feinting is an EVOLUTION observation, not a mechanic. Any session proposing a feint mechanic violates the soul — refuse | doctrine note only | GUARD |
+| C4 ★ | Aerial contest as an embodied process: jump timing / arrival / body position contesting the ball in the air, replacing scan-who-is-already-in-the-box resolution. MUST sequence with the pinned open-play box-arrival gap (crosses currently find nobody ~50% `noAerial` — a duel model without arrivals has nothing to contest) | **TBD — Phase-0 discovery contract first** (map current header/cross resolution with file:line evidence, C1-style report-back) | TBD |
+| C5 ★ | First-touch decision: one-touch layoff vs control-first as a priced choice — faster-but-noisier vs slower-but-safer, priced by the EXISTING evaluators, technique-scaled execution noise; M3 touch≠control is the substrate seat (the honest-reverted M3b 忠于脚 gap is adjacent, separate) | **TBD — draft after C1 lands** (same template) | TBD |
+
+**C-track template** (proven shape from C1; user's standing rule 2026-07-24:
+"球员自己选择传球力度、空中争抢、停球是直接一脚给队友还是自己停——这些
+职业足球的内容应该在底座下涌现"): Phase-0 code-map with file:line evidence
+→ honest two-sided consequence in the substrate (benefit AND cost both real)
+→ options priced by EXISTING evaluators, never a hand-written "when to X"
+rule → technique/attr-scaled execution noise → six-layer acceptance + §2
+equilibrium band + user play-test. Craft dimensions become choices; usage
+patterns become evolution's discovery.
 
 ## Track D — world-observatory UI (no sim contact, Sonnet-friendly)
 
@@ -122,6 +166,31 @@ anything that changes what they watch.
 Reporting medium = the repo itself (frozen result sections + this file's
 status column + ROADMAP blocks) plus the executor's final message. One step
 per commit-pair; never two experiments in flight at once.
+
+### Autonomous mode (2026-07-24, Fable-grade executor)
+
+The user may hand this programme to a single strong session (Opus 5 /
+Fable-grade) that holds BOTH roles — executor and working commander. Under
+autonomous mode that session may additionally:
+
+* **draft new contracts**, but only within the existing tracks and under the
+  full pre-registration discipline: the contract commits with frozen gates
+  BEFORE any implementation (two-commit pattern), gate values derive from
+  banked numbers or prior contracts with stated reasoning, stop rules bind,
+  and nothing is ever tuned after first sight of results;
+* **redraw after honest FAILs** the way the commander has — including
+  rejecting a doomed re-pose on a prior experiment's own anatomy (the
+  D-ROTATE lesson: read the closed experiment's stop rule and failure
+  diagnosis BEFORE proposing its successor);
+* **judge C-track Phase-0 report-backs** against the C-track template.
+
+It still STOPS for the user on: anything that ships into the live game
+(§2-band changes, fingerprint-moving merges, play-test acceptance),
+opening the selection/ecology wall, restructuring or abandoning a track,
+and everything marked LOCKED here or in UI-NORTHSTAR. Doc discipline is
+unchanged: every session starts by reading this file top to bottom, ends by
+updating it, and the authority chain (contract docs + ROADMAP +
+WORLD-MODEL-NEXT-AUTHORITY) remains the single source of truth.
 
 ## Governance (binds every executor session)
 
