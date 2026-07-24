@@ -3755,3 +3755,28 @@ old play-report queue, every probe number) moved to
 [`ROADMAP-ARCHIVE.md`](ROADMAP-ARCHIVE.md) — still valid as mechanics
 reference; the iteration model it describes is superseded by the
 blueprint above.
+> 👁️ **S3-G2 DUAL-TARGET INTERLEAVED ATTENTION — PASS (2026-07-24, SHA
+> `bc242ff8…7d4c`, 96/96 accepted in 681 scanned seeds, 93 completed windows,
+> deterministic, ZERO `src/**` changes, fingerprint `57b0bdab…c673` unchanged,
+> 702/702).** The ratified entry to the three-body direction. The contract did its
+> geometry first: at awareness 0.8 the honest field is 253.74°, so at most one
+> target can ever be out of field — which makes this a CADENCE experiment with
+> zero slack (six scans, two targets, strict alternation = exactly the three
+> samples the qualified predicate needs). Results: interleaved gaze holds ≥3 fresh
+> observations on BOTH partners in **88.2%** of windows and qualified support on
+> both in **74.2%** (gates 80/60), while single-target gaze — the banked S3-G1
+> behaviour — starves the unattended partner in **92.5%** of the same windows
+> (0.42 vs 2.81 mean fresh observations) and interleaving was never once worse on
+> that partner (100%). The scarcity is real: splitting attention cost the attended
+> partner in **86.0%** of windows (6.00 → 3.56). Alternating even keeps the ball
+> fresher than staring (5.41 vs 9.37 ticks). ⚠️ **Run 1 hit an acceptance
+> shortfall** — 69/96 states in the frozen 512-seed budget (the dual-actor
+> geometry needs ~7.4 seeds per state) — a hard escalation trigger, resolved by
+> raising the SAMPLING BUDGET only: same seed block, every gate, arm and
+> acceptance clause verbatim, budget 512 → 2048. That judgement is flagged for the
+> user's veto. Honest limits carried into D-TRI-0: the comparison is against
+> single-target gaze, not against no policy (body-facing holds both in 44.1% of
+> these geometries), and dual SUPPORT ceilings at 86.0% even truth-aimed, so a
+> three-body contract must price it at roughly three-quarters rather than at
+> freshness. **D-TRI-0 is now the single authorised continuation.**
+> Authority: [`world-model/DUAL-TARGET-ATTENTION-SCHEDULE.md`](world-model/DUAL-TARGET-ATTENTION-SCHEDULE.md).
