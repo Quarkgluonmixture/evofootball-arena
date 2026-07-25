@@ -37,8 +37,13 @@ export interface GrassPalette {
   /** Cross-mow overlay strength (0 = none). */
   crossAlpha: number;
   /** Turf speckle: blob count, opacity, and blob radius range in METRES.
-   * Count and radius must move together — 900 two-metre discs stack into
-   * visible bubbles, which is exactly what the first F0 pass produced. */
+   *
+   * Count and radius must move in OPPOSITE directions, and the radius has to
+   * stay genuinely small. F5 measured it: metre-scale blobs read as CLOUDS —
+   * mould on the grass — not as turf, and no amount of lowering the alpha
+   * fixes that because the defect is the spatial frequency, not the contrast.
+   * Grain belongs at boot-stud scale (a few cm to ~30cm) so it mips away with
+   * distance and only shows as texture underfoot. */
   grainCount: number;
   grainAlpha: number;
   grainRadius: [number, number];
@@ -151,9 +156,9 @@ const COHERENCE_NIGHT: StylePreset = {
     stripeB: '#3a9550',
     crossAlpha: 0.03,
     // Finer and denser than shipped: turf grain, not soap bubbles.
-    grainCount: 900,
-    grainAlpha: 0.85,
-    grainRadius: [0.18, 0.9],
+    grainCount: 2400,
+    grainAlpha: 0.8,
+    grainRadius: [0.08, 0.34],
   },
   // One palette family for all the chrome, instead of three unrelated blues.
   boards: [0x18243c, 0x1e3050, 0x233a5c],
@@ -200,9 +205,9 @@ const TOY_DAY: StylePreset = {
     stripeB: '#5cb356',
     stripes: 10,
     crossAlpha: 0.05,
-    grainCount: 1600,
+    grainCount: 3600,
     grainAlpha: 0.75,
-    grainRadius: [0.08, 0.45],
+    grainRadius: [0.06, 0.26],
     wear: 0.85,
     wearColor: '#a8814a',
   },

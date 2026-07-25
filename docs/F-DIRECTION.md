@@ -89,9 +89,14 @@ the torso at maximum bulk, so that is asserted, not assumed.
 
 A pitch is not a green rectangle. Mowing stripes, a fine turf grain, and
 **wear** where a real pitch goes bare: both goalmouths, the centre circle, the
-two wing channels. Grain count and blob radius must move in OPPOSITE
-directions — dense grain needs fine blobs, or the speckle stacks into soap
-bubbles (which is exactly what F0's first pass painted). A test pins it.
+two wing channels.
+
+Grain has ONE governing rule and it is about spatial frequency, not contrast:
+**grain lives at boot-stud scale, a few centimetres to ~30 cm.** Metre-scale
+speckle reads as clouds — mould on the grass — no matter how low you push the
+alpha, and it also drowns the wear patches, which are the variation you
+actually want to see. Count and radius therefore move in OPPOSITE directions,
+and a test pins that ordering.
 
 Paint is chalk, not vector: softened alpha and a wider line under `toy`.
 
