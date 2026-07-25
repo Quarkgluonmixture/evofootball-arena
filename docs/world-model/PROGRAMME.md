@@ -561,9 +561,15 @@ on the branch `art/track-f`**, developed in a worktree at
 `.claude/worktrees/art-track-f` because a second session was writing to `main`
 throughout. It has NOT been merged: merging during live concurrency is the
 commander's call, not an executor's. `git merge art/track-f` from the repo root
-when the other session is quiet; there were no conflicts at branch time and the
-art work touches only `src/render3d/**`, `src/ui/**`, `src/game/GameApp.ts`,
-`scripts/visual-debug-3d.mjs`, `tests/render3d.test.ts` and `docs/**`.
+when the other session is quiet. **Verified clean** with `git merge-tree
+--write-tree main art/track-f` against `main@e9e3b49` — zero conflicts. The
+only file both lines touch is this one, and the edits are in different
+sections (their rulings and Track E rows, my Track F rows); everything else
+of mine is `src/render3d/**`, `src/ui/**`, `src/game/GameApp.ts`,
+`scripts/visual-debug-3d.mjs` and `tests/render3d.test.ts`. Note their side
+DOES touch `src/ai/PlayerBrain.ts` and `src/sim/Match.ts`, so after the merge
+the fingerprint is whatever theirs is — my `57b0bdab…c673` claim is against
+this branch's own base, which is the correct claim for render-only work.
 
 **State.** Every step gated: tsc + build clean, **731/731**, fingerprint
 `57b0bdab…c673` unchanged at every single commit, all 52 3D visual checks green
