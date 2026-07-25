@@ -7,8 +7,10 @@ import { PROFILER as prof } from './profiler';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeReady } from '../ai/formations';
 import {
-  advancePerceptionMemory, createPerceptionMemory, materialisePerceptionSnapshot, observeBall,
+  advancePerceptionMemory, createPerceptionMemory, createScanFrame,
+  materialisePerceptionSnapshot, observeBall, recordScanFrame, reconstructBodyMemory,
   type ObservedBall, type PerceptionMemory, type PerceptionSnapshot, type PerceptionTruth,
+  type ScanFrame,
 } from '../ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../ai/reachability';
 import { opennessOf } from '../ai/perception';
@@ -69,6 +71,8 @@ const PASS_MOVE_FEED_MIN = 6;
 const envArmed = (name: string): boolean =>
   typeof process !== 'undefined' && !!process.env && process.env[name] === '1';
 const EDS_BUNDLE_ARMED = envArmed('EDS_BUNDLE');
+/** E3R2: at most 11 scan frames can be inside retention; 16 is the safe ring. */
+const SCAN_FRAME_RING = 16;
 const EDS_TRACE_ARMED = envArmed('EDS_TRACE_CHOICE');
 
 /**
@@ -209,6 +213,14 @@ export interface MatchConfig {
    */
   edsPerceivedChoice?: boolean;
   /**
+   * EDS E3R2 (ruling #13.3): the EAGER perception path, kept as the reference
+   * implementation the lazy one is pinned against. Perception is PULL by
+   * default — a body knows what its scans would have shown, computed at the
+   * moment it acts — and this flag runs the old push-time computation instead
+   * so the two can be compared field for field. Probe surface only.
+   */
+  edsEagerPerception?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -318,6 +330,8 @@ export class Match {
   readonly perceivedBalls = new Map<number, ObservedBall | null>();
   /** E3: the passer's own chooser. Dormant unless a probe or an audit arms it. */
   readonly edsPerceivedChoice: boolean;
+  /** E3R2: run perception eagerly (the pinned reference), not on demand. */
+  readonly edsEagerPerception: boolean;
   readonly traceChoice: boolean;
   /** E3 instrument output; appended to only when `traceChoice` is on. */
   readonly passChoiceTrace: PassChoiceTraceEntry[] = [];
@@ -329,6 +343,15 @@ export class Match {
    * in place per call, so the percept is the current one and the allocation is
    * paid once per match (ruling #10.3: compute less, never perceive less).
    */
+  /**
+   * E3R2: each observer's recent scan moments (ruling #13.3). A body's percept
+   * depends only on scans inside its retention window, so the sim records the
+   * truth of the moment its scan clock fired and replays those frames when the
+   * body is actually asked. Fixed-size ring per observer — retention is at most
+   * 60 ticks and the scan interval at least 6, so at most 11 frames can ever be
+   * in window. Empty unless the choice consumer is armed.
+   */
+  private readonly scanFrames = new Map<number, { frames: ScanFrame[]; next: number }>();
   private truthBuffer: {
     tick: number;
     ball: { pos: V2; vel: V2; ownerGid: number | null };
@@ -475,6 +498,7 @@ export class Match {
     this.edsTouchCost = cfg.edsTouchCost ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
+    this.edsEagerPerception = cfg.edsEagerPerception ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     this.edsAwareness = cfg.edsAwareness ?? 0.8;
     this.perceptionSeed = cfg.seed;
@@ -2100,13 +2124,10 @@ export class Match {
       memory = createPerceptionMemory();
       this.perceptionMemories.set(p.gid, memory);
     }
-    if (this.edsPerceivedChoice) {
-      // E3: a chooser reads BODIES, so this body's memory has to carry them.
-      // Same scan cadence, same visibility rule, same keyed error, same
-      // retention as the ball-only path — `advancePerceptionMemory` IS the
-      // first half of `perceiveSnapshot`, and the ball it writes is the ball
-      // `observeBall` writes (pinned by X6/`observeBall.test.ts`). No array is
-      // built here: that happens only for the body actually being asked.
+    if (this.edsPerceivedChoice && this.edsEagerPerception) {
+      // E3R2's reference path (E3's original): observe every visible body at
+      // scan time, whether or not anybody asks. Kept only so the lazy path can
+      // be pinned against it field for field.
       advancePerceptionMemory(
         this.perceptionTruth(), p.gid, this.edsAwareness, this.perceptionSeed, memory,
       );
@@ -2117,6 +2138,7 @@ export class Match {
     }
     // Consumption-scoped (ruling #10.3): the ball is the only percept anything
     // in the sim reads, so no squad-wide truth capture and no array build.
+    const scanTickBefore = memory.nextScanTick;
     this.perceivedBalls.set(p.gid, observeBall(
       memory,
       { gid: p.gid, side: p.side, pos: p.pos, vel: p.vel, bodyDir: p.bodyDir, sentOff: p.sentOff },
@@ -2125,6 +2147,30 @@ export class Match {
       this.edsAwareness,
       this.perceptionSeed,
     ));
+    // E3R2: the scan clock just fired for this body, so THIS is a moment its
+    // eyes were open. Record the truth of the moment; the bodies in it are
+    // observed only if something asks (ruling #13.3, perception is PULL).
+    if (this.edsPerceivedChoice && memory.nextScanTick !== scanTickBefore) {
+      let ring = this.scanFrames.get(p.gid);
+      if (ring === undefined) {
+        ring = { frames: Array.from({ length: SCAN_FRAME_RING }, () => createScanFrame()), next: 0 };
+        this.scanFrames.set(p.gid, ring);
+      }
+      recordScanFrame(ring.frames[ring.next], this.perceptionTruth());
+      ring.next = (ring.next + 1) % SCAN_FRAME_RING;
+    }
+  }
+
+  /** E3R2: this observer's recorded scan moments, oldest first. */
+  private observerScanFrames(gid: number): ScanFrame[] {
+    const ring = this.scanFrames.get(gid);
+    if (ring === undefined) return [];
+    const ordered: ScanFrame[] = [];
+    for (let index = 0; index < SCAN_FRAME_RING; index++) {
+      const frame = ring.frames[(ring.next + index) % SCAN_FRAME_RING];
+      if (frame.tick >= 0) ordered.push(frame);
+    }
+    return ordered;
   }
 
   /**
@@ -2173,9 +2219,16 @@ export class Match {
   perceivedSnapshot(p: Player, scope: ReadonlySet<number> | null = null): PerceptionSnapshot | null {
     const memory = this.perceptionMemories.get(p.gid);
     if (memory === undefined) return null;
-    return materialisePerceptionSnapshot(
-      this.perceptionTruth(), p.gid, this.edsAwareness, memory, scope,
-    );
+    const truth = this.perceptionTruth();
+    if (!this.edsEagerPerception) {
+      // E3R2: the pull. Everything this body's scans would have shown, computed
+      // now, from the moments its eyes were actually open.
+      reconstructBodyMemory(
+        memory, this.observerScanFrames(p.gid), truth, p.gid, this.edsAwareness,
+        this.perceptionSeed,
+      );
+    }
+    return materialisePerceptionSnapshot(truth, p.gid, this.edsAwareness, memory, scope);
   }
 
   /**

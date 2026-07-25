@@ -455,6 +455,107 @@ export function advancePerceptionMemory(
 }
 
 /**
+ * EDS E3R2 — one recorded scan moment (ruling #13.3, "perception is PULL").
+ *
+ * The truth a body's eyes were pointed at when its scan clock fired. Storing
+ * this and replaying it later is cheaper than observing ten bodies at the time,
+ * and it is EXACT rather than approximate: an observation is a pure function of
+ * (seed, observer, entity, tick) and the truth at that tick, so the number a
+ * replay produces is the number the scan would have produced. Frames are
+ * per-observer, not per-tick, because `bodyDir` is `heading` and a restart
+ * taker's heading turns inside the decide loop — two observers in one tick can
+ * honestly see different facings.
+ */
+export interface ScanFrame {
+  tick: number;
+  players: {
+    gid: number;
+    side: Side;
+    pos: { x: number; y: number };
+    vel: { x: number; y: number };
+    bodyDir: { x: number; y: number };
+    sentOff: boolean;
+  }[];
+}
+
+export function createScanFrame(): ScanFrame {
+  return { tick: -1, players: [] };
+}
+
+/** Copy the body truth of this scan moment into a reusable frame slot. */
+export function recordScanFrame(into: ScanFrame, truth: PerceptionTruth): void {
+  into.tick = truth.tick;
+  const players = into.players;
+  while (players.length < truth.players.length) {
+    players.push({
+      gid: -1, side: 0, pos: { x: 0, y: 0 }, vel: { x: 0, y: 0 },
+      bodyDir: { x: 0, y: 0 }, sentOff: false,
+    });
+  }
+  players.length = truth.players.length;
+  for (let index = 0; index < truth.players.length; index++) {
+    const from = truth.players[index];
+    const to = players[index];
+    to.gid = from.gid;
+    to.side = from.side;
+    to.pos.x = from.pos.x;
+    to.pos.y = from.pos.y;
+    to.vel.x = from.vel.x;
+    to.vel.y = from.vel.y;
+    to.bodyDir.x = from.bodyDir.x;
+    to.bodyDir.y = from.bodyDir.y;
+    to.sentOff = from.sentOff;
+  }
+}
+
+/**
+ * EDS E3R2: rebuild this observer's BODY memory from its recorded scan moments,
+ * then write proprioception at the current tick — the same two things
+ * `advancePerceptionMemory` does, in the same order, with the same code.
+ *
+ * `frames` must be the observer's own scan frames in chronological order; ones
+ * outside retention are ignored here and pruned below, exactly as the eager
+ * path prunes them call by call. The ball is NOT touched: it is maintained
+ * eagerly by `observeBall`, because the sim reads it every tick it thinks.
+ */
+export function reconstructBodyMemory(
+  memory: PerceptionMemory,
+  frames: readonly ScanFrame[],
+  currentTruth: PerceptionTruth,
+  observerGid: number,
+  awarenessInput: number,
+  seed: number,
+): void {
+  const awareness = clamp01(awarenessInput);
+  const retentionTicks = Math.round(15 + awareness * 45);
+  const now = currentTruth.tick;
+  for (const frame of frames) {
+    if (frame.tick < 0 || now - frame.tick > retentionTicks || frame.tick > now) continue;
+    const observer = frame.players.find((player) => player.gid === observerGid);
+    if (observer === undefined) continue;
+    const viewDir = observer.bodyDir;
+    for (const entity of frame.players) {
+      if (entity.sentOff) {
+        memory.players.delete(entity.gid);
+        continue;
+      }
+      const distance = visibleDistance(observer, entity, awareness, viewDir);
+      if (!Number.isNaN(distance)) {
+        rememberPlayer(memory, seed, observer, entity, awareness, frame.tick, distance);
+      }
+    }
+  }
+  // Proprioception is continuous: the observer does not need a visual scan to
+  // know their own body. Written last and at the current tick, as the eager
+  // path writes it on the call that is happening right now.
+  const self = currentTruth.players.find((player) => player.gid === observerGid);
+  if (self !== undefined) rememberPlayer(memory, seed, self, self, awareness, now);
+  for (const [gid, observation] of memory.players) {
+    if (now - observation.observedTick > retentionTicks) memory.players.delete(gid);
+  }
+}
+
+/**
  * EDS E2b-1R: the second half of `perceiveSnapshot`, split out so a consumer
  * that only needs the memory chain advanced does not pay to build an array it
  * will not read (ruling #10.3 — cost scales with what consumers READ). Pure:

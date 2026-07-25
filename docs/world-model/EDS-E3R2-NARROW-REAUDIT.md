@@ -1,12 +1,18 @@
 # EDS E3R2 — the narrow re-audit: CE2R + X5R2
 
-Status: **PRE-REGISTERED — no run yet.** Drafted by the autonomous session
-under commander ruling #13.5. Scope is exactly the two gates E3R failed, in
+Status: **RUN 2026-07-26 — ✅ PASS, all 29 gates.** Drafted and run by the
+autonomous session under commander ruling #13.5, gates untouched. Perception is
+PULL and provably the same perception; style diversity holds ecologically with a
+median entropy ratio of **1.5253** across five fresh seeds; perf lands at
+**1.1977×** inside a 1.25× budget. E3R's 26 banked results transfer, and P3
+proves it: 17 of 17 live numbers bit-identical. **The queue advances to E4 —
+the user's play-test — and stops there.** Nothing shipped; flags remain
+default-off. Scope is exactly the two gates E3R failed, in
 the honest forms ruling #13.2 and #13.3 gave them. **The 26 banked E3R
 results transfer**, and the equivalence pins below are what make that
 transfer rigorous rather than assumed.
 
-Date: 2026-07-25
+Date: 2026-07-25 (drafted) · 2026-07-26 (run)
 
 ## 1. Scope — narrow, by ruling
 
@@ -131,3 +137,113 @@ differ by 2.6x), and ruling #13.2 asked for the ecological form of the claim —
 * **A co-gate fails** → H2's mechanism is live after all; report and return.
 * **Nothing ships from E3R2.** Flags stay default-off; E4 is the user's
   play-test, and the queue stops there on a PASS.
+
+## 5. RESULT — ✅ PASS (2026-07-26). Pull perception is the same perception; the ecology keeps its variety
+
+`scripts/probes/eds-e3r2-narrow-reaudit.ts`, world SHA **`3cbb8b8c…456f`**,
+world-deterministic across two invocations with perf reported beside the hash.
+Fingerprint `57b0bdab…c673` unchanged with every flag off; tsc + build clean;
+suite **751/751** (11 new pins across two files). Nothing shipped.
+
+### 5.1 X5R2 — the reconstruction IS the perception
+
+```text
+P1 perpetual equivalence (tests/lazyPerception.test.ts)   7/7 tests green
+   lazy vs eager snapshots field-for-field identical at every brain tick,
+   awareness 0.2 / 0.5 / 0.8 / 1.0 — gid, side, pos, vel, bodyDir,
+   observedTick, ageTicks, ball and the player set itself
+P2 in-sim identity, eager vs lazy, seeds 700001/2/3
+   world signature  IDENTICAL 3/3      choice trace  IDENTICAL 3/3
+P3 B1 identity vs E3R's banked live numbers   17 / 17 BIT-IDENTICAL
+   (five band dimensions, miscontrols, pass completion, divergence,
+   no-executable share, mean chosen distance, long share, look-pressure x2,
+   dominance share, three class shares)
+X5 perf   4.4685 -> 5.3520 us/step   mean 1.1977x (budget 1.25x)  ✓
+                                      p95  1.1529x (budget 1.50x)  ✓
+-- flags-off inertness, trace inertness, cheap-ball-path identity     ✓ ✓ ✓
+```
+
+**P3 is what makes ruling #13.5's transfer rigorous rather than assumed.** Every
+live number E3R banked comes back unchanged to the last digit under the pull
+implementation, so E3R's §2 band (goals +2.20%, crosses −8.91%, headers −0.43%,
+long balls +8.06%, cutbacks −4.75%), its dominance share (21.86%) and its
+reported statistics are properties of the v1 bundle, not of how perception was
+scheduled.
+
+**The perf story ends where ruling #10.3's principle said it would.** E3's eager
+scheme cost 1.32–1.38×; the same perception, computed when it is asked instead
+of when it could be, costs **1.1977×**. Nothing about what a body can see moved:
+scan cadence, FOV, retention and keyed error are untouched, and P1/P2 are the
+proof rather than the promise.
+
+⚠️ **One measured difference, pinned rather than buried** (companion test in
+`tests/lazyPerception.test.ts`): pulled BETWEEN brain ticks — which no live
+consumer does, since the chooser runs inside the decide call — the pull path is
+*up to date* where the eager path is *as of its last call*. Two consequences,
+both one-directional: the body's own proprioception reads now (continuous
+proprioception is the eager path's own documented rule), and retention has
+forgotten anything now out of window. The pull never holds a body the eager
+path lacks, and every shared entry is identical, so it is never better
+informed. This is the seat ruling #13.3's registered boundary names: a future
+PUSH consumer must revisit it explicitly.
+
+### 5.2 CE2R — style diversity holds, and E3R's 0.58 was the low tail
+
+Five fresh sealed-evo seeds, both arms, 10 generations each:
+
+```text
+seed      entropy bundle / flags off    ratio      M1       M2      M3
+700101         0.2864 / 0.3679         0.7786   -0.088   +0.135   0.454
+700202         0.5963 / 0.3910         1.5253   +0.095   -0.064   0.651
+700303         0.2654 / 0.0779         3.4053   +0.461   +0.303   0.487
+700404         0.4876 / 0.3326         1.4659   -0.287   +0.174   0.285
+700505         0.6799 / 0.3537         1.9225   +0.044   +0.425   0.409
+
+MEDIAN entropy ratio        1.5253   (floor 0.60)                       ✓
+MEDIAN nameplate ratio      1.0000   (16 of 16 clubs distinct, every seed) ✓
+M1 clubs not more alike     +0.0441  (median, floor 0)                  ✓
+M2 genome not weaker        +0.1736  (median, floor 0)                  ✓
+M3 chooser club-dependent    0.4538  (median, must exceed 0)            ✓
+reference — E3R's own seeds: 424242 = 0.5797,  515151 = 1.5321
+```
+
+**Four of the five fresh seeds sit ABOVE 1.0**: under the v1 bundle a typical
+world ends up with *more* style variety than the same world without it, not
+less. The lowest fresh seed (0.7786) still clears the floor comfortably. Ruling
+#13.2's reading is confirmed by measurement: E3R's 0.5797 was one draw from a
+heavy-tailed ecology statistic, and the single-seed gate was mis-typed rather
+than reporting a diversity problem. **The preference-seat fork stays closed.**
+
+All three mechanism discriminators pass on the median as well, so the pass is
+not a chooser that has quietly flattened how clubs play: clubs' route rates
+spread slightly WIDER, the genome expresses more strongly in those rates, and
+the chooser's own mean chosen distance varies club to club by ~0.45 m.
+
+⚠️ **Reported honestly, though CE1 is banked and not gated here (ruling
+#13.1):** across these five fresh seeds the advantage-shrink statistic holds on
+only **2 of 5** (700101 and 700505). The per-seed paired goal delta is itself
+seed-noisy and mostly NEGATIVE under this bundle (the bundle usually scores
+slightly fewer goals, e.g. −0.141 → −0.014, −0.033 → −0.263), so "the
+attacking advantage decays" rests on the single seed E3R measured. Nothing here
+contradicts the banked result and no gate is affected — but if the commander
+ever wants CE1 to carry weight in a ship decision, it needs the same
+multi-seed treatment CE2 just got. The reason it does not block E4: there is no
+attacking runaway to restore FROM — the deltas hover around zero in both
+directions rather than inflating.
+
+### 5.3 Disclosures
+
+* P1's first implementation polled every 5 ticks and failed on the observer's
+  own entry. The FROZEN predicate (§3) says "at every brain tick of the
+  sequence", so the test was wrong and was corrected to the contract; the
+  difference it found is now pinned by its own companion test rather than
+  deleted (§5.1).
+* The lazy path is the default and the eager one is retained as the pinned
+  reference behind `Match.edsEagerPerception` — a probe surface, off in
+  production.
+* Constraint-scope: E3R2 ran only the two gates ruling #13.5 authorised, plus
+  the inertness pins. The C1/X4R staging was NOT re-run; P3's bit-identity is
+  the transfer mechanism the ruling named, and the probe staging never touched
+  the live perception path.
+* One vitest worker RPC timeout appeared while the audit saturated the machine
+  and did not reproduce on a quiet re-run (751/751 clean, twice).
