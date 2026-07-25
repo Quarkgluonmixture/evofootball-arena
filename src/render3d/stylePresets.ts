@@ -78,6 +78,12 @@ export interface StylePreset {
   floodlights: boolean;
   /** Terrace crowd shirt colours. The last element any preset didn't own. */
   crowd: readonly number[];
+  /**
+   * Particle blending. `additive` glows against a dark diorama; against a
+   * bright daylight pitch it all but vanishes, which is what F0 quietly did
+   * to every goal celebration. Daylight arms use solid `normal` confetti.
+   */
+  fxBlending: 'additive' | 'normal';
   /** Bodies: toon ramp materials instead of PBR standard. */
   toon: boolean;
   /** Fake contact-shadow opacity multiplier (1 = as shipped). */
@@ -115,6 +121,7 @@ const CURRENT_NIGHT: StylePreset = {
   terrace: [0x131c30, 0x1a2742],
   crowd: [0x33415e, 0x475c85, 0x8294b5, 0x4ade80, 0xf59e0b, 0xe2e8f0, 0x60a5fa, 0x1d3a5f],
   floodlights: true,
+  fxBlending: 'additive',
   toon: false,
   contactShadow: 1,
 };
@@ -133,6 +140,7 @@ const CURRENT_DAY: StylePreset = {
   sun: { color: 0xfff6e6, intensity: 2.5, pos: [-40, 80, 30] },
   pedestal: 0x2c3d52,
   floodlights: false,
+  fxBlending: 'normal',
 };
 
 /**
@@ -179,6 +187,7 @@ const COHERENCE_DAY: StylePreset = {
   boards: [0x30425e, 0x3a5070, 0x44597a],
   terrace: [0x33405c, 0x3f4d6b],
   floodlights: false,
+  fxBlending: 'normal',
 };
 
 /**
@@ -221,6 +230,7 @@ const TOY_DAY: StylePreset = {
     0xf5f2e8, 0x3f4a5a, 0xe2725b, 0x2fb8a0,
   ],
   floodlights: false,
+  fxBlending: 'normal',
   toon: true,
   contactShadow: 1.15,
 };
@@ -246,6 +256,7 @@ const TOY_NIGHT: StylePreset = {
   },
   boards: [0xdcd6c6, 0xccc3ac, 0xbdb398],
   terrace: [0x2b3346, 0x353d52],
+  fxBlending: 'additive',
   crowd: [
     0xa63a3a, 0xb0762c, 0xb39a43, 0x438743, 0x2b7a9e, 0x374a93, 0x724285, 0xaf6a86,
     0xb4b1a8, 0x2f3743, 0xa85444, 0x24897a,

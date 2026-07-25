@@ -10,6 +10,7 @@ import {
   carryDisplayOffset, contactCue, trailOpacity, TRAIL_MIN_SPEED,
 } from '../src/render3d/ballPresentation';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
+import { CALM_UPDATE_PERIOD, CrowdSystem } from '../src/render3d/CrowdSystem';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import { FAR_ROWS, NEAR_STAND_GAP, terraceSlabs } from '../src/render3d/PitchModel';
 import { defensiveLineX, linesmanTargetX } from '../src/render3d/LinesmanModel';
@@ -719,6 +720,35 @@ describe('the bowl clears every camera (Track F6)', () => {
       expect(s.z).toBeGreaterThanOrEqual(HALF_W + NEAR_STAND_GAP);
       expect(s.y).toBeLessThanOrEqual(1.1); // one bank only
     }
+  });
+});
+
+describe('CrowdSystem cost (Track F7 perf)', () => {
+  it('does not repaint 369 seats every frame while the stands are calm', () => {
+    const crowd = new CrowdSystem();
+    expect(crowd.count).toBeGreaterThan(300); // the F6 bowl really did fill up
+    const before = crowd.matrixWrites;
+    for (let i = 0; i < 60; i++) crowd.update(1 / 60);
+    const calm = crowd.matrixWrites - before;
+    // One second of calm should cost ~20 rewrites, not 60.
+    expect(calm).toBeLessThanOrEqual(22);
+    expect(calm).toBeGreaterThanOrEqual(18); // still visibly breathing
+
+    // …but an eruption gets every single frame — that is the moment it is for.
+    crowd.erupt();
+    const mid = crowd.matrixWrites;
+    for (let i = 0; i < 30; i++) crowd.update(1 / 60);
+    expect(crowd.matrixWrites - mid).toBe(30);
+  });
+
+  it('keeps the idle bob continuous across a skipped frame', () => {
+    // The phase clock must advance even on frames the rewrite is skipped, or
+    // the bob would stutter instead of slowing down.
+    const crowd = new CrowdSystem();
+    const a = crowd.arousal;
+    for (let i = 0; i < 5; i++) crowd.update(1 / 60);
+    expect(crowd.arousal).toBe(a); // calm stays calm
+    expect(CALM_UPDATE_PERIOD).toBeCloseTo(0.05, 10);
   });
 });
 

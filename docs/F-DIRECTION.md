@@ -140,6 +140,18 @@ axis-aligned — an AABB over-rejects the corners) and asserts it reaches the
 pitch. Crowd head height is included. That test found two real blocks the
 moment it existed, one of them pre-existing.
 
+## Celebration
+
+Blending is a STYLE choice, not a constant. Additive particles glow against a
+dark diorama and all but vanish against a bright daylight pitch — which is
+what F0 quietly did to every goal celebration before F7 caught it. Daylight
+arms use solid `normal` confetti; night arms keep the glow.
+
+Fireworks are a NIGHT effect by nature: against a pale daytime sky they read
+as washed-out squares, for the same reason nobody sets off fireworks at noon.
+Anything meant to carry a daylight celebration has to be solid and coloured,
+not emissive.
+
 ## Cameras
 
 The user plays in **broadcast** and **follow-ball**. Those two are what any
@@ -154,7 +166,8 @@ Open, unordered, each measured against this doc by the user's eyes:
 ~~character proportions~~ **(F2, done 2026-07-25)** · ~~crowd palette~~
 **(F3, done 2026-07-25)** · kit readability and silhouette · procedural animation polish
 (anticipation, follow-through) · ~~ball trail / height cues~~ **(F4, done
-2026-07-25; spin still open)** · goal-moment
+2026-07-25; spin still open)** · **flame jets — BUILT, DISABLED, unexplained
+(F7; see the note at the top of `FxSystem.ts`)** · goal-moment
 FX and camera work · post: bloom, vignette, tilt-shift, AA — all inside the
 phone budget · ~~`PlayerShowcase` re-framing~~ **(done with F2)**.
 

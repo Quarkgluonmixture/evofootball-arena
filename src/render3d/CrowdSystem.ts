@@ -17,6 +17,9 @@ import { terraceSlabs } from './PitchModel';
  * replay scrubbing each fire a reaction exactly once.
  */
 
+/** Seconds between instance rewrites while the stands are calm (F7 perf). */
+export const CALM_UPDATE_PERIOD = 1 / 20;
+
 /** The player skin palette, so the stands are the same species as the pitch. */
 const CROWD_SKINS = [0xf1c27d, 0xe0b089, 0xc68642, 0x9c6b3f, 0x6b4423, 0x4a2f1b];
 
@@ -39,6 +42,8 @@ export class CrowdSystem {
   private t = 0;
   /** Current arousal 0..1 — jumps on events, decays toward calm. */
   private excitement = 0;
+  private idleAccum = 0;
+  private writes = 0;
 
   constructor(style: StylePreset = stylePreset()) {
     let lcg = 987654321;
@@ -120,10 +125,29 @@ export class CrowdSystem {
     return this.seats.length;
   }
 
+  /** Instance-buffer rewrites so far — the per-frame cost, for the perf test. */
+  get matrixWrites(): number {
+    return this.writes;
+  }
+
   update(dt: number): void {
     this.t += dt;
     this.excitement = Math.max(0, this.excitement - dt / 2.6);
     const ex = this.excitement;
+    // F6 doubled the terrace to 369 bodies and this loop rewrites AND
+    // re-uploads every instance matrix, twice (bodies + heads), every frame.
+    // While the stands are calm the only motion is a 3.5 cm idle bob, which
+    // nobody can resolve at 20 Hz from a broadcast camera — so pay the full
+    // 60 Hz cost only when the crowd is actually reacting to something.
+    // Phone is the binding constraint (F-DIRECTION).
+    if (ex <= 1e-3) {
+      this.idleAccum += dt;
+      if (this.idleAccum < CALM_UPDATE_PERIOD) return;
+      this.idleAccum = 0;
+    } else {
+      this.idleAccum = 0;
+    }
+    this.writes++;
     const t = this.t;
     for (let i = 0; i < this.seats.length; i++) {
       const s = this.seats[i];
