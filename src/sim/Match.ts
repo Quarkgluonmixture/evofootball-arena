@@ -240,6 +240,16 @@ export class Match {
   readonly traceFirstTouch: boolean;
   /** E1b: the heavy-touch curve, dormant unless a probe world asks for it. */
   readonly edsTouchCost: boolean;
+  /**
+   * EDS E2a-2 (docs/world-model/EDS-E2A2-OPTION-SPACE-CENSUS.md): substitute
+   * the pass TARGET the brain chose, for one tick, and let the live machinery
+   * play it. Intervenes on target choice ONLY — power, lead, aim noise,
+   * offside and bookkeeping all run unchanged. Null in every production path;
+   * a probe arms it for a single tick and clears it. Forcing the gid the brain
+   * would have chosen anyway reproduces the match bit-identically, which is
+   * the harness gate the counterfactual census rests on.
+   */
+  forcedPassTarget: number | null = null;
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;

@@ -39,6 +39,14 @@ export interface PassPriorRow {
   readonly receptionSuccessRate: number;
 }
 
+/**
+ * E2a-1's PASS-LOG census: the passes the live chooser decided to play. Its P3
+ * caught that this is a SELECTED sample and therefore the wrong population for
+ * pricing options nobody chose — see EDS-E2A-CENSUS-PRIORS.md §7. Retained
+ * untouched as the chosen-subset reference, as one side of the chooser-lift
+ * diagnostic, and so E2a-1's own reproduction gate keeps working. NOT the
+ * prior the pricing layer reads.
+ */
 export const PASS_PRIOR_TABLE: readonly PassPriorRow[] = [
   {
     bandFrom: 6,
@@ -122,6 +130,98 @@ export const PASS_PRIOR_MARGINAL: PassPriorRow = {
   receptionSuccessRate: 0.6884000559258051,
 };
 
+/**
+ * EDS E2a-2 — the OPTION-SPACE table (commander ruling #8). This is the prior
+ * the pricing layer consumes. It differs from the pass-log table above in its
+ * POPULATION, not its method: every candidate at a real decision moment,
+ * measured counterfactually by forking the world and substituting the target,
+ * rather than only the passes the chooser decided to play. E2a-1's table is
+ * retained directly above as the chosen-subset reference and as one side of
+ * the chooser-lift diagnostic.
+ *
+ * OPTION-SPACE TABLE SHA: df0aa3407b0a49f2c24bb0bf29dcea8aa87ed3bed3aad89af5abbb66faea1903
+ */
+export const OPTION_SPACE_PRIOR_TABLE: readonly PassPriorRow[] = [
+  {
+    bandFrom: 6,
+    bandTo: 10,
+    passes: 3451,
+    interceptedRate: 0.34685598377281945,
+    reachedRate: 0.5896841495218778,
+    otherTeammateRate: 0.06317009562445668,
+    unresolvedRate: 0.0002897710808461316,
+    cleanGivenReached: 0.914987714987715,
+    receptionSuccessRate: 0.539553752535497,
+  },
+  {
+    bandFrom: 10,
+    bandTo: 14,
+    passes: 3483,
+    interceptedRate: 0.32271030720643124,
+    reachedRate: 0.615848406546081,
+    otherTeammateRate: 0.0611541774332472,
+    unresolvedRate: 0.0002871088142405972,
+    cleanGivenReached: 0.9132867132867133,
+    receptionSuccessRate: 0.5624461670973299,
+  },
+  {
+    bandFrom: 14,
+    bandTo: 18,
+    passes: 2867,
+    interceptedRate: 0.30659225671433554,
+    reachedRate: 0.6187652598535054,
+    otherTeammateRate: 0.07359609347750262,
+    unresolvedRate: 0.0010463899546564353,
+    cleanGivenReached: 0.9160090191657272,
+    receptionSuccessRate: 0.5667945587722358,
+  },
+  {
+    bandFrom: 18,
+    bandTo: 22,
+    passes: 2101,
+    interceptedRate: 0.28081865778200854,
+    reachedRate: 0.6544502617801047,
+    otherTeammateRate: 0.06425511661113756,
+    unresolvedRate: 0.00047596382674916705,
+    cleanGivenReached: 0.9127272727272727,
+    receptionSuccessRate: 0.5973346025702047,
+  },
+  {
+    bandFrom: 22,
+    bandTo: 26,
+    passes: 1357,
+    interceptedRate: 0.341930729550479,
+    reachedRate: 0.5969049373618276,
+    otherTeammateRate: 0.061164333087693444,
+    unresolvedRate: 0,
+    cleanGivenReached: 0.9135802469135803,
+    receptionSuccessRate: 0.5453205600589537,
+  },
+  {
+    bandFrom: 26,
+    bandTo: 30,
+    passes: 855,
+    interceptedRate: 0.37777777777777777,
+    reachedRate: 0.5415204678362573,
+    otherTeammateRate: 0.07953216374269007,
+    unresolvedRate: 0.0011695906432748538,
+    cleanGivenReached: 0.9136069114470843,
+    receptionSuccessRate: 0.49473684210526314,
+  },
+];
+
+export const OPTION_SPACE_PRIOR_MARGINAL: PassPriorRow = {
+  bandFrom: -1,
+  bandTo: -1,
+  passes: 14114,
+  interceptedRate: 0.32428794105143827,
+  reachedRate: 0.609465778659487,
+  otherTeammateRate: 0.06575031883236503,
+  unresolvedRate: 0.00049596145670965,
+  cleanGivenReached: 0.9142059986049755,
+  receptionSuccessRate: 0.5571772707949554,
+};
+
 /** The band a distance falls in, or null outside the censused window. */
 export function passPriorBandIndex(distanceMetres: number): number | null {
   for (let index = 0; index < PASS_PRIOR_BANDS.length; index++) {
@@ -141,4 +241,14 @@ export function passPriorBandIndex(distanceMetres: number): number | null {
 export function passPriorAt(distanceMetres: number): PassPriorRow {
   const index = passPriorBandIndex(distanceMetres);
   return index === null ? PASS_PRIOR_MARGINAL : PASS_PRIOR_TABLE[index];
+}
+
+/** Option-space band lookup — the one the pricing layer uses. */
+export function optionSpacePriorBandIndex(distanceMetres: number): number | null {
+  return passPriorBandIndex(distanceMetres);
+}
+
+export function optionSpacePriorAt(distanceMetres: number): PassPriorRow {
+  const index = optionSpacePriorBandIndex(distanceMetres);
+  return index === null ? OPTION_SPACE_PRIOR_MARGINAL : OPTION_SPACE_PRIOR_TABLE[index];
 }

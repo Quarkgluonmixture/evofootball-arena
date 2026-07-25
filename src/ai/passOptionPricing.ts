@@ -15,8 +15,18 @@
  * no live caller.
  */
 import { evaluatePassOption, type PassOptionInput, type PassOptionValue } from './passOptionValue';
-import { PASS_PRIOR_MARGINAL, passPriorAt, passPriorBandIndex, type PassPriorRow } from './passPrior';
+import {
+  OPTION_SPACE_PRIOR_MARGINAL, optionSpacePriorAt, optionSpacePriorBandIndex, type PassPriorRow,
+} from './passPrior';
 
+/**
+ * EDS E2a-2 pricing classes (commander ruling #8 (k)). The class is decided by
+ * whether the man is in the snapshot at all — NOT by whether his flight could
+ * be priced. A teammate who is remembered but whose corridor cannot be read is
+ * still a stale-memory option and keeps his band; only a teammate the passer
+ * has no trace of falls back to the marginal, because for him the distance is
+ * genuinely unknowable.
+ */
 export type PassOptionSource = 'observed' | 'prior';
 
 export interface PricedPassOption {
@@ -33,6 +43,8 @@ export interface PricedPassOption {
   readonly interceptedPrior: number;
   /** Band index the prior came from; null when the marginal was used. */
   readonly priorBand: number | null;
+  /** 'banded' = a remembered distance backed it; 'marginal' = nothing did. */
+  readonly priorClass: 'banded' | 'marginal';
   /**
    * E0's physical read — present ONLY for an observed option. Null here means
    * "the passer does not know", and every consumer must treat it that way
@@ -63,6 +75,7 @@ const priced = (
   receptionSuccessPrior: row.receptionSuccessRate,
   interceptedPrior: row.interceptedRate,
   priorBand: band,
+  priorClass: band === null ? 'marginal' : 'banded',
   observed,
 });
 
@@ -71,17 +84,17 @@ const priced = (
  * passer cannot see is unpriceable in physics, not unavailable in football.
  */
 export function pricePassOption(input: PricePassOptionInput): PricedPassOption {
+  const remembered = input.snapshot.players.some((entry) => entry.gid === input.targetGid);
   const observed = evaluatePassOption(input);
-  if (observed === null) {
-    // Unseen: no distance, so no band. The marginal is what an honest passer
-    // knows about a pass to a man he cannot see.
-    return priced(input, 'prior', PASS_PRIOR_MARGINAL, null, null);
-  }
   const distance = input.observedDistanceMetres;
-  if (distance === undefined || !Number.isFinite(distance)) {
-    return priced(input, 'observed', PASS_PRIOR_MARGINAL, null, observed);
+  if (!remembered || distance === undefined || !Number.isFinite(distance)) {
+    // Nothing to index a band on. The marginal is what an honest passer knows
+    // about a pass to a man he has no trace of.
+    return priced(input, remembered ? 'observed' : 'prior', OPTION_SPACE_PRIOR_MARGINAL, null, observed);
   }
-  return priced(input, 'observed', passPriorAt(distance), passPriorBandIndex(distance), observed);
+  return priced(
+    input, 'observed', optionSpacePriorAt(distance), optionSpacePriorBandIndex(distance), observed,
+  );
 }
 
 /** True when the option carries a real physical read rather than a base rate. */

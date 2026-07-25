@@ -784,13 +784,27 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   const top = cands[0];
   const scores = cands.slice(0, 4);
 
+  // EDS E2a-2: dormant target-choice intervention. A census of PLAYED passes
+  // is a selected sample — the chooser already filtered for options it liked —
+  // so the option-space prior has to be measured counterfactually. This is the
+  // one seam where "what if he had picked that man instead" can be asked
+  // without touching how the pass is then struck. Null in every production
+  // path; the cutback has its own machinery and is never substituted.
+  let passMate = bestMate;
+  if (match.forcedPassTarget !== null && top.action === 'Pass' && top !== cutbackCand) {
+    const forced = team.players.find(
+      (mate) => mate.gid === match.forcedPassTarget && mate !== p && !mate.sentOff,
+    );
+    if (forced) passMate = forced;
+  }
+
   // A restart taker sets themselves before striking (the run-up): face the
   // chosen target so orientation penalties don't gut dead-ball deliveries —
   // corners arrived weak and wild while the taker still faced the flag.
   if (mustKick) {
     const at =
       top === cutbackCand ? cutbackMate!.pos // the corner arc cutback (31)
-      : top.action === 'Pass' ? bestMate!.pos
+      : top.action === 'Pass' ? passMate!.pos
       : top.action === 'LoftedPass' ? bestLoftMate!.pos
       : top.action === 'Cross' ? bestCrossMate!.pos
       : top.action === 'ThroughBall' ? bestRunner!.pos
@@ -813,8 +827,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         p.action = { type: 'Pass', targetIdx: cutbackMate!.gid, scores };
         match.performCutback(p, cutbackMate!);
       } else {
-        p.action = { type: 'Pass', targetIdx: bestMate!.gid, scores };
-        match.performPass(p, bestMate!, offsideExemptKick);
+        p.action = { type: 'Pass', targetIdx: passMate!.gid, scores };
+        match.performPass(p, passMate!, offsideExemptKick);
       }
       break;
     case 'LoftedPass': {

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { isObservedOption, pricePassOption } from '../src/ai/passOptionPricing';
 import {
-  PASS_PRIOR_BANDS, PASS_PRIOR_MARGINAL, PASS_PRIOR_TABLE, passPriorAt, passPriorBandIndex,
+  OPTION_SPACE_PRIOR_MARGINAL, OPTION_SPACE_PRIOR_TABLE, PASS_PRIOR_BANDS,
+  optionSpacePriorAt, optionSpacePriorBandIndex,
 } from '../src/ai/passPrior';
 import type { PerceptionSnapshot } from '../src/ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../src/ai/reachability';
@@ -57,7 +58,10 @@ describe('EDS E2a pricing layer', () => {
     expect(option.observed).toBeNull();
     expect(isObservedOption(option)).toBe(false);
     expect(option.priorBand).toBeNull();
-    expect(option.receptionSuccessPrior).toBe(PASS_PRIOR_MARGINAL.receptionSuccessRate);
+    // EDS E2a-2 (ruling #8 (k)): the layer reads the OPTION-SPACE table, not
+    // E2a-1's pass-log census — the population, not the method, was the defect.
+    expect(option.receptionSuccessPrior).toBe(OPTION_SPACE_PRIOR_MARGINAL.receptionSuccessRate);
+    expect(option.priorClass).toBe('marginal');
   });
 
   it('an unseen option cannot be told apart by power — no information, no choice', () => {
@@ -74,18 +78,18 @@ describe('EDS E2a pricing layer', () => {
   });
 
   it('the band lookup covers the censused window and refuses to extrapolate', () => {
-    expect(passPriorBandIndex(5.99)).toBeNull();
-    expect(passPriorBandIndex(6)).toBe(0);
-    expect(passPriorBandIndex(13.99)).toBe(1);
-    expect(passPriorBandIndex(30)).toBe(PASS_PRIOR_BANDS.length - 1);
-    expect(passPriorBandIndex(30.01)).toBeNull();
+    expect(optionSpacePriorBandIndex(5.99)).toBeNull();
+    expect(optionSpacePriorBandIndex(6)).toBe(0);
+    expect(optionSpacePriorBandIndex(13.99)).toBe(1);
+    expect(optionSpacePriorBandIndex(30)).toBe(PASS_PRIOR_BANDS.length - 1);
+    expect(optionSpacePriorBandIndex(30.01)).toBeNull();
     // Outside the window the marginal is the honest answer, not an extension
     // of the nearest band.
-    expect(passPriorAt(45)).toBe(PASS_PRIOR_MARGINAL);
-    expect(passPriorAt(20)).toBe(PASS_PRIOR_TABLE[3]);
+    expect(optionSpacePriorAt(45)).toBe(OPTION_SPACE_PRIOR_MARGINAL);
+    expect(optionSpacePriorAt(20)).toBe(OPTION_SPACE_PRIOR_TABLE[3]);
   });
 
   it('the table has one row per band', () => {
-    expect(PASS_PRIOR_TABLE).toHaveLength(PASS_PRIOR_BANDS.length);
+    expect(OPTION_SPACE_PRIOR_TABLE).toHaveLength(PASS_PRIOR_BANDS.length);
   });
 });
