@@ -153,21 +153,93 @@ function keyedNoise(seed: number, observerGid: number, entityGid: number, tick: 
   return ((h >>> 0) / 0xffffffff) * 2 - 1;
 }
 
-function visible(
+/**
+ * Visible, and HOW FAR — one distance for both questions.
+ *
+ * Returns the observer-to-entity distance when the body is perceivable and NaN
+ * when it is not; the observer's own body returns 0. E3R's perf lever
+ * (ruling #12.4 (d)) reuses this number in `writeObservation` instead of
+ * recomputing `Math.hypot` for the same pair: the same call, so the same value
+ * to the last bit — `Math.hypot` and `Math.sqrt(x*x+y*y)` differ in the final
+ * ULP for ~38% of inputs, so the honest number is computed ONCE, never
+ * approximated.
+ */
+function visibleDistance(
   observer: PerceptionTruthPlayer,
   entity: PerceptionTruthPlayer,
   awareness: number,
   viewDir: Readonly<V2>,
-): boolean {
-  if (entity.gid === observer.gid) return true;
+): number {
+  if (entity.gid === observer.gid) return 0;
   const dx = entity.pos.x - observer.pos.x;
   const dy = entity.pos.y - observer.pos.y;
   const d = Math.hypot(dx, dy);
-  if (d <= 4) return true; // near-field bodies are felt/heard even outside the cone
+  if (d <= 4) return d; // near-field bodies are felt/heard even outside the cone
   const range = 18 + awareness * 22;
-  if (d > range) return false;
+  if (d > range) return Number.NaN;
   const facing = d > 1e-9 ? (viewDir.x * dx + viewDir.y * dy) / d : 1;
-  return facing >= -0.2 - awareness * 0.5;
+  return facing >= -0.2 - awareness * 0.5 ? d : Number.NaN;
+}
+
+/** The same record with its fields writable — internal to this module only. */
+interface MutableStoredPlayer {
+  gid: number;
+  side: Side;
+  pos: { x: number; y: number };
+  vel: { x: number; y: number };
+  bodyDir: { x: number; y: number };
+  observedTick: number;
+}
+
+/**
+ * EDS E3R (ruling #12.4 (d)): write one observation into an EXISTING record.
+ *
+ * The arithmetic is `observePlayer`'s, unchanged line for line — same keyed
+ * error channels, same amplitudes, same body-turn rotation. The only
+ * difference is that a body already in memory is overwritten in place instead
+ * of allocating a fresh record plus three vectors per observed body per scan.
+ * A squad-wide scan at brain cadence allocated ~40 objects per call; this
+ * allocates none. Cheaper because it allocates less, never because it
+ * perceives less — and `materialisePerceptionSnapshot` now copies the vectors
+ * out, so no snapshot can alias a record that will later be rewritten.
+ */
+function writeObservation(
+  into: MutableStoredPlayer,
+  seed: number,
+  observer: PerceptionTruthPlayer,
+  entity: PerceptionTruthPlayer,
+  awareness: number,
+  tick: number,
+  knownDistance = Number.NaN,
+): void {
+  into.gid = entity.gid;
+  into.side = entity.side;
+  into.observedTick = tick;
+  if (entity.gid === observer.gid) {
+    into.pos.x = entity.pos.x;
+    into.pos.y = entity.pos.y;
+    into.vel.x = entity.vel.x;
+    into.vel.y = entity.vel.y;
+    into.bodyDir.x = entity.bodyDir.x;
+    into.bodyDir.y = entity.bodyDir.y;
+    return;
+  }
+  const d = Number.isNaN(knownDistance)
+    ? Math.hypot(entity.pos.x - observer.pos.x, entity.pos.y - observer.pos.y)
+    : knownDistance;
+  const error = 1 - awareness;
+  const posAmp = (0.2 + d * 0.025) * error;
+  const speed = Math.hypot(entity.vel.x, entity.vel.y);
+  const velAmp = (0.45 + speed * 0.08) * error;
+  const turn = keyedNoise(seed, observer.gid, entity.gid, tick, 4) * 0.35 * error;
+  const c = Math.cos(turn);
+  const s = Math.sin(turn);
+  into.pos.x = entity.pos.x + keyedNoise(seed, observer.gid, entity.gid, tick, 0) * posAmp;
+  into.pos.y = entity.pos.y + keyedNoise(seed, observer.gid, entity.gid, tick, 1) * posAmp;
+  into.vel.x = entity.vel.x + keyedNoise(seed, observer.gid, entity.gid, tick, 2) * velAmp;
+  into.vel.y = entity.vel.y + keyedNoise(seed, observer.gid, entity.gid, tick, 3) * velAmp;
+  into.bodyDir.x = entity.bodyDir.x * c - entity.bodyDir.y * s;
+  into.bodyDir.y = entity.bodyDir.x * s + entity.bodyDir.y * c;
 }
 
 function observePlayer(
@@ -176,42 +248,38 @@ function observePlayer(
   entity: PerceptionTruthPlayer,
   awareness: number,
   tick: number,
+  knownDistance = Number.NaN,
 ): StoredPlayer {
-  if (entity.gid === observer.gid) {
-    return {
-      gid: entity.gid,
-      side: entity.side,
-      pos: { x: entity.pos.x, y: entity.pos.y },
-      vel: { x: entity.vel.x, y: entity.vel.y },
-      bodyDir: { x: entity.bodyDir.x, y: entity.bodyDir.y },
-      observedTick: tick,
-    };
-  }
-  const d = Math.hypot(entity.pos.x - observer.pos.x, entity.pos.y - observer.pos.y);
-  const error = 1 - awareness;
-  const posAmp = (0.2 + d * 0.025) * error;
-  const speed = Math.hypot(entity.vel.x, entity.vel.y);
-  const velAmp = (0.45 + speed * 0.08) * error;
-  const turn = keyedNoise(seed, observer.gid, entity.gid, tick, 4) * 0.35 * error;
-  const c = Math.cos(turn);
-  const s = Math.sin(turn);
-  return {
+  const record: MutableStoredPlayer = {
     gid: entity.gid,
     side: entity.side,
-    pos: {
-      x: entity.pos.x + keyedNoise(seed, observer.gid, entity.gid, tick, 0) * posAmp,
-      y: entity.pos.y + keyedNoise(seed, observer.gid, entity.gid, tick, 1) * posAmp,
-    },
-    vel: {
-      x: entity.vel.x + keyedNoise(seed, observer.gid, entity.gid, tick, 2) * velAmp,
-      y: entity.vel.y + keyedNoise(seed, observer.gid, entity.gid, tick, 3) * velAmp,
-    },
-    bodyDir: {
-      x: entity.bodyDir.x * c - entity.bodyDir.y * s,
-      y: entity.bodyDir.x * s + entity.bodyDir.y * c,
-    },
+    pos: { x: 0, y: 0 },
+    vel: { x: 0, y: 0 },
+    bodyDir: { x: 0, y: 0 },
     observedTick: tick,
   };
+  writeObservation(record, seed, observer, entity, awareness, tick, knownDistance);
+  return record;
+}
+
+/** Overwrite in place when the body is already remembered; allocate only once. */
+function rememberPlayer(
+  memory: PerceptionMemory,
+  seed: number,
+  observer: PerceptionTruthPlayer,
+  entity: PerceptionTruthPlayer,
+  awareness: number,
+  tick: number,
+  knownDistance = Number.NaN,
+): void {
+  const existing = memory.players.get(entity.gid) as MutableStoredPlayer | undefined;
+  if (existing === undefined) {
+    memory.players.set(
+      entity.gid, observePlayer(seed, observer, entity, awareness, tick, knownDistance),
+    );
+    return;
+  }
+  writeObservation(existing, seed, observer, entity, awareness, tick, knownDistance);
 }
 
 /**
@@ -338,8 +406,9 @@ export function advancePerceptionMemory(
         memory.players.delete(entity.gid);
         continue;
       }
-      if (visible(observer, entity, awareness, viewDir)) {
-        memory.players.set(entity.gid, observePlayer(seed, observer, entity, awareness, truth.tick));
+      const distance = visibleDistance(observer, entity, awareness, viewDir);
+      if (!Number.isNaN(distance)) {
+        rememberPlayer(memory, seed, observer, entity, awareness, truth.tick, distance);
       }
     }
     const bdx = truth.ball.pos.x - observer.pos.x;
@@ -365,7 +434,7 @@ export function advancePerceptionMemory(
 
   // Proprioception is continuous too: the observer does not need a visual
   // scan to know their own body position, velocity, or facing.
-  memory.players.set(observer.gid, observePlayer(seed, observer, observer, awareness, truth.tick));
+  rememberPlayer(memory, seed, observer, observer, awareness, truth.tick);
 
   // Touch/proprioception is continuous: the carrier does not wait for a visual
   // scan to know the authoritative location and motion of the ball at their feet.
@@ -396,15 +465,39 @@ export function materialisePerceptionSnapshot(
   observerGid: number,
   awareness: number,
   memory: PerceptionMemory,
+  scope: ReadonlySet<number> | null = null,
 ): PerceptionSnapshot {
   const players: ObservedPlayer[] = [];
   for (const entity of truth.players) {
+    // E3R (ruling #12.4 (d)): candidate-scoped materialisation. A consumer that
+    // prices a named option set does not need every remembered body in an
+    // array — the scope carries the observer, his candidates and the opponents
+    // the corridor read scans. Null keeps the full snapshot, which is what
+    // every banked probe used, so the default path is untouched.
+    if (scope !== null && !scope.has(entity.gid)) continue;
     const observed = memory.players.get(entity.gid);
     if (!observed) continue;
-    players.push({ ...observed, ageTicks: truth.tick - observed.observedTick });
+    // The vectors are COPIED, not shared: memory records are now overwritten in
+    // place (E3R's allocation-free scan), so a snapshot holding references
+    // would silently change under its reader.
+    players.push({
+      gid: observed.gid,
+      side: observed.side,
+      pos: { x: observed.pos.x, y: observed.pos.y },
+      vel: { x: observed.vel.x, y: observed.vel.y },
+      bodyDir: { x: observed.bodyDir.x, y: observed.bodyDir.y },
+      observedTick: observed.observedTick,
+      ageTicks: truth.tick - observed.observedTick,
+    });
   }
   const ball = memory.ball
-    ? { ...memory.ball, ageTicks: truth.tick - memory.ball.observedTick }
+    ? {
+      pos: { x: memory.ball.pos.x, y: memory.ball.pos.y },
+      vel: { x: memory.ball.vel.x, y: memory.ball.vel.y },
+      ownerGid: memory.ball.ownerGid,
+      observedTick: memory.ball.observedTick,
+      ageTicks: truth.tick - memory.ball.observedTick,
+    }
     : null;
   return { tick: truth.tick, observerGid, awareness: clamp01(awareness), ball, players };
 }

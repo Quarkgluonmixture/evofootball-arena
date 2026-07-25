@@ -812,9 +812,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // snapshot on E2b-0's measured probability axis, over executable options
     // only. Keepers are excluded exactly as every perception consumer excludes
     // them, and the cutback keeps its own machinery.
-    const snapshot = match.perceivedSnapshot(p);
-    const candidateGids = snapshot === null
-      ? [] : passChoiceCandidateGids(p, team.players);
+    // E3R (ruling #12.4 (d)): candidate-scoped materialisation. The pricing
+    // reads this body, the options it is pricing, and the opponents the
+    // corridor read scans — so that is what gets built into an array, at the
+    // one tick it is asked. Candidates are enumerated from the roster, which
+    // needs no snapshot at all (§5 (c)'s registered truth-measured window).
+    const candidateGids = passChoiceCandidateGids(p, team.players);
+    const scope = new Set<number>([p.gid, ...candidateGids]);
+    for (const other of opp.players) if (!other.sentOff) scope.add(other.gid);
+    const snapshot = candidateGids.length === 0 ? null : match.perceivedSnapshot(p, scope);
     const reachProfiles = snapshot === null ? null : match.reachProfiles();
     const choice = snapshot === null || reachProfiles === null || candidateGids.length === 0 ? null
       : choosePerceivedPassTarget({

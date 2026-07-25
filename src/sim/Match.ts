@@ -2170,11 +2170,11 @@ export class Match {
    * materialise half of the split, paid once per pass decision rather than once
    * per tick per body. Null when this body keeps no memory (keepers, sent off).
    */
-  perceivedSnapshot(p: Player): PerceptionSnapshot | null {
+  perceivedSnapshot(p: Player, scope: ReadonlySet<number> | null = null): PerceptionSnapshot | null {
     const memory = this.perceptionMemories.get(p.gid);
     if (memory === undefined) return null;
     return materialisePerceptionSnapshot(
-      this.perceptionTruth(), p.gid, this.edsAwareness, memory,
+      this.perceptionTruth(), p.gid, this.edsAwareness, memory, scope,
     );
   }
 
