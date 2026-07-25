@@ -12,87 +12,50 @@ import { stylePreset, type StylePreset } from './stylePresets';
  */
 
 const BURST_N = 16;
-/**
- * ⚠️ The flame jets are BUILT BUT NOT SHIPPED — they render nothing, and I
- * could not find out why inside a reasonable budget. Kept, disabled, because
- * the code is sound-looking and the eliminated hypotheses are worth more to
- * the next attempt than a blank page:
- *
- *   · not vertex colours — removed them, still nothing;
- *   · not size — 6m points (≈36px at that range) still nothing;
- *   · not occlusion — moved from behind the goal line onto the pitch flanking
- *     the posts, in open view of every camera, still nothing;
- *   · not integration style — rewritten to mirror `Firework` exactly (closed
- *     form, positions written only in update), still nothing;
- *   · not a shader failure — console is clean, no THREE warnings;
- *   · not scene-graph — probe reports points.visible true, parent Scene,
- *     material opacity ~1, drawRange full, 90 positions, and the particles
- *     project to sensible on-screen NDC.
- *
- * The maddening part: `Firework` below is near-identical `THREE.Points` and
- * renders fine. Next attempt should probably try Sprites (the label path,
- * known-good here) rather than debug Points further.
- */
-const PYRO_ENABLED = false;
-
-/** Particles per flame jet, and jets per goal (F7). */
-const PYRO_N = 90;
+/** Jets per goal (F7). */
 const PYRO_JETS = 4;
 /** Particles in one firework shell's burst (F7). */
 const SHELL_N = 70;
 
 /**
  * A pyrotechnic flame jet (F7, user: "进球得有点特效比如烟花喷火之类的").
- * Stadium pyro: a column of particles launched hard upward with a slight
- * spread, cooling white-hot → orange → dark as it rises and falls back.
+ *
+ * ONE billboard per jet, not a particle column. The first cut was 90
+ * `THREE.Points` per jet and rendered absolutely nothing — with vertex
+ * colours removed, at 6m point size, moved into open view, rewritten to
+ * mirror `Firework` exactly, console clean and the scene-graph probe all
+ * green. Never root-caused. Sprites are the known-good path in this codebase
+ * (every player label is one), and a stretched billboard with a procedural
+ * gradient is both a better flame and 4 draw calls instead of 360.
+ *
  * Fires only on a goal, when play is already stopped, so it can never hide
  * the ball or the shape (F-DIRECTION's rule).
  */
 class Pyro {
-  readonly points: THREE.Points;
-  private vels = new Float32Array(PYRO_N * 3);
-  private seeds = new Float32Array(PYRO_N);
-  private ox = 0;
-  private oz = 0;
+  readonly sprite: THREE.Sprite;
   private life = -1;
-  private mat: THREE.PointsMaterial;
-  private static readonly DUR = 1.35;
+  private mat: THREE.SpriteMaterial;
+  private static readonly DUR = 1.5;
+  private static readonly RISE = 0.28;
+  /** 7.5m towered over 1.7m players; a jet should read as tall, not absurd. */
+  private static readonly H = 4.6;
+  private static readonly W = 1.35;
 
   constructor(blending: THREE.Blending) {
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(PYRO_N * 3), 3));
-    this.mat = new THREE.PointsMaterial({
-      // Sized for the camera that actually watches: from the broadcast gantry
-      // the goal line is ~40m away, where a 0.5m point is four pixels and the
-      // whole effect may as well not exist. 1.6m reads without dominating.
-      //
-      // Deliberately NOT vertexColors: a per-vertex-coloured PointsMaterial
-      // compiled without error here and then drew absolutely nothing, while
-      // the otherwise-identical Burst and Firework (which set material.color)
-      // drew fine. Root cause not established; the whole-jet colour ramp below
-      // is simpler anyway, and for a flame column it is visually equivalent.
-      size: 1.6, color: 0xffffff, transparent: true, opacity: 0,
-      depthWrite: false, blending,
+    this.mat = new THREE.SpriteMaterial({
+      map: flameTexture(), transparent: true, opacity: 0, depthWrite: false, blending,
     });
-    this.points = new THREE.Points(geo, this.mat);
-    this.points.frustumCulled = false;
-    this.points.visible = false;
+    this.sprite = new THREE.Sprite(this.mat);
+    // Grow from the ground up, not from the middle out.
+    this.sprite.center.set(0.5, 0);
+    this.sprite.visible = false;
   }
 
   fire(x: number, z: number): void {
-    this.ox = x;
-    this.oz = z;
-    for (let i = 0; i < PYRO_N; i++) {
-      // Staggered launch so the column keeps feeding instead of puffing once.
-      this.seeds[i] = (i / PYRO_N) * 0.55;
-      const a = Math.random() * Math.PI * 2;
-      const out = Math.random() * 0.5;
-      this.vels[i * 3] = Math.cos(a) * out;
-      this.vels[i * 3 + 1] = 9 + Math.random() * 6;
-      this.vels[i * 3 + 2] = Math.sin(a) * out;
-    }
+    this.sprite.position.set(x, 0.05, z);
+    this.sprite.scale.set(Pyro.W, 0.2, 1);
     this.life = 0;
-    this.points.visible = true;
+    this.sprite.visible = true;
   }
 
   update(dt: number): void {
@@ -100,28 +63,48 @@ class Pyro {
     this.life += dt;
     if (this.life >= Pyro.DUR) {
       this.life = -1;
-      this.points.visible = false;
+      this.sprite.visible = false;
       return;
     }
-    // Positions are computed from t rather than integrated, mirroring the
-    // firework shell exactly — closed form, no drift, nothing carried between
-    // frames.
-    const pos = this.points.geometry.getAttribute('position') as THREE.BufferAttribute;
-    for (let i = 0; i < PYRO_N; i++) {
-      const t = Math.max(0, this.life - this.seeds[i]);
-      pos.setXYZ(
-        i,
-        this.ox + this.vels[i * 3] * t,
-        Math.max(0.06, 0.06 + this.vels[i * 3 + 1] * t - 7.5 * t * t),
-        this.oz + this.vels[i * 3 + 2] * t,
-      );
-    }
-    pos.needsUpdate = true;
-    // The whole jet cools together: white-hot, then flame orange, then ember.
-    const k = Math.min(1, this.life / 0.95);
-    this.mat.color.setRGB(1, 0.95 - k * 0.55, 0.72 - k * 0.62);
-    this.mat.opacity = 1 - (this.life / Pyro.DUR) ** 2.2;
+    // Whoosh up fast, then burn down and fade.
+    const climb = Math.min(1, this.life / Pyro.RISE);
+    const burn = Math.max(0, (this.life - Pyro.RISE) / (Pyro.DUR - Pyro.RISE));
+    const h = Pyro.H * (climb ** 0.55) * (1 - burn * 0.45);
+    // Flicker so the column is alive rather than a static cone.
+    const flick = 1 + Math.sin(this.life * 34) * 0.06;
+    this.sprite.scale.set(Pyro.W * (0.75 + climb * 0.25) * flick, h, 1);
+    this.mat.opacity = Math.min(1, climb * 1.4) * (1 - burn ** 1.8);
   }
+}
+
+/** Vertical flame gradient, drawn once: white-hot base into orange smoke. */
+let FLAME_TEX: THREE.CanvasTexture | null = null;
+function flameTexture(): THREE.CanvasTexture {
+  if (FLAME_TEX) return FLAME_TEX;
+  const c = document.createElement('canvas');
+  c.width = 32;
+  c.height = 128;
+  const ctx = c.getContext('2d')!;
+  // Saturated, not white-hot: against bright daylight grass a pale gradient
+  // reads as haze. Orange is what separates flame from fog here.
+  const g = ctx.createLinearGradient(0, 128, 0, 0);
+  g.addColorStop(0, 'rgba(255,248,214,1)');
+  g.addColorStop(0.14, 'rgba(255,198,54,1)');
+  g.addColorStop(0.42, 'rgba(255,118,16,0.97)');
+  g.addColorStop(0.72, 'rgba(214,52,8,0.72)');
+  g.addColorStop(1, 'rgba(140,28,6,0)');
+  ctx.fillStyle = g;
+  // Taper toward the tip so it reads as a jet, not a bar.
+  ctx.beginPath();
+  ctx.moveTo(2, 128);
+  ctx.lineTo(30, 128);
+  ctx.lineTo(20, 0);
+  ctx.lineTo(12, 0);
+  ctx.closePath();
+  ctx.fill();
+  FLAME_TEX = new THREE.CanvasTexture(c);
+  FLAME_TEX.colorSpace = THREE.SRGBColorSpace;
+  return FLAME_TEX;
 }
 
 /**
@@ -349,7 +332,7 @@ export class FxSystem {
     this.shells = Array.from({ length: 3 }, () => new Firework(blending));
     for (const b of this.bursts) this.root.add(b.points);
     for (const f of this.floaters) this.root.add(f.sprite);
-    for (const j of this.pyros) this.root.add(j.points);
+    for (const j of this.pyros) this.root.add(j.sprite);
     for (const sh of this.shells) this.root.add(sh.points);
   }
 
@@ -397,7 +380,7 @@ export class FxSystem {
           // F7 pyro. Anchored on the GOAL, not the ball: the ball ends up
           // inside the net where the mesh hides it, and the goal line is
           // where the eye already is. Play is stopped, so nothing is masked.
-          if (particles && PYRO_ENABLED) this.firePyro(Math.sign(state.ball.x) || 1);
+          if (particles) this.firePyro(Math.sign(state.ball.x) || 1);
           if (this.quality === 'high') this.fireShells(teamColors, fx.side);
           this.hooks?.onGoal(fx.side);
           break;

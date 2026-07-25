@@ -150,7 +150,15 @@ arms use solid `normal` confetti; night arms keep the glow.
 Fireworks are a NIGHT effect by nature: against a pale daytime sky they read
 as washed-out squares, for the same reason nobody sets off fireworks at noon.
 Anything meant to carry a daylight celebration has to be solid and coloured,
-not emissive.
+not emissive — the flame jets are saturated orange for exactly that reason,
+because a white-hot gradient over bright grass reads as haze.
+
+**Sprites over Points.** A particle column of `THREE.Points` rendered nothing
+here across four rewrites, with a clean console and an all-green scene-graph
+probe, while a near-identical Points firework worked. Never explained. One
+stretched Sprite with a procedural gradient is the flame — better looking, 4
+draw calls instead of 360, and on the path every label already uses. Prefer
+Sprites for anything billboard-shaped until someone explains the Points case.
 
 ## Cameras
 
@@ -166,8 +174,7 @@ Open, unordered, each measured against this doc by the user's eyes:
 ~~character proportions~~ **(F2, done 2026-07-25)** · ~~crowd palette~~
 **(F3, done 2026-07-25)** · kit readability and silhouette · procedural animation polish
 (anticipation, follow-through) · ~~ball trail / height cues~~ **(F4, done
-2026-07-25; spin still open)** · **flame jets — BUILT, DISABLED, unexplained
-(F7; see the note at the top of `FxSystem.ts`)** · goal-moment
+2026-07-25; spin still open)** · goal-moment
 FX and camera work · post: bloom, vignette, tilt-shift, AA — all inside the
 phone budget · ~~`PlayerShowcase` re-framing~~ **(done with F2)**.
 
