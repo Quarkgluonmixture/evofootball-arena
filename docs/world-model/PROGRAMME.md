@@ -457,6 +457,41 @@ Track D rules: zero sim contact (fingerprint gate every step), acceptance =
 the user's eyes, never displaces a Track A experiment slot, and no narrative
 number may appear without a real detector behind it.
 
+## Track F — art direction (opened by the user 2026-07-25; parallel-safe)
+
+The renderer already has real bones: Three.js match view with hemisphere +
+directional sun and PCF soft shadows, fog, crowd/broadcast/FX layers, a
+630-line procedural AnimationSystem, procedural box-geometry players, a
+PlayerShowcase stage and a playwright visual-debug harness. The gap is not
+machinery, it is **coherence** — MeshBasic flat elements sit next to
+MeshStandard PBR elements, and no document says what the game should LOOK
+like. Art's "high standard" is therefore a different shape from physics':
+beauty cannot be probe-gated, so the discipline adapts —
+
+* **F-DIRECTION.md is the gold standard doc** (art's VISION.md): one
+  committed style, palette as data, material language rules, camera rules.
+  Drafted only AFTER F0's showcase choice; every later lever is measured
+  against it by the only valid judge (the user's eyes).
+* Hard gates stay objective: **zero sim contact + fingerprint every step;
+  PERF budget per PROBE-CONTRACTS §5.5** (phone is the binding constraint —
+  the user plays at ≤390–640px; fluency > interruptions is on record);
+  screenshot A/B (fixed seed/camera/tick via the existing harness) as a
+  COMPARISON AID for the user, never a pass/fail gate (headless render
+  checks are flaky — verify data/code/types, trust the browser for pixels).
+* **Explicit-path staging only** — art work is where binary assets sneak
+  in; the procedural-first rule below keeps the repo asset-free.
+
+| ID | Step | Status |
+|----|------|--------|
+| F0 ★ | **Style-direction showcase**: same frozen frame (one seed, one camera, one tick) rendered 3 ways for the user to CHOOSE — (a) toy/board-game world: double down on box-people, toon/ramp shading, flat palette discipline, fake contact AO, tilt-shift feel; (b) broadcast realism-lite: gLTF low-poly rigs, PBR, post stack — expensive, phone-risky, skeletal animation becomes the quality ceiling; (c) current look + coherence pass only (unify material language, tone mapping, palette). Commander recommends (a). User picks; the pick becomes F-DIRECTION.md | **READY — user gate, light session** |
+| F1+ | One lever per step, drafted after F0 from the standing lever list: tone mapping/exposure · palette unification · pitch (mowing stripes, wear, line crispness) · lighting presets (day/dusk/floodlight) · player silhouette + kit readability · procedural animation polish (anticipation/follow-through in AnimationSystem) · ball trail/spin/height cues · goal-moment FX + camera work · post (bloom/vignette/AA within phone budget) | TBD after F0 |
+
+Track F rules: everything in Track D's rules applies verbatim, plus:
+procedural-first (geometry/materials/textures generated in code — no binary
+asset pipeline unless the user rules otherwise at F0); one lever per step;
+PlayerShowcase is the review stage for any player-model change; never
+displaces a Track E slot.
+
 ## Self-drive protocol (2026-07-24, user-delegated)
 
 Roles: **user** = play-test authority + final say on anything live/visible;
