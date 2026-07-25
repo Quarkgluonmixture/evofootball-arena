@@ -113,8 +113,15 @@ for (let i = 0; i < 60; i++) {
   }
   if (d.linesmen?.length === 2) {
     // Each AR holds his touchline (|z| just outside the pitch) and his half.
+    // Bounds derive from the pitch, which SCALES: HALF_W = 58*FIELD_SCALE/2
+    // and the assistants stand at HALF_W + 0.8. The old literals (29.4/32/45)
+    // were the pre-FIELD_SCALE-0.7 pitch, so this check had been failing since
+    // the 2026-07-20 density re-baseline against a touchline at |z| = 21.1.
+    const HALF_W = (58 * 0.7) / 2;
+    const HALF_L = (90 * 0.7) / 2;
     seen.arOnLines ||= d.linesmen.every((l, i) =>
-      Math.abs(l.z) > 29.4 && Math.abs(l.z) < 32 && Math.abs(l.x) <= 45 && (i === 0 ? l.x >= -0.6 : l.x <= 0.6));
+      Math.abs(l.z) > HALF_W && Math.abs(l.z) < HALF_W + 2.5
+      && Math.abs(l.x) <= HALF_L + 1 && (i === 0 ? l.x >= -0.6 : l.x <= 0.6));
     if (arPrev) seen.arMoved ||= Math.abs(d.linesmen[0].x - arPrev[0].x) > 0.5 || Math.abs(d.linesmen[1].x - arPrev[1].x) > 0.5;
     arPrev = d.linesmen;
     seen.arFlag ||= d.linesmen.some((l) => l.flag);
