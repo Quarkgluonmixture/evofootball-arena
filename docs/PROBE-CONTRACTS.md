@@ -40,6 +40,12 @@ Each gate belongs to exactly one type; state which when you write the contract.
 - **Exact invariant** — must hold to the bit: feature-off is bit-identical
   (`fingerprint`), state ledger conserves, `watched === headless`, no illegal
   states. *(vitest: `match.test`, `simRunner.test`, `rng.test`.)*
+  **Determinism hashes cover WORLD OUTCOMES only — wall-clock / perf numbers
+  are reported alongside, never hashed.** A probe cannot both hash wall-clock
+  and promise byte-identity; the two claims are different epistemic
+  categories. *(Registered from EDS E2b-1, 2026-07-25: a perf block inside
+  the hashed object made X3 structurally unpassable while the world itself
+  was proven deterministic.)*
 - **Directional** — only the sign is required: `awareness↑ → obs-error↓`,
   `agility↑ → turn-ETA↓`. Side-balanced, enough seeds (ARCHITECTURE rule).
 - **Calibration** — predicted probability ≈ observed frequency: events predicted

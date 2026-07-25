@@ -317,6 +317,46 @@ generalises.
 >    executor drafts E3 directly under Autonomous mode (design contract
 >    §3's gates, no new ruling needed); the queue stops at **E4 — the
 >    user's play-test**. Any non-PASS anywhere returns to the commander.
+>
+> **COMMANDER RULING #10 (2026-07-25 — E2b-1's split verdict; the
+> perception-cost redraw):**
+>
+> 1. **The FAIL is accepted and the science is BANKED.** G1 (not-looking
+>    never won: 63.28/64.60/63.46% vs oracle 67.90%, every rung in band,
+>    +4.61pp endpoint lift) and G2 (route mix survived: long-share 18.05%
+>    at 0.8 awareness vs 18.07% omniscient — S3b's ~38% collapse did NOT
+>    reproduce) are the two graves this programme dug itself out of, now
+>    passed in dormant form. X5's factors multiply back. What failed is
+>    plumbing, twice, honestly reported.
+> 2. **X3 ruled — hash the world, report the clock.** Determinism hashes
+>    cover WORLD OUTCOMES only; wall-clock/perf is a sidecar report,
+>    never hashed (PROBE-CONTRACTS codified). The executor's conduct was
+>    correct: the verdict stood as emitted, and world-determinism was
+>    PROVEN by diagnosis (perf block removed → identical hashes twice),
+>    not asserted. The redraw pre-registers the corrected scheme.
+> 3. **G3 ruled — E2b-1R redraw, cheaper by computing LESS, never by
+>    perceiving less.** The lever is CONSUMPTION-SCOPING: the defender
+>    interception entry reads only the BALL percept (build the ball-only
+>    cheap path); the passer's full snapshot is computed at pass-decision
+>    moments only, not every brain tick. Codified principle: perception
+>    cost scales with what consumers READ, not with what could be seen.
+>    Honesty is frozen — scan cadence, FOV, retention, keyed error may
+>    not move. Budget stays 1.25× / p95 1.50×. The decisive new gate is
+>    BEHAVIOUR-NEUTRALITY: same seeds, same moments → the redraw's logged
+>    choices must be IDENTICAL to E2b-1's per moment per arm (G1/G2 then
+>    reproduce by construction and stand as verification). If
+>    consumption-scoping still misses the budget → STOP and report; no
+>    honesty shaving, no budget raise.
+> 4. **R1's correction is ACCEPTED and the banked number SUPERSEDED**
+>    (design contract §4): "28.48% SEEN-UNREAD" was the evaluator-null
+>    share — a mixed class, mostly UNSEEN; true SEEN-UNREAD ≈ 0.2%. The
+>    taxonomy stands, nearly empty. Banked alongside: look-pressure 9.17%
+>    at 0.8 / 17.03% at 0.2 (the future gaze consumer's workload), and
+>    47% omniscient agreement with the live brain — the evaluator is a
+>    DIFFERENT chooser, so E3 must EXPECT play to change and measure
+>    whether the change stays in band.
+> 5. **Green path unchanged:** E2b-1R PASS → the executor drafts E3
+>    (Autonomous mode) → queue stops at **E4, the user's play-test**.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 

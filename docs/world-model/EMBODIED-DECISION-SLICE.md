@@ -57,6 +57,21 @@ touch term (corridor factor from reach-based outcomes × E1a-certified
 formula at flag-ON), look-pressure reported on both axes. Green path runs
 to E4. Full text in PROGRAMME ruling #9.**
 
+**Commander ruling #10 (2026-07-25): E2b-1's split verdict disposed — the
+science is BANKED (G1 not-looking never won, oracle lift +4.61pp; G2 the
+route mix survived perception, S3b's collapse did not reproduce; those two
+gates are the graves S3b and C1-B died in, now passed in dormant form) and
+both failures are plumbing. X3 ruled: determinism hashes cover world
+outcomes only, perf reports alongside (PROBE-CONTRACTS codified); the FAIL
+stands for this run, the redraw pre-registers the corrected scheme. G3
+ruled: E2b-1R redraw with CONSUMPTION-SCOPED perception (defender entry
+reads a ball-only percept; full snapshot only at pass-decision moments) —
+honesty frozen (scan cadence / FOV / retention / keyed error untouchable),
+budget stays 1.25×, and the decisive new gate is behaviour-neutrality:
+same seeds → the redraw's logged choices must be IDENTICAL to E2b-1's.
+R1's correction supersedes the 28.48% number (§4). Green path: E2b-1R
+PASS → E3 draft → stop at E4.**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle
@@ -315,9 +330,26 @@ DIAGNOSTICS only — to name a failing component — never as partial ships.
   spreads outcomes 39.72pp, the distance band 6.64pp (~6×) — looking's value
   is the lane read only a current percept supports (A4's boundary
   pre-registered: doctrine buys priors and latency, never lane reads).
-  Third information class measured: 28.48% of playable options are
-  SEEN-UNREAD (target perceived, lane unreadable); look-pressure lives on
-  the read axis (blind 55.72% ≈ mean executable band 55.81%);
+  Third information class: real but nearly empty — **SUPERSEDED by E2b-1
+  (ruling #10): the banked "28.48% SEEN-UNREAD" was the evaluator-null share,
+  a MIXED class that is mostly UNSEEN targets; the true SEEN-UNREAD share is
+  ≈0.2%.** The taxonomy stands, the magnitude was mis-attributed.
+  Look-pressure lives on the read axis (blind 55.72% ≈ mean executable band
+  55.81%);
+* E2b-1 science (banked 2026-07-25 despite the run's plumbing FAIL —
+  ruling #10): **G1 not-looking did not win** — realized success 63.28 /
+  64.60 / 63.46% across awareness 0.2/0.5/0.8, oracle 67.90%, every rung
+  inside the −2.0pp non-inferiority band, endpoint lift +4.61pp; **G2 the
+  route mix survived perception** — long-option share 13.31 / 17.72 /
+  18.05% vs oracle 18.07%, S3b's ~38% collapse did NOT reproduce: the
+  base-rate prior does exactly what it was built for. Look-pressure banked:
+  a blind option out-prices every executable one in **9.17%** of moments at
+  awareness 0.8 (17.03% at 0.2) — the future gaze consumer's workload.
+  Evaluator-vs-live-brain agreement is only **47% under omniscience**: the
+  evaluator is a DIFFERENT chooser, so E3 must expect play to CHANGE and
+  measure whether the change stays in band. Side finding: threatened lanes
+  also deliver dirtier balls (P(clean|reached) 93.8→89.0% across threat) —
+  pressure arrives with the ball;
 * C1-A2 ledger: SHA `7e0ff4d5…257b` numbers as E0/E1 references;
 * C1-B audit: the §2 band values, the behavioural suite, the re-route
   signature (long balls +28.2%) as the E3 canary;
