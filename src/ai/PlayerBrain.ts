@@ -13,6 +13,13 @@ import {
   airLaneOpenness, canInterceptPass, effectiveBlockers, interceptBall, laneOpenness, opennessOf,
   escapeCarry, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
+import {
+  choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
+} from './perceivedPassChoice';
+import { PASS_POWER_MAX, PASS_POWER_MIN } from '../sim/constants';
+
+/** E3's canary prices the chosen pass at the substrate's own power range. */
+const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX];
 
 /**
  * PlayerBrain — utility AI. Each decision tick the player scores a set of
@@ -796,6 +803,64 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       (mate) => mate.gid === match.forcedPassTarget && mate !== p && !mate.sentOff,
     );
     if (forced) passMate = forced;
+  } else if (
+    match.edsPerceivedChoice && top.action === 'Pass' && top !== cutbackCand
+    && p.role !== 'GK' && bestMate !== null
+  ) {
+    // EDS E3 — the live perceived chooser (design contract §2.1). The brain has
+    // already decided to pass; WHO gets it is priced from this body's own
+    // snapshot on E2b-0's measured probability axis, over executable options
+    // only. Keepers are excluded exactly as every perception consumer excludes
+    // them, and the cutback keeps its own machinery.
+    const snapshot = match.perceivedSnapshot(p);
+    const candidateGids = snapshot === null
+      ? [] : passChoiceCandidateGids(p, team.players);
+    const reachProfiles = snapshot === null ? null : match.reachProfiles();
+    const choice = snapshot === null || reachProfiles === null || candidateGids.length === 0 ? null
+      : choosePerceivedPassTarget({
+        snapshot,
+        passerGid: p.gid,
+        candidateGids,
+        attackDir: team.attackDir,
+        reachProfiles,
+      });
+    const chosen = choice === null ? null
+      : team.players.find((mate) => mate.gid === choice.targetGid) ?? null;
+    // No executable option means he can see nobody he could honestly aim at.
+    // v1 keeps the legacy choice there rather than suppressing a pass the
+    // action layer already committed to — the seam is target choice only. The
+    // rate is traced (`chosenGid === -1`) and reported, never hidden.
+    if (chosen) passMate = chosen;
+    if (match.traceChoice) {
+      const power = choice === null || snapshot === null || reachProfiles === null
+        ? null : preferredPassPower({
+          snapshot,
+          passerGid: p.gid,
+          targetGid: choice.targetGid,
+          attackDir: team.attackDir,
+          reachProfiles,
+          powers: PASS_CANARY_POWERS,
+          heavyTouchCost: match.edsTouchCost,
+        });
+      match.passChoiceTrace.push({
+        tick: match.simTick,
+        passerGid: p.gid,
+        chosenGid: choice?.targetGid ?? -1,
+        legacyGid: bestMate.gid,
+        candidates: candidateGids.length,
+        read: choice?.options.filter((o) => o.infoClass === 'READ').length ?? 0,
+        seenUnread: choice?.options.filter((o) => o.infoClass === 'SEEN-UNREAD').length ?? 0,
+        unseen: choice?.options.filter((o) => o.infoClass === 'UNSEEN').length ?? 0,
+        price: choice?.price ?? Number.NaN,
+        distance: choice?.distance ?? Number.NaN,
+        blindOutpricesRead: choice?.blindOutpricesRead ?? false,
+        blindOutpricesBand: choice?.blindOutpricesBand ?? false,
+        preferredPowerIndex: power?.preferredIndex ?? -1,
+        powerPrices: power?.prices ?? [],
+        powerThreatSeconds: power?.threatSeconds ?? [],
+        powerTouchFailPriors: power?.touchFailPriors ?? [],
+      });
+    }
   }
 
   // A restart taker sets themselves before striking (the run-up): face the

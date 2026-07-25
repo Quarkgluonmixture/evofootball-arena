@@ -36,7 +36,7 @@ import {
 import { defaultPolicyGenes, mutatePolicyGenes, type PolicyGenes } from '../evolution/policyGenome';
 import { styleValues } from '../evolution/styleSpace';
 import { MATCH_DURATION } from './constants';
-import { Match } from './Match';
+import { Match, type MatchConfig } from './Match';
 import {
   GOAL_CHANNELS, ROLES, ROSTER_ROLES, ROSTER_SIZE, TEAM_SIZE, deriveTeamStyle, emptyChannels,
   emptyPlayerStats,
@@ -266,6 +266,14 @@ export class League {
   /** Probe surface (not serialized): the coach-mobility A/B gate flips this
    * off to isolate the sack/hire channel's effect on style diversity. */
   sackingEnabled = true;
+  /**
+   * Probe surface (not serialized): EDS E3 arms the dormant bundle for one
+   * audit arm without every fixture learning about it. Empty in production, so
+   * `createMatch` builds exactly the shipped match (X1's fingerprint gate).
+   */
+  matchFlags: Partial<Pick<MatchConfig,
+    'edsTouchCost' | 'edsPerceivedDefence' | 'edsPerceivedChoice' | 'edsAwareness' | 'traceChoice'
+  >> = {};
 
   constructor(cfg: { seed: number; matchDuration?: number }) {
     this.seed = cfg.seed >>> 0;
@@ -488,6 +496,7 @@ export class League {
       teamB: this.teamInfo(f.away),
       duration: this.matchDuration,
       derby: this.isDerby(f.home, f.away),
+      ...this.matchFlags,
     });
   }
 

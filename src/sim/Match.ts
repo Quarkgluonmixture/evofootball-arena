@@ -7,9 +7,10 @@ import { PROFILER as prof } from './profiler';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeReady } from '../ai/formations';
 import {
-  createPerceptionMemory, observeBall,
-  type ObservedBall, type PerceptionMemory,
+  advancePerceptionMemory, createPerceptionMemory, materialisePerceptionSnapshot, observeBall,
+  type ObservedBall, type PerceptionMemory, type PerceptionSnapshot, type PerceptionTruth,
 } from '../ai/perceptionSnapshot';
+import type { KnownReachProfile } from '../ai/reachability';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
@@ -56,6 +57,19 @@ import {
  * without feed spam (failure mode 7); `bestPassChain` records every chain.
  */
 const PASS_MOVE_FEED_MIN = 6;
+
+/**
+ * EDS E3: arm the whole bundle for an AUDIT run without teaching every Match
+ * construction site about it — the §2 equilibrium band runs through `League`
+ * and the behavioural contract suite constructs its own matches, and neither
+ * has any business knowing about a dormant slice. Unset ⇒ every flag off ⇒ the
+ * production path is bit-for-bit the shipped one (pinned by a test, and by X1's
+ * fingerprint). Same pattern as `formations.ts`'s EMERGENT_POS switch.
+ */
+const envArmed = (name: string): boolean =>
+  typeof process !== 'undefined' && !!process.env && process.env[name] === '1';
+const EDS_BUNDLE_ARMED = envArmed('EDS_BUNDLE');
+const EDS_TRACE_ARMED = envArmed('EDS_TRACE_CHOICE');
 
 /**
  * Per-foul injury chance at neutral fatigue/age (Phase 118). Calibrated by
@@ -187,6 +201,42 @@ export interface MatchConfig {
    */
   edsPerceivedDefence?: boolean;
   edsAwareness?: number;
+  /**
+   * EDS E3 (docs/world-model/EDS-E3-COEVOLUTION-AUDIT.md §2.1): the passer
+   * chooses his TARGET through the E2b-1R pricing, from his own snapshot, over
+   * executable options only. The last dormant-to-live step of the slice, and
+   * the one that carries the §2 equilibrium band. Off in every production path.
+   */
+  edsPerceivedChoice?: boolean;
+  /**
+   * EDS E3 instrument: log every perceived pass choice with the legacy choice
+   * beside it, the class shares, look-pressure and the power canary. Pure
+   * observation — it must not change a single tick.
+   */
+  traceChoice?: boolean;
+}
+
+/** One perceived pass choice, logged for the E3 audit. Never read by the sim. */
+export interface PassChoiceTraceEntry {
+  readonly tick: number;
+  readonly passerGid: number;
+  /** What the perceived chooser picked, or -1 when it had no executable option. */
+  readonly chosenGid: number;
+  /** What the legacy lane-score chooser would have picked (R4's divergence). */
+  readonly legacyGid: number;
+  readonly candidates: number;
+  readonly read: number;
+  readonly seenUnread: number;
+  readonly unseen: number;
+  readonly price: number;
+  readonly distance: number;
+  readonly blindOutpricesRead: boolean;
+  readonly blindOutpricesBand: boolean;
+  /** Canary: which of the priced powers the bundle's own evaluator prefers. */
+  readonly preferredPowerIndex: number;
+  readonly powerPrices: readonly number[];
+  readonly powerThreatSeconds: readonly number[];
+  readonly powerTouchFailPriors: readonly number[];
 }
 
 interface GroundContactClaim {
@@ -266,6 +316,24 @@ export class Match {
    */
   readonly perceptionMemories = new Map<number, PerceptionMemory>();
   readonly perceivedBalls = new Map<number, ObservedBall | null>();
+  /** E3: the passer's own chooser. Dormant unless a probe or an audit arms it. */
+  readonly edsPerceivedChoice: boolean;
+  readonly traceChoice: boolean;
+  /** E3 instrument output; appended to only when `traceChoice` is on. */
+  readonly passChoiceTrace: PassChoiceTraceEntry[] = [];
+  /**
+   * E3: one reusable truth buffer. The choice consumer needs BODIES, not just a
+   * ball, so the memory chain it feeds on cannot use `observeBall`'s O(1) path —
+   * but it also must not allocate a fresh `PerceptionTruth` per body per brain
+   * tick, which is the cost E2b-1's plumbing failed on. The buffer is refilled
+   * in place per call, so the percept is the current one and the allocation is
+   * paid once per match (ruling #10.3: compute less, never perceive less).
+   */
+  private truthBuffer: {
+    tick: number;
+    ball: { pos: V2; vel: V2; ownerGid: number | null };
+    players: { gid: number; side: Side; pos: V2; vel: V2; bodyDir: V2; sentOff: boolean }[];
+  } | null = null;
   /**
    * EDS E2a-2 (docs/world-model/EDS-E2A2-OPTION-SPACE-CENSUS.md): substitute
    * the pass TARGET the brain chose, for one tick, and let the live machinery
@@ -404,8 +472,10 @@ export class Match {
     this.derby = cfg.derby ?? false;
     this.traceContests = cfg.traceContests ?? false;
     this.traceFirstTouch = cfg.traceFirstTouch ?? false;
-    this.edsTouchCost = cfg.edsTouchCost ?? false;
-    this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? false;
+    this.edsTouchCost = cfg.edsTouchCost ?? EDS_BUNDLE_ARMED;
+    this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? EDS_BUNDLE_ARMED;
+    this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
+    this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     this.edsAwareness = cfg.edsAwareness ?? 0.8;
     this.perceptionSeed = cfg.seed;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
@@ -2026,6 +2096,21 @@ export class Match {
       memory = createPerceptionMemory();
       this.perceptionMemories.set(p.gid, memory);
     }
+    if (this.edsPerceivedChoice) {
+      // E3: a chooser reads BODIES, so this body's memory has to carry them.
+      // Same scan cadence, same visibility rule, same keyed error, same
+      // retention as the ball-only path — `advancePerceptionMemory` IS the
+      // first half of `perceiveSnapshot`, and the ball it writes is the ball
+      // `observeBall` writes (pinned by X6/`observeBall.test.ts`). No array is
+      // built here: that happens only for the body actually being asked.
+      advancePerceptionMemory(
+        this.perceptionTruth(), p.gid, this.edsAwareness, this.perceptionSeed, memory,
+      );
+      this.perceivedBalls.set(p.gid, memory.ball
+        ? { ...memory.ball, ageTicks: this.stepCount - memory.ball.observedTick }
+        : null);
+      return;
+    }
     // Consumption-scoped (ruling #10.3): the ball is the only percept anything
     // in the sim reads, so no squad-wide truth capture and no array build.
     this.perceivedBalls.set(p.gid, observeBall(
@@ -2036,6 +2121,70 @@ export class Match {
       this.edsAwareness,
       this.perceptionSeed,
     ));
+  }
+
+  /**
+   * E3: the reusable truth buffer, refilled in place. Only ever read by the
+   * perception trunk, and only when the choice flag is on.
+   */
+  private perceptionTruth(): PerceptionTruth {
+    const players = this.allPlayers;
+    if (this.truthBuffer === null || this.truthBuffer.players.length !== players.length) {
+      this.truthBuffer = {
+        tick: this.stepCount,
+        ball: { pos: v2(0, 0), vel: v2(0, 0), ownerGid: null },
+        players: players.map((p) => ({
+          gid: p.gid, side: p.side, pos: v2(0, 0), vel: v2(0, 0), bodyDir: v2(0, 0), sentOff: false,
+        })),
+      };
+    }
+    const buffer = this.truthBuffer;
+    buffer.tick = this.stepCount;
+    buffer.ball.pos.x = this.ball.pos.x;
+    buffer.ball.pos.y = this.ball.pos.y;
+    buffer.ball.vel.x = this.ball.vel.x;
+    buffer.ball.vel.y = this.ball.vel.y;
+    buffer.ball.ownerGid = this.ball.owner?.gid ?? null;
+    for (let index = 0; index < players.length; index++) {
+      const p = players[index];
+      const into = buffer.players[index];
+      into.gid = p.gid;
+      into.side = p.side;
+      into.pos.x = p.pos.x;
+      into.pos.y = p.pos.y;
+      into.vel.x = p.vel.x;
+      into.vel.y = p.vel.y;
+      into.bodyDir.x = p.bodyDir.x;
+      into.bodyDir.y = p.bodyDir.y;
+      into.sentOff = p.sentOff;
+    }
+    return buffer;
+  }
+
+  /**
+   * E3: the snapshot ONE body reads at the moment it is asked a question — the
+   * materialise half of the split, paid once per pass decision rather than once
+   * per tick per body. Null when this body keeps no memory (keepers, sent off).
+   */
+  perceivedSnapshot(p: Player): PerceptionSnapshot | null {
+    const memory = this.perceptionMemories.get(p.gid);
+    if (memory === undefined) return null;
+    return materialisePerceptionSnapshot(
+      this.perceptionTruth(), p.gid, this.edsAwareness, memory,
+    );
+  }
+
+  /**
+   * E3: the reach profiles a pass evaluation prices bodies with. Physical
+   * capability, not perception — the same profile set every probe built.
+   */
+  reachProfiles(): Map<number, KnownReachProfile> {
+    const profiles = new Map<number, KnownReachProfile>();
+    for (const p of this.allPlayers) {
+      if (p.sentOff) continue;
+      profiles.set(p.gid, { topSpeed: p.topSpeed, accel: p.accel, dribbling: p.attrs.dribbling });
+    }
+    return profiles;
   }
 
   /** M3: collect every contact claim from one immutable post-physics snapshot. */

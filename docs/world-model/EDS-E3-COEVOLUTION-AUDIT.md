@@ -145,3 +145,97 @@ R4 how far the live chooser diverges from the old lane-score chooser
   which is the vision-attr saga repeating. Report to the commander.
 * **Nothing ships from E3.** Flags stay default-off. Ship is E4, and **E4 is
   the user's play-test — the queue stops there.**
+
+## 5. Implementation registrations (executor, BEFORE any result)
+
+Ruling #11.2 approved §3 to run **as pre-registered — no gate changes**, and
+none are made below. What follows is the operational form of predicates that
+§3 states in words, written down before the run and before any number was
+seen, per ruling #7.2's boundary (instrument/harness definitions in their own
+commit, with the rationale, disclosed in the result). Every one is reported
+with its parts so the commander can re-judge on the same numbers.
+
+**(a) NO-STRICT-DOMINANCE is measured as the EVALUATOR's preference, not as a
+played share — and the reason is structural.** The live game has no power
+chooser: `Match.performPass`'s `powerChoice` argument has no production caller
+(`Match.ts:775` — "every live caller omits it"), C1-C was deferred into this
+slice, and E2b-0/E2b-1/E2b-1R priced power 1.0 only, so the calibration curve
+this bundle chooses on cannot price a power. "The share of passes PLAYED at
+the highest power" therefore has no live quantity behind it: it is 0% or 100%
+by construction depending on whether 1.0 counts as "the highest", and a
+predicate that cannot come out any other way is the structurally-undecidable
+kind PROBE-CONTRACTS' sixth threshold type forbids. What E0's canary and
+E1b's canary both actually measured is the EVALUATOR's preference (E0: "the
+per-state safest option was 1.15 in 52/52"; E1b: "predicted touch-cost spread
+3.95 → 6.53pp"), and §3's own stop rule reads the same way ("the cost is too
+weak against the benefit, exactly as E1b's canary warned"). So at every live
+pass moment the bundle prices its own chosen target at the substrate's three
+powers (`PASS_POWER_MIN` 0.85 / 1.0 / `PASS_POWER_MAX` 1.15) and the gate is
+the share of moments whose preferred power is the highest: **≥20% and ≤80%**,
+exactly the frozen band. The joining rule, fixed here before results:
+
+```text
+price(power) = quintilePrice(threat(power)) × (1 − touchFail(power)) / (1 − touchFail(1.0))
+```
+
+At power 1.0 this is exactly the choice axis, so nothing is double-counted at
+the reference point; away from it, the measured corridor axis is scaled by the
+relative first-touch survival the E1a-certified formula predicts at flag-ON
+strength (ruling #9.3 (c)'s decomposition). The per-power threat seconds,
+touch-fail priors and prices are all REPORTED, so any other joining rule can
+be applied to the same numbers afterwards. The played share is also reported,
+for completeness: it is 100% at power 1.0, because nothing plays anything else.
+
+**(b) X4's operational form.** E2b-1R banked aggregates, not a per-moment
+choice log, so X4 is run as both halves of the same claim: (i) the live
+consumer and a verbatim copy of E2b-1R's own pricing/argmax run side by side
+on every moment of every arm, and must agree on **every one**; (ii) with the
+live consumer doing the choosing, all seven of E2b-1R's banked aggregate
+families must come back **bit-identical at full float precision** over the
+same 3,000 moments × 4 arms, forks and all — the same standard E2b-1R's own
+B1 gate used. One adaptation, disclosed: the reference copy prices a READ
+option at `THREAT_CALIBRATION[q].realizedSuccess` rather than re-deriving
+`reached × cleanGivenReached` from a 14,678-fork census E2b-1R already banked
+and whose X5 pinned the two equal to <1e-12; any consequence would surface as
+a per-moment disagreement or a broken bit-identity. Scope: X4 runs on
+E2b-1R's staging, which advances the memory chain every tick; the live match
+advances it at BRAIN CADENCE (the cadence E2's design gate names, and the one
+E2b-1R's own live defence path uses), so X4 certifies the CHOOSER, and how far
+live play diverges from the probe's chooser is reported as R4.
+
+**(c) The candidate WINDOW is truth-measured (v1 scope boundary).** The 6–30 m
+window is E0's censused window and the only range any prior in `passPrior.ts`
+was measured over. It is enumerated on true positions, exactly as every E2b-*
+probe enumerated it: the window decides which options EXIST, while the price
+and the executable rule are perceived. Registered beside ruling #11.3's aiming
+registration so nobody later claims more honesty than v1 delivers.
+
+**(d) No executable option → the legacy choice stands, and the rate is
+reported.** When the passer can see nobody he could honestly aim at, the
+chooser returns null (it never invents an aim point) and v1 leaves the legacy
+lane-score target in place rather than suppressing a pass the action layer has
+already committed to — the seam is target choice only. This is an
+informational leak in the blind direction and it is therefore MEASURED and
+reported (`chosenGid = -1` in the trace), not hidden.
+
+**(e) CO-EVOLUTION RESTORATION's operational form.** Two sealed 10-season evo
+runs on the same league seed (424242), bundle ON and flags OFF, paired
+generation by generation. The "attacking advantage" is the goals/match
+difference ON − OFF at each generation; the gate is that its ABSOLUTE size
+over the last three generations is smaller than over the first three (a
+three-generation mean each side, because one 71-match generation is noisy).
+Style diversity: at the final generation, distinct coach nameplates and the
+mean entropy of the three style-share distributions, each **≥60%** of the
+flags-off run's own value.
+
+**(f) How the bundle is armed for a league or a test suite.** `League.matchFlags`
+(a probe surface, not serialized, empty in production — the same pattern as
+`sackingEnabled`) and an `EDS_BUNDLE=1` environment switch read once at module
+load in `Match.ts` (the same pattern as `formations.ts`'s `EMERGENT_POS`), so
+the behavioural contract suite can run under the bundle without every test
+learning about a dormant slice. Unset ⇒ every flag off ⇒ the shipped world,
+pinned by `tests/perceivedPassChoice.test.ts` and by X1's fingerprint.
+
+**(g) The behavioural contract suite is run with `EDS_BUNDLE=1`** over the
+three named files, and over the full suite for information; suite failures are
+reported as findings, never re-baselined (C1-B §12.4).
