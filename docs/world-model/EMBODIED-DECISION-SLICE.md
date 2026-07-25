@@ -47,6 +47,16 @@ onto the priced quantity. E2b's aiming rule settled: priced always,
 executable only with an honest aim point; the price-vs-aim gap is the
 causal seat of look-before-pass. Full text in §3 (h)–(l).**
 
+**Commander ruling #9 (2026-07-25): E2a-2 PASSED (real selection bias:
+13pp, not 0.18pp) and the executor's E2b split is accepted — E2b-0
+measured the corridor read's exchange rate into probability (PASS,
+39.72pp discrimination) so no invented weight ever joins the axes. E2b-1
+constraints: name the third information class (READ / SEEN-UNREAD 28.48% /
+UNSEEN), common unit = measured probability, no double-counting of the
+touch term (corridor factor from reach-based outcomes × E1a-certified
+formula at flag-ON), look-pressure reported on both axes. Green path runs
+to E4. Full text in PROGRAMME ruling #9.**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle
@@ -298,6 +308,16 @@ DIAGNOSTICS only — to name a failing component — never as partial ships.
   2026-07-25): the substrate already prices blind-side receptions — misalign
   rises with power at the real adjudication, so orientation cost EXISTS as
   physics before any craft layer touches it;
+* E2b-0 calibration (banked 2026-07-25, calibration SHA `52c10713…3082`):
+  corridor-threat quintile → realized reception success 82.86 / 62.31 /
+  50.97 / 47.15 / 43.14% — the measured exchange rate from corridor seconds
+  into probability, 39.72pp discrimination. Read-vs-band: the corridor read
+  spreads outcomes 39.72pp, the distance band 6.64pp (~6×) — looking's value
+  is the lane read only a current percept supports (A4's boundary
+  pre-registered: doctrine buys priors and latency, never lane reads).
+  Third information class measured: 28.48% of playable options are
+  SEEN-UNREAD (target perceived, lane unreadable); look-pressure lives on
+  the read axis (blind 55.72% ≈ mean executable band 55.81%);
 * C1-A2 ledger: SHA `7e0ff4d5…257b` numbers as E0/E1 references;
 * C1-B audit: the §2 band values, the behavioural suite, the re-route
   signature (long balls +28.2%) as the E3 canary;

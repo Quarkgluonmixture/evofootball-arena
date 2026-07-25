@@ -277,6 +277,46 @@ generalises.
 >    text: design contract §3 (h)–(l). The executor drafts E2a-2 under
 >    Autonomous mode; on its PASS, E2b proceeds without a new ruling
 >    (ruling #7's provision carries over).
+>
+> **COMMANDER RULING #9 (2026-07-25 — E2b-0 accepted; concurrency rule;
+> E2b-1 constraints; green path to E4):**
+>
+> 1. **The E2b split and E2b-0's PASS are ACCEPTED.** The gap was real —
+>    a blind option prices as a probability, a seen one as corridor
+>    seconds, E0 refuses scalar scores by design, and inventing the
+>    joining weight was forbidden — so measuring the exchange rate first
+>    (instrument-first, fourth application) was the correct move under
+>    the standing authorisation. X5's field-for-field reproduction of
+>    E2a-2's table and the re-run at the post-merge HEAD to the same SHA
+>    are exactly the conduct the discipline wants.
+> 2. **Concurrency CODIFIED (governance 4/4b):** one working tree = one
+>    writer; parallel sessions stagger or use separate `git worktree`s and
+>    merge through git; before every commit `git status` must show only
+>    this session's files — a foreign modification means STOP, reconcile,
+>    never stage it. `857784c`'s sweep did no damage but proved the hole.
+> 3. **E2b-1 drafting constraints:** (a) NAME the third class — three
+>    information states: READ (target + lane in current percept → the
+>    E2b-0 curve), SEEN-UNREAD (target perceived, lane not → banded at
+>    the known distance — 28.48% of playable options, currently folded
+>    silently), UNSEEN (→ marginal); class shares REPORTED — the silent
+>    fold is E2a-1's population error family. (b) COMMON UNIT = measured
+>    probability: the E2b-0 curve is the exchange rate; no invented
+>    weight anywhere in the evaluator. (c) NO DOUBLE-COUNTING of touch:
+>    the E2b-0 curve was measured on receptionSuccess in the flag-OFF
+>    world; E2b-1 runs flags ON — decompose corridor (interception/
+>    reach-based outcome from the same census columns) × touch (the
+>    E1a-certified formula at flag-ON strength), or justify an
+>    alternative explicitly in the pre-registration. (d) Look-pressure
+>    reported on both axes (band axis ≈ not-looking is free; read axis =
+>    where looking pays 43→83%). (e) The 6× finding is BOOKED (design
+>    contract §4): banded stale-memory pricing stays — honest and cheap —
+>    but the value of LOOKING is the lane read only a current percept
+>    supports; this pre-registers A4's boundary (doctrine/familiarity buy
+>    priors and latency, never lane reads).
+> 4. **Green path extended to the user gate:** on E2b-1's PASS the
+>    executor drafts E3 directly under Autonomous mode (design contract
+>    §3's gates, no new ruling needed); the queue stops at **E4 — the
+>    user's play-test**. Any non-PASS anywhere returns to the commander.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -591,6 +631,14 @@ WORLD-MODEL-NEXT-AUTHORITY) remains the single source of truth.
    stated band.
 4. Never `git add -A`. Stage explicit paths. Two-commit pattern for
    pre-registered experiments (pre-register, then implement+result).
+   **Before every commit: `git status` must show ONLY files this session
+   touched — any foreign modification means another session is writing;
+   STOP, do not stage it, reconcile first** (ruling #9; commit `857784c`
+   swept a concurrent session's uncommitted PROGRAMME edits).
+4b. **One working tree = one writer (ruling #9).** Concurrent sessions must
+   either stagger or run in separate `git worktree`s and merge through git
+   (push/pull) — never through a shared directory, which silently swallows
+   the other session's uncommitted work.
 5. Model guidance: Track A = Opus med (discipline over creativity); B1 =
    Sonnet acceptable (user judges pixels); C1 = Opus med+high (live-balance
    risk). FAIL write-ups that reshape authority → strongest available model.
