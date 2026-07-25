@@ -95,6 +95,19 @@ bubbles (which is exactly what F0's first pass painted). A test pins it.
 
 Paint is chalk, not vector: softened alpha and a wider line under `toy`.
 
+## Reading the ball
+
+The ball is the most important object on screen and F1b made it 36% smaller,
+so its cues carry more weight than they used to. Two rules:
+
+- **Height must be readable from a still frame.** The contact shadow shrinks
+  and fades with altitude and never disappears — a lofted ball and a grounded
+  one must not draw identically.
+- **The wake is a ribbon, never a line.** WebGL caps `linewidth` at 1 on every
+  desktop platform, so a `THREE.Line` trail is a one-pixel hair that vanishes
+  on a phone. Taper it toward the tail so it reads as direction, and fade it
+  proportionally with speed so a crawling ball never paints the pitch.
+
 ## Cameras
 
 The user plays in **broadcast** and **follow-ball**. Those two are what any
@@ -108,7 +121,8 @@ add wide-angle presets (user, 2026-07-25). Phone is the binding constraint:
 Open, unordered, each measured against this doc by the user's eyes:
 ~~character proportions~~ **(F2, done 2026-07-25)** · ~~crowd palette~~
 **(F3, done 2026-07-25)** · kit readability and silhouette · procedural animation polish
-(anticipation, follow-through) · ball trail / spin / height cues · goal-moment
+(anticipation, follow-through) · ~~ball trail / height cues~~ **(F4, done
+2026-07-25; spin still open)** · goal-moment
 FX and camera work · post: bloom, vignette, tilt-shift, AA — all inside the
 phone budget · ~~`PlayerShowcase` re-framing~~ **(done with F2)**.
 

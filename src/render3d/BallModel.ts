@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { HUMAN_MODEL_SCALE } from './PlayerModel';
 import type { RenderBall, RenderPlayer } from './RenderStateAdapter';
 import {
-  BALL_SHADOW_RADIUS, BALL_VISUAL_RADIUS, type ContactCue,
+  BALL_SHADOW_RADIUS, BALL_VISUAL_RADIUS, ballShadowLift, trailOpacity,
+  TRAIL_MIN_SPEED, type ContactCue,
 } from './ballPresentation';
 
 const TRAIL_N = 16;
@@ -26,8 +27,8 @@ export class BallModel {
   private prevSpeed = 0;
   private prevOwned = false;
 
-  private trail: THREE.Line;
-  private trailMat: THREE.LineBasicMaterial;
+  private trail: THREE.Mesh;
+  private trailMat: THREE.MeshBasicMaterial;
   private trailPts: Array<{ x: number; y: number; z: number }> = [];
 
   private marker: THREE.Mesh;
@@ -76,13 +77,28 @@ export class BallModel {
     this.contactRing.renderOrder = 8;
     this.root.add(this.contactRing);
 
-    // Motion trail (world-space, so it is a sibling-independent child of root's parent — we
-    // keep it in root but write absolute-relative positions each frame instead).
+    // Motion trail, world-space (positions are absolute; the mesh sits in the
+    // scene next to root, not under it).
+    //
+    // F4: a tapered RIBBON, not a line. WebGL caps `linewidth` at 1 on every
+    // desktop platform, so the old THREE.Line was a one-pixel hair — and after
+    // F1b shrank the ball 36% that was the main thing left to track it by, on
+    // a phone especially. Two verts per sample, offset perpendicular to travel
+    // and widening toward the head, so it reads as a wake with a direction.
     const trailGeo = new THREE.BufferGeometry();
-    trailGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(TRAIL_N * 3), 3));
-    this.trailMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 });
-    this.trail = new THREE.Line(trailGeo, this.trailMat);
+    trailGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(TRAIL_N * 6), 3));
+    const idx: number[] = [];
+    for (let i = 0; i < TRAIL_N - 1; i++) {
+      const a = i * 2;
+      idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
+    }
+    trailGeo.setIndex(idx);
+    this.trailMat = new THREE.MeshBasicMaterial({
+      color: 0xffffff, transparent: true, opacity: 0.35, depthWrite: false, side: THREE.DoubleSide,
+    });
+    this.trail = new THREE.Mesh(trailGeo, this.trailMat);
     this.trail.frustumCulled = false;
+    this.trail.renderOrder = 6;
     this.trail.visible = false;
 
     // Crowd marker: a small always-on-top cone pointing down at the ball.
@@ -97,7 +113,7 @@ export class BallModel {
   }
 
   /** The trail lives in world space; add it to the scene next to root. */
-  get worldTrail(): THREE.Line {
+  get worldTrail(): THREE.Mesh {
     return this.trail;
   }
 
@@ -161,6 +177,13 @@ export class BallModel {
     this.mesh.position.set(this.carryCur.x, BALL_VISUAL_RADIUS + h + this.heldY, this.carryCur.z);
     this.blob.position.x = this.carryCur.x;
     this.blob.position.z = this.carryCur.z;
+    // F4 — the height cue. The shadow used to be a fixed disc, so a ball 3m up
+    // was drawn exactly like one on the grass and there was nothing to read
+    // altitude from. Now it shrinks and fades with height, the way a real
+    // contact shadow does. Clamped so a high ball still leaves a findable mark.
+    const lift = ballShadowLift(h + this.heldY);
+    this.blob.scale.setScalar(lift.scale);
+    (this.blob.material as THREE.MeshBasicMaterial).opacity = lift.opacity;
     this.updateContact(dt);
     // A tilted owner's hands carry it (31.9): blend the held ball toward
     // the hands anchor by tilt fraction — a diving keeper's catch sweeps
@@ -194,8 +217,10 @@ export class BallModel {
   }
 
   private updateTrail(ball: RenderBall, h: number): void {
-    // Record while the ball travels fast; fade out when it settles.
-    if (ball.speed > 7 && ball.ownerGid === null) {
+    // Record while the ball travels fast; fade out when it settles. F4 dropped
+    // the floor 7 -> 5.5 m/s and made the fade proportional instead: a smaller
+    // ball needs a wake sooner, but a crawling one must not paint the pitch.
+    if (ball.speed > TRAIL_MIN_SPEED && ball.ownerGid === null) {
       this.trailPts.push({ x: ball.x, y: BALL_VISUAL_RADIUS + h, z: ball.z });
       if (this.trailPts.length > TRAIL_N) this.trailPts.shift();
     } else if (this.trailPts.length > 0) {
@@ -204,13 +229,28 @@ export class BallModel {
     const n = this.trailPts.length;
     this.trail.visible = n >= 2;
     if (n < 2) return;
+
     const pos = this.trail.geometry.getAttribute('position') as THREE.BufferAttribute;
-    for (let i = 0; i < n; i++) pos.setXYZ(i, this.trailPts[i].x, this.trailPts[i].y, this.trailPts[i].z);
+    const half = BALL_VISUAL_RADIUS * 0.85;
+    for (let i = 0; i < n; i++) {
+      const cur = this.trailPts[i];
+      // Travel direction from the neighbouring samples; perpendicular in XZ.
+      const prev = this.trailPts[Math.max(0, i - 1)];
+      const next = this.trailPts[Math.min(n - 1, i + 1)];
+      let dx = next.x - prev.x;
+      let dz = next.z - prev.z;
+      const len = Math.hypot(dx, dz);
+      if (len < 1e-6) { dx = 0; dz = 1; } else { dx /= len; dz /= len; }
+      // Taper: a point at the tail, full width at the head.
+      const w = half * ((i + 1) / n) ** 1.5;
+      pos.setXYZ(i * 2, cur.x - dz * w, cur.y, cur.z + dx * w);
+      pos.setXYZ(i * 2 + 1, cur.x + dz * w, cur.y, cur.z - dx * w);
+    }
     pos.needsUpdate = true;
-    this.trail.geometry.setDrawRange(0, n);
-    // Shots burn hotter than passes.
+    this.trail.geometry.setDrawRange(0, Math.max(0, (n - 1) * 6));
+    // Shots burn hotter than passes; slow balls leave a fainter wake.
     this.trailMat.color.setHex(ball.isShot ? 0xffb14d : 0xffffff);
-    this.trailMat.opacity = ball.isShot ? 0.85 : 0.4;
+    this.trailMat.opacity = trailOpacity(ball.speed, ball.isShot === true);
   }
 
   private updateContact(dt: number): void {

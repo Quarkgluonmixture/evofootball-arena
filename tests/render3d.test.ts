@@ -6,7 +6,8 @@ import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
 import { animFor, bankFor, jostling, lateralSlot, rideSide } from '../src/render3d/AnimationSystem';
 import {
-  BALL_VISUAL_RADIUS, BALL_VISUAL_SCALE, carryDisplayOffset, contactCue,
+  BALL_SHADOW_FADE_H, BALL_VISUAL_RADIUS, BALL_VISUAL_SCALE, ballShadowLift,
+  carryDisplayOffset, contactCue, trailOpacity, TRAIL_MIN_SPEED,
 } from '../src/render3d/ballPresentation';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
@@ -232,6 +233,36 @@ describe('ball presentation tells the same truth as the sim', () => {
     // Keeper hands remain a render-only height/pose anchor; the reach rides F1.
     expect(held!.dx).toBeCloseTo(-0.8 + 0.3 * HUMAN_MODEL_SCALE, 10);
     expect(held!.dz).toBeCloseTo(0, 10);
+  });
+
+  it('reads ball HEIGHT off the shadow — a lofted ball must not look grounded (F4)', () => {
+    const ground = ballShadowLift(0);
+    expect(ground.scale).toBe(1);
+    expect(ground.opacity).toBeCloseTo(0.25, 10); // grounded = exactly as shipped
+    // Monotone all the way up: every extra metre is visibly less shadow.
+    let prev = ground;
+    for (const h of [0.5, 1, 2, BALL_SHADOW_FADE_H]) {
+      const at = ballShadowLift(h);
+      expect(at.scale, `h=${h}`).toBeLessThan(prev.scale);
+      expect(at.opacity, `h=${h}`).toBeLessThan(prev.opacity);
+      prev = at;
+    }
+    // …but it never vanishes: a high ball still leaves a findable mark, and
+    // the curve clamps instead of inverting past the fade height.
+    expect(prev.scale).toBeGreaterThan(0.4);
+    expect(prev.opacity).toBeGreaterThan(0.08);
+    expect(ballShadowLift(50)).toEqual(prev);
+    expect(ballShadowLift(-1)).toEqual(ground); // never a negative lift
+  });
+
+  it('fades the trail proportionally instead of switching it on (F4)', () => {
+    expect(trailOpacity(TRAIL_MIN_SPEED, false)).toBeLessThan(trailOpacity(20, false));
+    expect(trailOpacity(0, false)).toBe(trailOpacity(TRAIL_MIN_SPEED, false)); // clamped, not negative
+    expect(trailOpacity(20, true)).toBeGreaterThan(trailOpacity(20, false)); // shots burn hotter
+    for (const s of [0, 3, TRAIL_MIN_SPEED, 10, 40]) {
+      expect(trailOpacity(s, true), `s=${s}`).toBeLessThanOrEqual(0.85);
+      expect(trailOpacity(s, false), `s=${s}`).toBeGreaterThan(0);
+    }
   });
 
   it('distinguishes a real tackle contact from an ordinary loose-ball touch', () => {

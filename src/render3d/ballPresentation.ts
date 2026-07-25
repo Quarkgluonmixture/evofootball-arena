@@ -37,6 +37,32 @@ export function carryDisplayOffset(
   };
 }
 
+/** Height at which the ball's shadow reaches its smallest/faintest (metres). */
+export const BALL_SHADOW_FADE_H = 3;
+/** Below this the ball is walking, and a wake would just be ink. */
+export const TRAIL_MIN_SPEED = 5.5;
+
+/**
+ * F4 — the height cue. The shadow was a fixed disc, so a ball three metres up
+ * was drawn exactly like one on the grass: nothing on screen said "in the
+ * air". It now shrinks and fades with height like a real contact shadow, and
+ * clamps well short of nothing so a high ball still leaves a findable mark.
+ */
+export function ballShadowLift(height: number): { scale: number; opacity: number } {
+  const lift = Math.min(1, Math.max(0, height) / BALL_SHADOW_FADE_H);
+  return { scale: 1 - 0.55 * lift, opacity: 0.25 * (1 - 0.62 * lift) };
+}
+
+/**
+ * Trail opacity for a loose ball's speed. Proportional rather than a hard
+ * switch: after F1b shrank the ball 36% the wake matters more, but a crawling
+ * ball must not paint the pitch.
+ */
+export function trailOpacity(speed: number, isShot: boolean): number {
+  const heat = Math.min(1, Math.max(0, speed - TRAIL_MIN_SPEED) / 8);
+  return (isShot ? 0.85 : 0.42) * (0.35 + 0.65 * heat);
+}
+
 export type ContactCue = 'touch' | 'tackle';
 
 /**
