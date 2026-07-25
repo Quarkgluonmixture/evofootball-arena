@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { Role } from '../sim/types';
 import type { AnimName } from './AnimationSystem';
+import type { StylePreset } from './stylePresets';
 
 /**
  * Procedural low-poly footballer: torso/head/arms/legs/feet built from shared
@@ -124,31 +125,78 @@ function sharedGeo(): NonNullable<typeof GEO> {
   return GEO;
 }
 
+/* ---------------- material language (Track F, F0 arm (a)) ---------------- */
+
+/*
+ * One switch decides whether bodies are PBR (`MeshStandardMaterial`, as
+ * shipped) or toon-ramped (`MeshToonMaterial` against a 4-step gradient — flat
+ * lit areas with hard terminator lines, the toy/board-game language). It is a
+ * module-level flag rather than a parameter because the kit factory is called
+ * from six places; the renderer sets it from its style preset BEFORE building
+ * any body, and `resetSharedPlayerResources` clears the caches with it.
+ */
+let TOON = false;
+let CONTACT_SHADOW = 1;
+let RAMP: THREE.DataTexture | null = null;
+
+/**
+ * Apply an F0 style preset to the body language. Call BEFORE constructing any
+ * PlayerModel — switching the material language drops the shared caches, so
+ * bodies built earlier would keep the old one.
+ */
+export function setBodyStyle(style: Pick<StylePreset, 'toon' | 'contactShadow'>): void {
+  CONTACT_SHADOW = style.contactShadow;
+  if (style.toon === TOON) return;
+  TOON = style.toon;
+  resetSharedPlayerResources();
+}
+
+/** 4-step toon ramp: shadow · mid · light · hot, as a 1×4 luminance texture. */
+function ramp(): THREE.DataTexture {
+  if (RAMP) return RAMP;
+  const steps = new Uint8Array([70, 140, 205, 255]);
+  const tex = new THREE.DataTexture(steps, steps.length, 1, THREE.RedFormat);
+  tex.minFilter = THREE.NearestFilter;
+  tex.magFilter = THREE.NearestFilter;
+  tex.generateMipmaps = false;
+  tex.needsUpdate = true;
+  RAMP = tex;
+  return tex;
+}
+
+/** A lit body material in whichever language the current style asked for.
+ *  Shared with the referee/linesman/coach models so one arm restyles them all. */
+export function bodyMat(color: number, roughness: number): THREE.Material {
+  return TOON
+    ? new THREE.MeshToonMaterial({ color, gradientMap: ramp() })
+    : new THREE.MeshStandardMaterial({ color, roughness });
+}
+
 /* Shared skin/boot/glove materials — lazy like GEO so a full renderer
    dispose (whose scene traverse disposes them) can reset the cache. */
 let MATS: {
-  skin: THREE.MeshStandardMaterial;
-  dark: THREE.MeshStandardMaterial;
-  glove: THREE.MeshStandardMaterial;
+  skin: THREE.Material;
+  dark: THREE.Material;
+  glove: THREE.Material;
 } | null = null;
 
 function sharedMats(): NonNullable<typeof MATS> {
   if (MATS) return MATS;
   MATS = {
-    skin: new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 }),
-    dark: new THREE.MeshStandardMaterial({ color: 0x14171e, roughness: 0.65 }),
-    glove: new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.85 }),
+    skin: bodyMat(0xe0b089, 0.8),
+    dark: bodyMat(0x14171e, 0.65),
+    glove: bodyMat(0xf1f5f9, 0.85),
   };
   return MATS;
 }
 
 /* Per-tone skin + per-color hair materials (Phase 76) — small shared caches,
    reset together with GEO/MATS on a full renderer dispose. */
-const TONE_MATS = new Map<number, THREE.MeshStandardMaterial>();
-function toneMat(color: number, roughness = 0.8): THREE.MeshStandardMaterial {
+const TONE_MATS = new Map<number, THREE.Material>();
+function toneMat(color: number, roughness = 0.8): THREE.Material {
   let m = TONE_MATS.get(color);
   if (!m) {
-    m = new THREE.MeshStandardMaterial({ color, roughness });
+    m = bodyMat(color, roughness);
     TONE_MATS.set(color, m);
   }
   return m;
@@ -224,9 +272,9 @@ const BUILD: Record<Role, { torsoW: number; torsoD: number; head: number; leanBi
 };
 
 export interface KitMaterials {
-  shirt: THREE.MeshStandardMaterial;
-  shorts: THREE.MeshStandardMaterial;
-  sock: THREE.MeshStandardMaterial;
+  shirt: THREE.Material;
+  shorts: THREE.Material;
+  sock: THREE.Material;
   /** Back-number digit color, picked for contrast against the shirt. */
   numberColor: string;
 }
@@ -235,9 +283,9 @@ export function makeKit(primary: number, secondary: number): KitMaterials {
   // Digits must survive on any shirt: white on dark kits, near-black on pale.
   const lum = 0.299 * ((primary >> 16) & 0xff) + 0.587 * ((primary >> 8) & 0xff) + 0.114 * (primary & 0xff);
   return {
-    shirt: new THREE.MeshStandardMaterial({ color: primary, roughness: 0.7 }),
-    shorts: new THREE.MeshStandardMaterial({ color: secondary, roughness: 0.75 }),
-    sock: new THREE.MeshStandardMaterial({ color: primary, roughness: 0.8 }),
+    shirt: bodyMat(primary, 0.7),
+    shorts: bodyMat(secondary, 0.75),
+    sock: bodyMat(primary, 0.8),
     numberColor: lum > 150 ? '#14171e' : '#f5f7fa',
   };
 }
@@ -417,7 +465,9 @@ export class PlayerModel {
     // Grounding blob so players read as standing on the grass.
     const blob = new THREE.Mesh(
       new THREE.CircleGeometry(isGK ? 0.64 : 0.58, 14),
-      new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.34, depthWrite: false }),
+      new THREE.MeshBasicMaterial({
+        color: 0x000000, transparent: true, opacity: 0.34 * CONTACT_SHADOW, depthWrite: false,
+      }),
     );
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.02;

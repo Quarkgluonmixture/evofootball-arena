@@ -21,10 +21,11 @@ import { PerceptionSandbox3D, type PerceptionView } from './PerceptionSandbox3D'
 import { createPitch } from './PitchModel';
 import {
   HUMAN_MODEL_SCALE, PlayerModel, disposeKit, makeKit, resetSharedPlayerResources,
-  type KitMaterials,
+  setBodyStyle, type KitMaterials,
 } from './PlayerModel';
 import type { FxEvent, RenderState, RenderTheme } from './RenderStateAdapter';
-import { createScene } from './SceneFactory';
+import { createScene, toneMappingFor } from './SceneFactory';
+import { stylePreset, type StylePreset } from './stylePresets';
 import { BOX_DEPTH, BOX_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import { TEAM_SIZE } from '../sim/types';
 
@@ -38,6 +39,9 @@ const WALKOFF_SPEED = 1.4;
  * which the GameApp catches to fall back to 2D.
  */
 export class ThreeMatchRenderer {
+  /** The F0 style preset this renderer was built with (read-only at runtime:
+   * switching styles means rebuilding, which GameApp does by re-attaching). */
+  readonly style: StylePreset;
   private renderer: THREE.WebGLRenderer;
   private scene: THREE.Scene;
   private cameraCtl: CameraController;
@@ -56,8 +60,10 @@ export class ThreeMatchRenderer {
   /** Touchline coaches (Phase 66, N3) — own group so raycast picking never
    * sees them. Empty when no coach travels with the team sheet. */
   private coachesGroup = new THREE.Group();
-  /** The on-pitch referee (Phase 75) — position synthesized render-side. */
-  private referee = new RefereeModel();
+  /** The on-pitch referee (Phase 75) — position synthesized render-side.
+   * Built in the constructor, not as a field: the F0 material language must be
+   * set before any body exists, and field initializers run first. */
+  private referee: RefereeModel;
   private prevOwnerG: number | null = null;
   private prevLastTouchG: number | null | undefined = undefined;
   private prevHeaderCount = 0;
@@ -66,7 +72,7 @@ export class ThreeMatchRenderer {
   private arousalAccum = 0;
   /** The assistants (Phase 77): opposite touchlines, one half each —
    * their running line IS the offside line. */
-  private linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];
+  private linesmen: [LinesmanModel, LinesmanModel];
   private coaches: CoachModel[] = [];
   /** The living crowd (66.1) — idles, ripples on chances, erupts on goals. */
   private crowd = new CrowdSystem();
@@ -109,8 +115,14 @@ export class ThreeMatchRenderer {
   /** Tap on the broadcast score bug (Phase 33: pops the tactical-DNA clash). */
   onScoreBugTap: (() => void) | null = null;
 
-  constructor(host: HTMLElement) {
+  constructor(host: HTMLElement, style: StylePreset = stylePreset()) {
     this.host = host;
+    this.style = style;
+    // F0: the body material language is a module-level switch shared by every
+    // kit factory, so it must be set BEFORE the first body is built.
+    setBodyStyle(style);
+    this.referee = new RefereeModel();
+    this.linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];
     this.perception = new PerceptionSandbox3D(host);
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     // Named so tools can tell the stage apart from the tacmap inset (68) —
@@ -120,11 +132,13 @@ export class ThreeMatchRenderer {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.toneMapping = toneMappingFor(style);
+    this.renderer.toneMappingExposure = style.exposure;
     host.appendChild(this.renderer.domElement);
 
-    this.scene = createScene();
+    this.scene = createScene(style);
     const maxAniso = this.renderer.capabilities.getMaxAnisotropy();
-    this.scene.add(createPitch(maxAniso));
+    this.scene.add(createPitch(maxAniso, style));
     this.goals = [new Goal3D(1, maxAniso), new Goal3D(-1, maxAniso)];
     this.scene.add(this.goals[0].group, this.goals[1].group);
     this.scene.add(this.ball.root, this.ball.worldTrail, this.overlays.root, this.perception.root, this.fx.root, this.playersGroup, this.coachesGroup, this.crowd.root, this.broadcast.root, this.referee.root, this.linesmen[0].root, this.linesmen[1].root);

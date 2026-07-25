@@ -12,6 +12,10 @@ import {
   buildOverlays, buildRenderState, buildRenderTheme, type RenderState,
 } from '../render3d/RenderStateAdapter';
 import { ShootoutTheater } from '../render3d/ShootoutTheater';
+import {
+  DEFAULT_LIGHTING, DEFAULT_STYLE, isLighting, isStyleId, stylePreset,
+  type Lighting, type StyleId,
+} from '../render3d/stylePresets';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
 import {
@@ -425,6 +429,13 @@ export class GameApp implements GameActions {
       showCeremony: () => this.showCeremony(),
       clashVisible: () => this.clash.isVisible,
       audioState: () => ({ ...this.music.state, paused: this.paused }),
+      // Track F / F0: the screenshot harness shoots every style arm.
+      style: () => ({ id: this.styleId, lighting: this.lighting }),
+      setStyle: (id: unknown, lighting: unknown) => {
+        if (!isStyleId(id) || !isLighting(lighting)) return false;
+        this.setStyle(id, lighting);
+        return true;
+      },
       titleVisible: () => this.titleScreen?.isVisible ?? false,
       skipTitle: () => this.titleScreen?.skip(),
       reelActive: () => this.reel !== null,
@@ -1465,26 +1476,15 @@ export class GameApp implements GameActions {
 
   /* ---------------- 3D view & replay actions ---------------- */
 
+  /** F0 style arm + lighting the 3D view is built with (defaults = shipped). */
+  private styleId: StyleId = DEFAULT_STYLE;
+  private lighting: Lighting = DEFAULT_LIGHTING;
+
   setViewMode(v: ViewMode): void {
     if (v === this.viewMode) return;
     if (v === '3d') {
       try {
-        if (!this.three) {
-          this.three = new ThreeMatchRenderer(this.threeHost);
-          this.three.onSelectPlayer = (gid) => {
-            this.selectedGid = this.selectedGid === gid ? null : gid;
-          };
-          this.three.onFxEvent = (type) => this.sound.play(type);
-          this.three.onArousal = (a) => this.sound.setArousal(a);
-          this.three.onCarry = (on) => this.sound.setCarry(on);
-          this.three.onScoreBugTap = () => this.toggleClash();
-          // B2: the sandbox's own awareness chip flips the synthetic value.
-          this.three.onPerceptionAwarenessToggle = () => {
-            this.flags.perceptionLowAwareness = !this.flags.perceptionLowAwareness;
-          };
-          this.three.setFxQuality(this.fxQuality);
-          if (this.match) this.three.attach(buildRenderTheme(this.match));
-        }
+        this.build3d();
       } catch (err) {
         console.error('3D init failed:', err);
         this.feed.pushSystem('⚠️ 3D unavailable (WebGL init failed) — staying in 2D.');
@@ -1504,6 +1504,44 @@ export class GameApp implements GameActions {
       this.three = null;
     }
     this.left.setViewUI(this.viewMode, this.three?.cameraMode ?? 'tactical');
+  }
+
+  /** Build the 3D renderer under the current F0 style preset (no-op if it
+   * already exists). Extracted from setViewMode so a style switch can rebuild. */
+  private build3d(): void {
+    if (this.three) return;
+    this.three = new ThreeMatchRenderer(this.threeHost, stylePreset(this.styleId, this.lighting));
+    this.three.onSelectPlayer = (gid) => {
+      this.selectedGid = this.selectedGid === gid ? null : gid;
+    };
+    this.three.onFxEvent = (type) => this.sound.play(type);
+    this.three.onArousal = (a) => this.sound.setArousal(a);
+    this.three.onCarry = (on) => this.sound.setCarry(on);
+    this.three.onScoreBugTap = () => this.toggleClash();
+    // B2: the sandbox's own awareness chip flips the synthetic value.
+    this.three.onPerceptionAwarenessToggle = () => {
+      this.flags.perceptionLowAwareness = !this.flags.perceptionLowAwareness;
+    };
+    this.three.setFxQuality(this.fxQuality);
+    if (this.match) this.three.attach(buildRenderTheme(this.match));
+  }
+
+  /**
+   * Track F / F0: rebuild the 3D view under a different style arm + lighting.
+   * Tooling-facing (exposed on `__evo` so the screenshot harness can shoot
+   * every arm at the same frozen tick); nothing in the UI calls it yet, and
+   * the defaults reproduce the shipped look.
+   */
+  setStyle(id: StyleId, lighting: Lighting): void {
+    this.styleId = id;
+    this.lighting = lighting;
+    if (this.viewMode !== '3d' || !this.three) return;
+    const camera = this.three.cameraMode;
+    this.three.dispose();
+    this.three = null;
+    this.build3d();
+    this.three!.setCameraMode(camera);
+    this.left.setViewUI(this.viewMode, camera);
   }
 
   setCameraMode(m: CameraMode): void {

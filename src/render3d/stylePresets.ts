@@ -1,0 +1,263 @@
+/**
+ * Track F / F0 — the style-direction showcase, as DATA.
+ *
+ * F0's question is "what should this game look like", and it is answered by
+ * the user's eyes, not a probe. So the three candidate directions live here as
+ * plain preset objects that `createScene`, `createPitch`, `PlayerModel` and the
+ * renderer read. Nothing here touches the sim; every value is a colour, a
+ * light, a material flag or a canvas-painting parameter.
+ *
+ * The arms (F0 row, trimmed on the user's call 2026-07-25 — the
+ * broadcast-realism arm was dropped rather than built: it needs gLTF rigs and
+ * skeletal animation, which contradicts ART_DIRECTION's procedural-first rule,
+ * and the user's reference image is stylised, not realist):
+ *
+ * - `current`    the baseline, byte-for-byte today's look. The control.
+ * - `coherence`  same palette, one material language: ACES tone mapping and a
+ *                managed exposure, unified atmosphere, crisper turf grain.
+ *                Answers "how much of the gap is just incoherence?"
+ * - `toy`        the toy/board-game direction: toon ramp shading, flat vivid
+ *                palette, groomed-and-WORN turf, softer paint, warmer key.
+ *
+ * Lighting is ORTHOGONAL to the arm (user 2026-07-25: "白天也做一版给我挑").
+ * `night` reproduces the committed floodlit diorama; `day` is the open
+ * question against ART_DIRECTION's "atmosphere darker than the surface" rule.
+ */
+
+export type StyleId = 'current' | 'coherence' | 'toy';
+export type Lighting = 'night' | 'day';
+
+export interface GrassPalette {
+  /** Apron (outside the touchlines). */
+  base: string;
+  /** The two mowing stripes. */
+  stripeA: string;
+  stripeB: string;
+  stripes: number;
+  /** Cross-mow overlay strength (0 = none). */
+  crossAlpha: number;
+  /** Turf speckle: blob count, opacity, and blob radius range in METRES.
+   * Count and radius must move together — 900 two-metre discs stack into
+   * visible bubbles, which is exactly what the first F0 pass produced. */
+  grainCount: number;
+  grainAlpha: number;
+  grainRadius: [number, number];
+  /** Worn/bare patches — goalmouths, centre circle, wing channels. 0 = none. */
+  wear: number;
+  wearColor: string;
+}
+
+export interface StylePreset {
+  id: StyleId;
+  lighting: Lighting;
+  /** Renderer. `none` is three's default (what the game shipped with). */
+  toneMapping: 'none' | 'aces' | 'neutral';
+  exposure: number;
+  /** Atmosphere. */
+  background: number;
+  fog: { color: number; near: number; far: number } | null;
+  hemi: { sky: number; ground: number; intensity: number };
+  sun: { color: number; intensity: number; pos: [number, number, number] };
+  /** Extra flat fill; 0 = none. Toon shading needs a floor or it goes muddy. */
+  ambient: { color: number; intensity: number } | null;
+  pedestal: number;
+  /** Pitch surface. */
+  grass: GrassPalette;
+  lineAlpha: number;
+  /** Paint width in metres. */
+  lineWidth: number;
+  /** Adboards + terraces + floodlight towers. */
+  boards: [number, number, number];
+  boardStripe: number;
+  terrace: [number, number];
+  floodlights: boolean;
+  /** Bodies: toon ramp materials instead of PBR standard. */
+  toon: boolean;
+  /** Fake contact-shadow opacity multiplier (1 = as shipped). */
+  contactShadow: number;
+}
+
+/** Today's look, exactly — every literal lifted from the shipped files. */
+const CURRENT_NIGHT: StylePreset = {
+  id: 'current',
+  lighting: 'night',
+  toneMapping: 'none',
+  exposure: 1,
+  background: 0x0b1220,
+  fog: { color: 0x0b1220, near: 160, far: 320 },
+  hemi: { sky: 0xbdd4ff, ground: 0x1c2b1e, intensity: 1.05 },
+  sun: { color: 0xfff2df, intensity: 2.2, pos: [-40, 70, 30] },
+  ambient: null,
+  pedestal: 0x111a2c,
+  grass: {
+    base: '#1f5c2e',
+    stripeA: '#2d7a3e',
+    stripeB: '#37904b',
+    stripes: 14,
+    crossAlpha: 0.025,
+    grainCount: 260,
+    grainAlpha: 1,
+    grainRadius: [0.35, 2.55],
+    wear: 0,
+    wearColor: '#8a6a3a',
+  },
+  lineAlpha: 0.96,
+  lineWidth: 0.24,
+  boards: [0x16223a, 0x1d3a5f, 0x24304a],
+  boardStripe: 0x4ade80,
+  terrace: [0x131c30, 0x1a2742],
+  floodlights: true,
+  toon: false,
+  contactShadow: 1,
+};
+
+/**
+ * Relight the CURRENT palette for daylight without restyling anything: warm
+ * high key, pale sky, fog pushed back, floodlights off (a lit lamp at noon is
+ * the exact incoherence this track exists to kill).
+ */
+const CURRENT_DAY: StylePreset = {
+  ...CURRENT_NIGHT,
+  lighting: 'day',
+  background: 0x9fc6e8,
+  fog: { color: 0xbdd8ee, near: 200, far: 420 },
+  hemi: { sky: 0xdcefff, ground: 0x4a6b3c, intensity: 1.55 },
+  sun: { color: 0xfff6e6, intensity: 2.5, pos: [-40, 80, 30] },
+  pedestal: 0x2c3d52,
+  floodlights: false,
+};
+
+/**
+ * Arm (c): the same palette and the same models, given ONE material language.
+ * ACES tone mapping with a managed exposure is the single biggest cheap win —
+ * the game currently ships with three's default NoToneMapping, so every bright
+ * kit clips and every shadow crushes. Grain is doubled so turf reads as turf.
+ */
+const COHERENCE_NIGHT: StylePreset = {
+  ...CURRENT_NIGHT,
+  id: 'coherence',
+  toneMapping: 'aces',
+  exposure: 1.18,
+  hemi: { sky: 0xc4d8ff, ground: 0x22331f, intensity: 1.15 },
+  sun: { color: 0xfff4e2, intensity: 2.9, pos: [-40, 70, 30] },
+  ambient: { color: 0x2a3a52, intensity: 0.25 },
+  grass: {
+    ...CURRENT_NIGHT.grass,
+    base: '#1c5429',
+    stripeA: '#2f7d40',
+    stripeB: '#3a9550',
+    crossAlpha: 0.03,
+    // Finer and denser than shipped: turf grain, not soap bubbles.
+    grainCount: 900,
+    grainAlpha: 0.85,
+    grainRadius: [0.18, 0.9],
+  },
+  // One palette family for all the chrome, instead of three unrelated blues.
+  boards: [0x18243c, 0x1e3050, 0x233a5c],
+  terrace: [0x141e33, 0x1b2a46],
+  contactShadow: 0.85,
+};
+
+const COHERENCE_DAY: StylePreset = {
+  ...COHERENCE_NIGHT,
+  lighting: 'day',
+  background: 0x9fc6e8,
+  fog: { color: 0xc6dcf0, near: 200, far: 420 },
+  hemi: { sky: 0xe4f2ff, ground: 0x50703e, intensity: 1.7 },
+  sun: { color: 0xfff8ec, intensity: 3.1, pos: [-40, 80, 30] },
+  ambient: { color: 0xbcd4ea, intensity: 0.35 },
+  exposure: 1.05,
+  pedestal: 0x33465c,
+  boards: [0x30425e, 0x3a5070, 0x44597a],
+  terrace: [0x33405c, 0x3f4d6b],
+  floodlights: false,
+};
+
+/**
+ * Arm (a): the toy/board-game world the commander recommended and the user's
+ * reference image points at. Toon ramp shading, a flat vivid palette that owes
+ * nothing to PBR, and turf that has actually been PLAYED on — the goalmouth
+ * scuffs and wing-channel wear are what separates a real pitch from a green
+ * rectangle. Paint is softened: a groomed pitch's lines are chalk, not vector.
+ */
+const TOY_DAY: StylePreset = {
+  id: 'toy',
+  lighting: 'day',
+  toneMapping: 'neutral',
+  exposure: 1.12,
+  background: 0x8ec5e6,
+  fog: { color: 0xb9dcef, near: 220, far: 460 },
+  hemi: { sky: 0xeaf6ff, ground: 0x63884a, intensity: 1.5 },
+  sun: { color: 0xfff3d6, intensity: 2.4, pos: [-34, 66, 26] },
+  ambient: { color: 0xd8ecff, intensity: 0.55 },
+  pedestal: 0x6a5138,
+  grass: {
+    base: '#3f8a3f',
+    stripeA: '#4fa04a',
+    stripeB: '#5cb356',
+    stripes: 10,
+    crossAlpha: 0.05,
+    grainCount: 1600,
+    grainAlpha: 0.75,
+    grainRadius: [0.08, 0.45],
+    wear: 0.85,
+    wearColor: '#a8814a',
+  },
+  lineAlpha: 0.8,
+  lineWidth: 0.3,
+  boards: [0xe8e2d2, 0xd8cfb8, 0xc9bfa4],
+  boardStripe: 0x2f6f3a,
+  terrace: [0x76839a, 0x8794ab],
+  floodlights: false,
+  toon: true,
+  contactShadow: 1.15,
+};
+
+/** The same toy world at night — floodlit, saturated, warmer key. */
+const TOY_NIGHT: StylePreset = {
+  ...TOY_DAY,
+  lighting: 'night',
+  toneMapping: 'neutral',
+  exposure: 1.2,
+  background: 0x101a2e,
+  fog: { color: 0x142138, near: 170, far: 340 },
+  hemi: { sky: 0xa9c6ef, ground: 0x2c4230, intensity: 1.15 },
+  sun: { color: 0xffeec9, intensity: 2.6, pos: [-34, 72, 26] },
+  ambient: { color: 0x33465f, intensity: 0.4 },
+  pedestal: 0x3a2f22,
+  grass: {
+    ...TOY_DAY.grass,
+    base: '#2e6b32',
+    stripeA: '#3b813c',
+    stripeB: '#479046',
+    wearColor: '#8a6a3d',
+  },
+  boards: [0xdcd6c6, 0xccc3ac, 0xbdb398],
+  terrace: [0x2b3346, 0x353d52],
+  floodlights: true,
+};
+
+const PRESETS: Record<StyleId, Record<Lighting, StylePreset>> = {
+  current: { night: CURRENT_NIGHT, day: CURRENT_DAY },
+  coherence: { night: COHERENCE_NIGHT, day: COHERENCE_DAY },
+  toy: { night: TOY_NIGHT, day: TOY_DAY },
+};
+
+export const STYLE_IDS: readonly StyleId[] = ['current', 'coherence', 'toy'];
+export const LIGHTINGS: readonly Lighting[] = ['night', 'day'];
+
+/** The shipped default: unchanged until F0 reports and the user picks. */
+export const DEFAULT_STYLE: StyleId = 'current';
+export const DEFAULT_LIGHTING: Lighting = 'night';
+
+export function stylePreset(id: StyleId = DEFAULT_STYLE, lighting: Lighting = DEFAULT_LIGHTING): StylePreset {
+  return PRESETS[id][lighting];
+}
+
+export function isStyleId(v: unknown): v is StyleId {
+  return typeof v === 'string' && (STYLE_IDS as readonly string[]).includes(v);
+}
+
+export function isLighting(v: unknown): v is Lighting {
+  return v === 'night' || v === 'day';
+}

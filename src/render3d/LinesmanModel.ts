@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { HUMAN_MODEL_SCALE } from './PlayerModel';
+import { bodyMat, HUMAN_MODEL_SCALE } from './PlayerModel';
 import { lerpAngle, type RenderPlayer, type RenderState } from './RenderStateAdapter';
 
 /**
@@ -56,9 +56,10 @@ export class LinesmanModel {
 
   constructor(end: 1 | -1, zSide: 1 | -1) {
     this.end = end;
-    const kit = new THREE.MeshStandardMaterial({ color: 0x16181d, roughness: 0.75 });
-    const trim = new THREE.MeshStandardMaterial({ color: 0xfacc15, roughness: 0.7 });
-    const skin = new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 });
+    // Same material language as the players (F0): PBR or toon ramp.
+    const kit = bodyMat(0x16181d, 0.75);
+    const trim = bodyMat(0xfacc15, 0.7);
+    const skin = bodyMat(0xe0b089, 0.8);
     const flagCloth = new THREE.MeshBasicMaterial({ color: 0xf97316, side: THREE.DoubleSide });
 
     this.lean.position.y = 1.06;

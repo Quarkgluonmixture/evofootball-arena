@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import type { Side } from '../sim/types';
-import { HUMAN_MODEL_SCALE } from './PlayerModel';
+import { bodyMat, HUMAN_MODEL_SCALE } from './PlayerModel';
 import { lerpAngle } from './RenderStateAdapter';
 
 /**
@@ -47,10 +47,11 @@ export class CoachModel {
   ) {
     this.side = side;
     this.tinker = tinker;
-    const suit = new THREE.MeshStandardMaterial({ color: 0x262a33, roughness: 0.7 });
-    const shirt = new THREE.MeshStandardMaterial({ color: 0xe8e9ec, roughness: 0.85 });
-    const skin = new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 });
-    const scarf = new THREE.MeshStandardMaterial({ color: accent, roughness: 0.75 });
+    // Same material language as the players (F0): PBR or toon ramp.
+    const suit = bodyMat(0x262a33, 0.7);
+    const shirt = bodyMat(0xe8e9ec, 0.85);
+    const skin = bodyMat(0xe0b089, 0.8);
+    const scarf = bodyMat(accent, 0.75);
 
     // Torso pivots at the hips so poses move the whole upper body.
     this.lean.position.y = 1.06;

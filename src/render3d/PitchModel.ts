@@ -2,19 +2,23 @@ import * as THREE from 'three';
 import {
   BOX_DEPTH, BOX_WIDTH, CENTER_CIRCLE_R, FIELD_SCALE, GOAL_WIDTH, HALF_L, HALF_W,
 } from '../sim/constants';
+import { stylePreset, type StylePreset } from './stylePresets';
 
 /**
  * The playing surface: one plane with a procedurally painted canvas texture —
  * mowing stripes and every line in a single draw call. Corner flags are real
  * geometry. (Goals live in GoalModel; they must be 3D.)
+ *
+ * Palette, turf grain, wear and paint softness all come from the F0 style
+ * preset; the default preset repaints today's surface exactly.
  */
-export function createPitch(maxAnisotropy: number): THREE.Group {
+export function createPitch(maxAnisotropy: number, style: StylePreset = stylePreset()): THREE.Group {
   const group = new THREE.Group();
 
   const apron = 5; // grass margin outside the touchlines
   const w = (HALF_L + apron) * 2;
   const h = (HALF_W + apron) * 2;
-  const texture = paintPitchTexture(apron);
+  const texture = paintPitchTexture(apron, style);
   texture.anisotropy = Math.min(8, maxAnisotropy);
   texture.colorSpace = THREE.SRGBColorSpace;
 
@@ -32,7 +36,7 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
   // past the shrunk pitch/stands (the green top-stripe "beams" poking out).
   const s = FIELD_SCALE;
   const boardGeo = new THREE.BoxGeometry(24 * s, 0.9, 0.25);
-  const boardMats = [0x16223a, 0x1d3a5f, 0x24304a].map(
+  const boardMats = style.boards.map(
     (c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.85 }),
   );
   const boards: Array<{ x: number; z: number; rot: number }> = [
@@ -53,7 +57,7 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
     // Accent stripe along the top edge.
     const stripe = new THREE.Mesh(
       new THREE.BoxGeometry(24 * s, 0.08, 0.27),
-      new THREE.MeshStandardMaterial({ color: 0x4ade80, roughness: 0.6 }),
+      new THREE.MeshStandardMaterial({ color: style.boardStripe, roughness: 0.6 }),
     );
     stripe.position.set(b.x, 0.92, b.z);
     stripe.rotation.y = b.rot;
@@ -79,8 +83,9 @@ export function createPitch(maxAnisotropy: number): THREE.Group {
     }
   }
 
-  addTerraces(group);
-  addFloodlights(group);
+  addTerraces(group, style);
+  // A lit floodlight at noon is exactly the incoherence Track F exists to kill.
+  if (style.floodlights) addFloodlights(group);
 
   return group;
 }
@@ -134,9 +139,9 @@ export function terraceSlabs(): TerraceSlab[] {
  * it animates per frame, so it belongs to the renderer's update loop, not
  * the static pitch group.
  */
-function addTerraces(group: THREE.Group): void {
-  const mat = new THREE.MeshStandardMaterial({ color: 0x131c30, roughness: 0.95 });
-  const seatMat = new THREE.MeshStandardMaterial({ color: 0x1a2742, roughness: 0.9 });
+function addTerraces(group: THREE.Group, style: StylePreset): void {
+  const mat = new THREE.MeshStandardMaterial({ color: style.terrace[0], roughness: 0.95 });
+  const seatMat = new THREE.MeshStandardMaterial({ color: style.terrace[1], roughness: 0.9 });
   terraceSlabs().forEach((s, i) => {
     const slab = new THREE.Mesh(new THREE.BoxGeometry(s.w, 1.1, 2.4), i % 2 === 0 ? mat : seatMat);
     slab.position.set(s.x, s.y - 0.55, s.z);
@@ -168,7 +173,50 @@ function addFloodlights(group: THREE.Group): void {
   }
 }
 
-function paintPitchTexture(apron: number): THREE.CanvasTexture {
+/**
+ * Worn turf, painted as soft blotches over the mowing. The zones are where a
+ * real pitch actually goes bare: both goalmouths, the centre circle, and the
+ * two wing channels. `strength` scales blotch count and opacity together.
+ */
+function paintWear(
+  ctx: CanvasRenderingContext2D,
+  strength: number,
+  color: string,
+  rand: () => number,
+  X: (x: number) => number,
+  Z: (z: number) => number,
+  PX: number,
+): void {
+  const zones: Array<{ x: number; z: number; rx: number; rz: number; w: number }> = [
+    { x: -HALF_L + BOX_DEPTH * 0.35, z: 0, rx: BOX_DEPTH * 0.5, rz: GOAL_WIDTH * 1.1, w: 1 },
+    { x: HALF_L - BOX_DEPTH * 0.35, z: 0, rx: BOX_DEPTH * 0.5, rz: GOAL_WIDTH * 1.1, w: 1 },
+    { x: 0, z: 0, rx: CENTER_CIRCLE_R * 1.1, rz: CENTER_CIRCLE_R * 0.9, w: 0.65 },
+    { x: 0, z: -HALF_W * 0.78, rx: HALF_L * 0.62, rz: HALF_W * 0.16, w: 0.5 },
+    { x: 0, z: HALF_W * 0.78, rx: HALF_L * 0.62, rz: HALF_W * 0.16, w: 0.5 },
+  ];
+  const rgb = [
+    parseInt(color.slice(1, 3), 16), parseInt(color.slice(3, 5), 16), parseInt(color.slice(5, 7), 16),
+  ];
+  for (const zone of zones) {
+    const blotches = Math.round(90 * strength * zone.w);
+    for (let i = 0; i < blotches; i++) {
+      // Bias toward the zone centre so edges fade instead of ending hard.
+      const t = rand() ** 0.7;
+      const a = rand() * Math.PI * 2;
+      const px = X(zone.x + Math.cos(a) * zone.rx * t);
+      const pz = Z(zone.z + Math.sin(a) * zone.rz * t);
+      const r = (0.4 + rand() * 1.5) * PX;
+      const alpha = 0.17 * strength * zone.w * (1 - t * 0.75);
+      ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha.toFixed(4)})`;
+      ctx.beginPath();
+      ctx.arc(px, pz, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+function paintPitchTexture(apron: number, style: StylePreset): THREE.CanvasTexture {
+  const g = style.grass;
   const PX = 16; // pixels per meter
   const cw = (HALF_L + apron) * 2 * PX;
   const ch = (HALF_W + apron) * 2 * PX;
@@ -182,17 +230,16 @@ function paintPitchTexture(apron: number): THREE.CanvasTexture {
 
   // Grass base: darker apron, then dual-direction mowing inside the lines —
   // broad lengthwise stripes with a faint crosshatch for a groomed look.
-  ctx.fillStyle = '#1f5c2e';
+  ctx.fillStyle = g.base;
   ctx.fillRect(0, 0, cw, ch);
-  const stripes = 14;
-  const stripeW = (HALF_L * 2 * PX) / stripes;
-  for (let i = 0; i < stripes; i++) {
-    ctx.fillStyle = i % 2 === 0 ? '#2d7a3e' : '#37904b';
+  const stripeW = (HALF_L * 2 * PX) / g.stripes;
+  for (let i = 0; i < g.stripes; i++) {
+    ctx.fillStyle = i % 2 === 0 ? g.stripeA : g.stripeB;
     ctx.fillRect(X(-HALF_L) + i * stripeW, Z(-HALF_W), stripeW, HALF_W * 2 * PX);
   }
   const cross = 8;
   const crossH = (HALF_W * 2 * PX) / cross;
-  ctx.fillStyle = 'rgba(255,255,255,0.025)';
+  ctx.fillStyle = `rgba(255,255,255,${g.crossAlpha})`;
   for (let i = 0; i < cross; i += 2) {
     ctx.fillRect(X(-HALF_L), Z(-HALF_W) + i * crossH, HALF_L * 2 * PX, crossH);
   }
@@ -201,18 +248,26 @@ function paintPitchTexture(apron: number): THREE.CanvasTexture {
   // (LCG — purely cosmetic, stable across reloads.)
   let lcg = 1234567;
   const rand = () => ((lcg = (lcg * 48271) % 2147483647) / 2147483647);
-  for (let i = 0; i < 260; i++) {
+  for (let i = 0; i < g.grainCount; i++) {
     const px = X(-HALF_L) + rand() * HALF_L * 2 * PX;
     const pz = Z(-HALF_W) + rand() * HALF_W * 2 * PX;
-    const r = (0.35 + rand() * 2.2) * PX;
-    ctx.fillStyle = rand() < 0.5 ? 'rgba(16,52,26,0.06)' : 'rgba(214,255,214,0.045)';
+    const [rMin, rMax] = g.grainRadius;
+    const r = (rMin + rand() * (rMax - rMin)) * PX;
+    const dark = 0.06 * g.grainAlpha;
+    const light = 0.045 * g.grainAlpha;
+    ctx.fillStyle = rand() < 0.5 ? `rgba(16,52,26,${dark})` : `rgba(214,255,214,${light})`;
     ctx.beginPath();
     ctx.arc(px, pz, r, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  ctx.strokeStyle = 'rgba(247,250,253,0.96)';
-  ctx.lineWidth = 0.24 * PX;
+  // Wear (F0's toy arm; 0 elsewhere): a pitch that has been PLAYED on. Bare
+  // goalmouths, a scuffed centre circle and worn wing channels — the thing
+  // that separates a real surface from a green rectangle. Deterministic.
+  if (g.wear > 0) paintWear(ctx, g.wear, g.wearColor, rand, X, Z, PX);
+
+  ctx.strokeStyle = `rgba(247,250,253,${style.lineAlpha})`;
+  ctx.lineWidth = style.lineWidth * PX;
   ctx.lineCap = 'round';
 
   // Touchlines + halfway line.

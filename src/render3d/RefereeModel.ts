@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { HALF_L, HALF_W } from '../sim/constants';
-import { HUMAN_MODEL_SCALE } from './PlayerModel';
+import { bodyMat, HUMAN_MODEL_SCALE } from './PlayerModel';
 import { lerpAngle, type RenderState } from './RenderStateAdapter';
 
 /**
@@ -50,9 +50,10 @@ export class RefereeModel {
   private seen = new Set<string>();
 
   constructor() {
-    const kit = new THREE.MeshStandardMaterial({ color: 0x16181d, roughness: 0.75 });
-    const trim = new THREE.MeshStandardMaterial({ color: 0xfacc15, roughness: 0.7 });
-    const skin = new THREE.MeshStandardMaterial({ color: 0xe0b089, roughness: 0.8 });
+    // Same material language as the players (F0): PBR or toon ramp.
+    const kit = bodyMat(0x16181d, 0.75);
+    const trim = bodyMat(0xfacc15, 0.7);
+    const skin = bodyMat(0xe0b089, 0.8);
 
     this.lean.position.y = 1.06;
     const torso = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.95, 0.44), kit);

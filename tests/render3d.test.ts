@@ -16,6 +16,9 @@ import {
 } from '../src/render3d/PlayerModel';
 import { refereeTarget } from '../src/render3d/RefereeModel';
 import {
+  DEFAULT_LIGHTING, DEFAULT_STYLE, isLighting, isStyleId, LIGHTINGS, STYLE_IDS, stylePreset,
+} from '../src/render3d/stylePresets';
+import {
   buildRenderState, buildRenderTheme, interpolateStates, lerpAngle,
   type RenderPlayer, type RenderState,
 } from '../src/render3d/RenderStateAdapter';
@@ -411,6 +414,64 @@ describe('player scale honesty (Track F1)', () => {
   it('bodyFor stays inside the identity-height band the anchor was derived at', () => {
     for (const n of ['Zubat', 'Eska', 'Ovie', 'Mirek', 'Yano', 'Kade', 'Brix']) {
       expect(bodyFor(n, 0.5).height).toBeLessThanOrEqual(MAX_BODY_HEIGHT);
+    }
+  });
+});
+
+describe('style presets (Track F0, pure data)', () => {
+  it('the default preset still reproduces the SHIPPED look, literal for literal', () => {
+    // F0 must not change the game while it is only a showcase. If someone
+    // edits `current`/night to make a screenshot look better, this fails.
+    const p = stylePreset();
+    expect([p.id, p.lighting]).toEqual([DEFAULT_STYLE, DEFAULT_LIGHTING]);
+    expect(p.toneMapping).toBe('none'); // three's default — what shipped
+    expect(p.exposure).toBe(1);
+    expect(p.background).toBe(0x0b1220);
+    expect(p.fog).toEqual({ color: 0x0b1220, near: 160, far: 320 });
+    expect(p.hemi).toEqual({ sky: 0xbdd4ff, ground: 0x1c2b1e, intensity: 1.05 });
+    expect(p.sun).toEqual({ color: 0xfff2df, intensity: 2.2, pos: [-40, 70, 30] });
+    expect(p.ambient).toBeNull();
+    expect(p.pedestal).toBe(0x111a2c);
+    expect(p.grass.stripes).toBe(14);
+    expect([p.grass.base, p.grass.stripeA, p.grass.stripeB]).toEqual(['#1f5c2e', '#2d7a3e', '#37904b']);
+    expect(p.grass.wear).toBe(0);
+    expect(p.lineAlpha).toBe(0.96);
+    expect(p.lineWidth).toBe(0.24);
+    expect(p.floodlights).toBe(true);
+    expect(p.toon).toBe(false);
+    expect(p.contactShadow).toBe(1);
+  });
+
+  it('every arm × lighting resolves and reports itself honestly', () => {
+    for (const id of STYLE_IDS) {
+      for (const lighting of LIGHTINGS) {
+        const p = stylePreset(id, lighting);
+        expect(p.id, `${id}/${lighting}`).toBe(id);
+        expect(p.lighting, `${id}/${lighting}`).toBe(lighting);
+      }
+    }
+    expect(isStyleId('toy')).toBe(true);
+    expect(isStyleId('realism')).toBe(false);
+    expect(isLighting('day')).toBe(true);
+    expect(isLighting('dusk')).toBe(false);
+  });
+
+  it('no daylight arm leaves the floodlights burning', () => {
+    // A lit lamp at noon is the exact incoherence Track F exists to kill.
+    for (const id of STYLE_IDS) {
+      expect(stylePreset(id, 'day').floodlights, id).toBe(false);
+      expect(stylePreset(id, 'night').floodlights, id).toBe(true);
+    }
+  });
+
+  it('denser turf grain uses FINER blobs (the first F0 pass painted bubbles)', () => {
+    // 900 blobs at up to 2.55m radius stacked into visible soap bubbles.
+    // Count and max radius must move in opposite directions.
+    const byCount = STYLE_IDS
+      .map((id) => stylePreset(id, 'night').grass)
+      .sort((a, b) => a.grainCount - b.grainCount);
+    for (let i = 1; i < byCount.length; i++) {
+      expect(byCount[i].grainRadius[1]).toBeLessThan(byCount[i - 1].grainRadius[1]);
     }
   });
 });
