@@ -218,6 +218,75 @@ function observePlayer(
  * Build one pass-facing snapshot. The memory mutates only when its deterministic
  * scan clock fires; between scans callers receive the last-known facts with age.
  */
+/**
+ * EDS E2b-1R — the O(1) ball percept (commander ruling #10.3).
+ *
+ * The only thing the sim itself reads from a percept is the ball: the
+ * defender's interception entry needs where it is and where it is going.
+ * Building a whole snapshot for that meant scanning every body, writing
+ * proprioception, pruning retention and allocating an `ObservedPlayer[]` whose
+ * output was then discarded — measured at 33% of a step against a 25% budget.
+ *
+ * This is the SAME ball branch `perceiveSnapshot` runs, with the per-body loop
+ * and the array build removed: same scan cadence, same visibility rule, same
+ * keyed error channels, same retention, same carrier proprioception. It is
+ * cheaper because it computes less, never because it perceives less — and
+ * `X6`/the contract test pin it against the full path so that stays true.
+ *
+ * The observer's own `memory.players` entry is deliberately NOT written: no
+ * consumer of this path reads bodies, and the ball percept does not depend on
+ * it. A memory driven by this path therefore carries a ball only.
+ */
+export function observeBall(
+  memory: PerceptionMemory,
+  observer: PerceptionTruthPlayer,
+  ball: PerceptionTruth['ball'],
+  tick: number,
+  awarenessInput: number,
+  seed: number,
+  gazeDir: Readonly<V2> | null = null,
+): ObservedBall | null {
+  const awareness = clamp01(awarenessInput);
+  const viewDir = gazeDir ?? observer.bodyDir;
+  const intervalTicks = Math.round(15 - awareness * 9);
+  const retentionTicks = Math.round(15 + awareness * 45);
+  const scan = memory.nextScanTick < 0 || tick >= memory.nextScanTick;
+  const ownsBall = ball.ownerGid === observer.gid;
+
+  if (scan) {
+    memory.nextScanTick = tick + intervalTicks;
+    const bdx = ball.pos.x - observer.pos.x;
+    const bdy = ball.pos.y - observer.pos.y;
+    const bd = Math.hypot(bdx, bdy);
+    const ballFacing = bd > 1e-9 ? (viewDir.x * bdx + viewDir.y * bdy) / bd : 1;
+    if (!ownsBall && (bd <= 4 || (bd <= 18 + awareness * 22 && ballFacing >= -0.2 - awareness * 0.5))) {
+      const ballError = (0.12 + bd * 0.015) * (1 - awareness);
+      memory.ball = {
+        pos: {
+          x: ball.pos.x + keyedNoise(seed, observer.gid, -1, tick, 5) * ballError,
+          y: ball.pos.y + keyedNoise(seed, observer.gid, -1, tick, 6) * ballError,
+        },
+        vel: {
+          x: ball.vel.x + keyedNoise(seed, observer.gid, -1, tick, 7) * ballError,
+          y: ball.vel.y + keyedNoise(seed, observer.gid, -1, tick, 8) * ballError,
+        },
+        ownerGid: ball.ownerGid,
+        observedTick: tick,
+      };
+    }
+  }
+  if (ownsBall) {
+    memory.ball = {
+      pos: { x: ball.pos.x, y: ball.pos.y },
+      vel: { x: ball.vel.x, y: ball.vel.y },
+      ownerGid: ball.ownerGid,
+      observedTick: tick,
+    };
+  }
+  if (memory.ball && tick - memory.ball.observedTick > retentionTicks) memory.ball = null;
+  return memory.ball ? { ...memory.ball, ageTicks: tick - memory.ball.observedTick } : null;
+}
+
 export function perceiveSnapshot(
   truth: PerceptionTruth,
   observerGid: number,
@@ -226,6 +295,24 @@ export function perceiveSnapshot(
   memory: PerceptionMemory,
   gaze: ObserverGaze | null = null,
 ): PerceptionSnapshot {
+  advancePerceptionMemory(truth, observerGid, awarenessInput, seed, memory, gaze);
+  return materialisePerceptionSnapshot(truth, observerGid, clamp01(awarenessInput), memory);
+}
+
+/**
+ * EDS E2b-1R: the first half of `perceiveSnapshot` — scan, observe, remember,
+ * forget — with no array built. Split out so a consumer that must keep a memory
+ * chain alive but will not read it this tick does not pay to materialise one
+ * (ruling #10.3). Every honesty rule lives here and is untouched by the split.
+ */
+export function advancePerceptionMemory(
+  truth: PerceptionTruth,
+  observerGid: number,
+  awarenessInput: number,
+  seed: number,
+  memory: PerceptionMemory,
+  gaze: ObserverGaze | null = null,
+): void {
   const awareness = clamp01(awarenessInput);
   const observer = truth.players.find((p) => p.gid === observerGid);
   if (!observer) throw new Error(`Unknown perception observer gid ${observerGid}`);
@@ -296,6 +383,20 @@ export function perceiveSnapshot(
   }
   if (memory.ball && truth.tick - memory.ball.observedTick > retentionTicks) memory.ball = null;
 
+}
+
+/**
+ * EDS E2b-1R: the second half of `perceiveSnapshot`, split out so a consumer
+ * that only needs the memory chain advanced does not pay to build an array it
+ * will not read (ruling #10.3 — cost scales with what consumers READ). Pure:
+ * it reads the memory, never writes it.
+ */
+export function materialisePerceptionSnapshot(
+  truth: PerceptionTruth,
+  observerGid: number,
+  awareness: number,
+  memory: PerceptionMemory,
+): PerceptionSnapshot {
   const players: ObservedPlayer[] = [];
   for (const entity of truth.players) {
     const observed = memory.players.get(entity.gid);
@@ -305,5 +406,5 @@ export function perceiveSnapshot(
   const ball = memory.ball
     ? { ...memory.ball, ageTicks: truth.tick - memory.ball.observedTick }
     : null;
-  return { tick: truth.tick, observerGid, awareness, ball, players };
+  return { tick: truth.tick, observerGid, awareness: clamp01(awareness), ball, players };
 }

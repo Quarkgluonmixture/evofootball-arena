@@ -1,6 +1,7 @@
 # EDS E2b-1R — Consumption-scoped perception
 
-Status: **PRE-REGISTERED — no run yet.** Drafted by the autonomous session
+Status: **RUN 2026-07-25 — §6 is the frozen result: PASS on every gate.**
+Drafted by the autonomous session
 under commander ruling #10.2/#10.3.
 
 Date: 2026-07-25
@@ -116,3 +117,96 @@ flag-ON p95       <=  1.50 × flag-OFF p95
 * Dormant throughout; nothing ships.
 * **On PASS the executor drafts E3** (ruling #10.5), and the queue stops at
   **E4 — the user's play-test**.
+
+## 6. FROZEN RESULT — PASS; 1.329× became 1.069× and nothing else moved (2026-07-25)
+
+Run at HEAD `e9e3b49`. Verdict **PASS** on every gate. World hash
+`dd6dbd0ad3bb1d64ed5e363345d5d72d56edf3a555f877293108c03a2b3abf38`, identical
+across two invocations; perf reported beside it and never hashed.
+
+```text
+X1 fingerprint 57b0bdab…c673 unchanged                       ✓
+X2 tsc + build clean · 729/729 green                         ✓
+X3 world hash identical across two invocations               ✓  (corrected scheme)
+X5 harness / census / factors                                ✓ ✓ ✓
+X6 ball-only percept == full-path ball                       ✓
+B1 behaviour-neutrality, all seven families                  ✓
+G1 not-looking must not win                                  ✓
+G2 route mix                                                 ✓ ✓
+G3 perf mean 1.0692× (1.25) · p95 1.0728× (1.50)             ✓ ✓
+```
+
+### G3 — the cost went where the diagnosis said it would
+
+```text                    E2b-1        E2b-1R      budget
+µs/step, flag OFF          5.947        5.319
+µs/step, flag ON           7.906        5.688
+ratio                      1.329        1.0692      1.25   ✓
+p95 ratio                  1.406        1.0728      1.50   ✓
+```
+
+Honest perception at brain cadence now costs **6.9%**, not 33%, and not one
+rule about what a body can see was touched to get there. The whole difference
+is that the sim stopped building an `ObservedPlayer[]` and scanning a squad to
+answer a question about the ball.
+
+Two corroborations worth recording. The flag-OFF arm measured **5.319 µs/step**
+against the frozen baseline's 5.32 — the harness is measuring the same machine
+the baseline was taken on. And the perf arms are now **interleaved** match by
+match: the previous all-OFF-then-all-ON order let any drift over the run land
+entirely on the second arm, and since the gate is a ratio that bias pointed
+straight at the flag.
+
+### B1 — the decisive gate: nothing but the cost moved
+
+Every E2b-1 aggregate returned at full float precision:
+
+```text
+realized success      0.632844 / 0.646007 / 0.634585 / 0.678974
+long-option share     0.133066 / 0.177205 / 0.180511 / 0.180723
+mean chosen distance · agreement with the brain · class shares ·
+look-pressure on both axes · chosen counts        all exact
+```
+
+3,000 moments × 4 arms of choices, and not one of them changed. G1 and G2
+therefore reproduce **by construction** and stand as verification rather than
+fresh evidence, exactly as ruling #10.3 specified.
+
+### X6 — cheaper, not blinder
+
+The ball-only path returns exactly what `perceiveSnapshot(...).ball` returns,
+over memory chains driven in lockstep across awareness × facing × ball-owner ×
+distance — asserted in the probe on every run and pinned by
+`tests/observeBall.test.ts` on every commit. This is the gate that stops a
+future "optimisation" from buying its budget with a wider cone or a lazier
+scan.
+
+### X3 — the corrected scheme, demonstrating its own point
+
+The world hash covers world outcomes; the wall clock is reported beside it.
+During development the perf measurement was changed (interleaving) and **the
+world hash did not move** — which is precisely the separation ruling #10.2
+codified, visible in the artefact.
+
+### Disclosures
+
+Two, both found before the frozen run and both fixed by making the redraw
+*more* faithful rather than less:
+
+1. **A behaviour change I introduced and then removed.** E2b-1 built snapshots
+   only for non-keeper, on-pitch bodies, so a keeper passer fell through an
+   undefined lookup and was skipped in **every** arm. Materialising on demand
+   silently started including those moments, and the oracle arm moved
+   64.6% → 68.3% at smoke scale. That is a behaviour change wearing a
+   performance costume; the skip is now reproduced explicitly, and B1 is what
+   would have caught it had I not.
+2. **The perf measurement order**, described above. Both arms now pay any drift
+   equally.
+
+### What this unlocks
+
+The plumbing is fixed and the science it was blocking is now verified rather
+than merely banked: **not-looking never wins** and **the route mix survives
+perception** — S3b's two graves — at a perception cost of 6.9%. Per ruling
+#10.5 the executor drafts **E3** next, and the queue stops at **E4, the user's
+play-test**.

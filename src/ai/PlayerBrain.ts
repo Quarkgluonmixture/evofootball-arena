@@ -1088,7 +1088,7 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       // something or the arm is theatre. The trigger itself (a pass is in
       // flight) stays as it is: v1 makes the READ perceived, not the alarm.
       const seen = match.edsPerceivedDefence
-        ? (match.perceptionSnapshots.get(p.gid)?.ball ?? null)
+        ? (match.perceivedBalls.get(p.gid) ?? null)
         : null;
       const inter = match.edsPerceivedDefence
         ? (seen === null ? null : canInterceptPass(p, { pos: seen.pos, vel: seen.vel } as typeof ball))

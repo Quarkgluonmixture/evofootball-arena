@@ -7,8 +7,8 @@ import { PROFILER as prof } from './profiler';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeReady } from '../ai/formations';
 import {
-  capturePerceptionTruth, createPerceptionMemory, perceiveSnapshot,
-  type PerceptionMemory, type PerceptionSnapshot, type PerceptionTruth,
+  createPerceptionMemory, observeBall,
+  type ObservedBall, type PerceptionMemory,
 } from '../ai/perceptionSnapshot';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
@@ -259,14 +259,13 @@ export class Match {
   /** Kept for the perception trunk's deterministic observation noise. */
   private readonly perceptionSeed: number;
   /**
-   * E2b-1: per-player perception, updated at BRAIN CADENCE — the substrate's
-   * own decision interval — never per tick. Empty and untouched when the flag
-   * is off, which is what keeps the production path bit-identical.
+   * E2b-1R: per-player perception at BRAIN CADENCE, scoped to what the sim
+   * actually reads — which is the ball and nothing else. Empty and untouched
+   * when the flag is off, which is what keeps the production path
+   * bit-identical.
    */
   readonly perceptionMemories = new Map<number, PerceptionMemory>();
-  readonly perceptionSnapshots = new Map<number, PerceptionSnapshot>();
-  private perceptionTruthTick = -1;
-  private perceptionTruth: PerceptionTruth | null = null;
+  readonly perceivedBalls = new Map<number, ObservedBall | null>();
   /**
    * EDS E2a-2 (docs/world-model/EDS-E2A2-OPTION-SPACE-CENSUS.md): substitute
    * the pass TARGET the brain chose, for one tick, and let the live machinery
@@ -2017,24 +2016,25 @@ export class Match {
   }
 
   /**
-   * E2b-1: rebuild one player's percept from the shared awareness trunk. The
-   * truth capture is memoised per tick, so a whole team thinking on the same
-   * tick pays for it once. Keepers are excluded exactly as every other
-   * perception consumer excludes them.
+   * E2b-1R: refresh one body's percept at its own decision tick. Keepers are
+   * excluded exactly as every other perception consumer excludes them.
    */
   private refreshPerception(p: Player): void {
     if (p.role === 'GK' || p.sentOff) return;
-    if (this.perceptionTruthTick !== this.stepCount || this.perceptionTruth === null) {
-      this.perceptionTruth = capturePerceptionTruth(this);
-      this.perceptionTruthTick = this.stepCount;
-    }
     let memory = this.perceptionMemories.get(p.gid);
     if (memory === undefined) {
       memory = createPerceptionMemory();
       this.perceptionMemories.set(p.gid, memory);
     }
-    this.perceptionSnapshots.set(p.gid, perceiveSnapshot(
-      this.perceptionTruth, p.gid, this.edsAwareness, this.perceptionSeed, memory,
+    // Consumption-scoped (ruling #10.3): the ball is the only percept anything
+    // in the sim reads, so no squad-wide truth capture and no array build.
+    this.perceivedBalls.set(p.gid, observeBall(
+      memory,
+      { gid: p.gid, side: p.side, pos: p.pos, vel: p.vel, bodyDir: p.bodyDir, sentOff: p.sentOff },
+      { pos: this.ball.pos, vel: this.ball.vel, ownerGid: this.ball.owner?.gid ?? null },
+      this.stepCount,
+      this.edsAwareness,
+      this.perceptionSeed,
     ));
   }
 
