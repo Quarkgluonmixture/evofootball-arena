@@ -657,7 +657,11 @@ export class Match {
       if (p.decisionTimer <= 0) {
         // E2b-1: this body's percept is refreshed exactly when it thinks, so
         // perception costs one build per decision rather than one per tick.
-        if (this.edsPerceivedDefence) this.refreshPerception(p);
+        // E3: EITHER consumer needs the chain alive — the defender's ball read
+        // or the passer's choice. Gating this on the defence flag alone made
+        // `edsPerceivedChoice` silently inert on its own (no memory ⇒ no
+        // snapshot ⇒ the legacy chooser), which the §4 ablation caught.
+        if (this.edsPerceivedDefence || this.edsPerceivedChoice) this.refreshPerception(p);
         decidePlayer(p, this);
         p.decisionTimer = AI_INTERVAL;
       }

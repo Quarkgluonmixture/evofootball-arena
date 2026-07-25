@@ -26,7 +26,7 @@ import {
 import { evaluatePassOption } from '../../src/ai/passOptionValue';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids,
-  PASS_CHOICE_MAX_METRES, PASS_CHOICE_MIN_METRES,
+  PASS_CHOICE_MAX_METRES, PASS_CHOICE_MIN_METRES, threatQuintilePrice,
 } from '../../src/ai/perceivedPassChoice';
 import type { KnownReachProfile } from '../../src/ai/reachability';
 import {
@@ -611,6 +611,21 @@ const summariseTrace = (trace: readonly PassChoiceTraceEntry[]) => {
         : withPower.reduce((sum, entry) => sum + entry.powerTouchFailPriors[index], 0) / withPower.length)),
       meanPrice: CANARY_POWERS.map((_, index) => (withPower.length === 0 ? Number.NaN
         : withPower.reduce((sum, entry) => sum + entry.powerPrices[index], 0) / withPower.length)),
+      /**
+       * Two diagnostics added after the shakedown, REPORTED and never gated
+       * (disclosed in §6): the corridor axis is a five-step quintile function
+       * while the touch axis is smooth, so if a 15% power change rarely moves
+       * the quintile, the touch term decides every comparison by construction.
+       * `lowestThreatIsHighestPower` is E0's own canary shape — does more pace
+       * still buy a safer corridor — measured on the same moments.
+       */
+      sameQuintileShare: withPower.length === 0 ? Number.NaN
+        : withPower.filter((entry) => new Set(
+          entry.powerThreatSeconds.map((seconds) => threatQuintilePrice(seconds)),
+        ).size === 1).length / withPower.length,
+      lowestThreatIsHighestPowerShare: withPower.length === 0 ? Number.NaN
+        : withPower.filter((entry) => entry.powerThreatSeconds[CANARY_POWERS.length - 1]
+          === Math.min(...entry.powerThreatSeconds)).length / withPower.length,
     },
   };
 };
@@ -791,6 +806,59 @@ const runExperiment = () => {
     };
   })();
 
+  /**
+   * §4's authorised diagnostic, run only after the band broke and only to NAME
+   * the failing component — never as a partial ship. Each arm is the bundle
+   * MINUS one component, on the band's own staging.
+   */
+  const ablation = runs('ablate') ? [
+    { label: 'minus touch cost', edsTouchCost: false, edsPerceivedDefence: true, edsPerceivedChoice: true },
+    { label: 'minus perceived choice', edsTouchCost: true, edsPerceivedDefence: true, edsPerceivedChoice: false },
+    { label: 'minus perceived defence', edsTouchCost: true, edsPerceivedDefence: false, edsPerceivedChoice: true },
+    { label: 'touch cost only', edsTouchCost: true, edsPerceivedDefence: false, edsPerceivedChoice: false },
+    { label: 'perceived choice only', edsTouchCost: false, edsPerceivedDefence: false, edsPerceivedChoice: true },
+  ].map((arm) => {
+    const league = new League({ seed: BAND_SEED });
+    league.matchFlags = {
+      edsTouchCost: arm.edsTouchCost,
+      edsPerceivedDefence: arm.edsPerceivedDefence,
+      edsPerceivedChoice: arm.edsPerceivedChoice,
+    };
+    const totals = emptyTotals();
+    for (let season = 0; season < BAND_SEASONS; season++) {
+      while (!league.seasonDone) {
+        const fixture = league.nextFixture()!;
+        const result = league.createMatch(fixture).runToCompletion();
+        league.applyResult(fixture, result);
+        totals.matches += 1;
+        totals.goals += result.score[0] + result.score[1];
+        for (const stat of result.stats) {
+          totals.crosses += stat.crosses;
+          totals.headers += stat.headersWon;
+          totals.longBalls += stat.longBalls;
+          totals.cutbacks += stat.cutbacks;
+          totals.tackles += stat.tackles;
+          totals.miscontrols += stat.miscontrols;
+          totals.passes += stat.passes;
+          totals.completed += stat.passesCompleted;
+        }
+      }
+      league.finishSeason();
+    }
+    const per = perMatch(totals);
+    return {
+      ...arm,
+      totals: per,
+      deltas: {
+        goals: relative(per.goals, BAND_BASELINE.goals),
+        crosses: relative(per.crosses, BAND_BASELINE.crosses),
+        headers: relative(per.headers, BAND_BASELINE.headers),
+        longBalls: relative(per.longBalls, BAND_BASELINE.longBalls),
+        cutbacks: relative(per.cutbacks, BAND_BASELINE.cutbacks),
+      },
+    };
+  }) : null;
+
   const inert = runs('inert') ? {
     flagsOffUnchanged: flagsOffUnchanged(4242),
     traceInert: traceIsInert(4242),
@@ -844,6 +912,7 @@ const runExperiment = () => {
     },
     dominance,
     coEvo,
+    ablation,
     reported: {
       r1RouteMix: band === null ? null : {
         crosses: band.bundle.totals.crosses,

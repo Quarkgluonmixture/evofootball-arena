@@ -187,6 +187,20 @@ describe('EDS E3 — perceived pass choice', () => {
     expect(off.passChoiceTrace).toHaveLength(0);
   });
 
+  it('the choice flag stands ALONE: it does not need the defence flag to work', () => {
+    // The §4 ablation caught this: `refreshPerception` was gated on the defence
+    // flag, so "perceived choice only" silently played the legacy game (no
+    // memory chain ⇒ no snapshot ⇒ the lane-score target). An ablation arm that
+    // reproduces the baseline exactly is a dead flag, not a null result.
+    const alone = matchOf(4242, { edsPerceivedChoice: true, traceChoice: true });
+    alone.runToCompletion();
+    expect(alone.passChoiceTrace.length).toBeGreaterThan(10);
+    expect(alone.perceptionMemories.size).toBeGreaterThan(0);
+    const plain = matchOf(4242);
+    plain.runToCompletion();
+    expect(signatureOf(alone)).not.toBe(signatureOf(plain));
+  });
+
   it('the live chooser really does choose: it diverges from the lane-score brain', () => {
     // FIRES, at the match level: if every traced choice agreed with `bestMate`
     // the seam would be decorative. Ruling #10.4 measured 38-47% agreement.
