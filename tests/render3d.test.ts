@@ -11,6 +11,7 @@ import {
 } from '../src/render3d/ballPresentation';
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
+import { FAR_ROWS, NEAR_STAND_GAP, terraceSlabs } from '../src/render3d/PitchModel';
 import { defensiveLineX, linesmanTargetX } from '../src/render3d/LinesmanModel';
 import {
   armSpan, bodyFor, hash01, HUMAN_MODEL_SCALE, MAX_BODY_HEIGHT, MAX_BULK, maxArmSpan, TORSO_BASE,
@@ -24,7 +25,7 @@ import {
   type RenderPlayer, type RenderState,
 } from '../src/render3d/RenderStateAdapter';
 import { ReplayBuffer } from '../src/replay/ReplayBuffer';
-import { BALL_RADIUS, DT, FIELD_SCALE, HALF_L, PLAYER_MIN_DIST } from '../src/sim/constants';
+import { BALL_RADIUS, DT, FIELD_SCALE, HALF_L, HALF_W, PLAYER_MIN_DIST } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -620,6 +621,104 @@ describe('cameraGoalFor', () => {
     expect(cameraForEvent('shot')).toBe('broadcast');
     expect(cameraForEvent('save')).toBe('behindGoal');
     expect(cameraForEvent('interception')).toBe('tactical');
+  });
+});
+
+describe('the bowl clears every camera (Track F6)', () => {
+  // A terrace slab is a box with ONLY a Y rotation, so the exact test is to
+  // push the sight line into the slab's own frame and slab-test it there. An
+  // axis-aligned box over-rejects the 45° corners badly (their AABB spans the
+  // whole diagonal), which would make this gate useless the day it matters.
+  const SLAB_H = 1.1;
+  const SLAB_D = 2.4;
+  /** Seated bodies stand ~1m proud of their step (CrowdSystem). */
+  const CROWD_H = 1.05;
+
+  function segmentHitsSlab(
+    from: { x: number; y: number; z: number },
+    to: { x: number; y: number; z: number },
+    slab: ReturnType<typeof terraceSlabs>[number],
+  ): boolean {
+    const cy = slab.y - SLAB_H / 2;
+    const cos = Math.cos(-slab.rot);
+    const sin = Math.sin(-slab.rot);
+    const local = (p: { x: number; y: number; z: number }) => {
+      const dx = p.x - slab.x;
+      const dz = p.z - slab.z;
+      return { x: dx * cos - dz * sin, y: p.y - cy, z: dx * sin + dz * cos };
+    };
+    const a = local(from);
+    const b = local(to);
+    // Half-extents, with the crowd's heads added on top of the step.
+    const h = { x: slab.w / 2, y: SLAB_H / 2 + CROWD_H / 2, z: SLAB_D / 2 };
+    const ca = { x: 0, y: CROWD_H / 2, z: 0 }; // centre shifts up with the heads
+    let t0 = 0;
+    let t1 = 1;
+    for (const axis of ['x', 'y', 'z'] as const) {
+      const p0 = a[axis] - ca[axis];
+      const d = b[axis] - a[axis];
+      const lo = -h[axis];
+      const hi = h[axis];
+      if (Math.abs(d) < 1e-9) {
+        if (p0 < lo || p0 > hi) return false;
+        continue;
+      }
+      let tn = (lo - p0) / d;
+      let tf = (hi - p0) / d;
+      if (tn > tf) [tn, tf] = [tf, tn];
+      t0 = Math.max(t0, tn);
+      t1 = Math.min(t1, tf);
+      if (t0 > t1) return false;
+    }
+    return true;
+  }
+
+  const BALLS = [
+    { x: 0, z: 0 }, { x: 30, z: 0 }, { x: -30, z: 0 },
+    { x: 0, z: 19 }, { x: 0, z: -19 }, // both touchlines
+    { x: 29, z: 19 }, { x: -29, z: -19 }, { x: 29, z: -19 }, { x: -29, z: 19 }, // corners
+  ];
+  const MODES = ['tactical', 'tacfeed', 'broadcast', 'follow', 'behindGoal', 'penalty'] as const;
+
+  it('no camera ever sits inside a terrace, or looks at the pitch through one', () => {
+    const slabs = terraceSlabs();
+    expect(slabs.length).toBeGreaterThan(8); // the bowl actually got built
+    for (const mode of MODES) {
+      for (const b of BALLS) {
+        const g = cameraGoalFor(mode, { x: b.x, z: b.z, vx: 0, vz: 0 });
+        const eye = { x: g.px, y: g.py, z: g.pz };
+        const at = { x: g.lx, y: g.ly, z: g.lz };
+        for (const slab of slabs) {
+          expect(
+            segmentHitsSlab(eye, at, slab),
+            `${mode} @ (${b.x},${b.z}) blocked by terrace at (${slab.x.toFixed(1)}, ${slab.y}, ${slab.z.toFixed(1)})`,
+          ).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('keeps the goal ends LOW and lets the far side carry the height (28.3)', () => {
+    const slabs = terraceSlabs();
+    // Classify by ORIENTATION, not position — the 45° corners also sit
+    // beyond |x| > HALF_L and a positional filter swept them in as goal ends.
+    const isGoalEnd = (r: number) => Math.abs(Math.abs(r) - Math.PI / 2) < 1e-6;
+    const goalEnd = slabs.filter((s) => isGoalEnd(s.rot));
+    const farSide = slabs.filter((s) => s.rot === 0);
+    // behindGoal sits 12m out at only 5m up; its sight line is already down to
+    // ~3.9m by x=40, so a tall goal-end stand swallows the goalmouth.
+    for (const s of goalEnd) expect(s.y, `goal end at ${s.x.toFixed(1)}`).toBeLessThanOrEqual(1.1);
+    expect(Math.max(...farSide.map((s) => s.y))).toBeGreaterThan(4); // 5 rows
+    expect(farSide.length).toBeGreaterThanOrEqual(FAR_ROWS);
+  });
+
+  it('holds the near bank back off the touchline — the follow-cam constraint', () => {
+    const near = terraceSlabs().filter((s) => s.z > HALF_L * 0.1);
+    expect(near.length).toBeGreaterThan(0);
+    for (const s of near) {
+      expect(s.z).toBeGreaterThanOrEqual(HALF_W + NEAR_STAND_GAP);
+      expect(s.y).toBeLessThanOrEqual(1.1); // one bank only
+    }
   });
 });
 

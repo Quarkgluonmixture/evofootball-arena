@@ -113,6 +113,33 @@ so its cues carry more weight than they used to. Two rules:
   on a phone. Taper it toward the tail so it reads as direction, and fade it
   proportionally with speed so a crawling ball never paints the pitch.
 
+## The bowl
+
+The ground is ENCLOSED — day and night you are inside it, not looking at a
+pitch floating in a void (user, 2026-07-25). But every stand height here is
+bounded by a camera, never by taste, and the bounds are asymmetric because the
+cameras are:
+
+- **Far (−z) side carries the height** — five rows, a roof canopy with a
+  fascia, a back wall. Nothing looks from that side, so it is free, and its
+  roof line cutting the sky is the single thing that most makes the world feel
+  built rather than floating.
+- **Goal ends stay ONE low bank.** behindGoal sits 12 m out at only 5 m up and
+  its sight line is down to ~3.9 m by x = 40. Phase 28.3 already lost the
+  whole goalmouth behind a three-step stand once.
+- **Near (+z) side is one bank held well back** — the binding case is the
+  follow camera on near-touchline play, where the sight line is only 2.8 m up
+  at the usual apron distance.
+- **Corners are filled**, and a 45° section reaches w/2·√½ toward the pitch on
+  both axes — stand it further out than that or its inner tip lands on the
+  playing surface.
+
+None of the above is eyeballed: `terraceSlabs()` is pure data and the render3d
+test pushes every camera's sight line into each slab's own frame (oriented, not
+axis-aligned — an AABB over-rejects the corners) and asserts it reaches the
+pitch. Crowd head height is included. That test found two real blocks the
+moment it existed, one of them pre-existing.
+
 ## Cameras
 
 The user plays in **broadcast** and **follow-ball**. Those two are what any

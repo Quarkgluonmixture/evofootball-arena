@@ -84,6 +84,7 @@ export function createPitch(maxAnisotropy: number, style: StylePreset = stylePre
   }
 
   addTerraces(group, style);
+  addRoof(group, style);
   // A lit floodlight at noon is exactly the incoherence Track F exists to kill.
   if (style.floodlights) addFloodlights(group);
 
@@ -102,8 +103,29 @@ export interface TerraceSlab {
   rot: number;
 }
 
-/** The terrace step layout — three rows along the far touchline, one low
- * bank behind each goal (the 28.3 camera ceiling). Pure data. */
+/**
+ * The terrace step layout — F6 closes the BOWL so day and night both read as
+ * "inside a ground" instead of a pitch floating in a void. Pure data, shared
+ * with `CrowdSystem` so every new step gets seated automatically.
+ *
+ * Every height here is bounded by a CAMERA, not by taste. The cameras look
+ * from the +z side and from behind the goals, and Phase 28.3 already burned
+ * this once — three-step goal-end stands put the behindGoal camera INSIDE the
+ * geometry and the whole goalmouth vanished behind a black slab. So:
+ *
+ * - FAR (−z) side: nothing looks from there, so it carries the height (5 rows
+ *   plus a roof). This is what fills the sky in broadcast and follow.
+ * - Corners: filled, because the gap between the far stand and the goal ends
+ *   was the void you could see straight through at frame edges.
+ * - GOAL ends: still ONE low bank. behindGoal sits at ±43.5 m, only 5 m up,
+ *   and its sight line to the goalmouth is already down to ~3.9 m by x = 40.
+ * - NEAR (+z) side: one bank, and pushed to HALF_W + 6 rather than the usual
+ *   1.8 m apron. The binding case is follow-cam on near-touchline play, where
+ *   the sight line is just 2.8 m up at z = 23.7 — a bank there would block it.
+ *   At z = 26.3 the same line has climbed to 4.6 m and clears with room.
+ *
+ * `terraceClearsCameras` in the render3d test pins all of that.
+ */
 export function terraceSlabs(): TerraceSlab[] {
   const out: TerraceSlab[] = [];
   const mk = (w: number, x: number, z: number, rot: number, steps: number) => {
@@ -122,16 +144,39 @@ export function terraceSlabs(): TerraceSlab[] {
       });
     }
   };
-  mk(HALF_L * 2 + 6, 0, -HALF_W - 1.8, 0, 3); // far side (front row behind the adboards)
-  // Behind each goal: ONE low bank only (Phase 28.3). The old three-step
-  // stands rose to 3.3m and reached x≈58 — the behind-goal camera (±57, y5)
-  // sat INSIDE them and the whole goalmouth vanished behind a black slab
-  // (failure mode 13's cousin: screenshot every fixed camera). The seated
-  // crowd keeps the same ceiling: bodies top out ~1m above the low bank.
-  mk(HALF_W * 2 - 4, -HALF_L - 2.2, 0, Math.PI / 2, 1); // behind -x goal
-  mk(HALF_W * 2 - 4, HALF_L + 2.2, 0, -Math.PI / 2, 1); // behind +x goal
+  mk(HALF_L * 2 + 6, 0, -HALF_W - 1.8, 0, FAR_ROWS); // main stand, carries the height
+  // Corners: the void used to show straight through here at frame edges.
+  //
+  // A 45° section reaches w/2 · √½ toward the pitch along BOTH axes, so its
+  // centre has to stand at least that far out or its inner tip lands on the
+  // playing surface. Two cuts got this wrong before the camera test caught
+  // it — the second one still poked to (27, −16), inside the pitch, and
+  // blocked the follow camera whenever play went into that corner.
+  const inset = (CORNER_W / 2) * Math.SQRT1_2;
+  const cx = HALF_L + inset + 0.9;
+  const cz = HALF_W + inset + 0.9;
+  mk(CORNER_W, cx, -cz, -Math.PI / 4, 3);
+  mk(CORNER_W, -cx, -cz, Math.PI / 4, 3);
+  // Behind each goal: ONE low bank only (Phase 28.3) — see the note above.
+  // Held at +4.0 rather than +2.2: at 2.2 the behindGoal sight line to the
+  // goalmouth grazed the top of the crowd's heads at 2.15 m, so the bottom of
+  // every goal shot had spectators poking into it. Pre-existing; the camera
+  // test found it. It sits behind the adboards either way.
+  mk(HALF_W * 2 - 4, -HALF_L - 4.0, 0, Math.PI / 2, 1);
+  mk(HALF_W * 2 - 4, HALF_L + 4.0, 0, -Math.PI / 2, 1);
+  // Near touchline: one bank, held back to clear the follow camera.
+  mk(HALF_L * 2 + 6, 0, HALF_W + NEAR_STAND_GAP, Math.PI, 1);
   return out;
 }
+
+/** Width of each 45° corner section (m). */
+export const CORNER_W = 13;
+/** Rows in the main stand. The far side is the only one nothing looks from. */
+export const FAR_ROWS = 5;
+/** How far the near bank sits back from the touchline (m) — camera-bound. */
+export const NEAR_STAND_GAP = 6;
+/** Underside of the main stand's roof (m). Above every sight line. */
+export const ROOF_Y = 8.2;
 
 /**
  * Low-poly terrace silhouettes on the shared slab layout. The SEATED crowd
@@ -149,6 +194,54 @@ function addTerraces(group: THREE.Group, style: StylePreset): void {
     slab.receiveShadow = true;
     group.add(slab);
   });
+}
+
+/**
+ * A canopy over the main stand plus a back wall behind its top row (F6). This
+ * is the single thing that turns "a pitch with some seats" into "a ground":
+ * from the broadcast and follow cameras the roof line cuts the sky, so there
+ * is a ceiling to the world instead of open blue above the crowd.
+ *
+ * It sits at ROOF_Y, which is above every camera's sight line into the pitch —
+ * and no camera lives on the −z side at all, so it can never occlude play.
+ */
+function addRoof(group: THREE.Group, style: StylePreset): void {
+  const backRow = 1.6 + (FAR_ROWS - 1) * 2.4;
+  const zFront = -HALF_W - 1.8;
+  const zBack = zFront - backRow - 1.6;
+  const w = HALF_L * 2 + 8;
+
+  const roofMat = new THREE.MeshStandardMaterial({ color: style.terrace[0], roughness: 0.9 });
+  const depth = Math.abs(zBack - zFront) + 3;
+  const canopy = new THREE.Mesh(new THREE.BoxGeometry(w, 0.45, depth), roofMat);
+  canopy.position.set(0, ROOF_Y, (zFront + zBack) / 2 - 0.6);
+  canopy.castShadow = true;
+  group.add(canopy);
+
+  // Fascia: a bright band on the roof's pitch-facing edge, so the ceiling
+  // reads as a built edge rather than a floating slab.
+  const fascia = new THREE.Mesh(
+    new THREE.BoxGeometry(w, 0.7, 0.3),
+    new THREE.MeshStandardMaterial({ color: style.boardStripe, roughness: 0.6 }),
+  );
+  fascia.position.set(0, ROOF_Y - 0.35, (zFront + zBack) / 2 + depth / 2 - 0.75);
+  group.add(fascia);
+
+  // Back wall, closing the gap between the top row and the roof.
+  const wall = new THREE.Mesh(
+    new THREE.BoxGeometry(w, ROOF_Y - 1.4, 0.4),
+    new THREE.MeshStandardMaterial({ color: style.terrace[1], roughness: 0.95 }),
+  );
+  wall.position.set(0, (ROOF_Y - 1.4) / 2 + 1.4, zBack - 1.2);
+  group.add(wall);
+
+  // Two pillars so the canopy has visible support at the frame edges.
+  const pillarMat = new THREE.MeshStandardMaterial({ color: style.terrace[1], roughness: 0.9 });
+  for (const sx of [-1, 1]) {
+    const pillar = new THREE.Mesh(new THREE.BoxGeometry(0.5, ROOF_Y, 0.5), pillarMat);
+    pillar.position.set(sx * (w / 2 - 0.6), ROOF_Y / 2, zFront + 0.4);
+    group.add(pillar);
+  }
 }
 
 /** Four corner floodlight towers with softly glowing heads. */
