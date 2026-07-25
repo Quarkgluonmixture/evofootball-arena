@@ -27,6 +27,15 @@ the I1 staging. The E1a probe verdict stays FAIL as emitted — retirement is
 a disposition, never a rewrite. The misalign discovery (blind-side cost
 rises with power) amends E1b's validation below.**
 
+**Commander ruling #7 (2026-07-25): E1b ACCEPTED — PASS on every gate
+([`EDS-E1B-TOUCH-COST-CURVE.md`](EDS-E1B-TOUCH-COST-CURVE.md) §6; the curve
+lands within noise of its own arithmetic, carried ≥99.996% by the speed
+channel, canary 6.53pp vs power's 21.2pp threat benefit — dominance is E3's
+live risk, now with a number). The X2b mid-flight amendment is accepted and
+its boundary codified in the ruling. E2 is split E2a → E2b (census priors
+before the consumer — the instrument-first lesson, third application) with
+drafting constraints in §3 below.**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle
@@ -145,6 +154,44 @@ E2  BOTH-SIDES PERCEPTION (dormant build, probe-bundled) — passer choice via
     is the honest fallback, and A4's doctrine/familiarity later SHARPEN
     these priors — exactly the layering §0.5 named. E2 gains an explicit
     route-mix gate derived from S3b's collapse numbers.
+
+    ⭐ DRAFTING CONSTRAINTS (commander ruling #7, 2026-07-25). E2 splits:
+
+    E2a CENSUS PRIORS + PRICING LAYER (the instrument-first lesson, third
+        application — measure the input before building its consumer):
+        (a) the base-rate prior table is CENSUS-DERIVED, never invented: a
+        pre-registered census probe measures population interception /
+        first-touch rates by distance band from the world itself, logs and
+        SHAs the table, and commits it as data BEFORE any E2b A/B. The
+        prior is infrastructure like the sampling budget — it may not be
+        adjusted after A/B results, ever. (b) The pricing layer is
+        validated on E0's own 120 banked states: the 55/120 unpriceable
+        states must become 120/120 priced with ZERO options deleted for
+        observability — the direct mechanism test of "unseen ≠ unavailable"
+        — and prior calibration is an interval test against realized
+        population rates, powered ex ante.
+
+    E2b THE BOTH-SIDES A/B, consuming E2a's table: (c) the evaluator is
+        E0's corridor pricing PLUS the touch-difficulty term made real by
+        E1b's curve (consumed through the formula the E1a instrument
+        certified), reading PERCEIVED state on BOTH sides — passer choice
+        and defender interception entry through the same shared-awareness
+        machinery (SUBSTRATE-MAP: no one-sided reading attr, ever). Report,
+        never gate, the always-heavy rate under combined threat+touch
+        pricing — dominance is E3's gate, but E2b hands it the number.
+        (d) NOT-LOOKING MUST NOT WIN: across awareness arms on the same
+        states, chosen-option quality must be monotone non-decreasing in
+        awareness — a truth-fallback or a poisoned prior fails exactly
+        here. (e) The route-mix gate: the perceived arm's chosen-option
+        distance/type distribution must not reproduce the S3b collapse
+        signature; band pre-registered as a powered interval test. (f) The
+        PERF hard gate: perception at brain cadence (the substrate's own
+        scan intervals), budget from docs/perf/baseline.json per
+        PROBE-CONTRACTS §5.5. (g) X5-style reproduction gates against
+        banked E0/E1b numbers wherever a staging is reused; interval
+        predicates only; dormant throughout — default-OFF flags,
+        fingerprint unchanged flags-off, zero live callers, no genes, no
+        evolution.
 
 E3  CO-EVOLUTION AUDIT — sealed evo runs, full bundle ON: §2 band (goals
     ±15%), route mix (±25%), the C1-B behavioural contract suite

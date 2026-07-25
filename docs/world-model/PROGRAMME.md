@@ -204,6 +204,39 @@ generalises.
 >    always-heavy canary unchanged. The executor drafts the E1b stage
 >    contract under these constraints (Autonomous mode) — no further
 >    commander input needed until E1b's result.
+>
+> **COMMANDER RULING #7 (2026-07-25 — E1b accepted; E2 split and constrained):**
+>
+> 1. **E1b ACCEPTED — PASS on every gate.** The curve lands within noise of
+>    its own pre-computed arithmetic (worst 1.35σ), the increase is carried
+>    ≥99.996% by the speed channel with pressure identically zero (provably
+>    not the refuted confound), X5 reproduces E1a's banked run to the last
+>    digit, and nothing shipped (`edsTouchCost` default OFF, fingerprint
+>    unchanged). The C1-B redraw is spent, correctly, on a measurement.
+> 2. **The X2b amendment is ACCEPTED and its boundary CODIFIED:** after a
+>    smoke/shakedown but before the frozen run, a predicate may be amended
+>    ONLY if it is a harness/instrument predicate (determinism smoke,
+>    staging sanity), never a physics-bearing gate; always in its own
+>    commit with the rationale, always disclosed in the result. Amending
+>    "all three seeds diverge" → "at least one" was exactly the sixth
+>    threshold type's lesson applied honestly mid-flight.
+> 3. **E2 SPLITS into E2a → E2b** (instrument-first, third application):
+>    **E2a** = census-derived prior table (pre-registered census probe,
+>    distance-banded population rates, SHA'd and committed as DATA before
+>    any A/B; priors are infrastructure — never adjusted after results) +
+>    the pricing layer validated on E0's 120 banked states (55/120
+>    unpriceable → 120/120 priced, ZERO deleted for observability, prior
+>    calibration as a powered interval test). **E2b** = the both-sides A/B:
+>    evaluator = E0 corridor + E1b's touch term via the certified formula,
+>    PERCEIVED state both sides through the shared-awareness trunk;
+>    NOT-LOOKING-MUST-NOT-WIN directional gate across awareness arms;
+>    route-mix gate vs the S3b collapse signature (powered interval);
+>    PERF hard gate at brain cadence (budget from docs/perf/baseline.json);
+>    X5-style reproduction gates on every reused staging; always-heavy rate
+>    under combined pricing REPORTED for E3, never gated here. Full text in
+>    the design contract §3. The executor drafts both stage contracts under
+>    Autonomous mode — no further commander input needed until E2a's result
+>    (E2b may proceed on an E2a PASS without a new ruling).
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -315,20 +348,24 @@ bundle or ships it.
 | E0 | Dormant pass-option valuation: observation-only, 2–3 power levels, priced in flight time / corridor interception margin / touch difficulty. Must reproduce the C1-A2 ledger **including the world's near-flat reception cost** — modelling the defect is the point | [`EDS-E0-OPTION-VALUATION.md`](EDS-E0-OPTION-VALUATION.md) + [`EDS-E0B-OPTION-VALUATION-REDRAW.md`](EDS-E0B-OPTION-VALUATION-REDRAW.md) | ⚠️ **E0 FAIL → E0b FAIL; no third re-pose authorised.** ✅ Banked twice on identical numbers: the evaluator models the interception physics — per-state ranking by predicted corridor threat moves the MEASURED opponent-first rate **0.558→0.346 (21.2pp)**, safest=1.15 in **52/52** contested, flight time and arrival speed monotone. ⭐ Banked finding: at awareness 0.8 the passer can price **nothing** in 55/120 states, split by distance (21.7m unpriced vs 16.8m priced) ⇒ observation DELETES ~46% of options, mostly long ones — the mechanism behind S3b's route collapse and **E2's central design problem**. ⛔ Unsettled: what the world charges for pace at reception — three metrics disagree (eventual control ~0, raw-4-tick INVERTED, formula +4pp), and E0b's reproduction gate caught the raw metric contaminating its companion. **E1 must be re-scoped to build a trustworthy reception measurement first — the user's call** |
 | E1 | ✅ **RE-SCOPE RULED 2026-07-24 (commander ruling #4, design contract §3 amended): E1a → E1b.** **E1a** = the trustworthy first-touch instrument at the real `attemptFirstTouch` adjudication, event-level, logging the TERM DECOMPOSITION (speed/pressure/misalign/technique) per event; must reproduce the formula's own speed term on controlled synthetic sweeps (an instrument that cannot see known physics is broken) and must SETTLE the E0b inversion (pressure-relief confound — faster ball ⇒ less closing time ⇒ lower pressure at touch — vs contamination); pure probe, zero physics. **E1b** = the flagged C1-B curve, default OFF, validated by E1a's instrument with the decomposition confirming the SPEED term moved; also run the E3 always-heavy canary cheaply here (if the dormant evaluator still prefers 1.15 in ~52/52 after E1b, the curve is too weak). Spends the C1-B redraw | [`EDS-E1A-FIRST-TOUCH-INSTRUMENT.md`](EDS-E1A-FIRST-TOUCH-INSTRUMENT.md) | ✅ **DISPOSED by ruling #6 (2026-07-25): E1b OPEN on I1's pass; I2 RETIRED (decomposition settled it; powered flat-vs-rising subsumed by E1b's OFF/ON contrast); E1b gains the two-channel amendment (design contract §3).** ⚖️ **E1a RUN 2026-07-24 — I1 PASSES, I2 UNDECIDED, probe verdict FAIL** (§6, SHA `93897f79…9c09`, twice byte-identical, zero new `src/**`, fingerprint `57b0bdab…c673` unchanged, 708/708). Re-staged per ruling #5.3 as a REAL intended pass power-swept 0.85–1.15 × distance 6–30 m: 44,100 staged passes, 25,491 adjudicated (57.8%), held conditions genuinely held (**mean pressure exactly 0**, misalign ≤0.0005). **I1: events 2,780/4,302/4,478/2,864** (floor 400) · **spill 1.691/3.278/4.757/6.494%, strictly monotone** · **|empirical − logged pFail| ≤ 0.311pp** (tolerance 2.0pp) and within 0.31pp of the closed form ⇒ the instrument sees known physics. Extra staging truth: the frozen world must never be allowed to play on (parked bodies walk the ball into an empty net, and the restart corrupts the next staging). **I2 does NOT decide**: clean rate 0.8868/0.9000/0.8919 is flat and non-monotone while predicted pFail rises +2.4pp; **pressure-relief is REFUTED** (pressure term −0.23pp vs speed +1.63pp), and an unbooked term appeared — **misalign rises 0.100→0.348 with power** (a faster ball arrives before the receiver has turned). The coded discriminator read the 0.5pp endpoint gap (SE ≈ 5.6pp at n≈60) as "rises" ⇒ `unexplained`. Reported, NOT patched — I2 was underpowered by construction. **Fork is the USER's** (§6): does I1's pass alone unblock E1b (§4 says yes), and is I2 redrawn (powered, discriminator as an interval test) or retired now that its hypothesis is refuted? <br>Earlier: instrument BUILT and behaviour-proven (`traceFirstTouch` default off; flag on vs off identical over 3 full matches incl. RNG state; fingerprint unchanged; logs speed/pressure/misalign/technique/pFail/clean per adjudication). ⚠️ **I1's synthetic sweep needs a redesign before its gates can be evaluated** — two structural findings: (a) below 6 m/s the world returns clean BEFORE the roll (`mechanics.ts:130`), so no adjudication exists to measure — slow receptions are free by fiat; (b) a loose rolled ball often never reaches an adjudication at all, because the M3 contact cushions it out of the retention window (buckets 7 and 13 gave 60/60 events, 9 and 11 gave none). Fix = stage a REAL intended pass and sweep power. Gates unchanged. **E1b stays unopened until I1 passes** |
 | E1b | **Flagged touch-cost curve** (drafted by the executor under ruling #6): C1-B's exact one-liner `clamp01((speed−6)/8)*0.07 → clamp01((speed−6)/16)*0.24` behind `Match.edsTouchCost`, default OFF, validated by the E1a instrument on the I1 staging — OFF/ON at 1,300 reps per arm (≥11,300 events/bucket/arm, sample size computed ex ante for 3σ on bucket 7, the binding one), interval-test predicates only, two-channel decomposition, plus the E0 always-heavy canary | [`EDS-E1B-TOUCH-COST-CURVE.md`](EDS-E1B-TOUCH-COST-CURVE.md) | ✅ **PASS 2026-07-25** (§6, SHA `ca192bc8…2d59`, twice byte-identical, fingerprint `57b0bdab…c673` unchanged, 709/709, 4/4 exact · 4/4 FIRES · 4/4 decomposition · 3/3 canary). 191,100 staged passes per arm; adjudication rate identical OFF/ON (57.6/57.4%) ⇒ the flag changes the roll, not the world's willingness to adjudicate. **X5 reproduction**: the OFF arm's first 300 reps return E1a's banked I1 run to the last digit (2,780/4,302/4,478/2,864 · 1.6906/3.2775/4.7566/6.4944%). **X2 cross-commit**: flag-OFF signatures identical to pre-E1b HEAD `19f7aa1` on all three seeds. **F1**: spill 1.696→2.437 · 3.278→4.818 · 4.820→7.853 · 6.162→10.465%, measured Δ **+0.741/+1.541/+3.032/+4.303pp** vs analytic **+0.547/+1.641/+2.734/+3.828pp** (worst error 0.475pp in a 1.25pp band = 1.07/0.34/0.85/1.35σ); logged pFail matches the arithmetic almost exactly (+0.586/+1.634/+2.753/+3.786pp). **F2**: the speed channel carries **≥99.996%** of the increase, pressure Δ **identically 0** (this staging holds pressure at 0 ⇒ the rise provably is not the refuted pressure-relief confound), misalign channel unchanged to 1e-5. **F3 canary**: predicted touch-cost spread **3.95 → 6.53pp** (floor 6.0), corridor read untouched, flag-OFF reproduction of E0 exact (7.34/11.29, safest-is-1.15 52/52) — ⚠ but E0's 'safest' is threat-ranked, so this sizes the cost (6.53pp against a 21.2pp opponent-first swing) and does NOT settle dominance: that is E3's gate, now forewarned. Diagnostic only (12 matches, no §2 claim): miscontrols 7.25→10.08 (+39.1%), goals 2.833→2.167 — C1-B's live signature again, recorded for E3. Also disclosed: **X2b was amended before the run** (§4.1, own commit `b8386cd`) after a smoke run showed 'all three seeds diverge' was itself the unpowered point test ruling #6 outlawed. Nothing shipped; `edsTouchCost` stays default OFF. **Queue advances to E2** |
-| E2 | Both-sides perception (dormant build, probe-bundled): passer choice via E0 from perceived state, defender interception entry from perceived state, shared awareness trunk. Probe A/B with E1+E2 ON in probe worlds only. Includes the PERF gate | TBD (drafts after E1) | queued |
+| E2 | Both-sides perception (dormant build, probe-bundled), **split E2a → E2b by ruling #7**: **E2a** = census-derived base-rate prior table (committed as SHA'd data before any A/B, never adjusted after results) + pricing layer proven on E0's 120 banked states (unseen priced at prior, ZERO deleted for observability); **E2b** = both-sides A/B — evaluator = E0 corridor + E1b touch term, perceived state both sides via the shared-awareness trunk, not-looking-must-not-win directional gate, route-mix gate vs the S3b collapse signature, PERF hard gate at brain cadence. Always-heavy rate under combined pricing reported for E3 | Design contract §3 (ruling #7 constraints); stage contracts TBD — executor drafts under Autonomous mode | **READY — next step: draft E2a** |
 | E3 | Co-evolution audit: sealed evo runs, full bundle ON — §2 band, route mix, the C1-B behavioural suite, no-strict-dominance (power usage must stay situational), co-evo restoration, style diversity | TBD (drafts after E2) | queued |
 | E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
 
-**Queue state (2026-07-25, after E1b): E2 is next — the executor drafts its
-stage contract (both-sides perception + the unseen-pricing amendment) under
-Autonomous mode.** E1b PASSED on every gate: the touch-cost curve is banked
-behind `Match.edsTouchCost`, default OFF, proven to land at the real
-adjudication within noise of its own arithmetic and carried by the speed
-channel alone. The C1-B redraw is spent, in its correct home, on a measurement
-rather than a weight. One thing E2 and E3 both inherit: the canary sized the
-cost at 6.53pp against power's 21.2pp threat benefit — heavy is still the
-safer option on the axis E0 ranks by, so no-strict-dominance is a live risk
-E3 must gate, not an assumption.
+**Queue state (2026-07-25, after ruling #7): E2a is the next step — the
+executor drafts the census-prior stage contract under Autonomous mode, then
+E2b on an E2a PASS without a new ruling.** E1b PASSED on every gate and is
+ACCEPTED (ruling #7): the touch-cost curve is banked behind
+`Match.edsTouchCost`, default OFF, proven to land at the real adjudication
+within noise of its own arithmetic and carried by the speed channel alone.
+The C1-B redraw is spent, in its correct home, on a measurement rather than
+a weight. E2's drafting constraints live in the design contract §3
+(census-derived priors as data, zero-deletion pricing on E0's banked states,
+both-sides evaluator = corridor + touch term, not-looking-must-not-win,
+route-mix vs the S3b signature, PERF hard gate). One thing E2 and E3 both
+inherit: the canary sized the cost at 6.53pp against power's 21.2pp threat
+benefit — heavy is still the safer option on the axis E0 ranks by, so
+no-strict-dominance is a live risk E3 must gate, not an assumption.
 
 Earlier (ruling #6): E1a came back
 split (I1 PASSES, I2 undecided, probe verdict FAIL — frozen in the contract
