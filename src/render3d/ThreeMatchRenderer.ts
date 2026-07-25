@@ -75,7 +75,7 @@ export class ThreeMatchRenderer {
   private linesmen: [LinesmanModel, LinesmanModel];
   private coaches: CoachModel[] = [];
   /** The living crowd (66.1) — idles, ripples on chances, erupts on goals. */
-  private crowd = new CrowdSystem();
+  private crowd: CrowdSystem;
   /** The tactical broadcast layer (68, N4): block outline + press waves. */
   private broadcast = new BroadcastLayer();
   private kits: KitMaterials[] = [];
@@ -121,6 +121,7 @@ export class ThreeMatchRenderer {
     // F0: the body material language is a module-level switch shared by every
     // kit factory, so it must be set BEFORE the first body is built.
     setBodyStyle(style);
+    this.crowd = new CrowdSystem(style);
     this.referee = new RefereeModel();
     this.linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];
     this.perception = new PerceptionSandbox3D(host);

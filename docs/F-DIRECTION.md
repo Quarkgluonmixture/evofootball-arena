@@ -106,8 +106,8 @@ add wide-angle presets (user, 2026-07-25). Phone is the binding constraint:
 ## Standing lever list (F1+, one per step)
 
 Open, unordered, each measured against this doc by the user's eyes:
-~~character proportions~~ **(F2, done 2026-07-25)** · `CrowdSystem` body
-palette, still unstyled by any preset · kit readability and silhouette · procedural animation polish
+~~character proportions~~ **(F2, done 2026-07-25)** · ~~crowd palette~~
+**(F3, done 2026-07-25)** · kit readability and silhouette · procedural animation polish
 (anticipation, follow-through) · ball trail / spin / height cues · goal-moment
 FX and camera work · post: bloom, vignette, tilt-shift, AA — all inside the
 phone budget · ~~`PlayerShowcase` re-framing~~ **(done with F2)**.

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { stylePreset, type StylePreset } from './stylePresets';
 import { terraceSlabs } from './PitchModel';
 
 /**
@@ -15,6 +16,9 @@ import { terraceSlabs } from './PitchModel';
  * Render-only; fed by FxSystem's deduped hooks, so live play, skip and
  * replay scrubbing each fire a reaction exactly once.
  */
+
+/** The player skin palette, so the stands are the same species as the pitch. */
+const CROWD_SKINS = [0xf1c27d, 0xe0b089, 0xc68642, 0x9c6b3f, 0x6b4423, 0x4a2f1b];
 
 interface Seat {
   x: number;
@@ -36,11 +40,14 @@ export class CrowdSystem {
   /** Current arousal 0..1 — jumps on events, decays toward calm. */
   private excitement = 0;
 
-  constructor() {
+  constructor(style: StylePreset = stylePreset()) {
     let lcg = 987654321;
     const rand = () => ((lcg = (lcg * 48271) % 2147483647) / 2147483647);
-    const palette = [0x33415e, 0x475c85, 0x8294b5, 0x4ade80, 0xf59e0b, 0xe2e8f0, 0x60a5fa, 0x1d3a5f];
+    // F-DIRECTION: the palette is data. The terrace was the last element no
+    // preset owned — a night-navy crowd sat under the daylight arms' noon sky.
+    const palette = style.crowd;
     const colors: number[] = [];
+    const skins: number[] = [];
     for (const s of terraceSlabs()) {
       const usable = s.w - 2;
       const n = Math.floor(usable / 1.15);
@@ -55,6 +62,9 @@ export class CrowdSystem {
           eager: 0.5 + rand() * 0.5,
         });
         colors.push(palette[Math.floor(rand() * palette.length)]);
+        // One skin tone for a whole crowd was its own small incoherence:
+        // the players have had six since Phase 76.
+        skins.push(CROWD_SKINS[Math.floor(rand() * CROWD_SKINS.length)]);
       }
     }
     this.bodies = new THREE.InstancedMesh(
@@ -64,7 +74,7 @@ export class CrowdSystem {
     );
     this.heads = new THREE.InstancedMesh(
       new THREE.SphereGeometry(0.16, 6, 5),
-      new THREE.MeshStandardMaterial({ color: 0xd9b99b, roughness: 0.85 }),
+      new THREE.MeshStandardMaterial({ roughness: 0.85 }),
       this.seats.length,
     );
     const color = new THREE.Color();
@@ -74,8 +84,10 @@ export class CrowdSystem {
       this.bodies.setColorAt(i, color.setHex(colors[i]));
       this.m4.makeTranslation(s.x, s.y + 0.5, s.z);
       this.heads.setMatrixAt(i, this.m4);
+      this.heads.setColorAt(i, color.setHex(skins[i]));
     });
     if (this.bodies.instanceColor) this.bodies.instanceColor.needsUpdate = true;
+    if (this.heads.instanceColor) this.heads.instanceColor.needsUpdate = true;
     // The stands span the whole diorama — default sphere culling blinks
     // them out at oblique camera angles once instances start moving.
     this.bodies.frustumCulled = false;

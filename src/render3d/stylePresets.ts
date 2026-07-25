@@ -71,6 +71,8 @@ export interface StylePreset {
   boardStripe: number;
   terrace: [number, number];
   floodlights: boolean;
+  /** Terrace crowd shirt colours. The last element any preset didn't own. */
+  crowd: readonly number[];
   /** Bodies: toon ramp materials instead of PBR standard. */
   toon: boolean;
   /** Fake contact-shadow opacity multiplier (1 = as shipped). */
@@ -106,6 +108,7 @@ const CURRENT_NIGHT: StylePreset = {
   boards: [0x16223a, 0x1d3a5f, 0x24304a],
   boardStripe: 0x4ade80,
   terrace: [0x131c30, 0x1a2742],
+  crowd: [0x33415e, 0x475c85, 0x8294b5, 0x4ade80, 0xf59e0b, 0xe2e8f0, 0x60a5fa, 0x1d3a5f],
   floodlights: true,
   toon: false,
   contactShadow: 1,
@@ -208,6 +211,10 @@ const TOY_DAY: StylePreset = {
   boards: [0xe8e2d2, 0xd8cfb8, 0xc9bfa4],
   boardStripe: 0x2f6f3a,
   terrace: [0x76839a, 0x8794ab],
+  crowd: [
+    0xe94f4f, 0xf2a33c, 0xf6d55c, 0x5cb85c, 0x3aa6d8, 0x4a63c8, 0x9b59b6, 0xef8fb5,
+    0xf5f2e8, 0x3f4a5a, 0xe2725b, 0x2fb8a0,
+  ],
   floodlights: false,
   toon: true,
   contactShadow: 1.15,
@@ -234,6 +241,10 @@ const TOY_NIGHT: StylePreset = {
   },
   boards: [0xdcd6c6, 0xccc3ac, 0xbdb398],
   terrace: [0x2b3346, 0x353d52],
+  crowd: [
+    0xa63a3a, 0xb0762c, 0xb39a43, 0x438743, 0x2b7a9e, 0x374a93, 0x724285, 0xaf6a86,
+    0xb4b1a8, 0x2f3743, 0xa85444, 0x24897a,
+  ],
   floodlights: true,
 };
 

@@ -478,6 +478,23 @@ describe('style presets (Track F0, pure data)', () => {
     expect(isLighting('dusk')).toBe(false);
   });
 
+  it('every arm owns a crowd palette — the terrace was the last unstyled thing', () => {
+    for (const id of STYLE_IDS) {
+      for (const lighting of LIGHTINGS) {
+        const crowd = stylePreset(id, lighting).crowd;
+        expect(crowd.length, `${id}/${lighting}`).toBeGreaterThanOrEqual(8);
+        expect(new Set(crowd).size, `${id}/${lighting}`).toBe(crowd.length); // no dupes
+      }
+    }
+    // The toy arm's night crowd is the DAY crowd dimmed, not a fresh guess:
+    // same count, and every hue darker.
+    const day = stylePreset('toy', 'day').crowd;
+    const night = stylePreset('toy', 'night').crowd;
+    expect(night.length).toBe(day.length);
+    const lum = (c: number) => 0.299 * ((c >> 16) & 0xff) + 0.587 * ((c >> 8) & 0xff) + 0.114 * (c & 0xff);
+    day.forEach((c, i) => expect(lum(night[i]), `hue ${i}`).toBeLessThan(lum(c)));
+  });
+
   it('no daylight arm leaves the floodlights burning', () => {
     // A lit lamp at noon is the exact incoherence Track F exists to kill.
     for (const id of STYLE_IDS) {
