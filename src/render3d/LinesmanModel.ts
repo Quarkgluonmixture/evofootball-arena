@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { HALF_L, HALF_W } from '../sim/constants';
+import { HUMAN_MODEL_SCALE } from './PlayerModel';
 import { lerpAngle, type RenderPlayer, type RenderState } from './RenderStateAdapter';
 
 /**
@@ -103,7 +104,11 @@ export class LinesmanModel {
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.02;
 
-    this.root.add(this.lean, this.legL, this.legR, blob);
+    // F1 scale honesty: same shrink as the players and the referee.
+    const bodyScale = new THREE.Group();
+    bodyScale.scale.setScalar(HUMAN_MODEL_SCALE);
+    bodyScale.add(this.lean, this.legL, this.legR, blob);
+    this.root.add(bodyScale);
     this.root.position.set(0, 0, zSide * (HALF_W + 0.8));
   }
 

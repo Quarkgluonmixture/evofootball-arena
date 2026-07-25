@@ -60,6 +60,14 @@ competes with reading the pitch, cut the animation.
   files. If it can't be drawn in ~30 lines, simplify the idea.
 - Grounding matters more than detail: blob shadows + real shadow map, players
   and ball never float.
+- **Human scale is anchored, not eyeballed** (Track F1): every procedural body
+  on the pitch — players, referee, linesmen, touchline coaches — is drawn at
+  one shared `HUMAN_MODEL_SCALE` (`render3d/PlayerModel.ts`), derived so the
+  widest body the game can build keeps its arm-span inside the sim's own
+  `PLAYER_MIN_DIST` footprint. Labels, selection rings and halos are
+  information, not anatomy: they keep full size. A contract test in
+  `tests/render3d.test.ts` pins it in both directions — widen a role build,
+  or drift the constant, and the test fails.
 
 ## Event effect rules
 

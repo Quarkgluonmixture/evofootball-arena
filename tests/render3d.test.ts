@@ -11,14 +11,16 @@ import {
 import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import { defensiveLineX, linesmanTargetX } from '../src/render3d/LinesmanModel';
-import { bodyFor, hash01 } from '../src/render3d/PlayerModel';
+import {
+  armSpan, bodyFor, hash01, MAX_BODY_HEIGHT, maxArmSpan, HUMAN_MODEL_SCALE,
+} from '../src/render3d/PlayerModel';
 import { refereeTarget } from '../src/render3d/RefereeModel';
 import {
   buildRenderState, buildRenderTheme, interpolateStates, lerpAngle,
   type RenderPlayer, type RenderState,
 } from '../src/render3d/RenderStateAdapter';
 import { ReplayBuffer } from '../src/replay/ReplayBuffer';
-import { BALL_RADIUS, DT, FIELD_SCALE, HALF_L } from '../src/sim/constants';
+import { BALL_RADIUS, DT, FIELD_SCALE, HALF_L, PLAYER_MIN_DIST } from '../src/sim/constants';
 import { Match } from '../src/sim/Match';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -375,6 +377,36 @@ describe('bodyFor (Phase 76, pure)', () => {
     // Different names actually diverge somewhere (the point of the phase).
     const specs = ['Zubat', 'Eska', 'Ovie', 'Mirek', 'Yano', 'Kade', 'Brix'].map((n) => bodyFor(n, 0.5));
     expect(new Set(specs.map((s) => `${s.height}:${s.tone}:${s.hair}`)).size).toBeGreaterThan(3);
+  });
+});
+
+describe('player scale honesty (Track F1)', () => {
+  const ROLES = ['GK', 'DF', 'MF', 'WG', 'ST'] as const;
+
+  it('no body the game can build is wider than the footprint the sim gives it', () => {
+    // The anchor: the overlap solver holds centres PLAYER_MIN_DIST apart, so
+    // any body wider than that intersects its marker during close marking.
+    expect(maxArmSpan()).toBeLessThanOrEqual(PLAYER_MIN_DIST);
+    for (const role of ROLES) {
+      expect(armSpan(role, MAX_BODY_HEIGHT), role).toBeLessThanOrEqual(PLAYER_MIN_DIST);
+    }
+    // …and the unscaled model was NOT — the keeper spanned 1.63m and even a
+    // midfielder 1.32m. That gap IS what F1 closed; if this ever stops being
+    // true the shrink has become a taste choice instead of a correction.
+    expect(maxArmSpan(1)).toBeGreaterThan(PLAYER_MIN_DIST);
+    expect(armSpan('MF', 1, 1)).toBeCloseTo(1.32, 10);
+  });
+
+  it('the shrink is derived, not tuned: 0.64 is the LARGEST 0.01 step that fits', () => {
+    expect(HUMAN_MODEL_SCALE).toBe(0.64);
+    const next = Math.round((HUMAN_MODEL_SCALE + 0.01) * 100) / 100;
+    expect(maxArmSpan(next)).toBeGreaterThan(PLAYER_MIN_DIST);
+  });
+
+  it('bodyFor stays inside the identity-height band the anchor was derived at', () => {
+    for (const n of ['Zubat', 'Eska', 'Ovie', 'Mirek', 'Yano', 'Kade', 'Brix']) {
+      expect(bodyFor(n, 0.5).height).toBeLessThanOrEqual(MAX_BODY_HEIGHT);
+    }
   });
 });
 

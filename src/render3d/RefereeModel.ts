@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { HALF_L, HALF_W } from '../sim/constants';
+import { HUMAN_MODEL_SCALE } from './PlayerModel';
 import { lerpAngle, type RenderState } from './RenderStateAdapter';
 
 /**
@@ -105,7 +106,12 @@ export class RefereeModel {
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.02;
 
-    this.root.add(this.lean, this.legL, this.legR, blob);
+    // F1 scale honesty: officials are the same box-person skeleton as the
+    // players and share their shrink — otherwise the ref towers over the game.
+    const bodyScale = new THREE.Group();
+    bodyScale.scale.setScalar(HUMAN_MODEL_SCALE);
+    bodyScale.add(this.lean, this.legL, this.legR, blob);
+    this.root.add(bodyScale);
     const start = refereeTarget(0, 0);
     this.root.position.set(start.x, 0, start.z);
   }

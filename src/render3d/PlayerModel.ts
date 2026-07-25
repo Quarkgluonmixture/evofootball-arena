@@ -10,12 +10,74 @@ import type { AnimName } from './AnimationSystem';
  *
  * Joint hierarchy (all pivots chosen so AnimationSystem can pose it):
  *   root (pitch position, yaw, hop)
- *     body (whole-body pivot at the feet — dives tilt EVERYTHING)
- *       lean (hip pivot, forward/side lean)  -> torso, head, armL, armR
- *       legL, legR (hip pivots)              -> thigh+sock+foot
+ *     scaleRoot (F1 scale honesty — the whole body, uniformly)
+ *       body (whole-body pivot at the feet — dives tilt EVERYTHING)
+ *         lean (hip pivot, forward/side lean)  -> torso, head, armL, armR
+ *         legL, legR (hip pivots)              -> thigh+sock+foot
+ *       blob (fake contact shadow — anatomy, so it scales)
  *     selectRing (flat ring on the grass)
  *     label (sprite billboard)
  */
+
+/* ---------------- scale honesty (Track F, step F1) ---------------- */
+
+/*
+ * The body model was drawn WIDER than the footprint the sim gives it. The
+ * overlap solver keeps player CENTRES `PLAYER_MIN_DIST` (1.05 m) apart, but
+ * the widest body this file can build spans 1.63 m across the arms — so two
+ * bodies at minimum separation intersect by half a torso during close
+ * marking, and every player reads bloated against a 63 × 40.6 m pitch.
+ *
+ * F1 is ONE uniform shrink, applied to every procedural human body on the
+ * pitch — players here, plus the referee, linesmen and touchline coaches,
+ * which are the same box-person skeleton in their own files. They share the
+ * constant because they share a world: shrinking players alone would leave
+ * the officials towering over them.
+ *
+ * What does NOT move (the user's rule): name labels, selection rings and
+ * halos keep full size — they are information, not anatomy. Nor does any sim
+ * constant: this is render-only, so the fingerprint cannot move.
+ *
+ * The value is DERIVED, not chosen: 1.05 / 1.63134 = 0.6436, rounded DOWN to
+ * the nearest 0.01 so the anchor holds for every role at the tallest identity
+ * `bodyFor` can hash. `armSpan`/`maxArmSpan` below are pure and the render3d
+ * contract test pins both directions — 0.64 fits, 0.65 does not.
+ */
+export const HUMAN_MODEL_SCALE = 0.64;
+
+/** Shoulder offset from the spine, × the role's torso width. */
+const SHOULDER_X = 0.55;
+/** Keeper shoulders sit a touch wider still. */
+const GK_SHOULDER_OUT = 0.03;
+/** Half-width of the upper arm (sleeve box is twice this). */
+const SLEEVE_HALF_W = 0.11;
+/** Half-width of the forearm; keeper gloves fatten it. */
+const FOREARM_HALF_W = 0.09;
+const GK_FOREARM_SCALE = 1.25;
+/** `bodyFor`'s identity-height band — the anchor is derived at the top of it. */
+const MIN_BODY_HEIGHT = 0.94;
+export const MAX_BODY_HEIGHT = 1.06;
+
+/**
+ * Lateral silhouette width across the arms, in metres. The arms are always
+ * the model's widest horizontal dimension — torso (0.86 × torsoW × bulk, bulk
+ * ≤ 1.16) and stance (feet at ±0.35) both sit inside them — so this is the
+ * honest quantity to hold against `PLAYER_MIN_DIST`. Pure: no THREE objects,
+ * so the contract test can call it in node.
+ */
+export function armSpan(role: Role, height = 1, scale = HUMAN_MODEL_SCALE): number {
+  const isGK = role === 'GK';
+  const shoulder = SHOULDER_X * BUILD[role].torsoW + (isGK ? GK_SHOULDER_OUT : 0);
+  const halfLimb = Math.max(SLEEVE_HALF_W, FOREARM_HALF_W * (isGK ? GK_FOREARM_SCALE : 1));
+  return 2 * (shoulder + halfLimb) * height * scale;
+}
+
+/** The widest body the game can build: broadest role × tallest identity. */
+export function maxArmSpan(scale = HUMAN_MODEL_SCALE): number {
+  return Math.max(
+    ...(Object.keys(BUILD) as Role[]).map((role) => armSpan(role, MAX_BODY_HEIGHT, scale)),
+  );
+}
 
 /* Shared geometries — created once, reused by all 10 players. */
 let GEO: {
@@ -49,8 +111,8 @@ function sharedGeo(): NonNullable<typeof GEO> {
     // Since Phase 73 the forearm hangs from an ELBOW group (y=-0.34 in the
     // arm) and sock/band/foot from a KNEE group (y=-0.55 in the leg), so
     // their geometry is translated relative to those pivots.
-    sleeve: translate(new THREE.BoxGeometry(0.22, 0.36, 0.22), -0.18),
-    forearm: translate(new THREE.BoxGeometry(0.18, 0.44, 0.18), -0.22),
+    sleeve: translate(new THREE.BoxGeometry(SLEEVE_HALF_W * 2, 0.36, SLEEVE_HALF_W * 2), -0.18),
+    forearm: translate(new THREE.BoxGeometry(FOREARM_HALF_W * 2, 0.44, FOREARM_HALF_W * 2), -0.22),
     thigh: translate(new THREE.BoxGeometry(0.26, 0.55, 0.28), -0.27),
     sock: translate(new THREE.BoxGeometry(0.22, 0.42, 0.24), -0.21),
     sockBand: translate(new THREE.BoxGeometry(0.24, 0.1, 0.26), -0.03),
@@ -141,7 +203,7 @@ export function bodyFor(name: string, strength: number): BodySpec {
   const h2 = hash01(`${name}#skin`);
   const h3 = hash01(`#hair${name}`);
   return {
-    height: 0.94 + h1 * 0.12,
+    height: MIN_BODY_HEIGHT + h1 * (MAX_BODY_HEIGHT - MIN_BODY_HEIGHT),
     bulk: 0.88 + Math.max(0, Math.min(1, strength)) * 0.28,
     tone: SKIN_TONES[Math.min(SKIN_TONES.length - 1, Math.floor(h2 * SKIN_TONES.length))],
     hair: h3 < 0.14 ? 2 : h3 < 0.62 ? 0 : 1,
@@ -190,6 +252,11 @@ const HIP_Y = 1.06;
 
 export class PlayerModel {
   readonly root = new THREE.Group();
+  /** F1 scale honesty: the ONE uniform shrink, carried by its own group so
+   * every body transform underneath it — including the run bob and the dive
+   * lift that AnimationSystem writes to `body.position.y` — scales with the
+   * model, while the root's label/ring/halo/blob children keep full size. */
+  readonly scaleRoot = new THREE.Group();
   /** Whole-body group (lean + legs), pivot at the feet: the keeper dive
    * tilts THIS, so the legs leave the ground with the torso — tilting only
    * `lean` folded the keeper at the hips while his legs stood planted (the
@@ -313,7 +380,7 @@ export class PlayerModel {
     backNumber.rotation.y = Math.PI;
     this.lean.add(backNumber);
 
-    const armX = 0.55 * build.torsoW + (isGK ? 0.03 : 0);
+    const armX = SHOULDER_X * build.torsoW + (isGK ? GK_SHOULDER_OUT : 0);
     const aL = this.makeArm(g, kit, -armX, isGK);
     const aR = this.makeArm(g, kit, armX, isGK);
     this.armL = aL.arm;
@@ -368,7 +435,12 @@ export class PlayerModel {
     this.drawLabel('');
 
     this.body.add(this.lean, this.legL, this.legR);
-    this.root.add(this.body, this.blob, this.selectRing, this.selectHalo, this.label);
+    // The grounding blob is the body's own contact shadow, so it shrinks WITH
+    // it — a shadow wider than the man is a drawing error, not a marker. The
+    // ring/halo/label are markers and stay full size.
+    this.scaleRoot.scale.setScalar(HUMAN_MODEL_SCALE);
+    this.scaleRoot.add(this.body, this.blob);
+    this.root.add(this.scaleRoot, this.selectRing, this.selectHalo, this.label);
     // Raycast target for click-to-select.
     this.root.traverse((o) => (o.userData.gid = gid));
   }
@@ -382,7 +454,7 @@ export class PlayerModel {
     // Keepers wear long sleeves + big pale gloves; outfielders show skin.
     const m = sharedMats();
     const forearm = new THREE.Mesh(g.forearm, isGK ? m.glove : m.skin);
-    if (isGK) forearm.scale.set(1.25, 1, 1.25);
+    if (isGK) forearm.scale.set(GK_FOREARM_SCALE, 1, GK_FOREARM_SCALE);
     else this.skinMeshes.push(forearm); // retoned per occupant (Phase 76)
     sleeve.castShadow = true;
     forearm.castShadow = true;

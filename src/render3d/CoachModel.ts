@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { Side } from '../sim/types';
+import { HUMAN_MODEL_SCALE } from './PlayerModel';
 import { lerpAngle } from './RenderStateAdapter';
 
 /**
@@ -101,7 +102,12 @@ export class CoachModel {
     blob.rotation.x = -Math.PI / 2;
     blob.position.y = 0.02;
 
-    this.root.add(this.lean, legL, legR, shoeL, shoeR, blob);
+    // F1 scale honesty: the touchline figure shrinks with the pitch's humans;
+    // his nameplate below stays on the root at full size, like a player label.
+    const bodyScale = new THREE.Group();
+    bodyScale.scale.setScalar(HUMAN_MODEL_SCALE);
+    bodyScale.add(this.lean, legL, legR, shoeL, shoeR, blob);
+    this.root.add(bodyScale);
 
     // Nameplate — only when a named coach travels with the team sheet.
     if (name) {
