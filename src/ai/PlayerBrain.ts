@@ -1081,8 +1081,19 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // Cut out a pass in flight — unless it's sailing overhead (Phase 28);
     // lofted balls are contested at the landing point via ChaseBall instead.
     if (ball.owner === null && match.pendingPass && match.pendingPass.side !== team.side && ball.z <= 0.5) {
-      const inter = canInterceptPass(p, ball);
-      if (inter.ok) cands.push({ action: 'InterceptPass', score: W.interceptScore, why: 'can reach the passing lane first' });
+      // EDS E2b-1: the geometry this entry is computed from is the ball —
+      // where it is and where it is going. With perceived defending on, that
+      // comes from THIS defender's own percept, so a stale read aims at the
+      // wrong lane and no read at all cannot enter. Not looking has to cost
+      // something or the arm is theatre. The trigger itself (a pass is in
+      // flight) stays as it is: v1 makes the READ perceived, not the alarm.
+      const seen = match.edsPerceivedDefence
+        ? (match.perceptionSnapshots.get(p.gid)?.ball ?? null)
+        : null;
+      const inter = match.edsPerceivedDefence
+        ? (seen === null ? null : canInterceptPass(p, { pos: seen.pos, vel: seen.vel } as typeof ball))
+        : canInterceptPass(p, ball);
+      if (inter?.ok) cands.push({ action: 'InterceptPass', score: W.interceptScore, why: 'can reach the passing lane first' });
     }
     // Chase only if the TeamBrain assigned us — this is what stops ball-swarming.
     if (team.chasers.has(p.index)) {

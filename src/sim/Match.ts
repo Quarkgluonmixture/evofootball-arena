@@ -6,6 +6,10 @@ import { pickCornerRoutine, updateTeamBrain } from '../ai/TeamBrain';
 import { PROFILER as prof } from './profiler';
 import { executeAction } from '../ai/actionExecutor';
 import { cornerCrashSpots, fkWallSlots, formationSpot, offsideLineLocalX, shapeReady } from '../ai/formations';
+import {
+  capturePerceptionTruth, createPerceptionMemory, perceiveSnapshot,
+  type PerceptionMemory, type PerceptionSnapshot, type PerceptionTruth,
+} from '../ai/perceptionSnapshot';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
@@ -174,6 +178,15 @@ export interface MatchConfig {
    * off `touchFailChance` is bit-for-bit the shipped one.
    */
   edsTouchCost?: boolean;
+  /**
+   * EDS E2b-1 (docs/world-model/EDS-E2B1-BOTH-SIDES-AB.md): the defender's
+   * interception entry reads HIS OWN perceived ball instead of truth, through
+   * the shared awareness trunk. Off in every production path. The awareness
+   * the trunk runs at travels with it — one number, both sides, per
+   * SUBSTRATE-MAP's no-one-sided-reading-attr ruling.
+   */
+  edsPerceivedDefence?: boolean;
+  edsAwareness?: number;
 }
 
 interface GroundContactClaim {
@@ -240,6 +253,20 @@ export class Match {
   readonly traceFirstTouch: boolean;
   /** E1b: the heavy-touch curve, dormant unless a probe world asks for it. */
   readonly edsTouchCost: boolean;
+  /** E2b-1: perceived-state defending, dormant unless a probe world asks. */
+  readonly edsPerceivedDefence: boolean;
+  readonly edsAwareness: number;
+  /** Kept for the perception trunk's deterministic observation noise. */
+  private readonly perceptionSeed: number;
+  /**
+   * E2b-1: per-player perception, updated at BRAIN CADENCE — the substrate's
+   * own decision interval — never per tick. Empty and untouched when the flag
+   * is off, which is what keeps the production path bit-identical.
+   */
+  readonly perceptionMemories = new Map<number, PerceptionMemory>();
+  readonly perceptionSnapshots = new Map<number, PerceptionSnapshot>();
+  private perceptionTruthTick = -1;
+  private perceptionTruth: PerceptionTruth | null = null;
   /**
    * EDS E2a-2 (docs/world-model/EDS-E2A2-OPTION-SPACE-CENSUS.md): substitute
    * the pass TARGET the brain chose, for one tick, and let the live machinery
@@ -379,6 +406,9 @@ export class Match {
     this.traceContests = cfg.traceContests ?? false;
     this.traceFirstTouch = cfg.traceFirstTouch ?? false;
     this.edsTouchCost = cfg.edsTouchCost ?? false;
+    this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? false;
+    this.edsAwareness = cfg.edsAwareness ?? 0.8;
+    this.perceptionSeed = cfg.seed;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];
     // The underdog shift (Phase 64): with both clubs' Elo on the team
     // sheet, the outgunned coach bends toward the bus by his gene. Read
@@ -556,6 +586,9 @@ export class Match {
     for (const p of order) {
       if (p.sentOff) continue;
       if (p.decisionTimer <= 0) {
+        // E2b-1: this body's percept is refreshed exactly when it thinks, so
+        // perception costs one build per decision rather than one per tick.
+        if (this.edsPerceivedDefence) this.refreshPerception(p);
         decidePlayer(p, this);
         p.decisionTimer = AI_INTERVAL;
       }
@@ -1981,6 +2014,28 @@ export class Match {
       this.giveBall(taker);
       taker.decisionTimer = 0.12; // kick promptly (giveBall's settle is for open play)
     }
+  }
+
+  /**
+   * E2b-1: rebuild one player's percept from the shared awareness trunk. The
+   * truth capture is memoised per tick, so a whole team thinking on the same
+   * tick pays for it once. Keepers are excluded exactly as every other
+   * perception consumer excludes them.
+   */
+  private refreshPerception(p: Player): void {
+    if (p.role === 'GK' || p.sentOff) return;
+    if (this.perceptionTruthTick !== this.stepCount || this.perceptionTruth === null) {
+      this.perceptionTruth = capturePerceptionTruth(this);
+      this.perceptionTruthTick = this.stepCount;
+    }
+    let memory = this.perceptionMemories.get(p.gid);
+    if (memory === undefined) {
+      memory = createPerceptionMemory();
+      this.perceptionMemories.set(p.gid, memory);
+    }
+    this.perceptionSnapshots.set(p.gid, perceiveSnapshot(
+      this.perceptionTruth, p.gid, this.edsAwareness, this.perceptionSeed, memory,
+    ));
   }
 
   /** M3: collect every contact claim from one immutable post-physics snapshot. */
