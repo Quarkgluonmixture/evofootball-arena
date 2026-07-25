@@ -430,7 +430,9 @@ export class PlayerModel {
     this.label = new THREE.Sprite(
       new THREE.SpriteMaterial({ map: this.labelTex, transparent: true, depthWrite: false }),
     );
-    this.label.position.y = 3.15;
+    // The plate's SIZE is information and never scales, but its HEIGHT is an
+    // anchor to the head — it rides the F1 shrink so it keeps hugging it.
+    this.label.position.y = 3.15 * HUMAN_MODEL_SCALE;
     this.label.scale.set(3.4, 1.28, 1);
     this.drawLabel('');
 

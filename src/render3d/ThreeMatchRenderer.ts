@@ -20,7 +20,8 @@ import { Overlays3D } from './Overlays3D';
 import { PerceptionSandbox3D, type PerceptionView } from './PerceptionSandbox3D';
 import { createPitch } from './PitchModel';
 import {
-  PlayerModel, disposeKit, makeKit, resetSharedPlayerResources, type KitMaterials,
+  HUMAN_MODEL_SCALE, PlayerModel, disposeKit, makeKit, resetSharedPlayerResources,
+  type KitMaterials,
 } from './PlayerModel';
 import type { FxEvent, RenderState, RenderTheme } from './RenderStateAdapter';
 import { createScene } from './SceneFactory';
@@ -474,7 +475,7 @@ export class ThreeMatchRenderer {
     for (const p of state.players) {
       const model = this.players.get(p.gid);
       if (!model) continue;
-      v.set(p.x, 3.1, p.z).project(this.cameraCtl.camera);
+      v.set(p.x, 3.1 * HUMAN_MODEL_SCALE, p.z).project(this.cameraCtl.camera);
       const priority =
         p.gid === selectedGid ? 4 : p.gid === state.ball.ownerGid ? 3 : p.role === 'GK' ? 2 : 1;
       items.push({ gid: p.gid, x: (v.x * 0.5 + 0.5) * CANVAS_W, y: (-v.y * 0.5 + 0.5) * CANVAS_H, priority });

@@ -126,7 +126,7 @@ export class CoachModel {
       const sprite = new THREE.Sprite(
         new THREE.SpriteMaterial({ map: this.labelTex, transparent: true, depthWrite: false }),
       );
-      sprite.position.y = 2.7;
+      sprite.position.y = 2.7 * HUMAN_MODEL_SCALE; // rides the F1 shrink, like a player plate
       sprite.scale.set(2.9, 0.72, 1);
       this.label = sprite;
       this.root.add(sprite);
