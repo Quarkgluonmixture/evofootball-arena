@@ -246,9 +246,14 @@ const PRESETS: Record<StyleId, Record<Lighting, StylePreset>> = {
 export const STYLE_IDS: readonly StyleId[] = ['current', 'coherence', 'toy'];
 export const LIGHTINGS: readonly Lighting[] = ['night', 'day'];
 
-/** The shipped default: unchanged until F0 reports and the user picks. */
-export const DEFAULT_STYLE: StyleId = 'current';
-export const DEFAULT_LIGHTING: Lighting = 'night';
+/**
+ * The shipped direction, PICKED BY THE USER at F0 (2026-07-25): the
+ * toy/board-game world, in daylight. Lighting stays switchable in-game (their
+ * call: "两个都要,做成可切换"), so `night` is a live preset, not a leftover.
+ * `current` is kept forever as the banked baseline the pick was made against.
+ */
+export const DEFAULT_STYLE: StyleId = 'toy';
+export const DEFAULT_LIGHTING: Lighting = 'day';
 
 export function stylePreset(id: StyleId = DEFAULT_STYLE, lighting: Lighting = DEFAULT_LIGHTING): StylePreset {
   return PRESETS[id][lighting];

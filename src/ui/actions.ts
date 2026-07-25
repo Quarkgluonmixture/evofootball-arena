@@ -1,4 +1,5 @@
 import type { CameraMode } from '../render3d/CameraController';
+import type { Lighting } from '../render3d/stylePresets';
 import type { FxQuality } from '../render3d/FxSystem';
 
 export type ViewMode = '2d' | '3d';
@@ -75,6 +76,8 @@ export interface GameActions {
   /** HT/FT auto-highlight reels (Phase 33) — on by default, ⏭ skips. */
   setAutoHighlights(v: boolean): void;
   setFxQuality(q: FxQuality): void;
+  /** Track F: day / night lighting for the 3D world (user pick at F0). */
+  setLighting(l: Lighting): void;
   /** Save file down/upload (119a.5: the settings screen owns these now). */
   exportSave(): void;
   importSave(): void;

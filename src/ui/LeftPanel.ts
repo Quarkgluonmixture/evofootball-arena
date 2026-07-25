@@ -4,12 +4,18 @@ import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import { button, checkbox, colorHex, el } from './dom';
 import { halfLabel, t } from './i18n';
+import { DEFAULT_LIGHTING, type Lighting } from '../render3d/stylePresets';
 import type { FxQuality, GameActions, ViewMode } from './actions';
 
 const FX_LABELS: Array<[FxQuality, string]> = [
   ['low', t('Low')],
   ['medium', t('Med')],
   ['high', t('High')],
+];
+
+const LIGHTING_LABELS: Array<[Lighting, string]> = [
+  ['day', t('Day')],
+  ['night', t('Night')],
 ];
 
 const CAMERA_LABELS: Array<[CameraMode, string]> = [
@@ -38,6 +44,7 @@ export class LeftPanel {
   private cameraButtons = new Map<CameraMode, HTMLButtonElement>();
   private threeOnly: HTMLButtonElement[] = [];
   private fxButtons = new Map<FxQuality, HTMLButtonElement>();
+  private lightButtons = new Map<Lighting, HTMLButtonElement>();
 
   constructor(root: HTMLElement, actions: GameActions) {
     const scoreboard = el('div', 'section');
@@ -178,13 +185,31 @@ export class LeftPanel {
     }
     presSec.appendChild(fxRow);
 
+    // Track F: the world's time of day (user pick at F0 — "两个都要,做成可切换").
+    const lightRow = el('div', 'row');
+    lightRow.appendChild(el('span', 'muted g-name', t('Lighting')));
+    const lightSeg = el('div', 'seg');
+    lightRow.appendChild(lightSeg);
+    for (const [l, label] of LIGHTING_LABELS) {
+      const b = button(label, () => actions.setLighting(l));
+      this.lightButtons.set(l, b);
+      this.threeOnly.push(b);
+      lightSeg.appendChild(b);
+    }
+    presSec.appendChild(lightRow);
+
     root.append(scoreboard, speedSec, viewSec, simSec, presSec);
     this.setViewUI('2d', 'tactical');
     this.setFxQualityUI('medium');
+    this.setLightingUI(DEFAULT_LIGHTING);
   }
 
   setFxQualityUI(q: FxQuality): void {
     for (const [k, b] of this.fxButtons) b.classList.toggle('active', k === q);
+  }
+
+  setLightingUI(l: Lighting): void {
+    for (const [k, b] of this.lightButtons) b.classList.toggle('active', k === l);
   }
 
   setViewUI(view: ViewMode, camera: CameraMode): void {

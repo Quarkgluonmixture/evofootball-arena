@@ -1,5 +1,13 @@
 # EvoFootball Arena — Art Direction
 
+> ⚠️ **Superseded on the WORLD's look by [`F-DIRECTION.md`](F-DIRECTION.md)**
+> (user pick at Track F step F0, 2026-07-25: toy/board-game, daylight, night
+> switchable). Where the two disagree — style, palette, material language,
+> time of day, the 3D scene rules below — F-DIRECTION wins, and the palette
+> lives in `src/render3d/stylePresets.ts` as data rather than in prose.
+> This file stays authoritative for the **UI registers, animation timings,
+> event-effect rules and the icon language**, which F0 did not touch.
+
 **Target style: "retro tactical broadcast + low-poly diorama football".**
 The game should read like a late-night tactics show covering a tabletop
 stadium: information-dense monospace chrome around a warm, readable, procedural
@@ -50,9 +58,14 @@ competes with reading the pitch, cut the animation.
 
 ## 3D scene rules
 
-- The pitch is a **diorama**: one textured plane on a pedestal, dark backdrop,
-  fog, four floodlights, low terrace silhouettes. Atmosphere must stay darker
-  and quieter than the playing surface (vignette enforces focus).
+> Atmosphere and palette here are SUPERSEDED by [`F-DIRECTION.md`](F-DIRECTION.md):
+> the world now ships in daylight with night as a player setting, and the
+> "darker than the playing surface" mandate no longer holds. The structural
+> rules (procedural only, grounding, identity channels) still do.
+
+- The pitch is a **diorama**: one textured plane on a pedestal, backdrop, fog,
+  low terrace silhouettes; floodlights only at night (a lit lamp at noon is
+  the incoherence Track F exists to kill).
 - Players are **jointed box-people**, ~12 parts, shared geometries. Identity
   channels: kit colors (shirt/shorts/socks), role builds (GK broad+gloves,
   winger slim, striker hunched), back numbers (1/4/8/7/9), labels.

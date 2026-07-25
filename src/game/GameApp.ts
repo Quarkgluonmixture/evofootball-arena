@@ -16,6 +16,17 @@ import {
   DEFAULT_LIGHTING, DEFAULT_STYLE, isLighting, isStyleId, stylePreset,
   type Lighting, type StyleId,
 } from '../render3d/stylePresets';
+
+/** Persisted time-of-day choice (Track F). */
+const LIGHTING_KEY = 'evo:lighting';
+function loadLighting(): Lighting {
+  try {
+    const v = localStorage.getItem(LIGHTING_KEY);
+    return isLighting(v) ? v : DEFAULT_LIGHTING;
+  } catch {
+    return DEFAULT_LIGHTING;
+  }
+}
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
 import {
@@ -448,6 +459,8 @@ export class GameApp implements GameActions {
     // Default view is 3D (Phase 27.5, user request) — setViewMode falls back
     // to 2D with a feed notice where WebGL is unavailable.
     this.setViewMode('3d');
+    // Reflect the persisted time-of-day choice in the panel (Track F).
+    this.left.setLightingUI(this.lighting);
   }
 
   /* ---------------- frame loop ---------------- */
@@ -1372,6 +1385,21 @@ export class GameApp implements GameActions {
     this.left.setFxQualityUI(q);
   }
 
+  /**
+   * Track F: the world's time of day. The user picked the toy direction with
+   * BOTH lightings live ("两个都要,做成可切换"), so this is a real player
+   * setting, persisted like emergent positioning — not a debug flag.
+   */
+  setLighting(l: Lighting): void {
+    try {
+      localStorage.setItem(LIGHTING_KEY, l);
+    } catch {
+      /* private browsing — the choice just won't survive a reload */
+    }
+    this.setStyle(this.styleId, l);
+    this.left.setLightingUI(l);
+  }
+
   saveNow(): void {
     if (this.busy) {
       this.feed.pushSystem('⏳ Simulation running — save again in a moment.');
@@ -1478,7 +1506,7 @@ export class GameApp implements GameActions {
 
   /** F0 style arm + lighting the 3D view is built with (defaults = shipped). */
   private styleId: StyleId = DEFAULT_STYLE;
-  private lighting: Lighting = DEFAULT_LIGHTING;
+  private lighting: Lighting = loadLighting();
 
   setViewMode(v: ViewMode): void {
     if (v === this.viewMode) return;
@@ -1533,8 +1561,10 @@ export class GameApp implements GameActions {
    * the defaults reproduce the shipped look.
    */
   setStyle(id: StyleId, lighting: Lighting): void {
+    if (this.styleId === id && this.lighting === lighting && this.three) return;
     this.styleId = id;
     this.lighting = lighting;
+    this.left.setLightingUI(lighting);
     if (this.viewMode !== '3d' || !this.three) return;
     const camera = this.three.cameraMode;
     this.three.dispose();

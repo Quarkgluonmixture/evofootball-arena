@@ -419,11 +419,17 @@ describe('player scale honesty (Track F1)', () => {
 });
 
 describe('style presets (Track F0, pure data)', () => {
-  it('the default preset still reproduces the SHIPPED look, literal for literal', () => {
-    // F0 must not change the game while it is only a showcase. If someone
-    // edits `current`/night to make a screenshot look better, this fails.
+  it('ships the direction the user picked at F0', () => {
+    expect([DEFAULT_STYLE, DEFAULT_LIGHTING]).toEqual(['toy', 'day']);
     const p = stylePreset();
     expect([p.id, p.lighting]).toEqual([DEFAULT_STYLE, DEFAULT_LIGHTING]);
+    expect(p.toon).toBe(true);
+  });
+
+  it('keeps `current`/night as the banked pre-F0 baseline, literal for literal', () => {
+    // The pick was made AGAINST this frame. If someone edits it to make a
+    // future comparison look better, the baseline stops being a baseline.
+    const p = stylePreset('current', 'night');
     expect(p.toneMapping).toBe('none'); // three's default — what shipped
     expect(p.exposure).toBe(1);
     expect(p.background).toBe(0x0b1220);
