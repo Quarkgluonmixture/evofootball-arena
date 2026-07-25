@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { HUMAN_MODEL_SCALE } from './PlayerModel';
 import type { RenderBall, RenderPlayer } from './RenderStateAdapter';
 import {
   BALL_SHADOW_RADIUS, BALL_VISUAL_RADIUS, type ContactCue,
@@ -137,7 +138,9 @@ export class BallModel {
     // their real trajectory from the sim.
     if (!owned && realH <= 0.02 && ball.speed > 9 && (this.prevOwned || ball.speed > this.prevSpeed + 7)) {
       this.hopDur = Math.min(1.1, 0.35 + ball.speed * 0.02);
-      this.hopHeight = Math.min(1.8, ball.speed * 0.055);
+      // F1: the arc is a render fake sized against the bodies it flies past,
+      // so it rides their shrink — 1.8m over a 1.72m man was a moon shot.
+      this.hopHeight = Math.min(1.8, ball.speed * 0.055) * HUMAN_MODEL_SCALE;
       this.hopT = 0;
     }
     if (owned || realH > 0.02) this.hopT = -1;
@@ -151,8 +154,9 @@ export class BallModel {
     }
     // Keeper hold (Phase 27.2): the ball rides up into the hands and back
     // down as the keeper releases it — the "uses their hands" read.
+    // F1: 0.95 sat just under the OLD keeper's hands; scaled it still does.
     this.heldY = ball.heldByGk
-      ? Math.min(0.95, this.heldY + dt * 5)
+      ? Math.min(0.95 * HUMAN_MODEL_SCALE, this.heldY + dt * 5)
       : Math.max(0, this.heldY - dt * 5);
     this.mesh.position.set(this.carryCur.x, BALL_VISUAL_RADIUS + h + this.heldY, this.carryCur.z);
     this.blob.position.x = this.carryCur.x;

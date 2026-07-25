@@ -1,11 +1,18 @@
 import { BALL_RADIUS } from '../sim/constants';
+import { HUMAN_MODEL_SCALE } from './PlayerModel';
 import type { RenderBall, RenderPlayer } from './RenderStateAdapter';
 
 /**
  * The sphere stays oversized for a phone/tactical camera, but no longer
  * pretends a 22cm football is an 84cm exercise ball.
+ *
+ * F1 (Track F): the readability factor the user accepted at M4 was 2.6 —
+ * accepted against the OLD body. Shrinking the bodies without the ball would
+ * have quietly inflated it from 21% of a player's height to 33%, so the same
+ * accepted RATIO is carried through the shrink rather than re-chosen. Radius
+ * 0.286 → 0.183 m; the ball is still 66% bigger than a real one, on purpose.
  */
-export const BALL_VISUAL_SCALE = 2.6;
+export const BALL_VISUAL_SCALE = 2.6 * HUMAN_MODEL_SCALE;
 export const BALL_VISUAL_RADIUS = BALL_RADIUS * BALL_VISUAL_SCALE;
 export const BALL_SHADOW_RADIUS = BALL_VISUAL_RADIUS * 0.82;
 
@@ -22,9 +29,11 @@ export function carryDisplayOffset(
   owner: CarryOwner | undefined,
 ): { dx: number; dz: number } | null {
   if (!owner || ball.ownerGid === null || ball.heldByGk !== true) return null;
+  // F1: the hands sit 0.3m in front of the OLD body; the offset rides the shrink.
+  const reach = 0.3 * HUMAN_MODEL_SCALE;
   return {
-    dx: owner.x + Math.sin(owner.yaw) * 0.3 - ball.x,
-    dz: owner.z + Math.cos(owner.yaw) * 0.3 - ball.z,
+    dx: owner.x + Math.sin(owner.yaw) * reach - ball.x,
+    dz: owner.z + Math.cos(owner.yaw) * reach - ball.z,
   };
 }
 

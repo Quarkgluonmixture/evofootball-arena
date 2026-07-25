@@ -212,9 +212,12 @@ describe('RenderStateAdapter', () => {
 
 describe('ball presentation tells the same truth as the sim', () => {
   it('keeps the tactical-readability sphere close to the physical ball scale', () => {
-    expect(BALL_VISUAL_SCALE).toBe(2.6);
+    // F1: the M4-accepted readability factor 2.6 rides the body shrink, so the
+    // ball holds the same share of a player's height instead of inflating.
+    expect(BALL_VISUAL_SCALE).toBeCloseTo(2.6 * HUMAN_MODEL_SCALE, 10);
     expect(BALL_VISUAL_RADIUS).toBe(BALL_RADIUS * BALL_VISUAL_SCALE);
     expect(BALL_VISUAL_RADIUS).toBeLessThan(0.42);
+    expect(BALL_VISUAL_RADIUS).toBeGreaterThan(BALL_RADIUS); // still readable, never "real"
   });
 
   it('never moves an outfield-controlled display ball away from its authoritative position', () => {
@@ -223,7 +226,9 @@ describe('ball presentation tells the same truth as the sim', () => {
     expect(carryDisplayOffset(ball, owner)).toBeNull();
 
     const held = carryDisplayOffset({ ...ball, ownerGid: 0, heldByGk: true }, owner);
-    expect(held).toEqual({ dx: -0.5, dz: 0 }); // keeper hands remain a render-only height/pose anchor
+    // Keeper hands remain a render-only height/pose anchor; the reach rides F1.
+    expect(held!.dx).toBeCloseTo(-0.8 + 0.3 * HUMAN_MODEL_SCALE, 10);
+    expect(held!.dz).toBeCloseTo(0, 10);
   });
 
   it('distinguishes a real tackle contact from an ordinary loose-ball touch', () => {
