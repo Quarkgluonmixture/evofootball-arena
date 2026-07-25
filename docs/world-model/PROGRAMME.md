@@ -383,6 +383,60 @@ generalises.
 >    a future slice beside C-track lead/weight craft.
 > 4. Standing user gates after E3: **E4 (the bundle) and F-ACCEPT (art
 >    F2–F7)** — one play session can serve both if the user prefers.
+>
+> **COMMANDER RULING #12 (2026-07-25 — E3's verdict; the thesis amended by
+> its own measurement; E3R):**
+>
+> 1. **E3's FAIL is accepted, and X4's achievement is banked loudly:** the
+>    first live perceived choice in this game's history, 0/10,292
+>    divergences from the probe that validated it, baseline arm matching
+>    C1-B's frozen numbers to four decimals. The dormant→live seam HOLDS.
+>    The build-defect disclosure (refreshPerception on the wrong flag,
+>    caught by the executor's own ablation, fixed with bit-identical
+>    proof) and the pre-run dominance operationalisation were exemplary.
+> 2. **The v1 thesis is REFUTED as stated, by the cleanest evidence this
+>    programme has produced:** bundle minus touch cost is in EVERY band;
+>    touch cost alone is C1-B to the decimal; and R1 proves the break is
+>    MECHANICAL (spill → loose → aerial — the chooser's long share never
+>    moved). Information cannot absorb a tax that no decision produces.
+>    The bundle hedged the wrong risk: the missing co-evolution partner
+>    for touch cost is not the passer's information but the RECEIVER'S
+>    CRAFT — C5's cushion-vs-one-touch as a priced choice is the
+>    adaptation lever today's receivers simply do not have.
+> 3. **Disposition (the §5 pre-registered path, followed exactly):**
+>    touch cost leaves the v1 live set (design contract §2 amended);
+>    E1b's curve stays BANKED dormant — the measurement is never wasted —
+>    and its live entry re-seats to a future C5-coupled slice. **v1 live
+>    bundle = perceived choice + perceived defence + the evaluator**,
+>    the pair whose live equilibrium the ablation already measured
+>    in-band (−21.69% alone → +2.20% together: the S3b/vision-attr law,
+>    confirmed live). No partial ship: nothing goes to E4 until E3R
+>    passes IN FULL — ablation diagnostics are not passes.
+> 4. **E3R drafting constraints (executor, Autonomous mode):**
+>    (a) CHAIN FIRST: the banked E2b-1R choices were priced with the
+>    flag-ON touch factor; E3R's world runs touch-flag OFF, so pricing
+>    must be flag-off-honest (the world as it is, never phantom costs) —
+>    therefore re-run the E2b-1R staging with flag-off pricing to re-bank
+>    the choice reference (G1/G2 must re-hold there), THEN X4 chains the
+>    live chooser to the NEW reference. (b) All five gate families
+>    verbatim on the 1+3+4 bundle, fresh sealed evo included. (c) STYLE
+>    ENTROPY carries two pre-registered hypotheses: H1 touch-flattening
+>    (entropy ≥0.60 recovers without the curve → benign, closed) vs H2
+>    genome-blind chooser (the evaluator prices pure measured probability
+>    and may have removed the seat through which tactical genes expressed
+>    style; if entropy stays <0.60 the fork returns to the commander for
+>    a designed PREFERENCE SEAT — genes modulating evaluator weights as
+>    priced choices, the two-engines junction — never a tuning knob).
+>    (d) PERF: the remaining consumption-scoping lever is WHICH bodies —
+>    candidate-scoped snapshots materialised at pass-commit only; budget
+>    stays 1.25×; misses → report, no honesty shaving. (e) 20–80
+>    dominance band kept with its purpose documented: >80% is the
+>    always-heavy pathology, <20% guards degenerate never-heavy as a
+>    mispricing symptom; expect the distribution to shift heavier under
+>    flag-off pricing. (f) Stamina-suite break re-tested on the revised
+>    bundle before any deeper diagnosis.
+> 5. **Green path: E3R PASS → E4 + F-ACCEPT** (one play session can serve
+>    both). Any non-PASS returns here.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -502,8 +556,12 @@ bundle or ships it.
 | E3 | Co-evolution audit: sealed evo runs, full bundle ON — §2 band, route mix, the C1-B behavioural suite, no-strict-dominance (power usage must stay situational), co-evo restoration, style diversity | [`EDS-E3-COEVOLUTION-AUDIT.md`](EDS-E3-COEVOLUTION-AUDIT.md) | ⛔ **FAIL 2026-07-25 — five gates; QUEUE STOPS, the fork is the COMMANDER's** (§6, world SHA `e667f476…dc73`, world-deterministic across two invocations with perf reported beside it, fingerprint `57b0bdab…c673` unchanged, 744/744, flags default-off, nothing shipped). ✅ **X4 — the gate this stage rested on — PASSES ABSOLUTELY**: the live consumer reproduces E2b-1R with **0 disagreements in 10,292 per-moment comparisons** (3,000 moments × 4 arms) and **all seven banked aggregate families bit-identical at full float precision**; the band's own baseline arm reproduces C1-B's frozen numbers to 4 dp ⇒ same procedure, same world. ⛔ **§2 band BREAKS on two dimensions**: headers **+30.44%** and long balls **+45.20%** (±25%); goals −14.56% squeaked inside ±15%, crosses −16.55% and cutbacks −5.21% fine — **C1-B's signature, larger**. ⛔ **no-strict-dominance 17.42%** vs a ≥20% floor — and it fails on the ANTI-dominance side (preferred power 49.5/33.1/17.4% light/mid/heavy); two reported diagnostics shape the reading: pace still buys the corridor in **97.86%** of moments (E0's canary reproduces) but the three powers share one threat quintile in **49.43%**, so the coarse corridor axis lets the smooth touch term decide — a granularity property of the registered instrument, not of the world. ⛔ **co-evo restoration**: goals advantage +0.178 (gens 1–3) → +0.296 (gens 8–10), no shrink on a ±0.5-noisy series; ⛔ **style entropy HALVES** (0.497 of the flags-off run vs a 0.60 floor) while all 16 clubs keep distinct nameplates — labels kept, variety lost. ⛔ **X5 perf 1.3223×** mean (p95 1.3196× passes): a chooser reads BODIES, so E2b-1R's ball-only 1.069× saving is gone. Suite under the bundle: **stamina breaks; crossing and market — two of the three C1-B broke — now HOLD**. ⭐⭐ **The ABLATION (§4-authorised, §6.9) names the component**: take the touch cost OUT and the same bundle is **inside every band** (goals +2.20%, headers −0.43%, long balls +8.06%); leave it in alone and it IS C1-B to the decimal (−15.37%/+23.23%/+28.18%). And the chooser alone costs **−21.69%** of the goals while chooser+perceived-defence lands at **+2.20%** ⇒ **both-sides perception really does restore what it breaks** — the S3b/vision-attr lesson passing. R1 seals it: the chooser's own long share is 19.06% vs E2b-1R's dormant 18.05%, so **it is not choosing long balls — the re-route is mechanical, downstream of spilled touches, and bundling does not fix it**. ⚠️ Disclosed (§6.10): the ablation caught a DEFECT in my build — `refreshPerception` was gated on the defence flag alone, so `edsPerceivedChoice` was silently inert by itself; fixed, pinned by a test, and the audited world is **byte-identical before and after** (every gated arm runs the full bundle). R3 look-pressure 6.21%/3.62% · R4 divergence 62.23% · R5 no-executable 4.09% · live classes READ 90.80/SEEN-UNREAD 0.08/UNSEEN 9.13%. |
 | E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
 
-**Queue state (2026-07-25, after E3): ⛔ THE QUEUE STOPS AT A COMMANDER GATE —
-E3 FAILED five gates and E4 is NOT reached.** The build did its job: the live
+**Queue state (2026-07-25, after ruling #12): E3R is the next step — the
+executor drafts the re-audit of the 1+3+4 bundle (touch cost out of v1,
+re-seated to a C5-coupled future slice) under the ruling's constraints
+(a)–(f); E3R PASS → E4 + F-ACCEPT.** Below, the E3 record as it stopped:
+
+**(E3 result record) ⛔ E3 FAILED five gates and E4 was NOT reached.** The build did its job: the live
 chooser reproduces E2b-1R absolutely (X4: 0/10,292 per-moment disagreements,
 7/7 banked families bit-identical), so for the first time a body inside a live
 match chooses a pass from what it can see. The world did not absorb it: the §2

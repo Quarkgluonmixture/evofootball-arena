@@ -72,6 +72,21 @@ same seeds → the redraw's logged choices must be IDENTICAL to E2b-1's.
 R1's correction supersedes the 28.48% number (§4). Green path: E2b-1R
 PASS → E3 draft → stop at E4.**
 
+**Commander ruling #12 (2026-07-25): E3 FAILED five gates and the thesis is
+amended by its own measurement. X4's achievement stands banked — the first
+live perceived choice, 0/10,292 divergence from the probe that validated
+it. The ablation names touch cost as the failing component and R1 proves
+the break is mechanical (spill → loose → aerial; the chooser never chose
+it), so "the bundle makes the cost survivable" is REFUTED — information
+was the wrong co-evolution partner for a mechanical tax. Touch cost leaves
+the v1 live set (§2), re-seated to a future C5-coupled slice where the
+receiver's craft can absorb it. E3R re-audits the 1+3+4 bundle in FULL
+(ablation diagnostics are not passes): re-bank the choice reference with
+flag-off-honest pricing first, then X4 chains to it; both style-entropy
+hypotheses pre-registered (touch-flattening vs genome-blind chooser);
+perf lever = candidate-scoped snapshots at pass-commit; 20–80 dominance
+band kept with its purpose documented. Green path: E3R PASS → E4.**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle
@@ -104,7 +119,15 @@ IN — four components that hedge each other:
    dormant-ready).
 2. **Honest touch cost** (C1-B's exact one-liner, in its correct home): hot
    balls cost the receiver; now the evaluator can SEE that cost before
-   choosing.
+   choosing. **⛔ REMOVED FROM THE v1 LIVE SET by ruling #12 (2026-07-25,
+   E3's measured verdict): the band break it causes is MECHANICAL — spill →
+   loose ball → aerial route, with no decision anywhere in the chain (R1:
+   the chooser's long share 19.06% vs 18.05% dormant) — so seeing the cost
+   cannot absorb it. Bundling with information was the wrong co-evolution
+   partner; the right one is the RECEIVER'S CRAFT: when cushion-vs-one-touch
+   is a priced choice (C5), receivers can ADAPT to hot balls instead of
+   mechanically spilling. E1b's curve stays BANKED dormant (the measurement
+   is never wasted); its live entry re-seats to a future C5-coupled slice.**
 3. **Perception-based pass choice** (the S3b redo): the passer reads its own
    `PerceptionSnapshot`, not truth.
 4. **Perception-based defensive read** (the co-evolution partner): the
@@ -112,6 +135,11 @@ IN — four components that hedge each other:
    Attr wiring follows SUBSTRATE-MAP's ruling: a shared `awareness` trunk,
    attack/defence asymmetry left to other attrs — no one-sided reading attr,
    ever again.
+
+**v1 LIVE BUNDLE after ruling #12 = components 1+3+4** (the pair the E3
+ablation measured in-band on every dimension: chooser alone −21.69% goals,
+chooser + perceived defence +2.20%). The evaluator prices the world AS IT
+IS — flag-off touch physics — never phantom costs.
 
 OUT of v1, explicitly: one-touch decision (C5 — second cut, unless E3
 evidence demands it), off-ball movement changes, TeamBrain refactor, live
