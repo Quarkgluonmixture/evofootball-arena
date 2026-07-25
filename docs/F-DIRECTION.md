@@ -75,6 +75,16 @@ read, not inhabited: their SIZE never scales. Their ANCHOR does — a plate
 pinned in world metres detaches from a shrunken head, so heights ride the
 constant while font sizes do not.
 
+**Chunk, not size (F2).** Toy anatomy is thick limbs on a NARROW chest, a big
+head bedded into the shoulders with no visible neck, and a short chunky boot.
+When limbs thicken, shoulders tuck IN — that is what keeps the arm-span anchor
+intact while the silhouette changes, and it is also what a toy figure's arms
+actually do. Two rules learned the hard way, both now enforced by tests:
+proportions that other code hand-fits to (the back number's depth offset, the
+bulk ceiling, the torso box) must be DERIVED from exported constants, not
+copied as literals; and `armSpan()` is only an honest gate while the arms beat
+the torso at maximum bulk, so that is asserted, not assumed.
+
 ## The surface
 
 A pitch is not a green rectangle. Mowing stripes, a fine turf grain, and
@@ -96,12 +106,11 @@ add wide-angle presets (user, 2026-07-25). Phone is the binding constraint:
 ## Standing lever list (F1+, one per step)
 
 Open, unordered, each measured against this doc by the user's eyes:
-character proportions (thin limbs and featureless sphere heads are the largest
-remaining gap to the reference) · `CrowdSystem` body palette, still unstyled
-by any preset · kit readability and silhouette · procedural animation polish
+~~character proportions~~ **(F2, done 2026-07-25)** · `CrowdSystem` body
+palette, still unstyled by any preset · kit readability and silhouette · procedural animation polish
 (anticipation, follow-through) · ball trail / spin / height cues · goal-moment
 FX and camera work · post: bloom, vignette, tilt-shift, AA — all inside the
-phone budget · `PlayerShowcase` re-framing for the smaller figure.
+phone budget · ~~`PlayerShowcase` re-framing~~ **(done with F2)**.
 
 ## What not to do
 

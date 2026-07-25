@@ -68,17 +68,18 @@ export class LinesmanModel {
     torso.castShadow = true;
     const collar = new THREE.Mesh(new THREE.BoxGeometry(0.74, 0.11, 0.44), trim);
     collar.position.y = 1.01;
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.27, 12, 10), skin);
-    head.position.y = 1.26;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.31, 12, 10), skin);
+    head.position.y = 1.30;
     head.castShadow = true;
 
-    const armGeo = new THREE.BoxGeometry(0.17, 0.72, 0.17);
+    // F2 toy anatomy: officials thicken with the players, shoulders tuck in.
+    const armGeo = new THREE.BoxGeometry(0.25, 0.72, 0.25);
     armGeo.translate(0, -0.31, 0);
     this.armL = new THREE.Group();
-    this.armL.position.set(-0.45, 0.98, 0);
+    this.armL.position.set(-0.41, 0.98, 0);
     this.armL.add(new THREE.Mesh(armGeo, kit));
     this.armR = new THREE.Group();
-    this.armR.position.set(0.45, 0.98, 0);
+    this.armR.position.set(0.41, 0.98, 0);
     this.armR.add(new THREE.Mesh(armGeo.clone(), kit));
     // The flag lives in the right hand always (assistants never put it
     // down): a short stick + orange cloth, readable when the arm goes up.
@@ -89,13 +90,13 @@ export class LinesmanModel {
     this.armR.add(stick, cloth);
     this.lean.add(torso, collar, head, this.armL, this.armR);
 
-    const legGeo = new THREE.BoxGeometry(0.2, 1.0, 0.22);
+    const legGeo = new THREE.BoxGeometry(0.28, 1.0, 0.30);
     legGeo.translate(0, -0.5, 0);
     this.legL = new THREE.Group();
-    this.legL.position.set(-0.17, 1.06, 0);
+    this.legL.position.set(-0.20, 1.06, 0);
     this.legL.add(new THREE.Mesh(legGeo, kit));
     this.legR = new THREE.Group();
-    this.legR.position.set(0.17, 1.06, 0);
+    this.legR.position.set(0.20, 1.06, 0);
     this.legR.add(new THREE.Mesh(legGeo.clone(), kit));
 
     const blob = new THREE.Mesh(

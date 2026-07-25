@@ -62,17 +62,18 @@ export class RefereeModel {
     // A collar flash of yellow — "that's the ref" from any camera.
     const collar = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.12, 0.46), trim);
     collar.position.y = 1.04;
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.28, 12, 10), skin);
-    head.position.y = 1.3;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.32, 12, 10), skin);
+    head.position.y = 1.34;
     head.castShadow = true;
 
-    const armGeo = new THREE.BoxGeometry(0.18, 0.74, 0.18);
+    // F2 toy anatomy: officials thicken with the players, shoulders tuck in.
+    const armGeo = new THREE.BoxGeometry(0.26, 0.74, 0.26);
     armGeo.translate(0, -0.32, 0);
     this.armL = new THREE.Group();
-    this.armL.position.set(-0.48, 1.0, 0);
+    this.armL.position.set(-0.44, 1.0, 0);
     this.armL.add(new THREE.Mesh(armGeo, kit));
     this.armR = new THREE.Group();
-    this.armR.position.set(0.48, 1.0, 0);
+    this.armR.position.set(0.44, 1.0, 0);
     this.armR.add(new THREE.Mesh(armGeo.clone(), kit));
 
     // The card, palmed at the end of the calling (right) arm — visible only
@@ -84,15 +85,15 @@ export class RefereeModel {
     this.armR.add(this.card);
     this.lean.add(torso, collar, head, this.armL, this.armR);
 
-    const legGeo = new THREE.BoxGeometry(0.22, 1.0, 0.24);
+    const legGeo = new THREE.BoxGeometry(0.30, 1.0, 0.32);
     legGeo.translate(0, -0.5, 0);
     this.legL = new THREE.Group();
-    this.legL.position.set(-0.19, 1.06, 0);
+    this.legL.position.set(-0.21, 1.06, 0);
     this.legL.add(new THREE.Mesh(legGeo, kit));
     this.legR = new THREE.Group();
-    this.legR.position.set(0.19, 1.06, 0);
+    this.legR.position.set(0.21, 1.06, 0);
     this.legR.add(new THREE.Mesh(legGeo.clone(), kit));
-    const shoeGeo = new THREE.BoxGeometry(0.22, 0.13, 0.4);
+    const shoeGeo = new THREE.BoxGeometry(0.30, 0.15, 0.38);
     const shoeL = new THREE.Mesh(shoeGeo, kit);
     shoeL.position.set(0, -1.0, 0.07);
     this.legL.add(shoeL);

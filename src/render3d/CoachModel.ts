@@ -67,29 +67,30 @@ export class CoachModel {
     scarfBand.position.y = 1.06;
     const scarfDrop = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.5, 0.06), scarf);
     scarfDrop.position.set(0.14, 0.78, 0.26);
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.29, 12, 10), skin);
-    head.position.y = 1.3;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.33, 12, 10), skin);
+    head.position.y = 1.34;
     head.castShadow = true;
 
     // Arms pivot at the shoulders — every pose is two shoulder rotations.
-    const armGeo = new THREE.BoxGeometry(0.2, 0.78, 0.2);
+    // F2 toy anatomy: the touchline figure thickens with the players too.
+    const armGeo = new THREE.BoxGeometry(0.28, 0.78, 0.28);
     armGeo.translate(0, -0.34, 0);
     this.armL = new THREE.Group();
-    this.armL.position.set(-0.52, 1.0, 0);
+    this.armL.position.set(-0.48, 1.0, 0);
     this.armL.add(new THREE.Mesh(armGeo, suit));
     this.armR = new THREE.Group();
-    this.armR.position.set(0.52, 1.0, 0);
+    this.armR.position.set(0.48, 1.0, 0);
     this.armR.add(new THREE.Mesh(armGeo.clone(), suit));
     this.lean.add(torso, chest, scarfBand, scarfDrop, head, this.armL, this.armR);
 
     // Straight trouser legs — the coach never runs, so no gait rig.
-    const legGeo = new THREE.BoxGeometry(0.24, 1.06, 0.26);
+    const legGeo = new THREE.BoxGeometry(0.32, 1.06, 0.34);
     legGeo.translate(0, -0.53, 0);
     const legL = new THREE.Mesh(legGeo, suit);
     legL.position.set(-0.2, 1.06, 0);
     const legR = new THREE.Mesh(legGeo.clone(), suit);
     legR.position.set(0.2, 1.06, 0);
-    const shoeGeo = new THREE.BoxGeometry(0.24, 0.14, 0.44);
+    const shoeGeo = new THREE.BoxGeometry(0.32, 0.16, 0.42);
     const shoeL = new THREE.Mesh(shoeGeo, suit);
     shoeL.position.set(-0.2, 0.07, 0.08);
     const shoeR = new THREE.Mesh(shoeGeo.clone(), suit);

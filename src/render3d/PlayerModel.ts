@@ -46,15 +46,42 @@ import type { StylePreset } from './stylePresets';
  */
 export const HUMAN_MODEL_SCALE = 0.64;
 
+/*
+ * F2 (Track F, 2026-07-25) — toy anatomy. F-DIRECTION's largest named gap to
+ * the reference was the silhouette: a wide slab torso with spindly stick
+ * limbs. The fix is CHUNK, not size — limbs thicken by ~35% while shoulders
+ * tuck IN, which is what a toy figure's arms actually do and what keeps the
+ * F1 anchor intact: the widest body still spans 1.6165 m, so 0.64 remains the
+ * largest 0.01 step that fits and the whole model neither grew nor shrank.
+ * Limb LENGTHS are untouched on purpose — every elbow/knee pivot and every
+ * AnimationSystem pose is written against them.
+ */
+
 /** Shoulder offset from the spine, × the role's torso width. */
-const SHOULDER_X = 0.55;
+const SHOULDER_X = 0.50;
 /** Keeper shoulders sit a touch wider still. */
 const GK_SHOULDER_OUT = 0.03;
 /** Half-width of the upper arm (sleeve box is twice this). */
-const SLEEVE_HALF_W = 0.11;
+const SLEEVE_HALF_W = 0.15;
 /** Half-width of the forearm; keeper gloves fatten it. */
-const FOREARM_HALF_W = 0.09;
+const FOREARM_HALF_W = 0.13;
 const GK_FOREARM_SCALE = 1.25;
+/** Head radius. The torso top sits at 1.095, so the head centre tracks it. */
+const HEAD_R = 0.34;
+
+/**
+ * Torso box, before the per-role build and per-player bulk multipliers.
+ * F2 NARROWED it 0.86 → 0.72: with the thickened arms tucked to SHOULDER_X
+ * 0.50, a 0.86 chest swallowed the sleeves whole and the shoulders read as
+ * one wide red slab. A narrow chest under thick arms is the toy silhouette.
+ * Exported so the contract test measures the real box, not a copied literal.
+ */
+export const TORSO_BASE = { w: 0.72, h: 0.86, d: 0.54 } as const;
+/** Shoulder line — the torso top, and what the head beds into. */
+const TORSO_TOP = 1.095;
+/** `bodyFor`'s bulk ceiling — 0.88 + strength × 0.28 at strength 1. */
+export const MAX_BULK = 1.16;
+
 /** `bodyFor`'s identity-height band — the anchor is derived at the top of it. */
 const MIN_BODY_HEIGHT = 0.94;
 export const MAX_BODY_HEIGHT = 1.06;
@@ -92,6 +119,7 @@ let GEO: {
   sockBand: THREE.BoxGeometry;
   foot: THREE.BoxGeometry;
   hips: THREE.BoxGeometry;
+  eye: THREE.CircleGeometry;
   ring: THREE.RingGeometry;
   number: THREE.PlaneGeometry;
 } | null = null;
@@ -103,10 +131,17 @@ function sharedGeo(): NonNullable<typeof GEO> {
     return g;
   };
   GEO = {
-    torso: new THREE.BoxGeometry(0.86, 0.95, 0.5),
-    head: new THREE.SphereGeometry(0.3, 12, 10),
+    torso: new THREE.BoxGeometry(TORSO_BASE.w, TORSO_BASE.h, TORSO_BASE.d),
+    // F2: a bigger head is the toy read — ~1:4 head-to-height, not 1:7.
+    head: new THREE.SphereGeometry(HEAD_R, 12, 10),
     // Hair cap (Phase 76): the top half-sphere, slightly proud of the head.
-    hair: new THREE.SphereGeometry(0.315, 10, 6, 0, Math.PI * 2, 0, Math.PI * 0.52),
+    // F2 raised the hairline from 0.52π to 0.46π — at the bigger head the old
+    // cap reached below the equator and swallowed the new eyes — and doubled
+    // the segments, because the same facet count on a wider sphere zigzagged.
+    hair: new THREE.SphereGeometry(HEAD_R * 1.09, 14, 8, 0, Math.PI * 2, 0, Math.PI * 0.5),
+    // F2: eyes. Two flat discs on the face — the cheapest thing that turns a
+    // sphere into someone. Parented to the head so they ride every pose.
+    eye: new THREE.CircleGeometry(HEAD_R * 0.17, 8),
     // Limbs pivot at their top: translate geometry downward by half height.
     // Short sleeves: shirt-colored upper arm, skin (or GK glove) forearm.
     // Since Phase 73 the forearm hangs from an ELBOW group (y=-0.34 in the
@@ -114,11 +149,13 @@ function sharedGeo(): NonNullable<typeof GEO> {
     // their geometry is translated relative to those pivots.
     sleeve: translate(new THREE.BoxGeometry(SLEEVE_HALF_W * 2, 0.36, SLEEVE_HALF_W * 2), -0.18),
     forearm: translate(new THREE.BoxGeometry(FOREARM_HALF_W * 2, 0.44, FOREARM_HALF_W * 2), -0.22),
-    thigh: translate(new THREE.BoxGeometry(0.26, 0.55, 0.28), -0.27),
-    sock: translate(new THREE.BoxGeometry(0.22, 0.42, 0.24), -0.21),
-    sockBand: translate(new THREE.BoxGeometry(0.24, 0.1, 0.26), -0.03),
-    foot: translate(new THREE.BoxGeometry(0.26, 0.16, 0.52), -0.45),
-    hips: new THREE.BoxGeometry(0.8, 0.34, 0.46),
+    thigh: translate(new THREE.BoxGeometry(0.34, 0.55, 0.34), -0.27),
+    sock: translate(new THREE.BoxGeometry(0.30, 0.42, 0.32), -0.21),
+    sockBand: translate(new THREE.BoxGeometry(0.32, 0.1, 0.34), -0.03),
+    // Boot: chunkier and SHORTER — the old 0.52 depth read as a clown shoe.
+    // Centre moves to -0.44 so the sole still lands at -0.53, on the grass.
+    foot: translate(new THREE.BoxGeometry(0.32, 0.18, 0.46), -0.44),
+    hips: new THREE.BoxGeometry(0.68, 0.34, 0.5),
     ring: new THREE.RingGeometry(0.75, 0.98, 24),
     number: new THREE.PlaneGeometry(0.52, 0.58),
   };
@@ -252,7 +289,7 @@ export function bodyFor(name: string, strength: number): BodySpec {
   const h3 = hash01(`#hair${name}`);
   return {
     height: MIN_BODY_HEIGHT + h1 * (MAX_BODY_HEIGHT - MIN_BODY_HEIGHT),
-    bulk: 0.88 + Math.max(0, Math.min(1, strength)) * 0.28,
+    bulk: 0.88 + Math.max(0, Math.min(1, strength)) * (MAX_BULK - 0.88),
     tone: SKIN_TONES[Math.min(SKIN_TONES.length - 1, Math.floor(h2 * SKIN_TONES.length))],
     hair: h3 < 0.14 ? 2 : h3 < 0.62 ? 0 : 1,
     hairColor: HAIR_COLORS[Math.min(HAIR_COLORS.length - 1, Math.floor(((h3 * 7919) % 1) * HAIR_COLORS.length))],
@@ -397,12 +434,14 @@ export class PlayerModel {
     const isGK = role === 'GK';
     this.lean.position.y = HIP_Y;
     const torso = new THREE.Mesh(g.torso, kit.shirt);
-    torso.position.y = 0.62;
+    torso.position.y = TORSO_TOP - TORSO_BASE.h / 2; // hem rises, shoulders hold
     torso.scale.set(build.torsoW, 1, build.torsoD);
     torso.rotation.x = build.leanBias;
     torso.castShadow = true;
     this.torso = torso;
     const head = new THREE.Mesh(g.head, sharedMats().skin);
+    // Beds 0.115 INTO the shoulder line. A 0.34 head perched at 1.36 read as
+    // a ball balanced on a fridge — a toy figure has no visible neck at all.
     head.position.y = 1.32;
     head.scale.setScalar(build.head);
     head.castShadow = true;
@@ -412,6 +451,16 @@ export class PlayerModel {
     this.hair = new THREE.Mesh(g.hair, toneMat(HAIR_COLORS[0], 0.9));
     this.hair.position.y = 0.02;
     head.add(this.hair);
+    // F2: two dark discs on the face (+z is forward). Unlit so they stay
+    // legible in shadow, depth-offset so they never z-fight the sphere.
+    const eyeMat = new THREE.MeshBasicMaterial({
+      color: 0x17171a, polygonOffset: true, polygonOffsetFactor: -2,
+    });
+    for (const ex of [-1, 1]) {
+      const eye = new THREE.Mesh(g.eye, eyeMat);
+      eye.position.set(ex * HEAD_R * 0.34, -HEAD_R * 0.06, HEAD_R * 0.95);
+      head.add(eye);
+    }
     const hips = new THREE.Mesh(g.hips, kit.shorts);
     hips.position.y = 0.06;
     hips.scale.set(build.torsoW, 1, build.torsoD);
@@ -424,7 +473,9 @@ export class PlayerModel {
       map: numberTex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -1,
     });
     const backNumber = new THREE.Mesh(g.number, this.numberMat);
-    backNumber.position.set(0, 0.66, -0.253 * build.torsoD - 0.012);
+    // Derived from the real box: a literal -0.253 was a hand-fit to the old
+    // 0.5 depth and F2's deeper torso swallowed the digits whole.
+    backNumber.position.set(0, 0.66, -(TORSO_BASE.d / 2) * build.torsoD - 0.012);
     backNumber.rotation.y = Math.PI;
     this.lean.add(backNumber);
 
@@ -439,8 +490,8 @@ export class PlayerModel {
 
     // Legs pivot at the hips too (siblings of the lean group so the upper
     // body can lean without dragging the legs).
-    const lL = this.makeLeg(g, kit, -0.22);
-    const lR = this.makeLeg(g, kit, 0.22);
+    const lL = this.makeLeg(g, kit, -0.23);
+    const lR = this.makeLeg(g, kit, 0.23);
     this.legL = lL.leg;
     this.legR = lR.leg;
     this.kneeL = lL.knee;

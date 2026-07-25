@@ -80,9 +80,11 @@ export class PlayerShowcase {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(BG);
+    // Re-framed for the F1 body scale (0.64): the old 5.6m stand-off framed
+    // a 2.7m figure and now frames a 1.7m one. Same shot, closer and lower.
     this.camera = new THREE.PerspectiveCamera(32, W / H, 0.1, 50);
-    this.camera.position.set(0, 1.75, 5.6);
-    this.camera.lookAt(0, 1.02, 0);
+    this.camera.position.set(0, 1.12, 3.6);
+    this.camera.lookAt(0, 0.68, 0);
 
     // Studio lighting: soft sky fill, a warm key that casts the shadow,
     // a cool rim from behind so the silhouette pops off the dark card.

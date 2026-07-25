@@ -12,7 +12,7 @@ import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController'
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import { defensiveLineX, linesmanTargetX } from '../src/render3d/LinesmanModel';
 import {
-  armSpan, bodyFor, hash01, MAX_BODY_HEIGHT, maxArmSpan, HUMAN_MODEL_SCALE,
+  armSpan, bodyFor, hash01, HUMAN_MODEL_SCALE, MAX_BODY_HEIGHT, MAX_BULK, maxArmSpan, TORSO_BASE,
 } from '../src/render3d/PlayerModel';
 import { refereeTarget } from '../src/render3d/RefereeModel';
 import {
@@ -398,11 +398,27 @@ describe('player scale honesty (Track F1)', () => {
     for (const role of ROLES) {
       expect(armSpan(role, MAX_BODY_HEIGHT), role).toBeLessThanOrEqual(PLAYER_MIN_DIST);
     }
-    // …and the unscaled model was NOT — the keeper spanned 1.63m and even a
-    // midfielder 1.32m. That gap IS what F1 closed; if this ever stops being
+    // …and the unscaled model is NOT — the keeper spans 1.63m and even a
+    // midfielder 1.30m. That gap IS what F1 closed; if this ever stops being
     // true the shrink has become a taste choice instead of a correction.
     expect(maxArmSpan(1)).toBeGreaterThan(PLAYER_MIN_DIST);
-    expect(armSpan('MF', 1, 1)).toBeCloseTo(1.32, 10);
+    // Literal pin so a geometry edit has to come here and say so out loud.
+    // (F1 measured 1.32 before F2 thickened the limbs and tucked the
+    // shoulders in — the span went DOWN while the arms got fatter.)
+    expect(armSpan('MF', 1, 1)).toBeCloseTo(1.30, 10);
+  });
+
+  it('the arms really are the widest part — the anchor assumes it', () => {
+    // armSpan() only measures the arms, so it is the honest gate ONLY while
+    // no other dimension beats them. Torso at max bulk is the contender.
+    const TORSO_W_BY_ROLE: Record<string, number> = {
+      GK: 1.14, DF: 1.07, MF: 1.0, WG: 0.9, ST: 0.98,
+    };
+    expect(bodyFor('Zubat', 1).bulk).toBeCloseTo(MAX_BULK, 10); // the ceiling is real
+    for (const role of ROLES) {
+      const torso = TORSO_BASE.w * TORSO_W_BY_ROLE[role] * MAX_BULK * MAX_BODY_HEIGHT;
+      expect(armSpan(role, MAX_BODY_HEIGHT, 1), role).toBeGreaterThan(torso);
+    }
   });
 
   it('the shrink is derived, not tuned: 0.64 is the LARGEST 0.01 step that fits', () => {
