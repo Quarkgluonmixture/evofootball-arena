@@ -608,6 +608,17 @@ beauty cannot be probe-gated, so the discipline adapts —
 
 ### Track F session handoff (2026-07-25, art session — READ THIS FIRST)
 
+> **MERGED by the commander 2026-07-25** (merge commit `5c35582`), verified
+> in an ISOLATED worktree — not the shared tree, which held E2b-1R's
+> in-flight uncommitted work: tsc clean · **731/731** · fingerprint
+> **`57b0bdab…c673` unchanged at the merged HEAD**. The merge commit
+> contains zero `src/sim`/`src/ai` files; the E session's uncommitted work
+> was untouched. **F-ACCEPT ★ is now the open user gate: F2–F7 are
+> PROVISIONAL until the user plays** — first real session should look at:
+> body proportions (F2), crowd + closed bowl (F3/F6), turf grain (F5),
+> ball trail/height (F4), goal fireworks + flame jets day AND night (F7),
+> day/night toggle (F0). Verdict = keep / tweak-list / revert-a-lever.
+
 **Where the work lives.** F1–F4 are on `main`. **F5, F6, F7 and three fixes are
 on the branch `art/track-f`**, developed in a worktree at
 `.claude/worktrees/art-track-f` because a second session was writing to `main`
@@ -733,6 +744,12 @@ WORLD-MODEL-NEXT-AUTHORITY) remains the single source of truth.
    touched — any foreign modification means another session is writing;
    STOP, do not stage it, reconcile first** (ruling #9; commit `857784c`
    swept a concurrent session's uncommitted PROGRAMME edits).
+   **The status check must be its OWN command whose output you read BEFORE
+   the action it gates — never compounded with that action.** (Registered
+   2026-07-25: the commander compounded `git status && git merge` and saw
+   the E session's in-flight files only after the merge had run. No damage
+   — the merge swept nothing, verified — but the check that fires after
+   the action is not a check. This binds the commander too.)
 4b. **One working tree = one writer (ruling #9).** Concurrent sessions must
    either stagger or run in separate `git worktree`s and merge through git
    (push/pull) — never through a shared directory, which silently swallows
