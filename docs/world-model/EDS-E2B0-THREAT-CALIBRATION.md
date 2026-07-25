@@ -1,6 +1,7 @@
 # EDS E2b-0 — Threat calibration (the common axis)
 
-Status: **PRE-REGISTERED — no run yet.** Drafted by the autonomous session
+Status: **RUN 2026-07-25 — §6 is the frozen result: PASS on every gate.**
+Drafted by the autonomous session
 under commander ruling #8, which authorised E2b to proceed on E2a-2's PASS
 without a new ruling; constraints (c)–(l) in
 [`EMBODIED-DECISION-SLICE.md`](EMBODIED-DECISION-SLICE.md) §3.
@@ -160,3 +161,119 @@ R4 look-pressure precursor: how often the blind marginal out-prices the best
   awareness arms, the route-mix gate against S3b's collapse signature, and the
   PERF hard gate at brain cadence against `docs/perf/baseline.json`
   (5.32 µs/step, p95 9 µs).
+
+## 6. FROZEN RESULT — PASS; seeing the lane is worth six times remembering the distance (2026-07-25)
+
+Run at HEAD `439688b`. Verdict **PASS**: 3/3 exact, 1/1 coverage, 1/1
+discrimination, 2/2 calibration.
+
+> **Sync note (ruling #5).** While this census was running, six commits from
+> another session landed on top of `439688b` — Track F art direction (F0/F1/F1b/
+> F1c) and Track D6. They touch `src/render3d`, `src/game`, docs and tests, and
+> **zero** files under `src/sim`, `src/ai` or `src/evolution`, which is why the
+> production fingerprint is unchanged and why the suite grew from 714 to 721
+> tests. No step ID collides: Track F is art direction, this is Track E. The
+> census was nonetheless re-run at the post-merge HEAD and returned the same
+> SHA, so the result holds at both. Two invocations byte-identical, shared SHA
+`fdd6a1ad54306b156be58c5f9b082ffdcbdde55f85c715b4e8bac03b3d65eca2`.
+Calibration SHA `52c10713…3082`.
+
+```text
+X1 fingerprint 57b0bdab…c673 unchanged                       ✓
+X2 tsc + build clean · full suite green                      ✓
+X3 two invocations byte-identical                            ✓
+X4 zero live callers (audited)                               ✓
+X5 harness 3/3 bit-identical                                 ✓
+X5 outcome census reproduces E2a-2's banked table exactly    ✓
+X6 committed calibration equals this run's census            ✓
+C1 every quintile >= 1,200 per set (2,019 / 2,049–2,052)     ✓
+C2 discrimination                                            ✓  39.72pp of 10.0
+C3 held-out calibration                                      ✓  worst 2.18pp of 5.0
+```
+
+The second X5 line is the one that licenses everything else: adding the
+evaluator column returned E2a-2's option-space table **field for field**, so
+the observation really was an observation.
+
+### R1 — the calibration curve
+
+```text
+threat quintile (predicted corridor slack, s)   n      realized success
+ −2.017 … 0.039                               2,019       82.86%
+  0.039 … 0.296                               2,019       62.31%
+  0.296 … 0.536                               2,019       50.97%
+  0.536 … 0.806                               2,019       47.15%
+  0.806 … 2.945                               2,019       43.14%
+```
+
+Monotone across all five bins, spanning **39.72pp**, and it generalises: the
+held-out set disagrees by at most 2.18pp per quintile and 0.12pp on the
+marginal (57.29% vs 57.17%). The sign is the one E0's P1/P5 found — more
+predicted corridor threat, less realized success — now confirmed on the option
+space rather than on per-state ranking, which is the thing C2 existed to check.
+
+The touch term discriminates too, but less and unevenly: 70.48 / 60.43 / 51.61
+/ 52.15 / 51.76 — an 18.7pp spread that goes flat after the second quintile.
+
+### R2 — which read carries the information
+
+```text
+corridor read (E0's threat)     39.72pp of spread
+distance band (E2a-2's prior)    6.64pp of spread
+```
+
+Same forks, same outcomes, two predictors. **Seeing the lane is worth about six
+times knowing how far away the man is.** The band prior is not wrong — its bins
+run 54.33 / 55.72 / 55.87 / 59.53 / 60.97, directionally correct — it is simply
+weak.
+
+This lands directly on ruling (k). That ruling gave a within-retention memory a
+banded price and a fully-unknown man the marginal, and asked what memory is
+worth; the answer is that the *band* is the small half of it. What memory
+really buys is not the distance but the **corridor read that only a current
+percept supports** — which is the substrate argument for looking, stated in
+outcomes rather than in principle, and it is what E2b-1's chooser should lean
+on wherever it exists.
+
+### R3 — a quarter of playable options cannot be priced at all
+
+```text
+playable forks                14,114
+priced by the evaluator       10,095   (71.52%)
+unpriceable                    4,019   (28.48%)
+```
+
+E2a-1 found **zero** of these on its 120 narrow states, where the target was
+always the nearest near-stationary man. Over the full option space it is more
+than a quarter. These are candidates the fork plays perfectly well but whose
+flight the evaluator cannot read, so they are neither "seen and priced" nor
+"absent and marginal" — a third class the pricing layer currently folds into
+the banded case. E2b-1 must decide explicitly what a remembered-but-unreadable
+option is worth; folding it in silently would be the same mistake E2a-1 made
+with the population.
+
+### R4 — look-pressure will be real
+
+```text
+a blind option                                   55.72%
+the mean band price of an executable option      55.81%
+```
+
+Indistinguishable. On the band axis alone a passer is nearly indifferent
+between a man he cannot see and the average man he can — so if that were the
+whole evaluator, not-looking would cost almost nothing and ruling #8 (l)'s
+look-pressure statistic would be noise. It is only once the corridor read joins
+the axis, spreading executable options from 43% to 83%, that looking pays. That
+is the causal seat ruling #8 (l) named, now with a number on both sides of it.
+
+### What E2b-1 inherits
+
+A committed, held-out-validated curve that turns E0's corridor read into a
+probability on the same axis as the band prior — so a seen option and a blind
+one can finally be compared without a hand-set weight, which was the gap that
+forced this split. Plus three constraints its drafting must answer: the
+corridor read is the dominant term (39.72pp vs 6.64pp), 28.48% of playable
+options carry no read at all and need an explicit class, and look-pressure is
+entirely a function of the read rather than the band.
+
+Per §5, **E2b-1 drafts on this PASS.**

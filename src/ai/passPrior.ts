@@ -252,3 +252,62 @@ export function optionSpacePriorAt(distanceMetres: number): PassPriorRow {
   const index = optionSpacePriorBandIndex(distanceMetres);
   return index === null ? OPTION_SPACE_PRIOR_MARGINAL : OPTION_SPACE_PRIOR_TABLE[index];
 }
+
+/**
+ * EDS E2b-0 — the threat calibration curve.
+ * Authority: docs/world-model/EDS-E2B0-THREAT-CALIBRATION.md
+ *
+ * What E0's corridor read is WORTH, measured rather than assumed: realized
+ * reception success by quintile of predicted interception threat, over the same
+ * counterfactual forks E2a-2 censused. This is what puts a seen option's
+ * physical read on the same probability axis as an unseen option's band prior,
+ * so the two can be compared without a hand-set weight.
+ *
+ * CALIBRATION SHA: 52c1071334e6d09aeeb6ac66a6cda2b3686c0e7e05b9d6cd574be84a13fe3082
+ */
+export interface ThreatCalibrationRow {
+  readonly quintile: number;
+  readonly n: number;
+  /** Predicted corridor threat in seconds; higher = more threatened. */
+  readonly keyFrom: number;
+  readonly keyTo: number;
+  readonly realizedSuccess: number;
+}
+
+export const THREAT_CALIBRATION: readonly ThreatCalibrationRow[] = [
+  {
+    quintile: 0,
+    n: 2019,
+    keyFrom: -2.017366997896862,
+    keyTo: 0.038622300107134966,
+    realizedSuccess: 0.8286280336800397,
+  },
+  {
+    quintile: 1,
+    n: 2019,
+    keyFrom: 0.03868202803909754,
+    keyTo: 0.2955869871130011,
+    realizedSuccess: 0.6230807330361565,
+  },
+  {
+    quintile: 2,
+    n: 2019,
+    keyFrom: 0.2956539813153475,
+    keyTo: 0.5363880087900351,
+    realizedSuccess: 0.5096582466567607,
+  },
+  {
+    quintile: 3,
+    n: 2019,
+    keyFrom: 0.5364606140899261,
+    keyTo: 0.805766621095352,
+    realizedSuccess: 0.4715205547300644,
+  },
+  {
+    quintile: 4,
+    n: 2019,
+    keyFrom: 0.806141904559798,
+    keyTo: 2.944990072437604,
+    realizedSuccess: 0.4314016840019812,
+  },
+];
