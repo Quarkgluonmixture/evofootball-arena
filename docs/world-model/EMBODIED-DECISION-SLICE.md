@@ -36,6 +36,17 @@ its boundary codified in the ruling. E2 is split E2a → E2b (census priors
 before the consumer — the instrument-first lesson, third application) with
 drafting constraints in §3 below.**
 
+**Commander ruling #8 (2026-07-25): E2a-1's P3 FAIL accepted as a correct
+catch — the pass-log census is a SELECTED sample (the live chooser already
+filtered for options it liked), and the honest population for an unseen-man
+prior is the OPTION SPACE the evaluator prices. E2a re-posed as E2a-2: a
+counterfactual fork-and-force census (intervene on target choice only, live
+execution machinery, bit-identical reproduction of the chosen pass as the
+harness gate). Direction findings are reported, never gated. Routing re-keys
+onto the priced quantity. E2b's aiming rule settled: priced always,
+executable only with an honest aim point; the price-vs-aim gap is the
+causal seat of look-before-pass. Full text in §3 (h)–(l).**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle
@@ -192,6 +203,66 @@ E2  BOTH-SIDES PERCEPTION (dormant build, probe-bundled) — passer choice via
         predicates only; dormant throughout — default-OFF flags,
         fingerprint unchanged flags-off, zero live callers, no genes, no
         evolution.
+
+    ⭐ RULING #8 AMENDMENT (2026-07-25, after E2a-1's P3 FAIL caught the
+    selected-sample truth: a census of PLAYED passes inherits the live
+    chooser's filter, but the prior must price options nobody chose and
+    nobody saw). E2a is re-posed as **E2a-2, the OPTION-SPACE census**,
+    measured counterfactually — the honest population is the candidate
+    set E2b will actually price:
+
+    (h) Sample real in-play decision moments from fresh seeds; enumerate
+        the FULL candidate set (every outfield teammate per E0's candidate
+        definition); for each candidate FORK the deterministic world and
+        intervene ON TARGET CHOICE ONLY — power, lead and execution run
+        the live machinery pointed at the substituted target. That
+        measures exactly "what happens if the passer chose X instead",
+        the quantity the evaluator prices. Outcome definitions and
+        adjudication-class decomposition (incl. the ~25% never-adjudicated
+        share) carried over from E2a-1 unchanged.
+    (i) EXACT harness gate: forcing the pass the live AI was about to
+        play must produce a continuation BIT-IDENTICAL to the unforked
+        match — the fork proves itself against observed reality before
+        any counterfactual is trusted. Forced targets the execution
+        machinery cannot play are logged as their own outcome class
+        (unplayable), never silently dropped.
+    (j) The visible-vs-unseen DIRECTION is REPORTED, never gated — P3's
+        lesson is that beliefs about which way the world leans do not
+        belong in validity gates when they can be measured; E2b's
+        not-looking-must-not-win stays the behavioural enforcement point.
+        Registered prediction (not a gate): option-space rates land below
+        pass-log rates; the delta is the first measured CHOOSER LIFT
+        (how much value the live target-chooser adds over uniform choice
+        — near-zero would itself be a substrate finding, consistent with
+        the speed-blind evaluator). E2a-1's census stays banked as the
+        chosen-subset reference and one side of that diagnostic.
+        Pessimism-by-construction is REJECTED (an invented constant —
+        the amount of pessimism can only come from a measurement, which
+        is this recensus); accept-and-let-E2b-judge is REJECTED (building
+        a consumer on an input known-mispriced at its own gate is E0b's
+        lesson inverted).
+    (k) RE-KEY, codified: a routing predicate must key on the statistic
+        its consumer actually reads, never a proxy (E2a-1's P4 keyed on
+        flat interceptedRate while the priced axis, receptionSuccessRate,
+        carries a real 8.32pp gradient — same error family as
+        label≠metric). E2a-2's routing keys on the priced quantity.
+        Pricing classes for E2b: fully-unknown (targetMissing, no memory)
+        → MARGINAL by construction, the distance is unknowable;
+        stale-memory (last-known position within retention) → BANDED at
+        the remembered distance — the 8.32pp gradient is what memory is
+        worth, the S3 layering paying off. E2a-1's frozen result stands
+        untouched.
+    (l) E2b aiming rule (settles the question E2a-1 §6 flagged): unseen
+        options are PRICED always (zero deletion holds), but EXECUTION
+        requires an aim point the passer honestly possesses — a current
+        percept or within-retention memory. A zero-information teammate
+        can win a price comparison but cannot be kicked to; no last-known-
+        beyond-retention or role-anchor aiming, which is truth-fallback
+        by the back door. The gap between "prices well" and "cannot aim"
+        is the causal seat of look-before-pass — E2b REPORTS how often a
+        blind option out-priced every executable one (the look-pressure
+        statistic, a future gaze consumer), and its choice A/B runs over
+        executable options only.
 
 E3  CO-EVOLUTION AUDIT — sealed evo runs, full bundle ON: §2 band (goals
     ±15%), route mix (±25%), the C1-B behavioural contract suite
