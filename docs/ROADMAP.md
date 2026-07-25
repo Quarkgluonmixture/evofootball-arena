@@ -4,6 +4,7 @@
 ## ⭐⭐⭐ THE MASTER PLAN IS NOW [`EVO-BLUEPRINT.md`](EVO-BLUEPRINT.md) (2026-07-14, user-ratified)
 ## ⭐⭐⭐⭐ THE SUBSTRATE REBUILD: [`SUBSTRATE-MAP.md`](SUBSTRATE-MAP.md) + [`PROBE-CONTRACTS.md`](PROBE-CONTRACTS.md) (2026-07-20)
 ## ⭐⭐⭐ THE STEPWISE HANDOFF PLAN: [`world-model/PROGRAMME.md`](world-model/PROGRAMME.md) (2026-07-24) — tracks A/B/C, one contract per step; executors start there
+## 🎨 THE ART GOLD STANDARD IS [`F-DIRECTION.md`](F-DIRECTION.md) (2026-07-25, user-picked from a rendered showcase) — supersedes ART_DIRECTION on style/palette/atmosphere; Track F steps are measured against it by the user's eyes
 
 > 🎯🎯🎯 **RESUME (2026-07-20 — the "team-gene overhaul" resolved into a SUBSTRATE-FIRST
 > ENGINE REBUILD; reference docs WRITTEN + tree SETTLED — clean baseline `f192a08`; NEXT

@@ -554,6 +554,42 @@ beauty cannot be probe-gated, so the discipline adapts —
 | F7 | **The goal moment** (user 2026-07-25: "进球得有点特效比如烟花喷火之类的"). Started as a check and found a real **F0 regression**: goal particles use ADDITIVE blending, which glowed against the old night diorama and all but vanishes against bright daylight grass — so shipping the toy/day arm had quietly killed every celebration. Blending is now preset-driven (`fxBlending`): solid confetti by day, glow by night. **Fireworks** added — three staggered shells over the main stand, verified rendering. ✅ **Flame jets SHIPPED, on the fifth attempt.** Four `THREE.Points` rewrites rendered nothing — vertex colours removed, 6 m point size, moved from behind the goal line into open pitch, restructured to mirror `Firework` exactly — with a clean console and a probe reporting visible/parented/opacity≈1/full drawRange/sane NDC, while the near-identical `Firework` Points worked. **Never explained.** Rebuilt as ONE stretched `THREE.Sprite` per jet with a procedural flame gradient: renders immediately, looks better, and costs 4 draw calls instead of 360. Codified in F-DIRECTION: prefer Sprites for billboard-shaped FX until someone explains the Points case. Tuned saturated-orange and 4.6 m (7.5 m towered over 1.7 m players; a white-hot gradient over bright grass reads as haze) — exact look is the user's eyes, since headless capture of a 1.5 s effect is flaky by nature. ⭐ Also fixed a perf debt **F6 created**: `CrowdSystem.update` rewrote and re-uploaded all 369×2 instance matrices EVERY frame, double the pre-bowl cost, on the platform where the phone is the binding constraint — calm stands now refresh at 20 Hz (a 3.5 cm idle bob nobody can resolve), eruptions still get every frame, pinned by a test. Gates: tsc + build clean · **731/731** · fingerprint `57b0bdab…c673` unchanged | ✅ **DONE 2026-07-25 — fireworks + 喷火** |
 | F1+ | One lever per step, drafted after F0 from the standing lever list: tone mapping/exposure · palette unification · pitch (mowing stripes, wear, line crispness) · lighting presets (day/dusk/floodlight) · player silhouette + kit readability · procedural animation polish (anticipation/follow-through in AnimationSystem) · ball trail/spin/height cues · goal-moment FX + camera work · post (bloom/vignette/AA within phone budget) | TBD after F0 |
 
+### Track F session handoff (2026-07-25, art session — READ THIS FIRST)
+
+**Where the work lives.** F1–F4 are on `main`. **F5, F6, F7 and three fixes are
+on the branch `art/track-f`**, developed in a worktree at
+`.claude/worktrees/art-track-f` because a second session was writing to `main`
+throughout. It has NOT been merged: merging during live concurrency is the
+commander's call, not an executor's. `git merge art/track-f` from the repo root
+when the other session is quiet; there were no conflicts at branch time and the
+art work touches only `src/render3d/**`, `src/ui/**`, `src/game/GameApp.ts`,
+`scripts/visual-debug-3d.mjs`, `tests/render3d.test.ts` and `docs/**`.
+
+**State.** Every step gated: tsc + build clean, **731/731**, fingerprint
+`57b0bdab…c673` unchanged at every single commit, all 52 3D visual checks green
+(they were 2 red when the session started — both stale assertions, both fixed).
+
+**What the user has actually SEEN and approved:** the F0 style pick (toy,
+daylight, night switchable) and the F1 scale. Everything from F2 on has been
+reported with screenshots but not play-tested. F-DIRECTION's rule stands — the
+user's eyes are the only valid judge, so treat F2–F7 as provisional until they
+play it.
+
+**Three findings that outlived their steps** (all now codified in
+[`../F-DIRECTION.md`](../F-DIRECTION.md)): the game shipped for months with
+three's default `NoToneMapping`; particle blending is a STYLE choice, not a
+constant, and additive FX die in daylight; and a `THREE.Points` column can
+render nothing here with a clean console and an all-green scene-graph probe
+while a near-identical Points effect works — prefer Sprites for billboard FX.
+
+**Open, in the order I'd take them:** procedural animation polish (F2 changed
+the bodies; the amplitudes were tuned for the old ones) · ball SPIN cue (F4
+did trail and height only) · goal-moment CAMERA (F7 did FX only — live goals
+still get no camera response, `cameraForEvent('goal')` is replay-only) · post
+(tilt-shift/vignette; deferred three times on readability risk — it must not
+touch the play area and should be gated to High) · sky gradient (low priority
+now the bowl encloses the frame).
+
 Track F rules: everything in Track D's rules applies verbatim, plus:
 procedural-first (geometry/materials/textures generated in code — no binary
 asset pipeline unless the user rules otherwise at F0); one lever per step;
