@@ -54,6 +54,11 @@ Each gate belongs to exactly one type; state which when you write the contract.
   regress out of the agreed band. The verdict is *"not worse,"* not *"better."*
 - **Ecological** — multi-seed, multi-generation, **fresh** evo: divergence exists,
   **no runaway** axis, payoff is frequency-dependent.
+  **Type your gate and OBEY the type**: an ecological claim gated on a single
+  seed is mis-typed and noise-dominated, whatever its threshold. *(Registered
+  from EDS E3R CE2, 2026-07-25: a one-seed style-entropy floor read 0.5797 —
+  FAIL — while the pre-registered robustness seed flipped the same statistic
+  to 1.5321 and all three mechanism discriminators said diversity ROSE.)*
 - **Equivalence / flatness** — the claim is *"no effect"* / *"no longer rises"*:
   must be pre-registered as an INTERVAL test (an explicit equivalence band) with
   a sample size computed against the predicted effect. A strict point inequality

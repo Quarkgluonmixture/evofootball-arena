@@ -87,6 +87,21 @@ hypotheses pre-registered (touch-flattening vs genome-blind chooser);
 perf lever = candidate-scoped snapshots at pass-commit; 20–80 dominance
 band kept with its purpose documented. Green path: E3R PASS → E4.**
 
+**Commander ruling #13 (2026-07-25): E3R 26/28 — the revised thesis passed
+its own full audit (§2 band all five in, dominance 21.86% stable, co-evo
+restoration +0.2864→+0.0282 — first pass ever on the vision-attr gate;
+X4R 0/10,292; the ruling-#12(a) premise disproven-and-proven: the banked
+reference was already flag-off-honest). CE2's verdict stands but the gate
+was mis-typed (single-seed ecological claim; H2 refuted by its own three
+discriminators + the seed flip to 1.5321) → CE2R = 5-seed median entropy
+≥0.60 + discriminators as co-gates. X5R: lazy reconstruction APPROVED,
+semantics registered as PULL (knowledge = what your scans would have
+shown, materialised when you act; values constructionally identical),
+under perpetual equivalence pins + choice identity + unchanged budget.
+Stamina carries to E4 as a feel item (calmer play is an ordered emergent
+consequence); fatigue-economy re-seat registered as the post-ship slice.
+E3R2 is narrow: the two gates only. PASS → E4 + F-ACCEPT.**
+
 Date: 2026-07-24
 
 ## 1. The measured case for a bundle

@@ -437,6 +437,53 @@ generalises.
 >    bundle before any deeper diagnosis.
 > 5. **Green path: E3R PASS → E4 + F-ACCEPT** (one play session can serve
 >    both). Any non-PASS returns here.
+>
+> **COMMANDER RULING #13 (2026-07-25 — E3R 26/28; the last two gates get
+> their honest forms; E3R2):**
+>
+> 1. **The 26 stand BANKED, and three deserve names:** co-evo restoration
+>    PASSED for the first time in this project's history (+0.2864 →
+>    +0.0282 — the gate the vision-attr saga failed four times); the §2
+>    band held on all five dimensions with the revised bundle; and
+>    constraint (a)'s premise was DISPROVEN AND PROVEN — the commander
+>    assumed the banked reference was flag-ON-priced, the executor
+>    re-banked and not one digit moved. My premise was wrong; their
+>    verification was exactly right. X4R 0/10,292.
+> 2. **CE2 disposed — the verdict stands, the gate was mis-typed.** A
+>    single-seed entropy floor is an ecological claim gated
+>    non-ecologically (PROBE-CONTRACTS' own type table says multi-seed;
+>    codified there). **H2 (genome-blind chooser) is REFUTED by its own
+>    pre-registered discriminators**: cross-club spread UP (1.977 vs
+>    1.684), gene expression STRONGER (−0.222 vs −0.122), the chooser
+>    club-dependent (0.60m), and the robustness seed flips the statistic
+>    to 1.5321. The preference-seat fork does NOT open. **CE2R** (inside
+>    E3R2): median style entropy across 5 fresh sealed-evo seeds ≥ 0.60,
+>    with the three mechanism discriminators as co-gates.
+> 3. **X5R disposed — lazy reconstruction APPROVED, and its semantics
+>    REGISTERED: perception is PULL.** A body knows what its scans would
+>    have shown, materialised at the moment it acts; keyed noise makes
+>    the values constructionally identical, so this changes WHEN the
+>    computation happens, never WHAT is known. Hard gates in E3R2:
+>    field-for-field snapshot equivalence lazy-vs-eager, pinned by a
+>    perpetual test (the X6 pattern); B1-style choice identity against
+>    E3R's own logged choices; budget stays 1.25× / p95 1.50×. Registered
+>    boundary: any FUTURE live consumer needing scan-moment PUSH events
+>    (a body reacting AT the instant of seeing, unpolled) must revisit
+>    this seat explicitly — pull semantics is what ships in v1.
+> 4. **The stamina finding carries to E4 as a FEEL item, never a
+>    re-baseline.** Honest perception makes play calmer (defenders commit
+>    later, passes find supported targets, fewer loose-ball chases) —
+>    that is an emergent consequence of exactly the kind VISION orders.
+>    Whether a calmer game FEELS right is the user's judgment at E4. IF
+>    the bundle ships, a fatigue-economy re-seat (stamina costs
+>    recalibrated so the tank matters in the calmer game) is registered
+>    as the follow-up slice; the suite red stays a finding until then.
+> 5. **E3R2 is NARROW: only the two gates, in their honest forms** —
+>    CE2R multi-seed + X5R2 lazy-reconstruction-under-pins. The 26
+>    banked results transfer (the equivalence pins are what make that
+>    transfer rigorous). **E3R2 PASS → E4 + F-ACCEPT**; CE2R median
+>    < 0.60 → a real diversity problem, back here; lazy pins fail →
+>    the reconstruction is not the perception, fix it, never widen.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -557,7 +604,13 @@ bundle or ships it.
 | E3R | Revised-bundle audit (ruling #12.3–#12.4): touch cost OUT of the v1 live set, the same five gate families re-run verbatim on perceived choice + perceived defence + the evaluator, chain-first re-bank, both style hypotheses pre-registered | [`EDS-E3R-REVISED-BUNDLE-AUDIT.md`](EDS-E3R-REVISED-BUNDLE-AUDIT.md) | ⛔ **FAIL 2026-07-25 — 2 of 28 gates; QUEUE STOPS at the commander** (§5, world SHA `655a98b9…9d59`, world-deterministic across two invocations, fingerprint `57b0bdab…c673` unchanged, 744/744, nothing shipped). ⭐⭐ **RULING #12's DIAGNOSIS IS CONFIRMED BY A FULL AUDIT: the §2 band HOLDS on all five dimensions** — goals **+2.20%**, crosses −8.91%, headers **−0.43%**, long balls **+8.06%**, cutbacks −4.75% (E3 broke at +30.44%/+45.20%), baseline arm again reproducing the frozen numbers to 4 dp. ✅ **C1 proves the premise correction**: constraint (a) assumed the banked reference carried flag-ON touch pricing — it never did (`heavyTouchCost` appears in no E2b probe; a READ price is the census composite), and the re-bank moved **not one digit** (7/7 families bit-identical), with **G1 and G2 re-holding** there; **X4R 0 disagreements / 10,292**. ✅ **no-strict-dominance PASSES at 21.86%** (45.85/32.29/21.86 light/mid/heavy) — constraint (e)'s registered expectation of a heavier shift under the shipped curve held (+4.4pp from E3's 17.42%), and the share is stable 0.195–0.222 across ten generations. ✅ **CO-EVO RESTORATION PASSES**: the goals advantage decays **+0.2864 → +0.0282** (gens 1–3 → 8–10) — the gate the vision-attr saga failed four times. ⛔ **STYLE DIVERSITY fails by 2.03pp** (entropy ratio **0.5797** vs 0.60; nameplates 16/16) ⇒ **H2 stands by the letter** — but its MECHANISM is refuted by all three pre-registered discriminators: cross-club long-ball spread WIDER under the bundle (1.977 vs 1.684 band · 1.505 vs 1.343 evo), genome expression STRONGER (corr(long balls, passBias) −0.222 vs −0.122 band · −0.624 vs −0.577 evo), and the chooser itself varies club to club (0.60 m of chosen distance, 3.32pp of long share). ⚠️ **and the gate's statistic inverts on the pre-registered robustness seed** `515151`: entropy ratio **1.5321** — the bundle is MORE diverse there. One final-generation entropy over 16 clubs has almost no power; the verdict stands as fired, but "H2 stands" should read as "this gate could not answer the question". ⛔ **X5 perf 1.3238×** (p95 1.3113× passes) after implementing constraint (d)'s named lever plus an allocation-free scan (isolated bench 1.4211× → ~1.32×; ball-only reference ~1.05×): the residual cost is the honest per-observation math itself (5 keyed-noise channels + body-turn trig, ~13 observations/step). `Math.hypot`→`sqrt` was tested and REJECTED (bit-different on 38% of 3M samples = a perceived-value change). The one honest lever left is **deferred reconstruction** (replay a body's in-window scans only when a consumer reads them, ~40× fewer observations, identical by construction) — costed, NOT built, because it decides what "the moment I looked" means and that is the commander's call. ⚠️ **Suite (constraint (f)): stamina breaks on the PERCEPTION bundle, not the touch cost** — measured, correcting my own pre-run suspicion: flags-off 0.9161 · choice-only 0.9308 · v1 bundle **0.9697** · E3 bundle 0.9626 (gate <0.93); honest perception makes the game CALMER (later commits, better-supported balls, less sprinting after loose ones), so the tank stops being spent. aerial + freeAgents hold. R4 divergence 61.14% · R5 no-executable 4.04% · look-pressure 6.59/3.78% · classes READ 91.07/SEEN-UNREAD 0.06/UNSEEN 8.88%. |
 | E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
 
-**Queue state (2026-07-25, after E3R): ⛔ THE QUEUE STOPS AT A COMMANDER GATE —
+**Queue state (2026-07-25, after ruling #13): E3R2 is the next step —
+NARROW: CE2R (5-seed median style entropy ≥0.60 + the three mechanism
+discriminators) and X5R2 (lazy reconstruction under perpetual equivalence
+pins + choice identity, budget unchanged). The 26 banked E3R results
+transfer. E3R2 PASS → E4 + F-ACCEPT.** Below, the E3R record as it stopped:
+
+**(E3R result record) ⛔ E3R stopped at a commander gate —
 E3R passed 26 of 28 gates and E4 is NOT reached.** Ruling #12's amended thesis
 survived its own audit: with the mechanical tax gone, **the live game absorbs
 honest two-sided perception** — every §2 dimension in band (goals +2.20%),
