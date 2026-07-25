@@ -118,6 +118,17 @@ evidence demands it), off-ball movement changes, TeamBrain refactor, live
 D-PROC/D-MUT consumers, coach doctrine/familiarity, multi-target attention,
 aerial work (C4). Feints remain a future observation, never a mechanic.
 
+**Also OUT, registered by ruling #11 (2026-07-25) so nobody later claims
+more honesty than v1 delivers: perception-honest pass AIMING.** The v1
+honesty claim covers the CHOICE (chosen from the passer's own snapshot,
+executable-only, measured axis). EXECUTION still runs the legacy machinery,
+which leads the true target — the same truth-aimed kick the current game
+gives every pass, so E3's §2 band compares like with like and E2b's banked
+choices (validated under exactly that execution) chain through X4 without a
+seam. Aiming at the REMEMBERED position instead — where passes to a
+departed runner honestly miss — changes mechanics for every pass and
+belongs to a future slice beside C-track lead/weight craft.
+
 ## 3. Stages (each gets its own pre-registered contract)
 
 ```text

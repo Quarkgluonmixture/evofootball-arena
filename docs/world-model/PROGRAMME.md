@@ -357,6 +357,32 @@ generalises.
 >    whether the change stays in band.
 > 5. **Green path unchanged:** E2b-1R PASS → the executor drafts E3
 >    (Autonomous mode) → queue stops at **E4, the user's play-test**.
+>
+> **COMMANDER RULING #11 (2026-07-25 — E2b-1R accepted; E3 reviewed, GO):**
+>
+> 1. **E2b-1R ACCEPTED — every gate.** 1.329× → 1.069× by computing less,
+>    not perceiving less; B1's seven families bit-identical across 3,000
+>    moments × 4 arms, so G1/G2 graduate from banked-with-asterisk to
+>    VERIFIED; X6 pins the cheap path field-for-field against the full
+>    path in perpetuity; X3's fix proved itself mid-development (perf
+>    measurement changed, world hash did not move). Both pre-freeze
+>    disclosures tightened faithfulness rather than loosening it — the
+>    GK-skip catch is exactly the behaviour-change-in-a-perf-coat B1
+>    exists to catch. Exemplary run.
+> 2. **E3's draft is REVIEWED and APPROVED to run as pre-registered** —
+>    no gate changes. The chain holds: X4 (live consumer must reproduce
+>    E2b-1R's banked choices), §2 band verbatim from C1-B's grave,
+>    no-strict-dominance 20–80 as the operational form of "situational",
+>    co-evo restoration directional per the vision/positioning precedent,
+>    nothing ships, E4 is the user's.
+> 3. **One scope registration (design contract §2), no gate touched:**
+>    v1's honesty claim covers the CHOICE; execution stays truth-aimed —
+>    the same kick the legacy game gives every pass, so the band compares
+>    like with like and X4 chains without a seam. Perception-honest
+>    AIMING (passes to a departed runner honestly missing) is named OUT,
+>    a future slice beside C-track lead/weight craft.
+> 4. Standing user gates after E3: **E4 (the bundle) and F-ACCEPT (art
+>    F2–F7)** — one play session can serve both if the user prefers.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
