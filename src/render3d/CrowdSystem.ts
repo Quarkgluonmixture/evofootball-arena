@@ -43,6 +43,12 @@ export class CrowdSystem {
   constructor(style: StylePreset = stylePreset()) {
     let lcg = 987654321;
     const rand = () => ((lcg = (lcg * 48271) % 2147483647) / 2147483647);
+    // Skin tones draw from their OWN stream. Sharing `rand` made picking a
+    // face colour advance the seat lottery, so F3's palette change silently
+    // reseated the whole terrace (192 bodies -> 184). A cosmetic choice must
+    // not perturb an unrelated deterministic layout.
+    let skinLcg = 24681357;
+    const skinRand = () => ((skinLcg = (skinLcg * 48271) % 2147483647) / 2147483647);
     // F-DIRECTION: the palette is data. The terrace was the last element no
     // preset owned — a night-navy crowd sat under the daylight arms' noon sky.
     const palette = style.crowd;
@@ -64,7 +70,7 @@ export class CrowdSystem {
         colors.push(palette[Math.floor(rand() * palette.length)]);
         // One skin tone for a whole crowd was its own small incoherence:
         // the players have had six since Phase 76.
-        skins.push(CROWD_SKINS[Math.floor(rand() * CROWD_SKINS.length)]);
+        skins.push(CROWD_SKINS[Math.floor(skinRand() * CROWD_SKINS.length)]);
       }
     }
     this.bodies = new THREE.InstancedMesh(
