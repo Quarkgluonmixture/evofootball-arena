@@ -53,7 +53,7 @@ export class ThreeMatchRenderer {
   set onPerceptionAwarenessToggle(fn: (() => void) | null) {
     this.perception.onToggleAwareness = fn;
   }
-  private fx = new FxSystem();
+  private fx: FxSystem;
   private goals: [Goal3D, Goal3D];
   private playersGroup = new THREE.Group();
   private players = new Map<number, PlayerModel>();
@@ -121,6 +121,7 @@ export class ThreeMatchRenderer {
     // F0: the body material language is a module-level switch shared by every
     // kit factory, so it must be set BEFORE the first body is built.
     setBodyStyle(style);
+    this.fx = new FxSystem(style);
     this.crowd = new CrowdSystem(style);
     this.referee = new RefereeModel();
     this.linesmen = [new LinesmanModel(1, -1), new LinesmanModel(-1, 1)];

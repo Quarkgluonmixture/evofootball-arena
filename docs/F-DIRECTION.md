@@ -89,9 +89,14 @@ the torso at maximum bulk, so that is asserted, not assumed.
 
 A pitch is not a green rectangle. Mowing stripes, a fine turf grain, and
 **wear** where a real pitch goes bare: both goalmouths, the centre circle, the
-two wing channels. Grain count and blob radius must move in OPPOSITE
-directions — dense grain needs fine blobs, or the speckle stacks into soap
-bubbles (which is exactly what F0's first pass painted). A test pins it.
+two wing channels.
+
+Grain has ONE governing rule and it is about spatial frequency, not contrast:
+**grain lives at boot-stud scale, a few centimetres to ~30 cm.** Metre-scale
+speckle reads as clouds — mould on the grass — no matter how low you push the
+alpha, and it also drowns the wear patches, which are the variation you
+actually want to see. Count and radius therefore move in OPPOSITE directions,
+and a test pins that ordering.
 
 Paint is chalk, not vector: softened alpha and a wider line under `toy`.
 
@@ -107,6 +112,53 @@ so its cues carry more weight than they used to. Two rules:
   desktop platform, so a `THREE.Line` trail is a one-pixel hair that vanishes
   on a phone. Taper it toward the tail so it reads as direction, and fade it
   proportionally with speed so a crawling ball never paints the pitch.
+
+## The bowl
+
+The ground is ENCLOSED — day and night you are inside it, not looking at a
+pitch floating in a void (user, 2026-07-25). But every stand height here is
+bounded by a camera, never by taste, and the bounds are asymmetric because the
+cameras are:
+
+- **Far (−z) side carries the height** — five rows, a roof canopy with a
+  fascia, a back wall. Nothing looks from that side, so it is free, and its
+  roof line cutting the sky is the single thing that most makes the world feel
+  built rather than floating.
+- **Goal ends stay ONE low bank.** behindGoal sits 12 m out at only 5 m up and
+  its sight line is down to ~3.9 m by x = 40. Phase 28.3 already lost the
+  whole goalmouth behind a three-step stand once.
+- **Near (+z) side is one bank held well back** — the binding case is the
+  follow camera on near-touchline play, where the sight line is only 2.8 m up
+  at the usual apron distance.
+- **Corners are filled**, and a 45° section reaches w/2·√½ toward the pitch on
+  both axes — stand it further out than that or its inner tip lands on the
+  playing surface.
+
+None of the above is eyeballed: `terraceSlabs()` is pure data and the render3d
+test pushes every camera's sight line into each slab's own frame (oriented, not
+axis-aligned — an AABB over-rejects the corners) and asserts it reaches the
+pitch. Crowd head height is included. That test found two real blocks the
+moment it existed, one of them pre-existing.
+
+## Celebration
+
+Blending is a STYLE choice, not a constant. Additive particles glow against a
+dark diorama and all but vanish against a bright daylight pitch — which is
+what F0 quietly did to every goal celebration before F7 caught it. Daylight
+arms use solid `normal` confetti; night arms keep the glow.
+
+Fireworks are a NIGHT effect by nature: against a pale daytime sky they read
+as washed-out squares, for the same reason nobody sets off fireworks at noon.
+Anything meant to carry a daylight celebration has to be solid and coloured,
+not emissive — the flame jets are saturated orange for exactly that reason,
+because a white-hot gradient over bright grass reads as haze.
+
+**Sprites over Points.** A particle column of `THREE.Points` rendered nothing
+here across four rewrites, with a clean console and an all-green scene-graph
+probe, while a near-identical Points firework worked. Never explained. One
+stretched Sprite with a procedural gradient is the flame — better looking, 4
+draw calls instead of 360, and on the path every label already uses. Prefer
+Sprites for anything billboard-shaped until someone explains the Points case.
 
 ## Cameras
 

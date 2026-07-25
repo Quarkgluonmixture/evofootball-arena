@@ -1,5 +1,7 @@
 import * as THREE from 'three';
+import { GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
 import type { FxEvent, RenderState } from './RenderStateAdapter';
+import { stylePreset, type StylePreset } from './stylePresets';
 
 /**
  * Event feedback: particle bursts (saves, interceptions) and floating xG
@@ -10,6 +12,177 @@ import type { FxEvent, RenderState } from './RenderStateAdapter';
  */
 
 const BURST_N = 16;
+/** Jets per goal (F7). */
+const PYRO_JETS = 4;
+/** Particles in one firework shell's burst (F7). */
+const SHELL_N = 70;
+
+/**
+ * A pyrotechnic flame jet (F7, user: "进球得有点特效比如烟花喷火之类的").
+ *
+ * ONE billboard per jet, not a particle column. The first cut was 90
+ * `THREE.Points` per jet and rendered absolutely nothing — with vertex
+ * colours removed, at 6m point size, moved into open view, rewritten to
+ * mirror `Firework` exactly, console clean and the scene-graph probe all
+ * green. Never root-caused. Sprites are the known-good path in this codebase
+ * (every player label is one), and a stretched billboard with a procedural
+ * gradient is both a better flame and 4 draw calls instead of 360.
+ *
+ * Fires only on a goal, when play is already stopped, so it can never hide
+ * the ball or the shape (F-DIRECTION's rule).
+ */
+class Pyro {
+  readonly sprite: THREE.Sprite;
+  private life = -1;
+  private mat: THREE.SpriteMaterial;
+  private static readonly DUR = 1.5;
+  private static readonly RISE = 0.28;
+  /** 7.5m towered over 1.7m players; a jet should read as tall, not absurd. */
+  private static readonly H = 4.6;
+  private static readonly W = 1.35;
+
+  constructor(blending: THREE.Blending) {
+    this.mat = new THREE.SpriteMaterial({
+      map: flameTexture(), transparent: true, opacity: 0, depthWrite: false, blending,
+    });
+    this.sprite = new THREE.Sprite(this.mat);
+    // Grow from the ground up, not from the middle out.
+    this.sprite.center.set(0.5, 0);
+    this.sprite.visible = false;
+  }
+
+  fire(x: number, z: number): void {
+    this.sprite.position.set(x, 0.05, z);
+    this.sprite.scale.set(Pyro.W, 0.2, 1);
+    this.life = 0;
+    this.sprite.visible = true;
+  }
+
+  update(dt: number): void {
+    if (this.life < 0) return;
+    this.life += dt;
+    if (this.life >= Pyro.DUR) {
+      this.life = -1;
+      this.sprite.visible = false;
+      return;
+    }
+    // Whoosh up fast, then burn down and fade.
+    const climb = Math.min(1, this.life / Pyro.RISE);
+    const burn = Math.max(0, (this.life - Pyro.RISE) / (Pyro.DUR - Pyro.RISE));
+    const h = Pyro.H * (climb ** 0.55) * (1 - burn * 0.45);
+    // Flicker so the column is alive rather than a static cone.
+    const flick = 1 + Math.sin(this.life * 34) * 0.06;
+    this.sprite.scale.set(Pyro.W * (0.75 + climb * 0.25) * flick, h, 1);
+    this.mat.opacity = Math.min(1, climb * 1.4) * (1 - burn ** 1.8);
+  }
+}
+
+/** Vertical flame gradient, drawn once: white-hot base into orange smoke. */
+let FLAME_TEX: THREE.CanvasTexture | null = null;
+function flameTexture(): THREE.CanvasTexture {
+  if (FLAME_TEX) return FLAME_TEX;
+  const c = document.createElement('canvas');
+  c.width = 32;
+  c.height = 128;
+  const ctx = c.getContext('2d')!;
+  // Saturated, not white-hot: against bright daylight grass a pale gradient
+  // reads as haze. Orange is what separates flame from fog here.
+  const g = ctx.createLinearGradient(0, 128, 0, 0);
+  g.addColorStop(0, 'rgba(255,248,214,1)');
+  g.addColorStop(0.14, 'rgba(255,198,54,1)');
+  g.addColorStop(0.42, 'rgba(255,118,16,0.97)');
+  g.addColorStop(0.72, 'rgba(214,52,8,0.72)');
+  g.addColorStop(1, 'rgba(140,28,6,0)');
+  ctx.fillStyle = g;
+  // Taper toward the tip so it reads as a jet, not a bar.
+  ctx.beginPath();
+  ctx.moveTo(2, 128);
+  ctx.lineTo(30, 128);
+  ctx.lineTo(20, 0);
+  ctx.lineTo(12, 0);
+  ctx.closePath();
+  ctx.fill();
+  FLAME_TEX = new THREE.CanvasTexture(c);
+  FLAME_TEX.colorSpace = THREE.SRGBColorSpace;
+  return FLAME_TEX;
+}
+
+/**
+ * A firework shell (F7): rises above the stand on a fuse, then bursts into a
+ * ring of coloured stars that fall under gravity. High FX quality only —
+ * it is pure celebration and the phone budget buys the pyro first.
+ */
+class Firework {
+  readonly points: THREE.Points;
+  private vels = new Float32Array(SHELL_N * 3);
+  private origin = new THREE.Vector3();
+  private life = -1;
+  private delay = 0;
+  private mat: THREE.PointsMaterial;
+  private static readonly FUSE = 0.75;
+  private static readonly DUR = 2.4;
+
+  constructor(blending: THREE.Blending) {
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(SHELL_N * 3), 3));
+    this.mat = new THREE.PointsMaterial({
+      size: 1.7, color: 0xffffff, transparent: true, opacity: 0,
+      depthWrite: false, blending,
+    });
+    this.points = new THREE.Points(geo, this.mat);
+    this.points.frustumCulled = false;
+    this.points.visible = false;
+  }
+
+  fire(x: number, z: number, peak: number, color: number, delay: number): void {
+    this.origin.set(x, peak, z);
+    this.delay = delay;
+    this.mat.color.setHex(color);
+    for (let i = 0; i < SHELL_N; i++) {
+      // Spherical-ish shell, flattened so it reads as a ring from the side.
+      const a = (i / SHELL_N) * Math.PI * 2;
+      const tilt = (Math.random() - 0.5) * 1.1;
+      const sp = 8 + Math.random() * 3.5;
+      this.vels[i * 3] = Math.cos(a) * sp;
+      this.vels[i * 3 + 1] = tilt * sp;
+      this.vels[i * 3 + 2] = Math.sin(a) * sp;
+    }
+    this.life = 0;
+    this.points.visible = true;
+  }
+
+  update(dt: number): void {
+    if (this.life < 0) return;
+    this.life += dt;
+    const t = this.life - this.delay;
+    const pos = this.points.geometry.getAttribute('position') as THREE.BufferAttribute;
+    if (t < 0) { this.mat.opacity = 0; return; }
+    if (this.life >= this.delay + Firework.DUR) {
+      this.life = -1;
+      this.points.visible = false;
+      return;
+    }
+    if (t < Firework.FUSE) {
+      // The shell itself, climbing. All stars ride the same rising point.
+      const rise = this.origin.y * (t / Firework.FUSE);
+      for (let i = 0; i < SHELL_N; i++) pos.setXYZ(i, this.origin.x, rise, this.origin.z);
+      this.mat.opacity = 0.85;
+    } else {
+      const b = t - Firework.FUSE;
+      for (let i = 0; i < SHELL_N; i++) {
+        pos.setXYZ(
+          i,
+          this.origin.x + this.vels[i * 3] * b,
+          this.origin.y + this.vels[i * 3 + 1] * b - 4.2 * b * b,
+          this.origin.z + this.vels[i * 3 + 2] * b,
+        );
+      }
+      this.mat.opacity = Math.max(0, 1 - b / (Firework.DUR - Firework.FUSE)) ** 1.4;
+    }
+    pos.needsUpdate = true;
+  }
+}
+
 
 class Burst {
   readonly points: THREE.Points;
@@ -17,7 +190,7 @@ class Burst {
   private life = -1;
   private mat: THREE.PointsMaterial;
 
-  constructor() {
+  constructor(blending: THREE.Blending) {
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(BURST_N * 3), 3));
     this.mat = new THREE.PointsMaterial({
@@ -26,7 +199,7 @@ class Burst {
       transparent: true,
       opacity: 0,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending,
     });
     this.points = new THREE.Points(geo, this.mat);
     this.points.frustumCulled = false;
@@ -135,8 +308,10 @@ export type FxQuality = 'low' | 'medium' | 'high';
 
 export class FxSystem {
   readonly root = new THREE.Group();
-  private bursts = [new Burst(), new Burst(), new Burst(), new Burst(), new Burst()];
+  private bursts: Burst[];
   private floaters = [new Floater(), new Floater(), new Floater()];
+  private pyros: Pyro[];
+  private shells: Firework[];
   private nextBurst = 0;
   private nextFloater = 0;
   private seen = new Set<string>();
@@ -144,9 +319,21 @@ export class FxSystem {
   /** low = feedback without particles; high = celebratory extras (confetti). */
   quality: FxQuality = 'medium';
 
-  constructor() {
+  constructor(style: StylePreset = stylePreset()) {
+    // F7: blending is a STYLE choice, not a constant. Additive particles glow
+    // beautifully against the old night diorama and all but vanish against a
+    // bright daylight pitch — which is what F0 quietly did to every goal
+    // celebration. Daylight arms get solid confetti instead.
+    const blending = style.fxBlending === 'additive'
+      ? THREE.AdditiveBlending
+      : THREE.NormalBlending;
+    this.bursts = Array.from({ length: 5 }, () => new Burst(blending));
+    this.pyros = Array.from({ length: PYRO_JETS * 2 }, () => new Pyro(blending));
+    this.shells = Array.from({ length: 3 }, () => new Firework(blending));
     for (const b of this.bursts) this.root.add(b.points);
     for (const f of this.floaters) this.root.add(f.sprite);
+    for (const j of this.pyros) this.root.add(j.sprite);
+    for (const sh of this.shells) this.root.add(sh.points);
   }
 
   /** Re-arm all effects (called when a replay jumps/scrubs or a match attaches). */
@@ -190,6 +377,11 @@ export class FxSystem {
             this.burst().fire(state.ball.x - 1.6, 1.6, state.ball.z + 1.2, teamColors[fx.side]);
             this.burst().fire(state.ball.x + 1.6, 1.9, state.ball.z - 1.2, 0xffffff);
           }
+          // F7 pyro. Anchored on the GOAL, not the ball: the ball ends up
+          // inside the net where the mesh hides it, and the goal line is
+          // where the eye already is. Play is stopped, so nothing is masked.
+          if (particles) this.firePyro(Math.sign(state.ball.x) || 1);
+          if (this.quality === 'high') this.fireShells(teamColors, fx.side);
           this.hooks?.onGoal(fx.side);
           break;
         }
@@ -201,6 +393,34 @@ export class FxSystem {
   update(dt: number): void {
     for (const b of this.bursts) b.update(dt);
     for (const f of this.floaters) f.update(dt);
+    for (const j of this.pyros) j.update(dt);
+    for (const sh of this.shells) sh.update(dt);
+  }
+
+  /**
+   * Flame jets at the end the ball just crossed. They stand just INSIDE the
+   * goal line, flanking the posts and out by the corners — which is where a
+   * real ground puts its pyro, and, less romantically, the only place every
+   * camera can actually see them: behind the line they were hidden variously
+   * by the net, the adboards and the goal-end crowd. Play is stopped when
+   * these fire, so nothing on the pitch is masked.
+   */
+  private firePyro(endSign: number): void {
+    const x = endSign * (HALF_L - 0.8);
+    const inner = GOAL_WIDTH / 2 + 2.2;
+    const outer = HALF_W - 1.5;
+    const zs = [-outer, -inner, inner, outer];
+    for (let i = 0; i < PYRO_JETS; i++) this.pyros[i].fire(x, zs[i]);
+  }
+
+  /** Three staggered shells over the main stand, in both kits plus white. */
+  private fireShells(teamColors: [number, number], side: 0 | 1): void {
+    const z = -HALF_W - 12;
+    const colors = [teamColors[side], 0xffffff, teamColors[side]];
+    for (let i = 0; i < this.shells.length; i++) {
+      const x = (i - 1) * (HALF_L * 0.55);
+      this.shells[i].fire(x, z, 17 + i * 2.5, colors[i], i * 0.32);
+    }
   }
 
   private burst(): Burst {

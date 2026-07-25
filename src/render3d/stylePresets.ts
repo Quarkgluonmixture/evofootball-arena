@@ -37,8 +37,13 @@ export interface GrassPalette {
   /** Cross-mow overlay strength (0 = none). */
   crossAlpha: number;
   /** Turf speckle: blob count, opacity, and blob radius range in METRES.
-   * Count and radius must move together — 900 two-metre discs stack into
-   * visible bubbles, which is exactly what the first F0 pass produced. */
+   *
+   * Count and radius must move in OPPOSITE directions, and the radius has to
+   * stay genuinely small. F5 measured it: metre-scale blobs read as CLOUDS —
+   * mould on the grass — not as turf, and no amount of lowering the alpha
+   * fixes that because the defect is the spatial frequency, not the contrast.
+   * Grain belongs at boot-stud scale (a few cm to ~30cm) so it mips away with
+   * distance and only shows as texture underfoot. */
   grainCount: number;
   grainAlpha: number;
   grainRadius: [number, number];
@@ -73,6 +78,12 @@ export interface StylePreset {
   floodlights: boolean;
   /** Terrace crowd shirt colours. The last element any preset didn't own. */
   crowd: readonly number[];
+  /**
+   * Particle blending. `additive` glows against a dark diorama; against a
+   * bright daylight pitch it all but vanishes, which is what F0 quietly did
+   * to every goal celebration. Daylight arms use solid `normal` confetti.
+   */
+  fxBlending: 'additive' | 'normal';
   /** Bodies: toon ramp materials instead of PBR standard. */
   toon: boolean;
   /** Fake contact-shadow opacity multiplier (1 = as shipped). */
@@ -110,6 +121,7 @@ const CURRENT_NIGHT: StylePreset = {
   terrace: [0x131c30, 0x1a2742],
   crowd: [0x33415e, 0x475c85, 0x8294b5, 0x4ade80, 0xf59e0b, 0xe2e8f0, 0x60a5fa, 0x1d3a5f],
   floodlights: true,
+  fxBlending: 'additive',
   toon: false,
   contactShadow: 1,
 };
@@ -128,6 +140,7 @@ const CURRENT_DAY: StylePreset = {
   sun: { color: 0xfff6e6, intensity: 2.5, pos: [-40, 80, 30] },
   pedestal: 0x2c3d52,
   floodlights: false,
+  fxBlending: 'normal',
 };
 
 /**
@@ -151,9 +164,9 @@ const COHERENCE_NIGHT: StylePreset = {
     stripeB: '#3a9550',
     crossAlpha: 0.03,
     // Finer and denser than shipped: turf grain, not soap bubbles.
-    grainCount: 900,
-    grainAlpha: 0.85,
-    grainRadius: [0.18, 0.9],
+    grainCount: 2400,
+    grainAlpha: 0.8,
+    grainRadius: [0.08, 0.34],
   },
   // One palette family for all the chrome, instead of three unrelated blues.
   boards: [0x18243c, 0x1e3050, 0x233a5c],
@@ -174,6 +187,7 @@ const COHERENCE_DAY: StylePreset = {
   boards: [0x30425e, 0x3a5070, 0x44597a],
   terrace: [0x33405c, 0x3f4d6b],
   floodlights: false,
+  fxBlending: 'normal',
 };
 
 /**
@@ -200,9 +214,9 @@ const TOY_DAY: StylePreset = {
     stripeB: '#5cb356',
     stripes: 10,
     crossAlpha: 0.05,
-    grainCount: 1600,
+    grainCount: 3600,
     grainAlpha: 0.75,
-    grainRadius: [0.08, 0.45],
+    grainRadius: [0.06, 0.26],
     wear: 0.85,
     wearColor: '#a8814a',
   },
@@ -216,6 +230,7 @@ const TOY_DAY: StylePreset = {
     0xf5f2e8, 0x3f4a5a, 0xe2725b, 0x2fb8a0,
   ],
   floodlights: false,
+  fxBlending: 'normal',
   toon: true,
   contactShadow: 1.15,
 };
@@ -241,6 +256,7 @@ const TOY_NIGHT: StylePreset = {
   },
   boards: [0xdcd6c6, 0xccc3ac, 0xbdb398],
   terrace: [0x2b3346, 0x353d52],
+  fxBlending: 'additive',
   crowd: [
     0xa63a3a, 0xb0762c, 0xb39a43, 0x438743, 0x2b7a9e, 0x374a93, 0x724285, 0xaf6a86,
     0xb4b1a8, 0x2f3743, 0xa85444, 0x24897a,
