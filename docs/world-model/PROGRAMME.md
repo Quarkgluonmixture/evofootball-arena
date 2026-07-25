@@ -484,6 +484,42 @@ generalises.
 >    transfer rigorous). **E3R2 PASS → E4 + F-ACCEPT**; CE2R median
 >    < 0.60 → a real diversity problem, back here; lazy pins fail →
 >    the reconstruction is not the perception, fix it, never widen.
+>
+> **COMMANDER RULING #14 (2026-07-26 — E3R2 accepted 29/29; E4 opens):**
+>
+> 1. **E3R2 ACCEPTED.** Pull semantics proven to be the SAME perception
+>    (P1 7/7 perpetual pins, P2 identical worlds + full choice
+>    trajectories, P3 17/17 banked live numbers bit-identical — the
+>    rigorous transfer mechanism ruling #13.5 asked for, delivered as
+>    proof rather than assumption); perf 1.1977× / p95 1.1529× inside
+>    budget by computing less, never by seeing less; CE2R median 1.5253
+>    with 4/5 seeds ABOVE 1.0 — under this bundle a typical world is MORE
+>    stylistically diverse than without it, and all three mechanism
+>    co-gates hold. The preference-seat fork stays closed. The
+>    between-tick pull asymmetry is honestly pinned (never knows MORE).
+> 2. **CE1's honest weight registered:** advantage-shrink held in 2/5
+>    fresh seeds with mostly-negative noisy paired diffs — there is no
+>    attacking runaway ANYWHERE to restore from, which satisfies the
+>    gate's purpose in substance; a multi-seed CE1 form joins the
+>    post-ship follow-up list beside the fatigue-economy re-seat. It
+>    does not block E4.
+> 3. **E4-PREP authorized (small, any session):** the two v1 flags
+>    exist only as Match config — the user plays the deployed build. Add
+>    an in-game settings toggle (the F0 lighting-control precedent:
+>    LeftBar control, persisted, localised) that flips
+>    `edsPerceivedChoice` + `edsPerceivedDefence` together at match
+>    start — **default OFF, pinned by a default-off test, fingerprint
+>    unchanged, CI deploy**. Live A/B on the user's phone IS the E4
+>    instrument. At ship time the toggle's fate (keep as "legacy brain"
+>    switch or remove) is decided then.
+> 4. **E4 + F-ACCEPT are open — the user's eyes, nothing else.** Ship =
+>    both flags default ON + fingerprint/perf rebaseline + ROADMAP
+>    entry; revert = the whole bundle (dormant assets stay banked).
+>    Registered feel items for the session: the game is measurably
+>    CALMER (later tackles, better-supported passes, fewer loose-ball
+>    scrambles) and a full match no longer spends the stamina tank
+>    (0.9697 vs 0.93) — judge whether calm feels like football or feels
+>    flat; fatigue re-seat is already queued if shipped.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -605,9 +641,11 @@ bundle or ships it.
 | E3R2 | Narrow re-audit (ruling #13.5): CE2R five-seed median style entropy + X5R2 lazy PULL perception under perpetual pins | [`EDS-E3R2-NARROW-REAUDIT.md`](EDS-E3R2-NARROW-REAUDIT.md) | ✅ **PASS 2026-07-26 — ALL 29 GATES; the queue reaches E4** (§5, world SHA `3cbb8b8c…456f`, world-deterministic across two invocations with perf beside it, fingerprint `57b0bdab…c673` unchanged, **751/751**, nothing shipped). ⭐⭐ **X5R2 — perception is PULL, and provably the same perception**: P1's perpetual pin (7/7, `tests/lazyPerception.test.ts`) has lazy and eager snapshots **field-for-field identical at every brain tick** across awareness 0.2/0.5/0.8/1.0; P2 gives identical world signatures AND identical choice traces on 3 seeds; **P3 returns 17/17 of E3R's banked live numbers BIT-IDENTICAL**, which is what makes ruling #13.5's transfer of the 26 rigorous rather than assumed. **Perf 1.32–1.38× → 1.1977× mean / 1.1529× p95** (budget 1.25/1.50) purely by computing when asked instead of when possible — scan cadence, FOV, retention and keyed error all untouched. ⚠️ One measured one-directional difference, pinned by its own companion test: pulled BETWEEN brain ticks (which no live consumer does) the pull is merely UP TO DATE — self proprioception current, retention expired — never better informed. ⭐⭐ **CE2R — style diversity HOLDS ecologically: median entropy ratio 1.5253** over five fresh seeds (0.779 · 1.525 · 3.405 · 1.466 · 1.922 — **four of five ABOVE 1.0**, i.e. the bundle usually leaves a world with MORE variety), nameplates 16/16 on every seed, and all three mechanism co-gates pass on the median (M1 +0.044 clubs not more alike · M2 +0.174 genome expresses no weaker · M3 0.454 the chooser is club-dependent). E3R's 0.5797 was the low tail of a heavy-tailed statistic ⇒ ruling #13.2's diagnosis confirmed, **the preference-seat fork stays closed**. ⚠️ Reported, not gated (CE1 is banked by ruling #13.1): across these five fresh seeds the advantage-shrink holds on only **2/5**, and the paired goal delta is mostly NEGATIVE and seed-noisy — there is no attacking runaway to restore from, but if CE1 is ever to carry weight in a ship decision it needs CE2's multi-seed treatment. |
 | E4 ★ | Ship gate — **user play-test of the whole bundle**. Ship = flags default ON + fingerprint/perf rebaseline. Revert = the whole bundle | design §3 | **STOP HERE — the user's eyes** |
 
-**Queue state (2026-07-26, after E3R2): ✅ E3R2 PASSED ALL 29 GATES — the queue
-reaches the USER'S GATES and stops there. E4 (play-test of the bundle) and
-F-ACCEPT (art F2–F7) are both open; one play session can serve both.**
+**Queue state (2026-07-26, after ruling #14): ✅ E3R2 ACCEPTED 29/29 — the
+queue is at the USER'S GATES. One small prep step first: E4-PREP (ruling
+#14.3) wires the two v1 flags to an in-game settings toggle, default OFF,
+so the user can A/B the bundle live on their phone. Then E4 (play-test) +
+F-ACCEPT (art F2–F7); one play session can serve both.**
 
 The slice is complete as engineering: a body inside a live match chooses its
 pass from what it can see, the defender reads his own ball, perception is
