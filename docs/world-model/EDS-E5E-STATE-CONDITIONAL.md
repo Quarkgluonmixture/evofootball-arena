@@ -313,4 +313,119 @@ six leagues, with the cluster unit named. It settles nothing about *whether*
 state-conditional value is the repair — that is part (b)'s question, and by
 §4 it does not gate part (b) in either direction.
 
-### 6.2 Part (b)
+### 6.2 Part (b) — RUN 2026-07-26: **NOT CERTIFIED**
+
+SHA `ced3459b…1f7c`, twice byte-identical. X5 reproduced on all six harness
+seeds; the staging check came back **identical** (13 moments filtered, 13
+unfiltered, fork records byte-equal over 200 matches), so the pre-filter drops
+no moment the unfiltered walk keeps.
+
+| | harvest A — third-man, in-population | harvest B — overlap, OFF-population |
+| --- | --- | --- |
+| moments / matches | 3,000 / 125 | 2,400 / **30,857** |
+| pattern arm | n 3,683 · priced 7.01% · realized 7.33% · **gap +0.32pp** | n 2,393 · priced 7.50% · realized 6.81% · **gap −0.69pp** |
+| control arm | n 7,690 · priced 5.71% · realized 4.55% · **gap −1.16pp** | n 6,047 · priced 5.46% · realized 8.29% · **gap +2.83pp** |
+| **premium (DiD)** | **+1.49pp**, CI [+0.60, +2.47] | **−3.52pp**, CI [−4.78, −2.28] |
+| cell-rung premium | +1.03pp [+0.14, +2.02] | −2.35pp [−3.60, −1.14] |
+| P4 control sanity | ✅ | ⛔ **+2.83pp, off-band** |
+| **verdict** | ✅ **SUPERIOR** | ⛔ **INCONCLUSIVE** (P4 downgrade) |
+
+**Gates: X5 ✅ · staging ✅ · P3 ✅ · P5 ✅ · P1 ⛔ · P2 ⛔ · P4 ⛔.**
+
+#### 6.2.1 The third-man premium is real, and it is smaller than it was
+
+**P3 passes.** Against the axis that is actually deployed, the third-man state
+carries **+1.49pp** the cell-indexed table does not, CI [+0.60, +2.47], and the
+cell-rung version (+1.03pp) says it is not a threat-band artefact.
+
+It is also **less than half** what E5c measured against the composed V̂
+(+3.38pp). That is the coherent story, not a contradiction: moving from
+`P̂ × V̂` to the attempt axis already absorbed most of the state effect, and
+about a point and a half of it remains.
+
+⚠️ **Reported, and it matters: the premium does not clear its own flip
+benchmark.** At harvest A's moments the third-man runner loses the argmax by
+**1.10pp** on price. The premium's point estimate (1.49pp) is above that; its
+**CI lower bound (0.60pp) is not**. So the honest statement is *the premium is
+real, and the data cannot say it is large enough to change the decision* —
+which is exactly the distinction §3.6 existed to be able to make.
+
+#### 6.2.2 The overlap premium is NEGATIVE, and P4 stops me calling it refuted
+
+Taken at face value the overlap premium is **−3.52pp with a CI that excludes
+zero comfortably** — the licensed overlap runner realizes *less* than the table
+charges for him (−0.69pp) while every other option at his moments realizes
+**+2.83pp more** than the table charges. A measured state-conditional table
+would therefore price the overlap runner **DOWN**, not up.
+
+**But the pre-registered rule binds and I am holding it.** The control arm is
+2.83pp off-band, which is exactly the condition §3.5's P4 defines as *"the
+table is miscalibrated on this population"* — a third finding, not a premium.
+Harvest B was registered as off-population before the run, this is the failure
+mode that registration anticipated, and the verdict is therefore
+**INCONCLUSIVE**, not REFUTED. The point estimate is reported; the label is
+the registered one.
+
+⛔ **P1 fired by seven forks** — 2,393 pattern forks against the 2,400 floor,
+because 2,400 moments yielded seven unplayable ones. Two reasons it is not
+being chased, and the second is the binding one: it is the C3R situation again
+(a floor missed by a hair is not an invitation to buy the difference), and
+ruling #2.1 **forbids** a budget raise outright when a ratio gate is failing at
+decision time, which P2 is. It stands as fired.
+
+#### 6.2.3 ⭐ The reading I labelled after the live audit is REFUTED by measurement
+
+After the C3R audit I wrote, clearly labelled as untested, that *"the attempt
+table prices the attacking third's inner cells at 16.62/21.33% and the
+outer-wide cell where an overlap lands at 14.25%, so a value-only chooser takes
+the more advanced man and the overlap runner loses the comparison."*
+
+**Both halves of that are wrong, and the probe says so directly.**
+
+- **Where the runner lands.** Overlap forks arrive **55% in cell 2 and 38% in
+  cell 3 — the MIDDLE third**, with 1% in cell 7. I reasoned about the
+  attacking third; the pattern does not happen there.
+- **Whether he loses the comparison.** The flip benchmark comes back at
+  **−0.82pp**: at the moments where the overlap licence fires, the runner's own
+  price **exceeds the best alternative's** on average. He is already winning the
+  price comparison the chooser makes.
+
+This is the second time in this slice that a geometric premise about where a
+pattern's runner arrives has failed against measurement — ruling #16.3's was
+the first, and E5c's B2 refuted it the same way. The lesson is cheap and worth
+codifying: **do not reason about which cell a pattern lands in; the census can
+just be asked.**
+
+#### 6.2.4 What follows, and what does not
+
+**Certification fails, so by §4 the fork returns to the commander.** Nothing was
+shipped, nothing in `src/**` changed, all flags stay default OFF, E4 round 2
+stays closed.
+
+The substantive consequence is bigger than the gate, and it is about ruling
+#21.3's Phase 1 rather than about Phase 0:
+
+> **Measured state-conditional value would raise the third-man option
+> (+1.49pp) and LOWER the overlap option (−3.52pp point estimate). It would
+> push the seesaw further in the direction the attempt axis already tipped it,
+> not hold both ends up.**
+
+That is the opposite of what Phase 1 was designed to buy, and it is why Phase 0
+was placed in front of it.
+
+**Two limits stated plainly, neither of them an excuse.**
+
+1. **Harvest B measures the premium in the FLAGS-OFF world**, as every
+   fork-and-force probe in this slice has (it is the world the census that
+   built the table ran in). The overlap counter's collapse, however, is
+   measured in the *value-axis* world. So this probe can say the runner is not
+   losing the price comparison at overlap moments — it cannot say how many
+   overlap moments the value axis lets develop in the first place.
+2. Which leaves the live question **unanswered and now sharper**: if the
+   overlap runner is already top-priced where his licence fires, the 0.516×
+   collapse must come from **upstream** — either fewer overlap situations
+   develop under the value axis, or the release stops arriving wide (the
+   counter requires `|y| > 11` at reception, a stricter test than the licence's
+   `|y| > 9`). **Untested.** It is one cheap probe — count licence-active
+   moments and reception `|y|` in both arms — and it is the commander's call
+   whether to spend it.
