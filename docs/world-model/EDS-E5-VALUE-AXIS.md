@@ -203,6 +203,18 @@ V4b calibration      | mean predicted score − realized conjunction rate |
 V4c coverage         every quintile n >= 1,200
 ```
 
+**Which set V4 is judged on, settled before implementation:** V4 is GATED on
+set A (its own census, as E2b-0 gated discrimination on A), and the identical
+computation is run on **set B scored with set A's table** and reported as the
+held-out companion. Both are decided here, before any code and any result.
+
+**Which position keys the table, settled before implementation:** the table is
+built on the candidate's TRUE decision-moment position, and the live consumer
+looks it up with his PERCEIVED position — exactly the arrangement the distance
+band already has (E2a-2 measured true distance; the chooser prices perceived
+distance). The table describes the world; the reader reads it with what he
+knows.
+
 4.0pp: E2b-0 gated 10.0pp on a rate near 0.56; the conjunction rate here is
 ≈4× smaller, so the scaled-precedent floor is ≈2.1pp and 4.0pp sits above it.
 At n ≈ 2,900 per quintile and p ≈ 0.12 the SE of the difference is ≈0.85pp, so
