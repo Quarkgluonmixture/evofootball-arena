@@ -1018,6 +1018,87 @@ generalises.
 >    E5g's answer feeds either branch of #22.5's fork. R20's three
 >    remaining re-analyses stay in queue gaps. Seat 2 parked. Stage
 >    III drafting continues (commander).
+>
+> **COMMANDER RULING #24 (2026-07-27 — E5g disposed: nothing is broken;
+> the overlap file fully decomposed; the design fork framed for the
+> user's round-2 verdict; E5h):**
+>
+> 1. **E5g is ACCEPTED, and both conduct items with it.** The INVALID
+>    first run was the staging pin doing its job on the prober's own
+>    implementation (F4 nested under F3 vs the contract's independent
+>    counter) — corrected toward the pre-registration, never toward
+>    the numbers (U1's precedent, third application), and the fix
+>    provably touched nothing decision-side. **P2 is owned as an
+>    INVENTED unpowered gate** — a 2,000-moment floor written against
+>    a staging that contains 854 in total, unreachable by
+>    construction: the worse sibling of ruling #19's error (inventing
+>    rather than inheriting). Codified in PROBE-CONTRACTS: a floor
+>    must be checked against the staging's ATTAINABLE population ex
+>    ante. §5 pre-wrote the consequence (wider intervals, not
+>    INVALID); it stands as fired.
+> 2. **BANKED, in order of weight:** (i) **the two clocks,
+>    quantified** — 4,812 matured overlap runs contain 854
+>    pass-commits inside their licence windows, 0.177 per run
+>    (0.155–0.194 across six clusters): **82% of matured runs end
+>    without the carrier ever making a pass decision while the run is
+>    alive**; (ii) **the flip benchmark did not transfer, as #23.2
+>    registered** — +0.82pp flags-off becomes **−0.92pp** in the
+>    deployed world (0.0861 vs 0.0954), sign flipped at similar
+>    magnitude; "top-priced" was a 51.17% coin flip, not a property.
+>    The inputs are clean (priced cell = truth cell 96.27%, the band
+>    ladder never engaged, info classes reproduce E5f) — **the loss
+>    lives in the comparison itself against the same honest table**:
+>    the winner is most often in the runner's OWN cell at a different
+>    threat band (2→2 268, 3→3 160; largest cross-cell 2→4 at 91, a
+>    genuinely more advanced man; rank histogram 437/121/62/24);
+>    (iii) **the live argmax is CLEAN** — rank-1 437 times, chosen
+>    437 times; outcome (c) is exactly zero; no hard escalation, the
+>    fork re-run stays unauthorized; (iv) **the fourth quantity is
+>    NEGATIVE** — 550 releases vs 437 choices on the same
+>    assignments; no action-layer suppression exists. Registered,
+>    measured, negative: exactly how a fourth quantity should live.
+> 3. **The overlap file is now FULLY decomposed, and nothing is
+>    broken.** Perception ruled out (E5f), argmax clean (E5g), pricing
+>    inputs clean (E5g), state premium absent at the deployed moments
+>    (E5e). Two honest components remain: **THE CLOCK** — the carrier
+>    cannot value waiting, so four-fifths of matured runs never meet a
+>    decision; this is the FOURTH independent arrow at the C5-family
+>    time-dimension seat (E4r1's back-pass reflex · the user's
+>    pass-on-receipt anchor, present in ALL modes · E5f's tempo
+>    component · this) — and **THE COMPARISON** — in the deployed
+>    world the overlap ball genuinely prices second by ~0.92pp, and
+>    E5e never certified a positive premium for it, so the honest
+>    table may be RIGHT that it is not the best ball in THIS
+>    substrate. Labelled hypothesis, untested, cheap: the overlap
+>    ball's realized value is depressed by the REGISTERED C4
+>    box-arrival gap (crosses find nobody ~50%, `noAerial`) — if wide
+>    patterns cannot cash downstream, honest value correctly starves
+>    them, and the legacy ×1.3 was subsidizing a pattern the
+>    substrate cannot pay. Per the census-geometry rule this is
+>    labelled, not asserted — E5h measures it.
+> 4. **E5h — THE CLOCK TWIN AND THE DOWNSTREAM FATE — is authorized
+>    (executor drafts, Autonomous mode; small, counters-only, E5f
+>    staging verbatim + pins):** (i) pass-commits inside licence
+>    windows per ARM (the OFF twin of E5g's 854) and
+>    releases-to-runner per commit — separating "direct football
+>    decides less during windows" from "the window-decision share was
+>    always the differentiator"; (ii) the downstream fate of overlap
+>    releases in BOTH arms — cross within N ticks, shot chain,
+>    possession retention — the C4-link hypothesis check. Cluster
+>    semantics per #20, zero `src/**`, MEASUREMENT step (reported,
+>    INVALID only on pins).
+> 5. **The design fork is framed and PARTLY the user's.** Every
+>    pricing-side rescue is now measured-dead (state features ·
+>    gaze · argmax repair · re-ranking tables). The remaining roads:
+>    **C5 time dimension** (waiting becomes a valued action — every
+>    reading routes through it, and it is already the next-slice
+>    favourite on four arrows), **C4** (make wide play PAY honestly —
+>    E5h evidences it), **joint/multi-step value** (the deep fix;
+>    only if patterns still starve after C5+C4), or **accept direct
+>    football as v1's identity** (the user's #22.5 branch). Registered
+>    recommended order: the user's round-2 verdict → C5 slice → C4 →
+>    re-measure the counters → joint value only on the residual.
+>    Seat 2 stays parked. E4 round 2 remains the open user gate.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -1155,9 +1236,17 @@ bundle or ships it.
 
 | E5g | **The decision-moment trace** (ruling #23.3): in the VALUE arm, at every pass-decision moment inside an overlapper-live window, log the executable menu, each candidate's live price with its `(cell, band)` inputs, the runner's presence / rank / margin vs the winner, the chosen target, and his priced destination cell beside his truth cell — the stale-geometry seam, if it exists, shows up there. **Three outcomes pre-laid and exhaustive over the CHOICE**: (a) rarely on the menu = different clocks · (b) on the menu but not top-priced = the flags-off flip benchmark did not transfer · (c) top-priced and NOT chosen = a seam defect in the live argmax, hard escalation | [`EDS-E5G-DECISION-TRACE.md`](EDS-E5G-DECISION-TRACE.md) | **PRE-REGISTERED 2026-07-26** — P0 world-hash identity trace-on/off (X3's convention) · P1 staging pin against E5f's banked VALUE funnel integers · P2 ≥2,000 licence-active decision moments · P3 determinism. ⚠️ **#23.3 says zero `src/**` BEHAVIOUR change, not zero `src/**`**, and the menu with per-option prices existed nowhere — so `PricedPassOption` gains the `(cell, band)` it already computed internally and `PassChoiceTraceEntry` gains an `options` sidecar written only under `traceChoice`; re-deriving the menu outside would be a second implementation of the thing under measurement. ⭐ Registered as a fourth QUANTITY that is deliberately NOT a fourth outcome: the chooser picks a TARGET while the action layer decides whether to pass at all, so the chooser→release gap is measured against E5f's banked F3 and reported separately — it cannot later be presented as if it had been one of the three. <br>✅ **RUN 2026-07-26 — MEASURED; the contradiction resolves WITHOUT a defect** (§7, SHA `b6a5f43d…6c2a`, twice byte-identical, **P0 + P1 true**, fingerprint unchanged, **zero `src/**` behaviour change**). ⚠️ **First run came back INVALID and the pin did its job**: F1/F2/F3/counter/matches reproduced to the integer on all six clusters and **only F4 differed, by 1 on three of them** — this probe had nested F4 under F3 while E5f (and contract §3's own wording) counts the counter firing INDEPENDENTLY of the release. Corrected toward the pre-registration, never toward a number (E5c's U1 precedent); the re-run reproduces every banked integer and every decision-trace number is unchanged, since F4 enters none of them. ⛔ **P2 fired and it is MY DESIGN ERROR, owned not lowered**: I set the floor at 2,000 decision moments when the staging contains **854** — not a budget shortfall, six leagues × 24 seasons IS the whole of it, so **the floor was unreachable by construction**. Ruling #19's codified error in its worse form (that one was about inheriting a gate value un-re-powered; I invented one). §5 already said P2 does not invalidate, so it stands as fired and the intervals are simply wider than planned. ⭐⭐⭐ **The dominant fact is UPSTREAM of all three outcomes**: E5f's 4,812 matured runs contain only 854 decision moments — **0.177 per matured run (clusters 0.155–0.194), so in 82% of matured overlap runs the man on the ball never takes a pass decision while the licence is live**. That is #23.3's "different clocks" quantified, and it is bigger than the menu-level effect the outcome was worded around. ⭐⭐ **Outcome (c) is EXACTLY ZERO — 437 moments at rank 1, 437 chosen: whenever he is top-priced he IS taken.** The live argmax is clean, the hard-escalation branch does not fire, and no fork re-run is authorized. The remaining 417 non-picks split ~50/50 between (a) off-menu 210 and (b) on-menu-not-top 207. ⭐⭐ **The flip benchmark DID NOT TRANSFER, exactly as #23.2 registered in advance**: 0.82pp ahead in the flags-off world → **0.92pp BEHIND** in the deployed world (runner 0.0861 vs winner 0.0954), the sign flipping by about the same magnitude — a thin win on a 13.41pp axis that did not survive the world shift, and being top-priced is a coin flip (51.17%) rather than a property. **Which input moved: neither geometry nor the ladder** — priced cell equals truth cell **96.27%**, `band === −1` occurs **0.00%** of the time, and info classes are READ 644 / SEEN-UNREAD 0 / UNSEEN 112 / not-in-window 98. The loss is in the COMPARISON, against the same honest table: the winner most often sits in the runner's OWN cell (2→2 268, 3→3 160), so the threat band separates them, with 2→4 (91) the leading genuinely-more-advanced case. ⚠️ Those pairs pool wins with losses and locate the comparison rather than decompose it; the rank histogram (1→437, 2→121, 3→62, 4→24) is the loss structure. ⭐ **§3.1's fourth quantity found the OPPOSITE of a gap**: the chooser picks him 437 times against E5f's 550 banked releases over the same assignments — releases EXCEED picks (F3 counts releases anywhere in the span), so there is no action-layer loss. Registered, measured, negative. **What returns is a DESIGN question, not a defect**: the pattern needs a decision taken while a run is live, and the direct game does not take one in four fifths of them |
 
-**Queue state (2026-07-27, ruling #23 executed): E5g RUN — the contradiction
+**Queue state (2026-07-27, ruling #24): E5g DISPOSED — nothing is broken, the
+overlap file is FULLY decomposed (the clock 82% > the comparison −0.92pp >
+argmax clean), and every pricing-side rescue is measured-dead. The executor's
+next step: E5h (counters-only: the OFF-arm clock twin + the downstream fate of
+overlap releases — the C4-link hypothesis check). The design fork awaits the
+USER's round-2 verdict (#24.5): C5 time dimension → C4 → joint value only on
+the residual, or direct-football-as-identity. E4 ROUND 2 stays LIVE. Seat 2
+parked. Stage III drafting continues (commander).** Earlier,
+ruling #23 executed: E5g RUN — the contradiction
 resolves WITHOUT a defect, and what returns to the commander is a DESIGN
-question.** Outcome **(c) is exactly zero** (437 at rank 1, 437 chosen — the
+question. Outcome **(c) is exactly zero** (437 at rank 1, 437 chosen — the
 live argmax is clean), so the hard stop does not fire and **the
 harvest-B-on-VALUE fork stays unauthorized**. The dominant fact sits UPSTREAM
 of all three outcomes: **0.177 decisions per matured run — in 82% of matured

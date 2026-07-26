@@ -106,6 +106,11 @@ disguise. *(Registered from EDS E5d Phase 1 C3: a 5.0pp tolerance
 inherited from a contract with n≈1,000/bucket — 3.4σ there — met a 200
 bucket floor here, where it is 1.54σ and fires on noise ~11% per bucket;
 across two dozen buckets a false fire was near-certain by construction.)*
+**And an INVENTED floor must be checked against the staging's ATTAINABLE
+population ex ante (ruling #24, 2026-07-27)** — a coverage gate the
+staging cannot reach at ANY budget is mis-typed by construction. *(From
+EDS E5g P2: a 2,000-decision-moment floor written against a staging that
+contains 854 in total; six leagues × 24 seasons IS the population.)*
 
 **Reproduction gates pin STAGING and DEFINITIONS separately (ruling #18,
 2026-07-26): one gate per claim.** A staging gate pins counts, inputs and
