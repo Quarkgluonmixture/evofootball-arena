@@ -1,5 +1,6 @@
 import './ui/style.css';
 import { GameApp } from './game/GameApp';
+import { registerServiceWorker } from './ui/pwa';
 
 const root = document.getElementById('app');
 if (!root) throw new Error('#app root missing');
@@ -17,3 +18,7 @@ badge.style.cssText =
   'position:fixed;right:6px;bottom:4px;z-index:60;font:10px/1.2 monospace;' +
   'color:#8294b5;opacity:0.55;pointer-events:none;user-select:none;';
 document.body.appendChild(badge);
+
+// Offline shell + "add to home screen" (production builds only). Registered
+// after the game is constructed so a worker install never delays first paint.
+registerServiceWorker();
