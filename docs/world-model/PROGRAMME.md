@@ -664,6 +664,72 @@ an executor to do until they play.**
 > alternative and C1-B §12.4 forbids it. Verified: build+deploy green, and the
 > live bundle carries `evo:edsPreview`.
 
+> ⭐⭐ **E4 FEEDBACK, ROUND 1 (the user played it, 2026-07-26). No ship verdict
+> given, no revert asked for: "方向没问题,可以等" — the direction is affirmed and
+> the missing seats are judged worth waiting for. Flags therefore stay
+> default-OFF (status quo) and this is the commander's to draft on.**
+>
+> **What the user saw:** a man you cannot see cannot be passed to is realistic,
+> but (a) a midfielder with vision would TURN AND LOOK before playing, and would
+> play one-touch because he looked BEFORE receiving; (b) a real back-pass comes
+> after HOLDING the ball and drawing a defender, not as a first-touch reflex;
+> (c) as it plays now it is safe recycling — "什么配合都打不出来".
+>
+> **Measured, same seed, two seasons, flags-off vs bundle** (`npx tsx` two-arm
+> League probe; numbers are per match unless noted):
+>
+> ```text
+>                        flags-off    bundle     delta
+> forward-pass share       58.56%     53.47%    -5.1pp   <= the "safe balls" impression
+> passes                   101.58     107.49     +5.8%   <= more circulation
+> shots                     13.47      12.66     -6.0%   <= the watchability cost
+> pass completion          72.43%     70.25%    -2.2pp
+> one-touch share          20.78%     20.28%    -0.5pp   <= one-touch did NOT increase
+> third-man releases       10.014      6.437    -35.7%   <= COMBINATION PLAY COLLAPSES
+> overlap releases          0.176      0.056    -68.0%
+> give-and-gos (small n)    0.578      0.732    +26.8%
+> longest pass chain         5.88       6.62    +12.7%   <= circulate, don't progress
+> ```
+>
+> **The mechanism, indicted in code and NOT a perception problem.** The E3 seam
+> replaced WHO gets the ball and left WHETHER to pass on the legacy score. The
+> legacy pass loop carries the whole tactical layer — the 2过1 return bonus
+> (×1.15+), third-man (×1+passBias·0.3·thirdManW), overlap release
+> (×1.3+width·0.6) and an explicit **×0.55 "don't hand it straight back"
+> penalty** — and all of it only ever shaped `bestMate`. The perceived chooser
+> then overrides the target with `argmax P(clean reception)`. So **the licence
+> and the delivery are now granted by two different judges**: the overlap runner
+> earns the pass, the ball goes to a safer man, and the anti-back-pass penalty
+> vanishes with him.
+>
+> **The deeper reading: the measured axis is half a decision.** Football wants
+> P(success) × WHAT THE BALL IS WORTH THERE. E0 refused a scalar by design and
+> rulings #8/#9 forbade invented weights, so the chooser is progression-blind BY
+> CONSTRUCTION and the safest recycle wins every tie. The honest repair is not to
+> re-add hand-tuned bonuses but to MEASURE the value half with E2a-2's own
+> fork-and-force harness — for each candidate, not "did he control it" but "what
+> happened next" (shot within N seconds / threat delta). Same move E2b-0 made for
+> the corridor read: measure the exchange rate, never invent the weight.
+>
+> **Three named seats, in the order the user's eyes prioritised them:**
+> 1. **The value half of the axis** (cheapest single fix; explains BOTH the
+>    back-passes and the lost combinations).
+> 2. **A gaze consumer — look-before-pass.** S3-G0 / S3-G1 / S3-G2 are banked and
+>    dormant; A4 was parked precisely because "latency only binds against live
+>    coordination — build it once a live seam exists", and the seam now exists.
+>    Look-pressure is already measured at 6.59% of live pass moments.
+> 3. **The time dimension** — hold-draw-release, and one-touch vs control as a
+>    priced choice (C5, where ruling #12 already re-seated the touch cost).
+>
+> ⚠️ **And a gap in the GATE SET, not in the bundle:** E3R's §2 band passed on all
+> five dimensions while watchability measurably dropped, because the band has no
+> progression or combination dimension and 29 gates contained no watchability
+> instrument at all — the user's eyes are the only one, and they sit at the END of
+> the chain. The four numbers above cost minutes to produce. Recommendation for
+> any redraw: carry forward-share, the three combination counters, shots and
+> chain length as REPORTED band dimensions from now on, so a probe can see what
+> until now only a play session could.
+
 **How to run E4 (the deployed build, on the phone or the desktop):**
 
 1. ⚙ Settings → 🧬 Experimental → tick **“EDS preview: players act on what they
