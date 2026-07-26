@@ -171,6 +171,11 @@
 > 都是那种把人堆到中间得了?
 
 对照现实来诊断能力值/属性/机制（用户:对照实况/FIFA/FM）。
+⭐ **对照数据库(2026-07-26,用户整理):**
+[`efootball_engine_research_for_evofootball.md`](efootball_engine_research_for_evofootball.md)
+——eFootball 引擎的证据分级研究档案（O/T/I/S 四级 + v1.0–v5.5.1 官方演化史 +
+逐模块设计转译）。用法:曲线形状与因果座位可参考,**常数永不进口**（house law:
+表只在自己的 census 人群上诚实）;风格表只作涌现质量的验收对照,绝不当 preset 搬。
 
 ### ⭐ 3.0 "现实机制" = 整场游戏,不只是防守（用户 2026-07-19）
 
