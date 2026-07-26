@@ -572,6 +572,58 @@ generalises.
 >    one-touch vs control as priced choices, where ruling #12 already
 >    re-seated the touch cost). Each is its own slice with its own
 >    audit and E4 round.
+>
+> **COMMANDER RULING #16 (2026-07-26 — E5's split verdict; the
+> attribution experiment; gaze holds):**
+>
+> 1. **E5a is BANKED as a milestone:** the value half is measurable and
+>    the product needs no weight — P̂ × V̂ predicted its own conjunction
+>    to 0.03pp on 14,114 forks (4.014% vs 3.982%), the V table carries
+>    10.10pp of discrimination, and both licence gates returned the
+>    banked tables bit-exact. Whatever E5c attributes, THIS survives:
+>    the game now owns a validated value instrument.
+> 2. **E5b's FAIL is accepted exactly as pre-registered** — the central
+>    hypothesis died on the pattern it was predicted to die on
+>    (third-man 0.472×, worse than v1's 0.603×) while one-pass shapes
+>    recovered (overlap 0.835×, give-and-gos ABOVE flags-off). Banked
+>    finding: the value axis produces a COHERENT different football —
+>    direct, shot-hungry (+17.5%), shorter chains, band healthier than
+>    E3R — it works, and it cannot see two-pass patterns. Correct
+>    conduct throughout: no bonuses re-added, no horizon widened, no
+>    outcome redefined, `edsValueAxis` kept out of the preview toggle
+>    by a pinned test.
+> 3. **The differential CANNOT arbitrate the two causes — a geometric
+>    confound, registered:** overlap runners target the OUTER attacking
+>    third (well-sampled, 13.58% cell — recovered) while third-man
+>    runners arrive in the INNER box (the two cells below the 400
+>    floor, reading marginal — died further). So "one-pass shapes
+>    recovered, the two-pass shape died" fits BOTH one-step myopia (HM)
+>    and inner-box undersampling (HU). Separating them is an
+>    experiment, not a paragraph — exactly as the executor said.
+> 4. **E5c — ATTRIBUTION — is authorized (executor drafts, Autonomous
+>    mode). Two independent cheap measurements, both on the existing
+>    harness:** (a) **HU test first (nearly free):** targeted census
+>    top-up of the inner attacking-third cells to the 400 floor (staged
+>    moments where inner-box candidates exist; the census's own
+>    acceptance rules verbatim), re-emit the table as new SHA'd data,
+>    measure how far the topped-up cells move off the marginal, then
+>    re-run the E5b watchability probe with gates verbatim. HU
+>    confirmed iff third-man recovers materially with nothing else
+>    changed. (b) **HM test on (a)'s residual:** at live
+>    pattern-active moments (give-and-go just completed, third runner
+>    in flight), fork-and-force the pass to the runner and compare
+>    realized outcome value against the topped-up table's V̂ at that
+>    destination — HM confirmed iff realized exceeds V̂ beyond a
+>    pre-powered band even after the top-up, i.e. the cell-indexed
+>    table is STATE-blind, not sample-starved. If both fire, a
+>    state-conditional value slice (E5d) queues and its cost is weighed
+>    against seat 2 at that fork.
+> 5. **Seat 2 (gaze) HOLDS until E5c attributes.** Gaze widens the
+>    option set; the chooser would still price it with the axis under
+>    investigation — gaze compounds AFTER the value seat is right, and
+>    the house instinct closes the causal gap a FAIL just named. The
+>    "different football" the value arm produced goes to the user's
+>    eyes at E4 round 2, once a candidate table exists — not before.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
