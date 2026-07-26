@@ -97,13 +97,26 @@ X4 zero `src/**` changes (audited)
 X5 HARNESS — forcing the target the brain itself chose replays the match
    bit-identically on three seeds (E2a-2's gate, inherited verbatim)
 X6 STAGING EQUIVALENCE — over E5a's own seed block the CLEAN-conditioned
-   sub-population of this census must return E5a's committed marginal exactly
-   (7,864 receptions at 0.07146490335707019). The attempt census is a superset;
-   if its clean subset is not E5a's census, the staging drifted
+   sub-population of this census must return E5a's committed marginal exactly:
+   X6a its COUNT is 7,864, and X6b its shot rate computed E5A'S OWN WAY —
+   unadjudicated arrivals forced to no-shot — is 0.07146490335707019
 ```
 
 X6 is E5c's U1 lesson applied before it can bite: a new outcome definition is
 only a new definition if everything underneath it is unchanged.
+
+> ⚠️ **AMENDED BEFORE THE RUN (own commit, disclosed in §6.1).** As first
+> frozen, X6 asked the clean subset to return E5a's shot rate *directly*. That
+> is **unsatisfiable by construction** and I should have seen it while writing
+> it: ruling #17.3 records that attempt-conditioning closes E5a's
+> unfollowed-window defect, so a defect-free census cannot reproduce a defective
+> number. A predicate that cannot be satisfied is the structurally undecidable
+> kind PROBE-CONTRACTS §2 outlawed after ruling #6.3, and **E1b §4.1 is the
+> precedent** for amending such a gate before the run rather than reporting a
+> guaranteed failure. The amended form compares what can only be equal if the
+> staging is unchanged — which is what X6 was for — and the gap between X6b's
+> number and the honest rate becomes D5, the size of E5a's defect on its own
+> marginal.
 
 ### C1 — COVERAGE
 
