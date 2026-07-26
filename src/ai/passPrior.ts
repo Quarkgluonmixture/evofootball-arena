@@ -274,6 +274,87 @@ export interface ThreatCalibrationRow {
   readonly realizedSuccess: number;
 }
 
+export const VALUE_ZONE_LONGITUDINAL_EDGES: readonly number[] = [-10.5, 10.5, 21];
+/** The sim's own overlap gate (`Match.ts`: a release counts wide past 11 m). */
+export const VALUE_ZONE_WIDE_METRES = 11;
+
+export interface ValueZoneRow {
+  /** 0..7 = longitudinal band x 2 + (wide ? 1 : 0); the MARGINAL row uses -1. */
+  readonly zone: number;
+  readonly receptions: number;
+  /** V: P(shot by the passing team within 4.0 s | clean reception here). */
+  readonly shotRate: number;
+  readonly goalRate: number;
+  readonly meanProgression: number;
+}
+
+/**
+ * The zone a position falls in, in the passing team's attack frame. Pitch
+ * thirds (football's own division) with the attacking third halved, crossed
+ * with the sim's own wide gate. Never extrapolated: every position on the pitch
+ * lands in exactly one cell.
+ */
+export function valueZoneIndex(localX: number, y: number): number {
+  let band = VALUE_ZONE_LONGITUDINAL_EDGES.length;
+  for (let index = 0; index < VALUE_ZONE_LONGITUDINAL_EDGES.length; index++) {
+    if (localX < VALUE_ZONE_LONGITUDINAL_EDGES[index]) {
+      band = index;
+      break;
+    }
+  }
+  return band * 2 + (Math.abs(y) >= VALUE_ZONE_WIDE_METRES ? 1 : 0);
+}
+
+/**
+ * EDS E5a — the VALUE table (commander ruling #15.3).
+ * Authority: docs/world-model/EDS-E5-VALUE-AXIS.md
+ *
+ * The other half of the decision, measured the same way the first half was: over
+ * E2a-2's counterfactual forks, following each clean reception to a 4.0 s
+ * horizon and recording whether the passing team got a shot away. The chooser
+ * multiplies this by the reception probability, and E5a's V4 gate is what makes
+ * that product a measurement rather than a weight — it must predict the
+ * conjunction (clean reception AND shot) the world actually produced.
+ *
+ * Measured under legacy-brain play, exactly like the two tables above; the
+ * circularity is registered in the contract §2.1, not hidden.
+ *
+ * VALUE TABLE SHA: 0125071f52165f4d28a7e5085e588a54776e21fcd6b89e3b48537ce415ca3bc9
+ * (sha256 over the canonical JSON of {table, marginal}; gate X6 re-derives it.)
+ *
+ * 7,864 clean receptions over the census set; four of the eight cells clear the
+ * 400-reception floor and the other four honestly read the marginal — including
+ * both attacking-third-inner cells, which is the sharpest limitation of this
+ * table and is reported rather than repaired (contract §7.1).
+ */
+export const VALUE_ZONE_TABLE: readonly ValueZoneRow[] = [
+  { zone: 0, receptions: 1612, shotRate: 0.013027295285359801, goalRate: 0, meanProgression: 11.77326485206329 },
+  { zone: 1, receptions: 226, shotRate: 0.022123893805309734, goalRate: 0, meanProgression: 12.866477998231302 },
+  { zone: 2, receptions: 3546, shotRate: 0.07642413987591652, goalRate: 0.00535815002820079, meanProgression: 6.814456835836743 },
+  { zone: 3, receptions: 1544, shotRate: 0.08808290155440414, goalRate: 0.0045336787564766836, meanProgression: 6.237657880728535 },
+  { zone: 4, receptions: 500, shotRate: 0.114, goalRate: 0.03, meanProgression: 0.2319336799855316 },
+  { zone: 5, receptions: 243, shotRate: 0.13580246913580246, goalRate: 0.0411522633744856, meanProgression: 0.5243461434916344 },
+  { zone: 6, receptions: 129, shotRate: 0.09302325581395349, goalRate: 0.10852713178294573, meanProgression: -3.934466738696879 },
+  { zone: 7, receptions: 64, shotRate: 0.421875, goalRate: 0.09375, meanProgression: -1.9393465255236906 },
+];
+
+export const VALUE_ZONE_MARGINAL: ValueZoneRow = {
+  zone: -1,
+  receptions: 7864,
+  shotRate: 0.07146490335707019,
+  goalRate: 0.009028484231943032,
+  meanProgression: 7.031161399133294,
+};
+
+/** V for a position, with the marginal for cells the census could not measure. */
+export function valueZoneAt(localX: number, y: number): ValueZoneRow {
+  const row = VALUE_ZONE_TABLE[valueZoneIndex(localX, y)];
+  return row.receptions >= VALUE_ZONE_SAMPLE_FLOOR ? row : VALUE_ZONE_MARGINAL;
+}
+
+/** E5a's V1 floor, frozen in the contract: below this a cell is not a measurement. */
+export const VALUE_ZONE_SAMPLE_FLOOR = 400;
+
 export const THREAT_CALIBRATION: readonly ThreatCalibrationRow[] = [
   {
     quintile: 0,

@@ -353,4 +353,114 @@ lookup per option, so a measurable rise here would itself be a finding.
 
 ## 7. Result
 
-*(frozen on completion — E5a §7.1, E5b §7.2)*
+### 7.1 E5a — RUN 2026-07-26, PASS on every gate
+
+Probe `scripts/probes/eds-e5a-value-census.ts`, SHA `5cc529f7…2a7f`, two
+invocations byte-identical, fingerprint `57b0bdab…c673` unchanged, zero live
+callers, suite green (759/759). Value table committed as data in
+`src/ai/passPrior.ts`, table SHA `0125071f…3bc9`; the pre-commit extraction run
+and this frozen run agree on every reported number, so committing the table
+moved nothing but X6.
+
+**The licence gate, first.** X5a's harness reproduces the match bit-identically
+on all three seeds; **X5b returns E2a-2's option-space table field for field AND
+E2b-0's threat quintiles digit for digit**. The staging and seeds are the
+predecessors', and only a longer follow was added — which is why this had to be
+exact, and is.
+
+**R1 — the value table.** 7,864 clean receptions in set A (7,907 in B):
+
+```text
+zone                          receptions   V = P(shot within 4.0 s)   gated
+Z0  own third, central            1,612          1.30%                yes
+Z1  own third, wide                 226          2.21%                 no
+Z2  middle third, central         3,546          7.64%                yes
+Z3  middle third, wide            1,544          8.81%                yes
+Z4  att. third outer, central       500         11.40%                yes
+Z5  att. third outer, wide          243         13.58%                 no
+Z6  att. third inner, central       129          9.30%                 no
+Z7  att. third inner, wide           64         42.19%                 no
+marginal                          7,864          7.15%
+```
+
+* **V2 — discrimination 10.10pp** over the gated cells (floor 5.0pp): where the
+  ball arrives changes what happens next by a factor of nearly 9 between a
+  reception in your own third and one in the attacking third.
+* **V3 — held out**: worst gated cell error **2.49pp** (tolerance 5.0pp),
+  marginal **0.92pp** (tolerance 1.5pp).
+
+⚠️ **The sharpest limitation, reported and NOT repaired: four of eight cells miss
+the 400-reception floor, and two of them are the attacking-third-inner cells** —
+exactly where value is highest. They take the 7.15% marginal, which is BELOW the
+outer-attacking-third cells that ARE measured (11.40% / 13.58%), so the live
+chooser gets *less* credit for the most dangerous zone than for the one behind
+it. Z7's 64 receptions read 42.19% (29.31% held out) — real signal, far too thin
+to price on. Re-keying the grid after seeing this is exactly what §4 forbids, so
+it stands as a named candidate cause if H fails, and as the first thing a
+successor slice should fix (more moments, not coarser cells).
+
+**V4 — the composition is a measurement.** Every playable fork scored P̂ × V̂
+before its outcome was known, binned into quintiles of that score, against the
+conjunction the product claims to estimate:
+
+```text
+quintile      n     mean predicted   realized conjunction   error
+0          2,822        1.88%              1.74%            0.14pp
+1          2,822        3.75%              3.05%            0.71pp
+2          2,822        3.98%              1.42%            2.56pp
+3          2,822        4.30%              4.25%            0.04pp
+4          2,826        6.16%              9.45%            3.29pp
+marginal  14,114        4.014%             3.982%           0.03pp
+```
+
+* **V4a discrimination 7.71pp** (floor 4.0pp) · **V4b worst quintile 3.29pp**
+  (tolerance 5.0pp), **marginal 0.03pp** (tolerance 2.0pp) · **V4c** every
+  quintile 2,822+ (floor 1,200). Held-out companion (set B scored with set A's
+  table): predicted 3.98% vs realized 3.46%, 0.52pp.
+* The product rule therefore predicts the world's own conjunction rate to within
+  three hundredths of a percentage point in aggregate. **No weight was invented
+  and none is needed** — which is the whole argument ruling #15 (b) asked for,
+  settled by measurement rather than assertion.
+* ⚠️ Reported, not gated, and honestly odd: the realized curve is **not
+  monotone** — Q2 lands at 1.42% under a 3.98% prediction, the worst cell in the
+  table, while Q1 and Q3 straddle it correctly. The gate was pre-registered on
+  discrimination and calibration precisely because a five-point monotonicity
+  claim is under-powered, and this is what that looked like in practice.
+
+**R4 — which half carries it.** Same forks, three predictors: composed spread
+**8.03pp** > P alone **7.25pp** > V alone **5.66pp**. Neither half is redundant
+and the composition beats both, which is the substrate argument for pricing two
+things instead of one.
+
+**R5 — the size of the change before it is made:** the composed argmax differs
+from the P-only argmax in **30.66%** of decision moments (1,004 of 3,275). E5b
+is not a tweak.
+
+**R6 — the legacy brain already selects for value:** its own chosen targets land
+in zones worth **9.70%** against the option space's 7.15%, a **+2.55pp** lift.
+The value half of the tactical layer was doing real work; ruling #15.2's
+two-judges diagnosis says the E3 seam then threw that work away, and this is the
+number behind it.
+
+**R2 — the rival value definitions** (reported so any other composition can be
+applied to these numbers): progression per cell runs +11.77 m in the own third
+down to −3.93 m in the attacking-third-inner cell — a receiver deep in the box
+does not "progress", so progression and shots disagree about the most valuable
+place on the pitch, and the primary was frozen before that was visible. Goal
+rate peaks at Z6 (10.85%, n=129).
+
+**R7:** mean follow 182.4 ticks of the 240-tick window; 2,597 of 7,864 windows
+were cut short by a dead ball, as §2.1 specified.
+
+⚠️ **DISCLOSED, my defect, caught in my own output: R3 as contracted is not
+measurable in this staging.** The contract asked for the unconditional
+shot-within-window rate per composed quintile; §2.1 simulates the window only
+for clean receptions (for every other fork the conjunction is false by
+definition), so the column would be identical to the conjunction by
+construction. Answering it honestly costs ~45% more simulation for a
+reported-only number. The probe now says so in its own output instead of
+printing a duplicate that looks like an answer.
+
+### 7.2 E5b
+
+*(frozen on completion)*
