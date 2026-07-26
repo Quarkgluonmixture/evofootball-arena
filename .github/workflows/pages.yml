@@ -19,7 +19,17 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # macOS, deliberately (2026-07-26, user-ratified). Every behavioural
+    # contract in this repo was measured on macOS/arm64, and the sim is a float
+    # trajectory: on the ubuntu runner `stamina.test.ts` reads 0.9406 against a
+    # 0.93 gate while the SAME code on macOS reads 0.9161 under both Node 22 and
+    # Node 26 — platform libm drift, not an engine version and not a regression
+    # (the fingerprint is unchanged across it). E3R §5.7 had already measured
+    # that staging's headroom at 1.4pp, which cross-platform drift eats. Running
+    # CI on the platform the contracts were calibrated on is the honest fix; the
+    # alternative was re-baselining a behavioural contract, which C1-B §12.4
+    # forbids.
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,7 +41,19 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm test
+      # THREE SEQUENTIAL SHARDS, not one run (2026-07-26). The suite is 99 files
+      # and ~700s of simulation; single-threaded on a CI runner a long
+      # behavioural test can hold the worker's event loop past vitest's 60s RPC
+      # budget, and the run dies with "[vitest-worker]: Timeout calling
+      # onTaskUpdate" while every test is GREEN. That killed EVERY deploy from
+      # 2026-07-21 to 2026-07-26 (0 successes in 100 runs) and it is exactly the
+      # failure vite.config.ts's singleThread note describes — the suite has
+      # simply outgrown that mitigation. Each shard is a fresh process with a
+      # third of the files, so no single run accumulates enough blocked time to
+      # trip the budget. Fail-fast is preserved: a red shard fails the job.
+      - run: npx vitest run --shard=1/3
+      - run: npx vitest run --shard=2/3
+      - run: npx vitest run --shard=3/3
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
