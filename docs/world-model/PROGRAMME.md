@@ -757,6 +757,92 @@ generalises.
 >    no new ruling:** table committed as SHA'd data → chooser axis swap
 >    → the E5b watchability probe verbatim → narrow audit → **E4 ROUND
 >    2**. Any fire anywhere returns here. Seat 2 (gaze) holds.
+>
+> **COMMANDER RULING #20 (2026-07-26 — the cross-AI statistical audit,
+> user-ratified dispositions):** A three-way audit (commander ×
+> gpt-5.6-sol xhigh, zero-preset; archive in
+> `docs/cross-ai-audits/2026-07-26-eds-stats-audit/`) found four
+> verified implementation-level defects and a set of methodology debts.
+> User ratified all three forks as recommended:
+>
+> 1. **Layered repair (fork A):** cheap RE-ANALYSES of existing data
+>    authorized now — G1 intention-to-treat re-score with a frozen
+>    no-executable rule (complete-case selection: chosen counts
+>    2,247–2,573 of 3,000, missingness co-varies with awareness);
+>    E2b-0 frozen-cutpoint held-out re-score (B re-derived its own
+>    quintile boundaries); E5a held-out BINWISE calibration (V4's
+>    0.03pp was in-sample aggregate over Q2 −64%/Q4 +53% miscalib);
+>    value-horizon sensitivity (re-derive tables at 120/360/480 ticks
+>    on the same forks). Historical load-bearing claims are RELABELED
+>    under the new semantics, not re-run. Heavy items pre-ship: the
+>    2×2 passer/defender awareness factorial, and ONE sealed
+>    fresh-seed confirmatory battle of the full gate battery before
+>    flags-ON default. E4 round 2 (preview, default-OFF) is NOT
+>    blocked by any of this.
+> 2. **Watchability counters → HARD gates (fork B):** codified in
+>    PROBE-CONTRACTS with the full ruling-#20 semantics block (CI
+>    verdicts, cluster units, family-wise fire budgets, Poisson match
+>    budgets for rare counters). HM and CE1 relabeled INCONCLUSIVE.
+> 3. **The power seat (fork C):** live pass power is a CONSTANT today
+>    (evaluator prices three powers; execution always plays 1.0) — the
+>    dominance gate measures dormant preference, not behaviour. A
+>    POWER-CHOICE slice (argmax over target × power, own audit) is
+>    registered, queued after the value seat lands; until it ships,
+>    v1 claims exclude pass-power behaviour.
+> 4. Additional standing rules: any evaluation of CHOSEN options must
+>    pre-declare winner's-curse shrinkage (argmax selects positive
+>    noise; realized-vs-price shortfall on the chosen subset is a
+>    statistical construct, not table failure); truth-fallback rate
+>    (~4% no-executable moments) gets a gate in the pre-ship battle.
+>
+> **COMMANDER RULING #21 (2026-07-26 — C3R accepted; the seesaw named;
+> E5e state-conditional value):**
+>
+> 1. **C3R is ACCEPTED — every gate, the honest way:** floors raised to
+>    meet the tolerance (worst held-out bucket 5.18 → 1.23pp, gate text
+>    untouched), and the bucket that triggered the redraw came back 15
+>    attempts short of its own floor and was LEFT UNPURSUED — exactly
+>    the discipline. Banked alongside: the tightest §2 band of the
+>    entire slice (goals −0.07%), H3 POSITIVE for the first time
+>    (forward share +1.50pp ABOVE flags-off, shots +22%), dominance
+>    30.96%, Y4V 0/10,292.
+> 2. **The seesaw is the round's central fact and it has a name:** on
+>    every axis tried, the two combination counters move in OPPOSITE
+>    directions (composed: overlap 0.79–0.835× / third-man 0.395×;
+>    attempt: third-man 0.642× best-ever / overlap 0.468× worst-ever).
+>    They compete for the same balls, and **a per-option argmax over a
+>    destination-indexed, STATE-BLIND table can keep at most one alive**
+>    — whichever pattern's destination cell prices higher wins every
+>    contested moment. The legacy layer's ×1.3/×1.15 were
+>    state-conditioning in disguise: they fired on WHICH RUN WAS LIVE,
+>    not on a cell. The honest replacement for those bonuses was never
+>    "no conditioning" — it is MEASURED state-conditional value, the
+>    +3.38pp premium E5c already saw (INCONCLUSIVE at its band, real in
+>    direction) now visible as a seesaw.
+> 3. **E5e — STATE-CONDITIONAL VALUE — is authorized (executor drafts,
+>    Autonomous mode). Phase 0, cheap and decisive:** (a) H2's own
+>    power first — overlap events are single-digit per two-season arm
+>    (~0.09/match); size a match budget per ruling #20's Poisson rule
+>    and re-measure before trusting 0.468× as a magnitude; (b) the
+>    overlap TWIN of E5c(b): fork-and-force at overlap-active moments,
+>    realized outcome vs the attempt table's price for the runner's
+>    destination; re-confirm the third-man premium against the ATTEMPT
+>    table (E5c(b) measured it against the composed V̂). Both premiums
+>    positive and powered → the reading is certified. Either ≈ 0 →
+>    back here. **Phase 1 (only on certification):** pattern-state
+>    features added to the attempt-value census index — a CLOSED set
+>    drawn from states the action layer ALREADY produces (authorized
+>    overlap run in flight / give-and-go return / third-man release),
+>    perception-gated per ruling #8(l): a run the passer has not seen
+>    cannot reprice his option; own-action memory is honest. The
+>    states' VALUES are measured, never assigned — conditioning on
+>    existing state is not hand-coding behaviour. Thin state-cells get
+>    C3R's floor discipline ex ante. Gates: the full ruling-#20
+>    watchability battery with BOTH combination counters as hard
+>    non-inferiority gates SIMULTANEOUSLY — the seesaw test is that
+>    both live at once — plus band/dominance/perf/Y4V pins verbatim.
+> 4. E4 round 2 stays closed until E5e lands; gaze (seat 2) holds
+>    behind the value seat, unchanged.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 

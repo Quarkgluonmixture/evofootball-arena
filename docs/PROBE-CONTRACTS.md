@@ -60,6 +60,33 @@ Each gate belongs to exactly one type; state which when you write the contract.
   FAIL — while the pre-registered robustness seed flipped the same statistic
   to 1.5321 and all three mechanism discriminators said diversity ROSE.)*
 
+**Ruling #20 (2026-07-26, cross-AI audit adopted — verdict semantics and
+power discipline, binding on all NEW contracts):**
+
+- **CI verdict semantics replace point-threshold rules.** Equivalent /
+  non-inferior only if the ENTIRE confidence interval lies inside the
+  acceptance region; superior only if the lower bound clears the
+  threshold; REFUTED only if the upper bound lies below it; anything
+  else is verdict `INCONCLUSIVE` — never "refuted by a point estimate".
+- **Power calculations must declare the CLUSTER UNIT** (match / league
+  seed), not treat forks or moments as independent; report effective n.
+- **Every audit carries a family-wise fire budget**: the gate table sums
+  each gate's H0 fire probability; observed fires within budget are
+  triaged as noise-suspects (report + powered re-check), only an
+  over-budget audit stops the queue outright.
+- **Rare-event counters get Poisson-powered match budgets**: a ratio
+  gate on a counter with single-digit expected events cannot decide at
+  any tolerance — size the match count to the counter, or the gate is
+  mis-typed.
+- **The six watchability counters are HARD non-inferiority gates**
+  (flags-off paired) in every live-facing audit, with the user's eyes
+  as the final judge above them — "reported only" is retired (a
+  measured regression once passed 29 gates).
+- Ledger relabels under these semantics: E5c's HM "refuted" →
+  **INCONCLUSIVE** (+3.38pp, SE≈1.32, upper bound above the +4.0 band);
+  E3R2's CE1 waiver → **INCONCLUSIVE** (2/5 fresh seeds; multi-seed CE1
+  joins the pre-ship confirmatory audit).
+
 **Inherited gate values must be RE-POWERED against the inheriting
 contract's own parameters (ruling #19, 2026-07-26).** A tolerance is only
 meaningful relative to the n it was powered at; inheriting the number
