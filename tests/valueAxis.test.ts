@@ -8,7 +8,9 @@ import {
 import { pricePassOption, threatQuintilePrice } from '../src/ai/perceivedPassChoice';
 import type { PerceptionSnapshot } from '../src/ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../src/ai/reachability';
-import { EDS_PREVIEW_FLAGS } from '../src/game/edsPreview';
+import {
+  EDS_PREVIEW_FLAGS, EDS_PREVIEW_MODES, edsPreviewFlags,
+} from '../src/game/edsPreview';
 import { League } from '../src/sim/League';
 
 /**
@@ -171,7 +173,7 @@ describe('E5d attempt axis', () => {
 });
 
 describe('E5 defaults', () => {
-  it('is off in production, and the preview toggle does not arm it', () => {
+  it('is off in production, and no default anywhere arms it', () => {
     const league = new League({ seed: 7 });
     expect(league.matchFlags).toEqual({});
     const fixture = league.nextFixture()!;
@@ -179,8 +181,26 @@ describe('E5 defaults', () => {
     expect(match.edsValueAxis).toBe(false);
     expect(match.edsPerceivedChoice).toBe(false);
     expect(match.edsPerceivedDefence).toBe(false);
-    // E4-PREP's toggle arms the v1 pair. E5 joins it only if E5b passes and the
-    // commander says so — until then this assertion is the boundary.
+    // AMENDED by commander ruling #22.5 (E4-PREP-2), and the assertion it
+    // replaces said this would happen: "E5 joins it only if E5b passes and the
+    // commander says so — until then this assertion is the boundary."
+    //
+    // E5b did not pass — it fired on both combination counters — but the arm it
+    // fired on is also the best chooser the slice has built (tightest §2 band,
+    // forward share above flags-off, shots +22%), and #22.5 sends exactly that
+    // disagreement to the only judge who can settle it. So the boundary MOVES
+    // rather than dissolving: the axis is reachable, and reachable ONLY inside
+    // the audited triple. That is a shipped-plumbing pin, not an experiment
+    // gate, which is why a ruling can move it and a result cannot.
+    expect(edsPreviewFlags('off').edsValueAxis).toBeUndefined();
+    expect(edsPreviewFlags('v1').edsValueAxis).toBeUndefined();
+    expect(edsPreviewFlags('triple').edsValueAxis).toBe(true);
+    // Never alone: the combination nobody has audited stays unreachable.
+    for (const mode of EDS_PREVIEW_MODES) {
+      const flags = edsPreviewFlags(mode);
+      expect(Boolean(flags.edsValueAxis) && !flags.edsPerceivedChoice).toBe(false);
+    }
+    // And the v1 constant itself is untouched by the extension.
     expect('edsValueAxis' in EDS_PREVIEW_FLAGS).toBe(false);
   });
 });
