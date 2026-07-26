@@ -843,6 +843,108 @@ generalises.
 >    both live at once — plus band/dominance/perf/Y4V pins verbatim.
 > 4. E4 round 2 stays closed until E5e lands; gaze (seat 2) holds
 >    behind the value seat, unchanged.
+>
+> **COMMANDER RULING #22 (2026-07-26 — E5e Phase 0 disposed: Phase 1 closed
+> with prejudice; the seesaw's mechanism re-attributed; the overlap funnel;
+> E4 round 2 opens):**
+>
+> 1. **Phase 0 is ACCEPTED in full and Phase 1 is CLOSED WITH PREJUDICE.**
+>    The certification did exactly what it sat in front of Phase 1 to do:
+>    the third-man premium is real (+1.49pp [+0.60, +2.47], cell rung
+>    +1.03pp) while the overlap side has nothing to monetise (point
+>    estimate NEGATIVE, carried as INCONCLUSIVE under P4's own
+>    pre-registered label). A state-conditional table would raise the
+>    option the axis already favours and lower the one it starves —
+>    pushing the seesaw further, not holding both ends up. No re-pose of
+>    the same shape. Conduct exemplary: P1's seven-fork miss not chased
+>    (#2.1 applied at its hardest), P4's downgrade applied as registered,
+>    nothing re-powered after sight. Also honest and kept: the third-man
+>    premium does NOT clear its own flip benchmark (deficit 1.10pp vs a
+>    +0.60pp lower bound) — real, and not provably decision-changing.
+> 2. **Part (a) is BANKED as the cluster rule's first big catch.** Both
+>    regressions are MAGNITUDES: overlap 0.516× [0.437, 0.646], third-man
+>    0.660× [0.546, 0.796] — REFUTED under pooled AND cluster intervals.
+>    The naive interval on H1 understated uncertainty ~15× (1.7pp vs 25pp
+>    wide: 53,416 events, six leagues), one league seed has third-man
+>    IMPROVING (1.056), and flags-off overlap itself spans 0.059–0.168
+>    per match across leagues — league-dependent, not merely rare. Two
+>    consequences: every future watchability verdict declares its cluster
+>    unit (this run is the existence proof #20 wanted), and any future
+>    audit that HARD-gates overlap inherits its Poisson bill (24 seasons
+>    × 6 seeds bought 1,051 events) — the gate battery's cost structure
+>    is a named design input to the pre-ship battery, with the user's
+>    eyes above the counters per #20.
+> 3. **The fifth measured commander correction, owned and codified.**
+>    #21.2's mechanism — "the two counters compete for the same balls at
+>    choice time" — is REFUTED on the overlap side: at his own licence
+>    moments the overlap runner is already the TOP-PRICED option (flip
+>    benchmark −0.82pp), and his forks land 55%/38% in the MIDDLE-third
+>    cells (1% cell 7), not attacking-wide. The seesaw was a correct
+>    description of cross-axis OUTCOMES with a different mechanism per
+>    side: third-man's deficit sits at the choice seat (state-blind
+>    pricing misses a real +1.49pp); overlap's sits UPSTREAM of any
+>    price comparison — harvest B's control arm (+2.83pp under-priced
+>    alternatives) even implies honest repricing at those moments would
+>    pick the runner LESS. Codified in PROBE-CONTRACTS: pattern-geometry
+>    premises (which cells a pattern occupies, which comparison it
+>    loses) are CENSUSED, never asserted — two died by assertion
+>    (#16.3; #21.3's labelled reading).
+> 4. **E5f — THE OVERLAP FUNNEL — is authorized (executor drafts,
+>    Autonomous mode): the cheap probe that locates the collapse.**
+>    Counting only, zero forks, zero `src/**`: part (a)'s staging
+>    verbatim with an A0-style pin (reproduce part (a)'s banked per-arm
+>    release counts), then a pre-registered funnel per arm — F1
+>    overlapper assigned → F2 licence-active (full predicate, the
+>    come-around) → F3 release chosen → F4 the counter's stricter
+>    release — rates per match, OFF vs VALUE ratios with league-seed
+>    cluster CIs per #20. ⭐ **F2→F3 is decomposed by the runner's
+>    information class in the passer's snapshot (READ / SEEN-UNREAD /
+>    UNSEEN), VALUE arm** — the OFF arm's legacy brain reads truth, the
+>    VALUE arm's chooser cannot aim at an unseen runner (#8(l)), and a
+>    winger coming around often arrives through the rear blind wedge;
+>    the v1 pair alone already ran overlap at 0.741×, so a perception
+>    component has a prior. Hypothesis map pre-laid: collapse at F1 or
+>    F1→F2 = the direct game starves the run's DEVELOPMENT (the value
+>    arms play markedly fewer passes and shorter chains — banked across
+>    E5b/E5c) — no pricing fix exists at the choice seat, and the fork
+>    is a design question (joint/multi-step value vs the user's verdict
+>    on the direct game); F2→F3 carried by UNSEEN runners = the
+>    measured cost of not-looking — **seat 2's (gaze) unpark case
+>    sharpens into a named fix**; F2→F3 carried by SEEN runners =
+>    contradicts the flip benchmark, hard escalation back here; F3→F4
+>    = the counter's geometry is displaced — an instrument finding, and
+>    any counter change is a NEW pre-registration, never a widening
+>    after a fire. Context reported: chain length and possession
+>    duration while the overlapper is live. A MEASUREMENT step:
+>    verdicts reported, INVALID only on pins.
+> 5. **E4 ROUND 2 OPENS — E4-PREP-2 authorized (executor, the #14.3
+>    precedent).** The preview machinery gains the audited TRIPLE (v1
+>    pair + `edsValueAxis`, the E5d-P1 audit's own arm) beside the v1
+>    pair; only audited flag combinations are reachable, pinned by
+>    test; defaults OFF; fingerprint unchanged; the E5b-era pin that
+>    excluded the value axis from the preview is amended by THIS ruling
+>    in its own disclosed commit (a shipped-plumbing pin, not an
+>    experiment gate). What only the user's eyes can answer: does the
+>    direct game — forward share ABOVE flags-off for the first time,
+>    shots +22%, the tightest §2 band of the slice — FEEL like better
+>    football despite fewer slow-developing wide patterns (overlap ~1
+>    release in 11 matches flags-off on the audit seed, ~1 in 23 under
+>    the axis)? Round 2 is DIRECTION feedback, not a ship vote: ship
+>    still requires the pre-ship confirmatory battery (#20.1) and an
+>    honest resolution of the fired gates. The verdict orders the
+>    redraw: "restore the combinations" → the joint-value design
+>    question (E5c's third cause, with E5f's map in hand); "the direct
+>    game is right" → the gate framework goes to the pre-ship battery
+>    with the user's authority above the counters. One phone session
+>    can serve F-ACCEPT + PWA + round 2.
+> 6. **R20-2 is ACCEPTED** — the corrected question returns E2b-0's own
+>    answer (held-out spread 40.23pp, cutpoints stable to 6.6%), and
+>    the Q2 note (a ~3pp real held-out miscalibration inside a 5.0pp
+>    tolerance, logged under CI-over-point) is recorded, not repaired.
+>    G1 ITT, E5a binwise and the value-horizon sensitivity continue in
+>    queue gaps. Seat 2 (gaze) HOLDS pending E5f. The commander begins
+>    drafting the Stage III positioning-eye design contract in
+>    parallel (doc-only, prior-art survey digested).
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -974,8 +1076,14 @@ bundle or ships it.
 
 | E5e-P0 | **State-conditional value, Phase 0** (ruling #21.3): (a) H2's own power — the overlap counter re-measured across SIX league seeds with the cluster unit declared and a ruling-#20 CI verdict, before `0.468×` is trusted as a magnitude; (b) the DUAL PREMIUM — fork-and-force at overlap-active moments AND at third-man moments, realized outcome against the price the **committed attempt table** actually charges, with the same moments' unlicensed candidates as the control. Both premiums positive and powered → the seesaw reading is certified and Phase 1 (pattern-state features in the census index) may be drafted; either ≈0 → back to the commander | [`EDS-E5E-STATE-CONDITIONAL.md`](EDS-E5E-STATE-CONDITIONAL.md) | **PRE-REGISTERED 2026-07-26** — ⭐ **the sizing scout is the design's premise and is stated up front**: overlap-licence-active pass moments run at **0.065 per match** against third-man's 23.09, so every budget below is sized to that counter and none of the gate VALUES come from the scout. (a) **A0 staging pin** (cluster 1 = the E5b audit seed, reproducing its banked per-match counters to full float) · A1 ex-ante Poisson budget ≥300 OFF-arm overlap events (six clusters predict ≈948) · **A2 ruling-#20 verdict semantics** (NON-INFERIOR only if the WHOLE CI ≥0.70, REFUTED only if the upper bound <0.70, else INCONCLUSIVE) · **A3 cluster robustness** — cluster unit = LEAGUE SEED, 2,000-resample bootstrap over the six, and a disagreement with A2 forces INCONCLUSIVE · A4 the same battery on third-man at 0.85. (b) X5 · **P1 ex-ante coverage ≥2,400 pattern forks per harvest** (derived: SE ≤ δ/2.8 at δ=2.5pp, σ²=0.1222, control 3× pattern, ×1.2 for clustering) · **P2/P3 the two premiums as difference-in-differences** against the committed table, cluster unit = MOMENT, 2,000-resample bootstrap, SUPERIOR only if the lower bound >0 · **P4 control sanity ±2.0pp**, whose failure DOWNGRADES that harvest to INCONCLUSIVE and relabels it "the table is miscalibrated on this population" — E5c's design, kept · P5 determinism. ⚠️ Two boundaries registered BEFORE the run: harvest B is **off-population** (the committed table was never censused on overlap moments), and the predicates are read from **truth** because Phase 0 asks what the WORLD carries, not what a passer can see — perception gating is Phase 1's constraint under ruling #8(l). Reported never gated: the **flip benchmark** (how much the overlap runner loses the argmax by today, from the table's own prices), so a premium that is positive and behaviourally inert cannot be read as a win. Certification = X5∧P1∧P4∧P5 with BOTH premiums SUPERIOR; anything else returns to the commander. Zero `src/**` <br>✅ **(a) RUN 2026-07-26 — MEASURED; `0.468×` was a MAGNITUDE, not a count of rare events** (SHA `f962addf…8495`, twice byte-identical, 6 clusters × 1,704 matches × 2 arms). **A0 6/6** — cluster 1 reproduces the E5b audit's banked counters to the last float — and A1 clears 3.5× over (1,051 off-arm overlap events vs 300). **H2 overlap 0.516×**, pooled CI [0.465, 0.572], cluster bootstrap [0.437, 0.646] — **REFUTED by both, so A3's agreement condition holds**; **H1 third-man 0.660×**, [0.652, 0.669] and [0.546, 0.796] — also REFUTED. Both one-seed readings survive. ⭐⭐ **Three things six clusters show that one could not**: (1) **the cluster rule earns its place on H1** — the naive interval is 1.7pp wide against the bootstrap's **25pp**, a ~15× understatement of uncertainty on a statistic with 53,416 events, because the events are plentiful and the LEAGUES are not, and one cluster comes back at **1.056 — third-man IMPROVED there**; (2) H2's direction is the steadier finding despite 50× fewer events (5/6 clusters below 0.70, vs third-man straddling its floor 0.450–1.056); (3) the counter is **league-dependent, not merely rare** — flags-off overlap runs 0.059–0.168 per match across the six. <br>⛔ **(b) RUN 2026-07-26 — NOT CERTIFIED; the fork is the COMMANDER's** (§6.2, SHA `ced3459b…1f7c`, twice byte-identical, staging check identical, X5 6/6, fingerprint `57b0bdab…c673` unchanged, 809/809 tests, **zero `src/**`**). ✅ **P3 — the third-man premium is REAL against the deployed axis: +1.49pp, CI [+0.60, +2.47]** (cell rung +1.03pp, so not a band artefact), less than half E5c's +3.38pp against the composed V̂ — the attempt axis had already absorbed most of it. ⚠️ But it does **not clear its own flip benchmark**: the runner loses the argmax by 1.10pp on price and the premium's LOWER bound is 0.60pp — real, and the data cannot say it is large enough to change the decision. ⛔ **P2 — the OVERLAP premium is NEGATIVE: −3.52pp, CI [−4.78, −2.28]** (pattern −0.69pp vs control **+2.83pp**) — but the control arm is off-band, which is exactly P4's *"the table is miscalibrated on this population"* condition that the off-population registration anticipated, so the **registered verdict is INCONCLUSIVE, not REFUTED**, and the point estimate is reported under that label. ⛔ **P1 fired by SEVEN forks** (2,393 vs 2,400) and was NOT chased — ruling #2.1 forbids a budget raise outright while a ratio gate is failing at decision time. ⭐⭐ **THE READING I LABELLED AFTER THE LIVE AUDIT IS REFUTED BY MEASUREMENT**: overlap forks land **55% cell 2 / 38% cell 3 — the MIDDLE third**, 1% in cell 7, so the attacking-third price argument was about the wrong part of the pitch; and the flip benchmark comes back **−0.82pp**, meaning at the moments his licence fires **the overlap runner is already the TOP-PRICED option**. He is not losing the comparison. Second time in this slice a geometric premise about where a pattern lands has failed against measurement (ruling #16.3's was the first) — **do not reason about which cell a pattern lands in; ask the census**. ⭐⭐⭐ **The consequence for Phase 1, which is why Phase 0 sat in front of it**: measured state-conditional value would raise the third-man option and **LOWER the overlap option** — it pushes the seesaw FURTHER the way the attempt axis already tipped it instead of holding both ends up. Two limits stated plainly: harvest B measures the premium in the **flags-off** world (as every fork-and-force probe in this slice does), and the live collapse is therefore **unexplained and now sharper — it must be UPSTREAM** (fewer overlap situations developing under the value axis, or releases no longer arriving wide past the counter's stricter `|y| > 11`). One cheap probe would settle it; spending it is the commander's call |
 
-**Queue state (2026-07-26): E5e PHASE 0 RUN — (a) MEASURED, (b) NOT CERTIFIED;
-back at the COMMANDER.** (a) settles the magnitude question: `0.468×` was real,
+**Queue state (2026-07-26, ruling #22): E5e PHASE 1 CLOSED WITH PREJUDICE.
+The executor's next two steps: E5f (the overlap funnel — counting-only,
+perception-class decomposition at F2→F3) and E4-PREP-2 (the audited triple
+joins the preview, defaults OFF). E4 ROUND 2 IS OPEN — user gate, direction
+feedback not a ship vote. Seat 2 (gaze) held pending E5f; all flags default
+OFF; the commander drafts Stage III in parallel.** Earlier,
+E5e PHASE 0 RUN — (a) MEASURED, (b) NOT CERTIFIED;
+back at the COMMANDER. (a) settles the magnitude question: `0.468×` was real,
 overlap pools to **0.516×** and third-man to **0.660×**, both REFUTED on six
 clusters under ruling #20's own semantics. (b) certifies **only one of the two
 premiums** — third-man **+1.49pp** [+0.60, +2.47] against the deployed axis,

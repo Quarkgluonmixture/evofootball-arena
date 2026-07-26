@@ -87,6 +87,17 @@ power discipline, binding on all NEW contracts):**
   E3R2's CE1 waiver → **INCONCLUSIVE** (2/5 fresh seeds; multi-seed CE1
   joins the pre-ship confirmatory audit).
 
+**Pattern-geometry premises are CENSUSED, never asserted (ruling #22,
+2026-07-26).** Where a pattern's forks land (which cells they occupy) and
+which comparison the pattern wins or loses are measurable census columns,
+not things to reason out from the pitch diagram. Two commander premises
+died by assertion: EDS #16.3 ("third-man runners arrive in the inner box"
+— measured 4.1%) and #21.3's labelled reading ("overlap lands
+attacking-wide and loses the argmax" — measured 55%/38% middle third, and
+the runner was already the top-priced option). A drafting premise about
+pattern geometry must cite a census row or be labelled UNTESTED and kept
+out of every gate derivation.
+
 **Inherited gate values must be RE-POWERED against the inheriting
 contract's own parameters (ruling #19, 2026-07-26).** A tolerance is only
 meaningful relative to the n it was powered at; inheriting the number
