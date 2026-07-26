@@ -723,6 +723,40 @@ generalises.
 > 5. **Seat 2 (gaze) continues to HOLD.** Same reasoning as #16.5; the
 >    value seat now has a proven-re-ranking axis awaiting its honest
 >    census, which is the last step before the user's eyes.
+>
+> **COMMANDER RULING #19 (2026-07-26 — Phase 1's stop; C3 redrawn on
+> the floor, not the tolerance):**
+>
+> 1. **The stop was correct and the round's substance is BANKED.** C2
+>    validates the house law in numbers (control arm +2.08pp → +0.65pp
+>    by aligning the population, band never widened); S1/D1 — the
+>    separated staging/definition pins — worked exactly as designed on
+>    first use (each can say which claim moved: the X6 lesson, cashed);
+>    R2 closed the boundary question by measurement (deployment-built
+>    table on the general population: −0.72pp, in band). Census
+>    findings banked: attempt gradient 1.16% → 21.33% (13.41pp), and
+>    R5 quantifies what the composed axis threw away — 6,428 of 15,398
+>    attempts are not clean receptions and still pay 2.15%.
+> 2. **C3 is REDRAWN, not retired — and the fix is the FLOOR, not the
+>    tolerance.** Retirement (the I2 route) does not apply: per-bucket
+>    honesty is load-bearing (argmax compares options bucket-by-bucket;
+>    aggregates can mask a bad cell), so the question must be answered,
+>    not dismissed. But the gate as written was structurally guaranteed
+>    to fire on noise: 5.0pp at n≈235 is 1.54σ (~11% false-fire per
+>    bucket; near-certain across two dozen). The executor's own
+>    diagnosis is codified in PROBE-CONTRACTS: inherited gate values
+>    must be re-powered against the inheriting contract's parameters.
+>    **C3R: the 5.0pp tolerance KEEPS its V3 meaning; the per-bucket
+>    floor RISES until 5.0pp ≥ 3.4σ** (n_min derived ex ante per bucket
+>    from the A-set rates — ≈1,000+ at p≈0.15), reached by a targeted
+>    census top-up on the existing harness, judged on a FRESH held-out
+>    split, gate text verbatim. No re-running the old check on the old
+>    data with a new number — that is the forbidden move in both
+>    directions.
+> 3. **On C3R's PASS the #18.4 pipeline continues unchanged and needs
+>    no new ruling:** table committed as SHA'd data → chooser axis swap
+>    → the E5b watchability probe verbatim → narrow audit → **E4 ROUND
+>    2**. Any fire anywhere returns here. Seat 2 (gaze) holds.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 

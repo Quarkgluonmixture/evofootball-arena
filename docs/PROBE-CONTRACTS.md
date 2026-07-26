@@ -60,6 +60,15 @@ Each gate belongs to exactly one type; state which when you write the contract.
   FAIL — while the pre-registered robustness seed flipped the same statistic
   to 1.5321 and all three mechanism discriminators said diversity ROSE.)*
 
+**Inherited gate values must be RE-POWERED against the inheriting
+contract's own parameters (ruling #19, 2026-07-26).** A tolerance is only
+meaningful relative to the n it was powered at; inheriting the number
+without redoing the power calculation is an unpowered predicate in
+disguise. *(Registered from EDS E5d Phase 1 C3: a 5.0pp tolerance
+inherited from a contract with n≈1,000/bucket — 3.4σ there — met a 200
+bucket floor here, where it is 1.54σ and fires on noise ~11% per bucket;
+across two dozen buckets a false fire was near-certain by construction.)*
+
 **Reproduction gates pin STAGING and DEFINITIONS separately (ruling #18,
 2026-07-26): one gate per claim.** A staging gate pins counts, inputs and
 moment sets (drift detection); a definition gate pins outcome windows and
