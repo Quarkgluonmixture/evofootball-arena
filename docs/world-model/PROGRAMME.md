@@ -624,6 +624,56 @@ generalises.
 >    the house instinct closes the causal gap a FAIL just named. The
 >    "different football" the value arm produced goes to the user's
 >    eyes at E4 round 2, once a candidate table exists — not before.
+>
+> **COMMANDER RULING #17 (2026-07-26 — E5c: both hypotheses refuted,
+> the third cause found in the numbers; the attempt-value axis):**
+>
+> 1. **E5c is ACCEPTED — both refutations stand, and both carried real
+>    findings out.** HU refuted on third-man (top-up made it WORSE,
+>    0.472×→0.395×) yet TRUE on the progression axis (forward share
+>    −3.06pp → −0.21pp): the sampling defect was real and the
+>    topped-up table is KEPT as the base. HM literally refuted (+3.38pp
+>    vs the +4.0pp band, ~2.6σ from zero, control arm −0.06pp): the
+>    state premium is real and small. **And B2 measured my #16.3
+>    geometric premise FALSE** — third-man destinations are 4.1% inner
+>    box, not box-bound (Z2 51.8% / Z4 21.9%). The fourth time this
+>    programme has corrected the commander by measurement; owned.
+> 2. **The third cause is NAMED: clean-conditioned composition inverts
+>    joint-payoff ordering.** On the same forks: the chooser's axis
+>    scores pattern 3.53% vs control 3.83% (−0.29pp) while reality pays
+>    4.89% vs 3.80% (+1.09pp) — and the model is nearly EXACT off-
+>    pattern (3.83 vs 3.80). P̂(clean)×V̂(cell|clean) is accurate for
+>    ordinary balls and biased precisely on balls whose value flows
+>    through messy paths (40% clean yet highest realized value: box
+>    chaos, second balls, the runner's state). The chooser rejects a
+>    ball that is CORRECTLY rejected on its own axis and WRONGLY
+>    rejected in reality. Registered verbatim: the legacy ×1.15/×1.3
+>    were not decoration — they bought exactly the balls an honest
+>    single-option comparison cannot win; every one-touch shape
+>    survived because it never needed the subsidy.
+> 3. **U1's E5a defect is ruled:** the never-adjudicated arrivals were
+>    counted at value ZERO and their simulated windows pay 7.07/10.43%
+>    — the banked E5a table is SUPERSEDED-PENDING (never edited; its
+>    milestone claim V4 stands on its own staging). The fix CONVERGES
+>    with the repair: attempt-conditioning has no adjudication gate at
+>    all, so one census closes both holes.
+> 4. **E5d — THE ATTEMPT-VALUE AXIS — is authorized (executor drafts,
+>    Autonomous mode).** Replace the two-factor composition with ONE
+>    measured quantity: EV̂(option) = E[outcome | ATTEMPT, observable
+>    features], fork-and-force censused, every fork's window simulated
+>    and counted (clean, messy, unadjudicated alike). **Phase 0 is free
+>    and decisive, on E5c's existing forks:** build the
+>    attempt-conditioned table at destination-cell × threat-band and
+>    test whether argmax now picks the runner at the measured pattern
+>    moments. Re-ranks → Phase 1: fresh census, SHA'd table, chooser
+>    axis swap, the E5b watchability probe verbatim, narrow audit,
+>    then E4 ROUND 2. Does NOT re-rank → the residual is the state
+>    premium and the honest-observability of pattern state (the
+>    passer's own action memory + a perceived runner) returns here as
+>    a design question. No invented weight anywhere: the repair
+>    REMOVES a composition rather than adding one.
+> 5. **Seat 2 (gaze) continues to HOLD** per #16.5 — same reasoning,
+>    now with a named axis defect instead of an unattributed one.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
