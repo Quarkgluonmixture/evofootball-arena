@@ -118,6 +118,118 @@ the reading cannot be chosen after the fact:
   probe that re-measured it would only be re-rolling a settled question.
 - It does not gate E4 round 2, which ruling #22.5 opens independently.
 
-## 7. Result
+## 7. Result — RUN 2026-07-26: MEASURED
 
-*(To be filled in after the run, in a separate commit.)*
+SHA `6112f870…c0bb`, twice byte-identical. **P0 true, P1 true, P2 true.**
+
+**P0 first, because nothing else counts without it.** Manual stepping plus
+~85,000 extra `perceivedSnapshot()` calls reproduced **all twelve** banked
+release integers exactly — OFF 158/156/186/101/287/163, VALUE
+74/65/82/66/126/129, 1,704 matches per arm. The perception pull is re-entrant
+in fact and not merely in argument, and this funnel is part (a)'s world.
+
+### 7.1 The funnel
+
+| stage | OFF /match | VALUE /match | ratio | cluster CI |
+| --- | --- | --- | --- | --- |
+| **F1** overlapper assigned | 4.556 | 5.020 | **1.102×** | [0.857, 1.359] |
+| **F2** licence-active (came around) | 0.4000 | 0.4707 | **1.177×** | [0.800, 1.777] |
+| **F3** released to him | 0.0915 | 0.0538 | **0.588×** | **[0.498, 0.727]** |
+| **F4** the counter (arrived past `\|y\| > 11`) | 0.0414 | 0.0240 | **0.579×** | [0.478, 0.740] |
+
+| transition | OFF | VALUE | ratio |
+| --- | --- | --- | --- |
+| F1→F2 | 8.78% | 9.38% | 1.068× |
+| **F2→F3** | **22.86%** | **11.43%** | **0.500×** |
+| F3→F4 | 45.24% | 44.55% | 0.985× |
+
+**The collapse is one stage wide and it is exactly a halving.** Everything
+upstream is fine or better — the value arm *assigns more overlappers* and gets
+*more of them around the outside* — and everything downstream is untouched:
+once the ball is released, it arrives wide just as often (0.985×). F4 inherits
+F3 and adds nothing of its own.
+
+F3's cluster interval is the only one that excludes 1, and its per-league
+ratios are consistent: 0.64 / 0.42 / 0.54 / 0.57 / 0.53 / 0.90 — six leagues,
+same direction. F1 and F2 are INCONCLUSIVE at the cluster level under ruling
+#20's semantics (both intervals straddle 1), which is the honest label for
+"not the problem" here.
+
+### 7.2 ⛔ The class decomposition kills the perception hypothesis
+
+VALUE-arm F2-active ticks: **READ 56,952 (66.9%) · SEEN-UNREAD 3 · UNSEEN
+28,140 (33.1%)**. So a third of the time the man on the ball genuinely cannot
+see the runner — the prior in ruling #22.4 was sound.
+
+But the release rates go the wrong way for it:
+
+| VALUE arm | F2 assignments | released | F3 rate |
+| --- | --- | --- | --- |
+| ever READ | 3,836 | 423 | **11.03%** |
+| never READ | 976 | 127 | **13.01%** |
+
+**Never-READ assignments release MORE often, not less**, and both sit at about
+half the OFF arm's 22.86%. The drop is not carried by unseen runners; if
+anything it is slightly worse where the passer could see him.
+
+Two things stated rather than glossed:
+
+- The OFF arm has no perception memories, so it has no class split at all — its
+  22.86% is the whole arm, and the table above must not be read as OFF-versus-
+  VALUE by class.
+- F3 counts a release **anywhere in the span**, as §3 registered, while the
+  class label comes from F2-active ticks. So a runner never READ at an
+  F2-active tick could still have been READ at the tick he was actually passed
+  to. That nuance cannot rescue the perception hypothesis — it would have to
+  make the *ever-READ* rate the higher one, and it is the lower one — but the
+  definition is what it is and the reader should have it.
+
+### 7.3 Exposure is part of it, and cannot be all of it
+
+Context, per assignment: the value arm holds the ball **longer** while the
+overlapper is live (possession 32.81 → 36.45 ticks, live 43.82 → 46.49) but
+completes **fewer passes** during it (0.0818 → 0.0541, **0.662×**) — the
+direct game's shorter chains, showing up inside the overlap window.
+
+So some of the F3 halving is simply fewer passes played while he is available.
+**It is not enough to explain it**: exposure falls to 0.662× while release
+falls to 0.500×. Comparing the two is a crude Fisher-style reading and not a
+measured split — the two rates have different denominators (passes are counted
+per F1 assignment, releases per F2 assignment) — so the honest statement is the
+weak one, which is still decisive: *fewer passes are played in the window, and
+that alone does not account for the halving.*
+
+### 7.4 The verdict against the map laid before the numbers
+
+| §5 branch | measured |
+| --- | --- |
+| collapse at F1 or F1→F2 (development starved) | ⛔ no — both go UP |
+| F2→F3 carried by never-READ runners (the cost of not-looking) | ⛔ no — never-READ releases *more* |
+| **F2→F3 carried by ever-READ runners** | ✅ **yes** |
+| collapse at F3→F4 (counter geometry displaced) | ⛔ no — 0.985× |
+
+**§5's stop rule for this branch is HARD ESCALATION back to the commander, and
+that is where this goes.** The branch was written as *"contradicts the flip
+benchmark"*, and it does: Phase 0 (b) measured the overlap runner as the
+top-priced option at his own licence moments (deficit −0.82pp), and here the
+chooser that prices him top picks him **half as often** — with the ball held
+longer, with him around the outside more often, and with him visible for two
+thirds of it.
+
+Seat 2 (gaze) does **not** unpark on this evidence: the named fix that branch
+would have bought is refuted, because the runners the passer *can* see are the
+ones being declined.
+
+**Two candidate reconciliations, both untested, neither chosen:**
+
+1. **The flip benchmark was measured in the flags-off world** (E5e §6.2.4's own
+   registered limit). If the value axis changes where bodies stand, the
+   runner's price ranking at *its* overlap moments need not be what it was at
+   the legacy world's. This is directly measurable — the flip benchmark, re-run
+   with the VALUE arm as the harvested world.
+2. **F2-active ticks are not pass-decision moments.** The chooser fires when the
+   action layer decides to pass; the licence being active for 30 ticks does not
+   mean 30 decisions. A per-decision release rate would settle it, and needs
+   the trace rather than the funnel.
+
+Nothing here is shipped, nothing in `src/**` changed, no counter was widened.
