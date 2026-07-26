@@ -255,6 +255,62 @@ and E5d's X6 is the standing lesson about mixing two claims into one gate.
 
 *(To be filled in after the runs, in a separate commit.)*
 
-### 6.1 Part (a)
+### 6.1 Part (a) — RUN 2026-07-26: MEASURED
+
+**`0.468×` was a magnitude, not a count of rare events. H2's regression is
+real, and so is H1's.** SHA `f962addf…8495`, twice byte-identical.
+Effective n: **6 clusters × 1,704 matches × 2 arms = 20,448 matches.**
+
+**A0 6/6.** Cluster 1 reproduces the E5b audit's banked per-match counters to
+the last float — overlaps `0.09272300469483569` → `0.04342723004694836`,
+third-man `6.85093896713615` → `4.399647887323944`, 1,704 matches per arm. The
+probe and the audit are the same world, so everything below compares.
+**A1 passes with room**: 1,051 OFF-arm overlap events against a floor of 300.
+
+| | events on/off | ratio | pooled CI | cluster-bootstrap CI | verdict |
+| --- | --- | --- | --- | --- | --- |
+| **H2 overlap** (floor 0.70) | 542 / 1,051 | **0.5157** | [0.465, 0.572] | [0.437, 0.646] | ⛔ **REFUTED** |
+| **H1 third-man** (floor 0.85) | 35,278 / 53,416 | **0.6604** | [0.652, 0.669] | [0.546, 0.796] | ⛔ **REFUTED** |
+
+Both intervals lie entirely below their floors and both methods agree, so A3's
+robustness condition holds and neither verdict is downgraded. The audit's
+one-seed readings survive: 0.468× → 0.516× pooled, 0.642× → 0.660× pooled.
+
+**Per cluster:**
+
+| league seed | overlap off → on | ratio | third-man off → on | ratio |
+| --- | --- | --- | --- | --- |
+| 20260702 | 158 → 74 | 0.468 | 11,674 → 7,497 | 0.642 |
+| 20260801 | 156 → 65 | 0.417 | 8,626 → 5,120 | 0.594 |
+| 20260802 | 186 → 82 | 0.441 | 9,118 → 6,165 | 0.676 |
+| 20260803 | 101 → 66 | 0.654 | 5,943 → **6,275** | **1.056** |
+| 20260804 | 287 → 126 | 0.439 | 7,732 → 5,572 | 0.721 |
+| 20260805 | 163 → 129 | 0.791 | 10,323 → 4,649 | 0.450 |
+
+### 6.1.1 Three things the six clusters show that one could not
+
+1. **The cluster rule earns its place on H1, not on H2.** For third-man the
+   naive within-cluster interval is [0.652, 0.669] — **1.7pp wide** — while the
+   cluster bootstrap is [0.546, 0.796], **25pp wide**. A ~15× understatement of
+   uncertainty, from a statistic with 53,416 events. The events are plentiful
+   and the *leagues* are not, and it is the leagues that vary: one cluster
+   (20260803) comes back at **1.056 — third-man IMPROVED there**. Ruling #20's
+   cluster-unit rule was written for exactly this and it has now caught it.
+2. **H2's direction is consistent, H1's is not.** Five of six clusters put
+   overlap below 0.70 (0.417–0.654) with one at 0.791; third-man ranges 0.450
+   to 1.056 and straddles its floor. The overlap regression is the steadier of
+   the two findings even though it rests on 50× fewer events.
+3. **The counter is league-dependent, not just rare.** Flags-off overlap rates
+   run 0.059 to 0.168 per match across the six — nearly 3×. Any future overlap
+   claim read off a single league is reading one draw from that spread, which
+   is a second reason (beyond Poisson noise) that the banked one-seed number
+   could not have settled the magnitude question.
+
+**What part (a) settles and what it does not.** It settles that a
+state-conditional repair has something real to repair: both combination
+counters are genuinely below their floors under ruling #20's own semantics, on
+six leagues, with the cluster unit named. It settles nothing about *whether*
+state-conditional value is the repair — that is part (b)'s question, and by
+§4 it does not gate part (b) in either direction.
 
 ### 6.2 Part (b)
