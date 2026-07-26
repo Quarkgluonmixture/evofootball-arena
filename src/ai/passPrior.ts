@@ -397,6 +397,63 @@ export function valueZoneAt(localX: number, y: number): ValueZoneRow {
 /** E5a's V1 floor, frozen in the contract: below this a cell is not a measurement. */
 export const VALUE_ZONE_SAMPLE_FLOOR = 400;
 
+/**
+ * EDS E5d Phase 1 — the ATTEMPT-VALUE table (commander ruling #18.4).
+ * Authority: docs/world-model/EDS-E5D-PHASE1.md
+ *
+ * The composition is REMOVED, not re-weighted. Where the chooser used to
+ * multiply P̂(clean reception) by V̂(shot | clean, cell), it now reads ONE
+ * measured quantity:
+ *
+ *   EV̂ = P(the passing team shoots within 240 ticks OF THE KICK | this pass is
+ *          ATTEMPTED, destination cell × threat band)
+ *
+ * Every fork's window is simulated and counted — clean, spilled, intercepted,
+ * never-adjudicated alike — so both E5a defects are structurally impossible
+ * here rather than merely absent, and the balls whose value flows through messy
+ * paths are priced instead of assumed away (ruling #17.2).
+ *
+ * Censused on the population it is DEPLOYED on (ruling #18.3's house law, third
+ * appearance): licence-triggered decision moments with the full candidate set.
+ *
+ * ATTEMPT TABLE SHA: (pending Phase 1's run — the probe re-derives and T1 pins it)
+ */
+export interface AttemptValueRow {
+  /** Destination zone 0..7; the CELL and MARGINAL rows use -1 for `band`. */
+  readonly cell: number;
+  readonly band: number;
+  readonly attempts: number;
+  readonly shotRate: number;
+}
+
+/** Below this an (cell × band) bucket is not a measurement — the frozen floor. */
+export const ATTEMPT_VALUE_BUCKET_FLOOR = 200;
+export const ATTEMPT_VALUE_CELLS = 8;
+export const ATTEMPT_VALUE_BANDS = 5;
+
+export const ATTEMPT_VALUE_TABLE: readonly AttemptValueRow[] = [];
+export const ATTEMPT_VALUE_CELL_TABLE: readonly AttemptValueRow[] = [];
+export const ATTEMPT_VALUE_MARGINAL: AttemptValueRow = {
+  cell: -1, band: -1, attempts: 0, shotRate: 0,
+};
+
+/**
+ * The frozen fallback ladder: (cell × band) → cell → marginal. A band of -1
+ * means the passer could not read the corridor at all, which sends the option
+ * to the cell row rather than inventing a band for it.
+ */
+export function attemptValueAt(cell: number, band: number): number {
+  if (band >= 0 && ATTEMPT_VALUE_TABLE.length > 0) {
+    const bucket = ATTEMPT_VALUE_TABLE[cell * ATTEMPT_VALUE_BANDS + band];
+    if (bucket !== undefined && bucket.attempts >= ATTEMPT_VALUE_BUCKET_FLOOR) {
+      return bucket.shotRate;
+    }
+  }
+  const row = ATTEMPT_VALUE_CELL_TABLE[cell];
+  if (row !== undefined && row.attempts >= ATTEMPT_VALUE_BUCKET_FLOOR) return row.shotRate;
+  return ATTEMPT_VALUE_MARGINAL.shotRate;
+}
+
 export const THREAT_CALIBRATION: readonly ThreatCalibrationRow[] = [
   {
     quintile: 0,

@@ -200,4 +200,110 @@ R5 what happens to the reception half: it is no longer in the price, so its
 
 ## 6. Result
 
-*(frozen on completion)*
+### 6.1 The deployment census — RUN 2026-07-26: **the alignment WORKED, one held-out bucket fired, and the phase STOPS there**
+
+Probe `scripts/probes/eds-e5d-p1-deployment-census.ts`, SHA `f9a1395b…707e`,
+two invocations byte-identical, fingerprint `57b0bdab…c673` unchanged.
+
+```text
+X5 harness                          PASS  3/3 seeds
+S1 staging pin                      PASS  two-walk ≡ per-tick-clone, record for record
+D1 definition pin                   PASS  14,114 attempts @ 0.06327051154881677,
+                                          Phase 0's banked marginal to the last digit
+C1 coverage                         PASS  16 gated buckets · both arms ≥ 1,500
+C2 calibration, deployment moments  PASS  see below
+C3 discrimination                   PASS  13.41pp (floor 5.0pp)
+C3 held-out marginal                PASS  5.62% vs 6.03%
+C3 held-out buckets                 FAIL  one bucket, see below
+T1 committed = census               vacuous — the phase stopped before committing
+```
+
+**The split pins are the X6 lesson working.** S1 held the definition fixed and
+asked only about the staging: the fast two-walk staging produces attempt records
+identical to Phase 0's per-tick-clone staging, in order, field for field. D1
+held the staging fixed and asked only about the definition: this window returns
+Phase 0's banked attempt marginal **exactly**. Two claims, two gates, each able
+to say which one moved — which is precisely what X6 could not do, twice.
+
+#### C2 — the gate this whole phase existed to fix, PASSES
+
+Phase 0 missed by 0.08pp on a table censused over general touches. Censused
+where it is deployed:
+
+```text
+                 n        predicted   realized    gap      band
+pattern       5,195         6.822%     8.046%   −1.22pp   ±2.0pp  ✅
+control      10,269         5.651%     5.005%   +0.65pp   ±2.0pp  ✅
+marginal     15,464         6.044%     6.027%   +0.02pp   ±1.0pp  ✅
+```
+
+Both arms clear the power floor (n ≥ 1,500) by 3–7×, and the band was not
+widened — ruling #18.3's instruction was to align the population, and aligning
+it moved the control arm's error from +2.08pp to +0.65pp.
+
+#### R2 — the boundary I registered before the run, answered by measurement
+
+§2.1 flagged that the live chooser fires at every pass moment while #18.4 (a)
+names licence-triggered ones as the deployment population, and promised the
+general-population calibration as a reported number so a trade-off could not
+hide. There is no trade-off:
+
+```text
+general population, scored with the deployment table
+  all options        n = 14,114     gap  −0.72pp
+  licensed           n =  1,758     gap  −1.09pp
+  unlicensed         n = 12,356     gap  −0.66pp
+```
+
+The deployment-censused table is **inside the 2.0pp band on the general
+population too**. Aligning one end did not misalign the other, and the question
+is closed by a number rather than an argument.
+
+#### ⛔ C3's held-out bucket check FAILED — one bucket, and my tolerance was mis-powered
+
+```text
+cell 4 (attacking third outer, central) × band 2
+   set A  235 attempts @ 11.91%      set B  234 @ 17.09%      error 5.18pp
+   tolerance 5.0pp
+next worst: cell3×band1 2.83pp · cell4×band3 2.74pp · cell3×band0 2.68pp
+```
+
+At n ≈ 235 and p ≈ 0.145 the SE of that difference is **3.25pp, so 5.18pp is
+1.59σ** — thin-bucket noise. But the gate fired, and the reason it could fire is
+**my own design error, stated plainly**: I inherited C3's 5.0pp tolerance
+verbatim from E5a's V3, where cells carried n ≈ 1,000 and 5.0pp was 3.4σ. Paired
+with this contract's 200-attempt bucket floor, the same tolerance is only 1.6σ —
+a floor and a tolerance chosen from different experiments and never checked
+against each other. **Re-choosing either after seeing which bucket fired is
+exactly what the discipline forbids**, so the gate stands as fired and the
+disposition is the commander's.
+
+#### What the census found, for the record
+
+The attempt-value gradient over the eight cells on the deployment population:
+
+```text
+own third central 1.16% · own third wide 0.68% · middle central 4.30%
+middle wide 6.88% · att. outer central 9.48% · att. outer wide 14.25%
+att. inner central 16.62% · att. inner wide 21.33%      marginal 5.62%
+```
+
+**R5 — the size of what the composition was discarding:** of 15,398 attempts,
+9,846 reach the target and 8,970 count as clean receptions, which pay **8.10%**
+— but the 6,428 attempts that are NOT clean receptions pay **2.15%**, not zero,
+and 1,648 arrivals never adjudicate at all. Clean-conditioning was throwing away
+a fifth of the realized value, unevenly across cells. That is the same defect
+family X6 exposed in E5a, now quantified on the population that matters.
+
+#### Disposition
+
+**Non-PASS, and the phase stops before the swap.** Governance is explicit — a
+FAIL anywhere binds the step's stop rule and forbids skipping ahead — so the
+axis was **not** swapped, `ATTEMPT_VALUE_TABLE` was **not** committed as data,
+the E5b watchability probe was **not** run, and E4 round 2 does not open. No
+`src/**` behaviour changed; the table scaffold in `passPrior.ts` is empty and
+has no callers.
+
+What the commander has: the population alignment **worked** — C2 passes on both
+arms and on the general population too — and the single failing gate is a
+tolerance/floor mismatch I introduced, at 1.6σ, in the thinnest gated bucket.
