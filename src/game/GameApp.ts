@@ -68,6 +68,7 @@ import { RightPanel } from '../ui/RightPanel';
 import { MusicSystem } from '../ui/MusicSystem';
 import { TitleScreen } from '../ui/TitleScreen';
 import { SoundFx } from '../ui/SoundFx';
+import { browserWakeLockEnv, screenShouldStayAwake, WakeLockManager } from '../ui/wakeLock';
 
 // Chosen so a fresh league OPENS with a banger (Phase 28.2): seed 1168's
 // first fixture is a 3–3 with 19 shots, 4 corners and a late goal — the
@@ -115,6 +116,8 @@ export class GameApp implements GameActions {
   private clashAutoHide = true;
   /** Pause state to restore when the auto-shown rebirth ceremony closes. */
   private ceremonyPrevPaused = false;
+  /** Keeps the phone from dimming mid-match; inert where unsupported. */
+  private wakeLock = new WakeLockManager(browserWakeLockEnv());
   private statusEl!: HTMLElement;
   /** Topbar nav buttons + their "is my screen open" probes (119a.5). */
   private navEntries: Array<[HTMLButtonElement, () => boolean]> = [];
@@ -543,6 +546,21 @@ export class GameApp implements GameActions {
       }
       this.updateCineBug();
     }
+
+    // Keep the phone awake only while the game is genuinely running itself.
+    this.wakeLock.setWanted(this.wantsScreenAwake());
+  }
+
+  /** Snapshot for the pure `screenShouldStayAwake` rule (tested there). */
+  private wantsScreenAwake(): boolean {
+    return screenShouldStayAwake({
+      paused: this.paused,
+      titleVisible: this.titleScreen?.isVisible ?? false,
+      theaterActive: this.theater !== null,
+      replayActive: this.replay.active,
+      replayPlaying: this.replay.playing,
+      hasLiveMatch: this.match !== null && !this.match.finished,
+    });
   }
 
   private lastCineBugKey = '';

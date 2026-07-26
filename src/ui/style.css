@@ -39,6 +39,20 @@ html, body {
    with plain 100vh the collapsing URL bar cuts off the bottom controls. */
 #app { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
 
+/* Installed to the home screen, the app owns the whole screen: iOS's
+   `black-translucent` status bar and Android's fullscreen mode both paint the
+   page UNDER the notch and the home indicator. Inset the shell so the topbar
+   is not sitting behind the clock. Scoped to display-mode so a normal browser
+   tab — where the insets read differently and the chrome already handles it —
+   is completely untouched. */
+@media (display-mode: fullscreen), (display-mode: standalone), (display-mode: minimal-ui) {
+  #app {
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
 /* ---------- top bar ---------- */
 #topbar {
   display: flex; align-items: center; gap: 10px;
@@ -919,6 +933,25 @@ body.world-mode .perception-readout { display: none; }
   background: rgba(8, 12, 22, 0.8); border: 1px solid var(--border);
 }
 .mini-restore.hidden { display: none; }
+
+/* ---------- new-version prompt (PWA) ---------- */
+/* Top-centre, above everything, and it never steals focus or pauses the game:
+   a deploy landing mid-match is not a reason to interrupt the match. Sits
+   below the safe-area inset so it clears the notch in the installed app. */
+.pwa-update {
+  position: fixed; z-index: 200;
+  top: calc(8px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 8px;
+  max-width: calc(100vw - 16px);
+  padding: 6px 8px 6px 12px;
+  background: var(--panel-2); color: var(--text);
+  border: 1px solid var(--accent); border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  font-size: var(--fs-sm);
+}
+.pwa-update-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pwa-update-go { padding: 4px 10px; font-size: var(--fs-sm); border-color: var(--accent); color: var(--accent); }
+.pwa-update-dismiss { padding: 4px 8px; font-size: var(--fs-sm); color: var(--muted); }
 /* Phones already stack the shell vertically (#layout column), so a floating
    corner player would cover the page it is meant to sit beside. Keep the
    stacked match strip there and only reclaim the columns. */

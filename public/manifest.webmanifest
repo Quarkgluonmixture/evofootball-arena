@@ -1,13 +1,36 @@
 {
+  "id": "evofootball-arena",
   "name": "EvoFootball Arena",
   "short_name": "EvoFootball",
   "description": "An autonomous 5v5 football ecosystem: deterministic simulation, explainable utility AI, evolving leagues and cups. You mostly watch.",
+  "lang": "zh-CN",
+  "categories": ["games", "sports"],
   "start_url": "./",
-  "display": "standalone",
-  "orientation": "landscape",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "orientation": "any",
   "background_color": "#0b1220",
   "theme_color": "#0b1220",
   "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
     {
       "src": "icon.svg",
       "sizes": "any",

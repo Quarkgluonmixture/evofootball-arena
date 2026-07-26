@@ -75,6 +75,12 @@ const ZH: Record<string, string> = {
     '传球者只从自己的视野里挑人(看不见的人传不到),防守者也只读自己看到的球。下一次开球生效,所以赛季中途就能 A/B。实测:比赛更冷静——出脚更晚、传球找支撑更好的人、散球混战更少——整场也更少消耗体能槽。请判断这种冷静像不像足球。',
   Day: '白天',
   Night: '夜场',
+
+  // ---- installed app / update prompt ----
+  'A new version is ready.': '新版本已就绪。',
+  Update: '更新',
+  Later: '稍后',
+
   Presentation: '演出',
   '🎥 Cinematic': '🎥 影院模式',
   'FX quality': '特效质量',

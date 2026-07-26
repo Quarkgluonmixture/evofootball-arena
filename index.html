@@ -2,7 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport-fit=cover lets the installed app paint into the notch/home-bar
+         area; the phone layout already pads with env(safe-area-inset-*).
+         Pinch-zoom is deliberately left ON — the UI is text-dense. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <meta
       name="description"
       content="EvoFootball Arena — an autonomous 5v5 football ecosystem: deterministic simulation, explainable utility AI, evolving leagues, cups and giant killings. You mostly watch."
@@ -10,6 +16,15 @@
     <meta name="theme-color" content="#0b1220" />
     <link rel="icon" type="image/svg+xml" href="icon.svg" />
     <link rel="manifest" href="manifest.webmanifest" />
+    <!-- iOS "Add to Home Screen": Safari ignores the manifest's display and
+         icons here, so the install has to be declared the old way. The touch
+         icon must be a PNG (an SVG silently yields a grey placeholder) — it is
+         generated procedurally at build time, not committed. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EvoFootball" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png" />
     <title>EvoFootball Arena</title>
   </head>
   <body>
