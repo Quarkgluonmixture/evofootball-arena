@@ -945,6 +945,79 @@ generalises.
 >    queue gaps. Seat 2 (gaze) HOLDS pending E5f. The commander begins
 >    drafting the Stage III positioning-eye design contract in
 >    parallel (doc-only, prior-art survey digested).
+>
+> **COMMANDER RULING #23 (2026-07-26 — E5f disposed: the collapse is one
+> stage wide and it is not perception; the decision-moment trace; E4
+> round 2 live):**
+>
+> 1. **E5f is ACCEPTED and its findings are BANKED.** The funnel
+>    localises the whole collapse to F2→F3 (releases per licence
+>    trigger 22.86% → 11.43%, 0.500×, direction consistent in six of
+>    six leagues, the only stage whose CI excludes 1). Upstream the
+>    value axis assigns MORE overlappers (F1 1.102×) and matures MORE
+>    runs (F2 1.177×) — **the starvation branch is refuted, and my
+>    stated lean toward it dies with it** — and downstream the counter's
+>    geometry is intact (F3→F4 0.985×). ⭐ **The perception hypothesis
+>    is DEAD by its own decomposition**: never-READ runners release at
+>    13.01% vs READ runners at 11.03% — the rejected passes are to
+>    runners the passer CAN see, so **seat 2 (gaze) stays parked**, and
+>    the probe's honest reporting of the opposite of what would have
+>    unparked it is noted. Exposure/tempo is banked as a PARTIAL
+>    component (longer windows 32.81→36.45 ticks, fewer passes inside
+>    them, 0.662× — which cannot explain 0.500×). P0's measured
+>    reentrancy (~85,000 extra `perceivedSnapshot()` calls reproducing
+>    all 12 banked release integers) is ruling #13.3's pull contract
+>    earning its keep by measurement.
+> 2. **The slice's central fact is now a sharp contradiction:** the
+>    chooser that prices the overlap runner HIGHEST at his own licence
+>    moments (flip benchmark −0.82pp, flags-off world) picks him HALF
+>    as often — with more ball time, more matured runs, and the runner
+>    visible two-thirds of the time. Registered observation, not a
+>    gate: the flip margin was 0.82pp against an axis with 13.41pp of
+>    range — a thin win that may simply not survive the world shift.
+>    Which is exactly what the trace measures; no assertion (the
+>    census-geometry rule applies to price geometry too).
+> 3. **E5g — THE DECISION-MOMENT TRACE — is authorized (executor
+>    drafts, Autonomous mode).** In the VALUE arm, at every
+>    pass-decision moment inside overlapper-live windows, log: the
+>    executable candidate menu, each candidate's live price WITH its
+>    (cell, band) inputs, the runner's presence / rank / margin vs the
+>    winner, the chosen target, and (diagnostic) the runner's priced
+>    destination cell beside his truth position at that tick — the
+>    stale-geometry seam, if it exists, shows up there. **Three
+>    exhaustive outcomes pre-laid**, one of which must occur:
+>    (a) the runner is rarely ON the menu at decision moments → the
+>    licence window and the decision cadence are different clocks
+>    (E5f's tick-basis limitation, named in its §5); (b) on the menu
+>    but NOT top-priced live → the flags-off flip benchmark did not
+>    transfer; the (cell, band) columns say which input moved;
+>    (c) top-priced, executable, and NOT chosen → a seam defect in the
+>    live argmax — hard escalation, everything stops. Pins: world-hash
+>    identity trace-on/off (X3 convention: hashes cover world outcomes,
+>    the trace is a sidecar); staging pin against E5f's banked funnel
+>    integers; cluster semantics per #20; zero `src/**` behaviour
+>    change. A MEASUREMENT step: findings reported, INVALID only on
+>    pins. The harvest-B-on-VALUE-world fork re-run is NOT authorized
+>    now — the trace subsumes the decision question; forks return only
+>    on outcome (c).
+> 4. **E4-PREP-2 is ACCEPTED and its conduct codified.** The closed
+>    mode table (`off` / `v1` / `triple`, triple = the E5d-P1 audit
+>    arm flag-for-flag) is the required shape: what needed pinning was
+>    WHICH WORLDS the UI can express, and unaudited combinations are
+>    now unreachable by construction. The pin amendment in its own
+>    commit (`6c19779`), with the old assertion living INSIDE the new
+>    one and the authority named as ruling #22.5 rather than E5b's
+>    numbers, is exactly how a shipped-plumbing pin moves — codified
+>    as the pattern. **E4 ROUND 2 IS LIVE**: the user plays off / v1 /
+>    triple whenever they like; direction feedback, not a ship vote.
+> 5. **Priority note:** this is a 0.09-per-match counter under
+>    high-precision diagnosis while the user gate runs in parallel.
+>    E5g is authorized because it is cheap and decisive by
+>    construction (its three outcomes exhaust the space); if the
+>    user's round-2 verdict lands first and reorders the redraw,
+>    E5g's answer feeds either branch of #22.5's fork. R20's three
+>    remaining re-analyses stay in queue gaps. Seat 2 parked. Stage
+>    III drafting continues (commander).
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -1079,7 +1152,16 @@ bundle or ships it.
 
 | E5f | **The overlap funnel** (ruling #22.4): the cheap probe that LOCATES the collapse Phase 0 (b) put upstream of the choice. Counting only, zero forks, zero `src/**`: part (a)'s staging with an A0-style pin, then F1 overlapper assigned → F2 licence-active (the full come-around predicate) → F3 release chosen → F4 the counter's stricter arrival, per-arm rates and OFF/VALUE ratios with league-seed cluster CIs, and **F2→F3 decomposed by the runner's information class in the passer's own snapshot** (VALUE arm) | [`EDS-E5F-OVERLAP-FUNNEL.md`](EDS-E5F-OVERLAP-FUNNEL.md) | **PRE-REGISTERED 2026-07-26** — P0 the instrument is inert (F4 = part (a)'s banked integers per cluster per arm, or INVALID) · P1 funnel monotonicity · P2 ≥300 OFF-arm F2 · P3 determinism. A MEASUREMENT step: verdicts reported, INVALID only on pins. ⚠️ Registered before the run: the instrument TOUCHES the world it measures (manual stepping + `perceivedSnapshot()` at ticks the brain would not have called it), so P0 exists to make a perturbation return INVALID rather than quietly report a different world's funnel. §5's hypothesis map was laid before the numbers. <br>⛔ **RUN 2026-07-26 — MEASURED, and it lands on the branch §5 designated HARD ESCALATION; the fork is the COMMANDER's** (§7, SHA `6112f870…c0bb`, twice byte-identical, **P0/P1/P2 all true**). ⭐ **P0 first: manual stepping plus ~85,000 extra `perceivedSnapshot()` calls reproduced ALL TWELVE banked release integers exactly** — the perception pull is re-entrant in fact, not merely in argument, and this funnel is part (a)'s world. ⭐⭐ **The collapse is ONE STAGE WIDE and it is exactly a halving**: F1 **1.102×** and F2 **1.177×** (the value arm assigns MORE overlappers and gets MORE of them around the outside; both cluster CIs straddle 1 = INCONCLUSIVE = not the problem), **F3 0.588× [0.498, 0.727]** — the only interval excluding 1, consistent across all six leagues (0.64/0.42/0.54/0.57/0.53/0.90) — and F4 **0.579×** which merely inherits it. Transitions: F1→F2 1.068×, **F2→F3 22.86% → 11.43% = 0.500×**, F3→F4 0.985% ratio 0.985× (once released it arrives wide just as often — the counter's geometry is NOT displaced). ⛔ **The class decomposition KILLS the perception hypothesis**: a third of licence-active ticks the runner is genuinely UNSEEN (READ 56,952 / SEEN-UNREAD 3 / UNSEEN 28,140), but **never-READ assignments release MORE, not less — 13.01% (n=976) vs ever-READ 11.03% (n=3,836)**, both ≈ half the OFF arm's 22.86%. **Seat 2 (gaze) does NOT unpark on this evidence**: the runners the passer CAN see are the ones being declined. ⭐ **Exposure is part of it and cannot be all of it**: the value arm holds the ball LONGER while he is live (possession 32.81 → 36.45 ticks) but completes fewer passes in it (0.0818 → 0.0541, **0.662×**) — the direct game's shorter chains inside the overlap window — so fewer passes are played there, and 0.662× does not account for 0.500×. (A crude Fisher reading, not a measured split: the two rates have different denominators, and the honest statement is the weak one, which is still decisive.) ⭐⭐⭐ **So the contradiction is now sharp and it is the escalation**: Phase 0 (b) measured this runner as the TOP-PRICED option at his own licence moments (−0.82pp), and the chooser that prices him top picks him **half as often** — with the ball held longer, with him around the outside more often, and with him visible two thirds of the time. Two candidate reconciliations left explicitly untested and unchosen: the flip benchmark was measured in the FLAGS-OFF world (E5e §6.2.4's own registered limit) and could be re-run with the VALUE arm as the harvested world; and F2-active TICKS are not pass-DECISION moments, which the trace could settle and the funnel cannot |
 
-**Queue state (2026-07-26, ruling #22): BOTH of #22's executor steps are DONE.
+**Queue state (2026-07-26, ruling #23): E5f DISPOSED — the executor's next
+step is E5g, the decision-moment trace (three exhaustive outcomes pre-laid:
+runner not on the menu at decision moments / on the menu but not top-priced
+live / top-priced and not chosen = seam defect, hard stop). The
+harvest-B-on-VALUE-world fork re-run is NOT authorized unless outcome (c).
+E4 ROUND 2 stays LIVE in parallel (off / v1 / triple) — the user's eyes,
+direction feedback not a ship vote. Seat 2 parked by measurement. All flags
+default OFF; R20 re-analyses in gaps; the commander drafts Stage III.**
+Earlier,
+BOTH of #22's executor steps are DONE.
 E4-PREP-2 SHIPPED (the audited triple is reachable from Settings as a closed
 mode list; defaults OFF; the excluded-axis pin amended in its own disclosed
 commit) — **E4 ROUND 2 IS OPEN and waiting on the user's eyes**, direction
