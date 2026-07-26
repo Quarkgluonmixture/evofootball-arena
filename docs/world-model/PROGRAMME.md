@@ -645,6 +645,25 @@ bundle or ships it.
 is DONE — the queue is now entirely at the USER'S GATES, with nothing left for
 an executor to do until they play.**
 
+> ⚠️ **CI was RED for five days and is now GREEN again (2026-07-26,
+> user-ratified fix).** The Pages deploy had **0 successes in its last 100 runs**
+> (since 2026-07-21), so the build the user plays was stale and E4 could not
+> start. Two independent causes, neither a code regression (the fingerprint is
+> unchanged across all of it), each masking the other: (a) `npm test` died with
+> `[vitest-worker]: Timeout calling "onTaskUpdate"` at 600–720s with EVERY test
+> green — the failure `vite.config.ts` already documents, whose `singleThread`
+> mitigation a 99-file/~700s suite has outgrown; (b) once a run got past that,
+> `stamina.test.ts` read **0.9406 against its 0.93 gate on the ubuntu runner**
+> while the same commit reads 0.9161 on macOS under Node 22 AND Node 26 —
+> platform libm drift eating the 1.4pp of headroom E3R §5.7 had already measured.
+> Fix (`2b77f47`): CI runs on **macos-latest**, the platform every behavioural
+> contract in this repo was calibrated on, and `npm test` becomes **three
+> sequential `vitest run --shard=i/3` steps** so no single process accumulates
+> enough blocked event-loop time to trip the RPC budget. No test semantics, no
+> gameplay, no fingerprint change — re-baselining the stamina contract was the
+> alternative and C1-B §12.4 forbids it. Verified: build+deploy green, and the
+> live bundle carries `evo:edsPreview`.
+
 **How to run E4 (the deployed build, on the phone or the desktop):**
 
 1. ⚙ Settings → 🧬 Experimental → tick **“EDS preview: players act on what they
