@@ -198,4 +198,105 @@ D5 E5a's defect, closed by construction: the share of attempts that never
 
 ## 6. Result
 
-*(frozen on completion — Phase 0 §6.1)*
+### 6.1 Phase 0 — RUN 2026-07-26: **THE AXIS RE-RANKS, and Phase 0 is still non-PASS**
+
+Probe `scripts/probes/eds-e5d-attempt-value.ts`, SHA `e42e75c3…1299`, two
+invocations byte-identical, fingerprint `57b0bdab…c673` unchanged, **zero
+`src/**` changes**, suite green.
+
+```text
+X5 harness                       PASS  (3/3 seeds bit-identical)
+C1 coverage                      PASS  14 of 40 buckets gated
+C2 held-out calibration          PASS  buckets and marginal
+C3 discrimination                PASS  15.07pp (floor 5.0pp)
+R1 ORDERING RESTORED             PASS
+R2 ARGMAX MOVES                  PASS
+X6 staging equivalence           FAIL
+C3 calibration                   FAIL
+```
+
+#### The judgment Phase 0 existed to make: **it re-ranks, decisively**
+
+```text
+                       composed axis      EV̂        reality
+pattern (n=593)            4.348%       8.674%      7.757%
+control (n=1,136)          4.295%       6.653%      4.577%
+ordering                  +0.05pp      +2.02pp     +3.18pp
+```
+
+**R1**: the sign is restored — the composed axis calls the pattern and the
+control a coin-flip (+0.05pp) where reality pays +3.18pp; EV̂ says +2.02pp.
+**R2**: at the 450 pattern-active moments the argmax selects a licensed runner
+**23.78% → 39.33%, a +15.56pp shift** against a +5.0pp floor. The decision
+changes hands at 70 moments, not the statistic alone.
+
+The attempt table's own gradient over the eight cells, on attempts rather than
+clean receptions: **1.05 / 1.63 / 6.03 / 7.01 / 14.59 / 14.10 / 17.75 /
+36.71%**, marginal 6.33% over 14,114 attempts (held out 5.87%).
+
+#### ⛔ X6 FAILED — reported as it fired, and NOT re-amended
+
+```text
+clean subset COUNT       7,864  =  E5a's 7,864          EXACT
+clean subset RATE        0.07922177009155645
+E5a's banked rate        0.07146490335707019            differs
+```
+
+**The count is exact, which proves the staging did not drift** — same moments,
+same candidates, same fork outcomes, same clean classification, to the unit.
+The residual is a third E5a implementation inconsistency, certain from reading
+the code rather than inferred: E5a captured `shotsBefore` **after** stepping the
+12-tick adjudication window, so its value window ran `[touch+12, kick+240]`
+while its own contract says "within 240 ticks of the kick". This probe follows
+the contract. The 0.78pp difference is the shots E5a's window excluded — the
+first-time shot and the early second ball.
+
+**I have twice now written X6 in a form that conflates the DEFINITION with the
+STAGING it was meant to police.** The first form was unsatisfiable and I amended
+it before the run (§4). This second form failed on a definition difference too,
+and amending it *after* seeing results is precisely what the discipline forbids
+— so it stands as FAILED and the disposition is the commander's, exactly as I2
+was retired rather than redrawn in ruling #6.2.
+
+**What this makes visible is worth more than the gate was.** On the same 7,864
+receptions, E5a's own marginal:
+
+```text
+7.146%   as banked            (unfollowed windows zeroed, window starts late)
+7.922%   + the correct window start
+9.054%   + every window actually simulated
+```
+
+**E5a's V table is deflated by 1.91pp on its marginal — 27% relative** — by two
+independent implementation defects, neither of which the attempt axis can have.
+D5 shows why: of 14,114 attempts, 8,602 reach the target and 7,864 count as
+clean receptions, of which **1,473 (18.7% of arrivals) never adjudicate** and
+pay **6.04%**; attempts that never reach pay **2.85%**, not zero. Both classes
+were structurally invisible to the composed axis.
+
+#### ⛔ C3's calibration FAILED, narrowly, and it is a Phase-1 design fact
+
+```text
+all scored forks     within tolerance
+pattern arm          8.674% predicted vs 7.757% realized     0.92pp   ok
+control arm          6.653% predicted vs 4.577% realized     2.08pp   FAIL (2.0pp)
+```
+
+The table is built on the general census and applied to a **selected**
+population — moments where a licence fires — and it over-predicts the ordinary
+options there by 2.08pp, a hair over the band. Reported as it fired. It does not
+touch R1 or R2 (both are comparisons *within* that population, where the bias
+applies to both arms), but it is the first thing a Phase-1 pre-registration must
+answer: an axis that is calibrated on average and biased on the population where
+decisions are hard is not yet finished.
+
+#### Disposition
+
+**Non-PASS.** Two gates fired, and the contract's stop rules plus the standing
+instruction send any non-PASS to the commander before Phase 1. Nothing shipped,
+no `src/**` touched, every flag still default OFF, E4 round 2 still shut.
+
+What the commander now has that ruling #17.4 asked for: **the attempt axis DOES
+re-rank** (+15.56pp of decisions, ordering sign restored), and the two gates
+that failed are both about the *old* table's defects and the *new* table's
+population, not about the axis's ability to do its job.
