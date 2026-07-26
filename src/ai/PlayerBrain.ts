@@ -868,6 +868,15 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         powerPrices: power?.prices ?? [],
         powerThreatSeconds: power?.threatSeconds ?? [],
         powerTouchFailPriors: power?.touchFailPriors ?? [],
+        // E5g: the menu, exactly as priced. Pure observation.
+        options: (choice?.options ?? []).map((option) => ({
+          targetGid: option.targetGid,
+          infoClass: option.infoClass,
+          price: option.price,
+          executable: option.executable,
+          cell: option.cell,
+          band: option.band,
+        })),
       });
     }
   }

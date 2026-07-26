@@ -259,6 +259,21 @@ export interface PassChoiceTraceEntry {
   readonly powerPrices: readonly number[];
   readonly powerThreatSeconds: readonly number[];
   readonly powerTouchFailPriors: readonly number[];
+  /**
+   * E5g (ruling #23.3): the whole menu the chooser saw, so a diagnostic can ask
+   * why a particular man was or was not taken instead of re-deriving the answer
+   * outside the seam. A SIDECAR — written only when `traceChoice` is armed, read
+   * by nothing in the sim, and pinned by the world-hash identity that already
+   * covers the rest of this trace.
+   */
+  readonly options: readonly {
+    readonly targetGid: number;
+    readonly infoClass: 'READ' | 'SEEN-UNREAD' | 'UNSEEN';
+    readonly price: number;
+    readonly executable: boolean;
+    readonly cell: number;
+    readonly band: number;
+  }[];
 }
 
 interface GroundContactClaim {

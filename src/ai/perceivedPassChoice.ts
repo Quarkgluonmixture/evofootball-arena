@@ -49,6 +49,20 @@ export interface PricedPassOption {
   readonly targetGid: number;
   readonly infoClass: PassInfoClass;
   /**
+   * E5g (ruling #23.3): the two inputs the value axis prices this option BY,
+   * carried on the option so a diagnostic can say WHICH input moved instead of
+   * re-deriving them from outside and hoping the derivation matches.
+   *
+   * `cell` is the destination zone of the PERCEIVED position; `band` is the
+   * passer's own corridor read, or −1 where he has none and the frozen ladder
+   * takes over. Both are reported for an unseen man too, as −1: he has no known
+   * destination, which is exactly why the marginal prices him.
+   *
+   * Pure observation. Nothing reads these to make a choice.
+   */
+  readonly cell: number;
+  readonly band: number;
+  /**
    * The option's measured price.
    *
    * Without the value axis: the probability the intended man ends up in clean
@@ -170,6 +184,8 @@ export function pricePassOption(input: {
     return {
       targetGid,
       infoClass: 'UNSEEN',
+      cell: -1,
+      band: -1,
       price: valueAxis ? value : reception,
       reception,
       value,
@@ -194,6 +210,8 @@ export function pricePassOption(input: {
     return {
       targetGid,
       infoClass: 'SEEN-UNREAD',
+      cell,
+      band: -1,
       price: valueAxis ? value : reception,
       reception,
       value,
@@ -202,11 +220,13 @@ export function pricePassOption(input: {
     };
   }
   const reception = threatQuintilePrice(read.interceptionThreatSeconds);
-  const value = valueAxis
-    ? attemptValueAt(cell, threatBandIndex(read.interceptionThreatSeconds)) : 1;
+  const band = threatBandIndex(read.interceptionThreatSeconds);
+  const value = valueAxis ? attemptValueAt(cell, band) : 1;
   return {
     targetGid,
     infoClass: 'READ',
+    cell,
+    band,
     price: valueAxis ? value : reception,
     reception,
     value,
