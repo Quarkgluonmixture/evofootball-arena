@@ -272,7 +272,8 @@ export class League {
    * `createMatch` builds exactly the shipped match (X1's fingerprint gate).
    */
   matchFlags: Partial<Pick<MatchConfig,
-    'edsTouchCost' | 'edsPerceivedDefence' | 'edsPerceivedChoice' | 'edsAwareness' | 'traceChoice'
+    'edsTouchCost' | 'edsPerceivedDefence' | 'edsPerceivedChoice' | 'edsValueAxis'
+    | 'edsAwareness' | 'traceChoice'
   >> = {};
 
   constructor(cfg: { seed: number; matchDuration?: number }) {

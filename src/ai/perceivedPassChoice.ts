@@ -33,6 +33,7 @@
  */
 import {
   OPTION_SPACE_PRIOR_MARGINAL, optionSpacePriorAt, THREAT_CALIBRATION,
+  VALUE_ZONE_MARGINAL, valueZoneAt,
 } from './passPrior';
 import { evaluatePassOption } from './passOptionValue';
 import type { PerceptionSnapshot } from './perceptionSnapshot';
@@ -47,8 +48,17 @@ export type PassInfoClass = 'READ' | 'SEEN-UNREAD' | 'UNSEEN';
 export interface PricedPassOption {
   readonly targetGid: number;
   readonly infoClass: PassInfoClass;
-  /** Measured probability the intended man ends up in clean control. */
+  /**
+   * The option's measured price. Without the value axis: the probability the
+   * intended man ends up in clean control. With it (E5): that probability times
+   * the measured value of arriving there — P̂ × V̂, the product E5a's V4 gate
+   * validated against the conjunction the world produced.
+   */
   readonly price: number;
+  /** The reception half of the price, always — reported so V is separable. */
+  readonly reception: number;
+  /** The value half; 1 when the value axis is off, so `price = reception × value`. */
+  readonly value: number;
   readonly executable: boolean;
   /** PERCEIVED distance; NaN for UNSEEN — he does not know, and it must not read as 0. */
   readonly distance: number;
@@ -57,6 +67,9 @@ export interface PricedPassOption {
 export interface PerceivedPassChoice {
   readonly targetGid: number;
   readonly price: number;
+  /** The winning option's two halves; `value` is 1 when the axis is off. */
+  readonly reception: number;
+  readonly value: number;
   readonly infoClass: PassInfoClass;
   readonly distance: number;
   readonly options: readonly PricedPassOption[];
@@ -73,6 +86,8 @@ export interface PerceivedPassChoiceInput {
   readonly candidateGids: readonly number[];
   readonly attackDir: 1 | -1;
   readonly reachProfiles: ReadonlyMap<number, KnownReachProfile>;
+  /** E5 (ruling #15.3): compose measured value into the price. Default off. */
+  readonly valueAxis?: boolean;
 }
 
 const distanceBetween = (
@@ -116,38 +131,59 @@ export function pricePassOption(input: {
   readonly targetGid: number;
   readonly attackDir: 1 | -1;
   readonly reachProfiles: ReadonlyMap<number, KnownReachProfile>;
+  /** E5: compose the measured value half. Off ⇒ the E3R price, bit for bit. */
+  readonly valueAxis?: boolean;
 }): PricedPassOption {
   const { snapshot, passerGid, targetGid, attackDir, reachProfiles } = input;
+  const valueAxis = input.valueAxis ?? false;
   const seenTarget = snapshot.players.find((entry) => entry.gid === targetGid);
   const seenPasser = snapshot.players.find((entry) => entry.gid === passerGid);
   if (!seenTarget || !seenPasser) {
     const row = OPTION_SPACE_PRIOR_MARGINAL;
+    const reception = row.reachedRate * row.cleanGivenReached;
+    // A man he cannot see is a man whose ZONE he cannot know either, so the
+    // value half takes the marginal exactly as the reception half does.
+    const value = valueAxis ? VALUE_ZONE_MARGINAL.shotRate : 1;
     return {
       targetGid,
       infoClass: 'UNSEEN',
-      price: row.reachedRate * row.cleanGivenReached,
+      price: reception * value,
+      reception,
+      value,
       executable: false,
       distance: Number.NaN,
     };
   }
   const distance = distanceBetween(seenPasser.pos, seenTarget.pos);
-  const value = evaluatePassOption({
+  // E5: the value half reads the PERCEIVED position — the table was measured on
+  // true positions and is read with what this body knows, the same arrangement
+  // the distance band has had since E2a-2.
+  const valueRow = valueAxis
+    ? valueZoneAt(seenTarget.pos.x * attackDir, seenTarget.pos.y) : null;
+  const value = valueRow === null ? 1 : valueRow.shotRate;
+  const read = evaluatePassOption({
     snapshot, passerGid, targetGid, powerMultiplier: 1, attackDir, reachProfiles,
   });
-  if (value === null) {
+  if (read === null) {
     const row = optionSpacePriorAt(distance);
+    const reception = row.reachedRate * row.cleanGivenReached;
     return {
       targetGid,
       infoClass: 'SEEN-UNREAD',
-      price: row.reachedRate * row.cleanGivenReached,
+      price: reception * value,
+      reception,
+      value,
       executable: true,
       distance,
     };
   }
+  const reception = threatQuintilePrice(read.interceptionThreatSeconds);
   return {
     targetGid,
     infoClass: 'READ',
-    price: threatQuintilePrice(value.interceptionThreatSeconds),
+    price: reception * value,
+    reception,
+    value,
     executable: true,
     distance,
   };
@@ -164,8 +200,9 @@ export function choosePerceivedPassTarget(
   input: PerceivedPassChoiceInput,
 ): PerceivedPassChoice | null {
   const { snapshot, passerGid, candidateGids, attackDir, reachProfiles } = input;
+  const valueAxis = input.valueAxis ?? false;
   const options = candidateGids.map((targetGid) => pricePassOption({
-    snapshot, passerGid, targetGid, attackDir, reachProfiles,
+    snapshot, passerGid, targetGid, attackDir, reachProfiles, valueAxis,
   }));
   const executable = options.filter((option) => option.executable);
   if (executable.length === 0) return null;
@@ -178,14 +215,18 @@ export function choosePerceivedPassTarget(
   let blindOutpricesBand = false;
   if (blind.length > 0) {
     blindOutpricesRead = blind[0].price > best.price;
+    // The band axis is composed the same way the price is, or the two sides of
+    // the comparison would be in different units the moment E5 is armed.
     const bestBand = Math.max(...executable.map((option) => (Number.isNaN(option.distance)
-      ? OPTION_SPACE_PRIOR_MARGINAL.receptionSuccessRate
-      : optionSpacePriorAt(option.distance).receptionSuccessRate)));
+      ? OPTION_SPACE_PRIOR_MARGINAL.receptionSuccessRate * option.value
+      : optionSpacePriorAt(option.distance).receptionSuccessRate * option.value)));
     blindOutpricesBand = blind[0].price > bestBand;
   }
   return {
     targetGid: best.targetGid,
     price: best.price,
+    reception: best.reception,
+    value: best.value,
     infoClass: best.infoClass,
     distance: best.distance,
     options,

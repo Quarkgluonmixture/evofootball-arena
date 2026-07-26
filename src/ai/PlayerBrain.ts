@@ -829,6 +829,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         candidateGids,
         attackDir: team.attackDir,
         reachProfiles,
+        valueAxis: match.edsValueAxis,
       });
     const chosen = choice === null ? null
       : team.players.find((mate) => mate.gid === choice.targetGid) ?? null;
@@ -858,6 +859,8 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         seenUnread: choice?.options.filter((o) => o.infoClass === 'SEEN-UNREAD').length ?? 0,
         unseen: choice?.options.filter((o) => o.infoClass === 'UNSEEN').length ?? 0,
         price: choice?.price ?? Number.NaN,
+        reception: choice?.reception ?? Number.NaN,
+        value: choice?.value ?? Number.NaN,
         distance: choice?.distance ?? Number.NaN,
         blindOutpricesRead: choice?.blindOutpricesRead ?? false,
         blindOutpricesBand: choice?.blindOutpricesBand ?? false,

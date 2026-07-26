@@ -213,6 +213,13 @@ export interface MatchConfig {
    */
   edsPerceivedChoice?: boolean;
   /**
+   * EDS E5 (docs/world-model/EDS-E5-VALUE-AXIS.md, ruling #15.3): the chooser's
+   * price becomes measured-P × measured-V — the reception probability times the
+   * censused value of arriving in that zone. Off in every production path, and
+   * with it off `pricePassOption` returns the E3R price bit for bit.
+   */
+  edsValueAxis?: boolean;
+  /**
    * EDS E3R2 (ruling #13.3): the EAGER perception path, kept as the reference
    * implementation the lazy one is pinned against. Perception is PULL by
    * default — a body knows what its scans would have shown, computed at the
@@ -241,6 +248,9 @@ export interface PassChoiceTraceEntry {
   readonly seenUnread: number;
   readonly unseen: number;
   readonly price: number;
+  /** E5: the two halves of the price, so the audit can read V separately. */
+  readonly reception: number;
+  readonly value: number;
   readonly distance: number;
   readonly blindOutpricesRead: boolean;
   readonly blindOutpricesBand: boolean;
@@ -330,6 +340,8 @@ export class Match {
   readonly perceivedBalls = new Map<number, ObservedBall | null>();
   /** E3: the passer's own chooser. Dormant unless a probe or an audit arms it. */
   readonly edsPerceivedChoice: boolean;
+  /** E5: the chooser's price gains its measured value half. Dormant by default. */
+  readonly edsValueAxis: boolean;
   /** E3R2: run perception eagerly (the pinned reference), not on demand. */
   readonly edsEagerPerception: boolean;
   readonly traceChoice: boolean;
@@ -498,6 +510,7 @@ export class Match {
     this.edsTouchCost = cfg.edsTouchCost ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
+    this.edsValueAxis = cfg.edsValueAxis ?? EDS_BUNDLE_ARMED;
     this.edsEagerPerception = cfg.edsEagerPerception ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     this.edsAwareness = cfg.edsAwareness ?? 0.8;

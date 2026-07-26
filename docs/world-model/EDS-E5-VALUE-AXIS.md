@@ -461,6 +461,110 @@ construction. Answering it honestly costs ~45% more simulation for a
 reported-only number. The probe now says so in its own output instead of
 printing a duplicate that looks like an answer.
 
-### 7.2 E5b
+### 7.2 E5b — RUN 2026-07-26: **30 of 32 gates PASS, the CENTRAL HYPOTHESIS FAILS. Queue stops; the fork is the commander's**
 
-*(frozen on completion)*
+Probe `scripts/probes/eds-e5b-value-axis-audit.ts`, world SHA
+`c3ee6659…c7c0`, world-deterministic across two invocations with perf reported
+beside it, fingerprint `57b0bdab…c673` unchanged, 759/759, every flag default
+OFF, nothing shipped.
+
+**Everything the audit was for, except the thing it was for, passed.**
+
+```text
+Y4V flag-off identity   0 disagreements / 10,292 comparisons · 7/7 banked
+                        families bit-identical · G1 and G2 re-hold
+§2 band                 goals +3.01% · crosses −5.94% · headers +1.26%
+                        long balls −7.66% · cutbacks +4.80%   ALL INSIDE
+                        and the flags-off arm reproduces all five baselines to 4 dp
+no-strict-dominance     25.09%            (band 20–80%)
+X5V perf                5.258 → 6.204 µs = 1.180x mean · p95 1.144x
+                        (budget 1.25 / 1.50)
+```
+
+The composed bundle is a **healthier** equilibrium than the one E3R banked:
+goals +3.01% against E3R's +2.20%, long balls DOWN 7.66% where E3R was +8.06%.
+
+**And the E4 round-1 table reproduces EXACTLY.** Arms 0 and 1 are its staging,
+and their first two seasons return all nine of the commander's cited numbers to
+the digit (forward 58.56/53.47%, third-man 10.014/6.437, overlap 0.176/0.056,
+shots 13.47/12.66, chain 5.88/6.62). Ruling #15 rests on numbers that reproduce.
+
+#### H — the central hypothesis, over 24 seasons, three paired arms
+
+```text
+                     flags-off    v1 bundle      + value axis      gate
+third-man releases      6.851    4.130 (0.603x)  3.231 (0.472x)   >=0.85x  ⛔
+overlap releases       0.0927   0.0687 (0.741x) 0.0775 (0.835x)   >=0.70x  ✅
+forward-pass share     59.81%   57.24% (−2.57)  56.75% (−3.06pp)  >=−2.0pp ⛔
+shots                   12.52   13.18 (1.053x)  14.71 (1.175x)    >=0.97x  ✅
+```
+
+**⛔ H1 and H3 fail, and neither failure is a staging artifact.** On third-man
+the value arm is *worse than the v1 bundle it was meant to repair* — 0.472×
+against 0.603× — so no reading of the reference makes it a recovery. On the
+forward share it is likewise worse than v1 (−3.06pp vs −2.57pp). Per ruling #15
+(c) and §6 this is reported, **not repaired**: no bonuses go back in, no horizon
+is widened, no outcome definition is swapped after seeing this.
+
+**What measured value DID do**, reported in full because it is the shape of the
+finding:
+
+```text
+                   flags-off      v1     + value
+passes / match         80.80    70.67     63.88     circulates far less
+longest pass chain      4.94     4.42      3.84     shorter moves
+give-and-gos          0.4572   0.3985    0.5335     ABOVE flags-off
+long balls              5.90     5.61      4.14     fewer
+goals                   2.78     3.37      3.13
+pass completion       72.61%   69.83%    70.00%
+one-touch share       14.54%   13.75%    12.88%
+```
+
+The value axis produces a **more direct, more shooting, less circulating** game:
++17.5% shots and give-and-gos above the flags-off level, on a healthy §2 band.
+It did not fail by being inert — the composed argmax differs from the legacy
+brain in 55.9% of live choices (E3R: 61.1%), the mean chosen price decomposes
+into reception 0.658 × value 0.0808 against a 0.0715 marginal, so the chooser is
+genuinely landing in above-average zones. It failed at the specific thing it was
+predicted to fix.
+
+#### Why, as far as the evidence supports, and no further
+
+Ruling #15 (c) pre-registered the FAIL mode as *"the value definition is myopic
+— one-step V cannot see two-pass patterns"*, and the shape of the result matches
+that prediction closely enough to say so:
+
+* **Third-man play is definitionally a two-pass pattern** (`Match.ts`: the
+  counter fires on a BOUNCE to the licensed runner). A V measured as *P(shot
+  within 4.0 s of arriving here)* rewards the man nearest a shot, never the man
+  whose touch releases someone else — the third man's value accrues to the
+  NEXT reception, which this V cannot see. Every other combination counter that
+  is one-pass-shaped (overlap, give-and-go) recovered or improved.
+* **E5a's own registered limitation is the second candidate, and it points the
+  same way**: both attacking-third-inner cells missed the 400-reception floor
+  and take the 7.15% marginal, *below* the outer-third cells that were measured.
+  The chooser is therefore under-pricing the most advanced men — which is
+  exactly the axis H3 measures. This was named in E5a §7.1 before E5b ran, and
+  it is a sampling defect, not a keying choice to be revisited after results.
+
+Both readings are consistent with the data; this audit does not separate them,
+and separating them is a new experiment, not a paragraph.
+
+#### Reported, never gated
+
+```text
+route mix under the bundle   crosses 2.342 · headers 9.218 · long balls 5.729
+                             · cutbacks 3.998 · chosen long share 20.36%
+                             · mean chosen distance 13.23 m
+live classes                 READ 90.51 · SEEN-UNREAD 0.06 · UNSEEN 9.43%
+look-pressure                read axis 5.61% · band axis 2.43%
+no-executable share          5.02%
+```
+
+#### Disposition
+
+Per §6 and ruling #15 (c): **nothing ships, both v1 flags stay default OFF,
+`edsValueAxis` stays default OFF and out of the preview toggle** (pinned by
+`tests/valueAxis.test.ts`), **E4 round 2 does not open**, and the fork returns to
+the commander. The V table, the composition and the audit harness are banked and
+cost nothing to keep.
