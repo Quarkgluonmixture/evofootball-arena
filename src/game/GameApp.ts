@@ -27,6 +27,7 @@ function loadLighting(): Lighting {
     return DEFAULT_LIGHTING;
   }
 }
+import { EDS_PREVIEW_FLAGS, readEdsPreview, writeEdsPreview } from './edsPreview';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
 import {
@@ -367,7 +368,7 @@ export class GameApp implements GameActions {
     // shipped default.
     const emergentSticky = readEmergentPos();
     setEmergentPos(emergentSticky);
-    this.settingsScreen = new SettingsScreen(stage, this, this.flags, emergentSticky);
+    this.settingsScreen = new SettingsScreen(stage, this, this.flags, emergentSticky, this.edsPreview);
     this.evolutionScreen = new EvolutionScreen(stage);
     this.evolutionScreen.onShowCeremony = () => this.showCeremony();
     this.playerScreen = new PlayerScreen(stage);
@@ -409,6 +410,7 @@ export class GameApp implements GameActions {
     // ---- League ----
     const loaded = hasSave() ? loadLeague() : null;
     this.league = loaded ?? new League({ seed: DEFAULT_SEED });
+    this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
     this.loadNextFixture();
     this.feed.pushSystem(loaded ? '💾 Loaded saved league.' : `🌱 New league (seed ${this.league.seed}). Watch the match, or simulate a season.`);
     this.left.setSpeedUI(this.paused, this.speed);
@@ -1165,6 +1167,7 @@ export class GameApp implements GameActions {
       }
       try {
         this.league = League.fromJSON(msg.league);
+        this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
       } catch (err) {
         console.error('Sim worker result rejected:', err);
         fallback();
@@ -1194,6 +1197,25 @@ export class GameApp implements GameActions {
 
   setFlag(key: keyof UiFlags, v: boolean): void {
     this.flags[key] = v;
+  }
+
+  /**
+   * E4-PREP: arm or disarm the EDS bundle for matches STARTED from now on. The
+   * flags are Match construction config — a match already in flight keeps the
+   * brain it kicked off with, which is also what makes the A/B clean.
+   */
+  setEdsPreview(v: boolean): void {
+    this.edsPreview = v;
+    this.applyEdsPreview();
+    writeEdsPreview(v);
+    this.feed.pushSystem(v
+      ? '👁 EDS preview ON — from the next kickoff, players choose passes from what they SEE.'
+      : '👁 EDS preview OFF — the legacy lane-score brain returns at the next kickoff.');
+  }
+
+  /** Push the current choice onto whichever League object is live right now. */
+  private applyEdsPreview(): void {
+    this.league.matchFlags = this.edsPreview ? { ...EDS_PREVIEW_FLAGS } : {};
   }
 
   setEmergentPos(v: boolean): void {
@@ -1419,6 +1441,7 @@ export class GameApp implements GameActions {
       return;
     }
     this.league = loaded;
+    this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
     this.loadNextFixture();
     this.feed.pushSystem('💾 League loaded.');
     this.leagueScreen.refreshIfVisible(this.league);
@@ -1464,6 +1487,7 @@ export class GameApp implements GameActions {
           return;
         }
         this.league = league;
+        this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
         this.loadNextFixture();
         this.feed.pushSystem(
           `📥 League imported — Gen ${league.generation}, seed ${league.seed}. Press Save to keep it.`,
@@ -1481,6 +1505,7 @@ export class GameApp implements GameActions {
     if (this.busy) return;
     const seed = parseSeed(seedText);
     this.league = new League({ seed });
+    this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
     this.loadNextFixture();
     this.paused = true;
     this.left.setSpeedUI(this.paused, this.speed);
@@ -1494,6 +1519,7 @@ export class GameApp implements GameActions {
     if (!window.confirm(t('Delete the save and start over?'))) return;
     clearSave();
     this.league = new League({ seed: DEFAULT_SEED });
+    this.applyEdsPreview(); // E4-PREP: every League swap re-arms the user's choice
     this.loadNextFixture();
     this.paused = true;
     this.left.setSpeedUI(this.paused, this.speed);
@@ -1504,6 +1530,8 @@ export class GameApp implements GameActions {
 
   /* ---------------- 3D view & replay actions ---------------- */
 
+  /** E4-PREP: the user's EDS preview choice, sticky across reloads. */
+  private edsPreview = readEdsPreview();
   /** F0 style arm + lighting the 3D view is built with (defaults = shipped). */
   private styleId: StyleId = DEFAULT_STYLE;
   private lighting: Lighting = loadLighting();

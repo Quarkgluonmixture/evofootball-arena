@@ -8,6 +8,8 @@ import {
 } from '../src/ai/passPrior';
 import type { PerceptionSnapshot } from '../src/ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../src/ai/reachability';
+import { EDS_PREVIEW_FLAGS, readEdsPreview } from '../src/game/edsPreview';
+import { League } from '../src/sim/League';
 import { Match } from '../src/sim/Match';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
@@ -199,6 +201,30 @@ describe('EDS E3 — perceived pass choice', () => {
     const plain = matchOf(4242);
     plain.runToCompletion();
     expect(signatureOf(alone)).not.toBe(signatureOf(plain));
+  });
+
+  it('E4-PREP: the preview is OFF by default, all the way down to the fixture', () => {
+    // Ruling #14.3 asked for a default-off pin, and the thing that must be
+    // pinned is the whole path: a fresh League carries no match flags, and the
+    // match it builds for a real fixture has the bundle off. If a future edit
+    // ever makes the preview sticky-on or arms it at construction, this fails.
+    // The persisted choice itself defaults OFF (no storage in this env).
+    expect(readEdsPreview()).toBe(false);
+    const league = new League({ seed: 20260726 });
+    expect(league.matchFlags).toEqual({});
+    const fixture = league.nextFixture()!;
+    const match = league.createMatch(fixture);
+    expect(match.edsPerceivedChoice).toBe(false);
+    expect(match.edsPerceivedDefence).toBe(false);
+    expect(match.edsTouchCost).toBe(false); // out of the v1 set entirely (ruling #12.3)
+    expect(match.traceChoice).toBe(false);
+    // And when the user DOES arm it, both flags go together — never one alone,
+    // because the ablation showed the chooser alone costs 21.69% of the goals.
+    league.matchFlags = { ...EDS_PREVIEW_FLAGS };
+    const armed = league.createMatch(fixture);
+    expect(armed.edsPerceivedChoice).toBe(true);
+    expect(armed.edsPerceivedDefence).toBe(true);
+    expect(armed.edsTouchCost).toBe(false);
   });
 
   it('the live chooser really does choose: it diverges from the lane-score brain', () => {

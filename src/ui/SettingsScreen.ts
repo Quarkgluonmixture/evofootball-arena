@@ -29,7 +29,13 @@ export class SettingsScreen {
   readonly root: HTMLElement;
   private visible = false;
 
-  constructor(host: HTMLElement, actions: GameActions, flags: UiFlags, emergentInitial = false) {
+  constructor(
+    host: HTMLElement,
+    actions: GameActions,
+    flags: UiFlags,
+    emergentInitial = false,
+    edsPreviewInitial = false,
+  ) {
     this.root = el('div');
     this.root.id = 'settings-screen';
     this.root.classList.add('hidden');
@@ -93,6 +99,12 @@ export class SettingsScreen {
       (v) => actions.setEmergentPos(v)));
     exp.appendChild(el('div', 'muted',
       t('Positions grow from role + genes + the live game instead of fixed formation tables. To judge it: enable, START A NEW LEAGUE, watch a few gen-0 matches (rough), let it evolve ~10 seasons, then watch again — good shape should EMERGE. Old saves were evolved for the fixed system.')));
+    // EDS E4-PREP (ruling #14.3): the play-test instrument. Default OFF — this
+    // bundle has passed every probe and not yet the user's eyes.
+    exp.appendChild(checkbox(t('EDS preview: players act on what they SEE'), edsPreviewInitial,
+      (v) => actions.setEdsPreview(v)));
+    exp.appendChild(el('div', 'muted',
+      t('The passer picks his target from his OWN view (a man he cannot see cannot be passed to) and the defender reads his own view of the ball. Takes effect at the NEXT kickoff, so you can A/B it mid-season. Measured: play gets CALMER — later tackles, better-supported passes, fewer loose-ball scrambles — and a full match spends less of the stamina tank. Judge whether calm feels like football.')));
     this.root.appendChild(exp);
   }
 
