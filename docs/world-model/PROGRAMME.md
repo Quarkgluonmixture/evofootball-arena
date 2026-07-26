@@ -674,6 +674,55 @@ generalises.
 >    REMOVES a composition rather than adding one.
 > 5. **Seat 2 (gaze) continues to HOLD** per #16.5 — same reasoning,
 >    now with a named axis defect instead of an unattributed one.
+>
+> **COMMANDER RULING #18 (2026-07-26 — E5d Phase 0: the axis re-ranks;
+> the two fired gates indict the old table and the census population,
+> not the finding; Phase 1 constrained):**
+>
+> 1. **The #17.4 question is answered YES, decisively.** The attempt
+>    axis restores the sign the composition lost (+2.02pp vs reality's
+>    +3.18pp vs the coin-flip +0.05pp) and 70 real decisions changed
+>    hands (argmax picks the authorized runner 23.78%→39.33%, gate
+>    +5.0pp). The non-PASS verdict stands as emitted; neither fired
+>    gate touches R1/R2, which are within-population comparisons on
+>    Phase 0's own forks.
+> 2. **X6's fire is ACCEPTED and it closes the E5a file:** staging
+>    proven clean (7,864/7,864 exact) while the rate fired because
+>    E5a's value window started at touch+12 against its own contract's
+>    "within 240 of kick" — that plus the zero-value convention
+>    depressed the banked V table by 1.91pp (relative 27%), certified
+>    in code and quantified by D5 (18.7% of arrivals never adjudicated
+>    pay 6.04%; missed balls pay 2.85%, not 0). **E5a's table is now
+>    fully SUPERSEDED with cause.** The V4 milestone claim survives on
+>    its own staging; the table does not. The executor's disclosure
+>    that X6 was twice written as a mixed gate is codified in
+>    PROBE-CONTRACTS: staging and definition pin SEPARATELY, one gate
+>    per claim.
+> 3. **C3's near-miss is a DESIGN fact and the third appearance of the
+>    house law: a table is honest only on the population it is
+>    deployed on.** E2a-1 censused played passes and mispriced unchosen
+>    options; E5a censused general touches and overprices the control
+>    arm by 2.08pp exactly at licence-triggered moments — where the
+>    chooser actually runs. Do not widen the 2.0pp band; align the
+>    population.
+> 4. **Phase 1 is AUTHORIZED under these constraints (executor drafts,
+>    Autonomous mode):** (a) the census population IS the deployment
+>    population — licence-triggered decision moments, full candidate
+>    set, fork-and-force; (b) the value window runs [kick, kick+240]
+>    from the attempt per contract, every fork's window simulated, no
+>    adjudication conditioning anywhere; (c) features stay
+>    destination-cell × threat-band (the validated axes) — the pattern-
+>    state feature is NOT added preemptively: at deployment-population
+>    frequencies part of the +3.4pp premium is absorbed naturally, and
+>    the feature question returns ONLY if third-man still misses;
+>    (d) gates: held-out calibration on DEPLOYMENT moments, both arms,
+>    powered, band 2.0pp; staging/definition gates separated per
+>    PROBE-CONTRACTS; the E5b watchability probe verbatim; §2 band,
+>    dominance, perf pins, Y4V power-off identity; (e) table as SHA'd
+>    data, chooser axis swap, then **E4 ROUND 2**.
+> 5. **Seat 2 (gaze) continues to HOLD.** Same reasoning as #16.5; the
+>    value seat now has a proven-re-ranking axis awaiting its honest
+>    census, which is the last step before the user's eyes.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 

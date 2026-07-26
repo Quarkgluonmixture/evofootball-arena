@@ -60,6 +60,16 @@ Each gate belongs to exactly one type; state which when you write the contract.
   FAIL — while the pre-registered robustness seed flipped the same statistic
   to 1.5321 and all three mechanism discriminators said diversity ROSE.)*
 
+**Reproduction gates pin STAGING and DEFINITIONS separately (ruling #18,
+2026-07-26): one gate per claim.** A staging gate pins counts, inputs and
+moment sets (drift detection); a definition gate pins outcome windows and
+conventions (redefinition detection). A gate that mixes both cannot tell
+drift from redefinition and will either be unsatisfiable or fire
+ambiguously. *(Registered from EDS E5d X6: counts matched 7,864/7,864 —
+staging clean — while the rate fired because E5a's own window start
+violated its own contract; the mixed gate had already needed one pre-run
+amendment for being unsatisfiable.)*
+
 **Watchability instruments (ruling #15, 2026-07-26): every §2-band run
 REPORTS forward-pass share, third-man releases, overlap releases,
 give-and-gos, shots and longest pass chain.** E3R passed 29 gates while
