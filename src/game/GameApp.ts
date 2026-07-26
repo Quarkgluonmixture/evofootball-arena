@@ -27,7 +27,9 @@ function loadLighting(): Lighting {
     return DEFAULT_LIGHTING;
   }
 }
-import { EDS_PREVIEW_FLAGS, readEdsPreview, writeEdsPreview } from './edsPreview';
+import {
+  edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
+} from './edsPreview';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
 import type { PerceptionView } from '../render3d/PerceptionSandbox3D';
 import {
@@ -1222,18 +1224,22 @@ export class GameApp implements GameActions {
    * flags are Match construction config — a match already in flight keeps the
    * brain it kicked off with, which is also what makes the A/B clean.
    */
-  setEdsPreview(v: boolean): void {
-    this.edsPreview = v;
+  setEdsPreview(mode: EdsPreviewMode): void {
+    this.edsPreview = mode;
     this.applyEdsPreview();
-    writeEdsPreview(v);
-    this.feed.pushSystem(v
-      ? '👁 EDS preview ON — from the next kickoff, players choose passes from what they SEE.'
-      : '👁 EDS preview OFF — the legacy lane-score brain returns at the next kickoff.');
+    writeEdsPreviewMode(mode);
+    this.feed.pushSystem(
+      mode === 'triple'
+        ? '👁 EDS preview ON + VALUE — from the next kickoff, players choose passes from what they SEE and price them by measured shot value.'
+        : mode === 'v1'
+          ? '👁 EDS preview ON — from the next kickoff, players choose passes from what they SEE.'
+          : '👁 EDS preview OFF — the legacy lane-score brain returns at the next kickoff.',
+    );
   }
 
   /** Push the current choice onto whichever League object is live right now. */
   private applyEdsPreview(): void {
-    this.league.matchFlags = this.edsPreview ? { ...EDS_PREVIEW_FLAGS } : {};
+    this.league.matchFlags = edsPreviewFlags(this.edsPreview);
   }
 
   setEmergentPos(v: boolean): void {
@@ -1549,7 +1555,7 @@ export class GameApp implements GameActions {
   /* ---------------- 3D view & replay actions ---------------- */
 
   /** E4-PREP: the user's EDS preview choice, sticky across reloads. */
-  private edsPreview = readEdsPreview();
+  private edsPreview: EdsPreviewMode = readEdsPreviewMode();
   /** F0 style arm + lighting the 3D view is built with (defaults = shipped). */
   private styleId: StyleId = DEFAULT_STYLE;
   private lighting: Lighting = loadLighting();

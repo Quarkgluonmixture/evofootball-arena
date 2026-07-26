@@ -1,6 +1,7 @@
 import type { CameraMode } from '../render3d/CameraController';
 import type { Lighting } from '../render3d/stylePresets';
 import type { FxQuality } from '../render3d/FxSystem';
+import type { EdsPreviewMode } from '../game/edsPreview';
 
 export type ViewMode = '2d' | '3d';
 export type { FxQuality };
@@ -58,8 +59,12 @@ export interface GameActions {
    * fixed formation tables). Affects new sims incl. evolution — enable, then
    * start a fresh league for a clean test. */
   setEmergentPos(v: boolean): void;
-  /** E4-PREP (ruling #14.3): arm the EDS bundle for matches from the next kickoff. */
-  setEdsPreview(v: boolean): void;
+  /**
+   * E4-PREP (ruling #14.3), extended by #22.5: arm one of the AUDITED preview
+   * bundles for matches from the next kickoff. A mode, not a set of switches —
+   * only combinations a pre-registered audit actually ran are reachable.
+   */
+  setEdsPreview(mode: EdsPreviewMode): void;
   toggleLeagueScreen(): void;
   /** Pop the tactical-DNA clash for the current match (Phase 33: the scoreboard is the button). */
   toggleClash(): void;

@@ -1,6 +1,7 @@
 import { button, checkbox, el } from './dom';
 import { lang, setLang, t } from './i18n';
 import type { GameActions, UiFlags } from './actions';
+import type { EdsPreviewMode } from '../game/edsPreview';
 
 const FLAG_LABELS: Array<[keyof UiFlags, string]> = [
   ['actionLabels', t('Player action labels')],
@@ -34,7 +35,7 @@ export class SettingsScreen {
     actions: GameActions,
     flags: UiFlags,
     emergentInitial = false,
-    edsPreviewInitial = false,
+    edsPreviewInitial: EdsPreviewMode = 'off',
   ) {
     this.root = el('div');
     this.root.id = 'settings-screen';
@@ -99,12 +100,30 @@ export class SettingsScreen {
       (v) => actions.setEmergentPos(v)));
     exp.appendChild(el('div', 'muted',
       t('Positions grow from role + genes + the live game instead of fixed formation tables. To judge it: enable, START A NEW LEAGUE, watch a few gen-0 matches (rough), let it evolve ~10 seasons, then watch again — good shape should EMERGE. Old saves were evolved for the fixed system.')));
-    // EDS E4-PREP (ruling #14.3): the play-test instrument. Default OFF — this
-    // bundle has passed every probe and not yet the user's eyes.
-    exp.appendChild(checkbox(t('EDS preview: players act on what they SEE'), edsPreviewInitial,
-      (v) => actions.setEdsPreview(v)));
+    // EDS E4-PREP (ruling #14.3), extended to the audited TRIPLE by #22.5: the
+    // play-test instrument. Default OFF — all of this has passed its probes and
+    // none of it has passed the user's eyes.
+    //
+    // Two checkboxes, but only THREE states are reachable: off, the v1 pair, and
+    // the pair plus the value axis. The value axis alone has never been audited,
+    // so arming it arms the pair, and disarming the pair disarms it. The mode is
+    // what leaves this screen; the boxes are only how it is typed.
+    const previewBox = checkbox(t('EDS preview: players act on what they SEE'),
+      edsPreviewInitial !== 'off', (v) => setMode(v ? 'v1' : 'off'));
+    const valueBox = checkbox(t('  ↳ …and price passes by measured shot value'),
+      edsPreviewInitial === 'triple', (v) => setMode(v ? 'triple' : 'v1'));
+    const input = (wrap: HTMLElement) => wrap.querySelector('input') as HTMLInputElement;
+    const setMode = (mode: EdsPreviewMode) => {
+      input(previewBox).checked = mode !== 'off';
+      input(valueBox).checked = mode === 'triple';
+      actions.setEdsPreview(mode);
+    };
+    exp.appendChild(previewBox);
     exp.appendChild(el('div', 'muted',
       t('The passer picks his target from his OWN view (a man he cannot see cannot be passed to) and the defender reads his own view of the ball. Takes effect at the NEXT kickoff, so you can A/B it mid-season. Measured: play gets CALMER — later tackles, better-supported passes, fewer loose-ball scrambles — and a full match spends less of the stamina tank. Judge whether calm feels like football.')));
+    exp.appendChild(valueBox);
+    exp.appendChild(el('div', 'muted',
+      t('On top of the above: the passer prices every option by how often that pass has actually LED TO A SHOT, instead of by how likely it is to arrive. Measured: a more DIRECT game — more forward passes than the legacy brain, shots +22%, goals unchanged — but markedly fewer slow-developing wide patterns (an overlap release roughly halves). The question only you can answer is whether the direct game is better football.')));
     this.root.appendChild(exp);
   }
 
