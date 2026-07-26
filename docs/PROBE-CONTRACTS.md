@@ -59,6 +59,15 @@ Each gate belongs to exactly one type; state which when you write the contract.
   from EDS E3R CE2, 2026-07-25: a one-seed style-entropy floor read 0.5797 —
   FAIL — while the pre-registered robustness seed flipped the same statistic
   to 1.5321 and all three mechanism discriminators said diversity ROSE.)*
+
+**Watchability instruments (ruling #15, 2026-07-26): every §2-band run
+REPORTS forward-pass share, third-man releases, overlap releases,
+give-and-gos, shots and longest pass chain.** E3R passed 29 gates while
+watchability measurably dropped (third-man −35.7%, shots −6.0%) because no
+gate could see it — the user's eyes sat at the END of the chain, and these
+six counters cost minutes. Reported, never gated: the user's eyes remain
+the only watchability judge; the instruments exist so a probe can flag
+what previously only a play session could.
 - **Equivalence / flatness** — the claim is *"no effect"* / *"no longer rises"*:
   must be pre-registered as an INTERVAL test (an explicit equivalence band) with
   a sample size computed against the predicted effect. A strict point inequality

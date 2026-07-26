@@ -520,6 +520,58 @@ generalises.
 >    scrambles) and a full match no longer spends the stamina tank
 >    (0.9697 vs 0.93) — judge whether calm feels like football or feels
 >    flat; fatigue re-seat is already queued if shipped.
+>
+> **COMMANDER RULING #15 (2026-07-26 — E4 round 1 disposed; the value
+> half; drafted on the executor's own numbers, no re-derivation):**
+>
+> 1. **E4 round 1: no ship, no revert — the direction is affirmed and
+>    the flags stay default-OFF.** E4 becomes an ITERATIVE gate: the
+>    user plays each round on the preview toggle; v1 ships when their
+>    eyes say so, likely after the value seat lands. The user's three
+>    observations map one-to-one onto the three named seats — the map
+>    predicted the play experience, which is what "方向没问题" means
+>    operationally.
+> 2. **The two-judges seam finding is ACCEPTED as the round's central
+>    fact:** the E3 seam replaced WHO receives but left WHETHER/WHY on
+>    the legacy score, so the licence (legacy tactical layer: 2过1
+>    ×1.15+, third-man, overlap ×1.3, anti-back-pass ×0.55) and the
+>    delivery (argmax P(clean)) are granted by different judges — the
+>    overlap runner earns the pass, the ball goes to the safest man,
+>    combinations collapse (third-man −35.7%, overlap −68.0%, forward
+>    share −5.1pp, shots −6.0%). This is a SEAM artifact, not a
+>    perception failure: honest information + half an objective.
+> 3. **E5 — THE VALUE AXIS — is authorized (executor drafts, Autonomous
+>    mode).** Constraints: (a) V is MEASURED, never invented: the
+>    fork-and-force harness prices each candidate by WHAT HAPPENED NEXT
+>    (threat delta / shot-within-N / progression), censused over real
+>    decision moments, table committed as SHA'd data — the E2b-0
+>    exchange-rate move applied to the value half; circularity
+>    registered honestly (V is measured under legacy-brain play, like
+>    the prior census — sufficient for v1, revisit if E5's own audit
+>    says otherwise). (b) The decision becomes measured-P × measured-V
+>    composition, pre-registered exactly, no residual hand weights.
+>    (c) **The slice's central hypothesis, pre-registered:** measured
+>    value REPRODUCES combination play without the hand-coded bonuses —
+>    third-man/overlap counters recover toward flags-off levels because
+>    the third man stands in measured space, not because ×1.3 says so.
+>    PASS = the first hand-coded→measured replacement inside the brain,
+>    the emergence doctrine cashed in code; FAIL = the value definition
+>    is myopic (one-step V cannot see two-pass patterns) — report, do
+>    not bolt the old bonuses back on. (d) Narrow audit before E4 round
+>    2: §2 band + dominance + perf pins + the watchability instruments.
+> 4. **The gate-set gap is CODIFIED:** every future band carries the
+>    watchability instruments as REPORTED dimensions — forward-pass
+>    share, third-man releases, overlap releases, give-and-gos, shots,
+>    longest chain. 29 gates contained no watchability instrument while
+>    watchability measurably dropped; minutes of probe cost buy what
+>    only a play session could see. (PROBE-CONTRACTS note added.)
+> 5. **Seats 2 and 3 queued behind E5, in the user's priority order:**
+>    the gaze consumer (look-before-pass — A4's unpark condition "a
+>    live seam exists" is now MET; look-pressure measured at 6.59% of
+>    live pass moments), then C5's time dimension (hold-draw-release,
+>    one-touch vs control as priced choices, where ruling #12 already
+>    re-seated the touch cost). Each is its own slice with its own
+>    audit and E4 round.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
