@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
+  ATTEMPT_VALUE_BUCKET_FLOOR, ATTEMPT_VALUE_BUCKET_FLOORS, ATTEMPT_VALUE_CELL_TABLE,
+  ATTEMPT_VALUE_MARGINAL, ATTEMPT_VALUE_TABLE, attemptValueAt,
   OPTION_SPACE_PRIOR_MARGINAL, VALUE_ZONE_MARGINAL, VALUE_ZONE_SAMPLE_FLOOR,
   VALUE_ZONE_TABLE, VALUE_ZONE_TABLE_TOPPED, valueZoneAt, valueZoneIndex,
 } from '../src/ai/passPrior';
@@ -10,13 +12,14 @@ import { EDS_PREVIEW_FLAGS } from '../src/game/edsPreview';
 import { League } from '../src/sim/League';
 
 /**
- * EDS E5 — the perpetual pins for the value axis (contract §5, gate Y5).
+ * EDS E5 — the perpetual pins for the value axis.
  *
- * The composition claim is exactly one sentence: `price = P̂ × V̂`, with V̂ read
- * from committed census data at the PERCEIVED position, and with the flag off
- * the price is the E3R price bit for bit. Both halves of that sentence are
- * cheap to break silently — a stray weight, a truth read instead of a percept,
- * a default that arms itself — so both are pinned here every commit.
+ * The claim is now one sentence SHORTER than it was. E5d Phase 1 REMOVED the
+ * composition: armed, the price IS the attempt-value table's EV̂, read at the
+ * PERCEIVED position and the passer's own threat band; unarmed, it is the E3R
+ * reception price bit for bit. Both halves are cheap to break silently — a
+ * stray weight creeping back in, a truth read instead of a percept, a default
+ * that arms itself — so both are pinned here every commit.
  */
 
 const observer = (gid: number, x: number, y: number) => ({
@@ -91,24 +94,49 @@ describe('E5 value zones', () => {
   });
 });
 
-describe('E5 composition', () => {
-  it('is exactly P-hat x V-hat, with the halves reported separately', () => {
+describe('E5d attempt axis', () => {
+  it('IS the attempt value, with no composition left in the price', () => {
     const on = price(12, 2, true);
     expect(on.infoClass).toBe('READ');
-    expect(on.price).toBe(on.reception * on.value);
-    expect(on.value).toBe(valueZoneAt(12, 2).shotRate);
+    // The whole point of Phase 1: one measured quantity, not a product.
+    expect(on.price).toBe(on.value);
+    expect(on.price).not.toBe(on.reception * on.value);
+    // The reception half survives only as the record of what was removed.
+    expect(on.reception).toBe(price(12, 2, false).price);
   });
 
   it('reads the PERCEIVED position through the attack frame', () => {
     // The same body, the other way up the pitch: a man 25 m in front of a team
-    // attacking +x is 25 m BEHIND one attacking -x, and V must know that.
+    // attacking +x is 25 m BEHIND one attacking -x, and the cell must know it.
     const forwards = price(25, 0, true);
     const backwards = price(25, 0, true, -1);
-    expect(forwards.value).toBe(valueZoneAt(25, 0).shotRate);
-    expect(backwards.value).toBe(valueZoneAt(-25, 0).shotRate);
+    expect(forwards.value).not.toBe(backwards.value);
+    expect(forwards.value).toBeGreaterThan(backwards.value);
   });
 
-  it('prices an unseen man at both marginals, and never lets him be aimed at', () => {
+  it('takes the frozen ladder: bucket, then cell, then marginal', () => {
+    for (let cell = 0; cell < ATTEMPT_VALUE_CELL_TABLE.length; cell++) {
+      // A band the census could not fill falls to the cell rung.
+      for (let band = 0; band < 5; band++) {
+        const index = cell * 5 + band;
+        const bucket = ATTEMPT_VALUE_TABLE[index];
+        const expected = bucket.attempts >= ATTEMPT_VALUE_BUCKET_FLOORS[index]
+          ? bucket.shotRate
+          : ATTEMPT_VALUE_CELL_TABLE[cell].attempts >= ATTEMPT_VALUE_BUCKET_FLOOR
+            ? ATTEMPT_VALUE_CELL_TABLE[cell].shotRate
+            : ATTEMPT_VALUE_MARGINAL.shotRate;
+        expect(attemptValueAt(cell, band)).toBe(expected);
+      }
+      // No band at all (an unreadable corridor) skips straight to the cell.
+      expect(attemptValueAt(cell, -1)).toBe(
+        ATTEMPT_VALUE_CELL_TABLE[cell].attempts >= ATTEMPT_VALUE_BUCKET_FLOOR
+          ? ATTEMPT_VALUE_CELL_TABLE[cell].shotRate
+          : ATTEMPT_VALUE_MARGINAL.shotRate,
+      );
+    }
+  });
+
+  it('prices an unseen man at the attempt marginal, and never lets him be aimed at', () => {
     const blind = pricePassOption({
       snapshot: snapshotOf(12, 2),
       passerGid: 1,
@@ -122,8 +150,8 @@ describe('E5 composition', () => {
     expect(blind.reception).toBe(
       OPTION_SPACE_PRIOR_MARGINAL.reachedRate * OPTION_SPACE_PRIOR_MARGINAL.cleanGivenReached,
     );
-    expect(blind.value).toBe(VALUE_ZONE_MARGINAL.shotRate);
-    expect(blind.price).toBe(blind.reception * blind.value);
+    expect(blind.value).toBe(ATTEMPT_VALUE_MARGINAL.shotRate);
+    expect(blind.price).toBe(blind.value);
   });
 
   it('with the axis off is the E3R price, bit for bit', () => {

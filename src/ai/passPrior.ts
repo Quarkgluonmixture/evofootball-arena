@@ -416,8 +416,20 @@ export const VALUE_ZONE_SAMPLE_FLOOR = 400;
  * Censused on the population it is DEPLOYED on (ruling #18.3's house law, third
  * appearance): licence-triggered decision moments with the full candidate set.
  *
- * ATTEMPT TABLE SHA: (pending Phase 1's run — the probe re-derives and T1 pins it)
+ * Censused at 18,000 licence-triggered moments per set (69,532 attempts),
+ * held out against a FRESH 770,000+ split (69,363). Every gate passed: C2
+ * calibration on the deployment population reads −0.61pp on the pattern arm and
+ * +0.68pp on the control arm, the worst held-out bucket error is 1.23pp against
+ * a 5.0pp tolerance, and the axis discriminates 12.56pp.
+ *
+ * The per-bucket floors below are C3R's (ruling #19.2): a bucket is trusted only
+ * once 5.0pp means 3.4σ FOR THAT BUCKET, so the floor tracks the bucket's own
+ * rate rather than being one number borrowed from another experiment. Below its
+ * floor a bucket takes the cell rung, then the marginal.
+ *
+ * ATTEMPT TABLE SHA: e0e73505ad36feb2665e9a4229170eec52778e294ca32ead1b1f3aff6296ea6b
  */
+
 export interface AttemptValueRow {
   /** Destination zone 0..7; the CELL and MARGINAL rows use -1 for `band`. */
   readonly cell: number;
@@ -426,15 +438,82 @@ export interface AttemptValueRow {
   readonly shotRate: number;
 }
 
-/** Below this an (cell × band) bucket is not a measurement — the frozen floor. */
+/** The ladder's CELL rung — unchanged from Phase 1's frozen value. */
 export const ATTEMPT_VALUE_BUCKET_FLOOR = 200;
 export const ATTEMPT_VALUE_CELLS = 8;
 export const ATTEMPT_VALUE_BANDS = 5;
 
-export const ATTEMPT_VALUE_TABLE: readonly AttemptValueRow[] = [];
-export const ATTEMPT_VALUE_CELL_TABLE: readonly AttemptValueRow[] = [];
+/**
+ * C3R's per-bucket evidence floors (contract §7.1), frozen from the A-set rates
+ * banked in §6.1: n_min = max(200, ceil(2 p (1-p) (3.4/0.05)^2)).
+ */
+export const ATTEMPT_VALUE_BUCKET_FLOORS: readonly number[] = [
+  211, 200, 200, 200, 200, // cell 0
+  200, 200, 200, 462, 200, // cell 1
+  651, 493, 435, 388, 418, // cell 2
+  1074, 923, 610, 529, 450, // cell 3
+  883, 1007, 971, 780, 632, // cell 4
+  1376, 966, 1034, 1712, 585, // cell 5
+  2220, 1958, 1734, 1233, 1032, // cell 6
+  1918, 1585, 420, 200, 200, // cell 7
+];
+
+export const ATTEMPT_VALUE_TABLE: readonly AttemptValueRow[] = [
+  { cell: 0, band: 0, attempts: 2507, shotRate: 0.014758675708017551 },
+  { cell: 0, band: 1, attempts: 1192, shotRate: 0.01174496644295302 },
+  { cell: 0, band: 2, attempts: 1057, shotRate: 0.000946073793755913 },
+  { cell: 0, band: 3, attempts: 860, shotRate: 0.0069767441860465115 },
+  { cell: 0, band: 4, attempts: 520, shotRate: 0.0019230769230769232 },
+  { cell: 1, band: 0, attempts: 110, shotRate: 0.01818181818181818 },
+  { cell: 1, band: 1, attempts: 95, shotRate: 0 },
+  { cell: 1, band: 2, attempts: 93, shotRate: 0.010752688172043012 },
+  { cell: 1, band: 3, attempts: 103, shotRate: 0.009708737864077669 },
+  { cell: 1, band: 4, attempts: 134, shotRate: 0.007462686567164179 },
+  { cell: 2, band: 0, attempts: 3637, shotRate: 0.07533681605718999 },
+  { cell: 2, band: 1, attempts: 4786, shotRate: 0.058921855411617215 },
+  { cell: 2, band: 2, attempts: 5846, shotRate: 0.04772494013000342 },
+  { cell: 2, band: 3, attempts: 6212, shotRate: 0.048615582743077916 },
+  { cell: 2, band: 4, attempts: 5540, shotRate: 0.04530685920577617 },
+  { cell: 3, band: 0, attempts: 2038, shotRate: 0.12659470068694798 },
+  { cell: 3, band: 1, attempts: 2263, shotRate: 0.0905877154220062 },
+  { cell: 3, band: 2, attempts: 2220, shotRate: 0.07252252252252252 },
+  { cell: 3, band: 3, attempts: 2381, shotRate: 0.0621587568248635 },
+  { cell: 3, band: 4, attempts: 4452, shotRate: 0.04919137466307277 },
+  { cell: 4, band: 0, attempts: 386, shotRate: 0.16062176165803108 },
+  { cell: 4, band: 1, attempts: 671, shotRate: 0.13412816691505217 },
+  { cell: 4, band: 2, attempts: 956, shotRate: 0.11715481171548117 },
+  { cell: 4, band: 3, attempts: 1183, shotRate: 0.0989010989010989 },
+  { cell: 4, band: 4, attempts: 1437, shotRate: 0.08002783576896312 },
+  { cell: 5, band: 0, attempts: 372, shotRate: 0.1693548387096774 },
+  { cell: 5, band: 1, attempts: 316, shotRate: 0.16139240506329114 },
+  { cell: 5, band: 2, attempts: 301, shotRate: 0.12956810631229235 },
+  { cell: 5, band: 3, attempts: 276, shotRate: 0.14855072463768115 },
+  { cell: 5, band: 4, attempts: 263, shotRate: 0.08745247148288973 },
+  { cell: 6, band: 0, attempts: 65, shotRate: 0.5846153846153846 },
+  { cell: 6, band: 1, attempts: 145, shotRate: 0.4068965517241379 },
+  { cell: 6, band: 2, attempts: 317, shotRate: 0.22397476340694006 },
+  { cell: 6, band: 3, attempts: 490, shotRate: 0.17142857142857143 },
+  { cell: 6, band: 4, attempts: 397, shotRate: 0.12846347607052896 },
+  { cell: 7, band: 0, attempts: 383, shotRate: 0.3629242819843342 },
+  { cell: 7, band: 1, attempts: 161, shotRate: 0.19254658385093168 },
+  { cell: 7, band: 2, attempts: 75, shotRate: 0.17333333333333334 },
+  { cell: 7, band: 3, attempts: 28, shotRate: 0.17857142857142858 },
+  { cell: 7, band: 4, attempts: 11, shotRate: 0.09090909090909091 },
+];
+
+export const ATTEMPT_VALUE_CELL_TABLE: readonly AttemptValueRow[] = [
+  { cell: 0, band: -1, attempts: 8988, shotRate: 0.009012016021361816 },
+  { cell: 1, band: -1, attempts: 759, shotRate: 0.00922266139657444 },
+  { cell: 2, band: -1, attempts: 34365, shotRate: 0.043561763422086425 },
+  { cell: 3, band: -1, attempts: 16308, shotRate: 0.06377238165317635 },
+  { cell: 4, band: -1, attempts: 5112, shotRate: 0.10289514866979656 },
+  { cell: 5, band: -1, attempts: 1598, shotRate: 0.14267834793491865 },
+  { cell: 6, band: -1, attempts: 1736, shotRate: 0.195852534562212 },
+  { cell: 7, band: -1, attempts: 666, shotRate: 0.28678678678678676 },
+];
+
 export const ATTEMPT_VALUE_MARGINAL: AttemptValueRow = {
-  cell: -1, band: -1, attempts: 0, shotRate: 0,
+  cell: -1, band: -1, attempts: 69532, shotRate: 0.056233101305873556,
 };
 
 /**
@@ -443,9 +522,10 @@ export const ATTEMPT_VALUE_MARGINAL: AttemptValueRow = {
  * to the cell row rather than inventing a band for it.
  */
 export function attemptValueAt(cell: number, band: number): number {
-  if (band >= 0 && ATTEMPT_VALUE_TABLE.length > 0) {
-    const bucket = ATTEMPT_VALUE_TABLE[cell * ATTEMPT_VALUE_BANDS + band];
-    if (bucket !== undefined && bucket.attempts >= ATTEMPT_VALUE_BUCKET_FLOOR) {
+  if (band >= 0) {
+    const index = cell * ATTEMPT_VALUE_BANDS + band;
+    const bucket = ATTEMPT_VALUE_TABLE[index];
+    if (bucket !== undefined && bucket.attempts >= ATTEMPT_VALUE_BUCKET_FLOORS[index]) {
       return bucket.shotRate;
     }
   }

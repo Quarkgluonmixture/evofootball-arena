@@ -32,8 +32,8 @@
  *    beside ruling #11.3's aiming registration.
  */
 import {
-  OPTION_SPACE_PRIOR_MARGINAL, optionSpacePriorAt, THREAT_CALIBRATION,
-  VALUE_ZONE_MARGINAL, valueZoneAt,
+  ATTEMPT_VALUE_MARGINAL, attemptValueAt, OPTION_SPACE_PRIOR_MARGINAL,
+  optionSpacePriorAt, THREAT_CALIBRATION, valueZoneIndex,
 } from './passPrior';
 import { evaluatePassOption } from './passOptionValue';
 import type { PerceptionSnapshot } from './perceptionSnapshot';
@@ -49,15 +49,26 @@ export interface PricedPassOption {
   readonly targetGid: number;
   readonly infoClass: PassInfoClass;
   /**
-   * The option's measured price. Without the value axis: the probability the
-   * intended man ends up in clean control. With it (E5): that probability times
-   * the measured value of arriving there — P̂ × V̂, the product E5a's V4 gate
-   * validated against the conjunction the world produced.
+   * The option's measured price.
+   *
+   * Without the value axis: the probability the intended man ends up in clean
+   * control — the E3R price, bit for bit.
+   *
+   * With it (E5d Phase 1, ruling #18.4): ONE measured quantity, EV̂ = P(the
+   * passing team shoots within 4.0 s | this pass is ATTEMPTED, destination cell
+   * × threat band). The composition is REMOVED, not re-weighted — E5c proved
+   * `P̂(clean) × V̂(·|clean)` inverts the true ordering on balls whose value
+   * flows through messy paths, and attempt-conditioning prices those paths
+   * instead of assuming them away.
    */
   readonly price: number;
-  /** The reception half of the price, always — reported so V is separable. */
+  /**
+   * The reception probability. Under the value axis this is NO LONGER IN THE
+   * PRICE — it survives as a reported diagnostic, the record of what was
+   * removed.
+   */
   readonly reception: number;
-  /** The value half; 1 when the value axis is off, so `price = reception × value`. */
+  /** EV̂ when the axis is armed; 1 when it is off, where `price = reception`. */
   readonly value: number;
   readonly executable: boolean;
   /** PERCEIVED distance; NaN for UNSEEN — he does not know, and it must not read as 0. */
@@ -104,6 +115,18 @@ export function threatQuintilePrice(threatSeconds: number): number {
   return THREAT_CALIBRATION[THREAT_CALIBRATION.length - 1].realizedSuccess;
 }
 
+/**
+ * E5d: which threat quintile the corridor read falls in — the same partition
+ * `threatQuintilePrice` uses, returned as an index so the attempt table can be
+ * keyed by it. Kept beside its twin so the two can never drift.
+ */
+export function threatBandIndex(threatSeconds: number): number {
+  for (let index = 0; index < THREAT_CALIBRATION.length; index++) {
+    if (threatSeconds <= THREAT_CALIBRATION[index].keyTo) return index;
+  }
+  return THREAT_CALIBRATION.length - 1;
+}
+
 /** The window is a truth-measured scope (see the header note), never a price. */
 export function passChoiceCandidateGids(
   passer: Readonly<{ gid: number; pos: Readonly<{ x: number; y: number }> }>,
@@ -142,12 +165,12 @@ export function pricePassOption(input: {
     const row = OPTION_SPACE_PRIOR_MARGINAL;
     const reception = row.reachedRate * row.cleanGivenReached;
     // A man he cannot see is a man whose ZONE he cannot know either, so the
-    // value half takes the marginal exactly as the reception half does.
-    const value = valueAxis ? VALUE_ZONE_MARGINAL.shotRate : 1;
+    // attempt axis takes its marginal exactly as the reception prior does.
+    const value = valueAxis ? ATTEMPT_VALUE_MARGINAL.shotRate : 1;
     return {
       targetGid,
       infoClass: 'UNSEEN',
-      price: reception * value,
+      price: valueAxis ? value : reception,
       reception,
       value,
       executable: false,
@@ -155,22 +178,23 @@ export function pricePassOption(input: {
     };
   }
   const distance = distanceBetween(seenPasser.pos, seenTarget.pos);
-  // E5: the value half reads the PERCEIVED position — the table was measured on
+  // The destination cell reads the PERCEIVED position: the table was measured on
   // true positions and is read with what this body knows, the same arrangement
   // the distance band has had since E2a-2.
-  const valueRow = valueAxis
-    ? valueZoneAt(seenTarget.pos.x * attackDir, seenTarget.pos.y) : null;
-  const value = valueRow === null ? 1 : valueRow.shotRate;
+  const cell = valueZoneIndex(seenTarget.pos.x * attackDir, seenTarget.pos.y);
   const read = evaluatePassOption({
     snapshot, passerGid, targetGid, powerMultiplier: 1, attackDir, reachProfiles,
   });
   if (read === null) {
     const row = optionSpacePriorAt(distance);
     const reception = row.reachedRate * row.cleanGivenReached;
+    // No corridor read means no band; the frozen ladder takes it to the cell
+    // rung rather than inventing a band for it.
+    const value = valueAxis ? attemptValueAt(cell, -1) : 1;
     return {
       targetGid,
       infoClass: 'SEEN-UNREAD',
-      price: reception * value,
+      price: valueAxis ? value : reception,
       reception,
       value,
       executable: true,
@@ -178,10 +202,12 @@ export function pricePassOption(input: {
     };
   }
   const reception = threatQuintilePrice(read.interceptionThreatSeconds);
+  const value = valueAxis
+    ? attemptValueAt(cell, threatBandIndex(read.interceptionThreatSeconds)) : 1;
   return {
     targetGid,
     infoClass: 'READ',
-    price: reception * value,
+    price: valueAxis ? value : reception,
     reception,
     value,
     executable: true,
@@ -215,11 +241,13 @@ export function choosePerceivedPassTarget(
   let blindOutpricesBand = false;
   if (blind.length > 0) {
     blindOutpricesRead = blind[0].price > best.price;
-    // The band axis is composed the same way the price is, or the two sides of
-    // the comparison would be in different units the moment E5 is armed.
-    const bestBand = Math.max(...executable.map((option) => (Number.isNaN(option.distance)
-      ? OPTION_SPACE_PRIOR_MARGINAL.receptionSuccessRate * option.value
-      : optionSpacePriorAt(option.distance).receptionSuccessRate * option.value)));
+    // The band axis is read in the same units the price is, or the two sides of
+    // the comparison mean different things the moment the axis is armed. Under
+    // E5d the price IS the value, so the band comparison is the value too.
+    const bestBand = Math.max(...executable.map((option) => (valueAxis ? option.value
+      : (Number.isNaN(option.distance)
+        ? OPTION_SPACE_PRIOR_MARGINAL.receptionSuccessRate
+        : optionSpacePriorAt(option.distance).receptionSuccessRate))));
     blindOutpricesBand = blind[0].price > bestBand;
   }
   return {

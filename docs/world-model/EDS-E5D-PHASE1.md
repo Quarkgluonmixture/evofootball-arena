@@ -369,6 +369,98 @@ Re-running the old check on the old data with a new number — in either
 direction. C3R is a new floor on a new split, with the tolerance and the gate
 text untouched.
 
-### 7.4 Result
+### 7.4 Result — RUN 2026-07-26: **C3R PASSES; the live audit fires on H1 and H2**
 
-*(frozen on completion)*
+#### The census: PASS on every gate
+
+Probe SHA `5f837f4a…7221`, two invocations byte-identical, table committed as
+data at SHA `e0e73505…ea6b`.
+
+```text
+                        Phase 1        C3R
+worst held-out bucket   5.18pp  ⛔     1.23pp  ✅
+gated buckets              16            17
+attempts per set       15,398        69,532
+C2 pattern / control  −1.22/+0.65  −0.61/+0.68pp
+discrimination          13.41pp       12.56pp
+general population      −0.72pp       −0.75pp   (reported)
+```
+
+X5, S1 and D1 all held again — D1 returning Phase 0's attempt marginal to the
+last digit for the third time. Raising the floor to meet the tolerance did
+exactly what it was supposed to: the worst bucket error fell by 4× while the
+tolerance and the gate text never moved.
+
+⚠️ **Reported, not chased: the bucket that caused the redraw is still ungated.**
+Cell 4 × band 2 came back with **956 attempts against its own floor of 971** —
+fifteen short — so it takes the cell rung. Its held-out error is 2.85pp, inside
+the tolerance it would have faced. **The budget was NOT raised to push one
+bucket over its own line**: sizing a census at a named cell after watching it
+just miss is the move the discipline exists to prevent.
+
+#### The live audit: 30 gates pass, H1 and H2 fire
+
+`eds-e5b-value-axis-audit.ts` byte-unchanged (`git diff` empty), world SHA
+`5bafff1f…e54c`, world-deterministic, fingerprint `57b0bdab…c673` unchanged,
+760/760, flags default OFF.
+
+```text
+Y4V flag-off identity   0 / 10,292 · 7/7 banked families        ✅
+§2 band                 goals −0.07% · crosses −0.07% · headers +1.95%
+                        long balls −6.75% · cutbacks +7.98%     ✅
+                        baseline reproducing all five to 4 dp
+dominance               30.96%                                  ✅
+perf                    5.625 → 6.672 µs = 1.186x · p95 1.149x  ✅
+```
+
+**That §2 band is the tightest any arm in this slice has produced** — goals move
+by seven hundredths of a percent. The equilibrium is not being bent to buy the
+shots.
+
+```text
+                 flags-off   v1 bundle   composed axis   ATTEMPT axis    gate
+third-man           6.851    4.130         2.707        4.400  0.642x    ⛔
+overlap            0.0927   0.0687        0.0734       0.0434  0.468x    ⛔
+forward share      59.81%   57.24%        59.60%       61.30%  +1.50pp   ✅
+shots               12.52    13.18         15.54        15.28  1.221x    ✅
+```
+
+**H3 goes positive for the first time in the slice** — the forward share is now
+**above** flags-off, not merely recovered — and shots hold at +22%. **H1 is the
+best third-man figure any chooser has produced** (0.642× against the composed
+axis's 0.395× and even the v1 bundle's 0.603×), and it still misses 0.85.
+
+⛔ **H2 is the new information, and it moved the wrong way**: overlap releases
+fall to **0.468×**, worse than the v1 bundle (0.741×) and much worse than the
+composed axis (0.791–0.835×). Across the slice the two combination counters have
+now moved in **opposite directions under every axis** — the composed axis had
+overlap healthy and third-man dead; the attempt axis has third-man at its best
+and overlap at its worst. Reported as measured; the reading below is labelled as
+a reading.
+
+**A reading, not a result.** The two patterns compete for the same ball. The
+attempt table prices the attacking third's inner cells highest (16.62% central,
+21.33% wide) and the outer-wide cell — where an overlap release lands — at
+14.25%, so a chooser reading value alone takes the more advanced man whenever it
+can see one, and the overlap runner loses the comparison he used to win on the
+legacy ×1.3. That is testable and is NOT tested here.
+
+Other measured context: passes/match 68.91 (flags-off 80.80, v1 70.67), longest
+chain 3.69, give-and-gos 0.416 (flags-off 0.457), divergence from the legacy
+brain 58.36%, mean price 0.0882 — which, with the composition removed, IS the
+mean EV̂.
+
+#### Disposition
+
+**Non-PASS. E4 round 2 does not open** and the fork returns to the commander,
+per the standing instruction that any fire comes back. Nothing ships: both v1
+flags and `edsValueAxis` stay default OFF, `edsValueAxis` stays out of the
+preview toggle (pinned), the fingerprint is unchanged and the suite is green.
+The attempt table and the axis swap stay committed but dormant, so the next
+ruling has them in hand.
+
+What the commander now has: **the best equilibrium and the best progression
+numbers of the whole slice** (§2 band essentially neutral, forward share above
+flags-off, shots +22%, third-man at its slice best) with **one counter that
+regressed** — and the regression is in the pattern whose destination the value
+table prices below the men behind it.
