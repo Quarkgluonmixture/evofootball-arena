@@ -307,3 +307,68 @@ has no callers.
 What the commander has: the population alignment **worked** — C2 passes on both
 arms and on the general population too — and the single failing gate is a
 tolerance/floor mismatch I introduced, at 1.6σ, in the thinnest gated bucket.
+
+## 7. C3R — the floor rises to meet the tolerance
+
+**PRE-REGISTERED 2026-07-26 under commander ruling #19.2**, before any
+implementation and before any new data. C3 is redrawn, not retired:
+per-bucket honesty is load-bearing, because the argmax compares options
+bucket by bucket and an aggregate can hide a bad cell.
+
+### 7.1 What changes and what does not
+
+```text
+KEEPS   the 5.0pp tolerance, with its V3 meaning intact
+KEEPS   the gate text, verbatim: | EV_A − EV_B | <= 5.0pp per GATED bucket
+KEEPS   C1 (>= 8 gated), C2 (2.0pp arms / 1.0pp marginal), C3 discrimination,
+        the fallback ladder, the population, the window, the features
+RAISES  the per-bucket floor, until 5.0pp is >= 3.4σ for that bucket
+```
+
+`n_min(bucket) = max(200, ⌈2·p·(1−p)·(3.4/0.05)²⌉)`, with **p taken from the
+A-set rates already banked in §6.1** — ex ante in the only sense that matters
+here: the floors are computed from data that has already been seen and frozen
+below, never from the data that will judge them.
+
+```text
+        band0  band1  band2  band3  band4
+cell 0    211    200    200    200    200
+cell 1    200    200    200    462    200
+cell 2    651    493    435    388    418
+cell 3   1074    923    610    529    450
+cell 4    883   1007    971    780    632
+cell 5   1376    966   1034   1712    585
+cell 6   2220   1958   1734   1233   1032
+cell 7   1918   1585    420    200    200
+```
+
+A bucket is **GATED iff n_A ≥ n_min AND n_B ≥ n_min**; otherwise it takes the
+frozen ladder and is reported, exactly as before. The committed table carries
+that decision per row, so the live consumer's ladder and the gate cannot drift
+apart.
+
+At the Phase-1 budget nine buckets already clear their own floor. The bucket
+that fired — cell 4 × band 2 — needs **4.15×** its 235 attempts, so the budget
+rises to **18,000 moments per set** (≈4.5×, ≈787 matches), which is what a
+targeted top-up means here: more of the same census under the same rules, sized
+by the floors above.
+
+### 7.2 A FRESH held-out split (ruling #19.2)
+
+Set A extends the existing block (seeds 750,000+). **Set B is a fresh block,
+seeds 770,000+** — the 760,000+ split has been looked at and cannot judge the
+redraw. C2 and C3R are both computed against the fresh B.
+
+**Every candidate at every accepted moment is still forked.** "Targeted" sizes
+the budget, never the sampling: forking only the buckets that need filling
+would bias the cell rows and the marginal, which are the ladder's own rungs.
+
+### 7.3 What is forbidden here, restated
+
+Re-running the old check on the old data with a new number — in either
+direction. C3R is a new floor on a new split, with the tolerance and the gate
+text untouched.
+
+### 7.4 Result
+
+*(frozen on completion)*

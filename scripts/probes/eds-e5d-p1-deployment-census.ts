@@ -52,8 +52,12 @@ const AWARENESS = 0.8;
 const MAX_MATCHES = 4000;
 // The deployment census: fresh blocks, licence-triggered moments.
 const CENSUS_SEED_START = 750_000;
-const HOLDOUT_SEED_START = 760_000;
-const MOMENTS_PER_SET = Number(process.argv[2] ?? 4000);
+/**
+ * C3R (ruling #19.2): a FRESH held-out split. The 760,000+ block judged the
+ * first census and has been looked at, so it cannot judge the redraw.
+ */
+const HOLDOUT_SEED_START = 770_000;
+const MOMENTS_PER_SET = Number(process.argv[2] ?? 18000);
 const HARNESS_SEEDS = [750_001, 750_002, 750_003] as const;
 // The pins' own staging (Phase 0's population and seed block, verbatim).
 const PIN_SEED_START = 700_000;
@@ -67,7 +71,28 @@ const THIRD_MAN_MIN_GAIN = 0.15;
 const WALL_RETURN_MIN_GAIN = 0.2;
 // Gate constants.
 const BANDS = THREAT_CALIBRATION.length;
-const BUCKET_FLOOR = ATTEMPT_VALUE_BUCKET_FLOOR; // C1
+/**
+ * C3R (ruling #19.2, contract §7.1): the floor rises to meet the tolerance
+ * instead of the tolerance falling to meet the noise.
+ *
+ *   n_min(bucket) = max(200, ceil(2 p (1-p) (3.4/0.05)^2))
+ *
+ * with p taken from the A-set rates ALREADY BANKED in §6.1 — computed from data
+ * that has been seen and frozen, never from the data that will judge them. The
+ * 5.0pp tolerance and the gate text are untouched; what changes is how much
+ * evidence a bucket needs before 5.0pp means 3.4σ for it.
+ */
+const C3R_BUCKET_FLOOR: readonly number[] = [
+  211, 200, 200, 200, 200, // cell 0
+  200, 200, 200, 462, 200, // cell 1
+  651, 493, 435, 388, 418, // cell 2
+  1074, 923, 610, 529, 450, // cell 3
+  883, 1007, 971, 780, 632, // cell 4
+  1376, 966, 1034, 1712, 585, // cell 5
+  2220, 1958, 1734, 1233, 1032, // cell 6
+  1918, 1585, 420, 200, 200, // cell 7
+];
+const CELL_FLOOR = ATTEMPT_VALUE_BUCKET_FLOOR; // the ladder's cell rung, unchanged
 const MIN_GATED_BUCKETS = 8; // C1
 const ARM_CALIBRATION_BAND = 0.02; // C2, 2.0pp — NOT widened (ruling #18.3)
 const MARGINAL_CALIBRATION_BAND = 0.01; // C2, 1.0pp
@@ -404,11 +429,12 @@ const readTable = (
   table: ReturnType<typeof buildTable>, cell: number, band: number,
 ): number => {
   if (band >= 0) {
-    const bucket = table.buckets[cell * BANDS + band];
-    if (bucket.attempts >= BUCKET_FLOOR) return bucket.shotRate;
+    const index = cell * BANDS + band;
+    const bucket = table.buckets[index];
+    if (bucket.attempts >= C3R_BUCKET_FLOOR[index]) return bucket.shotRate;
   }
   const row = table.cells[cell];
-  if (row.attempts >= BUCKET_FLOOR) return row.shotRate;
+  if (row.attempts >= CELL_FLOOR) return row.shotRate;
   return table.marginal.shotRate;
 };
 
@@ -459,7 +485,9 @@ const runExperiment = () => {
     shotRateA: bucket.shotRate,
     shotRateB: holdoutTable.buckets[index].shotRate,
     error: Math.abs(bucket.shotRate - holdoutTable.buckets[index].shotRate),
-    gated: bucket.attempts >= BUCKET_FLOOR && holdoutTable.buckets[index].attempts >= BUCKET_FLOOR,
+    floor: C3R_BUCKET_FLOOR[index],
+    gated: bucket.attempts >= C3R_BUCKET_FLOOR[index]
+      && holdoutTable.buckets[index].attempts >= C3R_BUCKET_FLOOR[index],
   }));
   const gated = heldOut.filter((row) => row.gated);
   const gatedRates = gated.map((row) => row.shotRateA);
@@ -535,7 +563,7 @@ const runExperiment = () => {
     && Object.values(axis).every(Boolean);
 
   return {
-    experiment: 'EDS-E5d-phase1',
+    experiment: 'EDS-E5d-phase1-C3R',
     authority: 'EDS-E5D-PHASE1',
     parameters: {
       censusSeedStart: CENSUS_SEED_START,
@@ -544,7 +572,8 @@ const runExperiment = () => {
       pinSeedStart: PIN_SEED_START,
       s1Moments: S1_MOMENTS,
       d1: { moments: D1_MOMENTS, attempts: D1_ATTEMPTS, marginal: D1_MARGINAL },
-      bucketFloor: BUCKET_FLOOR,
+      bucketFloor: C3R_BUCKET_FLOOR,
+      cellFloor: CELL_FLOOR,
       armCalibrationBand: ARM_CALIBRATION_BAND,
       armPowerFloor: ARM_POWER_FLOOR,
       discriminationFloor: DISCRIMINATION_FLOOR,
@@ -604,7 +633,7 @@ const output = { ...first, deterministic, sha256 };
 if (!deterministic) output.verdict = 'FAIL';
 console.log(JSON.stringify(output, null, 2));
 console.error(
-  `EDS-E5d-P1 ${output.verdict} · X5 ${output.exact.x5Harness}`
+  `EDS-E5d-P1-C3R ${output.verdict} · X5 ${output.exact.x5Harness}`
   + ` · S1 ${output.exact.s1StagingPin} · D1 ${output.exact.d1DefinitionPin}`
   + ` (${output.pins.d1.attempts}@${output.pins.d1.marginal})`
   + ` · T1 ${output.exact.t1CommittedMatchesCensus}`
