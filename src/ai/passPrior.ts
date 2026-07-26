@@ -346,9 +346,51 @@ export const VALUE_ZONE_MARGINAL: ValueZoneRow = {
   meanProgression: 7.031161399133294,
 };
 
+/**
+ * EDS E5c (a) — the TOPPED-UP value table (commander ruling #16.4).
+ * Authority: docs/world-model/EDS-E5C-VALUE-ATTRIBUTION.md
+ *
+ * E5a's table with its two starved cells replaced, and nothing else: Z6 and Z7
+ * (the attacking third's inner half) sat at 129 and 64 receptions against the
+ * 400 floor, so the chooser read them at the marginal — BELOW the outer-third
+ * cells it had measured. This is the HU test's instrument: remove the sampling
+ * defect, re-run E5b with every gate verbatim, and see whether third-man play
+ * comes back.
+ *
+ * The marginal and cells Z0-Z5 are deliberately NOT topped up. Adding inner-box
+ * receptions to the population rate would over-represent the highest-value
+ * zones in the very number that prices a man the passer cannot see.
+ *
+ * Z6 goes 129 → 902 receptions and Z7 64 → 400, both now measurements: 11.97%
+ * and 28.25% against the 7.15% marginal the chooser had been reading for them.
+ * Held out on fresh seeds at 12.20% and 30.25%.
+ *
+ * ⚠️ These rows carry E5a's reception convention VERBATIM, including its
+ * defect: an arrival that never reached `attemptFirstTouch` counts as a
+ * reception (E2a-2's registered convention) but was never followed, so it
+ * enters as a guaranteed non-shot. E5c measured what those unfollowed windows
+ * actually did — 7.07% of Z6's and 10.43% of Z7's produced a shot — which means
+ * these two cells are deflated by roughly 2.4pp and 2.8pp, and every other cell
+ * in this table by an unmeasured amount. Correcting it is the commander's call
+ * (EDS-E5C-VALUE-ATTRIBUTION.md §7.1); keeping the convention is what makes the
+ * six untouched cells comparable with these two.
+ *
+ * TOPPED-UP TABLE SHA: a197b4531db2d71fbeb6b3977c395a7899421e698a43b13fdb11859a1aeded46
+ */
+export const VALUE_ZONE_TABLE_TOPPED: readonly ValueZoneRow[] = [
+  { zone: 0, receptions: 1612, shotRate: 0.013027295285359801, goalRate: 0, meanProgression: 11.77326485206329 },
+  { zone: 1, receptions: 226, shotRate: 0.022123893805309734, goalRate: 0, meanProgression: 12.866477998231302 },
+  { zone: 2, receptions: 3546, shotRate: 0.07642413987591652, goalRate: 0.00535815002820079, meanProgression: 6.814456835836743 },
+  { zone: 3, receptions: 1544, shotRate: 0.08808290155440414, goalRate: 0.0045336787564766836, meanProgression: 6.237657880728535 },
+  { zone: 4, receptions: 500, shotRate: 0.114, goalRate: 0.03, meanProgression: 0.2319336799855316 },
+  { zone: 5, receptions: 243, shotRate: 0.13580246913580246, goalRate: 0.0411522633744856, meanProgression: 0.5243461434916344 },
+  { zone: 6, receptions: 902, shotRate: 0.1197339246119734, goalRate: 0.08314855875831485, meanProgression: -3.2522764896455874 },
+  { zone: 7, receptions: 400, shotRate: 0.2825, goalRate: 0.065, meanProgression: -2.403731315879744 },
+];
+
 /** V for a position, with the marginal for cells the census could not measure. */
 export function valueZoneAt(localX: number, y: number): ValueZoneRow {
-  const row = VALUE_ZONE_TABLE[valueZoneIndex(localX, y)];
+  const row = VALUE_ZONE_TABLE_TOPPED[valueZoneIndex(localX, y)];
   return row.receptions >= VALUE_ZONE_SAMPLE_FLOOR ? row : VALUE_ZONE_MARGINAL;
 }
 

@@ -251,4 +251,176 @@ B4 clean-reception rate per arm: the licensed runner may simply be a harder
 
 ## 7. Result
 
-*(frozen on completion — (a) §7.1, (b) §7.2, attribution §7.3)*
+### 7.1 (a) The HU top-up — PASS on every gate, and **HU REFUTED** by the re-run
+
+Probe `scripts/probes/eds-e5c-inner-cell-topup.ts`, SHA `38c430e3…303e`, two
+invocations byte-identical, fingerprint `57b0bdab…c673` unchanged. Topped-up
+table committed as new data in `src/ai/passPrior.ts`, table SHA `a197b453…ed46`.
+
+```text
+U1 staging equivalence   PASS — the fast staging returns E5a's Z6/Z7 rows to
+                         the last digit (129 @ 0.09302325581395349,
+                         64 @ 0.421875, both progressions exact)
+U2 rest untouched        PASS   U3 committed = census   PASS
+U4 coverage              PASS — Z6 902/869, Z7 400/400 (floor 400 per set)
+U5 held out              PASS — Z6 0.22pp, Z7 2.00pp (tolerance 5.0pp)
+```
+
+**A1 — the correction is large, and it also deflates a mirage:**
+
+```text
+        E5a               topped up (set A)     held out (set B)   marginal
+Z6      129 @  9.30%      902 @ 11.97%          869 @ 12.20%        7.15%
+Z7       64 @ 42.19%      400 @ 28.25%          400 @ 30.25%        7.15%
+```
+
+Z7's banked 42.19% was the thin-sample reading E5a §7.1 flagged; at 6× the data
+it settles at 28.25% — still four times the marginal the chooser had been
+paying it. Both cells now clear the floor and price themselves.
+
+#### ⚠️ U1 surfaced a DEFECT IN E5a, and this is its disclosure
+
+U1 failed on its first run, and the diagnosis is not the staging. E5a's Z6 is
+**12 shots / 129 receptions**; the first E5c replay found **the same 12 shots /
+83 receptions**, and both progression figures rescale between the two
+denominators to the last digit. The fork points were proven identical
+separately (same pass ticks, all consumed, a pending pass at every one).
+
+The difference is the reception DEFINITION, and it is E5a's that is wrong:
+
+* E2a-2's registered convention counts an arrival that never reaches
+  `attemptFirstTouch` as a clean reception — it is not an adjudicated spill.
+  E5a inherited that correctly.
+* **But E5a then skipped the value window for exactly those receptions and
+  recorded them as no-shot by construction.** They sit in the denominator as
+  guaranteed zeros that were never simulated.
+
+Two consequences, and one correction to my own conduct:
+
+1. **My probe was also wrong against its own contract** — it excluded
+   unadjudicated arrivals, so U1 compared two definitions instead of holding the
+   definition fixed and testing the staging. Corrected to E5a's convention
+   verbatim (a fix toward the pre-registration, not toward a number), after
+   which U1 passes exactly.
+2. **The defect is now sized rather than described.** 34.48% of Z6's receptions
+   and 28.75% of Z7's never adjudicated; simulating those windows anyway, they
+   produce shots at **7.07%** and **10.43%** — not zero. So Z6 is deflated by
+   ≈2.44pp (11.97 → 14.41) and Z7 by ≈2.80pp (28.25 → 31.25), and **every other
+   cell in the table by an unmeasured amount.**
+3. **Not repaired here.** Keeping E5a's convention is what makes the two topped
+   cells comparable with the six untouched ones; repairing it means re-censusing
+   all eight and re-banking E5a, which is a commander call on a banked milestone
+   (ruling #16.1). Recorded at the table in `passPrior.ts`.
+
+#### U6 — the E5b re-run, gates verbatim: **HU REFUTED**
+
+`eds-e5b-value-axis-audit.ts` byte-unchanged (`git diff` empty), world SHA
+`4884e5c3…807b`, world-deterministic.
+
+```text
+                 flags-off   v1 bundle   value (E5a)   value (topped)    gate
+third-man           6.851    4.130         3.231       2.707  0.395x      ⛔
+overlap            0.0927   0.0687        0.0775      0.0734  0.791x      ✅
+forward share      59.81%   57.24%        56.75%      59.60%  −0.21pp     ✅
+shots               12.52    13.18         14.71       15.54  1.241x      ✅
+```
+
+**HU REFUTED on its own criterion: 0.395× is below the 0.653× line, and below
+the un-topped 0.472× — the top-up made third-man play WORSE.**
+
+**But HU is CONFIRMED on the forward share**, and the contract did not
+anticipate that split: −3.06pp → **−0.21pp**, from failing to passing, because
+the most advanced men stopped being under-priced. The sampling defect was real
+and it was doing exactly what a sampling defect should do — on the axis that
+measures how far forward the ball goes, not on the axis that measures whether
+teams combine.
+
+Everything else held with nothing else changed: **Y4V 0 disagreements /
+10,292**, all seven banked families bit-identical, §2 band inside on all five
+(goals −7.50%, crosses ±0.00%, headers +19.84%, long balls +5.19%, cutbacks
+−3.83%), dominance 27.16%, perf **1.187×** mean / 1.149× p95.
+
+**A2/A3 — the direction the top-up pushed:** passes/match 63.88 → **56.52**,
+longest chain 3.84 → **3.26**, give-and-gos 0.533 → **0.255** (flags-off 0.457),
+shots 14.71 → **15.54**. Pricing the box at four times the marginal makes the
+chooser drive at it whenever it can see someone there, and the intermediate
+passes combinations are built from disappear. That is not a sampling artifact;
+that is the same one-step argmax with a steeper gradient.
+
+### 7.2 (b) The HM state-blindness test — **HM REFUTED**, narrowly, with the direction right
+
+Probe `scripts/probes/eds-e5c-pattern-value.ts`, SHA `1658231a…36d3`, two
+invocations byte-identical, harness reproduces on all three seeds, 50 matches.
+
+```text
+              n     predicted V̂    realized     gap        gate
+pattern     608        8.80%        12.17%     +3.38pp    >= +4.0pp   ⛔
+control   1,567        7.39%         7.34%     −0.06pp    ±2.0pp      ✅
+```
+
+**HM REFUTED by the letter: +3.38pp against a +4.0pp floor.** Reported exactly
+as it fired — no predicate is rewritten after results. Two honest qualifications
+the commander should weigh, neither of which changes the verdict:
+
+* The **direction is right and the control is exquisite.** At n = 608 and
+  p ≈ 0.12 the SE is ≈1.32pp, so the pattern gap is ≈2.6σ from zero while the
+  control sits at −0.06pp on 1,567 receptions. The table is right everywhere
+  else and under-predicts the licensed runner's destination. State-blindness is
+  real; it is just **smaller than the band I pre-registered**.
+* **B1 splits it:** third-man **+2.96pp** (n=579) and wall-return **+11.73pp**
+  (n=29 — far too thin to carry weight, reported for completeness).
+
+**B2 corrects ruling #16.3's geometric premise, measured.** The licensed
+runner's destinations are **Z2 51.8% · Z4 21.9% · Z3 18.3% · Z6+Z7 4.1%** —
+third-man runners overwhelmingly arrive in the middle third and the outer
+attacking third, **not the inner box**. The confound the ruling registered
+(overlap→outer, third-man→inner) is not what the geometry does, which is why
+the top-up could not have rescued third-man play and, in the event, did not.
+
+**B4 is the number the attribution turns on: the licensed runner is a genuinely
+HARDER pass** — clean reception **40.16%** against the control's **51.77%** at
+the same moments.
+
+### 7.3 Attribution — **NEITHER fires, and the third cause is visible in these numbers**
+
+Per §6 this returns to the commander. But the two tests did not merely fail;
+between them they leave one reading standing, and it is arithmetic on measured
+quantities rather than a new hypothesis:
+
+```text
+per forced pass, at the same moments        pattern      control
+clean reception (B4)                         40.16%       51.77%
+V̂ the table gives the destination             8.80%        7.39%
+realized shots per FORK                       4.89%        3.80%   <= reality
+P̂-proxy × V̂  (the chooser's own axis)         3.53%        3.83%   <= the chooser
+```
+
+**The composed axis INVERTS the true ordering.** Playing the third man is worth
+**+1.09pp** more per attempt than the alternatives at the same moment — and the
+chooser scores it **−0.29pp** worse, because his P̂ deficit (−11.6pp of clean
+reception, real and correctly measured) swamps a V̂ advantage worth +1.4pp of
+cell value plus the +3.4pp of state the table cannot see.
+
+So the failure is **not** that V is too coarse (HU: the correction went the
+wrong way) and **not** mainly that V is state-blind (HM: real, but +3.4pp when
+the deficit to overcome is ~12pp). It is that **a per-option argmax over
+P̂ × V̂ declines the pattern pass on an axis where declining it is locally
+correct.** The legacy layer's ×1.15/×1.3 multipliers were not decoration — they
+were buying a pass that does not win an honest one-option-at-a-time comparison
+and yet pays off across the move. Every one-pass shape survived the value axis
+precisely because it never needed that subsidy.
+
+Three readings for the commander, in the order the evidence supports them, and
+**none of them tested here** (§6 forbids hunting a fourth measurement in this
+session):
+
+1. **The joint is measurable and the chooser is not using it.** The 4.89% vs
+   3.80% above is P × V measured TOGETHER on the same forks. A value seat that
+   prices the joint outcome per option — rather than composing two separately
+   measured halves — would rank the third man correctly, with no hand weight and
+   no new horizon.
+2. **State-conditional value (E5d as ruling #16.4 framed it)** is real but
+   under-powered as a sole repair: +3.4pp against a ~12pp deficit.
+3. **The sampling repair should ship regardless of the fork** — the topped-up
+   table fixed the forward share, and the unfollowed-window defect in §7.1
+   deflates every cell in the banked E5a table by an unmeasured amount.

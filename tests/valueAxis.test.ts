@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   OPTION_SPACE_PRIOR_MARGINAL, VALUE_ZONE_MARGINAL, VALUE_ZONE_SAMPLE_FLOOR,
-  VALUE_ZONE_TABLE, valueZoneAt, valueZoneIndex,
+  VALUE_ZONE_TABLE, VALUE_ZONE_TABLE_TOPPED, valueZoneAt, valueZoneIndex,
 } from '../src/ai/passPrior';
 import { pricePassOption, threatQuintilePrice } from '../src/ai/perceivedPassChoice';
 import type { PerceptionSnapshot } from '../src/ai/perceptionSnapshot';
@@ -72,12 +72,16 @@ describe('E5 value zones', () => {
         const zone = valueZoneIndex(x, y);
         expect(zone).toBeGreaterThanOrEqual(0);
         expect(zone).toBeLessThan(VALUE_ZONE_TABLE.length);
+        expect(zone).toBeLessThan(VALUE_ZONE_TABLE_TOPPED.length);
       }
     }
   });
 
   it('falls back to the marginal for cells the census could not measure', () => {
-    for (const row of VALUE_ZONE_TABLE) {
+    // The pin follows the table the CONSUMER reads (E5c's topped-up one), not
+    // the table it was derived from — a fallback rule guarding the wrong array
+    // is not guarding anything.
+    for (const row of VALUE_ZONE_TABLE_TOPPED) {
       if (row.receptions >= VALUE_ZONE_SAMPLE_FLOOR) continue;
       const wide = row.zone % 2 === 1;
       const band = Math.floor(row.zone / 2);
