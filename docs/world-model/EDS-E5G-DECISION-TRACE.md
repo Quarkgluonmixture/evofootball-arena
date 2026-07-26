@@ -117,6 +117,133 @@ defect finding and ruling #23.3 stops everything on it.
 - It does not change a table, a default, or a counter.
 - It does not gate E4 round 2, which is live and belongs to the user.
 
-## 7. Result
+## 7. Result — RUN 2026-07-26: MEASURED
 
-*(To be filled in after the run, in a separate commit.)*
+SHA `b6a5f43d…6c2a`, twice byte-identical. **P0 true · P1 true · P3 true ·
+P2 FALSE.**
+
+- **P0** — world hashes byte-identical trace-on vs trace-off on all three
+  seeds. The `src` sidecar is a sidecar.
+- **P1** — the funnel reproduces **every** E5f banked integer, per cluster:
+  matches, F1, F2, F3, F4 and the counter.
+
+### 7.1 ⛔ P2 fired, and it is my design error
+
+I set the coverage floor at 2,000 licence-active decision moments. The staging
+contains **854**, and not because a budget ran out — six leagues × 24 seasons
+is the whole of it, pinned by P1. **The floor was unreachable by construction**,
+and I set it without checking the quantity was available.
+
+This is the class of error ruling #19 codified, in its worse form: that ruling
+was about *inheriting* a gate value without re-powering it, and here I invented
+one. It is not lowered after the fact — §5 already says P2 does not invalidate,
+so it stands as fired, and the consequence is simply that every interval below
+is wider than I planned for.
+
+### 7.2 The dominant fact is upstream of all three outcomes
+
+E5f counted **4,812** matured overlap runs in this arm. This probe finds
+**854** decision moments inside them:
+
+```text
+decisions per matured run = 0.177     (per cluster 0.155 – 0.194)
+```
+
+**In 82% of matured overlap runs, the man on the ball never takes a pass
+decision while the licence is active.** Ruling #23.3 called outcome (a) "the
+licence window and the decision cadence are different clocks"; this is that
+statement quantified, and it is bigger than the menu-level effect the outcome
+was worded around. The three outcomes partition the decision moments; this says
+how few there are to partition.
+
+### 7.3 The three outcomes
+
+At the 854 licence-active decision moments (mean executable menu 2.56 options):
+
+| | rate | cluster CI |
+| --- | --- | --- |
+| the runner is priced at all | 88.52% | — |
+| on the **executable** menu | **75.41%** | [73.54, 76.89] |
+| **top-priced** | **51.17%** | [48.99, 54.25] |
+| **chosen** | **51.17%** | [48.96, 54.20] |
+
+Over the 417 moments where he is not the pick:
+
+| outcome | n | rate | verdict |
+| --- | --- | --- | --- |
+| **(a)** not on the menu | 210 | 50.36% [46.6, 53.9] | live |
+| **(b)** on the menu, not top-priced | 207 | 49.64% [46.1, 53.2] | live |
+| **(c)** top-priced and NOT chosen | **0** | **0.00%** | ⛔ **does not occur** |
+
+⭐ **Outcome (c) is exactly zero, and the rank histogram says why it is not a
+rounding artefact**: 437 moments at rank 1, 437 chosen. **Whenever the runner is
+top-priced he IS taken.** The live argmax is clean — there is no seam defect,
+and #23.3's hard-escalation branch does not fire. Ranks below: 121 second, 62
+third, 24 fourth.
+
+### 7.4 ⭐ The flip benchmark did not transfer, and #23.2 called it
+
+Phase 0 (b) measured the runner **0.82pp ahead** of the best alternative at his
+own licence moments — in the **flags-off** world. Here, in the world that
+actually runs:
+
+```text
+runner's mean price   0.0861
+winner's mean price   0.0954
+margin AGAINST him   +0.0092   (0.92pp)
+```
+
+**The sign flipped, by about the same magnitude.** Ruling #23.2 registered this
+before the run — *"0.82pp is a thin win on an axis with 13.41pp of range, and
+it may simply not survive the world shift"* — and it did not survive. Being
+top-priced is a coin flip (51.17%), not a property.
+
+**Which input moved?** Not geometry, and not the ladder:
+
+- the runner's **priced cell equals his truth cell 96.27%** of the time — the
+  stale-geometry seam the contract went looking for is essentially absent;
+- **`band === −1` never happens** (0.00%) — every on-menu option carried a real
+  corridor read, so the frozen ladder never took over;
+- info classes at these moments: **READ 644 · SEEN-UNREAD 0 · UNSEEN 112 ·
+  not-in-window 98** — consistent with E5f, where the declined runners were the
+  visible ones.
+
+So the loss is in the *comparison*, not in a broken input: at these moments the
+other men are simply priced higher by the same honest table. The most common
+priced-cell → winner-cell pairs are **2→2 (268)** and **3→3 (160)** — the winner
+usually sits in the runner's **own** cell, so what separates them is the threat
+band, not the destination — with **2→4 (91)** the leading cross-cell case, a
+genuinely more advanced man. ⚠️ These pairs pool his wins with his losses
+(a win is his cell → his cell), so they locate the comparison rather than
+decompose the losses; the rank histogram is the loss structure.
+
+### 7.5 §3.1's fourth quantity found the opposite of a gap
+
+I registered the chooser→release gap in case the action layer was declining to
+pass at all. Measured: the chooser picks him **437** times, while E5f banked
+**550** releases across the same 4,812 assignments. Releases *exceed* picks —
+because F3 counts a release anywhere in the span, including ticks when the
+licence is not active. **There is no action-layer loss to report**, and the
+quantity runs slightly the other way. Registered, measured, and negative.
+
+### 7.6 What this resolves, and what returns
+
+The contradiction is resolved without a defect. Three measured components, in
+order of size:
+
+1. **The clocks differ** — 82% of matured runs never reach a decision while the
+   licence is live. This is where most of the counter went.
+2. **The benchmark did not transfer** — in the deployed world the runner is
+   0.92pp *behind* the winner on average, not 0.82pp ahead, so at the decisions
+   that do happen he is a coin flip.
+3. **The argmax is clean** — outcome (c) is empty; nothing is broken.
+
+Since (c) did not fire, the fork does **not** stop and no harvest-B re-run is
+authorized (#23.3). What returns to the commander is a **design** question, not
+a defect: the overlap pattern needs a decision to be taken while a run is live,
+and the direct game does not take one in four fifths of them. Whether that is
+answered by joint/multi-step value (E5c's third cause), by the run's own
+timing, or by the user's round-2 verdict that the direct game is simply right,
+is above this seat.
+
+Nothing shipped; no table, default or counter changed.
