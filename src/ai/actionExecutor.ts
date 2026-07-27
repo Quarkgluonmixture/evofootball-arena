@@ -50,6 +50,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   let target: V2 | null = null;
   let speedF = jog;
   p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
+  p.c4Trace = null; // per-frame probe observability (C4 T2-ARRIVAL §4.3)
   if (p.action.type !== 'MarkOpponent' && p.markAnchor) {
     p.markAnchor = null; // a stale anchor must not survive an action change
     p.markAnchorAge = 0;
@@ -305,6 +306,37 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         : cc !== null && match.simTime < cc.until
           ? { routine: cc.routine as typeof cc.routine | undefined, y: cc.y, burst: true }
           : null;
+      // C4 T2-ARRIVAL: is THIS body the licensed one closest to an open-play
+      // cross's landing? Pure observable physics — `ballLanding` is the shared
+      // exact projector, and the flight is in the air for anyone to read. The
+      // closest-body scan mirrors the corner branch's below, including its
+      // stable index order.
+      const cf = match.c4ArrivalReroute ? team.crossFlight : null;
+      let crossMeet: V2 | null = null;
+      if (
+        cf !== null && match.simTime < cf.until && !crash
+        && ball.owner === null && ball.z > CONTROL_MAX_HEIGHT
+      ) {
+        const licensed = cf.arriver !== null && !cf.runners.includes(cf.arriver)
+          ? [...cf.runners, cf.arriver] : [...cf.runners];
+        licensed.sort((a, b) => a - b);
+        const { x: landX, y: landY } = ballLanding(ball);
+        let closest = -1;
+        let bd = Infinity;
+        for (const idx of licensed) {
+          const q = team.players[idx];
+          if (q.sentOff) continue;
+          const d = Math.hypot(q.pos.x - landX, q.pos.y - landY);
+          if (d < bd) {
+            bd = d;
+            closest = idx;
+          }
+        }
+        if (closest === p.index) {
+          const vl = Math.hypot(ball.vel.x, ball.vel.y) || 1;
+          crossMeet = v2(landX - (ball.vel.x / vl) * 2.5, landY - (ball.vel.y / vl) * 2.5);
+        }
+      }
       if (crash && team.runners.has(p.index)) {
         const ranked = [...team.runners].sort((a, b) => a - b);
         const spots = cornerCrashSpots(crash.routine, team.attackDir, crash.y);
@@ -352,6 +384,16 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         // aims at the routine's key zone, and the marker reaction lag above
         // needs an actual sprint to fall behind. Separation is born here.
         target = crash.burst ? meet : v2(meet.x - team.attackDir * 4.5, meet.y);
+      } else if (crossMeet !== null) {
+        // C4 T2-ARRIVAL: the closest licensed body attacks the DESCENT of an
+        // open-play cross — the same `landing − flightDir·2.5` the intended
+        // receiver has had since Phase 63 (`ReceivePass`, above) and the
+        // corner crash since 31.9. Nothing else about him changes, and the
+        // other licensed bodies keep their existing routing, exactly as the
+        // corner branch leaves its non-closest crashers on their structure
+        // spots for the knockdown.
+        target = crossMeet;
+        p.c4Trace = { meet: crossMeet, applied: crossMeet };
       } else if (team.arriver === p.index) {
         target =
           crash && (crash.routine === 'short' || crash.routine === 'arcCutback')
@@ -573,6 +615,10 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       target = { x: edgeX, y: target.y };
     }
   }
+
+  // C4 T2-ARRIVAL, probe observability: the target that SURVIVED the clamps
+  // above, so F2 can name which clamp rewrote a re-route instead of guessing.
+  if (p.c4Trace !== null && target) p.c4Trace = { meet: p.c4Trace.meet, applied: target };
 
   // arrive/scale return fresh vectors, so accumulating into `desired` in place
   // is alias-free — same additions in the same order, two fewer allocations

@@ -2,7 +2,7 @@ import { clamp, clamp01 } from '../utils/math';
 import {
   add, closestPointOnSegment, dist, dot, len, norm, rotate, scale, sub, v2, type V2,
 } from '../utils/vec';
-import { laneBlockers, opennessOf, pressureAt } from '../ai/perception';
+import { ballLanding, laneBlockers, opennessOf, pressureAt } from '../ai/perception';
 import { offsideLineLocalX, runBurstPoint } from '../ai/formations';
 import {
   BALL_FRICTION_K, BOX_DEPTH, CHEST_TRAP_MAX_HEIGHT, CHEST_TRAP_MAX_VZ, CHEST_TRAP_RADIUS,
@@ -601,6 +601,18 @@ export function performCross(
   const swing = Math.sign(chord.x * toGoal.y - chord.y * toGoal.x) || 1;
   const spin = swing * (0.28 + crosser.attrs.passing * 0.3);
   loftKick(match, crosser, spot, 0.5, 0.038, tMinCross, 1.7, 1.1, spin);
+  // C4 T2-ARRIVAL: the licence survives the delivery. Read AFTER the kick, so
+  // `ballLanding` sees the real launch and the window is exactly the flight —
+  // no invented duration (the corner's 2.8 s carries hand-off slack open play
+  // does not have). Armed only when no corner crash is running, so a corner
+  // delivery keeps its own machinery and can never be licensed twice.
+  if (match.c4Arrival && team.cornerCrash === null) {
+    team.crossFlight = {
+      until: match.simTime + ballLanding(match.ball).t,
+      runners: [...team.runners],
+      arriver: team.arriver,
+    };
+  }
   team.stats.passes++;
   team.stats.crosses++;
   if (oneTouch) team.stats.oneTouch++;

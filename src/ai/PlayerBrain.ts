@@ -1141,7 +1141,13 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // the instant the ball left the taker's boot and walked back to their
     // formation spots while it was still in the air (Phase 31.9).
     const crashLive = team.cornerCrash !== null && match.simTime < team.cornerCrash.until;
-    if ((team.runners.has(p.index) || arriving) && (carrier ? carrier !== p : match.phase === 'restart' || crashLive)) {
+    // C4 T2-ARRIVAL: the identical clause for an OPEN-PLAY cross. This line is
+    // the defect the stage exists for — without a third term here, the licence
+    // TeamBrain just re-asserted has no candidate to attach to, and every body
+    // it names still walks back to its formation spot mid-flight.
+    const crossLive = match.c4Arrival && team.crossFlight !== null
+      && match.simTime < team.crossFlight.until;
+    if ((team.runners.has(p.index) || arriving) && (carrier ? carrier !== p : match.phase === 'restart' || crashLive || crossLive)) {
       let s = W.runScore;
       if (tired) s *= 0.6;
       cands.push({

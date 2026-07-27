@@ -126,6 +126,16 @@ export class Player {
   markAnchorAge = 0;
   markAnchorIdx: number | null = null;
   /**
+   * C4 T2-ARRIVAL, PROBE OBSERVABILITY ONLY — never read by any decision.
+   * Written by the executor on the tick its cross meet-point re-route fires:
+   * `meet` is what the branch computed, `applied` the target that survived the
+   * downstream clamps. F2 is a per-record fidelity gate over exactly this pair
+   * (contract §4.3), and without the trace it could only be asserted in a unit
+   * test instead of measured over the run. Null on every other tick and in
+   * every flags-off world.
+   */
+  c4Trace: { meet: V2; applied: V2 } | null = null;
+  /**
    * 2过1 burst license (Phase 34): granted when this player plays a short
    * pass under pressure — for its ~1.1s he sprints past his marker and the
    * return ball INTO him (from `partnerGid`) is scored as the wall pass,

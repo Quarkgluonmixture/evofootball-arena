@@ -90,6 +90,22 @@ export class Team {
   } | null = null;
 
   /**
+   * C4 T2-ARRIVAL: the OPEN-PLAY analogue of `cornerCrash`, and the same
+   * lesson a third time. A cross clears `ball.owner`, and PlayerBrain's run
+   * gate needs a carrier — so every licensed body loses `MakeRun` at the boot
+   * and walks back to its formation spot while the ball is still in the air.
+   * Set by `performCross` when `c4Arrival` is armed, holding the personnel
+   * already licensed at the kick (nobody new) until the ball lands. Dormant
+   * unless armed; corners keep their own machinery and are never licensed
+   * twice.
+   */
+  crossFlight: {
+    until: number;
+    runners: number[];
+    arriver: number | null;
+  } | null = null;
+
+  /**
    * Game-state mentality (Phase 35): recomputed each brain tick from
    * (score diff, minute, raw genes). `effGenome` is what the `genome`
    * getter serves — every in-match gene read sees the mentality-modified

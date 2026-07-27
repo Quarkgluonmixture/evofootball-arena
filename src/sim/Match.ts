@@ -225,6 +225,24 @@ export interface MatchConfig {
    */
   c4FlightStaleLead?: boolean;
   /**
+   * C4 T2-ARRIVAL (docs/world-model/C4-T2-ARRIVAL.md): the open-play analogue
+   * of `team.cornerCrash`. A cross clears `ball.owner`, and `PlayerBrain`'s
+   * run gate gives every licensed attacking body its `MakeRun` only while a
+   * carrier exists — so today the box EMPTIES for the whole flight (Phase
+   * 31.9's bug, still live in open play). Armed, `performCross` snapshots the
+   * ALREADY-licensed bodies and holds them for exactly `ballLanding(ball).t`.
+   * No new licence, no new count, nothing pre-kick. OFF by default.
+   */
+  c4Arrival?: boolean;
+  /**
+   * C4 T2-ARRIVAL §2.3, the second rung: with `c4Arrival` armed, the licensed
+   * body CLOSEST to the landing attacks the meet point — the same
+   * `landing − flightDir·2.5` the intended receiver has had since Phase 63
+   * (`actionExecutor.ts:159-166`) and the corner crash since 31.9. Inert
+   * without `c4Arrival`, because without the licence there is no run to route.
+   */
+  c4ArrivalReroute?: boolean;
+  /**
    * EDS E2b-1 (docs/world-model/EDS-E2B1-BOTH-SIDES-AB.md): the defender's
    * interception entry reads HIS OWN perceived ball instead of truth, through
    * the shared awareness trunk. Off in every production path. The awareness
@@ -376,6 +394,10 @@ export class Match {
   readonly c4Flight: boolean;
   /** C4 T1-FLIGHT §2.4: the stale-lead variant arm (probe-only). */
   readonly c4FlightStaleLead: boolean;
+  /** C4 T2-ARRIVAL: the open-play cross licence survives the flight. */
+  readonly c4Arrival: boolean;
+  /** C4 T2-ARRIVAL: and the closest licensed body attacks the meet point. */
+  readonly c4ArrivalReroute: boolean;
   /** E2b-1: perceived-state defending, dormant unless a probe world asks. */
   readonly edsPerceivedDefence: boolean;
   readonly edsAwareness: number;
@@ -576,6 +598,8 @@ export class Match {
     this.c5TouchFork = cfg.c5TouchFork ?? EDS_BUNDLE_ARMED;
     this.c4Flight = cfg.c4Flight ?? EDS_BUNDLE_ARMED;
     this.c4FlightStaleLead = cfg.c4FlightStaleLead ?? false;
+    this.c4Arrival = cfg.c4Arrival ?? EDS_BUNDLE_ARMED;
+    this.c4ArrivalReroute = cfg.c4ArrivalReroute ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
     this.edsValueAxis = cfg.edsValueAxis ?? EDS_BUNDLE_ARMED;
@@ -1880,9 +1904,12 @@ export class Match {
     // The whistle ends any passing move (Phase 33).
     this.endPassMove(0);
     this.endPassMove(1);
-    // A dead ball ends any corner crash still running (Phase 31.9).
+    // A dead ball ends any corner crash still running (Phase 31.9) — and any
+    // open-play cross licence, on the same reasoning (C4 T2-ARRIVAL).
     this.teams[0].cornerCrash = null;
     this.teams[1].cornerCrash = null;
+    this.teams[0].crossFlight = null;
+    this.teams[1].crossFlight = null;
 
     this.ball.owner = null;
     this.ball.pos = clone(pos);

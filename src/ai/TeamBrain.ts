@@ -183,6 +183,23 @@ function assignRunners(team: Team, match: Match): void {
     }
     return;
   }
+  // C4 T2-ARRIVAL: the same hold, for an open-play cross in flight. Placed
+  // AFTER the corner paths so a corner always wins its own personnel. The
+  // licence is re-asserted from the kick's snapshot rather than re-scored, for
+  // 31.9's reason verbatim — re-scoring mid-flight swaps bodies under the
+  // delivery. The arriver is the one that matters: `assignRunners` clears him
+  // every tick and re-licenses only while the ball is in the WIDE channel,
+  // which a ball flying into the box has already left.
+  const cf = team.crossFlight;
+  if (cf !== null && match.simTime >= cf.until) team.crossFlight = null;
+  else if (cf !== null && match.ball.owner === null) {
+    for (const idx of cf.runners) {
+      if (!team.players[idx].sentOff) team.runners.add(idx);
+    }
+    if (cf.arriver !== null && !team.players[cf.arriver].sentOff) team.arriver = cf.arriver;
+    return;
+  }
+
   // A second runner for fast/direct sides: counters and high-tempo teams.
   // The late chase (Phase 35) throws one MORE body forward — this is where
   // "everyone forward" physically lives, and where the counters it
