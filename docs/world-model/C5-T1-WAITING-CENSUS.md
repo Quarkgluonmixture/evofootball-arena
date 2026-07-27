@@ -216,6 +216,34 @@ smaller measured effect is read as *unresolved*, not as *zero* (#20).
   (1.1× — thin by design, which is why H2 gates only rows meeting the floor in
   BOTH blocks).
 
+### 7.2b ⚠️ DISCLOSED BEFORE THE RUN: the realised base rate is ~3× the assumed one
+
+A sizing smoke (60 moments, no gate read) puts the act-now shot rate at
+**≈21%**, not the ≈7% §7.1 took from the attempt table's marginal. The two are
+different populations and I should have seen it while writing §7.1: the attempt
+table asks *"did a shot follow this PASS to this target"*, while T1 asks *"did a
+shot follow this POSSESSION MOMENT" — a moment that includes carries, shots and
+every other thing the argmax can do. A quarter of a 4-second window near the
+ball produces a shot far more often than one particular pass does.
+
+Two consequences, both recorded rather than repaired:
+
+* **The marginal resolution is worse than §7.1 claimed.** At p ≈ 0.21,
+  σ² ≈ 0.166, so the unpaired SE at n = 6,000 is 0.74pp and the MDE is **2.1pp**
+  (≈2.5pp with cluster inflation) rather than 1.6pp. The primary estimator is
+  PAIRED, which cuts this substantially, but by how much is a property of the
+  data and will be reported as an achieved interval rather than claimed here.
+* **H1's 2.0pp tolerance is tighter than it looked**: against a build/held-out
+  difference SE of ≈0.95pp it is **2.1σ**, not the ≈3σ E5d's tolerance
+  represented at its own base rate. So H1 may fire on noise, and if it does that
+  is a gate I mis-sized, not a table that failed to reproduce.
+
+**Nothing is changed**: not the budget, not the tolerance, not the axis. Moving
+either after seeing a base rate is the re-powering-after-sight the discipline
+forbids, and #19's answer to a gate that looks wrong after the fact is to report
+the FAIL, not to redraw it. The numbers above exist so that whatever fires can
+be read for what it is.
+
 ### 7.3 No staging pin is available, and that is stated
 
 #18 asks a stage to pin against banked integers wherever a staging is reused.
