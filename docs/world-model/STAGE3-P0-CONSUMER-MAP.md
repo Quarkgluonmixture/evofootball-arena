@@ -184,4 +184,155 @@ is the #19 error in advance.
 
 ## 3. Baselines
 
-*(filled by `scripts/probes/stage3-p0-instruments.ts` in its own commit.)*
+Measured 2026-07-27, `scripts/probes/stage3-p0-instruments.ts`, read-only.
+**300 random-genome matches**, fresh block 930,000, **389,865 samples at
+6 Hz**, twice byte-identical, SHA `dc74fb02…813f`. Incumbent = `emergentStation`
+(default ON). Cluster unit = the match seed; CIs are 2,000-resample cluster
+bootstraps.
+
+Random genomes on purpose: this is the population the eye will actually live
+in, so the baselines carry the spread the P2/P3 gates will have to clear, not
+a neutral-genome point.
+
+### I1 — station-family dwell
+
+```text
+dwell       p10 0.167 s   median 0.667 s   p90 3.833 s   mean 1.466 s
+family changes   43.98 / body / minute   CI [43.26, 44.70]   = one per 1.36 s
+family share  MARK 32.11%  FORMATION 29.04%  BALL 19.35%
+              SUPPORT 9.06%  RUN 7.21%  ONBALL 2.37%  OTHER 0.86%
+```
+
+**Station families own 77.4% of outfield body-ticks**; the ball-directed
+actions own 19.4%. The median spell is **4.4× the 0.15 s action clock**, so the
+action clock is not what flips families — the choice is genuinely re-affirmed
+most ticks. But **p10 is one single sample**: a tenth of all station spells
+last ≤0.167 s. That flicker tail is the incumbent's, before any eye exists.
+
+### I2 — ⭐⭐⭐ target drift: the incumbent has no commitment, and a quarter of its motion is untrackable
+
+```text
+drift   p10 0.09   median 2.571   p90 6.244   mean 4.415   p99 54.11   m/s
+        share above 4 m/s (faster than a body can track):  27.35%
+```
+
+**More than a quarter of the time the station point is moving faster than the
+player chasing it**, and the p99 is a 9 m jump inside one 0.167 s sample. A
+structural cause is visible in the signature rather than inferred: `hasBall` is
+an *input* to `formationSpot`, so a possession flip re-evaluates the entire
+block in one tick — the incumbent's shape is a step function of possession,
+not a trajectory.
+
+This is the number §4-Q5's commitment window exists for, and it says the
+incumbent's implicit stability is an illusion produced by slow inputs, not by
+any commitment. **P1's W has an empirical anchor now**: the incumbent's own
+mean dwell is 1.47 s and its median is 0.67 s, bracketed by the 0.15 s action
+clock below and the 0.4 s licence clock in between.
+
+### I3 — pairwise spacing
+
+```text
+p10 4.188   median 12.955   p90 26.402   mean 14.402   m
+share under 4 m:  9.40%
+```
+
+The hand repulsion (9 m radius, `2.6·(1−0.7·threat)`) leaves about **one
+teammate pair in eleven inside 4 m**. That is the left tail a mean would hide,
+and it is the number an eye that prices crowding as a table row (§4-Q4) has to
+beat.
+
+### I4 — ball convergence, and the split paid for itself
+
+```text
+own within  5 m  0.956  CI [0.940, 0.973]      opp within  5 m  0.952  CI [0.937, 0.969]
+own within 10 m  2.204  CI [2.183, 2.227]      opp within 10 m  2.197  CI [2.175, 2.218]
+```
+
+⭐ **The two sides are indistinguishable.** Pooled, this instrument would have
+read *"1.9 bodies within 5 m of the ball"* and been filed as the 乱抢 residual;
+split, it says both teams commit **44% of their outfield inside 10 m** and
+neither is scrambling more than the other. Whatever E4 round 2 saw, it is not
+an asymmetry — which changes what P2/P3 can claim to have fixed. §2.1's sweep
+earned its keep here.
+
+### I5 — rest defence
+
+```text
+own outfielders in our defensive third, in possession   1.328  CI [1.288, 1.368]
+the DESIGNATED slot (index 1) is one of them            65.82% CI [64.42, 67.16]
+```
+
+The clamp at `x ≤ −8 − coverBias·8` exists to keep one specific body home, and
+**a third of the time he is not the body that is home**. Merging these two
+readings — as §2.1 refused to — would have reported "rest defence occupied
+1.33 bodies" and hidden that.
+
+### I6 — ⭐⭐ duplicate runs are the NORM
+
+```text
+share of multi-runner ticks with two run targets within 4 m:  54.71%  CI [52.96, 56.37]
+multi-runner ticks per match  276.3      licensed body-ticks excluded  120.9
+```
+
+**Over half.** And it is structural, not accidental: `runTarget` is
+`clamp(max(line + 7, myX + 5), myX + 3, HALF_L − 9)` with `y → y·0.6`, so two
+runners anywhere near each other are mapped to the same shoulder of the same
+line and then narrowed toward the same lane. The survey's "duplicate runs"
+warning (§4-Q5) is not a risk the eye might introduce — it is the incumbent's
+steady state.
+
+### I7 — attack/defence shape delta: about one metre
+
+```text
+                    in possession        out of possession      delta
+centroid localX     −0.774               −1.760                 +0.987  CI [0.507, 1.446]
+spreadX              8.241                6.869                 +1.372  CI [1.315, 1.428]
+spreadY              6.441                5.701                 +0.740  CI [0.705, 0.776]
+```
+
+⭐ VISION's 2026-07-27 anchor makes the difference between the two faces an
+acceptance criterion. **The incumbent's difference is one metre of depth**, a
+1.4 m wider block and 0.7 m more lateral spread. The shape does change with
+possession, resolvedly — and by about a stride. That is the bar Stage III's
+"attack and defence shapes BOTH emergent, their difference itself measured"
+has to clear, and it is a low one.
+
+## 4. What P0 hands to P1
+
+1. **W has anchors, not a value**: action clock 0.15 s, licence clock 0.4 s,
+   incumbent station-family dwell median 0.67 s / mean 1.47 s. P1 derives W
+   from these and states which it chose and why; §1.1 means it cannot inherit
+   a cadence, because there isn't one.
+2. **H_station's floor argument is now measurable**: the incumbent's target
+   drifts 2.57 m/s at the median, so a station a body is sent to has typically
+   moved several metres before he arrives. Any horizon shorter than the travel
+   time prices a station he never occupied.
+3. **The harness gate has a second requirement §5-P1 did not state.** Forcing
+   the incumbent target must reproduce the unforked match bit-identically —
+   but `formationSpot` is also read by the zonal marking lattice (#7), the
+   restart `shapeReady` gate (#8) and `supportSpot`'s own lane (§1.4). A fork
+   that forces only the executor's read is **not** the same intervention as one
+   that forces the function. P1 must pre-register which.
+4. **Three baselines are already failure-shaped** and should be watched as
+   *improvement* opportunities rather than only as canaries: 27.35% untrackable
+   drift, 54.71% duplicate runs, and a 1 m shape delta.
+5. **One residual is re-framed before P1 starts**: I4 says the scramble is
+   symmetric. An eye that reduces own-side convergence without touching the
+   opponent's has changed one team's football, not the game's — and P3's
+   H-SCRAMBLE hypothesis should be posed against the split instrument, not a
+   pooled one.
+
+## 5. Honest limits
+
+* Random genomes across 300 matches: a population, not a controlled cell. Any
+  P2/P3 A/B must be paired same-seed against **this** staging or re-baseline.
+* 6 Hz sampling: events shorter than 0.167 s are invisible, which floors I1's
+  p10 at exactly one sample. Reported as such rather than smoothed.
+* `MARK` is excluded from I2 by construction (§2.2): its target tracks an
+  opponent, so its drift would measure the opponent's motion.
+* I6 excludes the licensed branches (arriver / overlapper / live crasher), who
+  are routed by their own code and not by `runTarget` — 120.9 body-ticks per
+  match, reported so the exclusion is visible.
+* Everything here is the incumbent under the **current** substrate HEAD. The
+  population law (#26.5) applies: if C4/C5/C6 ever land live, these baselines
+  are stale and P1's tables must be re-censused at the HEAD they deploy on.

@@ -1726,7 +1726,59 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-27, #33 executed): ⛔ C4 T2-ARRIVAL Phase A FAILS on
+**Queue state (2026-07-27, #34 executed): ✅ Stage III P0 is DONE — the
+consumer map and the incumbent instrument baselines are banked** →
+[`STAGE3-P0-CONSUMER-MAP.md`](STAGE3-P0-CONSUMER-MAP.md) (read-only, zero
+`src/**`; 300 random-genome matches on fresh block 930,000, 389,865 samples at
+6 Hz, twice byte-identical, SHA `dc74fb02…813f`). Definitions and the
+two-meanings sweep were committed BEFORE anything was measured (`ecad616`).
+Nothing is in flight; per #34.4 the next step is P1's pre-registration.
+
+* ⭐⭐⭐ **There is no station DECISION — there is a station FUNCTION at
+  60 Hz.** Every producer (`formationSpot`/`emergentStation`/`supportSpot`/
+  `runTarget`/the mark stance) is a pure function recomputed inside
+  `executeAction` every tick; what runs on a clock is the ACTION (0.15 s) and
+  the LICENCES (0.4 s). **So §4-Q5's commitment window W is a NEW quantity,
+  not an inherited cadence** — P0 can only supply anchors, and does.
+* ⭐⭐⭐ **I2: the incumbent has no commitment and a quarter of its motion is
+  untrackable.** Station-target drift median **2.571 m/s**, p90 6.244,
+  **27.35% above 4 m/s** — faster than the body chasing it — and a p99 of
+  54 m/s, a 9 m jump inside one sample. Cause visible in code, not inferred:
+  `hasBall` is an INPUT to `formationSpot`, so a possession flip re-evaluates
+  the whole block in one tick. The incumbent's apparent stability is slow
+  inputs, not commitment.
+* ⭐⭐ **I6: duplicate runs are the NORM, 54.71%** CI [52.96, 56.37] of
+  multi-runner ticks have two run targets within 4 m — structural, since
+  `runTarget` maps every runner to the same shoulder of the same line and then
+  narrows them into the same lane. The survey's duplicate-run warning is not a
+  risk the eye might introduce; it is the incumbent's steady state.
+* ⭐⭐ **I7: the attack/defence shape delta is ONE METRE.** Centroid depth
+  −0.774 in possession vs −1.760 out, delta **+0.987 m** CI [0.507, 1.446];
+  spreadX +1.372; spreadY +0.740. VISION's 2026-07-27 anchor makes this
+  difference an acceptance criterion — the bar is a stride.
+* ⭐ **I4's split paid for itself immediately.** Own bodies within 5 m of the
+  ball **0.956** vs opponent **0.952**; within 10 m 2.204 vs 2.197 — **the two
+  sides are indistinguishable**. Pooled, this would have read "1.9 bodies
+  within 5 m" and been filed as the 乱抢 residual. **E4 r2's scramble is
+  SYMMETRIC**, which re-frames P3's H-SCRAMBLE before P1 starts.
+* Also banked: I1 dwell median 0.667 s / mean 1.466 s, 43.98 family changes per
+  body per minute, station families owning 77.4% of body-ticks (MARK 32.11%,
+  FORMATION 29.04%); I3 spacing p10 4.188 m with **9.40% of pairs under 4 m**;
+  I5 rest defence 1.328 bodies deep in possession but **the DESIGNATED slot is
+  one of them only 65.82%** of the time.
+* ⚠️ **Three consumers a naive replacement breaks**, mapped: the onside clamp
+  **rewrites** a station beyond the line rather than penalising it (different
+  from revert 2's blast, and must not be confused with it); the ZONAL scheme
+  uses `formationSpot` as its marking lattice (`TeamBrain.ts:479`); and
+  `shapeReady` makes the station a **restart gate**. Plus `supportSpot` calls
+  `formationSpot` internally, so support geometry moves whether P1 intends it
+  or not. **P1's harness gate must pre-register whether it forks the executor's
+  READ or the FUNCTION** — they are not the same intervention.
+* The two-meanings sweep split three of six instruments before measurement
+  (station-switch → dwell + drift; ball convergence → per side; rest defence →
+  any-body + designated-slot). All three splits changed a reading.
+
+Earlier (2026-07-27, #33 executed): ⛔ C4 T2-ARRIVAL Phase A FAILS on
 D1 and on F2 — the box stops emptying and it changes nothing** →
 [`C4-T2-ARRIVAL.md`](C4-T2-ARRIVAL.md) §7 (Phase A SHA `fc66f1f6…c597`, twice
 byte-identical, 5,745 / 5,637 / 5,632 crosses across three paired arms on
