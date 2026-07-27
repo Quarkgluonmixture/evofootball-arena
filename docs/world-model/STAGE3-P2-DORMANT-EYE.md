@@ -1,6 +1,11 @@
 # Stage III P2 — The Dormant Eye
 
-Status: **DRAFTED 2026-07-27, frozen before any implementation.** Authorized by
+Status: **DRAFTED 2026-07-27, frozen before any implementation. REVIEWED and
+AMENDED 2026-07-28 by commander ruling #43** — compliance PASSES, the ex-ante
+prediction reproduced independently to the digit, and ONE pre-run amendment is
+applied in place (§3.4b: X6 splits into a hard per-record fidelity gate plus
+reported clamp composition). **Authorized to implement and run as amended
+(#43.5).** Originally authorized by
 **commander ruling #42.3** (P1R accepted; the eye's premise survives its first
 real measurement; the executor drafts P2 under Autonomous mode). Gates are
 frozen here, before the chooser exists and before any datum of P2's own.
@@ -323,10 +328,43 @@ covers the full sign space.
 | **X3** | a test asserts: the eye is read in exactly one place, is null on a fresh `Match` and a `League` fixture, is unreachable from the E4 preview, and the ORACLE-CTX arm is unreachable from any production path |
 | **X4** | **CLONE COVERAGE = 100%** of sampled moments |
 | **X5** | **CONTROL-FORK IDENTITY** — the no-eye fork reproduces the base continuation bit-identically for the full `H_concede`, per record, sampled 1-in-25, unexplained exactly 0 |
-| **X6** | **FORCE FIDELITY** — on live override ticks the applied target equals the engine's own `meet` to 1e-9, unexplained exactly **0**, and `ok / (ok + clamps + unexplained) >= 0.84` (P1R's DERIVED floor, inherited with its derivation: 1 − 2 × the measured 8.08% clamp share). Clamp shares are REPORTED separately — how often the onside clamp bites is a property of the lattice and of the eye's candidate mix, never of the seam |
+| **X6** | **FORCE FIDELITY — per-record only (⭐ AMENDED by #43.3, see below).** On live override ticks the applied target equals the engine's own `meet` to 1e-9, and **unexplained is exactly 0**. The ok-share and the clamp shares are **REPORTED, per-candidate × per-context**, and gate nothing |
 | **X7** | two `runExperiment()` calls byte-identical; result SHA emitted |
 | **DEV** | **DELIVERY** — the NEUTRAL arm's realised deviation share ≥ **0.22**, i.e. half the 44.4% predicted, with headroom for percept error. Below it, the treatment was not delivered and **no payoff reading is available** (P1's lesson, in gate form) |
 | **PC** | **INVERTED resolves BELOW control**, pooled, 95% cluster-bootstrap CI **upper < 0**. If the argmin chooser does not measurably hurt, the budget cannot see this family of effect and the run is a FAIL with no reading published |
+
+### 3.4b ⭐ COMMANDER AMENDMENT #43.3 — X6 splits, before implementation
+
+Applied pre-run, ex ante, on banked data only, quoted in place as the ruling
+requires. **#24's attainable-population law, third application** (after P1's
+99% floor and T2-ARRIVAL's F2):
+
+> **X6 AMENDMENT — REQUIRED BEFORE IMPLEMENTATION.** The 0.84 floor was derived
+> on P1R's UNIFORM forced mix (8.08% clamp share, 2× headroom). The eye's mix is
+> an argmax: 54.9% of predicted deviations sit on r21a0 — the most forward
+> candidate, on the attacking face, exactly where the onside clamp lives — so
+> the floor's denominator population is not the population the gate deploys on.
+> The contract already contradicts itself here: pin 1 declares clamp rewrites
+> "counted, not treated as a failure" while X6 makes a clamp-heavy mix a
+> run-FAIL. RESOLUTION, through the contract's own semantics: **X6 binds HARD on
+> per-record fidelity only** (applied target = the engine's own meet to 1e-9;
+> unexplained exactly 0). **The ok-share and clamp shares become REPORTED,
+> per-candidate × per-context.** Validity is carried by construction, not by the
+> floor: census forks and eye share the same READ point and the same clamps
+> after it (§2.1), so each candidate's price ALREADY includes its clamp fate —
+> the eye consuming candidate x receives exactly the treatment the census priced
+> as x. Clamp composition is an interpretation mediator (how much of r21a0's
+> value is "the onside line"), never a validity gate.
+
+Nothing else moves (#43.5): not W, not the horizons, not the lattice, not the
+contexts, not the 150 floor, not DEV 0.22, not the canary bands, not §6's
+readings.
+
+**On the record from the same ruling (#43.4), no amendment**: DEV's 0.22 gets
+its missing anchor — the banked out-of-cone rate at 0.8 awareness is 9.4% (D6),
+an UPPER anchor for a snapshot missing the ball since the snapshot also carries
+retained memory, so 2× headroom on 44.4% is attainable ex ante. §5's decision
+classes decompose any surprise.
 
 ### 3.5 Mandatory mediators (§4.5.5) — reported, never gating
 
@@ -559,8 +597,10 @@ Written before the run; not one of them may be re-cut after sight.
 * **Either canary or any DEGEN limb fires ⇒ the queue stops outright** and the
   fork returns to the commander.
 * **No re-cutting after sight**: not W, not the horizons, not the lattice, not
-  the contexts, not the 150 cell floor, not the 0.22 DEV floor, not X6's
-  derived floor, not the canary bands, not §6's readings.
+  the contexts, not the 150 cell floor, not the 0.22 DEV floor, not the canary
+  bands, not §6's readings. (X6's ok-share floor was removed **before
+  implementation** by commander amendment #43.3, §3.4b — pre-run, ex ante, on
+  banked data only; per-record fidelity still binds HARD.)
 * **The population law (#26.5)**: if any live substrate change lands before P2
   runs, P1R's table is stale and must be re-censused at the HEAD the eye
   deploys on. P2 must state the HEAD it ran at.
