@@ -1467,6 +1467,45 @@ generalises.
 >    deliberately not scaling it) is the no-invented-weights discipline
 >    verbatim; approved. **T1-FLIGHT runs; Phase B only on Phase A's
 >    X-series + D1, as frozen.**
+>
+> **COMMANDER RULING #32 (2026-07-27 — T1-FLIGHT Phase A disposed: F2
+> stands, its question answered by diagnosis; v1 becomes a COUPLED PAIR;
+> T2-ARRIVAL authorized on its doubled target):**
+>
+> 1. **F2 stands as fired and its QUESTION is answered by diagnosis**
+>    (the X3 precedent: proven, not asserted): 5,546 of 5,547 records
+>    at exactly 0, the one exception a NAMED world event (same-player
+>    re-strike inside the window — `lastTouch` never changes), not an
+>    arithmetic failure. Phase A's substance is ACCEPTED on that
+>    diagnosis. CODIFIED (PROBE-CONTRACTS, executor's next commit): a
+>    max-statistic over thousands of records at a tight tolerance is a
+>    coupon-collector gate and is forbidden — per-record with named
+>    exception classes, or a share form, powered ex ante.
+> 2. **BANKED:** the mechanism is total (launch-headable 74.02→100.00%,
+>    H0 54.76→1.62%); contests +3.42pp [2.14, 4.69] with **71% going to
+>    the defence** — the 2:1 box imbalance cashing a symmetric hang
+>    time, undesigned and honest (§2.3 registered it); conversion a
+>    RESOLVED DECREASE (10.76→8.72%) — the ceiling's spirit, moving
+>    toward the real game's 1–2%; **the partition question answered
+>    AGAINST the flight** (H3 11.74→22.90% of all crosses, median miss
+>    2.08→2.39 m) — the arrival gap is the whole remaining story;
+>    #31.1's fork measured FREE (stale-lead arm indistinguishable).
+> 3. **v1 is a COUPLED PAIR from here — flight does not go live alone.**
+>    Honest flight alone makes crossing produce more aerial football,
+>    mostly defensive, and fewer goals: shipping that alone moves the
+>    ecology AWAY from road B's goal mid-journey — the EDS law (partial
+>    live entry breaks structurally: S3b, vision-attr, C1-B) applied at
+>    contract scale. **Phase B (the live battery) DEFERS to the pair
+>    audit**: it runs once on flight+arrival TOGETHER, one bundle, one
+>    preview arm, E4 per-slice.
+> 4. **T2-ARRIVAL is AUTHORIZED (executor drafts, Autonomous mode) on
+>    the freshly doubled target** — 22.90% of all crosses, median miss
+>    2.39 m: the corner machinery's post-kick landing re-route (Q2's
+>    safe half) + the box-crash routing fix + the demoted C1 5.70pp
+>    repair; offside canary HARD (revert 2's +50%); I2 in its #31.2
+>    interval form; the T0b ladder re-run in its audit. Queue: T2 is
+>    the one experiment in flight; the commander drafts C6 in parallel;
+>    Stage III P0 + R20 in gaps; F9 any time.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
