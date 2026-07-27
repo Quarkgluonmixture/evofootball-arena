@@ -141,6 +141,78 @@ failed by a threshold nobody powered.
 - On **PASS**, ruling #27.5 lets T1 (the waiting census) pre-register without a
   new ruling; C4 T0 runs after T0R lands either way (one experiment in flight).
 
-## 6. Result
+## 6. Result — RUN 2026-07-27: **PASS, every gate**
 
-*(To be filled in after the fresh-block run, in a separate commit.)*
+SHA `495faec0…f503`, twice byte-identical. **12,000 forced holds over 76
+clusters, fresh block 840,000+.** Zero `src/**` this stage.
+
+| gate | result | |
+| --- | --- | --- |
+| **A2aR** tackle-loss strictly increasing, each step's CI > 0 | **4.52% → 17.72% → 23.76%**; steps **+13.20pp** CI [11.11, 15.32] and **+6.04pp** CI [4.02, 8.08] | ✅ |
+| **A3R** band-weighted dribbling gradient, CI < 0 | **−2.76pp**, CI **[−5.14, −0.49]** | ✅ |
+| **A1** transfer, far-side ≥ 90% | **95.81%** | ✅ |
+| **A2b** transfer, top-band survival < 0.90 | **67.57%** | ✅ |
+| **A2c** transfer, stamina rising | 0.00095 → 0.00384 → 0.00631 /s | ✅ |
+| coverage / determinism | 12,000 trials; two runs byte-identical | ✅ |
+
+### 6.1 What the redraw actually bought
+
+**A2aR is not a marginal pass.** Measured on the channel pressure drives, the
+world grades a held ball hard: the tackle-loss rate more than **quintuples**
+from the free band to the pressed one, and both steps clear zero by 5σ and 4σ.
+The object was wrong at T0, not the world — and the same underlying run said so
+in a report column.
+
+**A3R passes and its per-band shape is coherent:**
+
+| band | bottom / mid / top dribbling | Δ |
+| --- | --- | --- |
+| 0 (free) | 5.02 / 4.29 / 4.23% | −0.79pp |
+| 1 | 19.26 / 15.99 / 18.12% | −1.14pp |
+| 2 (pressed) | 25.32 / 24.40 / 21.59% | **−3.73pp** |
+
+The protection concentrates exactly where it should: **technique buys almost
+nothing when nobody is near you, and 3.7pp when you are pressed.** Nobody
+designed that shape into the gate — it falls out of the tackle formula being
+consulted only when a tackler is in range.
+
+⚠️ **Honest about the margin**: A3R's CI upper bound is **−0.49pp**, close to
+zero, and the point estimate (−2.76pp) is smaller than the frozen block's
+−3.32pp. It passes; it does not pass with room. A future stage that leans hard
+on this gradient should re-power rather than inherit it.
+
+### 6.2 ⭐ The strength channel, reported for comparison — and it is unstable
+
+Run alongside A3R with the identical stratified estimator:
+
+```text
+frozen block (830,000), within-band strength Δ:  +1.24 / +2.33 / +3.63 pp
+fresh  block (840,000), band-weighted strength:  −2.27 pp, CI [−4.69, +0.19]
+```
+
+**The sign flips between blocks and the fresh-block interval straddles zero.**
+Under #20's semantics that is INCONCLUSIVE — and it is exactly what a
+noise-dominated weak term looks like. The code predicted it before either run:
+`strength` carries **×0.10** against `dribbling`'s **×0.18** in the only
+formula that resolves a held ball, with the ×0.16 pace term switched off by
+standing still.
+
+So the lesson generalises past this gate: **gate where the substrate says the
+gradient lives, and the code will tell you before the data does.** T0's A3
+picked the third-largest term and got a reading that reversed between two
+blocks of the same world.
+
+### 6.3 Carried forward unchanged
+
+Hold survival overall 70.23%; the dribble baseline arm 10.83% — **still not
+comparable**, for the reason banked at T0 and re-affirmed by ruling #27.4: the
+baseline counts a completed pass as not-survived. Every comparative value
+question lives on T1's outcome axis.
+
+### 6.4 Disposition
+
+**PASS ⇒ ruling #27.5 applies**: T1 (the waiting census) pre-registers without
+a new ruling, and C4 T0 runs after this lands (one experiment in flight).
+Nothing shipped — both flags stay default OFF with zero live callers, the
+preview cannot reach them, and the fingerprint is untouched because this stage
+wrote no `src/**` at all.
