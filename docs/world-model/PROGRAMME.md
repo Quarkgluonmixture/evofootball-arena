@@ -1375,7 +1375,24 @@ delivery, it just only does it for corners** (timed multi-body crash, landing
 re-route). Two honest reverts already sit at this seat, so the option space is
 narrow; the `noAerial` instrument needs splitting into *nobody arrived* vs
 *arrived and did not head it* before it gates anything. **Both maps are with
-the commander; T0 can pre-register on them.** **F9 remains available at any time**
+the commander; the C5 design contract came back
+([`C5-TIME-DIMENSION.md`](C5-TIME-DIMENSION.md)) and its first stage is now
+PRE-REGISTERED: [`C5-T0-HOLD-MECHANICS.md`](C5-T0-HOLD-MECHANICS.md)** — the
+dormant hold + fork mechanics, gates frozen. ⭐ One finding from re-reading the
+tackle path reshaped the build: **the attack surface already exists and already
+punishes standing still** (the tackle search measures `dist(o.pos, ball.pos)`,
+not the man — so a ball on the far side of a body is harder to reach by
+existing geometry; `strength` already shields; a stopped-and-doubled carrier
+already takes +0.12). So T0 invents no attack — it makes the shield a
+deliberate body position, adds the one genuinely missing cost (stamina), and
+then MEASURES whether the existing attack still reaches a hold. That reframing
+names T0's real risk, and I1 is gated accordingly as a **CEILING on hold
+survival** (< 0.90 under the top pressure band) rather than merely "loss is
+possible" — a hold that survives a real press nine times in ten is E5h's `×1.3`
+in a new costume. A3's floor is derived AND its attainability stated (forced
+holds can be staged at any ball-owner tick, so the floor is budget-bound, not
+population-bound — the opposite of E5g's P2, which is why that failure cannot
+recur here). **F9 remains available at any time**
 (render-only; road B does not pause Track F). R20's three remaining
 re-analyses in gaps. All flags default-OFF; the E4 ship gate is closed for
 this cut and re-opens per-slice. Earlier,
