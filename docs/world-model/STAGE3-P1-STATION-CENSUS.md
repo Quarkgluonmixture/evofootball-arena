@@ -314,6 +314,37 @@ E-ENDED       the match ended inside the horizon
 UNEXPLAINED   must be exactly 0
 ```
 
+### 4.6b ⚠️ Corrected before the run, in its own commit
+
+Three, all found by a sizing smoke, all corrections of the **probe** toward the
+engine. No gate value, horizon, context, lattice, floor or reading changes.
+
+1. **The FACE dimension collapsed.** A moment is defined by the ball having an
+   owner, and the first implementation drew the forced body from the owner's
+   team only — so `face` was always `ours`, half the contexts were unreachable
+   and `H_concede` measured nothing. Fixed: the side **alternates on the same
+   stable rotation** as the body choice, so both faces are censused. Q8's
+   symmetry law is the reason this is a defect and not a scoping choice.
+2. **The clamp classes were read at the wrong instant.** The onside and
+   barred-box clamps are evaluated inside the step off the **pre-step** world;
+   the probe classified them from the post-step owner, which mis-filed ~1% of
+   live ticks as `unexplained`. Fixed by capturing both conditions before
+   `step()` — the same pre/post confusion as C4 O2's off-by-one, in a
+   different costume.
+3. **X6's reference is the engine's own target, not a probe reconstruction.**
+   §4.1 X6 says the applied target must equal `ball + (dx, dy)`. The probe
+   reads the ball at the tick boundary; the executor reads it **mid-step**, and
+   on ticks where a restart hand-off or a carrier snap moves the ball in
+   between, the two differ by a constant with no clamp involved. X6 now
+   compares `applied` against the engine's own `meet` — which is exactly the
+   claim the gate exists for (*the clamps did not rewrite the policy target*) —
+   and the `meet == ball + offset` half is pinned **exactly** by the unit test,
+   which is where an equality of that kind belongs. The divergence is still
+   **counted and reported** as `reconstructionDiverged` so the fact stays
+   visible rather than being absorbed.
+
+After all three the smoke's unexplained residual is **0**.
+
 ### 4.7 The gene mapping, frozen here for P2's ablation (Q6, §4.5.3)
 
 P1 ships no mapping into the live path, but P2's ablation family needs one
