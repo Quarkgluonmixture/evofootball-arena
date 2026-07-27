@@ -1764,9 +1764,16 @@ bundle or ships it.
 **Queue state (2026-07-27, #42.3 executed): 📝 Stage III P2 is DRAFTED AND
 FROZEN — the dormant eye that consumes the P1R table under #41.2's meaning and
 no other** → [`STAGE3-P2-DORMANT-EYE.md`](STAGE3-P2-DORMANT-EYE.md) (contract
-only; zero `src/**`, nothing implemented, nothing run). **Awaiting the
-commander's review before implementation** — P1's precedent (a pre-registration
-reviewed for §4.5 compliance before it may run). Nothing in flight.
+only; zero `src/**`, nothing implemented, nothing run). ✅ **REVIEWED AND
+AUTHORIZED by ruling #43 (2026-07-28)** — §4.5 compliance PASS, the ex-ante
+prediction reproduced to the digit by independent recomputation, and **ONE
+pre-run amendment required before implementation (#43.3): X6 splits — the
+per-record fidelity predicate stays HARD, the 0.84 ok-share floor and clamp
+shares become REPORTED per-candidate × per-context** (the floor was derived on
+P1R's uniform forced mix; the eye's argmax mix concentrates 54.9% on r21a0,
+and pin 1 already declares clamp rewrites counted-not-failures). The executor
+applies the amendment, then implements and runs P2-A and P2-B. Nothing else
+moves.
 
 * **The central hypothesis is #42.3's, pre-named and unmoved**: a
   context-reading, percept-honest chooser over the SAME lattice recovers the
@@ -3501,3 +3508,67 @@ grinding the same family.
 >    percept-honest chooser over the SAME lattice recovers the 40-cell
 >    conditional payoff that every fixed policy loses. R20 in gaps;
 >    F9 any time.
+
+> **COMMANDER RULING #43 (2026-07-28 — P2 contract reviewed: compliance
+> PASSES, the ex-ante prediction reproduces to the digit, ONE pre-run
+> amendment required — X6's ok-share floor is the attainability defect
+> a third time):**
+>
+> 1. **COMPLIANCE REVIEW — PASS.** §4.5 items 1–7 each land in the
+>    contract: 1 → §2.1 READ-fork + X4/X5 identity; 2 → §4.1 adoption
+>    ladder + §6(g); 3 → §2.5 arms + §6(f) attribution; 4 → §3.1
+>    face-specific horizons (P1R's, inherited with the census's own
+>    prices); 5 → PC gate + the MDE-vs-expected statement + paired
+>    same-seed forks + M-ETA/M-ERROR/M-OCCUPANCY; 6 → §4.2 side-split
+>    always, §2.2's W re-derived from P0 anchors, §2.6's four pins
+>    verbatim; 7 → §5 boilerplate (E-PAUSED standing class present) +
+>    §6's full sign space (a)–(i). Anticipatory density stays the named
+>    pile-up lever by §4.5.6's own standing designation — inherited by
+>    authority chain, correctly not re-stated.
+> 2. **THE EX-ANTE PREDICTION REPRODUCES TO THE DIGIT** (recomputed
+>    independently from the committed table): 6/12 positive contexts,
+>    deviation share 44.42%, ATE +0.0207 / ATT +0.0466 on the VALUE
+>    axis (= 2× the 0.5-weight advantage — the SAME axis the MDE and
+>    §3.1's estimand are stated on, so the contract is coherent), all
+>    six argmax picks as listed, ours|theirThird|crowded confirmed
+>    all-under-powered, r21a0 = 54.9% of predicted deviations. SHA
+>    note for the record: the quoted 59a3f72e…6e12d is the CANONICAL
+>    table hash embedded in the JSON and it reproduces; the file-byte
+>    SHA differs because the committed file wraps table+parameters
+>    pretty-printed. Both verified. The MDE inheritance is conservative:
+>    0.0127/√2 ≈ 0.009 before pairing gains are counted.
+> 3. **X6 AMENDMENT — REQUIRED BEFORE IMPLEMENTATION** (pre-run, ex
+>    ante, on banked data only; #24's attainable-population law, third
+>    application after P1's 99% floor and T2-ARRIVAL's F2). The 0.84
+>    floor was derived on P1R's UNIFORM forced mix (8.08% clamp share,
+>    2× headroom). The eye's mix is an argmax: 54.9% of predicted
+>    deviations sit on r21a0 — the most forward candidate, on the
+>    attacking face, exactly where the onside clamp lives — so the
+>    floor's denominator population is not the population the gate
+>    deploys on. The contract already contradicts itself here: pin 1
+>    declares clamp rewrites "counted, not treated as a failure" while
+>    X6 makes a clamp-heavy mix a run-FAIL. RESOLUTION, through the
+>    contract's own semantics: **X6 binds HARD on per-record fidelity
+>    only** (applied target = the engine's own meet to 1e-9;
+>    unexplained exactly 0). **The ok-share and clamp shares become
+>    REPORTED, per-candidate × per-context.** Validity is carried by
+>    construction, not by the floor: census forks and eye share the
+>    same READ point and the same clamps after it (§2.1), so each
+>    candidate's price ALREADY includes its clamp fate — the eye
+>    consuming candidate x receives exactly the treatment the census
+>    priced as x. Clamp composition is an interpretation mediator (how
+>    much of r21a0's value is "the onside line"), never a validity
+>    gate.
+> 4. **E-ABSTAIN-UNSEEN ATTAINABILITY, put on the record** (the
+>    contract set DEV = 0.22 "with headroom for percept error" without
+>    an anchor): the banked out-of-cone rate at 0.8 awareness is 9.4%
+>    (D6), an UPPER anchor for snapshot-ball-missing since the snapshot
+>    includes retained memory. 2× headroom on 44.4% is attainable ex
+>    ante. No amendment; §5's decision classes decompose any surprise.
+> 5. **AUTHORIZED**: the executor applies #43.3 to the frozen contract
+>    as a MARKED commander amendment (quote this ruling in place),
+>    then implements and runs P2-A and P2-B as amended. Nothing else
+>    moves: not W, not the horizons, not the lattice, not the contexts,
+>    not the 150 floor, not DEV 0.22, not the canary bands, not §6's
+>    readings. #26.5 stands — no live substrate change lands before the
+>    run, and the run states its HEAD.
