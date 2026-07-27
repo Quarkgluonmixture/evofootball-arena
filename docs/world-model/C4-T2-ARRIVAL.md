@@ -248,6 +248,31 @@ below a working seam and far above a broken one — it separates *fires* from
 **F1 and F2 prove the mechanism reached the world. They prove nothing about
 whether the world is better.** The payoff is D1.
 
+### 4.3b ⚠️ Instrument facts disclosed before the run, in their own commit
+
+Three things the implementation surfaced. None touches a gate value, the
+mechanism, D1's power, I2's margin, the canary's band or §6's readings.
+
+1. **F2 needs an observability field, and I added one.** The gate compares
+   the engine's steering target against the meet point; a probe cannot see a
+   local. `Player.c4Trace = { meet, applied }` is written by the executor on
+   the tick its branch fires and cleared at the top of every `executeAction`.
+   It is **never read by any decision** and is null in every flags-off world.
+   Without it F2 could only be *asserted* in a unit test instead of *measured*
+   over the run, which is the weaker thing #32.1 was trying to get away from.
+2. **E3 turns out to be structurally impossible, and the class is kept
+   anyway.** `Match.step` runs every `executeAction` in one loop, after
+   `simTime += dt` and before any physics or ball step, so every body executes
+   off the same frozen world — "he stopped being closest between decision and
+   execution" cannot happen within a tick. The probe replicates the executor's
+   own preconditions at the pre-step boundary for exactly this reason. The
+   class stays in the ledger; an empty class is a result, not a defect.
+3. **A corner takes precedence and those ticks are EXCLUDED from F2's
+   population, counted separately.** `crossFlight` is armed only when
+   `cornerCrash === null`, but a corner can begin while one is live, and the
+   executor's crash branch wins. This is X6's own rule seen from the other
+   side; the count is reported so the exclusion is visible rather than silent.
+
 ### 4.4 D — the deliverable (#28.4's "CONTESTS, never goals")
 
 ```text
