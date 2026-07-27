@@ -1,0 +1,829 @@
+{
+  "authority": "C5-T1-WAITING-CENSUS",
+  "parameters": {
+    "buildSeedStart": 850000,
+    "heldoutSeedStart": 860000,
+    "buildBudget": 6000,
+    "heldoutBudget": 2500,
+    "perMatchCap": 80,
+    "momentSpacing": 30,
+    "horizon": 240,
+    "holdLadder": [
+      30,
+      60,
+      90
+    ],
+    "pressureBands": [
+      0.15,
+      0.45
+    ],
+    "staleBands": [
+      3,
+      8
+    ],
+    "supportWindowM": [
+      6,
+      30
+    ],
+    "supportCuts": {
+      "low": 3,
+      "high": 4
+    },
+    "aiIntervalTicks": 9,
+    "clusterUnit": "match seed",
+    "arm": "VALUE (perceived pair + value axis) + c5Hold"
+  },
+  "build": {
+    "cells": [
+      {
+        "pressureBand": 0,
+        "staleBand": 0,
+        "supportBand": 0,
+        "n": 62,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.290323,
+          "hold30": 0.274194,
+          "hold60": 0.258065,
+          "hold90": 0.241935
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 0,
+        "supportBand": 1,
+        "n": 245,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.338776,
+          "hold30": 0.302041,
+          "hold60": 0.285714,
+          "hold90": 0.265306
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 0,
+        "supportBand": 2,
+        "n": 427,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.224824,
+          "hold30": 0.161593,
+          "hold60": 0.131148,
+          "hold90": 0.124122
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 1,
+        "supportBand": 0,
+        "n": 6,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.333333,
+          "hold30": 0.166667,
+          "hold60": 0.166667,
+          "hold90": 0.166667
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 1,
+        "supportBand": 1,
+        "n": 32,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.375,
+          "hold30": 0.21875,
+          "hold60": 0.125,
+          "hold90": 0.0625
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 1,
+        "supportBand": 2,
+        "n": 78,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.269231,
+          "hold30": 0.192308,
+          "hold60": 0.089744,
+          "hold90": 0.064103
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 2,
+        "supportBand": 0,
+        "n": 3,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0,
+          "hold30": 0,
+          "hold60": 0,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 2,
+        "supportBand": 1,
+        "n": 3,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 1,
+          "hold30": 1,
+          "hold60": 1,
+          "hold90": 0.666667
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 2,
+        "supportBand": 2,
+        "n": 8,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.25,
+          "hold30": 0.375,
+          "hold60": 0.25,
+          "hold90": 0.375
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 0,
+        "supportBand": 0,
+        "n": 111,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.279279,
+          "hold30": 0.198198,
+          "hold60": 0.099099,
+          "hold90": 0.126126
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 0,
+        "supportBand": 1,
+        "n": 179,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.413408,
+          "hold30": 0.240223,
+          "hold60": 0.201117,
+          "hold90": 0.206704
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 0,
+        "supportBand": 2,
+        "n": 231,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.320346,
+          "hold30": 0.212121,
+          "hold60": 0.160173,
+          "hold90": 0.112554
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 1,
+        "supportBand": 0,
+        "n": 8,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.375,
+          "hold30": 0.5,
+          "hold60": 0.25,
+          "hold90": 0.125
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 1,
+        "supportBand": 1,
+        "n": 53,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.396226,
+          "hold30": 0.377358,
+          "hold60": 0.264151,
+          "hold90": 0.226415
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 1,
+        "supportBand": 2,
+        "n": 95,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.263158,
+          "hold30": 0.157895,
+          "hold60": 0.147368,
+          "hold90": 0.073684
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 2,
+        "supportBand": 0,
+        "n": 3,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.333333,
+          "hold30": 0,
+          "hold60": 0,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 2,
+        "supportBand": 1,
+        "n": 10,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.5,
+          "hold30": 0.4,
+          "hold60": 0.3,
+          "hold90": 0.4
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 2,
+        "supportBand": 2,
+        "n": 15,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.333333,
+          "hold30": 0.4,
+          "hold60": 0.4,
+          "hold90": 0.333333
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 0,
+        "supportBand": 0,
+        "n": 1075,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.283721,
+          "hold30": 0.212093,
+          "hold60": 0.142326,
+          "hold90": 0.110698
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 0,
+        "supportBand": 1,
+        "n": 1137,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.299912,
+          "hold30": 0.223395,
+          "hold60": 0.167106,
+          "hold90": 0.140721
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 0,
+        "supportBand": 2,
+        "n": 1209,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.230769,
+          "hold30": 0.196857,
+          "hold60": 0.166253,
+          "hold90": 0.125724
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 1,
+        "supportBand": 0,
+        "n": 174,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.66092,
+          "hold30": 0.488506,
+          "hold60": 0.344828,
+          "hold90": 0.293103
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 1,
+        "supportBand": 1,
+        "n": 258,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.503876,
+          "hold30": 0.395349,
+          "hold60": 0.352713,
+          "hold90": 0.275194
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 1,
+        "supportBand": 2,
+        "n": 325,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.36,
+          "hold30": 0.273846,
+          "hold60": 0.24,
+          "hold90": 0.190769
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 2,
+        "supportBand": 0,
+        "n": 29,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.758621,
+          "hold30": 0.517241,
+          "hold60": 0.37931,
+          "hold90": 0.275862
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 2,
+        "supportBand": 1,
+        "n": 70,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.514286,
+          "hold30": 0.414286,
+          "hold60": 0.342857,
+          "hold90": 0.228571
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 2,
+        "supportBand": 2,
+        "n": 154,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.38961,
+          "hold30": 0.233766,
+          "hold60": 0.162338,
+          "hold90": 0.149351
+        }
+      }
+    ],
+    "pressureRows": [
+      {
+        "pressureBand": 0,
+        "n": 864,
+        "rates": {
+          "actNow": 0.274306,
+          "hold30": 0.21875,
+          "hold60": 0.184028,
+          "hold90": 0.168981
+        }
+      },
+      {
+        "pressureBand": 1,
+        "n": 705,
+        "rates": {
+          "actNow": 0.339007,
+          "hold30": 0.231206,
+          "hold60": 0.174468,
+          "hold90": 0.150355
+        }
+      },
+      {
+        "pressureBand": 2,
+        "n": 4431,
+        "rates": {
+          "actNow": 0.317084,
+          "hold30": 0.242835,
+          "hold60": 0.187994,
+          "hold90": 0.149402
+        }
+      }
+    ],
+    "marginal": {
+      "n": 6000,
+      "rates": {
+        "actNow": 0.3135,
+        "hold30": 0.238,
+        "hold60": 0.185833,
+        "hold90": 0.152333
+      }
+    }
+  },
+  "heldout": {
+    "cells": [
+      {
+        "pressureBand": 0,
+        "staleBand": 0,
+        "supportBand": 0,
+        "n": 26,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.346154,
+          "hold30": 0.269231,
+          "hold60": 0.192308,
+          "hold90": 0.192308
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 0,
+        "supportBand": 1,
+        "n": 84,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.321429,
+          "hold30": 0.285714,
+          "hold60": 0.285714,
+          "hold90": 0.285714
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 0,
+        "supportBand": 2,
+        "n": 181,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.237569,
+          "hold30": 0.19337,
+          "hold60": 0.149171,
+          "hold90": 0.143646
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 1,
+        "supportBand": 0,
+        "n": 2,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0,
+          "hold30": 0,
+          "hold60": 0,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 1,
+        "supportBand": 1,
+        "n": 13,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.384615,
+          "hold30": 0.230769,
+          "hold60": 0.076923,
+          "hold90": 0.153846
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 1,
+        "supportBand": 2,
+        "n": 40,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.35,
+          "hold30": 0.175,
+          "hold60": 0.225,
+          "hold90": 0.1
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 2,
+        "supportBand": 0,
+        "n": 1,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0,
+          "hold30": 0,
+          "hold60": 0,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 2,
+        "supportBand": 1,
+        "n": 2,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0,
+          "hold30": 0,
+          "hold60": 0,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 0,
+        "staleBand": 2,
+        "supportBand": 2,
+        "n": 2,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.5,
+          "hold30": 0,
+          "hold60": 0.5,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 0,
+        "supportBand": 0,
+        "n": 41,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.219512,
+          "hold30": 0.121951,
+          "hold60": 0.073171,
+          "hold90": 0
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 0,
+        "supportBand": 1,
+        "n": 79,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.367089,
+          "hold30": 0.240506,
+          "hold60": 0.227848,
+          "hold90": 0.177215
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 0,
+        "supportBand": 2,
+        "n": 98,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.316327,
+          "hold30": 0.204082,
+          "hold60": 0.183673,
+          "hold90": 0.091837
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 1,
+        "supportBand": 0,
+        "n": 12,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.666667,
+          "hold30": 0.5,
+          "hold60": 0.583333,
+          "hold90": 0.583333
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 1,
+        "supportBand": 1,
+        "n": 21,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.428571,
+          "hold30": 0.47619,
+          "hold60": 0.285714,
+          "hold90": 0.285714
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 1,
+        "supportBand": 2,
+        "n": 46,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.282609,
+          "hold30": 0.26087,
+          "hold60": 0.108696,
+          "hold90": 0.065217
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 2,
+        "supportBand": 0,
+        "n": 1,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0,
+          "hold30": 0,
+          "hold60": 0,
+          "hold90": 1
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 2,
+        "supportBand": 1,
+        "n": 2,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.5,
+          "hold30": 0.5,
+          "hold60": 0.5,
+          "hold90": 0.5
+        }
+      },
+      {
+        "pressureBand": 1,
+        "staleBand": 2,
+        "supportBand": 2,
+        "n": 13,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.076923,
+          "hold30": 0.076923,
+          "hold60": 0.153846,
+          "hold90": 0.153846
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 0,
+        "supportBand": 0,
+        "n": 550,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.258182,
+          "hold30": 0.210909,
+          "hold60": 0.167273,
+          "hold90": 0.130909
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 0,
+        "supportBand": 1,
+        "n": 428,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.28972,
+          "hold30": 0.21729,
+          "hold60": 0.168224,
+          "hold90": 0.126168
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 0,
+        "supportBand": 2,
+        "n": 417,
+        "ladder": "cell",
+        "rates": {
+          "actNow": 0.206235,
+          "hold30": 0.155875,
+          "hold60": 0.131894,
+          "hold90": 0.081535
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 1,
+        "supportBand": 0,
+        "n": 76,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.421053,
+          "hold30": 0.25,
+          "hold60": 0.276316,
+          "hold90": 0.210526
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 1,
+        "supportBand": 1,
+        "n": 135,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.466667,
+          "hold30": 0.451852,
+          "hold60": 0.362963,
+          "hold90": 0.303704
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 1,
+        "supportBand": 2,
+        "n": 141,
+        "ladder": "pressureStale",
+        "rates": {
+          "actNow": 0.241135,
+          "hold30": 0.170213,
+          "hold60": 0.156028,
+          "hold90": 0.163121
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 2,
+        "supportBand": 0,
+        "n": 14,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.357143,
+          "hold30": 0.357143,
+          "hold60": 0.357143,
+          "hold90": 0.142857
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 2,
+        "supportBand": 1,
+        "n": 30,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.466667,
+          "hold30": 0.233333,
+          "hold60": 0.333333,
+          "hold90": 0.233333
+        }
+      },
+      {
+        "pressureBand": 2,
+        "staleBand": 2,
+        "supportBand": 2,
+        "n": 45,
+        "ladder": "pressure",
+        "rates": {
+          "actNow": 0.2,
+          "hold30": 0.355556,
+          "hold60": 0.288889,
+          "hold90": 0.133333
+        }
+      }
+    ],
+    "pressureRows": [
+      {
+        "pressureBand": 0,
+        "n": 351,
+        "rates": {
+          "actNow": 0.282051,
+          "hold30": 0.216524,
+          "hold60": 0.190883,
+          "hold90": 0.173789
+        }
+      },
+      {
+        "pressureBand": 1,
+        "n": 313,
+        "rates": {
+          "actNow": 0.322684,
+          "hold30": 0.236422,
+          "hold60": 0.191693,
+          "hold90": 0.13738
+        }
+      },
+      {
+        "pressureBand": 2,
+        "n": 1836,
+        "rates": {
+          "actNow": 0.277233,
+          "hold30": 0.221133,
+          "hold60": 0.184641,
+          "hold90": 0.138889
+        }
+      }
+    ],
+    "marginal": {
+      "n": 2500,
+      "rates": {
+        "actNow": 0.2836,
+        "hold30": 0.2224,
+        "hold60": 0.1864,
+        "hold90": 0.1436
+      }
+    }
+  },
+  "tableSha": "7ea8152a2e8f4f2fa7ad889e8257964aee3d5379a1b2b7d60a9746d4266406e1"
+}

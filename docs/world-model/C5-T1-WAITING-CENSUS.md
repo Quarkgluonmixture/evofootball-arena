@@ -340,9 +340,146 @@ drift.
 
 Probe: `scripts/probes/c5-t1-waiting-census.ts` (new; edits no existing probe).
 
-## 11. Result
+## 11. Result — RUN 2026-07-27: ⛔ **FAIL on H1. The queue stops.**
 
-*(empty — this document is the pre-registration. The run fills this section.)*
+SHA `72c187aa…8e43`, twice byte-identical. **6,000 moments / 75 clusters** build,
+**2,500 / 32** held-out. Zero `src/**` (`git diff` = 0 lines), fingerprint
+`57b0bdab…c673` unchanged. Table `docs/world-model/data/c5-t1-waiting-census.json`,
+**table SHA `7ea8152a…06e1`**.
+
+| gate | result | |
+| --- | --- | --- |
+| **X4** seam inert (expired `forcedHold` ≡ A0 over 240 ticks, 3 seeds) | 3/3 identical | ✅ |
+| **X5** seam bites at k=90 | **100.00%** of moments diverge | ✅ |
+| **C1** build ≥6,000 moments, ≥60 clusters | 6,000 / 75 | ✅ |
+| **C2** held-out ≥2,500, ≥30 clusters | 2,500 / 32 | ✅ |
+| **C3** ≥300 per pressure row per arm, both blocks | 864 / 705 / 4,431 · 351 / 313 / 1,836 | ✅ |
+| **H1** marginal reproduces within 2.0pp, per arm | **actNow 2.99pp**; hold30 1.56 · hold60 **0.06** · hold90 0.87 | ⛔ |
+| **H2** each gated pressure row within 5.0pp, per arm | max 4.0pp, all twelve inside | ✅ |
+| **D** determinism | two runs byte-identical | ✅ |
+
+### 11.1 The FAIL, and what it is actually made of
+
+**Only the act-now arm missed, and only on the marginal.** All three HOLD arms
+reproduce across disjoint blocks at 1.56 / 0.06 / 0.87pp, and every one of the
+twelve gated pressure rows is inside H2's 5.0pp. The act-now level moved
+31.35% → 28.36%, and the movement is concentrated in the top pressure band
+(31.71% → 27.72%, 4.0pp), which is also where two thirds of the moments live.
+
+This is the gate §7.2b flagged before the run as **2.1σ rather than ~3σ at the
+realised base rate**, and it fired at ≈3.1σ of the naive interval — i.e. right
+at the edge where a mis-sized tolerance and a real block difference are not
+distinguishable by this design. With the match seed as the cluster unit and
+**32 held-out clusters**, "how shot-heavy a match is" is a cluster-level
+property, and the marginal is the statistic most exposed to it; the per-row
+comparison at a tolerance that respects that passes everywhere.
+
+**I am not relaxing it.** §12 says H may not be relaxed after sight and the
+tolerances were inherited whole precisely so they could not be argued about
+later. The honest statement is the one recorded in advance: *if H1 fires, that
+is a gate I mis-sized, not a table that failed to reproduce* — and the evidence
+now says exactly that, because the arms the table exists to price all reproduce
+and the rows all reproduce. A re-powered T1R would size H1 off this run's own
+cluster variance and use more held-out clusters, not a looser number.
+
+### 11.2 ⭐⭐⭐ The exchange rate: reading (a), resolved, and monotone in k
+
+Paired per-moment difference (hold-k − act-now), 95% cluster bootstrap:
+
+| k | waiting's cost | 95% CI | concession twin | release-origin twin |
+| --- | --- | --- | --- | --- |
+| **30** (0.5 s) | **−7.55pp** | [−9.35, −5.73] | **+1.45pp** [0.73, 2.18] | −6.53pp [−8.47, −4.45] |
+| **60** (1.0 s) | **−12.77pp** | [−14.68, −10.95] | **+2.63pp** [1.82, 3.45] | −10.20pp [−12.13, −8.32] |
+| **90** (1.5 s) | **−16.12pp** | [−18.02, −14.28] | **+3.55pp** [2.68, 4.42] | −12.40pp [−14.50, −10.47] |
+
+Marginal shot rates: act-now **31.35%**, hold-30 23.80%, hold-60 18.58%,
+hold-90 15.23%.
+
+**In today's world, waiting is expensive at both ends and the cost grows with
+every tick held.** Half a second costs 7.6pp of shot probability and buys 1.5pp
+of extra concession; a second and a half costs 16.1pp and concedes 3.6pp. Every
+interval is far from zero — this is not the 1.6pp-resolution question §7.1
+worried about, it is an effect ten times the resolution.
+
+**§8.3's twin closes the obvious defence.** "He waited and then played a better
+ball" is measurable, and it is false: re-anchoring the window at the RELEASE
+still leaves waiting **−6.53 / −10.20 / −12.40pp**. The ball is not better when
+it finally goes; it is simply later. The twin is reported, never substituted —
+but the direction it points is the same one.
+
+**By pressure band** (k=90): free **−10.53pp**, mid **−18.87pp**, pressed
+**−16.77pp**. Waiting costs least when nobody is near you, which is coherent
+without anyone designing it in, and matches T0R's shape — the world only
+charges for time when there is someone to charge you.
+
+**Hold anatomy**: the forced hold survives its own window 84.8 / 76.7 / 68.8%
+of the time, losing to a tackle in 5.7 / 12.7 / 19.4%. The 68.8% at k=90 sits
+beside T0R's 70.2% on a different population and a different arm — close, and
+neither is a pin.
+
+### 11.3 What this does and does not say
+
+**Registered in advance and honoured now**: reading (a) is not a FAIL and not a
+refutation of C5. What it establishes is narrower and sharper —
+
+* **A T2 chooser priced from this table would essentially never hold.** That is
+  the single most consequential thing T1 hands forward, and it is a design fact
+  the commander needs before T2 is drafted, not after.
+* **Part of the cost is mechanical by construction, and that was the design.**
+  A held tick is a tick removed from the same 240-tick window, and §4 fixed the
+  horizon at the decision moment precisely so that time cost would be counted
+  rather than hidden. So the honest claim is *"on this axis, in this world, a
+  held tick is a spent tick and nothing currently pays it back"* — **not**
+  "patience has no value in football".
+* **Q2 anticipated this exact outcome**: *"if today's world pays little for
+  patience, the table says so honestly; road B enriches the world and
+  re-censuses (#26.5)."* The world that would pay for waiting — a maturing run
+  that is worth waiting for, a press that can be drawn and beaten, a receiver
+  repertoire — is the world road B is building. This table is the before.
+* **It is the fourth independent arrow at the same seat, pointing the other
+  way.** E4r1, the user's round-2 anchor, E5f/E5g and now T1 all agree that the
+  substrate does not currently reward waiting; the first three read it as a
+  missing capability, and T1 says the capability alone would not be selected.
+
+### 11.4 §9's time-signature instruments — the tempo baseline
+
+Whole matches, unforked, 75 seeds of the build block, both worlds:
+
+| instrument | legacy (flags-off) | VALUE arm |
+| --- | --- | --- |
+| **TS1** passes / minute of possession | **28.34** | 29.64 |
+| **TS2** one-touch share | 19.35% | 19.63% |
+| **TS3** ownership spell, mean / median / p90 | **0.678 / 0.333 / 1.383 s** | 0.644 / 0.333 / 1.333 s |
+| **TS4** time to release (released / lost) | 0.718 s (n=8,211) / 0.465 s (n=1,535) | 0.683 s (n=8,435) / 0.452 s (n=1,706) |
+| **TS5** decisions per spell | 4.52 | 4.29 |
+
+⭐ **The user's anchor now has a number: the median possession spell in this
+game is 0.33 seconds, and the mean is 0.68.** A player has the ball for about
+four and a half decision ticks before it leaves him. That is the receive-phase
+time dimension's absence measured directly, and it is the baseline every later
+C5/C7 stage re-reports. The two worlds are within 5% of each other on every
+instrument, so the perceived brain is not what sets the tempo.
+
+### 11.5 The table, and the ladder's honesty
+
+`docs/world-model/data/c5-t1-waiting-census.json`, table SHA
+`7ea8152a…06e1`. Support terciles came out **<3 / 3 / ≥4** teammates in the
+6–30 m window.
+
+Of the 27 cells, **5 resolve at cell level, 9 fall to (pressure × stale) and 13
+fall to the pressure row** — which is exactly what §5's disclosure said would
+happen and the reason no per-cell floor was gated. Nothing was merged after
+seeing results; the ladder was frozen before the run and every cell reports
+which rung it landed on.
+
+### 11.6 Disposition
+
+**FAIL ⇒ the fork returns to the commander** (§12). Nothing shipped: zero
+`src/**`, no flag, no live caller, fingerprint untouched. The table is committed
+as data and is usable — T2's baking of it into a `src/ai/` module is T2's own
+contract's job, pinned to the SHA above — but T1's own certification did not
+complete, and whether the census is adopted on a mis-sized-gate reading or
+re-run as T1R with a re-powered H1 is not mine to decide.
 
 ## 12. Stop rules
 
