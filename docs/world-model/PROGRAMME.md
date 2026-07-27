@@ -3286,3 +3286,29 @@ grinding the same family.
 > ablation, full-sign-space readings). APPROVED TO RUN as pre-registered
 > under #39 — the programme's largest census, gated before it can
 > mislead.**
+
+> **COMMANDER RULING #40 (2026-07-27 — P1 disposed: the treatment never
+> arrived, and the audit-mandated mediators are why we know; P1R):**
+>
+> 1. **X6's FAIL stands; the MEDIATORS are the hero.** Without §4.5.5
+>    (the cross-AI constraint) this run would have read "the incumbent
+>    beats all 18 stations" and falsely refuted Stage III's premise —
+>    instead occupancy 0.8–5.3% and ETA ≈ W expose a W-derivation error
+>    (ball-relative targets need dist(body, ball+offset), not ring
+>    radius; ~35 m ≠ 14 m). The audit bought exactly this catch.
+> 2. **BANKED**: the harness is perfect (clones 6,000/6,000, control
+>    identity 0/240, PC resolved in BOTH faces — the census CAN see
+>    this effect size at this budget); and the honest estimand —
+>    overriding an off-ball body with an unreachable target costs
+>    2–5pp, monotone in distance — is a real substrate truth (walking
+>    to nowhere loses value).
+> 3. **Second defect owned and generalized**: ~1 in 5 forced moments
+>    replaced a ball-directed JOB (chaser/receiver/marker), not a
+>    station — O2's displacement lesson in full generality.
+> 4. **P1R authorized (executor, Autonomous mode)**: lattice becomes
+>    REACHABILITY-SCOPED (candidates = what THIS body can reach within
+>    W from where it stands, W dominating the measured travel-time
+>    distribution ex ante); population scoped to STATION-FAMILY ticks
+>    only (77.4% of body-ticks — never override a ball-directed job);
+>    all other gates verbatim; X6's floor re-checked against the new
+>    W. Everything else in the queue unchanged.
