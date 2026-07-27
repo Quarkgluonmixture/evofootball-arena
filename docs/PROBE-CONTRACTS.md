@@ -139,6 +139,25 @@ what previously only a play session could.
   coded as "rises" where the SE of that difference was ≈5.6pp at n≈60 — the
   probe was honest, the predicate was unpowered by construction.)*
 
+**Power is a FREEZE-TIME obligation, and a pre-run disclosure does not
+discharge it (commander ruling #29.5, 2026-07-27).** A gate you can already
+see is under-powered must be **re-powered or re-derived ex ante, before the
+freeze** — writing down that it is weak is honesty about a defect, not a
+licence to run with it. A knowingly ~2σ gate buys a verdict that cannot
+distinguish its own two readings: *the world moved* and *my tolerance was too
+tight* both produce the same fire, and no amount of after-the-fact prose
+separates them. *(Registered from C5 T1's H1: the contract disclosed, in its
+own committed §7.2b before the run, that the realised base rate made a 2.0pp
+tolerance 2.1σ instead of ≈3σ — and then ran it. It fired at ≈3.1σ on one arm
+while the three arms the table existed to price reproduced at 1.56 / 0.06 /
+0.87pp, leaving a FAIL that no one can read. The disclosure was correct
+conduct; keeping the gate was not.)*
+
+Corollary, and the honest escape hatch: if a floor cannot be re-powered
+because the population will not supply the sample — the #24 check — then say
+so and **do not gate on it**. Report the quantity instead. An ungated
+measurement is worth more than a gate whose fire is uninterpretable.
+
 ---
 
 ## 3. Gate structure per phase (no single VisionScore)
