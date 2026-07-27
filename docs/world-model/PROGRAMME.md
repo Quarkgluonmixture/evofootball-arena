@@ -1761,7 +1761,68 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-27, #36 executed): ⏸ BOTH C4 compliant oracles are
+**Queue state (2026-07-27, #36.3 executed): BOTH C4 oracles RAN.
+⭐⭐⭐ O1 = LEVER · ⛔ O2 = GATES FAIL on X6, with a large RESOLVED HARM** →
+[`C4-O1-FLIGHT-FORK.md`](C4-O1-FLIGHT-FORK.md) §7 (SHA `dc29a408…fce3`,
+5,404 crosses / 10,808 forks) and
+[`C4-O2-SECOND-BODY-FORK.md`](C4-O2-SECOND-BODY-FORK.md) §7 (SHA
+`f5a69e49…b2ff`, 5,418 crosses / 10,836 forks). Both twice byte-identical,
+both **clone coverage 100%** and **harness identity 0 mismatched**, fingerprint
+`57b0bdab…c673` unchanged, nothing shipped, both seams null in production.
+**Stage III P1 still HOLDS** pending the contract revision. Nothing in flight.
+
+* ⭐⭐⭐ **O1 = LEVER, and the bands separate 43×.** Contests **+12.36pp**
+  CI [10.79, 14.04] on deliveries the unforced law leaves SHORT of the header
+  band, against **+0.25pp** CI [0.08, 0.46] on the LONG ones it already lifts
+  (SHORT/FULL +7.29, LONG/FULL +0.17; pooled +4.18pp). **The 14.454 m boundary
+  was derived from `peak = g·T²/8` before any data existed and the world
+  agreed with it** — nothing fitted. ⇒ **T1-FLIGHT's blanket floor was doing
+  almost all of its work on a third of crosses** (SHORT = 33.4%); the other
+  two thirds paid the mandate and got nothing measurable.
+* ⭐⭐ **The withdrawn goal claim RETURNS under a compliant estimand.** ANY
+  goal in a fixed 4.0 s horizon, censoring impossible inside a fork:
+  **−1.65pp CI [−2.16, −1.13]**, resolved. Scope stated precisely — this
+  re-establishes that *forcing one delivery to loft* lowers the 4-second goal
+  chance; **T1-FLIGHT's match-wide policy claim stays withdrawn** (#36.1). And
+  the trade is concentrated: SHORT/THIN is +12.36pp of contests **and**
+  −5.27pp of goals. Where lofting buys the most aerial football it costs the
+  most goals — Q5's ceiling doing its job.
+* O1's contest gain is **75% defensive** (C3atk +1.05 vs C3def +3.13), against
+  T1-FLIGHT's 71% under a mandate: the asymmetry is a property of the
+  substrate, reproduced by a cleaner design. **C4's closure is NOT certified
+  on O1 — it re-opens as a SELECTION question**, and selecting needs something
+  that reads pre-kick context, which is Stage III's shape.
+* ⛔ **O2 fails X6 on the class ruling #36.1 had already named.** All **33**
+  unexplained records reproduce as `phase: 'halftime'` — the paused world, the
+  exact class the ruling created after T2's F2 hit it, and I did not put it in
+  O2's four exception classes. Every other class came back **empty** and the
+  force bit on **222,171 of 222,204** live ticks (99.985%).
+* ⛔⛔ **O2's measurement is a large RESOLVED HARM, and the frozen rule
+  understates it.** C3atk **27.51% → 18.90% = −8.61pp** CI [−9.62, −7.64];
+  C3def **+8.06pp**; shots −8.22pp. The duel does not vanish, **it changes
+  hands** — and the mechanism is measured: the nearest ATTACKER ends up
+  **farther** from the ball (median 1.943 → 2.367 m). The rule returns
+  UNRESOLVED because I wrote a two-sided question with one-sided branches
+  (LEVER = helps, NO LEVER = does nothing, *hurts* falls through). **My
+  rule-design gap; reported as the rule says, not re-cut.**
+* ⭐⭐⭐ **O2's primary and its H3 subgroup disagree in SIGN — the
+  pre-registered contingency, live.** All eligible crosses **−8.61pp**;
+  control-arm-H3 crosses **+7.28pp** CI [+5.38, +9.28]. §4.3 demoted H3 from
+  primary BEFORE the run on the regression-to-the-mean argument and said in
+  advance that a disagreement is itself the finding. **Had #36.3(ii)'s literal
+  "at H3 crosses" been the headline, O2 would have reported +7.28pp and
+  re-opened C4 on a selection artefact.**
+* **What O2 does and does not establish**, stated: it supports #34.3's
+  doctrine BY MEASUREMENT — overriding an already-licensed body's routing with
+  a scripted meet point costs more than it buys — but it cannot separate *"a
+  second body does not help"* from *"overriding a chaser hurts"* (eligibility
+  is read once at the kick; `team.chasers` refreshes every 0.4 s), and the
+  corner machinery's 2.5 m meet point looks like the wrong place to stand for
+  an open-play delivery (`minOutfieldDistInBand` barely moves, 1.478 → 1.474).
+  A second body was available on **94.1%** of crosses, so the branch was never
+  closed by arithmetic.
+
+Earlier (2026-07-27, #36 executed): BOTH C4 compliant oracles were
 PRE-REGISTERED and NOT RUN** → [`C4-O1-FLIGHT-FORK.md`](C4-O1-FLIGHT-FORK.md)
 and [`C4-O2-SECOND-BODY-FORK.md`](C4-O2-SECOND-BODY-FORK.md). Gap work, per
 #36.3; **Stage III P1 continues to HOLD** pending the commander's contract

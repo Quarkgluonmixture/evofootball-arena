@@ -211,9 +211,148 @@ combination everything.
 * **(c) UNRESOLVED**, or primary and H3 disagreeing. Reported as such; no
   re-pose in this session.
 
-## 7. Result
+## 7. Result — ⛔ **GATES FAIL on X6**, and the measurement is a large RESOLVED HARM
 
-*(empty until O2 runs — filled in the same commit as the result.)*
+Run 2026-07-27, block 950,000 + disjoint per combination, 2,695 matches,
+**5,418 crosses, 10,836 forks**, twice byte-identical, SHA `f5a69e49…b2ff`.
+Probe: `scripts/probes/c4-o2-second-body-fork.ts`.
+
+| gate | verdict |
+| --- | --- |
+| **X4** clone coverage 100% | ✅ **5,418 / 5,418**, zero arms missing |
+| **X5** harness identity | ✅ **116 checked, 0 mismatched** |
+| **X6** force bites, unexplained = 0 | ⛔ **33 unexplained** (222,171 ok = 99.985%) |
+| **X7** determinism | ✅ two runs byte-identical |
+| X1–X3 | ✅ fingerprint `57b0bdab…c673`, seams null in production |
+
+### 7.1 ⛔ X6 fails on the class ruling #36.1 told me to name
+
+A read-only diagnosis over all six cells reproduces all 33 exactly, and they
+are **unanimous**:
+
+```text
+why = mismatch · phase = 'halftime' · action = MoveToFormationSpot   × 33
+every other class — onside clamp, barred box, became carrier, ball won — 0
+```
+
+At half-time `Match.step` returns before the execute loop, so nothing runs:
+`c4Trace` holds the last *played* tick's value while the probe forms a fresh
+expectation off a frozen world.
+
+**Ruling #36.1 codified this exact class one ruling ago** — *"a PAUSED world
+state (halftime, ball frozen, `simTick` unadvanced) is its own named class in
+any trace-comparing probe"* — after T2's F2 hit it. I wrote O2's four
+exception classes and did not include it. That is not a subtle miss; it is a
+standing instruction I failed to apply to the very next probe. **Not
+re-scoped after sight.**
+
+Everything the gate *could* diagnose came back exactly as predicted: the
+force bit on 222,171 of 222,204 live ticks and no clamp ever rewrote it.
+
+### 7.2 The frozen rule returns UNRESOLVED, and that understates it
+
+```text
+D1  C3atk  27.51% → 18.90%  =  −8.61pp   CI [−9.62, −7.64]      (n = 5,100)
+```
+
+`lower > 0`? No. `CI inside ±2.32pp`? No. ⇒ **UNRESOLVED** by §4.2's frozen
+rule. But the plain reading of the measurement is not ambiguity — **forcing a
+second body toward the descent resolvedly DESTROYS attacking contests**, by a
+margin nearly four times the equivalence interval.
+
+**That is a rule-design gap and it is mine**: I wrote a two-sided question
+with one-sided branches — LEVER for *helps*, NO LEVER for *does nothing* — and
+left *hurts* to fall through to "unresolved". The verdict is reported as the
+rule says and the measurement is reported as it is; the rule is not re-cut.
+
+Where the contests went:
+
+```text
+C3def       33.71% → 41.76%   +8.06pp  CI [+7.23, +8.93]
+contests    61.22% → 60.67%   −0.55pp  CI [−1.03, −0.06]
+shots       40.33% → 32.12%   −8.22pp  CI [−9.24, −7.24]
+ANY goal    12.84% → 11.75%   −1.10pp  CI [−1.80, −0.38]
+```
+
+The aerial duel does not disappear — **it changes hands.** And the mechanism
+is measured, not guessed:
+
+```text
+minimum ATTACKER distance in the band, median   1.943 → 2.367 m   (+0.228)
+```
+
+**Aiming an extra attacker at the descent makes the nearest attacker
+FARTHER from the ball.** The meet point is a *prediction* of where the ball
+will be catchable; the body forced onto it stops doing whatever he was doing,
+and on average that was better.
+
+### 7.3 ⭐⭐⭐ Primary and the H3 subgroup disagree in SIGN — the pre-registered contingency, live
+
+```text
+PRIMARY  all eligible crosses  n 5,100   C3atk  −8.61pp  CI [−9.62, −7.64]
+H3 SUBGROUP (control-arm H3)   n   673   C3atk  +7.28pp  CI [+5.38, +9.28]
+                                         contests +8.32pp CI [+6.14, +10.59]
+```
+
+On the crosses where the control arm found **nobody at head height**, forcing
+a second body helps a lot. Over all crosses it hurts a lot. Both are resolved
+and they point opposite ways.
+
+§4.3 demoted H3 from primary *before the run*, on the argument that selecting
+on a control-arm outcome induces regression to the mean — and said in advance
+that **"if they disagree, the disagreement is the finding and it goes to the
+commander unresolved"**. It is hard to imagine a cleaner demonstration that
+the demotion was right: had #36.3(ii)'s literal *"at H3 crosses"* been taken
+as the headline, this oracle would have reported **+7.28pp and reopened C4 on
+a selection artefact.**
+
+### 7.4 What this does and does not establish — the scope limit, stated
+
+It does **not** establish that two aimed bodies can never help. It establishes
+that **overriding an already-licensed body's routing with a scripted meet
+point for the whole flight makes the attack worse**, which is evidence *for*
+#34.3's premise — choreography that displaces a body who already had a better
+route costs more than it buys.
+
+Two honest limits bound the negative, both mine:
+
+1. **Eligibility is evaluated once, at the kick.** `team.chasers` refreshes
+   every 0.4 s, so a body excluded as a chaser at the kick can *become* the
+   designated chaser mid-flight — and the force then overrides his
+   `interceptBall` route, which reads the same landing more accurately. The
+   oracle cannot separate *"a second body does not help"* from *"overriding a
+   chaser hurts"*.
+2. **The meet point is the corner machinery's formula**, 2.5 m upstream of the
+   landing. It is the engine's own, but it was designed for a corner's flight
+   and this measurement says it is the wrong place to stand for an open-play
+   delivery — `minOutfieldDistInBand` barely moves (1.478 → 1.474 m) while the
+   attacker's own distance grows.
+
+### 7.5 Reported
+
+No eligible second body on **5.87%** of crosses (318 of 5,418) — the branch
+was never closed by arithmetic, it applies to 94% of deliveries. H3 as a share
+of all crosses 13.20% → 13.90% (+0.71pp, CI [+0.23, +1.20]) — the arrival gap
+gets marginally *worse*. C1 5.08% → 4.55%; C2 23.94% → 25.06%; C0 flat at
+9.7%. The ladder here is over **all** rows, not over C2, so it is not
+comparable to T0b's.
+
+### 7.6 Disposition
+
+**FAIL ⇒ the fork returns to the commander** (§8), on a gate I should not have
+failed. What the commander is holding:
+
+* the doctrinal closure of the second-body branch is now **supported by
+  measurement** — the scripted version is resolvedly harmful, with the
+  mechanism (attackers end up farther from the ball) measured rather than
+  asserted;
+* a **live demonstration** that the H3 framing #36.3(ii) named would have
+  produced the opposite headline, and that the pre-registered demotion caught
+  it;
+* two scope limits that keep the negative from over-reaching;
+* and an X6 failure on a class that had already been ruled into existence.
+
+Nothing shipped: `forcedStation` is null in every production path.
 
 ## 8. Stop rules
 
