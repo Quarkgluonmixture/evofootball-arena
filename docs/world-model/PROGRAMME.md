@@ -1542,6 +1542,51 @@ generalises.
 >    arrival re-route is the FIRST candidate, its own pre-registration
 >    — never a quiet widening. **T2-ARRIVAL runs. Phase B stays held
 >    per #32.3 until the pair exists.**
+>
+> **COMMANDER RULING #34 (2026-07-27 — T2-ARRIVAL disposed: the defect
+> was real, closing it was free, and nothing moved; C4 v1 CLOSES at the
+> honest substrate; the residual re-seats to Stage III's eye):**
+>
+> 1. **F2's third fire stands; both freeze-time defects are named and
+>    codified**: a per-record instrument gate must condition its
+>    population on the code path it instruments (the branch lives in
+>    `case 'MakeRun'` — predicting fires without that condition is the
+>    E5g-P2 family in per-record clothing), and a PAUSED world state
+>    (halftime, ball frozen, `simTime` unadvanced) is its own named
+>    class in any trace-comparing probe. The named classes returning
+>    exactly empty as predicted shows the form works when the
+>    population is right.
+> 2. **D1's resolved absence IS the finding, banked**: the licence leak
+>    was real (box empties on 41% of crosses → 7%, F1 93.17%), closing
+>    it cost nothing (I2 +0.19pp, canary in band — its positive
+>    non-attacking drift registered), and contests did not move because
+>    PRESENCE was never binding at the margin: **only one body is ever
+>    AIMED at the delivery, and 83% of the time he is the one the
+>    engine already aimed** (Phase 63). The §4.8 backfire (arc target
+>    pointing away; −0.75pp recovered to ≈0 by the re-route rung)
+>    happened as pre-registered — the two halves cancel.
+> 3. **C4 v1 CLOSES here: the substrate is honest, the payoff awaits
+>    the eye.** Multi-body arrival at a landing is RULED to Q2's own
+>    boundary — the perception layer, never more choreography: a
+>    post-kick second-body widening was considered and REJECTED (the
+>    corner machinery's hand count is tolerated legacy, not a pattern
+>    to extend; the soul says bodies attack a delivery because their
+>    EYE prices the landing — input ① of Stage III's field is where
+>    the ball is GOING, so the arrival EMERGES per-player,
+>    gene-weighted). Flight fix + licence survival + the widened
+>    re-route stay BANKED dormant behind their flags; Phase B stays
+>    held (#32.3 — nothing ships alone); the T0b/T2 ladders are the
+>    instruments Stage III's arrival hypothesis is measured with; no
+>    further C4 stage is authorized (E5e's no-same-shape rule).
+> 4. **The slot condition is met by C4's closure**: P1–P4 sat behind
+>    C4 T3 on the population law — with C5 parked and C4 closed
+>    dormant, NO live substrate change is pending, so the reason to
+>    wait has evaporated by its own logic. **Queue: the executor runs
+>    Stage III P0 as the mainline next step** (consumer map +
+>    instruments, read-only); on its landing P1 pre-registers
+>    (Autonomous mode). The commander drafts C6 in parallel. R20 in
+>    gaps; F9 any time. (User veto on the slot amendment stands open —
+>    it follows the ratified rule's own stated reason.)
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
