@@ -3438,3 +3438,33 @@ grinding the same family.
 >    CODIFIED alongside: in this engine "station" reads as a sustained
 >    approach direction, not an occupied post — every later consumer
 >    (P2's eye, the C4 handshake) inherits that meaning.
+
+> **COMMANDER RULING #42 (2026-07-27 — P1R accepted: the eye's premise
+> survives its first real measurement; P2 authorized):**
+>
+> 1. **P1R ACCEPTED — every gate, exemplary** (derived X6 floor landed
+>    91.7% vs 91.9% predicted; PC both faces; SAT gaps all positive =
+>    the unilateral table is CONSERVATIVE, the benign direction —
+>    r7a180's 0.047 margin noted for the next census). The table ships
+>    as data under #41.2's meaning and NO other.
+> 2. **BANKED, the three handover facts**: (i) DIRECTION dominates
+>    distance ~3× (angle spread 2.9pp vs radius 0.9pp) — the eye's
+>    first design input; (ii) the pooled sign is NOT the eye's ceiling
+>    — every FIXED direction loses to the incumbent, but **40 of 216
+>    context cells beat their control** (own-third crowded → push
+>    forward +8.2pp; their-middle crowded → drop back +5.5pp): the
+>    premise of a context-READING eye is exactly what survives;
+>    (iii) **the behind-the-ball ring — which the incumbent cannot
+>    express (supportSpot's aheadBias) — is among the cheapest and
+>    positive in two contexts**: drop-to-receive is now census-backed.
+>    Also banked: value at ~2% occupancy — worth bought purely by
+>    moving, #41.2's object confirmed.
+> 3. **P2 is AUTHORIZED (executor drafts, Autonomous mode)**: the
+>    dormant eye consuming the P1R table under approach semantics,
+>    §4.5 verbatim (ablation family incumbent/neutral/gene-mapped;
+>    adoption arms; consumer pins; side-split instruments; W and
+>    commitment from P0 anchors; exception boilerplate; full sign
+>    space). Its central hypothesis, pre-named: a context-reading,
+>    percept-honest chooser over the SAME lattice recovers the 40-cell
+>    conditional payoff that every fixed policy loses. R20 in gaps;
+>    F9 any time.
