@@ -9,7 +9,9 @@ methodology precedents. Stage contracts pre-register individually
 invariants and the gate; it is not itself a frozen experiment.
 **The implementation slot is NOT claimed here** — per #26.3(iv) it is
 decided now that this contract and C5's both exist, and it is the
-user's/commander's call at that fork (§8).
+user's/commander's call at that fork (§8). ⭐ **SLOT RATIFIED by the user
+2026-07-27 ("走建议"): §8's recommendation stands verbatim — P0 is
+authorized gap work from now; P1–P4 queue behind C4's T3.**
 
 Authority: VISION §1 in full (the soul; "让球员自己长眼睛"; the four
 external inputs + self + dynamics; 内心/外显/推断; two-level eyes; the
@@ -269,8 +271,8 @@ is design calibration only and must say so on its face.
 
 The road-B dependency order stands: **C5 → C4 → re-measure → joint value
 only on the residual** (#26.3), with Stage III's contract now in
-existence alongside C5's. The commander's recommendation for the slot,
-subject to the user's ratification:
+existence alongside C5's. The commander's recommendation for the slot —
+**RATIFIED by the user 2026-07-27, binding as written**:
 
 * **P0 is gap work** — read-only, zero src, executor-runnable in a C5/C4
   queue gap exactly like C4 T0 (it competes only for session time, not
