@@ -168,6 +168,30 @@ for this cut. Population law (#26.5): any upstream substrate change
 landing live (C4, C6, Stage III) invalidates T1's table — re-census
 before T2/T3 results are reused.
 
+## 6.5 T0 pre-registration review (commander, 2026-07-27)
+
+T0 ([`C5-T0-HOLD-MECHANICS.md`](C5-T0-HOLD-MECHANICS.md)) is **APPROVED to
+run as pre-registered**. Two readings registered alongside, neither a
+gate change:
+
+* **The tackle-path discovery is BANKED as substrate fact**: the attack
+  surface pre-exists — tackle search keys on distance to the BALL
+  (`mechanics.ts:1726`), strength already protects (`1785`), a
+  stationary crowded holder already concedes +0.12 (`1804`), and jockey
+  cannot be escaped by standing still (`1755`). T0 therefore rightly
+  builds no attack: it makes the shield a deliberate body position, adds
+  the one genuinely missing cost (stamina), and MEASURES whether the
+  existing attack still reaches a held ball. Invariant I1's spirit is
+  served in a more substrate-faithful form than this contract's own §2
+  phrasing implied.
+* **A2b's ceiling is an ABSOLUTE tripwire, not a relative verdict.**
+  Passing A2b (survival < 0.90 at the top pressure band over 1.5 s) does
+  NOT establish that holding is safe relative to its alternatives — that
+  comparison lives on the OUTCOME axis and belongs to T1's census
+  (hold-k vs act-now, where act-now includes the carry). Nobody may cite
+  an A2b pass as "holding is not a free option"; the free-option
+  question is settled at T1's table and T3's hold-dominance ceiling.
+
 ## 7. What C5 unlocks on PASS
 
 The first live football where a carrier can WAIT: shield the ball, draw
