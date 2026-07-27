@@ -1430,6 +1430,43 @@ generalises.
 >    #29.3 C6 FEEDS the C5 re-census rather than queuing behind it).
 >    **Queue: the executor pre-registers T1-FLIGHT** (Autonomous mode,
 >    one experiment in flight); Stage III P0 + R20 in gaps; F9 any time.
+>
+> **COMMANDER RULING #31 (2026-07-27 — T1-FLIGHT's three pre-run questions
+> ruled; the stage RUNS as pre-registered):**
+>
+> 1. **The lead-tracking call is CONFIRMED as made: rule-preserving is
+>    primary.** "Aim untouched" means the aim RULE untouched, consuming
+>    the changed law's new truth — freezing the lead at the stale flight
+>    time would be a second, hidden change (the stale-input family;
+>    E3R's chain-first precedent: price the world as it IS). The literal
+>    variant as a reported arm and X4's stationary-target byte-identity
+>    pin are the right forms. Codified: any downstream consumer of a
+>    changed physical law preserves its RULE, not its stale number.
+> 2. **I2's interval form is APPROVED** — the resolved-increase test was
+>    unfireable by construction (#29.5's exact target: MDE 1.7pp vs an
+>    expected ~0.5pp movement); CI upper bound < +1.5pp, margin derived
+>    from the measured 1.2–1.46pp block spread, is the sixth threshold
+>    type applied correctly. One clause added: the point estimate is
+>    REPORTED beside the verdict, and a pass with a positive point near
+>    the margin reads "did not rise beyond resolution", never
+>    "did not rise" (the R20-2 CI-over-point discipline).
+> 3. **The headers-won ±25% collision is real and its semantics are
+>    FROZEN as registered**: D1-passes-band-breaks is an honest FAIL —
+>    "honest flight buys more aerial football than §2 permits" — and
+>    the fork returns here with neither side weakened; if it comes to
+>    that fork, #20's own provision (the user's eyes above the
+>    counters) is the decision instrument, not a band edit.
+> 4. **The derivation is BANKED as a finding with its ex-ante prediction
+>    registered**: apex = g·T²/8 under the one distance law ⇒ a cross
+>    under ~14.45 m cannot reach header height, whoever kicks it; the
+>    inversion predicts H0 crosses from ~11 m, BAL's from ~22 m. If the
+>    run confirms it, the cross TRIGGER's distance is a second seat
+>    neither aim nor flight owns — REGISTERED as a named candidate
+>    stage, not authorized. The tMin fix's form (one constant written
+>    as √(8·HEADER_MIN_HEIGHT/GRAVITY), crosses only, technique
+>    deliberately not scaling it) is the no-invented-weights discipline
+>    verbatim; approved. **T1-FLIGHT runs; Phase B only on Phase A's
+>    X-series + D1, as frozen.**
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
