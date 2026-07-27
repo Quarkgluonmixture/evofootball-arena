@@ -425,10 +425,170 @@ looseness rather than depending on it.
 
 **No Phase-A gate value was touched.** A0's only power was to stop the stage.
 
-### 7.1 Phase A
+### 7.1 Phase A — ⛔ **FAIL on D1 and on F2.** The box stops emptying and it changes nothing.
 
-*(empty until Phase A runs — filled in the same commit as the result, per
-governance rule 6.)*
+Run 2026-07-27 on block 920,000, three paired same-seed arms, 5,745 / 5,637 /
+5,632 crosses, twice byte-identical, SHA `fc66f1f6…c597`. Flags-off
+fingerprint `57b0bdab…c673` unchanged; 820/820 plus the 7 new identity pins.
+
+| gate | verdict |
+| --- | --- |
+| X partition / ladder partition / determinism | ✅ |
+| **F1** licence survival ≥90% | ✅ **93.17%** (A0 58.66%, A1 93.53%; n 3,923) |
+| **F2** re-route fidelity, unexplained = 0 | ⛔ **72 unexplained, 36,121 no-trace** |
+| **D1** C3atk rises, CI lower > 0 | ⛔ **+0.41pp, CI [−0.65, +1.46]** |
+| I2 conversion bounded < +1.5pp | ✅ +0.19pp, CI [−0.47, +0.83] |
+| offside canary < +0.29/match | ✅ +0.066, CI [+0.013, +0.117] |
+
+#### 7.1.1 F1 — the defect is real, and the fix closes it
+
+```text
+licensed bodies still on MakeRun at the tick the ball enters the band
+A0  58.66%      A1  93.53%      A2  93.17%
+```
+
+**The box empties on about two crosses in five**, and the licence takes that
+to roughly one in fourteen. §2.2's reading of `PlayerBrain.ts:1144` was
+correct, and it was correct about the size too — 41.34% is the share of
+crosses where every licensed body had stopped running by the moment the ball
+became contestable.
+
+#### 7.1.2 D1 — ⛔ and it is a RESOLVED ABSENCE, not noise
+
+```text
+C3atk   25.50% → 25.91%   +0.41pp   CI [−0.65, +1.46]
+```
+
+The interval straddles zero, so under #20 this is INCONCLUSIVE on sign — but
+its **upper bound (1.46pp) sits below the pre-registered MDE (2.32pp)** and a
+long way below the expected +5.7pp. The gate had the power it claimed and the
+effect is not there. Reading **(b)**.
+
+The mediators say the same thing three ways:
+
+```text
+M1  H3 share of all crosses  23.03% → 23.17%   +0.14pp  CI [−0.95, +1.16]
+M2  min ATTACKER distance in band, median  2.435 → 2.504 m   +0.069  CI [−0.004, +0.133]
+M3  attacking bodies in the box at band entry  1.217 → 1.244  +0.027  CI [+0.002, +0.054]
+```
+
+**M3 resolves and M1/M2 do not.** The bodies really did stay — 0.027 of a body
+more in the box at the contestable instant — and they arrived **no nearer the
+ball**; if anything M2 points the wrong way. The half-metre is untouched.
+
+#### 7.1.3 ⭐⭐⭐ Why: the closest licensed body was already going
+
+F2's `noTrace` bucket is the finding, not the failure. On 36,121 live-licence
+ticks the probe expected the re-route to fire and no trace was written, and a
+read-only diagnosis (660 matches, then all six cells) resolves that bucket
+completely:
+
+```text
+closest licensed body's ACTION when no trace was written  (n = 36,121)
+  ReceivePass  30,020  83.11%      MoveToFormationSpot  5
+  ChaseBall     6,095  16.87%      Dribble              1
+```
+
+The diagnosis reproduces the run exactly (30,276 ok, 36,121 no-trace), so it
+is the same population and not a re-measurement.
+
+The two real buckets are bodies **already being sent to the ball by an
+existing mechanism**:
+`ReceivePass` has carried the identical `landing − flightDir·2.5` re-route
+since Phase 63 (§2.1), and `ChaseBall` routes through `interceptBall`, which
+projects the same landing. The branch this stage added lives inside
+`case 'MakeRun'`, so it can only ever reach a body who is *not* one of those.
+
+**So `c4ArrivalReroute` almost never adds a new body to the descent — it
+mostly re-labels one that was already on its way.** That is exactly why D1 is
+flat.
+
+**The arithmetic, stated exactly.** Across 66,469 live-licence ticks the
+branch fired on **30,276 (45.6%)** and had nothing to add on **36,121
+(54.4%)**, because the closest licensed body was already the receiver (83% of
+that bucket) or already a chaser reading the same landing (17%). So the
+mechanism is not inert — it steers a genuinely different body on nearly half
+the ticks — but on the other half it is duplicating a route the engine has
+had since Phase 63, and **the body it does add produces no measurable extra
+attacking contest**.
+
+§2.1 established *that* the receiver had the re-route. What it did not ask —
+and what F2's population should have conditioned on — is *how often the
+receiver IS the closest licensed body*.
+
+#### 7.1.4 The A1 rung — the pre-registered backfire is real
+
+```text
+licence survival ALONE   C3atk 25.50% → 24.75%   −0.75pp  CI [−1.77, +0.29]
+```
+
+§4.8 named this in advance: the arriver's 16 m arc target points **away** from
+the landing, so holding him on it through the flight is worse than letting him
+go home. The re-route rung then recovers it to about zero. **The two halves
+roughly cancel**, which is a cleaner statement of the stage's outcome than
+either number alone.
+
+#### 7.1.5 F2 — ⛔ my gate, the third time in this family
+
+```text
+ok 30,276 · UNEXPLAINED 72 · noTrace 36,121 · E1 0 · E2 0 · E3 0 · corner 0
+worst |engine meet − probe meet| = 0.01574 m
+```
+
+Two separate defects, both mine and both at freeze time:
+
+1. **The population was mis-specified.** F2 predicted a fire for the closest
+   licensed body without conditioning on his ACTION, when the branch lives
+   inside `case 'MakeRun'`. `noTrace` is not a fidelity failure — it is the
+   gate asking a question the mechanism was never going to answer yes to.
+2. **72 unexplained meet mismatches**, worst 1.57 cm — and the diagnosis
+   reproduces all 72 in **one cell, on one seed** (BAL vs PRESS, 920,361),
+   every one of them with `phase: 'halftime'` and the ball state **frozen**
+   (`zBefore == zAfter`, velocity identical to the last digit). At half-time
+   `Match.step` returns before `simTime += dt`, so nothing executes: the
+   probe keeps forming a fresh expectation off a paused world while
+   `p.c4Trace` still holds the last *played* tick's value. The 1.57 cm is the
+   gap between those two instants, held across the pause. **A stale-read
+   artefact of the pause, in one match — not a fidelity failure.** I named
+   E1, E2 and E3; I did not name *the world is stopped*.
+
+E1, E2, E3 and the corner-precedence counter came back **exactly empty**, as
+§4.3b predicted. The clamps are inert while the ball is unowned and E3 is
+structurally impossible; the named classes were right as far as they went,
+and both classes I actually needed were ones I did not name.
+
+**Not re-scoped after sight.** #32.1 banned the coupon-collector form and I
+replaced it with a per-record form whose *population* was wrong — a different
+error in the same family, and worth the commander's eye as such.
+
+#### 7.1.6 Reported
+
+I2 "did not rise beyond resolution" (+0.19pp); shots −0.02pp, flat. The
+offside canary **passes but resolves POSITIVE**: both-team offsides
+2.4494 → 2.5150/match, CI [+0.013, +0.117] — a real increase, a fifth of the
+band, and it is **not** the attacking side (attacking-only +0.023,
+CI [−0.010, +0.057], inconclusive). Total contests +0.64pp CI [−0.56, +1.81];
+C3def +0.23pp. C1 4.37% → 3.60%; C0 flat at 11.6%. The ladder is unchanged in
+every arm (H3 ≈ 95.8% of C2 throughout).
+
+#### 7.1.7 Disposition
+
+**FAIL ⇒ the fork returns to the commander** (§8). Nothing shipped:
+`c4Arrival` and `c4ArrivalReroute` are default OFF, the flags-off fingerprint
+is untouched, and the `src` change stays committed and dormant (the E1b
+precedent).
+
+**What the commander is holding**: a defect confirmed at 41.34% of crosses
+and closed to 6.83%; a deliverable that did not move, with the CI bounded
+below its own MDE; a mechanism that steers a new body on 45.6% of live
+ticks and duplicates an existing route on the other 54.4%; a pre-registered
+backfire that happened; and one gate whose population I mis-specified at
+freeze time and whose only real fire was a paused world.
+
+⚠️ **What I am NOT doing**: §8 forbids re-posing the mechanism in this
+session, and the obvious re-pose — *aim more than one body* — is a licensing
+change, not a survival change. It is named here as an observation about where
+the residual lives, not proposed as the next stage.
 
 ## 8. Stop rules
 
