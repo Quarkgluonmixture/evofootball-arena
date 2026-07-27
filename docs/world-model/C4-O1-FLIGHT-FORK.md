@@ -227,10 +227,114 @@ dominates the cost; the forks add roughly 2.7 M ticks against the base's
   stays provisional on *this* question, and re-powering is the commander's
   call — **not** something this session re-cuts after sight.
 
-## 7. Result
+## 7. Result — ⭐⭐⭐ **LEVER.** The flight profile is selectable, and the payoff sits exactly where the arithmetic put it.
 
-*(empty until O1 runs — filled in the same commit as the result, per
-governance rule 6.)*
+Run 2026-07-27, block 940,000 + disjoint per combination, 2,695 matches,
+**5,404 crosses, 10,808 forks**, twice byte-identical, SHA `dc29a408…fce3`.
+Probe: `scripts/probes/c4-o1-flight-fork.ts`.
+
+| gate | verdict |
+| --- | --- |
+| **X4** clone coverage 100% | ✅ **5,404 / 5,404**, zero arms missing |
+| **X5** harness identity | ✅ **110 crosses checked, 0 mismatched** — the `'current'` fork reproduces the base bit-identically |
+| **X6** determinism | ✅ two runs byte-identical |
+| X1–X3 | ✅ fingerprint `57b0bdab…c673`, seams null in production, 13 pins green |
+
+### 7.1 The decision rule fires LEVER, and not narrowly
+
+```text
+band          n      contest difference (lofted − current)
+SHORT/THIN  1707     +12.36pp   CI [+10.79, +14.04]
+SHORT/FULL    96      +7.29pp   CI [ +2.11, +12.90]
+LONG/THIN   2394      +0.25pp   CI [ +0.08,  +0.46]
+LONG/FULL   1207      +0.17pp   CI [  0.00,  +0.42]
+pooled      5404      +4.18pp   CI [ +3.64,  +4.75]
+```
+
+`anyExcludesZero` ✓, `excludesOtherPoint` ✓ (SHORT/THIN's lower bound is
+**43× LONG/THIN's point estimate**), `flat` ✗ ⇒ **LEVER**.
+
+⭐ **This is the flight law's own arithmetic appearing as measured
+heterogeneity.** The 14.454 m boundary was derived from `peak = g·T²/8` before
+any data existed: below it the unforced law *cannot* clear the header band,
+above it *already does*. The measurement says lofting is worth **+12.4pp of
+contests** on the deliveries the law leaves short and **+0.25pp** on the ones
+it already lifts. Nothing was fitted; the band was written down first and the
+world agreed.
+
+**So T1-FLIGHT's blanket floor was doing almost all of its work on one third
+of crosses.** SHORT is 1,803 of 5,404 (33.4%); the other two thirds paid the
+policy and received nothing measurable.
+
+### 7.2 ⭐⭐ The withdrawn goal claim returns — under a compliant estimand
+
+#36.1 withdrew *"fewer goals, resolved"* because T1-FLIGHT's estimand was
+*first shot scored, before the next cross*. O1 counts **ANY goal by the
+crossing side inside a fixed 4.0 s horizon**, with no censoring possible
+(inside a fork an overlapping window cannot occur), on a per-cross paired
+design:
+
+```text
+ANY goal within 4.0 s   11.05% → 9.40%   = −1.65pp   CI [−2.16, −1.13]
+ANY shot within 4.0 s   37.79% → 36.18%  = −1.61pp   CI [−2.34, −0.91]
+```
+
+**A resolved decrease.** Stated precisely, because the scope matters: this
+re-establishes that **forcing one delivery to loft reduces the chance of a
+goal in the next four seconds**. It is *not* a re-instatement of the
+match-wide policy claim T1-FLIGHT made — that estimand remains withdrawn —
+but the direction, the resolution and the mechanism now rest on a measurement
+that the audit's finding 10 does not touch.
+
+And the trade is concentrated exactly where the gain is:
+
+```text
+SHORT/THIN   contests +12.36pp    ANY-goal −5.27pp  CI [−6.91, −3.77]
+LONG/THIN    contests  +0.25pp    ANY-goal   0.00pp CI [−0.17, +0.17]
+```
+
+**Where lofting buys the most aerial football it costs the most goals.** That
+is Q5's ceiling doing its job, and it is the honest content of *"the
+deliverable is CONTESTS, never goals"*.
+
+### 7.3 The contest gain is still the defence's
+
+```text
+C3atk  23.48% → 24.54%   +1.05pp  CI [+0.75, +1.38]
+C3def  31.66% → 34.79%   +3.13pp  CI [+2.66, +3.65]    ← 75% of the gain
+```
+
+T1-FLIGHT measured 71% under a match-wide policy; O1 measures **75%** under a
+per-cross fork. The asymmetry is not an artefact of the mandate — it is a
+property of the substrate, reproduced by a cleaner design.
+
+### 7.4 Reported
+
+Apex 1.7511 → 1.8479 m. H0 (height-preempted) **46.26% → 30.63% of all
+crosses** — ⚠️ note the denominator: this ladder is over **all** rows, not
+over C2 as T0b's was, so the numbers are **not** comparable to T0b's and only
+the within-probe movement should be read. The nearest attacker in the band
+gets **farther**, median 2.0154 → 2.4977 m, reproducing T1-FLIGHT §7.4's
+finding that fixing the height *enlarges* the arrival gap. C1 5.42% → 4.15%;
+C2 27.98% → 24.52%; C0 11.45% → 12.01% (a longer flight is a longer window to
+be cut out). **264 launches (4.9%) hit a flight-time clamp** and their
+recovered distance is a bound rather than an equality — counted, not banded on
+a fiction (§4.2b).
+
+### 7.5 Disposition
+
+**C4's closure is NOT certified on this oracle — it is re-opened as a
+selection question**, which is what #36.3 said a LEVER reading means. The
+honest statement of the whole C4 flight chain is now:
+
+> A headable flight is worth **choosing** on a short cross and worth nothing
+> on a long one. T1-FLIGHT mandated it everywhere, which is why its average
+> looked modest and its goal claim over-reached. The lever exists; it is a
+> *selection* lever, and selecting requires something that reads the pre-kick
+> context — which is Stage III's shape, not more choreography.
+
+Nothing shipped: `forcedCrossProfile` is null in every production path,
+`c4Flight` stays default OFF, the fingerprint is untouched.
 
 ## 8. Stop rules
 
