@@ -111,10 +111,53 @@ and would bias the census toward deliveries nobody attacked. The cost is that
 the census is read at most one tick (≈0.16 m of ball drop) before the contest;
 that is stated here rather than discovered later.
 
+### 3.3 ⚠️ AMENDED BEFORE THE RUN, in its own commit, on the sizing smoke
+
+Three defects in the definitions I froze above were found by a sizing smoke and
+a read-only diagnostic, **before** the frozen run. Each is corrected toward the
+contract's own words and toward the code's own semantics, never toward a
+number, and each is recorded here rather than in the result — the E1b §4.1 /
+E5d X6 precedent for amending an unsatisfiable or self-defeating predicate
+before it fires, and T0 §6.5's precedent for smoke-stage corrections.
+
+1. **C1/C2 are decided over the WHOLE descent, not at one instant.** As frozen,
+   §3 read the radius "at that tick". Measured, that put the nearest attacker
+   **5.4 m** away on average at a moment when 48% of the same crosses went on to
+   be headed — the read happens the instant the ball dips below 2.5 m, several
+   metres and several tenths of a second before it can be met. A single-instant
+   read reports an emptier box than the world contains, on the stage whose
+   entire job is to say how empty the box is. The census now samples every tick
+   boundary of the descent and keeps the **closest-approach** sample; C1 means
+   *no attacker came inside the radius at any point of the contestable descent*,
+   which is the reading `tryAerial` would have acted on.
+2. **C2 also fires on an attacking TOUCH inside the window.** The chest trap
+   (`mechanics.ts:781`) is exactly "arrived and did not head it" — the case C2
+   exists for — and it was landing in C1 because the contest resolves INSIDE
+   the step, so no tick boundary ever shows the attacker inside the radius. A
+   touch is lag-free and unambiguous. The two triggers are counted separately
+   and reported separately, never merged.
+3. **The descent is the whole descent, not the header band.** An intermediate
+   version restricted arrival to `HEADER_MIN_HEIGHT ≤ z ≤ HEADER_MAX_HEIGHT`.
+   The diagnostic then found this engine's crosses fly LOW — a large share
+   never rise to 1.35 m at all — so that version classified them "never
+   arrived", which is a third meaning inside C0 and the precise error this
+   stage exists to prevent. Arrival is back to the frozen §3 predicate
+   (descending, `z ≤ HEADER_MAX_HEIGHT`), and the flight height is **reported**
+   as its own instrument (`flight.maxZMean`, `headableShare`) — because *a
+   delivery nobody could head whoever was standing there* is a real C4 finding,
+   not a bookkeeping problem.
+
+Nothing about the gates, the staging, the blocks, the window, the tolerances or
+the §6 readings is touched by any of this.
+
 ## 4. The census — reported in full, gated nowhere
 
 At the **kick tick** and again at the **arrival tick**, per cross, per
 (archetype × shell):
+
+**Flight.** Peak height per cross, and the share of deliveries that ever reach
+`HEADER_MIN_HEIGHT` — a ball that never gets to head height cannot be headed by
+anyone (added by §3.3.3).
 
 **Occupancy.** Attacking bodies within 1.35 / 2 / 3 / 5 m of the ball at
 arrival; attackers inside the box (`localX > HALF_L − BOX_DEPTH`, `|y| ≤
