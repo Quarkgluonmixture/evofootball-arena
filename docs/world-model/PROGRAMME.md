@@ -3222,3 +3222,12 @@ grinding the same family.
 > horizons, positive-control power gate, mandatory mediators and
 > boilerplate). P1 UNHOLDS: the executor pre-registers P1 under §4.5
 > (Autonomous mode, one experiment in flight). R20 in gaps; F9 any time.**
+
+> **COMMANDER REVIEW (2026-07-27): Stage III P1's pre-registration is
+> §4.5-COMPLIANT on all eleven items (policy-not-point seam, no-override
+> identity, W from P0 anchors, face-specific horizons, positive-control
+> power gate, saturation-gap arm, mandatory mediators, side-split
+> instruments, exception-class boilerplate, frozen mapping for P2's
+> ablation, full-sign-space readings). APPROVED TO RUN as pre-registered
+> under #39 — the programme's largest census, gated before it can
+> mislead.**
