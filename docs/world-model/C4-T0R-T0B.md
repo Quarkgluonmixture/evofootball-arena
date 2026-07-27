@@ -116,6 +116,30 @@ ball's `z` at closest approach and at the terminal touch, and
 `minOutfieldDistInBand`'s distribution — so a reader can see the geometry the
 classes are cut from.
 
+### 3.2 ⚠️ DISCLOSED BEFORE THE RUN, in its own commit
+
+Two implementation facts found by a sizing smoke and a read-only diagnostic,
+**before** the frozen run. Neither moves a gate, a block or the §6 rule.
+
+1. **`terminalZ` is the height the touch happened AT, not after it.** The
+   contact resolves INSIDE the step, so by the time a boundary sees a new
+   `lastTouch` the ball has already been knocked down. Read post-contact, H2
+   (*taken down at head height*) was **unfireable by construction** — a class
+   that can only ever return zero, which PROBE-CONTRACTS §2 outlaws. It now
+   reads the previous boundary's height, which is the closest available
+   estimate of the contact height. Same defect family as T0's §3.3.1, caught
+   the same way.
+2. **Two geometry quantities are ADDED to the reported set**, because the
+   diagnostic showed the re-aim will turn on them and the ladder alone cannot
+   express them. In the smoke, C2 crosses with a real band pass had the nearest
+   body **1.44–1.88 m** away while the ball was headable — *just* outside the
+   1.35 m radius — and were then collected at **1.15–1.32 m**, just below the
+   band. **A body 0.1 m outside the contest radius and a body 4 m away are the
+   same class and different worlds**, so H3 now reports its
+   `minOutfieldDistInBand` distribution and its within-2 m / within-3 m shares,
+   and H0 reports the median peak height of its deliveries. Reported, not
+   gated — §6's decision rule is untouched.
+
 ## 4. Gates
 
 Everything from T0 is re-earned rather than assumed. **No gate below is
