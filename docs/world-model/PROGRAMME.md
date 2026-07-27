@@ -2950,3 +2950,40 @@ surviving live perception consumer = A-chain × C-chain convergence, weeks;
 emergent deception/tactics = after the decision wall falls, months. If any
 wall resists three more contracts, the fork returns to the user rather than
 grinding the same family.
+
+> **COMMANDER RULING #36 (2026-07-27 — the cross-AI audit disposed,
+> user-ratified; archive `docs/cross-ai-audits/2026-07-27-stage3-and-verdicts/`):**
+>
+> 1. **Four Codex findings VERIFIED against code; claims NARROW, no
+>    verdict relabeled**: the C5 table's fallback ladder is label-only
+>    (rates always from the raw sparse cell) so the committed table
+>    cannot price T2 and #29.3's cell-interval unpark test is currently
+>    uncomputable; the concession clock reads 240+k vs shots at 240 —
+>    "expensive at both ends" and the twin's concession half are
+>    WITHDRAWN (shot-side stands); C4's goal estimand counted only
+>    first-shot goals with next-cross censoring — "fewer goals,
+>    resolved" is WITHDRAWN (launch/contest findings stand); ShieldHold
+>    reads omniscient nearest-threat — T1 censused a non-compliant
+>    capability. D1's "resolved absence" re-reads as INCONCLUSIVE on
+>    sign with effects >+1.46pp excluded (our own sixth threshold
+>    type). C5's headline narrows to: UNIVERSAL forced holding loses
+>    badly in this world; conditional waiting is unresolved.
+> 2. **C5 (user-ratified): all repairs fold into the mandated
+>    enrichment re-census pre-registration** — fallback populations
+>    with cluster CIs, concessions at elapsed 240, percept-compliant
+>    shield, eligible-choice moments, H1 re-powered. Parking stands.
+> 3. **C4 (user-ratified): closure is PROVISIONAL until two cheap
+>    compliant oracles run as gap work** — (i) per-cross fork-and-force
+>    of one flight profile at the same real moment; (ii) one additional
+>    already-licensed body's station forced toward the descent at H3
+>    crosses. Refute → closure certified by measurement; find a lever →
+>    reopen cheaply. Executor pre-registers both (Autonomous mode).
+> 4. **Stage III P1's constraint set EXPANDS (commander folds into the
+>    contract before P1 unholds)**: no-override identity arm with the
+>    intervention as a target POLICY in local coordinates; adoption/
+>    saturation arms (one body → one team → both) against the
+>    unilateral→universal identification gap; the gene-mapping ablation
+>    family; face-specific horizons; a powered positive-control
+>    displacement + ETA/adherence mediators; consumer pins per #35.3.
+>    Queue: C4 oracles as gap work; commander amends Stage III; R20;
+>    F9 any time.
