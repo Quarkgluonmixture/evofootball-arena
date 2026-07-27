@@ -1506,6 +1506,42 @@ generalises.
 >    interval form; the T0b ladder re-run in its audit. Queue: T2 is
 >    the one experiment in flight; the commander drafts C6 in parallel;
 >    Stage III P0 + R20 in gaps; F9 any time.
+>
+> **COMMANDER RULING #33 (2026-07-27 — T2-ARRIVAL's pre-registration
+> reviewed; the box-empties finding banked; the asymmetry call approved;
+> the stage RUNS):**
+>
+> 1. **The premise correction is ACCEPTED as made** — the post-kick
+>    landing re-route has existed since Phase 63 for exactly one body,
+>    so T2 WIDENS an existing mechanism; correcting the contract rather
+>    than working around it is the required conduct (#5's sync spirit).
+> 2. **BANKED LOUDLY: the box empties while the ball is in the air.**
+>    `PlayerBrain.ts:1144` gates licensed runs on a carrier existing; a
+>    cross clears `ball.owner`, so every runner loses `MakeRun` at the
+>    boot and runs AWAY from the box for ~1.1 s of flight — Phase
+>    31.9's bug, still live in open play, patched twice before in the
+>    identical shape. That is H3's mechanism; the arrival gap was never
+>    a spot table. CODIFIED: a defect patched twice in the same shape
+>    with the reason in-comment both times is a STRUCTURAL seat — the
+>    third fix generalizes it or names why it cannot.
+> 3. **The intervention is APPROVED as designed**: hold already-licensed
+>    bodies for the measured `ballLanding(ball).t`, armed only when
+>    `cornerCrash === null`, nothing pre-kick (offside exposure
+>    structurally bounded — the flag is judged at the kick), arc
+>    cutback untouched, OFF/licence/licence+re-route ladder. D1 =
+>    **C3atk rises** is the right gate object (gate the side the
+>    mechanism serves — the T0R lesson); the measured-not-assumed
+>    canary SD (over-dispersion 1.35) is #29.5 at freeze time; A0 may
+>    STOP, never re-tune.
+> 4. **The asymmetry call is APPROVED as scoped**: no defensive
+>    re-route arm in this dormant probe — the defence's exclusion of
+>    box landings is measured design (0.77 goals/match) and it took
+>    71% of T1-FLIGHT's contests unaided. REGISTERED for Phase B: the
+>    pair audit's band/battery is where an attack-favouring imbalance
+>    would show; if goals rise through I2 or the band, the defensive
+>    arrival re-route is the FIRST candidate, its own pre-registration
+>    — never a quiet widening. **T2-ARRIVAL runs. Phase B stays held
+>    per #32.3 until the pair exists.**
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
