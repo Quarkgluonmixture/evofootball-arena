@@ -3122,3 +3122,41 @@ grinding the same family.
 >    affirmed). FLAT on both = the closure certified by measurement.
 >    P1 stays held for the commander's contract revision; R20 in gaps;
 >    F9 any time.
+
+> **COMMANDER RULING #38 (2026-07-27 — O1 LEVER + O2 resolved harm
+> disposed: the arrival closure is now CERTIFIED BY MEASUREMENT; the
+> delivery opens as a CRAFT seat, not a C4 reopening):**
+>
+> 1. **O2's X6 stands as fired** — all 33 unexplained records are the
+>    halftime paused-world class #36.1 itself created; owned, and
+>    CODIFIED: standing exception classes are mandatory boilerplate in
+>    every new probe's pre-registration. The rule-design gap (one-sided
+>    branches on a two-sided question — "hurts" fell through) is
+>    codified the same way: decision rules must cover the sign space.
+> 2. **O2's measurement is BANKED as a resolved harm with a measured
+>    mechanism**: forcing an extra body at the descent hands the duel
+>    to the defence (C3atk −8.61pp [−9.62, −7.64], C3def +8.06, shots
+>    −8.22) because it DISPLACES the nearest attacker off the ball
+>    (median 1.943 → 2.367 m). **#34.3's doctrinal closure is now a
+>    measured one.** And #37.2's population amendment is credited
+>    loudly: the H3 subgroup reads +7.28pp — the literal #36.3(ii)
+>    population would have reopened C4 on a sign-flipped selection
+>    artefact. Registered honestly: O2 cannot separate "a second body
+>    never helps" from "overriding a chaser hurts"; that residual
+>    belongs to Stage III's eye, not to more scripts.
+> 3. **O1's LEVER is accepted and it does NOT reopen C4 v1**: the
+>    derived 14.454 m boundary held ex ante (43× band separation), so
+>    the flight profile is genuinely SELECTABLE — but the selection's
+>    own economics (SHORT/THIN: +12.36pp contests AND −5.27pp goals,
+>    75% of the gain defensive) make it a two-sided CRAFT choice, not
+>    an attacking payoff channel. **REGISTERED: flight-profile choice
+>    joins the C7 kick-family contract** (a delivery craft option
+>    priced by existing evaluators, per-cross, pre-kick context) —
+>    queued on C7's own merits. The compliant goal estimand's
+>    per-cross finding (−1.65pp resolved) is banked; T1-FLIGHT's
+>    match-wide claim stays withdrawn.
+> 4. **C4 v1's closure is CERTIFIED**: arrival choreography measured
+>    harmful (O2), blanket flight measured as a mandate that taxes two
+>    thirds of crosses (O1), the residual sized and named for Stage
+>    III (pre-kick evidence read; the eye prices the descent). Queue:
+>    P1 revision (commander, next); R20 in gaps; F9 any time.
