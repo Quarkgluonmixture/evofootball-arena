@@ -5,7 +5,8 @@ AMENDED 2026-07-28 by commander ruling #43** — compliance PASSES, the ex-ante
 prediction reproduced independently to the digit, and ONE pre-run amendment is
 applied in place (§3.4b: X6 splits into a hard per-record fidelity gate plus
 reported clamp composition). **Authorized to implement and run as amended
-(#43.5).** Originally authorized by
+(#43.5). RUN 2026-07-28 ⇒ ⛔ FAIL on two independent stop rules — see §6.5;
+the fork is the commander's.** Originally authorized by
 **commander ruling #42.3** (P1R accepted; the eye's premise survives its first
 real measurement; the executor drafts P2 under Autonomous mode). Gates are
 frozen here, before the chooser exists and before any datum of P2's own.
@@ -638,6 +639,152 @@ Written before the run; not one of them may be re-cut after sight.
   licence to feed the eye truth.
 
 ---
+
+## 6.5 Result — ⛔ **FAIL, twice over: P2-A is UNDELIVERED (reading (d)) and P2-B fires the offside canary plus two degeneracy limbs (reading (h)). The queue stops at the commander.**
+
+Run 2026-07-28 at HEAD `ae6e49c` (#26.5: no live substrate change landed
+between P1R and this run; the fingerprint is `57b0bdab…c673` throughout).
+P2-A SHA `d4de82bc…4945`, P2-B SHA `795ab346…6b77`; both twice byte-identical;
+data at `docs/world-model/data/stage3-p2a-eye-results.json` and
+`stage3-p2b-adoption-results.json`. Nothing shipped: `Match.stationEye` is null
+in every production path.
+
+### 6.5.1 P2-A — the gates
+
+12,000 moments / 60,000 forks on the disjoint block (2,000,000 + 12 strides),
+1,785 ball-directed moments excluded, 449 forks excluded for ending inside the
+horizon (counted, not zeroed).
+
+| gate | verdict |
+| --- | --- |
+| **X1/X2/X3** identity | ✅ fingerprint unchanged; 3 league seeds × 2 seasons byte-identical with and without the change; seam null + oracle unreachable, asserted by test |
+| **X4** clone coverage | ✅ 12,000 / 12,000 |
+| **X5** control-fork identity | ✅ **480 checked, 0 mismatched** |
+| **X6** per-record fidelity (#43.3) | ✅ **unexplained 0 across 7.08 M classified ticks** |
+| **X7** determinism | ✅ |
+| **PC** inverted argmin | ✅ **−0.0136 CI [−0.0211, −0.0060]** — the argmin chooser measurably hurts, so the budget can see this family |
+| **DEV** delivery | ⛔ **18.47% against the 22% floor** |
+
+**⇒ pre-laid reading (d), UNDELIVERED.** By §7 the payoff numbers are published
+as data with the label attached and are **not interpreted**. They are recorded
+here for the commander, labelled, and no verdict is drawn from them:
+NEUTRAL ATE **+0.00095 CI [−0.0041, +0.0059]** (n 11,543), ATT +0.0019;
+GENE +0.0014 [−0.0037, +0.0067]; ORACLE-CTX +0.0041 [−0.0029, +0.0115].
+The realised half-width is **0.005**, comfortably inside the pre-registered
+0.009 MDE — the budget was right; the treatment was not delivered often enough
+for the gate.
+
+### 6.5.2 ⭐⭐⭐ Why DEV missed, and the number that says the chooser itself is fine
+
+§5's decision classes decompose it exactly, which is what they were for:
+
+```text
+decisions                52,957
+  deviate                 9,779   18.47%   <- the gate's numerator
+  ABSTAIN-UNSEEN         29,968   56.59%
+      no owner           15,189            the ball is in flight: no cell exists
+      no snapshot        10,858            the body had no percept memory yet
+      ball unseen         3,921
+  tie                    12,829   24.23%   the eye chose the incumbent
+  no-cell                   381    0.72%
+```
+
+**Deviation among decisions that HAD a priceable context: 9,779 / 22,989 =
+42.5%** — against the 44.4% the committed table predicted ex ante. The
+ORACLE-CTX arm lands at **44.7%** (14,825 / 33,174), i.e. **on the prediction to
+within a fifth of a point.** The chooser is behaving exactly as designed; the
+gate missed because its denominator counts windows in which no cell exists at
+all, and the floor was derived (§3.4) against a census population where the
+ball always has an owner. **This was disclosed as item 6 before the run and the
+floor was left exactly as frozen — so the FAIL stands as written**, and the
+decomposition is the finding rather than an excuse.
+
+The **10,858 no-snapshot decisions (20.5%)** are a genuine delivery defect and
+they are mine: perception memory is created at a body's own AI decision tick,
+and a fork's first eye decision often precedes it — so the very window the
+census priced is the one most likely to abstain. Named, not patched.
+
+### 6.5.3 Percept honesty, mediators, clamps
+
+* **M-CTX: the percept is honest and mostly right** — overall context agreement
+  **95.6%** (face 99.8%, threat 99.7%, density 95.9%). The eye is not losing to
+  a misread world; it is reading it correctly and finding little to buy.
+* **Mediators** (NEUTRAL, first window): ETA 2.89 s of a 3 s window, target
+  error 14.7 m, occupancy **1.3%** — P1R's "long approaches, value bought purely
+  by moving" reproduced by an actual chooser.
+* **Deviation mix** (#42.2 instrumented): by angle **0° 6,108 · 180° 2,533 ·
+  300° 1,138**; by radius **21 m 7,182 · 7 m 2,597**. The **180° ring is 25.9%
+  of all deviations** — a quarter of what the eye chooses is a seat the
+  incumbent cannot express.
+* **Clamp composition** (#43.3's mediator, reported): ok-share **93.85%**, clamp
+  share 6.1%, and the biggest single cell is **`r7a0|onside` 182,871** — not
+  r21a0. The amendment was the right call on principle; on these numbers the
+  old 0.84 floor would also have passed, which is recorded so the amendment is
+  not credited with a rescue it did not perform.
+
+### 6.5.4 P2-B — the deployment, and it is worse than flat
+
+800 matches × 5 arms (R0/R1/R2/R3/R3-GENE), paired on the same seeds; **R0
+reproduces the shipped world match for match**; determinism ✅.
+
+| gate | verdict |
+| --- | --- |
+| **R0 flag-off identity** | ✅ 800/800 signatures identical to the plain world |
+| **C-OFFSIDE** | ⛔ **FIRES** — 2.789 → 3.311 per match, **+18.7%**, CI [+0.35, +0.69] against a +10% band |
+| **C-BOX** | ✅ quiet — and it moves the OTHER way: attackers in the box at cross arrival **0.895 → 1.076, +19.5%** |
+| **DEGEN-PILEUP** | ⛔ **FIRES** — pairwise spacing under 4 m **9.5% → 17.4%, +84%** (both sides) against a +50% band |
+| **DEGEN-RESTDEF** | ⛔ **FIRES** — the designated rest-defence slot **66.9% → 52.2% (−22.0%)** side 0, −24.2% side 1, against a −20% band |
+| **DEGEN-SCRAMBLE** | ✅ quiet — own bodies within 5 m +7.9% against a +25% band |
+
+**⇒ pre-laid reading (h): the queue stops outright, whatever P2-A says.**
+
+What the instruments say the eye actually did to the shape (R3, side 0, paired
+vs R0, side-split throughout and both sides agreeing):
+
+```text
+pairwise spacing median   12.93 m  ->  10.60 m     (−2.33)
+duplicate runs             55.5%   ->   70.4%      (+15.0pp, on a 54.7% incumbent norm)
+rest defence bodies         1.32   ->    0.98
+station dwell median       0.729 s ->   0.696 s
+target drift median        2.59    ->    2.73 m/s
+restart ticks per match    1,558   ->    1,882     (+20.8%)  <- pin 3's warning, live
+attack/defence shape delta  0.85 m ->    2.56 m    (+1.71)
+```
+
+The one-metre shape delta VISION named as the bar is **tripled** — the faces do
+price differently, exactly as Q8 hoped — but it is bought with bodies 2.3 m
+closer together, three runners aimed at the same shoulder, a rest-defence slot
+abandoned a quarter more often, and a fifth more time spent in restarts.
+
+**The adoption ladder, reported not gating**: R1 shots differential +0.081
+[−0.37, +0.55]; R2 **goals −0.339 [−0.484, −0.190]** — at the one-team rung the
+eye's own side concedes the difference, an interval excluding zero; R3 shots
+−0.253 [−0.74, +0.20]. There is no rung at which the eye earns anything, and
+the only resolved payoff number in the whole run has the wrong sign.
+
+### 6.5.5 Disposition
+
+**FAIL ⇒ the fork returns to the commander** (§7). Two independent stop rules
+fired: DEV (P2-A) and the offside canary plus two degeneracy limbs (P2-B).
+Nothing is re-cut, nothing is re-run, and no replacement is proposed here — the
+causes are named (the abstention denominator; the first-window no-snapshot
+defect; a chooser that pulls bodies together because nothing in the table prices
+the shape they leave behind) and the redraw is the commander's.
+
+Three things banked from an honest failure:
+
+1. **The chooser works and the percept is honest** — 42.5% deviation against a
+   44.4% prediction, 95.6% context agreement, PC resolving, unexplained 0. What
+   failed is not the machinery.
+2. **The 40 cells did not pay out of sample** — recorded as data under the
+   UNDELIVERED label, not as a verdict, but the ATE's half-width of 0.005 means
+   any surviving advantage is small.
+3. **Positional value measured one body at a time does not compose.** Every
+   body prices his own approach against a table censused while the other eleven
+   held the incumbent shape; deployed together they converge, and the spacing,
+   duplicate-run and rest-defence instruments all say so at once. That is the
+   Q5 stability warning, measured rather than argued — and it is the strongest
+   thing this run produced.
 
 ## 7. Stop rules
 

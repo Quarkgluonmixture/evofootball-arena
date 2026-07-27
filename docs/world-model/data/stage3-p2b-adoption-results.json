@@ -1,0 +1,1945 @@
+{
+  "experiment": "STAGE3-P2B (deployment + adoption ladder)",
+  "authority": "STAGE3-P2-DORMANT-EYE §4",
+  "parameters": {
+    "seedStart": 3500000,
+    "blocks": 4,
+    "matchesPerBlock": 200,
+    "matchesPerArm": 800,
+    "rungs": [
+      "R0",
+      "R1",
+      "R2",
+      "R3",
+      "R3G"
+    ],
+    "sampleEvery": 10,
+    "pairSubsample": 6,
+    "tableCanonicalSha": "59a3f72ee2a139e78a443fd9fd527ff9d35c22e3dca889fe8666736e2f86e12d",
+    "bands": {
+      "offsideRel": 0.1,
+      "boxRel": -0.15,
+      "pileupRel": 0.5,
+      "restDefRel": -0.2,
+      "scrambleRel": 0.25
+    },
+    "clusterUnit": "match seed (paired across arms)",
+    "crossArrivalRule": "first tick the ball is owned again, play stops, or 4 s expires",
+    "smoke": false
+  },
+  "instruments": {
+    "R1": {
+      "dwellMedian": {
+        "side0": {
+          "n": 800,
+          "control": 0.7285,
+          "treated": 0.7171,
+          "diff": -0.011458,
+          "lower": -0.020417,
+          "upper": -0.002708,
+          "relative": -0.015728
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7269,
+          "treated": 0.7254,
+          "diff": -0.001458,
+          "lower": -0.01,
+          "upper": 0.006875,
+          "relative": -0.002006
+        }
+      },
+      "familyChangesPerBodyPerMin": {
+        "side0": {
+          "n": 800,
+          "control": 43.9214,
+          "treated": 44.6534,
+          "diff": 0.732025,
+          "lower": 0.301233,
+          "upper": 1.15381,
+          "relative": 0.016667
+        },
+        "side1": {
+          "n": 800,
+          "control": 44.0942,
+          "treated": 44.5664,
+          "diff": 0.472128,
+          "lower": 0.042732,
+          "upper": 0.89207,
+          "relative": 0.010707
+        }
+      },
+      "driftMedian": {
+        "side0": {
+          "n": 800,
+          "control": 2.5945,
+          "treated": 2.6547,
+          "diff": 0.060155,
+          "lower": 0.021968,
+          "upper": 0.09968,
+          "relative": 0.023185
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.569,
+          "treated": 2.576,
+          "diff": 0.007022,
+          "lower": -0.033367,
+          "upper": 0.046102,
+          "relative": 0.002734
+        }
+      },
+      "driftFastShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.2783,
+          "treated": 0.2843,
+          "diff": 0.005936,
+          "lower": 0.002046,
+          "upper": 0.009671,
+          "relative": 0.021328
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.2776,
+          "treated": 0.2794,
+          "diff": 0.001789,
+          "lower": -0.002046,
+          "upper": 0.005646,
+          "relative": 0.006445
+        }
+      },
+      "spacingMedian": {
+        "side0": {
+          "n": 800,
+          "control": 12.9332,
+          "treated": 12.8335,
+          "diff": -0.099647,
+          "lower": -0.169554,
+          "upper": -0.031668,
+          "relative": -0.007705
+        },
+        "side1": {
+          "n": 800,
+          "control": 12.9701,
+          "treated": 12.8385,
+          "diff": -0.131584,
+          "lower": -0.202618,
+          "upper": -0.06265,
+          "relative": -0.010145
+        }
+      },
+      "spacingUnder4": {
+        "side0": {
+          "n": 800,
+          "control": 0.0946,
+          "treated": 0.0938,
+          "diff": -0.000873,
+          "lower": -0.002229,
+          "upper": 0.000627,
+          "relative": -0.009224
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.0945,
+          "treated": 0.0952,
+          "diff": 0.000677,
+          "lower": -0.000715,
+          "upper": 0.002083,
+          "relative": 0.007169
+        }
+      },
+      "ballNear": {
+        "side0": {
+          "n": 800,
+          "control": 0.9407,
+          "treated": 0.948,
+          "diff": 0.007277,
+          "lower": -0.002658,
+          "upper": 0.016979,
+          "relative": 0.007736
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.9455,
+          "treated": 0.9618,
+          "diff": 0.016347,
+          "lower": 0.006054,
+          "upper": 0.026012,
+          "relative": 0.01729
+        }
+      },
+      "ballMid": {
+        "side0": {
+          "n": 800,
+          "control": 2.1919,
+          "treated": 2.2069,
+          "diff": 0.014938,
+          "lower": 0.001508,
+          "upper": 0.028275,
+          "relative": 0.006815
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.1895,
+          "treated": 2.2025,
+          "diff": 0.012938,
+          "lower": -0.00007,
+          "upper": 0.026017,
+          "relative": 0.005909
+        }
+      },
+      "restCount": {
+        "side0": {
+          "n": 800,
+          "control": 1.3237,
+          "treated": 1.2341,
+          "diff": -0.089602,
+          "lower": -0.122855,
+          "upper": -0.056969,
+          "relative": -0.067689
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3464,
+          "treated": 1.3479,
+          "diff": 0.001433,
+          "lower": -0.03243,
+          "upper": 0.035019,
+          "relative": 0.001064
+        }
+      },
+      "restSlotShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.6689,
+          "treated": 0.633,
+          "diff": -0.03595,
+          "lower": -0.047424,
+          "upper": -0.025501,
+          "relative": -0.053745
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.6758,
+          "treated": 0.6722,
+          "diff": -0.003619,
+          "lower": -0.01298,
+          "upper": 0.005672,
+          "relative": -0.005356
+        }
+      },
+      "dupRunShare": {
+        "side0": {
+          "n": 764,
+          "control": 0.5546,
+          "treated": 0.5605,
+          "diff": 0.004424,
+          "lower": -0.013613,
+          "upper": 0.022388,
+          "relative": 0.007976
+        },
+        "side1": {
+          "n": 763,
+          "control": 0.5385,
+          "treated": 0.5574,
+          "diff": 0.018086,
+          "lower": 0.000054,
+          "upper": 0.036546,
+          "relative": 0.033586
+        }
+      },
+      "shapeDeltaCentroid": {
+        "side0": {
+          "n": 800,
+          "control": 0.8521,
+          "treated": 1.0475,
+          "diff": 0.19546,
+          "lower": -0.046659,
+          "upper": 0.451205,
+          "relative": 0.22939
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.8545,
+          "treated": 1.1258,
+          "diff": 0.271339,
+          "lower": 0.025905,
+          "upper": 0.514688,
+          "relative": 0.317559
+        }
+      },
+      "shapeDeltaSpreadX": {
+        "side0": {
+          "n": 800,
+          "control": 1.3745,
+          "treated": 1.0206,
+          "diff": -0.353869,
+          "lower": -0.484487,
+          "upper": -0.2204,
+          "relative": -0.257455
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3501,
+          "treated": 1.6186,
+          "diff": 0.268507,
+          "lower": 0.139305,
+          "upper": 0.396689,
+          "relative": 0.198882
+        }
+      },
+      "shapeDeltaSpreadY": {
+        "side0": {
+          "n": 800,
+          "control": 0.7531,
+          "treated": 0.6283,
+          "diff": -0.12481,
+          "lower": -0.17019,
+          "upper": -0.078881,
+          "relative": -0.165736
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7884,
+          "treated": 0.9203,
+          "diff": 0.131871,
+          "lower": 0.088887,
+          "upper": 0.176929,
+          "relative": 0.167256
+        }
+      },
+      "offsides": {
+        "side0": {
+          "n": 800,
+          "control": 1.4112,
+          "treated": 1.385,
+          "diff": -0.02625,
+          "lower": -0.13125,
+          "upper": 0.075,
+          "relative": -0.018601
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3775,
+          "treated": 1.365,
+          "diff": -0.0125,
+          "lower": -0.13,
+          "upper": 0.10875,
+          "relative": -0.009074
+        }
+      },
+      "shots": {
+        "side0": {
+          "n": 800,
+          "control": 6.7475,
+          "treated": 6.76,
+          "diff": 0.0125,
+          "lower": -0.25875,
+          "upper": 0.2975,
+          "relative": 0.001853
+        },
+        "side1": {
+          "n": 800,
+          "control": 6.8137,
+          "treated": 6.745,
+          "diff": -0.06875,
+          "lower": -0.33875,
+          "upper": 0.1925,
+          "relative": -0.01009
+        }
+      },
+      "goals": {
+        "side0": {
+          "n": 800,
+          "control": 1.0388,
+          "treated": 1.1162,
+          "diff": 0.0775,
+          "lower": -0.01625,
+          "upper": 0.175,
+          "relative": 0.074609
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.0737,
+          "treated": 1.1462,
+          "diff": 0.0725,
+          "lower": -0.03,
+          "upper": 0.17375,
+          "relative": 0.06752
+        }
+      },
+      "crosses": {
+        "side0": {
+          "n": 800,
+          "control": 1.1938,
+          "treated": 1.1287,
+          "diff": -0.065,
+          "lower": -0.17,
+          "upper": 0.035,
+          "relative": -0.05445
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.1738,
+          "treated": 1.225,
+          "diff": 0.05125,
+          "lower": -0.05125,
+          "upper": 0.14875,
+          "relative": 0.043663
+        }
+      },
+      "boxAtArrival": {
+        "side0": {
+          "n": 349,
+          "control": 0.8894,
+          "treated": 0.9125,
+          "diff": -0.006085,
+          "lower": -0.10981,
+          "upper": 0.103295,
+          "relative": -0.006842
+        },
+        "side1": {
+          "n": 396,
+          "control": 0.9426,
+          "treated": 0.9114,
+          "diff": -0.028788,
+          "lower": -0.119108,
+          "upper": 0.071507,
+          "relative": -0.030541
+        }
+      }
+    },
+    "R2": {
+      "dwellMedian": {
+        "side0": {
+          "n": 800,
+          "control": 0.7285,
+          "treated": 0.7085,
+          "diff": -0.02,
+          "lower": -0.029167,
+          "upper": -0.011458,
+          "relative": -0.027452
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7269,
+          "treated": 0.7102,
+          "diff": -0.016667,
+          "lower": -0.025,
+          "upper": -0.007917,
+          "relative": -0.022929
+        }
+      },
+      "familyChangesPerBodyPerMin": {
+        "side0": {
+          "n": 800,
+          "control": 43.9214,
+          "treated": 44.9962,
+          "diff": 1.074829,
+          "lower": 0.63713,
+          "upper": 1.535946,
+          "relative": 0.024472
+        },
+        "side1": {
+          "n": 800,
+          "control": 44.0942,
+          "treated": 45.3779,
+          "diff": 1.283672,
+          "lower": 0.830982,
+          "upper": 1.721643,
+          "relative": 0.029112
+        }
+      },
+      "driftMedian": {
+        "side0": {
+          "n": 800,
+          "control": 2.5945,
+          "treated": 2.7679,
+          "diff": 0.173393,
+          "lower": 0.136058,
+          "upper": 0.210449,
+          "relative": 0.06683
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.569,
+          "treated": 2.5697,
+          "diff": 0.000724,
+          "lower": -0.040078,
+          "upper": 0.042765,
+          "relative": 0.000282
+        }
+      },
+      "driftFastShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.2783,
+          "treated": 0.3028,
+          "diff": 0.024488,
+          "lower": 0.020562,
+          "upper": 0.02843,
+          "relative": 0.08798
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.2776,
+          "treated": 0.2787,
+          "diff": 0.001131,
+          "lower": -0.002967,
+          "upper": 0.005114,
+          "relative": 0.004074
+        }
+      },
+      "spacingMedian": {
+        "side0": {
+          "n": 800,
+          "control": 12.9332,
+          "treated": 11.4567,
+          "diff": -1.476479,
+          "lower": -1.566335,
+          "upper": -1.389945,
+          "relative": -0.114162
+        },
+        "side1": {
+          "n": 800,
+          "control": 12.9701,
+          "treated": 12.1146,
+          "diff": -0.855461,
+          "lower": -0.932098,
+          "upper": -0.775327,
+          "relative": -0.065956
+        }
+      },
+      "spacingUnder4": {
+        "side0": {
+          "n": 800,
+          "control": 0.0946,
+          "treated": 0.148,
+          "diff": 0.053369,
+          "lower": 0.05098,
+          "upper": 0.055855,
+          "relative": 0.563984
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.0945,
+          "treated": 0.124,
+          "diff": 0.029518,
+          "lower": 0.027353,
+          "upper": 0.031687,
+          "relative": 0.31235
+        }
+      },
+      "ballNear": {
+        "side0": {
+          "n": 800,
+          "control": 0.9407,
+          "treated": 0.9629,
+          "diff": 0.02223,
+          "lower": 0.011209,
+          "upper": 0.033364,
+          "relative": 0.023632
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.9455,
+          "treated": 0.9963,
+          "diff": 0.050854,
+          "lower": 0.040677,
+          "upper": 0.060859,
+          "relative": 0.053788
+        }
+      },
+      "ballMid": {
+        "side0": {
+          "n": 800,
+          "control": 2.1919,
+          "treated": 2.2459,
+          "diff": 0.054001,
+          "lower": 0.038082,
+          "upper": 0.069598,
+          "relative": 0.024636
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.1895,
+          "treated": 2.2121,
+          "diff": 0.022561,
+          "lower": 0.008432,
+          "upper": 0.036858,
+          "relative": 0.010304
+        }
+      },
+      "restCount": {
+        "side0": {
+          "n": 800,
+          "control": 1.3237,
+          "treated": 0.9797,
+          "diff": -0.343996,
+          "lower": -0.374296,
+          "upper": -0.313701,
+          "relative": -0.259871
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3464,
+          "treated": 1.3292,
+          "diff": -0.017193,
+          "lower": -0.056339,
+          "upper": 0.019316,
+          "relative": -0.012769
+        }
+      },
+      "restSlotShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.6689,
+          "treated": 0.5199,
+          "diff": -0.149036,
+          "lower": -0.158866,
+          "upper": -0.138886,
+          "relative": -0.222807
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.6758,
+          "treated": 0.6699,
+          "diff": -0.005899,
+          "lower": -0.015408,
+          "upper": 0.003711,
+          "relative": -0.008728
+        }
+      },
+      "dupRunShare": {
+        "side0": {
+          "n": 761,
+          "control": 0.5546,
+          "treated": 0.6534,
+          "diff": 0.098178,
+          "lower": 0.080924,
+          "upper": 0.116906,
+          "relative": 0.177016
+        },
+        "side1": {
+          "n": 758,
+          "control": 0.5385,
+          "treated": 0.5942,
+          "diff": 0.053651,
+          "lower": 0.036753,
+          "upper": 0.071056,
+          "relative": 0.099632
+        }
+      },
+      "shapeDeltaCentroid": {
+        "side0": {
+          "n": 800,
+          "control": 0.8521,
+          "treated": 1.7133,
+          "diff": 0.861237,
+          "lower": 0.621076,
+          "upper": 1.114817,
+          "relative": 1.010737
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.8545,
+          "treated": 1.5223,
+          "diff": 0.667839,
+          "lower": 0.414206,
+          "upper": 0.918644,
+          "relative": 0.781599
+        }
+      },
+      "shapeDeltaSpreadX": {
+        "side0": {
+          "n": 800,
+          "control": 1.3745,
+          "treated": -0.1618,
+          "diff": -1.536265,
+          "lower": -1.681355,
+          "upper": -1.403008,
+          "relative": -1.117699
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3501,
+          "treated": 2.3232,
+          "diff": 0.973099,
+          "lower": 0.842816,
+          "upper": 1.111609,
+          "relative": 0.720769
+        }
+      },
+      "shapeDeltaSpreadY": {
+        "side0": {
+          "n": 800,
+          "control": 0.7531,
+          "treated": 0.2088,
+          "diff": -0.544232,
+          "lower": -0.601617,
+          "upper": -0.488627,
+          "relative": -0.722686
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7884,
+          "treated": 1.2755,
+          "diff": 0.487072,
+          "lower": 0.433108,
+          "upper": 0.539059,
+          "relative": 0.617767
+        }
+      },
+      "offsides": {
+        "side0": {
+          "n": 800,
+          "control": 1.4112,
+          "treated": 1.4263,
+          "diff": 0.015,
+          "lower": -0.08125,
+          "upper": 0.11875,
+          "relative": 0.010629
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3775,
+          "treated": 1.5475,
+          "diff": 0.17,
+          "lower": 0.04875,
+          "upper": 0.3025,
+          "relative": 0.123412
+        }
+      },
+      "shots": {
+        "side0": {
+          "n": 800,
+          "control": 6.7475,
+          "treated": 6.685,
+          "diff": -0.0625,
+          "lower": -0.35125,
+          "upper": 0.2325,
+          "relative": -0.009263
+        },
+        "side1": {
+          "n": 800,
+          "control": 6.8137,
+          "treated": 6.795,
+          "diff": -0.01875,
+          "lower": -0.315,
+          "upper": 0.2775,
+          "relative": -0.002752
+        }
+      },
+      "goals": {
+        "side0": {
+          "n": 800,
+          "control": 1.0388,
+          "treated": 0.9738,
+          "diff": -0.065,
+          "lower": -0.1575,
+          "upper": 0.03,
+          "relative": -0.062575
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.0737,
+          "treated": 1.3475,
+          "diff": 0.27375,
+          "lower": 0.1625,
+          "upper": 0.38625,
+          "relative": 0.254948
+        }
+      },
+      "crosses": {
+        "side0": {
+          "n": 800,
+          "control": 1.1938,
+          "treated": 1.1413,
+          "diff": -0.0525,
+          "lower": -0.15375,
+          "upper": 0.05625,
+          "relative": -0.043979
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.1738,
+          "treated": 1.335,
+          "diff": 0.16125,
+          "lower": 0.055,
+          "upper": 0.265,
+          "relative": 0.13738
+        }
+      },
+      "boxAtArrival": {
+        "side0": {
+          "n": 369,
+          "control": 0.8894,
+          "treated": 0.9327,
+          "diff": 0.034385,
+          "lower": -0.077081,
+          "upper": 0.139521,
+          "relative": 0.038663
+        },
+        "side1": {
+          "n": 401,
+          "control": 0.9426,
+          "treated": 0.9853,
+          "diff": 0.133143,
+          "lower": 0.033084,
+          "upper": 0.237507,
+          "relative": 0.141253
+        }
+      }
+    },
+    "R3": {
+      "dwellMedian": {
+        "side0": {
+          "n": 800,
+          "control": 0.7285,
+          "treated": 0.6958,
+          "diff": -0.032708,
+          "lower": -0.041667,
+          "upper": -0.024375,
+          "relative": -0.044896
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7269,
+          "treated": 0.6969,
+          "diff": -0.03,
+          "lower": -0.038542,
+          "upper": -0.020833,
+          "relative": -0.041273
+        }
+      },
+      "familyChangesPerBodyPerMin": {
+        "side0": {
+          "n": 800,
+          "control": 43.9214,
+          "treated": 46.3779,
+          "diff": 2.456488,
+          "lower": 1.995871,
+          "upper": 2.91339,
+          "relative": 0.055929
+        },
+        "side1": {
+          "n": 800,
+          "control": 44.0942,
+          "treated": 46.417,
+          "diff": 2.322793,
+          "lower": 1.886951,
+          "upper": 2.766282,
+          "relative": 0.052678
+        }
+      },
+      "driftMedian": {
+        "side0": {
+          "n": 800,
+          "control": 2.5945,
+          "treated": 2.7342,
+          "diff": 0.139721,
+          "lower": 0.102589,
+          "upper": 0.178122,
+          "relative": 0.053852
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.569,
+          "treated": 2.7412,
+          "diff": 0.172233,
+          "lower": 0.128304,
+          "upper": 0.212532,
+          "relative": 0.067043
+        }
+      },
+      "driftFastShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.2783,
+          "treated": 0.2996,
+          "diff": 0.021218,
+          "lower": 0.01725,
+          "upper": 0.025202,
+          "relative": 0.076231
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.2776,
+          "treated": 0.3028,
+          "diff": 0.025181,
+          "lower": 0.021169,
+          "upper": 0.029191,
+          "relative": 0.090708
+        }
+      },
+      "spacingMedian": {
+        "side0": {
+          "n": 800,
+          "control": 12.9332,
+          "treated": 10.5999,
+          "diff": -2.333272,
+          "lower": -2.428615,
+          "upper": -2.240908,
+          "relative": -0.18041
+        },
+        "side1": {
+          "n": 800,
+          "control": 12.9701,
+          "treated": 10.6168,
+          "diff": -2.353242,
+          "lower": -2.447134,
+          "upper": -2.260411,
+          "relative": -0.181436
+        }
+      },
+      "spacingUnder4": {
+        "side0": {
+          "n": 800,
+          "control": 0.0946,
+          "treated": 0.1742,
+          "diff": 0.079615,
+          "lower": 0.076756,
+          "upper": 0.082476,
+          "relative": 0.841351
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.0945,
+          "treated": 0.1754,
+          "diff": 0.080873,
+          "lower": 0.077889,
+          "upper": 0.083815,
+          "relative": 0.855782
+        }
+      },
+      "ballNear": {
+        "side0": {
+          "n": 800,
+          "control": 0.9407,
+          "treated": 1.0152,
+          "diff": 0.074536,
+          "lower": 0.063646,
+          "upper": 0.085744,
+          "relative": 0.079235
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.9455,
+          "treated": 1.0165,
+          "diff": 0.071079,
+          "lower": 0.059342,
+          "upper": 0.08311,
+          "relative": 0.07518
+        }
+      },
+      "ballMid": {
+        "side0": {
+          "n": 800,
+          "control": 2.1919,
+          "treated": 2.2592,
+          "diff": 0.0673,
+          "lower": 0.050833,
+          "upper": 0.08254,
+          "relative": 0.030704
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.1895,
+          "treated": 2.253,
+          "diff": 0.0635,
+          "lower": 0.04789,
+          "upper": 0.079677,
+          "relative": 0.029001
+        }
+      },
+      "restCount": {
+        "side0": {
+          "n": 800,
+          "control": 1.3237,
+          "treated": 0.98,
+          "diff": -0.343709,
+          "lower": -0.37543,
+          "upper": -0.312965,
+          "relative": -0.259655
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3464,
+          "treated": 0.9514,
+          "diff": -0.394997,
+          "lower": -0.430149,
+          "upper": -0.362706,
+          "relative": -0.293367
+        }
+      },
+      "restSlotShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.6689,
+          "treated": 0.5215,
+          "diff": -0.147387,
+          "lower": -0.157614,
+          "upper": -0.137154,
+          "relative": -0.220343
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.6758,
+          "treated": 0.5123,
+          "diff": -0.163546,
+          "lower": -0.173445,
+          "upper": -0.153305,
+          "relative": -0.242002
+        }
+      },
+      "dupRunShare": {
+        "side0": {
+          "n": 767,
+          "control": 0.5546,
+          "treated": 0.7044,
+          "diff": 0.147987,
+          "lower": 0.130547,
+          "upper": 0.165506,
+          "relative": 0.266824
+        },
+        "side1": {
+          "n": 767,
+          "control": 0.5385,
+          "treated": 0.6815,
+          "diff": 0.145643,
+          "lower": 0.128398,
+          "upper": 0.1629,
+          "relative": 0.270463
+        }
+      },
+      "shapeDeltaCentroid": {
+        "side0": {
+          "n": 800,
+          "control": 0.8521,
+          "treated": 2.561,
+          "diff": 1.708865,
+          "lower": 1.478855,
+          "upper": 1.942164,
+          "relative": 2.005504
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.8545,
+          "treated": 2.6534,
+          "diff": 1.79895,
+          "lower": 1.54213,
+          "upper": 2.041532,
+          "relative": 2.105385
+        }
+      },
+      "shapeDeltaSpreadX": {
+        "side0": {
+          "n": 800,
+          "control": 1.3745,
+          "treated": 0.8231,
+          "diff": -0.5514,
+          "lower": -0.691573,
+          "upper": -0.422678,
+          "relative": -0.401168
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3501,
+          "treated": 0.7942,
+          "diff": -0.555889,
+          "lower": -0.688304,
+          "upper": -0.42591,
+          "relative": -0.411744
+        }
+      },
+      "shapeDeltaSpreadY": {
+        "side0": {
+          "n": 800,
+          "control": 0.7531,
+          "treated": 0.6688,
+          "diff": -0.084259,
+          "lower": -0.149253,
+          "upper": -0.018296,
+          "relative": -0.111887
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7884,
+          "treated": 0.68,
+          "diff": -0.108487,
+          "lower": -0.168808,
+          "upper": -0.047163,
+          "relative": -0.137597
+        }
+      },
+      "offsides": {
+        "side0": {
+          "n": 800,
+          "control": 1.4112,
+          "treated": 1.67,
+          "diff": 0.25875,
+          "lower": 0.1425,
+          "upper": 0.37875,
+          "relative": 0.183348
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3775,
+          "treated": 1.6413,
+          "diff": 0.26375,
+          "lower": 0.1475,
+          "upper": 0.38125,
+          "relative": 0.19147
+        }
+      },
+      "shots": {
+        "side0": {
+          "n": 800,
+          "control": 6.7475,
+          "treated": 6.575,
+          "diff": -0.1725,
+          "lower": -0.45125,
+          "upper": 0.13125,
+          "relative": -0.025565
+        },
+        "side1": {
+          "n": 800,
+          "control": 6.8137,
+          "treated": 6.8937,
+          "diff": 0.08,
+          "lower": -0.2125,
+          "upper": 0.36125,
+          "relative": 0.011741
+        }
+      },
+      "goals": {
+        "side0": {
+          "n": 800,
+          "control": 1.0388,
+          "treated": 1.2388,
+          "diff": 0.2,
+          "lower": 0.09875,
+          "upper": 0.30125,
+          "relative": 0.192539
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.0737,
+          "treated": 1.2913,
+          "diff": 0.2175,
+          "lower": 0.1075,
+          "upper": 0.32,
+          "relative": 0.202561
+        }
+      },
+      "crosses": {
+        "side0": {
+          "n": 800,
+          "control": 1.1938,
+          "treated": 1.3062,
+          "diff": 0.1125,
+          "lower": 0.0025,
+          "upper": 0.2175,
+          "relative": 0.094241
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.1738,
+          "treated": 1.3013,
+          "diff": 0.1275,
+          "lower": 0.01625,
+          "upper": 0.23625,
+          "relative": 0.108626
+        }
+      },
+      "boxAtArrival": {
+        "side0": {
+          "n": 391,
+          "control": 0.8894,
+          "treated": 1.0931,
+          "diff": 0.199044,
+          "lower": 0.088473,
+          "upper": 0.311491,
+          "relative": 0.223806
+        },
+        "side1": {
+          "n": 391,
+          "control": 0.9426,
+          "treated": 1.0639,
+          "diff": 0.121185,
+          "lower": 0.009633,
+          "upper": 0.228474,
+          "relative": 0.128566
+        }
+      }
+    },
+    "R3G": {
+      "dwellMedian": {
+        "side0": {
+          "n": 800,
+          "control": 0.7285,
+          "treated": 0.6867,
+          "diff": -0.041875,
+          "lower": -0.050625,
+          "upper": -0.033542,
+          "relative": -0.057478
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7269,
+          "treated": 0.6954,
+          "diff": -0.031458,
+          "lower": -0.040417,
+          "upper": -0.022708,
+          "relative": -0.043279
+        }
+      },
+      "familyChangesPerBodyPerMin": {
+        "side0": {
+          "n": 800,
+          "control": 43.9214,
+          "treated": 45.9012,
+          "diff": 1.979847,
+          "lower": 1.475414,
+          "upper": 2.479304,
+          "relative": 0.045077
+        },
+        "side1": {
+          "n": 800,
+          "control": 44.0942,
+          "treated": 46.0222,
+          "diff": 1.927933,
+          "lower": 1.482126,
+          "upper": 2.402134,
+          "relative": 0.043723
+        }
+      },
+      "driftMedian": {
+        "side0": {
+          "n": 800,
+          "control": 2.5945,
+          "treated": 2.6783,
+          "diff": 0.08374,
+          "lower": 0.041178,
+          "upper": 0.128121,
+          "relative": 0.032276
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.569,
+          "treated": 2.6748,
+          "diff": 0.105782,
+          "lower": 0.064334,
+          "upper": 0.14809,
+          "relative": 0.041177
+        }
+      },
+      "driftFastShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.2783,
+          "treated": 0.2922,
+          "diff": 0.01384,
+          "lower": 0.009606,
+          "upper": 0.018112,
+          "relative": 0.049723
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.2776,
+          "treated": 0.2944,
+          "diff": 0.016781,
+          "lower": 0.012787,
+          "upper": 0.020765,
+          "relative": 0.060451
+        }
+      },
+      "spacingMedian": {
+        "side0": {
+          "n": 800,
+          "control": 12.9332,
+          "treated": 10.8958,
+          "diff": -2.037354,
+          "lower": -2.133786,
+          "upper": -1.941253,
+          "relative": -0.157529
+        },
+        "side1": {
+          "n": 800,
+          "control": 12.9701,
+          "treated": 10.9374,
+          "diff": -2.032687,
+          "lower": -2.134603,
+          "upper": -1.9339,
+          "relative": -0.156721
+        }
+      },
+      "spacingUnder4": {
+        "side0": {
+          "n": 800,
+          "control": 0.0946,
+          "treated": 0.173,
+          "diff": 0.078348,
+          "lower": 0.075315,
+          "upper": 0.081352,
+          "relative": 0.827955
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.0945,
+          "treated": 0.172,
+          "diff": 0.077472,
+          "lower": 0.07437,
+          "upper": 0.080614,
+          "relative": 0.819797
+        }
+      },
+      "ballNear": {
+        "side0": {
+          "n": 800,
+          "control": 0.9407,
+          "treated": 0.9783,
+          "diff": 0.037581,
+          "lower": 0.026256,
+          "upper": 0.049688,
+          "relative": 0.03995
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.9455,
+          "treated": 0.975,
+          "diff": 0.029502,
+          "lower": 0.017454,
+          "upper": 0.042136,
+          "relative": 0.031205
+        }
+      },
+      "ballMid": {
+        "side0": {
+          "n": 800,
+          "control": 2.1919,
+          "treated": 2.2517,
+          "diff": 0.059744,
+          "lower": 0.041542,
+          "upper": 0.077607,
+          "relative": 0.027257
+        },
+        "side1": {
+          "n": 800,
+          "control": 2.1895,
+          "treated": 2.2357,
+          "diff": 0.046158,
+          "lower": 0.028613,
+          "upper": 0.062961,
+          "relative": 0.021081
+        }
+      },
+      "restCount": {
+        "side0": {
+          "n": 800,
+          "control": 1.3237,
+          "treated": 1.0204,
+          "diff": -0.303342,
+          "lower": -0.335103,
+          "upper": -0.270385,
+          "relative": -0.22916
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3464,
+          "treated": 1.0247,
+          "diff": -0.321682,
+          "lower": -0.356588,
+          "upper": -0.285894,
+          "relative": -0.238915
+        }
+      },
+      "restSlotShare": {
+        "side0": {
+          "n": 800,
+          "control": 0.6689,
+          "treated": 0.5416,
+          "diff": -0.127262,
+          "lower": -0.137075,
+          "upper": -0.117389,
+          "relative": -0.190255
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.6758,
+          "treated": 0.5411,
+          "diff": -0.13467,
+          "lower": -0.14406,
+          "upper": -0.124061,
+          "relative": -0.199274
+        }
+      },
+      "dupRunShare": {
+        "side0": {
+          "n": 769,
+          "control": 0.5546,
+          "treated": 0.6856,
+          "diff": 0.131449,
+          "lower": 0.114227,
+          "upper": 0.149347,
+          "relative": 0.237005
+        },
+        "side1": {
+          "n": 760,
+          "control": 0.5385,
+          "treated": 0.682,
+          "diff": 0.138612,
+          "lower": 0.122059,
+          "upper": 0.154843,
+          "relative": 0.257408
+        }
+      },
+      "shapeDeltaCentroid": {
+        "side0": {
+          "n": 800,
+          "control": 0.8521,
+          "treated": 1.186,
+          "diff": 0.333875,
+          "lower": 0.070003,
+          "upper": 0.588265,
+          "relative": 0.391832
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.8545,
+          "treated": 1.3,
+          "diff": 0.445499,
+          "lower": 0.190564,
+          "upper": 0.707386,
+          "relative": 0.521386
+        }
+      },
+      "shapeDeltaSpreadX": {
+        "side0": {
+          "n": 800,
+          "control": 1.3745,
+          "treated": 0.6722,
+          "diff": -0.702285,
+          "lower": -0.851978,
+          "upper": -0.556619,
+          "relative": -0.510943
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3501,
+          "treated": 0.6476,
+          "diff": -0.702514,
+          "lower": -0.843751,
+          "upper": -0.565034,
+          "relative": -0.520348
+        }
+      },
+      "shapeDeltaSpreadY": {
+        "side0": {
+          "n": 800,
+          "control": 0.7531,
+          "treated": 0.7116,
+          "diff": -0.041439,
+          "lower": -0.111085,
+          "upper": 0.032434,
+          "relative": -0.055027
+        },
+        "side1": {
+          "n": 800,
+          "control": 0.7884,
+          "treated": 0.6864,
+          "diff": -0.102085,
+          "lower": -0.169394,
+          "upper": -0.030176,
+          "relative": -0.129477
+        }
+      },
+      "offsides": {
+        "side0": {
+          "n": 800,
+          "control": 1.4112,
+          "treated": 1.7263,
+          "diff": 0.315,
+          "lower": 0.1975,
+          "upper": 0.4325,
+          "relative": 0.223206
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.3775,
+          "treated": 1.7563,
+          "diff": 0.37875,
+          "lower": 0.2525,
+          "upper": 0.505,
+          "relative": 0.274955
+        }
+      },
+      "shots": {
+        "side0": {
+          "n": 800,
+          "control": 6.7475,
+          "treated": 7.12,
+          "diff": 0.3725,
+          "lower": 0.06,
+          "upper": 0.67375,
+          "relative": 0.055206
+        },
+        "side1": {
+          "n": 800,
+          "control": 6.8137,
+          "treated": 7.2725,
+          "diff": 0.45875,
+          "lower": 0.1625,
+          "upper": 0.7675,
+          "relative": 0.067327
+        }
+      },
+      "goals": {
+        "side0": {
+          "n": 800,
+          "control": 1.0388,
+          "treated": 1.3037,
+          "diff": 0.265,
+          "lower": 0.1625,
+          "upper": 0.365,
+          "relative": 0.255114
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.0737,
+          "treated": 1.3438,
+          "diff": 0.27,
+          "lower": 0.15875,
+          "upper": 0.3775,
+          "relative": 0.251455
+        }
+      },
+      "crosses": {
+        "side0": {
+          "n": 800,
+          "control": 1.1938,
+          "treated": 1.255,
+          "diff": 0.06125,
+          "lower": -0.0475,
+          "upper": 0.1725,
+          "relative": 0.051309
+        },
+        "side1": {
+          "n": 800,
+          "control": 1.1738,
+          "treated": 1.2625,
+          "diff": 0.08875,
+          "lower": -0.0175,
+          "upper": 0.19375,
+          "relative": 0.075612
+        }
+      },
+      "boxAtArrival": {
+        "side0": {
+          "n": 382,
+          "control": 0.8894,
+          "treated": 1.0676,
+          "diff": 0.138394,
+          "lower": 0.03486,
+          "upper": 0.246291,
+          "relative": 0.155612
+        },
+        "side1": {
+          "n": 389,
+          "control": 0.9426,
+          "treated": 1.0338,
+          "diff": 0.093102,
+          "lower": -0.018895,
+          "upper": 0.207926,
+          "relative": 0.098773
+        }
+      }
+    }
+  },
+  "differential": {
+    "R1": {
+      "shots": {
+        "n": 800,
+        "control": -0.0663,
+        "treated": 0.015,
+        "diff": 0.08125,
+        "lower": -0.37,
+        "upper": 0.55125,
+        "relative": 1.226415
+      },
+      "goals": {
+        "n": 800,
+        "control": -0.035,
+        "treated": -0.03,
+        "diff": 0.005,
+        "lower": -0.1325,
+        "upper": 0.14,
+        "relative": 0.142857
+      }
+    },
+    "R2": {
+      "shots": {
+        "n": 800,
+        "control": -0.0663,
+        "treated": -0.11,
+        "diff": -0.04375,
+        "lower": -0.525,
+        "upper": 0.47,
+        "relative": -0.660377
+      },
+      "goals": {
+        "n": 800,
+        "control": -0.035,
+        "treated": -0.3738,
+        "diff": -0.33875,
+        "lower": -0.48375,
+        "upper": -0.19,
+        "relative": -9.678571
+      }
+    },
+    "R3": {
+      "shots": {
+        "n": 800,
+        "control": -0.0663,
+        "treated": -0.3187,
+        "diff": -0.2525,
+        "lower": -0.7425,
+        "upper": 0.20125,
+        "relative": -3.811321
+      },
+      "goals": {
+        "n": 800,
+        "control": -0.035,
+        "treated": -0.0525,
+        "diff": -0.0175,
+        "lower": -0.16875,
+        "upper": 0.13125,
+        "relative": -0.5
+      }
+    },
+    "R3G": {
+      "shots": {
+        "n": 800,
+        "control": -0.0663,
+        "treated": -0.1525,
+        "diff": -0.08625,
+        "lower": -0.59375,
+        "upper": 0.40625,
+        "relative": -1.301887
+      },
+      "goals": {
+        "n": 800,
+        "control": -0.035,
+        "treated": -0.04,
+        "diff": -0.005,
+        "lower": -0.1425,
+        "upper": 0.1625,
+        "relative": -0.142857
+      }
+    }
+  },
+  "canaries": {
+    "offside": {
+      "n": 800,
+      "control": 2.7887,
+      "treated": 3.3112,
+      "diff": 0.5225,
+      "lower": 0.3525,
+      "upper": 0.69,
+      "relative": 0.18736,
+      "band": 0.1,
+      "fires": true
+    },
+    "box": {
+      "n": 656,
+      "control": 0.8949,
+      "treated": 1.0757,
+      "diff": 0.174485,
+      "lower": 0.105133,
+      "upper": 0.247496,
+      "relative": 0.194983,
+      "band": -0.15,
+      "fires": false
+    }
+  },
+  "degeneracy": {
+    "pileup": {
+      "side0": {
+        "n": 800,
+        "control": 0.0946,
+        "treated": 0.1742,
+        "diff": 0.079615,
+        "lower": 0.076711,
+        "upper": 0.08253,
+        "relative": 0.841351
+      },
+      "side1": {
+        "n": 800,
+        "control": 0.0945,
+        "treated": 0.1754,
+        "diff": 0.080873,
+        "lower": 0.078001,
+        "upper": 0.083767,
+        "relative": 0.855782
+      },
+      "band": 0.5,
+      "fires": true
+    },
+    "restDefence": {
+      "side0": {
+        "n": 800,
+        "control": 0.6689,
+        "treated": 0.5215,
+        "diff": -0.147387,
+        "lower": -0.157219,
+        "upper": -0.136984,
+        "relative": -0.220343
+      },
+      "side1": {
+        "n": 800,
+        "control": 0.6758,
+        "treated": 0.5123,
+        "diff": -0.163546,
+        "lower": -0.173673,
+        "upper": -0.153288,
+        "relative": -0.242002
+      },
+      "band": -0.2,
+      "fires": true
+    },
+    "scramble": {
+      "side0": {
+        "n": 800,
+        "control": 0.9407,
+        "treated": 1.0152,
+        "diff": 0.074536,
+        "lower": 0.063154,
+        "upper": 0.085565,
+        "relative": 0.079235
+      },
+      "side1": {
+        "n": 800,
+        "control": 0.9455,
+        "treated": 1.0165,
+        "diff": 0.071079,
+        "lower": 0.059648,
+        "upper": 0.082364,
+        "relative": 0.07518
+      },
+      "band": 0.25,
+      "fires": false
+    }
+  },
+  "eye": {
+    "R1": {
+      "decisions": 73883,
+      "deviate": 16263,
+      "deviationShare": 0.220118,
+      "classes": {
+        "abstainUnseen": 38283,
+        "abstainNoSnapshot": 641,
+        "abstainNoBall": 6138,
+        "abstainNoOwner": 31504,
+        "noCell": 704,
+        "tie": 18633,
+        "nonStationTicks": 298728,
+        "overrideTicks": 2135074
+      },
+      "ctx": {
+        "seen": 34487,
+        "agree": 0.96071,
+        "agreeFace": 0.997245,
+        "agreeThreat": 0.995245,
+        "agreeDensity": 0.965291
+      },
+      "byAngle": {
+        "0": 10240,
+        "180": 4113,
+        "300": 1910
+      },
+      "byRadius": {
+        "7": 4601,
+        "21": 11662
+      },
+      "ring180Share": 0.252905,
+      "byContext": {
+        "theirs|middle|crowded": 4113,
+        "ours|ownThird|sparse": 3683,
+        "ours|middle|crowded": 2691,
+        "theirs|ownThird|sparse": 2088,
+        "theirs|ownThird|crowded": 1910,
+        "ours|ownThird|crowded": 1778
+      }
+    },
+    "R2": {
+      "decisions": 370594,
+      "deviate": 87271,
+      "deviationShare": 0.23549,
+      "classes": {
+        "abstainUnseen": 191119,
+        "abstainNoSnapshot": 3202,
+        "abstainNoBall": 30771,
+        "abstainNoOwner": 157146,
+        "noCell": 3820,
+        "tie": 88384,
+        "nonStationTicks": 1582333,
+        "overrideTicks": 11486690
+      },
+      "ctx": {
+        "seen": 173936,
+        "agree": 0.958588,
+        "agreeFace": 0.997384,
+        "agreeThreat": 0.995021,
+        "agreeDensity": 0.963745
+      },
+      "byAngle": {
+        "0": 52289,
+        "180": 23039,
+        "300": 11943
+      },
+      "byRadius": {
+        "7": 26616,
+        "21": 60655
+      },
+      "ring180Share": 0.263994,
+      "byContext": {
+        "theirs|middle|crowded": 23039,
+        "ours|ownThird|crowded": 17882,
+        "ours|middle|crowded": 14673,
+        "theirs|ownThird|crowded": 11943,
+        "ours|ownThird|sparse": 10037,
+        "theirs|ownThird|sparse": 9697
+      }
+    },
+    "R3": {
+      "decisions": 742577,
+      "deviate": 177572,
+      "deviationShare": 0.239129,
+      "classes": {
+        "abstainUnseen": 387626,
+        "abstainNoSnapshot": 7202,
+        "abstainNoBall": 61612,
+        "abstainNoOwner": 318812,
+        "noCell": 9273,
+        "tie": 168106,
+        "nonStationTicks": 3210115,
+        "overrideTicks": 23399901
+      },
+      "ctx": {
+        "seen": 343325,
+        "agree": 0.958616,
+        "agreeFace": 0.997055,
+        "agreeThreat": 0.995474,
+        "agreeDensity": 0.963749
+      },
+      "byAngle": {
+        "0": 104013,
+        "180": 49180,
+        "300": 24379
+      },
+      "byRadius": {
+        "7": 55788,
+        "21": 121784
+      },
+      "ring180Share": 0.276958,
+      "byContext": {
+        "theirs|middle|crowded": 49180,
+        "ours|ownThird|crowded": 35936,
+        "ours|middle|crowded": 31409,
+        "theirs|ownThird|crowded": 24379,
+        "ours|ownThird|sparse": 18844,
+        "theirs|ownThird|sparse": 17824
+      }
+    },
+    "R3G": {
+      "decisions": 741615,
+      "deviate": 199509,
+      "deviationShare": 0.26902,
+      "classes": {
+        "abstainUnseen": 386083,
+        "abstainNoSnapshot": 7202,
+        "abstainNoBall": 59899,
+        "abstainNoOwner": 318982,
+        "noCell": 8357,
+        "tie": 147666,
+        "nonStationTicks": 3637561,
+        "overrideTicks": 26899431
+      },
+      "ctx": {
+        "seen": 344244,
+        "agree": 0.957664,
+        "agreeFace": 0.996883,
+        "agreeThreat": 0.994995,
+        "agreeDensity": 0.963174
+      },
+      "byAngle": {
+        "0": 116978,
+        "180": 55039,
+        "240": 4187,
+        "300": 23305
+      },
+      "byRadius": {
+        "7": 66164,
+        "21": 133345
+      },
+      "ring180Share": 0.275872,
+      "byContext": {
+        "theirs|middle|crowded": 47033,
+        "ours|ownThird|crowded": 36755,
+        "ours|middle|crowded": 28977,
+        "theirs|theirThird|crowded": 26075,
+        "theirs|ownThird|crowded": 23305,
+        "ours|ownThird|sparse": 20164,
+        "theirs|ownThird|sparse": 17200
+      }
+    }
+  },
+  "restarts": {
+    "R1": {
+      "n": 800,
+      "control": 1557.9813,
+      "treated": 1602.1975,
+      "diff": 44.21625,
+      "lower": 5.5675,
+      "upper": 84.1575,
+      "relative": 0.02838
+    },
+    "R2": {
+      "n": 800,
+      "control": 1557.9813,
+      "treated": 1728.2625,
+      "diff": 170.28125,
+      "lower": 128.9825,
+      "upper": 210.785,
+      "relative": 0.109296
+    },
+    "R3": {
+      "n": 800,
+      "control": 1557.9813,
+      "treated": 1882.1237,
+      "diff": 324.1425,
+      "lower": 280.52,
+      "upper": 370.65625,
+      "relative": 0.208053
+    },
+    "R3G": {
+      "n": 800,
+      "control": 1557.9813,
+      "treated": 1879.5138,
+      "diff": 321.5325,
+      "lower": 277.77875,
+      "upper": 363.09375,
+      "relative": 0.206378
+    }
+  },
+  "gates": {
+    "r0FlagOffIdentity": true,
+    "offsideCanaryQuiet": false,
+    "boxCanaryQuiet": true,
+    "degeneracyQuiet": false,
+    "determinism": true
+  },
+  "sha256": "795ab3469208eee559551c128cc9a3441a70436bf74fa00bcd9499a46d557b77",
+  "verdict": "GATES FAIL"
+}

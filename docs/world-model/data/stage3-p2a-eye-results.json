@@ -1,0 +1,485 @@
+{
+  "experiment": "STAGE3-P2A (the dormant eye, out of sample)",
+  "authority": "STAGE3-P2-DORMANT-EYE §3, amended by ruling #43.3",
+  "parameters": {
+    "seedStart": 2000000,
+    "blocks": 12,
+    "matchesPerBlock": 250,
+    "momentTarget": 12000,
+    "momentSpacingS": 2,
+    "wSeconds": 3,
+    "hScoreSeconds": 6,
+    "hConcedeSeconds": 10,
+    "arms": [
+      "control",
+      "neutral",
+      "gene",
+      "oracleCtx",
+      "inverted"
+    ],
+    "devFloor": 0.22,
+    "tableCanonicalSha": "59a3f72ee2a139e78a443fd9fd527ff9d35c22e3dca889fe8666736e2f86e12d",
+    "tablePath": "docs/world-model/data/stage3-p1r-approach-table.json",
+    "clusterUnit": "match seed (disjoint per block)",
+    "estimand": "ATE = mean over eligible moments of VALUE(arm) − VALUE(control), paired in-clone",
+    "population": "station-family ticks only, P1R verbatim, on a DISJOINT block",
+    "smoke": false
+  },
+  "coverage": {
+    "moments": 12000,
+    "clonesTaken": 12000,
+    "ballDirectedSkipped": 1785,
+    "cloneCoverage": 1,
+    "forks": 60000,
+    "x5Checked": 480,
+    "x5Mismatched": 0,
+    "contextCounts": {
+      "ours|middle|crowded": 932,
+      "ours|middle|sparse": 2086,
+      "ours|ownThird|crowded": 574,
+      "ours|ownThird|sparse": 1856,
+      "ours|theirThird|crowded": 328,
+      "ours|theirThird|sparse": 889,
+      "theirs|middle|crowded": 823,
+      "theirs|middle|sparse": 1305,
+      "theirs|ownThird|crowded": 504,
+      "theirs|ownThird|sparse": 459,
+      "theirs|theirThird|crowded": 496,
+      "theirs|theirThird|sparse": 1748
+    },
+    "endedExcluded": 449
+  },
+  "x6": {
+    "ePaused": 10880,
+    "eCarrier": 971,
+    "eBallWon": 0,
+    "eSentOff": 53,
+    "eOnside": 376050,
+    "eBarred": 58568,
+    "eEnded": 2241,
+    "ok": 6635336,
+    "unexplained": 0,
+    "eRedecided": 15739,
+    "eNonStation": 22197,
+    "total": 7081858,
+    "okShare": 0.938526,
+    "clampShare": 0.061474,
+    "byCandidate": {
+      "r7a0|onside": 182871,
+      "r21a60|onside": 109712,
+      "r21a0|onside": 80235,
+      "r7a0|barred": 52904,
+      "r21a0|barred": 5586,
+      "r7a60|onside": 3206,
+      "r7a60|barred": 78,
+      "r7a300|onside": 26
+    }
+  },
+  "perArm": {
+    "neutral": {
+      "ate": {
+        "n": 11543,
+        "point": 0.000953,
+        "lower": -0.004144,
+        "upper": 0.005882
+      },
+      "att": {
+        "n": 5710,
+        "point": 0.001926,
+        "lower": -0.008011,
+        "upper": 0.011688
+      },
+      "deviationShareByMoment": 0.487083,
+      "decisions": 52957,
+      "deviateDecisions": 9779,
+      "deviationShareByDecision": 0.184659,
+      "classes": {
+        "deviate": 9779,
+        "abstainUnseen": 29968,
+        "abstainNoSnapshot": 10858,
+        "abstainNoBall": 3921,
+        "abstainNoOwner": 15189,
+        "noCell": 381,
+        "tie": 12829,
+        "nonStationTicks": 152794,
+        "overrideTicks": 1120743
+      },
+      "ctx": {
+        "seen": 22311,
+        "agree": 0.955582,
+        "agreeFace": 0.998252,
+        "agreeThreat": 0.996504,
+        "agreeDensity": 0.959168
+      },
+      "byCandidate": {
+        "r21a0": 4649,
+        "r21a180": 2533,
+        "r7a0": 1459,
+        "r7a300": 1138
+      },
+      "byContext": {
+        "theirs|middle|crowded": 2533,
+        "ours|ownThird|sparse": 2314,
+        "ours|middle|crowded": 1459,
+        "theirs|ownThird|sparse": 1401,
+        "theirs|ownThird|crowded": 1138,
+        "ours|ownThird|crowded": 934
+      },
+      "mediators": {
+        "eta": 2.8909,
+        "targetError": 14.7035,
+        "occupancy": 0.0132
+      }
+    },
+    "gene": {
+      "ate": {
+        "n": 11543,
+        "point": 0.001386,
+        "lower": -0.003682,
+        "upper": 0.006748
+      },
+      "att": {
+        "n": 6176,
+        "point": 0.002591,
+        "lower": -0.007651,
+        "upper": 0.012181
+      },
+      "deviationShareByMoment": 0.527083,
+      "decisions": 52990,
+      "deviateDecisions": 10484,
+      "deviationShareByDecision": 0.197849,
+      "classes": {
+        "deviate": 10484,
+        "abstainUnseen": 29930,
+        "abstainNoSnapshot": 10858,
+        "abstainNoBall": 3894,
+        "abstainNoOwner": 15178,
+        "noCell": 368,
+        "tie": 12208,
+        "nonStationTicks": 168457,
+        "overrideTicks": 1214875
+      },
+      "ctx": {
+        "seen": 22377,
+        "agree": 0.955624,
+        "agreeFace": 0.998257,
+        "agreeThreat": 0.996559,
+        "agreeDensity": 0.959154
+      },
+      "byCandidate": {
+        "r21a0": 4669,
+        "r21a180": 2903,
+        "r7a0": 1579,
+        "r7a300": 1135,
+        "r21a240": 198
+      },
+      "byContext": {
+        "theirs|middle|crowded": 2502,
+        "ours|ownThird|sparse": 2317,
+        "ours|middle|crowded": 1423,
+        "theirs|ownThird|sparse": 1408,
+        "theirs|ownThird|crowded": 1135,
+        "ours|ownThird|crowded": 944,
+        "theirs|theirThird|crowded": 755
+      },
+      "mediators": {
+        "eta": 2.8956,
+        "targetError": 14.9283,
+        "occupancy": 0.0127
+      }
+    },
+    "oracleCtx": {
+      "ate": {
+        "n": 11539,
+        "point": 0.004073,
+        "lower": -0.002894,
+        "upper": 0.0115
+      },
+      "att": {
+        "n": 7382,
+        "point": 0.006367,
+        "lower": -0.005261,
+        "upper": 0.017994
+      },
+      "deviationShareByMoment": 0.636,
+      "decisions": 52478,
+      "deviateDecisions": 14825,
+      "deviationShareByDecision": 0.282499,
+      "classes": {
+        "deviate": 14825,
+        "abstainUnseen": 19304,
+        "abstainNoSnapshot": 0,
+        "abstainNoBall": 0,
+        "abstainNoOwner": 19304,
+        "noCell": 720,
+        "tie": 17629,
+        "nonStationTicks": 225594,
+        "overrideTicks": 1805713
+      },
+      "ctx": {
+        "seen": 33174,
+        "agree": 1,
+        "agreeFace": 1,
+        "agreeThreat": 1,
+        "agreeDensity": 1
+      },
+      "byCandidate": {
+        "r21a0": 7848,
+        "r21a180": 3099,
+        "r7a0": 2547,
+        "r7a300": 1331
+      },
+      "byContext": {
+        "ours|ownThird|sparse": 4663,
+        "theirs|middle|crowded": 3099,
+        "ours|middle|crowded": 2547,
+        "ours|ownThird|crowded": 1749,
+        "theirs|ownThird|sparse": 1436,
+        "theirs|ownThird|crowded": 1331
+      },
+      "mediators": {
+        "eta": 2.7213,
+        "targetError": 13.5204,
+        "occupancy": 0.0434
+      }
+    },
+    "inverted": {
+      "ate": {
+        "n": 11535,
+        "point": -0.013611,
+        "lower": -0.021146,
+        "upper": -0.005953
+      },
+      "att": {
+        "n": 10089,
+        "point": -0.015562,
+        "lower": -0.023985,
+        "upper": -0.006867
+      },
+      "deviationShareByMoment": 0.865083,
+      "decisions": 53760,
+      "deviateDecisions": 23464,
+      "deviationShareByDecision": 0.436458,
+      "classes": {
+        "deviate": 23464,
+        "abstainUnseen": 29980,
+        "abstainNoSnapshot": 10858,
+        "abstainNoBall": 3598,
+        "abstainNoOwner": 15524,
+        "noCell": 316,
+        "tie": 0,
+        "nonStationTicks": 452227,
+        "overrideTicks": 2707913
+      },
+      "ctx": {
+        "seen": 23125,
+        "agree": 0.95853,
+        "agreeFace": 0.998141,
+        "agreeThreat": 0.996151,
+        "agreeDensity": 0.962551
+      },
+      "byCandidate": {
+        "r21a240": 8501,
+        "r7a60": 5571,
+        "r21a120": 3576,
+        "r21a60": 3127,
+        "r14a120": 2689
+      },
+      "byContext": {
+        "theirs|theirThird|sparse": 5281,
+        "theirs|middle|sparse": 4429,
+        "theirs|middle|crowded": 2472,
+        "ours|ownThird|sparse": 2426,
+        "ours|middle|sparse": 1637,
+        "ours|middle|crowded": 1490,
+        "theirs|ownThird|sparse": 1366,
+        "theirs|ownThird|crowded": 1323,
+        "theirs|theirThird|crowded": 1150,
+        "ours|ownThird|crowded": 1142,
+        "ours|theirThird|sparse": 748
+      },
+      "mediators": {
+        "eta": 2.897,
+        "targetError": 16.96,
+        "occupancy": 0.0169
+      }
+    }
+  },
+  "deviationMix": {
+    "neutral": {
+      "byAngle": {
+        "0": 6108,
+        "180": 2533,
+        "300": 1138
+      },
+      "byRadius": {
+        "7": 2597,
+        "21": 7182
+      },
+      "ring180Share": 0.259024,
+      "total": 9779
+    },
+    "gene": {
+      "byAngle": {
+        "0": 6248,
+        "180": 2903,
+        "240": 198,
+        "300": 1135
+      },
+      "byRadius": {
+        "7": 2714,
+        "21": 7770
+      },
+      "ring180Share": 0.276898,
+      "total": 10484
+    },
+    "oracleCtx": {
+      "byAngle": {
+        "0": 10395,
+        "180": 3099,
+        "300": 1331
+      },
+      "byRadius": {
+        "7": 3878,
+        "21": 10947
+      },
+      "ring180Share": 0.209039,
+      "total": 14825
+    },
+    "inverted": {
+      "byAngle": {
+        "60": 8698,
+        "120": 6265,
+        "240": 8501
+      },
+      "byRadius": {
+        "7": 5571,
+        "14": 2689,
+        "21": 15204
+      },
+      "ring180Share": 0,
+      "total": 23464
+    }
+  },
+  "perContext": {
+    "ours|middle|crowded": {
+      "n": 932,
+      "ate": {
+        "n": 903,
+        "point": -0.012182,
+        "lower": -0.02938,
+        "upper": 0.004592
+      }
+    },
+    "ours|middle|sparse": {
+      "n": 2086,
+      "ate": {
+        "n": 2026,
+        "point": -0.000494,
+        "lower": -0.006376,
+        "upper": 0.005157
+      }
+    },
+    "ours|ownThird|crowded": {
+      "n": 574,
+      "ate": {
+        "n": 541,
+        "point": 0.018484,
+        "lower": -0.007707,
+        "upper": 0.044362
+      }
+    },
+    "ours|ownThird|sparse": {
+      "n": 1856,
+      "ate": {
+        "n": 1782,
+        "point": 0.006734,
+        "lower": -0.008242,
+        "upper": 0.020799
+      }
+    },
+    "ours|theirThird|crowded": {
+      "n": 328,
+      "ate": {
+        "n": 317,
+        "point": 0,
+        "lower": -0.009346,
+        "upper": 0.009524
+      }
+    },
+    "ours|theirThird|sparse": {
+      "n": 889,
+      "ate": {
+        "n": 850,
+        "point": 0.001176,
+        "lower": -0.004608,
+        "upper": 0.007143
+      }
+    },
+    "theirs|middle|crowded": {
+      "n": 823,
+      "ate": {
+        "n": 803,
+        "point": -0.002491,
+        "lower": -0.034772,
+        "upper": 0.032051
+      }
+    },
+    "theirs|middle|sparse": {
+      "n": 1305,
+      "ate": {
+        "n": 1263,
+        "point": -0.003959,
+        "lower": -0.019154,
+        "upper": 0.012698
+      }
+    },
+    "theirs|ownThird|crowded": {
+      "n": 504,
+      "ate": {
+        "n": 483,
+        "point": 0.00207,
+        "lower": -0.030418,
+        "upper": 0.033465
+      }
+    },
+    "theirs|ownThird|sparse": {
+      "n": 459,
+      "ate": {
+        "n": 430,
+        "point": -0.025581,
+        "lower": -0.065116,
+        "upper": 0.012285
+      }
+    },
+    "theirs|theirThird|crowded": {
+      "n": 496,
+      "ate": {
+        "n": 481,
+        "point": 0.014553,
+        "lower": -0.002119,
+        "upper": 0.033408
+      }
+    },
+    "theirs|theirThird|sparse": {
+      "n": 1748,
+      "ate": {
+        "n": 1664,
+        "point": 0.00601,
+        "lower": 0,
+        "upper": 0.01278
+      }
+    }
+  },
+  "gates": {
+    "x4CloneCoverage": true,
+    "x5ControlIdentity": true,
+    "x6ForceFidelity": true,
+    "dev": false,
+    "pcInverted": true,
+    "x7Determinism": true
+  },
+  "sha256": "d4de82bc7647d67d53ed77b13c3d07afb9c684cee110e461a0e1f0480c6a4945",
+  "tableSha": "0c779c28598625848c1c36bfaf92146a657e4c89ecb3e5a53064217799eff757",
+  "verdict": "GATES FAIL"
+}
