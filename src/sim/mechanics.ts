@@ -561,13 +561,18 @@ export function performCross(
   // all — H0, 56.78% of the T0b ladder. The floor is DERIVED from
   // HEADER_MIN_HEIGHT and GRAVITY, applies to crosses ONLY, and technique does
   // not scale it (the placing half is already priced four ways in `loftKick`).
-  const tMinCross = match.c4Flight ? CROSS_FLIGHT_MIN_S : 0.7;
+  // C4 O1: the forced profile overrides the match-wide policy at exactly this
+  // one choice and nothing else (contract §2.1). Null in production, so the
+  // expression below is `match.c4Flight` verbatim when the seam is shut.
+  const loft = match.forcedCrossProfile === null
+    ? match.c4Flight : match.forcedCrossProfile === 'lofted';
+  const tMinCross = loft ? CROSS_FLIGHT_MIN_S : 0.7;
   // The run-lead consumes the SAME law: "lead a meetable fraction of the
   // flight" has to read the flight the ball will actually have. Holding this
   // at the stale estimate would be a second, hidden change to the aim rule
   // (ruling #31.1); `c4FlightStaleLead` is the probe-only arm that measures
   // the alternative rather than arguing it.
-  const tMinLead = match.c4Flight && !match.c4FlightStaleLead ? tMinCross : 0.7;
+  const tMinLead = loft && !match.c4FlightStaleLead ? tMinCross : 0.7;
   const flight0 = clamp(0.5 + dist(crosser.pos, at ?? target.pos) * 0.038, tMinLead, 1.7);
   // Corner routines pass `at` (Phase 31.9): the delivery attacks the
   // routine's KEY ZONE and the crasher times his burst onto it. Open play

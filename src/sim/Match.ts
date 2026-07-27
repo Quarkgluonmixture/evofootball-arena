@@ -465,6 +465,24 @@ export class Match {
    * Null in every production path.
    */
   forcedTouchFork: number | null = null;
+  /**
+   * C4 O1's intervention seam (docs/world-model/C4-O1-FLIGHT-FORK.md), same
+   * grammar as `forcedPassTarget`: force ONE cross's flight profile at one
+   * real moment, so both arms of the fork share the same delivery struck by
+   * the same body. `c4Flight` is a match-wide POLICY and could only ever
+   * answer "is mandating this good"; this answers "is choosing it good HERE".
+   * Null in every production path.
+   */
+  forcedCrossProfile: 'current' | 'lofted' | null = null;
+  /**
+   * C4 O2's intervention seam (docs/world-model/C4-O2-SECOND-BODY-FORK.md):
+   * force ONE off-ball body's steering target for a window. Applied BEFORE the
+   * onside and barred-box clamps, so a forced body gets no privilege the world
+   * does not have. Null in every production path. Stage III P1 is held and may
+   * adopt, replace or ignore this seam (#35.3 ruled P1 forks the READ) — O2
+   * claims nothing about P1's design.
+   */
+  forcedStation: { gid: number; target: V2; untilTick: number } | null = null;
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;

@@ -576,6 +576,18 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
   }
 
+  // C4 O2's station force (docs/world-model/C4-O2-SECOND-BODY-FORK.md).
+  // Deliberately placed HERE — after the switch, before the onside and
+  // barred-box clamps — so a forced body is steered like any other off-ball
+  // body and gets no privilege the world does not have. Null in production.
+  const fs = match.forcedStation;
+  if (
+    fs !== null && fs.gid === p.gid && match.simTick < fs.untilTick
+    && p.role !== 'GK' && ball.owner !== p
+  ) {
+    target = fs.target;
+  }
+
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck
