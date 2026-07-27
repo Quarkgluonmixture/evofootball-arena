@@ -3160,3 +3160,10 @@ grinding the same family.
 >    thirds of crosses (O1), the residual sized and named for Stage
 >    III (pre-kick evidence read; the eye prices the descent). Queue:
 >    P1 revision (commander, next); R20 in gaps; F9 any time.
+
+> **COMMANDER RULING #39 (2026-07-27): Stage III contract amended (§4.5
+> — audit constraints folded: policy-intervention + no-override identity
+> arm, adoption/saturation arms, mapping ablation, face-specific
+> horizons, positive-control power gate, mandatory mediators and
+> boilerplate). P1 UNHOLDS: the executor pre-registers P1 under §4.5
+> (Autonomous mode, one experiment in flight). R20 in gaps; F9 any time.**

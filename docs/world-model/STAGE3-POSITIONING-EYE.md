@@ -326,3 +326,37 @@ C4's evidence-based crash timing, A4's doctrine priors, D6's POV view
 where honest measurement puts it (#25); conversion ceilings inherited
 wherever C4's instruments are shared; nothing here ships without beating
 the incumbent in the user's own eyes at P4.
+
+## 4.5 P1/P2 constraint amendment (commander, 2026-07-27 — folds the
+cross-AI audit + P0 + rulings #35–#38; P1 unholds under these)
+
+1. **Intervention = a target POLICY in ball-local coordinates, forked at
+   the executor's READ** (#35.3); the identity arm is NO-OVERRIDE (the
+   incumbent has no stored target to freeze — P0). Control fork must
+   reproduce the base bit-identically; clone coverage gated at 100%.
+2. **Adoption/saturation arms**: unilateral (one body) → one team → both
+   teams, pre-registered together — unilateral prices deployed
+   universally is an identification gap, not an assumption (audit F2).
+   The shipping table is censused at the adoption level it deploys at.
+3. **Ablation family**: incumbent vs neutral-weight eye vs gene-mapped
+   eye — a FAIL must be attributable to the eye or the mapping, never
+   ambiguous (audit F12).
+4. **Face-specific horizons**: score and concede faces get their own
+   pre-registered H (or an ex-ante test that the concede face carries
+   gradient at the shared H); a shared H is a known attack tilt.
+5. **Power before freeze**: a positive-control displacement (a forced
+   station change with a KNOWN large effect) must resolve at the chosen
+   budget, with an ex-ante MDE-vs-expected-effect statement; paired
+   same-seed forks are the default variance killer. ETA / target-error /
+   occupancy-time mediators are mandatory (bad location ≠ failed to
+   arrive).
+6. **Instruments**: side-split ALWAYS (the scramble is symmetric — P0
+   I4); W derived from P0 anchors as a NEW quantity; anticipatory
+   density (perceived teammate MOTION toward a zone) is the named
+   pile-up lever if P2's stability instruments fire; the four consumer
+   pins (onside clamp, zonal lattice, shapeReady, supportSpot nesting)
+   verbatim.
+7. **Boilerplate now mandatory** (#38.1): all standing exception
+   classes (incl. paused-world/halftime) checked in every probe;
+   decision rules must cover the full sign space (helps / hurts /
+   flat / unresolved).
