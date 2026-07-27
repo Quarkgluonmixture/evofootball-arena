@@ -405,10 +405,130 @@ anticipation and marking assignments stay out of v1 (§3).
 
 ---
 
-## 7. Result
+## 7. Result — ⛔ **GATES FAIL on X6**, and ⭐⭐⭐ **the mediators say the treatment was never delivered**
 
-*(empty until P1 runs — filled in the same commit as the result, per
-governance rule 6.)*
+Run 2026-07-27, blocks 960,000 + 6 disjoint strides, 1,500 matches,
+**6,000 moments / 114,000 forks**, twice byte-identical, SHA
+`92edc587…ff80`, table SHA `d9923b17…cd8f`
+(`docs/world-model/data/stage3-p1-station-table.json`).
+
+| gate | verdict |
+| --- | --- |
+| **X4** clone coverage 100% | ✅ 6,000 / 6,000 |
+| **X5** control-fork identity | ✅ **240 checked, 0 mismatched** |
+| **X6** force fidelity | ⛔ **92.68% ok** against a 99% floor — but **unexplained = 0** |
+| **PC** positive control | ✅ **−0.0324 CI [−0.0463, −0.0184]**, and in both faces |
+| **X7** determinism | ✅ |
+| SAT | ✅ agrees (gaps 0.002–0.024, band ±0.05) ⇒ "SHIPPING TABLE" |
+
+### 7.1 ⭐⭐⭐ The finding: the bodies never arrived
+
+```text
+occupancy (share of W within 2 m of the target)      0.8% – 5.3%
+ETA                                                  1.75 – 1.97 s   (W = 2.0 s)
+```
+
+§4.4's mediators exist so that *bad location* and *failed to arrive* can never
+be confused, and they have just earned their place: **the forced bodies spend
+1–5% of the window at the station and take essentially the whole window
+getting nowhere near it.** What this census measured is **two seconds of
+walking, not two seconds of standing.**
+
+**The cause is a derivation error in §2.4, and it is mine.** W was derived as
+*"travel time to the ring"* — `21 m ÷ 7 m·s⁻¹ ≈ 3 s`, `14 m ÷ 7 ≈ 2 s` — which
+silently treats the ring radius as **the distance the body must cover**. But
+the lattice is **ball-relative**: a body 25 m from the ball asked to stand 14 m
+beyond it must cover ~35 m, not 14. The right derivation is
+`dist(body, ball + offset) ÷ speed`, and it is not a constant — it is a
+distribution that W would have to dominate.
+
+### 7.2 What the table therefore says, and what it does not
+
+All **18 of 18** candidates resolve, and **every one of them is worse than the
+control**:
+
+```text
+best   r7a180   −0.0220  CI [−0.0359, −0.0081]     (7 m BEHIND the ball)
+       r14a0    −0.0245  CI [−0.0387, −0.0097]
+       r7a0     −0.0314  CI [−0.0465, −0.0167]
+…
+worst  r21a120  −0.0524  CI [−0.0644, −0.0406]
+```
+
+Read naively this says *"the incumbent beats every station on the lattice."*
+**That reading is not available**, because §7.1 says no station was occupied.
+The honest estimand of this run is: **overriding an off-ball body's current job
+with a ball-relative target he cannot reach in 2 s costs 2–5 pp of signed
+value, and costs more the farther the target is.** The monotone structure
+(the 21 m ring dominates the bottom of the table) is consistent with exactly
+that and with nothing subtler.
+
+⚠️ A second scope limit, also un-caught at freeze: §3.4 requires only that the
+forced body be an **off-ball outfielder**, not that he be on a *station*
+family. P0 measured station families at 77.4% of body-ticks and ball-directed
+actions at 19.4% — so roughly one moment in five forced a chaser, a receiver
+or a marker to abandon the ball. That is not *choosing a station*; it is
+replacing a job. **This is C4 O2's lesson in full generality**, and the
+pre-registration did not carry it across.
+
+### 7.3 PC resolved — so the budget was right and the harness works
+
+The positive control fires in both faces, which discharges §4.5.5's power
+obligation: **the census could see an effect of this size, and did.** The
+failure is not power and it is not the harness — X5's 240 checks reproduce the
+base bit-identically and X6's unexplained residual is **exactly 0** across
+12.27 M classified live ticks, with every miss in a named class.
+
+Note honestly that PC is **not the worst candidate** (r21a120 is), which
+weakens *"21 m behind the ball is obviously bad"* as an intuition even though
+it satisfies the gate as written. Under §7.1's reading that is unsurprising:
+what PC really measured was distance-from-reachable, and 21 m at 120° is
+farther still.
+
+### 7.4 ⛔ X6's floor is a gate-design defect, and it is the same one again
+
+Unexplained is 0 — the seam is faithful and every rewrite is a named class.
+The 99% floor fails because the **onside clamp fired 453,032 times and the
+barred-box clamp 444,407** — 7.3% of live ticks.
+
+**P0 §1.3 warned about exactly this**, in writing: *"the onside clamp silently
+caps every station beyond the offside line — an eye that prices stations
+beyond the line will find its choice rewritten rather than penalised."* I
+documented the consumer pin and then wrote a floor that assumes the clamp
+almost never fires — on a lattice deliberately containing stations 21 m ahead
+of the ball. **The floor conflated two different claims**: *the seam is
+faithful* (which passed decisively) and *the clamps rarely bite* (which is a
+property of the lattice, not of the seam).
+
+Consequence for the table, stated: beyond-the-line candidates are censused
+**as-clamped**. That is arguably the honest thing — the eye would meet the same
+clamp — but it is a fact about what the numbers mean and it belongs on the
+record, not in a footnote.
+
+### 7.5 Reported
+
+Per-cell n published for all 216; **18 cells UNDER-POWERED** (below the 150
+floor), all in the two rarest contexts. Context counts range 143
+(`ours|theirThird|crowded`) to 899 (`ours|middle|sparse`) — the 3.3× oversample
+was necessary and only just sufficient. 4,135 forks excluded for ending inside
+the horizon, counted not zeroed. `reconstructionDiverged` 126,716 (1.0% of live
+ticks), the §4.6b diagnostic. SAT's four tested candidates agree within
+0.002–0.024 — but this is agreement between two versions of a treatment that
+was **not delivered in either arm**, so it certifies nothing about a table that
+prices standing.
+
+### 7.6 Disposition
+
+**FAIL ⇒ the fork returns to the commander** (§8). The table is written to
+`docs/world-model/data/` **as data with its SHA**, and it must **not** be
+consumed by P2 as a station-value table: it prices displacement-in-transit, not
+occupancy. §8 forbids re-cutting W, the lattice, the contexts or the moment
+definition in this session, and I am not proposing replacements — the two
+defects are named (W derived against the wrong distance; the moment population
+not restricted to station families) and the fix is the commander's to scope.
+
+Nothing shipped: `forcedStationPolicy` is null in every production path and
+the fingerprint is unchanged.
 
 ---
 

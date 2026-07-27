@@ -1761,7 +1761,62 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-27, #39 executed): ⏸ Stage III P1 is PRE-REGISTERED
+**Queue state (2026-07-27, #39 executed): ⛔ Stage III P1 RAN and FAILS on X6
+— and ⭐⭐⭐ the MEDIATORS say the treatment was never delivered** →
+[`STAGE3-P1-STATION-CENSUS.md`](STAGE3-P1-STATION-CENSUS.md) §7 (SHA
+`92edc587…ff80`, table SHA `d9923b17…cd8f`, 6,000 moments / 114,000 forks,
+twice byte-identical; fingerprint `57b0bdab…c673` unchanged; nothing shipped).
+Nothing in flight.
+
+* ⭐⭐⭐ **The bodies never arrived.** Occupancy **0.8–5.3%** of W within 2 m of
+  the target; ETA **1.75–1.97 s** against a 2.0 s window. §4.4's mediators
+  exist so *bad location* can never be confused with *failed to arrive*, and
+  they just earned their place: **this census measured two seconds of walking,
+  not two seconds of standing.**
+* **The cause is a derivation error in §2.4, mine.** W was derived as "travel
+  time to the ring" (`14 m ÷ 7 m·s⁻¹ ≈ 2 s`), which treats the ring radius as
+  the distance the BODY must cover. The lattice is **ball-relative** — a body
+  25 m from the ball asked to stand 14 m beyond it must cover ~35 m. The right
+  quantity is `dist(body, ball+offset) ÷ speed`, which is a distribution W
+  would have to dominate, not a constant.
+* **All 18 candidates resolve, all NEGATIVE** (best `r7a180` −0.0220
+  [−0.0359, −0.0081]; worst `r21a120` −0.0524). ⚠️ The naive reading — *the
+  incumbent beats every station* — **is not available**, because no station was
+  occupied. The honest estimand is: overriding an off-ball body's job with a
+  ball-relative target he cannot reach in 2 s costs 2–5 pp of signed value, and
+  costs more the farther the target. The monotone structure fits that and
+  nothing subtler.
+* ⚠️ **Second scope limit, also un-caught at freeze**: §3.4 required only an
+  *off-ball outfielder*, not a body on a STATION family. P0 measured
+  ball-directed actions at 19.4% of body-ticks, so ~1 moment in 5 forced a
+  chaser/receiver/marker to abandon the ball. **C4 O2's lesson in full
+  generality**, not carried across.
+* ✅ **PC RESOLVED in both faces** (−0.0324 [−0.0463, −0.0184]) — §4.5.5's
+  power obligation is discharged: the census could see an effect of this size.
+  The failure is not power and not the harness. **X5's 240 checks reproduce
+  the base bit-identically and X6's unexplained residual is exactly 0** across
+  12.27 M classified live ticks.
+* ⛔ **X6 fails on its 99% floor (92.68%), and it is the same defect family
+  again.** The onside clamp fired 453,032 times and the barred-box clamp
+  444,407 — 7.3% of live ticks. **P0 §1.3 warned in writing** that the onside
+  clamp *"rewrites a station beyond the line rather than penalising it"*; I
+  documented the pin and then set a floor assuming it almost never fires, on a
+  lattice deliberately containing stations 21 m ahead of the ball. The floor
+  **conflated "the seam is faithful" (passed decisively) with "the clamps
+  rarely bite" (a property of the lattice)**. Consequence on the record:
+  beyond-the-line candidates are censused **as-clamped**.
+* **Reported**: 18 of 216 cells UNDER-POWERED (the two rarest contexts); 4,135
+  forks excluded for ending inside the horizon, counted not zeroed;
+  `reconstructionDiverged` 126,716 (1.0%). **SAT agrees within 0.002–0.024** —
+  but that is agreement between two versions of a treatment **not delivered in
+  either arm**, so it certifies nothing about a table that prices standing.
+* **The table is committed as data with its SHA and must NOT be consumed by
+  P2** as a station-value table: it prices displacement-in-transit, not
+  occupancy. §8 forbids re-cutting W, the lattice, the contexts or the moment
+  definition here; the two defects are named and the fix is the commander's to
+  scope.
+
+Earlier (2026-07-27, #39 executed): Stage III P1 was PRE-REGISTERED
 and NOT RUN** → [`STAGE3-P1-STATION-CENSUS.md`](STAGE3-P1-STATION-CENSUS.md).
 Drafted under the amended §4.5 constraint set; nothing in flight; the census
 runs on the commander's word.
