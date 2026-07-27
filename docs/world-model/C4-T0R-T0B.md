@@ -224,9 +224,157 @@ behind the re-aim with its expectations re-registered (#28.4b).
 
 **None of the three is a FAIL.** T0R+T0b fails only on §4.
 
-## 7. Result
+## 7. Result — RUN 2026-07-27: ✅ **PASS, every gate. Re-aim = HEIGHT-DOMINATED.**
 
-*(empty — this document is the pre-registration. The run fills this section.)*
+SHA `55b2e4a8…7528`, twice byte-identical. **5,571 crosses build / 5,517
+held-out** over 5,390 matches. Zero `src/**`, fingerprint `57b0bdab…c673`
+unchanged.
+
+| gate | result | |
+| --- | --- | --- |
+| **X4** rollup pin on 909,000 | reproduces the unmodified `cross-anatomy` on all six combinations, exactly | ✅ |
+| **X5** four-class partition | holds, both fresh blocks | ✅ |
+| **X6** C2 ladder partition | holds, both fresh blocks | ✅ |
+| **C1** ≥300 crosses per combination, both blocks | build **911–967**, held-out **849–996** (smallest **2.8×** the floor) | ✅ |
+| **C2** ≥3,000 pooled | 5,571 / 5,517 | ✅ |
+| **C3** ≥400 C2 pooled | **1,460** / 1,445 (3.6×) | ✅ |
+| **S1** class shares ≤3.5pp | max **0.85pp** | ✅ |
+| **S2** ladder shares ≤7.0pp | max **1.07pp** | ✅ |
+| **D** determinism | two runs byte-identical | ✅ |
+
+### 7.1 The budget model worked, and that is the whole point of T0R
+
+Sizing to a common cross **target** instead of a common match count put every
+combination between **911 and 967** on the build block and **849 and 996** on
+the held-out one — the cell that failed T0 at 296 now returns **930 / 867**.
+The derivation held: the worst block-to-block shortfall this run was well
+inside the −13.2% the budgets were sized against.
+
+**Nothing about the gate changed** — C1 is still "≥300 crosses per combination
+in both blocks". Only the number of matches behind it moved, which is the only
+thing #24 says was ever mine to move.
+
+### 7.2 ⭐ The census replicates on two entirely fresh blocks
+
+T0's numbers came from 909k/870k. These come from 880k/890k, and the four
+classes land in the same place:
+
+| | C0 | C1 | C2 | C3atk | C3def |
+| --- | --- | --- | --- | --- | --- |
+| T0 (909k) | 10.90 | 5.70 | 27.95 | 24.71 | 30.74 |
+| **T0R build (880k)** | **10.05** | **6.00** | **26.21** | **25.13** | **32.62** |
+| T0R held-out (890k) | 10.60 | 6.85 | 26.23 | 24.89 | 33.17 |
+
+Independent replication of the headline — `noAerial` is still one part in eight
+"nobody there" — on blocks that had never been looked at. The X4 pin
+reproducing `cross-anatomy` exactly at the same time means both the old
+instrument and the new one are intact.
+
+### 7.3 ⭐⭐⭐ T0b: the ladder explains C2 completely, and the residual is ZERO
+
+Pooled over the build block, **n = 1,460 C2 crosses**, 95% cluster bootstrap:
+
+| rung | count | share | CI |
+| --- | --- | --- | --- |
+| **H0** height-preempted | 829 | **56.78%** | [54.19, 59.36] |
+| **H1** keeper | 0 | **0.00%** | [0, 0] |
+| **H2** taken down at head height | 20 | **1.37%** | [0.82, 1.99] |
+| **H3** no contender at height | 611 | **41.85%** | [39.43, 44.59] |
+| **H4** contender, no header — the residual | **0** | **0.00%** | [0, 0] |
+
+Held-out agrees rung for rung (57.85 / 0 / 0.83 / 41.18 / **0.14**).
+
+⭐ **H4 is empty.** A ladder derived from `tryAerial`'s own gate order, written
+before the data, accounts for **every single C2 cross** but two out of 2,905.
+That is the strongest possible form of "the code says where the gradient lives
+before the data does" — there is no unexplained mass to go looking for.
+
+⭐ **H1 is exactly zero, which is itself a finding**: keeper claims are real,
+but they all happen *before* arrival — they sit in C0, not in C2. The keeper is
+not why deliveries go unheaded.
+
+⚠️ **H2 would have read zero without the pre-run fix.** §3.2 caught
+`terminalZ` being read after the contact; at 1.37% the chest trap is small but
+real, and an unfixed instrument would have reported it as absent and made the
+ladder look cleaner than it is.
+
+### 7.4 ⭐⭐ Both dominant rungs are MARGINS, not absences
+
+This is the part that decides what C4 v1 can be.
+
+**H0 — the ball never gets up.** The deliveries in this rung peak at a median
+of **1.00–1.06 m** across all six combinations. `HEADER_MIN_HEIGHT` is 1.35 m,
+so these are not marginal misses of the band: they are **a third of a metre
+below its floor**, consistently. Pooled headable share (any cross reaching
+1.35 m) is **60–62% for the CROSS archetype and 76–84% for BAL**.
+
+**H3 — the bodies are 0.4–0.9 m short of a 1.35 m radius.** While the ball was
+headable, the nearest outfielder's median distance was **1.75–2.20 m**, with
+p10 **1.42–1.53 m** — i.e. even the closest tenth were *just* outside the
+radius. And:
+
+| combination | H3 n | median nearest | **within 2 m** | within 3 m |
+| --- | --- | --- | --- | --- |
+| CROSS vs NEUTRAL | 118 | 2.20 m | 39.8% | 79.7% |
+| CROSS vs BUS | 113 | 2.07 m | 42.5% | 72.6% |
+| CROSS vs PRESS | 115 | 2.08 m | 44.3% | 87.0% |
+| BAL vs NEUTRAL | 96 | 1.75 m | **61.5%** | 84.4% |
+| BAL vs BUS | 78 | 1.96 m | 53.8% | 91.0% |
+| BAL vs PRESS | 91 | 1.77 m | **65.9%** | 91.2% |
+
+**Nobody is absent. Everybody is close and nobody is close enough.** That
+sharpens #28.3(ii) from "the box fills" to a number: the contest fails by
+roughly half a metre.
+
+⚠️ **Registered honestly: H0 and H3 are a PARTITION, not a causal
+decomposition.** A low delivery also spends fewer ticks in the band, so it has
+fewer chances to have someone inside the radius — the two rungs are not
+independent, and "fix the height and H3 shrinks too" is a hypothesis this
+census cannot test. Any contract built on the split has to own that.
+
+### 7.5 The re-aim, by §6's frozen rule
+
+```text
+H0's share of C2 = 56.78%, CI [54.19, 59.36] — lower bound > 0.50
+⇒ HEIGHT-DOMINATED
+⇒ the delivery's FLIGHT PROFILE becomes C4 v1's named seat, in its own
+  contract, with the I2 ceiling binding HARD (#28.4b, #28.5).
+```
+
+⚠️ **But the verdict is archetype-dependent and the pooled number hides it.**
+H0's share of C2 is **59–61% for the CROSS archetype and 46–54% for BAL** — the
+balanced side, whose deliveries DO get up (76–84% headable), is close to
+contest-dominated by the same rule. The pooled verdict is what §6 froze and it
+is what fires; whether a flight-profile contract should be scoped to the
+cross-spam archetype or to the delivery generally is a commander call this
+census can inform but did not pre-register.
+
+### 7.6 I2's baseline, re-measured on fresh blocks
+
+Shot-within-window **36.24%** build / 36.92% held-out; **goal-within-window
+10.48% / 11.94%**.
+
+⚠️ **#28.5 named the ceiling as T0's numbers (build 10.27% / held-out 10.73%),
+which came from blocks that are now superseded.** These fresh-block figures are
+0.2–1.2pp higher. Which pair the ceiling is pinned to is the commander's to
+say; a stage gating on non-increase needs one named number, not two candidates.
+
+### 7.7 Also carried forward
+
+The arriver is nearer the Phase-31 cutback arc than the ball in **71–90%** of
+crosses (T0: 74–89%) — unchanged, and still not the mechanism at C1 = 6.00%.
+Every reported quantity from T0 re-ran on fresh blocks and none of them moved
+materially.
+
+### 7.8 Disposition
+
+**PASS.** T0's uncertified cell is certified, C2 is decomposed, and §6's frozen
+rule returns **HEIGHT-DOMINATED**. Per #28.4b that names the delivery's flight
+profile as C4 v1's seat and sends the routing fix further back in the queue.
+Nothing shipped: zero `src/**`, no flag, fingerprint untouched. **The
+flight-profile contract is the commander's to draft** — §7.4's warning
+(partition ≠ decomposition), §7.5's archetype split and §7.6's ceiling
+ambiguity are the three things it has to resolve before it can gate anything.
 
 ## 8. Stop rules
 
