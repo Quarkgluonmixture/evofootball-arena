@@ -183,6 +183,36 @@ not a gate.
 gate and not a payoff.** It proves the mechanism reached the world; it proves
 nothing about whether the world is better. The payoff is D1.
 
+### 4.2c ⚠️ Instrument facts disclosed before the run, in their own commit
+
+Four things a read-only sizing smoke surfaced. None touches a gate value, the
+mechanism, D1, I2's margin, the band or §6's readings; all four are about
+making the F gates measure what they claim.
+
+1. **The apex reference is the ENGINE's own integration, not the textbook
+   parabola.** `Match.stepBall` is semi-implicit Euler (`z += vz·dt;
+   vz -= g·dt`), whose discrete apex sits ≈`vz·dt/2` ABOVE the continuous
+   `vz²/(2g)` — **measured at 0.053 m**, which is 50× the tick-sampling bound
+   F2's tolerance was derived against. The probe now replays the recurrence, so
+   the reference is exact rather than approximate; the frozen 1e-3 tolerance is
+   untouched and the smoke's worst error is **0**.
+2. **F1/F2's population is deliveries whose LAUNCH was actually captured.** On
+   ~2–5% of `stats.crosses` increments the ball reads as a low BOUNCING ball at
+   the capture boundary rather than a fresh loft. ⚠️ **This is pre-existing and
+   arm-independent — it occurs with the flag OFF too — so it is not caused by
+   T1-FLIGHT, and it equally affects the banked T0/T0R census, which shares
+   this detection code.** The validity threshold is taken from the FLAG-OFF
+   floor (`vz ≥ g·0.7/2 − g·dt`) so the two arms are filtered identically; the
+   excluded count is reported per arm. **Registered for the commander: the
+   cause was not chased, because it changes no class and no gate — but it is a
+   latent caveat on a banked instrument.**
+3. **F2 additionally needs a flight that REACHED its apex**: untouched through
+   the window and not truncated by the next cross's early-close (cross-anatomy's
+   inherited rule). A delivery cut out on the way up never reaches its apex and
+   its `|maxZ − apex|` is large and honest.
+4. **`maxZ` stops at the first non-crosser touch.** It was folding a header's
+   own rebound into the delivery's peak — a 1.47 m error on the smoke.
+
 ### 4.3 D — the deliverable (#28.4's "CONTESTS, never goals")
 
 ```text
