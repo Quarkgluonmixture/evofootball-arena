@@ -38,20 +38,23 @@ const signature = (m: Match): string => createHash('sha256').update(JSON.stringi
 })).digest('hex');
 
 describe('C4 O1/O2 — the oracle seams are shut in production', () => {
-  it('X3: both seams are null on a fresh Match and on a League fixture', () => {
+  it('X3: all three seams are null on a fresh Match and on a League fixture', () => {
     const m = matchOf(7);
     expect(m.forcedCrossProfile).toBeNull();
     expect(m.forcedStation).toBeNull();
+    expect(m.forcedStationPolicy).toBeNull();
     const league = new League({ seed: 20260727 });
     const live = league.createMatch(league.nextFixture()!);
     expect(live.forcedCrossProfile).toBeNull();
     expect(live.forcedStation).toBeNull();
+    expect(live.forcedStationPolicy).toBeNull();
   });
 
   it('X3: neither seam is reachable from the E4 preview', () => {
     for (const mode of EDS_PREVIEW_MODES) {
       expect(edsPreviewFlags(mode).forcedCrossProfile).toBeUndefined();
       expect(edsPreviewFlags(mode).forcedStation).toBeUndefined();
+      expect(edsPreviewFlags(mode).forcedStationPolicy).toBeUndefined();
     }
   });
 
@@ -63,6 +66,7 @@ describe('C4 O1/O2 — the oracle seams are shut in production', () => {
       while (!b.finished) {
         b.forcedCrossProfile = null;
         b.forcedStation = null;
+        b.forcedStationPolicy = null;
         b.step(DT);
       }
       expect(signature(b)).toBe(signature(a));
@@ -122,6 +126,40 @@ describe('C4 O1/O2 — the oracle seams are shut in production', () => {
       }
     }
     expect(compared).toBeGreaterThan(0);
+  });
+
+  it('P1: the station POLICY bites and TRACKS the ball, unlike a fixed point', () => {
+    // The whole reason P1 gets its own seam: the target must move with the
+    // ball. Two ticks apart, the same offset must resolve to two different
+    // world points whenever the ball has moved.
+    const m = matchOf(90210);
+    let checked = 0;
+    while (!m.finished && checked < 3) {
+      m.step(DT);
+      if (m.phase !== 'playing') continue;
+      const t = m.teams[0];
+      const body = t.players.find((p) => p.role !== 'GK' && !p.sentOff && m.ball.owner !== p);
+      if (body === undefined) continue;
+      m.forcedStationPolicy = { gid: body.gid, offset: { dx: 7, dy: 0 }, untilTick: m.simTick + 20 };
+      // The executor reads the ball BEFORE `stepBall` moves it, so the
+      // reference is the pre-step position — reading it afterwards is off by
+      // one tick of ball travel, which is what the first cut of this pin did.
+      const ballFirst = { x: m.ball.pos.x, y: m.ball.pos.y };
+      m.step(DT);
+      const first = body.c4Trace;
+      for (let i = 0; i < 6 && !m.finished; i++) m.step(DT);
+      const later = body.c4Trace;
+      m.forcedStationPolicy = null;
+      if (first === null || later === null) continue;
+      expect(first.meet.x).toBeCloseTo(ballFirst.x + t.attackDir * 7, 9);
+      expect(first.meet.y).toBeCloseTo(ballFirst.y, 9);
+      if (Math.hypot(m.ball.pos.x - ballFirst.x, m.ball.pos.y - ballFirst.y) > 0.5) {
+        expect(Math.hypot(later.meet.x - first.meet.x, later.meet.y - first.meet.y))
+          .toBeGreaterThan(0);
+      }
+      checked += 1;
+    }
+    expect(checked).toBeGreaterThan(0);
   });
 
   it('O2: the station force BITES, and the clamps still apply to it', () => {

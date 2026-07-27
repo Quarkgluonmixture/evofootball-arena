@@ -592,6 +592,19 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     p.c4Trace = { meet: fs.target, applied: fs.target };
   }
 
+  // Stage III P1's station POLICY (docs/world-model/STAGE3-P1-STATION-CENSUS.md
+  // §2.1): a ball-local offset re-evaluated every tick — a station is a
+  // relation to the ball, not a point. Same read point, same clamps after it.
+  const fsp = match.forcedStationPolicy;
+  if (
+    fsp !== null && fsp.gid === p.gid && match.simTick < fsp.untilTick
+    && p.role !== 'GK' && ball.owner !== p
+  ) {
+    const want = v2(ball.pos.x + team.attackDir * fsp.offset.dx, ball.pos.y + fsp.offset.dy);
+    target = want;
+    p.c4Trace = { meet: want, applied: want };
+  }
+
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck

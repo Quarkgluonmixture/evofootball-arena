@@ -483,6 +483,21 @@ export class Match {
    * claims nothing about P1's design.
    */
   forcedStation: { gid: number; target: V2; untilTick: number } | null = null;
+  /**
+   * Stage III P1's intervention seam
+   * (docs/world-model/STAGE3-P1-STATION-CENSUS.md §2.1): a station POLICY in
+   * BALL-LOCAL attack-frame coordinates, re-evaluated every tick. P0 §1.1
+   * established that a station is a RELATION to the ball recomputed at 60 Hz,
+   * not a stored point — so forcing a fixed point would price something the
+   * eye cannot express. Consumed at the executor's READ (#35.3), before the
+   * onside and barred-box clamps, so the forced body is steered like any
+   * other. Null in every production path.
+   */
+  forcedStationPolicy: {
+    gid: number;
+    offset: { dx: number; dy: number };
+    untilTick: number;
+  } | null = null;
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;
