@@ -211,6 +211,20 @@ export interface MatchConfig {
    */
   c5TouchFork?: boolean;
   /**
+   * C4 T1-FLIGHT (docs/world-model/C4-T1-FLIGHT.md): crosses get a flight-time
+   * floor at the apex that clears the outfield header band. The floor is
+   * DERIVED — `CROSS_FLIGHT_MIN_S = sqrt(8·HEADER_MIN_HEIGHT/GRAVITY)` — not
+   * chosen, and it applies to `performCross` alone. OFF by default.
+   */
+  c4Flight?: boolean;
+  /**
+   * C4 T1-FLIGHT §2.4, the REPORTED variant arm (probe-only, never shipped):
+   * with `c4Flight` armed, hold the run-lead's flight estimate at the OLD law
+   * instead of tracking the new one. Ruling #31.1 made rule-preserving
+   * primary; this exists so the alternative is measured rather than argued.
+   */
+  c4FlightStaleLead?: boolean;
+  /**
    * EDS E2b-1 (docs/world-model/EDS-E2B1-BOTH-SIDES-AB.md): the defender's
    * interception entry reads HIS OWN perceived ball instead of truth, through
    * the shared awareness trunk. Off in every production path. The awareness
@@ -358,6 +372,10 @@ export class Match {
   readonly c5Hold: boolean;
   /** C5 T0: the elective first-touch window, dormant unless a probe asks. */
   readonly c5TouchFork: boolean;
+  /** C4 T1-FLIGHT: the cross flight-time floor, dormant unless armed. */
+  readonly c4Flight: boolean;
+  /** C4 T1-FLIGHT §2.4: the stale-lead variant arm (probe-only). */
+  readonly c4FlightStaleLead: boolean;
   /** E2b-1: perceived-state defending, dormant unless a probe world asks. */
   readonly edsPerceivedDefence: boolean;
   readonly edsAwareness: number;
@@ -556,6 +574,8 @@ export class Match {
     this.edsTouchCost = cfg.edsTouchCost ?? EDS_BUNDLE_ARMED;
     this.c5Hold = cfg.c5Hold ?? EDS_BUNDLE_ARMED;
     this.c5TouchFork = cfg.c5TouchFork ?? EDS_BUNDLE_ARMED;
+    this.c4Flight = cfg.c4Flight ?? EDS_BUNDLE_ARMED;
+    this.c4FlightStaleLead = cfg.c4FlightStaleLead ?? false;
     this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
     this.edsValueAxis = cfg.edsValueAxis ?? EDS_BUNDLE_ARMED;

@@ -356,9 +356,140 @@ would be a number nobody powered.
                                       HARD abort by #30.4, whatever else passed.
 ```
 
-## 7. Result
+## 7. Result — PHASE A RUN 2026-07-27: ⛔ **FAIL on F2. Everything the stage exists to measure landed.**
 
-*(empty — this document is the pre-registration. The run fills this section.)*
+SHA `7a1afab2…5075`, twice byte-identical. **5,547 / 5,633 / 5,548 crosses**
+across the three arms on block 900,000. Fingerprint `57b0bdab…c673` unchanged
+with the flag off; **820/820** tests green; tsc + build clean.
+
+| gate | result | |
+| --- | --- | --- |
+| **X1** fingerprint, flag off | `57b0bdab…c673` unchanged | ✅ |
+| **F1** launch apex ≥ 1.35 m for 100% of crosses, flag ON | **100.00%** (flag off: 74.02%) | ✅ |
+| **F2** measured `maxZ` matches the engine-recurrence apex ≤1e-3 | worst **1.0219 m** — on **1 cross of 5,547**; the other 5,546 are **exactly 0** | ⛔ |
+| **D1** contests up, CI lower > 0 | **57.36% → 60.78% = +3.42pp**, CI **[2.14, 4.69]** | ✅ |
+| **I2** goal-window CI upper < +1.5pp (HARD) | **−2.05pp**, CI **[−2.82, −1.35]** | ✅ |
+| partition · ladder partition · determinism | all hold, two runs byte-identical | ✅ |
+
+### 7.1 The FAIL is my gate, again, and I am not re-scoping it
+
+F2 is a **max over 5,547 records with a 1e-3 tolerance**. It fired on exactly
+one delivery, whose measured peak (2.661 m) is 1.02 m ABOVE the apex its launch
+capture implies (1.639 m) — the ball rose higher than the kick that was
+recorded. Diagnosed read-only: it is a delivery **re-struck by the same player
+inside its own window**, so `lastTouch` never changes, the `maxZ` guard never
+trips, and the capture's apex and the observed peak describe two different
+kicks. Its class is `C3def`, `band = 40`, no touch registered.
+
+**A max-statistic over thousands of records at a tight tolerance is a
+coupon-collector gate** — it asks that no single record anywhere be
+pathological, which is a different claim from "the arithmetic reached the
+world". That is a gate-design defect I own, and it is the **second time in this
+stage** my own instrument has fired rather than the world (the first, F1/F2's
+sampling forms, was caught before the run; this one was not).
+
+**It is not re-scoped after sight** (§8), and the honest verdict stands: the
+stage FAILED. What the commander needs alongside it is that the arithmetic is
+verified on **5,546 of 5,547** crosses at error exactly **0**, and F1 — the
+launch-side statement of the same claim, evaluated on all 5,466 valid launches
+— passes at **100.00%**.
+
+### 7.2 ⭐⭐ The mechanism works, and it does exactly what it was aimed at
+
+```text
+apex        1.871 → 1.964 m          headable by launch  74.02% → 100.00%
+bandTicks   15.37 → 16.92            headable by maxZ    69.66% →  85.74%
+H0 height-preempted   54.76% → 1.62% of C2
+```
+
+H0 — the rung that motivated the whole re-aim — **collapses from 54.76% to
+1.62%**. The ball gets up.
+
+### 7.3 ⭐⭐⭐ And the payoff is real but it goes to the DEFENCE
+
+Contests rise **+3.42pp** (CI [2.14, 4.69]), clearing the pre-registered 2.7pp
+MDE. Split by side:
+
+```text
+C3atk   24.19% → 25.17%   +0.98pp
+C3def   33.17% → 35.61%   +2.44pp     ← 71% of the new contests
+```
+
+**A higher ball favours the defending side in this substrate.** Nobody designed
+that; it falls out of giving both sides the same extra hang time, which §2.3
+registered in advance as an honest symmetric cost.
+
+And conversion moved the other way, resolved:
+
+```text
+goals within the window   10.76% →  8.72%    −2.05pp  CI [−2.82, −1.35]
+shots within the window   35.19% → 34.00%    −1.19pp  CI [−2.41, −0.10]
+```
+
+Per #31.2 the point is reported beside the verdict: this is not "did not rise
+beyond resolution" — it is a **resolved DECREASE**. I2's ceiling is respected
+with enormous room, and the honest reading is that **honest flight makes
+crossing produce more aerial football and fewer goals.**
+
+### 7.4 ⭐⭐ The partition question is answered — against the flight
+
+T0R §7.4 flagged that H0 and H3 were a partition, not a causal decomposition,
+and warned that *"fix the height and H3 shrinks too"* was untestable then. It
+is tested now, and the answer is the opposite:
+
+```text
+H3 as a share of C2         43.63% → 95.13%
+H3 as a share of ALL crosses 11.74% → 22.90%     ← it nearly DOUBLED
+H3 nearest man, median       2.08 m →  2.39 m    ← and got FARTHER
+H3 within 2 m                47.0%  →  33.0%
+```
+
+**Fixing the height did not shrink the arrival problem; it enlarged it.**
+Deliveries that were previously un-headable by construction now arrive
+headable — and find nobody inside the contest radius. The half-metre of arrival
+is no longer one of two stories; it is the whole remaining story, and it is
+T2-ARRIVAL's measured target, sized here at **22.90% of all crosses**.
+
+### 7.5 §2.4's fork cost nothing — measured, as registered
+
+The stale-lead arm, run only so the choice would be measured rather than
+argued:
+
+```text
+                    rule-preserving (primary)   stale-lead (variant)
+contests                    60.78%                    60.71%
+goals                        8.72%                     9.19%
+H0 share of C2               1.62%                     1.89%
+```
+
+**The two are indistinguishable on the deliverable.** #31.1's call was right and
+also cheap — the interpretation the discipline preferred cost nothing, which is
+worth knowing the next time the same fork appears.
+
+### 7.6 Reported
+
+Not-a-launch-at-capture 150 / 167 / 173 per arm (the pre-existing §4.2c
+caveat, flag-independent as predicted); clean-flight population 198 / 193 / 188
+(F2's slice is 3.5% of crosses, which is itself a scoping fact worth the
+commander's eye); C0 10.76% → 11.68% (a longer flight is a longer window to be
+cut out — the honest place for the change to cost something, and it does);
+C1 4.98% → 3.46%; C2 26.90% → 24.07%.
+
+### 7.7 Disposition
+
+**FAIL ⇒ the fork returns to the commander** (§8). **Phase B does NOT run** —
+its condition (X-series + D1) is met in substance, but §8 makes a FAIL stop the
+stage before the expensive half, and running an 8-season calibrate off a failed
+stage would be exactly the improvisation the discipline forbids.
+
+Nothing shipped: `c4Flight` is default OFF, the flags-off fingerprint is
+untouched, and the suite is green. The `src` change stays committed and dormant
+so the next ruling has it in hand (the E1b precedent).
+
+**What the commander is holding**: a mechanism that provably works (F1 100%, H0
+1.62%), a resolved deliverable (+3.42pp contests) that is 71% defensive, a
+resolved conversion DECREASE, a doubled arrival gap that names T2-ARRIVAL's
+target — and one instrument gate that fired on a single re-struck delivery.
 
 ## 8. Stop rules
 

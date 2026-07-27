@@ -10,6 +10,7 @@ import {
   HALF_W, HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT, HEADER_RADIUS, SHOT_SPEED,
   GK_RUSH_ENVELOPE,
   DEFLECT_BLIND_PEN, TACKLE_LUNGE_COST, UNSET_BLOCK_WEIGHT,
+  CROSS_FLIGHT_MIN_S,
   TOUCH_PUSH_BASE, TOUCH_PUSH_SPACE, TOUCH_RECOLLECT_BASE, TOUCH_RECOLLECT_PER_PUSH,
   PASS_POWER_EXECUTED_MAX, PASS_POWER_EXECUTED_MIN, PASS_POWER_MAX, PASS_POWER_MIN,
   PASS_POWER_NOISE_K,
@@ -554,7 +555,20 @@ export function performCross(
 ): void {
   if (match.ball.owner !== crosser || crosser.kickCooldown > 0) return;
   const team = match.teams[crosser.side];
-  const flight0 = clamp(0.5 + dist(crosser.pos, at ?? target.pos) * 0.038, 0.7, 1.7);
+  // C4 T1-FLIGHT (docs/world-model/C4-T1-FLIGHT.md): armed, a cross's flight
+  // time floors at the apex that clears the outfield header band. `peak =
+  // g·T²/8`, so a delivery under ~14.45 m could not previously reach a head at
+  // all — H0, 56.78% of the T0b ladder. The floor is DERIVED from
+  // HEADER_MIN_HEIGHT and GRAVITY, applies to crosses ONLY, and technique does
+  // not scale it (the placing half is already priced four ways in `loftKick`).
+  const tMinCross = match.c4Flight ? CROSS_FLIGHT_MIN_S : 0.7;
+  // The run-lead consumes the SAME law: "lead a meetable fraction of the
+  // flight" has to read the flight the ball will actually have. Holding this
+  // at the stale estimate would be a second, hidden change to the aim rule
+  // (ruling #31.1); `c4FlightStaleLead` is the probe-only arm that measures
+  // the alternative rather than arguing it.
+  const tMinLead = match.c4Flight && !match.c4FlightStaleLead ? tMinCross : 0.7;
+  const flight0 = clamp(0.5 + dist(crosser.pos, at ?? target.pos) * 0.038, tMinLead, 1.7);
   // Corner routines pass `at` (Phase 31.9): the delivery attacks the
   // routine's KEY ZONE and the crasher times his burst onto it. Open play
   // (Phase 63) leads a MEETABLE fraction of the target's run, capped —
@@ -586,7 +600,7 @@ export function performCross(
   const toGoal = norm(sub(goal, crosser.pos));
   const swing = Math.sign(chord.x * toGoal.y - chord.y * toGoal.x) || 1;
   const spin = swing * (0.28 + crosser.attrs.passing * 0.3);
-  loftKick(match, crosser, spot, 0.5, 0.038, 0.7, 1.7, 1.1, spin);
+  loftKick(match, crosser, spot, 0.5, 0.038, tMinCross, 1.7, 1.1, spin);
   team.stats.passes++;
   team.stats.crosses++;
   if (oneTouch) team.stats.oneTouch++;

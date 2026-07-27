@@ -188,6 +188,17 @@ export const HEADER_MAX_HEIGHT = 2.5;
 /** ...standing within this horizontal radius of the ball. */
 export const HEADER_RADIUS = 1.35;
 /**
+ * C4 T1-FLIGHT: the flight time whose ballistic APEX lands exactly on the
+ * outfield header band's floor. A lofted kick launches `vz = GRAVITY·T/2`, so
+ * its peak is `g·T²/8`; solving `g·T²/8 = HEADER_MIN_HEIGHT` gives this.
+ *
+ * DERIVED, never chosen — written as the expression so it cannot drift from
+ * the two constants it depends on. Under the shared distance law
+ * `T = clamp(0.5 + dEff·0.038, 0.7, 1.7)` this floor corresponds to a delivery
+ * of ~14.45 m, which is why a shorter cross could never reach a head.
+ */
+export const CROSS_FLIGHT_MIN_S = Math.sqrt((8 * HEADER_MIN_HEIGHT) / GRAVITY);
+/**
  * Chest / thigh trap (Phase 28.6, user report "球在两个球员之间弹来弹去 —
  * 是不是没有胸部停球"): a ball dropping through the LOWER header band that no
  * opponent is contesting can be CUSHIONED to the feet instead of headed.
