@@ -3038,3 +3038,26 @@ grinding the same family.
 >    displacement + ETA/adherence mediators; consumer pins per #35.3.
 >    Queue: C4 oracles as gap work; commander amends Stage III; R20;
 >    F9 any time.
+
+> **COMMANDER RULING #37 (2026-07-27 — O1/O2 released to run):**
+>
+> 1. **Both pre-registrations APPROVED as drafted; released into gaps,
+>    either order.** The shared-delivery paired fork is the correct
+>    answer to T1-FLIGHT's post-treatment selection; the three-branch
+>    rule (LEVER / FLAT / UNRESOLVED) is #20 applied before the fact;
+>    clone-coverage-as-gate, control bit-identity, the action-path-
+>    conditioned force-bites population, and the at-source fixes for
+>    findings 7/10/15 are all the audit cashed into design.
+> 2. **O2's population amendment is CONFIRMED as made**: #36.3(ii)
+>    named H3 crosses, but H3 is a post-delivery outcome — selecting on
+>    the control arm's H3 induces regression to the mean in the treated
+>    arm (the E5a/#18 population family, caught at freeze time).
+>    Primary = all crosses with an eligible additional body; H3
+>    demoted to REPORTED with the selection stated; a primary-vs-H3
+>    disagreement returns here unresolved. Amending toward methodology
+>    before the run, disclosed, is exactly right.
+> 3. **A LEVER reading on either oracle reopens C4 and sizes Stage
+>    III's target — it never ships choreography** (O2's own text,
+>    affirmed). FLAT on both = the closure certified by measurement.
+>    P1 stays held for the commander's contract revision; R20 in gaps;
+>    F9 any time.
