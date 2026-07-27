@@ -586,6 +586,10 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     && p.role !== 'GK' && ball.owner !== p
   ) {
     target = fs.target;
+    // Probe observability only, reusing C4 T2's field exactly as documented:
+    // the post-switch line below rewrites `applied` with whatever survived the
+    // clamps, which is what O2's X6 measures per record.
+    p.c4Trace = { meet: fs.target, applied: fs.target };
   }
 
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball

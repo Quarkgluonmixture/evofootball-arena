@@ -112,6 +112,30 @@ Clustering: disjoint seed ranges per archetype × shell combination, so
 | **X6** | **THE FORCE BITES**: on crosses with an eligible second body, the forced body's steering target equals the meet point on ≥99% of live ticks, and every miss falls into a named class (onside clamp / barred box / he became the carrier / the ball was won) with an **unexplained residual of exactly 0**. ⚠️ The population is conditioned on the body's action path, which is the defect T2's F2 had — here it is conditioned explicitly and the conditioning is part of the gate text |
 | **X7** | two `runExperiment()` calls byte-identical, SHA emitted |
 
+### 4.1b ⚠️ Instrument facts disclosed before the run, in their own commit
+
+Two, both about making X6 measure what it claims. Neither touches a gate
+value, the mechanism, the interval, the population or §6's readings.
+
+1. **X6 reuses C4 T2's `Player.c4Trace` observability field.** The
+   `forcedStation` block writes `{ meet, applied }` and the existing
+   post-switch line rewrites `applied` with whatever survived the clamps — so
+   X6 reads the *engine's* target rather than asserting it. No new `src`
+   surface; the field is documented as probe-only, is never read by any
+   decision, and is null in every flags-off world. Fingerprint
+   `57b0bdab…c673` re-verified after the edit.
+2. **The seam's tick boundary is off by one from the probe's view, and the
+   probe replicates the engine rather than the other way round.**
+   `stepCount++` is the first statement in `Match.step`, so the executor
+   evaluates `simTick < untilTick` against `preStepTick + 1`. A probe
+   comparing the pre-step value predicts a fire on the last tick that the
+   engine then declines — **one unexplained record per delivery**, which the
+   sizing smoke produced exactly (55 records, 98.89% ok, X6 FAIL). The probe
+   now checks `simTick + 1 < untilTick`, and the smoke's unexplained residual
+   is **0**. Fixing a probe that mispredicts the engine is not a gate change;
+   leaving it would have failed X6 on an arithmetic mismatch rather than on
+   the world.
+
 ### 4.2 The primary question, and the frozen decision rule
 
 ```text
