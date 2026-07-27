@@ -1,12 +1,16 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import {
-  BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W,
+  BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, DT, GOAL_WIDTH, HALF_L, HALF_W,
   SHIELD_STAMINA_DRAIN,
 } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
-import type { Role } from '../sim/types';
+import { TEAM_SIZE, type Role } from '../sim/types';
+import {
+  EYE_W_S, STATION_FAMILY, localXBand, perceivedContext, priceApproaches,
+  type PerceivedContext,
+} from './stationEye';
 import { pressureAt } from './perception';
 import {
   cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
@@ -27,6 +31,32 @@ export function relativePointTarget(
   return {
     x: reference.x + attackDir * offset.x,
     y: reference.y + offset.y,
+  };
+}
+
+/** P2 §2.2: the commitment window, in ticks. */
+const EYE_W_TICKS = Math.round(EYE_W_S / DT);
+
+/**
+ * P2 §2.5's ORACLE-CTX arm and the M-CTX mediator: the context as the WORLD
+ * has it. Probe-only — the ordinary arms never call this, and the eye is null
+ * in production. Mirrors the P1R census's own context definition exactly.
+ */
+function trueContext(p: Player, match: Match): PerceivedContext | null {
+  const owner = match.ball.owner;
+  if (owner === null) return null;
+  const team = match.teams[p.side];
+  const face = owner.side === p.side ? 'ours' : 'theirs';
+  let near = 0;
+  for (const q of team.players) {
+    if (q === p || q.role === 'GK' || q.sentOff) continue;
+    if (Math.hypot(q.pos.x - p.pos.x, q.pos.y - p.pos.y) <= 9) near += 1;
+  }
+  const threat = localXBand(team.localX(match.ball.pos.x));
+  const crowded = near >= 2;
+  return {
+    key: `${face}|${threat}|${crowded ? 'crowded' : 'sparse'}`,
+    face, threat, crowded, ballX: match.ball.pos.x,
   };
 }
 
@@ -51,6 +81,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   let speedF = jog;
   p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
   p.c4Trace = null; // per-frame probe observability (C4 T2-ARRIVAL §4.3)
+  p.clampTrace = null; // per-frame probe observability (Stage III P2, #43.3)
   if (p.action.type !== 'MarkOpponent' && p.markAnchor) {
     p.markAnchor = null; // a stale anchor must not survive an action change
     p.markAnchorAge = 0;
@@ -605,6 +636,122 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     p.c4Trace = { meet: want, applied: want };
   }
 
+  // Stage III P2's DORMANT EYE (docs/world-model/STAGE3-P2-DORMANT-EYE.md
+  // §2.1-§2.4). Same read point as the P1R census seam above and the same
+  // clamps after it, so the eye consuming candidate x receives exactly the
+  // treatment the census priced as x (#43.3). Null in production.
+  const eye = match.stationEye;
+  if (eye !== null && p.role !== 'GK' && !p.sentOff && ball.owner !== p
+    && (eye.scope.kind === 'both'
+      || (eye.scope.kind === 'team' && eye.scope.side === p.side)
+      || (eye.scope.kind === 'body' && eye.scope.gid === p.gid))
+  ) {
+    const isStation = STATION_FAMILY.has(p.action.type);
+    let state = match.stationEyeState.get(p.gid);
+    if (state !== undefined && match.simTick >= state.untilTick) {
+      match.stationEyeState.delete(p.gid);
+      state = undefined;
+    }
+    // D2, the one material-change break rule (§2.2): the body's own perceived
+    // ball is maintained on HIS decision clock, so reading it costs nothing
+    // and smuggles in no truth. A possession flip is a step change in the
+    // world's own station function (P0 I2).
+    if (state !== undefined) {
+      const seen = match.perceivedBalls.get(p.gid);
+      const ownerGid = seen ? seen.ownerGid : null;
+      if (ownerGid !== null) {
+        const face = Math.floor(ownerGid / TEAM_SIZE) === p.side ? 'ours' : 'theirs';
+        if (face !== state.faceAtDecision) {
+          match.stationEyeState.delete(p.gid);
+          state = undefined;
+        }
+      }
+    }
+    // D1: decide on the first eligible tick with no live commitment, then once
+    // per window. EVERY decision commits for W — including the ones that
+    // choose the incumbent — so the percept is pulled once per body per
+    // window and a tie is a choice rather than a re-ask at 60 Hz.
+    if (state === undefined && isStation) {
+      const trace = eye.trace;
+      if (trace !== undefined) trace.decisions += 1;
+      const oracle = eye.arm === 'oracleCtx';
+      const snap = oracle ? null : match.perceivedSnapshot(p);
+      const context = oracle
+        ? trueContext(p, match)
+        : perceivedContext(snap, p.gid, p.side, p.pos, (x) => team.localX(x));
+      if (trace !== undefined && context !== null) {
+        // M-CTX (probe-only truth read, contract §3.5): what he believed
+        // against what was true, per feature.
+        const truth = trueContext(p, match);
+        if (truth !== null) {
+          trace.ctxSeen += 1;
+          if (truth.key === context.key) trace.ctxAgree += 1;
+          if (truth.face === context.face) trace.ctxAgreeFace += 1;
+          if (truth.threat === context.threat) trace.ctxAgreeThreat += 1;
+          if (truth.crowded === context.crowded) trace.ctxAgreeDensity += 1;
+        }
+      }
+      // A decision with no priceable context still COMMITS the window to the
+      // incumbent (offset null): he has no basis to act on and re-asking every
+      // tick would be a 60 Hz percept pull, not a commitment window.
+      const holdIncumbent = (): void => {
+        state = {
+          offset: null,
+          candidateId: 'control',
+          untilTick: match.simTick + EYE_W_TICKS,
+          faceAtDecision: context?.face ?? 'ours',
+        };
+        match.stationEyeState.set(p.gid, state);
+      };
+      if (context === null) {
+        if (trace !== undefined) {
+          if (oracle) trace.abstainNoOwner += 1;
+          else if (snap === null) trace.abstainNoSnapshot += 1;
+          else if (snap.ball === null) trace.abstainNoBall += 1;
+          else trace.abstainNoOwner += 1;
+        }
+        holdIncumbent();
+      } else {
+        const outcome = priceApproaches(eye.table, context.key, eye.arm, g);
+        if (outcome.kind === 'deviate') {
+          state = {
+            offset: { dx: outcome.candidate.dx, dy: outcome.candidate.dy },
+            candidateId: outcome.candidate.id,
+            untilTick: match.simTick + EYE_W_TICKS,
+            faceAtDecision: context.face,
+          };
+          match.stationEyeState.set(p.gid, state);
+          if (trace !== undefined) {
+            trace.deviate += 1;
+            trace.byCandidate.set(
+              outcome.candidate.id, (trace.byCandidate.get(outcome.candidate.id) ?? 0) + 1,
+            );
+            trace.byContext.set(context.key, (trace.byContext.get(context.key) ?? 0) + 1);
+          }
+        } else {
+          if (trace !== undefined) {
+            if (outcome.kind === 'noCell') trace.noCell += 1; else trace.tie += 1;
+          }
+          holdIncumbent();
+        }
+      }
+    }
+    if (state !== undefined && state.offset !== null) {
+      if (isStation) {
+        const want = v2(
+          ball.pos.x + team.attackDir * state.offset.dx, ball.pos.y + state.offset.dy,
+        );
+        target = want;
+        p.c4Trace = { meet: want, applied: want };
+        if (eye.trace !== undefined) eye.trace.overrideTicks += 1;
+      } else if (eye.trace !== undefined) {
+        // E-NONSTATION: the commitment lapses for these ticks and the clock
+        // keeps running (§2.2). Never override a ball-directed job.
+        eye.trace.nonStationTicks += 1;
+      }
+    }
+  }
+
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck
@@ -624,7 +771,10 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     // misjudgment enough. trap-ab.ts carries the numbers.)
     const holdX =
       offsideLineLocalX(team, opp.players, team.localX(ball.pos.x)) - HOLD_DEPTH[p.role];
-    if (team.localX(target.x) > holdX) target = { x: holdX * team.attackDir, y: target.y };
+    if (team.localX(target.x) > holdX) {
+      target = { x: holdX * team.attackDir, y: target.y };
+      p.clampTrace = 'onside';
+    }
   }
 
   // Barred-box discipline (Phase 31.9, user report "门球时盯人球员往禁区里
@@ -642,6 +792,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   if (target && barred && p.role !== 'GK' && Math.abs(target.y) < BOX_WIDTH / 2 + 0.5) {
     if (oppGoalX > 0 ? target.x > edgeX : target.x < edgeX) {
       target = { x: edgeX, y: target.y };
+      p.clampTrace = 'barred';
     }
   }
 

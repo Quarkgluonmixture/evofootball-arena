@@ -136,6 +136,16 @@ export class Player {
    */
   c4Trace: { meet: V2; applied: V2 } | null = null;
   /**
+   * Stage III P2, probe observability only: WHICH downstream clamp rewrote the
+   * steering target this frame. Written by the executor, never read by the sim.
+   * The P2 contract's X6 asks whether a clamp rewrote the eye's target, and
+   * ruling #43.3 makes clamp COMPOSITION a reported mediator (per candidate ×
+   * per context) — both are exact facts the engine already knows, and
+   * reconstructing them from a pre-step guess is the P1 §4.6b defect.
+   * Null on every other frame.
+   */
+  clampTrace: 'onside' | 'barred' | null = null;
+  /**
    * 2过1 burst license (Phase 34): granted when this player plays a short
    * pass under pressure — for its ~1.1s he sprints past his marker and the
    * return ball INTO him (from `partnerGid`) is scored as the wall pass,

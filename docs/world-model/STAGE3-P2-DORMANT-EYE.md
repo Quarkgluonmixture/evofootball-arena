@@ -366,6 +366,58 @@ an UPPER anchor for a snapshot missing the ball since the snapshot also carries
 retained memory, so 2× headroom on 44.4% is attainable ex ante. §5's decision
 classes decompose any surprise.
 
+### 3.4c ⚠️ Disclosed BEFORE the run, in the implementation commit
+
+Seven implementation readings, all published before a single datum of P2's own
+exists. **No gate value, horizon, lattice, context, floor, band or §6 reading
+changes** — this is the P1 §4.6b discipline: corrections and choices declared
+toward the engine, in writing, before the numbers.
+
+1. **The eye is a THIRD consumer of the perception chain, and the chain is now
+   armed for it.** `refreshPerception` and the scan-frame ring were gated on the
+   EDS flags alone; with those off, a pulled snapshot reconstructs from an empty
+   history and every body believes he is alone — so the DENSITY feature would
+   read `sparse` always and the percept would be a fiction. Both are now also
+   armed when `stationEye !== null`. Production is untouched (the eye is null),
+   and X1/X2/X3 pin that.
+2. **The decision cadence: first eligible tick, then once per window — and
+   EVERY decision commits.** The contract's absolute-phase stagger
+   (`gid mod W_TICKS`) is **not** implemented: at P2-A's unit it would delay the
+   treatment by up to a full W after the sampled moment, which is P1's
+   undelivered-treatment failure rebuilt. A tie, an abstention and a no-cell all
+   commit the window to the incumbent, so the percept is pulled exactly once per
+   body per window rather than at 60 Hz. The stagger's stated PURPOSE (bodies
+   not thinking in lockstep) survives through heterogeneous eligibility onset,
+   and P2-B reports the decision counts so the claim is measured, not asserted.
+3. **`Player.clampTrace`, a new per-frame probe-observability field**, records
+   WHICH clamp rewrote the steering target. X6's clamp classification and
+   #43.3's clamp-composition mediator are then exact engine facts instead of a
+   probe's pre-step guess — the P1 §4.6b defect (classifying clamps from the
+   wrong instant) removed at source rather than corrected afterwards. Written by
+   the executor, never read by the sim.
+4. **Two additional named classes in the FIDELITY taxonomy**, so unexplained can
+   be honestly 0: `E-REDECIDED` (the window ended or the face flipped and the eye
+   re-decided this tick, choosing the incumbent) and `E-NONSTATION` (the body's
+   action left the station family inside the window). Neither is a fidelity
+   failure; both are the eye's own semantics, and both are counted.
+5. **In P2-A the eye stays ARMED for the whole horizon**, re-deciding every
+   window rather than being released after the first one. That is the
+   deployment behaviour #41.2's population law points at — the deployed eye
+   perpetually approaches — and it is the object P2 tests: a chooser, not one
+   forced window. The mediators M-ETA/M-ERROR/M-OCCUPANCY are still measured over
+   the FIRST window, so they stay comparable with P1R's.
+6. **A perceived ball with no OWNER has no cell**, so the eye abstains and the
+   tick is counted under `E-ABSTAIN-UNSEEN` with its own sub-count
+   (`abstainNoOwner`). This is a large class by nature — the ball is often in
+   flight — and it enters DEV's denominator, which the 0.22 floor was NOT
+   derived against (the census population always has an owner). **The floor
+   stands exactly as frozen**; the run additionally reports the deviation share
+   over decisions that had a priceable context, as a decomposition, never as a
+   substitute.
+7. **The snapshot cannot report sent-off status**, so a sent-off teammate still
+   inside retention counts toward perceived density. Disclosed rather than
+   patched with truth, which would be the back door Q1 forbids.
+
 ### 3.5 Mandatory mediators (§4.5.5) — reported, never gating
 
 ```text

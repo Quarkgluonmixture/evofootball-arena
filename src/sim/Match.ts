@@ -13,6 +13,7 @@ import {
   type ScanFrame,
 } from '../ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../ai/reachability';
+import type { ApproachTable, StationEyeArm, StationEyeTrace } from '../ai/stationEye';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
@@ -498,6 +499,33 @@ export class Match {
     offset: { dx: number; dy: number };
     untilTick: number;
   } | null = null;
+  /**
+   * Stage III P2's DORMANT EYE
+   * (docs/world-model/STAGE3-P2-DORMANT-EYE.md §2.1). The chooser that
+   * consumes P1R's approach table through each body's own percept. A SECOND,
+   * independent seam from `forcedStationPolicy` on purpose, so P1R's harness
+   * stays reproducible bit-for-bit. The table is INJECTED by the probe; no
+   * table is bundled in `src/**`. Null in every production path, and the
+   * `oracleCtx` arm (which reads truth) is probe-only by contract §2.5.
+   */
+  stationEye: {
+    readonly arm: StationEyeArm;
+    readonly scope:
+      | { readonly kind: 'body'; readonly gid: number }
+      | { readonly kind: 'team'; readonly side: Side }
+      | { readonly kind: 'both' };
+    readonly table: ApproachTable;
+    /** Probe-owned observability sink; the sim never reads it back. */
+    readonly trace?: StationEyeTrace;
+  } | null = null;
+  /** P2 §2.2: per-body commitment windows. Empty whenever `stationEye` is null. */
+  readonly stationEyeState = new Map<number, {
+    /** null = the window is committed to the INCUMBENT (a tie, or no basis). */
+    offset: { dx: number; dy: number } | null;
+    candidateId: string;
+    untilTick: number;
+    faceAtDecision: 'ours' | 'theirs';
+  }>();
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;
@@ -823,7 +851,13 @@ export class Match {
         // or the passer's choice. Gating this on the defence flag alone made
         // `edsPerceivedChoice` silently inert on its own (no memory ⇒ no
         // snapshot ⇒ the legacy chooser), which the §4 ablation caught.
-        if (this.edsPerceivedDefence || this.edsPerceivedChoice) this.refreshPerception(p);
+        // P2: the dormant eye is a third consumer of the same chain — without
+        // a memory it would have no snapshot and would abstain on every
+        // decision, which is the "treatment never delivered" failure P1 died
+        // of. Null in production, so the shipped world is untouched.
+        if (this.edsPerceivedDefence || this.edsPerceivedChoice || this.stationEye !== null) {
+          this.refreshPerception(p);
+        }
         decidePlayer(p, this);
         p.decisionTimer = AI_INTERVAL;
       }
@@ -2314,7 +2348,13 @@ export class Match {
     // E3R2: the scan clock just fired for this body, so THIS is a moment its
     // eyes were open. Record the truth of the moment; the bodies in it are
     // observed only if something asks (ruling #13.3, perception is PULL).
-    if (this.edsPerceivedChoice && memory.nextScanTick !== scanTickBefore) {
+    // P2 §2.3: the dormant EYE is a perception consumer too, so its observers
+    // need their scan moments recorded or the pull would reconstruct from an
+    // empty history and every body would believe he is alone. Disclosed in the
+    // P2 contract's implementation notes; `stationEye` is null in production,
+    // so the recorded condition is unchanged there.
+    if ((this.edsPerceivedChoice || this.stationEye !== null)
+      && memory.nextScanTick !== scanTickBefore) {
       let ring = this.scanFrames.get(p.gid);
       if (ring === undefined) {
         ring = { frames: Array.from({ length: SCAN_FRAME_RING }, () => createScanFrame()), next: 0 };
