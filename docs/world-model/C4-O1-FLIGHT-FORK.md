@@ -157,6 +157,35 @@ power property, an equivalence claim needs an interval.
 The third branch exists because #20 forbids reading a straddling interval as
 "no effect", and because a two-branch rule would force one of them.
 
+### 4.2b ⚠️ Corrected before the run, in its own commit: how DISTANCE is read
+
+§4.2 bands on *"the crosser's distance to his aim point at the kick"*. That
+quantity is **not observable from outside the engine** — the chosen cross
+target is a local in `PlayerBrain`, and a first implementation that used the
+crosser-to-ball distance one tick after the kick measured ≈0 m and put
+**every** delivery in SHORT, leaving both LONG cells empty. A band that cannot
+fire is not a band (the T1-FLIGHT F1/F2 precedent).
+
+It is recovered **exactly**, from the control arm's own launch. `loftKick`
+sets `T = clamp(0.5 + d·0.038, tMin, 1.7)` and `vz = g·T/2`, so
+
+```text
+d = (2·vz_current / g − 0.5) / 0.038
+```
+
+is the control delivery's own flight distance, which is precisely the quantity
+the 14.454 m boundary was derived on. The recovery is invertible only off the
+clamps (`d ∈ [5.26, 31.6] m`); **clamped launches are counted and reported**
+rather than banded on a fiction.
+
+This is a correction toward the contract's own stated semantic — §4.2's
+boundary is defined as *"the distance at which the unforced flight law already
+clears the header band"*, and the recovered `d` is that distance. **No band
+boundary, interval, or decision rule is changed.** Also disclosed: the band is
+a deterministic function of pre-treatment state (the cross TARGET is chosen
+before `performCross` and is identical in both arms; only the lead differs),
+so conditioning on it is conditioning on a covariate, not on an outcome.
+
 ### 4.3 Reported, never gated
 
 The pooled paired contest difference and its C3atk/C3def split; the fixed-
