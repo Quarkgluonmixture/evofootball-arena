@@ -366,6 +366,42 @@ gate here and not a formality.
 
 ## 7. Result
 
+### 7.0 A0-CENSUS — ✅ **PROCEED.** The arrival gap is a routing failure.
+
+Run 2026-07-27 on block 920,000, `c4Flight` ON, 2,695 matches, **5,745
+crosses**, twice byte-identical, SHA `17c46125…41b0`.
+Probe: `scripts/probes/c4-t2-a0-census.ts` (read-only, zero `src/**`).
+
+**The target replicates on a block it was not measured on** — H3 **23.03%**
+of all crosses against T1-FLIGHT's 22.90%, median miss **2.32 m** against
+2.39 m, C3atk **25.50%** against 25.17%. The population D1 is powered on is
+the population that exists.
+
+```text
+R1  REACHABLE     96.60%
+R2  MARGINAL       2.04%
+R3  UNREACHABLE    1.21%
+R4  NO LICENCE     0.15%
+STOP statistic (R3+R4)  1.36%   CI [0.76, 2.02]   threshold 80%
+```
+
+Not close. The geometry is not the binding constraint anywhere: the nearest
+licensed body needs a median **3.35 m** against a median budget of **7.95 m**
+over a **1.03 s** flight — **4.86 m of slack**. A licence exists on 100% of
+crosses (mean 2.14 bodies) and includes the arriver on 72%.
+
+**What this does and does not license.** It is a *necessary-condition*
+screen and it passed with room: the bodies could be there. It says nothing
+about whether they will be — that is D1's question, and A0 cannot answer it.
+The predicate is deliberately generous (straight line at top speed), which is
+what R2's band existed to soften; with 4.86 m of median slack a much tighter
+bound would also have passed, so the reading survives the predicate's
+looseness rather than depending on it.
+
+**No Phase-A gate value was touched.** A0's only power was to stop the stage.
+
+### 7.1 Phase A
+
 *(empty until Phase A runs — filled in the same commit as the result, per
 governance rule 6.)*
 
