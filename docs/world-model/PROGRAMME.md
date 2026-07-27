@@ -1761,7 +1761,59 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-27, #40 executed): ⏸ P1R is NOT FROZEN — the pre-freeze
+**Queue state (2026-07-27, #41 executed): ✅ Stage III P1R RAN and PASSES every
+gate — the approach table is a SHIPPING TABLE** →
+[`STAGE3-P1R-APPROACH-CENSUS.md`](STAGE3-P1R-APPROACH-CENSUS.md) §5 (SHA
+`2c93d5b2…a964`, table SHA `59a3f72e…6e12d`, 6,000 moments / 114,000 forks,
+twice byte-identical; fingerprint unchanged; nothing shipped). Nothing in
+flight — returned for P2's scoping.
+
+* ✅ **Every gate**: clone coverage 6,000/6,000 · X5 240 checked / **0
+  mismatched** · X6 **unexplained 0** with ok **91.7%** against the derived 84%
+  floor · **PC resolved in BOTH faces** (−0.0396 [−0.0546, −0.0259]) · SAT
+  inside ±0.05 ⇒ SHIPPING TABLE · determinism. The population filter behaved as
+  sized: **14.03%** ball-directed moments excluded.
+* **Pooled = reading (c), and unlike P1 that reading is AVAILABLE**: all 18
+  candidates resolve negative (−0.024 … −0.076). **The incumbent's station
+  function beats every fixed ball-relative approach direction on the lattice**
+  — a strong result for something billed as a hand-tuned interim, and the first
+  time it has been tested on a measurement that could have gone either way.
+* ⭐⭐⭐ **DIRECTION DOMINATES DISTANCE, ~3×.** Angle spread **2.9pp**
+  (0° −0.0311 and 180° −0.0346 cheapest; 60° −0.0599 dearest) against a radius
+  spread of **0.9pp** (7 m −0.0447 · 14 m −0.0441 · 21 m −0.0536). **Which way
+  a body commits its window matters about three times as much as how far.**
+  Undesigned — the lattice was built to cover named seats, not to test an axis.
+* ⭐⭐ **Conditionally it is reading (a): 40 of 216 cells BEAT their control**,
+  none under-powered, and the structure is legible — **deep in our own third a
+  long FORWARD approach pays** (`ours|ownThird|crowded` r21a0 **+0.0819**);
+  **defending a crowded midfield a BACKWARD one pays** (`theirs|middle|crowded`
+  r21a180 **+0.0545**). The pooled negative averages over contexts where the
+  incumbent already does the right thing, so **it does not bound what a
+  conditional chooser can do** — reading it as a ceiling would be the
+  ecological fallacy in a table.
+* ⭐ **The 180° ring pays where the incumbent cannot go.** `supportSpot` puts
+  every supporter AHEAD of the ball at both `aheadBias` settings (P0 §1.4), so
+  approach-from-behind is **inexpressible** in the incumbent — and it is one of
+  the two cheapest directions pooled and positive in two contexts. Measured
+  support for §3.3's drop-to-receive claim.
+* ⚠️ **Honest notes on passes**: PC resolved but is only **5th of 18** — its
+  premise ("21 m behind the ball is obviously bad") is **wrong**, since
+  backward beats diagonal, so the instrument is weaker than its pass suggests.
+  SAT's four gaps are all **positive** (0.017–0.047): under saturation the cost
+  SHRINKS, so the unilateral table is conservative — but `r7a180` sits close to
+  the band edge and the next census should not assume the margin. X6's derived
+  floor was the right repair: ok landed at 91.7% against the 91.9% the clamp
+  measurement predicted, and **P1's 99% floor would have failed this run too**.
+* **Mediators describe rather than gate**, as #41.3 ruled: occupancy 0.9–19%,
+  ETA 2.1–2.9 s of a 3 s window, target error 10–28 m. **A cell can carry
+  positive value at ~2% occupancy** — value bought purely by moving, which is
+  exactly the object the re-founded estimand said the world contains.
+* **For P2, three things it should not have to rediscover**: direction
+  dominates distance ~3×; the payoff is conditional and the pooled sign is not
+  the eye's ceiling; the behind-the-ball ring is cheap, positive in two
+  contexts, and inexpressible in the incumbent.
+
+Earlier (2026-07-27, #40 executed): ⏸ P1R was NOT FROZEN — the pre-freeze
 sizing says the scoped repair still does not deliver the treatment** →
 [`STAGE3-P1R-PREFREEZE-SIZING.md`](STAGE3-P1R-PREFREEZE-SIZING.md) (read-only,
 zero `src/**`, 400 moments, block 970,000). **The fork is back with the
