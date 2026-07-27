@@ -153,6 +153,23 @@ while the three arms the table existed to price reproduced at 1.56 / 0.06 /
 0.87pp, leaving a FAIL that no one can read. The disclosure was correct
 conduct; keeping the gate was not.)*
 
+**A MAX-statistic over thousands of records at a tight tolerance is a
+COUPON-COLLECTOR gate and is FORBIDDEN (commander ruling #32.1,
+2026-07-27).** `max|x_i − y_i| ≤ ε` over n records does not ask the claim
+*"the arithmetic reached the world"*; it asks that **no single record
+anywhere** be pathological, and its fire probability grows with n for any
+fixed per-record tail. On a few thousand records it is a near-certain fire
+by construction, and a fire carries no information about the mechanism the
+stage exists to prove. Write it instead as **per-record with NAMED
+exception classes** (each class a world event you can point to in code), or
+as a **share form** (*"≥99.9% of records within ε"*) powered ex ante like
+any other threshold. *(Registered from C4 T1-FLIGHT's F2: worst
+|maxZ − apex| = 1.0219 m on exactly ONE cross of 5,547, the other 5,546 at
+exactly 0, byte-identical across all three arms — the exception a named
+world event, a ball re-struck by the same player inside its own window, so
+`lastTouch` never changes and the maxZ guard never trips. The arithmetic
+was perfect; the gate was mis-typed.)*
+
 Corollary, and the honest escape hatch: if a floor cannot be re-powered
 because the population will not supply the sample — the #24 check — then say
 so and **do not gate on it**. Report the quantity instead. An ungated
