@@ -1,9 +1,13 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
-import { BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W } from '../sim/constants';
+import {
+  BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, GOAL_WIDTH, HALF_L, HALF_W,
+  SHIELD_STAMINA_DRAIN,
+} from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Role } from '../sim/types';
+import { pressureAt } from './perception';
 import {
   cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
   supportSpot,
@@ -382,6 +386,53 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     case 'ClearBall': {
       // Kick already happened at decision time — brief follow-through.
       target = null;
+      break;
+    }
+    case 'ShieldHold': {
+      // C5 T0: the shield is a BODY POSITION, not a drift. The heading turns
+      // so the ball — glued at `pos + heading·0.85` (`Match.ts:1276-1283`) —
+      // sits on the far side of this body from the nearest threat. That is the
+      // whole mechanism, and it works because the tackle search measures
+      // `dist(o.pos, ball.pos)`, not the man (`mechanics.ts:1726`): the
+      // existing attack surface already prices a ball it cannot reach.
+      //
+      // De-gluing is C6's slice and is deliberately NOT touched here.
+      let near: Player | null = null;
+      let nearD = Infinity;
+      for (const o of opp.players) {
+        if (o.sentOff) continue;
+        const d = dist(o.pos, p.pos);
+        if (d < nearD) {
+          nearD = d;
+          near = o;
+        }
+      }
+      if (near && nearD > 1e-6) {
+        // Face AWAY from the threat: the body goes between him and the ball.
+        p.faceTarget = {
+          x: p.pos.x + (p.pos.x - near.pos.x) / nearD * 10,
+          y: p.pos.y + (p.pos.y - near.pos.y) / nearD * 10,
+        };
+        // The protective carry: walking pace, away from the threat. Slow
+        // enough that `stepBall`'s push gate (v > 2.5) never fires, so the
+        // hold stays a hold and never turns into a drive.
+        target = { x: p.pos.x + (p.pos.x - near.pos.x) / nearD * 1.2, y: p.pos.y + (p.pos.y - near.pos.y) / nearD * 1.2 };
+      } else {
+        p.faceTarget = team.oppGoal();
+        target = p.pos;
+      }
+      speedF = 0.22; // walking pace — well under stepBall's v > 2.5 push gate
+      // NO FREE TIME (design contract §4 Q6 / I1). Standing still recovers
+      // stamina under `Player.tick`'s effort gate, so holding under pressure
+      // would otherwise be free legs as well as a free ball. The drain is
+      // shaped like the existing one — pressure-scaled, tamed by the stamina
+      // attribute — and it is the ONLY cost T0 adds, because the Phase-0 map
+      // found every other one already present.
+      const squeeze = pressureAt(p.pos, opp.players);
+      p.stamina = Math.max(
+        0.05,
+        p.stamina - SHIELD_STAMINA_DRAIN * (0.35 + squeeze) * dt * (1.24 - p.attrs.stamina * 0.6),
+      );
       break;
     }
     case 'HoldUp': {

@@ -197,6 +197,20 @@ export interface MatchConfig {
    */
   edsTouchCost?: boolean;
   /**
+   * C5 T0 (docs/world-model/C5-T0-HOLD-MECHANICS.md): the generalized
+   * shield-hold mechanics. OFF by default and with ZERO live callers — the
+   * action is reachable only through `forcedHold`, which no production path
+   * ever sets. Legacy `HoldUp` keeps its own code path verbatim.
+   */
+  c5Hold?: boolean;
+  /**
+   * C5 T0: the ELECTIVE first-touch window. Today the window is granted by
+   * pressure alone (the reception path below); armed, a probe may elect it
+   * through `forcedTouchFork`. It changes no pricing — an elected window
+   * enters exactly the same `oneTouchMul` / `touchFailChance` paths.
+   */
+  c5TouchFork?: boolean;
+  /**
    * EDS E2b-1 (docs/world-model/EDS-E2B1-BOTH-SIDES-AB.md): the defender's
    * interception entry reads HIS OWN perceived ball instead of truth, through
    * the shared awareness trunk. Off in every production path. The awareness
@@ -340,6 +354,10 @@ export class Match {
   readonly traceFirstTouch: boolean;
   /** E1b: the heavy-touch curve, dormant unless a probe world asks for it. */
   readonly edsTouchCost: boolean;
+  /** C5 T0: the shield-hold mechanics, dormant unless a probe world asks. */
+  readonly c5Hold: boolean;
+  /** C5 T0: the elective first-touch window, dormant unless a probe asks. */
+  readonly c5TouchFork: boolean;
   /** E2b-1: perceived-state defending, dormant unless a probe world asks. */
   readonly edsPerceivedDefence: boolean;
   readonly edsAwareness: number;
@@ -394,6 +412,19 @@ export class Match {
    * the harness gate the counterfactual census rests on.
    */
   forcedPassTarget: number | null = null;
+  /**
+   * C5 T0's intervention seam, modelled on `forcedPassTarget` above: while
+   * `c5Hold` is armed, the named body shield-holds until `untilTick`. **Null in
+   * every production path** — this is the ONLY way `ShieldHold` can be reached
+   * at T0, which is what "zero live callers" means for this stage.
+   */
+  forcedHold: { gid: number; untilTick: number } | null = null;
+  /**
+   * C5 T0: the elective first-touch window's seam. While `c5TouchFork` is
+   * armed, this body takes the window on reception whatever the pressure is.
+   * Null in every production path.
+   */
+  forcedTouchFork: number | null = null;
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;
@@ -523,6 +554,8 @@ export class Match {
     this.traceContests = cfg.traceContests ?? false;
     this.traceFirstTouch = cfg.traceFirstTouch ?? false;
     this.edsTouchCost = cfg.edsTouchCost ?? EDS_BUNDLE_ARMED;
+    this.c5Hold = cfg.c5Hold ?? EDS_BUNDLE_ARMED;
+    this.c5TouchFork = cfg.c5TouchFork ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedDefence = cfg.edsPerceivedDefence ?? EDS_BUNDLE_ARMED;
     this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
     this.edsValueAxis = cfg.edsValueAxis ?? EDS_BUNDLE_ARMED;
@@ -716,6 +749,23 @@ export class Match {
         if (this.edsPerceivedDefence || this.edsPerceivedChoice) this.refreshPerception(p);
         decidePlayer(p, this);
         p.decisionTimer = AI_INTERVAL;
+      }
+    }
+    // C5 T0: hold the forced action BETWEEN decisions. The capture path
+    // re-labels a carrier `Dribble` directly (see `giveBall`), and the brain
+    // only re-decides every AI_INTERVAL — so without this a forced holder
+    // spent part of each interval labelled `Dribble`, and `stepBall`'s push
+    // gate (v > 2.5) knocked his own ball away. That inverted the whole
+    // pressure curve: an UNPRESSED holder was free to accelerate past the
+    // gate, so survival ROSE with pressure. Structural, not a tuned speed:
+    // the executor and the push gate now always read the same action.
+    // Both operands are dormant in production (`forcedHold` is never set).
+    if (this.c5Hold && this.forcedHold !== null && this.simTick < this.forcedHold.untilTick) {
+      const held = this.allPlayers.find((p) => p.gid === this.forcedHold!.gid);
+      if (held !== undefined && this.ball.owner === held && held.role !== 'GK') {
+        if (held.action.type !== 'ShieldHold') {
+          held.action = { type: 'ShieldHold', scores: held.action.scores };
+        }
       }
     }
 
@@ -1197,7 +1247,13 @@ export class Match {
             const d = dist(o.pos, p.pos);
             if (d < nearOpp) nearOpp = d;
           }
-          if (nearOpp < trigger) {
+          // C5 T0: the window is ELECTABLE as well as pressure-granted. The
+          // elected branch sets exactly the same two fields, so it enters the
+          // same `oneTouchMul` / `touchFailChance` paths and prices nothing of
+          // its own (gate A4). `forcedTouchFork` is null in every production
+          // path, so with the flag off this reads bit-for-bit as before.
+          const elected = this.c5TouchFork && this.forcedTouchFork === p.gid;
+          if (nearOpp < trigger || elected) {
             p.decisionTimer = 0.07;
             p.firstTouchWindow = 0.28;
           }

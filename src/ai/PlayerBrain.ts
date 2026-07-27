@@ -149,6 +149,21 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       return;
     }
   }
+  // C5 T0 (docs/world-model/C5-T0-HOLD-MECHANICS.md): the dormant shield-hold.
+  // Modelled on `forcedPassTarget` below — `forcedHold` is null in every
+  // production path, so this branch is unreachable in the shipped game and no
+  // `cands` entry can produce `ShieldHold`. The WHETHER integration is T2's
+  // work under its own contract; T0 only builds the capability.
+  if (
+    match.c5Hold && match.forcedHold !== null && match.forcedHold.gid === p.gid
+    && match.simTick < match.forcedHold.untilTick && !mustKick && p.role !== 'GK'
+  ) {
+    p.action = {
+      type: 'ShieldHold',
+      scores: [{ action: 'ShieldHold', score: 1, why: 'forced hold (C5 T0 probe seam)' }],
+    };
+    return;
+  }
   const cands: UtilityScore[] = [];
   const pressure = pressureAt(p.pos, opp.players);
   const goal = team.oppGoal();

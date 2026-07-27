@@ -1377,8 +1377,31 @@ narrow; the `noAerial` instrument needs splitting into *nobody arrived* vs
 *arrived and did not head it* before it gates anything. **Both maps are with
 the commander; the C5 design contract came back
 ([`C5-TIME-DIMENSION.md`](C5-TIME-DIMENSION.md)) and its first stage is now
-PRE-REGISTERED: [`C5-T0-HOLD-MECHANICS.md`](C5-T0-HOLD-MECHANICS.md)** — the
-dormant hold + fork mechanics, gates frozen. ⭐ One finding from re-reading the
+RUN: [`C5-T0-HOLD-MECHANICS.md`](C5-T0-HOLD-MECHANICS.md) — **T0 BUILT, and
+FAIL on A2a + A3; the queue stops and the fork is the COMMANDER's.** X-series
+6/6 (fingerprint unchanged, arming-with-seams-shut byte-identical, zero live
+callers, legacy `HoldUp` untouched), A1 far-side **95.81%**, A2b ceiling
+**68.81%** and A2c stamina strictly rising — but **A2a 72.82 → 80.32 → 68.81%**
+(non-monotone on the low→mid step) and **A3 −3.44pp, CI [−6.72, +0.18]** (the
+strength gradient runs BACKWARDS). ⭐ **A2a's loss-cause column gives a THIRD
+reading neither pre-laid option covers**: lost-to-tackle by band is **3.44% →
+14.59% → 22.60%, perfectly monotone** — the world DOES order holds by pressure
+on the channel pressure drives; A2a measured *ownership survival*, which
+bundles tackles with dead balls, and in the low band only 3.44% lose to a
+tackle while 27.2% lose the ball. **A gate-definition limitation I own, not a
+band artefact and not a world finding** — and NOT re-cut, since rewriting it is
+a redraw with a #19 re-powering attached. ⚠️ **A3's leading candidate is a
+confound in my own gate**: the terciles are not stratified by pressure band and
+the bands differ ~4pp, so a strength skew toward high-pressure moments could
+manufacture the whole −3.4pp. Labelled, **not run** — computing a new statistic
+to explain away a fired gate is the move the discipline prevents; it is the
+commander's to authorize. ⚠️ **One number flagged louder than itself**: the
+carry baseline survives 12.31% against the hold's 71.2%, but the baseline arm
+counts a COMPLETED PASS as not-survived, so the two are not comparable and the
+6× gap is mostly holding-vs-playing, not keeping-vs-losing — flagged precisely
+because it is the number most likely to be misread as "holding is free", which
+the commander's binding interpretation forbids drawing at this stage. Earlier, the
+dormant hold + fork mechanics were pre-registered with gates frozen. ⭐ One finding from re-reading the
 tackle path reshaped the build: **the attack surface already exists and already
 punishes standing still** (the tackle search measures `dist(o.pos, ball.pos)`,
 not the man — so a ball on the far side of a body is harder to reach by

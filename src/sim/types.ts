@@ -107,6 +107,9 @@ export type ActionType =
   | 'Cross'
   | 'ThrowOut'
   | 'HoldUp'
+  /** C5 T0: the generalized shield-hold. Dormant — reachable only through
+   *  `Match.forcedHold` while `c5Hold` is armed. Legacy `HoldUp` is untouched. */
+  | 'ShieldHold'
   | 'Shoot'
   | 'ClearBall'
   | 'GoalkeeperSave'

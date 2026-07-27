@@ -105,6 +105,13 @@ export const BALL_BOUNCE_SPIN_RETENTION = SURFACE_PROFILE.bounceSpinRetention;
  * sides ~0.9. Sweep + gates in the phase-58 ledger entry.
  */
 export const STAMINA_DRAIN = 0.01;
+/**
+ * C5 T0: what a shield-hold costs in legs, per second, before the pressure
+ * scale. Sized against `STAMINA_DRAIN`: a fully squeezed hold burns roughly
+ * what a three-quarter-effort run does, so holding under a press is a real
+ * spend and holding in space is nearly free — which is the shape football has.
+ */
+export const SHIELD_STAMINA_DRAIN = 0.012;
 export const STAMINA_RECOVERY = 0.009;
 /**
  * A tackle lunge is a burst the movement integral never saw (the lunge is

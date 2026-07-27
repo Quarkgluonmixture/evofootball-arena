@@ -134,7 +134,124 @@ distribution; per-cluster rates for every A-gate.
   change to `stagnation` or to legacy `HoldUp` (Q3, Q4).
 - Nothing in the E4 preview: the user cannot reach any of this.
 
-## 6. Result
+## 6. Result — RUN 2026-07-27: **FAIL** (A2a, A3). The queue stops.
 
-*(To be filled in after implementation and the anatomy run, in a separate
-commit.)*
+SHA `d7303d51…21d5`, twice byte-identical. **10,000 forced holds over 63
+clusters.** X-series 6/6, fingerprint `57b0bdab…c673` unchanged, 820/820 tests,
+tsc + build clean.
+
+**Commander's binding interpretation, recorded here because it governs how §6
+is read** (issued at approval, moving no gate): *A2b passing means only that a
+hold is losable under a real press. It does **not** mean holding is not a free
+option — that is a comparison on the outcome axis and belongs to T1's census
+and T3's dominance ceiling. Nobody may cite A2b's PASS as proof of not-free.*
+
+| gate | result | |
+| --- | --- | --- |
+| **A1** far-side ≥ 90% | **95.81%** (706,108 / 737,014 held ticks) | ✅ |
+| **A2a** survival strictly decreasing in pressure | **72.82% → 80.32% → 68.81%** | ⛔ |
+| **A2b** top-band survival < 90% | **68.81%** | ✅ |
+| **A2c** stamina > 0 and rising | **0.00095 → 0.00414 → 0.00657** /s | ✅ |
+| **A3** strength gradient ≥ 3.0pp, CI > 0 | **−3.44pp**, CI [−6.72, +0.18] | ⛔ |
+| coverage / determinism | 10,000 trials; two runs byte-identical | ✅ |
+
+### 6.1 A2a — and a third reading neither pre-laid one covers
+
+Band n's are 2,064 / 1,357 / 6,579 (the frozen cuts put two thirds of
+ball-owner moments in the top band, median `pressureAt` ≈ 0.67 — reported, not
+re-cut). The mid→high step falls as predicted; **the low→mid step rises**, and
+that is the whole failure.
+
+⭐ **The loss-cause column says why, and it is a third reading:**
+
+```text
+lost to a TACKLE, by band:   3.44%  →  14.59%  →  22.60%
+```
+
+**The tackle channel is perfectly monotone.** The world *does* order holds by
+pressure on the channel pressure drives. What A2a measured is *ownership
+survival*, which bundles tackles with dead balls, whistles and every other
+termination — and in the low band only 3.44% of trials lose to a tackle while
+27.2% lose the ball, so **the low band's number is dominated by causes pressure
+has no reason to order.**
+
+So the honest answer to the commander's pre-laid fork is neither of the two
+options: it is not (yet) evidence of band-composition artefact, and it is not
+evidence that the world fails to order by pressure. **It is a gate-definition
+limitation I own**: A2a was written on the wrong channel. Had it been written on
+tackle-loss it would have passed cleanly, and that column was already in the
+reported set. It is **not** re-cut here — the gate stands as fired, and
+re-writing it is a redraw decision with a #19 re-powering attached.
+
+### 6.2 A3 — the gradient is NEGATIVE, and my gate is confounded
+
+| tercile | mean strength | n | survival |
+| --- | --- | --- | --- |
+| bottom | 0.192 | 3,320 | **73.34%** |
+| mid | 0.378 | 3,347 | 70.36% |
+| top | 0.594 | 3,333 | **69.91%** |
+
+Stronger holders survive **less**: −3.44pp, CI [−6.72, +0.18]. Under ruling
+#20's semantics that is **INCONCLUSIVE rather than refuted** (the interval
+crosses zero at the top), but its whole mass is on the wrong side of the design's
+assumption, and the gate as written requires a positive lower bound, so it
+fires either way.
+
+⚠️ **The leading candidate is a confound in my own gate, labelled and
+untested**: A3 compares strength terciles **without stratifying by pressure
+band**, and the bands differ by ~4pp in survival (72.8 vs 68.8). If strength
+skews toward high-pressure moments — plausible, since where a body wins the
+ball correlates with both role and strength — that skew alone could manufacture
+a −3.4pp "gradient" out of nothing. **Directly measurable by a stratified
+re-analysis; not run here, because computing a new statistic to explain away a
+fired gate is the move the discipline exists to prevent.** It is the
+commander's to authorize.
+
+### 6.3 Reported, and one number that needs its caveat louder than itself
+
+Hold survival overall **71.2%**, mean held 73.7 of 90 ticks, lost-to-tackle
+17.56%. The carry baseline arm survives **12.31%**.
+
+⚠️ **That 12.31% does not mean the carrier loses the ball 88% of the time.**
+The baseline arm measures *"is this same man still the owner 1.5 s later"*, and
+in the untouched fork he usually **passes** — a completed pass counts as
+not-survived. So the two arms' "survival" numbers are **not comparable**, and
+the 6× gap is mostly the difference between holding and playing, not between
+keeping and losing.
+
+I flag it prominently precisely because it is the number most likely to be
+misread as "holding is free" — which is exactly the claim the commander's
+interpretation above forbids anyone from drawing at this stage. **The
+comparative question needs an outcome axis, not a retention axis, and that is
+T1's design.**
+
+### 6.4 Disposition
+
+**FAIL ⇒ per the design contract §6 the queue stops and the fork returns to the
+commander.** Nothing shipped: both flags default OFF, zero live callers, the
+preview cannot reach them, the flags-off world is byte-identical and the
+fingerprint is unchanged. The built capability stays committed and dormant so
+the next ruling has it in hand.
+
+### 6.5 Two implementation defects, found by measurement and disclosed
+
+Both were caught on the sizing smoke, **before** the frozen run, and both were
+corrected toward the contract's own wording rather than toward a number.
+
+1. **The holder knocked his own ball away.** The first smoke had survival
+   *rising* with pressure. Rather than guess, the loss causes were counted:
+   **27 of 30 low-pressure losses were `loose`, no counter moved, `lastTouch =
+   SELF`.** Cause: the capture path re-labels a carrier `Dribble` directly and
+   the brain only re-decides every 0.15 s, so between decisions a *free* holder
+   accelerated past `stepBall`'s `v > 2.5` push gate and pushed his own ball
+   away, while a *pressed* one stayed under it. Fixed **structurally** — the
+   forced action is now held between decisions so the executor and the push
+   gate always read the same action — not by tuning a speed. ⭐ It also left a
+   substrate fact worth keeping: **action labels drift inside the 0.15 s
+   decision gap**, and anything reading `action.type` per tick inherits that.
+2. **The probe read a release as a loss.** Still inverted after the first fix.
+   Tracing the ticks around each loss showed **the hold surviving all 90
+   ticks** — the "loss" was the holder passing on the tick the forced window
+   expired, which a free man does instantly and a pressed man does not. The
+   window was off by one against the contract's own words ("survival after
+   1.5 s **of forced hold**"). Same class as E5g's F4 and E5c's U1.
