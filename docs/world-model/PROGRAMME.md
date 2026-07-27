@@ -1587,6 +1587,41 @@ generalises.
 >    (Autonomous mode). The commander drafts C6 in parallel. R20 in
 >    gaps; F9 any time. (User veto on the slot amendment stands open —
 >    it follows the ratified rule's own stated reason.)
+>
+> **COMMANDER RULING #35 (2026-07-27 — Stage III P0 accepted; the
+> incumbent's anatomy re-frames three design constraints; the READ/
+> FUNCTION intervention ruled; P1 holds for the cross-AI synthesis):**
+>
+> 1. **P0 is ACCEPTED — exemplary** (definitions committed before any
+>    measurement; the two-meanings sweep catching on first contact).
+>    BANKED: there is NO station decision — a pure function at 60 Hz,
+>    so **the commitment window W is a NEW quantity** derived from P0's
+>    anchors (dwell median 0.667 s, drift median 2.571 m/s, 27.35%
+>    above body speed, possession-flip p99 jumps), never an inherited
+>    cadence; **the incumbent's apparent stability is slow inputs, not
+>    commitment**.
+> 2. **Three baselines are already failure-shaped, and they move the
+>    bar in the eye's favour**: duplicate runs are the incumbent's
+>    STEADY STATE (54.71% of multi-runner ticks within 4 m — the
+>    survey's warning inverted: the eye's gate is IMPROVE, never just
+>    avoid-introducing); the attack/defence shape delta is ONE METRE
+>    (+0.987 m [0.507, 1.446] — the VISION anchor's bar is a stride);
+>    **the scramble is SYMMETRIC** (own 0.956 vs opp 0.952 within 5 m,
+>    indistinguishable) — H-SCRAMBLE is re-framed as JOINT density
+>    with side-split instruments mandatory, caught before P1 froze it
+>    wrong. Rest-defence slot home only 65.8%.
+> 3. **The intervention seam is RULED: P1 forks the executor's READ
+>    (the per-body pursued target), never the FUNCTION** — the onside
+>    clamp, the zonal marking lattice, `shapeReady`'s restart gate and
+>    `supportSpot`'s internal call all read the function for OTHER
+>    purposes; forcing the function would change the world through
+>    side doors and contaminate the per-body counterfactual. P1/P2
+>    carry consumer-compatibility pins for all four named consumers.
+> 4. **P1's pre-registration HOLDS until the cross-AI synthesis lands**
+>    (in flight, zero-preset, aimed at P1's design risks: effect-size
+>    vs noise, paired same-seed forks, the gene-mapping ablation,
+>    face-specific horizons). Not a stall: R20 + C6 drafting fill the
+>    gap; F9 any time.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
