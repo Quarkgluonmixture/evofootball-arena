@@ -242,6 +242,34 @@ P5+ THE COACH EYE + the C4 handshake (delivery-evidence crash trigger)
     P4's verdict.
 ```
 
+## 5.5 The arrival hypothesis, reality-calibrated (commander amendment,
+2026-07-27, user-ratified — supersedes the "price the landing" framing)
+
+Real box attack happens BEFORE the kick, and C4's own chain measured the
+same thing (T2: presence without pre-aim moved nothing; the corner
+machinery works because it stages pre-kick). The P5+/C4-handshake
+hypothesis is therefore posed as:
+
+* **Evidence read, pre-kick**: the eye reads observable carrier context
+  (teammate wide + high + body set to deliver — external evidence only,
+  intent privacy holds) and prices the box ZONES ahead of the kick. The
+  last-half-second landing re-route is already banked dormant (C4) and
+  is the correction, never the mechanism.
+* **Division of labour EMERGES**: near/far/spot splits are never
+  hand-assigned — they fall out of don't-crowd (an occupied zone prices
+  lower in the next man's eye) plus per-player gene/attr differences.
+  A4's doctrine, when it opens, sharpens the split as a shared PRIOR
+  (latency/coordination), never revealing hidden truth.
+* **Timing comes from reading the crosser, not from wanting the space**
+  — revert 2's +50% offsides was value without the evidence read; the
+  offside canary stays HARD on this hypothesis forever.
+* **Wasted runs are the honest price**: evidence-driven anticipation
+  is sometimes wrong (the cross never comes; the run recycles).
+  Acceptance instruments must not penalize recycled runs as waste —
+  a censored run is evidence working, not a defect.
+* Measured with C4's banked T0b/T2 ladders (C3atk, the H3 half-metre)
+  per ruling #34.3.
+
 ## 6. Gate sources (named now, frozen per stage at pre-registration)
 
 P0's banked incumbent baselines (the stability/shape instruments); the
