@@ -3355,3 +3355,34 @@ grinding the same family.
 >    only (77.4% of body-ticks — never override a ball-directed job);
 >    all other gates verbatim; X6's floor re-checked against the new
 >    W. Everything else in the queue unchanged.
+
+> **COMMANDER RULING #41 (2026-07-27 — the station estimand re-founded:
+> APPROACH-VALUE; P1R freezes under it):**
+>
+> 1. **The substrate fact is BANKED**: stations in this engine are
+>    never occupied, only perpetually approached — P0's I2 (incumbent
+>    target drift 2.571 m/s median, >4 m/s on 27%) and P1R's sizing
+>    (best cell 16% occupancy) close on each other from opposite sides.
+>    This does not dent Stage III's premise; it kills a census cell the
+>    world does not contain.
+> 2. **The estimand is RULED: options 1+4 merged — the signed value of
+>    committing W to APPROACHING ball-relative candidate X.** The
+>    treatment is the steer; occupancy demotes to the mediator it
+>    already is; the lattice keeps its distance dimension (a far
+>    candidate is a long approach, priced as such). Decisive reason:
+>    the DEPLOYED eye will itself perpetually approach — each window it
+>    picks a target and moves — so this cell censuses exactly what the
+>    consumer will do (the population=deployment law, applied to the
+>    action itself). Option 2 (lead the target) REJECTED for v1: a
+>    W-second ball projection is a forecast nobody's percept contains
+>    (short flight leads elsewhere in the engine are ~1 s physics, not
+>    3 s fiction). Option 3 (body-anchored) REJECTED: it loses the
+>    policy-expressible station semantics VISION requires.
+> 3. **P1R freezes under #40.4 + this**: population scoped to
+>    station-family ticks (ball-directed jobs excluded, 16.8%
+>    measured); X6's floor DERIVED against the measured 8.08% clamp
+>    share (P1's 99% would fail again on a faithful seam); occupancy/
+>    ETA/target-error reported as mediators; all other gates verbatim.
+>    CODIFIED alongside: in this engine "station" reads as a sustained
+>    approach direction, not an occupied post — every later consumer
+>    (P2's eye, the C4 handshake) inherits that meaning.
