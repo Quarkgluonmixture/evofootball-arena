@@ -319,9 +319,162 @@ None of the four is a T0 FAIL — T0 fails only on §5. Which one occurs decides
 what T1 is allowed to be, and (d) in particular is the reason this stage runs
 before T1 rather than beside it.
 
-## 7. Result
+## 7. Result — RUN 2026-07-27: ⛔ **FAIL on C1 (coverage). The queue stops.**
 
-*(empty — this document is the pre-registration. The run fills this section.)*
+SHA `21f42c3d…dd66`, twice byte-identical. **3,331 crosses build / 3,262
+held-out** over 3,000 matches. Zero `src/**` (`git diff` = 0 lines), fingerprint
+`57b0bdab…c673` unchanged, **820/820** tests green, tsc clean.
+
+| gate | result | |
+| --- | --- | --- |
+| **X1** fingerprint | `57b0bdab…c673` unchanged | ✅ |
+| **X2** zero `src/**`; the three existing probes unedited | 0 lines of `src` diff | ✅ |
+| **X3 / D** two runs byte-identical | SHA `21f42c3d…dd66` | ✅ |
+| **X4** the rollup pin, external + internal | **exact on all six combinations** | ✅ |
+| **X5** partition | four classes sum to the crosses, both blocks | ✅ |
+| **C1** ≥300 crosses per combo, BOTH blocks | **held-out BAL vs PRESS = 296** | ⛔ |
+| **C2** ≥3,000 pooled, both blocks | 3,331 / 3,262 | ✅ |
+| **S** stability ≤3.5pp per class | max **1.40pp** (C0); C1 1.10 · C2 1.25 · C3atk 1.07 · C3def 0.18 | ✅ |
+
+### 7.1 The FAIL is mine, and it is the #24 family again
+
+**Held-out BAL vs PRESS produced 296 crosses against a floor of 300 — short by
+four.** Not a budget shortfall: 250 matches is the whole block, and a BALANCED
+team against a PRESS shell simply crosses **1.18 times a match**. The floor came
+from E5h's **league-wide 2.49 crosses per match**, a rate that describes neither
+of this staging's archetypes and least of all its quietest cell.
+
+That is ruling #19/#24's codified error: a floor inherited from a population it
+does not describe. §5.2 had already recorded the margin collapsing from 2.1× to
+1.1× when the X4 reference arrived, and I left the floor where it was frozen —
+correct conduct, and it is what let the gate fire honestly instead of being
+tuned into a pass. **It is not re-derived now.** The build block cleared the
+same floor at 341 for the same cell, so the finding is that the floor was
+right-shaped and mis-sized, and a re-powered C4 T0R would size it off THIS
+run's per-archetype rates rather than a league marginal.
+
+⚠️ Stated because it matters more than the gate: **the census itself is not in
+doubt.** Every other gate passed, the split is stable to 1.4pp across disjoint
+blocks, and the numbers below are on ~3,300 crosses per block. The FAIL is
+about one cell's certification, not about whether the instrument works.
+
+### 7.2 ⭐ X4 is exact — the split really is a re-description
+
+The recomputed old statistic reproduces the unmodified `cross-anatomy.ts` on
+every combination, to the printed precision, shares and cross rate alike:
+
+```text
+CROSS vs NEUTRAL  3.06/m  atk 22.1  def 27.6  noAerial 50.3   ← identical
+CROSS vs BUS      3.04/m  atk 19.1  def 25.6  noAerial 55.3   ← identical
+CROSS vs PRESS    2.54/m  atk 21.4  def 25.3  noAerial 53.3   ← identical
+BAL   vs NEUTRAL  1.72/m  atk 33.7  def 40.0  noAerial 26.3   ← identical
+BAL   vs BUS      1.59/m  atk 28.4  def 41.5  noAerial 30.2   ← identical
+BAL   vs PRESS    1.36/m  atk 33.7  def 35.2  noAerial 31.1   ← identical
+```
+
+### 7.3 ⭐⭐⭐ The headline: `noAerial` was almost never "nobody there"
+
+Pooled over the build block, with 95% cluster-bootstrap intervals:
+
+| class | share | CI |
+| --- | --- | --- |
+| **C0** never-arrived | **10.90%** | [9.73, 12.05] |
+| **C1** nobody-there | **5.70%** | [4.93, 6.49] |
+| **C2** arrived-no-header | **27.95%** | [26.38, 29.48] |
+| **C3atk** | 24.71% | [23.16, 26.31] |
+| **C3def** | 30.74% | [29.14, 32.36] |
+
+The conflated `noAerial` is **43.6%** pooled, and **C1 is 5.70 of it — about one
+part in eight.** Per archetype the same shape holds: CROSS vs NEUTRAL's 50.3%
+is C0 11.6 / C1 6.1 / **C2 32.5**; BAL vs NEUTRAL's 26.3% is C0 7.9 / C1 1.9 /
+**C2 16.5**.
+
+**This is reading (b), and it fires the stop rule.** Q6 was right that the
+number had to be split before anything gated on it, and the split says the C4
+premise as drafted was aimed at the smaller part: bodies ARE arriving, and they
+are not heading it.
+
+### 7.4 ⭐⭐ And the new instrument says why — the delivery does not get up
+
+`flight`, added at §3.3.3 after the diagnostic:
+
+| combo | mean peak height | median | **share ever reaching 1.35 m** |
+| --- | --- | --- | --- |
+| CROSS vs NEUTRAL | 1.65 m | 1.86 | **63.0%** |
+| CROSS vs BUS | 1.61 m | 1.67 | **60.3%** |
+| CROSS vs PRESS | 1.60 m | 1.65 | **62.6%** |
+| BAL vs NEUTRAL | 2.00 m | 2.26 | **84.0%** |
+| BAL vs BUS | 1.95 m | 2.23 | **82.9%** |
+| BAL vs PRESS | 1.93 m | 2.23 | **81.2%** |
+
+**Roughly two of every five cross-archetype deliveries never rise to header
+height at all** — no arrival plan can produce a header on those, whoever is
+standing there. And among C1 crosses only **24–58%** were headable, so even the
+small "nobody there" class is substantially "nobody could have".
+
+⚠️ **This lands on a Q1 verdict.** The design contract took the delivery as
+**healthy and untouched** on the Phase-0 map's reading of `performCross`'s aim,
+lead, curl and pricing. Its aim geometry is indeed well built — but the
+archetype that crosses **2.2× more often** does it with deliveries that are
+**20 percentage points less likely to be headable**, and that is a delivery
+property, not an arrival one. Whether Q1 survives is the commander's, not mine.
+
+### 7.5 ⭐ The map's sharpest claim: CONFIRMED, and it is not what empties the box
+
+| combo | arriver licensed | to the ball | to the arc | **nearer the arc** |
+| --- | --- | --- | --- | --- |
+| CROSS vs NEUTRAL | 55.4% | 8.57 m | 5.00 m | **84.5%** |
+| CROSS vs BUS | 56.9% | 8.95 m | 5.12 m | **84.3%** |
+| CROSS vs PRESS | 55.7% | 9.41 m | 5.34 m | **88.6%** |
+| BAL vs NEUTRAL | 28.1% | 7.73 m | 5.90 m | **74.0%** |
+| BAL vs BUS | 28.9% | 8.61 m | 6.42 m | **73.8%** |
+| BAL vs PRESS | 25.5% | 9.08 m | 6.13 m | **84.4%** |
+
+The licensed late body is nearer the Phase-31 cutback arc than the ball in
+**74–89%** of crosses, and he is **8–9 m from the ball** when it comes down.
+Reading (a)'s second half is measured and true.
+
+**So the verdict splits (a) and (b), and both halves have to be said together**:
+the routing mismatch T1 was drafted to fix is REAL, and it is **not** the
+mechanism behind the number that motivated fixing it. Sending the arriver to
+the right radius would move one body in about half the crosses; C1 is 5.70%.
+
+### 7.6 The rest of the census, reported
+
+* **C0 is the defence, not the pitch furniture.** Of 89/99/81/34/30/30 C0
+  crosses per combo, the terminal was a **defensive touch** in 74/84/64/30/27/25
+  of them; keeper claims 0–1, out of play 0–5, window expiry 0–1. "Never
+  arrived" means *cut out*, almost always.
+* **Occupancy at closest approach**: attackers within 1.35 m 0.14–0.33, within
+  2 m 0.61–0.83, within 3 m 0.83–1.04, within 5 m 1.31–1.61. Defenders within
+  1.35 m 0.03–0.19.
+* **The box is outnumbered about two to one, and it fills between kick and
+  arrival**: attackers/defenders in the box 0.70–1.03 / 1.06–1.82 at the kick,
+  0.98–1.53 / 1.84–2.94 at arrival.
+* **Even C1 is rarely an empty box**: the nearest attacker's median is
+  1.75–2.30 m, and 69–93% of C1 crosses had someone within 3 m. C1 means "not
+  within 1.35 m", which at this radius is a near miss far more often than an
+  absence.
+* **Where the ball lands**: 4.8–8.0 m from the penalty spot, `localX` 22.5–24.4,
+  `|y|` 3.8–4.8.
+* **C2's two triggers, kept apart**: inside the radius 40–169 per combo, touch
+  only 16–102. Both are real; neither is the whole class.
+* **I2's conversion baseline** — shot within the window **34.40%** build /
+  35.41% held-out; goal **10.27%** / 10.73%.
+
+⚠️ **The baseline needs a name attached before I2 can gate on it.** These are
+`cross-anatomy`'s own window statistics, and 10.3% is not the *"cross→goal
+≈5%"* the design contract's I2 quotes from `ROADMAP.md:1292-1300` — two
+different measurements of "conversion". A stage that gates on non-increase must
+say which one, or it will gate on the wrong number.
+
+### 7.7 Disposition
+
+**FAIL ⇒ the fork returns to the commander**, by two independent routes that
+agree: gate C1 fired, and reading (b) fired. Nothing shipped, nothing flagged,
+nothing built — the fingerprint could not move because this stage wrote no
+`src/**` at all. The instrument, the split and the census stand as measured and
+are available to whatever the commander draws next.
 
 ## 8. Stop rules
 
