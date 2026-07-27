@@ -1390,6 +1390,46 @@ generalises.
 >    pre-run disclosure is honesty about a defect, not a licence to run
 >    with it; a known 2.1σ gate buys a verdict that cannot distinguish
 >    its own two readings, which is exactly where H1 landed.
+>
+> **COMMANDER RULING #30 (2026-07-27 — C4 T0R+T0b accepted in full; the
+> re-aim ruled on the measured shares; C6's map received):**
+>
+> 1. **T0R+T0b ACCEPTED — every gate.** The budget model (size to a
+>    common cross TARGET, not a match count) is banked as the coverage
+>    pattern for rate-varying combinations; the census replicates on two
+>    never-seen blocks; the fired T0 cell returns at 2.8× its floor with
+>    the gate text untouched. #29.5's codification already earned its
+>    keep ex ante (H2 caught unfireable before the run) — the discipline
+>    compounding within one day of being written.
+> 2. **BANKED: the T0b ladder closes C2 with residual zero** (H0
+>    height-preempted 56.78 / H1 keeper 0.00 / H2 chest-trap 1.37 / H3
+>    no-contender-at-height 41.85; 2 unexplained of 2,905). H1 = 0 is
+>    its own finding (claims live in C0). The sentence every later stage
+>    inherits: **nobody is absent — the aerial game fails by a third of
+>    a metre of flight (H0 peaks 1.00–1.06 m vs the 1.35 m floor) and
+>    half a metre of arrival (H3 nearest man 1.75–2.20 m)**.
+> 3. **The re-aim (design contract §5.5, amended in its own commit):**
+>    pooled HEIGHT-DOMINATED + the archetype split = #28.4b's MIXED
+>    branch, sequenced on measured shares — **T1-FLIGHT first** (the
+>    ball gets up; aim untouched; mechanism derived from code at
+>    pre-registration; I2 HARD + §2 + full #20 battery; more crossing
+>    selected on honest flight = emergence, guarded by ceiling and band,
+>    never re-tuned by hand), **the T0b ladder re-runs in its audit**
+>    (the partition-not-causal flag answered by measurement), and
+>    **T2-ARRIVAL runs on the residual only** (landing re-route +
+>    box-crash routing + the demoted 5.70pp C1 repair, offside canary).
+> 4. **I2 RE-NAMED with cause, superseding #28.5**: reference = the T0R
+>    census's banked per-combination rates (marginals 10.48/11.94%);
+>    T0's pair came from blocks that failed their own coverage cert.
+>    Judged under #20 CI semantics, powered ex ante against the measured
+>    1.2pp block spread, never point-vs-point.
+> 5. **C6's Phase-0 map is received**; the commander drafts the C6
+>    design contract on it in parallel (the turn-glue double-charge
+>    hazard at `Match.ts:1334`, the existing `dribbleTouch` substrate,
+>    and no-new-attack are the map's load-bearing constraints; per
+>    #29.3 C6 FEEDS the C5 re-census rather than queuing behind it).
+>    **Queue: the executor pre-registers T1-FLIGHT** (Autonomous mode,
+>    one experiment in flight); Stage III P0 + R20 in gaps; F9 any time.
 
 ## Track E — the Embodied Decision Slice (the integration milestone)
 
@@ -1529,7 +1569,15 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-27, #28.4 + #29.4 executed): ✅ C4 T0R+T0b PASSES every
+**Queue state (2026-07-27, ruling #30 issued): the executor PRE-REGISTERS C4
+T1-FLIGHT next** — the ball gets up, aim untouched (design contract §5.5
+amendment); the T0b ladder re-runs inside T1-FLIGHT's audit (partition≠causal,
+answered by measurement); T2-ARRIVAL on the residual only; **I2 re-named with
+cause to the T0R reference (10.48/11.94%, #20 CI semantics)**. The commander
+drafts the C6 design contract on the received map in parallel (#29.3: C6 feeds
+the C5 re-census). Stage III P0 + R20 in gaps; F9 any time. Earlier:
+
+**(2026-07-27, #28.4 + #29.4 executed): ✅ C4 T0R+T0b PASSES every
 gate, and §6's frozen rule returns HEIGHT-DOMINATED** →
 [`C4-T0R-T0B.md`](C4-T0R-T0B.md) §7 (SHA `55b2e4a8…7528`, twice byte-identical,
 5,571 + 5,517 crosses over 5,390 matches, zero `src/**`, fingerprint unchanged).

@@ -127,6 +127,38 @@ begin until T3 lands (sequencing guard); population law #26.5 — C4
 landing live invalidates the value tables; re-census before any
 chooser work resumes.
 
+## 5.5 Re-aim amendment (commander ruling #30, 2026-07-27 — on T0R+T0b)
+
+T0b closed C2 with residual zero and the frozen #28.4b rule lands on
+HEIGHT-DOMINATED pooled (H0 56.78%) — while the archetype split (CROSS
+59–61% vs BAL 46–54%, BAL's deliveries 76–84% headable) makes this the
+MIXED branch in substance. Sequenced on the measured shares:
+
+* **v1's first stage is now T1-FLIGHT**: a flagged change to delivery
+  FLIGHT (CROSS-archetype peaks median 1.00–1.06 m vs the 1.35 m band
+  floor — the ball must get up), aim geometry untouched (Q1's surviving
+  half), mechanism derived from code in the stage's own pre-registration,
+  deliverable = headable share toward BAL's, guards = I2 HARD + §2 band +
+  the full #20 battery. If honest flight makes crossing genuinely better
+  and evolution selects more of it, that is emergence, not a defect —
+  the ceiling and the band are the guards, not a hand re-tune.
+* **The T0b ladder re-runs in T1-FLIGHT's audit** — the partition-not-
+  causal caveat is answered by measurement: whatever H3 margin survives
+  the flight fix is T2-ARRIVAL's measured target.
+* **T2-ARRIVAL (on the residual only)**: the corner machinery's post-kick
+  landing re-route (Q2's safe half — the direct answer to H3's
+  half-metre) + the box-crash routing fix with the offside canary, the
+  original T1 scope demoted to and folded here (C1 = 5.70pp).
+* **I2's reference is RE-NAMED with cause, superseding #28.5**: the T0R
+  census's banked per-combination rates (pooled build+held-out; marginals
+  10.48/11.94%) — T0's 10.27/10.73 came from blocks whose coverage cert
+  failed on a cell. The 1.2pp block-to-block spread means I2 is judged
+  under #20 CI semantics, powered ex ante, never point-vs-point.
+* Banked sentence for every later stage: **nobody is absent — the aerial
+  game fails by a third of a metre of flight and half a metre of
+  arrival** (H3 nearest man 1.75–2.20 m; H1 keeper = 0, claims live in
+  C0). H2 chest-trap 1.37% retires that hypothesis.
+
 ## 6. What C4 unlocks on PASS
 
 Wide play becomes a real payoff channel: a cross has someone at the
