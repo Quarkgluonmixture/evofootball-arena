@@ -1761,7 +1761,50 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-27, #39 executed): ⛔ Stage III P1 RAN and FAILS on X6
+**Queue state (2026-07-27, #40 executed): ⏸ P1R is NOT FROZEN — the pre-freeze
+sizing says the scoped repair still does not deliver the treatment** →
+[`STAGE3-P1R-PREFREEZE-SIZING.md`](STAGE3-P1R-PREFREEZE-SIZING.md) (read-only,
+zero `src/**`, 400 moments, block 970,000). **The fork is back with the
+commander**; nothing in flight.
+
+* **#40.4's ex-ante requirement, measured.** Body→target distance
+  **p50 19.68 m / p90 35.21 m**, i.e. **p50 2.66 s / p90 4.77 s** of travel.
+  P1's W = 2.0 s covered roughly the bottom third — the diagnosis was right and
+  this is its size.
+* ⛔ **But no (W, margin) in the grid delivers a treatment.** Best cell
+  W = 3 s, margin 0.4: occupancy **16.3% mean / 5.6% median**, and it cuts the
+  lattice to **2.7 of 18** candidates — no longer a census of a lattice.
+  W = 4 s at full margin gives 9.8% mean. Tightening trades coverage for
+  occupancy at a rate that never crosses.
+* ⭐⭐⭐ **Why, and it is a SUBSTRATE fact**: the target **moves with the ball**
+  while the body runs to it. A station is ball-relative by definition, so a
+  body crossing 20 m at ~7 m·s⁻¹ chases a point often travelling faster than he
+  is. **This closes on P0's I2 from the other side** — the incumbent's own
+  station target drifts 2.571 m/s median and exceeds 4 m/s on 27.35% of ticks.
+  **Stations in this engine are not occupied; they are perpetually approached**,
+  `emergentStation` included. ⚠️ This does NOT refute Stage III's premise — it
+  says the CENSUS CELL as defined describes something the world does not
+  contain.
+* **I did not freeze P1R.** #29.5 makes deliverability a freeze-time
+  obligation; freezing a census I already know is undelivered would be the
+  "disclosed it and ran anyway" failure the ruling was codified from (C5 T1's
+  H1). The round stops at the measurement.
+* **Settled cheaply and banked**: the station-family filter is unambiguous —
+  **16.8%** of sampled moments are ball-directed jobs (matching P0's 19.4% of
+  body-ticks), #40.4 item 2 done; and the clamp share under that population is
+  **8.08%** of live ticks, so **X6's floor must be derived against ~8%** — P1's
+  99% floor would fail again on a perfectly faithful seam.
+* **The fork (commander's, not mine)**: the census needs an estimand the world
+  can deliver. Four shapes exist in already-banked material — price the
+  **direction** rather than the point (occupancy becomes the mediator it
+  already is) · **lead** the target as `runBurstPoint` and the C4 meet point
+  already do · **body-anchored** candidates (reachable by construction, but no
+  longer a policy the eye can express) · or **accept approach as the
+  treatment** and read the table as the value of moving toward a region, which
+  is what P1 actually measured. Each is a different claim about what a station
+  IS — a design question, not an executor's call.
+
+Earlier (2026-07-27, #39 executed): ⛔ Stage III P1 RAN and FAILS on X6
 — and ⭐⭐⭐ the MEDIATORS say the treatment was never delivered** →
 [`STAGE3-P1-STATION-CENSUS.md`](STAGE3-P1-STATION-CENSUS.md) §7 (SHA
 `92edc587…ff80`, table SHA `d9923b17…cd8f`, 6,000 moments / 114,000 forks,
