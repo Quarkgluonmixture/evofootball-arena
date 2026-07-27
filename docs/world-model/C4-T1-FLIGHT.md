@@ -163,10 +163,21 @@ Every gate is powered ex ante; **none is disclosed as weak** (#29.5).
 ### 4.2 F — the mechanism fires (layer 1 of the six-layer chain)
 
 ```text
-F1  headable share (peak >= 1.35 m) == 100% of crosses, flag ON
-F2  the measured peak distribution matches 1.22625·T^2 to within 1e-6 on a
-    frozen sample of 200 crosses — the arithmetic verified in the world
+F1  the LAUNCH-derived apex, vz^2/(2g), is >= HEADER_MIN_HEIGHT for 100% of
+    crosses, flag ON                                    (exact, no sampling)
+F2  the measured maxZ matches that launch-derived apex to within 1e-3 m
 ```
+
+⚠️ **AMENDED BEFORE THE RUN, in its own commit.** As first frozen, F1 tested
+the *sampled* `maxZ` against 1.35 m and F2 asked for 1e-6. Both are
+**unpassable by construction**: the floor puts a short cross's apex at exactly
+1.35 m, and a parabola read at tick boundaries under-reads its apex by up to
+`g·(dt/2)²/2 = 3.4e-4 m`, so the sampled value can sit just below the very
+threshold the mechanism guarantees. F1 now reads the LAUNCH (`vz`, exact and
+sampling-free); F2's tolerance is **3× the analytic sampling bound**. The
+`maxZ`-based headable share is reported alongside for continuity with T0R's
+instrument. #29.5 applied to my own gates — a predicate that cannot fire is
+not a gate.
 
 **F1 is tautological by construction, and that is exactly why it is a FIRES
 gate and not a payoff.** It proves the mechanism reached the world; it proves
