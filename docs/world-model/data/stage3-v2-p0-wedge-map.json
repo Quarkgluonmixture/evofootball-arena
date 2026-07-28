@@ -1,0 +1,2047 @@
+{
+  "experiment": "STAGE3-V2-P0 (the wedge and the base-rate map)",
+  "authority": "STAGE3-V2-P0-WEDGE-MAP",
+  "head": "92876e5 (v2 contract)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 8710000,
+    "matches": 500,
+    "block": "8710000..8710499",
+    "regionRadiusM": 4,
+    "advanceHorizonS": 3,
+    "warmupTicks": 15,
+    "momentSpacingS": 2,
+    "motionSource": "remembered velocity (differencing clause dead, #67.2)",
+    "lattice": [
+      "r7a0",
+      "r7a60",
+      "r7a120",
+      "r7a180",
+      "r7a240",
+      "r7a300",
+      "r14a0",
+      "r14a60",
+      "r14a120",
+      "r14a180",
+      "r14a240",
+      "r14a300",
+      "r21a0",
+      "r21a60",
+      "r21a120",
+      "r21a180",
+      "r21a240",
+      "r21a300"
+    ],
+    "contexts": [
+      "ours|ownThird|sparse",
+      "ours|ownThird|crowded",
+      "ours|middle|sparse",
+      "ours|middle|crowded",
+      "ours|theirThird|sparse",
+      "ours|theirThird|crowded",
+      "theirs|ownThird|sparse",
+      "theirs|ownThird|crowded",
+      "theirs|middle|sparse",
+      "theirs|middle|crowded",
+      "theirs|theirThird|sparse",
+      "theirs|theirThird|crowded"
+    ],
+    "cellFloor": 150,
+    "clusterUnit": "match seed",
+    "bootstrapResamples": 2000,
+    "bootstrapSeed": 50066,
+    "awareness": 0.8,
+    "freshIntervalTicks": 8
+  },
+  "headline": {
+    "moments": 39553,
+    "trueSomeoneGoingRate": {
+      "point": 0.096738,
+      "lower": 0.095907,
+      "upper": 0.097599
+    },
+    "perceivedSomeoneGoingRate": {
+      "point": 0.082313,
+      "lower": 0.081549,
+      "upper": 0.08313
+    },
+    "agreement": {
+      "point": 0.930816,
+      "lower": 0.930025,
+      "upper": 0.931633
+    },
+    "wedgeRatio": {
+      "point": 0.850885,
+      "lower": 0.845174,
+      "upper": 0.856776
+    }
+  },
+  "deliverableI_baseRates": {
+    "note": "TRUE someone-going rate per candidate per context; the conditioning population V2-P1 #24 floors bind against.",
+    "perContext": {
+      "ours|ownThird|sparse": {
+        "n": 5705,
+        "trueRate": {
+          "point": 0.086016,
+          "lower": 0.083997,
+          "upper": 0.088124
+        },
+        "percRate": {
+          "point": 0.063492,
+          "lower": 0.06152,
+          "upper": 0.06544
+        },
+        "agreement": {
+          "point": 0.945574,
+          "lower": 0.943981,
+          "upper": 0.947218
+        },
+        "wedge": {
+          "point": 0.738141,
+          "lower": 0.721432,
+          "upper": 0.754726
+        }
+      },
+      "ours|ownThird|crowded": {
+        "n": 2129,
+        "trueRate": {
+          "point": 0.088565,
+          "lower": 0.08609,
+          "upper": 0.091047
+        },
+        "percRate": {
+          "point": 0.081937,
+          "lower": 0.079218,
+          "upper": 0.084423
+        },
+        "agreement": {
+          "point": 0.932258,
+          "lower": 0.929139,
+          "upper": 0.935329
+        },
+        "wedge": {
+          "point": 0.925162,
+          "lower": 0.902134,
+          "upper": 0.948245
+        }
+      },
+      "ours|middle|sparse": {
+        "n": 5691,
+        "trueRate": {
+          "point": 0.105596,
+          "lower": 0.103981,
+          "upper": 0.107205
+        },
+        "percRate": {
+          "point": 0.087887,
+          "lower": 0.086248,
+          "upper": 0.089502
+        },
+        "agreement": {
+          "point": 0.923681,
+          "lower": 0.921845,
+          "upper": 0.925469
+        },
+        "wedge": {
+          "point": 0.832301,
+          "lower": 0.818677,
+          "upper": 0.845426
+        }
+      },
+      "ours|middle|crowded": {
+        "n": 3826,
+        "trueRate": {
+          "point": 0.110705,
+          "lower": 0.108849,
+          "upper": 0.11256
+        },
+        "percRate": {
+          "point": 0.104562,
+          "lower": 0.102553,
+          "upper": 0.106692
+        },
+        "agreement": {
+          "point": 0.912049,
+          "lower": 0.909491,
+          "upper": 0.91466
+        },
+        "wedge": {
+          "point": 0.944517,
+          "lower": 0.928852,
+          "upper": 0.959968
+        }
+      },
+      "ours|theirThird|sparse": {
+        "n": 3205,
+        "trueRate": {
+          "point": 0.088594,
+          "lower": 0.086592,
+          "upper": 0.090517
+        },
+        "percRate": {
+          "point": 0.07256,
+          "lower": 0.070657,
+          "upper": 0.07461
+        },
+        "agreement": {
+          "point": 0.939175,
+          "lower": 0.937181,
+          "upper": 0.941207
+        },
+        "wedge": {
+          "point": 0.819018,
+          "lower": 0.79893,
+          "upper": 0.839107
+        }
+      },
+      "ours|theirThird|crowded": {
+        "n": 1359,
+        "trueRate": {
+          "point": 0.082127,
+          "lower": 0.079023,
+          "upper": 0.085057
+        },
+        "percRate": {
+          "point": 0.076322,
+          "lower": 0.073285,
+          "upper": 0.079254
+        },
+        "agreement": {
+          "point": 0.936882,
+          "lower": 0.933741,
+          "upper": 0.93988
+        },
+        "wedge": {
+          "point": 0.929318,
+          "lower": 0.896907,
+          "upper": 0.962597
+        }
+      },
+      "theirs|ownThird|sparse": {
+        "n": 1558,
+        "trueRate": {
+          "point": 0.103979,
+          "lower": 0.101038,
+          "upper": 0.107119
+        },
+        "percRate": {
+          "point": 0.089324,
+          "lower": 0.086232,
+          "upper": 0.092409
+        },
+        "agreement": {
+          "point": 0.930074,
+          "lower": 0.926314,
+          "upper": 0.933389
+        },
+        "wedge": {
+          "point": 0.859053,
+          "lower": 0.831776,
+          "upper": 0.887408
+        }
+      },
+      "theirs|ownThird|crowded": {
+        "n": 1866,
+        "trueRate": {
+          "point": 0.099172,
+          "lower": 0.096528,
+          "upper": 0.101847
+        },
+        "percRate": {
+          "point": 0.093873,
+          "lower": 0.091063,
+          "upper": 0.096536
+        },
+        "agreement": {
+          "point": 0.935453,
+          "lower": 0.932531,
+          "upper": 0.938362
+        },
+        "wedge": {
+          "point": 0.946563,
+          "lower": 0.921429,
+          "upper": 0.970396
+        }
+      },
+      "theirs|middle|sparse": {
+        "n": 4006,
+        "trueRate": {
+          "point": 0.10971,
+          "lower": 0.107701,
+          "upper": 0.111789
+        },
+        "percRate": {
+          "point": 0.091405,
+          "lower": 0.089422,
+          "upper": 0.093384
+        },
+        "agreement": {
+          "point": 0.917069,
+          "lower": 0.914718,
+          "upper": 0.919398
+        },
+        "wedge": {
+          "point": 0.833144,
+          "lower": 0.816966,
+          "upper": 0.849921
+        }
+      },
+      "theirs|middle|crowded": {
+        "n": 3063,
+        "trueRate": {
+          "point": 0.110603,
+          "lower": 0.108544,
+          "upper": 0.112669
+        },
+        "percRate": {
+          "point": 0.104291,
+          "lower": 0.102284,
+          "upper": 0.106379
+        },
+        "agreement": {
+          "point": 0.912214,
+          "lower": 0.909569,
+          "upper": 0.914878
+        },
+        "wedge": {
+          "point": 0.942932,
+          "lower": 0.923138,
+          "upper": 0.961895
+        }
+      },
+      "theirs|theirThird|sparse": {
+        "n": 5394,
+        "trueRate": {
+          "point": 0.086804,
+          "lower": 0.084246,
+          "upper": 0.089408
+        },
+        "percRate": {
+          "point": 0.066236,
+          "lower": 0.064026,
+          "upper": 0.068573
+        },
+        "agreement": {
+          "point": 0.943116,
+          "lower": 0.941323,
+          "upper": 0.944856
+        },
+        "wedge": {
+          "point": 0.763052,
+          "lower": 0.746218,
+          "upper": 0.779017
+        }
+      },
+      "theirs|theirThird|crowded": {
+        "n": 1751,
+        "trueRate": {
+          "point": 0.076179,
+          "lower": 0.072846,
+          "upper": 0.079602
+        },
+        "percRate": {
+          "point": 0.071578,
+          "lower": 0.068435,
+          "upper": 0.074659
+        },
+        "agreement": {
+          "point": 0.946983,
+          "lower": 0.943895,
+          "upper": 0.949818
+        },
+        "wedge": {
+          "point": 0.939608,
+          "lower": 0.910435,
+          "upper": 0.969081
+        }
+      }
+    },
+    "cellTable": {
+      "ours|ownThird|sparse": {
+        "r7a0": {
+          "n": 5705,
+          "trueGoing": 2424,
+          "percGoing": 1705,
+          "trueRate": 0.4249,
+          "percRate": 0.2989
+        },
+        "r7a60": {
+          "n": 5705,
+          "trueGoing": 468,
+          "percGoing": 379,
+          "trueRate": 0.082,
+          "percRate": 0.0664
+        },
+        "r7a120": {
+          "n": 5705,
+          "trueGoing": 367,
+          "percGoing": 292,
+          "trueRate": 0.0643,
+          "percRate": 0.0512
+        },
+        "r7a180": {
+          "n": 5705,
+          "trueGoing": 638,
+          "percGoing": 568,
+          "trueRate": 0.1118,
+          "percRate": 0.0996
+        },
+        "r7a240": {
+          "n": 5705,
+          "trueGoing": 354,
+          "percGoing": 274,
+          "trueRate": 0.0621,
+          "percRate": 0.048
+        },
+        "r7a300": {
+          "n": 5705,
+          "trueGoing": 434,
+          "percGoing": 361,
+          "trueRate": 0.0761,
+          "percRate": 0.0633
+        },
+        "r14a0": {
+          "n": 5705,
+          "trueGoing": 718,
+          "percGoing": 435,
+          "trueRate": 0.1259,
+          "percRate": 0.0762
+        },
+        "r14a60": {
+          "n": 5705,
+          "trueGoing": 1061,
+          "percGoing": 719,
+          "trueRate": 0.186,
+          "percRate": 0.126
+        },
+        "r14a120": {
+          "n": 5705,
+          "trueGoing": 195,
+          "percGoing": 153,
+          "trueRate": 0.0342,
+          "percRate": 0.0268
+        },
+        "r14a180": {
+          "n": 5705,
+          "trueGoing": 233,
+          "percGoing": 197,
+          "trueRate": 0.0408,
+          "percRate": 0.0345
+        },
+        "r14a240": {
+          "n": 5705,
+          "trueGoing": 190,
+          "percGoing": 176,
+          "trueRate": 0.0333,
+          "percRate": 0.0309
+        },
+        "r14a300": {
+          "n": 5705,
+          "trueGoing": 981,
+          "percGoing": 652,
+          "trueRate": 0.172,
+          "percRate": 0.1143
+        },
+        "r21a0": {
+          "n": 5705,
+          "trueGoing": 478,
+          "percGoing": 347,
+          "trueRate": 0.0838,
+          "percRate": 0.0608
+        },
+        "r21a60": {
+          "n": 5705,
+          "trueGoing": 80,
+          "percGoing": 62,
+          "trueRate": 0.014,
+          "percRate": 0.0109
+        },
+        "r21a120": {
+          "n": 5705,
+          "trueGoing": 36,
+          "percGoing": 37,
+          "trueRate": 0.0063,
+          "percRate": 0.0065
+        },
+        "r21a180": {
+          "n": 5705,
+          "trueGoing": 33,
+          "percGoing": 36,
+          "trueRate": 0.0058,
+          "percRate": 0.0063
+        },
+        "r21a240": {
+          "n": 5705,
+          "trueGoing": 38,
+          "percGoing": 45,
+          "trueRate": 0.0067,
+          "percRate": 0.0079
+        },
+        "r21a300": {
+          "n": 5705,
+          "trueGoing": 105,
+          "percGoing": 82,
+          "trueRate": 0.0184,
+          "percRate": 0.0144
+        }
+      },
+      "ours|ownThird|crowded": {
+        "r7a0": {
+          "n": 2129,
+          "trueGoing": 463,
+          "percGoing": 410,
+          "trueRate": 0.2175,
+          "percRate": 0.1926
+        },
+        "r7a60": {
+          "n": 2129,
+          "trueGoing": 272,
+          "percGoing": 266,
+          "trueRate": 0.1278,
+          "percRate": 0.1249
+        },
+        "r7a120": {
+          "n": 2129,
+          "trueGoing": 262,
+          "percGoing": 253,
+          "trueRate": 0.1231,
+          "percRate": 0.1188
+        },
+        "r7a180": {
+          "n": 2129,
+          "trueGoing": 294,
+          "percGoing": 327,
+          "trueRate": 0.1381,
+          "percRate": 0.1536
+        },
+        "r7a240": {
+          "n": 2129,
+          "trueGoing": 241,
+          "percGoing": 244,
+          "trueRate": 0.1132,
+          "percRate": 0.1146
+        },
+        "r7a300": {
+          "n": 2129,
+          "trueGoing": 289,
+          "percGoing": 278,
+          "trueRate": 0.1357,
+          "percRate": 0.1306
+        },
+        "r14a0": {
+          "n": 2129,
+          "trueGoing": 363,
+          "percGoing": 284,
+          "trueRate": 0.1705,
+          "percRate": 0.1334
+        },
+        "r14a60": {
+          "n": 2129,
+          "trueGoing": 159,
+          "percGoing": 130,
+          "trueRate": 0.0747,
+          "percRate": 0.0611
+        },
+        "r14a120": {
+          "n": 2129,
+          "trueGoing": 117,
+          "percGoing": 109,
+          "trueRate": 0.055,
+          "percRate": 0.0512
+        },
+        "r14a180": {
+          "n": 2129,
+          "trueGoing": 151,
+          "percGoing": 150,
+          "trueRate": 0.0709,
+          "percRate": 0.0705
+        },
+        "r14a240": {
+          "n": 2129,
+          "trueGoing": 118,
+          "percGoing": 130,
+          "trueRate": 0.0554,
+          "percRate": 0.0611
+        },
+        "r14a300": {
+          "n": 2129,
+          "trueGoing": 168,
+          "percGoing": 134,
+          "trueRate": 0.0789,
+          "percRate": 0.0629
+        },
+        "r21a0": {
+          "n": 2129,
+          "trueGoing": 258,
+          "percGoing": 209,
+          "trueRate": 0.1212,
+          "percRate": 0.0982
+        },
+        "r21a60": {
+          "n": 2129,
+          "trueGoing": 61,
+          "percGoing": 60,
+          "trueRate": 0.0287,
+          "percRate": 0.0282
+        },
+        "r21a120": {
+          "n": 2129,
+          "trueGoing": 41,
+          "percGoing": 37,
+          "trueRate": 0.0193,
+          "percRate": 0.0174
+        },
+        "r21a180": {
+          "n": 2129,
+          "trueGoing": 41,
+          "percGoing": 39,
+          "trueRate": 0.0193,
+          "percRate": 0.0183
+        },
+        "r21a240": {
+          "n": 2129,
+          "trueGoing": 46,
+          "percGoing": 40,
+          "trueRate": 0.0216,
+          "percRate": 0.0188
+        },
+        "r21a300": {
+          "n": 2129,
+          "trueGoing": 50,
+          "percGoing": 40,
+          "trueRate": 0.0235,
+          "percRate": 0.0188
+        }
+      },
+      "ours|middle|sparse": {
+        "r7a0": {
+          "n": 5691,
+          "trueGoing": 1265,
+          "percGoing": 1073,
+          "trueRate": 0.2223,
+          "percRate": 0.1885
+        },
+        "r7a60": {
+          "n": 5691,
+          "trueGoing": 946,
+          "percGoing": 852,
+          "trueRate": 0.1662,
+          "percRate": 0.1497
+        },
+        "r7a120": {
+          "n": 5691,
+          "trueGoing": 792,
+          "percGoing": 689,
+          "trueRate": 0.1392,
+          "percRate": 0.1211
+        },
+        "r7a180": {
+          "n": 5691,
+          "trueGoing": 1103,
+          "percGoing": 876,
+          "trueRate": 0.1938,
+          "percRate": 0.1539
+        },
+        "r7a240": {
+          "n": 5691,
+          "trueGoing": 715,
+          "percGoing": 665,
+          "trueRate": 0.1256,
+          "percRate": 0.1169
+        },
+        "r7a300": {
+          "n": 5691,
+          "trueGoing": 899,
+          "percGoing": 815,
+          "trueRate": 0.158,
+          "percRate": 0.1432
+        },
+        "r14a0": {
+          "n": 5691,
+          "trueGoing": 937,
+          "percGoing": 861,
+          "trueRate": 0.1646,
+          "percRate": 0.1513
+        },
+        "r14a60": {
+          "n": 5691,
+          "trueGoing": 498,
+          "percGoing": 438,
+          "trueRate": 0.0875,
+          "percRate": 0.077
+        },
+        "r14a120": {
+          "n": 5691,
+          "trueGoing": 298,
+          "percGoing": 255,
+          "trueRate": 0.0524,
+          "percRate": 0.0448
+        },
+        "r14a180": {
+          "n": 5691,
+          "trueGoing": 785,
+          "percGoing": 467,
+          "trueRate": 0.1379,
+          "percRate": 0.0821
+        },
+        "r14a240": {
+          "n": 5691,
+          "trueGoing": 273,
+          "percGoing": 244,
+          "trueRate": 0.048,
+          "percRate": 0.0429
+        },
+        "r14a300": {
+          "n": 5691,
+          "trueGoing": 457,
+          "percGoing": 423,
+          "trueRate": 0.0803,
+          "percRate": 0.0743
+        },
+        "r21a0": {
+          "n": 5691,
+          "trueGoing": 511,
+          "percGoing": 418,
+          "trueRate": 0.0898,
+          "percRate": 0.0734
+        },
+        "r21a60": {
+          "n": 5691,
+          "trueGoing": 379,
+          "percGoing": 278,
+          "trueRate": 0.0666,
+          "percRate": 0.0488
+        },
+        "r21a120": {
+          "n": 5691,
+          "trueGoing": 83,
+          "percGoing": 72,
+          "trueRate": 0.0146,
+          "percRate": 0.0127
+        },
+        "r21a180": {
+          "n": 5691,
+          "trueGoing": 463,
+          "percGoing": 249,
+          "trueRate": 0.0814,
+          "percRate": 0.0438
+        },
+        "r21a240": {
+          "n": 5691,
+          "trueGoing": 102,
+          "percGoing": 85,
+          "trueRate": 0.0179,
+          "percRate": 0.0149
+        },
+        "r21a300": {
+          "n": 5691,
+          "trueGoing": 311,
+          "percGoing": 243,
+          "trueRate": 0.0546,
+          "percRate": 0.0427
+        }
+      },
+      "ours|middle|crowded": {
+        "r7a0": {
+          "n": 3826,
+          "trueGoing": 849,
+          "percGoing": 828,
+          "trueRate": 0.2219,
+          "percRate": 0.2164
+        },
+        "r7a60": {
+          "n": 3826,
+          "trueGoing": 638,
+          "percGoing": 640,
+          "trueRate": 0.1668,
+          "percRate": 0.1673
+        },
+        "r7a120": {
+          "n": 3826,
+          "trueGoing": 568,
+          "percGoing": 545,
+          "trueRate": 0.1485,
+          "percRate": 0.1424
+        },
+        "r7a180": {
+          "n": 3826,
+          "trueGoing": 684,
+          "percGoing": 628,
+          "trueRate": 0.1788,
+          "percRate": 0.1641
+        },
+        "r7a240": {
+          "n": 3826,
+          "trueGoing": 465,
+          "percGoing": 498,
+          "trueRate": 0.1215,
+          "percRate": 0.1302
+        },
+        "r7a300": {
+          "n": 3826,
+          "trueGoing": 626,
+          "percGoing": 605,
+          "trueRate": 0.1636,
+          "percRate": 0.1581
+        },
+        "r14a0": {
+          "n": 3826,
+          "trueGoing": 706,
+          "percGoing": 656,
+          "trueRate": 0.1845,
+          "percRate": 0.1715
+        },
+        "r14a60": {
+          "n": 3826,
+          "trueGoing": 319,
+          "percGoing": 328,
+          "trueRate": 0.0834,
+          "percRate": 0.0857
+        },
+        "r14a120": {
+          "n": 3826,
+          "trueGoing": 242,
+          "percGoing": 237,
+          "trueRate": 0.0633,
+          "percRate": 0.0619
+        },
+        "r14a180": {
+          "n": 3826,
+          "trueGoing": 480,
+          "percGoing": 464,
+          "trueRate": 0.1255,
+          "percRate": 0.1213
+        },
+        "r14a240": {
+          "n": 3826,
+          "trueGoing": 234,
+          "percGoing": 228,
+          "trueRate": 0.0612,
+          "percRate": 0.0596
+        },
+        "r14a300": {
+          "n": 3826,
+          "trueGoing": 323,
+          "percGoing": 326,
+          "trueRate": 0.0844,
+          "percRate": 0.0852
+        },
+        "r21a0": {
+          "n": 3826,
+          "trueGoing": 369,
+          "percGoing": 314,
+          "trueRate": 0.0964,
+          "percRate": 0.0821
+        },
+        "r21a60": {
+          "n": 3826,
+          "trueGoing": 297,
+          "percGoing": 236,
+          "trueRate": 0.0776,
+          "percRate": 0.0617
+        },
+        "r21a120": {
+          "n": 3826,
+          "trueGoing": 107,
+          "percGoing": 90,
+          "trueRate": 0.028,
+          "percRate": 0.0235
+        },
+        "r21a180": {
+          "n": 3826,
+          "trueGoing": 349,
+          "percGoing": 255,
+          "trueRate": 0.0912,
+          "percRate": 0.0666
+        },
+        "r21a240": {
+          "n": 3826,
+          "trueGoing": 91,
+          "percGoing": 96,
+          "trueRate": 0.0238,
+          "percRate": 0.0251
+        },
+        "r21a300": {
+          "n": 3826,
+          "trueGoing": 277,
+          "percGoing": 227,
+          "trueRate": 0.0724,
+          "percRate": 0.0593
+        }
+      },
+      "ours|theirThird|sparse": {
+        "r7a0": {
+          "n": 3205,
+          "trueGoing": 519,
+          "percGoing": 414,
+          "trueRate": 0.1619,
+          "percRate": 0.1292
+        },
+        "r7a60": {
+          "n": 3205,
+          "trueGoing": 456,
+          "percGoing": 398,
+          "trueRate": 0.1423,
+          "percRate": 0.1242
+        },
+        "r7a120": {
+          "n": 3205,
+          "trueGoing": 337,
+          "percGoing": 288,
+          "trueRate": 0.1051,
+          "percRate": 0.0899
+        },
+        "r7a180": {
+          "n": 3205,
+          "trueGoing": 409,
+          "percGoing": 321,
+          "trueRate": 0.1276,
+          "percRate": 0.1002
+        },
+        "r7a240": {
+          "n": 3205,
+          "trueGoing": 335,
+          "percGoing": 271,
+          "trueRate": 0.1045,
+          "percRate": 0.0846
+        },
+        "r7a300": {
+          "n": 3205,
+          "trueGoing": 434,
+          "percGoing": 376,
+          "trueRate": 0.1354,
+          "percRate": 0.1173
+        },
+        "r14a0": {
+          "n": 3205,
+          "trueGoing": 390,
+          "percGoing": 341,
+          "trueRate": 0.1217,
+          "percRate": 0.1064
+        },
+        "r14a60": {
+          "n": 3205,
+          "trueGoing": 337,
+          "percGoing": 300,
+          "trueRate": 0.1051,
+          "percRate": 0.0936
+        },
+        "r14a120": {
+          "n": 3205,
+          "trueGoing": 147,
+          "percGoing": 129,
+          "trueRate": 0.0459,
+          "percRate": 0.0402
+        },
+        "r14a180": {
+          "n": 3205,
+          "trueGoing": 127,
+          "percGoing": 127,
+          "trueRate": 0.0396,
+          "percRate": 0.0396
+        },
+        "r14a240": {
+          "n": 3205,
+          "trueGoing": 124,
+          "percGoing": 97,
+          "trueRate": 0.0387,
+          "percRate": 0.0303
+        },
+        "r14a300": {
+          "n": 3205,
+          "trueGoing": 319,
+          "percGoing": 268,
+          "trueRate": 0.0995,
+          "percRate": 0.0836
+        },
+        "r21a0": {
+          "n": 3205,
+          "trueGoing": 288,
+          "percGoing": 220,
+          "trueRate": 0.0899,
+          "percRate": 0.0686
+        },
+        "r21a60": {
+          "n": 3205,
+          "trueGoing": 246,
+          "percGoing": 180,
+          "trueRate": 0.0768,
+          "percRate": 0.0562
+        },
+        "r21a120": {
+          "n": 3205,
+          "trueGoing": 118,
+          "percGoing": 84,
+          "trueRate": 0.0368,
+          "percRate": 0.0262
+        },
+        "r21a180": {
+          "n": 3205,
+          "trueGoing": 191,
+          "percGoing": 119,
+          "trueRate": 0.0596,
+          "percRate": 0.0371
+        },
+        "r21a240": {
+          "n": 3205,
+          "trueGoing": 113,
+          "percGoing": 76,
+          "trueRate": 0.0353,
+          "percRate": 0.0237
+        },
+        "r21a300": {
+          "n": 3205,
+          "trueGoing": 221,
+          "percGoing": 177,
+          "trueRate": 0.069,
+          "percRate": 0.0552
+        }
+      },
+      "ours|theirThird|crowded": {
+        "r7a0": {
+          "n": 1359,
+          "trueGoing": 217,
+          "percGoing": 199,
+          "trueRate": 0.1597,
+          "percRate": 0.1464
+        },
+        "r7a60": {
+          "n": 1359,
+          "trueGoing": 187,
+          "percGoing": 169,
+          "trueRate": 0.1376,
+          "percRate": 0.1244
+        },
+        "r7a120": {
+          "n": 1359,
+          "trueGoing": 130,
+          "percGoing": 127,
+          "trueRate": 0.0957,
+          "percRate": 0.0935
+        },
+        "r7a180": {
+          "n": 1359,
+          "trueGoing": 106,
+          "percGoing": 114,
+          "trueRate": 0.078,
+          "percRate": 0.0839
+        },
+        "r7a240": {
+          "n": 1359,
+          "trueGoing": 105,
+          "percGoing": 105,
+          "trueRate": 0.0773,
+          "percRate": 0.0773
+        },
+        "r7a300": {
+          "n": 1359,
+          "trueGoing": 163,
+          "percGoing": 158,
+          "trueRate": 0.1199,
+          "percRate": 0.1163
+        },
+        "r14a0": {
+          "n": 1359,
+          "trueGoing": 184,
+          "percGoing": 188,
+          "trueRate": 0.1354,
+          "percRate": 0.1383
+        },
+        "r14a60": {
+          "n": 1359,
+          "trueGoing": 131,
+          "percGoing": 109,
+          "trueRate": 0.0964,
+          "percRate": 0.0802
+        },
+        "r14a120": {
+          "n": 1359,
+          "trueGoing": 49,
+          "percGoing": 53,
+          "trueRate": 0.0361,
+          "percRate": 0.039
+        },
+        "r14a180": {
+          "n": 1359,
+          "trueGoing": 61,
+          "percGoing": 61,
+          "trueRate": 0.0449,
+          "percRate": 0.0449
+        },
+        "r14a240": {
+          "n": 1359,
+          "trueGoing": 48,
+          "percGoing": 50,
+          "trueRate": 0.0353,
+          "percRate": 0.0368
+        },
+        "r14a300": {
+          "n": 1359,
+          "trueGoing": 127,
+          "percGoing": 113,
+          "trueRate": 0.0935,
+          "percRate": 0.0831
+        },
+        "r21a0": {
+          "n": 1359,
+          "trueGoing": 154,
+          "percGoing": 134,
+          "trueRate": 0.1133,
+          "percRate": 0.0986
+        },
+        "r21a60": {
+          "n": 1359,
+          "trueGoing": 96,
+          "percGoing": 77,
+          "trueRate": 0.0706,
+          "percRate": 0.0567
+        },
+        "r21a120": {
+          "n": 1359,
+          "trueGoing": 16,
+          "percGoing": 27,
+          "trueRate": 0.0118,
+          "percRate": 0.0199
+        },
+        "r21a180": {
+          "n": 1359,
+          "trueGoing": 113,
+          "percGoing": 77,
+          "trueRate": 0.0831,
+          "percRate": 0.0567
+        },
+        "r21a240": {
+          "n": 1359,
+          "trueGoing": 23,
+          "percGoing": 26,
+          "trueRate": 0.0169,
+          "percRate": 0.0191
+        },
+        "r21a300": {
+          "n": 1359,
+          "trueGoing": 99,
+          "percGoing": 80,
+          "trueRate": 0.0728,
+          "percRate": 0.0589
+        }
+      },
+      "theirs|ownThird|sparse": {
+        "r7a0": {
+          "n": 1558,
+          "trueGoing": 172,
+          "percGoing": 142,
+          "trueRate": 0.1104,
+          "percRate": 0.0911
+        },
+        "r7a60": {
+          "n": 1558,
+          "trueGoing": 221,
+          "percGoing": 189,
+          "trueRate": 0.1418,
+          "percRate": 0.1213
+        },
+        "r7a120": {
+          "n": 1558,
+          "trueGoing": 251,
+          "percGoing": 231,
+          "trueRate": 0.1611,
+          "percRate": 0.1483
+        },
+        "r7a180": {
+          "n": 1558,
+          "trueGoing": 408,
+          "percGoing": 347,
+          "trueRate": 0.2619,
+          "percRate": 0.2227
+        },
+        "r7a240": {
+          "n": 1558,
+          "trueGoing": 232,
+          "percGoing": 219,
+          "trueRate": 0.1489,
+          "percRate": 0.1406
+        },
+        "r7a300": {
+          "n": 1558,
+          "trueGoing": 235,
+          "percGoing": 192,
+          "trueRate": 0.1508,
+          "percRate": 0.1232
+        },
+        "r14a0": {
+          "n": 1558,
+          "trueGoing": 106,
+          "percGoing": 96,
+          "trueRate": 0.068,
+          "percRate": 0.0616
+        },
+        "r14a60": {
+          "n": 1558,
+          "trueGoing": 73,
+          "percGoing": 59,
+          "trueRate": 0.0469,
+          "percRate": 0.0379
+        },
+        "r14a120": {
+          "n": 1558,
+          "trueGoing": 211,
+          "percGoing": 169,
+          "trueRate": 0.1354,
+          "percRate": 0.1085
+        },
+        "r14a180": {
+          "n": 1558,
+          "trueGoing": 334,
+          "percGoing": 291,
+          "trueRate": 0.2144,
+          "percRate": 0.1868
+        },
+        "r14a240": {
+          "n": 1558,
+          "trueGoing": 206,
+          "percGoing": 183,
+          "trueRate": 0.1322,
+          "percRate": 0.1175
+        },
+        "r14a300": {
+          "n": 1558,
+          "trueGoing": 74,
+          "percGoing": 75,
+          "trueRate": 0.0475,
+          "percRate": 0.0481
+        },
+        "r21a0": {
+          "n": 1558,
+          "trueGoing": 67,
+          "percGoing": 56,
+          "trueRate": 0.043,
+          "percRate": 0.0359
+        },
+        "r21a60": {
+          "n": 1558,
+          "trueGoing": 42,
+          "percGoing": 29,
+          "trueRate": 0.027,
+          "percRate": 0.0186
+        },
+        "r21a120": {
+          "n": 1558,
+          "trueGoing": 66,
+          "percGoing": 51,
+          "trueRate": 0.0424,
+          "percRate": 0.0327
+        },
+        "r21a180": {
+          "n": 1558,
+          "trueGoing": 119,
+          "percGoing": 89,
+          "trueRate": 0.0764,
+          "percRate": 0.0571
+        },
+        "r21a240": {
+          "n": 1558,
+          "trueGoing": 57,
+          "percGoing": 43,
+          "trueRate": 0.0366,
+          "percRate": 0.0276
+        },
+        "r21a300": {
+          "n": 1558,
+          "trueGoing": 42,
+          "percGoing": 44,
+          "trueRate": 0.027,
+          "percRate": 0.0282
+        }
+      },
+      "theirs|ownThird|crowded": {
+        "r7a0": {
+          "n": 1866,
+          "trueGoing": 181,
+          "percGoing": 185,
+          "trueRate": 0.097,
+          "percRate": 0.0991
+        },
+        "r7a60": {
+          "n": 1866,
+          "trueGoing": 307,
+          "percGoing": 303,
+          "trueRate": 0.1645,
+          "percRate": 0.1624
+        },
+        "r7a120": {
+          "n": 1866,
+          "trueGoing": 267,
+          "percGoing": 273,
+          "trueRate": 0.1431,
+          "percRate": 0.1463
+        },
+        "r7a180": {
+          "n": 1866,
+          "trueGoing": 423,
+          "percGoing": 397,
+          "trueRate": 0.2267,
+          "percRate": 0.2128
+        },
+        "r7a240": {
+          "n": 1866,
+          "trueGoing": 280,
+          "percGoing": 277,
+          "trueRate": 0.1501,
+          "percRate": 0.1484
+        },
+        "r7a300": {
+          "n": 1866,
+          "trueGoing": 280,
+          "percGoing": 262,
+          "trueRate": 0.1501,
+          "percRate": 0.1404
+        },
+        "r14a0": {
+          "n": 1866,
+          "trueGoing": 101,
+          "percGoing": 92,
+          "trueRate": 0.0541,
+          "percRate": 0.0493
+        },
+        "r14a60": {
+          "n": 1866,
+          "trueGoing": 115,
+          "percGoing": 93,
+          "trueRate": 0.0616,
+          "percRate": 0.0498
+        },
+        "r14a120": {
+          "n": 1866,
+          "trueGoing": 212,
+          "percGoing": 196,
+          "trueRate": 0.1136,
+          "percRate": 0.105
+        },
+        "r14a180": {
+          "n": 1866,
+          "trueGoing": 389,
+          "percGoing": 378,
+          "trueRate": 0.2085,
+          "percRate": 0.2026
+        },
+        "r14a240": {
+          "n": 1866,
+          "trueGoing": 212,
+          "percGoing": 190,
+          "trueRate": 0.1136,
+          "percRate": 0.1018
+        },
+        "r14a300": {
+          "n": 1866,
+          "trueGoing": 88,
+          "percGoing": 84,
+          "trueRate": 0.0472,
+          "percRate": 0.045
+        },
+        "r21a0": {
+          "n": 1866,
+          "trueGoing": 74,
+          "percGoing": 64,
+          "trueRate": 0.0397,
+          "percRate": 0.0343
+        },
+        "r21a60": {
+          "n": 1866,
+          "trueGoing": 53,
+          "percGoing": 64,
+          "trueRate": 0.0284,
+          "percRate": 0.0343
+        },
+        "r21a120": {
+          "n": 1866,
+          "trueGoing": 80,
+          "percGoing": 73,
+          "trueRate": 0.0429,
+          "percRate": 0.0391
+        },
+        "r21a180": {
+          "n": 1866,
+          "trueGoing": 134,
+          "percGoing": 112,
+          "trueRate": 0.0718,
+          "percRate": 0.06
+        },
+        "r21a240": {
+          "n": 1866,
+          "trueGoing": 83,
+          "percGoing": 60,
+          "trueRate": 0.0445,
+          "percRate": 0.0322
+        },
+        "r21a300": {
+          "n": 1866,
+          "trueGoing": 52,
+          "percGoing": 50,
+          "trueRate": 0.0279,
+          "percRate": 0.0268
+        }
+      },
+      "theirs|middle|sparse": {
+        "r7a0": {
+          "n": 4006,
+          "trueGoing": 661,
+          "percGoing": 642,
+          "trueRate": 0.165,
+          "percRate": 0.1603
+        },
+        "r7a60": {
+          "n": 4006,
+          "trueGoing": 567,
+          "percGoing": 525,
+          "trueRate": 0.1415,
+          "percRate": 0.1311
+        },
+        "r7a120": {
+          "n": 4006,
+          "trueGoing": 604,
+          "percGoing": 554,
+          "trueRate": 0.1508,
+          "percRate": 0.1383
+        },
+        "r7a180": {
+          "n": 4006,
+          "trueGoing": 954,
+          "percGoing": 758,
+          "trueRate": 0.2381,
+          "percRate": 0.1892
+        },
+        "r7a240": {
+          "n": 4006,
+          "trueGoing": 660,
+          "percGoing": 551,
+          "trueRate": 0.1648,
+          "percRate": 0.1375
+        },
+        "r7a300": {
+          "n": 4006,
+          "trueGoing": 548,
+          "percGoing": 482,
+          "trueRate": 0.1368,
+          "percRate": 0.1203
+        },
+        "r14a0": {
+          "n": 4006,
+          "trueGoing": 416,
+          "percGoing": 404,
+          "trueRate": 0.1038,
+          "percRate": 0.1008
+        },
+        "r14a60": {
+          "n": 4006,
+          "trueGoing": 259,
+          "percGoing": 245,
+          "trueRate": 0.0647,
+          "percRate": 0.0612
+        },
+        "r14a120": {
+          "n": 4006,
+          "trueGoing": 423,
+          "percGoing": 328,
+          "trueRate": 0.1056,
+          "percRate": 0.0819
+        },
+        "r14a180": {
+          "n": 4006,
+          "trueGoing": 950,
+          "percGoing": 664,
+          "trueRate": 0.2371,
+          "percRate": 0.1658
+        },
+        "r14a240": {
+          "n": 4006,
+          "trueGoing": 428,
+          "percGoing": 340,
+          "trueRate": 0.1068,
+          "percRate": 0.0849
+        },
+        "r14a300": {
+          "n": 4006,
+          "trueGoing": 272,
+          "percGoing": 238,
+          "trueRate": 0.0679,
+          "percRate": 0.0594
+        },
+        "r21a0": {
+          "n": 4006,
+          "trueGoing": 132,
+          "percGoing": 122,
+          "trueRate": 0.033,
+          "percRate": 0.0305
+        },
+        "r21a60": {
+          "n": 4006,
+          "trueGoing": 156,
+          "percGoing": 122,
+          "trueRate": 0.0389,
+          "percRate": 0.0305
+        },
+        "r21a120": {
+          "n": 4006,
+          "trueGoing": 172,
+          "percGoing": 120,
+          "trueRate": 0.0429,
+          "percRate": 0.03
+        },
+        "r21a180": {
+          "n": 4006,
+          "trueGoing": 455,
+          "percGoing": 295,
+          "trueRate": 0.1136,
+          "percRate": 0.0736
+        },
+        "r21a240": {
+          "n": 4006,
+          "trueGoing": 118,
+          "percGoing": 84,
+          "trueRate": 0.0295,
+          "percRate": 0.021
+        },
+        "r21a300": {
+          "n": 4006,
+          "trueGoing": 136,
+          "percGoing": 117,
+          "trueRate": 0.0339,
+          "percRate": 0.0292
+        }
+      },
+      "theirs|middle|crowded": {
+        "r7a0": {
+          "n": 3063,
+          "trueGoing": 472,
+          "percGoing": 486,
+          "trueRate": 0.1541,
+          "percRate": 0.1587
+        },
+        "r7a60": {
+          "n": 3063,
+          "trueGoing": 362,
+          "percGoing": 382,
+          "trueRate": 0.1182,
+          "percRate": 0.1247
+        },
+        "r7a120": {
+          "n": 3063,
+          "trueGoing": 545,
+          "percGoing": 512,
+          "trueRate": 0.1779,
+          "percRate": 0.1672
+        },
+        "r7a180": {
+          "n": 3063,
+          "trueGoing": 723,
+          "percGoing": 701,
+          "trueRate": 0.236,
+          "percRate": 0.2289
+        },
+        "r7a240": {
+          "n": 3063,
+          "trueGoing": 559,
+          "percGoing": 496,
+          "trueRate": 0.1825,
+          "percRate": 0.1619
+        },
+        "r7a300": {
+          "n": 3063,
+          "trueGoing": 381,
+          "percGoing": 387,
+          "trueRate": 0.1244,
+          "percRate": 0.1263
+        },
+        "r14a0": {
+          "n": 3063,
+          "trueGoing": 285,
+          "percGoing": 267,
+          "trueRate": 0.093,
+          "percRate": 0.0872
+        },
+        "r14a60": {
+          "n": 3063,
+          "trueGoing": 194,
+          "percGoing": 195,
+          "trueRate": 0.0633,
+          "percRate": 0.0637
+        },
+        "r14a120": {
+          "n": 3063,
+          "trueGoing": 371,
+          "percGoing": 331,
+          "trueRate": 0.1211,
+          "percRate": 0.1081
+        },
+        "r14a180": {
+          "n": 3063,
+          "trueGoing": 736,
+          "percGoing": 661,
+          "trueRate": 0.2403,
+          "percRate": 0.2158
+        },
+        "r14a240": {
+          "n": 3063,
+          "trueGoing": 363,
+          "percGoing": 353,
+          "trueRate": 0.1185,
+          "percRate": 0.1152
+        },
+        "r14a300": {
+          "n": 3063,
+          "trueGoing": 219,
+          "percGoing": 199,
+          "trueRate": 0.0715,
+          "percRate": 0.065
+        },
+        "r21a0": {
+          "n": 3063,
+          "trueGoing": 103,
+          "percGoing": 93,
+          "trueRate": 0.0336,
+          "percRate": 0.0304
+        },
+        "r21a60": {
+          "n": 3063,
+          "trueGoing": 92,
+          "percGoing": 74,
+          "trueRate": 0.03,
+          "percRate": 0.0242
+        },
+        "r21a120": {
+          "n": 3063,
+          "trueGoing": 147,
+          "percGoing": 123,
+          "trueRate": 0.048,
+          "percRate": 0.0402
+        },
+        "r21a180": {
+          "n": 3063,
+          "trueGoing": 321,
+          "percGoing": 281,
+          "trueRate": 0.1048,
+          "percRate": 0.0917
+        },
+        "r21a240": {
+          "n": 3063,
+          "trueGoing": 139,
+          "percGoing": 129,
+          "trueRate": 0.0454,
+          "percRate": 0.0421
+        },
+        "r21a300": {
+          "n": 3063,
+          "trueGoing": 86,
+          "percGoing": 80,
+          "trueRate": 0.0281,
+          "percRate": 0.0261
+        }
+      },
+      "theirs|theirThird|sparse": {
+        "r7a0": {
+          "n": 5394,
+          "trueGoing": 511,
+          "percGoing": 392,
+          "trueRate": 0.0947,
+          "percRate": 0.0727
+        },
+        "r7a60": {
+          "n": 5394,
+          "trueGoing": 368,
+          "percGoing": 308,
+          "trueRate": 0.0682,
+          "percRate": 0.0571
+        },
+        "r7a120": {
+          "n": 5394,
+          "trueGoing": 549,
+          "percGoing": 440,
+          "trueRate": 0.1018,
+          "percRate": 0.0816
+        },
+        "r7a180": {
+          "n": 5394,
+          "trueGoing": 1901,
+          "percGoing": 1399,
+          "trueRate": 0.3524,
+          "percRate": 0.2594
+        },
+        "r7a240": {
+          "n": 5394,
+          "trueGoing": 513,
+          "percGoing": 442,
+          "trueRate": 0.0951,
+          "percRate": 0.0819
+        },
+        "r7a300": {
+          "n": 5394,
+          "trueGoing": 306,
+          "percGoing": 260,
+          "trueRate": 0.0567,
+          "percRate": 0.0482
+        },
+        "r14a0": {
+          "n": 5394,
+          "trueGoing": 212,
+          "percGoing": 195,
+          "trueRate": 0.0393,
+          "percRate": 0.0362
+        },
+        "r14a60": {
+          "n": 5394,
+          "trueGoing": 184,
+          "percGoing": 144,
+          "trueRate": 0.0341,
+          "percRate": 0.0267
+        },
+        "r14a120": {
+          "n": 5394,
+          "trueGoing": 872,
+          "percGoing": 617,
+          "trueRate": 0.1617,
+          "percRate": 0.1144
+        },
+        "r14a180": {
+          "n": 5394,
+          "trueGoing": 875,
+          "percGoing": 617,
+          "trueRate": 0.1622,
+          "percRate": 0.1144
+        },
+        "r14a240": {
+          "n": 5394,
+          "trueGoing": 859,
+          "percGoing": 623,
+          "trueRate": 0.1593,
+          "percRate": 0.1155
+        },
+        "r14a300": {
+          "n": 5394,
+          "trueGoing": 175,
+          "percGoing": 139,
+          "trueRate": 0.0324,
+          "percRate": 0.0258
+        },
+        "r21a0": {
+          "n": 5394,
+          "trueGoing": 64,
+          "percGoing": 55,
+          "trueRate": 0.0119,
+          "percRate": 0.0102
+        },
+        "r21a60": {
+          "n": 5394,
+          "trueGoing": 51,
+          "percGoing": 41,
+          "trueRate": 0.0095,
+          "percRate": 0.0076
+        },
+        "r21a120": {
+          "n": 5394,
+          "trueGoing": 103,
+          "percGoing": 69,
+          "trueRate": 0.0191,
+          "percRate": 0.0128
+        },
+        "r21a180": {
+          "n": 5394,
+          "trueGoing": 717,
+          "percGoing": 561,
+          "trueRate": 0.1329,
+          "percRate": 0.104
+        },
+        "r21a240": {
+          "n": 5394,
+          "trueGoing": 117,
+          "percGoing": 89,
+          "trueRate": 0.0217,
+          "percRate": 0.0165
+        },
+        "r21a300": {
+          "n": 5394,
+          "trueGoing": 51,
+          "percGoing": 40,
+          "trueRate": 0.0095,
+          "percRate": 0.0074
+        }
+      },
+      "theirs|theirThird|crowded": {
+        "r7a0": {
+          "n": 1751,
+          "trueGoing": 155,
+          "percGoing": 138,
+          "trueRate": 0.0885,
+          "percRate": 0.0788
+        },
+        "r7a60": {
+          "n": 1751,
+          "trueGoing": 91,
+          "percGoing": 99,
+          "trueRate": 0.052,
+          "percRate": 0.0565
+        },
+        "r7a120": {
+          "n": 1751,
+          "trueGoing": 164,
+          "percGoing": 164,
+          "trueRate": 0.0937,
+          "percRate": 0.0937
+        },
+        "r7a180": {
+          "n": 1751,
+          "trueGoing": 437,
+          "percGoing": 418,
+          "trueRate": 0.2496,
+          "percRate": 0.2387
+        },
+        "r7a240": {
+          "n": 1751,
+          "trueGoing": 168,
+          "percGoing": 172,
+          "trueRate": 0.0959,
+          "percRate": 0.0982
+        },
+        "r7a300": {
+          "n": 1751,
+          "trueGoing": 95,
+          "percGoing": 87,
+          "trueRate": 0.0543,
+          "percRate": 0.0497
+        },
+        "r14a0": {
+          "n": 1751,
+          "trueGoing": 54,
+          "percGoing": 40,
+          "trueRate": 0.0308,
+          "percRate": 0.0228
+        },
+        "r14a60": {
+          "n": 1751,
+          "trueGoing": 50,
+          "percGoing": 43,
+          "trueRate": 0.0286,
+          "percRate": 0.0246
+        },
+        "r14a120": {
+          "n": 1751,
+          "trueGoing": 190,
+          "percGoing": 153,
+          "trueRate": 0.1085,
+          "percRate": 0.0874
+        },
+        "r14a180": {
+          "n": 1751,
+          "trueGoing": 332,
+          "percGoing": 321,
+          "trueRate": 0.1896,
+          "percRate": 0.1833
+        },
+        "r14a240": {
+          "n": 1751,
+          "trueGoing": 176,
+          "percGoing": 158,
+          "trueRate": 0.1005,
+          "percRate": 0.0902
+        },
+        "r14a300": {
+          "n": 1751,
+          "trueGoing": 41,
+          "percGoing": 52,
+          "trueRate": 0.0234,
+          "percRate": 0.0297
+        },
+        "r21a0": {
+          "n": 1751,
+          "trueGoing": 13,
+          "percGoing": 11,
+          "trueRate": 0.0074,
+          "percRate": 0.0063
+        },
+        "r21a60": {
+          "n": 1751,
+          "trueGoing": 22,
+          "percGoing": 19,
+          "trueRate": 0.0126,
+          "percRate": 0.0109
+        },
+        "r21a120": {
+          "n": 1751,
+          "trueGoing": 48,
+          "percGoing": 45,
+          "trueRate": 0.0274,
+          "percRate": 0.0257
+        },
+        "r21a180": {
+          "n": 1751,
+          "trueGoing": 305,
+          "percGoing": 275,
+          "trueRate": 0.1742,
+          "percRate": 0.1571
+        },
+        "r21a240": {
+          "n": 1751,
+          "trueGoing": 42,
+          "percGoing": 50,
+          "trueRate": 0.024,
+          "percRate": 0.0286
+        },
+        "r21a300": {
+          "n": 1751,
+          "trueGoing": 18,
+          "percGoing": 11,
+          "trueRate": 0.0103,
+          "percRate": 0.0063
+        }
+      }
+    },
+    "floors": {
+      "cellFloor": 150,
+      "totalCells": 216,
+      "trueCellsClearingFloor": 141,
+      "perceivedCellsClearingFloor": 131,
+      "rarestTrueCell": "theirs|theirThird|crowded||r21a0",
+      "rarestTrueCount": 13,
+      "rarestPerceivedCell": "theirs|theirThird|crowded||r21a0",
+      "rarestPerceivedCount": 11
+    }
+  },
+  "deliverableII_wedge": {
+    "decomposition": {
+      "trueGoingEvents": 75037,
+      "seenGoing": 40184,
+      "seenGoingShare": 0.5355,
+      "missedEvents": 34853,
+      "missedShare": 0.4645,
+      "neverSaw": 12159,
+      "tooLongAgo": 3032,
+      "velocityNoise": 19662,
+      "ambiguousTieBroken": 4110,
+      "ofMissed": {
+        "neverSaw": 0.3489,
+        "tooLongAgo": 0.087,
+        "velocityNoise": 0.5641
+      },
+      "falseGoing": 23201,
+      "retention": {
+        "irreducibleScanCoverageShare": 0.3489,
+        "retentionRecoverableShare": 0.087,
+        "irreducibleNoiseShare": 0.5641,
+        "tooOldAgeTicks": {
+          "n": 3032,
+          "median": 27,
+          "p90": 47,
+          "max": 51
+        },
+        "note": "An EXACT longer-retention replay needs a retention parameter on reconstructBodyMemory; I8/zero-src forbids adding one here, so the retention-recoverable slice is bounded by the too-long-ago share and never-saw is reported as the retention-irreducible scan-coverage floor."
+      }
+    }
+  },
+  "deliverableIII_repairs": {
+    "inflight": {
+      "decisions": 56351,
+      "noOwnerShare": 0.5222,
+      "v1Banked": 0.287,
+      "recoveredShare": 1,
+      "note": "repair 1: last-perceived owner retained while the ball is in flight; recoveredShare = in-flight decisions with a known last owner (non-abstaining)."
+    },
+    "warmup": {
+      "bodies": 39553,
+      "naturalWarmNoSnapshotShare": 0.0394,
+      "coldNoSnapshotShare": 0.0632,
+      "v1BankedNoWarmup": 0.205,
+      "rememberedTeammates": {
+        "median": 4,
+        "mean": 3.267
+      },
+      "note": "coldNoSnapshotShare = a fresh percept memory pulled with NO warm-up (≈ v1 20.5%); naturalWarmNoSnapshotShare = the residual with the census body naturally warmed over the whole match (≫ 15-tick pre-roll); the gap is repair 2 validated. Residual NEVER-SAW persists out-of-range."
+    }
+  },
+  "deliverableIV_anchors": {
+    "i1DwellSeconds": {
+      "median": 0.6667,
+      "mean": 1.3836,
+      "p90": 3.5,
+      "familyChangesPerBodyPerMin": 46.4177,
+      "v1": {
+        "median": 0.667,
+        "mean": 1.466,
+        "changesPerBodyPerMin": 43.98
+      }
+    },
+    "i2TargetDriftMs": {
+      "median": 2.5516,
+      "mean": 4.6045,
+      "shareAbove4": 0.271,
+      "v1": {
+        "median": 2.571,
+        "shareAbove4": 0.2735
+      }
+    },
+    "i3PairwiseSpacingM": {
+      "p10": 3.8876,
+      "median": 12.3607,
+      "shareUnder4": 0.104,
+      "v1": {
+        "p10": 4.188,
+        "median": 12.955,
+        "shareUnder4": 0.094
+      }
+    },
+    "i6DuplicateRuns": {
+      "share": 0.5529,
+      "v1": 0.5471
+    }
+  },
+  "teeth": {
+    "toothA": {
+      "predicate": "agreement A ≤ 0.502",
+      "agreement": 0.930816,
+      "wall": 0.502,
+      "fired": false,
+      "verdict": "NOT fired — percept beats the coin"
+    },
+    "toothB": {
+      "predicate": "wedge W_r ≤ 0.24 AND rarest perceived split cell < 150",
+      "wedgeRatio": 0.850885,
+      "wedgeThreshold": 0.24,
+      "rarestPerceivedCell": "theirs|theirThird|crowded||r21a0",
+      "rarestPerceivedCount": 11,
+      "floor": 150,
+      "fired": false,
+      "verdict": "NOT fired — either the wedge is above 0.24 or the rarest cell clears 150"
+    },
+    "anyFired": false,
+    "reading": "W1 — WEDGE NARROW (feature is SEEN; V2-P1 proceeds; DEV from true)"
+  },
+  "ledger": {
+    "qualifying": 46238,
+    "rows": 39553,
+    "ballDirectedSkipped": 6185,
+    "noPool": 0,
+    "eSentOff": 0,
+    "eNoSnapshot": 500,
+    "unexplained": 0
+  },
+  "gates": {
+    "clonesTaken": 40053,
+    "cloneCoverage": true,
+    "cloneChecked": 1602,
+    "cloneMismatched": 0,
+    "xClone": true,
+    "xFid": true,
+    "xDet": true
+  },
+  "deterministic": true,
+  "tableSha": "e30a37cfbd646b31fc5f4db9e19af08788f18f728bf003c8d279da17d2dad318",
+  "sha256": "36031b07d4f3d13774b8fe31ca6b0477185ffd5225415ced9455034bf913963b",
+  "verdict": "GATES PASS · teeth clear"
+}
