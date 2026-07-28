@@ -2253,3 +2253,22 @@
 >    DRAFTED, parked for the user's ratification · (d) R20 filler not
 >    reached. Morning forks, all the user's: v2 memo (3 options in the
 >    memo §5) · C6 T2 authorization · anything from the night log.
+
+> **COMMANDER RULING #51 (2026-07-29 — C6 T2 AUTHORIZED, user-ratified
+> ("跑"): the deployment/watchability stage):**
+>
+> 1. The executor drafts the T2 pre-registration under contract §6-T2,
+>    frozen before implementation, commander review before any run.
+>    Constraints folded in from the T1 chain (#50): the kick-origin
+>    displacement (p50 +16.5% over its T0 bound) and the loose-ball
+>    delta (+363 REPORTED at fork level) are T2's to PRICE — each needs
+>    a pre-registered band with a derivation, not a reported orphan.
+> 2. Form per contract: law armed BOTH TEAMS vs R0, paired seeds
+>    (physics is symmetric — no adoption ladder); instruments = the
+>    duel/turnover economy, the scramble battery vs P0 baselines
+>    (乱抢 = the user's #1 hate — its limbs are HARD), the §2 band,
+>    restart health; #20 semantics; cluster = match seed; floors on
+>    attainable populations (#24); full sign space; standing exception
+>    classes incl. E-INJURY (now a named house class).
+> 3. Sub-agent channel continues (the user is present; redirect to the
+>    standing executor session any time by saying so).
