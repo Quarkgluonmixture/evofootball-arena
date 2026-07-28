@@ -2691,3 +2691,41 @@
 >    queued by the commander: presented next round alongside C5-T2's
 >    progress. Road B stands — nothing from tonight's chain ships
 >    until the user says so.
+
+> **COMMANDER RULING #64 (2026-07-30 — C5 T2 pre-registration reviewed:
+> PASS; the R-B resolution adopted; the held-out warning banked as the
+> pre-laid likely outcome; build + sizing smoke authorized):**
+>
+> 1. **REVIEW — PASS.** The zero-price-option resolution R-B (the
+>    certification-boundary rule: HOLD only where the perceived cell's
+>    certified interval reaches zero — the #29.3 predicate consumed
+>    per-decision) is ADOPTED as the honest reading of #63.3: no term
+>    added, no subsidy, and the estimand honestly reframed — **the
+>    seat is a PRICE PROBE, not a policy**; its v1 question is "does
+>    the live world confirm the certified price where the option
+>    exists", licensing exactly one live action (HOLD-30 in perceived
+>    0|0|0). The two-part DEV floor and the CI-overlap fidelity form
+>    are accepted as frozen (the overlap form's leniency is noted; the
+>    directional readings F3/F4 carry the real content). Blocks
+>    disjoint; the match stage correctly pre-named-not-frozen with the
+>    adoption ladder restored (a brain change, not symmetric physics).
+> 2. **THE HELD-OUT WARNING, BANKED with its composition caveat**: the
+>    held-out half reads the firing cell at a coarser rung (n=154 →
+>    laddered to pressureStale, which POOLS the dead mid-support cell)
+>    at −7.69 pp [−9.41, −5.95]. This is not a like-for-like
+>    contradiction — the held-out simply cannot see the cell at cell
+>    resolution — but it makes **F3 (price optimistic → the seat
+>    honestly re-parks) the PRE-LAID MOST LIKELY OUTCOME**, stated
+>    now so no one is surprised and nothing is re-cut later. The
+>    certification stands procedurally (the frozen predicate read the
+>    build table; the #62.3 door stays closed); the fork stage is the
+>    adjudicator the discipline demands.
+> 3. **BUILD + SIZING SMOKE AUTHORIZED**: the executor implements the
+>    dormant `whetherEye` seam (the percept-compliant ShieldHold made
+>    reachable via the seam — production unreachability re-pinned by
+>    test, X-FP/X-OFF-IDENT verbatim; this is the one src-touching
+>    point and it gets the build review's eye), the probe, and the
+>    read-only sizing smoke (48 matches, 8.5M, live chooser-hold rate);
+>    the smoke's measured rate returns HERE for the #44.5 ceiling
+>    sign-off before the fork stage runs. Freeze discipline: nothing
+>    else moves.
