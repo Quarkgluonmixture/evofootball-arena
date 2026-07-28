@@ -2368,3 +2368,30 @@
 >    proposed). The wind-up seat (`PlayerBrain.ts:911-956` per the C5
 >    map) and everything the shot/pass release actually does today.
 >    Executor may run it under the standing pattern.
+
+> **COMMANDER RULING #55 (2026-07-29 — C7 T0 pre-registration reviewed:
+> PASS, no amendment; run authorized):**
+>
+> 1. **REVIEW — PASS.** The #46.2 seed-disjointness law applied without
+>    being caught this time (smoke 6.6M, census 6.7M+); floors ≥2× on
+>    the binding gate with the return-to-commander disposition; the
+>    reach-model fork handled correctly (honest current-closing model
+>    PRIMARY, top-speed as REPORTED sensitivity, the 8.96%-vs-25.37%
+>    divergence disclosed rather than buried); θ-reconstruction
+>    disclosed as sizing-only; full sign space (a)–(f); receipts and
+>    E-INJURY carried per #49.3. The queue-head update the executor
+>    made is factual and stands.
+> 2. **Noted for the record, before the run**: the smoke pre-views a
+>    genuinely live reading (b) — defenders near shooters are mostly
+>    NOT closing (closing speed p50 0.17 m/s), so the interruption
+>    seat may be thin at v1 scope; and the quality head-room is
+>    tail-concentrated (θ p50 7.3°, but 23% of shots ≥30°). If the
+>    census confirms both, the honest disposition may be that C7 v1's
+>    value lives in the TWISTED TAIL (punishing rushed shots) rather
+>    than in charge-downs — a reading, not a re-cut, and pre-laid as
+>    (c)'s territory. The census decides; nobody pre-judges.
+> 3. **RUN AUTHORIZED**: the executor builds the census instrument
+>    exactly to the frozen spec, engineering-smokes it capped, runs the
+>    full census TO COMPLETION INSIDE ITS SESSION (500 matches is
+>    minutes, not the T1-scale hour), fills §5-result, commits, pushes.
+>    Nothing moves after sight; the result returns to the commander.
