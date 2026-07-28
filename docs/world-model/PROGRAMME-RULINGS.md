@@ -2793,3 +2793,37 @@
 >    stages follow the standing pattern (freeze → review → run per
 >    stage; sizing smokes before floors, #44.5/#65 now the law of the
 >    land).
+
+> **COMMANDER RULING #67 (2026-07-30 — V2-P0 pre-registration reviewed:
+> PASS; the dead-letter ratified; the flag bundle ratified; run
+> authorized):**
+>
+> 1. **REVIEW — PASS.** Region radius 4.0 m from the I6 duplicate-run
+>    grain (the operational meaning of "aimed at the same place" — the
+>    second-arrival collision itself), overlap caveat correctly
+>    reasoned (a CONDITION, not a partition); floors smoke-derived with
+>    the honest disclosure that the someone-going split is deliverable
+>    (i)'s to measure, guarded by Tooth B; the stop teeth numerically
+>    anchored on C5-T2's measured hazard (A: agreement ≤ 50.2%;
+>    B: wedge ratio ≤ 0.24 AND rarest split cell < 150); blocks
+>    disjoint.
+> 2. **THE DIFFERENCING CLAUSE IS RATIFIED DEAD** (contract-vs-code
+>    mismatch, correctly surfaced): the snapshot carries a remembered
+>    VELOCITY directly (one StoredPlayer per gid, no two-position
+>    history), so the contract §2's fallback branch is inoperative by
+>    code and I8 forbids building the store it would need. Motion
+>    source = the remembered velocity, frozen; the (ii) decomposition
+>    is three-part (never-saw / too-old / velocity-noise). The
+>    contract is deemed amended to this reading by this ruling.
+> 3. **THE FULL ENRICHED BUNDLE IS RATIFIED** (edsPerceived* + c5Hold
+>    + c6Carry + c7Windup, c5TouchFork off — the C5-recensus §0.1
+>    precedent): deliverable (ii) reads percepts, which requires the
+>    perception chain live; and the programme's "enriched world" has
+>    meant the full certified bundle since #60.3. #66.2's shorter list
+>    is superseded by this reading; every run states its flags.
+> 4. **BUILD + RUN AUTHORIZED, in-session** (500 matches ≈ C7-T0
+>    scale): instrument to the frozen spec, engineering smoke, full
+>    run TO COMPLETION inside the executor session, result section
+>    filled, FAILs and stop-teeth readings as-is, one or two commits,
+>    push. The result returns here; the teeth decide whether V2-P1 may
+>    even be drafted.
