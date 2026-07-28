@@ -2322,3 +2322,49 @@
 >    word. The road order is now: C6 T2 (in flight) → #29.3 C5
 >    re-census decision → C7 Phase-0 map (gap work, #29.4 template)
 >    → revisit Stage III v2.
+
+> **COMMANDER RULING #54 (2026-07-29 — C6 T2 accepted, reading (A):
+> ⭐⭐ THE C6 v1 CHAIN IS COMPLETE AND CERTIFIED; the #29.3 decision is
+> taken — one re-census, after C7's first slice):**
+>
+> 1. **T2 ACCEPTED — all quiet, verified against the data.** Every
+>    watchability limb ~100× below its edge with CIs straddling zero;
+>    the closest approach anywhere is C-RESTART at +2.19% against a
+>    +10% edge (CI straddling); §2 band holds (largest excursion goals
+>    −6.76% of ±15%); PC-KICK inside ±5% on all three completion
+>    instruments; structural zero-loose exact (107,282 releases, all
+>    channel-classed, offset-attributable 0).
+> 2. **BANKED, three honest notes**: (i) **PC-LOOSE did not transfer**
+>    — fork-level +363 became −0.76% at match level (CI [−2.38%,
+>    +0.28%] straddling zero; unresolved; priced-as-designed per the
+>    registered #29.5 disclosure). At whole-match scale the honest
+>    offset generates NO extra loose balls; dilution dominated.
+>    (ii) the turn-episode loss rate +3.07% [−0.7, +3.8] — T1's
+>    eligibility cost faintly visible at match level, unresolved,
+>    exactly where it should sit. (iii) R0's I5(b) sits +2 pp off P0's
+>    baseline (fresh-block population drift; the gate binds paired, so
+>    unaffected); the 31.81 m displacement outlier in the REPORTED
+>    instrument is the known injury-teleport signature (#49), gating
+>    nothing.
+> 3. ⭐⭐ **C6 v1 IS CERTIFIED END TO END**: contract → T0 (movable
+>    geometry, the combined shape) → T1/T1R (both axes certified off a
+>    closed ledger) → T2 (deployment-safe, watchability intact, no
+>    loose-ball tax). "以自己为圆心连球带人一起转" now has a fully
+>    measured, deployment-safe replacement — dormant behind `c6Carry`,
+>    fingerprint unchanged, nothing shipped (Road B). The de-glue's
+>    domain was never touched; v2's pressured-carry seat keeps its
+>    scramble-ceiling obligation.
+> 4. **THE #29.3 DECISION: the C5 re-census runs ONCE, after C7's
+>    first slice lands or is refuted — not now.** Rationale: the hold's
+>    economics have a cost side and a payoff side; C6 just moved the
+>    cost side (a stationary carrier's tuck puts the ball at ~0.55 m
+>    instead of 0.85 m — the hold got structurally cheaper to protect),
+>    while C7's wind-up is the named PAYOFF-side lever. #26.5 makes any
+>    C6-only re-census stale the day C7 lands; re-censusing per lever
+>    pays for the same finding twice. One census over the jointly
+>    enriched world, H1 re-powered, all #29.1 repairs — after C7 v1.
+> 5. **C7 PHASE-0 CODE MAP AUTHORIZED as gap work** (the #29.4
+>    template: read-only, file:line evidence, no contract, no mechanic
+>    proposed). The wind-up seat (`PlayerBrain.ts:911-956` per the C5
+>    map) and everything the shot/pass release actually does today.
+>    Executor may run it under the standing pattern.
