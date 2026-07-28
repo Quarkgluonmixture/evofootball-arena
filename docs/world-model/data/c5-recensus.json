@@ -4,10 +4,10 @@
   "parameters": {
     "buildSeedStart": 8300000,
     "heldoutSeedStart": 8400000,
-    "clusterFloorBuild": 980,
-    "clusterFloorHeldout": 392,
-    "maxMatchesBuild": 1200,
-    "maxMatchesHeldout": 480,
+    "clusterFloorBuild": 1233,
+    "clusterFloorHeldout": 493,
+    "maxMatchesBuild": 1500,
+    "maxMatchesHeldout": 600,
     "perMatchCap": 80,
     "momentSpacing": 30,
     "horizon": 240,
@@ -39,24 +39,24 @@
     "arm": "VALUE (perceived pair + value axis) + c5Hold + c6Carry + c7Windup, EVERY arm"
   },
   "build": {
-    "matches": 980,
-    "clusters": 980,
-    "moments": 58184,
+    "matches": 1233,
+    "clusters": 1233,
+    "moments": 73300,
     "coverage": {
-      "qualifying": 78326,
-      "eligible": 58184,
-      "retainedFraction": 0.742844,
+      "qualifying": 98565,
+      "eligible": 73300,
+      "retainedFraction": 0.743672,
       "exclusions": {
-        "X-FIRSTTOUCH": 13554,
-        "X-MUSTKICK": 3929,
-        "X-A0-SHOOT": 2604,
-        "X-A0-CLEAR": 55
+        "X-FIRSTTOUCH": 17059,
+        "X-MUSTKICK": 4900,
+        "X-A0-SHOOT": 3240,
+        "X-A0-CLEAR": 66
       }
     },
     "exceptions": {
-      "paused": 70093,
-      "injured": 1683,
-      "matchEnd": 16,
+      "paused": 88334,
+      "injured": 2124,
+      "matchEnd": 23,
       "noOwner": 0,
       "gkHold": 0,
       "unexplained": 0
@@ -67,35 +67,35 @@
           "pressureBand": 0,
           "staleBand": 0,
           "supportBand": 0,
-          "n": 369,
+          "n": 446,
           "rung": "cell",
-          "rungN": 369,
+          "rungN": 446,
           "rates": {
-            "actNow": 0.143631,
-            "hold30": 0.130081,
-            "hold60": 0.070461,
-            "hold90": 0.03252
+            "actNow": 0.141256,
+            "hold30": 0.134529,
+            "hold60": 0.069507,
+            "hold90": 0.038117
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.01355,
-              "lower": -0.057534,
-              "upper": 0.027933,
+              "point": -0.006726,
+              "lower": -0.04662,
+              "upper": 0.031461,
               "reachesZero": true
             },
             {
               "holdTicks": 60,
-              "point": -0.073171,
-              "lower": -0.112299,
-              "upper": -0.035813,
+              "point": -0.071749,
+              "lower": -0.107296,
+              "upper": -0.036866,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.111111,
-              "lower": -0.152174,
-              "upper": -0.073684,
+              "point": -0.103139,
+              "lower": -0.135965,
+              "upper": -0.069264,
               "reachesZero": false
             }
           ]
@@ -104,35 +104,35 @@
           "pressureBand": 0,
           "staleBand": 0,
           "supportBand": 1,
-          "n": 830,
+          "n": 1040,
           "rung": "cell",
-          "rungN": 830,
+          "rungN": 1040,
           "rates": {
-            "actNow": 0.174699,
-            "hold30": 0.145783,
-            "hold60": 0.085542,
-            "hold90": 0.083133
+            "actNow": 0.181731,
+            "hold30": 0.144231,
+            "hold60": 0.095192,
+            "hold90": 0.081731
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.028916,
-              "lower": -0.05622,
-              "upper": 0,
-              "reachesZero": true
+              "point": -0.0375,
+              "lower": -0.06383,
+              "upper": -0.012833,
+              "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.089157,
-              "lower": -0.116727,
-              "upper": -0.059611,
+              "point": -0.086538,
+              "lower": -0.111528,
+              "upper": -0.060136,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.091566,
-              "lower": -0.121176,
-              "upper": -0.063492,
+              "point": -0.1,
+              "lower": -0.126223,
+              "upper": -0.075072,
               "reachesZero": false
             }
           ]
@@ -141,35 +141,35 @@
           "pressureBand": 0,
           "staleBand": 0,
           "supportBand": 2,
-          "n": 4204,
+          "n": 5286,
           "rung": "cell",
-          "rungN": 4204,
+          "rungN": 5286,
           "rates": {
-            "actNow": 0.156518,
-            "hold30": 0.083254,
-            "hold60": 0.055423,
-            "hold90": 0.037583
+            "actNow": 0.153046,
+            "hold30": 0.083428,
+            "hold60": 0.055619,
+            "hold90": 0.038214
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.073264,
-              "lower": -0.086813,
-              "upper": -0.060743,
+              "point": -0.069618,
+              "lower": -0.081237,
+              "upper": -0.058332,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.101094,
-              "lower": -0.11336,
-              "upper": -0.088931,
+              "point": -0.097427,
+              "lower": -0.108501,
+              "upper": -0.086486,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.118934,
-              "lower": -0.131003,
-              "upper": -0.107563,
+              "point": -0.114832,
+              "lower": -0.125374,
+              "upper": -0.104749,
               "reachesZero": false
             }
           ]
@@ -178,35 +178,35 @@
           "pressureBand": 0,
           "staleBand": 1,
           "supportBand": 0,
-          "n": 78,
+          "n": 94,
           "rung": "pressureStale",
-          "rungN": 1843,
+          "rungN": 2326,
           "rates": {
-            "actNow": 0.231687,
-            "hold30": 0.151926,
-            "hold60": 0.110689,
-            "hold90": 0.061313
+            "actNow": 0.225279,
+            "hold30": 0.152193,
+            "hold60": 0.11006,
+            "hold90": 0.061909
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.079761,
-              "lower": -0.101918,
-              "upper": -0.056552,
+              "point": -0.073087,
+              "lower": -0.091978,
+              "upper": -0.053277,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.120998,
-              "lower": -0.142935,
-              "upper": -0.099191,
+              "point": -0.115219,
+              "lower": -0.13474,
+              "upper": -0.095591,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.170374,
-              "lower": -0.193582,
-              "upper": -0.147926,
+              "point": -0.163371,
+              "lower": -0.183665,
+              "upper": -0.142733,
               "reachesZero": false
             }
           ]
@@ -215,35 +215,35 @@
           "pressureBand": 0,
           "staleBand": 1,
           "supportBand": 1,
-          "n": 365,
+          "n": 462,
           "rung": "cell",
-          "rungN": 365,
+          "rungN": 462,
           "rates": {
-            "actNow": 0.252055,
-            "hold30": 0.153425,
-            "hold60": 0.106849,
-            "hold90": 0.065753
+            "actNow": 0.24026,
+            "hold30": 0.142857,
+            "hold60": 0.11039,
+            "hold90": 0.060606
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.09863,
-              "lower": -0.146552,
-              "upper": -0.050704,
+              "point": -0.097403,
+              "lower": -0.139738,
+              "upper": -0.057269,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.145205,
-              "lower": -0.194986,
-              "upper": -0.09589,
+              "point": -0.12987,
+              "lower": -0.176471,
+              "upper": -0.087794,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.186301,
-              "lower": -0.237288,
-              "upper": -0.133333,
+              "point": -0.179654,
+              "lower": -0.224319,
+              "upper": -0.135321,
               "reachesZero": false
             }
           ]
@@ -252,35 +252,35 @@
           "pressureBand": 0,
           "staleBand": 1,
           "supportBand": 2,
-          "n": 1400,
+          "n": 1770,
           "rung": "cell",
-          "rungN": 1400,
+          "rungN": 1770,
           "rates": {
-            "actNow": 0.232143,
-            "hold30": 0.157143,
-            "hold60": 0.114286,
-            "hold90": 0.062143
+            "actNow": 0.225989,
+            "hold30": 0.158192,
+            "hold60": 0.112429,
+            "hold90": 0.063277
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.075,
-              "lower": -0.1021,
-              "upper": -0.048571,
+              "point": -0.067797,
+              "lower": -0.091652,
+              "upper": -0.045143,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.117857,
-              "lower": -0.142961,
-              "upper": -0.092011,
+              "point": -0.113559,
+              "lower": -0.134756,
+              "upper": -0.091065,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.17,
-              "lower": -0.198571,
-              "upper": -0.142136,
+              "point": -0.162712,
+              "lower": -0.186007,
+              "upper": -0.139326,
               "reachesZero": false
             }
           ]
@@ -289,701 +289,701 @@
           "pressureBand": 0,
           "staleBand": 2,
           "supportBand": 0,
-          "n": 20,
-          "rung": "pressure",
-          "rungN": 7531,
-          "rates": {
-            "actNow": 0.17833,
-            "hold30": 0.111406,
-            "hold60": 0.074492,
-            "hold90": 0.049661
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.066923,
-              "lower": -0.077483,
-              "upper": -0.057162,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.103837,
-              "lower": -0.114213,
-              "upper": -0.093127,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.128668,
-              "lower": -0.139399,
-              "upper": -0.11823,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 2,
-          "supportBand": 1,
-          "n": 89,
-          "rung": "pressure",
-          "rungN": 7531,
-          "rates": {
-            "actNow": 0.17833,
-            "hold30": 0.111406,
-            "hold60": 0.074492,
-            "hold90": 0.049661
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.066923,
-              "lower": -0.077483,
-              "upper": -0.057162,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.103837,
-              "lower": -0.114213,
-              "upper": -0.093127,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.128668,
-              "lower": -0.139399,
-              "upper": -0.11823,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 2,
-          "supportBand": 2,
-          "n": 176,
-          "rung": "pressure",
-          "rungN": 7531,
-          "rates": {
-            "actNow": 0.17833,
-            "hold30": 0.111406,
-            "hold60": 0.074492,
-            "hold90": 0.049661
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.066923,
-              "lower": -0.077483,
-              "upper": -0.057162,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.103837,
-              "lower": -0.114213,
-              "upper": -0.093127,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.128668,
-              "lower": -0.139399,
-              "upper": -0.11823,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 0,
-          "supportBand": 0,
-          "n": 1300,
-          "rung": "cell",
-          "rungN": 1300,
-          "rates": {
-            "actNow": 0.270769,
-            "hold30": 0.191538,
-            "hold60": 0.128462,
-            "hold90": 0.102308
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.079231,
-              "lower": -0.104167,
-              "upper": -0.053504,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.142308,
-              "lower": -0.169701,
-              "upper": -0.114286,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.168462,
-              "lower": -0.194277,
-              "upper": -0.140747,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 0,
-          "supportBand": 1,
-          "n": 1866,
-          "rung": "cell",
-          "rungN": 1866,
-          "rates": {
-            "actNow": 0.292069,
-            "hold30": 0.202036,
-            "hold60": 0.160772,
-            "hold90": 0.12701
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.090032,
-              "lower": -0.109711,
-              "upper": -0.070582,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.131297,
-              "lower": -0.15625,
-              "upper": -0.107626,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.165059,
-              "lower": -0.188071,
-              "upper": -0.142857,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 0,
-          "supportBand": 2,
-          "n": 2746,
-          "rung": "cell",
-          "rungN": 2746,
-          "rates": {
-            "actNow": 0.286235,
-            "hold30": 0.20284,
-            "hold60": 0.158776,
-            "hold90": 0.130007
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.083394,
-              "lower": -0.100219,
-              "upper": -0.066066,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.127458,
-              "lower": -0.147523,
-              "upper": -0.107981,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.156227,
-              "lower": -0.174782,
-              "upper": -0.137634,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 1,
-          "supportBand": 0,
-          "n": 113,
+          "n": 27,
           "rung": "pressureStale",
-          "rungN": 1856,
+          "rungN": 364,
           "rates": {
-            "actNow": 0.335668,
-            "hold30": 0.262392,
-            "hold60": 0.230065,
-            "hold90": 0.16972
+            "actNow": 0.197802,
+            "hold30": 0.148352,
+            "hold60": 0.090659,
+            "hold90": 0.076923
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.073276,
-              "lower": -0.09634,
-              "upper": -0.048596,
+              "point": -0.049451,
+              "lower": -0.096774,
+              "upper": -0.00277,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.105603,
-              "lower": -0.131191,
-              "upper": -0.08171,
+              "point": -0.107143,
+              "lower": -0.151261,
+              "upper": -0.064171,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.165948,
-              "lower": -0.19384,
-              "upper": -0.140234,
+              "point": -0.120879,
+              "lower": -0.165714,
+              "upper": -0.079156,
               "reachesZero": false
             }
           ]
         },
         {
-          "pressureBand": 1,
-          "staleBand": 1,
-          "supportBand": 1,
-          "n": 536,
-          "rung": "cell",
-          "rungN": 536,
-          "rates": {
-            "actNow": 0.382463,
-            "hold30": 0.309701,
-            "hold60": 0.291045,
-            "hold90": 0.205224
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.072761,
-              "lower": -0.112782,
-              "upper": -0.032374,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.091418,
-              "lower": -0.135283,
-              "upper": -0.048913,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.177239,
-              "lower": -0.224907,
-              "upper": -0.127341,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 1,
-          "supportBand": 2,
-          "n": 1207,
-          "rung": "cell",
-          "rungN": 1207,
-          "rates": {
-            "actNow": 0.301574,
-            "hold30": 0.223695,
-            "hold60": 0.193041,
-            "hold90": 0.144988
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.077879,
-              "lower": -0.106877,
-              "upper": -0.050279,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.108534,
-              "lower": -0.138631,
-              "upper": -0.079077,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.156587,
-              "lower": -0.18887,
-              "upper": -0.127139,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 2,
-          "supportBand": 0,
-          "n": 10,
-          "rung": "pressureStale",
-          "rungN": 393,
-          "rates": {
-            "actNow": 0.361323,
-            "hold30": 0.272265,
-            "hold60": 0.234097,
-            "hold90": 0.178117
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.089059,
-              "lower": -0.1475,
-              "upper": -0.029777,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.127226,
-              "lower": -0.18299,
-              "upper": -0.068528,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.183206,
-              "lower": -0.24359,
-              "upper": -0.122563,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
+          "pressureBand": 0,
           "staleBand": 2,
           "supportBand": 1,
-          "n": 108,
+          "n": 106,
           "rung": "pressureStale",
-          "rungN": 393,
+          "rungN": 364,
           "rates": {
-            "actNow": 0.361323,
-            "hold30": 0.272265,
-            "hold60": 0.234097,
-            "hold90": 0.178117
+            "actNow": 0.197802,
+            "hold30": 0.148352,
+            "hold60": 0.090659,
+            "hold90": 0.076923
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.089059,
-              "lower": -0.1475,
-              "upper": -0.029777,
+              "point": -0.049451,
+              "lower": -0.096774,
+              "upper": -0.00277,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.127226,
-              "lower": -0.18299,
-              "upper": -0.068528,
+              "point": -0.107143,
+              "lower": -0.151261,
+              "upper": -0.064171,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.183206,
-              "lower": -0.24359,
-              "upper": -0.122563,
+              "point": -0.120879,
+              "lower": -0.165714,
+              "upper": -0.079156,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 2,
+          "supportBand": 2,
+          "n": 231,
+          "rung": "pressureStale",
+          "rungN": 364,
+          "rates": {
+            "actNow": 0.197802,
+            "hold30": 0.148352,
+            "hold60": 0.090659,
+            "hold90": 0.076923
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.049451,
+              "lower": -0.096774,
+              "upper": -0.00277,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.107143,
+              "lower": -0.151261,
+              "upper": -0.064171,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.120879,
+              "lower": -0.165714,
+              "upper": -0.079156,
               "reachesZero": false
             }
           ]
         },
         {
           "pressureBand": 1,
-          "staleBand": 2,
-          "supportBand": 2,
-          "n": 275,
-          "rung": "pressureStale",
-          "rungN": 393,
-          "rates": {
-            "actNow": 0.361323,
-            "hold30": 0.272265,
-            "hold60": 0.234097,
-            "hold90": 0.178117
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.089059,
-              "lower": -0.1475,
-              "upper": -0.029777,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.127226,
-              "lower": -0.18299,
-              "upper": -0.068528,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.183206,
-              "lower": -0.24359,
-              "upper": -0.122563,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
           "staleBand": 0,
           "supportBand": 0,
-          "n": 12735,
+          "n": 1639,
           "rung": "cell",
-          "rungN": 12735,
+          "rungN": 1639,
           "rates": {
-            "actNow": 0.266745,
-            "hold30": 0.206989,
-            "hold60": 0.148488,
-            "hold90": 0.111975
+            "actNow": 0.269677,
+            "hold30": 0.185479,
+            "hold60": 0.133008,
+            "hold90": 0.104332
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.059757,
-              "lower": -0.069147,
-              "upper": -0.050364,
+              "point": -0.084198,
+              "lower": -0.106825,
+              "upper": -0.062538,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.118257,
-              "lower": -0.12938,
-              "upper": -0.107744,
+              "point": -0.136669,
+              "lower": -0.161094,
+              "upper": -0.111656,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.15477,
-              "lower": -0.16551,
-              "upper": -0.143269,
+              "point": -0.165345,
+              "lower": -0.188952,
+              "upper": -0.141994,
               "reachesZero": false
             }
           ]
         },
         {
-          "pressureBand": 2,
+          "pressureBand": 1,
           "staleBand": 0,
           "supportBand": 1,
-          "n": 12031,
+          "n": 2347,
           "rung": "cell",
-          "rungN": 12031,
+          "rungN": 2347,
           "rates": {
-            "actNow": 0.253429,
-            "hold30": 0.197324,
-            "hold60": 0.162414,
-            "hold90": 0.123847
+            "actNow": 0.284619,
+            "hold30": 0.200682,
+            "hold60": 0.163187,
+            "hold90": 0.126118
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.056105,
-              "lower": -0.065059,
-              "upper": -0.047686,
+              "point": -0.083937,
+              "lower": -0.101505,
+              "upper": -0.066155,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.091015,
-              "lower": -0.100782,
-              "upper": -0.081664,
+              "point": -0.121432,
+              "lower": -0.141505,
+              "upper": -0.100822,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.129582,
-              "lower": -0.139438,
-              "upper": -0.119032,
+              "point": -0.1585,
+              "lower": -0.178882,
+              "upper": -0.139283,
               "reachesZero": false
             }
           ]
         },
         {
-          "pressureBand": 2,
+          "pressureBand": 1,
           "staleBand": 0,
           "supportBand": 2,
-          "n": 9097,
+          "n": 3393,
           "rung": "cell",
-          "rungN": 9097,
+          "rungN": 3393,
           "rates": {
-            "actNow": 0.260745,
-            "hold30": 0.216555,
-            "hold60": 0.175772,
-            "hold90": 0.139936
+            "actNow": 0.28323,
+            "hold30": 0.201002,
+            "hold60": 0.156793,
+            "hold90": 0.129679
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.04419,
-              "lower": -0.053571,
-              "upper": -0.034697,
+              "point": -0.082228,
+              "lower": -0.097446,
+              "upper": -0.067367,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.084973,
-              "lower": -0.096029,
-              "upper": -0.073997,
+              "point": -0.126437,
+              "lower": -0.142569,
+              "upper": -0.110876,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.120809,
-              "lower": -0.132163,
-              "upper": -0.110162,
+              "point": -0.153551,
+              "lower": -0.169542,
+              "upper": -0.136044,
               "reachesZero": false
             }
           ]
         },
         {
-          "pressureBand": 2,
+          "pressureBand": 1,
           "staleBand": 1,
           "supportBand": 0,
-          "n": 1598,
-          "rung": "cell",
-          "rungN": 1598,
+          "n": 141,
+          "rung": "pressureStale",
+          "rungN": 2380,
           "rates": {
-            "actNow": 0.5801,
-            "hold30": 0.468711,
-            "hold60": 0.387985,
-            "hold90": 0.312891
+            "actNow": 0.326891,
+            "hold30": 0.252941,
+            "hold60": 0.227731,
+            "hold90": 0.169328
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.111389,
-              "lower": -0.138206,
-              "upper": -0.083903,
+              "point": -0.07395,
+              "lower": -0.094838,
+              "upper": -0.053333,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.192115,
-              "lower": -0.225573,
-              "upper": -0.160772,
+              "point": -0.09916,
+              "lower": -0.121941,
+              "upper": -0.075662,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.267209,
-              "lower": -0.300179,
-              "upper": -0.233472,
+              "point": -0.157563,
+              "lower": -0.179847,
+              "upper": -0.13477,
               "reachesZero": false
             }
           ]
         },
         {
-          "pressureBand": 2,
+          "pressureBand": 1,
           "staleBand": 1,
           "supportBand": 1,
-          "n": 2356,
+          "n": 692,
           "rung": "cell",
-          "rungN": 2356,
+          "rungN": 692,
           "rates": {
-            "actNow": 0.469015,
-            "hold30": 0.398132,
-            "hold60": 0.323854,
-            "hold90": 0.262733
+            "actNow": 0.365607,
+            "hold30": 0.313584,
+            "hold60": 0.280347,
+            "hold90": 0.213873
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.070883,
-              "lower": -0.092721,
-              "upper": -0.048895,
+              "point": -0.052023,
+              "lower": -0.088319,
+              "upper": -0.015737,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.145161,
-              "lower": -0.169736,
-              "upper": -0.119644,
+              "point": -0.08526,
+              "lower": -0.121678,
+              "upper": -0.047009,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.206282,
-              "lower": -0.232694,
-              "upper": -0.17913,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 1,
-          "supportBand": 2,
-          "n": 2581,
-          "rung": "cell",
-          "rungN": 2581,
-          "rates": {
-            "actNow": 0.348315,
-            "hold30": 0.285936,
-            "hold60": 0.242929,
-            "hold90": 0.191786
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.062379,
-              "lower": -0.082357,
-              "upper": -0.042938,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.105386,
-              "lower": -0.127953,
-              "upper": -0.08502,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.156528,
-              "lower": -0.180315,
-              "upper": -0.135125,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 2,
-          "supportBand": 0,
-          "n": 327,
-          "rung": "cell",
-          "rungN": 327,
-          "rates": {
-            "actNow": 0.535168,
-            "hold30": 0.348624,
-            "hold60": 0.29052,
-            "hold90": 0.214067
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.186544,
-              "lower": -0.260116,
+              "point": -0.151734,
+              "lower": -0.196532,
               "upper": -0.109792,
               "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 1,
+          "supportBand": 2,
+          "n": 1547,
+          "rung": "cell",
+          "rungN": 1547,
+          "rates": {
+            "actNow": 0.296057,
+            "hold30": 0.209438,
+            "hold60": 0.193277,
+            "hold90": 0.138332
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.086619,
+              "lower": -0.111602,
+              "upper": -0.060745,
+              "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.244648,
-              "lower": -0.320242,
-              "upper": -0.164634,
+              "point": -0.10278,
+              "lower": -0.129829,
+              "upper": -0.076282,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.321101,
-              "lower": -0.399408,
-              "upper": -0.23871,
+              "point": -0.157725,
+              "lower": -0.182973,
+              "upper": -0.130984,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 2,
+          "supportBand": 0,
+          "n": 14,
+          "rung": "pressureStale",
+          "rungN": 502,
+          "rates": {
+            "actNow": 0.338645,
+            "hold30": 0.262948,
+            "hold60": 0.221116,
+            "hold90": 0.173307
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.075697,
+              "lower": -0.124514,
+              "upper": -0.025052,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.11753,
+              "lower": -0.17,
+              "upper": -0.069106,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.165339,
+              "lower": -0.217311,
+              "upper": -0.114458,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 2,
+          "supportBand": 1,
+          "n": 134,
+          "rung": "pressureStale",
+          "rungN": 502,
+          "rates": {
+            "actNow": 0.338645,
+            "hold30": 0.262948,
+            "hold60": 0.221116,
+            "hold90": 0.173307
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.075697,
+              "lower": -0.124514,
+              "upper": -0.025052,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.11753,
+              "lower": -0.17,
+              "upper": -0.069106,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.165339,
+              "lower": -0.217311,
+              "upper": -0.114458,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 2,
+          "supportBand": 2,
+          "n": 354,
+          "rung": "cell",
+          "rungN": 354,
+          "rates": {
+            "actNow": 0.322034,
+            "hold30": 0.242938,
+            "hold60": 0.19774,
+            "hold90": 0.166667
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.079096,
+              "lower": -0.141274,
+              "upper": -0.017341,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.124294,
+              "lower": -0.177778,
+              "upper": -0.072046,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.155367,
+              "lower": -0.215584,
+              "upper": -0.094972,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 0,
+          "supportBand": 0,
+          "n": 16030,
+          "rung": "cell",
+          "rungN": 16030,
+          "rates": {
+            "actNow": 0.266064,
+            "hold30": 0.20262,
+            "hold60": 0.144791,
+            "hold90": 0.109919
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.063444,
+              "lower": -0.072047,
+              "upper": -0.054845,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.121273,
+              "lower": -0.130619,
+              "upper": -0.111571,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.156145,
+              "lower": -0.165892,
+              "upper": -0.146302,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 0,
+          "supportBand": 1,
+          "n": 15203,
+          "rung": "cell",
+          "rungN": 15203,
+          "rates": {
+            "actNow": 0.253042,
+            "hold30": 0.19529,
+            "hold60": 0.160429,
+            "hold90": 0.124581
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.057752,
+              "lower": -0.064817,
+              "upper": -0.049874,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.092613,
+              "lower": -0.10065,
+              "upper": -0.084487,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.128461,
+              "lower": -0.138152,
+              "upper": -0.119595,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 0,
+          "supportBand": 2,
+          "n": 11471,
+          "rung": "cell",
+          "rungN": 11471,
+          "rates": {
+            "actNow": 0.264232,
+            "hold30": 0.216982,
+            "hold60": 0.176445,
+            "hold90": 0.138785
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.04725,
+              "lower": -0.055768,
+              "upper": -0.038628,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.087787,
+              "lower": -0.097283,
+              "upper": -0.07793,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.125447,
+              "lower": -0.135932,
+              "upper": -0.11553,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 1,
+          "supportBand": 0,
+          "n": 1972,
+          "rung": "cell",
+          "rungN": 1972,
+          "rates": {
+            "actNow": 0.579108,
+            "hold30": 0.46146,
+            "hold60": 0.38286,
+            "hold90": 0.303245
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.117647,
+              "lower": -0.141514,
+              "upper": -0.093387,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.196247,
+              "lower": -0.22448,
+              "upper": -0.167528,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.275862,
+              "lower": -0.307656,
+              "upper": -0.245236,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 1,
+          "supportBand": 1,
+          "n": 2989,
+          "rung": "cell",
+          "rungN": 2989,
+          "rates": {
+            "actNow": 0.462697,
+            "hold30": 0.396788,
+            "hold60": 0.32285,
+            "hold90": 0.261291
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.065908,
+              "lower": -0.086729,
+              "upper": -0.046046,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.139846,
+              "lower": -0.161684,
+              "upper": -0.11654,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.201405,
+              "lower": -0.22451,
+              "upper": -0.17884,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 1,
+          "supportBand": 2,
+          "n": 3266,
+          "rung": "cell",
+          "rungN": 3266,
+          "rates": {
+            "actNow": 0.353337,
+            "hold30": 0.288426,
+            "hold60": 0.248316,
+            "hold90": 0.194121
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.064911,
+              "lower": -0.083034,
+              "upper": -0.047634,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.105021,
+              "lower": -0.125074,
+              "upper": -0.085802,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.159216,
+              "lower": -0.17847,
+              "upper": -0.139506,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 2,
+          "supportBand": 0,
+          "n": 418,
+          "rung": "cell",
+          "rungN": 418,
+          "rates": {
+            "actNow": 0.521531,
+            "hold30": 0.354067,
+            "hold60": 0.299043,
+            "hold90": 0.217703
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.167464,
+              "lower": -0.233256,
+              "upper": -0.104738,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.222488,
+              "lower": -0.289673,
+              "upper": -0.150588,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.303828,
+              "lower": -0.374429,
+              "upper": -0.23301,
               "reachesZero": false
             }
           ]
@@ -992,35 +992,35 @@
           "pressureBand": 2,
           "staleBand": 2,
           "supportBand": 1,
-          "n": 663,
+          "n": 857,
           "rung": "cell",
-          "rungN": 663,
+          "rungN": 857,
           "rates": {
-            "actNow": 0.40724,
-            "hold30": 0.315234,
-            "hold60": 0.25641,
-            "hold90": 0.179487
+            "actNow": 0.411902,
+            "hold30": 0.323221,
+            "hold60": 0.252042,
+            "hold90": 0.187865
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.092006,
-              "lower": -0.134307,
-              "upper": -0.050473,
+              "point": -0.088681,
+              "lower": -0.131127,
+              "upper": -0.049043,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.15083,
-              "lower": -0.198198,
-              "upper": -0.104322,
+              "point": -0.15986,
+              "lower": -0.206161,
+              "upper": -0.11323,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.227753,
-              "lower": -0.274691,
-              "upper": -0.181955,
+              "point": -0.224037,
+              "lower": -0.271462,
+              "upper": -0.178066,
               "reachesZero": false
             }
           ]
@@ -1029,35 +1029,35 @@
           "pressureBand": 2,
           "staleBand": 2,
           "supportBand": 2,
-          "n": 1104,
+          "n": 1371,
           "rung": "cell",
-          "rungN": 1104,
+          "rungN": 1371,
           "rates": {
-            "actNow": 0.394022,
-            "hold30": 0.313406,
-            "hold60": 0.241848,
-            "hold90": 0.161232
+            "actNow": 0.388767,
+            "hold30": 0.315098,
+            "hold60": 0.250912,
+            "hold90": 0.164843
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.080616,
-              "lower": -0.115876,
-              "upper": -0.045415,
+              "point": -0.073669,
+              "lower": -0.106162,
+              "upper": -0.043346,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.152174,
-              "lower": -0.190689,
-              "upper": -0.112523,
+              "point": -0.137856,
+              "lower": -0.173548,
+              "upper": -0.10274,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.23279,
-              "lower": -0.272895,
-              "upper": -0.19285,
+              "point": -0.223924,
+              "lower": -0.262401,
+              "upper": -0.18679,
               "reachesZero": false
             }
           ]
@@ -1066,64 +1066,64 @@
       "pressureRows": [
         {
           "pressureBand": 0,
-          "n": 7531,
+          "n": 9462,
           "rates": {
-            "actNow": 0.17833,
-            "hold30": 0.111406,
-            "hold60": 0.074492,
-            "hold90": 0.049661
+            "actNow": 0.175122,
+            "hold30": 0.111921,
+            "hold60": 0.075354,
+            "hold90": 0.050306
           }
         },
         {
           "pressureBand": 1,
-          "n": 8161,
+          "n": 10261,
           "rates": {
-            "actNow": 0.299963,
-            "hold30": 0.217743,
-            "hold60": 0.174243,
-            "hold90": 0.136258
+            "actNow": 0.294221,
+            "hold30": 0.213527,
+            "hold60": 0.174057,
+            "hold90": 0.136147
           }
         },
         {
           "pressureBand": 2,
-          "n": 42492,
+          "n": 53577,
           "rates": {
-            "actNow": 0.297209,
-            "hold30": 0.23708,
-            "hold60": 0.187941,
-            "hold90": 0.145204
+            "actNow": 0.297254,
+            "hold30": 0.235194,
+            "hold60": 0.186647,
+            "hold90": 0.144446
           }
         }
       ],
       "marginal": {
-        "n": 58184,
+        "n": 73300,
         "rates": {
-          "actNow": 0.282208,
-          "hold30": 0.218101,
-          "hold60": 0.171336,
-          "hold90": 0.131583
+          "actNow": 0.281064,
+          "hold30": 0.216248,
+          "hold60": 0.170518,
+          "hold90": 0.131132
         }
       }
     }
   },
   "heldout": {
-    "matches": 392,
-    "clusters": 392,
-    "moments": 23188,
+    "matches": 493,
+    "clusters": 493,
+    "moments": 29166,
     "coverage": {
-      "qualifying": 31336,
-      "eligible": 23188,
-      "retainedFraction": 0.73998,
+      "qualifying": 39416,
+      "eligible": 29166,
+      "retainedFraction": 0.739953,
       "exclusions": {
-        "X-MUSTKICK": 1598,
-        "X-FIRSTTOUCH": 5445,
-        "X-A0-SHOOT": 1078,
-        "X-A0-CLEAR": 27
+        "X-MUSTKICK": 1999,
+        "X-FIRSTTOUCH": 6894,
+        "X-A0-SHOOT": 1329,
+        "X-A0-CLEAR": 28
       }
     },
     "exceptions": {
-      "paused": 28181,
-      "injured": 559,
+      "paused": 35546,
+      "injured": 759,
       "matchEnd": 24,
       "noOwner": 0,
       "gkHold": 0,
@@ -1135,35 +1135,35 @@
           "pressureBand": 0,
           "staleBand": 0,
           "supportBand": 0,
-          "n": 123,
+          "n": 154,
           "rung": "pressureStale",
-          "rungN": 2135,
+          "rungN": 2693,
           "rates": {
-            "actNow": 0.173302,
-            "hold30": 0.098361,
-            "hold60": 0.066042,
-            "hold90": 0.04637
+            "actNow": 0.177497,
+            "hold30": 0.100631,
+            "hold60": 0.066469,
+            "hold90": 0.047159
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.074941,
-              "lower": -0.093389,
-              "upper": -0.056201,
+              "point": -0.076866,
+              "lower": -0.094053,
+              "upper": -0.059533,
               "reachesZero": false
             },
             {
               "holdTicks": 60,
-              "point": -0.10726,
-              "lower": -0.126432,
-              "upper": -0.089311,
+              "point": -0.111029,
+              "lower": -0.128177,
+              "upper": -0.093679,
               "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.126932,
-              "lower": -0.145256,
-              "upper": -0.108265,
+              "point": -0.130338,
+              "lower": -0.14707,
+              "upper": -0.113251,
               "reachesZero": false
             }
           ]
@@ -1172,960 +1172,960 @@
           "pressureBand": 0,
           "staleBand": 0,
           "supportBand": 1,
-          "n": 298,
-          "rung": "pressureStale",
-          "rungN": 2135,
-          "rates": {
-            "actNow": 0.173302,
-            "hold30": 0.098361,
-            "hold60": 0.066042,
-            "hold90": 0.04637
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.074941,
-              "lower": -0.093389,
-              "upper": -0.056201,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.10726,
-              "lower": -0.126432,
-              "upper": -0.089311,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.126932,
-              "lower": -0.145256,
-              "upper": -0.108265,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 0,
-          "supportBand": 2,
-          "n": 1714,
+          "n": 373,
           "rung": "cell",
-          "rungN": 1714,
+          "rungN": 373,
           "rates": {
-            "actNow": 0.173862,
-            "hold30": 0.088681,
-            "hold60": 0.063594,
-            "hold90": 0.04259
+            "actNow": 0.201072,
+            "hold30": 0.168901,
+            "hold60": 0.099196,
+            "hold90": 0.077748
           },
           "costs": [
             {
               "holdTicks": 30,
-              "point": -0.085181,
-              "lower": -0.106605,
-              "upper": -0.063291,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.110268,
-              "lower": -0.130814,
-              "upper": -0.089367,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.131272,
-              "lower": -0.152542,
-              "upper": -0.110733,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 1,
-          "supportBand": 0,
-          "n": 38,
-          "rung": "pressureStale",
-          "rungN": 752,
-          "rates": {
-            "actNow": 0.234043,
-            "hold30": 0.168883,
-            "hold60": 0.12234,
-            "hold90": 0.087766
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.06516,
-              "lower": -0.100785,
-              "upper": -0.028986,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.111702,
-              "lower": -0.149233,
-              "upper": -0.074866,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.146277,
-              "lower": -0.182692,
-              "upper": -0.112188,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 1,
-          "supportBand": 1,
-          "n": 146,
-          "rung": "pressureStale",
-          "rungN": 752,
-          "rates": {
-            "actNow": 0.234043,
-            "hold30": 0.168883,
-            "hold60": 0.12234,
-            "hold90": 0.087766
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.06516,
-              "lower": -0.100785,
-              "upper": -0.028986,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.111702,
-              "lower": -0.149233,
-              "upper": -0.074866,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.146277,
-              "lower": -0.182692,
-              "upper": -0.112188,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 1,
-          "supportBand": 2,
-          "n": 568,
-          "rung": "cell",
-          "rungN": 568,
-          "rates": {
-            "actNow": 0.237676,
-            "hold30": 0.172535,
-            "hold60": 0.126761,
-            "hold90": 0.089789
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.065141,
-              "lower": -0.104425,
-              "upper": -0.025641,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.110915,
-              "lower": -0.153285,
-              "upper": -0.069307,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.147887,
-              "lower": -0.186087,
-              "upper": -0.109929,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 2,
-          "supportBand": 0,
-          "n": 10,
-          "rung": "pressure",
-          "rungN": 3003,
-          "rates": {
-            "actNow": 0.188478,
-            "hold30": 0.117549,
-            "hold60": 0.080253,
-            "hold90": 0.056943
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.070929,
-              "lower": -0.089023,
-              "upper": -0.053966,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.108225,
-              "lower": -0.12621,
-              "upper": -0.089588,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.131535,
-              "lower": -0.149968,
-              "upper": -0.113903,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 2,
-          "supportBand": 1,
-          "n": 32,
-          "rung": "pressure",
-          "rungN": 3003,
-          "rates": {
-            "actNow": 0.188478,
-            "hold30": 0.117549,
-            "hold60": 0.080253,
-            "hold90": 0.056943
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.070929,
-              "lower": -0.089023,
-              "upper": -0.053966,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.108225,
-              "lower": -0.12621,
-              "upper": -0.089588,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.131535,
-              "lower": -0.149968,
-              "upper": -0.113903,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 0,
-          "staleBand": 2,
-          "supportBand": 2,
-          "n": 74,
-          "rung": "pressure",
-          "rungN": 3003,
-          "rates": {
-            "actNow": 0.188478,
-            "hold30": 0.117549,
-            "hold60": 0.080253,
-            "hold90": 0.056943
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.070929,
-              "lower": -0.089023,
-              "upper": -0.053966,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.108225,
-              "lower": -0.12621,
-              "upper": -0.089588,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.131535,
-              "lower": -0.149968,
-              "upper": -0.113903,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 0,
-          "supportBand": 0,
-          "n": 498,
-          "rung": "cell",
-          "rungN": 498,
-          "rates": {
-            "actNow": 0.2249,
-            "hold30": 0.170683,
-            "hold60": 0.114458,
-            "hold90": 0.080321
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.054217,
-              "lower": -0.092081,
-              "upper": -0.015873,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.110442,
-              "lower": -0.151163,
-              "upper": -0.070994,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.144578,
-              "lower": -0.1881,
-              "upper": -0.099379,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 0,
-          "supportBand": 1,
-          "n": 781,
-          "rung": "cell",
-          "rungN": 781,
-          "rates": {
-            "actNow": 0.267606,
-            "hold30": 0.197183,
-            "hold60": 0.147247,
-            "hold90": 0.122919
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.070423,
-              "lower": -0.10396,
-              "upper": -0.036794,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.120359,
-              "lower": -0.157161,
-              "upper": -0.083231,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.144686,
-              "lower": -0.179625,
-              "upper": -0.11,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 0,
-          "supportBand": 2,
-          "n": 1053,
-          "rung": "cell",
-          "rungN": 1053,
-          "rates": {
-            "actNow": 0.238367,
-            "hold30": 0.163343,
-            "hold60": 0.127255,
-            "hold90": 0.11301
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.075024,
-              "lower": -0.101338,
-              "upper": -0.04723,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.111111,
-              "lower": -0.137868,
-              "upper": -0.085087,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.125356,
-              "lower": -0.152416,
-              "upper": -0.09766,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 1,
-          "supportBand": 0,
-          "n": 43,
-          "rung": "pressureStale",
-          "rungN": 736,
-          "rates": {
-            "actNow": 0.372283,
-            "hold30": 0.275815,
-            "hold60": 0.241848,
-            "hold90": 0.172554
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.096467,
-              "lower": -0.136552,
-              "upper": -0.058345,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.130435,
-              "lower": -0.169069,
-              "upper": -0.090909,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.199728,
-              "lower": -0.24,
-              "upper": -0.161417,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 1,
-          "supportBand": 1,
-          "n": 214,
-          "rung": "pressureStale",
-          "rungN": 736,
-          "rates": {
-            "actNow": 0.372283,
-            "hold30": 0.275815,
-            "hold60": 0.241848,
-            "hold90": 0.172554
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.096467,
-              "lower": -0.136552,
-              "upper": -0.058345,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.130435,
-              "lower": -0.169069,
-              "upper": -0.090909,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.199728,
-              "lower": -0.24,
-              "upper": -0.161417,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 1,
-          "supportBand": 2,
-          "n": 479,
-          "rung": "cell",
-          "rungN": 479,
-          "rates": {
-            "actNow": 0.329854,
-            "hold30": 0.237996,
-            "hold60": 0.19833,
-            "hold90": 0.150313
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.091858,
-              "lower": -0.134658,
-              "upper": -0.047325,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.131524,
-              "lower": -0.177453,
-              "upper": -0.085837,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.179541,
-              "lower": -0.223849,
-              "upper": -0.137577,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 2,
-          "supportBand": 0,
-          "n": 5,
-          "rung": "pressure",
-          "rungN": 3230,
-          "rates": {
-            "actNow": 0.279876,
-            "hold30": 0.204334,
-            "hold60": 0.1613,
-            "hold90": 0.124768
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.075542,
-              "lower": -0.092813,
-              "upper": -0.058626,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.118576,
-              "lower": -0.137003,
-              "upper": -0.100733,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.155108,
-              "lower": -0.172907,
-              "upper": -0.137644,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 2,
-          "supportBand": 1,
-          "n": 56,
-          "rung": "pressure",
-          "rungN": 3230,
-          "rates": {
-            "actNow": 0.279876,
-            "hold30": 0.204334,
-            "hold60": 0.1613,
-            "hold90": 0.124768
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.075542,
-              "lower": -0.092813,
-              "upper": -0.058626,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.118576,
-              "lower": -0.137003,
-              "upper": -0.100733,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.155108,
-              "lower": -0.172907,
-              "upper": -0.137644,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 1,
-          "staleBand": 2,
-          "supportBand": 2,
-          "n": 101,
-          "rung": "pressure",
-          "rungN": 3230,
-          "rates": {
-            "actNow": 0.279876,
-            "hold30": 0.204334,
-            "hold60": 0.1613,
-            "hold90": 0.124768
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.075542,
-              "lower": -0.092813,
-              "upper": -0.058626,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.118576,
-              "lower": -0.137003,
-              "upper": -0.100733,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.155108,
-              "lower": -0.172907,
-              "upper": -0.137644,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 0,
-          "supportBand": 0,
-          "n": 5048,
-          "rung": "cell",
-          "rungN": 5048,
-          "rates": {
-            "actNow": 0.265848,
-            "hold30": 0.20206,
-            "hold60": 0.157092,
-            "hold90": 0.114105
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.063788,
-              "lower": -0.078822,
-              "upper": -0.049104,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.108756,
-              "lower": -0.126065,
-              "upper": -0.093336,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.151743,
-              "lower": -0.168894,
-              "upper": -0.133858,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 0,
-          "supportBand": 1,
-          "n": 4876,
-          "rung": "cell",
-          "rungN": 4876,
-          "rates": {
-            "actNow": 0.259844,
-            "hold30": 0.195857,
-            "hold60": 0.15443,
-            "hold90": 0.122436
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.063987,
-              "lower": -0.077098,
-              "upper": -0.050921,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.105414,
-              "lower": -0.121175,
-              "upper": -0.089441,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.137408,
-              "lower": -0.153765,
-              "upper": -0.121493,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 0,
-          "supportBand": 2,
-          "n": 3719,
-          "rung": "cell",
-          "rungN": 3719,
-          "rates": {
-            "actNow": 0.258403,
-            "hold30": 0.189567,
-            "hold60": 0.166174,
-            "hold90": 0.130411
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.068836,
-              "lower": -0.084243,
-              "upper": -0.054776,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.092229,
-              "lower": -0.109206,
-              "upper": -0.075461,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.127991,
-              "lower": -0.147146,
-              "upper": -0.108957,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 1,
-          "supportBand": 0,
-          "n": 552,
-          "rung": "cell",
-          "rungN": 552,
-          "rates": {
-            "actNow": 0.585145,
-            "hold30": 0.452899,
-            "hold60": 0.355072,
-            "hold90": 0.280797
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.132246,
-              "lower": -0.184015,
-              "upper": -0.077844,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.230072,
-              "lower": -0.291667,
-              "upper": -0.165746,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.304348,
-              "lower": -0.363139,
-              "upper": -0.239837,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 1,
-          "supportBand": 1,
-          "n": 982,
-          "rung": "cell",
-          "rungN": 982,
-          "rates": {
-            "actNow": 0.526477,
-            "hold30": 0.411405,
-            "hold60": 0.338086,
-            "hold90": 0.293279
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.115071,
-              "lower": -0.149733,
-              "upper": -0.080797,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.188391,
-              "lower": -0.230237,
-              "upper": -0.147505,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.233198,
-              "lower": -0.272906,
-              "upper": -0.19195,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 1,
-          "supportBand": 2,
-          "n": 1035,
-          "rung": "cell",
-          "rungN": 1035,
-          "rates": {
-            "actNow": 0.342995,
-            "hold30": 0.28599,
-            "hold60": 0.25314,
-            "hold90": 0.203865
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.057005,
-              "lower": -0.090072,
-              "upper": -0.026214,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.089855,
-              "lower": -0.123791,
-              "upper": -0.058601,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.13913,
-              "lower": -0.17186,
-              "upper": -0.106549,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 2,
-          "supportBand": 0,
-          "n": 157,
-          "rung": "pressureStale",
-          "rungN": 743,
-          "rates": {
-            "actNow": 0.386272,
-            "hold30": 0.323015,
-            "hold60": 0.283984,
-            "hold90": 0.223419
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.063257,
-              "lower": -0.119636,
-              "upper": -0.009032,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.102288,
-              "lower": -0.161243,
-              "upper": -0.046419,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.162853,
-              "lower": -0.222222,
-              "upper": -0.106021,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 2,
-          "supportBand": 1,
-          "n": 252,
-          "rung": "pressureStale",
-          "rungN": 743,
-          "rates": {
-            "actNow": 0.386272,
-            "hold30": 0.323015,
-            "hold60": 0.283984,
-            "hold90": 0.223419
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": -0.063257,
-              "lower": -0.119636,
-              "upper": -0.009032,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 60,
-              "point": -0.102288,
-              "lower": -0.161243,
-              "upper": -0.046419,
-              "reachesZero": false
-            },
-            {
-              "holdTicks": 90,
-              "point": -0.162853,
-              "lower": -0.222222,
-              "upper": -0.106021,
-              "reachesZero": false
-            }
-          ]
-        },
-        {
-          "pressureBand": 2,
-          "staleBand": 2,
-          "supportBand": 2,
-          "n": 334,
-          "rung": "cell",
-          "rungN": 334,
-          "rates": {
-            "actNow": 0.350299,
-            "hold30": 0.362275,
-            "hold60": 0.284431,
-            "hold90": 0.215569
-          },
-          "costs": [
-            {
-              "holdTicks": 30,
-              "point": 0.011976,
-              "lower": -0.0625,
-              "upper": 0.082153,
+              "point": -0.032172,
+              "lower": -0.082645,
+              "upper": 0.018373,
               "reachesZero": true
             },
             {
               "holdTicks": 60,
-              "point": -0.065868,
-              "lower": -0.142415,
-              "upper": 0.012384,
-              "reachesZero": true
+              "point": -0.101877,
+              "lower": -0.148615,
+              "upper": -0.056911,
+              "reachesZero": false
             },
             {
               "holdTicks": 90,
-              "point": -0.134731,
-              "lower": -0.221498,
-              "upper": -0.056213,
+              "point": -0.123324,
+              "lower": -0.167582,
+              "upper": -0.076712,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 0,
+          "supportBand": 2,
+          "n": 2166,
+          "rung": "cell",
+          "rungN": 2166,
+          "rates": {
+            "actNow": 0.176362,
+            "hold30": 0.088181,
+            "hold60": 0.061865,
+            "hold90": 0.042936
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.088181,
+              "lower": -0.107975,
+              "upper": -0.070061,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.114497,
+              "lower": -0.13294,
+              "upper": -0.09537,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.133426,
+              "lower": -0.151261,
+              "upper": -0.115454,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 1,
+          "supportBand": 0,
+          "n": 45,
+          "rung": "pressureStale",
+          "rungN": 915,
+          "rates": {
+            "actNow": 0.23388,
+            "hold30": 0.168306,
+            "hold60": 0.121311,
+            "hold90": 0.091803
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.065574,
+              "lower": -0.098889,
+              "upper": -0.031285,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.112568,
+              "lower": -0.147392,
+              "upper": -0.077908,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.142077,
+              "lower": -0.176155,
+              "upper": -0.109189,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 1,
+          "supportBand": 1,
+          "n": 174,
+          "rung": "pressureStale",
+          "rungN": 915,
+          "rates": {
+            "actNow": 0.23388,
+            "hold30": 0.168306,
+            "hold60": 0.121311,
+            "hold90": 0.091803
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.065574,
+              "lower": -0.098889,
+              "upper": -0.031285,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.112568,
+              "lower": -0.147392,
+              "upper": -0.077908,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.142077,
+              "lower": -0.176155,
+              "upper": -0.109189,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 1,
+          "supportBand": 2,
+          "n": 696,
+          "rung": "cell",
+          "rungN": 696,
+          "rates": {
+            "actNow": 0.234195,
+            "hold30": 0.175287,
+            "hold60": 0.126437,
+            "hold90": 0.093391
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.058908,
+              "lower": -0.09587,
+              "upper": -0.022535,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.107759,
+              "lower": -0.148299,
+              "upper": -0.070045,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.140805,
+              "lower": -0.174581,
+              "upper": -0.105413,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 2,
+          "supportBand": 0,
+          "n": 12,
+          "rung": "pressure",
+          "rungN": 3741,
+          "rates": {
+            "actNow": 0.191393,
+            "hold30": 0.118685,
+            "hold60": 0.079925,
+            "hold90": 0.058006
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072708,
+              "lower": -0.087696,
+              "upper": -0.05749,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.111468,
+              "lower": -0.126324,
+              "upper": -0.095046,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.133387,
+              "lower": -0.149211,
+              "upper": -0.117584,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 2,
+          "supportBand": 1,
+          "n": 35,
+          "rung": "pressure",
+          "rungN": 3741,
+          "rates": {
+            "actNow": 0.191393,
+            "hold30": 0.118685,
+            "hold60": 0.079925,
+            "hold90": 0.058006
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072708,
+              "lower": -0.087696,
+              "upper": -0.05749,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.111468,
+              "lower": -0.126324,
+              "upper": -0.095046,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.133387,
+              "lower": -0.149211,
+              "upper": -0.117584,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 0,
+          "staleBand": 2,
+          "supportBand": 2,
+          "n": 86,
+          "rung": "pressure",
+          "rungN": 3741,
+          "rates": {
+            "actNow": 0.191393,
+            "hold30": 0.118685,
+            "hold60": 0.079925,
+            "hold90": 0.058006
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072708,
+              "lower": -0.087696,
+              "upper": -0.05749,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.111468,
+              "lower": -0.126324,
+              "upper": -0.095046,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.133387,
+              "lower": -0.149211,
+              "upper": -0.117584,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 0,
+          "supportBand": 0,
+          "n": 629,
+          "rung": "cell",
+          "rungN": 629,
+          "rates": {
+            "actNow": 0.228935,
+            "hold30": 0.18283,
+            "hold60": 0.116057,
+            "hold90": 0.085851
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.046105,
+              "lower": -0.078025,
+              "upper": -0.012214,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.112878,
+              "lower": -0.147692,
+              "upper": -0.077287,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.143084,
+              "lower": -0.18138,
+              "upper": -0.107937,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 0,
+          "supportBand": 1,
+          "n": 973,
+          "rung": "cell",
+          "rungN": 973,
+          "rates": {
+            "actNow": 0.271326,
+            "hold30": 0.195272,
+            "hold60": 0.143885,
+            "hold90": 0.118191
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.076053,
+              "lower": -0.105425,
+              "upper": -0.047384,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.127441,
+              "lower": -0.160428,
+              "upper": -0.096033,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.153135,
+              "lower": -0.185109,
+              "upper": -0.121822,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 0,
+          "supportBand": 2,
+          "n": 1305,
+          "rung": "cell",
+          "rungN": 1305,
+          "rates": {
+            "actNow": 0.236782,
+            "hold30": 0.164751,
+            "hold60": 0.130268,
+            "hold90": 0.112644
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072031,
+              "lower": -0.097027,
+              "upper": -0.048627,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.106513,
+              "lower": -0.131321,
+              "upper": -0.083205,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.124138,
+              "lower": -0.149265,
+              "upper": -0.100794,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 1,
+          "supportBand": 0,
+          "n": 47,
+          "rung": "pressureStale",
+          "rungN": 899,
+          "rates": {
+            "actNow": 0.358176,
+            "hold30": 0.268076,
+            "hold60": 0.235818,
+            "hold90": 0.173526
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.0901,
+              "lower": -0.123687,
+              "upper": -0.055435,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.122358,
+              "lower": -0.159655,
+              "upper": -0.086528,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.18465,
+              "lower": -0.220537,
+              "upper": -0.151408,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 1,
+          "supportBand": 1,
+          "n": 259,
+          "rung": "pressureStale",
+          "rungN": 899,
+          "rates": {
+            "actNow": 0.358176,
+            "hold30": 0.268076,
+            "hold60": 0.235818,
+            "hold90": 0.173526
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.0901,
+              "lower": -0.123687,
+              "upper": -0.055435,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.122358,
+              "lower": -0.159655,
+              "upper": -0.086528,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.18465,
+              "lower": -0.220537,
+              "upper": -0.151408,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 1,
+          "supportBand": 2,
+          "n": 593,
+          "rung": "cell",
+          "rungN": 593,
+          "rates": {
+            "actNow": 0.313659,
+            "hold30": 0.231029,
+            "hold60": 0.190556,
+            "hold90": 0.143339
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.082631,
+              "lower": -0.121368,
+              "upper": -0.044218,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.123103,
+              "lower": -0.164407,
+              "upper": -0.082492,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.17032,
+              "lower": -0.210345,
+              "upper": -0.128455,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 2,
+          "supportBand": 0,
+          "n": 8,
+          "rung": "pressure",
+          "rungN": 4008,
+          "rates": {
+            "actNow": 0.276697,
+            "hold30": 0.203842,
+            "hold60": 0.158683,
+            "hold90": 0.124251
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072854,
+              "lower": -0.088308,
+              "upper": -0.057485,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.118014,
+              "lower": -0.134122,
+              "upper": -0.102203,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.152445,
+              "lower": -0.167734,
+              "upper": -0.137004,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 2,
+          "supportBand": 1,
+          "n": 66,
+          "rung": "pressure",
+          "rungN": 4008,
+          "rates": {
+            "actNow": 0.276697,
+            "hold30": 0.203842,
+            "hold60": 0.158683,
+            "hold90": 0.124251
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072854,
+              "lower": -0.088308,
+              "upper": -0.057485,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.118014,
+              "lower": -0.134122,
+              "upper": -0.102203,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.152445,
+              "lower": -0.167734,
+              "upper": -0.137004,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 1,
+          "staleBand": 2,
+          "supportBand": 2,
+          "n": 128,
+          "rung": "pressure",
+          "rungN": 4008,
+          "rates": {
+            "actNow": 0.276697,
+            "hold30": 0.203842,
+            "hold60": 0.158683,
+            "hold90": 0.124251
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.072854,
+              "lower": -0.088308,
+              "upper": -0.057485,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.118014,
+              "lower": -0.134122,
+              "upper": -0.102203,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.152445,
+              "lower": -0.167734,
+              "upper": -0.137004,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 0,
+          "supportBand": 0,
+          "n": 6413,
+          "rung": "cell",
+          "rungN": 6413,
+          "rates": {
+            "actNow": 0.261344,
+            "hold30": 0.203805,
+            "hold60": 0.152971,
+            "hold90": 0.110869
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.057539,
+              "lower": -0.070766,
+              "upper": -0.044976,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.108374,
+              "lower": -0.123462,
+              "upper": -0.093264,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.150476,
+              "lower": -0.166238,
+              "upper": -0.13457,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 0,
+          "supportBand": 1,
+          "n": 6216,
+          "rung": "cell",
+          "rungN": 6216,
+          "rates": {
+            "actNow": 0.2611,
+            "hold30": 0.202059,
+            "hold60": 0.157819,
+            "hold90": 0.125804
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.059041,
+              "lower": -0.070692,
+              "upper": -0.047596,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.103282,
+              "lower": -0.116939,
+              "upper": -0.089508,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.135296,
+              "lower": -0.150112,
+              "upper": -0.120942,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 0,
+          "supportBand": 2,
+          "n": 4637,
+          "rung": "cell",
+          "rungN": 4637,
+          "rates": {
+            "actNow": 0.259651,
+            "hold30": 0.193228,
+            "hold60": 0.166918,
+            "hold90": 0.130904
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.066422,
+              "lower": -0.079538,
+              "upper": -0.054132,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.092732,
+              "lower": -0.108223,
+              "upper": -0.076055,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.128747,
+              "lower": -0.145673,
+              "upper": -0.112298,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 1,
+          "supportBand": 0,
+          "n": 696,
+          "rung": "cell",
+          "rungN": 696,
+          "rates": {
+            "actNow": 0.553161,
+            "hold30": 0.443966,
+            "hold60": 0.346264,
+            "hold90": 0.274425
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.109195,
+              "lower": -0.161094,
+              "upper": -0.056865,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.206897,
+              "lower": -0.262162,
+              "upper": -0.150888,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.278736,
+              "lower": -0.333333,
+              "upper": -0.223724,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 1,
+          "supportBand": 1,
+          "n": 1221,
+          "rung": "cell",
+          "rungN": 1221,
+          "rates": {
+            "actNow": 0.521704,
+            "hold30": 0.41769,
+            "hold60": 0.339066,
+            "hold90": 0.289926
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.104013,
+              "lower": -0.133433,
+              "upper": -0.073495,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.182637,
+              "lower": -0.218799,
+              "upper": -0.14604,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.231777,
+              "lower": -0.270485,
+              "upper": -0.199025,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 1,
+          "supportBand": 2,
+          "n": 1299,
+          "rung": "cell",
+          "rungN": 1299,
+          "rates": {
+            "actNow": 0.34719,
+            "hold30": 0.272517,
+            "hold60": 0.243264,
+            "hold90": 0.193226
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.074673,
+              "lower": -0.103116,
+              "upper": -0.046828,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.103926,
+              "lower": -0.132206,
+              "upper": -0.073988,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.153965,
+              "lower": -0.184107,
+              "upper": -0.126464,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 2,
+          "supportBand": 0,
+          "n": 176,
+          "rung": "pressureStale",
+          "rungN": 935,
+          "rates": {
+            "actNow": 0.380749,
+            "hold30": 0.322995,
+            "hold60": 0.265241,
+            "hold90": 0.203209
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.057754,
+              "lower": -0.107338,
+              "upper": -0.010582,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.115508,
+              "lower": -0.163377,
+              "upper": -0.063112,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.17754,
+              "lower": -0.22863,
+              "upper": -0.127708,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 2,
+          "supportBand": 1,
+          "n": 326,
+          "rung": "cell",
+          "rungN": 326,
+          "rates": {
+            "actNow": 0.41411,
+            "hold30": 0.337423,
+            "hold60": 0.291411,
+            "hold90": 0.233129
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": -0.076687,
+              "lower": -0.146875,
+              "upper": -0.003311,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.122699,
+              "lower": -0.197059,
+              "upper": -0.051282,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.180982,
+              "lower": -0.252226,
+              "upper": -0.114198,
+              "reachesZero": false
+            }
+          ]
+        },
+        {
+          "pressureBand": 2,
+          "staleBand": 2,
+          "supportBand": 2,
+          "n": 433,
+          "rung": "cell",
+          "rungN": 433,
+          "rates": {
+            "actNow": 0.339492,
+            "hold30": 0.344111,
+            "hold60": 0.251732,
+            "hold90": 0.182448
+          },
+          "costs": [
+            {
+              "holdTicks": 30,
+              "point": 0.004619,
+              "lower": -0.052632,
+              "upper": 0.060185,
+              "reachesZero": true
+            },
+            {
+              "holdTicks": 60,
+              "point": -0.08776,
+              "lower": -0.162291,
+              "upper": -0.0199,
+              "reachesZero": false
+            },
+            {
+              "holdTicks": 90,
+              "point": -0.157044,
+              "lower": -0.229426,
+              "upper": -0.087912,
               "reachesZero": false
             }
           ]
@@ -2134,42 +2134,42 @@
       "pressureRows": [
         {
           "pressureBand": 0,
-          "n": 3003,
+          "n": 3741,
           "rates": {
-            "actNow": 0.188478,
-            "hold30": 0.117549,
-            "hold60": 0.080253,
-            "hold90": 0.056943
+            "actNow": 0.191393,
+            "hold30": 0.118685,
+            "hold60": 0.079925,
+            "hold90": 0.058006
           }
         },
         {
           "pressureBand": 1,
-          "n": 3230,
+          "n": 4008,
           "rates": {
-            "actNow": 0.279876,
-            "hold30": 0.204334,
-            "hold60": 0.1613,
-            "hold90": 0.124768
+            "actNow": 0.276697,
+            "hold30": 0.203842,
+            "hold60": 0.158683,
+            "hold90": 0.124251
           }
         },
         {
           "pressureBand": 2,
-          "n": 16955,
+          "n": 21417,
           "rates": {
-            "actNow": 0.297965,
-            "hold30": 0.228251,
-            "hold60": 0.186671,
-            "hold90": 0.146152
+            "actNow": 0.295653,
+            "hold30": 0.230378,
+            "hold60": 0.184666,
+            "hold90": 0.144091
           }
         }
       ],
       "marginal": {
-        "n": 23188,
+        "n": 29166,
         "rates": {
-          "actNow": 0.281266,
-          "hold30": 0.210583,
-          "hold60": 0.169355,
-          "hold90": 0.13162
+          "actNow": 0.279675,
+          "hold30": 0.212405,
+          "hold60": 0.167661,
+          "hold90": 0.130323
         }
       }
     }
@@ -2178,148 +2178,148 @@
     {
       "holdTicks": 30,
       "paired": {
-        "point": -0.064107,
-        "lower": -0.069026,
-        "upper": -0.058959
+        "point": -0.064816,
+        "lower": -0.069134,
+        "upper": -0.0606
       },
       "unpaired": {
-        "hold": 0.218101,
-        "actNow": 0.282208,
-        "delta": -0.064107,
+        "hold": 0.216248,
+        "actNow": 0.281064,
+        "delta": -0.064816,
         "holdCi": [
-          0.212779,
-          0.223212
+          0.211385,
+          0.220609
         ]
       },
       "concessionTwin": {
-        "point": 0.003764,
-        "lower": 0.001936,
-        "upper": 0.005553
+        "point": 0.003738,
+        "lower": 0.002112,
+        "upper": 0.005365
       },
       "byPressure": [
         {
           "pressureBand": 0,
-          "n": 7531,
-          "delta": -0.066923
+          "n": 9462,
+          "delta": -0.0632
         },
         {
           "pressureBand": 1,
-          "n": 8161,
-          "delta": -0.08222
+          "n": 10261,
+          "delta": -0.080694
         },
         {
           "pressureBand": 2,
-          "n": 42492,
-          "delta": -0.060129
+          "n": 53577,
+          "delta": -0.06206
         }
       ],
       "releaseTwin": {
-        "n": 58184,
-        "point": -0.044084,
-        "lower": -0.048936,
-        "upper": -0.039355
+        "n": 73300,
+        "point": -0.044543,
+        "lower": -0.04892,
+        "upper": -0.039916
       },
       "holdAnatomy": {
-        "survived": 0.857899,
-        "lostToTackle": 0.084147
+        "survived": 0.856971,
+        "lostToTackle": 0.084898
       }
     },
     {
       "holdTicks": 60,
       "paired": {
-        "point": -0.110872,
-        "lower": -0.116502,
-        "upper": -0.105146
+        "point": -0.110546,
+        "lower": -0.115495,
+        "upper": -0.10546
       },
       "unpaired": {
-        "hold": 0.171336,
-        "actNow": 0.282208,
-        "delta": -0.110872,
+        "hold": 0.170518,
+        "actNow": 0.281064,
+        "delta": -0.110546,
         "holdCi": [
-          0.167003,
-          0.175647
+          0.166683,
+          0.174461
         ]
       },
       "concessionTwin": {
-        "point": 0.008009,
-        "lower": 0.00592,
-        "upper": 0.010008
+        "point": 0.008213,
+        "lower": 0.006345,
+        "upper": 0.009982
       },
       "byPressure": [
         {
           "pressureBand": 0,
-          "n": 7531,
-          "delta": -0.103837
+          "n": 9462,
+          "delta": -0.099767
         },
         {
           "pressureBand": 1,
-          "n": 8161,
-          "delta": -0.12572
+          "n": 10261,
+          "delta": -0.120164
         },
         {
           "pressureBand": 2,
-          "n": 42492,
-          "delta": -0.109268
+          "n": 53577,
+          "delta": -0.110607
         }
       ],
       "releaseTwin": {
-        "n": 58183,
-        "point": -0.073716,
-        "lower": -0.079885,
-        "upper": -0.067781
+        "n": 73299,
+        "point": -0.073575,
+        "lower": -0.07866,
+        "upper": -0.068454
       },
       "holdAnatomy": {
-        "survived": 0.770349,
-        "lostToTackle": 0.158549
+        "survived": 0.768404,
+        "lostToTackle": 0.160123
       }
     },
     {
       "holdTicks": 90,
       "paired": {
-        "point": -0.150626,
-        "lower": -0.156873,
-        "upper": -0.144286
+        "point": -0.149932,
+        "lower": -0.155436,
+        "upper": -0.144471
       },
       "unpaired": {
-        "hold": 0.131583,
-        "actNow": 0.282208,
-        "delta": -0.150626,
+        "hold": 0.131132,
+        "actNow": 0.281064,
+        "delta": -0.149932,
         "holdCi": [
-          0.128005,
-          0.13534
+          0.127917,
+          0.134537
         ]
       },
       "concessionTwin": {
-        "point": 0.009539,
-        "lower": 0.007423,
-        "upper": 0.011734
+        "point": 0.009795,
+        "lower": 0.008,
+        "upper": 0.011738
       },
       "byPressure": [
         {
           "pressureBand": 0,
-          "n": 7531,
-          "delta": -0.128668
+          "n": 9462,
+          "delta": -0.124815
         },
         {
           "pressureBand": 1,
-          "n": 8161,
-          "delta": -0.163705
+          "n": 10261,
+          "delta": -0.158074
         },
         {
           "pressureBand": 2,
-          "n": 42492,
-          "delta": -0.152005
+          "n": 53577,
+          "delta": -0.152808
         }
       ],
       "releaseTwin": {
-        "n": 58182,
-        "point": -0.098879,
-        "lower": -0.105751,
-        "upper": -0.092605
+        "n": 73298,
+        "point": -0.098325,
+        "lower": -0.1037,
+        "upper": -0.093118
       },
       "holdAnatomy": {
-        "survived": 0.691737,
-        "lostToTackle": 0.226901
+        "survived": 0.689959,
+        "lostToTackle": 0.228377
       }
     }
   ],
@@ -2330,24 +2330,17 @@
         "cell": "0|0|0",
         "rung": "cell",
         "holdTicks": 30,
-        "point": -0.01355,
-        "upper": 0.027933
-      },
-      {
-        "cell": "0|0|1",
-        "rung": "cell",
-        "holdTicks": 30,
-        "point": -0.028916,
-        "upper": 0
+        "point": -0.006726,
+        "upper": 0.031461
       }
     ]
   },
   "h1Power": {
-    "sigmaC": 0.119075,
-    "seDiff": 0.007116,
-    "sigmaMultiple": 2.8105,
-    "clustersBuild": 980,
-    "clustersHeldout": 392,
+    "sigmaC": 0.118283,
+    "seDiff": 0.006303,
+    "sigmaMultiple": 3.1732,
+    "clustersBuild": 1233,
+    "clustersHeldout": 493,
     "floor": 3
   },
   "reported": {
@@ -2369,81 +2362,81 @@
     "h1": [
       {
         "arm": "actNow",
-        "delta": 0.000942
+        "delta": 0.001389
       },
       {
         "arm": "hold30",
-        "delta": 0.007518
+        "delta": 0.003843
       },
       {
         "arm": "hold60",
-        "delta": 0.001981
+        "delta": 0.002857
       },
       {
         "arm": "hold90",
-        "delta": 0.000037
+        "delta": 0.000809
       }
     ],
     "h2": [
       {
         "pressureBand": 0,
         "arm": "actNow",
-        "delta": 0.010148
+        "delta": 0.016271
       },
       {
         "pressureBand": 0,
         "arm": "hold30",
-        "delta": 0.006143
+        "delta": 0.006764
       },
       {
         "pressureBand": 0,
         "arm": "hold60",
-        "delta": 0.005761
+        "delta": 0.004571
       },
       {
         "pressureBand": 0,
         "arm": "hold90",
-        "delta": 0.007282
+        "delta": 0.0077
       },
       {
         "pressureBand": 1,
         "arm": "actNow",
-        "delta": 0.020087
+        "delta": 0.017524
       },
       {
         "pressureBand": 1,
         "arm": "hold30",
-        "delta": 0.013409
+        "delta": 0.009685
       },
       {
         "pressureBand": 1,
         "arm": "hold60",
-        "delta": 0.012943
+        "delta": 0.015374
       },
       {
         "pressureBand": 1,
         "arm": "hold90",
-        "delta": 0.01149
+        "delta": 0.011896
       },
       {
         "pressureBand": 2,
         "arm": "actNow",
-        "delta": 0.000756
+        "delta": 0.001601
       },
       {
         "pressureBand": 2,
         "arm": "hold30",
-        "delta": 0.008829
+        "delta": 0.004816
       },
       {
         "pressureBand": 2,
         "arm": "hold60",
-        "delta": 0.00127
+        "delta": 0.001981
       },
       {
         "pressureBand": 2,
         "arm": "hold90",
-        "delta": 0.000948
+        "delta": 0.000355
       }
     ]
   },
@@ -2455,8 +2448,8 @@
       "X-MUSTKICK": 1000,
       "X-A0-SHOOT": 1000,
       "E-INJURY": 1000,
-      "X-A0-CLEAR": 82,
-      "E-MATCHEND": 40
+      "X-A0-CLEAR": 94,
+      "E-MATCHEND": 47
     },
     "records": {
       "E-PAUSED": [
@@ -32801,6 +32794,72 @@
           "cause": "X-A0-CLEAR"
         },
         {
+          "seed": 8300983,
+          "tick": 1141,
+          "gid": 1,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301000,
+          "tick": 308,
+          "gid": 7,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301000,
+          "tick": 4414,
+          "gid": 7,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301020,
+          "tick": 5553,
+          "gid": 9,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301038,
+          "tick": 648,
+          "gid": 4,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301042,
+          "tick": 639,
+          "gid": 9,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301052,
+          "tick": 742,
+          "gid": 7,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301060,
+          "tick": 5281,
+          "gid": 1,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301085,
+          "tick": 3095,
+          "gid": 2,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301194,
+          "tick": 3958,
+          "gid": 2,
+          "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8301207,
+          "tick": 844,
+          "gid": 3,
+          "cause": "X-A0-CLEAR"
+        },
+        {
           "seed": 8400011,
           "tick": 3076,
           "gid": 10,
@@ -32961,6 +33020,12 @@
           "tick": 4691,
           "gid": 4,
           "cause": "X-A0-CLEAR"
+        },
+        {
+          "seed": 8400397,
+          "tick": 4811,
+          "gid": 10,
+          "cause": "X-A0-CLEAR"
         }
       ],
       "E-MATCHEND": [
@@ -33057,6 +33122,48 @@
         {
           "seed": 8300777,
           "tick": 14672,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14546,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14546,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14576,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14576,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14576,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14606,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 8301094,
+          "tick": 14606,
           "gid": 9,
           "cause": "match-ended-in-window"
         },
@@ -33214,7 +33321,7 @@
     "c2Heldout": true,
     "c3RowFloors": true,
     "h1Marginal": true,
-    "h1SigmaFloor": false,
+    "h1SigmaFloor": true,
     "h2PressureRows": true,
     "unexplainedZero": true,
     "dDeterministic": true
@@ -33259,7 +33366,7 @@
       "ts5DecisionsPerSpell": 4.2323
     }
   ],
-  "sha256": "ef1776a8dd4b1066e2b463ff90790251727ac621e7146d9ec7d08449ab90a057",
-  "verdict": "FAIL",
-  "tableSha": "55db4f16e29281221d2e9773b7897210c2da099e2092ffc8cac3408d40370ec8"
+  "sha256": "dbf90df55bdf76e91781881eb88857e8ba9ad897fb0fed2db8d9ff598f3f552a",
+  "verdict": "PASS",
+  "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53"
 }

@@ -580,7 +580,16 @@ different keying is a new stage). No stage may be rescued by tuning a neighbour.
 
 ---
 
-## §RESULT — the run (VERDICT **FAIL**, published LABELLED — ruling #62)
+## §RESULT — the FIRST run (VERDICT **FAIL**, published LABELLED — ruling #62; SUPERSEDED by §EXT-RESULT)
+
+> **⚠ SUPERSEDED — RECORDED HISTORY.** This section is the FIRST, under-powered
+> run. It is **retained verbatim as the labelled record** it was (ruling #62), and
+> its numbers are the history against which the certified extension is read. **The
+> CERTIFIED reading is §EXT-RESULT below** (the #62.3 extension, PASS at 3.1732σ).
+> Nothing in this section may be quoted as a verdict; where the two disagree, the
+> certified §EXT-RESULT governs. The extension recomputes the whole analysis over
+> the COMBINED set (it does not splice onto these numbers), so this run's figures
+> are not carried forward — only kept as the ex-ante record.
 
 > **⚠ LABEL (standing convention P2 (d); T1's ruling #69; ruling #62.1).** This
 > census **FAILS its own power floor** and is **PUBLISHED LABELLED**. The gate
@@ -589,7 +598,7 @@ different keying is a new stage). No stage may be rescued by tuning a neighbour.
 > below the 3σ floor** (#61.3, bound at full weight). **NO reading below —
 > INCLUDING THE UNPARK COMPUTATION — MAY BE QUOTED AS A VERDICT.** Everything in
 > this section is banked as LABELLED DATA. The certified reading is the #62.3
-> extension's (addendum below), which neither this section nor the commander may
+> extension's (§EXT-RESULT below), which neither this section nor the commander may
 > pre-empt.
 
 Probe `scripts/probes/c5-recensus.ts`, HEAD `60a18d7`, build block **8,300,000+**
@@ -844,3 +853,183 @@ reading**, and **NEITHER outcome triggers a further extension.** If the zero
 survives the narrower intervals, the unpark is real and the #29.3 law then rules
 (the commander drafts C5-T2 iff it survives); if it dies, it was small-n noise —
 **both are findings, and this is the last look.**
+
+---
+
+## §EXT-RESULT — THE CERTIFIED EXTENDED RUN (VERDICT **PASS** — ruling #62.3)
+
+> **⭐ THIS IS THE CERTIFIED READING.** The #62.3 extension re-sized the SAME frozen
+> instrument on the realised σ_c and re-walked the blocks in-sequence to the higher
+> cluster floors. **Every gate passes, INCLUDING `h1SigmaFloor` — 3.1732σ at the
+> realised σ_c 11.83 pp, above the 3.0σ floor.** The full analysis is recomputed
+> over the COMBINED set (original + extension); it is NOT spliced onto §RESULT's
+> numbers. Per ruling #62.3's closed optional-stopping door, this reading is final:
+> **no further extension runs, in either direction.** The resident session ran it
+> under supervision (#49.5); this write-up lands it.
+
+Probe `scripts/probes/c5-recensus.ts`, HEAD `60a18d7`, build block **8,300,000+**
+(1,233 clusters), held-out block **8,400,000+** (493 clusters), enriched world
+(VALUE arm + c6Carry + c7Windup in EVERY arm), bootstrap seed 50060. Extension
+territory beyond the old ceilings — build **8,301,200+**, held-out **8,400,480+** —
+disjoint from every consumed range (§3.4); the shared prefix reproduces §RESULT
+byte-for-byte under X-DET.
+
+### §EXT-RESULT.0 — the verdict, and the power floor MET
+
+The extension met the one gate its predecessor missed. The realised combined-set
+cluster σ_c came in at **11.8283 pp** (a touch below the FIRST run's 11.9075 pp),
+and at the re-sized 1,233 / 493 clusters the H1 tolerance certifies at **3.1732σ —
+above the 3.0σ floor with the designed headroom.** Verdict **PASS**.
+
+```text
+H1 POWER (realised, COMBINED set)
+  σ_c (per-match cluster SD, enriched eligible act-now marginal)   11.8283 pp
+  SE_diff = σ_c · √(1/1233 + 1/493)                                 0.6303 pp
+  σ-multiple = 2.0 pp / SE_diff                                     3.1732 σ
+  floor                                                             3.00  σ      → PASS
+  design target (§EXT sizing, headroom over floor)                  3.15  σ
+```
+
+### §EXT-RESULT.1 — the gate table (all PASS)
+
+```text
+X-FP           fingerprint 57b0bdab… unchanged (dormant shield edit unreachable)   PASS
+X-OFF-IDENT    3 league seeds × inert-pin identical (reported.inertPins all true)  PASS
+X-SEAM / X4    seam inert: forced-hold expired ⇒ byte-identical to A0 (3 seeds)    PASS  (x4SeamInert)
+X5             seam bites: k=90 signature differs from A0 in 100 % of moments      PASS  (x5SeamBites, floor 90 %)
+X-DET          two runExperiment() invocations byte-identical; SHA emitted         PASS  (dDeterministic)
+C1             build clusters 1,233 ≥ 1,233                                        PASS  (c1Build)
+C2             held-out clusters 493 ≥ 493                                         PASS  (c2Heldout)
+C3             every pressure row ≥ 300 eligible rows per arm, both blocks         PASS  (c3RowFloors)
+H1 (reproduce) max marginal drift 0.38 pp ≤ 2.0 pp, per arm                        PASS  (h1Marginal)
+H1 (σ-FLOOR)   3.1732σ ≥ 3.00σ                                                     ✅ PASS (h1SigmaFloor)
+H2             every gated pressure row ≤ 5.0 pp drift (max 1.75 pp)               PASS  (h2PressureRows)
+UNEXPLAINED    exactly 0 over the class set, both blocks                           PASS  (unexplainedZero)
+```
+
+**Every gate PASSES.** Verdict **PASS (certified)**. H1 marginal reproduction is
+excellent AND certified: max arm drift **0.38 pp** (arm hold30; the other three
+arms ≤ 0.29 pp) — far inside the 2.0 pp tolerance, now at 3.17σ.
+
+### §EXT-RESULT.2 — the certified substance (combined set)
+
+**The waiting price stays SHALLOWER across the whole ladder** than the BEFORE
+reference (§0.2; quoted as reference only, never differenced in a gate). Paired
+per-moment cost `mean(shot_holdk − shot_actnow)`, 95 % cluster bootstrap:
+
+```text
+k        CERTIFIED (enriched, combined)   BEFORE (C5 T1, ref)   FIRST run (labelled, superseded)
+30    −6.48 pp  [−6.91, −6.06]             −7.55                 −6.41
+60   −11.05 pp  [−11.55, −10.55]          −12.77                −11.09
+90   −14.99 pp  [−15.54, −14.45]          −16.12                −15.06     monotone in k; all three exclude zero on the marginal
+```
+
+**The concession twin stays collapsed** (repair (ii), the clock-skew fix, working),
+read at the SAME horizon in all arms:
+
+```text
+concession twin   k30  +0.37 pp [+0.21, +0.54]   k60  +0.82 [+0.63, +1.00]   k90  +0.98 [+0.80, +1.17]
+```
+
+**The release-origin twin** (§1.4, reported never gated), re-anchored to release:
+
+```text
+release twin      k30  −4.45 pp [−4.89, −3.99]   k60  −7.36 [−7.87, −6.85]   k90  −9.83 [−10.37, −9.31]
+```
+
+**Per-pressure curve** (paired cost, pp; free / mid / pressed):
+
+```text
+k30   free −6.32   mid −8.07   pressed −6.21
+k60   free −9.98   mid −12.02  pressed −11.06
+k90   free −12.48  mid −15.81  pressed −15.28
+```
+
+**Hold anatomy** — the shielded ball survives the wait less as k grows:
+
+```text
+survived / lost-to-tackle    k30  85.70 % / 8.49 %   k60  76.84 % / 16.01 %   k90  68.996 % / 22.84 %
+```
+
+### §EXT-RESULT.3 — ⭐ THE UNPARK CONDITION FIRES CERTIFIED (on ONE cell)
+
+The #29.3 test — *any (cell, k) cost interval whose upper CI bound ≥ 0* — with the
+narrower combined-set intervals **fires on exactly ONE cell**: **`0|0|0` —
+free-pressure, fresh-ball (low staleTime), LOW support — at k = 30 (half a
+second)**, on its own laddered `cell` rung (no fall-down). The FIRST run's second
+firing cell (`0|0|1`, mid support) **DIED with more data** — precisely the
+small-n-noise outcome the extension existed to test. Both survivor and casualty,
+on their own `cell` rung, n grown ~26 %:
+
+```text
+CELL  0|0|0   free · fresh · LOW support   rung cell   n = 446   ★ SURVIVES — FIRES CERTIFIED
+  rates   actNow 14.13 %  hold30 13.45 %  hold60 6.95 %  hold90 3.81 %
+  cost k30  −0.67 pp  CI [−4.66, +3.15]   ⇒ upper +3.15 ≥ 0   → REACHES ZERO ★  (robustly straddles zero)
+  cost k60  −7.17 pp  CI [−10.73, −3.69]
+  cost k90 −10.31 pp  CI [−13.60, −6.93]
+
+CELL  0|0|1   free · fresh · MID support   rung cell   n = 1040  ✘ DIES — was small-n noise
+  rates   actNow 18.17 %  hold30 14.42 %  hold60 9.52 %  hold90 8.17 %
+  cost k30  −3.75 pp  CI [−6.38, −1.28]   ⇒ upper −1.28 < 0   → resolved-negative (no longer reaches zero)
+  cost k60  −8.65 pp  CI [−11.15, −6.01]
+  cost k90 −10.00 pp  CI [−12.62, −7.51]
+```
+
+**In the calmest corner of the enriched world — free pressure, a fresh ball, few
+supporting bodies — half a second of waiting is CERTIFIED as no longer
+distinguishably a loss** (the k=30 cost interval robustly straddles zero,
+[−4.66, +3.15] pp, n = 446). The mid-support neighbour that also fired under the
+label resolved firmly negative with the added data. This is the #29.3 disposition
+(S2), certified.
+
+**The optional-stopping door stays closed (ruling #62.3, honoured).** This
+certified reading — the fire on `0|0|0`, the death of `0|0|1` — is FINAL. **No
+further extension runs, in either direction**; whichever way a cell fell here is
+the last look.
+
+### §EXT-RESULT.4 — tempo, re-read on the enriched world (§9, reported)
+
+The enriched world plays **FASTER**, with the spell length unchanged:
+
+```text
+                         ENRICHED                legacy (flags-off)
+releases / minute        30.72                   28.78
+one-touch share          20.35 %                 18.93 %
+spell seconds median     0.3333  (mean 0.635)    0.3333  (mean 0.662)
+decisions / spell        4.23                    4.41
+```
+
+### §EXT-RESULT.5 — exception & coverage ledger (#38.1 / #49.3; unexplained gated at 0)
+
+```text
+                       build            held-out
+qualifying moments     98,565           39,416
+eligible (retained)    73,300 (74.37%)  29,166 (74.00%)
+  X-FIRSTTOUCH         17,059            6,894
+  X-MUSTKICK            4,900            1,999
+  X-A0-SHOOT            3,240            1,329
+  X-A0-CLEAR               66               28
+E-PAUSED               88,334           35,546
+E-INJURY                2,124              759
+E-MATCHEND                 23               24    (reads at whatever reached; count reported #48.4)
+E-NOOWNER / E-GKHOLD        0 / 0            0 / 0
+UNEXPLAINED                0                0    ← gated at exactly 0 (PASS)
+```
+
+### §EXT-RESULT.6 — provenance (X-DET)
+
+```text
+full-output SHA-256   dbf90df55bdf76e91781881eb88857e8ba9ad897fb0fed2db8d9ff598f3f552a
+table SHA-256         184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53
+determinism           two runExperiment() invocations byte-identical (X-DET PASS)
+data                  docs/world-model/data/c5-recensus.json   (the CERTIFIED combined-set run)
+```
+
+### §EXT-RESULT.7 — the #29.3 conclusion, stated exactly
+
+**THE UNPARK CONDITION FIRES CERTIFIED — C5-T2 drafting is now the commander's to
+authorize.** One cell — `0|0|0` (free · fresh · low support), k=30 — has, on the
+certified combined-set intervals, a hold cost that reaches zero ([−4.66, +3.15] pp,
+n=446); the FIRST run's second cell (`0|0|1`) died as small-n noise. Per ruling
+#62.3 this is the last look either way; the re-census returns the fired cell — and
+the WHETHER seat is the commander's to draft (§4).
