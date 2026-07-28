@@ -44,7 +44,8 @@ import {
   type DirectBallAccess,
   type PossessionLocus,
 } from './physical';
-import { Player } from './Player';
+import { Player, TURN_RATE } from './Player';
+import { clamp } from '../utils/math';
 import { matchRating } from './ratings';
 import { Team } from './Team';
 import {
@@ -75,6 +76,74 @@ const EDS_BUNDLE_ARMED = envArmed('EDS_BUNDLE');
 /** E3R2: at most 11 scan frames can be inside retention; 16 is the safe ring. */
 const SCAN_FRAME_RING = 16;
 const EDS_TRACE_ARMED = envArmed('EDS_TRACE_CHOICE');
+
+/* ------------------------------------------------------------------ *
+ * C6 T1 — THE HONEST OFFSET (docs/world-model/C6-T1-HONEST-OFFSET.md) *
+ * ------------------------------------------------------------------ *
+ * The law that replaces the rigid `owner.pos + heading·0.85` glue when the
+ * dormant `c6Carry` flag is armed (probe-only; OFF in every production path).
+ * It reads ONLY the body's own `|v|`, its heading sweep rate `|ω|`, and its own
+ * `dribbling` attribute — no opponents, no percepts, no ball-context (invariant
+ * I2 / contract §4.2). Constants are candidate B's shape, frozen verbatim at the
+ * T1 pre-registration; the dribbling terms are mean-preserving, centered on the
+ * founding population mean d̄ = 0.40 so a mean body reproduces candidate B and
+ * T0's measured effects transfer as the population-mean expectations.
+ */
+const C6_D_BAR = 0.4; // founding population mean dribbling (the centering anchor)
+const C6_V_REF = 7.0; // TOP_SPEED_REF — the role top-speed reference
+const C6_CARRY_BASE = 0.55;
+const C6_CARRY_SPEED = 0.15;
+const C6_CARRY_TUCK = 0.3;
+const C6_CARRY_FLOOR = 0.3;
+const C6_CARRY_CAP = 1.4;
+const C6_TUCK_KAPPA = 1.0; // dribbling scaling of the tuck (bounded ±30% of B)
+const C6_TAU_BASE = 0.18; // candidate B's lag (s)
+const C6_TAU_SLOPE = 0.1; // s per unit dribbling
+const C6_TAU_MIN = 0.12;
+const C6_TAU_MAX = 0.24;
+const C6_SIGMA_AMP = 0.06; // wobble amplitude (m), not a driver
+const C6_SIGMA_DRB = 0.8; // dribbling clean-up of the wobble
+/** The heading ring must hold at least the τ cap (round(0.24/DT) = 14 ticks). */
+const C6_HEADING_RING = 16;
+
+/** Candidate B's magnitude law, dribbling-scaled tuck; mean-preserving at d̄. */
+const c6CarryLen = (speed: number, omega: number, drb: number): number => {
+  const tuckGain = 1 + C6_TUCK_KAPPA * (drb - C6_D_BAR);
+  return clamp(
+    C6_CARRY_BASE + C6_CARRY_SPEED * (speed / C6_V_REF) - C6_CARRY_TUCK * (omega / TURN_RATE) * tuckGain,
+    C6_CARRY_FLOOR,
+    C6_CARRY_CAP,
+  );
+};
+/** The technique-priced lag τ (seconds), clamped inside B's measured-alive band. */
+const c6TauSeconds = (drb: number): number =>
+  clamp(C6_TAU_BASE + C6_TAU_SLOPE * (drb - C6_D_BAR), C6_TAU_MIN, C6_TAU_MAX);
+/** τ in ticks (DT = 1/60): d̄ → round(0.18·60) = 11; band [7, 14]. */
+const c6TauTicks = (drb: number): number => Math.round(c6TauSeconds(drb) / DT);
+/** The wobble σ (m): gated on turn intensity, scaled down by dribbling. */
+const c6Sigma = (omega: number, drb: number): number =>
+  C6_SIGMA_AMP * (omega / TURN_RATE) * (1 - C6_SIGMA_DRB * drb);
+
+/** One keyed uniform in [0, 1) — the E3R2 keyed-noise style (#13.3), a pure
+ *  function of (gid, tick, channel); never touches `match.rng`. */
+const c6KeyedUnit = (gid: number, tick: number, channel: number): number => {
+  let h = 0x6d6e4c31 | 0;
+  h = Math.imul(h ^ (gid + 0x9e3779b9), 0x85ebca6b);
+  h = Math.imul(h ^ (tick + 0xc2b2ae35), 0x27d4eb2d);
+  h = Math.imul(h ^ (channel + 0x165667b1), 0x9e3779b1);
+  h ^= h >>> 16;
+  return (h >>> 0) / 0x100000000;
+};
+/** A deterministic 2D unit gaussian keyed on (gid, simTick); Box-Muller from two
+ *  keyed uniforms. Zero-mean, so it does not shift the population-mean far-side /
+ *  eligibility expectations — only inflates their variance (doc §LAW). */
+const c6KeyedGaussian2D = (gid: number, tick: number): { x: number; y: number } => {
+  const u1 = Math.min(1 - 1e-12, Math.max(1e-12, c6KeyedUnit(gid, tick, 0)));
+  const u2 = c6KeyedUnit(gid, tick, 1);
+  const r = Math.sqrt(-2 * Math.log(u1));
+  const a = 2 * Math.PI * u2;
+  return { x: r * Math.cos(a), y: r * Math.sin(a) };
+};
 
 /**
  * Per-foul injury chance at neutral fatigue/age (Phase 118). Calibrated by
@@ -275,6 +344,16 @@ export interface MatchConfig {
    */
   edsEagerPerception?: boolean;
   /**
+   * C6 T1 (docs/world-model/C6-T1-HONEST-OFFSET.md): the honest carrying offset.
+   * When armed, the OUTFIELD glued ball (`carry = 0.85`, not the GK `0.3` case)
+   * follows the §LAW magnitude/lag/noise around the body instead of riding rigid
+   * at `heading·0.85`. Reads only the body's own `|v|`, `|ω|` and `dribbling`
+   * (I2). **Default OFF, null in every production path (Road B, #47.5 nothing
+   * ships)** — a probe arms it on a forked world; the fingerprint is unchanged.
+   * The de-glue branch and the GK-hold path are untouched (I5/I6).
+   */
+  c6Carry?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -418,6 +497,18 @@ export class Match {
   readonly edsValueAxis: boolean;
   /** E3R2: run perception eagerly (the pinned reference), not on demand. */
   readonly edsEagerPerception: boolean;
+  /** C6 T1: the honest carrying offset, dormant unless a probe world arms it. */
+  readonly c6Carry: boolean;
+  /**
+   * C6 T1: per-body heading ring buffer (the lag law's lookback, doc §SEAM).
+   * The outfield carrier's heading is recorded here each owned tick — engine
+   * bookkeeping written by the seam, NEVER read as game state by the law and
+   * never hashed, so the OFF world signature is byte-identical. It is recorded
+   * unconditionally (not gated on `c6Carry`) so a world FORKED from an OFF base
+   * match carries the pre-fork history the honest offset's lag reads on the ON
+   * arm. A fixed-size ring per gid (`C6_HEADING_RING`), keyed by sim tick.
+   */
+  readonly c6HeadingHist = new Map<number, { tick: number; hx: number; hy: number }[]>();
   readonly traceChoice: boolean;
   /** E3 instrument output; appended to only when `traceChoice` is on. */
   readonly passChoiceTrace: PassChoiceTraceEntry[] = [];
@@ -665,6 +756,8 @@ export class Match {
     this.edsPerceivedChoice = cfg.edsPerceivedChoice ?? EDS_BUNDLE_ARMED;
     this.edsValueAxis = cfg.edsValueAxis ?? EDS_BUNDLE_ARMED;
     this.edsEagerPerception = cfg.edsEagerPerception ?? false;
+    // C6 T1: Road B — never env-armed, never default-ON; a probe arms it explicitly.
+    this.c6Carry = cfg.c6Carry ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     this.edsAwareness = cfg.edsAwareness ?? 0.8;
     this.perceptionSeed = cfg.seed;
@@ -1397,6 +1490,66 @@ export class Match {
     this.resolveContestControlled(p);
   }
 
+  /* ------------- C6 T1 the honest offset (docs/world-model/C6-T1-HONEST-OFFSET.md) ------------- */
+
+  /** Record the outfield carrier's post-step heading in its ring, keyed by tick
+   *  (doc §SEAM). Fixed-size ring; world-neutral bookkeeping. */
+  private recordC6Heading(gid: number, hx: number, hy: number): void {
+    let ring = this.c6HeadingHist.get(gid);
+    if (ring === undefined) {
+      ring = [];
+      this.c6HeadingHist.set(gid, ring);
+    }
+    ring.push({ tick: this.stepCount, hx, hy });
+    if (ring.length > C6_HEADING_RING) ring.shift();
+  }
+
+  /** The body's own heading `tick` ticks ago, from its ring (doc §LAW lag term).
+   *  Returns null when that frame is not in the ring (history too short / a gap —
+   *  the caller falls back to the current heading, the T0 `candLagFallback`). */
+  private c6HeadingAt(gid: number, tick: number): { hx: number; hy: number } | null {
+    const ring = this.c6HeadingHist.get(gid);
+    if (ring === undefined) return null;
+    for (let i = ring.length - 1; i >= 0; i--) {
+      if (ring[i].tick === tick) return ring[i];
+    }
+    return null;
+  }
+
+  /**
+   * Apply the honest carrying offset to `ball.pos` for the outfield carrier
+   * `owner` (doc §LAW). Reads ONLY the body's own `|v|`, its heading sweep rate
+   * `|ω|` and its own `dribbling` (I2). The lag reads the heading τ(drb) ticks
+   * back from the ring; the wobble is a keyed zero-mean gaussian on (gid, tick),
+   * never `match.rng`. Writes ball.pos only — never ball.owner (#48.3).
+   */
+  private applyC6HonestOffset(ball: Ball, owner: Player): void {
+    const drb = owner.attrs.dribbling;
+    const speed = Math.sqrt(owner.vel.x * owner.vel.x + owner.vel.y * owner.vel.y);
+    // heading sweep rate |ω|, from consecutive recorded headings (the current
+    // tick was just recorded by the seam); no prior frame ⇒ straight (ω = 0).
+    const prev = this.c6HeadingAt(owner.gid, this.stepCount - 1);
+    let omega = 0;
+    if (prev !== null) {
+      const a0 = Math.atan2(prev.hy, prev.hx);
+      const a1 = Math.atan2(owner.heading.y, owner.heading.x);
+      let d = a1 - a0;
+      while (d > Math.PI) d -= 2 * Math.PI;
+      while (d < -Math.PI) d += 2 * Math.PI;
+      omega = Math.abs(d) / DT;
+    }
+    // the lagged offset direction: the body's heading τ(drb) ticks back.
+    const lagged = this.c6HeadingAt(owner.gid, this.stepCount - c6TauTicks(drb));
+    const dirX = lagged !== null ? lagged.hx : owner.heading.x;
+    const dirY = lagged !== null ? lagged.hy : owner.heading.y;
+    const carryLen = c6CarryLen(speed, omega, drb);
+    // dir(θ_ball) is a unit heading vector; scale by carryLen, add keyed wobble.
+    const sigma = c6Sigma(omega, drb);
+    const noise = c6KeyedGaussian2D(owner.gid, this.stepCount);
+    ball.pos.x = owner.pos.x + dirX * carryLen + noise.x * sigma;
+    ball.pos.y = owner.pos.y + dirY * carryLen + noise.y * sigma;
+  }
+
   /* ---------------- ball physics ---------------- */
 
   private stepBall(dt: number): void {
@@ -1444,8 +1597,25 @@ export class Match {
         ball.owner.gkHoldTimer > 0 || (ball.owner.role === 'GK' && ball.owner.gkDistributing)
           ? 0.3
           : 0.85;
-      ball.pos.x = ball.owner.pos.x + ball.owner.heading.x * carry;
-      ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * carry;
+      if (carry === 0.85) {
+        // C6 T1: record the outfield carrier's heading for the lag law's
+        // lookback. UNCONDITIONAL (not gated on `c6Carry`) and world-neutral —
+        // never touches ball/players/rng/phase, so the OFF signature is
+        // byte-identical — so that a world FORKED from an OFF base match carries
+        // the pre-fork heading history the ON arm's lag reads (doc §SEAM).
+        this.recordC6Heading(ball.owner.gid, ball.owner.heading.x, ball.owner.heading.y);
+      }
+      if (this.c6Carry && carry === 0.85) {
+        // C6 T1 — THE HONEST OFFSET (docs/world-model/C6-T1-HONEST-OFFSET.md
+        // §LAW): the outfield glued ball follows the body's own kinematics and
+        // technique instead of riding rigid at heading·0.85. Writes ball.pos
+        // only; never ball.owner (#48.3 structural zero-loose). The GK 0.3 case
+        // and the de-glue branch never reach here.
+        this.applyC6HonestOffset(ball, ball.owner);
+      } else {
+        ball.pos.x = ball.owner.pos.x + ball.owner.heading.x * carry;
+        ball.pos.y = ball.owner.pos.y + ball.owner.heading.y * carry;
+      }
       ball.vel.x = ball.owner.vel.x;
       ball.vel.y = ball.owner.vel.y;
       // Ball in the keeper's hands (Phase 28.1): opponents are held off the

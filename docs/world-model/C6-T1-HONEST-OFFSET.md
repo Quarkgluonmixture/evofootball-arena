@@ -253,8 +253,31 @@ E-TRANSITION the ownership/same-player re-strike artefact (the F2 precedent,
 Per #32.1 this is a **per-record fidelity check with named exception classes**,
 never a coupon-collector max-statistic over the tick stream.
 
-### ZERO-LOOSE — exact (I3)
+### ZERO-LOOSE — STRUCTURAL (I3) — **commander amendment #48.3**
 
+> **Commander amendment #48.3 (applied to the frozen doc per ruling #48.5).**
+> The frozen form below demanded loose-ball events be EXACTLY EQUAL between paired
+> ON/OFF forks. Ruling #48.3 finds that mis-formalized: the honest offset changes
+> tackle geometry BY DESIGN, so a tackle that succeeds on one arm and not the
+> other frees the ball on one arm and not the other — legitimate divergence,
+> near-certain over ~8,230 episodes (the P1-X6 predicate-does-not-match-the-world
+> genre, #24). Through I3's actual meaning ("the law never de-glues") the gate
+> becomes **STRUCTURAL**:
+>
+> * **The seam writes only `ball.pos`/`ball.vel`, NEVER `ball.owner`** — asserted
+>   by a test (SEAM-NEVER-WRITES-OWNER) AND by the fork **ownership-release
+>   ledger**: every ownership release on ON forks classes to an **existing named
+>   channel** (tackle, de-glue, kick, ball-won); **releases attributable to the
+>   offset assignment must be exactly 0.** Any release the ledger cannot attribute
+>   to a named channel ⇒ FAIL, stop at the commander.
+> * **The paired loose-ball COUNT DELTA is REPORTED, never gated** — it is
+>   downstream duel economy, **T2's to price** (#48.3).
+>
+> The pre-laid readings and the report-back are updated accordingly: reading (H)
+> now fires on the STRUCTURAL predicate (an unattributable release), not on a
+> count inequality; the count delta is a reported number.
+
+**Superseded frozen form (kept for the record, #48.3 governs):**
 **Zero new loose balls.** The glue is kept: the honest offset moves where the
 owned ball sits, never whether it is owned. Loose-ball events on the ON forks,
 paired same-seed against OFF, must be **exactly equal** (#47.5(iv): "zero new
@@ -332,6 +355,18 @@ consequence of the displacement is **T2's §2 band to price**, not T1's.
   recomputes on T0's RECORDED trajectories; the LIVE forks may differ** because
   bodies react — this is exactly what T1 tests, and §PRE-LAID READINGS pre-lays
   what a divergence means.
+* **Fork measurement window — PINNED (commander amendment #48.4).**
+  > **Commander amendment #48.4 (applied to the frozen doc per ruling #48.5).**
+  > The frozen staging left the horizon for reading the two axes and the kick
+  > bound on a forked episode **unpinned** — a post-hoc degree of freedom the
+  > discipline forbids. PINNED NOW, from T0's own instrument: **the window runs
+  > from sweep start to sweep end + 0.5 s** (T0's during-or-after convention: the
+  > episode's sweep, plus the 30-tick / 0.5 s post-window). **Kick displacement
+  > is read on kicks initiated INSIDE the window.** **Forks whose match ends
+  > inside the window are EXCLUDED, with the count REPORTED** (the standing
+  > convention). Both axes (eligibility, far-side), the kick bound, the fidelity
+  > ledger and the ownership-release ledger are all measured over exactly this
+  > window on each fork.
 * **Seed block — fresh, disjoint from every consumed range:** seeds
   **`5,000,000 + b·100,000 + k`, `b ∈ 0..11`, `k ∈ 0..99` = 1,200 matches**,
   **5.0M–6.1M**. Consumed elsewhere and cleared: P0 930k · P1 960k–1.46M · P1R
