@@ -2300,3 +2300,25 @@
 >    engineering-smokes it capped, commits, and STOPS; the resident
 >    session supervises the full run per #49.5; a final executor
 >    session writes the result. Nothing moves after sight.
+
+> **COMMANDER RULING #53 (2026-07-29 — Stage III v2 direction DECIDED
+> by the user: 先攒底子 — the substrate first):**
+>
+> 1. **Stage III PARKS at v2's doorstep, user-ruled.** The anticipatory
+>    census memo (STAGE3-V2-DIRECTION-MEMO.md) is BANKED as the
+>    designated revival direction — its mechanism (perceived teammate
+>    motion as a census CONDITION; percept-honest; no hand-coded
+>    shape rule) survived the user's emergence check and is not to be
+>    re-litigated at unpark; only re-sized against the then-current
+>    world (#26.5).
+> 2. **The rationale, banked with it**: at 0.33 s median ownership
+>    spells with thin craft, positioning has little to buy (the v1
+>    labelled payoff ≈ 0 is consistent with this, not only with the
+>    winner's curse). Enriching the carry/time/craft substrate FIRST
+>    raises what any eye could purchase — the road the user chose.
+> 3. **UNPARK CONDITION, pre-named**: after the current C-track arc
+>    lands — C6 T2 verdict + the #29.3 C5 re-census decision taken +
+>    C7's wind-up seat at least code-mapped — or earlier at the user's
+>    word. The road order is now: C6 T2 (in flight) → #29.3 C5
+>    re-census decision → C7 Phase-0 map (gap work, #29.4 template)
+>    → revisit Stage III v2.
