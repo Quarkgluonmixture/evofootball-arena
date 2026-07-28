@@ -329,8 +329,17 @@ inside ±5%). The honest offset is deployment-safe, dormant behind
 `c6Carry`, nothing shipped. **#29.3 decided: ONE C5 re-census after C7's
 first slice** (C6 moved the hold's cost side — stationary tuck 0.55 m;
 C7 wind-up is the payoff-side lever; #26.5 staleness makes per-lever
-re-censuses waste). **C7 PHASE-0 CODE MAP authorized as gap work, in
-flight.** Earlier tonight: the #45.2(0) doc split landed and was
+re-censuses waste). **C7 PHASE-0 CODE MAP DONE** →
+[`C7-PHASE0-CODE-MAP.md`](C7-PHASE0-CODE-MAP.md) (⭐ release is
+synchronous — the committed-but-unstruck tick DOES NOT EXIST; the
+reception side's `pendingControl` already runs the missing shape;
+`kickMisalignment` = the one double-charge hazard). **C7 DESIGN CONTRACT
+DRAFTED by the commander** → [`C7-RELEASE-WINDUP.md`](C7-RELEASE-WINDUP.md)
+(v1 = SHOT `pendingKick`: time-only, existing prices evaluated at strike
+time, interruption free via the existing ball-keyed tackle, no opponent
+input, shots-only bounds watchability; pass wind-up deferred with §2
+obligations). **NEXT: executor drafts C7 T0 (shot-release census)
+pre-registration; commander reviews before it runs.** Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
