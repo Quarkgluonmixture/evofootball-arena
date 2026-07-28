@@ -302,9 +302,17 @@ lag-only drive it to ~0; ⭐ ALL candidates RAISE tackle-eligibility, B
 +19.1% — **the glue was quietly protective**, honest carrying costs
 eligibility and buys technique-priced side-protection; kick displacement
 p50 0.35 m corrects the contract's "centimetres" premise, #47.4).
-**T1 DRAFTING AUTHORIZED under #47.5's seven constraints** (two-axis
-priced direction; B's shape as bracket; freeze before implementation;
-review before any build/run). Earlier tonight: the #45.2(0) doc split landed and was
+**T1 pre-registered (freeze
+`3593410`) and REVIEWED — ruling #48: PASS + two ex-ante amendments**
+(ZERO-LOOSE re-formalized as a STRUCTURAL gate — the seam never writes
+`ball.owner`, ownership releases ledger-classed, loose-ball delta
+REPORTED, because the exact-equality form would fail on legitimate
+tackle divergence; and the fork measurement window PINNED at sweep
+start → sweep end + 0.5 s). **Implementation + run AUTHORIZED as
+amended, in flight.** Also drafted tonight:
+[`STAGE3-V2-DIRECTION-MEMO.md`](STAGE3-V2-DIRECTION-MEMO.md) — the
+anticipatory census (COMMANDER DRAFT, №45.2(c), awaiting the user's
+morning ratification; nothing authorized). Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 

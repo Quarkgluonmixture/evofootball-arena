@@ -2108,3 +2108,59 @@
 >    boilerplate + full sign space (#38.1). T1's pre-registration
 >    freezes BEFORE implementation and returns to the commander for
 >    review; implementation and run need their own authorization.
+
+> **COMMANDER RULING #48 (2026-07-28 night — C6 T1 pre-registration
+> reviewed: PASS on design, TWO ex-ante amendments; implementation and
+> run authorized as amended):**
+>
+> 1. **REVIEW — PASS on the law and the harness design.** The
+>    mean-preserving centering (population-mean body reproduces
+>    candidate B exactly, so T0's measured B effects transfer as the
+>    population-mean expectations) is exemplary; the keyed zero-mean
+>    noise follows the E3R2 convention; the lag bounds [0.12, 0.24] s
+>    keep every body strictly inside the measured-alive bracket
+>    (excluding both far-side-dead shapes by construction); the two
+>    priced axes are never conflated; floors are T0-derived at ≥2×;
+>    the block 5.0M–6.1M is disjoint from everything consumed.
+> 2. **Two flagged judgment calls CONFIRMED**: (i) the kick-release
+>    check follows #47.4 (a reported T0-sized bound), which supersedes
+>    contract §4.3.2's equivalence form — later ruling wins, correctly
+>    applied; (ii) the lag-skill direction (τ rising with dribbling) is
+>    the one unmeasured design assumption, and freezing it as REPORTED,
+>    never sign-gated, with the HARD gates binding on the transferable
+>    population mean, is exactly the honest handling.
+> 3. **AMENDMENT ONE — ZERO-LOOSE is mis-formalized and would fail on
+>    legitimate physics.** As frozen, it demands loose-ball events be
+>    EXACTLY EQUAL between paired ON/OFF forks. But the honest offset
+>    changes tackle geometry BY DESIGN; a tackle that succeeds on one
+>    arm and not the other frees the ball on one arm and not the other
+>    — legitimate divergence, near-certain over ~8,230 episodes. The
+>    gate's predicate does not match the world it deploys on (the
+>    P1-X6 genre; #24, second catch tonight). RESOLUTION, through
+>    I3's actual meaning ("the law never de-glues"): the gate becomes
+>    STRUCTURAL — the seam writes only `ball.pos`/`ball.vel`, NEVER
+>    `ball.owner`, asserted by test AND by fork ledger (every ownership
+>    release on ON forks classes to an existing named channel — tackle,
+>    de-glue, kick, ball-won; releases attributable to the offset
+>    assignment must be exactly 0). The paired loose-ball COUNT DELTA
+>    becomes REPORTED — it is downstream duel economy, T2's to price.
+> 4. **AMENDMENT TWO — the fork measurement window is unpinned.** No
+>    horizon is frozen for reading the two axes and the kick bound on
+>    a forked episode — a post-hoc degree of freedom the discipline
+>    exists to forbid. PINNED NOW, from T0's own instrument: the
+>    window runs from sweep start to **sweep end + 0.5 s** (T0's
+>    during-or-after convention); kick displacement is read on kicks
+>    initiated inside the window; forks whose match ends inside the
+>    window are excluded WITH COUNT REPORTED (the standing convention).
+> 5. **IMPLEMENTATION AND RUN AUTHORIZED as amended**: the executor
+>    applies #48.3/#48.4 to the frozen doc (marked commander
+>    amendments), implements the seam + law + probe exactly to spec
+>    (dormant `c6Carry`, default OFF, zero production callers), proves
+>    the X-family (fingerprint; 3 league seeds × 2 seasons OFF
+>    byte-identical; single-fork-point test; tests green; tsc clean),
+>    runs the paired-fork experiment twice byte-identical, fills the
+>    result section, commits (implementation and run may be one or two
+>    commits per the two-commit pattern's spirit — the freeze already
+>    happened), pushes. Nothing else moves. The result returns to the
+>    commander; reading (A) licenses the commander to consider T2,
+>    nothing more.
