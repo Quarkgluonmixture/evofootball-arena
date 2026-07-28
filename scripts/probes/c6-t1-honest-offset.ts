@@ -56,7 +56,14 @@ const BOOTSTRAP_RESAMPLES = 2000;
 const CAP_MATCHES = process.env.C6_T1_CAP_MATCHES
   ? Math.max(1, Number.parseInt(process.env.C6_T1_CAP_MATCHES, 10))
   : Number.POSITIVE_INFINITY;
-const OUT_PATH = process.env.C6_T1_OUT ?? 'docs/world-model/data/c6-t1-honest-offset.json';
+// C6_T1R=1 (ruling #49.3) routes the CANONICAL output to the T1R file — same
+// script, same law, same staging, same gates, the sole change being the enlarged
+// exception set (E-INJURY) + the per-record receipts ledger. Default (unset) and
+// C6_T1_OUT (the smoke's scratch path) behave exactly as before; C6_T1_OUT wins.
+const OUT_PATH = process.env.C6_T1_OUT
+  ?? (process.env.C6_T1R === '1'
+    ? 'docs/world-model/data/c6-t1r-honest-offset.json'
+    : 'docs/world-model/data/c6-t1-honest-offset.json');
 
 // --- frozen instrument constants (T0's, verbatim) ----------------------------
 const SPEED_GATE = 2.5; // the de-glue speed gate (Match.ts)
@@ -67,6 +74,15 @@ const POST_WINDOW_TICKS = 30; // +0.5 s (#48.4 window tail)
 const TACKLE_R = 1.15; // ball-keyed tackle radius (mechanics.ts)
 const DIST_INNER = 0.58; // half the tackle radius (T0 §2 (iii))
 const CARRY = 0.85; // the outfield glue offset
+
+// --- E-INJURY detection (ruling #49.3) ---------------------------------------
+// A becomeSub teleport lands the carrier at the fixed touchline point
+// (±1.2, HALF_W-0.6); normal per-tick carrier motion is < ~0.3 m (top speed /
+// 60 Hz). 3.0 m is a 10x margin over normal motion and well below a real
+// touchline teleport — the world-truth signature of the serious-injury limb.
+const INJURY_REPOSITION_M = 3.0;
+// per-class receipts cap (ruling #49.3): seed/tick/gid/cause, first 1,000 kept.
+const RECEIPT_CAP = 1000;
 
 // --- floors (doc §STAGING; #24) ----------------------------------------------
 const F_TURN = 3_600;
@@ -200,18 +216,33 @@ const measureElig = (m: Match): Elig | null => {
 // --- standing exception classes (doc §FIDELITY, #38.1; keyed on SPEED #46.3) --
 interface Ledger {
   ePaused: number; eGk: number; eGkHold: number; eRestart: number; eSentOff: number;
-  eNoOwner: number; eEnded: number; eDeglue: number; eTransition: number;
+  eNoOwner: number; eEnded: number; eDeglue: number; eTransition: number; eInjury: number;
   seamTicks: number; fidelityOk: number; unexplained: number;
 }
 const newLedger = (): Ledger => ({
   ePaused: 0, eGk: 0, eGkHold: 0, eRestart: 0, eSentOff: 0, eNoOwner: 0, eEnded: 0,
-  eDeglue: 0, eTransition: 0, seamTicks: 0, fidelityOk: 0, unexplained: 0,
+  eDeglue: 0, eTransition: 0, eInjury: 0, seamTicks: 0, fidelityOk: 0, unexplained: 0,
 });
 const addLedger = (a: Ledger, b: Ledger): void => {
   a.ePaused += b.ePaused; a.eGk += b.eGk; a.eGkHold += b.eGkHold; a.eRestart += b.eRestart;
   a.eSentOff += b.eSentOff; a.eNoOwner += b.eNoOwner; a.eEnded += b.eEnded; a.eDeglue += b.eDeglue;
-  a.eTransition += b.eTransition; a.seamTicks += b.seamTicks; a.fidelityOk += b.fidelityOk;
-  a.unexplained += b.unexplained;
+  a.eTransition += b.eTransition; a.eInjury += b.eInjury; a.seamTicks += b.seamTicks;
+  a.fidelityOk += b.fidelityOk; a.unexplained += b.unexplained;
+};
+
+// --- per-record receipts (ruling #49.3) --------------------------------------
+// Every exception-class hit (and any UNEXPLAINED tick) records seed/tick/gid/
+// cause, capped at RECEIPT_CAP per class. Deterministic: matches run in seed
+// order, ticks in order, so the first-1,000 kept are identical every invocation
+// (X-DET preserved). The re-run's attribution now carries receipts, not
+// inference (#49.2 leaned on aggregates + code reading).
+interface Receipt { seed: number; tick: number; gid: number; cause: string }
+type ReceiptBook = Record<string, Receipt[]>;
+const addReceipt = (
+  book: ReceiptBook, cls: string, seed: number, tick: number, gid: number, cause: string,
+): void => {
+  const arr = (book[cls] ??= []);
+  if (arr.length < RECEIPT_CAP) arr.push({ seed, tick, gid, cause });
 };
 
 // --- ownership-release ledger (#48.3) ----------------------------------------
@@ -249,6 +280,7 @@ interface Census {
   gradElig: number[]; gradFar: number[]; // per dribbling bucket (G), ON
   matches: MatchAgg[];
   cloneGuardFails: number; // OFF fork must reproduce base at startTick (MUST be 0)
+  receipts: ReceiptBook; // per-class per-record receipts (#49.3), capped RECEIPT_CAP
 }
 const GRAD_BUCKETS = 3; // [0.1,0.3) [0.3,0.5) [0.5,+]
 const gradBucket = (drb: number): number => (drb < 0.3 ? 0 : drb < 0.5 ? 1 : 2);
@@ -257,7 +289,7 @@ const newCensus = (): Census => ({
   fidelity: newLedger(), release: newReleaseLedger(), offLoose: 0, onLoose: 0,
   kickDisp: [], kicksInWindow: 0, perTickDisp: [],
   gradElig: Array(GRAD_BUCKETS).fill(0), gradFar: Array(GRAD_BUCKETS).fill(0),
-  matches: [], cloneGuardFails: 0,
+  matches: [], cloneGuardFails: 0, receipts: {},
 });
 
 // classify the owner state on a fork tick into exactly one class; returns null
@@ -304,6 +336,13 @@ const runArm = (
     // pre-step owner kinematics for the de-glue-regime (speed) classification
     const preOwner = fork.ball.owner;
     const preSpeedSq = preOwner ? preOwner.vel.x * preOwner.vel.x + preOwner.vel.y * preOwner.vel.y : 0;
+    // pre-step carrier identity/attrs/pos, captured as PRIMITIVES before the step
+    // (takeKnock/becomeSub REPLACE attrs and pos objects during the step, so the
+    // preOwner reference would read the post-mutation value) — the E-INJURY probe.
+    const preOwnerGid = preOwner?.gid ?? null;
+    const preDrb = preOwner ? preOwner.attrs.dribbling : null;
+    const prePosX = preOwner ? preOwner.pos.x : 0;
+    const prePosY = preOwner ? preOwner.pos.y : 0;
     fork.step(DT);
     if (firstStep) {
       firstStep = false;
@@ -359,20 +398,26 @@ const runArm = (
     // --- fidelity + gradient + kick-origin bookkeeping (ON only) ---
     if (armOn) {
       const cls = classifyOwned(fork, prevOwnerGid);
+      const rgid = fork.ball.owner?.gid ?? prevOwnerGid ?? -1;
       switch (cls) {
-        case 'ended': c.fidelity.eEnded += 1; break;
-        case 'paused': c.fidelity.ePaused += 1; break;
-        case 'gk': c.fidelity.eGk += 1; break;
-        case 'gkhold': c.fidelity.eGkHold += 1; break;
-        case 'restart': c.fidelity.eRestart += 1; break;
-        case 'sentoff': c.fidelity.eSentOff += 1; break;
+        case 'ended': c.fidelity.eEnded += 1; addReceipt(c.receipts, 'E-ENDED', agg.seed, t, rgid, 'match-ended'); break;
+        case 'paused': c.fidelity.ePaused += 1; addReceipt(c.receipts, 'E-PAUSED', agg.seed, t, rgid, `phase-${fork.phase}`); break;
+        case 'gk': c.fidelity.eGk += 1; addReceipt(c.receipts, 'E-GK', agg.seed, t, rgid, 'owner-is-GK'); break;
+        case 'gkhold': c.fidelity.eGkHold += 1; addReceipt(c.receipts, 'E-GKHOLD', agg.seed, t, rgid, 'gkHold/distributing'); break;
+        case 'restart': c.fidelity.eRestart += 1; addReceipt(c.receipts, 'E-RESTART', agg.seed, t, rgid, 'restart-taker'); break;
+        case 'sentoff': c.fidelity.eSentOff += 1; addReceipt(c.receipts, 'E-SENTOFF', agg.seed, t, rgid, 'owner-sentOff'); break;
         case 'noowner':
           // a freed ball: classify de-glue (speed-keyed) vs plain no-owner.
           if (preOwner !== null && prevOwnerGid !== null && preOwner.gid === prevOwnerGid
-            && preSpeedSq > SPEED_GATE * SPEED_GATE) c.fidelity.eDeglue += 1;
-          else c.fidelity.eNoOwner += 1;
+            && preSpeedSq > SPEED_GATE * SPEED_GATE) {
+            c.fidelity.eDeglue += 1;
+            addReceipt(c.receipts, 'E-DEGLUE', agg.seed, t, prevOwnerGid, 'freed-at-speed');
+          } else {
+            c.fidelity.eNoOwner += 1;
+            addReceipt(c.receipts, 'E-NOOWNER', agg.seed, t, rgid, 'ball-loose');
+          }
           break;
-        case 'transition': c.fidelity.eTransition += 1; break;
+        case 'transition': c.fidelity.eTransition += 1; addReceipt(c.receipts, 'E-TRANSITION', agg.seed, t, rgid, 'ownership-settled'); break;
         case 'seam': {
           const owner = fork.ball.owner!;
           // The engine records the carrier's heading (unconditionally, carry===0.85)
@@ -381,7 +426,34 @@ const runArm = (
           // the ball was loose at stepBall entry and got assigned to this body AFTER
           // the block (the kickoff-spot pin / a same-tick re-strike) — the seam never
           // ran, so this is the E-TRANSITION artefact, not a fidelity seam tick.
-          if (headingAt(hist, owner.gid, t) === null) { c.fidelity.eTransition += 1; break; }
+          if (headingAt(hist, owner.gid, t) === null) {
+            c.fidelity.eTransition += 1;
+            addReceipt(c.receipts, 'E-TRANSITION', agg.seed, t, owner.gid, 'seam-no-heading');
+            break;
+          }
+          // E-INJURY (ruling #49.3): a mid-carry ADVANTAGE-FOUL injury mutated the
+          // SAME-gid carrier AFTER the seam's same-tick pre-contact read, without
+          // releasing the ball — Match.ts:1915->1919 maybeInjure. Two limbs, both
+          // read from world truth the probe already holds:
+          //  - attrs mutation (the knock, ~70%): takeKnock replaces attrs, dribbling
+          //    *= 0.85 (Player.ts:223) → drb differs from the pre-step read;
+          //  - becomeSub reposition (the serious, ~30%): forceSubstitution teleports
+          //    the SAME player object to the touchline (Match.ts:2042; Player.ts:230)
+          //    → pos discontinuity >> normal motion, ball not released, gid retained.
+          // Normal rotation subs only fire at halftime/restart (phase!='playing'), so
+          // a same-gid attrs/pos discontinuity on a 'playing' seam tick is uniquely
+          // this event. The seam DID run this tick (heading present); the mutation
+          // landed after it, which is exactly why the recompute below would fail.
+          if (preOwnerGid !== null && owner.gid === preOwnerGid && preDrb !== null) {
+            const posJump = Math.hypot(owner.pos.x - prePosX, owner.pos.y - prePosY);
+            const drbChanged = owner.attrs.dribbling !== preDrb;
+            if (drbChanged || posJump > INJURY_REPOSITION_M) {
+              c.fidelity.eInjury += 1;
+              addReceipt(c.receipts, 'E-INJURY', agg.seed, t, owner.gid,
+                posJump > INJURY_REPOSITION_M ? 'becomeSub-reposition' : 'attrs-mutation');
+              break;
+            }
+          }
           const drb = owner.attrs.dribbling;
           const speed = Math.sqrt(owner.vel.x * owner.vel.x + owner.vel.y * owner.vel.y);
           const prev = headingAt(hist, owner.gid, t - 1);
@@ -400,6 +472,8 @@ const runArm = (
             c.fidelity.fidelityOk += 1;
           } else {
             c.fidelity.unexplained += 1;
+            addReceipt(c.receipts, 'UNEXPLAINED', agg.seed, t, owner.gid,
+              `dx=${(fork.ball.pos.x - ex).toExponential(3)} dy=${(fork.ball.pos.y - ey).toExponential(3)}`);
           }
           // kick-origin bookkeeping: honest ball vs the rigid glue position.
           const disp = Math.hypot(
@@ -689,6 +763,15 @@ const runExperiment = () => {
     release: c.release,
     looseBall: { off: c.offLoose, on: c.onLoose, deltaReported: c.onLoose - c.offLoose },
     cloneGuardFails: c.cloneGuardFails,
+    // per-record receipts (#49.3): first RECEIPT_CAP hits per exception class,
+    // each carrying seed/tick/gid/cause; a summary of counts and caps alongside.
+    receipts: {
+      cap: RECEIPT_CAP,
+      counts: Object.fromEntries(
+        Object.entries(c.receipts).map(([k, v]) => [k, v.length]),
+      ),
+      records: c.receipts,
+    },
     gates,
   };
 };

@@ -658,3 +658,116 @@ an **E-INJURY / E-CARRIER-MUTATION** exception class (keying on a same-`gid`
 attribute-or-position mutation within the step) and re-runs, or accepts the 69
 as a named exception. That choice is the commander's; the executor does not
 proceed.
+
+---
+
+## §T1R — the re-run: ONE named exception class + per-record receipts (ruling #49.3)
+
+Status: **PRE-REGISTERED with ruling #49.3, FROZEN BEFORE THE RE-RUN.** This
+section is written ex ante; ruling #49 is its derivation. **Nothing here re-cuts
+the law, the staging, the axes, the bootstrap, the floors, the bands or the
+readings** — all of §LAW / §SEAM / §GATES / §STAGING / §PRE-LAID READINGS above
+bind T1R **byte-identical**. The re-run makes exactly **one** substantive change
+(the enlarged exception set) plus **one** instrumentation obligation (per-record
+receipts), both mandated by #49.3, and nothing else moves.
+
+Authority: **ruling #49** in full (#49.1 the FAIL stands as fired; #49.2
+diagnosis confirmed against code; **#49.3 T1R authorized — one change, everything
+else bit-identical**; #49.4 the labelled bankings; #49.5 process). The FROZEN
+run's verdict (§RESULT) stands published-and-labelled exactly as P2's undelivered
+numbers were: the two priced axes resolved UP but cannot be certified from a run
+whose ledger did not close.
+
+### The E-INJURY exception class (both limbs, code-cited)
+
+**E-INJURY** — an advantage-foul injury to the carrier, occurring **inside the
+fork window**, that mutates the SAME-`gid` carrier **after** the seam's same-tick
+pre-contact read and **without releasing the ball**. It is a named world event of
+the F2 / halftime-stale-trace genre (#49.2): a classifier-completeness gap, **not**
+a law or seam defect. The mechanism is exact and code-located
+(`awardFoul` plays ADVANTAGE → `maybeInjure(victim=owner)`, `Match.ts:1915→1919`):
+
+* **Limb 1 — attrs mutation (the "plays-on" knock, ~70% of injuries).**
+  `takeKnock` (`Player.ts:223`) **replaces** `attrs`, scaling
+  `dribbling *= 0.85` (and `pace *= 0.8`). `dribbling` feeds `tuckGain`, `τ` and
+  `σ` in §LAW, so the probe's post-step recompute uses the **rescaled** `drb`
+  while the seam wrote against the **pre-contact** `drb` → a > 1e-9 mismatch. The
+  carrier keeps the ball; phase stays `playing`; `pos` is unmoved.
+* **Limb 2 — same-`gid` `becomeSub` reposition (the "stretchered-off" serious,
+  ~30%).** `forceSubstitution` → `out.becomeSub(sub, v2(±1.2, HALF_W − 0.6))`
+  (`Match.ts:2042`; `Player.ts:230`, which documents the **in-place identity
+  swap** — the SAME player object, SAME `gid`, new man's attrs, teleported to the
+  touchline). The ball is **not released** (`owner.gid` retained, NOT
+  E-TRANSITION) and phase is still `playing`, so the probe recomputes against a
+  post-step `owner.pos` ~30 m from where the ball was glued → mismatch **and** the
+  30.657 m per-seam-tick displacement outlier (#49.2: that outlier IS this event).
+
+Both limbs are **single-tick and self-healing**: after a knock the rescaled
+`dribbling` is stable so the next tick matches; after a serious sub the ball goes
+loose the following tick (→ E-NOOWNER). E-INJURY joins the standing exception set
+of §GATES FIDELITY; **the gate is unchanged — unexplained must be exactly 0 over
+the ENLARGED class set** (#49.3).
+
+### The detection T1R implements (reads WORLD TRUTH the probe already holds)
+
+Of the two candidate detections #49.3 names — reading the match event log for
+advantage-foul events, versus a same-`gid` attrs/position discontinuity — T1R uses
+the **discontinuity of the carrier's own world state across the step**, because
+that is (a) precisely the quantity that makes the fidelity recompute fail, (b)
+world truth the probe **already** holds (`owner.attrs.dribbling`, `owner.pos`, and
+the pre-step primitives it snapshots each tick), and (c) free of any event-log
+string parsing. On a tick classified `seam` (owned, outfield, `playing`, same
+`gid` as last tick, the seam's heading ring entry present), where the pre-step
+carrier's values are captured **as primitives before `step`** (because
+`takeKnock`/`becomeSub` replace the `attrs` and `pos` objects in place):
+
+* if `owner.pos` jumped **> 3.0 m** from its pre-step position → **limb 2**, cause
+  `becomeSub-reposition` (normal per-tick carrier motion is < ~0.3 m at 60 Hz;
+  3.0 m is a 10× margin over motion and far below a real touchline teleport);
+* else if `owner.attrs.dribbling` **changed** from the pre-step read → **limb 1**,
+  cause `attrs-mutation`.
+
+This is injury-specific **by construction**: `attrs`/`pos` are immutable in play
+except via `takeKnock`/`becomeSub`, and the only other `becomeSub` callers
+(rotation subs, `Match.ts:1062-1063` halftime and `2174-2175` restart) fire only
+when `phase !== 'playing'` — so they can never land on a `playing` **seam** tick.
+The professional-foul injury (`awardTacticalFoul` → `maybeInjure`) **stops play**
+→ E-PAUSED, so it never reaches the seam class either. The detection is verified
+against world state, not inferred.
+
+### The per-record receipts obligation (#49.3)
+
+The #49.2 diagnosis leaned on aggregate class counts plus code reading; a re-run's
+attribution must carry **receipts, not inference**. T1R records, for **every
+exception-class hit** (each E-class **and** any UNEXPLAINED tick), a per-record
+receipt `{ seed, tick, gid, cause }`, **capped at 1,000 records per class**
+(first-N kept). The cap keeps the output bounded while the FIRST-1,000 rule keeps
+it deterministic (matches run in seed order, ticks in order) so X-DET is
+preserved. The output carries a `receipts` block: the `cap`, a per-class `counts`
+summary, and the capped `records` themselves.
+
+### What stays bit-identical
+
+Everything except the two changes above:
+
+* **Same seeds** — `5,000,000 + b·100,000 + k`, `b ∈ 0..11`, `k ∈ 0..99` = 1,200
+  matches, **5.0M–6.1M** (§STAGING, unchanged).
+* **Same law** — every §LAW constant, the seam, the ring buffer, the window
+  (#48.4), the paired fork-and-force instrument (§STAGING) — byte-identical.
+* **Same gates** — X-family, FIDELITY (**unexplained exactly 0**, now over the
+  enlarged class set including E-INJURY), ZERO-LOOSE-STRUCTURAL (#48.3), the four
+  floors, and the two priced HARD direction axes — all as frozen. No gate
+  loosened, no floor lowered, no band re-cut.
+* **Same bands, same readings** — the interpretation bands (§GATES), the kick
+  bound (#47.4), and the full sign space §PRE-LAID READINGS (A)–(H) bind
+  unchanged.
+
+### Output
+
+T1R's output goes to **[`data/c6-t1r-honest-offset.json`](data/c6-t1r-honest-offset.json)**,
+selected at run time by the env var **`C6_T1R=1`** (default and the engineering
+smoke's `C6_T1_OUT` scratch path are unchanged; `C6_T1_OUT` takes precedence).
+The FROZEN run's `data/c6-t1-honest-offset.json` is **left untouched** as the
+labelled-but-uncertified record. The re-run itself is **not** performed by this
+pre-registration commit — it returns to the commander's supervised overnight
+protocol (#49.5); the executor prepares T1R and stops.
