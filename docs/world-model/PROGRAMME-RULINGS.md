@@ -1711,6 +1711,15 @@
 > (Autonomous mode, one experiment in flight). R20 in gaps; F9 any time.**
 
 
+> **COMMANDER REVIEW (2026-07-27): Stage III P1's pre-registration is
+> §4.5-COMPLIANT on all eleven items (policy-not-point seam, no-override
+> identity, W from P0 anchors, face-specific horizons, positive-control
+> power gate, saturation-gap arm, mandatory mediators, side-split
+> instruments, exception-class boilerplate, frozen mapping for P2's
+> ablation, full-sign-space readings). APPROVED TO RUN as pre-registered
+> under #39 — the programme's largest census, gated before it can
+> mislead.**
+
 > **COMMANDER RULING #40 (2026-07-27 — P1 disposed: the treatment never
 > arrived, and the audit-mandated mediators are why we know; P1R):**
 >
