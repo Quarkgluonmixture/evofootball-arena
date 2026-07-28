@@ -1,0 +1,55 @@
+{
+  "experiment": "STAGE3-V2-P0-SIZING-SMOKE",
+  "authority": "STAGE3-V2-P0-WEDGE-MAP",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off)",
+  "block": "8700000..8700047",
+  "matches": 48,
+  "momentSpacingS": 2,
+  "cellFloor": 150,
+  "headroom": 2,
+  "qualifyingTotal": 4381,
+  "rowsTotal": 3791,
+  "rowsPerMatch": {
+    "mean": 78.979,
+    "min": 66,
+    "max": 95
+  },
+  "ballDirectedSkipped": 590,
+  "noPool": 0,
+  "contextTotals": {
+    "ours|ownThird|sparse": 546,
+    "ours|ownThird|crowded": 189,
+    "ours|middle|sparse": 589,
+    "ours|middle|crowded": 359,
+    "ours|theirThird|sparse": 290,
+    "ours|theirThird|crowded": 133,
+    "theirs|ownThird|sparse": 149,
+    "theirs|ownThird|crowded": 187,
+    "theirs|middle|sparse": 406,
+    "theirs|middle|crowded": 314,
+    "theirs|theirThird|sparse": 476,
+    "theirs|theirThird|crowded": 153
+  },
+  "contextPerMatch": {
+    "ours|ownThird|sparse": 11.375,
+    "ours|ownThird|crowded": 3.9375,
+    "ours|middle|sparse": 12.2708,
+    "ours|middle|crowded": 7.4792,
+    "ours|theirThird|sparse": 6.0417,
+    "ours|theirThird|crowded": 2.7708,
+    "theirs|ownThird|sparse": 3.1042,
+    "theirs|ownThird|crowded": 3.8958,
+    "theirs|middle|sparse": 8.4583,
+    "theirs|middle|crowded": 6.5417,
+    "theirs|theirThird|sparse": 9.9167,
+    "theirs|theirThird|crowded": 3.1875
+  },
+  "rarestContext": "ours|theirThird|crowded",
+  "rarestPerMatch": 2.7708,
+  "sizing": {
+    "note": "match count so the RAREST of the 12 conditioning contexts clears CELL_FLOOR x HEADROOM rows. The OTHERS-GOING binary SPLIT (someone-going sub-cells) is the census deliverable (i); its adequacy against #24 is REPORTED there and is the return-tooth B (§6).",
+    "matchesForFloor": 109
+  },
+  "deterministic": true,
+  "sha256": "8d709d306d35c0e591972e5971feeae4ed8927b522797c9a41217854dd168c83"
+}
