@@ -1,0 +1,584 @@
+{
+  "experiment": "C6-T0 (carry-geometry census)",
+  "authority": "C6-T0-CARRY-GEOMETRY (ruling #46 as amended by #46.2)",
+  "parameters": {
+    "seedStart": 4100000,
+    "blocks": 6,
+    "matchesPerBlock": 100,
+    "matches": 600,
+    "seedFormula": "4,100,000 + b*100,000 + k, b in 0..5, k in 0..99 (amendment #46.2)",
+    "clusterUnit": "match seed (disjoint per block)",
+    "bootstrapSeed": 46037,
+    "bootstrapResamples": 2000,
+    "bandEdges": {
+      "speed": [
+        2.5,
+        5
+      ],
+      "omega": [
+        0.65,
+        3.25
+      ],
+      "pressure": [
+        2.1,
+        4.2
+      ],
+      "tackleRadius": 1.15,
+      "distInner": 0.58
+    },
+    "sweepThreshold": 1.5707963267948966,
+    "postWindowTicks": 30,
+    "candidates": {
+      "A": "MAGNITUDE-ONLY tuck, no lag",
+      "B": "MODERATE tuck + MEDIUM lag (tau=0.18s) + speed growth",
+      "C": "LAG-ONLY (tau=0.30s), magnitude held"
+    },
+    "tauTicks": {
+      "B": 11,
+      "C": 18
+    }
+  },
+  "coverage": {
+    "totalSteps": 9038719,
+    "ownedTicks": 1743606,
+    "ownedShareOfSteps": 0.192904,
+    "cellsPopulated": 27,
+    "candLagFallbackTicks": 0,
+    "underPoweredExposureCells": [
+      "inner|far",
+      "outer|far"
+    ],
+    "cellFloor": 150,
+    "srcDiff": ""
+  },
+  "ledger": {
+    "ePaused": 1258071,
+    "eGk": 57300,
+    "eGkHold": 1284934,
+    "eRestart": 36499,
+    "eSentOff": 0,
+    "eNoOwner": 4657709,
+    "eEnded": 600,
+    "classified": 1743606,
+    "unexplained": 0,
+    "total": 9038719
+  },
+  "ledgerByBlock": [
+    {
+      "ePaused": 206074,
+      "eGk": 9799,
+      "eGkHold": 234211,
+      "eRestart": 5813,
+      "eSentOff": 0,
+      "eNoOwner": 764846,
+      "eEnded": 100,
+      "classified": 279512,
+      "unexplained": 0
+    },
+    {
+      "ePaused": 212067,
+      "eGk": 8984,
+      "eGkHold": 214630,
+      "eRestart": 6348,
+      "eSentOff": 0,
+      "eNoOwner": 775742,
+      "eEnded": 100,
+      "classified": 290486,
+      "unexplained": 0
+    },
+    {
+      "ePaused": 212756,
+      "eGk": 10248,
+      "eGkHold": 194594,
+      "eRestart": 6068,
+      "eSentOff": 0,
+      "eNoOwner": 790350,
+      "eEnded": 100,
+      "classified": 293218,
+      "unexplained": 0
+    },
+    {
+      "ePaused": 213010,
+      "eGk": 10184,
+      "eGkHold": 219707,
+      "eRestart": 5986,
+      "eSentOff": 0,
+      "eNoOwner": 776197,
+      "eEnded": 100,
+      "classified": 283244,
+      "unexplained": 0
+    },
+    {
+      "ePaused": 200766,
+      "eGk": 8509,
+      "eGkHold": 216619,
+      "eRestart": 6098,
+      "eSentOff": 0,
+      "eNoOwner": 763473,
+      "eEnded": 100,
+      "classified": 310701,
+      "unexplained": 0
+    },
+    {
+      "ePaused": 213398,
+      "eGk": 9576,
+      "eGkHold": 205173,
+      "eRestart": 6186,
+      "eSentOff": 0,
+      "eNoOwner": 787101,
+      "eEnded": 100,
+      "classified": 286445,
+      "unexplained": 0
+    }
+  ],
+  "floors": {
+    "fCarry": {
+      "population": 1743606,
+      "floor": 800000,
+      "pass": true
+    },
+    "fTurn": {
+      "population": 4116,
+      "floor": 1800,
+      "pass": true
+    },
+    "fTurnExposed": {
+      "population": 1484,
+      "floor": 700,
+      "pass": true
+    },
+    "fExposure": {
+      "population": 178590,
+      "floor": 4000,
+      "pass": true
+    }
+  },
+  "carryState": {
+    "pressuredTicks": 1417667,
+    "pressuredShare": 0.813066,
+    "tightTicks": 877220,
+    "tightShare": 0.503107,
+    "cells": [
+      {
+        "cell": "2|0|0",
+        "label": "sprint>5 / straight<0.65 / tight<=2.1",
+        "count": 250017,
+        "share": 0.143391,
+        "actions": {
+          "Dribble": 249999,
+          "HoldUp": 18
+        }
+      },
+      {
+        "cell": "2|1|0",
+        "label": "sprint>5 / moderate0.65-3.25 / tight<=2.1",
+        "count": 172085,
+        "share": 0.098695,
+        "actions": {
+          "Dribble": 172084,
+          "HoldUp": 1
+        }
+      },
+      {
+        "cell": "2|0|1",
+        "label": "sprint>5 / straight<0.65 / pressured2.1-4.2",
+        "count": 166182,
+        "share": 0.095309,
+        "actions": {
+          "Dribble": 166180,
+          "HoldUp": 2
+        }
+      },
+      {
+        "cell": "2|1|1",
+        "label": "sprint>5 / moderate0.65-3.25 / pressured2.1-4.2",
+        "count": 130745,
+        "share": 0.074985,
+        "actions": {
+          "Dribble": 130745
+        }
+      },
+      {
+        "cell": "1|1|0",
+        "label": "jog2.5-5 / moderate0.65-3.25 / tight<=2.1",
+        "count": 127277,
+        "share": 0.072996,
+        "actions": {
+          "Dribble": 127263,
+          "HoldUp": 14
+        }
+      },
+      {
+        "cell": "0|2|0",
+        "label": "walk<=2.5 / hard>=3.25 / tight<=2.1",
+        "count": 100349,
+        "share": 0.057553,
+        "actions": {
+          "Dribble": 99221,
+          "HoldUp": 1019,
+          "MoveToFormationSpot": 109
+        }
+      },
+      {
+        "cell": "0|2|2",
+        "label": "walk<=2.5 / hard>=3.25 / free>4.2",
+        "count": 96817,
+        "share": 0.055527,
+        "actions": {
+          "Dribble": 96763,
+          "MoveToFormationSpot": 51,
+          "HoldUp": 3
+        }
+      },
+      {
+        "cell": "1|2|0",
+        "label": "jog2.5-5 / hard>=3.25 / tight<=2.1",
+        "count": 82637,
+        "share": 0.047394,
+        "actions": {
+          "Dribble": 82237,
+          "HoldUp": 400
+        }
+      },
+      {
+        "cell": "0|2|1",
+        "label": "walk<=2.5 / hard>=3.25 / pressured2.1-4.2",
+        "count": 73791,
+        "share": 0.042321,
+        "actions": {
+          "Dribble": 69366,
+          "MoveToFormationSpot": 4247,
+          "HoldUp": 178
+        }
+      },
+      {
+        "cell": "1|1|1",
+        "label": "jog2.5-5 / moderate0.65-3.25 / pressured2.1-4.2",
+        "count": 68925,
+        "share": 0.03953,
+        "actions": {
+          "Dribble": 68922,
+          "HoldUp": 3
+        }
+      },
+      {
+        "cell": "1|1|2",
+        "label": "jog2.5-5 / moderate0.65-3.25 / free>4.2",
+        "count": 58240,
+        "share": 0.033402,
+        "actions": {
+          "Dribble": 58240
+        }
+      },
+      {
+        "cell": "1|0|0",
+        "label": "jog2.5-5 / straight<0.65 / tight<=2.1",
+        "count": 57060,
+        "share": 0.032725,
+        "actions": {
+          "Dribble": 56468,
+          "HoldUp": 592
+        }
+      },
+      {
+        "cell": "0|0|0",
+        "label": "walk<=2.5 / straight<0.65 / tight<=2.1",
+        "count": 47452,
+        "share": 0.027215,
+        "actions": {
+          "Dribble": 43238,
+          "HoldUp": 4043,
+          "MoveToFormationSpot": 171
+        }
+      },
+      {
+        "cell": "1|2|1",
+        "label": "jog2.5-5 / hard>=3.25 / pressured2.1-4.2",
+        "count": 41262,
+        "share": 0.023665,
+        "actions": {
+          "Dribble": 41120,
+          "HoldUp": 142
+        }
+      },
+      {
+        "cell": "1|2|2",
+        "label": "jog2.5-5 / hard>=3.25 / free>4.2",
+        "count": 38607,
+        "share": 0.022142,
+        "actions": {
+          "Dribble": 38602,
+          "HoldUp": 5
+        }
+      },
+      {
+        "cell": "2|1|2",
+        "label": "sprint>5 / moderate0.65-3.25 / free>4.2",
+        "count": 35265,
+        "share": 0.020225,
+        "actions": {
+          "Dribble": 35265
+        }
+      },
+      {
+        "cell": "1|0|2",
+        "label": "jog2.5-5 / straight<0.65 / free>4.2",
+        "count": 33028,
+        "share": 0.018942,
+        "actions": {
+          "Dribble": 33028
+        }
+      },
+      {
+        "cell": "0|1|0",
+        "label": "walk<=2.5 / moderate0.65-3.25 / tight<=2.1",
+        "count": 32634,
+        "share": 0.018716,
+        "actions": {
+          "Dribble": 32580,
+          "HoldUp": 46,
+          "MoveToFormationSpot": 8
+        }
+      },
+      {
+        "cell": "2|0|2",
+        "label": "sprint>5 / straight<0.65 / free>4.2",
+        "count": 25260,
+        "share": 0.014487,
+        "actions": {
+          "Dribble": 25260
+        }
+      },
+      {
+        "cell": "0|0|2",
+        "label": "walk<=2.5 / straight<0.65 / free>4.2",
+        "count": 22789,
+        "share": 0.01307,
+        "actions": {
+          "Dribble": 22746,
+          "MoveToFormationSpot": 43
+        }
+      },
+      {
+        "cell": "1|0|1",
+        "label": "jog2.5-5 / straight<0.65 / pressured2.1-4.2",
+        "count": 22706,
+        "share": 0.013022,
+        "actions": {
+          "Dribble": 22659,
+          "HoldUp": 47
+        }
+      },
+      {
+        "cell": "0|0|1",
+        "label": "walk<=2.5 / straight<0.65 / pressured2.1-4.2",
+        "count": 22251,
+        "share": 0.012761,
+        "actions": {
+          "Dribble": 14629,
+          "MoveToFormationSpot": 7479,
+          "HoldUp": 143
+        }
+      },
+      {
+        "cell": "0|1|2",
+        "label": "walk<=2.5 / moderate0.65-3.25 / free>4.2",
+        "count": 15732,
+        "share": 0.009023,
+        "actions": {
+          "Dribble": 15730,
+          "MoveToFormationSpot": 2
+        }
+      },
+      {
+        "cell": "0|1|1",
+        "label": "walk<=2.5 / moderate0.65-3.25 / pressured2.1-4.2",
+        "count": 12714,
+        "share": 0.007292,
+        "actions": {
+          "Dribble": 12297,
+          "MoveToFormationSpot": 405,
+          "HoldUp": 12
+        }
+      },
+      {
+        "cell": "2|2|0",
+        "label": "sprint>5 / hard>=3.25 / tight<=2.1",
+        "count": 7709,
+        "share": 0.004421,
+        "actions": {
+          "Dribble": 7578,
+          "HoldUp": 131
+        }
+      },
+      {
+        "cell": "2|2|1",
+        "label": "sprint>5 / hard>=3.25 / pressured2.1-4.2",
+        "count": 1871,
+        "share": 0.001073,
+        "actions": {
+          "Dribble": 1815,
+          "HoldUp": 56
+        }
+      },
+      {
+        "cell": "2|2|2",
+        "label": "sprint>5 / hard>=3.25 / free>4.2",
+        "count": 201,
+        "share": 0.000115,
+        "actions": {
+          "Dribble": 200,
+          "HoldUp": 1
+        }
+      }
+    ],
+    "actionLabels": {
+      "Dribble": {
+        "count": 1724235,
+        "share": 0.98889
+      },
+      "MoveToFormationSpot": {
+        "count": 12515,
+        "share": 0.007178
+      },
+      "HoldUp": {
+        "count": 6856,
+        "share": 0.003932
+      }
+    }
+  },
+  "turn": {
+    "totalEpisodes": 4116,
+    "perMatch": {
+      "mean": 6.86,
+      "p10": 2,
+      "p50": 6,
+      "p90": 13
+    },
+    "durationTicks": {
+      "p10": 4,
+      "p50": 11,
+      "p90": 32
+    },
+    "durationSeconds": {
+      "p50": 0.1833,
+      "p90": 0.5333
+    },
+    "tackleDuring": 1249,
+    "tackleDuringShare": 0.30345,
+    "tackleAfter": 905,
+    "tackleAfterShare": 0.219874,
+    "exposedDuringOrAfter": 1484,
+    "exposedShare": 0.360544
+  },
+  "exposure": {
+    "eligibleTicks": 178590,
+    "eligibleShareOfOwned": 0.102426,
+    "exposedShare": 0.999524,
+    "farSideShare": 0.000476,
+    "farSideCount": 85,
+    "cells": [
+      {
+        "cell": "inner|exposed",
+        "distanceBand": "<=0.58",
+        "side": "exposed",
+        "count": 69518,
+        "shareOfEligible": 0.38926,
+        "underPowered": false
+      },
+      {
+        "cell": "inner|far",
+        "distanceBand": "<=0.58",
+        "side": "far",
+        "count": 0,
+        "shareOfEligible": 0,
+        "underPowered": true
+      },
+      {
+        "cell": "outer|exposed",
+        "distanceBand": "0.58-1.15",
+        "side": "exposed",
+        "count": 108987,
+        "shareOfEligible": 0.610264,
+        "underPowered": false
+      },
+      {
+        "cell": "outer|far",
+        "distanceBand": "0.58-1.15",
+        "side": "far",
+        "count": 85,
+        "shareOfEligible": 0.000476,
+        "underPowered": true
+      }
+    ],
+    "lateral": {
+      "left": 87935,
+      "right": 90655,
+      "onAxis": 0
+    }
+  },
+  "counterfactual": {
+    "A": {
+      "baselineFarSideShare": 0.000476,
+      "candidateFarSideShare": 0.000011,
+      "farSideShift": -0.000465,
+      "shiftCI": [
+        -0.00057,
+        -0.000364
+      ],
+      "resolved": true,
+      "recomputedEligibleTicks": 183721,
+      "kickDisplacement": {
+        "p50": 0.09507,
+        "p90": 0.35,
+        "max": 35.68402
+      }
+    },
+    "B": {
+      "baselineFarSideShare": 0.000476,
+      "candidateFarSideShare": 0.014728,
+      "farSideShift": 0.014252,
+      "shiftCI": [
+        0.013282,
+        0.015247
+      ],
+      "resolved": true,
+      "recomputedEligibleTicks": 212727,
+      "kickDisplacement": {
+        "p50": 0.34643,
+        "p90": 0.72732,
+        "max": 36.17991
+      }
+    },
+    "C": {
+      "baselineFarSideShare": 0.000476,
+      "candidateFarSideShare": 0,
+      "farSideShift": -0.000476,
+      "shiftCI": [
+        -0.000583,
+        -0.000375
+      ],
+      "resolved": true,
+      "recomputedEligibleTicks": 214857,
+      "kickDisplacement": {
+        "p50": 0.27856,
+        "p90": 1.01847,
+        "max": 36.40693
+      }
+    }
+  },
+  "gates": {
+    "xSrc": true,
+    "xFp": true,
+    "xOverlap": true,
+    "xClassify": true,
+    "fCarry": true,
+    "fTurn": true,
+    "fTurnExposed": true,
+    "fExposure": true,
+    "xDet": true
+  },
+  "tableSha": "bb5219e0dcde9e41b1b4ac64c27abaf73098165a6c80f8cd7f06e9fb064abb0e",
+  "sha256": "aeaed17b82f4c8da7f3b0fafb3d9116c27ca01d73b4449b6263f65264290bc57",
+  "verdict": "GATES PASS"
+}

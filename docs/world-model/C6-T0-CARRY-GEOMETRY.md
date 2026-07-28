@@ -217,10 +217,20 @@ used, #32.1: every gate is a share or a population count powered ex ante.)
 
 ## 4. Staging table, frozen
 
+> **⚠ COMMANDER AMENDMENT #46.2 (smoke/census seed disjointness), applied
+> ex ante before the run.** The disclosed smoke (§6) ran 16 matches at block
+> **4,000,000**; the census's first stride as originally frozen (`4,000,000 +
+> b·100,000 + k`) overlapped those very seeds. Per ruling #46.2 the census
+> staging shifts ONE stride up to **4,100,000**: seeds `4,100,000 + b·100,000
+> + k`, `b ∈ 0..5`, `k ∈ 0..99` — 600 matches, **4.1M–4.7M**, disjoint from the
+> smoke (4.0M) and from every consumed range. Floors are unchanged (rates are
+> seed-independent, #46.2); nothing else moves. The staging rows below carry
+> the amended seeds.
+
 | item | value |
 | --- | --- |
-| **seed block** | **4,000,000** (fresh, disjoint). Consumed elsewhere: P0 930k · P1 960k–1.46M · P1R 980k–1.48M · P2-A 2.0M–3.2M · P2-B 3.5M–3.9M · the C4/C5 stages 700k–970k. **4,000,000 lies above every consumed range.** |
-| **blocks** | 6 disjoint strides: seeds `4,000,000 + b·100,000 + k`, `b ∈ 0..5`, `k ∈ 0..99` |
+| **seed block** | **4,100,000** (amendment #46.2; fresh, disjoint). Consumed elsewhere: P0 930k · P1 960k–1.46M · P1R 980k–1.48M · P2-A 2.0M–3.2M · P2-B 3.5M–3.9M · the C4/C5 stages 700k–970k · **the §6 smoke 4.0M**. **4,100,000 lies above every consumed range and above the smoke.** |
+| **blocks** | 6 disjoint strides: seeds `4,100,000 + b·100,000 + k`, `b ∈ 0..5`, `k ∈ 0..99` (amendment #46.2) |
 | **matches** | **600** (100/block), justified by the smoke: at 6.50 episodes/match this delivers ~3,900 turn episodes = 2.2× the F-TURN floor, with every other floor cleared with ≥ 2.4× headroom |
 | **duration** | default `MATCH_DURATION = 240` (unmodified) |
 | **sampling cadence** | **every playing tick** — turn episodes require per-tick heading tracking; there is no sub-sampling (the population is per-tick by construction, and the run is ~9 M steps, modest against the programme's 68 M-tick P1R) |
@@ -265,11 +275,126 @@ recorded states, never a re-simulation. For each candidate, (iv) reports the
 new far-side share, the shift's match-seed cluster CI (#20), and the
 kick-origin displacement distribution.
 
-## 5-result — (to be completed by the AUTHORIZED run; empty at freeze)
+## 5-result — the AUTHORIZED run (commander ruling #46.5 / amendment #46.2)
 
-SHA, per-cell populations, the four deliverables, and the candidate
-redistributions land here when the commander authorizes the run. **Empty now by
-design** — nothing has run.
+Script: [`../../scripts/probes/c6-t0-carry-geometry.ts`](../../scripts/probes/c6-t0-carry-geometry.ts).
+Data: [`data/c6-t0-carry-geometry.json`](data/c6-t0-carry-geometry.json).
+Run read-only, **600 matches**, seeds `4,100,000 + b·100,000 + k` (#46.2),
+default duration, every playing tick, zero `src/**`. `runExperiment()` invoked
+**twice**, byte-identical (X-DET). Verdict: **GATES PASS.**
+
+* **output SHA** `aeaed17b82f4c8da7f3b0fafb3d9116c27ca01d73b4449b6263f65264290bc57`
+* **table SHA** (the four deliverables) `bb5219e0dcde9e41b1b4ac64c27abaf73098165a6c80f8cd7f06e9fb064abb0e`
+
+### Gate table
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-SRC** | ✅ PASS | `git diff --stat -- src` empty at run time |
+| **X-FP** | ✅ PASS (asserted) | nothing armed; fingerprint trivially `57b0bdab…c673` |
+| **X-OVERLAP** | ✅ PASS (vacuous) | no prior instrument measures turn geometry / ball-offset exposure; soft anchor: owned-outfield share **19.29%** vs P0's 19.4% ball-directed body-ticks |
+| **X-CLASSIFY** | ✅ PASS | ledger total 9,038,719 = total steps; classified = owned ticks; **unexplained = 0** |
+| **X-DET** | ✅ PASS | two invocations byte-identical; SHAs above |
+
+### Population floors (#24)
+
+| floor | population | frozen floor | headroom | verdict |
+| --- | --- | --- | --- | --- |
+| **F-CARRY** owned-outfield ticks | **1,743,606** | ≥ 800,000 | 2.18× | ✅ PASS |
+| **F-TURN** turn episodes | **4,116** | ≥ 1,800 | 2.29× | ✅ PASS (the binding gate) |
+| **F-TURN-EXPOSED** episodes exposed during OR post-window | **1,484** | ≥ 700 | 2.12× | ✅ PASS |
+| **F-EXPOSURE** tackle-eligible owned ticks | **178,590** | ≥ 4,000 | 44.6× | ✅ PASS |
+
+Exception ledger (every excluded tick classed, #38.1): E-NOOWNER 4,657,709 ·
+E-GKHOLD 1,284,934 · E-PAUSED 1,258,071 · E-GK 57,300 · E-RESTART 36,499 ·
+E-ENDED 600 · E-SENTOFF 0 · classified 1,743,606 → **unexplained 0**.
+
+### (i) Carry-state population — 27/27 cells populated
+
+Owned ticks are **19.29%** of all steps (3,254-rate consistent with the smoke).
+Pressure: **pressured (≤4.2 m) 81.31%**, tight (≤2.1 m) 50.31% — pressured
+carrying is the common case (ruling #46.4). Top cells (share of owned):
+
+| share | count | speed / turn / pressure |
+| --- | --- | --- |
+| 14.34% | 250,017 | sprint>5 / straight / tight |
+| 9.87% | 172,085 | sprint>5 / moderate / tight |
+| 9.53% | 166,182 | sprint>5 / straight / pressured |
+| 7.50% | 130,745 | sprint>5 / moderate / pressured |
+| 7.30% | 127,277 | jog2.5-5 / moderate / tight |
+| 5.76% | 100,349 | walk / hard / tight |
+| 5.55% | 96,817 | walk / hard / free |
+
+`sprint>5 & hard` remains rare (0.011%–0.442%), exactly the smoke's reading.
+**Action axis (non-binding 4th axis):** Dribble **98.89%**, MoveToFormationSpot
+0.72%, HoldUp 0.39% — near-degenerate, **reading (d) confirmed** (ruling #46.3:
+ownership forces the label; the turn's real excluder is the speed gate).
+
+### (ii) Turn episodes
+
+4,116 episodes = **6.86/match** (per-match p10 2 / p50 6 / p90 13). Duration
+p10 4 / **p50 11 / p90 32** ticks = p50 **0.183 s** / p90 **0.533 s** (the tail
+runs just past the glue's 0.48 s full-180° charge). Tackle-eligible **during
+30.35%** (1,249), **in the 0.5 s post-window 21.99%** (905); **exposed during
+OR after 36.05%** (1,484).
+
+### (iii) Exposure baseline — the near point-mass, quantified
+
+178,590 tackle-eligible owned ticks (**10.24%** of owned). Split: **exposed
+99.9524%**, **far-side 0.0476% (85 ticks)** — the degenerate baseline the honest
+offset exists to break (ruling #46.4: the ball is welded to `heading·0.85`).
+
+| distance × side | count | share of eligible | label |
+| --- | --- | --- | --- |
+| ≤0.58 / exposed | 69,518 | 38.93% | powered |
+| 0.58–1.15 / exposed | 108,987 | 61.03% | powered |
+| ≤0.58 / far | 0 | 0.00% | **UNDER-POWERED** (labelled, never pooled) |
+| 0.58–1.15 / far | 85 | 0.048% | **UNDER-POWERED** (labelled, never pooled) |
+
+Lateral (cross-sign) split of eligible ticks: left 87,935 / right 90,655 /
+on-axis 0 — symmetric, as expected. The two far-side cells sit below the 150
+per-cell floor **by design** (reading (b)'s degenerate baseline); they are
+labelled UNDER-POWERED and reported, never gated away — this is the floor T1
+must move UP from.
+
+### (iv) Counterfactual geometry sizing (pure arithmetic; lag lookback fallback = 0 ticks)
+
+Cluster unit = match seed; shift CI = match-seed cluster bootstrap (#20). Each
+shift's CI excludes zero (all **resolved**).
+
+| candidate | baseline far-side | candidate far-side | shift (pp) | 95% CI (pp) | resolved | kick displacement p50 / p90 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **A** magnitude-only | 0.048% | 0.001% | **−0.047** | [−0.057, −0.036] | ✅ (negative) | 0.095 m / 0.350 m |
+| **B** combined (tuck+lag+speed) | 0.048% | **1.473%** | **+1.425** | **[+1.328, +1.525]** | ✅ **(positive)** | 0.346 m / 0.727 m |
+| **C** lag-only | 0.048% | 0.000% | **−0.048** | [−0.058, −0.037] | ✅ (negative) | 0.279 m / 1.018 m |
+
+**Only candidate B moves the far-side (protected) share UP off its ~0 baseline**
+(+1.43 pp, CI strictly positive). The pure-tuck (A) and pure-lag (C) shapes each
+drive it toward/at zero — a size worth carrying into T1: the movable exposure
+comes from the *combined* shape (tuck + lag + speed growth), not either term
+alone. Kick-origin displacement is **decimetre-scale for the lag-bearing
+candidates** (B p90 0.73 m, C p90 1.02 m) and sub-decimetre for magnitude-only
+(A p50 0.095 m); the per-candidate `max` tail (~35 m) is a de-glue / ownership-
+transition artefact (recorded ball already off the body), not the operative size.
+
+### Which pre-laid reading fired (§8)
+
+* **(c) RICH, MOVABLE GEOMETRY — FIRES (primary).** Turn episodes clear F-TURN
+  (4,116 ≥ 1,800) **and** candidate B moves the far-side share off ~0 with a
+  match-seed CI excluding zero (+1.43 pp [+1.33, +1.53]). Per §9 this **licenses
+  the commander to authorize T1's drafting** — nothing more (T0 prices no law).
+* **(d) ACTION-AXIS COLLAPSE — FIRES (expected, benign).** Dribble 98.89%; read
+  as the map's bookkeeping finding, leaned on nowhere (the census keys on
+  speed/turn/pressure, none degenerate).
+* **(e) KICK-RELEASE DELTA — noted as an ex-ante size.** The lag candidates'
+  displacement (B/C p90 0.73–1.02 m) is well beyond "centimetres"; T1 must
+  **pre-power its sixth-threshold equivalence interval** rather than discover it.
+* **(a) THIN TURN — does NOT fire** (4,116 is 2.29× the floor).
+* **(b) DEGENERATE EXPOSURE — does NOT fire** (candidate B redistributes the
+  far-side share; the geometry is movable by an admissible law).
+
+**Non-claims (§9) stand:** T0 priced geometry only, proposed no law, froze no
+constant, and cannot authorize T1 — the result returns to the commander.
 
 ---
 
