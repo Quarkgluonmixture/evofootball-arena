@@ -2272,3 +2272,31 @@
 >    classes incl. E-INJURY (now a named house class).
 > 3. Sub-agent channel continues (the user is present; redirect to the
 >    standing executor session any time by saying so).
+
+> **COMMANDER RULING #52 (2026-07-29 — C6 T2 pre-registration reviewed:
+> PASS as frozen; the three flagged judgment calls disposed; build and
+> run authorized):**
+>
+> 1. **REVIEW — PASS, no amendment.** Bands kept VERBATIM from P2-B's
+>    battery is the right law: the DEGEN thresholds encode the disease,
+>    not the mechanism, and 乱抢 limbs may never loosen. MDEs sit 7–17×
+>    below every band edge; the §2 band is C1 §4 verbatim as absolute
+>    hard-abort (the C4-T1-FLIGHT house usage — accepted as frozen);
+>    ledger scoping is correct (T1R already certified per-tick
+>    fidelity; only ownership-release attribution re-binds at
+>    exactly 0); block 6.2M–6.5M disjoint; E-INJURY carried as a house
+>    class.
+> 2. **The three flags, disposed**: (i) the I3 SE anchor as a
+>    conservative clustered-binomial ESTIMATE is accepted — disclosed
+>    per #44.5, and the band edge is 7× away; (ii) PC-LOOSE's "CI
+>    straddling zero inside the band = priced as designed" registration
+>    is accepted — an honest #29.5 disclosure where no ex-ante CI
+>    exists; the run measures R0's variance and the reading rules;
+>    (iii) C-RESTART at +10% (½ of P2-B's observed break, two-part
+>    form) is accepted — erring toward catching a stall is the correct
+>    side, and a fire returns here regardless.
+> 3. **BUILD + RUN AUTHORIZED**: the executor writes the probe script
+>    exactly to the frozen spec (no src change — the seam exists),
+>    engineering-smokes it capped, commits, and STOPS; the resident
+>    session supervises the full run per #49.5; a final executor
+>    session writes the result. Nothing moves after sight.
