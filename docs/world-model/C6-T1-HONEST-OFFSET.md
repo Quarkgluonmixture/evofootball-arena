@@ -771,3 +771,150 @@ The FROZEN run's `data/c6-t1-honest-offset.json` is **left untouched** as the
 labelled-but-uncertified record. The re-run itself is **not** performed by this
 pre-registration commit — it returns to the commander's supervised overnight
 protocol (#49.5); the executor prepares T1R and stops.
+
+### §T1R RESULT — the re-run: GATES PASS, both axes certified (ruling #49.5 process)
+
+Data: [`data/c6-t1r-honest-offset.json`](data/c6-t1r-honest-offset.json).
+Run under the commander session's process supervision (#49.5, X-DET certifies);
+the frozen instrument, seeds (`5,000,000 + b·100,000 + k`, 1,200 matches),
+law, staging, bands and readings all bit-identical to §RESULT — the ONLY changes
+are the enlarged exception set (adds E-INJURY) and the per-record receipts
+obligation (#49.3). `runExperiment()` deterministic (X-DET true).
+
+> **Verdict: GATES PASS.** The ledger now closes — **unexplained exactly 0**
+> over the enlarged class set (E-INJURY added). Both priced axes are **CERTIFIED
+> UP** off a run whose fidelity gate passes; the structural zero-loose holds; all
+> four floors clear; the run is deterministic. Reading **(A) — BOTH AXES UP, the
+> design case** now stands on a closed ledger. **THE FORK RETURNS TO THE
+> COMMANDER**, who may then consider T2 (T1 cannot authorize it).
+
+* **table SHA** (the deliverables) `f1d98a8b565eda719fe36d1d197198bc3f2b1259655bd551011dce8f6ce707e1`
+* **output SHA** `38cfae01151920c37113f53b29247e124b3239de44da8a511024e0d4923d600a`
+
+#### Gate table
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-SRC** | ✅ PASS | `git diff --stat -- src` empty at run time |
+| **X-DET** | ✅ PASS | `runExperiment()` deterministic; SHAs above |
+| **CLONE-GUARD** | ✅ PASS | `cloneGuardFails` **0** |
+| **FIDELITY (unexplained = 0)** | ✅ **PASS** | seam ticks **1,833,662**, fidelityOk **1,833,662**, **unexplained 0** over the enlarged class set (E-INJURY **93**) |
+| **ZERO-LOOSE-STRUCTURAL (#48.3)** | ✅ PASS | offset-attributable releases **0** |
+| **F-TURN** | ✅ PASS | 8,460 / ≥ 3,600 (2.35×) |
+| **F-TURN-EXPOSED** | ✅ PASS | 5,832 / ≥ 1,400 (4.17×) |
+| **F-EXPOSURE** | ✅ PASS | 196,715 / ≥ 8,000 (24.6×) |
+| **F-FARSIDE** | ✅ PASS | 3,098 / ≥ 300 (10.3×) |
+| **AXIS-1 UP** (CI lower > 0) | ✅ PASS | +11.63%, CI [+8.51%, +14.85%] excludes 0 |
+| **AXIS-2 UP** (CI lower > 0) | ✅ PASS | +1.3215 pp, CI [+1.254, +1.3925] excludes 0 |
+
+Coverage identical to §RESULT: `totalBaseSteps` **18,076,073** · episodes forked
+**8,460** · exposed **5,832** · ended-in-window **21** · matches contributing
+**8,460**.
+
+#### The fidelity ledger now closes — unexplained 0 over the enlarged class set
+
+Seam ticks **1,833,662** · fidelityOk **1,833,662** · **unexplained 0**.
+Exception ledger (E-INJURY added, #49.3): E-NOOWNER **4,653,482** · E-PAUSED
+**1,202,284** · E-GKHOLD **1,011,413** · E-TRANSITION **68,958** · E-GK
+**59,755** · E-DEGLUE **53,322** · E-RESTART **34,104** · **E-INJURY 93** ·
+E-ENDED **22** · E-SENTOFF **0**.
+
+**The 93-vs-69 delta — the class is EVENT-keyed, not mismatch-keyed.** T1 booked
+**69** unexplained seam ticks; T1R books **93** E-INJURY events and **0**
+unexplained. The 24-tick difference is exact and self-consistent in the data:
+
+* T1 seam **1,833,755** − T1R seam **1,833,662** = **93** — every E-INJURY tick
+  was, in T1, mis-booked into the continuous-possession seam class.
+* T1 fidelityOk **1,833,686** − T1R fidelityOk **1,833,662** = **24** — that many
+  injury ticks *passed* T1's 1e-9 equality and were **clean seam ticks** there.
+* **69 (mismatched in T1) + 24 (clean-passed in T1) = 93 (all in-window injury
+  events).** T1R's E-INJURY class is keyed on the **world event** (a same-`gid`
+  carrier attrs/pos discontinuity inside the step), so it books every injury
+  event whether or not it perturbed the ball beyond 1e-9; T1's `unexplained`
+  counted only the ticks whose recompute happened to *fail*. A knock that lands
+  while the carrier is carrying **straight** (ω ≈ 0) barely touches the
+  magnitude/noise terms the offset writes, so ~24 such ticks passed equality in
+  T1 and never showed as unexplained — they were clean seam ticks then; T1R
+  correctly pulls them into the named class.
+
+**What the receipts confirm (and its honest limit).** The `receipts` block
+carries all **93** E-INJURY records `{seed, tick, gid, cause}` (under the 1,000
+cap), across **91 distinct seeds**. Split by cause: **`attrs-mutation` 64**
+(limb 1, the "plays-on" knock) · **`becomeSub-reposition` 29** (limb 2, the
+"stretchered-off" serious sub). This nails the delta mechanism: limb 2
+teleports `pos` ~30 m, so **all 29** becomeSub ticks *necessarily* fail the 1e-9
+recompute and are among T1's 69; the clean-passing 24 are therefore **all**
+limb-1 knocks (64 − (69 − 29) = 24 attrs-mutation ticks that did not perturb the
+ball beyond tolerance), exactly the "straight-carry knock" sub-genre. Cross-check
+in the kick ledger: T1's otherwise-impossible **30.657 m** per-seam-tick
+displacement outlier is **gone** — T1R's per-seam-tick max is **3.198 m**
+(over n **1,833,662**), because the becomeSub-teleport ticks are now removed from
+the seam class. **Honest limit:** the JSON does *not* carry per-record ω or a
+would-have-mismatched flag, so "carrying straight (ω ≈ 0)" is a code-level
+mechanistic reading, not a directly measured quantity in this data; what the data
+*does* prove is (a) the exact 93 = 69 + 24 arithmetic, (b) all 24 clean-passers
+must be the knock limb by necessity (becomeSub always jumps `pos`), and (c) the
+teleport outlier's disappearance from the seam class.
+
+#### Both axes now CERTIFIED — the identical numbers, now off a closed ledger
+
+The axis point estimates and CIs are **byte-identical to §RESULT** (same seeds,
+same law; the only T1→T1R change is classification, which touches neither the
+turn-episode population nor the eligibility/far-side counts). What changed is
+their *status*: labelled-but-uncertified in T1 (fidelity FAIL) → **CERTIFIED** in
+T1R (fidelity PASS).
+
+**Axis 1 — tackle-eligibility rate.** OFF **10.685%** → ON **11.928%**, relative
+shift **+11.63%**, CI **[+8.51%, +14.85%]** (excludes 0). Point estimate lands
+**INSIDE** the pre-registered band **[+9.5%, +28.6%]**, in its **low half** — live
+damping of T0's +19.1% recompute (bodies react, holding the counterfactual back
+but not away).
+
+**Axis 2 — far-side share among eligible.** OFF **0.0503%** → ON **1.3718%**,
+shift **+1.3215 pp**, CI **[+1.254, +1.3925]** (excludes 0) — **~93%** of the T0
+recompute (**+1.425 pp**, bracket **[+1.328, +1.525]**), the CI overlapping the
+bracket's low edge. The degenerate **0.048%** T0 baseline is **broken**: far-side
+is now a populated, resolved ~1.37% of eligible.
+
+#### (G) Lag-skill gradient — monotone POSITIVE (REPORTED)
+
+Far-side share among eligible seam ticks, by carrier dribbling bucket (ON):
+
+| dribbling bucket | eligible | far-side | far-side share |
+| --- | --- | --- | --- |
+| **[0.1, 0.3)** | 70,520 | 652 | **0.925%** |
+| **[0.3, 0.5)** | 70,099 | 972 | **1.387%** |
+| **[0.5, +]** | 78,103 | 1,342 | **1.718%** |
+
+Monotone **increasing** (0.925% → 1.387% → 1.718%): skilled bodies present a
+farther-side ball — the one T1 design assumption T0 did not measure (τ increasing
+with dribbling) comes out with the **assumed sign**. Essentially unchanged from
+the labelled run's 0.927%/1.386%/1.718% (the 93 E-INJURY ticks left the eligible
+pools); reading (G) confirmed as a finding, still REPORTED-only.
+
+#### Kick-bound (#47.4) — reading (F) STANDS (kick ledger byte-identical to §RESULT)
+
+Kicks in window (n **78,353**): displacement **p50 0.40318 m** (bound **0.346**,
+**+16.5%**), **p90 0.75071 m** (bound **0.727**, +3.3%), max **1.25549 m**.
+`withinBound` **false** → **reading (F)** stands, exactly as the frozen §RESULT
+reported it (the kick ledger is byte-identical T1→T1R): the live honest ball
+moved the kick origin more than T0's arithmetic predicted — decimetre-scale,
+REPORTED, **T2's §2 band to price**; the constants do not move.
+
+#### Ownership-release & loose-ball — structural zero-loose HOLDS (byte-identical)
+
+Releases **86,143** → kick **78,612** · de-glue **5,377** · ball-won **1,903** ·
+tackle **251** · **offset-attributable 0** → `offsetRel 0`, the #48.3 structural
+gate PASSES. Paired loose-ball delta **+363** (OFF 85,270 → ON 85,633),
+**REPORTED, not gated** — downstream duel economy, T2's to price (#48.3).
+
+#### Verdict
+
+The pre-laid reading is **(A) — BOTH AXES UP, the design case** (§PRE-LAID
+READINGS), now delivered on a **closed ledger** (unexplained 0, all gates PASS).
+The honest offset does what T0 sized: eligibility rises (band low-half),
+far-side breaks its degenerate baseline to ~93% of the recompute, the lag-skill
+gradient is positive, the kick bound is exceeded (reading (F), T2's to price) and
+the loose-ball delta is +363 (REPORTED). Per contract §8 **THE FORK RETURNS TO
+THE COMMANDER**; reading (A) licenses the commander to *consider* T2 and nothing
+more — **T1 cannot authorize T2.**
