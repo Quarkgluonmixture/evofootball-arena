@@ -34,6 +34,17 @@ export function decidePlayer(p: Player, match: Match): void {
   const team = match.teams[p.side];
   const opp = match.teams[1 - p.side];
 
+  // C7 T1 §SEAM: a body winding up a shot is committed and cannot re-decide (the
+  // mirror of pendingControl's held window / CONTACT_COMMIT_TIME). Its action
+  // stays { type: 'Shoot' }; the strike resolves at readyTick. Dormant in
+  // production (c7Windup OFF ⇒ pendingKick null ⇒ never taken). Only holds while
+  // the wind-up body still owns the ball — once it loses it (a charge-down inside
+  // the window), the commitment lapses and it decides normally again.
+  if (
+    match.c7Windup && match.pendingKick !== null && match.pendingKick.gid === p.gid
+    && match.ball.owner === p
+  ) return;
+
   // Dead-ball restart: the taker walks to the spot (chasing the stationary
   // ball); everyone else runs their normal logic against the dead ball —
   // defenders reshape and mark, attackers hold width around the spot.
@@ -964,6 +975,13 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // A free-kick strike is a different kick entirely (Phase 32): the
       // placed ball curls OVER the wall on its own flight profile.
       if (kickKind === 'freeKick') match.performFreeKick(p);
+      // C7 T1 (docs/world-model/C7-T1-PENDINGKICK.md §SEAM): the single fork
+      // point. An open-play/one-touch shot enters the wind-up instead of
+      // striking synchronously — the body commits and turns toward goal for W
+      // ticks, then the strike resolves at readyTick via the SAME performShot
+      // math. Dormant: c7Windup is OFF in every production path, so this is the
+      // shipped synchronous strike verbatim (no rng draw added, no reordering).
+      else if (match.c7Windup) match.armPendingKick(p, goal);
       else match.performShot(p);
       break;
     case 'ClearBall':

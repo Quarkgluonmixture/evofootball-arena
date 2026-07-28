@@ -752,6 +752,20 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
   }
 
+  // C7 T1 (docs/world-model/C7-T1-PENDINGKICK.md §SEAM): a body winding up a shot
+  // PLANTS and turns toward the aim. The executor's "kick already happened →
+  // brief follow-through" (the Shoot case above) does NOT apply during the window
+  // — the kick has NOT happened yet — so the movement target is held on the body's
+  // own spot (it does not dribble the ball out of range: the P-DRIFT pathology the
+  // doc pre-lays) and faceTarget is driven to the aim so the heading integrator
+  // composes the strike. Dormant in production (c7Windup OFF ⇒ pendingKick null).
+  const pk = match.pendingKick;
+  if (pk !== null && match.c7Windup && pk.gid === p.gid && ball.owner === p) {
+    target = { x: p.pos.x, y: p.pos.y };
+    speedF = 0.22; // walking pace — well under stepBall's push gate (Dribble-only anyway)
+    p.faceTarget = { x: pk.aim.x, y: pk.aim.y };
+  }
+
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck

@@ -124,6 +124,29 @@ const c6TauTicks = (drb: number): number => Math.round(c6TauSeconds(drb) / DT);
 const c6Sigma = (omega: number, drb: number): number =>
   C6_SIGMA_AMP * (omega / TURN_RATE) * (1 - C6_SIGMA_DRB * drb);
 
+/* ------------- C7 T1 the shot wind-up (docs/world-model/C7-T1-PENDINGKICK.md) ------------- */
+// The FROZEN §LAW constants — each a T0 MID bracket derivation (see the doc's
+// §LAW table). W is a deterministic function of the body's own |v|, |ω| and
+// `dribbling` (mean-centered on t̄); it reads no opponent, no percept, no ball
+// context (I2) and carries no rng draw (I1).
+const C7_W_BASE = 0.06; // T0 §5 MID W_BASE
+const C7_W_MOVE = 0.05; // T0 §5 MID W_MOVE (the dominant, move-on term)
+const C7_W_TURN = 0.05; // T0 §5 MID W_TURN
+const C7_W_TECH = 0.05; // T0 §5 MID W_TECH (technique buys the set-time back)
+const C7_W_FLOOR = 0.05; // T0 §5 MID W_FLOOR (3 ticks; no free instant strikes)
+const C7_W_CAP = 0.18; // T0 §5 MID W_CAP (11 ticks; ≪ the 0.33 s median spell)
+const C7_V_REF = 7.0; // role top-speed reference
+const C7_T_BAR = 0.4068; // measured population-mean dribbling (T0 §5(ii))
+/** W in whole ticks (§LAW): clamp the continuous W to [W_FLOOR,W_CAP] seconds,
+ *  round to the nearest whole tick (round-half-up), then clamp to [3,11]. */
+const c7WindupTicks = (v: number, omega: number, tech: number): number => {
+  const raw =
+    C7_W_BASE + C7_W_MOVE * (v / C7_V_REF) + C7_W_TURN * (omega / TURN_RATE) - C7_W_TECH * (tech - C7_T_BAR);
+  const clamped = raw < C7_W_FLOOR ? C7_W_FLOOR : raw > C7_W_CAP ? C7_W_CAP : raw;
+  const ticks = Math.round(clamped * 60); // DT = 1/60
+  return ticks < 3 ? 3 : ticks > 11 ? 11 : ticks;
+};
+
 /** One keyed uniform in [0, 1) — the E3R2 keyed-noise style (#13.3), a pure
  *  function of (gid, tick, channel); never touches `match.rng`. */
 const c6KeyedUnit = (gid: number, tick: number, channel: number): number => {
@@ -354,6 +377,18 @@ export interface MatchConfig {
    */
   c6Carry?: boolean;
   /**
+   * C7 T1 (docs/world-model/C7-T1-PENDINGKICK.md): the shot wind-up. When armed,
+   * an open-play/one-touch shot commit does NOT strike synchronously — the body
+   * enters `pendingKick` (the release-side mirror of `pendingControl`), holds the
+   * still-owned ball at its carry offset and turns toward the aim for W ticks (the
+   * §LAW, reading only |v|, |ω| and dribbling — I1/I2), then the strike resolves
+   * at readyTick via the EXISTING performShot math evaluated at strike time.
+   * **Default OFF, null in every production path (Road B, #56.3 nothing ships)** —
+   * a probe arms it on a forked world; the fingerprint is unchanged. Free-kicks,
+   * headers, passes, crosses, clearances, keeper distribution are untouched (I9).
+   */
+  c7Windup?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -499,6 +534,16 @@ export class Match {
   readonly edsEagerPerception: boolean;
   /** C6 T1: the honest carrying offset, dormant unless a probe world arms it. */
   readonly c6Carry: boolean;
+  /** C7 T1: the shot wind-up, dormant unless a probe world arms it (Road B). */
+  readonly c7Windup: boolean;
+  /**
+   * C7 T1 (docs/world-model/C7-T1-PENDINGKICK.md §SEAM): a shot committed but not
+   * yet struck — the release-side mirror of `pendingControl`. `{ gid, readyTick,
+   * aim }`: the committed body turns toward `aim` until `stepCount === readyTick`,
+   * then the strike resolves via the EXISTING performShot math. NULL in every
+   * production path (only `armPendingKick` sets it, only on the ON path).
+   */
+  pendingKick: { gid: number; readyTick: number; aim: V2 } | null = null;
   /**
    * C6 T1: per-body heading ring buffer (the lag law's lookback, doc §SEAM).
    * The outfield carrier's heading is recorded here each owned tick — engine
@@ -758,6 +803,8 @@ export class Match {
     this.edsEagerPerception = cfg.edsEagerPerception ?? false;
     // C6 T1: Road B — never env-armed, never default-ON; a probe arms it explicitly.
     this.c6Carry = cfg.c6Carry ?? false;
+    // C7 T1: Road B — never env-armed, never default-ON; a probe arms it explicitly.
+    this.c7Windup = cfg.c7Windup ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     this.edsAwareness = cfg.edsAwareness ?? 0.8;
     this.perceptionSeed = cfg.seed;
@@ -893,6 +940,11 @@ export class Match {
 
     // ---- playing or restart (a restart is live: clock runs, players move) ----
     this.simTime += dt;
+
+    // C7 T1 §SEAM: a shot wind-up that has reached readyTick strikes here, at the
+    // head of the tick (before brains/physics), the release-side analogue of the
+    // synchronous commit-line strike. No-op unless c7Windup is armed (Road B).
+    if (this.pendingKick !== null) this.resolvePendingKick();
 
     const _tBrain = prof.mark();
     for (const team of this.teams) {
@@ -1548,6 +1600,65 @@ export class Match {
     const noise = c6KeyedGaussian2D(owner.gid, this.stepCount);
     ball.pos.x = owner.pos.x + dirX * carryLen + noise.x * sigma;
     ball.pos.y = owner.pos.y + dirY * carryLen + noise.y * sigma;
+  }
+
+  /* ------------- C7 T1 the shot wind-up (docs/world-model/C7-T1-PENDINGKICK.md) ------------- */
+
+  /**
+   * §SEAM: arm the shot wind-up — the release-side mirror of `pendingControl`.
+   * Called ONLY from the open-play/one-touch shot commit (PlayerBrain, the
+   * non-freeKick branch) when `c7Windup` is armed; every production path leaves
+   * this untouched (`c7Windup` OFF ⇒ never reached). The body commits: it holds
+   * the still-owned ball at its carry offset and turns toward `aim` for W ticks,
+   * then the strike resolves at `readyTick`. W reads only the body's own |v|, |ω|
+   * and `dribbling` (I2) and carries no rng draw (I1) — the noise half of craft
+   * already lives in the orientation/curl prices paid at strike time.
+   */
+  armPendingKick(shooter: Player, aim: V2): void {
+    const drb = shooter.attrs.dribbling;
+    const v = Math.sqrt(shooter.vel.x * shooter.vel.x + shooter.vel.y * shooter.vel.y);
+    // |ω| from the two most-recent recorded headings (the c6 ring, recorded
+    // post-physics each owned tick — so at this decide instant the latest entry
+    // is last tick's heading). No prior frame ⇒ straight (ω = 0), the c6 fallback.
+    const h1 = this.c6HeadingAt(shooter.gid, this.stepCount - 1);
+    const h0 = this.c6HeadingAt(shooter.gid, this.stepCount - 2);
+    let omega = 0;
+    if (h1 !== null && h0 !== null) {
+      let d = Math.atan2(h1.hy, h1.hx) - Math.atan2(h0.hy, h0.hx);
+      while (d > Math.PI) d -= 2 * Math.PI;
+      while (d < -Math.PI) d += 2 * Math.PI;
+      omega = Math.abs(d) / DT;
+    }
+    const wTicks = c7WindupTicks(v, omega, drb);
+    this.pendingKick = { gid: shooter.gid, readyTick: this.stepCount + wTicks, aim: { x: aim.x, y: aim.y } };
+    // The committed body turns toward the aim: the heading integrator (capped at
+    // TURN_RATE) does its work over the window, so the strike reads an improved
+    // heading and pays LESS of the EXISTING misalignment price (no new term, I1).
+    shooter.faceTarget = { x: aim.x, y: aim.y };
+  }
+
+  /**
+   * §SEAM: resolve the shot wind-up at `readyTick`. The strike is the EXISTING
+   * `performShot` math, evaluated AT STRIKE TIME (I1) — reached from the seam
+   * instead of the commit line, reading the body's now-integrated heading and the
+   * keeper's now-current pos. If the body is no longer a valid striker (ball won
+   * inside the window / stunned / sent off / phase left playing / a contact locked
+   * the boot), the interruption already resolved through its EXISTING channel and
+   * NO strike runs — the seam adds nothing (I3). Dormant: `c7Windup` OFF ⇒
+   * `pendingKick` is always null, so this is a no-op in every production path.
+   */
+  private resolvePendingKick(): void {
+    const pk = this.pendingKick;
+    if (!this.c7Windup || pk === null || this.stepCount < pk.readyTick) return;
+    this.pendingKick = null;
+    const shooter = this.allPlayers[pk.gid];
+    if (shooter === undefined) return;
+    shooter.faceTarget = null; // release the aim lock; the follow-through resumes
+    if (
+      this.phase !== 'playing' || this.ball.owner !== shooter
+      || shooter.sentOff || shooter.stunTimer > 0 || shooter.kickCooldown > 0
+    ) return;
+    this.performShot(shooter);
   }
 
   /* ---------------- ball physics ---------------- */
