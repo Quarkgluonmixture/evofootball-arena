@@ -2395,3 +2395,38 @@
 >    full census TO COMPLETION INSIDE ITS SESSION (500 matches is
 >    minutes, not the T1-scale hour), fills §5-result, commits, pushes.
 >    Nothing moves after sight; the result returns to the commander.
+
+> **COMMANDER RULING #56 (2026-07-29 — C7 T0 accepted: reading (d),
+> the seat is real on both channels; T1 drafting authorized):**
+>
+> 1. **T0 ACCEPTED.** Every gate passes; floors 2.25–3.13×; ledger
+>    closes with receipts, unexplained 0; twice byte-identical.
+> 2. **BANKED**: (i) the interruption seat is REAL but modest — 10.04
+>    –13.96% of seat shots exposed under the honest current-closing
+>    model (every CI excluding zero), against 17–43% under the
+>    top-speed sensitivity; (ii) the quality head-room is
+>    TAIL-CONCENTRATED and the NOISE channel is the larger price
+>    (−3.27 to −5.14 pp aim spray vs +0.9–1.4 pp power; 28% of seat
+>    shots ≥30° twisted) — #55.2's pre-flag borne out: v1's value
+>    sits as much in punishing rushed/twisted shots as in
+>    charge-downs, and BOTH channels are already the contract's two
+>    axes; (iii) defenders near shooters are near-but-STATIC (closing
+>    p50 0.157 m/s) — this world's bodies do not yet anticipate
+>    shots; noted as a perception-layer fact for a future seat, not
+>    C7's; (iv) the one-touch ground-shot bypass has NO population
+>    (5 of 4,490) — the PROGRAMME C7 row's imagined regime corrected
+>    by measurement; headers/free-kicks correctly outside the v1
+>    seat.
+> 3. **T1 DRAFTING AUTHORIZED (executor), constraints ex ante**:
+>    (i) both priced axes per contract §6-T1, bands derived from T0's
+>    per-candidate tables with the ½×–1.5× recompute-to-live transfer
+>    convention (#48 precedent); (ii) the W law starts from the MID
+>    bracket's shape (mean ~0.111 s, cap 0.18 s < the 0.33 s spell),
+>    constants T1's OWN to freeze with T0 derivations, mean-centered
+>    on the measured t̄ = 0.4068; (iii) fork window pinned ex ante
+>    (#48.4); receipts + event-keyed classes incl. E-INJURY (#49.3);
+>    smoke/census seeds disjoint (#46.2); (iv) two structural tests
+>    named at freeze: the seam never releases ownership (I3) and the
+>    strike math is EVALUATED AT STRIKE TIME, never duplicated (I1);
+>    (v) freeze before implementation; commander review before any
+>    build or run.
