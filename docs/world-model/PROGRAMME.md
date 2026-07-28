@@ -320,7 +320,17 @@ with the memo banked as the revival direction; unpark = C6 T2 verdict +
 #29.3 C5 re-census decision + C7 map) · ② C6 T2 = 跑 (ruling #51 → #52
 review PASS → probe build in flight; the resident session runs it).**
 THE ROAD: C6 T2 → C5 re-census decision → C7 Phase-0 map → Stage III v2
-revisit. Earlier tonight: the #45.2(0) doc split landed and was
+revisit.
+
+**Update (2026-07-29, #54): ⭐⭐ C6 v1 CERTIFIED END TO END** — T2 all
+quiet (every limb ~100× inside its edge; §2 band holds; PC-LOOSE did not
+transfer, −0.76% unresolved — no loose-ball tax at match level; PC-KICK
+inside ±5%). The honest offset is deployment-safe, dormant behind
+`c6Carry`, nothing shipped. **#29.3 decided: ONE C5 re-census after C7's
+first slice** (C6 moved the hold's cost side — stationary tuck 0.55 m;
+C7 wind-up is the payoff-side lever; #26.5 staleness makes per-lever
+re-censuses waste). **C7 PHASE-0 CODE MAP authorized as gap work, in
+flight.** Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
