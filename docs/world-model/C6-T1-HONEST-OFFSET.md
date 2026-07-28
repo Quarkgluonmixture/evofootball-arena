@@ -459,3 +459,202 @@ carries its disposition.
   keeper path and its `0.3` carry (I5), `TURN_RATE`/heading semantics (I5), and
   C7's wind-up seat (contract §9). No new gene, no new attribute — dribbling is
   the only attribute input (I8).
+
+---
+
+## §RESULT — the AUTHORIZED run (ruling #48.5; #48.3/#48.4 as amended)
+
+Script: [`../../scripts/probes/c6-t1-honest-offset.ts`](../../scripts/probes/c6-t1-honest-offset.ts).
+Data: [`data/c6-t1-honest-offset.json`](data/c6-t1-honest-offset.json).
+Run read-only, **1,200 matches**, seeds `5,000,000 + b·100,000 + k`
+(`b ∈ 0..11`, `k ∈ 0..99`), the frozen fork-and-force paired same-seed
+instrument over the #48.4 window `[sweep start, sweep end + 0.5 s]`, zero
+`src/**` diff at run time. `runExperiment()` invoked **twice**, byte-identical
+(X-DET).
+
+> **Verdict: GATES FAIL — on FIDELITY only (`fidelityUnexplained`): 69
+> unexplained seam ticks, the gate demands exactly 0.** Every other gate PASSES
+> — both priced axes resolve UP inside/adjacent to their T0 brackets, the
+> structural zero-loose holds (offset-attributable releases 0), all four floors
+> clear with ≥ 2× headroom, and the run is deterministic. Per reading (H) a
+> fidelity failure stops the queue at the commander whatever the axes say.
+> **The fork RETURNS TO THE COMMANDER: no re-cut, no re-run without a new
+> ruling** (contract §8).
+
+* **output SHA** `e740861cf160b38a68492f8cc10a095005a20cca2371d8765aa07a8aeb76fc6b`
+* **table SHA** (the deliverables) `1178de1045eaa56a882b141e0cfde7dc49d273e41d20adee16b5fd4c534530bd`
+
+**Process supervision (reported, honest).** Two executor sessions were
+interrupted mid-run; the frozen probe was executed to completion by the
+commander session. **Nothing in the instrument, the staging, the seeds or the
+gates was altered** — the run is the frozen script at the frozen seeds, and
+X-DET (two byte-identical invocations, SHAs above) certifies the output is the
+deterministic product of that script. Determinism intact.
+
+### Coverage
+
+`totalBaseSteps` **18,076,073** · episodes forked **8,460** · exposed **5,832**
+· ended-in-window (excluded, #48.4, REPORTED) **21** · matches contributing **8,460**.
+
+### Gate table
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-SRC** | ✅ PASS | `git diff --stat -- src` empty at run time |
+| **X-DET** | ✅ PASS | two `runExperiment()` invocations byte-identical; SHAs above |
+| **CLONE-GUARD** | ✅ PASS | OFF fork reproduces the base ball.pos at `startTick` on every episode; `cloneGuardFails` **0** |
+| **FIDELITY (unexplained = 0)** | ❌ **FAIL** | seam ticks **1,833,755**, fidelityOk **1,833,686**, **unexplained 69** (gate demands exactly 0) — see §DIAGNOSIS |
+| **ZERO-LOOSE-STRUCTURAL (#48.3)** | ✅ PASS | offset-attributable releases **0**; every release classes to a named channel (below) |
+| **F-TURN** | ✅ PASS | 8,460 / ≥ 3,600 (2.35×) |
+| **F-TURN-EXPOSED** | ✅ PASS | 5,832 / ≥ 1,400 (4.17×) |
+| **F-EXPOSURE** | ✅ PASS | 196,715 / ≥ 8,000 (24.6×) |
+| **F-FARSIDE** | ✅ PASS | 3,098 / ≥ 300 (10.3×) |
+| **AXIS-1 UP** (CI lower > 0) | ✅ PASS | +11.63%, CI [+8.51%, +14.85%] excludes 0 |
+| **AXIS-2 UP** (CI lower > 0) | ✅ PASS | +1.3215 pp, CI [+1.254, +1.3925] excludes 0 |
+
+### Priced direction — both axes resolve UP
+
+**Axis 1 — tackle-eligibility rate on turn episodes.** OFF **10.685%** → ON
+**11.928%**, relative shift **+11.63%**, match-seed cluster-bootstrap CI
+**[+8.51%, +14.85%]** — **resolved UP** (lower bound > 0). Point estimate lands
+**INSIDE** the pre-registered interpretation band **[+9.5%, +28.6%]** (½×–1.5×
+of T0's +19.1% recompute); the live shift damps toward the low half of the band
+— bodies react, holding the +19.1% counterfactual back but not away. The HARD
+gate (CI lower > 0) is met; the band-position is REPORTED.
+
+**Axis 2 — far-side share among eligible.** OFF **0.0503%** → ON **1.3718%**,
+shift **+1.3215 pp**, CI **[+1.254, +1.3925]** — **resolved UP** (CI excludes
+0). The point estimate is **just below** T0's counterfactual bracket
+**[+1.328, +1.525] pp** (the CI overlaps it); per the frozen gate the
+CI-excludes-zero form is what binds and the +1.425 pp comparison is REPORTED —
+the live far-side gain arrives at ~93% of the bodies-frozen recompute. The
+degenerate 85-tick / 0.048% T0 baseline is broken: far-side is now a populated,
+resolved ~1.37% of eligible.
+
+Reading in the sign space: **(A) BOTH AXES UP — the design case** on the priced
+geometry. It is delivered under a **fidelity FAIL**, so (H) governs the
+disposition (return to commander), and (A) does NOT license T2.
+
+### (G) Lag-skill gradient — REPORTED, positive (matches the design assumption)
+
+Far-side share among eligible seam ticks, by carrier dribbling bucket (ON):
+
+| dribbling bucket | eligible | far-side | far-side share |
+| --- | --- | --- | --- |
+| **[0.1, 0.3)** | 70,545 | 654 | **0.927%** |
+| **[0.3, 0.5)** | 70,129 | 972 | **1.386%** |
+| **[0.5, +]** | 78,119 | 1,342 | **1.718%** |
+
+Monotone **increasing** with dribbling (0.927% → 1.386% → 1.718%): skilled
+bodies present a farther-side ball. This is the one T1 design assumption T0 did
+not measure (τ increasing with dribbling, §LAW lag law); it comes out with the
+**assumed sign**, confirming reading (G) as a finding for the commander's eye,
+not a gate.
+
+### Kick-bound (#47.4) — reading (F), EXCEEDED (a reading, not a law-FAIL)
+
+Kicks initiated inside the window (n **78,353**): displacement **p50 0.40318 m**
+(bound 0.346), **p90 0.75071 m** (bound 0.727), max **1.25549 m**. `withinBound`
+**false** → **reading (F)**: the live honest ball moved the kick origin more
+than T0's arithmetic predicted (decimetre-scale, both percentiles ~15–17% over
+bound). Per #47.4 this is REPORTED and returned to the commander; the constants
+do NOT move and the game-level consequence is T2's §2 band.
+
+* **Per-seam-tick displacement (supplementary):** p50 **0.30929 m**, p90
+  **0.6628 m** over n **1,833,755** — but max **30.65728 m**, a physically
+  impossible carry (carryLen is clamped ≤ 1.4 m + a ≤ 0.06 m wobble, so the
+  honest-vs-glue displacement is bounded ≈ 2.3 m). This single outlier is a
+  **fingerprint of the same anomaly as the 69 unexplained ticks** (see
+  §DIAGNOSIS) — a seam tick on which the carrier's post-step position is not the
+  position the offset was written against.
+
+### Fidelity ledger — the 69
+
+Seam ticks **1,833,755** · fidelityOk **1,833,686** · **unexplained 69**.
+Exception ledger (every excluded owned tick classed, #38.1 / #46.3):
+E-NOOWNER **4,653,482** · E-PAUSED **1,202,284** · E-GKHOLD **1,011,413** ·
+E-TRANSITION **68,958** · E-GK **59,755** · E-DEGLUE **53,322** · E-RESTART
+**34,104** · E-ENDED **22** · E-SENTOFF **0**.
+
+### Ownership-release ledger (#48.3) — structural zero-loose HOLDS
+
+Releases **86,143** → kick **78,612** · de-glue **5,377** · ball-won **1,903** ·
+tackle **251** · **offset-attributable 0**. Every release classes to a named
+channel; the seam wrote `ball.pos`/`ball.vel` only, never `ball.owner`. The
+paired loose-ball count delta is **+363** (OFF 85,270 → ON 85,633),
+**REPORTED, not gated** — downstream duel economy, T2's to price (#48.3).
+`offsetRel 0` → the #48.3 structural gate PASSES.
+
+### §DIAGNOSIS — where the 69 come from
+
+**The shared world event: an advantage-foul INJURY to the carrier, mid-carry.**
+The 69 are the F2 genre — a *named world event the exception classes do not
+carve out* (in C4-T2 it was halftime stale-trace; here it is a carrier injury
+under advantage). The mechanism is exact and code-located:
+
+1. Inside one `step`, `stepBall` runs the seam
+   (`Match.ts:1614 applyC6HonestOffset`) and writes
+   `ball.pos = owner.pos + dir(θ_ball)·carryLen + noise`, computing
+   `carryLen`/`τ`/`σ` from the carrier's **pre-contact** `pos` and
+   `attrs.dribbling`.
+2. **After** the seam, still inside the same `stepBall`, the four contact
+   mechanics run (`Match.ts:1657–1660`: `tryTackles`, `tryTacticalFoul`,
+   `trySlideTackle`, `trySmother`). On a **failed** standing tackle
+   (`mechanics.ts:1888`) or **failed** slide (`mechanics.ts:1682`) a foul is
+   rolled, and outside the box and outside the 9–28 m direct-FK band
+   `awardFoul` plays **ADVANTAGE** (`Match.ts:1915`): the carrier **keeps the
+   ball, phase stays `playing`, ownership is unchanged** — then
+   `maybeInjure(victim=owner)` fires at `INJURY_BASE 0.10 · fatigue · age`.
+3. The injury mutates the carrier **after** the offset was written, in the same
+   step, without releasing the ball:
+   * **"Plays on" knock** (~70% of injuries — `Match.ts` `takeKnock`):
+     `attrs.dribbling *= 0.85`. `dribbling` feeds `tuckGain`, `τ` and `σ`, so
+     the probe's post-step recompute uses `0.85·drb` while the seam used `drb`
+     → a **small** > 1e-9 mismatch. (Displacement stays ≤ ~2.3 m — a knock does
+     not move `pos`.)
+   * **"Stretchered off" serious** (~30% — `forceSubstitution` →
+     `out.becomeSub(sub, v2(±1.2, HALF_W − 0.6))`): the SAME player object (SAME
+     `gid`) is **teleported to the touchline** and the ball is **not released**,
+     so `owner.gid === prevOwnerGid` (NOT E-TRANSITION) and phase is still
+     `playing`. The probe recomputes against a post-step `owner.pos` ~30 m from
+     where the ball was glued → mismatch **and** the **30.657 m** per-seam-tick
+     displacement outlier. Same world event, both symptoms.
+4. Because ownership and phase are retained and the same `gid` persists, the
+   classifier — keyed on **speed / phase / ownership / gid** (#46.3) — books the
+   tick as a continuous-possession **seam** tick, and the exact-recompute fails.
+   The failure is **single-tick and self-healing**: after a knock the rescaled
+   `dribbling` is stable so the next tick matches; after a sub the ball goes
+   loose the following tick (the sub cannot hold it at the touchline) → E-NOOWNER
+   thereafter.
+
+**Evidence.** 69 / 1,833,755 seam ticks = **3.8 × 10⁻⁵**, consistent with the
+rarity of the compound event (failed tackle → foul → advantage → injury roll →
+knock/serious). The two sub-genres jointly explain **both** symptoms the data
+carries: the 69 unexplained ticks (dribbling rescale + touchline teleport) and
+the otherwise-impossible **30.657 m** per-seam-tick displacement max (the
+teleport). `tryTacticalFoul` and won tackles/slides are correctly excluded — the
+former **stops play** (→ E-PAUSED), the latter **release ownership** (→
+E-TRANSITION / E-NOOWNER) — which is why they never reach the seam class.
+
+**Honest limit of the data.** `data/c6-t1-honest-offset.json` carries only
+**aggregate class counts**, no per-record (seed / tick / phase / gid) detail for
+the 69. The diagnosis above is derived from the class/aggregate counts + the
+per-seam-tick displacement max + the engine source; the exact split of the 69
+across "knock" vs "serious-sub" cannot be resolved from this JSON. Confirming the
+split (or catching any residual third genre) needs a **re-instrumented probe**
+that logs each unexplained tick's world state — which is a **new ruling**, not
+this run: **no re-cut, no re-run is authorized here.**
+
+### Disposition
+
+**THE FORK RETURNS TO THE COMMANDER.** Reading (H): a FIDELITY gate failed, so
+the queue stops at the commander regardless of the (A) design-case axes. Nothing
+is re-cut; the law's constants, bands and floors are untouched; no re-run is
+performed without a new ruling. The commander's decision surface: the priced
+geometry is (A) both-axes-up as designed, the fidelity FAIL is a **classifier
+completeness gap** (an un-named world event: mid-carry advantage-foul injury),
+not a law error — so the natural next step to weigh is a ruling that either adds
+an **E-INJURY / E-CARRIER-MUTATION** exception class (keying on a same-`gid`
+attribute-or-position mutation within the step) and re-runs, or accepts the 69
+as a named exception. That choice is the commander's; the executor does not
+proceed.

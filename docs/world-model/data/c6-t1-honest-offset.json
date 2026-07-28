@@ -1,0 +1,162 @@
+{
+  "experiment": "C6-T1 (the honest offset)",
+  "authority": "C6-T1-HONEST-OFFSET (ruling #48 as amended by #48.3/#48.4; run #48.5)",
+  "parameters": {
+    "seedStart": 5000000,
+    "blocks": 12,
+    "matchesPerBlock": 100,
+    "matches": 1200,
+    "seedFormula": "5,000,000 + b*100,000 + k, b in 0..11, k in 0..99",
+    "clusterUnit": "match seed (disjoint per block)",
+    "bootstrapSeed": 51037,
+    "bootstrapResamples": 2000,
+    "window": "sweep start to sweep end + 0.5 s (#48.4)",
+    "sweepThreshold": 1.5707963267948966,
+    "postWindowTicks": 30,
+    "tackleRadius": 1.15,
+    "distInner": 0.58
+  },
+  "coverage": {
+    "totalBaseSteps": 18076073,
+    "episodesForked": 8460,
+    "episodesExposed": 5832,
+    "episodesEndedInWindow": 21,
+    "matchesWithEpisodes": 8460,
+    "srcDiff": ""
+  },
+  "floors": {
+    "fTurn": {
+      "population": 8460,
+      "floor": 3600,
+      "pass": true
+    },
+    "fTurnExposed": {
+      "population": 5832,
+      "floor": 1400,
+      "pass": true
+    },
+    "fExposure": {
+      "population": 196715,
+      "floor": 8000,
+      "pass": true
+    },
+    "fFarside": {
+      "population": 3098,
+      "floor": 300,
+      "pass": true
+    }
+  },
+  "axes": {
+    "axis1_eligibilityRate": {
+      "offRate": 0.10685,
+      "onRate": 0.119279,
+      "relativeShift": 0.116314,
+      "ci": [
+        0.085089,
+        0.148464
+      ],
+      "resolvedUp": true,
+      "expected": 0.191,
+      "band": [
+        0.095,
+        0.286
+      ],
+      "insideBand": true
+    },
+    "axis2_farSideShare": {
+      "offShare": 0.000503,
+      "onShare": 0.013718,
+      "shiftPP": 1.3215,
+      "ci": [
+        1.254,
+        1.3925
+      ],
+      "resolved": true,
+      "resolvedUp": true,
+      "expectedPP": 1.425,
+      "bracketPP": [
+        1.328,
+        1.525
+      ]
+    }
+  },
+  "kick": {
+    "kicksInWindow": 78353,
+    "p50": 0.40318,
+    "p90": 0.75071,
+    "max": 1.25549,
+    "boundP50": 0.346,
+    "boundP90": 0.727,
+    "withinBound": false,
+    "perSeamTick": {
+      "p50": 0.30929,
+      "p90": 0.6628,
+      "max": 30.65728,
+      "n": 1833755
+    }
+  },
+  "gradient": [
+    {
+      "bucket": "[0.1,0.3)",
+      "eligible": 70545,
+      "far": 654,
+      "farShare": 0.009271
+    },
+    {
+      "bucket": "[0.3,0.5)",
+      "eligible": 70129,
+      "far": 972,
+      "farShare": 0.01386
+    },
+    {
+      "bucket": "[0.5,+]",
+      "eligible": 78119,
+      "far": 1342,
+      "farShare": 0.017179
+    }
+  ],
+  "fidelity": {
+    "ePaused": 1202284,
+    "eGk": 59755,
+    "eGkHold": 1011413,
+    "eRestart": 34104,
+    "eSentOff": 0,
+    "eNoOwner": 4653482,
+    "eEnded": 22,
+    "eDeglue": 53322,
+    "eTransition": 68958,
+    "seamTicks": 1833755,
+    "fidelityOk": 1833686,
+    "unexplained": 69
+  },
+  "release": {
+    "releases": 86143,
+    "tackle": 251,
+    "deglue": 5377,
+    "kick": 78612,
+    "ballWon": 1903,
+    "offsetAttributable": 0
+  },
+  "looseBall": {
+    "off": 85270,
+    "on": 85633,
+    "deltaReported": 363
+  },
+  "cloneGuardFails": 0,
+  "gates": {
+    "xSrc": true,
+    "cloneGuard": true,
+    "fidelityUnexplained": false,
+    "zeroLooseStructural": true,
+    "fTurn": true,
+    "fTurnExposed": true,
+    "fExposure": true,
+    "fFarside": true,
+    "axis1Up": true,
+    "axis2Up": true,
+    "xDet": true
+  },
+  "tableSha": "1178de1045eaa56a882b141e0cfde7dc49d273e41d20adee16b5fd4c534530bd",
+  "sha256": "e740861cf160b38a68492f8cc10a095005a20cca2371d8765aa07a8aeb76fc6b",
+  "verdict": "GATES FAIL"
+}
