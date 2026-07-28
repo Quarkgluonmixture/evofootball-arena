@@ -1,0 +1,1383 @@
+{
+  "experiment": "C7-T1 (pendingKick — the shot wind-up)",
+  "authority": "C7-T1-PENDINGKICK.md (frozen pre-registration; rulings #56/#57 build+run authorized)",
+  "head": "e11331f",
+  "parameters": {
+    "seedStart": 7300000,
+    "blocks": 6,
+    "matchesPerBlock": 100,
+    "matches": 600,
+    "seedFormula": "7,300,000 + b*100,000 + k, b in 0..5, k in 0..99",
+    "clusterUnit": "match seed (disjoint per block)",
+    "bootstrapSeed": 73037,
+    "bootstrapResamples": 2000,
+    "window": "[commitTick, readyTick] priced; + readyTick+2.0s economy horizon (#48.4)",
+    "postHorizonTicks": 120,
+    "wLaw": {
+      "W_BASE": 0.06,
+      "W_MOVE": 0.05,
+      "W_TURN": 0.05,
+      "W_TECH": 0.05,
+      "W_FLOOR": 0.05,
+      "W_CAP": 0.18,
+      "V_REF": 7,
+      "T_BAR": 0.4068
+    }
+  },
+  "coverage": {
+    "totalBaseSteps": 9028843,
+    "seatCommitsForked": 5511,
+    "endedInWindow": 2,
+    "forks": 5509,
+    "struck": 5315,
+    "interrupted": 194,
+    "matchesWithForks": 600,
+    "shooterMismatch": 0,
+    "armFailed": 0,
+    "wTicks": {
+      "p10": 6,
+      "p50": 7,
+      "p90": 8,
+      "mean": 6.7342,
+      "meanSec": 0.11224
+    },
+    "srcDiff": ""
+  },
+  "floors": {
+    "fShotSeat": {
+      "population": 5511,
+      "floor": 2400,
+      "pass": true
+    },
+    "fInterrupted": {
+      "population": 194,
+      "floor": 150,
+      "pass": true
+    },
+    "fUninterrupted": {
+      "population": 5315,
+      "floor": 2000,
+      "pass": true
+    },
+    "fTwistedUnint": {
+      "population": 1313,
+      "floor": 400,
+      "pass": true
+    }
+  },
+  "axes": {
+    "axis1_interruptionRate": {
+      "point": 0.035215,
+      "ci": [
+        0.030648,
+        0.039864
+      ],
+      "resolvedUp": true,
+      "band": [
+        0.061,
+        0.182
+      ],
+      "insideBand": false,
+      "composition": {
+        "INT-TACKLE": 138,
+        "INT-PHASE": 55,
+        "E-INJURY": 1
+      }
+    },
+    "axis2_noiseReductionPP": {
+      "point": 3.6801,
+      "ci": [
+        3.502,
+        3.8684
+      ],
+      "resolvedReducing": true,
+      "band": [
+        2.19,
+        6.56
+      ],
+      "insideBand": true,
+      "primary": true
+    },
+    "axis2_powerGainPP": {
+      "point": 1.0268,
+      "ci": [
+        0.9785,
+        1.0767
+      ],
+      "resolvedRising": true,
+      "band": [
+        0.62,
+        1.85
+      ],
+      "insideBand": true
+    },
+    "twistedVsAligned": {
+      "twisted": {
+        "n": 1313,
+        "noisePP": 13.6138,
+        "powerPP": 3.7966
+      },
+      "aligned": {
+        "n": 4002,
+        "noisePP": 0.421,
+        "powerPP": 0.1181
+      }
+    }
+  },
+  "economy": {
+    "pairs": 5315,
+    "off": {
+      "goals": 913,
+      "onTarget": 3175,
+      "resolved": 5252,
+      "unresolved": 63,
+      "goalShare": 0.171778
+    },
+    "on": {
+      "goals": 1069,
+      "onTarget": 3409,
+      "resolved": 5280,
+      "unresolved": 35,
+      "goalShare": 0.201129
+    },
+    "goalShareDelta": 0.029351
+  },
+  "fidelity": {
+    "windowTicks": 36312,
+    "ok": 36312,
+    "unexplained": 0,
+    "wTickMismatch": 0
+  },
+  "release": {
+    "releases": 5481,
+    "strike": 5315,
+    "tackle": 24,
+    "stunDrop": 102,
+    "sentOff": 0,
+    "phase": 40,
+    "seamAttributable": 0
+  },
+  "struct2": {
+    "armRngTotal": 0,
+    "performCallsTotal": 5315,
+    "struckTotal": 5315,
+    "rngParityMatch": 5176,
+    "rngParityMismatch": 139
+  },
+  "receipts": {
+    "cap": 1000,
+    "counts": {
+      "INT-TACKLE": 138,
+      "INT-PHASE": 55,
+      "E-INJURY": 1,
+      "E-ENDED": 2
+    },
+    "records": {
+      "INT-TACKLE": [
+        {
+          "seed": 7300000,
+          "tick": 12624,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300003,
+          "tick": 5454,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300003,
+          "tick": 8508,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300015,
+          "tick": 11282,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300020,
+          "tick": 7886,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300028,
+          "tick": 7902,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300030,
+          "tick": 5189,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300039,
+          "tick": 6082,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300041,
+          "tick": 8605,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300043,
+          "tick": 448,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300045,
+          "tick": 8176,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300049,
+          "tick": 11735,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300051,
+          "tick": 8886,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300056,
+          "tick": 4436,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300067,
+          "tick": 11099,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300068,
+          "tick": 6302,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300070,
+          "tick": 1705,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300075,
+          "tick": 8597,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300078,
+          "tick": 2532,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300084,
+          "tick": 5053,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300087,
+          "tick": 1060,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300088,
+          "tick": 3999,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300093,
+          "tick": 11315,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300096,
+          "tick": 11147,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7300098,
+          "tick": 6986,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400018,
+          "tick": 7806,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400020,
+          "tick": 14758,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400032,
+          "tick": 6333,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400036,
+          "tick": 668,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400036,
+          "tick": 6769,
+          "gid": 2,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400041,
+          "tick": 10625,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400042,
+          "tick": 433,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400044,
+          "tick": 9090,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400044,
+          "tick": 10365,
+          "gid": 2,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400047,
+          "tick": 8917,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400049,
+          "tick": 14126,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400050,
+          "tick": 9066,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400059,
+          "tick": 6858,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400075,
+          "tick": 13755,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400077,
+          "tick": 12590,
+          "gid": 2,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400082,
+          "tick": 12155,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400087,
+          "tick": 3272,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400087,
+          "tick": 11070,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400093,
+          "tick": 11790,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7400098,
+          "tick": 13201,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500004,
+          "tick": 10786,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500004,
+          "tick": 13278,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500025,
+          "tick": 10577,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500030,
+          "tick": 3958,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500031,
+          "tick": 5403,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500031,
+          "tick": 9068,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500036,
+          "tick": 12388,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500039,
+          "tick": 8730,
+          "gid": 8,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500039,
+          "tick": 10930,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500041,
+          "tick": 4888,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500042,
+          "tick": 11339,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500046,
+          "tick": 10804,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500055,
+          "tick": 8799,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500060,
+          "tick": 13728,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500067,
+          "tick": 11151,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500075,
+          "tick": 5964,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500075,
+          "tick": 13091,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500078,
+          "tick": 6106,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500079,
+          "tick": 5364,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500080,
+          "tick": 302,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500080,
+          "tick": 13281,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500081,
+          "tick": 5600,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7500082,
+          "tick": 13011,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600002,
+          "tick": 9481,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600003,
+          "tick": 402,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600008,
+          "tick": 3122,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600015,
+          "tick": 6552,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600018,
+          "tick": 7930,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600019,
+          "tick": 3726,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600021,
+          "tick": 10098,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600022,
+          "tick": 7600,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600032,
+          "tick": 9922,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600037,
+          "tick": 11873,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600047,
+          "tick": 2954,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600048,
+          "tick": 6546,
+          "gid": 8,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600052,
+          "tick": 5994,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600060,
+          "tick": 570,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600067,
+          "tick": 8127,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600072,
+          "tick": 10270,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600073,
+          "tick": 7788,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600076,
+          "tick": 7197,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600085,
+          "tick": 6802,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600085,
+          "tick": 13146,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7600093,
+          "tick": 303,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700007,
+          "tick": 13559,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700007,
+          "tick": 13626,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700012,
+          "tick": 5366,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700016,
+          "tick": 2254,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700030,
+          "tick": 11339,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700032,
+          "tick": 1648,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700032,
+          "tick": 11796,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700035,
+          "tick": 4804,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700036,
+          "tick": 11420,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700039,
+          "tick": 13263,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700050,
+          "tick": 1900,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700060,
+          "tick": 6225,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700063,
+          "tick": 3532,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700065,
+          "tick": 2281,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700066,
+          "tick": 8078,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700070,
+          "tick": 9890,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700074,
+          "tick": 2128,
+          "gid": 8,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700085,
+          "tick": 14301,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700095,
+          "tick": 6545,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700096,
+          "tick": 15222,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7700097,
+          "tick": 8985,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800001,
+          "tick": 2890,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800007,
+          "tick": 7042,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800008,
+          "tick": 4145,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800010,
+          "tick": 2593,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800011,
+          "tick": 13912,
+          "gid": 9,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800014,
+          "tick": 7647,
+          "gid": 2,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800015,
+          "tick": 10596,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800017,
+          "tick": 2003,
+          "gid": 2,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800025,
+          "tick": 6484,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800030,
+          "tick": 3135,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800034,
+          "tick": 795,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800044,
+          "tick": 12329,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800049,
+          "tick": 2429,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800050,
+          "tick": 730,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800054,
+          "tick": 13490,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800057,
+          "tick": 11427,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800059,
+          "tick": 1464,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800080,
+          "tick": 3166,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800081,
+          "tick": 13825,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800082,
+          "tick": 13813,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800083,
+          "tick": 4353,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800086,
+          "tick": 13012,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800088,
+          "tick": 10018,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800089,
+          "tick": 8459,
+          "gid": 11,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800090,
+          "tick": 1081,
+          "gid": 4,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800094,
+          "tick": 9430,
+          "gid": 5,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800096,
+          "tick": 12406,
+          "gid": 3,
+          "cause": "INT-TACKLE"
+        },
+        {
+          "seed": 7800097,
+          "tick": 7826,
+          "gid": 10,
+          "cause": "INT-TACKLE"
+        }
+      ],
+      "INT-PHASE": [
+        {
+          "seed": 7300013,
+          "tick": 1885,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7300087,
+          "tick": 11294,
+          "gid": 8,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7300089,
+          "tick": 3253,
+          "gid": 8,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7300095,
+          "tick": 12008,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7300098,
+          "tick": 7296,
+          "gid": 8,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400007,
+          "tick": 10332,
+          "gid": 3,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400015,
+          "tick": 1373,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400026,
+          "tick": 1298,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400032,
+          "tick": 10985,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400036,
+          "tick": 1313,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400054,
+          "tick": 2744,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400057,
+          "tick": 4077,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400067,
+          "tick": 1699,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400076,
+          "tick": 10394,
+          "gid": 3,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400078,
+          "tick": 3430,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400083,
+          "tick": 2448,
+          "gid": 8,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7400090,
+          "tick": 12498,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7500035,
+          "tick": 5994,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7500048,
+          "tick": 7017,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7500057,
+          "tick": 12284,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7500068,
+          "tick": 15046,
+          "gid": 4,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7500073,
+          "tick": 13389,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7500086,
+          "tick": 3141,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600012,
+          "tick": 1119,
+          "gid": 1,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600019,
+          "tick": 11256,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600021,
+          "tick": 10805,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600028,
+          "tick": 2114,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600034,
+          "tick": 11924,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600040,
+          "tick": 12687,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600041,
+          "tick": 5810,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600047,
+          "tick": 6546,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600053,
+          "tick": 4718,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600057,
+          "tick": 8275,
+          "gid": 4,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600058,
+          "tick": 12559,
+          "gid": 4,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600077,
+          "tick": 1067,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7600092,
+          "tick": 6269,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700005,
+          "tick": 1700,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700027,
+          "tick": 11521,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700030,
+          "tick": 11932,
+          "gid": 3,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700031,
+          "tick": 2548,
+          "gid": 3,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700031,
+          "tick": 8143,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700038,
+          "tick": 7404,
+          "gid": 1,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700038,
+          "tick": 9609,
+          "gid": 4,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700055,
+          "tick": 627,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700061,
+          "tick": 9703,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700065,
+          "tick": 6285,
+          "gid": 3,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7700076,
+          "tick": 13915,
+          "gid": 4,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800009,
+          "tick": 2139,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800018,
+          "tick": 10825,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800032,
+          "tick": 11469,
+          "gid": 5,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800044,
+          "tick": 10365,
+          "gid": 9,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800058,
+          "tick": 7700,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800078,
+          "tick": 8361,
+          "gid": 10,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800083,
+          "tick": 4293,
+          "gid": 11,
+          "cause": "INT-PHASE"
+        },
+        {
+          "seed": 7800098,
+          "tick": 1001,
+          "gid": 3,
+          "cause": "INT-PHASE"
+        }
+      ],
+      "E-INJURY": [
+        {
+          "seed": 7400018,
+          "tick": 11019,
+          "gid": 4,
+          "cause": "E-INJURY"
+        }
+      ],
+      "E-ENDED": [
+        {
+          "seed": 7500042,
+          "tick": 15456,
+          "gid": 5,
+          "cause": "match-ended-in-window"
+        },
+        {
+          "seed": 7700078,
+          "tick": 15519,
+          "gid": 9,
+          "cause": "match-ended-in-window"
+        }
+      ]
+    }
+  },
+  "gates": {
+    "xSrc": true,
+    "fidelityUnexplained": true,
+    "wTickFidelity": true,
+    "struct1SeamNoRelease": true,
+    "struct2ArmNoRng": true,
+    "struct2PerformOncePerStruck": true,
+    "noArmFailures": true,
+    "noShooterMismatch": true,
+    "fShotSeat": true,
+    "fInterrupted": true,
+    "fUninterrupted": true,
+    "fTwistedUnint": true,
+    "axis1Up": true,
+    "axis2NoiseDown": true,
+    "axis2PowerUp": true,
+    "xDet": true
+  },
+  "tableSha": "62a88d869a83dc3b95fd190dbf84ba5103f435d3b80d06cfcdb047af646edea0",
+  "sha256": "7b88942f8c4bded8ec361ec166000ff7e4cd6ac0929de6bb8910c212e6b074bb",
+  "verdict": "GATES PASS"
+}

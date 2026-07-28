@@ -1,14 +1,14 @@
 # C7 T1 — `pendingKick` (the shot wind-up)
 
-Status: **PRE-REGISTERED 2026-07-29, FROZEN BEFORE IMPLEMENTATION.** Nothing is
-built. Nothing has been run beyond a read-only sizing smoke (§STAGING). No
-`src/**` changed; no `c7Windup` flag exists yet; no T1 fork instrument exists
-yet. This document freezes the law, its constants, the seam, the gates, the
-staging and the full sign-space readings **before** a single line of
-`pendingKick` is written — the P1/P2 two-commit discipline (#45.2(b): executor
-drafts → commander review → authorized implementation → authorized run →
-ruling). **This freeze returns to the commander for review; implementation and
-the run each need their own authorization** (#56.3(v)).
+Status: **FROZEN 2026-07-29 → BUILT + RUN 2026-07-28 (rulings #56/#57).** The
+dormant seam is implemented (`c7Windup` OFF in every production path, HEAD
+`e11331f`), the X-family pins are green, and the AUTHORIZED run completed — see
+**[§RESULT](#result--the-authorized-run-commander-rulings-5657)** at the foot of
+this document (GATES PASS; axis 2 = design case, axis 1 = reading (D-band); both
+return to the commander). The freeze body below is preserved verbatim as the
+pre-registration record: it fixed the law, its constants, the seam, the gates,
+the staging and the full sign-space readings **before** a single line of
+`pendingKick` was written — the P1/P2 two-commit discipline (#45.2(b)).
 
 Authority chain: **contract [`C7-RELEASE-WINDUP.md`](C7-RELEASE-WINDUP.md)
 §6-T1** (this stage's scope) · §4 (the seat and the W-law shape) · §5 invariants
@@ -537,3 +537,122 @@ gene, no new attribute** — `dribbling` is the only attribute input (I8), and i
 enters only through the mean-centered technique term. **C6 is not re-opened** —
 the owned-ball carry offset is the shipped one; C7 prices TIME, not carry
 geometry.
+
+---
+
+## §RESULT — the AUTHORIZED run (commander rulings #56/#57)
+
+Implementation: HEAD `e11331f` (the dormant seam + X-family pins; `c7Windup` OFF
+in every production path, fingerprint `57b0bdab…c673` unchanged, OFF byte-
+identical across 3 league seeds × 2 seasons, full suite 857 green, tsc clean).
+Instrument: [`../../scripts/probes/c7-t1-pendingkick.ts`](../../scripts/probes/c7-t1-pendingkick.ts).
+Data: [`data/c7-t1-pendingkick.json`](data/c7-t1-pendingkick.json).
+Run **600 matches**, seeds `7,300,000 + b·100,000 + k` (§STAGING; disjoint above
+all of C7 T0 and one stride above the 7.2M sizing smoke), paired same-seed forks
+at every seat-shot commit. `runExperiment()` invoked **twice, byte-identical**
+(X-DET). **9,028,843 base steps.** Verdict: **GATES PASS.** Wall time ≈ 3.9 min.
+
+* **output SHA** `7b88942f8c4bded8ec361ec166000ff7e4cd6ac0929de6bb8910c212e6b074bb`
+* **table SHA** (floors, axes, economy, fidelity, release, struct2) `62a88d869a83dc3b95fd190dbf84ba5103f435d3b80d06cfcdb047af646edea0`
+
+### Gate table
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-SRC** | ✅ PASS | `git diff --stat -- src` empty at run time (seam committed at `e11331f`) |
+| **X-FP** | ✅ PASS | fingerprint `57b0bdab…c673`, `c7Windup` OFF (nothing armed in production) |
+| **X-OFF-IDENT** | ✅ PASS | OFF byte-identical across 3 league seeds × 2 seasons vs pre-change HEAD |
+| **X-SEAM** | ✅ PASS | one fork point (a single `armPendingKick`), null on a fresh `Match` + `League`, no excluded release path gated (`tests/c7Windup.test.ts`) |
+| **X-DET** | ✅ PASS | two invocations byte-identical; SHAs above |
+| **X-STRUCT-1 SEAM-NEVER-RELEASES-OWNERSHIP** | ✅ PASS | unit: the ball is owned through the window + the arm/plant code write `ball.owner` nowhere; ledger: **seam-attributable releases = 0** (every one of 5,481 releases → strike 5,315 / tackle 24 / stun-drop 102 / phase 40 / sent-off 0) |
+| **X-STRUCT-2 STRIKE-MATH-EVALUATED-NOT-DUPLICATED** | ✅ PASS | `armPendingKick` drew **0** rng; `performShot` ran **5,315 / 5,315** struck (exactly once each, never at commit, zero for interrupted); rng-stream parity **5,176 / 5,315 = 97.4%** (the 139 are legitimate shot-geometry divergence — a chip feasibility flip at the now-current keeper read, REPORTED, not a duplication) |
+| **FIDELITY unexplained = 0** | ✅ PASS | **36,312 / 36,312** ON window ticks match the §LAW to 1e-9 (`readyTick = commit + W_ticks`, `faceTarget = aim`, `|Δheading| ≤ TURN_RATE·DT`, ball at the owned carry offset); `wTickMismatch = 0` |
+
+### Population floors (#24)
+
+| floor | population | frozen floor | headroom | verdict |
+| --- | --- | --- | --- | --- |
+| **F-SHOT-SEAT** forked open-play + one-touch commits | **5,511** | ≥ 2,400 | 2.30× | ✅ PASS |
+| **F-INTERRUPTED** INT-* (the axis-1 numerator, the binding gate) | **194** | ≥ 150 | 1.29× | ✅ PASS |
+| **F-UNINTERRUPTED** struck (the axis-2 population) | **5,315** | ≥ 2,000 | 2.66× | ✅ PASS |
+| **F-TWISTED-UNINT** struck with θ ≥ 30° at commit | **1,313** | ≥ 400 | 3.28× | ✅ PASS |
+
+The wind-up distribution matches the frozen law: **W ticks p10 6 / p50 7 / p90 8,
+mean 6.73 (0.1122 s)** — the mean body lands on T0's MID central expectation, the
+whole population in the low tenths, floor > 0, cap ≪ the 0.33 s spell. 2 forks
+ended in-window (E-ENDED, #48.4 excluded, REPORTED).
+
+### Axis 1 — interruption rate on forked seat-shot commits (from ~0)
+
+**Point 3.52%, match-seed cluster-bootstrap CI [3.06%, 3.99%].** The **HARD gate
+PASSES** — the CI excludes zero, UP from the synchronous ~0. **But the point lands
+BELOW its ½×–1.5× interpretation band [6.1%, 18.2%]** → this is **reading
+(D-band)**, returned to the commander, no re-cut. The undershoot is exactly the
+**#56.2 static-defender fact borne out live**: T0 measured defenders near shooters
+but near-but-STATIC (closing p50 0.157 m/s), so the bodies-frozen recompute's
+12.12% does not survive when the LIVE near defenders mostly do not close inside
+the ≤11-tick window. The charge-down channel is **real but modest** — the world's
+bodies do not yet anticipate shots (a perception-layer seat, not C7's).
+
+**Interruption composition** (194 total): **INT-TACKLE 138 (71.1%)** — a ball-
+keyed tackle reached the still-owned ball through the EXISTING channel;
+**INT-PHASE 55 (28.4%)** — the whistle/stoppage/half left `playing` inside the
+window; **E-INJURY 1 (0.5%)** — an advantage-foul knock to the shooter mid-window
+(the #49.3 house class, carried verbatim). No INT-STUN or INT-SENTOFF resolved as
+the terminal cause (stun-drops that freed the ball classed through the tackle
+channel). Every forked commit maps to exactly one class; unexplained 0.
+
+### Axis 2 — the misalignment price paid at strike falls for uninterrupted shots
+
+Paired per struck shot (θ_commit at the OFF synchronous strike instant vs θ_strike
+at the ON `readyTick`), the EXISTING orientation prices are paid LESS:
+
+| channel | point | CI (match-seed bootstrap) | band (½×–1.5×) | verdict |
+| --- | --- | --- | --- | --- |
+| **NOISE reduction (primary, #56.2)** | **−3.68 pp** aim spray | [3.50, 3.87] pp reducing | [2.19, 6.56] | ✅ resolves, **inside band** |
+| **POWER gain (secondary)** | **+1.03 pp** | [0.98, 1.08] pp rising | [0.62, 1.85] | ✅ resolves, **inside band** |
+
+Both HARD gates PASS (CI excludes zero in the priced direction) **and both points
+land inside their interpretation bands** — this is **reading (A), the design case,
+for axis 2**: the wind-up delivers the composed-vs-rushed payoff through prices
+that already exist, no new term written (I1).
+
+**The head-room is TAIL-CONCENTRATED, exactly as #56.2 pre-flagged.** Splitting
+the struck population by θ at commit:
+
+| subset | n | noise reduction | power gain |
+| --- | --- | --- | --- |
+| **twisted (θ ≥ 30°)** | 1,313 | **−13.61 pp** | **+3.80 pp** |
+| aligned (θ < 30°) | 4,002 | −0.42 pp | +0.12 pp |
+
+A body already aligned at commit has nothing to gain; a twisted body composes over
+the window and pays far less spray — v1's value sits as much in punishing rushed/
+twisted shots as in charge-downs, both through the contract's two axes.
+
+### Shot-outcome economy — REPORTED, not gated (§6-T1 / reading (G))
+
+Paired over 5,315 struck forks (OFF synchronous vs ON wind-up, 2.0 s horizon):
+
+| | goals | on-target | goal share | unresolved |
+| --- | --- | --- | --- | --- |
+| **OFF** (synchronous) | 913 | 3,175 | 17.18% | 63 |
+| **ON** (wind-up) | 1,069 | 3,409 | 20.11% | 35 |
+
+**Goal-share delta +2.94 pp** (on-target +234): composed strikes convert somewhat
+more, consistent with the axis-2 price relief. **REPORTED only** — C4's I2
+conversion-ceiling doctrine is noted (MORE goals is not the deliverable); this is
+a reading for the commander's eye and for T2's §2 band, never a T1 verdict.
+
+### Which pre-laid reading fired
+
+**Axis 2 = reading (A), the design case** (both prices resolve in the priced
+direction, both inside band, tail-concentrated). **Axis 1 = reading (D-band)**
+(resolves UP with the CI excluding zero, but the point lands below its band — the
+**#56.2 static-defender fact borne out live**, the reading (B) *mechanism* without
+its null: interruptions are real but fewer than the bodies-frozen recompute). No
+P-class (E) fired above de-minimis (P-DRIFT/P-KEEPER/P-REOWN unobserved — the
+plant holds, the ownership-release ledger is clean, seam-attributable 0). All X /
+fidelity / structural gates PASS (no reading (F)). Disposition for both axes:
+**return to the commander; no re-cut of law, bands, window or floors.** T1 cannot
+authorize T2 — a design-case reading is a licence for the **commander** to
+consider it (§NON-CLAIMS).
