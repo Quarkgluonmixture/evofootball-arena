@@ -2214,3 +2214,42 @@
 >    protocol continues with detached runs supervised by the resident
 >    session; this is supervision, not authorship, and stays within
 >    #45.1's role split.
+
+> **COMMANDER RULING #50 (2026-07-29 dawn — C6 T1R accepted: GATES
+> PASS, reading (A), both axes CERTIFIED; the night queue closes):**
+>
+> 1. **T1R ACCEPTED.** Unexplained exactly 0 over the enlarged class
+>    set; the receipts close the arithmetic EXACTLY (T1's 69 + 24
+>    straight-carry knocks that passed 1e-9 equality = 93 E-INJURY
+>    events, split 64 attrs-mutation / 29 becomeSub-reposition; all 29
+>    teleports necessarily inside T1's 69; T1's 30.657 m displacement
+>    outlier gone, T1R max 3.198 m). The class is EVENT-keyed, which is
+>    the correct form — a named world event, not a mismatch bucket.
+> 2. **BOTH AXES CERTIFIED off a closed ledger** (byte-identical to T1;
+>    only classification changed): eligibility **+11.63% CI [+8.51,
+>    +14.85]** — inside the pre-registered band's low half, live
+>    reaction damping the +19.1% recompute; far-side **+1.3215 pp CI
+>    [+1.254, +1.3925]** — ~93% of the T0 recompute, the 0.048%
+>    degenerate baseline broken. The (G) lag-skill gradient is monotone
+>    positive (0.925% / 1.387% / 1.718%), the design assumption's sign
+>    observed live, still reported-only. **Reading (A) — the design
+>    case. C6 T1 is CERTIFIED: the honest offset does what T0 sized,**
+>    dormant, structural zero-loose (offset-attributable releases 0),
+>    fingerprint unchanged, nothing shipped.
+> 3. **Corrections to the record**: #49.4's kick characterization is
+>    tightened — p50 is +16.5% over its bound, p90 only +3.3% over
+>    (reading (F) stands; T2's §2 band prices it). The loose-ball
+>    delta +363 is duel economy, REPORTED, T2's to price.
+> 4. **T2 IS NOT AUTHORIZED TONIGHT.** It is the deployment/
+>    watchability stage (scramble battery, §2 band, 乱抢 instruments —
+>    the user's #1 hate is its subject matter); it queues as the next
+>    commander decision in daylight. #29.3's C5-re-census trigger stays
+>    parked behind T2's verdict (contract §6-T3). The kick-bound and
+>    loose-delta questions fold into T2's pre-registration.
+> 5. **THE NIGHT QUEUE (#45.2) CLOSES**: (0) doc split ✅ accepted ·
+>    (a) C6 design contract ✅ · (b) T0 pre-reg → review → run →
+>    #46/#47, T1 pre-reg → review → #48, T1 build → run → FAIL → #49 →
+>    T1R → PASS → this ruling ✅ · (c) Stage III v2 direction memo ✅
+>    DRAFTED, parked for the user's ratification · (d) R20 filler not
+>    reached. Morning forks, all the user's: v2 memo (3 options in the
+>    memo §5) · C6 T2 authorization · anything from the night log.
