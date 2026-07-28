@@ -470,26 +470,44 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // existing attack surface already prices a ball it cannot reach.
       //
       // De-gluing is C6's slice and is deliberately NOT touched here.
-      let near: Player | null = null;
+      //
+      // C5 re-census repair (iii, #36.1 / ruling #61.2): the threat READ is
+      // the holder's OWN percept, not opponent truth. The omniscient
+      // `opp.players` scan (the omniscient auto-shield the cross-AI audit
+      // caught) is REPLACED here — not duplicated — by the nearest perceived
+      // opponent in `match.perceivedSnapshot(p)`, the E3R2 pull over this
+      // body's own scan frames (perception is PULL, ruling #13.3). A stale
+      // read points the shield at where the defender WAS seen — the honest
+      // capability. This branch is reachable only through `forcedHold &&
+      // c5Hold` (`PlayerBrain.ts:169-170`), null in every production path, so
+      // the pull is probe-only and the fingerprint is unchanged. When nothing
+      // is perceived the holder shields BLIND (the existing `else`), rather
+      // than snapping onto a truth he cannot see. The stamina drain
+      // (`pressureAt` over `opp.players`) and the walking-pace carry below are
+      // unchanged; only the threat-direction READ becomes perceived.
+      let nearPos: Readonly<V2> | null = null;
       let nearD = Infinity;
-      for (const o of opp.players) {
-        if (o.sentOff) continue;
-        const d = dist(o.pos, p.pos);
-        if (d < nearD) {
-          nearD = d;
-          near = o;
+      const perceived = match.perceivedSnapshot(p);
+      if (perceived !== null) {
+        for (const o of perceived.players) {
+          if (o.side === p.side) continue;
+          const d = dist(o.pos, p.pos);
+          if (d < nearD) {
+            nearD = d;
+            nearPos = o.pos;
+          }
         }
       }
-      if (near && nearD > 1e-6) {
+      if (nearPos && nearD > 1e-6) {
         // Face AWAY from the threat: the body goes between him and the ball.
         p.faceTarget = {
-          x: p.pos.x + (p.pos.x - near.pos.x) / nearD * 10,
-          y: p.pos.y + (p.pos.y - near.pos.y) / nearD * 10,
+          x: p.pos.x + (p.pos.x - nearPos.x) / nearD * 10,
+          y: p.pos.y + (p.pos.y - nearPos.y) / nearD * 10,
         };
         // The protective carry: walking pace, away from the threat. Slow
         // enough that `stepBall`'s push gate (v > 2.5) never fires, so the
         // hold stays a hold and never turns into a drive.
-        target = { x: p.pos.x + (p.pos.x - near.pos.x) / nearD * 1.2, y: p.pos.y + (p.pos.y - near.pos.y) / nearD * 1.2 };
+        target = { x: p.pos.x + (p.pos.x - nearPos.x) / nearD * 1.2, y: p.pos.y + (p.pos.y - nearPos.y) / nearD * 1.2 };
       } else {
         p.faceTarget = team.oppGoal();
         target = p.pos;
