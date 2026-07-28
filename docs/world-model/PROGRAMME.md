@@ -361,7 +361,15 @@ corner, no subsidy; the enriched world plays FASTER (30.7 vs 28.8
 releases/min). → [`C5-RECENSUS.md`](C5-RECENSUS.md). **NEXT: (a)
 executor drafts C5-T2 (the WHETHER seat) per #63.3; (b) the #53 Stage
 III v2 unpark condition is MET — the revisit is the USER'S fork,
-presented next round.** Road B stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
+presented next round.** **C5-T2 (the WHETHER seat) is now DRAFTED and FROZEN** per #63.3 →
+[`C5-T2-WHETHER-SEAT.md`](C5-T2-WHETHER-SEAT.md): the perceived chooser gains
+"keep holding" as a priced OPTION consuming the certified `0|0|0` k30 price
+under its own meaning; the zero-price-option question resolved as
+PRICE-FIDELITY (the seat is a price probe, not a policy — hold where the
+certified interval reaches zero, NO subsidy), fork stage measures realised cost
+vs the certified band, match stage (adoption-safety battery) pre-named. **The
+freeze RETURNS TO THE COMMANDER for review (no build, no run under it).** Road B
+stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
