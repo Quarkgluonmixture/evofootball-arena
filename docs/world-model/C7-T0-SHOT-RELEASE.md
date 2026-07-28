@@ -308,12 +308,145 @@ computes state-dependent W per candidate. For each candidate, (iv) reports the
 exposed share (both reach models) and the theta-decay price delta, each with a
 match-seed cluster CI (#20).
 
-## 5-result — the AUTHORIZED run
+## 5-result — the AUTHORIZED run (commander ruling #55)
 
-*(To be filled after commander review authorizes the run. The census script,
-data JSON, output SHA and table SHA, gate table, floor table, deliverables
-(i)–(iv), the spell context, and the fired reading go here — the C6-T0 §5-result
-form. Nothing is run under this freeze commit.)*
+Script: [`../../scripts/probes/c7-t0-shot-release.ts`](../../scripts/probes/c7-t0-shot-release.ts).
+Data: [`data/c7-t0-shot-release.json`](data/c7-t0-shot-release.json).
+Run read-only, **500 matches**, seeds `6,700,000 + b·100,000 + k` (#46.2,
+disjoint above the 6.6M smoke), default duration, event-keyed at each `shotLog`
+append, zero `src/**`. `runExperiment()` invoked **twice**, byte-identical
+(X-DET). **7,528,163 steps.** Verdict: **GATES PASS.**
+
+* **output SHA** `b93c9645f18e8c8d3f1dc6f8f5096488e4d18525023cdcb9ce0732c5a212561f`
+* **table SHA** (the five deliverables) `ee96e3afe7d9f7b93b8895765e3679149980104ae6d9777221404396c8f28ffa`
+
+### Gate table
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-SRC** | ✅ PASS | `git diff --stat -- src` empty at run time |
+| **X-FP** | ✅ PASS (asserted) | nothing armed; fingerprint trivially `57b0bdab…c673` |
+| **X-OVERLAP** | ✅ PASS (vacuous) | no prior instrument reads body state / def-to-ball geometry / release timing at the shot COMMIT; soft anchor: **13.20 total shots/match** vs the smoke's 12.31 |
+| **X-CLASSIFY** | ✅ PASS | 6,599 entries; class sum 6,599 = total shots; **unexplained = 0**; **E-NONSEAT-NOOWNER = 0** |
+| **X-DET** | ✅ PASS | two invocations byte-identical; SHAs above |
+
+### Population floors (#24)
+
+| floor | population | frozen floor | headroom | verdict |
+| --- | --- | --- | --- | --- |
+| **F-SHOT-SEAT** open-play + one-touch | **4,490** | ≥ 2,000 | 2.25× | ✅ PASS |
+| **F-SHOT-EXPOSED** seat exposed, FAST candidate, PRIMARY reach | **451** | ≥ 150 | 3.01× | ✅ PASS (the binding gate) |
+| **F-TWISTED** seat with θ ≥ 30° at commit | **1,253** | ≥ 400 | 3.13× | ✅ PASS |
+
+Exception ledger (event-keyed, per-record receipts #49.3): **E-ENDED 0 ·
+E-OWNERSWITCH 0 · E-INJURY 0 · E-NONSEAT-NOOWNER 0** → unexplained 0. Every
+non-seat entry is a genuine excluded release path (header/free-kick), not an
+attribution failure; receipts captured (header capped at 1,000, free-kick 636).
+
+### (i) The shot population, by release path
+
+**13.20 shots/match** (p10 8 / p50 13 / p90 19). Split of all 6,599 entries:
+
+| path | count | share | in v1 seat? |
+| --- | --- | --- | --- |
+| **open-play** | 4,485 | **67.96%** | ✅ IN |
+| **one-touch** | 5 | **0.076%** | ✅ IN (a sub-population) |
+| header | 1,473 | 22.32% | ❌ EXCLUDED (aerial contact) |
+| free-kick | 636 | 9.64% | ❌ EXCLUDED (restart taker) |
+
+**The v1 seat = 4,490 shots (8.98/match, 68.04% of all).** The pre-registered
+expectation holds hard: **one-touch is essentially empty (5/6,599 = 0.076%)** —
+the v1 seat is settled open-play shots, exactly as §2 (i) and the smoke foretold.
+
+### (ii) Body state at commit (v1-seat)
+
+Shots are taken at pace and mostly aligned, with a real twisted tail:
+
+* **|v|** p10 2.90 / **p50 6.55** / p90 7.41 m/s — bands walk 7.97% / jog 13.96%
+  / **sprint 78.06%**.
+* **|ω|** p10 0 / **p50 0.427** / p90 3.235 rad/s — bands straight 52.63% /
+  moderate 37.48% / hard 9.89%.
+* **θ** p10 1.62° / **p50 9.51°** / p90 **72.52°** — **twisted ≥30° 1,253
+  (27.91%)**, ≥45° 936 (20.85%). Population mean dribbling t̄ = 0.4068.
+
+The move term dominates the turn term at these states; the head-room payoff
+lives in the twisted tail, not the mean — matching the smoke.
+
+### (iii) Charge-down exposure geometry (v1-seat, nearest opp to BALL)
+
+* **distance** p10 1.349 / **p50 2.444** / p90 4.577 m — bands ≤1.15
+  already-eligible **7.17% (322)** · 1.15–3 m **55.99% (2,514)** · >3 m **36.84%
+  (1,654)**.
+* **closing speed** p10 0 / **p50 0.157** / p90 6.642 m/s.
+* **defender within 3 m at commit: 63.16% (2,836).**
+
+⭐ The #55.2 pre-flag is borne out at census scale: a defender is within 3 m two
+times in three, but **he is mostly not closing** (closing speed p50 0.157 m/s) —
+near-but-static, not charging.
+
+### (iv) Counterfactual arithmetic per candidate (NON-BINDING brackets)
+
+Cluster unit = match seed; exposure CI = match-seed cluster bootstrap (#20).
+The reach model is decisive: PRIMARY (current-closing) sits far below the
+top-speed SENSITIVITY, as pinned ex ante (#48.4).
+
+| candidate | W p50 (mean) s | PRIMARY exposed | 95% CI | SENSITIVITY (top-speed) | 95% CI |
+| --- | --- | --- | --- | --- | --- |
+| **FAST** | 0.071 (0.071) | **10.04% (451)** | [9.14%, 10.95%] | 16.77% (753) | [15.64%, 17.91%] |
+| **MID** | 0.112 (0.112) | **12.12% (544)** | [11.13%, 13.11%] | 32.72% (1,469) | [31.33%, 34.15%] |
+| **SLOW** | 0.153 (0.153) | **13.96% (627)** | [12.96%, 15.06%] | 43.30% (1,944) | [41.85%, 44.78%] |
+
+Every PRIMARY-model exposure CI excludes zero and clears the floor — the
+charge-down seat is real but **modest (10–14%)** under the honest reach model,
+while the top-speed upper bound (17–43%) diverges sharply, exactly the smoke's
+lesson that the reach model is the operative choice.
+
+**Quality head-room** (θ decays at TURN_RATE during the wind-up; exact
+`mechanics.ts:78-88` prices):
+
+| candidate | mean θ decay | θ fully cancelled | mean powerMul gain | mean noiseMul drop |
+| --- | --- | --- | --- | --- |
+| **FAST** | 13.24° | 70.00% | +0.92 pp | −3.27 pp |
+| **MID** | 17.12° | 78.35% | +1.23 pp | −4.37 pp |
+| **SLOW** | 19.88° | 84.70% | +1.44 pp | −5.14 pp |
+
+Head-room is **small in the mean but non-negligible in the tail** (the
+noiseMul/aim-spray channel, −3.3 to −5.1 pp, is the larger of the two prices)
+— concentrated in the 28% of shots twisted ≥30°, as the commander pre-noted.
+
+### spell context
+
+Gaining ownership → shot commit: **p10 0.083 / p50 0.583 / p90 2.817 s** against
+the 0.33 s median ownership spell (#29.2). A shot's own settle already spends
+~0.58 s median; a wind-up would extend that by W (low tenths of a second).
+
+### Which pre-laid reading fired (§8)
+
+* **(d) RICH AND MOVABLE — FIRES (primary).** F-SHOT-SEAT (4,490 ≥ 2,000) **and**
+  F-SHOT-EXPOSED (FAST primary 451 ≥ 150) both clear; **every candidate's PRIMARY
+  exposure CI excludes zero** (FAST 10.04% [9.14, 10.95]); and the twisted-tail
+  head-room delta is non-negligible (28% of shots ≥30°, noiseMul drop −3.3 to
+  −5.1 pp). Per §9 this **licenses the commander to authorize T1's drafting** with
+  measured constants and ex-ante power on both axes — nothing more (T0 prices no
+  law).
+* **(e) DEGENERATE PATH AXIS — FIRES (expected, benign).** One-touch 0.076%
+  (5/6,599); the seat is effectively open-play. Read as confirmation that the v1
+  seat is settled shots; the census keys on |v|/|ω|/θ/geometry, none degenerate.
+* **(c)'s caution is partly borne out (the #55.2 pre-flag).** Head-room is
+  small in the mean and tail-concentrated, and defenders sit near-but-static
+  (closing speed p50 0.157 m/s). The honest disposition the commander flagged —
+  that C7 v1's value may live in the **twisted tail (punishing rushed shots)** as
+  much as in charge-downs — is supported by the data, and is the commander's call.
+* **(a) THIN SHOT — does NOT fire** (4,490 is 2.25× the floor).
+* **(b) NO MEANINGFUL INTERRUPTION — does NOT fire.** FAST primary exposure is
+  3.01× the floor with a CI strictly above zero; the seat is modest, not empty.
+* **(f) θ RECONSTRUCTION UNRELIABLE — does NOT fire.** The θ distribution
+  (p50 9.51°, p90 72.52°) coheres with the body-state expectation and the smoke's
+  shape (7.3° / 61.5°); reconstruction stays sizing-only, no material disagreement.
+
+**Non-claims (§9) stand:** T0 priced the population and geometry only, proposed
+no law, froze no W constant, and cannot authorize T1 — the result returns to the
+commander.
 
 ---
 
