@@ -774,3 +774,73 @@ within the §3.3 ceilings). C3's 300-per-row floor: the smallest pressure band i
 ≈ 980·59·0.136 ≈ 7,860 rows and the held-out ≈ 392·59·0.136 ≈ 3,150 rows in that
 band — both far above 300. **No frozen quantity was moved by these numbers; they
 FIX the sizing ex ante (§3.7).**
+
+---
+
+## §EXT — THE #62.3 EXTENSION (a marked COMMANDER AMENDMENT — ruling #62.3)
+
+> **This section is a commander amendment, added AFTER the labelled FAIL run
+> (§RESULT) and pre-registered BEFORE any further look.** It is the T1R genre —
+> **one named defect, one mechanical repair, everything else bit-identical.** It
+> re-sizes the SAME frozen instrument on the REALISED σ_c and closes the
+> optional-stopping door. The resident session runs it (#49.5); a write-up session
+> lands the certified result.
+
+**The named defect.** The sizing smoke (§3.7 / §RESULT-SMOKE) projected
+σ_c = 11.135 pp; the run realised **σ_c = 11.9075 pp (+7 %)**, so the 980/392
+design certified H1 at 2.8105σ, below the 3σ floor (§RESULT.0). Nothing about the
+instrument, the world, the population or the estimator is wrong — only the cluster
+count was set on an under-estimate.
+
+**The mechanical repair — re-size the SAME design on the realised σ_c, with
+headroom.** Design target **3.15σ** at the untouched 2.0 pp tolerance (headroom
+over the 3.0σ floor, so a further small σ under-shoot does not re-fail):
+
+```text
+3.15σ target ⇒ SE_diff ≤ 2.0 / 3.15 = 0.6349 pp
+SE_diff² = σ_c² · (1/K_build + 1/K_heldout),  σ_c = 11.9075 pp
+⇒ (1/K_build + 1/K_heldout) ≤ 0.6349² / 11.9075² = 0.0028428
+CHOSEN (ratio ~2.5:1, as before):  K_build ≥ 1,233 ,  K_heldout ≥ 493
+  1/1233 + 1/493 = 0.00081103 + 0.00202840 = 0.00283944   (≤ 0.0028428, inside)
+  SE_diff = 11.9075 · √0.00283944 = 0.6345 pp
+  2.0 pp / 0.6345 pp = 3.152σ         ✅ meets 3σ at the realised σ_c with headroom
+```
+
+**Everything else byte-identical.** Same instrument (the four repairs, verbatim),
+same 2.0 pp tolerance (untouched), same per-match cap 80, same MOMENT_SPACING 30,
+same HORIZON 240, same ladder 30/60/90, same 27-cell context, same bootstrap seed
+50060, same exception/coverage classes, same X-family, X-DET and unexplained-0
+gates. **Only the two cluster floors and their attendant ceilings move.**
+
+**Blocks EXTENDED in-sequence (not re-seeded).** The census re-walks the SAME seed
+sequence from the SAME starts — build **8,300,000+**, held-out **8,400,000+** —
+cluster-driven, now to the higher floors. The prefix reproduces §RESULT's run
+byte-for-byte (X-DET on the combined set); the continuation walks into fresh,
+never-reserved territory **beyond the old 1,200 / 480 ceilings — build 8,301,200+,
+held-out 8,400,480+** (both disjoint from every consumed range, §3.4). **The full
+analysis is recomputed over the COMBINED set** (original + extension), not spliced
+onto §RESULT's numbers. The two firing cells' n grows ~26 %.
+
+**Frozen counts and ceilings (the ONLY probe change, §3.3 superseded for the
+extension only):**
+
+```text
+CLUSTER_FLOOR_BUILD    980  →  1,233        CLUSTER_FLOOR_HELDOUT   392  →  493
+MAX_MATCHES_BUILD    1,200  →  1,500        MAX_MATCHES_HELDOUT     480  →  600
+```
+
+The ceilings are set from the observed 1:1 eligible-match yield (every walked match
+returned a cluster — build 980/980, held-out 392/392 in §RESULT), so a floor of
+1,233 / 493 is attainable at 1,233 / 493 matches; the 1,500 / 600 ceilings carry
+the same ~22 % headroom the original 1,200 / 980 design did, and reach comfortably
+into the 8,301,200+ / 8,400,480+ extension territory. The 3σ **gate floor stays
+3.0** (the certification bar, #61.3, at full weight); 3.15σ is the SIZING design
+target, realised through the cluster floors — it is NOT a gate constant and the
+gate is unchanged.
+
+**⭐ PRE-REGISTERED — THE OPTIONAL-STOPPING DOOR IS CLOSED (ruling #62.3, verbatim
+intent).** The extension's unpark outcome — **fire or die** — is the **CERTIFIED
+reading**, and **NEITHER outcome triggers a further extension.** If the zero
+survives the narrower intervals, the unpark is real and the #29.3 law then rules
+(the commander drafts C5-T2 iff it survives); if it dies, it was small-n noise —
+**both are findings, and this is the last look.**

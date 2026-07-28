@@ -49,12 +49,18 @@ const MATCH_DURATION = 240;
 const BUILD_SEED_START = 8_300_000;
 /** Held-out block: seeds 8,400,000+ (100k apart, disjoint — §3.3/§3.4). */
 const HELDOUT_SEED_START = 8_400_000;
-/** Cluster floors, the re-powered #61.3 counts (cluster = match seed). */
-const CLUSTER_FLOOR_BUILD = envInt('C5_RECENSUS_CLUSTER_BUILD', 980);
-const CLUSTER_FLOOR_HELDOUT = envInt('C5_RECENSUS_CLUSTER_HELDOUT', 392);
-/** Match ceilings (headroom over the cluster floors at the reduced yield). */
-const MAX_MATCHES_BUILD = envInt('C5_RECENSUS_MAX_BUILD', 1_200);
-const MAX_MATCHES_HELDOUT = envInt('C5_RECENSUS_MAX_HELDOUT', 480);
+/** Cluster floors, the #62.3-extension counts re-sized on the REALISED σ_c =
+ *  11.9075 pp (the smoke's 11.135 pp under-estimated by 7 %): 3.15σ design target
+ *  at the untouched 2.0 pp tolerance ⇒ SE ≤ 0.6349 pp ⇒ 1/1233 + 1/493 = 0.002839
+ *  ⇒ 3.152σ. Blocks EXTENDED in-sequence from the same starts (cluster = match
+ *  seed). Was 980 / 392 (#61.3, the FAILED first sizing — §RESULT / §EXT). */
+const CLUSTER_FLOOR_BUILD = envInt('C5_RECENSUS_CLUSTER_BUILD', 1_233);
+const CLUSTER_FLOOR_HELDOUT = envInt('C5_RECENSUS_CLUSTER_HELDOUT', 493);
+/** Match ceilings — ~22 % headroom over the floors (as the old 1,200 / 980 design),
+ *  attainable at the observed 1:1 eligible-match yield; the walk continues into the
+ *  8,301,200+ / 8,400,480+ extension territory (§EXT). Was 1,200 / 480. */
+const MAX_MATCHES_BUILD = envInt('C5_RECENSUS_MAX_BUILD', 1_500);
+const MAX_MATCHES_HELDOUT = envInt('C5_RECENSUS_MAX_HELDOUT', 600);
 /** Per-match cap on SAMPLED (qualifying) moments — C5 T1 verbatim; the smoke's
  *  80/match qualifying yield the sizing (§3.0) rests on. Eligible is the subset. */
 const PER_MATCH_CAP = 80;
@@ -76,7 +82,9 @@ const H2_TOLERANCE = 0.05; // 5.0pp, per gated pressure row
 const X5_BITE_FLOOR = 0.90;
 const BOOTSTRAP_RESAMPLES = 2_000;
 const BOOTSTRAP_SEED = 50_060; // §3.3, new seed
-const H1_SIGMA_FLOOR = 3.0; // 2.0pp >= 3σ (§3.0, verified against realised σ_c)
+const H1_SIGMA_FLOOR = 3.0; // 2.0pp >= 3σ — the CERTIFICATION floor (#61.3, full
+// weight); NOT the sizing target. The #62.3 extension SIZES to a 3.15σ DESIGN
+// target (headroom) via the cluster floors above; the gate bar stays 3.0.
 const RECEIPT_CAP = 1_000; // per-class per-record receipts (#49.3)
 const INJURY_REPOSITION_M = 3.0; // E-INJURY becomeSub-reposition signature (#49.3)
 /** Whole-match tempo instruments (§9), re-read on the enriched world. */
