@@ -2056,3 +2056,55 @@
 >    pushes. No other number, band, floor, window, candidate or reading
 >    may move. The result returns to the commander (§9: a (c) reading
 >    licenses the commander to authorize T1's drafting, nothing more).
+
+> **COMMANDER RULING #47 (2026-07-28 night — C6 T0 accepted: GATES PASS,
+> reading (c); the movable geometry is the COMBINED shape; T1 drafting
+> authorized under named constraints):**
+>
+> 1. **T0 ACCEPTED.** All gates pass (unexplained 0 across 9.04 M
+>    steps; every floor ≥2.1×; X-DET byte-identical; SHAs quoted). The
+>    executor's live judgment call — the 150/cell floor wired first as
+>    a hard gate, then corrected to the frozen text's LABEL semantics
+>    ("UNDER-POWERED, never pooled away") — is CONFIRMED spec-faithful:
+>    the correction moved TOWARD the frozen text before any
+>    interpretation, and was disclosed unprompted. Proper, twice over.
+> 2. **BANKED, the census facts**: turn population healthy (6.86
+>    episodes/match, 4,116 total; p50 0.183 s); exposure under the glue
+>    is the predicted point-mass (far-side 0.0476%); and the decisive
+>    sizing fact — **only the COMBINED shape moves the geometry**:
+>    candidate B (tuck + speed-growth + lag) lifts far-side +1.425 pp
+>    [+1.328, +1.525] while A (tuck-only) and C (lag-only) drive it to
+>    ~0. The law's three terms are COMPLEMENTS, not alternatives.
+> 3. **BANKED, the layer under the headline** (from the committed data,
+>    commander-read): ALL candidates INCREASE tackle-eligibility —
+>    recomputed eligible ticks vs 178,590 baseline: A 183,721 (+2.9%),
+>    B 212,727 (+19.1%), C 214,857 (+20.3%). **The glue was quietly
+>    protective**: a ball welded 0.85 m ahead leads away from chasing
+>    defenders; an honest offset holds it nearer them mid-turn. Honest
+>    carrying is therefore a COST to carriers in eligibility and a
+>    technique-priced GAIN in side-protection — both directions are
+>    real, neither is a defect. (Counterfactual recomputes on recorded
+>    trajectories; bodies did not react — T1's live forks are the test.)
+> 4. **A commander premise corrected by measurement** (owned): contract
+>    §4.3 predicted kick-release displacement "by centimetres"; T0
+>    measures the B shape at p50 0.346 m / p90 0.727 m — an order of
+>    magnitude off. The consequence is reframed: the kick origin
+>    follows the honest ball (that IS the physics); T1 carries a
+>    priced, REPORTED kick-displacement bound sized from T0, not an
+>    equivalence-to-zero claim; the game-level consequence is T2's §2
+>    band to price.
+> 5. **T1 DRAFTING AUTHORIZED (executor, after the commander's next
+>    push), constraints named ex ante**: (i) the priced-direction gate
+>    states BOTH axes — tackle-eligibility rate (expected UP, band
+>    sized from T0's +19.1% B figure) AND far-side share among eligible
+>    (expected UP, ~+1.4 pp bracket) — protection-by-distance and
+>    protection-by-side may never be conflated; (ii) the law takes B's
+>    SHAPE as its starting bracket, constants T1's own to freeze, with
+>    dribbling scaling the tuck/lag per contract §4.1; (iii) fidelity
+>    classes key on SPEED, not action label (#46.3); (iv) zero new
+>    loose balls asserted; OFF bit-identical (X-family verbatim);
+>    (v) floors derived from T0's measured populations (#24);
+>    (vi) kick-displacement bound per #47.4; (vii) exception
+>    boilerplate + full sign space (#38.1). T1's pre-registration
+>    freezes BEFORE implementation and returns to the commander for
+>    review; implementation and run need their own authorization.

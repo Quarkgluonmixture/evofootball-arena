@@ -294,13 +294,17 @@ geometry, `carry 0.85` becomes a magnitude/lag/noise law of the body's own
 state + dribbling, NO opponent input, NO touch cost ever in C6 (#12
 boundary), ZERO new loose balls by construction; pressured-carry de-glue =
 v2 seat behind a pre-registered scramble ceiling; T2's verdict triggers the
-#29.3 C5-re-census decision back to the commander). **T0 pre-registered
-(freeze `5a225fc`) and REVIEWED — ruling #46: PASS + one ex-ante amendment
-(census strides shift to 4.1M–4.7M for smoke/census seed disjointness);
-RUN AUTHORIZED as amended, in flight.** Banked from the smoke: exposure
-under the glue = 99.96% point-mass exposed; pressured carrying = 81% of
-owned ticks; the de-glue's label gate is near-vacuous (the turn's real
-excluder is speed). Earlier tonight: the #45.2(0) doc split landed and was
+#29.3 C5-re-census decision back to the commander). **T0 RAN and PASSES
+every gate — ruling #47: reading (c) RICH MOVABLE GEOMETRY** (4,116 turn
+episodes; far-side baseline 0.0476% point-mass; ⭐ only the COMBINED shape
+moves it — B tuck+lag+speed +1.425 pp [+1.33, +1.53] while tuck-only and
+lag-only drive it to ~0; ⭐ ALL candidates RAISE tackle-eligibility, B
++19.1% — **the glue was quietly protective**, honest carrying costs
+eligibility and buys technique-priced side-protection; kick displacement
+p50 0.35 m corrects the contract's "centimetres" premise, #47.4).
+**T1 DRAFTING AUTHORIZED under #47.5's seven constraints** (two-axis
+priced direction; B's shape as bracket; freeze before implementation;
+review before any build/run). Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
