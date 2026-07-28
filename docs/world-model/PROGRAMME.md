@@ -348,12 +348,20 @@ did not bite; conversion effect, not chance-manufacturing). Dormant
 behind `c7Windup`, nothing shipped. Chain docs:
 [`C7-T0-SHOT-RELEASE.md`](C7-T0-SHOT-RELEASE.md) ·
 [`C7-T1-PENDINGKICK.md`](C7-T1-PENDINGKICK.md) ·
-[`C7-T2-MATCH-AB.md`](C7-T2-MATCH-AB.md). **#54.4 DECISION TAKEN
-(ruling #60.3): the SINGLE C5 RE-CENSUS drafts now** — both `c6Carry`
-and `c7Windup` armed in the census staging (cost side + payoff side of
-waiting in one frame), H1 re-powered, all #29.1 repairs; C5-T2 drafts
-iff any hold cell's cost interval reaches zero. **NEXT: executor drafts
-the re-census pre-registration; commander reviews before it runs.** Earlier tonight: the #45.2(0) doc split landed and was
+[`C7-T2-MATCH-AB.md`](C7-T2-MATCH-AB.md). **⭐⭐⭐ THE SUBSTRATE ROAD
+IS COMPLETE (2026-07-29, rulings #60–#63)**: the single C5 re-census
+over the C6+C7-enriched world ran (labelled FAIL on the power floor →
+#62's mechanical extension, optional-stopping door closed) and
+**CERTIFIED at 3.17σ: the unpark FIRES** — in exactly one context
+(unpressured · fresh percept · low support, k=30) half a second of
+holding is statistically indistinguishable from free (−0.67 pp
+[−4.66, +3.15]); the mid-support twin died as small-n noise; every
+longer/pressured/stale cell still charges. Patience has a PERMITTED
+corner, no subsidy; the enriched world plays FASTER (30.7 vs 28.8
+releases/min). → [`C5-RECENSUS.md`](C5-RECENSUS.md). **NEXT: (a)
+executor drafts C5-T2 (the WHETHER seat) per #63.3; (b) the #53 Stage
+III v2 unpark condition is MET — the revisit is the USER'S fork,
+presented next round.** Road B stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
