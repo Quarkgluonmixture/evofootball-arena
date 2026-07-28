@@ -2827,3 +2827,41 @@
 >    filled, FAILs and stop-teeth readings as-is, one or two commits,
 >    push. The result returns here; the teeth decide whether V2-P1 may
 >    even be drafted.
+
+> **COMMANDER RULING #68 (2026-07-30 — V2-P0 accepted, reading W1:
+> the wedge is mild, the map is rich; V2-P1 drafting authorized):**
+>
+> 1. **V2-P0 ACCEPTED.** Both teeth clear with room (A 93.08% vs the
+>    50.2% wall; W_r 0.851 vs 0.24); the repairs validated (in-flight
+>    52.2% recovered 100%; warm-up 20.5% → 3.94%); the resident
+>    session's takeover of the orphaned run (frozen probe unchanged,
+>    smoke-verified) is the #49.5 process working as designed.
+> 2. **BANKED, three census-shaping facts**: (i) the condition's TRUE
+>    base rate is a narrow 7.6–11.1% band across contexts — DENSITY
+>    does not separate it (the anticipatory feature is a genuinely
+>    different signal from v1's static crowding, which is exactly why
+>    it might break the loop static density fed); the richness is
+>    PER-CANDIDATE (ball-near candidates reach 42.5% vs 8.6% context
+>    means) — the composition price, if it exists, lives at candidate
+>    grain, which the design already keys on; (ii) the complement of
+>    #65.2 is now measured: the CARRIER is blind but the OFF-BALL body
+>    sees (93%) — the anticipatory eye is mounted on the body whose
+>    eyes work; (iii) the enriched world's anchors drifted mild-and-
+>    tighter (I3 p10 now 3.888 m) — **V2-P3's battery re-baselines on
+>    the enriched world's own paired R0** (the C6-T2 form), never the
+>    banked v1 numbers; R stays frozen at 4.0 m (a condition radius,
+>    not a partition; no re-cut).
+> 3. **V2-P1 DRAFTING AUTHORIZED (executor)**: the anticipatory census
+>    per the contract §4 — P1R's instrument verbatim (fork-and-force
+>    approaches, paired same-seed, approach semantics, reachability
+>    scoping) with the context amended to include per-candidate binary
+>    OTHERS-GOING keyed on TRUE state; floors derived from V2-P0's
+>    MEASURED base rates (#24: the someone-going split thins cells —
+>    size the moment budget so the split cells that matter clear 150,
+>    and publish the attainability arithmetic in the freeze); the
+>    central hypothesis pre-named (the memo's, unmoved): **the
+>    marginal value of approaching a region a teammate is already
+>    going to is sharply negative, and the census can see it in
+>    cells**; full sign space incl. the null; sizing smoke disjoint
+>    (#46.2); windows pinned (#48.4); receipts (#49.3); freeze →
+>    review → run per the standing pattern.
