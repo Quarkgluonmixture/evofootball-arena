@@ -2555,3 +2555,41 @@
 >    still pays nothing parks the seat again and no subsidy ships —
 >    that too would be a real finding about this game's economy.
 > 4. Freeze → commander review → run, per the standing pattern.
+
+> **COMMANDER RULING #61 (2026-07-29 — C5 re-census pre-registration
+> reviewed: PASS; the two surfaced forks disposed; build authorized,
+> the run supervised):**
+>
+> 1. **REVIEW — PASS.** The four #29.1/#36 repairs are specified with
+>    their defects cited (the laddered CIs make the unpark input
+>    computable at last; concessions at elapsed 240 kill the clock
+>    skew; the percept-compliant shield rides the already-armed
+>    perception chain — the P2 precedent, no new flag; eligible-choice
+>    predicate frozen); the H1 arithmetic surfaced an honest
+>    correction (the original doc's 0.95 pp SE was naive-independent,
+>    not clustered — measured now at σ_c = 11.135 pp on the enriched
+>    eligible population); blocks disjoint; both flags armed in EVERY
+>    arm including the twins; attribution correctly out of scope.
+> 2. **FORK (i) — the dormant ShieldHold edit: ACCEPTED, no T0b
+>    stage.** The omniscient `opp.players` read (#36.4) is REPLACED by
+>    the percept pull in the probe-only path (`forcedHold && c5Hold`,
+>    production-unreachable, pinned by test); X-FP/X-OFF-IDENT/X-SEAM
+>    compensate for the zero-src relaxation. A dedicated stage for a
+>    guarded, ledger-gated edit would be process for its own sake.
+> 3. **FORK (ii) — H1 keeps the 2.0 pp tolerance; the first branch
+>    binds: K_build ≥ 980 / K_heldout ≥ 392, ≥ 1,372 matches.** The
+>    original H1 FIRED at 2.0 pp; only at the SAME tolerance is "the
+>    repaired instrument reproduces where the broken one did not" a
+>    strong claim. #29.1's re-derivation branch stays available to a
+>    FUTURE census, but not on the gate that killed the original, not
+>    when compute is affordable under supervision. The heaviest census
+>    in the programme, taken with eyes open.
+> 4. **BUILD AUTHORIZED; RUN SUPERVISED (#49.5).** The executor
+>    implements the shield repair + probe exactly to the frozen spec
+>    as amended by #61.2-3, proves the X-family (tests green, tsc,
+>    fingerprint, OFF identity incl. the ShieldHold edit's
+>    production-unreachability), engineering-smokes capped, commits,
+>    and STOPS — the resident session runs the full census (projected
+>    beyond the in-session ceiling) and a write-up session lands the
+>    result. The #29.3 unpark law rules the reading; nobody pre-judges
+>    which cells move.
