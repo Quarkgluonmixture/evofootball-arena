@@ -287,15 +287,27 @@ bundle or ships it.
 
 | E5h | The clock twin and the downstream fate | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | ✅ **RUN 2026-07-27 — MEASURED** — full history → [PROGRAMME-LOG.md](PROGRAMME-LOG.md) |
 
-**Queue state (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
+**Queue state (2026-07-28 night, #45 running): 📝 C6 DESIGN CONTRACT DRAFTED
+by the commander** → [`C6-EMBODIED-CARRYING.md`](C6-EMBODIED-CARRYING.md)
+(the map's six questions ruled: **v1 = THE HONEST OFFSET** — the turn as
+geometry, `carry 0.85` becomes a magnitude/lag/noise law of the body's own
+state + dribbling, NO opponent input, NO touch cost ever in C6 (#12
+boundary), ZERO new loose balls by construction; pressured-carry de-glue =
+v2 seat behind a pre-registered scramble ceiling; T2's verdict triggers the
+#29.3 C5-re-census decision back to the commander). **NEXT: executor
+(Opus-medium sub-session) drafts the T0 CARRY-GEOMETRY CENSUS
+pre-registration** under §6-T0; commander reviews before it runs. Earlier
+tonight: the #45.2(0) doc split landed and was accepted (43 rulings
+verified in RULINGS, 0 giant lines left, orphaned P1 review re-homed).
+
+Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
 NO payoff re-run; the pre-named pile-up lever (anticipatory density, §4.5.6)
-is LIVE and constrains the successor (#44.4). THE FORK IS WITH THE COMMANDER**
-(Stage III v2 direction memo; C6 contract in parallel — order next round).
-Executor stands down on Stage III; R20 gaps / F9 render-only available any
-time. → [`STAGE3-P2-DORMANT-EYE.md`](STAGE3-P2-DORMANT-EYE.md) §6.5 (P2-A SHA
+is LIVE and constrains the successor (#44.4); Stage III v2 direction memo =
+commander's, parked for the user's morning ratification (#45.2(c)).
+→ [`STAGE3-P2-DORMANT-EYE.md`](STAGE3-P2-DORMANT-EYE.md) §6.5 (P2-A SHA
 `d4de82bc…4945`, P2-B SHA `795ab346…6b77`, both twice byte-identical, HEAD
-`ae6e49c`, fingerprint unchanged, nothing shipped). Nothing in flight.
+`ae6e49c`, fingerprint unchanged, nothing shipped).
 
 **Doc split (#45.2(0), 2026-07-28):** this `PROGRAMME.md` is the operational entry; all commander rulings now live verbatim in [`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md), and the moved track-table histories in [`PROGRAMME-LOG.md`](PROGRAMME-LOG.md).
 
