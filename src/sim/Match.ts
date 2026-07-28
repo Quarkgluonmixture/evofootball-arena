@@ -14,6 +14,7 @@ import {
 } from '../ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../ai/reachability';
 import type { ApproachTable, StationEyeArm, StationEyeTrace } from '../ai/stationEye';
+import type { WhetherEyeConfig } from '../ai/whetherEye';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
@@ -662,6 +663,27 @@ export class Match {
     untilTick: number;
     faceAtDecision: 'ours' | 'theirs';
   }>();
+  /**
+   * C5 T2 — THE WHETHER SEAT (docs/world-model/C5-T2-WHETHER-SEAT.md §2.1). The
+   * perceived chooser's "keep holding" option, consuming the certified
+   * re-census cost table under R-B (#64.1). **Null in every production path,
+   * zero live callers** — when null the world is bit-identical to the shipped
+   * game (X-FP / X-OFF-IDENT). The table is INJECTED by the probe; no table is
+   * bundled in `src/**`. A SECOND, independent seam from `forcedHold`: the
+   * census's forced-hold harness stays reproducible bit-for-bit.
+   */
+  whetherEye: WhetherEyeConfig | null = null;
+  /**
+   * C5 T2 §2.1: per-body live hold commitments taken by the whether seat. Only
+   * ever populated while `whetherEye !== null`; the seat sets an entry when it
+   * takes a HOLD-k, and it lapses at `untilTick` or when the body loses the
+   * ball / play stops. Empty whenever `whetherEye` is null.
+   */
+  readonly whetherHoldState = new Map<number, {
+    untilTick: number;
+    cellAtDecision: string;
+    k: number;
+  }>();
   private readonly traceContests: boolean;
   private activeContest: MutableContestEpisode | null = null;
   private nextContestId = 1;
@@ -1019,6 +1041,25 @@ export class Match {
     if (this.c5Hold && this.forcedHold !== null && this.simTick < this.forcedHold.untilTick) {
       const held = this.allPlayers.find((p) => p.gid === this.forcedHold!.gid);
       if (held !== undefined && this.ball.owner === held && held.role !== 'GK') {
+        if (held.action.type !== 'ShieldHold') {
+          held.action = { type: 'ShieldHold', scores: held.action.scores };
+        }
+      }
+    }
+    // C5 T2: hold a WHETHER-committed body BETWEEN decisions, exactly as the
+    // forced-hold maintenance above (the same push-gate reason). The commitment
+    // lapses at `untilTick`, or if the body loses the ball or play stops. Both
+    // operands are dormant in production (`whetherEye` is never set), so the map
+    // is always empty and this block never runs in the shipped game.
+    if (this.whetherEye !== null && this.whetherHoldState.size > 0) {
+      for (const [gid, commitment] of this.whetherHoldState) {
+        if (this.simTick >= commitment.untilTick) { this.whetherHoldState.delete(gid); continue; }
+        const held = this.allPlayers.find((p) => p.gid === gid);
+        if (held === undefined || this.ball.owner !== held || held.role === 'GK'
+          || this.phase !== 'playing') {
+          this.whetherHoldState.delete(gid);
+          continue;
+        }
         if (held.action.type !== 'ShieldHold') {
           held.action = { type: 'ShieldHold', scores: held.action.scores };
         }

@@ -17,6 +17,7 @@ import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
 import { PASS_POWER_MAX, PASS_POWER_MIN } from '../sim/constants';
+import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
 
 /** E3's canary prices the chosen pass at the substrate's own power range. */
 const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX];
@@ -816,6 +817,40 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   }
   const top = cands[0];
   const scores = cands.slice(0, 4);
+
+  // C5 T2 — THE WHETHER SEAT (docs/world-model/C5-T2-WHETHER-SEAT.md §2.2). The
+  // ONE place the whether fork is read. Dormant: `whetherEye` is null in every
+  // production path, so this branch is unreachable in the shipped game (X-FP /
+  // X-OFF-IDENT / X-SEAM). When armed, at the eligible WHETHER fork — after
+  // `cands` are sorted so A0 (`top`) is known, and BEFORE the perceived pass
+  // chooser and the action commit — the perceived chooser may "keep holding":
+  // the census's own eligible-choice predicate (settled control · not a forced
+  // release · A0 not Shoot/Clear, C5-RECENSUS §1.5 repair iv) gates it, and the
+  // seat prices a HOLD from THIS body's own percept, taking it ONLY where the
+  // perceived cell's certified interval reaches zero (R-B, #64.1). A taken hold
+  // overrides `top` with a percept-compliant `ShieldHold` for k ticks (the C5 T0
+  // hold machinery, reachable now through `whetherEye` as well as
+  // `forcedHold && c5Hold`); otherwise `top` runs unchanged and the pass chooser
+  // is untouched — mirroring the census fork exactly (A0 = untouched top).
+  if (
+    match.whetherEye !== null && whetherEyeInScope(match.whetherEye, p)
+    && !mustKick && p.role !== 'GK' && p.firstTouchWindow <= 0
+    && top.action !== 'Shoot' && top.action !== 'ClearBall'
+  ) {
+    const decision = whetherEyeDecision(p, match, match.whetherEye.table);
+    if (decision.cls === 'D-HOLD' && decision.k !== null) {
+      match.whetherHoldState.set(p.gid, {
+        untilTick: match.simTick + decision.k,
+        cellAtDecision: decision.cell ?? '',
+        k: decision.k,
+      });
+      p.action = {
+        type: 'ShieldHold',
+        scores: [{ action: 'ShieldHold', score: 1, why: `whether-hold k${decision.k} cell ${decision.cell}` }],
+      };
+      return;
+    }
+  }
 
   // EDS E2a-2: dormant target-choice intervention. A census of PLAYED passes
   // is a selected sample — the chooser already filtered for options it liked —

@@ -1,0 +1,88 @@
+{
+  "experiment": "C5-T2-WHETHER-SIZING-SMOKE",
+  "authority": "C5-T2-WHETHER-SEAT",
+  "block": "8500000..8500047",
+  "matches": 48,
+  "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+  "qualifyingTotal": 3840,
+  "eligibleTotal": 2835,
+  "eligibleFraction": 0.738281,
+  "eligiblePerMatch": {
+    "mean": 59.063,
+    "min": 46,
+    "max": 68
+  },
+  "exclusions": {
+    "firstTouch": 679,
+    "mustKick": 195,
+    "a0Shoot": 127,
+    "a0Clear": 4
+  },
+  "decisionClassShares": {
+    "D-HOLD": {
+      "count": 4,
+      "share": 0.001411
+    },
+    "E-ACTNOW-DECLINED": {
+      "count": 816,
+      "share": 0.287831
+    },
+    "E-ABSTAIN-UNSEEN": {
+      "count": 2004,
+      "share": 0.706878
+    },
+    "E-NOCELL": {
+      "count": 11,
+      "share": 0.00388
+    }
+  },
+  "chooserHold": {
+    "total": 4,
+    "rateOfEligible": 0.001411,
+    "perMatchMean": 0.0833,
+    "perMatchMax": 1,
+    "byCell": {
+      "0|0|0": 4
+    }
+  },
+  "mCtxPerceptionPrice": {
+    "placed": 820,
+    "agreeOverall": 0.502439,
+    "agreePressure": 0.82439,
+    "agreeStale": 1,
+    "agreeSupport": 0.592683,
+    "perceivedCellMix": {
+      "2|1|2": 25,
+      "2|1|0": 88,
+      "1|1|1": 16,
+      "1|0|0": 91,
+      "2|0|1": 98,
+      "2|0|2": 52,
+      "2|0|0": 281,
+      "1|1|0": 29,
+      "2|1|1": 40,
+      "1|0|1": 21,
+      "1|1|2": 15,
+      "0|0|0": 4,
+      "0|1|1": 2,
+      "2|2|0": 16,
+      "2|2|2": 8,
+      "2|2|1": 17,
+      "0|1|0": 2,
+      "1|2|1": 3,
+      "1|0|2": 11,
+      "0|0|2": 1
+    }
+  },
+  "ceilingImplication": {
+    "nHoldFloor": 446,
+    "shareFloorPp": 0.29,
+    "measuredHoldsPerMatch": 0.0833,
+    "matchesForNfloor": 5352,
+    "provisionalCeiling": 1600,
+    "shareClearsFloor": false,
+    "note": "ceiling = matches to accumulate N_hold>=446 chooser-taken k30 holds; compare to the provisional 1,600 (§5.1). Commander signs off the final ceiling (#44.5)."
+  },
+  "deterministic": true,
+  "sha256": "48df01570bc0e6346b1e11a9144de8a861f0abec27cccfd4948cd4028167bbf4"
+}
