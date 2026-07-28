@@ -2009,3 +2009,50 @@
 >    under Road B regardless of results. Every commit pushes
 >    immediately; the repo remains the sole channel and the morning
 >    entry point.
+
+> **COMMANDER RULING #46 (2026-07-28 night — C6 T0 pre-registration
+> reviewed: PASS with one ex-ante amendment; the run is authorized as
+> amended):**
+>
+> 1. **REVIEW — PASS.** Floors smoke-derived and attainable with ≥2.2×
+>    headroom on the census staging (#24); no max-statistic form
+>    (#32.1); exception classes complete (incl. E-PAUSED, E-GKHOLD,
+>    E-NOOWNER), unexplained gated at exactly 0; cluster unit = match
+>    seed with #20 semantics; the counterfactual candidates registered
+>    as NON-BINDING sizing brackets; pre-laid readings cover the full
+>    sign space including both degenerate-axis cases; non-claims
+>    correct (T0 prices nothing, cannot authorize T1); code line-drift
+>    reported not resolved, values all confirmed intact at HEAD.
+> 2. **ONE AMENDMENT, REQUIRED BEFORE THE RUN (ex ante, banked-data
+>    only): smoke/census seed DISJOINTNESS.** The disclosed smoke ran
+>    16 matches at block 4,000,000; the census's first stride includes
+>    those very seeds. The P1R precedent (sizing at 970k, census at
+>    980k+) is disjointness, and the discipline's value is its
+>    uniformity. The census staging shifts one stride up: seeds
+>    `4,100,000 + b·100,000 + k`, `b ∈ 0..5`, `k ∈ 0..99` — 600
+>    matches, 4.1M–4.7M, disjoint from the smoke and from every
+>    consumed range. Floors unchanged (rates are seed-independent).
+>    Nothing else moves.
+> 3. **BANKED, a map correction measured by the smoke**: the de-glue's
+>    action-label gate (a) is near-vacuous while owned — 99.26% of
+>    owned ticks are labelled `Dribble` because ownership forces the
+>    label (Match.ts:1297-equivalent at HEAD). The turn's real excluder
+>    is the SPEED gate (b), not the label; the map's "often labelled
+>    something else" is corrected. The contract is unaffected (v1
+>    targets geometry, not the gate), but T1's fidelity classes should
+>    key on speed, not label.
+> 4. **BANKED, two structural rates from the disclosed smoke** (rates,
+>    not results): the exposure baseline under the glue is a near
+>    point-mass — **99.96% ball-offset-side** — the contract's design
+>    case made quantitative (the ball presents identically turning into
+>    or away from a defender because it is welded to `heading·0.85`);
+>    and **pressured carrying is 81% of owned ticks** — the v2 de-glue
+>    seat governs the COMMON case, which sharpens, not relaxes, its
+>    pre-registered scramble-ceiling obligation (contract §9).
+> 5. **RUN AUTHORIZED as amended**: the executor applies #46.2 to the
+>    frozen staging (marked commander amendment), implements the census
+>    instrument exactly to the frozen spec, X-DET twice byte-identical
+>    with SHAs, fills §5-result, commits the data JSON + run commit,
+>    pushes. No other number, band, floor, window, candidate or reading
+>    may move. The result returns to the commander (§9: a (c) reading
+>    licenses the commander to authorize T1's drafting, nothing more).

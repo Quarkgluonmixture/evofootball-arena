@@ -294,11 +294,15 @@ geometry, `carry 0.85` becomes a magnitude/lag/noise law of the body's own
 state + dribbling, NO opponent input, NO touch cost ever in C6 (#12
 boundary), ZERO new loose balls by construction; pressured-carry de-glue =
 v2 seat behind a pre-registered scramble ceiling; T2's verdict triggers the
-#29.3 C5-re-census decision back to the commander). **NEXT: executor
-(Opus-medium sub-session) drafts the T0 CARRY-GEOMETRY CENSUS
-pre-registration** under §6-T0; commander reviews before it runs. Earlier
-tonight: the #45.2(0) doc split landed and was accepted (43 rulings
-verified in RULINGS, 0 giant lines left, orphaned P1 review re-homed).
+#29.3 C5-re-census decision back to the commander). **T0 pre-registered
+(freeze `5a225fc`) and REVIEWED — ruling #46: PASS + one ex-ante amendment
+(census strides shift to 4.1M–4.7M for smoke/census seed disjointness);
+RUN AUTHORIZED as amended, in flight.** Banked from the smoke: exposure
+under the glue = 99.96% point-mass exposed; pressured carrying = 81% of
+owned ticks; the de-glue's label gate is near-vacuous (the turn's real
+excluder is speed). Earlier tonight: the #45.2(0) doc split landed and was
+accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
+review re-homed).
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
