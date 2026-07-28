@@ -338,15 +338,22 @@ DRAFTED by the commander** → [`C7-RELEASE-WINDUP.md`](C7-RELEASE-WINDUP.md)
 (v1 = SHOT `pendingKick`: time-only, existing prices evaluated at strike
 time, interruption free via the existing ball-keyed tackle, no opponent
 input, shots-only bounds watchability; pass wind-up deferred with §2
-obligations). **C7 T0 (shot-release census) PRE-REGISTERED AND FROZEN** →
-[`C7-T0-SHOT-RELEASE.md`](C7-T0-SHOT-RELEASE.md) (READ-ONLY, zero `src/**`;
-sizing smoke ran read-only, block 6.6M, twice byte-identical; census staged
-500 matches, block 6.7M; binding floor = F-SHOT-EXPOSED ≥150; 3 non-binding
-candidate W laws; reach model = current-closing straight-line, top-speed as
-sensitivity; ⭐ smoke pre-view: v1 seat = settled open-play shots (one-touch
-≈0, headers/free-kicks excluded), interruption exposure THIN under the honest
-reach model (9–11%) — reading (b) is live). **NEXT: commander reviews before
-it runs.** Earlier tonight: the #45.2(0) doc split landed and was
+obligations). **⭐⭐ C7 v1 CERTIFIED END TO END (2026-07-29, rulings #55–#60)**:
+T0 census (reading (d): interruption seat real 10–14%, head-room
+tail-concentrated) → T1 `pendingKick` (all 16 gates; quality axis =
+design case, noise −3.68 pp carried by the twisted tail −13.61 pp;
+interruption 3.52% = real but thin, static defenders) → T2 match A/B
+(all quiet; goals +8.79% paired, absolute mid-band — the pre-named risk
+did not bite; conversion effect, not chance-manufacturing). Dormant
+behind `c7Windup`, nothing shipped. Chain docs:
+[`C7-T0-SHOT-RELEASE.md`](C7-T0-SHOT-RELEASE.md) ·
+[`C7-T1-PENDINGKICK.md`](C7-T1-PENDINGKICK.md) ·
+[`C7-T2-MATCH-AB.md`](C7-T2-MATCH-AB.md). **#54.4 DECISION TAKEN
+(ruling #60.3): the SINGLE C5 RE-CENSUS drafts now** — both `c6Carry`
+and `c7Windup` armed in the census staging (cost side + payoff side of
+waiting in one frame), H1 re-powered, all #29.1 repairs; C5-T2 drafts
+iff any hold cell's cost interval reaches zero. **NEXT: executor drafts
+the re-census pre-registration; commander reviews before it runs.** Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
