@@ -2593,3 +2593,55 @@
 >    beyond the in-session ceiling) and a write-up session lands the
 >    result. The #29.3 unpark law rules the reading; nobody pre-judges
 >    which cells move.
+
+> **COMMANDER RULING #62 (2026-07-29 — the C5 re-census FAILS its own
+> power floor with the unpark condition firing UNDER THE LABEL; the
+> mechanically-sized extension is authorized; nothing is certified
+> tonight):**
+>
+> 1. **THE FAIL STANDS AS FIRED.** h1SigmaFloor: realised cluster σ
+>    11.9075 pp against the smoke's 11.135 pp projection → 2.8105σ at
+>    the frozen 2.0 pp tolerance, below the 3σ floor #61.3 bound at
+>    full weight. Every other gate passes (H1 marginal reproduction
+>    itself is excellent — max arm drift 0.75 pp — but it is a
+>    reproduction measured at 2.81σ, and the floor exists precisely so
+>    that number is certified, not lucky). Per the standing label
+>    convention (P2 (d); T1's 69): **the entire census is PUBLISHED
+>    LABELLED and no reading — including the unpark — may be quoted as
+>    a verdict.**
+> 2. **THE LABELLED SUBSTANCE, banked as data**: the enriched world's
+>    waiting price is SHALLOWER across the whole ladder (paired
+>    −6.41/−11.09/−15.06 pp at k=30/60/90 vs the BEFORE table's
+>    −7.55/−12.77/−16.12), the concession twin collapses to
+>    +0.38/+0.80/+0.95 pp (the clock-skew repair working), hold
+>    survival 85.8% at k=30 — and ⭐ **the unpark computation FIRES on
+>    two cells**: free+fresh-percept at k=30, low and mid support
+>    (points −1.36/−2.89 pp, uppers +2.79/0.00) — in the calmest
+>    corners of the enriched world, half a second of waiting is no
+>    longer distinguishably a loss. Also banked: the enriched world
+>    plays FASTER (30.72 releases/min vs 28.78 legacy; spell median
+>    unchanged 0.3333 s).
+> 3. **THE EXTENSION (the T1R genre: one named defect, one mechanical
+>    repair, everything else bit-identical), AUTHORIZED**: the σ
+>    projection under-estimated by 7%; the repair re-sizes the SAME
+>    frozen design on the REALISED σ with headroom — design target
+>    3.15σ at the untouched 2.0 pp tolerance ⇒ SE ≤ 0.6349 pp ⇒
+>    **K_build ≥ 1,233 / K_heldout ≥ 493** (1/1233+1/493 = 0.002839 →
+>    3.152σ at σ = 11.9075). Same instrument byte-identical, same
+>    blocks EXTENDED in-sequence (build 8,301,200+, held-out
+>    8,400,480+), same bootstrap seed, X-DET, receipts; the full
+>    analysis recomputed over the combined set. **Pre-registered NOW,
+>    before any further look: the extension's unpark outcome — fire
+>    or die — is the CERTIFIED reading, and NEITHER outcome triggers
+>    a further extension** (the optional-stopping door is closed by
+>    this sentence). The two firing cells' n grows ~26%; if the zero
+>    survives narrower intervals it is real, if it dies it was small-n
+>    noise — both are findings.
+> 4. **SEQUENCE**: the executor (i) commits the labelled FAIL run
+>    exactly as it stands (data JSON + result section, FAIL verdict,
+>    label prominent), (ii) applies the #62.3 extension addendum to
+>    C5-RECENSUS.md as a marked commander amendment and adjusts the
+>    probe's caps/floors to the frozen counts, commits, STOPS; the
+>    resident session runs the extended census (#49.5); a write-up
+>    session lands the certified result; the #29.3 unpark law then
+>    rules — C5-T2 drafts iff the fire survives. Nothing else moves.
