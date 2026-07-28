@@ -1761,9 +1761,13 @@ bundle or ships it.
 
 | E5h | **The clock twin and the downstream fate** (ruling #24.4): counters only, BOTH arms, E5f staging verbatim — (i) pass-commits inside licence windows per arm (the OFF twin of E5g's 854) and releases-per-commit, separating *"direct football decides less during windows"* from *"the window-decision share was always the differentiator"*; (ii) the downstream fate of overlap releases in both arms over a frozen 240-tick horizon (cross · shot chain · possession retention) as the C4-link check | [`EDS-E5H-CLOCK-TWIN.md`](EDS-E5H-CLOCK-TWIN.md) | **PRE-REGISTERED 2026-07-27** — P0 staging pin, BOTH arms against E5f's banked integers (doubles as the sidecar pin, the VALUE arm carrying `traceChoice`) · **P1 coverage DERIVED FROM THE ATTAINABLE POPULATION** — ≥400 releases and ≥300 commits per arm, from E5f's banked F3 of 935 OFF / 550 VALUE, which is ruling #24.1's codification of E5g's invented floor applied immediately · P2 determinism. ⚠️ Two things named in the contract rather than glossed: **the twin is NOT E5g's instrument** (the trace only exists where a perceived chooser does, so the twin is defined on what both arms show — a pass leaving a licence-active holder — joined to E5g by a REPORTED calibration, never a gate, since part (i) needs the ratio); and **the C4 check is a stats-delta PROXY** because the registered `noAerial` instrument sits behind `traceFirstTouch`, which `League.matchFlags` cannot reach and arming would be the `src` change this ruling forbids. §5 pre-laid what each answer would mean, including that VALUE-arm releases cashing well would be a **selected elite** and must not be read as a win. <br>✅ **RUN 2026-07-27 — MEASURED** (§7, SHA `9ed77d56…3c29`, twice byte-identical, **P0/P1/P2 all true**, both arms reproducing every banked integer, fingerprint unchanged, **zero `src/**`**). ⭐⭐⭐ **THE CLOCK IS A CONSTANT OF THE SUBSTRATE, NOT THE DIFFERENTIATOR — and this CORRECTS a framing banked one ruling ago.** Commits per matured run: OFF **0.2499** [0.215, 0.287] vs VALUE **0.2267** [0.209, 0.246], ratio **0.907×**, intervals overlapping and per-cluster spreads inside each other (OFF 0.178–0.341, VALUE 0.199–0.255). **In BOTH arms only about a quarter of matured overlap runs ever see a pass commit** — direct football does not decide meaningfully less inside these windows, it was always this low. #24.3 banked the clock as "the FOURTH independent arrow at the C5-family time-dimension seat"; **for the overlap file it is not an arrow at all, so C5 CANNOT restore this counter** — which says nothing about whether C5 deserves building for its own sake, only that pointing it here aims at something that was never the difference. ⭐⭐ **The entire differentiator is at the commit: releases per commit OFF 72.99% [0.712, 0.743] → VALUE 49.04% [0.457, 0.528], ratio 0.672× — disjoint intervals, and EVERY cluster separates** (OFF 0.697–0.753, VALUE 0.440–0.547). **That is the legacy `×1.3` quantified**: the multiplier's whole effect was handing the licensed runner the ball at three commits in four; honest value hands it to him at one in two. ⭐ **Two independently-defined instruments agree without being tuned to each other**: E5g's chooser picks him at 51.17% of licence-active decision moments, this probe's trace-free definition finds 49.04% of licence-active commits become releases. (Calibration, reported never gated: the twin counts 1,091 VALUE commits against E5g's 854, factor 1.277 — the expected consequence of counting "a pass left a licence-active holder" rather than "the brain committed to Pass"; both arms use the one twin definition so the ratios are unaffected.) ⛔ **The C4 LINK IS NOT THE MECHANISM at this horizon**: overlap releases become crosses **1.21% (9/746) OFF and 2.06% (11/535) VALUE**, so #24.3's labelled chain — release → cross → nobody in the box — **cannot be the depressant because it almost never runs**. NOT "crosses find people": the proxy has 9 and 11 events and says nothing either way. ⚠️ **Recorded because I saw it BEFORE the numbers and chose not to act**: the 1-season sizing smoke already showed the cross column would be near-empty at 240 ticks (0 of 63, and the 2.49-crosses-per-match base rate says why), and I left the frozen horizon alone rather than widen a definition after a smoke to get a bigger number — the honest consequence being that a release carried and crossed AFTER four seconds is invisible, so what is refuted is the C4 chain **at the deployed axis's own horizon**, and a longer horizon needs its own pre-registration. ⭐ **#24.3's CONCLUSION survives by another route**: the overlap ball is not bad in absolute terms — 7.24% of OFF releases produce a shot against the table's 5.62–6.33% marginal — it is simply **not the best ball at its own moments**, corroborating E5e harvest B's 8.29% alternatives vs 6.81% runner from a completely different staging. ⚠️ VALUE releases cash HIGHER (9.16% vs 7.24%) = the **selected elite** §5 registered in advance; not a win, not offered as one. Common to both arms and worth the commander's eye: **four seconds after an overlap release the team owns the ball less than a fifth of the time** (18.63% / 17.57%, mean horizon share ≈0.22) — a property of wide play in this substrate, not of the chooser |
 
-**Queue state (2026-07-28, #43.5 executed): ⛔ Stage III P2 RAN and FAILS on
-TWO independent stop rules — the QUEUE STOPS AT THE COMMANDER** →
-[`STAGE3-P2-DORMANT-EYE.md`](STAGE3-P2-DORMANT-EYE.md) §6.5 (P2-A SHA
+**Queue state (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
+as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
+NO payoff re-run; the pre-named pile-up lever (anticipatory density, §4.5.6)
+is LIVE and constrains the successor (#44.4). THE FORK IS WITH THE COMMANDER**
+(Stage III v2 direction memo; C6 contract in parallel — order next round).
+Executor stands down on Stage III; R20 gaps / F9 render-only available any
+time. → [`STAGE3-P2-DORMANT-EYE.md`](STAGE3-P2-DORMANT-EYE.md) §6.5 (P2-A SHA
 `d4de82bc…4945`, P2-B SHA `795ab346…6b77`, both twice byte-identical, HEAD
 `ae6e49c`, fingerprint unchanged, nothing shipped). Nothing in flight.
 
@@ -3619,3 +3623,85 @@ grinding the same family.
 >    not the 150 floor, not DEV 0.22, not the canary bands, not §6's
 >    readings. #26.5 stands — no live substrate change lands before the
 >    run, and the run states its HEAD.
+
+> **COMMANDER RULING #44 (2026-07-28 — P2's double FAIL accepted as
+> written; Stage III v1 CLOSED on deployment grounds; the pre-named
+> pile-up lever goes live; one process rule codified):**
+>
+> 1. **BOTH FAILS ACCEPTED, nothing reinterpreted.** DEV stands at
+>    18.47% against the frozen 22% although its cause is a
+>    denominator-population defect — the floor was left frozen after
+>    disclosure, exactly as the discipline requires, and the FAIL is
+>    the honest reading of the gate as written. The run itself was
+>    exemplary: seven pre-run disclosures none touching a gate value,
+>    labels respected, X5 480/0, X6 unexplained 0 across 7.08 M ticks,
+>    both halves twice byte-identical. Headline numbers independently
+>    spot-checked against the committed JSONs (decision decomposition,
+>    both DEGEN limbs both sides, offside canary, R2 goals interval):
+>    all reproduce.
+> 2. **BANKED — six findings from an honest double failure:**
+>    (i) **The machinery is now an ASSET.** The first percept-honest
+>    consumer of a censused table works end-to-end: deviation among
+>    priceable windows 42.5% vs the table's ex-ante 44.4% (oracle arm
+>    44.7%, a fifth of a point off the prediction), context agreement
+>    95.6%, PC resolving at −0.0136 with CI excluding zero.
+>    (ii) ⭐⭐⭐ **THE SUBSTRATE LAW: positional value censused one body
+>    at a time DOES NOT COMPOSE.** Deployed together: spacing −2.33 m,
+>    duplicate runs 55.5→70.4%, rest defence 1.32→0.98 bodies,
+>    offsides +18.7%, restarts +21%. Mechanism, named: the table has
+>    no term for the shape a deviation leaves behind; the argmax
+>    concentrates (54.9% predicted on r21a0); and there is a FEEDBACK
+>    LOOP — convergence raises perceived DENSITY, and the crowded
+>    contexts carry the strongest prescriptions (ours|ownThird|crowded
+>    +0.041 is the largest cell), so convergence feeds itself. Q5's
+>    stability warning, measured rather than argued.
+>    (iii) **The labelled payoff data** (label respected, no verdict):
+>    ATE +0.00095 at half-width 0.005 — planning evidence that any
+>    surviving out-of-sample advantage is small; §3.2's winner's-curse
+>    prediction landed. The INVERTED asymmetry corroborates: the argmin
+>    finds a worse-than-incumbent candidate on ~98% of priceable
+>    windows — the table's landscape is "almost everything is worse
+>    than the incumbent", P1R's pooled negative seen from below.
+>    (iv) **C-BOX moved POSITIVE** (+19.5% fuller at cross arrival):
+>    revert 1's disease did NOT reappear; a shape-aware eye remains the
+>    named route to C4's H3 arrival gap.
+>    (v) **Two population facts for any successor**: in-flight
+>    no-owner windows = 28.7% of decisions (the census population had
+>    an owner by construction); first-window no-snapshot = 20.5%
+>    (percept memory is born at a body's own AI tick; a fork's first
+>    decision precedes it).
+>    (vi) The eye's 180°-ring share was 25.9% — a quarter of what a
+>    value-reader buys is the seat the incumbent cannot express;
+>    banked for the successor's design case.
+> 3. **STAGE III v1 IS CLOSED — REJECTED ON DEPLOYMENT GROUNDS.**
+>    Formal basis: reading (h) + §4.5.2's own law — the table was
+>    censused unilaterally and deployed universally, and the gap
+>    measured destructive at match level. **NO P2R payoff re-run**:
+>    converting (d) into a formal (b)/(c) cannot change the deployment
+>    verdict and costs a full budget; the premise question (do the 40
+>    cells pay) TRANSFERS to the successor, which must re-census under
+>    composition anyway. GUARD: the labelled ATE may never be quoted
+>    as a measured verdict; a formal payoff claim requires a re-run
+>    with a re-derived DEV denominator (priceable-window basis).
+> 4. **THE PRE-NAMED LEVER IS LIVE.** §4.5.6 designated anticipatory
+>    density — perceived teammate MOTION toward a zone — as THE
+>    pile-up lever if P2's stability instruments fired. They fired.
+>    The successor's direction is CONSTRAINED ex ante to
+>    composition-aware value: the context gains what other bodies are
+>    DOING (motion toward the same region), and/or the census is taken
+>    at the adoption level it deploys at (§4.5.2's closing law).
+>    The redraw is the COMMANDER'S design task; no successor census
+>    is authorized before that direction memo exists.
+> 5. **PROCESS CODIFIED**: a pre-run disclosure that touches a gate's
+>    POPULATION (not its value) triggers a mandatory cheap read-only
+>    sizing + commander sign-off BEFORE the run — P1R's pre-freeze
+>    sizing, generalized. Item 6 was disclosed honestly, but the
+>    in-flight share was measurable ex ante and would have re-derived
+>    DEV's floor the way #43.3 re-derived X6's. The commander's share
+>    of the miss is owned: #43.4 anchored DEV's attainability on the
+>    out-of-cone rate — the wrong hazard; the binding hazard was ball
+>    OWNERSHIP, not visibility.
+> 6. **QUEUE**: the fork is with the commander (Stage III v2 direction
+>    memo; C6 contract still open in parallel — order decided next
+>    round). The executor stands down on Stage III; R20 gap
+>    re-analyses and F9 render-only remain available any time.
