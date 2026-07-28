@@ -1,13 +1,15 @@
 # C7 T2 — The Match-Level A/B (deployment / watchability)
 
-Status: **PRE-REGISTERED 2026-07-29, FROZEN BEFORE IMPLEMENTATION.** Nothing is
-built. Nothing has been run. No `src/**` will change to run this (the law and its
-seam already ship behind `c7Windup`, default OFF, from the certified T1 build —
-HEAD `a6e7d9a`; no T2 probe script exists yet). This document freezes the arms,
-the instruments, every gate and its derived band, the staging and the full
-sign-space readings **before** a single T2 datum exists. **This freeze RETURNS TO
-THE COMMANDER for review; the run needs its own authorization** (contract §8; #58.4
-"freeze before implementation, commander review before any run").
+Status: **RUN COMPLETE 2026-07-30 (ruling #59.2). GATES PASS — reading (A), the
+design case: all-quiet, the +8.79% goals push landed INSIDE the §2 band. Returned
+to the commander.** Pre-registered 2026-07-29 and FROZEN BEFORE IMPLEMENTATION; the
+arms, instruments, every gate and its derived band, the staging and the full
+sign-space readings were fixed **before** a single T2 datum existed (see §1–§7; the
+verdict is in §RESULT). No `src/**` changed to run this (the law and its seam
+already ship behind `c7Windup`, default OFF, from the certified T1 build; HEAD at
+run time `26fa06c`, `git diff --stat -- src` empty, fingerprint `57b0bdab…c673`
+unchanged). Per #54.4 / §7 a clean T2 licenses only the commander to TAKE the
+single C5 re-census decision; T2 authorizes nothing itself.
 
 Authority chain: **contract [`C7-RELEASE-WINDUP.md`](C7-RELEASE-WINDUP.md) §6-T2**
 (this stage's scope: "the C6 T2 battery VERBATIM … + the shot economy") and §5
@@ -533,10 +535,147 @@ carries its disposition. **Nothing ships in any branch (Road B).**
 
 ---
 
-## §RESULT — (pending the authorized run; commander review of this freeze first)
+## §RESULT — the AUTHORIZED run (commander ruling #59.2)
 
-*This section is intentionally empty at freeze. Per contract §8 and #58.4, the run
-needs its own authorization; the executor fills §RESULT with the full gate table,
-the shot/goals headline (both the paired delta and the R-BOTH-vs-band absolute
-check), the reported economy, and the pre-laid reading that fired — FAILs as-is, no
-re-cut — after the commander reviews this pre-registration.*
+Implementation: HEAD `26fa06c` (`c7Windup` OFF in every production path from the
+T1 build; `git diff --stat -- src` empty; fingerprint `57b0bdab…c673` unchanged).
+Instrument: [`../../scripts/probes/c7-t2-match-ab.ts`](../../scripts/probes/c7-t2-match-ab.ts).
+Data: [`data/c7-t2-match-ab.json`](data/c7-t2-match-ab.json). Run **800 matches ×
+2 arms = 1,600 matches**, seeds `7,900,000 + b·100,000 + k` (§3.1; disjoint above
+all of C7 T0 and all of C7 T1), paired same-seed. `runExperiment()` invoked
+**twice, byte-identical** (X-DET). Verdict: **GATES PASS.** Wall time ≈ 5.3 min.
+**The pre-laid reading that fired is (A) — ALL-QUIET, GOALS IN-BAND, the design
+case.**
+
+* **output SHA** `ed4188474d9855ea7a9d328935c7db14a20f9447a517d90bf5bf397088e6bbf0`
+* **table SHA** (limbs, band, shot/goals axis, loose-ball, duel, ecology, structural) `b532212fe3fc6369a18143dba80117d1c0082c95a997ab4d8bf8058987e898ac`
+
+### The headline (#58.3): the goals push landed, and it landed inside the band
+
+The commander's own pre-named arithmetic (#58.3) was **~+0.20 goals/match ≈ +8%.**
+The world delivered **+0.1975 goals/match, CI [0.05, 0.3425], +8.79% over R0** —
+the paired delta lands **almost exactly on the pre-named figure**, and its CI
+excludes zero (the push is real). This is the largest single-mechanic goals push
+this programme has produced. **And the equilibrium held:** R-BOTH goals/match =
+**2.44375**, inside the §2 band **[2.0352, 2.7536]**, **0.30981 below the upper
+edge** — reading (A), priced and banked, nothing re-cut, nothing tightened.
+
+The **anchoring subtlety #59.1 disclosed rather than discovered** is exactly why:
+R0 sits **below** the C1 baseline (R0 = 2.24625, −6.2% vs 2.3944), so an +8.79%
+paired push lands R-BOTH only **+2.06%** above the C1 baseline in absolute terms —
+comfortably mid-band. The push is real (paired) and the balance holds (absolute);
+both numbers reported, the band decision reads the absolute point (§4.3).
+
+### §4.7 X-family / structural gate table
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-FP** | ✅ PASS | league fingerprint `57b0bdab…c673`, `c7Windup` OFF (nothing armed in production) |
+| **X-OFF-IDENT** | ✅ PASS | R0 world signatures byte-identical to the shipped/default-flag world across **all 800 seeds** (0 mismatches) — the flag-off pin (contract I4) |
+| **X-SEAM** | ✅ PASS | `c7Windup === false` and `pendingKick === null` on a fresh `Match` (T1's `tests/c7Windup.test.ts` re-asserted) |
+| **X-DET** | ✅ PASS | two `runExperiment()` invocations byte-identical; SHAs above |
+| **STRUCTURAL SEAM-NEVER-RELEASES-OWNERSHIP** (#48.3 / I3) | ✅ PASS | **seam-attributable releases = 0**, unattributable = 0, over **107,684** R-BOTH releases (strike/kick 99,482 · de-glue 5,742 · ball-won 2,076 · tackle 384) — every one classes to a named EXISTING channel; the pendingKick seam writes `ball.owner` nowhere |
+
+Exclusion counts (REPORTED, §5): E-PAUSED 1,734,841 · E-GK 1,643,702 · E-ENDED 0
+sampling ticks; receipts kept first-N per class (cap 1,000). Per-window fidelity
+and X-STRUCT-2 are **T1-certified on the identical law/seam and not re-run** (§1,
+the #52.1 scoping precedent).
+
+### §4.1 (i) Watchability HARD limbs — all-quiet, every margin wide
+
+All bind on R-BOTH paired vs R0, side-split, two-part predicates (a CI bound AND a
+relative threshold). **Every limb is QUIET.**
+
+| HARD limb | instrument | measured (worst side) | band edge (fires at) | margin | verdict |
+| --- | --- | --- | --- | --- | --- |
+| **DEGEN-SCRAMBLE** | I4 own-within-5 m | rel **+1.63%** (s0), CI [+0.005, +0.025] | ≥ +25% rel | **15× below edge** | ✅ quiet |
+| **DEGEN-PILEUP** | I3 share < 4 m | rel **+0.80%** (s1), CI straddles 0 | ≥ +50% rel | far below | ✅ quiet |
+| **DEGEN-RESTDEF** | I5(b) designated slot | rel **+0.39% / −0.70%**, CIs straddle 0 | ≤ −20% rel | far above | ✅ quiet |
+| **C-OFFSIDE** | offsides/match (pooled) | Δ +0.06, CI [−0.095, +0.211], rel +2.16% | lower > 0 AND ≥ +10% | CI straddles 0 | ✅ quiet |
+| **C-BOX** | box bodies at cross arrival | Δ **+0.064** (rises), rel +7.54% | upper < 0 AND ≤ −15% drop | wrong sign (rises) | ✅ quiet |
+| **C-RESTART** | restart ticks/match | Δ +39.4, CI [−3.9, +81.4], rel +2.56% | lower > 0 AND ≥ +10% | CI straddles 0 | ✅ quiet |
+
+The two small DEGEN-SCRAMBLE side CIs resolve just above zero (+1.6% / +1.1% rel)
+— a **real but minuscule** convergence far below the +25% edge (the 3.27%
+interruption channel converting a few near-box shots to loose contests, exactly the
+indirect path §4.1 named); it is nowhere near firing. Arrival-class mix (REPORTED
+alongside C-BOX): R0 C0/C1/C2/C3 = 639/169/455/600, R-BOTH = 655/154/419/693 — a
+mild shift toward **more headers** (C3 +93), consistent with the box holding, no
+class collapse.
+
+### §4.2 (ii) The §2 equilibrium band — holds on all five dimensions
+
+| dimension | R-BOTH/match | band | rel vs C1 baseline | verdict | R0/match |
+| --- | --- | --- | --- | --- | --- |
+| **goals** (±15%, #58.3 headline) | **2.44375** | [2.0352, 2.7536] | **+2.06%** | ✅ inside | 2.24625 |
+| crosses (±25%) | 2.45875 | [1.8671, 3.1118] | −1.23% | ✅ inside | 2.3725 |
+| headers won (±25%) | 8.825 | [6.8279, 11.3799] | −3.06% | ✅ inside | 8.8625 |
+| long balls (±25%) | 5.76375 | [4.6532, 7.7553] | −7.10% | ✅ inside | 6.09 |
+| cutbacks (±25%) | 3.9525 | [2.8613, 4.7689] | +3.60% | ✅ inside | 3.7175 |
+
+R0 rates are all inside the band too (the flag-off sanity cross-check, P2-B §4.2):
+no large R0-vs-baseline drift.
+
+### §4.3 (iii) The shot / goals axis — both ways, and the reported economy
+
+**Goals reported both ways (§4.3):**
+
+* **paired delta (mechanism size):** **+0.1975 goals/match**, CI **[0.05,
+  0.3425]**, **+8.79%** — resolved UP, ≈ the #58.3 pre-named +0.20/+8%.
+* **R-BOTH absolute (hard-abort check):** **2.44375** ∈ [2.0352, 2.7536], inside,
+  **0.30981 below the upper edge / 0.40851 above the lower.** → reading (A).
+
+**The shot economy (paired CIs, REPORTED, none gated):**
+
+| quantity | R0 | R-BOTH | Δ (CI) | resolved? |
+| --- | --- | --- | --- | --- |
+| shots/match | 13.17 | 13.2325 | +0.0625 [−0.233, +0.356] | no (null) |
+| **conversion** (goals/shots) | 0.17494 | 0.19045 | **+0.01551 [+0.0044, +0.0268], +8.87%** | ✅ yes |
+| **on-target rate** | 0.57057 | 0.59599 | **+0.02542 [+0.0117, +0.0389], +4.46%** | ✅ yes |
+| blocks/match | 0.10625 | 0.1225 | +0.01625 [−0.016, +0.049] | no (null) |
+
+**The coherent composed-vs-rushed story holds:** shots/match is flat (the wind-up
+adds no shots — it does not manufacture chances), while **conversion and on-target
+both rise** (the composed strike scores more of the SAME shots). The +8.87%
+conversion lift is the mechanism behind the +8.79% goals push — one and the same
+effect, not two. No instrument points against the story (no reading (E)).
+
+**Wind-up-specific live cross-checks vs T1 (R-BOTH; no wind-up exists on R0):**
+
+| quantity | T1 (fork) | T2 (live match) | note |
+| --- | --- | --- | --- |
+| realised W distribution | p50 7 / mean 6.73 | **p10 6 / p50 7 / p90 8 / mean 6.7355 (0.1123 s)** | n = 7,380 arms; matches T1 almost exactly |
+| match-level interruption rate | 3.52% | **3.27%** (241 / 7,380) | INT-* / seat commits; live ≈ fork |
+| twisted-tail share (θ≥30°) | 24.7% | **25.02%** (1,786 / 7,139 struck) | matches T1 |
+| seat-shot share (commits / all shots) | — | **69.71%** (7,380 / 10,586) | most shots route the v1 seat |
+| charge-downs/match (INT-TACKLE) | 71.1% of INT | **0.30125/match** (241 total, **100% INT-TACKLE**) | at match scale every interruption was a ball-keyed tackle; no INT-PHASE terminal in the single-slot window |
+
+### §4.5 (v) Loose-ball economy — ~null, structural gate holds
+
+Loose/match R0 = 133.52, R-BOTH = 133.83, **Δ +0.311, CI [−1.019, +1.586], rel
++0.23% — a null (CI straddles zero), `resolvedIncrease = false`.** No new
+loose-ball channel opened (contract I3), and the STRUCTURAL SEAM gate holds it at
+exactly 0 (§4.7) — no reading (D) surprise. **PC-KICK N/A** (C7 moves no origin;
+c6Carry OFF, the ball stays at the rigid carry offset through the window).
+
+### §4.4 (iv) Duel economy — REPORTED, all null (coherent)
+
+tackles/match +0.164 [−0.21, +0.52] · interceptions/match −0.043 [−0.51, +0.40] ·
+turnover zone own/mid/their all straddle zero (+0.114 / −0.093 / −0.099) ·
+turn-episodes −0.055 [−0.28, +0.19] · turn-episode loss rate +0.0053 [−0.017,
++0.027]. **Every duel-economy instrument is a null** — the interruption channel is
+thin (3.27%) and leaves the whole-match turnover economy statistically unmoved,
+consistent with the small conversion-side effect being the wind-up's real footprint.
+
+### The verdict — reading (A), returned to the commander
+
+Every HARD limb quiet; the §2 band holds on all five dimensions **including the
+goals headline**; the goals push is real (+8.79% paired) AND in-band (2.44375,
+0.31 below the upper edge); the shot economy is coherent (conversion up, shots
+flat); the loose-ball economy is null and the structural seam gate holds at exactly
+0; every X-family gate passes. **This is reading (A): ALL-QUIET, GOALS IN-BAND —
+the design case.** Disposition (§6-A): **return to the commander.** T2 ships
+nothing (Road B; `c7Windup` null/off in every production path, fingerprint
+unchanged). Per #54.4 / §7, a clean T2 licenses exactly one thing — **the commander
+to TAKE the single C5 re-census decision** over the C6+C7 enriched world; T2 cannot
+authorize it, nor any live-arming. Nothing more is licensed.
