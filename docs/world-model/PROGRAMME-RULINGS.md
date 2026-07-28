@@ -2865,3 +2865,36 @@
 >    cells**; full sign space incl. the null; sizing smoke disjoint
 >    (#46.2); windows pinned (#48.4); receipts (#49.3); freeze →
 >    review → run per the standing pattern.
+
+> **COMMANDER RULING #69 (2026-07-30 — V2-P1 pre-registration reviewed:
+> PASS; the four flags disposed; build authorized, the run supervised
+> at the FULL budget):**
+>
+> 1. **REVIEW — PASS.** The attainability arithmetic is published and
+>    honest (the split thins 432 pairs; most stay under-powered and
+>    say so; the budget keys on every context's PEAK candidate — where
+>    the hypothesis is actually testable). Smoke transfers cleanly
+>    (79.64 moments/match vs V2-P0's 79.11).
+> 2. **The flags**: (i) "reachability-scoped" was the commander's
+>    sloppy shorthand — the executor's reading is CORRECT and the P1R
+>    lattice stays VERBATIM (a far candidate is a long approach,
+>    priced under #41.2; no filter); (ii) the X6 FORM is accepted as
+>    frozen — the derivation formula ex ante with the run measuring
+>    its own clamp share, and `unexplained = 0` UNCONDITIONAL HARD
+>    (the #43.3 lesson already moved the load-bearing validity to
+>    per-record fidelity; the ok-floor is the secondary check);
+>    (iii) the peak-candidate block instability is exactly why
+>    headroom exists — noted; (iv) **the budget is FROZEN AT THE FULL
+>    49,094 moments / 650 matches (~933k forks, ~8.2× P1R)**: a
+>    bare-150 run that missed attainability after hours would cost
+>    more than the headroom does; the bare-150 lever stays published
+>    as history, not exercised.
+> 3. **BUILD AUTHORIZED (executor); RUN SUPERVISED (resident, #49.5)**:
+>    the executor implements the census probe exactly to the frozen
+>    spec (the P1R harness + the V2-P0 OTHERS-GOING computation on the
+>    TRUE side, per-candidate binary conditioning), proves tsc + an
+>    engineering smoke capped, commits, STOPS; the resident session
+>    runs the full census detached (projected ~5-6 h — the heaviest
+>    run of the programme) with the Monitor pattern; a write-up
+>    session lands the result; the ruling then reads the pre-named
+>    contrast. Nothing moves after sight.
