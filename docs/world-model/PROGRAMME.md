@@ -314,8 +314,13 @@ daylight** (watchability battery; #29.3's C5 re-census stays parked
 behind its verdict). Also drafted tonight:
 [`STAGE3-V2-DIRECTION-MEMO.md`](STAGE3-V2-DIRECTION-MEMO.md) — the
 anticipatory census (COMMANDER DRAFT, #45.2(c), awaiting the user's
-morning ratification; nothing authorized). **Morning forks, all the
-user's: ① v2 memo (§5's three options) · ② C6 T2 authorization.** Earlier tonight: the #45.2(0) doc split landed and was
+morning ratification; nothing authorized). **Both morning forks RULED
+2026-07-29: ① Stage III v2 = 先攒底子 (user verdict, ruling #53 — parked
+with the memo banked as the revival direction; unpark = C6 T2 verdict +
+#29.3 C5 re-census decision + C7 map) · ② C6 T2 = 跑 (ruling #51 → #52
+review PASS → probe build in flight; the resident session runs it).**
+THE ROAD: C6 T2 → C5 re-census decision → C7 Phase-0 map → Stage III v2
+revisit. Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 

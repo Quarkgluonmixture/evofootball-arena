@@ -1,6 +1,10 @@
 # Stage III v2 — direction memo (COMMANDER DRAFT, awaiting the user's ratification)
 
-Status: **DRAFT, 2026-07-28 night, NOT BINDING.** Written under ruling
+Status: **PARKED BY USER VERDICT, 2026-07-29 ("先攒底子" — ruling #53): the
+substrate enriches first (C6 T2 → #29.3 C5 re-census decision → C7 map),
+then Stage III v2 revisits. This memo is the BANKED revival direction —
+the mechanism survived the user's emergence check and is not re-litigated
+at unpark, only re-sized (#26.5).** Originally: DRAFT, 2026-07-28 night. Written under ruling
 #45.2(c) (night queue; the flagship redirect gets the user's eyes before it
 binds) and constrained ex ante by **#44.4** (the pre-named pile-up lever is
 live: anticipatory density — perceived teammate MOTION toward a zone —
