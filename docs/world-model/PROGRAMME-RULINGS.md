@@ -2645,3 +2645,49 @@
 >    resident session runs the extended census (#49.5); a write-up
 >    session lands the certified result; the #29.3 unpark law then
 >    rules — C5-T2 drafts iff the fire survives. Nothing else moves.
+
+> **COMMANDER RULING #63 (2026-07-29 — the extended C5 re-census
+> CERTIFIED: PASS, the unpark fires on one cell; ⭐⭐⭐ THE SUBSTRATE
+> ROAD IS COMPLETE; C5-T2 drafting authorized; the Stage III v2
+> unpark condition is met and goes to the user):**
+>
+> 1. **CERTIFIED.** All ten gates at 3.1732σ (K 1233/493, σ_c
+>    11.83 pp); H1 marginal max drift 0.38 pp at full power — the
+>    repaired instrument reproduces where the broken one could not,
+>    at the SAME 2.0 pp tolerance that killed the original. The
+>    extension did its job in BOTH directions: cell 0|0|0
+>    (free · fresh percept · low support, k=30) SURVIVES with
+>    −0.67 pp [−4.66, +3.15]; cell 0|0|1 (mid support) DIES resolved
+>    negative (−3.75 pp [−6.38, −1.28]) — small-n noise, correctly
+>    refused certification the first time. Per #62.3's closed door,
+>    this is the final look.
+> 2. ⭐⭐⭐ **BANKED — the substrate road's closing finding**: in the
+>    C6+C7-enriched world the waiting price is shallower everywhere,
+>    the concession side collapses to ~+1 pp (honest clocks), and in
+>    exactly ONE context — unpressured, freshly-perceived, without
+>    nearby support — half a second of holding is statistically
+>    indistinguishable from free. Patience now has a PERMITTED corner,
+>    not a subsidy: k=60/90 stay resolved-negative even there, and
+>    every pressured or stale cell still charges. This is the texture
+>    #29.3 demanded: the world moved, the census caught it, no number
+>    was hand-paid. Also banked: the enriched world plays FASTER
+>    (30.7 vs 28.8 releases/min at an unchanged 0.33 s spell) — craft
+>    substrate did not slow the game, it re-priced its moments.
+> 3. **C5-T2 DRAFTING AUTHORIZED (#29.3's law, now satisfied
+>    certified)**: the WHETHER seat — the perceived chooser gains
+>    "keep holding" as a priced OPTION, consuming the certified
+>    re-census table under its own semantics (the value of committing
+>    a further hold-window in the PERCEIVED context), percept-honest,
+>    no subsidy, the E5h ×1.3 ban standing. Constraints ex ante:
+>    option enters ONLY where the table's cell carries a certified
+>    price (the 150-family floors); NEUTRAL consumption first (the P2
+>    lesson: no gene mapping before the unweighted consumer is
+>    understood); adoption-safety battery verbatim at its match stage;
+>    freeze → review → build → run per the standing pattern. The
+>    executor drafts the T2 pre-registration.
+> 4. **THE #53 UNPARK CONDITION IS MET** (C6 T2 verdict ✅ · the C5
+>    re-census decision taken and executed ✅ · C7 mapped and indeed
+>    certified ✅). Stage III v2's revisit is now the USER'S fork, not
+>    queued by the commander: presented next round alongside C5-T2's
+>    progress. Road B stands — nothing from tonight's chain ships
+>    until the user says so.
