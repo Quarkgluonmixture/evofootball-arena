@@ -1,0 +1,209 @@
+{
+  "experiment": "STAGE3-V2-P1 (pre-freeze sizing smoke)",
+  "authority": "STAGE3-V2-P1-ANTICIPATORY-CENSUS · #24 · #44.5/#65 · #46.2",
+  "head": "c5f2913 (ruling #68; src identical to V2-P0 HEAD 92876e5)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 8800000,
+    "matches": 150,
+    "regionRadiusM": 4,
+    "advanceHorizonS": 3,
+    "momentSpacingS": 2,
+    "lattice": [
+      "r7a0",
+      "r7a60",
+      "r7a120",
+      "r7a180",
+      "r7a240",
+      "r7a300",
+      "r14a0",
+      "r14a60",
+      "r14a120",
+      "r14a180",
+      "r14a240",
+      "r14a300",
+      "r21a0",
+      "r21a60",
+      "r21a120",
+      "r21a180",
+      "r21a240",
+      "r21a300"
+    ],
+    "contexts": [
+      "ours|ownThird|sparse",
+      "ours|ownThird|crowded",
+      "ours|middle|sparse",
+      "ours|middle|crowded",
+      "ours|theirThird|sparse",
+      "ours|theirThird|crowded",
+      "theirs|ownThird|sparse",
+      "theirs|ownThird|crowded",
+      "theirs|middle|sparse",
+      "theirs|middle|crowded",
+      "theirs|theirThird|sparse",
+      "theirs|theirThird|crowded"
+    ],
+    "motionSource": "TRUE world velocity (the table is TRUE-keyed; #67.2/§2)"
+  },
+  "smokeMatches": 150,
+  "seedBlock": "8800000..8800149",
+  "totalMoments": 11946,
+  "momentsPerMatch": 79.64,
+  "qualifying": 13822,
+  "ballDirectedSkipped": 1876,
+  "ballDirectedShare": 0.1357,
+  "noPool": 0,
+  "eNoSnapshot": 0,
+  "cellFloor": 150,
+  "headroom": 2,
+  "perContext": [
+    {
+      "context": "ours|ownThird|sparse",
+      "n": 1617,
+      "share": 0.13536,
+      "peakCand": "r7a0",
+      "peakRate": 0.4366,
+      "peakGoing1AtSmoke": 706,
+      "momentsFor150": 2539,
+      "momentsFor300": 5077
+    },
+    {
+      "context": "ours|ownThird|crowded",
+      "n": 631,
+      "share": 0.05282,
+      "peakCand": "r7a0",
+      "peakRate": 0.2266,
+      "peakGoing1AtSmoke": 143,
+      "momentsFor150": 12531,
+      "momentsFor300": 25062
+    },
+    {
+      "context": "ours|middle|sparse",
+      "n": 1808,
+      "share": 0.15135,
+      "peakCand": "r7a0",
+      "peakRate": 0.2085,
+      "peakGoing1AtSmoke": 377,
+      "momentsFor150": 4754,
+      "momentsFor300": 9507
+    },
+    {
+      "context": "ours|middle|crowded",
+      "n": 1155,
+      "share": 0.09669,
+      "peakCand": "r7a0",
+      "peakRate": 0.2147,
+      "peakGoing1AtSmoke": 248,
+      "momentsFor150": 7226,
+      "momentsFor300": 14451
+    },
+    {
+      "context": "ours|theirThird|sparse",
+      "n": 963,
+      "share": 0.08061,
+      "peakCand": "r7a0",
+      "peakRate": 0.1713,
+      "peakGoing1AtSmoke": 165,
+      "momentsFor150": 10860,
+      "momentsFor300": 21720
+    },
+    {
+      "context": "ours|theirThird|crowded",
+      "n": 429,
+      "share": 0.03591,
+      "peakCand": "r14a0",
+      "peakRate": 0.1702,
+      "peakGoing1AtSmoke": 73,
+      "momentsFor150": 24547,
+      "momentsFor300": 49094
+    },
+    {
+      "context": "theirs|ownThird|sparse",
+      "n": 443,
+      "share": 0.03708,
+      "peakCand": "r14a180",
+      "peakRate": 0.237,
+      "peakGoing1AtSmoke": 105,
+      "momentsFor150": 17066,
+      "momentsFor300": 34132
+    },
+    {
+      "context": "theirs|ownThird|crowded",
+      "n": 594,
+      "share": 0.04972,
+      "peakCand": "r7a180",
+      "peakRate": 0.2222,
+      "peakGoing1AtSmoke": 132,
+      "momentsFor150": 13575,
+      "momentsFor300": 27150
+    },
+    {
+      "context": "theirs|middle|sparse",
+      "n": 1258,
+      "share": 0.10531,
+      "peakCand": "r14a180",
+      "peakRate": 0.2671,
+      "peakGoing1AtSmoke": 336,
+      "momentsFor150": 5334,
+      "momentsFor300": 10667
+    },
+    {
+      "context": "theirs|middle|crowded",
+      "n": 963,
+      "share": 0.08061,
+      "peakCand": "r7a180",
+      "peakRate": 0.2648,
+      "peakGoing1AtSmoke": 255,
+      "momentsFor150": 7028,
+      "momentsFor300": 14055
+    },
+    {
+      "context": "theirs|theirThird|sparse",
+      "n": 1547,
+      "share": 0.1295,
+      "peakCand": "r7a180",
+      "peakRate": 0.3484,
+      "peakGoing1AtSmoke": 539,
+      "momentsFor150": 3325,
+      "momentsFor300": 6649
+    },
+    {
+      "context": "theirs|theirThird|crowded",
+      "n": 538,
+      "share": 0.04504,
+      "peakCand": "r7a180",
+      "peakRate": 0.223,
+      "peakGoing1AtSmoke": 120,
+      "momentsFor150": 14933,
+      "momentsFor300": 29866
+    }
+  ],
+  "binding": {
+    "rule": "every context's peak-rate candidate going=1 cell clears the floor; binding = the max requirement",
+    "floor150": {
+      "moments": 24547,
+      "matches": 309,
+      "context": "ours|theirThird|crowded",
+      "cand": "r14a0",
+      "peakRate": 0.1702
+    },
+    "floor300": {
+      "moments": 49094,
+      "matches": 617,
+      "context": "ours|theirThird|crowded",
+      "cand": "r14a0",
+      "peakRate": 0.1702
+    }
+  },
+  "deterministic": true,
+  "sha256": "781858a502f03520893cf56c39027e271d21c5a9cf69380bc17bd6dc1b74cbd0"
+}
