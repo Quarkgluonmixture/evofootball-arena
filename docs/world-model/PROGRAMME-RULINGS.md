@@ -2492,3 +2492,24 @@
 >    invented, freeze before implementation, commander review before
 >    any run. On T2's verdict the #54.4 single C5 re-census decision
 >    returns to the commander.
+
+> **COMMANDER RULING #59 (2026-07-29 — C7 T2 pre-registration reviewed:
+> PASS; build and run authorized):**
+>
+> 1. **REVIEW — PASS.** The house battery carried verbatim; the three
+>    divergences all DERIVED (PC-KICK not applicable — C7 moves no
+>    origin; PC-LOOSE demoted to REPORTED-null with the structural
+>    seam gate guarding exactly-0 — a priced band would invent a
+>    disease, #19 respected; per-window fidelity not re-run on the
+>    T1-certified identical seam, the #52.1 scoping precedent). The
+>    goals axis is frozen exactly as #58.3 demanded: ONE band (the §2
+>    absolute), both outcomes pre-laid with dispositions, no invented
+>    paired-delta band, the anchoring subtlety (R0 sits below the C1
+>    baseline on fresh blocks) disclosed rather than discovered later.
+>    One-mechanic-per-A/B stated (c6Carry OFF in both arms). Block
+>    7.9M–8.2M disjoint; MDE disclosed as an estimate per #44.5.
+> 2. **BUILD + RUN AUTHORIZED**: probe to the frozen spec, engineering
+>    smoke, full run TO COMPLETION inside the session (C6 T2 scale,
+>    minutes), result section filled, FAILs as-is, one or two commits,
+>    push. On the result the #54.4 C5 re-census decision returns to
+>    the commander.
