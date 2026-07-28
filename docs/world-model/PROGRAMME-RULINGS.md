@@ -2454,3 +2454,41 @@
 >    STOP and hand the run to the resident session per #49.5 instead
 >    of leaving an orphan); result section filled, FAILs as-is;
 >    returns here.
+
+> **COMMANDER RULING #58 (2026-07-29 — C7 T1 accepted: axis 2 is the
+> design case, axis 1 resolves below band; T2 drafting authorized with
+> one pre-named risk):**
+>
+> 1. **T1 ACCEPTED.** All 16 gates; ledger 36,312/36,312 to 1e-9 with
+>    unexplained 0 and receipts; both structural tests hold exactly
+>    (arm draws 0 rng; performShot once per struck shot; seam releases
+>    0 of 5,481); the 97.4% rng-parity is explained and legitimate
+>    (a better-aligned body occasionally flips chip feasibility — a
+>    real shot divergence, not strike-math duplication).
+> 2. **The verdict, two-axis honest**: axis 2 (quality) = READING (A)
+>    — noise −3.68 pp [3.50, 3.87] and power +1.03 pp [0.98, 1.08],
+>    both inside band, and the tail carries it: twisted shots −13.61 pp
+>    vs aligned −0.42 pp — **the wind-up prices exactly the thing it
+>    was built to price: the rushed, twisted strike.** Axis 1
+>    (interruption) = READING (D-band) — 3.52% [3.06, 3.99], resolved
+>    UP from zero but below the [6.1, 18.2]% band: #56.2's
+>    static-defender fact borne out live; **charge-downs are REAL but
+>    thin at v1 scope** (71% via tackles), and the recompute's 12.12%
+>    did not survive bodies that mostly do not close. No re-cut; both
+>    findings banked as they fired.
+> 3. **PRE-NAMED RISK FOR T2, with the commander's own arithmetic**:
+>    the quality gain lifts seat-shot goal share 17.18% → 20.11%
+>    (REPORTED). Rough transfer: ~9 seat shots/match × +2.94 pp −
+>    3.52% interruptions ≈ **+0.20 goals/match ≈ +8% — inside the §2
+>    ±15% band but the largest single-mechanic push this programme has
+>    produced.** The C4 I2 doctrine stands (conversion is a CEILING,
+>    more goals is not a deliverable); if T2's band breaks, the fork
+>    returns here and the reading is the world's honest answer about
+>    balance, not a probe defect. Nobody re-cuts anything to make it
+>    fit.
+> 4. **T2 DRAFTING AUTHORIZED (executor)**: contract §6-T2 — the C6 T2
+>    battery VERBATIM (the house deployment battery) + the shot
+>    economy with the #58.3 reading pre-laid, bands derived not
+>    invented, freeze before implementation, commander review before
+>    any run. On T2's verdict the #54.4 single C5 re-census decision
+>    returns to the commander.
