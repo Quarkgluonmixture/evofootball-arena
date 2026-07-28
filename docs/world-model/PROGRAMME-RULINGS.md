@@ -2773,3 +2773,23 @@
 >    arrow. The fork is the user's, presented with this ruling. R20
 >    gaps / F9 render-only remain available; nothing else is
 >    authorized.
+
+> **COMMANDER RULING #66 (2026-07-30 — Stage III v2 LAUNCHED,
+> user-ratified ("1"): the anticipatory census executes the banked
+> memo; the commander drafts the design contract):**
+>
+> 1. The #53 park lifts on its own terms: the memo's mechanism is not
+>    re-litigated, only re-sized against the world as it now stands —
+>    which has CHANGED twice since the memo was banked: the substrate
+>    is richer (C6+C7 certified) and the perception wedge is now a
+>    MEASURED quantity (#65.2: percept-honest consumers deliver only
+>    where the percept can see the context — the C5-T2 lesson binds
+>    v2's design ex ante, not after its own P1 fails).
+> 2. **The census world is the ENRICHED world** (c6Carry + c7Windup
+>    armed in the census staging, the #60.3 precedent): the table must
+>    price the world the programme is building toward, and #26.5 makes
+>    any shipped-world table stale the day the substrate arms.
+> 3. The commander drafts `STAGE3-V2-ANTICIPATORY-EYE.md`; executor
+>    stages follow the standing pattern (freeze → review → run per
+>    stage; sizing smokes before floors, #44.5/#65 now the law of the
+>    land).
