@@ -3713,7 +3713,12 @@ grinding the same family.
 >    before sleep). One session (the commander's) orchestrates BOTH
 >    roles: commander work inline; executor steps as spawned
 >    sub-sessions, one at a time, each bootstrapped from the repo and
->    bound by the full discipline (pre-registration two-commit; explicit
+>    bound by the full discipline. **Executor sub-sessions run on
+>    Opus 5 (medium effort), NEVER Fable — the user's cost ruling
+>    (2026-07-28 night): the commander's model is reserved for
+>    commander work (rulings, contracts, reviews); all drafting and
+>    probe-running under an authorized step is Opus's.** Discipline
+>    binds regardless of model (pre-registration two-commit; explicit
 >    staged paths, never `git add -A`; status gate before commit;
 >    exception boilerplate; full sign space). Ruling #9's
 >    one-tree-one-writer is satisfied by SEQUENCING, not worktrees:
