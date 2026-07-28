@@ -338,8 +338,15 @@ DRAFTED by the commander** → [`C7-RELEASE-WINDUP.md`](C7-RELEASE-WINDUP.md)
 (v1 = SHOT `pendingKick`: time-only, existing prices evaluated at strike
 time, interruption free via the existing ball-keyed tackle, no opponent
 input, shots-only bounds watchability; pass wind-up deferred with §2
-obligations). **NEXT: executor drafts C7 T0 (shot-release census)
-pre-registration; commander reviews before it runs.** Earlier tonight: the #45.2(0) doc split landed and was
+obligations). **C7 T0 (shot-release census) PRE-REGISTERED AND FROZEN** →
+[`C7-T0-SHOT-RELEASE.md`](C7-T0-SHOT-RELEASE.md) (READ-ONLY, zero `src/**`;
+sizing smoke ran read-only, block 6.6M, twice byte-identical; census staged
+500 matches, block 6.7M; binding floor = F-SHOT-EXPOSED ≥150; 3 non-binding
+candidate W laws; reach model = current-closing straight-line, top-speed as
+sensitivity; ⭐ smoke pre-view: v1 seat = settled open-play shots (one-touch
+≈0, headers/free-kicks excluded), interruption exposure THIN under the honest
+reach model (9–11%) — reading (b) is live). **NEXT: commander reviews before
+it runs.** Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
