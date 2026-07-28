@@ -361,15 +361,24 @@ corner, no subsidy; the enriched world plays FASTER (30.7 vs 28.8
 releases/min). → [`C5-RECENSUS.md`](C5-RECENSUS.md). **NEXT: (a)
 executor drafts C5-T2 (the WHETHER seat) per #63.3; (b) the #53 Stage
 III v2 unpark condition is MET — the revisit is the USER'S fork,
-presented next round.** **C5-T2 (the WHETHER seat) is now DRAFTED and FROZEN** per #63.3 →
-[`C5-T2-WHETHER-SEAT.md`](C5-T2-WHETHER-SEAT.md): the perceived chooser gains
-"keep holding" as a priced OPTION consuming the certified `0|0|0` k30 price
-under its own meaning; the zero-price-option question resolved as
-PRICE-FIDELITY (the seat is a price probe, not a policy — hold where the
-certified interval reaches zero, NO subsidy), fork stage measures realised cost
-vs the certified band, match stage (adoption-safety battery) pre-named. **The
-freeze RETURNS TO THE COMMANDER for review (no build, no run under it).** Road B
-stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
+presented next round.** **C5-T2 CHAIN COMPLETE
+(freeze `24ecd16` → #64 review PASS → build+smoke `f448eee` → ⭐ ruling
+#65: the #44.5 sign-off REFUSED, the fork stage NEVER RUNS)** →
+[`C5-T2-WHETHER-SEAT.md`](C5-T2-WHETHER-SEAT.md): the sizing smoke
+measured a RATE shortfall no match count cures — live chooser-hold rate
+**0.141%** vs the frozen 0.29% floor, E-ABSTAIN-UNSEEN 70.7%, context
+agreement 50.2% — so **the seat RE-PARKS on a PERCEPTION wall** with its
+machinery banked dormant (868/868 green; unpark = any perception-trunk
+change that raises the perceived-cell share, cheap smoke first). ⭐⭐⭐
+Banked (#65.2): **the certified patience corner exists in true context
+(0.586%) but the carrier cannot SEE it — perception, not price, is the
+binding constraint.** Third independent arrow at the perception trunk
+this week (#56.2 defenders don't anticipate shots · #44 the eye can't
+see neighbours' motion · #65.2 the carrier can't see his own calm).
+**THE QUEUE IS AT USER GATES — the one live fork: Stage III v2's
+anticipatory census (#53 unpark met; it IS perception work; three
+arrows point at it).** R20 gaps / F9 available. Road B stands; nothing
+ships. Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
