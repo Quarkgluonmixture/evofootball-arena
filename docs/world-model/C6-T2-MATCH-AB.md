@@ -450,3 +450,166 @@ carries its disposition. **Nothing ships in any branch (Road B).**
 * **Untouched:** the de-glue branch and its two learned corrections (I6), the keeper
   path and its 0.3 carry (I5), `TURN_RATE`/heading semantics (I5), and C7's wind-up
   seat (contract §9). T2 arms the existing flag; it changes no `src/**` to run.
+
+---
+
+## §RESULT — the AUTHORIZED run (ruling #52 review PASS, #52.3 build+run)
+
+**Reading (A) — ALL-QUIET, the design case.** 800 matches/arm × 2 arms (R0 +
+R-BOTH), same 800 seeds paired, block 6,200,000..6,500,199. Every watchability
+HARD limb quiet, the §2 equilibrium band holds on all five dimensions, both priced
+consequences land inside band, the X-family/structural gates pass, and the duel
+economy is coherent (no resolved sign disagreement → not reading (E)). **The honest
+offset, armed on every outfield carrier on both sides across whole matches, keeps
+the game watchable football.** Per contract §8 **THE FORK RETURNS TO THE
+COMMANDER**; nothing ships (Road B, `c6Carry` off/null in every production path,
+fingerprint unchanged). Reading (A) licenses the commander only to *consider* the
+#29.3 C5 re-census (contract §6-T3) and, separately and later with the user, any
+live-arming conversation — **T2 authorizes neither** (§7 NON-CLAIMS).
+
+Provenance: HEAD fingerprint `57b0bdab…c673` (baseline == observed, X-FP ✅) ·
+table SHA `b53a8bd7d7d8…cd1d` · output SHA `1835fddfd1b2…2ba39` (twice
+byte-identical, X-DET ✅).
+
+### R.1 Watchability HARD limbs — all QUIET (R-BOTH paired vs R0, side-split)
+
+Each firing predicate is two-part (CI bound AND relative threshold). None fired;
+every measured shift sits 100×+ below its edge and no CI excludes its reference.
+
+| limb | instrument | side | Δ (paired) | CI | rel | band edge | fires |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **DEGEN-SCRAMBLE** | I4 own-within-5 m | 0 | +0.00128 | [−0.00901, +0.01220] | **+0.14%** | +25% & CIlo>0 | ❌ |
+| | | 1 | +0.00172 | [−0.00884, +0.01202] | **+0.18%** | +25% & CIlo>0 | ❌ |
+| **DEGEN-PILEUP** | I3 share < 4 m | 0 | −0.00055 | [−0.00192, +0.00074] | **−0.59%** | +50% & CIlo>0 | ❌ |
+| | | 1 | +0.00043 | [−0.00090, +0.00179] | **+0.47%** | +50% & CIlo>0 | ❌ |
+| **DEGEN-RESTDEF** | I5(b) slot | 0 | −0.00282 | [−0.01254, +0.00666] | **−0.42%** | −20% & CIup<0 | ❌ |
+| | | 1 | +0.00650 | [−0.00415, +0.01630] | **+0.96%** | −20% & CIup<0 | ❌ |
+
+**Standing canaries (both sides summed unless noted) — all QUIET.**
+
+| canary | Δ (paired) | CI | rel | band edge | fires |
+| --- | --- | --- | --- | --- | --- |
+| **C-OFFSIDE** offsides/match | −0.0675 | [−0.230, +0.0975] | −2.50% (dropped) | +10% & CIlo>0 | ❌ |
+| **C-BOX** attackers in box @ cross arrival (n=661) | −0.0193 | [−0.0904, +0.0505] | −2.19% | −15% drop & CIup<0 | ❌ |
+| **C-RESTART** restart ticks/match | +33.94 | [−7.47, +75.66] | **+2.19%** | +10% & CIlo>0 | ❌ |
+
+C-RESTART is the closest canary to its edge (+2.19% vs +10%, ~4.6× below) and its
+CI straddles zero → not resolved, quiet as expected (the restart taker is
+E-RESTART-excluded, so C6 has no direct path here). C-BOX arrival class-MIX
+(C0/C1/C2/C3) reported alongside: R0 616/179/406/613 → R-BOTH 629/183/451/600 — no
+class collapse (C2 rises modestly, C3 dips, count holds).
+
+### R.2 §2 equilibrium band — HOLDS on all five (R-BOTH vs C1 baselines)
+
+| dimension | R-BOTH | rel vs baseline | band | inside |
+| --- | --- | --- | --- | --- |
+| goals/match | 2.2325 | −6.76% | ±15% | ✅ |
+| crosses | 2.3675 | −4.90% | ±25% | ✅ |
+| headers won | 8.675 | −4.71% | ±25% | ✅ |
+| long balls | 5.79375 | −6.62% | ±25% | ✅ |
+| cutbacks | 3.825 | +0.26% | ±25% | ✅ |
+
+R0 is inside the band on all five as well (flag-off sanity cross-check, P2-B §4.2)
+— no large R0-vs-baseline drift on the headline five (R0 goals 2.28875, crosses
+2.3225, headers 8.5825, long balls 5.64375, cutbacks 3.99375).
+
+### R.3 Priced consequences — both INSIDE band (#51.1)
+
+**PC-LOOSE.** R0 **134.39** loose/match; paired Δ **−1.02/match**, CI
+[−2.38, +0.28], **relative −0.759%**. Band **[−0.43%, +0.85%]**. The point estimate
+is numerically *past* the −0.43% floor **and of the opposite sign to the +0.43%
+expectation** — but the cluster-bootstrap CI **straddles zero** (unresolved), so
+per #29.5 (a weak, disclosed instrument is not gated harder than its power) this is
+**priced as designed, `exceeded=false`**. Read plainly: at whole-match scale the
+honest offset did **not** generate the extra loose balls the +363 fork-level count
+hinted at — the dilution transfer effect (§4.3(a)) dominated, and the sign even
+tipped slightly negative, unresolved. **Flagged for the commander's eye** (below).
+
+**PC-KICK.** Displacement (all match kicks, n **86,430**): **p50 0.39771 m · p90
+0.74486 m · max 2.05259 m**; per-seam-tick (n 2,331,310) p50 **0.30583** / p90
+**0.66154** — consistent with T1R's same-law per-seam p50 0.30929 / p90 0.66276
+(cross-check ✅). Match-level CONSEQUENCE on completions, all within ±5%:
+
+| instrument | R0 | Δ (paired) | CI | rel | inside ±5% |
+| --- | --- | --- | --- | --- | --- |
+| pass completion | 0.73701 | −0.00390 | [−0.00821, +0.00020] | −0.53% | ✅ |
+| shot rate/match | 13.37625 | +0.085 | [−0.211, +0.366] | +0.64% | ✅ |
+| on-target rate | 0.565743 | −0.00830 | [−0.02247, +0.00639] | −1.47% | ✅ |
+
+The shifted kick origin is largely self-correcting (the solver re-aims from the
+true origin), exactly as §4.3 predicted; completion perturbation is second-order.
+
+### R.4 Duel economy — REPORTED, coherent, none resolved
+
+| instrument | R0 | Δ (paired) | CI | rel |
+| --- | --- | --- | --- | --- |
+| tackle recoveries/match¹ | 11.8425 | −0.165 | [−0.516, +0.190] | −1.39% |
+| interceptions/match | 23.12875 | +0.029 | [−0.448, +0.488] | +0.12% |
+| turnovers — own third | 4.5875 | −0.0925 | [−0.288, +0.106] | −2.02% |
+| turnovers — middle | 21.89375 | −0.125 | [−0.681, +0.446] | −0.57% |
+| turnovers — their third | 15.96375 | +0.1075 | [−0.178, +0.373] | +0.67% |
+| turn episodes/match | 7.0175 | −0.1825 | [−0.449, +0.111] | −2.60% |
+| turn-episode loss rate | 0.49920 | +0.01535 | [−0.00719, +0.03754] | +3.07% |
+
+¹ Tackle *attempts* are not counted in `stats` — only successful recoveries
+increment `stats.tackles`; the recovery count + interceptions + turnover-zone
+histogram + turn-episode outcomes stand as the reported turnover economy.
+
+The story is coherent and unresolved: recoveries flat-to-slightly-down, turnovers
+roughly flat with a faint shift out of the own third toward their third, and the
+carrier loses its turn episode slightly *more* often (+3.07%, the T1
++11.63%-eligibility mechanism surviving to match level) — but every CI straddles
+zero, so no instrument disagrees in resolved sign → **reading (E) not triggered**.
+
+### R.5 X-family + structural zero-loose — all PASS
+
+| gate | result |
+| --- | --- |
+| **X-FP** | ✅ `c6Carry` OFF fingerprint == baseline `57b0bdab…c673` |
+| **X-OFF-IDENT** | ✅ R0 byte-identical to shipped world, **0 / 800** mismatches |
+| **X-SEAM** | ✅ `c6Carry` read in exactly one place, null on fresh Match/League |
+| **X-DET** | ✅ two `runExperiment()` byte-identical; table SHA `b53a8bd7…`, output SHA `1835fddf…` |
+| **STRUCTURAL ZERO-LOOSE (#48.3)** | ✅ **offset-attributable 0**, unattributable **0** |
+
+R-BOTH ownership releases **107,282** → kick 98,643 · de-glue 6,215 · ball-won
+2,112 · tackle 312 · **offset-attributable 0 · unattributable 0**. Sampling-
+exclusion counts (reported, not gated): E-PAUSED 1,709,144 · E-GK 1,748,307 ·
+E-ENDED 0. Per-record receipts kept under the 1,000/class cap (kick 1,000, de-glue
+1,000, tackle 312, ball-won 1,000).
+
+### R.6 Ecology (REPORTED, not gating) — a few resolved, all small
+
+The P0 seven, shots/possession spells, and the eye-independent items were reported
+side-split. Four items resolved (CI excludes reference), all small and coherent
+with a marginally more direct game: **forward-pass share +1.00%** [+0.13%, +1.04%
+pp], **longest chain −4.27%** [−0.53, −0.11], side-0 **I7 shape-delta spread-Y
+−5.65%**, side-1 **I1 dwell median −1.39%**. None is gated; none disturbs the
+watchability picture. Possession-spell duration is unchanged (R0 p50 4.283 / R-BOTH
+4.317 s).
+
+### R.7 R0-vs-P0 instrument drift — flagged (population, not a gate concern)
+
+The T2 seed block (6.2 M) is fresh and disjoint from P0's (930 k), so a small
+population drift in the R0 instruments vs the P0 baselines cited in §3.2/§4.1 is
+expected. Observed:
+
+* **I5(b) rest-defence slot: R0 67.78% / 67.46% vs P0 65.82%** — the notable one,
+  **+~2 pp (≈ +3% rel) above the P0 baseline**. The DEGEN-RESTDEF band binds
+  *paired vs R0*, not vs P0, so the gate is unaffected; flagged as a census-drift
+  observation.
+* I4 own-within-5 m: R0 0.9448 / 0.9488 vs P0 0.956 (−0.7% to −1.2% rel, slightly
+  below).
+* I3 share < 4 m: R0 9.35% / 9.28% vs P0 9.40% (essentially on baseline).
+* I3 spacing median: R0 12.978 m ≈ P0 ~12.955 m (on baseline).
+
+All drifts are population-level and bind through the *paired* R0, so no gate reads
+P0 directly — reported for the commander's awareness only.
+
+### R.8 Disposition
+
+**Nothing ships.** `c6Carry` stays off/null in every production path (Road B);
+fingerprint unchanged. The T2 verdict — **reading (A), the honest offset is
+match-safe** — **feeds the #29.3 C5 re-census decision back to the commander**
+(contract §6-T3, the held-tick exchange rate on the enriched substrate). **T2
+cannot authorize that re-census, nor any live-arming** — it only licenses the
+commander to *consider* them. The queue returns to the commander.
