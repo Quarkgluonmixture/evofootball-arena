@@ -3705,3 +3705,50 @@ grinding the same family.
 >    memo; C6 contract still open in parallel — order decided next
 >    round). The executor stands down on Stage III; R20 gap
 >    re-analyses and F9 render-only remain available any time.
+
+> **COMMANDER RULING #45 (2026-07-28 night — OVERNIGHT AUTONOMOUS RUN
+> engaged on the user's instruction; single-orchestrator variant):**
+>
+> 1. **AUTHORITY & SHAPE.** The user has delegated the night (2026-07-28,
+>    before sleep). One session (the commander's) orchestrates BOTH
+>    roles: commander work inline; executor steps as spawned
+>    sub-sessions, one at a time, each bootstrapped from the repo and
+>    bound by the full discipline (pre-registration two-commit; explicit
+>    staged paths, never `git add -A`; status gate before commit;
+>    exception boilerplate; full sign space). Ruling #9's
+>    one-tree-one-writer is satisfied by SEQUENCING, not worktrees:
+>    concurrency is structurally impossible because the orchestrator
+>    never writes while a sub-session runs and runs at most one
+>    sub-session at a time. The user's separate executor session stands
+>    idle tonight and resumes by pulling in the morning.
+> 2. **THE NIGHT QUEUE** (#44.6's order decided): **(0) THE PROGRAMME
+>    FILE SPLITS FIRST** (user's request, 2026-07-28 night: 365 KB /
+>    3,745 lines is too heavy for a file both sides read every round).
+>    Content-preserving relocation ONLY — nothing reworded, nothing
+>    deleted: all commander rulings move verbatim to
+>    `PROGRAMME-RULINGS.md`; the giant result narratives in the track
+>    tables move verbatim to `PROGRAMME-LOG.md` with a one-line verdict
+>    + link left in place; `PROGRAMME.md` remains THE entry (protocol,
+>    roles, iron rules, queue-state head, track tables, index). New
+>    rulings continue to be appended to `PROGRAMME-RULINGS.md`;
+>    **(a) C6 design contract drafted by the commander** (the map is banked:
+>    turn glue at Match.ts:1334 already charges 0.48 s — a touch charge
+>    must not double-charge; dribbleTouch substrate exists; tryTackles
+>    keys on the ball; C6 feeds the C5 re-census per #29.3);
+>    **(b) executor sub-session drafts C6's first stage** under that
+>    contract → commander review → authorized run → ruling;
+>    **(c) Stage III v2 DIRECTION MEMO drafted as a COMMANDER DRAFT,
+>    constrained by #44.4, PARKED for the user's morning ratification**
+>    — the flagship redirect gets the user's eyes before it binds;
+>    **(d) R20 gap re-analyses as the filler lane** if C6 blocks.
+> 3. **STOP RULES for the night**: any genuine user fork parks its
+>    lane (never decided overnight); a FAIL follows its contract's
+>    stop rule and returns to the commander as usual (ruling allowed,
+>    redraw drafting allowed, nothing ships); both lanes parked ⇒ the
+>    run stops and a morning report is left. Hard stops: the
+>    fork-exhaustion signature (every command exiting 1 silently — stop
+>    immediately, do not debug), any foreign change in `git status`,
+>    or any live-substrate/shipping pressure — nothing ships tonight
+>    under Road B regardless of results. Every commit pushes
+>    immediately; the repo remains the sole channel and the morning
+>    entry point.
