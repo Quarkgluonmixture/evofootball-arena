@@ -2729,3 +2729,47 @@
 >    the smoke's measured rate returns HERE for the #44.5 ceiling
 >    sign-off before the fork stage runs. Freeze discipline: nothing
 >    else moves.
+
+> **COMMANDER RULING #65 (2026-07-30 — the #44.5 sign-off is REFUSED:
+> the fork stage does not run; C5-T2 re-parks on a PERCEPTION wall,
+> and the finding is better than the stage):**
+>
+> 1. **THE FORK STAGE DOES NOT RUN.** The sizing smoke measured the
+>    live chooser-hold rate at **0.141% of eligible moments** against
+>    the frozen DEV floor (i) of 0.29% — a RATE shortfall no match
+>    count cures. Running ~5,350 matches into a delivery gate known
+>    to fail ex ante is the exact "disclosed the weakness and ran
+>    anyway" failure #29.5 forbids (the P1R precedent, honoured at
+>    sizing time, which is what sizing time is FOR). No floor re-cut
+>    (§7 stands). Reading **F2 DELIVERY-SHORTFALL fires at sizing**;
+>    the fidelity question (would the live world confirm the price)
+>    remains UNMEASURED and is not guessed at.
+> 2. ⭐⭐⭐ **BANKED — the finding that outranks the stage: patience's
+>    binding constraint in this world is PERCEPTION, not price.** The
+>    certified corner exists in TRUE context (0.586% of eligible
+>    moments) but the body who could afford to wait mostly cannot SEE
+>    that he can: perceived-cell share 0.141% (a ~4× perception
+>    wedge), E-ABSTAIN-UNSEEN 70.7%, context agreement 50.2% —
+>    dominated by the SUPPORT and PRESSURE features a busy carrier
+>    has not scanned, and the certified cell demands a FRESH percept,
+>    which a carrier rarely has. Third independent arrow at the same
+>    wall this week: defenders do not anticipate shots (#56.2), the
+>    eye could not see its neighbours' motion (#44), and now the
+>    carrier cannot see his own calm. **The perception trunk is the
+>    frontier.**
+> 3. **C5-T2 RE-PARKS, machinery banked** (a build is never wasted —
+>    the E1b precedent): the seam + probe + tests stay dormant and
+>    green (868/868; the probe's default output name
+>    c5-t2-whether-seat.json is accepted as canonical, a marked
+>    deviation from §5.1's draft name). UNPARK CONDITION, pre-named:
+>    any perception-trunk change that plausibly raises the carrier's
+>    perceived-cell share (scan-cadence/carrier-vision work, A4
+>    doctrine priors as latency-reducers, or a broader certified-zero
+>    region in a future re-census) ⇒ re-run the CHEAP sizing smoke
+>    first; the fork stage runs iff the rate clears the frozen floor.
+> 4. **THE QUEUE DRAINS TO USER GATES.** Both roads now point at the
+>    same door: Stage III v2's anticipatory census (#53's unpark
+>    condition met) IS perception work, and #65.2 adds the third
+>    arrow. The fork is the user's, presented with this ruling. R20
+>    gaps / F9 render-only remain available; nothing else is
+>    authorized.
