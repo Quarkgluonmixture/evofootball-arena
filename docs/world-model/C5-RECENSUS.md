@@ -580,7 +580,169 @@ different keying is a new stage). No stage may be rescued by tuning a neighbour.
 
 ---
 
-## §RESULT — (empty until the commander authorizes the run)
+## §RESULT — the run (VERDICT **FAIL**, published LABELLED — ruling #62)
+
+> **⚠ LABEL (standing convention P2 (d); T1's ruling #69; ruling #62.1).** This
+> census **FAILS its own power floor** and is **PUBLISHED LABELLED**. The gate
+> `h1SigmaFloor` fired: the realised cluster σ_c came in **7 % above the smoke's
+> projection**, so the H1 marginal-reproduction gate was certified at **2.8105σ,
+> below the 3σ floor** (#61.3, bound at full weight). **NO reading below —
+> INCLUDING THE UNPARK COMPUTATION — MAY BE QUOTED AS A VERDICT.** Everything in
+> this section is banked as LABELLED DATA. The certified reading is the #62.3
+> extension's (addendum below), which neither this section nor the commander may
+> pre-empt.
+
+Probe `scripts/probes/c5-recensus.ts`, HEAD `60a18d7`, build block **8,300,000+**
+(980 clusters), held-out block **8,400,000+** (392 clusters), enriched world
+(VALUE arm + c6Carry + c7Windup in EVERY arm), bootstrap seed 50060.
+
+### §RESULT.0 — the verdict, and why it is a gate failure, not a table failure
+
+The census met every gate **except the one it was re-powered to meet**. H1's
+*reproduction* is excellent — the largest build↔held-out marginal drift is
+**0.75 pp** (arm hold30; the other three arms ≤ 0.20 pp), far inside the 2.0 pp
+tolerance. But the tolerance was **certified at 2.81σ**, and the floor exists
+precisely so that reproduction is *certified, not lucky* (C5 T1 §11.1's lesson;
+S5). A mis-sized H1 that fires is a **gate failure (S5), not a table failure** —
+so the fork returns to the commander and **no reading is banked as certified**.
+The cause is arithmetic and named: the sizing smoke projected σ_c = 11.135 pp;
+the run realised **σ_c = 11.9075 pp** (+7 %), which at the frozen 980/392 clusters
+gives SE_diff = 0.7116 pp and 2.0 / 0.7116 = **2.8105σ**.
+
+```text
+H1 POWER (realised)
+  σ_c (per-match cluster SD, enriched eligible act-now marginal)   11.9075 pp
+  SE_diff = σ_c · √(1/980 + 1/392)                                  0.7116 pp
+  σ-multiple = 2.0 pp / SE_diff                                     2.8105 σ
+  floor                                                             3.00  σ      → FAIL
+  smoke projection (ex ante, §RESULT-SMOKE)                        11.135  pp     (under-estimate −7 %)
+```
+
+### §RESULT.1 — the gate table
+
+```text
+X-FP           fingerprint 57b0bdab… unchanged (dormant shield edit unreachable)   PASS
+X-OFF-IDENT    3 league seeds × inert-pin identical (reported.inertPins all true)  PASS
+X-SEAM / X4    seam inert: forced-hold expired ⇒ byte-identical to A0 (3 seeds)    PASS  (x4SeamInert)
+X5             seam bites: k=90 signature differs from A0 in 100 % of moments      PASS  (x5SeamBites, floor 90 %)
+X-DET          two runExperiment() invocations byte-identical; SHA emitted         PASS  (dDeterministic)
+C1             build clusters 980 ≥ 980                                            PASS
+C2             held-out clusters 392 ≥ 392                                         PASS
+C3             every pressure row ≥ 300 eligible rows per arm, both blocks         PASS
+H1 (reproduce) max marginal drift 0.75 pp ≤ 2.0 pp, per arm                        PASS  (h1Marginal)
+H1 (σ-FLOOR)   2.8105σ ≥ 3.00σ                                                     ✘ FAIL (h1SigmaFloor)
+H2             every gated pressure row ≤ 5.0 pp drift (max 2.01 pp)               PASS
+UNEXPLAINED    exactly 0 over the class set, both blocks                           PASS  (unexplainedZero)
+```
+
+**The single failing gate is `h1SigmaFloor`.** Verdict **FAIL** (S5).
+
+### §RESULT.2 — the labelled substance (banked as data, ruling #62.2; NOT a verdict)
+
+**The waiting price is SHALLOWER across the whole ladder** than the BEFORE
+reference (§0.2; quoted as reference only, never differenced in a gate). Paired
+per-moment cost `mean(shot_holdk − shot_actnow)`, 95 % cluster bootstrap:
+
+```text
+k        RE-CENSUS (enriched)         BEFORE (C5 T1, reference)
+30    −6.41 pp  [−6.90, −5.90]          −7.55
+60   −11.09 pp  [−11.65, −10.51]       −12.77
+90   −15.06 pp  [−15.69, −14.43]       −16.12          monotone in k; all three still exclude zero on the marginal
+```
+
+**The concession twin collapses** (repair (ii), the clock-skew fix, working) —
+BEFORE read +1.45/+2.63/+3.55 pp; the re-census, reading concession at the SAME
+horizon in all arms:
+
+```text
+concession twin   k30  +0.38 pp [+0.19, +0.56]   k60  +0.80 [+0.59, +1.00]   k90  +0.95 [+0.74, +1.17]
+```
+
+**The release-origin twin** (§1.4, reported never gated), re-anchored to release:
+
+```text
+release twin      k30  −4.41 pp [−4.89, −3.94]   k60  −7.37 [−7.99, −6.78]   k90  −9.89 [−10.58, −9.26]
+```
+
+**Per-pressure curve** (paired cost, pp; free / mid / pressed):
+
+```text
+k30   free −6.69   mid −8.22   pressed −6.01
+k60   free −10.38  mid −12.57  pressed −10.93
+k90   free −12.87  mid −16.37  pressed −15.20
+```
+
+**Hold anatomy** — the shielded ball survives the wait less as k grows:
+
+```text
+survived / lost-to-tackle    k30  85.8 % / 8.4 %    k60  77.0 % / 15.9 %    k90  69.2 % / 22.7 %
+```
+
+### §RESULT.3 — ⭐ THE UNPARK COMPUTATION FIRES (labelled; NOT a certified verdict)
+
+The #29.3 test — *any (cell, k) cost interval whose upper CI bound ≥ 0* — **fires
+on TWO cells**, both at **k = 30 (half a second)**, both in the **free-pressure,
+fresh-ball (low staleTime)** corner, at low and mid support. On their own laddered
+`cell` rung (no fall-down):
+
+```text
+CELL  free · fresh · LOW support     rung cell   n = 369
+  rates   actNow 14.36 %  hold30 13.01 %  hold60 7.05 %  hold90 3.25 %
+  cost k30  −1.36 pp  CI [−5.75, +2.79]   ⇒ upper +2.79 ≥ 0   → REACHES ZERO ★
+  cost k60  −7.32 pp  CI [−11.23, −3.58]
+  cost k90 −11.11 pp  CI [−15.22,  −7.37]
+
+CELL  free · fresh · MID support     rung cell   n = 830
+  rates   actNow 17.47 %  hold30 14.58 %  hold60 8.55 %  hold90 8.31 %
+  cost k30  −2.89 pp  CI [−5.62,  0.00]   ⇒ upper 0.00 ≥ 0   → REACHES ZERO ★
+  cost k60  −8.92 pp  CI [−11.67, −5.96]
+  cost k90  −9.16 pp  CI [−12.12, −6.35]
+```
+
+In the calmest corners of the enriched world, **half a second of waiting is no
+longer distinguishably a loss** — the cost interval touches or crosses zero. Under
+the label this is a **computed fact banked as data**, not a fired unpark: the
+#29.3 law may not be quoted as a verdict on a FAILED census. Whether the zero
+survives the narrower intervals of the #62.3 extension (each cell's n grows ~26 %)
+is the CERTIFIED question.
+
+### §RESULT.4 — tempo, re-read on the enriched world (§9, reported)
+
+The enriched world plays **FASTER**, with the spell length unchanged:
+
+```text
+                         ENRICHED                legacy (flags-off)
+releases / minute        30.72                   28.78
+one-touch share          20.35 %                 18.93 %
+spell seconds median     0.3333  (mean 0.635)    0.3333  (mean 0.662)
+decisions / spell        4.23                    4.41
+```
+
+### §RESULT.5 — exception & coverage ledger (#38.1 / #49.3; unexplained gated at 0)
+
+```text
+                       build            held-out
+qualifying moments     78,326           31,336
+eligible (retained)    58,184 (74.28%)  23,188 (74.00%)
+  X-FIRSTTOUCH         13,554            5,445
+  X-MUSTKICK            3,929            1,598
+  X-A0-SHOOT            2,604            1,078
+  X-A0-CLEAR               55               27
+E-PAUSED               70,093           28,181
+E-INJURY                1,683              559
+E-MATCHEND                 16               24    (reads at whatever reached; count reported #48.4)
+E-NOOWNER / E-GKHOLD        0 / 0            0 / 0
+UNEXPLAINED                0                0    ← gated at exactly 0 (PASS)
+```
+
+### §RESULT.6 — provenance (X-DET)
+
+```text
+full-output SHA-256   ef1776a8dd4b1066e2b463ff90790251727ac621e7146d9ec7d08449ab90a057
+table SHA-256         55db4f16e29281221d2e9773b7897210c2da099e2092ffc8cac3408d40370ec8
+determinism           two runExperiment() invocations byte-identical (X-DET PASS)
+data                  docs/world-model/data/c5-recensus.json
+```
 
 ## §RESULT-SMOKE — the read-only sizing smoke (disclosed; fixes the H1 sizing ex ante)
 
