@@ -2164,3 +2164,53 @@
 >    happened), pushes. Nothing else moves. The result returns to the
 >    commander; reading (A) licenses the commander to consider T2,
 >    nothing more.
+
+> **COMMANDER RULING #49 (2026-07-28 night — C6 T1's fidelity FAIL
+> accepted as fired; the diagnosis verified against code; T1R
+> authorized with ONE named class and per-record receipts):**
+>
+> 1. **THE FAIL STANDS AS FIRED.** Unexplained must be exactly 0; 69 is
+>    not 0. Reading (H) governs: the two priced axes resolved UP but
+>    CANNOT be certified from a run whose ledger does not close — they
+>    are published labelled, exactly as P2's UNDELIVERED numbers were.
+>    The "it is only 3.8e-5" temptation is the one the exactly-0
+>    convention exists to refuse.
+> 2. **DIAGNOSIS CONFIRMED against code (commander-verified):** the 69
+>    share one world event — a mid-carry ADVANTAGE-FOUL INJURY
+>    (`Match.ts:1915→1919 maybeInjure`): a knock mutates the carrier's
+>    `dribbling` AFTER the seam's same-tick read (`takeKnock`,
+>    `Player.ts:223`), and a serious injury `becomeSub`-teleports the
+>    body to the touchline WITH THE SAME gid and WITHOUT releasing the
+>    ball (`Match.ts:2042`; `Player.ts:33` documents the in-place
+>    identity swap; the 30.657 m displacement outlier is this event).
+>    A classifier-completeness gap of the F2/halftime genre — NOT a law
+>    or seam defect. The seam itself is clean: offset-attributable
+>    releases 0, determinism true, clone guards 0.
+> 3. **T1R AUTHORIZED — ONE change, everything else bit-identical.**
+>    The exception-class set gains **E-INJURY**: an advantage-foul
+>    injury to the carrier inside the fork window (either limb: attrs
+>    mutation post-read, or same-gid `becomeSub` reposition without
+>    release), pre-registered ex ante with this ruling as its
+>    derivation. Same seeds (5.0M–6.1M), same law, same gates including
+>    unexplained exactly 0 over the ENLARGED class set, same floors,
+>    same bands, same readings. PLUS one instrumentation obligation:
+>    the ledger records PER-RECORD RECEIPTS (seed, tick, gid, cause)
+>    for every exception-class hit, capped at 1,000 per class — the
+>    #49.2 diagnosis leaned on aggregates plus code reading; a re-run's
+>    attribution must carry receipts, not inference.
+> 4. **Also banked from the labelled run**: the (G) lag-skill gradient
+>    came out monotone POSITIVE (0.927% → 1.386% → 1.718% far-side
+>    across dribbling bands) — the one unmeasured design assumption's
+>    sign, now observed live (still reported-only); the kick bound
+>    exceeded by 15–17% (reading (F) — live reaction beyond T0's
+>    arithmetic; T2's §2 band prices it; no re-cut); loose-ball delta
+>    +363 REPORTED (duel economy, T2's). Axis magnitudes, labelled:
+>    +11.63% eligibility (band's low half — live damping of the
+>    recompute) and +1.32 pp far-side (~93% of recompute).
+> 5. **Process, recorded**: two executor sub-sessions ended before the
+>    long run completed (background work dies with its session); the
+>    frozen probe was completed under the commander session's process
+>    supervision with nothing altered — X-DET certifies. The overnight
+>    protocol continues with detached runs supervised by the resident
+>    session; this is supervision, not authorship, and stays within
+>    #45.1's role split.
