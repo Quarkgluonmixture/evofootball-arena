@@ -2513,3 +2513,45 @@
 >    minutes), result section filled, FAILs as-is, one or two commits,
 >    push. On the result the #54.4 C5 re-census decision returns to
 >    the commander.
+
+> **COMMANDER RULING #60 (2026-07-29 — C7 T2 accepted, reading (A):
+> ⭐⭐ THE C7 v1 CHAIN IS CERTIFIED END TO END; the #54.4 decision is
+> taken — the single C5 re-census drafts now):**
+>
+> 1. **T2 ACCEPTED — all quiet, goals in-band.** The paired push
+>    +0.1975 goals/match [+0.05, +0.34] = +8.79%, landing on the
+>    commander's pre-named +0.20/+8% almost exactly; the absolute
+>    R-BOTH 2.44375 sits mid-band, 0.31 below the upper edge (the
+>    #59.1 anchoring subtlety held). Every watchability limb ≥15×
+>    inside its edge; conversion +8.87% and on-target +4.46% resolve
+>    while shots/match is flat — **a composed strike scores more of
+>    the SAME shots**; chance-manufacturing is absent, the C4 I2
+>    doctrine intact. Loose-ball and duel economies null; structural
+>    seam gate 0/107,684.
+> 2. ⭐⭐ **C7 v1 IS CERTIFIED END TO END** (map → contract → T0 → T1 →
+>    T2): the release wind-up prices the rushed, twisted strike
+>    through prices that already existed, opens a real-but-thin
+>    charge-down channel, and deploys match-safe inside every band —
+>    dormant behind `c7Windup`, fingerprint unchanged, nothing shipped
+>    (Road B).
+> 3. **THE #54.4 DECISION, TAKEN: the single C5 re-census is
+>    AUTHORIZED for drafting** — the held-tick exchange rate
+>    re-measured on the JOINTLY ENRICHED world: census staging arms
+>    BOTH `c6Carry` AND `c7Windup` (each certified alone; the census
+>    measures the world they make together — the cost side and the
+>    payoff side of waiting, at last in one frame). Constraints, ex
+>    ante: the SAME instrument as C5 T1 (the waiting-cost table,
+>    hold-k vs release twins); **H1 re-powered per #29.1** (held-out
+>    clusters sized so 2.0 pp ≥ 3σ, or the tolerance re-derived ex
+>    ante); **all #29.1 repairs carried**: fallback populations with
+>    cluster CIs (the label-only ladder defect), concessions read at
+>    elapsed 240 (the clock-skew defect), a PERCEPT-COMPLIANT shield
+>    (the ShieldHold omniscience defect), eligible-choice moments;
+>    #26.5 honoured (the BEFORE table is the shipped-world reference;
+>    this census states its HEAD and its armed flags); #46.2 seed
+>    disjointness; receipts + E-INJURY (#49.3). The #29.3 unpark law
+>    stands verbatim: **C5-T2 (the WHETHER seat) drafts iff any hold
+>    cell's cost interval reaches zero**; a re-censused world that
+>    still pays nothing parks the seat again and no subsidy ships —
+>    that too would be a real finding about this game's economy.
+> 4. Freeze → commander review → run, per the standing pattern.
