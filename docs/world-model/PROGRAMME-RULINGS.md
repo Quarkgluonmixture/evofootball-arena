@@ -2430,3 +2430,27 @@
 >    strike math is EVALUATED AT STRIKE TIME, never duplicated (I1);
 >    (v) freeze before implementation; commander review before any
 >    build or run.
+
+> **COMMANDER RULING #57 (2026-07-29 — C7 T1 pre-registration reviewed:
+> PASS, no amendment; build and run authorized):**
+>
+> 1. **REVIEW — PASS.** MID constants verbatim with the mean body
+>    reproducing T0 to the tick (0.110 s = 7 ticks); both axes banded
+>    on the ½×–1.5× transfer convention with the noise channel primary
+>    (#56.2); the window pinned; block 7.3M–7.8M disjoint (smoke 7.2M
+>    — #46.2 applied unprompted); floors clear ≥2.16× with the binding
+>    F-INTERRUPTED attainable even at the band's ½× edge; the two
+>    #56.3(iv) structural tests specified including the rng-stream
+>    parity form (a sharper assertion than asked for); the c6Carry
+>    interaction STATED — forks run the shipped glue, "C7 prices TIME,
+>    not carry"; reading (B) honestly pre-laid as live (static
+>    defenders may kill axis 1 in the live forks — a finding if so,
+>    never a re-cut).
+> 2. **BUILD + RUN AUTHORIZED**: implement the dormant seam + law +
+>    probe exactly to the frozen spec (two commits or one, the freeze
+>    already stands); X-family proofs before the experiment; the run
+>    COMPLETES INSIDE the executor session (project the wall time from
+>    the engineering smoke — if the projection exceeds ~50 minutes,
+>    STOP and hand the run to the resident session per #49.5 instead
+>    of leaving an orphan); result section filled, FAILs as-is;
+>    returns here.
