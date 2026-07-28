@@ -302,17 +302,20 @@ lag-only drive it to ~0; ⭐ ALL candidates RAISE tackle-eligibility, B
 +19.1% — **the glue was quietly protective**, honest carrying costs
 eligibility and buys technique-priced side-protection; kick displacement
 p50 0.35 m corrects the contract's "centimetres" premise, #47.4).
-**T1 pre-registered (freeze
-`3593410`) and REVIEWED — ruling #48: PASS + two ex-ante amendments**
-(ZERO-LOOSE re-formalized as a STRUCTURAL gate — the seam never writes
-`ball.owner`, ownership releases ledger-classed, loose-ball delta
-REPORTED, because the exact-equality form would fail on legitimate
-tackle divergence; and the fork measurement window PINNED at sweep
-start → sweep end + 0.5 s). **Implementation + run AUTHORIZED as
-amended, in flight.** Also drafted tonight:
+**T1 CHAIN COMPLETE
+(#48 → build `0531b4e` → run FAIL on 69 unexplained → #49 diagnosis
+(advantage-foul injury, code-verified) → T1R `72aaa6b` → GATES PASS →
+ruling #50: ⭐ READING (A), BOTH AXES CERTIFIED** — eligibility +11.63%
+CI [+8.51, +14.85] (band low half, live damping), far-side +1.3215 pp
+CI [+1.254, +1.3925] (degenerate 0.048% baseline broken), receipts
+closing 69+24=93 exactly, dormant, zero-loose structural, fingerprint
+unchanged. **The honest offset does what T0 sized. T2 queues for
+daylight** (watchability battery; #29.3's C5 re-census stays parked
+behind its verdict). Also drafted tonight:
 [`STAGE3-V2-DIRECTION-MEMO.md`](STAGE3-V2-DIRECTION-MEMO.md) — the
-anticipatory census (COMMANDER DRAFT, №45.2(c), awaiting the user's
-morning ratification; nothing authorized). Earlier tonight: the #45.2(0) doc split landed and was
+anticipatory census (COMMANDER DRAFT, #45.2(c), awaiting the user's
+morning ratification; nothing authorized). **Morning forks, all the
+user's: ① v2 memo (§5's three options) · ② C6 T2 authorization.** Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
