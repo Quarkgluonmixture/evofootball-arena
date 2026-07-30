@@ -3279,3 +3279,35 @@
 >    cheaply), under-powered cells published never pooled, full sign
 >    space, receipts, windows pinned, freeze → review → build → the
 >    resident runs (#49.5).
+
+> **COMMANDER RULING #80 (2026-07-30 — V3-P1 pre-registration reviewed:
+> PASS; the permutation null codified as house law; build authorized,
+> the run supervised):**
+>
+> 1. **REVIEW — PASS, all three surfaced calls ratified**: (i) block
+>    REUSE accepted on the four-part no-peek argument (V3-P0 was
+>    read-only and priced nothing; the floor is #24-fixed with no
+>    tunable parameter; base rates are orthogonal to the forked
+>    values; the smoke discharged #46.2 disjointly) — exactness beats
+>    a fresh block's re-exposure of the 1.99× binding cell; (ii) the
+>    PRIMARY test form accepted: within-cluster role-label PERMUTATION
+>    null (B=2,000, seed 91110, p<0.025, BH q=0.05 across 216 cells)
+>    for the range statistic S, with bootstrap CIs demoted to
+>    reporting; (iii) PC on the pooled r21a180 with P1R §5.4's honest
+>    note carried.
+> 2. **CODIFIED AS HOUSE LAW (the #20 family extended)**: a
+>    DISPERSION or EXTREME statistic (range, max, top-k) is
+>    upward-biased under its null and may NEVER be resolved by a
+>    bootstrap CI on itself; it takes a permutation (or equivalent
+>    exact) null, pre-registered with its seed and multiplicity
+>    correction. The winner's curse has bitten this programme at P2,
+>    C5-T2's cell selection, and the #62 extension — this rule closes
+>    the same door at the test-statistic level.
+> 3. **BUILD AUTHORIZED (executor); RUN SUPERVISED (resident, #49.5)**:
+>    probe to the frozen spec (the P1R/V2-P1 harness minus the
+>    going-bit machinery, cells context × role × candidate, the
+>    permutation engine, receipts, X-DET, canonical SHA, env caps),
+>    engineering smoke capped, commit, STOP; the resident runs the
+>    census detached (~590k forks) with the Monitor pattern; a
+>    write-up session lands the result; the ruling reads the half-1
+>    hypothesis.
