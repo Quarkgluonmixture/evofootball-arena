@@ -483,3 +483,189 @@ difference restricts it to genuine mid-window arrivals.
   "formations" or "roles". No gene-mapping conclusion beyond the attribution split
   (GENE is an attribution partner). The v1 exclusions stand (no coach layer, no marking
   assignments, no box-arrival anticipation).
+
+---
+
+## 11. RESULT — the brake fires, yields to noise, and the PC can no longer see
+
+Run **supervised by the resident session** (#49.5, projection exceeded the in-session
+cap), the **frozen probe unchanged** (§9: no W / horizon / lattice / arm / floor /
+§3-reading / §3.3(a)-geometry / abort-predicate / cadence re-cut after sight). HEAD
+`c5f2913` (ruling #68); ENRICHED world, full #67.3 bundle armed
+(`edsPerceivedDefence`+`edsPerceivedChoice`+`edsValueAxis`, `c5Hold`, `c6Carry`,
+`c7Windup`; `c5TouchFork` off); `src/**` = V2-P0 HEAD `92876e5` + the one D3-DUPLICATE
+change (§1.4). Fresh disjoint payoff block **9,010,000 + k** (above the 9.00M sizing
+smoke, above every consumed/reserved V2 range ≤ 8.91M). Consumed table canonical SHA
+**`a33e9a73…0992aa`** (byte-identical, unconsumed); control-recovery SHA
+**`8bac58da…ebcf`** (guard PASS, pooled recovered −0.049132). Bootstrap 2,000 cluster
+resamples, fresh frozen seed **90730**. Data:
+[`data/stage3-v2-p2r-consumer.json`](data/stage3-v2-p2r-consumer.json) · file SHA256
+**`5fd579bd…62e6`** · `deterministic: true` · **verdict: GATES FAIL (pcInverted)**.
+
+**Scale.** 12,000 station-family moments (1,988 ball-directed skipped, coverage
+**100%**) → **60,000 forks** priced (five arms); 479 forks ended inside the horizon
+(excluded, reported, never zeroed). Across **7,853,468** classified ticks
+**`unexplained` = 0** — the abort added a whole new decision class and the X6 discipline
+still closes exactly (`ok` 7,220,252 → okShare 0.930747; the #75 fix held).
+
+### 11.1 The gates — machinery CLEAN, PC FAILS, the stop rule fires
+
+| gate | result |
+| --- | --- |
+| **X4 — clone coverage** | 12,000 clones / 12,000 moments = **100%**. **PASS** |
+| **X5 — control identity** | the no-eye fork reproduces the base continuation bit-identically for the full `H_concede`; **480 checked / 0 mismatched** (CONTROL carries no abort). **PASS** |
+| **X6 — force fidelity** | per-record (#43.3); **`unexplained` EXACTLY 0** across 7.85 M ticks; **eAbort 43,285** counted in the ledger, NOT in the override tally (§5 X6); clamp shares REPORTED-not-gated (onside 348,039 · barred-box 189,189). **PASS** |
+| **X7 — determinism** | two `runExperiment()` calls byte-identical; result SHA `5fd579bd…`; the reused control-recovery pass asserted equal to `8bac58da…`. **PASS** |
+| **DEV — DELIVERY (HARD)** | NEUTRAL deviation share on the **PERCEIVED-attainable** denominator = **0.60654** (23,407 / 38,591) ≥ 0.22 — **≈ 2.8× the floor**. (The abort pulled realised delivery a hair below V2-P2's 0.6156, as §6 flagged it might; the *committing* rate is unchanged, the drop is measurement of the eye no longer being read on later-aborted windows — well clear of the floor.) **PASS** |
+| **PC — INVERTED resolves below control (HARD)** | argmin ATE **−0.007479**, cluster-bootstrap CI **[−0.015604, +0.000519]**, upper **≥ 0** → the family is **no longer measurable**. **FAILS** |
+
+**PC fails as fired.** The one HARD gate that certifies the pricing family is
+*visible* — the argmin arm must resolve strictly below control — no longer does: the
+upper CI grazes zero (+0.0005). **Per §9, the stop rule is honoured: no payoff reading
+is published.** Every payoff quantity below is carried as **labelled data** (#44.3),
+not interpreted. The machinery is otherwise clean end to end (X4/X5/X6/X7 PASS, DEV
+delivered, det true) — **the harness is clean, the substance failed.**
+
+### 11.2 The PC-equalization mechanism — the brake RESCUES the argmin
+
+The reason the PC went blind is itself the finding. The abort is a **safety net**, and
+it catches the worst chooser hardest:
+
+```text
+                     V2-P2 (no brake)            V2-P2R (abortable)          Δ
+INVERTED argmin ATE  −0.0107 [−0.0197,−0.0021]   −0.0075 [−0.0156,+0.0005]   harm SHRANK
+                     resolves (PASS)             upper ≥ 0 (FAIL)
+INVERTED abort rate  —                           31.99% (12,542 / 39,206)    32% of bad
+                                                                             approaches aborted
+```
+
+The argmin deliberately commits to value-destroying cells; **32% of those bad
+approaches abort mid-window** and revert to the incumbent, so its realised harm is
+compressed −0.0107 → −0.0075 and its CI lifts across zero. A brake that yields on a
+newly-seen converging body cannot tell a *good* abort from a *bad* one — it just
+shortens every committed approach that a second body wanders near — so it compresses
+the arm differences until the 12,000-moment budget can no longer see the pricing
+family at fork grain. The safety net equalizes the arms; the PC is the price.
+
+### 11.3 The reversal did NOT land — the convergence mediators are UNCHANGED (reading R2)
+
+H-V2R's primary clause required the #72 convergence inversion to reverse. It did not:
+
+```text
+                        H-V2R required     V2-P2 (#72)        V2-P2R realised (NEUTRAL−CONTROL)
+FORK-DUPRUN  neg cells  FALLS, CI upper<0  +0.92 pp           +1.08 pp  [+0.52, +1.66]   STILL ROSE
+FORK-SPACING all        stops closing      −1.047 m           −0.508 m  [−0.624, −0.396] STILL CLOSING
+             neg cells  stops closing      −0.880 m           −0.572 m  [−0.743, −0.402] STILL CLOSING
+ring180Share            falls toward ~0.51 0.6039             0.6007                     UNCHANGED
+```
+
+FORK-DUPRUN on the negative (behind/lateral) cells — the direct test of the eye's
+premise — **still ROSE** (+1.08 pp, CI clear of zero): with the brake armed the eye
+*still* lands more often inside 4 m of a teammate's advanced position on exactly the
+cells where that duplicates cover. Spacing **still closed** everywhere (−0.51 m
+pooled, −0.57 m on neg cells) — less hard than V2-P2's −0.88 m, but the CI is nowhere
+near zero, so it is *attenuated, not reversed*. The argmax still concentrated
+**60.1%** of deviations in the dead-behind 180° ring (r7a180 the single most-chosen
+candidate, 9,836), exactly V2-P2's pathology. This is **reading (R2) NO-CHANGE**: the
+mediators land ≈ V2-P2.
+
+**The R2 decomposition the doc pre-laid (§3 R2) resolves to (b), not (a).** R2(a)
+(aborts fire rarely) is **excluded**: the ledger's realised abort rate is **43.95%**,
+even above the sizing smoke's 42% abort-opportunity rate — the brake fires copiously.
+R2(b) (the abort does not disperse anyway) is what fired — and §11.4 gives the
+concrete reason it cannot: nearly half of what it fires on is noise.
+
+### 11.4 The abort ledger — the brake fires as sized, then yields to FALSE CLAIMS
+
+The brake fires exactly as the sizing smoke predicted, at the sized cadence and cost:
+
+```text
+per-arm ABORT LEDGER (D-ABORT is a sub-tally of D-DEVIATE; the abort is part of the treatment)
+                     deviate   abort    rate      t50 abort   wasted/abort   postAbort UNSERVED   incumbent reoccupy
+NEUTRAL (primary)    23,407    10,288   43.95%    0.60 s      0.80 s         47.25%               23.13%
+GENE                 23,142    10,166   43.93%    0.60 s      0.80 s         47.62%               23.01%
+ORACLE-CTX           20,520    10,289   50.14%    0.45 s      0.77 s         45.32%               23.00%
+INVERTED (argmin)    39,206    12,542   31.99%    0.60 s      0.93 s         56.19%               16.74%
+                     ─────────────────
+                     Σ abort = 43,285  = X6 eAbort (the abort accounting closes)
+```
+
+NEUTRAL: t50-to-abort **0.60 s** (matching the smoke's 0.60 s time-to-opportunity and
+the programme's ≈0.3–0.5 s evidence window — new bodies declare themselves early),
+**0.80 s wasted per abort** (48.2 ticks, never refunded, the honest #73.2(i) price;
+495,513 ticks total), contributor churn `|G_commit|` 0.46 → `|G_mid|` 1.17 with 1.06
+new contributors per abort across **10 distinct driver identities**.
+
+**⭐ The postAbort finding, stated plainly.** Of NEUTRAL's 6,905 aborted forks,
+**47.25% of the yielded regions go UNSERVED** for the rest of the window — no own body,
+neither the incumbent nor the new "contributor", ever occupies it within R — and the
+teammate whose approach TRIGGERED the yield reoccupies only **23.13%** of the time.
+**The velocity-advance claim signal reads passers-by as claimants:** the brake yields
+to a body that is merely *moving through* the region, not converging on it, so **the
+lone braker peels off to noise nearly half the time and hands the region back to the
+convergent incumbent** it was trying to avoid. The pattern holds across arms and is
+WORST for the argmin (INVERTED: 56.19% unserved, only 16.74% reoccupy). This is the
+§3 R4 mirror-preview firing loudly — and it is *why* R2(b) holds: a brake that fires
+on false claims cannot disperse a real pile-up.
+
+### 11.5 The payoff axes — carried as LABELLED DATA (PC failed, NOT interpreted)
+
+Recorded for the ledger only; **no reading is taken** (§9 stop rule):
+
+```text
+NEUTRAL   ATE +0.003479 [−0.002714, +0.010008]     ATT +0.004185 [−0.003564, +0.011623]
+GENE      ATE +0.002870 [−0.003143, +0.009309]     ≈ NEUTRAL (no attribution split visible)
+ORACLE    ATE −0.002001 [−0.010015, +0.005752]     ctx-agreement 1.000 (true-keyed, as designed)
+INVERTED  ATE −0.007479 [−0.015604, +0.000519]     ← the PC gate: upper ≥ 0
+```
+
+The parent's payoff readings (b FLAT / c / g) are **not licensed** here — the labelled
+numbers merely echo V2-P2's flat family, but with PC failed they carry no verdict.
+
+### 11.6 Disposition — COMMANDER RULING #76 (verbatim), the fork to the user
+
+> **COMMANDER RULING #76 (2026-07-30 — V2-P2R FAILS on PC as the stop
+> rule demands; the abort ledger delivers the real finding: the brake
+> yields to FALSE CLAIMS and its value is COLLECTIVE; the fork returns
+> to the user):**
+>
+> 1. **FAIL AS FIRED.** PC upper +0.0005 ≥ 0 ⇒ no payoff reading
+>    published (the stop rule, verbatim). The mechanism is itself a
+>    finding: the abort RESCUES even the argmin chooser (its harm
+>    shrinks −0.0107 → −0.0075; 32% of its bad approaches aborted) —
+>    a safety net compresses arm differences until the budget cannot
+>    see the pricing family at fork grain. The reversal hypothesis
+>    also did not land (duprun neg +1.08 pp still positive; spacing
+>    −0.57 m still closing, though less than P2's −0.88); X6 closes
+>    at 0 with eAbort 43,285 — the harness is clean, the substance
+>    failed.
+> 2. ⭐⭐⭐ **BANKED — the abort ledger's measurement**: the brake fires
+>    exactly as sized (43.95%, t50 0.60 s, wasted 0.80 s/abort) but
+>    **47.3% of yielded regions go UNSERVED** (the claimant that
+>    triggered the yield reoccupies only 23.1%) — the velocity-advance
+>    claim signal reads passers-by as claimants, so the lone braker
+>    yields to noise half the time and is handed back to the
+>    convergent incumbent. **At fork grain, a single body with a
+>    brake in a world of non-brakers cannot express the mechanism:
+>    mutual yielding is a COLLECTIVE protocol** — its value, if any,
+>    exists only where every body carries it. Three generations
+>    (v1 blind; v2 seeing motion; v2.1 braking) have now converged
+>    at fork grain for three measured reasons, and all three point
+>    at the same structural fact: the single-deviator test regresses
+>    to the incumbent attractor.
+> 3. **THE FORK IS THE USER'S**: (A) **one bounded DEPLOYMENT-GRAIN
+>    test (RECOMMENDED)** — eye+brake armed BOTH TEAMS vs R0, the
+>    full C6/C7-T2 deployment battery verbatim and HARD (canaries
+>    stop it; watchability protected), primary = the BEHAVIORAL
+>    signature (does mutual braking disperse the pile-up: spacing,
+>    duplicate runs, rest defence, offsides), payoff REPORTED-
+>    LABELLED (the table's unilateral→universal gap is v1's known
+>    tangle, honestly framed); the question all three generations
+>    circled, answered directly, in one ~6-minute experiment family.
+>    (B) **park Stage III entirely** — bank all machinery, return to
+>    the C-track (C6 v2 pressured carry / C7 pass wind-up). Nothing
+>    proceeds until the user rules.
+
+**V2-P2R ships nothing** (Road B): `Match.stationEye` stays null in every production
+path, the fingerprint is unchanged, the abort is behaviour behind the null eye. The
+fork returns to the commander, and from the commander to the user.

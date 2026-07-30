@@ -1,0 +1,731 @@
+{
+  "experiment": "STAGE3-V2-P2R (the abortable approach, the consumer, out of sample)",
+  "authority": "STAGE3-V2-P2R-ABORTABLE · STAGE3-V2-P2-CONSUMER (in full) · rulings #73/#74",
+  "head": "c5f2913 (ruling #68; src = V2-P0 HEAD 92876e5 / V2-P1 + D3-DUPLICATE §1.4)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 9010000,
+    "matchCap": 160,
+    "momentTarget": 12000,
+    "momentSpacingS": 2,
+    "wSeconds": 3,
+    "hScoreSeconds": 6,
+    "hConcedeSeconds": 10,
+    "regionRadiusM": 4,
+    "abortIntervalTicks": 9,
+    "arms": [
+      "control",
+      "neutral",
+      "gene",
+      "oracleCtx",
+      "inverted"
+    ],
+    "devFloor": 0.22,
+    "tableCanonicalSha": "a33e9a73bbb08fe2c3601ac049e29b75453fcf5dbe1aa6af5e71bb23a50992aa",
+    "tablePath": "docs/world-model/data/stage3-v2-p1-anticipatory-table.json",
+    "controlSha": "8bac58da804a887f843f33b82f3813ca1bc3ed676a1ed1ffcb262936e0cfebcf",
+    "controlPath": "docs/world-model/data/stage3-v2-p2-control-recovery.json",
+    "pooledControlRecovered": -0.049132,
+    "controlGuardPass": true,
+    "bootstrapResamples": 2000,
+    "bootstrapSeed": 90730,
+    "clusterUnit": "match seed",
+    "estimand": "ATE = mean paired VALUE(arm)−VALUE(control) over eligible moments",
+    "population": "station-family ticks, DISJOINT payoff block 9.01M"
+  },
+  "coverage": {
+    "moments": 12000,
+    "clonesTaken": 12000,
+    "ballDirectedSkipped": 1988,
+    "cloneCoverage": 1,
+    "forks": 60000,
+    "x5Checked": 480,
+    "x5Mismatched": 0,
+    "contextCounts": {
+      "ours|middle|crowded": 1200,
+      "ours|middle|sparse": 2015,
+      "ours|ownThird|crowded": 577,
+      "ours|ownThird|sparse": 1444,
+      "ours|theirThird|crowded": 442,
+      "ours|theirThird|sparse": 1003,
+      "theirs|middle|crowded": 990,
+      "theirs|middle|sparse": 1283,
+      "theirs|ownThird|crowded": 628,
+      "theirs|ownThird|sparse": 467,
+      "theirs|theirThird|crowded": 487,
+      "theirs|theirThird|sparse": 1464
+    },
+    "endedExcluded": 479
+  },
+  "x6": {
+    "ePaused": 14883,
+    "eCarrier": 801,
+    "eBallWon": 0,
+    "eSentOff": 368,
+    "eOnside": 348039,
+    "eBarred": 189189,
+    "eEnded": 2411,
+    "ok": 7220252,
+    "unexplained": 0,
+    "eRedecided": 8638,
+    "eNonStation": 28013,
+    "eAbort": 43285,
+    "total": 7853468,
+    "okShare": 0.930747
+  },
+  "perArm": {
+    "neutral": {
+      "ate": {
+        "n": 11498,
+        "point": 0.003479,
+        "lower": -0.002714,
+        "upper": 0.010008
+      },
+      "att": {
+        "n": 9558,
+        "point": 0.004185,
+        "lower": -0.003564,
+        "upper": 0.011623
+      },
+      "deviationShareByMoment": 0.822417,
+      "decisions": 53902,
+      "deviateDecisions": 23407,
+      "abstainUnseen": 15311,
+      "noCell": 0,
+      "tie": 15184,
+      "perceivedAttainable": 38591,
+      "devShareAttainable": 0.60654,
+      "deviationShareByDecision": 0.434251,
+      "classes": {
+        "deviate": 23407,
+        "abort": 10288,
+        "abstainUnseen": 15311,
+        "abstainNoSnapshot": 132,
+        "abstainNoBall": 4492,
+        "abstainNoOwner": 10687,
+        "noCell": 0,
+        "tie": 15184,
+        "nonStationTicks": 259108,
+        "overrideTicks": 1550424
+      },
+      "abortLedger": {
+        "deviate": 23407,
+        "abort": 10288,
+        "abortRate": 0.439527,
+        "timeToAbort": {
+          "n": 10288,
+          "p50Ticks": 36,
+          "p90Ticks": 117,
+          "minTicks": 9,
+          "maxTicks": 171,
+          "p50S": 0.6,
+          "p90S": 1.95,
+          "minS": 0.15,
+          "maxS": 2.85
+        },
+        "wastedTicks": {
+          "total": 495513,
+          "meanPerAbort": 48.1642,
+          "meanPerAbortS": 0.8027
+        },
+        "contributorChurn": {
+          "gCommitMean": 0.4572,
+          "gMidMean": 1.168,
+          "newContributorsMean": 1.0636,
+          "distinctDrivers": 10
+        },
+        "postAbort": {
+          "forksAborted": 6905,
+          "unservedShare": 0.4725,
+          "incumbentReoccupyShare": 0.2313
+        }
+      },
+      "ctx": {
+        "seen": 27382,
+        "agree": 0.936162,
+        "agreeFace": 0.976116,
+        "agreeThreat": 0.976006,
+        "agreeDensity": 0.963261
+      },
+      "byCandidate": {
+        "r7a180": 9836,
+        "r14a180": 3422,
+        "r14a0": 2298,
+        "r7a0": 2008,
+        "r21a0": 964,
+        "r21a180": 802,
+        "r7a240": 780,
+        "r14a300": 713,
+        "r7a60": 652,
+        "r7a300": 641,
+        "r14a240": 502,
+        "r14a120": 481,
+        "r21a300": 308
+      },
+      "byContext": {
+        "theirs|middle|crowded": 4238,
+        "ours|middle|crowded": 3089,
+        "theirs|ownThird|sparse": 2648,
+        "theirs|ownThird|crowded": 2631,
+        "ours|theirThird|sparse": 2624,
+        "ours|ownThird|sparse": 2221,
+        "theirs|theirThird|sparse": 1805,
+        "theirs|middle|sparse": 1616,
+        "ours|middle|sparse": 851,
+        "theirs|theirThird|crowded": 633,
+        "ours|ownThird|crowded": 603,
+        "ours|theirThird|crowded": 448
+      },
+      "mediators": {
+        "eta": 2.8404,
+        "targetError": 14.4218,
+        "occupancy": 0.0202
+      }
+    },
+    "gene": {
+      "ate": {
+        "n": 11498,
+        "point": 0.00287,
+        "lower": -0.003143,
+        "upper": 0.009309
+      },
+      "att": {
+        "n": 9525,
+        "point": 0.003465,
+        "lower": -0.004531,
+        "upper": 0.010942
+      },
+      "deviationShareByMoment": 0.819417,
+      "decisions": 53897,
+      "deviateDecisions": 23142,
+      "abstainUnseen": 15319,
+      "noCell": 0,
+      "tie": 15436,
+      "perceivedAttainable": 38578,
+      "devShareAttainable": 0.599876,
+      "deviationShareByDecision": 0.429375,
+      "classes": {
+        "deviate": 23142,
+        "abort": 10166,
+        "abstainUnseen": 15319,
+        "abstainNoSnapshot": 132,
+        "abstainNoBall": 4500,
+        "abstainNoOwner": 10687,
+        "noCell": 0,
+        "tie": 15436,
+        "nonStationTicks": 256104,
+        "overrideTicks": 1530297
+      },
+      "abortLedger": {
+        "deviate": 23142,
+        "abort": 10166,
+        "abortRate": 0.439288,
+        "timeToAbort": {
+          "n": 10166,
+          "p50Ticks": 36,
+          "p90Ticks": 117,
+          "minTicks": 9,
+          "maxTicks": 171,
+          "p50S": 0.6,
+          "p90S": 1.95,
+          "minS": 0.15,
+          "maxS": 2.85
+        },
+        "wastedTicks": {
+          "total": 490554,
+          "meanPerAbort": 48.2544,
+          "meanPerAbortS": 0.8042
+        },
+        "contributorChurn": {
+          "gCommitMean": 0.4568,
+          "gMidMean": 1.1673,
+          "newContributorsMean": 1.0638,
+          "distinctDrivers": 10
+        },
+        "postAbort": {
+          "forksAborted": 6836,
+          "unservedShare": 0.4762,
+          "incumbentReoccupyShare": 0.2301
+        }
+      },
+      "ctx": {
+        "seen": 27378,
+        "agree": 0.936153,
+        "agreeFace": 0.976003,
+        "agreeThreat": 0.976003,
+        "agreeDensity": 0.963401
+      },
+      "byCandidate": {
+        "r7a180": 9835,
+        "r14a180": 3540,
+        "r14a0": 2137,
+        "r7a0": 1823,
+        "r21a0": 963,
+        "r21a180": 812,
+        "r7a240": 776,
+        "r14a300": 694,
+        "r7a60": 645,
+        "r7a300": 636,
+        "r14a240": 491,
+        "r14a120": 483,
+        "r21a300": 307
+      },
+      "byContext": {
+        "theirs|middle|crowded": 4242,
+        "ours|middle|crowded": 3083,
+        "theirs|ownThird|sparse": 2635,
+        "ours|theirThird|sparse": 2632,
+        "theirs|ownThird|crowded": 2627,
+        "ours|ownThird|sparse": 2023,
+        "theirs|theirThird|sparse": 1793,
+        "theirs|middle|sparse": 1607,
+        "ours|middle|sparse": 810,
+        "theirs|theirThird|crowded": 640,
+        "ours|ownThird|crowded": 604,
+        "ours|theirThird|crowded": 446
+      },
+      "mediators": {
+        "eta": 2.8438,
+        "targetError": 14.4827,
+        "occupancy": 0.0197
+      }
+    },
+    "oracleCtx": {
+      "ate": {
+        "n": 11495,
+        "point": -0.002001,
+        "lower": -0.010015,
+        "upper": 0.005752
+      },
+      "att": {
+        "n": 9911,
+        "point": -0.002321,
+        "lower": -0.01124,
+        "upper": 0.006831
+      },
+      "deviationShareByMoment": 0.856667,
+      "decisions": 54912,
+      "deviateDecisions": 20520,
+      "abstainUnseen": 19594,
+      "noCell": 0,
+      "tie": 14798,
+      "perceivedAttainable": 35318,
+      "devShareAttainable": 0.581007,
+      "deviationShareByDecision": 0.373689,
+      "classes": {
+        "deviate": 20520,
+        "abort": 10289,
+        "abstainUnseen": 19594,
+        "abstainNoSnapshot": 0,
+        "abstainNoBall": 0,
+        "abstainNoOwner": 19594,
+        "noCell": 0,
+        "tie": 14798,
+        "nonStationTicks": 256864,
+        "overrideTicks": 1353015
+      },
+      "abortLedger": {
+        "deviate": 20520,
+        "abort": 10289,
+        "abortRate": 0.501413,
+        "timeToAbort": {
+          "n": 10289,
+          "p50Ticks": 27,
+          "p90Ticks": 108,
+          "minTicks": 9,
+          "maxTicks": 171,
+          "p50S": 0.45,
+          "p90S": 1.8,
+          "minS": 0.15,
+          "maxS": 2.85
+        },
+        "wastedTicks": {
+          "total": 472392,
+          "meanPerAbort": 45.9123,
+          "meanPerAbortS": 0.7652
+        },
+        "contributorChurn": {
+          "gCommitMean": 0.5204,
+          "gMidMean": 1.1787,
+          "newContributorsMean": 1.0619,
+          "distinctDrivers": 10
+        },
+        "postAbort": {
+          "forksAborted": 7245,
+          "unservedShare": 0.4532,
+          "incumbentReoccupyShare": 0.23
+        }
+      },
+      "ctx": {
+        "seen": 35318,
+        "agree": 1,
+        "agreeFace": 1,
+        "agreeThreat": 1,
+        "agreeDensity": 1
+      },
+      "byCandidate": {
+        "r7a180": 8174,
+        "r14a180": 2910,
+        "r14a0": 2345,
+        "r7a0": 1577,
+        "r21a0": 1023,
+        "r7a240": 788,
+        "r21a180": 756,
+        "r14a300": 727,
+        "r7a300": 484,
+        "r14a240": 480,
+        "r14a120": 472,
+        "r7a60": 468,
+        "r21a300": 316
+      },
+      "byContext": {
+        "theirs|middle|crowded": 3955,
+        "ours|middle|crowded": 2941,
+        "theirs|theirThird|sparse": 2333,
+        "ours|ownThird|sparse": 2304,
+        "theirs|middle|sparse": 1744,
+        "theirs|ownThird|crowded": 1704,
+        "ours|theirThird|sparse": 1625,
+        "theirs|ownThird|sparse": 1392,
+        "ours|middle|sparse": 863,
+        "theirs|theirThird|crowded": 709,
+        "ours|ownThird|crowded": 603,
+        "ours|theirThird|crowded": 347
+      },
+      "mediators": {
+        "eta": 2.7703,
+        "targetError": 15.3781,
+        "occupancy": 0.0247
+      }
+    },
+    "inverted": {
+      "ate": {
+        "n": 11499,
+        "point": -0.007479,
+        "lower": -0.015604,
+        "upper": 0.000519
+      },
+      "att": {
+        "n": 10601,
+        "point": -0.008112,
+        "lower": -0.016682,
+        "upper": 0.000941
+      },
+      "deviationShareByMoment": 0.915333,
+      "decisions": 54307,
+      "deviateDecisions": 39206,
+      "abstainUnseen": 15101,
+      "noCell": 0,
+      "tie": 0,
+      "perceivedAttainable": 39206,
+      "devShareAttainable": 1,
+      "deviationShareByDecision": 0.721933,
+      "classes": {
+        "deviate": 39206,
+        "abort": 12542,
+        "abstainUnseen": 15101,
+        "abstainNoSnapshot": 132,
+        "abstainNoBall": 4282,
+        "abstainNoOwner": 10687,
+        "noCell": 0,
+        "tie": 0,
+        "nonStationTicks": 510784,
+        "overrideTicks": 3078484
+      },
+      "abortLedger": {
+        "deviate": 39206,
+        "abort": 12542,
+        "abortRate": 0.3199,
+        "timeToAbort": {
+          "n": 12542,
+          "p50Ticks": 36,
+          "p90Ticks": 126,
+          "minTicks": 9,
+          "maxTicks": 171,
+          "p50S": 0.6,
+          "p90S": 2.1,
+          "minS": 0.15,
+          "maxS": 2.85
+        },
+        "wastedTicks": {
+          "total": 700416,
+          "meanPerAbort": 55.8456,
+          "meanPerAbortS": 0.9308
+        },
+        "contributorChurn": {
+          "gCommitMean": 0.4916,
+          "gMidMean": 1.1355,
+          "newContributorsMean": 1.0344,
+          "distinctDrivers": 10
+        },
+        "postAbort": {
+          "forksAborted": 7939,
+          "unservedShare": 0.5619,
+          "incumbentReoccupyShare": 0.1674
+        }
+      },
+      "ctx": {
+        "seen": 27666,
+        "agree": 0.937215,
+        "agreeFace": 0.976758,
+        "agreeThreat": 0.976397,
+        "agreeDensity": 0.963457
+      },
+      "byCandidate": {
+        "r7a300": 4439,
+        "r14a240": 4376,
+        "r14a120": 4191,
+        "r21a120": 3605,
+        "r14a180": 3127,
+        "r7a240": 3043,
+        "r14a300": 2620,
+        "r7a180": 2175,
+        "r7a120": 2076,
+        "r21a60": 1894,
+        "r14a0": 1731,
+        "r7a0": 1578,
+        "r14a60": 1040,
+        "r21a0": 1007,
+        "r21a180": 929,
+        "r7a60": 888,
+        "r21a240": 302,
+        "r21a300": 185
+      },
+      "byContext": {
+        "theirs|middle|sparse": 5539,
+        "theirs|theirThird|sparse": 5007,
+        "theirs|middle|crowded": 4341,
+        "ours|middle|sparse": 3876,
+        "ours|middle|crowded": 3582,
+        "ours|ownThird|sparse": 3299,
+        "ours|theirThird|sparse": 2983,
+        "theirs|ownThird|sparse": 2978,
+        "theirs|ownThird|crowded": 2618,
+        "ours|ownThird|crowded": 2024,
+        "theirs|theirThird|crowded": 1634,
+        "ours|theirThird|crowded": 1325
+      },
+      "mediators": {
+        "eta": 2.832,
+        "targetError": 15.9983,
+        "occupancy": 0.0289
+      }
+    }
+  },
+  "deviationMix": {
+    "byAngle": {
+      "0": 5270,
+      "60": 652,
+      "120": 481,
+      "180": 14060,
+      "240": 1282,
+      "300": 1662
+    },
+    "byRadius": {
+      "7": 13917,
+      "14": 7416,
+      "21": 2074
+    },
+    "ring180Share": 0.600675,
+    "ahead0Share": 0.225146,
+    "total": 23407
+  },
+  "mediatorGeometry": {
+    "forkSpacing": {
+      "all": {
+        "n": 4447,
+        "point": -0.508193,
+        "lower": -0.624005,
+        "upper": -0.395745,
+        "neutralMean": 7.5112,
+        "controlMean": 8.0194
+      },
+      "negativeCells": {
+        "n": 1586,
+        "point": -0.572454,
+        "lower": -0.743265,
+        "upper": -0.401683,
+        "neutralMean": 6.9729,
+        "controlMean": 7.5454
+      },
+      "positiveCells": {
+        "n": 1877,
+        "point": -0.739754,
+        "lower": -0.953751,
+        "upper": -0.521482,
+        "neutralMean": 7.925,
+        "controlMean": 8.6647
+      }
+    },
+    "forkDuprun": {
+      "all": {
+        "n": 5169,
+        "point": 0.005661,
+        "lower": 0.001973,
+        "upper": 0.009054,
+        "neutralMean": 0.2576,
+        "controlMean": 0.252
+      },
+      "negativeCells": {
+        "n": 1982,
+        "point": 0.010803,
+        "lower": 0.005231,
+        "upper": 0.016575,
+        "neutralMean": 0.2351,
+        "controlMean": 0.2243
+      },
+      "positiveCells": {
+        "n": 2034,
+        "point": -0.002266,
+        "lower": -0.007291,
+        "upper": 0.002641,
+        "neutralMean": 0.285,
+        "controlMean": 0.2873
+      }
+    },
+    "negCellDeviations": 3581,
+    "posCellDeviations": 3515,
+    "note": "FORK-SPACING/FORK-DUPRUN over the first window vs NEUTRAL's chosen region, paired NEUTRAL−CONTROL. H-V2R: FORK-DUPRUN neg FALLS (CI<0) + FORK-SPACING stops closing."
+  },
+  "perContext": {
+    "ours|middle|crowded": {
+      "n": 1200,
+      "ate": {
+        "n": 1154,
+        "point": 0.003466,
+        "lower": -0.017888,
+        "upper": 0.026079
+      }
+    },
+    "ours|middle|sparse": {
+      "n": 2015,
+      "ate": {
+        "n": 1946,
+        "point": -0.000514,
+        "lower": -0.011488,
+        "upper": 0.010858
+      }
+    },
+    "ours|ownThird|crowded": {
+      "n": 577,
+      "ate": {
+        "n": 548,
+        "point": 0.012774,
+        "lower": -0.014493,
+        "upper": 0.040741
+      }
+    },
+    "ours|ownThird|sparse": {
+      "n": 1444,
+      "ate": {
+        "n": 1392,
+        "point": 0.01796,
+        "lower": 0,
+        "upper": 0.035482
+      }
+    },
+    "ours|theirThird|crowded": {
+      "n": 442,
+      "ate": {
+        "n": 423,
+        "point": -0.023641,
+        "lower": -0.047962,
+        "upper": -0.002268
+      }
+    },
+    "ours|theirThird|sparse": {
+      "n": 1003,
+      "ate": {
+        "n": 946,
+        "point": -0.008457,
+        "lower": -0.021075,
+        "upper": 0.004246
+      }
+    },
+    "theirs|middle|crowded": {
+      "n": 990,
+      "ate": {
+        "n": 952,
+        "point": 0.032563,
+        "lower": -0.001021,
+        "upper": 0.065848
+      }
+    },
+    "theirs|middle|sparse": {
+      "n": 1283,
+      "ate": {
+        "n": 1239,
+        "point": 0.021792,
+        "lower": 0.004068,
+        "upper": 0.039339
+      }
+    },
+    "theirs|ownThird|crowded": {
+      "n": 628,
+      "ate": {
+        "n": 590,
+        "point": -0.00339,
+        "lower": -0.03413,
+        "upper": 0.029801
+      }
+    },
+    "theirs|ownThird|sparse": {
+      "n": 467,
+      "ate": {
+        "n": 448,
+        "point": -0.002232,
+        "lower": -0.038288,
+        "upper": 0.035211
+      }
+    },
+    "theirs|theirThird|crowded": {
+      "n": 487,
+      "ate": {
+        "n": 464,
+        "point": -0.015086,
+        "lower": -0.05,
+        "upper": 0.02093
+      }
+    },
+    "theirs|theirThird|sparse": {
+      "n": 1464,
+      "ate": {
+        "n": 1396,
+        "point": -0.017908,
+        "lower": -0.042294,
+        "upper": 0.00384
+      }
+    }
+  },
+  "perceptionPrice": {
+    "n": 11495,
+    "point": -0.002001,
+    "lower": -0.009748,
+    "upper": 0.005522
+  },
+  "gates": {
+    "x4CloneCoverage": true,
+    "x5ControlIdentity": true,
+    "x6ForceFidelity": true,
+    "dev": true,
+    "pcInverted": false,
+    "x7Determinism": true
+  },
+  "receipts": {
+    "cap": 1000,
+    "counts": {},
+    "records": {}
+  },
+  "deterministic": true,
+  "sha256": "5fd579bd0c9d8d283de283e10af870b0482ae0b57618a938ae09ce5bd13862e6",
+  "verdict": "GATES FAIL"
+}
