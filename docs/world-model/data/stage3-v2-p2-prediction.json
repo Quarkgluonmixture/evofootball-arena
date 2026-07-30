@@ -1,0 +1,107 @@
+{
+  "experiment": "STAGE3-V2-P2 (the ex-ante prediction, re-computed against recovered control)",
+  "authority": "STAGE3-V2-P2-CONSUMER §3.3/§3.4 · ruling #71.2",
+  "consumedTableSha": "a33e9a73bbb08fe2c3601ac049e29b75453fcf5dbe1aa6af5e71bb23a50992aa",
+  "controlRecoveryVerdict": "GUARD PASS",
+  "controlGuardPass": true,
+  "pooledControlRecovered": -0.049132,
+  "mcSeed": 70320,
+  "mcDrawsPerContext": 20000,
+  "frozenGeometry_3_3a": {
+    "resolvedNegative": 36,
+    "resolvedPositive": 36,
+    "unresolvedNull": 79,
+    "negMedianPP": -9.74,
+    "negFloorPP": -20.41,
+    "negBehindLateral": 29,
+    "posMedianPP": 8.42,
+    "posCeilingPP": 38.16,
+    "posDeadAhead": 16
+  },
+  "provisional_flatAnchor": {
+    "deviationShare": 0.5477,
+    "ateValueAxis": 0.1314,
+    "atePointFiveWeight": 0.0657,
+    "attValueAxis": 0.24,
+    "attPointFiveWeight": 0.12,
+    "landing": {
+      "byAngle": {
+        "0": 0.3364,
+        "60": 0.0011,
+        "120": 0.0899,
+        "180": 0.5095,
+        "240": 0.0481,
+        "300": 0.0149
+      },
+      "byRadius": {
+        "7": 0.6755,
+        "14": 0.2053,
+        "21": 0.1192
+      },
+      "ring180Share": 0.5095,
+      "ahead0Share": 0.3364
+    }
+  },
+  "recovered_perContext": {
+    "deviationShare": 0.6194,
+    "ateValueAxis": 0.023,
+    "atePointFiveWeight": 0.0115,
+    "attValueAxis": 0.0371,
+    "attPointFiveWeight": 0.0186,
+    "landing": {
+      "byAngle": {
+        "0": 0.333,
+        "60": 0.0203,
+        "120": 0.0275,
+        "180": 0.51,
+        "240": 0.052,
+        "300": 0.0571
+      },
+      "byRadius": {
+        "7": 0.5489,
+        "14": 0.321,
+        "21": 0.1301
+      },
+      "ring180Share": 0.51,
+      "ahead0Share": 0.333
+    }
+  },
+  "recovered_pooledFlat": {
+    "deviationShare": 0.5477,
+    "ateValueAxis": 0.1311,
+    "atePointFiveWeight": 0.0655,
+    "attValueAxis": 0.2393,
+    "attPointFiveWeight": 0.1197,
+    "landing": {
+      "byAngle": {
+        "0": 0.3357,
+        "60": 0.0011,
+        "120": 0.0892,
+        "180": 0.513,
+        "240": 0.0461,
+        "300": 0.015
+      },
+      "byRadius": {
+        "7": 0.6798,
+        "14": 0.2018,
+        "21": 0.1183
+      },
+      "ring180Share": 0.513,
+      "ahead0Share": 0.3357
+    }
+  },
+  "delta_recoveredMinusProvisional": {
+    "deviationShare": 0.0717,
+    "ateValueAxis": -0.1084,
+    "attValueAxis": -0.2029,
+    "ring180Share": 0.0005,
+    "note": "recovered per-context control MINUS the provisional flat pooled anchor (§3.3(b))."
+  },
+  "checkpoint65": {
+    "floor": 0.22,
+    "predictedDeviationShareTrueKeyed": 0.6194,
+    "predictedDeviationSharePerceivedBound": 0.5488,
+    "pass": true,
+    "note": "even the wedge-discounted lower bound (× W_r 0.886) must clear 0.22; PASS ⇒ the payoff run may start (§3.4). A FAIL fires reading (d) at BUILD."
+  }
+}

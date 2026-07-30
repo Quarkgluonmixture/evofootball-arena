@@ -1,0 +1,387 @@
+{
+  "experiment": "STAGE3-V2-P2 (the control-recovery pass, §2.4a / #71.2)",
+  "authority": "STAGE3-V2-P2-CONSUMER §2.4a · ruling #71.2 · the V2-P1 census control fork",
+  "head": "c5f2913 (ruling #68; src identical to V2-P0 HEAD 92876e5 / V2-P1)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 8810000,
+    "matchCap": 650,
+    "momentTarget": 49094,
+    "momentSpacingS": 2,
+    "wSeconds": 3,
+    "wTicks": 180,
+    "hScoreSeconds": 6,
+    "hConcedeSeconds": 10,
+    "regionRadiusM": 4,
+    "cellFloor": 150,
+    "contexts": [
+      "ours|ownThird|sparse",
+      "ours|ownThird|crowded",
+      "ours|middle|sparse",
+      "ours|middle|crowded",
+      "ours|theirThird|sparse",
+      "ours|theirThird|crowded",
+      "theirs|ownThird|sparse",
+      "theirs|ownThird|crowded",
+      "theirs|middle|sparse",
+      "theirs|middle|crowded",
+      "theirs|theirThird|sparse",
+      "theirs|theirThird|crowded"
+    ],
+    "lattice": [
+      "r7a0",
+      "r7a60",
+      "r7a120",
+      "r7a180",
+      "r7a240",
+      "r7a300",
+      "r14a0",
+      "r14a60",
+      "r14a120",
+      "r14a180",
+      "r14a240",
+      "r14a300",
+      "r21a0",
+      "r21a60",
+      "r21a120",
+      "r21a180",
+      "r21a240",
+      "r21a300"
+    ],
+    "guardTolerance": 0.002,
+    "consumedTableSha": "a33e9a73bbb08fe2c3601ac049e29b75453fcf5dbe1aa6af5e71bb23a50992aa",
+    "note": "read-only re-run of the census control fork ONLY (cand === null); recovers signed(control) per (context × going-bit); re-cuts nothing."
+  },
+  "coverage": {
+    "matchesRun": 535,
+    "moments": 49094,
+    "clonesTaken": 49094,
+    "cloneCoverage": 1,
+    "ballDirectedSkipped": 7646,
+    "noPool": 0,
+    "endedExcluded": 1915
+  },
+  "pooledControl": -0.049132,
+  "pooledControlByFace": {
+    "ours": 0.077129,
+    "theirs": -0.206154
+  },
+  "control": {
+    "ours|ownThird|sparse": {
+      "going0": {
+        "n": 96548,
+        "score": 0.046671,
+        "concede": 0.296226,
+        "value": -0.249555
+      },
+      "going1": {
+        "n": 9202,
+        "score": 0.03847,
+        "concede": 0.319061,
+        "value": -0.280591
+      }
+    },
+    "ours|ownThird|crowded": {
+      "going0": {
+        "n": 38582,
+        "score": 0.075476,
+        "concede": 0.22933,
+        "value": -0.153854
+      },
+      "going1": {
+        "n": 3862,
+        "score": 0.080269,
+        "concede": 0.239772,
+        "value": -0.159503
+      }
+    },
+    "ours|middle|sparse": {
+      "going0": {
+        "n": 123769,
+        "score": 0.256841,
+        "concede": 0.137757,
+        "value": 0.119085
+      },
+      "going1": {
+        "n": 14651,
+        "score": 0.255477,
+        "concede": 0.137329,
+        "value": 0.118149
+      }
+    },
+    "ours|middle|crowded": {
+      "going0": {
+        "n": 78912,
+        "score": 0.284215,
+        "concede": 0.158164,
+        "value": 0.126052
+      },
+      "going1": {
+        "n": 9882,
+        "score": 0.28051,
+        "concede": 0.165048,
+        "value": 0.115462
+      }
+    },
+    "ours|theirThird|sparse": {
+      "going0": {
+        "n": 60381,
+        "score": 0.506948,
+        "concede": 0.095229,
+        "value": 0.411719
+      },
+      "going1": {
+        "n": 5931,
+        "score": 0.505142,
+        "concede": 0.101838,
+        "value": 0.403305
+      }
+    },
+    "ours|theirThird|crowded": {
+      "going0": {
+        "n": 26668,
+        "score": 0.587483,
+        "concede": 0.078221,
+        "value": 0.509262
+      },
+      "going1": {
+        "n": 2330,
+        "score": 0.576395,
+        "concede": 0.085837,
+        "value": 0.490558
+      }
+    },
+    "theirs|ownThird|sparse": {
+      "going0": {
+        "n": 28542,
+        "score": 0.011106,
+        "concede": 0.577395,
+        "value": -0.566288
+      },
+      "going1": {
+        "n": 3282,
+        "score": 0.013102,
+        "concede": 0.589275,
+        "value": -0.576173
+      }
+    },
+    "theirs|ownThird|crowded": {
+      "going0": {
+        "n": 37575,
+        "score": 0.010459,
+        "concede": 0.588423,
+        "value": -0.577964
+      },
+      "going1": {
+        "n": 4257,
+        "score": 0.009161,
+        "concede": 0.60747,
+        "value": -0.598309
+      }
+    },
+    "theirs|middle|sparse": {
+      "going0": {
+        "n": 83102,
+        "score": 0.063849,
+        "concede": 0.317898,
+        "value": -0.254049
+      },
+      "going1": {
+        "n": 10264,
+        "score": 0.065277,
+        "concede": 0.321512,
+        "value": -0.256235
+      }
+    },
+    "theirs|middle|crowded": {
+      "going0": {
+        "n": 61213,
+        "score": 0.064529,
+        "concede": 0.350791,
+        "value": -0.286263
+      },
+      "going1": {
+        "n": 7727,
+        "score": 0.068849,
+        "concede": 0.351883,
+        "value": -0.283034
+      }
+    },
+    "theirs|theirThird|sparse": {
+      "going0": {
+        "n": 99156,
+        "score": 0.18834,
+        "concede": 0.128827,
+        "value": 0.059512
+      },
+      "going1": {
+        "n": 9312,
+        "score": 0.244523,
+        "concede": 0.130155,
+        "value": 0.114369
+      }
+    },
+    "theirs|theirThird|crowded": {
+      "going0": {
+        "n": 31526,
+        "score": 0.157362,
+        "concede": 0.138711,
+        "value": 0.018651
+      },
+      "going1": {
+        "n": 2548,
+        "score": 0.207614,
+        "concede": 0.134615,
+        "value": 0.072998
+      }
+    }
+  },
+  "guard": {
+    "tolerance": 0.002,
+    "maxContrastDev": 0.000582,
+    "maxPcDev": 0.00037277,
+    "maxDev": 0.000582,
+    "pass": true,
+    "contrastChecks": [
+      {
+        "cand": "r7a0",
+        "reconstructed": -0.038611,
+        "published": -0.038624,
+        "dev": 0.000013
+      },
+      {
+        "cand": "r7a60",
+        "reconstructed": -0.054165,
+        "published": -0.053754,
+        "dev": 0.000411
+      },
+      {
+        "cand": "r7a120",
+        "reconstructed": -0.044462,
+        "published": -0.044274,
+        "dev": 0.000188
+      },
+      {
+        "cand": "r7a180",
+        "reconstructed": -0.017984,
+        "published": -0.017598,
+        "dev": 0.000386
+      },
+      {
+        "cand": "r7a240",
+        "reconstructed": -0.041165,
+        "published": -0.040684,
+        "dev": 0.000481
+      },
+      {
+        "cand": "r7a300",
+        "reconstructed": -0.05123,
+        "published": -0.050784,
+        "dev": 0.000446
+      },
+      {
+        "cand": "r14a0",
+        "reconstructed": -0.036861,
+        "published": -0.036552,
+        "dev": 0.000309
+      },
+      {
+        "cand": "r14a60",
+        "reconstructed": -0.054525,
+        "published": -0.054331,
+        "dev": 0.000194
+      },
+      {
+        "cand": "r14a120",
+        "reconstructed": -0.051957,
+        "published": -0.051637,
+        "dev": 0.00032
+      },
+      {
+        "cand": "r14a180",
+        "reconstructed": -0.032231,
+        "published": -0.031885,
+        "dev": 0.000346
+      },
+      {
+        "cand": "r14a240",
+        "reconstructed": -0.055148,
+        "published": -0.054596,
+        "dev": 0.000552
+      },
+      {
+        "cand": "r14a300",
+        "reconstructed": -0.050169,
+        "published": -0.049913,
+        "dev": 0.000256
+      },
+      {
+        "cand": "r21a0",
+        "reconstructed": -0.036278,
+        "published": -0.035776,
+        "dev": 0.000502
+      },
+      {
+        "cand": "r21a60",
+        "reconstructed": -0.052699,
+        "published": -0.052392,
+        "dev": 0.000307
+      },
+      {
+        "cand": "r21a120",
+        "reconstructed": -0.060934,
+        "published": -0.060439,
+        "dev": 0.000495
+      },
+      {
+        "cand": "r21a180",
+        "reconstructed": -0.037331,
+        "published": -0.037076,
+        "dev": 0.000255
+      },
+      {
+        "cand": "r21a240",
+        "reconstructed": -0.057906,
+        "published": -0.057324,
+        "dev": 0.000582
+      },
+      {
+        "cand": "r21a300",
+        "reconstructed": -0.049247,
+        "published": -0.049104,
+        "dev": 0.000143
+      }
+    ],
+    "positiveControl": {
+      "pooled": {
+        "reconstructed": -0.037331,
+        "published": -0.037076,
+        "dev": 0.00025545
+      },
+      "byFace": {
+        "ours": {
+          "reconstructed": -0.036202,
+          "published": -0.036098,
+          "dev": 0.00010382
+        },
+        "theirs": {
+          "reconstructed": -0.038664,
+          "published": -0.038291,
+          "dev": 0.00037277
+        }
+      }
+    }
+  },
+  "deterministic": true,
+  "sha256": "8bac58da804a887f843f33b82f3813ca1bc3ed676a1ed1ffcb262936e0cfebcf",
+  "verdict": "GUARD PASS"
+}

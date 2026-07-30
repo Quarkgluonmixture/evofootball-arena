@@ -363,6 +363,69 @@ The MDE inherits v1's: **half-width ≤ 0.009 on the ATE at 95% cluster bootstra
 below 0.009 is FLAT (§6(b)), a negative verdict on the eye as specified, not a call
 for budget.
 
+### 3.3c ⭐ BUILD-TIME RECOMPUTED PREDICTION — per-context recovered control (§2.4a / #71.2)
+
+Landed at BUILD, **before any payoff datum** (#71.2: the prediction lands in the doc
+before the run; the delta from the provisional is reported, never re-cut). The §2.4a
+control-recovery pass ran deterministic and read-only on the frozen census block
+(seeds `8,810,000 + k`, HEAD `c5f2913`, enriched world), recovering `signed(control)`
+per **(context × going-bit)**. The provisional §3.3(b) numbers used the FLAT pooled
+anchor (−0.0495); (b) is now recomputed against the per-context recovered levels
+(same NEUTRAL Monte-Carlo, seed 70320, 20,000 draws/context). Source of record:
+[`data/stage3-v2-p2-control-recovery.json`](data/stage3-v2-p2-control-recovery.json)
+and [`data/stage3-v2-p2-prediction.json`](data/stage3-v2-p2-prediction.json).
+
+**Recovery guard verdict (#71.2's ex-ante guard) — GUARD PASS.**
+
+```text
+X-DET twice byte-identical              deterministic = true
+re-derives the census's own contrasts   maxDev 0.000582  vs tolerance 0.002   ✓
+  candidate−control (18 cands)          maxContrastDev 0.000582
+  INVERTED positive control (PC)        maxPcDev 0.00037277
+pooled control recovered               −0.049132  (matches the freeze-time −0.0495)
+pooled control by face                  ours +0.077129 / theirs −0.206154
+recovery tableSha (census) unchanged    a33e9a73…  (the 432 forced cells byte-identical)
+recovery pass SHA-256                    8bac58da804a887f843f33b82f3813ca1bc3ed676a1ed1ffcb262936e0cfebcf
+```
+
+A recovery that could not re-derive the census's own published candidate−control
+contrasts would not be a recovery (#71.2); it re-derives all 18 to ≤ 0.000582,
+inside the 0.002 tolerance stated in the build.
+
+**(b) RECOMPUTED against per-context control — with the delta from the provisional
+flat anchor:**
+
+| quantity (VALUE axis) | provisional (flat −0.0495) | recomputed (per-context) | Δ recovered − provisional |
+| --- | ---: | ---: | ---: |
+| deviation share (true-keyed) | 0.5477 | **0.6194** | **+0.0717** |
+| ATE per moment | +0.1314 | **+0.023** | **−0.1084** |
+| ATT per deviating moment | +0.2400 | **+0.0371** | **−0.2029** |
+| 180°-ring landing share | 0.5095 | 0.5100 | +0.0005 |
+| dead-ahead (a0) share | 0.3364 | 0.3330 | −0.0034 |
+
+(0.5-weight equivalents: recomputed ATE +0.0115, ATT +0.0186.) A consistency check:
+re-running the SAME machinery with the flat pooled anchor reproduces the provisional
+(dev 0.5477, ATE +0.1311, ATT +0.2393) — so the entire delta is the anchor
+(per-context vs flat), not a code change.
+
+**What the flat anchor distorted, corrected:** the per-context control levels vary
+sharply by face (ours +0.077, theirs −0.206) and by third; reading them as one flat
+level over-credited the paired advantage. The corrected ATE/ATT collapse by ~5–6×
+(**+0.131 → +0.023 ATE; +0.240 → +0.037 ATT**) while the deviation share RISES
+(0.548 → 0.619 — a per-context anchor makes more cells look improvable, but each
+improvement is worth less). **For the commander's eye:** the recomputed ATE +0.023 is
+still above the MDE half-width (≤ 0.009) but the margin is now ~2.5×, not ~15× — the
+transferable-advantage prediction is materially thinner than the freeze-time
+provisional implied. The landing geometry is the SURVIVING half: the 180°-ring share
+did NOT deflate (0.5095 → 0.510) — the flat anchor's suspected 180-inflation is not
+borne out; the anchor's real distortion was ATE/ATT MAGNITUDE. The angular mix did
+move (a120 0.090 → 0.028; radius shifted r7 0.676 → 0.549 toward r14 0.205 → 0.321).
+The load-bearing prediction remains **(a) the frozen geometry** (§3.3a).
+
+The recompute's own geometry medians (−9.74 pp neg / +8.42 pp pos; 29/36 neg
+behind-lateral, 16/36 pos dead-ahead; floor −20.41 / ceiling +38.16) reproduce the
+frozen §3.3(a) values (−9.71 / +8.59) to < 0.2 pp — §3.3(a) stays frozen as written.
+
 ### 3.4 DEV — the floor, and its PERCEIVED-attainability (the #65 lesson in gate form)
 
 The v1 P2 FAILED DEV (18.47% vs 22%) because its denominator was ALL decisions —
@@ -406,6 +469,13 @@ build against the recovered per-context control (§2.4a); if it falls below 0.22
 ante, **reading (d) fires at build and the payoff run does NOT start** (the #65
 discipline honored at the last ex-ante gate — running into a delivery gate known
 to fail is #29.5's forbidden move).
+
+**#65 CHECKPOINT VERDICT (recomputed at BUILD against the per-context recovered
+control) — PASS.** The recomputed true-keyed deviation share is **0.6194**, and even
+its perceived lower bound (× W_r 0.886) is **0.5488** — **≈ 2.5× the 0.22 floor**.
+Reading (d) does NOT fire; **the payoff run is cleared to start** (the last ex-ante
+gate holds). Source: [`data/stage3-v2-p2-prediction.json`](data/stage3-v2-p2-prediction.json)
+(`checkpoint65.pass = true`).
 
 ### 3.4b The convergence-signature half of H-V2 — at FORK grain (mandatory mediators)
 
