@@ -394,3 +394,115 @@ eye deploys and **cannot** authorize V2-P2.
   enriched world's own paired R0**, never the banked v1 numbers; R stays 4.0 m.
 * **Nothing ships (Road B).** Every EDS flag dormant in production, `c6Carry` /
   `c7Windup` probe-only, fingerprint unchanged, through the whole stage.
+
+---
+
+## 9. RESULT — the composition price exists, and it is GEOMETRIC
+
+Run **supervised by the resident session** (#49.5), the **frozen probe unchanged**
+(§7: no feature/binary/R/W/horizon/lattice/floor/reading/X6-rule re-cut after
+sight). HEAD `c5f2913` (ruling #68); enriched world, full #67.3 bundle armed
+(`edsPerceivedDefence`+`edsPerceivedChoice`+`edsValueAxis`, `c5Hold`, `c6Carry`,
+`c7Windup`; `c5TouchFork` off); `src/**` byte-identical to V2-P0 HEAD `92876e5`.
+Census block **8,810,000 + k, k ∈ 0..649** (650 cap); the run reached the frozen
+**49,094-moment** budget at **535 matches**. Motion source = the remembered/true
+velocity, differencing clause dead-lettered (#67.2). Data:
+[`data/stage3-v2-p1-anticipatory-table.json`](data/stage3-v2-p1-anticipatory-table.json)
+· canonical table SHA **`a33e9a73…0992aa`** · file SHA256 **`3ed25d6f…c967`** ·
+`deterministic: true`.
+
+**Scale.** 535 matches → **49,094 station-family moments** (7,646 ball-directed
+skipped; `noPool` 0) → **932,786 forks** priced. 535 cold-start bodies ledgered
+(`eNoSnapshot`, one/match); across **157,357,616** classified ticks
+**unexplained = 0**. 432 cell-candidate pairs: **216 carried a computable
+contrast** (both split cells present) → **151 IN-POWER**, **65 UNDER-POWERED**
+(all short on the binding going=1 side, n1 < 150; published, never pooled); the
+remaining 216 pairs had an empty going=1 cell (the candidate is never
+someone-going in that context).
+
+### 9.1 Gates — ALL PASS (verdict: GATES PASS)
+
+| gate | result |
+| --- | --- |
+| **X4 — clone coverage** | 49,094 clones taken, coverage **100%**. **PASS** |
+| **X5 — control identity** | the CONTROL fork reproduces the base continuation bit-identically, **1,963 checked / 0 mismatched**. **PASS** |
+| **X6 — force fidelity** | per-record (#32.1); **`unexplained` EXACTLY 0** across 157.36 M ticks; `ok` = 134,880,679 → **okFraction 0.921938**; measured enriched clamp share **0.078062** → derived **X6_FLOOR = 0.843877** (vs the P1R reference **0.84** — the formula-form vindicated, floor cleared). **PASS** |
+| **X7 — determinism** | two `runExperiment()` calls byte-identical; table SHA `a33e9a73…0992aa`; zero `src/**` touched. **PASS** |
+| **PC — positive control** | `r21a180` signed value below the control in **both** faces, CI upper < 0: pooled **−3.71 pp** CI [−4.24, −3.14]; ours −3.61 pp CI [−4.31, −2.90], theirs −3.83 pp CI [−4.61, −3.06]. **resolves.** **PASS** |
+| **SAT** | every tested gap within ±0.05 (max gap 0.0194); **agrees → SHIPPING TABLE.** |
+| **FLOORS** | #24 = 150 per split cell, DERIVED from §3's smoke; smoke block **8.80M** disjoint from census **8.81M** (#46.2). 65 under-powered split cells published under-powered, never pooled. **PASS** |
+| **CLUSTER / CI** | cluster = match seed; 2,000 cluster bootstraps, frozen seed **50068**; paired at candidate-context grain; no bare means. **PASS** |
+
+### 9.2 The reading — MIXED-STRUCTURED (§4 reading (d) fired, structured)
+
+**The pre-named universal is REFUTED as stated.** The primary contrast pooled
+over all 151 in-power cells is **+0.34 pp**, CI **[−0.16, +0.87]** — it straddles
+zero. "The marginal value of approaching a region a teammate is already going to
+is *sharply negative*" (§1, the memo's hypothesis) is **NOT** a pooled universal.
+
+**What replaces it is better, and it is geometric.** The 151 in-power cells split
+**36 resolved-negative / 36 resolved-positive / 79 unresolved-null** — a clean,
+symmetric split whose two halves have **opposite, spatially-organised signs**, so
+the pooled ≈ 0 is **the two structures cancelling, not absence** (the P1R
+ecological-fallacy lesson, in the table). The composition price **EXISTS, lives
+at candidate grain exactly where #68.2 predicted, and the census sees it in
+cells.** This is §4 reading **(d) MIXED** — sign flips by context/candidate —
+fired in its structured form: negative where the pile-up bites, positive where
+motion marks a good target.
+
+**(A) NEGATIVE concentrates in the BEHIND / LATERAL ring** — following a teammate
+into cover duplicates it. 36 resolved-negative cells, median **−9.7 pp**, floor
+**−20.4 pp**; **26 of 36 sit in the r7/r14 a120/a180/a240 ring**. By approach
+angle (all resolved-negative cells):
+
+| angle | resolved-neg cells | median Δ |
+| --- | ---: | ---: |
+| a120 (lateral) | 9 | −10.64 pp |
+| a180 (dead behind) | 12 | −9.84 pp |
+| a240 (lateral) | 8 | −7.76 pp |
+| a0 / a60 / a300 (ahead/flank) | 3 / 2 / 2 | −9.94 / −9.75 / −7.00 pp |
+
+Deepest: `theirs\|ownThird\|crowded r21a180` **−20.41 pp**; `ours\|theirThird\|crowded r7a120` −19.59 pp; `ours\|theirThird\|sparse r14a120` −18.33 pp.
+
+**(B) POSITIVE concentrates DEAD AHEAD** — a teammate's forward run marks real
+opportunity and the second arrival supports it. 36 resolved-positive cells,
+median **+8.6 pp**, ceiling **+38.2 pp**; **13 of 36 are the two straight-ahead
+candidates `r14a0` (×8) and `r21a0` (×5)**. By approach angle:
+
+| angle | resolved-pos cells | median Δ |
+| --- | ---: | ---: |
+| a0 (dead ahead) | 16 | +9.39 pp |
+| a300 / a180 / a240 (flank/behind) | 6 / 5 / 4 | +8.59 / +7.41 / +12.63 pp |
+| a120 / a60 | 3 / 2 | +6.73 / +8.49 pp |
+
+Deepest: `ours\|theirThird\|crowded r21a0` **+38.16 pp**; same context `r14a0` +32.07 pp; `ours\|middle\|crowded r21a0` +22.91 pp.
+
+**不要重复补位,要支援进攻 — in the table, not in a rule (#70.2).** The load-bearing
+half of the hypothesis holds: composition IS priced at candidate grain, and its
+sign is read off the geometry (behind/lateral = cost, forward = support).
+
+### 9.3 Cross-checks and the TRUE-keyed wedge
+
+* **Wedge cross-check (PERCEIVED vs TRUE, reported only).** Agreement
+  **A = 92.89%**; TRUE someone-going rate **9.79%** vs PERCEIVED **8.41%**;
+  **W_r = 0.859** — reproduces V2-P0's W1 reading (A 93.08%, W_r 0.851). The table
+  is TRUE-keyed; **the consumer pays the perception exchange at V2-P2 with the
+  ORACLE arm** (§1, §8), not here.
+* **X6 floor, derived not fixed (§2.4).** The measured enriched clamp share
+  0.078062 lands the derived floor at **0.8439** — within a whisker of the P1R
+  0.84 reference, vindicating the frozen `1 − 2 × clamp-share` formula-form on the
+  enriched world. `reconstructionDiverged` 1,411,370 (reported-not-gated).
+
+### 9.4 Disposition (#70.3) — V2-P2 DRAFTING AUTHORIZED
+
+Per ruling **#70.3**, the census is ACCEPTED and **V2-P2 drafting is authorized
+(executor)** on the pre-named consumer hypothesis: *a chooser that reads
+OTHERS-GOING stops following into cover and starts supporting forward runs — and
+the convergence signature (spacing / duplicate-runs) moves the RIGHT way at fork
+grain.* V2-P2 reuses the v1 P2 harness (five arms incl. ORACLE-CTX and INVERTED
+PC; paired same-seed forks; disjoint block; ex-ante shrinkage from THIS committed
+table; DEV on the PERCEIVED-attainable population per V2-P0(ii)), consuming the
+going-conditioned table NEUTRAL and percept-honest. Freeze → review → build →
+run per the standing pattern; sizing smoke before floors (#44.5/#65). **V2-P1
+ships nothing (Road B); it makes no claim the eye deploys and does not itself
+authorize deployment.**
