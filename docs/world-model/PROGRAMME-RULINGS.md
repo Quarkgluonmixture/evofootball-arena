@@ -2971,3 +2971,58 @@
 >    checkpoint, engineering smoke with wall-time projection; if the
 >    projection exceeds ~50 min the run hands to the resident session
 >    (#49.5), else in-session to completion. Result returns here.
+
+> **COMMANDER RULING #72 (2026-07-30 — V2-P2 accepted: readings (b) +
+> (h) together; Stage III v2 CLOSES at fork grain; the diagnosis is
+> SIMULTANEITY, not perception; the fork returns to the user):**
+>
+> 1. **BOTH READINGS ACCEPTED AS FIRED.** (b) FLAT: ATE +0.0062
+>    [−0.0011, +0.0136] — ~27% of the predicted +0.023 survived, the
+>    winner's curse again. (h) CONVERGENCE-WRONG-WAY: FORK-SPACING
+>    closed −1.05 m everywhere; going=1-avoidance INVERTED (+0.92 pp
+>    duprun rise on the cover-duplicating cells); the argmax's
+>    most-chosen candidate is r7a180 (dead behind, 7 m — 10,290 of
+>    23,912 deviations), driving the 180-ring share to 60.4% vs v1's
+>    25.9%. Per (h), NO deployment claim; **V2-P3 is not reachable
+>    from this run.** The mislabelled perceptionPrice field is noted
+>    (the doc records the correct semantics); it changes nothing.
+> 2. ⭐⭐ **BANKED — what this failure buys**: (i) **the machinery is
+>    fully exorcised** — DEV delivered 61.56% on the
+>    perceived-attainable denominator (v1's killer fixed and proven),
+>    PC resolved, wedge paid as priced; a clean negative, not a
+>    delivery failure. (ii) **ORACLE ≈ 0 forecloses the perception
+>    excuse**: with TRUE context and TRUE going-bits the payoff is
+>    still flat — the table itself does not transfer; the perception
+>    trunk is NOT the binding constraint HERE. (iii) ⭐⭐⭐ **the
+>    diagnosis, named: SIMULTANEITY.** The going-bit reads bodies
+>    ALREADY in motion; simultaneous deciders cannot see each other's
+>    incipient choices, so every deviator reads going=0 on the same
+>    attractive cell and they all go — the attractor lives in the
+>    going=0 prices of the behind-ring (v1's "cheap and positive"
+>    seat), and one lagged bit of anticipation cannot break it.
+>    Motion-based anticipation is structurally BLIND at the decision
+>    instant. Real football solves this with SHARED PRIORS — coach
+>    doctrine, familiarity, roles — which is exactly the causal seat
+>    the programme banked for A4 long ago (doctrine as latency
+>    reducers). (iv) the P1 census STANDS CERTIFIED — the composition
+>    price exists and is geometric; what failed is the unilateral
+>    argmax CONSUMER, not the table.
+> 3. **STAGE III v2 CLOSES at fork grain.** The chain (contract →
+>    V2-P0 W1 → V2-P1 certified geometric → V2-P2 (b)+(h)) is complete
+>    and honest: two generations of the eye have now converged for two
+>    DIFFERENT measured reasons (v1: blind to others; v2: sees others'
+>    motion but not others' decisions). Everything dormant, nothing
+>    shipped, all assets banked.
+> 4. **THE FORK IS THE USER'S**, three candidate roads, the
+>    commander's recommendation marked: (A) **the A4 doctrine seat
+>    (RECOMMENDED)** — shared priors as the anti-simultaneity
+>    mechanism: doctrine/familiarity gives deciders a common map of
+>    who goes where, breaking ties BEFORE motion exists; the #72.2(iii)
+>    diagnosis points here, and A4 was pre-named as coaching's causal
+>    seat; (B) **the R3-saturation census** (the memo's fallback) —
+>    census the world where everyone consumes the table, accepting the
+>    identification tangle; directly tests whether ANY table is stable
+>    under its own deployment; (C) **park Stage III, return to the
+>    C-track** (C6 v2 pressured carry behind its scramble-ceiling
+>    obligation; C7 pass wind-up behind its §2 obligation). Presented
+>    with this ruling; nothing proceeds until the user rules.
