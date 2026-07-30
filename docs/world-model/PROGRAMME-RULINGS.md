@@ -3078,3 +3078,32 @@
 >    ruling.
 > 4. The executor drafts the V2-P2R pre-registration (freeze → review
 >    → build → run per the standing pattern; sizing before floors).
+
+> **COMMANDER RULING #74 (2026-07-30 — V2-P2R pre-registration
+> reviewed: PASS; build authorized, the run supervised):**
+>
+> 1. **REVIEW — PASS.** The set-difference abort predicate is the
+>    load-bearing design and it is RIGHT: `G_mid \ G_commit ≠ ∅` fires
+>    only on a genuinely NEW converging body, never on the teammate
+>    the eye deliberately chose to support (the smoke measured 63.4%
+>    of deviations choosing going=1 at commit — without the set
+>    difference the rule would have misfired on most of them). The
+>    clock-not-reset abort (wasted ticks unrefunded, fork scored over
+>    full horizons) is the honest price #73.2(i) demanded. Opportunity
+>    ample (42.0% of windows, p50 0.60 s — the substrate carries the
+>    early signal the user's intuition named). The DEV counting
+>    decision (deviate-then-abort = delivered; the committing-vs-
+>    aborting split classifies any collapse) is accepted as pre-stated.
+>    The 30.77% smoke perceived-attainable is understood as a
+>    ledger-less lower bound, correctly not smuggled past
+>    percept-honesty; the payoff run's ledger re-measures it.
+> 2. **BUILD AUTHORIZED (executor); RUN SUPERVISED (resident, #49.5)**:
+>    implement D3-DUPLICATE exactly to the frozen predicate in the
+>    consumer harness (all four eye arms; CONTROL untouched), pinning
+>    tests (abort-never-on-commit-set; abort-fires-on-new-contributor;
+>    OFF bit-identity; clock-not-reset), X-family proofs, engineering
+>    smoke capped, commit, STOP; the resident session runs the payoff
+>    (12,000 moments, block 9.01M, bootstrap 90730) detached with the
+>    Monitor pattern; a write-up session lands the result; the ruling
+>    reads the pre-named reversal hypothesis. Nothing moves after
+>    sight.
