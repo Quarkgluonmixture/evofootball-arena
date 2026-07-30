@@ -388,10 +388,25 @@ teammate into cover duplicates it; median −9.7 pp, floor −20.4 pp) vs
 opportunity; up to +38.2 pp); the pooled ≈0 is the two structures
 cancelling; 不要重复补位,要支援进攻 — in the table, not in a rule
 ([`STAGE3-V2-P1-ANTICIPATORY-CENSUS.md`](STAGE3-V2-P1-ANTICIPATORY-CENSUS.md)
-§9; 932,786 forks, the heaviest run of the programme). **NEXT: V2-P2
-(the consumer, out of sample) pre-registration — executor drafts per
-#70.3; commander reviews before build.** R20 gaps / F9 available. Road
-B stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
+§9; 932,786 forks, the heaviest run of the programme). **V2-P2 RAN (chain: freeze
+`5cb8339` → #71 review → control-recovery GUARD PASS → prediction
+recomputed + #65 checkpoint PASS → build `f92636a` → run `9c28826`) —
+⛔ READINGS (b)+(h) TOGETHER (ruling #72): DELIVERED AND FLAT, AND THE
+EYE CONVERGES EVEN SEEING OTHERS COMING** — DEV 61.56% (v1's killer
+genuinely fixed; a clean negative), ATE +0.006 CI containing zero,
+ORACLE ≈ 0 (truth doesn't beat percept — the table itself does not
+transfer), FORK-SPACING closed −1.05 m, going=1-avoidance INVERTED,
+60.4% of deviations into the 180-ring (v1's attractor, harder).
+⭐⭐⭐ **The diagnosis, named (#72.2): SIMULTANEITY — the going-bit reads
+motion, and simultaneous deciders cannot see each other's incipient
+choices; one lagged bit of anticipation cannot break the behind-ring
+attractor. Real football solves this with SHARED PRIORS — the A4
+doctrine seat.** Stage III v2 CLOSES at fork grain (two generations,
+two different measured convergence mechanisms); the P1 composition-price
+census STANDS certified; all machinery banked dormant. **THE FORK IS
+THE USER'S (#72.4): (A) the A4 doctrine seat (RECOMMENDED) · (B) the
+R3-saturation census · (C) park Stage III, return to the C-track.**
+R20 gaps / F9 available. Road B stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
