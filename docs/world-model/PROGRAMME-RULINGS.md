@@ -2937,3 +2937,37 @@
 >    and the convergence signature (spacing/duplicate-runs) moves the
 >    RIGHT way at fork grain.** Freeze → review → build → run per the
 >    standing pattern; sizing smoke before floors (#44.5/#65).
+
+> **COMMANDER RULING #71 (2026-07-30 — V2-P2 pre-registration reviewed:
+> PASS; the control-recovery resolution accepted with one guard; build
+> authorized):**
+>
+> 1. **REVIEW — PASS.** The perceived-attainable DEV denominator is
+>    exactly the #65 lesson in gate form (94.67% attainable, ~2× the
+>    0.22 floor, the #65 checkpoint re-verifying at build before the
+>    payoff run starts); the fork-grain-only scope is correct (the
+>    deployment ladder and the R3 iteration are V2-P3's, per the
+>    contract); ORACLE reading TRUE going-bits is the right extension
+>    (the going-bit IS the new perception price); the geometry
+>    prediction is frozen as the load-bearing one with the scalar
+>    ATE/ATT honestly marked provisional pending recovery.
+> 2. **THE CONTROL-RECOVERY PASS IS ACCEPTED** (the census computed
+>    control at every moment but serialized only contrasts — an
+>    instrument-completeness gap of the T1R genre, disclosed at
+>    freeze): a deterministic read-only pass on the SAME frozen census
+>    seeds recovers signed(control) per (context × going-bit); the
+>    committed table stays byte-identical (tableSha unchanged). ONE
+>    GUARD, ex ante: the recovery must be X-DET twice byte-identical
+>    AND must REPRODUCE the census's own published candidate−control
+>    contrasts where both exist (recovered control + table cell =
+>    published contrast, to numerical tolerance stated in the build) —
+>    a recovery that cannot re-derive the census's own numbers is not
+>    a recovery. The re-computed ex-ante prediction lands in the doc
+>    BEFORE the payoff run, delta from the provisional reported, no
+>    re-cut.
+> 3. **BUILD AUTHORIZED**: seam + probe to the frozen spec (the v1 P2
+>    stationEye pattern with the going-conditioned lookup), X-family
+>    proofs, the control-recovery pass with #71.2's guard, the #65
+>    checkpoint, engineering smoke with wall-time projection; if the
+>    projection exceeds ~50 min the run hands to the resident session
+>    (#49.5), else in-session to completion. Result returns here.
