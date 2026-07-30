@@ -1,0 +1,61 @@
+{
+  "experiment": "STAGE3-V2-P2R (pre-freeze sizing smoke — abort-opportunity rate)",
+  "authority": "STAGE3-V2-P2R-ABORTABLE · #73.2/#73.4 · #44.5/#65 · #46.2 · #24",
+  "head": "c5f2913 (ruling #68; src identical to V2-P0 HEAD 92876e5 / V2-P1 / V2-P2)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "consumedTableSha": "a33e9a73bbb08fe2c3601ac049e29b75453fcf5dbe1aa6af5e71bb23a50992aa",
+  "controlRecoverySha": "8bac58da804a887f843f33b82f3813ca1bc3ed676a1ed1ffcb262936e0cfebcf",
+  "parameters": {
+    "seedStart": 9000000,
+    "matches": 150,
+    "regionRadiusM": 4,
+    "advanceHorizonS": 3,
+    "windowTicks": 180,
+    "decisionCadenceTicks": 9,
+    "momentSpacingS": 2,
+    "note": "read-only, forks NO counterfactual and prices NO payoff; the abort-opportunity rate is measured at NATURAL rates (the eye choice is computed but never applied)"
+  },
+  "smokeMatches": 150,
+  "seedBlock": "9000000..9000149",
+  "totalMoments": 11858,
+  "momentsPerMatch": 79.053,
+  "qualifying": 13778,
+  "ballDirectedSkipped": 1920,
+  "noPool": 0,
+  "devDenominator": {
+    "note": "DEV denominator re-confirm (§3.4): percept exists AND context carries an in-power cell",
+    "perceivedAttainableShare": 0.3077,
+    "hasPerceptShare": 0.9461,
+    "noCellShare": 0
+  },
+  "abortOpportunity": {
+    "note": "NATURAL-RATE abort opportunity: dry-run NEUTRAL deviations, null-eye continuation, a NEW going-contributor (gid NOT in the commit-time set) at any decision-cadence re-read",
+    "deviatingWindows": 2274,
+    "windowsAlive": 2205,
+    "abortOpportunityWindows": 956,
+    "abortOpportunityRatePerDeviation": 0.4204,
+    "abortOpportunityRatePerAliveWindow": 0.4336,
+    "commitBitOneShare": 0.6337,
+    "newContributorsPerOpportunity": 1.419,
+    "timeToAbortTicks": {
+      "p50": 36,
+      "p90": 126,
+      "min": 9,
+      "max": 180
+    },
+    "timeToAbortSecondsP50": 0.6,
+    "cadenceTicks": 9,
+    "windowTicks": 180
+  },
+  "deterministic": true,
+  "sha256": "92baf8e9f0e46f75ca0ef524961a577f471b89f1cb28b33de773da48bf28035a"
+}
