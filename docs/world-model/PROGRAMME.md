@@ -375,10 +375,23 @@ Banked (#65.2): **the certified patience corner exists in true context
 binding constraint.** Third independent arrow at the perception trunk
 this week (#56.2 defenders don't anticipate shots · #44 the eye can't
 see neighbours' motion · #65.2 the carrier can't see his own calm).
-**THE QUEUE IS AT USER GATES — the one live fork: Stage III v2's
-anticipatory census (#53 unpark met; it IS perception work; three
-arrows point at it).** R20 gaps / F9 available. Road B stands; nothing
-ships. Earlier tonight: the #45.2(0) doc split landed and was
+**STAGE III v2 LAUNCHED
+(user "1", ruling #66) and the chain is running**: contract drafted
+([`STAGE3-V2-ANTICIPATORY-EYE.md`](STAGE3-V2-ANTICIPATORY-EYE.md)) →
+V2-P0 wedge map RAN, reading W1, both teeth clear (**the off-ball body
+SEES: A 93.08%, W_r 0.851** — the complement of #65.2's blind carrier;
+#67/#68) → ⭐⭐⭐ **V2-P1 THE ANTICIPATORY CENSUS RAN AND PASSES (ruling
+#70): THE COMPOSITION PRICE EXISTS AND IT IS GEOMETRIC** — 36 resolved-
+negative cells concentrate in the behind/lateral ring (following a
+teammate into cover duplicates it; median −9.7 pp, floor −20.4 pp) vs
+36 resolved-positive dead ahead (a teammate's forward run marks real
+opportunity; up to +38.2 pp); the pooled ≈0 is the two structures
+cancelling; 不要重复补位,要支援进攻 — in the table, not in a rule
+([`STAGE3-V2-P1-ANTICIPATORY-CENSUS.md`](STAGE3-V2-P1-ANTICIPATORY-CENSUS.md)
+§9; 932,786 forks, the heaviest run of the programme). **NEXT: V2-P2
+(the consumer, out of sample) pre-registration — executor drafts per
+#70.3; commander reviews before build.** R20 gaps / F9 available. Road
+B stands; nothing ships. Earlier tonight: the #45.2(0) doc split landed and was
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
