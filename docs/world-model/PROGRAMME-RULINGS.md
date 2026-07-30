@@ -3134,3 +3134,45 @@
 >    pins updated (abort-null-when-flag-absent added), full X-family
 >    re-proven; one fix commit; STOP; the resident session runs the
 >    payoff only after this lands.
+
+> **COMMANDER RULING #76 (2026-07-30 — V2-P2R FAILS on PC as the stop
+> rule demands; the abort ledger delivers the real finding: the brake
+> yields to FALSE CLAIMS and its value is COLLECTIVE; the fork returns
+> to the user):**
+>
+> 1. **FAIL AS FIRED.** PC upper +0.0005 ≥ 0 ⇒ no payoff reading
+>    published (the stop rule, verbatim). The mechanism is itself a
+>    finding: the abort RESCUES even the argmin chooser (its harm
+>    shrinks −0.0107 → −0.0075; 32% of its bad approaches aborted) —
+>    a safety net compresses arm differences until the budget cannot
+>    see the pricing family at fork grain. The reversal hypothesis
+>    also did not land (duprun neg +1.08 pp still positive; spacing
+>    −0.57 m still closing, though less than P2's −0.88); X6 closes
+>    at 0 with eAbort 43,285 — the harness is clean, the substance
+>    failed.
+> 2. ⭐⭐⭐ **BANKED — the abort ledger's measurement**: the brake fires
+>    exactly as sized (43.95%, t50 0.60 s, wasted 0.80 s/abort) but
+>    **47.3% of yielded regions go UNSERVED** (the claimant that
+>    triggered the yield reoccupies only 23.1%) — the velocity-advance
+>    claim signal reads passers-by as claimants, so the lone braker
+>    yields to noise half the time and is handed back to the
+>    convergent incumbent. **At fork grain, a single body with a
+>    brake in a world of non-brakers cannot express the mechanism:
+>    mutual yielding is a COLLECTIVE protocol** — its value, if any,
+>    exists only where every body carries it. Three generations
+>    (v1 blind; v2 seeing motion; v2.1 braking) have now converged
+>    at fork grain for three measured reasons, and all three point
+>    at the same structural fact: the single-deviator test regresses
+>    to the incumbent attractor.
+> 3. **THE FORK IS THE USER'S**: (A) **one bounded DEPLOYMENT-GRAIN
+>    test (RECOMMENDED)** — eye+brake armed BOTH TEAMS vs R0, the
+>    full C6/C7-T2 deployment battery verbatim and HARD (canaries
+>    stop it; watchability protected), primary = the BEHAVIORAL
+>    signature (does mutual braking disperse the pile-up: spacing,
+>    duplicate runs, rest defence, offsides), payoff REPORTED-
+>    LABELLED (the table's unilateral→universal gap is v1's known
+>    tangle, honestly framed); the question all three generations
+>    circled, answered directly, in one ~6-minute experiment family.
+>    (B) **park Stage III entirely** — bank all machinery, return to
+>    the C-track (C6 v2 pressured carry / C7 pass wind-up). Nothing
+>    proceeds until the user rules.
