@@ -3221,3 +3221,30 @@
 >    V3-P2 the consumer → V3-P3 deployment + battery + the R3
 >    iteration. The commander drafts the contract; the executor
 >    drafts V3-P0 per the standing pattern.
+
+> **COMMANDER RULING #78 (2026-07-30 — V3-P0 pre-registration reviewed:
+> PASS; the load-bearing rule ratified; run authorized in-session):**
+>
+> 1. **REVIEW — PASS.** Role read from the world's own immutable
+>    variable (types.ts:19/27, Player.ts:29, re-derived on becomeSub —
+>    the E-INJURY interaction already covered by the standing class);
+>    the 2-WG roster banked as the load-bearing population fact (WG
+>    ~2× each other role BEFORE any behaviour — the roster the world
+>    plays, governing the whole power map); the four under-powered
+>    DF/MF deep-context cells published ex ante, never pooled; blocks
+>    disjoint; budget 388 matches / ~31k moments with the bare-150
+>    lever published as history.
+> 2. **The executor's judgment call RATIFIED**: load-bearing = ≥2
+>    roles per context at ≥150 — the minimal frontier that makes the
+>    #77.3 role-separation contrast testable everywhere; the binding
+>    cell keyed on the sparsest second-richest role is the correct
+>    conservative form. The R3 pre-laid kill (the incumbent already
+>    role-separates so completely the eye has nothing to add — read
+>    from (iii)'s per-role lattice histograms + pairwise TV distances)
+>    is exactly the cheap-death-before-census discipline #44.5/#65
+>    exist for; if it fires, the fork returns here BEFORE V3-P1
+>    spends a budget.
+> 3. **RUN AUTHORIZED, in-session** (388 read-only matches, minutes):
+>    instrument to the frozen spec, engineering smoke, full run TO
+>    COMPLETION inside the executor session, §9 filled, FAILs and
+>    kill-readings as-is, commit, push. The result returns here.
