@@ -3026,3 +3026,55 @@
 >    C-track** (C6 v2 pressured carry behind its scramble-ceiling
 >    obligation; C7 pass wind-up behind its §2 obligation). Presented
 >    with this ruling; nothing proceeds until the user rules.
+
+> **COMMANDER RULING #73 (2026-07-30 — the #72 diagnosis CORRECTED by
+> the user's reality-check; v2.1 THE ABORTABLE APPROACH launched;
+> A4 re-parks with its original rationale intact):**
+>
+> 1. **THE CORRECTION, owned.** #72.2(iii) named SIMULTANEITY and
+>    reached for doctrine. The user's push ("同时跑其实很难吧,现实
+>    里面") exposed the over-reach: at fork grain there was only ONE
+>    deviator, so decision-simultaneity cannot even bite there; and
+>    real football's first-order anti-pile-up mechanism is not shared
+>    doctrine but CONTINUOUS MUTUAL VISIBILITY + CHEAP ABORTS — you
+>    start, I see you within ~0.3 s, I peel off. What is unreal in
+>    OUR substrate is the approach's BLIND 3-SECOND COMMITMENT: the
+>    only break rule is a possession flip (v1 §2.2-D2), so a body
+>    that SEES a duplicate forming mid-window is forbidden to yield.
+>    Duplicated STARTS are common in reality too — they just die in
+>    the first steps. The seventh measured commander correction; the
+>    system working.
+> 2. **v2.1 LAUNCHED — THE ABORTABLE APPROACH (V2-P2R), design
+>    constraints ex ante**: (i) the eye's committed window gains ONE
+>    new break rule, D3-DUPLICATE: at the body's own decision cadence,
+>    re-read the OWN percept; if the committed target region's
+>    OTHERS-GOING bit (the SAME frozen feature, R=4.0 m, W-advance,
+>    remembered velocity — which also covers a teammate ALREADY
+>    standing in the region) reads 1 from a teammate OTHER than at
+>    commit time, the override LAPSES and the incumbent resumes; the
+>    wasted ticks are the honest price, never refunded. (ii)
+>    Percept-honest: no truth, no communication channel, the pull
+>    semantics; a body that never looks never aborts (and pays for
+>    it). (iii) The abort belongs to the EYE's arms (NEUTRAL / GENE /
+>    ORACLE / INVERTED all carry it; CONTROL untouched) so PC still
+>    isolates the pricing. (iv) The MIRROR problem (both yield, the
+>    region goes unserved) is pre-named as a DEPLOYMENT-grain
+>    question for V2-P3 — at fork grain only the chooser deviates, so
+>    v2.1 tests exactly: chooser starts, incumbent teammate converges,
+>    chooser sees and yields. (v) PRE-NAMED HYPOTHESIS: with
+>    D3-DUPLICATE, FORK-DUPRUN on negative cells FALLS (CI excluding
+>    zero, the #72 inversion reversed) and FORK-SPACING stops closing,
+>    while the payoff does not degrade (ATE not resolved-negative);
+>    abort rate and wasted-tick cost REPORTED with the full decision
+>    ledger. Primary = the convergence signature; payoff secondary.
+>    (vi) Everything else byte-identical to V2-P2: same table, same
+>    recovered controls, same block or a fresh disjoint one (the
+>    executor sizes; #46.2), same gates incl. DEV on the
+>    perceived-attainable denominator, receipts, windows.
+> 3. **A4 RE-PARKS undamaged** — its original rationale stands ("the
+>    latency seat binds only against live coordination"); it remains
+>    the named SECOND-ORDER mechanism if abortability alone cannot
+>    disperse the pile-up. The #72.4 fork is superseded by this
+>    ruling.
+> 4. The executor drafts the V2-P2R pre-registration (freeze → review
+>    → build → run per the standing pattern; sizing before floors).
