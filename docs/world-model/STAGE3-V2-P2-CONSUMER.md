@@ -655,3 +655,144 @@ stand). The composition price found at V2-P1 is a TRUE-keyed census fact; whethe
 PERCEIVED-honest consumer can cash it out of sample is exactly the open question
 this stage exists to measure — and it may honestly come back NULL, NEGATIVE, or
 UNDELIVERED, each of which is a finding worth the budget.
+
+---
+
+## 8. RESULT — delivered and FLAT; the eye converges even seeing others coming
+
+Run **supervised by the resident session** (#49.5, the projection exceeded the
+in-session cap — #71.3), the **frozen probe unchanged** (§6: no W / horizon /
+lattice / arm / floor / §5-reading / §3.3(a)-geometry re-cut after sight). HEAD
+`c5f2913` (ruling #68); ENRICHED world, full #67.3 bundle armed
+(`edsPerceivedDefence`+`edsPerceivedChoice`+`edsValueAxis`, `c5Hold`, `c6Carry`,
+`c7Windup`; `c5TouchFork` off); `src/**` byte-identical to V2-P0 HEAD `92876e5`.
+Payoff block **8,910,000 + k** (disjoint from the census 8.81M, the smoke 8.90M);
+the run reached the frozen **12,000-moment** budget. Consumed table canonical SHA
+**`a33e9a73…0992aa`** (byte-identical, unconsumed); control-recovery SHA
+**`8bac58da…ebcf`** (guard PASS, §3.3c). Data:
+[`data/stage3-v2-p2-consumer.json`](data/stage3-v2-p2-consumer.json) · file SHA256
+**`cdb7ce9d…76b8`** · `deterministic: true` · **verdict: GATES PASS**.
+
+**Scale.** 12,000 station-family moments (1,931 ball-directed skipped, coverage
+**100%**) → **60,000 forks** priced (five arms); 463 forks ended inside the horizon
+(excluded, reported, never zeroed). Across **11,751,371** classified ticks
+**`unexplained` = 0**.
+
+### 8.1 The machinery was PERFECT — every gate PASS, and DEV delivered where v1 died
+
+| gate | result |
+| --- | --- |
+| **X4 — clone coverage** | 12,000 clones taken / 12,000 moments = **100%**. **PASS** |
+| **X5 — control identity** | the no-eye fork reproduces the base continuation bit-identically for the full `H_concede`; **480 checked / 0 mismatched**. **PASS** |
+| **X6 — force fidelity** | per-record (#43.3); **`unexplained` EXACTLY 0** across 11.75 M ticks; `ok` 10,942,279 → **okShare 0.937569**; clamp shares REPORTED-not-gated (onside 481,900 · barred-box 246,727). **PASS** |
+| **X7 — determinism** | two `runExperiment()` calls byte-identical; result SHA `cdb7ce9d…`; the §2.4a control-recovery pass twice byte-identical (SHA `8bac58da…`). **PASS** |
+| **DEV — DELIVERY (HARD)** | NEUTRAL deviation share on the **PERCEIVED-attainable** denominator = **0.6156** (23,912 / 38,841) ≥ 0.22 — **≈ 2.8× the floor**, and it matches the build-time recomputed prediction **0.6194** almost to the digit. **PASS** |
+| **PC — INVERTED resolves below control (HARD)** | argmin ATE **−0.0107**, cluster-bootstrap CI **[−0.0197, −0.0021]**, upper **< 0** → the family is measurable; the argmin measurably hurts. **resolves. PASS** |
+
+**This is the delivery v1 never reached.** v1 P2 FAILED DEV at 18.47% because its
+denominator was ALL decisions (56.6% structural abstentions); the #70.3
+perceived-attainable denominator + the two repairs put delivery at **61.56%** — the
+DEV correction was the load-bearing fix and it held exactly as sized. PC resolved
+(v1's PC also resolved; here the argmin lands −0.0107, clear of zero). The perception
+wedge was priced, not smuggled: NEUTRAL percept↔truth agreement **93.25%** (face
+0.978 / threat 0.976 / density 0.958), and the ORACLE arm — reading TRUE context AND
+TRUE going-bits — carried its own share. **The machinery did everything it was built
+to do.** And then the substance came back empty.
+
+### 8.2 Reading (b) — FLAT: the going-conditioned payoff does NOT transfer
+
+**The treatment was DELIVERED and the advantage is not there.** With both HARD gates
+passed, reading (b) fires on its own terms:
+
+```text
+NEUTRAL (PRIMARY)   ATE  +0.0062   CI [−0.0011, +0.0136]   ← CONTAINS ZERO
+                    ATT  +0.0074   CI [−0.0017, +0.0157]   ← CONTAINS ZERO
+GENE                ATE  +0.0069   CI [−0.0005, +0.0142]   ≈ NEUTRAL (no split)
+ORACLE-CTX          ATE  −0.0015   CI [−0.0102, +0.0074]   ≈ ZERO
+```
+
+The build-time recomputed prediction (§3.3c, against the per-context recovered
+control, committed BEFORE the run) was **ATE +0.023**; the realised **+0.0062** is
+**~27% of it** — the out-of-sample advantage collapsed below the winner's-curse
+floor and the CI now straddles zero. A transferable advantage below the MDE
+half-width (≤ 0.009) is FLAT by §6(b) — **a negative verdict on the eye as
+specified, not a request for budget.**
+
+**ORACLE-CTX kills the misread excuse.** Truth does NOT beat percept: the arm that
+reads TRUE context and TRUE going-bits lands **−0.0015 ≈ 0** — if anything a hair
+below NEUTRAL. The perception price (ORACLE − NEUTRAL) is **≈ −0.0077**, i.e. giving
+the eye the truth it "misperceives" buys nothing. **The table itself does not
+transfer out of sample; this is not a perception problem** (reading (g): the
+perception trunk is NOT indicated by this gap). GENE (+0.0069) is indistinguishable
+from NEUTRAL — no attribution split (§6(f)), the failure is the eye's, not the
+mapping's.
+
+**The pooled flat hides a real ±cancellation** (per-context ATE, CI excludes 0):
+`theirs|middle|crowded` **+0.0667** [+0.0337, +0.1009] against `theirs|theirThird|sparse`
+**−0.0538** [−0.0837, −0.0259] — the two significant cells point opposite ways and
+net to the flat pooled, the same "two structures cancelling" the V2-P1 census saw
+in the table. It is structure, but it is not the *predicted* structure, and it does
+not aggregate to a transferable win.
+
+### 8.3 Reading (h) — CONVERGENCE moved the WRONG WAY at fork grain
+
+H-V2's second half is **refuted at fork grain**, and it is refuted decisively — the
+mediators moved opposite to the prediction on the cells that carry the whole thesis.
+
+```text
+                        H-V2 predicted        realised (NEUTRAL − CONTROL, paired)
+FORK-SPACING  all       OPENS                 −1.047 m  CI [−1.221, −0.870]   CLOSED
+              neg cells  OPENS (stop cover)   −0.880 m  CI [−1.088, −0.679]   CLOSED
+              pos cells  does NOT collapse    −1.542 m  CI [−1.838, −1.262]   COLLAPSED hardest
+FORK-DUPRUN   neg cells  FALLS  (avoidance)   +0.92 pp  CI [+0.35, +1.54]     ROSE
+              pos cells  tolerated (join)     −0.38 pp  CI [−0.88, +0.14]     ≈ flat (contains 0)
+```
+
+The **going=1-AVOIDANCE** mediator is the direct test of the eye's premise — on the
+negative (behind/lateral) cells, perceiving a teammate already going there should
+make the eye pick that candidate LESS, so FORK-DUPRUN should FALL. It **ROSE
++0.92 pp** [+0.35, +1.54]: the eye lands *more* often inside 4 m of a teammate's
+advanced position on exactly the cells where that duplicates cover. The
+**going=1-JOIN** mediator (positive cells) is ≈ flat (−0.38 pp, CI contains 0) —
+neither sought nor avoided. And spacing **closed everywhere** (−1.05 m pooled,
+collapsing hardest −1.54 m on the *positive* cells) — the eye packs bodies tighter,
+not looser.
+
+**Why: the argmax concentrated 60.4% of deviations in the 180-ring** — v1's
+attractor, with a bit bolted on:
+
+```text
+deviation mix (NEUTRAL, 23,912 deviations)
+  ring180Share  0.6039   (a180 alone 14,441)   predicted ~0.51
+  ahead0Share   0.2262
+  by candidate  r7a180 10,290 · r14a180 3,436  ← dead-behind 7–14 m dominate
+                r14a0 2,356 · r7a0 2,058 · r21a0 994 (a0 total 5,408)
+```
+
+The predicted shift toward dead-ahead (a0) and away from the behind/lateral ring
+did not happen: **60.4% of deviations land in the 180° ring** (predicted ~51%; v1's
+eye was 25.9%), and the single most-chosen candidate is **r7a180** — dead behind,
+7 m — the follow-into-cover move the whole v2 premise was built to stop. The eye
+reads the going-bit, prices the going-conditioned cell, and still argmaxes into the
+same convergence signature v1 produced, only more so.
+
+**Per reading (h): NO DEPLOYMENT CLAIM may be built on this run**, and **V2-P3 is
+NOT reachable from it** — a positive fork-grain payoff was the necessary condition
+(§7), and it is absent (b) with the convergence signature refuted (h). The
+deployment battery is banked; nothing is carried forward as a green light.
+
+### 8.4 Disposition — the fork returns to the commander
+
+Both HARD gates PASS and the machinery is clean (X4/X5/X6/X7 all PASS, DEV
+delivered 61.56%, PC resolved), so the readings are LICENSED (not the labelled-data
+convention). The substance is **reading (b) FLAT + reading (h) CONVERGENCE-WRONG-WAY,
+together**: the going-conditioned table's composition price — a real, geometric
+TRUE-keyed census fact at V2-P1 — **does not cash out of sample through a
+percept-honest consumer**, and truth does not rescue it (ORACLE ≈ 0). The
+anticipatory eye's premise, as specified, does not pay at v2 scope, and the eye
+converges even while seeing others coming.
+
+**V2-P2 ships nothing (Road B); it cannot and does not authorize V2-P3.** The fork
+returns to the commander: whether the direction dies here, or is reframed (a
+different consumer of the same table, a coarser grain, the perception trunk — none
+indicated by ORACLE), is the commander's call, never re-cut here.
