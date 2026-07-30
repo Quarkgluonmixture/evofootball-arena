@@ -3248,3 +3248,34 @@
 >    instrument to the frozen spec, engineering smoke, full run TO
 >    COMPLETION inside the executor session, §9 filled, FAILs and
 >    kill-readings as-is, commit, push. The result returns here.
+
+> **COMMANDER RULING #79 (2026-07-30 — V3-P0 accepted: R3 clear, the
+> map rich; V3-P1 the role-conditioned census drafting authorized):**
+>
+> 1. **V3-P0 ACCEPTED.** All gates; the R3 kill check CLEAR with a
+>    real finding inside it — the incumbent breaks role symmetry only
+>    PARTIALLY (mean pairwise TV 0.407 vs the 0.85 near-disjoint
+>    frontier; WG separates most via width, **MF↔ST barely
+>    distinguishable at 0.262**, DF the behind-ball concentration) —
+>    so a role eye has genuine division-of-labour headroom; the
+>    coverage is RICH (all 12 contexts ≥3 roles at ≥150; only 3 DF
+>    deep-context cells under-powered, published); the frozen 388-
+>    match budget STANDS (the binding cell landed 1.99× its floor —
+>    the headroom convention absorbing block drift exactly as
+>    designed; the 3-match strict-2× shortfall noted, not chased).
+> 2. **BANKED**: the incumbent's per-role signature (DF r14a180 · MF
+>    r14a0 flattest · WG outside-lattice width · ST ahead) — the
+>    reference V3-P2's consumer must DIFFER from, and the measured
+>    baseline the #77.3 separation hypothesis is scored against.
+> 3. **V3-P1 DRAFTING AUTHORIZED (executor)**: the role-conditioned
+>    census per contract §4 — the P1R instrument verbatim, cells
+>    `context × role-of-the-forced-body × candidate`, 388 matches /
+>    ~31k moments / ~590k forks on block 9,110,000+k (the SAME frozen
+>    block V3-P0 mapped — state the reuse-vs-fresh decision with its
+>    reasoning at the freeze, #46.2 applying to the smoke only), the
+>    pre-named half-1 hypothesis and its contrast (#77.3: per
+>    (context, candidate), the value SPREAD across roles, cluster
+>    CIs; the null = role does not separate prices, killing v3
+>    cheaply), under-powered cells published never pooled, full sign
+>    space, receipts, windows pinned, freeze → review → build → the
+>    resident runs (#49.5).
