@@ -1,0 +1,682 @@
+{
+  "experiment": "STAGE3-V3-P0-SIZING-SMOKE",
+  "authority": "STAGE3-V3-P0-ROLE-MAP (contract §4 V3-P0; #77)",
+  "world": "ENRICHED (#67.3 full bundle: edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off)",
+  "block": "9100000..9100149",
+  "matches": 150,
+  "momentSpacingS": 2,
+  "cellFloor": 150,
+  "headroom": 2,
+  "roleAxis": [
+    "DF",
+    "MF",
+    "WG",
+    "ST"
+  ],
+  "qualifyingTotal": 13858,
+  "rowsTotal": 11992,
+  "rowsPerMatch": {
+    "mean": 79.947,
+    "min": 66,
+    "max": 100
+  },
+  "ballDirectedSkipped": 1866,
+  "noPool": 0,
+  "roleTotals": {
+    "DF": 2516,
+    "MF": 2447,
+    "WG": 4688,
+    "ST": 2341
+  },
+  "roleShare": {
+    "DF": 0.2098,
+    "MF": 0.2041,
+    "WG": 0.3909,
+    "ST": 0.1952
+  },
+  "cellTotals": {
+    "ours|ownThird|sparse||DF": 281,
+    "ours|ownThird|sparse||MF": 298,
+    "ours|ownThird|sparse||WG": 818,
+    "ours|ownThird|sparse||ST": 374,
+    "ours|ownThird|crowded||DF": 112,
+    "ours|ownThird|crowded||MF": 171,
+    "ours|ownThird|crowded||WG": 169,
+    "ours|ownThird|crowded||ST": 121,
+    "ours|middle|sparse||DF": 479,
+    "ours|middle|sparse||MF": 266,
+    "ours|middle|sparse||WG": 785,
+    "ours|middle|sparse||ST": 270,
+    "ours|middle|crowded||DF": 162,
+    "ours|middle|crowded||MF": 356,
+    "ours|middle|crowded||WG": 314,
+    "ours|middle|crowded||ST": 288,
+    "ours|theirThird|sparse||DF": 330,
+    "ours|theirThird|sparse||MF": 188,
+    "ours|theirThird|sparse||WG": 348,
+    "ours|theirThird|sparse||ST": 99,
+    "ours|theirThird|crowded||DF": 19,
+    "ours|theirThird|crowded||MF": 127,
+    "ours|theirThird|crowded||WG": 125,
+    "ours|theirThird|crowded||ST": 144,
+    "theirs|ownThird|sparse||DF": 51,
+    "theirs|ownThird|sparse||MF": 57,
+    "theirs|ownThird|sparse||WG": 252,
+    "theirs|ownThird|sparse||ST": 116,
+    "theirs|ownThird|crowded||DF": 117,
+    "theirs|ownThird|crowded||MF": 149,
+    "theirs|ownThird|crowded||WG": 171,
+    "theirs|ownThird|crowded||ST": 119,
+    "theirs|middle|sparse||DF": 314,
+    "theirs|middle|sparse||MF": 154,
+    "theirs|middle|sparse||WG": 576,
+    "theirs|middle|sparse||ST": 191,
+    "theirs|middle|crowded||DF": 172,
+    "theirs|middle|crowded||MF": 248,
+    "theirs|middle|crowded||WG": 276,
+    "theirs|middle|crowded||ST": 227,
+    "theirs|theirThird|sparse||DF": 430,
+    "theirs|theirThird|sparse||MF": 300,
+    "theirs|theirThird|sparse||WG": 666,
+    "theirs|theirThird|sparse||ST": 259,
+    "theirs|theirThird|crowded||DF": 49,
+    "theirs|theirThird|crowded||MF": 133,
+    "theirs|theirThird|crowded||WG": 188,
+    "theirs|theirThird|crowded||ST": 133
+  },
+  "cellPerMatch": {
+    "ours|ownThird|sparse||DF": 1.8733,
+    "ours|ownThird|sparse||MF": 1.9867,
+    "ours|ownThird|sparse||WG": 5.4533,
+    "ours|ownThird|sparse||ST": 2.4933,
+    "ours|ownThird|crowded||DF": 0.7467,
+    "ours|ownThird|crowded||MF": 1.14,
+    "ours|ownThird|crowded||WG": 1.1267,
+    "ours|ownThird|crowded||ST": 0.8067,
+    "ours|middle|sparse||DF": 3.1933,
+    "ours|middle|sparse||MF": 1.7733,
+    "ours|middle|sparse||WG": 5.2333,
+    "ours|middle|sparse||ST": 1.8,
+    "ours|middle|crowded||DF": 1.08,
+    "ours|middle|crowded||MF": 2.3733,
+    "ours|middle|crowded||WG": 2.0933,
+    "ours|middle|crowded||ST": 1.92,
+    "ours|theirThird|sparse||DF": 2.2,
+    "ours|theirThird|sparse||MF": 1.2533,
+    "ours|theirThird|sparse||WG": 2.32,
+    "ours|theirThird|sparse||ST": 0.66,
+    "ours|theirThird|crowded||DF": 0.1267,
+    "ours|theirThird|crowded||MF": 0.8467,
+    "ours|theirThird|crowded||WG": 0.8333,
+    "ours|theirThird|crowded||ST": 0.96,
+    "theirs|ownThird|sparse||DF": 0.34,
+    "theirs|ownThird|sparse||MF": 0.38,
+    "theirs|ownThird|sparse||WG": 1.68,
+    "theirs|ownThird|sparse||ST": 0.7733,
+    "theirs|ownThird|crowded||DF": 0.78,
+    "theirs|ownThird|crowded||MF": 0.9933,
+    "theirs|ownThird|crowded||WG": 1.14,
+    "theirs|ownThird|crowded||ST": 0.7933,
+    "theirs|middle|sparse||DF": 2.0933,
+    "theirs|middle|sparse||MF": 1.0267,
+    "theirs|middle|sparse||WG": 3.84,
+    "theirs|middle|sparse||ST": 1.2733,
+    "theirs|middle|crowded||DF": 1.1467,
+    "theirs|middle|crowded||MF": 1.6533,
+    "theirs|middle|crowded||WG": 1.84,
+    "theirs|middle|crowded||ST": 1.5133,
+    "theirs|theirThird|sparse||DF": 2.8667,
+    "theirs|theirThird|sparse||MF": 2,
+    "theirs|theirThird|sparse||WG": 4.44,
+    "theirs|theirThird|sparse||ST": 1.7267,
+    "theirs|theirThird|crowded||DF": 0.3267,
+    "theirs|theirThird|crowded||MF": 0.8867,
+    "theirs|theirThird|crowded||WG": 1.2533,
+    "theirs|theirThird|crowded||ST": 0.8867
+  },
+  "rarestCell": "ours|theirThird|crowded||DF",
+  "perContext": [
+    {
+      "context": "ours|ownThird|sparse",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 5.4533
+        },
+        {
+          "role": "ST",
+          "perMatch": 2.4933
+        },
+        {
+          "role": "MF",
+          "perMatch": 1.9867
+        },
+        {
+          "role": "DF",
+          "perMatch": 1.8733
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "ST",
+      "secondRatePerMatch": 2.4933
+    },
+    {
+      "context": "ours|ownThird|crowded",
+      "ranked": [
+        {
+          "role": "MF",
+          "perMatch": 1.14
+        },
+        {
+          "role": "WG",
+          "perMatch": 1.1267
+        },
+        {
+          "role": "ST",
+          "perMatch": 0.8067
+        },
+        {
+          "role": "DF",
+          "perMatch": 0.7467
+        }
+      ],
+      "richestRole": "MF",
+      "secondRole": "WG",
+      "secondRatePerMatch": 1.1267
+    },
+    {
+      "context": "ours|middle|sparse",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 5.2333
+        },
+        {
+          "role": "DF",
+          "perMatch": 3.1933
+        },
+        {
+          "role": "ST",
+          "perMatch": 1.8
+        },
+        {
+          "role": "MF",
+          "perMatch": 1.7733
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "DF",
+      "secondRatePerMatch": 3.1933
+    },
+    {
+      "context": "ours|middle|crowded",
+      "ranked": [
+        {
+          "role": "MF",
+          "perMatch": 2.3733
+        },
+        {
+          "role": "WG",
+          "perMatch": 2.0933
+        },
+        {
+          "role": "ST",
+          "perMatch": 1.92
+        },
+        {
+          "role": "DF",
+          "perMatch": 1.08
+        }
+      ],
+      "richestRole": "MF",
+      "secondRole": "WG",
+      "secondRatePerMatch": 2.0933
+    },
+    {
+      "context": "ours|theirThird|sparse",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 2.32
+        },
+        {
+          "role": "DF",
+          "perMatch": 2.2
+        },
+        {
+          "role": "MF",
+          "perMatch": 1.2533
+        },
+        {
+          "role": "ST",
+          "perMatch": 0.66
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "DF",
+      "secondRatePerMatch": 2.2
+    },
+    {
+      "context": "ours|theirThird|crowded",
+      "ranked": [
+        {
+          "role": "ST",
+          "perMatch": 0.96
+        },
+        {
+          "role": "MF",
+          "perMatch": 0.8467
+        },
+        {
+          "role": "WG",
+          "perMatch": 0.8333
+        },
+        {
+          "role": "DF",
+          "perMatch": 0.1267
+        }
+      ],
+      "richestRole": "ST",
+      "secondRole": "MF",
+      "secondRatePerMatch": 0.8467
+    },
+    {
+      "context": "theirs|ownThird|sparse",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 1.68
+        },
+        {
+          "role": "ST",
+          "perMatch": 0.7733
+        },
+        {
+          "role": "MF",
+          "perMatch": 0.38
+        },
+        {
+          "role": "DF",
+          "perMatch": 0.34
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "ST",
+      "secondRatePerMatch": 0.7733
+    },
+    {
+      "context": "theirs|ownThird|crowded",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 1.14
+        },
+        {
+          "role": "MF",
+          "perMatch": 0.9933
+        },
+        {
+          "role": "ST",
+          "perMatch": 0.7933
+        },
+        {
+          "role": "DF",
+          "perMatch": 0.78
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "MF",
+      "secondRatePerMatch": 0.9933
+    },
+    {
+      "context": "theirs|middle|sparse",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 3.84
+        },
+        {
+          "role": "DF",
+          "perMatch": 2.0933
+        },
+        {
+          "role": "ST",
+          "perMatch": 1.2733
+        },
+        {
+          "role": "MF",
+          "perMatch": 1.0267
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "DF",
+      "secondRatePerMatch": 2.0933
+    },
+    {
+      "context": "theirs|middle|crowded",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 1.84
+        },
+        {
+          "role": "MF",
+          "perMatch": 1.6533
+        },
+        {
+          "role": "ST",
+          "perMatch": 1.5133
+        },
+        {
+          "role": "DF",
+          "perMatch": 1.1467
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "MF",
+      "secondRatePerMatch": 1.6533
+    },
+    {
+      "context": "theirs|theirThird|sparse",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 4.44
+        },
+        {
+          "role": "DF",
+          "perMatch": 2.8667
+        },
+        {
+          "role": "MF",
+          "perMatch": 2
+        },
+        {
+          "role": "ST",
+          "perMatch": 1.7267
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "DF",
+      "secondRatePerMatch": 2.8667
+    },
+    {
+      "context": "theirs|theirThird|crowded",
+      "ranked": [
+        {
+          "role": "WG",
+          "perMatch": 1.2533
+        },
+        {
+          "role": "MF",
+          "perMatch": 0.8867
+        },
+        {
+          "role": "ST",
+          "perMatch": 0.8867
+        },
+        {
+          "role": "DF",
+          "perMatch": 0.3267
+        }
+      ],
+      "richestRole": "WG",
+      "secondRole": "MF",
+      "secondRatePerMatch": 0.8867
+    }
+  ],
+  "sizing": {
+    "rule": "census keys (context, role, candidate); each moment forks all 18 candidates, so a cell n = MOMENTS in (context, role). The role-separation hypothesis (#77.3) needs >= 2 roles at >= 150 PER CONTEXT; the binding load-bearing cell = the sparsest 2nd-richest-role across the 12 contexts. Contexts whose 2nd role cannot reach 150 are ROLE-STARVED and named ex ante; 3rd/4th-role cells below 150 are published UNDER-POWERED (#24), never pooled.",
+    "bindingContext": "theirs|ownThird|sparse",
+    "bindingRole": "ST",
+    "bindingRatePerMatch": 0.7733,
+    "matchesForBare150": 194,
+    "matchesForFloor": 388,
+    "momentBudgetBare150": 15510,
+    "momentBudget2x": 31019,
+    "attainabilityAt2xBudget": {
+      "ours|ownThird|sparse||DF": {
+        "expected": 726.8,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|ownThird|sparse||MF": {
+        "expected": 770.8,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|ownThird|sparse||WG": {
+        "expected": 2115.9,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|ownThird|sparse||ST": {
+        "expected": 967.4,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|ownThird|crowded||DF": {
+        "expected": 289.7,
+        "clears150": true,
+        "clears300": false
+      },
+      "ours|ownThird|crowded||MF": {
+        "expected": 442.3,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|ownThird|crowded||WG": {
+        "expected": 437.2,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|ownThird|crowded||ST": {
+        "expected": 313,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|sparse||DF": {
+        "expected": 1239,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|sparse||MF": {
+        "expected": 688,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|sparse||WG": {
+        "expected": 2030.5,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|sparse||ST": {
+        "expected": 698.4,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|crowded||DF": {
+        "expected": 419,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|crowded||MF": {
+        "expected": 920.8,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|crowded||WG": {
+        "expected": 812.2,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|middle|crowded||ST": {
+        "expected": 745,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|theirThird|sparse||DF": {
+        "expected": 853.6,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|theirThird|sparse||MF": {
+        "expected": 486.3,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|theirThird|sparse||WG": {
+        "expected": 900.2,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|theirThird|sparse||ST": {
+        "expected": 256.1,
+        "clears150": true,
+        "clears300": false
+      },
+      "ours|theirThird|crowded||DF": {
+        "expected": 49.2,
+        "clears150": false,
+        "clears300": false
+      },
+      "ours|theirThird|crowded||MF": {
+        "expected": 328.5,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|theirThird|crowded||WG": {
+        "expected": 323.3,
+        "clears150": true,
+        "clears300": true
+      },
+      "ours|theirThird|crowded||ST": {
+        "expected": 372.5,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|ownThird|sparse||DF": {
+        "expected": 131.9,
+        "clears150": false,
+        "clears300": false
+      },
+      "theirs|ownThird|sparse||MF": {
+        "expected": 147.4,
+        "clears150": false,
+        "clears300": false
+      },
+      "theirs|ownThird|sparse||WG": {
+        "expected": 651.8,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|ownThird|sparse||ST": {
+        "expected": 300,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|ownThird|crowded||DF": {
+        "expected": 302.6,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|ownThird|crowded||MF": {
+        "expected": 385.4,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|ownThird|crowded||WG": {
+        "expected": 442.3,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|ownThird|crowded||ST": {
+        "expected": 307.8,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|sparse||DF": {
+        "expected": 812.2,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|sparse||MF": {
+        "expected": 398.4,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|sparse||WG": {
+        "expected": 1489.9,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|sparse||ST": {
+        "expected": 494,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|crowded||DF": {
+        "expected": 444.9,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|crowded||MF": {
+        "expected": 641.5,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|crowded||WG": {
+        "expected": 713.9,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|middle|crowded||ST": {
+        "expected": 587.2,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|sparse||DF": {
+        "expected": 1112.3,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|sparse||MF": {
+        "expected": 776,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|sparse||WG": {
+        "expected": 1722.7,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|sparse||ST": {
+        "expected": 670,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|crowded||DF": {
+        "expected": 126.8,
+        "clears150": false,
+        "clears300": false
+      },
+      "theirs|theirThird|crowded||MF": {
+        "expected": 344,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|crowded||WG": {
+        "expected": 486.3,
+        "clears150": true,
+        "clears300": true
+      },
+      "theirs|theirThird|crowded||ST": {
+        "expected": 344,
+        "clears150": true,
+        "clears300": true
+      }
+    }
+  },
+  "deterministic": true,
+  "sha256": "3c555eb0f22136264558aaed2d3f68db8c2fe25c791d9cc27620df12468837a2"
+}
