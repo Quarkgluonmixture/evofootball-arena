@@ -3176,3 +3176,48 @@
 >    (B) **park Stage III entirely** — bank all machinery, return to
 >    the C-track (C6 v2 pressured carry / C7 pass wind-up). Nothing
 >    proceeds until the user rules.
+
+> **COMMANDER RULING #77 (2026-07-30 — Stage III v3 LAUNCHED,
+> user-ratified ("go"): the ROLE-CONDITIONED census; Stage III and A4
+> MERGE — division of labour is the minimal doctrine):**
+>
+> 1. **THE UNIFICATION, banked with the user's own image**: 野球开场的
+>    三十秒("你踢后卫,我顶前面")IS the minimal coach — even
+>    coachless football performs the cheapest, most consequential act
+>    of coaching FIRST: breaking symmetry before play. A4's charter
+>    ("doctrine = shared priors that let a player act safely on less
+>    evidence") and the three-generation failure diagnosis (one map
+>    handed to every body ⇒ convergence is mathematically guaranteed;
+>    the incumbent beat the eye three times BECAUSE formationSpot is
+>    role-differentiated) are the same fact. **Stage III v3 ≡ A4's
+>    first slice.** A4's standing constraint carries: a prior may buy
+>    latency/priority, never reveal an unobserved body — role-reading
+>    is OWN-state (a body knows his own job), no percept issue.
+> 2. **v3 DESIGN RULINGS, ex ante**: (i) the census table gains a ROLE
+>    axis (DF/MF/WG/ST — the world's OWN variable, from the formation
+>    machinery; nothing authored) and the consumer reads HIS role's
+>    column — symmetry broken at the source, as reality breaks it;
+>    values stay MEASURED (division-of-labour CONTENT emerges from
+>    prices; the emergence doctrine intact). (ii) **the going axis is
+>    DROPPED from v3's table** (power: 4× cells is unaffordable with
+>    both; the P1 anticipatory census stays banked certified and may
+>    re-enter by a later ruling) — v3 isolates the role effect
+>    cleanly. (iii) the v2.1 brake stays banked dormant (roles break
+>    the large symmetry; the brake handles residual collisions —
+>    reality's layering — re-armed only by ruling). (iv) #76.3's
+>    option A (collective-brake deployment test) is SUPERSEDED: the
+>    pile-up's root is symmetry; roles pull it at the root. (v) the
+>    recurring perceptionPrice mislabel is ORDERED FIXED at the next
+>    build before any run where it is load-bearing.
+> 3. **THE PRE-NAMED HYPOTHESIS (v3's spine)**: role-conditioned
+>    prices DIFFER by role (the census can SEE division of labour —
+>    e.g. the behind-ring pays for a DF and not for an ST), and a
+>    consumer where each body reads his own role's column deviates
+>    DIFFERENTLY by role — so the convergence signature breaks by
+>    CONSTRUCTION, not by braking: spacing stops closing, duplicate
+>    runs fall, and the deviation geometry separates by role.
+> 4. Stages: V3-P0 role base-rate + power map (read-only; sizing
+>    before floors, #44.5/#65) → V3-P1 the role-conditioned census →
+>    V3-P2 the consumer → V3-P3 deployment + battery + the R3
+>    iteration. The commander drafts the contract; the executor
+>    drafts V3-P0 per the standing pattern.
