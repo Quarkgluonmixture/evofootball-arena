@@ -1,0 +1,163 @@
+{
+  "experiment": "STAGE3-V2-P2 (pre-freeze sizing smoke)",
+  "authority": "STAGE3-V2-P2-CONSUMER · #44.5/#65 (DEV on perceived-attainable) · #46.2 · #24",
+  "head": "c5f2913 (ruling #68; src identical to V2-P0 HEAD 92876e5 / V2-P1)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "consumedTableSha": "a33e9a73bbb08fe2c3601ac049e29b75453fcf5dbe1aa6af5e71bb23a50992aa",
+  "parameters": {
+    "seedStart": 8900000,
+    "matches": 150,
+    "regionRadiusM": 4,
+    "advanceHorizonS": 3,
+    "momentSpacingS": 2,
+    "cellFloor": 150,
+    "lattice": [
+      "r7a0",
+      "r7a60",
+      "r7a120",
+      "r7a180",
+      "r7a240",
+      "r7a300",
+      "r14a0",
+      "r14a60",
+      "r14a120",
+      "r14a180",
+      "r14a240",
+      "r14a300",
+      "r21a0",
+      "r21a60",
+      "r21a120",
+      "r21a180",
+      "r21a240",
+      "r21a300"
+    ],
+    "contexts": [
+      "ours|ownThird|sparse",
+      "ours|ownThird|crowded",
+      "ours|middle|sparse",
+      "ours|middle|crowded",
+      "ours|theirThird|sparse",
+      "ours|theirThird|crowded",
+      "theirs|ownThird|sparse",
+      "theirs|ownThird|crowded",
+      "theirs|middle|sparse",
+      "theirs|middle|crowded",
+      "theirs|theirThird|sparse",
+      "theirs|theirThird|crowded"
+    ],
+    "note": "read-only, forks NOTHING; the perceived-attainable population sizing for DEV (#70.3)"
+  },
+  "smokeMatches": 150,
+  "seedBlock": "8900000..8900149",
+  "totalMoments": 11866,
+  "momentsPerMatch": 79.107,
+  "qualifying": 13806,
+  "ballDirectedSkipped": 1940,
+  "ballDirectedShare": 0.1405,
+  "noPool": 0,
+  "perceivedAttainable": {
+    "note": "the DEV denominator (#70.3): a percept exists AND the context carries an in-power cell",
+    "perceivedAttainableShare": 0.9467,
+    "hasPerceptShare": 0.9467,
+    "noSnapshotShare": 0.0533,
+    "noCellShare": 0
+  },
+  "repairs": {
+    "inflightNoOwnerShare": 0.6022,
+    "inflightRecovery": 1,
+    "note": "repair 1 (in-flight FACE): recovery = share of no-owner ticks with a retained last-perceived owner"
+  },
+  "wedge": {
+    "trueGoingRate": 0.0976,
+    "perceivedGoingRate": 0.0865,
+    "wedgeRatio": 0.8863,
+    "agreement": 0.9295,
+    "note": "perceived vs TRUE OTHERS-GOING; the deviation discount vs the TRUE-keyed table"
+  },
+  "perContext": [
+    {
+      "context": "ours|ownThird|sparse",
+      "n": 1536,
+      "share": 0.12945,
+      "inPowerCandidates": 13
+    },
+    {
+      "context": "ours|ownThird|crowded",
+      "n": 665,
+      "share": 0.05604,
+      "inPowerCandidates": 11
+    },
+    {
+      "context": "ours|middle|sparse",
+      "n": 1864,
+      "share": 0.15709,
+      "inPowerCandidates": 16
+    },
+    {
+      "context": "ours|middle|crowded",
+      "n": 1162,
+      "share": 0.09793,
+      "inPowerCandidates": 16
+    },
+    {
+      "context": "ours|theirThird|sparse",
+      "n": 937,
+      "share": 0.07897,
+      "inPowerCandidates": 15
+    },
+    {
+      "context": "ours|theirThird|crowded",
+      "n": 422,
+      "share": 0.03556,
+      "inPowerCandidates": 7
+    },
+    {
+      "context": "theirs|ownThird|sparse",
+      "n": 477,
+      "share": 0.0402,
+      "inPowerCandidates": 9
+    },
+    {
+      "context": "theirs|ownThird|crowded",
+      "n": 589,
+      "share": 0.04964,
+      "inPowerCandidates": 10
+    },
+    {
+      "context": "theirs|middle|sparse",
+      "n": 1228,
+      "share": 0.10349,
+      "inPowerCandidates": 18
+    },
+    {
+      "context": "theirs|middle|crowded",
+      "n": 993,
+      "share": 0.08368,
+      "inPowerCandidates": 15
+    },
+    {
+      "context": "theirs|theirThird|sparse",
+      "n": 1493,
+      "share": 0.12582,
+      "inPowerCandidates": 13
+    },
+    {
+      "context": "theirs|theirThird|crowded",
+      "n": 500,
+      "share": 0.04214,
+      "inPowerCandidates": 8
+    }
+  ],
+  "everyContextHasCell": true,
+  "deterministic": true,
+  "sha256": "50bb226252bda9c0a56c75fbf7ef0bd9762c0ae211bc028d1bee4fad7ffb5cab"
+}
