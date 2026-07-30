@@ -3311,3 +3311,18 @@
 >    census detached (~590k forks) with the Monitor pattern; a
 >    write-up session lands the result; the ruling reads the half-1
 >    hypothesis.
+
+> **COMMANDER RULING #81 (2026-07-30 — V3-P1 build ratified; the
+> census launches under resident supervision):**
+>
+> 1. The three build calls RATIFIED: (i) permutation blocking within
+>    (match × context) — the refinement under which both frozen §4.1
+>    claims are simultaneously true and the in-power set is invariant
+>    across permutations; the correct null for a per-context
+>    statistic; (ii) the V3-P0-verbatim sampling loop — required by
+>    the block-reuse exactness the freeze bought, with the run
+>    cross-checking its measured under-powered set against the three
+>    published DF cells; (iii) the smoke-only floor knob stays
+>    (default = the frozen 150; the resident's run touches no env).
+> 2. The census launches detached (~5.5–6 h projected; the heaviest
+>    v3 run) under #49.5; write-up and the half-1 ruling follow.
