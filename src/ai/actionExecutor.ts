@@ -702,8 +702,13 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     // on the eye's v2 arms only (CONTROL carries no eye state); percept-honest (no
     // truth, no channel — a body that never looks never aborts, #73.2(ii)); the
     // ORACLE-CTX arm re-reads TRUE motion. Dormant in production (eye null).
+    // Ruling #75.2: the abort (and its G_commit capture below) is an EXPLICIT
+    // opt-in. Absent ⇒ this whole path is inert and the old V2-P2 experiment
+    // reproduces byte-for-byte; the gate `eye.v2 !== undefined` alone was the
+    // reproducibility break (it fires inside the old probe too).
+    const abortEnabled = eye.v2?.abortEnabled === true;
     if (
-      eye.v2 !== undefined && state !== undefined && state.offset !== null
+      abortEnabled && state !== undefined && state.offset !== null
       && state.candidateId !== 'control' && isStation
     ) {
       const elapsed = match.simTick - (state.untilTick - EYE_W_TICKS);
@@ -826,8 +831,9 @@ export function executeAction(p: Player, match: Match, dt: number): void {
           outcome = priceApproachesV2(eye.v2.goingTable, eye.v2.control, context.key, eye.arm, g, bits);
           // V2-P2R §1.1: record G_commit for the chosen region (the abort's baseline).
           // Computed here, on the SAME percept the going-bit was read from, so the
-          // set-difference at the mid-window re-read is faithful.
-          if (outcome.kind === 'deviate') {
+          // set-difference at the mid-window re-read is faithful. Ruling #75.2:
+          // captured ONLY when the abort is armed — else the old experiment reproduces.
+          if (abortEnabled && outcome.kind === 'deviate') {
             v2rCommitContributors = goingContributors(
               ball.pos.x, ball.pos.y, team.attackDir, outcome.candidate, teammates,
             );

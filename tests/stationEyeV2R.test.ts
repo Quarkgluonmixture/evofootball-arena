@@ -181,7 +181,7 @@ describe('V2-P2R — the abort fires in the seam and never resets the clock (pin
     const owner = m.ball.owner;
     const side = owner ? owner.side : 0;
     const { goingTable, control } = richTable();
-    m.stationEye = { arm: 'oracleCtx', scope: { kind: 'team', side: side as 0 | 1 }, table: {}, v2: { goingTable, control } };
+    m.stationEye = { arm: 'oracleCtx', scope: { kind: 'team', side: side as 0 | 1 }, table: {}, v2: { goingTable, control, abortEnabled: true } };
 
     // Per-gid tracking of the live deviation window (its untilTick), so we can
     // recognise an abort (dev → incumbent, same untilTick, before expiry) and
@@ -228,11 +228,52 @@ describe('V2-P2R — the abort fires in the seam and never resets the clock (pin
       const side = owner ? owner.side : 0;
       const { goingTable, control } = richTable();
       const clone = cloneSimulationState(m);
-      clone.stationEye = { arm: 'oracleCtx', scope: { kind: 'team', side: side as 0 | 1 }, table: {}, v2: { goingTable, control } };
+      clone.stationEye = { arm: 'oracleCtx', scope: { kind: 'team', side: side as 0 | 1 }, table: {}, v2: { goingTable, control, abortEnabled: true } };
       for (let i = 0; i < 400; i++) clone.step(DT);
       clone.stationEye = null;
       return signature(clone);
     };
     expect(build()).toBe(build());
+  });
+
+  // -------------------------------------------------------------------------
+  // NEW pin (ruling #75.2) — abort-null-when-flag-absent. The abort (and its
+  // G_commit capture) is an EXPLICIT opt-in: with `abortEnabled` absent the v2
+  // consumer runs exactly as V2-P2 did — no abort ever fires, no
+  // committedGoingContributors is captured — even under the rich table + ORACLE
+  // arm that make the ARMED seam abort on almost every window. This is the
+  // regression fixed here: the bare `eye.v2 !== undefined` gate silently changed
+  // the old experiment's semantics (903 unexplained where the committed run had 0).
+  // -------------------------------------------------------------------------
+  it('pin 6 — abort-null-when-flag-absent: the same rich seam never aborts and never captures G_commit', () => {
+    const m = matchOf(31);
+    for (let i = 0; i < 300; i++) m.step(DT);
+    const owner = m.ball.owner;
+    const side = owner ? owner.side : 0;
+    const { goingTable, control } = richTable();
+    // v2 present, abortEnabled ABSENT — the old V2-P2 consumer path.
+    m.stationEye = { arm: 'oracleCtx', scope: { kind: 'team', side: side as 0 | 1 }, table: {}, v2: { goingTable, control } };
+
+    const prev = new Map<number, { offset: boolean; cand: string; until: number }>();
+    let abortsSeen = 0;
+    let deviationsSeen = 0;
+    for (let i = 0; i < 1600 && !m.finished; i++) {
+      m.step(DT);
+      for (const [gid, st] of m.stationEyeState) {
+        // the abort's G_commit capture is gated too: it must stay empty always.
+        expect(st.committedGoingContributors.size).toBe(0);
+        if (st.offset !== null && st.candidateId !== 'control') deviationsSeen += 1;
+        const before = prev.get(gid);
+        if (before !== undefined && before.offset && before.cand !== 'control'
+          && st.candidateId === 'control' && st.offset === null
+          && st.untilTick === before.until && m.simTick < st.untilTick) {
+          abortsSeen += 1;
+        }
+        prev.set(gid, { offset: st.offset !== null, cand: st.candidateId, until: st.untilTick });
+      }
+    }
+    m.stationEye = null;
+    expect(deviationsSeen).toBeGreaterThan(0); // the seam IS exercised (the eye deviates)
+    expect(abortsSeen).toBe(0);                // …but with the flag absent it NEVER aborts
   });
 });

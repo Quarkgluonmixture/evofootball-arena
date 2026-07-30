@@ -665,6 +665,13 @@ export class Match {
     readonly v2?: {
       readonly goingTable: GoingConditionedTable;
       readonly control: ControlLevels;
+      /**
+       * V2-P2R (ruling #75.2): the mid-window abort is an EXPLICIT opt-in. Absent
+       * (or false) ⇒ the going-conditioned consumer runs WITHOUT the abort — the
+       * old V2-P2 experiment reproduces byte-for-byte, no G_commit captured, no
+       * mid-window re-read. `true` ⇒ the D3-DUPLICATE abort arms (P2R probe only).
+       */
+      readonly abortEnabled?: boolean;
     };
     /** Probe-owned observability sink; the sim never reads it back. */
     readonly trace?: StationEyeTrace;

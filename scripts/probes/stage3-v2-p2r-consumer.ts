@@ -127,16 +127,19 @@ interface Exceptions {
   ePaused: number; eCarrier: number; eBallWon: number; eSentOff: number;
   eOnside: number; eBarred: number; eEnded: number; ok: number; unexplained: number;
   eRedecided: number; eNonStation: number;
+  /** V2-P2R ledger event (ruling #75.2): the mid-window abort lapsed the override this tick. */
+  eAbort: number;
 }
 const newExceptions = (): Exceptions => ({
   ePaused: 0, eCarrier: 0, eBallWon: 0, eSentOff: 0,
   eOnside: 0, eBarred: 0, eEnded: 0, ok: 0, unexplained: 0, eRedecided: 0, eNonStation: 0,
+  eAbort: 0,
 });
 const addExceptions = (a: Exceptions, b: Exceptions): void => {
   a.ePaused += b.ePaused; a.eCarrier += b.eCarrier; a.eBallWon += b.eBallWon;
   a.eSentOff += b.eSentOff; a.eOnside += b.eOnside; a.eBarred += b.eBarred;
   a.eEnded += b.eEnded; a.ok += b.ok; a.unexplained += b.unexplained;
-  a.eRedecided += b.eRedecided; a.eNonStation += b.eNonStation;
+  a.eRedecided += b.eRedecided; a.eNonStation += b.eNonStation; a.eAbort += b.eAbort;
 };
 const addTrace = (a: StationEyeTrace, b: StationEyeTrace): void => {
   a.decisions += b.decisions; a.deviate += b.deviate;
@@ -218,7 +221,8 @@ const runFork = (
   if (arm !== null) {
     fork.stationEye = {
       arm: arm as StationEyeArm, scope: { kind: 'body', gid }, table: {},
-      v2: { goingTable, control }, trace: localTrace ?? undefined,
+      // Ruling #75.2: P2R arms the mid-window abort via the explicit opt-in.
+      v2: { goingTable, control, abortEnabled: true }, trace: localTrace ?? undefined,
     };
   }
 
@@ -251,6 +255,9 @@ const runFork = (
       && STATION_FAMILY.has(body.action.type);
     const pausedBefore = fork.phase !== 'playing';
     const ownerBefore = fork.ball.owner;
+    // Ruling #75.2: the executor's own abort tally is the authoritative per-tick
+    // abort signal for the X6 ledger (a delta of 1 ⇔ this body aborted this tick).
+    const abortCountBefore = localTrace?.abort ?? 0;
 
     fork.step(DT);
 
@@ -275,10 +282,16 @@ const runFork = (
       }
       const tr = body.c4Trace;
       // X6 per record (#43.3). Abort ticks (incumbent-hold) are NOT override ticks
-      // (§5 X6) — they are excluded from the override tally and counted in the
-      // ledger instead.
-      if (abortedThisTick) {
-        // no-op for X6: the override lapsed this tick, it is a ledger event.
+      // (§5 X6) — they are a ledger event (`eAbort`), excluded from the override
+      // tally and from the force-fidelity `unexplained` count. Ruling #75.2: the
+      // authoritative per-tick signal is the executor's abort tally, NOT the
+      // fork-level `abortedThisTick` — the latter latches only the FIRST abort per
+      // fork (and its by-reference `stBefore` snapshot is mutated in place by the
+      // abort, masking the candidate change), so LATER aborts were leaking into
+      // `unexplained`. Every abort tick is classed here, first or not.
+      const abortFiredThisTick = localTrace !== null && localTrace.abort > abortCountBefore;
+      if (abortFiredThisTick) {
+        x6.eAbort += 1;
       } else if (tr !== null) {
         if (Math.abs(tr.applied.x - tr.meet.x) <= X6_EPS && Math.abs(tr.applied.y - tr.meet.y) <= X6_EPS) {
           x6.ok += 1;
@@ -665,7 +678,7 @@ const runExperiment = () => {
   const perceptionPrice = pairedCI(rows, 'oracleCtx', 400);
 
   const x6Total = x6.ok + x6.ePaused + x6.eCarrier + x6.eBallWon + x6.eSentOff
-    + x6.eOnside + x6.eBarred + x6.eNonStation + x6.eRedecided + x6.unexplained;
+    + x6.eOnside + x6.eBarred + x6.eNonStation + x6.eRedecided + x6.eAbort + x6.unexplained;
   const gates = {
     x4CloneCoverage: clonesTaken === moments && moments > 0,
     x5ControlIdentity: x5Checked > 0 && x5Mismatched === 0,
