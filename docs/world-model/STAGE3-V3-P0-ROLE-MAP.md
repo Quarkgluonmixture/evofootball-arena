@@ -362,9 +362,144 @@ dormant. Nothing ships (Road B), through the whole stage.
 
 ---
 
-## 9. RESULT
+## 9. RESULT — the map is rich, R3 clears (the incumbent does NOT already role-separate); the eye is licensed
 
-*(Empty — the V3-P0 census run is not authorized by this freeze. This
-pre-registration returns to the commander; a review that authorizes the run fills
-this section with the four deliverables, the gate verdicts, and the pre-laid
-reading that fired.)*
+Ran in-session per **#78.3**. HEAD `49ba867` (the v3 design contract); enriched
+world, full #67.3 bundle armed (`edsPerceivedDefence`+`edsPerceivedChoice`+
+`edsValueAxis`, `c5Hold`, `c6Carry`, `c7Windup`; `c5TouchFork` off). Census block
+**9,110,000 + k, k ∈ 0..387** (388 matches). Role read from the sampled body's own
+immutable `role` field; every read off a pristine clone; forks nothing, prices
+nothing (Road B). Data:
+[`data/stage3-v3-p0-role-map.json`](data/stage3-v3-p0-role-map.json) · file SHA256
+**`06c7b057…f49616`** · canonical table SHA **`fa73a8fe…8329a`** · signature SHA
+**`57b3716d…bd75`** · `deterministic: true`.
+
+**Scale.** 35,914 qualifying moments → **31,095 station-family rows** (80.142/match;
+4,819 ball-directed skipped; `noPool` 0). The population reproduces the smoke scale
+(79.947/match) and the V2 census scale. `eSentOff` 0; **unexplained = 0**.
+
+### 9.1 Gates — ALL PASS
+
+| gate | result |
+| --- | --- |
+| **X-DET** | two `runCensus()` calls byte-identical; table SHA `fa73a8fe…8329a`; zero `src/**` touched. **PASS** |
+| **X-CLONE** | 31,095 clones taken, coverage 100% (one/row); live enriched trajectory reproduced bit-identically on **1,243 checked / 0 mismatched**. **PASS** |
+| **X-FID** | per-record (#32.1); `eSentOff` 0, `noPool` 0, **unexplained 0** over the enlarged class set. **PASS** |
+| **FLOORS** | #24 = 150 per `(context × role)` cell, smoke-derived (§3); smoke block 9.10M disjoint from census 9.11M (#46.2); the under-powered DF cells published under-powered, never pooled. **PASS** |
+| **CLUSTER / CI** | cluster = match seed; 2,000 cluster bootstraps, seed 91100; no bare means. **PASS** |
+
+### 9.2 Deliverable (i) — the four-way role split (cluster CIs)
+
+The station-family population partitions almost exactly as the 2-WG roster (§2.1)
+predicts — **WG ~2× each of DF/MF/ST**, with the three thin roles near-equal ~0.20:
+
+| role | rows | share | 95% CI |
+| --- | ---: | ---: | --- |
+| DF | 6,437 | **0.2070** | 0.2041 – 0.2099 |
+| MF | 6,360 | **0.2045** | 0.2013 – 0.2078 |
+| **WG** | 12,157 | **0.3910** | 0.3871 – 0.3946 |
+| ST | 6,141 | **0.1975** | 0.1948 – 0.2004 |
+
+Matches the smoke (DF .210 / MF .204 / WG .391 / ST .195) inside the CIs. No role is
+degenerate (**R4 excluded**). WG's share swings by context (0.28 crowded-central →
+0.50 `theirs|ownThird|sparse`); per-context detail in the JSON `deliverableI_roleShares.perContext`.
+
+### 9.3 Deliverable (ii) — the attainability table vs the 150 floor at 388 matches
+
+Of the 48 `(context × role)` cells: **41 clear 300 (2× headroom), 4 clear 150, 3
+fall under 150.** **Every one of the 12 contexts fields ≥ 2 roles at ≥ 150 — R2
+COVERAGE RICH is CONFIRMED** (in fact ≥ 3 everywhere; 9 of 12 field all four).
+
+The four ex-ante under-powered cells (§3), checked by measurement — **3 confirmed,
+1 corrected UP across the 150 floor, no new under-powered cell appeared:**
+
+| pre-published cell | preReg @388 | measured n | verdict |
+| --- | ---: | ---: | --- |
+| ours \| theirThird \| crowded \|\| DF | 49.2 | **33** | under 150 — **CONFIRMED** (rarest cell overall) |
+| theirs \| theirThird \| crowded \|\| DF | 126.8 | **137** | under 150 — **CONFIRMED** |
+| theirs \| ownThird \| sparse \|\| DF | 131.9 | **146** | under 150 — **CONFIRMED** |
+| theirs \| ownThird \| sparse \|\| MF | 147.4 | **181** | **CORRECTED → clears 150** (measured above the ex-ante estimate) |
+
+All three surviving under-powered cells are the **thin role (DF) in the sparsest
+deep/crowded defensive contexts** — exactly where the 2-WG skew bites, as
+pre-registered. `unexpectedUnderPowered = []` (no cell outside the pre-published
+four dropped under 150 — the ex-ante map held). Full 48-cell table in the JSON
+`deliverableII_coverage.cellTable`.
+
+**R1 — A ROLE STARVES: partially fires at the CELL level, as pre-laid.** No role
+starves at the aggregate; but in the three DF-under-powered contexts the role
+contrast rests on 3 in-power roles, not four. V3-P1's per-context spread reads
+across in-power roles only; the three DF cells are published under-powered, never
+pooled.
+
+### 9.4 Deliverable (iii) — the incumbent's role signature, and the R3 kill check
+
+The per-role histogram over the 18 ball-local lattice cells (+ `outside-lattice`) of
+the incumbent's own `formationSpot(·, hasBall=false)` target, on a clone:
+
+| role | modal cell (share) | outside-lattice | norm. entropy | shape |
+| --- | --- | ---: | ---: | --- |
+| **DF** | `r14a180` (0.207) | 0.182 | 0.802 | behind-ball (180° = away from attack), most concentrated |
+| **MF** | `r14a0` (0.110) | 0.061 | 0.920 | ball-centred, flattest — sits nearest the ball, spread widest |
+| **WG** | `outside-lattice` (0.194) | 0.194 | 0.889 | often > 24 m wide of the ball — the width role |
+| **ST** | `outside-lattice` (0.179) | 0.179 | 0.882 | ahead-and-far; secondary mode `r14a0`/`r7a0` (0° = toward attack) |
+
+**The R3 kill check — the incumbent is NOT already role-separated.** Pairwise
+total-variation distances between the role histograms:
+
+| pair | TV | 95% CI |
+| --- | ---: | --- |
+| DF ↔ WG | 0.537 | 0.524 – 0.551 |
+| MF ↔ WG | 0.543 | 0.527 – 0.560 |
+| WG ↔ ST | 0.390 | 0.374 – 0.407 |
+| DF ↔ ST | 0.384 | 0.367 – 0.404 |
+| DF ↔ MF | 0.328 | 0.311 – 0.346 |
+| **MF ↔ ST** | **0.262** | 0.248 – 0.278 |
+
+**min pairwise TV = 0.262 (MF↔ST), mean = 0.407 — all six pairs sit far below the
+registered near-disjoint frontier of 0.85. R3 does NOT fire.** The incumbent
+`formationSpot` breaks role symmetry only *partially*: WG separates most from the
+central roles (TV ~0.54, the width role), but the histograms overlap heavily
+(every role's mode is a lattice cell some other role also visits, and MF/ST are
+barely distinguishable at TV 0.26). The incumbent is **not** already doing what a
+role eye would do — **there is real division-of-labour headroom for a
+role-conditioned census to SEE and add.** The fork does **not** return to the
+commander on R3 grounds; the R3 flag is reported cleared.
+
+### 9.5 Deliverable (iv) — the census budget V3-P1 needs
+
+Re-measured on the 9.11M block with a cluster CI on the binding rate:
+
+```text
+binding cell      = theirs|ownThird|sparse||ST   (the sparsest 2nd-richest role)
+binding rate      = 0.768 rows/match   (95% CI 0.686 – 0.856)
+matches @2×-floor = ⌈300 / 0.768⌉ = 391 matches  ≈ 31,335 moments   (V3-P1's requirement)
+bare-150 lever    = ⌈150 / 0.768⌉ = 196 matches  ≈ 15,708 moments   (#24 lever)
+```
+
+The block-measured binding rate (0.768) drifted **slightly below** the smoke's
+0.7733, so the strict 2×-headroom requirement is now **391 matches, 3 above the
+frozen 388**. This is exactly the block-instability the 2× convention exists to
+absorb (the V2-P1 §8 precedent): at the frozen 388-match budget the binding cell
+already collected **298 moments — 1.99× the 150 floor** — so V3-P1's binding cell
+is powered essentially at the intended 2× headroom, and every load-bearing
+(≥ 2-role) context clears. **V3-P1's budget = the frozen 388 matches / ~31k
+moments** stands; the bare-150 lever (196 matches) is banked as history.
+
+### 9.6 The pre-laid readings — which fired
+
+* **R1 (a role starves)** — *partial, at the cell level only*, as pre-laid: 3 DF
+  cells in deep/crowded contexts under 150; no aggregate starvation.
+* **R2 (coverage rich)** — **CONFIRMED**: all 12 contexts field ≥ 2 roles at ≥ 150
+  (≥ 3 everywhere) — the map is rich enough for V3-P1 to see division of labour.
+* **R3 (the incumbent already role-separates)** — **CLEARED / does NOT fire**: min
+  pairwise TV 0.262 ≪ 0.85; the incumbent's role histograms overlap heavily. The
+  eye has room to add. **The fork does not return to the commander on R3.**
+* **R4 (degenerate axis)** — **excluded**: all four roles healthily populated.
+
+**Verdict: GATES PASS · R3 clear · the map is rich for V3-P1.** V3-P0 hands
+forward (i) the four-way split, (ii) the 45-of-48-cell attainability table with the
+three DF cells published under-powered, (iii) the incumbent's partially-separated
+role signature as the deviation-mix reference the V3-P2 consumer must differ from,
+and (iv) the confirmed 388-match / ~31k-moment budget. **V3-P0 cannot authorize
+V3-P1** (§8) — this result returns to the commander (#78.3).

@@ -1,0 +1,1033 @@
+{
+  "experiment": "STAGE3-V3-P0 (the role base-rate and power map)",
+  "authority": "STAGE3-V3-P0-ROLE-MAP (contract §4; #77/#78)",
+  "head": "49ba867 (v3 design contract)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 9110000,
+    "matches": 388,
+    "block": "9110000..9110387",
+    "momentSpacingS": 2,
+    "roleAxis": [
+      "DF",
+      "MF",
+      "WG",
+      "ST"
+    ],
+    "contexts": [
+      "ours|ownThird|sparse",
+      "ours|ownThird|crowded",
+      "ours|middle|sparse",
+      "ours|middle|crowded",
+      "ours|theirThird|sparse",
+      "ours|theirThird|crowded",
+      "theirs|ownThird|sparse",
+      "theirs|ownThird|crowded",
+      "theirs|middle|sparse",
+      "theirs|middle|crowded",
+      "theirs|theirThird|sparse",
+      "theirs|theirThird|crowded"
+    ],
+    "lattice": [
+      "r7a0",
+      "r7a60",
+      "r7a120",
+      "r7a180",
+      "r7a240",
+      "r7a300",
+      "r14a0",
+      "r14a60",
+      "r14a120",
+      "r14a180",
+      "r14a240",
+      "r14a300",
+      "r21a0",
+      "r21a60",
+      "r21a120",
+      "r21a180",
+      "r21a240",
+      "r21a300"
+    ],
+    "outsideLatticeM": 24,
+    "cellFloor": 150,
+    "headroom": 2,
+    "clusterUnit": "match seed",
+    "bootstrapResamples": 2000,
+    "bootstrapSeed": 91100,
+    "r3TvNearOne": 0.85
+  },
+  "headline": {
+    "moments": 31095,
+    "rowsPerMatch": 80.142,
+    "roleTotals": {
+      "DF": 6437,
+      "MF": 6360,
+      "WG": 12157,
+      "ST": 6141
+    },
+    "roleShare": {
+      "DF": {
+        "point": 0.207011,
+        "lower": 0.20407,
+        "upper": 0.209907
+      },
+      "MF": {
+        "point": 0.204534,
+        "lower": 0.201323,
+        "upper": 0.207761
+      },
+      "WG": {
+        "point": 0.390963,
+        "lower": 0.387065,
+        "upper": 0.394613
+      },
+      "ST": {
+        "point": 0.197492,
+        "lower": 0.194778,
+        "upper": 0.200393
+      }
+    },
+    "tvMin": 0.262,
+    "tvMean": 0.4072
+  },
+  "deliverableI_roleShares": {
+    "note": "station-family moment shares by role {DF,MF,WG,ST}, overall + per context, cluster CIs (#20).",
+    "roleTotals": {
+      "DF": 6437,
+      "MF": 6360,
+      "WG": 12157,
+      "ST": 6141
+    },
+    "roleShare": {
+      "DF": {
+        "point": 0.207011,
+        "lower": 0.20407,
+        "upper": 0.209907
+      },
+      "MF": {
+        "point": 0.204534,
+        "lower": 0.201323,
+        "upper": 0.207761
+      },
+      "WG": {
+        "point": 0.390963,
+        "lower": 0.387065,
+        "upper": 0.394613
+      },
+      "ST": {
+        "point": 0.197492,
+        "lower": 0.194778,
+        "upper": 0.200393
+      }
+    },
+    "perContext": {
+      "ours|ownThird|sparse": {
+        "n": 4515,
+        "share": {
+          "DF": {
+            "point": 0.169214,
+            "lower": 0.159854,
+            "upper": 0.178895
+          },
+          "MF": {
+            "point": 0.171207,
+            "lower": 0.161844,
+            "upper": 0.181175
+          },
+          "WG": {
+            "point": 0.448505,
+            "lower": 0.434979,
+            "upper": 0.462814
+          },
+          "ST": {
+            "point": 0.211074,
+            "lower": 0.20188,
+            "upper": 0.221057
+          }
+        }
+      },
+      "ours|ownThird|crowded": {
+        "n": 1652,
+        "share": {
+          "DF": {
+            "point": 0.199758,
+            "lower": 0.181984,
+            "upper": 0.218978
+          },
+          "MF": {
+            "point": 0.280872,
+            "lower": 0.258967,
+            "upper": 0.302769
+          },
+          "WG": {
+            "point": 0.2954,
+            "lower": 0.27351,
+            "upper": 0.316265
+          },
+          "ST": {
+            "point": 0.223971,
+            "lower": 0.203623,
+            "upper": 0.243682
+          }
+        }
+      },
+      "ours|middle|sparse": {
+        "n": 4707,
+        "share": {
+          "DF": {
+            "point": 0.256002,
+            "lower": 0.244728,
+            "upper": 0.267797
+          },
+          "MF": {
+            "point": 0.144041,
+            "lower": 0.134595,
+            "upper": 0.15383
+          },
+          "WG": {
+            "point": 0.44232,
+            "lower": 0.429443,
+            "upper": 0.454967
+          },
+          "ST": {
+            "point": 0.157638,
+            "lower": 0.147769,
+            "upper": 0.167078
+          }
+        }
+      },
+      "ours|middle|crowded": {
+        "n": 2862,
+        "share": {
+          "DF": {
+            "point": 0.143256,
+            "lower": 0.130812,
+            "upper": 0.155517
+          },
+          "MF": {
+            "point": 0.322502,
+            "lower": 0.304348,
+            "upper": 0.34061
+          },
+          "WG": {
+            "point": 0.280224,
+            "lower": 0.262673,
+            "upper": 0.297268
+          },
+          "ST": {
+            "point": 0.254018,
+            "lower": 0.238833,
+            "upper": 0.268412
+          }
+        }
+      },
+      "ours|theirThird|sparse": {
+        "n": 2474,
+        "share": {
+          "DF": {
+            "point": 0.32498,
+            "lower": 0.306951,
+            "upper": 0.342755
+          },
+          "MF": {
+            "point": 0.217462,
+            "lower": 0.202157,
+            "upper": 0.232375
+          },
+          "WG": {
+            "point": 0.341956,
+            "lower": 0.323833,
+            "upper": 0.360589
+          },
+          "ST": {
+            "point": 0.115602,
+            "lower": 0.103055,
+            "upper": 0.128532
+          }
+        }
+      },
+      "ours|theirThird|crowded": {
+        "n": 1003,
+        "share": {
+          "DF": {
+            "point": 0.032901,
+            "lower": 0.022483,
+            "upper": 0.044204
+          },
+          "MF": {
+            "point": 0.301097,
+            "lower": 0.272727,
+            "upper": 0.3294
+          },
+          "WG": {
+            "point": 0.314058,
+            "lower": 0.284872,
+            "upper": 0.341948
+          },
+          "ST": {
+            "point": 0.351944,
+            "lower": 0.322154,
+            "upper": 0.380468
+          }
+        }
+      },
+      "theirs|ownThird|sparse": {
+        "n": 1247,
+        "share": {
+          "DF": {
+            "point": 0.117081,
+            "lower": 0.100486,
+            "upper": 0.133832
+          },
+          "MF": {
+            "point": 0.145148,
+            "lower": 0.126872,
+            "upper": 0.165919
+          },
+          "WG": {
+            "point": 0.498797,
+            "lower": 0.473307,
+            "upper": 0.525168
+          },
+          "ST": {
+            "point": 0.238974,
+            "lower": 0.217566,
+            "upper": 0.26124
+          }
+        }
+      },
+      "theirs|ownThird|crowded": {
+        "n": 1428,
+        "share": {
+          "DF": {
+            "point": 0.194678,
+            "lower": 0.17525,
+            "upper": 0.214236
+          },
+          "MF": {
+            "point": 0.236695,
+            "lower": 0.216817,
+            "upper": 0.257553
+          },
+          "WG": {
+            "point": 0.339636,
+            "lower": 0.314761,
+            "upper": 0.363955
+          },
+          "ST": {
+            "point": 0.228992,
+            "lower": 0.208987,
+            "upper": 0.249476
+          }
+        }
+      },
+      "theirs|middle|sparse": {
+        "n": 3220,
+        "share": {
+          "DF": {
+            "point": 0.263975,
+            "lower": 0.250387,
+            "upper": 0.276821
+          },
+          "MF": {
+            "point": 0.124534,
+            "lower": 0.112898,
+            "upper": 0.13587
+          },
+          "WG": {
+            "point": 0.461801,
+            "lower": 0.4461,
+            "upper": 0.478136
+          },
+          "ST": {
+            "point": 0.149689,
+            "lower": 0.138059,
+            "upper": 0.161471
+          }
+        }
+      },
+      "theirs|middle|crowded": {
+        "n": 2292,
+        "share": {
+          "DF": {
+            "point": 0.170157,
+            "lower": 0.15641,
+            "upper": 0.184529
+          },
+          "MF": {
+            "point": 0.267452,
+            "lower": 0.249891,
+            "upper": 0.285126
+          },
+          "WG": {
+            "point": 0.316318,
+            "lower": 0.298307,
+            "upper": 0.335382
+          },
+          "ST": {
+            "point": 0.246073,
+            "lower": 0.22994,
+            "upper": 0.261843
+          }
+        }
+      },
+      "theirs|theirThird|sparse": {
+        "n": 4384,
+        "share": {
+          "DF": {
+            "point": 0.248631,
+            "lower": 0.238217,
+            "upper": 0.259466
+          },
+          "MF": {
+            "point": 0.17906,
+            "lower": 0.169777,
+            "upper": 0.188227
+          },
+          "WG": {
+            "point": 0.419708,
+            "lower": 0.407267,
+            "upper": 0.431923
+          },
+          "ST": {
+            "point": 0.1526,
+            "lower": 0.142985,
+            "upper": 0.162187
+          }
+        }
+      },
+      "theirs|theirThird|crowded": {
+        "n": 1311,
+        "share": {
+          "DF": {
+            "point": 0.1045,
+            "lower": 0.087938,
+            "upper": 0.120944
+          },
+          "MF": {
+            "point": 0.277651,
+            "lower": 0.256146,
+            "upper": 0.299145
+          },
+          "WG": {
+            "point": 0.335622,
+            "lower": 0.312645,
+            "upper": 0.358653
+          },
+          "ST": {
+            "point": 0.282227,
+            "lower": 0.258303,
+            "upper": 0.306452
+          }
+        }
+      }
+    }
+  },
+  "deliverableII_coverage": {
+    "note": "per-(context x role) coverage vs the 150 floor at the frozen 388-match budget; the four ex-ante under-powered cells confirmed/corrected by measurement; per-context role-starvation check.",
+    "cellFloor": 150,
+    "headroom": 2,
+    "budgetMatches": 388,
+    "totalCells": 48,
+    "clears300": 41,
+    "clears150only": 4,
+    "under150": 3,
+    "perContextCoverage": {
+      "ours|ownThird|sparse": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "ours|ownThird|crowded": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "ours|middle|sparse": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "ours|middle|crowded": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "ours|theirThird|sparse": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 3,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "ours|theirThird|crowded": {
+        "rolesClearing150": 3,
+        "rolesClearing300": 3,
+        "roles150": [
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "theirs|ownThird|sparse": {
+        "rolesClearing150": 3,
+        "rolesClearing300": 1,
+        "roles150": [
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "theirs|ownThird|crowded": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 3,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "theirs|middle|sparse": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "theirs|middle|crowded": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "theirs|theirThird|sparse": {
+        "rolesClearing150": 4,
+        "rolesClearing300": 4,
+        "roles150": [
+          "DF",
+          "MF",
+          "WG",
+          "ST"
+        ]
+      },
+      "theirs|theirThird|crowded": {
+        "rolesClearing150": 3,
+        "rolesClearing300": 3,
+        "roles150": [
+          "MF",
+          "WG",
+          "ST"
+        ]
+      }
+    },
+    "contextsWith2plusRolesAt150": 12,
+    "underPoweredCheck": [
+      {
+        "cell": "ours|theirThird|crowded||DF",
+        "preRegExpectedAt388": 49.2,
+        "measuredN": 33,
+        "measuredVerdict": "under150",
+        "confirmed": true
+      },
+      {
+        "cell": "theirs|theirThird|crowded||DF",
+        "preRegExpectedAt388": 126.8,
+        "measuredN": 137,
+        "measuredVerdict": "under150",
+        "confirmed": true
+      },
+      {
+        "cell": "theirs|ownThird|sparse||DF",
+        "preRegExpectedAt388": 131.9,
+        "measuredN": 146,
+        "measuredVerdict": "under150",
+        "confirmed": true
+      },
+      {
+        "cell": "theirs|ownThird|sparse||MF",
+        "preRegExpectedAt388": 147.4,
+        "measuredN": 181,
+        "measuredVerdict": "clears150",
+        "confirmed": false
+      }
+    ],
+    "unexpectedUnderPowered": [],
+    "rarestCell": "ours|theirThird|crowded||DF",
+    "rarestCount": 33,
+    "cellTable": {
+      "ours|ownThird|sparse": {
+        "DF": {
+          "n": 764,
+          "perMatch": 1.9691,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 773,
+          "perMatch": 1.9923,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 2025,
+          "perMatch": 5.2191,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 953,
+          "perMatch": 2.4562,
+          "verdict": "clears300"
+        }
+      },
+      "ours|ownThird|crowded": {
+        "DF": {
+          "n": 330,
+          "perMatch": 0.8505,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 464,
+          "perMatch": 1.1959,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 488,
+          "perMatch": 1.2577,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 370,
+          "perMatch": 0.9536,
+          "verdict": "clears300"
+        }
+      },
+      "ours|middle|sparse": {
+        "DF": {
+          "n": 1205,
+          "perMatch": 3.1057,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 678,
+          "perMatch": 1.7474,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 2082,
+          "perMatch": 5.366,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 742,
+          "perMatch": 1.9124,
+          "verdict": "clears300"
+        }
+      },
+      "ours|middle|crowded": {
+        "DF": {
+          "n": 410,
+          "perMatch": 1.0567,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 923,
+          "perMatch": 2.3789,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 802,
+          "perMatch": 2.067,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 727,
+          "perMatch": 1.8737,
+          "verdict": "clears300"
+        }
+      },
+      "ours|theirThird|sparse": {
+        "DF": {
+          "n": 804,
+          "perMatch": 2.0722,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 538,
+          "perMatch": 1.3866,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 846,
+          "perMatch": 2.1804,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 286,
+          "perMatch": 0.7371,
+          "verdict": "clears150"
+        }
+      },
+      "ours|theirThird|crowded": {
+        "DF": {
+          "n": 33,
+          "perMatch": 0.0851,
+          "verdict": "under150"
+        },
+        "MF": {
+          "n": 302,
+          "perMatch": 0.7784,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 315,
+          "perMatch": 0.8119,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 353,
+          "perMatch": 0.9098,
+          "verdict": "clears300"
+        }
+      },
+      "theirs|ownThird|sparse": {
+        "DF": {
+          "n": 146,
+          "perMatch": 0.3763,
+          "verdict": "under150"
+        },
+        "MF": {
+          "n": 181,
+          "perMatch": 0.4665,
+          "verdict": "clears150"
+        },
+        "WG": {
+          "n": 622,
+          "perMatch": 1.6031,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 298,
+          "perMatch": 0.768,
+          "verdict": "clears150"
+        }
+      },
+      "theirs|ownThird|crowded": {
+        "DF": {
+          "n": 278,
+          "perMatch": 0.7165,
+          "verdict": "clears150"
+        },
+        "MF": {
+          "n": 338,
+          "perMatch": 0.8711,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 485,
+          "perMatch": 1.25,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 327,
+          "perMatch": 0.8428,
+          "verdict": "clears300"
+        }
+      },
+      "theirs|middle|sparse": {
+        "DF": {
+          "n": 850,
+          "perMatch": 2.1907,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 401,
+          "perMatch": 1.0335,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 1487,
+          "perMatch": 3.8325,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 482,
+          "perMatch": 1.2423,
+          "verdict": "clears300"
+        }
+      },
+      "theirs|middle|crowded": {
+        "DF": {
+          "n": 390,
+          "perMatch": 1.0052,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 613,
+          "perMatch": 1.5799,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 725,
+          "perMatch": 1.8686,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 564,
+          "perMatch": 1.4536,
+          "verdict": "clears300"
+        }
+      },
+      "theirs|theirThird|sparse": {
+        "DF": {
+          "n": 1090,
+          "perMatch": 2.8093,
+          "verdict": "clears300"
+        },
+        "MF": {
+          "n": 785,
+          "perMatch": 2.0232,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 1840,
+          "perMatch": 4.7423,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 669,
+          "perMatch": 1.7242,
+          "verdict": "clears300"
+        }
+      },
+      "theirs|theirThird|crowded": {
+        "DF": {
+          "n": 137,
+          "perMatch": 0.3531,
+          "verdict": "under150"
+        },
+        "MF": {
+          "n": 364,
+          "perMatch": 0.9381,
+          "verdict": "clears300"
+        },
+        "WG": {
+          "n": 440,
+          "perMatch": 1.134,
+          "verdict": "clears300"
+        },
+        "ST": {
+          "n": 370,
+          "perMatch": 0.9536,
+          "verdict": "clears300"
+        }
+      }
+    }
+  },
+  "deliverableIII_incumbentSignature": {
+    "note": "per-role histogram over the 18 lattice cells (+ outside-lattice) of the incumbent's own ball-local station target (formationSpot, hasBall=false, on a clone); pairwise TV distances — the R3 input.",
+    "roleSignature": {
+      "DF": {
+        "n": 6437,
+        "modal": "r14a180",
+        "modalShare": 0.2065,
+        "top3": [
+          {
+            "bin": "r14a180",
+            "share": 0.2065
+          },
+          {
+            "bin": "outside-lattice",
+            "share": 0.1816
+          },
+          {
+            "bin": "r21a180",
+            "share": 0.1041
+          }
+        ],
+        "outsideLatticeShare": 0.1816,
+        "normalizedEntropy": 0.8022
+      },
+      "MF": {
+        "n": 6360,
+        "modal": "r14a0",
+        "modalShare": 0.1099,
+        "top3": [
+          {
+            "bin": "r14a0",
+            "share": 0.1099
+          },
+          {
+            "bin": "r7a180",
+            "share": 0.1094
+          },
+          {
+            "bin": "r14a180",
+            "share": 0.1003
+          }
+        ],
+        "outsideLatticeShare": 0.0607,
+        "normalizedEntropy": 0.9196
+      },
+      "WG": {
+        "n": 12157,
+        "modal": "outside-lattice",
+        "modalShare": 0.1939,
+        "top3": [
+          {
+            "bin": "outside-lattice",
+            "share": 0.1939
+          },
+          {
+            "bin": "r14a300",
+            "share": 0.1045
+          },
+          {
+            "bin": "r14a60",
+            "share": 0.1013
+          }
+        ],
+        "outsideLatticeShare": 0.1939,
+        "normalizedEntropy": 0.889
+      },
+      "ST": {
+        "n": 6141,
+        "modal": "outside-lattice",
+        "modalShare": 0.1785,
+        "top3": [
+          {
+            "bin": "outside-lattice",
+            "share": 0.1785
+          },
+          {
+            "bin": "r14a0",
+            "share": 0.1184
+          },
+          {
+            "bin": "r7a0",
+            "share": 0.108
+          }
+        ],
+        "outsideLatticeShare": 0.1785,
+        "normalizedEntropy": 0.8818
+      }
+    },
+    "tvDistances": {
+      "DF|MF": {
+        "point": 0.328115,
+        "lower": 0.310849,
+        "upper": 0.346204
+      },
+      "DF|WG": {
+        "point": 0.537206,
+        "lower": 0.524232,
+        "upper": 0.551467
+      },
+      "DF|ST": {
+        "point": 0.383819,
+        "lower": 0.366744,
+        "upper": 0.403924
+      },
+      "MF|WG": {
+        "point": 0.542665,
+        "lower": 0.526632,
+        "upper": 0.559519
+      },
+      "MF|ST": {
+        "point": 0.261968,
+        "lower": 0.247667,
+        "upper": 0.277959
+      },
+      "WG|ST": {
+        "point": 0.389505,
+        "lower": 0.373939,
+        "upper": 0.406519
+      }
+    },
+    "tvMin": 0.262,
+    "tvMean": 0.4072
+  },
+  "deliverableIV_budget": {
+    "note": "the census-budget power arithmetic re-measured on the 9.11M block, cluster CI on the binding rate.",
+    "formula": "matches_needed(cell) = ceil((150 x headroom) / rows_per_match(cell)); binding cell = argmin over contexts of the 2nd-richest role rate.",
+    "bindingContext": "theirs|ownThird|sparse",
+    "bindingRole": "ST",
+    "bindingCell": "theirs|ownThird|sparse||ST",
+    "bindingRatePerMatch": 0.768,
+    "bindingRateCI": {
+      "point": 0.768041,
+      "lower": 0.685567,
+      "upper": 0.85567
+    },
+    "matchesForBare150": 196,
+    "matchesForFloor": 391,
+    "momentBudgetBare150": 15708,
+    "momentBudget2x": 31335,
+    "confirms388": false
+  },
+  "r3reading": {
+    "fired": false,
+    "verdict": "R3 NOT fired — role histograms overlap (min pairwise TV 0.262 < 0.85, mean 0.4072); the incumbent does NOT already role-separate completely — a role-conditioned census can still SEE division of labour to add."
+  },
+  "ledger": {
+    "qualifying": 35914,
+    "rows": 31095,
+    "ballDirectedSkipped": 4819,
+    "noPool": 0,
+    "eSentOff": 0,
+    "unexplained": 0,
+    "receiptCounts": {},
+    "receiptsSample": []
+  },
+  "gates": {
+    "xDet": true,
+    "xClone": true,
+    "xFid": true,
+    "cloneCoverage": true,
+    "clonesTaken": 31095,
+    "cloneChecked": 1243,
+    "cloneMismatched": 0
+  },
+  "deterministic": true,
+  "tableSha": "fa73a8fe0a2d02ddb8b82fa9430ba212fd7e30a9b92bcd68a71ce32fb748329a",
+  "sigSha": "57b3716dc449ec874eea88b7579ca5e249fc8f4744b41aa9e896c57581ccbd75",
+  "sha256": "06c7b057f20ac7b4e623821b9fb71d979749f829586f0ff3398dbec407f49616",
+  "verdict": "GATES PASS · R3 clear (map is rich for V3-P1)"
+}
