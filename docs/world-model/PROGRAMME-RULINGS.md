@@ -2898,3 +2898,42 @@
 >    run of the programme) with the Monitor pattern; a write-up
 >    session lands the result; the ruling then reads the pre-named
 >    contrast. Nothing moves after sight.
+
+> **COMMANDER RULING #70 (2026-07-30 — V2-P1 accepted: GATES PASS; the
+> reading is MIXED-STRUCTURED, richer than the hypothesis; the
+> composition price exists and is GEOMETRIC; V2-P2 drafting
+> authorized):**
+>
+> 1. **CENSUS ACCEPTED.** All gates (clone 100%; X5 1,963/0; X6
+>    unexplained 0 across 135 M ticks with the derived floor landing
+>    0.8439 vs the 0.84 reference — the formula-form vindicated; PC
+>    resolves −3.71 pp CI excluding zero; det true). 535 matches
+>    reached the 49,094-moment budget under the 650 cap; 151/432
+>    pairs in-power; 65 under-powered published never pooled; the
+>    wedge cross-check reproduces V2-P0 (A 92.89%, W_r 0.859).
+> 2. ⭐⭐⭐ **THE FINDING, banked**: the pre-named "sharply negative"
+>    universal is REFUTED as stated — and what replaces it is better.
+>    The resolved cells split 36/36 with clean geometry: **NEGATIVE
+>    concentrates in the BEHIND/LATERAL ring** (a120/a180/a240 at
+>    r7/r14; median −9.7 pp, floor −20 pp) — following a teammate
+>    into cover duplicates it; **POSITIVE concentrates DEAD AHEAD**
+>    (r14a0 8 cells, r21a0 5; up to +38 pp) — a teammate's forward
+>    run marks real opportunity and the second arrival supports it.
+>    The pooled ≈ 0 is the two structures cancelling, not absence.
+>    **The composition price EXISTS, lives at candidate grain exactly
+>    where #68.2 predicted, and the census can see it in cells** —
+>    the hypothesis's load-bearing half holds. 不要重复补位,要支援
+>    进攻 — in the table, not in a rule.
+> 3. **V2-P2 DRAFTING AUTHORIZED (executor)**: the consumer, out of
+>    sample — the v1 P2 harness reused (five arms incl. ORACLE-CTX
+>    and INVERTED PC; paired same-seed forks; disjoint block; ex-ante
+>    shrinkage prediction from the committed table; DEV on the
+>    PERCEIVED-attainable population per V2-P0(ii) — the #65 lesson
+>    in gate form); the chooser consumes the going-conditioned table
+>    NEUTRAL and percept-honest (the going bit from the body's OWN
+>    snapshot; abstention classes named); the central hypothesis for
+>    P2, pre-named from #70.2: **a chooser that reads OTHERS-GOING
+>    stops following into cover and starts supporting forward runs —
+>    and the convergence signature (spacing/duplicate-runs) moves the
+>    RIGHT way at fork grain.** Freeze → review → build → run per the
+>    standing pattern; sizing smoke before floors (#44.5/#65).
