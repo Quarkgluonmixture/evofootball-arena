@@ -13,7 +13,9 @@ import {
   type ScanFrame,
 } from '../ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../ai/reachability';
-import type { ApproachTable, StationEyeArm, StationEyeTrace } from '../ai/stationEye';
+import type {
+  ApproachTable, ControlLevels, GoingConditionedTable, StationEyeArm, StationEyeTrace,
+} from '../ai/stationEye';
 import type { WhetherEyeConfig } from '../ai/whetherEye';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
@@ -652,9 +654,27 @@ export class Match {
       | { readonly kind: 'team'; readonly side: Side }
       | { readonly kind: 'both' };
     readonly table: ApproachTable;
+    /**
+     * Stage III V2-P2 (STAGE3-V2-P2-CONSUMER §2.2/§2.4): the going-conditioned
+     * consumer. When present the eye prices each candidate through its
+     * (context × PERCEIVED going-bit) cell against the recovered control level
+     * in the same going-bit — the ONE amendment the v2 census forces. Absent ⇒
+     * the v1 P2 chooser (`table`) runs unchanged. Both are null in production;
+     * the table + control are INJECTED by the probe, never bundled in `src/**`.
+     */
+    readonly v2?: {
+      readonly goingTable: GoingConditionedTable;
+      readonly control: ControlLevels;
+    };
     /** Probe-owned observability sink; the sim never reads it back. */
     readonly trace?: StationEyeTrace;
   } | null = null;
+  /**
+   * V2-P2 §2.3 repair 1: per-body LAST-PERCEIVED ball owner (the in-flight FACE
+   * ledger). Written only on eye decisions; read to retain the FACE while the
+   * perceived ball is in flight. Empty whenever `stationEye` is null.
+   */
+  readonly stationEyeOwnerLedger = new Map<number, number>();
   /** P2 §2.2: per-body commitment windows. Empty whenever `stationEye` is null. */
   readonly stationEyeState = new Map<number, {
     /** null = the window is committed to the INCUMBENT (a tie, or no basis). */

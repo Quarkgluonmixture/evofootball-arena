@@ -8,8 +8,9 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
-  EYE_W_S, STATION_FAMILY, localXBand, perceivedContext, priceApproaches,
-  type PerceivedContext,
+  EYE_W_S, STATION_FAMILY, goingBits, localXBand, perceivedContext, perceivedContextV2,
+  priceApproaches, priceApproachesV2,
+  type PerceivedContext, type TeammateMotion,
 } from './stationEye';
 import { pressureAt } from './perception';
 import {
@@ -694,9 +695,19 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       if (trace !== undefined) trace.decisions += 1;
       const oracle = eye.arm === 'oracleCtx';
       const snap = oracle ? null : match.perceivedSnapshot(p);
-      const context = oracle
-        ? trueContext(p, match)
-        : perceivedContext(snap, p.gid, p.side, p.pos, (x) => team.localX(x));
+      // V2-P2 §2.3 repair 1: retain the last-perceived owner (the in-flight FACE
+      // ledger); update it whenever a live perceived owner is present.
+      let context: PerceivedContext | null;
+      if (eye.v2 !== undefined && !oracle) {
+        const retained = match.stationEyeOwnerLedger.get(p.gid) ?? null;
+        const liveOwner = snap?.ball?.ownerGid ?? null;
+        if (liveOwner !== null) match.stationEyeOwnerLedger.set(p.gid, liveOwner);
+        context = perceivedContextV2(snap, p.gid, p.side, p.pos, (x) => team.localX(x), retained);
+      } else {
+        context = oracle
+          ? trueContext(p, match)
+          : perceivedContext(snap, p.gid, p.side, p.pos, (x) => team.localX(x));
+      }
       if (trace !== undefined && context !== null) {
         // M-CTX (probe-only truth read, contract §3.5): what he believed
         // against what was true, per feature.
@@ -730,7 +741,29 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         }
         holdIncumbent();
       } else {
-        const outcome = priceApproaches(eye.table, context.key, eye.arm, g);
+        let outcome;
+        if (eye.v2 !== undefined) {
+          // V2-P2 §2.2/§2.4: the going-conditioned consumer. Compute the PERCEIVED
+          // going-bit per candidate from the body's OWN teammate motion (TRUE for
+          // the ORACLE-CTX arm), then price each candidate through its
+          // (context × going-bit) cell against the control in the same bit.
+          const teammates: TeammateMotion[] = [];
+          if (oracle) {
+            for (const q of team.players) {
+              if (q === p || q.role === 'GK' || q.sentOff) continue;
+              teammates.push({ px: q.pos.x, py: q.pos.y, vx: q.vel.x, vy: q.vel.y });
+            }
+          } else if (snap !== null) {
+            for (const o of snap.players) {
+              if (o.side !== p.side || o.gid === p.gid || o.gid % TEAM_SIZE === 0) continue;
+              teammates.push({ px: o.pos.x, py: o.pos.y, vx: o.vel.x, vy: o.vel.y });
+            }
+          }
+          const bits = goingBits(ball.pos.x, ball.pos.y, team.attackDir, teammates);
+          outcome = priceApproachesV2(eye.v2.goingTable, eye.v2.control, context.key, eye.arm, g, bits);
+        } else {
+          outcome = priceApproaches(eye.table, context.key, eye.arm, g);
+        }
         if (outcome.kind === 'deviate') {
           state = {
             offset: { dx: outcome.candidate.dx, dy: outcome.candidate.dy },

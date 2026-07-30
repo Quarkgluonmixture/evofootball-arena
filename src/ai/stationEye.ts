@@ -36,6 +36,8 @@ export type StationEyeArm = 'neutral' | 'gene' | 'oracleCtx' | 'inverted';
 export const CELL_FLOOR = 150;
 /** §2.2: W, inherited from P1R §2.3 with its P0-anchored derivation. */
 export const EYE_W_S = 3.0;
+/** V2-P2 §2.2 / V2-P0 §2.1: the OTHERS-GOING region radius, FROZEN at 4.0 m. */
+export const EYE_R_M = 4.0;
 /** §2.3: the density feature's radius, P1R §3.2 verbatim. */
 const DENSITY_RADIUS = 9;
 const CONTROL_ID = 'control';
@@ -212,6 +214,152 @@ export function priceApproaches(
   // Strict positivity for the ordinary arms; the inverted control commits to
   // its worst candidate whatever the sign, which is what makes it a power
   // instrument rather than a second copy of the eye.
+  if (!invert && bestAdv <= 0) return { kind: 'tie', context: contextKey, best: bestAdv };
+  return { kind: 'deviate', candidate: best, context: contextKey, advantage: bestAdv };
+}
+
+// ===========================================================================
+// STAGE III V2-P2 — THE GOING-CONDITIONED CONSUMER (the ONE amendment, §2.2/§2.4)
+//
+// V2-P1 built a going-conditioned table: each context carries a going0 and a
+// going1 cell per candidate, keyed on the candidate's TRUE OTHERS-GOING bit. The
+// V2-P2 chooser reads the body's OWN perceived going-bit per candidate and prices
+// each candidate through its going-conditioned cell against the incumbent control
+// priced in the SAME (context × going-bit) — the composition price, consumed. The
+// table is TRUE-keyed; the eye reads PERCEIVED (the perception exchange is the
+// ORACLE-CTX arm's price, never smuggled away). Nothing here is reachable from a
+// production path; the eye is null in the shipped game.
+// ===========================================================================
+
+/** One going-split census cell — the committed V2-P1 table's cell shape. */
+export interface GoingCell {
+  readonly n: number;
+  readonly score: number;
+  readonly concede: number;
+  readonly value: number;
+  readonly underPowered?: boolean;
+}
+/** context key → {going0, going1} → candidate id → cell. The committed table. */
+export type GoingConditionedTable =
+  Readonly<Record<string, { readonly going0: Readonly<Record<string, GoingCell>>; readonly going1: Readonly<Record<string, GoingCell>> }>>;
+/** context key → {going0, going1} → the recovered control level (§2.4a). */
+export type ControlLevels =
+  Readonly<Record<string, { readonly going0: GoingCell; readonly going1: GoingCell }>>;
+
+/** A remembered / true teammate motion fix, ball-local going-bit input (§2.2). */
+export interface TeammateMotion {
+  readonly px: number; readonly py: number; readonly vx: number; readonly vy: number;
+}
+
+/**
+ * §2.2 — the PERCEIVED going-bit per candidate, from the body's OWN snapshot
+ * (V2-P1's PERCEIVED column verbatim: R = 4.0 m, W = 3.0 s advance, TRUE ball-
+ * local candidate points, remembered teammate velocities). A teammate with no
+ * remembered fix contributes nothing (the caller passes only remembered fixes).
+ * The ORACLE-CTX arm passes TRUE teammate motion and gets the TRUE bit.
+ */
+export function goingBits(
+  ballX: number, ballY: number, attackDir: number, teammates: readonly TeammateMotion[],
+): Record<string, 0 | 1> {
+  const out: Record<string, 0 | 1> = {};
+  for (const cand of EYE_LATTICE) {
+    const cx = ballX + attackDir * cand.dx;
+    const cy = ballY + cand.dy;
+    let bit: 0 | 1 = 0;
+    for (const t of teammates) {
+      if (Math.hypot(t.px + t.vx * EYE_W_S - cx, t.py + t.vy * EYE_W_S - cy) <= EYE_R_M) { bit = 1; break; }
+    }
+    out[cand.id] = bit;
+  }
+  return out;
+}
+
+/** §2.3 repair 1 result: a perceived context, plus whether the FACE was retained
+ *  from an in-flight last-perceived owner (the `inflight` marker, auditable). */
+export interface PerceivedContextV2 extends PerceivedContext { readonly inflight: boolean }
+
+/**
+ * §2.3 (repair 1) — the perceived context with the in-flight FACE repair. When the
+ * perceived ball carries no owner (ball in flight) the LAST-PERCEIVED owner is
+ * used (`inflight = true`); with neither a live nor a retained owner there is no
+ * priceable context and the caller abstains (E-ABSTAIN-UNSEEN). No truth by the
+ * back door: the retained owner is one the body itself perceived.
+ */
+export function perceivedContextV2(
+  snap: PerceptionSnapshot | null,
+  observerGid: number,
+  observerSide: 0 | 1,
+  observerPos: { readonly x: number; readonly y: number },
+  localXOf: (worldX: number) => number,
+  retainedOwnerGid: number | null,
+): PerceivedContextV2 | null {
+  if (snap === null || snap.ball === null) return null;
+  const liveOwner = snap.ball.ownerGid;
+  const ownerGid = liveOwner ?? retainedOwnerGid;
+  if (ownerGid === null) return null;
+  const ownerSide = Math.floor(ownerGid / TEAM_SIZE);
+  const face = ownerSide === observerSide ? 'ours' : 'theirs';
+  let near = 0;
+  for (const q of snap.players) {
+    if (q.gid === observerGid) continue;
+    if (q.side !== observerSide) continue;
+    if (q.gid % TEAM_SIZE === 0) continue; // keeper, excluded as P1R excludes him
+    if (Math.hypot(q.pos.x - observerPos.x, q.pos.y - observerPos.y) <= DENSITY_RADIUS) near += 1;
+  }
+  const threat = localXBand(localXOf(snap.ball.pos.x));
+  const crowded = near >= 2;
+  return {
+    key: `${face}|${threat}|${crowded ? 'crowded' : 'sparse'}`,
+    face, threat, crowded, ballX: snap.ball.pos.x, inflight: liveOwner === null,
+  };
+}
+
+/** V2-P2 §2.4: is this candidate priceable? IN-POWER = both going splits hold. */
+export function candidateInPower(cells: { going0: Readonly<Record<string, GoingCell>>; going1: Readonly<Record<string, GoingCell>> }, candId: string): boolean {
+  const c0 = cells.going0[candId];
+  const c1 = cells.going1[candId];
+  return c0 !== undefined && c1 !== undefined
+    && c0.n >= CELL_FLOOR && c1.n >= CELL_FLOOR
+    && c0.underPowered !== true && c1.underPowered !== true;
+}
+
+/**
+ * §2.4 (going-conditioned) — the selection rule. For the perceived context, over
+ * IN-POWER candidates, read each candidate's PERCEIVED going-bit and look up the
+ * going-conditioned cell; price it against the incumbent control priced in the
+ * SAME (context × going-bit); deviate iff the best advantage is strictly positive.
+ * INVERTED takes the argmin (the PC). Ties / empty set / abstention resolve to NO
+ * OVERRIDE, each its own counted class — v1 priceApproaches semantics, exactly.
+ */
+export function priceApproachesV2(
+  goingTable: GoingConditionedTable,
+  control: ControlLevels,
+  contextKey: string,
+  arm: StationEyeArm,
+  genome: TacticalGenome,
+  bits: Record<string, 0 | 1>,
+): EyeOutcome {
+  const cells = goingTable[contextKey];
+  const ctrl = control[contextKey];
+  if (cells === undefined || ctrl === undefined) return { kind: 'noCell', context: contextKey };
+  const { ws, wc } = faceWeights(arm, genome);
+  const val = (c: GoingCell): number => ws * c.score - wc * c.concede;
+  const invert = arm === 'inverted';
+  let best: EyeCandidate | null = null;
+  let bestAdv = 0;
+  let eligible = 0;
+  for (const cand of EYE_LATTICE) {
+    if (!candidateInPower(cells, cand.id)) continue;
+    const b = bits[cand.id] ?? 0;
+    const cell = b === 1 ? cells.going1[cand.id] : cells.going0[cand.id];
+    const base = b === 1 ? ctrl.going1 : ctrl.going0;
+    if (cell === undefined || base === undefined || !Number.isFinite(base.value)) continue;
+    eligible += 1;
+    const adv = val(cell) - val(base);
+    const rank = invert ? -adv : adv;
+    if (best === null || rank > (invert ? -bestAdv : bestAdv)) { best = cand; bestAdv = adv; }
+  }
+  if (eligible === 0 || best === null) return { kind: 'noCell', context: contextKey };
   if (!invert && bestAdv <= 0) return { kind: 'tie', context: contextKey, best: bestAdv };
   return { kind: 'deviate', candidate: best, context: contextKey, advantage: bestAdv };
 }
