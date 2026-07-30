@@ -682,6 +682,14 @@ export class Match {
     candidateId: string;
     untilTick: number;
     faceAtDecision: 'ours' | 'theirs';
+    /**
+     * V2-P2R §1.1: the commit-time going-contributor set G_commit — the perceived
+     * teammate gids whose W-advanced position lands within R of the chosen region
+     * at commit. Written on a DEVIATION, empty for incumbent windows. The abort
+     * (§1.2) fires iff a mid-window re-read's G_mid carries a gid NOT in this set.
+     * Only ever populated while `stationEye !== null` (dormant in production).
+     */
+    committedGoingContributors: Set<number>;
   }>();
   /**
    * C5 T2 — THE WHETHER SEAT (docs/world-model/C5-T2-WHETHER-SEAT.md §2.1). The

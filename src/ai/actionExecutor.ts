@@ -1,16 +1,16 @@
 import { clamp } from '../utils/math';
 import { add, dist, norm, scale, sub, v2, type V2 } from '../utils/vec';
 import {
-  BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, DT, GOAL_WIDTH, HALF_L, HALF_W,
-  SHIELD_STAMINA_DRAIN,
+  AI_INTERVAL, BOX_DEPTH, BOX_WIDTH, CONTROL_MAX_HEIGHT, CORNER_CLEARANCE, DT, GOAL_WIDTH, HALF_L,
+  HALF_W, SHIELD_STAMINA_DRAIN,
 } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
-  EYE_W_S, STATION_FAMILY, goingBits, localXBand, perceivedContext, perceivedContextV2,
-  priceApproaches, priceApproachesV2,
-  type PerceivedContext, type TeammateMotion,
+  EYE_W_S, STATION_FAMILY, goingBits, goingContributors, localXBand, perceivedContext,
+  perceivedContextV2, priceApproaches, priceApproachesV2,
+  type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
 import { pressureAt } from './perception';
 import {
@@ -37,6 +37,12 @@ export function relativePointTarget(
 
 /** P2 §2.2: the commitment window, in ticks. */
 const EYE_W_TICKS = Math.round(EYE_W_S / DT);
+/**
+ * V2-P2R §1.2: the abort re-read cadence, `AI_INTERVAL = 0.15 s` = 9 ticks (the
+ * body's own decision cadence; #48.4 pins it, the stop-rule forbids re-cutting it).
+ * A live deviation window re-reads its OWN percept at commit+9, +18, … < untilTick.
+ */
+const EYE_ABORT_INTERVAL_TICKS = Math.round(AI_INTERVAL / DT);
 
 /**
  * P2 §2.5's ORACLE-CTX arm and the M-CTX mediator: the context as the WORLD
@@ -686,6 +692,60 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         }
       }
     }
+    // D3-DUPLICATE (STAGE3-V2-P2R-ABORTABLE.md §1.2): the abortable approach. At the
+    // body's OWN decision cadence during a LIVE DEVIATION window, re-pull the OWN
+    // percept and recompute the going-contributor set G_mid for the committed region
+    // (o* fixed, the region tracking the CURRENT ball). If a teammate NOT in the
+    // commit-time set G_commit is now going into it — a duplicate FORMING mid-window —
+    // the override LAPSES to incumbent-hold retaining the SAME untilTick (the clock is
+    // never reset; the ticks already spent are the unrefunded price #73.2(i)). Armed
+    // on the eye's v2 arms only (CONTROL carries no eye state); percept-honest (no
+    // truth, no channel — a body that never looks never aborts, #73.2(ii)); the
+    // ORACLE-CTX arm re-reads TRUE motion. Dormant in production (eye null).
+    if (
+      eye.v2 !== undefined && state !== undefined && state.offset !== null
+      && state.candidateId !== 'control' && isStation
+    ) {
+      const elapsed = match.simTick - (state.untilTick - EYE_W_TICKS);
+      if (elapsed > 0 && elapsed % EYE_ABORT_INTERVAL_TICKS === 0) {
+        const oracle = eye.arm === 'oracleCtx';
+        const teammates: TeammateMotionId[] = [];
+        if (oracle) {
+          for (const q of team.players) {
+            if (q === p || q.role === 'GK' || q.sentOff) continue;
+            teammates.push({ gid: q.gid, px: q.pos.x, py: q.pos.y, vx: q.vel.x, vy: q.vel.y });
+          }
+        } else {
+          const snap = match.perceivedSnapshot(p);
+          if (snap !== null) {
+            for (const o of snap.players) {
+              if (o.side !== p.side || o.gid === p.gid || o.gid % TEAM_SIZE === 0) continue;
+              teammates.push({ gid: o.gid, px: o.pos.x, py: o.pos.y, vx: o.vel.x, vy: o.vel.y });
+            }
+          }
+        }
+        const gMid = goingContributors(ball.pos.x, ball.pos.y, team.attackDir, state.offset, teammates);
+        const gCommit = state.committedGoingContributors;
+        const newContributors: number[] = [];
+        for (const j of gMid) if (!gCommit.has(j)) newContributors.push(j);
+        if (newContributors.length > 0) {
+          // ABORT: rewrite to incumbent-hold, SAME untilTick. No re-decide, no refund.
+          const tr = eye.trace;
+          if (tr !== undefined) {
+            tr.abort += 1;
+            tr.abortTicks.set(elapsed, (tr.abortTicks.get(elapsed) ?? 0) + 1);
+            tr.abortWastedTicks += elapsed;
+            tr.abortGCommit += gCommit.size;
+            tr.abortGMid += gMid.size;
+            tr.abortNewContributors += newContributors.length;
+            for (const j of newContributors) tr.abortDrivers.set(j, (tr.abortDrivers.get(j) ?? 0) + 1);
+          }
+          state.offset = null;
+          state.candidateId = 'control';
+          state.committedGoingContributors = new Set();
+        }
+      }
+    }
     // D1: decide on the first eligible tick with no live commitment, then once
     // per window. EVERY decision commits for W — including the ones that
     // choose the incumbent — so the percept is pulled once per body per
@@ -729,6 +789,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
           candidateId: 'control',
           untilTick: match.simTick + EYE_W_TICKS,
           faceAtDecision: context?.face ?? 'ours',
+          committedGoingContributors: new Set(),   // §1.1: empty for incumbent windows
         };
         match.stationEyeState.set(p.gid, state);
       };
@@ -742,25 +803,35 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         holdIncumbent();
       } else {
         let outcome;
+        // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / incumbent).
+        let v2rCommitContributors: Set<number> = new Set();
         if (eye.v2 !== undefined) {
           // V2-P2 §2.2/§2.4: the going-conditioned consumer. Compute the PERCEIVED
           // going-bit per candidate from the body's OWN teammate motion (TRUE for
           // the ORACLE-CTX arm), then price each candidate through its
           // (context × going-bit) cell against the control in the same bit.
-          const teammates: TeammateMotion[] = [];
+          const teammates: TeammateMotionId[] = [];
           if (oracle) {
             for (const q of team.players) {
               if (q === p || q.role === 'GK' || q.sentOff) continue;
-              teammates.push({ px: q.pos.x, py: q.pos.y, vx: q.vel.x, vy: q.vel.y });
+              teammates.push({ gid: q.gid, px: q.pos.x, py: q.pos.y, vx: q.vel.x, vy: q.vel.y });
             }
           } else if (snap !== null) {
             for (const o of snap.players) {
               if (o.side !== p.side || o.gid === p.gid || o.gid % TEAM_SIZE === 0) continue;
-              teammates.push({ px: o.pos.x, py: o.pos.y, vx: o.vel.x, vy: o.vel.y });
+              teammates.push({ gid: o.gid, px: o.pos.x, py: o.pos.y, vx: o.vel.x, vy: o.vel.y });
             }
           }
           const bits = goingBits(ball.pos.x, ball.pos.y, team.attackDir, teammates);
           outcome = priceApproachesV2(eye.v2.goingTable, eye.v2.control, context.key, eye.arm, g, bits);
+          // V2-P2R §1.1: record G_commit for the chosen region (the abort's baseline).
+          // Computed here, on the SAME percept the going-bit was read from, so the
+          // set-difference at the mid-window re-read is faithful.
+          if (outcome.kind === 'deviate') {
+            v2rCommitContributors = goingContributors(
+              ball.pos.x, ball.pos.y, team.attackDir, outcome.candidate, teammates,
+            );
+          }
         } else {
           outcome = priceApproaches(eye.table, context.key, eye.arm, g);
         }
@@ -770,6 +841,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
             candidateId: outcome.candidate.id,
             untilTick: match.simTick + EYE_W_TICKS,
             faceAtDecision: context.face,
+            committedGoingContributors: v2rCommitContributors,   // §1.1: G_commit
           };
           match.stationEyeState.set(p.gid, state);
           if (trace !== undefined) {

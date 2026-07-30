@@ -151,6 +151,19 @@ export interface StationEyeTrace {
   ctxAgreeFace: number;
   ctxAgreeThreat: number;
   ctxAgreeDensity: number;
+  // --- V2-P2R §4: the abort ledger (D-ABORT is a sub-tally of `deviate`) --------
+  /** D-ABORT: deviation windows that LAPSED mid-window via D3-DUPLICATE. */
+  abort: number;
+  /** time-to-abort histogram: commit→abort elapsed TICKS → count (p50/p90/min/max). */
+  abortTicks: Map<number, number>;
+  /** wasted ticks summed = ticks spent chasing X* before the lapse (== time-to-abort). */
+  abortWastedTicks: number;
+  /** contributor churn at abort: Σ|G_commit|, Σ|G_mid|, Σ|G_mid\G_commit|. */
+  abortGCommit: number;
+  abortGMid: number;
+  abortNewContributors: number;
+  /** distinct NEW-contributor identities that drove aborts: gid → count. */
+  abortDrivers: Map<number, number>;
 }
 
 export const newStationEyeTrace = (): StationEyeTrace => ({
@@ -158,6 +171,8 @@ export const newStationEyeTrace = (): StationEyeTrace => ({
   noCell: 0, tie: 0, nonStationTicks: 0, overrideTicks: 0,
   byCandidate: new Map(), byContext: new Map(),
   ctxSeen: 0, ctxAgree: 0, ctxAgreeFace: 0, ctxAgreeThreat: 0, ctxAgreeDensity: 0,
+  abort: 0, abortTicks: new Map(), abortWastedTicks: 0,
+  abortGCommit: 0, abortGMid: 0, abortNewContributors: 0, abortDrivers: new Map(),
 });
 
 /** §2.2: the station families. Ball-directed jobs are never overridden. */
@@ -252,6 +267,15 @@ export interface TeammateMotion {
 }
 
 /**
+ * V2-P2R §1.4: the same motion fix, carrying the teammate's identity. The abort's
+ * contributor scan (`goingContributors`) tracks WHICH teammates are going into the
+ * committed region so the set-difference G_mid \ G_commit can be computed; the
+ * bit-only `goingBits` ignores identity, so a `TeammateMotionId[]` is accepted there
+ * unchanged (it is a `TeammateMotion`).
+ */
+export interface TeammateMotionId extends TeammateMotion { readonly gid: number }
+
+/**
  * §2.2 — the PERCEIVED going-bit per candidate, from the body's OWN snapshot
  * (V2-P1's PERCEIVED column verbatim: R = 4.0 m, W = 3.0 s advance, TRUE ball-
  * local candidate points, remembered teammate velocities). A teammate with no
@@ -270,6 +294,32 @@ export function goingBits(
       if (Math.hypot(t.px + t.vx * EYE_W_S - cx, t.py + t.vy * EYE_W_S - cy) <= EYE_R_M) { bit = 1; break; }
     }
     out[cand.id] = bit;
+  }
+  return out;
+}
+
+/**
+ * V2-P2R §1.1/§1.2 — the going-CONTRIBUTOR set for ONE ball-local region (the
+ * chosen candidate's offset `o*`), returning teammate IDENTITIES rather than a bit.
+ * Byte-identical geometry to `goingBits` (W = 3.0 s velocity advance, R = 4.0 m,
+ * TRUE ball-local candidate point, the ball's current position as the region
+ * centre) — it is that scan tracking gids, per §1.4. `G_commit` is this evaluated
+ * at commit against the commit-time ball; `G_mid` is it evaluated at a mid-window
+ * re-read against the CURRENT ball (the region tracks the ball). The abort fires iff
+ * `G_mid \ G_commit ≠ ∅`. A teammate with no remembered fix is simply absent from
+ * the supplied list and contributes nothing (percept-honest; the ORACLE-CTX arm
+ * passes TRUE motion).
+ */
+export function goingContributors(
+  ballX: number, ballY: number, attackDir: number,
+  offset: { readonly dx: number; readonly dy: number },
+  teammates: readonly TeammateMotionId[],
+): Set<number> {
+  const cx = ballX + attackDir * offset.dx;
+  const cy = ballY + offset.dy;
+  const out = new Set<number>();
+  for (const t of teammates) {
+    if (Math.hypot(t.px + t.vx * EYE_W_S - cx, t.py + t.vy * EYE_W_S - cy) <= EYE_R_M) out.add(t.gid);
   }
   return out;
 }
