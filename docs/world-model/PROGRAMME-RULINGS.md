@@ -3107,3 +3107,30 @@
 >    Monitor pattern; a write-up session lands the result; the ruling
 >    reads the pre-named reversal hypothesis. Nothing moves after
 >    sight.
+
+> **COMMANDER RULING #75 (2026-07-30 — the X6 flag investigated: the
+> executor's stale-data diagnosis is CORRECTED; the abort commit broke
+> the OLD experiment's reproducibility; fix ordered before any run):**
+>
+> 1. **THE RECORD, corrected (commander-verified in git):** src was
+>    UNTOUCHED between the P2 data commit (9c28826) and the pre-abort
+>    HEAD (6f6c6e3) — the committed P2 data was reproducible until
+>    `11af812` landed. The regression is the abort block's GATE:
+>    `eye.v2 !== undefined` is true for the OLD V2-P2 probe too, so
+>    the abort now fires inside the old experiment and silently
+>    changes its semantics (903 unexplained where the committed run
+>    has 0). A #26.5-genre reproducibility break: committed results
+>    must stay reproducible at later HEADs unless a ruling says the
+>    world moved. The executor's disclosure instinct was right; the
+>    diagnosis was wrong.
+> 2. **FIX ORDERED, then the run**: (i) the abort gates behind an
+>    EXPLICIT opt-in (`eye.v2.abortEnabled === true` or equivalent),
+>    default absent — the old P2 probe must reproduce its committed
+>    run byte-for-byte again, PROVEN by a capped re-run showing
+>    unexplained 0; (ii) the P2R probe sets the opt-in and its
+>    classifier closes the residual gap (296/4-match) to EXACTLY 0 —
+>    diagnose what those ticks are (likely post-abort window ticks the
+>    ledger half-covers) and class them with receipts, #49.3; (iii)
+>    pins updated (abort-null-when-flag-absent added), full X-family
+>    re-proven; one fix commit; STOP; the resident session runs the
+>    payoff only after this lands.
