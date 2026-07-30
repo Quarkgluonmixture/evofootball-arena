@@ -203,3 +203,28 @@ prices approaches under #41.2's meaning — nothing here prices
 "standing", "formations", or "roles"; if organised shape appears, it
 EMERGED from priced approaches under honest eyes, which is the entire
 point of the programme.
+
+---
+
+## 8. Contract amendment v2.1 — THE ABORTABLE APPROACH (commander,
+2026-07-30, ruling #73; supersedes nothing, extends §2)
+
+The V2-P2 verdict ((b)+(h), ruling #72) and the user's reality-check
+(#73.1) locate the substrate defect: the committed window was BLIND —
+the only break rule was a possession flip, so a body seeing a duplicate
+form mid-approach was forbidden to yield. Real football's first-order
+anti-pile-up mechanism is continuous mutual visibility + cheap aborts;
+duplicated starts are common and die in their first steps.
+
+**D3-DUPLICATE (the new break rule, the eye's arms only):** at the
+body's own decision cadence during a committed window, re-read the OWN
+percept; if the committed target region's OTHERS-GOING bit (§2's frozen
+feature, unchanged) reads 1 from a teammate other than at commit time,
+the override lapses and the incumbent resumes. Wasted ticks are the
+honest price. No truth, no communication, no refund. The mirror problem
+(mutual yield) is a deployment-grain question, pre-named for V2-P3.
+
+Stage V2-P2R re-runs the consumer with D3-DUPLICATE per ruling #73.2's
+six constraints; the pre-named hypothesis: the #72 convergence inversion
+REVERSES (duprun falls on negative cells, spacing stops closing) while
+the payoff does not degrade. Primary = the convergence signature.
