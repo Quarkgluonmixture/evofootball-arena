@@ -549,11 +549,19 @@ binds EARLY, perm p=1.0; wide-vs-central within-cell contrast +0.631,
 ~54% of 764,053 eye decisions occur at priced moments (~32%
 ball-in-flight + ~14% restart phases = extrapolation) — the P3
 in-support law's surface is measured. P0 (event-anchored) and P0b
-(decision-anchored) published side by side. **→ NEXT: executor
-pre-registers V4-P1 — THE CALIBRATION (#99.5: concede-face surrogate
-→ goal-value links, observational, windows from P0's curves, resolved
-monotone link or the term does not enter).** Forks (ii)/(iii) stay
-banked. R20 gaps / F9 any time. Road B stands; nothing ships.
+(decision-anchored) published side by side. **V4-P1 PRE-REGISTERED
+(`86bd481`; verify clean) → review #100 PASS**: matched-baseline lift
+estimator (concessions/event = goal-value; face-matched baseline, NOT
+location-matched — the nested-ladder design), W_cal = 30 s from P0's
+published curves, greedy monotone admission, 40-match sizing smoke
+@9.9M then frozen N arithmetic (cap 1,200 @9.8M); box entry accepted
+as PROPOSED primary with the final per-channel designation deferred
+to the V4-P2 pre-reg (data-informed, freeze-compatible). **→ NEXT:
+executor BUILDS `scripts/probes/stage3-v4-p1-calibration.ts` (both
+modes: sizing smoke + census; workflow Draft→Verify §0.0), then the
+commander runs smoke → N → census detached (#49.5). Monotone-link
+gate HARD; all-three-drop ⇒ stop.** Forks (ii)/(iii) stay banked.
+R20 gaps / F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

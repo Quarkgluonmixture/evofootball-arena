@@ -4058,3 +4058,58 @@
 >    enters ONLY with a resolved monotone link (I3), failures
 >    published and dropped. Executor pre-registers V4-P1 per §0.0;
 >    commander reviews; the standing pattern.
+
+> **COMMANDER RULING #100 (2026-07-31 — V4-P1 pre-registration
+> reviewed: PASS, flagged choices ratified with one designation
+> deferred; probe build authorized):**
+>
+> 1. **VERDICT**: the P1 pre-registration (`86bd481`) passes review
+>    (machine-verify clean, zero violations; every number traced;
+>    seed families disjoint — census 9.8M, smoke 9.9M; sizing
+>    arithmetic recomputed and checkable). The estimator is honest
+>    work: per-event paired matched baseline (same match, same
+>    side, opponent-in-possession, post-event windows excluded,
+>    frozen COMPARISON_SEED 98203), lift in concessions/event =
+>    goal-value; the P0b engines reused verbatim.
+> 2. **FLAGGED CHOICES RATIFIED**: (i) the matched baseline matched
+>    on possession-FACE but NOT ball location — location-matching
+>    would self-collapse the deep-entry lift; the three lifts form
+>    a nested ladder over one common reference; the all-playing
+>    baseline published non-gating alongside; (ii) W_cal = 30 s
+>    pinned from P0's published concede-face mass concentration
+>    ([10,15)∪[15,30)), with the executor's honesty caveat recorded
+>    (P0 curves measure limb→surrogate lag; the surrogate→concession
+>    residual is shorter, so 30 s is generous and the matched
+>    baseline is what keeps a long window from inflating the lift);
+>    sensitivities {15 s, 45 s} labelled, non-gating; (iii) the
+>    deterministic left-anchored greedy monotone admission; (iv) the
+>    40-match sizing smoke @9.9M with the frozen N arithmetic
+>    (MDL = min(0.5·point, 0.01) concessions/event, N ≤ 1,200,
+>    under-powered published never pooled) — #44.5/#65 compliance,
+>    needed because per-event hazards/σ are genuinely unpublished;
+>    (v) NO X-CORPUS-IDENT — a fresh corpus has no identity target;
+>    fidelity = X-DET + X-SRC-ZERO + disjointness (the optional
+>    cross-check on the 9.7M band is DECLINED for scope discipline;
+>    the detectors are P0b's, already run clean).
+> 3. **ONE DESIGNATION DEFERRED (not re-cutting — a P2 design
+>    input)**: box entry is ACCEPTED as the PROPOSED primary
+>    surrogate (the severity knee: preventable, denser than shots,
+>    upstream of finish-skill contamination), but the FINAL
+>    per-channel primary designation is made at the V4-P2
+>    pre-registration WITH P1's published table in hand — P1's own
+>    gate reads on the resolved monotone ladder, not on the primary
+>    choice, so deferring is freeze-compatible and
+>    information-optimal. Deep entry stays the candidate natural
+>    unit for the rest-defence channel; the commander decides at
+>    P2 pre-reg review.
+> 4. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p1-calibration.ts` (workflow
+>    Draft → Verify, §0.0) implementing BOTH stages the prereg
+>    froze — the sizing-smoke mode (40 @9.9M) and the census mode
+>    (N pinned by the frozen arithmetic from smoke realizations,
+>    cap 1,200 @9.8M) — plus the frozen N-pinning computation
+>    recorded in the output. The runs launch detached under the
+>    commander's resident session (#49.5): smoke first, then N,
+>    then the census. Gates X-DET / X-SRC-ZERO / the monotone-link
+>    gate HARD; all-three-drop ⇒ CLASS H uncalibratable ⇒ stop at
+>    the commander (contract §6).
