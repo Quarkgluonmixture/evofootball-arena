@@ -570,13 +570,19 @@ severest" ordering measured WRONG (long-shot dilution; 70.6% of box
 entries yield a shot yet the marginal shot is cheaper). CLASS H IS
 CALIBRATABLE. ⚠ deep unit window-fragile (unresolved @45 s) — P2
 reads at the gated 30 s. Box entry = proposed primary (final
-designation at P2 pre-reg review, #102.5). **→ NEXT: executor
-pre-registers V4-P2 — THE OCCUPANCY CENSUS** (#102.6: fork-and-hold
-on STANDING-LATTICE held candidates (never the designation, #91),
-W_hold/W_long from P0's curves + the #102.4 caution, outcomes in the
-admitted calibrated units, cells context×role×held-candidate, sizing
-before floors). Forks (ii)/(iii) stay banked. R20 gaps / F9 any
-time. Road B stands; nothing ships.
+designation at P2 pre-reg review, #102.5). **V4-P2 PRE-REGISTERED (`636d7b8`; verify 5/5, #91 red line clean) →
+review #103 PASS, eight flagged calls ratified**: forcedStation
+absolute-frozen-target occupancy read; possession-flip NON-terminal
+(the hedge itself); 72 cells (3 ball-thirds × 4 roles × 6 folded
+region classes, floor 150); W_hold 15 s / W_long 30 s on published
+lag-bin edges; per-protocol OCC_FLOOR 0.5; **gating unit = DEEP
+entry (0.0435), box = labelled secondary (#103.3)**; full-lattice
+fork (control+18), N_max 800, r=21 off-ramp = reading (G). **→ NEXT:
+executor BUILDS `scripts/probes/stage3-v4-p2-occupancy-census.ts`
+(workflow Draft→Verify §0.0), then commander runs smoke @10.0M →
+frozen N → census @10.1M detached (#49.5). The frozen null stops
+CLASS H at the commander.** Forks (ii)/(iii) stay banked. R20 gaps /
+F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

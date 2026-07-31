@@ -4210,3 +4210,53 @@
 >    stations carry resolved nonzero long-horizon prices AND the
 >    price surface separates by region and role). The null stops
 >    CLASS H at the commander BEFORE any consumer is built.
+
+> **COMMANDER RULING #103 (2026-07-31 — V4-P2 pre-registration
+> reviewed: PASS; the eight flagged calls ratified; the gating unit
+> designated; probe build authorized):**
+>
+> 1. **VERDICT**: the P2 pre-registration (`636d7b8`, 829 lines)
+>    passes review (machine-verify 5/5, zero violations; the #91
+>    red line grep-verified — zero index-1 hits, every
+>    "designation" mention a negation or the channel-word sense;
+>    every cited number and src line independently confirmed).
+> 2. **THE EIGHT FLAGGED CALLS, RATIFIED**: (1) the forcing seam =
+>    `Match.forcedStation` absolute-frozen-target — the census
+>    reads OCCUPANCY of a pitch region, which is the question; a
+>    ball-local hold would confound the read with ball-chasing;
+>    (2) **the possession flip is NON-TERMINAL — emphatically
+>    ratified**: the hold persisting through the turnover IS the
+>    hedge being priced (v3's flip-terminal was right for a 3 s
+>    approach read, wrong for a 15 s hedge read); (3) see #103.3;
+>    (4) the 6 folded region classes / 72 cells at floor 150,
+>    publish-not-pool; (5) the context coarsening (face fixed
+>    'ours', density dropped) for power at the 30 s horizon;
+>    (6) the full-lattice fork (control+18) with N_max = 800 and
+>    the r=21-shell off-ramp as reading (G) — a commander decision
+>    on smoke wall-cost, never a silent re-cut; (7) OCC_FLOOR = 0.5
+>    admission — a PER-PROTOCOL estimand (the price of EXECUTABLE
+>    holds; exclusions published per cell; consistent because P3's
+>    consumer only buys executable holds) — and W_hold = 15 s /
+>    W_long = 30 s pinned on published lag-bin edges (the 45 s
+>    sensitivity correctly EXCLUDED per #102.4); (8) the SPREAD-S
+>    permutation port with match×context blocking, BH q=0.05.
+>    E-BALL-ARRIVAL semantics (terminal but admissible at
+>    occupancy ≥ 0.5) ratified as honest: a world that passes to
+>    the held body is part of the price.
+> 3. **THE GATING UNIT DESIGNATED (#102.5 decided)**: **the DEEP
+>    unit (0.0435 [0.0308, 0.0558] goals/entry) GATES the census**
+>    — Claims 1 and 2 read on deep-converted prices; it is dense
+>    (34.9 entries/match), resolvable per fork, the natural
+>    rest-defence-channel unit, and the sizing arithmetic already
+>    targets it. **Box entry (0.1952) is the LABELLED SECONDARY
+>    everywhere** (per-fork sparsity over 30 s makes it a poor
+>    gate; its higher goal-value makes it the value cross-read
+>    where powered). The two are NEVER summed (nesting).
+> 4. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p2-occupancy-census.ts` per the
+>    frozen prereg AS RULED (workflow Draft → Verify, §0.0); then
+>    the commander runs sizing smoke @10.0M → frozen N (cap 800) →
+>    census @10.1M, detached (#49.5). Gates X-FORK-IDENT (100%
+>    coverage) / clone 100% / X-DET / X-SRC-ZERO / seed
+>    disjointness HARD; the frozen null stops CLASS H at the
+>    commander.
