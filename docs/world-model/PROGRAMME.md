@@ -560,12 +560,23 @@ to the V4-P2 pre-reg (data-informed, freeze-compatible). **→ NEXT:
 executor BUILDS `scripts/probes/stage3-v4-p1-calibration.ts` (both
 modes: sizing smoke + census; workflow Draft→Verify §0.0), then the
 commander runs smoke → N → census detached (#49.5). Monotone-link
-gate HARD; all-three-drop ⇒ stop.** **P1 probe BUILT (`3293d33`;
-verify 6/6; all three monotone-admission branches preflighted) →
-ruling #101: deviations ratified, THE SIZING SMOKE IS IN FLIGHT
-(40 @9.9M, detached #49.5) → then census @9.8M with V4P1_N from the
-smoke's frozen arithmetic.** Forks (ii)/(iii) stay banked. R20 gaps /
-F9 any time. Road B stands; nothing ships.
+gate HARD; all-three-drop ⇒ stop.** **V4-P1 RAN AND CLOSED (ruling #102; §RESULT + both data files
+`efd966d`, verify 4/4)**: smoke → N=1,200 (capped) → census 1,200
+@9.8M — **THE CALIBRATION TABLE STANDS: deep entry 0.0435
+[0.0308, 0.0558] · box entry 0.1952 [0.1662, 0.2235]
+concessions/event; shot-against DROPPED non-monotone (0.0865 <
+0.1952; shot−box resolved −0.1087)** — the a-priori "shots are
+severest" ordering measured WRONG (long-shot dilution; 70.6% of box
+entries yield a shot yet the marginal shot is cheaper). CLASS H IS
+CALIBRATABLE. ⚠ deep unit window-fragile (unresolved @45 s) — P2
+reads at the gated 30 s. Box entry = proposed primary (final
+designation at P2 pre-reg review, #102.5). **→ NEXT: executor
+pre-registers V4-P2 — THE OCCUPANCY CENSUS** (#102.6: fork-and-hold
+on STANDING-LATTICE held candidates (never the designation, #91),
+W_hold/W_long from P0's curves + the #102.4 caution, outcomes in the
+admitted calibrated units, cells context×role×held-candidate, sizing
+before floors). Forks (ii)/(iii) stay banked. R20 gaps / F9 any
+time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

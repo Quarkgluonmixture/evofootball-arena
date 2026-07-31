@@ -4151,3 +4151,62 @@
 >    surrogate — if the smoke confirms box under-power at the
 >    N-cap, the gate will read it UNRESOLVED and the ladder
 >    adjudication falls to the commander per the frozen semantics.
+
+> **COMMANDER RULING #102 (2026-07-31 — V4-P1 adjudicated: the
+> calibration table stands with [deep, box]; shot-against dropped
+> as frozen; stage V4-P1 CLOSES; V4-P2 opens):**
+>
+> 1. **BANKED**: the sizing smoke (40 @9.9M; N arithmetic → 1,200
+>    capped), the census (1,200 @9.8M, seeds 9,800,000–9,801,199),
+>    and the faithful §RESULT + both data files (`efd966d`;
+>    number-verify 4/4, zero violations, output SHAs independently
+>    RECOMPUTED as genuine). Gates all pass: X-DET both modes,
+>    X-SRC-ZERO (fingerprint unchanged), seed disjointness.
+> 2. **THE CALIBRATION TABLE IS ACCEPTED** (the frozen gate's own
+>    output, reading B): admitted units in concessions/event =
+>    goal-value — **opponent deep entry 0.0435 [0.0308, 0.0558]**
+>    (41,882 events) and **opponent box entry 0.1952
+>    [0.1662, 0.2235]** (2,300 events; resolved despite sparsity —
+>    the smoke's under-power worry did not materialise).
+>    **Shot-against DROPPED** by the deterministic greedy
+>    (non-monotone: 0.0865 < 0.1952), published never patched.
+>    CLASS H IS CALIBRATABLE.
+> 3. **ADJUDICATION COMMENTARY (mine, not the data's)**: the a
+>    priori severity ordering was WRONG about shots — the
+>    shot-against population is diluted by long-range attempts,
+>    while a box entry is always deep danger (the chain: 70.6% of
+>    box entries yield a shot, yet the marginal shot is resolvedly
+>    CHEAPER than the marginal box entry, shot−box = −0.1087
+>    [−0.1374, −0.0796]). The gate did exactly its job: a unit
+>    whose empirical ordering contradicts the frozen ladder does
+>    not enter the table. The executor's "finish-contaminated
+>    shot" instinct (P1 prereg §7.2) is now a measured fact.
+> 4. **LABELLED CAUTION for P2**: the deep unit goes UNRESOLVED at
+>    the 45 s sensitivity window (CI [−0.0104, +0.0232]) — the
+>    deep-entry lift is window-fragile; P2 reads outcomes at the
+>    GATED 30 s window and its W_long pin must respect this.
+> 5. **PRIMARY DESIGNATION (#100.3, now data-informed, decided at
+>    P2 pre-reg review)**: box entry stands as the PROPOSED primary
+>    for the concession channel (highest resolved admitted unit);
+>    deep entry is the denser admitted secondary and remains the
+>    candidate natural unit for the rest-defence channel. The P2
+>    pre-registration proposes the per-channel designation; the
+>    commander decides at its review.
+> 6. **V4-P2 OPENS — THE OCCUPANCY CENSUS (the contract's main
+>    instrument)**: executor pre-registers per §0.0 under the
+>    contract §4 "V4-P2" bullet and the #91 amendment (held
+>    candidates from the STANDING LATTICE / region classes — NEVER
+>    the incumbent designation), with: fork-and-hold (I4, unilateral,
+>    normal locomotion, paired same-seed control, clone coverage
+>    100%); binding-moment sampling (base rates banked #96.5(iii));
+>    W_hold and W_long pinned ex ante FROM P0's published
+>    time-to-cost curves + the #102.4 caution (I6/#48.4); outcomes
+>    = the ADMITTED calibrated units (box entries against + deep
+>    entries against within W_long, converted at the #102.2 table);
+>    cells context × role × held-candidate class; SIZING BEFORE
+>    FLOORS (#44.5/#65: sizing smoke first, disjoint seeds #46.2);
+>    E-INJURY receipts (#49.3); X-DET; X-SRC-ZERO; publish-not-pool;
+>    the pre-named hypothesis verbatim from the contract §4 (held
+>    stations carry resolved nonzero long-horizon prices AND the
+>    price surface separates by region and role). The null stops
+>    CLASS H at the commander BEFORE any consumer is built.
