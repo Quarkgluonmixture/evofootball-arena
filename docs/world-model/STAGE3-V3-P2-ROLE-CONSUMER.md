@@ -639,3 +639,202 @@ whether a percept-honest consumer where each body reads his own column breaks th
 convergence signature at fork grain is exactly the open question this stage measures —
 and it may honestly come back HALF-2-NULL, DIVERGENCE-TOO-THIN, or UNDELIVERED, each a
 finding worth the budget.
+
+---
+
+## 10. RESULT — reading (c) HALF-2 NULL as frozen; and the first positive payoff in three generations
+
+Run **supervised by the resident session** (#49.5, the projection exceeded the
+in-session cap — #71.3), the **frozen probe unchanged** (§6: no W / horizon / lattice /
+context / floor / arm / §5.5-reading / §2 argmax-picture re-cut after sight). HEAD
+`57e3c35` (ruling #79); ENRICHED world, full #67.3 bundle armed
+(`edsPerceivedDefence`+`edsPerceivedChoice`+`edsValueAxis`, `c5Hold`, `c6Carry`,
+`c7Windup`; `c5TouchFork` off); `src/**` byte-identical to V3-P0 HEAD `49ba867`. Payoff
+block **9,210,000 + k** (disjoint from the smoke 9.20 M, above every consumed range); the
+run reached the frozen **12,000-moment** budget. Consumed table canonical SHA
+**`171a6dad…6559f`** (byte-identical, unconsumed); control-recovery SHA **`968349ff…acc1c`**
+(guard PASS, §4.1). Data:
+[`data/stage3-v3-p2-role-consumer.json`](data/stage3-v3-p2-role-consumer.json) · file
+SHA-256 **`b8917733…be712`** · `deterministic: true` · **verdict: GATES PASS**.
+
+**Scale.** 12,000 station-family moments (1,969 ball-directed skipped, clone coverage
+**100%**) → **60,000 forks** priced (five arms); 451 forks ended inside the horizon
+(excluded, reported, never zeroed). Across **9,151,239** classified ticks `unexplained` =
+0 (`ok` 8,712,984 → okShare **0.959**).
+
+### 10.1 The machinery was PERFECT — every gate PASS
+
+| gate | result |
+| --- | --- |
+| **X4 — clone coverage** | 12,000 clones taken / 12,000 moments = **100%**. **PASS** |
+| **X5 — control identity** | the no-eye fork reproduces the base continuation bit-identically for the full `H_concede`; **480 checked / 0 mismatched**. **PASS** |
+| **X6 — force fidelity** | per-record (#43.3); **`unexplained` EXACTLY 0** across 9.15 M ticks; `ok` 8,712,984 → **okShare 0.959**; clamp shares REPORTED-not-gated (onside 249,279 · barred-box 121,266). **PASS** |
+| **X7 — determinism** | two `runExperiment()` calls byte-identical; result SHA `b8917733…`; the §4 control-recovery pass twice byte-identical (SHA `968349ff…`). **PASS** |
+| **DEV — DELIVERY (HARD)** | NEUTRAL deviation share on the **PERCEIVED-attainable** denominator = **0.4215** (16,041 / 38,055) ≥ 0.22 — **≈ 1.9× the floor**, and it matches the build-time recomputed prediction **0.4008** closely (Δ +0.0207). **PASS** |
+| **PC — INVERTED resolves below control (HARD)** | argmin ATE **−0.0229**, cluster-bootstrap CI **[−0.0320, −0.0142]**, upper **< 0** → the family is measurable; the argmin measurably hurts. **resolves. PASS** |
+| **perception-price identity** | the #77.2(v) fix landed: the serialized field = ORACLE − NEUTRAL (paired **−0.002775** = oracleATE − neutralATE via ATEs, `holds: true`), NOT the diagnosed `:546` ORACLE − CONTROL mislabel. **PASS** |
+
+The DEV floor holds at ≈1.9× (lower than V2-P2's 2.8× because the WG's near-silence
+pulls the pooled attainable share down — the #84.2 pre-registered shape, not a defect);
+the build-time prediction landed close (0.4008 → 0.4215). PC resolves clean of zero. The
+perception wedge was priced, not smuggled: NEUTRAL percept↔truth agreement **93.66%**
+(face 0.976 / threat 0.976 / density 0.964). Every X gate PASS, both HARD gates PASS —
+so the readings are **LICENSED** (not the labelled-data convention).
+
+### 10.2 Reading (c) — HALF-2 NULL, honoured as frozen (ruling #85.1); (h) and (i) did NOT fire
+
+**The convergence signature did NOT break at fork grain, DESPITE the 100%
+argmax-divergence (§2).** With both HARD gates passed, the PRIMARY mediators decide, and
+they fire reading (c):
+
+```text
+                        H-V3 predicted        realised (NEUTRAL − CONTROL, paired)
+FORK-SPACING  pooled    OPENS (> 0)           −0.313 m  CI [−0.476, −0.165]   CLOSED
+              resolved  OPENS hardest         −4.257 m  CI [−6.527, −2.121]   COLLAPSED (n=19)
+              unresolved                      −0.283 m  CI [−0.444, −0.124]   CLOSED
+FORK-DUPRUN   pooled    FALLS (< 0)           +0.19 pp  CI [−0.23, +0.61]     ns (contains 0)
+              resolved  FALLS hardest         −0.74 pp  CI [−2.16, +0.80]     ns (n=75)
+```
+
+The between-role column split (§2: every context diverges, a third of moments picking
+four distinct cells) **did not translate into fork-grain separation** — spacing closed
+pooled and collapsed hardest exactly where the roles' columns diverge most (the
+resolved-cell stratum, −4.26 m). Half-2 as written — "convergence breaks BY
+construction" — is **refuted at fork grain**, the V2-P2 outcome repeated one layer up.
+
+**Per ruling #85.1, (h) and (i) explicitly did NOT fire.** (h) CONVERGENCE-WRONG-WAY did
+not fire — FORK-DUPRUN did not *rise* pooled (+0.19 pp is ns, CI contains 0), so the
+V2-P2 §8.3 decisive-wrong-way signature is absent. (i) DIVERGENCE-TOO-THIN did not fire —
+the per-role deviation mixes are **grossly distinct**, not noise-clustered (§10.4). The
+verdict is the clean (c): the role axis is real in the table but, as consumed at fork
+grain, does not break the convergence signature.
+
+### 10.3 The two riders, banked (ruling #85.2) — the first positive payoff in three generations
+
+**Rider (i) — ⭐⭐⭐ the payoff resolved POSITIVE, the first time in three generations.**
+Payoff is secondary/REPORTED by the freeze (§5.3), NEVER quoted as the shape verdict —
+but for the record it is no longer flat:
+
+```text
+NEUTRAL (PRIMARY)   ATE  +0.0108   CI [+0.0039, +0.0178]   ← EXCLUDES ZERO (positive)
+                    ATT  +0.0173   CI [+0.0063, +0.0280]   ← EXCLUDES ZERO
+GENE                ATE  +0.0117   CI [+0.0048, +0.0184]   ≈ NEUTRAL (no split, §5.5(f))
+ORACLE-CTX          ATE  +0.0081   CI [+0.0003, +0.0158]
+perception price    ORACLE − NEUTRAL  −0.0028  CI [−0.0080, +0.0028]  ≈ 0 (identity holds)
+```
+
+Reading (b) PAYOFF-FLAT did **not** fire (the ATE CI excludes 0); GENE ≈ NEUTRAL so
+(f) SPLIT-ON-MAPPING did not fire either. The perception price (g) is REPORTED and near
+zero — **the eye barely pays for reading its context through a percept** (truth buys
+nothing measurable; the −0.0028 identity is verified, the #77.2(v) mislabel corrected).
+The positive payoff is broad-based across contexts, concentrated in **`ours|ownThird|sparse`
++0.0378** [+0.0153, +0.0594] — the DF's certified build-up zone — with `ours|theirThird|sparse`
++0.0186 [+0.0043, +0.0331] and `theirs|ownThird|crowded` +0.0315 [0, +0.0618] the other
+resolving cells; no context resolves negative. The value question, downstream of the
+shape question by the freeze's own framing, has finally answered UP.
+
+**Rider (ii) — the convergence magnitude improved monotonically, and the per-role
+signatures are REAL.** Pooled FORK-SPACING closure has shrunk each generation:
+**v2 −1.05 m → v2.1 −0.57 m → v3 −0.31 m** — the role columns pull the bodies less tightly
+together than any prior eye, even though they still do not open. And the between-role
+split exists **in behaviour, not just on paper** (§10.4).
+
+### 10.4 The per-role tables — the between-role split is real in behaviour
+
+**Per-role deviation mixes (NEUTRAL deviations) — grossly distinct (the (i) test that did
+NOT fire):**
+
+| role | ring-180 share | ahead-0 share | radius mix | signature |
+| --- | :---: | :---: | --- | --- |
+| **DF** | **80.7%** | 19.3% | r7 91.7% · r21 8.3% | r7-heavy dead-behind build-up |
+| **MF** | 70.7% | 29.3% | r7 43.8% · r14 48.4% · r21 7.9% | split r7/r14 |
+| **WG** | 60.9% | **39.1%** | **r14 100%** | single-radius width, most ahead |
+| **ST** | 45.9% | 34.2% | r7 13.2% · r14 68.9% · r21 17.9% | flattest-behind, +12.0% a60 |
+
+The four columns produced four visibly different behaviours — DF concentrates on the
+near dead-behind ring, WG sits entirely at r14 and is the most ahead-facing (39.1%), ST
+is the least behind-locked and is the only role using a60. This is the between-role
+divergence §2.3 predicted, realised in the deviation geometry.
+
+**Per-role payoff ATE — the DF/MF/ST-driven signature with a quiet WG (#84.2's EXPECTED
+shape):**
+
+| role | ATE | CI | dev share (byMoment) |
+| --- | :---: | --- | :---: |
+| **DF** | +0.0177 | [+0.0016, +0.0333] | 0.773 |
+| **MF** | +0.0246 | [+0.0086, +0.0419] | 0.841 |
+| **WG** | **−0.0004** | [−0.0078, +0.0070] | 0.346 |
+| **ST** | +0.0119 | [−0.0044, +0.0271] | 0.772 |
+
+The WG ATE is dead-null — **the eye has nothing to sell the winger** because the world
+already pays his job (the #84.2 pre-registered reading; a DF/MF/ST signature with a quiet
+WG is the EXPECTED shape, not a surprise). The pooled positive is carried by DF and MF
+(both CI-excluding-0), with ST positive-but-straddling.
+
+**Per-role FORK-SPACING / FORK-DUPRUN mediators (paired NEUTRAL − CONTROL):**
+
+| role | FORK-SPACING (m) | CI | FORK-DUPRUN (pp) | CI |
+| --- | :---: | --- | :---: | --- |
+| **DF** | −0.618 | [−0.894, −0.342] | **+1.16** | [+0.29, +2.09] RISING |
+| **MF** | −0.132 | [−0.427, +0.154] | +0.96 | [+0.32, +1.63] rising |
+| **WG** | −0.354 | [−0.769, +0.073] | **−1.77** | [−2.95, −0.64] falling |
+| **ST** | −0.044 | [−0.402, +0.282] | −0.62 | [−1.39, +0.16] ns |
+
+The mixes are per-role grossly distinct, but the CLOSURE is led by the DF: DF spacing
+closes hardest (−0.618 m) and DF duprun RISES (+1.16 pp) — the very cell that dominates
+the resolved-cell collapse (§10.5).
+
+### 10.5 The metric confound, named for the record (ruling #85.3 — banked interpretation, not a re-cut)
+
+The resolved-cell spacing collapse (−4.26 m, n=19) and the DF's rising duprun are, per
+the commander's ruling #85.3, a **PAID-PROXIMITY metric confound**, quoted here as banked
+interpretation (NOT a re-cut — (c) stands as fired):
+
+> the certified table PAYS the DF to do near-ball build-up work (the 16-cell geometry,
+> #82.2) — so a lone DF doing his certified job lands NEARER his teammates by the job's
+> own definition, and the resolved-cell spacing stratum (−4.26, dominated by exactly
+> those cells) penalizes PAID PROXIMITY as if it were pile-up. **Fork-grain spacing
+> cannot distinguish 扎堆 from 到岗.** The honest adjudicator of the shape question is the
+> MATCH-LEVEL battery (I3 distributions, rest defence, offsides, duplicate runs at 6 Hz
+> over whole matches with every body playing his role) — V3-P3's instrument, whose
+> canaries are HARD and stop anything ugly.
+
+The receipt for the confound is visible in the arm means: on the resolved cells CONTROL
+spacing is **12.18 m** and NEUTRAL **7.92 m** — the eye deliberately moves the DF from a
+far idle station INTO his certified near-ball zone, which the paired spacing metric reads
+as a −4.26 m "collapse." At fork grain the instrument structurally cannot tell the paid
+job from a pile-up; the match-level battery can.
+
+### 10.6 Which sign-space clauses fired
+
+| clause | fired? | evidence |
+| --- | :---: | --- |
+| **(a) POSITIVE H-V3** | NO | spacing did not open, duprun did not fall |
+| **(b) PAYOFF-FLAT** | NO | ATE CI excludes 0 (positive, §10.3) |
+| **(c) HALF-2 NULL** | **YES — the verdict** | spacing closed −0.313, duprun ns; convergence did not break at fork grain |
+| **(d) UNDELIVERED** | NO | DEV 0.4215 ≥ 0.22 |
+| **(e) NOISE** | NO | PC resolved (−0.0229, upper < 0) |
+| **(f) SPLIT ON MAPPING** | NO | GENE ≈ NEUTRAL (both +0.011×) |
+| **(g) PERCEPTION PRICE** | REPORTED | ORACLE − NEUTRAL = −0.0028 ≈ 0, identity holds |
+| **(h) CONVERGENCE-WRONG-WAY** | NO (ruling #85.1) | duprun did not rise pooled (+0.19 pp ns) |
+| **(i) DIVERGENCE-TOO-THIN** | NO (ruling #85.1) | per-role mixes grossly distinct, not noise-clustered |
+
+### 10.7 Disposition — the fork is the USER's (ruling #85.4)
+
+The contract licensed V3-P3 only on reading (a); this run fired **(c)**, so proceeding is
+a **sequencing override only the user may ratify** (#85.4). The commander banked the two
+riders (the historic positive ATE; the monotone convergence improvement and the real
+role signatures), named the paid-proximity confound, and returned the fork with a
+recommendation:
+
+* **(A) run V3-P3 anyway — commander RECOMMENDS** (deployment + the full HARD battery +
+  the R3 iteration), argued on #85.2–3: the payoff is real, the role signatures are real,
+  and the one open question — does role-play at scale disperse or clump the SHAPE — is
+  precisely what the match-level battery measures and the fork grain structurally cannot;
+* **(B) close v3 at fork grain** — bank everything (the certified census, the first
+  positive ATE, the machinery), return to the C-track;
+* **(C) another road the user names.**
+
+**Nothing proceeds until the user rules.** V3-P2 ships nothing (Road B); `Match.stationEye`
+null in every production path; the fingerprint unchanged; **it cannot and does not
+authorize V3-P3.**

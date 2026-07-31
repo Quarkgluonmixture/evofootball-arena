@@ -1,0 +1,763 @@
+{
+  "experiment": "STAGE3-V3-P2 (the role-eye consumer, out of sample)",
+  "authority": "STAGE3-V3-P2-ROLE-CONSUMER · rulings #82/#83",
+  "head": "57e3c35 (ruling #79; src byte-identical to V3-P0 HEAD 49ba867)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 9210000,
+    "matchCap": 160,
+    "momentTarget": 12000,
+    "momentSpacingS": 2,
+    "wSeconds": 3,
+    "hScoreSeconds": 6,
+    "hConcedeSeconds": 10,
+    "regionRadiusM": 4,
+    "arms": [
+      "control",
+      "neutral",
+      "gene",
+      "oracleCtx",
+      "inverted"
+    ],
+    "devFloor": 0.22,
+    "roleAxis": [
+      "DF",
+      "MF",
+      "WG",
+      "ST"
+    ],
+    "tableCanonicalSha": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "tablePath": "docs/world-model/data/stage3-v3-p1-role-census-table.json",
+    "controlSha": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+    "controlPath": "docs/world-model/data/stage3-v3-p2-control-recovery.json",
+    "pooledControlRecovered": -0.056682,
+    "controlGuardPass": true,
+    "resolvedCellCount": 16,
+    "bootstrapResamples": 2000,
+    "bootstrapSeed": 92110,
+    "clusterUnit": "match seed",
+    "estimand": "ATE = mean paired VALUE(arm)−VALUE(control) over eligible moments",
+    "population": "station-family ticks, DISJOINT payoff block 9.21M"
+  },
+  "coverage": {
+    "moments": 12000,
+    "clonesTaken": 12000,
+    "ballDirectedSkipped": 1969,
+    "cloneCoverage": 1,
+    "forks": 60000,
+    "x5Checked": 480,
+    "x5Mismatched": 0,
+    "contextCounts": {
+      "ours|middle|crowded": 1339,
+      "ours|middle|sparse": 1961,
+      "ours|ownThird|crowded": 573,
+      "ours|ownThird|sparse": 1430,
+      "ours|theirThird|crowded": 422,
+      "ours|theirThird|sparse": 961,
+      "theirs|middle|crowded": 1016,
+      "theirs|middle|sparse": 1311,
+      "theirs|ownThird|crowded": 599,
+      "theirs|ownThird|sparse": 434,
+      "theirs|theirThird|crowded": 471,
+      "theirs|theirThird|sparse": 1483
+    },
+    "roleCounts": {
+      "DF": 2519,
+      "MF": 2421,
+      "WG": 4690,
+      "ST": 2370
+    },
+    "endedExcluded": 451
+  },
+  "x6": {
+    "ePaused": 18788,
+    "eCarrier": 1550,
+    "eBallWon": 0,
+    "eSentOff": 105,
+    "eOnside": 249279,
+    "eBarred": 121266,
+    "eEnded": 2258,
+    "ok": 8712984,
+    "unexplained": 0,
+    "eRedecided": 14926,
+    "eNonStation": 32341,
+    "total": 9151239,
+    "okShare": 0.959207
+  },
+  "perArm": {
+    "neutral": {
+      "ate": {
+        "n": 11534,
+        "point": 0.010838,
+        "lower": 0.003886,
+        "upper": 0.017792
+      },
+      "att": {
+        "n": 7219,
+        "point": 0.017315,
+        "lower": 0.006321,
+        "upper": 0.027985
+      },
+      "deviationShareByMoment": 0.61975,
+      "decisions": 53789,
+      "deviateDecisions": 16041,
+      "abstainUnseen": 15142,
+      "noCell": 592,
+      "tie": 22014,
+      "perceivedAttainable": 38055,
+      "devShareAttainable": 0.421521,
+      "deviationShareByDecision": 0.298221,
+      "classes": {
+        "deviate": 16041,
+        "abstainUnseen": 15142,
+        "abstainNoSnapshot": 130,
+        "abstainNoBall": 4548,
+        "abstainNoOwner": 10464,
+        "noCell": 592,
+        "tie": 22014,
+        "nonStationTicks": 249259,
+        "overrideTicks": 1617314
+      },
+      "ctx": {
+        "seen": 27486,
+        "agree": 0.936586,
+        "agreeFace": 0.975697,
+        "agreeThreat": 0.976388,
+        "agreeDensity": 0.964127
+      },
+      "byCandidate": {
+        "r14a180": 4760,
+        "r7a180": 4696,
+        "r14a0": 2499,
+        "r7a0": 1382,
+        "r21a60": 995,
+        "r21a0": 915,
+        "r21a180": 543,
+        "r14a240": 251
+      },
+      "byContext": {
+        "theirs|middle|sparse": 3062,
+        "ours|middle|crowded": 2092,
+        "theirs|middle|crowded": 1955,
+        "ours|ownThird|sparse": 1953,
+        "theirs|ownThird|crowded": 1875,
+        "ours|theirThird|sparse": 1202,
+        "ours|ownThird|crowded": 1158,
+        "theirs|ownThird|sparse": 992,
+        "ours|middle|sparse": 737,
+        "ours|theirThird|crowded": 624,
+        "theirs|theirThird|crowded": 391
+      },
+      "mediators": {
+        "eta": 2.7781,
+        "targetError": 12.2809,
+        "occupancy": 0.0302
+      }
+    },
+    "gene": {
+      "ate": {
+        "n": 11534,
+        "point": 0.011705,
+        "lower": 0.004757,
+        "upper": 0.01842
+      },
+      "att": {
+        "n": 7201,
+        "point": 0.018747,
+        "lower": 0.008408,
+        "upper": 0.02973
+      },
+      "deviationShareByMoment": 0.618167,
+      "decisions": 53795,
+      "deviateDecisions": 15903,
+      "abstainUnseen": 15141,
+      "noCell": 592,
+      "tie": 22159,
+      "perceivedAttainable": 38062,
+      "devShareAttainable": 0.417818,
+      "deviationShareByDecision": 0.295622,
+      "classes": {
+        "deviate": 15903,
+        "abstainUnseen": 15141,
+        "abstainNoSnapshot": 130,
+        "abstainNoBall": 4547,
+        "abstainNoOwner": 10464,
+        "noCell": 592,
+        "tie": 22159,
+        "nonStationTicks": 249174,
+        "overrideTicks": 1602736
+      },
+      "ctx": {
+        "seen": 27493,
+        "agree": 0.936529,
+        "agreeFace": 0.975739,
+        "agreeThreat": 0.976394,
+        "agreeDensity": 0.9641
+      },
+      "byCandidate": {
+        "r7a180": 4798,
+        "r14a180": 4549,
+        "r14a0": 2439,
+        "r7a0": 1382,
+        "r21a60": 977,
+        "r21a0": 918,
+        "r21a180": 583,
+        "r14a240": 256,
+        "r7a240": 1
+      },
+      "byContext": {
+        "theirs|middle|sparse": 3056,
+        "theirs|middle|crowded": 1954,
+        "ours|ownThird|sparse": 1944,
+        "ours|middle|crowded": 1916,
+        "theirs|ownThird|crowded": 1878,
+        "ours|theirThird|sparse": 1199,
+        "ours|ownThird|crowded": 1149,
+        "theirs|ownThird|sparse": 992,
+        "ours|middle|sparse": 739,
+        "ours|theirThird|crowded": 684,
+        "theirs|theirThird|crowded": 392
+      },
+      "mediators": {
+        "eta": 2.7803,
+        "targetError": 12.2895,
+        "occupancy": 0.03
+      }
+    },
+    "oracleCtx": {
+      "ate": {
+        "n": 11533,
+        "point": 0.008064,
+        "lower": 0.000259,
+        "upper": 0.01575
+      },
+      "att": {
+        "n": 7331,
+        "point": 0.012686,
+        "lower": 0.000552,
+        "upper": 0.024554
+      },
+      "deviationShareByMoment": 0.632917,
+      "decisions": 54265,
+      "deviateDecisions": 14209,
+      "abstainUnseen": 18719,
+      "noCell": 392,
+      "tie": 20945,
+      "perceivedAttainable": 35154,
+      "devShareAttainable": 0.404193,
+      "deviationShareByDecision": 0.261845,
+      "classes": {
+        "deviate": 14209,
+        "abstainUnseen": 18719,
+        "abstainNoSnapshot": 0,
+        "abstainNoBall": 0,
+        "abstainNoOwner": 18719,
+        "noCell": 392,
+        "tie": 20945,
+        "nonStationTicks": 264558,
+        "overrideTicks": 1545714
+      },
+      "ctx": {
+        "seen": 35546,
+        "agree": 1,
+        "agreeFace": 1,
+        "agreeThreat": 1,
+        "agreeDensity": 1
+      },
+      "byCandidate": {
+        "r14a180": 4385,
+        "r7a180": 3932,
+        "r14a0": 2058,
+        "r7a0": 1297,
+        "r21a60": 1272,
+        "r21a0": 617,
+        "r21a180": 410,
+        "r14a240": 238
+      },
+      "byContext": {
+        "theirs|middle|sparse": 2840,
+        "ours|ownThird|sparse": 2119,
+        "ours|middle|crowded": 1988,
+        "theirs|middle|crowded": 1808,
+        "theirs|ownThird|crowded": 1319,
+        "ours|ownThird|crowded": 1198,
+        "ours|theirThird|sparse": 837,
+        "ours|middle|sparse": 636,
+        "theirs|ownThird|sparse": 531,
+        "ours|theirThird|crowded": 500,
+        "theirs|theirThird|crowded": 433
+      },
+      "mediators": {
+        "eta": 2.6675,
+        "targetError": 13.2212,
+        "occupancy": 0.0424
+      }
+    },
+    "inverted": {
+      "ate": {
+        "n": 11521,
+        "point": -0.022915,
+        "lower": -0.031997,
+        "upper": -0.014193
+      },
+      "att": {
+        "n": 10605,
+        "point": -0.024894,
+        "lower": -0.034454,
+        "upper": -0.015683
+      },
+      "deviationShareByMoment": 0.913917,
+      "decisions": 53989,
+      "deviateDecisions": 38139,
+      "abstainUnseen": 14954,
+      "noCell": 896,
+      "tie": 0,
+      "perceivedAttainable": 38139,
+      "devShareAttainable": 1,
+      "deviationShareByDecision": 0.706422,
+      "classes": {
+        "deviate": 38139,
+        "abstainUnseen": 14954,
+        "abstainNoSnapshot": 130,
+        "abstainNoBall": 4360,
+        "abstainNoOwner": 10464,
+        "noCell": 896,
+        "tie": 0,
+        "nonStationTicks": 619932,
+        "overrideTicks": 3978849
+      },
+      "ctx": {
+        "seen": 27607,
+        "agree": 0.933785,
+        "agreeFace": 0.975948,
+        "agreeThreat": 0.975912,
+        "agreeDensity": 0.960988
+      },
+      "byCandidate": {
+        "r21a240": 7564,
+        "r7a300": 6012,
+        "r14a300": 5611,
+        "r14a240": 4100,
+        "r21a120": 3646,
+        "r21a180": 3088,
+        "r21a60": 1758,
+        "r7a0": 1306,
+        "r7a60": 1161,
+        "r7a240": 1003,
+        "r21a300": 997,
+        "r21a0": 914,
+        "r7a120": 638,
+        "r14a60": 341
+      },
+      "byContext": {
+        "theirs|middle|sparse": 5746,
+        "theirs|theirThird|sparse": 5311,
+        "ours|middle|sparse": 4062,
+        "theirs|middle|crowded": 3956,
+        "ours|middle|crowded": 3661,
+        "ours|ownThird|sparse": 3203,
+        "ours|theirThird|sparse": 3068,
+        "theirs|ownThird|sparse": 2452,
+        "theirs|ownThird|crowded": 2372,
+        "ours|ownThird|crowded": 2229,
+        "theirs|theirThird|crowded": 1136,
+        "ours|theirThird|crowded": 943
+      },
+      "mediators": {
+        "eta": 2.8023,
+        "targetError": 15.5796,
+        "occupancy": 0.0369
+      }
+    }
+  },
+  "deviationMix": {
+    "byAngle": {
+      "0": 0.299,
+      "60": 0.062,
+      "180": 0.6233,
+      "240": 0.0156
+    },
+    "byRadius": {
+      "7": 0.3789,
+      "14": 0.4682,
+      "21": 0.1529
+    },
+    "ring180Share": 0.6233,
+    "ahead0Share": 0.299,
+    "total": 16041
+  },
+  "mediatorGeometry": {
+    "forkSpacing": {
+      "all": {
+        "n": 2559,
+        "point": -0.312822,
+        "lower": -0.475857,
+        "upper": -0.164922,
+        "neutralMean": 6.5594,
+        "controlMean": 6.8723
+      },
+      "resolvedCells": {
+        "n": 19,
+        "point": -4.257113,
+        "lower": -6.52726,
+        "upper": -2.120669,
+        "neutralMean": 7.9223,
+        "controlMean": 12.1794
+      },
+      "unresolvedCells": {
+        "n": 2540,
+        "point": -0.283317,
+        "lower": -0.443934,
+        "upper": -0.124463,
+        "neutralMean": 6.5493,
+        "controlMean": 6.8326
+      },
+      "byRole": {
+        "DF": {
+          "n": 898,
+          "point": -0.617595,
+          "lower": -0.893912,
+          "upper": -0.342317,
+          "neutralMean": 6.7619,
+          "controlMean": 7.3795
+        },
+        "MF": {
+          "n": 796,
+          "point": -0.132327,
+          "lower": -0.426858,
+          "upper": 0.154114,
+          "neutralMean": 5.8588,
+          "controlMean": 5.9911
+        },
+        "WG": {
+          "n": 331,
+          "point": -0.353806,
+          "lower": -0.768975,
+          "upper": 0.073009,
+          "neutralMean": 6.0032,
+          "controlMean": 6.357
+        },
+        "ST": {
+          "n": 534,
+          "point": -0.04395,
+          "lower": -0.402452,
+          "upper": 0.281525,
+          "neutralMean": 7.6083,
+          "controlMean": 7.6522
+        }
+      }
+    },
+    "forkDuprun": {
+      "all": {
+        "n": 3790,
+        "point": 0.001927,
+        "lower": -0.002316,
+        "upper": 0.006103,
+        "neutralMean": 0.1745,
+        "controlMean": 0.1726
+      },
+      "resolvedCells": {
+        "n": 75,
+        "point": -0.007376,
+        "lower": -0.021554,
+        "upper": 0.008037,
+        "neutralMean": 0.0451,
+        "controlMean": 0.0524
+      },
+      "unresolvedCells": {
+        "n": 3715,
+        "point": 0.002115,
+        "lower": -0.002134,
+        "upper": 0.006369,
+        "neutralMean": 0.1771,
+        "controlMean": 0.175
+      },
+      "byRole": {
+        "DF": {
+          "n": 1032,
+          "point": 0.011619,
+          "lower": 0.002867,
+          "upper": 0.02094,
+          "neutralMean": 0.2711,
+          "controlMean": 0.2595
+        },
+        "MF": {
+          "n": 1209,
+          "point": 0.009554,
+          "lower": 0.003201,
+          "upper": 0.016279,
+          "neutralMean": 0.16,
+          "controlMean": 0.1505
+        },
+        "WG": {
+          "n": 578,
+          "point": -0.017676,
+          "lower": -0.029478,
+          "upper": -0.00643,
+          "neutralMean": 0.1143,
+          "controlMean": 0.132
+        },
+        "ST": {
+          "n": 971,
+          "point": -0.006201,
+          "lower": -0.01389,
+          "upper": 0.001558,
+          "neutralMean": 0.1256,
+          "controlMean": 0.1318
+        }
+      }
+    },
+    "perRoleMix": {
+      "DF": {
+        "byAngle": {
+          "0": 0.1926,
+          "180": 0.8074
+        },
+        "byRadius": {
+          "7": 0.9173,
+          "21": 0.0827
+        },
+        "ring180Share": 0.8074,
+        "ahead0Share": 0.1926,
+        "total": 1947
+      },
+      "MF": {
+        "byAngle": {
+          "0": 0.2932,
+          "180": 0.7068
+        },
+        "byRadius": {
+          "7": 0.4376,
+          "14": 0.4838,
+          "21": 0.0786
+        },
+        "ring180Share": 0.7068,
+        "ahead0Share": 0.2932,
+        "total": 2036
+      },
+      "WG": {
+        "byAngle": {
+          "0": 0.391,
+          "180": 0.609
+        },
+        "byRadius": {
+          "14": 1
+        },
+        "ring180Share": 0.609,
+        "ahead0Share": 0.391,
+        "total": 1624
+      },
+      "ST": {
+        "byAngle": {
+          "0": 0.3415,
+          "60": 0.1202,
+          "180": 0.4585,
+          "240": 0.0798
+        },
+        "byRadius": {
+          "7": 0.1322,
+          "14": 0.6891,
+          "21": 0.1787
+        },
+        "ring180Share": 0.4585,
+        "ahead0Share": 0.3415,
+        "total": 1830
+      }
+    },
+    "resolvedCellDeviations": 165,
+    "unresolvedCellDeviations": 7272,
+    "resolvedCellCount": 16,
+    "note": "FORK-SPACING/FORK-DUPRUN over the first window vs NEUTRAL's chosen region, paired NEUTRAL−CONTROL. H-V3: spacing OPENS (>0) + duprun FALLS (<0), strongest on the resolved cells; per-role mixes DISTINCT (the between-role split §2.3)."
+  },
+  "perContext": {
+    "ours|middle|crowded": {
+      "n": 1339,
+      "ate": {
+        "n": 1306,
+        "point": 0.013783,
+        "lower": -0.009834,
+        "upper": 0.036408
+      }
+    },
+    "ours|middle|sparse": {
+      "n": 1961,
+      "ate": {
+        "n": 1888,
+        "point": -0.002119,
+        "lower": -0.013963,
+        "upper": 0.00958
+      }
+    },
+    "ours|ownThird|crowded": {
+      "n": 573,
+      "ate": {
+        "n": 538,
+        "point": 0.016729,
+        "lower": -0.011429,
+        "upper": 0.04461
+      }
+    },
+    "ours|ownThird|sparse": {
+      "n": 1430,
+      "ate": {
+        "n": 1376,
+        "point": 0.037791,
+        "lower": 0.015256,
+        "upper": 0.059384
+      }
+    },
+    "ours|theirThird|crowded": {
+      "n": 422,
+      "ate": {
+        "n": 403,
+        "point": 0.014888,
+        "lower": -0.007772,
+        "upper": 0.03912
+      }
+    },
+    "ours|theirThird|sparse": {
+      "n": 961,
+      "ate": {
+        "n": 914,
+        "point": 0.0186,
+        "lower": 0.004348,
+        "upper": 0.033105
+      }
+    },
+    "theirs|middle|crowded": {
+      "n": 1016,
+      "ate": {
+        "n": 990,
+        "point": 0.015152,
+        "lower": -0.011202,
+        "upper": 0.040373
+      }
+    },
+    "theirs|middle|sparse": {
+      "n": 1311,
+      "ate": {
+        "n": 1271,
+        "point": -0.007081,
+        "lower": -0.029815,
+        "upper": 0.013667
+      }
+    },
+    "theirs|ownThird|crowded": {
+      "n": 599,
+      "ate": {
+        "n": 571,
+        "point": 0.031524,
+        "lower": 0,
+        "upper": 0.061837
+      }
+    },
+    "theirs|ownThird|sparse": {
+      "n": 434,
+      "ate": {
+        "n": 410,
+        "point": -0.007317,
+        "lower": -0.031414,
+        "upper": 0.016304
+      }
+    },
+    "theirs|theirThird|crowded": {
+      "n": 471,
+      "ate": {
+        "n": 447,
+        "point": -0.011186,
+        "lower": -0.042316,
+        "upper": 0.0181
+      }
+    },
+    "theirs|theirThird|sparse": {
+      "n": 1483,
+      "ate": {
+        "n": 1420,
+        "point": 0.007746,
+        "lower": -0.00218,
+        "upper": 0.018113
+      }
+    }
+  },
+  "perRole": {
+    "DF": {
+      "n": 2519,
+      "ate": {
+        "n": 2423,
+        "point": 0.017747,
+        "lower": 0.001637,
+        "upper": 0.033264
+      },
+      "devShareByMoment": 0.772926
+    },
+    "MF": {
+      "n": 2421,
+      "ate": {
+        "n": 2318,
+        "point": 0.02459,
+        "lower": 0.008562,
+        "upper": 0.041883
+      },
+      "devShareByMoment": 0.840975
+    },
+    "WG": {
+      "n": 4690,
+      "ate": {
+        "n": 4522,
+        "point": -0.000442,
+        "lower": -0.007792,
+        "upper": 0.007042
+      },
+      "devShareByMoment": 0.346269
+    },
+    "ST": {
+      "n": 2370,
+      "ate": {
+        "n": 2271,
+        "point": 0.011889,
+        "lower": -0.004382,
+        "upper": 0.027062
+      },
+      "devShareByMoment": 0.772152
+    }
+  },
+  "perceptionPrice": {
+    "n": 11542,
+    "point": -0.002772,
+    "lower": -0.008046,
+    "upper": 0.002784
+  },
+  "perceptionPriceIdentity": {
+    "n": 11532,
+    "paired": -0.002775,
+    "oracleMinusNeutralViaAtes": -0.002775,
+    "holds": true,
+    "note": "field = ORACLE − NEUTRAL (§5.2), NOT ORACLE − CONTROL (the diagnosed :546 mislabel)."
+  },
+  "gates": {
+    "x4CloneCoverage": true,
+    "x5ControlIdentity": true,
+    "x6ForceFidelity": true,
+    "dev": true,
+    "pcInverted": true,
+    "perceptionPriceIdentity": true,
+    "x7Determinism": true
+  },
+  "receipts": {
+    "cap": 1000,
+    "counts": {},
+    "records": {}
+  },
+  "deterministic": true,
+  "sha256": "b8917733c0b2f0e989d4c9104076ecfed840c3f7f662c0364ef3629bad6be712",
+  "verdict": "GATES PASS"
+}
