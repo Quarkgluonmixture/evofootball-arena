@@ -513,17 +513,25 @@ A1–A4 applied at review before any datum was seen (face-matched H
 boundary 6 s/10 s; the delivery SUPPRESSION limb routes on the incumbent
 side; designation-use boundary; the rest ratified) — see the prereg's §7
 ([`STAGE3-V4-P0-AUTOPSY-MAP.md`](STAGE3-V4-P0-AUTOPSY-MAP.md)).
-**Probe BUILT (`5cdc4f8`; verify 8/8) → review #94 PASS + fix R1 →
-R1 LANDED (`f1e4548`; verify 4/4; the smoke slice showed the Simpson
-effect exactly where R1 predicted — gating differs where confounding
-lives) → ruling #95: THE FULL RUN IS IN FLIGHT** (detached under the
-commander's resident session per #49.5; bare uncapped invocation;
-output `docs/world-model/data/stage3-v4-p0-autopsy-map.json`;
-X-CORPUS-IDENT / X-DET / X-SRC-ZERO hard). **→ NEXT: the run's routing
-verdicts land at the commander — H/S/J per limb decides V4-P1's scope;
-an UNROUTABLE limb stops the stage.** The operations protocol is
-codified at §0.0 (rulings #92, #95.5). Forks (ii)/(iii) stay banked.
-R20 gaps / F9 any time. Road B stands; nothing ships.
+**V4-P0 RAN AND STOPPED AS FROZEN (§6 / reading B; §RESULT + data
+`f54e28b`, number-verify 4/4)**: hard gates all pass at full scale
+(X-CORPUS-IDENT FULL to 6 dp; X-DET; X-SRC-ZERO); frozen verdicts
+rest=J (0.706) · offside=J (1.0 [1,1]) · restart=J (1.0 [1,1]) ·
+delivery=UNROUTABLE (nExcess=0). **Adjudication #96**: two instrument
+defects named — the CLASS J criterion is anchor-TAUTOLOGICAL for
+event classes structurally outside open-owned play (the
+decision-vs-harm gap, commander-owned, #93-ratified wording) and the
+delivery detector is broken by internal inconsistency (mining 0 vs
+same-run fresh reference 12.08/match). ⭐ Banked substance: the H
+columns corroborate #88.3 at event grain (beyond-horizon cost mass
+0.57–0.97, all perm p=0); R1 vindicated at full scale (raw-pool S
+resolves, stratified null); fresh base rates for P2 sizing
+(turnovers 51.3 / near-line 44.1 / restarts 12.6 / deliveries 12.1
+per match). **→ NEXT: executor pre-registers V4-P0b (ruling #96.6:
+decision-anchored J + the R3 consumption-exposure map + the delivery
+detector behind a magnitude sanity HARD gate; same corpus/seeds; P0
+verdicts stay published side by side).** Forks (ii)/(iii) stay
+banked. R20 gaps / F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

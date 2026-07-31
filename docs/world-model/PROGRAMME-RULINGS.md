@@ -3831,3 +3831,74 @@
 >    (180 s no-progress) kills them and fails the step. The fix
 >    author's smoke evidence is reviewed by the commander instead.
 >    Added to PROGRAMME.md §0.0.
+
+> **COMMANDER RULING #96 (2026-07-31 — the V4-P0 adjudication: the
+> frozen verdicts publish; two instrument defects named, one mine;
+> the substantive H story banked; V4-P0b ordered):**
+>
+> 1. **BANKED**: the run (HEAD `b390cf9`, detached per #49.5) and
+>    its faithful §RESULT + data (`f54e28b`; number-check verify
+>    4/4, exhaustive, zero violations; two cosmetic verbatim notes
+>    accepted). Hard gates ALL PASS at full scale: X-CORPUS-IDENT
+>    FULL (recomputed aggregates match committed P3a to 6 dp; table
+>    `171a6dad…`/control `968349ff…` SHAs ok), X-DET, X-SRC-ZERO
+>    (fingerprint `57b0bdab…c673` unchanged). The corpus and the
+>    machinery are valid.
+> 2. **THE FROZEN VERDICTS PUBLISH AS WRITTEN** (§6, no re-cutting):
+>    rest=J (support-out 0.706 [0.700, 0.712]), offside=J (1.0
+>    [1,1]), restart=J (1.0 [1,1]), delivery=UNROUTABLE (support
+>    straddle on nExcess=0) — the stage STOPPED at the commander
+>    exactly as pre-registered (§6 / reading B).
+> 3. ⛔ **DEFECT ONE — COMMANDER-OWNED (the decision-vs-harm anchor
+>    gap)**: the CLASS J criterion (contract §2, ratified #93) asks
+>    where the HARM lands; the jurisdiction question is where the
+>    mispriced DECISION was made. For event classes structurally
+>    outside open-owned play the frozen test is TAUTOLOGICAL — a
+>    pass release has the ball in flight (owner null ⇒ support-out
+>    ≡ 1.0 [1,1]); a restart onset is in the restart phase (⇒ 1.0
+>    [1,1]). A test that cannot return "no" is not a test: those two
+>    J verdicts are true-but-near-analytic and carry a design lesson,
+>    not new information. The rest limb's J (0.706, genuinely
+>    estimated) is subject to the same gap — the abandonment DECISION
+>    is made in owned play; the harm lands in transitions — and under
+>    the frozen J-first precedence it masks a resolved H signal.
+> 4. ⛔ **DEFECT TWO — IMPLEMENTATION, PROVEN BY INTERNAL
+>    INCONSISTENCY**: the delivery build-up detector returned
+>    nExcess=0 on the mining R0 arm (800 matches) while the SAME
+>    RUN's fresh reference (the same enriched-R0 world, 400 matches)
+>    measures 12.0825 [11.635, 12.540] build-ups/match (4,833
+>    events). The UNROUTABLE verdict is VACUOUS (a straddle on zero
+>    events), not substantive.
+> 5. ⭐⭐ **BANKED SUBSTANTIVE FINDINGS**: (i) THE H COLUMNS — for
+>    all three R3 limbs the excess-cost mass sits overwhelmingly
+>    beyond the certified horizons (rest 0.569 @10 s / 0.733 @6 s;
+>    offside 0.910 / 0.968; restart 0.881 / 0.969; every permutation
+>    p = 0, B = 2,000): #88.3's hedge/horizon diagnosis corroborated
+>    at event grain by frozen battery columns. (ii) **R1 VINDICATED
+>    AT FULL SCALE**: the rest limb's raw-pool S contrast "resolves"
+>    (−0.0997 [−0.108, −0.092]) while the stratified estimator is
+>    null (+0.0014 [−0.006, +0.009]) — the Simpson confound was real
+>    and gating-relevant. (iii) The fresh binding-moment base rates
+>    banked for V4-P2 sizing: turnovers 51.34/match, near-line
+>    releases 44.10, restart phases 12.64, delivery build-ups 12.08.
+> 6. **DISPOSITION — V4-P0b ORDERED** (a NEW pre-registration; the
+>    P0 verdicts stay published, never overwritten — revert→reframe
+>    applied to instruments; the criteria change is disclosed and
+>    reasoned here, frozen before the new run):
+>    (i) **DECISION-ANCHORED J**: each excess event maps to its
+>    anchor body's most recent STATION-DECISION moment (definition
+>    pinned in the pre-reg; lag distribution published); the J
+>    statistic = support-out fraction of those DECISION moments,
+>    same CI form and 0.5 threshold, same J-first precedence. Plus
+>    the direct exposure map: the fraction of R3 eye consumptions
+>    occurring at out-of-support moments, by phase and ball state.
+>    (ii) **THE DELIVERY DETECTOR FIXED**: the working
+>    reference-corpus detection wired into the mining arms, behind a
+>    pre-registered MAGNITUDE SANITY HARD GATE — the mining-R0
+>    build-up count must land within [0.5, 1.5]× of the
+>    fresh-reference rate × 800, else instrument FAIL.
+>    (iii) H and S columns unchanged (recomputed for delivery once
+>    events exist); (iv) same corpus, same seeds, X-CORPUS-IDENT
+>    again; (v) UNROUTABLE semantics unchanged. Executor
+>    pre-registers V4-P0b per §0.0; commander reviews; build; run
+>    detached (#49.5).
