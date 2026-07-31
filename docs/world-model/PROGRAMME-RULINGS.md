@@ -3791,3 +3791,43 @@
 >    output `docs/world-model/data/stage3-v4-p0-autopsy-map.json`
 >    SHA'd; the routing verdicts land at the commander; an
 >    UNROUTABLE limb stops the stage (§6).
+
+> **COMMANDER RULING #95 (2026-07-31 — R1 applied and verified; the
+> V4-P0 full run LAUNCHES):**
+>
+> 1. **R1 LANDED** (`f1e4548`): the CLASS S contrast is now the
+>    stratified estimator (context×role strata on the coarse frozen
+>    V3-P1 key; weighted pool by sub-state moment counts;
+>    empty-sub-state strata excluded AND the exclusions published;
+>    match-cluster bootstrap over the whole pooled estimator,
+>    B/seed unchanged; the raw pool kept as the non-gating
+>    `sRawPooled` comparison column). Independent code-fidelity
+>    verify: 4/4, zero violations, line-level.
+> 2. **BANKED (labelled, slice-scale)**: on the 8-match smoke slice
+>    the Simpson effect materialised EXACTLY where R1 predicted —
+>    rest raw-pool resolved but stratified unresolved; offside
+>    raw-pool unresolved but stratified RESOLVED. R1 is
+>    load-bearing, not cosmetic: the gating verdicts differ where
+>    confounding lives. (Slice numbers are labelled, never a
+>    verdict.)
+> 3. **VERIFY'S EYEBALL NOTES RATIFIED**: the post-R1 bootstrap
+>    offset drift (expected; identity = the deterministic set per
+>    D2/#94.2, X-CORPUS-IDENT compares the post-R1 code to itself);
+>    the restart-moment stratum anchored on the index-1 body
+>    (consistent with the restart support samples — ratified as the
+>    modeling choice #94.3 left open); the outcome backfill
+>    untouched by the diff.
+> 4. **THE FULL RUN IS LAUNCHED** detached under the commander's
+>    resident session (#49.5): the bare uncapped invocation (env
+>    knobs are smoke-only by construction; the canonical data file
+>    is only ever written by the uncapped run). Output
+>    `docs/world-model/data/stage3-v4-p0-autopsy-map.json`;
+>    X-CORPUS-IDENT / X-DET / X-SRC-ZERO hard; routing verdicts to
+>    the commander; an UNROUTABLE limb stops the stage.
+> 5. **§0.0 PROTOCOL ADDENDUM (the stall lesson)**: verify-stage
+>    agents are PURE CODE-REVIEW sessions — constrained to fast,
+>    output-producing commands (git/grep/read), explicitly forbidden
+>    from re-running silent long smokes: the workflow stall detector
+>    (180 s no-progress) kills them and fails the step. The fix
+>    author's smoke evidence is reviewed by the commander instead.
+>    Added to PROGRAMME.md §0.0.

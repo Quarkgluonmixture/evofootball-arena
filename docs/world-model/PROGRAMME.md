@@ -45,6 +45,11 @@
      retry (≤2), never silently accept.
    * ⚠ Do not edit the repo while a dispatched executor is running —
      its foreign-change STOP gate will (correctly) kill the step.
+   * ⚠ Verify-stage agents are PURE CODE-REVIEW sessions (#95.5):
+     fast output-producing commands only (git/grep/read); NEVER
+     re-run silent long smokes — the workflow stall detector (180 s
+     no-progress) kills them. The commander reviews the author's
+     smoke evidence instead.
 3. **Contracts get a VISION audit.** After the commander drafts a
    design contract, audit it clause-by-clause against
    [`../VISION.md`](../VISION.md) BEFORE any executor work; findings
@@ -508,17 +513,17 @@ A1–A4 applied at review before any datum was seen (face-matched H
 boundary 6 s/10 s; the delivery SUPPRESSION limb routes on the incumbent
 side; designation-use boundary; the rest ratified) — see the prereg's §7
 ([`STAGE3-V4-P0-AUTOPSY-MAP.md`](STAGE3-V4-P0-AUTOPSY-MAP.md)).
-**Probe BUILT (`5cdc4f8`; verify 8/8, X-CORPUS-IDENT byte-identical on
-the 8-seed smoke slice) → commander review #94: PASS with ONE fix —
-R1: the CLASS S contrast must be stratified within (context×role),
-raw pooling risks Simpson confounding; 10 other disclosed deviations
-ratified.** **→ NEXT: executor applies R1 (workflow Draft→Verify,
-§0.0); then the FULL RUN launches detached under the commander's
-resident session (#49.5)** — output
-`docs/world-model/data/stage3-v4-p0-autopsy-map.json`, routing
-verdicts to the commander, UNROUTABLE stops the stage. The operations
-protocol itself is codified at §0.0 (ruling #92). Forks (ii)/(iii)
-stay banked. R20 gaps / F9 any time. Road B stands; nothing ships.
+**Probe BUILT (`5cdc4f8`; verify 8/8) → review #94 PASS + fix R1 →
+R1 LANDED (`f1e4548`; verify 4/4; the smoke slice showed the Simpson
+effect exactly where R1 predicted — gating differs where confounding
+lives) → ruling #95: THE FULL RUN IS IN FLIGHT** (detached under the
+commander's resident session per #49.5; bare uncapped invocation;
+output `docs/world-model/data/stage3-v4-p0-autopsy-map.json`;
+X-CORPUS-IDENT / X-DET / X-SRC-ZERO hard). **→ NEXT: the run's routing
+verdicts land at the commander — H/S/J per limb decides V4-P1's scope;
+an UNROUTABLE limb stops the stage.** The operations protocol is
+codified at §0.0 (rulings #92, #95.5). Forks (ii)/(iii) stay banked.
+R20 gaps / F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
