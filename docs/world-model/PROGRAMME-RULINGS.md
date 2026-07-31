@@ -3902,3 +3902,52 @@
 >    again; (v) UNROUTABLE semantics unchanged. Executor
 >    pre-registers V4-P0b per §0.0; commander reviews; build; run
 >    detached (#49.5).
+
+> **COMMANDER RULING #97 (2026-07-31 — V4-P0b pre-registration
+> reviewed: PASS, all flagged choices ratified; build authorized):**
+>
+> 1. **VERDICT**: the P0b pre-registration (`43ac514`) passes review
+>    (machine-verify 5/5, zero violations; every number traced to
+>    published sources; anchor definitions verified implementable
+>    against src/probe line-by-line; the after-sight redesign
+>    properly disclosed; P0's verdicts byte-unchanged, published
+>    side by side). The decision-anchor definition is exact: a
+>    station-decision moment = the tick `stationEyeState.untilTick`
+>    takes a new value (decisionTick = untilTick − 180; W = 3.0 s =
+>    180 ticks), the very signal the P0 probe already watches.
+> 2. **ROOT CAUSE OF DEFECT TWO CONFIRMED AT SOURCE**: the mining
+>    delivery detector carried an `owner !== null` guard while the
+>    (working) reference detector is guard-free — delivery stat
+>    increments land at kick moments (ball just released, owner
+>    null), so the guard killed every event. The fix (guard-free
+>    reference-style detection) sits behind the frozen magnitude
+>    HARD gate: mining-R0 total ∈ [4,833, 14,499] (= [0.5, 1.5] ×
+>    12.0825 × 800), outside ⇒ instrument FAIL.
+> 3. **FLAGGED CHOICES RATIFIED**: (i) restart's PRIMARY
+>    jurisdiction evidence = the exposure map's phase=restart cell
+>    (the resettle defect is phase-level — shapeReady reads the
+>    incumbent shape — not one body's decision); the index-1
+>    decision-anchored restart J is reported secondary/diagnostic;
+>    (ii) delivery is NOT decision-anchored (it routes on R0 where
+>    the eye is null) and keeps the A2 origination-moment J —
+>    **and the origination-moment support fix is explicitly
+>    ratified as the SAME anti-tautology principle** (P0 evaluated
+>    delivery support at the kick tick, owner null ⇒ support-out
+>    ≡ 1 once events exist — the next tautology, caught before it
+>    fired); (iii) the banked fresh reference is REUSED, not re-run
+>    (the exposure map needs R3 mining only; the gate needs the
+>    banked 12.0825 constant only); X-DET is the whole P0b output
+>    twice byte-identical (HARD); (iv) the anchor-lag bins
+>    [0,1,2,3,6,10,∞) s with W = 3.0 s as an edge; (v) the
+>    ball-state buckets (owned / in-flight = pendingPass ∨
+>    |v| > 2.5 / loose); (vi) UNANCHORED events dropped from the J
+>    denominator with the fraction PUBLISHED per limb — a large
+>    unanchored fraction weakens the J read and the commander
+>    adjudicates on it.
+> 4. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p0b-decision-anchor.ts` per the
+>    frozen P0b pre-reg (workflow Draft → Verify, §0.0); then the
+>    run launches detached under the commander's resident session
+>    (#49.5). Gates X-CORPUS-IDENT / X-DET / X-SRC-ZERO / the
+>    delivery magnitude gate are HARD; an UNROUTABLE limb stops the
+>    stage (§6).

@@ -527,10 +527,18 @@ columns corroborate #88.3 at event grain (beyond-horizon cost mass
 0.57–0.97, all perm p=0); R1 vindicated at full scale (raw-pool S
 resolves, stratified null); fresh base rates for P2 sizing
 (turnovers 51.3 / near-line 44.1 / restarts 12.6 / deliveries 12.1
-per match). **→ NEXT: executor pre-registers V4-P0b (ruling #96.6:
-decision-anchored J + the R3 consumption-exposure map + the delivery
-detector behind a magnitude sanity HARD gate; same corpus/seeds; P0
-verdicts stay published side by side).** Forks (ii)/(iii) stay
+per match). **V4-P0b PRE-REGISTERED (`43ac514`; verify 5/5) → review
+#97 PASS, all flagged choices ratified** — decision anchor =
+`stationEyeState.untilTick` new-value ticks (decisionTick =
+untilTick − 180); the delivery bug's root cause confirmed at source
+(an `owner !== null` guard killed kick-moment stat increments; the
+guard-free fix sits behind the frozen magnitude HARD gate
+[4,833, 14,499]); restart jurisdiction = the exposure map's
+phase=restart cell (primary); the origination-moment delivery
+support fix ratified as the same anti-tautology principle.
+**→ NEXT: executor BUILDS `scripts/probes/stage3-v4-p0b-decision-anchor.ts`
+(workflow Draft→Verify, §0.0), then the run launches detached under
+the commander's resident session (#49.5).** Forks (ii)/(iii) stay
 banked. R20 gaps / F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
