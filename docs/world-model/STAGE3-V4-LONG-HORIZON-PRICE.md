@@ -1,8 +1,10 @@
 # Stage III v4 — The Long-Horizon Price (design contract, commander-owned)
 
-Status: **DESIGN CONTRACT, drafted 2026-07-31 under ruling #90**
-(user-ratified fork (i) of #88.4: the ESTIMAND direction — price the
-long-horizon jobs). Authority: #88/#89 (the P3a verdict and its
+Status: **DESIGN CONTRACT, drafted 2026-07-31 under ruling #90;
+amended same day under ruling #91 (the user-ordered VISION audit:
+held-lattice pricing replaces designation pricing; gene-weight
+clarification; E-RELOCATED-CURE)** (user-ratified fork (i) of #88.4:
+the ESTIMAND direction — price the long-horizon jobs). Authority: #88/#89 (the P3a verdict and its
 corrected record: shape cured, three discipline limbs fired, the price
 list is incomplete) · #90 (this launch) · the A4 charter · #41.2 ·
 #44.3 (labelled data) · #44.5/#65 (sizing before floors) · #46.2 ·
@@ -58,9 +60,18 @@ below are named priors, never verdicts.
 * **CLASS H — HEDGE / HORIZON** (suspected: rest-defence slot; the
   delivery economy). The job's value binds rarely and late — invisible
   at 6/10 s by construction. Remedy: **the occupancy census**
-  (fork-and-hold: force ONE body to keep its designated station) with
-  outcomes read through CALIBRATED SURROGATES at long windows, so the
-  rare late value becomes a measurable price in goal-value units.
+  (fork-and-hold: force ONE body to HOLD a candidate from the STANDING
+  LATTICE / its region classes for W_hold) with outcomes read through
+  CALIBRATED SURROGATES at long windows, so the rare late value becomes
+  a measurable price in goal-value units. **The incumbent DESIGNATION
+  is never the priced state** (VISION §1: the hand-drawn menu is the
+  #1 living violation; the 2026-07-27 anchor names rest defence as a
+  shape that must EMERGE from the value field): who stays home and
+  where emerges from the price surface over held candidates — a
+  deep-held cell that pays for a DF is rest defence grown, not read
+  off the menu. The same instrument covers the delivery economy
+  (wide-held cells priced at delivery-channel value) with no per-job
+  carve-out.
 * **CLASS S — STATE-BLIND** (suspected: offsides). The cost IS inside
   the existing horizons but is averaged away because the context key
   cannot distinguish the states (a run beyond the line and one just
@@ -94,15 +105,21 @@ I1  NO HAND-CODED SHAPE/TACTIC TERM (four generations strong).
 I2  PERCEPT-HONEST at consumption; role own-state; any NEW context bit
     is computed from the body's own snapshot with a named abstention
     class. No oracle reads.
-I3  NO FREE WEIGHTS: the merged scalar is a SUM in one unit
+I3  NO FREE HAND-WEIGHTS: the merged scalar is a SUM in one unit
     (goal-value). Every long-horizon term enters ONLY through a
     measured calibration (surrogate → goal hazard, V4-P1); zero
-    tunable knobs. A term whose units cannot be made honest DOES NOT
-    ENTER (stop rule, not a fudge factor).
+    HAND-tunable knobs. A term whose units cannot be made honest DOES
+    NOT ENTER (stop rule, not a fudge factor). GENE-mapped composition
+    stays the evolution layer (v1 §4-Q3; VISION: dimensions from the
+    substrate, WEIGHTS from evolution) — I3 bans hand constants, not
+    gene weights; the calibration's job is to make the quantities the
+    genes weigh HONEST.
 I4  The occupancy census is UNILATERAL fork-and-hold: force ONE
-    sampled body's sustained station target (its own designation,
-    reached by normal locomotion — no teleports); paired same-seed
-    control; control reproduction bit-identical; clone coverage 100%.
+    sampled body's sustained station target — a HELD CANDIDATE from
+    the standing lattice/region classes, NEVER the incumbent
+    designation — reached by normal locomotion, no teleports; paired
+    same-seed control; control reproduction bit-identical; clone
+    coverage 100%.
 I5  SIZING BEFORE FLOORS (#44.5/#65): binding-moment population
     arithmetic published before any floor freezes; under-powered
     cells published, never pooled; disclosed-dead gates never run.
@@ -114,11 +131,10 @@ I6  Census world = the enriched full bundle (#67.3); runs state HEAD
 I7  The P3a corpus is LABELLED MINING FUEL (#44.3): V4-P0 may localise
     where the limbs fire in it; no gate-bearing number is quoted from
     it; everything gate-bearing runs fresh.
-I8  No new gene, no new attribute, no new percept channel.
-    Designations are READ from the world's own formation machinery
-    (P0 maps the world's own variable; the battery's index-1 proxy is
-    an ex-ante instrument, not the designation itself). Nothing is
-    authored.
+I8  No new gene, no new attribute, no new percept channel. Incumbent
+    designations have exactly TWO legitimate uses — the P0 reference
+    map and the battery's verdict instrument — and are NEVER a priced
+    state or a consumer input (VISION §1). Nothing is authored.
 I9  All prior assets reused: the v3 role table stays the certified
     short-horizon axis; lattice, W, seam pattern, mediators, receipts,
     E-INJURY, harness repairs, the permutation engine, the battery.
@@ -156,14 +172,17 @@ reviews; the standing pattern)
   SHA'd. Gate: a surrogate enters only with a resolved monotone link;
   failures are published and dropped (I3).
 * **V4-P2 — THE OCCUPANCY CENSUS** (CLASS H, the big instrument):
-  fork-and-hold at sampled binding moments — force ONE body to hold
-  its own designation for W_hold; paired same-seed control; outcome =
-  calibrated surrogates over W_long (both windows pinned ex ante from
-  P0's curves); cells keyed context × role × designation-class; sizing
-  smoke first (I5). Pre-named hypothesis: **occupancy of the
-  designated long-horizon stations carries a resolved nonzero price in
-  goal-value units.** The null is a real finding that stops CLASS H at
-  the commander BEFORE any consumer is built.
+  fork-and-hold at sampled binding moments — force ONE body to hold a
+  candidate from the standing lattice/region classes for W_hold;
+  paired same-seed control; outcome = calibrated surrogates over
+  W_long (both windows pinned ex ante from P0's curves); cells keyed
+  context × role × held-candidate class; sizing smoke first (I5).
+  Pre-named hypothesis: **held stations carry resolved nonzero
+  long-horizon prices in goal-value units, and the price surface
+  SEPARATES by region and role** (a deep-held cell paying for a DF is
+  rest defence GROWN; a wide-held cell paying at delivery value is
+  the delivery economy GROWN). The null is a real finding that stops
+  CLASS H at the commander BEFORE any consumer is built.
 * **V4-P3 — THE MERGED CONSUMER**: one scalar = the v3 role-table
   two-face read + the calibrated long-horizon terms (CLASS H) + the
   context extensions (CLASS S) + the in-support law (CLASS J); the
@@ -174,7 +193,15 @@ reviews; the standing pattern)
 * **V4-P4 — DEPLOYMENT + THE BATTERY + THE R3 ITERATION** (the v2 law
   verbatim): the P3a battery re-run with the three limbs as named
   gates at their exact bands; §2 band; the adoption ladder; the R3
-  iteration once. Nothing ships without the user's eyes.
+  iteration once. **Pre-registered adjudication class E-RELOCATED-CURE
+  (#49.3 form, frozen here ex ante)**: the I5(b) gate is anchored on
+  the INCUMBENT's convention (the designated body deep); a priced
+  world may grow real rest defence with a DIFFERENT body holding. If
+  I5(b) fires while I5(a), the concession face and the shape
+  adjudicators are all quiet, the stop goes to the commander for an
+  identity-vs-function adjudication — STILL A STOP, never a silent
+  pass; any other firing pattern is an ordinary FAIL. Nothing ships
+  without the user's eyes.
 
 ## 5. Gate sources
 

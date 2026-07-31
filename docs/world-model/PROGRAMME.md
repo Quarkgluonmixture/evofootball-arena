@@ -452,6 +452,11 @@ P0 routing by measurement; the no-free-weights law I3 — every long-horizon
 term enters in goal-value units through a measured calibration or not at
 all; V4-P4 re-runs the P3a battery with the three fired limbs as named
 gates at their exact bands, shape adjudicators re-run as gates).
+**Amended by #91 (the user-ordered VISION audit)**: the occupancy census
+prices HELD LATTICE CANDIDATES, never the incumbent designation (the #90
+draft smuggled the menu's answer into the price list — fixed); I3 bans
+hand constants, not gene weights; adjudication class E-RELOCATED-CURE
+frozen ex ante for the incumbent-anchored I5(b) gate.
 **→ NEXT: executor pre-registers V4-P0 — THE AUTOPSY MAP** (read-only,
 zero `src/**`: map the world's own designation variables; mine the P3a
 corpus as labelled fuel #44.3 with routing criteria frozen BEFORE mining;

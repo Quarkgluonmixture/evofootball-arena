@@ -3635,3 +3635,45 @@
 >    corpus is mining fuel under the labelled-data convention (#44.3),
 >    never verdict fuel; routing criteria freeze BEFORE mining. Road B
 >    stands; nothing ships; the fingerprint does not move.
+
+> **COMMANDER RULING #91 (2026-07-31 — the user-ordered VISION audit
+> of the v4 contract; one real violation found and fixed, one
+> clarification):**
+>
+> 1. **AUDIT VERDICT**: v4's direction is not merely compatible with
+>    VISION — it is the mandated road. VISION §1's #1 living
+>    violation is the hand-drawn formation menu, and the 2026-07-27
+>    anchor names REST DEFENCE explicitly as a transition shape that
+>    must EMERGE from one value field, never be a hand-drawn table.
+>    The incumbent's three victories rest on that menu's unpriced
+>    long-horizon wisdom — the menu cannot be retired until its
+>    silent jobs are priced. v4 builds the value field's missing
+>    half. (CLASS S's offside-relative flag was already on v1's
+>    registered feature list; §2 watchability and the shape
+>    adjudicators stay hard gates.)
+> 2. ⛔ **VIOLATION FOUND AND FIXED (the designation anchor)**: the
+>    #90 draft priced "hold your DESIGNATION" — the designation comes
+>    from the hand-written formation machinery, so the draft smuggled
+>    the menu's ANSWER into the price list (teaching the eye "the
+>    menu was right" is not emergence). AMENDED: the occupancy census
+>    prices HELD CANDIDATES from the standing lattice/region classes;
+>    who stays home and where EMERGES from the price surface (a
+>    deep-held cell paying for a DF is rest defence GROWN). The same
+>    instrument covers the delivery economy (wide-held cells at
+>    delivery value) — no per-job carve-outs. Incumbent designations
+>    retain exactly two legitimate uses: the P0 reference map and the
+>    battery's verdict instrument (amended I4/I8, §2 CLASS H, V4-P2).
+> 3. **CLARIFICATION (I3)**: "no free weights" bans HAND constants,
+>    not gene weights — gene-mapped composition stays the evolution
+>    layer (v1 §4-Q3; VISION: dimensions from the substrate, weights
+>    from evolution). The calibration's job is to make the quantities
+>    the genes weigh HONEST. A discipline-underweighting genome that
+>    gets punished is VISION-sanctioned diversity, not a bug.
+> 4. **PRE-REGISTERED ADJUDICATION CLASS E-RELOCATED-CURE** (frozen
+>    ex ante, #49.3 form): the P4 gate I5(b) is anchored on the
+>    incumbent convention (the designated body deep); a priced world
+>    may grow real rest defence with a different body holding. If
+>    I5(b) fires while I5(a), the concession face and the shape
+>    adjudicators are all quiet, the stop is adjudicated at the
+>    commander as identity-vs-function — still a stop, never a
+>    silent pass. Any other firing pattern is an ordinary FAIL.
