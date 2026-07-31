@@ -560,8 +560,12 @@ to the V4-P2 pre-reg (data-informed, freeze-compatible). **→ NEXT:
 executor BUILDS `scripts/probes/stage3-v4-p1-calibration.ts` (both
 modes: sizing smoke + census; workflow Draft→Verify §0.0), then the
 commander runs smoke → N → census detached (#49.5). Monotone-link
-gate HARD; all-three-drop ⇒ stop.** Forks (ii)/(iii) stay banked.
-R20 gaps / F9 any time. Road B stands; nothing ships.
+gate HARD; all-three-drop ⇒ stop.** **P1 probe BUILT (`3293d33`;
+verify 6/6; all three monotone-admission branches preflighted) →
+ruling #101: deviations ratified, THE SIZING SMOKE IS IN FLIGHT
+(40 @9.9M, detached #49.5) → then census @9.8M with V4P1_N from the
+smoke's frozen arithmetic.** Forks (ii)/(iii) stay banked. R20 gaps /
+F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

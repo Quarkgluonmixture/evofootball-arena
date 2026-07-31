@@ -4113,3 +4113,41 @@
 >    then the census. Gates X-DET / X-SRC-ZERO / the monotone-link
 >    gate HARD; all-three-drop ⇒ CLASS H uncalibratable ⇒ stop at
 >    the commander (contract §6).
+
+> **COMMANDER RULING #101 (2026-07-31 — V4-P1 probe build reviewed:
+> PASS, deviations ratified; the sizing smoke launches):**
+>
+> 1. **BUILD VERDICT**: probe committed `3293d33` (847 lines, one
+>    file); independent code-fidelity verify 6/6, zero violations
+>    (detector equivalence checked against P0b line-by-line and the
+>    box geometry proven algebraically equivalent to
+>    `Match.inPenaltyBox` under both attack directions; estimator,
+>    gate, N-arithmetic, mode/seed machinery all verified). tsc
+>    clean; preflight exercised BOTH modes and ALL THREE monotone
+>    admission branches (unresolved-drop / admit / non-monotone
+>    drop); X-DET double-run byte-identical per mode; X-SRC-ZERO;
+>    no canonical data written.
+> 2. **DEVIATIONS RATIFIED** (all disclosed): the salted independent
+>    secondary-baseline draw (all-playing incl. loose, non-gating);
+>    the W-independent per-event draw fraction (stable across the
+>    15/30/45 s readings); eventOrdinal per (match, side, surrogate)
+>    stream; shot-multiplicity as n discrete events; the
+>    possession-spell conditional chain at W_link = 30 s; σ̂ as
+>    per-match-lift SD with undefined matches excluded and counted
+>    (sizing-only approximation — the census gate reads the real
+>    cluster bootstrap); N_S → N_max + under-powered flag on
+>    degenerate σ̂/MDL; **V4P1_MODE as an EXPLICIT required env var
+>    (no bare-invocation default — two real runs exist, a silent
+>    wrong-corpus run is worse than an error; departure from the
+>    P0b convention ratified as an improvement)**; V4P1_SEED_BASE
+>    honored only under a preflight cap (the real corpus family can
+>    never be shifted; the disjointness gate reads the frozen
+>    constants).
+> 3. **LAUNCH ORDER**: (1) the 40-match sizing smoke @9.9M,
+>    detached (#49.5); (2) the commander reads `nArithmetic.N` from
+>    the smoke JSON and launches the census @9.8M with V4P1_N = N;
+>    (3) write-up + adjudication. Preflight hint recorded (labelled,
+>    8-match noise): box entries ≈ 1.25/match are the sparse
+>    surrogate — if the smoke confirms box under-power at the
+>    N-cap, the gate will read it UNRESOLVED and the ladder
+>    adjudication falls to the commander per the frozen semantics.
