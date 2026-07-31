@@ -3736,3 +3736,58 @@
 >    session (#49.5). Read-only stage: zero `src/**`; X-CORPUS-IDENT,
 >    X-DET and the zero-src check are HARD. An UNROUTABLE limb stops
 >    the stage at the commander (§6).
+
+> **COMMANDER RULING #94 (2026-07-31 — V4-P0 probe build reviewed:
+> PASS with ONE review fix ordered before the run):**
+>
+> 1. **BUILD VERDICT**: probe committed `5cdc4f8`; independent
+>    code-fidelity verify 8/8, zero violations (frozen constants,
+>    A1/A2 fidelity, corpus seeds, the verbatim V3-P1 support
+>    predicate, X-DET, git hygiene — all checked against code, not
+>    claims). Smoke: `tsc` clean; **X-CORPUS-IDENT logic validated
+>    BYTE-IDENTICALLY on all 34 checked fields over the 8-seed
+>    slice** (incl. restDefence per-side, C-OFFSIDE, C-RESTART, the
+>    §2 five, the full release ledger, per-role decision mixes,
+>    roleMixTV); fresh-corpus X-DET byte-identical; zero `src/**`;
+>    fingerprint `57b0bdab…c673` unchanged; no data file committed.
+> 2. **DEVIATIONS RATIFIED** (the executor disclosed 11; all but one
+>    accepted as within the freeze): **D1** mining re-simulates
+>    R0+R3 only — every frozen routing test is R3-vs-R0 and no
+>    checked aggregate depends on R1/R2 (a compute-scope narrowing,
+>    not a test change); **D2** identity = the deterministic
+>    point/count set + input SHAs (bootstrap-CI byte-values carried
+>    by the determinism argument, per A4); **D3** the surrogate
+>    channels (concede = shots-against ∪ deep entries; score =
+>    shots-for; goals not up-weighted — P0 routes, P1 prices);
+>    **D4** all limbs route on within-arm event populations (A2's
+>    no-cross-arm-counterfactual principle applied uniformly);
+>    **D5** the binding-moment operationalisations (kick-time
+>    `pendingPass.offside` is the better instrument than the stats
+>    counter; restart ONSETS not ticks); **D6** the permutation-null
+>    construction (nearest-preceding-same-side anchor attribution;
+>    uniform redraw preserving count+side; dominance = beyond>within
+>    AND p<0.025); **D8** + the pinned magnitudes now frozen ex ante
+>    (NEAR_LINE 2 m, WIDE_HELD |y|>15 m, RESTART_ADJ 5 s, spacing
+>    2.0 s); the offside limb's H arm reading the concede face while
+>    its S contrast carries the score face (double coverage,
+>    intentional); the write-only trace-parity arming (proven unable
+>    to touch the trajectory).
+> 3. ⛔ **REVIEW FIX R1 ORDERED (D7 rejected as-is)**: the CLASS S
+>    contrast was implemented as a RAW POOL over in-support moments.
+>    The freeze says WITHIN-CELL — and raw pooling invites Simpson
+>    confounding (e.g. slot-held vs slot-abandoned composition
+>    varies by face/third, which carry outcome differences of their
+>    own). FIX: compute the sub-state contrast WITHIN
+>    (context × role) strata — the coarse frozen context key, no
+>    census-floor machinery needed — and pool the stratum
+>    differences weighted by sub-state moment counts, match-cluster
+>    bootstrap over the pooled estimator (B/seed unchanged). The
+>    candidate axis of the full census key is OMITTED at this
+>    classify-only stage (published as a stated limitation).
+>    Per-stratum sub-counts stay published. Executor applies R1
+>    (workflow Draft → Verify); NOTHING runs before R1 lands.
+> 4. **THEN THE RUN**: launched detached under the commander's
+>    resident session (#49.5), exact command per the probe header;
+>    output `docs/world-model/data/stage3-v4-p0-autopsy-map.json`
+>    SHA'd; the routing verdicts land at the commander; an
+>    UNROUTABLE limb stops the stage (§6).
