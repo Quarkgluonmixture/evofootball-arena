@@ -86,12 +86,22 @@
 //       redraws each anchor a uniform time in the match's own playing-tick span
 //       (anchor count + side preserved), re-attributes, and pools beyond/within
 //       cost mass across matches; p = #{perm beyond-fraction ≥ observed}/B.
-//   D7  CLASS S within-cell contrast is computed POOLED over in-support playing
-//       moments with a match-cluster bootstrap CI (per-context sub-counts reported);
-//       the 150-moment per-(context×role×candidate) census-cell floors are a
-//       V4-P2/V3-P1 construct not reconstructed here (this stage classifies, it does
-//       not price). Sub-states per §2.3: rest slot-held/abandoned, offside
-//       beyond-line/onside, restart restart-adjacent/open, delivery wide/central.
+//   D7  CLASS S within-cell contrast [REVIEW FIX R1, ruling #94.3]: the GATING S
+//       contrast is STRATIFIED by (context × role) — the coarse frozen V3-P1 context
+//       key × the sampled body's role — with the A−B sub-state difference taken WITHIN
+//       each stratum and pooled weighted by the stratum's sub-state moment count;
+//       empty-sub-state strata contribute nothing (counted + published). The
+//       match-cluster bootstrap (B/seed 97003 unchanged) runs over the WHOLE pooled
+//       estimator (resample matches → recompute all strata + the weighted pool). This
+//       replaces the original RAW POOL over in-support moments (D7 as-built, which
+//       invited Simpson confounding); the raw-pooled read is STILL published as a
+//       NON-gating `sRawPooled` column for comparison. Per-stratum sub-counts +
+//       differences + the excluded-empty-strata count are published. The CANDIDATE
+//       axis of the full census (context×role×candidate) key is OMITTED at this
+//       classify-only stage (#94.3 limitation; the 150-moment census-cell floors are a
+//       V4-P1/P2 / V3-P1 pricing construct not reconstructed here). Sub-states per
+//       §2.3: rest slot-held/abandoned, offside beyond-line/onside, restart
+//       restart-adjacent/open, delivery wide/central.
 //   D8  DOWNSTREAM-WATCH (A2): an R0 delivery build-up is "covered" if its origin
 //       state matches another route's remedy region — index-1 body deep in own
 //       third (H deep-held) ∨ a restart within the last 5 s (J restart-adjacent) ∨ a
@@ -345,8 +355,8 @@ const contextOf = (m: Match, body: Player): string => {
 // =============================================================================
 interface Anchor { t: number; side: 0 | 1 } // simTime seconds
 interface CostEvent { t: number; side: 0 | 1; mass: number }
-interface OffsideMoment { t: number; side: 0 | 1; offside: boolean; outcome: number; inSup: boolean; ctx: string }
-interface SubStateSample { t: number; side: 0 | 1; group: 'A' | 'B'; outcome: number; ctx: string }
+interface OffsideMoment { t: number; side: 0 | 1; offside: boolean; outcome: number; inSup: boolean; ctx: string; role: Role | 'na' }
+interface SubStateSample { t: number; side: 0 | 1; group: 'A' | 'B'; outcome: number; ctx: string; role: Role | 'na' }
 interface DeliveryOrig { t: number; side: 0 | 1; wide: boolean; inSup: boolean; covered: boolean }
 
 // shared accumulators (R3-only, accumulated across ALL matches — P3a pattern).
@@ -575,12 +585,15 @@ const runMineMatch = (
         const b = index1Of(side);
         if (b === null) continue;
         const held = m.teams[side].localX(b.pos.x) < -REST_THIRD;
-        restSub.push({ t: nowT, side, group: held ? 'A' : 'B', outcome: Number.NaN, ctx: contextOf(m, b) });
+        restSub.push({ t: nowT, side, group: held ? 'A' : 'B', outcome: Number.NaN, ctx: contextOf(m, b), role: b.role });
       }
       // restart-adjacency sub-state (D7): restart-adjacent (within RESTART_ADJ_S of an onset) vs open
       for (const side of [0, 1] as const) {
         const adj = nowT - lastRestartOnset[side] <= RESTART_ADJ_S;
-        restartSub.push({ t: nowT, side, group: adj ? 'A' : 'B', outcome: Number.NaN, ctx: 'restart-vs-open' });
+        // R1: the rest-defence (index-1) body anchors the (context × role) stratum for
+        // this side's restart moment — the same body the restart onset's support uses.
+        const rb = index1Of(side);
+        restartSub.push({ t: nowT, side, group: adj ? 'A' : 'B', outcome: Number.NaN, ctx: rb ? contextOf(m, rb) : 'na', role: rb?.role ?? 'na' });
       }
     }
 
@@ -602,6 +615,7 @@ const runMineMatch = (
         offsideMoments.push({
           t: nowT, side, offside: pp.offside, outcome: Number.NaN,
           inSup: inSupport(m, targetBody), ctx: targetBody ? contextOf(m, targetBody) : 'na',
+          role: targetBody?.role ?? 'na',
         });
       }
     }
@@ -635,7 +649,9 @@ const runMineMatch = (
         }
         const covered = idx1Deep || restartAdj || wideHeld;
         deliveryOrigs.push({ t: origin, side, wide, inSup: inSupport(m, adv), covered });
-        deliverySub.push({ t: origin, side, group: wide ? 'A' : 'B', outcome: Number.NaN, ctx: 'wide-vs-central' });
+        // R1: context × role of the build-up's most-advanced non-owner body; the
+        // wide/central sub-state (adv's |y|) is a SEPARATE axis from this context key.
+        deliverySub.push({ t: origin, side, group: wide ? 'A' : 'B', outcome: Number.NaN, ctx: contextOf(m, adv), role: adv.role });
       }
       prevDelivery[side] = dNow;
     }
@@ -736,6 +752,68 @@ const contrastCI = (
   return { ...ci, resolved };
 };
 
+// STRATIFIED within-cell sub-state contrast (REVIEW FIX R1, ruling #94.3). The
+// freeze §2.3 requires a WITHIN-CELL contrast; the raw pool above invites Simpson
+// confounding (sub-state composition — e.g. slot-held vs slot-abandoned — varies by
+// context×role, which carry outcome differences of their own). We stratify by
+// (context × role): `context` = the coarse frozen V3-P1 key (face × ballThird ×
+// density) the sample already carries; `role` = the sampled body's role. Within each
+// stratum we take the A−B sub-state difference (A = the limb's "fired" sub-state,
+// same outcome definitions as the raw pool), then POOL the stratum differences
+// weighted by the stratum's sub-state moment count (aN+bN). A stratum where EITHER
+// sub-state has zero moments has no well-defined difference: it contributes NOTHING
+// and its exclusion is counted + published. CI = the SAME match-cluster bootstrap,
+// taken over the WHOLE pooled estimator — each resample re-draws matches and
+// recomputes all strata AND the weighted pool (B / seed 97003 unchanged). S FIRES
+// iff this pooled CI excludes 0 (identical firing semantics + place in the dominance
+// order). LIMITATION (#94.3): the CANDIDATE axis of the full census (context × role
+// × candidate) key is OMITTED at this classify-only stage — the 150-moment census-
+// cell floors are a V4-P1/P2 / V3-P1 PRICING construct, not reconstructed here.
+type StratSample = { stratum: string; group: 'A' | 'B'; outcome: number };
+const stratifiedContrastCI = (perMatch: readonly (readonly StratSample[])[], offset: number) => {
+  type Cell = { aSum: number; aN: number; bSum: number; bN: number };
+  const aggregate = (matches: readonly (readonly StratSample[])[]): Map<string, Cell> => {
+    const strata = new Map<string, Cell>();
+    for (const mm of matches) for (const s of mm) {
+      let e = strata.get(s.stratum);
+      if (e === undefined) { e = { aSum: 0, aN: 0, bSum: 0, bN: 0 }; strata.set(s.stratum, e); }
+      if (s.group === 'A') { e.aSum += s.outcome; e.aN += 1; } else { e.bSum += s.outcome; e.bN += 1; }
+    }
+    return strata;
+  };
+  // pooled statistic: weighted mean of per-stratum A−B differences; a stratum with
+  // an empty sub-state is dropped (its difference is undefined). Weight = aN+bN.
+  const pooledStat = (matches: readonly (readonly StratSample[])[]): number => {
+    let wSum = 0; let wDiff = 0;
+    for (const e of aggregate(matches).values()) {
+      if (e.aN === 0 || e.bN === 0) continue; // empty sub-state ⇒ contributes nothing (#94.3)
+      const w = e.aN + e.bN; // the stratum's sub-state moment count (#94.3)
+      wSum += w; wDiff += w * (e.aSum / e.aN - e.bSum / e.bN);
+    }
+    return wSum === 0 ? Number.NaN : wDiff / wSum;
+  };
+  const ci = clusterCI(perMatch, pooledStat, offset);
+  const resolved = Number.isFinite(ci.lower) && Number.isFinite(ci.upper) && (ci.lower > 0 || ci.upper < 0);
+  // published per-stratum breakdown + exclusion count, from the POINT (full) sample.
+  const full = aggregate(perMatch);
+  let excludedEmptyStrata = 0;
+  const perStratum = [...full.entries()]
+    .sort((x, y) => (x[0] < y[0] ? -1 : x[0] > y[0] ? 1 : 0))
+    .map(([stratum, e]) => {
+      const excluded = e.aN === 0 || e.bN === 0;
+      if (excluded) excludedEmptyStrata += 1;
+      return {
+        stratum, aN: e.aN, bN: e.bN,
+        aMean: e.aN === 0 ? null : round(e.aSum / e.aN),
+        bMean: e.bN === 0 ? null : round(e.bSum / e.bN),
+        diff: excluded ? null : round(e.aSum / e.aN - e.bSum / e.bN),
+        weight: excluded ? 0 : e.aN + e.bN,
+        excluded,
+      };
+    });
+  return { ...ci, resolved, nStrata: full.size, excludedEmptyStrata, perStratum };
+};
+
 // paired R3−R0 per-bin CI (descriptive curve). units = per-match {r3,r0}. stat = mean(r3)−mean(r0).
 const pairedBinCI = (perMatch: readonly { r3: number; r0: number }[], offset: number) => {
   const stat = (s: readonly { r3: number; r0: number }[]): number => {
@@ -820,7 +898,8 @@ interface LimbRoute {
   h: ReturnType<typeof hTest>;
   hSingle6: ReturnType<typeof hTest>;
   hSingle10: ReturnType<typeof hTest>;
-  s: ReturnType<typeof contrastCI>;
+  s: ReturnType<typeof stratifiedContrastCI>; // R1: GATING within-cell contrast (stratified)
+  sRawPooled: ReturnType<typeof contrastCI>; // R1: the OLD raw-pooled read, published NON-gating for comparison
   route: MClass;
   routeReason: string;
   bothFired: boolean;
@@ -830,7 +909,7 @@ interface LimbRoute {
 // on double fire); straddle or in-support-but-neither ⇒ UNROUTABLE.
 const decideRoute = (
   support: ReturnType<typeof supportOutCI>, h: ReturnType<typeof hTest>,
-  s: ReturnType<typeof contrastCI>,
+  s: ReturnType<typeof stratifiedContrastCI>, // R1: gating S contrast is the stratified pool
 ): { route: MClass; reason: string; bothFired: boolean } => {
   if (support.firesJ) return { route: 'J', reason: 'support-out CI lower > 0.5 (jurisdiction first)', bothFired: false };
   if (!support.inSupport) return { route: 'UNROUTABLE', reason: 'support-out CI straddles 0.5 (jurisdiction ambiguous — neither bound clears)', bothFired: false };
@@ -1068,7 +1147,11 @@ const runExperiment = () => {
   const restH6 = hTest(R3.map((r) => ({ anchors: r.restEvents, costs: [...r.concedeCost[0], ...r.concedeCost[1]], span: r.playSpan })), BOUNDARY_SCORE_S, off++);
   const restH10 = restH; // concede face boundary IS 10 s
   const restSupport = supportOutCI(supportUnits(R3, (r) => r.restInSup), off++);
-  const restS = contrastCI(R3.map((r) => {
+  // R1: A = abandoned (orig group 'B'), B = held (orig group 'A'); stratify by ctx#role.
+  const restS = stratifiedContrastCI(R3.map((r) => r.restSub.map((s) => ({
+    stratum: `${s.ctx}#${s.role}`, group: (s.group === 'B' ? 'A' : 'B') as 'A' | 'B', outcome: s.outcome,
+  }))), off++);
+  const restSRaw = contrastCI(R3.map((r) => {
     let aSum = 0; let aN = 0; let bSum = 0; let bN = 0;
     for (const s of r.restSub) { if (s.group === 'B') { aSum += s.outcome; aN += 1; } else { bSum += s.outcome; bN += 1; } } // A=abandoned(B group), B=held(A group)
     return { aSum, aN, bSum, bN };
@@ -1077,7 +1160,7 @@ const runExperiment = () => {
   const restRoute: LimbRoute = {
     limb: 'rest-defence slot (DEGEN-RESTDEF, I5(b))', routingArm: 'R3', prior: 'H', costFace: 'concede',
     nExcess: R3.reduce((s, r) => s + r.restEvents.length, 0),
-    support: restSupport, h: restH, hSingle6: restH6, hSingle10: restH10, s: restS,
+    support: restSupport, h: restH, hSingle6: restH6, hSingle10: restH10, s: restS, sRawPooled: restSRaw,
     route: restDec.route, routeReason: restDec.reason, bothFired: restDec.bothFired,
   };
 
@@ -1086,7 +1169,11 @@ const runExperiment = () => {
   const offH = hTest(R3.map((r) => ({ anchors: offsideAnchors(r), costs: [...r.concedeCost[0], ...r.concedeCost[1]], span: r.playSpan })), BOUNDARY_CONCEDE_S, off++);
   const offH6 = hTest(R3.map((r) => ({ anchors: offsideAnchors(r), costs: [...r.concedeCost[0], ...r.concedeCost[1]], span: r.playSpan })), BOUNDARY_SCORE_S, off++);
   const offSupport = supportOutCI(R3.map((r) => { const arr = r.offsideMoments.filter((o) => o.offside).map((o) => o.inSup); return { out: arr.filter((x) => !x).length, total: arr.length }; }), off++);
-  const offS = contrastCI(R3.map((r) => {
+  // R1: A = beyond-line (o.offside), B = onside; stratify by ctx#role of the target body.
+  const offS = stratifiedContrastCI(R3.map((r) => r.offsideMoments.map((o) => ({
+    stratum: `${o.ctx}#${o.role}`, group: (o.offside ? 'A' : 'B') as 'A' | 'B', outcome: o.outcome,
+  }))), off++);
+  const offSRaw = contrastCI(R3.map((r) => {
     let aSum = 0; let aN = 0; let bSum = 0; let bN = 0;
     for (const o of r.offsideMoments) { if (o.offside) { aSum += o.outcome; aN += 1; } else { bSum += o.outcome; bN += 1; } } // A=beyond-line, B=onside
     return { aSum, aN, bSum, bN };
@@ -1095,7 +1182,7 @@ const runExperiment = () => {
   const offsideRoute: LimbRoute = {
     limb: 'offsides (C-OFFSIDE)', routingArm: 'R3', prior: 'S', costFace: 'concede',
     nExcess: R3.reduce((s, r) => s + r.offsideMoments.filter((o) => o.offside).length, 0),
-    support: offSupport, h: offH, hSingle6: offH6, hSingle10: offH, s: offS,
+    support: offSupport, h: offH, hSingle6: offH6, hSingle10: offH, s: offS, sRawPooled: offSRaw,
     route: offDec.route, routeReason: offDec.reason, bothFired: offDec.bothFired,
   };
 
@@ -1103,7 +1190,11 @@ const runExperiment = () => {
   const restartH = hTest(R3.map((r) => ({ anchors: r.restartEvents, costs: [...r.concedeCost[0], ...r.concedeCost[1]], span: r.playSpan })), BOUNDARY_CONCEDE_S, off++);
   const restartH6 = hTest(R3.map((r) => ({ anchors: r.restartEvents, costs: [...r.concedeCost[0], ...r.concedeCost[1]], span: r.playSpan })), BOUNDARY_SCORE_S, off++);
   const restartSupport = supportOutCI(supportUnits(R3, (r) => r.restartInSup), off++);
-  const restartS = contrastCI(R3.map((r) => {
+  // R1: A = restart-adjacent (orig group 'A'), B = open; stratify by ctx#role.
+  const restartS = stratifiedContrastCI(R3.map((r) => r.restartSub.map((s) => ({
+    stratum: `${s.ctx}#${s.role}`, group: s.group, outcome: s.outcome,
+  }))), off++);
+  const restartSRaw = contrastCI(R3.map((r) => {
     let aSum = 0; let aN = 0; let bSum = 0; let bN = 0;
     for (const s of r.restartSub) { if (s.group === 'A') { aSum += s.outcome; aN += 1; } else { bSum += s.outcome; bN += 1; } } // A=restart-adjacent, B=open
     return { aSum, aN, bSum, bN };
@@ -1112,7 +1203,7 @@ const runExperiment = () => {
   const restartRoute: LimbRoute = {
     limb: 'restart resettle (C-RESTART)', routingArm: 'R3', prior: 'J', costFace: 'concede',
     nExcess: R3.reduce((s, r) => s + r.restartEvents.length, 0),
-    support: restartSupport, h: restartH, hSingle6: restartH6, hSingle10: restartH, s: restartS,
+    support: restartSupport, h: restartH, hSingle6: restartH6, hSingle10: restartH, s: restartS, sRawPooled: restartSRaw,
     route: restartDec.route, routeReason: restartDec.reason, bothFired: restartDec.bothFired,
   };
 
@@ -1122,7 +1213,11 @@ const runExperiment = () => {
   const delH = hTest(R0.map((r) => ({ anchors: delAnchors(r), costs: delCosts(r), span: r.playSpan })), BOUNDARY_SCORE_S, off++);
   const delH10 = hTest(R0.map((r) => ({ anchors: delAnchors(r), costs: delCosts(r), span: r.playSpan })), BOUNDARY_CONCEDE_S, off++);
   const delSupport = supportOutCI(R0.map((r) => { const arr = r.deliveryOrigs.map((d) => d.inSup); return { out: arr.filter((x) => !x).length, total: arr.length }; }), off++);
-  const delS = contrastCI(R0.map((r) => {
+  // R1: A = wide-held (orig group 'A'), B = central; stratify by ctx#role of the adv body.
+  const delS = stratifiedContrastCI(R0.map((r) => r.deliverySub.map((s) => ({
+    stratum: `${s.ctx}#${s.role}`, group: s.group, outcome: s.outcome,
+  }))), off++);
+  const delSRaw = contrastCI(R0.map((r) => {
     let aSum = 0; let aN = 0; let bSum = 0; let bN = 0;
     for (const s of r.deliverySub) { if (s.group === 'A') { aSum += s.outcome; aN += 1; } else { bSum += s.outcome; bN += 1; } } // A=wide, B=central
     return { aSum, aN, bSum, bN };
@@ -1135,7 +1230,7 @@ const runExperiment = () => {
   const deliveryRoute: LimbRoute & { downstreamWatch: boolean; downstreamWatchCI: typeof dwCI; note: string } = {
     limb: 'delivery economy (§2 band break)', routingArm: 'R0', prior: 'H (+downstream-watch)', costFace: 'score',
     nExcess: R0.reduce((s, r) => s + r.deliveryOrigs.length, 0),
-    support: delSupport, h: delH, hSingle6: delH, hSingle10: delH10, s: delS,
+    support: delSupport, h: delH, hSingle6: delH, hSingle10: delH10, s: delS, sRawPooled: delSRaw,
     route: delDec.route, routeReason: delDec.reason, bothFired: delDec.bothFired,
     downstreamWatch, downstreamWatchCI: dwCI,
     note: 'A2: routes on the INCUMBENT/R0 side (R0 build-ups; chain lag origin→shot-for; '
