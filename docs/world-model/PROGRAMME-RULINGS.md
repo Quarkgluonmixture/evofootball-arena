@@ -3994,3 +3994,67 @@
 >    gate ([4,833, 14,499]) HARD; routing verdicts to the
 >    commander; an UNROUTABLE limb stops the stage (§6); P0's
 >    verdicts remain published side by side.
+
+> **COMMANDER RULING #99 (2026-07-31 — the V4-P0b adjudication:
+> ALL FOUR LIMBS ROUTE; stage V4-P0 CLOSES; V4-P1 opens):**
+>
+> 1. **BANKED**: the P0b run (HEAD `8784986`, detached #49.5) and
+>    its faithful §RESULT + data (`cb23f8f`; number-verify 4/4,
+>    zero violations, pure insertions — P0's §RESULT untouched).
+>    ALL hard gates pass: X-CORPUS-IDENT FULL (0 fails), X-DET,
+>    X-SRC-ZERO (fingerprint `57b0bdab…c673` unchanged), and the
+>    delivery magnitude gate (9,258 ∈ [4,833, 14,499]) — defect two
+>    (#96.4) is FIXED and verified in the same instrument that
+>    exposed it.
+> 2. **THE ROUTING IS ACCEPTED AS THE STAGE'S VERDICT** (frozen
+>    criteria, reading A/B, anchoring clean — unanchored fraction
+>    exactly 0 on all three R3 limbs, median lags 1.0–1.5 s):
+>    * **rest = H** (prior confirmed): the abandonment decisions
+>      are made IN support (support-out 0.298 [0.292, 0.304] at the
+>      decision anchor — P0's 0.706 measured the harm's location,
+>      not the decision's); the cost mass is late (0.569 @10 s /
+>      0.733 @6 s, perm p = 0). The hedge disease.
+>    * **offside = H** (prior S overturned; bothFired, H > S as
+>      frozen): decisions in support (0.364); 0.910 of the
+>      concede-face cost beyond 10 s (p = 0). The RESOLVED S
+>      contrast (−0.105 [−0.132, −0.077]) stays BANKED as the
+>      pre-registered fallback: if the P4 battery shows offside
+>      uncured by CLASS H pricing, the context-bit remedy is next,
+>      by ruling.
+>    * **restart = J** (prior confirmed, GOVERNED by the primary
+>      instrument per #97.3(i)): the exposure map records the eye
+>      making **53,101 / 52,924 station decisions per side INSIDE
+>      restart phases** — reading a table with no restart pricing;
+>      the secondary decision-anchored J (0.513 [0.503, 0.523])
+>      concurs marginally. The jurisdiction disease.
+>    * **delivery = S** (prior H overturned; the detector's first
+>      real verdict): decisions in support (0.381); the cost is NOT
+>      late — perm p = 1.0, the origination→shot chain binds EARLY
+>      relative to chance; the within-cell wide-vs-central contrast
+>      is enormous and resolved (+0.631 [0.602, 0.660], 45 strata).
+>      The census cells MIX states the delivery economy depends on.
+>      State-blindness; downstream-watch FALSE — its own disease,
+>      not the other limbs' shadow.
+> 3. ⭐⭐ **THE EXPOSURE FINDING, banked**: of 764,053 eye station
+>    decisions (800 R3 matches), only ~54% occur at priced moments
+>    (playing/owned); **~32% during ball-in-flight and ~14% inside
+>    restart phases are EXTRAPOLATION** — the P3 in-support
+>    consumption law now has a directly measured surface, not a
+>    hypothesis.
+> 4. **STAGE V4-P0 CLOSES** (P0 event-anchored + P0b
+>    decision-anchored published side by side; the correction trail
+>    #96→#98 is itself a banked methodological asset: jurisdiction
+>    is a property of DECISIONS, not harms, and a criterion that
+>    cannot return "no" is not a criterion). The v4 remedy scope is
+>    now MEASURED: CLASS H (rest, offside) → V4-P1 calibration +
+>    V4-P2 occupancy census; CLASS S (delivery) → the wide-state
+>    context bit at the consumer (V4-P3); CLASS J (restart + the
+>    exposure surface) → the in-support law (V4-P3).
+> 5. **V4-P1 OPENS (the calibration, contract §4)**: measure the
+>    concede-face surrogate → goal-value links (opponent deep
+>    entry / box entry / shot-against → concession hazard) on the
+>    enriched world — observational, no forcing; windows pinned
+>    from P0's published time-to-cost curves (I6); a surrogate
+>    enters ONLY with a resolved monotone link (I3), failures
+>    published and dropped. Executor pre-registers V4-P1 per §0.0;
+>    commander reviews; the standing pattern.

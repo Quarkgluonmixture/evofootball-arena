@@ -536,17 +536,24 @@ guard-free fix sits behind the frozen magnitude HARD gate
 [4,833, 14,499]); restart jurisdiction = the exposure map's
 phase=restart cell (primary); the origination-moment delivery
 support fix ratified as the same anti-tautology principle.
-**P0b probe BUILT (`ba0b96c`; verify 6/6; the smoke demonstrated the
-anti-tautology fix — rest decision-anchored support-out 0.307 vs P0's
-event-time 0.706, delivery detector alive at ≈14.25/match) → ruling
-#98: deviations E1–E9 ratified, THE FULL RUN IS IN FLIGHT** (detached
-per #49.5; output `docs/world-model/data/stage3-v4-p0b-decision-anchor.json`;
-X-CORPUS-IDENT / X-DET / X-SRC-ZERO / delivery magnitude gate
-[4,833, 14,499] HARD). **→ NEXT: P0b routing verdicts land at the
-commander — non-tautological H/S/J per limb decides V4-P1's scope;
-UNROUTABLE stops the stage; P0's verdicts stay published side by
-side.** Forks (ii)/(iii) stay banked. R20 gaps / F9 any time. Road B
-stands; nothing ships.
+**V4-P0b RAN CLEAN — ALL FOUR LIMBS ROUTE (§RESULT + data `cb23f8f`,
+verify 4/4; all hard gates pass incl. delivery magnitude 9,258 ∈
+[4,833, 14,499]) → ruling #99: STAGE V4-P0 CLOSES.** The measured
+remedy map: **rest = H** (decisions in-support 0.298, cost late
+0.57@10 s, p=0) · **offside = H** (0.910 beyond-horizon; the resolved
+S contrast −0.105 banked as the pre-registered fallback) ·
+**restart = J** (the exposure map: 53k eye decisions per side INSIDE
+restart phases, zero priced cells there) · **delivery = S** (cost
+binds EARLY, perm p=1.0; wide-vs-central within-cell contrast +0.631,
+45 strata; downstream-watch false). ⭐ Exposure finding banked: only
+~54% of 764,053 eye decisions occur at priced moments (~32%
+ball-in-flight + ~14% restart phases = extrapolation) — the P3
+in-support law's surface is measured. P0 (event-anchored) and P0b
+(decision-anchored) published side by side. **→ NEXT: executor
+pre-registers V4-P1 — THE CALIBRATION (#99.5: concede-face surrogate
+→ goal-value links, observational, windows from P0's curves, resolved
+monotone link or the term does not enter).** Forks (ii)/(iii) stay
+banked. R20 gaps / F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
