@@ -3524,3 +3524,51 @@
 >    and limb-fires as-is; commit, push. The verdict returns here:
 >    all-quiet ⇒ P3b (the R3 iteration) drafts; any limb ⇒ the stage
 >    stops and the deployment answer is NO.
+
+> **COMMANDER RULING #88 (2026-07-31 — V3-P3a: THREE LIMBS FIRE, the
+> stage stops as frozen, P3b does not run — and the shape question is
+> ANSWERED IN THE EYE'S FAVOUR on the way down; Stage III v3 closes
+> end-to-end; the diagnosis hands the baton to the ESTIMAND):**
+>
+> 1. **FAIL AS FIRED, the stop rule verbatim**: REST DEFENCE
+>    66.9%→46.7% (−30.2% rel, both sides, resolved) vs the −20% band;
+>    OFFSIDES 3.27→4.01/match (+22.8%) vs +10%; RESTARTS +50.8% vs
+>    +10% (the v1 pin-3 warning live: shapeReady reads the incumbent
+>    formation while bodies are elsewhere). The equilibrium-band gate
+>    also fails on a non-goals stat (goals themselves inside, R0
+>    inside — no substrate-drift excuse). **The deployment answer is
+>    NO; P3b does not run.**
+> 2. ⭐⭐⭐ **BANKED — the #85.3 confound RESOLVED FOR THE EYE**: at
+>    full deployment the three-generation pile-up disease is CURED —
+>    DEGEN-PILEUP quiet (under-4 m share −0.4%, CI straddling),
+>    scramble quiet, box quiet, **spacing median OPENS +0.053 m, the
+>    close-pair tail opens, duplicate runs FALL −3.6 pp, live role
+>    separation TV 0.654 > the incumbent's 0.407**, WG silent at
+>    match level exactly as priced, the eye's ball-ledger exactly 0,
+>    goals differential null. **Division of labour disperses; it does
+>    not clump.** 扎堆 is dead; what killed the deployment is a NEW,
+>    different disease.
+> 3. ⭐⭐⭐ **THE DIAGNOSIS, banked — the baton passes to the ESTIMAND
+>    (the 现实差距对表's gap #2, now measured)**: the certified table
+>    prices ONE thing (the 6/10 s two-face axis), and the eye
+>    faithfully harvests it — but the incumbent's hand-tuned defaults
+>    were silently doing UNPRICED LONG-HORIZON JOBS: holding the
+>    rest-defence slot, staying onside, resettling for restarts.
+>    Value visible at 6 s crowds out value visible only at 30+ s or
+>    in the counterfactual (the goal NOT conceded on the break that
+>    never came). The eye is not wrong; the PRICE LIST is incomplete.
+>    Any successor prices discipline: longer/asymmetric horizons, or
+>    the defensive face weighted at role-appropriate horizons, or
+>    structural jobs entering the census as priced states — design
+>    work, a future contract, NOT a patch.
+> 4. **STAGE III v3 CLOSES END-TO-END** (contract → P0 role map → P1
+>    division-of-labour-in-prices certified → P2 the first positive
+>    payoff + real role signatures → P3a: shape cured, discipline
+>    broke). Nothing shipped anywhere (Road B held throughout; the
+>    production fingerprint never moved across 46 rulings). All
+>    machinery, tables and findings banked. The queue drains to USER
+>    GATES: the natural next forks are (i) the ESTIMAND contract
+>    (price the long-horizon jobs — the #88.3 baton), (ii) the
+>    C-track (C6 v2 / C7 pass wind-up), (iii) anything the user
+>    names. Presented with the wrap-up; nothing proceeds until the
+>    user rules.
