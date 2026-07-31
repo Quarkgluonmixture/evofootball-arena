@@ -15,7 +15,7 @@
 // arm, which is a probe-only diagnostic (contract §2.5) and never reachable
 // from a production path.
 import { HALF_L } from '../sim/constants';
-import { TEAM_SIZE } from '../sim/types';
+import { TEAM_SIZE, type Role } from '../sim/types';
 import type { TacticalGenome } from '../evolution/genome';
 import type { PerceptionSnapshot } from './perceptionSnapshot';
 
@@ -406,6 +406,93 @@ export function priceApproachesV2(
     if (cell === undefined || base === undefined || !Number.isFinite(base.value)) continue;
     eligible += 1;
     const adv = val(cell) - val(base);
+    const rank = invert ? -adv : adv;
+    if (best === null || rank > (invert ? -bestAdv : bestAdv)) { best = cand; bestAdv = adv; }
+  }
+  if (eligible === 0 || best === null) return { kind: 'noCell', context: contextKey };
+  if (!invert && bestAdv <= 0) return { kind: 'tie', context: contextKey, best: bestAdv };
+  return { kind: 'deviate', candidate: best, context: contextKey, advantage: bestAdv };
+}
+
+// ===========================================================================
+// STAGE III V3-P2 — THE ROLE-CONDITIONED CONSUMER (the ONE amendment, §3.2)
+//
+// V3-P1 built a role-conditioned table: each context carries a per-ROLE column
+// (DF/MF/WG/ST), each column an 18-candidate approach value keyed on the TRUE
+// role of the forced body. The V3-P2 chooser is strictly SIMPLER than v2's: each
+// body reads HIS OWN role's column — role is the world's own immutable own-state
+// (`Player.role`, read never authored, A4-honoured trivially, no percept) — and
+// argmaxes the value advantage vs the incumbent control recovered per
+// (context × role). There is NO going-bit (#77.2(ii): the going axis is out of the
+// v3 table), so the only perceived feature is the CONTEXT (face/third/density), as
+// in v1. A DF and an ST at the same moment read DIFFERENT columns and argmax to
+// different candidates BY CONSTRUCTION. Nothing here is reachable from a production
+// path; the eye is null in the shipped game; the table + control are INJECTED by
+// the probe, never bundled in `src/**`.
+// ===========================================================================
+
+/** One role-conditioned census cell — the committed V3-P1 table's cell shape. */
+export interface RoleCell {
+  readonly n: number;
+  readonly score: number;
+  readonly concede: number;
+  readonly value: number;
+  readonly underPowered?: boolean;
+}
+/** context key → role (DF|MF|WG|ST) → candidate id → cell. The committed table. */
+export type RoleConditionedTable =
+  Readonly<Record<string, Readonly<Record<string, Readonly<Record<string, RoleCell>>>>>>;
+/** context key → role → the recovered control level (§4). */
+export type RoleControlLevels =
+  Readonly<Record<string, Readonly<Record<string, RoleCell>>>>;
+
+/** §3.4: is this candidate priceable in this role's column? IN-POWER = the census
+ *  resolved the contrast there (n ≥ floor, not under-powered). */
+export function candidateInPowerRole(
+  cells: Readonly<Record<string, RoleCell>>, candId: string,
+): boolean {
+  const c = cells[candId];
+  return c !== undefined && c.n >= CELL_FLOOR && c.underPowered !== true;
+}
+
+/**
+ * §3.4 (role-conditioned) — the selection rule. For the perceived context and the
+ * body's OWN role, over IN-POWER candidates in that role's column, price each
+ * candidate against the incumbent control recovered for the SAME (context × role);
+ * deviate iff the best advantage is strictly positive. INVERTED takes the argmin
+ * (the PC). Ties / empty set / abstention resolve to NO OVERRIDE, each its own
+ * counted class — v1 priceApproaches semantics, exactly. A `(context, role)` with
+ * no in-power candidate (incl. the 3 published under-powered DF pairs) resolves
+ * `noCell` (E-NOCELL for that role) and is never pooled with another role (#77.2 / I7).
+ */
+export function priceApproachesV3(
+  roleTable: RoleConditionedTable,
+  control: RoleControlLevels,
+  contextKey: string,
+  role: Role,
+  arm: StationEyeArm,
+  genome: TacticalGenome,
+): EyeOutcome {
+  const byRole = roleTable[contextKey];
+  const ctrlByRole = control[contextKey];
+  if (byRole === undefined || ctrlByRole === undefined) return { kind: 'noCell', context: contextKey };
+  const cells = byRole[role];
+  const ctrl = ctrlByRole[role];
+  if (cells === undefined || ctrl === undefined || !Number.isFinite(ctrl.value)) {
+    return { kind: 'noCell', context: contextKey };
+  }
+  const { ws, wc } = faceWeights(arm, genome);
+  const val = (c: RoleCell): number => ws * c.score - wc * c.concede;
+  const base = val(ctrl);
+  const invert = arm === 'inverted';
+  let best: EyeCandidate | null = null;
+  let bestAdv = 0;
+  let eligible = 0;
+  for (const cand of EYE_LATTICE) {
+    if (!candidateInPowerRole(cells, cand.id)) continue;
+    const cell = cells[cand.id];
+    eligible += 1;
+    const adv = val(cell) - base;
     const rank = invert ? -adv : adv;
     if (best === null || rank > (invert ? -bestAdv : bestAdv)) { best = cand; bestAdv = adv; }
   }

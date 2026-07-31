@@ -9,7 +9,7 @@ import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
   EYE_W_S, STATION_FAMILY, goingBits, goingContributors, localXBand, perceivedContext,
-  perceivedContextV2, priceApproaches, priceApproachesV2,
+  perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
   type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
 import { pressureAt } from './perception';
@@ -763,7 +763,10 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // V2-P2 §2.3 repair 1: retain the last-perceived owner (the in-flight FACE
       // ledger); update it whenever a live perceived owner is present.
       let context: PerceivedContext | null;
-      if (eye.v2 !== undefined && !oracle) {
+      if ((eye.v2 !== undefined || eye.v3 !== undefined) && !oracle) {
+        // V2-P2 §2.3 / V3-P2 §3.3: the in-flight FACE repair is carried verbatim by
+        // both consumers (v3 reuses the same three context features; it only drops
+        // the going-bit). The ORACLE arm still reads TRUE context below.
         const retained = match.stationEyeOwnerLedger.get(p.gid) ?? null;
         const liveOwner = snap?.ball?.ownerGid ?? null;
         if (liveOwner !== null) match.stationEyeOwnerLedger.set(p.gid, liveOwner);
@@ -808,9 +811,16 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         holdIncumbent();
       } else {
         let outcome;
-        // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / incumbent).
+        // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / v3 / incumbent).
         let v2rCommitContributors: Set<number> = new Set();
-        if (eye.v2 !== undefined) {
+        if (eye.v3 !== undefined) {
+          // V3-P2 §3.4: the role-conditioned consumer. Each body reads HIS OWN role's
+          // column (own-state, no percept) and argmaxes the value advantage vs the
+          // control recovered for that same (context × role). NO going-bit (#77.2(ii)).
+          outcome = priceApproachesV3(
+            eye.v3.roleTable, eye.v3.control, context.key, p.role, eye.arm, g,
+          );
+        } else if (eye.v2 !== undefined) {
           // V2-P2 §2.2/§2.4: the going-conditioned consumer. Compute the PERCEIVED
           // going-bit per candidate from the body's OWN teammate motion (TRUE for
           // the ORACLE-CTX arm), then price each candidate through its

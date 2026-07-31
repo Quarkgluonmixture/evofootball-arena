@@ -14,7 +14,8 @@ import {
 } from '../ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../ai/reachability';
 import type {
-  ApproachTable, ControlLevels, GoingConditionedTable, StationEyeArm, StationEyeTrace,
+  ApproachTable, ControlLevels, GoingConditionedTable, RoleConditionedTable,
+  RoleControlLevels, StationEyeArm, StationEyeTrace,
 } from '../ai/stationEye';
 import type { WhetherEyeConfig } from '../ai/whetherEye';
 import { opennessOf } from '../ai/perception';
@@ -672,6 +673,20 @@ export class Match {
        * mid-window re-read. `true` ⇒ the D3-DUPLICATE abort arms (P2R probe only).
        */
       readonly abortEnabled?: boolean;
+    };
+    /**
+     * Stage III V3-P2 (STAGE3-V3-P2-ROLE-CONSUMER §3.2/§3.4): the role-conditioned
+     * consumer. When present the eye prices each candidate through the body's OWN
+     * role column (`Player.role`, immutable own-state) against the control recovered
+     * for that same (context × role) — NO going-bit (#77.2(ii)), the ONE amendment
+     * the v3 census forces. Absent ⇒ the v1 (`table`) or v2 (`v2`) chooser runs. All
+     * null in production; the table + control are INJECTED by the probe, never bundled
+     * in `src/**`. The abort machinery is NOT armed here (it stays dormant behind its
+     * v2 #75 opt-in).
+     */
+    readonly v3?: {
+      readonly roleTable: RoleConditionedTable;
+      readonly control: RoleControlLevels;
     };
     /** Probe-owned observability sink; the sim never reads it back. */
     readonly trace?: StationEyeTrace;
