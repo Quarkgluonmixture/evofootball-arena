@@ -3362,3 +3362,30 @@
 >    denominator, the convergence mediators PRIMARY, payoff
 >    reported; the perceptionPrice serialization fix lands at this
 >    build (#77.2(v)); freeze → review → build → the resident runs.
+
+> **COMMANDER RULING #83 (2026-07-31 — V3-P2 pre-registration reviewed:
+> PASS; build authorized, the run supervised):**
+>
+> 1. **REVIEW — PASS.** The #82.3 mandate executed exactly: predicted
+>    divergence 100% (2-distinct 19.8% / 3-distinct 48.1% /
+>    4-distinct 32.1%) — the stop tooth cleared maximally — WITH the
+>    honest counter-flag carried as pre-laid reading (i)
+>    DIVERGENCE-TOO-THIN (13.6% of argmaxes in certified cells; every
+>    role's column still behind-ring-heavy; the break must come from
+>    BETWEEN-role divergence). The control-recovery pass spec'd with
+>    the #71.2 guard verbatim (the table again does not serialize
+>    controls — noted for any future census: SERIALIZE THE CONTROL
+>    LEVELS, twice is a pattern); the perceptionPrice fix diagnosed
+>    at its exact line with a unit-test assertion mandated; budget
+>    12,000 with the resolved-cell stratum's wider-CI caveat stated;
+>    blocks disjoint. Step-1's permutation-seed note (91111 = 91110+1
+>    for stream decorrelation, disclosed) is ACCEPTED as recorded —
+>    non-material, the test deterministic and reported.
+> 2. **BUILD + RUN AUTHORIZED**: the executor implements the role-eye
+>    consumer (the v2 seam pattern with the role-keyed lookup; NO
+>    brake, NO going-bit; the perceptionPrice fix with its unit
+>    test), runs the control recovery with the guard, refines the
+>    prediction + the #65 checkpoint, proves the X-family, commits,
+>    STOPS; the resident runs the payoff detached (#49.5); write-up
+>    and the half-2 ruling follow. The mediators split by role AND
+>    resolved-cell membership are the judgment's seat.
