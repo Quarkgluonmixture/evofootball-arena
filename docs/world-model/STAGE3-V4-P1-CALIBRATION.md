@@ -574,3 +574,175 @@ the v4 contract I1–I11, and a READ-ONLY reading of the P0b probe and
 `src/**` mechanisms (file:line cited). **No `docs/world-model/data/*.json`
 was opened and nothing was run before this document is committed.** This
 freeze RETURNS TO THE COMMANDER; the probe is a future authorized step.
+
+---
+
+## §RESULT — the AUTHORIZED full run (#100/#101): SOME ADMIT, SOME DROP (§5 reading B) — the calibration table carries [deep, box]; shot-against DROPS non-monotone; the run RETURNS to the commander
+
+Run to completion under the commander's resident session (#49.5), the
+**frozen probe unchanged as reviewed** (§§1–8 + #100/#101; probe committed
+`3293d33`, code-fidelity verify 6/6; no surrogate / estimator / window /
+seed-block / baseline / gate / N-arithmetic re-cut after sight). HEAD
+**`1362df8`** for BOTH runs; **ENRICHED eye-null world**, full #67.3 bundle
+armed (`edsPerceivedDefence`+`edsPerceivedChoice`+`edsValueAxis`, `c5Hold`,
+`c6Carry`, `c7Windup`; `c5TouchFork` off; `stationEye` NULL — pure
+incumbent, no forcing); `src/**` byte-identical — **production fingerprint
+`57b0bdab…c673` unchanged** (X-SRC-ZERO PASS, Road B held, nothing shipped).
+Two runs, seed families disjoint (§2.5 / #46.2): the **sizing smoke** (40
+matches `9,900,000 + k, k∈0..39`) pinned the census count deterministically
+to **N = 1,200**; the **census** ran **1,200 matches `9,800,000 + k,
+k∈0..1199`**. The census verdict (verbatim): **`SOME ADMIT, SOME DROP (§5
+reading B) — admitted [deep, box]; dropped surrogates PUBLISHED, never
+patched. RETURNS to the commander.`**
+
+**The reading is (B) SOME ADMIT, SOME DROP** (§5): at the primary
+`W_cal = 30 s` all three lifts RESOLVE (CI lower > 0), but the ladder is
+**non-monotone at the shot rung** — the point lift of shot-against
+(`0.086542`) falls **below** the admitted box-entry lift (`0.195217`), so
+the deterministic left-anchored greedy admits **[deep, box]** and **DROPS
+shot-against (published: "non-monotone — point lift below a milder admitted
+surrogate", never patched)**. `allDropped = false`;
+`proposedPrimaryBoxDropped = false`. **This is a run fact returned to the
+commander; the adjudication (final per-channel primary designation, deferred
+to V4-P2 per #100.3) and the P2 hand-off are the commander's separate ruling
+— not this document.**
+
+### THE SIZING SMOKE (labelled, NON-GATING — §2.5 / #44.5 / #65)
+
+40 matches on `9,900,000 + k, k∈0..39`, enriched eye-null, X-DET double-run,
+written OUTSIDE the canonical corpus. Realized per surrogate at the primary
+`W_cal = 30 s` (`r_S` events/match; `p̂_e`/`p̂_b` primary-matched with CI;
+pooled lift; per-match cluster σ̂):
+
+| S (severity ↑) | `r_S` | eN | `p̂_e` [CI] | `p̂_b` (matched) [CI] | pooled lift | σ̂ (per-match) | finite matches for σ̂ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| deep entry | 36.525 | 1,461 | 0.190281 [0.140252, 0.240232] | 0.157426 [0.110242, 0.209689] | 0.032854 | 0.190805 | 40 |
+| box entry | 1.3 | 52 | 0.326923 [0.189189, 0.482759] | 0.173077 [0.076923, 0.275000] | 0.153846 | 0.473665 | 27 |
+| shot-against | 12.85 | 514 | 0.278210 [0.217699, 0.342541] | 0.177043 [0.112245, 0.249035] | 0.101167 | 0.238836 | 40 |
+
+**THE FROZEN N ARITHMETIC** (`MDL_S = min( 0.5·|p̂_lift_smoke(S)| , 0.01 )`;
+`N_S = ⌈(1.96·σ̂_S / MDL_S)²⌉`; `N = min( max_S N_S , N_max = 1,200 )`). For
+all three surrogates `0.5·|p̂_lift| > 0.01`, so **MDL_S = 0.01** each:
+
+| S | σ̂_S | MDL_S | `N_S` | under-powered? |
+| --- | --- | --- | --- | --- |
+| deep entry | 0.190805 | 0.01 | 1,399 | true (`N_S > N_max`) |
+| box entry | 0.473665 | 0.01 | 8,619 | true (`N_S > N_max`) |
+| shot-against | 0.238836 | 0.01 | 2,192 | true (`N_S > N_max`) |
+
+`max_S N_S = 8,619` ⇒ **`N = min(8,619, 1,200) = 1,200`**. All three
+`N_S > N_max` ⇒ each is flagged **under-powered (published, never pooled —
+#24/#44.5)** at the smoke's frozen 50 %/0.01 MDL target; the census still
+runs at `N = 1,200` (the honest #44.5 pattern — the census gate reads the
+real cluster bootstrap, not the sizing approximation, #101.2).
+
+Smoke gates: `xDet: true`, `xSrcZero: true` (fingerprint
+`57b0bdab…c673` = observed), `seedDisjoint: true`. Output SHA-256
+**`2033caa9ce8642de75bf14f9901cbc8ebe6396174ccde554340ecd7646d7a67c`**.
+Smoke verdict (verbatim, LABELLED — not a verdict): **`SIZING SMOKE — NOT a
+verdict (prereg §2.5, #44.5/#65): realizes r_S, p̂_e/p̂_b, σ̂_S and pins the
+census N via the frozen arithmetic (labelled, non-gating). Pass
+nArithmetic.N as V4P1_N to the census.`**
+
+### THE CENSUS (N = 1,200 @ 9.8M)
+
+`matchCount = nCensus = nEnv = 1,200` (`nSource = "V4P1_N env (pinned from
+the sizing smoke arithmetic; capped at N_max)"`); seeds `9,800,000 + k,
+k∈0..1199` (`seedRange first 9,800,000 · last 9,801,199 · count 1,200`);
+enriched eye-null; `W_cal` primary 30 s; cluster bootstrap `B = 2,000`,
+`BOOTSTRAP_SEED = 98003`; comparison-tick draws `COMPARISON_SEED = 98203`.
+HEAD `1362df8`. Output SHA-256
+**`f159f3a1f62e9c2a33e876d0f8eea49128978beb1337dbc9d65325f4d0670d37`**.
+Census verdict (verbatim): **`SOME ADMIT, SOME DROP (§5 reading B) —
+admitted [deep, box]; dropped surrogates PUBLISHED, never patched. RETURNS
+to the commander.`**
+
+### THE CALIBRATION TABLE (primary `W_cal = 30 s`)
+
+Per surrogate: event count `eN`, realized rate `r_S`, post-event hazard
+`p_e`, matched baseline `p_b` (primary) and secondary all-playing baseline,
+the lift `L(S) = p_e − p_b` (primary + secondary), baseline drops, RESOLVED.
+
+| S (severity ↑) | eN | `r_S` | `p_e` [CI] | `p_b` matched [CI] | `p_b` all-play [CI] | **L(S)** [CI] | L secondary [CI] | drops (P/S) | RESOLVED |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| deep entry | 41,882 | 34.901667 | 0.211738 [0.202749, 0.220602] | 0.168282 [0.155418, 0.180502] | 0.161740 [0.150772, 0.173185] | **0.043455 [0.030790, 0.055817]** | 0.049998 [0.038470, 0.061399] | 0 / 0 | **true** |
+| box entry | 2,300 | 1.916667 | 0.382609 [0.356158, 0.407324] | 0.187391 [0.169205, 0.206652] | 0.170435 [0.154181, 0.188265] | **0.195217 [0.166228, 0.223515]** | 0.212174 [0.185339, 0.238528] | 0 / 0 | **true** |
+| shot-against | 15,946 | 13.288333 | 0.283457 [0.272956, 0.294026] | 0.196915 [0.184492, 0.210303] | 0.179732 [0.167622, 0.191701] | **0.086542 [0.073873, 0.098874]** | 0.103725 [0.091299, 0.115916] | 0 / 0 | **true** |
+
+All three RESOLVE (each primary lift CI lower bound > 0); zero baseline
+drops on either baseline. The secondary all-playing baseline is **published,
+NON-GATING** (§2.2).
+
+### THE MONOTONE-LINK GATE (I3, HARD) — read at the primary `W_cal = 30 s`
+
+Gate block semantics (verbatim from the run):
+
+* **ordering**: `deep ≺ box ≺ shot (increasing severity)`
+* **monotoneRequirement**: `L(deep) ≤ L(box) ≤ L(shot)`
+* **admission**: `deterministic left-anchored greedy (§2.4): admit iff
+  RESOLVED and point lift ≥ last admitted; drops PUBLISHED, never patched`
+
+Per surrogate (as recorded):
+
+| S | RESOLVED | point lift | CI | ADMITTED | dropReason |
+| --- | --- | --- | --- | --- | --- |
+| deep entry | true | 0.043455 | [0.030790, 0.055817] | **true** | null |
+| box entry | true | 0.195217 | [0.166228, 0.223515] | **true** | null |
+| shot-against | true | 0.086542 | [0.073873, 0.098874] | **false** | `non-monotone — point lift below a milder admitted surrogate` |
+
+`admittedSet = ["deep", "box"]`; `allDropped = false`;
+`proposedPrimaryBoxDropped = false`. Primary-designation note (verbatim):
+*"PROPOSED primary = box entry (severity knee); the FINAL per-channel
+primary designation is DEFERRED to the V4-P2 pre-registration with this
+table in hand (ruling #100.3). P1 gates on the resolved monotone ladder, not
+on the primary choice."*
+
+### THE CONDITIONAL CHAIN (descriptive, LABELLED, NON-GATING — §2.2)
+
+`W_link = 30 s`, same-possession. Quoted to exact stored digits:
+
+* **P(box entry | deep entry)** = **0.093453** [0.087528, 0.099292]
+* **P(shot-against | box entry)** = **0.706087** [0.684442, 0.727194]
+* **incremental lift `L(box) − L(deep)`** = **+0.151762** [0.123154, 0.181518]
+* **incremental lift `L(shot) − L(box)`** = **−0.108675** [−0.137404, −0.079604]
+
+Note (verbatim): *"DESCRIPTIVE (prereg §2.2): nesting is by
+severity/proximity (empirically near-nested, not strict set containment — a
+shot may originate outside the box). The chain reports the actual measured
+overlap so the double-counting is a quantity, not an assumption."* The
+`shotMinusBox` increment is negative — the same non-monotonicity the gate
+dropped, reported here as a measured quantity.
+
+### `W_cal` SENSITIVITY {15 s, 45 s} (labelled, NON-GATING — §2.3)
+
+Re-read of the lift table at the two sensitivity windows; the gate + primary
+table read the 30 s window ONLY. State recorded as-is:
+
+| S | 15 s: **L** [CI] (resolved) | 45 s: **L** [CI] (resolved) |
+| --- | --- | --- |
+| deep entry | 0.066616 [0.059911, 0.073746] (**true**) | 0.006972 [−0.010359, 0.023235] (**false**) |
+| box entry | 0.216957 [0.190953, 0.244068] (**true**) | 0.154783 [0.125433, 0.181941] (**true**) |
+| shot-against | 0.115452 [0.106724, 0.124603] (**true**) | 0.049730 [0.032753, 0.065651] (**true**) |
+
+At 15 s the shot rung stays below box (same non-monotone shape as the
+primary); at 45 s the deep-entry lift goes UNRESOLVED (CI spans 0). Labelled
+reference only — the primary 30 s reading governs (frozen).
+
+### HARD GATES
+
+| gate | result (JSON, as-is) |
+| --- | --- |
+| **X-DET (census)** | **PASS** — `fidelity.xDet: true`; whole-payload double-run byte-identical; output SHA-256 `f159f3a1…0d37` |
+| **X-DET (smoke)** | **PASS** — `fidelity.xDet: true`; double-run byte-identical; output SHA-256 `2033caa9…a67c` |
+| **X-SRC-ZERO** | **PASS** (both modes) — `fidelity.xSrcZero.srcDiffEmpty: true`; fingerprint baseline `57b0bdab…c673` = observed `57b0bdab…c673` (`matches: true`) — unchanged |
+| **seed disjointness** | **PASS** (both modes) — census `[9,800,000, 9,801,199]`, smoke `[9,900,000, 9,900,039]`, fresh-reference ceiling `9,700,399`; disjoint from every prior family AND mutually disjoint (computed from the frozen family constants) |
+| **X-CORPUS-IDENT** | **N/A** — `"N/A (prereg §4 / #100.2(v): a fresh observational corpus has no identity target)"` |
+| **monotone-link (HARD, per surrogate)** | resolved-monotone ladder ADMITS **[deep, box]**; shot-against DROPPED (non-monotone), published, never patched; `allDropped = false` |
+
+The secondary all-playing baseline is published NON-GATING alongside the
+matched primary (§2.2). No X-family gate failed.
+
+**Reading B (§5): some admit, some drop — the calibration table carries
+[deep, box]; shot-against is published dropped (non-monotone), never patched.
+Adjudication and the P2 hand-off are the commander's ruling in
+PROGRAMME-RULINGS.md.**
