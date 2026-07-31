@@ -3389,3 +3389,36 @@
 >    STOPS; the resident runs the payoff detached (#49.5); write-up
 >    and the half-2 ruling follow. The mediators split by role AND
 >    resolved-cell membership are the judgment's seat.
+
+> **COMMANDER RULING #84 (2026-07-31 — the #65 checkpoint ruled to its
+> FROZEN form: pooled PASSES, the run proceeds; the WG starvation
+> banked ex ante as division of labour expressed):**
+>
+> 1. **SPEC OVER IMPLEMENTATION (the #75 genre, again)**: the frozen
+>    §7 checkpoint binds on THE ex-ante perceived deviation share —
+>    the POOLED quantity (the text is singular; its provisional quotes
+>    the pooled ≈53.8% as "≈2.4× the floor") — and the built script
+>    unilaterally strictened it to "pooled AND every role", a clause
+>    the freeze does not contain. The predicate is CORRECTED to the
+>    frozen form before the run: **pooled 0.4008 ≥ 0.22 ⇒ the
+>    checkpoint PASSES; the payoff run proceeds.** The per-role split
+>    is REPORTED, exactly as the freeze's parenthetical texture.
+> 2. **BANKED EX ANTE — the WG starvation is a finding, not a
+>    defect**: the refined per-role shares (DF 51.3% / MF 64.7% / WG
+>    10.6% / ST 61.8%) say the winger's eye almost always AGREES with
+>    his incumbent — consistent with V3-P0 (WG the most-separated
+>    incumbent role; width already served) and the census (WG earns
+>    ≈0 on central candidates). **The eye has nothing to sell the
+>    winger BECAUSE the world already pays his job** — division of
+>    labour expressed as silence. PRE-LAID before the run: the
+>    role-split mediators read WG on a thin stratum (wide CIs,
+>    stated); any pooled-mediator null must be DECOMPOSED BY ROLE
+>    before a verdict; a DF/MF/ST-driven signature with a quiet WG is
+>    the expected shape, not a surprise. Also banked: the recovered
+>    per-role controls themselves (DF −0.029 / MF −0.026 / WG −0.081
+>    / ST −0.068) — the wide roles' incumbent continuations are worth
+>    LESS, another face of role heterogeneity.
+> 3. **SEQUENCE**: one fix commit (the checkpoint predicate to the
+>    frozen form; per-role kept as report), the build+recovery+
+>    prediction committed with X-family proofs, then the resident
+>    runs the payoff (#49.5). Nothing else moves.
