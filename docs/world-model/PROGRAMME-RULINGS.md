@@ -3326,3 +3326,39 @@
 >    (default = the frozen 150; the resident's run touches no env).
 > 2. The census launches detached (~5.5–6 h projected; the heaviest
 >    v3 run) under #49.5; write-up and the half-1 ruling follow.
+
+> **COMMANDER RULING #82 (2026-07-31 — V3-P1 accepted: HALF-1 HOLDS
+> CERTIFIED — division of labour is IN THE PRICES; V3-P2 drafting
+> authorized with one ex-ante mandate):**
+>
+> 1. **CENSUS ACCEPTED.** All gates (X6 unexplained 0 across 92.8 M
+>    classified ticks, derived floor 0.8370 vs 0.84; X5 1,243/0;
+>    clone 100%; PC −0.0366 [−0.0427, −0.0303]; det true; the
+>    measured under-powered set matches the three published DF cells
+>    exactly). The primary: **16 of 216 cells resolve under the
+>    permutation+BH regime vs 5.4 expected under the null** — role
+>    separation is REAL, modest in extent, and geometrically coherent.
+> 2. ⭐⭐⭐ **BANKED — the first measured division of labour**: (i) in
+>    ours|middle|sparse the DEFENDER is argMax in all 7 resolved
+>    cells (+0.08–0.13 where WG/ST earn ≈0) — build-up positioning
+>    work is PAID ONLY TO THE DF; (ii) in ours|ownThird the DEFENDER
+>    is argMin in all 7 — deep runs are for OTHER bodies, the DF's
+>    leaving costs most; (iii) MF beats DF on the crowded-midfield
+>    defensive approach. The prices agree with football sense in
+>    every resolved cell WITHOUT ONE AUTHORED LINE — the emergence
+>    doctrine's cleanest exhibit to date. Honest bound: 200/216 cells
+>    do NOT separate — over most of the pitch the roles agree on what
+>    is good, which is also football-real; the consumer's divergence
+>    will be concentrated where the table separates.
+> 3. **V3-P2 DRAFTING AUTHORIZED (executor), one EX-ANTE MANDATE**:
+>    at the freeze, compute from the committed table the PER-ROLE
+>    ARGMAX per context and publish the predicted
+>    DEVIATION-DIVERGENCE rate (how often two roles at the same
+>    moment would choose differently) — the half-2 hypothesis
+>    ("convergence breaks by construction") is only as strong as
+>    this number, and it must be known BEFORE the run, not
+>    discovered (the #44.5 discipline at the hypothesis level). The
+>    rest per contract §4: five arms, DEV on the perceived-attainable
+>    denominator, the convergence mediators PRIMARY, payoff
+>    reported; the perceptionPrice serialization fix lands at this
+>    build (#77.2(v)); freeze → review → build → the resident runs.
