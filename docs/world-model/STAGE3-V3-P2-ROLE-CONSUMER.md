@@ -331,17 +331,62 @@ recovering `signed(control)` per `(context × role)`; the provisional deviation 
 in the #71.2 form:**
 
 ```text
-X-DET twice byte-identical                deterministic = true
-re-derives the census's own contrasts     maxContrastDev ≤ 0.002 (tolerance)  ✓
+X-DET twice byte-identical                deterministic = true                       ✓
+re-derives the census's own contrasts     maxContrastDev 0.000752 ≤ 0.002 (tol)       ✓
   candidate−control (18 cands)            each within tolerance of gradient.pooledByCandidate
-  INVERTED positive control (PC)          within tolerance of positiveControl.pooled
-recovery tableSha (census) unchanged      171a6dad…  (the forced cells byte-identical)
-recovery pass SHA-256                     <emitted at build>
+  INVERTED positive control (PC)          maxPcDev 0.00000136 within tolerance         ✓
+recovery tableSha (census) unchanged      171a6dad…  (the forced cells byte-identical) ✓
+recovery pass SHA-256                     968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c
+verdict                                   GUARD PASS
 ```
 
 > A recovery that could not re-derive the census's own published candidate−control
 > contrasts to within the stated 0.002 tolerance **would not be a recovery** (#71.2) —
-> the pass FAILS and the fork returns to the commander before any payoff datum.
+> the pass FAILS and the fork returns to the commander before any payoff datum. It
+> **passed**: the worst contrast dev is **0.000752** (r7a120), the inverted PC dev
+> **0.00000136**, well inside the 0.002 tolerance.
+
+**The refined prediction (`data/stage3-v3-p2-prediction.json`).** Against the recovered
+per-`(context × role)` control, the pooled NEUTRAL deviation share refines from the
+flat-anchor provisional **0.5384 → 0.4008** (**Δ −0.1376** — the serialization price the
+flat anchor concealed). The per-role split, REPORTED, is the judgment's texture:
+
+| role | refined dev share | provisional | Δ | recovered control | in-power moments |
+| --- | --- | --- | --- | --- | --- |
+| **DF** | 0.5127 | 0.573 | −0.0603 | −0.029 | 6,121 |
+| **MF** | 0.6469 | 0.565 | +0.0819 | −0.026 | 6,360 |
+| **WG** | **0.1059** | 0.520 | **−0.4141** | −0.081 | 12,157 |
+| **ST** | 0.6181 | 0.513 | +0.1051 | −0.068 | 6,141 |
+| pooled | **0.4008** | 0.5384 | −0.1376 | −0.0567 | 30,779 |
+
+The §2 argmax/divergence texture is control-independent and **stays frozen** (divergence
+rate 1.0; distinct-argmax share 2/0.198 · 3/0.481 · 4/0.321) — only the deviation SHARE
+(whether each argmax beats its recovered incumbent) is refined here.
+
+**The WG collapse, banked ex ante as a finding, not a defect (#84.2).** The winger's eye
+almost always AGREES with his incumbent (dev share **10.6%** on the widest stratum,
+12,157 moments) — consistent with V3-P0 (WG the most-separated incumbent role; width
+already served) and the V3-P1 census (WG earns ≈0 on central candidates). **The eye has
+nothing to sell the winger because the world already pays his job** — division of labour
+expressed as silence. The recovered per-role controls tell the same story from the
+other side: the wide roles' incumbent continuations are worth LESS (WG −0.081, ST
+−0.068 vs DF −0.029, MF −0.026), another face of role heterogeneity.
+
+**The #65 checkpoint — ruled to its FROZEN pooled form, PASSES (#84.1).** The frozen §7
+checkpoint binds **the pooled ex-ante deviation share ONLY** (the freeze text is
+singular; its provisional quotes the pooled ≈53.8% as "≈2.4× the floor"). The built
+script had unilaterally strictened the predicate to "pooled AND every role" — a clause
+the freeze does not contain, and an unauthorized strictening that WG's 10.6% would have
+tripped. The predicate is CORRECTED to the frozen form: **pooled 0.4008 ≥ 0.22 ⇒ the
+checkpoint PASSES; the payoff run proceeds** (`checkpoint65.pass = true`). The per-role
+split is REPORTED, exactly as the freeze's parenthetical texture.
+
+**Pre-laid mediator obligations, banked BEFORE the payoff (#84.2).** (i) the role-split
+mediators read WG on a **thin stratum** where the eye is nearly silent — its CIs are
+WIDE and its any pooled-mediator null **MUST be decomposed by role before a verdict**;
+role decomposition is MANDATORY, not optional. (ii) a **DF/MF/ST-driven signature with a
+quiet WG is the EXPECTED shape**, not a surprise — a pooled null that dissolves into
+"three roles move, WG doesn't" is division of labour, not a dead eye.
 
 The build commits the recomputed deviation share + per-role split + the §7 #65
 checkpoint, with the **delta from the flat-anchor provisional REPORTED** (the

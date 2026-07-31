@@ -1,0 +1,590 @@
+{
+  "experiment": "STAGE3-V3-P2 (the control-recovery pass, §4 / #71.2)",
+  "authority": "STAGE3-V3-P2-ROLE-CONSUMER §4 · rulings #71.2 / #83 · the V3-P1 census control fork",
+  "head": "57e3c35 (ruling #79; src byte-identical to V3-P0 HEAD 49ba867)",
+  "world": "ENRICHED (edsPerceivedDefence+Choice+valueAxis, c5Hold, c6Carry, c7Windup; c5TouchFork off; #67.3)",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "parameters": {
+    "seedStart": 9110000,
+    "matchCap": 388,
+    "block": "9110000..9110387",
+    "momentSpacingS": 2,
+    "wSeconds": 3,
+    "wTicks": 180,
+    "hScoreSeconds": 6,
+    "hConcedeSeconds": 10,
+    "cellFloor": 150,
+    "roleAxis": [
+      "DF",
+      "MF",
+      "WG",
+      "ST"
+    ],
+    "contexts": [
+      "ours|ownThird|sparse",
+      "ours|ownThird|crowded",
+      "ours|middle|sparse",
+      "ours|middle|crowded",
+      "ours|theirThird|sparse",
+      "ours|theirThird|crowded",
+      "theirs|ownThird|sparse",
+      "theirs|ownThird|crowded",
+      "theirs|middle|sparse",
+      "theirs|middle|crowded",
+      "theirs|theirThird|sparse",
+      "theirs|theirThird|crowded"
+    ],
+    "lattice": [
+      "r7a0",
+      "r7a60",
+      "r7a120",
+      "r7a180",
+      "r7a240",
+      "r7a300",
+      "r14a0",
+      "r14a60",
+      "r14a120",
+      "r14a180",
+      "r14a240",
+      "r14a300",
+      "r21a0",
+      "r21a60",
+      "r21a120",
+      "r21a180",
+      "r21a240",
+      "r21a300"
+    ],
+    "guardTolerance": 0.002,
+    "consumedTableSha": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "note": "read-only re-run of the census control fork ONLY (cand === null); recovers signed(control) per (context × role); re-cuts nothing; V3-P0 sampling loop verbatim."
+  },
+  "coverage": {
+    "matchesRun": 388,
+    "moments": 31095,
+    "qualifying": 35914,
+    "clonesTaken": 31095,
+    "cloneCoverage": 1,
+    "ballDirectedSkipped": 4819,
+    "noPool": 0,
+    "endedExcluded": 1209
+  },
+  "pooledControl": -0.056682,
+  "pooledControlByFace": {
+    "ours": 0.047852,
+    "theirs": -0.186427
+  },
+  "pooledControlByRole": {
+    "DF": -0.029065,
+    "MF": -0.026247,
+    "WG": -0.08132,
+    "ST": -0.068331
+  },
+  "pooledControlImplied": {
+    "mean": -0.056979,
+    "sd": 0.00032935,
+    "perCandidate": [
+      -0.056291,
+      -0.057057,
+      -0.057435,
+      -0.05651,
+      -0.05697,
+      -0.057331,
+      -0.056421,
+      -0.057052,
+      -0.057244,
+      -0.056788,
+      -0.056882,
+      -0.057236,
+      -0.056854,
+      -0.057367,
+      -0.057011,
+      -0.056683,
+      -0.057131,
+      -0.057359
+    ]
+  },
+  "control": {
+    "ours|ownThird|sparse": {
+      "DF": {
+        "n": 730,
+        "score": 0.041096,
+        "concede": 0.378082,
+        "value": -0.336986
+      },
+      "MF": {
+        "n": 737,
+        "score": 0.050204,
+        "concede": 0.383989,
+        "value": -0.333786
+      },
+      "WG": {
+        "n": 1930,
+        "score": 0.041969,
+        "concede": 0.342487,
+        "value": -0.300518
+      },
+      "ST": {
+        "n": 917,
+        "score": 0.065431,
+        "concede": 0.333697,
+        "value": -0.268266
+      }
+    },
+    "ours|ownThird|crowded": {
+      "DF": {
+        "n": 318,
+        "score": 0.050314,
+        "concede": 0.254717,
+        "value": -0.204403
+      },
+      "MF": {
+        "n": 451,
+        "score": 0.066519,
+        "concede": 0.241685,
+        "value": -0.175166
+      },
+      "WG": {
+        "n": 463,
+        "score": 0.056156,
+        "concede": 0.24406,
+        "value": -0.187905
+      },
+      "ST": {
+        "n": 353,
+        "score": 0.045326,
+        "concede": 0.283286,
+        "value": -0.23796
+      }
+    },
+    "ours|middle|sparse": {
+      "DF": {
+        "n": 1159,
+        "score": 0.299396,
+        "concede": 0.146678,
+        "value": 0.152718
+      },
+      "MF": {
+        "n": 661,
+        "score": 0.269289,
+        "concede": 0.161876,
+        "value": 0.107413
+      },
+      "WG": {
+        "n": 2015,
+        "score": 0.247146,
+        "concede": 0.160298,
+        "value": 0.086849
+      },
+      "ST": {
+        "n": 718,
+        "score": 0.243733,
+        "concede": 0.130919,
+        "value": 0.112813
+      }
+    },
+    "ours|middle|crowded": {
+      "DF": {
+        "n": 398,
+        "score": 0.321608,
+        "concede": 0.138191,
+        "value": 0.183417
+      },
+      "MF": {
+        "n": 888,
+        "score": 0.300676,
+        "concede": 0.131757,
+        "value": 0.168919
+      },
+      "WG": {
+        "n": 778,
+        "score": 0.27892,
+        "concede": 0.159383,
+        "value": 0.119537
+      },
+      "ST": {
+        "n": 706,
+        "score": 0.305949,
+        "concede": 0.148725,
+        "value": 0.157224
+      }
+    },
+    "ours|theirThird|sparse": {
+      "DF": {
+        "n": 776,
+        "score": 0.543814,
+        "concede": 0.110825,
+        "value": 0.43299
+      },
+      "MF": {
+        "n": 509,
+        "score": 0.532417,
+        "concede": 0.096267,
+        "value": 0.436149
+      },
+      "WG": {
+        "n": 817,
+        "score": 0.554468,
+        "concede": 0.101591,
+        "value": 0.452876
+      },
+      "ST": {
+        "n": 274,
+        "score": 0.437956,
+        "concede": 0.116788,
+        "value": 0.321168
+      }
+    },
+    "ours|theirThird|crowded": {
+      "DF": {
+        "n": 31,
+        "score": 0.548387,
+        "concede": 0.129032,
+        "value": 0.419355
+      },
+      "MF": {
+        "n": 288,
+        "score": 0.600694,
+        "concede": 0.069444,
+        "value": 0.53125
+      },
+      "WG": {
+        "n": 289,
+        "score": 0.605536,
+        "concede": 0.083045,
+        "value": 0.522491
+      },
+      "ST": {
+        "n": 345,
+        "score": 0.562319,
+        "concede": 0.095652,
+        "value": 0.466667
+      }
+    },
+    "theirs|ownThird|sparse": {
+      "DF": {
+        "n": 143,
+        "score": 0.013986,
+        "concede": 0.566434,
+        "value": -0.552448
+      },
+      "MF": {
+        "n": 174,
+        "score": 0.005747,
+        "concede": 0.534483,
+        "value": -0.528736
+      },
+      "WG": {
+        "n": 586,
+        "score": 0.010239,
+        "concede": 0.578498,
+        "value": -0.568259
+      },
+      "ST": {
+        "n": 281,
+        "score": 0.014235,
+        "concede": 0.604982,
+        "value": -0.590747
+      }
+    },
+    "theirs|ownThird|crowded": {
+      "DF": {
+        "n": 268,
+        "score": 0.007463,
+        "concede": 0.544776,
+        "value": -0.537313
+      },
+      "MF": {
+        "n": 321,
+        "score": 0.009346,
+        "concede": 0.613707,
+        "value": -0.604361
+      },
+      "WG": {
+        "n": 462,
+        "score": 0.012987,
+        "concede": 0.658009,
+        "value": -0.645022
+      },
+      "ST": {
+        "n": 322,
+        "score": 0.012422,
+        "concede": 0.583851,
+        "value": -0.571429
+      }
+    },
+    "theirs|middle|sparse": {
+      "DF": {
+        "n": 822,
+        "score": 0.064477,
+        "concede": 0.340633,
+        "value": -0.276156
+      },
+      "MF": {
+        "n": 381,
+        "score": 0.062992,
+        "concede": 0.291339,
+        "value": -0.228346
+      },
+      "WG": {
+        "n": 1443,
+        "score": 0.064449,
+        "concede": 0.356895,
+        "value": -0.292446
+      },
+      "ST": {
+        "n": 466,
+        "score": 0.066524,
+        "concede": 0.358369,
+        "value": -0.291845
+      }
+    },
+    "theirs|middle|crowded": {
+      "DF": {
+        "n": 373,
+        "score": 0.067024,
+        "concede": 0.394102,
+        "value": -0.327078
+      },
+      "MF": {
+        "n": 594,
+        "score": 0.060606,
+        "concede": 0.343434,
+        "value": -0.282828
+      },
+      "WG": {
+        "n": 713,
+        "score": 0.077139,
+        "concede": 0.370266,
+        "value": -0.293128
+      },
+      "ST": {
+        "n": 551,
+        "score": 0.07441,
+        "concede": 0.366606,
+        "value": -0.292196
+      }
+    },
+    "theirs|theirThird|sparse": {
+      "DF": {
+        "n": 1043,
+        "score": 0.224353,
+        "concede": 0.136146,
+        "value": 0.088207
+      },
+      "MF": {
+        "n": 745,
+        "score": 0.261745,
+        "concede": 0.127517,
+        "value": 0.134228
+      },
+      "WG": {
+        "n": 1758,
+        "score": 0.23777,
+        "concede": 0.143914,
+        "value": 0.093857
+      },
+      "ST": {
+        "n": 641,
+        "score": 0.280811,
+        "concede": 0.135725,
+        "value": 0.145086
+      }
+    },
+    "theirs|theirThird|crowded": {
+      "DF": {
+        "n": 132,
+        "score": 0.234848,
+        "concede": 0.143939,
+        "value": 0.090909
+      },
+      "MF": {
+        "n": 347,
+        "score": 0.181556,
+        "concede": 0.152738,
+        "value": 0.028818
+      },
+      "WG": {
+        "n": 416,
+        "score": 0.209135,
+        "concede": 0.146635,
+        "value": 0.0625
+      },
+      "ST": {
+        "n": 353,
+        "score": 0.240793,
+        "concede": 0.133144,
+        "value": 0.107649
+      }
+    }
+  },
+  "guard": {
+    "tolerance": 0.002,
+    "maxContrastDev": 0.000752,
+    "maxPcDev": 0.00000136,
+    "maxDev": 0.000752,
+    "pass": true,
+    "gated": "the 18 pooled candidate−control contrasts + the pooled inverted PC (§4.1)",
+    "contrastChecks": [
+      {
+        "cand": "r7a0",
+        "reconstructed": -0.031667,
+        "published": -0.032058,
+        "dev": 0.000391
+      },
+      {
+        "cand": "r7a60",
+        "reconstructed": -0.046933,
+        "published": -0.046558,
+        "dev": 0.000375
+      },
+      {
+        "cand": "r7a120",
+        "reconstructed": -0.038761,
+        "published": -0.038009,
+        "dev": 0.000752
+      },
+      {
+        "cand": "r7a180",
+        "reconstructed": -0.016362,
+        "published": -0.016534,
+        "dev": 0.000172
+      },
+      {
+        "cand": "r7a240",
+        "reconstructed": -0.038185,
+        "published": -0.037897,
+        "dev": 0.000288
+      },
+      {
+        "cand": "r7a300",
+        "reconstructed": -0.052973,
+        "published": -0.052324,
+        "dev": 0.000649
+      },
+      {
+        "cand": "r14a0",
+        "reconstructed": -0.029826,
+        "published": -0.030088,
+        "dev": 0.000262
+      },
+      {
+        "cand": "r14a60",
+        "reconstructed": -0.044803,
+        "published": -0.044433,
+        "dev": 0.00037
+      },
+      {
+        "cand": "r14a120",
+        "reconstructed": -0.045372,
+        "published": -0.04481,
+        "dev": 0.000562
+      },
+      {
+        "cand": "r14a180",
+        "reconstructed": -0.028683,
+        "published": -0.028577,
+        "dev": 0.000106
+      },
+      {
+        "cand": "r14a240",
+        "reconstructed": -0.050237,
+        "published": -0.050037,
+        "dev": 0.0002
+      },
+      {
+        "cand": "r14a300",
+        "reconstructed": -0.05411,
+        "published": -0.053556,
+        "dev": 0.000554
+      },
+      {
+        "cand": "r21a0",
+        "reconstructed": -0.029113,
+        "published": -0.028941,
+        "dev": 0.000172
+      },
+      {
+        "cand": "r21a60",
+        "reconstructed": -0.047208,
+        "published": -0.046523,
+        "dev": 0.000685
+      },
+      {
+        "cand": "r21a120",
+        "reconstructed": -0.060268,
+        "published": -0.05994,
+        "dev": 0.000328
+      },
+      {
+        "cand": "r21a180",
+        "reconstructed": -0.036593,
+        "published": -0.036592,
+        "dev": 0.000001
+      },
+      {
+        "cand": "r21a240",
+        "reconstructed": -0.057324,
+        "published": -0.056875,
+        "dev": 0.000449
+      },
+      {
+        "cand": "r21a300",
+        "reconstructed": -0.045285,
+        "published": -0.044608,
+        "dev": 0.000677
+      }
+    ],
+    "positiveControl": {
+      "pooled": {
+        "reconstructed": -0.036593,
+        "published": -0.036592,
+        "dev": 0.00000136
+      },
+      "byFace": {
+        "ours": {
+          "reconstructed": -0.031178,
+          "published": -0.031371,
+          "dev": 0.00019256
+        },
+        "theirs": {
+          "reconstructed": -0.04331,
+          "published": -0.043073,
+          "dev": 0.00023722
+        }
+      },
+      "byRole": {
+        "DF": {
+          "reconstructed": -0.029065,
+          "published": -0.029293,
+          "dev": 0.00022793
+        },
+        "MF": {
+          "reconstructed": -0.012738,
+          "published": -0.012327,
+          "dev": 0.00041065
+        },
+        "WG": {
+          "reconstructed": -0.055512,
+          "published": -0.055336,
+          "dev": 0.00017588
+        },
+        "ST": {
+          "reconstructed": -0.031871,
+          "published": -0.032296,
+          "dev": 0.00042492
+        }
+      }
+    }
+  },
+  "deterministic": true,
+  "sha256": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+  "verdict": "GUARD PASS"
+}

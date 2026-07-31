@@ -1,0 +1,349 @@
+{
+  "experiment": "STAGE3-V3-P2 (the ex-ante prediction, re-computed against recovered control)",
+  "authority": "STAGE3-V3-P2-ROLE-CONSUMER §4.1/§7 · rulings #71.2 / #83",
+  "consumedTableSha": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+  "controlRecoveryVerdict": "GUARD PASS",
+  "controlGuardPass": true,
+  "controlRecoverySha": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+  "pooledControlRecovered": -0.056682,
+  "bhResolvedCells": 16,
+  "divergenceTexture_2_2": {
+    "predictedDeviationDivergenceRate": 1,
+    "totalInPowerMoments": 30779,
+    "divergentMoments": 30779,
+    "distinctArgmaxShare": {
+      "1": 0,
+      "2": 0.1976,
+      "3": 0.4812,
+      "4": 0.3212
+    }
+  },
+  "provisional_flatAnchor": {
+    "anchor": -0.0556,
+    "pooled": 0.5384,
+    "byRole": {
+      "DF": 0.573,
+      "MF": 0.565,
+      "WG": 0.52,
+      "ST": 0.513
+    }
+  },
+  "refined_perRole": {
+    "DF": {
+      "deviationShare": 0.5127,
+      "inPowerMoments": 6121,
+      "ateValueAxis": 0.0086,
+      "attValueAxis": 0.0168,
+      "deltaVsProvisional": -0.0603
+    },
+    "MF": {
+      "deviationShare": 0.6469,
+      "inPowerMoments": 6360,
+      "ateValueAxis": 0.0117,
+      "attValueAxis": 0.0181,
+      "deltaVsProvisional": 0.0819
+    },
+    "WG": {
+      "deviationShare": 0.1059,
+      "inPowerMoments": 12157,
+      "ateValueAxis": 0.001,
+      "attValueAxis": 0.0093,
+      "deltaVsProvisional": -0.4141
+    },
+    "ST": {
+      "deviationShare": 0.6181,
+      "inPowerMoments": 6141,
+      "ateValueAxis": 0.0111,
+      "attValueAxis": 0.018,
+      "deltaVsProvisional": 0.1051
+    }
+  },
+  "refined_pooled": {
+    "deviationShare": 0.4008,
+    "inPowerMoments": 30779,
+    "ateValueAxis": 0.0067,
+    "attValueAxis": 0.0168
+  },
+  "delta_refinedMinusProvisional": {
+    "pooledDeviationShare": -0.1376,
+    "note": "refined per-(context × role) recovered control MINUS the flat-pooled provisional (§4)."
+  },
+  "checkpoint65": {
+    "floor": 0.22,
+    "predictedDeviationShare": 0.4008,
+    "perRole": {
+      "DF": 0.5127,
+      "MF": 0.6469,
+      "WG": 0.1059,
+      "ST": 0.6181
+    },
+    "pass": true,
+    "note": "ruling #84.1: the FROZEN §7 checkpoint binds the POOLED ex-ante deviation share ONLY (the freeze text is singular); the script's prior \"pooled AND every role\" AND-clause was an unauthorized strictening, CORRECTED to the frozen pooled form. The per-role split is REPORTED (perRole above), exactly as the freeze's parenthetical texture — the WG thin stratum (10.6%) banked ex ante as division of labour expressed as silence (#84.2), not a checkpoint failure. A pooled FAIL fires reading (d) at BUILD and the payoff run does NOT start (#29.5)."
+  },
+  "perRoleArgmax_2_1": {
+    "ours|ownThird|sparse": [
+      {
+        "role": "DF",
+        "cand": "r7a0",
+        "value": -0.30643
+      },
+      {
+        "role": "MF",
+        "cand": "r14a0",
+        "value": -0.255088
+      },
+      {
+        "role": "WG",
+        "cand": "r21a300",
+        "value": -0.307613
+      },
+      {
+        "role": "ST",
+        "cand": "r21a60",
+        "value": -0.22198
+      }
+    ],
+    "ours|ownThird|crowded": [
+      {
+        "role": "DF",
+        "cand": "r21a0",
+        "value": -0.176656
+      },
+      {
+        "role": "MF",
+        "cand": "r14a180",
+        "value": -0.164811
+      },
+      {
+        "role": "WG",
+        "cand": "r7a180",
+        "value": -0.201299
+      },
+      {
+        "role": "ST",
+        "cand": "r21a60",
+        "value": -0.195467
+      }
+    ],
+    "ours|middle|sparse": [
+      {
+        "role": "DF",
+        "cand": "r7a0",
+        "value": 0.132189
+      },
+      {
+        "role": "MF",
+        "cand": "r14a180",
+        "value": 0.128788
+      },
+      {
+        "role": "WG",
+        "cand": "r7a180",
+        "value": 0.041708
+      },
+      {
+        "role": "ST",
+        "cand": "r7a180",
+        "value": 0.084722
+      }
+    ],
+    "ours|middle|crowded": [
+      {
+        "role": "DF",
+        "cand": "r7a180",
+        "value": 0.137845
+      },
+      {
+        "role": "MF",
+        "cand": "r7a180",
+        "value": 0.158427
+      },
+      {
+        "role": "WG",
+        "cand": "r14a180",
+        "value": 0.127249
+      },
+      {
+        "role": "ST",
+        "cand": "r14a180",
+        "value": 0.159605
+      }
+    ],
+    "ours|theirThird|sparse": [
+      {
+        "role": "DF",
+        "cand": "r7a180",
+        "value": 0.45828
+      },
+      {
+        "role": "MF",
+        "cand": "r21a0",
+        "value": 0.419608
+      },
+      {
+        "role": "WG",
+        "cand": "r14a180",
+        "value": 0.422277
+      },
+      {
+        "role": "ST",
+        "cand": "r21a0",
+        "value": 0.372263
+      }
+    ],
+    "ours|theirThird|crowded": [
+      {
+        "role": "DF",
+        "cand": null,
+        "value": null
+      },
+      {
+        "role": "MF",
+        "cand": "r7a0",
+        "value": 0.569444
+      },
+      {
+        "role": "WG",
+        "cand": "r7a180",
+        "value": 0.5189
+      },
+      {
+        "role": "ST",
+        "cand": "r14a240",
+        "value": 0.510145
+      }
+    ],
+    "theirs|ownThird|sparse": [
+      {
+        "role": "DF",
+        "cand": null,
+        "value": null
+      },
+      {
+        "role": "MF",
+        "cand": "r7a180",
+        "value": -0.494253
+      },
+      {
+        "role": "WG",
+        "cand": "r21a180",
+        "value": -0.591453
+      },
+      {
+        "role": "ST",
+        "cand": "r14a180",
+        "value": -0.55
+      }
+    ],
+    "theirs|ownThird|crowded": [
+      {
+        "role": "DF",
+        "cand": "r7a0",
+        "value": -0.572491
+      },
+      {
+        "role": "MF",
+        "cand": "r21a180",
+        "value": -0.546296
+      },
+      {
+        "role": "WG",
+        "cand": "r14a0",
+        "value": -0.608225
+      },
+      {
+        "role": "ST",
+        "cand": "r7a180",
+        "value": -0.529595
+      }
+    ],
+    "theirs|middle|sparse": [
+      {
+        "role": "DF",
+        "cand": "r7a180",
+        "value": -0.233861
+      },
+      {
+        "role": "MF",
+        "cand": "r7a180",
+        "value": -0.192208
+      },
+      {
+        "role": "WG",
+        "cand": "r7a180",
+        "value": -0.313454
+      },
+      {
+        "role": "ST",
+        "cand": "r14a0",
+        "value": -0.251613
+      }
+    ],
+    "theirs|middle|crowded": [
+      {
+        "role": "DF",
+        "cand": "r7a180",
+        "value": -0.284574
+      },
+      {
+        "role": "MF",
+        "cand": "r14a180",
+        "value": -0.265546
+      },
+      {
+        "role": "WG",
+        "cand": "r21a0",
+        "value": -0.309524
+      },
+      {
+        "role": "ST",
+        "cand": "r21a300",
+        "value": -0.312044
+      }
+    ],
+    "theirs|theirThird|sparse": [
+      {
+        "role": "DF",
+        "cand": "r7a180",
+        "value": 0.07781
+      },
+      {
+        "role": "MF",
+        "cand": "r7a0",
+        "value": 0.11245
+      },
+      {
+        "role": "WG",
+        "cand": "r21a0",
+        "value": 0.049601
+      },
+      {
+        "role": "ST",
+        "cand": "r7a0",
+        "value": 0.11442
+      }
+    ],
+    "theirs|theirThird|crowded": [
+      {
+        "role": "DF",
+        "cand": null,
+        "value": null
+      },
+      {
+        "role": "MF",
+        "cand": "r7a0",
+        "value": 0.045845
+      },
+      {
+        "role": "WG",
+        "cand": "r21a0",
+        "value": 0.050481
+      },
+      {
+        "role": "ST",
+        "cand": "r14a0",
+        "value": 0.104816
+      }
+    ]
+  }
+}
