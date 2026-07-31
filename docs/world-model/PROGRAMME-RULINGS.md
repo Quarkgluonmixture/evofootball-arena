@@ -3422,3 +3422,54 @@
 >    frozen form; per-role kept as report), the build+recovery+
 >    prediction committed with X-family proofs, then the resident
 >    runs the payoff (#49.5). Nothing else moves.
+
+> **COMMANDER RULING #85 (2026-07-31 — V3-P2 verdict: reading (c)
+> HALF-2 NULL as frozen, with two banked riders and a named metric
+> confound; the fork returns to the user):**
+>
+> 1. **READING (c) FIRED, honoured as frozen**: FORK-SPACING did not
+>    open (pooled −0.313 [−0.476, −0.165]; resolved-cell stratum
+>    −4.26 on n=19) and FORK-DUPRUN did not resolve falling (pooled
+>    +0.19 ns; resolved −0.74 with CI containing 0 on n=75; DF
+>    +1.16 [+0.29, +2.09] RISING). Half-2 as written — "convergence
+>    breaks by construction" — is refuted at fork grain. (h) did not
+>    fire (duprun did not rise pooled); (i) did not fire (the
+>    per-role mixes are grossly distinct, not noise-clustered).
+> 2. **THE TWO RIDERS, banked**: (i) ⭐⭐⭐ **the payoff resolved
+>    POSITIVE for the first time in three generations** — NEUTRAL ATE
+>    +0.0108 [+0.0039, +0.0178], DEV 42.15% delivered on the frozen
+>    pooled floor, PC −0.0229 resolving (the pricing family visible
+>    again), perception price −0.0028 (the corrected field verified;
+>    the eye barely pays for its percept). Secondary by freeze,
+>    REPORTED, never quoted as the shape verdict. (ii) the
+>    convergence magnitude improved monotonically across generations
+>    (v2 −1.05 m → v2.1 −0.57 → v3 −0.31) and the per-role deviation
+>    signatures are REAL (DF 80.7% ring-180 r7-heavy · MF 70.7%
+>    split r7/r14 · WG 100% r14 with 39.1% ahead · ST 34.2% ahead +
+>    12% a60) — the between-role split exists in behaviour, not just
+>    on paper.
+> 3. ⭐⭐ **THE METRIC CONFOUND, named for the record**: the certified
+>    table PAYS the DF to do near-ball build-up work (the 16-cell
+>    geometry, #82.2) — so a lone DF doing his certified job lands
+>    NEARER his teammates by the job's own definition, and the
+>    resolved-cell spacing stratum (−4.26, dominated by exactly those
+>    cells) penalizes PAID PROXIMITY as if it were pile-up.
+>    **Fork-grain spacing cannot distinguish 扎堆 from 到岗.** The
+>    honest adjudicator of the shape question is the MATCH-LEVEL
+>    battery (I3 distributions, rest defence, offsides, duplicate
+>    runs at 6 Hz over whole matches with every body playing his
+>    role) — V3-P3's instrument, whose canaries are HARD and stop
+>    anything ugly. This analysis is banked as commander
+>    interpretation, NOT as a re-cut: (c) stands as fired.
+> 4. **THE FORK IS THE USER'S** (the contract licensed V3-P3 only on
+>    reading (a); proceeding after (c) is a sequencing override only
+>    the user may ratify): **(A) run V3-P3 anyway (commander
+>    RECOMMENDS)** — deployment + the full HARD battery + the R3
+>    iteration, argued on #85.2-3: the payoff is real, the role
+>    signatures are real, and the one open question (does role-play
+>    at scale disperse or clump the SHAPE) is precisely what the
+>    battery measures and the fork grain structurally cannot;
+>    (B) close v3 at fork grain — bank everything (the certified
+>    census, the first positive ATE, the machinery), return to the
+>    C-track; (C) another road the user names. Nothing proceeds
+>    until the user rules.
