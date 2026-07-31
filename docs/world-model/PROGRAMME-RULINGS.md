@@ -3677,3 +3677,62 @@
 >    adjudicators are all quiet, the stop is adjudicated at the
 >    commander as identity-vs-function — still a stop, never a
 >    silent pass. Any other firing pattern is an ordinary FAIL.
+
+> **COMMANDER RULING #92 (2026-07-31 — the OPERATIONS PROTOCOL
+> codified at the user's direction, so future sessions run it
+> directly):**
+>
+> 1. The user ordered the working loop written down ("整个工作流…
+>    写进文档,这样以后都能直接用"). It now lives as
+>    **PROGRAMME.md §0.0 (Operations protocol)** — the operational
+>    entry every resuming session reads. Content: the commander
+>    (Fable) / executor (Opus, medium effort) role-and-model split;
+>    executor dispatch through the WORKFLOW tool as a two-stage
+>    Draft → independent Verify pipeline (machine-verify GATES the
+>    commander review, never replaces it); the dead-agent post-flight
+>    rule (a seconds-long zero-tool return did no work — verify repo
+>    state, retry ≤2); the VISION audit required on every
+>    commander-drafted design contract BEFORE executor work begins
+>    (#90→#91 precedent); long runs supervised by the commander's
+>    resident session (#49.5); the standing round shape under
+>    pre-registration discipline and Road B.
+> 2. Provenance recorded: the protocol's workflow-dispatch leg was
+>    user-ratified this day ("你用workflow吧") after a bare
+>    sub-agent dispatch died silently (0 tool calls, 3 s); the
+>    two-stage form proved itself immediately on the V4-P0
+>    pre-registration (verify caught nothing the executor hid, and
+>    surfaced every interpretation for review — the intended shape).
+
+> **COMMANDER RULING #93 (2026-07-31 — V4-P0 pre-registration
+> reviewed: PASS WITH AMENDMENTS; build + run AUTHORIZED):**
+>
+> 1. **VERDICT**: the executor's pre-registration (commit `1ce1209`)
+>    passes review. Independent machine-verify: 8/8 items, zero
+>    violations, all numbers traced to published sources, the V3-P1
+>    support predicate quoted verbatim against source. The routing
+>    battery (uniform 3-test form, ordered dominance, pre-named
+>    UNROUTABLE→stop) is faithful to the contract's §2/§4.
+> 2. **AMENDMENTS APPLIED AT REVIEW** (prereg §7; before any probe
+>    was built or datum seen — they ARE the freeze): **A1** the
+>    CLASS H boundary is FACE-MATCHED (score-face cost → 6 s,
+>    concede-face → 10 s; single-boundary readings published as
+>    labelled data) — the flat 10 s reading under-fires H for
+>    score-face limbs; **A2** the delivery (SUPPRESSION) limb routes
+>    on the INCUMBENT side (R0 build-ups, chain-lag curves,
+>    R0-moment contrasts) — tick-level cross-arm "R3 did not"
+>    counterfactuals are ill-defined after divergence and are
+>    dropped; DOWNSTREAM-WATCH re-grounded on coverage-by-other-
+>    remedies; **A3** the designation-use boundary restated (may
+>    define a limb's event population; never a priced cell or
+>    consumer input); **A4** everything else ratified as frozen
+>    (H>S dominance, 400-match fresh corpus @9.7M seeds,
+>    X-CORPUS-IDENT as aggregate-recompute+input-SHA with drift
+>    tripping the gate, enriched-R0 reference world, the #80.2
+>    scope reading).
+> 3. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p0-autopsy-map.ts` implementing the
+>    prereg AS AMENDED (workflow Draft → Verify per §0.0); the RUN
+>    is then launched detached under the commander's resident
+>    session (#49.5). Read-only stage: zero `src/**`; X-CORPUS-IDENT,
+>    X-DET and the zero-src check are HARD. An UNROUTABLE limb stops
+>    the stage at the commander (§6).

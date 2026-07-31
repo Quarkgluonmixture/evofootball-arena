@@ -17,6 +17,50 @@
 > handoff docs, then execute EXACTLY that step. Do not start the next step.
 > Update this file's status column in your final commit.
 
+## 0.0 Operations protocol (how a step actually runs — codified
+2026-07-31, ruling #92; user-ratified, reusable as-is)
+
+1. **Roles & models.** COMMANDER = the Fable session: owns direction,
+   drafts and reviews every design contract, disposes results via
+   numbered rulings in [`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md)
+   (the sole authority trail), reports to the user in plain Chinese
+   (说人话). EXECUTOR = **Opus at medium effort** — never the
+   commander inline (user cost ruling): executors pre-register
+   stages, build probes, write up results; ONE authorized step each.
+2. **Dispatch = the Workflow tool** (user-ratified 2026-07-31), at
+   minimum two stages per executor step:
+   * **Draft** — an Opus executor with the full brief: the binding
+     contract, the read list, the deliverable, the iron rules
+     (explicit-path staging only, NEVER `git add -A`; pre-commit
+     `git status --short` must show only its own file(s), any foreign
+     change = STOP; zero scope creep; structured-output return).
+   * **Verify** — an INDEPENDENT Opus agent re-checks the commit
+     against the binding contract WITHOUT trusting the author: git
+     hygiene, frozen-before-sight criteria, number tracing (freeze
+     honesty: every quoted figure traces to a published source),
+     invariant fidelity. Machine-verify passing GATES the commander
+     review; it never replaces it.
+   * Post-flight rule: a "substantive" agent returning in seconds
+     with zero tool calls did NOT do the work — verify repo state,
+     retry (≤2), never silently accept.
+   * ⚠ Do not edit the repo while a dispatched executor is running —
+     its foreign-change STOP gate will (correctly) kill the step.
+3. **Contracts get a VISION audit.** After the commander drafts a
+   design contract, audit it clause-by-clause against
+   [`../VISION.md`](../VISION.md) BEFORE any executor work; findings
+   become amendments + a ruling (precedent #90→#91: the audit caught
+   the designation-anchor violation).
+4. **Long runs** are supervised by the COMMANDER's resident session
+   (#49.5): detached `nohup … & disown` + Monitor on PID + output
+   file — sub-agent sessions die and orphan background processes.
+5. **The round shape.** User "go" ⇒ ONE round: pull → read this queue
+   head + the rulings tail → execute exactly the authorized step (or
+   present the fork in plain language and wait) → push →
+   plain-Chinese summary. Pre-registration discipline (gates freeze
+   before runs; predicates never change after sight; FAILs reported
+   as-is) and Road B (nothing ships, flags dormant, fingerprint
+   unchanged) bind every round.
+
 ## 0. Where we are (context, 2026-07-24)
 
 Banked, all dormant unless noted: M0–M4 embodied contest slice (LIVE),
@@ -457,12 +501,19 @@ prices HELD LATTICE CANDIDATES, never the incumbent designation (the #90
 draft smuggled the menu's answer into the price list — fixed); I3 bans
 hand constants, not gene weights; adjudication class E-RELOCATED-CURE
 frozen ex ante for the incumbent-anchored I5(b) gate.
-**→ NEXT: executor pre-registers V4-P0 — THE AUTOPSY MAP** (read-only,
-zero `src/**`: map the world's own designation variables; mine the P3a
-corpus as labelled fuel #44.3 with routing criteria frozen BEFORE mining;
-time-to-cost curves + binding-moment base rates on a fresh incumbent
-reference; the CLASS S offside test). Forks (ii)/(iii) stay banked.
-R20 gaps / F9 any time. Road B stands; nothing ships.
+**V4-P0 PRE-REGISTERED (executor commit `1ce1209`) → commander review
+PASS WITH AMENDMENTS (ruling #93)**: routing battery frozen (uniform
+3-test form H/S/J, ordered dominance J→H→S, UNROUTABLE→stop), amendments
+A1–A4 applied at review before any datum was seen (face-matched H
+boundary 6 s/10 s; the delivery SUPPRESSION limb routes on the incumbent
+side; designation-use boundary; the rest ratified) — see the prereg's §7
+([`STAGE3-V4-P0-AUTOPSY-MAP.md`](STAGE3-V4-P0-AUTOPSY-MAP.md)).
+**→ NEXT: executor BUILDS `scripts/probes/stage3-v4-p0-autopsy-map.ts`
+per the prereg AS AMENDED (workflow Draft→Verify, §0.0), then the run
+launches detached under the commander's resident session (#49.5).**
+The operations protocol itself is now codified at §0.0 (ruling #92).
+Forks (ii)/(iii) stay banked. R20 gaps / F9 any time. Road B stands;
+nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

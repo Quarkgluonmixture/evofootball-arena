@@ -475,3 +475,57 @@ downstream.
 * **V4-P0 CANNOT authorize V4-P1.** It hands (a)/(c)/(d)/(e) forward;
   only the commander's review of this freeze opens V4-P1, and an
   UNROUTABLE limb stops the stage here.
+
+---
+
+## 7. Commander review amendments (ruling #93, 2026-07-31 — applied at
+review, BEFORE any probe was built or any datum seen; these amendments
+ARE part of the freeze)
+
+* **A1 — THE H BOUNDARY IS FACE-MATCHED (amends §2.3 CLASS H).** An
+  excess-cost event inherits the face of its outcome channel:
+  concession surrogates (opp deep entry / shot against) → concede
+  face, boundary **10 s**; score/delivery-value surrogates → score
+  face, boundary **6 s** (a bin edge, §2.5 — no re-binning). The H
+  mass-dominance permutation test uses the face-matched boundary per
+  cost event; the single-boundary readings (6-for-all, 10-for-all)
+  are additionally PUBLISHED as labelled data. Rationale: the
+  contract's "beyond the certified horizonS" is plural — a score-face
+  cost in (6, 10] is invisible to the certified 6 s score face and
+  must count as beyond-horizon. (The executor flagged this; the
+  10-s-only reading under-fires H for score-face limbs.)
+* **A2 — A SUPPRESSION LIMB ROUTES ON THE INCUMBENT SIDE (amends
+  §2.3's delivery row).** Tick-level cross-arm counterfactual
+  detection ("R0 launched, R3 did not") is DROPPED — after trajectory
+  divergence it is ill-defined. For the delivery limb the routing
+  evidence is measured WHERE THE JOB IS PERFORMED (the R0 side):
+  excess-event population = R0's delivery build-ups; time-to-cost
+  curve = the chain lag from build-up initiation (the origination
+  moment) to the value event (delivery → box entry / shot / goal);
+  the S contrast (wide-held vs central) and the J support-out
+  fraction run on those R0 moments. The cross-arm deficit remains the
+  published battery number — routing asks what KIND of value the job
+  carries, a property of the job. **DOWNSTREAM-WATCH re-grounded**:
+  the fraction of R0 delivery build-ups initiating from states
+  already covered by the other routes' remedies (wide-held stations →
+  the H census's wide-held cells; restart-adjacent shape → J; the
+  rest-slot body deep → the H deep-held cells), match-cluster
+  proportion CI; lower bound > 0.5 ⇒ downstream-watch. Threshold and
+  reported-not-stop semantics unchanged.
+* **A3 — THE DESIGNATION-USE BOUNDARY RESTATED (ratifies §2.3's rest
+  row under I7/I8).** `p.index===1` defining the rest-defence limb's
+  excess population is WITHIN the battery-verdict-instrument use (the
+  limb IS defined by I5(b); localising it requires its definition).
+  The boundary: a designation may define a LIMB's event population
+  for routing; it may NEVER key a priced cell or enter a consumer.
+* **A4 — RATIFIED AS FROZEN**: the ordered dominance rule including
+  H > S on a double fire (coherent because H's criterion is
+  mass-DOMINANCE — H only wins when the majority of the cost is
+  late); the 400-match fresh corpus on seeds 9,700,000+ (bootstrap
+  97003 / permutation 97103); X-CORPUS-IDENT as aggregate-recompute
+  to full stored precision + input-table/control SHA equality (the
+  determinism argument carries byte-identity; a Node/V8 drift TRIPS
+  the gate and stops the stage — the correct failure mode); the
+  enriched-R0 (#67.3, eye null) reference world; the #80.2 scope
+  reading (permutation for the lag-mass exceedance; cluster bootstrap
+  for proportions/contrasts).
