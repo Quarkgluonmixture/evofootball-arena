@@ -3572,3 +3572,28 @@
 >    C-track (C6 v2 / C7 pass wind-up), (iii) anything the user
 >    names. Presented with the wrap-up; nothing proceeds until the
 >    user rules.
+
+> **COMMANDER RULING #89 (2026-07-31 — corrections to #88's record
+> from the committed data; the verdict unchanged):**
+>
+> 1. #88.1's "a non-goals stat" understated: the equilibrium band
+>    broke on THREE stats — headers won −44.9%, long balls −35.0%,
+>    cutbacks −33.0% (goals inside; every R0 rate inside) — **the
+>    aerial/delivery economy collapses under the deployed eye**, which
+>    trades the delivery game for short combination play (give-and-gos
+>    +43.5%) it does not convert (shots −21.8%, goals flat). This
+>    WIDENS the #88.3 unpriced-jobs diagnosis: the 6/10 s axis sees
+>    none of what a delivery economy is for.
+> 2. #88.2's "spacing median opens" is directional, not resolved
+>    (CI [−0.026, +0.133]); the RESOLVED dispersal evidence is the
+>    flat pile-up tail, duplicate runs −3.6 pp, and role-mix TV 0.654.
+>    The shape victory stands on those.
+> 3. The rest-defence break is SLOT-ABANDONMENT, not retreat: the
+>    general both-back share RISES +34.9% while the designated slot
+>    collapses −30.6% — bodies scatter into the region but vacate the
+>    post. Direct corroboration of #88.3: the price list rewards
+>    presence, not the specific unpriced job. Also banked: the ladder
+>    is monotone (R1 −2.4% → R2 −14.8% → R3 −30.6% — the disease
+>    grows with adoption) and the unilateral edge cancels at R3
+>    (R1/R2 positive resolved, R3 null) — the composition law, again,
+>    measured.
