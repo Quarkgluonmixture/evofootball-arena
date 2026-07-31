@@ -512,3 +512,162 @@ fingerprint unchanged, every flag dormant, through the whole stage. V3-P1 makes
   would need a forked sizing V3-P0 did not run).
 * **Nothing ships (Road B).** Every EDS flag dormant in production, `c6Carry`/
   `c7Windup` probe-only, fingerprint unchanged, through the whole stage.
+
+---
+
+## 9. RESULT — division of labour is in the prices
+
+Run **supervised by the resident session** (#49.5, ratified by ruling #81), the
+**frozen probe unchanged** (§7: no instrument / role key / 150 floor / W /
+horizon / lattice / block / primary-statistic / permutation-null / reading /
+X6-rule re-cut after sight). HEAD **`57e3c35`** (ruling #79); enriched world,
+full #67.3 bundle armed (`edsPerceivedDefence`+`edsPerceivedChoice`+
+`edsValueAxis`, `c5Hold`, `c6Carry`, `c7Windup`; `c5TouchFork` off); `src/**`
+byte-identical to V3-P0 HEAD `49ba867`. Census block **`9,110,000 + k`,
+`k ∈ 0..387`** (388 matches — the SAME block V3-P0 mapped, the reuse decision
+§2.3), consumed to the frozen budget. Data:
+[`data/stage3-v3-p1-role-census-table.json`](data/stage3-v3-p1-role-census-table.json)
+· canonical table SHA **`171a6dad…16559f`** · primary SHA **`92236ed2…196bdc`**
+· file SHA256 **`d62e7591…8b613c`** · `deterministic: true`.
+
+**Scale.** 388 matches → **31,095 station-family moments** (35,914 qualifying,
+4,819 ball-directed skipped, `noPool` 0) → **590,805 forks** priced (31,095
+clones taken, coverage **100%**). Across the classified-tick ledger
+**`unexplained` = 0** unconditional (#32.1). The measured coverage reproduces
+V3-P0 EXACTLY under the block reuse: **45 in-power `(context × role)` cells,
+3 published under-powered** (the thin DF cells — `ours|theirThird|crowded||DF`
+n=33, `theirs|theirThird|crowded||DF` n=137, `theirs|ownThird|sparse||DF`
+n=146), `unexpectedUnderPowered = []`, **`publishedUnderPoweredMatch: true`** —
+the exactness the freeze bought, delivered. The 54 DF cell-candidate pairs are
+published under-powered, never pooled.
+
+### 9.1 Gates — ALL PASS (verdict: GATES PASS)
+
+| gate | result |
+| --- | --- |
+| **X1–X3 — fingerprint / seam / reachability** | fingerprint unchanged by construction (seam null in every production path); `forcedStationPolicy` null in production; unreachable from the E4 preview. **PASS** |
+| **X4 — clone coverage** | 31,095 clones taken over 31,095 sampled moments, coverage **100%**. **PASS** |
+| **X5 — control identity** | the CONTROL fork reproduces the base continuation bit-identically, **1,243 checked / 0 mismatched**. **PASS** |
+| **X6 — force fidelity** | per-record (#32.1); **`unexplained` EXACTLY 0** across the **92.8 M classified ticks** (`ok`+onside+barred+unexplained = 92,802,079); `ok` = 85,240,455 → **okFraction 0.918519**; measured enriched clamp share **0.081481** → derived **X6_FLOOR = 0.837038** (reference **0.84** carried); 0.9185 ≥ 0.8370 → floor cleared. `reconstructionDiverged` 846,135 (reported-not-gated). **PASS** |
+| **X7 — determinism** | two `runExperiment()` calls byte-identical; table SHA `171a6dad…16559f`; primary SHA `92236ed2…196bdc`; zero `src/**` touched. **PASS** |
+| **PC — positive control** | `r21a180` signed value below the control in **both** faces, CI upper < 0: pooled **−3.66 pp** CI [−4.27, −3.03] (n=29,815); ours −3.14 pp CI [−4.05, −2.27], theirs −4.31 pp CI [−5.22, −3.35]. **resolves.** (Reported per role: DF −2.93, MF −1.23 [CI straddles 0], WG −5.53, ST −3.23 pp — gated POOLED, role does not change the PC construction; §5.) **PASS** |
+| **SAT** | max tested gap **0.0326** (`r14a180`), all within the ±0.05 band → **agrees → SHIPPING TABLE.** |
+| **FLOORS** | #24 = 150 moments per `(context × role)` cell, taken EXACTLY from V3-P0 §9.3 under the block reuse; 45 in-power / 3 published-under-powered DF cells, measured set matches published. **PASS** |
+| **CLUSTER / CI** | cluster unit = match seed (#20); 2,000 cluster bootstraps, frozen seed **91110**; primary separation test = the within-`(match × context)` role-label permutation null (§4.1, refined per #81.1), **B = 2,000**, BH q = 0.05; bootstrap CIs on `S` reported-only (house law #80.2); no bare means. **PASS** |
+
+### 9.2 The primary — (a) SEPARATED-COHERENT, localised (16/216 resolve)
+
+**The pre-named hypothesis HOLDS: role-conditioned prices differ by role, and
+the census sees division of labour in cells.** Of the **216 computable spread
+cells** (all 12 contexts × 18 candidates; ≥3 in-power roles everywhere, R2
+COVERAGE RICH confirmed), **47 resolve raw** (permutation p < 0.025) and
+**16 survive Benjamini–Hochberg** at q = 0.05 — against a null false-positive
+expectation of **5.4** (0.025 × 216). Sixteen BH-survivors versus 5.4 expected is
+**real, modest in extent, and geometrically coherent** (§4 reading **(a)
+SEPARATED**, in its localised / **(d) MIXED** form: separation concentrates in a
+few contexts, most of the pitch is flat — §9.3's honest bound).
+
+**Per-context resolved map** (raw / BH-survived, of 18 candidates each):
+
+| context | in-power roles | raw resolved | BH-resolved |
+| --- | --- | ---: | ---: |
+| `ours\|middle\|sparse` | DF MF WG ST | 14 | **7** |
+| `ours\|ownThird\|sparse` | DF MF WG ST | 10 | **5** |
+| `ours\|ownThird\|crowded` | DF MF WG ST | 2 | **2** |
+| `theirs\|middle\|crowded` | DF MF WG ST | 5 | **1** |
+| `theirs\|theirThird\|sparse` | DF MF WG ST | 5 | **1** |
+| `theirs\|middle\|sparse` | DF MF WG ST | 7 | 0 |
+| `ours\|theirThird\|sparse` | DF MF WG ST | 3 | 0 |
+| `theirs\|theirThird\|crowded` | MF WG ST | 1 | 0 |
+| `ours\|middle\|crowded` · `ours\|theirThird\|crowded` · `theirs\|ownThird\|sparse` · `theirs\|ownThird\|crowded` | (mixed) | 0 | 0 |
+| **total** | | **47** | **16** |
+
+### 9.3 The 16 resolved cells — the role geometry (the first measured division of labour)
+
+The signed value per role, in pp, at each BH-resolved cell. Every price agrees
+with football sense **without one authored line** — the argMax / argMin fall out
+of the census:
+
+| `(context)` | cand | S (pp) | perm p | DF | MF | WG | ST | argMax | argMin |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | :--- | :--- |
+| `ours\|middle\|sparse` | r7a0 | 12.82 | 0.0000 | **+13.2** | +7.8 | +0.4 | 0.7 | **DF** | WG |
+| `ours\|middle\|sparse` | r7a60 | 12.17 | 0.0000 | **+10.5** | +3.8 | 0.0 | −1.7 | **DF** | ST |
+| `ours\|middle\|sparse` | r7a240 | 11.37 | 0.0010 | **+11.5** | +7.7 | +0.1 | +5.0 | **DF** | WG |
+| `ours\|middle\|sparse` | r7a300 | 11.57 | 0.0020 | **+10.7** | +2.9 | −0.9 | +1.4 | **DF** | WG |
+| `ours\|middle\|sparse` | r14a300 | 10.93 | 0.0025 | **+8.4** | +2.4 | −2.6 | +1.7 | **DF** | WG |
+| `ours\|middle\|sparse` | r21a60 | 10.80 | 0.0010 | **+10.6** | +1.2 | −0.2 | +3.5 | **DF** | WG |
+| `ours\|middle\|sparse` | r21a300 | 10.92 | 0.0020 | **+9.0** | +3.0 | −1.9 | +3.2 | **DF** | WG |
+| `ours\|ownThird\|sparse` | r7a300 | 9.57 | 0.0020 | **−40.4** | −32.7 | −36.1 | −30.8 | ST | **DF** |
+| `ours\|ownThird\|sparse` | r14a300 | 11.37 | 0.0000 | **−38.4** | −28.9 | −33.5 | −27.0 | ST | **DF** |
+| `ours\|ownThird\|sparse` | r21a60 | 12.23 | 0.0000 | **−34.4** | −29.4 | −31.3 | −22.2 | ST | **DF** |
+| `ours\|ownThird\|sparse` | r21a240 | 10.36 | 0.0025 | **−35.9** | −30.8 | −34.9 | −25.5 | ST | **DF** |
+| `ours\|ownThird\|sparse` | r21a300 | 9.63 | 0.0020 | **−32.4** | −28.7 | −30.8 | −22.7 | ST | **DF** |
+| `ours\|ownThird\|crowded` | r7a240 | 13.21 | 0.0025 | **−30.5** | −17.3 | −20.8 | −27.6 | MF | **DF** |
+| `ours\|ownThird\|crowded` | r14a240 | 12.04 | 0.0035 | **−28.9** | −16.9 | −25.1 | −23.8 | MF | **DF** |
+| `theirs\|middle\|crowded` | r7a240 | 15.16 | 0.0000 | **−43.4** | −28.2 | −31.7 | −35.2 | MF | **DF** |
+| `theirs\|theirThird\|sparse` | r21a180 | 10.01 | 0.0005 | +6.1 | **+7.5** | −2.5 | +0.3 | MF | WG |
+
+**Three coherent readings fall straight out (ruling #82.2, BANKED):**
+
+* **(i) Build-up positioning work is PAID ONLY TO THE DF.** In
+  `ours|middle|sparse` the **DEFENDER is argMax in all 7 resolved cells**
+  (+0.084 to +0.132), while WG and ST earn ≈0 — the reposition into our own
+  half's build-up shape pays a defender and essentially no one else.
+* **(ii) Deep runs are for OTHER bodies — the DF's leaving costs most.** In
+  `ours|ownThird` the **DEFENDER is argMin in all 7 resolved cells** (5 in
+  `sparse`, 2 in `crowded`); vacating the deep third is the worst-priced approach
+  for the DF, best-tolerated by ST/MF who are meant to break forward.
+* **(iii) MF beats DF on the crowded defensive approach.** In the crowded
+  midfield / own-third jams (`theirs|middle|crowded r7a240`, `ours|ownThird|
+  crowded r7a240`/`r14a240`) the **midfielder is argMax and the DF argMin** — the
+  MF is the body that should step into the crowd; the DF leaving it is dearest.
+
+The prices agree with football sense in **every resolved cell**, with no coach
+layer and no authored rule — the emergence doctrine's cleanest exhibit to date.
+
+### 9.4 The honest bound, and the cross-checks
+
+* **200 of 216 cells do NOT separate.** Over most of the pitch the roles agree on
+  what is good — which is also football-real (a good approach is a good approach
+  for anyone) — so the division of labour is **localised, not universal**. The
+  16 that resolve concentrate in own-half build-up and the deep/crowded defensive
+  contexts; the attacking third and the sparse defensive contexts read flat. The
+  V3-P2 consumer's divergence will be **concentrated exactly where the table
+  separates**, not spread across the pitch. This bound is published, not pooled
+  away.
+* **PC per role (reported).** The PC resolves POOLED (−3.66 pp, both faces upper
+  < 0); per role WG pays the ring most (−5.53 pp) and MF least (−1.23 pp, CI
+  straddles 0) — the gate binds on the pooled construction and is not re-cut
+  (§5, carrying P1R §5.4's honest note that "behind is obviously bad" is measured
+  wrong; the gate as written still binds).
+* **X6 floor, derived not fixed (§2.4).** The measured enriched clamp share
+  0.081481 lands the derived floor at **0.8370** — a touch below the 0.84
+  reference (this world clamps slightly more than V2-P1's 0.078062 / 0.8439), the
+  `1 − 2 × clamp-share` formula-form again vindicated; `unexplained = 0`
+  unconditional across the class set (`eSentOff` 173, `eBallWon` 0, receipts
+  capped 1,000/class per #49.3).
+* **SAT.** All five tested candidates within ±0.05 (max 0.0326) → SHIPPING TABLE;
+  design-calibration confirmed, not gating.
+
+### 9.5 Disposition — ruling #82: HALF-1 HOLDS CERTIFIED
+
+Per **ruling #82**, the census is **ACCEPTED** and **half-1 HOLDS CERTIFIED**:
+the 16 resolved cells' geometry is **the first measured division of labour** —
+DF argMax across all 7 `ours|middle|sparse` cells, DF argMin across all 7
+`ours|ownThird` cells, MF > DF in the crowded midfield — prices that agree with
+football sense in every resolved cell without one authored line (#82.2, BANKED).
+The honest bound (200/216 do not separate) stands published: role separation is
+real but localised.
+
+**V3-P2 DRAFTING is AUTHORIZED (executor)** under one **ex-ante mandate**
+(#82.3): at the freeze, compute from THIS committed table the **per-role argMax
+per context** and publish the predicted **deviation-divergence rate** (how often
+two roles at the same moment would choose differently) BEFORE the run — the
+half-2 hypothesis ("convergence breaks by construction") is only as strong as
+that number, and the #44.5 discipline applies at the hypothesis level. The rest
+per contract §4: five arms, DEV on the perceived-attainable denominator, the
+convergence mediators PRIMARY, payoff reported; the perceptionPrice
+serialization fix (#77.2(v)/I11) lands at THIS build; freeze → review → build →
+the resident runs (#49.5). **V3-P1 ships nothing (Road B); it makes no claim the
+eye deploys and does not itself authorize V3-P2 — only the commander's review,
+now given, opens the draft.**
