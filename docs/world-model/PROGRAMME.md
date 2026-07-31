@@ -444,10 +444,20 @@ restarts); value visible at 6 s crowds out value at 30+ s. The eye is not wrong,
 the PRICE LIST is incomplete — pricing discipline is design work, a future
 contract, NOT a patch. **Nothing shipped anywhere (Road B held across 46 rulings;
 the production fingerprint never moved).** All machinery, tables, findings banked.
-**THE QUEUE DRAINS TO USER GATES (#88.4)**: (i) the ESTIMAND contract (price the
-long-horizon jobs — the #88.3 baton, RECOMMENDED direction), (ii) the C-track
-(C6 v2 / C7 pass wind-up), (iii) anything the user names. Presented with the
-wrap-up; nothing proceeds until the user rules. R20 gaps / F9 any time.
+**#88.4 RULED (2026-07-31, "按推荐go", ruling #90): fork (i) taken — the
+ESTIMAND direction launches as STAGE III v4.** The commander-owned design
+contract is drafted: [`STAGE3-V4-LONG-HORIZON-PRICE.md`](STAGE3-V4-LONG-HORIZON-PRICE.md)
+(v4 amends WHAT the map prices; three frozen mechanism classes H/S/J with
+P0 routing by measurement; the no-free-weights law I3 — every long-horizon
+term enters in goal-value units through a measured calibration or not at
+all; V4-P4 re-runs the P3a battery with the three fired limbs as named
+gates at their exact bands, shape adjudicators re-run as gates).
+**→ NEXT: executor pre-registers V4-P0 — THE AUTOPSY MAP** (read-only,
+zero `src/**`: map the world's own designation variables; mine the P3a
+corpus as labelled fuel #44.3 with routing criteria frozen BEFORE mining;
+time-to-cost curves + binding-moment base rates on a fresh incumbent
+reference; the CLASS S offside test). Forks (ii)/(iii) stay banked.
+R20 gaps / F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

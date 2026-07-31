@@ -3597,3 +3597,41 @@
 >    grows with adoption) and the unilateral edge cancels at R3
 >    (R1/R2 positive resolved, R3 null) — the composition law, again,
 >    measured.
+
+> **COMMANDER RULING #90 (2026-07-31 — the user rules #88.4: fork (i)
+> taken; Stage III v4 launches at the design layer):**
+>
+> 1. **USER RULING RECORDED**: presented the three #88.4 forks in
+>    plain language; the user asked for the recommended path in full,
+>    then ruled **"按推荐go"** — the ESTIMAND direction is ratified.
+>    Forks (ii) (C6 v2 / C7 pass wind-up) and (iii) stay banked, not
+>    dead; their obligations (the C6 scramble ceiling, C7 §2) are
+>    unchanged.
+> 2. **THE v4 DESIGN CONTRACT IS DRAFTED** (commander-owned, this
+>    commit): [`STAGE3-V4-LONG-HORIZON-PRICE.md`](STAGE3-V4-LONG-HORIZON-PRICE.md)
+>    — v1 gave the eye a map, v2 motion, v3 whose map; **v4 amends
+>    WHAT THE MAP PRICES.** Core design: the three fired limbs are
+>    NOT one disease — three frozen mechanism classes (H hedge/horizon
+>    → the fork-and-hold occupancy census with calibrated surrogate
+>    outcomes; S state-blind → context-axis extension on the existing
+>    instrument; J jurisdiction/support → the generic in-support
+>    consumption law, v3 I7 finished), and V4-P0 ROUTES each limb by
+>    measurement under pre-registered criteria — the named suspicions
+>    (rest slot/delivery→H, offsides→S, restarts→J) are priors, never
+>    verdicts.
+> 3. **THE NO-FREE-WEIGHTS LAW (contract I3)**: the merged consumer
+>    scalar is a sum in ONE unit (goal-value); every long-horizon term
+>    enters only through a measured surrogate→goal calibration
+>    (V4-P1); a term whose units cannot be made honest DOES NOT ENTER.
+>    Zero tunable knobs — the four-generation emergence doctrine
+>    holds: discipline must be BOUGHT at true prices, never written.
+> 4. **THE BATTERY BECOMES THE TARGET**: for the first time in three
+>    generations the cure is pre-specified — V4-P4 re-runs the P3a
+>    battery verbatim with the three fired limbs as NAMED PRIMARY
+>    GATES at their exact bands, and the #88.2 shape adjudicators
+>    re-run as gates (the cure must not regress).
+> 5. **NEXT STEP**: executor pre-registers V4-P0 (the autopsy map,
+>    read-only, zero `src/**`) per the standing pattern; the P3a
+>    corpus is mining fuel under the labelled-data convention (#44.3),
+>    never verdict fuel; routing criteria freeze BEFORE mining. Road B
+>    stands; nothing ships; the fingerprint does not move.
