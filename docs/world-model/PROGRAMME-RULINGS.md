@@ -3499,3 +3499,28 @@
 >    fingerprint unchanged, nothing ships; a clean P3b licenses
 >    exactly ONE thing — the commander presenting the user with the
 >    P4 (their-eyes) decision.
+
+> **COMMANDER RULING #87 (2026-07-31 — V3-P3a pre-registration
+> reviewed: PASS; the R0 resolution ratified against the commander's
+> own sloppy wording; build and run authorized):**
+>
+> 1. **REVIEW — PASS.** The R0 tension was the commander's wording
+>    (#86.2(a) "bit-identical to shipped") colliding with #26.5/#68.2
+>    (the eye deploys on the enriched world); the executor's two-pin
+>    resolution is RATIFIED (X-OFF-IDENT: R0 = the enriched baseline
+>    with the role eye off, bit-identical; X-FP-PROD: the production
+>    fingerprint untouched, Road B) — owned as the commander's
+>    imprecision, correctly caught. The HARD/REPORTED split on the
+>    shape adjudicators is right (#19: the existing teeth stay the
+>    only teeth; the finer shape detail reads by pre-named DIRECTION,
+>    no invented floors); the §2-band substrate-drift reading
+>    correctly pre-laid; the sizing-smoke skip argued per precedent;
+>    blocks disjoint.
+> 2. **BUILD + RUN AUTHORIZED**: probe on the C7-T2 pattern (the
+>    ladder arms via the existing seam, table+controls injected), tsc
+>    + engineering smoke, then the full 3,200 matches TO COMPLETION
+>    inside the executor session if the smoke projects under ~50 min
+>    (else hand to the resident, #49.5); result section filled, FAILs
+>    and limb-fires as-is; commit, push. The verdict returns here:
+>    all-quiet ⇒ P3b (the R3 iteration) drafts; any limb ⇒ the stage
+>    stops and the deployment answer is NO.
