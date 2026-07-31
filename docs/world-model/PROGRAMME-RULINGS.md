@@ -3951,3 +3951,46 @@
 >    (#49.5). Gates X-CORPUS-IDENT / X-DET / X-SRC-ZERO / the
 >    delivery magnitude gate are HARD; an UNROUTABLE limb stops the
 >    stage (§6).
+
+> **COMMANDER RULING #98 (2026-07-31 — V4-P0b probe build reviewed:
+> PASS, deviations ratified; the full run launches):**
+>
+> 1. **BUILD VERDICT**: probe committed `ba0b96c` (+1,503, one
+>    file); independent code-fidelity verify 6/6, zero violations,
+>    line-level (anchor mechanics against src constants; the
+>    guard-free delivery detection; the magnitude gate arithmetic;
+>    the untouched H/S/dominance machinery; git hygiene). Smoke:
+>    `tsc` clean; slice identity + X-SRC-ZERO true (fingerprint
+>    unchanged); **the anti-tautology fix demonstrated on the
+>    slice** — rest decision-anchored support-out 0.307
+>    [0.259, 0.354] (the decisions ARE made mostly in-support; P0's
+>    event-time 0.706 measured the harm's location, not the
+>    decision's), delivery origination support-out 0.281 (not the
+>    kick-tick ≡1), the delivery detector alive (114 build-ups / 8
+>    R0 matches ≈ 14.25/match vs the banked 12.08), the exposure
+>    decomposition exact (playing/owned → out 0; every other cell
+>    → out 1; one 0.000451 blip = the honest ≤1-tick observation
+>    offset); slice routes UNROUTABLE on 8-match noise — labelled
+>    meaningless per design. X-DET: internal whole-payload
+>    double-run byte-identical AND two separate invocations
+>    byte-identical.
+> 2. **DEVIATIONS E1–E9 RATIFIED**: the separate `lastUntilDec`
+>    cursor (P0's identity loop stays byte-exact — X-CORPUS-IDENT
+>    preserved); decision time = observation-tick simTime (equals
+>    decisionTick modulo a deterministic ≤1-tick offset, published);
+>    per-increment delta counting (the same rule the 4,833/400
+>    calibration used); the origination snapshot on
+>    mostAdvancedNonOwner with D8-coverage and context×role
+>    extended to the origination moment; prevPoss seeded −2 (first
+>    spell captured); X-DET as a self-contained internal double-run
+>    (plus the two-invocation check); anchorGid −1 fallback ⇒
+>    unanchored, dropped and counted; the capped receipt classes
+>    `decision` / `delivery-buildup` (#49.3 auditability); the
+>    exposure per-cell CIs through the standard engine.
+> 3. **THE FULL RUN IS LAUNCHED** detached under the commander's
+>    resident session (#49.5): bare uncapped invocation; output
+>    `docs/world-model/data/stage3-v4-p0b-decision-anchor.json`;
+>    X-CORPUS-IDENT / X-DET / X-SRC-ZERO / the delivery magnitude
+>    gate ([4,833, 14,499]) HARD; routing verdicts to the
+>    commander; an UNROUTABLE limb stops the stage (§6); P0's
+>    verdicts remain published side by side.
