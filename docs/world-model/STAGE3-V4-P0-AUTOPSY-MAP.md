@@ -529,3 +529,159 @@ ARE part of the freeze)
   enriched-R0 (#67.3, eye null) reference world; the #80.2 scope
   reading (permutation for the lag-mass exceedance; cluster bootstrap
   for proportions/contrasts).
+
+---
+
+## §RESULT — the AUTHORIZED run (ruling #95): ROUTING VERDICTS LAND — three limbs route to J, the delivery limb is UNROUTABLE, the stage STOPS at the commander (frozen reading B)
+
+Run to completion under the commander's resident session (#49.5), the
+**frozen probe unchanged as amended** (§§1–7 + the #93 A1–A4 amendments +
+the #94/#95 R1 review-fix; no arm / band / instrument / seed-block /
+routing criterion / gate re-cut after sight). HEAD **`b390cf9`**; ENRICHED
+world, full #67.3 bundle armed (`edsPerceivedDefence`+`edsPerceivedChoice`+
+`edsValueAxis`, `c5Hold`, `c6Carry`, `c7Windup`; `c5TouchFork` off);
+`src/**` byte-identical — **production fingerprint `57b0bdab…c673`
+unchanged** (X-SRC-ZERO PASS, Road B held). **Mining corpus: 800 × (R0, R3)**
+on seeds `9,300,000 + blockIndex·100,000 + k` (deviation D1, #94.2:
+R0+R3 only — every routing test is R3-vs-R0). **Fresh reference: 400
+matches** on `9,700,000 + k, k ∈ 0..399`, enriched R0 (eye null), X-DET
+double-run byte-identical. Consumed table canonical SHA **`171a6dad…6559f`**
+and control SHA **`968349ff…acc1c`** (both re-verified unchanged;
+`tableShaOk`/`controlShaOk` true). Data:
+[`data/stage3-v4-p0-autopsy-map.json`](data/stage3-v4-p0-autopsy-map.json)
+· output SHA-256 **`94cea3ced9b4fdcdd91960496148f493d8096814d15a492612e7d30ec2a55603`**
+· `deterministic: true` (X-DET) · **verdict: `STOP AT COMMANDER — a limb
+is UNROUTABLE (§6 / reading B)`**.
+
+**The reading is (B) A LIMB IS UNROUTABLE** (§5/§6): all three discipline
+limbs — rest-defence slot, offsides, restart resettle — route to **CLASS J**
+by the dominance rule (jurisdiction first: support-out CI lower bound
+> 0.5); the **delivery-economy limb is UNROUTABLE** (its excess-event
+population on the A2 R0 routing side is empty ⇒ the support-out CI
+straddles 0.5). Every X-family gate PASSES; `routingComplete = false`;
+`routing.allRoute = false`, `routing.anyUnroutable = true`.
+
+### HARD GATES
+
+| gate | result (JSON, as-is) |
+| --- | --- |
+| **X-CORPUS-IDENT** | **PASS** — `mode: "FULL: recomputed aggregates matched to committed P3a to full stored precision (6 dp)."`; `tableShaOk: true`, `controlShaOk: true` (every checked field `ok: true` — restDefence per-side, C-OFFSIDE, C-RESTART, the §2 five, the 113,836-release ledger, per-role decision mixes, roleMixTV 0.6539) |
+| **X-DET** | **PASS** — `fidelity.xDet: true`; two runs byte-identical; output SHA-256 `94cea3ce…a55603` |
+| **X-SRC-ZERO** | **PASS** — `srcDiffEmpty: true`; fingerprint baseline `57b0bdab…c673` = observed `57b0bdab…c673` (`matches: true`) |
+| **routingComplete** | **false** (`gates.routingComplete: false`) — the stop-at-commander condition |
+
+### PER-LIMB ROUTING (from `routing.limbs`, all four)
+
+**Routing summary (R3 routing arm for the three discipline limbs; R0 for delivery, per A2):**
+
+| limb | arm | prior | nExcess | support-out point [CI] | firesJ | route | routeReason (verbatim) | bothFired |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| rest-defence slot (DEGEN-RESTDEF, I5(b)) | R3 | H | 25,332 | 0.705945 [0.699804, 0.711796] | true | **J** | "support-out CI lower > 0.5 (jurisdiction first)" | false |
+| offsides (C-OFFSIDE) | R3 | S | 5,306 | 1 [1, 1] | true | **J** | "support-out CI lower > 0.5 (jurisdiction first)" | false |
+| restart resettle (C-RESTART) | R3 | J | 9,757 | 1 [1, 1] | true | **J** | "support-out CI lower > 0.5 (jurisdiction first)" | false |
+| delivery economy (§2 band break) | R0 | H (+downstream-watch) | **0** | null [null, null] | false | **UNROUTABLE** | "support-out CI straddles 0.5 (jurisdiction ambiguous — neither bound clears)" | false |
+
+**CLASS H — face-matched boundary + the single-boundary readings (labelled per A1):**
+
+| limb | reading | boundary | beyond/within mass | beyondFraction | dominance | permP (permValid) | firesH |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| rest-defence slot | face-matched (`h`) | 10 s | 18,113 / 13,712 | 0.569144 | true | 0 (2000) | true |
+| rest-defence slot | `hSingle6` | 6 s | 23,342 / 8,483 | 0.733449 | true | 0 (2000) | true |
+| rest-defence slot | `hSingle10` | 10 s | 18,113 / 13,712 | 0.569144 | true | 0 (2000) | true |
+| offsides | face-matched (`h`) | 10 s | 19,662 / 1,942 | 0.910109 | true | 0 (2000) | true |
+| offsides | `hSingle6` | 6 s | 20,904 / 700 | 0.967599 | true | 0 (2000) | true |
+| offsides | `hSingle10` | 10 s | 19,662 / 1,942 | 0.910109 | true | 0 (2000) | true |
+| restart resettle | face-matched (`h`) | 10 s | 23,535 / 3,178 | 0.881032 | true | 0 (2000) | true |
+| restart resettle | `hSingle6` | 6 s | 25,876 / 837 | 0.968667 | true | 0 (2000) | true |
+| restart resettle | `hSingle10` | 10 s | 23,535 / 3,178 | 0.881032 | true | 0 (2000) | true |
+| delivery economy | face-matched (`h`) | 6 s | 0 / 0 | null | false | null (0) | false |
+| delivery economy | `hSingle6` / `hSingle10` | 6 s / 10 s | 0 / 0 | null | false | null (0) | false |
+
+**CLASS S — stratified (gating) + raw-pooled (non-gating), from `s` and `sRawPooled`:**
+
+| limb | s stratified point [CI] | resolved | nStrata | excludedEmptyStrata | sRawPooled point [CI] | resolved |
+| --- | --- | --- | --- | --- | --- | --- |
+| rest-defence slot | 0.001440 [−0.005702, +0.009144] | **false** | 12 | 0 | −0.099720 [−0.107884, −0.091890] | **true** |
+| offsides | −0.105368 [−0.131694, −0.076506] | **true** | 28 | 4 | −0.042391 [−0.058585, −0.026102] | **true** |
+| restart resettle | −0.061903 [−0.076741, −0.046513] | **true** | 12 | 0 | −0.127364 [−0.139066, −0.115965] | **true** |
+| delivery economy | null [null, null] | false | 0 | 0 | null [null, null] | false |
+
+**Delivery-economy limb — the extra disposition (A2 / §2.3):**
+`route: UNROUTABLE`; `downstreamWatch: false`; `downstreamWatchCI:
+{point: null, lower: null, upper: null, n: 800}`; `note` (verbatim):
+*"A2: routes on the INCUMBENT/R0 side (R0 build-ups; chain lag
+origin→shot-for; R0-moment contrasts). No cross-arm tick counterfactuals.
+Downstream-watch = coverage by other routes' remedies (D8), REPORTED not a
+stop."*
+
+### THE RECORDED INTERNAL INCONSISTENCY (a run fact, for the commander's adjudication)
+
+The delivery-economy limb's **mining-side excess-event population is empty**
+— `routingArm: R0`, `nExcess: 0` over the 800 mining matches (R0 arm) —
+so its support, H, S and downstream-watch statistics are all null and the
+limb is UNROUTABLE. **In the SAME run**, the fresh reference corpus
+(enriched R0, eye null, 400 matches) measures a non-zero delivery-build-up
+base rate:
+
+| quantity | value (JSON, side by side) |
+| --- | --- |
+| mining-side delivery excess-event population (R0 arm, 800 matches) | `nExcess = 0` |
+| fresh-reference `deliveryBuildupsPerMatch` (enriched R0, 400 matches) | **12.0825 [11.635, 12.54]**, total delivery build-ups **4,833** |
+
+These two numbers are recorded together, without interpretation, as an
+internal inconsistency for the commander's adjudication (#44.3
+labelled-data convention: reported AS-IS).
+
+### FRESH REFERENCE BASE RATES (binding-moment, enriched R0, 400 matches; `9,700,000 + k`; X-DET)
+
+| base rate | per-match point [CI] | total | n |
+| --- | --- | --- | --- |
+| turnoversPerMatch | 51.335 [50.2, 52.4625] | 20,534 | 400 |
+| passReleaseNearLinePerMatch | 44.1025 [42.66, 45.525] | 17,641 | 400 |
+| restartPhasesPerMatch | 12.6375 [12.2675, 13.0125] | 5,055 | 400 |
+| deliveryBuildupsPerMatch | 12.0825 [11.635, 12.54] | 4,833 | 400 |
+
+`reference.underPowered: null` (no cut flagged under-powered).
+
+### THE R1 REVIEW-FIX COMPARISON — stratified (gating) vs raw-pooled (`sRawPooled`, non-gating) (labelled, no commentary)
+
+Per the #94.3 / #95.1 R1 fix, the CLASS S contrast is the **within-cell
+stratified** estimator (gating); the **raw pool** is retained as the
+non-gating `sRawPooled` column. Recorded as data:
+
+* **rest-defence slot**: `sRawPooled` **resolved = true**, −0.099720
+  [−0.107884, −0.091890] vs stratified **unresolved (resolved = false)**,
+  0.001440 [−0.005702, +0.009144].
+* **offsides**: both resolved, different points — stratified −0.105368
+  [−0.131694, −0.076506] vs `sRawPooled` −0.042391 [−0.058585, −0.026102].
+* **restart resettle**: both resolved, different points — stratified
+  −0.061903 [−0.076741, −0.046513] vs `sRawPooled` −0.127364 [−0.139066,
+  −0.115965].
+
+### TIME-TO-COST CURVES (recorded in the JSON, `timeToCostCurves`; descriptive, I7)
+
+The per-limb, per-bin curves are recorded in full in the JSON (each bin
+carries `armMean`, `pairMean`, `excessDiff`, `ciLower`, `ciUpper`). Bin
+edges (§2.5): `[0,2) · [2,4) · [4,6) · [6,10) · [10,15) · [15,30) ·
+[30,∞)`. Excess hazard `excessDiff` (R3 − paired R0 for the three
+discipline limbs; delivery is R0-side value hazard, no cross-arm pairing —
+all bins null, `armMean = 0`), per bin:
+
+| limb | [0,2) | [2,4) | [4,6) | [6,10) | [10,15) | [15,30) | [30,∞) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| restSlot | +0.29 | −0.94 | −1.0675 | −1.71625 | −1.29 | −1.0625 | −1.19625 |
+| offside | +0.0125 | −0.00375 | −0.21625 | −0.65625 | +0.03125 | +0.49625 | −1.03375 |
+| restart | −0.01125 | −0.1175 | +0.08125 | −0.21125 | −0.56625 | −2.0575 | −2.78625 |
+| delivery | null | null | null | null | null | null | null |
+
+`timeToCostCurves.note` (verbatim): *"DESCRIPTIVE (I7): form frozen here;
+numbers pin W_hold/W_long at V4-P2 (a fresh dataset). restSlot/offside/
+restart = concede-surrogate hazard (R3−paired R0) per bin; delivery =
+delivery-value hazard on R0 (A2), no cross-arm pairing."* Per-bin CIs are
+recorded in the JSON.
+
+---
+
+**The stage is STOPPED at the commander (§6).** Adjudication and
+disposition are the commander's ruling, recorded in
+[`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md).
