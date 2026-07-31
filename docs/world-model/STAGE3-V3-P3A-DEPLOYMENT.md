@@ -502,3 +502,174 @@ DECOMPOSED BY ROLE before a verdict is read.
   (contract I8 / §2): role is read, not created; the eye writes off-ball targets only.
 * **The R3 stability iteration (I4) is NOT run here** — it is P3b's long pole
   (#86.2(b)), and runs only on a quiet P3a. P3a is the cheap gate.
+
+---
+
+## §RESULT — the AUTHORIZED run (ruling #87.2): THREE HARD LIMBS FIRE, the stage STOPS as frozen — and the shape resolves FOR THE EYE on the way down
+
+Run to completion **inside the executor session** (the smoke projected under the
+in-session cap; the resident was reserved for P3b, #49.5), the **frozen probe unchanged**
+(§§1–7: no arm / band / instrument / seed-block / sign-space / gate re-cut after sight).
+HEAD `1fcf507` (ruling #87 authorizing commit); ENRICHED world, full #67.3 bundle armed
+(`edsPerceivedDefence`+`edsPerceivedChoice`+`edsValueAxis`, `c5Hold`, `c6Carry`,
+`c7Windup`; `c5TouchFork` off); `src/**` byte-identical — **production fingerprint
+`57b0bdab…c673` unchanged** (X-FP-PROD PASS, Road B held). Seed block **9,300,000 + k**,
+4 blocks × 200 = **800 matches/arm × 4 arms (R0/R1/R2/R3, all NEUTRAL) = 3,200 matches**;
+cluster = match seed paired across arms; bootstrap 2,000 @ `93003`; 6 Hz sampling.
+Consumed table canonical SHA **`171a6dad…6559f`** (byte-identical, unconsumed); control
+SHA **`968349ff…acc1c`** (guard PASS, pooled control −0.0567). Data:
+[`data/stage3-v3-p3a-deployment.json`](data/stage3-v3-p3a-deployment.json) · file SHA-256
+**`7dee0f62…150b3`** · `deterministic: true` (X-DET) · **verdict: GATES FAIL**.
+
+**The reading is (B) + (C) jointly** (§6): **THREE watchability HARD limbs fire** (the
+stage STOPS OUTRIGHT, P3b does NOT run, the deployment answer is NO) **AND the §2
+equilibrium band breaks** — while the X-family/structural gates all PASS and the shape
+adjudicators (§4.3) resolve toward **DISPERSAL (到岗)**, answering the #85.3 confound FOR
+THE EYE. 扎堆 is dead; a different, unpriced disease killed the deployment.
+
+### §4.1 (i) WATCHABILITY HARD LIMBS — THREE FIRE (R3 paired vs enriched R0, side-split)
+
+| limb | instrument | R0 → R3 | rel (band) | resolved | **FIRES** |
+| --- | --- | --- | --- | --- | --- |
+| DEGEN-SCRAMBLE | I4 own-within-5 m | 1.073 → 1.052 (s0) · 1.078 → 1.051 (s1) | −1.9% / −2.5% (≥+25%) | yes (FALLS) | **no — quiet** |
+| DEGEN-PILEUP | I3 share <4 m | 0.1028 → 0.1023 (s0) · 0.1044 → 0.1023 (s1) | −0.4% ns / −2.0% (≥+50%) | s0 no / s1 falls | **no — quiet** |
+| **DEGEN-RESTDEF** | I5(b) designated slot | **0.6688 → 0.4668 (s0) · 0.6718 → 0.4641 (s1)** | **−30.2% / −30.9%** (≥−20%) | yes | **⛔ FIRES** |
+| **C-OFFSIDE** | offsides/match (both) | **3.269 → 4.014** | **+22.8%** [+0.55,+0.94] (≥+10%) | yes | **⛔ FIRES** |
+| C-BOX | attackers in box at arrival | 0.889 → 1.002 | +10.3% RISES (fires on ≥−15% drop) | rises | **no — quiet** |
+| **C-RESTART** | restart ticks/match | **1722.0 → 2596.3** | **+50.8%** [+822,+928] (≥+10%) | yes | **⛔ FIRES** |
+
+**Rest defence collapses ~30% on BOTH sides** — the designated-slot occupant is
+abandoned nearly a third of the time. **Offsides climb +22.8%** (the eye pulls bodies off
+the line). **Restart ticks +50.8%** — the v1 pin-3 warning came live: `shapeReady` reads
+the incumbent formation while the eye has bodies elsewhere, so the game keeps
+re-restarting. The C4-T0 arrival-class mix shifted too (C0 603→718, C2 430→536, C3
+667→456: fewer late-crowded arrivals) though C-BOX itself held — reported per §4.1.
+
+### §4.2 (ii) THE §2 EQUILIBRIUM BAND — BREAKS (goals inside; R0 inside; NO substrate-drift excuse)
+
+| rate | C1 baseline | band | R3 | rel | inside? | R0 | R0 rel | R0 inside? |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| goals | 2.3944 | ±15% | 2.3662 | −1.2% | ✅ | 2.4962 | +4.3% | ✅ |
+| crosses | 2.4894 | ±25% | 2.4475 | −1.7% | ✅ | 2.4213 | −2.7% | ✅ |
+| **headers won** | 9.1039 | ±25% | **5.0163** | **−44.9%** | ⛔ | 7.9525 | −12.7% | ✅ |
+| **long balls** | 6.2042 | ±25% | **4.0312** | **−35.0%** | ⛔ | 5.1225 | −17.4% | ✅ |
+| **cutbacks** | 3.8151 | ±25% | **2.5550** | **−33.0%** | ⛔ | 4.0287 | +5.6% | ✅ |
+
+The band fails on **THREE non-goals stats — headers −44.9% (the worst), long balls
+−35.0%, cutbacks −33.0%** — all falling out the BOTTOM. **Goals stay inside (−1.2%), and
+every R0 rate is inside the band** (`r0Holds: true`), so the §4.2 substrate-drift
+exemption does NOT apply: the aerial/delivery economy collapses under the eye itself, not
+under the enriched substrate. (Reported ecology corroborates: shots/match −21.8%, long-ball
+share −28.6% — but give-and-gos +43.5% and longest chain +11.3%: the eye trades the
+delivery game for short combination play it cannot finish.)
+
+### §4.3 (iii) THE SHAPE ADJUDICATORS — the #85.3 confound RESOLVES FOR THE EYE (到岗, not 扎堆)
+
+R3 paired vs R0, cluster CIs, pre-named DISPERSAL direction in the last column:
+
+| adjudicator | R3 diff | CI | resolved | pre-named 到岗 | reads |
+| --- | --- | --- | --- | --- | --- |
+| I3 spacing p10 | +0.028 m | [−0.018,+0.071] | no | ↑ spread | opens (ns) |
+| I3 spacing MEDIAN | **+0.053 m** | [−0.026,+0.133] | no | ↑ spread | **opens** (point; CI straddles) |
+| I3 pile-up TAIL <4 m (HARD) | −0.001 | [−0.003,+0.000] | no | flat/↓ | **flat — no clump** |
+| I5 rest both-back share (a, reported) | +0.100 | [+0.093,+0.107] | yes | stable | **RISES +34.9%** (see note) |
+| I5 designated slot (b, HARD) | −0.205 | [−0.212,−0.197] | yes | not ≥20% drop | **FIRES −30.6%** |
+| I6 duplicate runs | **−0.036** | [−0.049,−0.022] | yes | ↓ | **FALLS −6.5pp** |
+| I7 shape spread-X | −0.443 | [−0.482,−0.406] | yes | wider/differentiated | narrows −31.8% |
+| I7 shape spread-Y | +0.187 | [+0.168,+0.207] | yes | wider/differentiated | widens +28.2% |
+| role-mix TV (live) | **0.654** | — | — | ≥ 0.407 | **> incumbent 0.407** |
+
+**The pile-up tail is FLAT, duplicate runs FALL −3.6 pp, the median spacing OPENS, live
+role separation TV 0.654 clears the incumbent's 0.407, the shape re-differentiates (X
+narrows, Y widens — a role-shaped reshape, not a collapse), and the eye's ball-ledger is
+exactly 0.** This is DISPERSAL (division of labour), the RIGHT-way prediction of §4.3 —
+NOT the pessimistic (D). The fork-grain −0.313 spacing was the paid-proximity artefact
+#85.3 named; at match level with every body playing his role, the shape opens.
+**⚠ Reported note for the record:** the rest-defence break is a *slot* abandonment, not a
+retreat — the general both-back share (a) actually RISES +34.9% while the designated slot
+(b) collapses −30.6%: bodies scatter into the rest-defence region but vacate the assigned
+post. This sharpens the #88.3 diagnosis (the price list rewards presence, not the
+specific unpriced job).
+
+### §4.3b — PER-ROLE deviation (match scale) + the ladder texture
+
+**Per-role deviation rate** (WG quiet EXACTLY as #84.2 pre-laid): DF **41.2%** · MF
+**64.8%** · WG **12.3%** · ST **60.1%** — a DF/MF/ST-driven signature with a silent
+winger, the expected shape, not a defect.
+
+**The ladder — the disease GROWS MONOTONICALLY with adoption.** Rest defence (the one
+fired limb with a per-rung series, via I5(b)): **R1 −2.4% → R2 −14.8% → R3 −30.6%** — one
+body barely dents it, one team halves it, both teams collapse it. No sign disagreement
+(reading (E) does not fire); the ladder is coherent. The signed match differential shows
+the deployment-cancellation texture: R1 **+0.53** [+0.10,+0.95] and R2 **+0.66**
+[+0.25,+1.05] resolve POSITIVE (a unilateral eye helps its side), but **R3 +0.06
+[−0.36,+0.49] is NULL** — when both sides run the eye the edge cancels (goals
+differential null, ruling #88.2).
+
+### §4.4 (iv) X-FAMILY / STRUCTURAL — ALL PASS
+
+| gate | result |
+| --- | --- |
+| X-FP-PROD | production fingerprint `57b0bdab…c673`, flags off — **matches. PASS** |
+| X-OFF-IDENT | R0 (enriched, `stationEye` null) bit-identical across **800 seeds / 0 mismatches. PASS** |
+| X-SEAM | fresh-null ✓ · body/team scope ✓ · both activated ✓ · carrier never overridden ✓. **PASS** |
+| X-DET | two runs byte-identical, SHA `7dee0f62…150b3`; table+control SHAs re-verified unchanged. **PASS** |
+| STRUCTURAL eye-never-touches-ball | 113,836 releases all named (kick 105,097 · deglue 6,612 · ball-won 1,817 · tackle 310); **eye-attributable = 0, unattributable = 0. PASS** |
+
+The measurement is valid: the eye reproduces its own flag-off (enriched) baseline
+bit-for-bit and never touches the ball. The limb-fires are real, not artefacts.
+
+### §RESULT.disposition — which readings fired, and #88 verbatim
+
+**Sign-space clauses fired: (B) A WATCHABILITY HARD LIMB FIRES — the stage STOPS**
+(DEGEN-RESTDEF + C-OFFSIDE + C-RESTART, three teeth), **AND (C) §2 BAND BREAKS** (headers
+/ long balls / cutbacks; goals inside, R0 inside → NOT substrate drift). (B)'s #85.3
+sub-clause is the INVERSE of what the pessimistic branch feared: DEGEN-PILEUP did NOT fire
+and the adjudicators point to DISPERSAL — the shape question resolves FOR the eye even as
+the discipline limbs stop the deployment. (A) is refuted (P3b is NOT licensed); (D) is
+refuted (the shape does not tighten); (E) does not fire (the ladder is coherent); (F)
+does not fire (X-family clean).
+
+**COMMANDER RULING #88 (2026-07-31), verbatim:**
+
+> 1. **FAIL AS FIRED, the stop rule verbatim**: REST DEFENCE 66.9%→46.7% (−30.2% rel,
+>    both sides, resolved) vs the −20% band; OFFSIDES 3.27→4.01/match (+22.8%) vs +10%;
+>    RESTARTS +50.8% vs +10% (the v1 pin-3 warning live: shapeReady reads the incumbent
+>    formation while bodies are elsewhere). The equilibrium-band gate also fails on a
+>    non-goals stat (goals themselves inside, R0 inside — no substrate-drift excuse).
+>    **The deployment answer is NO; P3b does not run.**
+> 2. ⭐⭐⭐ **BANKED — the #85.3 confound RESOLVED FOR THE EYE**: at full deployment the
+>    three-generation pile-up disease is CURED — DEGEN-PILEUP quiet (under-4 m share
+>    −0.4%, CI straddling), scramble quiet, box quiet, **spacing median OPENS +0.053 m,
+>    the close-pair tail opens, duplicate runs FALL −3.6 pp, live role separation TV
+>    0.654 > the incumbent's 0.407**, WG silent at match level exactly as priced, the
+>    eye's ball-ledger exactly 0, goals differential null. **Division of labour disperses;
+>    it does not clump.** 扎堆 is dead; what killed the deployment is a NEW, different
+>    disease.
+> 3. ⭐⭐⭐ **THE DIAGNOSIS, banked — the baton passes to the ESTIMAND (the 现实差距对表's
+>    gap #2, now measured)**: the certified table prices ONE thing (the 6/10 s two-face
+>    axis), and the eye faithfully harvests it — but the incumbent's hand-tuned defaults
+>    were silently doing UNPRICED LONG-HORIZON JOBS: holding the rest-defence slot,
+>    staying onside, resettling for restarts. Value visible at 6 s crowds out value
+>    visible only at 30+ s or in the counterfactual (the goal NOT conceded on the break
+>    that never came). The eye is not wrong; the PRICE LIST is incomplete. Any successor
+>    prices discipline: longer/asymmetric horizons, or the defensive face weighted at
+>    role-appropriate horizons, or structural jobs entering the census as priced states —
+>    design work, a future contract, NOT a patch.
+> 4. **STAGE III v3 CLOSES END-TO-END** (contract → P0 role map → P1
+>    division-of-labour-in-prices certified → P2 the first positive payoff + real role
+>    signatures → P3a: shape cured, discipline broke). Nothing shipped anywhere (Road B
+>    held throughout; the production fingerprint never moved across 46 rulings). All
+>    machinery, tables and findings banked. The queue drains to USER GATES: the natural
+>    next forks are (i) the ESTIMAND contract (price the long-horizon jobs — the #88.3
+>    baton), (ii) the C-track (C6 v2 / C7 pass wind-up), (iii) anything the user names.
+>    Presented with the wrap-up; nothing proceeds until the user rules.
+
+**Discrepancy noted for the commander's eye:** ruling #88.1 and the pre-freeze both frame
+the equilibrium break as "a non-goals stat" (singular); the data breaks on **THREE**
+(headers −44.9%, long balls −35.0%, cutbacks −33.0%). The verdict is unchanged (the gate
+fails either way; goals and every R0 rate inside as stated), but the disease is broader
+than the singular phrasing — the whole aerial/delivery economy collapses, consistent with
+the #88.3 unpriced-jobs diagnosis. Also: the spacing MEDIAN "opens +0.053 m" as a point
+estimate but its CI straddles zero (not CI-resolved); the resolved dispersal evidence is
+the FLAT pile-up tail, duplicate runs −3.6 pp (resolved), and role-mix TV 0.654.

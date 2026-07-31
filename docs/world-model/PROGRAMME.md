@@ -410,6 +410,45 @@ R20 gaps / F9 available. Road B stands; nothing ships. Earlier tonight: the #45.
 accepted (43 rulings verified in RULINGS, 0 giant lines left, orphaned P1
 review re-homed).
 
+**⭐⭐⭐ STAGE III v3 CLOSED END-TO-END (2026-07-31, rulings #77–#88).** The
+user took fork (B) from #72.4 (the R3-saturation direction) and v3 ran the
+ROLE eye — every body reads HIS OWN role's column: contract + launch (#77) →
+V3-P0 role map (R3 clear, roles separate; #78/#79) → V3-P1 the role-conditioned
+census CERTIFIED (division of labour lives in the PRICES — the 16 BH-resolved
+cells, DF near-ball build-up, WG width already paid; #80–#82) → V3-P2 the role
+consumer (#83–#85): the FIRST POSITIVE PAYOFF in three generations (ATE +0.0108,
+DEV 42%) + real per-role signatures, BUT reading (c) fired at fork grain
+(spacing did not open) — #85.3 named the metric confound (the table PAYS DF
+proximity, so fork spacing cannot tell 到岗 from 扎堆) → the user ratified
+V3-P3 ("来吧,a", #86): two sub-stages, P3a the cheap deployment gate first →
+V3-P3a pre-reg PASS + build/run authorized (#87, the R0 two-pin resolution
+ratified) → **V3-P3a RAN and GATES FAIL (ruling #88): THREE HARD LIMBS FIRE**
+— rest defence 66.9%→46.7% (−30.2% rel both sides, band −20%), offsides
+3.27→4.01 (+22.8%, band +10%), restart ticks +50.8% (band +10%, the v1 pin-3
+warning live); the §2 band also breaks (headers −44.9% / long balls −35.0% /
+cutbacks −33.0%, goals inside, R0 inside — no substrate-drift excuse).
+**The deployment answer is NO; P3b does NOT run** (probe/data/doc:
+[`STAGE3-V3-P3A-DEPLOYMENT.md`](STAGE3-V3-P3A-DEPLOYMENT.md) §RESULT · data SHA
+`7dee0f62…150b3` · 3,200 matches · fingerprint `57b0bdab…c673` unchanged).
+⭐⭐ **#88.2 THE SHAPE VICTORY, banked — the #85.3 confound RESOLVED FOR THE
+EYE**: at full deployment the three-generation pile-up disease is CURED —
+DEGEN-PILEUP quiet, scramble/box quiet, spacing median opens, duplicate runs
+FALL −3.6 pp, live role-separation TV 0.654 > incumbent 0.407, WG silent as
+priced, eye ball-ledger exactly 0, goals differential null. Division of labour
+DISPERSES, it does not clump; 扎堆 is dead. ⭐⭐ **#88.3 THE ESTIMAND BATON,
+banked**: what killed the deployment is a NEW, different disease — the certified
+table prices ONE thing (the 6/10 s two-face axis) and the eye faithfully harvests
+it, but the incumbent's hand-tuned defaults were silently doing UNPRICED
+LONG-HORIZON JOBS (holding the rest slot, staying onside, resettling for
+restarts); value visible at 6 s crowds out value at 30+ s. The eye is not wrong,
+the PRICE LIST is incomplete — pricing discipline is design work, a future
+contract, NOT a patch. **Nothing shipped anywhere (Road B held across 46 rulings;
+the production fingerprint never moved).** All machinery, tables, findings banked.
+**THE QUEUE DRAINS TO USER GATES (#88.4)**: (i) the ESTIMAND contract (price the
+long-horizon jobs — the #88.3 baton, RECOMMENDED direction), (ii) the C-track
+(C6 v2 / C7 pass wind-up), (iii) anything the user names. Presented with the
+wrap-up; nothing proceeds until the user rules. R20 gaps / F9 any time.
+
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
 NO payoff re-run; the pre-named pile-up lever (anticipatory density, §4.5.6)
