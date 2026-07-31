@@ -3473,3 +3473,29 @@
 >    census, the first positive ATE, the machinery), return to the
 >    C-track; (C) another road the user names. Nothing proceeds
 >    until the user rules.
+
+> **COMMANDER RULING #86 (2026-07-31 — V3-P3 AUTHORIZED, user-ratified
+> ("来吧,a"): the sequencing override is the user's word; the stage
+> runs in TWO SUB-STAGES, cheap gate first):**
+>
+> 1. The user ratifies proceeding to V3-P3 after reading (c) — the
+>    #85.3 metric-confound argument accepted: the shape question is
+>    only adjudicable at match level, and the battery's canaries are
+>    the protection.
+> 2. **STRUCTURE (commander): V3-P3a then V3-P3b.** (a) **P3a = the
+>    deployment ladder + the FULL HARD battery** (the C6/C7-T2 form:
+>    R0 vs rungs to R-BOTH with the role eye armed; scramble limbs,
+>    offside/box/restart canaries, §2 band, I3 spacing DISTRIBUTIONS,
+>    rest defence, duplicate runs at 6 Hz; the fork-grain confound
+>    resolved by instruments that see whole matches) — CHEAP
+>    (~C6-T2 scale), and ANY limb firing stops the stage before the
+>    expensive half. (b) **P3b = the ONE R3-saturation re-census +
+>    the stability comparison** (contract I4; PROBE-CONTRACTS' sixth
+>    threshold type for the equivalence claims) — the long pole
+>    (~V3-P1 scale), runs ONLY on a quiet P3a. Each sub-stage
+>    pre-registers separately; freeze → review → build → run per the
+>    standing pattern; the resident supervises the long runs (#49.5).
+> 3. Road B stands throughout: every flag dormant in production,
+>    fingerprint unchanged, nothing ships; a clean P3b licenses
+>    exactly ONE thing — the commander presenting the user with the
+>    P4 (their-eyes) decision.
