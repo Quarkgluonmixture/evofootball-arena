@@ -4743,3 +4743,38 @@
 >    @10.4M) → the proxy decision + knee N → V4P3P1_MODE=census
 >    V4P3P1_N=N (@10.5M, keying from the smoke pin). All gates as
 >    frozen.
+
+> **COMMANDER RULING #115 (2026-08-01 — the P3p-1 smoke read: the
+> proxy rule fired STRICT as frozen; the knee returned NULL as
+> frozen and is re-pinned by a disclosed rule; the census
+> launches at N = 480):**
+>
+> 1. **SMOKE BANKED** (gates all PASS; 40 @10.4M; 3,192 moments /
+>    1,184 in-scope; EPS 0.2 re-asserted; partitions exact; det
+>    true): **the proxy decision rule fired ONCE as frozen —
+>    p0_proxy = 0.409 < 0.50 (band A fails) ⇒ STRICT keying
+>    adopted** (widthHeld=0 → UNKNOWN → base; only the 1-children
+>    split out). obsMed = 2 (the observability condition held —
+>    the low genuine-0 share is real, not a blind-spot artefact).
+>    Child population: 405 seen (delivery 144 / offside 261).
+> 2. ⛔ **THE FROZEN KNEE RETURNED NULL AND IS DIAGNOSED**: the
+>    95%-of-plateau rule assumed a SATURATING attainability curve;
+>    the realized curve has a long rare-child tail (seen-once
+>    children need N ≈ 6,000) plus a discretisation artefact at
+>    the cap (the 26 exactly-5-moment children pile at
+>    N_child = 1,200 exactly). The curve's TRUE shape: a hard
+>    elbow at N ≈ 384–480 (count 310→316, marginals collapsing to
+>    +6/96 matches) and a stable within-cap plateau ≈ 332 across
+>    N = 480–1,176.
+> 3. **N RE-PINNED BY A DISCLOSED RULE (the #105/#113 genre;
+>    before the gate-bearing run; optional stopping foreclosed)**:
+>    reference plateau = the count at the last grid point BELOW
+>    the cap (1,176 → 332; the endpoint cohort excluded as the
+>    named artefact); target 0.95 × 332 = 315.4; **N* = the
+>    smallest grid N with count ≥ 316 = 480** (316 children
+>    in-power ≈ 95.2% of the stable plateau). Cost accepted:
+>    ≈ 480 matches × ~1 min × 2 (X-DET) ≈ an overnight run,
+>    supervised per #49.5.
+> 4. **THE CENSUS LAUNCHES**: V4P3P1_MODE=census V4P3P1_N=480
+>    @10.5M, keying resolved from the smoke pin (STRICT). All
+>    gates as frozen; the merged table lands for P3p-2.
