@@ -4662,3 +4662,47 @@
 >    rule + X-MERGE-IDENT, sizing smoke @10.4M → the #105 knee
 >    rule → census @10.5M, stats 99403/99503, publish-not-pool)
 >    per §0.0; commander reviews; the standing pattern.
+
+> **COMMANDER RULING #113 (2026-08-01 — P3p-1 pre-registration
+> reviewed: PASS; the eight flagged calls ratified; probe build
+> authorized):**
+>
+> 1. **VERDICT**: the P3p-1 pre-registration (`153df13`, 543
+>    lines) passes review (machine-verify 5/5, zero violations;
+>    the 9/9 forward/behind lattice split arithmetic, the v3 table
+>    SHAs, the seed disjointness all independently verified). No
+>    VISION audit required (#111.4 scope: a pure instrument stage
+>    — no new percepts or consumer mechanisms beyond what #111
+>    audited).
+> 2. **FLAGGED CALLS RATIFIED**: (i) **the merge provenance —
+>    the v3-copied base (@9.11M seeds) beside 10.5M-priced
+>    children is LEGITIMATE precisely because P3p-0's X-OFF-IDENT
+>    proved the flag-off world byte-identical**: same generating
+>    process, different seeds = the same distribution; the
+>    SHA-copy preserves the certified asset; and per #26.5 any
+>    future substrate change stales the WHOLE merged table
+>    together; (ii) X-MERGE-IDENT part (ii) as a three-way
+>    {0,1,UNKNOWN} partition checked against the re-census's OWN
+>    base (arithmetic must live in one dataset); (iii) the added
+>    percept read (m.perceivedSnapshot on the forced body,
+>    pre-clone) — required by I2; **BUILD CAUTION carried
+>    forward: the read must be side-effect-free or made
+>    IDENTICALLY in both X-FORK-IDENT comparison paths** (a
+>    mutating read made asymmetrically would fake a fork-identity
+>    failure); (iv) N_max = 1,200 with the 50-step grid and
+>    95%-of-plateau knee; (v) the proxy decision rule (band
+>    p0 ∈ [0.50, 0.95] AND obsCount median ≥ 2, fires once at
+>    smoke sight, disclosed, never revisited); (vi) X-EPS-REASSERT
+>    as a fail-closed source-text tripwire on mechanics.ts's
+>    offside literal (the lexical-invariant-gate pattern; the
+>    core stays untouched); (vii) the explicit permutation seed
+>    99503 (decoupled from the +1 derivation, seeds-only);
+>    (viii) the smoke floor lowered to 8 (engine-exercise only,
+>    labelled).
+> 3. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p3p1-recensus.ts` (workflow
+>    Draft → Verify, §0.0; V3-P1 reuse + the bit-keying amendment
+>    + the merge/gate machinery); then smoke @10.4M → the proxy
+>    decision + knee N → census @10.5M, detached (#49.5). Gates:
+>    X-FORK-IDENT / clone / X-DET / X-SRC-ZERO / X-MERGE-IDENT /
+>    X-EPS-REASSERT / X-FP-PROD all HARD.

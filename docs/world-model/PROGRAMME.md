@@ -619,12 +619,16 @@ check exhaustive; vitest 929 green; fingerprint EXACT; real
 double-build byte-compare identical) → ruling #112: deviations
 ratified, two items carried into P3p-1's checklist (the widthHeld
 genuine-0 proxy decision rule; the OFFSIDE_EPS=0.2 re-assert).
-→ NEXT: executor pre-registers P3p-1 — THE TARGETED RE-CENSUS**
-(disjoint-scope cut, extended keys via the P3p-0 bit functions,
-augment-merge + X-MERGE-IDENT, smoke @10.4M → knee N → census
-@10.5M, stats 99403/99503). Forks (ii)/(iii) stay banked. R20 gaps /
-F9 any time. Road B stands; nothing ships; fingerprint unchanged
-across #90–#112.
+**P3p-1 PRE-REGISTERED (`153df13`; verify 5/5) → review #113 PASS,
+eight flagged calls ratified** (the two-era merge legitimate BECAUSE
+X-OFF-IDENT proved the world unchanged; the percept-read
+side-effect caution carried to the build; proxy rule + EPS tripwire
++ knee N_max 1,200 frozen). **→ NEXT: executor BUILDS
+`scripts/probes/stage3-v4-p3p1-recensus.ts` (workflow Draft→Verify
+§0.0), then commander runs smoke @10.4M → proxy decision + knee N →
+census @10.5M detached (#49.5); the merged table lands for P3p-2.**
+Forks (ii)/(iii) stay banked. R20 gaps / F9 any time. Road B
+stands; nothing ships; fingerprint unchanged across #90–#113.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
