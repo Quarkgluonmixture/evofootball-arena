@@ -4435,3 +4435,31 @@
 >    Gates inherit P2 (X-FORK-IDENT 100%, clone 100%, X-DET,
 >    X-SRC-ZERO); the #106.6 repeat-sign home stands in the stop
 >    rules.
+
+> **COMMANDER RULING #108 (2026-08-01 — V4-P2b probe build
+> reviewed: PASS, deviations ratified; the runs launch):**
+>
+> 1. **BUILD VERDICT**: probe committed `179d40c` (+1,334, one
+>    file); independent verify 6/6, zero violations — the full
+>    inheritance diff reviewed hunk-by-hunk (every non-comment
+>    change maps to an authorized amendment), the Schmitt latch,
+>    re-entry law, occupancy semantics, `free` class, knee-rule N,
+>    the P2 comparison read (content-hash verified 3f332a8e…24a9,
+>    non-gating, graceful degradation) all checked at line level.
+>    Preflight: latch engage 259 / disengage 56 with zero chatter;
+>    occupancy mean 0.632 (UP from P2's 0.486 exactly as §2.2
+>    predicted); X-FORK 12/0, clone 12/12, X-DET both modes,
+>    X-SRC-ZERO; knee arithmetic hand-verified on the toy curve.
+> 2. **DEVIATIONS RATIFIED**: the y=0 wing tiebreak (+y default,
+>    measure-zero); inRegion via the depthOf/lateralOf booleans
+>    (identical partition to the latch's signed-distance form off
+>    measure-zero boundaries); the LatchStats diagnostic
+>    (deterministic, in X-DET); the module-scope P2 load with
+>    available:false degradation; the degenerate plateau=0 knee
+>    case; byte-faithful retention of inherited unused helpers;
+>    the labelled pooledContext/attainCurve fields.
+> 3. **THE RUNS LAUNCH** detached (#49.5): V4P2B_MODE=smoke (40
+>    @10.2M) → the knee-rule N → V4P2B_MODE=census V4P2B_N=N
+>    (@10.3M). Gates as frozen; #106.6 stands — a repeat
+>    all-negative-with-deep-worst surface routes CLASS H to the
+>    fallback fork at the commander WITH THE USER.
