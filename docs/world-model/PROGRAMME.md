@@ -586,14 +586,18 @@ resolved prices are NEGATIVE (−0.011…−0.053): the point-freeze
 enforcement priced BEING A STATUE vs incumbent dynamics; the
 gradient (deep worst) cannot buy rest defence. ⭐ Banked as the
 DYNAMISM-VALUE MAP (responsiveness itself costs 0.011–0.053
-goals/15 s, worst deep/wide — a labelled asset). **→ NEXT: executor
-pre-registers V4-P2b — THE REGION-CONTAINMENT HOLD** (free movement
-inside the region class, steered back on exit; everything else
-inherits P2; seeds 10.2M/10.3M; #106.5). **P3 WAITS for the P2b
-surface.** Pre-named (#106.6): a repeat all-negative sign at P2b is
-a REAL finding → CLASS H falls to the registered fallback fork at
-the commander WITH the user. Forks (ii)/(iii) stay banked. R20 gaps
-/ F9 any time. Road B stands; nothing ships.
+goals/15 s, worst deep/wide — a labelled asset). **V4-P2b PRE-REGISTERED (`700c4c1`; verify clean) → review #107
+PASS, seven flagged choices ratified** (nearest-boundary own-wing
+re-entry; Schmitt hysteresis 1.0 m; folded-wide containment;
+OCC_FLOOR kept; the `free` tick class; knee-rule N, pooled-MDL
+retired). **→ NEXT: executor BUILDS
+`scripts/probes/stage3-v4-p2b-region-hold.ts` (workflow
+Draft→Verify §0.0), then commander runs smoke @10.2M → knee N →
+census @10.3M detached (#49.5). P3 WAITS for the P2b surface.**
+Pre-named (#106.6): a repeat all-negative sign at P2b is a REAL
+finding → CLASS H falls to the registered fallback fork at the
+commander WITH the user. Forks (ii)/(iii) stay banked. R20 gaps /
+F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

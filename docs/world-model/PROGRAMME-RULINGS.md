@@ -4404,3 +4404,34 @@
 >    selection / an A4 doctrine slice — a future contract) at the
 >    commander, with the user's eyes on the fork. No third
 >    instrument iteration without a ruling.
+
+> **COMMANDER RULING #107 (2026-08-01 — V4-P2b pre-registration
+> reviewed: PASS, all seven flagged choices ratified; probe build
+> authorized):**
+>
+> 1. **VERDICT**: the P2b pre-registration (`700c4c1`, 469 lines —
+>    a focused amendment inheriting P2 wholesale) passes review
+>    (machine-verify clean, zero violations; #91 red line clean;
+>    seed bands 10.2M/10.3M + stats seeds 99203/99303 disjoint).
+> 2. **FLAGGED CHOICES RATIFIED**: (i) re-entry = the nearest point
+>    of the region shrunk by the margin, on the body's OWN wing
+>    (no cross-pitch teleport), re-evaluated per steering tick —
+>    maximally free inside, never re-anchored to a point; (ii)
+>    HYSTERESIS_M = 1.0 m with the Schmitt latch (8–9 ticks of
+>    travel — no seam chatter; ≪ every band width); (iii)
+>    folded-wide containment (either wing satisfies the frozen
+>    folded class; steering respects the current wing); (iv)
+>    OCC_FLOOR = 0.5 kept, the occupancy-shift published as a
+>    reported observation, never a re-cut; (v) the `free`
+>    diagnostic tick class (entailed by null-seam free ticks);
+>    (vi) the N rule = the #105 attainability knee, the pooled-MDL
+>    formula RETIRED; (vii) the content-hash-vs-file-hash
+>    disambiguation for the P2 comparison read.
+> 3. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p2b-region-hold.ts` (workflow
+>    Draft → Verify, §0.0; mostly P2 reuse — the enforcement loop
+>    and occupancy measure are the only substantive edits); then
+>    smoke @10.2M → knee-rule N → census @10.3M, detached (#49.5).
+>    Gates inherit P2 (X-FORK-IDENT 100%, clone 100%, X-DET,
+>    X-SRC-ZERO); the #106.6 repeat-sign home stands in the stop
+>    rules.
