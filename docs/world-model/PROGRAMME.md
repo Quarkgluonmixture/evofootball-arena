@@ -614,13 +614,17 @@ PASS with the explicit VISION audit (user-prompted; the two S bits
 are VISION-NAMED eye inputs; the public-whistle phase read ratified;
 zero amendments)**: disjoint-scope rule, augment-merge +
 X-MERGE-IDENT, the R3v3 attribution arm, seed bands
-10.4/10.5/10.6M all ratified. **→ NEXT: executor BUILDS P3p-0 — the
-dormant flag-gated seams (eye.v4.{inSupportLaw, deliveryBit,
-offsideBit}, default OFF; X-OFF-IDENT flag-off bit-identity +
-fingerprint + vitest HARD) — the first src-touching step of v4;
-then P3p-1 (targeted re-census) pre-registers.** Forks (ii)/(iii)
-stay banked. R20 gaps / F9 any time. Road B stands; nothing ships;
-fingerprint unchanged across #90–#111.
+10.4/10.5/10.6M all ratified. **P3p-0 BUILT AND PROVEN DORMANT (`3ce528f`; verify 5/5; #75 gate
+check exhaustive; vitest 929 green; fingerprint EXACT; real
+double-build byte-compare identical) → ruling #112: deviations
+ratified, two items carried into P3p-1's checklist (the widthHeld
+genuine-0 proxy decision rule; the OFFSIDE_EPS=0.2 re-assert).
+→ NEXT: executor pre-registers P3p-1 — THE TARGETED RE-CENSUS**
+(disjoint-scope cut, extended keys via the P3p-0 bit functions,
+augment-merge + X-MERGE-IDENT, smoke @10.4M → knee N → census
+@10.5M, stats 99403/99503). Forks (ii)/(iii) stay banked. R20 gaps /
+F9 any time. Road B stands; nothing ships; fingerprint unchanged
+across #90–#112.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

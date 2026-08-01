@@ -4623,3 +4623,42 @@
 >    must be byte-identical); OFFSIDE_EPS pinned from the sim's
 >    offside machinery and recorded. Then P3p-1 (targeted
 >    re-census) pre-registers per §0.0.
+
+> **COMMANDER RULING #112 (2026-08-01 — P3p-0 reviewed: PASS; the
+> seams are dormant and proven; P3p-1 pre-registration
+> authorized):**
+>
+> 1. **BUILD VERDICT**: committed `3ce528f` (five files: the pure
+>    bit module `eyeContextBitsV4.ts`, the consultation-point seam
+>    in actionExecutor, the trace counters, the config type, 21
+>    new tests). Independent verify 5/5, zero violations — the #75
+>    gate check exhaustive (every path an explicit `=== true`
+>    opt-in on its own named flag; a whole-tree grep proves NO
+>    production caller sets any v4 flag; flag-off short-circuits
+>    to a string literal without even a function call). ALL THREE
+>    identity gates pass: vitest 929 green (908 baseline + 21
+>    new, zero regressions); the production fingerprint
+>    `57b0bdab…c673` EXACT before and after; X-OFF-IDENT — a REAL
+>    double-build byte-compare (base-HEAD slice vs head slice,
+>    deterministic payloads SHA-identical at 35,310 bytes).
+> 2. **DEVIATIONS RATIFIED**: the phase-first clause ordering
+>    (disposition identical); the boolean public-whistle pass-in
+>    (the pure module never touches the sim); the
+>    perceivedOffsideLine reimplementation over ObservedPlayer
+>    (percepts cannot carry sent-off — honest); bits
+>    observability-only at P3p-0 (consumption is P3p-2); the trace
+>    counters in the established StationEyeTrace precedent; the
+>    perceived-ball anchor with defensive fallback. TWO items
+>    carried FORWARD into P3p-1's checklist: (i) the widthHeld
+>    genuine-0 PROXY (≥1 fresh attacking-half teammate seen) —
+>    P3p-1's smoke measures the proxy against the stricter
+>    never-emit-0 alternative and freezes one by a pre-registered
+>    decision rule BEFORE the census; (ii) OFFSIDE_EPS = 0.2 is
+>    MIRRORED, not extracted — P3p-1 re-asserts the pin against
+>    the sim's offside machinery as an X-form gate.
+> 3. **AUTHORIZED**: executor pre-registers P3p-1 — THE TARGETED
+>    RE-CENSUS (per the stage freeze §4: the disjoint-scope cut,
+>    extended keys via the P3p-0 bit functions, the AUGMENT merge
+>    rule + X-MERGE-IDENT, sizing smoke @10.4M → the #105 knee
+>    rule → census @10.5M, stats 99403/99503, publish-not-pool)
+>    per §0.0; commander reviews; the standing pattern.
