@@ -4706,3 +4706,40 @@
 >    decision + knee N → census @10.5M, detached (#49.5). Gates:
 >    X-FORK-IDENT / clone / X-DET / X-SRC-ZERO / X-MERGE-IDENT /
 >    X-EPS-REASSERT / X-FP-PROD all HARD.
+
+> **COMMANDER RULING #114 (2026-08-01 — P3p-1 probe build
+> reviewed: PASS; a prereg assertion CORRECTED by the build; the
+> runs launch):**
+>
+> 1. **BUILD VERDICT**: probe committed `8265de3` (+1,583, one
+>    file); independent verify 6/6, zero violations
+>    (comment-stripped diffs prove the V3-P1 core verbatim; the
+>    bit functions imported never reimplemented; the 9/9 split
+>    exact with no dx=0 candidate; the keying-pin mechanism has
+>    no silent default). Preflight: the EPS tripwire self-tested
+>    (perturbed /tmp copy 0.25 → FAIL, anchor-loss → FAIL);
+>    X-MERGE part (i) reproduces `171a6dad…6559f` on the real
+>    table and FAILS on a corrupted copy; part (ii) exact under
+>    both keyings; X-FORK-IDENT symmetry proven across percept
+>    reads; toy smoke + census e2e green.
+> 2. ⭐ **A PREREG ASSERTION CORRECTED (the #113.2(iii) caution
+>    earned its keep)**: the prereg claimed `perceivedSnapshot`
+>    never mutates; the build VERIFIED it DOES (with eager
+>    perception off it calls reconstructBodyMemory, mutating the
+>    body's perception memory). The fix — the percept read taken
+>    on a THROWAWAY CLONE, proven side-effect-free on the base
+>    match — is RATIFIED, and the prereg's §2.2 claim is
+>    corrected by this ruling (no doc edit needed; the ruling is
+>    the record).
+> 3. **DEVIATIONS RATIFIED**: the diagnostic obsCount mirror; the
+>    all-ages histograms (make the pins visible); keying pin =
+>    env-wins → smoke-pin → hard STOP; V4P3P1_N required in
+>    census; the two-level partition check (moment counts AND
+>    fork/integer sums); child CIs as reported-only cluster
+>    bootstrap; CHILD_FLOOR fixed 150; the 9.11M-block byproducts
+>    retained as reported but EXCLUDED from the P3p-1 gate set;
+>    SKIP_FP preflight-only; the import entry-guard.
+> 4. **THE RUNS LAUNCH** detached (#49.5): V4P3P1_MODE=smoke (40
+>    @10.4M) → the proxy decision + knee N → V4P3P1_MODE=census
+>    V4P3P1_N=N (@10.5M, keying from the smoke pin). All gates as
+>    frozen.
