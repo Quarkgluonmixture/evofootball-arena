@@ -577,12 +577,15 @@ absolute-frozen-target occupancy read; possession-flip NON-terminal
 region classes, floor 150); W_hold 15 s / W_long 30 s on published
 lag-bin edges; per-protocol OCC_FLOOR 0.5; **gating unit = DEEP
 entry (0.0435), box = labelled secondary (#103.3)**; full-lattice
-fork (control+18), N_max 800, r=21 off-ramp = reading (G). **→ NEXT:
-executor BUILDS `scripts/probes/stage3-v4-p2-occupancy-census.ts`
-(workflow Draft→Verify §0.0), then commander runs smoke @10.0M →
-frozen N → census @10.1M detached (#49.5). The frozen null stops
-CLASS H at the commander.** Forks (ii)/(iii) stay banked. R20 gaps /
-F9 any time. Road B stands; nothing ships.
+fork (control+18), N_max 800, r=21 off-ramp = reading (G). **P2 probe BUILT (`a1c620a`, 1,105 lines; verify 6/6; per-moment wall
+cost ~475 ms measured; X-FORK-IDENT/clone 100% preflight-clean) →
+ruling #104: deviations F2–F7 ratified, unexplained-ticks stance
+noted (counted-not-gated, occupancy floor = the honest backstop),
+THE SIZING SMOKE IS IN FLIGHT** (V4P2_MODE=smoke, 40 @10.0M,
+detached #49.5) → then census @10.1M with N from the frozen
+arithmetic (cap 800). The frozen null stops CLASS H at the
+commander. Forks (ii)/(iii) stay banked. R20 gaps / F9 any time.
+Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

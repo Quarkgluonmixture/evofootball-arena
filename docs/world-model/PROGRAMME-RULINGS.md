@@ -4260,3 +4260,43 @@
 >    coverage) / clone 100% / X-DET / X-SRC-ZERO / seed
 >    disjointness HARD; the frozen null stops CLASS H at the
 >    commander.
+
+> **COMMANDER RULING #104 (2026-08-01 — V4-P2 probe build reviewed:
+> PASS, deviations ratified; the sizing smoke launches):**
+>
+> 1. **BUILD VERDICT**: probe committed `a1c620a` (1,105 lines, one
+>    file; the first attempt died on the org spend limit with a
+>    clean tree — resumed per §0.0's post-flight rule). Independent
+>    code-fidelity verify 6/6, zero violations, line-level (the
+>    fork seam, the frozen predicate, the #91 red line grep-clean,
+>    the #103.3 deep-gates/box-secondary designation, the claims
+>    engines diffed against the V3-P1 port, modes/gates). tsc
+>    clean; preflight: X-FORK-IDENT 12/12 zero mismatch, clone
+>    12/12, X-DET, X-SRC-ZERO; both claim code paths exercised;
+>    ⭐ **per-moment wall cost measured: ~475 ms** (19 forks +
+>    plain step-through × 1,800 ticks) — reading (G)'s feasibility
+>    number; the uncapped smoke supplies moments/match for the
+>    final projection.
+> 2. **DEVIATIONS F2–F7 RATIFIED**: fork-start-seeded entry
+>    transitions (identical across arms ⇒ clean paired difference);
+>    either-arm E-ENDED exclusion (stricter, guards a truncated
+>    control); geometric occupancy decoupled from the diagnostic
+>    tick labels; the region axis permuted at FORK granularity with
+>    role at MOMENT granularity, BH within each axis's computable
+>    family (the F6 resolution of the prereg's ambiguity — blocked
+>    within match×context either way); attack-face detectors by
+>    d↔1−d symmetry; rotation simplified for the single-face
+>    sampler; the {15 s} sensitivity re-reading the deep gating
+>    surface only.
+> 3. **THE UNEXPLAINED-TICKS STANCE NOTED**: preflight showed 72
+>    unexplained hold ticks (0.045%), localised to one moment where
+>    the executor short-circuits before the forcedStation read. The
+>    prereg's counted-not-gated stance stands (unlike V3-P1's
+>    hard-zero — the occupancy admission floor is the honest
+>    backstop: a hold that failed geometrically is excluded and
+>    counted). The full runs publish the unexplained share; a share
+>    that grows beyond noise at scale returns to the commander.
+> 4. **THE RUNS LAUNCH** detached (#49.5): sizing smoke
+>    (V4P2_MODE=smoke, 40 @10.0M) → the frozen N arithmetic (cap
+>    800) → census (V4P2_MODE=census, N @10.1M). All hard gates as
+>    frozen; the null stops CLASS H at the commander.
