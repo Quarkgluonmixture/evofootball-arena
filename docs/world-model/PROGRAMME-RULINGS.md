@@ -4514,3 +4514,44 @@
 >    dynamism-value asset — all banked; nothing shipped anywhere;
 >    the production fingerprint `57b0bdab…c673` unchanged across
 >    the entire arc (rulings #90–#109).
+
+> **COMMANDER RULING #110 (2026-08-01 — the user rules the #109.4
+> fork: option A; V4-P3-PARTIAL opens as a MEASUREMENT battery):**
+>
+> 1. **USER RULING RECORDED**: the #106.6/#109.4 fork was presented
+>    with the four options; the user ruled **"A: 部分消费者先行
+>    (推荐)"**. Options B (the A4 assignment contract) and C (the
+>    absence census) stay banked as the LIKELY NEXT steps once the
+>    residual is measured; D declined.
+> 2. **V4-P3-PARTIAL SCOPE**: the v3 role eye consumer PLUS the
+>    three H-independent remedies —
+>    (i) **THE IN-SUPPORT LAW (CLASS J)**: the eye is consulted
+>    ONLY at moments inside the census's sampled support (playing,
+>    ball owned — the generic certified-support law, never a
+>    named-phase carve-out); at out-of-support moments (restart
+>    phases, ball-in-flight: the measured 46% extrapolation
+>    surface) the incumbent machinery governs.
+>    (ii) **THE DELIVERY S BIT**: a percept-honest wide-occupancy
+>    context bit (a teammate holding width, read from the body's
+>    own snapshot with a named abstention class), entering the
+>    table through a TARGETED re-census of the affected cells —
+>    priced, never hand-coded.
+>    (iii) **THE OFFSIDE S FALLBACK (#99.2, now activated)**: a
+>    percept-honest beyond-line context bit (perceived second-last
+>    defender, abstention on staleness), same targeted-re-census
+>    path.
+> 3. **THE BATTERY SEMANTICS ARE PRE-DECLARED (a MEASUREMENT, not
+>    a deployment attempt)**: the P3a battery re-runs verbatim,
+>    but the verdict form changes ex ante — the REST limb is
+>    EXPECTED to fire and is REPORTED as the measured residual
+>    (the A4 target's size); the OTHER THREE limbs are the cure
+>    gates (they must go quiet for the remedies to be certified);
+>    the shape adjudicators must not regress (the #88.2 cure is
+>    non-negotiable). NO deployment claim from this stage under
+>    any reading. Nothing ships (Road B).
+> 4. **AUTHORIZED**: executor pre-registers V4-P3-PARTIAL per
+>    §0.0 (the design questions to freeze: the two bits' percept
+>    definitions + abstention classes; the targeted re-census
+>    scope and its sizing; the in-support law's exact predicate =
+>    the V3-P1 support form; the battery verdict form per #110.3);
+>    commander reviews; the standing pattern.

@@ -595,14 +595,20 @@ pay against a competent incumbent.** ⭐⭐⭐ Banked conclusion: the
 long-horizon discipline jobs are ASSIGNMENT-shaped (team-level
 agreement — A4's territory, the 野球 insight), not
 per-tick-gradient-shaped; what is measurable is the cost of ABSENCE.
-**#106.6 FIRED → THE QUEUE SITS AT THE USER FORK (#109.4)**: (A,
-recommended) V4-P3 PARTIAL with the three H-independent remedies
-(delivery S bit / offside S fallback #99.2 / restart J law) +
-battery re-run to measure the rest-defence residual; (B) the A4
-assignment contract now; (C) a fork-and-abandon ABSENCE census; (D)
-park v4. Nothing proceeds until the user rules. Forks (ii)/(iii)
-stay banked. R20 gaps / F9 any time. Road B stands; nothing ships;
-fingerprint unchanged across #90–#109.
+**#109.4 RULED (2026-08-01, the user: "A: 部分消费者先行") → ruling
+#110: V4-P3-PARTIAL OPENS as a MEASUREMENT battery** — the v3 role
+eye + three H-independent remedies: the generic IN-SUPPORT LAW
+(consume only inside certified support; the 46% extrapolation
+surface closes), the DELIVERY wide-occupancy S bit and the OFFSIDE
+beyond-line S bit (#99.2 activated), both percept-honest and priced
+through a TARGETED re-census. Battery verdict form pre-declared
+(#110.3): rest limb REPORTED as the measured residual (the A4
+target); the other three limbs = cure gates; shape cure must not
+regress; NO deployment claim. Options B (A4 assignment) and C
+(absence census) banked as likely next. **→ NEXT: executor
+pre-registers V4-P3-PARTIAL (workflow Draft→Verify §0.0).** Forks
+(ii)/(iii) stay banked. R20 gaps / F9 any time. Road B stands;
+nothing ships; fingerprint unchanged across #90–#110.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
