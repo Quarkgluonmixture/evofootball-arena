@@ -4300,3 +4300,46 @@
 >    (V4P2_MODE=smoke, 40 @10.0M) → the frozen N arithmetic (cap
 >    800) → census (V4P2_MODE=census, N @10.1M). All hard gates as
 >    frozen; the null stops CLASS H at the commander.
+
+> **COMMANDER RULING #105 (2026-08-01 — the P2 sizing smoke read;
+> the N formula's letter answer published and its mis-target
+> diagnosed; N re-pinned to 100 BEFORE the census; census launches):**
+>
+> 1. **SMOKE BANKED** (`stage3-v4-p2-sizing-smoke.json`, SHA
+>    `e382e5f7…`, 40 matches @10.0M): all hard gates green —
+>    X-FORK-IDENT 2,017/0 mismatches, clone 2,017/2,017, X-DET,
+>    X-SRC-ZERO, disjoint; 50.4 moments/match, 38,323 forks,
+>    admitted 19,185 / excluded 17,121 (occupancy floor dominates:
+>    12,777 — the per-protocol estimand as ratified; a third of
+>    forks land [0,0.05) occupancy = far candidates never reached);
+>    perMoment 415.7 ms; unexplained hold-tick share 0.0495%
+>    (within the #104.3 stance); eBallWon = 14.7% of hold ticks —
+>    the flip-non-terminal hedge behaviour is exercised at scale.
+> 2. **LABELLED SANITY READS** (smoke, non-gating): the POOLED deep
+>    hold-price is smoke-resolved NEGATIVE −0.0290 (σ̂ 0.0217,
+>    n=40 ⇒ ±0.0067) — holding a RANDOM lattice candidate is net
+>    harmful, exactly as a real price surface should read; pooled
+>    box −0.0082. The value question is per-cell, not pooled.
+> 3. ⛔ **THE FROZEN N FORMULA'S LETTER ANSWER IS PUBLISHED AND
+>    DIAGNOSED AS MIS-TARGETED**: N = min(⌈(1.96·0.0217/0.01)²⌉,
+>    800) = **19**. The formula sized the POOLED price — an
+>    estimand the smoke itself already resolves — while Claims 1+2
+>    read PER-CELL surfaces; the binding constraint is CELL
+>    attainability (floor 150), which at N=19 yields only 20/72
+>    in-power cells. A formula that under-sizes the actual claims
+>    is a sizing-design defect caught EXACTLY where
+>    sizing-before-floors (#44.5/#65) is meant to catch it.
+> 4. **N RE-PINNED TO 100, BEFORE THE CENSUS, BY A DISCLOSED RULE**
+>    (the #62.3 precedent: re-size on smoke realisations, door
+>    closed before the gate-bearing run): the attainability curve
+>    from the smoke is 19→20, 50→52, **100→55**, 200→56 (plateau;
+>    max 56). Rule: the smallest N in 50-steps reaching ≥ 95% of
+>    the plateau in-power count ⇒ **N = 100** (55/72 in-power;
+>    ≈ 70 min with X-DET — inside every budget). The 16
+>    zero-admission cells are DISCLOSED-DEAD (#24): published,
+>    never run as gates. The pooled-MDL letter answer stays
+>    published beside this ruling; optional stopping is foreclosed
+>    (one census, N fixed here, no extensions after sight).
+> 5. **THE CENSUS LAUNCHES** detached (#49.5): V4P2_MODE=census
+>    V4P2_N=100 @10.1M. Gates as frozen; the null stops CLASS H at
+>    the commander.
