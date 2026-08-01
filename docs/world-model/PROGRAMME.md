@@ -632,11 +632,18 @@ adjudicates); **P3p-3 gains an R3p-noOffside decomposition arm
 (#116.2(ii))**; pre-named home: a failed cure sends offside to the
 A4/absence family. Delivery bit direction banked (−0.048
 behind/level when width held; 60.7% UNKNOWN under strict —
-partial lever). **→ NEXT: executor pre-registers P3p-2 — THE
-CONSUMER** (extended-key lookup behind the P3p-0 flags, merged
-table as the probe table source, five arms, fork-grain mediators).
-Forks (ii)/(iii) stay banked. R20 gaps / F9 any time. Road B
-stands; nothing ships; fingerprint unchanged across #90–#116.
+partial lever). **P3p-2 PRE-REGISTERED (`4c49b01`) → review #117: the machine-verify
+BLOCKED on a seed collision from the COMMANDER'S OWN BRIEF (owned;
+the pipeline caught it at every station) → resolved by MOVING P3p-2
+to 11.0M/11.1M (the battery's ratified 10.6–10.9M reservation
+untouched); everything else ratified (fallback order, control not
+bit-split, prune rule, DEV 0.22 re-confirm, readings A–D).
+→ NEXT: executor BUILDS P3p-2a — the src consumption wiring (three
+named files, existing flags, no new flags) + the dormancy re-proof
+(X-OFF-IDENT / X-FP-PROD / vitest); then P3p-2b (the consumer
+probe).** Forks (ii)/(iii) stay banked. R20 gaps / F9 any time.
+Road B stands; nothing ships; fingerprint unchanged across
+#90–#117.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

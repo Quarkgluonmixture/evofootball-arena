@@ -4826,3 +4826,45 @@
 >    stage freeze; fork-grain mediators (offside rate, delivery
 >    events, restart resettle, rest-slot occupancy) pre-named. The
 >    #116.2(ii) directive binds the P3p-3 pre-reg.
+
+> **COMMANDER RULING #117 (2026-08-02 — P3p-2 pre-registration
+> reviewed: the machine-verify BLOCKED on a seed collision that
+> originated in the COMMANDER'S OWN BRIEF (owned); resolved by
+> moving P3p-2; everything else ratified; P3p-2a build
+> authorized):**
+>
+> 1. **THE BLOCK, OWNED**: verify failed on exactly one item —
+>    the brief-directed P3p-2 bands 10.7M/10.8M sit INSIDE the
+>    #111-ratified P3p-3 battery reservation (10.6M–10.9M, stage
+>    freeze §6.4), a #46.2 violation. The collision came from the
+>    commander's dispatch brief; the executor followed it AND
+>    flagged it as the top ambiguity; the verifier blocked it.
+>    The pipeline did its job at every station.
+> 2. **RESOLVED — P3p-2 MOVES**: smoke 11.0M, run 11.1M (amended
+>    in the doc at review, disclosed in place). The battery's
+>    RATIFIED reservation is not touched — a ratified freeze
+>    outranks a bands-in-brief proposal, and no P3p-2 seed had
+>    been drawn. The executor's re-base alternative is declined.
+> 3. **EVERYTHING ELSE RATIFIED** (`4c49b01` + the #117
+>    amendments): the frozen per-candidate fallback order
+>    (family by dx → in-scope → bit → child-in-power → base;
+>    abstention never invents a value); **the control NOT
+>    bit-split** (a bit-split control was never censused — I3);
+>    the table injection as probe config on eye.v3.children +
+>    mergedTableSha (the eye.v4.mergedChildren alternative
+>    considered and declined — cosmetic, every read is
+>    v4-flag-gated); STRICT keying realised by artifact shape (no
+>    delivery-0 children exist); the R1p/R2p prune rule
+>    (wall-cost at smoke, disclosed before the run); DEV 0.22
+>    carried with smoke re-confirmation on the law-shrunken
+>    denominator; PC inverted-twin HARD; the wall-cost-driven N
+>    with the #105 knee as fallback; stats 99703/99803; readings
+>    A–D with stop-at-commander semantics; no deployment claim.
+> 4. **AUTHORIZED — P3p-2a (src wiring)**: executor lifts the bit
+>    computation to load-bearing and installs the extended-key
+>    resolve() in the three NAMED files (actionExecutor.ts,
+>    stationEye.ts, Match.ts; eyeContextBitsV4.ts untouched),
+>    behind the EXISTING flags, no new flags (#75 form); then
+>    RE-PROVES dormancy: X-OFF-IDENT double-build byte-compare,
+>    X-FP-PROD `57b0bdab…c673`, vitest green. Then P3p-2b (the
+>    probe) builds per the frozen doc.

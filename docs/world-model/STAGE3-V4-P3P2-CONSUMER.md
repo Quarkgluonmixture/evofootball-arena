@@ -381,8 +381,8 @@ The block-walk high-water mark is the P3p-1 census (480 @ 10.5M → seeds ≤
 10,500,479). Proposed NEW bands (task-directed):
 
 ```text
-P3p-2b sizing smoke   10.7M   (10,700,000 + k)
-P3p-2b consumer run   10.8M   (10,800,000 + k, k over the disclosed-rule N)
+P3p-2b sizing smoke   11.0M   (11,000,000 + k)          [#117 amendment]
+P3p-2b consumer run   11.1M   (11,100,000 + k, k over the disclosed-rule N)   [#117 amendment]
 new stats seeds       bootstrap 99703  ·  permutation 99803   (99603 is RESERVED for the P3p-3 battery, stage freeze §6.4)
 ```
 
@@ -399,6 +399,13 @@ battery block above the P3p-2 run** at the P3p-3 pre-reg (e.g. base 11.0M, block
 task-directed 10.7M/10.8M here. The alternative is to MOVE P3p-2 above the whole
 battery reservation (smoke 11.0M / run 11.1M). Both preserve disjointness; I
 recommend the re-base and flag it as the single most important item for review.
+
+**RESOLVED AT COMMANDER REVIEW (#117): P3p-2 MOVES — smoke 11.0M, run
+11.1M (the bands above are amended accordingly). The battery's ratified
+reservation (10.6M–10.9M, #111.3) is NOT touched: a ratified freeze
+outranks a bands-in-brief proposal, and the collision originated in the
+commander's own dispatch brief (owned in #117). No P3p-2 seed had been
+drawn.**
 
 Stats seeds `99703 / 99803` are verified fresh (disjoint from the used
 90k–99k set and from the reserved 99603). Publish-not-pool.
@@ -463,7 +470,7 @@ trigger, not this stage's.
 | sub-step | object | key gates |
 | --- | --- | --- |
 | **P3p-2a** | the src wiring: the extended-key consumption upgrade at the P3p-0 seam (§2.2), the merged-children injection field (§2.3), the child-vs-base ledger fields — the three NAMED files only (§2.4) | X-OFF-IDENT (re-run) · X-SRC-ZERO(named) · X-FP-PROD · tsc clean · vitest green |
-| **P3p-2b** | the consumer probe [`scripts/probes/stage3-v4-p3p2-consumer.ts`](../../scripts/probes/stage3-v4-p3p2-consumer.ts): the five arms (§3.2), the fork-grain instrument (§3.3), the mediators + ledger (§4); smoke @10.7M → disclosed-rule N → run @10.8M | X4/X5/X6/X7 · DEV · PC · X-MERGE-SHA · X-DET · seed disjointness |
+| **P3p-2b** | the consumer probe [`scripts/probes/stage3-v4-p3p2-consumer.ts`](../../scripts/probes/stage3-v4-p3p2-consumer.ts): the five arms (§3.2), the fork-grain instrument (§3.3), the mediators + ledger (§4); smoke @11.0M → disclosed-rule N → run @11.1M (#117) | X4/X5/X6/X7 · DEV · PC · X-MERGE-SHA · X-DET · seed disjointness |
 
 Each sub-step is a FUTURE authorized step (freeze → review → build → run,
 Draft→Verify §0.0; the long run supervised by the commander's resident session,
@@ -529,7 +536,7 @@ last detail; each re-appears in the P3p-2a/2b `deviations` block.
    N\* = smallest match count meeting a disclosed CI-width + wall-cost budget (the
    #105 knee only if a floor unexpectedly binds). Publish-not-pool.
 9. **THE PROPOSED SEED BANDS + THE BATTERY COLLISION** (§5.2, ⚠⚠ TOP AMBIGUITY):
-   smoke 10.7M / run 10.8M / stats 99703·99803 — but 10.7M/10.8M fall INSIDE the
+   smoke 11.0M / run 11.1M (#117 amendment) / stats 99703·99803 — the originally task-directed 10.7M/10.8M fell INSIDE the
    #111-ratified P3p-3 battery reservation (10.6M..10.9M). Recommended fix: re-base
    the P3p-3 battery above 10.8M at its pre-reg (keep bootstrap 99603); alternative:
    move P3p-2 to 11.0M/11.1M. Commander decides.
