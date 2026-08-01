@@ -688,6 +688,24 @@ export class Match {
       readonly roleTable: RoleConditionedTable;
       readonly control: RoleControlLevels;
     };
+    /**
+     * Stage III V4-P3-PARTIAL (STAGE3-V4-P3-PARTIAL §2.3/§3.4, P3p-0): three
+     * INDEPENDENT, DEFAULT-OFF opt-in flags gating the dormant seams — the
+     * in-support law (§2) and the two S bits (§3). Each is an EXPLICIT
+     * `=== true` opt-in on its OWN named flag (ruling #75's lesson: a
+     * `!== undefined` gate once fired inside an old experiment, so every new
+     * gate is an explicit boolean). Absent everywhere in production and in the
+     * v1/v2/v3 arms ⇒ the consumption path is BYTE-IDENTICAL to the v3 eye
+     * (X-OFF-IDENT). Built dormant at P3p-0; consumed (merged table) at P3p-2.
+     */
+    readonly v4?: {
+      /** §2: consult the eye ONLY at in-support moments; else holdIncumbent. */
+      readonly inSupportLaw?: boolean;
+      /** §3.1: compute the wide-occupancy bit (observability only until P3p-2). */
+      readonly deliveryBit?: boolean;
+      /** §3.2: compute the beyond-line bit (observability only until P3p-2). */
+      readonly offsideBit?: boolean;
+    };
     /** Probe-owned observability sink; the sim never reads it back. */
     readonly trace?: StationEyeTrace;
   } | null = null;

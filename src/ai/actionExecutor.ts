@@ -8,10 +8,13 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
-  EYE_W_S, STATION_FAMILY, goingBits, goingContributors, localXBand, perceivedContext,
+  EYE_LATTICE, EYE_W_S, STATION_FAMILY, goingBits, goingContributors, localXBand, perceivedContext,
   perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
   type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
+import {
+  beyondLineBit, evaluateInSupport, perceivedOffsideLine, widthHeldBit,
+} from './eyeContextBitsV4';
 import { pressureAt } from './perception';
 import {
   cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
@@ -801,7 +804,27 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         };
         match.stationEyeState.set(p.gid, state);
       };
-      if (context === null) {
+      // V4-P3-PARTIAL §2 (P3p-0, ruling #110/#111): the IN-SUPPORT LAW. When the
+      // `inSupportLaw` flag is armed, the eye is consulted ONLY at a decision
+      // moment satisfying the V3-P1 support predicate — evaluated PERCEPT-HONESTLY
+      // on THIS body's own snapshot (the FRESH LIVE perceived owner, not the
+      // retained ledger) plus the public `match.phase` whistle read (#8(l)). Every
+      // out-of-support moment is a named holdIncumbent (the incumbent machinery
+      // governs, #110.2(i)), classified into the four E-OOS counters. Absent (or
+      // false) ⇒ `support` is 'IN_SUPPORT' and this whole gate is inert: the branch
+      // below is byte-identical to the v3 eye (X-OFF-IDENT).
+      const support = eye.v4?.inSupportLaw === true
+        ? evaluateInSupport(snap, match.phase === 'playing')
+        : 'IN_SUPPORT';
+      if (support !== 'IN_SUPPORT') {
+        if (trace !== undefined) {
+          if (support === 'E-OOS-PHASE') trace.v4OosPhase += 1;
+          else if (support === 'E-OOS-UNSEEN') trace.v4OosUnseen += 1;
+          else if (support === 'E-OOS-INFLIGHT') trace.v4OosInflight += 1;
+          else trace.v4OosStale += 1;
+        }
+        holdIncumbent();
+      } else if (context === null) {
         if (trace !== undefined) {
           if (oracle) trace.abstainNoOwner += 1;
           else if (snap === null) trace.abstainNoSnapshot += 1;
@@ -810,6 +833,29 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         }
         holdIncumbent();
       } else {
+        if (trace !== undefined && eye.v4?.inSupportLaw === true) trace.v4InSupport += 1;
+        // V4-P3-PARTIAL §3 (P3p-0): the TWO S BITS, computed PERCEPT-HONESTLY from
+        // THIS body's own snapshot when their flag is armed. DORMANT observability
+        // ONLY — the priced cell below is NOT yet extended (the merged bit-split
+        // table is P3p-1/P3p-2); here the tri-state is merely tallied to the trace
+        // (the census/consumer read the same pure functions). Flag-off ⇒ nothing
+        // runs (X-OFF-IDENT); a UNKNOWN abstention is counted, never a silent 0.
+        if (trace !== undefined && eye.v4?.deliveryBit === true) {
+          const wh = widthHeldBit(snap, p.gid, p.side, (x) => team.localX(x));
+          if (wh === 1) trace.v4WidthHeld1 += 1;
+          else if (wh === 0) trace.v4WidthHeld0 += 1;
+          else trace.v4WidthHeldUnknown += 1;
+        }
+        if (trace !== undefined && eye.v4?.offsideBit === true) {
+          const line = perceivedOffsideLine(snap, p.side, (x) => team.localX(x));
+          const ballLocalX = snap?.ball ? team.localX(snap.ball.pos.x) : team.localX(ball.pos.x);
+          for (const cand of EYE_LATTICE) {
+            const bl = beyondLineBit(line, ballLocalX, cand.dx);
+            if (bl === 1) trace.v4BeyondLine1 += 1;
+            else if (bl === 0) trace.v4BeyondLine0 += 1;
+            else trace.v4BeyondLineUnknown += 1;
+          }
+        }
         let outcome;
         // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / v3 / incumbent).
         let v2rCommitContributors: Set<number> = new Set();

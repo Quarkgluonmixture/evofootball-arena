@@ -164,6 +164,25 @@ export interface StationEyeTrace {
   abortNewContributors: number;
   /** distinct NEW-contributor identities that drove aborts: gid → count. */
   abortDrivers: Map<number, number>;
+  // --- V4-P3-PARTIAL §2/§3 (P3p-0): the dormant law + two-bit observability ------
+  // Written ONLY when the matching `eye.v4` flag is set (absent in production and
+  // in every v1/v2/v3 arm ⇒ these stay 0, X-OFF-IDENT). The counters expose the
+  // in-support classification and each bit's tri-state to the P3p-1 census / the
+  // P3p-2 consumer (the `c4Trace`/StationEyeTrace write-only precedent).
+  /** §2: in-support-law classification tallies (one per consulted decision). */
+  v4InSupport: number;
+  v4OosPhase: number;
+  v4OosUnseen: number;
+  v4OosInflight: number;
+  v4OosStale: number;
+  /** §3.1: delivery wide-occupancy bit tri-state (per decision, one MOMENT value). */
+  v4WidthHeld0: number;
+  v4WidthHeld1: number;
+  v4WidthHeldUnknown: number;
+  /** §3.2: offside beyond-line bit tri-state (summed over the 18 per-CANDIDATE reads). */
+  v4BeyondLine0: number;
+  v4BeyondLine1: number;
+  v4BeyondLineUnknown: number;
 }
 
 export const newStationEyeTrace = (): StationEyeTrace => ({
@@ -173,6 +192,9 @@ export const newStationEyeTrace = (): StationEyeTrace => ({
   ctxSeen: 0, ctxAgree: 0, ctxAgreeFace: 0, ctxAgreeThreat: 0, ctxAgreeDensity: 0,
   abort: 0, abortTicks: new Map(), abortWastedTicks: 0,
   abortGCommit: 0, abortGMid: 0, abortNewContributors: 0, abortDrivers: new Map(),
+  v4InSupport: 0, v4OosPhase: 0, v4OosUnseen: 0, v4OosInflight: 0, v4OosStale: 0,
+  v4WidthHeld0: 0, v4WidthHeld1: 0, v4WidthHeldUnknown: 0,
+  v4BeyondLine0: 0, v4BeyondLine1: 0, v4BeyondLineUnknown: 0,
 });
 
 /** §2.2: the station families. Ball-directed jobs are never overridden. */
