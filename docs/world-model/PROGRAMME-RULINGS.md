@@ -4463,3 +4463,54 @@
 >    (@10.3M). Gates as frozen; #106.6 stands — a repeat
 >    all-negative-with-deep-worst surface routes CLASS H to the
 >    fallback fork at the commander WITH THE USER.
+
+> **COMMANDER RULING #109 (2026-08-01 — V4-P2b adjudicated: the
+> negative is REAL; the #106.6 disposition FIRES; CLASS H falls to
+> the user fork; the assignment-shaped conclusion banked):**
+>
+> 1. **BANKED**: smoke (knee N=100, occupancy 0.685 up from P2's
+>    0.486 as designed, freeFraction 0.131) + census (N=100 @10.3M,
+>    63,533 admitted pairs — a third more than P2) + §RESULT + both
+>    data files (`4018503`; number-verify 4/4, zero violations,
+>    sign accounting recomputed from source). All hard gates green
+>    across both runs.
+> 2. **READING A PUBLISHES; THE SIGN ADJUDICATED**: 55 in-power
+>    cells — **0 resolve POSITIVE**, 33 resolve negative, 22
+>    straddle. The instrument is CLEAN this time: magnitudes halved
+>    (least-negative −0.0143 vs P2's spread to −0.0531), the
+>    Δ_statue decomposition shows 42/55 cells moving toward zero,
+>    and the largest single swing (middle/ST/deep-central: statue
+>    −0.048 → containment +0.005, unresolved) is exactly where the
+>    statue artifact was worst. The residual negative is a REAL
+>    measurement, not an artifact: **marginal region-occupancy
+>    during own possession does not pay in this world against an
+>    incumbent that already does the jobs.**
+> 3. ⭐⭐⭐ **THE MEASUREMENT-FAMILY CONCLUSION, banked**:
+>    constraint-pricing against a competent incumbent CANNOT see
+>    job value — presence has no marginal price where presence
+>    already exists; what is measurable is the cost of ABSENCE
+>    (P0's beyond-horizon curves measured exactly that). Two
+>    instrument generations (point-statue, region-containment)
+>    triangulate the same shape: **the long-horizon discipline
+>    jobs are ASSIGNMENT-shaped (who owns which job — a team-level
+>    agreement), not per-tick-gradient-shaped (an individual argmax
+>    term)**. This unifies the estimand arc with the user's 野球
+>    insight and v3's roles-as-minimal-doctrine: the next doctrine
+>    layer above ROLE is JOB ASSIGNMENT — A4's territory.
+> 4. **#106.6 FIRES — THE FORK GOES TO THE USER** (no third
+>    instrument iteration without a ruling): CLASS H (the rest
+>    limb; offside's H route) has no consumer term from this
+>    family. NOT blocked: the delivery S bit, offside's banked S
+>    fallback (#99.2 — the beyond-line context flag), the restart
+>    J law + the measured 46% extrapolation surface. Options
+>    presented to the user: (A, recommended) V4-P3 PARTIAL — mount
+>    the three H-independent remedies, re-run the P3a battery,
+>    measure how far they cure and how deep the rest-defence
+>    residual really is before designing A4; (B) the A4 assignment
+>    contract now; (C) a fork-and-abandon ABSENCE census first;
+>    (D) park v4, bank everything, return to the C-track or other.
+> 5. **THE v4 LEDGER STANDS**: routing map, calibration table, two
+>    price surfaces (statue + containment), the exposure map, the
+>    dynamism-value asset — all banked; nothing shipped anywhere;
+>    the production fingerprint `57b0bdab…c673` unchanged across
+>    the entire arc (rulings #90–#109).

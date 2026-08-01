@@ -586,18 +586,23 @@ resolved prices are NEGATIVE (−0.011…−0.053): the point-freeze
 enforcement priced BEING A STATUE vs incumbent dynamics; the
 gradient (deep worst) cannot buy rest defence. ⭐ Banked as the
 DYNAMISM-VALUE MAP (responsiveness itself costs 0.011–0.053
-goals/15 s, worst deep/wide — a labelled asset). **V4-P2b PRE-REGISTERED (`700c4c1`; verify clean) → review #107
-PASS, seven flagged choices ratified** (nearest-boundary own-wing
-re-entry; Schmitt hysteresis 1.0 m; folded-wide containment;
-OCC_FLOOR kept; the `free` tick class; knee-rule N, pooled-MDL
-retired). **→ NEXT: executor BUILDS
-`scripts/probes/stage3-v4-p2b-region-hold.ts` (workflow
-Draft→Verify §0.0), then commander runs smoke @10.2M → knee N →
-census @10.3M detached (#49.5). P3 WAITS for the P2b surface.**
-Pre-named (#106.6): a repeat all-negative sign at P2b is a REAL
-finding → CLASS H falls to the registered fallback fork at the
-commander WITH the user. Forks (ii)/(iii) stay banked. R20 gaps /
-F9 any time. Road B stands; nothing ships.
+goals/15 s, worst deep/wide — a labelled asset). **V4-P2b RAN CLEAN (build #108 → smoke knee N=100 → census reading
+A; §RESULT + data `4018503`, verify 4/4) → ruling #109: THE NEGATIVE
+IS REAL — 0/55 in-power cells resolve positive (33 negative, 22
+straddle), magnitudes halved vs the statue and the instrument clean
+(Δ_statue 42/55 toward zero), so marginal region-occupancy does not
+pay against a competent incumbent.** ⭐⭐⭐ Banked conclusion: the
+long-horizon discipline jobs are ASSIGNMENT-shaped (team-level
+agreement — A4's territory, the 野球 insight), not
+per-tick-gradient-shaped; what is measurable is the cost of ABSENCE.
+**#106.6 FIRED → THE QUEUE SITS AT THE USER FORK (#109.4)**: (A,
+recommended) V4-P3 PARTIAL with the three H-independent remedies
+(delivery S bit / offside S fallback #99.2 / restart J law) +
+battery re-run to measure the rest-defence residual; (B) the A4
+assignment contract now; (C) a fork-and-abandon ABSENCE census; (D)
+park v4. Nothing proceeds until the user rules. Forks (ii)/(iii)
+stay banked. R20 gaps / F9 any time. Road B stands; nothing ships;
+fingerprint unchanged across #90–#109.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
