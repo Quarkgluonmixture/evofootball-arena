@@ -4778,3 +4778,51 @@
 > 4. **THE CENSUS LAUNCHES**: V4P3P1_MODE=census V4P3P1_N=480
 >    @10.5M, keying resolved from the smoke pin (STRICT). All
 >    gates as frozen; the merged table lands for P3p-2.
+
+> **COMMANDER RULING #116 (2026-08-02 — P3p-1 CLOSES; the OFFSIDE
+> INVERSION adjudicated as a measured caution; the P3p-3
+> decomposition-arm directive issued; P3p-2 authorized):**
+>
+> 1. **P3p-1 CLOSES, FULLY BANKED**: census N=480 @10.5M (38,355
+>    moments / 13,786 in-scope; 418 children seen / 323 merged:
+>    delivery bit1 126, offside bit0 64 / bit1 133); ALL gates
+>    green (X-FORK-IDENT, clone, X-DET, X-SRC-ZERO, X-MERGE-IDENT
+>    both parts — the v3 base SHA `171a6dad…6559f` reproduced
+>    byte-for-byte, 288 partitions exact — X-EPS-REASSERT,
+>    X-FP-PROD); the merged table `39662445…9d6105` banked;
+>    write-up `bd6ad73` (number-verify 4/4; the deltas recomputed
+>    to the digit; BOTH analytic SHAs independently reproduced
+>    from scratch).
+> 2. ⛔⭐ **THE OFFSIDE INVERSION, adjudicated as a MEASURED
+>    CAUTION (not a verdict)**: given the beyond-line distinction,
+>    the short-horizon axis PREFERS beyond-line candidates —
+>    child-vs-base Δ = **+0.049 mean (n=133)** for bit=1 vs
+>    **−0.090 (n=64)** for bit=0. Reading: inside 6/10 s a
+>    beyond-line run is breakaway upside; the offside COST is the
+>    long tail (P0b: 0.91 of it beyond 10 s — which is WHY offside
+>    routed H with bothFired). The #99.2 S-fallback premise
+>    ("visible but averaged away") is now measured FALSE at this
+>    estimand: the distinction is visible and its sign points the
+>    WRONG WAY for a cure. Disposition: (i) the offside bit STAYS
+>    in the consumer — the battery adjudicates, composition
+>    effects may differ; (ii) **DIRECTIVE for the P3p-3 pre-reg:
+>    an R3p-noOffside DECOMPOSITION ARM replaces one prunable
+>    ladder rung** (the bit's marginal effect on the offside limb
+>    measured directly); (iii) PRE-NAMED HOME: if the battery
+>    shows the bit worsens (or fails to cure) the offside limb,
+>    the offside cure formally joins the H/assignment family
+>    (A4 / the absence census) — named now, no re-cutting later.
+> 3. **BANKED**: the delivery bit's direction (behind/level
+>    candidates −0.048 when width is held — the eye stops tucking
+>    in behind when width exists); the strict-keying UNKNOWN share
+>    (delivery 60.7% UNKNOWN ⇒ the bit fires on ~39% of in-scope
+>    moments — a real but partial lever, labelled).
+> 4. **AUTHORIZED — P3p-2 (the consumer)**: executor pre-registers
+>    per §0.0: the extended-key table lookup at consumption behind
+>    the EXISTING P3p-0 flags (bit computed percept-honestly at
+>    the decision, abstention/under-powered → base; the in-support
+>    law gating consultation); the merged-table artifact as the
+>    probe arms' table source; the five-arm structure per the
+>    stage freeze; fork-grain mediators (offside rate, delivery
+>    events, restart resettle, rest-slot occupancy) pre-named. The
+>    #116.2(ii) directive binds the P3p-3 pre-reg.
