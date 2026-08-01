@@ -467,3 +467,234 @@ mechanisms (`forcedStation` `Match.ts:626` / `actionExecutor.ts:639–649`, the
 pitch geometry `constants.ts:34–37,55`). **No `docs/world-model/data/*.json` was
 opened and nothing was run before this document is committed.** This freeze
 RETURNS TO THE COMMANDER; the probe is a future authorized step.
+
+---
+
+## §RESULT — the AUTHORIZED runs (#108 launch): reading A — THE DESIGN CASE (§5-A) — the region surface lands (0 positive / 33 negative / 22 straddle) and RETURNS to the commander
+
+Run to completion under the commander's resident session (#49.5), the **frozen
+probe as reviewed** (pre-registration PASS #107; probe build PASS #108,
+committed `179d40c`; gating unit = DEEP per #103.3; no instrument / window /
+seed-block / floor / cell-grid / gate re-cut after sight). Two runs, seed
+families disjoint (§2.4 / #46.2): the **sizing smoke** (40 matches
+`10,200,000 + k, k∈0..39`, HEAD `69e7457`) realized the sizing inputs and
+pinned the census N via the frozen knee rule; the census ran **N = 100 matches
+`10,300,000 + k, k∈0..99`** at HEAD **`69e7457`**. ENRICHED eye-null world
+(§0.0 / #67.3, `stationEye` NULL, `forcedStation` the only forcing seam);
+`src/**` byte-identical — production fingerprint `57b0bdab…c673` unchanged
+(X-SRC-ZERO PASS, Road B held, nothing shipped).
+
+The census verdict (verbatim): **`CENSUS — DESIGN CASE (§5-A): ≥1 in-power cell
+deep-price CI excludes 0 AND the surface separates by region and/or role —
+RETURNS to the commander with the price surface; V4-P3 reads the in-power
+cells. STOPS AT COMMANDER (P2 builds no consumer). [Claim1=true Claim2=true]
+(the disposition is recorded; the DECISION is the commander’s — P2b builds no
+consumer and stops here; a repeat all-negative-deep-worst sign routes CLASS H
+to the #106.6 fallback fork at the commander).`** Reading code **A**.
+
+### THE SIZING SMOKE (labelled, NON-GATING — §2.3 / #44.5 / #65)
+
+40 matches on `10,200,000 + k, k∈0..39`, enriched eye-null, the full
+fork-and-hold instrument with the region containment (§2.1), X-DET double-run,
+written OUTSIDE the canonical corpus. Hard gates all green: **X-FORK-IDENT
+2,001 checked / 0 mismatched** (100 % coverage), **clone 2,001 / 2,001**
+(`clonesTaken == momentsForked`), **X-DET** true, **X-SRC-ZERO** (fingerprint
+`57b0bdab…c673` = observed), **seed-disjoint** true (also asserting
+disjointness from P2's 10.0M/10.1M/99003/99103). Coverage: 2,083 qualifying →
+**2,001 moments** (**50.025 moments/match**), 82 ball-directed skipped, 38,019
+forks; **admitted 25,391 / excluded 10,627** pairs.
+
+Occupancy (mean **0.684944**, sd 0.286668, min 0, max 1): the predicted upward
+shift is realized — vs **P2's §RESULT mean 0.486** (§2.2, the anticipated shift
+from point-arrival to region-membership). The occupancy floor excluded **6,247**
+pairs by `occupancy < OCC_FLOOR = 0.5`, admitted-by-occupancy 25,391; the
+histogram head is **1,867 pairs in `[0,0.05)`** (P2's head was 10,114) and the
+mass now piles high (5,798 in `[0.85,0.9)`, 5,254 in `[0.9,0.95)`). Schmitt
+latch (§2.1): **engage 43,149 / disengage 12,537**; steer-ticks 23,816,709,
+free-ticks 3,582,477 of 27,399,186 hold-ticks, **freeFraction 0.1308** (the
+share of hold ticks the body governed itself). Exception-tick shares (of
+27,403,620): `ok` 0.579156, **`free` 0.098845**, `ePaused` 0.154377, **`eBallWon`
+0.149974** (the flip-non-terminal hedge behaviour at scale), `eOnside` 0.016728,
+`eCarrier` 0.000307, `eEnded` 0.000162, `eSentOff` (E-INJURY) 10 ticks,
+`eBarred` 0, **`unexplained` share 0.000450** (12,345 ticks).
+
+Labelled context (non-gating): the pooled-MDL formula is RETIRED (§2.3 /
+#107.2(vi)); pooled **deep hold-price −0.015301** (σ̂ 0.017559, 40 finite
+matches), pooled **box hold-price −0.001491** (σ̂ 0.020345) are kept as
+LABELLED CONTEXT only — they no longer gate N. Per-moment wall-cost **424.179 ms**
+(848,785 ms / 2,001 moments; NON-deterministic, excluded from X-DET/SHA).
+
+The N rule (frozen attainability knee, §2.3): the smoke's per-cell
+attainability curve is `50→53, 100→56, 150→56, … , 800→56`, **plateau max 56**;
+the rule = the smallest 50-step N reaching ≥ `0.95·56 = 53.2` in-power cells ⇒
+**N = 100** (`50→53 < 53.2`), **56/72 in-power projected at N**. The **16
+zero-admission cells** (`theirThird × {DF,MF,WG,ST} × {deep-central,deep-wide}`
+and `ownThird × {DF,MF,WG,ST} × {high-central,high-wide}`) are DISCLOSED-DEAD
+(#24): published, never run as gates. Smoke output SHA-256
+**`c2bf25ce807c374d47b79789ad2f49e50ac2f5840089f8fecbc73e47eecf8c57`**. Smoke
+verdict (verbatim, LABELLED — not a verdict): **`SIZING SMOKE — NOT a verdict
+(§2.3, #44.5/#65): realizes occupancy, exception+latch shares, the attainability
+curve, per-moment wall-cost and pins the census N via the FROZEN KNEE RULE
+(labelled, non-gating). Pass nRule.N as V4P2B_N to the census.`**
+
+### THE CENSUS (N = 100 @ 10.3M)
+
+`matchCount = nCensus = 100`; seeds `10,300,000 + k, k∈0..99`; enriched
+eye-null; `W_hold = 15 s` / `W_long = 30 s`; `OCC_FLOOR = 0.5`;
+`CELL_FLOOR = 150`; cluster bootstrap `B = 2000`, `BOOTSTRAP_SEED = 99203`;
+permutation `PERM_B = 2000`, `PERMUTATION_SEED = 99303`, BH `q = 0.05`. **Gating
+unit = DEEP** (calib 0.0435, #103.3); box (calib 0.1952) = labelled SECONDARY.
+HEAD **`69e7457`**. Coverage: 5,218 qualifying → **4,978 moments**, 240
+ball-directed skipped, **94,582 forks**; **admitted 63,533 / excluded 26,071**
+pairs. Per-moment wall-cost **427.461 ms** (2,127,900 instrument-ms / 4,978
+moments; run total 2,130,235 ms; NON-deterministic). Census output SHA-256
+**`6f1160f2bddc176a3140997053693efa6175267e92bf6005a227f0726f1f3460`**.
+
+### THE CLAIMS (both read at the primary `W_long = 30 s`)
+
+* **Claim 1 — NONZERO PRICES: `true`.** Note (verbatim): *"Claim 1 — NONZERO
+  PRICES: ≥1 in-power cell has a DEEP-price match-cluster bootstrap CI (B=2000,
+  seed 99203) excluding 0 (#103.3 gating unit)."*
+* **Claim 2 — SEPARATION: `true`.** Note (verbatim): *"Claim 2 — SEPARATION:
+  BH-significant SPREAD-S on ≥1 axis (region and/or role) by
+  within-(match×context) permutation."* (`claim2Region = true`,
+  `claim2Role = true`.)
+
+**The separation block** (SPREAD-S = max−min of the deep-converted cell price
+over in-power levels; within-(match×context) label permutation; `PERM_B = 2000`,
+`PERMUTATION_SEED = 99303`, BH `q = 0.05`; never a bootstrap CI on S,
+#80.2/I11):
+
+* **REGION axis — 10 / 12 computable cells BH-significant** (raw-resolved 10,
+  BH-resolved 10):
+  `ownThird/DF` (S 0.030223, permP 0; argMax deep-central, argMin mid-central);
+  `ownThird/MF` (S 0.031893, permP 0.003; argMax deep-central, argMin deep-wide);
+  `ownThird/ST` (S 0.026237, permP 0.015; argMax mid-central, argMin deep-wide);
+  `middle/DF` (S 0.026033, permP 0; argMax high-wide, argMin mid-wide);
+  `middle/MF` (S 0.035198, permP 0; argMax mid-central, argMin deep-wide);
+  `middle/WG` (S 0.042759, permP 0; argMax high-central, argMin deep-wide);
+  `middle/ST` (S 0.029467, permP 0.0005; argMax deep-central, argMin deep-wide);
+  `theirThird/DF` (S 0.038788, permP 0; argMax high-central, argMin mid-wide);
+  `theirThird/MF` (S 0.021185, permP 0.0075; argMax mid-central, argMin mid-wide);
+  `theirThird/ST` (S 0.023240, permP 0.002; argMax mid-central, argMin high-wide).
+  The 2 non-significant: `ownThird/WG` (S 0.012322, permP 0.1265) and
+  `theirThird/WG` (S 0.009113, permP 0.2385).
+* **ROLE axis — 1 / 14 computable cells BH-significant:** `middle/mid-wide`
+  (S 0.043049, permP 0; argMax ST, argMin DF). (raw-resolved 2 —
+  `middle/deep-central` S 0.033191, permP 0.021, resolved but NOT BH-significant
+  — BH-resolved 1.)
+
+**Reading code A** — reading string (verbatim): *"DESIGN CASE (§5-A): ≥1
+in-power cell deep-price CI excludes 0 AND the surface separates by region
+and/or role — RETURNS to the commander with the price surface; V4-P3 reads the
+in-power cells. STOPS AT COMMANDER (P2 builds no consumer)."*
+
+### THE PRICE SURFACE (deep GATING price, goal-value; primary `W_long = 30 s`)
+
+**In-power: 55 / 72 cells** (`CELL_FLOOR = 150`); **17 under-powered**
+(published, never pooled, #24/#44.5). Of the 55 in-power, **AS A RUN FACT: 0
+cells resolve POSITIVE, 33 resolve NEGATIVE** (deep-price CI excludes 0 with
+point < 0) **and 22 are in-power but STRADDLE 0** (CI includes 0) — four of the
+22 carry positive point estimates (`middle/ST/deep-central` +0.004587,
+`theirThird/MF/mid-central` +0.012734, `middle/ST/high-central` +0.003434,
+`middle/ST/high-wide` +0.003209), none resolving. The resolved gating prices
+range **−0.014316 [−0.027766, −0.001554]** (`middle/MF/deep-central`,
+least-negative) … **−0.050983 [−0.068973, −0.034293]** (`middle/WG/deep-wide`,
+most-negative). The full resolved table, sorted least-negative first (deep price
+point [cluster-bootstrap CI]; `Δ_statue = P2b − P2` deep, from the committed P2
+census content SHA `3f332a8e…24a9`):
+
+| # | context | role | region | admitted | deep GATING price [CI] | Δ_statue (deep) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | middle | MF | deep-central | 629 | −0.014316 [−0.027766, −0.001554] | +0.016502 |
+| 2 | theirThird | WG | high-central | 1,560 | −0.015560 [−0.028642, −0.003177] | +0.010306 |
+| 3 | ownThird | MF | deep-central | 1,977 | −0.016084 [−0.029090, −0.003793] | +0.025733 |
+| 4 | theirThird | DF | mid-central | 508 | −0.017297 [−0.033566, −0.000680] | −0.001347 |
+| 5 | middle | WG | mid-central | 2,860 | −0.017674 [−0.028221, −0.007454] | +0.002523 |
+| 6 | middle | DF | high-wide | 670 | −0.017984 [−0.031229, −0.005215] | +0.031405 |
+| 7 | middle | DF | high-central | 726 | −0.020132 [−0.035194, −0.005624] | +0.003581 |
+| 8 | middle | DF | mid-central | 2,066 | −0.020360 [−0.033909, −0.007779] | +0.013125 |
+| 9 | theirThird | WG | high-wide | 2,118 | −0.021421 [−0.035188, −0.007747] | −0.002699 |
+| 10 | ownThird | ST | mid-wide | 285 | −0.023811 [−0.045515, −0.004743] | +0.014429 |
+| 11 | middle | WG | mid-wide | 2,754 | −0.024467 [−0.034957, −0.013698] | +0.003407 |
+| 12 | theirThird | ST | high-wide | 1,049 | −0.024715 [−0.046678, −0.002996] | −0.016842 |
+| 13 | middle | ST | deep-wide | 542 | −0.024880 [−0.045829, −0.001724] | +0.022254 |
+| 14 | ownThird | MF | mid-central | 461 | −0.025100 [−0.040781, −0.009767] | +0.011135 |
+| 15 | middle | DF | deep-central | 694 | −0.025385 [−0.039720, −0.010859] | +0.008490 |
+| 16 | middle | WG | high-wide | 1,145 | −0.027050 [−0.039625, −0.014308] | −0.013027 |
+| 17 | middle | WG | deep-central | 1,247 | −0.028605 [−0.041319, −0.016098] | +0.013173 |
+| 18 | ownThird | ST | deep-central | 2,086 | −0.031217 [−0.047683, −0.016313] | +0.004757 |
+| 19 | middle | DF | deep-wide | 695 | −0.031420 [−0.049037, −0.015078] | +0.021698 |
+| 20 | ownThird | WG | mid-central | 932 | −0.031692 [−0.046150, −0.017428] | −0.004308 |
+| 21 | ownThird | WG | deep-central | 3,979 | −0.033595 [−0.044385, −0.022125] | +0.000692 |
+| 22 | middle | MF | mid-wide | 1,740 | −0.033625 [−0.048275, −0.020053] | −0.000089 |
+| 23 | ownThird | WG | mid-wide | 465 | −0.035829 [−0.062049, −0.009534] | +0.008150 |
+| 24 | ownThird | ST | deep-wide | 1,833 | −0.036119 [−0.053616, −0.018153] | +0.003723 |
+| 25 | ownThird | DF | deep-wide | 1,567 | −0.036532 [−0.054006, −0.020605] | +0.003681 |
+| 26 | ownThird | MF | mid-wide | 238 | −0.036737 [−0.067828, −0.006605] | +0.010037 |
+| 27 | ownThird | DF | mid-central | 345 | −0.039087 [−0.058175, −0.019240] | −0.016231 |
+| 28 | middle | MF | deep-wide | 605 | −0.039617 [−0.060726, −0.019773] | +0.004279 |
+| 29 | theirThird | DF | mid-wide | 475 | −0.043500 [−0.063195, −0.024364] | −0.016909 |
+| 30 | ownThird | WG | deep-wide | 3,726 | −0.044014 [−0.053292, −0.034780] | +0.004921 |
+| 31 | middle | DF | mid-wide | 2,018 | −0.044017 [−0.057430, −0.030891] | −0.005284 |
+| 32 | ownThird | MF | deep-wide | 1,885 | −0.047977 [−0.064673, −0.031336] | −0.004056 |
+| 33 | middle | WG | deep-wide | 1,122 | −0.050983 [−0.068973, −0.034293] | −0.004302 |
+
+**The labelled P2↔P2b decomposition (§2.5, NON-GATING).** All **55 in-power
+cells joined** against P2's committed census (content SHA `3f332a8e…24a9`,
+`contentShaMatches: true`); `Δ_statue = P2b − P2` (deep) ranges **−0.016909**
+(`theirThird/DF/mid-wide`, deepened) … **+0.052929** (`middle/ST/deep-central`,
+P2b +0.004587 vs P2 statue −0.048342). **42 of 55 in-power cells move toward zero
+(P2b less negative); 13 deepen.** The least-negative resolved cells carry the
+magnitude shrinkage: `middle/MF/deep-central` **−0.014316** vs P2 statue
+−0.030818 (Δ +0.016502); `theirThird/WG/high-central` **−0.015560** vs −0.025866
+(Δ +0.010306); `ownThird/MF/deep-central` **−0.016084** vs −0.041817
+(Δ +0.025733). The most-negative resolved cell instead deepened:
+`middle/WG/deep-wide` **−0.050983** vs P2 −0.046681 (Δ −0.004302).
+
+**Box secondary + attack-face secondary + `W_long = 15 s` sensitivity (labelled,
+NON-GATING; 45 s excluded per #102.4).** Recorded per cell in the census JSON
+(`boxPriceSECONDARY.{point,lower,upper,n}` — no `excludesZero`, never gates;
+`attackFaceSecondary.{ownDeep,ownBox,n}`, the hedge's opportunity cost, never
+netted; `sensitivity15sDeep`). Example rows: `middle/MF/deep-central` box
+−0.002172 [−0.014600, +0.011839], ownDeep −0.026902 / ownBox −0.002793,
+sens-15s −0.011826; `middle/WG/deep-wide` box −0.021225 [−0.033916, −0.008601],
+ownDeep −0.023844 / ownBox −0.001392, sens-15s −0.033381;
+`theirThird/WG/high-central` box −0.004254 [−0.013989, +0.006782], ownDeep
+−0.012464 / ownBox −0.013013, sens-15s −0.002816.
+
+### EXCLUSION / ADMISSION ACCOUNTING + RECEIPTS
+
+Per-cell exclusion is recorded (`excluded.{injury,ended,lowOccupancy}`).
+Census-wide the **26,071 excluded pairs** decompose as **low-occupancy 15,182
+(dominant) + E-ENDED 10,872 + E-INJURY 17**; admitted 63,533 (sum over the 72
+cells). Smoke-wide: admitted 25,391 / excluded 10,627 (occupancy-floor 6,247 +
+terminal 4,380). **Free/steer tick shares (smoke):** freeFraction **0.1308**
+(free-ticks 3,582,477 / hold-ticks 27,399,186); the `free` diagnostic class
+0.098845 of exception ticks; steer-ticks 23,816,709 (latch engage 43,149 /
+disengage 12,537). Receipts (§2.1 / #49.3, cap 1,000/class, first-N
+deterministic): **census** — `eBallWon`/`unexplained`/`eOnside`/`ePaused`/
+`eCarrier`/`eEnded` each capped at 1,000; `eBarred` 35; `eSentOff` (E-INJURY)
+17. **Smoke** — `eCarrier`/`eOnside`/`eBallWon`/`unexplained`/`ePaused`/`eEnded`
+each 1,000; `eSentOff` (E-INJURY) 10; `eBarred` 0. The smoke reports the
+run-wide **unexplained hold-tick share 0.000450** (12,345 ticks); the census has
+no separate exception-share block.
+
+### HARD GATES
+
+| gate | result (JSON, as-is) |
+| --- | --- |
+| **X-FORK-IDENT (census)** | **PASS** — 4,978 checked / 0 mismatched, 100 % coverage; control-fork `W_long` signature == independent plain step-through |
+| **clone coverage (census)** | **PASS** — `clonesTaken 4,978 == momentsForked 4,978` (I4) |
+| **X-DET (census)** | **PASS** — `xDet: true`; double-run byte-identical; SHA `6f1160f2…3460` |
+| **X-SRC-ZERO (census)** | **PASS** — `srcDiffEmpty: true`; fingerprint baseline `57b0bdab…c673` = observed (`matches: true`) — unchanged |
+| **seed disjointness** | **PASS** — census `[10,300,000, 10,300,799]` band, smoke `[10,200,000, 10,200,039]`, prior ceiling `9,999,999`; disjoint from every prior family AND from P2's 10.0M/10.1M/99003/99103, mutually disjoint |
+| **X-FORK-IDENT / clone / X-DET / X-SRC-ZERO / disjoint (smoke)** | **PASS** (all; 2,001/0, 2,001/2,001, fingerprint unchanged, SHA `c2bf25ce…8c57`) |
+| **X-CORPUS-IDENT** | **N/A** — `"N/A (a fresh forced-fork corpus has no identity target — as V4-P1)"` |
+
+No X-family gate failed (smoke or census).
+
+**Reading A (§5): the frozen claims fire and the surface returns to the
+commander. The sign structure (zero positive-resolved cells) falls under the
+pre-named #106.6 disposition — adjudication is the commander's ruling in
+PROGRAMME-RULINGS.md.**
