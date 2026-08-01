@@ -50,6 +50,10 @@
      re-run silent long smokes — the workflow stall detector (180 s
      no-progress) kills them. The commander reviews the author's
      smoke evidence instead.
+   * Stage pre-registrations that introduce NEW percepts or
+     consumer mechanisms (not merely instruments) ALSO receive the
+     explicit VISION audit at commander review (#111.4; the #91
+     form).
 3. **Contracts get a VISION audit.** After the commander drafts a
    design contract, audit it clause-by-clause against
    [`../VISION.md`](../VISION.md) BEFORE any executor work; findings
@@ -605,10 +609,18 @@ through a TARGETED re-census. Battery verdict form pre-declared
 (#110.3): rest limb REPORTED as the measured residual (the A4
 target); the other three limbs = cure gates; shape cure must not
 regress; NO deployment claim. Options B (A4 assignment) and C
-(absence census) banked as likely next. **→ NEXT: executor
-pre-registers V4-P3-PARTIAL (workflow Draft→Verify §0.0).** Forks
-(ii)/(iii) stay banked. R20 gaps / F9 any time. Road B stands;
-nothing ships; fingerprint unchanged across #90–#110.
+(absence census) banked as likely next. **P3-PARTIAL PRE-REGISTERED (`a62f7ba`; verify 5/5) → review #111
+PASS with the explicit VISION audit (user-prompted; the two S bits
+are VISION-NAMED eye inputs; the public-whistle phase read ratified;
+zero amendments)**: disjoint-scope rule, augment-merge +
+X-MERGE-IDENT, the R3v3 attribution arm, seed bands
+10.4/10.5/10.6M all ratified. **→ NEXT: executor BUILDS P3p-0 — the
+dormant flag-gated seams (eye.v4.{inSupportLaw, deliveryBit,
+offsideBit}, default OFF; X-OFF-IDENT flag-off bit-identity +
+fingerprint + vitest HARD) — the first src-touching step of v4;
+then P3p-1 (targeted re-census) pre-registers.** Forks (ii)/(iii)
+stay banked. R20 gaps / F9 any time. Road B stands; nothing ships;
+fingerprint unchanged across #90–#111.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

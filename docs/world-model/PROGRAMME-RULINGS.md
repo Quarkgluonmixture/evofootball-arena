@@ -4555,3 +4555,71 @@
 >    scope and its sizing; the in-support law's exact predicate =
 >    the V3-P1 support form; the battery verdict form per #110.3);
 >    commander reviews; the standing pattern.
+
+> **COMMANDER RULING #111 (2026-08-01 — V4-P3-PARTIAL
+> pre-registration reviewed: PASS with an explicit VISION audit
+> (user-prompted); flagged choices ratified; P3p-0 build
+> authorized; §0.0 addendum):**
+>
+> 1. **VERDICT**: the pre-registration (`a62f7ba`, 628 lines)
+>    passes review (machine-verify 5/5, zero violations; every
+>    number re-derived from published sources; src citations
+>    code-verified; seed arithmetic checked). One citation nit
+>    corrected in place (the E-OOS-STALE deferral re-tagged as an
+>    operationalisation of #110.2(i), not a #110.4 quote).
+> 2. ⭐ **THE VISION AUDIT (the user asked; #90→#91 form, extended
+>    to this contract-like stage pre-reg)**:
+>    * §1 emergence — CLEAN, and better: **the two S bits are
+>      VISION-NAMED eye inputs** (the 2026-07-20 完整感知模型
+>      names "队友拉了宽度=我进中路" — the wide-occupancy bit —
+>      and "越位线" as opponent-defined structure — the
+>      beyond-line bit). They are priced context DISTINCTIONS,
+>      never behaviour rules (I1). The in-support law is
+>      jurisdiction honesty, and handing ~46% of moments back to
+>      the incumbent is §1's own 诚实代价 incrementalism: the eye
+>      earns jurisdiction as its priced support grows — no
+>      pretend-emergence on unpriced ground (v1's lesson).
+>    * §1 percept model / I2 — both bits percept-honest with
+>      freshness abstention. ONE deviation ratified explicitly:
+>      the phase clause reads `match.phase` as a PUBLIC WHISTLE
+>      signal (the referee's broadcast, like the scoreboard — not
+>      a private state read through a back door); the
+>      fully-perceptual alternative converges on the same cure
+>      (amb 8) and modelling whistle-inattention would be
+>      fidelity theatre.
+>    * §2 watchability — the #88.2 shape cure is a
+>      must-not-regress gate; nothing ships. §3 realism — the
+>      offside bit is HOW real players stay onside (they look at
+>      the line); the delivery bit restores the §3.0 attack
+>      repertoire the collapse erased. §6 discipline —
+>      probe-first, battery-gated, per-remedy honest-revert.
+>      **AUDIT: PASS, zero amendments required.**
+> 3. **FLAGGED CHOICES RATIFIED**: the public-phase read (above);
+>    the stale pins (30 ticks ×3, WIDE_EDGE = BOX_WIDTH/2,
+>    OFFSIDE_EPS read from the sim's own machinery at P3p-0),
+>    smoke-confirmed per #48.4; the DISJOINT-SCOPE rule (at most
+>    one bit per cell, forward-in-attacking → offside tie-break —
+>    power over joint keying; revisitable at a full P3); the
+>    AUGMENT merge rule with the base cell as abstention anchor,
+>    enforced by X-MERGE-IDENT (HARD: the base projection must
+>    reproduce the v3 tableSha byte-for-byte); **the R3v3 fifth
+>    arm RATIFIED as a necessary departure from "verbatim"** (the
+>    banked P3a is seed-unpaired; R3p−R3v3 is the only honest
+>    remedy attribution; verdict form unchanged; R1p/R2p prunable
+>    for wall-cost at the P3p-3 sub-pre-reg); the seed bands
+>    10.4M/10.5M/10.6M + stats 99403/99503/99603.
+> 4. **§0.0 ADDENDUM (user-prompted, applied)**: stage
+>    pre-registrations that introduce NEW percepts or consumer
+>    mechanisms (not merely instruments) receive the explicit
+>    VISION audit at commander review — the #91 form. Added to
+>    PROGRAMME.md §0.0(3).
+> 5. **AUTHORIZED — P3p-0 (seams + bits, the first src-touching
+>    step of v4)**: executor builds the DORMANT flag-gated seams
+>    (eye.v4.{inSupportLaw, deliveryBit, offsideBit}, default OFF)
+>    per the frozen §2/§3 definitions (workflow Draft → Verify,
+>    §0.0): flag-off BIT-IDENTITY is the hard gate (X-OFF-IDENT —
+>    the calibrate fingerprint `57b0bdab…c673` must not move, the
+>    vitest suite must pass, and a flag-off probe reproduction
+>    must be byte-identical); OFFSIDE_EPS pinned from the sim's
+>    offside machinery and recorded. Then P3p-1 (targeted
+>    re-census) pre-registers per §0.0.

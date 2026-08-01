@@ -144,7 +144,9 @@ must be percept-honest (I2 / #110.4). The two clauses are handled distinctly:
   * `E-OOS-INFLIGHT` — `snap.ball.ownerGid === null` (perceived loose / in-flight).
   * `E-OOS-STALE` — a perceived owner but `ageTicks > SUPPORT_STALE_TICKS` (last
     saw it owned, but that is old): **a stale/unknown ball-state DEFERS TO THE
-    INCUMBENT** (#110.4 verbatim).
+    INCUMBENT** (an executor operationalisation of #110.2(i) — "at
+    out-of-support moments the incumbent machinery governs"; re-tagged at
+    commander review, #111).
 
   ⚠ **FLAGGED — the in-support law reads the LIVE perceived owner, NOT the
   retained-owner ledger.** The v3 consumer's in-flight FACE repair
