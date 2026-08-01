@@ -541,3 +541,190 @@ the fingerprint `57b0bdab…c673`. **No `docs/world-model/data/*.json` numeric b
 was opened beyond the v3 table's SHA / coverage header, and nothing was built or
 run before this document is committed.** This freeze RETURNS TO THE COMMANDER; the
 probe `scripts/probes/stage3-v4-p3p1-recensus.ts` is a future authorized step.
+
+---
+
+## §RESULT — the AUTHORIZED runs (#114 launch): the targeted re-census lands (323 children merged, strict keying) and RETURNS to the commander
+
+Run to completion under the commander's resident session (#49.5), the **frozen
+probe as reviewed** (pre-registration PASS #113; probe build PASS #114, committed
+`8265de3`; one prereg assertion corrected by the build — the percept read taken on
+a THROWAWAY CLONE, proven side-effect-free on the base match, ratified #114.2). Two
+runs, seed families disjoint above the 10.3M high-water (§8 / #46.2): the **sizing
+smoke** (40 matches `10,400,000 + k, k∈0..39`) fired the frozen proxy decision and
+pinned the census N via the re-pin rule (#115); the **census** ran **N = 480
+matches `10,500,000 + k, k∈0..479`** at HEAD **`36a0e24`**, keying **STRICT**
+resolved from the smoke pin. ENRICHED world (`CENSUS_FLAGS`; §0.0 / #67.3),
+`stationEye` null, `src/**` byte-identical — production fingerprint
+`57b0bdab…c673` unchanged (X-SRC-ZERO PASS, Road B held, nothing shipped). Every
+number below traces to the three committed data files.
+
+### THE SIZING SMOKE (40 @ 10.4M)
+
+40 matches on `10,400,000 + k, k∈0..39`, ENRICHED world, the V3-P1 instrument
+verbatim + the S-bit key amendment, X-DET double-run. **Gates all PASS** (verdict
+verbatim: **`GATES PASS`**): X-FORK-IDENT true (clone coverage **3,192 / 3,192 =
+1.0**, X5 control identity **127 checked / 0 mismatched**, X6 force fidelity
+`unexplained == 0`, `okFraction 0.915522`, `floorDerived 0.831043` vs reference
+0.84), X-DET true, X-EPS-REASSERT true, X-FP-PROD true, X-MERGE(partition) true,
+seed-disjoint true. Coverage: 3,716 qualifying → **3,192 moments**, 524
+ball-directed skipped, 60,648 forks, **1,184 in-scope moments** (the affected
+`face=ours × threat∈{middle,theirThird} × in-power roles` surface).
+
+**THE PROXY DECISION RULE fired ONCE at smoke sight, as frozen (§5), and is
+DISCLOSED (#115.1).** Over the **1,180** in-scope delivery moments in in-power
+cells (`n1 = 429`, `n0 = 483`, `nUnk = 268`): `width1_share = 0.363559`,
+**`p0_proxy = 0.409322`**, `unknown_share = 0.227119`, **`p0_obsCount_median = 2`**.
+Band (A) is `p0_proxy ∈ [0.50, 0.95]`; `0.409322 < 0.50` ⇒ **band (A) FAILS ⇒
+DECISION = `strict`** (`widthHeld = 0 → UNKNOWN → base`; only the `1`-child splits
+out). Band (B) held (`obsMed = 2 ≥ 2` — the observability condition held; the low
+genuine-0 share is a recorded read, not a blind-spot artefact). `strict_recast`
+shares: `width1 0.363559 / p0 0 / unknown 0.636441`. Pin confirms: the age
+histogram (`p50 = 5`, `p95 = 34` ticks) confirms the 30-tick freshness pin; the
+`|y|` histogram (`p50 = 4.4591`, `p95 = 16.0901` m) confirms the `WIDE_EDGE ≈ 9.8`
+pin. EPS re-assert: `ok`, `eps 0.2`, `reason "match"`, mirror `0.2`
+(`src/sim/mechanics.ts`).
+
+**Child population seen: 405** (delivery **144** / offside **261**), partition OK.
+
+**THE KNEE (frozen rule) RETURNED NULL (§7); re-pinned by a disclosed rule
+(#115.2/.3).** `N_max = 1200` (grid step 24, 50 steps), `plateau = 405`,
+`target = 0.95 × 405 = 384.75`, **`nStar = null`, `exceedsNMax = true`** — no grid
+N reaches 95% of the seen-child plateau (the realized curve carries a rare-child
+tail — seen-once children need N ≈ 6,000 — plus an endpoint discretisation cohort:
+grid count jumps `N=1176 → 332` then `N=1200 → 358`). Ruling **#115.3** re-pins N
+by a disclosed rule (before the gate-bearing run; optional stopping foreclosed,
+#105.4): reference plateau = the count at the last grid point BELOW the cap
+(`N = 1,176 → 332`, the endpoint cohort excluded as the named artefact); target
+`0.95 × 332 = 315.4`; **N\* = the smallest grid N with `count ≥ 316`, which is
+`N = 480` (`count = 316` ≈ 95.2% of the 332 stable plateau)**. Smoke output SHA-256
+**`a62fad39a8108c200c6c91b7dee61dfb04a866c196f1479e4857b2625b7d349a`**.
+
+### THE CENSUS (N = 480 @ 10.5M, strict keying)
+
+`matchCap = 480`; seeds `10,500,000 + k, k∈0..479`; ENRICHED world; keying
+**STRICT** (`keyingSource = "smoke pin …stage3-v4-p3p1-sizing-smoke.json"`); floor
+150; bootstrap seed 99403 / permutation seed 99503; HEAD **`36a0e24`**. Coverage:
+44,407 qualifying → **38,355 moments**, 6,052 ball-directed skipped, 728,745 forks,
+**13,786 in-scope moments**. **Gates all PASS** (verdict verbatim: **`GATES
+PASS`**):
+
+* **X-FORK-IDENT** true — clone coverage **38,355 / 38,355 = 1.0**, X5 control
+  identity **1,534 checked / 0 mismatched**, X6 force fidelity `unexplained == 0`
+  (`okFraction 0.918077`, `floorDerived 0.836155` vs reference 0.84), positive
+  control (`r21a180`) resolved (`pcPositiveControl = true`; pooled `n 36,785`,
+  point `−0.03477`, CI `[−0.040094, −0.02941]`).
+* **clone coverage** true (100%). **X-DET** true (twice byte-identical).
+* **X-SRC-ZERO** true (`srcDiffEmpty`, `git diff -- src` empty).
+* **X-MERGE-IDENT** true — part (i) base re-hash reproduces
+  `baseShaObserved == baseShaExpected == `**`171a6dad…6559f`**` (full
+  `171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f`); part (ii)
+  exact-partition true — over **288 affected `(ctx × role × cand)` partitions**,
+  every one `momentPartitionOk && forkPartitionOk`, `momentN(child0) +
+  momentN(child1) + momentN(UNKNOWN) == momentN(reCensusBase)`.
+* **X-EPS-REASSERT** true (`eps 0.2`, `reason "match"`, `src/sim/mechanics.ts`).
+* **X-FP-PROD** true (fingerprint `57b0bdab…c673` == baseline).
+* **seed-disjoint** true (band above 10.3M; stats 99403 / 99503 outside the used
+  set).
+
+Merged table SHA (the deliverable): **`mergedTableSha 39662445…9d6105`** (full
+`39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105`). Census output
+SHA-256 **`51ab7040d03948e58dbf3d1bd0689595efcde8e7a4a628095ca2f54e7041e942`**.
+
+### THE MERGED TABLE (the deliverable — AUGMENT)
+
+`data/stage3-v4-p3p1-merged-role-census-table.json`: the committed v3 base cells
+copied **byte-identical** (`baseSource stage3-v3-p1-role-census-table.json`,
+`baseTableShaObserved == baseTableSha == 171a6dad…6559f`), PLUS the in-power
+bit-children nested `children[family][ctx‖role][candidate][bit]` (leaf = the V3-P1
+`cellFrom` shape: `n, value, score, concede, goalFor, goalAgainst, eta,
+targetError, occupancy, momentN, underPowered`). Verdict verbatim: **`GATES
+PASS`**. **`mergedChildCount = 323`** merged children (recomputed from the table —
+all in-power, `underPowered = false` on every leaf):
+
+| family | bit | merged children (in-power) |
+| --- | --- | --- |
+| delivery | 1 | **126** |
+| offside | 0 | **64** |
+| offside | 1 | **133** |
+| — | — | **323 total** |
+
+(Under STRICT keying the delivery family has NO `bit=0` child — `widthHeld = 0`
+folds to UNKNOWN/base by the smoke pin; only the `widthHeld = 1` child is split
+out. The offside `beyondLine` bit carries both `0` and `1` children.)
+
+### THE CHILD-VS-BASE DELTAS (recorded RUN FACTS — no causal reading)
+
+For every in-power merged child, `Δ = child.value − base[ctx][role][cand].value`
+(the retained v3 base cell of the same `(ctx, role, cand)`). Recomputed
+independently from the merged table. Per `(family, bit)`:
+
+| family | bit | n | meanΔ | medianΔ | minΔ | maxΔ |
+| --- | --- | --- | --- | --- | --- | --- |
+| delivery | 1 | 126 | **−0.047760** | −0.022666 | −0.315306 | +0.097231 |
+| offside | 0 | 64 | **−0.090251** | −0.100011 | −0.205476 | +0.077935 |
+| offside | 1 | 133 | **+0.049397** | +0.034087 | −0.071704 | +0.254741 |
+
+The 3 most-positive and 3 most-negative Δ rows per family (cell identity =
+`ctx | role | cand | bit`, with child `value` and base `value`):
+
+**delivery — 3 most NEGATIVE Δ:**
+
+* `−0.315306` · `ours|theirThird|crowded | WG | r14a180 | bit=1` · child 0.196721, base 0.512027
+* `−0.313495` · `ours|theirThird|crowded | WG | r7a180 | bit=1` · child 0.205405, base 0.518900
+* `−0.300104` · `ours|theirThird|crowded | WG | r21a180 | bit=1` · child 0.179348, base 0.479452
+
+**delivery — 3 most POSITIVE Δ:**
+
+* `+0.097231` · `ours|middle|crowded | MF | r21a180 | bit=1` · child 0.228840, base 0.131609
+* `+0.089200` · `ours|middle|crowded | MF | r14a180 | bit=1` · child 0.228840, base 0.139640
+* `+0.068791` · `ours|middle|crowded | MF | r21a120 | bit=1` · child 0.154088, base 0.085297
+
+**offside — 3 most NEGATIVE Δ:**
+
+* `−0.205476` · `ours|middle|crowded | DF | r14a300 | bit=0` · child −0.097436, base 0.108040
+* `−0.194197` · `ours|middle|crowded | MF | r14a0 | bit=0` · child −0.052941, base 0.141256
+* `−0.193715` · `ours|middle|crowded | ST | r14a60 | bit=0` · child −0.060759, base 0.132956
+
+**offside — 3 most POSITIVE Δ:**
+
+* `+0.254741` · `ours|middle|crowded | MF | r7a300 | bit=1` · child 0.339943, base 0.085202
+* `+0.234848` · `ours|middle|sparse | MF | r7a60 | bit=1` · child 0.272727, base 0.037879
+* `+0.205304` · `ours|middle|crowded | MF | r7a60 | bit=1` · child 0.343662, base 0.138358
+
+### UNDER-POWERED / DROPPED CHILDREN, UNKNOWN SHARES, RECEIPTS
+
+**Dropped (published-not-pooled, #24 — under-powered at `momentN < 150`, dropped
+from the merge; the retained v3 base governs those moments).** Of **418** children
+SEEN at the census, **323** were in-power and MERGED, **95** were dropped:
+
+| family | bit | seen | in-power (merged) | dropped |
+| --- | --- | --- | --- | --- |
+| delivery | 1 | 144 | 126 | 18 |
+| offside | 0 | 130 | 64 | 66 |
+| offside | 1 | 144 | 133 | 11 |
+| **total** | | **418** | **323** | **95** |
+
+**UNKNOWN shares (the abstention anchor; recorded from the 288 partition sums,
+each family's `baseMomentN` total = 124,074 = 9 × 13,786 in-scope moments).**
+
+* **delivery** — `n0 = 0` (STRICT: `widthHeld = 0` folded to UNKNOWN),
+  `n1 = 48,708` (`bit=1 share 0.3926`), `nUnk = 75,366` (**unknown_share
+  0.6074**).
+* **offside** — `n0 = 35,334` (`bit=0 share 0.2848`), `n1 = 79,650` (`bit=1 share
+  0.6420`), `nUnk = 9,090` (**unknown_share 0.0733**).
+
+**Receipts (#49.3).** Exception-record sample (cap 1,000 each): `eOnside`,
+`ePaused`, `eCarrier`, `eBarred`, `eEnded` = 1,000 records each; `eSentOff` = 463;
+`eBallWon` 0, `unexplained` 0 (census x6). Inherited V3-P1 primary byproduct
+(non-gating, reported): `computableCells 216`, `rawResolved 40`, `bhResolved 24`
+(within-`(match×context)` role permutation, B=2000, seed 99503). The three
+published under-powered V3-P1 base cells (`ours|theirThird|crowded||DF`,
+`theirs|theirThird|crowded||DF`, `theirs|ownThird|sparse||DF`) are the inherited
+9.11M check, meaningful only on that block, NOT a P3p-1 gate.
+
+---
+
+**P3p-1 closes with the merged table banked. Adjudication — including of the
+child-vs-base delta structure — is the commander's ruling in
+PROGRAMME-RULINGS.md.**
