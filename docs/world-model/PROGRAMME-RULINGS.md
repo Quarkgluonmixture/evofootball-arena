@@ -4343,3 +4343,64 @@
 > 5. **THE CENSUS LAUNCHES** detached (#49.5): V4P2_MODE=census
 >    V4P2_N=100 @10.1M. Gates as frozen; the null stops CLASS H at
 >    the commander.
+
+> **COMMANDER RULING #106 (2026-08-01 — V4-P2 adjudicated: reading
+> A publishes; the ALL-NEGATIVE sign structure diagnosed as the
+> STATUE CONFOUND; the surface banked as the dynamism-value map;
+> V4-P2b (region-containment hold) ordered; P3 waits):**
+>
+> 1. **BANKED**: the census (N=100 @10.1M, 5,025 moments / 95,475
+>    forks / 47,478 admitted) + §RESULT + both data files
+>    (`efa3ee0`). Hard gates ALL green (X-FORK 5,025/0, clone
+>    5,025/5,025, X-DET, X-SRC-ZERO, disjoint). Number-verify:
+>    substantive payload fully verified (the 47-row table zero
+>    mismatches); two COSMETIC violations reported and corrected in
+>    place at this review (an apostrophe normalisation; the
+>    wall-cost parenthetical numerator — instrument-ms 2,093,747,
+>    not run-total 2,095,041), both disclosed in the doc.
+> 2. **READING A PUBLISHES AS FROZEN**: Claim 1 true (47/55
+>    in-power cells resolve), Claim 2 true (region spread
+>    BH-significant in 4/12 families — ALL FOUR middle-third role
+>    families, spreads 0.029–0.040, perm p ≤ 0.0035; role axis thin,
+>    1/14). The frozen claims are sign-agnostic; they fired.
+> 3. ⛔ **THE SIGN STRUCTURE ADJUDICATED — THE STATUE CONFOUND
+>    (owned)**: every one of the 47 resolved gating prices is
+>    NEGATIVE (−0.0105 middle/WG/high-central … −0.0531
+>    middle/DF/deep-wide). Diagnosis: the point-freeze enforcement
+>    (ARRIVE_M = 2 m, ratified by me at #103.2(1)) prices BEING A
+>    STATUE at X against an incumbent control that plays
+>    dynamically and already performs the long-horizon jobs — the
+>    read is dominated by dynamism loss plus attack displacement,
+>    not by location value. The gradient (deep WORST during own
+>    possession) is oriented so that an additive consumer term
+>    would push the eye AWAY from deep stations: this surface
+>    CANNOT buy rest defence, and running P3+P4 on it would burn a
+>    cycle proving a foreseeable FAIL.
+> 4. ⭐ **BANKED AS A REAL FINDING — THE DYNAMISM-VALUE MAP**: a
+>    15-s statue costs 0.011–0.053 goals everywhere, worst in deep
+>    and wide regions — the first measured price of responsiveness
+>    itself in this world. Kept as a labelled asset (a future
+>    anchor for anything that trades mobility, e.g. injuries,
+>    fatigue, instructions).
+> 5. **V4-P2B ORDERED — THE REGION-CONTAINMENT HOLD**: the held
+>    body moves FREELY inside its region class (resolved at t_fork
+>    from the same lattice geometry) and is steered back only upon
+>    leaving it; everything else inherits P2 unamended (sampling,
+>    interrupts incl. the non-terminal possession flip, admission,
+>    outcomes in the #102.2 units with deep gating, claims, the
+>    #105 attainability-knee N logic via its own 40-match smoke).
+>    New seed bands: smoke 10.2M, census 10.3M (+ new stats seeds).
+>    The estimand becomes REGION OCCUPANCY — the hedge's true
+>    trade (attack displacement stays priced, as it should: that
+>    IS the hedge's cost side) with the statue artifact removed.
+>    Executor pre-registers per §0.0; commander reviews; build
+>    (mostly reuse); smoke → census; adjudicate. **P3 WAITS for the
+>    P2b surface.**
+> 6. **PRE-NAMED HOME FOR A REPEAT SIGN**: if P2b's surface is
+>    STILL all-negative with deep worst, that is a REAL measurement
+>    (marginal region-occupancy during own possession does not pay
+>    in this world against incumbent dynamics) and CLASS H routes
+>    to the registered fallback conversation (pricing through
+>    selection / an A4 doctrine slice — a future contract) at the
+>    commander, with the user's eyes on the fork. No third
+>    instrument iteration without a ruling.

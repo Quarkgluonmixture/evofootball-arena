@@ -577,15 +577,23 @@ absolute-frozen-target occupancy read; possession-flip NON-terminal
 region classes, floor 150); W_hold 15 s / W_long 30 s on published
 lag-bin edges; per-protocol OCC_FLOOR 0.5; **gating unit = DEEP
 entry (0.0435), box = labelled secondary (#103.3)**; full-lattice
-fork (control+18), N_max 800, r=21 off-ramp = reading (G). **P2 probe BUILT (`a1c620a`, 1,105 lines; verify 6/6; per-moment wall
-cost ~475 ms measured; X-FORK-IDENT/clone 100% preflight-clean) →
-ruling #104: deviations F2–F7 ratified, unexplained-ticks stance
-noted (counted-not-gated, occupancy floor = the honest backstop),
-THE SIZING SMOKE IS IN FLIGHT** (V4P2_MODE=smoke, 40 @10.0M,
-detached #49.5) → then census @10.1M with N from the frozen
-arithmetic (cap 800). The frozen null stops CLASS H at the
-commander. Forks (ii)/(iii) stay banked. R20 gaps / F9 any time.
-Road B stands; nothing ships.
+fork (control+18), N_max 800, r=21 off-ramp = reading (G). **V4-P2 RAN (smoke #105: N formula's letter answer 19 published +
+diagnosed mis-targeted, N re-pinned 100 at the attainability knee →
+census reading A, §RESULT + data `efa3ee0`) → ruling #106: THE
+STATUE CONFOUND.** The frozen claims fired (47/55 cells resolve;
+region separation real, all four middle-third families) — but ALL 47
+resolved prices are NEGATIVE (−0.011…−0.053): the point-freeze
+enforcement priced BEING A STATUE vs incumbent dynamics; the
+gradient (deep worst) cannot buy rest defence. ⭐ Banked as the
+DYNAMISM-VALUE MAP (responsiveness itself costs 0.011–0.053
+goals/15 s, worst deep/wide — a labelled asset). **→ NEXT: executor
+pre-registers V4-P2b — THE REGION-CONTAINMENT HOLD** (free movement
+inside the region class, steered back on exit; everything else
+inherits P2; seeds 10.2M/10.3M; #106.5). **P3 WAITS for the P2b
+surface.** Pre-named (#106.6): a repeat all-negative sign at P2b is
+a REAL finding → CLASS H falls to the registered fallback fork at
+the commander WITH the user. Forks (ii)/(iii) stay banked. R20 gaps
+/ F9 any time. Road B stands; nothing ships.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);

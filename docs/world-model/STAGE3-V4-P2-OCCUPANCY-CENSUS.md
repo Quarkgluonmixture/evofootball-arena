@@ -853,7 +853,7 @@ The census verdict (verbatim): **`CENSUS — DESIGN CASE (§5-A): ≥1 in-power
 cell deep-price CI excludes 0 AND the surface separates by region and/or
 role — RETURNS to the commander with the price surface; V4-P3 reads the
 in-power cells. STOPS AT COMMANDER (P2 builds no consumer). [Claim1=true
-Claim2=true] (the disposition is recorded; the DECISION is the commander's —
+Claim2=true] (the disposition is recorded; the DECISION is the commander’s —
 P2 builds no consumer and stops here).`** Reading code **A**.
 
 ### THE SIZING SMOKE (labelled, NON-GATING — §2.7 / #44.5 / #65)
@@ -911,8 +911,11 @@ cluster bootstrap `B = 2000`, `BOOTSTRAP_SEED = 99003`; permutation
 DEEP** (calib 0.0435, #103.3); box (calib 0.1952) = labelled SECONDARY.
 HEAD **`ca74014`**. Coverage: 5,220 qualifying → **5,025 moments**, 195
 ball-directed skipped, **95,475 forks**; **admitted 47,478 / excluded
-42,972** pairs. Per-moment wall-cost **416.666 ms** (2,095,041 ms /
-5,025 moments; NON-deterministic). Census output SHA-256
+42,972** pairs. Per-moment wall-cost **416.666 ms** (2,093,747
+instrument-ms / 5,025 moments; run total 2,095,041 ms;
+NON-deterministic). *(Numerator corrected at commander review,
+#106.1 — the original line showed the run-total as the numerator of
+an instrument-ms quotient.)* Census output SHA-256
 **`3f332a8e35ef341c84c5dbf83157be050dae401dff9e4b52242624ac0f7d24a9`**.
 
 ### THE CLAIMS (both read at the primary `W_long = 30 s`)
