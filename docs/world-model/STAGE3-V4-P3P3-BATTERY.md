@@ -434,12 +434,20 @@ thousands of matches. FROZEN:
   the offside/delivery/rest instrument SDs (confirm they resolve at N*); and it
   re-confirms the 30-tick freshness pins (`SUPPORT_STALE_TICKS = WIDTH_STALE_TICKS
   = LINE_STALE_TICKS = 30`) are honoured at consumption (#48.4, no re-cut).
-* **The N rule (frozen).** `N* = the smallest match count (in fixed steps of 200)
-  at which the smoke-measured restart SE_N resolves the restart cure gate at the
-  band edge at ~95 % power (`SE_N ≤ g/3.605`), CAPPED at N_MAX = 2,000 / arm`. If
-  the power rule projects `N* > N_MAX`, the cap binds and the disclosed reduced-
-  power reading (§6.3) is recorded BEFORE the gate-bearing run. N fixed before the
-  run; optional stopping foreclosed (#105.4).
+* **The N rule (frozen; N_MAX amended at commander review, #121).**
+  `N* = the smallest match count (in fixed steps of 200) at which the
+  smoke-measured restart SE_N resolves the restart cure gate at the band
+  edge at ~95 % power (`SE_N ≤ g/3.605`), CAPPED at N_MAX` — where
+  **N_MAX is WALL-DERIVED at the smoke (#121): the largest 200-step N
+  whose projected total battery wall (5 arms × N × the smoke-measured
+  per-set wall × 2 for X-DET) ≤ 36 hours**, itself capped at 8,000/arm.
+  If the power rule projects `N* > N_MAX`, the cap binds and the
+  disclosed reduced-power reading (§6.3) is recorded BEFORE the
+  gate-bearing run. (The original 2,000/arm proposal is superseded:
+  the restart exam is the stage's central examination — 95 % power is
+  bought whenever one overnight-class run affords it; the wall cap
+  keeps it physical.) N fixed before the run; optional stopping
+  foreclosed (#105.4).
 * ⚠ If the smoke discovers any HARD gate whose population is genuinely unmeasured
   (it should not — all reuse P3a instruments), a #44.5 sizing sign-off returns to
   the commander before the run.

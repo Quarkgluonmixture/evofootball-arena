@@ -4982,3 +4982,42 @@
 >    P3p-3 pre-reg proposes fresh bands ABOVE 11.1M for five arms
 >    + fresh stats seeds (99603 stays available). Whole-match
 >    scale per the P3a form; sizing per the standing pattern.
+
+> **COMMANDER RULING #121 (2026-08-02 — P3p-3 pre-registration
+> reviewed: PASS; the sizing choice ruled FULL-POWER-FIRST with a
+> wall-derived cap; probe build authorized):**
+>
+> 1. **VERDICT**: the P3p-3 pre-registration (`5766f54`, 623
+>    lines) passes review (machine-verify 6/6, zero violations;
+>    the five arms and the telescoping marginal chain exact; the
+>    verdict form verbatim; the released reservation honoured;
+>    seeds above 11.1M).
+> 2. **THE SIZING CHOICE RULED (the executor's top flag)**: the
+>    restart exam sits at the band edge and is this stage's
+>    CENTRAL examination — accepting ~70 % power to save one
+>    overnight-class run is false economy. **N_MAX is amended from
+>    the proposed 2,000/arm to a WALL-DERIVED cap** (the largest
+>    200-step N whose projected battery wall at the smoke-measured
+>    per-set cost × 2 X-DET ≤ 36 h, itself capped 8,000/arm; the
+>    P3a anchor ≈ 0.65 s/match projects even ~7,600/arm as an
+>    overnight-class run — the fork-inflated P3p-2 wall is not the
+>    right anchor, which the smoke settles). If 95 % power still
+>    exceeds the wall cap, the reduced-power reading is disclosed
+>    before launch, exactly as the prereg's fallback provided.
+>    Amended in the doc in place, disclosed.
+> 3. **RATIFIED**: the five-sub-block SHARED seed layout (pairing
+>    preserved — the directive's "one block per arm" correctly
+>    reconciled: a per-arm partition would have broken every
+>    chain contrast); the provenance-identical inert injection on
+>    lawOnly; bootstrap 99603 per the original reservation +
+>    fresh permutation 99903 reserved-unused; band re-anchoring
+>    against THIS battery's own paired R0 (#68.2); the per-remedy
+>    stop semantics; the delivery-gate ≤800/arm reasoning; the
+>    return-to-USER exit.
+> 4. **AUTHORIZED**: executor builds
+>    `scripts/probes/stage3-v4-p3p3-battery.ts` (workflow
+>    Draft → Verify, §0.0; the P3a battery instruments + the
+>    P3p-2b arm machinery reused); then smoke @11.15M → the N/N_MAX
+>    rule → the battery @11.2–11.6M, detached (#49.5). After the
+>    battery: the stage RETURNS TO THE USER with the residual
+>    measured.
