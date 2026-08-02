@@ -5660,3 +5660,47 @@
 >    production-mechanics track, outside this arc's Road B.
 > 5. Fingerprint `57b0bdab…c673` unchanged (#90–#135); nothing
 >    shipped; the seam stays dormant.
+
+> **COMMANDER RULING #136 (2026-08-02 — the user's semantics
+> correction at the #135.4 fork: job-enum → HOME-REGION PRIOR;
+> the three design constraints answered and anchored; the fork
+> re-formed as A′):**
+>
+> 1. **USER STATEMENTS RECORDED** (two turns, verbatim in VISION
+>    §1): (a) "你踢后卫" does NOT mean "designate one body to a
+>    counter-prevention job" — its real effect is a coarse HOME
+>    PRIOR shift plus team-wide expectation coordination, with
+>    rest defence as an emergent side effect; the 摇摆人 (a
+>    swing man between mid and forward) is unrepresentable in a
+>    job enum and trivially representable as a WIDE home region.
+>    (b) Depth must be a RANGE (爱压上的后卫 / 爱回撤的前锋 both
+>    legal); which axes — depth, width, or both; and does what
+>    we define contaminate emergent formations.
+> 2. **ADJUDICATED — the measurements are the proof**: A4-P1/P1b
+>    showed the incumbent's deep BASE-SPOT PRIOR alone provides
+>    the cover while the explicit job-law is redundant-to-costly.
+>    The operative mechanism of "你踢后卫" is the PRIOR, not the
+>    LAW. Slice 1's M1 is therefore RE-SCOPED: the primitive =
+>    per-head coarse 2D home region (center + depth/width
+>    extents), entering the eye's value field as a SOFT BIAS
+>    (clamps are the disease, P1b-certified), gene-weighted
+>    obedience strength + personal offsets. Both axes in the
+>    REPRESENTATION (the user's own deconfliction definition of
+>    位置 needs lateral separation; 强弱侧 lives on width);
+>    which axis a body obeys harder is selection's business.
+> 3. **THE CONTAMINATION BOUNDARY (frozen)**: hand-built = the
+>    coordinate system + blending rule ONLY (the dimension layer,
+>    VISION 诚实张力). NEVER hand-built: any concrete home
+>    distribution, position name list, or role count — THE
+>    FORMATION IS the team's evolved home distribution (the
+>    root-replacement path for the #1 violation); generation 0
+>    initialized incumbent-equivalent, divergence earned.
+>    Honest non-claims: convex regions cannot express bimodal
+>    homes; block movement comes from the ball-relative frame;
+>    in-match agreement changes are the coach-loop rung.
+> 4. **THE FORK RE-FORMED (#135.4′, still open)**: **(A′,
+>    recommended)** contract M1′ rewrite (home-region prior) +
+>    VISION audit, then A4-P1c = fork-and-GRANT on the eye world
+>    (grant a back home-prior in branch B; measure discipline
+>    recovery on raw deep-entry rates) · **(B)** the offside limb
+>    · **(C)** park. Nothing proceeds until the user rules.
