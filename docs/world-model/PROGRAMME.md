@@ -26,39 +26,36 @@
 > (c) **Live-state edits land ONLY in this section.** When it is superseded, move the old block down to `PROGRAMME-LOG.md` (never stack state here).
 > (d) **Contracts / stage docs are cited by the rulings** — open them on demand, not on resume.
 
-**THE A4 ARC — THE P1 PRICING ARC IS CLOSED: THREE INSTRUMENTS,
-ONE ANSWER (#125–#139, 2026-08-02)**. Contract:
-[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md) (M1′
-home-region soft prior, #136/#137). The REST-DEFENCE rung is
-MEASURED DEAD in all three forms — P1 observational (confounded
-negative, #129) → P1b removal on the incumbent world (the
-hardcoded law prices ≤0: redundant-to-costly, #135) → **P1c grant
-on the eye world (3800m, 76,000 forks ×6 branches, all X green,
-#139): a granted back home-prior is RESOLVEDLY ADVERSE, +0.0461
-[+0.0400, +0.0522] deep entries/window at unit dose, DOSE-MONOTONE
-(+0.020/+0.036/+0.046/+0.046), every stratum harmful, no reversal
-— while spacing/dupRun IMPROVE (the tell: the harm is an
-own-possession OUTLET TAX, not crowding)**. ⭐ TERMINAL (#139.3):
-depth-anchoring one body during own possession buys NO rest-defence
-discipline at the 10 s surrogate grain on ANY world — it costs, in
-proportion to anchor strength; the job's causal moment lives OUT of
-possession, where no percept-honest consumption seam exists (THE
-NAMED GAP). #106.6: the rest-defence question is CLOSED — no fourth
-instrument. Banked forward: the dormant home-prior machinery (grant
-seam + VAL_SCALE dose instrument, reusable), the Phase-31-pin
-production REMOVAL candidate (P1b offshoot, §6 discipline), the
-world-fact "this economy punishes deep parking" (the user's #130
-instinct, thrice measured). ⭐ **THE QUEUE SITS AT THE USER FORK
-(#139.5): (A, recommended) pivot slice 1 to the OFFSIDE limb** — a
-back-LINE line-awareness prior (#116.2(iii) family, +33.9%
-confirmed, eye-world native, a DIFFERENT prior shape; the grant
-instrument reuses directly) · **(B)** park A4 (ladder rungs 补位 →
-默契学习 → 教练回路, or C-track) · **(C)** the out-of-possession
-consumption seam contract (the heavy substrate step at the named
-gap). **Green path suspended; nothing proceeds until the user
-rules.** Seeds consumed through 12.008M; 12.01M–12.3M + stats
-1006xx+ remain reserved. Road B throughout; fingerprint
-`57b0bdab…c673` unchanged (#90–#139). R20 gaps / F9 any time.
+**THE A4 ARC — the P1 pricing arc + the #140 forensics (#125–#142,
+2026-08-02)**. Contract: [`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md)
+(M1′ home-region soft prior). History: P1 observational STOP (#129,
+endogeneity) → P1b removal STOP (#135: the hardcoded law
+redundant-to-costly on the incumbent world) → P1c single-body grant
+on the eye world STOP (#139: RESOLVEDLY ADVERSE, dose-monotone) →
+**the user challenged the diagnosis; the #140 forensics (16,000
+forks re-read, all X green) REJECTED all three registered
+hypotheses**: turnovers resolved DOWN (outlet-tax dead), the deep
+outlet IS used (deeper by 1.4 m; no build-up defect), turnover
+geography flat + box weakly UP (not a counting artifact). ⭐
+**SURVIVOR (H5, #142.3): counter-press thinning — anchoring ONE
+body redistributes the other five by their own gradients, thinning
+post-loss pressing density; discipline is a property of the
+team's agreed SHAPE, not one body's depth (the user's #131
+anatomy ② speaking through data).** #139.3's closure NARROWED
+(#142.4): the SINGLE-BODY depth-anchor question is closed
+(#106.6); the WHOLE-DISTRIBUTION form (M1′ proper, the 野球
+model's real content) was never instrumented. ⭐ **THE QUEUE SITS
+AT THE USER FORK (#142.5): (A, recommended) A4-P1d — the
+whole-distribution grant census** (per-team home map, all
+outfielders, incumbent-equivalent gen-0 content; fork-and-grant
+on the eye world; the direct kill-or-confirm of H-A4.1) · **(B)**
+the OFFSIDE limb pivot (+33.9 %, collective line prior) · **(C)**
+park A4 · **(D)** the out-of-possession seam contract. **Green
+path suspended; nothing proceeds until the user rules.** Banked:
+the grant/dose machinery (reusable), the Phase-31-pin removal
+candidate, the deep-outlet exoneration. Seeds consumed through
+12.008M; 12.01M–12.3M + stats 1006xx+ remain. Road B; fingerprint
+`57b0bdab…c673` unchanged (#90–#142). R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

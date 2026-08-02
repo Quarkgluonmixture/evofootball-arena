@@ -5928,3 +5928,59 @@
 > 3. **THE RUN AUTHORIZED** (#49.5): 800 matches @ the census
 >    12.00M block, REPORTED-only; adjudication (#142) re-issues
 >    the #139.5 fork with the discrimination verdict.
+
+> **COMMANDER RULING #142 (2026-08-02 — the forensics adjudicated:
+> ALL THREE registered hypotheses REJECTED; the surviving
+> composite (H5, counter-press thinning); the #139.3 closure
+> narrowed to the SINGLE-BODY form; the fork re-issued):**
+>
+> 1. **BANKED**: the forensic re-read (800 matches, 16,000 forks,
+>    branches A/1.0/2.0; all X green; subset Δdeep +0.0379
+>    [+0.0243, +0.0515] consistent with the census +0.0461 —
+>    X-COUNT coherence; SHA c7f96e7f2b6c; JSON committed).
+> 2. **THE DISCRIMINATION (against the #140.2 frozen
+>    predictions)**: **H1 outlet-tax REJECTED** — turnovers
+>    RESOLVED DOWN (−0.0199 [−0.0308, −0.0089]), retention null;
+>    the commander's #139.2 story was wrong, the user's challenge
+>    right twice over. **H2 unused-outlet REJECTED** — the deep
+>    outlet IS used: passes-to-granted flat-to-up, receives flat,
+>    receive depth −6.72 → −8.09 (the dose delivered); no
+>    build-up defect at this grain (good news for §3 realism).
+>    **H4 counting-artifact REJECTED** — turnover geography FLAT
+>    (own-share 8.28 % → 8.38 %), box entries WEAKLY RESOLVED UP
+>    at dose 1 (+0.0026 [+0.0001, +0.0051]; dose 2 marginal) —
+>    the danger is real.
+> 3. ⭐ **THE SURVIVING COMPOSITE (H5 — counter-press thinning)**:
+>    possession kept MORE, lost in the SAME places, yet
+>    entries-per-opponent-possession +≈10 % — combined with the
+>    census shape exhibit (spacing ↑, dupRun ↓), the mechanism is
+>    COLLECTIVE: anchoring ONE body deep makes the OTHER five
+>    redistribute by their own value fields, thinning the
+>    post-loss pressing density; a lone deep body does not stop
+>    third-line crossings (the P1b redundancy echo). **Discipline
+>    is a property of the team's agreed SHAPE, not of any single
+>    body's depth — the user's #131 anatomy (②补位/collective
+>    adjustment) speaking through the data.**
+> 4. **THE #139.3 CLOSURE, HONESTLY NARROWED**: what is closed
+>    (three instruments, #106.6) is the SINGLE-BODY depth-anchor
+>    question. The contract's actual claim (M1′: the WHOLE agreed
+>    home distribution) was never instrumented — P1c granted one
+>    body. The whole-distribution form is exactly what H5
+>    motivates (coordinated redistribution instead of thinning)
+>    and what the 野球 model always meant. A whole-distribution
+>    census (P1d) would be a NEW question, not a fourth
+>    instrument on the closed one — presented to the user as such.
+> 5. **THE FORK RE-ISSUED (#142.5, replaces #139.5)**: **(A,
+>    recommended) A4-P1d — the WHOLE-DISTRIBUTION grant census**:
+>    extend the grant seam from one body to the per-team home map
+>    (all outfielders, incumbent-equivalent homes at gen-0
+>    content), fork-and-grant on the eye world, same gate form —
+>    the direct kill-or-confirm of H-A4.1 at pricing grain;
+>    machinery ≈ all exists. **(B)** pivot to the OFFSIDE limb
+>    (collective line prior; +33.9 %; independent evidence).
+>    **(C)** park A4. **(D)** the out-of-possession seam contract.
+> 6. The user's realism instincts are formally scored: right that
+>    the deep body remains a usable outlet, right to reject the
+>    tax story; the substrate's deep-outlet machinery is
+>    exonerated at this grain. Fingerprint `57b0bdab…c673`
+>    unchanged (#90–#142).
