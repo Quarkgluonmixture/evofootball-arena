@@ -921,6 +921,25 @@ export class Match {
    * — I-A3). MUTABLE on purpose; a probe assigns it, never a constructor path. */
   homeRegionGrant: { readonly side: 0 | 1; readonly bodyIndex: number; readonly strength: number } | null = null;
 
+  /**
+   * A4-P1d (ruling #143): the DORMANT HOME-MAP GRANT (the WHOLE-DISTRIBUTION form
+   * of the M1′ soft-bias instrument). `null` when no team is granted its home map
+   * — the case in EVERY production path, so the eye consumption point is
+   * bit-for-bit HEAD (both this flag and `homeRegionGrant` null ⇒ byte-identical
+   * to the pre-P1c world). When set (ONLY on a cloned/forked world inside the
+   * counterfactual branch, the `forcedStationPolicy` idiom), EVERY side-`side`
+   * OUTFIELD body gets his OWN coarse 2D home bias — centred on HIS formation
+   * base spot (ATTACK_FORMATIONS, the world's own per-body variable), extents
+   * pre-registered from pitch constants on both axes, no clamp — added to his
+   * per-candidate station value at the established v3 consumption point. Per-body
+   * homes are DERIVED deterministically in the consumption path (NO per-body
+   * table stored here). `strength` is a pre-registered DOSE, uniform across
+   * bodies (a gene when shipped — I-A3). MUTABLE on purpose; a probe assigns it,
+   * never a constructor path. The P1c single-body `homeRegionGrant` is banked
+   * untouched; if BOTH are set the single-body grant takes precedence for its one
+   * body (independence). */
+  homeMapGrant: { readonly side: 0 | 1; readonly strength: number } | null = null;
+
   constructor(cfg: MatchConfig) {
     this.rng = new Rng(cfg.seed);
     this.duration = cfg.duration ?? MATCH_DURATION;

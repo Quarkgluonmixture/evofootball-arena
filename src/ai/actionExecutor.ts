@@ -8,8 +8,8 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
-  EYE_LATTICE, EYE_W_S, STATION_FAMILY, backHomeRegionBias, goingBits, goingContributors, localXBand,
-  perceivedContext, perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
+  EYE_LATTICE, EYE_W_S, STATION_FAMILY, backHomeRegionBias, goingBits, goingContributors, homeMapBias,
+  localXBand, perceivedContext, perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
   priceApproachesV3Partial, type EyeCandidate, type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
 import {
@@ -17,8 +17,8 @@ import {
 } from './eyeContextBitsV4';
 import { pressureAt } from './perception';
 import {
-  cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX, runTarget,
-  supportSpot,
+  ATTACK_FORMATIONS, cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX,
+  runTarget, supportSpot,
 } from './formations';
 import { ballLanding, escapeCarry, interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
@@ -878,12 +878,34 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         // Body- and side-scoped; a probe sets it on a forked clone. The bias is
         // distance-decayed toward the back home region in the eye's own units.
         const grant = match.homeRegionGrant;
-        const homeBias: ((cand: EyeCandidate) => number) | undefined =
+        let homeBias: ((cand: EyeCandidate) => number) | undefined =
           (grant !== null && grant.side === p.side && p.index === grant.bodyIndex && grant.strength !== 0)
             ? (cand: EyeCandidate) => backHomeRegionBias(
               grant.strength, team.localX(ball.pos.x + team.attackDir * cand.dx),
             )
             : undefined;
+        // A4-P1d (#143): the DORMANT HOME-MAP GRANT (parallel to the P1c single-body
+        // flag above, which stays banked untouched). `homeMapGrant` is null in every
+        // production path ⇒ this closure is never built ⇒ bit-for-bit HEAD. When set on
+        // a forked clone, EVERY side-d OUTFIELD body (index-1..5, GK excluded) gets his
+        // OWN 2D home bias centred on HIS ATTACK_FORMATIONS base spot (the world's own
+        // per-body variable), priced at this SAME v3 consumption point. The single-body
+        // grant, if also set for this body, takes precedence (independence).
+        const mapGrant = match.homeMapGrant;
+        // (p.role is already narrowed to non-GK at this consumption point; GK never
+        // reaches the v3 station eye, so the map grant covers exactly the outfielders.)
+        if (homeBias === undefined && mapGrant !== null && mapGrant.side === p.side
+          && mapGrant.strength !== 0) {
+          const home = ATTACK_FORMATIONS[team.style.formationAtk][p.index];
+          if (home !== undefined) {
+            const hx = home.x;
+            const hy = home.y;
+            const s = mapGrant.strength;
+            homeBias = (cand: EyeCandidate) => homeMapBias(
+              s, team.localX(ball.pos.x + team.attackDir * cand.dx), ball.pos.y + cand.dy, hx, hy,
+            );
+          }
+        }
         let outcome;
         // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / v3 / incumbent).
         let v2rCommitContributors: Set<number> = new Set();

@@ -14,7 +14,7 @@
 // PURE. No world mutation, no RNG, no truth lookups except in the ORACLE-CTX
 // arm, which is a probe-only diagnostic (contract §2.5) and never reachable
 // from a production path.
-import { HALF_L } from '../sim/constants';
+import { BOX_WIDTH, HALF_L } from '../sim/constants';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import type { TacticalGenome } from '../evolution/genome';
 import type { PerceptionSnapshot } from './perceptionSnapshot';
@@ -80,6 +80,62 @@ export function backHomeRegionBias(strength: number, candLocalX: number): number
   if (strength === 0 || !Number.isFinite(candLocalX) || !Number.isFinite(strength)) return 0;
   const outside = Math.max(0, Math.abs(candLocalX - HOME_REGION_CENTER_LOCAL_X) - HOME_REGION_HALF_DEPTH);
   return strength * Math.exp(-outside / HOME_REGION_DECAY_M);
+}
+
+// ===========================================================================
+// A4-P1d (ruling #143) — THE DORMANT HOME-MAP GRANT (the WHOLE-DISTRIBUTION
+// form of the M1′ soft-bias instrument; docs/world-model/A4-P1D-MAP-GRANT-CENSUS.md).
+// P1c granted ONE body a single back home region; P1d grants EVERY side-d
+// outfielder his OWN coarse 2D home, centred on HIS formation base spot (the
+// world's own per-body variable — ATTACK_FORMATIONS in formations.ts, the
+// team's evolved formation, NOT a hand-authored distribution — M2′ gen-0
+// content #136.3), and prices a distance-decayed SOFT bias toward it. The P1c
+// single-body flag (Match.homeRegionGrant + backHomeRegionBias) is BANKED
+// UNTOUCHED; this is a NEW, parallel form.
+//
+// Hand-built here = the COORDINATE FRAME + the BLENDING RULE ONLY (I-A2/I-A4
+// 诚实张力): the per-body CENTER is the world's own formation variable; the
+// EXTENTS are pre-registered from PUBLISHED pitch constants on BOTH axes (#136 —
+// depth AND width, the deconfliction定义 needs lateral separation); the STRENGTH
+// is a pre-registered DOSE (a gene when shipped — I-A3). NO clamps (M3′: the
+// clamp is the P1b-certified disease). The bias is the P1c distance-decayed soft
+// EXPONENTIAL extended to 2D: full `strength` inside the axis-aligned home box
+// [homeX ± half-depth] × [homeY ± half-width], exp-decayed by the EUCLIDEAN
+// distance to that box outside it. PURE: no world read, no clamp, no mutation;
+// the caller supplies the candidate's own team-local (depth, width) and the
+// body's own home (from the formation table). Dormant in production
+// (Match.homeMapGrant is null).
+//
+// EXTENTS — published-anchored, BOTH axes (FLAGGED derivation, executor's choice):
+//   half-depth = HALF_L / 6   (a coarse depth band — half of the own-third scale)
+//   half-width = BOX_WIDTH / 4 (a coarse lateral band — a quarter of the box width)
+//   decay      = HALF_L / 3    (REST_THIRD; the SAME soft-decay scale as P1c)
+/** the home-box depth half-extent (published: half the own-third depth scale). */
+export const HOME_MAP_HALF_DEPTH = HALF_L / 6;
+/** the home-box width half-extent (published: a quarter of the penalty-box width). */
+export const HOME_MAP_HALF_WIDTH = BOX_WIDTH / 4;
+/** the soft-decay length scale = REST_THIRD = HALF_L/3 (the P1c decay, reused). */
+export const HOME_MAP_DECAY_M = HALF_L / 3;
+
+/**
+ * The M3′ soft 2D bias: `strength` inside the body's axis-aligned home box
+ * (centred on his formation base spot, both team-local coords), exp-decayed by
+ * the Euclidean distance to that box outside it. Added to the per-candidate
+ * advantage at the v3 consumption point (positive ⇒ home-ward candidates score
+ * higher ⇒ the body stations toward his home). `strength === 0` ⇒ 0 (inert).
+ * All coordinates are team-local (localX = worldX·attackDir, localY = worldY).
+ */
+export function homeMapBias(
+  strength: number, candLocalX: number, candLocalY: number,
+  homeLocalX: number, homeLocalY: number,
+): number {
+  if (strength === 0 || !Number.isFinite(strength)
+    || !Number.isFinite(candLocalX) || !Number.isFinite(candLocalY)
+    || !Number.isFinite(homeLocalX) || !Number.isFinite(homeLocalY)) return 0;
+  const outX = Math.max(0, Math.abs(candLocalX - homeLocalX) - HOME_MAP_HALF_DEPTH);
+  const outY = Math.max(0, Math.abs(candLocalY - homeLocalY) - HOME_MAP_HALF_WIDTH);
+  const outside = Math.hypot(outX, outY);
+  return strength * Math.exp(-outside / HOME_MAP_DECAY_M);
 }
 
 /** The 18-candidate lattice, byte-for-byte P1R's (§2.3 of that contract). */
