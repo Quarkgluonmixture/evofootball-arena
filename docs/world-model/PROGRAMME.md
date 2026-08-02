@@ -26,55 +26,39 @@
 > (c) **Live-state edits land ONLY in this section.** When it is superseded, move the old block down to `PROGRAMME-LOG.md` (never stack state here).
 > (d) **Contracts / stage docs are cited by the rulings** — open them on demand, not on resume.
 
-**THE A4 ARC (opened #125; contract
-[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md),
-VISION-audited; 自走 green path #126) — A4-P1 CLOSED: THE FROZEN
-GATE STOPPED THE STAGE (#127–#129, 2026-08-02)**. The observational
-vacancy census (pre-reg `a9f7742`, #127 tightenings; the #128
-X-DET harness repair en route; 200 matches @11.80M, all X green)
-returned a **RESOLVEDLY NEGATIVE pooled vacancy price −0.0144
-[−0.0178, −0.0114], non-monotone ladder, no Simpson reversal
-(standardized −0.0078 same sign), box/6s/15s all agree** ⇒ STOP
-executed as frozen. **Diagnosis (#129.3)**: endogeneity + a bar
-artifact — the incumbent hard-codes the job (`PlayerBrain.ts:1176`),
-so TRUE functional absence never occurs on this world; occupied≈
-pinned states, vacant≈attacking states with the clamp still
-covering above the own-third bar. **The world's own variation
-cannot price a counterfactual the incumbent never permits — the
-question needs an INTERVENTION.** ⭐ **A4-P1b CLOSED — THE INTERVENTIONAL GATE ALSO STOPPED
-(#133–#135, 2026-08-02)**: the fork-and-abandon census (dormant
-seam `Match.abandonRestDesignation`, `f5dd892`+`551fc3f`; 1400
-matches, 56,000 paired forks, all X green) measured the index-1
-designation policy's causal price on the incumbent world as
-**RESOLVEDLY NEGATIVE** (deep −0.000837 [−0.001065, −0.000603],
-accrual −0.0008→−0.0033 at 10→30 s, box NULL, all strata ≤0, no
-reversal) ⇒ **the hand-written law is REDUNDANT-TO-COSTLY: the
-ordinary positioning engine already covers** — the user's #130
-challenge causally vindicated. Design gap owned (#135.3): both
-instruments priced the INCUMBENT world; the A4 target (−16.1%) is
-an EYE-WORLD phenomenon — ownership's value where ordinary cover
-ERODES is still untested. ⭐ **#135.4′ RULED A′ BY THE USER ("A′ 自走", #137) — the
-green path resumed; THE CONTRACT RESCOPED (M1′, #136 semantics):
-assignment = per-head coarse 2D home-region SOFT prior** (job enum
-dropped — P1/P1b proved the PRIOR, not the LAW, carries the value;
-clamps banned; formation = the team's EVOLVED home distribution =
-the root-replacement path for the #1 VISION violation; §8.2
-re-audit PASS). **A4-P1c IS LIVE: fork-and-GRANT on the eye world**
-(the R3p arm, where the −16.1% residual lives): branch B GRANTS one
-body a back home prior (M3′ soft-bias instrument form, pre-registered
-DOSE grid = the monotone axis); gate = resolved dose-monotone
-discipline recovery on RAW deep-entry rates (goal-value conversion
-labelled only; #127-form tightenings). #106.6: P1c = the THIRD
-instrument, user-authorized; no fourth without a fresh ruling.
-OFFSHOOT standing: the Phase-31 pin = measured-≤0 hand-code, future
-removal candidate via §6 ship discipline (production track).
-#131/#132 ladder rungs (补位 → 默契学习 → 教练回路) named, NOT
-authorized. Slice-1 stage map on resume:
-A4-P2 dormant build → A4-P3 frontier battery (R0/R3p/assignOnly/
-ASSIGN; primary `ASSIGN − R3p`). Seeds: 11.70M/11.80M consumed by
-P1; 11.81M–12.3M + stats 1002xx+ still reserved to A4. Road B
-throughout; fingerprint `57b0bdab…c673` unchanged (#90–#129). R20
-gaps / F9 any time.
+**THE A4 ARC — THE P1 PRICING ARC IS CLOSED: THREE INSTRUMENTS,
+ONE ANSWER (#125–#139, 2026-08-02)**. Contract:
+[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md) (M1′
+home-region soft prior, #136/#137). The REST-DEFENCE rung is
+MEASURED DEAD in all three forms — P1 observational (confounded
+negative, #129) → P1b removal on the incumbent world (the
+hardcoded law prices ≤0: redundant-to-costly, #135) → **P1c grant
+on the eye world (3800m, 76,000 forks ×6 branches, all X green,
+#139): a granted back home-prior is RESOLVEDLY ADVERSE, +0.0461
+[+0.0400, +0.0522] deep entries/window at unit dose, DOSE-MONOTONE
+(+0.020/+0.036/+0.046/+0.046), every stratum harmful, no reversal
+— while spacing/dupRun IMPROVE (the tell: the harm is an
+own-possession OUTLET TAX, not crowding)**. ⭐ TERMINAL (#139.3):
+depth-anchoring one body during own possession buys NO rest-defence
+discipline at the 10 s surrogate grain on ANY world — it costs, in
+proportion to anchor strength; the job's causal moment lives OUT of
+possession, where no percept-honest consumption seam exists (THE
+NAMED GAP). #106.6: the rest-defence question is CLOSED — no fourth
+instrument. Banked forward: the dormant home-prior machinery (grant
+seam + VAL_SCALE dose instrument, reusable), the Phase-31-pin
+production REMOVAL candidate (P1b offshoot, §6 discipline), the
+world-fact "this economy punishes deep parking" (the user's #130
+instinct, thrice measured). ⭐ **THE QUEUE SITS AT THE USER FORK
+(#139.5): (A, recommended) pivot slice 1 to the OFFSIDE limb** — a
+back-LINE line-awareness prior (#116.2(iii) family, +33.9%
+confirmed, eye-world native, a DIFFERENT prior shape; the grant
+instrument reuses directly) · **(B)** park A4 (ladder rungs 补位 →
+默契学习 → 教练回路, or C-track) · **(C)** the out-of-possession
+consumption seam contract (the heavy substrate step at the named
+gap). **Green path suspended; nothing proceeds until the user
+rules.** Seeds consumed through 12.008M; 12.01M–12.3M + stats
+1006xx+ remain reserved. Road B throughout; fingerprint
+`57b0bdab…c673` unchanged (#90–#139). R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

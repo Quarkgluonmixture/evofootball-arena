@@ -5788,3 +5788,67 @@
 >    frozen N arithmetic → census (@ 12.00M) → adjudication.
 >    PASS opens A4-P2 on the green path (#137.1); any STOP/FAIL
 >    returns to the user.
+
+> **COMMANDER RULING #139 (2026-08-02 — the A4-P1c census
+> adjudicated: RESOLVEDLY ADVERSE, dose-monotone; the THREE-
+> INSTRUMENT SYNTHESIS closes the rest-defence question; the arc
+> RETURNS TO THE USER):**
+>
+> 1. **BANKED**: the census (3800 matches @ 12.00M, 76,000 forks
+>    × 6 branches ≈ 456,000 sims; X-DET/X-FORK/X-MERGE/
+>    E-NONSTATION all green; VAL_SCALE runtime = 0.163494 = the
+>    frozen readout, verify-N2 satisfied; SHA f6ab37d2aac6; both
+>    JSONs committed). The gate, EXECUTED AS FROZEN, fails —
+>    and the honest reading is stronger than the disposition
+>    line's "null/non-monotone": the grant is **RESOLVEDLY
+>    ADVERSE**. Δprimary +0.046066 [+0.039961, +0.052158] deep
+>    entries/window (CI entirely positive = the grant INCREASES
+>    entries against); the dose ladder +0.0199 → +0.0364 →
+>    +0.0461 → +0.0464 — a clean, saturating dose-response OF
+>    HARM; every context stratum harmful; no Simpson reversal.
+>    **STOP AT A4-P1c; the green path suspends (#137.1).**
+> 2. **THE TELL (the labelled shape exhibit)**: at top dose,
+>    nearest-teammate spacing IMPROVED (+0.066 m) and dup-run
+>    pairs FELL (−187,728) while deep entries ROSE — the harm is
+>    NOT crowding. The granted body's deep bias binds at the only
+>    seam we can reach (own-possession station choices under the
+>    in-support law), where it acts as an OUTLET/SUPPORT TAX:
+>    possession dies earlier, entries follow. The rest-defence
+>    benefit it was meant to buy lives at OUT-OF-POSSESSION /
+>    transition moments — where no percept-honest consumption
+>    seam exists (the in-support law exists precisely to forbid
+>    extrapolated consumption there). THE NAMED GAP.
+> 3. ⭐⭐⭐ **THE THREE-INSTRUMENT SYNTHESIS (the P1 arc's terminal
+>    finding; #106.6 — the rest-defence question is CLOSED, no
+>    fourth instrument)**: P1 (observational, incumbent):
+>    confounded negative. P1b (removal, incumbent): the hardcoded
+>    deep law prices ≤ 0 — redundant-to-costly. P1c (grant, eye
+>    world): a soft deep prior prices RESOLVEDLY ADVERSE,
+>    dose-monotone. Three worlds, three directions, one answer:
+>    **depth-anchoring a single body during own possession buys
+>    NO rest-defence discipline at the 10 s surrogate grain — it
+>    costs, in proportion to anchor strength.** The slice-1
+>    premise (rest-defence ownership as the first frontier rung)
+>    is measured dead in all three of its forms (law / hardcode /
+>    soft prior). The #123.3 frontier conclusion's OTHER limb
+>    (offside, +33.9 %) is untouched by this closure.
+> 4. **BANKED FORWARD**: the dormant home-prior machinery (the
+>    grant seam, the VAL_SCALE dose instrument, the fork-and-grant
+>    form — reusable for any prior-shaped question); the
+>    Phase-31-pin production REMOVAL candidate (P1b's offshoot,
+>    §6 ship discipline, outside Road B); the world-fact "this
+>    economy punishes deep parking during possession" (spacing
+>    improves, entries rise — aligned with the user's #130
+>    high-press instinct, now measured three ways).
+> 5. **THE FORK (user ruling required)**: **(A, recommended)**
+>    pivot slice 1 to the OFFSIDE limb — a back-LINE
+>    line-awareness prior (the #116.2(iii) family member; +33.9 %
+>    confirmed at battery scale; eye-world native; a DIFFERENT
+>    prior shape — shared line discipline, not a depth anchor;
+>    the grant instrument form reuses directly). **(B)** park A4
+>    — the ladder's other rungs (补位 / 默契学习 / 教练回路) or
+>    the C-track. **(C)** the out-of-possession consumption seam
+>    contract (the heavy substrate step the named gap points at;
+>    its own contract + VISION audit if ever opened).
+> 6. Fingerprint `57b0bdab…c673` unchanged (#90–#139); nothing
+>    shipped; every seam dormant.
