@@ -5704,3 +5704,52 @@
 >    (grant a back home-prior in branch B; measure discipline
 >    recovery on raw deep-entry rates) · **(B)** the offside limb
 >    · **(C)** park. Nothing proceeds until the user rules.
+
+> **COMMANDER RULING #137 (2026-08-02 — the user rules #135.4′:
+> option A′; 自走 resumes; the contract rescoped to M1′ and
+> re-audited; A4-P1c dispatched):**
+>
+> 1. **USER RULING RECORDED (verbatim: "A′ 自走")**: the M1′
+>    rescope + the fork-and-GRANT census proceed; the #126 green
+>    path resumes (P1c → review → runs → adjudication; PASS →
+>    P2 → P3; any STOP/FAIL/veto returns).
+> 2. **THE CONTRACT RESCOPED IN PLACE** (the #136 semantics,
+>    commander work): M1′ per-head coarse 2D home region (center
+>    + depth/width extents, team-local ball-relative frame,
+>    kickoff-static); M2′ evolvable content born
+>    incumbent-equivalent; M3′ SOFT bias blending (clamps banned —
+>    P1b is the empirical warrant; strength = gene when shipped,
+>    dose grid in instruments); M4′ deconfliction via shared
+>    content, NO successor to the fan-exclusion law; I-A2/I-A4
+>    re-formed (hand-built = coordinate frame + blending rule
+>    ONLY; formation = the evolved home distribution); §4 = the
+>    P1→P1b→P1c arc; §5 arms renamed priorOnly/PRIOR; §7 bounds;
+>    **§8.2 re-audit: PASS — the rescope strictly strengthens
+>    VISION compliance (it replaces the head violation's
+>    mechanism rather than adding beside it).**
+> 3. **A4-P1c DESIGN CONSTRAINTS (binding on the pre-reg)**:
+>    (i) WORLD = the R3p eye-consumer arm reconstructed EXACTLY
+>    as the P3p-3 battery built it (its arm gates — X-MERGE-IDENT,
+>    E-NONSTATION — inherited); (ii) SEAM — a dormant
+>    fork-branch-only grant flag (default OFF, `=== true` style,
+>    body- and side-scoped) adding a distance-decayed SOFT bias
+>    toward a back home region to the granted body's station
+>    scoring at the established consumption point; no clamps, no
+>    src behaviour flag-off; region anchored on the world's own
+>    geometry (published constants), strengths on a pre-registered
+>    DOSE GRID traced to the eye's native score units (executor
+>    derives, flags); (iii) INSTRUMENT — paired same-seed forks
+>    (branch A ungran­ted / branch B granted), the P1b fork idiom
+>    + X-FORK-IDENT; gate on RAW deep-entry rates (CI upper < 0
+>    at the primary dose ∧ dose-monotone ∧ ladder resolved ∧ no
+>    reversal — the #127 form; goal-value conversion LABELLED
+>    only, two-pin honesty); a labelled non-gating shape exhibit
+>    (spacing/dupRun at top dose) for early F-SLIDE sight;
+>    (iv) the #128 wall lesson carries; (v) SEEDS — smoke
+>    11,950,000+k k∈0..39, census 12,000,000+k (≤8,000), stats
+>    100403/100503; disjoint from consumed 11.70/11.80/11.85/
+>    11.90M; (vi) dormancy tests in the a4RestAbandon idiom;
+>    fingerprint unchanged.
+> 4. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0): pre-reg + grant seam + tests + probe + bounded
+>    preflight; local commit, explicit paths, no push.

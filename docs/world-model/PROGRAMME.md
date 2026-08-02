@@ -53,16 +53,23 @@ ordinary positioning engine already covers** — the user's #130
 challenge causally vindicated. Design gap owned (#135.3): both
 instruments priced the INCUMBENT world; the A4 target (−16.1%) is
 an EYE-WORLD phenomenon — ownership's value where ordinary cover
-ERODES is still untested. ⭐ **THE QUEUE SITS AT THE USER FORK
-(#135.4): (A, recommended) A4-P1c — the same instrument on the
-V3-CONSUMER (eye) world** (raw-rate gate; price conversion
-labelled/recalibrated) · **(B)** re-anchor slice 1 on the OFFSIDE
-limb (+33.9%, already eye-world) · **(C)** park A4, censuses
-banked. OFFSHOOT noted: the Phase-31 pin = measured-≤0 hand-code,
-future removal candidate via §6 ship discipline (production
-track, outside Road B). **Green path suspended; nothing proceeds
-until the user rules.** #131/#132 ladder rungs (补位 → 默契学习 →
-教练回路) named, NOT authorized. Slice-1 stage map on resume:
+ERODES is still untested. ⭐ **#135.4′ RULED A′ BY THE USER ("A′ 自走", #137) — the
+green path resumed; THE CONTRACT RESCOPED (M1′, #136 semantics):
+assignment = per-head coarse 2D home-region SOFT prior** (job enum
+dropped — P1/P1b proved the PRIOR, not the LAW, carries the value;
+clamps banned; formation = the team's EVOLVED home distribution =
+the root-replacement path for the #1 VISION violation; §8.2
+re-audit PASS). **A4-P1c IS LIVE: fork-and-GRANT on the eye world**
+(the R3p arm, where the −16.1% residual lives): branch B GRANTS one
+body a back home prior (M3′ soft-bias instrument form, pre-registered
+DOSE grid = the monotone axis); gate = resolved dose-monotone
+discipline recovery on RAW deep-entry rates (goal-value conversion
+labelled only; #127-form tightenings). #106.6: P1c = the THIRD
+instrument, user-authorized; no fourth without a fresh ruling.
+OFFSHOOT standing: the Phase-31 pin = measured-≤0 hand-code, future
+removal candidate via §6 ship discipline (production track).
+#131/#132 ladder rungs (补位 → 默契学习 → 教练回路) named, NOT
+authorized. Slice-1 stage map on resume:
 A4-P2 dormant build → A4-P3 frontier battery (R0/R3p/assignOnly/
 ASSIGN; primary `ASSIGN − R3p`). Seeds: 11.70M/11.80M consumed by
 P1; 11.81M–12.3M + stats 1002xx+ still reserved to A4. Road B
