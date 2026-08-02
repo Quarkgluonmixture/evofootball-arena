@@ -60,7 +60,14 @@ mediators from the start. Seeds: smoke 12.05M, census 12.10M,
 stats 100603/100703. H5 predicts coordinated redistribution
 should NOT thin the press — this is the kill-or-confirm of
 H-A4.1 at pricing grain; its STOP returns to the user (one
-instrument for the distribution question, #106.6 idiom). Banked:
+instrument for the distribution question, #106.6 idiom). **P1d
+PRE-REG LANDED (`135d51a`, Draft→Verify PASS; commander review
+#144: base spots = the genome-chosen ATTACK_FORMATIONS table —
+the world's own agreement fossil; extents HALF_L/6 × BOX_WIDTH/4,
+decay REST_THIRD; 973/973 green, fingerprint unchanged). Two
+user working rules anchored (#144: VISION §6 + §0.0.6): 有故事
+就要有探针 · 决策点人话先行. RUNS LIVE: smoke @12.05M → frozen
+N → census @12.10M → adjudication.** Banked:
 the grant/dose machinery (reusable), the Phase-31-pin removal
 candidate, the deep-outlet exoneration. Seeds consumed through
 12.008M; 12.01M–12.3M + stats 1006xx+ remain. Road B; fingerprint
@@ -118,6 +125,16 @@ candidate, the deep-outlet exoneration. Seeds consumed through
    before runs; predicates never change after sight; FAILs reported
    as-is) and Road B (nothing ships, flags dormant, fingerprint
    unchanged) bind every round. Resume reads = the top ⭐ QUEUE section + the rulings tail, never a full read of this file.
+6. **Adjudication discipline (user-ratified 2026-08-02, #144).**
+   (a) **有故事就要有探针**: a causal STORY in a ruling either carries
+   instrument evidence or is labelled HYPOTHESIS — never presented as
+   a finding; a story that matters gets its own forensic probe
+   (same-seed re-read + counters, discriminating predictions FROZEN
+   before the run — the #140 form). (b) **决策点人话先行**: anything
+   requiring the user's ruling (forks, gates, verdicts) is presented
+   in plain football language FIRST (what happened / what it means /
+   what each option buys and costs); numbers and codenames stay in
+   the rulings, not the decision prompt.
 
 ## 0. Where we are (context, 2026-07-24)
 

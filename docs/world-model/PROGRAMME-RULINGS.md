@@ -6030,3 +6030,39 @@
 > 4. **DISPATCH**: one executor step (Workflow Draft→Verify,
 >    §0.0): pre-reg + map seam + tests + probe + bounded
 >    preflight; local commit, explicit paths, no push.
+
+> **COMMANDER RULING #144 (2026-08-02 — the A4-P1d deliverable
+> reviewed; the base-spot ruling; two user working rules anchored;
+> the runs authorized):**
+>
+> 1. **BANKED**: `135d51a` (pre-reg A4-P1D-MAP-GRANT-CENSUS.md +
+>    the dormant map seam `Match.homeMapGrant` {side, strength}|null
+>    + probe + 12 dormancy tests; independent verify PASS; suite
+>    973/973; tsc clean; fingerprint `57b0bdab…c673` unchanged;
+>    the P1c single-body flag untouched and independence-tested).
+> 2. **THE BASE-SPOT RULING (the step's key flag, ACCEPTED)**:
+>    each body's home centre = ATTACK_FORMATIONS[formationAtk]
+>    [p.index] — the genome-chosen fixed table. This is the
+>    world's OWN agreement fossil (the formation the genome picked
+>    = M2′ gen-0 content), static, per-body, 2D, and free of the
+>    neutral-reference extraction a live-path (emergentStation)
+>    derivation would need. The architecture note stands: the HOME
+>    is the AGREEMENT (static prior); the eye supplies the flux —
+>    exactly M1′. Also accepted: extents HALF_L/6 × BOX_WIDTH/4 +
+>    decay REST_THIRD (published-anchored, frozen ex ante); the
+>    GK narrowing (type-proven at the consumption point); the
+>    dropped single-grantee counters (no single grantee under a
+>    map); the doc's null→true wording note (inherited from the
+>    P1 detector, no behavioural divergence); PROGRAMME untouched
+>    by the executor (correct precedent).
+> 3. **TWO USER WORKING RULES ANCHORED** (verbatim in VISION §6;
+>    codified as §0.0.6): (a) 有故事就要有探针 — causal stories
+>    carry instrument evidence or are labelled hypotheses; a
+>    story that matters gets its forensic probe (the #140 form).
+>    (b) 决策点人话先行 — user-facing forks/gates/verdicts in
+>    plain football language first; numbers and codenames stay in
+>    the rulings. Both also recorded in the cross-session memory.
+> 4. **THE RUNS AUTHORIZED** (#49.5): smoke (40 @ 12.05M) → the
+>    frozen N arithmetic → census (@ 12.10M, N ≤ 8,000) →
+>    adjudication. PASS opens A4-P2 (#143.1); any STOP/FAIL
+>    returns to the user — in plain language.
