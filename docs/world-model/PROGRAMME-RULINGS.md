@@ -5300,3 +5300,38 @@
 >    formula binds, no discretion) → census (N @ 11.80M) →
 >    adjudication ruling. On PASS the green path (#126) opens
 >    A4-P2 dispatch; readings B/C/D/E return to the user.
+
+> **COMMANDER RULING #128 (2026-08-02 — the A4-P1 smoke fails
+> X-DET; the harness repair banked; the re-run authorized):**
+>
+> 1. **THE FIRST SMOKE FAILED X-DET** (reading D, exactly as
+>    pre-laid): "FAIL — X-DET: the output is not byte-identical
+>    across the double-run; STOP". Diagnosis (commander): a
+>    HARNESS self-injury, not world non-determinism — the probe
+>    measured `perMatchWallMs` with `Date.now()` INSIDE the
+>    compared payload (it feeds the wall-derived N_MAX), so the
+>    byte comparison was structurally guaranteed to fail. The
+>    #122.2 genre: an instrument repair caught before any
+>    gate-bearing run (the smoke is non-gating by freeze).
+> 2. **THE REPAIR BANKED** (`53817f5`, Fix → independent Verify
+>    PASS, 8 checks): `buildSizing` split into a deterministic
+>    sizing core (compared) + `computeWallArithmetic` (run-1 wall,
+>    computed ONCE, merged into the written JSON AFTER the X-DET
+>    compare). The N* formula is byte-identical — only its
+>    computation location moved; window rules, instrument,
+>    prices, bins, gate legs, seeds all untouched (diff-scoped
+>    verify). Bounded preflight double-run: xDet TRUE; SKIP_DET
+>    path intact; census core was already wall-free.
+> 3. **FLAG DISPOSED**: the written artifact's top-level SHA still
+>    hashes the merged wall field, so the FILE SHA varies
+>    run-to-run — ACCEPTED (a write-time integrity hash, never
+>    cross-run compared; X-DET reads the wall-free core; no
+>    SHA-strip ordered, scope discipline).
+> 4. **QUARANTINE**: the failed smoke's world numbers are NOT
+>    citable (an X-DET-failed artifact); the re-run overwrites
+>    them. The re-run uses the SAME registered smoke band
+>    (11,700,000+k, k∈0..39) — it IS the registered smoke,
+>    re-measured with the repaired instrument; no seed-ledger
+>    change.
+> 5. **RE-RUN AUTHORIZED** (#49.5 detached): smoke → frozen N →
+>    census → adjudication, per #127.5 unchanged.
