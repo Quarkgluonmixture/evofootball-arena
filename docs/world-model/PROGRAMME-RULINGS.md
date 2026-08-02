@@ -5556,3 +5556,47 @@
 > 3. **DISPATCH**: one executor step (Workflow Draft→Verify,
 >    §0.0): pre-reg + seam + dormancy tests + probe + bounded
 >    preflight; local commit, explicit paths, no push.
+
+> **COMMANDER RULING #134 (2026-08-02 — the A4-P1b deliverable
+> reviewed; the emergentStation catch ratified; the verify WARN
+> fixed at review; the runs authorized):**
+>
+> 1. **BANKED**: `f5dd892` (pre-reg A4-P1B-ABANDON-CENSUS.md +
+>    the dormant seam `Match.abandonRestDesignation` (0|1|null,
+>    default null, side-scoped) + probe + 8 dormancy tests;
+>    independent verify PASS, 11 checks; production fingerprint
+>    `57b0bdab…c673` unchanged; suite 950/950 green).
+> 2. **EXECUTOR FLAG RATIFIED (the substantive catch of the
+>    step)**: the dispatch brief cited the fixed-table clamp
+>    lines, but that path is DEAD — `emergentPosOn()` defaults ON
+>    and the LIVE clamp is emergentStation's identical face.
+>    Gating only the brief's lines would have produced a
+>    NON-FUNCTIONAL seam. The executor gated BOTH paths and
+>    threaded the flag through actionExecutor's three
+>    formationSpot sites (a 4th src file — accepted, minimal).
+>    The #117 principle extended: the SUBSTANCE of a ratified
+>    constraint outranks the brief's letter, and the deviation
+>    was flagged, not silent. Also accepted: the per-test
+>    timeout override (house convention).
+> 3. **THE VERIFY WARN, DISPOSED = FIXED AT REVIEW (this
+>    commit)**: two residual clamped-reference sites —
+>    `shapeReady` (hasBall hard-coded true) and the kickoff reset
+>    (kicking side) — are FACES OF THE POLICY (the no-policy
+>    counterfactual world reads readiness and resets kickoffs
+>    against no-policy spots too); threaded
+>    `abandonRest`/`abandonRestDesignation` at both (4 mechanical
+>    lines, per the verifier's exact siting). Audited safe and
+>    left alone: supportSpot (consumes lane.y only), the render
+>    adapter (no sim effect), TeamBrain zonal (hasBall=false).
+>    Flag-off byte-identity holds (defaults false; tsc clean;
+>    950/950; the in-suite fingerprint test green).
+> 4. **HYGIENE**: the three PRE-EXISTING implicit-any errors in
+>    the P1 probe (present at HEAD before this arc's step) fixed
+>    types-only — the repo's `tsc --noEmit` gate is clean again.
+>    The single vitest-worker IPC timeout ("onTaskUpdate", all
+>    tests passing) is an environmental harness flake — noted,
+>    non-blocking.
+> 5. **THE RUNS AUTHORIZED** (#49.5): smoke (40 @ 11.85M) → the
+>    frozen N arithmetic → census (@ 11.90M) → adjudication. On
+>    PASS the green path opens A4-P2 (#133.1); any STOP/FAIL
+>    returns to the user.

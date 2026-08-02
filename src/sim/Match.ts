@@ -2675,7 +2675,7 @@ export class Match {
     // kick finds SET receivers instead of gifting a midfield scramble.
     // Timeout-capped (pure sim-state, invariant 3); RESTART_TIMEOUT is the
     // outer failsafe either way.
-    if (ready && r.kind === 'goalKick' && r.timer < minSetup + 4 && !shapeReady(this.teams[r.side], ball)) {
+    if (ready && r.kind === 'goalKick' && r.timer < minSetup + 4 && !shapeReady(this.teams[r.side], ball, 6, this.abandonRestDesignation === r.side)) {
       ready = false;
     }
     // The corner WAITS for its crashers (Phase 31 — the 30.3 pattern): a
@@ -3146,7 +3146,7 @@ export class Match {
       team.marks.clear();
       for (const p of team.players) {
         if (p.sentOff) continue; // stays parked on the apron
-        p.resetForKickoff(formationSpot(p, team, this.ball, team.side === kickSide));
+        p.resetForKickoff(formationSpot(p, team, this.ball, team.side === kickSide, undefined, this.abandonRestDesignation === team.side));
         // Everyone starts in their OWN half at kickoff (27.5) — the base
         // striker spot sits past halfway and used to straddle the line.
         const lx = team.localX(p.pos.x);

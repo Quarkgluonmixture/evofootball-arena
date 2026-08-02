@@ -123,7 +123,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // hold re-arms in small quanta — every hands protection (untackleable,
   // clearance bubble, nobody presses) keys off gkHoldTimer and keeps
   // applying. Budget-capped so a scattered team can't stall the match.
-  if (p.role === 'GK' && p.gkDistributing && p.gkShapeWait < 4 && !shapeReady(team, match.ball)) {
+  if (p.role === 'GK' && p.gkDistributing && p.gkShapeWait < 4 && !shapeReady(team, match.ball, 6, match.abandonRestDesignation === team.side)) {
     p.gkHoldTimer = 0.25;
     p.gkShapeWait += 0.25;
     p.action = { type: 'HoldPosition', scores: [{ action: 'HoldPosition', score: 1, why: 'waiting for shape' }] };

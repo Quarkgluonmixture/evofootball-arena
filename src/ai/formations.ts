@@ -443,13 +443,16 @@ export function cornerCrashSpots(
  * outfielder the team still has, when send-offs leave fewer than three.
  * Pure sim-state (invariant 3): positions vs spot tables, no clocks.
  */
-export function shapeReady(team: Team, ball: Ball, radius = 6): boolean {
+export function shapeReady(team: Team, ball: Ball, radius = 6, abandonRest = false): boolean {
   let settled = 0;
   let outfield = 0;
   for (const p of team.players) {
     if (p.role === 'GK' || p.sentOff) continue;
     outfield++;
-    const spot = formationSpot(p, team, ball, true);
+    // abandonRest: in an A4-P1b abandoned fork branch the readiness
+    // reference must be the no-policy spot, or the unclamped DF reads as
+    // permanently unsettled against a clamped reference he no longer serves.
+    const spot = formationSpot(p, team, ball, true, undefined, abandonRest);
     const dx = p.pos.x - spot.x;
     const dy = p.pos.y - spot.y;
     if (dx * dx + dy * dy < radius * radius) settled++;

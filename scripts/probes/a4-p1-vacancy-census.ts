@@ -105,6 +105,8 @@ import { randomGenome } from '../../src/evolution/genome';
 import { randomSquad } from '../../src/evolution/playerGenome';
 import { League } from '../../src/sim/League';
 import { Match } from '../../src/sim/Match';
+import type { Player } from '../../src/sim/Player';
+import type { Team } from '../../src/sim/Team';
 import { runHeadless } from '../../src/sim/simRunner';
 import { BOX_DEPTH, BOX_WIDTH, DT, HALF_L } from '../../src/sim/constants';
 import { TEAM_SIZE, type Role, type TeamInfo } from '../../src/sim/types';
@@ -360,8 +362,8 @@ const runCensusMatch = (seed: number, receipts: ReceiptBook | null): CensusRow =
       open = null;
     }
     if (open === null && (poss === 0 || poss === 1)) {
-      const t = m.teams[poss];
-      const body = t.players.find((p) => p.index === 1 && !p.sentOff);
+      const t: Team = m.teams[poss];
+      const body: Player | undefined = t.players.find((p: Player) => p.index === 1 && !p.sentOff);
       open = { d: poss, startTick: tick, vac: 0, occ: 0, slotRole: body?.role ?? null, slotGid: body?.gid ?? -1 };
       windowsOpened += 1;
     }
