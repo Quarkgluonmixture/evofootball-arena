@@ -26,37 +26,30 @@
 > (c) **Live-state edits land ONLY in this section.** When it is superseded, move the old block down to `PROGRAMME-LOG.md` (never stack state here).
 > (d) **Contracts / stage docs are cited by the rulings** — open them on demand, not on resume.
 
-**V4-P3-PARTIAL CLOSED END-TO-END (#110→#123)**: P3p-2 consumer
-(reading A; the law cures 83% of the restart excess at consumer
-grain; the SECOND positive ATE +0.0095) → **P3p-3 BATTERY (400×5
-arms, gates valid, `748b8f6` verify 4/4): STOP OUTRIGHT as frozen —
-the #88.2 spacing line resolvedly closed (−5.3%) while duplicate
-runs improved and TV held**. Verdict map: the law real-but-shy
-(restart +50.8%→+14.5%, RETURNS; banked dormant as v4's strongest
-remedy); **the offside inversion CONFIRMED (+33.9% > P3a's +22.8%
-— offside formally joins the A4/absence family per #116.2(iii))**;
-delivery partial (cutbacks in, headers/long balls out); **the rest
-residual MEASURED −16.1% [−17.2, −15.0] (halved from −30.2%) = the
-A4 target**. ⭐⭐⭐ THE FRONTIER CONCLUSION (#123.3): price-shaped
-remedies slide along the discipline↔shape frontier, they do not
-move it; three evidence lines converge — the frontier-mover is
-ASSIGNMENT (A4, the 野球 insight). Nothing shipped; fingerprint
-unchanged across #90–#123 (34 rulings). **THE QUEUE SITS AT THE
-USER FORK (#123.5): (B, recommended) the A4 ASSIGNMENT CONTRACT ·
-(C) the absence census first · (D) park v4 / C-track / other.
-Nothing proceeds until the user rules.** R20 gaps / F9 any time.
-*(Commander's substrate assessment, on the user's question
-2026-08-02: SUFFICIENT for A4 SLICE 1 = pre-match, per-team,
-gene-weighted assignment of ONE job — rest-defence ownership —
-executed through a new eye.v4-pattern seam + the banked in-support
-law, validated by the reusable P3p-3 battery form at the frozen
-bands; assignment = agreed shared prior, percept-clean per the A4
-charter; assignment VALUE tested at TEAM level (battery A/B), never
-per-tick pricing (the proven dead end). Deferred to later slices:
-dynamic in-match handoff (needs A3-style mutual resolution),
-offside-as-doctrine (a line-awareness prior, not a single-owner
-job), the coach global eye, the selection/PAYS proof (two-step as
-standard).)*
+**THE A4 ARC IS OPEN (#125, 2026-08-02)**: the #123.5 fork ruled
+**B** (the user's 底座够不够开工→够→"go" exchange; veto window
+open — say so and the contract parks unharmed). **The binding
+contract is drafted + VISION-audited (PASS, one amendment F1→I-A4
+job-menu honesty):
+[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md)** — slice
+1 = pre-match, per-team, gene-weighted REST-DEFENCE OWNERSHIP,
+percept-clean per the charter (prior buys latency/priority, never
+reveals an unobserved body; pre-match static; opponent-opaque).
+Sharpened diagnosis at drafting: **R0's rest defence IS already an
+assignment — hard-coded** (`PlayerBrain.ts:1176` `p.index === 1` +
+the formationSpot clamp + the `!restDefence` support-fan exclusion);
+the eye arms erode it (slot 0.5876→0.4384 = the −16.1% [−17.2,
+−15.0] residual) — slice 1 replaces the index with an
+emergence-compatible primitive. Stage map: **A4-P1 vacancy census**
+(fork C folded in as calibration; gate: monotone resolvedly-nonzero
+vacancy price, else STOP) → A4-P2 dormant build → A4-P3 frontier
+battery (4 arms R0/R3p/assignOnly/ASSIGN; primary `ASSIGN − R3p`;
+PASS = DEGEN-RESTDEF closes AND no shape limb regresses = the
+frontier MOVES). Seeds 11.7M–12.3M + stats 1000xx reserved. Road B
+throughout; fingerprint `57b0bdab…c673` unchanged (#90–#125).
+**NEXT AUTHORIZED STEP (on the user's "go"): executor drafts the
+A4-P1 pre-registration** (Workflow Draft→Verify, §0.0). R20 gaps /
+F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

@@ -5154,3 +5154,71 @@
 >    consolidated pointer; the Track F handoff left (out of scope).
 > 4. The queue itself is unchanged: **the #123.5 user fork stands**
 >    (B recommended / C / D). This ruling is housekeeping only.
+
+> **COMMANDER RULING #125 (2026-08-02 — the user rules the #123.5
+> fork: option B; THE A4 ARC OPENS; the assignment contract drafted
+> + VISION-audited):**
+>
+> 1. **USER RULING RECORDED, with its interpretation stated.** At
+>    the #123.5 fork the user asked "你觉得现在开工,我们的底座够不
+>    够" (is the substrate sufficient to start now); the commander
+>    answered SUFFICIENT for slice 1 (the assessment pinned to the
+>    queue); the user then compacted and said **"go"**. Read as the
+>    nod for **option B — the A4 ASSIGNMENT CONTRACT** (the
+>    recommended fork, whose start the 开工 question was already
+>    probing). The interpretation is on the record and the veto
+>    window is open: if B was not meant, say so — the contract
+>    parks unharmed, nothing else has moved.
+> 2. **THE CONTRACT DRAFTED** (commander work, the #91 form):
+>    [`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md).
+>    Slice 1 = pre-match, per-team, gene-weighted assignment of ONE
+>    job (REST_DEFENCE_OWNER), percept-clean per the A4 charter
+>    (a prior buys latency/priority, NEVER reveals an unobserved
+>    body; pre-match static; zero live state; opponent-opaque),
+>    executed through the eye.v4 seam pattern under the banked
+>    in-support law, job term in GOAL-VALUE UNITS only (no free
+>    hand-weights, v4 I-series inherited).
+> 3. ⭐ **THE FORENSIC SHARPENING (found at drafting)**: R0's
+>    rest-defence discipline IS an assignment — a HAND-WRITTEN one.
+>    `src/ai/PlayerBrain.ts:1176` hard-codes `p.index === 1` as the
+>    owner (the Phase-31 rest-defence clamp, gene-faced by SWEEPER
+>    `coverBias` since Phase 88) and excludes him from the support
+>    fan (`!restDefence`). The eye arms erode exactly this
+>    designation (designated-slot occupancy 0.5876 → 0.4384; the
+>    −16.1 % [−17.2, −15.0] residual) because a per-tick gradient
+>    carries no concept of OWNING a job. Slice 1 therefore
+>    REPLACES a hard-coded index with an emergence-compatible
+>    primitive — the incumbent itself is the existence proof that
+>    single-owner assignment buys the discipline.
+> 4. **FORK C FOLDED IN, not defeated**: the absence census is
+>    A4-P1 (the calibration stage) — the vacancy price of the
+>    rest-defence slot, measured on the world's own occupied-vs-
+>    vacant variation with the I5(b) instrument REUSED and the P1
+>    calibration prices; gate to proceed = a monotone, resolvedly
+>    nonzero vacancy price (null/non-monotone ⇒ STOP at P1, per
+>    I-A3 — no measured term, no build).
+> 5. **THE VISION AUDIT (clause-by-clause, §8 of the contract):
+>    PASS with ONE amendment** — F1 (the job-menu genre risk vs
+>    §1's 画死的菜单 violation) becomes invariant **I-A4 job-menu
+>    honesty**: job types are substrate dimensions (涌现的是权重,
+>    不是维度本身); slice 1 claims mechanism VALUE only, never
+>    taxonomy correctness; later slices must open the menu to
+>    genes. Direct anchors: §1 教练战术共同 prior (2026-07-22) is
+>    exactly this shape; §1 攻守两套形状 names rest defence
+>    verbatim; §2 watchability is the PASS condition itself (the
+>    frontier predicate), not a side check.
+> 6. **STAGE MAP RATIFIED**: A4-P1 vacancy census → A4-P2 dormant
+>    build (byte-identity X-check, no dead genes) → A4-P3 frontier
+>    battery (P3p-3 form, four arms R0 / R3p / assignOnly / ASSIGN;
+>    PRIMARY = `ASSIGN − R3p`; PASS = DEGEN-RESTDEF closes
+>    resolvedly AND no shape limb resolves negative — the frontier
+>    MOVES). FAIL modes pre-named (F-SLIDE / F-NULL /
+>    F-SHAPE-ONLY); no third mechanism iteration without a user
+>    ruling (#106.6 carries). Seed bands **11.7M–12.3M + stats
+>    1000xx reserved to A4 slice 1** (a ratified freeze outranks
+>    any dispatch brief, #117).
+> 7. **NEXT AUTHORIZED STEP** (on the user's next "go"): an
+>    executor drafts the A4-P1 pre-registration (Workflow
+>    Draft→Verify, §0.0). Road B binds the whole arc: nothing
+>    ships, every flag dormant, fingerprint `57b0bdab…c673`
+>    unchanged (#90–#125).
