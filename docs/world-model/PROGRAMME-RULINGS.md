@@ -5021,3 +5021,44 @@
 >    rule → the battery @11.2–11.6M, detached (#49.5). After the
 >    battery: the stage RETURNS TO THE USER with the residual
 >    measured.
+
+> **COMMANDER RULING #122 (2026-08-02 — P3p-3 probe build
+> reviewed: PASS; the X-SEAM refinement ratified as an instrument
+> repair; the runs launch):**
+>
+> 1. **BUILD VERDICT**: probe committed `d895c43` (1,599 lines,
+>    one file); independent verify 6/6, zero violations (the five
+>    arm configs exact with per-arm SHA assertions; ONE shared
+>    paired seed list block-major over the five sub-blocks — a
+>    per-arm partition correctly rejected; the P3a collectors
+>    reused; the #121 N/N_MAX rule implemented with the
+>    machine-dependent wall block stripped from X-DET/SHA per the
+>    P2 precedent). Preflight: **the consumption ledger PROVES the
+>    arm semantics** (lawOnly reads ZERO children; noOffside reads
+>    delivery only — 306/0; R3p reads both — 461/1324); the
+>    marginal chain telescopes to < 1e-9; X-DET both modes;
+>    per-set wall at full duration 846 ms ⇒ even the 8,000/arm
+>    hard cap projects ≈ 3.8 h — N* (95 % power) will govern.
+> 2. ⭐ **THE X-SEAM REFINEMENT RATIFIED (an instrument repair in
+>    the #75/#84 genre, caught BEFORE the run)**: the P3a-verbatim
+>    carrier check reads stationEyeState post-step and FALSE-FIRES
+>    on a benign retained-window offset for a body that just
+>    gained the ball (never applied — the src guard forbids it);
+>    it is seed-flaky (passes on the 9.30M block, false-fires on
+>    11.20M). Refined to the faithful E-NONSTATION invariant (a
+>    FRESH override decision while owning the ball — impossible by
+>    the src guard, asserted 0); the other seam sub-checks stay
+>    P3a-verbatim. BANKED as a labelled finding: the P3a battery's
+>    own X-SEAM would have false-fired on fresh seeds.
+> 3. **DEVIATIONS RATIFIED**: the restart-instrument re-anchoring
+>    (the P3p-2 anchors were priors; #68.2 re-anchors on THIS
+>    battery's R0 with the P3a instrument); the light smoke
+>    surrogate for the over-powered REPORTED rest gate (the
+>    binding restart gate uses the exact instrument); the
+>    operationalised shape-regression predicate with components
+>    reported; raw-mean telescoping; the light-wall N_MAX as a
+>    ceiling with live #49.5 monitoring.
+> 4. **THE RUNS LAUNCH** detached (#49.5): V4P3P3_MODE=smoke (40
+>    @11.15M) → the frozen N/N_MAX rule → V4P3P3_MODE=battery
+>    V4P3P3_N=N (@11.2–11.6M). After the battery the stage RETURNS
+>    TO THE USER.
