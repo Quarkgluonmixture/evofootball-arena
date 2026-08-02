@@ -548,7 +548,26 @@ const evalGate = (primary: ReturnType<typeof buildPrimary>, ladder: ReturnType<t
 // =============================================================================
 // THE SIZING SMOKE (prereg §5) — populations + realized price σ̂ + the FROZEN N arithmetic.
 // =============================================================================
-const buildSizing = (rows: readonly CensusRow[], perMatchWallMs: number) => {
+// The wall-derived N arithmetic (MACHINE-DEPENDENT; measured ONCE at the smoke). Split OUT of
+// the deterministic sizing core so the X-DET byte-compare never sees a machine-wall value
+// (#122.2 harness repair). Attached to the WRITTEN artifact at top level, not inside the core.
+interface WallArithmetic {
+  perMatchWallMs: number; nMaxWall: number; nMax: number;
+  nStar: number; nBinding: number; underPowered: boolean; reducedPowerDisclosure: boolean;
+  projectedRestBinTurnoversAtNStar: number; projectedPrimaryPowerAtNStar: number; note: string;
+}
+// the deterministic intermediates the wall arithmetic needs (all X-DET-stable; carried out-of-band).
+interface SizingRaw { sigma: number; mdl: number; binN: number[]; nMatches: number }
+
+// DETERMINISTIC sizing core (this is what X-DET compares): populations + realized price σ̂ + MDL
+// + the DETERMINISTIC N-arithmetic fields (formulas, POWER_Z, N grid, wall budget). NO wall-derived
+// value lives here; those are computed once by computeWallArithmetic() and merged in at write time.
+const buildSizingCore = (rows: readonly CensusRow[]): { sizing: {
+  nMatches: number; finiteMatchesForSigma: number;
+  populations: { durationBinN: number[]; totalTurnoverWindows: number; nVacant: number; nOccupied: number } & Record<string, unknown>;
+  pooledPrice: number; sigmaPerMatchPrice: number; mdl: number;
+  nArithmetic: Record<string, unknown> & Partial<WallArithmetic>;
+}; raw: SizingRaw } => {
   const W = W_PRICE_PRIMARY_S as WKey;
   const nMatches = rows.length;
   // per-match pooled price (finite matches only) → σ̂
@@ -571,8 +590,35 @@ const buildSizing = (rows: readonly CensusRow[], perMatchWallMs: number) => {
     strataN[`${c}:${role}`] = countWindows(rows, (w) => w.endContext === c && w.slotRole === role);
   }
 
-  // FROZEN N arithmetic: SE_N = σ̂·√(1/N); resolve MDL at 95 % power ⇒ SE_N ≤ MDL/POWER_Z.
-  // wall-derived N_MAX; attainability-knee on the top duration bin.
+  return {
+    sizing: {
+      nMatches, finiteMatchesForSigma: finiteMatches,
+      populations: {
+        perMatchWindowsMean: round(mean(perMatchWindows)),
+        totalTurnoverWindows: countWindows(rows, allW),
+        nVacant: nVac, nOccupied: nOcc, durationBinN: binN, strataN,
+        dropsNoSampleTotal: sumBy(rows, (r) => r.drops.noSample),
+        dropsNonTurnoverTotal: sumBy(rows, (r) => r.drops.nonTurnover),
+      },
+      pooledPrice: round(pooledPrice), sigmaPerMatchPrice: round(sigma), mdl: round(mdl),
+      // DETERMINISTIC N-arithmetic fields only; the wall-derived fields are merged in at write time.
+      nArithmetic: {
+        mdlFormula: 'MDL = min( 0.5·|price_smoke| , 0.01 ) goal-value units',
+        seFormula: 'SE_N = σ̂·√(1/N); resolve at 95 % power ⇒ SE_N ≤ MDL / 3.605 (POWER_Z)',
+        nStarFormula: 'N* = smallest 200-step N with SE_N ≤ MDL/POWER_Z, capped at N_MAX',
+        powerZ: POWER_Z, nStep: N_STEP, nCap: N_CAP, wallBudgetHours: WALL_BUDGET_HOURS,
+      },
+    },
+    raw: { sigma, mdl, binN, nMatches },
+  };
+};
+
+// FROZEN N arithmetic — the WALL-DERIVED half. Computed ONCE, from the run-1 per-match wall, OUTSIDE
+// the X-DET-compared core. The FORMULA is unchanged (SE_N = σ̂·√(1/N); resolve MDL at 95 % power ⇒
+// SE_N ≤ MDL/POWER_Z; N* = smallest 200-step N meeting it, capped at N_MAX; N_MAX wall-derived, hard
+// cap 8,000): only its COMPUTATION LOCATION moved out of the deterministic projection (#122.2).
+const computeWallArithmetic = (raw: SizingRaw, perMatchWallMs: number): WallArithmetic => {
+  const { sigma, mdl, binN, nMatches } = raw;
   const wallStepN = (n: number): number => n * perMatchWallMs * XDET_FACTOR;
   let nMaxWall = 0;
   for (let n = N_STEP; n <= N_CAP; n += N_STEP) { if (wallStepN(n) <= WALL_BUDGET_MS) nMaxWall = n; }
@@ -594,26 +640,11 @@ const buildSizing = (rows: readonly CensusRow[], perMatchWallMs: number) => {
   const projectedPower = Number.isFinite(seAtNStar) && mdl > 0 ? round(phi(mdl / seAtNStar - Z_975), 4) : Number.NaN;
 
   return {
-    nMatches, finiteMatchesForSigma: finiteMatches,
-    populations: {
-      perMatchWindowsMean: round(mean(perMatchWindows)),
-      totalTurnoverWindows: countWindows(rows, allW),
-      nVacant: nVac, nOccupied: nOcc, durationBinN: binN, strataN,
-      dropsNoSampleTotal: sumBy(rows, (r) => r.drops.noSample),
-      dropsNonTurnoverTotal: sumBy(rows, (r) => r.drops.nonTurnover),
-    },
-    pooledPrice: round(pooledPrice), sigmaPerMatchPrice: round(sigma), mdl: round(mdl),
-    nArithmetic: {
-      mdlFormula: 'MDL = min( 0.5·|price_smoke| , 0.01 ) goal-value units',
-      seFormula: 'SE_N = σ̂·√(1/N); resolve at 95 % power ⇒ SE_N ≤ MDL / 3.605 (POWER_Z)',
-      nStarFormula: 'N* = smallest 200-step N with SE_N ≤ MDL/POWER_Z, capped at N_MAX',
-      powerZ: POWER_Z, nStep: N_STEP, nCap: N_CAP,
-      wallBudgetHours: WALL_BUDGET_HOURS, perMatchWallMs: round(perMatchWallMs, 2), nMaxWall, nMax,
-      nStar, nBinding: nStar, underPowered, reducedPowerDisclosure: underPowered,
-      projectedRestBinTurnoversAtNStar: projTopBinAtNStar, projectedPrimaryPowerAtNStar: projectedPower,
-      note: `${note}. Pass nStar as A4P1_N to the census. Attainability-knee: if the top duration bin `
-        + 'or the vacant cell is structurally too rare, the monotone/ladder leg reads UNRESOLVED ⇒ the gate STOPS (an honest finding: the incumbent rarely vacates its own slot).',
-    },
+    perMatchWallMs: round(perMatchWallMs, 2), nMaxWall, nMax,
+    nStar, nBinding: nStar, underPowered, reducedPowerDisclosure: underPowered,
+    projectedRestBinTurnoversAtNStar: projTopBinAtNStar, projectedPrimaryPowerAtNStar: projectedPower,
+    note: `${note}. Pass nStar as A4P1_N to the census. Attainability-knee: if the top duration bin `
+      + 'or the vacant cell is structurally too rare, the monotone/ladder leg reads UNRESOLVED ⇒ the gate STOPS (an honest finding: the incumbent rarely vacates its own slot).',
   };
 };
 
@@ -636,19 +667,21 @@ const runExperiment = () => {
   };
 
   if (MODE === 'smoke') {
-    return {
+    const { sizing, raw } = buildSizingCore(rows);
+    const core = {
       mode: 'smoke' as const, seedRange,
       seedFamily: '11,700,000 + k, k∈0..39 (sizing only; inside the reserved 11.7M–12.3M band; disjoint from census)',
       wPricePrimaryS: W_PRICE_PRIMARY_S,
-      sizing: buildSizing(rows, perMatchWallMs),
+      sizing,                    // DETERMINISTIC core; wall-derived N arithmetic merged at write time
       receipts: receiptOut,
     };
+    return { core, wallMs: perMatchWallMs, sizingRaw: raw };
   }
   const primary = buildPrimary(rows);
   const ladder = buildLadder(rows);
   const simpson = buildSimpson(rows);
   const gate = evalGate(primary, ladder, simpson);
-  return {
+  const core = {
     mode: 'census' as const, seedRange,
     seedFamily: '11,800,000 + k, k∈0..N−1 (inside the reserved 11.7M–12.3M band; disjoint from smoke)',
     wPricePrimaryS: W_PRICE_PRIMARY_S, wPriceSensitivityS: W_PRICE_SENS_S,
@@ -667,15 +700,27 @@ const runExperiment = () => {
     },
     receipts: receiptOut,
   };
+  return { core, wallMs: perMatchWallMs, sizingRaw: null };
 };
 
 // =============================================================================
 // TOP LEVEL — assemble, X-DET (double-run), X-SRC-ZERO, seed disjointness, SHA, write.
 // =============================================================================
 const canonical = (v: unknown): string => JSON.stringify(v);
-const experiment = runExperiment();
-const experiment2 = SKIP_DET ? null : runExperiment();
+// X-DET compares the DETERMINISTIC core ONLY (no wall-derived value) — the #122.2 repair: the
+// per-match wall (Date.now()) differs across the double-run, so it must live OUTSIDE the compare.
+const { core: experiment, wallMs, sizingRaw } = runExperiment();
+const experiment2 = SKIP_DET ? null : runExperiment().core;
 const xDet = SKIP_DET ? null : canonical(experiment) === canonical(experiment2);
+
+// WALL-DERIVED N arithmetic (smoke only): computed ONCE here, OUTSIDE the X-DET-compared core, from
+// the RUN-1 per-match wall, then merged into the written §5 nArithmetic block (perMatchWallMs /
+// nMaxWall / nMax / nStar / underPowered / disclosures) so the published artifact stays complete.
+if (experiment.mode === 'smoke' && sizingRaw !== null) {
+  experiment.sizing.nArithmetic = {
+    ...experiment.sizing.nArithmetic, ...computeWallArithmetic(sizingRaw, wallMs),
+  };
+}
 
 // X-SRC-ZERO (HARD): git diff --stat -- src empty + the production fingerprint unchanged.
 let srcDiff = '';
