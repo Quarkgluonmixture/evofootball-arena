@@ -657,6 +657,18 @@ unchanged across #90–#123 (34 rulings). **THE QUEUE SITS AT THE
 USER FORK (#123.5): (B, recommended) the A4 ASSIGNMENT CONTRACT ·
 (C) the absence census first · (D) park v4 / C-track / other.
 Nothing proceeds until the user rules.** R20 gaps / F9 any time.
+*(Commander's substrate assessment, on the user's question
+2026-08-02: SUFFICIENT for A4 SLICE 1 = pre-match, per-team,
+gene-weighted assignment of ONE job — rest-defence ownership —
+executed through a new eye.v4-pattern seam + the banked in-support
+law, validated by the reusable P3p-3 battery form at the frozen
+bands; assignment = agreed shared prior, percept-clean per the A4
+charter; assignment VALUE tested at TEAM level (battery A/B), never
+per-tick pricing (the proven dead end). Deferred to later slices:
+dynamic in-match handoff (needs A3-style mutual resolution),
+offside-as-doctrine (a line-awareness prior, not a single-owner
+job), the coach global eye, the selection/PAYS proof (two-step as
+standard).)*
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
