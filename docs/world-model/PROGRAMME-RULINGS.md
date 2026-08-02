@@ -5437,3 +5437,40 @@
 >    (the removal contrast), which is the correct BASELINE for
 >    any future height-gene competition, not a claim that deep
 >    parking is the job's true form.
+
+> **COMMANDER RULING #131 (2026-08-02 — the user's living-formation
+> anatomy; the A4 arc's place in it; the #129.4 fork unchanged):**
+>
+> 1. **USER STATEMENT RECORDED (verbatim)**: "其实我觉得是不是就是阵
+>    型的那个事情?我们定死了阵型,例如野球场,确实是一开始是确定位置,
+>    但是人也会乱走,会互相前后补位,防线和进攻线也会继续动,并且阵型
+>    也会前后动,左右变,如果有教练那么也会轮转换位,但是不是乱走".
+>    Adjudicated: YES — this IS the VISION §1 head violation
+>    (the hand-drawn formation menu), and the statement supplies
+>    its missing ACCEPTANCE MODEL: a real formation = ① the
+>    pre-match agreement (who stands where) + ② mutual covering
+>    (a vacated slot gets filled) + ③ moving lines + ④ the shape
+>    translating/leaning as a block + ⑤ coached rotations — with
+>    the hard floor: STRUCTURED FLUX, NOT A RANDOM WALK (不是乱走).
+>    Anchored in VISION §1 (the 攻守两套形状 bullet) as the
+>    formation rebuild's per-slice acceptance checklist.
+> 2. **THE LEDGER AGAINST THE FIVE (code-true, 2026-08-02)**:
+>    ① half-present (roles = the minimal agreement, v3; JOB
+>    ownership = A4 slice 1, in flight); ② ABSENT (nobody covers a
+>    vacated slot — the named A3-style mutual-resolution later
+>    slice, contract §7.1); ③ FORBIDDEN (the rest line clamped to
+>    [−8,−16]; the #130 height-gene hook is its repair); ④ half
+>    (ball-x slide exists; strong/weak side nearly absent —
+>    already a VISION gap); ⑤ ABSENT (doctrine above single jobs;
+>    later slice).
+> 3. **THE SCIENCE ALIGNMENT**: the measured story says exactly
+>    what the user's 不是乱走 says — three generations of
+>    eye-vs-incumbent losses plus v4's frontier conclusion showed
+>    per-body gradients alone produce convergence/chaos (乱走),
+>    because discipline jobs are AGREEMENT-shaped. The eye supplies
+>    the flux; the agreement layer supplies the structure. Build
+>    order therefore stands: agreement first (A4), flux on top.
+> 4. **NO NEW WORK AUTHORIZED**; the #129.4 fork (A interventional
+>    census, recommended · B re-parent · C park) is unchanged and
+>    still awaits the user — every option inherits #130 and this
+>    anatomy as context.
