@@ -1173,7 +1173,13 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // to the ball, nobody covered, and every turnover was an uncontested
     // breakaway — which is how a 5v6 side out-scored its full-strength
     // self (the besieged team lives on counters).
-    const restDefence = p.index === 1 && team.localX(ball.pos.x) > 0;
+    // A4-P1b (#133): the DESIGNATION POLICY's first in-possession face. When the
+    // side is abandoned (probe-only, side-scoped), restDefence collapses to false
+    // ⇒ the index-1 body is NO LONGER excluded from the support fan below — he
+    // scores SupportBallCarrier like any outfielder (STATUE-safe: no freeze, just
+    // the special law removed). null in production ⇒ identical to HEAD.
+    const restDefence = p.index === 1 && team.localX(ball.pos.x) > 0
+      && match.abandonRestDesignation !== team.side;
     if (carrier && carrier !== p && !restDefence) {
       const d = dist(p.pos, carrier.pos);
       const roleBonus = p.role === 'ST' ? 0.12 : p.role === 'WG' ? 0.1 : p.role === 'MF' ? 0.06 : 0;

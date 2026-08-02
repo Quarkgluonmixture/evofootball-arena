@@ -398,6 +398,20 @@ export interface MatchConfig {
    * observation — it must not change a single tick.
    */
   traceChoice?: boolean;
+  /**
+   * A4-P1b (docs/world-model/A4-P1B-ABANDON-CENSUS.md, ruling #133): the
+   * interventional fork-and-abandon seam. SIDE-SCOPED (`0` | `1`; absent ⇒
+   * OFF). When set to a side `d`, the index-1 rest-defence DESIGNATION POLICY
+   * is REMOVED for that side ALONE — BOTH in-possession faces stop binding: the
+   * PlayerBrain support-fan exclusion (`restDefence`) and the formations
+   * in-possession clamp (`x = min(x, −8 − coverBias·8)`). The out-of-possession
+   * sweeper face is UNTOUCHED. STATUE-safe: it removes a policy, freezes no body
+   * (the DF keeps his base spot + ordinary support scoring). **Absent/null in
+   * every production path (Road B, #133); the fingerprint 57b0bdab…c673 is
+   * unchanged** — a probe sets it on a forked world inside the counterfactual
+   * branch only. Consumed under an explicit side-equality guard.
+   */
+  abandonRestDesignation?: 0 | 1;
 }
 
 /** One perceived pass choice, logged for the E3 audit. Never read by the sim. */
@@ -887,6 +901,14 @@ export class Match {
   /** Armed rivalry fixture (Phase 40): press + bite up a touch, 🔥 banner. */
   readonly derby: boolean;
 
+  /**
+   * A4-P1b (ruling #133): the side (`0`|`1`) whose index-1 rest-defence
+   * DESIGNATION POLICY is abandoned, or `null` when the policy is intact.
+   * MUTABLE on purpose (the `forcedStation` idiom): a probe sets it on a
+   * cloned/forked world inside the counterfactual branch; `null` in every
+   * production path, so both gated faces behave bit-for-bit as HEAD. */
+  abandonRestDesignation: 0 | 1 | null = null;
+
   constructor(cfg: MatchConfig) {
     this.rng = new Rng(cfg.seed);
     this.duration = cfg.duration ?? MATCH_DURATION;
@@ -909,6 +931,9 @@ export class Match {
     // C7 T1: Road B — never env-armed, never default-ON; a probe arms it explicitly.
     this.c7Windup = cfg.c7Windup ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
+    // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
+    // (the policy intact for both sides), so the fingerprint stands.
+    this.abandonRestDesignation = cfg.abandonRestDesignation ?? null;
     this.edsAwareness = cfg.edsAwareness ?? 0.8;
     this.perceptionSeed = cfg.seed;
     this.teams = [new Team(0, cfg.teamA), new Team(1, cfg.teamB)];

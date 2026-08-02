@@ -87,6 +87,10 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   const conserve = g.staminaConservation;
   const jog = 0.78 - conserve * 0.25;
   const sprint = 1 - conserve * 0.12;
+  // A4-P1b (#133): side-scoped rest-defence abandonment (probe-only; null in
+  // production ⇒ false ⇒ formationSpot is bit-for-bit HEAD). Threads the second
+  // (formations clamp) face into every in-possession formation-spot call below.
+  const abandonRest = match.abandonRestDesignation === team.side;
   let target: V2 | null = null;
   let speedF = jog;
   p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
@@ -126,7 +130,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
     case 'MoveToFormationSpot':
     case 'HoldPosition': {
-      target = formationSpot(p, team, ball, hasBall, opp);
+      target = formationSpot(p, team, ball, hasBall, opp, abandonRest);
       // Hurry back if badly out of position. (A phase-106 "hurry when
       // beaten" trigger was built and MEASURED OUT here: during walk-in
       // breakaways the beaten men are 60-88% in MarkOpponent/ChaseBall —
@@ -285,7 +289,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         const trapHold = ((g.trapBias ?? 0.5) - 0.5) * 2;
         const ballDeep = team.localX(ball.pos.x) < -17;
         if (trapHold > 0 && !ballDeep && ball.owner && ball.owner.side !== p.side && ball.owner !== mark) {
-          const spot = formationSpot(p, team, ball, hasBall, opp);
+          const spot = formationSpot(p, team, ball, hasBall, opp, abandonRest);
           if (team.localX(target.x) < team.localX(spot.x)) {
             target = { x: target.x + (spot.x - target.x) * trapHold, y: target.y };
           }
@@ -314,7 +318,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         }
         speedF = 0.85 + g.markingAggression * 0.15;
       } else {
-        target = formationSpot(p, team, ball, hasBall, opp);
+        target = formationSpot(p, team, ball, hasBall, opp, abandonRest);
       }
       break;
     }

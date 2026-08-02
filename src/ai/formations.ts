@@ -126,12 +126,18 @@ const MODE_SHIFT: Record<TeamMode, number> = {
  * World-space formation target for a player. `hasBall` decides whether width
  * (attackingWidth) or compactness (defensiveCompactness) shapes the block.
  */
-export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team): V2 {
+// `abandonRest` (A4-P1b, #133): when true THIS body's index-1 rest-defence
+// in-possession clamp is REMOVED (the DESIGNATION POLICY's second face). Default
+// false — every production caller omits it, so the spot is bit-for-bit HEAD. The
+// probe threads `match.abandonRestDesignation === team.side` from the sim seam.
+export function formationSpot(
+  p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team, abandonRest = false,
+): V2 {
   // EMERGENT POSITIONING FIELD (Phase B1, toggle — the user's #1 emergence
   // ask: shape must grow from role + genes + live state, not a hand-authored
   // MENU). Behind a flag so it A/Bs cleanly against the fixed tables
   // (positioning-shape.ts) before it can replace them. OFF = today's behavior.
-  if (emergentPosOn()) return emergentStation(p, team, ball, hasBall, opp);
+  if (emergentPosOn()) return emergentStation(p, team, ball, hasBall, opp, abandonRest);
   const g = team.genome;
   const base = hasBall
     ? ATTACK_FORMATIONS[team.style.formationAtk][p.index]
@@ -171,7 +177,10 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
       // Rest-defense depth is now the SWEEPER gene's possession face
       // (Phase 88): 0.5 = the old hardcoded −12 exactly; the full libero
       // (1) holds −16 even mid-siege, the bold stopper (0) dares −8.
-      x = Math.min(x, -8 - (g.coverBias ?? 0.5) * 8);
+      // A4-P1b (#133): the DESIGNATION POLICY's second face — abandoned ⇒ the
+      // clamp is skipped and the body keeps its ordinary in-possession depth
+      // (slide + depth + shifts), pushing up like any outfielder.
+      if (!abandonRest) x = Math.min(x, -8 - (g.coverBias ?? 0.5) * 8);
     } else {
       // THE SWEEPER (Phase 88, school #2 — catenaccio): the DF slot sits
       // off his own line by the gene — behind it (libero: the man who
@@ -235,7 +244,12 @@ export function formationSpot(p: Player, team: Team, ball: Ball, hasBall: boolea
  * B1-b. Opponent-relative positioning is B2. Same sensible modifiers as the
  * table path (slide/depth/press/rest-defence/width) so shape stays sane.
  */
-function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team): V2 {
+// `abandonRest` (A4-P1b, #133): the LIVE realization of "the formations
+// in-possession clamp" face (emergentPos defaults ON, so this — not the table
+// path — is what runs in the census world). Default false ⇒ bit-for-bit HEAD.
+function emergentStation(
+  p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team, abandonRest = false,
+): V2 {
   const g = team.genome;
   // Role → coarse (depth fraction of HALF_L, lane fraction of HALF_W). WGs take
   // a side from their slot (L=3, R=4); everyone else holds a central lane.
@@ -257,8 +271,10 @@ function emergentStation(p: Player, team: Team, ball: Ball, hasBall: boolean, op
   let x = depthFrac * HALF_L + slide + depth + pressUp + MODE_SHIFT[team.mode];
 
   // Rest defence — the DF slot never joins the siege (same as the table path).
+  // A4-P1b (#133): abandoned ⇒ the in-possession clamp is skipped (the body
+  // keeps his ordinary depth); the out-of-possession sweeper face is untouched.
   if (p.index === 1 && p.role !== 'GK') {
-    if (hasBall) x = Math.min(x, -8 - (g.coverBias ?? 0.5) * 8);
+    if (hasBall) { if (!abandonRest) x = Math.min(x, -8 - (g.coverBias ?? 0.5) * 8); }
     else x -= ((g.coverBias ?? 0.5) - 0.5) * 8;
   }
 
