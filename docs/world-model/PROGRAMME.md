@@ -47,9 +47,13 @@ battery (4 arms R0/R3p/assignOnly/ASSIGN; primary `ASSIGN − R3p`;
 PASS = DEGEN-RESTDEF closes AND no shape limb regresses = the
 frontier MOVES). Seeds 11.7M–12.3M + stats 1000xx reserved. Road B
 throughout; fingerprint `57b0bdab…c673` unchanged (#90–#125).
-**NEXT AUTHORIZED STEP (on the user's "go"): executor drafts the
-A4-P1 pre-registration** (Workflow Draft→Verify, §0.0). R20 gaps /
-F9 any time.
+**自走 GREEN PATH LIVE (#126, user "自走go" 2026-08-02):
+autonomous stage-to-stage progression authorized** — P1→P2→P3
+proceed on PASS without per-stage "go" (commander review + numbered
+rulings still gate EVERY stage; #106.6 and Road B unchanged); the
+arc returns to the user ONLY on STOP/FAIL, a veto, or the P3
+frontier verdict. A4-P1 pre-reg dispatch live. R20 gaps / F9 any
+time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

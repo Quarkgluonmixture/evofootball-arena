@@ -5222,3 +5222,30 @@
 >    Draft→Verify, §0.0). Road B binds the whole arc: nothing
 >    ships, every flag dormant, fingerprint `57b0bdab…c673`
 >    unchanged (#90–#125).
+
+> **COMMANDER RULING #126 (2026-08-02 — the user's "自走go": the A4
+> green path):**
+>
+> 1. **USER AUTHORIZATION RECORDED (verbatim: "自走go")**: the A4
+>    slice-1 arc proceeds AUTONOMOUSLY stage-to-stage — A4-P1
+>    (vacancy census) → A4-P2 (dormant build) → A4-P3 (frontier
+>    battery) — each stage advancing on its PASS without a
+>    per-stage user "go". Precedent: the E2b green-path form
+>    (ruling #9: green path to the user gate; any non-PASS returns
+>    to the commander).
+> 2. **WHAT AUTONOMY DOES NOT SUSPEND**: commander review + a
+>    numbered ruling still gate EVERY stage transition (autonomy
+>    removes the user wait, never the review); #106.6 carries (no
+>    third mechanism iteration without a USER ruling); Road B
+>    binds throughout (nothing ships, flags dormant, fingerprint
+>    unchanged); pre-registration discipline binds (gates freeze
+>    before runs, FAILs as-is).
+> 3. **RETURN-TO-USER CONDITIONS (exhaustive)**: any stage STOP or
+>    FAIL (incl. the P1 null/non-monotone price gate), any
+>    foreign-change STOP, a user veto at any time, or the A4-P3
+>    frontier verdict (PASS or FAIL — the arc ends at the user
+>    regardless).
+> 4. **DISPATCH**: the A4-P1 pre-registration executor step goes
+>    out now (Workflow Draft→Verify, §0.0 pattern; Opus-med;
+>    executor commits locally with explicit paths and does NOT
+>    push — the push rides the commander's adjudication ruling).
