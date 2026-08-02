@@ -103,6 +103,25 @@ arc: nothing ships from slice 1 regardless of verdict (Road B).
   the incumbent, release exists as the hard-coded `!restDefence` support-fan
   exclusion; under assignment it generalizes: the fan excludes the OWNER,
   whoever the genes picked.)
+* **AMENDMENT #130 (2026-08-02, the user's realism challenge at the A4-P1
+  return — "凭啥他被钉在后面?现实里面不是有高位逼抢的球队中后卫都到中圈了").**
+  The job's content splits into three authorities and slice 1 must not
+  conflate them: **WHO** owns the job (M2, gene argmax — the slice-1
+  measurand), **WHETHER** the assignment exists (M1, the primitive), and
+  **HEIGHT** — how high the rest line sits. HEIGHT is a STRATEGIC VARIABLE
+  in real football (the high-press identity parks the last man at the
+  centre circle, coupled to the offside trap and counter-press; the deep
+  libero is a different identity), but the incumbent substrate FORBIDS it:
+  the Phase-88 `coverBias` possession face spans only `[−8, −16]` local —
+  no genome can hold a halfway-height rest line (a VISION §1 "替球队定 X"
+  violation, now anchored in VISION §3.1). Slice 1 therefore builds the
+  HEIGHT hook as a gene dimension with the full realistic range (halfway
+  down to the current deep band), **born at the incumbent-equivalent
+  default** so generation 0 is unchanged and any high-line identity is
+  EARNED by selection (the `trapBias` gene, Phase 109, is its pre-existing
+  partner). The P3 battery pins born-default height (it isolates OWNERSHIP
+  value); the VALUE of height variation is a NAMED LATER SLICE (§7), not a
+  slice-1 claim — the hook exists so nothing is foreclosed, per I-A4.
 * **M5 — percept plumbing.** The assignment table is team-side doctrine
   state: every teammate may read the AGREEMENT's content (who owns which
   job — that is what the pre-match thirty seconds establishes; VISION §1:
@@ -224,7 +243,12 @@ can consume a job term, the job's price must be measured:
    is the standard two-step's second step, after value is proven).
 5. No claim that the job taxonomy is right (I-A4); no claim about any job
    type beyond rest-defence ownership.
-6. Nothing ships; no production behaviour change; the fingerprint stands.
+6. No claim about the RIGHT rest-line height (#130): slice 1 builds the
+   height hook (full range, born incumbent-equivalent) but measures
+   OWNERSHIP only; the value of height variation — whether the high-press
+   rest-defence identity pays — is a named later slice for
+   selection/battery to answer.
+7. Nothing ships; no production behaviour change; the fingerprint stands.
 
 ## §8 VISION audit record (clause-by-clause, at drafting — the #91 form)
 

@@ -5398,3 +5398,42 @@
 >    ruling.
 > 5. Nothing shipped; every flag dormant; fingerprint
 >    `57b0bdab…c673` unchanged (#90–#129).
+
+> **COMMANDER RULING #130 (2026-08-02 — the user's realism
+> challenge at the A4-P1 return; the HEIGHT amendment; the #129.4
+> fork unchanged and still open):**
+>
+> 1. **USER CHALLENGE RECORDED (verbatim)**: "凭啥他被钉在后面?现实
+>    里面不是有高位逼抢的球队中后卫都到中圈了". Adjudicated
+>    CORRECT against the code: the Phase-31 pin hand-reasoned its
+>    own constant ("−12, not −5" — a permanent strategic judgment
+>    made FOR every team), and the Phase-88 `coverBias` possession
+>    face spans only [−8, −16] local — **no genome can hold a
+>    halfway-height rest line; the high-press rest-defence
+>    identity (high line + offside trap + counter-press) is
+>    substrate-forbidden**, while its partner gene (`trapBias`,
+>    Phase 109) already exists. This is the VISION §1 "替球队定 X"
+>    genre, the same family as the hand-drawn formation menu.
+> 2. **DISPOSITIONS**: (i) the quote is ANCHORED in VISION §3.1
+>    (rest-defence height is a strategic variable, not a
+>    constant); (ii) the A4 contract gains **AMENDMENT #130** —
+>    the job's content splits WHO / WHETHER / HEIGHT; slice 1
+>    builds the HEIGHT hook as a gene dimension over the full
+>    realistic range, BORN at the incumbent-equivalent default
+>    (generation 0 unchanged; the high line must be EARNED by
+>    selection); the P3 battery pins born-default height so it
+>    still isolates OWNERSHIP value; height VALUE is a named
+>    later slice (§7.6) — the hook forecloses nothing, claims
+>    nothing. (iii) Convergence noted: the user's instinct and
+>    the measured evidence point the same way — the #116.2/#123
+>    offside inversion already said LINE DISCIPLINE is
+>    assignment-shaped; the high line is exactly an
+>    offside-trap-coupled rest-defence identity.
+> 3. **THE #129.4 FORK IS UNCHANGED AND STILL OPEN** (A the
+>    interventional census, recommended · B re-parent without
+>    pricing · C park) — every option now inherits the #130
+>    amendment. One clarification the challenge sharpens: option
+>    A prices the INCUMBENT'S deep-parked policy specifically
+>    (the removal contrast), which is the correct BASELINE for
+>    any future height-gene competition, not a claim that deep
+>    parking is the job's true form.
