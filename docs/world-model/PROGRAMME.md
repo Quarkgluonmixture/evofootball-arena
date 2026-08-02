@@ -44,14 +44,23 @@ team's agreed SHAPE, not one body's depth (the user's #131
 anatomy ② speaking through data).** #139.3's closure NARROWED
 (#142.4): the SINGLE-BODY depth-anchor question is closed
 (#106.6); the WHOLE-DISTRIBUTION form (M1′ proper, the 野球
-model's real content) was never instrumented. ⭐ **THE QUEUE SITS
-AT THE USER FORK (#142.5): (A, recommended) A4-P1d — the
-whole-distribution grant census** (per-team home map, all
-outfielders, incumbent-equivalent gen-0 content; fork-and-grant
-on the eye world; the direct kill-or-confirm of H-A4.1) · **(B)**
-the OFFSIDE limb pivot (+33.9 %, collective line prior) · **(C)**
-park A4 · **(D)** the out-of-possession seam contract. **Green
-path suspended; nothing proceeds until the user rules.** Banked:
+model's real content) was never instrumented. ⭐ **#142.5 RULED
+A BY THE USER ("a", #143) — A4-P1d, THE WHOLE-DISTRIBUTION GRANT
+CENSUS, IS LIVE; the green path resumed (#126/#137 precedent).**
+Design (#143): a NEW dormant map-grant flag (the single-body
+homeRegionGrant stays banked untouched) — in branch B EVERY
+side-d outfielder gets his own 2D home (center = HIS formation
+base spot, the world's own variable; extents from pitch
+constants; both axes per #136) as a soft bias at the same
+consumption point; dose grid = the P1c VAL_SCALE fractions; gate
+= the P1c form (primary-dose Δdeep CI upper<0 ∧ dose-monotone ∧
+ladder ∧ no reversal, frozen before any run); the #140 forensic
+counters (turnovers/box/penetration) pre-registered as REPORTED
+mediators from the start. Seeds: smoke 12.05M, census 12.10M,
+stats 100603/100703. H5 predicts coordinated redistribution
+should NOT thin the press — this is the kill-or-confirm of
+H-A4.1 at pricing grain; its STOP returns to the user (one
+instrument for the distribution question, #106.6 idiom). Banked:
 the grant/dose machinery (reusable), the Phase-31-pin removal
 candidate, the deep-outlet exoneration. Seeds consumed through
 12.008M; 12.01M–12.3M + stats 1006xx+ remain. Road B; fingerprint

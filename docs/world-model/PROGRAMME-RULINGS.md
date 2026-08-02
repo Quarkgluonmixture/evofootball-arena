@@ -5984,3 +5984,49 @@
 >    tax story; the substrate's deep-outlet machinery is
 >    exonerated at this grain. Fingerprint `57b0bdab…c673`
 >    unchanged (#90–#142).
+
+> **COMMANDER RULING #143 (2026-08-02 — the user rules #142.5:
+> option A; A4-P1d authorized and dispatched; the green path
+> resumes):**
+>
+> 1. **USER RULING RECORDED (verbatim: "a")**: A4-P1d — the
+>    whole-distribution grant census — proceeds; the #126 green
+>    path resumes (P1d → review → runs → adjudication; PASS →
+>    P2 → P3; any STOP/FAIL/veto returns to the user). P1d is
+>    the FIRST and only planned pricing instrument on the
+>    distribution question (#106.6 idiom: its STOP forks, never
+>    silently iterates).
+> 2. **A4-P1d DESIGN CONSTRAINTS (binding)**: (i) a NEW dormant
+>    map-grant flag (default null, side-scoped, fork-branch-only;
+>    the P1c single-body flag stays banked untouched): branch B
+>    grants EVERY side-d outfielder his own coarse 2D home —
+>    center = HIS formation BASE spot (the world's own variable,
+>    the M2′ gen-0 incumbent-equivalent content; no authored
+>    shapes), extents pre-registered from pitch constants (both
+>    axes, #136), strength = the dose, uniform across bodies;
+>    same consumption point, same soft-additive M3′ form, no
+>    clamps. (ii) dose grid = the P1c VAL_SCALE fractions
+>    {0.25, 0.5, 1.0, 2.0}, multi-branch per fork (the P1c
+>    pairing design). (iii) GATE (freeze before any run) = the
+>    P1c form on RAW Δdeep at primary dose 1.0 (CI upper < 0 ∧
+>    dose-monotone non-increasing ∧ (top−bottom) ladder resolved
+>    ∧ Simpson reversal = auto NOT-ADVANCE; vacuity ex ante;
+>    goal-value labelled only). (iv) the #140 forensic counters
+>    (turnovers, box, first-turnover tick, turnover third,
+>    per-possession penetration, spacing/dupRun) are
+>    PRE-REGISTERED REPORTED mediators IN the census — no
+>    second forensics pass needed. (v) X-family verbatim from
+>    P1c (wall-free X-DET #128, X-FORK-IDENT, X-MERGE-IDENT,
+>    E-NONSTATION, X-FP, disjointness). (vi) SEEDS: smoke
+>    12,050,000+k k∈0..39; census 12,100,000+k (≤8,000 ⇒
+>    ≤12,107,999); stats 100603 (bootstrap) / 100703 (reserved);
+>    disjoint from ALL consumed blocks (11.70/11.80/11.85/11.90/
+>    11.95/12.00M). (vii) dormancy tests in the a4HomeGrant
+>    idiom; fingerprint unchanged.
+> 3. **THE H5 PREDICTION, carried into review (not the gate)**:
+>    if coordinated redistribution is the real variable, the map
+>    grant should NOT thin the press (spacing/dupRun and
+>    penetration mediators tell the story either way).
+> 4. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0): pre-reg + map seam + tests + probe + bounded
+>    preflight; local commit, explicit paths, no push.
