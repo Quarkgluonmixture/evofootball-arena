@@ -41,20 +41,28 @@ so TRUE functional absence never occurs on this world; occupied≈
 pinned states, vacant≈attacking states with the clamp still
 covering above the own-third bar. **The world's own variation
 cannot price a counterfactual the incumbent never permits — the
-question needs an INTERVENTION.** ⭐ **#129.4 RULED A BY THE USER ("A 自走", #133) — A4-P1b, THE
-INTERVENTIONAL FORK-AND-ABANDON CENSUS, IS LIVE; the green path
-resumed.** Design (#133): a dormant src seam (default-OFF,
-side-scoped, set ONLY inside the probe's forked branch) disables
-BOTH in-possession faces of the index-1 designation (the
-PlayerBrain support-fan exclusion + the formations clamp; the
-out-of-possession sweeper face untouched) — remove the POLICY,
-freeze nobody (STATUE-safe); paired same-seed branch contrast
-prices the policy's causal value in goal-value units (deep entry
-primary, #127 carries; horizons/dose axis pinned ex ante); gate =
-monotone resolved positive price, frozen before any run; #106.6:
-P1b is the SECOND instrument on this question — a third needs a
-user ruling. #131/#132 ladder rungs (补位 → 默契学习 → 教练回路)
-named, NOT authorized. Slice-1 stage map on resume:
+question needs an INTERVENTION.** ⭐ **A4-P1b CLOSED — THE INTERVENTIONAL GATE ALSO STOPPED
+(#133–#135, 2026-08-02)**: the fork-and-abandon census (dormant
+seam `Match.abandonRestDesignation`, `f5dd892`+`551fc3f`; 1400
+matches, 56,000 paired forks, all X green) measured the index-1
+designation policy's causal price on the incumbent world as
+**RESOLVEDLY NEGATIVE** (deep −0.000837 [−0.001065, −0.000603],
+accrual −0.0008→−0.0033 at 10→30 s, box NULL, all strata ≤0, no
+reversal) ⇒ **the hand-written law is REDUNDANT-TO-COSTLY: the
+ordinary positioning engine already covers** — the user's #130
+challenge causally vindicated. Design gap owned (#135.3): both
+instruments priced the INCUMBENT world; the A4 target (−16.1%) is
+an EYE-WORLD phenomenon — ownership's value where ordinary cover
+ERODES is still untested. ⭐ **THE QUEUE SITS AT THE USER FORK
+(#135.4): (A, recommended) A4-P1c — the same instrument on the
+V3-CONSUMER (eye) world** (raw-rate gate; price conversion
+labelled/recalibrated) · **(B)** re-anchor slice 1 on the OFFSIDE
+limb (+33.9%, already eye-world) · **(C)** park A4, censuses
+banked. OFFSHOOT noted: the Phase-31 pin = measured-≤0 hand-code,
+future removal candidate via §6 ship discipline (production
+track, outside Road B). **Green path suspended; nothing proceeds
+until the user rules.** #131/#132 ladder rungs (补位 → 默契学习 →
+教练回路) named, NOT authorized. Slice-1 stage map on resume:
 A4-P2 dormant build → A4-P3 frontier battery (R0/R3p/assignOnly/
 ASSIGN; primary `ASSIGN − R3p`). Seeds: 11.70M/11.80M consumed by
 P1; 11.81M–12.3M + stats 1002xx+ still reserved to A4. Road B

@@ -1849,3 +1849,20 @@ NOT-ADVANCE; empty-bin1 semantics pre-named). Seeds: smoke 40
 eye-null world (two-pin #26.5/#68.2). **RUNS LIVE (#49.5 detached):
 sizing smoke → frozen N arithmetic → census → adjudication ruling.**
 R20 gaps / F9 any time.
+
+## Relocated QUEUE block (superseded 2026-08-02 by ruling #135 — the A4-P1b live era)
+
+⭐ **#129.4 RULED A BY THE USER ("A 自走", #133) — A4-P1b, THE
+INTERVENTIONAL FORK-AND-ABANDON CENSUS, IS LIVE; the green path
+resumed.** Design (#133): a dormant src seam (default-OFF,
+side-scoped, set ONLY inside the probe's forked branch) disables
+BOTH in-possession faces of the index-1 designation (the
+PlayerBrain support-fan exclusion + the formations clamp; the
+out-of-possession sweeper face untouched) — remove the POLICY,
+freeze nobody (STATUE-safe); paired same-seed branch contrast
+prices the policy's causal value in goal-value units (deep entry
+primary, #127 carries; horizons/dose axis pinned ex ante); gate =
+monotone resolved positive price, frozen before any run; #106.6:
+P1b is the SECOND instrument on this question — a third needs a
+user ruling. #131/#132 ladder rungs (补位 → 默契学习 → 教练回路)
+named, NOT authorized.

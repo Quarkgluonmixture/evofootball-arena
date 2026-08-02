@@ -5600,3 +5600,63 @@
 >    frozen N arithmetic → census (@ 11.90M) → adjudication. On
 >    PASS the green path opens A4-P2 (#133.1); any STOP/FAIL
 >    returns to the user.
+
+> **COMMANDER RULING #135 (2026-08-02 — the A4-P1b interventional
+> census adjudicated: THE GATE STOPS; the designation policy is
+> REDUNDANT-TO-COSTLY on the incumbent world; the #130 challenge
+> causally vindicated; the world-choice design gap owned; the arc
+> RETURNS TO THE USER):**
+>
+> 1. **BANKED**: the sizing smoke (all X green; N* = 1400 by the
+>    frozen formula off σ̂ 0.003766 and the near-zero smoke price)
+>    + the census (1400 matches @ 11.90M, 56,000 paired forks,
+>    X-DET/X-FORK-IDENT (56,000/0)/X-FP all green; SHA
+>    6b3c4420dd72; both JSONs committed). The gate, EXECUTED AS
+>    FROZEN, fails every leg: the pooled paired deep price is
+>    **RESOLVEDLY NEGATIVE** (−0.000837 [−0.001065, −0.000603];
+>    raw −0.0193 deep entries/window), the accrual ladder runs
+>    the WRONG WAY (−0.0008 → −0.0019 → −0.0033 at 10/20/30 s),
+>    the box parallel is NULL (−0.00001 [−0.000174, +0.000157]),
+>    every context stratum ≤ 0, no Simpson reversal. **STOP AT
+>    A4-P1b; the green path suspends (#133.1).**
+> 2. **THE FINDING (causal, paired, same-state)**: on the
+>    incumbent (enriched eye-null) world, the index-1 rest-defence
+>    designation policy has **zero-to-negative marginal value** —
+>    the ordinary positioning engine (deep DF base spot,
+>    emergentStation) already provides the cover, making the
+>    hand-written law REDUNDANT, and its clamp+exclusion cost a
+>    small but resolved price in deep entries that GROWS with
+>    horizon. The user's #130 challenge ("凭啥他被钉在后面?") is
+>    hereby CAUSALLY VINDICATED, not just doctrinally: freeing
+>    the anchor from the pin measurably helps. Honest bounds:
+>    surrogate grain (deep/box) and ≤30 s horizons; a
+>    severity-shift channel is not captured (though the box NULL
+>    covers depth-severity partially).
+> 3. **THE DESIGN GAP, OWNED (commander, the #96.3 genre)**: both
+>    P1 instruments priced the job on the INCUMBENT world, where
+>    redundancy is structural — but the A4 target (the −16.1 %
+>    DEGEN-RESTDEF residual) is an EYE-WORLD phenomenon, and the
+>    M3 consumer would LIVE on the eye world. The #133 brief
+>    inherited P1's world pin through the admitted prices; the
+>    two-pin logic, correctly applied to a CONSUMER term, points
+>    at the consumer's world instead. The premise "ownership has
+>    value where ordinary cover erodes" remains UNTESTED — what
+>    is now twice-measured is only that it has no value where
+>    ordinary cover holds.
+> 4. **THE FORK (user ruling required; #106.6 — a third
+>    instrument on this question needs the user)**: **(A,
+>    recommended) A4-P1c** — the SAME fork-and-abandon instrument
+>    on the V3-CONSUMER (eye) world, where the target lives and
+>    ordinary cover erodes; gate on the RAW deep-entry rate
+>    contrast (the admitted goal-value prices are eye-null-
+>    calibrated — conversion labelled or freshly calibrated,
+>    executor flags the handling). **(B)** re-anchor A4 slice 1
+>    on the OFFSIDE limb (#116.2(iii), +33.9 % confirmed, already
+>    an eye-world phenomenon). **(C)** park A4 with both censuses
+>    banked as the bequest. **OFFSHOOT NOTED (any fork)**: the
+>    Phase-31 pin itself is now a measured-≤0 hand-coded behavior
+>    — a candidate for future REMOVAL through the standard §6
+>    ship discipline (probe → A/B → play-feel); that is a
+>    production-mechanics track, outside this arc's Road B.
+> 5. Fingerprint `57b0bdab…c673` unchanged (#90–#135); nothing
+>    shipped; the seam stays dormant.
