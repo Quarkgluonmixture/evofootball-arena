@@ -5127,3 +5127,30 @@
 >    frontier argument), (C) the fork-and-abandon ABSENCE census
 >    first, (D) park v4 / return to the C-track / anything the
 >    user names. Nothing proceeds until the user rules.
+
+> **COMMANDER RULING #124 (2026-08-02 — the PROGRAMME doc
+> restructure, at the user's context-cost prompt; the cheap resume
+> protocol codified):**
+>
+> 1. **THE RESTRUCTURE LANDED** (`60b98ac`, executor Draft →
+>    conservation-Verify): PROGRAMME.md 2,269 → 613 lines
+>    (181 KB → 67 KB); the LIVE STATE now lives in a fixed
+>    **⭐ QUEUE section at the TOP of the file** (with the resume
+>    protocol inline); ~114 KB of superseded queue-state narrative
+>    relocated VERBATIM to PROGRAMME-LOG.md under a dated heading.
+>    Conservation verified exhaustively (a multiset check over all
+>    1,699 removed lines: zero losses; net-new text = the QUEUE
+>    scaffold + one §0.0 sentence + one pointer, +960 bytes).
+> 2. **THE RESUME PROTOCOL (codified in the QUEUE section + §0.0)**:
+>    resume = read the top ⭐ QUEUE section + \`tail -n 120
+>    PROGRAMME-RULINGS.md\`; NEVER read the file in full; grep for
+>    history; live-state edits happen ONLY in the QUEUE section and
+>    superseded blocks move to the LOG in the same edit — the file
+>    cannot grow back.
+> 3. **JUDGMENT CALLS RATIFIED**: the one paragraph split at the
+>    exact live-block boundary; §0/§0.5 left in place (the inline
+>    unnumbered ruling the index pins would have been orphaned —
+>    harmless since resume no longer reads below QUEUE); the single
+>    consolidated pointer; the Track F handoff left (out of scope).
+> 4. The queue itself is unchanged: **the #123.5 user fork stands**
+>    (B recommended / C / D). This ruling is housekeeping only.
