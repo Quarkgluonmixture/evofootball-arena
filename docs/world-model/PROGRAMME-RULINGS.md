@@ -5516,3 +5516,43 @@
 > 4. **NO NEW WORK AUTHORIZED**; the #129.4 fork (A interventional
 >    census, recommended · B re-parent · C park) still awaits the
 >    user. Fingerprint `57b0bdab…c673` unchanged (#90–#132).
+
+> **COMMANDER RULING #133 (2026-08-02 — the user rules #129.4:
+> option A; 自走 resumes; A4-P1b authorized and dispatched):**
+>
+> 1. **USER RULING RECORDED (verbatim: "A 自走")**: the
+>    interventional fork-and-abandon census (A4-P1b) proceeds and
+>    the #126 green path RESUMES from this rung (P1b → review →
+>    runs → adjudication; on PASS → A4-P2 → A4-P3 without a
+>    per-stage user "go"; any STOP/FAIL/veto returns).
+> 2. **A4-P1b DESIGN CONSTRAINTS (binding on the pre-reg)**:
+>    (i) ESTIMAND — the causal price of the index-1 rest-defence
+>    DESIGNATION POLICY: remove the policy, never freeze or
+>    teleport a body (STATUE-safe; the DF keeps his ordinary
+>    machinery — base spot, support scoring — minus the special
+>    law). (ii) SEAM — a dormant Match-level flag, default OFF,
+>    `=== true` opt-in, side-scoped, set ONLY inside the probe's
+>    forked branch; disables exactly TWO faces: the PlayerBrain
+>    support-fan exclusion (`restDefence`) and the formations
+>    in-possession clamp; the out-of-possession sweeper face
+>    untouched. Dormancy proof: flag-off byte-identity test +
+>    production fingerprint `57b0bdab…c673` unchanged.
+>    (iii) INSTRUMENT — paired same-seed forks (branch A as-is /
+>    branch B seam ON for side d), the established P2b fork idiom,
+>    no branch-to-branch or branch-to-parent state leakage;
+>    pricing via the ADMITTED P1 surrogates (deep 0.043455
+>    primary per #127, box 0.195217 parallel, never summed,
+>    shot-against banned); horizon + monotone/dose axis pinned ex
+>    ante from published grids (executor proposes, flags the
+>    choice). (iv) GATE — a monotone, resolved POSITIVE price,
+>    exact predicate frozen before any run; the smoke sizes only.
+>    (v) The #128 lesson carries: X-DET compares a wall-free
+>    deterministic core. (vi) SEEDS — inside the remaining
+>    11.81M–12.3M reservation, stats 1002xx+, disjoint from the
+>    consumed 11.70M/11.80M blocks. (vii) Simpson-genre exhibit
+>    by fork context, reversal flag emitted (commander tightening
+>    at review, #127 form). (viii) #106.6: P1b is the SECOND
+>    instrument on this question; a third requires a user ruling.
+> 3. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0): pre-reg + seam + dormancy tests + probe + bounded
+>    preflight; local commit, explicit paths, no push.

@@ -41,16 +41,20 @@ so TRUE functional absence never occurs on this world; occupied≈
 pinned states, vacant≈attacking states with the clamp still
 covering above the own-third bar. **The world's own variation
 cannot price a counterfactual the incumbent never permits — the
-question needs an INTERVENTION.** ⭐ **THE QUEUE SITS AT THE USER
-FORK (#129.4): (A, recommended) A4-P1b interventional
-fork-and-abandon census** (fork-only, default-OFF seam disabling
-ONLY the index-1 designation in the counterfactual branch;
-STATUE-safe — removes a policy, freezes nobody; monotone resolved
-price ⇒ P2/P3 resume unchanged) · **(B)** contract amendment: M3
-re-parents the EXISTING clamp machinery to the gene-chosen owner
-(no new priced eye term; skip pricing → P2/P3) · **(C)** park A4 /
-other. **Green path suspended at the STOP (#126.3); nothing
-proceeds until the user rules.** Slice-1 stage map on resume:
+question needs an INTERVENTION.** ⭐ **#129.4 RULED A BY THE USER ("A 自走", #133) — A4-P1b, THE
+INTERVENTIONAL FORK-AND-ABANDON CENSUS, IS LIVE; the green path
+resumed.** Design (#133): a dormant src seam (default-OFF,
+side-scoped, set ONLY inside the probe's forked branch) disables
+BOTH in-possession faces of the index-1 designation (the
+PlayerBrain support-fan exclusion + the formations clamp; the
+out-of-possession sweeper face untouched) — remove the POLICY,
+freeze nobody (STATUE-safe); paired same-seed branch contrast
+prices the policy's causal value in goal-value units (deep entry
+primary, #127 carries; horizons/dose axis pinned ex ante); gate =
+monotone resolved positive price, frozen before any run; #106.6:
+P1b is the SECOND instrument on this question — a third needs a
+user ruling. #131/#132 ladder rungs (补位 → 默契学习 → 教练回路)
+named, NOT authorized. Slice-1 stage map on resume:
 A4-P2 dormant build → A4-P3 frontier battery (R0/R3p/assignOnly/
 ASSIGN; primary `ASSIGN − R3p`). Seeds: 11.70M/11.80M consumed by
 P1; 11.81M–12.3M + stats 1002xx+ still reserved to A4. Road B
