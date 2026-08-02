@@ -1,0 +1,562 @@
+{
+  "experiment": "STAGE3-V4-P3p-2b SIZING SMOKE (the five-arm partial consumer)",
+  "mode": "smoke",
+  "authority": "STAGE3-V4-P3P2-CONSUMER §3–§6 (#117-AMENDED) · rulings #116/#117/#118",
+  "head": "P3p-2a src wiring at bff06e0 (ratified #118); this probe touches no src",
+  "parameters": {
+    "mode": "smoke",
+    "seedStart": 11000000,
+    "matchesRequested": 40,
+    "matchesRun": 40,
+    "matchCap": null,
+    "momentTarget": 1000000000,
+    "matchDuration": 240,
+    "warmupTicks": 15,
+    "wSeconds": 3,
+    "hScoreSeconds": 6,
+    "hConcedeSeconds": 10,
+    "momentSpacingS": 2,
+    "restThird": 10.5,
+    "devFloor": 0.22,
+    "arms": [
+      "R0",
+      "R1p",
+      "R2p",
+      "R3p",
+      "R3v3"
+    ],
+    "armsSource": "default (all five; prune disclosed at smoke)",
+    "allArms": [
+      "R0",
+      "R1p",
+      "R2p",
+      "R3p",
+      "R3v3"
+    ],
+    "minimalArms": [
+      "R0",
+      "R3p",
+      "R3v3"
+    ],
+    "prunableArms": [
+      "R1p",
+      "R2p"
+    ],
+    "bootstrapResamples": 2000,
+    "bootstrapSeed": 99703,
+    "permutationSeedReserved": 99803,
+    "clusterUnit": "match seed",
+    "mediators": {
+      "offsideRate": "offsides both sides / match (§4, indexes the offside bit; ⚠ #116.2 sign inverted ⇒ null/worsening a live outcome, REPORTED not gated)",
+      "deliveryEvents": "(longBalls+crosses+cutbacks) both sides / match (§4, indexes the delivery bit; pre-named: recover toward the P3a band)",
+      "restartTicks": "phase==='restart' ticks / match (§4, indexes the in-support law; pre-named: quiet toward R0)",
+      "restSlotOccupancy": "mean(both sides) fraction of playing ticks the index-1 body is held in own-third (localX < −REST_THIRD) — I5(b) DEGEN-RESTDEF (§4, UNREMEDIED CLASS H; pre-named: residual persists)"
+    },
+    "tableSource": "docs/world-model/data/stage3-v4-p3p1-merged-role-census-table.json",
+    "controlSource": "docs/world-model/data/stage3-v3-p2-control-recovery.json",
+    "controlSha": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+    "controlPooled": -0.056682,
+    "world": "ENRICHED",
+    "flags": {
+      "edsPerceivedDefence": true,
+      "edsPerceivedChoice": true,
+      "edsValueAxis": true,
+      "c5Hold": true,
+      "c6Carry": true,
+      "c7Windup": true,
+      "c5TouchFork": false
+    },
+    "preflight": false
+  },
+  "xMergeSha": {
+    "mergedShaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "mergedShaExpected": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "mergedRehash": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "baseRehash": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "baseShaExpected": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "mergedShaOk": true,
+    "baseShaOk": true,
+    "pass": true,
+    "path": "docs/world-model/data/stage3-v4-p3p1-merged-role-census-table.json",
+    "mergedChildCount": 323,
+    "keying": "strict"
+  },
+  "seedDisjointness": {
+    "pass": true,
+    "batteryReservation": "10.6M..10.9M (#111, untouched)",
+    "smokeStart": 11000000,
+    "runStart": 11100000,
+    "bootstrapSeed": 99703,
+    "permutationSeed": 99803,
+    "statsOk": true
+  },
+  "fingerprint": {
+    "fingerprint": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+    "pass": true,
+    "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+  },
+  "xOffIdent": {
+    "pass": true,
+    "sigChildrenFlagsOff": "bf7f29fd443b7a54815fc055764382d2443505d46bb54501861682b7f4324c4c",
+    "sigPlainV3": "bf7f29fd443b7a54815fc055764382d2443505d46bb54501861682b7f4324c4c"
+  },
+  "xSrcZero": {
+    "pass": true,
+    "srcDiff": ""
+  },
+  "perArmMediators": {
+    "R0": {
+      "offsideRate": 4.5,
+      "deliveryEvents": 11.675,
+      "restartTicks": 1856.425,
+      "restSlotOccupancy": 0.5389
+    },
+    "R1p": {
+      "offsideRate": 4.025,
+      "deliveryEvents": 11.175,
+      "restartTicks": 1801.125,
+      "restSlotOccupancy": 0.5321
+    },
+    "R2p": {
+      "offsideRate": 4.025,
+      "deliveryEvents": 10.2,
+      "restartTicks": 1875.075,
+      "restSlotOccupancy": 0.4835
+    },
+    "R3p": {
+      "offsideRate": 3.85,
+      "deliveryEvents": 9.975,
+      "restartTicks": 1945.4,
+      "restSlotOccupancy": 0.4201
+    },
+    "R3v3": {
+      "offsideRate": 3.85,
+      "deliveryEvents": 8.7,
+      "restartTicks": 2510.95,
+      "restSlotOccupancy": 0.3926
+    }
+  },
+  "mediatorContrasts": {
+    "offsideRate": {
+      "R3p-R0": {
+        "n": 40,
+        "point": -0.65,
+        "lower": -1.475,
+        "upper": 0.2,
+        "halfWidth": 0.8375
+      },
+      "R3p-R3v3": {
+        "n": 40,
+        "point": 0,
+        "lower": -0.875,
+        "upper": 0.875,
+        "halfWidth": 0.875
+      },
+      "R3v3-R0": {
+        "n": 40,
+        "point": -0.65,
+        "lower": -1.6,
+        "upper": 0.125,
+        "halfWidth": 0.8625
+      }
+    },
+    "deliveryEvents": {
+      "R3p-R0": {
+        "n": 40,
+        "point": -1.7,
+        "lower": -2.875,
+        "upper": -0.575,
+        "halfWidth": 1.15
+      },
+      "R3p-R3v3": {
+        "n": 40,
+        "point": 1.275,
+        "lower": 0.05,
+        "upper": 2.55,
+        "halfWidth": 1.25
+      },
+      "R3v3-R0": {
+        "n": 40,
+        "point": -2.975,
+        "lower": -4.125,
+        "upper": -1.8,
+        "halfWidth": 1.1625
+      }
+    },
+    "restartTicks": {
+      "R3p-R0": {
+        "n": 40,
+        "point": 88.975,
+        "lower": -108.25,
+        "upper": 279.15,
+        "halfWidth": 193.7
+      },
+      "R3p-R3v3": {
+        "n": 40,
+        "point": -565.55,
+        "lower": -820.35,
+        "upper": -301.225,
+        "halfWidth": 259.5625
+      },
+      "R3v3-R0": {
+        "n": 40,
+        "point": 654.525,
+        "lower": 424.45,
+        "upper": 889.175,
+        "halfWidth": 232.3625
+      }
+    },
+    "restSlotOccupancy": {
+      "R3p-R0": {
+        "n": 40,
+        "point": -0.118802,
+        "lower": -0.140311,
+        "upper": -0.096491,
+        "halfWidth": 0.02191
+      },
+      "R3p-R3v3": {
+        "n": 40,
+        "point": 0.027467,
+        "lower": 0.000943,
+        "upper": 0.055826,
+        "halfWidth": 0.027442
+      },
+      "R3v3-R0": {
+        "n": 40,
+        "point": -0.146269,
+        "lower": -0.173016,
+        "upper": -0.122089,
+        "halfWidth": 0.025464
+      }
+    }
+  },
+  "consumptionLedger": {
+    "R1p": {
+      "decisions": 3861,
+      "deviate": 900,
+      "tie": 966,
+      "noCell": 15,
+      "abstainUnseen": 0,
+      "inSupport": 1881,
+      "oosPhase": 334,
+      "oosUnseen": 269,
+      "oosInflight": 1353,
+      "oosStale": 24,
+      "oosTotal": 1980,
+      "oosShare": 0.512821,
+      "widthHeld0": 711,
+      "widthHeld1": 551,
+      "widthHeldUnknown": 619,
+      "deliveryBitFireRate": 0.292929,
+      "deliveryUnknownShare": 0.32908,
+      "beyondLine0": 23616,
+      "beyondLine1": 9828,
+      "beyondLineUnknown": 414,
+      "offsideBeyondShare": 0.290271,
+      "offsideUnknownShare": 0.012228,
+      "deliveryChild": 1650,
+      "deliveryBase": 3363,
+      "deliveryChildShare": 0.329144,
+      "offsideChild": 5317,
+      "offsideBase": 164,
+      "offsideChildShare": 0.970078,
+      "inSupportAttainable": 1866,
+      "devShareInSupport": 0.482315,
+      "plainAttainable": 3846
+    },
+    "R2p": {
+      "decisions": 19246,
+      "deviate": 4647,
+      "tie": 4719,
+      "noCell": 138,
+      "abstainUnseen": 0,
+      "inSupport": 9504,
+      "oosPhase": 1904,
+      "oosUnseen": 1279,
+      "oosInflight": 6440,
+      "oosStale": 119,
+      "oosTotal": 9742,
+      "oosShare": 0.506183,
+      "widthHeld0": 3478,
+      "widthHeld1": 2529,
+      "widthHeldUnknown": 3497,
+      "deliveryBitFireRate": 0.266098,
+      "deliveryUnknownShare": 0.36795,
+      "beyondLine0": 120744,
+      "beyondLine1": 46926,
+      "beyondLineUnknown": 3402,
+      "offsideBeyondShare": 0.274306,
+      "offsideUnknownShare": 0.019886,
+      "deliveryChild": 6936,
+      "deliveryBase": 15960,
+      "deliveryChildShare": 0.302935,
+      "offsideChild": 24876,
+      "offsideBase": 639,
+      "offsideChildShare": 0.974956,
+      "inSupportAttainable": 9366,
+      "devShareInSupport": 0.496156,
+      "plainAttainable": 19108
+    },
+    "R3p": {
+      "decisions": 38902,
+      "deviate": 9625,
+      "tie": 9404,
+      "noCell": 301,
+      "abstainUnseen": 0,
+      "inSupport": 19330,
+      "oosPhase": 3846,
+      "oosUnseen": 2053,
+      "oosInflight": 13453,
+      "oosStale": 220,
+      "oosTotal": 19572,
+      "oosShare": 0.50311,
+      "widthHeld0": 7344,
+      "widthHeld1": 5470,
+      "widthHeldUnknown": 6516,
+      "deliveryBitFireRate": 0.28298,
+      "deliveryUnknownShare": 0.337093,
+      "beyondLine0": 244882,
+      "beyondLine1": 97208,
+      "beyondLineUnknown": 5850,
+      "offsideBeyondShare": 0.279382,
+      "offsideUnknownShare": 0.016813,
+      "deliveryChild": 15268,
+      "deliveryBase": 37139,
+      "deliveryChildShare": 0.291335,
+      "offsideChild": 56236,
+      "offsideBase": 2408,
+      "offsideChildShare": 0.958939,
+      "inSupportAttainable": 19029,
+      "devShareInSupport": 0.505807,
+      "plainAttainable": 38601
+    },
+    "R3v3": {
+      "decisions": 38135,
+      "deviate": 14886,
+      "tie": 19073,
+      "noCell": 953,
+      "abstainUnseen": 3223,
+      "inSupport": 0,
+      "oosPhase": 0,
+      "oosUnseen": 0,
+      "oosInflight": 0,
+      "oosStale": 0,
+      "oosTotal": 0,
+      "oosShare": 0,
+      "widthHeld0": 0,
+      "widthHeld1": 0,
+      "widthHeldUnknown": 0,
+      "deliveryBitFireRate": 0,
+      "deliveryUnknownShare": 0,
+      "beyondLine0": 0,
+      "beyondLine1": 0,
+      "beyondLineUnknown": 0,
+      "offsideBeyondShare": 0,
+      "offsideUnknownShare": 0,
+      "deliveryChild": 0,
+      "deliveryBase": 0,
+      "deliveryChildShare": 0,
+      "offsideChild": 0,
+      "offsideBase": 0,
+      "offsideChildShare": 0,
+      "inSupportAttainable": -953,
+      "devShareInSupport": -15.620147,
+      "plainAttainable": -953
+    }
+  },
+  "forkGrain": {
+    "moments": 3646,
+    "clonesTaken": 3646,
+    "ballDirectedSkipped": 590,
+    "x5Checked": 145,
+    "x5Mismatched": 0,
+    "x6": {
+      "ePaused": 2360,
+      "eCarrier": 176,
+      "eBallWon": 0,
+      "eSentOff": 0,
+      "eOnside": 82316,
+      "eBarred": 15618,
+      "eEnded": 404,
+      "eNonStation": 4753,
+      "eRedecided": 3103,
+      "ok": 1242354,
+      "unexplained": 0,
+      "total": 1350680
+    },
+    "neutralTrace": {
+      "decisions": 16425,
+      "deviate": 3757,
+      "tie": 4224,
+      "noCell": 136,
+      "abstainUnseen": 0,
+      "inSupport": 8117,
+      "oosPhase": 1163,
+      "oosUnseen": 1247,
+      "oosInflight": 5771,
+      "oosStale": 127,
+      "oosTotal": 8308,
+      "oosShare": 0.505814,
+      "widthHeld0": 3210,
+      "widthHeld1": 2335,
+      "widthHeldUnknown": 2572,
+      "deliveryBitFireRate": 0.287668,
+      "deliveryUnknownShare": 0.316866,
+      "beyondLine0": 100840,
+      "beyondLine1": 42944,
+      "beyondLineUnknown": 2322,
+      "offsideBeyondShare": 0.293924,
+      "offsideUnknownShare": 0.015893,
+      "deliveryChild": 5943,
+      "deliveryBase": 12705,
+      "deliveryChildShare": 0.318694,
+      "offsideChild": 20099,
+      "offsideBase": 610,
+      "offsideChildShare": 0.970544,
+      "inSupportAttainable": 7981,
+      "devShareInSupport": 0.470743,
+      "plainAttainable": 16289
+    },
+    "neutralAte": {
+      "n": 3508,
+      "point": 0.010547,
+      "lower": -0.001143,
+      "upper": 0.022656
+    },
+    "pc": {
+      "n": 3504,
+      "point": -0.017979,
+      "lower": -0.031576,
+      "upper": -0.004303
+    },
+    "dev": {
+      "deviate": 3757,
+      "inSupportAttainable": 7981,
+      "devShareInSupport": 0.470743,
+      "plainAttainable": 16289,
+      "floor": 0.22,
+      "inSupportShrinkFactor": 0.489963
+    },
+    "gatesRaw": {
+      "x4Clone": true,
+      "x5Control": true,
+      "x6Force": true,
+      "dev": true,
+      "pc": true
+    }
+  },
+  "gates": {
+    "x4Clone": true,
+    "x5ControlIdentity": true,
+    "x6ForceFidelity": true,
+    "x7Determinism": true,
+    "dev": true,
+    "pc": true,
+    "xMergeSha": true,
+    "xFpProd": true,
+    "xOffIdent": true,
+    "xSrcZero": true,
+    "seedDisjoint": true
+  },
+  "deterministic": true,
+  "verdict": "SIZING SMOKE",
+  "sizing": {
+    "rule": "N* = smallest fixed-step (40) match count whose PRIMARY-mediator (offsideRate, deliveryEvents) R3p−R0 cluster-CI half-widths meet the disclosed targets, projected from the smoke via halfWidth ∝ 1/sqrt(N), AND within the wall budget; #105 knee only if a per-cell floor unexpectedly bound (the consumer table is FROZEN — it does not).",
+    "ciTargets": {
+      "offsideRate": 0.5,
+      "deliveryEvents": 2
+    },
+    "nStep": 40,
+    "nMax": 2000,
+    "perMediatorNStar": [
+      {
+        "mediator": "offsideRate",
+        "smokeHalfWidth": 0.8375,
+        "target": 0.5,
+        "projectedN": 112.225
+      },
+      {
+        "mediator": "deliveryEvents",
+        "smokeHalfWidth": 1.15,
+        "target": 2,
+        "projectedN": 13.224999999999998
+      }
+    ],
+    "nStar": 120,
+    "nStarExceedsMax": false,
+    "wallBudgetMsPerMatch": 60000,
+    "perArmPerMatchWallMs": {
+      "R0": 93.85,
+      "R1p": 93.28,
+      "R2p": 98.83,
+      "R3p": 104,
+      "R3v3": 103
+    },
+    "fiveArmPerMatchWallMs": 492.95,
+    "prune": false,
+    "prunedArms": [],
+    "armsToRun": [
+      "R0",
+      "R1p",
+      "R2p",
+      "R3p",
+      "R3v3"
+    ],
+    "note": "DISCLOSED before the gate-bearing run; no re-cut after sight (#105.4). Under-powered mediator cells are published, never pooled (#24)."
+  },
+  "wallCost": {
+    "perArmTotalMs": {
+      "R0": 3754,
+      "R1p": 3731,
+      "R2p": 3953,
+      "R3p": 4160,
+      "R3v3": 4120
+    },
+    "matchesRun": 40
+  },
+  "ageTicksPinConfirm": {
+    "edges": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      45,
+      60,
+      90
+    ],
+    "counts": [
+      0,
+      1274,
+      1078,
+      61,
+      55,
+      47,
+      56,
+      131,
+      49,
+      0,
+      0
+    ],
+    "n": 2751,
+    "p50": 5,
+    "p95": 33,
+    "widthStaleTicks": 30,
+    "note": "consumption-time perceived ageTicks of own attacking-half teammates (throwaway-clone read, #114.2); the 30-tick freshness pin should be visible in the tail."
+  },
+  "deviations": [
+    "DEV denominator (§3.3/§9.7): the in-support perceived-attainable denominator = v4InSupport − noCell (in-support AND priceable context AND an in-power own-role cell); DEV = deviate / that. The plain-v3 attainable + the in-support shrink factor are reported beside it.",
+    "restartTicks mediator (§4): operationalised as phase==='restart' ticks/match (the restart-resettle surrogate the in-support law indexes); kickoff/goalPause not counted.",
+    "rest-slot occupancy I5(b) (§4/§9.10): operationalised as the mean over BOTH sides of the fraction of playing ticks the index-1 (slot-1) body is held in own-third (localX < −REST_THIRD); the per-side shares are also carried. REPORTED, never gated.",
+    "delivery/offside mediator directions (§4/§9.10): offside-rate pre-named quiet-toward-R0 but #116.2 sign inverted ⇒ a null/worsening is a live outcome, REPORTED not gated; no offside decomposition here (P3p-3's arm).",
+    "prune rule (§3.2/§9.6): disclosed 5-arm per-match wall budget = 60,000 ms/match (env V4P3P2_WALL_BUDGET_MS); over budget ⇒ prune R1p/R2p (keep R0/R3p/R3v3). The smoke records the measured cost + the decision; no re-cut after sight.",
+    "N rule (§5.1/§9.8): wall-cost-driven N with disclosed CI-width targets on the two PRIMARY mediators (offsideRate ≤ 0.5, deliveryEvents ≤ 2.0 on R3p−R0), projected halfWidth ∝ 1/sqrt(N), fixed step 40, cap N_MAX=2000; the #105 knee is NOT applicable (the consumer table is frozen — no per-cell census floor binds).",
+    "15-tick warm-up (§3.3): carried as the heritage's NOMINAL WARMUP_TICKS parameter (reported); NO artificial pre-warm loop is added — the percept is warmed by the base match's own play up to the decision tick, exactly as V3-P2 / the P3p-1 recensus (which report WARMUP_TICKS but apply no extra loop).",
+    "permutation seed 99803 (§5.2): RESERVED for symmetry with the seed banding; the P3p-2 gates are bootstrap-based (DEV/PC/mediators) — no permutation-null test is run here.",
+    "X-OFF-IDENT + X-SRC-ZERO carried as BONUS receipts: this probe re-confirms the injection dormancy (children injected + flags OFF == plain v3, whole-match byte-identical) and that it adds no src (git diff --stat -- src empty); the HARD X-OFF-IDENT/X-SRC-ZERO(named) were P3p-2a's gates (ratified #118).",
+    "fork-grain arms: the DEV/PC instrument runs the PARTIAL eye NEUTRAL (DEV) + INVERTED (PC) + a null-eye CONTROL fork per moment (the V3-P2 gate battery, §3.3); the eye value-arms gene/oracleCtx and the perception-price contrast are NOT re-run (not in the P3p-2 gate set)."
+  ],
+  "sha256": "e7a088423d8ba8f97ebd9ff07a2702d37a05d735560ee7c073522e216a65936b"
+}

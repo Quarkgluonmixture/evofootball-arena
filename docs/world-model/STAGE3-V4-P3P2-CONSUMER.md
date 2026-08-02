@@ -560,3 +560,144 @@ reading of the P3p-0 `src/**` seam (`actionExecutor.ts` L816–868, `stationEye.
 L134–524, `eyeContextBitsV4.ts` L20–192, `Match.ts` L651–711, file:line cited).
 **Nothing was built or run before this document is committed.** This freeze
 RETURNS TO THE COMMANDER; P3p-2a and P3p-2b are future authorized steps.
+
+---
+
+## §RESULT — the AUTHORIZED runs (#119 launch): all instrument gates pass, the five-arm attribution table lands, and RETURNS to the commander
+
+Run to completion under the commander's resident session (#49.5), the **frozen
+probe as reviewed** (pre-registration PASS #117; src wiring P3p-2a PASS #118,
+committed `bff06e0`; probe build PASS #119, committed `52c66f5`). Two runs, seed
+families disjoint above the ratified 10.6M–10.9M battery reservation (#117
+amendment; §5.2 / #46.2): the **sizing smoke** (40 matches `11,000,000 + k,
+k∈0..39`) fired the disclosed N rule and the prune decision, re-confirmed the DEV
+floor's reachability on the law-shrunken denominator, and confirmed the 30-tick
+freshness pin; the **consumer run** ran **N = 120 matches `11,100,000 + k,
+k∈0..119`**, all five arms (R0 / R1p / R2p / R3p / R3v3), keying STRICT via the
+merged table's artifact shape. ENRICHED world, `stationEye` production-null,
+`src/**` limited to the three P3p-2a named files, production fingerprint
+`57b0bdab…c673` unchanged (X-FP-PROD PASS, Road B held, nothing shipped). Every
+number below traces to the two committed data files.
+
+### THE SIZING SMOKE (40 @ 11.0M)
+
+40 matches on `11,000,000 + k, k∈0..39`, ENRICHED world, the five-arm PARTIAL-eye
+fork-grain instrument, X-DET double-run. **Gates all PASS** (verdict verbatim:
+**`SIZING SMOKE`**): X4 clone coverage **3,646 / 3,646 = 1.0** (`forkMoments 3,646`,
+590 ball-directed skipped), X5 control identity **145 checked / 0 mismatched**, X6
+force fidelity `unexplained == 0` (1,242,354 ok / 1,350,680 total), X7 determinism,
+X-MERGE-SHA, X-FP-PROD, X-OFF-IDENT (bonus receipt), X-SRC-ZERO, seed-disjoint all
+true. **DEV 0.4707** (`devShareInSupport 0.470743`, deviate 3,757 / **in-support
+attainable 7,981**; plain-attainable 16,289, in-support shrink factor 0.489963) —
+above the pinned **floor 0.22**, so the in-support restriction does NOT make the
+floor structurally unreachable (§3.3). **PC −0.0180 [−0.0316, −0.0043]** (`pc n
+3,504`; 95% cluster-bootstrap upper < 0 — the inverted twin resolves below
+control). (Neutral ATE `n 3,508`, +0.010547 [−0.001143, +0.022656], reported.)
+
+**THE N RULE fired as disclosed (§5.1), before the gate-bearing run.** CI-half-width
+targets on the two PRIMARY mediators (R3p−R0): offsideRate smoke half-width
+**0.8375** vs target 0.5 → projected N **112.225**; deliveryEvents half-width
+**1.15** vs target 2.0 → projected N **13.225**. In fixed steps of 40 (cap N_MAX =
+2,000), **N\* = 120** (`nStarExceedsMax = false`); the #105 knee did not apply (the
+consumer table is frozen — no census floor binds).
+
+**THE PRUNE RULE returned FALSE (§3.2), disclosed before sight.** Measured five-arm
+wall cost **492.95 ms/match** (per arm: R0 93.85 / R1p 93.28 / R2p 98.83 / R3p 104
+/ R3v3 103 ms) vs the disclosed **60,000 ms/match** budget ⇒ `prune = false`, no
+arm dropped, all five run (`armsToRun` = R0/R1p/R2p/R3p/R3v3). The consumption-time
+perceived-`ageTicks` histogram (`p50 5`, `p95 33`, n 2,751) confirms the 30-tick
+freshness pin (§5.1(iv); no re-cut after sight). Smoke output SHA-256
+**`e7a08842…65936b`** (full
+`e7a088423d8ba8f97ebd9ff07a2702d37a05d735560ee7c073522e216a65936b`).
+
+### THE RUN (N = 120 @ 11.1M, five arms)
+
+`matchCap = 120`; seeds `11,100,000 + k, k∈0..119`; ENRICHED world; keying STRICT;
+bootstrap seed 99703 / permutation seed 99803 (reserved-unused); HEAD **`bff06e0`**
+(P3p-2a src wiring, #118; the probe `52c66f5` touches no `src`). Coverage:
+**forkMoments 11,056** (clones 11,056 = 1.0, 1,672 ball-directed skipped). **Gates
+all PASS** (verdict verbatim: **`GATES PASS`**):
+
+* **X4 clone** true — 11,056 / 11,056 = 1.0.
+* **X5 control-fork identity** true — **442 checked / 0 mismatched**.
+* **X6 force fidelity** true — `unexplained == 0` (3,835,619 ok / 4,148,426 total;
+  `eSentOff 184`).
+* **X7 / X-DET** true — two `runExperiment()` calls byte-identical, `deterministic
+  = true`.
+* **DEV** true — **0.4831** (`devShareInSupport 0.483082`, deviate 11,636 /
+  in-support **attainable 24,087**; plain-attainable 48,950, shrink factor
+  0.492074) ≥ floor 0.22.
+* **PC** true — **−0.0188 [−0.0282, −0.0094]** (`pc n 10,598`; 95% upper < 0).
+  (Neutral ATE `n 10,614`, +0.009516 [+0.002364, +0.016520].)
+* **X-MERGE-SHA** true — the loaded merged table's `mergedTableSha ==
+  39662445…9d6105` AND its `base` rehashes to `171a6dad…6559f` (= the injected v3
+  base).
+* **X-FP-PROD** true (fingerprint `57b0bdab…c673`), **X-OFF-IDENT** true (bonus
+  receipt; children injected + flags-off byte-identical to plain v3, sig
+  `7ba286ad…`), **X-SRC-ZERO** true (`git diff --stat -- src` empty),
+  **seed-disjoint** true.
+
+Run output SHA-256 **`906c6449…930f14`** (full
+`906c6449d0f5ac8dc0ba1b1d32ed5cee83c97c0d929eec73748c811267930f14`).
+
+### THE MEDIATOR CONTRAST TABLE (paired cluster CIs, #20 — REPORTED, never gated)
+
+Four fork-grain mediators × three paired contrasts, point [95% cluster-bootstrap
+CI], `✓` = CI excludes 0 / `null` = CI straddles 0. Read verbatim from the run JSON
+`mediatorContrasts` (n = 120):
+
+| mediator | R3p − R0 | R3p − R3v3 | R3v3 − R0 |
+| --- | --- | --- | --- |
+| **offside rate** | **+0.750** [+0.225, +1.267] ✓ | +0.125 [−0.358, +0.608] null | **+0.625** [+0.100, +1.175] ✓ |
+| **delivery events** | **−2.217** [−2.942, −1.475] ✓ | +0.317 [−0.417, +1.008] null | **−2.533** [−3.283, −1.783] ✓ |
+| **restart ticks** | **+139.075** [+31.050, +236.558] ✓ | **−702.108** [−854.200, −550.767] ✓ | **+841.183** [+693.258, +979.758] ✓ |
+| **rest-slot occupancy** | **−0.149** [−0.162, −0.136] ✓ | **+0.032** [+0.020, +0.045] ✓ | **−0.181** [−0.196, −0.167] ✓ |
+
+Pre-named directions (§4, recorded beside the numbers, NOT gated): offside rate
+"quiet toward R0" — ⚠ but #116.2's sign INVERTED (the R3p−R0 point is POSITIVE),
+REPORTED not gated; delivery events "recover toward the P3a band"; restart ticks
+"quiet toward R0"; rest-slot occupancy — UNREMEDIED CLASS H, "residual persists".
+No mediator is a stop gate at P3p-2.
+
+### THE CONSUMPTION LEDGER (per partial arm, #49.3 — does each remedy FIRE at consumption)
+
+The **R3p** arm (both teams — the arm every gate binds on), run counts:
+
+* **in-support abstentions by class** — `inSupport 57,899` vs `oosPhase 11,134 /
+  oosUnseen 6,838 / oosInflight 39,299 / oosStale 764`, `oosTotal 58,035`,
+  **`oosShare 0.500587`** (the in-support law closes ≈ half the consulted surface);
+  `decisions 115,934`, `deviate 28,096`, `tie 28,944`, `noCell 859`, `abstainUnseen
+  0`.
+* **delivery bit tri-state** — `widthHeld0 20,646 / widthHeld1 17,257 /
+  widthHeldUnknown 19,996`, `deliveryBitFireRate 0.298054`, `deliveryUnknownShare
+  0.34536`.
+* **offside bit tri-state** — `beyondLine0 735,856 / beyondLine1 284,438 /
+  beyondLineUnknown 21,888`, `offsideBeyondShare 0.272925`, `offsideUnknownShare
+  0.021002`.
+* **child-vs-base reads by family** (the NEW ledger) — delivery `child 48,038 /
+  base 99,400`, **`deliveryChildShare 0.325818`**; offside `child 157,016 / base
+  6,271`, **`offsideChildShare 0.961595`**. Both remedies FIRE at consumption
+  (neither child-read count ≈ 0).
+
+**R1p / R2p (compact, run).** R1p: `decisions 11,289`, `oosShare 0.504916`,
+`deliveryChildShare 0.326019`, `offsideChildShare 0.962633`, `devShareInSupport
+0.48957`. R2p: `decisions 57,563`, `oosShare 0.502597`, `deliveryChildShare
+0.307678`, `offsideChildShare 0.96747`, `devShareInSupport 0.491896`. **R3v3**
+carries NO consumption ledger (the plain-v3 attribution baseline — no `eye.v4`
+flags): every in-support / bit / child field 0, `abstainUnseen 9,864`.
+
+### PER-ARM MEDIATOR ABSOLUTE LEVELS (the `perArmMediators` block, run)
+
+| arm | offside rate | delivery events | restart ticks | rest-slot occupancy |
+| --- | --- | --- | --- | --- |
+| R0 | 3.2667 | 11.3833 | 1708.8417 | 0.5876 |
+| R1p | 3.2000 | 11.4083 | 1734.3000 | 0.5793 |
+| R2p | 3.8417 | 10.3167 | 1793.1250 | 0.5138 |
+| R3p | 4.0167 | 9.1667 | 1847.9167 | 0.4384 |
+| R3v3 | 3.8917 | 8.8500 | 2550.0250 | 0.4062 |
+
+---
+
+**All instrument gates pass (reading A form — the consumer is measurable and the
+remedies fire); the mediator contrasts are REPORTED, never gated here. Adjudication
+and the P3p-3 hand-off are the commander's ruling in PROGRAMME-RULINGS.md.**
