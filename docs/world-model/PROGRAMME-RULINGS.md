@@ -4902,3 +4902,36 @@
 >    run @11.1M; stats 99703/99803; gates X4–X7 / DEV / PC /
 >    X-MERGE-SHA / X-DET / disjointness). Then the runs, detached
 >    (#49.5).
+
+> **COMMANDER RULING #119 (2026-08-02 — P3p-2b probe build
+> reviewed: PASS; the runs launch):**
+>
+> 1. **BUILD VERDICT**: probe committed `52c66f5` (929 lines, one
+>    file); independent verify 6/6, zero violations (arm configs
+>    exact incl. the P3a ladder scopes; BOTH merge SHAs recomputed
+>    in node against the committed table and reproduced; the
+>    X-MERGE self-test fails correctly on a perturbed copy;
+>    guards: no default mode, run requires N, capped invocations
+>    refuse canonical writes). Preflight: the consumption ledger
+>    FIRES on the R3p arm (delivery child share 0.324, offside
+>    child share 0.963, OOS share 0.526 — the in-support law bites
+>    at the exposure-map scale); DEV 0.575 on the law-shrunken
+>    denominator (shrink factor 0.489 visible); PC path correct;
+>    X-OFF-IDENT bonus receipt (children + flags-off byte-identical
+>    to plain v3); X-FP-PROD run un-skipped and exact.
+> 2. **DEVIATIONS RATIFIED**: the DEV denominator form
+>    (deviate/(v4InSupport−noCell)) with the plain-attainable
+>    shrink published; restartTicks = restart-phase ticks only;
+>    the I5(b) both-sides mediator form; the 60 s/match five-arm
+>    wall budget as the disclosed prune input; the N rule =
+>    CI-half-width targets on the two PRIMARY mediators
+>    (offsideRate ≤ 0.5, deliveryEvents ≤ 2.0 on R3p−R0, step 40,
+>    cap 2,000 — the #105 knee inapplicable, no census floor
+>    binds); the heritage warm-up as a nominal parameter (no
+>    artificial loop — matching V3-P2/P3p-1 practice); permutation
+>    seed 99803 reserved-unused (bootstrap-only gate set); the
+>    five-arm default with the R0/R3p/R3v3 minimal set enforced.
+> 3. **THE RUNS LAUNCH** detached (#49.5): V4P3P2_MODE=smoke (40
+>    @11.0M) → the disclosed-rule N + the prune decision →
+>    V4P3P2_MODE=run V4P3P2_N=N (@11.1M). Gates as frozen;
+>    readings A–D stop at the commander.
