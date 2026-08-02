@@ -5753,3 +5753,38 @@
 > 4. **DISPATCH**: one executor step (Workflow Draft→Verify,
 >    §0.0): pre-reg + grant seam + tests + probe + bounded
 >    preflight; local commit, explicit paths, no push.
+
+> **COMMANDER RULING #138 (2026-08-02 — the A4-P1c deliverable
+> reviewed; eight executor flags disposed; the runs authorized):**
+>
+> 1. **BANKED**: `db2e2d6` (pre-reg A4-P1C-GRANT-CENSUS.md + the
+>    dormant grant seam `Match.homeRegionGrant` {side, bodyIndex,
+>    strength}|null + probe + 11 dormancy tests; independent
+>    verify PASS; suite 961/961; tsc clean; production
+>    fingerprint `57b0bdab…c673` doubly confirmed).
+> 2. **FLAGS DISPOSED (all accepted)**: (F1) granted body =
+>    index-1 — the P1/P1b-comparable instrument choice. (F2) the
+>    dose unit VAL_SCALE ≈ 0.163494 derived IN-PROBE from the
+>    SHA-pinned merged table (810 in-power cells; X-MERGE-gated;
+>    non-smoke-derived) with frozen fractions {0.25,0.5,1.0,2.0};
+>    runtime equality with the frozen readout to be checked at
+>    adjudication (verify N2). (F3) per-fork MULTI-BRANCH dose
+>    ladder (same-seed pairing across the whole grid; FORK_CAP
+>    40→20 for wall) — the strongest pairing design. (F4) the
+>    code-reality divergence handled per the #134.2 precedent:
+>    base runs EYE-ARMED (the grant lives at the consumption
+>    point — that is P1c's entire premise). (F5) the E-NONSTATION
+>    rebuild independently re-caught the #122.2 benign false-fire
+>    and adopted the refined form — the instrument-repair lineage
+>    holds. (F6) raw-rate MDL matches the raw-rate gate. (F7)
+>    depth-only region = a registered non-claim (§7/#136), width
+>    and bimodal homes deferred. (F8) no PROGRAMME edit by the
+>    executor — correct per precedent.
+> 3. **VERIFY NOTES RECORDED**: the bias's Math.max floors a
+>    DISTANCE scalar (not a position clamp — M3′ honored); NaN
+>    rung semantics backstopped by legs (i)+(iii) with the
+>    empty-cell STOP (the #127 vacuity genre, declared ex ante).
+> 4. **THE RUNS AUTHORIZED** (#49.5): smoke (40 @ 11.95M) → the
+>    frozen N arithmetic → census (@ 12.00M) → adjudication.
+>    PASS opens A4-P2 on the green path (#137.1); any STOP/FAIL
+>    returns to the user.
