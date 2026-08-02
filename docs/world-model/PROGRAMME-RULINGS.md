@@ -5335,3 +5335,66 @@
 >    change.
 > 5. **RE-RUN AUTHORIZED** (#49.5 detached): smoke → frozen N →
 >    census → adjudication, per #127.5 unchanged.
+
+> **COMMANDER RULING #129 (2026-08-02 — the A4-P1 census
+> adjudicated: THE FROZEN GATE STOPS THE STAGE; the endogeneity
+> diagnosis; the arc RETURNS TO THE USER):**
+>
+> 1. **BANKED**: the smoke re-run (all X green after the #128
+>    repair; N* = 200 by the frozen formula, projected primary
+>    power 0.9994, knee clear — bin2 projects 45 windows; the
+>    role axis is DEGENERATE by roster construction — the slot
+>    body is always the DF — so the #94.3 exhibit effectively
+>    stratifies on context alone; noted, acceptable) + the census
+>    (200 matches @ 11.80M; X-DET true, X-SRC-ZERO true, seeds
+>    disjoint; SHA 24e5cd4be5de; both JSONs committed).
+> 2. **THE GATE, EXECUTED AS FROZEN — ALL THREE LEGS FAIL**: the
+>    pooled deep-priced vacancy price is **RESOLVEDLY NEGATIVE**,
+>    −0.014385 [−0.0178, −0.011353] (vacant windows suffer FEWER
+>    downstream deep entries); the duration ladder is
+>    NON-MONOTONE (0.0348 / 0.0182 / 0.0203); the (bin2−bin0)
+>    contrast unresolved. **No Simpson reversal** (standardized
+>    −0.0078, same sign; strata: own NULL [−0.0196, +0.0152],
+>    mid −0.0102 resolved, their −0.0055 resolved). The box
+>    parallel agrees (−0.0031 resolved negative); the {6 s, 15 s}
+>    sensitivities agree. Disposition executed as pre-laid:
+>    **STOP AT A4-P1** — no measured term for the M3 seam (I-A3);
+>    the arc **RETURNS TO THE USER** (#126.3: the green path
+>    suspends at any STOP).
+> 3. **THE DIAGNOSIS (commander, mechanism-level — why the price
+>    is negative and what it does NOT mean)**: this is
+>    ENDOGENEITY plus a bar artifact, not evidence that rest
+>    defence is worthless. (i) The I5(b) bar (own-third) reads
+>    OCCUPIED mostly in PINNED states (the anchor retreats deep
+>    when defending) and VACANT mostly in ATTACKING states —
+>    where the Phase-31/88 clamp still parks the anchor at the
+>    gene-faced depth (−8…−16 local), often ABOVE the own-third
+>    bar: labelled vacant, functionally covering. Pinned states
+>    concede more after turnovers for reasons no slot occupancy
+>    causes — the context stratification removed only part of it.
+>    (ii) More fundamentally: TRUE functional absence (attacking
+>    with NO cover at all) essentially never occurs on this world
+>    BECAUSE the incumbent hard-codes the job
+>    (`PlayerBrain.ts:1176`). **The world's own variation cannot
+>    price a counterfactual the incumbent never permits.** The
+>    observational census was the correct cheapest-first
+>    instrument, and its honest answer is: this question needs an
+>    INTERVENTION.
+> 4. **THE FORK (user ruling required; presented at the return)**:
+>    **(A, recommended) A4-P1b — the interventional
+>    fork-and-abandon census** (the original #109.4 option-C
+>    flavour): fork at sampled moments; in the counterfactual
+>    branch DISABLE ONLY the index-1 rest-defence designation (a
+>    fork-only, default-OFF probe seam; Road B; STATUE-safe — it
+>    removes a POLICY and freezes nobody); the branch contrast
+>    prices TRUE absence; a monotone resolved price resumes
+>    P2/P3 unchanged. **(B)** contract amendment: M3 re-parented —
+>    assignment transfers ownership of the EXISTING clamp
+>    machinery to the gene-chosen owner (no new priced eye term;
+>    I-A3 satisfied vacuously); skip pricing, proceed to the P2
+>    build + P3 battery. **(C)** park A4 / return to the C-track /
+>    other. Note #106.6's spirit: A4-P1b would be the SECOND
+>    instrument on this question; a third would need its own user
+>    ruling.
+> 5. Nothing shipped; every flag dormant; fingerprint
+>    `57b0bdab…c673` unchanged (#90–#129).

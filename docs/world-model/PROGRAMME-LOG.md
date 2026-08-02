@@ -1810,3 +1810,42 @@ dynamic in-match handoff (needs A3-style mutual resolution),
 offside-as-doctrine (a line-awareness prior, not a single-owner
 job), the coach global eye, the selection/PAYS proof (two-step as
 standard).)*
+
+## Relocated QUEUE block (superseded 2026-08-02 by ruling #129 — the A4 arc-open / P1-runs era)
+
+**THE A4 ARC IS OPEN (#125, 2026-08-02)**: the #123.5 fork ruled
+**B** (the user's 底座够不够开工→够→"go" exchange; veto window
+open — say so and the contract parks unharmed). **The binding
+contract is drafted + VISION-audited (PASS, one amendment F1→I-A4
+job-menu honesty):
+[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md)** — slice
+1 = pre-match, per-team, gene-weighted REST-DEFENCE OWNERSHIP,
+percept-clean per the charter (prior buys latency/priority, never
+reveals an unobserved body; pre-match static; opponent-opaque).
+Sharpened diagnosis at drafting: **R0's rest defence IS already an
+assignment — hard-coded** (`PlayerBrain.ts:1176` `p.index === 1` +
+the formationSpot clamp + the `!restDefence` support-fan exclusion);
+the eye arms erode it (slot 0.5876→0.4384 = the −16.1% [−17.2,
+−15.0] residual) — slice 1 replaces the index with an
+emergence-compatible primitive. Stage map: **A4-P1 vacancy census**
+(fork C folded in as calibration; gate: monotone resolvedly-nonzero
+vacancy price, else STOP) → A4-P2 dormant build → A4-P3 frontier
+battery (4 arms R0/R3p/assignOnly/ASSIGN; primary `ASSIGN − R3p`;
+PASS = DEGEN-RESTDEF closes AND no shape limb regresses = the
+frontier MOVES). Seeds 11.7M–12.3M + stats 1000xx reserved. Road B
+throughout; fingerprint `57b0bdab…c673` unchanged (#90–#125).
+**自走 GREEN PATH LIVE (#126, user "自走go" 2026-08-02):
+autonomous stage-to-stage progression authorized** — P1→P2→P3
+proceed on PASS without per-stage "go" (commander review + numbered
+rulings still gate EVERY stage; #106.6 and Road B unchanged); the
+arc returns to the user ONLY on STOP/FAIL, a veto, or the P3
+frontier verdict. **A4-P1 PRE-REG LANDED (`a9f7742`, Workflow
+Draft→Verify PASS; commander review #127)**: I5(b) reused verbatim;
+gate frozen = deep-priced pooled CI>0 ∧ duration-ladder monotone ∧
+(bin2−bin0) resolved, PLUS the #127 pre-run tightenings (deep
+permanent, no box re-read; Simpson sign reversal = automatic
+NOT-ADVANCE; empty-bin1 semantics pre-named). Seeds: smoke 40
+@11.70M, census ≤8,000 @11.80M, stats 100003/100103. Enriched
+eye-null world (two-pin #26.5/#68.2). **RUNS LIVE (#49.5 detached):
+sizing smoke → frozen N arithmetic → census → adjudication ruling.**
+R20 gaps / F9 any time.

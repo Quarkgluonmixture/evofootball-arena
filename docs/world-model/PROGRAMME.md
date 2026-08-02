@@ -26,42 +26,36 @@
 > (c) **Live-state edits land ONLY in this section.** When it is superseded, move the old block down to `PROGRAMME-LOG.md` (never stack state here).
 > (d) **Contracts / stage docs are cited by the rulings** — open them on demand, not on resume.
 
-**THE A4 ARC IS OPEN (#125, 2026-08-02)**: the #123.5 fork ruled
-**B** (the user's 底座够不够开工→够→"go" exchange; veto window
-open — say so and the contract parks unharmed). **The binding
-contract is drafted + VISION-audited (PASS, one amendment F1→I-A4
-job-menu honesty):
-[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md)** — slice
-1 = pre-match, per-team, gene-weighted REST-DEFENCE OWNERSHIP,
-percept-clean per the charter (prior buys latency/priority, never
-reveals an unobserved body; pre-match static; opponent-opaque).
-Sharpened diagnosis at drafting: **R0's rest defence IS already an
-assignment — hard-coded** (`PlayerBrain.ts:1176` `p.index === 1` +
-the formationSpot clamp + the `!restDefence` support-fan exclusion);
-the eye arms erode it (slot 0.5876→0.4384 = the −16.1% [−17.2,
-−15.0] residual) — slice 1 replaces the index with an
-emergence-compatible primitive. Stage map: **A4-P1 vacancy census**
-(fork C folded in as calibration; gate: monotone resolvedly-nonzero
-vacancy price, else STOP) → A4-P2 dormant build → A4-P3 frontier
-battery (4 arms R0/R3p/assignOnly/ASSIGN; primary `ASSIGN − R3p`;
-PASS = DEGEN-RESTDEF closes AND no shape limb regresses = the
-frontier MOVES). Seeds 11.7M–12.3M + stats 1000xx reserved. Road B
-throughout; fingerprint `57b0bdab…c673` unchanged (#90–#125).
-**自走 GREEN PATH LIVE (#126, user "自走go" 2026-08-02):
-autonomous stage-to-stage progression authorized** — P1→P2→P3
-proceed on PASS without per-stage "go" (commander review + numbered
-rulings still gate EVERY stage; #106.6 and Road B unchanged); the
-arc returns to the user ONLY on STOP/FAIL, a veto, or the P3
-frontier verdict. **A4-P1 PRE-REG LANDED (`a9f7742`, Workflow
-Draft→Verify PASS; commander review #127)**: I5(b) reused verbatim;
-gate frozen = deep-priced pooled CI>0 ∧ duration-ladder monotone ∧
-(bin2−bin0) resolved, PLUS the #127 pre-run tightenings (deep
-permanent, no box re-read; Simpson sign reversal = automatic
-NOT-ADVANCE; empty-bin1 semantics pre-named). Seeds: smoke 40
-@11.70M, census ≤8,000 @11.80M, stats 100003/100103. Enriched
-eye-null world (two-pin #26.5/#68.2). **RUNS LIVE (#49.5 detached):
-sizing smoke → frozen N arithmetic → census → adjudication ruling.**
-R20 gaps / F9 any time.
+**THE A4 ARC (opened #125; contract
+[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md),
+VISION-audited; 自走 green path #126) — A4-P1 CLOSED: THE FROZEN
+GATE STOPPED THE STAGE (#127–#129, 2026-08-02)**. The observational
+vacancy census (pre-reg `a9f7742`, #127 tightenings; the #128
+X-DET harness repair en route; 200 matches @11.80M, all X green)
+returned a **RESOLVEDLY NEGATIVE pooled vacancy price −0.0144
+[−0.0178, −0.0114], non-monotone ladder, no Simpson reversal
+(standardized −0.0078 same sign), box/6s/15s all agree** ⇒ STOP
+executed as frozen. **Diagnosis (#129.3)**: endogeneity + a bar
+artifact — the incumbent hard-codes the job (`PlayerBrain.ts:1176`),
+so TRUE functional absence never occurs on this world; occupied≈
+pinned states, vacant≈attacking states with the clamp still
+covering above the own-third bar. **The world's own variation
+cannot price a counterfactual the incumbent never permits — the
+question needs an INTERVENTION.** ⭐ **THE QUEUE SITS AT THE USER
+FORK (#129.4): (A, recommended) A4-P1b interventional
+fork-and-abandon census** (fork-only, default-OFF seam disabling
+ONLY the index-1 designation in the counterfactual branch;
+STATUE-safe — removes a policy, freezes nobody; monotone resolved
+price ⇒ P2/P3 resume unchanged) · **(B)** contract amendment: M3
+re-parents the EXISTING clamp machinery to the gene-chosen owner
+(no new priced eye term; skip pricing → P2/P3) · **(C)** park A4 /
+other. **Green path suspended at the STOP (#126.3); nothing
+proceeds until the user rules.** Slice-1 stage map on resume:
+A4-P2 dormant build → A4-P3 frontier battery (R0/R3p/assignOnly/
+ASSIGN; primary `ASSIGN − R3p`). Seeds: 11.70M/11.80M consumed by
+P1; 11.81M–12.3M + stats 1002xx+ still reserved to A4. Road B
+throughout; fingerprint `57b0bdab…c673` unchanged (#90–#129). R20
+gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)
