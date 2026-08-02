@@ -909,6 +909,18 @@ export class Match {
    * production path, so both gated faces behave bit-for-bit as HEAD. */
   abandonRestDesignation: 0 | 1 | null = null;
 
+  /**
+   * A4-P1c (ruling #137): the DORMANT back-home-region GRANT (the M1′ soft-bias
+   * instrument form). `null` when no body is granted a back home prior — the case
+   * in EVERY production path, so the eye consumption point is bit-for-bit HEAD.
+   * When set (ONLY on a cloned/forked world inside the counterfactual branch, the
+   * `forcedStationPolicy` idiom), it adds a distance-decayed SOFT bias toward the
+   * back home region to the granted body's per-candidate station value at the
+   * established v3 consumption point (no clamp; body- and side-scoped; the eye's
+   * native score units). `strength` is a pre-registered DOSE (a gene when shipped
+   * — I-A3). MUTABLE on purpose; a probe assigns it, never a constructor path. */
+  homeRegionGrant: { readonly side: 0 | 1; readonly bodyIndex: number; readonly strength: number } | null = null;
+
   constructor(cfg: MatchConfig) {
     this.rng = new Rng(cfg.seed);
     this.duration = cfg.duration ?? MATCH_DURATION;

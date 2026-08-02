@@ -8,9 +8,9 @@ import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
-  EYE_LATTICE, EYE_W_S, STATION_FAMILY, goingBits, goingContributors, localXBand, perceivedContext,
-  perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3, priceApproachesV3Partial,
-  type PerceivedContext, type TeammateMotionId,
+  EYE_LATTICE, EYE_W_S, STATION_FAMILY, backHomeRegionBias, goingBits, goingContributors, localXBand,
+  perceivedContext, perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
+  priceApproachesV3Partial, type EyeCandidate, type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
 import {
   beyondLineBit, evaluateInSupport, perceivedOffsideLine, widthHeldBit, type BitValue,
@@ -871,6 +871,19 @@ export function executeAction(p: Player, match: Match, dt: number): void {
             }
           }
         }
+        // A4-P1c (#137): the DORMANT back-home-region GRANT. `homeRegionGrant` is
+        // null in every production path ⇒ `granted` is false ⇒ `homeBias` is
+        // undefined ⇒ the v3 consumer below is bit-for-bit HEAD (the grant lives
+        // ONLY at this established consumption point — no new decision moment).
+        // Body- and side-scoped; a probe sets it on a forked clone. The bias is
+        // distance-decayed toward the back home region in the eye's own units.
+        const grant = match.homeRegionGrant;
+        const homeBias: ((cand: EyeCandidate) => number) | undefined =
+          (grant !== null && grant.side === p.side && p.index === grant.bodyIndex && grant.strength !== 0)
+            ? (cand: EyeCandidate) => backHomeRegionBias(
+              grant.strength, team.localX(ball.pos.x + team.attackDir * cand.dx),
+            )
+            : undefined;
         let outcome;
         // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / v3 / incumbent).
         let v2rCommitContributors: Set<number> = new Set();
@@ -885,6 +898,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
             const res = priceApproachesV3Partial(
               eye.v3.roleTable, eye.v3.control, eye.v3.children, context.key, p.role, eye.arm, g,
               { deliveryOn, offsideOn, widthHeld, offsideLine, ballLocalX: offsideBallLocalX },
+              homeBias,
             );
             outcome = res.outcome;
             if (trace !== undefined) {
@@ -898,7 +912,7 @@ export function executeAction(p: Player, match: Match, dt: number): void {
             // column (own-state, no percept) and argmaxes the value advantage vs the
             // control recovered for that same (context × role). NO going-bit (#77.2(ii)).
             outcome = priceApproachesV3(
-              eye.v3.roleTable, eye.v3.control, context.key, p.role, eye.arm, g,
+              eye.v3.roleTable, eye.v3.control, context.key, p.role, eye.arm, g, homeBias,
             );
           }
         } else if (eye.v2 !== undefined) {

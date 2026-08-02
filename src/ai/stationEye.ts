@@ -43,6 +43,45 @@ export const EYE_R_M = 4.0;
 const DENSITY_RADIUS = 9;
 const CONTROL_ID = 'control';
 
+// ===========================================================================
+// A4-P1c (ruling #137) — THE DORMANT BACK-HOME-REGION GRANT (the M1′ soft-bias
+// instrument form). A distance-decayed SOFT bias toward a coarse back home
+// region, ADDED to a granted body's per-candidate station value at the
+// ESTABLISHED v3 consumption point (docs/world-model/A4-P1C-GRANT-CENSUS.md).
+// Hand-built here = the COORDINATE FRAME + the BLENDING RULE ONLY (I-A2/I-A4
+// 诚实张力 — 涌现的是权重,不是维度本身); the STRENGTH is a pre-registered DOSE in
+// instruments (a gene when shipped, never a hand knob — I-A3). NO clamps (M3′:
+// the clamp is the P1b-certified disease — a strong local gradient must still be
+// able to win). The region is anchored on PUBLISHED constants ONLY:
+//   center     = -12 local  (= -8 - 0.5·8, the neutral-coverBias rest-defence
+//                clamp depth, formations.ts formationSpot/emergentStation; the
+//                Phase-31 "-12 not -5" pin the #130 challenge named)
+//   half-depth = 4           (= 8/2, half the coverBias clamp span [-16, -8])
+//   decay      = HALF_L/3    (REST_THIRD, the own-third depth scale)
+// Convex-region SOFT decay: the full `strength` inside the region, exp-decayed by
+// local-DEPTH distance OUTSIDE it. DEPTH-ONLY — a back home region is a depth
+// prior (the §7 non-claim: width / bimodal homes are named later slices). PURE:
+// no world read, no clamp, no mutation; the caller supplies the candidate's own
+// team-local depth. Dormant in production (Match.homeRegionGrant is null).
+/** the back home region's depth centre in the team-local (attack-relative) frame. */
+export const HOME_REGION_CENTER_LOCAL_X = -12;
+/** the back home region's depth half-extent (half the coverBias clamp span). */
+export const HOME_REGION_HALF_DEPTH = 4;
+/** the soft-decay length scale = REST_THIRD = HALF_L/3 (own-third depth). */
+export const HOME_REGION_DECAY_M = HALF_L / 3;
+
+/**
+ * The M3′ soft bias: `strength` inside the back home region, exp-decayed by the
+ * candidate's team-local depth distance outside it. Added to the per-candidate
+ * advantage at the v3 consumption point (positive ⇒ home-ward candidates score
+ * higher ⇒ the granted body stations deeper). `strength === 0` ⇒ 0 (inert).
+ */
+export function backHomeRegionBias(strength: number, candLocalX: number): number {
+  if (strength === 0 || !Number.isFinite(candLocalX) || !Number.isFinite(strength)) return 0;
+  const outside = Math.max(0, Math.abs(candLocalX - HOME_REGION_CENTER_LOCAL_X) - HOME_REGION_HALF_DEPTH);
+  return strength * Math.exp(-outside / HOME_REGION_DECAY_M);
+}
+
 /** The 18-candidate lattice, byte-for-byte P1R's (§2.3 of that contract). */
 export interface EyeCandidate { readonly id: string; readonly dx: number; readonly dy: number }
 export const EYE_LATTICE: readonly EyeCandidate[] = (() => {
@@ -521,6 +560,9 @@ export function priceApproachesV3(
   role: Role,
   arm: StationEyeArm,
   genome: TacticalGenome,
+  /** A4-P1c (#137): optional per-candidate SOFT home-region bias (dormant grant;
+   *  undefined in production ⇒ +0 ⇒ byte-identical). Added to the advantage. */
+  homeBias?: (cand: EyeCandidate) => number,
 ): EyeOutcome {
   const byRole = roleTable[contextKey];
   const ctrlByRole = control[contextKey];
@@ -541,7 +583,7 @@ export function priceApproachesV3(
     if (!candidateInPowerRole(cells, cand.id)) continue;
     const cell = cells[cand.id];
     eligible += 1;
-    const adv = val(cell) - base;
+    const adv = val(cell) - base + (homeBias?.(cand) ?? 0);
     const rank = invert ? -adv : adv;
     if (best === null || rank > (invert ? -bestAdv : bestAdv)) { best = cand; bestAdv = adv; }
   }
@@ -609,6 +651,9 @@ export function priceApproachesV3Partial(
   arm: StationEyeArm,
   genome: TacticalGenome,
   bits: PartialBitInputs,
+  /** A4-P1c (#137): optional per-candidate SOFT home-region bias (dormant grant;
+   *  undefined in production ⇒ +0 ⇒ byte-identical). Added to the advantage. */
+  homeBias?: (cand: EyeCandidate) => number,
 ): PartialEyeResult {
   let deliveryChild = 0; let deliveryBase = 0;
   let offsideChild = 0; let offsideBase = 0;
@@ -659,7 +704,7 @@ export function priceApproachesV3Partial(
         } else if (family === 'delivery') { deliveryBase += 1; } else { offsideBase += 1; }
       }
     }
-    const adv = val(priced) - base;
+    const adv = val(priced) - base + (homeBias?.(cand) ?? 0);
     const rank = invert ? -adv : adv;
     if (best === null || rank > (invert ? -bestAdv : bestAdv)) { best = cand; bestAdv = adv; }
   }
