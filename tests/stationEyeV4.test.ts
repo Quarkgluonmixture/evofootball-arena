@@ -10,7 +10,9 @@ import { randomSquad } from '../src/evolution/playerGenome';
 import { TEAM_SIZE, type Role, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
 import {
-  EYE_LATTICE, newStationEyeTrace, type RoleCell, type RoleConditionedTable, type RoleControlLevels,
+  EYE_LATTICE, newStationEyeTrace, priceApproachesV3, priceApproachesV3Partial,
+  type MergedChildTable, type PartialBitInputs, type RoleCell, type RoleConditionedTable,
+  type RoleControlLevels,
 } from '../src/ai/stationEye';
 import {
   LINE_STALE_TICKS, OFFSIDE_EPS, SUPPORT_STALE_TICKS, WIDE_EDGE, WIDTH_STALE_TICKS,
@@ -71,14 +73,16 @@ const control: RoleControlLevels = Object.fromEntries(ctxKeys.map((k) => [k, {
 }]));
 
 type V4Flags = { inSupportLaw?: boolean; deliveryBit?: boolean; offsideBit?: boolean };
-/** Warm a match, arm a both-scope v3 eye (optionally with v4 + a trace), run on. */
-const runV3 = (v4?: V4Flags) => {
+/** Warm a match, arm a both-scope v3 eye (optionally with v4 flags + merged
+ *  children + a trace), run on. Children are injected on the eye.v3 block (§2.3). */
+const runV3 = (v4?: V4Flags, children?: MergedChildTable) => {
   const m = matchOf(7);
   for (let i = 0; i < 400; i++) m.step(DT);
   const clone = cloneSimulationState(m);
   const trace = newStationEyeTrace();
   clone.stationEye = {
-    arm: 'neutral', scope: { kind: 'both' }, table: {}, v3: { roleTable, control },
+    arm: 'neutral', scope: { kind: 'both' }, table: {},
+    v3: { roleTable, control, ...(children ? { children } : {}) },
     ...(v4 ? { v4 } : {}), trace,
   };
   for (let i = 0; i < 200; i++) clone.step(DT);
@@ -86,6 +90,33 @@ const runV3 = (v4?: V4Flags) => {
   clone.stationEye = null;
   return { sig, trace };
 };
+
+// --- V4-P3p-2a §2.3: a MergedChildTable built over the runV3 roleTable ----------
+// `children[family][ctx‖role][cand][bit]`. Delivery carries ONLY the '1' child
+// (STRICT keying by artifact shape, #115.1); offside carries '0' and '1'.
+const buildChildren = (cellFor: (base: RoleCell, cand: string) => RoleCell): MergedChildTable => {
+  const delivery: Record<string, Record<string, Partial<Record<'0' | '1', RoleCell>>>> = {};
+  const offside: Record<string, Record<string, Partial<Record<'0' | '1', RoleCell>>>> = {};
+  for (const k of ctxKeys) {
+    for (const role of ['DF', 'MF', 'WG', 'ST'] as const) {
+      const col = roleTable[k][role];
+      const key = `${k}||${role}`;
+      const d: Record<string, Partial<Record<'0' | '1', RoleCell>>> = {};
+      const o: Record<string, Partial<Record<'0' | '1', RoleCell>>> = {};
+      for (const c of EYE_LATTICE) {
+        d[c.id] = { 1: cellFor(col[c.id], c.id) };
+        o[c.id] = { 0: cellFor(col[c.id], c.id), 1: cellFor(col[c.id], c.id) };
+      }
+      delivery[key] = d;
+      offside[key] = o;
+    }
+  }
+  return { delivery, offside };
+};
+/** Children equal the v3 base cell everywhere ⇒ value-neutral (argmax unchanged). */
+const childrenEqualBase = buildChildren((base) => base);
+/** Children strongly boosted everywhere ⇒ the child pick beats the v3 base pick. */
+const childrenBoosted = buildChildren(() => roleCell(0.60, 0.10));
 
 describe('V4-P3p-0 — the v4 seam is shut in production (default OFF)', () => {
   it('the eye and every v4 flag are null/absent on a fresh Match and League', () => {
@@ -121,11 +152,12 @@ describe('V4-P3p-0 — X-OFF-IDENT: the v4 flags are inert when absent/false', (
     const falseV4 = runV3({ inSupportLaw: false, deliveryBit: false, offsideBit: false });
     expect(emptyV4.sig).toBe(base.sig);
     expect(falseV4.sig).toBe(base.sig);
-    // absent/false flags NEVER write a v4 counter
+    // absent/false flags NEVER write a v4 counter (incl. the P3p-2a ledger)
     for (const t of [base.trace, emptyV4.trace, falseV4.trace]) {
       const sum = t.v4InSupport + t.v4OosPhase + t.v4OosUnseen + t.v4OosInflight + t.v4OosStale
         + t.v4WidthHeld0 + t.v4WidthHeld1 + t.v4WidthHeldUnknown
-        + t.v4BeyondLine0 + t.v4BeyondLine1 + t.v4BeyondLineUnknown;
+        + t.v4BeyondLine0 + t.v4BeyondLine1 + t.v4BeyondLineUnknown
+        + t.v4DeliveryChild + t.v4DeliveryBase + t.v4OffsideChild + t.v4OffsideBase;
       expect(sum).toBe(0);
     }
     // sanity: the v3 eye actually decided something on this corpus
@@ -261,5 +293,173 @@ describe('V4-P3p-0 §3.2 — perceivedOffsideLine + beyondLineBit', () => {
   });
   it('OFFSIDE_EPS is the sim\'s own offside epsilon 0.2 (read from mechanics.offsideAtKick)', () => {
     expect(OFFSIDE_EPS).toBe(0.2);
+  });
+});
+
+// ===========================================================================
+// STAGE III V4-P3p-2a — THE EXTENDED-KEY CONSUMPTION WIRING (§2.2)
+// The frozen per-candidate fallback order, unit-tested branch by branch, plus
+// the flag-off / children-off / no-children inertness pins and the argmax-
+// unchanged-when-children-equal-base identity. Rulings #116.4 / #117.
+// ===========================================================================
+const g = randomGenome(new Rng(1));
+// A ONE-context ONE-role fixture: base = neutral (val 0), control = neutral
+// (base 0), so the plain v3 eye TIES (no deviation) and any deviation below is
+// the CHILD's doing. r7a0 is an OFFSIDE candidate (dx = +7); r7a180 a DELIVERY
+// candidate (dx = −7).
+const PCTX = 'ours|middle|sparse';
+const PROLE: Role = 'ST';
+const flatCell = roleCell(0.10, 0.10);              // val = 0.5·0.10 − 0.5·0.10 = 0 (== control)
+const hiCell = roleCell(0.60, 0.10);                // val = 0.25 (beats control ⇒ deviate)
+const loCell = roleCell(0.02, 0.30);                // val = −0.14 (below control ⇒ the argmin picks it)
+const flatColumn = Object.fromEntries(EYE_LATTICE.map((c) => [c.id, flatCell]));
+const pRoleTable: RoleConditionedTable = {
+  [PCTX]: { DF: flatColumn, MF: flatColumn, WG: flatColumn, ST: flatColumn },
+};
+const pControl: RoleControlLevels = {
+  [PCTX]: { DF: flatCell, MF: flatCell, WG: flatCell, ST: flatCell },
+};
+const CKROLE = `${PCTX}||${PROLE}`;
+const bits = (o: Partial<PartialBitInputs>): PartialBitInputs => ({
+  deliveryOn: false, offsideOn: false, widthHeld: undefined, offsideLine: null, ballLocalX: 0, ...o,
+});
+const priceP = (children: MergedChildTable, b: PartialBitInputs, arm: 'neutral' | 'inverted' = 'neutral') =>
+  priceApproachesV3Partial(pRoleTable, pControl, children, PCTX, PROLE, arm, g, b);
+
+describe('V4-P3p-2a §2.2 — the per-candidate fallback order (branch by branch)', () => {
+  it('IN-SCOPE + offside bit=1 + in-power child ⇒ the CHILD is priced (deviate)', () => {
+    const children: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a0: { 0: flatCell, 1: hiCell } } } };
+    // beyondLineBit(line=5, ballLocalX=0, dx=7) ⇒ target 7 > 5.2 ⇒ bit 1 ⇒ child '1' = hiCell
+    const res = priceP(children, bits({ offsideOn: true, offsideLine: 5 }));
+    expect(res.outcome.kind).toBe('deviate');
+    expect(res.outcome.kind === 'deviate' && res.outcome.candidate.id).toBe('r7a0');
+    expect(res.offsideChild).toBe(1);
+    expect(res.offsideBase).toBe(0);
+    expect(res.deliveryChild + res.deliveryBase).toBe(0);   // out-of-scope candidates never touch the ledger
+  });
+
+  it('IN-SCOPE + offside bit=0 + in-power child ⇒ the \'0\' child is priced', () => {
+    const children: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a0: { 0: hiCell, 1: flatCell } } } };
+    // beyondLineBit(line=20, ballLocalX=0, dx=7) ⇒ target 7 !> 20.2 ⇒ bit 0 ⇒ child '0' = hiCell
+    const res = priceP(children, bits({ offsideOn: true, offsideLine: 20 }));
+    expect(res.outcome.kind === 'deviate' && res.outcome.candidate.id).toBe('r7a0');
+    expect(res.offsideChild).toBe(1);
+  });
+
+  it('IN-SCOPE + bit UNKNOWN ⇒ BASE (abstention never invents a value)', () => {
+    const children: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a0: { 0: hiCell, 1: hiCell } } } };
+    // offsideLine null ⇒ beyondLine UNKNOWN ⇒ base ⇒ no deviation, base ledger
+    const res = priceP(children, bits({ offsideOn: true, offsideLine: null }));
+    expect(res.outcome.kind).toBe('tie');
+    expect(res.offsideBase).toBe(1);
+    expect(res.offsideChild).toBe(0);
+  });
+
+  it('IN-SCOPE + child ABSENT for the read bit ⇒ BASE (delivery STRICT keying: widthHeld=0 has no child)', () => {
+    const children: MergedChildTable = { delivery: { [CKROLE]: { r7a180: { 1: hiCell } } }, offside: {} };
+    // widthHeld 0 ⇒ delivery child '0' is undefined (never materialised) ⇒ base
+    const at0 = priceP(children, bits({ deliveryOn: true, widthHeld: 0 }));
+    expect(at0.outcome.kind).toBe('tie');
+    expect(at0.deliveryBase).toBe(1);
+    expect(at0.deliveryChild).toBe(0);
+    // widthHeld 1 ⇒ delivery child '1' = hiCell ⇒ deviate
+    const at1 = priceP(children, bits({ deliveryOn: true, widthHeld: 1 }));
+    expect(at1.outcome.kind === 'deviate' && at1.outcome.candidate.id).toBe('r7a180');
+    expect(at1.deliveryChild).toBe(1);
+  });
+
+  it('IN-SCOPE + child under-powered (n < CELL_FLOOR or underPowered) ⇒ BASE', () => {
+    const lowN: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a0: { 1: roleCell(0.60, 0.10, 100) } } } };
+    const flagged: MergedChildTable = {
+      delivery: {}, offside: { [CKROLE]: { r7a0: { 1: { ...roleCell(0.60, 0.10), underPowered: true } } } },
+    };
+    for (const children of [lowN, flagged]) {
+      const res = priceP(children, bits({ offsideOn: true, offsideLine: 5 }));
+      expect(res.outcome.kind).toBe('tie');       // child rejected ⇒ base ⇒ no deviation
+      expect(res.offsideBase).toBe(1);
+      expect(res.offsideChild).toBe(0);
+    }
+  });
+
+  it('the family flag OFF ⇒ BASE, no bit consulted, no ledger, == plain v3', () => {
+    const children: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a0: { 0: hiCell, 1: hiCell } } } };
+    // offside flag off (widthHeld set, but delivery flag off too) ⇒ nothing consumed
+    const res = priceP(children, bits({ deliveryOn: false, offsideOn: false, widthHeld: 1, offsideLine: 5 }));
+    expect(res.outcome.kind).toBe('tie');
+    expect(res.deliveryChild + res.deliveryBase + res.offsideChild + res.offsideBase).toBe(0);
+    // byte-for-byte the plain v3 outcome
+    expect(res.outcome).toEqual(priceApproachesV3(pRoleTable, pControl, PCTX, PROLE, 'neutral', g));
+  });
+
+  it('NOT in-scope (no child entry for this ctx‖role×cand) ⇒ BASE, uncounted', () => {
+    // a child only for r7a60, so r7a0 (and the other 8 offside cands) are out of scope
+    const children: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a60: { 0: flatCell, 1: flatCell } } } };
+    const res = priceP(children, bits({ offsideOn: true, offsideLine: 5 }));
+    // only r7a60 is in scope ⇒ ledger total is exactly 1 (r7a60), the rest untouched
+    expect(res.offsideChild + res.offsideBase).toBe(1);
+  });
+
+  it('the INVERTED arm (PC) prices the child too, taking the argmin', () => {
+    const children: MergedChildTable = { delivery: {}, offside: { [CKROLE]: { r7a0: { 0: flatCell, 1: loCell } } } };
+    // bit 1 ⇒ child '1' = loCell (val −0.14); the argmin commits to it whatever the sign
+    const res = priceP(children, bits({ offsideOn: true, offsideLine: 5 }), 'inverted');
+    expect(res.outcome.kind === 'deviate' && res.outcome.candidate.id).toBe('r7a0');
+    expect(res.offsideChild).toBe(1);
+  });
+
+  it('argmax UNCHANGED when every resolved child equals base (path runs, value-neutral)', () => {
+    // children equal to THIS fixture's (flat) base ⇒ value-neutral
+    const dfam: Record<string, Partial<Record<'0' | '1', RoleCell>>> = {};
+    const ofam: Record<string, Partial<Record<'0' | '1', RoleCell>>> = {};
+    for (const c of EYE_LATTICE) { dfam[c.id] = { 1: flatCell }; ofam[c.id] = { 0: flatCell, 1: flatCell }; }
+    const equal: MergedChildTable = { delivery: { [CKROLE]: dfam }, offside: { [CKROLE]: ofam } };
+    const res = priceP(equal, bits({ deliveryOn: true, offsideOn: true, widthHeld: 1, offsideLine: 5 }));
+    // children consumed (ledger moves) but each equals base ⇒ same TIE as plain v3
+    expect(res.outcome).toEqual(priceApproachesV3(pRoleTable, pControl, PCTX, PROLE, 'neutral', g));
+    expect(res.offsideChild + res.deliveryChild).toBeGreaterThan(0);   // children WERE consumed
+  });
+});
+
+describe('V4-P3p-2a — children injected but flags off ⇒ INERT (X-OFF-IDENT)', () => {
+  it('children on eye.v3, every v4 flag absent/false ⇒ byte-identical to no children, ledger 0', () => {
+    const base = runV3();
+    const childrenAbsent = runV3(undefined, childrenEqualBase);
+    const childrenFalse = runV3({ deliveryBit: false, offsideBit: false }, childrenBoosted);
+    expect(childrenAbsent.sig).toBe(base.sig);
+    expect(childrenFalse.sig).toBe(base.sig);     // even STRONGLY-boosted children are inert with flags off
+    for (const t of [childrenAbsent.trace, childrenFalse.trace]) {
+      expect(t.v4DeliveryChild + t.v4DeliveryBase + t.v4OffsideChild + t.v4OffsideBase).toBe(0);
+    }
+  });
+});
+
+describe('V4-P3p-2a — no children + bit flags on ⇒ BASE everywhere (inert consumption)', () => {
+  it('bit flags on but NO children injected ⇒ same signature as the plain v3 eye', () => {
+    const base = runV3();
+    const flagsNoChildren = runV3({ deliveryBit: true, offsideBit: true });
+    expect(flagsNoChildren.sig).toBe(base.sig);   // no children ⇒ the plain v3 lookup runs
+    // the ledger never moves without children, though the observability bits are read
+    const t = flagsNoChildren.trace;
+    expect(t.v4DeliveryChild + t.v4DeliveryBase + t.v4OffsideChild + t.v4OffsideBase).toBe(0);
+  });
+});
+
+describe('V4-P3p-2a — the extended path is LIVE and load-bearing', () => {
+  it('children==base + flags on ⇒ signature unchanged, but the consumption ledger fires', () => {
+    const base = runV3();
+    const on = runV3({ deliveryBit: true, offsideBit: true }, childrenEqualBase);
+    expect(on.sig).toBe(base.sig);                // value-neutral children ⇒ argmax unchanged
+    const t = on.trace;
+    const child = t.v4DeliveryChild + t.v4OffsideChild;
+    const total = child + t.v4DeliveryBase + t.v4OffsideBase;
+    expect(total).toBeGreaterThan(0);            // the extended lookup was exercised live
+    expect(child).toBeGreaterThan(0);            // children were actually consumed
+  });
+
+  it('BOOSTED children + flags on ⇒ signature DIVERGES (consumption changed a pick)', () => {
+    const base = runV3();
+    const boosted = runV3({ deliveryBit: true, offsideBit: true }, childrenBoosted);
+    expect(boosted.sig).not.toBe(base.sig);      // a child out-priced the v3 base pick
+    expect(boosted.trace.v4OffsideChild).toBeGreaterThan(0);
   });
 });

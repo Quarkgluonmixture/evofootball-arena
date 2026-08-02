@@ -18,6 +18,7 @@ import { HALF_L } from '../sim/constants';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import type { TacticalGenome } from '../evolution/genome';
 import type { PerceptionSnapshot } from './perceptionSnapshot';
+import { beyondLineBit, type BitValue } from './eyeContextBitsV4';
 
 /** One census cell, exactly as P1R committed it. */
 export interface ApproachCell {
@@ -183,6 +184,16 @@ export interface StationEyeTrace {
   v4BeyondLine0: number;
   v4BeyondLine1: number;
   v4BeyondLineUnknown: number;
+  // --- V4-P3p-2a §4 (the consumption ledger): child-vs-base read counts by family.
+  // Over in-scope PRICED candidates (a child entry exists for this ctx‖role×cand
+  // AND the base candidate is eligible), how often the resolved cell was a CHILD
+  // refinement vs the retained v3 BASE. Written ONLY when that family's bit flag is
+  // armed AND the merged children are injected. A remedy whose child count is ≈ 0
+  // never fires at consumption (reading (C), STAGE3-V4-P3P2-CONSUMER §6.2).
+  v4DeliveryChild: number;
+  v4DeliveryBase: number;
+  v4OffsideChild: number;
+  v4OffsideBase: number;
 }
 
 export const newStationEyeTrace = (): StationEyeTrace => ({
@@ -195,6 +206,7 @@ export const newStationEyeTrace = (): StationEyeTrace => ({
   v4InSupport: 0, v4OosPhase: 0, v4OosUnseen: 0, v4OosInflight: 0, v4OosStale: 0,
   v4WidthHeld0: 0, v4WidthHeld1: 0, v4WidthHeldUnknown: 0,
   v4BeyondLine0: 0, v4BeyondLine1: 0, v4BeyondLineUnknown: 0,
+  v4DeliveryChild: 0, v4DeliveryBase: 0, v4OffsideChild: 0, v4OffsideBase: 0,
 });
 
 /** §2.2: the station families. Ball-directed jobs are never overridden. */
@@ -468,6 +480,21 @@ export type RoleConditionedTable =
 export type RoleControlLevels =
   Readonly<Record<string, Readonly<Record<string, RoleCell>>>>;
 
+/**
+ * STAGE III V4-P3p-2 (STAGE3-V4-P3P2-CONSUMER §2.3): the P3p-1 MERGED table's
+ * `children` sub-object verbatim — the bit-split EXTENSION of the v3 role table.
+ * Shape `children[family][ctx‖role][cand][bit]`, where `family ∈ {delivery,
+ * offside}`, the ctx‖role key is `${contextKey}||${role}`, and `bit ∈ {'0','1'}`.
+ * Under STRICT keying (#115.1) the delivery family carries ONLY the `'1'` child,
+ * so the bit level is `Partial` — a `'0'` delivery lookup hits `undefined` and
+ * falls to BASE by the ordinary fallback (no code special-case, §2.2). INJECTED
+ * by the probe as a sibling of `roleTable`; NEVER bundled in `src/**`.
+ */
+export type MergedChildTable = Readonly<Record<
+  'delivery' | 'offside',
+  Readonly<Record<string, Readonly<Record<string, Partial<Record<'0' | '1', RoleCell>>>>>>
+>>;
+
 /** §3.4: is this candidate priceable in this role's column? IN-POWER = the census
  *  resolved the contrast there (n ≥ floor, not under-powered). */
 export function candidateInPowerRole(
@@ -521,4 +548,130 @@ export function priceApproachesV3(
   if (eligible === 0 || best === null) return { kind: 'noCell', context: contextKey };
   if (!invert && bestAdv <= 0) return { kind: 'tie', context: contextKey, best: bestAdv };
   return { kind: 'deviate', candidate: best, context: contextKey, advantage: bestAdv };
+}
+
+// ===========================================================================
+// STAGE III V4-P3p-2 — THE EXTENDED-KEY (PARTIAL) CONSUMER (§2.2, behind the
+// EXISTING eye.v4 flags; ratified #117.3/#117.4)
+//
+// A thin refinement of priceApproachesV3: the ELIGIBLE SET and the ARGMAX are
+// UNCHANGED (every base-in-power candidate stays eligible; the children only
+// refine the priced VALUE, never eligibility). Per candidate the priced cell
+// resolves by the FROZEN fallback order (§2.2):
+//   family(cand) = cand.dx > 0 ? offside : delivery   (no dx=0 in the lattice)
+//   NOT in-scope (no child entry for this ctx‖role×cand) → BASE
+//   bit UNKNOWN (widthHeld for delivery / a per-candidate beyondLine for offside) → BASE
+//   child absent / n < CELL_FLOOR / underPowered → BASE
+//   else → the CHILD refinement
+// Base is the universal retained anchor; abstention NEVER invents a value. The
+// control is NOT bit-split (#117.3): adv = val(resolved) − val(the v3 per-(ctx×role)
+// control). Ties / empty set / abstention resolve to NO OVERRIDE, each its own
+// counted class — priceApproachesV3 semantics verbatim, only the per-candidate
+// value SOURCE is refined. The per-family child/base read counts (over in-scope
+// PRICED candidates) ride out in the result for the consumption ledger (§4). PURE
+// — returns a value; the caller writes the trace.
+// ===========================================================================
+
+/** The percept-honest bit inputs for one moment (§2.2), computed at the decision. */
+export interface PartialBitInputs {
+  /** the delivery bit flag is armed (else the delivery family never consults a child). */
+  readonly deliveryOn: boolean;
+  /** the offside bit flag is armed (else the offside family never consults a child). */
+  readonly offsideOn: boolean;
+  /** §3.1 the MOMENT's wide-occupancy bit, shared by every delivery candidate
+   *  (undefined ⇔ deliveryOn is false — never consulted in that case). */
+  readonly widthHeld: BitValue | undefined;
+  /** §3.2 the perceived second-last-opponent line (null ⇒ UNKNOWN), for beyondLine. */
+  readonly offsideLine: number | null;
+  /** §3.2 the perceived ball local-x, the beyondLine origin. */
+  readonly ballLocalX: number;
+}
+
+/**
+ * priceApproachesV3Partial's result: the v3-shaped `outcome` plus the per-family
+ * child-vs-base read counts over IN-SCOPE PRICED candidates (§4 ledger). The
+ * caller folds the four counts into the StationEyeTrace.
+ */
+export interface PartialEyeResult {
+  readonly outcome: EyeOutcome;
+  readonly deliveryChild: number;
+  readonly deliveryBase: number;
+  readonly offsideChild: number;
+  readonly offsideBase: number;
+}
+
+export function priceApproachesV3Partial(
+  roleTable: RoleConditionedTable,
+  control: RoleControlLevels,
+  children: MergedChildTable,
+  contextKey: string,
+  role: Role,
+  arm: StationEyeArm,
+  genome: TacticalGenome,
+  bits: PartialBitInputs,
+): PartialEyeResult {
+  let deliveryChild = 0; let deliveryBase = 0;
+  let offsideChild = 0; let offsideBase = 0;
+  const noCell = (context: string): PartialEyeResult => ({
+    outcome: { kind: 'noCell', context }, deliveryChild, deliveryBase, offsideChild, offsideBase,
+  });
+  const byRole = roleTable[contextKey];
+  const ctrlByRole = control[contextKey];
+  if (byRole === undefined || ctrlByRole === undefined) return noCell(contextKey);
+  const cells = byRole[role];
+  const ctrl = ctrlByRole[role];
+  if (cells === undefined || ctrl === undefined || !Number.isFinite(ctrl.value)) {
+    return noCell(contextKey);
+  }
+  const { ws, wc } = faceWeights(arm, genome);
+  const val = (c: RoleCell): number => ws * c.score - wc * c.concede;
+  const base = val(ctrl);
+  const invert = arm === 'inverted';
+  const ckRole = `${contextKey}||${role}`;
+  let best: EyeCandidate | null = null;
+  let bestAdv = 0;
+  let eligible = 0;
+  for (const cand of EYE_LATTICE) {
+    if (!candidateInPowerRole(cells, cand.id)) continue;   // §2.2: eligibility is v3's (BASE cells), unchanged
+    eligible += 1;
+    // §2.2 resolve(cand): default to the retained v3 BASE cell; refine to the CHILD
+    // only through the frozen fallback order (family flag on → in-scope → bit known
+    // → child in-power).
+    let priced = cells[cand.id];
+    const family: 'delivery' | 'offside' = cand.dx > 0 ? 'offside' : 'delivery';
+    const flagOn = family === 'delivery' ? bits.deliveryOn : bits.offsideOn;
+    if (flagOn) {
+      const candChildren = children[family]?.[ckRole]?.[cand.id];
+      if (candChildren !== undefined) {                    // IN-SCOPE — this family's ledger tracks it
+        const bit: BitValue = family === 'delivery'
+          ? (bits.widthHeld ?? 'UNKNOWN')
+          : beyondLineBit(bits.offsideLine, bits.ballLocalX, cand.dx);
+        let usedChild = false;
+        if (bit !== 'UNKNOWN') {
+          const child = candChildren[bit === 1 ? '1' : '0'];
+          if (child !== undefined && child.n >= CELL_FLOOR && child.underPowered !== true) {
+            priced = child;
+            usedChild = true;
+          }
+        }
+        if (usedChild) {
+          if (family === 'delivery') deliveryChild += 1; else offsideChild += 1;
+        } else if (family === 'delivery') { deliveryBase += 1; } else { offsideBase += 1; }
+      }
+    }
+    const adv = val(priced) - base;
+    const rank = invert ? -adv : adv;
+    if (best === null || rank > (invert ? -bestAdv : bestAdv)) { best = cand; bestAdv = adv; }
+  }
+  if (eligible === 0 || best === null) return noCell(contextKey);
+  if (!invert && bestAdv <= 0) {
+    return {
+      outcome: { kind: 'tie', context: contextKey, best: bestAdv },
+      deliveryChild, deliveryBase, offsideChild, offsideBase,
+    };
+  }
+  return {
+    outcome: { kind: 'deviate', candidate: best, context: contextKey, advantage: bestAdv },
+    deliveryChild, deliveryBase, offsideChild, offsideBase,
+  };
 }

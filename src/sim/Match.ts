@@ -14,7 +14,7 @@ import {
 } from '../ai/perceptionSnapshot';
 import type { KnownReachProfile } from '../ai/reachability';
 import type {
-  ApproachTable, ControlLevels, GoingConditionedTable, RoleConditionedTable,
+  ApproachTable, ControlLevels, GoingConditionedTable, MergedChildTable, RoleConditionedTable,
   RoleControlLevels, StationEyeArm, StationEyeTrace,
 } from '../ai/stationEye';
 import type { WhetherEyeConfig } from '../ai/whetherEye';
@@ -687,6 +687,19 @@ export class Match {
     readonly v3?: {
       readonly roleTable: RoleConditionedTable;
       readonly control: RoleControlLevels;
+      /**
+       * Stage III V4-P3p-2 (STAGE3-V4-P3P2-CONSUMER §2.3, ruling #117.3): the
+       * P3p-1 MERGED table's bit-split `children` — an OPTIONAL extension of the
+       * v3 role table, INJECTED only for the PARTIAL arms. When present AND a
+       * matching `v4` bit flag is armed, the eye prices each candidate through
+       * the frozen child-or-base fallback order (§2.2) against the SAME v3
+       * control (the control is NOT bit-split). Absent (R0/R3v3) ⇒ the plain v3
+       * lookup runs unchanged (X-OFF-IDENT). `mergedTableSha` carries the P3p-1
+       * artifact SHA for the probe's X-MERGE-SHA assertion. Both null in
+       * production; INJECTED by the probe, never bundled in `src/**`.
+       */
+      readonly children?: MergedChildTable;
+      readonly mergedTableSha?: string;
     };
     /**
      * Stage III V4-P3-PARTIAL (STAGE3-V4-P3-PARTIAL §2.3/§3.4, P3p-0): three

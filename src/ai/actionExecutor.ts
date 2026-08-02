@@ -9,11 +9,11 @@ import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
   EYE_LATTICE, EYE_W_S, STATION_FAMILY, goingBits, goingContributors, localXBand, perceivedContext,
-  perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
+  perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3, priceApproachesV3Partial,
   type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
 import {
-  beyondLineBit, evaluateInSupport, perceivedOffsideLine, widthHeldBit,
+  beyondLineBit, evaluateInSupport, perceivedOffsideLine, widthHeldBit, type BitValue,
 } from './eyeContextBitsV4';
 import { pressureAt } from './perception';
 import {
@@ -834,38 +834,69 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         holdIncumbent();
       } else {
         if (trace !== undefined && eye.v4?.inSupportLaw === true) trace.v4InSupport += 1;
-        // V4-P3-PARTIAL §3 (P3p-0): the TWO S BITS, computed PERCEPT-HONESTLY from
-        // THIS body's own snapshot when their flag is armed. DORMANT observability
-        // ONLY — the priced cell below is NOT yet extended (the merged bit-split
-        // table is P3p-1/P3p-2); here the tri-state is merely tallied to the trace
-        // (the census/consumer read the same pure functions). Flag-off ⇒ nothing
-        // runs (X-OFF-IDENT); a UNKNOWN abstention is counted, never a silent 0.
-        if (trace !== undefined && eye.v4?.deliveryBit === true) {
-          const wh = widthHeldBit(snap, p.gid, p.side, (x) => team.localX(x));
-          if (wh === 1) trace.v4WidthHeld1 += 1;
-          else if (wh === 0) trace.v4WidthHeld0 += 1;
-          else trace.v4WidthHeldUnknown += 1;
+        // V4-P3p-2a §2.2 (rulings #116.4/#117): the TWO S BITS, computed
+        // PERCEPT-HONESTLY from THIS body's own snapshot when their flag is armed.
+        // LOAD-BEARING now (lifted out of the old trace-guard): the extended-key
+        // lookup below CONSUMES them. Flag-off ⇒ NOT computed — the family never
+        // consults a child, so the consumption path stays byte-identical to the v3
+        // eye (X-OFF-IDENT). Still tallied to the trace when present; a UNKNOWN
+        // abstention is counted, never a silent 0. widthHeld is one MOMENT value;
+        // the offside line is read once, beyondLine resolved per candidate below.
+        const deliveryOn = eye.v4?.deliveryBit === true;
+        const offsideOn = eye.v4?.offsideBit === true;
+        let widthHeld: BitValue | undefined;
+        if (deliveryOn) {
+          widthHeld = widthHeldBit(snap, p.gid, p.side, (x) => team.localX(x));
+          if (trace !== undefined) {
+            if (widthHeld === 1) trace.v4WidthHeld1 += 1;
+            else if (widthHeld === 0) trace.v4WidthHeld0 += 1;
+            else trace.v4WidthHeldUnknown += 1;
+          }
         }
-        if (trace !== undefined && eye.v4?.offsideBit === true) {
-          const line = perceivedOffsideLine(snap, p.side, (x) => team.localX(x));
-          const ballLocalX = snap?.ball ? team.localX(snap.ball.pos.x) : team.localX(ball.pos.x);
-          for (const cand of EYE_LATTICE) {
-            const bl = beyondLineBit(line, ballLocalX, cand.dx);
-            if (bl === 1) trace.v4BeyondLine1 += 1;
-            else if (bl === 0) trace.v4BeyondLine0 += 1;
-            else trace.v4BeyondLineUnknown += 1;
+        let offsideLine: number | null = null;
+        let offsideBallLocalX = 0;
+        if (offsideOn) {
+          offsideLine = perceivedOffsideLine(snap, p.side, (x) => team.localX(x));
+          offsideBallLocalX = snap?.ball ? team.localX(snap.ball.pos.x) : team.localX(ball.pos.x);
+          if (trace !== undefined) {
+            for (const cand of EYE_LATTICE) {
+              const bl = beyondLineBit(offsideLine, offsideBallLocalX, cand.dx);
+              if (bl === 1) trace.v4BeyondLine1 += 1;
+              else if (bl === 0) trace.v4BeyondLine0 += 1;
+              else trace.v4BeyondLineUnknown += 1;
+            }
           }
         }
         let outcome;
         // §1.1: G_commit for a v2 deviation, empty otherwise (v1 arm / v3 / incumbent).
         let v2rCommitContributors: Set<number> = new Set();
         if (eye.v3 !== undefined) {
-          // V3-P2 §3.4: the role-conditioned consumer. Each body reads HIS OWN role's
-          // column (own-state, no percept) and argmaxes the value advantage vs the
-          // control recovered for that same (context × role). NO going-bit (#77.2(ii)).
-          outcome = priceApproachesV3(
-            eye.v3.roleTable, eye.v3.control, context.key, p.role, eye.arm, g,
-          );
+          // V4-P3p-2a §2.2/§2.3: the EXTENDED-KEY consumer. When the merged children
+          // are INJECTED and at least one bit flag is armed, price each candidate
+          // through the frozen child-or-base fallback order against the SAME v3
+          // control (the control is NOT bit-split, #117.3). Otherwise the plain
+          // V3-P2 role consumer runs UNCHANGED — flags absent / no children ⇒
+          // byte-identical to the v3 eye (X-OFF-IDENT).
+          if (eye.v3.children !== undefined && (deliveryOn || offsideOn)) {
+            const res = priceApproachesV3Partial(
+              eye.v3.roleTable, eye.v3.control, eye.v3.children, context.key, p.role, eye.arm, g,
+              { deliveryOn, offsideOn, widthHeld, offsideLine, ballLocalX: offsideBallLocalX },
+            );
+            outcome = res.outcome;
+            if (trace !== undefined) {
+              trace.v4DeliveryChild += res.deliveryChild;
+              trace.v4DeliveryBase += res.deliveryBase;
+              trace.v4OffsideChild += res.offsideChild;
+              trace.v4OffsideBase += res.offsideBase;
+            }
+          } else {
+            // V3-P2 §3.4: the role-conditioned consumer. Each body reads HIS OWN role's
+            // column (own-state, no percept) and argmaxes the value advantage vs the
+            // control recovered for that same (context × role). NO going-bit (#77.2(ii)).
+            outcome = priceApproachesV3(
+              eye.v3.roleTable, eye.v3.control, context.key, p.role, eye.arm, g,
+            );
+          }
         } else if (eye.v2 !== undefined) {
           // V2-P2 §2.2/§2.4: the going-conditioned consumer. Compute the PERCEIVED
           // going-bit per candidate from the body's OWN teammate motion (TRUE for
