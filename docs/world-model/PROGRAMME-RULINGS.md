@@ -5852,3 +5852,57 @@
 >    its own contract + VISION audit if ever opened).
 > 6. Fingerprint `57b0bdab…c673` unchanged (#90–#139); nothing
 >    shipped; every seam dormant.
+
+> **COMMANDER RULING #140 (2026-08-02 — the user challenges the
+> #139.2 diagnosis; the "outlet tax" DOWNGRADED to hypothesis;
+> the forensic re-read authorized; the #139.5 fork HELD OPEN):**
+>
+> 1. **USER CHALLENGE RECORDED (verbatim)**: "你觉得凶手真的是这样
+>    吗,你需要其他探针吗?其实我觉得,后场站着的时候也会接应啊,也不
+>    是说后卫就不参与进攻了,后卫也参与转移等等啊". ADJUDICATED
+>    CORRECT as a matter of evidence discipline: #139.2's outlet-
+>    tax story rested on (deep↑, spacing/dupRun improved) alone —
+>    branch-B possession loss was NEVER measured. The census JSON
+>    carries no box parallel and no turnover/possession mediators;
+>    the existing data cannot convict. The killer is DOWNGRADED
+>    from finding to hypothesis. The user's realism point has
+>    substrate teeth: a deep body IS a recycling outlet in real
+>    football, and this world carries known suspects —
+>    `passBackPen` (a hand-tuned backward-pass penalty, default
+>    0.25, PlayerBrain.ts:357, also a policy gene), the
+>    VISION-registered 回传被中途拦截 defect counter, and only
+>    partial 转移 machinery (LoftedPass). If the world CANNOT use
+>    a deep outlet, P1c's harm partially indicts the SUBSTRATE
+>    (a §3 realism gap), not depth itself — and #139.3's "on ANY
+>    world" phrasing would need an asterisk.
+> 2. **HYPOTHESES PRE-REGISTERED (predictions frozen BEFORE the
+>    forensic run; discriminating mediators in brackets)**:
+>    * **H1 — outlet tax (possession dies earlier)**: branch-B
+>      turnovers/window ↑ resolved; retention time ↓; box
+>      entries ↑.
+>    * **H2 — UNUSED outlet (substrate defect)**: the granted
+>      body's deep receives NOT higher in B (backward passes to
+>      him rare; passBackPen suspect); turnovers ↑ anyway.
+>    * **H4 — mechanical surrogate artifact**: turnovers ≈ equal
+>      and retention ≈ equal, but turnover LOCATION deeper in B;
+>      box ≈ NULL; the deep↑ largely a location-shift artifact
+>      of the entry counter.
+>    * Mixtures possible; ALL mediators REPORTED, no gate.
+> 3. **THE FORENSIC RE-READ AUTHORIZED** (adjudication diligence,
+>    NOT a fourth gate instrument — #106.6 undisturbed; the #139
+>    STOP stands regardless of forensics): re-run the FIRST 800
+>    census matches (seeds 12,000,000+k, k∈0..799 — SAME-SEED
+>    REUSE IS THE DESIGN, ruled here: determinism makes the
+>    re-read exact and auditable) with branches A + dose 1.0 +
+>    dose 2.0, adding REPORTED counters: turnovers/window +
+>    first-turnover tick + turnover-location third; box entries;
+>    the granted body's receives + his localX at receive;
+>    team backward/forward pass attempts (+ to-granted-body);
+>    deep entries — which MUST match the census per-fork EXACTLY
+>    (**X-COUNT-IDENT, HARD**: any mismatch = forensics invalid).
+>    Wall ≈ 1 h; no gate; output = the hypothesis discrimination
+>    table.
+> 4. **THE #139.5 FORK IS HELD OPEN** pending forensics; the
+>    recommendation will be re-issued with the verdict (an H2
+>    reading would redirect toward the build-up/recycling realism
+>    track before — or instead of — the offside pivot).
