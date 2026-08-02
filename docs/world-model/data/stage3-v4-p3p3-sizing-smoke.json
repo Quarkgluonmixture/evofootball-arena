@@ -1,0 +1,403 @@
+{
+  "experiment": "STAGE3-V4-P3p-3 SIZING SMOKE (the attribution-chain five arms)",
+  "authority": "STAGE3-V4-P3P3-BATTERY §6.4 (#121-AMENDED) · rulings #120/#121",
+  "parameters": {
+    "mode": "smoke",
+    "seedStart": 11150000,
+    "matchesRequested": 40,
+    "matchesRun": 40,
+    "matchCap": null,
+    "matchDurationOverride": null,
+    "seedMin": 11150000,
+    "seedMax": 11150039,
+    "seedFormula": "11,150,000 + k, k 0..39",
+    "arms": [
+      "R0",
+      "R3v3",
+      "R3p-lawOnly",
+      "R3p-noOffside",
+      "R3p"
+    ],
+    "armedArms": [
+      "R3v3",
+      "R3p-lawOnly",
+      "R3p-noOffside",
+      "R3p"
+    ],
+    "partialArms": [
+      "R3p-lawOnly",
+      "R3p-noOffside",
+      "R3p"
+    ],
+    "clusterUnit": "match seed (paired across all five arms)",
+    "bootstrapSeed": 99603,
+    "bootstrapResamples": 2000,
+    "permutationSeedReserved": 99903,
+    "sampleEvery": 10,
+    "sampleHz": 6,
+    "world": "ENRICHED",
+    "flags": {
+      "edsPerceivedDefence": true,
+      "edsPerceivedChoice": true,
+      "edsValueAxis": true,
+      "c5Hold": true,
+      "c6Carry": true,
+      "c7Windup": true,
+      "c5TouchFork": false
+    },
+    "preflight": false,
+    "head": "3caf679",
+    "tableSource": "docs/world-model/data/stage3-v4-p3p1-merged-role-census-table.json",
+    "controlSource": "docs/world-model/data/stage3-v3-p2-control-recovery.json",
+    "controlSha": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+    "controlPooled": -0.056682
+  },
+  "perArmMediators": {
+    "R0": {
+      "offsideRate": 2.2,
+      "deliveryEvents": 13.3,
+      "restartTicks": 1674.425,
+      "restSlotOccupancy": 0.5866
+    },
+    "R3v3": {
+      "offsideRate": 3.75,
+      "deliveryEvents": 8.775,
+      "restartTicks": 2717.225,
+      "restSlotOccupancy": 0.4123
+    },
+    "R3p-lawOnly": {
+      "offsideRate": 4.1,
+      "deliveryEvents": 8.825,
+      "restartTicks": 2001.65,
+      "restSlotOccupancy": 0.472
+    },
+    "R3p-noOffside": {
+      "offsideRate": 3.425,
+      "deliveryEvents": 9.3,
+      "restartTicks": 2011.825,
+      "restSlotOccupancy": 0.4601
+    },
+    "R3p": {
+      "offsideRate": 3.825,
+      "deliveryEvents": 9.35,
+      "restartTicks": 1976.7,
+      "restSlotOccupancy": 0.4471
+    }
+  },
+  "sizing": {
+    "rule": "N* = smallest 200-step match count whose smoke-measured restart SE_N (=SD_pairedDiff/√N) resolves the restart cure gate at the (#68.2-re-anchored) +10 % band edge at ~95 % power (SE_N ≤ g/3.605), CAPPED at N_MAX (WALL-DERIVED: largest 200-step N with per-set wall × N × 2 (X-DET) ≤ 36 h, itself ≤ 8,000/arm). If N* > N_MAX the cap binds and the reduced-power reading is disclosed BEFORE the gate-bearing run (#105.4). #121-AMENDED (2000/arm superseded).",
+    "restart": {
+      "bandEdgeRel": 0.1,
+      "powerZ": 3.605,
+      "z975": 1.96,
+      "r0RestartMean": 1674.425,
+      "bandEdgeTicks": 167.4425,
+      "residualTicks": 302.275,
+      "residualRelativePct": 18.0525,
+      "sdPairedDiff": 584.1328,
+      "pairedCI": {
+        "n": 40,
+        "point": 302.275,
+        "lower": 127.175,
+        "upper": 493.025,
+        "halfWidth": 182.925
+      },
+      "seSmoke": 92.3595,
+      "gapToBandEdgeTicks": -134.8325,
+      "residualVsBandEdge": "at/above (cure implausible — the residual sits at/over +10 %)",
+      "needRaw": 243.92,
+      "nStar": 400
+    },
+    "otherGateSDs": {
+      "offside": {
+        "point": 1.625,
+        "sd": 2.2659,
+        "ci": {
+          "n": 40,
+          "point": 1.625,
+          "lower": 0.925,
+          "upper": 2.375,
+          "halfWidth": 0.725
+        },
+        "note": "C-OFFSIDE resolves at ≤800/arm (§6.2)"
+      },
+      "delivery": {
+        "point": -3.95,
+        "sd": 4.3529,
+        "ci": {
+          "n": 40,
+          "point": -3.95,
+          "lower": -5.425,
+          "upper": -2.7,
+          "halfWidth": 1.3625
+        },
+        "note": "delivery band resolves at ≤800/arm (§6.2)"
+      },
+      "rest": {
+        "point": -0.1394,
+        "sd": 0.0809,
+        "ci": {
+          "n": 40,
+          "point": -0.139426,
+          "lower": -0.164588,
+          "upper": -0.114005,
+          "halfWidth": 0.025291
+        },
+        "note": "DEGEN-RESTDEF over-powered at any N≥~100 (light surrogate, §6.2)"
+      }
+    },
+    "wallDerived": {
+      "perArmPerMatchWallMs": {
+        "R0": 92.58,
+        "R3v3": 102.97,
+        "R3p-lawOnly": 102.7,
+        "R3p-noOffside": 101.22,
+        "R3p": 102.85
+      },
+      "perSetPerMatchWallMs": 502.33,
+      "xDetFactor": 2,
+      "wallBudgetHours": 36,
+      "nCap": 8000,
+      "nStep": 200,
+      "nMaxWall": 128800,
+      "nMax": 8000,
+      "nStar": 400,
+      "nBinding": 400,
+      "reducedPowerDisclosure": false,
+      "projectedRestartPowerAtBinding": 0.9961,
+      "projectedTotalWallHoursAtBinding": 0.112,
+      "note": "MACHINE-DEPENDENT (measured once at the smoke); stripped from the X-DET / SHA. The per-set wall is the LIGHT-instrument 5-arm wall — a LOWER bound on the full-battery per-set wall (the 6 Hz SideRow/shape/release sampling adds overhead) ⇒ treat N_MAX as a ceiling and the resident (#49.5) monitors live wall. N fixed before the run (#105.4)."
+    }
+  },
+  "consumptionLedger": {
+    "R3v3": {
+      "decisions": 38194,
+      "deviate": 14841,
+      "tie": 18996,
+      "noCell": 951,
+      "inSupport": 0,
+      "oosPhase": 0,
+      "oosUnseen": 0,
+      "oosInflight": 0,
+      "oosStale": 0,
+      "oosTotal": 0,
+      "oosShare": 0,
+      "widthHeld0": 0,
+      "widthHeld1": 0,
+      "widthHeldUnknown": 0,
+      "deliveryBitFireRate": 0,
+      "beyondLine0": 0,
+      "beyondLine1": 0,
+      "beyondLineUnknown": 0,
+      "offsideBeyondShare": 0,
+      "deliveryChild": 0,
+      "deliveryBase": 0,
+      "deliveryChildShare": 0,
+      "offsideChild": 0,
+      "offsideBase": 0,
+      "offsideChildShare": 0,
+      "readsDeliveryChildren": false,
+      "readsOffsideChildren": false
+    },
+    "R3p-lawOnly": {
+      "decisions": 38318,
+      "deviate": 7710,
+      "tie": 10591,
+      "noCell": 217,
+      "inSupport": 18518,
+      "oosPhase": 4034,
+      "oosUnseen": 2494,
+      "oosInflight": 13082,
+      "oosStale": 190,
+      "oosTotal": 19800,
+      "oosShare": 0.516728,
+      "widthHeld0": 0,
+      "widthHeld1": 0,
+      "widthHeldUnknown": 0,
+      "deliveryBitFireRate": 0,
+      "beyondLine0": 0,
+      "beyondLine1": 0,
+      "beyondLineUnknown": 0,
+      "offsideBeyondShare": 0,
+      "deliveryChild": 0,
+      "deliveryBase": 0,
+      "deliveryChildShare": 0,
+      "offsideChild": 0,
+      "offsideBase": 0,
+      "offsideChildShare": 0,
+      "readsDeliveryChildren": false,
+      "readsOffsideChildren": false
+    },
+    "R3p-noOffside": {
+      "decisions": 38289,
+      "deviate": 8047,
+      "tie": 10505,
+      "noCell": 278,
+      "inSupport": 18830,
+      "oosPhase": 4034,
+      "oosUnseen": 2338,
+      "oosInflight": 12873,
+      "oosStale": 214,
+      "oosTotal": 19459,
+      "oosShare": 0.508214,
+      "widthHeld0": 7428,
+      "widthHeld1": 5128,
+      "widthHeldUnknown": 6274,
+      "deliveryBitFireRate": 0.272331,
+      "beyondLine0": 0,
+      "beyondLine1": 0,
+      "beyondLineUnknown": 0,
+      "offsideBeyondShare": 0,
+      "deliveryChild": 13730,
+      "deliveryBase": 35158,
+      "deliveryChildShare": 0.280846,
+      "offsideChild": 0,
+      "offsideBase": 0,
+      "offsideChildShare": 0,
+      "readsDeliveryChildren": true,
+      "readsOffsideChildren": false
+    },
+    "R3p": {
+      "decisions": 38793,
+      "deviate": 9621,
+      "tie": 9594,
+      "noCell": 287,
+      "inSupport": 19502,
+      "oosPhase": 3927,
+      "oosUnseen": 2384,
+      "oosInflight": 12757,
+      "oosStale": 223,
+      "oosTotal": 19291,
+      "oosShare": 0.49728,
+      "widthHeld0": 7562,
+      "widthHeld1": 5462,
+      "widthHeldUnknown": 6478,
+      "deliveryBitFireRate": 0.280074,
+      "beyondLine0": 246880,
+      "beyondLine1": 96632,
+      "beyondLineUnknown": 7524,
+      "offsideBeyondShare": 0.275277,
+      "deliveryChild": 14925,
+      "deliveryBase": 35124,
+      "deliveryChildShare": 0.298208,
+      "offsideChild": 53871,
+      "offsideBase": 2127,
+      "offsideChildShare": 0.962017,
+      "readsDeliveryChildren": true,
+      "readsOffsideChildren": true
+    }
+  },
+  "xMergeSha": {
+    "mergedShaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "mergedShaExpected": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "mergedRehash": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "baseRehash": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "baseShaExpected": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "mergedShaOk": true,
+    "baseShaOk": true,
+    "pass": true,
+    "path": "docs/world-model/data/stage3-v4-p3p1-merged-role-census-table.json",
+    "mergedChildCount": 323,
+    "keying": "strict",
+    "perArm": {
+      "R0": {
+        "isPartial": false,
+        "injectsChildren": false,
+        "childrenIdentical": false,
+        "shaField": null,
+        "correct": true
+      },
+      "R3v3": {
+        "isPartial": false,
+        "injectsChildren": false,
+        "childrenIdentical": false,
+        "shaField": null,
+        "correct": true
+      },
+      "R3p-lawOnly": {
+        "isPartial": true,
+        "injectsChildren": true,
+        "childrenIdentical": true,
+        "shaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+        "correct": true
+      },
+      "R3p-noOffside": {
+        "isPartial": true,
+        "injectsChildren": true,
+        "childrenIdentical": true,
+        "shaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+        "correct": true
+      },
+      "R3p": {
+        "isPartial": true,
+        "injectsChildren": true,
+        "childrenIdentical": true,
+        "shaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+        "correct": true
+      }
+    }
+  },
+  "seedDisjointness": {
+    "pass": true,
+    "p3p2RunHighWater": 11100119,
+    "smokeStart": 11150000,
+    "batteryStart": 11200000,
+    "seedMin": 11150000,
+    "seedMax": 11150039,
+    "bootstrapSeed": 99603,
+    "permutationSeed": 99903,
+    "statsOk": true,
+    "releasedReservation": "10.6M..10.9M (#111, RELEASED by #120.4)"
+  },
+  "fingerprint": {
+    "fingerprint": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+    "pass": true,
+    "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+  },
+  "xSrcZero": {
+    "pass": true,
+    "srcDiff": ""
+  },
+  "stalePins": {
+    "supportStaleTicks": 30,
+    "widthStaleTicks": 30,
+    "lineStaleTicks": 30,
+    "pass": true,
+    "note": "#48.4 the 30-tick freshness pins honoured at consumption (no re-cut)."
+  },
+  "wallCost": {
+    "perArmTotalMs": {
+      "R0": 3703,
+      "R3v3": 4119,
+      "R3p-lawOnly": 4108,
+      "R3p-noOffside": 4049,
+      "R3p": 4114
+    },
+    "matchesRun": 40
+  },
+  "gates": {
+    "xMergeSha": true,
+    "xFpProd": true,
+    "xSrcZero": true,
+    "seedDisjoint": true,
+    "xDet": true,
+    "stalePins": true
+  },
+  "deterministic": true,
+  "verdict": "SIZING SMOKE",
+  "deviations": [
+    "restart instrument (§3/§6.4): the C-RESTART limb + the sizing SD both use the P3a battery instrument restartTicks = ticks where m.restart !== null (runMatch verbatim). The §6.1 sizing ANCHORS (R0 1708.84, residual +139) came from P3p-2's phase==='restart' surrogate — a DIFFERENT count; #68.2 re-anchors on THIS battery's own R0 measured with the P3a instrument, so the doc anchors are priors only (the smoke re-measures, §6.4).",
+    "light-battery rest surrogate (§6.4): the SMOKE's restSlotOccupancy is the light per-tick surrogate (index-1 body in own-third over playing ticks), NOT the battery's 6 Hz possession-sampled DEGEN-RESTDEF I5(b). DEGEN-RESTDEF is REPORTED + over-powered (§6.2) so its smoke SD is confirmation only; the binding gate (restart) is measured with the exact P3a instrument. The BATTERY uses the full P3a I5(b).",
+    "per-set wall (§6.4/#121): the smoke measures the LIGHT-instrument 5-arm per-set wall; N_MAX = largest 200-step N with (per-set wall × N × 2 X-DET) ≤ 36 h, ≤ 8,000/arm. The light per-set wall is a LOWER bound on the full-battery per-set wall (6 Hz SideRow/shape/release overhead), so N_MAX is a CEILING — the resident (#49.5) monitors live wall. The #121 formula \"5 arms × N × per-set wall × 2\" is read as [5-arm set wall] × [N seeds] × [2 X-DET] = the physical total.",
+    "wall-derived N_MAX stripped from X-DET/SHA (§6.4): the per-set wall + N_MAX + N_binding + reduced-power disclosure are MACHINE-DEPENDENT (measured once at the smoke) so they live in sizing.wallDerived and are stripped from the deterministic X-DET compare + the SHA (the P3p-2 wall-strip precedent). The DETERMINISTIC N arithmetic (SDs, R0 mean, band edge, gap, N*) is inside the SHA.",
+    "N* power arithmetic (§6.1): N* from the per-match SD of the paired R3p−R0 restart diff directly (SE_N = SD/√N), the brief's ask; the bootstrap cluster CI is reported alongside (SE ≈ halfWidth/1.96 cross-check). POWER_Z = 3.605 (z.975+z.95), Z = 1.96, both frozen from the doc. absGap = |band edge − residual| so the power rule resolves the gate EITHER side of +10 %.",
+    "R3p-lawOnly injects children but reads NEITHER family (§2.2): both bit flags off ⇒ the extended resolve consults eye.v3.children for no family (base for every candidate), so its consumption ledger shows deliveryChild=deliveryBase=offsideChild=offsideBase=0 (readsZeroChildren). noOffside reads delivery only. X-MERGE-SHA asserts identically on all three partial arms (provenance-identical, behaviourally inert for lawOnly).",
+    "shape-regression predicate (§4/§4.1): the doc gives #88.2 DIRECTIONS, not a mechanical predicate. Operationalised shapeRegressed = pileup fires OR roleMixTV < 0.407 OR eye ball-ledger ≠ 0 OR (i6 duplicate-run CI resolved & rose) OR (i3 spacing-median CI resolved & closed). Each component is REPORTED; the commander disposes at review (this is a MEASUREMENT).",
+    "marginal-chain telescoping (§2.1): each key's five contrasts are computed on the COMPLETE-seed set (all five arms finite) so the four marginals sum EXACTLY to R3p−R0 at the point-estimate level (mean linearity); the CIs do not telescope (independent bootstraps). restart/offside/delivery are integer counts (always finite); only restSlotOccupancy can drop a seed. `telescope.exact` asserts |Σmarginals − fullResidual| < 1e-6.",
+    "ledgers/receipts scope (§8): a release ledger on EVERY partial arm (the eye-never-touches-ball structural gate binds on all three); exclusion/perRole/receipts on R3p only (the reference arm the shape/role gates read). X-OFF-IDENT re-plays a bare enriched match per battery seed vs the R0 row signatures (P3a precedent).",
+    "X-SEAM carrier check (§8, refined from P3a): P3a's carrierNeverOverridden proxy reads stationEyeState AFTER step and false-fires when a body that just gained the ball still carries a RETAINED window offset — never applied, because the executor's whole eye block (decision + target write) is guarded by ball.owner !== p (actionExecutor L672/L955). It is seed-flaky (passes on 9.30M, false-fires on 11.20M). Refined to the faithful E-NONSTATION invariant: a violation is a FRESH eye override DECISION (untilTick advanced, offset non-null) while the body owns the ball — the src guard makes that impossible; asserted 0. freshNull/bodyScope/teamScope/bothActivated are P3a-verbatim.",
+    "seed layout (§7): \"one block per arm\" honoured as FIVE 100k sub-blocks (11.2M–11.6M) composing ONE arm's N seeds block-major, paired across all five arms (#20); K=ceil(N/5) then slice to N. A per-arm partition is rejected (it would break pairing + every marginal contrast). Bootstrap 99603 (reserved for this battery), permutation 99903 (fresh, unused). match-duration OMITTED on real runs ⇒ src default 240 (P3a byte-identical); env override is preflight-only.",
+    "no fork-grain layer (§1): the battery instruments are 6 Hz whole-match distributions only; per-decision DEV/PC fidelity is certified by P3p-2 (#120.1) and is NOT re-run here."
+  ],
+  "sha256": "5ac8f2776e0f2c20099d478adb6ad5632314d0a41042a7542cdd55945a9cf2f8"
+}

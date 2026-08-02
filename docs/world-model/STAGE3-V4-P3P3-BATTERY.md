@@ -629,3 +629,188 @@ for the arm-config + instrument machinery (no `src/**` or `data/*.json` opened f
 data; the sizing arithmetic is derived from the published P3p-2 §RESULT numbers).
 **Nothing was built or run before this document is committed.** This freeze RETURNS
 TO THE COMMANDER; the probe build and the runs are future authorized steps.
+
+---
+
+## §RESULT — the AUTHORIZED runs (#122 launch): the battery lands, all gates VALID, and STOPS OUTRIGHT on the #88.2 shape line — RETURNS to the user
+
+Run to completion under the commander's resident session (#49.5), the **frozen
+probe as reviewed** (pre-registration PASS #121, committed `5766f54`; probe build
+PASS #122, committed `d895c43`; the X-SEAM refinement ratified #122.2 as an
+instrument repair). Two runs, seeds disjoint above the P3p-2 high-water (11.1M) and
+above the released 10.6M–10.9M reservation (#120.4 / #46.2): the **sizing smoke**
+(40 matches `11,150,000 + k, k∈0..39`) fired the disclosed N/N_MAX rule; the
+**battery** ran **N = 400 / arm** on the five sub-blocks `11,200,000 +
+blockIndex·100,000 + k` (blockIndex 0..4, K = 80, paired across all five arms),
+`11.2M–11.6M`. ENRICHED world, `stationEye` production-null, `git diff --stat --
+src` empty (X-SRC-ZERO), production fingerprint `57b0bdab…c673` unchanged (X-FP-PROD,
+Road B held, nothing shipped). **Facts only (#44.3); the disposition below is the
+frozen machine reading — the commander's adjudication is separate (§4.1).** Every
+number traces to the two committed data files.
+
+### THE SIZING SMOKE (40 @ 11.15M) — the N/N_MAX rule fired as disclosed
+
+40 matches on `11,150,000 + k, k∈0..39`, ENRICHED world, all five arms, the LIGHT
+battery instruments, X-DET double-run. **Gates all PASS** (verdict verbatim:
+**`SIZING SMOKE`**): `xMergeSha` (every partial arm), `xFpProd`, `xSrcZero`,
+`seedDisjoint`, `xDet`, `stalePins` all true; `deterministic` true.
+
+* **The restart re-anchor (#68.2, the binding gate's arithmetic).** Light-battery
+  R0 restart-tick mean **`1674.425`** → the +10 % band edge **B = +167.4425**
+  ticks. Residual `R3p − R0 = +302.275` ticks = **+18.05 %** (`residualRelativePct
+  18.0525`), paired CI (n = 40) **[+127.175, +493.025]**, half-width 182.925.
+  Per-match paired-diff **SD 584.1328**; `seSmoke 92.3595`; `residualVsBandEdge`
+  verbatim: **"at/above (cure implausible — the residual sits at/over +10 %)"**
+  (`gapToBandEdgeTicks −134.8325`).
+* **The frozen N arithmetic (inside the SHA).** `POWER_Z 3.605`, `Z 1.96`,
+  `needRaw 243.92`, in fixed 200-steps ⇒ **`N* = 400`**. `N_MAX` WALL-DERIVED
+  (`nMaxWall 128800`, capped) = **`8000`/arm**; **`nBinding 400`**;
+  **`reducedPowerDisclosure = false`** (N* < N_MAX, the cap does not bind);
+  **projected restart power at binding `0.9961`** (`projectedTotalWallHoursAtBinding
+  0.112`).
+* **The wall (MACHINE-DEPENDENT, stripped from X-DET/SHA).** Per-set per-match
+  wall **`502.33` ms** (`xDetFactor 2`, `wallBudgetHours 36`, `nStep 200`); per-arm
+  per-match wall R0 92.58 / R3v3 102.97 / R3p-lawOnly 102.7 / R3p-noOffside 101.22 /
+  R3p 102.85 ms.
+* **The other gate SDs (confirm ≤ 800/arm resolution, §6.2).** offside point
+  **1.625**, SD **2.2659**, CI [0.925, 2.375]; delivery point **−3.95**, SD
+  **4.3529**, CI [−5.425, −2.7]; light rest surrogate point **−0.1394**, SD
+  **0.0809**, CI [−0.164588, −0.114005]. The 30-tick freshness pins
+  (`SUPPORT/WIDTH/LINE_STALE_TICKS = 30`) honoured at consumption.
+
+Smoke output SHA-256 **`5ac8f277…`** (full
+`5ac8f2776e0f2c20099d478adb6ad5632314d0a41042a7542cdd55945a9cf2f8`).
+
+### THE BATTERY (N = 400 × 5 arms @ 11.2M–11.6M) — all instrument gates VALID
+
+`matchesRun 400`; seeds `11,200,000 + blockIndex·100,000 + k` (blockIndex 0..4, K =
+80, first 400, paired across all five arms), `seedMin 11200000`, `seedMax
+11600079`; bootstrap 99603 / permutation 99903 (reserved-unused); HEAD `3caf679`.
+**All HARD gates PASS** (`hardGatesPass = true`, `deterministic = true`):
+
+* **X-MERGE-SHA** true — merged table `mergedTableSha == 39662445…9d6105`, `base`
+  rehashes to `171a6dad…6559f`, `mergedChildCount 323`, `keying strict`. Per arm:
+  R0 / R3v3 inject NO children (`correct`); the three partial arms
+  (R3p-lawOnly, R3p-noOffside, R3p) each inject the identical children +
+  `shaField 39662445…9d6105`, `childrenIdentical`, `correct`.
+* **X-FP-PROD** true — fingerprint `57b0bdab…c673` unchanged.
+* **X-OFF-IDENT** true — 400 seeds checked, **0 mismatches** (R0 byte-identical to
+  the bare enriched world with no `stationEye`).
+* **X-SEAM** true — `freshNull`, `bodyScopeOk`, `teamScopeOk`, `bothActivated`,
+  `carrierNeverOverridden` all true (the E-NONSTATION refinement, #122.2).
+* **X-DET** true; **X-SRC-ZERO** true (empty diff); **seed-disjoint** true
+  (`statsOk`); **stale pins** 30/30/30; **eye-never-touches-ball** true;
+  **ledgerStructural** true. The marginal chain **telescopes exactly** (`telescope.exact
+  = true`) on all four limbs.
+
+Battery output SHA-256 **`c4ff6400…`** (full
+`c4ff64000b422d8d5c83b1e0d7c0e46e059538afd3d5e694a543371a9e0e9793`).
+
+**Verdict verbatim: `MEASUREMENT (gates valid — read §4)`.**
+**Stage disposition verbatim: `STOP OUTRIGHT — the #88.2 shape cure regressed
+toward clumping`.**
+
+### THE VERDICT MAP (§4, quoted from `verdictReading`)
+
+**REST LIMB (DEGEN-RESTDEF I5(b)) — REPORTED, the measured residual; NOT a stop.**
+`fires = true`; disposition verbatim **"REPORTED — the measured RESIDUAL (the A4
+target size, #109.3); NOT a stop"**; binds on `R3p−R0 (every arm reported)`.
+Magnitude `R3p − R0` (n = 400): control **0.643001**, treated **0.481603**, diff
+**−0.161398 [−0.172066, −0.150373]**, relative **−25.10 %**, resolved. Change
+`R3p − R3v3` (n = 400): control 0.453789, treated 0.481603, diff **+0.027813
+[+0.018346, +0.037272]**, relative +6.13 %, resolved.
+
+**CURE GATES.**
+
+* **In-support law — C-RESTART (band +10 %): HOT ⇒ RETURNS.** Verdict verbatim
+  **"RETURNS (in-support law → the commander)"**; `hot = true`; ci (n = 400)
+  control **1739.48**, treated **1992.385**, diff **+252.905 [+189.5075, +312.39]**,
+  relative **+14.54 %** vs the +10 % band, resolved, fires; note **"the band-edge
+  exam (#120.2)"**.
+* **Offside bit — C-OFFSIDE (band +10 %): HOT ⇒ RETURNS.** Verdict verbatim
+  **"RETURNS (offside bit → A4/absence, #116.2(iii))"**; `hot = true`; ci (n = 400)
+  control **3.1275**, treated **4.1875**, diff **+1.06 [+0.7825, +1.3375]**,
+  relative **+33.89 %**, resolved, fires; note **"#116.2 the fork-grain sign
+  INVERTED — a null/worsening is a live outcome"**.
+* **Delivery bit — §2 delivery band (±25 % C1): a rate still outside ⇒ RETURNS.**
+  `allInside = false`; verdict verbatim **"RETURNS (delivery bit — a rate still
+  outside)"**. headers baseline 9.1039, band [6.827925, 11.379875], `r3p 5.4625` =
+  **−40.00 %**, `insideBand false` (R0 8.455 = −7.13 %, inside); long balls baseline
+  6.2042, band [4.65315, 7.75525], `r3p 3.6125` = **−41.77 %**, `insideBand false`
+  (R0 5.2725 = −15.02 %, inside); cutbacks baseline 3.8151, band [2.861325,
+  4.768875], `r3p 3.465` = **−9.18 %**, `insideBand true` (R0 3.87, inside).
+
+**MUST-NOT-REGRESS watchability (SCRAMBLE / PILEUP / C-BOX): none fire.** `scramble
+false`, `pileup false`, `box false`, `anyFires false` (disposition verbatim "a
+firing = the remedies introduced a new disease ⇒ STOP").
+
+**SHAPE MUST-NOT-REGRESS (#88.2): REGRESSED = TRUE** (disposition verbatim "a
+regression toward CLUMPING ⇒ STOP OUTRIGHT (#88.2 non-negotiable)"). Components,
+each with its CI + resolution:
+
+* **i3 spacing-median** (n = 400): control 12.311962, treated 11.657423, diff
+  **−0.654539 [−0.74928, −0.562952]** = **−5.32 %**, resolved — **CLOSED** (the leg
+  that trips the predicate).
+* **i3 spacing-under-4 m** (n = 400): control 0.105608, treated 0.108734, diff
+  **+0.003126 [+0.001051, +0.0053]** = +2.96 %, resolved — **ROSE**.
+* **i6 duplicate-run share** (n = 370): control 0.56717, treated 0.532674, diff
+  **−0.035463 [−0.053244, −0.016797]** = −6.25 %, resolved — **FELL (improved)**.
+* **role-mix TV `0.5562` ≥ 0.407** (incumbent) — **holds** (`roleMixHolds true`).
+* **eye ball-ledger = 0** — `eyeBallLedgerZero true`.
+
+**i7 shape spreads** (n = 400, reported): spread-X control 1.387202, treated
+0.910887, diff **−0.476315 [−0.526881, −0.42504]** = **−34.34 %**, resolved;
+spread-Y control 0.713669, treated 0.854388, diff **+0.140718 [+0.115703,
++0.167015]** = **+19.72 %**, resolved.
+
+### THE MARGINAL CHAIN (per limb, paired cluster CIs; telescoping EXACT)
+
+The four contrasts + the full residual per limb (point [95 % cluster-bootstrap CI]),
+read verbatim from `marginalChain` (n = 400 complete seeds); `telescope.exact =
+true` on every limb (Σ marginals = fullResidual):
+
+| limb | disease `R3v3−R0` | law `lawOnly−R3v3` | delivery `noOffside−lawOnly` | offside `R3p−noOffside` | full `R3p−R0` |
+| --- | --- | --- | --- | --- | --- |
+| **restart ticks** | +836.1375 [+755.215, +917.6475] | **−675.2625** [−753.485, −596.0825] | −43.395 [−104.325, +19.3275] | +135.425 [+71.59, +201.205] | **+252.905** [+189.9825, +313.895] |
+| **offside rate** | +0.75 [+0.5025, +1.01] | −0.1975 [−0.4625, +0.07] | +0.1375 [−0.0975, +0.38] | **+0.37** [+0.095, +0.6325] | **+1.06** [+0.795, +1.33] |
+| **delivery events** | −2.4875 [−2.9025, −2.0575] | +0.0825 [−0.35, +0.5325] | +0.0325 [−0.36, +0.4425] | +0.43 [+0.0075, +0.8425] | **−1.9425** [−2.3875, −1.5125] |
+| **rest-slot occupancy** | −0.189211 [−0.200803, −0.17668] | **+0.049294** [+0.03971, +0.058723] | +0.002988 [−0.005891, +0.011972] | −0.024469 [−0.033934, −0.014555] | **−0.161398** [−0.171766, −0.150944] |
+
+### THE CONSUMPTION LEDGERS (per partial arm) + RECEIPTS + §2 reported
+
+**Per-arm consumption (run counts; `ledgerStructural` all true — `lawOnlyReadsZeroChildren`,
+`noOffsideReadsDeliveryOnly`, `r3pReadsBoth`).**
+
+* **R3p-lawOnly** — `decisions 385780`, `inSupport 191823`, `oosTotal 193957`,
+  **`oosShare 0.502766`**; `deviate 78964`, `tie 110177`, `noCell 2682`. Reads
+  **NEITHER** family (`readsDeliveryChildren false`, `readsOffsideChildren false`):
+  `deliveryChild = deliveryBase = offsideChild = offsideBase = 0`.
+* **R3p-noOffside** — `decisions 384030`, `inSupport 190420`, **`oosShare 0.504153`**;
+  `deliveryBitFireRate 0.295678`, delivery `child 156813 / base 338808`,
+  **`deliveryChildShare 0.316397`**; reads **delivery only** (`readsDeliveryChildren
+  true`, `readsOffsideChildren false`; offside child/base 0).
+* **R3p** — `decisions 384693`, `inSupport 191455`, **`oosShare 0.502317`**;
+  `deliveryBitFireRate 0.297459`, delivery `child 157240 / base 330713`,
+  **`deliveryChildShare 0.322244`**; offside `beyondLine0 2431595 / beyondLine1
+  944971 / beyondLineUnknown 69624`, `offsideBeyondShare 0.274207`, offside `child
+  518852 / base 21337`, **`offsideChildShare 0.960501`**; reads **BOTH**.
+* **R3v3** carries no `eye.v4` ledger (plain-v3 baseline): `decisions 380899`,
+  every in-support / bit / child field 0.
+
+**Release ledger (structural, every partial arm) — eye-never-touches-ball.**
+`eyeAttributable = 0` and `unattributable = 0` on all three: R3p-lawOnly `releases
+59883` (kick 55396 / deglue 3080 / ballWon 1235 / tackle 172); R3p-noOffside
+`releases 59512`; R3p `releases 58711`. `eyeNeverTouchesBall = true`.
+**Receipts** (first-N, cap 1000): kick 1000 / ball-won 1000 / deglue 1000 / tackle
+178. Exclusion counts: `ePaused 1030854`, `eGk 591215`, `eEnded 0`, `eSentOff 0`.
+
+**§2 goals / crosses (REPORTED, not gated).** goals baseline 2.3944, `r3p 2.435` =
++1.70 %, inside ±15 % (R0 2.75 = +14.85 %, inside); crosses baseline 2.4894, `r3p
+2.4825` = −0.28 %, inside ±25 % (R0 2.36 = −5.20 %, inside).
+
+---
+
+**GATES VALID; the frozen `stageDisposition` is STOP OUTRIGHT (the #88.2 shape
+line).** The stage RETURNS TO THE USER per the pre-registered exit (§9). The final
+adjudication is the commander's ruling in
+[`PROGRAMME-RULINGS.md`](PROGRAMME-RULINGS.md).
