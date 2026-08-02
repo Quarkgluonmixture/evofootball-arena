@@ -5062,3 +5062,68 @@
 >    @11.15M) → the frozen N/N_MAX rule → V4P3P3_MODE=battery
 >    V4P3P3_N=N (@11.2–11.6M). After the battery the stage RETURNS
 >    TO THE USER.
+
+> **COMMANDER RULING #123 (2026-08-02 — THE P3p-3 BATTERY
+> ADJUDICATED; V4-P3-PARTIAL CLOSES END-TO-END; THE FRONTIER
+> CONCLUSION BANKED; THE QUEUE RETURNS TO THE USER):**
+>
+> 1. **BANKED**: the smoke (N rule → 400, power 0.996) + the
+>    battery (400 × 5 arms @11.2–11.6M; ALL instrument gates
+>    valid; telescoping exact on every limb) + §RESULT + both
+>    data files (`748b8f6`; number-verify 4/4, every cell
+>    recomputed). The frozen stageDisposition executed AS WRITTEN:
+>    **STOP OUTRIGHT — the #88.2 shape cure regressed toward
+>    clumping** (i3 spacing median RESOLVED CLOSED −5.3%
+>    [−6.1, −4.6]; under-4 m share RESOLVED ROSE +3.0%; while
+>    duplicate runs IMPROVED −6.3%, roleMixTV 0.556 held,
+>    ball-ledger 0, and no watchability DEGEN limb fired — the
+>    regression is specific to proximity spacing).
+> 2. **THE VERDICT MAP ADJUDICATED**:
+>    * **The in-support law**: the estimand arc's one REAL remedy
+>      — restart excess +50.8% (P3a) → **+14.5%** here (≈ 70% of
+>      the disease erased at battery grain) but shy of the +10%
+>      band ⇒ RETURNS as frozen. Banked DORMANT as the strongest
+>      single certified remedy v4 produced.
+>    * **The offside bit**: the #116.2 inversion CONFIRMED at
+>      battery scale — C-OFFSIDE +33.9% (WORSE than P3a's
+>      +22.8%). Per the pre-named #116.2(iii) home, the offside
+>      cure FORMALLY JOINS the A4/assignment-absence family.
+>    * **The delivery bit**: partial — cutbacks recovered inside
+>      the ±25% band; headers and long balls still outside ⇒
+>      RETURNS.
+>    * **The rest residual, the A4 target, MEASURED**: −16.1%
+>      [−17.2, −15.0] (halved from P3a's −30.2% — the remedies
+>      claw back half; the remaining half is the assignment-shaped
+>      core).
+> 3. ⭐⭐⭐ **THE FRONTIER CONCLUSION, banked (the estimand arc's
+>    terminal finding)**: price-shaped remedies SLIDE ALONG the
+>    discipline↔shape frontier; they do not MOVE it. v3 sat at
+>    full-shape/no-discipline; P3-PARTIAL bought half the
+>    discipline back and PAID IN SHAPE (the resolved spacing
+>    close) — the trade is conserved. Three independent evidence
+>    lines now converge on the same mechanism: (i) the
+>    zero-positive occupancy surfaces (statue AND containment —
+>    presence has no marginal price where presence exists), (ii)
+>    the offside long tail with its aggravation now CONFIRMED,
+>    (iii) the measured discipline-for-shape trade. What moves
+>    the frontier in real football is ASSIGNMENT — one body OWNS
+>    the job so the rest can keep the shape. That is A4's layer,
+>    the user's 野球 insight, and the estimand arc's bequest.
+> 4. **V4-P3-PARTIAL CLOSES END-TO-END** (#110 → #123: prereg,
+>    seams, re-census, consumer, battery — every sub-stage
+>    pre-registered, machine-verified, commander-ruled). NOTHING
+>    SHIPPED anywhere; every flag dormant; the production
+>    fingerprint `57b0bdab…c673` unchanged across the entire v4
+>    arc (#90–#123, 34 rulings). Assets banked: the merged
+>    extended-key table, the consumption wiring (proven dormant),
+>    the in-support law, the attribution-chain battery form, the
+>    X-SEAM repair, and the four-limb pathology map (two
+>    price-shaped: restart≈law, delivery≈partial; two
+>    assignment-shaped: rest, offside).
+> 5. **THE QUEUE RETURNS TO THE USER** (the pre-registered exit):
+>    the natural forks — **(B, recommended) the A4 ASSIGNMENT
+>    CONTRACT** (the complete measured case is now in hand: the
+>    target sizes, the failure modes of every alternative, the
+>    frontier argument), (C) the fork-and-abandon ABSENCE census
+>    first, (D) park v4 / return to the C-track / anything the
+>    user names. Nothing proceeds until the user rules.

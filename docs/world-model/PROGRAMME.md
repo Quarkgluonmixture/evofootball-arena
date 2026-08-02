@@ -638,22 +638,25 @@ the pipeline caught it at every station) → resolved by MOVING P3p-2
 to 11.0M/11.1M (the battery's ratified 10.6–10.9M reservation
 untouched); everything else ratified (fallback order, control not
 bit-split, prune rule, DEV 0.22 re-confirm, readings A–D).
-**P3p-2 RAN AND CLOSED (#118 wiring proven dormant → #119 probe →
-smoke N=120/no-prune → run: ALL GATES GREEN, reading A; §RESULT +
-data `e08b433`, verify 4/4) → ruling #120.** ⭐⭐ THE ATTRIBUTION
-TABLE: **the in-support law is a REAL CURE** (restart excess −83%
-RESOLVED; rest-slot clawback +3.2pp RESOLVED; residual restart +139
-≈ the P3a band edge — the battery will be a genuine exam); the
-delivery bit directional-unresolved (+0.32 of a −2.53 hole); the
-offside bit unresolved either way (decomposition arm decides).
-⭐ The partial eye's neutral ATE +0.0095 [+0.0024, +0.0165] —
-the programme's SECOND positive payoff. Rest residual −0.149 = the
-measured A4 target. **→ NEXT: executor pre-registers P3p-3 — THE
-MEASUREMENT BATTERY** (#120.4: the attribution-chain five arms
-R0/R3v3/lawOnly/noOffside/R3p; #110.3 verdict form; fresh bands
-above 11.1M — the old 10.6–10.9M reservation RELEASED). Forks
-(ii)/(iii) stay banked. R20 gaps / F9 any time. Road B stands;
-nothing ships; fingerprint unchanged across #90–#120.
+**V4-P3-PARTIAL CLOSED END-TO-END (#110→#123)**: P3p-2 consumer
+(reading A; the law cures 83% of the restart excess at consumer
+grain; the SECOND positive ATE +0.0095) → **P3p-3 BATTERY (400×5
+arms, gates valid, `748b8f6` verify 4/4): STOP OUTRIGHT as frozen —
+the #88.2 spacing line resolvedly closed (−5.3%) while duplicate
+runs improved and TV held**. Verdict map: the law real-but-shy
+(restart +50.8%→+14.5%, RETURNS; banked dormant as v4's strongest
+remedy); **the offside inversion CONFIRMED (+33.9% > P3a's +22.8%
+— offside formally joins the A4/absence family per #116.2(iii))**;
+delivery partial (cutbacks in, headers/long balls out); **the rest
+residual MEASURED −16.1% [−17.2, −15.0] (halved from −30.2%) = the
+A4 target**. ⭐⭐⭐ THE FRONTIER CONCLUSION (#123.3): price-shaped
+remedies slide along the discipline↔shape frontier, they do not
+move it; three evidence lines converge — the frontier-mover is
+ASSIGNMENT (A4, the 野球 insight). Nothing shipped; fingerprint
+unchanged across #90–#123 (34 rulings). **THE QUEUE SITS AT THE
+USER FORK (#123.5): (B, recommended) the A4 ASSIGNMENT CONTRACT ·
+(C) the absence census first · (D) park v4 / C-track / other.
+Nothing proceeds until the user rules.** R20 gaps / F9 any time.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
