@@ -5474,3 +5474,45 @@
 >    census, recommended · B re-parent · C park) is unchanged and
 >    still awaits the user — every option inherits #130 and this
 >    anatomy as context.
+
+> **COMMANDER RULING #132 (2026-08-02 — the user's complete 野球
+> doctrine model: position-as-consensus, 默契-as-learning, the
+> coach loop; anchored; the ladder named; the fork unchanged):**
+>
+> 1. **USER STATEMENT RECORDED** (verbatim in VISION §1, the
+>    living-formation bullet): the FM contrast (FM hard-codes
+>    formations BECAUSE its players are code-followers; ours have
+>    real decision cores, so the formation layer must be BELIEF,
+>    not instruction); 位置 = each head's COARSE consensus whose
+>    function is deconfliction (不撞车), never a fixed coordinate;
+>    默契 forms BY PLAYING; the coach is a GLOBAL-view advisor
+>    whose suggestions — derived from watching the team's OWN
+>    play — are what真正 forms a style; pre-match tuning adapts
+>    to opponents; and the coach's own style is reshaped by the
+>    team (bidirectional).
+> 2. **ADJUDICATED MAPPINGS**: (a) the FM contrast is the WHY
+>    behind the standing "共同 prior ≠ per-tick commander" law.
+>    (b) Position-as-consensus SHARPENS A4's M1/M5: the
+>    assignment's ontology is per-head common knowledge, coarse
+>    by design (region/tendency), and its measured VALUE axis is
+>    deconfliction — the battery's dupRun/spacing limbs are
+>    literally the 撞车 meters. The A4 charter said "shared
+>    priors that let a player act safely on less evidence"; the
+>    user has supplied the priors' PURPOSE (collision-free
+>    coordination) and REPRESENTATION (belief in heads, not a
+>    global table). (c) 默契-as-learning = the named refinement
+>    channel over the existing 默契 permission model (faster,
+>    stabler inference from shared cues — never telepathy).
+>    (d) The coach loop completes the two-eyes clause: the
+>    coach's eye reads the team's own play; output = advice at
+>    natural cadence points (pre-match, breaks), never per-tick;
+>    style EMERGES from the loop; the loop is BIDIRECTIONAL.
+> 3. **THE DOCTRINE LADDER, NAMED** (build order, nothing beyond
+>    rung 1 authorized): **约定 (A4 assignment — in flight) →
+>    补位 (mutual covering, the A3-style slice) → 默契学习
+>    (familiarity refinement) → 教练回路 (the observing-advising
+>    coach, bidirectional)**. Each later rung gets its own
+>    contract + VISION audit when its turn comes.
+> 4. **NO NEW WORK AUTHORIZED**; the #129.4 fork (A interventional
+>    census, recommended · B re-parent · C park) still awaits the
+>    user. Fingerprint `57b0bdab…c673` unchanged (#90–#132).
