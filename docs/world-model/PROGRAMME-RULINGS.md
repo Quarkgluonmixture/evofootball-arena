@@ -4935,3 +4935,50 @@
 >    @11.0M) → the disclosed-rule N + the prune decision →
 >    V4P3P2_MODE=run V4P3P2_N=N (@11.1M). Gates as frozen;
 >    readings A–D stop at the commander.
+
+> **COMMANDER RULING #120 (2026-08-02 — P3p-2 CLOSES on reading A;
+> the per-remedy attribution banked; P3p-3 (the measurement
+> battery) authorized with the attribution-chain arm structure):**
+>
+> 1. **P3p-2 CLOSES, FULLY BANKED**: smoke (N rule → 120, prune
+>    false) + run (120 @11.1M, five arms) with ALL instrument
+>    gates green (clone 11,056/11,056, X5 442/0, X6 unexplained 0,
+>    DEV 0.483 on the law-shrunken denominator, PC −0.0188
+>    [−0.0282, −0.0094], X-MERGE/FP/OFF-IDENT/SRC-ZERO/det);
+>    write-up `e08b433` (number-verify 4/4, all 12 contrasts
+>    recomputed). READING A: the partial eye is a measurable
+>    consumer and every remedy FIRES (R3p ledger: OOS 50.1%,
+>    delivery child share 32.6%, offside child share 96.2%).
+> 2. ⭐⭐ **THE ATTRIBUTION TABLE, banked** (R3v3 = the plain-v3
+>    twin on paired seeds; contrasts cluster-CI): **the in-support
+>    law is a REAL CURE** — restartTicks R3p−R3v3 = −702
+>    [−854, −551] against the fresh-seed disease R3v3−R0 = +841
+>    [+693, +980] (≈ 83% of the excess erased; residual vs R0
+>    +139 [+31, +237] ≈ the P3a +10% band edge — the battery's
+>    restart gate will be a genuine examination), plus a RESOLVED
+>    rest-slot clawback +0.032 [+0.020, +0.045] of the −0.181
+>    hole. **The delivery bit is directional-unresolved** (+0.317
+>    [−0.417, +1.008] of a −2.533 [−3.283, −1.783] hole). **The
+>    offside bit is unresolved EITHER way** (+0.125
+>    [−0.358, +0.608]): the #116.2 aggravation NOT confirmed, the
+>    cure NOT achieved — the decomposition arm decides.
+> 3. ⭐ **ALSO BANKED**: the partial eye's NEUTRAL fork-grain ATE
+>    is RESOLVED POSITIVE — +0.0095 [+0.0024, +0.0165] — the
+>    programme's second positive payoff (v3's +0.0108 was the
+>    first). The rest-slot residual at consumer grain: −0.149
+>    [−0.162, −0.136] vs R0 = the measured A4 target.
+> 4. **AUTHORIZED — P3p-3 (the measurement battery)**: executor
+>    pre-registers per §0.0 under the #110.3 verdict form (rest
+>    REPORTED as the residual; offside/restart/delivery CURE GATES
+>    at their P3a bands; the #88.2 shape adjudicators
+>    must-not-regress; NO deployment claim). **THE ARM STRUCTURE
+>    IS DIRECTED — the attribution chain**: R0 / R3v3 /
+>    R3p-lawOnly / R3p-noOffside (law + delivery) / R3p (all
+>    three), giving each remedy its marginal battery effect
+>    (lawOnly−R3v3 = the law; noOffside−lawOnly = the delivery
+>    bit; R3p−noOffside = the offside bit). This SUBSUMES
+>    #116.2(ii)'s single decomposition arm. **The old 10.6–10.9M
+>    battery reservation (sized for four arms) is RELEASED**; the
+>    P3p-3 pre-reg proposes fresh bands ABOVE 11.1M for five arms
+>    + fresh stats seeds (99603 stays available). Whole-match
+>    scale per the P3a form; sizing per the standing pattern.

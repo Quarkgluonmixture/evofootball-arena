@@ -638,12 +638,22 @@ the pipeline caught it at every station) → resolved by MOVING P3p-2
 to 11.0M/11.1M (the battery's ratified 10.6–10.9M reservation
 untouched); everything else ratified (fallback order, control not
 bit-split, prune rule, DEV 0.22 re-confirm, readings A–D).
-→ NEXT: executor BUILDS P3p-2a — the src consumption wiring (three
-named files, existing flags, no new flags) + the dormancy re-proof
-(X-OFF-IDENT / X-FP-PROD / vitest); then P3p-2b (the consumer
-probe).** Forks (ii)/(iii) stay banked. R20 gaps / F9 any time.
-Road B stands; nothing ships; fingerprint unchanged across
-#90–#117.
+**P3p-2 RAN AND CLOSED (#118 wiring proven dormant → #119 probe →
+smoke N=120/no-prune → run: ALL GATES GREEN, reading A; §RESULT +
+data `e08b433`, verify 4/4) → ruling #120.** ⭐⭐ THE ATTRIBUTION
+TABLE: **the in-support law is a REAL CURE** (restart excess −83%
+RESOLVED; rest-slot clawback +3.2pp RESOLVED; residual restart +139
+≈ the P3a band edge — the battery will be a genuine exam); the
+delivery bit directional-unresolved (+0.32 of a −2.53 hole); the
+offside bit unresolved either way (decomposition arm decides).
+⭐ The partial eye's neutral ATE +0.0095 [+0.0024, +0.0165] —
+the programme's SECOND positive payoff. Rest residual −0.149 = the
+measured A4 target. **→ NEXT: executor pre-registers P3p-3 — THE
+MEASUREMENT BATTERY** (#120.4: the attribution-chain five arms
+R0/R3v3/lawOnly/noOffside/R3p; #110.3 verdict form; fresh bands
+above 11.1M — the old 10.6–10.9M reservation RELEASED). Forks
+(ii)/(iii) stay banked. R20 gaps / F9 any time. Road B stands;
+nothing ships; fingerprint unchanged across #90–#120.
 
 Earlier (2026-07-28, #44 ruled): ⛔ Stage III P2's double FAIL ACCEPTED
 as written — Stage III v1 is CLOSED, rejected on deployment grounds (#44.3);
