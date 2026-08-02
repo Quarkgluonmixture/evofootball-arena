@@ -5906,3 +5906,25 @@
 >    recommendation will be re-issued with the verdict (an H2
 >    reading would redirect toward the build-up/recycling realism
 >    track before — or instead of — the offside pivot).
+
+> **COMMANDER RULING #141 (2026-08-02 — the forensics probe
+> reviewed; flags disposed; the re-read run authorized):**
+>
+> 1. **BANKED**: `98af3dc` (A4-P1C-FORENSICS.md + the probe;
+>    verify PASS — predictions quoted verbatim from #140.2, deep
+>    counting byte-identical to the census, box = the P1 detector,
+>    the backward-pass test = PlayerBrain's own gain formula
+>    reconstructed from pendingPass observables; zero src changes).
+> 2. **FLAGS DISPOSED (all accepted)**: the dose subset (A + 1.0 +
+>    2.0; independent clones — cannot perturb shared branches);
+>    X-COUNT-IDENT as by-construction identity (the census stores
+>    no per-fork counts — honestly stated; byte-identical counting
+>    code + reused fork machinery + X-DET/X-FORK carry the
+>    identity); seed-reuse by design (#140.3, the disjointness
+>    gate adjusted to exclude only the census block); the
+>    possessionSide-based turnover counter (the nearest
+>    src-untouched observable, dead-ball transients excluded);
+>    censoring conventions; the pooled receive-localX mean.
+> 3. **THE RUN AUTHORIZED** (#49.5): 800 matches @ the census
+>    12.00M block, REPORTED-only; adjudication (#142) re-issues
+>    the #139.5 fork with the discrimination verdict.
