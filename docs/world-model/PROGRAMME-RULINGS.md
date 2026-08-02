@@ -4868,3 +4868,37 @@
 >    RE-PROVES dormancy: X-OFF-IDENT double-build byte-compare,
 >    X-FP-PROD `57b0bdab…c673`, vitest green. Then P3p-2b (the
 >    probe) builds per the frozen doc.
+
+> **COMMANDER RULING #118 (2026-08-02 — P3p-2a reviewed: PASS;
+> the consumption wiring is live-capable and proven dormant;
+> P3p-2b build authorized):**
+>
+> 1. **BUILD VERDICT**: committed `bff06e0` (three named src files
+>    + 13 new tests; eyeContextBitsV4 untouched); independent
+>    verify 5/5, zero violations (the #75 gate, the frozen
+>    fallback order byte-checked branch-by-branch, argmax/tie
+>    logic byte-identical, control not bit-split, no production
+>    caller injects children). Dormancy re-proven all three ways:
+>    vitest 942 green (+13), fingerprint `57b0bdab…c673` exact,
+>    X-OFF-IDENT stash-based double-build byte-identical (12,773
+>    bytes, SHA-equal; foreground, tree restored, harness in /tmp
+>    per the standing stash discipline).
+> 2. **DEVIATIONS RATIFIED**: the pure-return + executor-fold
+>    ledger design (honours the module purity header AND the
+>    prereg's "executor increments"); the ledger denominator
+>    (in-scope priced candidates under an armed family flag); the
+>    per-family flag gating; the belt-and-suspenders whole-call
+>    inertness gate (a STRONGER identity guarantee than required);
+>    the bit computation sites (widthHeld/line once per moment in
+>    the executor, beyondLine per candidate in the lookup); the
+>    robust boosted-children integration test. The Co-Authored-By
+>    string follows the standing executor convention (noted).
+> 3. **AUTHORIZED — P3p-2b (the consumer probe)**: executor builds
+>    `scripts/probes/stage3-v4-p3p2-consumer.ts` per the frozen
+>    prereg §3–§6 as #117-amended (five arms R0/R1p/R2p/R3p/R3v3;
+>    the V3-P2 heritage fork-grain instrument with the
+>    throwaway-clone percept read; the four mediators + the
+>    consumption ledger; smoke @11.0M → the disclosed-rule N →
+>    run @11.1M; stats 99703/99803; gates X4–X7 / DEV / PC /
+>    X-MERGE-SHA / X-DET / disjointness). Then the runs, detached
+>    (#49.5).
