@@ -167,8 +167,10 @@ are the P1 detectors REUSED VERBATIM (`:326–344`), scored per **defending** si
   PROPOSED **box entry** as the primary (the severity knee) but DEFERRED the
   per-channel primary designation to the consumer stage (#100.3). A4-P1 designates
   **deep** as the gate's primary for the reasons above (rest-defence-natural,
-  dense, double-count-free). If the commander prefers box as primary, the census
-  publishes box-priced in full and the gate can be re-read at box with no re-run.
+  dense, double-count-free). **#127 DISPOSITION (commander, PRE-RUN): deep is
+  ACCEPTED and the gate reads deep PERMANENTLY — no post-sight re-read at box.**
+  The box-priced parallel stays labelled data; a deep-vs-box SIGN disagreement is
+  a commander-review finding, never a gate substitute.
 
 ---
 
@@ -221,6 +223,16 @@ The **gate binds on the pooled primary cell** (contract §4 language, verbatim �
 not silently reinterpreted). The standardized price is a REPORTED robustness
 exhibit; a **sign reversal** between `P*` and `P*_std` is **FLAGGED** to the
 commander (`simpsonSignReversalFlag`), never silently passed.
+
+**#127 TIGHTENING (commander, PRE-RUN, conservative — adds a conjunct, changes
+nothing else):** if `simpsonSignReversalFlag` fires on the primary cell
+(`sign(P*_std) ≠ sign(P*)`, point estimates), the stage does **NOT advance to
+A4-P2 even if all three §4 legs pass** — reading (E) returns to the user with
+both exhibits. This converts what would have been post-sight commander
+discretion into an ex-ante rule; it can only make PASS harder. Pre-named
+alongside (#127): if bin1 is EMPTY at census scale, leg (ii) is vacuous by the
+probe's NaN semantics and the gate effectively reads `(i) ∧ (iii)` — acceptable
+ex ante because (iii) is the strong ordering leg (verify note N2).
 
 ---
 
@@ -319,8 +331,9 @@ the P1 §4 precedent). Any X-family gate fails ⇒ FAIL, stop at the commander.
 * **(D) STOP — an X-family gate fails** (X-DET / X-SRC-ZERO / seed disjointness).
   Disposition: FAIL, stop at the commander (measurement invalid; Road B is the floor).
 * **(E) SIMPSON SIGN REVERSAL** — the pooled price and the standardized price
-  disagree in sign. Disposition: the pooled cell governs the gate (§4), but the
-  reversal is FLAGGED and surfaced for the commander (not a silent pass).
+  disagree in sign. Disposition (**as amended #127, pre-run**): **NOT-ADVANCE**
+  — the arc returns to the user with both exhibits even if the §4 legs pass;
+  the gate legs themselves stay as frozen (the tightening adds a conjunct).
 * **(F) SENSITIVITY DISAGREES** — the `{6 s, 15 s}` reading moves the price
   materially. Disposition: PUBLISHED as labelled data; the primary 10 s reading
   governs (frozen).
@@ -342,9 +355,9 @@ the P1 §4 precedent). Any X-family gate fails ⇒ FAIL, stop at the commander.
 
 **⭐ THE STAGE EXIT.** On PASS the arc advances to A4-P2 on the #126 green path
 (commander review + a numbered ruling, no user wait). On any STOP/FAIL — the
-null/non-monotone price gate (readings B/C), an X-family failure (D), or a flagged
-Simpson reversal escalated by the commander — the arc RETURNS TO THE USER with the
-finding. The commander presents in plain Chinese. **This stage measures the
+null/non-monotone price gate (readings B/C), an X-family failure (D), or a
+Simpson sign reversal (E — automatic per the #127 amendment) — the arc RETURNS
+TO THE USER with the finding. The commander presents in plain Chinese. **This stage measures the
 vacancy price; it builds no mechanism.**
 
 ---

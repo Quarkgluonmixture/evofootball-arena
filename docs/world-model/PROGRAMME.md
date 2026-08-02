@@ -52,8 +52,16 @@ autonomous stage-to-stage progression authorized** — P1→P2→P3
 proceed on PASS without per-stage "go" (commander review + numbered
 rulings still gate EVERY stage; #106.6 and Road B unchanged); the
 arc returns to the user ONLY on STOP/FAIL, a veto, or the P3
-frontier verdict. A4-P1 pre-reg dispatch live. R20 gaps / F9 any
-time.
+frontier verdict. **A4-P1 PRE-REG LANDED (`a9f7742`, Workflow
+Draft→Verify PASS; commander review #127)**: I5(b) reused verbatim;
+gate frozen = deep-priced pooled CI>0 ∧ duration-ladder monotone ∧
+(bin2−bin0) resolved, PLUS the #127 pre-run tightenings (deep
+permanent, no box re-read; Simpson sign reversal = automatic
+NOT-ADVANCE; empty-bin1 semantics pre-named). Seeds: smoke 40
+@11.70M, census ≤8,000 @11.80M, stats 100003/100103. Enriched
+eye-null world (two-pin #26.5/#68.2). **RUNS LIVE (#49.5 detached):
+sizing smoke → frozen N arithmetic → census → adjudication ruling.**
+R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

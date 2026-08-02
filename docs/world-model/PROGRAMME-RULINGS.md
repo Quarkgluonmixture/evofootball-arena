@@ -5249,3 +5249,54 @@
 >    out now (Workflow Draft→Verify, §0.0 pattern; Opus-med;
 >    executor commits locally with explicit paths and does NOT
 >    push — the push rides the commander's adjudication ruling).
+
+> **COMMANDER RULING #127 (2026-08-02 — the A4-P1 pre-registration
+> reviewed; four executor flags disposed; two pre-run tightenings;
+> the runs authorized):**
+>
+> 1. **BANKED**: the A4-P1 freeze + probe (`a9f7742`, executor
+>    Draft → independent Verify PASS, 8 checks; the machine-verify
+>    gated, this review disposes). The pre-reg is contract-faithful:
+>    I5(b) reused to the cited battery lines; P1 detectors + admitted
+>    prices only (shot-against nowhere); windows/bins/horizon pinned
+>    from published grids; sizing-before-floors with the wall-derived
+>    N_MAX (12 h, hard cap 8,000) and the attainability-knee reading;
+>    seeds inside the #125.6 freeze (smoke 11,700,000+k k∈0..39;
+>    census 11,800,000+k k∈0..N−1 ≤ 11,807,999; stats 100003/100103);
+>    receipts; percept-honesty N/A stated.
+> 2. **EXECUTOR FLAGS DISPOSED** (surfaced, as required): (F1)
+>    PRIMARY = DEEP entry ACCEPTED (rest-defence-natural, dense,
+>    avoids the deep⊃box double-count) — and the offered "re-read
+>    the gate at box" escape is FORECLOSED: the gate reads deep
+>    PERMANENTLY; a deep-vs-box sign disagreement is a review
+>    finding, never a gate substitute. (F2) GATE CELL = POOLED
+>    ACCEPTED (contract §4 verbatim) with the #94.3 exhibit
+>    attached — TIGHTENED pre-run: a primary-cell Simpson sign
+>    reversal is now an AUTOMATIC NOT-ADVANCE (reading E returns
+>    to the user even if the three legs pass); ex-ante rule
+>    replaces post-sight discretion, conservative only. (F3)
+>    WORLD = ENRICHED EYE-NULL ACCEPTED — the two-pin logic
+>    (#26.5/#68.2) is exactly right: goal-value units are honest
+>    only on the world the lifts were calibrated on; if the
+>    incumbent rarely vacates, the knee binds and reading C STOPS
+>    honestly. (F4) W_price = 10 s ACCEPTED (the certified P0b
+>    concede horizon; {6,15} s labelled sensitivities).
+> 3. **VERIFY NOTES RECORDED**: (N1) the probe's slot-body lookup
+>    omits the literal `role !== 'GK'` clause — benign by roster
+>    construction (GK = index 0), documented as a literal
+>    divergence, no code change ordered (a re-touch would cost a
+>    re-verify for zero behavioural delta). (N2) the monotone
+>    leg's NaN semantics make leg (ii) vacuous if bin1 is empty —
+>    PRE-NAMED (#127 amendment): the gate then effectively reads
+>    (i) ∧ (iii), acceptable because (iii) is the strong ordering
+>    leg. The n=3 scratch preflight (deleted, outside the repo) is
+>    de minimis and not predicate-informing sight.
+> 4. **AMENDMENTS LANDED IN PLACE** (pre-run, all conservative):
+>    §3 (deep permanent), §4.1 (the reversal tightening + the
+>    empty-bin1 semantics), §8(E) (NOT-ADVANCE), stage exit
+>    (reversal automatic). The three §4 legs are UNCHANGED.
+> 5. **THE RUNS AUTHORIZED** (#49.5 commander-resident, detached):
+>    smoke (40 @ 11.70M, X-DET) → the frozen N arithmetic (the
+>    formula binds, no discretion) → census (N @ 11.80M) →
+>    adjudication ruling. On PASS the green path (#126) opens
+>    A4-P2 dispatch; readings B/C/D/E return to the user.
