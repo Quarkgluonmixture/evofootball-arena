@@ -60,14 +60,23 @@ mediators from the start. Seeds: smoke 12.05M, census 12.10M,
 stats 100603/100703. H5 predicts coordinated redistribution
 should NOT thin the press — this is the kill-or-confirm of
 H-A4.1 at pricing grain; its STOP returns to the user (one
-instrument for the distribution question, #106.6 idiom). **P1d
-PRE-REG LANDED (`135d51a`, Draft→Verify PASS; commander review
-#144: base spots = the genome-chosen ATTACK_FORMATIONS table —
-the world's own agreement fossil; extents HALF_L/6 × BOX_WIDTH/4,
-decay REST_THIRD; 973/973 green, fingerprint unchanged). Two
-user working rules anchored (#144: VISION §6 + §0.0.6): 有故事
-就要有探针 · 决策点人话先行. RUNS LIVE: smoke @12.05M → frozen
-N → census @12.10M → adjudication.** Banked:
+instrument for the distribution question, #106.6 idiom). **P1d RAN AND
+STOPPED AS FROZEN (#145, 2026-08-03): the primary dose (1.0×) is
+NULL — but the dose curve is the arc's FIRST RESOLVED BENEFIT:
+Δdeep −0.0139 [−0.0188,−0.0089] @0.25× · −0.0084 @0.5× (both
+resolved) · +0.0140 @2.0× (resolved harm) — 约定要"大概意思"才有
+效,"规定死"有害 (the user's #132/#136 ontology, measured).
+Mediators: turnovers↓ all doses, BOX↓ all doses (resolved),
+compact-without-clumping at low dose; H5 confirmed at low dose.
+⭐ THE QUEUE SITS AT THE USER FORK (#145.5): (A, recommended)
+A4-P1e low-dose refinement census (fine grid in (0,0.5], primary
+0.25×, fresh gate + seeds 12.15M/12.20M, progress lines added;
+the SECOND and final instrument on the distribution question) ·
+(B) skip to P2 on P1d's evidence — commander-rejected as
+gate-bending · (C) park A4 with the curve banked. Green path
+suspended; nothing proceeds until the user rules.** Two user
+working rules anchored (#144: VISION §6 + §0.0.6): 有故事就要有
+探针 · 决策点人话先行. Banked:
 the grant/dose machinery (reusable), the Phase-31-pin removal
 candidate, the deep-outlet exoneration. Seeds consumed through
 12.008M; 12.01M–12.3M + stats 1006xx+ remain. Road B; fingerprint

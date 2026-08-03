@@ -6066,3 +6066,60 @@
 >    frozen N arithmetic → census (@ 12.10M, N ≤ 8,000) →
 >    adjudication. PASS opens A4-P2 (#143.1); any STOP/FAIL
 >    returns to the user — in plain language.
+
+> **COMMANDER RULING #145 (2026-08-03 — the A4-P1d census
+> adjudicated: THE GATE STOPS AS FROZEN, and the dose curve
+> delivers the arc's FIRST RESOLVED DISCIPLINE BENEFIT — at low
+> dose; the fork re-issued):**
+>
+> 1. **BANKED**: the census (8000 matches @ 12.10M, 160,000 forks
+>    × 6 branches; all X green; the pre-registered reduced-power
+>    disclosure stood — power 0.873 at MDL; SHA 999f7f383c2b; both
+>    JSONs committed). **THE GATE, EXECUTED AS FROZEN: STOP** —
+>    the primary dose (1.0×) reads NULL (+0.0038 [−0.0013,
+>    +0.0092]) and the ladder is not non-increasing. The green
+>    path suspends; the arc returns to the user.
+> 2. ⭐⭐ **THE DOSE CURVE (the finding; every rung resolved except
+>    the primary)**: Δdeep by dose = **−0.0139 [−0.0188, −0.0089]
+>    @0.25× · −0.0084 [−0.0137, −0.0030] @0.5×** · +0.0038 (null)
+>    @1.0× · **+0.0140 [+0.0085, +0.0195] @2.0×** — a clean
+>    monotone benefit→harm curve crossing zero between 0.5 and
+>    1.0. The frozen primary sat at the crossing. The LOW-dose
+>    rungs are the FIRST resolved discipline benefit in the whole
+>    A4 arc (fresh seeds, n=160,000 paired forks).
+> 3. **MEDIATORS (REPORTED; per the §0.0.6 rule the causal
+>    readings below are LABELLED HYPOTHESES)**: turnovers DOWN at
+>    every dose (−0.019→−0.063, resolved, monotone with dose);
+>    **box entries DOWN at every dose** (≈−0.004..−0.002, all
+>    resolved — the severity surrogate improves everywhere);
+>    spacing COMPACTS most at low dose (−0.23 m) while dupRun
+>    also falls — compact WITHOUT clumping; H5's map prediction
+>    CONFIRMED at low dose (the whole-team grant does not thin
+>    the press — deep entries fall). HYPOTHESIS for the high-dose
+>    flip: heavy anchoring produces a passive deep block —
+>    possession safest, box protected, but the third-line
+>    conceded uncontested (deep↑ while box↓). HYPOTHESIS for the
+>    net ledger: at the labelled goal-value composite (deep
+>    0.0435 / box 0.1952) even dose 1.0 nets slightly GOOD —
+>    reported only, the gate reads deep as frozen.
+> 4. **THE USER'S ONTOLOGY, MEASURED**: the curve lands exactly
+>    where #132/#136 said — 约定要"大概意思"(coarse, weakly
+>    binding)才有效;"规定死"有害。 Weak shared priors beat both
+>    no-priors and strong priors. The 野球 thirty seconds works
+>    BECAUSE it is vague.
+> 5. **THE FORK (#145.5, user; P1e would be the SECOND instrument
+>    on the distribution question — this fork is its
+>    authorization; after it the question closes either way)**:
+>    **(A, recommended) A4-P1e — the low-dose refinement census**:
+>    fine grid inside (0, 0.5] + zero anchor, PRIMARY pinned at
+>    0.25× (the strongest resolved rung), gate frozen fresh on
+>    fresh seeds (smoke 12.15M, census 12.20M), mid-run progress
+>    lines added (the overnight lesson); on PASS the measured
+>    strength REGION becomes M3′'s term and P2 builds with the
+>    gene range spanning it. **(B)** skip to P2 with the gene
+>    range set over the low-dose region on P1d's evidence alone —
+>    REJECTED BY THE COMMANDER as gate-bending (the frozen gate
+>    stopped; re-reading its own data post-sight is the discipline
+>    we don't do) — listed for completeness. **(C)** park A4 with
+>    the curve banked. Fingerprint `57b0bdab…c673` unchanged
+>    (#90–#145).
