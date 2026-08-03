@@ -68,13 +68,20 @@ resolved) · +0.0140 @2.0× (resolved harm) — 约定要"大概意思"才有
 效,"规定死"有害 (the user's #132/#136 ontology, measured).
 Mediators: turnovers↓ all doses, BOX↓ all doses (resolved),
 compact-without-clumping at low dose; H5 confirmed at low dose.
-⭐ THE QUEUE SITS AT THE USER FORK (#145.5): (A, recommended)
-A4-P1e low-dose refinement census (fine grid in (0,0.5], primary
-0.25×, fresh gate + seeds 12.15M/12.20M, progress lines added;
-the SECOND and final instrument on the distribution question) ·
-(B) skip to P2 on P1d's evidence — commander-rejected as
-gate-bending · (C) park A4 with the curve banked. Green path
-suspended; nothing proceeds until the user rules.** Two user
+⭐ #145.5 RULED A BY THE USER ("a", #146) — A4-P1e, THE
+LOW-DOSE REFINEMENT CENSUS, IS LIVE; the green path resumed.
+Design (#146): NO src changes (the map seam takes strength as a
+parameter); fine grid {0.125, 0.25, 0.375, 0.5}×VAL_SCALE,
+PRIMARY pinned 0.25×; gate frozen fresh = (i) primary resolved
+benefit (CI upper<0) ∧ (ii) NO rung in the grid resolves HARM
+(the whole future gene range must be non-harmful) ∧ (iii) no
+Simpson reversal — the P1d monotone-dose leg is DROPPED with
+reasoning (interior optimum plausible inside the region,
+pre-named); mediators carried; progress lines every 500 matches
+(the overnight lesson); seeds smoke 12.15M / census 12.20M,
+stats 100803/100903. The SECOND AND FINAL instrument on the
+distribution question — it closes either way; PASS ⇒ the
+measured strength region becomes M3′'s term and A4-P2 opens.** Two user
 working rules anchored (#144: VISION §6 + §0.0.6): 有故事就要有
 探针 · 决策点人话先行. Banked:
 the grant/dose machinery (reusable), the Phase-31-pin removal

@@ -6123,3 +6123,42 @@
 >    we don't do) — listed for completeness. **(C)** park A4 with
 >    the curve banked. Fingerprint `57b0bdab…c673` unchanged
 >    (#90–#145).
+
+> **COMMANDER RULING #146 (2026-08-03 — the user rules #145.5:
+> option A; A4-P1e authorized and dispatched; the green path
+> resumes):**
+>
+> 1. **USER RULING RECORDED (verbatim: "a")**: A4-P1e — the
+>    low-dose refinement census — proceeds; the green path
+>    resumes (P1e → review → runs → adjudication; PASS → P2 →
+>    P3). P1e is the SECOND AND FINAL instrument on the
+>    distribution question (#145.5 carried): it closes the
+>    question either way.
+> 2. **A4-P1e DESIGN CONSTRAINTS (binding)**: (i) ZERO src
+>    changes — the banked map seam takes strength as a
+>    parameter; deliverable = pre-reg doc + probe only (the P1d
+>    probe re-parameterized). (ii) DOSE GRID = {0.125, 0.25,
+>    0.375, 0.5} × VAL_SCALE (recomputed in-probe, must equal
+>    0.163494), zero anchor by construction; PRIMARY = 0.25×
+>    (P1d's strongest resolved rung — pinned BEFORE this run,
+>    on last night's independent seeds). (iii) THE GATE (freeze
+>    fresh; the monotone-dose leg of P1c/P1d is DROPPED with
+>    pre-named reasoning — inside the beneficial region an
+>    interior optimum is plausible, so monotonicity is not the
+>    honest claim): PASS := (a) primary-dose pooled paired RAW
+>    Δdeep CI UPPER < 0 (resolved benefit) ∧ (b) NO rung in the
+>    grid resolves POSITIVE (no resolved harm anywhere in the
+>    future gene range) ∧ (c) no Simpson-genre sign reversal on
+>    the primary cell (auto NOT-ADVANCE, #127 form); vacuity ex
+>    ante; goal-value labelled only. (iv) MEDIATORS carried
+>    verbatim from P1d (REPORTED). (v) PROGRESS LINES every 500
+>    matches to stdout (the overnight lesson; stdout never
+>    enters the compared core). (vi) SEEDS: smoke 12,150,000+k
+>    k∈0..39; census 12,200,000+k (≤8,000 ⇒ ≤12,207,999); stats
+>    100803/100903; disjoint vs ALL consumed blocks. (vii)
+>    X-family verbatim (wall-free X-DET, X-FORK, X-MERGE,
+>    E-NONSTATION, X-FP, disjointness); sizing-before-floors
+>    with the reduced-power disclosure rule.
+> 3. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0): pre-reg + probe + bounded preflight; local commit,
+>    explicit paths, no push.
