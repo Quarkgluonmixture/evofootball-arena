@@ -109,8 +109,9 @@ function flameTexture(): THREE.CanvasTexture {
 
 /**
  * A firework shell (F7): rises above the stand on a fuse, then bursts into a
- * ring of coloured stars that fall under gravity. High FX quality only —
- * it is pure celebration and the phone budget buys the pyro first.
+ * ring of coloured stars that fall under gravity. Pure celebration, and it now
+ * goes up at the default quality — see `FxSystem.quality` for why the phone
+ * budget was never the thing standing in its way.
  */
 class Firework {
   readonly points: THREE.Points;
@@ -122,11 +123,11 @@ class Firework {
   private static readonly FUSE = 0.75;
   private static readonly DUR = 2.4;
 
-  constructor(blending: THREE.Blending) {
+  constructor(blending: THREE.Blending, size: number) {
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(SHELL_N * 3), 3));
     this.mat = new THREE.PointsMaterial({
-      size: 1.7, color: 0xffffff, transparent: true, opacity: 0,
+      size, color: 0xffffff, transparent: true, opacity: 0,
       depthWrite: false, blending,
     });
     this.points = new THREE.Points(geo, this.mat);
@@ -315,8 +316,23 @@ export class FxSystem {
   private nextBurst = 0;
   private nextFloater = 0;
   private seen = new Set<string>();
+  /** The shells' neutral star colour for THIS lighting (see the preset field). */
+  private sparkNeutral: number;
   hooks: FxHooks | null = null;
-  /** low = feedback without particles; high = celebratory extras (confetti). */
+  /**
+   * low = feedback without particles (the phone escape hatch); medium = the
+   * full goal celebration; high = the extra confetti bursts on top.
+   *
+   * F7 built the fireworks and then gated them behind `high` — but the default
+   * is `medium` and the only control lives at the bottom of the left panel,
+   * which world-mode hides outright. The headline of the goal moment was
+   * therefore off for every player who never went looking for a quality
+   * switch. The shells cost three `THREE.Points` draw calls and 210 particles
+   * for about a second and a half, two or three times a match; the crowd next
+   * to them is 369 instanced bodies every frame. That is not what a phone
+   * chokes on, so a goal now celebrates at the default and `low` stays the
+   * honest way out.
+   */
   quality: FxQuality = 'medium';
 
   constructor(style: StylePreset = stylePreset()) {
@@ -329,7 +345,8 @@ export class FxSystem {
       : THREE.NormalBlending;
     this.bursts = Array.from({ length: 5 }, () => new Burst(blending));
     this.pyros = Array.from({ length: PYRO_JETS * 2 }, () => new Pyro(blending));
-    this.shells = Array.from({ length: 3 }, () => new Firework(blending));
+    this.sparkNeutral = style.fxSparkNeutral;
+    this.shells = Array.from({ length: 3 }, () => new Firework(blending, style.fxSparkSize));
     for (const b of this.bursts) this.root.add(b.points);
     for (const f of this.floaters) this.root.add(f.sprite);
     for (const j of this.pyros) this.root.add(j.sprite);
@@ -381,7 +398,9 @@ export class FxSystem {
           // inside the net where the mesh hides it, and the goal line is
           // where the eye already is. Play is stopped, so nothing is masked.
           if (particles) this.firePyro(Math.sign(state.ball.x) || 1);
-          if (this.quality === 'high') this.fireShells(teamColors, fx.side);
+          // The shells go up whenever particles do — see `quality` above for
+          // why this is not the thing that costs a phone its frame rate.
+          if (particles) this.fireShells(teamColors, fx.side);
           this.hooks?.onGoal(fx.side);
           break;
         }
@@ -416,7 +435,9 @@ export class FxSystem {
   /** Three staggered shells over the main stand, in both kits plus white. */
   private fireShells(teamColors: [number, number], side: 0 | 1): void {
     const z = -HALF_W - 12;
-    const colors = [teamColors[side], 0xffffff, teamColors[side]];
+    // The middle shell is the NEUTRAL one — white against a night sky, a hot
+    // hue by day, because white over a pale grey roof is not a firework.
+    const colors = [teamColors[side], this.sparkNeutral, teamColors[side]];
     for (let i = 0; i < this.shells.length; i++) {
       const x = (i - 1) * (HALF_L * 0.55);
       this.shells[i].fire(x, z, 17 + i * 2.5, colors[i], i * 0.32);

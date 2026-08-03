@@ -536,6 +536,31 @@ describe('style presets (Track F0, pure data)', () => {
     }
   });
 
+  it('firework stars are readable against the sky they burst into', () => {
+    // F7 hard-coded the neutral shell white at 1.7m. That is right on night
+    // navy and invisible by day: the shells burst above the main stand, so
+    // their daylight backdrop is a pale grey roof under a pale blue sky, and
+    // `normal` blending gives a small star no bloom to carry it. So: night
+    // keeps white, day must NOT be near-white, and a daylight star is bigger.
+    const chan = (c: number): [number, number, number] =>
+      [(c >> 16) & 255, (c >> 8) & 255, c & 255];
+    const lum = (c: number): number => {
+      const [r, g, b] = chan(c);
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    for (const id of STYLE_IDS) {
+      const night = stylePreset(id, 'night');
+      const day = stylePreset(id, 'day');
+      expect(night.fxSparkNeutral, `${id}/night`).toBe(0xffffff);
+      expect(lum(day.fxSparkNeutral), `${id}/day must not be near-white`).toBeLessThan(200);
+      // ...and it has to be a real HUE, not just grey turned down.
+      const [r, g, b] = chan(day.fxSparkNeutral);
+      expect(Math.max(r, g, b) - Math.min(r, g, b), `${id}/day chroma`).toBeGreaterThan(60);
+      expect(day.fxSparkSize, `${id}/day size`).toBeGreaterThan(night.fxSparkSize);
+      expect(night.fxSparkSize, `${id}/night size`).toBeGreaterThan(0);
+    }
+  });
+
   it('denser turf grain uses FINER blobs (the first F0 pass painted bubbles)', () => {
     // 900 blobs at up to 2.55m radius stacked into visible soap bubbles.
     // Count and max radius must move in opposite directions.

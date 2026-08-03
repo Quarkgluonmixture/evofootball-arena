@@ -84,11 +84,35 @@ export interface StylePreset {
    * to every goal celebration. Daylight arms use solid `normal` confetti.
    */
   fxBlending: 'additive' | 'normal';
+  /**
+   * The firework shells' NEUTRAL star colour, and how big a star is in metres.
+   *
+   * F7 hard-coded the middle shell white and the star at 1.7 m, which is right
+   * against a night sky and wrong in every way against a daylight one: the
+   * shells burst above the main stand, so by day their backdrop is a pale grey
+   * roof under a pale blue sky and white stars read as dust. Same lesson as
+   * `fxBlending` one field up — an FX constant that looks fixed is usually a
+   * palette entry that has only ever been seen under one light.
+   */
+  fxSparkNeutral: number;
+  fxSparkSize: number;
   /** Bodies: toon ramp materials instead of PBR standard. */
   toon: boolean;
   /** Fake contact-shadow opacity multiplier (1 = as shipped). */
   contactShadow: number;
 }
+
+/**
+ * Firework stars by light (see `StylePreset.fxSparkNeutral`). Night keeps F7's
+ * tuned white-on-navy at 1.7 m — additive blending blooms it, so small works.
+ * Day gets a hot magenta at 2.6 m: the shells burst over the main stand, so
+ * their daylight backdrop is a pale grey roof under a pale blue sky, where
+ * white has no contrast to spend and `normal` blending grants no bloom to make
+ * a small star carry. Named rather than repeated so the five presets that
+ * choose between them cannot drift apart.
+ */
+const SPARK_NIGHT = { neutral: 0xffffff, size: 1.7 } as const;
+const SPARK_DAY = { neutral: 0xff2f7a, size: 2.6 } as const;
 
 /** Today's look, exactly — every literal lifted from the shipped files. */
 const CURRENT_NIGHT: StylePreset = {
@@ -122,6 +146,8 @@ const CURRENT_NIGHT: StylePreset = {
   crowd: [0x33415e, 0x475c85, 0x8294b5, 0x4ade80, 0xf59e0b, 0xe2e8f0, 0x60a5fa, 0x1d3a5f],
   floodlights: true,
   fxBlending: 'additive',
+  fxSparkNeutral: SPARK_NIGHT.neutral,
+  fxSparkSize: SPARK_NIGHT.size,
   toon: false,
   contactShadow: 1,
 };
@@ -141,6 +167,8 @@ const CURRENT_DAY: StylePreset = {
   pedestal: 0x2c3d52,
   floodlights: false,
   fxBlending: 'normal',
+  fxSparkNeutral: SPARK_DAY.neutral,
+  fxSparkSize: SPARK_DAY.size,
 };
 
 /**
@@ -188,6 +216,8 @@ const COHERENCE_DAY: StylePreset = {
   terrace: [0x33405c, 0x3f4d6b],
   floodlights: false,
   fxBlending: 'normal',
+  fxSparkNeutral: SPARK_DAY.neutral,
+  fxSparkSize: SPARK_DAY.size,
 };
 
 /**
@@ -231,6 +261,8 @@ const TOY_DAY: StylePreset = {
   ],
   floodlights: false,
   fxBlending: 'normal',
+  fxSparkNeutral: SPARK_DAY.neutral,
+  fxSparkSize: SPARK_DAY.size,
   toon: true,
   contactShadow: 1.15,
 };
@@ -257,6 +289,10 @@ const TOY_NIGHT: StylePreset = {
   boards: [0xdcd6c6, 0xccc3ac, 0xbdb398],
   terrace: [0x2b3346, 0x353d52],
   fxBlending: 'additive',
+  // Back to white-on-navy: this arm inherits TOY_DAY, so without these two the
+  // night sky would get the daylight magenta it was never chosen for.
+  fxSparkNeutral: SPARK_NIGHT.neutral,
+  fxSparkSize: SPARK_NIGHT.size,
   crowd: [
     0xa63a3a, 0xb0762c, 0xb39a43, 0x438743, 0x2b7a9e, 0x374a93, 0x724285, 0xaf6a86,
     0xb4b1a8, 0x2f3743, 0xa85444, 0x24897a,
