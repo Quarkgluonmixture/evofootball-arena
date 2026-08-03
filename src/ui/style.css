@@ -990,6 +990,18 @@ body.world-mode .perception-readout { display: none; }
   body.world-mode #three-host,
   body.world-mode #stage > canvas {
     position: static; width: 100%; max-width: 100%; max-height: 34vh; box-shadow: none;
+    /* z-index MUST go back to auto here, and `position: static` above does not
+       do it: ThreeMatchRenderer sets `host.style.position = 'relative'`
+       INLINE, which outranks any stylesheet, so the host stays a positioned
+       element and kept the floating player's `z-index: 12`. In the stacked
+       phone layout the strip is ordinary in-flow content of the page, so
+       sitting in a raised layer meant it punched THROUGH every world overlay
+       — the league, evolution and settings screens all sit at z-index 10 and
+       were covered by the match strip; the rebirth ceremony (12) only won on
+       DOM order. Nothing here is a stacking context on purpose: the strip's
+       own chrome (score bug 5, goal banner 6, clash banner 8) then lands in
+       the root context, still below every overlay. */
+    z-index: auto;
   }
   body.world-mode #three-host { height: 34vh; }
   body.world-mode #stage > canvas { height: auto; }
