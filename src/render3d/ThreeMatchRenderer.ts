@@ -625,6 +625,18 @@ export class ThreeMatchRenderer {
     this.cameraCtl.reset();
   }
 
+  /**
+   * Cut to the goal celebration (F7c). The CALLER decides whether to do this,
+   * not the fx hook below: this renderer is deliberately blind to where its
+   * frames come from (live sim or ReplayBuffer), and a replay has already
+   * chosen its own camera via `cameraForEvent`. Only the game loop knows which
+   * it is, so only the game loop gets to ask.
+   */
+  goalCut(): void {
+    const ball = this.lastState?.ball;
+    if (ball) this.cameraCtl.goalCut(ball);
+  }
+
   /** Re-arm one-shot effects (replay jump/scrub). */
   resetFx(): void {
     this.fx.reset();

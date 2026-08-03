@@ -1594,7 +1594,14 @@ export class GameApp implements GameActions {
     this.three.onSelectPlayer = (gid) => {
       this.selectedGid = this.selectedGid === gid ? null : gid;
     };
-    this.three.onFxEvent = (type) => this.sound.play(type);
+    this.three.onFxEvent = (type) => {
+      this.sound.play(type);
+      // The goal cut (F7c) is a LIVE broadcast reflex. In a replay the viewer
+      // has already picked the angle they wanted — `cameraForEvent` set it on
+      // the jump — so borrowing the camera back off them there would fight the
+      // very thing they asked for.
+      if (type === 'goal' && !this.replay.active) this.three?.goalCut();
+    };
     this.three.onArousal = (a) => this.sound.setArousal(a);
     this.three.onCarry = (on) => this.sound.setCarry(on);
     this.three.onScoreBugTap = () => this.toggleClash();

@@ -9,7 +9,9 @@ import {
   BALL_SHADOW_FADE_H, BALL_VISUAL_RADIUS, BALL_VISUAL_SCALE, ballShadowLift,
   carryDisplayOffset, contactCue, trailOpacity, TRAIL_MIN_SPEED,
 } from '../src/render3d/ballPresentation';
-import { cameraForEvent, cameraGoalFor } from '../src/render3d/CameraController';
+import {
+  CameraController, CELEBRATION_DUR, cameraForEvent, cameraGoalFor,
+} from '../src/render3d/CameraController';
 import { CALM_UPDATE_PERIOD, CrowdSystem } from '../src/render3d/CrowdSystem';
 import { declutterLabels } from '../src/render3d/labelDeclutter';
 import { FAR_ROWS, NEAR_STAND_GAP, terraceSlabs } from '../src/render3d/PitchModel';
@@ -642,11 +644,117 @@ describe('cameraGoalFor', () => {
     expect(attack.pz).toBeLessThan(mid.pz);
   });
 
+  it('the goal cut frames the whole celebration, not the dead ball (F7c)', () => {
+    // The three things that must share the frame: the flame jets at the end the
+    // ball crossed, the goalmouth, and shells bursting ~17-22m over the FAR
+    // stand. Checked as ANGLES, because that is what "in frame" actually means
+    // — a 46° vertical FOV has 23° either side of the aim.
+    const FOV_HALF = 23;
+    for (const sign of [1, -1] as const) {
+      const g = cameraGoalFor('celebration', { x: sign * (HALF_L - 0.2), z: 2, vx: 9, vz: 0 });
+      // Beyond the goal line, on the scoring end, up high enough to see over.
+      expect(Math.abs(g.px), `${sign} beyond goal line`).toBeGreaterThan(HALF_L);
+      expect(Math.sign(g.px), `${sign} correct end`).toBe(sign);
+      // On the NEAR side, so the far stand (where the shells are) is the backdrop.
+      expect(g.pz).toBeGreaterThan(HALF_W);
+
+      const elevation = (to: { x: number; y: number; z: number }): number => {
+        const horiz = Math.hypot(to.x - g.px, to.z - g.pz);
+        return Math.atan2(to.y - g.py, horiz) * 180 / Math.PI;
+      };
+      const aim = elevation({ x: g.lx, y: g.ly, z: g.lz });
+      const goalmouth = elevation({ x: sign * HALF_L, y: 1.2, z: 0 });
+      // The furthest shell, at the far stand, at burst height (see fireShells).
+      const shell = elevation({ x: sign * HALF_L * 0.55, y: 22, z: -HALF_W - 12 });
+      expect(Math.abs(goalmouth - aim), `${sign} goalmouth in frame`).toBeLessThan(FOV_HALF);
+      expect(Math.abs(shell - aim), `${sign} shell in frame`).toBeLessThan(FOV_HALF);
+      // And it is genuinely a tilt DOWN at the pitch, not a shot of empty sky.
+      expect(aim).toBeLessThan(0);
+
+      // FLOODLIGHT CLEARANCE. F6's bowl gate checks terrace slabs only, so it
+      // had nothing to say about the four towers — and the first cut shot
+      // straight past one: at night a 17m mast ran down the middle of the frame
+      // with the lamp hanging over the celebration. Towers stand at
+      // |x| = HALF_L+8, |z| = HALF_W+7 (see PitchModel.addFloodlights). The
+      // near one on the scoring end has to be well outside the frame, which is
+      // a HORIZONTAL check — it was never blocking the look-at ray, it was
+      // sitting in the picture.
+      const FOV_HALF_H = 35; // 46° vertical at ~16:10 ≈ 70° horizontal
+      const azimuth = (tx: number, tz: number): number =>
+        Math.atan2(tz - g.pz, tx - g.px) * 180 / Math.PI;
+      const aimAz = azimuth(g.lx, g.lz);
+      const delta = (a: number): number => Math.abs(((a - aimAz + 540) % 360) - 180);
+      const nearTower = delta(azimuth(sign * (HALF_L + 8), HALF_W + 7));
+      expect(nearTower, `${sign} near floodlight must be out of frame`).toBeGreaterThan(FOV_HALF_H);
+    }
+  });
+
   it('picks a fitting replay camera per event type', () => {
     expect(cameraForEvent('goal')).toBe('behindGoal');
     expect(cameraForEvent('shot')).toBe('broadcast');
     expect(cameraForEvent('save')).toBe('behindGoal');
     expect(cameraForEvent('interception')).toBe('tactical');
+  });
+});
+
+describe('the goal cut borrows the camera and gives it back (F7c)', () => {
+  // OrbitControls is only constructed by setMode('orbit'), so every other mode
+  // runs headless on a stub element.
+  const stub = { addEventListener() {}, removeEventListener() {}, style: {} } as unknown as HTMLElement;
+  const CENTRE = { x: 0, z: 0, vx: 0, vz: 0 };
+  const run = (ctl: CameraController, seconds: number, ball = CENTRE): void => {
+    for (let t = 0; t < seconds; t += 1 / 60) ctl.update(ball, 1 / 60);
+  };
+
+  it('holds for the celebration, then returns to the viewer\'s own camera', () => {
+    const ctl = new CameraController(1.7, stub);
+    ctl.setMode('tactical');
+    run(ctl, 2); // settle on tactical
+    const tacticalZ = ctl.camera.position.z;
+
+    ctl.goalCut({ x: HALF_L - 0.1, z: 1, vx: 8, vz: 0 });
+    expect(ctl.celebrating).toBe(true);
+    run(ctl, 1.2);
+    // It actually went somewhere else — out past the goal line, on the scoring end.
+    expect(ctl.camera.position.x).toBeGreaterThan(HALF_L * 0.5);
+    expect(ctl.mode, 'the cut must not rewrite the selection').toBe('tactical');
+
+    run(ctl, CELEBRATION_DUR + 0.5);
+    expect(ctl.celebrating).toBe(false);
+    run(ctl, 4); // and it eases all the way home
+    expect(ctl.camera.position.z).toBeCloseTo(tacticalZ, 0);
+    expect(ctl.camera.position.x).toBeCloseTo(0, 0);
+  });
+
+  it('latches the end, so the kickoff that follows cannot swing the shot', () => {
+    // This is the bug the copy in goalCut() exists to prevent: a goal at the
+    // +x end, then the restart puts the ball on the centre spot. Holding a
+    // reference would drag the camera to the halfway line mid-fireworks — or
+    // worse, flip it to the other end on the next touch.
+    const ctl = new CameraController(1.7, stub);
+    ctl.setMode('broadcast');
+    const ball = { x: HALF_L - 0.1, z: 1, vx: 8, vz: 0 };
+    ctl.goalCut(ball);
+    ball.x = -5; // play restarts, and the caller's object is mutated
+    run(ctl, 1.5, ball);
+    expect(ctl.camera.position.x, 'stayed at the end the goal was scored').toBeGreaterThan(HALF_L * 0.5);
+  });
+
+  it('leaves a hand-flown orbit camera alone', () => {
+    const ctl = new CameraController(1.7, stub);
+    ctl.mode = 'orbit'; // set directly: setMode would build real OrbitControls
+    ctl.goalCut({ x: HALF_L, z: 0, vx: 0, vz: 0 });
+    expect(ctl.celebrating).toBe(false);
+  });
+
+  it('cuts to whichever end the ball actually crossed', () => {
+    for (const sign of [1, -1] as const) {
+      const ctl = new CameraController(1.7, stub);
+      ctl.setMode('tactical');
+      ctl.goalCut({ x: sign * (HALF_L - 0.1), z: 0, vx: sign * 8, vz: 0 });
+      run(ctl, 1.5);
+      expect(Math.sign(ctl.camera.position.x), `end ${sign}`).toBe(sign);
+    }
   });
 });
 
@@ -704,7 +812,12 @@ describe('the bowl clears every camera (Track F6)', () => {
     { x: 0, z: 19 }, { x: 0, z: -19 }, // both touchlines
     { x: 29, z: 19 }, { x: -29, z: -19 }, { x: 29, z: -19 }, { x: -29, z: 19 }, // corners
   ];
-  const MODES = ['tactical', 'tacfeed', 'broadcast', 'follow', 'behindGoal', 'penalty'] as const;
+  const MODES = [
+    'tactical', 'tacfeed', 'broadcast', 'follow', 'behindGoal', 'penalty',
+    // The goal cut (F7c) sits out in a CORNER, which is where F6 added the 45°
+    // wedges — exactly the geometry this gate exists to check.
+    'celebration',
+  ] as const;
 
   it('no camera ever sits inside a terrace, or looks at the pitch through one', () => {
     const slabs = terraceSlabs();

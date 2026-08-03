@@ -1,9 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { HALF_L } from '../sim/constants';
+import { HALF_L, HALF_W } from '../sim/constants';
 import { clamp } from '../utils/math';
 
-export type CameraMode = 'tactical' | 'tacfeed' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty';
+export type CameraMode =
+  | 'tactical' | 'tacfeed' | 'broadcast' | 'follow' | 'behindGoal' | 'orbit' | 'penalty'
+  | 'celebration';
+
+/** How long the goal cut holds the camera before it eases back (seconds). */
+export const CELEBRATION_DUR = 2.8;
 
 export interface CameraGoal {
   px: number;
@@ -78,6 +83,42 @@ export function cameraGoalFor(
         lz: ball.z * 0.65,
       };
     }
+    case 'celebration': {
+      // The GOAL CUT (F7c). Every other camera here frames the BALL; this one
+      // frames the celebration, because the ball is dead in the net and play
+      // has stopped. Three things have to be in one shot: the flame jets at
+      // the end the ball just crossed, the players' celebrate pose around it,
+      // and the shells bursting high above the FAR stand — F7 shipped all
+      // three and the default wide camera left the pyro in the top corner of
+      // frame, half of it outside.
+      //
+      // Which is a framing problem with an arithmetic answer. From a corner
+      // vantage 14 m beyond the goal line and 16 m up, the goalmouth sits ~28°
+      // below the aim and a shell ~14° above it — both inside the 46° vertical
+      // FOV's 23° half-angle. So aiming BETWEEN them (this look-at works out to
+      // ~11° down) holds the whole celebration in one frame.
+      //
+      // `pz` is the subtle one, and it is a FLOODLIGHT clearance, not a framing
+      // preference. The towers stand at |x| = HALF_L+8, |z| = HALF_W+7 with
+      // 17 m masts, so a corner camera further out than that shoots straight
+      // through one — at night the mast split the frame in half and the lamp
+      // hung over the middle of the shot. Sitting INSIDE the tower ring in z
+      // swings it ~70° off-axis, well outside the horizontal half-angle, while
+      // the goal and the shells both stay in frame (the test does that sum).
+      //
+      // The end comes from the ball's side, the same way `behindGoal` and
+      // `penalty` read it; the controller latches the ball at cut time so a
+      // restart at the centre spot cannot swing the shot halfway through.
+      const sign = ball.x >= 0 ? 1 : -1;
+      return {
+        px: sign * (HALF_L + 14),
+        py: 16,
+        pz: HALF_W + 4,
+        lx: sign * HALF_L * 0.45,
+        ly: 8,
+        lz: -HALF_W * 0.25,
+      };
+    }
     case 'penalty': {
       // Pens TV shot (Phase 24): low, over the taker's shoulder, keeper and
       // goalmouth filling the frame — the behind-goal shot hides the diving
@@ -117,6 +158,9 @@ export class CameraController {
   private controls: OrbitControls | null = null;
   private domElement: HTMLElement;
   private pulseT = -1;
+  /** Goal cut: elapsed seconds (-1 = idle) and the ball as it crossed. */
+  private celebrateT = -1;
+  private celebrateBall = { x: 0, z: 0, vx: 0, vz: 0 };
 
   constructor(aspect: number, domElement: HTMLElement) {
     this.camera = new THREE.PerspectiveCamera(46, aspect, 0.5, 500);
@@ -158,12 +202,42 @@ export class CameraController {
     this.pulseT = 0;
   }
 
+  /**
+   * Cut to the celebration for `CELEBRATION_DUR`, then ease back to whatever
+   * the viewer had chosen. `mode` is deliberately NOT reassigned: the cut is a
+   * borrow, so the camera buttons keep showing the real selection and there is
+   * no state to restore if a match ends mid-celebration.
+   *
+   * The ball is COPIED, not referenced. The kickoff that follows a goal puts it
+   * back on the centre spot, and a live reference would swing the shot to the
+   * wrong end halfway through the fireworks.
+   */
+  goalCut(ball: { x: number; z: number; vx: number; vz: number }): void {
+    if (this.mode === 'orbit') return; // the viewer is flying it by hand
+    this.celebrateT = 0;
+    this.celebrateBall = { x: ball.x, z: ball.z, vx: ball.vx, vz: ball.vz };
+  }
+
+  /** For tooling and tests: is the goal cut currently holding the camera? */
+  get celebrating(): boolean {
+    return this.celebrateT >= 0;
+  }
+
   update(ball: { x: number; z: number; vx: number; vz: number }, dt: number): void {
     if (this.mode === 'orbit') {
       this.controls?.update();
       return;
     }
-    const g = cameraGoalFor(this.mode, ball);
+    if (this.celebrateT >= 0) {
+      this.celebrateT += dt;
+      if (this.celebrateT >= CELEBRATION_DUR) this.celebrateT = -1;
+    }
+    // While the cut holds, the celebration framing REPLACES the mode's own —
+    // damping does the rest, so the cut in and the return are both eased and
+    // neither needs a second code path.
+    const g = this.celebrateT >= 0
+      ? cameraGoalFor('celebration', this.celebrateBall)
+      : cameraGoalFor(this.mode, ball);
 
     // Shot pulse: momentarily move the position goal toward the look target.
     if (this.pulseT >= 0) {
