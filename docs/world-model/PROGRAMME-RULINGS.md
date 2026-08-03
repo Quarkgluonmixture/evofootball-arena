@@ -6162,3 +6162,27 @@
 > 3. **DISPATCH**: one executor step (Workflow Draft→Verify,
 >    §0.0): pre-reg + probe + bounded preflight; local commit,
 >    explicit paths, no push.
+
+> **COMMANDER RULING #147 (2026-08-03 — the A4-P1e deliverable
+> reviewed; the runs authorized):**
+>
+> 1. **BANKED**: `9695584` (A4-P1E-LOWDOSE-CENSUS.md + the probe;
+>    independent verify PASS, 8 checks — exactly two files, ZERO
+>    src/test changes as designed, template fidelity diff-proven
+>    against the P1d probe, gate legs as bound by #146.2.iii with
+>    the monotone-leg removal reasoning quoted, primary 0.25×
+>    provenance stated, seeds disjoint vs all eight consumed
+>    blocks, progress lines outside the compared core).
+> 2. **FLAGS DISPOSED (all accepted)**: the zero-src divergence
+>    from the P1d probe's src-diff expectation (correct — the
+>    seam is banked); buildLadder → buildDoseGrid with the
+>    ladder retained as reported context; the census-mode
+>    preflight with PROGRESS_EVERY=1 (preflight-only override,
+>    frozen default 500); no push, no queue edits (correct
+>    precedent).
+> 3. **THE RUNS AUTHORIZED** (#49.5): smoke (40 @ 12.15M) → the
+>    frozen N arithmetic → census (@ 12.20M, N ≤ 8,000, progress
+>    every 500) → adjudication. PASS ⇒ A4-P2 opens with the
+>    measured strength region as M3′'s term; any fail ⇒ the
+>    distribution question CLOSES, return to the user — in plain
+>    language.
