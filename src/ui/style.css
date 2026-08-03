@@ -593,6 +593,37 @@ body.cinematic .cinematic-enter { display: none; }
 .evo-map-cell { min-width: 0; }
 .evo-map-title { margin-bottom: 4px; font-weight: 700; letter-spacing: 0.5px; }
 .evo-map { max-width: 560px; }
+/* The identity card floats over its own lens (Track D2) — so the host has to
+   be the positioning context, and the SVG has to keep receiving the pointer
+   while the card sits on top of it. */
+.evo-map-host { position: relative; }
+.evo-map-svg { display: block; touch-action: manipulation; }
+.evo-card {
+  position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none;
+  min-width: 168px; max-width: 236px; padding: 7px 9px;
+  background: rgba(8, 12, 22, 0.94); border: 1px solid var(--border-soft);
+  border-left-width: 3px; border-radius: 7px;
+  font-size: var(--fs-xs); line-height: 1.45;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+/* A hover card is a passing remark; a pinned one is the thing you asked for. */
+.evo-card.transient { opacity: 0.96; }
+.evo-card-head { display: flex; align-items: center; gap: 5px; }
+.evo-card-name { font-weight: 700; color: #e7ecf6; }
+.evo-card-when { color: var(--muted); margin-bottom: 4px; }
+.evo-card-plate { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 5px; }
+.evo-chip {
+  padding: 1px 5px; border-radius: 999px; font-size: 10px;
+  background: rgba(245, 197, 66, 0.14); color: #f5c542;
+}
+.evo-card-row {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 6px; align-items: baseline;
+}
+.evo-card-dim { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.evo-card-z { color: #e7ecf6; font-variant-numeric: tabular-nums; }
+.evo-card-move { color: var(--muted); font-variant-numeric: tabular-nums; }
+.evo-card-move.moved { color: #4ade80; }
+.evo-card-hint { color: var(--muted); opacity: 0.65; font-size: 10px; margin-top: 4px; }
 .evo-controls { align-items: center; gap: 10px; margin-top: 6px; }
 .evo-play { min-width: 44px; }
 .evo-scrub { flex: 1; min-width: 120px; accent-color: #f5c542; }

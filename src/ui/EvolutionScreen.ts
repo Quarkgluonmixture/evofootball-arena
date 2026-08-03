@@ -4,12 +4,16 @@ import type { Franchise } from '../evolution/franchise';
 import { eraColor, eraDisplayName, eraIndexOf } from './chronicleView';
 import { ATTR_KEYS, squadSummary } from '../evolution/playerGenome';
 import {
-  STYLE_DIMS, dimStats, styleSpread, styleValues, topVarianceDims,
+  STYLE_DIMS, dimStats, nameplateFor, styleSpread, styleValues, topVarianceDims,
   type DimStat, type DimTheme,
 } from '../evolution/styleSpace';
 import type { League } from '../sim/League';
 import { attrHeatmap, sparklineTile, stackedShareStrip } from './charts';
 import { button, colorHex, el } from './dom';
+import {
+  Z_LIMIT, axisMove, cardPlacement, driftMagnitude, nearestDot, projectZ, styleZ,
+  toViewBox, trailOpacity, trailStart, type ScatterDot,
+} from './scatterGeom';
 import type { EntityNav } from './entityLinks';
 import { t } from './i18n';
 
@@ -84,6 +88,15 @@ export class EvolutionScreen {
   nav: EntityNav | null = null;
   /** Scrubber → budget heatmap hook (118.5); set by renderPopulation. */
   private heatmapUpdate: ((idx: number) => void) | null = null;
+  /** Track D2 — the pointer's club, and which lens it is over. Transient:
+   * hover emphasises within ONE lens, the locked club emphasises in all four. */
+  private hoverSlot: number | null = null;
+  private hoverLens: number | null = null;
+  /** Which lens has the identity card LOCKED open on the selected club. A
+   * phone has no hover, so tapping a dot is how the card is read at all. */
+  private pinLens: number | null = null;
+  /** Repaint ONE lens in place (hover/lock feedback); set by renderHero. */
+  private redrawLens: ((lensIdx: number) => void) | null = null;
 
   constructor(host: HTMLElement) {
     this.root = el('div');
@@ -102,6 +115,7 @@ export class EvolutionScreen {
     if (this.visible) {
       this.selectedSlot = league.standings(0)[0]?.slot ?? 0;
       this.frameIdx = null;
+      this.pinLens = null; // a fresh open starts with no card in the way
       this.render(league);
     } else {
       this.stopPlay();
@@ -157,6 +171,10 @@ export class EvolutionScreen {
   render(league: League): void {
     this.league = league;
     this.stopPlay();
+    // The pointer's club dies with the DOM it was pointing at; the LOCKED club
+    // and its pinned card survive — that is what locking is for.
+    this.hoverSlot = null;
+    this.hoverLens = null;
     this.root.textContent = '';
     this.root.appendChild(el('h2', '', `🧬 ${t('Evolution center')} — ${t('Gen')} ${league.generation}`));
 
@@ -184,6 +202,8 @@ export class EvolutionScreen {
     this.root.appendChild(el('h2', '', t('Style space')));
     this.root.appendChild(el('div', 'muted',
       t('Four lenses on the same league — axes are wherever the clubs disagree most, overall and per phase of play.')));
+    this.root.appendChild(el('div', 'muted',
+      t('Hollow ring = where every club stood last season; the locked club also trails the seasons before that. Hover a dot for its identity, tap to lock it.')));
 
     const heroWrap = el('div', 'evo-hero');
     const lenses: Array<{ title: string; theme?: DimTheme; host: HTMLElement; dims: [number, number] }> = [
@@ -201,8 +221,17 @@ export class EvolutionScreen {
     }
     heroWrap.appendChild(mapGrid);
     const drawAll = (frameIdx: number): void => {
-      for (const lens of lenses) this.drawMap(lens.host, clubs, stats, frames, frameIdx, lens.dims);
+      lenses.forEach((lens, i) =>
+        this.drawMap(lens.host, i, clubs, stats, frames, frameIdx, lens.dims));
       this.heatmapUpdate?.(frameIdx); // the budget heatmap scrubs too (118.5)
+    };
+    // Hover has to repaint the lens it happened in (emphasis + card) without
+    // touching the other three or the screen below — a full render() on every
+    // mouse move would fight the pointer.
+    this.redrawLens = (lensIdx: number): void => {
+      const lens = lenses[lensIdx];
+      const cur = this.frameIdx ?? frames.length - 1;
+      if (lens) this.drawMap(lens.host, lensIdx, clubs, stats, frames, cur, lens.dims);
     };
 
     // Controls: ◀ frame slider ▶ + play.
@@ -251,23 +280,37 @@ export class EvolutionScreen {
     drawAll(idx);
   }
 
-  /** Draw one frame of one lens (DOM SVG so dots take click handlers). */
+  /**
+   * Draw one frame of one lens (Track D2). DOM SVG, so the dots can be
+   * pointed at. Reading order, back to front:
+   *   σ rings — how far from the league's centre a club is standing;
+   *   the trail — the FOCUSED club's earlier seasons, fading into the past;
+   *   ghosts — a hollow ring where each club stood LAST season, with a dashed
+   *     tie to where it stands now, so one season's movement is the loudest
+   *     thing on the chart and a whole-cloud drift is visible as a whole;
+   *   dots — the present, with the hovered/locked club lifted out of the pack.
+   * The lens index is here because the identity card is per-lens: pointing at
+   * one map must not open four cards.
+   */
   private drawMap(
-    host: HTMLElement, clubs: Franchise[], stats: DimStat[], frames: StyleFrame[], idx: number,
-    dims: [number, number],
+    host: HTMLElement, lensIdx: number, clubs: Franchise[], stats: DimStat[],
+    frames: StyleFrame[], idx: number, dims: [number, number],
   ): void {
     const [xi, yi] = dims;
-    const z = (v: number, i: number) =>
-      (v - stats[i].mean) / Math.max(stats[i].std, STYLE_DIMS[i].scale * 0.02);
+    const zAt = (row: number[], i: number): number =>
+      styleZ(row[i], stats[i].mean, stats[i].std, STYLE_DIMS[i].scale);
     const W = 420;
     const H = 320;
     const PAD = 28;
-    const cx = (zv: number) => W / 2 + Math.max(-2.5, Math.min(2.5, zv)) * ((W / 2 - PAD) / 2.5);
-    const cy = (zv: number) => H / 2 - Math.max(-2.5, Math.min(2.5, zv)) * ((H / 2 - PAD) / 2.5);
+    const cx = (zv: number): number => projectZ(zv, W, PAD);
+    const cy = (zv: number): number => projectZ(zv, H, PAD, true);
+    const at = (row: number[]): [number, number] => [cx(zAt(row, xi)), cy(zAt(row, yi))];
     host.textContent = '';
+    host.classList.add('evo-map-host');
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     svg.setAttribute('width', '100%');
+    svg.classList.add('evo-map-svg');
     const mk = (name: string): SVGElement =>
       document.createElementNS('http://www.w3.org/2000/svg', name);
     const bg = mk('rect');
@@ -275,6 +318,22 @@ export class EvolutionScreen {
     bg.setAttribute('width', String(W)); bg.setAttribute('height', String(H));
     bg.setAttribute('rx', '10'); bg.setAttribute('fill', SURFACE);
     svg.appendChild(bg);
+
+    // σ rings: the population centre is the middle, so distance from it IS
+    // distinctiveness. Ellipses because the two axes carry different pixel
+    // lengths for the same z.
+    for (const sigma of [1, 2]) {
+      const ring = mk('ellipse');
+      ring.setAttribute('cx', String(W / 2)); ring.setAttribute('cy', String(H / 2));
+      ring.setAttribute('rx', String((sigma * (W / 2 - PAD) / Z_LIMIT).toFixed(1)));
+      ring.setAttribute('ry', String((sigma * (H / 2 - PAD) / Z_LIMIT).toFixed(1)));
+      ring.setAttribute('fill', 'none');
+      ring.setAttribute('stroke', GRID);
+      ring.setAttribute('stroke-width', '1');
+      ring.setAttribute('stroke-dasharray', '3 5');
+      ring.setAttribute('opacity', sigma === 1 ? '0.9' : '0.55');
+      svg.appendChild(ring);
+    }
     for (const [x1, y1, x2, y2] of [
       [PAD, H / 2, W - PAD, H / 2],
       [W / 2, PAD, W / 2, H - PAD],
@@ -285,6 +344,12 @@ export class EvolutionScreen {
       line.setAttribute('stroke', GRID); line.setAttribute('stroke-width', '1');
       svg.appendChild(line);
     }
+    const sig = mk('text');
+    sig.setAttribute('x', String(W / 2 + 2 * (W / 2 - PAD) / Z_LIMIT + 3));
+    sig.setAttribute('y', String(H / 2 - 4));
+    sig.setAttribute('font-size', '8'); sig.setAttribute('fill', INK_MUTED);
+    sig.setAttribute('opacity', '0.7');
+    sig.textContent = '2σ';
     const ax = mk('text');
     ax.setAttribute('x', String(W - PAD)); ax.setAttribute('y', String(H / 2 - 7));
     ax.setAttribute('text-anchor', 'end'); ax.setAttribute('font-size', '10'); ax.setAttribute('fill', INK_MUTED);
@@ -293,54 +358,249 @@ export class EvolutionScreen {
     ay.setAttribute('x', String(W / 2 + 7)); ay.setAttribute('y', String(PAD + 4));
     ay.setAttribute('font-size', '10'); ay.setAttribute('fill', INK_MUTED);
     ay.textContent = `${t(STYLE_DIMS[yi].key)} ↑`;
-    svg.append(ax, ay);
+    svg.append(sig, ax, ay);
 
-    // Trails: path up to the CURRENT frame so playback grows them.
+    const hovering = this.hoverLens === lensIdx ? this.hoverSlot : null;
+    const isLead = (slot: number): boolean => slot === hovering || slot === this.selectedSlot;
+    const dots: ScatterDot[] = [];
+    const leadLayer: SVGElement[] = [];
+
     for (const f of clubs) {
-      const pts: Array<[number, number]> = [];
-      for (let i = Math.max(0, idx - 8); i <= idx; i++) {
-        const row = frames[i].bySlot.get(f.slot);
-        if (row) pts.push([cx(z(row[xi], xi)), cy(z(row[yi], yi))]);
+      const color = colorHex(f.colors.primary);
+      const lead = isLead(f.slot);
+      const layer: SVGElement[] = [];
+      const now = frames[idx].bySlot.get(f.slot);
+      const ghostRow = idx > 0 ? frames[idx - 1].bySlot.get(f.slot) : undefined;
+
+      // The long trail belongs to the FOCUSED club only. Sixteen clubs times
+      // eight seasons of faint polyline is a scribble that hides the very drift
+      // it is supposed to show — everyone else carries their one-season ghost
+      // tie below, which is the movement that actually just happened.
+      if (lead) {
+        // Trail points stop BEFORE the present: the ghost→now leg is drawn as
+        // the dashed tie, so the two never double up on the same line. The
+        // last trail point therefore IS the ghost, and wears the hollow ring.
+        const pts: Array<[number, number]> = [];
+        for (let i = trailStart(idx); i < idx; i++) {
+          const row = frames[i].bySlot.get(f.slot);
+          if (row) pts.push(at(row));
+        }
+        // History fades INTO the past, segment by segment, so the direction of
+        // time is legible without waiting for playback.
+        for (let i = 1; i < pts.length; i++) {
+          const seg = mk('line');
+          seg.setAttribute('x1', pts[i - 1][0].toFixed(1));
+          seg.setAttribute('y1', pts[i - 1][1].toFixed(1));
+          seg.setAttribute('x2', pts[i][0].toFixed(1));
+          seg.setAttribute('y2', pts[i][1].toFixed(1));
+          seg.setAttribute('stroke', color);
+          seg.setAttribute('stroke-width', '2.2');
+          seg.setAttribute('stroke-linecap', 'round');
+          seg.setAttribute('opacity', trailOpacity(i, pts.length, 0.85).toFixed(2));
+          layer.push(seg);
+        }
+        // Season beads: one mark per generation the trail passes THROUGH — the
+        // oldest point is where the line starts and the newest is the ghost's
+        // own ring, so neither needs a bead of its own.
+        for (let i = 1; i < pts.length - 1; i++) {
+          const bead = mk('circle');
+          bead.setAttribute('cx', pts[i][0].toFixed(1));
+          bead.setAttribute('cy', pts[i][1].toFixed(1));
+          bead.setAttribute('r', '1.8');
+          bead.setAttribute('fill', color);
+          bead.setAttribute('opacity', trailOpacity(i, pts.length, 0.7).toFixed(2));
+          layer.push(bead);
+        }
       }
-      if (pts.length >= 2) {
-        const path = mk('path');
-        path.setAttribute('d', pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' '));
-        path.setAttribute('fill', 'none');
-        path.setAttribute('stroke', colorHex(f.colors.primary));
-        path.setAttribute('stroke-width', '1.5');
-        path.setAttribute('opacity', f.slot === this.selectedSlot ? '0.7' : '0.25');
-        svg.appendChild(path);
+
+      // The ghost: last season, hollow. Every club carries one so a league-wide
+      // drift shows up as the whole cloud stepping off its own shadow.
+      if (now && ghostRow) {
+        const [gx, gy] = at(ghostRow);
+        const [nx, ny] = at(now);
+        const tie = mk('line');
+        tie.setAttribute('x1', gx.toFixed(1)); tie.setAttribute('y1', gy.toFixed(1));
+        tie.setAttribute('x2', nx.toFixed(1)); tie.setAttribute('y2', ny.toFixed(1));
+        tie.setAttribute('stroke', color);
+        tie.setAttribute('stroke-width', lead ? '1.8' : '1');
+        tie.setAttribute('stroke-dasharray', '2 3');
+        tie.setAttribute('opacity', lead ? '0.8' : '0.3');
+        layer.push(tie);
+        const ghost = mk('circle');
+        ghost.setAttribute('cx', gx.toFixed(1)); ghost.setAttribute('cy', gy.toFixed(1));
+        ghost.setAttribute('r', lead ? '5.5' : '4');
+        ghost.setAttribute('fill', 'none');
+        ghost.setAttribute('stroke', color);
+        ghost.setAttribute('stroke-width', lead ? '2' : '1.3');
+        ghost.setAttribute('opacity', lead ? '0.85' : '0.34');
+        layer.push(ghost);
+        // Which way it is going — only once the step is big enough that the
+        // angle means something rather than rounding noise.
+        if (lead && Math.hypot(nx - gx, ny - gy) >= 7) {
+          const ang = Math.atan2(ny - gy, nx - gx) * 180 / Math.PI;
+          const head = mk('path');
+          head.setAttribute('d', 'M 0 0 L -7 3.4 L -7 -3.4 Z');
+          head.setAttribute('fill', color);
+          head.setAttribute('opacity', '0.9');
+          head.setAttribute('transform',
+            `translate(${nx.toFixed(1)} ${ny.toFixed(1)}) rotate(${ang.toFixed(1)}) translate(-9 0)`);
+          layer.push(head);
+        }
       }
+
+      if (now) {
+        const [x, y] = at(now);
+        dots.push({ slot: f.slot, x, y });
+        const locked = f.slot === this.selectedSlot;
+        const dot = mk('circle');
+        dot.setAttribute('cx', x.toFixed(1)); dot.setAttribute('cy', y.toFixed(1));
+        dot.setAttribute('r', lead ? '7.5' : '5');
+        dot.setAttribute('fill', color);
+        dot.setAttribute('stroke', lead ? '#e7ecf6' : SURFACE);
+        dot.setAttribute('stroke-width', '2');
+        dot.setAttribute('opacity', lead ? '1' : '0.62');
+        layer.push(dot);
+        if (locked) {
+          // The lock's own mark, so a locked club still reads as locked while
+          // the pointer is somewhere else entirely.
+          const halo = mk('circle');
+          halo.setAttribute('cx', x.toFixed(1)); halo.setAttribute('cy', y.toFixed(1));
+          halo.setAttribute('r', '11');
+          halo.setAttribute('fill', 'none');
+          halo.setAttribute('stroke', '#e7ecf6');
+          halo.setAttribute('stroke-width', '1');
+          halo.setAttribute('opacity', '0.55');
+          layer.push(halo);
+        }
+        const label = mk('text');
+        label.setAttribute('x', (x + (locked ? 13 : 8)).toFixed(1));
+        label.setAttribute('y', (y + 3).toFixed(1));
+        label.setAttribute('font-size', lead ? '10' : '9');
+        label.setAttribute('font-weight', lead ? '700' : '400');
+        label.setAttribute('fill', lead ? '#e7ecf6' : INK_MUTED);
+        label.setAttribute('opacity', lead ? '1' : '0.75');
+        label.textContent = f.short;
+        layer.push(label);
+      }
+
+      if (lead) leadLayer.push(...layer);
+      else svg.append(...layer);
     }
-    for (const f of clubs) {
-      const row = frames[idx].bySlot.get(f.slot);
-      if (!row) continue;
-      const x = cx(z(row[xi], xi));
-      const y = cy(z(row[yi], yi));
-      const selected = f.slot === this.selectedSlot;
-      const dot = mk('circle');
-      dot.setAttribute('cx', x.toFixed(1)); dot.setAttribute('cy', y.toFixed(1));
-      dot.setAttribute('r', selected ? '7' : '5');
-      dot.setAttribute('fill', colorHex(f.colors.primary));
-      dot.setAttribute('stroke', selected ? '#e7ecf6' : SURFACE);
-      dot.setAttribute('stroke-width', '2');
-      dot.setAttribute('opacity', selected ? '1' : '0.85');
-      (dot as unknown as HTMLElement).style.cursor = 'pointer';
-      const title = mk('title');
-      title.textContent = f.name;
-      dot.appendChild(title);
-      dot.addEventListener('click', () => {
-        this.selectedSlot = f.slot;
-        if (this.league) this.render(this.league);
-      });
-      const label = mk('text');
-      label.setAttribute('x', (x + 8).toFixed(1)); label.setAttribute('y', (y + 3).toFixed(1));
-      label.setAttribute('font-size', '9');
-      label.setAttribute('fill', selected ? '#e7ecf6' : INK_MUTED);
-      label.textContent = f.short;
-      svg.append(dot, label);
-    }
+    svg.append(...leadLayer); // the focused club is never buried by the pack
     host.appendChild(svg);
+
+    // The identity card: who that dot is and what the league measured about
+    // it. Shown for whatever the pointer is on; pinned to the locked club
+    // when this is the lens the user tapped in (a phone never hovers).
+    const cardSlot = hovering ?? (this.pinLens === lensIdx ? this.selectedSlot : null);
+    if (cardSlot !== null) {
+      const f = clubs.find((c) => c.slot === cardSlot);
+      const now = f ? frames[idx].bySlot.get(f.slot) : undefined;
+      const anchor = dots.find((d) => d.slot === cardSlot);
+      if (f && now && anchor) {
+        host.appendChild(this.identityCard(
+          host, f, now, idx > 0 ? frames[idx - 1].bySlot.get(f.slot) ?? null : null,
+          stats, dims, frames, idx, anchor, W, H, hovering !== null,
+        ));
+      }
+    }
+
+    // Hit testing off the SVG rather than per-dot handlers: the dots are 5px
+    // in a 420-unit box and a thumb is not, so the pointer gets a generous
+    // radius and the NEAREST club wins.
+    const hit = (ev: PointerEvent | MouseEvent): number | null => {
+      const rect = svg.getBoundingClientRect();
+      const p = toViewBox(ev.clientX, ev.clientY, rect, W, H);
+      return nearestDot(dots, p.x, p.y, 22)?.slot ?? null;
+    };
+    svg.addEventListener('pointermove', (ev) => {
+      if (ev.pointerType === 'touch') return; // touch reads the card by tapping
+      const slot = hit(ev);
+      if (slot === this.hoverSlot && this.hoverLens === lensIdx) return;
+      this.hoverSlot = slot;
+      this.hoverLens = slot === null ? null : lensIdx;
+      this.redrawLens?.(lensIdx);
+    });
+    svg.addEventListener('pointerleave', () => {
+      if (this.hoverLens !== lensIdx) return;
+      this.hoverSlot = null;
+      this.hoverLens = null;
+      this.redrawLens?.(lensIdx);
+    });
+    svg.addEventListener('click', (ev) => {
+      const slot = hit(ev);
+      if (slot === null) return;
+      // Tapping the club that is already locked here unpins the card — the
+      // way out of a card that is covering the dot behind it.
+      this.pinLens = slot === this.selectedSlot && this.pinLens === lensIdx ? null : lensIdx;
+      this.selectedSlot = slot;
+      if (this.league) this.render(this.league);
+    });
+  }
+
+  /**
+   * The identity card (D2's "hover 身份"): the club, the style words the
+   * population's own spread earned it, and how far it moved since the ghost
+   * season. Every number here is measured off the same style vectors the dots
+   * are drawn from — no narrative that the chart cannot back.
+   */
+  private identityCard(
+    host: HTMLElement, f: Franchise, now: number[], ghost: number[] | null,
+    stats: DimStat[], dims: [number, number], frames: StyleFrame[], idx: number,
+    anchor: ScatterDot, W: number, H: number, transient: boolean,
+  ): HTMLElement {
+    const [xi, yi] = dims;
+    const zAt = (row: number[], i: number): number =>
+      styleZ(row[i], stats[i].mean, stats[i].std, STYLE_DIMS[i].scale);
+    const mx = axisMove(zAt(now, xi), ghost ? zAt(ghost, xi) : null);
+    const my = axisMove(zAt(now, yi), ghost ? zAt(ghost, yi) : null);
+    const drift = driftMagnitude(mx, my);
+
+    const card = el('div', 'evo-card');
+    if (transient) card.classList.add('transient');
+    card.style.borderColor = colorHex(f.colors.primary);
+    const head = el('div', 'evo-card-head');
+    const swatch = el('span', 'dot');
+    swatch.style.background = colorHex(f.colors.primary);
+    head.append(swatch, el('span', 'evo-card-name', f.name));
+    card.appendChild(head);
+
+    card.appendChild(el('div', 'evo-card-when', ghost
+      ? `${frames[idx - 1].label} → ${frames[idx].label} · ${t('drift')} ${drift!.toFixed(2)}σ`
+      : `${frames[idx].label} · ${t('no earlier season yet')}`));
+
+    const plate = el('div', 'evo-card-plate');
+    for (const word of nameplateFor(now, stats)) plate.appendChild(el('span', 'evo-chip', t(word)));
+    card.appendChild(plate);
+
+    for (const [i, m] of [[xi, mx], [yi, my]] as const) {
+      const row = el('div', 'evo-card-row');
+      row.appendChild(el('span', 'evo-card-dim', t(STYLE_DIMS[i].key)));
+      row.appendChild(el('span', 'evo-card-z', `${m.z >= 0 ? '+' : ''}${m.z.toFixed(2)}σ`));
+      const move = el('span', 'evo-card-move',
+        m.dz === null ? '—' : `${m.arrow} ${m.dz >= 0 ? '+' : ''}${m.dz.toFixed(2)}`);
+      if (m.dz !== null && m.arrow !== '→') move.classList.add('moved');
+      row.appendChild(move);
+      card.appendChild(row);
+    }
+    card.appendChild(el('div', 'evo-card-hint', t('Tap the dot again to unpin')));
+
+    // Placed after layout so the card's real size decides which way it flips;
+    // the host may not be measurable yet, in which case fall back to the
+    // viewBox aspect the SVG will take anyway.
+    const hostW = host.clientWidth || W;
+    const hostH = host.clientHeight || hostW * H / W;
+    card.style.visibility = 'hidden';
+    requestAnimationFrame(() => {
+      const p = cardPlacement(
+        anchor.x / W * hostW, anchor.y / H * hostH,
+        card.offsetWidth, card.offsetHeight, hostW, hostH,
+      );
+      card.style.left = `${p.left}px`;
+      card.style.top = `${p.top}px`;
+      card.style.visibility = 'visible';
+    });
+    return card;
   }
 
   /** Section 2 — the selected club through the EVOLUTION lens (113.5):

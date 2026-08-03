@@ -226,6 +226,12 @@ const ZH: Record<string, string> = {
   'Axes = the two dimensions this season\'s clubs disagree on most; trails = recent seasons.':
     '坐标轴=本赛季各队分歧最大的两个维度；轨迹=最近几个赛季的漂移。',
   'style divergence': '风格分化度',
+  // ---- season trails on the style map (Track D2) ----
+  'Hollow ring = where every club stood last season; the locked club also trails the seasons before that. Hover a dot for its identity, tap to lock it.':
+    '空心圈=每队上个赛季的位置;被锁定的球队还会拉出更早几个赛季的尾迹。悬停看身份,点击锁定。',
+  drift: '漂移',
+  'no earlier season yet': '还没有上个赛季',
+  'Tap the dot again to unpin': '再点一次取消锁定',
   'Budget allocation': '预算分配',
   Balanced: '均衡',
   'High press': '高位逼抢',
