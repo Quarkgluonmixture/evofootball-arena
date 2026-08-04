@@ -6273,3 +6273,46 @@
 >    12.21M–12.30M, one seed runs all five arms), stats
 >    101003/101103; FAIL modes as contracted (§6 F-SLIDE /
 >    F-NULL / F-SHAPE-ONLY, all → the user).
+
+> **COMMANDER RULING #150 (2026-08-04 — the A4-P3 verify BLOCK
+> adjudicated: RATIFIED-OVER-LETTER after independent code
+> inspection; the runs authorized):**
+>
+> 1. **THE BLOCK, DISPOSED**: the verifier correctly blocked on
+>    the #149.4 letter ("the gene/master flag NOT used") — the
+>    prior arms inject via the P2 shipped-form seam
+>    (eye.v4.homePrior + homePriorObedience=0.5 on both probe
+>    fixtures) because `Match.homeMapGrant` is STRUCTURALLY
+>    single-side and a symmetric both-sides grant is unreachable
+>    zero-src. **Commander inspection of actionExecutor's three
+>    branches certifies the equivalence the verifier could not**:
+>    the mapGrant and gene branches construct the IDENTICAL
+>    `homeMapBias(s, …)` closure over the IDENTICAL
+>    ATTACK_FORMATIONS home at the IDENTICAL consumption point —
+>    the sole difference is the SOURCE of `s`, and
+>    homePriorStrength(0.5) = 0.25×VAL_SCALE = 0.040874 is
+>    asserted by the in-probe priorEquivalence HARD gate. Road B
+>    intact: probe fixtures only, dormant in production,
+>    fingerprint `57b0bdab…c673` unchanged. The letter of #149.4
+>    is AMENDED accordingly; the followed-and-flagged conduct
+>    (#134.2 genre) is again the correct behaviour, and the
+>    verifier's literal block is exactly the machine-verify
+>    working as designed — the waiver authority is the
+>    commander's alone. BONUS accepted: the battery now examines
+>    the mechanism in its SHIPPED form — stronger external
+>    validity than a probe-only injection.
+> 2. **NOTES DISPOSED**: the smoke floor 12,208,000 (the brief's
+>    precise pin governs; #149.4's "12.21M–12.30M" was loose
+>    phrasing — the block is virgin, disjoint, in-band); the
+>    vestigial P3p-3 %-band constants are REPORTED context only
+>    (the gate reads resolved SIGN on PRIOR−R3p; the doc labels
+>    this; no re-touch to avoid a cosmetic re-verify round).
+>    The frozen-gate form, arms, seeds, sizing (MDL floor 0.01
+>    occupancy points), and X-family are BANKED as delivered
+>    (`84d8a66`).
+> 3. **THE RUNS AUTHORIZED** (#49.5): smoke (40 five-arm sets @
+>    12.208M) → the frozen N arithmetic → the battery (@ 12.21M,
+>    N ≤ 8,000, progress every 250 sets) → adjudication. **EVERY
+>    outcome returns to the user** (PASS / F-SLIDE / F-NULL /
+>    F-SHAPE-ONLY — the contract §6 classification) — in plain
+>    language: this is slice 1's final exam.
