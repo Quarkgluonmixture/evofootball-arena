@@ -79,11 +79,19 @@ TERM: strength region (0, 0.5]×VAL_SCALE, resolved benefit at the
 low end — 松约定有价,紧约定无价/有害, the user's ontology now
 CERTIFIED at gate grain.** Contract §5 amended (#148: PRIOR arms
 pin 0.25×; the P2 gene born 0, bounds [0, 0.5×VAL_SCALE]).
-**A4-P2 (the dormant mechanism build) DISPATCHED on the green
-path** — gene + wiring + dormancy tests; then A4-P3 the frontier
-battery. ⚠ the RNG-stream trap is named in the P2 brief (a new
-gene's mutation draws must not perturb the flag-off random
-sequence). Superseded stage detail: A4-P1e census design (#146)
+**A4-P2 BUILT + BANKED (#149, `f49382a`)**: gene
+`homePriorObedience` (TacticalGenome, born ABSENT ⇒ semantic 0 —
+the serialized-keys/fingerprint trap dodged; bounds [0,
+0.5×VAL_SCALE]) + master flag `eye.v4.homePrior` + evolution
+opt-in; RNG-stream identity PROVEN (8-gen seeded byte-identity,
+equal Rng state); 1030/1030; fingerprint unchanged. Contract §5
+re-amended (#149: priorOnly was vacuous under M1′ → R3v3/R3v3p
+pair). **A4-P3, THE FRONTIER BATTERY, IS LIVE (the slice's FINAL
+exam; its verdict returns to the user regardless)**: five arms
+R0/R3v3/R3v3p/R3p/PRIOR @0.25×; the frozen H-A4.1 predicate on
+PRIOR−R3p (DEGEN-RESTDEF resolvedly improves ∧ NO shape limb
+regresses — the exact conjunction every price-shaped remedy
+failed); seeds 12.21M–12.30M tail, stats 101003/101103.
 Design (#146): NO src changes (the map seam takes strength as a
 parameter); fine grid {0.125, 0.25, 0.375, 0.5}×VAL_SCALE,
 PRIMARY pinned 0.25×; gate frozen fresh = (i) primary resolved

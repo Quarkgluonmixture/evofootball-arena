@@ -6223,3 +6223,53 @@
 >    consume RNG draws when the flag is off — the flag-off random
 >    sequence (and thus the production fingerprint and every
 >    banked instrument) must stay byte-identical.
+
+> **COMMANDER RULING #149 (2026-08-04 — the A4-P2 build reviewed
+> and banked; the priorOnly arm amended; A4-P3, THE FRONTIER
+> BATTERY, dispatched — slice 1's final exam):**
+>
+> 1. **BANKED**: `f49382a` (the gene `homePriorObedience` in
+>    TacticalGenome + the master flag `eye.v4.homePrior` + the
+>    evolution opt-in + 14 dormancy tests; verify PASS with the
+>    RNG-stream trap as the audit centrepiece — all production
+>    mutation/crossover callers traced flag-off, the seeded
+>    8-generation byte-identity test verified NON-tautological
+>    (asserts equal Rng internal state), fingerprint
+>    `57b0bdab…c673` unchanged; suite 1030/1030).
+> 2. **FLAGS DISPOSED (all accepted)**: TacticalGenome as the
+>    gene's home (delegated choice, sound — born-0 [0,1]
+>    read-by-AI is the TacticalGenome doctrine; policyGenome's
+>    multiplier-around-nonzero-default shape is wrong); ⭐ the
+>    ABSENT-not-zero birth (a defined 0 would enter League.toJSON
+>    and break the fingerprint — the serialized-keys trap, dodged
+>    deliberately; consumers read `?? 0`); the TWO coordinated
+>    dormant gates (consumption flag + evolution opt-in — both
+>    default OFF; a ship-grade run flips both); the linear dose
+>    map (obedience 0.5 = the certified primary 0.25×); VAL_SCALE
+>    pinned as a src constant with provenance. NOTED for the
+>    eventual ship review (not P3-relevant): crossover's
+>    asymmetric carry in non-production mixed states;
+>    geneDistance/describeIdentity not yet reading the gene.
+> 3. **CONTRACT §5 AMENDED (#149, pre-run)**: `priorOnly` (R0 +
+>    prior) was MECHANICALLY VACUOUS under M1′ (the prior lives
+>    at the eye consumption point; R0 has no eye — the P2
+>    inert-without-eye test is the proof). Replaced by the
+>    `R3v3`/`R3v3p` pair; `R3v3p − R3v3` = the prior on the plain
+>    eye, the honest attribution contrast.
+> 4. **A4-P3 DISPATCHED (green path; the slice's FINAL exam —
+>    its verdict returns to the user REGARDLESS)**: the P3p-3
+>    attribution-chain battery form reused; five arms R0 / R3v3 /
+>    R3v3p / R3p / PRIOR, prior arms at 0.25×VAL_SCALE via the
+>    probe grant path; **the frozen frontier predicate (H-A4.1)
+>    on `PRIOR − R3p`: DEGEN-RESTDEF improves resolvedly AND no
+>    shape limb (spacing / dupRun / roleMixTV / watchability
+>    DEGEN family, carried verbatim from the P3p-3 freeze)
+>    resolves negative**; deep/box raw rates ride as REPORTED
+>    mediators (the P1-family surrogates, labelled); instrument
+>    gates inherited (X-DET wall-free, X-MERGE-IDENT,
+>    E-NONSTATION refined form, X-FP); sizing-before-floors with
+>    the frozen N arithmetic; progress lines; SEEDS from the
+>    remaining reservation tail (smoke + battery inside
+>    12.21M–12.30M, one seed runs all five arms), stats
+>    101003/101103; FAIL modes as contracted (§6 F-SLIDE /
+>    F-NULL / F-SHAPE-ONLY, all → the user).

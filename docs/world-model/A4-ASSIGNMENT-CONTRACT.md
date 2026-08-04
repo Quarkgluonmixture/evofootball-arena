@@ -229,14 +229,19 @@ arc: nothing ships from slice 1 regardless of verdict (Road B).
   change anywhere flag-off.
 * **A4-P3 (the frontier battery):** the P3p-3 attribution-chain form REUSED
   — four arms, telescoping marginal contrasts:
-  `R0` / `R3p` (the banked certified remedies) / `priorOnly` (R0 + the
-  home-prior layer) / `PRIOR` (R3p + the home-prior layer). *(#148
-  AMENDMENT, pre-run for P3: the prior arms pin strength = 0.25× VAL_SCALE
-  — the P1e-certified primary; the original "generation-0
-  incumbent-equivalent" pin predated the dose curve and would make the
-  PRIOR arm a strength-0 no-op. The P2 GENE is born 0 — generation 0
-  unchanged — with bounds [0, 0.5×VAL_SCALE], the certified non-harmful
-  span.)*
+  `R0` / `R3v3` (the plain v3 eye) / `R3v3p` (R3v3 + the home-prior
+  layer) / `R3p` (the banked certified remedies) / `PRIOR` (R3p + the
+  home-prior layer). *(#148 AMENDMENT, pre-run for P3: the prior arms pin
+  strength = 0.25× VAL_SCALE — the P1e-certified primary; the original
+  "generation-0 incumbent-equivalent" pin predated the dose curve and
+  would make the PRIOR arm a strength-0 no-op. The P2 GENE is born 0 —
+  generation 0 unchanged — with bounds [0, 0.5×VAL_SCALE].)* *(#149
+  AMENDMENT, pre-run for P3: the original `priorOnly` (R0 + prior) arm is
+  MECHANICALLY VACUOUS under M1′ — the prior lives at the eye consumption
+  point and R0 has no eye (the P2 inert-without-eye test proves it);
+  replaced by the `R3v3`/`R3v3p` pair, whose paired local contrast
+  `R3v3p − R3v3` reads the prior's effect on the plain eye — the honest
+  descendant of the attribution contrast.)*
   - **Primary contrast: `PRIOR − R3p`** — do the priors close the
     residual the remedies leave? PASS = DEGEN-RESTDEF improves resolvedly
     (CI excluding zero toward closing) AND no shape limb resolves negative
