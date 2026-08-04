@@ -141,6 +141,32 @@ export interface TacticalGenome {
    * not exist in gene space. 69-78% of breakaways are born in this window.
    */
   transitionPress: number;
+  /**
+   * THE HOME-PRIOR OBEDIENCE gene (A4-P2, ruling #148 — the pre-match agreement
+   * layer 野球开场的"你踢后卫,我顶前面"). How hard this team obeys its own
+   * agreed home distribution: each outfielder carries a coarse 2D home centred on
+   * HIS formation base spot (the world's own evolved variable), and the eye is
+   * softly biased toward it (stationEye.homeMapBias). 0 = no agreement — a team
+   * that plays without a shared prior and pays whatever the world charges (the
+   * "有的队不夹击,活该" genre); 1 = the certified strength ceiling
+   * (HOME_MAP_STRENGTH_MAX = 0.5×VAL_SCALE). A4-P1e CERTIFIED a resolved
+   * discipline benefit across (0, 0.5]×VAL_SCALE — 松约定有价 — with the primary
+   * (0.25×) at obedience 0.5. The value in [0,1] scales LINEARLY onto strength via
+   * homePriorStrength().
+   *
+   * ⚠ DORMANT / BORN 0 (RNG-STREAM SAFETY, #148.5 the #75 genre): this gene is
+   * OPTIONAL and BORN ABSENT (≡ 0 at every consumer via `?? 0`). It is deliberately
+   * NOT in GENE_KEYS — so randomGenome/mutateGenome/crossoverGenomes/geneDistance
+   * draw the EXACT SAME RNG in the EXACT SAME order as HEAD, and the serialized
+   * genome (and thus the production fingerprint 57b0bdab…c673) is byte-identical
+   * (an absent optional key is omitted by JSON.stringify). It gains a concrete
+   * value ONLY when an evolution run explicitly opts in via `evolveHomePrior`
+   * (MutateOptions / crossoverGenomes); the consumption path is itself gated by the
+   * dormant `eye.v4.homePrior` master flag. Every draw for this gene is thus
+   * flag-gated — flag-off evolution never consumes RNG for it. (§2 M2′ / I-A3 /
+   * I-A5 / I-A7.)
+   */
+  homePriorObedience?: number;
 }
 
 export const GENE_KEYS = [
@@ -182,6 +208,16 @@ export interface MutateOptions {
   rate?: number;
   /** Std-dev of gaussian noise added to a mutating gene. */
   scale?: number;
+  /**
+   * A4-P2 (#148.5, the RNG-stream trap): opt-in that lets the dormant
+   * `homePriorObedience` gene evolve. DEFAULT OFF — every production evolve.ts
+   * call omits it, so the gene draws NO RNG and the flag-off random sequence
+   * (mutation + crossover draws) stays byte-identical to HEAD. Its draws happen
+   * ONLY when this is `true` and STRICTLY AFTER the GENE_KEYS loop, so enabling it
+   * never re-orders any existing gene's draw. When shipped, an A4-P3-grade run
+   * flips this together with the `eye.v4.homePrior` consumption flag.
+   */
+  evolveHomePrior?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -192,15 +228,36 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
   for (const k of GENE_KEYS) {
     if (rng.chance(rate)) out[k] = clamp01(out[k] + rng.gaussian() * scale);
   }
+  // A4-P2 (#148.5): the home-prior gene mutates ONLY under its explicit opt-in and
+  // ONLY here — after the GENE_KEYS loop — so flag-off runs consume ZERO extra RNG
+  // draws and stay byte-identical to HEAD. `{ ...g }` above already carried the
+  // gene through untouched (born-absent ⇒ stays absent) in the flag-off path.
+  if (opts.evolveHomePrior === true && rng.chance(rate)) {
+    out.homePriorObedience = clamp01((out.homePriorObedience ?? 0) + rng.gaussian() * scale);
+  }
   return out;
 }
 
 /** Uniform crossover with occasional blending — child gene is from a, from b, or their mean. */
-export function crossoverGenomes(a: TacticalGenome, b: TacticalGenome, rng: Rng): TacticalGenome {
+export function crossoverGenomes(
+  a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
+): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
     const r = rng.next();
     out[k] = r < 0.4 ? a[k] : r < 0.8 ? b[k] : (a[k] + b[k]) / 2;
+  }
+  // A4-P2 (#148.5): the home-prior gene crosses over ONLY under its explicit opt-in
+  // and ONLY here — after the GENE_KEYS loop — so flag-off runs draw ZERO extra RNG
+  // and stay byte-identical to HEAD. Flag-off ⇒ carry parent A's value through with
+  // NO draw (born-absent ⇒ the key stays absent ⇒ serialization unchanged).
+  if (evolveHomePrior) {
+    const r = rng.next();
+    const av = a.homePriorObedience ?? 0;
+    const bv = b.homePriorObedience ?? 0;
+    out.homePriorObedience = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
+  } else if (a.homePriorObedience !== undefined) {
+    out.homePriorObedience = a.homePriorObedience;
   }
   return out;
 }

@@ -9,6 +9,7 @@ import type { Player } from '../sim/Player';
 import { TEAM_SIZE, type Role } from '../sim/types';
 import {
   EYE_LATTICE, EYE_W_S, STATION_FAMILY, backHomeRegionBias, goingBits, goingContributors, homeMapBias,
+  homePriorStrength,
   localXBand, perceivedContext, perceivedContextV2, priceApproaches, priceApproachesV2, priceApproachesV3,
   priceApproachesV3Partial, type EyeCandidate, type PerceivedContext, type TeammateMotionId,
 } from './stationEye';
@@ -904,6 +905,30 @@ export function executeAction(p: Player, match: Match, dt: number): void {
             homeBias = (cand: EyeCandidate) => homeMapBias(
               s, team.localX(ball.pos.x + team.attackDir * cand.dx), ball.pos.y + cand.dy, hx, hy,
             );
+          }
+        }
+        // A4-P2 (#148): the SHIPPED-FORM home-prior MASTER flag. Dormant unless
+        // `eye.v4.homePrior === true` — absent in every production path AND every
+        // banked instrument ⇒ this block never runs ⇒ bit-for-bit HEAD (I-A7). When
+        // ON, this side derives its OWN home-map strength from ITS genome's
+        // `homePriorObedience` gene (born 0/absent ⇒ strength 0 ⇒ inert ⇒ still
+        // byte-identical until the gene evolves), applied to the SAME per-body home
+        // (HIS ATTACK_FORMATIONS base spot) at the SAME v3 consumption point — both
+        // teams, each from its own agreement. The probe `homeMapGrant` takes
+        // precedence for any side it targets: this branch fires only when no probe
+        // grant covers p.side (independence, the P1c/P1d idiom).
+        if (homeBias === undefined && eye.v4?.homePrior === true
+          && (mapGrant === null || mapGrant.side !== p.side)) {
+          const s = homePriorStrength(team.genome.homePriorObedience ?? 0);
+          if (s !== 0) {
+            const home = ATTACK_FORMATIONS[team.style.formationAtk][p.index];
+            if (home !== undefined) {
+              const hx = home.x;
+              const hy = home.y;
+              homeBias = (cand: EyeCandidate) => homeMapBias(
+                s, team.localX(ball.pos.x + team.attackDir * cand.dx), ball.pos.y + cand.dy, hx, hy,
+              );
+            }
           }
         }
         let outcome;

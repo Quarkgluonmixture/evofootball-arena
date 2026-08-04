@@ -138,6 +138,39 @@ export function homeMapBias(
   return strength * Math.exp(-outside / HOME_MAP_DECAY_M);
 }
 
+// ---------------------------------------------------------------------------
+// A4-P2 (ruling #148) — THE SHIPPED-FORM STRENGTH SCALE for the home-map bias.
+// P1c/P1d/P1e priced the map grant's strength in DOSE units of `VAL_SCALE` — the
+// SD of the neutral-weight station value, derived IN-PROBE (not a src constant)
+// and pinned at `0.163494` (docs/world-model/A4-P1E-LOWDOSE-CENSUS.md §"Strengths",
+// the same value the P1c/P1d/P1e probes recomputed and asserted). A4-P1e (#148)
+// CERTIFIED the non-harmful strength span as (0, 0.5]×VAL_SCALE with the resolved
+// discipline benefit at the low end; the whole grid {0.125..0.5}× was point-
+// beneficial, none resolved harm. For the SHIPPED mechanism the strength is no
+// longer an injected dose but a GENE (I-A3: genes are evolution's seat), so the
+// certified UPPER bound is pinned here as a NAMED FROZEN src constant with its
+// provenance: 0.5 × 0.163494 = 0.081747. The per-team obedience gene ∈ [0, 1]
+// maps LINEARLY onto [0, HOME_MAP_STRENGTH_MAX] — 1 = the certified ceiling,
+// 0 = no agreement (the born value; the incumbent world, byte-identical). The
+// certified PRIMARY (0.25× = 0.0409) sits at obedience 0.5.
+/** the certified home-prior strength ceiling = 0.5 × VAL_SCALE(0.163494); the
+ *  A4-P1e non-harmful span's upper bound (docs/world-model/A4-P1E-LOWDOSE-CENSUS.md,
+ *  ruling #148). The obedience gene ∈ [0,1] scales linearly onto [0, this]. */
+export const HOME_MAP_STRENGTH_MAX = 0.5 * 0.163494;
+
+/**
+ * Map a per-team home-prior OBEDIENCE gene value (∈ [0,1], the shipped form of
+ * the M3′ dose) to the eye-native bias strength ∈ [0, HOME_MAP_STRENGTH_MAX].
+ * PURE, linear, no clamp beyond the gene's own [0,1] domain (obedience 0 ⇒ 0 ⇒
+ * inert ⇒ the incumbent world). Out-of-domain / non-finite ⇒ 0 (defensive: a
+ * born-absent gene reads 0 at the caller via `?? 0`).
+ */
+export function homePriorStrength(obedience: number): number {
+  if (!Number.isFinite(obedience) || obedience <= 0) return 0;
+  const v = obedience > 1 ? 1 : obedience;
+  return v * HOME_MAP_STRENGTH_MAX;
+}
+
 /** The 18-candidate lattice, byte-for-byte P1R's (§2.3 of that contract). */
 export interface EyeCandidate { readonly id: string; readonly dx: number; readonly dy: number }
 export const EYE_LATTICE: readonly EyeCandidate[] = (() => {

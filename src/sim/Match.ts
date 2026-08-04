@@ -732,6 +732,19 @@ export class Match {
       readonly deliveryBit?: boolean;
       /** §3.2: compute the beyond-line bit (observability only until P3p-2). */
       readonly offsideBit?: boolean;
+      /**
+       * A4-P2 (ruling #148): the DORMANT home-prior MASTER flag. Absent / not
+       * `true` in every production path AND every banked instrument ⇒ the map-grant
+       * consumption block below stays byte-identical (X-OFF-IDENT / I-A7). When
+       * `=== true` AND the eye consumption is armed, EACH side's home-map bias
+       * strength is derived from THAT side's own genome (`homePriorObedience`, born
+       * 0 ⇒ inert) at the SAME v3 consumption point — both teams, each from its own
+       * agreement. The probe-injected `Match.homeMapGrant` stays available and takes
+       * PRECEDENCE for any side it targets (instrument independence, the P1c/P1d
+       * idiom). No clamp, no new consumption moment; homes stay the genome-chosen
+       * ATTACK_FORMATIONS base spots (banked #144.2).
+       */
+      readonly homePrior?: boolean;
     };
     /** Probe-owned observability sink; the sim never reads it back. */
     readonly trace?: StationEyeTrace;
