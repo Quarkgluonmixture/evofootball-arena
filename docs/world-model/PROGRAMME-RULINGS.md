@@ -6186,3 +6186,40 @@
 >    measured strength region as M3′'s term; any fail ⇒ the
 >    distribution question CLOSES, return to the user — in plain
 >    language.
+
+> **COMMANDER RULING #148 (2026-08-04 — A4-P1e adjudicated: PASS,
+> the arc's first; the distribution question closes POSITIVE; the
+> contract §5 pin amended; A4-P2 dispatched):**
+>
+> 1. **BANKED**: the census (8000 matches @ 12.20M, 160,000 paired
+>    forks; X-DET/X-FORK/X-MERGE/E-NONSTATION/X-FP all green; SHA
+>    f53557869dd5; both JSONs committed). **THE GATE, EXECUTED AS
+>    FROZEN: PASS** — (a) primary 0.25× resolved benefit
+>    (−0.013975 [−0.019344, −0.009119]); (b) NO resolved harm
+>    anywhere on the grid (rungs −0.0142 / −0.0140 / −0.0122 /
+>    −0.0096, all point-beneficial); (c) no Simpson reversal.
+> 2. **THE REPLICATION**: P1d's 0.25× rung (−0.0139 [−0.0188,
+>    −0.0089], independent 12.10M seeds) reproduced at −0.0140
+>    [−0.0193, −0.0091] on virgin 12.20M seeds. Mediators
+>    consistent and labelled: turnovers −0.0217, box entries
+>    −0.0030 at 0.25× (both resolved benefits). The term is real.
+> 3. **THE DISTRIBUTION QUESTION CLOSES POSITIVE (#146.1)**: a
+>    coarse, WEAKLY-binding whole-team home agreement carries a
+>    certified discipline benefit on the eye world; the certified
+>    region is (0, 0.5]×VAL_SCALE with the benefit at the low
+>    end. 松约定有价;紧约定无价或有害 — the user's #132/#136
+>    ontology now holds at gate grain, replicated.
+> 4. **CONTRACT §5 AMENDED (pre-run for P3)**: the PRIOR/priorOnly
+>    battery arms pin strength = 0.25× VAL_SCALE (the certified
+>    primary; the old gen-0 pin would be a strength-0 no-op). The
+>    P2 gene: born 0 (generation 0 unchanged), bounds
+>    [0, 0.5×VAL_SCALE] (the certified non-harmful span).
+> 5. **A4-P2 DISPATCHED (green path, #143.1)**: the dormant
+>    mechanism build — a per-team evolvable agreement-strength
+>    gene (idiomatic home for it = executor's flagged choice),
+>    the dormant master flag feeding gene-derived strengths into
+>    the banked consumption path, dormancy tests. ⚠ Pre-named
+>    trap (#75 genre): the new gene's MUTATION path must not
+>    consume RNG draws when the flag is off — the flag-off random
+>    sequence (and thus the production fingerprint and every
+>    banked instrument) must stay byte-identical.

@@ -230,8 +230,13 @@ arc: nothing ships from slice 1 regardless of verdict (Road B).
 * **A4-P3 (the frontier battery):** the P3p-3 attribution-chain form REUSED
   — four arms, telescoping marginal contrasts:
   `R0` / `R3p` (the banked certified remedies) / `priorOnly` (R0 + the
-  home-prior layer) / `PRIOR` (R3p + the home-prior layer), the prior
-  content pinned at the generation-0 incumbent-equivalent distribution.
+  home-prior layer) / `PRIOR` (R3p + the home-prior layer). *(#148
+  AMENDMENT, pre-run for P3: the prior arms pin strength = 0.25× VAL_SCALE
+  — the P1e-certified primary; the original "generation-0
+  incumbent-equivalent" pin predated the dose curve and would make the
+  PRIOR arm a strength-0 no-op. The P2 GENE is born 0 — generation 0
+  unchanged — with bounds [0, 0.5×VAL_SCALE], the certified non-harmful
+  span.)*
   - **Primary contrast: `PRIOR − R3p`** — do the priors close the
     residual the remedies leave? PASS = DEGEN-RESTDEF improves resolvedly
     (CI excluding zero toward closing) AND no shape limb resolves negative

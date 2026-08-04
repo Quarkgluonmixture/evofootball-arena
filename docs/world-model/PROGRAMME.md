@@ -68,8 +68,22 @@ resolved) · +0.0140 @2.0× (resolved harm) — 约定要"大概意思"才有
 效,"规定死"有害 (the user's #132/#136 ontology, measured).
 Mediators: turnovers↓ all doses, BOX↓ all doses (resolved),
 compact-without-clumping at low dose; H5 confirmed at low dose.
-⭐ #145.5 RULED A BY THE USER ("a", #146) — A4-P1e, THE
-LOW-DOSE REFINEMENT CENSUS, IS LIVE; the green path resumed.
+⭐⭐⭐ **A4-P1e PASSED (#148, 2026-08-04) — THE ARC'S FIRST GATE
+PASS; the distribution question CLOSES POSITIVE.** Δ@0.25× =
+−0.013975 [−0.019344, −0.009119] on fresh seeds — an exact
+replication of P1d's independent rung (−0.0139); the whole grid
+{0.125..0.5}× beneficial (rungs −0.0142/−0.0140/−0.0122/−0.0096),
+noHarm TRUE, no reversal, all X green. Mediators consistent
+(turnovers −0.022, box −0.0030 at 0.25×, labelled). **THE MEASURED
+TERM: strength region (0, 0.5]×VAL_SCALE, resolved benefit at the
+low end — 松约定有价,紧约定无价/有害, the user's ontology now
+CERTIFIED at gate grain.** Contract §5 amended (#148: PRIOR arms
+pin 0.25×; the P2 gene born 0, bounds [0, 0.5×VAL_SCALE]).
+**A4-P2 (the dormant mechanism build) DISPATCHED on the green
+path** — gene + wiring + dormancy tests; then A4-P3 the frontier
+battery. ⚠ the RNG-stream trap is named in the P2 brief (a new
+gene's mutation draws must not perturb the flag-off random
+sequence). Superseded stage detail: A4-P1e census design (#146)
 Design (#146): NO src changes (the map seam takes strength as a
 parameter); fine grid {0.125, 0.25, 0.375, 0.5}×VAL_SCALE,
 PRIMARY pinned 0.25×; gate frozen fresh = (i) primary resolved
