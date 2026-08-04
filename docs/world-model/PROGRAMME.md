@@ -86,12 +86,22 @@ the serialized-keys/fingerprint trap dodged; bounds [0,
 opt-in; RNG-stream identity PROVEN (8-gen seeded byte-identity,
 equal Rng state); 1030/1030; fingerprint unchanged. Contract §5
 re-amended (#149: priorOnly was vacuous under M1′ → R3v3/R3v3p
-pair). **A4-P3, THE FRONTIER BATTERY, IS LIVE (the slice's FINAL
-exam; its verdict returns to the user regardless)**: five arms
-R0/R3v3/R3v3p/R3p/PRIOR @0.25×; the frozen H-A4.1 predicate on
-PRIOR−R3p (DEGEN-RESTDEF resolvedly improves ∧ NO shape limb
-regresses — the exact conjunction every price-shaped remedy
-failed); seeds 12.21M–12.30M tail, stats 101003/101103.
+pair). **A4-P3 RAN AND THE FROZEN EXAM FAILED — F-SHAPE-ONLY
+(#151, `fb2aecf2`)**: occupancy proxy −0.0401 (wrong way), three
+proximity-shape limbs negative (spacing −0.64 m, under-4m +0.007,
+dupRun +0.038), scramble improves; **but the REPORTED causal
+currency points the OTHER way: deep −1.49/set, box −0.35/set on
+the same PRIOR−R3p contrast** (plain eye: deep −4.38, box −0.96).
+Honest costs: restartTicks +161/set, roleMixTV 0.556→0.434. ⭐
+#151.3: the exam's instruments predate the P1 arc — it graded the
+mechanism against the OLD shape's yardstick while the certified
+currency says it works; H-A4.1 is MIS-MEASURED, not settled. ⭐
+**THE QUEUE SITS AT THE USER FORK (#151.4): (A) play-test the
+prior world first (their eyes arbitrate compact-vs-clumping),
+then rule on P3′ · (B) authorize P3′ (re-registered exam,
+entries-based discipline leg) · (C) close slice 1 with the frozen
+FAIL, all banked.** Green path suspended. Fingerprint unchanged
+across the whole slice (#125–#151); everything dormant.
 Design (#146): NO src changes (the map seam takes strength as a
 parameter); fine grid {0.125, 0.25, 0.375, 0.5}×VAL_SCALE,
 PRIMARY pinned 0.25×; gate frozen fresh = (i) primary resolved

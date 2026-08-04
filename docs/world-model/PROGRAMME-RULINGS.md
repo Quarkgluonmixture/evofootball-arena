@@ -6316,3 +6316,60 @@
 >    outcome returns to the user** (PASS / F-SLIDE / F-NULL /
 >    F-SHAPE-ONLY — the contract §6 classification) — in plain
 >    language: this is slice 1's final exam.
+
+> **COMMANDER RULING #151 (2026-08-04 — A4-P3 adjudicated: the
+> frozen exam FAILS (F-SHAPE-ONLY as classified); the reported
+> causal currency says the OPPOSITE; the proxy-vs-currency
+> finding; slice 1 returns to the user):**
+>
+> 1. **BANKED**: the battery (800 five-arm sets @ 12.21M, both
+>    X-DET passes, all ten hard gates true; SHA fb2aecf20193;
+>    JSONs committed). **THE GATE, EXECUTED AS FROZEN: FAIL —
+>    classified F-SHAPE-ONLY** (¬disciplineImproves ∧
+>    anyShapeImproves per the frozen classifier). The honest
+>    content is stronger: leg (i) resolves the WRONG WAY
+>    (DEGEN-RESTDEF PRIOR−R3p = −0.0401 [−0.0463, −0.0341] —
+>    slot occupancy FALLS) and THREE shape limbs resolve negative
+>    (spacing median −0.64 m closes; under-4 m +0.0072; dupRun
+>    +0.038) while scramble improves (−0.047) and box/roleMix/
+>    ledger hold. NO re-reading of the frozen exam: the verdict
+>    stands as written.
+> 2. ⭐⭐ **THE REPORTED CAUSAL CURRENCY (labelled, non-gating —
+>    and pointing the other way)**: on the SAME primary contrast
+>    the P1-arc-certified surrogates IMPROVE — deep entries
+>    −1.49/set, box entries −0.35/set (and on the plain eye:
+>    deep −4.38, box −0.96). The prior team concedes measurably
+>    LESS at the currency the whole pricing arc certified, while
+>    scoring WORSE on (a) the I5(b) occupancy proxy that P1b
+>    proved carries no causal price and (b) proximity-shape
+>    instruments that a deliberately-more-compact team trips by
+>    construction (P1d/P1e: compact WITHOUT clumping at fork
+>    grain). Honest costs named: restartTicks +161/set (a partial
+>    claw-back of the law's cure) and roleMixTV 0.556 → 0.434
+>    (agreement homogenizes the eye's role diversity halfway
+>    toward the incumbent).
+> 3. ⭐⭐⭐ **THE FINDING (labelled per §0.0.6 — evidence-backed)**:
+>    the battery's frozen instruments were inherited VERBATIM
+>    from the P3p-3 freeze, which predates the entire P1 pricing
+>    arc — the exam grades the new mechanism against the OLD
+>    hand-authored shape's yardstick (stand in the slot; keep the
+>    old spacing), while the arc's own certified currency
+>    (entries) says the mechanism works. The frontier question
+>    (H-A4.1) is NOT settled by this FAIL; it is MIS-MEASURED by
+>    this exam. A re-examination requires a NEW pre-registered
+>    battery (P3′) with the causal currency as the discipline leg
+>    and shape limbs re-thought for a compact-by-agreement world
+>    — and that re-registration is the USER's call, not the
+>    commander's (the no-recutting discipline).
+> 4. **THE FORK (#151.4, user; presented in plain language)**:
+>    (A) the user PLAY-TESTS the prior world first (dormant flags
+>    on a local session; watchability has no instrument — VISION
+>    §2's arbiter is their eyes: does "compact" look like
+>    structure or clumping?), then rules on P3′; (B) authorize
+>    P3′ directly (the re-registered exam, entries-based
+>    discipline leg, fresh seeds from the tail); (C) close slice
+>    1 with the frozen FAIL as-is, everything banked dormant.
+> 5. Fingerprint `57b0bdab…c673` unchanged across the ENTIRE
+>    slice (#125–#151); nothing shipped; every flag dormant.
+>    Green path suspended at the exam verdict (#149.4: every
+>    outcome returns to the user).
