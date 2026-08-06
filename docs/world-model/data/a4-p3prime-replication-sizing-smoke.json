@@ -1,0 +1,464 @@
+{
+  "experiment": "A4-P3′ REPLICATION EXAM — SIZING SMOKE (the five-arm chain; the DEEP leg sizes)",
+  "authority": "A4-P3PRIME-REPLICATION.md · rulings #152.4 / #152.2 (the ruler amendment) / #151 (the seen currency) / #150 / #149 / #148 · #123 (the P3p-3 form)",
+  "parameters": {
+    "mode": "smoke",
+    "seedStart": 12220000,
+    "matchesRequested": 40,
+    "matchesRun": 40,
+    "matchCap": null,
+    "matchDurationOverride": null,
+    "seedMin": 12220000,
+    "seedMax": 12220039,
+    "seedFormula": "12,220,000 + k, k∈0..39",
+    "reservedBand": [
+      12218000,
+      12300000
+    ],
+    "arms": [
+      "R0",
+      "R3v3",
+      "R3v3p",
+      "R3p",
+      "PRIOR"
+    ],
+    "armedArms": [
+      "R3v3",
+      "R3v3p",
+      "R3p",
+      "PRIOR"
+    ],
+    "partialArms": [
+      "R3p",
+      "PRIOR"
+    ],
+    "priorArms": [
+      "R3v3p",
+      "PRIOR"
+    ],
+    "priorInjection": "eye.v4.homePrior + homePriorObedience=0.5 (both sides) — the FLAGGED both-sides seam (single-side homeMapGrant cannot grant both); byte-equivalent to homeMapGrant@0.25×VAL_SCALE",
+    "clusterUnit": "match seed (paired across all five arms; ONE seed = one five-arm set)",
+    "bootstrapSeed": 101203,
+    "bootstrapResamples": 2000,
+    "reservedSeed": 101303,
+    "sampleEvery": 10,
+    "sampleHz": 6,
+    "world": "ENRICHED",
+    "flags": {
+      "edsPerceivedDefence": true,
+      "edsPerceivedChoice": true,
+      "edsValueAxis": true,
+      "c5Hold": true,
+      "c6Carry": true,
+      "c7Windup": true,
+      "c5TouchFork": false
+    },
+    "preflight": false,
+    "head": "bbb330e",
+    "tableSource": "docs/world-model/data/stage3-v4-p3p1-merged-role-census-table.json",
+    "controlSource": "docs/world-model/data/stage3-v3-p2-control-recovery.json",
+    "controlSha": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c"
+  },
+  "perArmMediators": {
+    "R0": {
+      "restSlotOccupancy": 0.59011,
+      "restartTicks": 1574,
+      "deepEntries": 34.025,
+      "boxEntries": 1.4
+    },
+    "R3v3": {
+      "restSlotOccupancy": 0.420107,
+      "restartTicks": 2806.925,
+      "deepEntries": 31.25,
+      "boxEntries": 2.4
+    },
+    "R3v3p": {
+      "restSlotOccupancy": 0.367258,
+      "restartTicks": 2748.125,
+      "deepEntries": 26.9,
+      "boxEntries": 1
+    },
+    "R3p": {
+      "restSlotOccupancy": 0.470922,
+      "restartTicks": 1999.2,
+      "deepEntries": 33.7,
+      "boxEntries": 1.95
+    },
+    "PRIOR": {
+      "restSlotOccupancy": 0.425761,
+      "restartTicks": 2274.7,
+      "deepEntries": 30.95,
+      "boxEntries": 1.2
+    }
+  },
+  "sizing": {
+    "rule": "N* = smallest 200-step N with SE_N (=SD_pairedDiff/√N) ≤ MDL/POWER_Z (95 % power to resolve the PRIOR−R3p DEEP-ENTRY fall away from zero — the gate's binding leg (a)), CAPPED at N_MAX (WALL-DERIVED: largest 200-step N with per-set wall × N × 2 (X-DET) ≤ 12 h, itself ≤ 7,000 — the seed budget). If N* > N_MAX the cap binds and the reduced-power reading is DISCLOSED before the gate-bearing run (#105.4).",
+    "powerZ": 3.605,
+    "z975": 1.96,
+    "deepEntriesPriorMinusR3p": {
+      "point": -2.75,
+      "sd": 9.043644,
+      "n": 40,
+      "ci": {
+        "n": 40,
+        "control": 33.7,
+        "treated": 30.95,
+        "diff": -2.75,
+        "lower": -5.55,
+        "upper": 0.075,
+        "relative": -0.081602,
+        "resolved": false
+      }
+    },
+    "mdlFormula": "MDL = min( 0.5·|PRIOR−R3p DEEP-ENTRY point| , MDL_ABS = 0.75 deep entries/set ) — MDL_ABS ⚠ FLAGGED as the executor-derived absolute floor: HALF the #151 seen effect (−1.49/set), pre-named before any battery seed (#152.4.iv)",
+    "mdlAbs": 0.75,
+    "seenDeepEffectP3": -1.49,
+    "mdl": 0.75,
+    "seSmoke": 1.429926,
+    "needRaw": 1889.62,
+    "nStar": 2000,
+    "wallDerived": {
+      "perArmPerMatchWallMs": {
+        "R0": 97.2,
+        "R3v3": 107.6,
+        "R3v3p": 113.25,
+        "R3p": 108.17,
+        "PRIOR": 109.35
+      },
+      "perSetPerMatchWallMs": 535.58,
+      "xDetFactor": 2,
+      "wallBudgetHours": 12,
+      "nCap": 7000,
+      "nStep": 200,
+      "nMaxWall": 40200,
+      "nMax": 7000,
+      "nStar": 2000,
+      "nBinding": 2000,
+      "reducedPowerDisclosure": false,
+      "projectedFrontierPowerAtBinding": 0.9598,
+      "projectedTotalWallHoursAtBinding": 0.595,
+      "note": "MACHINE-DEPENDENT (measured once at the smoke); stripped from the X-DET / SHA. The per-set wall is the LIGHT-instrument 5-arm wall — a LOWER bound on the full-battery per-set wall (the 6 Hz SideRow/shape/release sampling adds overhead) ⇒ treat N_MAX as a ceiling; the resident (#49.5) monitors live wall. N fixed before the run (#105.4)."
+    }
+  },
+  "smokeContext": {
+    "note": "DESCRIPTIVE at the smoke — the smoke SIZES only (#152.4.ii); no leg is read here.",
+    "boxEntries": {
+      "point": -0.75,
+      "sd": 2.141845,
+      "n": 40,
+      "ci": {
+        "n": 40,
+        "control": 1.95,
+        "treated": 1.2,
+        "diff": -0.75,
+        "lower": -1.475,
+        "upper": -0.125,
+        "relative": -0.384615,
+        "resolved": true
+      }
+    },
+    "restSlotOccupancy": {
+      "point": -0.045161,
+      "sd": 0.092833,
+      "n": 40,
+      "ci": {
+        "n": 40,
+        "control": 0.470922,
+        "treated": 0.425761,
+        "diff": -0.045161,
+        "lower": -0.072871,
+        "upper": -0.017505,
+        "relative": -0.095899,
+        "resolved": true
+      }
+    },
+    "restartTicks": {
+      "point": 275.5,
+      "sd": 718.939497,
+      "n": 40,
+      "ci": {
+        "n": 40,
+        "control": 1999.2,
+        "treated": 2274.7,
+        "diff": 275.5,
+        "lower": 49.475,
+        "upper": 497.475,
+        "relative": 0.137805,
+        "resolved": true
+      }
+    }
+  },
+  "seenP3ForContext": {
+    "deepEntriesPerSet": -1.49,
+    "boxEntriesPerSet": -0.35,
+    "restartTicksPerSet": 161,
+    "priorRoleMixTV": 0.434,
+    "restSlotOccupancy": -0.0401,
+    "spacingMedian": -0.64,
+    "spacingUnder4": 0.0072,
+    "dupRun": 0.038,
+    "scrambleI4": -0.047,
+    "note": "#151 REPORTED/observed on the first exam's 800 sets @ 12.21M — quoted as the motivating exhibit; the replication gate reads fresh 12.23M seeds only."
+  },
+  "consumptionLedger": {
+    "R3v3": {
+      "decisions": 37442,
+      "deviate": 14220,
+      "tie": 18599,
+      "noCell": 986,
+      "inSupport": 0,
+      "oosTotal": 0,
+      "oosShare": 0,
+      "deliveryChild": 0,
+      "deliveryBase": 0,
+      "deliveryChildShare": 0,
+      "offsideChild": 0,
+      "offsideBase": 0,
+      "offsideChildShare": 0,
+      "readsDeliveryChildren": false,
+      "readsOffsideChildren": false
+    },
+    "R3v3p": {
+      "decisions": 38016,
+      "deviate": 29795,
+      "tie": 4090,
+      "noCell": 1176,
+      "inSupport": 0,
+      "oosTotal": 0,
+      "oosShare": 0,
+      "deliveryChild": 0,
+      "deliveryBase": 0,
+      "deliveryChildShare": 0,
+      "offsideChild": 0,
+      "offsideBase": 0,
+      "offsideChildShare": 0,
+      "readsDeliveryChildren": false,
+      "readsOffsideChildren": false
+    },
+    "R3p": {
+      "decisions": 38045,
+      "deviate": 9033,
+      "tie": 9479,
+      "noCell": 272,
+      "inSupport": 18784,
+      "oosTotal": 19261,
+      "oosShare": 0.506269,
+      "deliveryChild": 15112,
+      "deliveryBase": 30131,
+      "deliveryChildShare": 0.334019,
+      "offsideChild": 47961,
+      "offsideBase": 1926,
+      "offsideChildShare": 0.961393,
+      "readsDeliveryChildren": true,
+      "readsOffsideChildren": true
+    },
+    "PRIOR": {
+      "decisions": 37572,
+      "deviate": 15435,
+      "tie": 2059,
+      "noCell": 303,
+      "inSupport": 17797,
+      "oosTotal": 19775,
+      "oosShare": 0.526323,
+      "deliveryChild": 14264,
+      "deliveryBase": 31042,
+      "deliveryChildShare": 0.314837,
+      "offsideChild": 48523,
+      "offsideBase": 1400,
+      "offsideChildShare": 0.971957,
+      "readsDeliveryChildren": true,
+      "readsOffsideChildren": true
+    }
+  },
+  "priorEquivalence": {
+    "valScale": 0.163494,
+    "valScaleExpected": 0.163494,
+    "valScaleOk": true,
+    "obedience": 0.5,
+    "primaryStrength": 0.0408735,
+    "quarterValScalePinned": 0.0408735,
+    "quarterValScaleRecomputed": 0.04087347,
+    "strengthMatchesPinned": true,
+    "strengthMatchesRecomputed": true,
+    "homeMapStrengthMax": 0.081747,
+    "ceilingOk": true,
+    "note": "homePriorStrength(0.5) = 0.5×HOME_MAP_STRENGTH_MAX = 0.25×VAL_SCALE(pinned 0.163494) = the #148 certified primary dose 0.040874; the both-sides home prior is injected via eye.v4.homePrior + obedience 0.5, BYTE-EQUIVALENT to a both-sides homeMapGrant@0.0409 (single-side field ⇒ the FLAG). tests/a4HomePriorGene.test.ts:141-143/169/259-298.",
+    "pass": true
+  },
+  "xMergeSha": {
+    "mergedShaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "mergedShaExpected": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "mergedRehash": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+    "baseRehash": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "baseShaExpected": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+    "mergedShaOk": true,
+    "baseShaOk": true,
+    "pass": true,
+    "path": "docs/world-model/data/stage3-v4-p3p1-merged-role-census-table.json",
+    "mergedChildCount": 323,
+    "keying": "strict",
+    "perArm": {
+      "R0": {
+        "isPartial": false,
+        "injectsChildren": false,
+        "childrenIdentical": false,
+        "shaField": null,
+        "correct": true
+      },
+      "R3v3": {
+        "isPartial": false,
+        "injectsChildren": false,
+        "childrenIdentical": false,
+        "shaField": null,
+        "correct": true
+      },
+      "R3v3p": {
+        "isPartial": false,
+        "injectsChildren": false,
+        "childrenIdentical": false,
+        "shaField": null,
+        "correct": true
+      },
+      "R3p": {
+        "isPartial": true,
+        "injectsChildren": true,
+        "childrenIdentical": true,
+        "shaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+        "correct": true
+      },
+      "PRIOR": {
+        "isPartial": true,
+        "injectsChildren": true,
+        "childrenIdentical": true,
+        "shaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+        "correct": true
+      }
+    }
+  },
+  "seedDisjointness": {
+    "pass": true,
+    "reservedBand": [
+      12218000,
+      12300000
+    ],
+    "smokeStart": 12220000,
+    "batteryStart": 12230000,
+    "smokeRange": [
+      12220000,
+      12220039
+    ],
+    "batteryRangeMax": [
+      12230000,
+      12236999
+    ],
+    "seedMin": 12220000,
+    "seedMax": 12220039,
+    "consumedBlocks": [
+      [
+        11150000,
+        11150039
+      ],
+      [
+        11200000,
+        11600079
+      ],
+      [
+        11700000,
+        11700039
+      ],
+      [
+        11800000,
+        11807999
+      ],
+      [
+        11850000,
+        11850039
+      ],
+      [
+        11900000,
+        11907999
+      ],
+      [
+        11950000,
+        11950039
+      ],
+      [
+        12000000,
+        12007999
+      ],
+      [
+        12050000,
+        12050039
+      ],
+      [
+        12100000,
+        12107999
+      ],
+      [
+        12150000,
+        12150039
+      ],
+      [
+        12200000,
+        12207999
+      ],
+      [
+        12208000,
+        12217999
+      ]
+    ],
+    "bootstrapSeed": 101203,
+    "reservedSeed": 101303,
+    "statsOk": true
+  },
+  "fingerprint": {
+    "fingerprint": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+    "pass": true,
+    "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+  },
+  "xSrcZero": {
+    "pass": true,
+    "srcDiff": ""
+  },
+  "stalePins": {
+    "supportStaleTicks": 30,
+    "widthStaleTicks": 30,
+    "lineStaleTicks": 30,
+    "pass": true,
+    "note": "#48.4 the 30-tick freshness pins honoured at consumption (no re-cut)."
+  },
+  "wallCost": {
+    "perArmTotalMs": {
+      "R0": 3888,
+      "R3v3": 4304,
+      "R3v3p": 4530,
+      "R3p": 4327,
+      "PRIOR": 4374
+    },
+    "matchesRun": 40
+  },
+  "gates": {
+    "xMergeSha": true,
+    "priorEquivalence": true,
+    "xFpProd": true,
+    "xSrcZero": true,
+    "seedDisjoint": true,
+    "xDet": true,
+    "stalePins": true
+  },
+  "deterministic": true,
+  "verdict": "SIZING SMOKE (no leg is read here — the smoke SIZES only)",
+  "deviations": [
+    "⭐ THE ONLY THINGS CHANGED vs the A4-P3 probe (#152.4.i: fork it, change the GATE MODULE, the SEEDS and the reported/descriptive reshuffle — nothing else): (1) the frozen gate is now legs (a)/(b)/(c) on the CERTIFIED CURRENCY; (2) seeds smoke 12.22M / battery 12.23M with N_CAP 7,000 and stats 101203/101303; (3) the proximity + occupancy + restart readouts move to a DESCRIPTIVE block; (4) the sizing leg moves from DEGEN-RESTDEF occupancy to DEEP ENTRIES. The five arms, every instrument, the whole X-family, the prior seam, the progress-line idiom and the wall rule are BYTE-FORM IDENTICAL to the sibling probe.",
+    "⭐ THE FROZEN REPLICATION GATE (#152.4.ii, implemented verbatim; PRIOR−R3p, paired, cluster = set seed): leg (a) deep entries per set RESOLVEDLY FALL — CI UPPER < 0; leg (b) box entries per set do NOT resolve UP — CI lower ≤ 0 (implemented as ¬(resolved ∧ lower > 0)); leg (c) the football hard gates — scramble I4 not resolved-up (¬(resolved ∧ lower > 0)), eye ball-ledger = 0 on PRIOR, PRIOR-arm roleMixTV ≥ 0.407, and every X-family gate HARD (folded in as hardGatesPass). PASS := (a) ∧ (b) ∧ (c). Deep/box are the P1-family WHOLE-SET currency counts (opponent → own-third / own-box transitions, both sides), NOT the C-BOX watchability readout (which is descriptive here). No re-cutting after sight (I-A6).",
+    "⭐ THE DESCRIPTIVE BLOCK (NONE gating; the contract §1 #152 RULER AMENDMENT): spacing median, under-4 m share, dupRun, DEGEN-RESTDEF occupancy (the #151 exam's frozen leg (i)), C-BOX at arrival, restartTicks, the full telescope chain and the per-arm levels. Rationale, verbatim: proximity readouts are DESCRIPTIVE for a compact-BY-AGREEMENT mechanism; their verdict authority is the USER's play-test (VISION §2 — watchability has no instrument). The #151 F-SHAPE-ONLY record stands unerased; each descriptive limb carries its #151 observation as quoted context, never as a threshold.",
+    "⭐ THE RESTART FLAG (#152.4.ii, NOT a gate): the #151 observation was restartTicks +161/set. If THIS run's PRIOR−R3p restart contrast RESOLVES with lower > +322/set (double), `restartFlagged` is raised and the disposition string carries the flag FOR THE COMMANDER — it never changes PASS/FAIL.",
+    "DISPOSITION (#152.4.ii, replacing the contract §6 four-way classifier for THIS exam): !hardGates ⇒ STOP (measurement invalid); (a) ∧ (b) ∧ (c) ⇒ PASS — the frontier verdict is AFFIRMED on the amended ruler, slice 1 returns to the user for the closing ruling + play-test; ANY leg fails ⇒ STOP — the replication failed, H-A4.1 unsupported on the honest ruler too. EVERY outcome returns to the user.",
+    "⚠ SIZING — THE MDL DERIVATION, FLAGGED (#152.4.iv, executor's call): the N arithmetic runs ON THE DEEP LEG. MDL = min(0.5·|smoke PRIOR−R3p deep point|, MDL_ABS) with MDL_ABS = 0.75 deep entries/set = HALF the #151 seen effect (−1.49/set) — the pre-named ABSOLUTE floor, chosen so a replication reproducing even half the seen signal resolves at the frozen power; the 0.5·|point| guard stops smoke noise INFLATING the MDL. N* = smallest 200-step N with SE_N = SD_pairedDiff/√N ≤ MDL/POWER_Z (3.605 = z.975+z.95, 95 % power), CAPPED at a WALL-DERIVED N_MAX (per-set wall × N × 2 X-DET ≤ 12 h) and the hard N_CAP 7,000 (the seed budget). N* > N_MAX ⇒ the cap binds and the reduced-power reading is DISCLOSED BEFORE the gate-bearing run (#105.4). The smoke deep count is the LIGHT whole-match detector; the battery uses the same detector inside the full instrument run.",
+    "SEEDS (#152.4.iii; single contiguous battery block): smoke 12,220,000+k (k∈0..39); battery 12,230,000+k (k∈0..N−1, N ≤ 7,000 ⇒ ≤ 12,236,999, inside the 12.3M reservation edge). ⭐ The A4-P3 pinned block [12,208,000, 12,217,999] is treated as CONSUMED IN FULL (the first exam burned it), and it is listed in CONSUMED_BLOCKS alongside P3p-3, A4-P1/P1b/P1c/P1d/P1e. Stats bootstrap 101203, reserved 101303, both asserted disjoint from every arc stats seed (incl. P3's 101003/101103). ONE seed runs all five arms (paired). Match-duration OMITTED on real runs ⇒ the src default 240; the env override is preflight-only.",
+    "⚠⚠ THE BOTH-SIDES PRIOR SEAM (carried verbatim from A4-P3; RATIFIED at #150.1, no longer an open flag): Match.homeMapGrant is STRUCTURALLY SINGLE-SIDE ({side,strength}|null), so a symmetric both-sides grant is unreachable zero-src. The prior is injected on BOTH sides via the P2 shipped-form seam eye.v4.homePrior + homePriorObedience=0.5 (probe fixtures ONLY; production dormant). Commander code inspection certified the equivalence: the mapGrant and gene branches construct the IDENTICAL homeMapBias closure over the IDENTICAL ATTACK_FORMATIONS home at the IDENTICAL consumption point; homePriorStrength(0.5)=0.25×VAL_SCALE=0.040874 is asserted in-probe by the priorEquivalence HARD gate. Bonus (#150.1): the exam reads the mechanism in its SHIPPED form.",
+    "THE ARMS (unchanged): R0 (null) / R3v3 (plain v3) / R3v3p (plain v3 + prior both sides) / R3p (v3+children+law/delivery/offside — the P3p-3 arm VERBATIM) / PRIOR (R3p + prior both sides). X-MERGE-SHA asserts on R3p + PRIOR; R0/R3v3/R3v3p inject no children. The prior enters the plain-v3 resolve (R3v3p) AND the extended-key partial resolve (PRIOR) at the SAME v3 consumption point.",
+    "X-FAMILY (inherited verbatim, ALL HARD — leg (c)'s second half): X-DET wall-free (#128; machine-dependent wall stripped from the compare + the SHA); X-MERGE-IDENT (the merged table read on R3p + PRIOR); E-NONSTATION refined form on the eye arms (exercised on the PRIOR eye — both bits + homePrior armed); X-FP-PROD (57b0bdab…c673 unchanged; the flag/gene absent in production); X-OFF-IDENT (R0 == bare enriched); X-SRC-ZERO (empty src diff — the seams are BANKED, this probe adds ZERO src); eye-never-touches-ball (every armed arm); seed disjointness; priorEquivalence. Road B: nothing ships."
+  ],
+  "sha256": "c03b905f061d8aace34b0af44c727348a51479d4043814e1a10bb426424ff64d"
+}

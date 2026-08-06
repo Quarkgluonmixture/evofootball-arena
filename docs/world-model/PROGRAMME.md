@@ -26,107 +26,33 @@
 > (c) **Live-state edits land ONLY in this section.** When it is superseded, move the old block down to `PROGRAMME-LOG.md` (never stack state here).
 > (d) **Contracts / stage docs are cited by the rulings** — open them on demand, not on resume.
 
-**THE A4 ARC — the P1 pricing arc + the #140 forensics (#125–#142,
-2026-08-02)**. Contract: [`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md)
-(M1′ home-region soft prior). History: P1 observational STOP (#129,
-endogeneity) → P1b removal STOP (#135: the hardcoded law
-redundant-to-costly on the incumbent world) → P1c single-body grant
-on the eye world STOP (#139: RESOLVEDLY ADVERSE, dose-monotone) →
-**the user challenged the diagnosis; the #140 forensics (16,000
-forks re-read, all X green) REJECTED all three registered
-hypotheses**: turnovers resolved DOWN (outlet-tax dead), the deep
-outlet IS used (deeper by 1.4 m; no build-up defect), turnover
-geography flat + box weakly UP (not a counting artifact). ⭐
-**SURVIVOR (H5, #142.3): counter-press thinning — anchoring ONE
-body redistributes the other five by their own gradients, thinning
-post-loss pressing density; discipline is a property of the
-team's agreed SHAPE, not one body's depth (the user's #131
-anatomy ② speaking through data).** #139.3's closure NARROWED
-(#142.4): the SINGLE-BODY depth-anchor question is closed
-(#106.6); the WHOLE-DISTRIBUTION form (M1′ proper, the 野球
-model's real content) was never instrumented. ⭐ **#142.5 RULED
-A BY THE USER ("a", #143) — A4-P1d, THE WHOLE-DISTRIBUTION GRANT
-CENSUS, IS LIVE; the green path resumed (#126/#137 precedent).**
-Design (#143): a NEW dormant map-grant flag (the single-body
-homeRegionGrant stays banked untouched) — in branch B EVERY
-side-d outfielder gets his own 2D home (center = HIS formation
-base spot, the world's own variable; extents from pitch
-constants; both axes per #136) as a soft bias at the same
-consumption point; dose grid = the P1c VAL_SCALE fractions; gate
-= the P1c form (primary-dose Δdeep CI upper<0 ∧ dose-monotone ∧
-ladder ∧ no reversal, frozen before any run); the #140 forensic
-counters (turnovers/box/penetration) pre-registered as REPORTED
-mediators from the start. Seeds: smoke 12.05M, census 12.10M,
-stats 100603/100703. H5 predicts coordinated redistribution
-should NOT thin the press — this is the kill-or-confirm of
-H-A4.1 at pricing grain; its STOP returns to the user (one
-instrument for the distribution question, #106.6 idiom). **P1d RAN AND
-STOPPED AS FROZEN (#145, 2026-08-03): the primary dose (1.0×) is
-NULL — but the dose curve is the arc's FIRST RESOLVED BENEFIT:
-Δdeep −0.0139 [−0.0188,−0.0089] @0.25× · −0.0084 @0.5× (both
-resolved) · +0.0140 @2.0× (resolved harm) — 约定要"大概意思"才有
-效,"规定死"有害 (the user's #132/#136 ontology, measured).
-Mediators: turnovers↓ all doses, BOX↓ all doses (resolved),
-compact-without-clumping at low dose; H5 confirmed at low dose.
-⭐⭐⭐ **A4-P1e PASSED (#148, 2026-08-04) — THE ARC'S FIRST GATE
-PASS; the distribution question CLOSES POSITIVE.** Δ@0.25× =
-−0.013975 [−0.019344, −0.009119] on fresh seeds — an exact
-replication of P1d's independent rung (−0.0139); the whole grid
-{0.125..0.5}× beneficial (rungs −0.0142/−0.0140/−0.0122/−0.0096),
-noHarm TRUE, no reversal, all X green. Mediators consistent
-(turnovers −0.022, box −0.0030 at 0.25×, labelled). **THE MEASURED
-TERM: strength region (0, 0.5]×VAL_SCALE, resolved benefit at the
-low end — 松约定有价,紧约定无价/有害, the user's ontology now
-CERTIFIED at gate grain.** Contract §5 amended (#148: PRIOR arms
-pin 0.25×; the P2 gene born 0, bounds [0, 0.5×VAL_SCALE]).
-**A4-P2 BUILT + BANKED (#149, `f49382a`)**: gene
-`homePriorObedience` (TacticalGenome, born ABSENT ⇒ semantic 0 —
-the serialized-keys/fingerprint trap dodged; bounds [0,
-0.5×VAL_SCALE]) + master flag `eye.v4.homePrior` + evolution
-opt-in; RNG-stream identity PROVEN (8-gen seeded byte-identity,
-equal Rng state); 1030/1030; fingerprint unchanged. Contract §5
-re-amended (#149: priorOnly was vacuous under M1′ → R3v3/R3v3p
-pair). **A4-P3 RAN AND THE FROZEN EXAM FAILED — F-SHAPE-ONLY
-(#151, `fb2aecf2`)**: occupancy proxy −0.0401 (wrong way), three
-proximity-shape limbs negative (spacing −0.64 m, under-4m +0.007,
-dupRun +0.038), scramble improves; **but the REPORTED causal
-currency points the OTHER way: deep −1.49/set, box −0.35/set on
-the same PRIOR−R3p contrast** (plain eye: deep −4.38, box −0.96).
-Honest costs: restartTicks +161/set, roleMixTV 0.556→0.434. ⭐
-#151.3: the exam's instruments predate the P1 arc — it graded the
-mechanism against the OLD shape's yardstick while the certified
-currency says it works; H-A4.1 is MIS-MEASURED, not settled. ⭐
-**#151.4 RULED B BY THE USER ("B 自走", #152) — A4-P3′ IS LIVE,
-the green path resumed.** The P1e replication structure: fresh
-seeds (smoke 12.22M, battery 12.23M, N≤7,000), a NEW frozen gate
-= deep entries resolvedly FALL on PRIOR−R3p ∧ box does not worsen
-∧ the football hard gates (scramble/ledger/roleMixTV≥0.407/
-X-family); proximity readouts DESCRIPTIVE (verdict authority =
-the user's play-test, contract §1 #152 amendment); restart
-REPORTED (flag above +322/set). The user's two diagnoses banked
-(#152.3): per-body offsets = slice-2 candidate; a
-punish-compactness substrate = the long line. PASS ⇒ slice 1
-returns for the closing ruling + play-test; FAIL ⇒ H-A4.1
-unsupported on the honest ruler too. Fingerprint unchanged
-(#125–#152); everything dormant.
-Design (#146): NO src changes (the map seam takes strength as a
-parameter); fine grid {0.125, 0.25, 0.375, 0.5}×VAL_SCALE,
-PRIMARY pinned 0.25×; gate frozen fresh = (i) primary resolved
-benefit (CI upper<0) ∧ (ii) NO rung in the grid resolves HARM
-(the whole future gene range must be non-harmful) ∧ (iii) no
-Simpson reversal — the P1d monotone-dose leg is DROPPED with
-reasoning (interior optimum plausible inside the region,
-pre-named); mediators carried; progress lines every 500 matches
-(the overnight lesson); seeds smoke 12.15M / census 12.20M,
-stats 100803/100903. The SECOND AND FINAL instrument on the
-distribution question — it closes either way; PASS ⇒ the
-measured strength region becomes M3′'s term and A4-P2 opens.** Two user
-working rules anchored (#144: VISION §6 + §0.0.6): 有故事就要有
-探针 · 决策点人话先行. Banked:
-the grant/dose machinery (reusable), the Phase-31-pin removal
-candidate, the deep-outlet exoneration. Seeds consumed through
-12.008M; 12.01M–12.3M + stats 1006xx+ remain. Road B; fingerprint
-`57b0bdab…c673` unchanged (#90–#142). R20 gaps / F9 any time.
+**A4 SLICE 1 IS CLOSED — H-A4.1 AFFIRMED ON THE AMENDED RULER,
+REPLICATED ON VIRGIN SEEDS (#125–#154, 30 rulings, six
+instruments, ZERO ships; fingerprint `57b0bdab…c673` unchanged
+throughout).** Contract:
+[`A4-ASSIGNMENT-CONTRACT.md`](A4-ASSIGNMENT-CONTRACT.md). The
+verdict pair (#151 + #154, both stand): on the OLD shape
+yardstick the weak whole-team home agreement reads as clumping
+(F-SHAPE-ONLY); on the CERTIFIED currency it defends better —
+P3′ replication: deep −0.7395 [−1.2055, −0.2440]/set, box −0.380
+[−0.480, −0.275]/set on PRIOR−R3p, football hard gates held,
+restart flag quiet. 约定要"大概意思"才有效 — the user's ontology,
+now affirmed at exam grain. BANKED DORMANT: the home-prior
+mechanism (gene `homePriorObedience` born absent + `eye.v4
+.homePrior` + the seams), the grant/dose instrument family, the
+certified prices, the Phase-31-pin removal candidate. NAMED NEXT:
+slice 2 = per-body obedience offsets (roleMix homogenization
+motive) · the punish-compactness substrate program (the user's
+diagnosis) · selection/PAYS + co-evolution (the static-world
+caveat) · the D3 event-detector contract (Track D). ⭐ **THE
+QUEUE SITS AT THE USER (#154.4): (A) wire the PLAY-TEST entry
+(E4 precedent — a local session with the prior world armed; the
+#152 amendment makes the user's eyes the shape authority; can
+bundle the still-unplayed D2/F7 five-item list) · (B) open slice
+2 (per-body offsets measurement arc) · (C) rest — archive and
+return to other tracks.** Green path complete; nothing proceeds
+until the user rules. Seeds consumed through 12,236,999;
+12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

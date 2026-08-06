@@ -6455,3 +6455,58 @@
 >    amended ruler, slice 1 to the closing ruling + the user's
 >    play-test; any leg fails ⇒ STOP → the user. In plain
 >    language either way.
+
+> **COMMANDER RULING #154 (2026-08-06 — A4-P3′ adjudicated: PASS;
+> H-A4.1 AFFIRMED on the amended ruler, replicated on virgin
+> seeds; SLICE 1 CLOSES; the closing synthesis):**
+>
+> 1. **BANKED**: the replication battery (2,000 five-arm sets @
+>    12.23M, both X-DET passes, all hard gates true; SHA
+>    c1a4547ce0c8; JSONs committed). **THE GATE, EXECUTED AS
+>    FROZEN: PASS** — leg (a) deep entries per set RESOLVEDLY
+>    FALL on PRIOR−R3p: **−0.7395 [−1.2055, −0.2440]**; leg (b)
+>    box entries not only fail to worsen, they RESOLVEDLY FALL:
+>    **−0.380 [−0.480, −0.275]** (the 12×-costlier currency,
+>    replicated at full seen magnitude); leg (c) the football
+>    hard gates all hold (scramble, ball-ledger 0, roleMixTV ≥
+>    the incumbent floor, X-family); the restart flag did NOT
+>    fire. Deep replicated at ≈half the #151 point (−0.74 vs
+>    −1.49) — resolved regardless; the honest read is "the
+>    effect is real, the #151 point was on the generous side".
+> 2. ⭐⭐⭐ **H-A4.1 AFFIRMED (the slice-1 verdict)**: a coarse,
+>    WEAK, whole-team home agreement — 野球开场三十秒, at whisper
+>    volume — lets the eye-consuming team concede resolvedly
+>    fewer deep AND box entries ON TOP of every certified price
+>    remedy, without breaking the retained football gates. On
+>    the amended (causally-certified) ruler, THE FRONTIER MOVED.
+>    The #151 old-ruler FAIL stands beside it unerased: on the
+>    OLD shape's yardstick the mechanism looks like clumping; on
+>    the certified currency it defends better. Both records are
+>    the finding.
+> 3. **THE SLICE-1 CLOSING SYNTHESIS (#125–#154, 30 rulings, six
+>    instruments, zero ships)**: the arc opened on "assignment =
+>    one body owns rest defence", measured that form dead three
+>    ways (observational, removal, single grant — the incumbent
+>    pin itself priced ≤0), was re-founded by the user's
+>    ontology (位置 = per-head coarse consensus; 摇摆人; 范围不是
+>    点; 松不是紧), certified the weak-agreement dose region
+>    (P1d/P1e, exact replication), built the mechanism dormant
+>    (gene born absent, RNG-stream identity proven), failed the
+>    pre-P1 exam honestly (#151), and passed the certified-ruler
+>    replication (#154). Banked forward: the dormant
+>    home-prior mechanism (gene + flag + seams), the fork-and-
+>    grant/dose instrument family, the certified prices, the
+>    Phase-31-pin production removal candidate, and THREE named
+>    next steps — slice 2 (per-body obedience offsets, the
+>    roleMix homogenization motive), the punish-compactness
+>    substrate program (the user's diagnosis: a rich world
+>    prices shape itself), and the selection/PAYS + co-evolution
+>    second half (the static-world caveat).
+> 4. **RETURNS TO THE USER (the contracted exit)**: (i) the
+>    PLAY-TEST acceptance — watchability's verdict authority is
+>    the user's eyes by the #152 amendment; the E4 precedent
+>    (playable sessions with experimental flags armed) is the
+>    wiring form if wanted; (ii) the next-step fork (play-test
+>    wiring / slice 2 / rest). Production fingerprint
+>    `57b0bdab…c673` UNCHANGED across the entire slice; every
+>    flag dormant; nothing shipped.
