@@ -6429,3 +6429,29 @@
 > 5. **DISPATCH**: one executor step (Workflow Draft→Verify,
 >    §0.0): pre-reg + probe fork + bounded preflight; local
 >    commit, explicit paths, no push.
+
+> **COMMANDER RULING #153 (2026-08-06 — the A4-P3′ deliverable
+> reviewed; the runs authorized):**
+>
+> 1. **BANKED**: `fec41f4` (A4-P3PRIME-REPLICATION.md + the probe
+>    fork; verify PASS — fork fidelity diff-proven vs the P3
+>    parent, gate legs exactly as #152.4.ii, the full
+>    consumed-block ledger incl. the P3 pinned block, the
+>    currency-vs-C-BOX disambiguation, the §6 classifier
+>    superseded by the two-way disposition for this exam, env
+>    prefix isolated A4P3P_*).
+> 2. **NOTES DISPOSED**: MDL_ABS wording (a CAP in code — the
+>    parent's semantics; the half-of-seen-effect derivation
+>    stands); the absent runtime N≤7,000 assertion — LAUNCH
+>    DISCIPLINE bound here: the commander launches the battery
+>    ONLY with the smoke's disclosed N_bind, never a hand-typed
+>    N; the date-line note (freeze-before-run intact); preflight
+>    claims author-run (accepted per the division of labour —
+>    the commander supervises the real runs).
+> 3. **THE RUNS AUTHORIZED** (#49.5): smoke (40 sets @ 12.22M) →
+>    the frozen deep-leg N arithmetic → the battery (@ 12.23M,
+>    N = the disclosed N_bind ≤ 7,000, progress every 250) →
+>    adjudication. PASS ⇒ the frontier verdict AFFIRMED on the
+>    amended ruler, slice 1 to the closing ruling + the user's
+>    play-test; any leg fails ⇒ STOP → the user. In plain
+>    language either way.
