@@ -44,14 +44,14 @@ certified prices, the Phase-31-pin removal candidate. NAMED NEXT:
 slice 2 = per-body obedience offsets (roleMix homogenization
 motive) · the punish-compactness substrate program (the user's
 diagnosis) · selection/PAYS + co-evolution (the static-world
-caveat) · the D3 event-detector contract (Track D). ⭐ **THE
-QUEUE SITS AT THE USER (#154.4): (A) wire the PLAY-TEST entry
-(E4 precedent — a local session with the prior world armed; the
-#152 amendment makes the user's eyes the shape authority; can
-bundle the still-unplayed D2/F7 five-item list) · (B) open slice
-2 (per-body offsets measurement arc) · (C) rest — archive and
-return to other tracks.** Green path complete; nothing proceeds
-until the user rules. Seeds consumed through 12,236,999;
+caveat) · the D3 event-detector contract (Track D). ⭐ **#154.4
+RULED A ("a", #155) — the PLAY-TEST entry is being wired** (E4
+precedent: both teams armed with the R3p eye world + the 0.25×
+whisper prior; explicit opt-in, default OFF, badge on screen,
+phone-capable; fingerprint unchanged). Acceptance = the user's
+play verdicts on the A4 world feel + the D2/F7 five-item list.
+Slice 2 (per-body offsets) and the rest of the ladder queue
+behind the play verdict. Seeds consumed through 12,236,999;
 12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified

@@ -6510,3 +6510,34 @@
 >    wiring / slice 2 / rest). Production fingerprint
 >    `57b0bdab…c673` UNCHANGED across the entire slice; every
 >    flag dormant; nothing shipped.
+
+> **COMMANDER RULING #155 (2026-08-06 — the user rules #154.4:
+> option A; the PLAY-TEST entry authorized and dispatched):**
+>
+> 1. **USER RULING RECORDED (verbatim: "a")**: wire the playable
+>    A4 prior-world entry (the E4 precedent — a live session with
+>    experimental flags armed), bundling the still-unplayed D2/F7
+>    five-item acceptance. The user's eyes are the shape
+>    authority (#152); this session is slice 1's acceptance.
+> 2. **DESIGN CONSTRAINTS (binding)**: (i) find and FOLLOW the E4
+>    arming mechanism (how EDS flags reached playable sessions —
+>    URL param / debug panel / config; follow the house idiom);
+>    (ii) the entry arms BOTH teams with the R3p-equivalent eye
+>    world (v3 consumer + the three remedies + the merged table,
+>    bundled/loadable in the web build) + the home prior at the
+>    certified whisper (obedience 0.5, the fixture idiom);
+>    (iii) EXPLICIT OPT-IN, default OFF everywhere; production
+>    fingerprint `57b0bdab…c673` unchanged; flag-off
+>    byte-identity tested; a visible on-screen badge while armed
+>    (the user must know which world they are watching);
+>    (iv) works on desktop AND phone (the user plays on phone);
+>    (v) full suite + tsc green; Road B: a dormant debug entry
+>    in the deployed build is within the E4/debug-layer
+>    precedent — nothing changes for a player who does not opt
+>    in.
+> 3. **ACCEPTANCE (the user's)**: one play list — the A4 prior
+>    world feel (紧凑像球还是像堆?) + D1 shell + D2 trails +
+>    phone layering + F7b fireworks + F7c goal camera. Verdicts
+>    keep / change / revert, per lever.
+> 4. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0); local commit, explicit paths, no push.
