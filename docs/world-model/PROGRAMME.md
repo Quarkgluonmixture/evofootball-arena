@@ -49,11 +49,19 @@ ENTRY IS LIVE (#155/#156, `485f36a` merged)**: ⚙ → 🧬
 Experimental → "A4 world" checkbox, or `?a4world=1` (phone);
 🧪 badge = ground truth; only WATCHED matches are A4 (E4
 semantics); off = byte-identical production (fingerprint
-re-derived; SW precache excludes the opt-in tables). **THE QUEUE
-SITS AT THE USER'S EYES**: the A4 world feel (紧凑像球还是像堆,
-the #152 shape authority) + D1/D2/phone/F7b/F7c verdicts —
-keep / change / revert per lever. Slice 2 (per-body offsets) and
-the ladder queue behind the play verdict. Seeds consumed through 12,236,999;
+re-derived; SW precache excludes the opt-in tables). **FIRST
+PLAY VERDICT LANDED (#157, 2026-08-06)**: 越位/犯规多 + 防守不知
+道往哪走 + 配合更多 — the forensic re-read of the committed
+battery corroborates all three (offsides ≈2× production in the
+armed world, restartTicks +29%, dupRun +7.8%; the proximity
+block's contracted verdict authority = the user's eyes, now
+exercised NEGATIVE; stories H-157a/b/c labelled hypotheses).
+**THE QUEUE SITS AT THE USER'S #157.5 FORK**: (i) slice 2
+per-body obedience offsets (the change response to the
+lost-defenders look) · (ii) the offside axis (keep / drop
+futsal-style / tune — a substrate-rule call) · (iii) wholesale
+revert of the A4 feel · (iv) D1/D2/phone/F7b/F7c lever verdicts
+still OPEN. Seeds consumed through 12,236,999;
 12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified

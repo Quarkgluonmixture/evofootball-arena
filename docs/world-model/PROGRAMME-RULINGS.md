@@ -6573,3 +6573,64 @@
 >    D2 trails + phone layering + F7b fireworks + F7c goal
 >    camera. Verdicts keep / change / revert per lever; the
 >    slice-1 closing note lands with their verdict.
+
+> **COMMANDER RULING #157 (2026-08-06 — the user's FIRST play
+> verdict on the A4 world lands; forensic re-read of the
+> committed battery corroborates all three observations; the
+> proximity-block adjudication is hereby EXERCISED by the user;
+> the fork returns to the user):**
+>
+> 1. **USER VERDICT RECORDED (verbatim)**: "我感觉好多越位和犯规
+>    啊,而且感觉很多时候球员不知道自己该往哪走,尤其是防守的时候.
+>    但是配合确实更多了" — delivered after playing the #156 entry.
+>    Three observations + one positive.
+> 2. **FORENSIC RE-READ (committed JSON only, ZERO re-runs:
+>    `data/a4-p3prime-replication.json` perArmLevels +
+>    descriptive block; 2,000 sets @ 12.23M)** — the eye saw
+>    real, already-measured signals:
+>    (a) offsides/set: R0 3.03 → R3p 4.3555 → PRIOR **6.128** —
+>    the armed world ≈ **2× production** (the eye alone +44%,
+>    the home prior +41% on top). NEVER GATED — descriptive
+>    only; no offside gate exists in any A4 contract.
+>    (b) restartTicks/set: R0 1707.0 → PRIOR 2209.5 (**+29% vs
+>    production**); the frozen flag priced only PRIOR−R3p
+>    (+231.6, under the +322 double-cost line) → restartFlagged
+>    false, honestly. NO dedicated foul counter exists —
+>    restartTicks is the aggregate proxy (instrument gap #1).
+>    (c) proximity block, PRIOR−R3p contrast (verdict authority
+>    = the USER's play-test, #152 amendment, quoted inside the
+>    JSON itself): spacingMedian −0.575 m, spacingUnder4 +5.3%,
+>    dupRun **+7.8%** — the measured face of 不知道该往哪走.
+>    **The user's negative shape reading IS the contracted
+>    adjudication of this block, now exercised.**
+>    (d) 配合更多 (positive): this battery carried NO combination
+>    counters (E4's third-man/overlap/chain dimensions absent)
+>    — corroboration open; instrument gap #2.
+> 3. **INTUITION SCORED (the ratified mode)**: three for three
+>    REAL. The user's eye caught costs the frozen gates had
+>    filed as descriptive/tolerable — the #151/#154 double
+>    record landing at the contracted exit: on results the
+>    PRIOR world defends better (deep −0.7395, box −0.380/set);
+>    to the eye it whistles too much and its defenders look
+>    leaderless. Both stand; the disposition is watchability's,
+>    i.e. the user's.
+> 4. **STORIES LABELLED (hypotheses — no probes run; each needs
+>    a pre-registered discriminator before any code moves)**:
+>    H-157a — the eye's velocity lookahead finds through balls
+>    EARLIER → receivers beyond the line more often → the
+>    offside rise (mechanism story for 2a). H-157b — home-prior
+>    compaction puts more bodies in traffic → more contested
+>    restarts (for 2b). H-157c — dupRun homogenization (every
+>    head consulting the same coarse consensus) = the
+>    lost-defenders LOOK (for 2c; already the named slice-2
+>    motive: per-body obedience offsets).
+> 5. **THE FORK (returns to the user; plain-language brief in
+>    the session channel)**: (i) slice 2 = per-body obedience
+>    offsets — the CHANGE response to 2c; (ii) the OFFSIDE
+>    AXIS — small-sided football famously plays WITHOUT
+>    offside; keep / drop (futsal-style, a production
+>    rebaseline) / tune is a substrate-rule call only the user
+>    can make; (iii) wholesale revert of the A4 feel (their
+>    authority stands); (iv) the D1/D2/phone/F7b/F7c lever
+>    verdicts remain OPEN. Road B intact: nothing shipped this
+>    round; fingerprint `57b0bdab…c673` untouched.

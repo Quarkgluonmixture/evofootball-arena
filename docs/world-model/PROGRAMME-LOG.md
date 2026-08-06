@@ -2058,3 +2058,12 @@ the grant/dose machinery (reusable), the Phase-31-pin removal
 candidate, the deep-outlet exoneration. Seeds consumed through
 12.008M; 12.01M–12.3M + stats 1006xx+ remain. Road B; fingerprint
 `57b0bdab…c673` unchanged (#90–#142). R20 gaps / F9 any time.
+
+2026-08-06 (#157): superseded QUEUE state — "THE QUEUE SITS AT
+THE USER'S EYES: the A4 world feel (紧凑像球还是像堆, the #152
+shape authority) + D1/D2/phone/F7b/F7c verdicts — keep / change
+/ revert per lever. Slice 2 (per-body offsets) and the ladder
+queue behind the play verdict." → the first play verdict landed
+(#157: 越位 ≈2× corroborated, restartTicks +29%, dupRun +7.8%,
+配合更多 positive-but-uncountered; proximity-block authority
+exercised NEGATIVE); queue moved to the user's #157.5 fork.
