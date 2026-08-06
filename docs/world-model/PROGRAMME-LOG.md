@@ -2074,3 +2074,8 @@ THE USER'S #157.5 FORK: (i) slice 2 per-body obedience offsets ·
 phone/F7b/F7c lever verdicts still OPEN." → the user ruled 甲;
 slice 2 OPENED (contract drafted + VISION-audited, #158); 乙
 hangs; next authorized step = S2-P1 on "go".
+
+2026-08-06 (#159): QUEUE cadence note superseded — "NEXT
+AUTHORIZED STEP on 'go' = S2-P1" → the user authorized
+SELF-DRIVE for the S2 arc (Workflow dispatch, Opus 5 medium
+executors); stops = FAIL/fork/user-gates only.

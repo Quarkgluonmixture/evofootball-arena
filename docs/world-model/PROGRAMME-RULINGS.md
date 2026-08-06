@@ -6670,3 +6670,26 @@
 >    S2-P1 — the dose-vector stage doc + sizing smoke (executor,
 >    Workflow Draft→Verify, §0.0). Road B intact; fingerprint
 >    `57b0bdab…c673` untouched; nothing shipped this round.
+
+> **COMMANDER RULING #159 (2026-08-06 — the user authorizes
+> SELF-DRIVE through the slice-2 arc; Workflow dispatch;
+> executors = Opus 5 medium):**
+>
+> 1. **USER RULING RECORDED (verbatim: "用workflow方式(简单的活
+>    给opus5 med)自走")**: the S2-P1 → S2-P2 → S2-P3 chain may
+>    proceed WITHOUT a per-round "go". Dispatch stays the §0.0
+>    Workflow Draft→Verify form; executor model = Opus 5 at
+>    medium effort. The commander still reviews and rules
+>    between steps (never delegated).
+> 2. **STOP CONDITIONS UNCHANGED (red lines)**: any non-PASS /
+>    pre-named FAIL mode / fork / contract ambiguity / anything
+>    touching the 乙 offside axis / S2-P4 (the user's eyes) →
+>    write into the repo, push, STOP and report. Long runs =
+>    commander-resident nohup + Monitor (§0.0.4). One writer per
+>    tree: the repo is never edited while an executor runs.
+> 3. **DISPATCHED**: S2-P1 — Draft builds the stage doc
+>    (`A4-S2P1-VECTOR-CENSUS.md`: frozen vector grid, the §5
+>    instrument-debt counters, sizing smoke, gates frozen ex
+>    ante, seed ledger) + the dormant vector instrument seam;
+>    Verify independently re-checks per §0.0. Local commit only;
+>    the commander pushes after review.

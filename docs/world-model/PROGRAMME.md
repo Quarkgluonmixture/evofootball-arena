@@ -61,10 +61,10 @@ exercised NEGATIVE; stories H-157a/b/c labelled hypotheses).
 (H-A4.2: heterogeneity at matched mean cuts dupRun at
 non-inferior deep/box; VISION-audited, BIRTH-NEUTRALITY binding;
 the #157 instrument debt — offside flag, foul counter, E4 combo
-counters — binds every battery). **NEXT AUTHORIZED STEP on
-"go" = S2-P1**: the dose-vector stage doc + sizing smoke
-(executor, Workflow Draft→Verify). Then S2-P2 dormant build →
-S2-P3 battery → S2-P4 play-test exit. HANGING: 乙 the offside
+counters — binds every battery). **SELF-DRIVE AUTHORIZED
+(#159)**: S2-P1 → S2-P2 → S2-P3 proceed without per-round "go"
+(Workflow Draft→Verify, Opus 5 medium executors); stops =
+FAIL / fork / user-gates; S2-P4 play-test exit = the user. HANGING: 乙 the offside
 axis (user-gated); D1/D2/phone/F7b/F7c lever verdicts still
 OPEN. Seeds consumed through 12,236,999;
 12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
