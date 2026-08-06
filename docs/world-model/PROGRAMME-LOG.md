@@ -2067,3 +2067,10 @@ queue behind the play verdict." → the first play verdict landed
 (#157: 越位 ≈2× corroborated, restartTicks +29%, dupRun +7.8%,
 配合更多 positive-but-uncountered; proximity-block authority
 exercised NEGATIVE); queue moved to the user's #157.5 fork.
+
+2026-08-06 (#158): superseded QUEUE state — "THE QUEUE SITS AT
+THE USER'S #157.5 FORK: (i) slice 2 per-body obedience offsets ·
+(ii) the offside axis · (iii) wholesale revert · (iv) D1/D2/
+phone/F7b/F7c lever verdicts still OPEN." → the user ruled 甲;
+slice 2 OPENED (contract drafted + VISION-audited, #158); 乙
+hangs; next authorized step = S2-P1 on "go".

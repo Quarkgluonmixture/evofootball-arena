@@ -56,12 +56,17 @@ battery corroborates all three (offsides ≈2× production in the
 armed world, restartTicks +29%, dupRun +7.8%; the proximity
 block's contracted verdict authority = the user's eyes, now
 exercised NEGATIVE; stories H-157a/b/c labelled hypotheses).
-**THE QUEUE SITS AT THE USER'S #157.5 FORK**: (i) slice 2
-per-body obedience offsets (the change response to the
-lost-defenders look) · (ii) the offside axis (keep / drop
-futsal-style / tune — a substrate-rule call) · (iii) wholesale
-revert of the A4 feel · (iv) D1/D2/phone/F7b/F7c lever verdicts
-still OPEN. Seeds consumed through 12,236,999;
+**SLICE 2 IS OPEN (#158 — the user ruled 甲)**: contract =
+[`A4-SLICE2-PERBODY-CONTRACT.md`](A4-SLICE2-PERBODY-CONTRACT.md)
+(H-A4.2: heterogeneity at matched mean cuts dupRun at
+non-inferior deep/box; VISION-audited, BIRTH-NEUTRALITY binding;
+the #157 instrument debt — offside flag, foul counter, E4 combo
+counters — binds every battery). **NEXT AUTHORIZED STEP on
+"go" = S2-P1**: the dose-vector stage doc + sizing smoke
+(executor, Workflow Draft→Verify). Then S2-P2 dormant build →
+S2-P3 battery → S2-P4 play-test exit. HANGING: 乙 the offside
+axis (user-gated); D1/D2/phone/F7b/F7c lever verdicts still
+OPEN. Seeds consumed through 12,236,999;
 12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified

@@ -6634,3 +6634,39 @@
 >    authority stands); (iv) the D1/D2/phone/F7b/F7c lever
 >    verdicts remain OPEN. Road B intact: nothing shipped this
 >    round; fingerprint `57b0bdab…c673` untouched.
+
+> **COMMANDER RULING #158 (2026-08-06 — the user rules 甲 at the
+> #157.5 fork: SLICE 2 OPENS; the slice-2 contract drafted +
+> VISION-audited same round; the offside axis hangs):**
+>
+> 1. **USER RULING RECORDED (verbatim: "甲")**: enter slice 2 —
+>    per-body obedience offsets, the CHANGE response to the
+>    lost-defenders look. 乙 (the offside axis) HANGS unworked;
+>    丙 (wholesale revert) declined for now; the D1/D2/phone/
+>    F7b/F7c lever verdicts remain OPEN.
+> 2. **THE SLICE-2 CONTRACT DRAFTED**:
+>    [`A4-SLICE2-PERBODY-CONTRACT.md`](A4-SLICE2-PERBODY-CONTRACT.md)
+>    — claim H-A4.2 (heterogeneity at MATCHED mean dose cuts
+>    dupRun at non-inferior deep/box; the H-157c discriminator);
+>    mechanism M-S2.1–4 (offset gene family born ABSENT behind
+>    the existing flags; same eye.v4 seam; the P1c grant
+>    generalized to dose VECTORS instrument-side); arc S2-P1
+>    (vector grid) → S2-P2 (dormant build) → S2-P3 (frontier
+>    battery) → S2-P4 (the play-test exit — the slice cannot
+>    close on counters alone). FAIL modes pre-named incl. the
+>    honest ones (H-157c wrong; whisper already optimal).
+> 3. **VISION AUDIT (the #91 form, embedded §8)**: five clauses
+>    PASS — per-body obedience is NATIVE to the user's own
+>    ontology (爱压上的后卫和爱回撤的前锋, VISION §1 verbatim);
+>    ONE amendment produced and made binding: §3 BIRTH
+>    NEUTRALITY (no role-derived birth defaults — offsets born
+>    zero everywhere; differentiation EARNED or instrument-only;
+>    a pre-differentiated birth = 替球队定X, rejected ex ante).
+> 4. **THE #157 INSTRUMENT DEBT MADE BINDING (contract §5)**:
+>    offsides get their own flag on every slice-2 contrast; a
+>    dedicated foul counter is built at S2-P1; the E4
+>    combination counters ride every battery as REPORTED.
+> 5. **NEXT AUTHORIZED STEP (fires on the user's next "go")**:
+>    S2-P1 — the dose-vector stage doc + sizing smoke (executor,
+>    Workflow Draft→Verify, §0.0). Road B intact; fingerprint
+>    `57b0bdab…c673` untouched; nothing shipped this round.
