@@ -96,12 +96,19 @@ Honest costs: restartTicks +161/set, roleMixTV 0.556→0.434. ⭐
 #151.3: the exam's instruments predate the P1 arc — it graded the
 mechanism against the OLD shape's yardstick while the certified
 currency says it works; H-A4.1 is MIS-MEASURED, not settled. ⭐
-**THE QUEUE SITS AT THE USER FORK (#151.4): (A) play-test the
-prior world first (their eyes arbitrate compact-vs-clumping),
-then rule on P3′ · (B) authorize P3′ (re-registered exam,
-entries-based discipline leg) · (C) close slice 1 with the frozen
-FAIL, all banked.** Green path suspended. Fingerprint unchanged
-across the whole slice (#125–#151); everything dormant.
+**#151.4 RULED B BY THE USER ("B 自走", #152) — A4-P3′ IS LIVE,
+the green path resumed.** The P1e replication structure: fresh
+seeds (smoke 12.22M, battery 12.23M, N≤7,000), a NEW frozen gate
+= deep entries resolvedly FALL on PRIOR−R3p ∧ box does not worsen
+∧ the football hard gates (scramble/ledger/roleMixTV≥0.407/
+X-family); proximity readouts DESCRIPTIVE (verdict authority =
+the user's play-test, contract §1 #152 amendment); restart
+REPORTED (flag above +322/set). The user's two diagnoses banked
+(#152.3): per-body offsets = slice-2 candidate; a
+punish-compactness substrate = the long line. PASS ⇒ slice 1
+returns for the closing ruling + play-test; FAIL ⇒ H-A4.1
+unsupported on the honest ruler too. Fingerprint unchanged
+(#125–#152); everything dormant.
 Design (#146): NO src changes (the map seam takes strength as a
 parameter); fine grid {0.125, 0.25, 0.375, 0.5}×VAL_SCALE,
 PRIMARY pinned 0.25×; gate frozen fresh = (i) primary resolved

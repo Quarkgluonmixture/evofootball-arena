@@ -6373,3 +6373,59 @@
 >    slice (#125–#151); nothing shipped; every flag dormant.
 >    Green path suspended at the exam verdict (#149.4: every
 >    outcome returns to the user).
+
+> **COMMANDER RULING #152 (2026-08-04 — the user rules #151.4:
+> option B; the ruler amendment; A4-P3′ authorized and
+> dispatched; the user's two substrate diagnoses banked):**
+>
+> 1. **USER RULING RECORDED (verbatim: "B 自走")**: A4-P3′ — the
+>    re-registered frontier exam — proceeds; the green path
+>    resumes. Structure = the P1e REPLICATION precedent: the
+>    battery's reported currency signals were SEEN; the honest
+>    fresh test is a frozen replication gate on VIRGIN seeds —
+>    never a re-read of seen data (the #145.5-B refusal carries).
+> 2. **THE CONTRACT §1 RULER AMENDMENT LANDED** (quoted in the
+>    contract): discipline = the certified currency; the retained
+>    football hard gates; proximity readouts descriptive with
+>    verdict authority passed to the user's play-test; the #151
+>    F-SHAPE-ONLY record stands unerased.
+> 3. **THE USER'S DIAGNOSES, BANKED** (verbatim: "我们应该加上一些
+>    其他的底座(变量),例如因人而异的偏移,或者底座留出可能的惩罚
+>    紧凑"): (i) per-body obedience offsets — already M2′ content,
+>    now the NAMED SLICE-2 candidate with a measured motive (the
+>    roleMixTV collapse 0.556→0.434 = uniform agreement
+>    homogenizes; a testable hypothesis with an obvious battery
+>    form); (ii) a substrate that can PUNISH compactness
+>    (强弱侧, opponent-responsive shaping, overload-to-isolate,
+>    co-evolution) — the long-line program; its point is that a
+>    rich enough world prices shape ITSELF and every hand
+>    shape-judge retires. Also banked: the static-world caveat
+>    (no adversarial adaptation anywhere in this arc — the
+>    frontier readings are frozen-genome results; the selection/
+>    co-evo step remains the named second half).
+> 4. **A4-P3′ DESIGN CONSTRAINTS (binding)**: (i) ZERO src; fork
+>    the P3 probe — same five arms, same instruments, NEW gate
+>    module + fresh seeds. (ii) THE FROZEN GATE (before any run;
+>    the smoke sizes only): on `PRIOR − R3p`, paired, cluster CI:
+>    **leg (a)** deep entries per set RESOLVEDLY FALL (CI upper
+>    < 0); **leg (b)** box entries do NOT resolve UP; **leg (c)**
+>    football hard gates — scramble I4 not resolved-up,
+>    ball-ledger 0, PRIOR roleMixTV ≥ 0.407 (the incumbent
+>    floor), all X-family HARD. Proximity readouts + occupancy +
+>    restartTicks: REPORTED/descriptive, each with its #151
+>    observation quoted (restart prior obs +161/set; a resolve
+>    above +322 — double — is FLAGGED, not gating). PASS ⇒ the
+>    frontier verdict is AFFIRMED on the amended ruler and slice
+>    1 returns to the user for the closing ruling + play-test;
+>    any leg fails ⇒ STOP, return to the user (the replication
+>    failed — H-A4.1 unsupported on the honest ruler too).
+>    (iii) SEEDS: smoke 12,220,000+k k∈0..39; battery
+>    12,230,000+k k∈0..N−1, N ≤ 7,000 (⇒ ≤ 12,236,999, inside
+>    the reservation; the P3 pinned block [12.208M, 12.218M] is
+>    treated as consumed in full); stats 101203/101303. (iv) N
+>    arithmetic on the DEEP leg (MDL floor: half the seen effect
+>    or a pre-named absolute floor — executor derives, flags);
+>    progress every 250 sets; the #128 wall-free X-DET.
+> 5. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0): pre-reg + probe fork + bounded preflight; local
+>    commit, explicit paths, no push.

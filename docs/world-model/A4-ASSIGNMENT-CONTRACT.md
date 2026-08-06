@@ -72,6 +72,25 @@ frontier".
 Falsifiable both ways, FAIL modes pre-named in §6. This is a MEASUREMENT
 arc: nothing ships from slice 1 regardless of verdict (Road B).
 
+> **#152 RULER AMENDMENT (2026-08-04, user-ruled after the #151 verdict).**
+> The original H-A4.1 readout (DEGEN-RESTDEF + the P3p-3 proximity-shape
+> limbs) was examined AS FROZEN and FAILED (#151 — the record stands,
+> unerased). The instruments predate the P1 pricing arc, which certified
+> ENTRIES (deep/box) as the causal discipline currency and showed the
+> occupancy/proximity readouts price the OLD hand-authored shape. **P3′
+> re-examines H-A4.1 on FRESH seeds with a NEW frozen gate** (the P1e
+> replication structure): discipline = the certified currency (deep
+> entries fall resolvedly; box does not worsen); the retained FOOTBALL
+> hard gates = scramble (乱抢, VISION §2), ball-ledger 0, roleMixTV ≥ the
+> incumbent floor, the X-family; the PROXIMITY readouts
+> (spacing/under-4m/dupRun/occupancy) become DESCRIPTIVE — for a
+> compact-BY-AGREEMENT mechanism their verdict authority passes to the
+> USER's play-test (VISION §2: watchability has no instrument). User
+> diagnoses recorded with the amendment: per-body obedience offsets =
+> the named slice-2 candidate (M2′); a substrate that can PUNISH
+> compactness (强弱侧 / opponent-responsive shape / co-evolution) = the
+> long-line program that eventually retires ALL hand shape-judging.
+
 ## §2 Mechanism — what slice 1 builds (all dormant)
 
 > **#137 RESCOPE (2026-08-02, user-ruled A′ after the P1/P1b STOPs and the
