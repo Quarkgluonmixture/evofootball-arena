@@ -6693,3 +6693,42 @@
 >    ante, seed ledger) + the dormant vector instrument seam;
 >    Verify independently re-checks per §0.0. Local commit only;
 >    the commander pushes after review.
+
+> **COMMANDER RULING #160 (2026-08-06 — S2-P1 draft + verify
+> PASS; deviations ratified; the census run authorized and
+> launched):**
+>
+> 1. **BANKED + PUSHED**: `d33dae4` (stage doc
+>    `A4-S2P1-VECTOR-CENSUS.md` + the dormant vector seam on
+>    `Match.homeRegionGrant` (second union member, null default,
+>    P1c member byte-untouched) + 12/12 dormancy tests incl.
+>    fingerprint `57b0bdab…c673` unchanged + uniform-0.5-vector
+>    ≡ slice-1-PRIOR non-vacuous byte-identity + the probe with
+>    the #157 debt counters + sizing smoke JSON; suite 1059
+>    green, tsc clean; machine-verify PASS).
+> 2. **DEVIATIONS RATIFIED (all followed-and-flagged at their
+>    best)**: (i) `singleAnchor` at MATCHED mean [1.0, .375×4]
+>    instead of the literal P1c echo — the matched-mean spine
+>    outranks the wording; the silent-rest variant is a NAMED
+>    LATER instrument; (ii) the vector member consumes the
+>    map-shaped P1d/P2 `homeMapBias` closure so the uniform arm
+>    IS the slice-1 PRIOR (the contract's own §4 requirement —
+>    right call); (iii) one-sided forks per the P1c machinery;
+>    both-sides deferred to S2-P3; (iv) probe-side counters from
+>    public TeamMatchStats — no sim touch. Verify's two
+>    observations recorded: freeze-order rests on internal
+>    consistency (doc+smoke same commit; gate constants trace
+>    only to #154/#157/#152 — checked); the MDL noise guard
+>    touches one smoke contrast, affects N only, moot at the
+>    cap.
+> 3. **THE REDUCED-POWER DISCLOSURE ACCEPTED**: frozen N* =
+>    70,800 exceeds N_MAX 8,000 (seed-budget + 12 h wall cap) ⇒
+>    census N = 8,000 @ 12,240,000–12,247,999, resolving |Δ| ≥
+>    0.350 pairs/window (0.66% of uniform) — ~70× smaller than
+>    the pre-named #157-scale cure (+7.8% = 4.157). Powered
+>    where it matters; disclosed ex ante; no criterion re-cut.
+> 4. **LAUNCHED (§0.0.4, commander-resident)**: the gate-bearing
+>    census, `A4S2P1_MODE=census A4S2P1_N=8000`, ~7 h wall.
+>    Disposition on completion by numbered ruling: PASS ⇒ chain
+>    to S2-P2 (self-drive #159); any FAIL leg / fired offside
+>    flag (F-S2d) ⇒ STOP to the user.
