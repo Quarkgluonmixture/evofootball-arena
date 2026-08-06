@@ -879,12 +879,37 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         // Body- and side-scoped; a probe sets it on a forked clone. The bias is
         // distance-decayed toward the back home region in the eye's own units.
         const grant = match.homeRegionGrant;
+        const singleGrant = (grant !== null && !('obedienceByIndex' in grant)) ? grant : null;
         let homeBias: ((cand: EyeCandidate) => number) | undefined =
-          (grant !== null && grant.side === p.side && p.index === grant.bodyIndex && grant.strength !== 0)
+          (singleGrant !== null && singleGrant.side === p.side
+            && p.index === singleGrant.bodyIndex && singleGrant.strength !== 0)
             ? (cand: EyeCandidate) => backHomeRegionBias(
-              grant.strength, team.localX(ball.pos.x + team.attackDir * cand.dx),
+              singleGrant.strength, team.localX(ball.pos.x + team.attackDir * cand.dx),
             )
             : undefined;
+        // A4 SLICE 2, S2-P1 (#158): the PER-BODY OBEDIENCE VECTOR form of the same
+        // dormant seam. `homeRegionGrant` is null in every production path ⇒ this
+        // branch never runs ⇒ bit-for-bit HEAD (I-A7). When the VECTOR member is set
+        // on a forked clone, each side-`side` outfield body reads HIS OWN obedience
+        // and prices HIS OWN ATTACK_FORMATIONS home through the SHIPPED-FORM
+        // strength map + the SAME homeMapBias closure the eye.v4.homePrior branch
+        // builds — so a uniform 0.5 vector IS the slice-1 certified PRIOR content on
+        // that side. Vectors are instrument forks, never shipped content (§3 BIRTH
+        // NEUTRALITY): no role-derived default lives in src/**.
+        if (homeBias === undefined && grant !== null && 'obedienceByIndex' in grant
+          && grant.side === p.side) {
+          const s = homePriorStrength(grant.obedienceByIndex[p.index] ?? 0);
+          if (s !== 0) {
+            const home = ATTACK_FORMATIONS[team.style.formationAtk][p.index];
+            if (home !== undefined) {
+              const hx = home.x;
+              const hy = home.y;
+              homeBias = (cand: EyeCandidate) => homeMapBias(
+                s, team.localX(ball.pos.x + team.attackDir * cand.dx), ball.pos.y + cand.dy, hx, hy,
+              );
+            }
+          }
+        }
         // A4-P1d (#143): the DORMANT HOME-MAP GRANT (parallel to the P1c single-body
         // flag above, which stays banked untouched). `homeMapGrant` is null in every
         // production path ⇒ this closure is never built ⇒ bit-for-bit HEAD. When set on

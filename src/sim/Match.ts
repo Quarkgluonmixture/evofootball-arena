@@ -931,8 +931,28 @@ export class Match {
    * back home region to the granted body's per-candidate station value at the
    * established v3 consumption point (no clamp; body- and side-scoped; the eye's
    * native score units). `strength` is a pre-registered DOSE (a gene when shipped
-   * — I-A3). MUTABLE on purpose; a probe assigns it, never a constructor path. */
-  homeRegionGrant: { readonly side: 0 | 1; readonly bodyIndex: number; readonly strength: number } | null = null;
+   * — I-A3). MUTABLE on purpose; a probe assigns it, never a constructor path.
+   *
+   * A4 SLICE 2, S2-P1 (A4-SLICE2-PERBODY-CONTRACT §2 M-S2.3, ruling #158): the
+   * seam GENERALIZES to a per-body OBEDIENCE VECTOR (the second union member,
+   * discriminated by the presence of `obedienceByIndex`). `null` remains the
+   * default in EVERY production path, and the single-body P1c member is
+   * UNTOUCHED (its branch is byte-for-byte what it was). When the VECTOR member
+   * is set (ONLY on a cloned/forked world inside an instrument branch), each
+   * side-`side` OUTFIELD body reads HIS OWN obedience `obedienceByIndex[p.index]`
+   * ∈ [0,1], mapped through the SHIPPED-FORM `homePriorStrength` onto the
+   * certified [0, HOME_MAP_STRENGTH_MAX] span and applied to HIS OWN
+   * ATTACK_FORMATIONS home via the SAME `homeMapBias` closure the shipped
+   * `eye.v4.homePrior` branch builds — so a UNIFORM vector at obedience 0.5 is
+   * exactly the slice-1 certified PRIOR content on that side (asserted in
+   * `tests/a4S2VectorGrant.test.ts`). An absent / non-finite / ≤ 0 entry ⇒ no
+   * bias for that body (inert). VECTORS ARE MEASUREMENT FORKS, NEVER SHIPPED
+   * CONTENT (contract §3 BIRTH NEUTRALITY): no role-derived birth default exists
+   * anywhere in `src/**`; the vectors live only inside probe instruments. */
+  homeRegionGrant:
+    | { readonly side: 0 | 1; readonly bodyIndex: number; readonly strength: number }
+    | { readonly side: 0 | 1; readonly obedienceByIndex: readonly number[] }
+    | null = null;
 
   /**
    * A4-P1d (ruling #143): the DORMANT HOME-MAP GRANT (the WHOLE-DISTRIBUTION form
