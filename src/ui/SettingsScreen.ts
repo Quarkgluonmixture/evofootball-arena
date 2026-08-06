@@ -36,6 +36,7 @@ export class SettingsScreen {
     flags: UiFlags,
     emergentInitial = false,
     edsPreviewInitial: EdsPreviewMode = 'off',
+    a4WorldInitial = false,
   ) {
     this.root = el('div');
     this.root.id = 'settings-screen';
@@ -124,6 +125,13 @@ export class SettingsScreen {
     exp.appendChild(valueBox);
     exp.appendChild(el('div', 'muted',
       t('On top of the above: the passer prices every option by how often that pass has actually LED TO A SHOT, instead of by how likely it is to arrive. Measured: a more DIRECT game — more forward passes than the legacy brain, shots +22%, goals unchanged — but markedly fewer slow-developing wide patterns (an overlap release roughly halves). The question only you can answer is whether the direct game is better football.')));
+    // A4 PLAY-TEST ENTRY (ruling #155): the certified PRIOR world, armed on
+    // BOTH teams. Default OFF; overrides the EDS preview above while armed
+    // (it contains that bundle plus the rest of the census substrate).
+    exp.appendChild(checkbox(t('A4 world: the pre-match agreement (play-test)'), a4WorldInitial,
+      (v) => actions.setA4World(v)));
+    exp.appendChild(el('div', 'muted',
+      t('Both teams get the measured "where we stand" agreement — the whisper-volume version of a kickabout deciding who covers what — on top of the eye that makes players act on what they SEE. Measured: resolvedly fewer balls let into deep areas AND into the box, with the football checks all holding. What only your eyes can rule: does the compactness look like STRUCTURE or like a huddle? Takes effect immediately — the current match restarts in the new world, and a badge in the corner tells you which world you are watching.')));
     this.root.appendChild(exp);
   }
 

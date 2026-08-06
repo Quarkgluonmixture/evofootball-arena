@@ -71,10 +71,19 @@ export function mediaCacheName(): string {
  * bundles, the manifest and the icons. Audio is explicitly excluded — 17 MB
  * of it — and is instead cached on first play. Source maps are excluded
  * because nobody needs them offline.
+ *
+ * The OPT-IN chunks are excluded for the same reason as the audio, and for one
+ * more: ruling #155's "nothing changes for a player who does not opt in". The
+ * A4 play-test entry lazy-loads ~250 kB of frozen census tables; precaching
+ * them would make every install pay for a debug world nobody armed. They are
+ * fetched (and then http-cached) the first time the entry is armed.
  */
+const OPT_IN_CHUNK_PREFIXES = ['assets/stage3-'] as const;
+
 export function isShellAsset(fileName: string): boolean {
   if (fileName.endsWith('.map')) return false;
   if (fileName.startsWith('audio/')) return false;
+  if (OPT_IN_CHUNK_PREFIXES.some((p) => fileName.startsWith(p))) return false;
   if (fileName === SW_FILE_NAME) return false;
   return true;
 }

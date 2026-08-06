@@ -270,10 +270,16 @@ export class League {
    * Probe surface (not serialized): EDS E3 arms the dormant bundle for one
    * audit arm without every fixture learning about it. Empty in production, so
    * `createMatch` builds exactly the shipped match (X1's fingerprint gate).
+   *
+   * A4 (ruling #155) widens the KEY SET only: the play-test entry arms the
+   * enriched census substrate (`A4_WORLD_FLAGS`), which needs the C-family
+   * seams too. Still empty in production — an unarmed league builds the
+   * identical shipped match, and the widening changes no default.
    */
   matchFlags: Partial<Pick<MatchConfig,
     'edsTouchCost' | 'edsPerceivedDefence' | 'edsPerceivedChoice' | 'edsValueAxis'
     | 'edsAwareness' | 'traceChoice'
+    | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup'
   >> = {};
 
   constructor(cfg: { seed: number; matchDuration?: number }) {

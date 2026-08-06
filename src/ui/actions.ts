@@ -65,6 +65,14 @@ export interface GameActions {
    * only combinations a pre-registered audit actually ran are reachable.
    */
   setEdsPreview(mode: EdsPreviewMode): void;
+  /**
+   * A4 PLAY-TEST (ruling #155): arm / disarm the certified PRIOR world — the
+   * enriched census substrate + the both-sides role eye + the whisper home
+   * prior (obedience 0.5) on BOTH teams. Default OFF; arming reloads the
+   * current fixture so the world under the eyes is the one the badge names.
+   * Async because the census tables are fetched on demand.
+   */
+  setA4World(on: boolean): void;
   toggleLeagueScreen(): void;
   /** Pop the tactical-DNA clash for the current match (Phase 33: the scoreboard is the button). */
   toggleClash(): void;
