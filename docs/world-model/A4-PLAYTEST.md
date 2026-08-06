@@ -104,3 +104,7 @@ an audited arm, a sticky user choice, pushed onto `League.matchFlags` for
 matches started from now on. A4 adds what construction flags cannot express —
 the `Match.stationEye` config and the obedience gene on both teams — applied to
 the freshly built match, and only when the user armed it.
+
+> **注意(E4 同款语义)**:只有你**观看**的比赛在 A4 世界里踢;后台批量模拟的
+> 赛季结果仍来自线上世界(matchFlags 不进存档序列化)。所以联赛积分榜不反映
+> A4 世界——你的眼睛看的那场才是实验品。

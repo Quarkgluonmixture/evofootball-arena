@@ -44,14 +44,16 @@ certified prices, the Phase-31-pin removal candidate. NAMED NEXT:
 slice 2 = per-body obedience offsets (roleMix homogenization
 motive) · the punish-compactness substrate program (the user's
 diagnosis) · selection/PAYS + co-evolution (the static-world
-caveat) · the D3 event-detector contract (Track D). ⭐ **#154.4
-RULED A ("a", #155) — the PLAY-TEST entry is being wired** (E4
-precedent: both teams armed with the R3p eye world + the 0.25×
-whisper prior; explicit opt-in, default OFF, badge on screen,
-phone-capable; fingerprint unchanged). Acceptance = the user's
-play verdicts on the A4 world feel + the D2/F7 five-item list.
-Slice 2 (per-body offsets) and the rest of the ladder queue
-behind the play verdict. Seeds consumed through 12,236,999;
+caveat) · the D3 event-detector contract (Track D). ⭐ **THE PLAY-TEST
+ENTRY IS LIVE (#155/#156, `485f36a` merged)**: ⚙ → 🧬
+Experimental → "A4 world" checkbox, or `?a4world=1` (phone);
+🧪 badge = ground truth; only WATCHED matches are A4 (E4
+semantics); off = byte-identical production (fingerprint
+re-derived; SW precache excludes the opt-in tables). **THE QUEUE
+SITS AT THE USER'S EYES**: the A4 world feel (紧凑像球还是像堆,
+the #152 shape authority) + D1/D2/phone/F7b/F7c verdicts —
+keep / change / revert per lever. Slice 2 (per-body offsets) and
+the ladder queue behind the play verdict. Seeds consumed through 12,236,999;
 12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified

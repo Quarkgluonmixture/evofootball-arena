@@ -6541,3 +6541,35 @@
 >    keep / change / revert, per lever.
 > 4. **DISPATCH**: one executor step (Workflow Draft→Verify,
 >    §0.0); local commit, explicit paths, no push.
+
+> **COMMANDER RULING #156 (2026-08-06 — the play-test entry
+> reviewed and MERGED; the acceptance session is in the user's
+> hands):**
+>
+> 1. **BANKED + MERGED**: `485f36a` (the a4World module following
+>    the edsPreview E4 idiom exactly + the ⚙ Experimental
+>    checkbox + the `?a4world=1` URL entry + the 🧪 badge +
+>    A4-PLAYTEST.md + 12 fidelity/dormancy tests; verify PASS).
+>    Fidelity is test-enforced, not claimed: the probe's
+>    CENSUS_FLAGS are regex-extracted from the probe SOURCE and
+>    deep-compared; the table SHAs re-hashed (X-MERGE form);
+>    obedience 0.5 asserted on all three genome references both
+>    sides; the fingerprint `57b0bdab…c673` re-derived unchanged.
+> 2. **FLAGS DISPOSED (all accepted)**: the tables' first
+>    src-reachability (dynamic import of the canonical artifacts,
+>    no duplication, opt-in async chunk); ⭐ the pwaAssets
+>    precache EXCLUSION (the executor caught the service worker
+>    shipping 250 kB to every install — excluding it is what
+>    makes "nothing changes for the non-opt-in player" TRUE;
+>    followed-and-flagged at its best); the type-only matchFlags
+>    widening; arm/disarm reloading the SAME fixture (a cleaner
+>    A/B than E4's next-kickoff); A4-overrides-EDS while armed
+>    (no off-census blends); the Chinese-first badge. Verify
+>    notes recorded (checkbox desync on failed load = cosmetic;
+>    watched-vs-simulated semantics now stated in the doc; the
+>    stage3- precache prefix note for future chunks).
+> 3. **THE ACCEPTANCE IS NOW THE USER'S**: the A4 world feel
+>    (紧凑像球还是像堆 — the #152 shape authority) + D1 shell +
+>    D2 trails + phone layering + F7b fireworks + F7c goal
+>    camera. Verdicts keep / change / revert per lever; the
+>    slice-1 closing note lands with their verdict.
