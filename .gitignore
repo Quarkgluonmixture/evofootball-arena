@@ -13,3 +13,9 @@ audio/processed/*.wav
 
 # audio sources live in the author archive; the game ships public/audio only
 audio/
+
+# Claude Code workspace. Only the agent definitions are shared — scratch output and
+# the registered worktrees under .claude/worktrees/ are ~105MB of build artefacts and
+# in-progress branches that must never reach this public repo.
+.claude/*
+!.claude/agents/
