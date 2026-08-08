@@ -7082,3 +7082,66 @@
 >    S2-P4 arming choice; PASS ⇒ the S2-P4 play-test entry step
 >    dispatches (self-drive), the acceptance itself = the
 >    user's eyes.
+
+> **COMMANDER RULING #167 (2026-08-08 — S2-P3 adjudicated: Leg F
+> PASS, Leg W PASS with a decisive watchability face, Leg S =
+> the honest H-165a-unsupported outcome; the S2-P4 entry
+> dispatches with the CERTIFIED FIXED world):**
+>
+> 1. **BANKED**: the three leg JSONs (`a4-s2p3-legf-fidelity`
+>    SHA 1f2fc5d4…, `a4-s2p3-legw-world-health` SHA cafab0a6…,
+>    `a4-s2p3-legs-selection` SHA 2093bc3f…; all X-family true,
+>    HEAD be4e023, parallel nohup run, zero incidents).
+> 2. **LEG F PASS (gate)**: GENE ≡ VECTOR on ALL 400 seeds,
+>    zero mismatches, non-vacuity held — the gene-expressed
+>    world IS the certified world, byte-for-byte.
+> 3. **LEG W PASS (gate)**: every inherited football hard gate
+>    holds (scramble resolved DOWN −0.005; ball-ledger 0/0;
+>    roleMixTV 0.4733 ≥ 0.407; goals/crosses/cutbacks in band).
+>    The #166.2.i adjudication read on the EXCLUDED dims:
+>    headers 5.45→4.97, longBalls 3.71→3.23 — BOTH-arm
+>    substrate drift with the ARM slightly lower (a less aerial
+>    world), no one-sided blowup, red flag NOT raised.
+>    **REPORTED set-grain face (labelled, never gated)**: the
+>    discipline world vs the uniform whisper — dupRun **−7.0%
+>    of level [−0.0442,−0.0349]** (≈ the entire #157 look-cost
+>    clawed back), offsides **−11.2%** resolved, restartTicks
+>    **−4.5%** resolved, spacingUnder4 resolved DOWN,
+>    spacingMedian +0.27 m breathing room, e4ThirdMan **+7.3%**
+>    resolved (配合更多 now HAS its counter and it points UP);
+>    fouls/penalties/turnovers/deep flat; goals −0.04
+>    unresolved, in band. ONE wrinkle recorded with its label:
+>    set-grain boxEntries **+4.5% resolved-up** while goals and
+>    box-at-arrival contest stay flat — H-167a (HYPOTHESIS, no
+>    probe): the freed FRONT line of the discipline shape
+>    generates more ground box penetration via combos against
+>    an equally-armed opponent; not a defensive-account
+>    reversal (the #164 fork-grain exam ruled that account at
+>    certified grain; both records stand, the #151/#154
+>    double-record form).
+> 4. **LEG S — H-165a UNSUPPORTED, the pre-declared honest
+>    outcome**: reading per the ex-ante note —
+>    familyPresent 1.0 is MECHANICAL; the selection signals are
+>    flat (fitnessDriftCorrelation −0.06 final, trendless
+>    −0.24…+0.37 across 20 gens; cluster histogram
+>    noise-shaped: 7.4 clusters/10 teams, top share 0.275,
+>    discipline 16% / press 26%; drift growth = diffusion under
+>    a flat gradient). Under win-only fitness in the
+>    probe-side loop, the look-value is NOT selectable ⇒ **the
+>    punish-compactness program (#154.3) formally inherits the
+>    make-it-pay question**. Honest power limits as declared
+>    (probe fitness = points-only; no style-consistency
+>    component, no careers/coaches).
+> 5. **S2-P4 DISPATCHED (the #165.3 disposition, arming choice
+>    = the CERTIFIED FIXED world)**: extend the #156 a4World
+>    entry with a SECOND experimental world — "A4 world v2 ·
+>    discipline" (`?a4world=2`): BOTH teams gene-armed
+>    backLoaded (whisper 0.5 + family [0,+.4,+.2,0,−.2,−.4], the
+>    Leg-F-certified content), v1 (uniform whisper) kept for
+>    A/B feel, badge distinguishes v1/v2, SHA-enforced
+>    fidelity, SW precache exclusion, phone, flag-off
+>    byte-identity — the #156 form verbatim. THE ACCEPTANCE IS
+>    THE USER'S: 防守知道往哪走了吗 · 哨声/越位少了吗 · 配合
+>    如何 · 紧凑像球还是像堆 (+ the still-open D1/D2/phone/
+>    F7b/F7c lever list). Road B: fingerprint `57b0bdab…c673`
+>    unchanged throughout slice 2.

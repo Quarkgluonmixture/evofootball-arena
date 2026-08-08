@@ -81,13 +81,22 @@ explicit `evolveHomePriorOffsets` opt-in — ⚠ THE ARMING
 CHECKLIST IS BINDING: armed = eye.v4.homePrior +
 evolveHomePrior + evolveHomePriorOffsets, ALL THREE; polarity
 debt discharged; one named test debt (vacuous homePrior-ON
-stream proof + docstring) rides S2-P3. **SELF-DRIVE IS ON
-S2-P3** (frame frozen #165.3: Leg F gene≡vector byte fidelity
-GATING · Leg W set-grain P3′ football hard gates GATING,
-effects REPORTED never re-gated · Leg S selection + §4
-diversity observation OBSERVATIONAL, H-165a labelled) → S2-P4 =
-the user's eyes (arming choice per Leg S outcome); Leg F/W
-FAIL ⇒ STOP to the user. VISION §3
+stream proof + docstring) rides S2-P3. **S2-P3 ADJUDICATED (#167,
+2026-08-08)**: Leg F PASS (gene≡vector, 400/400, zero
+mismatch) · Leg W PASS (all football gates; set-grain REPORTED
+face: dupRun −7.0% ≈ the #157 look-cost clawed back, offsides
+−11.2%, restarts −4.5%, thirdMan +7.3%, spacing breathes; one
+wrinkle boxEntries +4.5% resolved-up w/ goals flat = H-167a
+hypothesis, not a reversal) · Leg S = H-165a UNSUPPORTED
+honestly (selection signals flat under win-only fitness; the
+look-value is not selectable) ⇒ **punish-compactness (#154.3)
+formally inherits the make-it-pay question**. **SELF-DRIVE IS
+ON S2-P4**: the play-test entry extends #156's a4World with
+"v2 · discipline" (`?a4world=2`, both teams gene-armed
+backLoaded, v1 kept for A/B, badge/SHA/precache/phone per the
+#156 form); THE ACCEPTANCE = THE USER'S EYES (防守知道往哪走了
+吗 · 哨声/越位少了吗 · 配合如何 + the open D1/D2/phone/F7b/F7c
+list). VISION §3
 soft spot stands registered: break-even is rung-one's honest
 bar; defence is won back on higher ladder rungs (补位→默契→
 教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever
