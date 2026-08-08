@@ -7938,3 +7938,50 @@
 >    re-evaluate outcomes under it; retract/qualify §8.4 to
 >    what the instrument measures; the five LOWs) +
 >    independent re-verify. Adjudication (#188) after.
+
+> **COMMANDER RULING #188 (2026-08-08 — the far-side forensic
+> BANKED after the fix round (one residual receipt clause
+> corrected by the commander against the artifact); the
+> substantive verdict lands: H-186a(i) MODULATION MISSING; the
+> fork returns to the user):**
+>
+> 1. **BANKED + PUSHED**: `790b397` + this ruling's one-clause
+>    correction (§8.7.3 now names the detachment-descending
+>    selection and the excluded fourth receipt). The fix round
+>    delivered: honest §8.0 sizing provenance (smoke → frozen
+>    rule → cap binds at 700); the N derivation runs IN CODE
+>    pre-census with a NEW self-enforcing `nDerived` gate; the
+>    frozen §5 rule restored verbatim (no verdict moved; corner
+>    share ≈0 vs the declared 0.05 cut); §8.4's eye-cycling
+>    attribution RETRACTED to what switchKey can measure (prod:
+>    zero override ticks yet 0.42/s switch mean = positive
+>    proof of non-eye causes); five LOWs fixed; census re-run
+>    ZERO substance drift (mechanical key-by-key diff: 8
+>    differences, all additions).
+> 2. **THE SUBSTANTIVE VERDICT (the user's lens, adjudicated)**:
+>    (a) weak-side detachment REAL in all four worlds (+2.78 m
+>    prod / +0.98 m armed vs the ball-side twin, RESOLVED);
+>    (b) **H-186a(i) CONFIRMED — the station field NEVER asks
+>    the weak-side back to compress** (send target 18–20 m off
+>    the ball's lane vs the 9 m spacing, cm-wide CIs, ALL
+>    worlds; the cleanest v3 receipts: zero oscillation,
+>    standing exactly where sent, 25 m detached); (c) H-186a(ii)
+>    oscillation NOT supported as a weak-side phenomenon
+>    (churn is flank-symmetric); (d) the D1 mark channel: on
+>    prod the weak-side back man-marks 82% of trigger ticks,
+>    glued 1.8 m to an opponent 15 m off the lane (far-side man
+>    59%) — the user's 乱转 is largely mark-following; the A4
+>    worlds halve far-side marking and unglue to 5–6 m — why
+>    they mitigate; (e) the A4 home is PHASE-BLIND, measured:
+>    0.10–0.22% agreement with the live defensive station.
+> 3. **THE FORK (the user's)**: (甲) open the DEFENSIVE-PHASE
+>    MODULATION arc — the substrate half of 位置是活的 (VISION
+>    §1 anchor): a phase/situation-modulated positioning
+>    freedom (compression toward the ball side in the defensive
+>    phase), a full mechanic contract + VISION audit; (乙) the
+>    MARK-SELECTION lens first — why the weak-side back marks a
+>    far-side man 15 m off the lane (possibly a cheaper,
+>    narrower fix; its phase-0 code map would say); (丙) both
+>    queued behind the O2 抬头观察 contract (the already-
+>    promised drafting act, #186.1) — sequencing is the user's
+>    call. Road B intact throughout.

@@ -677,10 +677,14 @@ The rule as frozen labels prod (i) and the three armed worlds (ii), because the
    identifiable by this instrument — see the §8.4 retraction; the flank symmetry is
    the part §5 needs and the part the receipts support.
 3. The (ii) clause's "sane and near" condition is met on the wrong reading. Take the
-   three v3 receipts whose weak-side back was steered by `stationHome` for **100 %**
-   of the episode with **zero** switches and **zero** flips (ranges restated at the
-   #187 fix round — the draft's "25 m / 20–24 m" excluded one of its own cited
-   episodes):
+   three HIGHEST-DETACHMENT v3 receipts among the FOUR whose weak-side back was
+   steered by `stationHome` for **100 %** of the episode with **zero** switches and
+   **zero** flips (⚠ #188 CORRECTION: the predicate alone matches four tabled
+   receipts; the selection rule is detachment-descending. The unlisted fourth —
+   seed 12,310,977 @ tick 13,812: distToSend 3.68 m, detach 23.18 m, sendLatGap
+   18.63 m — sits outside the ranges below and does not carry the point. Ranges
+   restated at the #187 fix round — the draft's "25 m / 20–24 m" excluded one of
+   its own cited episodes):
 
    | v3 seed | from tick | dur | distToSend | detachment | sendLatGap |
    | --- | --- | --- | --- | --- | --- |
