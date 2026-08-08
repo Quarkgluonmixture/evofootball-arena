@@ -7829,3 +7829,30 @@
 >    contract's VISION audit lands with a ruling either way.
 >    O3 stays sequenced behind the C5 re-census over the
 >    O1-armed world (contract §2), not yet dispatched.
+
+> **COMMANDER RULING #185 (2026-08-08 — the v3 play-test entry
+> reviewed and MERGED; the O2 opening step dispatches; the
+> acceptance rides the next deploy):**
+>
+> 1. **BANKED + MERGED**: `f1734e1` — "A4 world v3 · 出球前摇"
+>    (= v2 verbatim + o1PassWindup, composed at the entry layer
+>    via `a4MatchFlags(version)`; A4_WORLD_FLAGS byte-untouched,
+>    hash-proven; the badge reads the MATCH; 16 new fidelity
+>    tests incl. the census-set pin + no-leak + non-vacuity +
+>    fingerprint + precache; three pre-existing pins amended
+>    exactly where #184.2 authorized the world to exist —
+>    ratified; suite 1,142 green). Four MINOR verify notes
+>    recorded (source-text-grep UI coverage — the house
+>    convention; a weakened-then-recovered badge pin; a regex
+>    robustness nit; a duplicated fingerprint derivation).
+> 2. **DISPATCHED (self-drive #184.3) — the O2 OPENING STEP**:
+>    re-run the #65 whether-seat sizing smoke over the O1-ARMED
+>    world (o1PassWindup true; instrument-only, zero mechanics):
+>    does the perception wedge (true-context 0.586% vs
+>    perceived 0.141%, ~4×, E-ABSTAIN-UNSEEN 70.7%) still bind
+>    with release time taxed, and at what magnitude. The
+>    commander drafts the O2 抬头观察 stage contract on those
+>    numbers (VISION audit rides the drafting ruling).
+> 3. The v3 acceptance lands with the next Pages deploy; feel
+>    list per #184.2. Slice-2/v2 acceptance and all prior open
+>    levers remain open in parallel.
