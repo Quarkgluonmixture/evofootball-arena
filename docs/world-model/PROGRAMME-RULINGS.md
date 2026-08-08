@@ -7145,3 +7145,42 @@
 >    如何 · 紧凑像球还是像堆 (+ the still-open D1/D2/phone/
 >    F7b/F7c lever list). Road B: fingerprint `57b0bdab…c673`
 >    unchanged throughout slice 2.
+
+> **COMMANDER RULING #168 (2026-08-08 — the S2-P4 v2 entry
+> reviewed and MERGED; the slice-2 acceptance session is in the
+> user's hands; self-drive ends at its contracted exit):**
+>
+> 1. **BANKED + MERGED**: `d6c364c` — the version-typed a4World
+>    entry (v1 统一 / v2 纪律, mutually exclusive, one setter,
+>    same-fixture reload, v2-overrides-EDS); armed content =
+>    the Leg-F-certified fixed world (whisper 0.5 + family
+>    [0,+.4,+.2,0,−.2,−.4], BOTH sides, all three genome refs,
+>    evolution OFF); badge relabelled to name its world (v1
+>    deviation ratified — an unlabelled old chip would be
+>    ambiguous); fidelity TRIPLE-anchored (Leg F artifact
+>    re-hash 1f2fc5d4… + probe-source regex + stage-doc block)
+>    and derivation re-computed through the shipped helper;
+>    flag-off byte-identity + fingerprint re-derived; SW
+>    precache zero stage3 entries verified on a REAL build;
+>    suite 122 files / 1100 green, tsc + vite build clean;
+>    machine-verify PASS. The setHomePriorOffsets writer
+>    deviation RATIFIED (keeps genome.ts the single owner; the
+>    S2-P2 birth-neutrality scan passes unmodified) with its
+>    disclosed residual (a future role-derived literal through
+>    the writer is outside the scan — recorded).
+> 2. **MINOR FINDINGS RECORDED (no action gates the exit)**:
+>    v2 blurb renders Chinese under an English locale (the
+>    user plays in Chinese); the evolve-flag scan catches
+>    literal form only; the #156 checkbox-desync cosmetic now
+>    spans both boxes.
+> 3. **SLICE 2's SELF-DRIVE ARC ENDS AT ITS CONTRACTED EXIT
+>    (#159→#168, S2-P1→S2-P4, six rulings, zero ships to the
+>    non-opt-in player, fingerprint `57b0bdab…c673` unchanged
+>    throughout).** THE ACCEPTANCE IS NOW THE USER'S: v2 vs v1
+>    vs off — 防守知道往哪走了吗 · 哨声/越位少了吗 · 配合如何 ·
+>    紧凑像球还是像堆; the still-open D1/D2/phone/F7b/F7c lever
+>    list rides the same sessions. AFTER the verdicts, the
+>    named forks: the punish-compactness program (#154.3 +
+>    #167.4 — make the look PAY so selection picks it), the 乙
+>    offside axis (still hanging), slice-2 disposition
+>    (keep-as-experiment / promote / retire).

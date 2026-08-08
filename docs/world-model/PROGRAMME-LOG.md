@@ -2116,3 +2116,11 @@ S2-P3 (frame frozen #165.3 …)" → all three legs adjudicated
 watchability face; S = H-165a unsupported honestly, the
 make-it-pay question inherits to punish-compactness); S2-P4
 play-test entry dispatched with the CERTIFIED FIXED world.
+
+2026-08-08 (#168): superseded QUEUE state — "SELF-DRIVE IS ON
+S2-P4: the play-test entry extends #156's a4World with v2 ·
+discipline …" → the v2 entry merged (`d6c364c`, verify PASS);
+slice 2's self-drive arc CLOSED (#159→#168); queue moved to
+the user's acceptance session (v2 vs v1 vs off + the open
+lever list), with punish-compactness / 乙 / slice-2 disposition
+as the named after-verdict forks.
