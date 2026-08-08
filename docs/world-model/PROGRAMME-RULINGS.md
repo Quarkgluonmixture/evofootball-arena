@@ -7442,3 +7442,48 @@
 >    C7, T0, shield, windup — what was tried, shipped,
 >    reverted, and why). The contract (next round) stands on
 >    that map.
+
+> **COMMANDER RULING #175 (2026-08-08 — the #174 inventory
+> lands (the seats mostly EXIST); the OUTLET CONTRACT drafted
+> + VISION-audited; O1 = pass wind-up is the first slice):**
+>
+> 1. **INVENTORY BANKED (the #174 dispatch's return, full map
+>    with file:line traces)**: C7 shot wind-up is CERTIFIED
+>    end-to-end (#55–#60: attribute-scaled duration, T2 A/B
+>    goals +8.79% conversion +8.87% shots FLAT, interruptions
+>    3.27% all INT-TACKLE) and armed in the v1/v2 play-test
+>    worlds — dormant in prod by Road B, not failure; the
+>    ShieldHold body-mechanics PASSED T0R (pressure-banded
+>    tackle-loss 4.5→17.7→23.8%, dribbling gradient −2.76 pp);
+>    the whether-seat is BUILT but RE-PARKED (#65: the binding
+>    constraint is PERCEPTION — 4× true-vs-perceived wedge,
+>    E-ABSTAIN-UNSEEN 70.7%); the certified exchange rate
+>    (waiting costs −6.5…−15 pp, ONE cell at zero) was measured
+>    in the PRE-outlet world and goes stale the moment release
+>    time changes. Genuinely absent: pass-family wind-up
+>    (deferred by C7 Q1 to "a future contract" — THIS one),
+>    抬头观察, a priced gene-expressed hold, attribute hooks on
+>    control TIME. Fifteen traps recorded verbatim in the
+>    inventory (EDS_BUNDLE nine-flag default, the two-shields-
+>    two-epistemics split, the E5h free-option ceiling, the
+>    M3b de-gluing grave, the push-gate inversion, …).
+> 2. **THE OUTLET CONTRACT DRAFTED + VISION-AUDITED**:
+>    [`OUTLET-CONTRACT.md`](OUTLET-CONTRACT.md) — claim
+>    H-OUTLET; slices O1 pass wind-up (the tempo lever; the
+>    one-touch window as the DESIGNED bypass = 快但糙 vs
+>    拿住再传) → O2 抬头观察 (the #65.3 unpark path, sizing
+>    smoke FIRST) → O3 priced hold (percept path only, E5h/A2b
+>    hard gates, HoldUp untouched) → O4 control-time hooks
+>    (last, post-re-census). Invariants: I1 no free time,
+>    no double-charge, flag hygiene (never the env bundle),
+>    epistemic honesty, equilibrium discipline with the tempo
+>    census as per-slice OUTCOME ruler. Audit: six clauses
+>    PASS, zero amendments — the inventory-first order caught
+>    the traps pre-draft (the reusable lesson).
+> 3. **NEXT AUTHORIZED STEP (fires on "go")**: O1 phase-0 —
+>    the pass-release code map + census (read-only instrument
+>    step, the C7-PHASE0 template): where every pass kind
+>    releases, what a wind-up would interpose on, the one-touch
+>    bypass populations, the double-charge surfaces. Seeds
+>    12,300,000+ (new block family). Nothing ships this arc
+>    without the user's play-test verdict per slice.
