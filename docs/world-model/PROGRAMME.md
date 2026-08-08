@@ -103,15 +103,23 @@ scramble verdict landed mid-acceptance (乱抢依旧 · 没有拿住球/
 抬头/护球 · 逼抢压力出不去 H-169a · 节奏太紧 — anchored in
 VISION §2); the ruler-honesty audit CONFIRMS 尺子不够: all
 battery legs are A/B contrasts, the disease lives in the
-baseline (turnovers ≈51/match BOTH arms). NAMED NEXT INSTRUMENT
-(awaiting the user's go): the ABSOLUTE possession/tempo census
-(spell lengths, touches/possession, time-on-ball, press-context
-outcomes, action durations vs real-football reference bands —
-reference lines, never gates; constants never imported). It
-also discriminates H-169a.** AFTER the verdicts + census, the
-named forks: the outlet seats (C5/C7/hold/shield substrate
-half) vs punish-compactness (#154.3/#167.4 selection half), the
-乙 offside axis, slice-2 disposition. VISION §3
+baseline (turnovers ≈51/match BOTH arms). THE CENSUS RAN AND
+ADJUDICATED (#170–#173, one verify-FAIL round honestly fixed
+in between): the gap table — spells 4.39 s vs 9.6–10.4 s real
+(~2.2× short) · time-on-ball 0.646 s vs 0.8–1.3 · 8.6
+turnovers/watched-min vs 3.0–4.5 (~2.3× 节奏) · 80.8% of
+open-play first receptions PRESSED · kick wind-up structurally
+ABSENT (C7 surfaced by the ruler) · the A4 worlds are FASTER
+on this axis (撞车 and tempo are orthogonal diseases). ⭐
+H-169a HOLDS on all three arms (pressed-loss ratio 1.79–1.97,
+gap 0.14–0.15): pressure destroys RETENTION (51% vs 70%), safe
+release is rare everywhere — the outlet story confirmed.**
+**THE QUEUE SITS AT THE USER'S #173.4 FORK**: (甲) the OUTLET
+SEATS mechanic arc (C5 control-time + hold/shield + C7 windup
+— the absorption half, where the discriminator points) · (乙)
+punish-compactness first (the pressure-supply half) · (丙)
+play/think first. Also open: the v2 acceptance (#168.3), the
+乙 offside axis, slice-2 disposition, D1/D2/phone/F7b/F7c. VISION §3
 soft spot stands registered: break-even is rung-one's honest
 bar; defence is won back on higher ladder rungs (补位→默契→
 教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever

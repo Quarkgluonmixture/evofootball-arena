@@ -7358,3 +7358,54 @@
 >    numbered ruling: the gap table on both time axes + the
 >    H-169a verdict at census N ⇒ then the outlet-seats vs
 >    punish-compactness fork goes to the user with numbers.
+
+> **COMMANDER RULING #173 (2026-08-08 — the ABSOLUTE
+> possession/tempo census adjudicated: the gap table lands;
+> H-169a HOLDS on all three arms at census N; the fork goes to
+> the user with numbers):**
+>
+> 1. **BANKED**: `data/tempo-census.json` (N=650/arm, three
+>    arms, ~22,400 open-play spells/arm, all plumbing gates
+>    true, resultSHA `797f6e5c…`, HEAD e1314cf).
+> 2. **THE GAP TABLE (headline, prod arm, both axes honest)**:
+>    open-play possession spell mean **4.39 s** (median 3.05,
+>    p75 5.92) vs reference **9.6–10.4 s** ⇒ ~2.2× SHORT;
+>    time-on-ball per touch **0.646 s** vs **0.8–1.3 s** ⇒
+>    below band; touches per possession **2.53** vs lower bound
+>    **2.88–5.12** ⇒ below; possession changes on the WATCHED
+>    clock **8.6/min** vs real football **3.0–4.5/min** ⇒
+>    **~2.3× 节奏** (on the 90' display clock the same world
+>    reads 0.38/min — the axis split IS the ruler's point);
+>    **80.8% of open-play first receptions are PRESSED** (opp
+>    within 4.2 m); reception-to-release median **0.33 s** with
+>    44% of touches inside the engine's own 0.28 s one-touch
+>    window; kick wind-up **structurally ABSENT** in prod (the
+>    C7 finding, surfaced by the ruler itself). The armed
+>    worlds sit FASTER on this axis (v1/v2 turnovers
+>    9.8–10.1/watched-min vs prod 8.6; pressedShare 0.84–0.85)
+>    — descriptive only (prod is a declared two-factor
+>    difference): the A4 agreements treat 撞车, NOT tempo; the
+>    two diseases are orthogonal, as the user's #169 verdict
+>    said (乱抢依旧 in the A4 worlds).
+> 3. **H-169a: HOLDS — PRESSED-SPECIFIC on ALL THREE ARMS at
+>    the frozen reading rule** (ratio ≥1.5 ∧ gap ≥0.10): prod
+>    1.832/0.137, v1 1.967/0.153, v2 1.794/0.139. The texture:
+>    under pressure the safe first-touch RELEASE is ~6–7%
+>    everywhere (unpressed ~4–5% — release is rare, period);
+>    what pressure destroys is RETENTION (51% vs 70%) and what
+>    it produces is LOSS (30% vs 16%). **The user's outlet
+>    story is confirmed at census grain: the substrate offers
+>    no time-buying action under pressure, so pressed
+>    possession dies instead of escaping.** 有故事就要有探针 —
+>    this story now has one.
+> 4. **THE FORK (returns to the user, numbers in hand)**: (甲)
+>    the OUTLET SEATS slice — C5 first-touch/control time +
+>    hold/shield as affordable actions + C7 kick wind-up (the
+>    substrate ABSORPTION half; the discriminator points here;
+>    C5/C7 are the user's own anchored seats) — a mechanic arc:
+>    contract + VISION audit + PROBE-CONTRACTS six-layer gates;
+>    (乙) punish-compactness first (#154.3/#167.4 — the
+>    pressure SUPPLY half: make 81%-pressed-receptions
+>    expensive); (丙) play/think first — the census stands
+>    either way. The v2 acceptance (#168.3) remains open in
+>    parallel. Road B intact; nothing shipped by this arc.

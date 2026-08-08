@@ -2132,3 +2132,13 @@ the relative-ruler blind spot (both-arm diseases can never fire
 an A/B gate); the absolute possession/tempo census named as the
 next instrument, awaiting go; v2 acceptance stays open in
 parallel.
+
+2026-08-08 (#173): superseded QUEUE state — "NAMED NEXT
+INSTRUMENT (awaiting the user's go): the ABSOLUTE
+possession/tempo census …" → the census arc ran end-to-end
+(#170 grant → #171 verify-FAIL recorded as-is → #172 fix
+banked → #173 adjudication): the gap table landed (spells ~2.2×
+short, tempo ~2.3× real on the watched clock, 80.8% pressed
+receptions, C7 wind-up absent), H-169a HOLDS on all three arms;
+queue moved to the user's #173.4 fork (outlet seats vs
+punish-compactness vs play-first).
