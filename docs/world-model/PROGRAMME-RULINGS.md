@@ -6794,3 +6794,69 @@
 >    shape (the census proves shape MATTERS; hand vectors were
 >    only ever instruments); (iv) wholesale stop. Road B intact;
 >    fingerprint `57b0bdab…c673` unchanged; nothing shipped.
+
+> **COMMANDER RULING #162 (2026-08-08 — the user rules 考 at the
+> #161.5 fork, after a clause-by-clause VISION audit of the
+> anchor; S2-P1b (backLoaded confirmatory, vs-NONE anchor)
+> authorized; self-drive RESUMES):**
+>
+> 1. **USER RULING RECORDED (verbatim: "考")**, given after the
+>    audit and after 纵深 was defined in plain language (deep
+>    entry = opponent, in open play, carrying possession past
+>    the defending side's own-third line; the P1 detector,
+>    verbatim geometry). The accepted line: 门前的账不亏 ·
+>    外围打平 · 撞车大减.
+> 2. **THE VISION AUDIT LANDS (delivered in-session, banked
+>    here)**: (i) §1(b) assigns the agreement mechanism its job
+>    — deconfliction; dupRun IS its failure table; the old
+>    deep/box gate mistook the guardrail for the exam — the
+>    vs-NONE anchor RESTORES VISION's own division of labour;
+>    (ii) §2's hardness cuts both ways: 撞车大减 is the only
+>    measured lever pointing toward §2 PASS for the A4 world,
+>    while a deep COLLAPSE would be a different §2 failure —
+>    the current read (deep ≈ the wild world, unresolved) sits
+>    inside tolerance; (iii) §3 soft spot REGISTERED HONESTLY:
+>    real-football agreements should BUY defence, not merely
+>    break even — but 回家倾向 is rung ONE of the doctrine
+>    ladder (约定→补位→默契学习→教练回路); break-even is the
+>    honest bar for rung one, the higher rungs are where
+>    defence is won back (the user's standing 方向没问题 bar);
+>    (iv) §1-soul + §4: the hand-picked backLoaded vector is an
+>    INSTRUMENT, never the answer — gene-ization follows on
+>    PASS, and the census's mirror axis (backLoaded = 纪律型,
+>    frontLoaded = 压迫型) is §4 diversity FUEL, so ⭐ S2-P3
+>    MUST carry a diversity observation on this axis (does
+>    selection differentiate teams along discipline-vs-press,
+>    not just move the mean); (v) §5 tension registered: if
+>    deconfliction does not PAY in wins, selection won't pick
+>    it — the punish-compactness program (#154.3) remains the
+>    treat-the-cause counterpart.
+> 3. **S2-P1b FROZEN AT COMMANDER LEVEL (the executor's stage
+>    doc elaborates, never re-cuts)**: arms = none / uniform
+>    (descriptive reference) / backLoaded [0,.9,.7,.5,.3,.1]
+>    (the S2-P1 frozen vector, verbatim); FRESH seeds
+>    12,248,000+k (k<8,000), fresh stats seeds, disjointness
+>    ledger; **N FROZEN EX ANTE at 8,000** (same power as the
+>    S2-P1 source estimates — leg (c) must not be passable by
+>    underpowering). THE GATE: (a) dupRun(backLoaded−none) CI
+>    UPPER < 0, magnitude vs the S2-P1 seen −2.4543 reported in
+>    the P3′ replication idiom; (b) box(backLoaded−none) CI
+>    UPPER < 0 (the 12× currency must still resolvedly PAY vs
+>    the wild world); (c) deep(backLoaded−none) CI LOWER ≤ 0
+>    (must not RESOLVE worse). OFFSIDE FLAG (descriptive, never
+>    gating): fired iff offsides(backLoaded−none) CI LOWER >
+>    +0.0338 (2× the S2-P1 seen +0.0169, the #152.4 doubling
+>    idiom) ⇒ F-S2d, to the user. Football hard gates +
+>    X-family inherited verbatim. PASS ⇒ self-drive proceeds to
+>    S2-P2 (gene-ization, offsets born ABSENT, contract
+>    M-S2.1/2 unchanged); any leg FAIL or flag ⇒ STOP to the
+>    user. Road B throughout.
+> 4. **DISPATCHED**: S2-P1b executor step (Workflow
+>    Draft→Verify, §0.0, Opus 5 medium). Draft = stage doc
+>    `A4-S2P1B-BACKLOADED-CONFIRMATORY.md` + probe extension
+>    (three-arm mode over the S2-P1 machinery) + bounded smoke
+>    (wall/plumbing confirmation ONLY — N is already frozen) +
+>    local commit; Verify = independent contract re-check. The
+>    commander reviews, pushes, launches the 8,000-match run
+>    detached (§0.0.4 nohup — the #161 incident rule), and
+>    adjudicates by numbered ruling.

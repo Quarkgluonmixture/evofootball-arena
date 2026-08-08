@@ -2090,3 +2090,9 @@ stop). Ops incident: first census run killed by a harness
 reconnect at pass-2 2,040/8,000 (session-tracked task, §0.0.4
 nohup rule violated once then followed); clean deterministic
 restart, zero contamination.
+
+2026-08-08 (#162): superseded QUEUE state — "SELF-DRIVE STOPPED
+(#159 red line). THE QUEUE SITS AT THE USER'S #161.5 FORK" →
+the user ruled 考 after the VISION audit; S2-P1b (backLoaded
+confirmatory, vs-NONE anchor) authorized and dispatched;
+self-drive resumed with the same red lines.

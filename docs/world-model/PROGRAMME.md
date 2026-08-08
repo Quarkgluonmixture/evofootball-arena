@@ -70,15 +70,22 @@ offside flag QUIET. Descriptive gold: backLoaded cuts dupRun 5×
 the discriminator at the same deep cost, box held; frontLoaded
 mirrors (dupRun worse, deep better); H-161a (hypothesis): the
 back line's obedience trades stepping-out vs duplicating.
-SELF-DRIVE STOPPED (#159 red line). THE QUEUE SITS AT THE
-USER'S #161.5 FORK**: (i) bank NOT-ADVANCE → pivot to
-punish-compactness (#154.3) · (ii) S2-P1b confirmatory exam on
-the backLoaded shape (deep tolerance re-frozen BY THE USER) ·
-(iii) proceed to S2-P2 gene-ization, selection + S2-P4 play-test
-adjudicate · (iv) stop. HANGING: 乙 the offside axis; D1/D2/
-phone/F7b/F7c lever verdicts still OPEN. Seeds consumed through
-12,247,999; 12.248M–12.3M + stats 1014xx+ (101403/101503
-consumed) remain. R20 gaps / F9 any time.
+**THE USER RULED 考 (#162, 2026-08-08, after the VISION audit
+of the anchor)**: S2-P1b backLoaded confirmatory is LIVE —
+vs-NONE anchor (门前的账不亏 · 外围打平 · 撞车大减: box CI
+upper < 0, deep CI lower ≤ 0 at N frozen 8,000 ex ante, dupRun
+CI upper < 0 w/ P3′ magnitude idiom), offside flag at 2× the
+S2-P1 seen (F-S2d → user), arms none/uniform/backLoaded, fresh
+seeds 12,248,000+k. SELF-DRIVE RESUMED: PASS ⇒ S2-P2
+gene-ization (offsets born absent) ⇒ S2-P3 (MUST carry the §4
+diversity observation on the discipline-vs-press axis) ⇒ S2-P4
+= the user's eyes; any FAIL/flag ⇒ STOP to the user. VISION
+§3 soft spot registered: break-even is rung-one's honest bar;
+defence is won back on higher ladder rungs (补位→默契→教练).
+HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever
+verdicts still OPEN. Seeds: S2-P1b consumes 12.248M–12.256M;
+12.256M–12.3M + fresh stats 1015xx+ remain. R20 gaps / F9 any
+time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)
