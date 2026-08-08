@@ -1,0 +1,6671 @@
+{
+  "stage": "O1 T2 — the armed shortPass wind-up A/B (smoke)",
+  "ruling": "#180.4 (the A/B) + #180.3 (the three seam debts, fixed in the same commit)",
+  "contract": "docs/world-model/OUTLET-CONTRACT.md",
+  "doc": "docs/world-model/O1-T2-MATCH-AB.md",
+  "head": "7099865",
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "f96cc04c627c50f7e73fef7f8f54dc7d345d82e276f1529ea44f37740e4a754f",
+      "digestB": "f96cc04c627c50f7e73fef7f8f54dc7d345d82e276f1529ea44f37740e4a754f"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "skipped": false
+    },
+    "xOffIdent": {
+      "pass": true,
+      "checked": 24,
+      "mismatches": []
+    },
+    "seedDisjoint": {
+      "first": 12302040,
+      "last": 12302063,
+      "inReservedBand": true,
+      "reservedBand": [
+        12300000,
+        12309999
+      ],
+      "consumedBlocks": [
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 armed smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        }
+      ],
+      "collisions": [],
+      "siblingBlock": {
+        "name": "O1-T2 full-run block",
+        "range": [
+          12303000,
+          12303999
+        ]
+      },
+      "disjointFromSibling": true,
+      "pass": true
+    },
+    "statsStreamDisjoint": {
+      "base": 102800,
+      "published": [
+        102000,
+        102200,
+        102400,
+        102600
+      ],
+      "minGap": 200,
+      "pass": true
+    },
+    "fO1a": {
+      "fired": false,
+      "rows": [
+        {
+          "dimension": "goals",
+          "baseline": 2.3944,
+          "tolerance": 0.15,
+          "band": [
+            2.03524,
+            2.75356
+          ],
+          "armed": 2.5,
+          "relativeToBaseline": 0.044103,
+          "inside": true
+        },
+        {
+          "dimension": "crosses",
+          "baseline": 2.4894,
+          "tolerance": 0.25,
+          "band": [
+            1.86705,
+            3.11175
+          ],
+          "armed": 2.33333,
+          "relativeToBaseline": -0.062694,
+          "inside": true
+        },
+        {
+          "dimension": "headers",
+          "baseline": 9.1039,
+          "tolerance": 0.25,
+          "band": [
+            6.82793,
+            11.37987
+          ],
+          "armed": 8.375,
+          "relativeToBaseline": -0.080065,
+          "inside": true
+        },
+        {
+          "dimension": "longBalls",
+          "baseline": 6.2042,
+          "tolerance": 0.25,
+          "band": [
+            4.65315,
+            7.75525
+          ],
+          "armed": 5.95833,
+          "relativeToBaseline": -0.03963,
+          "inside": true
+        },
+        {
+          "dimension": "cutbacks",
+          "baseline": 3.8151,
+          "tolerance": 0.25,
+          "band": [
+            2.86133,
+            4.76888
+          ],
+          "armed": 3.45833,
+          "relativeToBaseline": -0.093515,
+          "inside": true
+        }
+      ],
+      "offArmCrossCheck": [
+        {
+          "dimension": "goals",
+          "baseline": 2.3944,
+          "tolerance": 0.15,
+          "band": [
+            2.03524,
+            2.75356
+          ],
+          "armed": 2.20833,
+          "relativeToBaseline": -0.07771,
+          "inside": true
+        },
+        {
+          "dimension": "crosses",
+          "baseline": 2.4894,
+          "tolerance": 0.25,
+          "band": [
+            1.86705,
+            3.11175
+          ],
+          "armed": 2.25,
+          "relativeToBaseline": -0.096168,
+          "inside": true
+        },
+        {
+          "dimension": "headers",
+          "baseline": 9.1039,
+          "tolerance": 0.25,
+          "band": [
+            6.82793,
+            11.37987
+          ],
+          "armed": 8.95833,
+          "relativeToBaseline": -0.01599,
+          "inside": true
+        },
+        {
+          "dimension": "longBalls",
+          "baseline": 6.2042,
+          "tolerance": 0.25,
+          "band": [
+            4.65315,
+            7.75525
+          ],
+          "armed": 7,
+          "relativeToBaseline": 0.128268,
+          "inside": true
+        },
+        {
+          "dimension": "cutbacks",
+          "baseline": 3.8151,
+          "tolerance": 0.25,
+          "band": [
+            2.86133,
+            4.76888
+          ],
+          "armed": 4.25,
+          "relativeToBaseline": 0.113994,
+          "inside": true
+        }
+      ]
+    },
+    "unexplainedArms": 0,
+    "seamAttributableReleases": 0,
+    "wWithinFrozenClamp": true,
+    "offArmSeamDead": true,
+    "ledgerAgreement": {
+      "armsProbeVsEngine": [
+        1163,
+        1163
+      ],
+      "armsAgree": true,
+      "struckProbeVsEngine": [
+        1135,
+        1135
+      ],
+      "struckAgree": true,
+      "evictionsProbeVsEngine": [
+        0,
+        0
+      ],
+      "evictionsAgree": true,
+      "intMateProbeVsEngine": [
+        0,
+        0
+      ],
+      "intMateAgree": true
+    },
+    "allPass": true,
+    "srcDiffStatContextOnly": "src/sim/Match.ts | 83 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--\n 1 file changed, 81 insertions(+), 2 deletions(-)"
+  },
+  "result": {
+    "mode": "smoke",
+    "matches": 24,
+    "block": 12302040,
+    "seeds": {
+      "first": 12302040,
+      "last": 12302063
+    },
+    "arms": {
+      "OFF": {
+        "matches": 24,
+        "playedSimSecondsPerMatch": 241.109,
+        "wallSimSecondsPerMatchContextOnly": 250.3069,
+        "equilibrium": {
+          "goalsPerMatch": 2.20833,
+          "shotsPerMatch": 13.125,
+          "shotsOnTargetPerMatch": 7.91667,
+          "onTargetRate": 0.603175,
+          "conversion": 0.168254,
+          "crossesPerMatch": 2.25,
+          "headersWonPerMatch": 8.95833,
+          "longBallsPerMatch": 7,
+          "cutbacksPerMatch": 4.25,
+          "loosePerMatch": 130.625,
+          "passesPerMatch": 98.08333,
+          "passCompletion": 0.745115,
+          "foulsPerMatch": 4.83333
+        },
+        "tempo": {
+          "openPlaySpells": 802,
+          "openPlaySpellsPerMatch": 33.4167,
+          "spellSeconds": {
+            "mean": 4.5246,
+            "median": 3.1583,
+            "p25": 1.3375,
+            "p75": 5.8792,
+            "p90": 10.0267
+          },
+          "spellControlledOnlySeconds": {
+            "mean": 2.1975,
+            "median": 0.9667
+          },
+          "oneTouchShareStrict": 0.266833,
+          "oneTouchShareBare": 0.395262,
+          "turnovers": {
+            "perMatch": 33.416667,
+            "perSimSecond": 0.138596,
+            "perWatchedMinute": 8.31574,
+            "perDisplayMinute": 0.369588
+          },
+          "pressedAtReceptionOpenPlay": {
+            "n": 802,
+            "share": 0.802993,
+            "shareSens3m": 0.682045,
+            "radius": 4.2
+          },
+          "pressedAtReleaseShortPass": {
+            "n": 1810,
+            "share": 0.717127,
+            "radius": 4.2,
+            "note": "nearest non-sent-off opponent to the passer AT the performPass instant (the release tick), over ALL shortPass releases — the cut-1 population. The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); this is the release instant itself, identically on both arms."
+          },
+          "receptionToReleaseSeconds": {
+            "n": 3151,
+            "mean": 0.6521,
+            "median": 0.3333,
+            "p75": 0.35,
+            "p90": 1.3333,
+            "shareAtOrUnderFirstTouchWindow": 0.464932,
+            "firstTouchWindowS": 0.28
+          }
+        },
+        "seam": {
+          "realizedW": {
+            "n": 0,
+            "p10": null,
+            "p50": null,
+            "p90": null,
+            "mean": null,
+            "min": null,
+            "max": null,
+            "seconds": {
+              "p50": null,
+              "mean": null
+            },
+            "histogram": {
+              "3": 0,
+              "4": 0,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0,
+              "10": 0,
+              "11": 0
+            },
+            "withinFrozenClamp": true,
+            "referenceT1": {
+              "p50": 6,
+              "mean": 6.343
+            }
+          },
+          "interruption": {
+            "arms": 0,
+            "resolvedArms": 0,
+            "struck": 0,
+            "interrupted": 0,
+            "rate": null,
+            "causeMix": {
+              "INT-LOSS": 0,
+              "INT-PHASE": 0,
+              "INT-STUN": 0,
+              "INT-SENTOFF": 0,
+              "INT-COOLDOWN": 0,
+              "INT-MATE": 0
+            },
+            "causeShares": {
+              "INT-LOSS": null,
+              "INT-PHASE": null,
+              "INT-STUN": null,
+              "INT-SENTOFF": null,
+              "INT-COOLDOWN": null,
+              "INT-MATE": null
+            },
+            "excludedReported": {
+              "E-ENDED": 0,
+              "EVICTED": 0
+            },
+            "referenceT1Rate": 0.02797
+          },
+          "armLedgerProbe": {
+            "STRUCK": 0,
+            "INT-PHASE": 0,
+            "INT-LOSS": 0,
+            "INT-STUN": 0,
+            "INT-SENTOFF": 0,
+            "INT-COOLDOWN": 0,
+            "INT-MATE": 0,
+            "E-ENDED": 0,
+            "EVICTED": 0,
+            "UNEXPLAINED": 0,
+            "total": 0
+          },
+          "armLedgerEngine": {
+            "arms": 0,
+            "evictions": 0,
+            "struck": 0,
+            "cancelledMate": 0,
+            "cancelledPendingKick": 0,
+            "cancelledByPendingKick": 0
+          },
+          "ledgerAgreement": {
+            "armsProbeVsEngine": [
+              0,
+              0
+            ],
+            "armsAgree": true,
+            "struckProbeVsEngine": [
+              0,
+              0
+            ],
+            "struckAgree": true,
+            "evictionsProbeVsEngine": [
+              0,
+              0
+            ],
+            "evictionsAgree": true,
+            "intMateProbeVsEngine": [
+              0,
+              0
+            ],
+            "intMateAgree": true
+          },
+          "unexplained": 0,
+          "seamAttributableReleases": 0,
+          "armShareOfShortPassReleases": 0,
+          "referenceT1ArmShareEligible": 0.7614
+        }
+      },
+      "ARMED": {
+        "matches": 24,
+        "playedSimSecondsPerMatch": 241.1236,
+        "wallSimSecondsPerMatchContextOnly": 251.1722,
+        "equilibrium": {
+          "goalsPerMatch": 2.5,
+          "shotsPerMatch": 13.04167,
+          "shotsOnTargetPerMatch": 7.83333,
+          "onTargetRate": 0.600639,
+          "conversion": 0.191693,
+          "crossesPerMatch": 2.33333,
+          "headersWonPerMatch": 8.375,
+          "longBallsPerMatch": 5.95833,
+          "cutbacksPerMatch": 3.45833,
+          "loosePerMatch": 126.91667,
+          "passesPerMatch": 94.70833,
+          "passCompletion": 0.729872,
+          "foulsPerMatch": 4.08333
+        },
+        "tempo": {
+          "openPlaySpells": 794,
+          "openPlaySpellsPerMatch": 33.0833,
+          "spellSeconds": {
+            "mean": 4.3846,
+            "median": 3.0583,
+            "p25": 1.3708,
+            "p75": 5.9458,
+            "p90": 9.09
+          },
+          "spellControlledOnlySeconds": {
+            "mean": 2.2282,
+            "median": 1.05
+          },
+          "oneTouchShareStrict": 0.2733,
+          "oneTouchShareBare": 0.416877,
+          "turnovers": {
+            "perMatch": 33.083333,
+            "perSimSecond": 0.137205,
+            "perWatchedMinute": 8.232292,
+            "perDisplayMinute": 0.36588
+          },
+          "pressedAtReceptionOpenPlay": {
+            "n": 794,
+            "share": 0.798489,
+            "shareSens3m": 0.675063,
+            "radius": 4.2
+          },
+          "pressedAtReleaseShortPass": {
+            "n": 1717,
+            "share": 0.72219,
+            "radius": 4.2,
+            "note": "nearest non-sent-off opponent to the passer AT the performPass instant (the release tick), over ALL shortPass releases — the cut-1 population. The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); this is the release instant itself, identically on both arms."
+          },
+          "receptionToReleaseSeconds": {
+            "n": 3066,
+            "mean": 0.6936,
+            "median": 0.3333,
+            "p75": 0.45,
+            "p90": 1.2667,
+            "shareAtOrUnderFirstTouchWindow": 0.410633,
+            "firstTouchWindowS": 0.28
+          }
+        },
+        "seam": {
+          "realizedW": {
+            "n": 1163,
+            "p10": 5,
+            "p50": 6,
+            "p90": 8,
+            "mean": 6.374,
+            "min": 3,
+            "max": 10,
+            "seconds": {
+              "p50": 0.1,
+              "mean": 0.10623
+            },
+            "histogram": {
+              "3": 24,
+              "4": 68,
+              "5": 166,
+              "6": 336,
+              "7": 360,
+              "8": 180,
+              "9": 27,
+              "10": 2,
+              "11": 0
+            },
+            "withinFrozenClamp": true,
+            "referenceT1": {
+              "p50": 6,
+              "mean": 6.343
+            }
+          },
+          "interruption": {
+            "arms": 1163,
+            "resolvedArms": 1162,
+            "struck": 1135,
+            "interrupted": 27,
+            "rate": 0.023236,
+            "causeMix": {
+              "INT-LOSS": 24,
+              "INT-PHASE": 3,
+              "INT-STUN": 0,
+              "INT-SENTOFF": 0,
+              "INT-COOLDOWN": 0,
+              "INT-MATE": 0
+            },
+            "causeShares": {
+              "INT-LOSS": 0.888889,
+              "INT-PHASE": 0.111111,
+              "INT-STUN": 0,
+              "INT-SENTOFF": 0,
+              "INT-COOLDOWN": 0,
+              "INT-MATE": 0
+            },
+            "excludedReported": {
+              "E-ENDED": 1,
+              "EVICTED": 0
+            },
+            "referenceT1Rate": 0.02797
+          },
+          "armLedgerProbe": {
+            "STRUCK": 1135,
+            "INT-PHASE": 3,
+            "INT-LOSS": 24,
+            "INT-STUN": 0,
+            "INT-SENTOFF": 0,
+            "INT-COOLDOWN": 0,
+            "INT-MATE": 0,
+            "E-ENDED": 1,
+            "EVICTED": 0,
+            "UNEXPLAINED": 0,
+            "total": 1163
+          },
+          "armLedgerEngine": {
+            "arms": 1163,
+            "evictions": 0,
+            "struck": 1135,
+            "cancelledMate": 0,
+            "cancelledPendingKick": 0,
+            "cancelledByPendingKick": 0
+          },
+          "ledgerAgreement": {
+            "armsProbeVsEngine": [
+              1163,
+              1163
+            ],
+            "armsAgree": true,
+            "struckProbeVsEngine": [
+              1135,
+              1135
+            ],
+            "struckAgree": true,
+            "evictionsProbeVsEngine": [
+              0,
+              0
+            ],
+            "evictionsAgree": true,
+            "intMateProbeVsEngine": [
+              0,
+              0
+            ],
+            "intMateAgree": true
+          },
+          "unexplained": 0,
+          "seamAttributableReleases": 0,
+          "armShareOfShortPassReleases": 0.666476,
+          "referenceT1ArmShareEligible": 0.7614
+        }
+      }
+    },
+    "gates": {
+      "fO1a": {
+        "fired": false,
+        "rows": [
+          {
+            "dimension": "goals",
+            "baseline": 2.3944,
+            "tolerance": 0.15,
+            "band": [
+              2.03524,
+              2.75356
+            ],
+            "armed": 2.5,
+            "relativeToBaseline": 0.044103,
+            "inside": true
+          },
+          {
+            "dimension": "crosses",
+            "baseline": 2.4894,
+            "tolerance": 0.25,
+            "band": [
+              1.86705,
+              3.11175
+            ],
+            "armed": 2.33333,
+            "relativeToBaseline": -0.062694,
+            "inside": true
+          },
+          {
+            "dimension": "headers",
+            "baseline": 9.1039,
+            "tolerance": 0.25,
+            "band": [
+              6.82793,
+              11.37987
+            ],
+            "armed": 8.375,
+            "relativeToBaseline": -0.080065,
+            "inside": true
+          },
+          {
+            "dimension": "longBalls",
+            "baseline": 6.2042,
+            "tolerance": 0.25,
+            "band": [
+              4.65315,
+              7.75525
+            ],
+            "armed": 5.95833,
+            "relativeToBaseline": -0.03963,
+            "inside": true
+          },
+          {
+            "dimension": "cutbacks",
+            "baseline": 3.8151,
+            "tolerance": 0.25,
+            "band": [
+              2.86133,
+              4.76888
+            ],
+            "armed": 3.45833,
+            "relativeToBaseline": -0.093515,
+            "inside": true
+          }
+        ],
+        "offArmCrossCheck": [
+          {
+            "dimension": "goals",
+            "baseline": 2.3944,
+            "tolerance": 0.15,
+            "band": [
+              2.03524,
+              2.75356
+            ],
+            "armed": 2.20833,
+            "relativeToBaseline": -0.07771,
+            "inside": true
+          },
+          {
+            "dimension": "crosses",
+            "baseline": 2.4894,
+            "tolerance": 0.25,
+            "band": [
+              1.86705,
+              3.11175
+            ],
+            "armed": 2.25,
+            "relativeToBaseline": -0.096168,
+            "inside": true
+          },
+          {
+            "dimension": "headers",
+            "baseline": 9.1039,
+            "tolerance": 0.25,
+            "band": [
+              6.82793,
+              11.37987
+            ],
+            "armed": 8.95833,
+            "relativeToBaseline": -0.01599,
+            "inside": true
+          },
+          {
+            "dimension": "longBalls",
+            "baseline": 6.2042,
+            "tolerance": 0.25,
+            "band": [
+              4.65315,
+              7.75525
+            ],
+            "armed": 7,
+            "relativeToBaseline": 0.128268,
+            "inside": true
+          },
+          {
+            "dimension": "cutbacks",
+            "baseline": 3.8151,
+            "tolerance": 0.25,
+            "band": [
+              2.86133,
+              4.76888
+            ],
+            "armed": 4.25,
+            "relativeToBaseline": 0.113994,
+            "inside": true
+          }
+        ]
+      },
+      "xOffIdent": {
+        "pass": true,
+        "checked": 24,
+        "mismatches": []
+      },
+      "unexplainedArms": 0,
+      "seamAttributableReleases": 0,
+      "wWithinFrozenClamp": true,
+      "offArmSeamDead": true,
+      "ledgerAgreement": {
+        "armsProbeVsEngine": [
+          1163,
+          1163
+        ],
+        "armsAgree": true,
+        "struckProbeVsEngine": [
+          1135,
+          1135
+        ],
+        "struckAgree": true,
+        "evictionsProbeVsEngine": [
+          0,
+          0
+        ],
+        "evictionsAgree": true,
+        "intMateProbeVsEngine": [
+          0,
+          0
+        ],
+        "intMateAgree": true
+      }
+    },
+    "paired": {
+      "goalsPerMatch": {
+        "n": 24,
+        "control": 2.208333,
+        "treated": 2.5,
+        "diff": 0.291667,
+        "lower": -0.375,
+        "upper": 0.916667,
+        "relative": 0.132075,
+        "resolved": false
+      },
+      "shotsPerMatch": {
+        "n": 24,
+        "control": 13.125,
+        "treated": 13.041667,
+        "diff": -0.083333,
+        "lower": -1.583333,
+        "upper": 1.291667,
+        "relative": -0.006349,
+        "resolved": false
+      },
+      "conversion": {
+        "n": 24,
+        "control": 0.16908,
+        "treated": 0.19664,
+        "diff": 0.02756,
+        "lower": -0.030066,
+        "upper": 0.078181,
+        "relative": 0.163002,
+        "resolved": false
+      },
+      "onTargetRate": {
+        "n": 24,
+        "control": 0.603608,
+        "treated": 0.604618,
+        "diff": 0.00101,
+        "lower": -0.055226,
+        "upper": 0.055356,
+        "relative": 0.001673,
+        "resolved": false
+      },
+      "loosePerMatch": {
+        "n": 24,
+        "control": 130.625,
+        "treated": 126.916667,
+        "diff": -3.708333,
+        "lower": -11.458333,
+        "upper": 3.583333,
+        "relative": -0.028389,
+        "resolved": false
+      },
+      "spellMeanSeconds": {
+        "n": 24,
+        "control": 4.647439,
+        "treated": 4.559703,
+        "diff": -0.087736,
+        "lower": -0.757322,
+        "upper": 0.506386,
+        "relative": -0.018878,
+        "resolved": false
+      },
+      "spellMedianSeconds": {
+        "n": 24,
+        "control": 3.196528,
+        "treated": 3.297917,
+        "diff": 0.101389,
+        "lower": -0.286458,
+        "upper": 0.502778,
+        "relative": 0.031718,
+        "resolved": false
+      },
+      "oneTouchShareStrict": {
+        "n": 24,
+        "control": 0.260086,
+        "treated": 0.265408,
+        "diff": 0.005322,
+        "lower": -0.033444,
+        "upper": 0.040948,
+        "relative": 0.020464,
+        "resolved": false
+      },
+      "turnoversPerWatchedMinute": {
+        "n": 24,
+        "control": 8.316717,
+        "treated": 8.239712,
+        "diff": -0.077004,
+        "lower": -0.79292,
+        "upper": 0.683783,
+        "relative": -0.009259,
+        "resolved": false
+      },
+      "pressedAtReceptionShare": {
+        "n": 24,
+        "control": 0.799287,
+        "treated": 0.793486,
+        "diff": -0.005801,
+        "lower": -0.054851,
+        "upper": 0.04006,
+        "relative": -0.007257,
+        "resolved": false
+      },
+      "pressedAtReleaseShare": {
+        "n": 24,
+        "control": 0.720085,
+        "treated": 0.725447,
+        "diff": 0.005362,
+        "lower": -0.024671,
+        "upper": 0.034161,
+        "relative": 0.007447,
+        "resolved": false
+      },
+      "receptionToReleaseMeanSeconds": {
+        "n": 24,
+        "control": 0.696518,
+        "treated": 0.715651,
+        "diff": 0.019133,
+        "lower": -0.113491,
+        "upper": 0.150287,
+        "relative": 0.02747,
+        "resolved": false
+      },
+      "receptionToReleaseMedianSeconds": {
+        "n": 24,
+        "control": 0.307986,
+        "treated": 0.353472,
+        "diff": 0.045486,
+        "lower": 0.025694,
+        "upper": 0.066667,
+        "relative": 0.147689,
+        "resolved": true
+      },
+      "passesPerMatch": {
+        "n": 24,
+        "control": 98.083333,
+        "treated": 94.708333,
+        "diff": -3.375,
+        "lower": -9.375,
+        "upper": 2.083333,
+        "relative": -0.03441,
+        "resolved": false
+      }
+    },
+    "fO1bForm": {
+      "statedForm": "the armed arm moves a tempo dimension at least F_O1B_FRACTION of the distance from the OFF arm level to the #173.2 reference edge. COMMANDER'S READ AT ADJUDICATION — this probe computes the arithmetic and decides NOTHING.",
+      "fraction": 0.2,
+      "referenceGapTable173_2": {
+        "spellMeanProd": 4.39,
+        "spellMeanReferenceEdge": 9.6,
+        "turnoversWatchedProd": 8.6,
+        "turnoversWatchedReferenceEdge": 4.5
+      },
+      "spellMean": {
+        "offArm": 4.5246,
+        "armedArm": 4.3846,
+        "gapToReference": 5.0754,
+        "twentyPercentThreshold": 5.5397,
+        "observedDelta": -0.087736,
+        "fractionOfGapMoved": -0.0173
+      },
+      "turnoversPerWatchedMinute": {
+        "offArm": 8.31574,
+        "armedArm": 8.232292,
+        "gapToReference": 3.8157,
+        "twentyPercentThreshold": 7.5526,
+        "observedDelta": -0.077004,
+        "fractionOfGapMoved": 0.0202
+      }
+    },
+    "sizing": {
+      "pairedGoalsDeltaSd": 1.70623,
+      "pairedSpellMeanDeltaSd": 1.59398,
+      "note": "per-match paired-delta SDs, measured on this smoke; N* arithmetic in the stage doc §SIZING uses these (MDE ≈ 2.8·SD/√N)."
+    },
+    "receipts": [
+      {
+        "seed": 12302040,
+        "tick": 180,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 333,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 431,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 560,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 750,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 862,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 911,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 1007,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 1108,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 1306,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 1333,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 1425,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 2029,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 2118,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 2387,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 3140,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 3414,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 3676,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 3756,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 3784,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 3925,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 4077,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 4502,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 4612,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 4866,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5183,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5383,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5450,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5499,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5633,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5920,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 5970,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 6123,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 6368,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 6457,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 6561,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 7233,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 7464,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 7633,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302040,
+        "tick": 8777,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 770,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 859,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 887,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 960,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 2125,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 2249,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 2625,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 2722,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 3494,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 3554,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 3608,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 4140,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 4757,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 4834,
+        "gid": 2,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302041,
+        "tick": 4938,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 4965,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 5058,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 5286,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 5375,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 5559,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 6214,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 6291,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 7623,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 8348,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 8451,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 8694,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 9068,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 9109,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 9171,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 10042,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 10573,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 10688,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11177,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11233,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11298,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11583,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11662,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11939,
+        "gid": 8,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302041,
+        "tick": 11962,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302041,
+        "tick": 12025,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 175,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 331,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 1378,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3231,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3279,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3326,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3404,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3479,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3538,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3595,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3750,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 3943,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 4030,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 4262,
+        "gid": 10,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302042,
+        "tick": 4327,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 4421,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 4618,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 4993,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 5050,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 5201,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 6786,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 7093,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 7414,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 7739,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 8021,
+        "gid": 7,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302042,
+        "tick": 8131,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 8202,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 8454,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 8550,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 9061,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 9255,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 9415,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 9515,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 9595,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 10345,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 10454,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 10568,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 10670,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 11941,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302042,
+        "tick": 12265,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 151,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 223,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 311,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 477,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 799,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 929,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 1030,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 2045,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 2660,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 3754,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 4315,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 4382,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 4443,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 4831,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 4917,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 5097,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 5724,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 6134,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 6216,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 6395,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 6463,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 6747,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 6874,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 7918,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 8286,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 9157,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 9242,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 10171,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 10279,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 10354,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 10498,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 10722,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 11269,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 11731,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 12178,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 13296,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302043,
+        "tick": 13754,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 366,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 612,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 699,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 787,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 973,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 1087,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 1279,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 1933,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 2363,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 2441,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 2547,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 2681,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 3254,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 3374,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 3607,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 3651,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 4958,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 5202,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 5262,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 5345,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 5409,
+        "gid": 2,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302044,
+        "tick": 5768,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 6093,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 6584,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 6659,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 6776,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 7927,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 8019,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 8693,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 8790,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 8963,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 9078,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 9884,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10034,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10125,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10200,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10274,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10441,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10510,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302044,
+        "tick": 10700,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 186,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 275,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 529,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 599,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 709,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 1108,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 1157,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 1547,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 1700,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 1846,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 1921,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 2211,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 2641,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 2854,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 2945,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 3075,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 3238,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 3815,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 3956,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 4039,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 4546,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 4995,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 5044,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 5125,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 5231,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 5318,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 5956,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 6108,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 6268,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 6409,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 6849,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 6940,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 7150,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 7237,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 7319,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 7389,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 7682,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 8281,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 10101,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302045,
+        "tick": 10237,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 113,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 289,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 942,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 1037,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 1213,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 1487,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 1621,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 1993,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2070,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2169,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2329,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2487,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2565,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2649,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2808,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2838,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 2910,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 3618,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 3748,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 3781,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 3819,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 3854,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 3978,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 4097,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 4208,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 4280,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 4393,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5024,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5264,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5343,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5484,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5572,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5672,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5747,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 5867,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 6575,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 6652,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 6828,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 6925,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302046,
+        "tick": 7035,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 198,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 291,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 781,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 1267,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 1358,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 1475,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 2083,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 2172,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 2394,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 2499,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 3195,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 3299,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 3655,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 3916,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 3986,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 4032,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 4151,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 4241,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 4311,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 4521,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 4611,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 5125,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 5205,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 5342,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 5426,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6116,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6222,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6315,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6580,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6650,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6751,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 6956,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7030,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7106,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7440,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7504,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7630,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7776,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7863,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302047,
+        "tick": 7957,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 112,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 300,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 527,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 665,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 914,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 1349,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 2036,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 2217,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 2572,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 2654,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 2696,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 3176,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 3359,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 3632,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 4538,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 6265,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 6527,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 7367,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 7444,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 8005,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 8098,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 8916,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 8983,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 9085,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 11127,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 11161,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 11725,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 11891,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 12800,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 12973,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 13661,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 13821,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14018,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14204,
+        "gid": 2,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14405,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14512,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14730,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14812,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14843,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302048,
+        "tick": 14928,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 201,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 294,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 551,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 639,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 914,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1246,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1350,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1484,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1551,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1603,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1684,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 1771,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 2302,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 2427,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 2967,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 3348,
+        "gid": 7,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302049,
+        "tick": 3515,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4151,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4221,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4310,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4595,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4874,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4951,
+        "gid": 6,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302049,
+        "tick": 4980,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 5162,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 5562,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 5714,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 6194,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 6371,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 6632,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 6739,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 6917,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7025,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7118,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7222,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7463,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7562,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7793,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 7929,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302049,
+        "tick": 8412,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 105,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 383,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 473,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 677,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 1122,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 1807,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 1920,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 2043,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 2215,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 2279,
+        "gid": 1,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302050,
+        "tick": 3115,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 3212,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 3603,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 4277,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 4516,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 4669,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 4774,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 5059,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 5174,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 5404,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 5514,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 5596,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 5937,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 6073,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 6165,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 6286,
+        "gid": 4,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302050,
+        "tick": 6403,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 6598,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 7113,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 7435,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 7935,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 8346,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 8706,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 8759,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 9522,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 9758,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 9825,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 10383,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 10501,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302050,
+        "tick": 11056,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 141,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 240,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 453,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 796,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 936,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 1153,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 4844,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 4946,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 4965,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 5045,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 5201,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 5899,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 6290,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 6473,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 6534,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 6582,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 7502,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 7661,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 7708,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 7811,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 8037,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 8168,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 8777,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 8873,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 9938,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 10275,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 10449,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 10549,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 10642,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 11084,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 11131,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 11162,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 11358,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 11426,
+        "gid": 2,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302051,
+        "tick": 12160,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 12216,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 12303,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 12332,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 12361,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302051,
+        "tick": 12441,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 136,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 273,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 388,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 1373,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 1724,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 2077,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 2214,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3157,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3259,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3324,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3411,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3568,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3673,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3824,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 3863,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 4478,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 4902,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 5040,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 5121,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 5394,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 5447,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 5627,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 6299,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 6375,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 6486,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 6648,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 6742,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 6814,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 7646,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 8097,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 8330,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 8661,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 8718,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 8869,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 9134,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 9748,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 9802,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 9857,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 10173,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302052,
+        "tick": 10456,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 105,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 1101,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 1225,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 1375,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 1876,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 1942,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 2135,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 2404,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 2517,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 3882,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 4675,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 4803,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 4889,
+        "gid": 10,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302053,
+        "tick": 4945,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 5031,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 5569,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 6366,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 6867,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 6971,
+        "gid": 4,
+        "cls": "INT-PHASE"
+      },
+      {
+        "seed": 12302053,
+        "tick": 7493,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 7603,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 9236,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 9350,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 9968,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 10260,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 10452,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 10562,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 12789,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 12876,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 13918,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 14844,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 15005,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302053,
+        "tick": 15070,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 104,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 455,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 571,
+        "gid": 9,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302054,
+        "tick": 678,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 790,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 865,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 896,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 1574,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 1812,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 1922,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 1992,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 2134,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 2169,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 2315,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 2658,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 3114,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 3204,
+        "gid": 10,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302054,
+        "tick": 3909,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 4151,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 4219,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 4425,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 4736,
+        "gid": 0,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302054,
+        "tick": 5245,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 5380,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 6101,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 6383,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 7335,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 7884,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 8267,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 8755,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 8865,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 9008,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 9092,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 9275,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 9385,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 9564,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 10715,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 10895,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 11176,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302054,
+        "tick": 11251,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 105,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 153,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 699,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1170,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1219,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1240,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1285,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1389,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1598,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 1653,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 2192,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 3017,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 3090,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 3183,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 3370,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 4332,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 4762,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 4818,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 4981,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 5182,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 5210,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 5813,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 5913,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 6172,
+        "gid": 8,
+        "cls": "INT-PHASE"
+      },
+      {
+        "seed": 12302055,
+        "tick": 6784,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 6963,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 7022,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 7234,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 8439,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 8640,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 8721,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 9388,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 9630,
+        "gid": 2,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302055,
+        "tick": 10873,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 10962,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 11750,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 12047,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 12081,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 12762,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302055,
+        "tick": 14065,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 462,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 585,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 720,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 1287,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 2447,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 2537,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 2648,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 2792,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 3899,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 4114,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 4143,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 4242,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 4329,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 4897,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 5987,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 6464,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 6655,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 6712,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 6785,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 6857,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 7116,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 8053,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 8665,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 9037,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 9150,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 9615,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 9688,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 10099,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 10199,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 10258,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 10422,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 10522,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 10907,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 11860,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 11945,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 12054,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 12090,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 12166,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 12319,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302056,
+        "tick": 12736,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 157,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 1814,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 2128,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 2199,
+        "gid": 7,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302057,
+        "tick": 2304,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 2350,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 2433,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 2887,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3002,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3352,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3430,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3498,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3615,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3701,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 3837,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 4653,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 4829,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 5704,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 5933,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 6029,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 6182,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 6641,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 7828,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 8811,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 8875,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 9359,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 9545,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 9627,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 11327,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 11457,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 11539,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 12121,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 12204,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 12291,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 12720,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 13486,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 13854,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 14420,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 15085,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302057,
+        "tick": 15268,
+        "gid": 9,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302058,
+        "tick": 270,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 871,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 944,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 1019,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 1135,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 1280,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 1629,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 1712,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 1888,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 2003,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 2111,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 4934,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 5243,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 5520,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 5602,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 5654,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 5806,
+        "gid": 3,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302058,
+        "tick": 6018,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 6436,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 6717,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 7236,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 7530,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 7677,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 7785,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 7987,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 8181,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 8271,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 8422,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 8492,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 10081,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 10148,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 11260,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 11761,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 12738,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 13408,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 13483,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 13625,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 13655,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 14005,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302058,
+        "tick": 14143,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 136,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 228,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 335,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 458,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 540,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 643,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 1296,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 1407,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 1557,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 1645,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 1751,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 1860,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 2519,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 2765,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 2837,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 3925,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 4063,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 4191,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 4324,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 4461,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 4600,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 5410,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 5907,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 6619,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 6865,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 7100,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 7683,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 7793,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 7883,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8054,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8148,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8206,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8237,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8380,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8546,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8735,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8828,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8899,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8935,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302059,
+        "tick": 8997,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 664,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 867,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 1448,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 1966,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 2688,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 2834,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 2906,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 3059,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 3473,
+        "gid": 9,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302060,
+        "tick": 4385,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 5162,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 5220,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 5282,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 6382,
+        "gid": 1,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302060,
+        "tick": 6684,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 6805,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 7881,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 8744,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 10919,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 12411,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 13414,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 13538,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302060,
+        "tick": 14144,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 106,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 154,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 267,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 3506,
+        "gid": 5,
+        "cls": "INT-LOSS"
+      },
+      {
+        "seed": 12302061,
+        "tick": 3572,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 3935,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 4108,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 4366,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 4426,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 4517,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 7149,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 7868,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 7965,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 8046,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 8301,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 8685,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 8948,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 9424,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 9796,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 9886,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 9975,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 12165,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 13048,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 13125,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 13213,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 14032,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302061,
+        "tick": 15515,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 129,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 216,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 459,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 895,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 1613,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 3063,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 3199,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 3408,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 3719,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 3820,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 3920,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 4025,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 4346,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 4365,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 4983,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 5118,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 5311,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 5479,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 5578,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 5963,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 6066,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 6257,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 6515,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 7054,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 7179,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 7289,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 7764,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 7867,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 7896,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 8586,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 9023,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 9223,
+        "gid": 6,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 9436,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 9526,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 10108,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 10227,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 10537,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 10794,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 10884,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302062,
+        "tick": 10947,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 147,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 1313,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 1373,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 1613,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 2418,
+        "gid": 4,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 2967,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 4794,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 5324,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 5404,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 5484,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 7039,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 8122,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 8451,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 8545,
+        "gid": 11,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 9271,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 9381,
+        "gid": 3,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 9466,
+        "gid": 0,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10015,
+        "gid": 5,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10113,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10181,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10327,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10384,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10488,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10740,
+        "gid": 8,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 10812,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 11687,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 11806,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 11894,
+        "gid": 1,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 13905,
+        "gid": 2,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 14130,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 14276,
+        "gid": 9,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 14378,
+        "gid": 7,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 14481,
+        "gid": 10,
+        "cls": "STRUCK"
+      },
+      {
+        "seed": 12302063,
+        "tick": 14560,
+        "gid": 3,
+        "cls": "STRUCK"
+      }
+    ],
+    "perSeed": [
+      {
+        "seed": 12302040,
+        "offGoals": 1,
+        "armedGoals": 1,
+        "offSpellMean": 3.3,
+        "armedSpellMean": 3.0667,
+        "arms": 63,
+        "struck": 63,
+        "offSimSeconds": 241.7167,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302041,
+        "offGoals": 4,
+        "armedGoals": 4,
+        "offSpellMean": 4.734,
+        "armedSpellMean": 4.0035,
+        "arms": 50,
+        "struck": 48,
+        "offSimSeconds": 240.2333,
+        "armedSimSeconds": 242.7
+      },
+      {
+        "seed": 12302042,
+        "offGoals": 5,
+        "armedGoals": 5,
+        "offSpellMean": 5.5321,
+        "armedSpellMean": 3.8021,
+        "arms": 44,
+        "struck": 42,
+        "offSimSeconds": 243.6333,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302043,
+        "offGoals": 3,
+        "armedGoals": 1,
+        "offSpellMean": 5.0247,
+        "armedSpellMean": 6.1307,
+        "arms": 37,
+        "struck": 37,
+        "offSimSeconds": 246.0167,
+        "armedSimSeconds": 241.7333
+      },
+      {
+        "seed": 12302044,
+        "offGoals": 1,
+        "armedGoals": 1,
+        "offSpellMean": 3.2625,
+        "armedSpellMean": 4.9792,
+        "arms": 51,
+        "struck": 50,
+        "offSimSeconds": 240.0167,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302045,
+        "offGoals": 5,
+        "armedGoals": 1,
+        "offSpellMean": 4.7552,
+        "armedSpellMean": 6.6326,
+        "arms": 58,
+        "struck": 58,
+        "offSimSeconds": 240.7667,
+        "armedSimSeconds": 245.8333
+      },
+      {
+        "seed": 12302046,
+        "offGoals": 0,
+        "armedGoals": 2,
+        "offSpellMean": 4.3037,
+        "armedSpellMean": 3.9838,
+        "arms": 79,
+        "struck": 78,
+        "offSimSeconds": 240.7833,
+        "armedSimSeconds": 240.7833
+      },
+      {
+        "seed": 12302047,
+        "offGoals": 0,
+        "armedGoals": 1,
+        "offSpellMean": 3.938,
+        "armedSpellMean": 4.6184,
+        "arms": 70,
+        "struck": 70,
+        "offSimSeconds": 240.85,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302048,
+        "offGoals": 1,
+        "armedGoals": 4,
+        "offSpellMean": 5.7162,
+        "armedSpellMean": 3.8593,
+        "arms": 43,
+        "struck": 42,
+        "offSimSeconds": 242.2333,
+        "armedSimSeconds": 241.3167
+      },
+      {
+        "seed": 12302049,
+        "offGoals": 2,
+        "armedGoals": 2,
+        "offSpellMean": 3.9725,
+        "armedSpellMean": 3.6671,
+        "arms": 67,
+        "struck": 63,
+        "offSimSeconds": 240.0167,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302050,
+        "offGoals": 1,
+        "armedGoals": 1,
+        "offSpellMean": 4.2354,
+        "armedSpellMean": 3.8758,
+        "arms": 52,
+        "struck": 50,
+        "offSimSeconds": 240.4,
+        "armedSimSeconds": 240.05
+      },
+      {
+        "seed": 12302051,
+        "offGoals": 2,
+        "armedGoals": 1,
+        "offSpellMean": 4.3614,
+        "armedSpellMean": 6.6231,
+        "arms": 47,
+        "struck": 46,
+        "offSimSeconds": 240.2167,
+        "armedSimSeconds": 240.7333
+      },
+      {
+        "seed": 12302052,
+        "offGoals": 4,
+        "armedGoals": 4,
+        "offSpellMean": 4.0667,
+        "armedSpellMean": 3.5662,
+        "arms": 47,
+        "struck": 47,
+        "offSimSeconds": 240.1167,
+        "armedSimSeconds": 240.7833
+      },
+      {
+        "seed": 12302053,
+        "offGoals": 2,
+        "armedGoals": 5,
+        "offSpellMean": 5.7708,
+        "armedSpellMean": 4.2951,
+        "arms": 33,
+        "struck": 31,
+        "offSimSeconds": 240.9667,
+        "armedSimSeconds": 240.95
+      },
+      {
+        "seed": 12302054,
+        "offGoals": 1,
+        "armedGoals": 3,
+        "offSpellMean": 3.7618,
+        "armedSpellMean": 3.7472,
+        "arms": 52,
+        "struck": 49,
+        "offSimSeconds": 240.2167,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302055,
+        "offGoals": 1,
+        "armedGoals": 1,
+        "offSpellMean": 5.1057,
+        "armedSpellMean": 5.5078,
+        "arms": 44,
+        "struck": 42,
+        "offSimSeconds": 240.0167,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302056,
+        "offGoals": 3,
+        "armedGoals": 4,
+        "offSpellMean": 4.7104,
+        "armedSpellMean": 3.5228,
+        "arms": 47,
+        "struck": 47,
+        "offSimSeconds": 240.0167,
+        "armedSimSeconds": 240.7667
+      },
+      {
+        "seed": 12302057,
+        "offGoals": 7,
+        "armedGoals": 4,
+        "offSpellMean": 3.7087,
+        "armedSpellMean": 4.7568,
+        "arms": 41,
+        "struck": 38,
+        "offSimSeconds": 241.1667,
+        "armedSimSeconds": 240.1667
+      },
+      {
+        "seed": 12302058,
+        "offGoals": 1,
+        "armedGoals": 2,
+        "offSpellMean": 4.8101,
+        "armedSpellMean": 4.6244,
+        "arms": 40,
+        "struck": 39,
+        "offSimSeconds": 241.4667,
+        "armedSimSeconds": 241.2167
+      },
+      {
+        "seed": 12302059,
+        "offGoals": 2,
+        "armedGoals": 1,
+        "offSpellMean": 4.1009,
+        "armedSpellMean": 3.4281,
+        "arms": 58,
+        "struck": 58,
+        "offSimSeconds": 240.2333,
+        "armedSimSeconds": 240.5667
+      },
+      {
+        "seed": 12302060,
+        "offGoals": 1,
+        "armedGoals": 2,
+        "offSpellMean": 8.6642,
+        "armedSpellMean": 3.9328,
+        "arms": 23,
+        "struck": 21,
+        "offSimSeconds": 240.0167,
+        "armedSimSeconds": 240.0167
+      },
+      {
+        "seed": 12302061,
+        "offGoals": 1,
+        "armedGoals": 3,
+        "offSpellMean": 4.1457,
+        "armedSpellMean": 7.2518,
+        "arms": 27,
+        "struck": 26,
+        "offSimSeconds": 240.0167,
+        "armedSimSeconds": 246.8833
+      },
+      {
+        "seed": 12302062,
+        "offGoals": 2,
+        "armedGoals": 4,
+        "offSpellMean": 4.2237,
+        "armedSpellMean": 3.7897,
+        "arms": 56,
+        "struck": 56,
+        "offSimSeconds": 240.1333,
+        "armedSimSeconds": 242.0333
+      },
+      {
+        "seed": 12302063,
+        "offGoals": 3,
+        "armedGoals": 3,
+        "offSpellMean": 5.3343,
+        "armedSpellMean": 5.7681,
+        "arms": 34,
+        "struck": 34,
+        "offSimSeconds": 245.3667,
+        "armedSimSeconds": 240.3167
+      }
+    ]
+  },
+  "resultSha256": "475db98b0d69226d679294a03273223bdcb2b5740f7dc6b8705c0b1612bbe016",
+  "wallMsContextOnly": 22601
+}

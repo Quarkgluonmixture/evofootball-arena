@@ -587,14 +587,50 @@ export class Match {
    * but not yet struck — a PARALLEL slot beside `pendingKick`, deliberately not a
    * discriminated member of it, so the certified C7 shot path stays byte-identical
    * (the doc states the form choice) and a shot wind-up and a pass wind-up can
-   * never evict each other. `{ gid, readyTick, aim, targetGid, offsideExempt }`:
+   * never evict each other.
+   * `{ gid, readyTick, aim, targetGid, targetRosterIdx, offsideExempt }`:
    * the committed body turns toward `aim` (the mate's position AT ARM TIME) until
    * `stepCount === readyTick`, then the pass resolves via the EXISTING performPass
    * math evaluated at strike time, to the mate captured at arm. NULL in every
    * production path (only `armPendingPass` sets it, only on the ON path).
+   *
+   * `targetRosterIdx` is the arm-time IDENTITY of the mate (#180.3(i)): the pitch
+   * slot object is reused by `becomeSub`, so a gid alone cannot tell whether the
+   * body standing there at `readyTick` is still the man who was picked. The
+   * resolve cancels (INT-MATE) if it is not.
    */
   pendingPassWindup:
-    { gid: number; readyTick: number; aim: V2; targetGid: number; offsideExempt: boolean } | null = null;
+    {
+      gid: number; readyTick: number; aim: V2;
+      targetGid: number; targetRosterIdx: number; offsideExempt: boolean;
+    } | null = null;
+  /**
+   * O1 T2 (#180.3(ii)/(iii)): the IN-ENGINE arm ledger for the shortPass wind-up.
+   * Debt (ii) required eviction accounting to live in the engine rather than in a
+   * probe wrapper, so the counters that only the seam can observe are exposed
+   * here. Pure bookkeeping: nothing in the sim ever READS these fields, so they
+   * cannot influence a single tick, and every one of them stays 0 unless
+   * `o1PassWindup` is armed (Road B ⇒ all-zero in every production path).
+   *
+   * * `arms` — wind-ups armed.
+   * * `evictions` — a LIVE pass wind-up overwritten in the single slot by a new
+   *   arm (the phase-0 map's trap 10 at pass volume). Measured, not assumed.
+   * * `struck` — resolves that reached `performPass`.
+   * * `cancelledMate` — INT-MATE: the arm-time mate was sent off or had left the
+   *   pitch (identity swapped by `becomeSub`) at `readyTick` ⇒ no pass runs.
+   * * `cancelledPendingKick` — the pass arm cancelled a live same-gid SHOT
+   *   wind-up (the #180.3(iii) precedence: a body has one set of legs, and the
+   *   arm that fires LAST owns them).
+   * * `cancelledByPendingKick` — a shot arm cancelled a live same-gid PASS
+   *   wind-up (the same precedence, the other order).
+   */
+  readonly o1WindupLedger: {
+    arms: number; evictions: number; struck: number; cancelledMate: number;
+    cancelledPendingKick: number; cancelledByPendingKick: number;
+  } = {
+      arms: 0, evictions: 0, struck: 0, cancelledMate: 0,
+      cancelledPendingKick: 0, cancelledByPendingKick: 0,
+    };
   /**
    * C6 T1: per-body heading ring buffer (the lag law's lookback, doc §SEAM).
    * The outfield carrier's heading is recorded here each owned tick — engine
@@ -1868,6 +1904,19 @@ export class Match {
    * already lives in the orientation/curl prices paid at strike time.
    */
   armPendingKick(shooter: Player, aim: V2): void {
+    // O1 T2 #180.3(iii) PRECEDENCE, the other order — the ONE line the O1 seam adds
+    // to this certified method, gated on `o1PassWindup` so the C7 path is EXACTLY
+    // as certified in every production world (flag OFF ⇒ `pendingPassWindup` is null
+    // ⇒ never taken, and byte-identity is re-proved). A body has one set of legs:
+    // arming the shot CANCELS a live same-gid pass wind-up, so no pass can leave the
+    // foot from a body that has since committed to a strike.
+    if (
+      this.o1PassWindup && this.pendingPassWindup !== null
+      && this.pendingPassWindup.gid === shooter.gid
+    ) {
+      this.pendingPassWindup = null;
+      this.o1WindupLedger.cancelledByPendingKick++;
+    }
     const drb = shooter.attrs.dribbling;
     const v = Math.sqrt(shooter.vel.x * shooter.vel.x + shooter.vel.y * shooter.vel.y);
     // |ω| from the two most-recent recorded headings (the c6 ring, recorded
@@ -1949,11 +1998,29 @@ export class Match {
       omega = Math.abs(d) / DT;
     }
     const wTicks = c7WindupTicks(v, omega, tech);
+    // #180.3(ii) EVICTION ACCOUNTING, IN-ENGINE: the pass wind-up slot is single, so
+    // a new arm while one is live overwrites it. That record is necessarily STALE
+    // (only the ball owner can arm and the re-decide lock holds a winding-up owner),
+    // and its resolve would have bailed on the ownership guard anyway — but the
+    // overwrite is COUNTED here rather than assumed away.
+    if (this.pendingPassWindup !== null) this.o1WindupLedger.evictions++;
+    // #180.3(iii) PRECEDENCE, stated explicitly: a body has ONE set of legs. The arm
+    // that fires LAST owns them, so arming the pass CANCELS a live same-gid shot
+    // wind-up (no strike runs; the C7 slot is simply cleared, exactly as its own
+    // interruption path leaves it). Unreachable in a live match — the C7 re-decide
+    // lock returns before a winding-up owner can re-decide — so this is the
+    // defensive half of the rule, and the counter shows if it ever fires.
+    if (this.pendingKick !== null && this.pendingKick.gid === passer.gid) {
+      this.pendingKick = null;
+      this.o1WindupLedger.cancelledPendingKick++;
+    }
+    this.o1WindupLedger.arms++;
     this.pendingPassWindup = {
       gid: passer.gid,
       readyTick: this.stepCount + wTicks,
       aim: { x: mate.pos.x, y: mate.pos.y },
       targetGid: mate.gid,
+      targetRosterIdx: mate.rosterIdx,
       offsideExempt,
     };
     // The committed body turns toward the aim: the heading integrator (capped at
@@ -1988,6 +2055,18 @@ export class Match {
       this.phase !== 'playing' || this.ball.owner !== passer
       || passer.sentOff || passer.stunTimer > 0 || passer.kickCooldown > 0
     ) return;
+    // #180.3(i) INT-MATE: the arm-time MATE must still be on the pitch and still be
+    // HIM. A send-off parks the body on the apron (`removeFromPitch`) and an injury
+    // substitution swaps a NEW identity into the same pitch slot (`becomeSub` — the
+    // gid is the slot, not the man), so a gid-only check would fire the pass at an
+    // empty apron or at a stranger who was never picked. Either case CANCELS: no
+    // pass runs, the ball stays with the passer, and the existing channel that took
+    // the mate away owns the outcome (the C7 I3 form — the seam adds nothing).
+    if (mate.sentOff || mate.rosterIdx !== pp.targetRosterIdx) {
+      this.o1WindupLedger.cancelledMate++;
+      return;
+    }
+    this.o1WindupLedger.struck++;
     this.performPass(passer, mate, pp.offsideExempt);
   }
 

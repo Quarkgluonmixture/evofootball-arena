@@ -336,6 +336,20 @@ describe('O1 T1 — the shortPass wind-up is dormant (Road B)', () => {
     expect(passer.action).not.toBe(sentinel);
   });
 
+  it('the IN-ENGINE ledger is all-zero on a fresh Match and stays zero with the flag OFF', () => {
+    const fresh = matchOf(7);
+    expect(fresh.o1WindupLedger).toEqual({
+      arms: 0, evictions: 0, struck: 0, cancelledMate: 0,
+      cancelledPendingKick: 0, cancelledByPendingKick: 0,
+    });
+    const off = matchOf(4242, false);
+    while (!off.finished) off.step(DT);
+    expect(off.o1WindupLedger).toEqual({
+      arms: 0, evictions: 0, struck: 0, cancelledMate: 0,
+      cancelledPendingKick: 0, cancelledByPendingKick: 0,
+    });
+  });
+
   it('X-DET: the armed world is deterministic (no rng added to the wind-up)', () => {
     const a = matchOf(90210, true);
     const b = matchOf(90210, true);
@@ -343,5 +357,201 @@ describe('O1 T1 — the shortPass wind-up is dormant (Road B)', () => {
     while (!b.finished) b.step(DT);
     expect(signature(a)).toBe(signature(b));
     expect(a.score).toEqual(b.score);
+  });
+});
+
+/**
+ * O1 T2 — THE THREE #180.3 ROBUSTNESS DEBTS, fixed on the licensed seam path
+ * (docs/world-model/O1-T2-MATCH-AB.md §DEBTS):
+ *   (i)   INT-MATE      the arm-time mate must still be on the pitch AND still be
+ *                       him at readyTick; a send-off or a substitution CANCELS.
+ *   (ii)  EVICTIONS     slot overwrites are counted IN-ENGINE (not in a probe
+ *                       wrapper), the counter is falsifiable, and the in-match
+ *                       unreachability argument is TESTED, not assumed.
+ *   (iii) PRECEDENCE    a body has one set of legs: arming one wind-up cancels a
+ *                       live same-gid other one. BOTH orders.
+ */
+describe('O1 T2 — the three #180.3 seam-robustness debts', () => {
+  const bothArmedMatch = (seed: number) => new Match({
+    seed, teamA: team('A', seed * 2 + 1), teamB: team('B', seed * 2 + 2),
+    duration: 240, c7Windup: true, o1PassWindup: true,
+  });
+
+  /* ---------------- (i) INT-MATE ---------------- */
+
+  it('(i) INT-MATE: a mate SENT OFF inside the window cancels the release', () => {
+    const { m, passer, mate, readyTick } = armedFixture(4242);
+    const spy = vi.spyOn(m, 'performPass');
+    m.step(DT);
+    m.sendOff(mate); // an EXISTING channel takes the mate off the pitch
+    expect(mate.sentOff).toBe(true);
+    while (m.simTick < readyTick) m.step(DT);
+    expect(m.simTick).toBe(readyTick);
+    expect(spy).not.toHaveBeenCalled(); // the pass NEVER left the foot
+    expect(m.pendingPassWindup).toBeNull(); // the slot is cleared, not leaked
+    expect(passer.faceTarget).toBeNull(); // the aim lock is released
+    expect(m.ball.owner).toBe(passer); // the ball stays with the passer
+    expect(m.o1WindupLedger.cancelledMate).toBe(1);
+    expect(m.o1WindupLedger.struck).toBe(0);
+  });
+
+  it('(i) INT-MATE: a mate SUBSTITUTED inside the window (gid reused) cancels too', () => {
+    const { m, passer, mate, readyTick } = armedFixture(90210);
+    const spy = vi.spyOn(m, 'performPass');
+    m.step(DT);
+    // Phase 61: the pitch slot object is reused — a fresh identity, same gid.
+    const armedRosterIdx = m.pendingPassWindup!.targetRosterIdx;
+    mate.becomeSub(
+      { rosterIdx: armedRosterIdx + 100, name: 'SUB', attrs: { ...mate.attrs } },
+      { x: 0, y: 0 },
+    );
+    expect(mate.sentOff).toBe(false); // NOT a send-off — a gid-only check would pass
+    expect(mate.rosterIdx).not.toBe(armedRosterIdx);
+    while (m.simTick < readyTick) m.step(DT);
+    expect(spy).not.toHaveBeenCalled();
+    expect(m.pendingPassWindup).toBeNull();
+    expect(m.ball.owner).toBe(passer);
+    expect(m.o1WindupLedger.cancelledMate).toBe(1);
+  });
+
+  it('(i) INT-MATE is not vacuous: an untouched mate still receives at readyTick', () => {
+    const { m, passer, mate, readyTick } = armedFixture(4242);
+    const spy = vi.spyOn(m, 'performPass');
+    while (m.simTick < readyTick) m.step(DT);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(passer, mate, false);
+    expect(m.o1WindupLedger.cancelledMate).toBe(0);
+    expect(m.o1WindupLedger.struck).toBe(1);
+  });
+
+  /* ---------------- (ii) EVICTION ACCOUNTING, IN-ENGINE ---------------- */
+
+  it('(ii) EVICTIONS are counted in-engine, and the counter is falsifiable', () => {
+    const { m, readyTick } = armedFixture(4242);
+    expect(m.o1WindupLedger.arms).toBe(1);
+    expect(m.o1WindupLedger.evictions).toBe(0); // one live arm, nothing overwritten
+    const outfield = m.teams[0].players.filter((p) => p.role !== 'GK' && !p.sentOff);
+    // a second arm while the first is still live: the single slot is overwritten
+    m.armPendingPass(outfield[0], outfield[2]);
+    expect(m.o1WindupLedger.arms).toBe(2);
+    expect(m.o1WindupLedger.evictions).toBe(1); // COUNTED, not assumed away
+    expect(m.pendingPassWindup!.targetGid).toBe(outfield[2].gid); // the later arm holds it
+    expect(readyTick).toBeGreaterThan(0);
+  });
+
+  it('(ii) the in-match unreachability argument, TESTED: zero evictions over armed matches', () => {
+    for (const seed of [4242, 90210]) {
+      const m = matchOf(seed, true);
+      while (!m.finished) {
+        m.step(DT);
+        // the engine's own count, every tick — never a probe-side reconstruction
+        expect(m.o1WindupLedger.evictions).toBe(0);
+      }
+      expect(m.o1WindupLedger.arms).toBeGreaterThan(0); // non-vacuous
+      // and the ledger closes: every arm either struck, cancelled or is still live
+      expect(m.o1WindupLedger.struck).toBeGreaterThan(0);
+      expect(m.o1WindupLedger.struck + m.o1WindupLedger.cancelledMate)
+        .toBeLessThanOrEqual(m.o1WindupLedger.arms);
+    }
+  });
+
+  /* ---------------- (iii) PRECEDENCE, BOTH ORDERS ---------------- */
+
+  it('(iii) PRECEDENCE pass→shot: arming the shot cancels the live pass wind-up', () => {
+    const m = bothArmedMatch(4242);
+    while (m.phase !== 'playing') m.step(DT);
+    for (let i = 0; i < 30 && m.phase === 'playing'; i++) m.step(DT);
+    const outfield = m.teams[0].players.filter((p) => p.role !== 'GK' && !p.sentOff);
+    const [passer, mate] = outfield;
+    for (const o of m.teams[1].players) { o.pos = { x: 50, y: 30 }; o.vel = { x: 0, y: 0 }; }
+    passer.kickCooldown = 0; passer.stunTimer = 0; passer.firstTouchWindow = 0;
+    m.ball.owner = passer;
+    m.ball.pos = { x: passer.pos.x + 0.85, y: passer.pos.y };
+    m.ball.vel = { x: 0, y: 0 }; m.ball.z = 0;
+
+    m.armPendingPass(passer, mate);
+    expect(m.pendingPassWindup).not.toBeNull();
+    m.armPendingKick(passer, { x: 30, y: 0 });
+    // one set of legs: the LATER arm owns them
+    expect(m.pendingPassWindup).toBeNull();
+    expect(m.pendingKick).not.toBeNull();
+    expect(m.o1WindupLedger.cancelledByPendingKick).toBe(1);
+    expect(m.o1WindupLedger.cancelledPendingKick).toBe(0);
+    const passSpy = vi.spyOn(m, 'performPass');
+    const shotSpy = vi.spyOn(m, 'performShot');
+    const readyTick = m.pendingKick!.readyTick;
+    while (m.simTick < readyTick) m.step(DT);
+    expect(shotSpy).toHaveBeenCalledTimes(1); // the shot resolved
+    expect(passSpy).not.toHaveBeenCalled(); // the cancelled pass never ran
+  });
+
+  it('(iii) PRECEDENCE shot→pass: arming the pass cancels the live shot wind-up', () => {
+    const m = bothArmedMatch(90210);
+    while (m.phase !== 'playing') m.step(DT);
+    for (let i = 0; i < 30 && m.phase === 'playing'; i++) m.step(DT);
+    const outfield = m.teams[0].players.filter((p) => p.role !== 'GK' && !p.sentOff);
+    const [passer, mate] = outfield;
+    for (const o of m.teams[1].players) { o.pos = { x: 50, y: 30 }; o.vel = { x: 0, y: 0 }; }
+    passer.kickCooldown = 0; passer.stunTimer = 0; passer.firstTouchWindow = 0;
+    m.ball.owner = passer;
+    m.ball.pos = { x: passer.pos.x + 0.85, y: passer.pos.y };
+    m.ball.vel = { x: 0, y: 0 }; m.ball.z = 0;
+
+    m.armPendingKick(passer, { x: 30, y: 0 });
+    expect(m.pendingKick).not.toBeNull();
+    m.armPendingPass(passer, mate);
+    expect(m.pendingKick).toBeNull();
+    expect(m.pendingPassWindup).not.toBeNull();
+    expect(m.o1WindupLedger.cancelledPendingKick).toBe(1);
+    expect(m.o1WindupLedger.cancelledByPendingKick).toBe(0);
+    const passSpy = vi.spyOn(m, 'performPass');
+    const shotSpy = vi.spyOn(m, 'performShot');
+    const readyTick = m.pendingPassWindup!.readyTick;
+    while (m.simTick < readyTick) m.step(DT);
+    expect(passSpy).toHaveBeenCalledTimes(1); // the pass resolved
+    expect(shotSpy).not.toHaveBeenCalled(); // the cancelled strike never ran
+  });
+
+  it('(iii) the double-pending body is UNREACHABLE in a live match (both flags armed)', () => {
+    for (const seed of [4242, 90210]) {
+      const m = bothArmedMatch(seed);
+      let sawPass = 0; let sawShot = 0;
+      while (!m.finished) {
+        m.step(DT);
+        const pp = m.pendingPassWindup;
+        const pk = m.pendingKick;
+        if (pp !== null) sawPass++;
+        if (pk !== null) sawShot++;
+        // never the same body in both slots at once
+        expect(pp === null || pk === null || pp.gid !== pk.gid).toBe(true);
+      }
+      expect(sawPass).toBeGreaterThan(0); // non-vacuous on both seams
+      expect(sawShot).toBeGreaterThan(0);
+      // and the defensive precedence never had to fire
+      expect(m.o1WindupLedger.cancelledPendingKick).toBe(0);
+      expect(m.o1WindupLedger.cancelledByPendingKick).toBe(0);
+    }
+  });
+
+  it('the C7 shot path is untouched with o1PassWindup OFF (the precedence line is gated)', () => {
+    const armKick = matchSource.slice(
+      matchSource.indexOf('armPendingKick(shooter: Player'),
+      matchSource.indexOf('private resolvePendingKick()'));
+    // the only O1 addition to the certified method is gated on the flag
+    expect(armKick).toContain('this.o1PassWindup && this.pendingPassWindup !== null');
+    expect(armKick).not.toMatch(/\.owner\s*=[^=]/); // still writes no ownership
+    // and a c7-only world behaves exactly as the certified C7 world
+    const c7Only = (seed: number) => new Match({
+      seed, teamA: team('A', seed * 2 + 1), teamB: team('B', seed * 2 + 2),
+      duration: 240, c7Windup: true,
+    });
+    const withFlagAbsent = c7Only(4242);
+    const withFlagFalse = new Match({
+      seed: 4242, teamA: team('A', 4242 * 2 + 1), teamB: team('B', 4242 * 2 + 2),
+      duration: 240, c7Windup: true, o1PassWindup: false,
+    });
+    while (!withFlagAbsent.finished) withFlagAbsent.step(DT);
+    while (!withFlagFalse.finished) withFlagFalse.step(DT);
+    expect(signature(withFlagFalse)).toBe(signature(withFlagAbsent));
   });
 });

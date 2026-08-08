@@ -204,6 +204,16 @@ phase-0 map §P1.5 names) · the target body no longer resolvable. On any of the
 **no pass runs** and the ball's fate is whatever the existing channel already
 did.
 
+> ⚠ **#180.3 CORRECTION, marked in place (not silently rewritten).** "the target
+> body no longer resolvable" was implemented as an `undefined`-only check, which
+> is too weak: a mate **sent off** or **substituted** inside the window is still
+> a resolvable object (the gid is the pitch SLOT, not the man). Ruling #180.3(i)
+> named it a debt; it is fixed in the O1-T2 commit as the new interruption cause
+> **INT-MATE**, together with #180.3(ii) in-engine eviction accounting
+> (`Match.o1WindupLedger`) and #180.3(iii) explicit double-pending precedence.
+> See [`O1-T2-MATCH-AB.md`](O1-T2-MATCH-AB.md) §DEBTS. The §RESULT numbers below
+> were measured on the pre-fix seam and are left exactly as they were banked.
+
 ### During the window
 
 * **The heading integrator runs toward the aim** — `faceTarget` is set to the
