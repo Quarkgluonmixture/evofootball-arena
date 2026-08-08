@@ -7750,3 +7750,51 @@
 >    outcome, i.e. equilibrium quiet AND tempo moved enough
 >    that the play-test entry is the obvious next step —
 >    anything else stops).
+
+> **COMMANDER RULING #183 (2026-08-08 — the O1-T2 full A/B
+> adjudicated: F-O1a QUIET (all five bands hold), the mechanism
+> CERTIFIED at scale, but F-O1b FIRES (tempo moved 1.7–4.3% of
+> the gap vs the 20% threshold); self-drive STOPS at the
+> pre-named fork; the fork is the user's):**
+>
+> 1. **BANKED**: `data/o1-t2-match-ab.json` (N=1,000 paired
+>    seeds @ 12,303,000+, all hard gates true incl. the
+>    in-probe G-IDENT receipts, X-DET, ledgers closed,
+>    resultSha `42d76729…`, wall 480 s).
+> 2. **F-O1a: QUIET.** The armed world sits INSIDE every frozen
+>    band: goals 2.192 [2.035, 2.754] (−8.5% of baseline,
+>    within ±15%), crosses/headers/longBalls/cutbacks all
+>    inside ±25%. The equilibrium survives a pass-family time
+>    tax — no blowout in either direction.
+> 3. **THE MECHANISM IS REAL AT SCALE**: reception-to-release
+>    median **+0.0425 s [+0.0395, +0.0456] RESOLVED** (the
+>    wind-up is exactly the hold it claims); turnovers per
+>    watched minute **−0.184 [−0.320, −0.047] RESOLVED** (the
+>    first measured lever that moves the franticness DOWN);
+>    W distribution as certified; interruption/ledger accounts
+>    clean.
+> 4. **F-O1b: FIRES, exactly as the phase-0 arithmetic
+>    foretold** (≈4% of played time was the ceiling): spell
+>    mean +0.085 s [−0.003, +0.176] = **1.66%** of the 5.11 s
+>    gap-to-reference; watched-clock turnovers moved **4.31%**
+>    of their gap. Both ≪ the frozen 20% step. The honest
+>    diagnosis (labelled, consistent with H-169a and the #173
+>    texture): release time was the SMALL half of the tempo
+>    disease — spells die by pressed-first-touch RETENTION
+>    loss (~2.5 touches then gone), which is O2/O3's seat
+>    (观察 + priced hold), not O1's. O1 cut-1 delivers what a
+>    release tax CAN deliver: a visible, attribute-priced
+>    wind-up, a closing window for defenders, and a real
+>    (small) calming of the exchange rate, at zero equilibrium
+>    cost.
+> 5. **SELF-DRIVE STOPS (#179 red line). THE FORK (the
+>    user's, F-O1b as pre-named "bigger law vs accept")**:
+>    (甲) accept O1 cut-1 as a certified banked mechanic, arm
+>    it into the play-test world bundle, and OPEN O2/O3 (the
+>    retention half, where the census says the spell length
+>    actually lives); (乙) raise the pass wind-up duration law
+>    (a bigger tax — honesty: even 3× the law is ~5% of the
+>    gap; it buys feel, not the gap); (丙) extend to cut-2/3
+>    kinds first (through/aerial — ~20% more releases, ~1%
+>    more gap); (丁) bank dormant and stop the O-arc. Road B
+>    intact; nothing shipped; fingerprint unchanged.
