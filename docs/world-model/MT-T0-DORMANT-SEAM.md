@@ -53,8 +53,12 @@ that question ("how long would the ball take to reach my man"), so the family me
 chosen by **QUESTION IDENTITY**, not by picking a bound off a list.
 
 **The rest of the family, disclosed** so the choice is auditable rather than asserted:
-the cutback estimator uses `18` (`mechanics.ts:662`); the executed ground-pass strike
-speed is `clamp(d·0.6 + 8.2, 9, 22)` (`mechanics.ts:377`), a band this 16 sits inside;
+the cutback estimator uses `18` (`mechanics.ts:662`); ⚠ CORRECTION (#202, verify
+findings 1–2): the first draft cited the executed ground-pass strike speed at
+`mechanics.ts:377` — the line is **`:379`** (`clamp(d·0.6 + 8.2, 9, 22)`, a band this
+16 sits inside; the frozen constant itself at `:373` was cited correctly and is
+machine-pinned by G-CONST) — and omitted one family member: the **through-ball lead
+estimator also uses `18` (`mechanics.ts:466`)**, the same value as the cutback row;
 `SHOT_SPEED = 27` (`constants.ts:346`) is a shot, not a pass. `powerMul` is
 deliberately **NOT** read — it is a property of one passer's body orientation and
 chosen weight, and M-MT.5 fixes slice one at geometry only.
@@ -250,6 +254,15 @@ offside trap's own arithmetic · the reaction-lag cadence · `speedF` · the mar
 no-target fallback · every GK and set-piece path · `whetherEye` / price tables · the PM
 seam (`defLaneConvergence` / `pmLaneConvergence`, which stays banked and separate) ·
 `a4World.ts`'s flag set and all three play-test worlds · the legacy table path.
+
+⚠ NOTE (#202, verify finding 3): "untouched" is a CODE-level claim. An EMERGENT
+feedback path exists and is now named: a sagged marker standing up to 9 m further off
+his man moves the distances `assignMarks`' own gates read (`d < 22` at
+`TeamBrain.ts:495`, the 9 m zonal gate at `:493`), so assignment CAN churn downstream
+of the body — the map-§2.4 positional-feedback channel, not a predicate (permitted by
+#200; G-ASSIGN's order arm shows marks never LEAD the divergence — first position
+divergence tick 62 vs first marks divergence tick 130). MT-T1 carries mark-assignment
+drift as a REPORTED dimension for exactly this reason.
 
 ---
 

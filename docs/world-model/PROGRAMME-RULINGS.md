@@ -8604,3 +8604,59 @@
 >    evidence lessons; commit local, banking the commander's).
 >    MT-T1 queues behind its banking; O2-T1 stays queued
 >    (#199.5).
+
+> **COMMANDER RULING #202 (2026-08-09 — MT-T0 machine-verify
+> PASS (3 LOW, zero mechanism defects); the LOWs corrected in
+> place by the commander; MT-T0 BANKED; MT-T1 (the ruler
+> re-run) dispatched):**
+>
+> 1. **VERIFY PASS recorded** (`ae7b7ea`). The load-bearing
+>    dimensions independently confirmed: ⭐ **the #200 red line
+>    HOLDS** — the complete set of new conditionals is the
+>    flag gate, the weight guard, the slack≤0 zero and the 9 m
+>    cap; NO decline/release/skip branch exists anywhere; the
+>    gene can only scale a non-negative distance. Dormancy
+>    clean (gene outside GENE_KEYS; `mtMarkSag ?? false`;
+>    a4World clean; new draws strictly opt-in and ordered
+>    after the PM block). Mechanism traced verbatim:
+>    `MARK_SAG_BALL_SPEED = 16` = the engine's OWN pass
+>    flight-time constant (`mechanics.ts:373`, chosen by
+>    QUESTION IDENTITY); `t_self` = the attack-the-drop
+>    arrival form (`TeamBrain.ts:425`); cap 9 m = the zonal
+>    engagement radius (`TeamBrain.ts:493`). Sag inserts
+>    between the Phase-31.6 stand-off and the direction blend
+>    — only ADDS above both floors; blend/`markingAggression`
+>    byte-identical; `TeamBrain.ts` absent from the diff.
+>    Receipts re-derive at arbitrary commits (the verifier
+>    recomputed `resultSha256 8f222b34…1a32` at its own head —
+>    the #197-M1 lesson HELD); the formations.test.ts pin
+>    SURVIVES (assignment-only assertions, re-run green);
+>    under force the stance sags on 1,858/1,858 slack-positive
+>    marker-ticks and tightens on ZERO; G-ASSIGN order arm:
+>    first position divergence tick 62, first `team.marks`
+>    divergence tick 130 — assignment never leads. Fingerprint
+>    unchanged; 16/16 seam pins + 27/27 with formations green.
+> 2. **THE 3 LOWs, corrected in place by the commander** (the
+>    #191 form, each checked against source first): the
+>    `:377`→`:379` strike-speed citation; the missing family
+>    member (through-ball lead `18` at `mechanics.ts:466`);
+>    and the one substantive note — "assignment untouched" is
+>    a CODE-level claim: an EMERGENT feedback path is now
+>    NAMED in the doc (a 9 m-sagged body moves the distances
+>    `assignMarks`' own 22 m/9 m gates read ⇒ assignment can
+>    churn DOWNSTREAM of the body; the map-§2.4 channel, not a
+>    predicate; MT-T1 carries mark drift REPORTED for exactly
+>    this reason).
+> 3. **BANKED + PUSHED**: `ae7b7ea` + the correction commit.
+>    Seeds consumed: 12,312,000–025. Road B intact.
+> 4. **MT-T1 DISPATCHED (the ruler re-run — the #201.2 arc
+>    step)**: one executor drafts the frozen stage doc + the
+>    battery extension (the PM-T1 probe form: 5 arms = absent
+>    control · armed-genes-zero · PM-top · MT-top · PM+MT-top;
+>    the PM-T1 instruments verbatim + a stance-sag-fired
+>    instrument for F-MT-a decidability + mark-drift REPORTED;
+>    the #198-form guard set incl. goals; fresh seeds ≥
+>    12,313,000; the frozen N rule re-derived) + smoke +
+>    independent verify; then the commander launches detached
+>    and adjudicates. F-MT-a/b/c are STOPs; success sends the
+>    arc to the user's play-test gate.
