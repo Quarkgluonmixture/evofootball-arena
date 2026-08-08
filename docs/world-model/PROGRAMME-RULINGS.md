@@ -7600,3 +7600,37 @@
 >    byte-identity, fingerprint, W distribution realized,
 >    interruption census, X-family) + full suite. Road B:
 >    dormant, nothing ships.
+
+> **COMMANDER RULING #179 (2026-08-08 — the user rules 自走:
+> SELF-DRIVE GRANTED for the O1 slice; O1-T1 dispatched):**
+>
+> 1. **USER RULING RECORDED (verbatim: "自走")**: the O1 arc
+>    proceeds without per-round "go" — O1-T1 (dormant seam) →
+>    O1-T2 (A/B) → the tempo-census re-run (the outcome ruler)
+>    → the play-test entry wiring (the #156/#168 form). The
+>    #159 red lines bind unchanged: any pre-named FAIL (F-O1a
+>    equilibrium blowout · F-O1b tempo-too-small fork) /
+>    non-PASS verify after one fix round / contract ambiguity /
+>    anything touching 乙 or another slice ⇒ STOP to the user.
+>    The play-test ACCEPTANCE itself is the user's. O2/O3
+>    openings are NOT covered — they return to the user at
+>    O1's exit with the re-census numbers.
+> 2. **DISPATCHED — O1-T1 per #178.4**: the dormant shortPass
+>    wind-up seam behind the new explicit `o1PassWindup`
+>    (default false, never bundle-defaulted, own matchFlags
+>    key); duration = the C7 §LAW constants verbatim with tech
+>    = attrs.passing (the one DESIGNED deviation, stated in the
+>    stage doc); arm site = the performPass commit
+>    (PlayerBrain.ts:975) ONLY — the cutback statement (:972)
+>    proven untouched; one-touch bypass = window>0 ⇒ immediate
+>    release at the existing oneTouchMul price, NO new charge
+>    (the corrected NO-TOUCH list binds); interruptibility +
+>    re-decide lock transferred from C7; kickoff/restart passes
+>    excluded (the C7 free-kick precedent). Gates = the C7-T1
+>    form: flag-off byte-identity + fingerprint
+>    `57b0bdab…c673` + realized W distribution + interruption
+>    census + X-family + full suite/tsc. Seeds from 12,302,000+
+>    inside the reserved band, ledger updated. Src changes are
+>    licensed ONLY on the seam path behind the flag (this is a
+>    mechanic arc — the gate is flag-off byte-identity, not
+>    X-SRC-ZERO). Road B: dormant, nothing ships.
