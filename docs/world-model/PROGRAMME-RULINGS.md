@@ -7248,3 +7248,47 @@
 >    the fork between the outlet seats (C5/C7/hold/shield — the
 >    substrate half) and punish-compactness (#154.3/#167.4 —
 >    the selection half) gets ruled with numbers in hand.
+
+> **COMMANDER RULING #170 (2026-08-08 — the user rules "go" on
+> #169.5: the ABSOLUTE possession/tempo census is granted
+> through adjudication; dispatched):**
+>
+> 1. **GRANT**: build → smoke → full run → numbered-ruling
+>    adjudication, one arc (the #162 考-grant form). Road B
+>    throughout: instrument-only, zero src, fingerprint
+>    untouched; bands are REFERENCE LINES, never gates;
+>    plumbing gates (X-DET, seed disjointness, X-SRC-ZERO,
+>    X-FP-PROD) still bind.
+> 2. **COMMANDER-LEVEL FRAME (the executor elaborates, never
+>    re-cuts)**: three arms — PRODUCTION (unarmed) / v1
+>    (uniform whisper) / v2 (discipline) — fixed seeds from
+>    12,293,000+ (the #166-corrected next-free), stats base
+>    102,200 (published-unspent per #166) or fresh ≥200-gap,
+>    traced. ABSOLUTE per-arm levels: possession-spell length
+>    distribution (incl. share of spells dead at FIRST touch),
+>    touches per possession, time-on-ball per touch, turnovers
+>    per minute, press-context reception outcomes (pressure
+>    radius frozen ex ante from a traced constants.ts value;
+>    outcome = next event within the spell: retained / passed /
+>    lost / fouled), action durations (the C5/C7 face:
+>    reception→release gap, kick windup), events per minute
+>    (passes/shots/regains). ⭐ AXIS HONESTY (the PITCH_SCALE
+>    probe lesson): every metric reported on BOTH time axes —
+>    per SIM-second (what the user watches at 1×; MATCH_DURATION
+>    240 s) and per DISPLAY-minute (the 90' mapping) — with the
+>    mapping factor stated once; the gap table must never
+>    silently conflate axes. Real-football reference bands from
+>    the eFootball research file + public real-football values:
+>    evidence-graded, curve SHAPES and orders of magnitude only,
+>    CONSTANTS never imported as sim values (house law) — each
+>    band cites its source line. H-169a DISCRIMINATOR frozen ex
+>    ante: if spell-death-at-first-touch is disproportionately
+>    a PRESSED-reception phenomenon (pressed vs unpressed
+>    contrast), the outlet story holds; if spells die unpressed
+>    too, the disease is elsewhere.
+> 3. **DELIVERABLE**: stage doc + probe + smoke (sizing/wall
+>    only) committed by the executor; the commander launches
+>    the full census detached (§0.0.4), adjudicates the gap
+>    table, and presents the outlet-seats vs punish-compactness
+>    fork with numbers in hand. The v2 acceptance (#168.3)
+>    stays open in parallel.
