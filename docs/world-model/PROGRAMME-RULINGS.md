@@ -7292,3 +7292,34 @@
 >    table, and presents the outlet-seats vs punish-compactness
 >    fork with numbers in hand. The v2 acceptance (#168.3)
 >    stays open in parallel.
+
+> **COMMANDER RULING #171 (2026-08-08 — tempo-census draft
+> machine-verify FAIL (four binding defects); the fix round
+> dispatched; the FAIL recorded as-is per the freeze
+> discipline):**
+>
+> 1. **VERIFY FAIL, four binding defects confirmed**: (i)
+>    dead-ball time leaks into time-on-ball (curTouch not closed
+>    on phase-exit); (ii) AXIS-HONESTY violation — the stated
+>    ×2.6667 law does not reproduce the emitted perSimSecond
+>    rates (simTick counts pause steps that simTime skips);
+>    (iii) B9/B10 bands are per-TEAM but the only emitted
+>    outputs are both-teams sums, unlabelled at the point of
+>    read; (iv) the H-169a discriminator population is
+>    allTouches (30.6% restart/kickoff-origin receptions with
+>    set-piece geometry) while the frozen wording says each
+>    SPELL's first reception — the headline must be the
+>    openPlay population. Plus: the CONTROL_RADIUS trace must
+>    be computed not hard-labelled (env scale), two citation
+>    nits, and the launch command's detached form. The
+>    executor's commit stays LOCAL and unbanked.
+> 2. **DISPOSITION**: fix round dispatched to an executor with
+>    the findings verbatim (fix all seven, re-run the smoke,
+>    refresh the preview) + an independent re-verify focused on
+>    the fixed points. The step banks only on verify PASS.
+>    Positive findings preserved for the bank: the pressure
+>    radius correctly frozen at the substrate's own switch
+>    (TOUCH_CONTROL_DIST 4.2 m); kick execution time ABSENT on
+>    prod = the C7 finding surfacing in the ruler itself; band
+>    sourcing law held (nothing invented; ABSENT where no
+>    honest source).
