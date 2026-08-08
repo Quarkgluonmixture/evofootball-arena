@@ -7030,3 +7030,55 @@
 >    `A4-S2P3-GENE-BATTERY.md` + probe(s) + the named test debt
 >    + bounded smoke; local commit; the commander reviews,
 >    pushes, launches the full battery detached, adjudicates.
+
+> **COMMANDER RULING #166 (2026-08-08 — S2-P3 draft + verify
+> PASS; six findings disposed (one adjudication-layer patch,
+> two ledger corrections made binding); the three legs
+> LAUNCHED):**
+>
+> 1. **BANKED + PUSHED**: `1792f2a` — stage doc
+>    `A4-S2P3-GENE-BATTERY.md` + the three-leg probe + the
+>    #165.2.i test-debt fix (the vacuous homePrior-ON stream
+>    proof rebuilt against a genuine HEAD reimplementation;
+>    docstring corrected; 24/24) + three smoke JSONs; suite
+>    1083 green, tsc clean; machine-verify PASS. ⭐ **Leg F
+>    already HOLDS at smoke scale** (8/8 seeds, three sub-leg
+>    decomposition F1/F2/F3 with non-vacuity as a frozen
+>    conjunct — the single-side-grant structural fact #150.1
+>    honestly worked around, ratified). The offset family
+>    frozen by DERIVATION ([0,+.4,+.2,0,−.2,−.4] over whisper
+>    0.5 ⇒ effective ≡ the S2-P1b vector; GK slot 0 by BIRTH
+>    NEUTRALITY, immateriality proven, ratified). Leg S's
+>    probe-side selection loop (League MutateOptions not
+>    plumbed; band law mirrored verbatim; honest limits named
+>    ex ante) RATIFIED as the Road-B-compatible form.
+> 2. **FINDINGS DISPOSED**: (i) MEDIUM — the equilibrium-band
+>    substrate-drift exclusion (control-fails ⇒ dimension
+>    dropped) leaves an ARM-only movement unread; the FROZEN
+>    gate stands as committed (no re-cut after smoke sight),
+>    and the blind spot is closed at the ADJUDICATION layer:
+>    the commander reads the paired ARM−CONTROL delta on every
+>    EXCLUDED dimension (headers, longBalls per the smoke) as a
+>    DESCRIPTIVE red-flag input to the S2-P4 disposition —
+>    reported, never gated. (ii) LOW ledger corrections, BINDING
+>    on every future stage's disjointness math: X-OFF-IDENT
+>    consumes 12,256,040–12,256,059 in every mode (the ledger
+>    said 8 seeds); Leg S's true upper bound is **12,292,944**
+>    (doc said ≤12,291,944) — the next free census seed is
+>    **12,293,000**; stats base 102,200 is published but
+>    UNSPENT (available for reuse). (iii) INFO ×3 recorded
+>    (X-SRC-ZERO sees the working tree only — independently
+>    verified against 950c702..HEAD here; end-of-match
+>    signature form accepted, RNG-cursor digest makes silent
+>    reconvergence ~unreachable; N-refusal on gating legs
+>    mirrors the S2-P1b idiom, good).
+> 3. **LAUNCHED (§0.0.4, commander-resident, nohup detached, in
+>    parallel — determinism unaffected)**: Leg F (M=400, gate),
+>    Leg W (N=5,000 sets, gate; sizing target = the REPORTED
+>    set-grain dupRun, MDL 0.019 = half the #151 seen, powered
+>    0.95), Leg S (8 runs × 10 teams × 20 gens, observational).
+>    Projected ≈1.3 h total. Disposition as frozen (#165.3):
+>    Leg F or W FAIL ⇒ STOP to the user; Leg S shapes the
+>    S2-P4 arming choice; PASS ⇒ the S2-P4 play-test entry step
+>    dispatches (self-drive), the acceptance itself = the
+>    user's eyes.
