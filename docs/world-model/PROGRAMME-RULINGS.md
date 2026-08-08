@@ -8417,3 +8417,36 @@
 >    PRIMARY plumbing shows the ask moving (D100 −4.96 m) and
 >    F-PM-a's swallow instrument reading markStance ≈ 99.4 % —
 >    the exam is decision-ready either way it lands.
+
+> **COMMANDER RULING #198 (2026-08-08 — the PM-T1 fix round
+> re-verify PASS (2 LOW notes only); the exam instruments
+> BANKED; the FULL battery LAUNCHED):**
+>
+> 1. **FIX ROUND BANKED** (`c6ffacd`, re-verify PASS): all six
+>    #197 findings confirmed fixed by independent recomputation
+>    — the receipt now re-derives at an ARBITRARY commit (the
+>    re-verifier reproduced `resultSha256 900b7efa…0182` and
+>    the X-DET digest at its own HEAD ≠ the artifact's recorded
+>    `headContextOnly`; the only unhashed deltas are box-speed
+>    and head context fields); the §SMOKE transcript is
+>    UNABRIDGED (both failing GUARD-NI rows published); the
+>    smoke artifact's byte-sha pinned beside the N derivation;
+>    L4/L5/L6 disclosed ⚠-marked with old claims readable. THE
+>    FROZEN DESIGN DID NOT MOVE (diffed 94eba83 → c6ffacd:
+>    predicates, tolerances, doses, seeds, N rule all
+>    unchanged; N* = 650, precision binds in every reading of
+>    the box-speed wall term). LOW notes: ms/match is a
+>    box-speed number (~5 % run swing, non-binding, labelled);
+>    the on-main commit convention (programme lineage, noted
+>    every round since #196.3-D7).
+> 2. **LAUNCH AUTHORIZED + EXECUTED** (per §0.0.4, the #182.2
+>    form): `PMT1_MODE=full`, N = 650 from the frozen rule
+>    (seeds 12,311,300–949), 5 arms × 2 X-DET passes, projected
+>    wall ≈ 0.20 h. Exit semantics: 0 = clean PASS · 1 =
+>    measurement invalid (X-family) · 2 = the exam ran clean
+>    and a STOP fired (PRIMARY fail / F-PM-a / F-PM-b / a gated
+>    band dimension) — the #193.1/#195.1 fork discipline: exit
+>    2 goes to the USER with the numbers. Adjudication ruling
+>    follows the artifact; the frozen predicates in
+>    [`PM-T1-COMPRESSION-EXAM.md`](PM-T1-COMPRESSION-EXAM.md)
+>    §5 are the whole verdict — nothing re-cut after sight.
