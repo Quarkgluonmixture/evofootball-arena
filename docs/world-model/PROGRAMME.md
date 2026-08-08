@@ -190,13 +190,30 @@ receipt mislabel (true RNG evidence = G-IDENT vs pre-change
 baselines + the zero-rng diff); the abort-mix quirk
 (`abortedPhase` unreachable, goal-pause windows close as
 `abortedLoss`) = a T1 instrument note. **SELF-DRIVE ARC OPEN
-(#195, the user ruled 自走)**: PM-T0 → banking → the
-commander's T1 sequencing (PM-T1 vs O2-T1) → the exams; STOPs
-= pre-named FAIL forks (F-PM-a/b, F-O2a/b), hard escalations,
-every user-gate (play-test verdicts; the 乙 decision re-enters
-only with PM-T1's F-PM-a numbers). **PM-T0 IS DISPATCHED
-(#195.2).** Seeds consumed this arc: 12,311,000–024 (the O2-T0
-receipt block). Also open: the v2
+(#195, the user ruled 自走)**: STOPs = pre-named FAIL forks
+(F-PM-a/b, F-O2a/b), hard escalations, every user-gate
+(play-test verdicts; the 乙 decision re-enters only with
+PM-T1's F-PM-a numbers). **PM-T0 IS BANKED (#196, `c8a44cb` +
+corrections)**: gene `defLaneConvergence` born absent (outside
+GENE_KEYS), k_PM ≤ 0.25 (the traced legacy convergence weight,
+content-anchored by G-CONST), consumption flag
+`pmLaneConvergence` hard-false, ⚠ ARMING CHECKLIST BINDING =
+flag + `evolveDefLaneConvergence` opt-in + non-absent gene
+(ALL); read fork = exactly 2 mover sites of 8 (zone centres
+UNMODULATED = the 甲/乙 boundary, pinned by G-READ + a
+call-shape test); restart trace clean; X-FP-PROD unchanged;
+G-SUITE closed (the only red = the known ten-season wall-clock
+timeout, reproduced pre-change, passes isolated 148–153 s).
+Verify PASS (1 MEDIUM + 2 LOW, all evidence-reporting,
+corrected in place #196). REPORTED: forced dose 1 moves the
+mover ASK mean lane gap 6.586 → 5.029 m. **T1 SEQUENCING RULED
+(#196.5): PM-T1 FIRST** (its F-PM-a share feeds the parked 乙
+fork), then O2-T1. **QUEUED NEXT STEP: dispatch the PM-T1
+instruments+stage-doc executor (the O1-T2 form); the commander
+launches the full battery detached (§0.0.4) and adjudicates;
+doses travel the gene channel via genome views (#196.3-D6).**
+Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+12,311,100–124 (PM-T0). Also open: the v2
 acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3

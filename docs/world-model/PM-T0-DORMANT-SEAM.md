@@ -287,7 +287,12 @@ artifact does not.)*
 
 Implementation at working HEAD `e620298` + this commit's seam. Tests:
 [`../../tests/pmLaneConvergence.test.ts`](../../tests/pmLaneConvergence.test.ts)
-(19 pins). Receipts:
+(**18 pins** — ⚠ CORRECTION (#196, verify finding 1, the #194-M1 class): the
+first draft wrote "19 pins" and pasted a `Tests 19 passed` transcript from the
+SUPERSEDED version of the file that still carried the fingerprint pin
+(Deviation 2 dropped it); the COMMITTED file has 18 `it()` blocks. The
+commander re-ran the committed file in isolation at banking:
+`Tests 18 passed (18), Duration 4.32s`). Receipts:
 [`../../scripts/probes/pm-t0-lane-seam.ts`](../../scripts/probes/pm-t0-lane-seam.ts),
 artifact [`data/pm-t0-lane-seam.json`](data/pm-t0-lane-seam.json).
 **24 seeds × 6 arms (absent · off · plain · plainOff · bornArmed · forced) = 144 full
@@ -315,7 +320,7 @@ rate).
 | **G-FP** | ✅ PASS | the 1337 row IS the production fingerprint (`gates.xFpProd`); `npm run fingerprint` re-derives `57b0bdab…c673` unchanged (§CHECKS) |
 | **G-OFF** | ✅ PASS | 24/24 seeds: flag ABSENT ≡ flag FALSE in the percept-armed world AND the production-shaped world (`identical` ∧ `plainIdentical`), whole-match signature including the rng stream state. **CONFIG EQUIVALENCE ONLY** — both arms run the same flag-off path, so this gate proves nothing about RNG streams (that is G-IDENT) |
 | **G-BORN** | ✅ PASS | 24/24: ARMED with the gene ABSENT ≡ OFF, byte for byte. **The arms differ in code path**: armed ⇒ `pmMover` true ⇒ the M-PM.1 branch is entered on every defensive mover read and `k_PM` evaluates to 0 ⇒ the born-absent read is inert *through the live branch* |
-| **G-BITE** | ✅ PASS | **24/24 forced arms diverge** from absent. Boundary under force, seed 12,311,124: **8,190 sampled body-ticks · zone-centre deviations 0 · mover moved on 8,190/8,190 · max \|Δy\| 7.484 m** — the 甲/乙 boundary holds while the mover really moves |
+| **G-BITE** | ✅ PASS | **24/24 forced arms diverge** from absent. Boundary under force, seed 12,311,124: **8,190 sampled body-ticks · zone-centre deviations 0 · mover moved on 8,190/8,190 · max \|Δy\| 7.484 m**. ⚠ CORRECTION (#196, verify finding 3): the zone-centre half of this row is a DEFAULT-PARAMETER pin re-evaluated 8,190 times (both arms call `formationSpot` without `pmMover`, so both resolve false) — it is NOT an observation of the live `assignMarks` path. **The 甲/乙 boundary's real evidence is G-READ** (the `src/**` scan: TeamBrain.ts:479 passes 5 args, no `pmMover`) **+ the test pinning the zone-centre call shape verbatim**; this row's honest content is the MOVER half (it really moves under force) |
 | **G-READ** | ✅ PASS | **2 mover sites, 6 unmodulated sites**, scanned from `src/**`: MOVER `actionExecutor.ts:145` (walk target) + `actionExecutor.ts:336` (marker fallback); UNMODULATED `TeamBrain.ts:479` (zone centres), `actionExecutor.ts:304` (trap hold line), `formations.ts:494` (`shapeReady`), `formations.ts:612` (`supportSpot`), `Match.ts:3579` (`resetForKickoff`), `RenderStateAdapter.ts:311` (render) — `gates.gRead.sites` |
 | **G-EVORNG** | ✅ PASS | 8 generations, opt-in OFF: genomes identical to the pre-gene re-implementation, gene stayed absent, and the final rng state matches exactly — **`sActual === sHead === 240212633`**. The opt-in path is live (`optInDraws: true`), so the zero is about the flag, not dead code |
 | **G-CONST** | ✅ PASS | `PM_LANE_CONVERGENCE_MAX === 0.25` and the legacy convergence line is matched verbatim in `formations.ts` (`gates.gConst.legacyLineFound`) |
@@ -380,6 +385,35 @@ $ npx vitest run tests/pmLaneConvergence.test.ts     (before the fingerprint pin
       Tests  19 passed (19)
 ```
 
+⚠ CORRECTION (#196, verify finding 1): the transcript directly above is from the
+SUPERSEDED file version — it is not evidence for the committed file. The
+commander's banking runs on the COMMITTED tree (`c8a44cb`, desktop-loaded box):
+
+```
+$ npx vitest run tests/pmLaneConvergence.test.ts     (the COMMITTED 18-pin file)
+ Test Files  1 passed (1)
+      Tests  18 passed (18)
+   Duration  4.32s
+
+$ npx vitest run tests/formationEvolution.test.ts    (the wall-clock test, isolated)
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Duration  148.41s        (< its 180 s budget; faster than the author's 152.8 s)
+
+$ npm test                                           (full suite, load avg ≈ 42)
+ Test Files  1 failed | 125 passed (126)
+      Tests  1 failed | 1170 passed (1171)           (the same ten-season wall-clock
+                                                      timeout as the author's run and
+                                                      as the pre-change control)
+```
+
+G-SUITE closure (#196): the ONLY red is the known failure-mode-12-family
+wall-clock timeout, reproduced WITHOUT this change (the author's 1,153-test
+control) and absent in isolation WITH this change (148.4 s / 152.8 s, two
+machines-states) — attribution: vitest 8-way parallelism starving a ~15 %-margin
+test on a desktop-loaded box, not this seam. CI's post-push suite run is the
+closing evidence and gates the deploy.
+
 ### Deviations recorded
 
 1. **G-SUITE is not a clean green, and it is not claimed as one.** `npm test` shows
@@ -432,5 +466,8 @@ fingerprint is unchanged, flag-off byte-identity holds on three league seeds and
 match seeds with the rng stream included, an ARMED world with the gene absent is
 byte-identical to OFF *through the live branch*, an opted-out evolution run draws zero
 extra rng, the read fork is exactly two mover sites out of eight, and the 甲/乙
-boundary holds under maximum force across 8,190 sampled body-ticks. **Nothing ships.**
+boundary is pinned by the G-READ src scan + the zone-centre call-shape test (⚠
+CORRECTION #196: the earlier "holds under maximum force across 8,190 body-ticks"
+phrasing over-read a default-parameter pin as live-path evidence — see the
+corrected G-BITE row; the mover half of that number stands). **Nothing ships.**
 PM-T0 cannot authorize PM-T1 — the COMPRESSION EXAM is the commander's call.

@@ -8271,3 +8271,80 @@
 >    the #194 lessons verbatim (no doc-typed hashes; gate
 >    semantics stated exactly — say what the arms DIFFER in;
 >    completeness claims only from `git show --stat`).
+
+> **COMMANDER RULING #196 (2026-08-08 — PM-T0 machine-verify
+> PASS (1 MEDIUM + 2 LOW, zero mechanism defects); the findings
+> corrected in place / adjudicated; G-SUITE closed by the
+> commander's own runs; PM-T0 BANKED; T1 sequencing ruled:
+> PM-T1 FIRST):**
+>
+> 1. **VERIFY PASS recorded** (`c8a44cb`). Findings: (M1, the
+>    #194-M1 class again) "19 pins" + a pasted `19 passed`
+>    transcript from the SUPERSEDED test file (the committed
+>    file has 18) — corrected in place; the commander re-ran
+>    the COMMITTED file at banking: **18/18, 4.32 s**. (L2) the
+>    genome.ts docstring pins the traced 0.25 to
+>    `formations.ts:209` — the PRE-change line (=`:223` at
+>    `c8a44cb`); LEFT AS-IS in src: it is the contract's own
+>    citation and the provenance is CONTENT-anchored by G-CONST
+>    (verbatim line match, drift-proof); this ruling is the
+>    correction of record. (L3) G-BITE's zone-centre half was a
+>    default-parameter pin dressed as live-path evidence (both
+>    arms resolve `pmMover = false`) — corrected in place; the
+>    甲/乙 boundary's real evidence = **G-READ** (the src scan:
+>    `TeamBrain.ts:479` passes no `pmMover`) + the call-shape
+>    test; the mover half of the 8,190 number stands.
+> 2. **G-SUITE CLOSED** (the author's Deviation-1 gap): the
+>    only red is `formationEvolution.test.ts`'s ten-season
+>    WALL-CLOCK timeout (failure-mode-12 family) — reproduced
+>    in the author's PRE-change control (1,153-test baseline,
+>    same box), and PASSING in isolation WITH the change on two
+>    machine-states (author 152.8 s; commander 148.4 s at
+>    banking, load avg ≈ 42). Attribution: vitest 8-way
+>    parallelism starving a ~15 %-margin test on a desktop-
+>    loaded box, not this seam. CI's post-push run gates the
+>    deploy and is the closing evidence.
+> 3. **DEVIATIONS ADJUDICATED**: (D4 **ACCEPTED**) two opt-ins
+>    — `evolveDefLaneConvergence` (evolution, RNG-disciplined)
+>    + `pmLaneConvergence` (consumption, MatchConfig) — strictly
+>    more conservative, and it buys G-BORN arms that genuinely
+>    differ in code path (the #194-M2 lesson applied). ⚠ **THE
+>    PM ARMING CHECKLIST IS BINDING** (the S2-P2 form): armed =
+>    `pmLaneConvergence` flag + `evolveDefLaneConvergence`
+>    opt-in + a non-absent gene — ALL; no bundle defaults any.
+>    (D3 **ACCEPTED**) the order-preservation pin was restated
+>    at the TERM level + an aggregate live-field pin after a
+>    real FAIL (anti-clump/solidity compose after and can
+>    locally reverse a per-body gap) — disclosed before
+>    adjudication, contract-faithful (M-PM.1 says the guards
+>    price the contraction). (D6 **NOTED, binds PM-T1**): no
+>    engine-side dose surface — doses travel the REAL gene
+>    channel via genome views; PM-T1's vectors are probe-side.
+>    (D5) emergent-path-only, disclosed per the map's branch
+>    discipline. (D7) programme convention, correct.
+> 4. **BANKED + PUSHED**: `c8a44cb` + the correction commit.
+>    Road B intact: gene born absent + outside GENE_KEYS,
+>    consumption flag hard-false, X-FP-PROD `57b0bdab…c673`
+>    unchanged (commander re-ran), G-IDENT 3 league seeds
+>    identical, read fork = exactly 2 mover sites of 8, restart
+>    trace clean (no walker-vs-gate mismatch; the onside clamp
+>    is possession-fenced by construction). REPORTED context
+>    (no gate): at forced dose 1 the mover ASK's mean lane gap
+>    falls 6.586 → 5.029 m; max |Δy| 7.48 m. Seeds consumed:
+>    **12,311,100–124**.
+> 5. **T1 SEQUENCING RULED (the #194.5 decision, under #195
+>    self-drive): PM-T1 FIRST, then O2-T1.** Reasons: (a)
+>    PM-T1's F-PM-a share is the number the PARKED 乙 user-fork
+>    is waiting on (#193.1) — it unblocks a USER decision,
+>    O2-T1 unblocks only its own arc; (b) instrument freshness
+>    — PM-T1 re-arms the #188 forensic instruments (send-target
+>    lane gap, detachment, markShare) on the seam PM-T0 just
+>    certified; (c) both are probe-only and Road B. **PM-T1
+>    SHAPE (the O1-T2 form)**: one executor step drafts the
+>    stage doc (frozen doses, N derived in code, gates frozen
+>    from published tolerances — the S2 non-inferiority form,
+>    the B1-a spreadY metric, the #157 instrument debt) +
+>    builds the exam instruments + smokes at tiny N; verify;
+>    then the COMMANDER launches the full battery detached per
+>    §0.0.4 and adjudicates. F-PM-a / F-PM-b are STOPs to the
+>    user by contract.
