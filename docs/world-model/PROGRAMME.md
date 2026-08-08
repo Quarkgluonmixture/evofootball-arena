@@ -70,22 +70,23 @@ offside flag QUIET. Descriptive gold: backLoaded cuts dupRun 5×
 the discriminator at the same deep cost, box held; frontLoaded
 mirrors (dupRun worse, deep better); H-161a (hypothesis): the
 back line's obedience trades stepping-out vs duplicating.
-**THE USER RULED 考 (#162, 2026-08-08, after the VISION audit
-of the anchor)**: S2-P1b backLoaded confirmatory is LIVE —
-vs-NONE anchor (门前的账不亏 · 外围打平 · 撞车大减: box CI
-upper < 0, deep CI lower ≤ 0 at N frozen 8,000 ex ante, dupRun
-CI upper < 0 w/ P3′ magnitude idiom), offside flag at 2× the
-S2-P1 seen (F-S2d → user), arms none/uniform/backLoaded, fresh
-seeds 12,248,000+k. SELF-DRIVE RESUMED: PASS ⇒ S2-P2
-gene-ization (offsets born absent) ⇒ S2-P3 (MUST carry the §4
-diversity observation on the discipline-vs-press axis) ⇒ S2-P4
-= the user's eyes; any FAIL/flag ⇒ STOP to the user. VISION
-§3 soft spot registered: break-even is rung-one's honest bar;
-defence is won back on higher ladder rungs (补位→默契→教练).
-HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever
-verdicts still OPEN. Seeds: S2-P1b consumes 12.248M–12.256M;
-12.256M–12.3M + fresh stats 1015xx+ remain. R20 gaps / F9 any
-time.
+**S2-P1b PASSED AS FROZEN (#164, 2026-08-08)**: on fresh seeds
+vs the WILD world — dupRun −2.4998 [−2.762, −2.249] (101.85% of
+seen, full replication) · box resolvedly pays −0.00174 · deep
+holds level +0.0045 [−0.0021, +0.0110] · offside flag quiet ⇒
+the backLoaded (discipline-shaped) read is CONFIRMED at exam
+grain. **SELF-DRIVE IS ON S2-P2** (gene family dormant:
+per-slot obedienceOffset born ABSENT, BIRTH NEUTRALITY binding,
++ the confirm-gate polarity unit test debt #163.2.iv) → S2-P3
+(frontier battery; the §4 diversity observation on the
+discipline-vs-press axis is BINDING per #162.2.iv) → S2-P4 =
+the user's eyes; any FAIL/flag ⇒ STOP to the user. VISION §3
+soft spot stands registered: break-even is rung-one's honest
+bar; defence is won back on higher ladder rungs (补位→默契→
+教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever
+verdicts still OPEN. Seeds consumed through 12,256,039 (S2-P1b
+census + smoke); 12.25604M–12.3M + stats 1015xx (101513/101523
+consumed) remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

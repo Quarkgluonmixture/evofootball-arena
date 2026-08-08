@@ -2096,3 +2096,10 @@ restart, zero contamination.
 the user ruled 考 after the VISION audit; S2-P1b (backLoaded
 confirmatory, vs-NONE anchor) authorized and dispatched;
 self-drive resumed with the same red lines.
+
+2026-08-08 (#164): superseded QUEUE state — "THE USER RULED 考
+(#162): S2-P1b backLoaded confirmatory is LIVE … SELF-DRIVE
+RESUMED" → S2-P1b PASSED as frozen on all three legs (full-
+magnitude dupRun replication ×1.0185; box pays; deep holds
+level; offside flag quiet); self-drive chained to S2-P2
+gene-ization (#164).

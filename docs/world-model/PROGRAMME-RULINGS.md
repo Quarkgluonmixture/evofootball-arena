@@ -6899,3 +6899,45 @@
 >    as frozen (#162.3): PASS ⇒ self-drive proceeds to S2-P2
 >    dispatch; any leg FAIL ⇒ STOP to the user; offside flag ⇒
 >    F-S2d to the user.
+
+> **COMMANDER RULING #164 (2026-08-08 — S2-P1b adjudicated AS
+> FROZEN: PASS on all three legs; the backLoaded read is
+> CONFIRMED on fresh seeds; self-drive chains to S2-P2):**
+>
+> 1. **BANKED**: `data/a4-s2p1b-backloaded-confirmatory.json`
+>    (N=8,000 @ 12,248,000–12,255,999, 96,000 forks, both X-DET
+>    passes byte-identical, xForkIdent 96,000/96,000, all hard
+>    gates true, JSON sha `2a64d87c…`). Zero ops incidents this
+>    run (nohup held through two harness reconnects that killed
+>    only the WATCHERS — one watcher false-alarm from a pgrep
+>    ERE escape bug, corrected in place, run untouched).
+> 2. **THE GATE, EXECUTED AS FROZEN (#162.3) — PASS**: leg (a)
+>    撞车大减: dupRun(backLoaded−none) **−2.4998 [−2.7623,
+>    −2.2489]**, replicated at **101.85%** of the S2-P1 seen —
+>    full-magnitude replication, not a shrunken echo; leg (b)
+>    门前的账不亏: box **−0.00174 [−0.00283, −0.00065]**
+>    resolvedly PAYS vs the wild world (75.7% of seen —
+>    replicates, smaller than first seen, honest note carried);
+>    leg (c) 外围打平: deep **+0.0045 [−0.0021, +0.0110]** does
+>    NOT resolve worse (point drifted above S2-P1's +0.0026 —
+>    recorded as-is; the leg is the leg). OFFSIDE FLAG: quiet.
+>    ⇒ **H-A4.2's backLoaded face is CONFIRMED at exam grain:
+>    a discipline-shaped (back-heavy) obedience distribution
+>    cuts same-job duplication ~4.2% below the WILD world at
+>    full replication, while the box account still pays and
+>    the outer account holds level.**
+> 3. **SELF-DRIVE CHAINS (#162.3 disposition)**: S2-P2
+>    dispatched — the gene family built DORMANT per contract
+>    M-S2.1/M-S2.2 (per-slot `homePriorObedienceOffset`, born
+>    ABSENT ⇒ offset 0 ⇒ bit-identical; effective obedience =
+>    clamp01(homePriorObedience + offset); mutate/crossover on
+>    the homePriorObedience idiom; evolve flag DEFAULT OFF
+>    behind the existing master switches; BIRTH NEUTRALITY §3
+>    binding — no role-derived birth content anywhere in
+>    src/**). Deliverables: seam + genome code, RNG-stream
+>    identity + byte-identity + born-equivalence tests, a gate-
+>    polarity unit test for the confirm mode (the #163.2.iv
+>    debt), full suite + tsc. Then S2-P3 (frontier battery, the
+>    §4 diversity observation binding per #162.2.iv) → S2-P4
+>    (the user's eyes). Road B; fingerprint `57b0bdab…c673`
+>    untouched.
