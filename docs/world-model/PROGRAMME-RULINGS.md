@@ -7985,3 +7985,33 @@
 >    queued behind the O2 抬头观察 contract (the already-
 >    promised drafting act, #186.1) — sequencing is the user's
 >    call. Road B intact throughout.
+
+> **COMMANDER RULING #189 (2026-08-08 — the user rules the
+> #188.3 sequencing 丙→乙→甲 ("好的按照推荐"); the O2 LOOK
+> contract drafted + VISION-audited (丙 done); the
+> mark-selection code map dispatched (乙); the modulation
+> contract (甲) queued behind the map):**
+>
+> 1. **USER RULING RECORDED**: sequencing 丙 (O2 contract) →
+>    乙 (mark-selection lens) → 甲 (defensive-phase modulation
+>    arc).
+> 2. **丙 DONE — the O2 contract**:
+>    [`O2-LOOK-CONTRACT.md`](O2-LOOK-CONTRACT.md) — claim H-O2
+>    (a time-priced LOOK closes the perceived-vs-true wedge);
+>    mechanism M-O2.1–4 (percept-honest refresh, I1 exposure
+>    price, decision-not-reflex, whether-seat consumer, price
+>    table untouched); arc T0 dormant seam → T1 the WEDGE EXAM
+>    (success = wedge falls toward 1×, E-ABSTAIN-UNSEEN falls;
+>    F-O2a staleness-not-the-cause STOP; F-O2b free-option
+>    ceiling) → T2 live A/B → the user's play-test exit (看得见
+>    抬头). VISION audit: five clauses PASS, zero amendments.
+> 3. **乙 DISPATCHED — the mark-selection code map** (read-only
+>    phase-0): where defensive mark targets are assigned
+>    (MarkOpponent + TeamBrain assignment), why a weak-side back
+>    can be glued to a far-side man 15 m off the lane (the #188
+>    D1 receipts as concrete lenses), what is gene/attr-driven
+>    vs hand-rule, and what a narrow fix would touch — facts
+>    only, the commander freezes any fix scope after.
+> 4. **甲 QUEUED**: the modulation contract drafts when the map
+>    lands (shared instruments likely). O2-T0 dispatches after
+>    乙 per the one-writer rule.
