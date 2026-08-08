@@ -19,8 +19,12 @@
  * GATED (frozen ex ante):
  *   F-O1a  the §2 EQUILIBRIUM BAND (C1 §4, inherited whole — the C7-T2 values
  *          verbatim) on the ARMED arm's five headline rates. A break ⇒ STOP.
- *   X-FP-PROD · X-OFF-IDENT · X-DET · seed disjointness · arm-ledger
- *   unexplained 0 · seam-attributable releases 0 · W ∈ [3,11].
+ *   G-IDENT the flag-off league byte-identity on ALL THREE frozen league seeds,
+ *          computed HERE (ruling #181.2 THE STANDING RECEIPT RULE: a HARD gate's
+ *          evidence must be a committed, recomputable artifact — never a hash
+ *          typed into a doc; the 1337 row is also G1 X-FP-PROD).
+ *   X-OFF-IDENT · X-DET · seed disjointness · arm-ledger unexplained 0 ·
+ *   release-class reconciliation · seam-attributable releases 0 · W ∈ [3,11].
  *
  * REPORTED, NEVER GATED: the tempo-census dimensions on BOTH arms (open-play
  * spell mean/median, one-touch share, turnovers per watched minute, pressed at
@@ -74,7 +78,10 @@ const SMOKE_BLOCK = 12_302_040;
 const SMOKE_N = 24;
 /** §SEED LEDGER: the full-run block, disjoint from every consumed block. */
 const FULL_BLOCK = 12_303_000;
-const FULL_N_CAP = 1000; // the doc's §SIZING hard cap (block 12,303,000–12,303,999)
+/** the doc's §SIZING hard cap = the declared sub-block 12,303,000–12,303,999. */
+const FULL_N_CAP = 1000;
+/** ruling #181.3: the LAUNCH N is ruled 1,000 — the cap binds, so it is the default. */
+const FULL_N_DEFAULT = 1000;
 const RESERVED_BAND: [number, number] = [12_300_000, 12_309_999];
 const CONSUMED: { name: string; range: [number, number] }[] = [
   { name: 'O1 phase-0 census', range: [12_300_000, 12_301_999] },
@@ -82,7 +89,8 @@ const CONSUMED: { name: string; range: [number, number] }[] = [
   { name: 'O1 phase-0 sizing smoke', range: [12_309_900, 12_309_923] },
 ];
 const N = MODE === 'smoke' ? SMOKE_N
-  : Math.max(1, Math.min(FULL_N_CAP, Number.parseInt(process.env.O1T2_N ?? '600', 10)));
+  : Math.max(1, Math.min(FULL_N_CAP,
+    Number.parseInt(process.env.O1T2_N ?? String(FULL_N_DEFAULT), 10)));
 const BLOCK = MODE === 'smoke' ? SMOKE_BLOCK : FULL_BLOCK;
 const OUT_PATH = MODE === 'smoke'
   ? 'docs/world-model/data/o1-t2-sizing-smoke.json'
@@ -128,6 +136,19 @@ const FINGERPRINT_BASELINE =
   '57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673';
 const FINGERPRINT_SEED = 1337;
 const FINGERPRINT_SEASONS = 2;
+/**
+ * G-IDENT (#181.2 THE STANDING RECEIPT RULE): the THREE frozen league seeds whose
+ * pre-#180.3 2-season hashes the flag-off world must still reproduce. All three are
+ * recomputed IN THIS PROBE and written to the committed JSON, so the artifact itself
+ * proves the gate; no hash lives only as doc text. Same procedure as
+ * `scripts/fingerprint.ts` (fresh `League({seed})`, `runHeadless` to
+ * `generation + 2`, sha256 of the save JSON). The 1337 row IS G1 X-FP-PROD.
+ */
+const LEAGUE_IDENT_BASELINES: readonly { seed: number; baseline: string }[] = [
+  { seed: FINGERPRINT_SEED, baseline: FINGERPRINT_BASELINE },
+  { seed: 20260728, baseline: 'c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080' },
+  { seed: 424242, baseline: '45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26' },
+];
 const SKIP_FP = process.argv.includes('--skip-fp');
 const RECEIPT_CAP = 1000;
 
@@ -229,6 +250,26 @@ const INT_CLASSES: ArmClass[] = [
   'INT-LOSS', 'INT-PHASE', 'INT-STUN', 'INT-SENTOFF', 'INT-COOLDOWN', 'INT-MATE',
 ];
 
+/**
+ * WHERE A `performPass` CAME FROM (#181.1 LOW: the release population must not be
+ * labelled "cut-1" while it silently carries the kickoff door and the seam's own
+ * resolves). `Match.performPass` has exactly three call sites in `src/**`:
+ *   * `PlayerBrain.ts:170`  the kickoff play-back (Phase 27.3) — a SEPARATE early
+ *     branch that returns; it never reaches the cut-1 commit statement ⇒ NOT cut-1.
+ *   * `PlayerBrain.ts:998`  THE CUT-1 COMMIT STATEMENT (#178.3). Restart takers
+ *     share this door (`mustKick` blocks arming, the C7 free-kick precedent), so
+ *     they are split out too and are identical on both arms.
+ *   * `Match.resolvePendingPassWindup` the SEAM's deferred release — a cut-1
+ *     release that merely left the foot W ticks later (ARMED only).
+ * The cut-1 population is therefore `openPlayCommit + seamResolve`.
+ */
+type RelClass = 'openPlayCommit' | 'seamResolve' | 'kickoffPlayBack' | 'restartTaker';
+const REL_CLASSES: RelClass[] = ['openPlayCommit', 'seamResolve', 'kickoffPlayBack', 'restartTaker'];
+type RelCounts = Record<RelClass, number>;
+const zeroRel = (): RelCounts =>
+  Object.fromEntries(REL_CLASSES.map((c) => [c, 0])) as RelCounts;
+const cut1Of = (c: RelCounts): number => c.openPlayCommit + c.seamResolve;
+
 interface MatchRow {
   seed: number; arm: 'OFF' | 'ARMED';
   steps: number; simSeconds: number; wallSimSeconds: number;
@@ -243,8 +284,8 @@ interface MatchRow {
   oneTouchStrict: number; oneTouchBare: number; turnovers: number;
   firstRecvOpen: number; firstRecvOpenPressed: number; firstRecvOpenPressedSens: number;
   holds: number[];
-  /* the cut-1 release population (shortPass, both arms) */
-  spReleases: number; spReleasesPressed: number;
+  /* the shortPass release population, SPLIT BY CALL SITE (both arms) */
+  rel: RelCounts; relPressed: RelCounts;
   /* the seam (ARMED only) */
   wTicks: number[]; armClasses: Record<ArmClass, number>;
   ledger: {
@@ -263,7 +304,7 @@ const runMatch = (seed: number, arm: 'OFF' | 'ARMED'): MatchRow => {
   const wTicks: number[] = [];
   const armClasses = Object.fromEntries(ARM_CLASSES.map((c) => [c, 0])) as Record<ArmClass, number>;
   const receipts: MatchRow['receipts'] = [];
-  let spReleases = 0; let spReleasesPressed = 0;
+  const rel = zeroRel(); const relPressed = zeroRel();
   let looseCount = 0;
   let seamAttributableReleases = 0;
 
@@ -290,10 +331,24 @@ const runMatch = (seed: number, arm: 'OFF' | 'ARMED'): MatchRow => {
       readyTick: pp.readyTick,
     };
   };
+  /* the two restart-door gids as they stood BEFORE this tick's step: both fields are
+   * cleared by the brain at the moment it takes the door (PlayerBrain.ts:109/:146),
+   * so the release instant can no longer see them — the pre-step snapshot can. */
+  let preKickoffGid: number | null = null;
+  let preRestartGid: number | null = null;
   const origPass = m.performPass.bind(m);
   m.performPass = (p: Player, mate: Player, offsideExempt?: boolean, powerChoice?: number): void => {
-    spReleases++;
-    if (nearestOpponent(m, p) <= PRESSURE_R) spReleasesPressed++;
+    // the seam's own resolve nulls `pendingPassWindup` immediately BEFORE calling
+    // through (Match.ts:2048), while the probe's mirror of the slot still names the
+    // passer — that pair is the deferred cut-1 release, and its total is reconciled
+    // against the ENGINE ledger's `struck` (a HARD gate below).
+    const cls: RelClass =
+      slot.cur !== null && slot.cur.gid === p.gid && m.pendingPassWindup === null ? 'seamResolve'
+        : p.gid === preKickoffGid ? 'kickoffPlayBack'
+          : p.gid === preRestartGid ? 'restartTaker'
+            : 'openPlayCommit';
+    rel[cls]++;
+    if (nearestOpponent(m, p) <= PRESSURE_R) relPressed[cls]++;
     releasedThisTick.add(p.gid);
     origPass(p, mate, offsideExempt, powerChoice);
   };
@@ -313,6 +368,7 @@ const runMatch = (seed: number, arm: 'OFF' | 'ARMED'): MatchRow => {
 
   while (!m.finished) {
     releasedThisTick = new Set<number>();
+    preKickoffGid = m.kickoffKickGid; preRestartGid = m.restartKickGid;
     /* the state the head-of-tick resolve will read (the T1 pre-step convention) */
     const active = slot.cur;
     const pre = active === null ? null : (() => {
@@ -454,7 +510,7 @@ const runMatch = (seed: number, arm: 'OFF' | 'ARMED'): MatchRow => {
     firstRecvOpenPressed: firstOpen.filter((t) => t.nearestOpp <= PRESSURE_R).length,
     firstRecvOpenPressedSens: firstOpen.filter((t) => t.nearestOpp <= PRESSURE_R_SENS).length,
     holds: touches.map((t) => (t.endTick - t.startTick) * DT),
-    spReleases, spReleasesPressed,
+    rel, relPressed,
     wTicks, armClasses,
     ledger: { ...m.o1WindupLedger },
     seamAttributableReleases,
@@ -536,8 +592,14 @@ const armLevels = (rows: readonly MatchRow[]) => {
   const firstRecv = rows.reduce((a, r) => a + r.firstRecvOpen, 0);
   const firstRecvPressed = rows.reduce((a, r) => a + r.firstRecvOpenPressed, 0);
   const firstRecvPressedSens = rows.reduce((a, r) => a + r.firstRecvOpenPressedSens, 0);
-  const spRel = rows.reduce((a, r) => a + r.spReleases, 0);
-  const spRelPressed = rows.reduce((a, r) => a + r.spReleasesPressed, 0);
+  const rel = zeroRel(); const relPressed = zeroRel();
+  for (const r of rows) {
+    for (const c of REL_CLASSES) { rel[c] += r.rel[c]; relPressed[c] += r.relPressed[c]; }
+  }
+  const relAll = REL_CLASSES.reduce((a, c) => a + rel[c], 0);
+  const relAllPressed = REL_CLASSES.reduce((a, c) => a + relPressed[c], 0);
+  const cut1 = cut1Of(rel);
+  const cut1Pressed = relPressed.openPlayCommit + relPressed.seamResolve;
 
   return {
     matches: n,
@@ -585,11 +647,22 @@ const armLevels = (rows: readonly MatchRow[]) => {
         shareSens3m: shareOf(firstRecvPressedSens, firstRecv), radius: PRESSURE_R,
       },
       pressedAtReleaseShortPass: {
-        n: spRel, share: shareOf(spRelPressed, spRel), radius: PRESSURE_R,
+        /* #181.1 LOW: the POPULATION is named, split and reconciled — it is the
+         * cut-1 releases only (the commit statement + the seam's deferred release
+         * of that same statement), NOT every `performPass` in the match. */
+        basis: 'the CUT-1 population = openPlayCommit + seamResolve. EXCLUDED and '
+          + 'counted separately: the kickoff play-back door (PlayerBrain.ts:170, its '
+          + 'own early branch — never cut-1) and restart takers (they share the '
+          + 'commit door but `mustKick` bars them from arming). Both exclusions are '
+          + 'present identically on both arms.',
+        n: cut1, pressed: cut1Pressed, share: shareOf(cut1Pressed, cut1), radius: PRESSURE_R,
+        composition: { ...rel, cut1, allPerformPass: relAll },
+        pressedByClass: { ...relPressed },
+        allPerformPassCrossCheck: { n: relAll, share: shareOf(relAllPressed, relAll) },
         note: 'nearest non-sent-off opponent to the passer AT the performPass instant '
-          + '(the release tick), over ALL shortPass releases — the cut-1 population. '
-          + 'The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); '
-          + 'this is the release instant itself, identically on both arms.',
+          + '(the release tick). The phase-0 census read the same radius on a PRE-STEP '
+          + 'snapshot (§P2.6); this is the release instant itself, identically on both '
+          + 'arms.',
       },
       receptionToReleaseSeconds: {
         n: allHolds.length,
@@ -642,8 +715,17 @@ const armLevels = (rows: readonly MatchRow[]) => {
       },
       unexplained: armClasses.UNEXPLAINED,
       seamAttributableReleases: rows.reduce((a, r) => a + r.seamAttributableReleases, 0),
-      armShareOfShortPassReleases: shareOf(allW.length, spRel + allW.length - armClasses.STRUCK),
+      /* the ELIGIBLE cut-1 commits are exactly the arms plus the window-open
+       * bypasses — i.e. `arms + openPlayCommit` (a window-closed commit ARMS instead
+       * of releasing, so it never appears in `openPlayCommit`; the seam's deferred
+       * releases are the arms themselves and must not be double-counted). */
+      armShareOfEligibleCommits: shareOf(allW.length, allW.length + rel.openPlayCommit),
+      eligibleCommits: { arms: allW.length, bypassReleases: rel.openPlayCommit },
       referenceT1ArmShareEligible: T1_ARM_SHARE_ELIGIBLE,
+      /* release-class reconciliation: the probe's `seamResolve` count is derived from
+       * the slot mirror, so it must equal the ENGINE ledger's own `struck`. */
+      seamResolveVsEngineStruck: [rel.seamResolve, ledger.struck],
+      seamResolveReconciles: rel.seamResolve === ledger.struck,
     },
   };
 };
@@ -729,9 +811,12 @@ const runExperiment = () => {
     pressedAtReceptionShare: pairedCI(
       perMatchRate(armed, (r) => (r.firstRecvOpen === 0 ? Number.NaN : r.firstRecvOpenPressed / r.firstRecvOpen)),
       perMatchRate(off, (r) => (r.firstRecvOpen === 0 ? Number.NaN : r.firstRecvOpenPressed / r.firstRecvOpen))),
+    /* the CUT-1 population on both arms (kickoff door + restart takers excluded) */
     pressedAtReleaseShare: pairedCI(
-      perMatchRate(armed, (r) => (r.spReleases === 0 ? Number.NaN : r.spReleasesPressed / r.spReleases)),
-      perMatchRate(off, (r) => (r.spReleases === 0 ? Number.NaN : r.spReleasesPressed / r.spReleases))),
+      perMatchRate(armed, (r) => (cut1Of(r.rel) === 0 ? Number.NaN
+        : (r.relPressed.openPlayCommit + r.relPressed.seamResolve) / cut1Of(r.rel))),
+      perMatchRate(off, (r) => (cut1Of(r.rel) === 0 ? Number.NaN
+        : (r.relPressed.openPlayCommit + r.relPressed.seamResolve) / cut1Of(r.rel)))),
     receptionToReleaseMeanSeconds: pairedCI(
       perMatchRate(armed, (r) => mean(r.holds)), perMatchRate(off, (r) => mean(r.holds))),
     receptionToReleaseMedianSeconds: pairedCI(
@@ -740,13 +825,27 @@ const runExperiment = () => {
     passesPerMatch: pairedCI(perMatchRate(armed, (r) => r.passes), perMatchRate(off, (r) => r.passes)),
   };
 
-  /* ---- the F-O1b ARITHMETIC FORM (printed, never decided here) ---- */
-  const spellGap = GAP_SPELL_MEAN_REF_LO - offL.tempo.spellSeconds.mean;
-  const turnGap = offL.tempo.turnovers.perWatchedMinute - GAP_TURNOVERS_WATCHED_REF_HI;
+  /* ---- the F-O1b ARITHMETIC FORM (printed, never decided here) ----
+   * #181.1 (M3): ONE ESTIMATION BASIS END TO END. Every level AND every delta in
+   * this block is the PAIRED PER-MATCH basis — the mean over the N paired matches of
+   * that match's own value (`pairedCI.control` / `.treated`), the identical basis the
+   * delta (mean of per-match differences) is computed on, so level − level = delta
+   * exactly. The pooled-across-spells levels in `arms.*.tempo` are NOT used here (a
+   * pooled mean weights long-spell matches more heavily and is a different
+   * estimator); they remain reported beside this block for continuity with the
+   * phase-0 census, which is pooled. */
+  const spellPaired = paired.spellMeanSeconds;
+  const turnPaired = paired.turnoversPerWatchedMinute;
+  const spellGap = GAP_SPELL_MEAN_REF_LO - spellPaired.control;
+  const turnGap = turnPaired.control - GAP_TURNOVERS_WATCHED_REF_HI;
   const fO1bForm = {
     statedForm: 'the armed arm moves a tempo dimension at least F_O1B_FRACTION of the '
       + 'distance from the OFF arm level to the #173.2 reference edge. COMMANDER\'S READ '
       + 'AT ADJUDICATION — this probe computes the arithmetic and decides NOTHING.',
+    estimationBasis: 'PAIRED PER-MATCH MEANS, levels and deltas alike (mean over the '
+      + 'paired matches of each match\'s own value); level(ARMED) − level(OFF) equals '
+      + 'the paired delta exactly. NOT the pooled-across-spells levels reported in '
+      + 'arms.*.tempo.',
     fraction: F_O1B_FRACTION,
     referenceGapTable173_2: {
       spellMeanProd: GAP_SPELL_MEAN_PROD, spellMeanReferenceEdge: GAP_SPELL_MEAN_REF_LO,
@@ -754,20 +853,29 @@ const runExperiment = () => {
       turnoversWatchedReferenceEdge: GAP_TURNOVERS_WATCHED_REF_HI,
     },
     spellMean: {
-      offArm: offL.tempo.spellSeconds.mean, armedArm: armedL.tempo.spellSeconds.mean,
+      basis: 'pairedPerMatchMean',
+      offArm: spellPaired.control, armedArm: spellPaired.treated,
+      pooledCrossCheck: {
+        offArm: offL.tempo.spellSeconds.mean, armedArm: armedL.tempo.spellSeconds.mean,
+      },
       gapToReference: round(spellGap, 4),
-      twentyPercentThreshold: round(offL.tempo.spellSeconds.mean + F_O1B_FRACTION * spellGap, 4),
-      observedDelta: paired.spellMeanSeconds.diff,
-      fractionOfGapMoved: round(paired.spellMeanSeconds.diff / (spellGap || Number.NaN), 4),
+      twentyPercentThreshold: round(spellPaired.control + F_O1B_FRACTION * spellGap, 4),
+      observedDelta: spellPaired.diff,
+      deltaCI: [spellPaired.lower, spellPaired.upper],
+      fractionOfGapMoved: round(spellPaired.diff / (spellGap || Number.NaN), 4),
     },
     turnoversPerWatchedMinute: {
-      offArm: offL.tempo.turnovers.perWatchedMinute,
-      armedArm: armedL.tempo.turnovers.perWatchedMinute,
+      basis: 'pairedPerMatchMean',
+      offArm: turnPaired.control, armedArm: turnPaired.treated,
+      pooledCrossCheck: {
+        offArm: offL.tempo.turnovers.perWatchedMinute,
+        armedArm: armedL.tempo.turnovers.perWatchedMinute,
+      },
       gapToReference: round(turnGap, 4),
-      twentyPercentThreshold: round(
-        offL.tempo.turnovers.perWatchedMinute - F_O1B_FRACTION * turnGap, 4),
-      observedDelta: paired.turnoversPerWatchedMinute.diff,
-      fractionOfGapMoved: round(-paired.turnoversPerWatchedMinute.diff / (turnGap || Number.NaN), 4),
+      twentyPercentThreshold: round(turnPaired.control - F_O1B_FRACTION * turnGap, 4),
+      observedDelta: turnPaired.diff,
+      deltaCI: [turnPaired.lower, turnPaired.upper],
+      fractionOfGapMoved: round(-turnPaired.diff / (turnGap || Number.NaN), 4),
     },
   };
 
@@ -799,6 +907,13 @@ const runExperiment = () => {
       wWithinFrozenClamp: armedL.seam.realizedW.withinFrozenClamp,
       offArmSeamDead: offL.seam.realizedW.n === 0 && offL.seam.armLedgerEngine.arms === 0,
       ledgerAgreement: armedL.seam.ledgerAgreement,
+      /* the release-class split must reconcile against the engine on BOTH arms (the
+       * OFF arm's seamResolve count is 0 = its ledger's struck 0) */
+      releaseClass: {
+        armed: armedL.seam.seamResolveVsEngineStruck,
+        off: offL.seam.seamResolveVsEngineStruck,
+        pass: armedL.seam.seamResolveReconciles && offL.seam.seamResolveReconciles,
+      },
     },
     paired,
     fO1bForm,
@@ -833,15 +948,26 @@ const digestB = sha(canonical(runB));
 const xDet = digestA === digestB;
 process.stderr.write(`  [o1-t2] run B digest ${digestB} — X-DET ${xDet ? 'PASS' : 'FAIL'}\n`);
 
-let fingerprint = 'skipped'; let xFpProd = false;
-if (SKIP_FP) { fingerprint = 'skipped (--skip-fp)'; } else {
-  const fpLeague = new League({ seed: FINGERPRINT_SEED });
-  const fpOut = runHeadless(fpLeague.toJSON() as Record<string, unknown>, {
-    kind: 'toGeneration', target: fpLeague.generation + FINGERPRINT_SEASONS,
+/* ---- G-IDENT (#181.2): all THREE league-seed hashes recomputed HERE ---- */
+const leagueHash = (seed: number): string => {
+  const league = new League({ seed });
+  const out = runHeadless(league.toJSON() as Record<string, unknown>, {
+    kind: 'toGeneration', target: league.generation + FINGERPRINT_SEASONS,
   });
-  fingerprint = createHash('sha256').update(JSON.stringify(fpOut.league)).digest('hex');
-  xFpProd = fingerprint === FINGERPRINT_BASELINE;
-}
+  return createHash('sha256').update(JSON.stringify(out.league)).digest('hex');
+};
+const gIdentRows = LEAGUE_IDENT_BASELINES.map(({ seed, baseline }) => {
+  if (SKIP_FP) return { seed, seasons: FINGERPRINT_SEASONS, baseline, observed: 'skipped (--skip-fp)', identical: false };
+  process.stderr.write(`  [o1-t2] G-IDENT league seed ${seed} (${FINGERPRINT_SEASONS} seasons, flag absent)...\n`);
+  const observed = leagueHash(seed);
+  process.stderr.write(`  [o1-t2] G-IDENT ${seed} ${observed === baseline ? 'IDENTICAL' : '*** DIFFERS ***'} ${observed}\n`);
+  return { seed, seasons: FINGERPRINT_SEASONS, baseline, observed, identical: observed === baseline };
+});
+const gIdentPass = SKIP_FP || gIdentRows.every((r) => r.identical);
+/* G1 X-FP-PROD is the 1337 row of the same recomputation — one run, not two. */
+const fpRow = gIdentRows.find((r) => r.seed === FINGERPRINT_SEED)!;
+const fingerprint = fpRow.observed;
+const xFpProd = fpRow.identical;
 const wallMs = Date.now() - wall0;
 
 let head = '';
@@ -871,11 +997,13 @@ const statsDisjoint = {
 };
 
 const g = runA.gates;
-const gatesPass = xDet && (SKIP_FP || xFpProd) && g.xOffIdent.pass && seedDisjoint.pass
+const gatesPass = xDet && (SKIP_FP || xFpProd) && gIdentPass && g.xOffIdent.pass
+  && seedDisjoint.pass
   && statsDisjoint.pass && g.unexplainedArms === 0 && g.seamAttributableReleases === 0
   && g.wWithinFrozenClamp && g.offArmSeamDead && !g.fO1a.fired
   && g.ledgerAgreement.armsAgree && g.ledgerAgreement.struckAgree
-  && g.ledgerAgreement.evictionsAgree && g.ledgerAgreement.intMateAgree;
+  && g.ledgerAgreement.evictionsAgree && g.ledgerAgreement.intMateAgree
+  && g.releaseClass.pass;
 
 const body = {
   stage: `O1 T2 — the armed shortPass wind-up A/B (${MODE})`,
@@ -885,6 +1013,15 @@ const body = {
   head,
   gates: {
     xDet: { pass: xDet, digestA, digestB },
+    /* #181.2 THE STANDING RECEIPT RULE: the committed, recomputable receipt for the
+     * multi-seed flag-off byte-identity gate — all three hashes computed in-probe on
+     * this run, never transcribed. */
+    gIdent: {
+      pass: gIdentPass, skipped: SKIP_FP, seasons: FINGERPRINT_SEASONS,
+      procedure: 'new League({seed}) → runHeadless toGeneration(generation + 2) → '
+        + 'sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts',
+      rows: gIdentRows,
+    },
     xFpProd: { pass: xFpProd, baseline: FINGERPRINT_BASELINE, observed: fingerprint, skipped: SKIP_FP },
     xOffIdent: g.xOffIdent,
     seedDisjoint,
@@ -895,6 +1032,7 @@ const body = {
     wWithinFrozenClamp: g.wWithinFrozenClamp,
     offArmSeamDead: g.offArmSeamDead,
     ledgerAgreement: g.ledgerAgreement,
+    releaseClassReconciliation: g.releaseClass,
     allPass: gatesPass,
     srcDiffStatContextOnly: srcDiff,
   },
@@ -908,6 +1046,10 @@ const o = (s: string): void => { process.stdout.write(`${s}\n`); };
 const A = runA.arms.ARMED; const O = runA.arms.OFF;
 o('');
 o(`=== O1 T2 MATCH A/B (${MODE}) — HEAD ${head} — ${N} paired seeds, block ${BLOCK} ===`);
+o(`G-IDENT (3 league seeds, computed here) ${SKIP_FP ? 'skipped' : (gIdentPass ? 'PASS' : 'FAIL')}`);
+for (const r of gIdentRows) {
+  o(`  seed ${String(r.seed).padStart(9)} ${r.observed} ${SKIP_FP ? '' : (r.identical ? 'IDENTICAL' : '*** DIFFERS ***')}`);
+}
 o(`X-DET ${xDet ? 'PASS' : 'FAIL'} · X-FP-PROD ${SKIP_FP ? 'skipped' : (xFpProd ? 'PASS' : 'FAIL')}`
   + ` · X-OFF-IDENT ${g.xOffIdent.pass ? 'PASS' : 'FAIL'} (${g.xOffIdent.checked} seeds)`
   + ` · seeds ${seedDisjoint.pass ? 'PASS' : 'FAIL'} · stats base ${statsDisjoint.pass ? 'PASS' : 'FAIL'}`);
@@ -932,7 +1074,9 @@ o(`  one-touch (strict)  OFF ${O.tempo.oneTouchShareStrict} · ARMED ${A.tempo.o
 o(`  turnovers /watched  OFF ${O.tempo.turnovers.perWatchedMinute} · ARMED ${A.tempo.turnovers.perWatchedMinute}`
   + `  (display-min OFF ${O.tempo.turnovers.perDisplayMinute} · ARMED ${A.tempo.turnovers.perDisplayMinute})`);
 o(`  pressed @reception  OFF ${O.tempo.pressedAtReceptionOpenPlay.share} · ARMED ${A.tempo.pressedAtReceptionOpenPlay.share}`);
-o(`  pressed @release    OFF ${O.tempo.pressedAtReleaseShortPass.share} · ARMED ${A.tempo.pressedAtReleaseShortPass.share}`);
+o(`  pressed @release    OFF ${O.tempo.pressedAtReleaseShortPass.share} · ARMED ${A.tempo.pressedAtReleaseShortPass.share}`
+  + `  (CUT-1 population: OFF n ${O.tempo.pressedAtReleaseShortPass.n} · ARMED n ${A.tempo.pressedAtReleaseShortPass.n};`
+  + ` kickoff/restart doors excluded — OFF ${JSON.stringify(O.tempo.pressedAtReleaseShortPass.composition)})`);
 o(`  recv→release s      OFF mean ${O.tempo.receptionToReleaseSeconds.mean} med ${O.tempo.receptionToReleaseSeconds.median}`
   + ` · ARMED mean ${A.tempo.receptionToReleaseSeconds.mean} med ${A.tempo.receptionToReleaseSeconds.median}`);
 o('');
@@ -943,7 +1087,12 @@ o(`  interruption rate ${A.seam.interruption.rate} · mix ${JSON.stringify(A.sea
 o(`  engine ledger ${JSON.stringify(A.seam.armLedgerEngine)}`);
 o(`  probe ledger  ${JSON.stringify(A.seam.armLedgerProbe)}`);
 o('');
+o(`  arm share of eligible cut-1 commits ${A.seam.armShareOfEligibleCommits}`
+  + ` (arms ${A.seam.eligibleCommits.arms} + bypass releases ${A.seam.eligibleCommits.bypassReleases};`
+  + ` T1 reference ${A.seam.referenceT1ArmShareEligible})`);
+o('');
 o('-- F-O1b ARITHMETIC (the COMMANDER\'s read at adjudication) --');
+o('  basis: PAIRED PER-MATCH MEANS for levels AND deltas (pooled levels cross-checked in the JSON)');
 o(`  spell mean: OFF ${runA.fO1bForm.spellMean.offArm} → 20% threshold ${runA.fO1bForm.spellMean.twentyPercentThreshold}`
   + ` · ARMED ${runA.fO1bForm.spellMean.armedArm} (moved ${runA.fO1bForm.spellMean.fractionOfGapMoved} of the gap)`);
 o(`  turnovers/watched-min: OFF ${runA.fO1bForm.turnoversPerWatchedMinute.offArm} → 20% threshold `
@@ -955,3 +1104,9 @@ o(`gates ${gatesPass ? 'PASS' : 'FAIL'} · resultSha256 ${resultSha256}`);
 o(`output ${OUT_PATH}`);
 o(`wall ${round(wallMs / 1000, 1)} s (CONTEXT ONLY — USED IN NO RATE) · per paired seed `
   + `${round(wallMs / N, 1)} ms`);
+/* #181.1 LOW: a failed gate must be visible to a `nohup` supervisor that only sees
+ * the exit status — the JSON is written first, then the process exits non-zero. */
+if (!gatesPass) {
+  process.stderr.write('*** O1-T2 GATES FAIL — exiting 1 (the JSON above is written) ***\n');
+  process.exitCode = 1;
+}

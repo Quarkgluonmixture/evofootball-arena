@@ -3,12 +3,41 @@
   "ruling": "#180.4 (the A/B) + #180.3 (the three seam debts, fixed in the same commit)",
   "contract": "docs/world-model/OUTLET-CONTRACT.md",
   "doc": "docs/world-model/O1-T2-MATCH-AB.md",
-  "head": "7099865",
+  "head": "0dea9ac",
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "f96cc04c627c50f7e73fef7f8f54dc7d345d82e276f1529ea44f37740e4a754f",
-      "digestB": "f96cc04c627c50f7e73fef7f8f54dc7d345d82e276f1529ea44f37740e4a754f"
+      "digestA": "3eff73bd4227f8e0c4f57519903cfdc8fd841bed5b2e871532412f39a7e49a29",
+      "digestB": "3eff73bd4227f8e0c4f57519903cfdc8fd841bed5b2e871532412f39a7e49a29"
+    },
+    "gIdent": {
+      "pass": true,
+      "skipped": false,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
     },
     "xFpProd": {
       "pass": true,
@@ -227,8 +256,19 @@
       ],
       "intMateAgree": true
     },
+    "releaseClassReconciliation": {
+      "armed": [
+        1135,
+        1135
+      ],
+      "off": [
+        0,
+        0
+      ],
+      "pass": true
+    },
     "allPass": true,
-    "srcDiffStatContextOnly": "src/sim/Match.ts | 83 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--\n 1 file changed, 81 insertions(+), 2 deletions(-)"
+    "srcDiffStatContextOnly": ""
   },
   "result": {
     "mode": "smoke",
@@ -287,10 +327,30 @@
             "radius": 4.2
           },
           "pressedAtReleaseShortPass": {
-            "n": 1810,
-            "share": 0.717127,
+            "basis": "the CUT-1 population = openPlayCommit + seamResolve. EXCLUDED and counted separately: the kickoff play-back door (PlayerBrain.ts:170, its own early branch — never cut-1) and restart takers (they share the commit door but `mustKick` bars them from arming). Both exclusions are present identically on both arms.",
+            "n": 1558,
+            "pressed": 1199,
+            "share": 0.769576,
             "radius": 4.2,
-            "note": "nearest non-sent-off opponent to the passer AT the performPass instant (the release tick), over ALL shortPass releases — the cut-1 population. The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); this is the release instant itself, identically on both arms."
+            "composition": {
+              "openPlayCommit": 1558,
+              "seamResolve": 0,
+              "kickoffPlayBack": 99,
+              "restartTaker": 153,
+              "cut1": 1558,
+              "allPerformPass": 1810
+            },
+            "pressedByClass": {
+              "openPlayCommit": 1199,
+              "seamResolve": 0,
+              "kickoffPlayBack": 99,
+              "restartTaker": 0
+            },
+            "allPerformPassCrossCheck": {
+              "n": 1810,
+              "share": 0.717127
+            },
+            "note": "nearest non-sent-off opponent to the passer AT the performPass instant (the release tick). The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); this is the release instant itself, identically on both arms."
           },
           "receptionToReleaseSeconds": {
             "n": 3151,
@@ -405,8 +465,17 @@
           },
           "unexplained": 0,
           "seamAttributableReleases": 0,
-          "armShareOfShortPassReleases": 0,
-          "referenceT1ArmShareEligible": 0.7614
+          "armShareOfEligibleCommits": 0,
+          "eligibleCommits": {
+            "arms": 0,
+            "bypassReleases": 1558
+          },
+          "referenceT1ArmShareEligible": 0.7614,
+          "seamResolveVsEngineStruck": [
+            0,
+            0
+          ],
+          "seamResolveReconciles": true
         }
       },
       "ARMED": {
@@ -457,10 +526,30 @@
             "radius": 4.2
           },
           "pressedAtReleaseShortPass": {
-            "n": 1717,
-            "share": 0.72219,
+            "basis": "the CUT-1 population = openPlayCommit + seamResolve. EXCLUDED and counted separately: the kickoff play-back door (PlayerBrain.ts:170, its own early branch — never cut-1) and restart takers (they share the commit door but `mustKick` bars them from arming). Both exclusions are present identically on both arms.",
+            "n": 1463,
+            "pressed": 1135,
+            "share": 0.775803,
             "radius": 4.2,
-            "note": "nearest non-sent-off opponent to the passer AT the performPass instant (the release tick), over ALL shortPass releases — the cut-1 population. The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); this is the release instant itself, identically on both arms."
+            "composition": {
+              "openPlayCommit": 328,
+              "seamResolve": 1135,
+              "kickoffPlayBack": 106,
+              "restartTaker": 148,
+              "cut1": 1463,
+              "allPerformPass": 1717
+            },
+            "pressedByClass": {
+              "openPlayCommit": 328,
+              "seamResolve": 807,
+              "kickoffPlayBack": 105,
+              "restartTaker": 0
+            },
+            "allPerformPassCrossCheck": {
+              "n": 1717,
+              "share": 0.72219
+            },
+            "note": "nearest non-sent-off opponent to the passer AT the performPass instant (the release tick). The phase-0 census read the same radius on a PRE-STEP snapshot (§P2.6); this is the release instant itself, identically on both arms."
           },
           "receptionToReleaseSeconds": {
             "n": 3066,
@@ -575,8 +664,17 @@
           },
           "unexplained": 0,
           "seamAttributableReleases": 0,
-          "armShareOfShortPassReleases": 0.666476,
-          "referenceT1ArmShareEligible": 0.7614
+          "armShareOfEligibleCommits": 0.780013,
+          "eligibleCommits": {
+            "arms": 1163,
+            "bypassReleases": 328
+          },
+          "referenceT1ArmShareEligible": 0.7614,
+          "seamResolveVsEngineStruck": [
+            1135,
+            1135
+          ],
+          "seamResolveReconciles": true
         }
       }
     },
@@ -738,6 +836,17 @@
           0
         ],
         "intMateAgree": true
+      },
+      "releaseClass": {
+        "armed": [
+          1135,
+          1135
+        ],
+        "off": [
+          0,
+          0
+        ],
+        "pass": true
       }
     },
     "paired": {
@@ -843,12 +952,12 @@
       },
       "pressedAtReleaseShare": {
         "n": 24,
-        "control": 0.720085,
-        "treated": 0.725447,
-        "diff": 0.005362,
-        "lower": -0.024671,
-        "upper": 0.034161,
-        "relative": 0.007447,
+        "control": 0.775736,
+        "treated": 0.786076,
+        "diff": 0.01034,
+        "lower": -0.015027,
+        "upper": 0.03464,
+        "relative": 0.013329,
         "resolved": false
       },
       "receptionToReleaseMeanSeconds": {
@@ -884,6 +993,7 @@
     },
     "fO1bForm": {
       "statedForm": "the armed arm moves a tempo dimension at least F_O1B_FRACTION of the distance from the OFF arm level to the #173.2 reference edge. COMMANDER'S READ AT ADJUDICATION — this probe computes the arithmetic and decides NOTHING.",
+      "estimationBasis": "PAIRED PER-MATCH MEANS, levels and deltas alike (mean over the paired matches of each match's own value); level(ARMED) − level(OFF) equals the paired delta exactly. NOT the pooled-across-spells levels reported in arms.*.tempo.",
       "fraction": 0.2,
       "referenceGapTable173_2": {
         "spellMeanProd": 4.39,
@@ -892,19 +1002,37 @@
         "turnoversWatchedReferenceEdge": 4.5
       },
       "spellMean": {
-        "offArm": 4.5246,
-        "armedArm": 4.3846,
-        "gapToReference": 5.0754,
-        "twentyPercentThreshold": 5.5397,
+        "basis": "pairedPerMatchMean",
+        "offArm": 4.647439,
+        "armedArm": 4.559703,
+        "pooledCrossCheck": {
+          "offArm": 4.5246,
+          "armedArm": 4.3846
+        },
+        "gapToReference": 4.9526,
+        "twentyPercentThreshold": 5.638,
         "observedDelta": -0.087736,
-        "fractionOfGapMoved": -0.0173
+        "deltaCI": [
+          -0.757322,
+          0.506386
+        ],
+        "fractionOfGapMoved": -0.0177
       },
       "turnoversPerWatchedMinute": {
-        "offArm": 8.31574,
-        "armedArm": 8.232292,
-        "gapToReference": 3.8157,
-        "twentyPercentThreshold": 7.5526,
+        "basis": "pairedPerMatchMean",
+        "offArm": 8.316717,
+        "armedArm": 8.239712,
+        "pooledCrossCheck": {
+          "offArm": 8.31574,
+          "armedArm": 8.232292
+        },
+        "gapToReference": 3.8167,
+        "twentyPercentThreshold": 7.5534,
         "observedDelta": -0.077004,
+        "deltaCI": [
+          -0.79292,
+          0.683783
+        ],
         "fractionOfGapMoved": 0.0202
       }
     },
@@ -6666,6 +6794,6 @@
       }
     ]
   },
-  "resultSha256": "475db98b0d69226d679294a03273223bdcb2b5740f7dc6b8705c0b1612bbe016",
-  "wallMsContextOnly": 22601
+  "resultSha256": "ffa535b5d10c6ee0398e4aa0f2bc10081ca8d0f33bcd8d8b4a9d71c1d65700b8",
+  "wallMsContextOnly": 42267
 }
