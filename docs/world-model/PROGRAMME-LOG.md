@@ -2167,3 +2167,11 @@ O1-T1 seam [#180 banked with commander-derived receipts] →
 O1-T2 A/B [#181 FAIL → #182 banked → #183 adjudicated]):
 equilibrium quiet, mechanism certified, F-O1b fired (tempo
 1.7–4.3% of gap); queue moved to the user's #183.5 fork.
+
+2026-08-08 (ops incident, post-#183): the QUEUE edit's find()
+anchor missed on a line break and sliced PROGRAMME.md to EOF
+(575 archive lines truncated in 41020db); caught on the next
+status read, restored byte-identical from 9d6d106 (verified by
+anchored diff), queue-tail seed ledger refreshed in the same
+commit (7b92466). Lesson: QUEUE edits use anchored replace with
+a matched-string assertion, never unchecked find() slicing.
