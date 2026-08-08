@@ -168,12 +168,16 @@ only per #35.3 (zone centres NOT modulated = the 甲/乙
 boundary); arc PM-T0 → T1 COMPRESSION EXAM (F-PM-a mark-swallow
 STOP → returns to 乙 with numbers; F-PM-b clump re-import STOP)
 → T2 live A/B → play-test exit; VISION audit seven clauses
-PASS, zero amendments. **THE 乙 FORK SITS AT THE USER (#192.2):
-S1 lane term / S2 priority key / S4 release filter / DEFER
-until PM-T1 prices the mark channel — commander recommends
-DEFER.** **QUEUED NEXT STEP (on "go"/resume): dispatch O2-T0
-(the #189.4 promise); PM-T0 queues behind O2-T0 + the 乙
-ruling.** Also open: the v2 acceptance (#168.3) + v3
+PASS, zero amendments. **乙 RULED = DEFER (#193, "按推荐")**:
+no narrow mark fix now — PM-T1's F-PM-a instrument prices the
+mark channel's load-bearing share first; S1/S2/S4 stay
+inventoried in the banked map; the formations.test.ts pin
+stays untouched. **O2-T0 IS DISPATCHED (#193.2, draft +
+independent verify per §0.0.2)** — the dormant `o2Look` seam,
+flag-off byte-identity + #181.2 receipts. **QUEUED NEXT STEP:
+adjudicate O2-T0 (verify + commander review → bank or fix
+round); PM-T0 queues behind its banking.** Also open: the v2
+acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3
 soft spot stands registered: break-even is rung-one's honest

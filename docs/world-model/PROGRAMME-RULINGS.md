@@ -8143,3 +8143,32 @@
 >    writer). PM-T0 queues behind O2-T0 + the user's 乙 ruling.
 >    Road B intact: zero `src/**` changes this round; fingerprint
 >    unchanged.
+
+> **COMMANDER RULING #193 (2026-08-08 — the user rules the 乙
+> fork DEFER ("按推荐", the #192.2 recommendation); O2-T0
+> dispatched (two-stage workflow per §0.0.2)):**
+>
+> 1. **USER RULING RECORDED — 乙 = DEFER.** No narrow mark fix
+>    now: PM-T1's F-PM-a instrument prices the mark channel's
+>    load-bearing share (how much of the compression ASK the
+>    mark-stance ticks swallow) before any surface is chosen.
+>    The S1/S2/S4 surfaces stay inventoried in the banked map
+>    (#191) with their traps; the `formations.test.ts:143-156`
+>    pin stays untouched until whichever step first touches
+>    marking behaviour. The 乙 decision re-enters WITH the
+>    PM-T1 numbers (the F-PM-a return path is its formal seat).
+> 2. **O2-T0 DISPATCHED** (the #189.4/#191.2/#192.3 promise):
+>    the dormant M-O2 seam behind `o2Look` (hard false, never
+>    bundle-defaulted) per
+>    [`O2-LOOK-CONTRACT.md`](O2-LOOK-CONTRACT.md) §3 — flag-off
+>    byte-identity + fingerprint, the #181.2 standing receipt
+>    rule (committed recomputable artifacts, no doc-typed
+>    hashes), RNG-stream identity if any draw is added; stage
+>    doc pre-registers the frozen LOOK interval from a traced
+>    constant family (the C7 wind-up scale = the named
+>    neighbour). Draft (Opus executor) + independent
+>    machine-verify, iron rules in the brief; the executor
+>    commits locally and never pushes — banking is the
+>    commander's act after review.
+> 3. **SEQUENCE**: PM-T0 queues behind O2-T0's banking. One
+>    writer per tree throughout.
