@@ -114,12 +114,20 @@ on this axis (撞车 and tempo are orthogonal diseases). ⭐
 H-169a HOLDS on all three arms (pressed-loss ratio 1.79–1.97,
 gap 0.14–0.15): pressure destroys RETENTION (51% vs 70%), safe
 release is rare everywhere — the outlet story confirmed.**
-**THE QUEUE SITS AT THE USER'S #173.4 FORK**: (甲) the OUTLET
-SEATS mechanic arc (C5 control-time + hold/shield + C7 windup
-— the absorption half, where the discriminator points) · (乙)
-punish-compactness first (the pressure-supply half) · (丙)
-play/think first. Also open: the v2 acceptance (#168.3), the
-乙 offside axis, slice-2 disposition, D1/D2/phone/F7b/F7c. VISION §3
+**THE USER RULED 甲 → THE OUTLET ARC IS OPEN (#174/#175)**:
+the #174 inventory found the seats mostly EXIST (C7 shot
+wind-up certified #55–#60 & armed in v1/v2; ShieldHold passed
+T0R; whether-seat re-parked on the #65 perception wedge; the
+waiting exchange rate is stale the moment release time
+changes); contract = [`OUTLET-CONTRACT.md`](OUTLET-CONTRACT.md)
+(VISION-audited, zero amendments): O1 pass wind-up (tempo
+lever, one-touch window = the designed bypass) → O2 抬头观察
+(#65.3 sizing first) → O3 priced hold (percept path, E5h/A2b
+hard) → O4 control-time hooks. **NEXT AUTHORIZED STEP on "go"
+= O1 phase-0** (pass-release code map + census, read-only, the
+C7-PHASE0 template; seeds 12,300,000+ new family). Also open:
+the v2 acceptance (#168.3), the 乙 offside axis, slice-2
+disposition, D1/D2/phone/F7b/F7c. VISION §3
 soft spot stands registered: break-even is rung-one's honest
 bar; defence is won back on higher ladder rungs (补位→默契→
 教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever

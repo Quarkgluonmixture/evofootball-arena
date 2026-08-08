@@ -2142,3 +2142,12 @@ short, tempo ~2.3× real on the watched clock, 80.8% pressed
 receptions, C7 wind-up absent), H-169a HOLDS on all three arms;
 queue moved to the user's #173.4 fork (outlet seats vs
 punish-compactness vs play-first).
+
+2026-08-08 (#175): superseded QUEUE state — "THE QUEUE SITS AT
+THE USER'S #173.4 FORK: (甲) outlet seats · (乙)
+punish-compactness · (丙) play first" → the user ruled 甲; the
+#174 inventory landed (seats mostly EXIST — C7 certified, T0R
+shield passed, whether-seat parked on perception); the OUTLET
+CONTRACT drafted + VISION-audited (O1 pass wind-up → O2 观察 →
+O3 priced hold → O4 control-time); next authorized step = O1
+phase-0 on "go".
