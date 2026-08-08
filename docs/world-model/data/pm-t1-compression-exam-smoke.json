@@ -1,0 +1,2682 @@
+{
+  "stage": "PM T1 — THE COMPRESSION EXAM (forced doses on the PM-T0 seam)",
+  "doc": "docs/world-model/PM-T1-COMPRESSION-EXAM.md",
+  "contract": "docs/world-model/PHASE-MODULATION-CONTRACT.md",
+  "seam": "docs/world-model/PM-T0-DORMANT-SEAM.md",
+  "ruling": "#196.5 (the dispatch) · #196.3-D4 (the arming checklist) · #196.3-D6 (the gene channel) · #181.2 (committed recomputable receipts) · #194/#196 (gate semantics stated exactly)",
+  "mode": "smoke",
+  "head": "cc82609",
+  "verdict": "SMOKE — PLUMBING ONLY; ADJUDICATES NOTHING",
+  "frozenDesign": {
+    "doses": [
+      {
+        "arm": "D000",
+        "gene": null,
+        "kPm": 0
+      },
+      {
+        "arm": "D025",
+        "gene": 0.25,
+        "kPm": 0.0625
+      },
+      {
+        "arm": "D050",
+        "gene": 0.5,
+        "kPm": 0.125
+      },
+      {
+        "arm": "D075",
+        "gene": 0.75,
+        "kPm": 0.1875
+      },
+      {
+        "arm": "D100",
+        "gene": 1,
+        "kPm": 0.25
+      }
+    ],
+    "kCeiling": 0.25,
+    "doseBothTeams": true,
+    "world": {
+      "edsPerceivedDefence": true,
+      "edsPerceivedChoice": true,
+      "pmLaneConvergence": true,
+      "stationEye": null
+    },
+    "seeds": {
+      "base": 12311200,
+      "n": 6,
+      "first": 12311200,
+      "last": 12311205
+    },
+    "reservedBand": [
+      12311200,
+      12311999
+    ],
+    "bootstrap": {
+      "base": 103400,
+      "resamples": 2000,
+      "cluster": "seed"
+    },
+    "niFraction": 0.276316,
+    "niFractionSource": "A4-S2P1-VECTOR-CENSUS §4: fraction_box = 1 − 0.275/0.380 = 0.2763, itself the #154 certified box price and its CI bound nearest zero. INHERITED, NOT INVENTED; the S2 form scales the FRACTION by the control arm's own level in THIS run.",
+    "bandSource": "A4-S2P3-GENE-BATTERY §4.2 (P3a §4.2 / C1 §4 absolute), baselines + tolerances verbatim, WITH its declared substrate-drift exclusion caveat.",
+    "askMaterialM": 1,
+    "askMaterialNote": "⚠ FLAGGED EXECUTOR'S CHOICE (the #188 SPEED_MIN / CORNER_MATERIAL class): no substrate anchor exists. Reported at 0.5/1.0/2.0 m and read by NO gate predicate.",
+    "switchKeyProhibition": "switchKey is NOT computed anywhere in this probe: #188 §8.4 retracted it for cause attribution and MARK-SELECTION-CODE-MAP §5 trap 7 forbids reusing it. Attribution here is the D2 STEER-OWNER read only."
+  },
+  "nDerivation": {
+    "mode": "smoke",
+    "note": "SMOKE. N is fixed by stage doc §3 at 6 seeds (12,311,200..12,311,205). The §4 arithmetic does not select it: THE SMOKE ADJUDICATES NOTHING and may not tune any threshold; it exists to prove plumbing and to measure ms/match for the wall term.",
+    "n": 6,
+    "envOverride": null
+  },
+  "smokeAdjudicatesNothing": "⚠ THIS IS A SMOKE ARTIFACT. Every number under `results` is PLUMBING EVIDENCE ONLY — it adjudicates nothing, tunes no threshold, and may not be cited as a finding. The gate booleans below are computed so the wiring is exercised, not so they can be read.",
+  "predicates": {
+    "PRIMARY": "P1 ∧ P2a ∧ P2b — P1: CI_upper(ask(D100 − D000)) < 0 · P2a: the four ask point deltas are weakly monotone non-increasing in dose · P2b: CI_upper(mean per-seed OLS slope of the ask on k_PM) < 0",
+    "F-PM-a": "P1 ∧ the top-dose BODY lane-gap contrast CI INCLUDES ZERO (lower ≤ 0 ≤ upper) ⇒ STOP; the swallow share is quantified from the D2 steer attribution over the material-ask ticks",
+    "F-PM-b": "(at least one dose moves the ask, CI_upper < 0) AND (at EVERY such dose GUARD-NI fails) ⇒ STOP. GUARD-NI(d) = spreadY_out and spacingMedian CI_lower > −tol AND spacingUnder4 and dupRun CI_upper < +tol, tol = 0.2763 × |control level|",
+    "BAND": "the top-dose arm inside the C1 §4 absolute band on every dimension the CONTROL arm itself holds; dimensions the CONTROL fails are DISCLOSED and EXCLUDED (A4-S2P3 §4.2)",
+    "FLAG": "offsides — resolvedly UP at the top dose returns the axis to the USER; it NEVER flips PASS/FAIL (the #157 instrument debt, the F-S2d form)"
+  },
+  "results": {
+    "perArm": {
+      "D000": {
+        "matches": 6,
+        "episodes": 7,
+        "episodesPerMatch": 1.1667,
+        "triggerTickShare": 0.011545,
+        "excludedShort": 49,
+        "excludedSentOff": 0
+      },
+      "D025": {
+        "matches": 6,
+        "episodes": 3,
+        "episodesPerMatch": 0.5,
+        "triggerTickShare": 0.010807,
+        "excludedShort": 60,
+        "excludedSentOff": 0
+      },
+      "D050": {
+        "matches": 6,
+        "episodes": 5,
+        "episodesPerMatch": 0.8333,
+        "triggerTickShare": 0.00919,
+        "excludedShort": 54,
+        "excludedSentOff": 0
+      },
+      "D075": {
+        "matches": 6,
+        "episodes": 5,
+        "episodesPerMatch": 0.8333,
+        "triggerTickShare": 0.012423,
+        "excludedShort": 62,
+        "excludedSentOff": 0
+      },
+      "D100": {
+        "matches": 6,
+        "episodes": 11,
+        "episodesPerMatch": 1.8333,
+        "triggerTickShare": 0.02007,
+        "excludedShort": 65,
+        "excludedSentOff": 0
+      }
+    },
+    "levels": {
+      "D000": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 20.526523,
+            "p50": 20.943581,
+            "p90": 21.887115,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 2.143711,
+            "p50": 2.058846,
+            "n": 7
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 20.526523,
+            "p50": 20.943581,
+            "p90": 21.887115,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 2.143711,
+            "p50": 2.058846,
+            "n": 7
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 0,
+            "p50": 0,
+            "p90": 0,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 7
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 16.270401,
+            "p50": 17.957282,
+            "p90": 21.213476,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 5.603328,
+            "p50": 5.691423,
+            "n": 7
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 8.31212,
+            "p50": 8.957282,
+            "p90": 12.213476,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 0.51449,
+            "p50": 0,
+            "n": 7
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 14.885011,
+            "p50": 15.366806,
+            "p90": 19.602516,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 8.056725,
+            "p50": 5.354072,
+            "n": 7
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 8.869258,
+            "p50": 7.365375,
+            "p90": 9.384397,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 7.92166,
+            "p50": 9.067268,
+            "n": 7
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.706564,
+            "p50": 1,
+            "p90": 1,
+            "n": 7
+          },
+          "mirror": {
+            "mean": 0.547291,
+            "p50": 0.618421,
+            "n": 7
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.6,
+            "p50": 1,
+            "p90": 1,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0.2,
+            "p50": 0,
+            "n": 5
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 3.757077,
+            "p50": 2.699177,
+            "p90": 2.944874,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 4.889283,
+            "p50": 2.140742,
+            "n": 5
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 16.271434,
+            "p50": 16.261192,
+            "p90": 21.107336,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 6.983516,
+            "p50": 6.942582,
+            "n": 5
+          }
+        },
+        "steerMix": {
+          "markStance": 0.73301,
+          "ballDirected": 0.18447,
+          "stationHome": 0.07282,
+          "other": 0.00971
+        },
+        "detachP90": 19.602516
+      },
+      "D025": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 20.964274,
+            "p50": 22.043616,
+            "p90": 22.043616,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 1.066383,
+            "p50": 1.046155,
+            "n": 3
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 22.13441,
+            "p50": 23.485111,
+            "p90": 23.485111,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 1.130349,
+            "p50": 1.135654,
+            "n": 3
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 1.170137,
+            "p50": 1.441496,
+            "p90": 1.441496,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 0.075608,
+            "p50": 0.073492,
+            "n": 3
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 13.971696,
+            "p50": 20.001969,
+            "p90": 20.001969,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 8.265249,
+            "p50": 7.427143,
+            "n": 3
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 7.4215,
+            "p50": 11.001969,
+            "p90": 11.001969,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 0.806508,
+            "p50": 0.13039,
+            "n": 3
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 13.438419,
+            "p50": 12.49458,
+            "p90": 12.49458,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 6.189709,
+            "p50": 7.161133,
+            "n": 3
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 13.940728,
+            "p50": 14.048565,
+            "p90": 14.048565,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 10.885374,
+            "p50": 11.06881,
+            "n": 3
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.712418,
+            "p50": 1,
+            "p90": 1,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 1,
+            "p50": 1,
+            "n": 3
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.666667,
+            "p50": 1,
+            "p90": 1,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 3
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 1.777145,
+            "p50": 1.476615,
+            "p90": 1.476615,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 4.901304,
+            "p50": 2.729889,
+            "n": 3
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 13.044559,
+            "p50": 19.035419,
+            "p90": 19.035419,
+            "n": 3
+          },
+          "mirror": {
+            "mean": 9.763212,
+            "p50": 10.82617,
+            "n": 3
+          }
+        },
+        "steerMix": {
+          "markStance": 0.75824,
+          "ballDirected": 0.24176
+        },
+        "detachP90": 12.49458
+      },
+      "D050": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 15.964322,
+            "p50": 15.2119,
+            "p90": 18.55664,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 2.423696,
+            "p50": 2.421875,
+            "n": 5
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 18.28966,
+            "p50": 17.331346,
+            "p90": 21.143728,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 2.63552,
+            "p50": 2.660092,
+            "n": 5
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 2.325338,
+            "p50": 2.343696,
+            "p90": 2.587088,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0.211824,
+            "p50": 0.194485,
+            "n": 5
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 13.961671,
+            "p50": 13.399301,
+            "p90": 19.260511,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 3.663298,
+            "p50": 3.126851,
+            "n": 5
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 6.636405,
+            "p50": 4.399301,
+            "p90": 10.260511,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 5
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 13.233491,
+            "p50": 14.741822,
+            "p90": 17.577602,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 9.077653,
+            "p50": 8.901667,
+            "n": 5
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 14.609053,
+            "p50": 14.971292,
+            "p90": 15.924304,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 10.04669,
+            "p50": 13.919755,
+            "n": 5
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.793548,
+            "p50": 1,
+            "p90": 1,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0.796774,
+            "p50": 1,
+            "n": 5
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.75,
+            "p50": 1,
+            "p90": 1,
+            "n": 4
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 4
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 2.151975,
+            "p50": 1.216405,
+            "p90": 2.68774,
+            "n": 4
+          },
+          "mirror": {
+            "mean": 4.138493,
+            "p50": 4.008764,
+            "n": 4
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 16.857467,
+            "p50": 14.357521,
+            "p90": 17.618487,
+            "n": 4
+          },
+          "mirror": {
+            "mean": 4.148194,
+            "p50": 2.35509,
+            "n": 4
+          }
+        },
+        "steerMix": {
+          "markStance": 0.82178,
+          "ballDirected": 0.16832,
+          "stationHome": 0.0099
+        },
+        "detachP90": 17.577602
+      },
+      "D075": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 15.942137,
+            "p50": 16.006365,
+            "p90": 16.556991,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 1.463523,
+            "p50": 1.487371,
+            "n": 5
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 18.975082,
+            "p50": 19.20411,
+            "p90": 20.034754,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 1.627052,
+            "p50": 1.503965,
+            "n": 5
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 3.032945,
+            "p50": 3.045516,
+            "p90": 3.197746,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0.277196,
+            "p50": 0.237954,
+            "n": 5
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 18.443192,
+            "p50": 19.24948,
+            "p90": 22.764378,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 4.586316,
+            "p50": 1.954479,
+            "n": 5
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 9.443192,
+            "p50": 10.24948,
+            "p90": 13.764378,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0.268018,
+            "p50": 0,
+            "n": 5
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 13.978369,
+            "p50": 10.72408,
+            "p90": 19.24671,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 11.496328,
+            "p50": 11.867372,
+            "n": 5
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 7.095944,
+            "p50": 8.165194,
+            "p90": 8.577638,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 10.596349,
+            "p50": 7.860537,
+            "n": 5
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 1,
+            "p50": 1,
+            "p90": 1,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0.56,
+            "p50": 0.8,
+            "n": 5
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.794118,
+            "p50": 1,
+            "p90": 1,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 3
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 2.570837,
+            "p50": 1.444348,
+            "p90": 2.946182,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 3.486649,
+            "p50": 2.037832,
+            "n": 3
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 17.592068,
+            "p50": 16.89275,
+            "p90": 20.061423,
+            "n": 5
+          },
+          "mirror": {
+            "mean": 7.310771,
+            "p50": 9.882805,
+            "n": 3
+          }
+        },
+        "steerMix": {
+          "markStance": 1
+        },
+        "detachP90": 19.24671
+      },
+      "D100": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 15.630983,
+            "p50": 15.178805,
+            "p90": 17.915501,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 1.884865,
+            "p50": 1.671454,
+            "n": 11
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 20.326873,
+            "p50": 20.143403,
+            "p90": 22.579546,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 2.320542,
+            "p50": 2.112113,
+            "n": 11
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 4.69589,
+            "p50": 4.857325,
+            "p90": 5.134242,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 0.46674,
+            "p50": 0.398558,
+            "n": 11
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 15.783201,
+            "p50": 18.428602,
+            "p90": 25.449197,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 1.828749,
+            "p50": 1.088549,
+            "n": 11
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 8.326766,
+            "p50": 9.428602,
+            "p90": 16.449197,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 11
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 12.982834,
+            "p50": 14.831472,
+            "p90": 19.279076,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 11.5929,
+            "p50": 11.489229,
+            "n": 11
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 10.65142,
+            "p50": 10.073361,
+            "p90": 15.466169,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 5.023818,
+            "p50": 3.588864,
+            "n": 11
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.995059,
+            "p50": 1,
+            "p90": 1,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 0.235526,
+            "p50": 0,
+            "n": 11
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.584944,
+            "p50": 0.798701,
+            "p90": 1,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 3
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 3.416596,
+            "p50": 1.63705,
+            "p90": 5.116806,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 5.193636,
+            "p50": 5.080608,
+            "n": 3
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 15.917548,
+            "p50": 18.177437,
+            "p90": 26.473488,
+            "n": 11
+          },
+          "mirror": {
+            "mean": 2.45816,
+            "p50": 3.319426,
+            "n": 3
+          }
+        },
+        "steerMix": {
+          "markStance": 0.99441,
+          "stationHome": 0.00559
+        },
+        "detachP90": 19.279076
+      }
+    },
+    "ask": {
+      "contrasts": {
+        "D025": {
+          "n": 2,
+          "control": 22.136278,
+          "treated": 22.538229,
+          "point": 0.401951,
+          "lower": -0.242062,
+          "upper": 1.045964,
+          "resolved": false
+        },
+        "D050": {
+          "n": 2,
+          "control": 19.182237,
+          "treated": 17.83756,
+          "point": -1.344676,
+          "lower": -2.2068,
+          "upper": -0.482552,
+          "resolved": true
+        },
+        "D075": {
+          "n": 2,
+          "control": 19.03455,
+          "treated": 15.504907,
+          "point": -3.529643,
+          "lower": -4.695914,
+          "upper": -2.363372,
+          "resolved": true
+        },
+        "D100": {
+          "n": 4,
+          "control": 20.585414,
+          "treated": 15.627194,
+          "point": -4.95822,
+          "lower": -6.804135,
+          "upper": -3.862927,
+          "resolved": true
+        }
+      },
+      "slopeOnK": {
+        "n": 4,
+        "control": null,
+        "treated": null,
+        "point": -21.579693,
+        "lower": -29.255155,
+        "upper": -16.212914,
+        "resolved": true
+      },
+      "P1": true,
+      "P2a": true,
+      "P2b": true,
+      "PRIMARY": true,
+      "askMovingDoses": [
+        "D050",
+        "D075",
+        "D100"
+      ]
+    },
+    "answer": {
+      "bodyLaneGap": {
+        "D025": {
+          "n": 2,
+          "control": 17.888253,
+          "treated": 20.13225,
+          "point": 2.243997,
+          "lower": -0.865859,
+          "upper": 5.353854,
+          "resolved": false
+        },
+        "D050": {
+          "n": 2,
+          "control": 19.721031,
+          "treated": 19.810021,
+          "point": 0.08899,
+          "lower": -2.411554,
+          "upper": 2.589533,
+          "resolved": false
+        },
+        "D075": {
+          "n": 2,
+          "control": 15.801905,
+          "treated": 18.256633,
+          "point": 2.454728,
+          "lower": -4.885396,
+          "upper": 9.794851,
+          "resolved": false
+        },
+        "D100": {
+          "n": 4,
+          "control": 16.845079,
+          "treated": 15.778789,
+          "point": -1.066291,
+          "lower": -6.997834,
+          "upper": 4.192792,
+          "resolved": false
+        }
+      },
+      "bodySlopeOnK": {
+        "n": 4,
+        "control": null,
+        "treated": null,
+        "point": -3.181072,
+        "lower": -28.011056,
+        "upper": 22.117773,
+        "resolved": false
+      },
+      "compressionShortfall": {
+        "D025": {
+          "n": 2,
+          "control": 8.942168,
+          "treated": 11.13225,
+          "point": 2.190083,
+          "lower": -0.865859,
+          "upper": 5.246025,
+          "resolved": false
+        },
+        "D050": {
+          "n": 2,
+          "control": 10.721031,
+          "treated": 10.810021,
+          "point": 0.08899,
+          "lower": -2.411554,
+          "upper": 2.589533,
+          "resolved": false
+        },
+        "D075": {
+          "n": 2,
+          "control": 8.570999,
+          "treated": 9.256633,
+          "point": 0.685634,
+          "lower": -4.885396,
+          "upper": 6.256663,
+          "resolved": false
+        },
+        "D100": {
+          "n": 4,
+          "control": 8.756583,
+          "treated": 8.211612,
+          "point": -0.544971,
+          "lower": -4.057627,
+          "upper": 2.763121,
+          "resolved": false
+        }
+      },
+      "detachment": {
+        "D025": {
+          "n": 2,
+          "control": 13.069495,
+          "treated": 13.940929,
+          "point": 0.871433,
+          "lower": -1.066722,
+          "upper": 2.809589,
+          "resolved": false
+        },
+        "D050": {
+          "n": 2,
+          "control": 14.332389,
+          "treated": 15.331471,
+          "point": 0.999082,
+          "lower": -2.018136,
+          "upper": 4.016299,
+          "resolved": false
+        },
+        "D075": {
+          "n": 2,
+          "control": 16.3696,
+          "treated": 14.967682,
+          "point": -1.401918,
+          "lower": -5.117786,
+          "upper": 2.313951,
+          "resolved": false
+        },
+        "D100": {
+          "n": 4,
+          "control": 14.719547,
+          "treated": 13.008901,
+          "point": -1.710646,
+          "lower": -4.648899,
+          "upper": 0.536875,
+          "resolved": false
+        }
+      },
+      "note": "THE ANSWER IS MEASURED SEPARATELY FROM THE ASK — contract §3. These are BODY positions; the ask contrasts above are SEND TARGETS. They are not two views of one quantity and do not subtract into each other (the #188 §8.3 lesson)."
+    },
+    "fPmA": {
+      "fired": true,
+      "P1": true,
+      "bodyTopContrast": {
+        "n": 4,
+        "control": 16.845079,
+        "treated": 15.778789,
+        "point": -1.066291,
+        "lower": -6.997834,
+        "upper": 4.192792,
+        "resolved": false
+      },
+      "bodyIncludesZero": true,
+      "swallowShare": {
+        "D000": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          }
+        ],
+        "D025": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 167,
+            "markStanceShare": 0.784431,
+            "stationWalkShare": 0,
+            "otherShare": 0.215569
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 131,
+            "markStanceShare": 1,
+            "stationWalkShare": 0,
+            "otherShare": 0
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          }
+        ],
+        "D050": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 202,
+            "markStanceShare": 0.821782,
+            "stationWalkShare": 0.009901,
+            "otherShare": 0.168317
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 202,
+            "markStanceShare": 0.821782,
+            "stationWalkShare": 0.009901,
+            "otherShare": 0.168317
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 177,
+            "markStanceShare": 0.819209,
+            "stationWalkShare": 0.011299,
+            "otherShare": 0.169492
+          }
+        ],
+        "D075": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 308,
+            "markStanceShare": 1,
+            "stationWalkShare": 0,
+            "otherShare": 0
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 308,
+            "markStanceShare": 1,
+            "stationWalkShare": 0,
+            "otherShare": 0
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 308,
+            "markStanceShare": 1,
+            "stationWalkShare": 0,
+            "otherShare": 0
+          }
+        ],
+        "D100": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 895,
+            "markStanceShare": 0.994413,
+            "stationWalkShare": 0.005587,
+            "otherShare": 0
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 895,
+            "markStanceShare": 0.994413,
+            "stationWalkShare": 0.005587,
+            "otherShare": 0
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 895,
+            "markStanceShare": 0.994413,
+            "stationWalkShare": 0.005587,
+            "otherShare": 0
+          }
+        ]
+      }
+    },
+    "fPmB": {
+      "fired": false,
+      "askMovingDoses": [
+        "D050",
+        "D075",
+        "D100"
+      ],
+      "guardNI": {
+        "D025": {
+          "limbs": [
+            {
+              "key": "spreadYOut",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 5.900368,
+                "treated": 5.714911,
+                "point": -0.185457,
+                "lower": -0.551767,
+                "upper": 0.212954,
+                "resolved": false
+              },
+              "tolerance": 1.630365,
+              "pass": true
+            },
+            {
+              "key": "spacingMedian",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 13.366698,
+                "treated": 12.729341,
+                "point": -0.637357,
+                "lower": -1.127521,
+                "upper": -0.108921,
+                "resolved": true
+              },
+              "tolerance": 3.69343,
+              "pass": true
+            },
+            {
+              "key": "spacingUnder4",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.088128,
+                "treated": 0.082449,
+                "point": -0.00568,
+                "lower": -0.017571,
+                "upper": 0.00669,
+                "resolved": false
+              },
+              "tolerance": 0.024351,
+              "pass": true
+            },
+            {
+              "key": "dupRunShare",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.430324,
+                "treated": 0.472236,
+                "point": 0.041912,
+                "lower": -0.039468,
+                "upper": 0.112541,
+                "resolved": false
+              },
+              "tolerance": 0.118905,
+              "pass": true
+            }
+          ],
+          "pass": true
+        },
+        "D050": {
+          "limbs": [
+            {
+              "key": "spreadYOut",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 5.900368,
+                "treated": 6.086958,
+                "point": 0.18659,
+                "lower": -0.12769,
+                "upper": 0.52529,
+                "resolved": false
+              },
+              "tolerance": 1.630365,
+              "pass": true
+            },
+            {
+              "key": "spacingMedian",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 13.366698,
+                "treated": 13.219796,
+                "point": -0.146902,
+                "lower": -0.566315,
+                "upper": 0.297844,
+                "resolved": false
+              },
+              "tolerance": 3.69343,
+              "pass": true
+            },
+            {
+              "key": "spacingUnder4",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.088128,
+                "treated": 0.085616,
+                "point": -0.002513,
+                "lower": -0.012225,
+                "upper": 0.005616,
+                "resolved": false
+              },
+              "tolerance": 0.024351,
+              "pass": true
+            },
+            {
+              "key": "dupRunShare",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.430324,
+                "treated": 0.423086,
+                "point": -0.007238,
+                "lower": -0.109608,
+                "upper": 0.120716,
+                "resolved": false
+              },
+              "tolerance": 0.118905,
+              "pass": false
+            }
+          ],
+          "pass": false
+        },
+        "D075": {
+          "limbs": [
+            {
+              "key": "spreadYOut",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 5.900368,
+                "treated": 6.106954,
+                "point": 0.206585,
+                "lower": -0.149165,
+                "upper": 0.562335,
+                "resolved": false
+              },
+              "tolerance": 1.630365,
+              "pass": true
+            },
+            {
+              "key": "spacingMedian",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 13.366698,
+                "treated": 13.691397,
+                "point": 0.324699,
+                "lower": -0.852728,
+                "upper": 1.319051,
+                "resolved": false
+              },
+              "tolerance": 3.69343,
+              "pass": true
+            },
+            {
+              "key": "spacingUnder4",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.088128,
+                "treated": 0.074962,
+                "point": -0.013167,
+                "lower": -0.021831,
+                "upper": -0.006092,
+                "resolved": true
+              },
+              "tolerance": 0.024351,
+              "pass": true
+            },
+            {
+              "key": "dupRunShare",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.430324,
+                "treated": 0.472837,
+                "point": 0.042513,
+                "lower": -0.094509,
+                "upper": 0.182293,
+                "resolved": false
+              },
+              "tolerance": 0.118905,
+              "pass": false
+            }
+          ],
+          "pass": false
+        },
+        "D100": {
+          "limbs": [
+            {
+              "key": "spreadYOut",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 5.900368,
+                "treated": 5.854506,
+                "point": -0.045862,
+                "lower": -0.373912,
+                "upper": 0.262034,
+                "resolved": false
+              },
+              "tolerance": 1.630365,
+              "pass": true
+            },
+            {
+              "key": "spacingMedian",
+              "direction": "floor",
+              "contrast": {
+                "n": 6,
+                "control": 13.366698,
+                "treated": 12.894667,
+                "point": -0.47203,
+                "lower": -1.193742,
+                "upper": 0.245517,
+                "resolved": false
+              },
+              "tolerance": 3.69343,
+              "pass": true
+            },
+            {
+              "key": "spacingUnder4",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.088128,
+                "treated": 0.082895,
+                "point": -0.005233,
+                "lower": -0.01585,
+                "upper": 0.00546,
+                "resolved": false
+              },
+              "tolerance": 0.024351,
+              "pass": true
+            },
+            {
+              "key": "dupRunShare",
+              "direction": "ceiling",
+              "contrast": {
+                "n": 6,
+                "control": 0.430324,
+                "treated": 0.436168,
+                "point": 0.005844,
+                "lower": -0.113667,
+                "upper": 0.118765,
+                "resolved": false
+              },
+              "tolerance": 0.118905,
+              "pass": true
+            }
+          ],
+          "pass": true
+        }
+      }
+    },
+    "band": {
+      "pass": false,
+      "control": {
+        "goals": {
+          "level": 2.333333,
+          "lo": 2.03524,
+          "hi": 2.75356,
+          "inBand": true
+        },
+        "crosses": {
+          "level": 2.833333,
+          "lo": 1.86705,
+          "hi": 3.11175,
+          "inBand": true
+        },
+        "headers": {
+          "level": 7.166667,
+          "lo": 6.827925,
+          "hi": 11.379875,
+          "inBand": true
+        },
+        "longBalls": {
+          "level": 3.5,
+          "lo": 4.65315,
+          "hi": 7.75525,
+          "inBand": false
+        },
+        "cutbacks": {
+          "level": 3.166667,
+          "lo": 2.861325,
+          "hi": 4.768875,
+          "inBand": true
+        }
+      },
+      "topDose": {
+        "goals": {
+          "level": 2.333333,
+          "lo": 2.03524,
+          "hi": 2.75356,
+          "inBand": true
+        },
+        "crosses": {
+          "level": 2.666667,
+          "lo": 1.86705,
+          "hi": 3.11175,
+          "inBand": true
+        },
+        "headers": {
+          "level": 4,
+          "lo": 6.827925,
+          "hi": 11.379875,
+          "inBand": false
+        },
+        "longBalls": {
+          "level": 2.166667,
+          "lo": 4.65315,
+          "hi": 7.75525,
+          "inBand": false
+        },
+        "cutbacks": {
+          "level": 4.333333,
+          "lo": 2.861325,
+          "hi": 4.768875,
+          "inBand": true
+        }
+      },
+      "gatedDimensions": [
+        "goals",
+        "crosses",
+        "headers",
+        "cutbacks"
+      ],
+      "excludedAsSubstrateDrift": [
+        "longBalls"
+      ]
+    },
+    "instrumentDebt157": {
+      "offsideFlagFired": false,
+      "offsideTopContrast": {
+        "n": 6,
+        "control": 0.833333,
+        "treated": 1.833333,
+        "point": 1,
+        "lower": -0.166667,
+        "upper": 2.166667,
+        "resolved": false
+      },
+      "contrasts": {
+        "offsides": {
+          "D025": {
+            "n": 6,
+            "control": 0.833333,
+            "treated": 1,
+            "point": 0.166667,
+            "lower": -0.666667,
+            "upper": 1,
+            "resolved": false
+          },
+          "D050": {
+            "n": 6,
+            "control": 0.833333,
+            "treated": 1.833333,
+            "point": 1,
+            "lower": -0.166667,
+            "upper": 2.166667,
+            "resolved": false
+          },
+          "D075": {
+            "n": 6,
+            "control": 0.833333,
+            "treated": 1.666667,
+            "point": 0.833333,
+            "lower": -0.166667,
+            "upper": 2,
+            "resolved": false
+          },
+          "D100": {
+            "n": 6,
+            "control": 0.833333,
+            "treated": 1.833333,
+            "point": 1,
+            "lower": -0.333333,
+            "upper": 2.166667,
+            "resolved": false
+          }
+        },
+        "fouls": {
+          "D025": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 4,
+            "point": 0.5,
+            "lower": -1,
+            "upper": 2,
+            "resolved": false
+          },
+          "D050": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 4.166667,
+            "point": 0.666667,
+            "lower": -1.166667,
+            "upper": 2.166667,
+            "resolved": false
+          },
+          "D075": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 4.833333,
+            "point": 1.333333,
+            "lower": -0.666667,
+            "upper": 3.333333,
+            "resolved": false
+          },
+          "D100": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 4.333333,
+            "point": 0.833333,
+            "lower": -0.666667,
+            "upper": 2.333333,
+            "resolved": false
+          }
+        },
+        "penalties": {
+          "D025": {
+            "n": 6,
+            "control": 0,
+            "treated": 0,
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "resolved": false
+          },
+          "D050": {
+            "n": 6,
+            "control": 0,
+            "treated": 0,
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "resolved": false
+          },
+          "D075": {
+            "n": 6,
+            "control": 0,
+            "treated": 0,
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "resolved": false
+          },
+          "D100": {
+            "n": 6,
+            "control": 0,
+            "treated": 0,
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "resolved": false
+          }
+        },
+        "thirdMan": {
+          "D025": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 6.5,
+            "point": 3,
+            "lower": 0.5,
+            "upper": 5.5,
+            "resolved": true
+          },
+          "D050": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 5,
+            "point": 1.5,
+            "lower": -0.333333,
+            "upper": 3.333333,
+            "resolved": false
+          },
+          "D075": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 6.166667,
+            "point": 2.666667,
+            "lower": 0.5,
+            "upper": 4.5,
+            "resolved": true
+          },
+          "D100": {
+            "n": 6,
+            "control": 3.5,
+            "treated": 4.5,
+            "point": 1,
+            "lower": -1.5,
+            "upper": 3,
+            "resolved": false
+          }
+        },
+        "overlaps": {
+          "D025": {
+            "n": 6,
+            "control": 0.166667,
+            "treated": 0,
+            "point": -0.166667,
+            "lower": -0.5,
+            "upper": 0,
+            "resolved": false
+          },
+          "D050": {
+            "n": 6,
+            "control": 0.166667,
+            "treated": 0.333333,
+            "point": 0.166667,
+            "lower": -0.333333,
+            "upper": 0.666667,
+            "resolved": false
+          },
+          "D075": {
+            "n": 6,
+            "control": 0.166667,
+            "treated": 0.166667,
+            "point": 0,
+            "lower": -0.5,
+            "upper": 0.5,
+            "resolved": false
+          },
+          "D100": {
+            "n": 6,
+            "control": 0.166667,
+            "treated": 0.333333,
+            "point": 0.166667,
+            "lower": -0.333333,
+            "upper": 0.666667,
+            "resolved": false
+          }
+        },
+        "forwardPassShare": {
+          "D025": {
+            "n": 6,
+            "control": 0.514491,
+            "treated": 0.520393,
+            "point": 0.005902,
+            "lower": -0.003476,
+            "upper": 0.016031,
+            "resolved": false
+          },
+          "D050": {
+            "n": 6,
+            "control": 0.514491,
+            "treated": 0.494324,
+            "point": -0.020166,
+            "lower": -0.076404,
+            "upper": 0.024352,
+            "resolved": false
+          },
+          "D075": {
+            "n": 6,
+            "control": 0.514491,
+            "treated": 0.520069,
+            "point": 0.005578,
+            "lower": -0.016229,
+            "upper": 0.022691,
+            "resolved": false
+          },
+          "D100": {
+            "n": 6,
+            "control": 0.514491,
+            "treated": 0.498322,
+            "point": -0.016168,
+            "lower": -0.045817,
+            "upper": 0.017316,
+            "resolved": false
+          }
+        }
+      }
+    },
+    "reportedMarkDrift": {
+      "note": "REPORTED, NEVER GATED — the MARK-SELECTION-CODE-MAP §2.4 positional-feedback channel: assignMarks reads p.pos, so dosed bodies re-rank nearest-body claims. Visible and attributed, not designed away.",
+      "contrasts": {
+        "markShare": {
+          "D025": {
+            "n": 2,
+            "control": 0.5,
+            "treated": 1,
+            "point": 0.5,
+            "lower": 0,
+            "upper": 1,
+            "resolved": false
+          },
+          "D050": {
+            "n": 2,
+            "control": 0.486486,
+            "treated": 0.991935,
+            "point": 0.505449,
+            "lower": 0.010898,
+            "upper": 1,
+            "resolved": true
+          },
+          "D075": {
+            "n": 2,
+            "control": 0.736486,
+            "treated": 1,
+            "point": 0.263514,
+            "lower": 0.027027,
+            "upper": 0.5,
+            "resolved": true
+          },
+          "D100": {
+            "n": 4,
+            "control": 0.618243,
+            "treated": 0.993207,
+            "point": 0.374963,
+            "lower": -0.013624,
+            "upper": 0.756757,
+            "resolved": false
+          }
+        },
+        "markFarSideShare": {
+          "D025": {
+            "n": 1,
+            "control": 0,
+            "treated": 1,
+            "point": 1,
+            "lower": 1,
+            "upper": 1,
+            "resolved": true
+          },
+          "D050": {
+            "n": 1,
+            "control": 1,
+            "treated": 0.5,
+            "point": -0.5,
+            "lower": -0.5,
+            "upper": -0.5,
+            "resolved": true
+          },
+          "D075": {
+            "n": 2,
+            "control": 1,
+            "treated": 0.617647,
+            "point": -0.382353,
+            "lower": -0.5,
+            "upper": -0.264706,
+            "resolved": true
+          },
+          "D100": {
+            "n": 3,
+            "control": 0.666667,
+            "treated": 0.5,
+            "point": -0.166667,
+            "lower": -0.666667,
+            "upper": 0.5,
+            "resolved": false
+          }
+        },
+        "distToMarkMean": {
+          "D025": {
+            "n": 1,
+            "control": 6.723039,
+            "treated": 1.476615,
+            "point": -5.246424,
+            "lower": -5.246424,
+            "upper": -5.246424,
+            "resolved": true
+          },
+          "D050": {
+            "n": 1,
+            "control": 2.108772,
+            "treated": 3.158817,
+            "point": 1.050044,
+            "lower": 1.050044,
+            "upper": 1.050044,
+            "resolved": true
+          },
+          "D075": {
+            "n": 2,
+            "control": 1.615268,
+            "treated": 3.805414,
+            "point": 2.190146,
+            "lower": -0.861598,
+            "upper": 5.24189,
+            "resolved": false
+          },
+          "D100": {
+            "n": 3,
+            "control": 3.317859,
+            "treated": 3.521828,
+            "point": 0.203969,
+            "lower": -4.846814,
+            "upper": 4.142679,
+            "resolved": false
+          }
+        },
+        "markLatGapMean": {
+          "D025": {
+            "n": 1,
+            "control": 9.398742,
+            "treated": 19.311433,
+            "point": 9.912691,
+            "lower": 9.912691,
+            "upper": 9.912691,
+            "resolved": true
+          },
+          "D050": {
+            "n": 1,
+            "control": 18.684264,
+            "treated": 14.404002,
+            "point": -4.280262,
+            "lower": -4.280262,
+            "upper": -4.280262,
+            "resolved": true
+          },
+          "D075": {
+            "n": 2,
+            "control": 21.937713,
+            "treated": 15.404181,
+            "point": -6.533532,
+            "lower": -8.298411,
+            "upper": -4.768652,
+            "resolved": true
+          },
+          "D100": {
+            "n": 3,
+            "control": 17.758056,
+            "treated": 14.822122,
+            "point": -2.935933,
+            "lower": -9.108866,
+            "upper": 5.336182,
+            "resolved": false
+          }
+        }
+      }
+    },
+    "receipts": [
+      {
+        "arm": "D000",
+        "seed": 12311204,
+        "startTick": 12056,
+        "simSeconds": 0.6,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 19.517,
+        "askLatGapUnmodulated": 19.517,
+        "bodyLatGap": 24.136,
+        "detach": 19.905,
+        "distToSend": 5.213,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D000 (gene null), seed 12311204, from tick 12056 (200.93 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D000",
+        "seed": 12311205,
+        "startTick": 5218,
+        "simSeconds": 1.333,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 17.326,
+        "askLatGapUnmodulated": 17.326,
+        "bodyLatGap": 21.213,
+        "detach": 19.603,
+        "distToSend": 7.365,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D000 (gene null), seed 12311205, from tick 5218 (86.97 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D000",
+        "seed": 12311202,
+        "startTick": 7958,
+        "simSeconds": 0.5,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 25.606,
+        "askLatGapUnmodulated": 25.606,
+        "bodyLatGap": 17.957,
+        "detach": 16.234,
+        "distToSend": 8.212,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D000 (gene null), seed 12311202, from tick 7958 (132.63 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D000",
+        "seed": 12311204,
+        "startTick": 5907,
+        "simSeconds": 1.267,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 21.887,
+        "askLatGapUnmodulated": 21.887,
+        "bodyLatGap": 1.924,
+        "detach": 15.367,
+        "distToSend": 24.025,
+        "markShare": 0,
+        "steerMix": {
+          "ballDirected": 1
+        },
+        "watchHint": "PM-T1 arm D000 (gene null), seed 12311204, from tick 5907 (98.45 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D000",
+        "seed": 12311203,
+        "startTick": 8276,
+        "simSeconds": 0.5,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 20.998,
+        "askLatGapUnmodulated": 20.998,
+        "bodyLatGap": 20.868,
+        "detach": 13.561,
+        "distToSend": 2.027,
+        "markShare": 0,
+        "steerMix": {
+          "stationHome": 1
+        },
+        "watchHint": "PM-T1 arm D000 (gene null), seed 12311203, from tick 8276 (137.93 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D000",
+        "seed": 12311205,
+        "startTick": 8015,
+        "simSeconds": 1.233,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 17.408,
+        "askLatGapUnmodulated": 17.408,
+        "bodyLatGap": 15.935,
+        "detach": 10.604,
+        "distToSend": 5.858,
+        "markShare": 0.9459,
+        "steerMix": {
+          "markStance": 0.9459,
+          "other": 0.0541
+        },
+        "watchHint": "PM-T1 arm D000 (gene null), seed 12311205, from tick 8015 (133.58 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D025",
+        "seed": 12311202,
+        "startTick": 12333,
+        "simSeconds": 0.683,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 23.033,
+        "askLatGapUnmodulated": 24.528,
+        "bodyLatGap": 20.263,
+        "detach": 15.387,
+        "distToSend": 14.049,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D025 (gene 0.25), seed 12311202, from tick 12333 (205.55 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D025",
+        "seed": 12311203,
+        "startTick": 14859,
+        "simSeconds": 1.5,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 22.044,
+        "askLatGapUnmodulated": 23.485,
+        "bodyLatGap": 20.002,
+        "detach": 12.495,
+        "distToSend": 9.102,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D025 (gene 0.25), seed 12311203, from tick 14859 (247.65 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D025",
+        "seed": 12311200,
+        "startTick": 5863,
+        "simSeconds": 0.85,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 17.816,
+        "askLatGapUnmodulated": 18.39,
+        "bodyLatGap": 1.651,
+        "detach": 12.433,
+        "distToSend": 18.672,
+        "markShare": 0.1373,
+        "steerMix": {
+          "ballDirected": 0.8627,
+          "markStance": 0.1373
+        },
+        "watchHint": "PM-T1 arm D025 (gene 0.25), seed 12311200, from tick 5863 (97.72 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D050",
+        "seed": 12311205,
+        "startTick": 9035,
+        "simSeconds": 1.033,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 15.212,
+        "askLatGapUnmodulated": 17.331,
+        "bodyLatGap": 19.261,
+        "detach": 18.342,
+        "distToSend": 21.442,
+        "markShare": 0.9677,
+        "steerMix": {
+          "markStance": 0.9677,
+          "stationHome": 0.0323
+        },
+        "watchHint": "PM-T1 arm D050 (gene 0.5), seed 12311205, from tick 9035 (150.58 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D050",
+        "seed": 12311203,
+        "startTick": 10028,
+        "simSeconds": 0.617,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 18.791,
+        "askLatGapUnmodulated": 21.382,
+        "bodyLatGap": 23.457,
+        "detach": 17.578,
+        "distToSend": 7.242,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D050 (gene 0.5), seed 12311203, from tick 10028 (167.13 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D050",
+        "seed": 12311200,
+        "startTick": 15036,
+        "simSeconds": 0.617,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 14.229,
+        "askLatGapUnmodulated": 16.214,
+        "bodyLatGap": 13.399,
+        "detach": 14.742,
+        "distToSend": 15.924,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D050 (gene 0.5), seed 12311200, from tick 15036 (250.6 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D050",
+        "seed": 12311205,
+        "startTick": 14712,
+        "simSeconds": 0.533,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 18.557,
+        "askLatGapUnmodulated": 21.144,
+        "bodyLatGap": 13.065,
+        "detach": 7.829,
+        "distToSend": 14.971,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D050 (gene 0.5), seed 12311205, from tick 14712 (245.2 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D050",
+        "seed": 12311200,
+        "startTick": 5895,
+        "simSeconds": 0.567,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 13.033,
+        "askLatGapUnmodulated": 15.377,
+        "bodyLatGap": 0.626,
+        "detach": 7.677,
+        "distToSend": 13.466,
+        "markShare": 0,
+        "steerMix": {
+          "ballDirected": 1
+        },
+        "watchHint": "PM-T1 arm D050 (gene 0.5), seed 12311200, from tick 5895 (98.25 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D075",
+        "seed": 12311204,
+        "startTick": 14539,
+        "simSeconds": 2,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 16.006,
+        "askLatGapUnmodulated": 19.204,
+        "bodyLatGap": 22.824,
+        "detach": 19.95,
+        "distToSend": 8.165,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D075 (gene 0.75), seed 12311204, from tick 14539 (242.32 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D075",
+        "seed": 12311201,
+        "startTick": 8280,
+        "simSeconds": 0.667,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 16.557,
+        "askLatGapUnmodulated": 20.281,
+        "bodyLatGap": 22.764,
+        "detach": 19.247,
+        "distToSend": 9.584,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D075 (gene 0.75), seed 12311201, from tick 8280 (138 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D075",
+        "seed": 12311201,
+        "startTick": 14004,
+        "simSeconds": 0.833,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 17.14,
+        "askLatGapUnmodulated": 20.035,
+        "bodyLatGap": 19.249,
+        "detach": 10.724,
+        "distToSend": 8.578,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D075 (gene 0.75), seed 12311201, from tick 14004 (233.4 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D075",
+        "seed": 12311205,
+        "startTick": 11155,
+        "simSeconds": 0.5,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 15.605,
+        "askLatGapUnmodulated": 18.651,
+        "bodyLatGap": 16.718,
+        "detach": 10.639,
+        "distToSend": 5.194,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D075 (gene 0.75), seed 12311205, from tick 11155 (185.92 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D075",
+        "seed": 12311205,
+        "startTick": 4742,
+        "simSeconds": 1.133,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 14.402,
+        "askLatGapUnmodulated": 16.705,
+        "bodyLatGap": 10.659,
+        "detach": 9.332,
+        "distToSend": 3.959,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D075 (gene 0.75), seed 12311205, from tick 4742 (79.03 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D100",
+        "seed": 12311204,
+        "startTick": 9724,
+        "simSeconds": 0.667,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 18.398,
+        "askLatGapUnmodulated": 23.537,
+        "bodyLatGap": 27.916,
+        "detach": 20.908,
+        "distToSend": 9.67,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D100 (gene 1), seed 12311204, from tick 9724 (162.07 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D100",
+        "seed": 12311204,
+        "startTick": 7676,
+        "simSeconds": 0.767,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 16.379,
+        "askLatGapUnmodulated": 21.514,
+        "bodyLatGap": 25.449,
+        "detach": 19.279,
+        "distToSend": 9.555,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D100 (gene 1), seed 12311204, from tick 7676 (127.93 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D100",
+        "seed": 12311202,
+        "startTick": 11104,
+        "simSeconds": 1.533,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 16.052,
+        "askLatGapUnmodulated": 21.079,
+        "bodyLatGap": 22.215,
+        "detach": 18.733,
+        "distToSend": 15.466,
+        "markShare": 0.9457,
+        "steerMix": {
+          "markStance": 0.9457,
+          "stationHome": 0.0543
+        },
+        "watchHint": "PM-T1 arm D100 (gene 1), seed 12311202, from tick 11104 (185.07 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D100",
+        "seed": 12311203,
+        "startTick": 2747,
+        "simSeconds": 0.5,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 15.179,
+        "askLatGapUnmodulated": 20.143,
+        "bodyLatGap": 18.429,
+        "detach": 18.114,
+        "distToSend": 14.716,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D100 (gene 1), seed 12311203, from tick 2747 (45.78 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D100",
+        "seed": 12311205,
+        "startTick": 11812,
+        "simSeconds": 0.633,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 13.917,
+        "askLatGapUnmodulated": 18.196,
+        "bodyLatGap": 20.564,
+        "detach": 18.097,
+        "distToSend": 6.872,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D100 (gene 1), seed 12311205, from tick 11812 (196.87 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D100",
+        "seed": 12311203,
+        "startTick": 14065,
+        "simSeconds": 2.567,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 17.098,
+        "askLatGapUnmodulated": 21.941,
+        "bodyLatGap": 23.038,
+        "detach": 14.831,
+        "distToSend": 10.073,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "PM-T1 arm D100 (gene 1), seed 12311203, from tick 14065 (234.42 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      }
+    ]
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "b14d3b7869887f7138c85d6efaccaebf20503f1ef724572774037b891b1c0b94",
+      "digestB": "b14d3b7869887f7138c85d6efaccaebf20503f1ef724572774037b891b1c0b94",
+      "note": "the whole core computed TWICE, canonical-JSON digests"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2
+    },
+    "xSrcZero": {
+      "pass": true,
+      "srcDiff": "",
+      "note": "instrument-only: zero src/** changes"
+    },
+    "gArm": {
+      "pass": true,
+      "optInLive": true,
+      "rows": [
+        {
+          "arm": "D000",
+          "dose": null,
+          "flag": true,
+          "geneOnAllViews": true,
+          "kPm": [
+            0,
+            0
+          ],
+          "kExpected": 0,
+          "kCorrect": true,
+          "bothTeamsDosed": true
+        },
+        {
+          "arm": "D025",
+          "dose": 0.25,
+          "flag": true,
+          "geneOnAllViews": true,
+          "kPm": [
+            0.0625,
+            0.0625
+          ],
+          "kExpected": 0.0625,
+          "kCorrect": true,
+          "bothTeamsDosed": true
+        },
+        {
+          "arm": "D050",
+          "dose": 0.5,
+          "flag": true,
+          "geneOnAllViews": true,
+          "kPm": [
+            0.125,
+            0.125
+          ],
+          "kExpected": 0.125,
+          "kCorrect": true,
+          "bothTeamsDosed": true
+        },
+        {
+          "arm": "D075",
+          "dose": 0.75,
+          "flag": true,
+          "geneOnAllViews": true,
+          "kPm": [
+            0.1875,
+            0.1875
+          ],
+          "kExpected": 0.1875,
+          "kCorrect": true,
+          "bothTeamsDosed": true
+        },
+        {
+          "arm": "D100",
+          "dose": 1,
+          "flag": true,
+          "geneOnAllViews": true,
+          "kPm": [
+            0.25,
+            0.25
+          ],
+          "kExpected": 0.25,
+          "kCorrect": true,
+          "bothTeamsDosed": true
+        }
+      ],
+      "semantics": "THE ARMING CHECKLIST (#196.3-D4): the FLAG is on in every arm, the GENE is written on all three genome views of BOTH teams (the a4World armGenes idiom — the REAL gene channel, #196.3-D6: this exam adds NO engine-side dose surface), and the EVOLUTION opt-in channel is shown LIVE (mutateGenome writes the key with it and leaves it absent without). This exam is FIXED-DOSE, so the opt-in is not exercised — asserted, not implied. THE ARMS DIFFER IN EXACTLY ONE THING: the value of `defLaneConvergence`."
+    },
+    "gCtrlEq": {
+      "pass": true,
+      "seeds": 6,
+      "rows": [
+        {
+          "seed": 12311200,
+          "identical": true
+        },
+        {
+          "seed": 12311201,
+          "identical": true
+        },
+        {
+          "seed": 12311202,
+          "identical": true
+        },
+        {
+          "seed": 12311203,
+          "identical": true
+        },
+        {
+          "seed": 12311204,
+          "identical": true
+        },
+        {
+          "seed": 12311205,
+          "identical": true
+        }
+      ],
+      "semantics": "ARMED + gene ABSENT ≡ FLAG-OFF, whole-match signature INCLUDING the rng stream. THE ARMS DIFFER IN CODE PATH (armed ⇒ pmMover true ⇒ the M-PM.1 branch is entered and k_PM evaluates to 0), so the control arm is production-equivalent THROUGH the live branch."
+    },
+    "gSeed": {
+      "pass": true,
+      "block": "12311200..12311205",
+      "band": [
+        12311200,
+        12311999
+      ],
+      "inBand": true,
+      "smokeBlock": "12311200..12311205",
+      "fullBase": 12311300,
+      "ownBlocksDisjoint": true,
+      "consumedBlocks": [
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        }
+      ],
+      "collisions": []
+    },
+    "gStats": {
+      "pass": true,
+      "base": 103400,
+      "published": [
+        101403,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200
+      ],
+      "minGap": 200
+    },
+    "gReadOnly": {
+      "pass": true,
+      "abandonRestAndGrantsNull": true,
+      "stationEyeNull": true,
+      "note": "no station eye is armed in this world, so the #188 send precedence reduces to the station read and the eyeOverride steer bucket is empty BY CONSTRUCTION"
+    },
+    "gNDerived": {
+      "pass": true,
+      "ranN": 6,
+      "derivedNStar": null,
+      "envOverride": null,
+      "note": "in FULL mode the N run must BE the frozen §4 rule's output — a PMT1_N override turns this gate RED rather than passing quietly (the #188 nDerived precedent). PMT1_N is accepted in SMOKE only."
+    },
+    "xFamilyPass": true
+  },
+  "honesty": [
+    "FROZEN BEFORE SIGHT: doses, seeds, N rule, gates, predicates and tolerances were written in the stage doc before any full-N number existed, and are not re-cut afterwards.",
+    "THE SMOKE ADJUDICATES NOTHING and may not tune any threshold: it proves plumbing and measures ms/match for the wall term of N — no level, share, rate or CI from it is read as a result.",
+    "NO RE-CUT AFTER SIGHT: the k_PM ceiling 0.25 is PM-T0's traced constant, the NI fraction is inherited from A4-S2P1 §4 and the band from A4-S2P3 §4.2. FAILs are reported AS-IS.",
+    "The arms diverge tick-for-tick, so PAIRING IS ON THE SEED, not on the episode: each seed contributes one paired delta per dose, and the bootstrap clusters on the seed.",
+    "PM-T1 claims nothing about production: nothing ships, the flag is absent from every bundle, and the fingerprint is re-derived unchanged (X-FP-PROD)."
+  ],
+  "resultSha256": "56588f04d4593c6b7c9e3eee68d8ffec51bb13ef2c1805d03efb42c41ea2c564",
+  "sizing": {
+    "msPerMatch": 105.933,
+    "pairYieldByDose": {
+      "D025": 0.3333,
+      "D050": 0.3333,
+      "D075": 0.3333,
+      "D100": 0.6667
+    },
+    "pairYieldMin": 0.3333,
+    "provenance": "THE SMOKE'S TWO SIZING NUMBERS — ms/match and the MINIMUM paired-ask yield over the four doses. These are the ONLY numbers a FULL run reads out of this artifact, and they feed ONLY N. THE SMOKE ADJUDICATES NOTHING."
+  },
+  "wallContextOnly": {
+    "corePassMs": 3178,
+    "totalMs": 17363,
+    "note": "CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
+  }
+}
