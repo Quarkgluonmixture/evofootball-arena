@@ -157,15 +157,25 @@ lane geometry (the weak-side wide body is the only far-flank
 station) + chaser consumption + greedy depth-major thinning;
 no ball/lane term, no retention state, the 22 m gate > HALF_W;
 six fix surfaces S1–S6 inventoried (the formations.test.ts pin
-must be renegotiated by any narrow fix). **QUEUED NEXT STEP
-(on "go"/resume): the commander drafts 甲 (the defensive-phase
-modulation contract, on this map + the #188 forensic) +
-presents the 乙-fix-scope decision → then O2-T0.** Also
-open: v2/v3 acceptances, 乙 offside, slice-2 disposition,
-punish-compactness, D1/D2/phone/F7b/F7c.
-Also open:
-the v2 acceptance (#168.3), the 乙 offside axis, slice-2
-disposition, D1/D2/phone/F7b/F7c. VISION §3
+must be renegotiated by any narrow fix). **甲 IS DRAFTED
+(#192)**:
+[`PHASE-MODULATION-CONTRACT.md`](PHASE-MODULATION-CONTRACT.md)
+— H-PM (a gene-born-absent per-body defensive lateral
+convergence lets the station field ASK the weak side to
+compress; new analytic fact: even the MAXED genome leaves the
+ask ≈14–15 m off a flank lane ⇒ substrate defect); mover-reads-
+only per #35.3 (zone centres NOT modulated = the 甲/乙
+boundary); arc PM-T0 → T1 COMPRESSION EXAM (F-PM-a mark-swallow
+STOP → returns to 乙 with numbers; F-PM-b clump re-import STOP)
+→ T2 live A/B → play-test exit; VISION audit seven clauses
+PASS, zero amendments. **THE 乙 FORK SITS AT THE USER (#192.2):
+S1 lane term / S2 priority key / S4 release filter / DEFER
+until PM-T1 prices the mark channel — commander recommends
+DEFER.** **QUEUED NEXT STEP (on "go"/resume): dispatch O2-T0
+(the #189.4 promise); PM-T0 queues behind O2-T0 + the 乙
+ruling.** Also open: the v2 acceptance (#168.3) + v3
+acceptances, the 乙 offside axis, slice-2 disposition,
+punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3
 soft spot stands registered: break-even is rung-one's honest
 bar; defence is won back on higher ladder rungs (补位→默契→
 教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever

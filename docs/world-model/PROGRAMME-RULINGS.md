@@ -8085,3 +8085,61 @@
 >    mark fix: S1 lane term / S2 priority key / S4 release —
 >    each must renegotiate the formations.test.ts pin) WITH the
 >    corrected map. O2-T0 dispatches after.
+
+> **COMMANDER RULING #192 (2026-08-08 — 甲 DRAFTED: the
+> PHASE-MODULATION contract (slice one: defensive lateral
+> convergence, gene-born-absent) + embedded VISION audit (seven
+> clauses PASS, zero amendments); the 乙-fix-scope fork is
+> PRESENTED to the user; O2-T0 remains the next dispatch):**
+>
+> 1. **甲 DONE — the contract**:
+>    [`PHASE-MODULATION-CONTRACT.md`](PHASE-MODULATION-CONTRACT.md).
+>    Claim H-PM: a per-body, gene-expressed lateral convergence
+>    toward the ball's lane in the defensive phase (born ABSENT,
+>    one strength knob, no role gates) lets the station field
+>    ASK the weak side to compress — send-target lane gap falls
+>    from the 18–20 m band toward the 9 m spacing, 弱侧收窄
+>    emerging from geometry — without the B1-a collapse and
+>    without touching marking, restarts, attack, or the A4 home.
+>    Mechanism M-PM.1–5: the term composes after width +
+>    common-translation (`y += (ball.y − y)·k_PM`, bounds from
+>    the traced legacy-`:209` family); phase gate = live open
+>    play out of possession (restart states keep the unmodulated
+>    read — the shapeReady stall trap priced at T0); **fork the
+>    READ per #35.3** — mover reads only (walk target `:135`,
+>    marker fallback `:323`); `assignMarks`' zone centres
+>    (`TeamBrain.ts:479`) explicitly NOT modulated = the 甲/乙
+>    boundary. Arc: PM-T0 dormant seam (byte-identity +
+>    RNG-stream + read table) → PM-T1 the COMPRESSION EXAM
+>    (forced doses; success = the ASK moves resolvedly +
+>    dose-responsively; the ANSWER measured separately; spreadY/
+>    spacing/dupRun guards + the #157 instrument debt ride;
+>    mark-drift REPORTED via the map-§2.4 positional-feedback
+>    channel) → PM-T2 live A/B (equilibrium bands verbatim + E4
+>    dimensions + Phase-30 shots-conceded instruments) → the
+>    user's play-test exit. Pre-named FAILs: **F-PM-a** the ask
+>    moves but the mark-stance ticks swallow the answer (STOP;
+>    returns to the 乙 fork WITH the swallowed share quantified);
+>    **F-PM-b** the clump re-imports (STOP; wrong dimension, not
+>    wrong dose). New analytic fact banked in §0: even the MAXED
+>    genome leaves the ask ≈14–15 m off a flank lane (zonal
+>    ≈19–20 m) — substrate defect by the maxed-genome criterion,
+>    derived from the corrected map's own bands.
+> 2. **THE 乙 FORK (presented, the user's ruling awaited)**:
+>    (S1) a ball/lane-relevance term inside the mark score ·
+>    (S2) the threat-priority key (depth-only today; greedy
+>    re-order is global) · (S4) a release filter at
+>    re-assignment (must live in `assignMarks`, not
+>    `PlayerBrain`, else threats go claimed-but-unmarked) ·
+>    (DEFER) rule nothing now — PM-T1's F-PM-a instrument prices
+>    the mark channel's load-bearing share for free, then choose
+>    with numbers. Every narrow fix renegotiates the
+>    `formations.test.ts:143-156` pin and carries the Phase-30
+>    direction instruments (map §5 trap 1). **Commander's
+>    recommendation: DEFER** (有故事就要有探针 — "the mark
+>    swallows the ask" is today a hypothesis; choosing a surface
+>    before PM-T1 is choosing blind).
+> 3. **NEXT on "go"**: dispatch O2-T0 (the #189.4 promise, one
+>    writer). PM-T0 queues behind O2-T0 + the user's 乙 ruling.
+>    Road B intact: zero `src/**` changes this round; fingerprint
+>    unchanged.
