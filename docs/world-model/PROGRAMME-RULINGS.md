@@ -8015,3 +8015,47 @@
 > 4. **甲 QUEUED**: the modulation contract drafts when the map
 >    lands (shared instruments likely). O2-T0 dispatches after
 >    乙 per the one-writer rule.
+
+> **COMMANDER RULING #190 (2026-08-08 — the mark-selection map
+> machine-verify FAIL (two false mechanism claims in the trace;
+> seven smaller); the fix round is the QUEUED NEXT STEP; the
+> core findings stand verified):**
+>
+> 1. **VERIFY FAIL recorded as-is**: the §2.1 trace's step 3
+>    mechanism is FALSE (formations.ts:295-296 is a COMMON
+>    translation — everyone shifts ball-side identically, so
+>    "everyone else shifted" cannot be why the weak-side back
+>    is nearest); the ±12.2 m station number omits widthMul
+>    (true range 6.7–14.0 m); a false team.marks reader claim
+>    (actionExecutor reads targetIdx, one body-tick stale — an
+>    indirection the map understates); an incorrect symbol
+>    (formationBase vs the hardcoded 0.42 literal); an
+>    incomplete chaser-release row (phase-112 transition +
+>    attack-the-drop pick by arrival time); an UNDISCLOSED
+>    branch dependency (every formations.ts citation lives in
+>    emergentStation; the legacy path differs); an unmeasured
+>    "dominant" ranking; one mild prescription; line-range slop.
+> 2. **VERIFIED AND STANDING (the load-bearing negatives)**:
+>    mark selection contains NO ball-distance / threat-to-ball
+>    / lane-relevance term (the only score is body-to-threat
+>    distance; threats sorted by DEPTH alone); NO retention
+>    state (the map is cleared + rebuilt 2.5×/s — the glue is a
+>    FIXED POINT of identical geometry, matching the zero-
+>    switch receipts); the 22 m range gate exceeds HALF_W
+>    20.3 m; the armed worlds' unglue = the station eye
+>    REPLACING the stance target for 3 s while assignment stays
+>    untouched; formations.test.ts PINS today's far-side
+>    tracking as a contract (a narrow fix must renegotiate that
+>    pin). Six candidate fix surfaces inventoried with blast
+>    radii (S1 lane term in the score · S2 the priority key ·
+>    S3 the range gate (no-fallback trap) · S4 a release
+>    condition (must live in re-assignment) · S5 the stance
+>    (carries two prior reverts) · S6 the defensive station's
+>    lateral term = the 甲 surface).
+> 3. **QUEUED NEXT STEP (fires on "go" or session resume)**:
+>    the fix round (all nine findings, the #187-fix form:
+>    corrections marked in place) + re-verify → #191 banks the
+>    map → the commander drafts 甲 (the defensive-phase
+>    modulation contract, whose phase-0 shares this map) and
+>    presents the 乙-fix-scope decision WITH the corrected map.
+>    O2-T0 dispatches after per the one-writer rule.
