@@ -7681,3 +7681,37 @@
 >    adjudication — a fork to the user either way it lands;
 >    the three §3 debts fixed + tested in the same commit.
 >    Seeds continue in the reserved band; Road B throughout.
+
+> **COMMANDER RULING #181 (2026-08-08 — O1-T2 machine-verify
+> FAIL (three MEDIUMs incl. a REPEAT of the #180.1 receipt
+> gap); a STANDING RECEIPT RULE set; fix round dispatched; the
+> launch N fixed at the declared cap):**
+>
+> 1. **VERIFY FAIL recorded as-is**: (M1) the doc claims every
+>    smoke paired contrast is null while the committed artifact
+>    shows reception-to-release median RESOLVED +0.0455 s
+>    [+0.0257, +0.0667] — the seam visibly biting, misreported;
+>    (M2) G-IDENT frozen over three league seeds but only 1337
+>    carries a committed receipt — a REPEAT of #180.1; (M3) the
+>    F-O1b block mixes pooled levels with paired deltas. Five
+>    LOWs: the unreachability step-3 overstatement, spReleases
+>    counts every performPass (kickoff/seam included) while
+>    labelled cut-1, a last-decimal band-edge print, no
+>    non-zero exit on gate failure under nohup, a mixed-source
+>    smoke table.
+> 2. ⭐ **STANDING RECEIPT RULE (process, binding on every
+>    future stage)**: a HARD gate's evidence must be a
+>    COMMITTED, recomputable artifact — for multi-seed
+>    byte-identity that means all seeds' hashes computed
+>    in-probe (or a committed receipts JSON), never a hash
+>    typed into a doc. Twice caught is a pattern; the rule
+>    retires it.
+> 3. **DISPOSITION**: fix round (all eight findings; reconcile
+>    the 800-vs-1000 cap language between doc and probe; commit
+>    the G-IDENT receipts properly) + independent re-verify.
+>    **LAUNCH N RULED = 1,000** (the declared block
+>    12,303,000–12,303,999, cap binding): paired-goals MDE
+>    ≈0.151 — resolves a C7-T2-sized (+0.2) effect; F-O1a reads
+>    the armed ABSOLUTE point (SE ≈0.05 vs half-width 0.36);
+>    disclosed rather than re-cut. The fork on any tempo
+>    outcome stays the user's (F-O1b).
