@@ -4,7 +4,7 @@
   "contract": "docs/world-model/OUTLET-CONTRACT.md",
   "doc": "docs/world-model/O1-PHASE0-PASS-RELEASE.md",
   "mode": "sizing-smoke",
-  "head": "30f2a7b",
+  "head": "9f8923e",
   "gates": {
     "xSrcZero": {
       "pass": true,
@@ -12,8 +12,8 @@
     },
     "xDet": {
       "pass": true,
-      "digestA": "d50b54dee1e36766885693019a5c0aeee57bc15367b7ecb04f3cf20fcd1e0a92",
-      "digestB": "d50b54dee1e36766885693019a5c0aeee57bc15367b7ecb04f3cf20fcd1e0a92"
+      "digestA": "ccb8498b868d24b7b9629bed14d01212004cf8ff3a88527cf12a308d33937848",
+      "digestB": "ccb8498b868d24b7b9629bed14d01212004cf8ff3a88527cf12a308d33937848"
     },
     "xFpProd": {
       "pass": false,
@@ -28,7 +28,7 @@
       "aboveConsumedCeiling12_299_999": true,
       "censusRange": [
         12300000,
-        12300299
+        12301999
       ],
       "smokeRange": [
         12309900,
@@ -72,6 +72,58 @@
       "releasesPerSimSecond": 0.395411,
       "releasesPerDisplayMinute": 1.05443,
       "ownerDecisionsObserved": 11805
+    },
+    "floors": {
+      "kindFloor": 300,
+      "note": "F-KIND: every pass kind must carry >= KIND_FLOOR releases for its within-kind shares to be read; a kind BELOW the floor is reported as RARE and its shares are labelled underpowered (a finding, never a licence to lower the floor).",
+      "perKind": [
+        {
+          "kind": "shortPass",
+          "count": 1787,
+          "pass": true
+        },
+        {
+          "kind": "cutback",
+          "count": 82,
+          "pass": false
+        },
+        {
+          "kind": "throughGround",
+          "count": 220,
+          "pass": false
+        },
+        {
+          "kind": "throughChip",
+          "count": 112,
+          "pass": false
+        },
+        {
+          "kind": "cross",
+          "count": 53,
+          "pass": false
+        },
+        {
+          "kind": "loftedPass",
+          "count": 9,
+          "pass": false
+        },
+        {
+          "kind": "keeperPunt",
+          "count": 12,
+          "pass": false
+        },
+        {
+          "kind": "keeperThrow",
+          "count": 9,
+          "pass": false
+        },
+        {
+          "kind": "clearance",
+          "count": 8,
+          "pass": false
+        }
+      ],
+      "allPass": false
     },
     "byKind": [
       {
@@ -1287,6 +1339,43 @@
         "cause": "clearances delta with no same-side feet owner (defensive header)"
       }
     ],
+    "classification": {
+      "note": "X-CLASSIFY, COMPUTED: every unit of every release ledger delta (passes, throughBalls, crosses, cutbacks, longBalls, clearances) must be claimed by exactly one kind footprint (EXPECTED_DELTA, read off the mechanics.ts increment sites) or one named exception class. Residual clearance units are attributed to E-HEADER-CLEAR (performClear is reachable only from the ClearBall commit and there is one feet owner per step). Everything else left over — and any negative residual — is unexplained. stats.oneTouch is gated separately by X-ONETOUCH-AGREE and is NOT part of this ledger.",
+      "ledgerKeys": [
+        "passes",
+        "throughBalls",
+        "crosses",
+        "cutbacks",
+        "longBalls",
+        "clearances"
+      ],
+      "ledgerTotals": {
+        "passes": 2284,
+        "throughBalls": 332,
+        "crosses": 53,
+        "cutbacks": 82,
+        "longBalls": 133,
+        "clearances": 107
+      },
+      "ledgerClaimed": {
+        "passes": 2284,
+        "throughBalls": 332,
+        "crosses": 53,
+        "cutbacks": 82,
+        "longBalls": 133,
+        "clearances": 107
+      },
+      "unexplainedByKey": {
+        "passes": 0,
+        "throughBalls": 0,
+        "crosses": 0,
+        "cutbacks": 0,
+        "longBalls": 0,
+        "clearances": 0
+      },
+      "unexplainedReceipts": [],
+      "pass": true
+    },
     "unexplained": 0,
     "perSeed": [
       {
@@ -1435,6 +1524,6 @@
       }
     ]
   },
-  "resultSha256": "b1e5e1f24dcd032e22efb058e5067c9203d7b46ea3d99c8f8f4533dbd6a8f5b0",
-  "wallMsContextOnly": 4135
+  "resultSha256": "2c83a8d65bcbd9f5d93f68f1586735e5679b7c5d50a21c5a80433615656c8409",
+  "wallMsContextOnly": 4733
 }

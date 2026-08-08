@@ -4,7 +4,7 @@
   "contract": "docs/world-model/OUTLET-CONTRACT.md",
   "doc": "docs/world-model/O1-PHASE0-PASS-RELEASE.md",
   "mode": "census",
-  "head": "30f2a7b",
+  "head": "9f8923e",
   "gates": {
     "xSrcZero": {
       "pass": true,
@@ -12,8 +12,8 @@
     },
     "xDet": {
       "pass": true,
-      "digestA": "5741fb24f9e615433d06f0ea46f034fc4f37ddac9c189e28fde0a416b892b7a9",
-      "digestB": "5741fb24f9e615433d06f0ea46f034fc4f37ddac9c189e28fde0a416b892b7a9"
+      "digestA": "2ba79a5c841e378179f6989200a617e3dd89e4eb0af5850fb49c22eebe045d44",
+      "digestB": "2ba79a5c841e378179f6989200a617e3dd89e4eb0af5850fb49c22eebe045d44"
     },
     "xFpProd": {
       "pass": true,
@@ -7646,6 +7646,43 @@
         "cause": "clearances delta with no same-side feet owner (defensive header)"
       }
     ],
+    "classification": {
+      "note": "X-CLASSIFY, COMPUTED: every unit of every release ledger delta (passes, throughBalls, crosses, cutbacks, longBalls, clearances) must be claimed by exactly one kind footprint (EXPECTED_DELTA, read off the mechanics.ts increment sites) or one named exception class. Residual clearance units are attributed to E-HEADER-CLEAR (performClear is reachable only from the ClearBall commit and there is one feet owner per step). Everything else left over — and any negative residual — is unexplained. stats.oneTouch is gated separately by X-ONETOUCH-AGREE and is NOT part of this ledger.",
+      "ledgerKeys": [
+        "passes",
+        "throughBalls",
+        "crosses",
+        "cutbacks",
+        "longBalls",
+        "clearances"
+      ],
+      "ledgerTotals": {
+        "passes": 200758,
+        "throughBalls": 25957,
+        "crosses": 4663,
+        "cutbacks": 7527,
+        "longBalls": 11866,
+        "clearances": 10641
+      },
+      "ledgerClaimed": {
+        "passes": 200758,
+        "throughBalls": 25957,
+        "crosses": 4663,
+        "cutbacks": 7527,
+        "longBalls": 11866,
+        "clearances": 10641
+      },
+      "unexplainedByKey": {
+        "passes": 0,
+        "throughBalls": 0,
+        "crosses": 0,
+        "cutbacks": 0,
+        "longBalls": 0,
+        "clearances": 0
+      },
+      "unexplainedReceipts": [],
+      "pass": true
+    },
     "unexplained": 0,
     "perSeed": [
       {
@@ -19650,6 +19687,6 @@
       }
     ]
   },
-  "resultSha256": "79bee1328385ddd58d75baf9ab61f89fc6bf7add64e77350aa7ed98a1e7bbc03",
-  "wallMsContextOnly": 310985
+  "resultSha256": "64bffd19cae3ebd1fe22ecae5c1de7450d843dee61618e144d5bea2355ad5150",
+  "wallMsContextOnly": 366231
 }

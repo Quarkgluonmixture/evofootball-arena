@@ -98,9 +98,11 @@ const BLOCK = SMOKE ? SMOKE_BLOCK : CENSUS_BLOCK;
 /* the release kinds, frozen                                                  */
 /* ========================================================================== */
 
-/** Every pass-family door the switch (PlayerBrain.ts:968-1032) can open, plus
- *  the two off-switch sites (the kickoff pass, PlayerBrain.ts:160). Shots and
- *  free-kick strikes are NOT pass-family and are excluded by construction (they
+/** Every pass-family door the switch (PlayerBrain.ts:968-1032) can open — seven
+ *  distinct commit statements across six cases — plus the ONE off-switch
+ *  pass-family site, the kickoff pass (PlayerBrain.ts:160). The other
+ *  off-switch release, the penalty (PlayerBrain.ts:110-112), is a SHOT, not
+ *  pass-family. Shots and free-kick strikes are excluded by construction (they
  *  touch neither `stats.passes` nor `stats.clearances`). */
 const KINDS = [
   'shortPass',      // performPass          (mechanics.ts:354 → kickBall 403)
@@ -117,6 +119,19 @@ type Kind = (typeof KINDS)[number];
 
 const CONTEXTS = ['openPlay', 'restart', 'kickoff'] as const;
 type Context = (typeof CONTEXTS)[number];
+
+/** The engine's own release ledgers — the six `team.stats` counters the
+ *  pass-family increment sites touch, and the only counters X-CLASSIFY
+ *  reconciles: `passes` (mechanics.ts:404/494/621/643/679/737),
+ *  `throughBalls` (495), `crosses` (622), `cutbacks` (680),
+ *  `longBalls` (464/738) and `clearances` (909 header / 1515 performClear).
+ *  `oneTouch` is deliberately OUT of this reconciliation — it is gated
+ *  separately and independently by X-ONETOUCH-AGREE; `passesCompleted` /
+ *  `passesForward` are reception-side and conditional, not release ledgers. */
+const LEDGER_KEYS = ['passes', 'throughBalls', 'crosses', 'cutbacks', 'longBalls', 'clearances'] as const;
+type LedgerKey = (typeof LEDGER_KEYS)[number];
+type Ledger = Record<LedgerKey, number>;
+const zeroLedger = (): Ledger => ({ passes: 0, throughBalls: 0, crosses: 0, cutbacks: 0, longBalls: 0, clearances: 0 });
 
 /** Event-keyed exception classes (#49.3). `unexplained` must be exactly 0. */
 const EXCEPTIONS = [
@@ -246,6 +261,11 @@ interface MatchOut {
   exceptions: Record<ExceptionClass, number>;
   receipts: { cls: ExceptionClass; seed: number; tick: number; gid: number; cause: string }[];
   decisionsByOwner: number;      // owner decisions observed (pre-step decisionTimer <= 0 while owning)
+  ledgerTotals: Ledger;          // every unit the engine's own counters moved
+  ledgerClaimed: Ledger;         // units claimed by a classified kind or a named exception
+  unexplained: number;           // X-CLASSIFY: total unmatched ledger units
+  unexplainedByKey: Ledger;
+  unexplainedReceipts: { seed: number; tick: number; side: Side; key: LedgerKey; observed: number; claimed: number; ownerAction: string }[];
 }
 
 const KIND_CARRIES_ONETOUCH_STAT: Record<Kind, boolean> = {
@@ -253,6 +273,22 @@ const KIND_CARRIES_ONETOUCH_STAT: Record<Kind, boolean> = {
   cross: true, loftedPass: true, keeperPunt: true,
   keeperThrow: false, // performKeeperThrow does not increment stats.oneTouch
   clearance: false,   // performClear does not increment stats.oneTouch
+};
+
+/** X-CLASSIFY's expectation table: the EXACT ledger footprint each kind's
+ *  executor leaves, read off the increment sites in `src/sim/mechanics.ts`.
+ *  Every unit of every ledger delta must be claimed by one of these footprints
+ *  or by a named exception class; whatever is left over is `unexplained`. */
+const EXPECTED_DELTA: Record<Kind, Partial<Ledger>> = {
+  shortPass:     { passes: 1 },                                     // 404
+  cutback:       { passes: 1, cutbacks: 1 },                        // 679-680
+  throughGround: { passes: 1, throughBalls: 1 },                    // 494-495
+  throughChip:   { passes: 1, throughBalls: 1, longBalls: 1 },      // 464 + 494-495
+  cross:         { passes: 1, crosses: 1 },                         // 621-622
+  loftedPass:    { passes: 1, longBalls: 1 },                       // 737-738
+  keeperPunt:    { passes: 1, longBalls: 1 },                       // same executor
+  keeperThrow:   { passes: 1 },                                     // 643 — no sub-flag
+  clearance:     { clearances: 1 },                                 // 1515
 };
 
 const KICK_ACTIONS = new Set(['Pass', 'LoftedPass', 'Cross', 'ThrowOut', 'ThroughBall', 'ClearBall']);
@@ -267,6 +303,13 @@ const runMatch = (seed: number): MatchOut => {
     exceptions[cls]++;
     if (receipts.length < 1000) receipts.push({ cls, seed, tick, gid, cause });
   };
+
+  /* ---- X-CLASSIFY bookkeeping: the ledger reconciliation ---- */
+  const ledgerTotals = zeroLedger();
+  const ledgerClaimed = zeroLedger();
+  const unexplainedByKey = zeroLedger();
+  const unexplainedReceipts: MatchOut['unexplainedReceipts'] = [];
+  let unexplained = 0;
 
   /** most recent ownership-acquisition tick per gid, and whether it was a
    *  completed pass from a teammate. */
@@ -321,6 +364,14 @@ const runMatch = (seed: number): MatchOut => {
       oneTouch: t.stats.oneTouch - prevStats[i].oneTouch,
     }));
 
+    /* X-CLASSIFY: every unit of every ledger delta this step must be claimed
+     * below by exactly one kind footprint or one named exception class. */
+    const claimed: [Ledger, Ledger] = [zeroLedger(), zeroLedger()];
+    const claim = (side: Side, delta: Partial<Ledger>): void => {
+      for (const key of LEDGER_KEYS) claimed[side][key] += delta[key] ?? 0;
+    };
+    for (const key of LEDGER_KEYS) { ledgerTotals[key] += d[0][key] + d[1][key]; }
+
     for (const side of [0, 1] as const) {
       const dd = d[side];
       const moved = dd.passes > 0 || dd.clearances > 0;
@@ -328,9 +379,18 @@ const runMatch = (seed: number): MatchOut => {
       if (snap === null || snap.side !== side) {
         // A clearance delta with no feet owner on this side is the defensive
         // header (mechanics.ts:904-910) — an aerial contact, not a kick.
-        if (dd.clearances > 0 && dd.passes === 0) note('E-HEADER-CLEAR', tick, -1, 'clearances delta with no same-side feet owner (defensive header)');
-        else if (snap === null) note('E-NOOWNER', tick, -1, `passes delta ${dd.passes} with no pre-step feet owner`);
-        else note('E-CROSS-SIDE', tick, snap.gid, `delta on side ${side} while side ${snap.side} owned`);
+        if (dd.clearances > 0 && dd.passes === 0) {
+          note('E-HEADER-CLEAR', tick, -1, 'clearances delta with no same-side feet owner (defensive header)');
+          // performClear needs `ball.owner === p` (mechanics.ts:1496), so with
+          // no same-side feet owner EVERY clearance unit here is the header.
+          claim(side, { clearances: dd.clearances });
+        } else if (snap === null) {
+          note('E-NOOWNER', tick, -1, `passes delta ${dd.passes} with no pre-step feet owner`);
+          claim(side, { passes: dd.passes, clearances: dd.clearances });
+        } else {
+          note('E-CROSS-SIDE', tick, snap.gid, `delta on side ${side} while side ${snap.side} owned`);
+          claim(side, dd);
+        }
         continue;
       }
       const actionType = m.allPlayers[snap.gid]?.action.type ?? '';
@@ -346,8 +406,10 @@ const runMatch = (seed: number): MatchOut => {
       else if (dd.clearances > 0 && actionType === 'ClearBall') kind = 'clearance';
       else {
         note('E-HEADER-CLEAR', tick, snap.gid, `clearances delta while owner action was ${actionType}`);
+        claim(side, { clearances: dd.clearances });
         continue;
       }
+      claim(side, EXPECTED_DELTA[kind]);
       // sanity: exactly one kind-flag family may fire per step
       const flagCount = (dd.cutbacks > 0 ? 1 : 0) + (dd.crosses > 0 ? 1 : 0)
         + (dd.throughBalls > 0 ? 1 : 0) + (dd.passes > 1 ? 1 : 0);
@@ -372,6 +434,36 @@ const runMatch = (seed: number): MatchOut => {
         speed: round(snap.speed, 4),
         dribbling: round(snap.dribbling, 4),
       });
+    }
+
+    /* ---- X-CLASSIFY: reconcile, unit by unit ----
+     * Leftover `clearances` units are the defensive header and are attributed
+     * to E-HEADER-CLEAR here too: `performClear` is reachable ONLY from the
+     * `case 'ClearBall'` commit (its sole caller, PlayerBrain.ts:1024) and the
+     * ball has exactly one feet owner per step, so at most ONE unit per side
+     * per step can be a kick — any further unit must be mechanics.ts:909.
+     * Leftover units on EVERY OTHER ledger — and any negative residual — are
+     * `unexplained`: the gate's only escape hatch is a receipt. */
+    for (const side of [0, 1] as const) {
+      for (const key of LEDGER_KEYS) {
+        const resid = d[side][key] - claimed[side][key];
+        if (resid === 0) continue;
+        if (key === 'clearances' && resid > 0) {
+          note('E-HEADER-CLEAR', tick, snap === null ? -1 : snap.gid, `residual clearance unit x${resid} (defensive header alongside a classified release)`);
+          claim(side, { clearances: resid });
+          continue;
+        }
+        unexplained += Math.abs(resid);
+        unexplainedByKey[key] += Math.abs(resid);
+        if (unexplainedReceipts.length < 1000) {
+          unexplainedReceipts.push({
+            seed, tick, side, key,
+            observed: d[side][key], claimed: claimed[side][key],
+            ownerAction: snap === null ? 'no-feet-owner' : (m.allPlayers[snap.gid]?.action.type ?? ''),
+          });
+        }
+      }
+      for (const key of LEDGER_KEYS) ledgerClaimed[key] += claimed[side][key];
     }
 
     /* ---- E-ABORT: the owner committed a kick but no counter moved ---- */
@@ -406,6 +498,11 @@ const runMatch = (seed: number): MatchOut => {
     exceptions,
     receipts,
     decisionsByOwner,
+    ledgerTotals,
+    ledgerClaimed,
+    unexplained,
+    unexplainedByKey,
+    unexplainedReceipts,
   };
 };
 
@@ -458,6 +555,20 @@ const runExperiment = (): Record<string, unknown> => {
   const exceptions = Object.fromEntries(EXCEPTIONS.map((e) => [e, 0])) as Record<ExceptionClass, number>;
   for (const mo of perMatch) for (const e of EXCEPTIONS) exceptions[e] += mo.exceptions[e];
   const receipts = perMatch.flatMap((mo) => mo.receipts).slice(0, 1000);
+
+  /* ---- X-CLASSIFY: the reconciliation, summed over every match ---- */
+  const ledgerTotals = zeroLedger();
+  const ledgerClaimed = zeroLedger();
+  const unexplainedByKey = zeroLedger();
+  for (const mo of perMatch) {
+    for (const key of LEDGER_KEYS) {
+      ledgerTotals[key] += mo.ledgerTotals[key];
+      ledgerClaimed[key] += mo.ledgerClaimed[key];
+      unexplainedByKey[key] += mo.unexplainedByKey[key];
+    }
+  }
+  const unexplained = perMatch.reduce((a, mo) => a + mo.unexplained, 0);
+  const unexplainedReceipts = perMatch.flatMap((mo) => mo.unexplainedReceipts).slice(0, 1000);
 
   /** per-seed numerator/denominator vectors for the cluster bootstrap (#20).
    *  Single pass over `rows` (the seed index is precomputed), so the cost stays
@@ -601,7 +712,16 @@ const runExperiment = (): Record<string, unknown> => {
     },
     exceptions,
     exceptionReceipts: receipts,
-    unexplained: 0,
+    classification: {
+      note: 'X-CLASSIFY, COMPUTED: every unit of every release ledger delta (passes, throughBalls, crosses, cutbacks, longBalls, clearances) must be claimed by exactly one kind footprint (EXPECTED_DELTA, read off the mechanics.ts increment sites) or one named exception class. Residual clearance units are attributed to E-HEADER-CLEAR (performClear is reachable only from the ClearBall commit and there is one feet owner per step). Everything else left over — and any negative residual — is unexplained. stats.oneTouch is gated separately by X-ONETOUCH-AGREE and is NOT part of this ledger.',
+      ledgerKeys: LEDGER_KEYS,
+      ledgerTotals,
+      ledgerClaimed,
+      unexplainedByKey,
+      unexplainedReceipts,
+      pass: unexplained === 0,
+    },
+    unexplained,
     perSeed: perMatch.map((mo) => ({
       seed: mo.seed, releases: mo.releases.length, playedSimSeconds: mo.playedSimSeconds, steps: mo.steps,
     })),
@@ -687,6 +807,8 @@ const r = runA as unknown as {
   byContext: unknown[];
   oneTouchAgreement: Record<string, unknown>;
   exceptions: Record<string, number>;
+  unexplained: number;
+  classification: { ledgerTotals: Ledger; ledgerClaimed: Ledger; unexplainedByKey: Ledger; pass: boolean };
 };
 const out2 = (s: string): void => { process.stdout.write(`${s}\n`); };
 out2('');
@@ -706,7 +828,12 @@ for (const k of r.byKind) {
 }
 out2('');
 out2(`one-touch agreement (window read vs stats.oneTouch): agree ${r.oneTouchAgreement.agree} · disagree ${r.oneTouchAgreement.disagree} · notCarried ${r.oneTouchAgreement.notCarried}`);
-out2(`exceptions: ${EXCEPTIONS.map((e) => `${e} ${r.exceptions[e]}`).join(' · ')} → unexplained 0`);
+out2(`exceptions: ${EXCEPTIONS.map((e) => `${e} ${r.exceptions[e]}`).join(' · ')}`);
+out2(
+  `X-CLASSIFY ${r.classification.pass ? 'PASS' : 'FAIL'} — ledger units ${LEDGER_KEYS.map((k) => `${k} ${r.classification.ledgerTotals[k]}`).join(' · ')}`,
+);
+out2(`  claimed ${LEDGER_KEYS.map((k) => `${k} ${r.classification.ledgerClaimed[k]}`).join(' · ')}`);
+out2(`  → unexplained ${r.unexplained} (${LEDGER_KEYS.map((k) => `${k} ${r.classification.unexplainedByKey[k]}`).join(' · ')})`);
 out2(`ALL: ${JSON.stringify(r.allReleases)}`);
 out2(`OPEN PLAY: ${JSON.stringify(r.openPlayReleases)}`);
 out2(`context: ${JSON.stringify(r.byContext)}`);

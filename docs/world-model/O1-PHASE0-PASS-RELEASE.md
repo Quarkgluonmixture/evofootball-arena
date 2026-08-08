@@ -16,7 +16,14 @@ and [`C7-T0-SHOT-RELEASE.md`](C7-T0-SHOT-RELEASE.md) (the form this doc follows)
 · [`C7-T1-PENDINGKICK.md`](C7-T1-PENDINGKICK.md) (the certified shot seam this
 map measures the pass family against).
 
-Date: 2026-08-08. Anchored at HEAD `30f2a7b`.
+Date: 2026-08-08. Anchored at HEAD `30f2a7b`; **corrected and re-run at HEAD
+`9f8923e` under commander ruling #177** (machine-verify FAIL → fix round). Six
+corrections, each marked in place: the false clearance-cooldown claim
+(§P1.4 ×2, §P1.5 — `performClear` takes the same `KICK_COOLDOWN` 0.45 as every
+other kind), the X-CLASSIFY gate (was a hardcoded literal, now a computed
+reconciliation — §P2.9, and the census re-run on it), the commit-statement count
+(SEVEN, not six — §P1.0/§P1.2), the smoke's shot-population ratio (7.2×, not
+"~10×" — §P2.10), and the missing `firstTouchWindow` initialiser (§P1.3 W6).
 
 **This document proposes nothing.** It records where the code is, what the code
 already charges, and how large each population is. Which kinds enter O1's first
@@ -38,8 +45,10 @@ the certified C7 shot seam**: the decision switch assigns `p.action` and calls
 `match.perform*` on the next line (`PlayerBrain.ts:967-1032`, whose own comment
 reads *"Kicks resolve instantly"*), so the interposition seam C7 opened at
 `PlayerBrain.ts:1019` (`match.armPendingKick`) is structurally available at
-every one of them (the nine kinds collapse to **six distinct switch commit
-lines** plus one off-switch site) — but the pass family adds three things shots
+every one of them (the nine kinds collapse to **SEVEN distinct switch commit
+statements across six `case` labels** — `case 'Pass'` carries two separate
+statements, `performCutback` at `972` and `performPass` at `975` — plus one
+off-switch site, the kickoff pass) — but the pass family adds three things shots
 do not have:
 **restart takers share the open-play door** (a pass-family free kick is
 `performPass`, not a separate `performFreeKick`), **the one-touch window is
@@ -110,13 +119,13 @@ The C7 machinery, and exactly what transfers:
 
 | C7 object | file:line | state at HEAD | transfers to passes? |
 | --- | --- | --- | --- |
-| the fork point | `PlayerBrain.ts:1013-1020` — `else if (match.c7Windup) match.armPendingKick(p, goal)` | shots only, `c7Windup` OFF in production (`Match.ts:996`) | **the SHAPE transfers** — a one-line fork on the commit statement, at each of the six distinct pass commit lines (P1.1); `keeperThrow`'s status as a kick is recorded AMBIGUOUS, not resolved |
+| the fork point | `PlayerBrain.ts:1013-1020` — `else if (match.c7Windup) match.armPendingKick(p, goal)` | shots only, `c7Windup` OFF in production (`Match.ts:996`) | **the SHAPE transfers** — a one-line fork on the commit statement, at each of the **seven** distinct pass commit statements (P1.1: six `case` labels, with `case 'Pass'` carrying two); `keeperThrow`'s status as a kick is recorded AMBIGUOUS, not resolved |
 | `armPendingKick` | `Match.ts:1828-1849` | reads only `|v|`, `|ω|` (via the c6 heading ring) and `dribbling`; sets `pendingKick` and `faceTarget` | **the mechanism transfers**; the AIM is `goal` for shots — a pass aim is a moving mate/lead point computed INSIDE `perform*`, not available at the commit line for most kinds (`lead` is built at `mechanics.ts:374, 460/472, 576-598, 638, 663, 732`) ⇒ **an aim-shaped mismatch, recorded** |
 | `resolvePendingKick` | `Match.ts:1861-1873`, called at `Match.ts:1139` (head of tick, before brains/physics) | re-checks `phase`/owner/`sentOff`/`stunTimer`/`kickCooldown`, then `performShot` | the resolve-site transfers; the strike call would have to fan out to nine `perform*` and re-derive the target |
 | the **single-slot** `pendingKick` | `Match.ts:564` — one nullable slot for the whole match | sufficient for shots (only the ball owner can arm) | ⚠ **TRAP** — `armPendingKick` overwrites the slot unconditionally (`1844`), and `resolvePendingKick` nulls it at `readyTick` even when it does not strike (`1864` then the `1868-1871` bail). At ~9 shots/match a collision is unreachable; at the pass volumes in §P2 it is not |
 | the re-decide lock | `PlayerBrain.ts:38-47` | a winding-up body cannot re-decide **while it still owns the ball** | transfers verbatim; note the lock is gated on `match.c7Windup`, so it is inert for a pass seam unless that flag (or a new explicit one — FLAG HYGIENE) gates the pass seam too |
 | the executor hold | `actionExecutor.ts:1077-1084` | plants the body (`speedF = 0.22`) and drives `faceTarget` to the aim during the window | transfers; note the ordinary kick follow-through case (`actionExecutor.ts:470-479`, *"Kick already happened at decision time"*) covers `Pass \| LoftedPass \| ThroughBall \| Cross \| Shoot \| ClearBall` — **`ThrowOut` has no case at all** and falls through on the initialised `target = null` (`actionExecutor.ts:96`) |
-| the W law | `Match.ts:131-152` (`c7WindupTicks`, MID bracket: base 0.06, move 0.05, turn 0.05, tech 0.05, floor 0.05, cap 0.18, clamped to 3–11 ticks) | frozen, certified for shots | the FUNCTION transfers unchanged (it reads only the body); whether its constants suit ~10× the volume is a scope question the census sizes, not this map |
+| the W law | `Match.ts:131-152` (`c7WindupTicks`, MID bracket: base 0.06, move 0.05, turn 0.05, tech 0.05, floor 0.05, cap 0.18, clamped to 3–11 ticks) | frozen, certified for shots | the FUNCTION transfers unchanged (it reads only the body); whether its constants suit **7.6×** the volume (§P2.11's measured ratio, 100.782 releases/match vs 13.20 shots/match — 11.2× the certified v1 shot seat) is a scope question the census sizes, not this map |
 
 The reception-side precedent the C7 map named is unchanged, at HEAD lines:
 `pendingControl` is declared `Match.ts:799`, **set** at `Match.ts:3020-3025`
@@ -140,6 +149,7 @@ This is the complete inventory of every place the field is written or read in
 | W3 | **consumed** | `Match.ts:1595` inside `kickBall` — `p.firstTouchWindow = 0` | **any** kick consumes it, on all nine kinds and on shots |
 | W4 | decay | `Player.ts:369`, inside `physicsStep` (`Player.ts:270`) — `max(0, w − dt)` | 0.28 s ≈ 17 ticks of life |
 | W5 | reset | `Player.ts:258` (sub-on/reset path) · `Player.ts:398` (`resetForKickoff`) | housekeeping |
+| W6 | **declaration / initialiser** | `Player.ts:118` — the class field `firstTouchWindow = 0` (declared with its Phase-31.9 comment at `112-117`) | every body starts with the window CLOSED; this is the field's only other write site and it completes the inventory (added under ruling #177 — the #176 draft's "every place the field is written or read" omitted it) |
 | R1 | **read → price** | `mechanics.ts:263-264` `oneTouchMul` = `w > 0 ? 1.15 + (1 − dribbling)·0.9 : 1` | the accuracy tax. Consumed at `mechanics.ts:391` (shortPass), `487` (throughGround), `530` + `535` (`loftKick` — cross · throughChip · loftedPass · keeperPunt · **keeperThrow**), `674` (cutback) |
 | R2 | read → telemetry | `mechanics.ts:395` (shortPass) · `447` (throughBall, *"read before any kick consumes it"*) · `599` (cross) · `676` (cutback) · `733` (loftedPass) | the `oneTouch` local that increments `team.stats.oneTouch` (`404-405`, `496`, `623`, `681`, `739`) |
 | R3 | read → **gate** | `PlayerBrain.ts:837` — the C5-T2 whether-seat requires `p.firstTouchWindow <= 0` | dormant (`whetherEye` null in production) |
@@ -188,7 +198,7 @@ as `tec`; the shot family passes `dribbling`** (`mechanics.ts:1259/1268` vs
 | loftedPass | `loftKick` `521` | `534` | `531` | `530` + `535` | `aerialSwing` (`735`) |
 | keeperPunt | as loftedPass (same function) | ✔ | ✔ | ✔ | as loftedPass |
 | keeperThrow | `loftKick` `521` | `534` | `531` | `530` + `535` | `noiseMul` argument 0.45 — **half a kicked ball's spray** (`642`) |
-| **clearance** | ⚠ **BESPOKE**: `mechanics.ts:1512` uses `kickMisalignment` inline as `23 · (1 − misalign·0.15·(1 − passing·0.4))` | ❌ not called | ❌ not called | ❌ not called | fixed lateral scatter (`1502`), a flat `rng.gaussian()·0.08` aim spray (`1504`), `rng.range(3.2, 5.4)` loft (`1513`), and `kickCooldown = 0.3` (`1528`) instead of `KICK_COOLDOWN`'s 0.45 |
+| **clearance** | ⚠ **BESPOKE**: `mechanics.ts:1512` uses `kickMisalignment` inline as `23 · (1 − misalign·0.15·(1 − passing·0.4))` | ❌ not called | ❌ not called | ❌ not called | fixed lateral scatter (`1502`), a flat `rng.gaussian()·0.08` aim spray (`1504`), `rng.range(3.2, 5.4)` loft (`1513`). ⚠ **CORRECTION (ruling #177 verify):** an earlier draft of this row claimed clearance stamps its own `kickCooldown = 0.3` at `mechanics.ts:1528`. **That is false.** `performClear` stamps NOTHING itself: it releases through `match.kickBall` (`mechanics.ts:1509`), which sets `kickCooldown = KICK_COOLDOWN` = **0.45** at `Match.ts:1594` exactly like the other eight kinds. `mechanics.ts:1528` belongs to a **different function**, `tryDeflection` (`mechanics.ts:1524-1544`), and stamps the DEFLECTOR, not the clearer. The regather lock is UNIFORM across all nine kinds; only the misalignment pricing is bespoke |
 
 ### ⚠ THE NO-TOUCH LIST (what O1 must not re-charge)
 
@@ -205,8 +215,13 @@ as `tec`; the shot family passes `dribbling`** (`mechanics.ts:1259/1268` vs
 4. **Weight/execution** — `executedPassPower` (`347-352`), the `bentKick`
    weight error (`335`), the `loftKick` range error (`535`).
 5. **Post-release regather** — `KICK_COOLDOWN = 0.45` (`constants.ts:282`, set
-   `Match.ts:1594`); clearance's own `0.3` (`mechanics.ts:1528`). These are
-   AFTER the kick and are not wind-ups.
+   at the single site `Match.ts:1594` inside `kickBall`). It is AFTER the kick
+   and is not a wind-up. ⚠ **CORRECTION (ruling #177 verify):** an earlier draft
+   added "clearance's own `0.3` (`mechanics.ts:1528`)" as a second entry here.
+   There is no such stamp — `performClear` goes through `kickBall` and takes the
+   same 0.45; `1528` is `tryDeflection`'s stamp on the DEFLECTOR. **That
+   sub-item is withdrawn**: this list has one regather entry, not two, and the
+   lock is uniform across all nine kinds.
 6. **Craft/spin** — the inswinger (`607`), `aerialSwing` (`699-721`),
    `groundBend` (`288-321`).
 
@@ -214,7 +229,7 @@ as `tec`; the shot family passes `dribbling`** (`mechanics.ts:1259/1268` vs
 
 | surface | file:line | what it does today | what transfers to a pass wind-up |
 | --- | --- | --- | --- |
-| `kickCooldown` | set `Match.ts:1594` (0.45), `mechanics.ts:1528` (clearance 0.3), decays `Player.ts:361` | **POST**-release lock; every `perform*` opens with `if (owner !== p \|\| p.kickCooldown > 0) return` (`mechanics.ts:357, 444, 556, 635, 658, 724, 1496`) | it is the ABORT channel: the same guard is what `resolvePendingKick` re-checks (`Match.ts:1870`). A contact that stamps `kickCooldown` inside a window kills the release with no new term (I3's shape) |
+| `kickCooldown` | set at ONE site on every release path — `Match.ts:1594`, `KICK_COOLDOWN` = 0.45 — including clearance (⚠ the earlier draft's "`mechanics.ts:1528` (clearance 0.3)" is FALSE; `1528` is `tryDeflection`'s stamp on the deflector, see the row below); decays `Player.ts:361`. The field's other writers are all reception / contact / challenge paths, never a pass-family release: `mechanics.ts:209`, `865`, `978` (chest trap 0.3), `1491` (dribble touch), `1528` (`tryDeflection`), `1580`, `1672`, `1867`, `1877`, `1918` (block commit 0.45), `2039` (keeper parry 0.6); `Match.ts:2387`, `3009`, `3040`, `3091`; and the `= 0` resets `Player.ts:248`, `389` | **POST**-release lock; every `perform*` opens with `if (owner !== p \|\| p.kickCooldown > 0) return` (`mechanics.ts:357, 444, 556, 635, 658, 724, 1496`) | it is the ABORT channel: the same guard is what `resolvePendingKick` re-checks (`Match.ts:1870`). A contact that stamps `kickCooldown` inside a window kills the release with no new term (I3's shape) |
 | `decisionTimer` | decays `Player.ts:370`; re-armed to `AI_INTERVAL` at `Match.ts:1199`; overridden at reception `Match.ts:1678` (0.08 / 0.18 / 0.3), one-touch `1724` (0.07), restart taker `Match.ts:2802` (0.12), sub/arrival `2365/2554/3233` (0.05) | gates WHEN the brain runs — it is already a de-facto pre-release delay of 0.07–0.3 s **between reception and the decision** | the wind-up would sit AFTER this, not instead of it. §P2's reception-to-release gap measures the sum of the two as it stands today |
 | the re-decide lock | `PlayerBrain.ts:38-47` | a winding-up body cannot re-decide while it owns the ball; the commitment **lapses the moment it loses the ball** | transfers verbatim (see P1.2) |
 | the tackle channel | `mechanics.ts:1757` `d < 1.15` on `dist(o.pos, ball.pos)` | the existing, ball-keyed interruption channel — the ONLY one a wind-up would expose (C7 I3) | transfers; the census reports nearest-opponent distance at release so the exposure geometry is sized on the pass population |
@@ -432,7 +447,12 @@ This is the population P1.6 trap 1 makes load-bearing.
 
 ## P2.7 Exception classes (event-keyed, per-record receipts #49.3)
 
-`unexplained` must be exactly **0**; receipts capped at 1,000.
+`unexplained` must be exactly **0**; receipts capped at 1,000. Under ruling #177
+`unexplained` is a COMPUTED residual, not a literal: the probe claims each
+ledger unit for a kind footprint or a named class and counts whatever is left
+(§P2.9 X-CLASSIFY has the mechanism and the falsifiability proof). Its own
+receipts (`classification.unexplainedReceipts`: seed, tick, side, ledger key,
+observed, claimed, owner action) are capped at 1,000 the same way.
 
 ```text
 E-HEADER-CLEAR  a stats.clearances delta with no same-side feet owner (or an
@@ -489,7 +509,7 @@ not these readings.
 | **X-DET** | the whole experiment core runs **twice**; canonical digests identical |
 | **X-FP-PROD** | a 2-season headless league on seed 1337 hashes to `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` |
 | **seed disjointness** | proved in-probe: census and smoke ranges disjoint from each other, both strictly above the consumed ceiling 12,299,999, both inside the reserved band |
-| **X-CLASSIFY** | every counter delta maps to exactly one kind or one named exception class; `unexplained` = 0 |
+| **X-CLASSIFY** | every counter delta maps to exactly one kind or one named exception class; `unexplained` = 0. ⚠ **STRENGTHENED under ruling #177:** in the #176 draft `unexplained` was a hardcoded `0` — a gate that could not fail. It is now COMPUTED, unit by unit, over the engine's six release ledgers (`passes`, `throughBalls`, `crosses`, `cutbacks`, `longBalls`, `clearances`): each classified kind claims the exact footprint its executor leaves (`EXPECTED_DELTA` in the probe, read off the `mechanics.ts` increment sites — e.g. throughChip = `passes+1, throughBalls+1, longBalls+1`), each named exception claims the units it explains, and every leftover or negative unit is counted as `unexplained` with a receipt. Residual `clearances` units are attributed to `E-HEADER-CLEAR` on a code proof, not an assumption: `performClear`'s sole caller is the `case 'ClearBall'` commit (`PlayerBrain.ts:1024`) and the ball has one feet owner per step, so at most one clearance unit per side per step can be a kick. `stats.oneTouch` is deliberately outside this ledger — it is gated independently by X-ONETOUCH-AGREE. The gate was proved FALSIFIABLE before the run: perturbing one `EXPECTED_DELTA` row (shortPass `passes: 1 → 0`) turned the smoke to **X-CLASSIFY FAIL, unexplained 1787**; the perturbation was reverted and the smoke re-run |
 | **X-ONETOUCH-AGREE** | the pre-step `firstTouchWindow` read and the engine's own `stats.oneTouch` counter agree on **every** release of the seven kinds that carry the counter; disagreements = 0 |
 | **X-OVERLAP** | reproduces any existing overlapping instrument. **None exists.** `TEMPO-CENSUS` measures spells/receptions/turnovers (its one-touch share is reception-keyed, not release-keyed); `C7-T0` measures SHOTS at the strike; `cross-anatomy` measures cross outcomes; no prior instrument keys on the pass-family RELEASE event by kind. Recorded vacuous with that reason |
 
@@ -498,12 +518,16 @@ measured outside the compared core and excluded from `resultSha256`.
 
 ## P2.10 The pre-freeze sizing smoke (disclosed, #44.5)
 
-Ran 2026-08-08, **24 matches, block 12,309,900**, HEAD `30f2a7b`, read-only,
-twice byte-identical. RATES ONLY — used to derive §P2.4's N and floor, and for
-nothing else. Verbatim:
+Ran 2026-08-08, **24 matches, block 12,309,900**, read-only, twice
+byte-identical. RATES ONLY — used to derive §P2.4's N and floor, and for nothing
+else. First run at HEAD `30f2a7b`; **re-run verbatim below at HEAD `9f8923e`**
+after ruling #177 replaced the X-CLASSIFY literal with a computed
+reconciliation — every count, rate and share is IDENTICAL to the first run (the
+probe's ledger accounting adds no read into the match), only the gate block and
+the digests changed. Verbatim:
 
 ```text
-=== O1 PASS-RELEASE CENSUS (SIZING SMOKE) — HEAD 30f2a7b ===
+=== O1 PASS-RELEASE CENSUS (SIZING SMOKE) — HEAD 9f8923e ===
 matches 24 · block 12309900 · steps 360685 · played simSeconds/match 241.5208
 X-SRC-ZERO PASS · X-DET PASS · X-FP-PROD skipped · seedDisjoint PASS
 ALL pass-family releases: 2292 (95.5/match · 0.395411/simSec · 1.05443/displayMin)
@@ -520,11 +544,14 @@ keeperThrow          9    0.375    0.39      0.46          0         0   4.8333/
 clearance            8   0.3333    0.35       0.4       37.5       100      0.1/   0.2/0.2833       8
 
 one-touch agreement (window read vs stats.oneTouch): agree 2275 · disagree 0 · notCarried 17
-exceptions: E-HEADER-CLEAR 99 · E-NOOWNER 0 · E-CROSS-SIDE 0 · E-MULTI 0 · E-ABORT 0 · E-ENDED 0 → unexplained 0
+exceptions: E-HEADER-CLEAR 99 · E-NOOWNER 0 · E-CROSS-SIDE 0 · E-MULTI 0 · E-ABORT 0 · E-ENDED 0
+X-CLASSIFY PASS — ledger units passes 2284 · throughBalls 332 · crosses 53 · cutbacks 82 · longBalls 133 · clearances 107
+  claimed passes 2284 · throughBalls 332 · crosses 53 · cutbacks 82 · longBalls 133 · clearances 107
+  → unexplained 0 (passes 0 · throughBalls 0 · crosses 0 · cutbacks 0 · longBalls 0 · clearances 0)
 ```
 
 Three things the smoke establishes, carried into §P2.4 only: the release
-population is **~10× the shot population** (95.5/match vs C7-T0's 13.20
+population is **7.2× the shot population** (95.5/match vs C7-T0's 13.20
 shots/match); the rarest kinds sit near 0.33/match (which sets N); and the
 instrument agrees with the engine's own counter on every release (0
 disagreements), which is what licenses the window read as the one-touch
@@ -539,9 +566,21 @@ duration, event-keyed at every step, zero `src/**`. `runExperiment()` invoked
 **twice**, byte-identical. **30,102,446 steps · 483,597 played sim-seconds
 (241.7987 s/match).** Verdict: **GATES PASS.**
 
-* **`resultSha256`** `79bee1328385ddd58d75baf9ab61f89fc6bf7add64e77350aa7ed98a1e7bbc03`
-* **X-DET digest (both runs)** `5741fb24f9e615433d06f0ea46f034fc4f37ddac9c189e28fde0a416b892b7a9`
-* wall **311 s** — `CONTEXT ONLY — USED IN NO RATE`, excluded from `resultSha256`
+⚠ **RE-RUN under ruling #177.** The #176 run (HEAD `30f2a7b`, `resultSha256`
+`79bee132…bc03`, X-DET digest `5741fb24…b7a9`) stood on an X-CLASSIFY gate whose
+`unexplained` was a hardcoded literal. The gate is now computed (§P2.9) and the
+**full census was re-run at HEAD `9f8923e` with the same seeds, block and
+invocation**. Every number below is from the re-run. The re-run is
+**substance-identical to the #176 run** — a key-by-key diff of the two committed
+JSONs, excluding the digests, `head`, the gate block and the new
+`classification` block, is EMPTY: identical release counts, kinds, shares,
+percentiles, CIs, per-seed rows and exception counters. Only the digests and the
+gate block moved (the probe adds ledger bookkeeping, not a single new read into
+the match).
+
+* **`resultSha256`** `64bffd19cae3ebd1fe22ecae5c1de7450d843dee61618e144d5bea2355ad5150`
+* **X-DET digest (both runs)** `2ba79a5c841e378179f6989200a617e3dd89e4eb0af5850fb49c22eebe045d44`
+* wall **366 s** — `CONTEXT ONLY — USED IN NO RATE`, excluded from `resultSha256`
 
 ### Gate table
 
@@ -551,14 +590,17 @@ duration, event-keyed at every step, zero `src/**`. `runExperiment()` invoked
 | **X-DET** | ✅ PASS | two invocations byte-identical, digest above |
 | **X-FP-PROD** | ✅ PASS | 2-season headless league on seed 1337 → `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` |
 | **seed disjointness** | ✅ PASS | census 12,300,000–12,301,999 · smoke 12,309,900–12,309,923 · disjoint · both above the 12,299,999 ceiling · both inside the reserved band |
-| **X-CLASSIFY** | ✅ PASS | every counter delta classified; **unexplained = 0** |
+| **X-CLASSIFY** | ✅ PASS (now on a COMPUTED residual) | 261,412 ledger units observed — `passes` 200,758 · `throughBalls` 25,957 · `crosses` 4,663 · `cutbacks` 7,527 · `longBalls` 11,866 · `clearances` 10,641 — and **261,412 claimed**, unit for unit, by a kind footprint or a named class. **unexplained = 0** on every ledger. The 10,641 clearance units split 806 kicks (`performClear`) + 9,835 headers (`mechanics.ts:909`); the residual sweep fired **0** times, i.e. no header ever landed in the same step as a classified release |
 | **X-ONETOUCH-AGREE** | ✅ PASS | 199,793 agree · **0 disagree** · 1,771 not carried (keeperThrow + clearance) |
 | **X-OVERLAP** | ✅ PASS (vacuous) | no prior instrument keys on the pass-family RELEASE event by kind |
 | **F-KIND (≥ 300/kind)** | ✅ PASS, all nine | thinnest is loftedPass at **670** (2.23× the floor) — the sizing arithmetic landed on the nose |
 
 Exception ledger: **E-HEADER-CLEAR 9,835** (the defensive-header clearance path,
 expected and benign — 4.92/match) · **E-NOOWNER 0** · **E-CROSS-SIDE 0** ·
-**E-MULTI 0** · **E-ABORT 1** · **E-ENDED 0** → **unexplained 0**.
+**E-MULTI 0** · **E-ABORT 1** · **E-ENDED 0** → **unexplained 0, computed** (the
+X-CLASSIFY row above has the unit-by-unit reconciliation; unchanged from the
+#176 run, which is what makes the strengthened gate's verdict a confirmation
+rather than a new number).
 
 > ⚠ Disclosed instrument limitation: receipts are capped at 1,000 per match and
 > then sliced to the first 1,000 globally, and E-HEADER-CLEAR saturates that
