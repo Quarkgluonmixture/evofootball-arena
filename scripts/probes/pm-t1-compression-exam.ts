@@ -454,10 +454,15 @@ function walkMatch(arm: ArmId, seed: number): MatchWalk {
           acc.detach.push(n === 0 ? Number.NaN : Math.hypot(p.pos.x - cx / n, p.pos.y - cy / n));
 
           // §3.2 THE SEND. No station eye is armed in this world (asserted), so the
-          // #188 precedence reduces to its second limb: the station field. The LIVE
-          // send is the MOVER read (`pmMover = true`, exactly what actionExecutor.ts
+          // #188 precedence reduces to its second limb: the station field. The send is
+          // the MOVER read (`pmMover = true` — the same ARGUMENT actionExecutor.ts
           // :145/:336 pass under the armed flag in `playing`); the UNMODULATED read is
           // the same call with the fork off — the within-arm counterfactual.
+          // ⚠ CORRECTION (#197-L6): these two calls are RECOMPUTED COUNTERFACTUAL
+          // station reads made HERE, not values the executor consumed on this tick. On
+          // markStance ticks (≈99.4 % of material-ask ticks in the fixed smoke) the
+          // executor never calls formationSpot at all — which is exactly the wedge the
+          // swallow instrument below and F-PM-a exist to expose.
           const askMod = formationSpot(p, dTeam, m.ball, false, aTeam, false, true);
           const askUnmod = formationSpot(p, dTeam, m.ball, false, aTeam, false, false);
           acc.distToSend.push(Math.hypot(p.pos.x - askMod.x, p.pos.y - askMod.y));
@@ -1168,7 +1173,10 @@ const body = {
   seam: 'docs/world-model/PM-T0-DORMANT-SEAM.md',
   ruling: '#196.5 (the dispatch) · #196.3-D4 (the arming checklist) · #196.3-D6 (the gene channel) '
     + '· #181.2 (committed recomputable receipts) · #194/#196 (gate semantics stated exactly)',
-  mode: MODE, head, verdict,
+  // ⚠ CORRECTION (#197-M1): `head` USED to live here, INSIDE the hashed body — which made
+  // resultSha256 un-re-derivable at any later commit even though every measured number
+  // reproduced byte-identically. It now rides the envelope, unhashed, the wallMs form.
+  mode: MODE, verdict,
   frozenDesign: {
     doses: ARM_IDS.map((a) => ({ arm: a, gene: doseOf(a), kPm: round(kOf(a), 6) })),
     kCeiling: PM_LANE_CONVERGENCE_MAX,
@@ -1246,14 +1254,26 @@ const body = {
       + 'and the fingerprint is re-derived unchanged (X-FP-PROD).',
   ],
 };
-/** ⭐ #181.2: `resultSha256` hashes ONLY the timing-free body, so it is RECOMPUTABLE by
- *  re-running this probe. Wall-clock numbers (which move between runs of the same
- *  block) live OUTSIDE the hash, the PM-T0 `wallMsContextOnly` form. */
+/** ⭐ #181.2 + ⚠ CORRECTION (#197-M1): `resultSha256` hashes ONLY the timing-free AND
+ *  commit-free MEASURED body, so a third party re-running this probe at ANY commit
+ *  re-derives it. Two classes ride OUTSIDE the hash, both RECORDED in the envelope:
+ *  wall-clock numbers (they move between runs of the same block) and the git short-hash
+ *  `head` (it moves with the repo, not with the measurement) — the PM-T0
+ *  `wallMsContextOnly` form, extended to `headContextOnly`.
+ *  The one remaining git-derived field still INSIDE the hash is `gates.xSrcZero`
+ *  (`git diff --stat -- src`), and deliberately so: it is a GATE OUTPUT (empty on any
+ *  clean tree at any commit), not a commit identifier. In full mode
+ *  `nDerivation.smokeArtifactSha256` also stays inside the hash — it is the N's
+ *  provenance, and re-deriving it is exactly the audit this receipt is for. */
 const resultSha256 = createHash('sha256').update(canonical(body)).digest('hex');
 writeFileSync(OUT_PATH, `${JSON.stringify({
   ...body,
   resultSha256,
   sizing: sizingOut,
+  headContextOnly: head,
+  headNote: 'CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree '
+    + 'this run was launched from. It is recorded for provenance and hashed NOWHERE, so the '
+    + 'receipt re-derives at any later commit.',
   wallContextOnly: {
     corePassMs: passMs, totalMs: Date.now() - wall0,
     note: 'CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the '

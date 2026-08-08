@@ -5,7 +5,6 @@
   "seam": "docs/world-model/PM-T0-DORMANT-SEAM.md",
   "ruling": "#196.5 (the dispatch) · #196.3-D4 (the arming checklist) · #196.3-D6 (the gene channel) · #181.2 (committed recomputable receipts) · #194/#196 (gate semantics stated exactly)",
   "mode": "smoke",
-  "head": "cc82609",
   "verdict": "SMOKE — PLUMBING ONLY; ADJUDICATES NOTHING",
   "frozenDesign": {
     "doses": [
@@ -2662,9 +2661,9 @@
     "The arms diverge tick-for-tick, so PAIRING IS ON THE SEED, not on the episode: each seed contributes one paired delta per dose, and the bootstrap clusters on the seed.",
     "PM-T1 claims nothing about production: nothing ships, the flag is absent from every bundle, and the fingerprint is re-derived unchanged (X-FP-PROD)."
   ],
-  "resultSha256": "56588f04d4593c6b7c9e3eee68d8ffec51bb13ef2c1805d03efb42c41ea2c564",
+  "resultSha256": "900b7efa2cae81c55d2c08ebc789d5b116cc132a536b66d3a6cdd3b9170a0182",
   "sizing": {
-    "msPerMatch": 105.933,
+    "msPerMatch": 110.367,
     "pairYieldByDose": {
       "D025": 0.3333,
       "D050": 0.3333,
@@ -2674,9 +2673,11 @@
     "pairYieldMin": 0.3333,
     "provenance": "THE SMOKE'S TWO SIZING NUMBERS — ms/match and the MINIMUM paired-ask yield over the four doses. These are the ONLY numbers a FULL run reads out of this artifact, and they feed ONLY N. THE SMOKE ADJUDICATES NOTHING."
   },
+  "headContextOnly": "4eab062",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run was launched from. It is recorded for provenance and hashed NOWHERE, so the receipt re-derives at any later commit.",
   "wallContextOnly": {
-    "corePassMs": 3178,
-    "totalMs": 17363,
+    "corePassMs": 3311,
+    "totalMs": 18139,
     "note": "CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
   }
 }

@@ -8,6 +8,17 @@ which adjudicate **nothing** and tune **no** threshold, and (b) constants quoted
 published, committed prior stages with their citations. §RESULT is empty by design:
 the commander launches the full battery detached per §0.0.4 and adjudicates it.
 
+⚠ **FIX ROUND, ruling #197.4 (2026-08-08).** #197's machine-verify FAILed this build on
+**six evidence-reporting findings** (2 MEDIUM + 4 LOW) while verifying the DESIGN
+contract-faithful end to end. All six are corrected **in place** below, each marked
+**⚠ CORRECTION** with the old claim left readable: M1 the hashed body's `head` (§SMOKE),
+M2 the asymmetrically abridged transcript (§SMOKE), L3 the N-input provenance (§4), L4
+the p50-as-mean substitution (§4), L5 the two non-verbatim inheritances (§5.3, §5.4),
+L6 §5.1's live-consumption wording. **The frozen exam design did not move**: no gate,
+predicate, tolerance, dose, seed or the N rule was touched. The smoke was re-run on its
+own already-consumed seeds (12,311,200–205) — a plumbing re-measurement, not an exam —
+and the N rule's re-evaluated output on it is disclosed in §4 (**N\* = 650, unchanged**).
+
 Authority chain: contract
 [`PHASE-MODULATION-CONTRACT.md`](PHASE-MODULATION-CONTRACT.md) — §1 **H-PM** (the
 claim) · §2 **M-PM.1–5** (the term, the phase gate, the read fork, perception
@@ -167,6 +178,15 @@ N*         = min( ceil(pairsNeeded / pairYield) rounded UP to 25,
   clusters**. Prod is the **widest** of its four published worlds; taking the widest
   is the conservative choice. `halfWidth188 = 0.195` ⇒ `σ_perSeed = 2.6325 m`,
   `σ_delta = 3.7229 m`, **`pairsNeeded = 213`**.
+  ⚠ **CORRECTION (#197-L4) — the p50-vs-mean substitution, disclosed.** The interval
+  quoted above is #188's CI for a **MEDIAN** (`sendLatGapMean`'s p50 across per-seed
+  clusters), and this rule uses it **as if it were a mean's** CI to back out σ. That
+  substitution was undisclosed in the pre-registered text; it is stated here plainly.
+  **Direction: conservative.** For a roughly symmetric, non-degenerate distribution the
+  median's sampling variance is the larger one (≈ π/2 × the mean's in the Gaussian
+  case), so σ backed out of a median interval **over**-states the mean's σ and the rule
+  **over-sizes N**. Nothing in the rule, its inputs or its output is changed by this
+  disclosure — it is a label on a number that was already frozen.
 * **The `√2` inflation is conservatism, not a measurement**: it treats the two arms
   as independent, which *over*-states the variance of a paired same-seed delta.
 * **The target half-width 0.5 m is frozen against the mechanism's own analytic
@@ -176,10 +196,34 @@ N*         = min( ceil(pairsNeeded / pairYield) rounded UP to 25,
   (the #188 §4.3 form: *the smoke informs only N*). `pairYield` = the **minimum over
   the four doses** of the share of seeds yielding a paired (control, dose) ask value —
   necessary because the trigger is rare (#188: ≈1.2–1.5 episodes/match) and the arms
-  diverge, so arm coverage is per-seed ragged **by construction**. Committed smoke:
-  `msPerMatch 105.933`, `pairYieldMin 0.3333`.
-* **N* = 650** — `ceil(213/0.3333) = 640 → 650`; wall term **6,796**; cap **700**.
-  **The PRECISION term binds** (`bindingTerm = precision`); projected wall **0.191 h**.
+  diverge, so arm coverage is per-seed ragged **by construction**.
+  ⚠ **CORRECTION (#197 fix round) — the smoke inputs are now the FIXED smoke's.**
+  Superseded reading (the `94eba83` smoke, left readable): `msPerMatch 105.933`,
+  `pairYieldMin 0.3333`. **This round's committed smoke: `msPerMatch 110.367`,
+  `pairYieldMin 0.3333`** — the re-run is a plumbing re-measurement on the SAME
+  consumed seeds (12,311,200–205), and ms/match is a box-speed number that moves
+  between runs by construction.
+* **N* = 650** — `ceil(213/0.3333) = 640 → 650`; wall term **6,523**; cap **700**.
+  **The PRECISION term binds** (`bindingTerm = precision`); projected wall **0.199 h**.
+  ⚠ **The N RULE was NOT touched; this is its re-evaluated OUTPUT on the fixed smoke**
+  (old inputs `105.933 / 0.3333` → wall term 6,796, projected wall 0.191 h; new inputs
+  `110.367 / 0.3333` → wall term 6,523, projected wall 0.199 h). **N* is 650 in both** —
+  the precision term binds in both, and the precision term reads only `pairYieldMin`,
+  which did not move. A changed N would have been the rule's output, not a re-cut.
+* ⚠ **CORRECTION (#197-L3) — where the N inputs are actually read from.** The FIXED
+  committed smoke artifact is
+  [`data/pm-t1-compression-exam-smoke.json`](data/pm-t1-compression-exam-smoke.json),
+  file sha256
+  **`ac6c9042a06e98f07f9a2d8b2d0b2e25f7992ae02866024615826d7a717e49c0`**
+  (of the artifact BYTES as committed this round; distinct from the artifact's own
+  `resultSha256`, which covers the measured body only). Stated honestly: full mode
+  reads the **WORKING-TREE** file at that path — not the committed blob — and records
+  the sha256 of the bytes it actually read into the full artifact as
+  `nDerivation.smokeArtifactSha256`. So the provenance is **discipline-enforced and
+  sha-audited, not git-enforced**: a re-run of the smoke before launch would silently
+  change N's inputs, and the only thing that catches it is comparing the full run's
+  recorded `smokeArtifactSha256` against the pinned value above. Do that comparison at
+  adjudication.
 * **The cap, stated honestly**: `N_CAP = 700` is the reserved band 12,311,300–999. It
   is a **seed-budget** cap, not a statistical statement. It does not bind here; if it
   ever did, the achieved half-width would be wider than the target and that shortfall
@@ -190,6 +234,15 @@ N*         = min( ceil(pairsNeeded / pairYield) rounded UP to 25,
 * N is fixed by the **committed** smoke artifact. Re-running the smoke changes
   nothing unless the artifact is re-committed — which would be a re-cut, and is
   forbidden.
+  ⚠ **CORRECTION (#197-L3 / #197.4).** Two things in that sentence need saying
+  precisely. (a) Mechanically the probe reads the **working-tree** file, so a bare
+  re-run *does* change the inputs a subsequent full run would use — the protection is
+  the discipline plus the recorded `smokeArtifactSha256`, not git (above). (b) This fix
+  round DID re-run and re-commit the smoke, **under ruling #197.4 and before any full-N
+  number existed**: it is an evidence-layer re-measurement of the plumbing on its own
+  already-consumed seeds, with the N RULE untouched and its re-evaluated output
+  disclosed. That is the one authorised exception, and it is not a re-cut: no
+  threshold, tolerance, predicate, dose or seed moved, and N* is unchanged at 650.
 
 ## §5 ⭐ THE FROZEN GATES — verbatim predicates, with their numbers
 
@@ -212,8 +265,31 @@ PRIMARY := P1 ∧ P2a ∧ P2b
 
 `ask` = `sendLatGapMean` = `|sendTarget.y − ball.pos.y|` on in-trigger ticks — #188
 §3.3's own definition, the metric that read **18–20 m** in all four worlds. The send
-is the **MOVER read** (`formationSpot(..., pmMover = true)`), i.e. exactly what
-`actionExecutor.ts:145` / `:336` pass under the armed flag in `playing`.
+is the **MOVER read** (`formationSpot(..., pmMover = true)`), i.e. the same call shape
+`actionExecutor.ts:145` / `:336` make under the armed flag in `playing`.
+
+⚠ **CORRECTION (#197-L6) — what the ask IS, exactly.** The wording above (and the
+superseded phrasing "exactly what `actionExecutor.ts:145` / `:336` pass") reads as a
+**live-consumption** claim: that the number measured is a target the executor was
+consuming on those ticks. It is not, and must not be read that way. The ASK is a
+**RECOMPUTED COUNTERFACTUAL STATION READ**: on every in-trigger tick the probe calls
+`formationSpot(..., pmMover = true)` itself and records where the station **would**
+send him. On the ticks that dominate this seam the executor is in a **mark stance** and
+never calls `formationSpot` at all — the fixed smoke measured **markStance ≈ 99.4 %**
+of material-ask ticks at D100 (n = 6, plumbing only, adjudicates nothing).
+
+Two things survive that correction intact, and one dies:
+
+* **ALIVE — the `pmMover` ARGUMENT claim.** The probe's read passes `pmMover = true`,
+  which is the same argument the executor passes at `:145` / `:336`; the M-PM.1 branch
+  and `k_PM` under measurement are the live ones, not a probe-side reimplementation.
+* **ALIVE — the PRIMARY as contracted.** H-PM claims the **ASK** moves; §3 of the
+  contract measures the ask **separately** from the body precisely because the two can
+  come apart.
+* **DEAD — any implication that a moving ask is by itself a moving defence.** The gap
+  between "the station would send him here" and "his body goes there" is exactly the
+  **wedge** the swallow instrument (§5.3) quantifies and **F-PM-a** is pre-named to
+  catch. If that wedge is total, PM-T1's honest result is F-PM-a, not a success.
 
 **P2b is the exact dose-response test** (the dispatch asked for it by name): for each
 seed, an ordinary least-squares slope of that seed's ask on `k_PM`, fitted over the
@@ -265,6 +341,21 @@ CI predicates alone.
 #188 artifacts already carry. `switchKey` is **not computed anywhere in this probe**
 (§8.4 retraction; map §5 trap 7).
 
+⚠ **CORRECTION (#197-L5b) — the steer taxonomy is #188's SPLIT, not #188's.** #188's
+D2 mix has four buckets in precedence order — `eyeOverride` > `markStance` >
+`stationHome` > `ballDirected` — where **`markStance` = any `MarkOpponent` tick**. This
+probe **splits that bucket in two**: `markStance` (a `MarkOpponent` whose target index
+resolves to a live opponent) vs **`markFallback`** (`MarkOpponent` with no resolvable
+target — the M-PM.3 mover read #2 fallback, where the station *is* still steering him).
+Consequences, stated: (a) the per-arm **`steerMix` reported in §5.6 is NOT
+bucket-comparable to #188's D2 mix** — e.g. #188's prod `markStance 81.5 %` is the
+union of this probe's `markStance + markFallback`, so any cross-reading must add the
+two before comparing; (b) inside the swallow instrument the split is deliberate and
+load-bearing — `markFallback` is counted with `stationWalk`, **not** with the swallowed
+share, because a fallback tick is a tick the station still owns; (c) `eyeOverride` is
+empty here **by construction** (`stationEye === null`, §2.3), which is a fifth
+difference from #188's armed worlds and is not evidence about anything.
+
 ### §5.4 F-PM-b — the clump re-imports ⇒ **STOP**
 
 The guard limbs, in the **S2 non-inferiority form** and with the S2 tolerance:
@@ -301,11 +392,24 @@ limb, exactly as the S2 degeneracy clause requires.
   sampled at 6 Hz and split by **possession**. The **out-of-possession** face is the
   gated one (it is the phase this seam modulates); the in-possession face is reported.
 * **spacingMedian / spacingUnder4** — the P3′ pair-distance instrument, inherited
-  verbatim from [`a4-s2p3-gene-battery.ts`](../../scripts/probes/a4-s2p3-gene-battery.ts)
+  ~~verbatim~~ from [`a4-s2p3-gene-battery.ts`](../../scripts/probes/a4-s2p3-gene-battery.ts)
   (`SAMPLE_EVERY 10`, `PAIR_SUBSAMPLE 6`, `CLOSE_PAIR_M 4`). `spacingUnder4` is the
   **spacing floor** read: the share of pairs inside 4 m.
 * **dupRunShare** — the same battery's I6 (`familyOf` RUN, `runTarget`,
   `DUP_RUN_M 4`, arriver/overlapper/corner-crash runners excluded).
+* ⚠ **CORRECTION (#197-L5a) — "inherited verbatim" was wrong about the GRAIN.** The
+  constants, the sampling and the definitions are inherited exactly; the **aggregation
+  grain is not**. A4-S2P3 computes these **PER SIDE** (`quantile(pairs[side], …)`,
+  `dupRunTicks[side] / runTicks[side]`); this probe **POOLS both teams into one
+  per-match value** (`[...pairs[0], ...pairs[1]]`, `(dupTicks[0]+dupTicks[1]) /
+  (runTicks[0]+runTicks[1])`), and the same pooling applies to `spreadYOut` /
+  `spreadYIn`. **Why it is harmless here, stated rather than assumed**: §2.2 doses
+  **both teams symmetrically**, so the two sides are exchangeable within every arm and
+  the pooled per-match value is a weighted average of two like-distributed quantities —
+  the contrast it feeds is the same contrast, measured with *less* per-match noise, not
+  a different quantity. It would **not** be harmless under an asymmetric dose, which
+  this exam does not run (§2.2, §7). What this costs: these limbs cannot attribute a
+  guard movement to one side, and this exam does not attempt to.
 
 Disposition if F-PM-b fires, by contract §3: **STOP; the dimension is wrong, not the
 dose.** A guard failing at *some but not all* ask-moving doses is **not** F-PM-b; it
@@ -347,7 +451,10 @@ already outside on the control there). Band failure on a gated dimension ⇒ **S
   upgrades it.
 * Everything the #188 receipts print: per-arm episode counts, trigger-tick share,
   levels (mean/p50/p90) for weak back **and** ball-side control mirror, the D2 steer
-  mix, and the six worst-detachment episodes per arm with `watchHint` strings.
+  mix (⚠ in this probe's **SPLIT** taxonomy — `markStance` / `markFallback` /
+  `stationHome` / `ballDirected` / `other`; **not bucket-comparable to #188's D2 mix**
+  without re-merging the two mark buckets — see §5.3's ⚠ CORRECTION #197-L5b), and the
+  six worst-detachment episodes per arm with `watchHint` strings.
 
 ### §5.7 The X-family (HARD — failure ⇒ the measurement is invalid)
 
@@ -412,20 +519,57 @@ already outside on the control there). Band failure on a gated dimension ⇒ **S
 
 ## §SMOKE — PLUMBING ONLY (adjudicates NOTHING)
 
-6 seeds @ 12,311,200–205 × 5 arms, `PMT1_MODE=smoke`, wall **17.4 s**, `105.9
+6 seeds @ 12,311,200–205 × 5 arms, `PMT1_MODE=smoke`, wall **18.1 s**, `110.4
 ms/match`. Artifact [`data/pm-t1-compression-exam-smoke.json`](data/pm-t1-compression-exam-smoke.json),
-`resultSha256` **`56588f04d4593c6b7c9e3eee68d8ffec51bb13ef2c1805d03efb42c41ea2c564`**
-(quoted from **this committed artifact** and nowhere else — the #194-M1 lesson; the
-hash is over the timing-free body, so `npx tsx scripts/probes/pm-t1-compression-exam.ts`
-reproduces it exactly, verified across two runs).
+`resultSha256` **`900b7efa2cae81c55d2c08ebc789d5b116cc132a536b66d3a6cdd3b9170a0182`**,
+artifact-bytes sha256 **`ac6c9042a06e98f07f9a2d8b2d0b2e25f7992ae02866024615826d7a717e49c0`**
+— both quoted from **this round's committed artifact** and nowhere else (the #194-M1
+lesson).
+
+⚠ **CORRECTION (#197-M1) — what `resultSha256` covers, and the superseded claim.**
+Superseded, left readable: the `94eba83` smoke published
+`56588f04…2c564` with the claim that *"the hash is over the timing-free body, so
+`npx tsx scripts/probes/pm-t1-compression-exam.ts` reproduces it exactly"*. **That
+claim was false for any third party**: the hashed body embedded the git short-hash
+(`head`), so the receipt could only ever re-derive at commit `94eba83` itself. #197's
+independent verifier reproduced every measured number and the X-DET digest
+byte-identically and saw exactly one delta — `.head`.
+
+The fix, in the probe: `head` is now **RECORDED but NOT HASHED**, in the envelope
+beside the wall-clock fields (`headContextOnly`, the PM-T0 `wallMsContextOnly` idiom).
+**`resultSha256` therefore covers exactly the timing-free, commit-free MEASURED body**
+— doses, seeds, frozen design, N derivation, predicates, every result series and
+contrast, and the gate objects — and **excludes** `resultSha256` itself, `sizing`,
+`wallContextOnly` (`corePassMs`, `totalMs`) and `headContextOnly`. Re-running
+`PMT1_MODE=smoke npx tsx scripts/probes/pm-t1-compression-exam.ts` on this seed block
+re-derives `900b7efa…0a0182` **at any commit**; the artifact FILE bytes still differ
+run to run, because the recorded wall-clock and `head` fields move — which is why the
+two shas above are distinct and both are pinned. The only git-derived field still
+inside the hash is `gates.xSrcZero`'s `git diff --stat -- src` output, and that is
+deliberate: it is a **gate output** (empty on any clean tree at any commit), not a
+commit identifier. In FULL mode `nDerivation.smokeArtifactSha256` is likewise inside
+the hash on purpose — it is N's provenance (§4, #197-L3).
 
 **What this section is**: proof that the arms construct, the instruments produce
 numbers, the artifact writes and the exit codes work. **What it is not**: evidence
 about anything. At 6 seeds the paired contrasts run on **n = 2–4 seeds**; every
 number below is noise with a decimal point.
 
+⚠ **CORRECTION (#197-M2) — the transcript below is UNABRIDGED, and the previous one
+was not.** The `94eba83` version of this section printed a silently and
+**ASYMMETRICALLY** abridged transcript: it kept the **one PASSING** `GUARD-NI` row
+(D100) and dropped the **two FAILING** ones (D050 / D075, `dupRunShare` BLOWN at n = 6
+noise), and dropped 3 of 4 ANSWER rows and 4 of 5 swallow rows — with **no elision
+markers**. Dropping failures while keeping passes is the exact selection #194/#196
+forbid. What follows is the **complete stdout** of this round's fixed re-run, copied
+whole: all four ASK rows, all four ANSWER rows, all five swallow rows, all four
+GUARD-NI rows **including the two FAILs**, and the full gate/verdict tail. **Nothing is
+elided.** (Those two D050/D075 GUARD-NI failures adjudicate nothing — like every other
+number here they are n = 6 plumbing — but they are the smoke's output and they are
+published.)
+
 ```text
-=== PM-T1 COMPRESSION EXAM (smoke) — HEAD cc82609 — 6 seeds × 5 arms, block 12311200..12311205 ===
+=== PM-T1 COMPRESSION EXAM (smoke) — HEAD 4eab062 — 6 seeds × 5 arms, block 12311200..12311205 ===
 doses D000:absent(k=0)  D025:0.25(k=0.0625)  D050:0.5(k=0.125)  D075:0.75(k=0.1875)  D100:1(k=0.25)
 episodes/arm D000:7  D025:3  D050:5  D075:5  D100:11
 
@@ -438,24 +582,33 @@ ASK (send-target lane gap, weak-side back, paired per-seed vs D000):
   P1 PASS · P2a PASS · P2b PASS ⇒ PRIMARY PASS
 
 ANSWER (body lane gap / shortfall / detachment — measured SEPARATELY):
+  D025  body +2.243997 [-0.865859, 5.353854] n=2 · shortfall +2.190083 [-0.865859, 5.246025] n=2 · detach +0.871433 [-1.066722, 2.809589] n=2
+  D050  body +0.08899 [-2.411554, 2.589533] n=2 · shortfall +0.08899 [-2.411554, 2.589533] n=2 · detach +0.999082 [-2.018136, 4.016299] n=2
+  D075  body +2.454728 [-4.885396, 9.794851] n=2 · shortfall +0.685634 [-4.885396, 6.256663] n=2 · detach -1.401918 [-5.117786, 2.313951] n=2
   D100  body -1.066291 [-6.997834, 4.192792] n=4 · shortfall -0.544971 [-4.057627, 2.763121] n=4 · detach -1.710646 [-4.648899, 0.536875] n=4
 
 F-PM-a *** FIRED *** (P1 true ∧ top-dose body CI includes zero true)
+  swallow D000 @1 m: material ticks 0 · markStance NaN · stationWalk NaN
+  swallow D025 @1 m: material ticks 131 · markStance 1 · stationWalk 0
+  swallow D050 @1 m: material ticks 202 · markStance 0.821782 · stationWalk 0.009901
+  swallow D075 @1 m: material ticks 308 · markStance 1 · stationWalk 0
   swallow D100 @1 m: material ticks 895 · markStance 0.994413 · stationWalk 0.005587
 
 F-PM-b not fired (ask-moving doses: D050,D075,D100)
-  GUARD-NI D100 PASS: spreadYOut ok (-0.045862 [-0.373912, 0.262034] n=6 vs ±1.630365) · spacingMedian ok
-    (-0.47203 [-1.193742, 0.245517] n=6 vs ±3.69343) · spacingUnder4 ok (-0.005233 [-0.01585, 0.00546] n=6
-    vs ±0.024351) · dupRunShare ok (+0.005844 [-0.113667, 0.118765] n=6 vs ±0.118905)
+  GUARD-NI D025 PASS: spreadYOut ok (-0.185457 [-0.551767, 0.212954] n=6 vs ±1.630365) · spacingMedian ok (-0.637357 [-1.127521, -0.108921] n=6 ✔ vs ±3.69343) · spacingUnder4 ok (-0.00568 [-0.017571, 0.00669] n=6 vs ±0.024351) · dupRunShare ok (+0.041912 [-0.039468, 0.112541] n=6 vs ±0.118905)
+  GUARD-NI D050 FAIL: spreadYOut ok (+0.18659 [-0.12769, 0.52529] n=6 vs ±1.630365) · spacingMedian ok (-0.146902 [-0.566315, 0.297844] n=6 vs ±3.69343) · spacingUnder4 ok (-0.002513 [-0.012225, 0.005616] n=6 vs ±0.024351) · dupRunShare BLOWN (-0.007238 [-0.109608, 0.120716] n=6 vs ±0.118905)
+  GUARD-NI D075 FAIL: spreadYOut ok (+0.206585 [-0.149165, 0.562335] n=6 vs ±1.630365) · spacingMedian ok (+0.324699 [-0.852728, 1.319051] n=6 vs ±3.69343) · spacingUnder4 ok (-0.013167 [-0.021831, -0.006092] n=6 ✔ vs ±0.024351) · dupRunShare BLOWN (+0.042513 [-0.094509, 0.182293] n=6 vs ±0.118905)
+  GUARD-NI D100 PASS: spreadYOut ok (-0.045862 [-0.373912, 0.262034] n=6 vs ±1.630365) · spacingMedian ok (-0.47203 [-1.193742, 0.245517] n=6 vs ±3.69343) · spacingUnder4 ok (-0.005233 [-0.01585, 0.00546] n=6 vs ±0.024351) · dupRunShare ok (+0.005844 [-0.113667, 0.118765] n=6 vs ±0.118905)
 
 BAND FAIL — gated goals,crosses,headers,cutbacks · excluded as substrate drift longBalls
 OFFSIDE FLAG quiet — +1 [-0.166667, 2.166667] n=6
 
 X-FAMILY GREEN: xDet ok · xFpProd ok · xSrcZero ok · gArm ok · gCtrlEq ok · gSeed ok · gStats ok · gReadOnly ok · gNDerived ok
 X-DET digest b14d3b7869887f7138c85d6efaccaebf20503f1ef724572774037b891b1c0b94
-resultSha256 56588f04d4593c6b7c9e3eee68d8ffec51bb13ef2c1805d03efb42c41ea2c564
-wall 17.364s · 105.9 ms/match · pairYieldMin 0.3333 · artifact docs/world-model/data/pm-t1-compression-exam-smoke.json
+resultSha256 900b7efa2cae81c55d2c08ebc789d5b116cc132a536b66d3a6cdd3b9170a0182
+wall 18.141s · 110.4 ms/match · pairYieldMin 0.3333 · artifact docs/world-model/data/pm-t1-compression-exam-smoke.json
 VERDICT: SMOKE — PLUMBING ONLY; ADJUDICATES NOTHING
+⚠ SMOKE ADJUDICATES NOTHING — every number above is plumbing evidence, not a finding.
 ```
 
 **The plumbing verdict, and only that:** all nine X-family gates green (X-DET
@@ -488,9 +641,11 @@ cd /Users/jamie/Documents/Promptfoo/evofootball-arena && \
   derivation at startup before the first match.
 * **Artifact**: `docs/world-model/data/pm-t1-compression-exam.json` (the smoke's own
   artifact at `…-smoke.json` is not overwritten).
-* **Expected wall**: 650 seeds × 5 arms × 2 X-DET passes × 105.9 ms ≈ **0.19 h ≈ 12
+* **Expected wall**: 650 seeds × 5 arms × 2 X-DET passes × 110.4 ms ≈ **0.20 h ≈ 12
   min** of core, plus ~30 s for the 8-seed control-equivalence check and ~10 s for the
   in-probe fingerprint ⇒ **≈ 13–14 min** on the smoke's box; budget 2 h.
+  (⚠ CORRECTION, #197 fix round: superseded reading `105.9 ms ≈ 0.19 h` — the fixed
+  smoke re-measured the box at `110.4 ms/match`. A projection, gating nothing.)
 * **Progress cadence**: a `[pm-t1 passN] done/total · elapsed · s/match · ETA` line at
   least every **30 s** of wall time, on stderr.
 * **Exit semantics**: `0` clean pass · `1` X-family failure (measurement invalid) ·
