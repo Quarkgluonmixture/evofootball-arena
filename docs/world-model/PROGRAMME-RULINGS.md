@@ -7548,3 +7548,55 @@
 >    fixed points. The census substance (populations, shares,
 >    gaps) was NOT challenged and is expected to survive the
 >    re-run byte-for-byte except the gate block.
+
+> **COMMANDER RULING #178 (2026-08-08 — O1 phase-0 fix
+> re-verified PASS; the map + census BANKED; O1's first cut
+> FROZEN on the numbers):**
+>
+> 1. **BANKED + PUSHED**: `c6a365591` on `c2bbdfc` — the
+>    corrected pass-release code map + the 2,000-match census
+>    (X-CLASSIFY now a real reconciliation over the six engine
+>    ledgers, falsifiability PROVEN by a reverted perturbation:
+>    261,412 units observed = claimed, unexplained 0 computed;
+>    census substance byte-identical to the draft run; the HIGH
+>    finding's truth: clearance takes the SAME 0.45 regather as
+>    every kind — the 0.3 at mechanics.ts:1528 belongs to
+>    tryDeflection and stamps the DEFLECTOR; the NO-TOUCH list
+>    corrected). Re-verify PASS; one disclosure nit recorded
+>    (the smoke JSON also gained the pre-existing floors
+>    block). Corrections marked in place, not silently
+>    rewritten — the #176 record stays readable.
+> 2. **THE CENSUS FACTS THE SCOPE STANDS ON**: open-play
+>    releases 87.1/match; shortPass 79.81% of open play
+>    (+throughGround = 89.2%); one-touch shares — shortPass
+>    20.7%, throughGround 30.2% (vs shots 0.076%: the designed
+>    bypass has a REAL population); pressed-at-release 73.4%
+>    open play; scale honesty: full-family wind-up at the C7
+>    p50 ≈ 9.8 s/match ≈ 4% of played time (F-O1b stands
+>    pre-named); cross is 83% restart-born (width's known
+>    disease, out of O1 scope).
+> 3. **O1 FIRST CUT, FROZEN (the commander's scope decision)**:
+>    **CUT-1 = shortPass ONLY** — the single commit statement
+>    (performPass, PlayerBrain.ts:975; the cutback statement
+>    :972 inside the same case is EXCLUDED and must be shown
+>    untouched), the kickBall-direct door, the C7 seam form
+>    (armPendingKick precedent), the one-touch window as the
+>    designed bypass (window>0 ⇒ no wind-up; oneTouchMul is the
+>    existing price — NO new charge, the corrected NO-TOUCH
+>    list binds). 79.8% of open-play tempo in one surgical
+>    site. CUT-2 (through family) and CUT-3 (the loftKick
+>    five) staged behind cut-1's evidence. Flag hygiene: a NEW
+>    explicit `o1PassWindup` (default false, never
+>    EDS_BUNDLE-defaulted, own League matchFlags key).
+> 4. **NEXT AUTHORIZED STEP (fires on "go") — O1-T1**: the
+>    dormant seam (extend the pendingKick machinery to
+>    shortPass behind `o1PassWindup`; duration = the C7 §LAW
+>    verbatim with tech = attrs.passing — the pass-family
+>    attribute, per the shared-chain precedent at
+>    mechanics.ts:78 — this single deviation from C7's
+>    dribbling is DESIGNED, not drift, and the stage doc says
+>    so; interruptibility + re-decide lock transferred; the
+>    one-touch bypass wired) + the C7-T1-form gates (flag-off
+>    byte-identity, fingerprint, W distribution realized,
+>    interruption census, X-family) + full suite. Road B:
+>    dormant, nothing ships.
