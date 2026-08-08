@@ -8348,3 +8348,72 @@
 >    then the COMMANDER launches the full battery detached per
 >    §0.0.4 and adjudicates. F-PM-a / F-PM-b are STOPs to the
 >    user by contract.
+
+> **COMMANDER RULING #197 (2026-08-08 — PM-T1 instruments
+> machine-verify FAIL (2 MEDIUM + 4 LOW, all evidence-reporting;
+> the exam DESIGN verified contract-faithful end to end); fix
+> round dispatched BEFORE launch; the structural deviations
+> adjudicated):**
+>
+> 1. **VERIFY FAIL recorded as-is** (`94eba83`): (M1) the smoke
+>    artifact's hashed body EMBEDS the git short-hash (`head`),
+>    so the shipped `resultSha256` can never re-derive at any
+>    later commit — the doc's "reproduces it exactly" claim is
+>    false for any third party (the verifier's independent
+>    re-run reproduced EVERY measured number and the X-DET
+>    digest byte-identically; the only delta was `.head` —
+>    the measurement is real, the receipt claim is not). (M2)
+>    the stage doc's §SMOKE transcript is silently and
+>    ASYMMETRICALLY abridged — it keeps the one passing
+>    GUARD-NI row and drops the two failing ones (D050/D075
+>    dupRunShare vs tol at n=6 noise) plus 3/4 ANSWER and 4/5
+>    swallow rows, no elision markers; the author's report
+>    repeats the selection. (L3) full-mode N inputs read the
+>    WORKING-TREE smoke artifact (re-run ⇒ silent re-tune;
+>    auditable after the fact via smokeArtifactSha256, not
+>    enforced). (L4) the sizing σ treats #188's p50 CI as a
+>    mean's CI (conservative direction, undisclosed). (L5) two
+>    "inherited verbatim" claims are not verbatim (per-side vs
+>    pooled grain; the D2 steer taxonomy split). (L6) §5.1
+>    reads as a live-consumption claim while ≈99 % of material
+>    ticks are markStance — the ask is a recomputed
+>    counterfactual station read (which is precisely why the
+>    swallow instrument exists).
+> 2. **WHAT STOOD VERIFIED (the design, load-bearing)**: every
+>    tolerance traced to its published source (NI 0.2763 =
+>    S2-P1's `1 − 0.275/0.380` with the no-transplant scaling;
+>    equilibrium band = S2-P3 §4.2 verbatim incl. the
+>    substrate-drift caveat; σ from #188's published prod CI);
+>    the N rule recomputed by hand and self-enforcing
+>    (gNDerived RED on override); ASK and ANSWER computed from
+>    separate series, never merged; F-PM-a/F-PM-b coded exactly
+>    as contracted and third-party decidable; mark drift
+>    REPORTED only; switchKey/heading-flip computed NOWHERE
+>    (§8.4 honoured); doses on all three genome views of BOTH
+>    teams through the full arming checklist; ZERO src/**
+>    changes; ASK_MATERIAL_M outside every gate.
+> 3. **DEVIATIONS ADJUDICATED**: (D2 **ACCEPTED**) the two
+>    post-smoke STRUCTURAL changes (P2b's ≥3-arms/≥2-k
+>    admission rule — the all-five form admitted 0/6 seeds and
+>    was undefined at any N; the pairYield term in the N rule)
+>    — decidability fixes in the #188 §4.4 form, no level
+>    informed them, no threshold moved. (D3 **ACCEPTED**) the
+>    smoke informs ONLY ms/match + pairYield (the #188 §4.3
+>    precedent); the variance term is smoke-free. (D7
+>    **ACCEPTED**) ASK_MATERIAL_M = 1.0 m as a ⚠ flagged
+>    executor's choice, reported at 0.5/1.0/2.0 m, read by no
+>    gate. (D1 noted: programme convention, same as #196.3-D7.)
+> 4. **FIX ROUND DISPATCHED** (the #190→#191 form, before any
+>    full-N launch): all six findings corrected in place — the
+>    probe moves `head` OUT of the hashed body (recorded,
+>    unhashed, the wallMs form), the smoke re-runs on its own
+>    consumed seeds (12,311,200–205; plumbing re-measurement,
+>    not an exam), the doc pins the new smoke artifact's sha +
+>    carries the UNABRIDGED transcript, L4/L5/L6 disclosed in
+>    place; the frozen N RULE is untouched and its re-evaluated
+>    output on the fixed smoke is disclosed (a changed N is the
+>    rule's output, not a re-cut). Independent re-verify gates
+>    the launch. **SMOKE PREVIEW (adjudicates NOTHING, n = 6)**:
+>    PRIMARY plumbing shows the ask moving (D100 −4.96 m) and
+>    F-PM-a's swallow instrument reading markStance ≈ 99.4 % —
+>    the exam is decision-ready either way it lands.
