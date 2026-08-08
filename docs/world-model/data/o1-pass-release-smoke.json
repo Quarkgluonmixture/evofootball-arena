@@ -1,0 +1,1440 @@
+{
+  "stage": "O1 phase 0 — the pass-release census",
+  "ruling": "#176",
+  "contract": "docs/world-model/OUTLET-CONTRACT.md",
+  "doc": "docs/world-model/O1-PHASE0-PASS-RELEASE.md",
+  "mode": "sizing-smoke",
+  "head": "30f2a7b",
+  "gates": {
+    "xSrcZero": {
+      "pass": true,
+      "gitDiffStatSrc": ""
+    },
+    "xDet": {
+      "pass": true,
+      "digestA": "d50b54dee1e36766885693019a5c0aeee57bc15367b7ecb04f3cf20fcd1e0a92",
+      "digestB": "d50b54dee1e36766885693019a5c0aeee57bc15367b7ecb04f3cf20fcd1e0a92"
+    },
+    "xFpProd": {
+      "pass": false,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "skipped (--skip-fp)",
+      "skipped": true
+    },
+    "seedDisjoint": {
+      "first": 12309900,
+      "last": 12309923,
+      "inReservedBand": true,
+      "aboveConsumedCeiling12_299_999": true,
+      "censusRange": [
+        12300000,
+        12300299
+      ],
+      "smokeRange": [
+        12309900,
+        12309923
+      ],
+      "censusSmokeDisjoint": true,
+      "pass": true
+    }
+  },
+  "result": {
+    "staging": {
+      "arm": "production (new Match({seed, teamA, teamB}) — no flag object; every seam at its shipped default)",
+      "block": 12309900,
+      "seeds": {
+        "first": 12309900,
+        "last": 12309923,
+        "n": 24
+      },
+      "reservedBand": [
+        12300000,
+        12309999
+      ],
+      "duration": 240,
+      "dt": 0.016666666666666666,
+      "pressureRadius": 4.2,
+      "pressureRadiusSensitivity": 3,
+      "clusterUnit": "match seed",
+      "bootstrapSeed": 102600,
+      "bootstrapResamples": 2000,
+      "firstTouchWindowSeconds": 0.28,
+      "displayMinutesPerSimSecond": 0.375,
+      "axisLaw": "simTime (PLAYED sim-seconds) denominates BOTH axes; perDisplayMinute = perSimSecond x 2.6667"
+    },
+    "totals": {
+      "matches": 24,
+      "steps": 360685,
+      "playedSimSeconds": 5796.5,
+      "playedSimSecondsPerMatch": 241.5208,
+      "releases": 2292,
+      "releasesPerMatch": 95.5,
+      "releasesPerSimSecond": 0.395411,
+      "releasesPerDisplayMinute": 1.05443,
+      "ownerDecisionsObserved": 11805
+    },
+    "byKind": [
+      {
+        "kind": "shortPass",
+        "count": 1787,
+        "perMatch": 74.4583,
+        "perSimSecond": 0.308289,
+        "perDisplayMinute": 0.82211,
+        "shareOfAllReleases": 0.77967,
+        "shareOfOpenPlayReleases": 0.78969,
+        "openPlayCount": 1562,
+        "restartCount": 128,
+        "kickoffCount": 97,
+        "oneTouchShare": 0.18187,
+        "oneTouchShareCi": [
+          0.16175,
+          0.20093
+        ],
+        "oneTouchCount": 325,
+        "pressedShare": 0.72188,
+        "pressedShareCi": [
+          0.70316,
+          0.741
+        ],
+        "pressedCount": 1290,
+        "pressedShareSens3m": 0.64801,
+        "pressedDist": {
+          "n": 1787,
+          "p10": 1.05,
+          "p25": 1.2779,
+          "p50": 2.3011,
+          "p75": 5.1441,
+          "p90": 9.2952,
+          "mean": 3.9701
+        },
+        "gap": {
+          "n": 1787,
+          "p10": 0.1,
+          "p25": 0.15,
+          "p50": 0.3333,
+          "p75": 0.3333,
+          "p90": 0.9833,
+          "mean": 0.6239
+        },
+        "gapWithinFirstTouchWindow": 0.37493,
+        "gapFromPassReceptionShare": 0.52266,
+        "gapN": 1787
+      },
+      {
+        "kind": "cutback",
+        "count": 82,
+        "perMatch": 3.4167,
+        "perSimSecond": 0.014146,
+        "perDisplayMinute": 0.03772,
+        "shareOfAllReleases": 0.03578,
+        "shareOfOpenPlayReleases": 0.03084,
+        "openPlayCount": 61,
+        "restartCount": 21,
+        "kickoffCount": 0,
+        "oneTouchShare": 0.04878,
+        "oneTouchShareCi": [
+          0.01075,
+          0.10127
+        ],
+        "oneTouchCount": 4,
+        "pressedShare": 0.53659,
+        "pressedShareCi": [
+          0.40476,
+          0.64557
+        ],
+        "pressedCount": 44,
+        "pressedShareSens3m": 0.36585,
+        "pressedDist": {
+          "n": 82,
+          "p10": 1.081,
+          "p25": 2.2382,
+          "p50": 3.5384,
+          "p75": 9.1957,
+          "p90": 9.9585,
+          "mean": 5.2262
+        },
+        "gap": {
+          "n": 82,
+          "p10": 0.1,
+          "p25": 0.1375,
+          "p50": 0.15,
+          "p75": 0.3333,
+          "p90": 0.9183,
+          "mean": 0.4593
+        },
+        "gapWithinFirstTouchWindow": 0.68293,
+        "gapFromPassReceptionShare": 0.45122,
+        "gapN": 82
+      },
+      {
+        "kind": "throughGround",
+        "count": 220,
+        "perMatch": 9.1667,
+        "perSimSecond": 0.037954,
+        "perDisplayMinute": 0.10121,
+        "shareOfAllReleases": 0.09599,
+        "shareOfOpenPlayReleases": 0.10768,
+        "openPlayCount": 213,
+        "restartCount": 7,
+        "kickoffCount": 0,
+        "oneTouchShare": 0.31364,
+        "oneTouchShareCi": [
+          0.25345,
+          0.37931
+        ],
+        "oneTouchCount": 69,
+        "pressedShare": 0.75455,
+        "pressedShareCi": [
+          0.70965,
+          0.8
+        ],
+        "pressedCount": 166,
+        "pressedShareSens3m": 0.60909,
+        "pressedDist": {
+          "n": 220,
+          "p10": 1.05,
+          "p25": 1.385,
+          "p50": 2.4109,
+          "p75": 4.111,
+          "p90": 8.3045,
+          "mean": 3.4333
+        },
+        "gap": {
+          "n": 220,
+          "p10": 0.1,
+          "p25": 0.2,
+          "p50": 0.3333,
+          "p75": 0.3333,
+          "p90": 0.51,
+          "mean": 0.3687
+        },
+        "gapWithinFirstTouchWindow": 0.39091,
+        "gapFromPassReceptionShare": 0.86364,
+        "gapN": 220
+      },
+      {
+        "kind": "throughChip",
+        "count": 112,
+        "perMatch": 4.6667,
+        "perSimSecond": 0.019322,
+        "perDisplayMinute": 0.05153,
+        "shareOfAllReleases": 0.04887,
+        "shareOfOpenPlayReleases": 0.05157,
+        "openPlayCount": 102,
+        "restartCount": 10,
+        "kickoffCount": 0,
+        "oneTouchShare": 0.08036,
+        "oneTouchShareCi": [
+          0.03759,
+          0.13725
+        ],
+        "oneTouchCount": 9,
+        "pressedShare": 0.32143,
+        "pressedShareCi": [
+          0.2361,
+          0.42529
+        ],
+        "pressedCount": 36,
+        "pressedShareSens3m": 0.16964,
+        "pressedDist": {
+          "n": 112,
+          "p10": 2.2444,
+          "p25": 3.6698,
+          "p50": 5.9552,
+          "p75": 7.136,
+          "p90": 9.2161,
+          "mean": 5.9826
+        },
+        "gap": {
+          "n": 112,
+          "p10": 0.15,
+          "p25": 0.3333,
+          "p50": 0.3333,
+          "p75": 6.3333,
+          "p90": 6.5,
+          "mean": 2.1586
+        },
+        "gapWithinFirstTouchWindow": 0.23214,
+        "gapFromPassReceptionShare": 0.44643,
+        "gapN": 112
+      },
+      {
+        "kind": "cross",
+        "count": 53,
+        "perMatch": 2.2083,
+        "perSimSecond": 0.009143,
+        "perDisplayMinute": 0.02438,
+        "shareOfAllReleases": 0.02312,
+        "shareOfOpenPlayReleases": 0.00303,
+        "openPlayCount": 6,
+        "restartCount": 47,
+        "kickoffCount": 0,
+        "oneTouchShare": 0,
+        "oneTouchShareCi": [
+          0,
+          0
+        ],
+        "oneTouchCount": 0,
+        "pressedShare": 0.11321,
+        "pressedShareCi": [
+          0.04255,
+          0.2
+        ],
+        "pressedCount": 6,
+        "pressedShareSens3m": 0.07547,
+        "pressedDist": {
+          "n": 53,
+          "p10": 4.2449,
+          "p25": 9.0115,
+          "p50": 9.5529,
+          "p75": 9.9575,
+          "p90": 9.9693,
+          "mean": 8.6037
+        },
+        "gap": {
+          "n": 53,
+          "p10": 0.15,
+          "p25": 0.15,
+          "p50": 0.15,
+          "p75": 0.15,
+          "p90": 0.15,
+          "mean": 0.1642
+        },
+        "gapWithinFirstTouchWindow": 0.96226,
+        "gapFromPassReceptionShare": 0.0566,
+        "gapN": 53
+      },
+      {
+        "kind": "loftedPass",
+        "count": 9,
+        "perMatch": 0.375,
+        "perSimSecond": 0.001553,
+        "perDisplayMinute": 0.00414,
+        "shareOfAllReleases": 0.00393,
+        "shareOfOpenPlayReleases": 0.00253,
+        "openPlayCount": 5,
+        "restartCount": 4,
+        "kickoffCount": 0,
+        "oneTouchShare": 0.22222,
+        "oneTouchShareCi": [
+          0,
+          0.6
+        ],
+        "oneTouchCount": 2,
+        "pressedShare": 0.33333,
+        "pressedShareCi": [
+          0,
+          0.75
+        ],
+        "pressedCount": 3,
+        "pressedShareSens3m": 0.33333,
+        "pressedDist": {
+          "n": 9,
+          "p10": 1.05,
+          "p25": 1.0704,
+          "p50": 8.9148,
+          "p75": 9.9057,
+          "p90": 13.7127,
+          "mean": 7.17
+        },
+        "gap": {
+          "n": 9,
+          "p10": 0.1,
+          "p25": 0.15,
+          "p50": 0.15,
+          "p75": 0.3333,
+          "p90": 0.4333,
+          "mean": 0.2556
+        },
+        "gapWithinFirstTouchWindow": 0.66667,
+        "gapFromPassReceptionShare": 0.44444,
+        "gapN": 9
+      },
+      {
+        "kind": "keeperPunt",
+        "count": 12,
+        "perMatch": 0.5,
+        "perSimSecond": 0.00207,
+        "perDisplayMinute": 0.00552,
+        "shareOfAllReleases": 0.00524,
+        "shareOfOpenPlayReleases": 0.00607,
+        "openPlayCount": 12,
+        "restartCount": 0,
+        "kickoffCount": 0,
+        "oneTouchShare": 0,
+        "oneTouchShareCi": [
+          0,
+          0
+        ],
+        "oneTouchCount": 0,
+        "pressedShare": 0,
+        "pressedShareCi": [
+          0,
+          0
+        ],
+        "pressedCount": 0,
+        "pressedShareSens3m": 0,
+        "pressedDist": {
+          "n": 12,
+          "p10": 6.6243,
+          "p25": 6.663,
+          "p50": 7.1624,
+          "p75": 7.6181,
+          "p90": 7.8009,
+          "mean": 7.1818
+        },
+        "gap": {
+          "n": 12,
+          "p10": 6.5,
+          "p25": 6.5,
+          "p50": 6.5,
+          "p75": 6.5,
+          "p90": 6.5,
+          "mean": 6.4444
+        },
+        "gapWithinFirstTouchWindow": 0,
+        "gapFromPassReceptionShare": 0,
+        "gapN": 12
+      },
+      {
+        "kind": "keeperThrow",
+        "count": 9,
+        "perMatch": 0.375,
+        "perSimSecond": 0.001553,
+        "perDisplayMinute": 0.00414,
+        "shareOfAllReleases": 0.00393,
+        "shareOfOpenPlayReleases": 0.00455,
+        "openPlayCount": 9,
+        "restartCount": 0,
+        "kickoffCount": 0,
+        "oneTouchShare": 0,
+        "oneTouchShareCi": [
+          0,
+          0
+        ],
+        "oneTouchCount": 0,
+        "pressedShare": 0,
+        "pressedShareCi": [
+          0,
+          0
+        ],
+        "pressedCount": 0,
+        "pressedShareSens3m": 0,
+        "pressedDist": {
+          "n": 9,
+          "p10": 7.8371,
+          "p25": 8.6264,
+          "p50": 9.1449,
+          "p75": 13.5592,
+          "p90": 15.6428,
+          "mean": 11.4203
+        },
+        "gap": {
+          "n": 9,
+          "p10": 3.6333,
+          "p25": 4.8333,
+          "p50": 6.5,
+          "p75": 6.5,
+          "p90": 6.5,
+          "mean": 5.5
+        },
+        "gapWithinFirstTouchWindow": 0,
+        "gapFromPassReceptionShare": 0,
+        "gapN": 9
+      },
+      {
+        "kind": "clearance",
+        "count": 8,
+        "perMatch": 0.3333,
+        "perSimSecond": 0.00138,
+        "perDisplayMinute": 0.00368,
+        "shareOfAllReleases": 0.00349,
+        "shareOfOpenPlayReleases": 0.00404,
+        "openPlayCount": 8,
+        "restartCount": 0,
+        "kickoffCount": 0,
+        "oneTouchShare": 0.375,
+        "oneTouchShareCi": [
+          0,
+          0.75
+        ],
+        "oneTouchCount": 3,
+        "pressedShare": 1,
+        "pressedShareCi": [
+          1,
+          1
+        ],
+        "pressedCount": 8,
+        "pressedShareSens3m": 1,
+        "pressedDist": {
+          "n": 8,
+          "p10": 1.0507,
+          "p25": 1.0571,
+          "p50": 1.0721,
+          "p75": 1.5893,
+          "p90": 2.1362,
+          "mean": 1.3754
+        },
+        "gap": {
+          "n": 8,
+          "p10": 0.1,
+          "p25": 0.1,
+          "p50": 0.2,
+          "p75": 0.2833,
+          "p90": 28.9033,
+          "mean": 12.0667
+        },
+        "gapWithinFirstTouchWindow": 0.75,
+        "gapFromPassReceptionShare": 0.5,
+        "gapN": 8
+      }
+    ],
+    "allReleases": {
+      "label": "ALL pass-family releases",
+      "count": 2292,
+      "perMatch": 95.5,
+      "perSimSecond": 0.395411,
+      "perDisplayMinute": 1.05443,
+      "oneTouchShare": 0.17976,
+      "oneTouchShareCi": [
+        0.16072,
+        0.19951
+      ],
+      "pressedShare": 0.67757,
+      "pressedShareCi": [
+        0.66243,
+        0.6942
+      ],
+      "pressedShareSens3m": 0.59162,
+      "gap": {
+        "n": 2292,
+        "p10": 0.1,
+        "p25": 0.15,
+        "p50": 0.3333,
+        "p75": 0.3333,
+        "p90": 1,
+        "mean": 0.746
+      },
+      "gapWithinFirstTouchWindow": 0.39311,
+      "gapN": 2292
+    },
+    "openPlayReleases": {
+      "label": "OPEN-PLAY pass-family releases",
+      "count": 1978,
+      "perMatch": 82.4167,
+      "perSimSecond": 0.34124,
+      "perDisplayMinute": 0.90997,
+      "oneTouchShare": 0.20829,
+      "oneTouchShareCi": [
+        0.18759,
+        0.23
+      ],
+      "pressedShare": 0.7366,
+      "pressedShareCi": [
+        0.71815,
+        0.75676
+      ],
+      "pressedShareSens3m": 0.63903,
+      "gap": {
+        "n": 1978,
+        "p10": 0.1,
+        "p25": 0.2,
+        "p50": 0.3333,
+        "p75": 0.3333,
+        "p90": 1.2867,
+        "mean": 0.7986
+      },
+      "gapWithinFirstTouchWindow": 0.3458,
+      "gapN": 1978
+    },
+    "byContext": [
+      {
+        "context": "openPlay",
+        "count": 1978,
+        "share": 0.863,
+        "perMatch": 82.4167,
+        "byRestartKind": null
+      },
+      {
+        "context": "restart",
+        "count": 217,
+        "share": 0.09468,
+        "perMatch": 9.0417,
+        "byRestartKind": {
+          "kickIn": 33,
+          "corner": 70,
+          "goalKick": 93,
+          "freeKick": 21,
+          "penalty": 0,
+          "null": 0
+        }
+      },
+      {
+        "context": "kickoff",
+        "count": 97,
+        "share": 0.04232,
+        "perMatch": 4.0417,
+        "byRestartKind": null
+      }
+    ],
+    "oneTouchAgreement": {
+      "note": "the pre-step firstTouchWindow read vs the engine own stats.oneTouch counter, on the seven kinds that carry it",
+      "agree": 2275,
+      "disagree": 0,
+      "notCarried": 17,
+      "pass": true
+    },
+    "exceptions": {
+      "E-HEADER-CLEAR": 99,
+      "E-NOOWNER": 0,
+      "E-CROSS-SIDE": 0,
+      "E-MULTI": 0,
+      "E-ABORT": 0,
+      "E-ENDED": 0
+    },
+    "exceptionReceipts": [
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309900,
+        "tick": 9291,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309900,
+        "tick": 14442,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309901,
+        "tick": 2325,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309901,
+        "tick": 9747,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309901,
+        "tick": 10951,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309901,
+        "tick": 11800,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309901,
+        "tick": 12264,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309901,
+        "tick": 14128,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309902,
+        "tick": 10879,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309902,
+        "tick": 14483,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309903,
+        "tick": 4564,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309903,
+        "tick": 5694,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309903,
+        "tick": 8956,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309903,
+        "tick": 12224,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309904,
+        "tick": 8816,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309904,
+        "tick": 12050,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309904,
+        "tick": 12116,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 1109,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 1543,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 6491,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 13174,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 13179,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 13602,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 13605,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 14037,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 14464,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309905,
+        "tick": 14465,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309906,
+        "tick": 5232,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309906,
+        "tick": 9978,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309906,
+        "tick": 9981,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309906,
+        "tick": 11823,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309906,
+        "tick": 14730,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309907,
+        "tick": 2742,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309907,
+        "tick": 10410,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309907,
+        "tick": 13507,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309907,
+        "tick": 14711,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 1318,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 1324,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 1750,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 4942,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 4949,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 5366,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 5783,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 6793,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 9117,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309908,
+        "tick": 9541,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309909,
+        "tick": 5481,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309909,
+        "tick": 5484,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309909,
+        "tick": 9310,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309909,
+        "tick": 9319,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309910,
+        "tick": 5401,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309910,
+        "tick": 6934,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309910,
+        "tick": 13064,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309910,
+        "tick": 13065,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309911,
+        "tick": 689,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309911,
+        "tick": 690,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309911,
+        "tick": 704,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309912,
+        "tick": 5738,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309912,
+        "tick": 6822,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309912,
+        "tick": 6835,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309912,
+        "tick": 10859,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309913,
+        "tick": 1790,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309913,
+        "tick": 5493,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309913,
+        "tick": 7233,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309913,
+        "tick": 9465,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309914,
+        "tick": 827,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309915,
+        "tick": 961,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309915,
+        "tick": 969,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309915,
+        "tick": 3746,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309915,
+        "tick": 5477,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309915,
+        "tick": 11842,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309915,
+        "tick": 14825,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309916,
+        "tick": 2198,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309916,
+        "tick": 2206,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309916,
+        "tick": 5365,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309916,
+        "tick": 6412,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309916,
+        "tick": 12212,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309917,
+        "tick": 6734,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309917,
+        "tick": 14432,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309918,
+        "tick": 4164,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309918,
+        "tick": 8286,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309919,
+        "tick": 1137,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309919,
+        "tick": 1139,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309919,
+        "tick": 2953,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 1589,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3128,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3133,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3230,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3338,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3436,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3528,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 3530,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309920,
+        "tick": 9276,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309922,
+        "tick": 6951,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309922,
+        "tick": 8866,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309922,
+        "tick": 11947,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309923,
+        "tick": 757,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309923,
+        "tick": 2705,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      },
+      {
+        "cls": "E-HEADER-CLEAR",
+        "seed": 12309923,
+        "tick": 5265,
+        "gid": -1,
+        "cause": "clearances delta with no same-side feet owner (defensive header)"
+      }
+    ],
+    "unexplained": 0,
+    "perSeed": [
+      {
+        "seed": 12309900,
+        "releases": 103,
+        "playedSimSeconds": 240.016667,
+        "steps": 15106
+      },
+      {
+        "seed": 12309901,
+        "releases": 98,
+        "playedSimSeconds": 241.466667,
+        "steps": 15193
+      },
+      {
+        "seed": 12309902,
+        "releases": 82,
+        "playedSimSeconds": 241.45,
+        "steps": 14667
+      },
+      {
+        "seed": 12309903,
+        "releases": 99,
+        "playedSimSeconds": 241.95,
+        "steps": 14697
+      },
+      {
+        "seed": 12309904,
+        "releases": 80,
+        "playedSimSeconds": 241.266667,
+        "steps": 15706
+      },
+      {
+        "seed": 12309905,
+        "releases": 92,
+        "playedSimSeconds": 240.016667,
+        "steps": 14581
+      },
+      {
+        "seed": 12309906,
+        "releases": 97,
+        "playedSimSeconds": 244.433333,
+        "steps": 15371
+      },
+      {
+        "seed": 12309907,
+        "releases": 92,
+        "playedSimSeconds": 240.966667,
+        "steps": 15338
+      },
+      {
+        "seed": 12309908,
+        "releases": 86,
+        "playedSimSeconds": 240.883333,
+        "steps": 14808
+      },
+      {
+        "seed": 12309909,
+        "releases": 65,
+        "playedSimSeconds": 240.016667,
+        "steps": 14756
+      },
+      {
+        "seed": 12309910,
+        "releases": 89,
+        "playedSimSeconds": 240.05,
+        "steps": 15283
+      },
+      {
+        "seed": 12309911,
+        "releases": 49,
+        "playedSimSeconds": 240.016667,
+        "steps": 14931
+      },
+      {
+        "seed": 12309912,
+        "releases": 104,
+        "playedSimSeconds": 243.2,
+        "steps": 15472
+      },
+      {
+        "seed": 12309913,
+        "releases": 123,
+        "playedSimSeconds": 241.4,
+        "steps": 14839
+      },
+      {
+        "seed": 12309914,
+        "releases": 117,
+        "playedSimSeconds": 240.433333,
+        "steps": 14956
+      },
+      {
+        "seed": 12309915,
+        "releases": 101,
+        "playedSimSeconds": 241.683333,
+        "steps": 15206
+      },
+      {
+        "seed": 12309916,
+        "releases": 63,
+        "playedSimSeconds": 241.933333,
+        "steps": 14871
+      },
+      {
+        "seed": 12309917,
+        "releases": 119,
+        "playedSimSeconds": 240.016667,
+        "steps": 14581
+      },
+      {
+        "seed": 12309918,
+        "releases": 89,
+        "playedSimSeconds": 240.116667,
+        "steps": 15112
+      },
+      {
+        "seed": 12309919,
+        "releases": 135,
+        "playedSimSeconds": 248.5,
+        "steps": 15090
+      },
+      {
+        "seed": 12309920,
+        "releases": 113,
+        "playedSimSeconds": 240.233333,
+        "steps": 14769
+      },
+      {
+        "seed": 12309921,
+        "releases": 102,
+        "playedSimSeconds": 240.733333,
+        "steps": 14974
+      },
+      {
+        "seed": 12309922,
+        "releases": 101,
+        "playedSimSeconds": 245.35,
+        "steps": 15251
+      },
+      {
+        "seed": 12309923,
+        "releases": 93,
+        "playedSimSeconds": 240.366667,
+        "steps": 15127
+      }
+    ]
+  },
+  "resultSha256": "b1e5e1f24dcd032e22efb058e5067c9203d7b46ea3d99c8f8f4533dbd6a8f5b0",
+  "wallMsContextOnly": 4135
+}
