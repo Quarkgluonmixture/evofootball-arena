@@ -16,7 +16,9 @@ import {
 import {
   beyondLineBit, evaluateInSupport, perceivedOffsideLine, widthHeldBit, type BitValue,
 } from './eyeContextBitsV4';
-import { effectiveHomePriorObedience } from '../evolution/genome';
+import {
+  MARK_SAG_BALL_SPEED, MARK_SAG_MAX, effectiveHomePriorObedience, markSagWeight,
+} from '../evolution/genome';
 import { pressureAt } from './perception';
 import {
   ATTACK_FORMATIONS, cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX,
@@ -38,6 +40,40 @@ export function relativePointTarget(
     x: reference.x + attackDir * offset.x,
     y: reference.y + offset.y,
   };
+}
+
+/**
+ * MT-T0 (MARK-TIGHTNESS-CONTRACT §2 M-MT.1/M-MT.2, ruling #201.4) — THE ACCESS-TIME
+ * ACCOUNT, as a PURE function so the MT instruments can read the same arithmetic the
+ * stance runs (no probe-only engine surface, the #196-D6 discipline).
+ *
+ *   t_ball = dist(ball, mark) / MARK_SAG_BALL_SPEED     (the engine's own pass
+ *                                                        flight-time constant, 16)
+ *   t_self = dist(marker, mark) / max(topSpeed, 0.1)    (the TeamBrain.ts:425
+ *                                                        arrival-time form)
+ *   slack  = t_ball − t_self
+ *   sagOf  = slack ≤ 0 ? 0 : min(slack · max(topSpeed, 0.1), MARK_SAG_MAX)
+ *
+ * The metre value of the sag is the distance the marker can RECOVER in his spare
+ * time — so the shape introduces no conversion constant of its own: it is monotone
+ * increasing in positive slack, exactly 0 at zero/negative slack, and hard-capped at
+ * the frozen 9 m ceiling. Equivalently `sagOf = min(t_ball·v − d, 9)`.
+ *
+ * ⚠ It is a TIGHTNESS number, never a switch: there is no decline/release predicate
+ * here or anywhere downstream (the #200 red line). A ball 1–2 s from the man — every
+ * cross into the box — gives `slack ≤ 0` and therefore ZERO sag, so the box prices
+ * tight marking by itself with no carve-out. M-MT.5: straight-line proxy, geometry
+ * only (no carrier release-ability term in slice one). PURE, no rng, no mutation.
+ */
+export function markSagMetres(
+  ballPos: Readonly<V2>, markPos: Readonly<V2>, markerPos: Readonly<V2>, topSpeed: number,
+): number {
+  const v = Math.max(topSpeed, 0.1);
+  const tBall = dist(ballPos, markPos) / MARK_SAG_BALL_SPEED;
+  const tSelf = dist(markerPos, markPos) / v;
+  const slack = tBall - tSelf;
+  if (!Number.isFinite(slack) || slack <= 0) return 0;
+  return Math.min(slack * v, MARK_SAG_MAX);
 }
 
 /** P2 §2.2: the commitment window, in ticks. */
@@ -102,6 +138,15 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   // This boolean is passed ONLY to the two BODY-MOVEMENT reads below (M-PM.3,
   // #35.3): the walk target and the marker's no-target fallback.
   const pmMover = match.pmLaneConvergence && match.phase === 'playing';
+  // MT T0 — THE M-MT.1 PHASE GATE, evaluated ONCE here and nowhere else: LIVE OPEN
+  // PLAY only (`phase === 'playing'`), and the sag itself is out-of-possession only
+  // (`!hasBall`, enforced at the term inside the MarkOpponent stance). Every restart
+  // phase — `kickoff`, `restart` (goal kicks, throw-ins, free kicks, corners),
+  // `goalPause`, `halftime`, `fulltime` — therefore keeps the UNMODULATED stance, so
+  // the Phase 31.6 goal-kick half of the distribution stand-off is unreachable by
+  // construction (that branch only fires while `match.restart.kind === 'goalKick'`,
+  // i.e. while `phase === 'restart'`).
+  const mtSag = match.mtMarkSag && match.phase === 'playing';
   let target: V2 | null = null;
   let speedF = jog;
   p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
@@ -263,6 +308,22 @@ export function executeAction(p: Player, match: Match, dt: number): void {
           ((oppGk.gkHoldTimer > 0 || oppGk.gkDistributing) && ball.owner === oppGk)
         ) {
           markDist = Math.max(markDist, 2.6 - g.markingAggression * 0.6);
+        }
+        // MT T0 (M-MT.2, the ACCESS-TIME SAG — dormant behind `mtMarkSag` + the gene,
+        // both born off): `markDist′ = markDist + g_MT · sagOf(t_ball − t_self)`. It
+        // is the ONLY write of this slice, it only ever ADDS distance on top of
+        // whatever the two floors above produced (Phase 30.5's stance floor and Phase
+        // 31.6's stand-off), and it NEVER tightens — so both prior stance reverts hold
+        // by construction. Everything below is untouched: the (mark→goal, mark→ball)
+        // direction blend, `laneW`, `markingAggression`, and mark ASSIGNMENT.
+        // The contain case prices ITSELF: `ball.owner === mark` ⇒ the ball is at his
+        // feet ⇒ t_ball ≈ 0 ⇒ slack < 0 ⇒ zero sag ⇒ the 29.1 jockey stand-off is
+        // exactly today's. Same for every box delivery (M-MT.4: no carve-out, no
+        // predicate). Gene BORN ABSENT ⇒ weight 0 ⇒ this line is a no-op ⇒ the world
+        // is byte-identical (that is what the MT-T0 identity gates prove).
+        if (mtSag && !hasBall) {
+          const w = markSagWeight(g);
+          if (w > 0) markDist += w * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed);
         }
         const goal = team.ownGoal();
         const gx = goal.x - mark.pos.x;

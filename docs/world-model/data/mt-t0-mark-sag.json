@@ -1,0 +1,780 @@
+{
+  "stage": "MT T0 — the dormant ACCESS-TIME MARK-SAG seam (`markSag` / `mtMarkSag`)",
+  "ruling": "#201.4 (the dispatch) + #181.2 (the standing receipt rule) + #194/#196/#197 (evidence reporting) + #200 (no decline predicate, ever)",
+  "contract": "docs/world-model/MARK-TIGHTNESS-CONTRACT.md",
+  "doc": "docs/world-model/MT-T0-DORMANT-SEAM.md",
+  "frozenConstants": {
+    "ballSpeed": 16,
+    "sagCap": 9,
+    "geneDomain": [
+      0,
+      1
+    ],
+    "sagOfShape": "slack = dist(ball,mark)/MARK_SAG_BALL_SPEED − dist(marker,mark)/max(topSpeed,0.1); sagOf = slack <= 0 ? 0 : min(slack · max(topSpeed,0.1), MARK_SAG_MAX). Monotone increasing in positive slack, exactly 0 at zero/negative slack, hard-capped. The metre value is the distance the marker RECOVERS in his spare time, so the shape introduces no conversion constant of its own.",
+    "derivation": "markDist′ = markDist + clamp01(markSag) · sagOf(slack). 16 = the engine's own pass FLIGHT-TIME constant (src/sim/mechanics.ts performPass: `const flight = dist(passer.pos, mate.pos) / (16 * powerMul);`) — the family member chosen by QUESTION IDENTITY, the only one that answers \"how long would the ball take to reach my man\". 9 = the ZONAL ENGAGEMENT RADIUS in assignMarks (src/ai/TeamBrain.ts: `... dist(zones.get(p.index)!, threat.pos) > 9) continue;`), the contract's named neighbour. No constant is invented for this slice.",
+    "forcedDose": 1
+  },
+  "gates": {
+    "gDet": {
+      "pass": true,
+      "digestA": "7134332246b608e822e24cfb1367d29f091fb4c24a068c7006c5df3008a17b2e",
+      "digestB": "7134332246b608e822e24cfb1367d29f091fb4c24a068c7006c5df3008a17b2e"
+    },
+    "gIdent": {
+      "pass": true,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "semantics": "THE RNG-STREAM RECEIPT for the sim path: these baselines were frozen from PRE-change code, so any draw added on the dormant path — conditional or not — would break them.",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gOff": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "CONFIG EQUIVALENCE ONLY (#194): flag ABSENT ≡ flag FALSE in both the production-shaped and the percept-armed world. Both arms execute the SAME flag-off code path, so this gate cannot and does not prove RNG-stream identity — G-IDENT does."
+    },
+    "gBorn": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ARMS DIFFER IN CODE PATH: armed ⇒ `mtSag` true ⇒ the M-MT.2 branch in the MarkOpponent stance is ENTERED on every out-of-possession marker tick and markSagWeight evaluates to 0 (gene born absent). Byte-identity to OFF therefore proves the born-absent read is inert THROUGH the live branch."
+    },
+    "gBite": {
+      "pass": true,
+      "divergedSeeds": 24,
+      "seeds": 24,
+      "stanceUnderForce": {
+        "seed": 12312024,
+        "samples": 2986,
+        "slackPositive": 1858,
+        "slackNonPositive": 1128,
+        "saggedGtBase": 1858,
+        "tightened": 0,
+        "meanBaseMarkDist": 2.0483,
+        "meanSaggedMarkDist": 4.3021,
+        "meanSagPositive": 3.6221,
+        "maxSag": 9,
+        "boxSamples": 69,
+        "boxZeroSag": 17,
+        "boxMeanSag": 3.258,
+        "boxMaxSag": 9,
+        "boxMeanTBall": 0.877,
+        "deliverySamples": 20,
+        "deliveryZeroSag": 14,
+        "deliveryMeanSag": 0.4426,
+        "deliveryMaxSag": 3.3159,
+        "deliveryMeanTBall": 0.3386,
+        "semantics": "at the frozen dose the stance sag is INSTRUMENT-VISIBLE: on every slack-positive marker-tick the sagged stance distance strictly EXCEEDS the unmodulated markDist, and on ZERO ticks is it smaller (the seam only ADDS distance — the Phase 30.5 / 31.6 revert guarantee). ⚠ The unmodulated markDist is a probe-side REPLICA of the two stance-floor lines (the engine keeps it block-local and this slice adds no probe-only engine surface); G-CONST matches both source lines and the seam line VERBATIM so the replica cannot drift."
+      }
+    },
+    "gAssign": {
+      "pass": true,
+      "semantics": "TWO independent arms, stated exactly. (a) SOURCE: the seam's identifiers are scanned across src/** — ZERO occurrences in TeamBrain.ts, the file that owns assignMarks/team.marks, so the assignment path cannot read the seam at all. (b) ORDER (lockstep absent vs forced, one seed): the two worlds DO diverge (that is G-BITE); the claim is that `team.marks` never diverges BEFORE body positions do. A direct assignment channel would show marks differing at the first brain tick with every position still identical.",
+      "seamSiteFiles": [
+        "src/ai/actionExecutor.ts",
+        "src/evolution/genome.ts",
+        "src/sim/League.ts",
+        "src/sim/Match.ts"
+      ],
+      "seamSiteCount": 35,
+      "sites": [
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 20,
+          "text": "MARK_SAG_BALL_SPEED, MARK_SAG_MAX, effectiveHomePriorObedience, markSagWeight,"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 50,
+          "text": "*   t_ball = dist(ball, mark) / MARK_SAG_BALL_SPEED     (the engine's own pass"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 55,
+          "text": "*   sagOf  = slack ≤ 0 ? 0 : min(slack · max(topSpeed, 0.1), MARK_SAG_MAX)"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 68,
+          "text": "export function markSagMetres("
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 72,
+          "text": "const tBall = dist(ballPos, markPos) / MARK_SAG_BALL_SPEED;"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 76,
+          "text": "return Math.min(slack * v, MARK_SAG_MAX);"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 149,
+          "text": "const mtSag = match.mtMarkSag && match.phase === 'playing';"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 312,
+          "text": "// MT T0 (M-MT.2, the ACCESS-TIME SAG — dormant behind `mtMarkSag` + the gene,"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 325,
+          "text": "const w = markSagWeight(g);"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 326,
+          "text": "if (w > 0) markDist += w * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed);"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 234,
+          "text": "* `markDist′ = markDist + markSag · sagOf(slack)` on the EXISTING (mark→goal,"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 235,
+          "text": "* mark→ball) blend, where `slack = t_ball − t_self` (see `markSagMetres` in"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 237,
+          "text": "* `MARK_SAG_MAX` metres of sag at maximal slack."
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 251,
+          "text": "* consumer via `markSagWeight`), deliberately NOT in GENE_KEYS — so randomGenome /"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 260,
+          "text": "* `mtMarkSag` match flag — every draw AND every read is thus flag-gated."
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 262,
+          "text": "markSag?: number;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 284,
+          "text": "* WITH numbers, not a quiet re-freeze after sight. `markSagGene.test.ts` and the"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 287,
+          "text": "export const MARK_SAG_BALL_SPEED = 16;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 302,
+          "text": "export const MARK_SAG_MAX = 9;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 308,
+          "text": "* door (the sag itself is capped at `MARK_SAG_MAX` in `markSagMetres`)."
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 310,
+          "text": "export function markSagWeight(g: TacticalGenome): number {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 311,
+          "text": "const v = g.markSag;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 477,
+          "text": "* MT-T0 (#201.4, the SAME RNG-stream trap): opt-in that lets the dormant `markSag`"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 484,
+          "text": "* MT-T2-grade run flips this together with the `mtMarkSag` match flag."
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 537,
+          "text": "out.markSag = clamp01((out.markSag ?? 0) + rng.gaussian() * scale);"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 606,
+          "text": "const av = a.markSag ?? 0;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 607,
+          "text": "const bv = b.markSag ?? 0;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 608,
+          "text": "out.markSag = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 609,
+          "text": "} else if (a.markSag !== undefined) {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 610,
+          "text": "out.markSag = a.markSag;"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 283,
+          "text": "| 'pmLaneConvergence' | 'mtMarkSag'"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 466,
+          "text": "* `markDist + markSag · sagOf(t_ball − t_self)` from his man along the EXISTING"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 475,
+          "text": "mtMarkSag?: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 710,
+          "text": "readonly mtMarkSag: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1191,
+          "text": "this.mtMarkSag = cfg.mtMarkSag ?? false;"
+        }
+      ],
+      "lockstep": {
+        "ticks": 130,
+        "firstPosDiffTick": 62,
+        "firstMarksDiffTick": 130,
+        "marksLedDivergence": false,
+        "marksIdenticalTicks": 129
+      }
+    },
+    "gEvoRng": {
+      "pass": true,
+      "semantics": "THE ARMS DIFFER: the actual shipped mutate/crossover with the opt-in OFF vs a faithful PRE-GENE re-implementation (GENE_KEYS only). Identical genomes AND identical final rng state ⇒ zero extra draws; `optInDraws` shows the opt-in path is live; `pmStreamUnmoved` shows the PM-T0 opt-in's OWN stream is unmoved (the new draws sit STRICTLY after the defLaneConvergence block).",
+      "genomesIdentical": true,
+      "rngStateIdentical": true,
+      "geneStayedAbsent": true,
+      "optInDraws": true,
+      "pmStreamUnmoved": true,
+      "sActual": 240212633,
+      "sHead": 240212633
+    },
+    "gConst": {
+      "pass": true,
+      "ballSpeedLineFound": true,
+      "sagCapLineFound": true,
+      "tSelfLineFound": true,
+      "floor305LineFound": true,
+      "standOff316LineFound": true,
+      "seamLineFound": true,
+      "ballSpeedValue": true,
+      "sagCapValue": true,
+      "ballSpeed": 16,
+      "sagCap": 9,
+      "ballSpeedLine": "const flight = dist(passer.pos, mate.pos) / (16 * powerMul);",
+      "ballSpeedFile": "src/sim/mechanics.ts",
+      "sagCapLine": "if (zones && !boxThreat && dist(zones.get(p.index)!, threat.pos) > 9) continue;",
+      "sagCapFile": "src/ai/TeamBrain.ts",
+      "tSelfLine": "const t = dist(p.pos, land) / Math.max(p.topSpeed, 0.1);",
+      "tSelfFile": "src/ai/TeamBrain.ts",
+      "floor305Line": "let markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.4;",
+      "standOff316Line": "markDist = Math.max(markDist, 2.6 - g.markingAggression * 0.6);",
+      "seamLine": "if (w > 0) markDist += w * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed);",
+      "stanceFile": "src/ai/actionExecutor.ts"
+    },
+    "gHygiene": {
+      "pass": true,
+      "defaultFalse": true,
+      "absentFromA4World": true,
+      "notInGeneKeys": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true,
+      "noSeamInAssignmentFile": true
+    },
+    "seedDisjoint": {
+      "first": 12312000,
+      "last": 12312025,
+      "consumedBlocks": [
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 smoke (two plumbing runs)",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 full battery",
+          "range": [
+            12311300,
+            12311949
+          ]
+        }
+      ],
+      "collisions": [],
+      "pass": true
+    },
+    "allPass": true
+  },
+  "reported": {
+    "boxCensus": {
+      "note": "REPORTED, observation-only, ONE forced match at the frozen dose, sampled every 15 ticks over every body actually executing a MarkOpponent stance out of possession. No control, no CI, no dose curve — it gates NOTHING. It exists to make the contract's \"the box prices itself\" claim (§7 REALITY) VISIBLE rather than asserted: when the man stands inside the defending box the flight time is short, so slack is non-positive and the sag is zero — tight marking, with no carve-out and no predicate anywhere.",
+      "seed": 12312024,
+      "samples": 2986,
+      "slackPositive": 1858,
+      "slackNonPositive": 1128,
+      "meanSagOnSlackPositiveTicks": 3.6221,
+      "maxSag": 9,
+      "manInBox": {
+        "samples": 69,
+        "zeroSagSamples": 17,
+        "meanSag": 3.258,
+        "maxSag": 9,
+        "meanTBallSeconds": 0.877,
+        "note": "the MAN is in the defending box — this layer is NOT the claim and is NOT tight by itself: with the ball at the far end the flight time is long, the slack is real and the marker tucks in. Published so the claim below is not read wider than it is."
+      },
+      "delivery": {
+        "samples": 20,
+        "zeroSagSamples": 14,
+        "meanSag": 0.4426,
+        "maxSag": 3.3159,
+        "meanTBallSeconds": 0.3386,
+        "note": "THE CONTRACT §7 CLAIM: the BALL is in that box too — the delivery is actually there. Short flight ⇒ slack ≤ 0 ⇒ zero sag ⇒ touch-tight, with no carve-out and no predicate. Both layers use the engine's own box geometry; no threshold is invented."
+      }
+    }
+  },
+  "result": {
+    "seeds": {
+      "block": 12312000,
+      "n": 24,
+      "first": 12312000,
+      "last": 12312023
+    },
+    "rows": [
+      {
+        "seed": 12312000,
+        "absent": "524c747026311beabba3d6d7ad008329e74ee7224cec415ade0335a0fc8c6996",
+        "off": "524c747026311beabba3d6d7ad008329e74ee7224cec415ade0335a0fc8c6996",
+        "plain": "733cc7f32890ea2c7db80f7098dc9b57ec822080af189b737d3930964e145eb0",
+        "plainOff": "733cc7f32890ea2c7db80f7098dc9b57ec822080af189b737d3930964e145eb0",
+        "bornArmed": "524c747026311beabba3d6d7ad008329e74ee7224cec415ade0335a0fc8c6996",
+        "forced": "385723dd87d2568512b0892fd635af545d33b7a8f9065e9b4e98265dbac19221",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312001,
+        "absent": "fba9c4dd90d22317621e4e1ea8d554db4edde49fb1a5535d0773fe254d484d36",
+        "off": "fba9c4dd90d22317621e4e1ea8d554db4edde49fb1a5535d0773fe254d484d36",
+        "plain": "8d7dc223be2119afc4d6d68fdfd7e32d0724b5f85b12ffce52ae9dfe2623e4b6",
+        "plainOff": "8d7dc223be2119afc4d6d68fdfd7e32d0724b5f85b12ffce52ae9dfe2623e4b6",
+        "bornArmed": "fba9c4dd90d22317621e4e1ea8d554db4edde49fb1a5535d0773fe254d484d36",
+        "forced": "8fa36c5ffeebc9a504b1bad6a3709b1db580b6d7852bc190af16e7eb23c08251",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312002,
+        "absent": "4019d7997768a02533b87acbbdbcc6222acdfab9947bd91fc456fb48d34ec31f",
+        "off": "4019d7997768a02533b87acbbdbcc6222acdfab9947bd91fc456fb48d34ec31f",
+        "plain": "7b114e7443fdaf0088fb23143d1e57935f1ec222584eaf09690bb83f713150bd",
+        "plainOff": "7b114e7443fdaf0088fb23143d1e57935f1ec222584eaf09690bb83f713150bd",
+        "bornArmed": "4019d7997768a02533b87acbbdbcc6222acdfab9947bd91fc456fb48d34ec31f",
+        "forced": "40929bf81f08ea5ee6aaa3748adf1a034714df2ce1d66753b6f78693c8b23dfe",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312003,
+        "absent": "0741711c03ef442a68d028156dfbf90e33e9738b86f41a6fb4e8cc6198098341",
+        "off": "0741711c03ef442a68d028156dfbf90e33e9738b86f41a6fb4e8cc6198098341",
+        "plain": "c75a0606849394d58556502d111d18de49914e63605fe0e34ea51325f7bf901d",
+        "plainOff": "c75a0606849394d58556502d111d18de49914e63605fe0e34ea51325f7bf901d",
+        "bornArmed": "0741711c03ef442a68d028156dfbf90e33e9738b86f41a6fb4e8cc6198098341",
+        "forced": "e37cc1801113bbd00159f239b60de7bb6c99fcbcda60c4091ad3e12b57b1d333",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312004,
+        "absent": "32007294a10c2998200d3ff94bc2c0d7917933188b6d5f018aa2a146c5579e80",
+        "off": "32007294a10c2998200d3ff94bc2c0d7917933188b6d5f018aa2a146c5579e80",
+        "plain": "0d2d66e5b3f1cbdba35218b027c0051862b69c7de070f363ff5b4597aa619155",
+        "plainOff": "0d2d66e5b3f1cbdba35218b027c0051862b69c7de070f363ff5b4597aa619155",
+        "bornArmed": "32007294a10c2998200d3ff94bc2c0d7917933188b6d5f018aa2a146c5579e80",
+        "forced": "8335125af50703084f6efca29ba6bd8c88314e03e44430ddf79b03106106ca30",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312005,
+        "absent": "37b1ca487329230411538bf342890c3806712105c2796a970320b2781856ed65",
+        "off": "37b1ca487329230411538bf342890c3806712105c2796a970320b2781856ed65",
+        "plain": "a26cfd57787cbd318f3a56ed6eb0c703e72b2e311445da712e7ac34c49a21430",
+        "plainOff": "a26cfd57787cbd318f3a56ed6eb0c703e72b2e311445da712e7ac34c49a21430",
+        "bornArmed": "37b1ca487329230411538bf342890c3806712105c2796a970320b2781856ed65",
+        "forced": "b628ab650c47d0ac460421330feda21784aaad115b0460bc65a7ba3dc69e444d",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312006,
+        "absent": "3f07e977f9945a2e37f723bd73dd071e05c5aebef0aef04fe7eb32c981607dec",
+        "off": "3f07e977f9945a2e37f723bd73dd071e05c5aebef0aef04fe7eb32c981607dec",
+        "plain": "d9e8a63519fdb782d56c318bc23c965509394d082c1c150c269e05b8f12020b7",
+        "plainOff": "d9e8a63519fdb782d56c318bc23c965509394d082c1c150c269e05b8f12020b7",
+        "bornArmed": "3f07e977f9945a2e37f723bd73dd071e05c5aebef0aef04fe7eb32c981607dec",
+        "forced": "e6624ed0df61f8f3194da76e7e5f92c863c0c5dfd3c31c09228c61f774cc9280",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312007,
+        "absent": "e2decf2174710d757822ee09da68356b6364e3642e21db4331b9be0d9ed3e5e0",
+        "off": "e2decf2174710d757822ee09da68356b6364e3642e21db4331b9be0d9ed3e5e0",
+        "plain": "83071a70dcec797ed4101e02c43a56ae41aef3c652a7372fa031f8ef55d5108f",
+        "plainOff": "83071a70dcec797ed4101e02c43a56ae41aef3c652a7372fa031f8ef55d5108f",
+        "bornArmed": "e2decf2174710d757822ee09da68356b6364e3642e21db4331b9be0d9ed3e5e0",
+        "forced": "9f0a7777fdd23d03570ea0190389d7762fb11ed14491701e0d542fe938a93d2a",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312008,
+        "absent": "5698051b0f9e41deba23830e4834c8e59183ef30b96b241ccce3d3f1fa98f31d",
+        "off": "5698051b0f9e41deba23830e4834c8e59183ef30b96b241ccce3d3f1fa98f31d",
+        "plain": "0f3550c2dc84ea46f0bb091b0d9f24e35512c3d67abc8f9c58676184f40bade3",
+        "plainOff": "0f3550c2dc84ea46f0bb091b0d9f24e35512c3d67abc8f9c58676184f40bade3",
+        "bornArmed": "5698051b0f9e41deba23830e4834c8e59183ef30b96b241ccce3d3f1fa98f31d",
+        "forced": "0beb53b97a3176719ca1b5b53ab3ef03c7e9b73b44a58134e01fda4a7dc1809d",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312009,
+        "absent": "0794294ae32c63f8ca7dd42cf2e9825b673131ffaa88e6699ba4cac8546f7058",
+        "off": "0794294ae32c63f8ca7dd42cf2e9825b673131ffaa88e6699ba4cac8546f7058",
+        "plain": "08ded983da39ab2203c2869240a21c84acc38084d4f08b7abb61cea235a52a35",
+        "plainOff": "08ded983da39ab2203c2869240a21c84acc38084d4f08b7abb61cea235a52a35",
+        "bornArmed": "0794294ae32c63f8ca7dd42cf2e9825b673131ffaa88e6699ba4cac8546f7058",
+        "forced": "0eaee02087d94e272c16fc88b7884eb2650bffbdcaa8343abdbb0d788c5431ba",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312010,
+        "absent": "198963e1a70e4c94f74b49c93b861dc7d100a65bd6fedbbfa350ea6c8b8cda8b",
+        "off": "198963e1a70e4c94f74b49c93b861dc7d100a65bd6fedbbfa350ea6c8b8cda8b",
+        "plain": "399183dbe7e2633f30b77b4b7cf1f97f53ac432708b025a4e22f4622a8e6dceb",
+        "plainOff": "399183dbe7e2633f30b77b4b7cf1f97f53ac432708b025a4e22f4622a8e6dceb",
+        "bornArmed": "198963e1a70e4c94f74b49c93b861dc7d100a65bd6fedbbfa350ea6c8b8cda8b",
+        "forced": "eadd3b05ae313a9af6959048aa108c4280cae22bf0c85020629b70237246823f",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312011,
+        "absent": "83b11d6843a67b64691dfc9aa51474819f188a6d4f28b0daeeedb73a7df648ab",
+        "off": "83b11d6843a67b64691dfc9aa51474819f188a6d4f28b0daeeedb73a7df648ab",
+        "plain": "a0e219e52d768c861fb4e6f5e60b628e8a9256dac86e6721f3c7b47997a4adc8",
+        "plainOff": "a0e219e52d768c861fb4e6f5e60b628e8a9256dac86e6721f3c7b47997a4adc8",
+        "bornArmed": "83b11d6843a67b64691dfc9aa51474819f188a6d4f28b0daeeedb73a7df648ab",
+        "forced": "8d70c9014e413ceccd2041ac60acc5e2252b76576293ec40a6baf35633b184e3",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312012,
+        "absent": "9796d48f592440711d0f73ffbc61792fdab649f3ff78856d3663fbd02f68b602",
+        "off": "9796d48f592440711d0f73ffbc61792fdab649f3ff78856d3663fbd02f68b602",
+        "plain": "5e4c7b1eec6b97fd87d959d37400ad801dfafe72c0095664a8b134660b4040f8",
+        "plainOff": "5e4c7b1eec6b97fd87d959d37400ad801dfafe72c0095664a8b134660b4040f8",
+        "bornArmed": "9796d48f592440711d0f73ffbc61792fdab649f3ff78856d3663fbd02f68b602",
+        "forced": "6606bc52cd2e6d59fd5971454410131d11557ee189f4d22afcb14981c2be148c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312013,
+        "absent": "b6403262e12bc2a406bc068023640ac8389938ff00cb0392e0cfde38c710001b",
+        "off": "b6403262e12bc2a406bc068023640ac8389938ff00cb0392e0cfde38c710001b",
+        "plain": "4fbeedd9e10e6398d16b3061e8b98632c899eda450b206cb9a1248c42d749ea2",
+        "plainOff": "4fbeedd9e10e6398d16b3061e8b98632c899eda450b206cb9a1248c42d749ea2",
+        "bornArmed": "b6403262e12bc2a406bc068023640ac8389938ff00cb0392e0cfde38c710001b",
+        "forced": "e021b9085a54e73aa5033ea209da63eaa15caced8db1cd440601224e13227c1b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312014,
+        "absent": "70e1498738acc5692d461de4d77a63161ecbf7371a9782c98efaddedf4b171ca",
+        "off": "70e1498738acc5692d461de4d77a63161ecbf7371a9782c98efaddedf4b171ca",
+        "plain": "a22fc19bc99af8a8199028e1f7c94e1569a92144782416a18a5ef953fef2ee9c",
+        "plainOff": "a22fc19bc99af8a8199028e1f7c94e1569a92144782416a18a5ef953fef2ee9c",
+        "bornArmed": "70e1498738acc5692d461de4d77a63161ecbf7371a9782c98efaddedf4b171ca",
+        "forced": "842fbaa5feac5875b954f1cf9c3519d491c58e447232cc6653a7d16c1605eeb2",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312015,
+        "absent": "861b420a56695b18860045e20025078408bde329ecf83afb61045bac1672f921",
+        "off": "861b420a56695b18860045e20025078408bde329ecf83afb61045bac1672f921",
+        "plain": "3b266da3ac552690dea8b0bae169a8a2a216881edba1b4f8e5839328e5c27068",
+        "plainOff": "3b266da3ac552690dea8b0bae169a8a2a216881edba1b4f8e5839328e5c27068",
+        "bornArmed": "861b420a56695b18860045e20025078408bde329ecf83afb61045bac1672f921",
+        "forced": "75acad233a7b13e292a217a52915983b65d5561c92cf429c9379c47046cf0366",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312016,
+        "absent": "67b49b8fcf893590339352626265bec9bf2e1eb0bc3b8e09596c1b5faf6299f0",
+        "off": "67b49b8fcf893590339352626265bec9bf2e1eb0bc3b8e09596c1b5faf6299f0",
+        "plain": "1ef6c363608158bf27a1eea8373089f6c9dc3efa295f6eb4d39d1d4b4095cd26",
+        "plainOff": "1ef6c363608158bf27a1eea8373089f6c9dc3efa295f6eb4d39d1d4b4095cd26",
+        "bornArmed": "67b49b8fcf893590339352626265bec9bf2e1eb0bc3b8e09596c1b5faf6299f0",
+        "forced": "337cfe8a19a965bd0a709c2be3a462f4b45238bbab7c3a2b9bf732bda34b5dad",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312017,
+        "absent": "a9ceaf13e775fea75fd5c027213af8f8ac71b17c969c7ba29682c54b858dd75b",
+        "off": "a9ceaf13e775fea75fd5c027213af8f8ac71b17c969c7ba29682c54b858dd75b",
+        "plain": "fccdb474a78ef16c82ec25eb71c5df805140764d459ca02fc7eaeb9bcb6cb6d3",
+        "plainOff": "fccdb474a78ef16c82ec25eb71c5df805140764d459ca02fc7eaeb9bcb6cb6d3",
+        "bornArmed": "a9ceaf13e775fea75fd5c027213af8f8ac71b17c969c7ba29682c54b858dd75b",
+        "forced": "b211d8c11ae7ea8aa6f7adfbe9a7d4adce4876faa015c460905b05b4ca9dee64",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312018,
+        "absent": "69f21b6563c6b9f8ac2b30455e0939a610b5eb5747eca5a817f0e398b3debf96",
+        "off": "69f21b6563c6b9f8ac2b30455e0939a610b5eb5747eca5a817f0e398b3debf96",
+        "plain": "a7599ef8f56d26f514324ef08ce22263ae7b4f2f30424fa80cf20e3dc695a5a6",
+        "plainOff": "a7599ef8f56d26f514324ef08ce22263ae7b4f2f30424fa80cf20e3dc695a5a6",
+        "bornArmed": "69f21b6563c6b9f8ac2b30455e0939a610b5eb5747eca5a817f0e398b3debf96",
+        "forced": "05ef553ca823deba3fd427e77088296510d61f1f646202b381519d951bbd83e9",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312019,
+        "absent": "df65f1af50109ba93d02a05d8e30820a10fe310132d7c8b67db0ddd458cc5c73",
+        "off": "df65f1af50109ba93d02a05d8e30820a10fe310132d7c8b67db0ddd458cc5c73",
+        "plain": "69bb59bd64f6e8c1a8ac524322f53d61c9de4a4c4ecb64febb3ab5c692bb9ed4",
+        "plainOff": "69bb59bd64f6e8c1a8ac524322f53d61c9de4a4c4ecb64febb3ab5c692bb9ed4",
+        "bornArmed": "df65f1af50109ba93d02a05d8e30820a10fe310132d7c8b67db0ddd458cc5c73",
+        "forced": "97018966dd65f74bfc77089df15f475423cae45f866807df78bedc29f58e2eb1",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312020,
+        "absent": "66a00fcfc30274ed7b8c3368c2a93db0f6c767d3c7a0c8bff017629fe65278f7",
+        "off": "66a00fcfc30274ed7b8c3368c2a93db0f6c767d3c7a0c8bff017629fe65278f7",
+        "plain": "cdc1b7fb1b02b2998e56391cedcf35c83edd518fc3abc40ea6d2ef2c626af3dd",
+        "plainOff": "cdc1b7fb1b02b2998e56391cedcf35c83edd518fc3abc40ea6d2ef2c626af3dd",
+        "bornArmed": "66a00fcfc30274ed7b8c3368c2a93db0f6c767d3c7a0c8bff017629fe65278f7",
+        "forced": "69c4ec2092b712123baf941e3abb6619221cafc8dc15f644caf9ca97666a2dd0",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312021,
+        "absent": "ab536863374609dd6ae9c7b37e235a28449944ac2ae8219544083444d3231329",
+        "off": "ab536863374609dd6ae9c7b37e235a28449944ac2ae8219544083444d3231329",
+        "plain": "d606f60d4721555457a79d87f1376722ddee583f559f6ff95e8b93b7efea39a3",
+        "plainOff": "d606f60d4721555457a79d87f1376722ddee583f559f6ff95e8b93b7efea39a3",
+        "bornArmed": "ab536863374609dd6ae9c7b37e235a28449944ac2ae8219544083444d3231329",
+        "forced": "2d1d6166baea692aa33bbe02a4c6e7f1a9bf8956271e88c519579e843b9c273d",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312022,
+        "absent": "e4b1c17e2e84427d62b5ff03458ecc36f266a0e39113b5c3e11f0f26b9e2c216",
+        "off": "e4b1c17e2e84427d62b5ff03458ecc36f266a0e39113b5c3e11f0f26b9e2c216",
+        "plain": "ca46fea8ae5f08e0f2ff4b38fee3ccf60ee263e934c236e9539468c0633f7b98",
+        "plainOff": "ca46fea8ae5f08e0f2ff4b38fee3ccf60ee263e934c236e9539468c0633f7b98",
+        "bornArmed": "e4b1c17e2e84427d62b5ff03458ecc36f266a0e39113b5c3e11f0f26b9e2c216",
+        "forced": "1a9ef6eb95dfc94d59b87811a940280245605ed863653a9f7bedd09bc56e47ba",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12312023,
+        "absent": "3c86207940f8850f0b4b857750cd408ea1756524fdb9b515511b981b00c76bb5",
+        "off": "3c86207940f8850f0b4b857750cd408ea1756524fdb9b515511b981b00c76bb5",
+        "plain": "af3436d087d199004cf6dd6a38729c02a05bcc6e1f971a7e9684770eeae92cd1",
+        "plainOff": "af3436d087d199004cf6dd6a38729c02a05bcc6e1f971a7e9684770eeae92cd1",
+        "bornArmed": "3c86207940f8850f0b4b857750cd408ea1756524fdb9b515511b981b00c76bb5",
+        "forced": "0f074e7b9c110b9041d3a6f0656b29c0599aad7c55724ae3c5b080406d9326ec",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      }
+    ]
+  },
+  "resultSha256": "8f222b34652b876a91c8ae9eaa541aa527d35296f707e36242d6ebec20521a32",
+  "wallMsContextOnly": 55344,
+  "headContextOnly": "b7ba96b",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit."
+}

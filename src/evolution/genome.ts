@@ -226,6 +226,91 @@ export interface TacticalGenome {
    * draw AND every read is thus flag-gated.
    */
   defLaneConvergence?: number;
+  /**
+   * MT-T0 (MARK-TIGHTNESS-CONTRACT §2 M-MT.1–3, ruling #201.4) — THE MARK-SAG gene
+   * (盯防松紧: 真实后卫算的是时间账, 输出是松紧不是开关). How hard THIS team prices
+   * the ACCESS-TIME ACCOUNT into the mark STANCE distance: out of possession, in
+   * live open play, a marker with an assigned mark stands
+   * `markDist′ = markDist + markSag · sagOf(slack)` on the EXISTING (mark→goal,
+   * mark→ball) blend, where `slack = t_ball − t_self` (see `markSagMetres` in
+   * `src/ai/actionExecutor.ts`). 0 = today's stance exactly; 1 = the frozen ceiling
+   * `MARK_SAG_MAX` metres of sag at maximal slack.
+   *
+   * The output is CONTINUOUS tightness and NOTHING else: there is NO decline /
+   * release / "放人" predicate anywhere (the #200 red line), the direction blend and
+   * `laneW` are untouched, mark ASSIGNMENT (`assignMarks`) is untouched, and
+   * `markingAggression` keeps its own fixed-tightness preference and its triple
+   * coupling. The term only ever ADDS distance above the existing stance floor
+   * (Phase 30.5) and above the Phase 31.6 distribution stand-off — it can never
+   * tighten, so both prior stance reverts are respected by construction. The box
+   * PRICES ITSELF: a ball 1–2 s away leaves `slack ≤ 0` ⇒ zero sag ⇒ tight marking,
+   * with no carve-out.
+   *
+   * ⚠ DORMANT / BORN ABSENT (RNG-STREAM SAFETY, the #148.5 / #75 genre, mirrored
+   * verbatim from `defLaneConvergence`): OPTIONAL and BORN ABSENT (≡ 0 at its one
+   * consumer via `markSagWeight`), deliberately NOT in GENE_KEYS — so randomGenome /
+   * mutateGenome / crossoverGenomes / geneDistance draw the EXACT SAME RNG in the
+   * EXACT SAME order as HEAD, and the serialized genome (hence the production
+   * fingerprint 57b0bdab…c673) is byte-identical (an absent optional key is omitted
+   * by JSON.stringify). It gains a value ONLY when an evolution run opts in via its
+   * OWN explicit `evolveMarkSag` boolean (#75: never a widening of any existing
+   * opt-in), and its draws happen STRICTLY AFTER the `defLaneConvergence` block —
+   * hence after both home-prior blocks too — so enabling it never re-orders an
+   * existing draw. The CONSUMPTION path is separately gated by the dormant
+   * `mtMarkSag` match flag — every draw AND every read is thus flag-gated.
+   */
+  markSag?: number;
+}
+
+/**
+ * ⭐ THE FROZEN `t_ball` SPEED (MT-T0, contract §2 M-MT.1 "from the engine's EXISTING
+ * kick/pass speed constant family — traced and frozen at MT-T0, no invented speeds").
+ *
+ * TRACED, NOT INVENTED. `16` is the engine's OWN pass FLIGHT-TIME constant — the one
+ * number it already uses to turn a pass distance into a travel time, in
+ * `src/sim/mechanics.ts` `performPass`:
+ * `const flight = dist(passer.pos, mate.pos) / (16 * powerMul);`
+ * The access-time account asks exactly that question ("how long would the ball take
+ * to reach my man"), so the family member is chosen by QUESTION IDENTITY, not by
+ * picking a bound: the ordinary ground-pass estimator is the only member of the
+ * family that answers it. (For the record, the rest of the family: the cutback
+ * estimator uses `18` at `mechanics.ts:662`; executed ground-pass strike speeds live
+ * in `clamp(d·0.6 + 8.2, 9, 22)` at `mechanics.ts:377`, a band this 16 sits inside;
+ * `SHOT_SPEED = 27` is a shot, not a pass.) `powerMul` is deliberately NOT read here
+ * — it is a property of a specific passer's body orientation and chosen weight, and
+ * M-MT.5 fixes the account at geometry only.
+ *
+ * Never re-cut: if MT-T1 needs a different speed, that is a fork for the commander
+ * WITH numbers, not a quiet re-freeze after sight. `markSagGene.test.ts` and the
+ * MT-T0 probe both assert the source line VERBATIM, so the family cannot drift.
+ */
+export const MARK_SAG_BALL_SPEED = 16;
+
+/**
+ * ⭐ THE FROZEN SAG CEILING (MT-T0, contract §2 M-MT.2 "capped by a frozen ceiling
+ * from a traced family — the 9 m zonal engagement radius is the named neighbour").
+ *
+ * TRACED, NOT INVENTED. `9` is the ZONAL ENGAGEMENT RADIUS in `assignMarks` —
+ * `src/ai/TeamBrain.ts:493`:
+ * `if (zones && !boxThreat && dist(zones.get(p.index)!, threat.pos) > 9) continue;`
+ * — i.e. the engine's own standing answer to "how far from his station may a
+ * defender be asked to engage a man". Sag is exactly that: how far off his man a
+ * marker may stand and still be marking him. So the new axis can express EXACTLY as
+ * much slack as the engine already prices for engagement, and no more. No new
+ * constant is introduced by this slice.
+ */
+export const MARK_SAG_MAX = 9;
+
+/**
+ * MT-T0 (M-MT.3): the gene → weight map, the SINGLE owner of the expression.
+ * Born absent ⇒ `0` ⇒ the sag term vanishes ⇒ byte-identical world. PURE, no rng.
+ * Clamped to [0,1], so no instrument can dose past the frozen ceiling through this
+ * door (the sag itself is capped at `MARK_SAG_MAX` in `markSagMetres`).
+ */
+export function markSagWeight(g: TacticalGenome): number {
+  const v = g.markSag;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
 }
 
 /**
@@ -388,6 +473,17 @@ export interface MutateOptions {
    * PM-T2-grade run flips this together with the `pmLaneConvergence` match flag.
    */
   evolveDefLaneConvergence?: boolean;
+  /**
+   * MT-T0 (#201.4, the SAME RNG-stream trap): opt-in that lets the dormant `markSag`
+   * gene evolve. DEFAULT OFF — every production evolve.ts call omits it, so the gene
+   * draws NO RNG and the flag-off random sequence stays byte-identical to HEAD. It is
+   * its OWN named boolean (#75) rather than a widening of any existing opt-in, so
+   * those runs' streams are ALSO unmoved. Its draws happen ONLY when this is `true`
+   * and STRICTLY AFTER the `defLaneConvergence` block (hence after both home-prior
+   * blocks), so enabling it never re-orders any existing draw. When shipped, an
+   * MT-T2-grade run flips this together with the `mtMarkSag` match flag.
+   */
+  evolveMarkSag?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -431,13 +527,22 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
   if (opts.evolveDefLaneConvergence === true && rng.chance(rate)) {
     out.defLaneConvergence = clamp01((out.defLaneConvergence ?? 0) + rng.gaussian() * scale);
   }
+  // MT-T0 (#201.4): the mark-SAG gene mutates ONLY under its OWN explicit opt-in and
+  // ONLY here — after the GENE_KEYS loop, after BOTH home-prior blocks AND after the
+  // defLaneConvergence block — so flag-off runs consume ZERO extra RNG draws
+  // (byte-identical to HEAD) and no existing opt-in run's draw sequence moves.
+  // `{ ...g }` above already carried the gene through untouched (born-absent ⇒ stays
+  // absent) in the flag-off path.
+  if (opts.evolveMarkSag === true && rng.chance(rate)) {
+    out.markSag = clamp01((out.markSag ?? 0) + rng.gaussian() * scale);
+  }
   return out;
 }
 
 /** Uniform crossover with occasional blending — child gene is from a, from b, or their mean. */
 export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
-  evolveHomePriorOffsets = false, evolveDefLaneConvergence = false,
+  evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -490,6 +595,19 @@ export function crossoverGenomes(
     out.defLaneConvergence = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
   } else if (a.defLaneConvergence !== undefined) {
     out.defLaneConvergence = a.defLaneConvergence;
+  }
+  // MT-T0 (#201.4): the mark-SAG gene crosses over ONLY under its OWN explicit opt-in
+  // and ONLY here — after the GENE_KEYS loop, after BOTH home-prior blocks AND after
+  // the defLaneConvergence block — so flag-off runs draw ZERO extra RNG and no
+  // existing opt-in run is moved. Flag-off ⇒ carry parent A's value through with NO
+  // draw (born-absent ⇒ the key stays absent ⇒ serialization unchanged).
+  if (evolveMarkSag) {
+    const r = rng.next();
+    const av = a.markSag ?? 0;
+    const bv = b.markSag ?? 0;
+    out.markSag = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
+  } else if (a.markSag !== undefined) {
+    out.markSag = a.markSag;
   }
   return out;
 }
