@@ -8450,3 +8450,56 @@
 >    follows the artifact; the frozen predicates in
 >    [`PM-T1-COMPRESSION-EXAM.md`](PM-T1-COMPRESSION-EXAM.md)
 >    §5 are the whole verdict — nothing re-cut after sight.
+
+> **COMMANDER RULING #199 (2026-08-08 — PM-T1 ADJUDICATED:
+> PRIMARY PASS (the ask moves, dose-responsive, zero clump
+> re-import, world quiet) but F-PM-a FIRED (the body does not
+> move — the mark stance owns ~80 % of material-ask ticks);
+> SELF-DRIVE STOPS at the pre-named fork; the 乙 decision
+> re-opens WITH numbers):**
+>
+> 1. **THE EXAM RAN CLEAN** (EXIT 2 = clean run + STOP; N =
+>    650, X-FAMILY GREEN incl. X-DET both passes and X-FP-PROD
+>    unchanged; artifact committed, `resultSha256
+>    6b0c40cd…370f`). Adjudicated strictly on the frozen §5
+>    predicates; nothing re-cut. §RESULT filled by the
+>    commander from the artifact.
+> 2. **H-PM's SUBSTRATE HALF IS CONFIRMED**: the gene-expressed
+>    convergence really ASKS the weak side to compress —
+>    D100 −4.71 m [−4.95, −4.45] on a 19.8 m control (to
+>    15.1 m), slope −18.6 m/k [−19.6, −17.6], monotone across
+>    all four doses; AND the B1-a fear is retired at exam grain
+>    — spreadYOut FALLS (−0.20 [−0.24, −0.16] vs tol ±1.59),
+>    spacing/dupRun far inside non-inferiority, the equilibrium
+>    band passes on ALL FIVE gated dimensions with none
+>    excluded, offside quiet. Compression without clump is
+>    EXPRESSIBLE on this substrate.
+> 3. **F-PM-a FIRED, exactly as pre-named**: the top-dose BODY
+>    contrast is null (−0.32 [−1.15, +0.47]; shortfall and
+>    detachment likewise; all doses alike). The swallow
+>    instrument prices the block: **markStance owns 79.97–84.57 %
+>    of material-ask ticks at every dose** (stationWalk
+>    10.4–12.4 %; @1 m materiality, 0.5/2.0 m in the artifact
+>    agree). The #188 D1 mark-glue is therefore LOAD-BEARING
+>    for the whole 位置是活的 arc: a certified station field is
+>    inaudible ~4/5 of the time in the trigger scenario.
+>    H-169a-adjacent stories stay hypotheses; THIS number is
+>    instrument-backed.
+> 4. **DISPOSITIONS**: the PM seam stays BANKED-DORMANT (Road B;
+>    nothing ships; PM-T2/play-test does NOT proceed — a
+>    compression nobody executes has no watchable face). The
+>    乙 fix-scope decision RE-OPENS at the user with the
+>    numbers (#193.1's formal seat): S1 lane term in the mark
+>    score / S2 threat-priority key / S4 release filter at
+>    re-assignment — each renegotiates the
+>    `formations.test.ts:143-156` pin, carries the Phase-30
+>    direction instruments (map §5 trap 1), and now ALSO
+>    carries this exam as its before/after ruler (re-run
+>    PM-T1's battery post-fix: F-PM-a un-firing = the fix
+>    works). **SELF-DRIVE ENDS (the #195.1 STOP discipline).**
+> 5. **STILL QUEUED (not blocked by 乙)**: O2-T1 (the look
+>    wedge exam, #196.5's second half) dispatches on the next
+>    "go" regardless of the 乙 ruling — independent arc, its
+>    own frozen contract. Seeds consumed this round:
+>    12,311,300–949 (battery) + 12,311,200–205 (smoke, two
+>    plumbing runs).

@@ -205,15 +205,29 @@ call-shape test); restart trace clean; X-FP-PROD unchanged;
 G-SUITE closed (the only red = the known ten-season wall-clock
 timeout, reproduced pre-change, passes isolated 148–153 s).
 Verify PASS (1 MEDIUM + 2 LOW, all evidence-reporting,
-corrected in place #196). REPORTED: forced dose 1 moves the
-mover ASK mean lane gap 6.586 → 5.029 m. **T1 SEQUENCING RULED
-(#196.5): PM-T1 FIRST** (its F-PM-a share feeds the parked 乙
-fork), then O2-T1. **QUEUED NEXT STEP: dispatch the PM-T1
-instruments+stage-doc executor (the O1-T2 form); the commander
-launches the full battery detached (§0.0.4) and adjudicates;
-doses travel the gene channel via genome views (#196.3-D6).**
-Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
-12,311,100–124 (PM-T0). Also open: the v2
+corrected in place #196). **PM-T1 RAN AND ADJUDICATED
+(#196.5 → #197 FAIL → #198 fix banked → launch → #199)**:
+PRIMARY **PASS** — the ask moves resolvedly + dose-responsively
+(D100 −4.71 m [−4.95, −4.45] on a 19.8 m control; slope
+−18.6 m/k; N = 650) with ZERO clump re-import (spreadYOut
+FALLS; the B1-a fear retired at exam grain; band PASS all five
+gated dimensions; offside quiet; X-family green) — BUT
+**F-PM-a FIRED**: the BODY does not move (top dose −0.32
+[−1.15, +0.47], null at every dose) because **the mark stance
+owns 79.97–84.57 % of material-ask ticks** (the instrumented
+乙 number the fork was parked on; stage doc §RESULT + artifact
+`pm-t1-compression-exam.json`). PM seam stays BANKED-DORMANT;
+PM-T2/play-test does NOT proceed. **SELF-DRIVE ENDED at the
+pre-named STOP (#199.4). THE FORK SITS AT THE USER — the 乙
+fix scope, now WITH numbers: S1 lane term / S2 priority key /
+S4 release filter (each renegotiates the formations.test.ts
+pin, carries the Phase-30 direction instruments, and re-runs
+this battery as its before/after ruler — F-PM-a un-firing =
+the fix works).** QUEUED (not blocked by 乙): O2-T1 dispatches
+on the next "go" (#199.5). Seeds consumed this arc:
+12,311,000–024 (O2-T0) · 12,311,100–124 (PM-T0) ·
+12,311,200–205 (PM-T1 smoke ×2) · 12,311,300–949 (PM-T1
+battery). Also open: the v2
 acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3

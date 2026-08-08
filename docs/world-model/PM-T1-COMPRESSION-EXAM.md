@@ -654,8 +654,50 @@ cd /Users/jamie/Documents/Promptfoo/evofootball-arena && \
 
 ## §RESULT — the gates run
 
-*(EMPTY BY DESIGN. To be filled from the committed
-[`data/pm-t1-compression-exam.json`](data/pm-t1-compression-exam.json) after the
-commander's detached run — every number quoted FROM that artifact, never the other
-way round, and every hash from that run only. Files touched: `git show <commit>
---stat`.)*
+*(Filled by the COMMANDER at adjudication, ruling #199 — every number below is
+quoted FROM the committed
+[`data/pm-t1-compression-exam.json`](data/pm-t1-compression-exam.json) /
+its stdout; recompute with `PMT1_MODE=full npx tsx
+scripts/probes/pm-t1-compression-exam.ts`.)*
+
+**Run**: 2026-08-08, HEAD `5e14c6c`, N = 650 (the frozen rule's output; seeds
+12,311,300–949), 5 arms × 2 X-DET passes, wall 593.6 s, **EXIT = 2** (ran clean,
+a STOP fired). `resultSha256 6b0c40cd…370f` · X-DET `27570195…e750` ·
+X-FP-PROD `57b0bdab…c673` unchanged. **X-FAMILY GREEN** (all nine).
+
+**PRIMARY — PASS** (the ASK moves, resolvedly and dose-responsively):
+
+```
+ASK (send-target lane gap, weak-side back, paired per-seed vs D000):
+  D025  -1.135311 [-1.412967, -0.864399] n=320 ✔   level 18.534896 m (control 19.670207 m)
+  D050  -2.488463 [-2.764776, -2.225268] n=299 ✔   level 17.460924 m (control 19.949387 m)
+  D075  -3.414637 [-3.675310, -3.164082] n=305 ✔   level 16.331049 m (control 19.745686 m)
+  D100  -4.705904 [-4.954743, -4.445391] n=306 ✔   level 15.109236 m (control 19.815140 m)
+  slope on k_PM  -18.614394 [-19.607447, -17.623758] n=507 ✔  (P1 ∧ P2a ∧ P2b all PASS)
+```
+
+**F-PM-a — FIRED** (P1 true ∧ the top-dose BODY CI includes zero):
+
+```
+ANSWER (measured separately):
+  D100  body -0.323646 [-1.146021, +0.473939] · shortfall -0.305054 [-0.969188, +0.416246]
+        · detach +0.389479 [-0.304823, +1.106214]   (all CIs include zero; D025–D075 alike)
+SWALLOW (@1 m; 0.5/2.0 m in the artifact):
+  D025  material ticks 39,718 · markStance 0.822574 · stationWalk 0.123924
+  D050  material ticks 49,356 · markStance 0.845733 · stationWalk 0.104000
+  D075  material ticks 55,753 · markStance 0.799688 · stationWalk 0.105680
+  D100  material ticks 53,185 · markStance 0.799662 · stationWalk 0.105518
+```
+
+**F-PM-b — NOT FIRED**: GUARD-NI passes at ALL FOUR ask-moving doses with wide
+margin (top dose: spreadYOut −0.20 [−0.24, −0.16] vs tol ±1.59 — compression
+with LESS lateral scatter, not clump; spacingUnder4 +0.0017 vs ±0.0254;
+dupRunShare +0.0285 vs ±0.1455 — resolved but small, far inside non-inferiority).
+**Equilibrium band PASS on all five gated dimensions, none excluded; offside
+flag QUIET (−0.10 [−0.24, +0.04]).**
+
+**VERDICT (the frozen §5 predicates, nothing re-cut): STOP — F-PM-a. The ask
+moves (H-PM's substrate half CONFIRMED: the gene really asks the weak side to
+compress, no clump re-import, world quiet) but the body does not — the mark
+stance owns 80.0–84.6 % of material-ask ticks at every dose. By contract §3 the
+result returns to the 乙 fork WITH these numbers (#193.1's formal seat).**
