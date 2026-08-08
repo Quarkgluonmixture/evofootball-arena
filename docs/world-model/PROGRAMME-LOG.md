@@ -2197,3 +2197,9 @@ O2-first sequencing).
 (#189.2); the mark-selection map ran but verify-FAILED (#190,
 two false trace mechanisms; core negatives verified standing);
 fix round queued as the next step, then 甲 drafting + O2-T0.
+
+2026-08-08 (#191): QUEUE amended — the mark-selection map
+banked after one fix round + five commander one-line
+corrections (#190→#191); the true far-side-glue mechanism
+re-derived and verified; queued next = the 甲 modulation
+contract drafting + the 乙-fix-scope decision, then O2-T0.

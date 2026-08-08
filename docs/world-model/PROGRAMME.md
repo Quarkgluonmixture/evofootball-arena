@@ -151,9 +151,16 @@ STAND VERIFIED: no ball/lane term in mark selection, depth-only
 priority, no retention state = the glue is a fixed point, the
 22 m gate exceeds HALF_W, the armed unglue = eye stance
 replacement, formations.test.ts pins today's far-side tracking).
-**QUEUED NEXT STEP (on "go"/resume): the #190 fix round →
-#191 banks the map → the commander drafts 甲 (modulation
-contract) + presents the 乙-fix-scope decision → O2-T0.** Also
+**THE MAP IS BANKED (#190 FAIL → fix → #191, five
+commander-corrected one-liners)**: the TRUE glue mechanism =
+lane geometry (the weak-side wide body is the only far-flank
+station) + chaser consumption + greedy depth-major thinning;
+no ball/lane term, no retention state, the 22 m gate > HALF_W;
+six fix surfaces S1–S6 inventoried (the formations.test.ts pin
+must be renegotiated by any narrow fix). **QUEUED NEXT STEP
+(on "go"/resume): the commander drafts 甲 (the defensive-phase
+modulation contract, on this map + the #188 forensic) +
+presents the 乙-fix-scope decision → then O2-T0.** Also
 open: v2/v3 acceptances, 乙 offside, slice-2 disposition,
 punish-compactness, D1/D2/phone/F7b/F7c.
 Also open:
