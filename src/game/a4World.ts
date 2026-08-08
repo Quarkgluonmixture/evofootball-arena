@@ -29,6 +29,15 @@
  *     is `homePriorStrength(0.5) = 0.25×VAL_SCALE = 0.040874`, the #148
  *     certified primary dose.
  *
+ * ⭐ V2 — THE DISCIPLINE WORLD (commander ruling #167.5, S2-P4). The SAME world
+ * with one thing added: each squad SLOT gets its own tightness about the opening
+ * agreement (后卫紧 · 前锋松) through the S2-P2 offset gene family, frozen at
+ * `[0,+.4,+.2,0,−.2,−.4]` on top of the same 0.5 whisper. S2-P3 Leg F proved the
+ * gene-expressed world is BYTE-IDENTICAL to the instrument-vector world on all 400
+ * seeds, and Leg W passed every football gate. v1 stays available unchanged for the
+ * A/B feel; the two are MUTUALLY EXCLUSIVE (one version value, never a blend), and
+ * the badge names which one is on screen.
+ *
  * DEFAULT OFF EVERYWHERE. With the entry off nothing here is imported at
  * runtime beyond this module's own constants (the ~440 kB census tables are a
  * DYNAMIC import, so a player who never opts in never downloads them), no
@@ -44,14 +53,26 @@
 
 import type { Match } from '../sim/Match';
 import type { Side } from '../sim/types';
-import type { TacticalGenome } from '../evolution/genome';
+import { homePriorOffsets, setHomePriorOffsets, type TacticalGenome } from '../evolution/genome';
 import type {
   MergedChildTable, RoleConditionedTable, RoleControlLevels,
 } from '../ai/stationEye';
 
 export const A4_WORLD_KEY = 'evo:a4World';
-/** `?a4world=1` arms, `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md). */
+/**
+ * `?a4world=1` arms v1 (the uniform whisper), `?a4world=2` arms v2 (the discipline
+ * world), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md).
+ */
 export const A4_WORLD_PARAM = 'a4world';
+
+/**
+ * WHICH experimental world is armed: 0 = off (the shipped game), 1 = the #156
+ * uniform-whisper world, 2 = the #167.5 discipline world. Mutually exclusive by
+ * construction — one value, never a blend.
+ */
+export type A4WorldVersion = 0 | 1 | 2;
+/** The two armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2;
 
 /**
  * The ENRICHED world's construction flags — `CENSUS_FLAGS` from the P3′ probe,
@@ -71,6 +92,35 @@ export const A4_WORLD_FLAGS = {
 
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
+
+/**
+ * ⭐ V2 — THE DISCIPLINE WORLD (commander ruling #167.5; content certified by the
+ * S2-P3 Leg F gate, `docs/world-model/A4-S2P3-GENE-BATTERY.md` §1).
+ *
+ * The same certified whisper (`A4_OBEDIENCE` 0.5) PLUS the frozen backLoaded offset
+ * family on both teams' genomes, indexed by SQUAD SLOT:
+ *
+ *     offsets   = [0, +0.4, +0.2, 0, −0.2, −0.4]
+ *   ⇒ effective = [0.5, 0.9, 0.7, 0.5, 0.3, 0.1]   (clamp01(0.5 + offset))
+ *   ⇒ outfield 1..5 = the S2-P1 `backLoaded` instrument vector, EXACTLY
+ *   ⇒ outfield mean = 0.5 = the matched v1 whisper dose
+ *
+ * Slot 0 (the GK) is frozen at 0, the role-blind neutral — Leg F proved the choice
+ * immaterial (the keeper never reaches the v3 consumption point). The family is
+ * INSTRUMENT CONTENT written post-construction onto an opt-in fixture: no genome is
+ * ever BORN with it (contract §3), and the two EVOLUTION opt-ins
+ * (`evolveHomePrior` / `evolveHomePriorOffsets`) stay OFF — #165.2.ii's precise
+ * reading: they govern mutation and crossover, and a FIXED armed world mutates
+ * nothing.
+ */
+export const A4_V2_OFFSETS: readonly number[] = [0, 0.4, 0.2, 0, -0.2, -0.4];
+/**
+ * The effective per-slot obedience the family produces on top of the whisper.
+ * Slots 1..5 ARE the S2-P1 `backLoaded` instrument vector (Leg F's V-arm); slot 0
+ * reads 0.5 where the instrument read 0 — a difference Leg F proved immaterial
+ * (byte-identical worlds on all 400 seeds), because the GK never reaches the eye.
+ */
+export const A4_V2_EFFECTIVE_OBEDIENCE: readonly number[] = [0.5, 0.9, 0.7, 0.5, 0.3, 0.1];
 
 /** The P3p-1 merged artifact's own SHA (X-MERGE-SHA's expectation). */
 export const A4_MERGED_SHA =
@@ -128,18 +178,33 @@ export function setA4Obedience(match: Match, side: Side, v: number): void {
 }
 
 /**
- * Arm a freshly constructed match with the certified PRIOR world: the eye on
- * BOTH sides plus the whisper prior on BOTH genomes. Never called unless the
- * user opted in; a match already in flight keeps the brain it kicked off with
- * (the E4 rule — that is also what keeps the A/B clean).
+ * V2 only: write the certified offset family onto all three genome references of
+ * one side (the same idiom as `setA4Obedience`; the family goes through the gene
+ * module's own writer so this module never names the field).
  */
-export function armA4World(match: Match, tables: A4Tables): void {
-  match.stationEye = a4EyeConfig(tables);
-  setA4Obedience(match, 0, A4_OBEDIENCE);
-  setA4Obedience(match, 1, A4_OBEDIENCE);
+export function setA4Offsets(match: Match, side: Side, offsets: readonly number[]): void {
+  const team = match.teams[side];
+  for (const g of [team.info.genome, team.baseGenome, team.effGenome] as TacticalGenome[]) {
+    setHomePriorOffsets(g, offsets);
+  }
 }
 
-/** Does this match carry exactly the certified PRIOR configuration? */
+/**
+ * Arm a freshly constructed match with a certified world: the eye on BOTH sides
+ * plus the whisper prior on BOTH genomes (v1), and for v2 the frozen discipline
+ * family on top. Never called unless the user opted in; a match already in flight
+ * keeps the brain it kicked off with (the E4 rule — that is also what keeps the
+ * A/B clean). The version is a single value, so v1 and v2 can never blend.
+ */
+export function armA4World(match: Match, tables: A4Tables, version: A4ArmedVersion = 1): void {
+  match.stationEye = a4EyeConfig(tables);
+  for (const side of [0, 1] as const) {
+    setA4Obedience(match, side, A4_OBEDIENCE);
+    if (version === 2) setA4Offsets(match, side, A4_V2_OFFSETS);
+  }
+}
+
+/** Does this match carry exactly the certified PRIOR configuration (v1 or v2)? */
 export function isA4Armed(match: Match): boolean {
   const eye = match.stationEye;
   return eye !== null
@@ -149,23 +214,45 @@ export function isA4Armed(match: Match): boolean {
     && (match.teams[1].effGenome as TacticalGenome).homePriorObedience === A4_OBEDIENCE;
 }
 
+/**
+ * WHICH certified world is on this match: 2 when both sides also carry the frozen
+ * discipline family, 1 for the uniform whisper, 0 when unarmed or non-conforming.
+ * The badge and the tests read the MATCH, not the user's stored intent.
+ */
+export function a4ArmedVersion(match: Match): A4WorldVersion {
+  if (!isA4Armed(match)) return 0;
+  const family = (side: Side): readonly number[] | undefined =>
+    homePriorOffsets(match.teams[side].effGenome as TacticalGenome);
+  const matches = (v: readonly number[] | undefined): boolean =>
+    v !== undefined && v.length === A4_V2_OFFSETS.length
+      && v.every((x, i) => x === A4_V2_OFFSETS[i]);
+  if (matches(family(0)) && matches(family(1))) return 2;
+  return family(0) === undefined && family(1) === undefined ? 1 : 0;
+}
+
 /* ---------------- the user's choice (sticky + URL) ---------------- */
 
-const readStored = (): boolean => {
+const readStored = (): A4WorldVersion => {
   try {
-    return localStorage.getItem(A4_WORLD_KEY) === '1';
+    const raw = localStorage.getItem(A4_WORLD_KEY);
+    // '1' is what the #156 entry stored — an existing v1 player keeps v1.
+    return raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
-    return false; // private mode / no storage
+    return 0; // private mode / no storage
   }
 };
 
-/** `?a4world=1` / `?a4world=0`, or null when the param is absent/unparseable. */
-export function a4UrlOverride(search: string): boolean | null {
+/**
+ * `?a4world=1` (v1) / `?a4world=2` (v2) / `?a4world=0`, or null when the param is
+ * absent or unparseable. One value ⇒ the two worlds are mutually exclusive.
+ */
+export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
     const raw = new URLSearchParams(search).get(A4_WORLD_PARAM);
     if (raw === null) return null;
-    if (raw === '1' || raw === 'true' || raw === 'on') return true;
-    if (raw === '0' || raw === 'false' || raw === 'off') return false;
+    if (raw === '1' || raw === 'true' || raw === 'on') return 1;
+    if (raw === '2') return 2;
+    if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {
     return null;
@@ -177,8 +264,8 @@ export function a4UrlOverride(search: string): boolean | null {
  * phone link only has to be opened once), otherwise the sticky value, and OFF
  * on anything unexpected or any environment without storage.
  */
-export function readA4World(): boolean {
-  let override: boolean | null = null;
+export function readA4World(): A4WorldVersion {
+  let override: A4WorldVersion | null = null;
   try {
     override = typeof location === 'undefined' ? null : a4UrlOverride(location.search);
   } catch {
@@ -191,10 +278,10 @@ export function readA4World(): boolean {
   return readStored();
 }
 
-export function writeA4World(on: boolean): void {
+export function writeA4World(version: A4WorldVersion): void {
   try {
-    if (on) localStorage.setItem(A4_WORLD_KEY, '1');
-    else localStorage.removeItem(A4_WORLD_KEY);
+    if (version === 0) localStorage.removeItem(A4_WORLD_KEY);
+    else localStorage.setItem(A4_WORLD_KEY, String(version));
   } catch { /* the choice still applies for this session */ }
 }
 

@@ -2,6 +2,7 @@ import { button, checkbox, el } from './dom';
 import { lang, setLang, t } from './i18n';
 import type { GameActions, UiFlags } from './actions';
 import type { EdsPreviewMode } from '../game/edsPreview';
+import type { A4WorldVersion } from '../game/a4World';
 
 const FLAG_LABELS: Array<[keyof UiFlags, string]> = [
   ['actionLabels', t('Player action labels')],
@@ -36,7 +37,7 @@ export class SettingsScreen {
     flags: UiFlags,
     emergentInitial = false,
     edsPreviewInitial: EdsPreviewMode = 'off',
-    a4WorldInitial = false,
+    a4WorldInitial: A4WorldVersion = 0,
   ) {
     this.root = el('div');
     this.root.id = 'settings-screen';
@@ -125,13 +126,27 @@ export class SettingsScreen {
     exp.appendChild(valueBox);
     exp.appendChild(el('div', 'muted',
       t('On top of the above: the passer prices every option by how often that pass has actually LED TO A SHOT, instead of by how likely it is to arrive. Measured: a more DIRECT game — more forward passes than the legacy brain, shots +22%, goals unchanged — but markedly fewer slow-developing wide patterns (an overlap release roughly halves). The question only you can answer is whether the direct game is better football.')));
-    // A4 PLAY-TEST ENTRY (ruling #155): the certified PRIOR world, armed on
-    // BOTH teams. Default OFF; overrides the EDS preview above while armed
-    // (it contains that bundle plus the rest of the census substrate).
-    exp.appendChild(checkbox(t('A4 world: the pre-match agreement (play-test)'), a4WorldInitial,
-      (v) => actions.setA4World(v)));
+    // A4 PLAY-TEST ENTRY (ruling #155; the SECOND world added by #167.5): the
+    // certified worlds, armed on BOTH teams. Default OFF; whichever is armed
+    // overrides the EDS preview above (it contains that bundle plus the rest of
+    // the census substrate). TWO boxes, but a single value: the worlds are
+    // MUTUALLY EXCLUSIVE (no blends — arming one disarms the other), exactly the
+    // EDS mode idiom above, so the A/B is always between two clean worlds.
+    const a4V1Box = checkbox(t('A4 world v1 · 统一约定 (play-test)'), a4WorldInitial === 1,
+      (v) => setA4World(v ? 1 : 0));
+    const a4V2Box = checkbox(t('A4 world v2 · 纪律 (play-test)'), a4WorldInitial === 2,
+      (v) => setA4World(v ? 2 : 0));
+    const setA4World = (version: A4WorldVersion) => {
+      input(a4V1Box).checked = version === 1;
+      input(a4V2Box).checked = version === 2;
+      actions.setA4World(version);
+    };
+    exp.appendChild(a4V1Box);
     exp.appendChild(el('div', 'muted',
       t('Both teams get the measured "where we stand" agreement — the whisper-volume version of a kickabout deciding who covers what — on top of the eye that makes players act on what they SEE. Measured: resolvedly fewer balls let into deep areas AND into the box, with the football checks all holding. What only your eyes can rule: does the compactness look like STRUCTURE or like a huddle? Takes effect immediately — the current match restarts in the new world, and a badge in the corner tells you which world you are watching.')));
+    exp.appendChild(a4V2Box);
+    exp.appendChild(el('div', 'muted',
+      t('v2 · 纪律:同样的开局约定,但每个位置对它的松紧不同 —— 后卫紧、中场居中、前锋松(球队平均松紧和 v1 完全一样)。这套松紧经过三轮考试认证:它跟仪器版世界一模一样、每项足球检查都过关,量到的是抢球乱战更少、越位更少、死球时间更短、球员之间更有空间、配合(第三人跑动)更多。你的眼睛要判的:防守知道往哪走了吗?哨声少了吗?紧凑像球队还是像一堆人?v1 与 v2 只能开一个,方便你来回对比。')));
     this.root.appendChild(exp);
   }
 

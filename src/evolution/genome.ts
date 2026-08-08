@@ -235,6 +235,26 @@ export function effectiveHomePriorObedience(g: TacticalGenome, slot: number): nu
   return clamp01((g.homePriorObedience ?? 0) + (g.homePriorObedienceOffset?.[slot] ?? 0));
 }
 
+/**
+ * A4 S2-P4: write a per-slot offset family onto ONE genome, clamped to the frozen
+ * bound. NOTHING calls this at birth or during evolution — the gene stays born
+ * absent (contract §3) and mutation/crossover keep their own opt-in paths. The only
+ * caller in `src/**` is the explicitly opt-in A4 play-test entry (`game/a4World.ts`),
+ * which supplies a CERTIFIED, role-blind family as instrument content.
+ *
+ * The writer lives HERE so this module remains the single owner of the field name in
+ * `src/**` (the S2-P2 birth-neutrality scan): the entry hands over content, it never
+ * names the gene.
+ */
+export function setHomePriorOffsets(g: TacticalGenome, offsets: readonly number[]): void {
+  g.homePriorObedienceOffset = offsets.map(clampOffset);
+}
+
+/** Read the family back (absent ⇒ `undefined`) — the same single-owner reason. PURE. */
+export function homePriorOffsets(g: TacticalGenome): readonly number[] | undefined {
+  return g.homePriorObedienceOffset;
+}
+
 export const GENE_KEYS = [
   'passBias',
   'shootBias',

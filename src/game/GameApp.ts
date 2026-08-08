@@ -31,7 +31,8 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  A4_WORLD_FLAGS, armA4World, loadA4Tables, readA4World, writeA4World, type A4Tables,
+  A4_WORLD_FLAGS, armA4World, loadA4Tables, readA4World, writeA4World,
+  type A4Tables, type A4WorldVersion,
 } from './a4World';
 import { A4WorldBadge } from '../ui/A4WorldBadge';
 import { ThreeMatchRenderer } from '../render3d/ThreeMatchRenderer';
@@ -430,7 +431,7 @@ export class GameApp implements GameActions {
     // A4 (#155): re-arm the user's sticky / URL opt-in. Deliberately AFTER the
     // first fixture is on screen — the tables are a network fetch, and a player
     // who has not opted in must never wait on (or download) them.
-    if (a4Sticky) void this.armA4(true);
+    if (a4Sticky !== 0) void this.armA4(a4Sticky);
     this.left.setSpeedUI(this.paused, this.speed);
 
     this.app.ticker.add((t) => this.frame(t));
@@ -690,7 +691,9 @@ export class GameApp implements GameActions {
     // construction flags — the eye config and the obedience gene are applied
     // to the freshly built match. Unarmed (the default) this is a no-op and
     // `stationEye` stays null, exactly as in production.
-    if (this.a4World && this.a4Tables !== null) armA4World(this.match, this.a4Tables);
+    if (this.a4World !== 0 && this.a4Tables !== null) {
+      armA4World(this.match, this.a4Tables, this.a4World);
+    }
     this.buffer.clear();
     this.matchRenderer.attach(this.match);
     this.three?.attach(buildRenderTheme(this.match));
@@ -1264,13 +1267,14 @@ export class GameApp implements GameActions {
    * two cannot be mixed. Disarming restores the user's own EDS choice exactly.
    */
   private applyEdsPreview(): void {
-    this.league.matchFlags = this.a4World
+    this.league.matchFlags = this.a4World !== 0
       ? { ...A4_WORLD_FLAGS }
       : edsPreviewFlags(this.edsPreview);
   }
 
   /**
-   * A4 PLAY-TEST ENTRY (ruling #155): arm / disarm the certified PRIOR world.
+   * A4 PLAY-TEST ENTRY (ruling #155, #167.5): arm / disarm a certified world
+   * (1 = the uniform whisper, 2 = the discipline family, 0 = the shipped game).
    *
    * Unlike the EDS preview this RELOADS the current fixture: the eye and the
    * obedience gene are applied at match construction, and a play-test whose
@@ -1278,34 +1282,36 @@ export class GameApp implements GameActions {
    * world the badge names. The reload is deterministic — the same fixture,
    * same seed, rebuilt in the armed world.
    */
-  setA4World(on: boolean): void {
-    void this.armA4(on);
+  setA4World(version: A4WorldVersion): void {
+    void this.armA4(version);
   }
 
-  private async armA4(on: boolean): Promise<void> {
-    if (on && this.a4Tables === null) {
+  private async armA4(version: A4WorldVersion): Promise<void> {
+    if (version !== 0 && this.a4Tables === null) {
       this.setStatus('A4 world: loading the census tables…');
       try {
         this.a4Tables = await loadA4Tables();
       } catch (err) {
         console.error('A4 world tables failed to load:', err);
         this.feed.pushSystem('⚠️ A4 world unavailable — the census tables failed to load. Staying in the shipped world.');
-        this.a4World = false;
-        writeA4World(false);
-        this.a4Badge.setArmed(false);
+        this.a4World = 0;
+        writeA4World(0);
+        this.a4Badge.setWorld(0);
         this.applyEdsPreview();
         return;
       }
     }
-    this.a4World = on;
-    writeA4World(on);
-    this.a4Badge.setArmed(on);
+    this.a4World = version;
+    writeA4World(version);
+    this.a4Badge.setWorld(version);
     this.applyEdsPreview();
-    this.feed.pushSystem(on
-      ? '🧪 A4 约定世界 ON — both teams now share the measured pre-match agreement, and the match restarts in that world.'
-      : '🧪 A4 约定世界 OFF — the shipped world returns.');
+    this.feed.pushSystem(version === 2
+      ? '🧪 A4 约定世界 v2 · 纪律 ON — the same agreement, but every position holds it at its own tightness (后卫紧 · 前锋松), and the match restarts in that world.'
+      : version === 1
+        ? '🧪 A4 约定世界 v1 · 统一 ON — both teams now share the measured pre-match agreement, and the match restarts in that world.'
+        : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
-    this.setStatus(on ? 'A4 world armed.' : 'A4 world off.');
+    this.setStatus(version === 0 ? 'A4 world off.' : `A4 world v${version} armed.`);
   }
 
   setEmergentPos(v: boolean): void {
@@ -1623,12 +1629,13 @@ export class GameApp implements GameActions {
   /** E4-PREP: the user's EDS preview choice, sticky across reloads. */
   private edsPreview: EdsPreviewMode = readEdsPreviewMode();
   /**
-   * A4 PLAY-TEST (ruling #155). Starts OFF even when the sticky choice / URL
+   * A4 PLAY-TEST (ruling #155; the v2 world by #167.5 — one value, so the two
+   * worlds can never blend). Starts OFF even when the sticky choice / URL
    * param says otherwise: the census tables are fetched asynchronously, so the
    * boot path arms through `setA4World` once they land (below). Until then the
    * game is byte-identically the production game.
    */
-  private a4World = false;
+  private a4World: A4WorldVersion = 0;
   private a4Tables: A4Tables | null = null;
   private readonly a4Badge = new A4WorldBadge();
   /** F0 style arm + lighting the 3D view is built with (defaults = shipped). */

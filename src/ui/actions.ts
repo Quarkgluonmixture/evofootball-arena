@@ -2,6 +2,7 @@ import type { CameraMode } from '../render3d/CameraController';
 import type { Lighting } from '../render3d/stylePresets';
 import type { FxQuality } from '../render3d/FxSystem';
 import type { EdsPreviewMode } from '../game/edsPreview';
+import type { A4WorldVersion } from '../game/a4World';
 
 export type ViewMode = '2d' | '3d';
 export type { FxQuality };
@@ -66,13 +67,15 @@ export interface GameActions {
    */
   setEdsPreview(mode: EdsPreviewMode): void;
   /**
-   * A4 PLAY-TEST (ruling #155): arm / disarm the certified PRIOR world — the
-   * enriched census substrate + the both-sides role eye + the whisper home
-   * prior (obedience 0.5) on BOTH teams. Default OFF; arming reloads the
-   * current fixture so the world under the eyes is the one the badge names.
-   * Async because the census tables are fetched on demand.
+   * A4 PLAY-TEST (ruling #155, extended by #167.5): arm ONE of the certified
+   * worlds — the enriched census substrate + the both-sides role eye + the
+   * whisper home prior (obedience 0.5) on BOTH teams (v1), plus the frozen
+   * per-slot discipline family (v2). 0 = off (the shipped game). Mutually
+   * exclusive: arming one disarms the other. Arming reloads the current fixture
+   * so the world under the eyes is the one the badge names. Async because the
+   * census tables are fetched on demand.
    */
-  setA4World(on: boolean): void;
+  setA4World(version: A4WorldVersion): void;
   toggleLeagueScreen(): void;
   /** Pop the tactical-DNA clash for the current match (Phase 33: the scoreboard is the button). */
   toggleClash(): void;

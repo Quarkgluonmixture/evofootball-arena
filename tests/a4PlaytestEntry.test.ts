@@ -99,21 +99,22 @@ describe('A4 entry OFF — the shipped world is untouched (Road B / X-FP-PROD)',
   });
 
   it('the entry defaults OFF with no storage and no URL, and is opt-in only', () => {
-    expect(readA4World()).toBe(false);
+    expect(readA4World()).toBe(0); // the version-typed choice (#167.5): 0 = the shipped game
     expect(A4_WORLD_KEY).toBe('evo:a4World');
     // The ONE call site that can arm a live match, and its guard.
     const app = repoText('src/game/GameApp.ts');
     expect(app.match(/armA4World\(/g)).toHaveLength(1);
-    expect(app).toContain('if (this.a4World && this.a4Tables !== null) armA4World(this.match, this.a4Tables);');
-    expect(app).toContain('private a4World = false;');
+    expect(app).toContain('if (this.a4World !== 0 && this.a4Tables !== null) {');
+    expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World);');
+    expect(app).toContain('private a4World: A4WorldVersion = 0;');
   });
 
   it('the URL param is an explicit two-way opt-in and ignores anything else', () => {
     expect(A4_WORLD_PARAM).toBe('a4world');
-    expect(a4UrlOverride('?a4world=1')).toBe(true);
-    expect(a4UrlOverride('?a4world=on')).toBe(true);
-    expect(a4UrlOverride('?a4world=0')).toBe(false);
-    expect(a4UrlOverride('?a4world=off')).toBe(false);
+    expect(a4UrlOverride('?a4world=1')).toBe(1);
+    expect(a4UrlOverride('?a4world=on')).toBe(1);
+    expect(a4UrlOverride('?a4world=0')).toBe(0);
+    expect(a4UrlOverride('?a4world=off')).toBe(0);
     expect(a4UrlOverride('')).toBeNull();
     expect(a4UrlOverride('?other=1')).toBeNull();
     expect(a4UrlOverride('?a4world=yes')).toBeNull(); // unparseable ⇒ no opinion ⇒ sticky wins
@@ -225,26 +226,26 @@ describe('A4 badge — the user always knows which world they are watching', () 
     expect(badge.mounted).toBe(false);
     expect(children).toHaveLength(0);
 
-    badge.setArmed(false); // a no-op from the default state
+    badge.setWorld(0); // a no-op from the default state
     expect(children).toHaveLength(0);
 
-    badge.setArmed(true);
+    badge.setWorld(1);
     expect(badge.mounted).toBe(true);
     expect(children).toHaveLength(1);
     expect(children[0].className).toBe(A4_BADGE_CLASS);
     expect(children[0].textContent).toBe(A4_BADGE_TEXT);
 
-    badge.setArmed(true); // idempotent — never a second chip
+    badge.setWorld(1); // idempotent — never a second chip
     expect(children).toHaveLength(1);
 
-    badge.setArmed(false);
+    badge.setWorld(0);
     expect(badge.mounted).toBe(false);
     expect(children).toHaveLength(0);
   });
 
   it('is safe headless (no document ⇒ no badge, no throw)', () => {
     const badge = new A4WorldBadge(null);
-    badge.setArmed(true);
+    badge.setWorld(1);
     expect(badge.mounted).toBe(false);
   });
 
@@ -262,7 +263,7 @@ describe('A4 badge — the user always knows which world they are watching', () 
 describe('A4 entry — reachable on desktop AND phone', () => {
   it('the settings screen carries the toggle (the ⚙ room is the phone entry)', () => {
     const settings = repoText('src/ui/SettingsScreen.ts');
-    expect(settings).toContain('actions.setA4World(v)');
+    expect(settings).toContain('actions.setA4World(version)');
     expect(settings).toContain('a4WorldInitial');
   });
 

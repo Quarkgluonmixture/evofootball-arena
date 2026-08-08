@@ -70,6 +70,9 @@ const ZH: Record<string, string> = {
   Music: '音乐',
   'Tac feed': '战术流',
   Lighting: '光线',
+  // A4 play-test worlds (#156 / #167.5) — the labels the badge names on screen.
+  'A4 world v1 · 统一约定 (play-test)': 'A4 约定世界 v1 · 统一约定(试玩)',
+  'A4 world v2 · 纪律 (play-test)': 'A4 约定世界 v2 · 纪律(试玩)',
   'EDS preview: players act on what they SEE': 'EDS 预览:球员按自己看到的东西行动',
   'The passer picks his target from his OWN view (a man he cannot see cannot be passed to) and the defender reads his own view of the ball. Takes effect at the NEXT kickoff, so you can A/B it mid-season. Measured: play gets CALMER — later tackles, better-supported passes, fewer loose-ball scrambles — and a full match spends less of the stamina tank. Judge whether calm feels like football.':
     '传球者只从自己的视野里挑人(看不见的人传不到),防守者也只读自己看到的球。下一次开球生效,所以赛季中途就能 A/B。实测:比赛更冷静——出脚更晚、传球找支撑更好的人、散球混战更少——整场也更少消耗体能槽。请判断这种冷静像不像足球。',
