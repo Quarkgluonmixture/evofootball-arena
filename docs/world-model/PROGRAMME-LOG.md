@@ -2158,3 +2158,12 @@ pass-release map + 2,000-match census landed (shortPass 79.8%
 of open-play, one-touch 20.7%, pressed 73.4%, wind-up ≈4% of
 played time); cut-1 frozen = shortPass only; next authorized
 step = O1-T1 dormant seam on "go".
+
+2026-08-08 (#183): superseded QUEUE state — "THE USER RULED 甲 →
+THE OUTLET ARC IS OPEN (#174/#175) … NEXT AUTHORIZED STEP on
+'go' = O1 phase-0" → O1 cut-1 ran end-to-end under self-drive
+(#176 map+census [#177 FAIL → #178 banked] → #179 self-drive →
+O1-T1 seam [#180 banked with commander-derived receipts] →
+O1-T2 A/B [#181 FAIL → #182 banked → #183 adjudicated]):
+equilibrium quiet, mechanism certified, F-O1b fired (tempo
+1.7–4.3% of gap); queue moved to the user's #183.5 fork.
