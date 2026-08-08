@@ -7518,3 +7518,33 @@
 >    against the OUTLET-CONTRACT invariants. The commander
 >    adjudicates and freezes O1's first-cut scope on the
 >    numbers.
+
+> **COMMANDER RULING #177 (2026-08-08 — O1 phase-0
+> machine-verify FAIL (one HIGH: a false NO-TOUCH claim; one
+> MEDIUM: a gate that cannot fail); fix round dispatched; the
+> census SUBSTANCE stands unchallenged):**
+>
+> 1. **VERIFY FAIL recorded as-is**: (HIGH) the doc claims
+>    three times that clearance stamps kickCooldown 0.3 instead
+>    of 0.45 — the cited code does not support it, and this
+>    sits on the NO-TOUCH list where a false fact steers the O1
+>    design wrong; (MEDIUM) X-CLASSIFY's `unexplained` is a
+>    hardcoded literal 0 presented as gate evidence — the third
+>    executor under-built gate this arc (S2-P2's vacuous test,
+>    the tempo-census axis law, now this); the verify layer has
+>    caught all three — the two-agent form is earning its keep;
+>    (LOW ×4) six-vs-seven commit-line count, a ~10x-vs-7.2x
+>    arithmetic slip, one missed field-initialiser occurrence,
+>    one stale probe comment. Deviations otherwise RATIFIED
+>    (N=2,000 self-sized with disclosed arithmetic; the smoke
+>    block placement + reserved band 12,300,000–12,309,999;
+>    lay-off does not exist as a kick — the header KNOCKDOWN is
+>    the nearest analogue, correctly excluded; keeperPunt's
+>    6.5 s quantile labelled AMBIGUOUS per the iron rule).
+> 2. **DISPOSITION**: fix round (correct the clearance claim to
+>    what the code actually says; make X-CLASSIFY compute
+>    `unexplained` for real and re-run the census — it is
+>    cheap; fix the four LOWs) + independent re-verify on the
+>    fixed points. The census substance (populations, shares,
+>    gaps) was NOT challenged and is expected to survive the
+>    re-run byte-for-byte except the gate block.
