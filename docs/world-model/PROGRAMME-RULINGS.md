@@ -6860,3 +6860,42 @@
 >    commander reviews, pushes, launches the 8,000-match run
 >    detached (§0.0.4 nohup — the #161 incident rule), and
 >    adjudicates by numbered ruling.
+
+> **COMMANDER RULING #163 (2026-08-08 — S2-P1b draft + verify
+> PASS; four low findings recorded, none touches a criterion;
+> the confirmatory run launched):**
+>
+> 1. **BANKED + PUSHED**: `fb97b0f` (stage doc
+>    `A4-S2P1B-BACKLOADED-CONFIRMATORY.md` + confirm/
+>    confirm-smoke modes on the S2-P1 probe + bounded smoke
+>    JSON; #162 numbers verified UNCHANGED — arms, vector,
+>    seeds, N=8,000 hard-refused override, all three leg
+>    polarities incl. leg (c) LOWER≤0, flag +0.0338 in no
+>    conjunct; census-mode byte-identity PROVEN head-to-head
+>    pre/post; tsc clean, 1059 tests green; machine-verify
+>    PASS).
+> 2. **VERIFY FINDINGS DISPOSED (all LOW/INFO, none gating)**:
+>    (i) wall projection (4.22 h) lives only in stderr — receipt
+>    gap accepted, wall is outside the deterministic core
+>    (#128); (ii) the confirmatory JSON inherits S2-P1's
+>    srcDiffExpectedNonEmpty note verbatim, contradicting its
+>    own §8 X-SRC-ZERO — stale RECEIPT, not a gate; left
+>    untouched deliberately to preserve S2-P1-mode
+>    byte-identity; (iii) ⚠ stats-stream overlap: 20 of 26
+>    bootstrap streams reuse RNG seeds S2-P1 spent (base
+>    101513 sits 110 above 101403 while a run consumes ~130
+>    offsets) — estimates remain valid (fresh independent DATA;
+>    resample index patterns are ancillary), but the doc's
+>    "fresh" holds only at seed-BASE level. NOT re-cut (frozen
+>    stays frozen); **process rule for every future stage doc:
+>    stats bases must be stream-disjoint (base gaps ≥ 200), not
+>    merely base-fresh**; (iv) gate polarities carry no unit
+>    test (S2-P1 precedent) — covered by the line-by-line
+>    verify; a polarity test rides S2-P2's test budget.
+> 3. **LAUNCHED (§0.0.4, commander-resident, nohup detached —
+>    the #161 incident rule)**: `A4S2P1_MODE=confirm`, N=8,000
+>    @ 12,248,000+, ~4.2 h wall, → 
+>    `data/a4-s2p1b-backloaded-confirmatory.json`. Disposition
+>    as frozen (#162.3): PASS ⇒ self-drive proceeds to S2-P2
+>    dispatch; any leg FAIL ⇒ STOP to the user; offside flag ⇒
+>    F-S2d to the user.
