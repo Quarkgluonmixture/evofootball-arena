@@ -9,7 +9,7 @@ import type { TacticalGenome } from '../src/evolution/genome';
 import { homePriorStrength, HOME_MAP_STRENGTH_MAX } from '../src/ai/stationEye';
 import {
   A4_BASE_SHA, A4_CONTROL_SHA, A4_MERGED_SHA, A4_OBEDIENCE, A4_WORLD_FLAGS, A4_WORLD_KEY,
-  A4_WORLD_PARAM, a4EyeConfig, a4UrlOverride, armA4World, isA4Armed, loadA4Tables,
+  A4_WORLD_PARAM, a4EyeConfig, a4MatchFlags, a4UrlOverride, armA4World, isA4Armed, loadA4Tables,
   readA4World, type A4Tables,
 } from '../src/game/a4World';
 import { A4_BADGE_CLASS, A4_BADGE_TEXT, A4WorldBadge, type BadgeDoc, type BadgeElement } from '../src/ui/A4WorldBadge';
@@ -282,7 +282,11 @@ describe('A4 entry — reachable on desktop AND phone', () => {
   it('arming replaces the EDS preview flags rather than mixing worlds', () => {
     const app = repoText('src/game/GameApp.ts');
     expect(app).toContain('this.league.matchFlags = this.a4World');
-    expect(app).toContain('{ ...A4_WORLD_FLAGS }');
+    // the flags come from the entry-layer composer (#184.2); for v1 that composer
+    // is the census set itself, spread from the untouched frozen object.
+    expect(app).toContain('? a4MatchFlags(this.a4World)');
+    expect(repoText('src/game/a4World.ts')).toContain('{ ...A4_WORLD_FLAGS }');
+    expect(a4MatchFlags(1)).toEqual({ ...A4_WORLD_FLAGS });
   });
 });
 

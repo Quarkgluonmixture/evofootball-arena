@@ -235,7 +235,8 @@ describe('A4 v2 — the entry: one value, two worlds, desktop AND phone', () => 
     expect(a4UrlOverride('?a4world=2')).toBe(2);
     expect(a4UrlOverride('?a4world=1')).toBe(1);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
-    expect(a4UrlOverride('?a4world=3')).toBeNull(); // no third world exists
+    expect(a4UrlOverride('?a4world=3')).toBe(3); // the #184.2 wind-up world
+    expect(a4UrlOverride('?a4world=4')).toBeNull(); // no fourth world exists
     expect(a4UrlOverride('')).toBeNull();
   });
 
@@ -274,7 +275,9 @@ describe('A4 v2 — the entry: one value, two worlds, desktop AND phone', () => 
       body: { appendChild: (n: BadgeElement): void => { children.push(n as FakeEl); } },
     };
     expect(A4_BADGE_TEXT).not.toBe(A4_BADGE_TEXT_V2);
-    expect(A4_BADGE_TEXTS).toEqual({ 1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2 });
+    // v3 joined the record at #184.2 (its own chip is pinned in the v3 suite).
+    expect(A4_BADGE_TEXTS[1]).toBe(A4_BADGE_TEXT);
+    expect(A4_BADGE_TEXTS[2]).toBe(A4_BADGE_TEXT_V2);
 
     const badge = new A4WorldBadge(doc);
     badge.setWorld(1);

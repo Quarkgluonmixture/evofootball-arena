@@ -38,6 +38,23 @@
  * A/B feel; the two are MUTUALLY EXCLUSIVE (one version value, never a blend), and
  * the badge names which one is on screen.
  *
+ * ⭐ V3 — 出球前摇 (commander ruling #184.2, on the user's 甲 at #183.5). EXACTLY the
+ * v2 world PLUS the O1 cut-1 mechanic `o1PassWindup` on the watched match: a short
+ * pass is no longer struck the instant it is decided — the body holds it for a
+ * readable wind-up (W ∈ [3,11] ticks, priced by speed / turn / the passer's own
+ * `passing`), and only then releases. Certified at scale by O1-T2 (#183): the
+ * equilibrium is QUIET inside every frozen band, reception-to-release +0.0425 s
+ * RESOLVED, turnovers per watched minute −0.184 RESOLVED — and, disclosed honestly,
+ * the spell-length gap moved only 1.7–4.3% (release time was the small half of the
+ * tempo disease). One-touch releases, restarts and kickoffs are untouched.
+ *
+ * ⚠ V3 COMPOSES AT **THIS** LAYER (the #184.2 binding constraint). `A4_WORLD_FLAGS`
+ * is the CENSUS-FIDELITY set — the substrate the eye's tables were censused on —
+ * and widening it would silently move every world off-census (contract §3 FLAG
+ * HYGIENE). So the object stays byte-untouched and v3 is expressed by
+ * `a4MatchFlags(3)`, which ADDS `o1PassWindup` on top of that same set for the
+ * armed match only. v1/v2 flags are unchanged, to the key.
+ *
  * DEFAULT OFF EVERYWHERE. With the entry off nothing here is imported at
  * runtime beyond this module's own constants (the ~440 kB census tables are a
  * DYNAMIC import, so a player who never opts in never downloads them), no
@@ -51,6 +68,7 @@
  * arms this. Ruling #155.2(ii) authorizes the bundling explicitly.
  */
 
+import type { League } from '../sim/League';
 import type { Match } from '../sim/Match';
 import type { Side } from '../sim/types';
 import { homePriorOffsets, setHomePriorOffsets, type TacticalGenome } from '../evolution/genome';
@@ -61,18 +79,20 @@ import type {
 export const A4_WORLD_KEY = 'evo:a4World';
 /**
  * `?a4world=1` arms v1 (the uniform whisper), `?a4world=2` arms v2 (the discipline
- * world), `?a4world=0` disarms — the phone entry (see A4-PLAYTEST.md).
+ * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=0` disarms — the phone
+ * entry (see A4-PLAYTEST.md).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
 /**
  * WHICH experimental world is armed: 0 = off (the shipped game), 1 = the #156
- * uniform-whisper world, 2 = the #167.5 discipline world. Mutually exclusive by
- * construction — one value, never a blend.
+ * uniform-whisper world, 2 = the #167.5 discipline world, 3 = the #184.2 wind-up
+ * world (v2 + `o1PassWindup`). Mutually exclusive by construction — one value,
+ * never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2;
-/** The two armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2;
+export type A4WorldVersion = 0 | 1 | 2 | 3;
+/** The three armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3;
 
 /**
  * The ENRICHED world's construction flags — `CENSUS_FLAGS` from the P3′ probe,
@@ -89,6 +109,25 @@ export const A4_WORLD_FLAGS = {
   c7Windup: true,
   c5TouchFork: false,
 } as const;
+
+/** The construction flags one armed world pushes onto `League.matchFlags`. */
+export type A4MatchFlags = League['matchFlags'];
+
+/**
+ * ⭐ THE ENTRY-LAYER COMPOSITION (#184.2). The construction flags for ONE armed
+ * world: the census substrate for every version, and for v3 the O1 cut-1 mechanic
+ * on top of it.
+ *
+ * `A4_WORLD_FLAGS` is deliberately NOT widened — it is the fidelity claim "this is
+ * the world the tables were censused on", and a fourth seam inside it would make
+ * every version off-census. v3's extra seam is therefore composed HERE, per armed
+ * match, and v1/v2 return exactly the census set they always did.
+ */
+export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
+  const flags: A4MatchFlags = { ...A4_WORLD_FLAGS };
+  if (version === 3) flags.o1PassWindup = true;
+  return flags;
+}
 
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
 export const A4_OBEDIENCE = 0.5;
@@ -194,13 +233,17 @@ export function setA4Offsets(match: Match, side: Side, offsets: readonly number[
  * plus the whisper prior on BOTH genomes (v1), and for v2 the frozen discipline
  * family on top. Never called unless the user opted in; a match already in flight
  * keeps the brain it kicked off with (the E4 rule — that is also what keeps the
- * A/B clean). The version is a single value, so v1 and v2 can never blend.
+ * A/B clean). The version is a single value, so the worlds can never blend.
+ *
+ * v3 arms EXACTLY v2's post-construction content: its one extra ingredient is a
+ * CONSTRUCTION flag (`a4MatchFlags(3)`), which the match already carries by the
+ * time it reaches here — there is nothing left to write.
  */
 export function armA4World(match: Match, tables: A4Tables, version: A4ArmedVersion = 1): void {
   match.stationEye = a4EyeConfig(tables);
   for (const side of [0, 1] as const) {
     setA4Obedience(match, side, A4_OBEDIENCE);
-    if (version === 2) setA4Offsets(match, side, A4_V2_OFFSETS);
+    if (version === 2 || version === 3) setA4Offsets(match, side, A4_V2_OFFSETS);
   }
 }
 
@@ -215,9 +258,10 @@ export function isA4Armed(match: Match): boolean {
 }
 
 /**
- * WHICH certified world is on this match: 2 when both sides also carry the frozen
- * discipline family, 1 for the uniform whisper, 0 when unarmed or non-conforming.
- * The badge and the tests read the MATCH, not the user's stored intent.
+ * WHICH certified world is on this match: 3 when the discipline family is on both
+ * sides AND the wind-up seam is armed, 2 for the family alone, 1 for the uniform
+ * whisper, 0 when unarmed or non-conforming. The badge and the tests read the
+ * MATCH, not the user's stored intent.
  */
 export function a4ArmedVersion(match: Match): A4WorldVersion {
   if (!isA4Armed(match)) return 0;
@@ -226,8 +270,9 @@ export function a4ArmedVersion(match: Match): A4WorldVersion {
   const matches = (v: readonly number[] | undefined): boolean =>
     v !== undefined && v.length === A4_V2_OFFSETS.length
       && v.every((x, i) => x === A4_V2_OFFSETS[i]);
-  if (matches(family(0)) && matches(family(1))) return 2;
-  return family(0) === undefined && family(1) === undefined ? 1 : 0;
+  if (matches(family(0)) && matches(family(1))) return match.o1PassWindup ? 3 : 2;
+  // the whisper alone; a wind-up without the family is no certified world at all.
+  return family(0) === undefined && family(1) === undefined && !match.o1PassWindup ? 1 : 0;
 }
 
 /* ---------------- the user's choice (sticky + URL) ---------------- */
@@ -236,15 +281,16 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '2' ? 2 : raw === '1' ? 1 : 0;
+    return raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
   }
 };
 
 /**
- * `?a4world=1` (v1) / `?a4world=2` (v2) / `?a4world=0`, or null when the param is
- * absent or unparseable. One value ⇒ the two worlds are mutually exclusive.
+ * `?a4world=1` (v1) / `?a4world=2` (v2) / `?a4world=3` (v3) / `?a4world=0`, or null
+ * when the param is absent or unparseable. One value ⇒ the worlds are mutually
+ * exclusive.
  */
 export function a4UrlOverride(search: string): A4WorldVersion | null {
   try {
@@ -252,6 +298,7 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === null) return null;
     if (raw === '1' || raw === 'true' || raw === 'on') return 1;
     if (raw === '2') return 2;
+    if (raw === '3') return 3;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

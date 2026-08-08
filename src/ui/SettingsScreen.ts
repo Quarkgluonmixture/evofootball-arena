@@ -136,9 +136,12 @@ export class SettingsScreen {
       (v) => setA4World(v ? 1 : 0));
     const a4V2Box = checkbox(t('A4 world v2 · 纪律 (play-test)'), a4WorldInitial === 2,
       (v) => setA4World(v ? 2 : 0));
+    const a4V3Box = checkbox(t('A4 world v3 · 出球前摇 (play-test)'), a4WorldInitial === 3,
+      (v) => setA4World(v ? 3 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
+      input(a4V3Box).checked = version === 3;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -147,6 +150,9 @@ export class SettingsScreen {
     exp.appendChild(a4V2Box);
     exp.appendChild(el('div', 'muted',
       t('v2 · 纪律:同样的开局约定,但每个位置对它的松紧不同 —— 后卫紧、中场居中、前锋松(球队平均松紧和 v1 完全一样)。这套松紧经过三轮考试认证:它跟仪器版世界一模一样、每项足球检查都过关,量到的是抢球乱战更少、越位更少、死球时间更短、球员之间更有空间、配合(第三人跑动)更多。你的眼睛要判的:防守知道往哪走了吗?哨声少了吗?紧凑像球队还是像一堆人?v1 与 v2 只能开一个,方便你来回对比。')));
+    exp.appendChild(a4V3Box);
+    exp.appendChild(el('div', 'muted',
+      t('v3 · 出球前摇:v2 的纪律世界,再加上短传的出球前摇 —— 球不再在决定的那一瞬间就飞出去,出球前有一个看得见的摆腿窗口,技术好的人摆得快、跑动中或急转身时摆得慢。一脚出球(一触即传)、开球和各种死球发球都不受影响。量到的:出球确实慢了(接球到出球 +0.043 秒)、丢球变少(每分钟 −0.18 次),比赛的进球和传中等大局都没被打乱;老实说,回合(球权持续)只变长了一点点 —— 慢慢出球只是节奏问题的小一半。你的眼睛要判的:摆腿看得见吗?节奏手感比 v2 好还是差?防守多出来的封堵窗口用上了吗?v1/v2/v3 只能开一个。')));
     this.root.appendChild(exp);
   }
 

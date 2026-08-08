@@ -9,6 +9,7 @@ import { decidePlayer } from '../src/ai/PlayerBrain';
 import { randomGenome } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
+import { a4MatchFlags } from '../src/game/a4World';
 import type { Player } from '../src/sim/Player';
 import { Rng } from '../src/utils/rng';
 
@@ -101,9 +102,17 @@ describe('O1 T1 — the shortPass wind-up is dormant (Road B)', () => {
     const live = league.createMatch(league.nextFixture()!);
     expect(live.o1PassWindup).toBe(false);
     expect(live.pendingPassWindup).toBeNull();
-    // and the a4 play-test world does NOT arm it (phase-0 trap 12).
+    // and the a4 play-test world only arms it for the EXPLICIT v3 opt-in
+    // (#184.2 — until then this asserted the name was absent entirely; phase-0
+    // trap 12 lives on as the narrower claim that matters): the CENSUS substrate
+    // is not widened, so v1/v2 and every non-opt-in path stay wind-up-free.
     const a4Source = readFileSync(new URL('../src/game/a4World.ts', import.meta.url), 'utf8');
-    expect(a4Source).not.toContain('o1PassWindup');
+    const censusBlock = /export const A4_WORLD_FLAGS = \{([\s\S]*?)\} as const;/.exec(a4Source)?.[1];
+    expect(censusBlock).toBeDefined();
+    expect(censusBlock).not.toContain('o1PassWindup');
+    expect(a4MatchFlags(1).o1PassWindup).toBeUndefined();
+    expect(a4MatchFlags(2).o1PassWindup).toBeUndefined();
+    expect(a4MatchFlags(3).o1PassWindup).toBe(true); // the one licensed arm site
   });
 
   it('G1 X-FP-PROD: the production fingerprint is UNCHANGED (57b0bdab…c673)', () => {

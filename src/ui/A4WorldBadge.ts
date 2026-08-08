@@ -10,8 +10,9 @@
  * full-screen overlay, and it is `pointer-events: none` like the build badge —
  * it can never eat a tap.
  *
- * Mounted ONLY while armed: with the entry off the element does not exist. With TWO
- * experimental worlds (#167.5) the chip also names WHICH one is armed.
+ * Mounted ONLY while armed: with the entry off the element does not exist. With
+ * SEVERAL experimental worlds (#167.5, #184.2) the chip also names WHICH one is
+ * armed.
  *
  * The DOM is injected (the `WakeLockEnv` idiom) so the mount/unmount contract
  * is testable in the node suite.
@@ -41,9 +42,15 @@ export const A4_BADGE_TEXT = '🧪 A4 约定世界 v1 · 统一';
  * (per-position tightness).
  */
 export const A4_BADGE_TEXT_V2 = '🧪 A4 约定世界 v2 · 纪律';
+/**
+ * ⭐ V3 (#184.2): v2's world plus the short-pass wind-up. The chip names the ONE
+ * thing that looks different on screen — 前摇 (the leg goes back before the ball
+ * goes) — so the user can never mistake a v3 match for a v2 one.
+ */
+export const A4_BADGE_TEXT_V3 = '🧪 A4 约定世界 v3 · 前摇';
 /** version ⇒ chip text (0 = no chip). */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2, string>> = {
-  1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2,
+export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3, string>> = {
+  1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -65,7 +72,7 @@ export class A4WorldBadge {
     return this.el === null ? 0 : this.version;
   }
 
-  /** Name the armed world — 0 removes the chip, 1/2 mount or RELABEL it in place. */
+  /** Name the armed world — 0 removes the chip, 1/2/3 mount or RELABEL it in place. */
   setWorld(version: A4WorldVersion): void {
     if (version === this.world) return;
     this.version = version;

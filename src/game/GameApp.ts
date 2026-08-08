@@ -31,7 +31,7 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  A4_WORLD_FLAGS, armA4World, loadA4Tables, readA4World, writeA4World,
+  a4MatchFlags, armA4World, loadA4Tables, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion,
 } from './a4World';
 import { A4WorldBadge } from '../ui/A4WorldBadge';
@@ -1265,16 +1265,20 @@ export class GameApp implements GameActions {
    * (`A4_WORLD_FLAGS`) replaces the EDS preview's set — it CONTAINS the triple
    * bundle and adds the C-family seams the eye's table was censused on, so the
    * two cannot be mixed. Disarming restores the user's own EDS choice exactly.
+   *
+   * The armed world's flags come from `a4MatchFlags(version)` (#184.2): v1/v2 are
+   * the census set unchanged, v3 is that set plus the wind-up seam.
    */
   private applyEdsPreview(): void {
     this.league.matchFlags = this.a4World !== 0
-      ? { ...A4_WORLD_FLAGS }
+      ? a4MatchFlags(this.a4World)
       : edsPreviewFlags(this.edsPreview);
   }
 
   /**
-   * A4 PLAY-TEST ENTRY (ruling #155, #167.5): arm / disarm a certified world
-   * (1 = the uniform whisper, 2 = the discipline family, 0 = the shipped game).
+   * A4 PLAY-TEST ENTRY (ruling #155, #167.5, #184.2): arm / disarm a certified
+   * world (1 = the uniform whisper, 2 = the discipline family, 3 = the discipline
+   * family plus the short-pass wind-up, 0 = the shipped game).
    *
    * Unlike the EDS preview this RELOADS the current fixture: the eye and the
    * obedience gene are applied at match construction, and a play-test whose
@@ -1305,11 +1309,13 @@ export class GameApp implements GameActions {
     writeA4World(version);
     this.a4Badge.setWorld(version);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 2
-      ? '🧪 A4 约定世界 v2 · 纪律 ON — the same agreement, but every position holds it at its own tightness (后卫紧 · 前锋松), and the match restarts in that world.'
-      : version === 1
-        ? '🧪 A4 约定世界 v1 · 统一 ON — both teams now share the measured pre-match agreement, and the match restarts in that world.'
-        : '🧪 A4 约定世界 OFF — the shipped world returns.');
+    this.feed.pushSystem(version === 3
+      ? '🧪 A4 约定世界 v3 · 前摇 ON — the discipline world, and now a short pass is not struck the instant it is decided: the leg goes back first (fast for the technical ones), and the match restarts in that world.'
+      : version === 2
+        ? '🧪 A4 约定世界 v2 · 纪律 ON — the same agreement, but every position holds it at its own tightness (后卫紧 · 前锋松), and the match restarts in that world.'
+        : version === 1
+          ? '🧪 A4 约定世界 v1 · 统一 ON — both teams now share the measured pre-match agreement, and the match restarts in that world.'
+          : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
     this.setStatus(version === 0 ? 'A4 world off.' : `A4 world v${version} armed.`);
   }
@@ -1629,7 +1635,7 @@ export class GameApp implements GameActions {
   /** E4-PREP: the user's EDS preview choice, sticky across reloads. */
   private edsPreview: EdsPreviewMode = readEdsPreviewMode();
   /**
-   * A4 PLAY-TEST (ruling #155; the v2 world by #167.5 — one value, so the two
+   * A4 PLAY-TEST (ruling #155; v2 by #167.5, v3 by #184.2 — one value, so the
    * worlds can never blend). Starts OFF even when the sticky choice / URL
    * param says otherwise: the census tables are fetched asynchronously, so the
    * boot path arms through `setA4World` once they land (below). Until then the
