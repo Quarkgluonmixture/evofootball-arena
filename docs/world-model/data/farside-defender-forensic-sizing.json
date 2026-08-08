@@ -1,0 +1,3066 @@
+{
+  "experiment": "FARSIDE-DEFENDER-FORENSIC",
+  "authority": "PROGRAMME-RULINGS #186.4 (on the #186.2 user verdict and the #186.3 hypothesis H-186a)",
+  "stageDoc": "docs/world-model/FARSIDE-DEFENDER-FORENSIC.md — every definition frozen there BEFORE this run",
+  "mode": "smoke",
+  "userLens": "对面断球在右后卫位置,左后卫会在左下角乱转,脱离球队之外",
+  "hypothesis": {
+    "H-186a(i)": "MODULATION MISSING — no defensive ball-side compression force reaches the weak-side back",
+    "H-186a(ii)": "OSCILLATION — the live station field flips him between targets",
+    "readingRule": "stage doc §5, PRE-REGISTERED: (i) = stable send (switch/flip rates < 1/EYE_W_S) while the send itself sits > SPREAD_R (9 m) off the ball lane; (ii) = churn rates >= 1/EYE_W_S while the send is sane and near (<= 14 m) and out of the corner. Every \"high\"/\"low\" is judged against the same-tick BALL-SIDE CONTROL MIRROR."
+  },
+  "frozenParameters": {
+    "trigger": {
+      "ownThirdLocalX": -10.5,
+      "flankAbsY": 9.8,
+      "minEpisodeTicks": 30,
+      "minEpisodeSeconds": 0.5,
+      "note": "ownThird = localXBand's own cut (-HALF_L/3); flank = outside BOX_WIDTH/2"
+    },
+    "corner": {
+      "clampCornerLocal": [
+        -28.5,
+        18.3
+      ],
+      "radius": 9,
+      "note": "the emergentStation clamp corner (-HALF_L+3, HALF_W-2) and its own anti-clump radius 9"
+    },
+    "churn": {
+      "speedMinMs": 1,
+      "churnHiPerS": 0.333333,
+      "eyeWindowS": 3,
+      "nearM": 14
+    },
+    "worlds": "prod / v1 / v2 / v3 per stage doc §4.1 (a4MatchFlags + armA4World, the fidelity source)"
+  },
+  "sizing": {
+    "arithmetic": "N* = min( ceil(1500 / episodesPerMatch_binding) rounded up to 25, floor(1 h / (ms_per_match × 4 worlds × 2 X-DET)), 700 ) — frozen in stage doc §4.3 BEFORE the smoke ran",
+    "targetEpisodesPerWorld": 1500,
+    "episodesPerMatchByWorld": {
+      "prod": 1.25,
+      "v1": 1.5625,
+      "v2": 1.0625,
+      "v3": 1.8125
+    },
+    "bindingEpisodesPerMatch": 1.0625,
+    "nRaw": 1412,
+    "nStepped": 1425,
+    "nStep": 25,
+    "msPerMatch": 108.25,
+    "nAffordableAtBudget": 4157,
+    "nCap": 700,
+    "nStar": 700,
+    "projectedWallHours": 0.168
+  },
+  "seeds": {
+    "base": 12310200,
+    "count": 16,
+    "first": 12310200,
+    "last": 12310215
+  },
+  "worlds": {
+    "prod": {
+      "matches": 16,
+      "episodes": 20,
+      "episodesPerMatch": 1.25,
+      "triggerTicks": 3071,
+      "playedTicks": 210085,
+      "triggerTickShareOfPlayed": 0.014618,
+      "excluded": {
+        "shortEpisodes": 165,
+        "sentOffEpisodes": 0
+      },
+      "episodeDurationS": {
+        "mean": 1.010833,
+        "p50": 0.883333,
+        "p90": 1.5,
+        "max": 2.7
+      },
+      "a4RuleCrossCheck": {
+        "rule": "stage doc §2.2 (the A4 ATTACK_FORMATIONS home rule) vs §2.1 (the wide-slot rule)",
+        "agreementRate": 0,
+        "undefinedEpisodes": 0
+      },
+      "weakSideBack": {
+        "detachMean": {
+          "mean": 14.695553,
+          "p50": 15.154256,
+          "p90": 18.79657,
+          "max": 22.058149,
+          "n": 20
+        },
+        "detachMax": {
+          "mean": 16.022369,
+          "p50": 15.510449,
+          "p90": 20.627452,
+          "max": 26.222847,
+          "n": 20
+        },
+        "distToSendMean": {
+          "mean": 11.925311,
+          "p50": 9.739677,
+          "p90": 19.048975,
+          "max": 29.94077,
+          "n": 20
+        },
+        "distToHomeMean": {
+          "mean": 11.925311,
+          "p50": 9.739677,
+          "p90": 19.048975,
+          "max": 29.94077,
+          "n": 20
+        },
+        "latGapMean": {
+          "mean": 16.657138,
+          "p50": 18.800222,
+          "p90": 24.34239,
+          "max": 25.504743,
+          "n": 20
+        },
+        "compressionShortfallMean": {
+          "mean": 8.856984,
+          "p50": 9.800222,
+          "p90": 15.34239,
+          "max": 16.504743,
+          "n": 20
+        },
+        "sendLatGapMean": {
+          "mean": 20.306103,
+          "p50": 20.385607,
+          "p90": 24.780993,
+          "max": 25.661429,
+          "n": 20
+        },
+        "overrideShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "sendCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "posCornerShare": {
+          "mean": 0.015254,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.305085,
+          "n": 20
+        },
+        "switchRate": {
+          "mean": 0.270587,
+          "p50": 0,
+          "p90": 1.034483,
+          "max": 2.307692,
+          "n": 20
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "actionMix": {
+          "MarkOpponent": 0.85326,
+          "ChaseBall": 0.07832,
+          "MoveToFormationSpot": 0.0676,
+          "SupportBallCarrier": 0.00082
+        }
+      },
+      "ballSideControlMirror": {
+        "detachMean": {
+          "mean": 12.517607,
+          "p50": 12.733409,
+          "p90": 17.226697,
+          "max": 21.804829,
+          "n": 20
+        },
+        "detachMax": {
+          "mean": 13.588704,
+          "p50": 13.585574,
+          "p90": 18.144461,
+          "max": 22.287965,
+          "n": 20
+        },
+        "distToSendMean": {
+          "mean": 12.91598,
+          "p50": 12.141138,
+          "p90": 21.450464,
+          "max": 32.605215,
+          "n": 20
+        },
+        "distToHomeMean": {
+          "mean": 12.91598,
+          "p50": 12.141138,
+          "p90": 21.450464,
+          "max": 32.605215,
+          "n": 20
+        },
+        "latGapMean": {
+          "mean": 4.860608,
+          "p50": 1.687315,
+          "p90": 13.175441,
+          "max": 24.234131,
+          "n": 20
+        },
+        "compressionShortfallMean": {
+          "mean": 1.682278,
+          "p50": 0,
+          "p90": 4.175441,
+          "max": 15.234131,
+          "n": 20
+        },
+        "sendLatGapMean": {
+          "mean": 1.979125,
+          "p50": 1.590645,
+          "p90": 3.263615,
+          "max": 4.431593,
+          "n": 20
+        },
+        "overrideShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "sendCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "posCornerShare": {
+          "mean": 0.04784,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.95679,
+          "n": 20
+        },
+        "switchRate": {
+          "mean": 0.545211,
+          "p50": 0,
+          "p90": 1.666667,
+          "max": 3.75,
+          "n": 20
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 20
+        },
+        "actionMix": {
+          "MarkOpponent": 0.53833,
+          "ChaseBall": 0.44765,
+          "ReceivePass": 0.0066,
+          "MoveToFormationSpot": 0.00577,
+          "InterceptPass": 0.00165
+        }
+      },
+      "contrasts": {
+        "method": "per-seed cluster bootstrap over the episode pool, episode-level MEDIANS, 2.5/97.5 percentiles; the delta is (weak-side back − ball-side control mirror)",
+        "statsBase": 103200,
+        "resamples": 300,
+        "clusters": 16,
+        "metrics": {
+          "detachMean": {
+            "weak": {
+              "p50": 15.154256,
+              "lower": 11.91904,
+              "upper": 16.810518
+            },
+            "ballSide": {
+              "p50": 12.733409,
+              "lower": 11.428068,
+              "upper": 13.76837
+            },
+            "pairedDelta": {
+              "point": 2.420847,
+              "lower": -1.150476,
+              "upper": 4.014762
+            },
+            "resolved": false
+          },
+          "distToSendMean": {
+            "weak": {
+              "p50": 9.739677,
+              "lower": 6.825785,
+              "upper": 13.279078
+            },
+            "ballSide": {
+              "p50": 12.141138,
+              "lower": 9.468011,
+              "upper": 15.74744
+            },
+            "pairedDelta": {
+              "point": -2.401461,
+              "lower": -7.399684,
+              "upper": 1.787312
+            },
+            "resolved": false
+          },
+          "sendLatGapMean": {
+            "weak": {
+              "p50": 20.385607,
+              "lower": 17.381021,
+              "upper": 21.246858
+            },
+            "ballSide": {
+              "p50": 1.590645,
+              "lower": 1.238917,
+              "upper": 2.748743
+            },
+            "pairedDelta": {
+              "point": 18.794962,
+              "lower": 15.768999,
+              "upper": 19.951077
+            },
+            "resolved": true
+          },
+          "switchRate": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 1.153846
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": -1.153846,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "flipRate90": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "sendCornerShare": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "compressionShortfallMean": {
+            "weak": {
+              "p50": 9.800222,
+              "lower": 7.1987,
+              "upper": 11.361616
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 9.800222,
+              "lower": 7.1987,
+              "upper": 11.361616
+            },
+            "resolved": true
+          }
+        }
+      },
+      "reading": {
+        "scales": {
+          "CHURN_HI": 0.333333,
+          "NEAR_M": 14,
+          "SPREAD_R": 9
+        },
+        "weak": {
+          "S": 0,
+          "F": 0,
+          "D": 9.739677,
+          "G": 20.385607,
+          "sendCornerShare": 0
+        },
+        "ballSideMirror": {
+          "S": 0,
+          "F": 0,
+          "D": 12.141138,
+          "G": 1.590645
+        },
+        "supportsModulationMissing": true,
+        "supportsOscillation": false,
+        "verdict": "H-186a(i) MODULATION MISSING"
+      },
+      "receipts": [
+        {
+          "seed": 12310203,
+          "startTick": 13649,
+          "simSeconds": 2.7,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world prod, seed 12310203, from tick 13649 (227.48 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 22.058,
+            "detachMax": 26.223,
+            "distToSendMean": 14.408,
+            "sendLatGapMean": 20.386,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 20.193,
+            "distToSendMean": 13.83,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310203,
+          "startTick": 7239,
+          "simSeconds": 1,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world prod, seed 12310203, from tick 7239 (120.65 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 21.984,
+            "detachMax": 22.386,
+            "distToSendMean": 6.826,
+            "sendLatGapMean": 17.142,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 13.045,
+            "distToSendMean": 7.644,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310208,
+          "startTick": 8261,
+          "simSeconds": 0.5,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310208, from tick 8261 (137.68 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 18.797,
+            "detachMax": 19.039,
+            "distToSendMean": 8.102,
+            "sendLatGapMean": 17.674,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 3.185,
+            "distToSendMean": 12.281,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310202,
+          "startTick": 4866,
+          "simSeconds": 1.867,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310202, from tick 4866 (81.1 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 18.681,
+            "detachMax": 20.627,
+            "distToSendMean": 7.12,
+            "sendLatGapMean": 25.661,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 13.669,
+            "distToSendMean": 21.45,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310214,
+          "startTick": 10643,
+          "simSeconds": 1.15,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310214, from tick 10643 (177.38 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 18.519,
+            "detachMax": 20.232,
+            "distToSendMean": 8.206,
+            "sendLatGapMean": 20.297,
+            "switchRate": 0.87,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 16.619,
+            "distToSendMean": 9.468,
+            "switchRate": 0.87,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310208,
+          "startTick": 6375,
+          "simSeconds": 1.5,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world prod, seed 12310208, from tick 6375 (106.25 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 17.187,
+            "detachMax": 19.15,
+            "distToSendMean": 2.371,
+            "sendLatGapMean": 24.781,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 17.227,
+            "distToSendMean": 2.453,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310214,
+          "startTick": 1590,
+          "simSeconds": 0.533,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310214, from tick 1590 (26.5 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 16.811,
+            "detachMax": 18.259,
+            "distToSendMean": 10.456,
+            "sendLatGapMean": 19.378,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.733,
+            "distToSendMean": 2.407,
+            "switchRate": 3.75,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310215,
+          "startTick": 8618,
+          "simSeconds": 0.9,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310215, from tick 8618 (143.63 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 15.663,
+            "detachMax": 16.195,
+            "distToSendMean": 8.422,
+            "sendLatGapMean": 21.072,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 8.476,
+            "distToSendMean": 7.409,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310209,
+          "startTick": 3208,
+          "simSeconds": 0.617,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310209, from tick 3208 (53.47 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 15.606,
+            "detachMax": 16.652,
+            "distToSendMean": 5.684,
+            "sendLatGapMean": 16.105,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.591,
+            "distToSendMean": 3.805,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310201,
+          "startTick": 14115,
+          "simSeconds": 0.833,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310201, from tick 14115 (235.25 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 15.202,
+            "detachMax": 16.81,
+            "distToSendMean": 13.279,
+            "sendLatGapMean": 24.887,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.428,
+            "distToSendMean": 20.503,
+            "switchRate": 1.2,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310214,
+          "startTick": 14138,
+          "simSeconds": 0.883,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310214, from tick 14138 (235.63 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 15.154,
+            "detachMax": 15.51,
+            "distToSendMean": 15.189,
+            "sendLatGapMean": 24.329,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 8.498,
+            "distToSendMean": 15.747,
+            "switchRate": 2.264,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310203,
+          "startTick": 8633,
+          "simSeconds": 0.717,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world prod, seed 12310203, from tick 8633 (143.88 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 13.871,
+            "detachMax": 15.38,
+            "distToSendMean": 4.918,
+            "sendLatGapMean": 17.36,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.906,
+            "distToSendMean": 5.888,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        }
+      ]
+    },
+    "v1": {
+      "matches": 16,
+      "episodes": 25,
+      "episodesPerMatch": 1.5625,
+      "triggerTicks": 4661,
+      "playedTicks": 199744,
+      "triggerTickShareOfPlayed": 0.023335,
+      "excluded": {
+        "shortEpisodes": 203,
+        "sentOffEpisodes": 0
+      },
+      "episodeDurationS": {
+        "mean": 1.478,
+        "p50": 0.766667,
+        "p90": 1.783333,
+        "max": 12.533333
+      },
+      "a4RuleCrossCheck": {
+        "rule": "stage doc §2.2 (the A4 ATTACK_FORMATIONS home rule) vs §2.1 (the wide-slot rule)",
+        "agreementRate": 0,
+        "undefinedEpisodes": 0
+      },
+      "weakSideBack": {
+        "detachMean": {
+          "mean": 11.177295,
+          "p50": 11.314238,
+          "p90": 16.758746,
+          "max": 19.460754,
+          "n": 25
+        },
+        "detachMax": {
+          "mean": 12.492549,
+          "p50": 11.799234,
+          "p90": 16.957833,
+          "max": 19.826091,
+          "n": 25
+        },
+        "distToSendMean": {
+          "mean": 10.951438,
+          "p50": 10.094981,
+          "p90": 19.213074,
+          "max": 27.093486,
+          "n": 25
+        },
+        "distToHomeMean": {
+          "mean": 12.535477,
+          "p50": 11.261973,
+          "p90": 19.213074,
+          "max": 27.093486,
+          "n": 25
+        },
+        "latGapMean": {
+          "mean": 13.564469,
+          "p50": 13.256995,
+          "p90": 19.870913,
+          "max": 23.788494,
+          "n": 25
+        },
+        "compressionShortfallMean": {
+          "mean": 5.418486,
+          "p50": 4.256995,
+          "p90": 10.870913,
+          "max": 14.788494,
+          "n": 25
+        },
+        "sendLatGapMean": {
+          "mean": 14.932087,
+          "p50": 18.188184,
+          "p90": 20.356673,
+          "max": 24.788602,
+          "n": 25
+        },
+        "overrideShare": {
+          "mean": 0.587011,
+          "p50": 0.933333,
+          "p90": 1,
+          "max": 1,
+          "n": 25
+        },
+        "sendCornerShare": {
+          "mean": 0.018003,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.336449,
+          "n": 25
+        },
+        "posCornerShare": {
+          "mean": 0.03368,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.505556,
+          "n": 25
+        },
+        "switchRate": {
+          "mean": 1.106047,
+          "p50": 1.111111,
+          "p90": 2.4,
+          "max": 2.727273,
+          "n": 25
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 25
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 25
+        },
+        "actionMix": {
+          "MarkOpponent": 0.79161,
+          "MoveToFormationSpot": 0.12314,
+          "ChaseBall": 0.08119,
+          "InterceptPass": 0.00406
+        }
+      },
+      "ballSideControlMirror": {
+        "detachMean": {
+          "mean": 10.32819,
+          "p50": 11.521209,
+          "p90": 14.346727,
+          "max": 20.139982,
+          "n": 25
+        },
+        "detachMax": {
+          "mean": 11.591357,
+          "p50": 12.68816,
+          "p90": 16.536804,
+          "max": 20.405155,
+          "n": 25
+        },
+        "distToSendMean": {
+          "mean": 9.965321,
+          "p50": 8.696122,
+          "p90": 17.130065,
+          "max": 27.304727,
+          "n": 25
+        },
+        "distToHomeMean": {
+          "mean": 10.700058,
+          "p50": 10.16792,
+          "p90": 17.973271,
+          "max": 23.008581,
+          "n": 25
+        },
+        "latGapMean": {
+          "mean": 2.821747,
+          "p50": 1.50872,
+          "p90": 5.890918,
+          "max": 13.909127,
+          "n": 25
+        },
+        "compressionShortfallMean": {
+          "mean": 0.283307,
+          "p50": 0,
+          "p90": 0,
+          "max": 4.909127,
+          "n": 25
+        },
+        "sendLatGapMean": {
+          "mean": 1.894082,
+          "p50": 1.264687,
+          "p90": 3.168816,
+          "max": 12.101869,
+          "n": 25
+        },
+        "overrideShare": {
+          "mean": 0.37332,
+          "p50": 0,
+          "p90": 1,
+          "max": 1,
+          "n": 25
+        },
+        "sendCornerShare": {
+          "mean": 0.038,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.95,
+          "n": 25
+        },
+        "posCornerShare": {
+          "mean": 0.021862,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.546543,
+          "n": 25
+        },
+        "switchRate": {
+          "mean": 0.634964,
+          "p50": 0,
+          "p90": 1.5,
+          "max": 3.428571,
+          "n": 25
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 25
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 25
+        },
+        "actionMix": {
+          "MarkOpponent": 0.64231,
+          "ChaseBall": 0.25665,
+          "MoveToFormationSpot": 0.09968,
+          "ReceivePass": 0.00135
+        }
+      },
+      "contrasts": {
+        "method": "per-seed cluster bootstrap over the episode pool, episode-level MEDIANS, 2.5/97.5 percentiles; the delta is (weak-side back − ball-side control mirror)",
+        "statsBase": 103200,
+        "resamples": 300,
+        "clusters": 16,
+        "metrics": {
+          "detachMean": {
+            "weak": {
+              "p50": 11.314238,
+              "lower": 8.349031,
+              "upper": 12.667308
+            },
+            "ballSide": {
+              "p50": 11.521209,
+              "lower": 6.181135,
+              "upper": 12.725546
+            },
+            "pairedDelta": {
+              "point": -0.206971,
+              "lower": -2.530295,
+              "upper": 2.167897
+            },
+            "resolved": false
+          },
+          "distToSendMean": {
+            "weak": {
+              "p50": 10.094981,
+              "lower": 8.844112,
+              "upper": 12.955619
+            },
+            "ballSide": {
+              "p50": 8.696122,
+              "lower": 4.786694,
+              "upper": 14.423152
+            },
+            "pairedDelta": {
+              "point": 1.398859,
+              "lower": -4.875361,
+              "upper": 6.507636
+            },
+            "resolved": false
+          },
+          "sendLatGapMean": {
+            "weak": {
+              "p50": 18.188184,
+              "lower": 18.159986,
+              "upper": 18.438499
+            },
+            "ballSide": {
+              "p50": 1.264687,
+              "lower": 0.569614,
+              "upper": 2.400773
+            },
+            "pairedDelta": {
+              "point": 16.923497,
+              "lower": 15.924701,
+              "upper": 17.768684
+            },
+            "resolved": true
+          },
+          "switchRate": {
+            "weak": {
+              "p50": 1.111111,
+              "lower": 0,
+              "upper": 1.714286
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0.718085
+            },
+            "pairedDelta": {
+              "point": 1.111111,
+              "lower": 0,
+              "upper": 1.538462
+            },
+            "resolved": false
+          },
+          "flipRate90": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "sendCornerShare": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "compressionShortfallMean": {
+            "weak": {
+              "p50": 4.256995,
+              "lower": 1.747654,
+              "upper": 7.069284
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 4.256995,
+              "lower": 1.747654,
+              "upper": 7.069284
+            },
+            "resolved": true
+          }
+        }
+      },
+      "reading": {
+        "scales": {
+          "CHURN_HI": 0.333333,
+          "NEAR_M": 14,
+          "SPREAD_R": 9
+        },
+        "weak": {
+          "S": 1.111111,
+          "F": 0,
+          "D": 10.094981,
+          "G": 18.188184,
+          "sendCornerShare": 0
+        },
+        "ballSideMirror": {
+          "S": 0,
+          "F": 0,
+          "D": 8.696122,
+          "G": 1.264687
+        },
+        "supportsModulationMissing": false,
+        "supportsOscillation": true,
+        "verdict": "H-186a(ii) OSCILLATION"
+      },
+      "receipts": [
+        {
+          "seed": 12310201,
+          "startTick": 4582,
+          "simSeconds": 0.65,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v1, seed 12310201, from tick 4582 (76.37 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 19.461,
+            "detachMax": 19.826,
+            "distToSendMean": 22.685,
+            "sendLatGapMean": 1.631,
+            "switchRate": 1.538,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.945,
+            "distToSendMean": 8.696,
+            "switchRate": 1.538,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310200,
+          "startTick": 6587,
+          "simSeconds": 0.5,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v1, seed 12310200, from tick 6587 (109.78 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 18.026,
+            "detachMax": 18.419,
+            "distToSendMean": 1.298,
+            "sendLatGapMean": 18.438,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.713,
+            "distToSendMean": 13.106,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310213,
+          "startTick": 3865,
+          "simSeconds": 0.667,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v1, seed 12310213, from tick 3865 (64.42 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 16.936,
+            "detachMax": 16.958,
+            "distToSendMean": 9.18,
+            "sendLatGapMean": 20.357,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.449,
+            "distToSendMean": 27.305,
+            "switchRate": 1.5,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310200,
+          "startTick": 7267,
+          "simSeconds": 0.75,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v1, seed 12310200, from tick 7267 (121.12 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 16.759,
+            "detachMax": 16.948,
+            "distToSendMean": 14.585,
+            "sendLatGapMean": 15.552,
+            "switchRate": 1.333,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 20.14,
+            "distToSendMean": 4.451,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310203,
+          "startTick": 2435,
+          "simSeconds": 1,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v1, seed 12310203, from tick 2435 (40.58 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 15.25,
+            "detachMax": 15.496,
+            "distToSendMean": 3.413,
+            "sendLatGapMean": 18.16,
+            "switchRate": 1,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.521,
+            "distToSendMean": 6.462,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310206,
+          "startTick": 8534,
+          "simSeconds": 1.533,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v1, seed 12310206, from tick 8534 (142.23 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 13.843,
+            "detachMax": 17.287,
+            "distToSendMean": 9.457,
+            "sendLatGapMean": 18.691,
+            "switchRate": 0.652,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.256,
+            "distToSendMean": 6.436,
+            "switchRate": 0.652,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310209,
+          "startTick": 10754,
+          "simSeconds": 0.633,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v1, seed 12310209, from tick 10754 (179.23 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 13.495,
+            "detachMax": 14.339,
+            "distToSendMean": 19.213,
+            "sendLatGapMean": 16.726,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 13.776,
+            "distToSendMean": 18.425,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310209,
+          "startTick": 13560,
+          "simSeconds": 1.717,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v1, seed 12310209, from tick 13560 (226 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 13.171,
+            "detachMax": 14.256,
+            "distToSendMean": 3.126,
+            "sendLatGapMean": 18.238,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 14.115,
+            "distToSendMean": 3.844,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310206,
+          "startTick": 13438,
+          "simSeconds": 0.6,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v1, seed 12310206, from tick 13438 (223.97 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 12.667,
+            "detachMax": 14.499,
+            "distToSendMean": 2.683,
+            "sendLatGapMean": 18.184,
+            "switchRate": 1.667,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 0.898,
+            "distToSendMean": 10.744,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310214,
+          "startTick": 11469,
+          "simSeconds": 0.833,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v1, seed 12310214, from tick 11469 (191.15 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 11.797,
+            "detachMax": 13.917,
+            "distToSendMean": 10.391,
+            "sendLatGapMean": 20.991,
+            "switchRate": 1.2,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 7.382,
+            "distToSendMean": 15.094,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310212,
+          "startTick": 13755,
+          "simSeconds": 0.75,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v1, seed 12310212, from tick 13755 (229.25 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 11.541,
+            "detachMax": 12.946,
+            "distToSendMean": 10.095,
+            "sendLatGapMean": 18.325,
+            "switchRate": 2.667,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 12.726,
+            "distToSendMean": 2.949,
+            "switchRate": 1.333,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310213,
+          "startTick": 13111,
+          "simSeconds": 0.533,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v1, seed 12310213, from tick 13111 (218.52 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 11.431,
+            "detachMax": 11.575,
+            "distToSendMean": 9.307,
+            "sendLatGapMean": 23.291,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.216,
+            "distToSendMean": 17.13,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        }
+      ]
+    },
+    "v2": {
+      "matches": 16,
+      "episodes": 17,
+      "episodesPerMatch": 1.0625,
+      "triggerTicks": 3090,
+      "playedTicks": 199848,
+      "triggerTickShareOfPlayed": 0.015462,
+      "excluded": {
+        "shortEpisodes": 178,
+        "sentOffEpisodes": 0
+      },
+      "episodeDurationS": {
+        "mean": 1.034314,
+        "p50": 0.916667,
+        "p90": 1.233333,
+        "max": 4.2
+      },
+      "a4RuleCrossCheck": {
+        "rule": "stage doc §2.2 (the A4 ATTACK_FORMATIONS home rule) vs §2.1 (the wide-slot rule)",
+        "agreementRate": 0,
+        "undefinedEpisodes": 0
+      },
+      "weakSideBack": {
+        "detachMean": {
+          "mean": 12.494088,
+          "p50": 11.959227,
+          "p90": 20.564191,
+          "max": 23.362741,
+          "n": 17
+        },
+        "detachMax": {
+          "mean": 14.01106,
+          "p50": 14.599499,
+          "p90": 21.84994,
+          "max": 24.162614,
+          "n": 17
+        },
+        "distToSendMean": {
+          "mean": 9.590384,
+          "p50": 7.872093,
+          "p90": 14.918598,
+          "max": 23.458926,
+          "n": 17
+        },
+        "distToHomeMean": {
+          "mean": 10.647772,
+          "p50": 9.908357,
+          "p90": 22.221731,
+          "max": 23.458926,
+          "n": 17
+        },
+        "latGapMean": {
+          "mean": 12.773639,
+          "p50": 12.274989,
+          "p90": 21.223346,
+          "max": 22.885927,
+          "n": 17
+        },
+        "compressionShortfallMean": {
+          "mean": 5.2371,
+          "p50": 3.675225,
+          "p90": 12.223346,
+          "max": 13.885927,
+          "n": 17
+        },
+        "sendLatGapMean": {
+          "mean": 14.498657,
+          "p50": 16.205443,
+          "p90": 20.391946,
+          "max": 22.887605,
+          "n": 17
+        },
+        "overrideShare": {
+          "mean": 0.444135,
+          "p50": 0.243243,
+          "p90": 1,
+          "max": 1,
+          "n": 17
+        },
+        "sendCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "posCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "switchRate": {
+          "mean": 1.336964,
+          "p50": 1.090909,
+          "p90": 2,
+          "max": 4,
+          "n": 17
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "actionMix": {
+          "MarkOpponent": 0.78957,
+          "MoveToFormationSpot": 0.19052,
+          "ReceivePass": 0.01137,
+          "InterceptPass": 0.00853
+        }
+      },
+      "ballSideControlMirror": {
+        "detachMean": {
+          "mean": 10.352344,
+          "p50": 9.663468,
+          "p90": 15.239595,
+          "max": 15.595277,
+          "n": 17
+        },
+        "detachMax": {
+          "mean": 11.411665,
+          "p50": 11.681564,
+          "p90": 16.191313,
+          "max": 17.198842,
+          "n": 17
+        },
+        "distToSendMean": {
+          "mean": 6.281727,
+          "p50": 4.138937,
+          "p90": 12.869118,
+          "max": 16.516213,
+          "n": 17
+        },
+        "distToHomeMean": {
+          "mean": 9.257108,
+          "p50": 9.828764,
+          "p90": 13.443055,
+          "max": 19.025329,
+          "n": 17
+        },
+        "latGapMean": {
+          "mean": 4.14229,
+          "p50": 2.681328,
+          "p90": 9.159824,
+          "max": 15.633876,
+          "n": 17
+        },
+        "compressionShortfallMean": {
+          "mean": 0.580269,
+          "p50": 0,
+          "p90": 0.734667,
+          "max": 6.633876,
+          "n": 17
+        },
+        "sendLatGapMean": {
+          "mean": 2.545131,
+          "p50": 0.79003,
+          "p90": 3.124075,
+          "max": 18.132387,
+          "n": 17
+        },
+        "overrideShare": {
+          "mean": 0.660984,
+          "p50": 1,
+          "p90": 1,
+          "max": 1,
+          "n": 17
+        },
+        "sendCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "posCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "switchRate": {
+          "mean": 1.083891,
+          "p50": 0.923077,
+          "p90": 2.068966,
+          "max": 3.076923,
+          "n": 17
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 17
+        },
+        "actionMix": {
+          "MarkOpponent": 0.47962,
+          "MoveToFormationSpot": 0.33934,
+          "ChaseBall": 0.18009,
+          "MakeRun": 0.00095
+        }
+      },
+      "contrasts": {
+        "method": "per-seed cluster bootstrap over the episode pool, episode-level MEDIANS, 2.5/97.5 percentiles; the delta is (weak-side back − ball-side control mirror)",
+        "statsBase": 103200,
+        "resamples": 300,
+        "clusters": 16,
+        "metrics": {
+          "detachMean": {
+            "weak": {
+              "p50": 11.959227,
+              "lower": 6.63982,
+              "upper": 18.692578
+            },
+            "ballSide": {
+              "p50": 9.663468,
+              "lower": 7.804892,
+              "upper": 11.548133
+            },
+            "pairedDelta": {
+              "point": 2.29576,
+              "lower": -4.678841,
+              "upper": 9.0262
+            },
+            "resolved": false
+          },
+          "distToSendMean": {
+            "weak": {
+              "p50": 7.872093,
+              "lower": 6.146355,
+              "upper": 12.803459
+            },
+            "ballSide": {
+              "p50": 4.138937,
+              "lower": 3.065071,
+              "upper": 9.718215
+            },
+            "pairedDelta": {
+              "point": 3.733155,
+              "lower": -1.846122,
+              "upper": 9.010025
+            },
+            "resolved": false
+          },
+          "sendLatGapMean": {
+            "weak": {
+              "p50": 16.205443,
+              "lower": 12.203717,
+              "upper": 17.595584
+            },
+            "ballSide": {
+              "p50": 0.79003,
+              "lower": 0.085884,
+              "upper": 1.945141
+            },
+            "pairedDelta": {
+              "point": 15.415413,
+              "lower": 11.722789,
+              "upper": 17.481874
+            },
+            "resolved": true
+          },
+          "switchRate": {
+            "weak": {
+              "p50": 1.090909,
+              "lower": 0.983607,
+              "upper": 1.666667
+            },
+            "ballSide": {
+              "p50": 0.923077,
+              "lower": 0,
+              "upper": 2
+            },
+            "pairedDelta": {
+              "point": 0.167832,
+              "lower": -0.909091,
+              "upper": 1.428571
+            },
+            "resolved": false
+          },
+          "flipRate90": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "sendCornerShare": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "compressionShortfallMean": {
+            "weak": {
+              "p50": 3.675225,
+              "lower": 1.083788,
+              "upper": 8.695205
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 3.675225,
+              "lower": 1.083788,
+              "upper": 8.695205
+            },
+            "resolved": true
+          }
+        }
+      },
+      "reading": {
+        "scales": {
+          "CHURN_HI": 0.333333,
+          "NEAR_M": 14,
+          "SPREAD_R": 9
+        },
+        "weak": {
+          "S": 1.090909,
+          "F": 0,
+          "D": 7.872093,
+          "G": 16.205443,
+          "sendCornerShare": 0
+        },
+        "ballSideMirror": {
+          "S": 0.923077,
+          "F": 0,
+          "D": 4.138937,
+          "G": 0.79003
+        },
+        "supportsModulationMissing": false,
+        "supportsOscillation": true,
+        "verdict": "H-186a(ii) OSCILLATION"
+      },
+      "receipts": [
+        {
+          "seed": 12310202,
+          "startTick": 11845,
+          "simSeconds": 0.5,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310202, from tick 11845 (197.42 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 23.363,
+            "detachMax": 24.163,
+            "distToSendMean": 23.459,
+            "sendLatGapMean": 21.292,
+            "switchRate": 2,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 7.839,
+            "distToSendMean": 11.439,
+            "switchRate": 2,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310204,
+          "startTick": 4786,
+          "simSeconds": 0.5,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310204, from tick 4786 (79.77 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 21.496,
+            "detachMax": 21.85,
+            "distToSendMean": 17.192,
+            "sendLatGapMean": 15.681,
+            "switchRate": 4,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 7.548,
+            "distToSendMean": 3.793,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310207,
+          "startTick": 5336,
+          "simSeconds": 0.967,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310207, from tick 5336 (88.93 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 20.564,
+            "detachMax": 23.011,
+            "distToSendMean": 14.753,
+            "sendLatGapMean": 12.797,
+            "switchRate": 1.034,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 15.595,
+            "distToSendMean": 4.139,
+            "switchRate": 2.069,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310215,
+          "startTick": 11202,
+          "simSeconds": 1.15,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v2, seed 12310215, from tick 11202 (186.7 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 19.826,
+            "detachMax": 20.494,
+            "distToSendMean": 12.803,
+            "sendLatGapMean": 20.392,
+            "switchRate": 0.87,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 14.981,
+            "distToSendMean": 2.406,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310206,
+          "startTick": 11813,
+          "simSeconds": 1.233,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v2, seed 12310206, from tick 11813 (196.88 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 18.693,
+            "detachMax": 21.217,
+            "distToSendMean": 6.146,
+            "sendLatGapMean": 17.589,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 9.039,
+            "distToSendMean": 1.599,
+            "switchRate": 0.811,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310201,
+          "startTick": 10921,
+          "simSeconds": 0.583,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v2, seed 12310201, from tick 10921 (182.02 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 16.574,
+            "detachMax": 17.671,
+            "distToSendMean": 1.354,
+            "sendLatGapMean": 18.562,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 7.805,
+            "distToSendMean": 12.869,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310208,
+          "startTick": 6575,
+          "simSeconds": 0.933,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310208, from tick 6575 (109.58 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 16.555,
+            "detachMax": 17.228,
+            "distToSendMean": 1.876,
+            "sendLatGapMean": 22.888,
+            "switchRate": 1.071,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 15.24,
+            "distToSendMean": 4.588,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310201,
+          "startTick": 13173,
+          "simSeconds": 0.617,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310201, from tick 13173 (219.55 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 12.277,
+            "detachMax": 14.599,
+            "distToSendMean": 9.386,
+            "sendLatGapMean": 16.97,
+            "switchRate": 1.622,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 4.176,
+            "distToSendMean": 13.443,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310210,
+          "startTick": 10584,
+          "simSeconds": 1.083,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v2, seed 12310210, from tick 10584 (176.4 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 11.959,
+            "detachMax": 12.79,
+            "distToSendMean": 6.273,
+            "sendLatGapMean": 17.84,
+            "switchRate": 0.923,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.548,
+            "distToSendMean": 2.681,
+            "switchRate": 0.923,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310203,
+          "startTick": 13990,
+          "simSeconds": 1.333,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v2, seed 12310203, from tick 13990 (233.17 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 11.86,
+            "detachMax": 15.335,
+            "distToSendMean": 5.679,
+            "sendLatGapMean": 12.204,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 5.098,
+            "distToSendMean": 3.065,
+            "switchRate": 0.75,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310210,
+          "startTick": 1365,
+          "simSeconds": 0.5,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310210, from tick 1365 (22.75 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 8.34,
+            "detachMax": 8.945,
+            "distToSendMean": 13.419,
+            "sendLatGapMean": 17.596,
+            "switchRate": 2,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 7.475,
+            "distToSendMean": 16.516,
+            "switchRate": 2,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310215,
+          "startTick": 9141,
+          "simSeconds": 0.65,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v2, seed 12310215, from tick 9141 (152.35 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 6.823,
+            "detachMax": 8.496,
+            "distToSendMean": 14.919,
+            "sendLatGapMean": 13.135,
+            "switchRate": 1.538,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 10.826,
+            "distToSendMean": 7.696,
+            "switchRate": 3.077,
+            "flipRate90": 0
+          }
+        }
+      ]
+    },
+    "v3": {
+      "matches": 16,
+      "episodes": 29,
+      "episodesPerMatch": 1.8125,
+      "triggerTicks": 4637,
+      "playedTicks": 199887,
+      "triggerTickShareOfPlayed": 0.023198,
+      "excluded": {
+        "shortEpisodes": 195,
+        "sentOffEpisodes": 0
+      },
+      "episodeDurationS": {
+        "mean": 1.375862,
+        "p50": 0.766667,
+        "p90": 1.933333,
+        "max": 8.85
+      },
+      "a4RuleCrossCheck": {
+        "rule": "stage doc §2.2 (the A4 ATTACK_FORMATIONS home rule) vs §2.1 (the wide-slot rule)",
+        "agreementRate": 0,
+        "undefinedEpisodes": 0
+      },
+      "weakSideBack": {
+        "detachMean": {
+          "mean": 10.765503,
+          "p50": 10.264233,
+          "p90": 17.668462,
+          "max": 21.573226,
+          "n": 29
+        },
+        "detachMax": {
+          "mean": 12.251291,
+          "p50": 12.678572,
+          "p90": 18.213514,
+          "max": 22.185103,
+          "n": 29
+        },
+        "distToSendMean": {
+          "mean": 11.613227,
+          "p50": 11.815441,
+          "p90": 17.286455,
+          "max": 24.178233,
+          "n": 29
+        },
+        "distToHomeMean": {
+          "mean": 15.291957,
+          "p50": 16.608429,
+          "p90": 21.41263,
+          "max": 30.048158,
+          "n": 29
+        },
+        "latGapMean": {
+          "mean": 10.411545,
+          "p50": 9.338187,
+          "p90": 20.538931,
+          "max": 25.789628,
+          "n": 29
+        },
+        "compressionShortfallMean": {
+          "mean": 3.963854,
+          "p50": 1.558275,
+          "p90": 11.538931,
+          "max": 16.789628,
+          "n": 29
+        },
+        "sendLatGapMean": {
+          "mean": 14.219668,
+          "p50": 18.129334,
+          "p90": 21.660283,
+          "max": 22.418039,
+          "n": 29
+        },
+        "overrideShare": {
+          "mean": 0.46888,
+          "p50": 0.504708,
+          "p90": 1,
+          "max": 1,
+          "n": 29
+        },
+        "sendCornerShare": {
+          "mean": 0.024521,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.711111,
+          "n": 29
+        },
+        "posCornerShare": {
+          "mean": 0.048339,
+          "p50": 0,
+          "p90": 0,
+          "max": 1,
+          "n": 29
+        },
+        "switchRate": {
+          "mean": 0.982439,
+          "p50": 0.833333,
+          "p90": 2,
+          "max": 2.666667,
+          "n": 29
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 29
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 29
+        },
+        "actionMix": {
+          "MarkOpponent": 0.47285,
+          "MoveToFormationSpot": 0.36591,
+          "ChaseBall": 0.15789,
+          "Pass": 0.00167,
+          "MakeRun": 0.00167
+        }
+      },
+      "ballSideControlMirror": {
+        "detachMean": {
+          "mean": 9.832609,
+          "p50": 10.26094,
+          "p90": 14.260252,
+          "max": 16.826772,
+          "n": 29
+        },
+        "detachMax": {
+          "mean": 11.168564,
+          "p50": 12.050694,
+          "p90": 15.5859,
+          "max": 17.266384,
+          "n": 29
+        },
+        "distToSendMean": {
+          "mean": 8.257045,
+          "p50": 5.244521,
+          "p90": 15.609055,
+          "max": 27.611901,
+          "n": 29
+        },
+        "distToHomeMean": {
+          "mean": 11.050081,
+          "p50": 10.84967,
+          "p90": 18.555775,
+          "max": 26.824318,
+          "n": 29
+        },
+        "latGapMean": {
+          "mean": 3.986111,
+          "p50": 1.729282,
+          "p90": 8.343498,
+          "max": 26.224125,
+          "n": 29
+        },
+        "compressionShortfallMean": {
+          "mean": 0.90851,
+          "p50": 0,
+          "p90": 0,
+          "max": 17.224125,
+          "n": 29
+        },
+        "sendLatGapMean": {
+          "mean": 2.241749,
+          "p50": 0.996818,
+          "p90": 5.284054,
+          "max": 18.097369,
+          "n": 29
+        },
+        "overrideShare": {
+          "mean": 0.469977,
+          "p50": 0.235294,
+          "p90": 1,
+          "max": 1,
+          "n": 29
+        },
+        "sendCornerShare": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 29
+        },
+        "posCornerShare": {
+          "mean": 0.026155,
+          "p50": 0,
+          "p90": 0,
+          "max": 0.662461,
+          "n": 29
+        },
+        "switchRate": {
+          "mean": 0.886846,
+          "p50": 0.833333,
+          "p90": 2,
+          "max": 2.727273,
+          "n": 29
+        },
+        "flipRate90": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 29
+        },
+        "flipRate150": {
+          "mean": 0,
+          "p50": 0,
+          "p90": 0,
+          "max": 0,
+          "n": 29
+        },
+        "actionMix": {
+          "MarkOpponent": 0.54595,
+          "ChaseBall": 0.33292,
+          "MoveToFormationSpot": 0.11738,
+          "ReceivePass": 0.00376
+        }
+      },
+      "contrasts": {
+        "method": "per-seed cluster bootstrap over the episode pool, episode-level MEDIANS, 2.5/97.5 percentiles; the delta is (weak-side back − ball-side control mirror)",
+        "statsBase": 103200,
+        "resamples": 300,
+        "clusters": 16,
+        "metrics": {
+          "detachMean": {
+            "weak": {
+              "p50": 10.264233,
+              "lower": 7.849566,
+              "upper": 11.241883
+            },
+            "ballSide": {
+              "p50": 10.26094,
+              "lower": 7.583763,
+              "upper": 11.267405
+            },
+            "pairedDelta": {
+              "point": 0.003293,
+              "lower": -2.120839,
+              "upper": 2.227623
+            },
+            "resolved": false
+          },
+          "distToSendMean": {
+            "weak": {
+              "p50": 11.815441,
+              "lower": 8.865719,
+              "upper": 13.38385
+            },
+            "ballSide": {
+              "p50": 5.244521,
+              "lower": 2.925916,
+              "upper": 9.753723
+            },
+            "pairedDelta": {
+              "point": 6.57092,
+              "lower": 0.508523,
+              "upper": 9.297323
+            },
+            "resolved": true
+          },
+          "sendLatGapMean": {
+            "weak": {
+              "p50": 18.129334,
+              "lower": 11.27982,
+              "upper": 19.270007
+            },
+            "ballSide": {
+              "p50": 0.996818,
+              "lower": 0.213813,
+              "upper": 1.36541
+            },
+            "pairedDelta": {
+              "point": 17.132516,
+              "lower": 10.693462,
+              "upper": 18.074146
+            },
+            "resolved": true
+          },
+          "switchRate": {
+            "weak": {
+              "p50": 0.833333,
+              "lower": 0,
+              "upper": 1.551724
+            },
+            "ballSide": {
+              "p50": 0.833333,
+              "lower": 0,
+              "upper": 1.5
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": -0.843283,
+              "upper": 1.551724
+            },
+            "resolved": false
+          },
+          "flipRate90": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "sendCornerShare": {
+            "weak": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "resolved": false
+          },
+          "compressionShortfallMean": {
+            "weak": {
+              "p50": 1.558275,
+              "lower": 0,
+              "upper": 5.532338
+            },
+            "ballSide": {
+              "p50": 0,
+              "lower": 0,
+              "upper": 0
+            },
+            "pairedDelta": {
+              "point": 1.558275,
+              "lower": 0,
+              "upper": 5.532338
+            },
+            "resolved": false
+          }
+        }
+      },
+      "reading": {
+        "scales": {
+          "CHURN_HI": 0.333333,
+          "NEAR_M": 14,
+          "SPREAD_R": 9
+        },
+        "weak": {
+          "S": 0.833333,
+          "F": 0,
+          "D": 11.815441,
+          "G": 18.129334,
+          "sendCornerShare": 0
+        },
+        "ballSideMirror": {
+          "S": 0.833333,
+          "F": 0,
+          "D": 5.244521,
+          "G": 0.996818
+        },
+        "supportsModulationMissing": false,
+        "supportsOscillation": true,
+        "verdict": "H-186a(ii) OSCILLATION"
+      },
+      "receipts": [
+        {
+          "seed": 12310208,
+          "startTick": 11403,
+          "simSeconds": 0.767,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310208, from tick 11403 (190.05 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 21.573,
+            "detachMax": 22.006,
+            "distToSendMean": 5.273,
+            "sendLatGapMean": 18.156,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 6.464,
+            "distToSendMean": 7.477,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310213,
+          "startTick": 4215,
+          "simSeconds": 0.7,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310213, from tick 4215 (70.25 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 19.577,
+            "detachMax": 22.185,
+            "distToSendMean": 4.89,
+            "sendLatGapMean": 19.379,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.801,
+            "distToSendMean": 19.659,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310212,
+          "startTick": 2032,
+          "simSeconds": 0.9,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v3, seed 12310212, from tick 2032 (33.87 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 17.89,
+            "detachMax": 18.214,
+            "distToSendMean": 10.255,
+            "sendLatGapMean": 22.172,
+            "switchRate": 2.222,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 7.537,
+            "distToSendMean": 14.806,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310204,
+          "startTick": 8884,
+          "simSeconds": 0.533,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310204, from tick 8884 (148.07 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 17.668,
+            "detachMax": 18.109,
+            "distToSendMean": 8.866,
+            "sendLatGapMean": 20.631,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 11.267,
+            "distToSendMean": 2.256,
+            "switchRate": 1.875,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310201,
+          "startTick": 1072,
+          "simSeconds": 0.5,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310201, from tick 1072 (17.87 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 15.513,
+            "detachMax": 16.2,
+            "distToSendMean": 15.681,
+            "sendLatGapMean": 6.445,
+            "switchRate": 2,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 1.755,
+            "distToSendMean": 12.248,
+            "switchRate": 2,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310214,
+          "startTick": 14024,
+          "simSeconds": 0.667,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310214, from tick 14024 (233.73 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 15.194,
+            "detachMax": 16.046,
+            "distToSendMean": 6.472,
+            "sendLatGapMean": 21.66,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 0.917,
+            "distToSendMean": 14.981,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310208,
+          "startTick": 10815,
+          "simSeconds": 0.667,
+          "defendingSide": 1,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v3, seed 12310208, from tick 10815 (180.25 sim-s), defending side 1, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 15.068,
+            "detachMax": 15.376,
+            "distToSendMean": 15.752,
+            "sendLatGapMean": 22.418,
+            "switchRate": 1.5,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 15.878,
+            "distToSendMean": 2.872,
+            "switchRate": 1.5,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310203,
+          "startTick": 11846,
+          "simSeconds": 1.933,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310203, from tick 11846 (197.43 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 14.142,
+            "detachMax": 16.372,
+            "distToSendMean": 17.286,
+            "sendLatGapMean": 10.703,
+            "switchRate": 1.552,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 9.611,
+            "distToSendMean": 5.87,
+            "switchRate": 1.552,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310206,
+          "startTick": 9300,
+          "simSeconds": 0.917,
+          "defendingSide": 0,
+          "flankSign": -1,
+          "weakSideSlot": 4,
+          "ballSideSlot": 3,
+          "watchHint": "world v3, seed 12310206, from tick 9300 (155 sim-s), defending side 0, ball on flank -y, weak-side slot 4",
+          "weak": {
+            "detachMean": 13.671,
+            "detachMax": 15.583,
+            "distToSendMean": 5.387,
+            "sendLatGapMean": 19.923,
+            "switchRate": 1.091,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 10.779,
+            "distToSendMean": 3.691,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310209,
+          "startTick": 13768,
+          "simSeconds": 0.767,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310209, from tick 13768 (229.47 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 12.351,
+            "detachMax": 12.679,
+            "distToSendMean": 21.375,
+            "sendLatGapMean": 19.545,
+            "switchRate": 1.304,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 1
+          },
+          "ballSide": {
+            "detachMean": 15.284,
+            "distToSendMean": 2.04,
+            "switchRate": 1.304,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310210,
+          "startTick": 13978,
+          "simSeconds": 0.95,
+          "defendingSide": 1,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310210, from tick 13978 (232.97 sim-s), defending side 1, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 12.227,
+            "detachMax": 12.967,
+            "distToSendMean": 13.384,
+            "sendLatGapMean": 19.908,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 13.854,
+            "distToSendMean": 2.49,
+            "switchRate": 0,
+            "flipRate90": 0
+          }
+        },
+        {
+          "seed": 12310211,
+          "startTick": 1160,
+          "simSeconds": 0.933,
+          "defendingSide": 0,
+          "flankSign": 1,
+          "weakSideSlot": 3,
+          "ballSideSlot": 4,
+          "watchHint": "world v3, seed 12310211, from tick 1160 (19.33 sim-s), defending side 0, ball on flank +y, weak-side slot 3",
+          "weak": {
+            "detachMean": 11.242,
+            "detachMax": 12.741,
+            "distToSendMean": 19.849,
+            "sendLatGapMean": 19.27,
+            "switchRate": 0,
+            "flipRate90": 0,
+            "sendCornerShare": 0,
+            "posCornerShare": 0
+          },
+          "ballSide": {
+            "detachMean": 10.261,
+            "distToSendMean": 2.926,
+            "switchRate": 2.143,
+            "flipRate90": 0
+          }
+        }
+      ]
+    }
+  },
+  "probeReadOnly": true,
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "note": "the whole four-world computation run twice, JSON byte-identical"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "skipped (--skip-fp)",
+      "seed": 1337,
+      "seasons": 2,
+      "skipped": true
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "srcDiff": ""
+    },
+    "seedDisjoint": {
+      "pass": true,
+      "block": "12310200..12310215",
+      "band": [
+        12310200,
+        12310999
+      ],
+      "consumedCeiling": 12310199,
+      "aboveCeiling": true,
+      "clashes": [],
+      "ownBlocksDisjoint": true,
+      "smokeBlock": "12310200..12310215",
+      "censusBase": 12310300
+    },
+    "statsDisjoint": {
+      "pass": true,
+      "base": 103200,
+      "published": [
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000
+      ],
+      "minGap": 200
+    },
+    "flagHygiene": {
+      "pass": true,
+      "note": "A4_WORLD_FLAGS is never widened; v3 composes o1PassWindup at the ENTRY layer (#184.2)",
+      "prod": null,
+      "v1": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false
+      },
+      "v2": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false
+      },
+      "v3": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false,
+        "o1PassWindup": true
+      }
+    },
+    "tableSha": {
+      "mergedShaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+      "mergedShaExpected": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+      "mergedRehash": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+      "baseRehash": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+      "baseShaExpected": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+      "controlShaField": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+      "controlShaExpected": "968349ff52313df6ce6fe42683faff64b7509d32c108b7b40010c129e18acc1c",
+      "pass": true
+    },
+    "armIdent": {
+      "pass": true,
+      "rows": [
+        {
+          "world": "prod",
+          "eyeArmed": false,
+          "homePrior": false,
+          "mergedShaOnEye": null,
+          "obedience": [
+            null,
+            null
+          ],
+          "offsets": [
+            null,
+            null
+          ],
+          "o1PassWindup": false,
+          "censusFlags": {
+            "edsPerceivedDefence": false,
+            "edsPerceivedChoice": false,
+            "edsValueAxis": false,
+            "c5Hold": false,
+            "c6Carry": false,
+            "c7Windup": false,
+            "c5TouchFork": false
+          }
+        },
+        {
+          "world": "v1",
+          "eyeArmed": true,
+          "homePrior": true,
+          "mergedShaOnEye": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+          "obedience": [
+            0.5,
+            0.5
+          ],
+          "offsets": [
+            null,
+            null
+          ],
+          "o1PassWindup": false,
+          "censusFlags": {
+            "edsPerceivedDefence": true,
+            "edsPerceivedChoice": true,
+            "edsValueAxis": true,
+            "c5Hold": true,
+            "c6Carry": true,
+            "c7Windup": true,
+            "c5TouchFork": false
+          }
+        },
+        {
+          "world": "v2",
+          "eyeArmed": true,
+          "homePrior": true,
+          "mergedShaOnEye": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+          "obedience": [
+            0.5,
+            0.5
+          ],
+          "offsets": [
+            [
+              0,
+              0.4,
+              0.2,
+              0,
+              -0.2,
+              -0.4
+            ],
+            [
+              0,
+              0.4,
+              0.2,
+              0,
+              -0.2,
+              -0.4
+            ]
+          ],
+          "o1PassWindup": false,
+          "censusFlags": {
+            "edsPerceivedDefence": true,
+            "edsPerceivedChoice": true,
+            "edsValueAxis": true,
+            "c5Hold": true,
+            "c6Carry": true,
+            "c7Windup": true,
+            "c5TouchFork": false
+          }
+        },
+        {
+          "world": "v3",
+          "eyeArmed": true,
+          "homePrior": true,
+          "mergedShaOnEye": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+          "obedience": [
+            0.5,
+            0.5
+          ],
+          "offsets": [
+            [
+              0,
+              0.4,
+              0.2,
+              0,
+              -0.2,
+              -0.4
+            ],
+            [
+              0,
+              0.4,
+              0.2,
+              0,
+              -0.2,
+              -0.4
+            ]
+          ],
+          "o1PassWindup": true,
+          "censusFlags": {
+            "edsPerceivedDefence": true,
+            "edsPerceivedChoice": true,
+            "edsValueAxis": true,
+            "c5Hold": true,
+            "c6Carry": true,
+            "c7Windup": true,
+            "c5TouchFork": false
+          }
+        }
+      ]
+    },
+    "probeReadOnly": {
+      "pass": true,
+      "note": "abandonRestDesignation / homeRegionGrant / homeMapGrant null on every match (so the probe's formationSpot re-read matches the executor's own arguments)"
+    }
+  },
+  "allGatesPass": true,
+  "deterministic": true,
+  "resultSha": "f15ce470b8c12cbec86944fc9d99721490cc6aad1f8764adf9028209e0a3d9cb",
+  "head": "473415c",
+  "wallMs": 14094,
+  "disclosure": [
+    "Observation frame: every read is taken AFTER m.step(DT); the executor evaluated its own station field at the HEAD of that tick, so the probe's formationSpot re-read is the field one tick downstream of the executor's call (stage doc §3, disclosed).",
+    "SPEED_MIN = 1.0 m/s is a FLAGGED executor's choice — no published anchor exists for \"moving at all\" (stage doc §3.5).",
+    "The compression yardstick (§3.3) is DESCRIPTIVE: no claim that a compressed shape is correct football.",
+    "NOTHING SHIPS (Road B): zero src/** changes, the production fingerprint is re-derived unchanged."
+  ]
+}
