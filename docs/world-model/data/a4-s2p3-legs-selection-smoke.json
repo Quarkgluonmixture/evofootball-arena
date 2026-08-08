@@ -1,0 +1,679 @@
+{
+  "experiment": "A4 S2-P3 — THE GENE BATTERY [legS-smoke]",
+  "authority": "docs/world-model/A4-S2P3-GENE-BATTERY.md (the FROZEN pre-registration) — which ELABORATES and NEVER re-cuts ruling #165.3 (the three-leg frame frozen at commander level: Leg F gene≡vector fidelity GATING, Leg W set-grain world health GATING with the P3′ football hard gates inherited, Leg S selection + the §4 diversity observation OBSERVATIONAL with H-165a labelled); #165.2.ii (the ARMING CHECKLIST, binding); #164 (the confirmed backLoaded read — the set-grain currency is REPORTED, never re-gated); #163 (stats-base stream disjointness, gaps ≥ 200); #162 (the anchor philosophy + the §4 diversity axis); #158 / A4-SLICE2-PERBODY-CONTRACT §2/§3/§4/§5; A4-P3PRIME-REPLICATION (the set-grain battery idiom); A4-S2P1-VECTOR-CENSUS (the vector-grant machinery)",
+  "head": "8eb7fae",
+  "mode": "legS-smoke",
+  "world": "ENRICHED (#67.3) + the ARMED R3p eye (v3 base+children+SHA; v4 inSupportLaw+deliveryBit+offsideBit), with eye.v4.homePrior armed ONLY where the leg declares it",
+  "flags": {
+    "edsPerceivedDefence": true,
+    "edsPerceivedChoice": true,
+    "edsValueAxis": true,
+    "c5Hold": true,
+    "c6Carry": true,
+    "c7Windup": true,
+    "c5TouchFork": false
+  },
+  "seam": "the SHIPPED eye.v4.homePrior branch reading effectiveHomePriorObedience(team.genome, p.index) = clamp01(obedience + offset[slot]) through homePriorStrength (src/ai/actionExecutor.ts, the S2-P2 line); the instrument comparator is Match.homeRegionGrant's VECTOR member",
+  "birthNeutrality": "contract §3: every genome is BORN ABSENT. Legs F and W write the family directly onto probe fixtures (instrument content); Leg S starts gen-0 fully born-absent and lets selection earn every nonzero offset. NO role-derived birth default exists in src/**.",
+  "preflight": null,
+  "parameters": {
+    "backLoadedVector": [
+      0,
+      0.9,
+      0.7,
+      0.5,
+      0.3,
+      0.1
+    ],
+    "whisperObedience": 0.5,
+    "frozenOffsetFamily": [
+      0,
+      0.4,
+      0.2,
+      0,
+      -0.2,
+      -0.4
+    ],
+    "offsetSlots": 6,
+    "legF": {
+      "m": 400,
+      "seedBase": 12257000,
+      "smokeSeedBase": 12256040,
+      "smokeMatches": 8,
+      "worlds": [
+        "plain",
+        "V0",
+        "G0",
+        "V1",
+        "G1",
+        "Gboth",
+        "H0",
+        "H1"
+      ]
+    },
+    "legW": {
+      "nCap": 6000,
+      "nUsed": null,
+      "seedBase": 12260000,
+      "smokeSeedBase": 12258000,
+      "smokeSets": 40,
+      "bootstrapSeed": 101800,
+      "reservedStatsSeed": 102000,
+      "bootstrapResamples": 2000,
+      "incumbentRoleTvFloor": 0.407,
+      "bandBaseline": {
+        "goals": 2.3944,
+        "crosses": 2.4894,
+        "headers": 9.1039,
+        "longBalls": 6.2042,
+        "cutbacks": 3.8151
+      },
+      "bandTolerance": {
+        "goals": 0.15,
+        "crosses": 0.25,
+        "headers": 0.25,
+        "longBalls": 0.25,
+        "cutbacks": 0.25
+      },
+      "mdlAbs": 0.019,
+      "powerZ": 3.605,
+      "nStep": 200
+    },
+    "legS": {
+      "runs": 8,
+      "teams": 10,
+      "generations": 20,
+      "seedBase": 12270000,
+      "runStride": 3000,
+      "genStride": 100,
+      "evoRngBase": 770001,
+      "signEps": 0.02,
+      "styleGenes": [
+        "pressIntensity",
+        "defensiveCompactness",
+        "formationDepth",
+        "transitionPress",
+        "coverBias",
+        "jockeyBias",
+        "trapBias",
+        "riskTolerance",
+        "tempo",
+        "supportDistance"
+      ],
+      "bootstrapSeed": 102200,
+      "reservedStatsSeed": 102400,
+      "smoke": {
+        "runs": 1,
+        "teams": 6,
+        "generations": 3,
+        "seedBase": 12266000
+      }
+    },
+    "wallBudget": {
+      "totalHours": 12,
+      "legFHours": 1.5,
+      "legWHours": 8,
+      "legSHours": 2.5
+    },
+    "clusterUnit": "set seed (#20); one seed = one paired SET (both Leg W arms)",
+    "geneKeysCount": 23
+  },
+  "result": {
+    "mode": "legS-smoke",
+    "leg": "S",
+    "seedBase": 12266000,
+    "seedFamily": "12266000 + run×3000 + gen×100 + matchIndex",
+    "legS": {
+      "label": "OBSERVATIONAL (#165.3) — no gate, no threshold; the metrics below are PRE-REGISTERED VERBATIM from the ruling and reported as measured.",
+      "readingNote": "⚠ HOW TO READ ADOPTION (declared ex ante, before sight). Under the opt-in, the mutation law WRITES a full family onto every mutated/reborn genome, so bare `familyPresentFraction` rises MECHANICALLY with generation and is NOT evidence of selection. The SELECTION signal lives in (i) `fitnessDriftCorrelation` — do bigger families win? — (ii) `driftL2Mean` under elitism (elites carry their family unchanged, so a family that never survives to elite status keeps getting re-drawn small), and (iii) the SHAPE distribution (`shapeClusters`, `topClusterShare`, `disciplinePress*`) — does selection DIFFERENTIATE teams along discipline-vs-press, or is the cloud just mutation noise? A flat fitness–drift correlation with a noise-shaped cluster histogram IS the honest F-S2c-shaped outcome (H-165a unsupported).",
+      "shape": {
+        "runs": 1,
+        "teams": 6,
+        "generations": 3,
+        "matchesPerGen": 15,
+        "eliteN": 2,
+        "rebornN": 2,
+        "mutateRate": 0.4,
+        "mutateScale": 0.08,
+        "rebornRate": 0.5,
+        "rebornScale": 0.15,
+        "fitness": "points (3/1/0) with goal difference as a 1e-3 tiebreak — the probe-side simplification of src/evolution/fitness.ts, declared ex ante",
+        "matchesTotal": 45
+      },
+      "gen0BornAbsent": true,
+      "trajectory": [
+        {
+          "gen": 0,
+          "adoptionFraction": 0,
+          "driftL2Mean": 0,
+          "disciplinePressSd": null,
+          "shapeClusters": 0,
+          "fitnessDriftCorrelation": null
+        },
+        {
+          "gen": 1,
+          "adoptionFraction": 0.5,
+          "driftL2Mean": 0.13417,
+          "disciplinePressSd": 0.7492,
+          "shapeClusters": 4,
+          "fitnessDriftCorrelation": -0.6917
+        },
+        {
+          "gen": 2,
+          "adoptionFraction": 0.6667,
+          "driftL2Mean": 0.17676,
+          "disciplinePressSd": 0.5566,
+          "shapeClusters": 4,
+          "fitnessDriftCorrelation": -0.587
+        }
+      ],
+      "pooledFinal": {
+        "adoptionFraction": 0.6667,
+        "familyPresentFraction": 0.6667,
+        "obedienceAdoptionFraction": 0.5,
+        "meanObedience": 0.0485,
+        "driftL2Mean": 0.17676,
+        "shapeClusters": 4,
+        "topClusterShare": 0.3333,
+        "disciplinePressMean": -0.0332,
+        "disciplinePressSd": 0.5566,
+        "disciplineFraction": 0.1667,
+        "pressFraction": 0.1667,
+        "fitnessDriftCorrelation": -0.587,
+        "styleGeneCorrelations": {
+          "pressIntensity": -0.5449,
+          "defensiveCompactness": -0.946,
+          "formationDepth": -0.8463,
+          "transitionPress": -0.592,
+          "coverBias": -0.66,
+          "jockeyBias": -0.6303,
+          "trapBias": -0.4029,
+          "riskTolerance": 0.7037,
+          "tempo": 0.3743,
+          "supportDistance": -0.8604
+        }
+      },
+      "perRun": [
+        {
+          "run": 0,
+          "gen0BornAbsent": true,
+          "final": {
+            "gen": 2,
+            "adoptionFraction": 0.6667,
+            "familyPresentFraction": 0.6667,
+            "obedienceAdoptionFraction": 0.5,
+            "meanObedience": 0.0485,
+            "driftL2Mean": 0.17676,
+            "driftL2Max": 0.43903,
+            "meanAbsOffsetBySlot": [
+              0.03368,
+              0.04673,
+              0.00245,
+              0.06164,
+              0.06741,
+              0.05419
+            ],
+            "shapeClusters": 4,
+            "topClusterShare": 0.3333,
+            "clusterHistogram": {
+              "ABSENT": 2,
+              "-0++0": 1,
+              "0000-": 1,
+              "000-+": 1,
+              "00+0-": 1
+            },
+            "disciplinePressMean": -0.0332,
+            "disciplinePressSd": 0.5566,
+            "disciplineFraction": 0.1667,
+            "pressFraction": 0.1667,
+            "styleGeneCorrelations": {
+              "pressIntensity": -0.5449,
+              "defensiveCompactness": -0.946,
+              "formationDepth": -0.8463,
+              "transitionPress": -0.592,
+              "coverBias": -0.66,
+              "jockeyBias": -0.6303,
+              "trapBias": -0.4029,
+              "riskTolerance": 0.7037,
+              "tempo": 0.3743,
+              "supportDistance": -0.8604
+            },
+            "fitnessDriftCorrelation": -0.587
+          },
+          "gens": [
+            {
+              "gen": 0,
+              "adoptionFraction": 0,
+              "familyPresentFraction": 0,
+              "obedienceAdoptionFraction": 0,
+              "meanObedience": 0,
+              "driftL2Mean": 0,
+              "driftL2Max": 0,
+              "meanAbsOffsetBySlot": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "shapeClusters": 0,
+              "topClusterShare": 1,
+              "clusterHistogram": {
+                "ABSENT": 6
+              },
+              "disciplinePressMean": null,
+              "disciplinePressSd": null,
+              "disciplineFraction": 0,
+              "pressFraction": 0,
+              "styleGeneCorrelations": {
+                "pressIntensity": null,
+                "defensiveCompactness": null,
+                "formationDepth": null,
+                "transitionPress": null,
+                "coverBias": null,
+                "jockeyBias": null,
+                "trapBias": null,
+                "riskTolerance": null,
+                "tempo": null,
+                "supportDistance": null
+              },
+              "fitnessDriftCorrelation": null
+            },
+            {
+              "gen": 1,
+              "adoptionFraction": 0.5,
+              "familyPresentFraction": 0.6667,
+              "obedienceAdoptionFraction": 0.1667,
+              "meanObedience": 0.0073,
+              "driftL2Mean": 0.13417,
+              "driftL2Max": 0.34755,
+              "meanAbsOffsetBySlot": [
+                0.03847,
+                0.03075,
+                0,
+                0.00907,
+                0.06749,
+                0.06836
+              ],
+              "shapeClusters": 4,
+              "topClusterShare": 0.3333,
+              "clusterHistogram": {
+                "ABSENT": 2,
+                "-0++0": 1,
+                "0000-": 1,
+                "00000": 1,
+                "000++": 1
+              },
+              "disciplinePressMean": -0.2312,
+              "disciplinePressSd": 0.7492,
+              "disciplineFraction": 0.1667,
+              "pressFraction": 0.3333,
+              "styleGeneCorrelations": {
+                "pressIntensity": -0.9097,
+                "defensiveCompactness": -0.8404,
+                "formationDepth": -0.4483,
+                "transitionPress": -0.4857,
+                "coverBias": -0.4483,
+                "jockeyBias": -0.9999,
+                "trapBias": -0.4418,
+                "riskTolerance": 0.4483,
+                "tempo": 0.9997,
+                "supportDistance": 0.3098
+              },
+              "fitnessDriftCorrelation": -0.6917
+            },
+            {
+              "gen": 2,
+              "adoptionFraction": 0.6667,
+              "familyPresentFraction": 0.6667,
+              "obedienceAdoptionFraction": 0.5,
+              "meanObedience": 0.0485,
+              "driftL2Mean": 0.17676,
+              "driftL2Max": 0.43903,
+              "meanAbsOffsetBySlot": [
+                0.03368,
+                0.04673,
+                0.00245,
+                0.06164,
+                0.06741,
+                0.05419
+              ],
+              "shapeClusters": 4,
+              "topClusterShare": 0.3333,
+              "clusterHistogram": {
+                "ABSENT": 2,
+                "-0++0": 1,
+                "0000-": 1,
+                "000-+": 1,
+                "00+0-": 1
+              },
+              "disciplinePressMean": -0.0332,
+              "disciplinePressSd": 0.5566,
+              "disciplineFraction": 0.1667,
+              "pressFraction": 0.1667,
+              "styleGeneCorrelations": {
+                "pressIntensity": -0.5449,
+                "defensiveCompactness": -0.946,
+                "formationDepth": -0.8463,
+                "transitionPress": -0.592,
+                "coverBias": -0.66,
+                "jockeyBias": -0.6303,
+                "trapBias": -0.4029,
+                "riskTolerance": 0.7037,
+                "tempo": 0.3743,
+                "supportDistance": -0.8604
+              },
+              "fitnessDriftCorrelation": -0.587
+            }
+          ]
+        }
+      ],
+      "hypothesis": "H-165a (LABELLED, directional, never a gate): selection adopts nonzero offsets at all. If fitness is flat on the family, that is the honest F-S2c-shaped outcome — the uniform whisper is already optimal for WINNING and the look-value is not selectable ⇒ the punish-compactness half (#154.3) inherits."
+    },
+    "receipts": {
+      "cap": 1000,
+      "counts": {
+        "legS-generation": 3
+      },
+      "records": {
+        "legS-generation": [
+          {
+            "seed": 12266000,
+            "tick": 0,
+            "gid": 0,
+            "cause": "adoption 0 · driftL2 0"
+          },
+          {
+            "seed": 12266100,
+            "tick": 1,
+            "gid": 0,
+            "cause": "adoption 0.5 · driftL2 0.13417"
+          },
+          {
+            "seed": 12266200,
+            "tick": 2,
+            "gid": 0,
+            "cause": "adoption 0.6667 · driftL2 0.17676"
+          }
+        ]
+      }
+    }
+  },
+  "wall": {
+    "perUnitMs": 5090,
+    "note": "measured OUTSIDE the X-DET-compared core (#128)"
+  },
+  "fidelity": {
+    "xDet": true,
+    "xMergeIdent": {
+      "mergedShaField": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+      "mergedShaExpected": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+      "mergedRehash": "39662445f253b21a97f13e21fb0187340063dd53413464cbe02701f63e9d6105",
+      "baseRehash": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+      "baseShaExpected": "171a6dadee3b76e9683423a0af6ae5257bb4a8051a294f2d240d23da9016559f",
+      "pass": true,
+      "note": "the injected P3p-1 merged table identity (inherited HARD gate)"
+    },
+    "priorEquivalence": {
+      "valScaleRecomputed": 0.163494,
+      "valScalePinned": 0.163494,
+      "valScaleMatches": true,
+      "whisperObedience": 0.5,
+      "whisperStrength": 0.0408735,
+      "whisperMatches": true,
+      "homeMapStrengthMax": 0.081747,
+      "ceilingMatches": true,
+      "s2p1BackLoadedVector": [
+        0,
+        0.9,
+        0.7,
+        0.5,
+        0.3,
+        0.1
+      ],
+      "frozenOffsetFamily": [
+        0,
+        0.4,
+        0.2,
+        0,
+        -0.2,
+        -0.4
+      ],
+      "effectiveObedienceBySlot": [
+        0.5,
+        0.9,
+        0.7,
+        0.5,
+        0.3,
+        0.1
+      ],
+      "outfieldMatches": true,
+      "strengthsMatch": true,
+      "meanOutfieldObedience": 0.5,
+      "arithmetic": "offset_i = backLoadedVector_i − 0.5 over the OUTFIELD slots ⇒ [.9,.7,.5,.3,.1] − .5 = [+.4,+.2,0,−.2,−.4]; slot 0 (GK) frozen at 0 (role-BLIND, contract §3) and inert by the world's own geometry. Effective obedience = clamp01(0.5 + offset) reproduces the S2-P1 vector on 1..5, mean 0.5 = the #148 whisper.",
+      "pass": true
+    },
+    "eNonStation": {
+      "pass": true,
+      "freshNull": true,
+      "bodyScopeOk": true,
+      "teamScopeOk": true,
+      "bothActivated": true,
+      "carrierNeverOverridden": true,
+      "note": "the eye ACTIVATES on the armed world AND never overrides the ball carrier"
+    },
+    "armingChecklist": {
+      "predicate": "AN ARMED WORLD = eye.v4.homePrior + evolveHomePrior + evolveHomePriorOffsets, ALL THREE (#165.2.ii, binding). ⚠ For a FIXED armed world (Legs F and W) the two EVOLUTION opt-ins are IRRELEVANT BY CONSTRUCTION and stay OFF — nothing mutates there; the family is written directly onto the genome. They are the LIVE arming for Leg S. This block asserts all three are reachable and that the fixed worlds really carry the family.",
+      "eyeV4HomePrior": true,
+      "genomeFamilyPresentBothSides": true,
+      "randomGenomeBornAbsent": true,
+      "evolveHomePriorLive": true,
+      "evolveHomePriorOffsetsLive": true,
+      "crossoverArmed": true,
+      "fixedWorldEvolutionFlagsOff": true,
+      "pass": true
+    },
+    "xOffIdent": {
+      "seeds": 20,
+      "mismatches": 0,
+      "pass": true,
+      "note": "X-OFF-IDENT (bounded): the enriched world with stationEye null reproduces itself byte-for-byte"
+    },
+    "xSrcZero": {
+      "pass": true,
+      "srcDiffStat": "",
+      "note": "S2-P3 adds ZERO src/** — the seam and the gene family are BANKED at S2-P2"
+    },
+    "xFpProd": {
+      "pass": true,
+      "fingerprintBaseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "fingerprintObserved": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "skipped": false
+    },
+    "seedDisjoint": {
+      "pass": true,
+      "reservedBand": [
+        12256040,
+        12300000
+      ],
+      "blocks": [
+        [
+          "legF-smoke",
+          12256040,
+          12256047
+        ],
+        [
+          "legF",
+          12257000,
+          12257399
+        ],
+        [
+          "legW-smoke",
+          12258000,
+          12258039
+        ],
+        [
+          "legW",
+          12260000,
+          12265999
+        ],
+        [
+          "legS-smoke",
+          12266000,
+          12268999
+        ],
+        [
+          "legS",
+          12270000,
+          12292944
+        ]
+      ],
+      "withinPool": true,
+      "mutual": true,
+      "vsConsumed": true,
+      "statsBases": [
+        101800,
+        102000,
+        102200,
+        102400
+      ],
+      "statsGapMin": 200,
+      "statsGapOk": true,
+      "statsFresh": true,
+      "consumedBlocks": [
+        [
+          11150000,
+          11150039
+        ],
+        [
+          11200000,
+          11600079
+        ],
+        [
+          11700000,
+          11700039
+        ],
+        [
+          11800000,
+          11807999
+        ],
+        [
+          11850000,
+          11850039
+        ],
+        [
+          11900000,
+          11907999
+        ],
+        [
+          11950000,
+          11950039
+        ],
+        [
+          12000000,
+          12007999
+        ],
+        [
+          12050000,
+          12050039
+        ],
+        [
+          12100000,
+          12107999
+        ],
+        [
+          12150000,
+          12150039
+        ],
+        [
+          12200000,
+          12207999
+        ],
+        [
+          12208000,
+          12217999
+        ],
+        [
+          12220000,
+          12220039
+        ],
+        [
+          12230000,
+          12236999
+        ],
+        [
+          12237000,
+          12237039
+        ],
+        [
+          12240000,
+          12247999
+        ],
+        [
+          12248000,
+          12255999
+        ],
+        [
+          12256000,
+          12256039
+        ]
+      ],
+      "consumedStats": [
+        91100,
+        91110,
+        92110,
+        93003,
+        99403,
+        99503,
+        99603,
+        99703,
+        99803,
+        99903,
+        100603,
+        100703,
+        100803,
+        100903,
+        101003,
+        101103,
+        101203,
+        101303,
+        101403,
+        101503,
+        101513,
+        101523
+      ],
+      "note": "the #163 rule: stats bases 101,800 / 102,000 / 102,200 / 102,400 (all ≥ 101,700) with pairwise gaps ≥ 200 to every other base the arc has spent, so no bootstrap stream re-walks RNG a previous stage consumed."
+    },
+    "xCorpusIdent": "N/A (a fresh interventional corpus has no identity target — the P1 §4 precedent)"
+  },
+  "gates": {
+    "xDet": true,
+    "xMergeIdent": true,
+    "priorEquivalence": true,
+    "eNonStation": true,
+    "armingChecklist": true,
+    "xOffIdent": true,
+    "xSrcZero": true,
+    "xFpProd": true,
+    "seedDisjoint": true
+  },
+  "hardGatesPass": true,
+  "deviations": [
+    "⭐ LEG F IS THREE SUB-LEGS, NOT ONE BOTH-SIDES COMPARISON: Match.homeRegionGrant is STRUCTURALLY SINGLE-SIDE (the #150.1 fact), so a both-sides instrument-vector world is unreachable zero-src. F1/F2 compare the ONE-SIDED instrument world to its gene equivalent (the other side born-absent ⇒ strength 0 ⇒ inert); F3 compares the BOTH-SIDES gene world to itself with the vector laid over each side in turn (the grant branch takes precedence for the side it covers). Together they read the grant path and the gene path against each other on BOTH sides and in the both-sides world.",
+    "⭐ LEG S RUNS A PROBE-SIDE SELECTION LOOP: MutateOptions is NOT plumbed through src/sim/League.ts or evolveGroup, so arming evolution inside the shipped League would need a src change (forbidden: Road B, X-SRC-ZERO). The loop mirrors evolveGroup's band law (elite 2 / mutated rate .4 scale .08 / reborn 2 at rate .5 scale .15, top-4 weighted parents) over a single round robin; fitness = points with a goal-difference tiebreak. It is an INSTRUMENT: no careers, transfers, coaches, morale, promotion, fire-sale or two-division pyramid. Its honest limit is stated ex ante.",
+    "THE GK SLOT of the offset family is frozen at 0 (role-BLIND, contract §3) rather than −0.5; the GK never reaches the v3 consumption point, and Leg F PROVES the choice is immaterial (the instrument vector gives him obedience 0 and the worlds are byte-identical).",
+    "THE §2 EQUILIBRIUM BAND carries the P3a §4.2 substrate-drift caveat as an EXPLICIT gate rule: a dimension the CONTROL arm itself fails is DISCLOSED and EXCLUDED from the gate (it is substrate drift, not the gene's doing). Declared ex ante, before any sight.",
+    "X-OFF-IDENT is the BOUNDED form (no R0 arm exists in this two-arm battery): a stationEye-null enriched match reproduces itself byte-for-byte on the leg seeds, proving the harness injects nothing of its own.",
+    "MODE is EXPLICIT via A4S2P3_MODE (no default); A4S2P3_N is accepted ONLY in legW — Leg F's M and Leg S's shape are frozen in the stage doc and are hard-refused at the command line."
+  ],
+  "registeredNonClaims": [
+    "NOTHING SHIPS (Road B): zero src/** changes, the production fingerprint 57b0bdab…c673 unchanged, every flag armed ONLY inside this instrument.",
+    "THE SET-GRAIN CURRENCY IS NOT A SECOND BITE: dupRun / deep / box / offsides / fouls / the E4 counters are REPORTED at set grain for scale honesty; the fork-grain exam #164 already ruled value.",
+    "LEG S IS OBSERVATIONAL: no adoption threshold, no fitness claim, no gate. H-165a is a LABELLED directional hypothesis.",
+    "NO OFFSIDE-RULE CHANGE (the 乙 axis hangs by #158): offsides are measured and reported only.",
+    "NO WATCHABILITY CLAIM: the proximity block's verdict authority remains the USER's eyes (#152); S2-P4 is the play-test."
+  ],
+  "verdict": "LEG S SMOKE — NOT a verdict and NOT a sizing: wall + plumbing only (the armed evolution loop runs, gen-0 is born-absent, every pre-registered metric populates).",
+  "sha256": "472c903baa8ba0989ea053c6323900ce81b2cc412f75ef87c47221d7c39ca198"
+}

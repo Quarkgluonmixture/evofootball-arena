@@ -34,7 +34,10 @@ import {
  *   • RNG-STREAM IDENTITY — with the `evolveHomePriorOffsets` opt-in OFF, mutation
  *     and crossover consume EXACTLY the draws they consume today: none added, none
  *     skipped, none re-ordered — asserted against BOTH the pre-gene HEAD sequence
- *     AND the existing `evolveHomePrior`-ON sequence (its own named flag, #75).
+ *     AND (ruling #165.2.i, the named debt DISCHARGED at S2-P3) a genuine HEAD
+ *     REIMPLEMENTATION of the `evolveHomePrior`-ON pipeline: the earlier form of that
+ *     second test called CURRENT code on both arms and could not fail. Both proofs now
+ *     compare against a reimplementation, draw-for-draw AND on RNG internal state.
  *   • X-FP-PROD — the production fingerprint 57b0bdab…c673 is unchanged (Road B).
  *   • ⭐ BIRTH NEUTRALITY (contract §3, the §8 audit's one live-risk clause) — NO
  *     role-derived birth content anywhere in `src/**`: every freshly created genome
@@ -308,19 +311,56 @@ describe('A4 S2-P2 — ⭐ RNG-STREAM IDENTITY (the #148.5 / #75 trap, the slice
     expect(rngState(rngA)).toBe(rngState(rngH));
   });
 
-  it('the offsets opt-in does not perturb an EXISTING homePrior-ON stream either (#75: its own flag)', () => {
+  // ⭐ THE #165.2.i DEBT, DISCHARGED. The previous form of this test called CURRENT code on
+  // BOTH arms, so it could not fail; it is replaced by a genuine HEAD REIMPLEMENTATION with
+  // `evolveHomePrior` ON — the headMutate/headCross form above, extended with the
+  // homePriorObedience block exactly as it stood BEFORE the offset family existed.
+  const headMutateHP = (g: TacticalGenome, rng: Rng, rate: number, scale: number): TacticalGenome => {
+    const out = { ...g };
+    for (const k of GENE_KEYS) if (rng.chance(rate)) out[k] = clamp01(out[k] + rng.gaussian() * scale);
+    if (rng.chance(rate)) out.homePriorObedience = clamp01((out.homePriorObedience ?? 0) + rng.gaussian() * scale);
+    return out;
+  };
+  const headCrossHP = (a: TacticalGenome, b: TacticalGenome, rng: Rng): TacticalGenome => {
+    const out = {} as TacticalGenome;
+    for (const k of GENE_KEYS) { const r = rng.next(); out[k] = r < 0.4 ? a[k] : r < 0.8 ? b[k] : (a[k] + b[k]) / 2; }
+    const r = rng.next();
+    const av = a.homePriorObedience ?? 0;
+    const bv = b.homePriorObedience ?? 0;
+    out.homePriorObedience = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
+    return out;
+  };
+
+  it('the offsets opt-in leaves an EXISTING homePrior-ON stream bit-identical to its HEAD form (#75: its own flag)', () => {
     const seed = 777_001;
-    const rngWith = new Rng(seed);   // evolveHomePrior ON, offsets OFF (the shipped pair today)
-    const rngRef = new Rng(seed);    // the SAME run before the offset family existed
-    let gw = randomGenome(new Rng(31)); let gr: TacticalGenome = { ...gw };
+    const rngWith = new Rng(seed);   // CURRENT code: evolveHomePrior ON, offsets OFF (the shipped pair today)
+    const rngH = new Rng(seed);      // the HEAD REFERENCE: the same run before the offset family existed
+    let gw = randomGenome(new Rng(31)); let gh: TacticalGenome = { ...gw };
+    let pw = randomGenome(new Rng(32)); let ph: TacticalGenome = { ...pw };
     for (let i = 0; i < 40; i++) {
       gw = mutateGenome(gw, rngWith, { rate: 0.5, scale: 0.2, evolveHomePrior: true });
-      gr = mutateGenome(gr, rngRef, { rate: 0.5, scale: 0.2, evolveHomePrior: true });
-      gw = crossoverGenomes(gw, gr, rngWith, true);
-      gr = crossoverGenomes(gr, gw, rngRef, true);
+      gh = headMutateHP(gh, rngH, 0.5, 0.2);
+      pw = mutateGenome(pw, rngWith, { rate: 0.45, scale: 0.14, evolveHomePrior: true });
+      ph = headMutateHP(ph, rngH, 0.45, 0.14);
+      gw = crossoverGenomes(gw, pw, rngWith, true);
+      gh = headCrossHP(gh, ph, rngH);
+      // DRAW-FOR-DRAW: the streams must be at the same position after EVERY step, not just
+      // at the end — a compensating pair of extra/skipped draws could not hide here.
+      expect(rngState(rngWith)).toBe(rngState(rngH));
     }
-    expect(rngState(rngWith)).toBe(rngState(rngRef));
+    // the GENOMES agree gene for gene, including the home-prior gene itself.
+    for (const k of GENE_KEYS) { expect(gw[k]).toBe(gh[k]); expect(pw[k]).toBe(ph[k]); }
+    expect(gw.homePriorObedience).toBe(gh.homePriorObedience);
+    expect(pw.homePriorObedience).toBe(ph.homePriorObedience);
+    // NON-VACUITY: the home-prior gene really evolved on this stream (otherwise the equality
+    // above would be the trivial "the block never fired on either side").
+    expect(typeof gh.homePriorObedience).toBe('number');
+    expect(gh.homePriorObedience).not.toBe(0);
+    // and the offset family never appeared: its opt-in was OFF throughout.
     expect(gw.homePriorObedienceOffset).toBeUndefined();
+    expect(pw.homePriorObedienceOffset).toBeUndefined();
+    // ⭐ the stream is at the SAME position ⇒ every downstream consumer is unmoved.
+    expect(rngState(rngWith)).toBe(rngState(rngH));
   });
 
   it('crossover with the opt-in OFF carries parent A\'s family through with NO draw', () => {
