@@ -1,0 +1,566 @@
+{
+  "stage": "PM T0 — the dormant defensive LANE-CONVERGENCE seam (`defLaneConvergence` / `pmLaneConvergence`)",
+  "ruling": "#195.2 (the dispatch) + #181.2 (the standing receipt rule) + #194 (gate semantics stated exactly)",
+  "contract": "docs/world-model/PHASE-MODULATION-CONTRACT.md",
+  "doc": "docs/world-model/PM-T0-DORMANT-SEAM.md",
+  "head": "e620298",
+  "frozenBounds": {
+    "kPmMax": 0.25,
+    "geneDomain": [
+      0,
+      1
+    ],
+    "derivation": "k_PM = clamp01(defLaneConvergence) * PM_LANE_CONVERGENCE_MAX, ceiling 0.25 = the LEGACY per-body convergence weight the emergent rewrite dropped (src/ai/formations.ts, table path: `defensiveCompactness * 0.25`, i.e. its maximum at defensiveCompactness = 1) — the contract's named neighbour (§0.4 / §2 M-PM.1). No constant is invented for this slice.",
+    "forcedDose": 1
+  },
+  "gates": {
+    "gDet": {
+      "pass": true,
+      "digestA": "c3388c20263ba893a35d89c1e9d2003bf5c13aaadd162ad08e093db40740c65b",
+      "digestB": "c3388c20263ba893a35d89c1e9d2003bf5c13aaadd162ad08e093db40740c65b"
+    },
+    "gIdent": {
+      "pass": true,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "semantics": "THE RNG-STREAM RECEIPT for the sim path: these baselines were frozen from PRE-change code, so any draw added on the dormant path — conditional or not — would break them.",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gOff": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "CONFIG EQUIVALENCE ONLY (#194): flag ABSENT ≡ flag FALSE in both the production-shaped and the percept-armed world. Both arms execute the SAME flag-off code path, so this gate cannot and does not prove RNG-stream identity — G-IDENT does."
+    },
+    "gBorn": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ARMS DIFFER IN CODE PATH: armed ⇒ `pmMover` true ⇒ the M-PM.1 branch in emergentStation is ENTERED on every defensive mover read and k_PM evaluates to 0 (gene born absent). Byte-identity to OFF therefore proves the born-absent read is inert THROUGH the live branch."
+    },
+    "gBite": {
+      "pass": true,
+      "divergedSeeds": 24,
+      "seeds": 24,
+      "boundaryUnderForce": {
+        "samples": 8190,
+        "zoneCentreDeviations": 0,
+        "moverMovedSamples": 8190,
+        "maxMoverShiftY": 7.4838,
+        "semantics": "at the frozen ceiling the MOVER read moves and the zonal ZONE-CENTRE read (assignMarks' own call shape) is bit-identical to the unmodulated station — the 甲/乙 boundary, proved under force rather than asserted."
+      }
+    },
+    "gRead": {
+      "pass": true,
+      "moverSites": 2,
+      "semantics": "M-PM.3 / #35.3: EXACTLY two src call sites read the modulated station, both in actionExecutor (the walk target and the marker no-target fallback); every other call site keeps the unmodulated station. Computed by scanning src/**.",
+      "sites": [
+        {
+          "file": "src/ai/TeamBrain.ts",
+          "line": 479,
+          "kind": "UNMODULATED",
+          "text": "const zones = zonal ? new Map(free.map((p) => [p.index, formationSpot(p, team, match.ball, false, match.teams[1 - team.side])])) : null;"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 145,
+          "kind": "MOVER",
+          "text": "target = formationSpot(p, team, ball, hasBall, opp, abandonRest, pmMover);"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 304,
+          "kind": "UNMODULATED",
+          "text": "const spot = formationSpot(p, team, ball, hasBall, opp, abandonRest);"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 336,
+          "kind": "MOVER",
+          "text": "target = formationSpot(p, team, ball, hasBall, opp, abandonRest, pmMover);"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "line": 494,
+          "kind": "UNMODULATED",
+          "text": "const spot = formationSpot(p, team, ball, true, undefined, abandonRest);"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "line": 612,
+          "kind": "UNMODULATED",
+          "text": "const lane = formationSpot(p, team, ball, true);"
+        },
+        {
+          "file": "src/render3d/RenderStateAdapter.ts",
+          "line": 311,
+          "kind": "UNMODULATED",
+          "text": "const spot = formationSpot(p, team, match.ball, hasBall);"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 3579,
+          "kind": "UNMODULATED",
+          "text": "p.resetForKickoff(formationSpot(p, team, this.ball, team.side === kickSide, undefined, this.abandonRestDesignation === team.side));"
+        }
+      ]
+    },
+    "gEvoRng": {
+      "pass": true,
+      "semantics": "THE ARMS DIFFER: the actual shipped mutate/crossover with the opt-in OFF vs a faithful PRE-GENE re-implementation (GENE_KEYS only). Identical genomes AND identical final rng state ⇒ zero extra draws; `optInDraws` shows the opt-in path is live.",
+      "genomesIdentical": true,
+      "rngStateIdentical": true,
+      "geneStayedAbsent": true,
+      "optInDraws": true,
+      "sActual": 240212633,
+      "sHead": 240212633
+    },
+    "gConst": {
+      "pass": true,
+      "ceiling": 0.25,
+      "legacyLineFound": true,
+      "legacyLine": "if (!hasBall) y += (ball.pos.y - y * team.attackDir) * team.attackDir * g.defensiveCompactness * 0.25;"
+    },
+    "gHygiene": {
+      "pass": true,
+      "defaultFalse": true,
+      "absentFromA4World": true,
+      "notInGeneKeys": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true
+    },
+    "seedDisjoint": {
+      "first": 12311100,
+      "last": 12311124,
+      "consumedBlocks": [
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        }
+      ],
+      "collisions": [],
+      "pass": true
+    },
+    "allPass": true
+  },
+  "reported": {
+    "askCensus": {
+      "note": "REPORTED, observation-only, ONE forced match at the frozen ceiling, sampled every 15 ticks over both sides' outfielders. No control, no CI, no dose curve, no ANSWER (body positions) — the COMPRESSION EXAM is PM-T1's and this number adjudicates nothing.",
+      "seed": 12311124,
+      "samples": 8190,
+      "zoneCentreDeviations": 0,
+      "moverMoved": 8190,
+      "meanLaneGapUnmodulated": 6.5862,
+      "meanLaneGapMover": 5.0293,
+      "maxMoverShiftY": 7.4838
+    }
+  },
+  "result": {
+    "seeds": {
+      "block": 12311100,
+      "n": 24,
+      "first": 12311100,
+      "last": 12311123
+    },
+    "rows": [
+      {
+        "seed": 12311100,
+        "absent": "cea5172763787885fe6ffdf036abb26a47dbed40b17a22ad1f851ab8a57a8924",
+        "off": "cea5172763787885fe6ffdf036abb26a47dbed40b17a22ad1f851ab8a57a8924",
+        "plain": "3e2f8dfec1e808e7051827aeb141928f08660153e5f098d68882b134d4219a1b",
+        "plainOff": "3e2f8dfec1e808e7051827aeb141928f08660153e5f098d68882b134d4219a1b",
+        "bornArmed": "cea5172763787885fe6ffdf036abb26a47dbed40b17a22ad1f851ab8a57a8924",
+        "forced": "bec9010d6afa5e188d62d2306dbf172f7ceb303ed35e9ae6857f65c4e30579d4",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311101,
+        "absent": "06a38dee06c27ac7736e8c17a16e7782260019fec3ff2078b746dc69cd414b66",
+        "off": "06a38dee06c27ac7736e8c17a16e7782260019fec3ff2078b746dc69cd414b66",
+        "plain": "89fb1451a2a1b48ceff7c4fef8d1f6e7d337d4845ec14134aeaaa099f3d0fb82",
+        "plainOff": "89fb1451a2a1b48ceff7c4fef8d1f6e7d337d4845ec14134aeaaa099f3d0fb82",
+        "bornArmed": "06a38dee06c27ac7736e8c17a16e7782260019fec3ff2078b746dc69cd414b66",
+        "forced": "2294091817a93993c50ecffb9637f574bda145b8bc821e76da186e1be2d3109f",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311102,
+        "absent": "4d36f7da61f4132878945bd4396cc636547981c05af525172c14723306bd0085",
+        "off": "4d36f7da61f4132878945bd4396cc636547981c05af525172c14723306bd0085",
+        "plain": "4208ba9c916d35c12ada2c6752d0510eeac4a9b44c412726ac4c51bd03dac105",
+        "plainOff": "4208ba9c916d35c12ada2c6752d0510eeac4a9b44c412726ac4c51bd03dac105",
+        "bornArmed": "4d36f7da61f4132878945bd4396cc636547981c05af525172c14723306bd0085",
+        "forced": "0f2e25e88570b9a98ea764303e7b39bd09c5eef2e23dcbdde064456fbf743b6a",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311103,
+        "absent": "23d4e6d5c098064d1d17dc4b79c28631d68840711513edbc52f38d2e791d6c44",
+        "off": "23d4e6d5c098064d1d17dc4b79c28631d68840711513edbc52f38d2e791d6c44",
+        "plain": "5d310b5daa810d1989529dc30e57b99478342904cc76f05c25307ec5f7d0cd04",
+        "plainOff": "5d310b5daa810d1989529dc30e57b99478342904cc76f05c25307ec5f7d0cd04",
+        "bornArmed": "23d4e6d5c098064d1d17dc4b79c28631d68840711513edbc52f38d2e791d6c44",
+        "forced": "baa16feb62db67dbeb6792da6822f53a24b824567fc24dc4954eec84be9efe92",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311104,
+        "absent": "678f33f1c3aafc85e1655ac7d8e8da08f54eb2f0065ba024c30c4995bb72a680",
+        "off": "678f33f1c3aafc85e1655ac7d8e8da08f54eb2f0065ba024c30c4995bb72a680",
+        "plain": "8e087a5b507a7aa1bf57146f50601940c2e0ed6987d24a42fa96a73076cd7906",
+        "plainOff": "8e087a5b507a7aa1bf57146f50601940c2e0ed6987d24a42fa96a73076cd7906",
+        "bornArmed": "678f33f1c3aafc85e1655ac7d8e8da08f54eb2f0065ba024c30c4995bb72a680",
+        "forced": "71c322b45c6e0dabcf697b50c55eee4b87610a0bcbd6737ff83d04065994248e",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311105,
+        "absent": "883d408fd7206a3aa879624830ea11e6121362b2202ea3cbb391318d58ecccbd",
+        "off": "883d408fd7206a3aa879624830ea11e6121362b2202ea3cbb391318d58ecccbd",
+        "plain": "421090b700e28c2ff3feeb7323580a0b8c545b7e22f1526977ffe8cdc213f65e",
+        "plainOff": "421090b700e28c2ff3feeb7323580a0b8c545b7e22f1526977ffe8cdc213f65e",
+        "bornArmed": "883d408fd7206a3aa879624830ea11e6121362b2202ea3cbb391318d58ecccbd",
+        "forced": "c30d8fb79101b639c9839334cab56e52f679e258f148f3698bb5f4b2b47805ab",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311106,
+        "absent": "0db285f765075293a407de387f65b0389abab062d930072f5acb3d831e4f55a9",
+        "off": "0db285f765075293a407de387f65b0389abab062d930072f5acb3d831e4f55a9",
+        "plain": "d321627859939fd271da4e8b4435be1efb678b0216b397dda1946fbb008d9e58",
+        "plainOff": "d321627859939fd271da4e8b4435be1efb678b0216b397dda1946fbb008d9e58",
+        "bornArmed": "0db285f765075293a407de387f65b0389abab062d930072f5acb3d831e4f55a9",
+        "forced": "4e89768fbc9abc8a69774082621c55206c229bef5ceeac8735c9f3d46fa3bdde",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311107,
+        "absent": "f9cad630ffeef15011febf541b77494f14a68b98302e9de7d5753018b8812655",
+        "off": "f9cad630ffeef15011febf541b77494f14a68b98302e9de7d5753018b8812655",
+        "plain": "b91643d40cc1c54714b1badd5bbf3052d2af0d8bbcb621d5963dd8d52d598e3d",
+        "plainOff": "b91643d40cc1c54714b1badd5bbf3052d2af0d8bbcb621d5963dd8d52d598e3d",
+        "bornArmed": "f9cad630ffeef15011febf541b77494f14a68b98302e9de7d5753018b8812655",
+        "forced": "d9889f2fdfdef8ecf2d1bcc6751d3c0930c4e845d90465727455a5dc200d8f98",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311108,
+        "absent": "2e5acb3e3bdd0ff259c67a855330b6f36b309fb0ae6c7b7f5a38decca810ceb5",
+        "off": "2e5acb3e3bdd0ff259c67a855330b6f36b309fb0ae6c7b7f5a38decca810ceb5",
+        "plain": "fd42491a517400695c4982dcdf41e993f66929f43e42c9c2db066116152d8927",
+        "plainOff": "fd42491a517400695c4982dcdf41e993f66929f43e42c9c2db066116152d8927",
+        "bornArmed": "2e5acb3e3bdd0ff259c67a855330b6f36b309fb0ae6c7b7f5a38decca810ceb5",
+        "forced": "9250f3502118f2717321206f61596ceb8cce7aa9efcc1b0e0571559e904bb59b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311109,
+        "absent": "c363811afdbb3da51c3fe463ecff51c5f13f4f46cdfc13beba54ea4ad22eebad",
+        "off": "c363811afdbb3da51c3fe463ecff51c5f13f4f46cdfc13beba54ea4ad22eebad",
+        "plain": "de8c7a9a1274cd9a8ac8a42ea87969d3a9ba067cfc223ac10d8cab723872ae4c",
+        "plainOff": "de8c7a9a1274cd9a8ac8a42ea87969d3a9ba067cfc223ac10d8cab723872ae4c",
+        "bornArmed": "c363811afdbb3da51c3fe463ecff51c5f13f4f46cdfc13beba54ea4ad22eebad",
+        "forced": "a348607104ad707e94fe5cb77c04084344389a7282ef1b931c7ac1f64d4c34a4",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311110,
+        "absent": "f0813a3c3fa376018ab4aa588425315edd2cd506834c0f81a5dfae17d20d9781",
+        "off": "f0813a3c3fa376018ab4aa588425315edd2cd506834c0f81a5dfae17d20d9781",
+        "plain": "30d265e02fad7e1628d6f19b95553bc0393fa5862dd65b9001feb78c1b99bf4b",
+        "plainOff": "30d265e02fad7e1628d6f19b95553bc0393fa5862dd65b9001feb78c1b99bf4b",
+        "bornArmed": "f0813a3c3fa376018ab4aa588425315edd2cd506834c0f81a5dfae17d20d9781",
+        "forced": "d6fa8eea62bca5cb9bf94e945222e515a2b39f0a6ce0b4b5e52f29d8f0106fb6",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311111,
+        "absent": "b03da06159539f446ab493d9a5a4e182750597d93b81d3542673c6e29500ff19",
+        "off": "b03da06159539f446ab493d9a5a4e182750597d93b81d3542673c6e29500ff19",
+        "plain": "c4d4d3499ba13766fc289530ab1df08f62d87df8fc61cf90a1f730ee229bfe69",
+        "plainOff": "c4d4d3499ba13766fc289530ab1df08f62d87df8fc61cf90a1f730ee229bfe69",
+        "bornArmed": "b03da06159539f446ab493d9a5a4e182750597d93b81d3542673c6e29500ff19",
+        "forced": "322b14d305ea1102f5696379cdf5d21aa509511b2dd79cca9d8898332c29b3e4",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311112,
+        "absent": "db25174d6072e2a9545256e10e2580d1459068a9910d9070e56e6f9fff19f494",
+        "off": "db25174d6072e2a9545256e10e2580d1459068a9910d9070e56e6f9fff19f494",
+        "plain": "e6fb63bc14be64226f6bed1648e6ccd71ccbdea2beeba038a5e8b8c0dcecf4d8",
+        "plainOff": "e6fb63bc14be64226f6bed1648e6ccd71ccbdea2beeba038a5e8b8c0dcecf4d8",
+        "bornArmed": "db25174d6072e2a9545256e10e2580d1459068a9910d9070e56e6f9fff19f494",
+        "forced": "21dd3e37146deaaa0d0d94b1b524e1734254f89415da1d3a586fea6dfa03b2c4",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311113,
+        "absent": "7c5b09fcb4bd54a182e628cadc0e03a49a7c8e41506d7c07d0b29bf046d9c9d6",
+        "off": "7c5b09fcb4bd54a182e628cadc0e03a49a7c8e41506d7c07d0b29bf046d9c9d6",
+        "plain": "918e8ad4294f9090939393d6f03db91c3a4e622884a2b9bdba5f4a6683debf2d",
+        "plainOff": "918e8ad4294f9090939393d6f03db91c3a4e622884a2b9bdba5f4a6683debf2d",
+        "bornArmed": "7c5b09fcb4bd54a182e628cadc0e03a49a7c8e41506d7c07d0b29bf046d9c9d6",
+        "forced": "1f9dd8b3af602fca4ef6d800f09d1b76b3d0c478d7df00b1bf6073f2d88ed36c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311114,
+        "absent": "0e8359f4e993ef75cbf1e49ad7183372206702fe9dd1897cf0a63e8f754c0b7b",
+        "off": "0e8359f4e993ef75cbf1e49ad7183372206702fe9dd1897cf0a63e8f754c0b7b",
+        "plain": "f98be4365e0132bcea1cf050563084f69c64079e3ea4b2f9c57d9ff17ab024c4",
+        "plainOff": "f98be4365e0132bcea1cf050563084f69c64079e3ea4b2f9c57d9ff17ab024c4",
+        "bornArmed": "0e8359f4e993ef75cbf1e49ad7183372206702fe9dd1897cf0a63e8f754c0b7b",
+        "forced": "2a84091be70500b0e4b1afa3dff75efbae6dd8e8ba567ee126d7fe8b6cd7a560",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311115,
+        "absent": "7c789ddce298c70636c7c3bf5850d9733ba3c71f461c67f4510bc99aa1c798ce",
+        "off": "7c789ddce298c70636c7c3bf5850d9733ba3c71f461c67f4510bc99aa1c798ce",
+        "plain": "6769e0b50f49f39d13051af8417f2f847644436ca490aa5451bfa091d4b4cf92",
+        "plainOff": "6769e0b50f49f39d13051af8417f2f847644436ca490aa5451bfa091d4b4cf92",
+        "bornArmed": "7c789ddce298c70636c7c3bf5850d9733ba3c71f461c67f4510bc99aa1c798ce",
+        "forced": "71f309d10ec55ad6975207b634e4722fff6d7f9353b0e2c79c9280a38b68fbdb",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311116,
+        "absent": "e0822afdb77e7368e73f8900a08875e8eddb4b8562dfbf26e36e6cf053115048",
+        "off": "e0822afdb77e7368e73f8900a08875e8eddb4b8562dfbf26e36e6cf053115048",
+        "plain": "fc9cd1a3b711ff9a0a7f5e811dfec2a1ac921c8fa5b1c46b8b48fbb823d1d21a",
+        "plainOff": "fc9cd1a3b711ff9a0a7f5e811dfec2a1ac921c8fa5b1c46b8b48fbb823d1d21a",
+        "bornArmed": "e0822afdb77e7368e73f8900a08875e8eddb4b8562dfbf26e36e6cf053115048",
+        "forced": "90f207c1850bfaff3f335742b46788fe36fab79ab597b6982cb68ceb9389ccaa",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311117,
+        "absent": "3c2c061f1823716300658423782504cb5b7f3e708712a090d5eb2df049d0886c",
+        "off": "3c2c061f1823716300658423782504cb5b7f3e708712a090d5eb2df049d0886c",
+        "plain": "328149abdcebf9471861f1c6697182e62169a3020f707329af48f2e6ec38d858",
+        "plainOff": "328149abdcebf9471861f1c6697182e62169a3020f707329af48f2e6ec38d858",
+        "bornArmed": "3c2c061f1823716300658423782504cb5b7f3e708712a090d5eb2df049d0886c",
+        "forced": "4cd539def68956f67b7439389a46b951542b371f9e962cd7ab72ffba7865905a",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311118,
+        "absent": "9b853329a0123b10e8efcd495a79eb3198fcbafee99a64ad33ba718e44d3518f",
+        "off": "9b853329a0123b10e8efcd495a79eb3198fcbafee99a64ad33ba718e44d3518f",
+        "plain": "86872df845015f614ee12c3667b749ba70557fb297286be23a126c30312a7f5a",
+        "plainOff": "86872df845015f614ee12c3667b749ba70557fb297286be23a126c30312a7f5a",
+        "bornArmed": "9b853329a0123b10e8efcd495a79eb3198fcbafee99a64ad33ba718e44d3518f",
+        "forced": "92b3b285b26db91ff412f8872a11c69315e36bc412801222dca77ad27ceb6649",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311119,
+        "absent": "d90add54708d0f5777faf9389f217e9d6375ad1922e9826b4644345332bde3f4",
+        "off": "d90add54708d0f5777faf9389f217e9d6375ad1922e9826b4644345332bde3f4",
+        "plain": "d8b56d59566a4e7e8c965c074ea8f5ff0b9cd9e839ae81d9526e658eea6e0802",
+        "plainOff": "d8b56d59566a4e7e8c965c074ea8f5ff0b9cd9e839ae81d9526e658eea6e0802",
+        "bornArmed": "d90add54708d0f5777faf9389f217e9d6375ad1922e9826b4644345332bde3f4",
+        "forced": "8ec22cf910a77219403fa5dd1f56c6c0c13196cea960912d62879960a64cc687",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311120,
+        "absent": "ace8ae11086a490edc709791433f4c47a8ee1c792dafbf81e218af8cfe18109e",
+        "off": "ace8ae11086a490edc709791433f4c47a8ee1c792dafbf81e218af8cfe18109e",
+        "plain": "8503811c8936d15718aedebdca3ef6e9db2186fd15947526b3259e539f7d1960",
+        "plainOff": "8503811c8936d15718aedebdca3ef6e9db2186fd15947526b3259e539f7d1960",
+        "bornArmed": "ace8ae11086a490edc709791433f4c47a8ee1c792dafbf81e218af8cfe18109e",
+        "forced": "5119e4d0fd06a0b7245eb83d413379e046249bfa78c7a571a71184a5b49c2400",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311121,
+        "absent": "3dfef2a39592b1060af93d4a61b512cf36a7a5037308555f9db3ddd530de6640",
+        "off": "3dfef2a39592b1060af93d4a61b512cf36a7a5037308555f9db3ddd530de6640",
+        "plain": "9ac46d005c3134d66d2bdcec4decc00f0d28397b3482f314e8686214fadeadcd",
+        "plainOff": "9ac46d005c3134d66d2bdcec4decc00f0d28397b3482f314e8686214fadeadcd",
+        "bornArmed": "3dfef2a39592b1060af93d4a61b512cf36a7a5037308555f9db3ddd530de6640",
+        "forced": "3f3b33eda4b812c23eaba77e98bb474f9e2791239c035dda58041311cc166f20",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311122,
+        "absent": "f26b56241cd5371fa3261ae9d1b2de3275b4aa52b085311ded28f0459d855a8f",
+        "off": "f26b56241cd5371fa3261ae9d1b2de3275b4aa52b085311ded28f0459d855a8f",
+        "plain": "40fb285586f8a9df9b1978c76e9ef02e7b4c8b5fc752ff4fbe733f1b1cb99664",
+        "plainOff": "40fb285586f8a9df9b1978c76e9ef02e7b4c8b5fc752ff4fbe733f1b1cb99664",
+        "bornArmed": "f26b56241cd5371fa3261ae9d1b2de3275b4aa52b085311ded28f0459d855a8f",
+        "forced": "211d368282d16aeaa7eb2694bba87e9e9e02b16a1a3c86cee18cfd5e165acdd5",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      },
+      {
+        "seed": 12311123,
+        "absent": "a6ee1396e84d4d0417fedb0ff190bd1a755a0a568dc895cc06b08ddb1b268d4d",
+        "off": "a6ee1396e84d4d0417fedb0ff190bd1a755a0a568dc895cc06b08ddb1b268d4d",
+        "plain": "004960cdf8d1194f21a188c5769426acfbcbf5f8969218874e726f5dbae268b4",
+        "plainOff": "004960cdf8d1194f21a188c5769426acfbcbf5f8969218874e726f5dbae268b4",
+        "bornArmed": "a6ee1396e84d4d0417fedb0ff190bd1a755a0a568dc895cc06b08ddb1b268d4d",
+        "forced": "1b00cfaaaf1ab9d3822bf6e583e94955b65da2e3e573fa9e1610d47e7ba2d9bf",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "diverged": true
+      }
+    ]
+  },
+  "resultSha256": "0a2c54c106cc8f175090e15cbf2306f086c6ed1de9b9c668052565591bbe1635",
+  "wallMsContextOnly": 56143
+}

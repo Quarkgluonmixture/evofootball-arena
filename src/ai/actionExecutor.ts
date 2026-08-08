@@ -93,6 +93,15 @@ export function executeAction(p: Player, match: Match, dt: number): void {
   // production ⇒ false ⇒ formationSpot is bit-for-bit HEAD). Threads the second
   // (formations clamp) face into every in-possession formation-spot call below.
   const abandonRest = match.abandonRestDesignation === team.side;
+  // PM T0 — THE M-PM.2 PHASE GATE, evaluated ONCE here and nowhere else: LIVE OPEN
+  // PLAY only (`phase === 'playing'`), and the seam itself is out-of-possession
+  // only (`!hasBall`, enforced inside `emergentStation`). Restart-pending and
+  // frozen phases therefore keep the UNMODULATED station, so `shapeReady`, the
+  // onside clamp and the restart gates keep waiting for bodies near stations the
+  // walkers really do walk to — the stall trap the contract prices at T0 by trace.
+  // This boolean is passed ONLY to the two BODY-MOVEMENT reads below (M-PM.3,
+  // #35.3): the walk target and the marker's no-target fallback.
+  const pmMover = match.pmLaneConvergence && match.phase === 'playing';
   let target: V2 | null = null;
   let speedF = jog;
   p.faceTarget = null; // per-frame; only keeper cases set it (backpedal, 27.5)
@@ -132,7 +141,8 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     }
     case 'MoveToFormationSpot':
     case 'HoldPosition': {
-      target = formationSpot(p, team, ball, hasBall, opp, abandonRest);
+      // PM T0 (M-PM.3 MOVER READ #1): the walk target — a BODY-MOVEMENT read.
+      target = formationSpot(p, team, ball, hasBall, opp, abandonRest, pmMover);
       // Hurry back if badly out of position. (A phase-106 "hurry when
       // beaten" trigger was built and MEASURED OUT here: during walk-in
       // breakaways the beaten men are 60-88% in MarkOpponent/ChaseBall —
@@ -320,7 +330,10 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         }
         speedF = 0.85 + g.markingAggression * 0.15;
       } else {
-        target = formationSpot(p, team, ball, hasBall, opp, abandonRest);
+        // PM T0 (M-PM.3 MOVER READ #2): the marker's no-target fallback — the
+        // other BODY-MOVEMENT read. The trap hold-line reference above
+        // deliberately keeps the UNMODULATED station (it is a GATE read).
+        target = formationSpot(p, team, ball, hasBall, opp, abandonRest, pmMover);
       }
       break;
     }

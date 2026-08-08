@@ -443,6 +443,22 @@ export interface MatchConfig {
    */
   o2Look?: boolean;
   /**
+   * PM T0 (PHASE-MODULATION-CONTRACT §2 M-PM.1/M-PM.2, ruling #195.2): arm the
+   * dormant DEFENSIVE LANE-CONVERGENCE seam — the CONSUMPTION half of the gene's
+   * own opt-in (the evolution half is `MutateOptions.evolveDefLaneConvergence`).
+   * With it armed, the two BODY-MOVEMENT station reads (the walk target and the
+   * marker's no-target fallback) get `y += (ball.pos.y − y)·k_PM` in live open
+   * play out of possession; every assignment / gate / clamp / restart / render
+   * read keeps the UNMODULATED station (M-PM.3, #35.3). The gene is BORN ABSENT,
+   * so even armed this changes nothing until an instrument or an opted-in
+   * evolution run gives it a value.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never
+   * env-armed, absent from `a4World` and from every preset (Road B, #195.2:
+   * nothing ships)**; a probe arms it, and the production fingerprint is
+   * unchanged.
+   */
+  pmLaneConvergence?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -665,6 +681,12 @@ export class Match {
     };
   /** O2 T0: the LOOK, dormant unless a probe world arms it (Road B). */
   readonly o2Look: boolean;
+  /**
+   * PM T0: the DEFENSIVE LANE-CONVERGENCE seam, dormant unless a probe world arms
+   * it (Road B). Read at exactly ONE place — the M-PM.2 phase gate in
+   * `actionExecutor`, which passes the M-PM.3 mover fork into `formationSpot`.
+   */
+  readonly pmLaneConvergence: boolean;
   /**
    * O2 T0 §SEAM: the live LOOK window — `{ gid, untilTick, startTick }`. A single
    * slot, sufficient because only the BALL OWNER may look and there is one ball.
@@ -1138,6 +1160,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
     // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
     this.o2Look = cfg.o2Look ?? false;
+    // PM T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#195.2: the gene gets its OWN
+    // opt-in and nothing else may turn it on); a probe arms it.
+    this.pmLaneConvergence = cfg.pmLaneConvergence ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.

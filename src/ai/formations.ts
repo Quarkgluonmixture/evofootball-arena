@@ -4,6 +4,7 @@ import { BOX_DEPTH, CORNER_CLEARANCE, FIELD_SCALE, GOAL_WIDTH, HALF_L, HALF_W } 
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
+import { pmLaneConvergenceK } from '../evolution/genome';
 import type {
   AttackFormationId, CornerRoutine, DefendFormationId, TeamMode,
 } from '../sim/types';
@@ -130,14 +131,27 @@ const MODE_SHIFT: Record<TeamMode, number> = {
 // in-possession clamp is REMOVED (the DESIGNATION POLICY's second face). Default
 // false — every production caller omits it, so the spot is bit-for-bit HEAD. The
 // probe threads `match.abandonRestDesignation === team.side` from the sim seam.
+// `pmMover` (PM-T0, #195.2 — the M-PM.3 READ FORK, #35.3 "fork the read, never
+// the function"): TRUE only for the two BODY-MOVEMENT reads (the
+// MoveToFormationSpot/HoldPosition walk target and the marker's no-target
+// fallback), and only when the caller has already checked the M-PM.2 phase gate
+// (live open play). Default FALSE — every ASSIGNMENT / GATE / CLAMP / restart /
+// render reader omits it, so their spot is bit-for-bit HEAD. See the read table in
+// docs/world-model/PM-T0-DORMANT-SEAM.md.
 export function formationSpot(
   p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team, abandonRest = false,
+  pmMover = false,
 ): V2 {
   // EMERGENT POSITIONING FIELD (Phase B1, toggle — the user's #1 emergence
   // ask: shape must grow from role + genes + live state, not a hand-authored
   // MENU). Behind a flag so it A/Bs cleanly against the fixed tables
   // (positioning-shape.ts) before it can replace them. OFF = today's behavior.
-  if (emergentPosOn()) return emergentStation(p, team, ball, hasBall, opp, abandonRest);
+  // PM-T0 branch disclosure: the M-PM.1 seam lives in `emergentStation` ONLY (the
+  // DEFAULT-ON path). The legacy table path below already carries a per-body
+  // convergence of its own (`:209+`, weight `defensiveCompactness · 0.25`) — the
+  // very constant family this slice's ceiling is traced from — so it is left
+  // untouched and `pmMover` is inert there.
+  if (emergentPosOn()) return emergentStation(p, team, ball, hasBall, opp, abandonRest, pmMover);
   const g = team.genome;
   const base = hasBall
     ? ATTACK_FORMATIONS[team.style.formationAtk][p.index]
@@ -249,6 +263,7 @@ export function formationSpot(
 // path — is what runs in the census world). Default false ⇒ bit-for-bit HEAD.
 function emergentStation(
   p: Player, team: Team, ball: Ball, hasBall: boolean, opp?: Team, abandonRest = false,
+  pmMover = false,
 ): V2 {
   const g = team.genome;
   // Role → coarse (depth fraction of HALF_L, lane fraction of HALF_W). WGs take
@@ -294,6 +309,30 @@ function emergentStation(
   // halving spreadY). The whole shape slides over, keeping its width.
   const ballSideShift = hasBall ? 0.18 + g.attackingWidth * 0.22 : 0.18 + g.defensiveCompactness * 0.25;
   y += ball.pos.y * ballSideShift;
+
+  // ⭐ PM-T0, THE M-PM.1 SEAM (PHASE-MODULATION-CONTRACT §2, ruling #195.2) — the
+  // DEFENSIVE LANE CONVERGENCE, dormant. The comment above froze "keep width, do
+  // NOT converge" by HAND, for every team, forever; VISION §1 (位置是活的) says the
+  // strength of that choice must be a gene axis, not an architect's constant. So:
+  // out of possession, each body's lateral station converges toward the BALL'S
+  // LANE by `k_PM` — composing AFTER the width and common-translation terms above
+  // (it replaces NEITHER), before anti-clump and solidity, which are exactly the
+  // guards that price whether the contraction collapses anything (the B1-a
+  // failure this un-freezes). `k_PM < 1` is an affine contraction: lateral ORDER
+  // is preserved, gaps shrink; 弱侧收窄 falls out of the geometry (a far body moves
+  // more metres under the same contraction) with NO weak-side rule written down.
+  //
+  // BORN ABSENT ⇒ `pmLaneConvergenceK` is 0 ⇒ this line is a no-op ⇒ the world is
+  // byte-identical. `pmMover` is the M-PM.3 read fork (mover reads only) and the
+  // caller has already applied the M-PM.2 phase gate (live open play). NO role
+  // gating (the GK's y is overwritten by his own band below, so he is inert by the
+  // world's own geometry, not by a role rule), NO per-body offsets, NO scenario
+  // triggers, and NO new perception channel — `ball.pos.y` is the very input the
+  // line above already consumes (M-PM.4).
+  if (pmMover && !hasBall) {
+    const kPm = pmLaneConvergenceK(g);
+    if (kPm > 0) y += (ball.pos.y - y) * kPm;
+  }
 
   // ⭐ B2: the block tracks the OPPONENT's push, not just the ball (the user's
   // "阵型也不会随着对面的移动而移动"). The defensive spine (DF/MF) holds a line

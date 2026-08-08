@@ -280,6 +280,7 @@ export class League {
     'edsTouchCost' | 'edsPerceivedDefence' | 'edsPerceivedChoice' | 'edsValueAxis'
     | 'edsAwareness' | 'traceChoice'
     | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup' | 'o1PassWindup' | 'o2Look'
+    | 'pmLaneConvergence'
   >> = {};
 
   constructor(cfg: { seed: number; matchDuration?: number }) {

@@ -195,6 +195,66 @@ export interface TacticalGenome {
    * production fingerprint 57b0bdab…c673 stands).
    */
   homePriorObedienceOffset?: readonly number[];
+  /**
+   * PM-T0 (PHASE-MODULATION-CONTRACT §2 M-PM.1, ruling #195.2) — THE DEFENSIVE
+   * LANE-CONVERGENCE gene (位置是活的:守→向球侧压缩/弱侧收窄). How hard THIS team's
+   * out-of-possession station field asks each body to converge on the BALL'S LANE:
+   * in the defensive phase the emergent station's lateral value gets, AFTER the
+   * existing width and common-translation terms (replacing neither),
+   * `y += (ball.pos.y − y) · k_PM` with `k_PM = defLaneConvergence ·
+   * PM_LANE_CONVERGENCE_MAX` (see `pmLaneConvergenceK`). 0 = today's world exactly
+   * (keep width, translate the block); 1 = the frozen ceiling below.
+   *
+   * An affine contraction with `k_PM < 1` preserves lateral ORDER — it shrinks
+   * gaps, it cannot cross bodies over. There is NO role gating and NO per-body
+   * offset in this slice (offsets = a later slice, the A4-S2 precedent), and the
+   * term reads `ball.pos.y` only — an input the adjacent station line already
+   * consumes (M-PM.4 perception honesty, no new channel).
+   *
+   * ⚠ DORMANT / BORN ABSENT (RNG-STREAM SAFETY, the #148.5 / #75 genre, mirrored
+   * verbatim from `homePriorObedience`): OPTIONAL and BORN ABSENT (≡ 0 at its one
+   * consumer via `?? 0`), deliberately NOT in GENE_KEYS — so randomGenome /
+   * mutateGenome / crossoverGenomes / geneDistance draw the EXACT SAME RNG in the
+   * EXACT SAME order as HEAD, and the serialized genome (hence the production
+   * fingerprint 57b0bdab…c673) is byte-identical (an absent optional key is
+   * omitted by JSON.stringify). It gains a value ONLY when an evolution run opts
+   * in via its OWN explicit `evolveDefLaneConvergence` boolean (#75: never a
+   * widening of `evolveHomePrior`/`evolveHomePriorOffsets`, so those runs' draw
+   * sequences are unmoved), and its draws happen STRICTLY AFTER both home-prior
+   * blocks, so enabling it never re-orders an existing draw. The CONSUMPTION path
+   * is separately gated by the dormant `pmLaneConvergence` match flag — every
+   * draw AND every read is thus flag-gated.
+   */
+  defLaneConvergence?: number;
+}
+
+/**
+ * ⭐ THE FROZEN k_PM CEILING (PM-T0, contract §2 M-PM.1 "bounds frozen at the stage
+ * doc from the traced constant family"). `k_PM ∈ [0, 0.25]`.
+ *
+ * TRACED, NOT INVENTED. 0.25 is the LEGACY per-body convergence weight that the
+ * emergent rewrite dropped: `src/ai/formations.ts:209` —
+ * `if (!hasBall) y += (ball.pos.y − y · attackDir) · attackDir ·
+ * g.defensiveCompactness · 0.25` — i.e. the table path's own maximum lateral
+ * convergence toward the ball's lane, at `defensiveCompactness = 1`. The contract
+ * names that line as this term's natural neighbour (§0.4 / §2 M-PM.1), so the new
+ * axis can express EXACTLY as much convergence as the branch it restores and no
+ * more. No new constant is introduced by this slice, and the number is not re-cut
+ * later (the never-re-cut-after-sight rule): if PM-T1 needs a different ceiling,
+ * that is a fork for the commander WITH numbers.
+ */
+export const PM_LANE_CONVERGENCE_MAX = 0.25;
+
+/**
+ * PM-T0 (M-PM.1): the gene → `k_PM` map, the SINGLE owner of the expression.
+ * Born absent ⇒ `0` ⇒ the term vanishes ⇒ byte-identical world. PURE, no rng.
+ * The gene is clamped to [0,1] before scaling, so no instrument can dose past the
+ * frozen ceiling through this door.
+ */
+export function pmLaneConvergenceK(g: TacticalGenome): number {
+  const v = g.defLaneConvergence;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v) * PM_LANE_CONVERGENCE_MAX;
 }
 
 /**
@@ -317,6 +377,17 @@ export interface MutateOptions {
    * and the `eye.v4.homePrior` consumption flag.
    */
   evolveHomePriorOffsets?: boolean;
+  /**
+   * PM-T0 (#195.2, the SAME RNG-stream trap): opt-in that lets the dormant
+   * `defLaneConvergence` gene evolve. DEFAULT OFF — every production evolve.ts call
+   * omits it, so the gene draws NO RNG and the flag-off random sequence stays
+   * byte-identical to HEAD. It is its OWN named boolean (#75) rather than a
+   * widening of either home-prior opt-in, so those runs' streams are ALSO unmoved.
+   * Its draws happen ONLY when this is `true` and STRICTLY AFTER both home-prior
+   * blocks, so enabling it never re-orders any existing draw. When shipped, a
+   * PM-T2-grade run flips this together with the `pmLaneConvergence` match flag.
+   */
+  evolveDefLaneConvergence?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -351,13 +422,22 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
     }
     out.homePriorObedienceOffset = next;
   }
+  // PM-T0 (#195.2): the defensive lane-convergence gene mutates ONLY under its OWN
+  // explicit opt-in and ONLY here — after the GENE_KEYS loop AND after BOTH
+  // home-prior blocks — so flag-off runs consume ZERO extra RNG draws
+  // (byte-identical to HEAD) and neither home-prior run's draw sequence moves.
+  // `{ ...g }` above already carried the gene through untouched (born-absent ⇒
+  // stays absent) in the flag-off path.
+  if (opts.evolveDefLaneConvergence === true && rng.chance(rate)) {
+    out.defLaneConvergence = clamp01((out.defLaneConvergence ?? 0) + rng.gaussian() * scale);
+  }
   return out;
 }
 
 /** Uniform crossover with occasional blending — child gene is from a, from b, or their mean. */
 export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
-  evolveHomePriorOffsets = false,
+  evolveHomePriorOffsets = false, evolveDefLaneConvergence = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -397,6 +477,19 @@ export function crossoverGenomes(
     );
   } else if (a.homePriorObedienceOffset !== undefined) {
     out.homePriorObedienceOffset = a.homePriorObedienceOffset;
+  }
+  // PM-T0 (#195.2): the lane-convergence gene crosses over ONLY under its OWN
+  // explicit opt-in and ONLY here — after the GENE_KEYS loop AND after BOTH
+  // home-prior blocks — so flag-off runs draw ZERO extra RNG and neither
+  // home-prior run is moved. Flag-off ⇒ carry parent A's value through with NO
+  // draw (born-absent ⇒ the key stays absent ⇒ serialization unchanged).
+  if (evolveDefLaneConvergence) {
+    const r = rng.next();
+    const av = a.defLaneConvergence ?? 0;
+    const bv = b.defLaneConvergence ?? 0;
+    out.defLaneConvergence = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
+  } else if (a.defLaneConvergence !== undefined) {
+    out.defLaneConvergence = a.defLaneConvergence;
   }
   return out;
 }
