@@ -1096,6 +1096,23 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     p.faceTarget = { x: pp.aim.x, y: pp.aim.y };
   }
 
+  // O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md §SEAM): the SAME plant, for a
+  // body who is LOOKING. His carry slows to the plant's walking pace on his own
+  // spot — the price is the ticks he is not going anywhere with the ball while
+  // pressure closes (M-O2.2). Two things are deliberately NOT done here:
+  //   • `faceTarget` is NOT written. The C7/O1 plants aim at a committed target;
+  //     a LOOK has no target, and CHOOSING where to look would be a new lever
+  //     (and, unearned, a new information channel). He scans what his CURRENT
+  //     heading covers — what is behind him stays behind him unless he turns.
+  //   • the ball is NOT touched: the seam never writes `ball.owner` and never
+  //     plants the ball into flight; it stays owned at his carry offset.
+  // Dormant in production (o2Look OFF ⇒ o2LookWindow null).
+  const lw = match.o2LookWindow;
+  if (lw !== null && match.o2Look && lw.gid === p.gid && ball.owner === p) {
+    target = { x: p.pos.x, y: p.pos.y };
+    speedF = 0.22; // walking pace, the C7 plant's value
+  }
+
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck

@@ -18,6 +18,7 @@ import {
 } from './perceivedPassChoice';
 import { PASS_POWER_MAX, PASS_POWER_MIN } from '../sim/constants';
 import { whetherEyeDecision, whetherEyeInScope } from './whetherEye';
+import { o2LookDecision, o2LookEligible } from './lookSeat';
 
 /** E3's canary prices the chosen pass at the substrate's own power range. */
 const PASS_CANARY_POWERS: readonly number[] = [PASS_POWER_MIN, 1, PASS_POWER_MAX];
@@ -53,6 +54,18 @@ export function decidePlayer(p: Player, match: Match): void {
   // winding-up body still owns the ball — once it loses it, the commitment lapses.
   if (
     match.o1PassWindup && match.pendingPassWindup !== null && match.pendingPassWindup.gid === p.gid
+    && match.ball.owner === p
+  ) return;
+
+  // O2 T0 §SEAM: the same re-decide lock, for a body who is LOOKING (a THIRD
+  // separate block, so the C7 and O1 blocks above stay byte-identical). His action
+  // stays the `Dribble` label set at the arm fork; he plants, does not act, and the
+  // window closes at `untilTick` in `Match.stepO2Look` — which runs at the head of
+  // the tick, so the very next decision he makes is on the REFRESHED percept.
+  // Dormant in production (o2Look OFF ⇒ o2LookWindow null ⇒ never taken). Only
+  // holds while the looking body still owns the ball.
+  if (
+    match.o2Look && match.o2LookWindow !== null && match.o2LookWindow.gid === p.gid
     && match.ball.owner === p
   ) return;
 
@@ -827,6 +840,27 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   }
   const top = cands[0];
   const scores = cands.slice(0, 4);
+
+  // O2 T0 — THE LOOK (docs/world-model/O2-T0-DORMANT-SEAM.md, contract
+  // O2-LOOK-CONTRACT §2). The ONE place a look is spent, and it sits IMMEDIATELY
+  // BEFORE the whether fork on purpose: 抬头观察 is what you do BEFORE you judge,
+  // and the seat that consumes the refreshed percept (M-O2.4) is the very next
+  // block. Taking a look costs REAL TICKS — the body plants for `O2_LOOK_TICKS`
+  // and does NOT act, while pressure closes (M-O2.2; there is no score subsidy
+  // anywhere in this seam). Dormant: `o2Look` is false in every production path,
+  // and even armed the decision is incumbent-equivalent unless an instrument
+  // forces it (`lookSeat.ts`), so nothing here can be reached in the shipped game.
+  if (o2LookEligible(p, match, top.action, mustKick)) {
+    const look = o2LookDecision(p, match);
+    if (look.take) {
+      match.armO2Look(p);
+      // No new action TYPE at T0: the readable body cue is the contract's T2+ exit
+      // item. He is still carrying, so he keeps the incumbent carry label and the
+      // executor's O2 plant block slows him on his own spot.
+      p.action = { type: 'Dribble', scores: [{ action: 'Dribble', score: 1, why: look.why }] };
+      return;
+    }
+  }
 
   // C5 T2 — THE WHETHER SEAT (docs/world-model/C5-T2-WHETHER-SEAT.md §2.2). The
   // ONE place the whether fork is read. Dormant: `whetherEye` is null in every

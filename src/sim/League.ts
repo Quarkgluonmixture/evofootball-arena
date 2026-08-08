@@ -279,7 +279,7 @@ export class League {
   matchFlags: Partial<Pick<MatchConfig,
     'edsTouchCost' | 'edsPerceivedDefence' | 'edsPerceivedChoice' | 'edsValueAxis'
     | 'edsAwareness' | 'traceChoice'
-    | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup' | 'o1PassWindup'
+    | 'c5Hold' | 'c5TouchFork' | 'c6Carry' | 'c7Windup' | 'o1PassWindup' | 'o2Look'
   >> = {};
 
   constructor(cfg: { seed: number; matchDuration?: number }) {

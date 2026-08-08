@@ -1,0 +1,7463 @@
+{
+  "stage": "O2 T0 — the dormant LOOK seam (`o2Look`)",
+  "ruling": "#193.2 (the dispatch) + #181.2 (the standing receipt rule)",
+  "contract": "docs/world-model/O2-LOOK-CONTRACT.md",
+  "doc": "docs/world-model/O2-T0-DORMANT-SEAM.md",
+  "head": "9abf43b",
+  "frozenInterval": {
+    "o2LookTicks": 11,
+    "seconds": 0.18333,
+    "derivation": "round(C7_W_CAP * 60) with C7_W_CAP = 0.18 s (src/sim/Match.ts, the C7 §LAW constant family) — also the [3,11] clamp ceiling c7WindupTicks enforces. No constant is invented for this slice."
+  },
+  "gates": {
+    "gDet": {
+      "pass": true,
+      "digestA": "b98c8e8417bdec5501a3e61725ba893b76a8f89afadebe9b8fae2fe49bb79097",
+      "digestB": "b98c8e8417bdec5501a3e61725ba893b76a8f89afadebe9b8fae2fe49bb79097"
+    },
+    "gIdent": {
+      "pass": true,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gOff": {
+      "pass": true,
+      "seeds": 24,
+      "note": "flag ABSENT ≡ flag FALSE, in BOTH the production-shaped world and the percept-armed world; whole-match signature INCLUDING the rng stream state, so a single added draw on the flag-off path would fail this gate"
+    },
+    "gBorn": {
+      "pass": true,
+      "seeds": 24,
+      "note": "armed with forcedLook null ≡ OFF (M-O2.3 born incumbent-equivalent)"
+    },
+    "gBite": {
+      "pass": true,
+      "divergedSeeds": 24
+    },
+    "gLen": {
+      "pass": true,
+      "frozenTicks": 11,
+      "maxObserved": 11
+    },
+    "gScanLedger": {
+      "pass": true,
+      "unexplainedArms": 0,
+      "scansEqualLiveTicks": true,
+      "endedLive": 1,
+      "scansPerLook": 9.6924
+    },
+    "gOwn": {
+      "pass": true,
+      "staleOwnerTicks": 316,
+      "abortedLoss": 316
+    },
+    "gRng": {
+      "pass": true,
+      "before": 777001,
+      "after": 777001,
+      "drew": false,
+      "armed": true
+    },
+    "gConst": {
+      "pass": true
+    },
+    "seedDisjoint": {
+      "first": 12311000,
+      "last": 12311024,
+      "consumedBlocks": [
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        }
+      ],
+      "collisions": [],
+      "pass": true
+    },
+    "allPass": true,
+    "srcDiffStatContextOnly": "src/ai/PlayerBrain.ts    |  34 +++++++++++\n src/ai/actionExecutor.ts |  17 ++++++\n src/sim/League.ts        |   2 +-\n src/sim/Match.ts         | 156 ++++++++++++++++++++++++++++++++++++++++++++---\n 4 files changed, 201 insertions(+), 8 deletions(-)"
+  },
+  "reported": {
+    "lookCensus": {
+      "looks": 1655,
+      "scans": 16041,
+      "completed": 1338,
+      "abortedLoss": 316,
+      "abortedPhase": 0,
+      "liveTicks": 16041,
+      "staleOwnerTicks": 316,
+      "endedLive": 1,
+      "windowsClosed": 1654,
+      "windowLengthHistogramTicks": {
+        "1": 4,
+        "2": 70,
+        "3": 73,
+        "4": 74,
+        "5": 46,
+        "6": 3,
+        "7": 3,
+        "8": 16,
+        "9": 12,
+        "10": 8,
+        "11": 1345
+      },
+      "completedAllAtFrozenLength": true,
+      "unexplainedWindows": 0,
+      "maxWindowTicks": 11,
+      "scansEqualLiveTicks": true,
+      "unexplainedArms": 0,
+      "scansPerLook": 9.6924
+    },
+    "perceptFreshness": {
+      "note": "REPORTED, observation-only, measured on its own match (perceivedSnapshot reconstructs memory, so it never runs inside a compared arm). Smoke scale, no control, no CI: the wedge exam is O2-T1.",
+      "seed": 12311024,
+      "forced": {
+        "samples": 143,
+        "meanAgeTicks": 9.567,
+        "meanOppSeen": 4.8601
+      },
+      "noLook": {
+        "samples": 121,
+        "meanAgeTicks": 13.1364,
+        "meanOppSeen": 4.6446
+      }
+    }
+  },
+  "result": {
+    "seeds": {
+      "block": 12311000,
+      "n": 24,
+      "first": 12311000,
+      "last": 12311023
+    },
+    "rows": [
+      {
+        "seed": 12311000,
+        "absent": "304bcc827eaa58bf1812f6956d8dfa8c94a36faa2509c97560cd0dcec9c36eac",
+        "off": "304bcc827eaa58bf1812f6956d8dfa8c94a36faa2509c97560cd0dcec9c36eac",
+        "plain": "1a9255a3375b84726fb70384e6fab8182d0f2767619c7e435cdd494ba509e360",
+        "plainOff": "1a9255a3375b84726fb70384e6fab8182d0f2767619c7e435cdd494ba509e360",
+        "bornArmed": "304bcc827eaa58bf1812f6956d8dfa8c94a36faa2509c97560cd0dcec9c36eac",
+        "forced": "659cc5d031ed90022cac0440bb90bd3e4ed3f498228455056fcd1df3f448e81d",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 70,
+          "scans": 685,
+          "completed": 55,
+          "abortedLoss": 15,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 15,
+        "liveTicks": 685,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311001,
+        "absent": "464f0bea77c31cd34862e1dbd05418e87077b94d8818e23bff395227b7b99832",
+        "off": "464f0bea77c31cd34862e1dbd05418e87077b94d8818e23bff395227b7b99832",
+        "plain": "8fbf78c9ce8f94c40648e092c4779ba250e33099dc0a9df35fe75b891e646979",
+        "plainOff": "8fbf78c9ce8f94c40648e092c4779ba250e33099dc0a9df35fe75b891e646979",
+        "bornArmed": "464f0bea77c31cd34862e1dbd05418e87077b94d8818e23bff395227b7b99832",
+        "forced": "178fe229275c914252ea593fe786e18ec82588235d11017f32f3118987f9efd1",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 46,
+          "scans": 442,
+          "completed": 38,
+          "abortedLoss": 8,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 8,
+        "liveTicks": 442,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311002,
+        "absent": "02bd85ab37af641e22be5781cf236848c27db030201accf624ab11c57bfa2f97",
+        "off": "02bd85ab37af641e22be5781cf236848c27db030201accf624ab11c57bfa2f97",
+        "plain": "8086b89e2e23678d79ce8390ac37c66ba4123eff5ca2517fcf739ec3ab3db537",
+        "plainOff": "8086b89e2e23678d79ce8390ac37c66ba4123eff5ca2517fcf739ec3ab3db537",
+        "bornArmed": "02bd85ab37af641e22be5781cf236848c27db030201accf624ab11c57bfa2f97",
+        "forced": "9f56fca113b4e31fc3f0dec4ea2784995a992efe49e41027b7c910b1721f3f93",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 72,
+          "scans": 723,
+          "completed": 61,
+          "abortedLoss": 11,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 11,
+        "liveTicks": 723,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311003,
+        "absent": "2718755b985a2a7306f0b3d6f3a8fc3d33ea465d5a4f06b9c491618ea67b3131",
+        "off": "2718755b985a2a7306f0b3d6f3a8fc3d33ea465d5a4f06b9c491618ea67b3131",
+        "plain": "ced1d5644bae5001d1cdc219581b3152219e320743d9c983f2d2cbd5efb689a0",
+        "plainOff": "ced1d5644bae5001d1cdc219581b3152219e320743d9c983f2d2cbd5efb689a0",
+        "bornArmed": "2718755b985a2a7306f0b3d6f3a8fc3d33ea465d5a4f06b9c491618ea67b3131",
+        "forced": "f21d94bf9396b5fce923bf5182f51c61ca67878e308f692f46c658c1f1f60555",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 38,
+          "scans": 370,
+          "completed": 31,
+          "abortedLoss": 7,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 7,
+        "liveTicks": 370,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311004,
+        "absent": "de64c8d76b6264124e39054d68d798f9b105d92760fdf5892e6fc365a0ea60d0",
+        "off": "de64c8d76b6264124e39054d68d798f9b105d92760fdf5892e6fc365a0ea60d0",
+        "plain": "280d8ce9d88771f9e66adf5097c7d3627e8e6d9f04d7d1653ed092cfcd08a862",
+        "plainOff": "280d8ce9d88771f9e66adf5097c7d3627e8e6d9f04d7d1653ed092cfcd08a862",
+        "bornArmed": "de64c8d76b6264124e39054d68d798f9b105d92760fdf5892e6fc365a0ea60d0",
+        "forced": "ea0145c97b6754dfae70fb5bd3e7847ed41e1c0bb44da24f52c274307c89fdbb",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 73,
+          "scans": 713,
+          "completed": 59,
+          "abortedLoss": 14,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 1,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 14,
+        "liveTicks": 713,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311005,
+        "absent": "5d565bff43121a00ded373141b89f702500739ff556e74d5193384ade3151211",
+        "off": "5d565bff43121a00ded373141b89f702500739ff556e74d5193384ade3151211",
+        "plain": "c8221e5ae5f9a7b715105bfbb4a72c29934ada266505f638be17337958f8c66f",
+        "plainOff": "c8221e5ae5f9a7b715105bfbb4a72c29934ada266505f638be17337958f8c66f",
+        "bornArmed": "5d565bff43121a00ded373141b89f702500739ff556e74d5193384ade3151211",
+        "forced": "507ec844b184677cdc57f337d20ee86ebf81e40ac37a06081ba34de77a792e80",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 82,
+          "scans": 810,
+          "completed": 67,
+          "abortedLoss": 15,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 15,
+        "liveTicks": 810,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311006,
+        "absent": "b07714cdca24459906bc3db408a839b8cbe9cf4ca432ce9ba810d7607ea6e4bb",
+        "off": "b07714cdca24459906bc3db408a839b8cbe9cf4ca432ce9ba810d7607ea6e4bb",
+        "plain": "0563c51c3490006f617cccbfbaac52122bdb240a83ee084a23e6241c81e1f463",
+        "plainOff": "0563c51c3490006f617cccbfbaac52122bdb240a83ee084a23e6241c81e1f463",
+        "bornArmed": "b07714cdca24459906bc3db408a839b8cbe9cf4ca432ce9ba810d7607ea6e4bb",
+        "forced": "8fc2463b37ad7e1576d7a6ee76e9872c2df74651e136a84ebbd4cb527d019091",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 54,
+          "scans": 559,
+          "completed": 48,
+          "abortedLoss": 6,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 6,
+        "liveTicks": 559,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311007,
+        "absent": "dd661482449f731966f17a709a64e8f2ac2fd6fd28edf142eccfe4ebad36b88f",
+        "off": "dd661482449f731966f17a709a64e8f2ac2fd6fd28edf142eccfe4ebad36b88f",
+        "plain": "69029464b5dc9b52155e0139fc5ec0f305e7ee8da7a1feabf94e509d8afcb9ee",
+        "plainOff": "69029464b5dc9b52155e0139fc5ec0f305e7ee8da7a1feabf94e509d8afcb9ee",
+        "bornArmed": "dd661482449f731966f17a709a64e8f2ac2fd6fd28edf142eccfe4ebad36b88f",
+        "forced": "0231c36fb8d600791b70a5fa6713be66ed8a651fdf302195476fb39c6ff9aea7",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 64,
+          "scans": 603,
+          "completed": 49,
+          "abortedLoss": 15,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 15,
+        "liveTicks": 603,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311008,
+        "absent": "6bf62047f022388cba3d9b9e6e3b0e7f13dbf5fc50f6e992dd57037da5fe128d",
+        "off": "6bf62047f022388cba3d9b9e6e3b0e7f13dbf5fc50f6e992dd57037da5fe128d",
+        "plain": "1ed28958c12a5028ae6e408187dc2cf681145a85eed9d5cc902a12d1c2aebc67",
+        "plainOff": "1ed28958c12a5028ae6e408187dc2cf681145a85eed9d5cc902a12d1c2aebc67",
+        "bornArmed": "6bf62047f022388cba3d9b9e6e3b0e7f13dbf5fc50f6e992dd57037da5fe128d",
+        "forced": "c2f9cf03e4be9318f0b05ba649f4ad992189876fb50f97d99e960d11329990f5",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 64,
+          "scans": 576,
+          "completed": 47,
+          "abortedLoss": 17,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 1,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 17,
+        "liveTicks": 576,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311009,
+        "absent": "e50d8e5229490847fc02c7a47ebf3fd5c1248b251f3da400c2d9240c493bd16f",
+        "off": "e50d8e5229490847fc02c7a47ebf3fd5c1248b251f3da400c2d9240c493bd16f",
+        "plain": "d75299df8875d899ec8272e8d2990cb24971c7d5748510dabb6dafb13bb5532f",
+        "plainOff": "d75299df8875d899ec8272e8d2990cb24971c7d5748510dabb6dafb13bb5532f",
+        "bornArmed": "e50d8e5229490847fc02c7a47ebf3fd5c1248b251f3da400c2d9240c493bd16f",
+        "forced": "4485a5ba3971c20b2aeb5fe7b4e4e55fdd0d04af40092ac767a3b18413834148",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 71,
+          "scans": 680,
+          "completed": 58,
+          "abortedLoss": 13,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 13,
+        "liveTicks": 680,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311010,
+        "absent": "7e65e850f94df2260f6e25ac0cb15e47b741e716a746e7de16527ba51917aaeb",
+        "off": "7e65e850f94df2260f6e25ac0cb15e47b741e716a746e7de16527ba51917aaeb",
+        "plain": "377c0c8a85641106857dfdbec0d3f641941050a911c2a8b167ac3281b4a73aec",
+        "plainOff": "377c0c8a85641106857dfdbec0d3f641941050a911c2a8b167ac3281b4a73aec",
+        "bornArmed": "7e65e850f94df2260f6e25ac0cb15e47b741e716a746e7de16527ba51917aaeb",
+        "forced": "b43270c3f8a13a3b37c8290c8aa2369e72bfaffbe684fc17211199aa7d367bf7",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 86,
+          "scans": 812,
+          "completed": 67,
+          "abortedLoss": 18,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 18,
+        "liveTicks": 812,
+        "endedLive": 1
+      },
+      {
+        "seed": 12311011,
+        "absent": "e02abdd4372bfbbc64b452724ef6c0009a314582a42b6b47d1092467715fcba3",
+        "off": "e02abdd4372bfbbc64b452724ef6c0009a314582a42b6b47d1092467715fcba3",
+        "plain": "3f007ef9c2703fbf8fd642ecae730555d6bc06a6ebc658b82f4174ad42c24940",
+        "plainOff": "3f007ef9c2703fbf8fd642ecae730555d6bc06a6ebc658b82f4174ad42c24940",
+        "bornArmed": "e02abdd4372bfbbc64b452724ef6c0009a314582a42b6b47d1092467715fcba3",
+        "forced": "b1c60101b3beca411fad0e6e145097afeeb8b2ccba5362f5c56be8ee4df4381f",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 53,
+          "scans": 520,
+          "completed": 42,
+          "abortedLoss": 11,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 7,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 11,
+        "liveTicks": 520,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311012,
+        "absent": "9bd7782ab829e9f2755b8d0dc0d19309e8e0a981c964a88086a2e2ecb14b7d98",
+        "off": "9bd7782ab829e9f2755b8d0dc0d19309e8e0a981c964a88086a2e2ecb14b7d98",
+        "plain": "73c0bad938ba9a174d31cacb7efad9b1ab26e21c6e22511ed335ccb22b4d4feb",
+        "plainOff": "73c0bad938ba9a174d31cacb7efad9b1ab26e21c6e22511ed335ccb22b4d4feb",
+        "bornArmed": "9bd7782ab829e9f2755b8d0dc0d19309e8e0a981c964a88086a2e2ecb14b7d98",
+        "forced": "32848b92a49457d9b3be2ff169eec12c84b80808045afb0f22185ce411619bed",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 93,
+          "scans": 884,
+          "completed": 72,
+          "abortedLoss": 21,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 6,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 1,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 21,
+        "liveTicks": 884,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311013,
+        "absent": "bff910d4fc1dd45281a925a7db19c15a8f94a9ce75e9ed06eaf4e9f2ae4c0602",
+        "off": "bff910d4fc1dd45281a925a7db19c15a8f94a9ce75e9ed06eaf4e9f2ae4c0602",
+        "plain": "e4ac96950f3b740137277dbda17122802329bdc4ee9eb0a0a6230e8bffcf8596",
+        "plainOff": "e4ac96950f3b740137277dbda17122802329bdc4ee9eb0a0a6230e8bffcf8596",
+        "bornArmed": "bff910d4fc1dd45281a925a7db19c15a8f94a9ce75e9ed06eaf4e9f2ae4c0602",
+        "forced": "4bd6f015fd29f59adcda2ee07ecff6632bfe8125122ae700b1ecd63878fe9c3c",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 47,
+          "scans": 480,
+          "completed": 41,
+          "abortedLoss": 6,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 1,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 6,
+        "liveTicks": 480,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311014,
+        "absent": "63603a6230fbb72e978c97f589b3575ef59417b15cb343efec1c1c6b37835248",
+        "off": "63603a6230fbb72e978c97f589b3575ef59417b15cb343efec1c1c6b37835248",
+        "plain": "0637178b8d7430fbc8a2473c6dbf57fa5a1ee2e1ceaafd80e3e62457152e43ba",
+        "plainOff": "0637178b8d7430fbc8a2473c6dbf57fa5a1ee2e1ceaafd80e3e62457152e43ba",
+        "bornArmed": "63603a6230fbb72e978c97f589b3575ef59417b15cb343efec1c1c6b37835248",
+        "forced": "1ffc55e27c7b6136bbb20c4d08b1e48b80f33d25acf8214882b916851ec2ecba",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 57,
+          "scans": 578,
+          "completed": 50,
+          "abortedLoss": 7,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 7,
+        "liveTicks": 578,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311015,
+        "absent": "a7986aedb16b75548a86a6857dbdd4e16e6161e8f9198bd62eb4d8357f9f8a5e",
+        "off": "a7986aedb16b75548a86a6857dbdd4e16e6161e8f9198bd62eb4d8357f9f8a5e",
+        "plain": "995e4fe07f8ed60330c32673b68e13a3c12e0b06dba77440f1f4bb2aa72b4345",
+        "plainOff": "995e4fe07f8ed60330c32673b68e13a3c12e0b06dba77440f1f4bb2aa72b4345",
+        "bornArmed": "a7986aedb16b75548a86a6857dbdd4e16e6161e8f9198bd62eb4d8357f9f8a5e",
+        "forced": "cde846280a7ae761b21c8ff421eacd13f6340a6ed4da3db293a3da4dc0030955",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 75,
+          "scans": 724,
+          "completed": 59,
+          "abortedLoss": 16,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 16,
+        "liveTicks": 724,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311016,
+        "absent": "66ffcf27036cfc6800a5292e6d87494cf11c8b1bee9644e3442e91d32efab39f",
+        "off": "66ffcf27036cfc6800a5292e6d87494cf11c8b1bee9644e3442e91d32efab39f",
+        "plain": "46644049b73cebf39035eaf56316163c73729782851362e25ea5a7573a4eff33",
+        "plainOff": "46644049b73cebf39035eaf56316163c73729782851362e25ea5a7573a4eff33",
+        "bornArmed": "66ffcf27036cfc6800a5292e6d87494cf11c8b1bee9644e3442e91d32efab39f",
+        "forced": "d288a297910cf165d5355425a2ad9e178e2f257ee1a235ab019b20fd1cd17e97",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 74,
+          "scans": 694,
+          "completed": 60,
+          "abortedLoss": 14,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 14,
+        "liveTicks": 694,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311017,
+        "absent": "db3f4947d93034b4f8a8b4c952d893879f506d733fcd99a8fc2cb1265bab3d54",
+        "off": "db3f4947d93034b4f8a8b4c952d893879f506d733fcd99a8fc2cb1265bab3d54",
+        "plain": "0375037566f03a2b628419e5e29738c0941592d47e8abd14b265e51f719903cf",
+        "plainOff": "0375037566f03a2b628419e5e29738c0941592d47e8abd14b265e51f719903cf",
+        "bornArmed": "db3f4947d93034b4f8a8b4c952d893879f506d733fcd99a8fc2cb1265bab3d54",
+        "forced": "73f116c95442534da9745a8f3c741c7cb8718bb7b0ee945e28db37a7b090b505",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 88,
+          "scans": 900,
+          "completed": 76,
+          "abortedLoss": 12,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 6,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 6,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 12,
+        "liveTicks": 900,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311018,
+        "absent": "f4a4f5aa235bd4dc221bf77a97b74440d8345ceb04ad6bc55fe1a87ffbbe45dd",
+        "off": "f4a4f5aa235bd4dc221bf77a97b74440d8345ceb04ad6bc55fe1a87ffbbe45dd",
+        "plain": "14d873eb334e42146a9126c9117bc780c0e84b6624b1bc5c2faa8dac9a1bfda9",
+        "plainOff": "14d873eb334e42146a9126c9117bc780c0e84b6624b1bc5c2faa8dac9a1bfda9",
+        "bornArmed": "f4a4f5aa235bd4dc221bf77a97b74440d8345ceb04ad6bc55fe1a87ffbbe45dd",
+        "forced": "f39acd3693d94796021c8b3fd15aeec99edf3489a62301c361f8c0d635ba3e03",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 97,
+          "scans": 961,
+          "completed": 82,
+          "abortedLoss": 15,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 15,
+        "liveTicks": 961,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311019,
+        "absent": "a6d0605f79f23b8c1846b5096a444fec716eb2c220b8d25324ecc6028be48e65",
+        "off": "a6d0605f79f23b8c1846b5096a444fec716eb2c220b8d25324ecc6028be48e65",
+        "plain": "bb9effca37171f719d296077ce1a398749ebc494394a6f49b06ad28022f9ad18",
+        "plainOff": "bb9effca37171f719d296077ce1a398749ebc494394a6f49b06ad28022f9ad18",
+        "bornArmed": "a6d0605f79f23b8c1846b5096a444fec716eb2c220b8d25324ecc6028be48e65",
+        "forced": "6f30f5363aa21bb5c8899e3b92535a95c920f6a0fbc509a4483fa604bf9c0b3a",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 79,
+          "scans": 785,
+          "completed": 66,
+          "abortedLoss": 13,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 7,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 7,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 13,
+        "liveTicks": 785,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311020,
+        "absent": "2a98b659d10c69952fb93608a60637ba7f81ba59f3f40789fcb564246c55bafc",
+        "off": "2a98b659d10c69952fb93608a60637ba7f81ba59f3f40789fcb564246c55bafc",
+        "plain": "11b4e8fc1be98e1a8cadc54e6d9b51ad4d042fc0fb7dfc58a493375259572656",
+        "plainOff": "11b4e8fc1be98e1a8cadc54e6d9b51ad4d042fc0fb7dfc58a493375259572656",
+        "bornArmed": "2a98b659d10c69952fb93608a60637ba7f81ba59f3f40789fcb564246c55bafc",
+        "forced": "e4ad084b00b9864296064c37675ecab3036023e3e5dfaf63cb13c6a2a875587b",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 43,
+          "scans": 417,
+          "completed": 35,
+          "abortedLoss": 8,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 8,
+        "liveTicks": 417,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311021,
+        "absent": "ecb2f5595257686ce5a5521ed4b743e39601a9dd658d2bcd182d046a194fa174",
+        "off": "ecb2f5595257686ce5a5521ed4b743e39601a9dd658d2bcd182d046a194fa174",
+        "plain": "8b11ed12ce2495e2bd160a4bc3f5e0d96b33c51b44e75e4d02fc1969bc2a571b",
+        "plainOff": "8b11ed12ce2495e2bd160a4bc3f5e0d96b33c51b44e75e4d02fc1969bc2a571b",
+        "bornArmed": "ecb2f5595257686ce5a5521ed4b743e39601a9dd658d2bcd182d046a194fa174",
+        "forced": "8171016d64e7c5f03e657ebca29c27046cca5a3c905af4ef15a87b5320f33f7f",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 79,
+          "scans": 740,
+          "completed": 61,
+          "abortedLoss": 18,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 10,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          }
+        ],
+        "staleOwnerTicks": 18,
+        "liveTicks": 740,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311022,
+        "absent": "ca6adcba9b2492c099ee3107f461112830022ce666e7eaac6b0e62661bb71d30",
+        "off": "ca6adcba9b2492c099ee3107f461112830022ce666e7eaac6b0e62661bb71d30",
+        "plain": "81d4cdaeedde3ff14152a77d5fcd29a810a82f39ae08bcd7ac0042ca2e4a4e38",
+        "plainOff": "81d4cdaeedde3ff14152a77d5fcd29a810a82f39ae08bcd7ac0042ca2e4a4e38",
+        "bornArmed": "ca6adcba9b2492c099ee3107f461112830022ce666e7eaac6b0e62661bb71d30",
+        "forced": "50f2d3a8a481d03ba97f8e5af42a2255f2251e7f8a7c1332cb841e66de8701bb",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 63,
+          "scans": 577,
+          "completed": 48,
+          "abortedLoss": 15,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 5,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 15,
+        "liveTicks": 577,
+        "endedLive": 0
+      },
+      {
+        "seed": 12311023,
+        "absent": "d0e1461d7ad613b546bcf1922ec87cffee5fff45b960f70841808b59e76ad519",
+        "off": "d0e1461d7ad613b546bcf1922ec87cffee5fff45b960f70841808b59e76ad519",
+        "plain": "135cf3e82b62eee55817944e4f0bab7b620a1032db7b2946ec5db4d9a0e1e774",
+        "plainOff": "135cf3e82b62eee55817944e4f0bab7b620a1032db7b2946ec5db4d9a0e1e774",
+        "bornArmed": "d0e1461d7ad613b546bcf1922ec87cffee5fff45b960f70841808b59e76ad519",
+        "forced": "26a4aefac3ac157af500fc015b3bb782e0efd04a081f31e7f8f97b1d4fdf2b97",
+        "plainIdentical": true,
+        "identical": true,
+        "bornIdentical": true,
+        "diverged": true,
+        "ledger": {
+          "looks": 87,
+          "scans": 808,
+          "completed": 66,
+          "abortedLoss": 21,
+          "abortedPhase": 0
+        },
+        "windows": [
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 9,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 2,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 8,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 4,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 3,
+            "cls": "abortedLoss"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          },
+          {
+            "ticks": 11,
+            "cls": "completed"
+          }
+        ],
+        "staleOwnerTicks": 21,
+        "liveTicks": 808,
+        "endedLive": 0
+      }
+    ],
+    "lookCensus": {
+      "looks": 1655,
+      "scans": 16041,
+      "completed": 1338,
+      "abortedLoss": 316,
+      "abortedPhase": 0,
+      "liveTicks": 16041,
+      "staleOwnerTicks": 316,
+      "endedLive": 1,
+      "windowsClosed": 1654,
+      "windowLengthHistogramTicks": {
+        "1": 4,
+        "2": 70,
+        "3": 73,
+        "4": 74,
+        "5": 46,
+        "6": 3,
+        "7": 3,
+        "8": 16,
+        "9": 12,
+        "10": 8,
+        "11": 1345
+      },
+      "completedAllAtFrozenLength": true,
+      "unexplainedWindows": 0,
+      "maxWindowTicks": 11,
+      "scansEqualLiveTicks": true,
+      "unexplainedArms": 0,
+      "scansPerLook": 9.6924
+    }
+  },
+  "resultSha256": "c19afe60406887cd79d052aa49802528ff9d44a212b4f592902174d06d3419cc",
+  "wallMsContextOnly": 54996
+}

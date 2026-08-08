@@ -151,6 +151,21 @@ const c7WindupTicks = (v: number, omega: number, tech: number): number => {
   return ticks < 3 ? 3 : ticks > 11 ? 11 : ticks;
 };
 
+/* ------------- O2 T0 THE LOOK (docs/world-model/O2-T0-DORMANT-SEAM.md) ------------- */
+/**
+ * O2 T0 §LAW — the FROZEN LOOK interval, in whole ticks.
+ *
+ * NOT a new number: it is DERIVED here from the C7 §LAW constant family above
+ * (`C7_W_CAP = 0.18 s`, the certified wind-up ceiling, this file's line 141), by
+ * the same `round(W · 60)` tick conversion the law itself uses — and it lands on
+ * exactly the [3,11] clamp ceiling `c7WindupTicks` already enforces. The LOOK is
+ * therefore priced at the TOP of the traced release-wind-up scale: the most
+ * expensive moment the certified family knows how to charge for standing still.
+ * Contract O2-LOOK-CONTRACT §2 M-O2.1 names that family ("the C7 wind-up scale is
+ * the natural neighbour"); no constant is invented for this slice.
+ */
+export const O2_LOOK_TICKS = Math.round(C7_W_CAP * 60); // 11 ticks = 0.18333 s
+
 /** One keyed uniform in [0, 1) — the E3R2 keyed-noise style (#13.3), a pure
  *  function of (gid, tick, channel); never touches `match.rng`. */
 const c6KeyedUnit = (gid: number, tick: number, channel: number): number => {
@@ -411,6 +426,23 @@ export interface MatchConfig {
    */
   o1PassWindup?: boolean;
   /**
+   * O2 T0 (docs/world-model/O2-T0-DORMANT-SEAM.md): 抬头观察 — THE LOOK. When
+   * armed, a body who owns the ball outside a one-touch window may spend a LOOK
+   * at the percept-path decision fork: for `O2_LOOK_TICKS` ticks he plants (the
+   * C7/O1 plant idiom — carry slowed to walking pace on his own spot), does not
+   * act, and one SCAN MOMENT is recorded per tick from his own heading, so the
+   * body memory the whether seat reads is reconstructed from fresh moments
+   * instead of stale ones. It opens NO new information channel: the same
+   * `visibleDistance` cone, the same keyed error, the same `recordScanFrame`
+   * recorder the ordinary scan clock uses — only the CADENCE changes, and only
+   * while he stands there paying for it (M-O2.2, I1 NO FREE TIME).
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never
+   * env-armed, absent from `a4World` and from every preset (Road B, #193.2:
+   * nothing ships)**; a probe arms it, and the production fingerprint is
+   * unchanged.
+   */
+  o2Look?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -631,6 +663,41 @@ export class Match {
       arms: 0, evictions: 0, struck: 0, cancelledMate: 0,
       cancelledPendingKick: 0, cancelledByPendingKick: 0,
     };
+  /** O2 T0: the LOOK, dormant unless a probe world arms it (Road B). */
+  readonly o2Look: boolean;
+  /**
+   * O2 T0 §SEAM: the live LOOK window — `{ gid, untilTick, startTick }`. A single
+   * slot, sufficient because only the BALL OWNER may look and there is one ball.
+   * NULL in every production path (only `armO2Look` sets it, only on the ON path).
+   * While it is live the body re-decide-locks (`PlayerBrain`), plants
+   * (`actionExecutor`), and one scan moment per tick is recorded for him.
+   */
+  o2LookWindow: { gid: number; untilTick: number; startTick: number } | null = null;
+  /**
+   * O2 T0 §SEAM — the instrument seam, the `forcedHold` idiom verbatim
+   * (M-O2.3: "instruments may force it"). While `o2Look` is armed, the named body
+   * takes a LOOK at every eligible decision fork until `untilTick`. **Null in
+   * every production path** — and with it null the decision is
+   * INCUMBENT-EQUIVALENT (`o2LookDecision` never takes), which is what "born
+   * equivalent" means for this stage. The gene/attr expression is a later slice.
+   */
+  forcedLook: { gid: number; untilTick: number } | null = null;
+  /**
+   * O2 T0: the IN-ENGINE look ledger (the #180.3(ii) precedent — accounting that
+   * only the seam can observe lives in the engine, not in a probe wrapper). Pure
+   * bookkeeping: nothing in the sim ever READS these fields, and every one of
+   * them stays 0 unless `o2Look` is armed (Road B ⇒ all-zero in production).
+   *
+   * * `looks` — LOOK windows armed.
+   * * `scans` — scan moments recorded BY the look (the refresh itself).
+   * * `completed` — windows that ran to `untilTick`.
+   * * `abortedLoss` — the looker stopped owning the ball inside the window.
+   * * `abortedPhase` — play stopped / he was stunned or sent off inside it.
+   */
+  readonly o2LookLedger: {
+    looks: number; scans: number; completed: number;
+    abortedLoss: number; abortedPhase: number;
+  } = { looks: 0, scans: 0, completed: 0, abortedLoss: 0, abortedPhase: 0 };
   /**
    * C6 T1: per-body heading ring buffer (the lag law's lookback, doc §SEAM).
    * The outfield carrier's heading is recorded here each owned tick — engine
@@ -1067,6 +1134,10 @@ export class Match {
     // EDS_BUNDLE_ARMED (the phase-0 trap 12: a seam gated on c7Windup would arm
     // itself in the a4 world); a probe arms it explicitly.
     this.o1PassWindup = cfg.o1PassWindup ?? false;
+    // O2 T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (contract §3 FLAG HYGIENE + #193.2:
+    // it gets its OWN opt-in and nothing else may turn it on); a probe arms it.
+    this.o2Look = cfg.o2Look ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -1215,6 +1286,13 @@ export class Match {
     // the same head-of-tick site as the C7 strike. No-op unless o1PassWindup is
     // armed (Road B ⇒ pendingPassWindup is null in every production path).
     if (this.pendingPassWindup !== null) this.resolvePendingPassWindup();
+
+    // O2 T0 §SEAM: the LOOK window advances here — one recorded scan moment per
+    // look tick, and the window's own expiry/abort — at the same head-of-tick site
+    // as the two wind-up resolves, BEFORE any brain runs, so a body whose window
+    // ended this tick decides freely on the refreshed percept. No-op unless
+    // `o2Look` is armed (Road B ⇒ `o2LookWindow` is null in every production path).
+    if (this.o2LookWindow !== null) this.stepO2Look();
 
     const _tBrain = prof.mark();
     for (const team of this.teams) {
@@ -3045,14 +3123,78 @@ export class Match {
     // so the recorded condition is unchanged there.
     if ((this.edsPerceivedChoice || this.stationEye !== null)
       && memory.nextScanTick !== scanTickBefore) {
-      let ring = this.scanFrames.get(p.gid);
-      if (ring === undefined) {
-        ring = { frames: Array.from({ length: SCAN_FRAME_RING }, () => createScanFrame()), next: 0 };
-        this.scanFrames.set(p.gid, ring);
-      }
-      recordScanFrame(ring.frames[ring.next], this.perceptionTruth());
-      ring.next = (ring.next + 1) % SCAN_FRAME_RING;
+      this.recordObserverScanFrame(p.gid);
     }
+  }
+
+  /**
+   * E3R2: record ONE scan moment for this observer — the truth of the moment his
+   * eyes were open, replayed later by the pull. Pure code motion out of
+   * `refreshPerception` (same three statements, same order), so that the O2 LOOK
+   * can record a scan moment through the SAME recorder rather than a second one.
+   * Draws no rng (`recordScanFrame` is a copy; `perceptionTruth` is a buffer refill).
+   */
+  private recordObserverScanFrame(gid: number): void {
+    let ring = this.scanFrames.get(gid);
+    if (ring === undefined) {
+      ring = { frames: Array.from({ length: SCAN_FRAME_RING }, () => createScanFrame()), next: 0 };
+      this.scanFrames.set(gid, ring);
+    }
+    recordScanFrame(ring.frames[ring.next], this.perceptionTruth());
+    ring.next = (ring.next + 1) % SCAN_FRAME_RING;
+  }
+
+  /**
+   * O2 T0 §SEAM (docs/world-model/O2-T0-DORMANT-SEAM.md): arm a LOOK.
+   *
+   * Called ONLY from the percept-path decision fork in `PlayerBrain` (the C5-T2
+   * whether fork's own eligible-choice predicate, evaluated one step earlier),
+   * and only when `o2Look` is armed. The body commits to standing and looking for
+   * `O2_LOOK_TICKS` ticks: he plants, he does not act, and one scan moment is
+   * recorded per tick — starting with THIS one, so the look begins with a look.
+   *
+   * It reads no truth, opens no channel and draws NO rng (I1). The refresh is
+   * entirely a change of scan CADENCE through the existing recorder; what his
+   * heading cannot cover stays uncovered (`visibleDistance`'s cone is applied
+   * unchanged when the frames are replayed).
+   */
+  armO2Look(p: Player): void {
+    this.o2LookWindow = {
+      gid: p.gid, startTick: this.stepCount, untilTick: this.stepCount + O2_LOOK_TICKS,
+    };
+    this.o2LookLedger.looks += 1;
+    this.recordObserverScanFrame(p.gid);
+    this.o2LookLedger.scans += 1;
+  }
+
+  /**
+   * O2 T0 §SEAM: advance the live LOOK window by one tick — abort it if the body
+   * no longer qualifies, close it at `untilTick`, otherwise record this tick's
+   * scan moment. Every bail is an EXISTING channel (ownership, phase, stun,
+   * sending-off); the seam adds no attack surface (the C7 I3 form). Dormant:
+   * `o2Look` OFF ⇒ `o2LookWindow` is always null ⇒ never called.
+   */
+  private stepO2Look(): void {
+    const w = this.o2LookWindow;
+    if (!this.o2Look || w === null) return;
+    const body = this.allPlayers.find((p) => p.gid === w.gid);
+    if (body === undefined || this.ball.owner !== body) {
+      this.o2LookLedger.abortedLoss += 1;
+      this.o2LookWindow = null;
+      return;
+    }
+    if (this.phase !== 'playing' || body.sentOff || body.stunTimer > 0 || body.role === 'GK') {
+      this.o2LookLedger.abortedPhase += 1;
+      this.o2LookWindow = null;
+      return;
+    }
+    if (this.stepCount >= w.untilTick) {
+      this.o2LookLedger.completed += 1;
+      this.o2LookWindow = null;
+      return;
+    }
+    this.recordObserverScanFrame(body.gid);
+    this.o2LookLedger.scans += 1;
   }
 
   /** E3R2: this observer's recorded scan moments, oldest first. */
