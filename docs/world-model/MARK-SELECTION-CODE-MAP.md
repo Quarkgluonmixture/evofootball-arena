@@ -10,6 +10,43 @@ states FACTS about code as it stands at commit `fa54178`, cites `file:line` for
 every claim, labels anything the code does not settle as **AMBIGUOUS**, and
 proposes **no** design. Fix scope is the commander's.
 
+⚠ **FIX ROUND (ruling #190 → this revision).** The first draft failed
+machine-verify on nine findings; every one is corrected **in place** below,
+marked `⚠ CORRECTION` with the old claim left readable. The corrections are:
+§2.1 step 3 (the mechanism was FALSE), §2.1 step 4 (station width number),
+§2.2 (chaser-release row incomplete; "dominant" ranking unmeasured), §4 S1
+(reader list — `actionExecutor` reads `targetIdx`, not `team.marks`), §4 S3
+(`formationBase` is the wrong symbol), §5 trap 1 (a prescription beyond the
+evidence), the branch disclosure immediately below, and five line-range fixes
+(`genes.test.ts`, `Team.ts`, `policyGenome.ts`, the stance comment,
+`formations.test.ts`). Ruling #190 §2 records what stood verified untouched:
+no ball-distance / lane-relevance term anywhere in mark selection, no retention
+state (fixed point, not memory), the 22 m gate exceeding `HALF_W`, the armed
+worlds' unglue being a stance-target replacement, and the `formations.test.ts`
+pin.
+
+⚠ **BRANCH DISCLOSURE (undisclosed in the first draft).** `formationSpot`
+([`formations.ts:133-232`](../../src/ai/formations.ts#L133)) forks on its first
+line: `if (emergentPosOn()) return emergentStation(...)`
+([`:140`](../../src/ai/formations.ts#L140)). **Every `formations.ts` line this
+map cites (`:256-264`, `:267-284`, `:295-296`, `:304-313`, `:326-353`) lives
+inside `emergentStation` (`:250-364`) — the EMERGENT path.** It is the **DEFAULT
+ON** path ([`:108-113`](../../src/ai/formations.ts#L108): `_emergentPos === null`
+⇒ `true`, flipped only by the settings toggle via `setEmergentPos` (`:105-107`)
+or `EMERGENT_POS=0` (`:112`)), so it is what prod and the census world ran — but
+every station claim here is **emergent-path-only**. The legacy table path
+(`:141-232`) differs materially in exactly the place this map cares about: it
+takes lateral position from `DEFEND_FORMATIONS[formationDef][p.index].y ×
+widthMul` ([`:206`](../../src/ai/formations.ts#L206)) — a hand-authored table,
+not a role lane fraction — and its ball-side term
+([`:209`](../../src/ai/formations.ts#L209)) is a per-body **CONVERGENCE** toward
+`ball.pos.y` (weight `compactness*0.25`), which *does* pull a weak-side man
+toward the ball's lane, unlike the emergent path's common translation (see the
+§2.1 step-3 correction). It also has **no** anti-clump, solidity or
+opponent-line term. Claims that are branch-INDEPENDENT: everything in
+`TeamBrain.assignMarks` / `assignChasers`, `PlayerBrain`, `actionExecutor` and
+`stationEye` — i.e. §1.2, §1.3, §1.4, §2.2, §2.4 and §4 S1–S5.
+
 **The measured facts this map explains** (banked, #188.2, from
 [`FARSIDE-DEFENDER-FORENSIC.md`](FARSIDE-DEFENDER-FORENSIC.md) §8.5): on prod the
 weak-side back is in `MarkOpponent` for **81.5 %** of trigger ticks, at
@@ -28,7 +65,7 @@ worlds (v1/v2/v3) hold `markShare` p50 at 1.00 but cut far-side marking to
 | --- | --- | --- |
 | 1 | team mode chosen (`Press` / `Defend` / …) | [`TeamBrain.ts:58-97`](../../src/ai/TeamBrain.ts#L58) |
 | 2 | chasers assigned (1–3 bodies; everyone else is "free") | [`TeamBrain.ts:99`](../../src/ai/TeamBrain.ts#L99) → `assignChasers` [`:316-441`](../../src/ai/TeamBrain.ts#L316) |
-| 3 | **marks assigned** — the whole map (`Map<ourIdx, oppIdx>` on `team.marks`) | [`TeamBrain.ts:100`](../../src/ai/TeamBrain.ts#L100) → `assignMarks` [`:456-502`](../../src/ai/TeamBrain.ts#L456); the field is [`Team.ts:57-58`](../../src/sim/Team.ts#L57) |
+| 3 | **marks assigned** — the whole map (`Map<ourIdx, oppIdx>` on `team.marks`) | [`TeamBrain.ts:100`](../../src/ai/TeamBrain.ts#L100) → `assignMarks` [`:456-502`](../../src/ai/TeamBrain.ts#L456); the field is [`Team.ts:58`](../../src/sim/Team.ts#L58) (⚠ CORRECTION, finding 9: cited `:57-58`; `:57` is the doc comment, the `marks = new Map<number, number>()` declaration is `:58`, and `chasers` is `:56`) |
 | 4 | the individual **scores** `MarkOpponent` against his other options and writes `action.targetIdx` | [`PlayerBrain.ts:1295-1302`](../../src/ai/PlayerBrain.ts#L1295), [`:1348-1354`](../../src/ai/PlayerBrain.ts#L1348) |
 | 5 | the executor turns `targetIdx` into a **movement target** (the mark STANCE) | [`actionExecutor.ts:222-326`](../../src/ai/actionExecutor.ts#L222) |
 
@@ -122,18 +159,83 @@ State at the trigger (the user's lens): the opponents carry the ball deep in our
 third on one flank; our weak-side back stands on the other flank, on his own
 station.
 
-1. **He is not a chaser.** `assignChasers` sends 1–2 bodies at the ball, picked
-   by **distance to the ball** ([`TeamBrain.ts:437-440`](../../src/ai/TeamBrain.ts#L437)).
-   The weak-side back is the furthest man from the ball, so he is never picked —
-   he lands in the `free` list ([`:477`](../../src/ai/TeamBrain.ts#L477)).
+1. **He is not a chaser.** `assignChasers` sends 0–3 bodies at the ball
+   (count at [`TeamBrain.ts:359-395`](../../src/ai/TeamBrain.ts#L359)), picked by
+   **distance to the ball** ([`:437-440`](../../src/ai/TeamBrain.ts#L437)).
+   The weak-side back is the furthest man from the ball, so he is never picked by
+   that rule — he lands in the `free` list
+   ([`:477`](../../src/ai/TeamBrain.ts#L477)). ⚠ CORRECTION (finding 5, same
+   defect as the §2.2 chaser row): "1–2" understated it — `count` reaches **3**
+   inside the phase-112 transition window (`:373-387`), and the ATTACK-THE-DROP
+   branch (`:397-435`) picks by **arrival time to the landing point**, not ball
+   distance, so on an opponent's long hoof the furthest man from the ball *can*
+   be the chaser.
 2. **A far-side opponent is a threat with high priority.** Threats are sorted by
    DEPTH only ([`:475`](../../src/ai/TeamBrain.ts#L475)). An opponent winger
    parked on the weak flank, deep in our third, sorts at or near the top of the
    list — no matter that the ball is 15 m of width away.
-3. **He is the nearest free body to that threat.** They are on the same flank;
-   everyone else has shifted ball-side (the station field's own ball-side shift,
-   [`formations.ts:295-296`](../../src/ai/formations.ts#L295)). The nearest-body
-   rule ([`:494-495`](../../src/ai/TeamBrain.ts#L494)) therefore names him.
+3. **He is the nearest free body to that threat.** The nearest-body rule is
+   [`TeamBrain.ts:494-495`](../../src/ai/TeamBrain.ts#L494) (`d = dist(p.pos,
+   threat.pos)`, min over the *surviving* free bodies).
+
+   ⚠ **CORRECTION (finding 1, the FALSE mechanism).** The first draft wrote:
+   *"They are on the same flank; everyone else has shifted ball-side (the station
+   field's own ball-side shift, `formations.ts:295-296`)."* **That is false.**
+   `formations.ts:295-296` is a **COMMON TRANSLATION**: `y += ball.pos.y *
+   ballSideShift` is added to **every** body's station with the **same**
+   coefficient (`0.18 + defensiveCompactness*0.25` out of possession) — the code
+   comment says so explicitly (`:292-294`: "TRANSLATE the block ball-side (add a
+   common offset) — do NOT converge each man onto ball.y … The whole shape slides
+   over, keeping its width"). A uniform offset **cannot** change who is nearest
+   to anything: it preserves the lateral ORDER of the stations and every
+   station-to-station gap. "Everyone else shifted ball-side" is therefore not a
+   mechanism at all. (The legacy table path's `:209` term *is* a per-body
+   convergence and would differentiate — but that path was OFF; see the branch
+   disclosure.)
+
+   **The TRUE mechanism, re-derived from code, is three facts stacked:**
+
+   a. **LANE GEOMETRY: only two of the six bodies have a wide station, one per
+      flank.** In `emergentStation` the lane anchor is
+      [`formations.ts:256-264`](../../src/ai/formations.ts#L256): `laneSign =
+      p.index === 3 ? -1 : p.index === 4 ? 1 : 0`, and `laneFrac` is `laneSign *
+      0.6` for `WG`, `laneSign * 0.12` for `MF`, **0** for `GK` / `DF` / `ST`.
+      With `ROLES = ['GK','DF','MF','WG','WG','ST']`
+      ([`types.ts:27`](../../src/sim/types.ts#L27)), the only `laneSign ≠ 0`
+      slots are 3 and 4 — both `WG` — so slot 3 owns the −y flank, slot 4 the +y
+      flank, and slots 1 (`DF`), 2 (`MF`, `laneSign = 0` ⇒ `laneFrac = 0`) and 5
+      (`ST`) all hold the **centre lane**. The weak-side wide body is thus the
+      *only* body whose station sits on the far flank; the common ball-side
+      translation slides the whole set over but leaves him the widest man on his
+      side, and the anti-clump repulsion
+      ([`:326-343`](../../src/ai/formations.ts#L326), stations repel inside 9 m)
+      actively *maintains* that separation rather than closing it.
+   b. **THE BALL-SIDE BODIES ARE CONSUMED AS CHASERS.** `assignChasers` picks the
+      `count` nearest bodies **to the ball**
+      ([`TeamBrain.ts:437-440`](../../src/ai/TeamBrain.ts#L437)) — i.e. ball-side
+      bodies — and `free` is built by **excluding** them
+      ([`:477`](../../src/ai/TeamBrain.ts#L477)). Those bodies are not candidates
+      for any threat, far-side or not.
+   c. **THE GREEDY DEPTH-MAJOR LOOP SPENDS THE REST BALL-SIDE FIRST.** Threats
+      are iterated in depth order ([`:475`](../../src/ai/TeamBrain.ts#L475),
+      `:481`) and each claim is exclusive (`used`, `:485`, `:498`). The deeper
+      ball-side threats are reached first and take the central/ball-side free
+      bodies, so by the time the far-flank threat is reached the candidate set is
+      thinned — and the weak-side wide body, standing on that flank (a), is the
+      minimiser of `dist(p.pos, threat.pos)` among whoever is left.
+
+   Together: he is nearest **because his slot's lane anchor puts him there and
+   because every body nearer the ball has already been spent** — a
+   consumption-plus-lane-geometry fact, not a shift fact. With 6 bodies, one GK,
+   1–3 chasers (§2.2) and ≤ 5 threats, the free list is 2–4 bodies wide, so this
+   thinning is not marginal.
+
+   ⚠ **AMBIGUOUS (labelled hypothesis)**: *which* bodies were chasers or already
+   `used` on the receipt's tick — and therefore how much of (b)/(c) was load-
+   bearing versus (a) alone — is **not** recoverable from the banked artifact
+   (§2.3). (a) is derivable from the receipt (slot 4 = the `laneSign = +1` wide
+   body, `flankSign = −1` ⇒ ball on the other flank); (b) and (c) need the
+   re-walk probe.
 4. **No gate stops it.**
    - Range: `d < 22` — and `HALF_W = 58 × 0.7 / 2 = 20.3 m`
      ([`constants.ts:35-37`](../../src/sim/constants.ts#L35)), so **the 22 m mark
@@ -142,10 +244,40 @@ station.
    - WG discipline (`:490`) fires only for threats **inside 8 m of centre** — a
      far-flank threat is the opposite case, so the filter is silent.
    - Zonal (`:493`) would need the threat within 9 m of **his own station** — and
-     his station IS on the weak flank (`laneFrac = ±0.6 × HALF_W ≈ ±12.2 m`,
-     [`formations.ts:256-263`](../../src/ai/formations.ts#L256)). A far-side man
-     standing near him is **exactly inside his zone**. The zonal scheme does not
-     structurally prevent this case; it is not a ball-relevance test.
+     his station IS on the weak flank.
+
+     ⚠ **CORRECTION (finding 2, a FALSE number).** The first draft wrote
+     *"`laneFrac = ±0.6 × HALF_W ≈ ±12.2 m` (`formations.ts:256-263`)"*. That
+     drops the width multiplier. The station's lateral coordinate is
+     `y = laneFrac * HALF_W * widthMul`
+     ([`formations.ts:284`](../../src/ai/formations.ts#L284)) with
+     `widthMul = 1.15 − defensiveCompactness*0.6` out of possession
+     ([`:282`](../../src/ai/formations.ts#L282)) ⇒ `widthMul ∈ [0.55, 1.15]`.
+     With `laneFrac = 0.6` and `HALF_W = 20.3 m`
+     ([`constants.ts:35-37`](../../src/sim/constants.ts#L35)), `0.6 × 20.3 =
+     12.18 m` is only the `widthMul = 1` case; the true band is
+     **6.7 m … 14.0 m**. In the **zonal** scheme `widthMul` is floored at 0.95
+     ([`:283`](../../src/ai/formations.ts#L283)) ⇒ `widthMul ∈ [0.95, 1.15]` and
+     the band is **11.6 m … 14.0 m**. (Both bands are pre-modifier: the common
+     ball-side translation then adds `ball.pos.y × (0.18…0.43)` (`:295-296`), the
+     solidity term multiplies `y` by `1 − threat*(0.3+compactness*0.5)*0.3`
+     ∈ [0.835, 1] for non-`ST` under threat (`:349-353`), and anti-clump adds
+     ≤ ±7 m (`:342-343`).)
+
+     **Does the 9 m argument survive the corrected numbers? Yes, but narrower
+     than stated.** The gate only exists in the zonal scheme (`zones` is `null`
+     otherwise, `:479`), and zonal is exactly the branch whose `widthMul` is
+     floored — so the zone centre's lane is **never narrower than ≈11.6 m**, and
+     the 6.7 m low end is unreachable where the gate applies. A far-flank threat
+     standing beside the weak-side man (the receipt's 1.84 m) is then inside the
+     9 m radius provided the pair's **depth** (x) difference is also small: the
+     gate is a 2-D distance `dist(zoneCentre, threat.pos) > 9`, so it excludes a
+     far-side man who is wider than the station or ≳9 m off it in x. That
+     exclusion is real and pinned: `formations.test.ts:150-155` stages a flank
+     threat at `y = 25`, wider than any station, and asserts **zonal does NOT
+     mark him**. So the honest claim is: *the zonal gate is a station-proximity
+     test, not a ball-relevance test — it excludes far-side men who are far from
+     the weak-side man's station, and permits the ones parked next to him.*
    - Lane relevance: no such term exists (§1.3).
 5. **`MarkOpponent` wins his own decision** ([`PlayerBrain.ts:1295-1302`](../../src/ai/PlayerBrain.ts#L1295)):
    0.62 + aggression vs 0.42 + compactness.
@@ -167,12 +299,12 @@ tick iff one of these becomes true:
 
 | release | where | note |
 | --- | --- | --- |
-| we win the ball (`possessionSide === team.side`) | `TeamBrain.ts:458` | the dominant real-world release |
+| we win the ball (`possessionSide === team.side`) | `TeamBrain.ts:458` | ⚠ CORRECTION (finding 7): the first draft called this "**the dominant real-world release**". That ranking is **UNMEASURED** — no probe in this arc counted which row fires. Code-level fact only: this row clears the *entire* map for every body at once (`:457-458`), whereas every other row releases one pair. Frequency is a **labelled hypothesis**, not a result. |
 | play stops (not `playing`/`restart`) | `TeamBrain.ts:28-36` | `marks.clear()` at `:31` |
 | his mark becomes the CARRIER | `TeamBrain.ts:474` | carrier is filtered out of threats |
 | the mark drifts ≥ 22 m away | `TeamBrain.ts:495` | wider than a half-pitch (§2.1.4) |
 | a DEEPER threat claims him first (he is nearest to it) | `TeamBrain.ts:481-500` | the only competitive release |
-| he becomes a chaser | `TeamBrain.ts:477` | requires being 1st/2nd nearest the ball |
+| he becomes a chaser | `TeamBrain.ts:477` (membership built at `:359-440`) | ⚠ CORRECTION (finding 5): the first draft said this "requires being **1st/2nd nearest the ball**" — INCOMPLETE. Three ways in: (i) the steady-state pick, the `count` nearest **to the ball** (`:437-440`), `count = 1`, `+1` for `Press` mode or `pressIntensity > 0.78` (`:367`); (ii) **the phase-112 transition window** (`:373-387`) — for `sinceLoss < 3.0 s` a gegenpress side (`transitionPress` normalised `> 0.3`) goes to **`count = 3`**, so the 3rd-nearest body becomes a chaser too (and a drop-and-recover side, `< −0.3`, is clamped back to 1, `:385`); (iii) **ATTACK-THE-DROP** (`:397-435`) — on an opponent's lofted ball in flight (`ball.z > 0.5 \|\| vz > 2`, `pass.side !== team.side`, `owner === null`) with `flight > 12 m` and the landing **outside our box**, the single chaser is whoever minimises **arrival time** `dist(p.pos, land) / topSpeed` to `ballLanding(ball)` (`:421-434`) — a ball-distance-independent pick that CAN name the weak-side man, and it `return`s, replacing the whole by-distance list. Counter-cases in the same block: `count = 0` while the opponent GK holds/distributes (`:357-361`) or at a goal kick (`:395`), `count = 1` at other restarts (`:395`) and for a loose ball (`:372`) — those rows *prevent* this release. |
 | zonal only: the mark leaves his 9 m station zone | `TeamBrain.ts:493` | zone centre moves with his own station |
 | his mark is sent off / he is sent off | `Match.ts:2511-2516` | bookkeeping |
 | half-time / kickoff reset | `Match.ts:3408` | `marks.clear()` |
@@ -193,7 +325,15 @@ From the artifact (`worlds.prod.receipts[0]` of
 `markStance 100 %`.
 
 Slot 4 is the `laneSign = +1` wide body ([`formations.ts:256`](../../src/ai/formations.ts#L256)),
-i.e. the +y flank while the ball is at −y: the geometry of §2.1 exactly. His mark
+i.e. the +y flank while the ball is at −y: the geometry of §2.1 exactly. Slot 4's
+**role is `WG`** ([`types.ts:27`](../../src/sim/types.ts#L27):
+`ROLES = ['GK','DF','MF','WG','WG','ST']`) — so "weak-side back" is the user's
+positional description of the far-flank wide slot, and two code consequences
+follow: his station lane is the `WG` fraction `0.6` (`formations.ts:263`, the
+§2.1-step-4 band), and the WG width-discipline filter
+([`TeamBrain.ts:490`](../../src/ai/TeamBrain.ts#L490)) is the one gate that
+*could* apply to him — it does not here, because it only blocks **central**
+threats (`|threat.pos.y| < 8`). His mark
 sits 15.1 m off the ball's lane and he holds 1.80 m from him — inside the
 `markDist` band `1.2–2.6` ([`actionExecutor.ts:239`](../../src/ai/actionExecutor.ts#L239)) —
 for the whole episode, with zero switches, which is the fixed-point behaviour of
@@ -248,7 +388,7 @@ home-prior offsets ([`farside-defender-forensic.ts:207-216`](../../scripts/probe
 | knob | kind | where read | what it moves |
 | --- | --- | --- | --- |
 | `markingAggression` | tactical gene ([`genome.ts:28-29`](../../src/evolution/genome.ts#L28), key list [`:268`](../../src/evolution/genome.ts#L268)) | `PlayerBrain.ts:1300`; `actionExecutor.ts:239,255,268,321` | mark score, stance distance, stance lane weight, marker speed |
-| `markBase` | **policy gene** (per-franchise, [`policyGenome.ts:24`](../../src/evolution/policyGenome.ts#L24), bounds `0.5–1.7 ×` default 0.62 ⇒ **0.31–1.05**, [`:37-45`](../../src/evolution/policyGenome.ts#L37)) | `PlayerBrain.ts:1300` | mark-vs-shape appetite. At the low bound (0.31) the mark can LOSE to `MoveToFormationSpot` (0.42–0.50) |
+| `markBase` | **policy gene** (per-franchise, key at [`policyGenome.ts:24`](../../src/evolution/policyGenome.ts#L24), bounds `MIN_MUL 0.5` / `MAX_MUL 1.7 ×` its default 0.62 ⇒ **0.31–1.05**, [`:39-43`](../../src/evolution/policyGenome.ts#L39) — ⚠ CORRECTION, finding 9: cited `:37-45`; `:36-38` is the doc comment, `MIN_MUL`/`MAX_MUL` are `:39-40` and `boundsFor` is `:41-44`) | `PlayerBrain.ts:1300` | mark-vs-shape appetite. At the low bound (0.31) the mark can LOSE to `MoveToFormationSpot` (0.42–0.50) |
 | `style.scheme` (man/zonal) | derived from `markingAggression >= 0.3` ([`types.ts:89`](../../src/sim/types.ts#L89)) | `TeamBrain.ts:460` | whether the 9 m zone gate exists at all |
 | `defensiveCompactness` | tactical gene | `PlayerBrain.ts:1343`; `formations.ts:282,295,350-352` | shape appetite; the ONLY ball-side lateral pull in defence |
 | `pressIntensity` | tactical gene | `TeamBrain.ts:85,367`; `formations.ts:270` | chaser count (hence who is "free"), block height |
@@ -273,7 +413,7 @@ home-prior offsets ([`farside-defender-forensic.ts:207-216`](../../scripts/probe
 | trap danger-zone **−17 m** | `actionExecutor.ts:292` | shared with the jockey (Phase 92) |
 | `MoveToFormationSpot` defensive base **0.42** | `PlayerBrain.ts:1343` | not a policy gene |
 | contain branch **8 m / 35 m / one-body** | `PlayerBrain.ts:1321-1331` | Phase 29.1; writes `markTarget = carrier.index` without touching `team.marks` |
-| ball-side shift `0.18 + compactness*0.25` | `formations.ts:295-296` | the substrate's ENTIRE lateral ball-side modulation out of possession (≤ 0.43 × ball.y) |
+| ball-side shift `0.18 + compactness*0.25` | `formations.ts:295-296` (emergent path only) | the substrate's ENTIRE lateral ball-side modulation out of possession (≤ 0.43 × ball.y). ⚠ It is a **COMMON TRANSLATION** — the same offset for every body (`:292-294`), so it moves the block, never the *relative* order of stations (the §2.1 step-3 correction). The legacy table path's counterpart `:209` is a per-body convergence instead. |
 | solidity central pull `threat*(0.3+compactness*0.5)*0.3` | `formations.ts:349-353` | pulls toward y = 0, not toward the ball's lane |
 
 ---
@@ -284,28 +424,86 @@ Facts only; no recommendation, no ranking.
 
 **S1 — a lane-relevance / ball-relevance term inside the mark SCORE**
 ([`TeamBrain.ts:494-495`](../../src/ai/TeamBrain.ts#L494)).
-Blast radius: `team.marks` is read by `PlayerBrain.ts:1295` (the mark candidate),
-`PlayerBrain.ts:1324` (container eligibility — a body that stops being a marker
-becomes eligible to jockey the carrier), `actionExecutor.ts:222-224` (stance),
-`Match.ts:2511-2516` (send-off cleanup), `RenderStateAdapter.ts:296` (the
-on-screen marking lines / `flags.marking`, [`DebugOverlay.ts:49`](../../src/render/DebugOverlay.ts#L49)),
-`cloneState.test.ts:50` (state-clone contract). Tests that pin current behaviour:
-`formations.test.ts:143-155` asserts man-marking tracks **the flank threat
-wherever it goes** and that zonal does NOT — i.e. the current far-side behaviour
-is an explicit, asserted contract, and `onball.test.ts:372-377` asserts the
-contain fallback appears once `marks` is empty.
+Blast radius. ⚠ **CORRECTION (finding 3, a FALSE reader).** The first draft listed
+`actionExecutor.ts:222-224` as a reader of `team.marks`. **It is not one.**
+`grep -n "\.marks" src/` returns exactly six `src` sites and `actionExecutor.ts`
+is not among them. The **complete** `team.marks` surface is:
+
+| site | kind |
+| --- | --- |
+| [`TeamBrain.ts:499`](../../src/ai/TeamBrain.ts#L499) | the ONLY writer (`marks.set`) |
+| [`TeamBrain.ts:31`](../../src/ai/TeamBrain.ts#L31), [`:457`](../../src/ai/TeamBrain.ts#L457) | clears (play stopped / every rebuild) |
+| [`PlayerBrain.ts:1295`](../../src/ai/PlayerBrain.ts#L1295) | reader — the mark candidate |
+| [`PlayerBrain.ts:1324`](../../src/ai/PlayerBrain.ts#L1324) | reader — container eligibility (a body that stops being a marker becomes eligible to jockey the carrier) |
+| [`Match.ts:2511-2515`](../../src/sim/Match.ts#L2511) | send-off cleanup (deletes both directions) |
+| [`Match.ts:3408`](../../src/sim/Match.ts#L3408) | half-time / kickoff clear |
+| [`RenderStateAdapter.ts:296`](../../src/render3d/RenderStateAdapter.ts#L296) | reader — the on-screen marking lines / `flags.marking`, [`DebugOverlay.ts:49`](../../src/render/DebugOverlay.ts#L49) |
+| `tests/cloneState.test.ts:50` | state-clone contract (`marks: [...side.marks]`) |
+
+**The executor's real input is `p.action.targetIdx`**
+([`actionExecutor.ts:223`](../../src/ai/actionExecutor.ts#L223):
+`const markIdx = p.action.targetIdx`), written at
+[`PlayerBrain.ts:1352`](../../src/ai/PlayerBrain.ts#L1352) from `markTarget`.
+Two consequences the first draft understated:
+
+- **Staleness indirection.** `targetIdx` is a *snapshot* taken on the body's own
+  0.15 s tick, while `team.marks` is rebuilt on the team's 0.4 s tick, so the
+  stance can be executed against an assignment up to one body interval (0.15 s)
+  out of date (§1.1). A change to `assignMarks` reaches the executor only via
+  the next `decidePlayer` for that body — there is no path from `team.marks` to
+  a movement target that skips `PlayerBrain`.
+- **`targetIdx` is not always a `team.marks` entry.** The contain branch writes
+  `markTarget = carrier.index` with **no** map entry
+  ([`PlayerBrain.ts:1332`](../../src/ai/PlayerBrain.ts#L1332), trap 8), so the
+  executor's mark path also serves ticks the map never authored.
+
+Tests that pin current behaviour: `formations.test.ts:143-156` asserts man-marking
+tracks **the flank threat wherever it goes** (`:147`) and that zonal does NOT
+(`:155`) — i.e. the current far-side behaviour is an explicit, asserted contract
+— and `onball.test.ts:372-378` asserts the contain fallback appears once `marks`
+is empty. Branch note: the `marking schemes` describe
+([`formations.test.ts:105-157`](../../tests/formations.test.ts#L105)) has **no**
+`setEmergentPos` hook of its own (the `beforeEach`/`afterEach` pairs at `:76-77`,
+`:164-165`, `:293-294` belong to other describes), so this pin runs on the
+**emergent** default path — even though its staging still names a `low-32`
+defensive table (`:110`) that the emergent path ignores.
 
 **S2 — the threat PRIORITY key** ([`TeamBrain.ts:475`](../../src/ai/TeamBrain.ts#L475)).
 Same consumers as S1. Additionally: the loop is greedy, so re-ordering threats
 re-orders *every* claim, not just the far-side one — the box threat currently
-claimed early (asserted at `formations.test.ts:146-152`) could lose its marker to
-an earlier-sorted man.
+claimed in **both** schemes could lose its marker to an earlier-sorted man.
+⚠ CORRECTION (finding 9): the box-threat pin was cited as
+`formations.test.ts:146-152`; the real assertions are
+[`:148`](../../tests/formations.test.ts#L148) (`expect(manMarked.has(3))`) and
+[`:153`](../../tests/formations.test.ts#L153) (`expect(zonalMarked.has(3))` — "the
+box is still defended man-for-man"), with the box threat staged at
+[`:131`](../../tests/formations.test.ts#L131) (`B.players[3].pos = { x: -38, y: 2 }`)
+and the whole test spanning `:143-156`.
 
 **S3 — the RANGE gate 22 m** ([`TeamBrain.ts:495`](../../src/ai/TeamBrain.ts#L495)).
 Tightening it leaves far-side threats UNMARKED rather than differently marked
 (there is no fallback assignment pass), which changes how many bodies fall back
-to `MoveToFormationSpot` — priced against `formationBase` and hence against the
-station field the #188 verdict already indicts.
+to `MoveToFormationSpot` — and hence how much of the game the station field the
+#188 verdict already indicts is driving.
+
+⚠ **CORRECTION (finding 4, a WRONG SYMBOL).** The first draft said that fallback
+is "priced against **`formationBase`**". It is not. In the defending branch the
+`MoveToFormationSpot` candidate is scored by a **hardcoded literal**:
+`0.42 + g.defensiveCompactness * 0.08`
+([`PlayerBrain.ts:1341-1344`](../../src/ai/PlayerBrain.ts#L1341)) ⇒ 0.42–0.50,
+no policy gene — exactly as §1.4 and the §3.2 row ("`MoveToFormationSpot`
+defensive base **0.42** · `PlayerBrain.ts:1343` · not a policy gene") already
+state; S3 contradicted them. `W.formationBase` **does** exist
+([`types.ts:174`](../../src/sim/types.ts#L174), default **0.45**
+[`:220`](../../src/sim/types.ts#L220)) but is read only at
+[`PlayerBrain.ts:1262`](../../src/ai/PlayerBrain.ts#L1262) — the **in-possession**
+`MoveToFormationSpot` candidate (the `else` at `:1265` opens the
+they-have-the-ball branch). It is also **not** in `POLICY_GENE_KEYS`
+([`policyGenome.ts:18-31`](../../src/evolution/policyGenome.ts#L18)), so it is a
+hand constant either way. Net effect on S3's argument: the mark/shape ordering in
+defence is `markBase`-vs-literal, so tightening the range gate trades marking for
+a **fixed** 0.42–0.50 fallback, and only `markBase` (§3.1) can move the other
+side of that comparison.
 
 **S4 — a RELEASE condition** (a new predicate anywhere in
 [`TeamBrain.ts:481-500`](../../src/ai/TeamBrain.ts#L481), or a mark-dropping
@@ -321,11 +519,18 @@ would draw a line nobody is honouring.
 `laneW` at `:268`, `markDist` at `:239`).
 Blast radius is the documented failure-mode ledger in that block: the 1.2 m floor
 exists because tighter stances put markers inside the 1.15 m tackle radius and
-killed possession chains (Phase 30.5, comment `:234-238`); a stronger ball-side
+killed possession chains (Phase 30.5, comment
+[`:232-238`](../../src/ai/actionExecutor.ts#L232) — ⚠ CORRECTION, finding 9:
+cited `:234-238`; the "Stance floor 0.8 → 1.2m (Phase 30.5)" comment **opens at
+`:232`** and the `markDist` line it guards is `:239`); a stronger ball-side
 pull previously dragged every marker into the central corridor (Phase 27.1,
 comment `:266-267`); flattening the aggression slope inverted the
-`markingAggression` payoff and is pinned by `genes.test.ts:102-129`
-(300-attempt tackle-win margin). `markDist`/`laneW` are also the offside-trap
+`markingAggression` payoff and is pinned by
+[`genes.test.ts:102-130`](../../tests/genes.test.ts#L102) (the 300-attempt
+tackle-win margin is asserted at **`:130`**, `expect(tackleWins(0.9))
+.toBeGreaterThan(tackleWins(0.1) + 20)` — ⚠ CORRECTION, finding 9: cited
+`:102-129`, which stops one line short of the assertion; note also the tests live
+in `tests/`, not beside the sources). `markDist`/`laneW` are also the offside-trap
 (`:291-298`) and reaction-lag (`:299-320`) inputs.
 
 **S6 — the defensive station's lateral ball-side term**
@@ -343,11 +548,25 @@ because of these side doors.
 ## §5 TRAPS
 
 1. **The far-side mark is an asserted contract, not an oversight.**
-   `formations.test.ts:143-155` ("flank threat tracked wherever it goes") and the
-   Phase-30 comment at [`TeamBrain.ts:447-454`](../../src/ai/TeamBrain.ts#L447)
-   record that a zonal cut which *never* engaged parked an impenetrable 5-body
-   wall — 3 shots/match conceded, league shot volume collapsed. Any fix that
-   makes markers refuse far-side men moves toward that measured failure.
+   `formations.test.ts:143-156` (`:147`, "flank threat tracked wherever it goes")
+   and the Phase-30 comment at
+   [`TeamBrain.ts:447-454`](../../src/ai/TeamBrain.ts#L447) are the record.
+
+   ⚠ **CORRECTION (finding 8, a PRESCRIPTION beyond the evidence).** The first
+   draft closed: *"Any fix that makes markers refuse far-side men moves toward
+   that measured failure."* That over-reaches. **The narrower fact, verbatim in
+   scope:** the Phase-30 comment (`:451-454`) records that **a zonal first cut in
+   which zone defenders NEVER ENGAGED** parked an impenetrable 5-body wall — 3
+   shots/match conceded, league shot volume collapsed. "Never engaged" is a
+   *total* withdrawal from marking; "declining far-side men" is a strictly
+   narrower change that leaves box threats (`:482`, `boxThreat` bypasses the
+   gate) and near-side threats marked. The Phase-30 evidence therefore does not
+   price the narrow version. ⚠ **INFERENCE, unmeasured**: a far-side refusal sits
+   *somewhere* on the axis whose far end produced that collapse, so it shares the
+   failure's direction and any A/B should carry the shots-conceded / league
+   shot-volume metrics that detected it. That is a hypothesis about which
+   instruments to bring, not a prediction of the outcome, and this map runs no
+   probe to settle it.
 2. **Two prior reverts live inside the stance block** (`actionExecutor.ts:234-256`):
    the 30.5 stance-floor (tight stances = snap dispossessions) and the 31.6
    distribution stand-off (glued markers = box wrestling at goal kicks), each
@@ -395,4 +614,11 @@ because of these side doors.
   (§2.3 AMBIGUOUS) — that needs a re-walk probe.
 - It does not confirm the §2.4 positional-feedback channel — code-supported,
   unmeasured (labelled).
+- It does not RANK the §2.2 release rows (finding 7): no probe counted which one
+  fires in play, so no row is called dominant.
+- It does not describe the legacy table path beyond the contrast in the branch
+  disclosure (finding 6): every station claim is emergent-path-only, and the
+  emergent path is the DEFAULT-ON one prod ran.
+- It does not price a narrow far-side refusal against the Phase-30 collapse
+  (finding 8): that evidence is about a zonal cut which never engaged at all.
 - It proposes nothing. The fix scope, if any, is the commander's per #189.3.
