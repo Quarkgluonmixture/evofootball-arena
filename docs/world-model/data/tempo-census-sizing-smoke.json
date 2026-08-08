@@ -2,7 +2,7 @@
   "probe": "tempo-census",
   "ruling": "#170 (granted on #169.5); stage doc docs/world-model/TEMPO-CENSUS.md",
   "mode": "smoke",
-  "head": "e63a6ec",
+  "head": "6c29b99",
   "preflight": false,
   "staging": {
     "arms": [
@@ -22,6 +22,7 @@
       "displayMinPerSimSecond": 0.375,
       "simSecondsPerDisplayMinute": 2.666667,
       "law": "EVERY rate appears on BOTH axes. DURATIONS are sim-seconds only and are NEVER rescaled — a 0.3 s hold is 0.3 s on the screen. The gap table never mixes axes.",
+      "rateDenominator": "⭐ ONE CLOCK (#171.1.ii): mean `match.simTime` — PLAYED sim-seconds — is the denominator of BOTH axes, so perDisplayMinute = perSimSecond × 2.666667 holds EXACTLY. `simTick · DT` is used in NO rate: simTick (= stepCount) counts the kickoff / goal-pause / half-time steps that simTime skips (Match.ts:1113–1134). That pause-inclusive clock is emitted once per arm as `wallSimSecondsPerMatch`, labelled as context.",
       "trace": "Match.ts:1058 — displayMinute = min(45, floor((simTime / duration) · 90)) per half."
     },
     "frozenRadii": {
@@ -30,8 +31,10 @@
       "tightM": 3,
       "tightTrace": "CONTEST_RADIUS, src/sim/constants.ts:256",
       "tightestM": 1.25,
-      "tightestTrace": "CONTROL_RADIUS, src/sim/constants.ts:244",
-      "engineReceptionTrigger": "trigger = 3.0 + genome.tempo · 1.5 (Match.ts:1711) ⇒ 3.0–4.5 m; REPORTED as observed range, never used as the frozen radius (it moves with the arm)."
+      "tightestTrace": "CONTROL_RADIUS, src/sim/constants.ts:244 = 1.25 × CONTROL_REACH_SCALE (constants.ts:31, positiveEnv('CONTROL_REACH_SCALE') ?? 1 — env-scalable, NOT a flat 1.25). Observed at RUNTIME in this process: CONTROL_REACH_SCALE = 1 ⇒ CONTROL_RADIUS = 1.25 m, which is the value actually used by the sensitivityTightest block (#171.1 finding 5).",
+      "controlReachScaleObserved": 1,
+      "controlRadiusFormula": "CONTROL_RADIUS = 1.25 × CONTROL_REACH_SCALE",
+      "engineReceptionTrigger": "trigger = 3.0 + team.genome.tempo · 1.5 (Match.ts:1710) ⇒ 3.0–4.5 m; REPORTED as observed range, never used as the frozen radius (it moves with the arm)."
     },
     "frozenFirstTouchWindowS": 0.28,
     "frozenFirstTouchTrace": "p.firstTouchWindow = 0.28 (Match.ts:1725) — the engine's own 一脚出球 window.",
@@ -186,7 +189,8 @@
         "hi": 14.5,
         "unit": "shots",
         "grade": "P",
-        "source": "PUBLIC but WEAK: the only team-level datapoint located is Arsenal 14.53 shots/match in 2024-25 (statmuse.com), which was among the league LEADERS ⇒ the league mean sits below it. The band is deliberately wide and its centre is NOT sourced. Treat as an order-of-magnitude line only."
+        "source": "PUBLIC but WEAK: the only team-level datapoint located is Arsenal 14.53 shots/match in 2024-25 (statmuse.com), which was among the league LEADERS ⇒ the league mean sits below it. The band is deliberately wide and its centre is NOT sourced. Treat as an order-of-magnitude line only.",
+        "scope": "⚠ PER TEAM PER MATCH. The probe's eventsPerMinute.shots.perMatch is a BOTH-TEAMS sum — read this band against eventsPerMinute.shots.perTeamPerMatch (= the sum / 2; the arms are symmetric, so the halving is exact in expectation, not per match)."
       },
       {
         "id": "foulsPerTeam",
@@ -195,7 +199,8 @@
         "hi": 12,
         "unit": "fouls",
         "grade": "P",
-        "source": "PUBLIC but WEAK: Arsenal committed 399 fouls in 38 matches in 2024-25 = 10.5 per match (statmuse.com). One team, one season; the band is that value ±1.5."
+        "source": "PUBLIC but WEAK: Arsenal committed 399 fouls in 38 matches in 2024-25 = 10.5 per match (statmuse.com). One team, one season; the band is that value ±1.5.",
+        "scope": "⚠ PER TEAM PER MATCH. The probe's eventsPerMinute.fouls.perMatch is a BOTH-TEAMS sum — read this band against eventsPerMinute.fouls.perTeamPerMatch (= the sum / 2; the arms are symmetric, so the halving is exact in expectation, not per match)."
       }
     ]
   },
@@ -210,7 +215,10 @@
       "prod": {
         "arm": "prod",
         "matches": 40,
-        "simSecondsPerMatch": 250.7417,
+        "simSecondsPerMatch": 241.8354,
+        "simSecondsPerMatchNote": "⭐ match.simTime — PLAYED sim-seconds (stoppage in, kickoff / goal-pause / half-time steps out). THE denominator of every rate on every axis (#171.1.ii), so perDisplayMinute = perSimSecond × 2.666667 holds exactly.",
+        "wallSimSecondsPerMatch": 250.7417,
+        "wallSimSecondsNote": "⚠ CONTEXT ONLY — USED IN NO RATE. simTick · DT, the PAUSE-INCLUSIVE clock the user actually sits through at 1× (simTick = stepCount, which ticks through the kickoff / goal-pause / half-time steps that simTime skips). Reported because it is the honest answer to \"how long does a match take to watch\", not because any rate divides by it.",
         "inPlaySimSecondsPerMatch": 217.7308,
         "ownedSimSecondsPerMatch": 88.7058,
         "ownedShareOfInPlay": 0.40741,
@@ -364,15 +372,15 @@
           },
           "perMatch": {
             "perMatch": 47.5,
-            "perSimSecond": 0.189438,
-            "perSimMinute": 11.3663,
-            "perDisplayMinute": 0.527778
+            "perSimSecond": 0.196415,
+            "perSimMinute": 11.7849,
+            "perDisplayMinute": 0.523772
           },
           "openPlayPerMatch": {
             "perMatch": 32.95,
-            "perSimSecond": 0.13141,
-            "perSimMinute": 7.8846,
-            "perDisplayMinute": 0.366111
+            "perSimSecond": 0.13625,
+            "perSimMinute": 8.175,
+            "perDisplayMinute": 0.363333
           },
           "firstTouchDeath": {
             "definition": "an open-play spell with EXACTLY ONE ownership episode that ended with the opponents establishing control (the strict form). The WIDE form also counts a one-touch spell that ended out of play or in a foul by the holding team.",
@@ -422,32 +430,32 @@
           ]
         },
         "timeOnBallPerTouch": {
-          "definition": "owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT. A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90' clock.",
-          "n": 5183,
-          "mean": 0.6866,
-          "sd": 1.5917,
-          "p25": 0.15,
+          "definition": "owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT, counting phase === \"playing\" ticks ONLY — the episode is CLOSED at the same boundary that closes the spell, so a carrier still holding the ball when play stops accrues no dead-ball hold (#171.1.i). A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90' clock.",
+          "n": 5344,
+          "mean": 0.664,
+          "sd": 1.5539,
+          "p25": 0.1167,
           "median": 0.3333,
-          "p75": 0.3667,
-          "p90": 1.3333,
-          "max": 59.3833,
+          "p75": 0.35,
+          "p90": 1.25,
+          "max": 58.1833,
           "histogram": [
-            1142,
-            1084,
+            1304,
+            1087,
             2067,
             290,
             198,
             157,
-            245
+            241
           ],
           "histogramShare": [
-            0.22034,
-            0.20915,
-            0.3988,
-            0.05595,
-            0.0382,
-            0.03029,
-            0.04727
+            0.24401,
+            0.20341,
+            0.38679,
+            0.05427,
+            0.03705,
+            0.02938,
+            0.0451
           ],
           "buckets": [
             "0–0.1s",
@@ -458,36 +466,36 @@
             "2–4s",
             ">4s"
           ],
-          "shareAtOrUnderFirstTouchWindow": 0.42948,
+          "shareAtOrUnderFirstTouchWindow": 0.44742,
           "firstTouchWindowS": 0.28
         },
         "actionDurations": {
           "receptionToRelease": {
-            "n": 5183,
-            "mean": 0.6866,
-            "sd": 1.5917,
-            "p25": 0.15,
+            "n": 5344,
+            "mean": 0.664,
+            "sd": 1.5539,
+            "p25": 0.1167,
             "median": 0.3333,
-            "p75": 0.3667,
-            "p90": 1.3333,
-            "max": 59.3833,
+            "p75": 0.35,
+            "p90": 1.25,
+            "max": 58.1833,
             "histogram": [
-              1142,
-              1084,
+              1304,
+              1087,
               2067,
               290,
               198,
               157,
-              245
+              241
             ],
             "histogramShare": [
-              0.22034,
-              0.20915,
-              0.3988,
-              0.05595,
-              0.0382,
-              0.03029,
-              0.04727
+              0.24401,
+              0.20341,
+              0.38679,
+              0.05427,
+              0.03705,
+              0.02938,
+              0.0451
             ],
             "buckets": [
               "0–0.1s",
@@ -508,30 +516,31 @@
         "pressContext": {
           "frozenRadiusM": 4.2,
           "frozenRadiusTrace": "TOUCH_CONTROL_DIST, src/sim/constants.ts:315 — the substrate's own \"under pressure\" switch for the carry.",
+          "populationNote": "⭐ #171.1.iv — the HEADLINE first-reception block is the openPlay-ORIGIN population (the frozen wording: the FIRST reception of each SPELL). Restart- and kickoff-origin receptions carry set-piece geometry and are reported SEPARATELY as firstReceptionsAllOrigins, labelled, for context only.",
           "allReceptions": {
             "radiusM": 4.2,
-            "pressedShare": 0.57322,
+            "pressedShare": 0.58608,
             "pressed": {
-              "n": 2971,
+              "n": 3132,
               "counts": {
                 "retainedBeyondFirstTouch": 939,
-                "releasedFirstTouchSafe": 772,
-                "lostWithinFirstTouch": 469,
+                "releasedFirstTouchSafe": 932,
+                "lostWithinFirstTouch": 470,
                 "lostAfterHold": 407,
                 "fouled": 73,
                 "otherDeadBall": 311
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.31606,
-                "releasedFirstTouchSafe": 0.25985,
-                "lostWithinFirstTouch": 0.15786,
-                "lostAfterHold": 0.13699,
-                "fouled": 0.02457,
-                "otherDeadBall": 0.10468
+                "retainedBeyondFirstTouch": 0.29981,
+                "releasedFirstTouchSafe": 0.29757,
+                "lostWithinFirstTouch": 0.15006,
+                "lostAfterHold": 0.12995,
+                "fouled": 0.02331,
+                "otherDeadBall": 0.0993
               },
-              "holdMeanS": 0.5421,
-              "holdMedianS": 0.2833,
-              "lostShare": 0.29485
+              "holdMeanS": 0.5162,
+              "holdMedianS": 0.2667,
+              "lostShare": 0.28001
             },
             "unpressed": {
               "n": 2212,
@@ -551,269 +560,339 @@
                 "fouled": 0.00633,
                 "otherDeadBall": 0.08273
               },
-              "holdMeanS": 0.8808,
+              "holdMeanS": 0.8732,
               "holdMedianS": 0.3333,
               "lostShare": 0.19982
             },
             "all": {
-              "n": 5183,
+              "n": 5344,
               "counts": {
                 "retainedBeyondFirstTouch": 2021,
-                "releasedFirstTouchSafe": 1263,
-                "lostWithinFirstTouch": 636,
+                "releasedFirstTouchSafe": 1423,
+                "lostWithinFirstTouch": 637,
                 "lostAfterHold": 682,
                 "fouled": 87,
                 "otherDeadBall": 494
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.38993,
-                "releasedFirstTouchSafe": 0.24368,
-                "lostWithinFirstTouch": 0.12271,
-                "lostAfterHold": 0.13158,
-                "fouled": 0.01679,
-                "otherDeadBall": 0.09531
+                "retainedBeyondFirstTouch": 0.37818,
+                "releasedFirstTouchSafe": 0.26628,
+                "lostWithinFirstTouch": 0.1192,
+                "lostAfterHold": 0.12762,
+                "fouled": 0.01628,
+                "otherDeadBall": 0.09244
               },
-              "holdMeanS": 0.6866,
+              "holdMeanS": 0.664,
               "holdMedianS": 0.3333,
-              "lostShare": 0.25429
+              "lostShare": 0.24682
             }
           },
           "firstReceptionsOfSpell": {
             "radiusM": 4.2,
-            "pressedShare": 0.55766,
+            "pressedShare": 0.7959,
             "pressed": {
-              "n": 1059,
+              "n": 1049,
               "counts": {
-                "retainedBeyondFirstTouch": 566,
-                "releasedFirstTouchSafe": 72,
-                "lostWithinFirstTouch": 110,
-                "lostAfterHold": 192,
+                "retainedBeyondFirstTouch": 563,
+                "releasedFirstTouchSafe": 71,
+                "lostWithinFirstTouch": 107,
+                "lostAfterHold": 191,
+                "fouled": 30,
+                "otherDeadBall": 87
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.5367,
+                "releasedFirstTouchSafe": 0.06768,
+                "lostWithinFirstTouch": 0.102,
+                "lostAfterHold": 0.18208,
+                "fouled": 0.0286,
+                "otherDeadBall": 0.08294
+              },
+              "holdMeanS": 0.759,
+              "holdMedianS": 0.3333,
+              "lostShare": 0.28408
+            },
+            "unpressed": {
+              "n": 269,
+              "counts": {
+                "retainedBeyondFirstTouch": 183,
+                "releasedFirstTouchSafe": 15,
+                "lostWithinFirstTouch": 7,
+                "lostAfterHold": 38,
+                "fouled": 0,
+                "otherDeadBall": 26
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.6803,
+                "releasedFirstTouchSafe": 0.05576,
+                "lostWithinFirstTouch": 0.02602,
+                "lostAfterHold": 0.14126,
+                "fouled": 0,
+                "otherDeadBall": 0.09665
+              },
+              "holdMeanS": 3.2012,
+              "holdMedianS": 2.3333,
+              "lostShare": 0.16729
+            },
+            "all": {
+              "n": 1318,
+              "counts": {
+                "retainedBeyondFirstTouch": 746,
+                "releasedFirstTouchSafe": 86,
+                "lostWithinFirstTouch": 114,
+                "lostAfterHold": 229,
+                "fouled": 30,
+                "otherDeadBall": 113
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.56601,
+                "releasedFirstTouchSafe": 0.06525,
+                "lostWithinFirstTouch": 0.08649,
+                "lostAfterHold": 0.17375,
+                "fouled": 0.02276,
+                "otherDeadBall": 0.08574
+              },
+              "holdMeanS": 1.2575,
+              "holdMedianS": 0.3333,
+              "lostShare": 0.26024
+            }
+          },
+          "firstReceptionsAllOrigins": {
+            "radiusM": 4.2,
+            "pressedShare": 0.64,
+            "pressed": {
+              "n": 1216,
+              "counts": {
+                "retainedBeyondFirstTouch": 564,
+                "releasedFirstTouchSafe": 231,
+                "lostWithinFirstTouch": 111,
+                "lostAfterHold": 191,
                 "fouled": 30,
                 "otherDeadBall": 89
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.53447,
-                "releasedFirstTouchSafe": 0.06799,
-                "lostWithinFirstTouch": 0.10387,
-                "lostAfterHold": 0.1813,
-                "fouled": 0.02833,
-                "otherDeadBall": 0.08404
+                "retainedBeyondFirstTouch": 0.46382,
+                "releasedFirstTouchSafe": 0.18997,
+                "lostWithinFirstTouch": 0.09128,
+                "lostAfterHold": 0.15707,
+                "fouled": 0.02467,
+                "otherDeadBall": 0.07319
               },
-              "holdMeanS": 0.7547,
+              "holdMeanS": 0.6664,
               "holdMedianS": 0.3333,
-              "lostShare": 0.28517
+              "lostShare": 0.24836
             },
             "unpressed": {
-              "n": 840,
+              "n": 684,
               "counts": {
-                "retainedBeyondFirstTouch": 307,
+                "retainedBeyondFirstTouch": 183,
                 "releasedFirstTouchSafe": 305,
                 "lostWithinFirstTouch": 91,
-                "lostAfterHold": 67,
+                "lostAfterHold": 38,
                 "fouled": 0,
-                "otherDeadBall": 70
+                "otherDeadBall": 67
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.36548,
-                "releasedFirstTouchSafe": 0.3631,
-                "lostWithinFirstTouch": 0.10833,
-                "lostAfterHold": 0.07976,
+                "retainedBeyondFirstTouch": 0.26754,
+                "releasedFirstTouchSafe": 0.44591,
+                "lostWithinFirstTouch": 0.13304,
+                "lostAfterHold": 0.05556,
                 "fouled": 0,
-                "otherDeadBall": 0.08333
+                "otherDeadBall": 0.09795
               },
-              "holdMeanS": 1.1756,
-              "holdMedianS": 0.2,
-              "lostShare": 0.1881
+              "holdMeanS": 1.3498,
+              "holdMedianS": 0.15,
+              "lostShare": 0.1886
             },
             "all": {
-              "n": 1899,
+              "n": 1900,
               "counts": {
-                "retainedBeyondFirstTouch": 873,
-                "releasedFirstTouchSafe": 377,
-                "lostWithinFirstTouch": 201,
-                "lostAfterHold": 259,
+                "retainedBeyondFirstTouch": 747,
+                "releasedFirstTouchSafe": 536,
+                "lostWithinFirstTouch": 202,
+                "lostAfterHold": 229,
                 "fouled": 30,
-                "otherDeadBall": 159
+                "otherDeadBall": 156
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.45972,
-                "releasedFirstTouchSafe": 0.19853,
-                "lostWithinFirstTouch": 0.10585,
-                "lostAfterHold": 0.13639,
-                "fouled": 0.0158,
-                "otherDeadBall": 0.08373
+                "retainedBeyondFirstTouch": 0.39316,
+                "releasedFirstTouchSafe": 0.28211,
+                "lostWithinFirstTouch": 0.10632,
+                "lostAfterHold": 0.12053,
+                "fouled": 0.01579,
+                "otherDeadBall": 0.08211
               },
-              "holdMeanS": 0.9409,
+              "holdMeanS": 0.9124,
               "holdMedianS": 0.3333,
-              "lostShare": 0.24223
+              "lostShare": 0.22684
             }
           },
           "sensitivityTight": {
             "radiusM": 3,
-            "pressedShare": 0.4713,
+            "pressedShare": 0.67451,
             "pressed": {
-              "n": 895,
+              "n": 889,
               "counts": {
-                "retainedBeyondFirstTouch": 470,
-                "releasedFirstTouchSafe": 63,
-                "lostWithinFirstTouch": 102,
+                "retainedBeyondFirstTouch": 469,
+                "releasedFirstTouchSafe": 62,
+                "lostWithinFirstTouch": 100,
                 "lostAfterHold": 156,
                 "fouled": 27,
-                "otherDeadBall": 77
+                "otherDeadBall": 75
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.52514,
-                "releasedFirstTouchSafe": 0.07039,
-                "lostWithinFirstTouch": 0.11397,
-                "lostAfterHold": 0.1743,
-                "fouled": 0.03017,
-                "otherDeadBall": 0.08603
+                "retainedBeyondFirstTouch": 0.52756,
+                "releasedFirstTouchSafe": 0.06974,
+                "lostWithinFirstTouch": 0.11249,
+                "lostAfterHold": 0.17548,
+                "fouled": 0.03037,
+                "otherDeadBall": 0.08436
               },
-              "holdMeanS": 0.6343,
+              "holdMeanS": 0.6365,
               "holdMedianS": 0.3333,
-              "lostShare": 0.28827
+              "lostShare": 0.28796
             },
             "unpressed": {
-              "n": 1004,
+              "n": 429,
               "counts": {
-                "retainedBeyondFirstTouch": 403,
-                "releasedFirstTouchSafe": 314,
-                "lostWithinFirstTouch": 99,
-                "lostAfterHold": 103,
+                "retainedBeyondFirstTouch": 277,
+                "releasedFirstTouchSafe": 24,
+                "lostWithinFirstTouch": 14,
+                "lostAfterHold": 73,
                 "fouled": 3,
-                "otherDeadBall": 82
+                "otherDeadBall": 38
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.40139,
-                "releasedFirstTouchSafe": 0.31275,
-                "lostWithinFirstTouch": 0.09861,
-                "lostAfterHold": 0.10259,
-                "fouled": 0.00299,
-                "otherDeadBall": 0.08167
+                "retainedBeyondFirstTouch": 0.64569,
+                "releasedFirstTouchSafe": 0.05594,
+                "lostWithinFirstTouch": 0.03263,
+                "lostAfterHold": 0.17016,
+                "fouled": 0.00699,
+                "otherDeadBall": 0.08858
               },
-              "holdMeanS": 1.2142,
-              "holdMedianS": 0.3333,
-              "lostShare": 0.2012
+              "holdMeanS": 2.5443,
+              "holdMedianS": 0.6667,
+              "lostShare": 0.2028
             },
             "all": {
-              "n": 1899,
+              "n": 1318,
               "counts": {
-                "retainedBeyondFirstTouch": 873,
-                "releasedFirstTouchSafe": 377,
-                "lostWithinFirstTouch": 201,
-                "lostAfterHold": 259,
+                "retainedBeyondFirstTouch": 746,
+                "releasedFirstTouchSafe": 86,
+                "lostWithinFirstTouch": 114,
+                "lostAfterHold": 229,
                 "fouled": 30,
-                "otherDeadBall": 159
+                "otherDeadBall": 113
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.45972,
-                "releasedFirstTouchSafe": 0.19853,
-                "lostWithinFirstTouch": 0.10585,
-                "lostAfterHold": 0.13639,
-                "fouled": 0.0158,
-                "otherDeadBall": 0.08373
+                "retainedBeyondFirstTouch": 0.56601,
+                "releasedFirstTouchSafe": 0.06525,
+                "lostWithinFirstTouch": 0.08649,
+                "lostAfterHold": 0.17375,
+                "fouled": 0.02276,
+                "otherDeadBall": 0.08574
               },
-              "holdMeanS": 0.9409,
+              "holdMeanS": 1.2575,
               "holdMedianS": 0.3333,
-              "lostShare": 0.24223
+              "lostShare": 0.26024
             }
           },
           "sensitivityTightest": {
             "radiusM": 1.25,
-            "pressedShare": 0.208,
+            "pressedShare": 0.2959,
             "pressed": {
-              "n": 395,
+              "n": 390,
               "counts": {
-                "retainedBeyondFirstTouch": 216,
+                "retainedBeyondFirstTouch": 215,
                 "releasedFirstTouchSafe": 25,
-                "lostWithinFirstTouch": 54,
+                "lostWithinFirstTouch": 52,
                 "lostAfterHold": 54,
                 "fouled": 18,
-                "otherDeadBall": 28
+                "otherDeadBall": 26
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.54684,
-                "releasedFirstTouchSafe": 0.06329,
-                "lostWithinFirstTouch": 0.13671,
-                "lostAfterHold": 0.13671,
-                "fouled": 0.04557,
-                "otherDeadBall": 0.07089
+                "retainedBeyondFirstTouch": 0.55128,
+                "releasedFirstTouchSafe": 0.0641,
+                "lostWithinFirstTouch": 0.13333,
+                "lostAfterHold": 0.13846,
+                "fouled": 0.04615,
+                "otherDeadBall": 0.06667
               },
-              "holdMeanS": 0.5055,
+              "holdMeanS": 0.5074,
               "holdMedianS": 0.3333,
-              "lostShare": 0.27342
+              "lostShare": 0.27179
             },
             "unpressed": {
-              "n": 1504,
+              "n": 928,
               "counts": {
-                "retainedBeyondFirstTouch": 657,
-                "releasedFirstTouchSafe": 352,
-                "lostWithinFirstTouch": 147,
-                "lostAfterHold": 205,
+                "retainedBeyondFirstTouch": 531,
+                "releasedFirstTouchSafe": 61,
+                "lostWithinFirstTouch": 62,
+                "lostAfterHold": 175,
                 "fouled": 12,
-                "otherDeadBall": 131
+                "otherDeadBall": 87
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.43684,
-                "releasedFirstTouchSafe": 0.23404,
-                "lostWithinFirstTouch": 0.09774,
-                "lostAfterHold": 0.1363,
-                "fouled": 0.00798,
-                "otherDeadBall": 0.0871
+                "retainedBeyondFirstTouch": 0.5722,
+                "releasedFirstTouchSafe": 0.06573,
+                "lostWithinFirstTouch": 0.06681,
+                "lostAfterHold": 0.18858,
+                "fouled": 0.01293,
+                "otherDeadBall": 0.09375
               },
-              "holdMeanS": 1.0552,
+              "holdMeanS": 1.5727,
               "holdMedianS": 0.3333,
-              "lostShare": 0.23404
+              "lostShare": 0.25539
             },
             "all": {
-              "n": 1899,
+              "n": 1318,
               "counts": {
-                "retainedBeyondFirstTouch": 873,
-                "releasedFirstTouchSafe": 377,
-                "lostWithinFirstTouch": 201,
-                "lostAfterHold": 259,
+                "retainedBeyondFirstTouch": 746,
+                "releasedFirstTouchSafe": 86,
+                "lostWithinFirstTouch": 114,
+                "lostAfterHold": 229,
                 "fouled": 30,
-                "otherDeadBall": 159
+                "otherDeadBall": 113
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.45972,
-                "releasedFirstTouchSafe": 0.19853,
-                "lostWithinFirstTouch": 0.10585,
-                "lostAfterHold": 0.13639,
-                "fouled": 0.0158,
-                "otherDeadBall": 0.08373
+                "retainedBeyondFirstTouch": 0.56601,
+                "releasedFirstTouchSafe": 0.06525,
+                "lostWithinFirstTouch": 0.08649,
+                "lostAfterHold": 0.17375,
+                "fouled": 0.02276,
+                "otherDeadBall": 0.08574
               },
-              "holdMeanS": 0.9409,
+              "holdMeanS": 1.2575,
               "holdMedianS": 0.3333,
-              "lostShare": 0.24223
+              "lostShare": 0.26024
             }
           },
           "nearestOpponentAtReception": {
-            "n": 1899,
-            "mean": 5.2512,
-            "sd": 4.6675,
-            "p25": 1.4244,
-            "median": 3.2502,
-            "p75": 8.1851,
-            "p90": 11.6317,
-            "max": 24.7301,
+            "n": 1318,
+            "mean": 2.9272,
+            "sd": 2.4039,
+            "p25": 1.1386,
+            "median": 2.0416,
+            "p75": 3.5786,
+            "p90": 6.6569,
+            "max": 17.4553,
             "histogram": [
-              2,
-              647,
-              246,
-              164,
-              162,
-              312,
-              366
+              1,
+              643,
+              245,
+              160,
+              107,
+              122,
+              40
             ],
             "histogramShare": [
-              0.00105,
-              0.34071,
-              0.12954,
-              0.08636,
-              0.08531,
-              0.1643,
-              0.19273
+              0.00076,
+              0.48786,
+              0.18589,
+              0.1214,
+              0.08118,
+              0.09256,
+              0.03035
             ],
             "buckets": [
               "0–1m",
@@ -825,6 +904,7 @@
               ">9m"
             ]
           },
+          "nearestOpponentPopulation": "openPlay-origin first receptions",
           "engineTriggerRangeM": [
             3.1042,
             4.5
@@ -832,72 +912,93 @@
         },
         "discriminatorH169a": {
           "frozenExAnte": "Among the FIRST reception of each spell, compare P(spell lost here | pressed) against P(spell lost here | unpressed) at the frozen radius. READING RULE (frozen before any run): ratio ≥ 1.5 AND absolute gap ≥ 0.10 ⇒ PRESSED-SPECIFIC, the outlet story holds; ratio ≤ 1.2 OR gap ≤ 0.05 ⇒ NOT pressed-specific, the disease is elsewhere; anything between ⇒ AMBIGUOUS. ⭐ REPORTED, NEVER GATED — the commander rules.",
-          "nFirstReceptions": 1899,
-          "nPressed": 1059,
-          "nUnpressed": 840,
-          "pLostPressed": 0.28517,
-          "pLostUnpressed": 0.1881,
-          "ratio": 1.5161,
-          "gap": 0.09707,
-          "reading": "AMBIGUOUS — between the two frozen readings",
-          "holdMeanPressedS": 0.7547,
-          "holdMeanUnpressedS": 1.1756
+          "population": "⭐ openPlay-ORIGIN spells' first receptions ONLY (#171.1.iv). Restart/kickoff-origin receptions are set-piece geometry and are excluded from the headline; the all-origins variant is carried beside it, labelled, for context.",
+          "nFirstReceptions": 1318,
+          "nPressed": 1049,
+          "nUnpressed": 269,
+          "pLostPressed": 0.28408,
+          "pLostUnpressed": 0.16729,
+          "ratio": 1.6981,
+          "gap": 0.11679,
+          "reading": "PRESSED-SPECIFIC — consistent with H-169a (pressure has no outlet)",
+          "holdMeanPressedS": 0.759,
+          "holdMeanUnpressedS": 3.2012,
+          "allOriginsVariant": {
+            "note": "⚠ CONTEXT ONLY — the same contrast on ALL first receptions (openPlay + restart + kickoff). NOT the frozen discriminator; it is here so the population choice is auditable rather than hidden.",
+            "nFirstReceptions": 1900,
+            "nPressed": 1216,
+            "nUnpressed": 684,
+            "pLostPressed": 0.24836,
+            "pLostUnpressed": 0.1886,
+            "ratio": 1.3169,
+            "gap": 0.05976,
+            "reading": "AMBIGUOUS — between the two frozen readings",
+            "holdMeanPressedS": 0.6664,
+            "holdMeanUnpressedS": 1.3498
+          }
         },
         "eventsPerMinute": {
-          "axisNote": "MAPPING: 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min; per-display-min = per-sim-s × 2.666667. Both axes are given for EVERY rate.",
+          "axisNote": "MAPPING: 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min; per-display-min = per-sim-s × 2.666667. Both axes are given for EVERY rate, and BOTH divide the SAME denominator — mean match.simTime (played sim-seconds), NOT simTick · DT — so the law reproduces exactly (#171.1.ii).",
+          "scopeNote": "⚠ every count here is a BOTH-TEAMS sum per match. passes / shots / fouls also carry perTeamPerMatch (= sum / 2), which is the scope the per-TEAM bands B9 (shots 10–14.5) and B10 (fouls 9–12) are stated in.",
           "passes": {
             "perMatch": 101.575,
-            "perSimSecond": 0.405098,
-            "perSimMinute": 24.3059,
-            "perDisplayMinute": 1.128611
+            "perSimSecond": 0.420017,
+            "perSimMinute": 25.201,
+            "perDisplayMinute": 1.120045,
+            "perTeamPerMatch": 50.7875,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "passesCompleted": {
             "perMatch": 76.25,
-            "perSimSecond": 0.304098,
-            "perSimMinute": 18.2459,
-            "perDisplayMinute": 0.847222
+            "perSimSecond": 0.315297,
+            "perSimMinute": 18.9178,
+            "perDisplayMinute": 0.840792
           },
           "shots": {
             "perMatch": 12.975,
-            "perSimSecond": 0.051746,
-            "perSimMinute": 3.1048,
-            "perDisplayMinute": 0.144167
+            "perSimSecond": 0.053652,
+            "perSimMinute": 3.2191,
+            "perDisplayMinute": 0.143073,
+            "perTeamPerMatch": 6.4875,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "fouls": {
             "perMatch": 3.575,
-            "perSimSecond": 0.014258,
-            "perSimMinute": 0.8555,
-            "perDisplayMinute": 0.039722
+            "perSimSecond": 0.014783,
+            "perSimMinute": 0.887,
+            "perDisplayMinute": 0.039421,
+            "perTeamPerMatch": 1.7875,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "goals": {
             "perMatch": 2.05,
-            "perSimSecond": 0.008176,
-            "perSimMinute": 0.4905,
-            "perDisplayMinute": 0.022778
+            "perSimSecond": 0.008477,
+            "perSimMinute": 0.5086,
+            "perDisplayMinute": 0.022605
           },
           "miscontrols": {
             "perMatch": 8.175,
-            "perSimSecond": 0.032603,
-            "perSimMinute": 1.9562,
-            "perDisplayMinute": 0.090833
+            "perSimSecond": 0.033804,
+            "perSimMinute": 2.0282,
+            "perDisplayMinute": 0.090144
           },
           "regains": {
             "perMatch": 32.55,
-            "perSimSecond": 0.129815,
-            "perSimMinute": 7.7889,
-            "perDisplayMinute": 0.361667
+            "perSimSecond": 0.134596,
+            "perSimMinute": 8.0757,
+            "perDisplayMinute": 0.358922
           },
           "turnovers": {
             "perMatch": 32.975,
-            "perSimSecond": 0.13151,
-            "perSimMinute": 7.8906,
-            "perDisplayMinute": 0.366389
+            "perSimSecond": 0.136353,
+            "perSimMinute": 8.1812,
+            "perDisplayMinute": 0.363608
           },
           "possessionChanges": {
             "perMatch": 47.5,
-            "perSimSecond": 0.189438,
-            "perSimMinute": 11.3663,
-            "perDisplayMinute": 0.527778
+            "perSimSecond": 0.196415,
+            "perSimMinute": 11.7849,
+            "perDisplayMinute": 0.523772
           }
         },
         "ci95PerMatch": {
@@ -923,7 +1024,10 @@
       "v1": {
         "arm": "v1",
         "matches": 40,
-        "simSecondsPerMatch": 250.9096,
+        "simSecondsPerMatch": 242.0763,
+        "simSecondsPerMatchNote": "⭐ match.simTime — PLAYED sim-seconds (stoppage in, kickoff / goal-pause / half-time steps out). THE denominator of every rate on every axis (#171.1.ii), so perDisplayMinute = perSimSecond × 2.666667 holds exactly.",
+        "wallSimSecondsPerMatch": 250.9096,
+        "wallSimSecondsNote": "⚠ CONTEXT ONLY — USED IN NO RATE. simTick · DT, the PAUSE-INCLUSIVE clock the user actually sits through at 1× (simTick = stepCount, which ticks through the kickoff / goal-pause / half-time steps that simTime skips). Reported because it is the honest answer to \"how long does a match take to watch\", not because any rate divides by it.",
         "inPlaySimSecondsPerMatch": 203.8329,
         "ownedSimSecondsPerMatch": 71.1742,
         "ownedShareOfInPlay": 0.34918,
@@ -1077,15 +1181,15 @@
           },
           "perMatch": {
             "perMatch": 59.5,
-            "perSimSecond": 0.237137,
-            "perSimMinute": 14.2282,
-            "perDisplayMinute": 0.661111
+            "perSimSecond": 0.24579,
+            "perSimMinute": 14.7474,
+            "perDisplayMinute": 0.655441
           },
           "openPlayPerMatch": {
             "perMatch": 40.175,
-            "perSimSecond": 0.160117,
-            "perSimMinute": 9.607,
-            "perDisplayMinute": 0.446389
+            "perSimSecond": 0.16596,
+            "perSimMinute": 9.9576,
+            "perDisplayMinute": 0.44256
           },
           "firstTouchDeath": {
             "definition": "an open-play spell with EXACTLY ONE ownership episode that ended with the opponents establishing control (the strict form). The WIDE form also counts a one-touch spell that ended out of play or in a foul by the holding team.",
@@ -1135,32 +1239,32 @@
           ]
         },
         "timeOnBallPerTouch": {
-          "definition": "owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT. A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90' clock.",
-          "n": 5778,
-          "mean": 0.4921,
-          "sd": 0.94,
+          "definition": "owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT, counting phase === \"playing\" ticks ONLY — the episode is CLOSED at the same boundary that closes the spell, so a carrier still holding the ball when play stops accrues no dead-ball hold (#171.1.i). A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90' clock.",
+          "n": 5938,
+          "mean": 0.4794,
+          "sd": 0.9276,
           "p25": 0.15,
           "median": 0.3333,
           "p75": 0.3333,
-          "p90": 0.8333,
+          "p90": 0.7667,
           "max": 13.5,
           "histogram": [
-            1121,
-            1197,
-            2696,
-            308,
-            220,
-            118,
+            1284,
+            1198,
+            2697,
+            309,
+            215,
+            117,
             118
           ],
           "histogramShare": [
-            0.19401,
-            0.20717,
-            0.4666,
-            0.05331,
-            0.03808,
-            0.02042,
-            0.02042
+            0.21623,
+            0.20175,
+            0.45419,
+            0.05204,
+            0.03621,
+            0.0197,
+            0.01987
           ],
           "buckets": [
             "0–0.1s",
@@ -1171,36 +1275,36 @@
             "2–4s",
             ">4s"
           ],
-          "shareAtOrUnderFirstTouchWindow": 0.40118,
+          "shareAtOrUnderFirstTouchWindow": 0.41799,
           "firstTouchWindowS": 0.28
         },
         "actionDurations": {
           "receptionToRelease": {
-            "n": 5778,
-            "mean": 0.4921,
-            "sd": 0.94,
+            "n": 5938,
+            "mean": 0.4794,
+            "sd": 0.9276,
             "p25": 0.15,
             "median": 0.3333,
             "p75": 0.3333,
-            "p90": 0.8333,
+            "p90": 0.7667,
             "max": 13.5,
             "histogram": [
-              1121,
-              1197,
-              2696,
-              308,
-              220,
-              118,
+              1284,
+              1198,
+              2697,
+              309,
+              215,
+              117,
               118
             ],
             "histogramShare": [
-              0.19401,
-              0.20717,
-              0.4666,
-              0.05331,
-              0.03808,
-              0.02042,
-              0.02042
+              0.21623,
+              0.20175,
+              0.45419,
+              0.05204,
+              0.03621,
+              0.0197,
+              0.01987
             ],
             "buckets": [
               "0–0.1s",
@@ -1250,30 +1354,31 @@
         "pressContext": {
           "frozenRadiusM": 4.2,
           "frozenRadiusTrace": "TOUCH_CONTROL_DIST, src/sim/constants.ts:315 — the substrate's own \"under pressure\" switch for the carry.",
+          "populationNote": "⭐ #171.1.iv — the HEADLINE first-reception block is the openPlay-ORIGIN population (the frozen wording: the FIRST reception of each SPELL). Restart- and kickoff-origin receptions carry set-piece geometry and are reported SEPARATELY as firstReceptionsAllOrigins, labelled, for context only.",
           "allReceptions": {
             "radiusM": 4.2,
-            "pressedShare": 0.57148,
+            "pressedShare": 0.58302,
             "pressed": {
-              "n": 3302,
+              "n": 3462,
               "counts": {
                 "retainedBeyondFirstTouch": 1043,
-                "releasedFirstTouchSafe": 698,
-                "lostWithinFirstTouch": 539,
+                "releasedFirstTouchSafe": 853,
+                "lostWithinFirstTouch": 543,
                 "lostAfterHold": 531,
                 "fouled": 81,
-                "otherDeadBall": 410
+                "otherDeadBall": 411
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.31587,
-                "releasedFirstTouchSafe": 0.21139,
-                "lostWithinFirstTouch": 0.16323,
-                "lostAfterHold": 0.16081,
-                "fouled": 0.02453,
-                "otherDeadBall": 0.12417
+                "retainedBeyondFirstTouch": 0.30127,
+                "releasedFirstTouchSafe": 0.24639,
+                "lostWithinFirstTouch": 0.15685,
+                "lostAfterHold": 0.15338,
+                "fouled": 0.0234,
+                "otherDeadBall": 0.11872
               },
-              "holdMeanS": 0.437,
+              "holdMeanS": 0.4182,
               "holdMedianS": 0.3333,
-              "lostShare": 0.32405
+              "lostShare": 0.31023
             },
             "unpressed": {
               "n": 2476,
@@ -1293,269 +1398,339 @@
                 "fouled": 0.00606,
                 "otherDeadBall": 0.10743
               },
-              "holdMeanS": 0.5656,
+              "holdMeanS": 0.5651,
               "holdMedianS": 0.3333,
               "lostShare": 0.21527
             },
             "all": {
-              "n": 5778,
+              "n": 5938,
               "counts": {
                 "retainedBeyondFirstTouch": 2196,
-                "releasedFirstTouchSafe": 1207,
-                "lostWithinFirstTouch": 705,
+                "releasedFirstTouchSafe": 1362,
+                "lostWithinFirstTouch": 709,
                 "lostAfterHold": 898,
                 "fouled": 96,
-                "otherDeadBall": 676
+                "otherDeadBall": 677
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.38006,
-                "releasedFirstTouchSafe": 0.2089,
-                "lostWithinFirstTouch": 0.12201,
-                "lostAfterHold": 0.15542,
-                "fouled": 0.01661,
-                "otherDeadBall": 0.117
+                "retainedBeyondFirstTouch": 0.36982,
+                "releasedFirstTouchSafe": 0.22937,
+                "lostWithinFirstTouch": 0.1194,
+                "lostAfterHold": 0.15123,
+                "fouled": 0.01617,
+                "otherDeadBall": 0.11401
               },
-              "holdMeanS": 0.4921,
+              "holdMeanS": 0.4794,
               "holdMedianS": 0.3333,
-              "lostShare": 0.27743
+              "lostShare": 0.27063
             }
           },
           "firstReceptionsOfSpell": {
             "radiusM": 4.2,
-            "pressedShare": 0.58358,
+            "pressedShare": 0.85563,
             "pressed": {
-              "n": 1386,
+              "n": 1375,
               "counts": {
-                "retainedBeyondFirstTouch": 673,
-                "releasedFirstTouchSafe": 75,
-                "lostWithinFirstTouch": 146,
-                "lostAfterHold": 300,
+                "retainedBeyondFirstTouch": 671,
+                "releasedFirstTouchSafe": 72,
+                "lostWithinFirstTouch": 144,
+                "lostAfterHold": 299,
                 "fouled": 38,
-                "otherDeadBall": 154
+                "otherDeadBall": 151
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.48557,
-                "releasedFirstTouchSafe": 0.05411,
-                "lostWithinFirstTouch": 0.10534,
-                "lostAfterHold": 0.21645,
-                "fouled": 0.02742,
-                "otherDeadBall": 0.11111
+                "retainedBeyondFirstTouch": 0.488,
+                "releasedFirstTouchSafe": 0.05236,
+                "lostWithinFirstTouch": 0.10473,
+                "lostAfterHold": 0.21745,
+                "fouled": 0.02764,
+                "otherDeadBall": 0.10982
               },
-              "holdMeanS": 0.56,
+              "holdMeanS": 0.5587,
               "holdMedianS": 0.3333,
-              "lostShare": 0.32179
+              "lostShare": 0.32218
             },
             "unpressed": {
-              "n": 989,
+              "n": 232,
               "counts": {
-                "retainedBeyondFirstTouch": 302,
-                "releasedFirstTouchSafe": 417,
-                "lostWithinFirstTouch": 134,
-                "lostAfterHold": 47,
+                "retainedBeyondFirstTouch": 169,
+                "releasedFirstTouchSafe": 7,
+                "lostWithinFirstTouch": 5,
+                "lostAfterHold": 30,
                 "fouled": 1,
-                "otherDeadBall": 88
+                "otherDeadBall": 20
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.30536,
-                "releasedFirstTouchSafe": 0.42164,
-                "lostWithinFirstTouch": 0.13549,
-                "lostAfterHold": 0.04752,
-                "fouled": 0.00101,
-                "otherDeadBall": 0.08898
+                "retainedBeyondFirstTouch": 0.72845,
+                "releasedFirstTouchSafe": 0.03017,
+                "lostWithinFirstTouch": 0.02155,
+                "lostAfterHold": 0.12931,
+                "fouled": 0.00431,
+                "otherDeadBall": 0.08621
               },
-              "holdMeanS": 0.7373,
-              "holdMedianS": 0.15,
-              "lostShare": 0.18301
+              "holdMeanS": 2.5272,
+              "holdMedianS": 0.6333,
+              "lostShare": 0.15086
             },
             "all": {
-              "n": 2375,
+              "n": 1607,
               "counts": {
-                "retainedBeyondFirstTouch": 975,
-                "releasedFirstTouchSafe": 492,
-                "lostWithinFirstTouch": 280,
-                "lostAfterHold": 347,
+                "retainedBeyondFirstTouch": 840,
+                "releasedFirstTouchSafe": 79,
+                "lostWithinFirstTouch": 149,
+                "lostAfterHold": 329,
                 "fouled": 39,
-                "otherDeadBall": 242
+                "otherDeadBall": 171
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.41053,
-                "releasedFirstTouchSafe": 0.20716,
-                "lostWithinFirstTouch": 0.11789,
-                "lostAfterHold": 0.14611,
-                "fouled": 0.01642,
-                "otherDeadBall": 0.10189
+                "retainedBeyondFirstTouch": 0.52271,
+                "releasedFirstTouchSafe": 0.04916,
+                "lostWithinFirstTouch": 0.09272,
+                "lostAfterHold": 0.20473,
+                "fouled": 0.02427,
+                "otherDeadBall": 0.10641
               },
-              "holdMeanS": 0.6338,
+              "holdMeanS": 0.8429,
               "holdMedianS": 0.3333,
-              "lostShare": 0.264
+              "lostShare": 0.29745
+            }
+          },
+          "firstReceptionsAllOrigins": {
+            "radiusM": 4.2,
+            "pressedShare": 0.64748,
+            "pressed": {
+              "n": 1541,
+              "counts": {
+                "retainedBeyondFirstTouch": 671,
+                "releasedFirstTouchSafe": 228,
+                "lostWithinFirstTouch": 150,
+                "lostAfterHold": 299,
+                "fouled": 38,
+                "otherDeadBall": 155
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.43543,
+                "releasedFirstTouchSafe": 0.14796,
+                "lostWithinFirstTouch": 0.09734,
+                "lostAfterHold": 0.19403,
+                "fouled": 0.02466,
+                "otherDeadBall": 0.10058
+              },
+              "holdMeanS": 0.5077,
+              "holdMedianS": 0.3333,
+              "lostShare": 0.29137
+            },
+            "unpressed": {
+              "n": 839,
+              "counts": {
+                "retainedBeyondFirstTouch": 172,
+                "releasedFirstTouchSafe": 417,
+                "lostWithinFirstTouch": 134,
+                "lostAfterHold": 30,
+                "fouled": 1,
+                "otherDeadBall": 85
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.20501,
+                "releasedFirstTouchSafe": 0.49702,
+                "lostWithinFirstTouch": 0.15971,
+                "lostAfterHold": 0.03576,
+                "fouled": 0.00119,
+                "otherDeadBall": 0.10131
+              },
+              "holdMeanS": 0.8075,
+              "holdMedianS": 0.15,
+              "lostShare": 0.19547
+            },
+            "all": {
+              "n": 2380,
+              "counts": {
+                "retainedBeyondFirstTouch": 843,
+                "releasedFirstTouchSafe": 645,
+                "lostWithinFirstTouch": 284,
+                "lostAfterHold": 329,
+                "fouled": 39,
+                "otherDeadBall": 240
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.3542,
+                "releasedFirstTouchSafe": 0.27101,
+                "lostWithinFirstTouch": 0.11933,
+                "lostAfterHold": 0.13824,
+                "fouled": 0.01639,
+                "otherDeadBall": 0.10084
+              },
+              "holdMeanS": 0.6134,
+              "holdMedianS": 0.3333,
+              "lostShare": 0.25756
             }
           },
           "sensitivityTight": {
             "radiusM": 3,
-            "pressedShare": 0.48,
+            "pressedShare": 0.70629,
             "pressed": {
-              "n": 1140,
+              "n": 1135,
               "counts": {
-                "retainedBeyondFirstTouch": 535,
-                "releasedFirstTouchSafe": 66,
+                "retainedBeyondFirstTouch": 534,
+                "releasedFirstTouchSafe": 63,
                 "lostWithinFirstTouch": 134,
                 "lostAfterHold": 241,
                 "fouled": 33,
-                "otherDeadBall": 131
+                "otherDeadBall": 130
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.4693,
-                "releasedFirstTouchSafe": 0.05789,
-                "lostWithinFirstTouch": 0.11754,
-                "lostAfterHold": 0.2114,
-                "fouled": 0.02895,
-                "otherDeadBall": 0.11491
+                "retainedBeyondFirstTouch": 0.47048,
+                "releasedFirstTouchSafe": 0.05551,
+                "lostWithinFirstTouch": 0.11806,
+                "lostAfterHold": 0.21233,
+                "fouled": 0.02907,
+                "otherDeadBall": 0.11454
               },
-              "holdMeanS": 0.522,
+              "holdMeanS": 0.5184,
               "holdMedianS": 0.3333,
-              "lostShare": 0.32895
+              "lostShare": 0.3304
             },
             "unpressed": {
-              "n": 1235,
+              "n": 472,
               "counts": {
-                "retainedBeyondFirstTouch": 440,
-                "releasedFirstTouchSafe": 426,
-                "lostWithinFirstTouch": 146,
-                "lostAfterHold": 106,
+                "retainedBeyondFirstTouch": 306,
+                "releasedFirstTouchSafe": 16,
+                "lostWithinFirstTouch": 15,
+                "lostAfterHold": 88,
                 "fouled": 6,
-                "otherDeadBall": 111
+                "otherDeadBall": 41
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.35628,
-                "releasedFirstTouchSafe": 0.34494,
-                "lostWithinFirstTouch": 0.11822,
-                "lostAfterHold": 0.08583,
-                "fouled": 0.00486,
-                "otherDeadBall": 0.08988
+                "retainedBeyondFirstTouch": 0.64831,
+                "releasedFirstTouchSafe": 0.0339,
+                "lostWithinFirstTouch": 0.03178,
+                "lostAfterHold": 0.18644,
+                "fouled": 0.01271,
+                "otherDeadBall": 0.08686
               },
-              "holdMeanS": 0.737,
-              "holdMedianS": 0.15,
-              "lostShare": 0.20405
+              "holdMeanS": 1.623,
+              "holdMedianS": 0.3667,
+              "lostShare": 0.21822
             },
             "all": {
-              "n": 2375,
+              "n": 1607,
               "counts": {
-                "retainedBeyondFirstTouch": 975,
-                "releasedFirstTouchSafe": 492,
-                "lostWithinFirstTouch": 280,
-                "lostAfterHold": 347,
+                "retainedBeyondFirstTouch": 840,
+                "releasedFirstTouchSafe": 79,
+                "lostWithinFirstTouch": 149,
+                "lostAfterHold": 329,
                 "fouled": 39,
-                "otherDeadBall": 242
+                "otherDeadBall": 171
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.41053,
-                "releasedFirstTouchSafe": 0.20716,
-                "lostWithinFirstTouch": 0.11789,
-                "lostAfterHold": 0.14611,
-                "fouled": 0.01642,
-                "otherDeadBall": 0.10189
+                "retainedBeyondFirstTouch": 0.52271,
+                "releasedFirstTouchSafe": 0.04916,
+                "lostWithinFirstTouch": 0.09272,
+                "lostAfterHold": 0.20473,
+                "fouled": 0.02427,
+                "otherDeadBall": 0.10641
               },
-              "holdMeanS": 0.6338,
+              "holdMeanS": 0.8429,
               "holdMedianS": 0.3333,
-              "lostShare": 0.264
+              "lostShare": 0.29745
             }
           },
           "sensitivityTightest": {
             "radiusM": 1.25,
-            "pressedShare": 0.168,
+            "pressedShare": 0.24767,
             "pressed": {
-              "n": 399,
+              "n": 398,
               "counts": {
                 "retainedBeyondFirstTouch": 187,
                 "releasedFirstTouchSafe": 21,
                 "lostWithinFirstTouch": 67,
                 "lostAfterHold": 73,
                 "fouled": 13,
-                "otherDeadBall": 38
+                "otherDeadBall": 37
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.46867,
-                "releasedFirstTouchSafe": 0.05263,
-                "lostWithinFirstTouch": 0.16792,
-                "lostAfterHold": 0.18296,
-                "fouled": 0.03258,
-                "otherDeadBall": 0.09524
+                "retainedBeyondFirstTouch": 0.46985,
+                "releasedFirstTouchSafe": 0.05276,
+                "lostWithinFirstTouch": 0.16834,
+                "lostAfterHold": 0.18342,
+                "fouled": 0.03266,
+                "otherDeadBall": 0.09296
               },
-              "holdMeanS": 0.4174,
+              "holdMeanS": 0.418,
               "holdMedianS": 0.3333,
-              "lostShare": 0.35088
+              "lostShare": 0.35176
             },
             "unpressed": {
-              "n": 1976,
+              "n": 1209,
               "counts": {
-                "retainedBeyondFirstTouch": 788,
-                "releasedFirstTouchSafe": 471,
-                "lostWithinFirstTouch": 213,
-                "lostAfterHold": 274,
+                "retainedBeyondFirstTouch": 653,
+                "releasedFirstTouchSafe": 58,
+                "lostWithinFirstTouch": 82,
+                "lostAfterHold": 256,
                 "fouled": 26,
-                "otherDeadBall": 204
+                "otherDeadBall": 134
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.39879,
-                "releasedFirstTouchSafe": 0.23836,
-                "lostWithinFirstTouch": 0.10779,
-                "lostAfterHold": 0.13866,
-                "fouled": 0.01316,
-                "otherDeadBall": 0.10324
+                "retainedBeyondFirstTouch": 0.54012,
+                "releasedFirstTouchSafe": 0.04797,
+                "lostWithinFirstTouch": 0.06782,
+                "lostAfterHold": 0.21175,
+                "fouled": 0.02151,
+                "otherDeadBall": 0.11084
               },
-              "holdMeanS": 0.6775,
+              "holdMeanS": 0.9827,
               "holdMedianS": 0.3333,
-              "lostShare": 0.24646
+              "lostShare": 0.27957
             },
             "all": {
-              "n": 2375,
+              "n": 1607,
               "counts": {
-                "retainedBeyondFirstTouch": 975,
-                "releasedFirstTouchSafe": 492,
-                "lostWithinFirstTouch": 280,
-                "lostAfterHold": 347,
+                "retainedBeyondFirstTouch": 840,
+                "releasedFirstTouchSafe": 79,
+                "lostWithinFirstTouch": 149,
+                "lostAfterHold": 329,
                 "fouled": 39,
-                "otherDeadBall": 242
+                "otherDeadBall": 171
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.41053,
-                "releasedFirstTouchSafe": 0.20716,
-                "lostWithinFirstTouch": 0.11789,
-                "lostAfterHold": 0.14611,
-                "fouled": 0.01642,
-                "otherDeadBall": 0.10189
+                "retainedBeyondFirstTouch": 0.52271,
+                "releasedFirstTouchSafe": 0.04916,
+                "lostWithinFirstTouch": 0.09272,
+                "lostAfterHold": 0.20473,
+                "fouled": 0.02427,
+                "otherDeadBall": 0.10641
               },
-              "holdMeanS": 0.6338,
+              "holdMeanS": 0.8429,
               "holdMedianS": 0.3333,
-              "lostShare": 0.264
+              "lostShare": 0.29745
             }
           },
           "nearestOpponentAtReception": {
-            "n": 2375,
-            "mean": 5.219,
-            "sd": 4.6185,
-            "p25": 1.6468,
-            "median": 3.1532,
-            "p75": 8.1578,
-            "p90": 11.9187,
-            "max": 23.577,
+            "n": 1607,
+            "mean": 2.6835,
+            "sd": 2.0014,
+            "p25": 1.2538,
+            "median": 2.0788,
+            "p75": 3.2333,
+            "p90": 5.0049,
+            "max": 17.2565,
             "histogram": [
               0,
-              754,
-              386,
-              246,
-              185,
-              320,
-              484
+              752,
+              383,
+              240,
+              115,
+              80,
+              37
             ],
             "histogramShare": [
               0,
-              0.31747,
-              0.16253,
-              0.10358,
-              0.07789,
-              0.13474,
-              0.20379
+              0.46795,
+              0.23833,
+              0.14935,
+              0.07156,
+              0.04978,
+              0.02302
             ],
             "buckets": [
               "0–1m",
@@ -1567,79 +1742,101 @@
               ">9m"
             ]
           },
+          "nearestOpponentPopulation": "openPlay-origin first receptions",
           "engineTriggerRangeM": [
-            3.1139,
+            3.0848,
             4.5
           ]
         },
         "discriminatorH169a": {
           "frozenExAnte": "Among the FIRST reception of each spell, compare P(spell lost here | pressed) against P(spell lost here | unpressed) at the frozen radius. READING RULE (frozen before any run): ratio ≥ 1.5 AND absolute gap ≥ 0.10 ⇒ PRESSED-SPECIFIC, the outlet story holds; ratio ≤ 1.2 OR gap ≤ 0.05 ⇒ NOT pressed-specific, the disease is elsewhere; anything between ⇒ AMBIGUOUS. ⭐ REPORTED, NEVER GATED — the commander rules.",
-          "nFirstReceptions": 2375,
-          "nPressed": 1386,
-          "nUnpressed": 989,
-          "pLostPressed": 0.32179,
-          "pLostUnpressed": 0.18301,
-          "ratio": 1.7583,
-          "gap": 0.13878,
+          "population": "⭐ openPlay-ORIGIN spells' first receptions ONLY (#171.1.iv). Restart/kickoff-origin receptions are set-piece geometry and are excluded from the headline; the all-origins variant is carried beside it, labelled, for context.",
+          "nFirstReceptions": 1607,
+          "nPressed": 1375,
+          "nUnpressed": 232,
+          "pLostPressed": 0.32218,
+          "pLostUnpressed": 0.15086,
+          "ratio": 2.1356,
+          "gap": 0.17132,
           "reading": "PRESSED-SPECIFIC — consistent with H-169a (pressure has no outlet)",
-          "holdMeanPressedS": 0.56,
-          "holdMeanUnpressedS": 0.7373
+          "holdMeanPressedS": 0.5587,
+          "holdMeanUnpressedS": 2.5272,
+          "allOriginsVariant": {
+            "note": "⚠ CONTEXT ONLY — the same contrast on ALL first receptions (openPlay + restart + kickoff). NOT the frozen discriminator; it is here so the population choice is auditable rather than hidden.",
+            "nFirstReceptions": 2380,
+            "nPressed": 1541,
+            "nUnpressed": 839,
+            "pLostPressed": 0.29137,
+            "pLostUnpressed": 0.19547,
+            "ratio": 1.4906,
+            "gap": 0.0959,
+            "reading": "AMBIGUOUS — between the two frozen readings",
+            "holdMeanPressedS": 0.5077,
+            "holdMeanUnpressedS": 0.8075
+          }
         },
         "eventsPerMinute": {
-          "axisNote": "MAPPING: 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min; per-display-min = per-sim-s × 2.666667. Both axes are given for EVERY rate.",
+          "axisNote": "MAPPING: 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min; per-display-min = per-sim-s × 2.666667. Both axes are given for EVERY rate, and BOTH divide the SAME denominator — mean match.simTime (played sim-seconds), NOT simTick · DT — so the law reproduces exactly (#171.1.ii).",
+          "scopeNote": "⚠ every count here is a BOTH-TEAMS sum per match. passes / shots / fouls also carry perTeamPerMatch (= sum / 2), which is the scope the per-TEAM bands B9 (shots 10–14.5) and B10 (fouls 9–12) are stated in.",
           "passes": {
             "perMatch": 114.05,
-            "perSimSecond": 0.454546,
-            "perSimMinute": 27.2728,
-            "perDisplayMinute": 1.267222
+            "perSimSecond": 0.471133,
+            "perSimMinute": 28.268,
+            "perDisplayMinute": 1.256353,
+            "perTeamPerMatch": 57.025,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "passesCompleted": {
             "perMatch": 75.925,
-            "perSimSecond": 0.302599,
-            "perSimMinute": 18.1559,
-            "perDisplayMinute": 0.843611
+            "perSimSecond": 0.313641,
+            "perSimMinute": 18.8185,
+            "perDisplayMinute": 0.836376
           },
           "shots": {
             "perMatch": 10.1,
-            "perSimSecond": 0.040254,
-            "perSimMinute": 2.4152,
-            "perDisplayMinute": 0.112222
+            "perSimSecond": 0.041722,
+            "perSimMinute": 2.5033,
+            "perDisplayMinute": 0.11126,
+            "perTeamPerMatch": 5.05,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "fouls": {
             "perMatch": 4,
-            "perSimSecond": 0.015942,
-            "perSimMinute": 0.9565,
-            "perDisplayMinute": 0.044444
+            "perSimSecond": 0.016524,
+            "perSimMinute": 0.9914,
+            "perDisplayMinute": 0.044063,
+            "perTeamPerMatch": 2,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "goals": {
             "perMatch": 2.05,
-            "perSimSecond": 0.00817,
-            "perSimMinute": 0.4902,
-            "perDisplayMinute": 0.022778
+            "perSimSecond": 0.008468,
+            "perSimMinute": 0.5081,
+            "perDisplayMinute": 0.022582
           },
           "miscontrols": {
             "perMatch": 9.425,
-            "perSimSecond": 0.037563,
-            "perSimMinute": 2.2538,
-            "perDisplayMinute": 0.104722
+            "perSimSecond": 0.038934,
+            "perSimMinute": 2.336,
+            "perDisplayMinute": 0.103824
           },
           "regains": {
             "perMatch": 41.625,
-            "perSimSecond": 0.165896,
-            "perSimMinute": 9.9538,
-            "perDisplayMinute": 0.4625
+            "perSimSecond": 0.17195,
+            "perSimMinute": 10.317,
+            "perDisplayMinute": 0.458533
           },
           "turnovers": {
             "perMatch": 40.175,
-            "perSimSecond": 0.160117,
-            "perSimMinute": 9.607,
-            "perDisplayMinute": 0.446389
+            "perSimSecond": 0.16596,
+            "perSimMinute": 9.9576,
+            "perDisplayMinute": 0.44256
           },
           "possessionChanges": {
             "perMatch": 59.5,
-            "perSimSecond": 0.237137,
-            "perSimMinute": 14.2282,
-            "perDisplayMinute": 0.661111
+            "perSimSecond": 0.24579,
+            "perSimMinute": 14.7474,
+            "perDisplayMinute": 0.655441
           }
         },
         "ci95PerMatch": {
@@ -1665,7 +1862,10 @@
       "v2": {
         "arm": "v2",
         "matches": 40,
-        "simSecondsPerMatch": 251.3,
+        "simSecondsPerMatch": 241.4458,
+        "simSecondsPerMatchNote": "⭐ match.simTime — PLAYED sim-seconds (stoppage in, kickoff / goal-pause / half-time steps out). THE denominator of every rate on every axis (#171.1.ii), so perDisplayMinute = perSimSecond × 2.666667 holds exactly.",
+        "wallSimSecondsPerMatch": 251.3,
+        "wallSimSecondsNote": "⚠ CONTEXT ONLY — USED IN NO RATE. simTick · DT, the PAUSE-INCLUSIVE clock the user actually sits through at 1× (simTick = stepCount, which ticks through the kickoff / goal-pause / half-time steps that simTime skips). Reported because it is the honest answer to \"how long does a match take to watch\", not because any rate divides by it.",
         "inPlaySimSecondsPerMatch": 209.05,
         "ownedSimSecondsPerMatch": 81.1058,
         "ownedShareOfInPlay": 0.38797,
@@ -1819,15 +2019,15 @@
           },
           "perMatch": {
             "perMatch": 58.1,
-            "perSimSecond": 0.231198,
-            "perSimMinute": 13.8719,
-            "perDisplayMinute": 0.645556
+            "perSimSecond": 0.240634,
+            "perSimMinute": 14.438,
+            "perDisplayMinute": 0.64169
           },
           "openPlayPerMatch": {
             "perMatch": 41.3,
-            "perSimSecond": 0.164345,
-            "perSimMinute": 9.8607,
-            "perDisplayMinute": 0.458889
+            "perSimSecond": 0.171053,
+            "perSimMinute": 10.2632,
+            "perDisplayMinute": 0.456141
           },
           "firstTouchDeath": {
             "definition": "an open-play spell with EXACTLY ONE ownership episode that ended with the opponents establishing control (the strict form). The WIDE form also counts a one-touch spell that ended out of play or in a foul by the holding team.",
@@ -1877,32 +2077,32 @@
           ]
         },
         "timeOnBallPerTouch": {
-          "definition": "owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT. A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90' clock.",
-          "n": 5709,
-          "mean": 0.5676,
-          "sd": 1.1276,
+          "definition": "owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT, counting phase === \"playing\" ticks ONLY — the episode is CLOSED at the same boundary that closes the spell, so a carrier still holding the ball when play stops accrues no dead-ball hold (#171.1.i). A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90' clock.",
+          "n": 5883,
+          "mean": 0.5515,
+          "sd": 1.1119,
           "p25": 0.15,
           "median": 0.3333,
-          "p75": 0.35,
-          "p90": 0.9333,
+          "p75": 0.3333,
+          "p90": 0.8333,
           "max": 6.8333,
           "histogram": [
-            1118,
-            1061,
-            2665,
+            1296,
+            1063,
+            2666,
             328,
-            242,
+            235,
             118,
             177
           ],
           "histogramShare": [
-            0.19583,
-            0.18585,
-            0.46681,
-            0.05745,
-            0.04239,
-            0.02067,
-            0.031
+            0.2203,
+            0.18069,
+            0.45317,
+            0.05575,
+            0.03995,
+            0.02006,
+            0.03009
           ],
           "buckets": [
             "0–0.1s",
@@ -1913,36 +2113,36 @@
             "2–4s",
             ">4s"
           ],
-          "shareAtOrUnderFirstTouchWindow": 0.38168,
+          "shareAtOrUnderFirstTouchWindow": 0.40099,
           "firstTouchWindowS": 0.28
         },
         "actionDurations": {
           "receptionToRelease": {
-            "n": 5709,
-            "mean": 0.5676,
-            "sd": 1.1276,
+            "n": 5883,
+            "mean": 0.5515,
+            "sd": 1.1119,
             "p25": 0.15,
             "median": 0.3333,
-            "p75": 0.35,
-            "p90": 0.9333,
+            "p75": 0.3333,
+            "p90": 0.8333,
             "max": 6.8333,
             "histogram": [
-              1118,
-              1061,
-              2665,
+              1296,
+              1063,
+              2666,
               328,
-              242,
+              235,
               118,
               177
             ],
             "histogramShare": [
-              0.19583,
-              0.18585,
-              0.46681,
-              0.05745,
-              0.04239,
-              0.02067,
-              0.031
+              0.2203,
+              0.18069,
+              0.45317,
+              0.05575,
+              0.03995,
+              0.02006,
+              0.03009
             ],
             "buckets": [
               "0–0.1s",
@@ -1992,312 +2192,383 @@
         "pressContext": {
           "frozenRadiusM": 4.2,
           "frozenRadiusTrace": "TOUCH_CONTROL_DIST, src/sim/constants.ts:315 — the substrate's own \"under pressure\" switch for the carry.",
+          "populationNote": "⭐ #171.1.iv — the HEADLINE first-reception block is the openPlay-ORIGIN population (the frozen wording: the FIRST reception of each SPELL). Restart- and kickoff-origin receptions carry set-piece geometry and are reported SEPARATELY as firstReceptionsAllOrigins, labelled, for context only.",
           "allReceptions": {
             "radiusM": 4.2,
-            "pressedShare": 0.57786,
+            "pressedShare": 0.58984,
             "pressed": {
-              "n": 3299,
+              "n": 3470,
               "counts": {
                 "retainedBeyondFirstTouch": 1020,
-                "releasedFirstTouchSafe": 726,
+                "releasedFirstTouchSafe": 895,
                 "lostWithinFirstTouch": 549,
                 "lostAfterHold": 574,
                 "fouled": 80,
-                "otherDeadBall": 350
+                "otherDeadBall": 352
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.30918,
-                "releasedFirstTouchSafe": 0.22007,
-                "lostWithinFirstTouch": 0.16641,
-                "lostAfterHold": 0.17399,
-                "fouled": 0.02425,
-                "otherDeadBall": 0.10609
+                "retainedBeyondFirstTouch": 0.29395,
+                "releasedFirstTouchSafe": 0.25793,
+                "lostWithinFirstTouch": 0.15821,
+                "lostAfterHold": 0.16542,
+                "fouled": 0.02305,
+                "otherDeadBall": 0.10144
               },
-              "holdMeanS": 0.4474,
+              "holdMeanS": 0.4281,
               "holdMedianS": 0.3333,
-              "lostShare": 0.34041
+              "lostShare": 0.32363
             },
             "unpressed": {
-              "n": 2410,
+              "n": 2413,
               "counts": {
                 "retainedBeyondFirstTouch": 1256,
-                "releasedFirstTouchSafe": 385,
+                "releasedFirstTouchSafe": 388,
                 "lostWithinFirstTouch": 163,
                 "lostAfterHold": 366,
                 "fouled": 10,
                 "otherDeadBall": 230
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.52116,
-                "releasedFirstTouchSafe": 0.15975,
-                "lostWithinFirstTouch": 0.06763,
-                "lostAfterHold": 0.15187,
-                "fouled": 0.00415,
-                "otherDeadBall": 0.09544
+                "retainedBeyondFirstTouch": 0.52051,
+                "releasedFirstTouchSafe": 0.1608,
+                "lostWithinFirstTouch": 0.06755,
+                "lostAfterHold": 0.15168,
+                "fouled": 0.00414,
+                "otherDeadBall": 0.09532
               },
-              "holdMeanS": 0.7322,
+              "holdMeanS": 0.7289,
               "holdMedianS": 0.3333,
-              "lostShare": 0.2195
+              "lostShare": 0.21923
             },
             "all": {
-              "n": 5709,
+              "n": 5883,
               "counts": {
                 "retainedBeyondFirstTouch": 2276,
-                "releasedFirstTouchSafe": 1111,
+                "releasedFirstTouchSafe": 1283,
                 "lostWithinFirstTouch": 712,
                 "lostAfterHold": 940,
                 "fouled": 90,
-                "otherDeadBall": 580
+                "otherDeadBall": 582
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.39867,
-                "releasedFirstTouchSafe": 0.19461,
-                "lostWithinFirstTouch": 0.12472,
-                "lostAfterHold": 0.16465,
-                "fouled": 0.01576,
-                "otherDeadBall": 0.10159
+                "retainedBeyondFirstTouch": 0.38688,
+                "releasedFirstTouchSafe": 0.21809,
+                "lostWithinFirstTouch": 0.12103,
+                "lostAfterHold": 0.15978,
+                "fouled": 0.0153,
+                "otherDeadBall": 0.09893
               },
-              "holdMeanS": 0.5676,
+              "holdMeanS": 0.5515,
               "holdMedianS": 0.3333,
-              "lostShare": 0.28937
+              "lostShare": 0.28081
             }
           },
           "firstReceptionsOfSpell": {
             "radiusM": 4.2,
-            "pressedShare": 0.59733,
+            "pressedShare": 0.83354,
             "pressed": {
-              "n": 1387,
+              "n": 1377,
               "counts": {
                 "retainedBeyondFirstTouch": 670,
-                "releasedFirstTouchSafe": 85,
-                "lostWithinFirstTouch": 143,
-                "lostAfterHold": 321,
+                "releasedFirstTouchSafe": 81,
+                "lostWithinFirstTouch": 140,
+                "lostAfterHold": 320,
                 "fouled": 32,
-                "otherDeadBall": 136
+                "otherDeadBall": 134
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.48306,
-                "releasedFirstTouchSafe": 0.06128,
-                "lostWithinFirstTouch": 0.1031,
-                "lostAfterHold": 0.23143,
-                "fouled": 0.02307,
-                "otherDeadBall": 0.09805
+                "retainedBeyondFirstTouch": 0.48656,
+                "releasedFirstTouchSafe": 0.05882,
+                "lostWithinFirstTouch": 0.10167,
+                "lostAfterHold": 0.23239,
+                "fouled": 0.02324,
+                "otherDeadBall": 0.09731
               },
-              "holdMeanS": 0.5508,
+              "holdMeanS": 0.5512,
               "holdMedianS": 0.3333,
-              "lostShare": 0.33453
+              "lostShare": 0.33406
             },
             "unpressed": {
-              "n": 935,
+              "n": 275,
               "counts": {
-                "retainedBeyondFirstTouch": 343,
-                "releasedFirstTouchSafe": 327,
-                "lostWithinFirstTouch": 119,
-                "lostAfterHold": 61,
+                "retainedBeyondFirstTouch": 194,
+                "releasedFirstTouchSafe": 9,
+                "lostWithinFirstTouch": 8,
+                "lostAfterHold": 42,
                 "fouled": 2,
-                "otherDeadBall": 83
+                "otherDeadBall": 20
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.36684,
-                "releasedFirstTouchSafe": 0.34973,
-                "lostWithinFirstTouch": 0.12727,
-                "lostAfterHold": 0.06524,
-                "fouled": 0.00214,
-                "otherDeadBall": 0.08877
+                "retainedBeyondFirstTouch": 0.70545,
+                "releasedFirstTouchSafe": 0.03273,
+                "lostWithinFirstTouch": 0.02909,
+                "lostAfterHold": 0.15273,
+                "fouled": 0.00727,
+                "otherDeadBall": 0.07273
               },
-              "holdMeanS": 1.0758,
-              "holdMedianS": 0.15,
-              "lostShare": 0.19251
+              "holdMeanS": 3.1674,
+              "holdMedianS": 1.5,
+              "lostShare": 0.18182
             },
             "all": {
-              "n": 2322,
+              "n": 1652,
               "counts": {
-                "retainedBeyondFirstTouch": 1013,
-                "releasedFirstTouchSafe": 412,
-                "lostWithinFirstTouch": 262,
-                "lostAfterHold": 382,
+                "retainedBeyondFirstTouch": 864,
+                "releasedFirstTouchSafe": 90,
+                "lostWithinFirstTouch": 148,
+                "lostAfterHold": 362,
                 "fouled": 34,
-                "otherDeadBall": 219
+                "otherDeadBall": 154
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.43626,
-                "releasedFirstTouchSafe": 0.17743,
-                "lostWithinFirstTouch": 0.11283,
-                "lostAfterHold": 0.16451,
-                "fouled": 0.01464,
-                "otherDeadBall": 0.09432
+                "retainedBeyondFirstTouch": 0.523,
+                "releasedFirstTouchSafe": 0.05448,
+                "lostWithinFirstTouch": 0.08959,
+                "lostAfterHold": 0.21913,
+                "fouled": 0.02058,
+                "otherDeadBall": 0.09322
               },
-              "holdMeanS": 0.7622,
+              "holdMeanS": 0.9867,
               "holdMedianS": 0.3333,
-              "lostShare": 0.27735
+              "lostShare": 0.30872
+            }
+          },
+          "firstReceptionsAllOrigins": {
+            "radiusM": 4.2,
+            "pressedShare": 0.66824,
+            "pressed": {
+              "n": 1553,
+              "counts": {
+                "retainedBeyondFirstTouch": 670,
+                "releasedFirstTouchSafe": 251,
+                "lostWithinFirstTouch": 142,
+                "lostAfterHold": 320,
+                "fouled": 32,
+                "otherDeadBall": 138
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.43142,
+                "releasedFirstTouchSafe": 0.16162,
+                "lostWithinFirstTouch": 0.09144,
+                "lostAfterHold": 0.20605,
+                "fouled": 0.02061,
+                "otherDeadBall": 0.08886
+              },
+              "holdMeanS": 0.4983,
+              "holdMedianS": 0.3333,
+              "lostShare": 0.29749
+            },
+            "unpressed": {
+              "n": 771,
+              "counts": {
+                "retainedBeyondFirstTouch": 199,
+                "releasedFirstTouchSafe": 330,
+                "lostWithinFirstTouch": 119,
+                "lostAfterHold": 42,
+                "fouled": 2,
+                "otherDeadBall": 79
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.25811,
+                "releasedFirstTouchSafe": 0.42802,
+                "lostWithinFirstTouch": 0.15435,
+                "lostAfterHold": 0.05447,
+                "fouled": 0.00259,
+                "otherDeadBall": 0.10246
+              },
+              "holdMeanS": 1.2261,
+              "holdMedianS": 0.15,
+              "lostShare": 0.20882
+            },
+            "all": {
+              "n": 2324,
+              "counts": {
+                "retainedBeyondFirstTouch": 869,
+                "releasedFirstTouchSafe": 581,
+                "lostWithinFirstTouch": 261,
+                "lostAfterHold": 362,
+                "fouled": 34,
+                "otherDeadBall": 217
+              },
+              "share": {
+                "retainedBeyondFirstTouch": 0.37392,
+                "releasedFirstTouchSafe": 0.25,
+                "lostWithinFirstTouch": 0.11231,
+                "lostAfterHold": 0.15577,
+                "fouled": 0.01463,
+                "otherDeadBall": 0.09337
+              },
+              "holdMeanS": 0.7398,
+              "holdMedianS": 0.3333,
+              "lostShare": 0.26807
             }
           },
           "sensitivityTight": {
             "radiusM": 3,
-            "pressedShare": 0.48536,
+            "pressedShare": 0.67857,
             "pressed": {
-              "n": 1127,
+              "n": 1121,
               "counts": {
                 "retainedBeyondFirstTouch": 528,
-                "releasedFirstTouchSafe": 74,
-                "lostWithinFirstTouch": 131,
-                "lostAfterHold": 260,
+                "releasedFirstTouchSafe": 71,
+                "lostWithinFirstTouch": 130,
+                "lostAfterHold": 259,
                 "fouled": 23,
-                "otherDeadBall": 111
+                "otherDeadBall": 110
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.4685,
-                "releasedFirstTouchSafe": 0.06566,
-                "lostWithinFirstTouch": 0.11624,
-                "lostAfterHold": 0.2307,
-                "fouled": 0.02041,
-                "otherDeadBall": 0.09849
+                "retainedBeyondFirstTouch": 0.47101,
+                "releasedFirstTouchSafe": 0.06334,
+                "lostWithinFirstTouch": 0.11597,
+                "lostAfterHold": 0.23104,
+                "fouled": 0.02052,
+                "otherDeadBall": 0.09813
               },
-              "holdMeanS": 0.4861,
+              "holdMeanS": 0.4858,
               "holdMedianS": 0.3333,
-              "lostShare": 0.34694
+              "lostShare": 0.34701
             },
             "unpressed": {
-              "n": 1195,
+              "n": 531,
               "counts": {
-                "retainedBeyondFirstTouch": 485,
-                "releasedFirstTouchSafe": 338,
-                "lostWithinFirstTouch": 131,
-                "lostAfterHold": 122,
+                "retainedBeyondFirstTouch": 336,
+                "releasedFirstTouchSafe": 19,
+                "lostWithinFirstTouch": 18,
+                "lostAfterHold": 103,
                 "fouled": 11,
-                "otherDeadBall": 108
+                "otherDeadBall": 44
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.40586,
-                "releasedFirstTouchSafe": 0.28285,
-                "lostWithinFirstTouch": 0.10962,
-                "lostAfterHold": 0.10209,
-                "fouled": 0.00921,
-                "otherDeadBall": 0.09038
+                "retainedBeyondFirstTouch": 0.63277,
+                "releasedFirstTouchSafe": 0.03578,
+                "lostWithinFirstTouch": 0.0339,
+                "lostAfterHold": 0.19397,
+                "fouled": 0.02072,
+                "otherDeadBall": 0.08286
               },
-              "holdMeanS": 1.0226,
-              "holdMedianS": 0.3333,
-              "lostShare": 0.21172
+              "holdMeanS": 2.0442,
+              "holdMedianS": 0.3833,
+              "lostShare": 0.22787
             },
             "all": {
-              "n": 2322,
+              "n": 1652,
               "counts": {
-                "retainedBeyondFirstTouch": 1013,
-                "releasedFirstTouchSafe": 412,
-                "lostWithinFirstTouch": 262,
-                "lostAfterHold": 382,
+                "retainedBeyondFirstTouch": 864,
+                "releasedFirstTouchSafe": 90,
+                "lostWithinFirstTouch": 148,
+                "lostAfterHold": 362,
                 "fouled": 34,
-                "otherDeadBall": 219
+                "otherDeadBall": 154
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.43626,
-                "releasedFirstTouchSafe": 0.17743,
-                "lostWithinFirstTouch": 0.11283,
-                "lostAfterHold": 0.16451,
-                "fouled": 0.01464,
-                "otherDeadBall": 0.09432
+                "retainedBeyondFirstTouch": 0.523,
+                "releasedFirstTouchSafe": 0.05448,
+                "lostWithinFirstTouch": 0.08959,
+                "lostAfterHold": 0.21913,
+                "fouled": 0.02058,
+                "otherDeadBall": 0.09322
               },
-              "holdMeanS": 0.7622,
+              "holdMeanS": 0.9867,
               "holdMedianS": 0.3333,
-              "lostShare": 0.27735
+              "lostShare": 0.30872
             }
           },
           "sensitivityTightest": {
             "radiusM": 1.25,
-            "pressedShare": 0.17657,
+            "pressedShare": 0.24758,
             "pressed": {
-              "n": 410,
+              "n": 409,
               "counts": {
                 "retainedBeyondFirstTouch": 183,
-                "releasedFirstTouchSafe": 29,
+                "releasedFirstTouchSafe": 28,
                 "lostWithinFirstTouch": 65,
                 "lostAfterHold": 87,
                 "fouled": 11,
                 "otherDeadBall": 35
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.44634,
-                "releasedFirstTouchSafe": 0.07073,
-                "lostWithinFirstTouch": 0.15854,
-                "lostAfterHold": 0.2122,
-                "fouled": 0.02683,
-                "otherDeadBall": 0.08537
+                "retainedBeyondFirstTouch": 0.44743,
+                "releasedFirstTouchSafe": 0.06846,
+                "lostWithinFirstTouch": 0.15892,
+                "lostAfterHold": 0.21271,
+                "fouled": 0.02689,
+                "otherDeadBall": 0.08557
               },
-              "holdMeanS": 0.3769,
+              "holdMeanS": 0.3774,
               "holdMedianS": 0.3333,
-              "lostShare": 0.37073
+              "lostShare": 0.37164
             },
             "unpressed": {
-              "n": 1912,
+              "n": 1243,
               "counts": {
-                "retainedBeyondFirstTouch": 830,
-                "releasedFirstTouchSafe": 383,
-                "lostWithinFirstTouch": 197,
-                "lostAfterHold": 295,
+                "retainedBeyondFirstTouch": 681,
+                "releasedFirstTouchSafe": 62,
+                "lostWithinFirstTouch": 83,
+                "lostAfterHold": 275,
                 "fouled": 23,
-                "otherDeadBall": 184
+                "otherDeadBall": 119
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.4341,
-                "releasedFirstTouchSafe": 0.20031,
-                "lostWithinFirstTouch": 0.10303,
-                "lostAfterHold": 0.15429,
-                "fouled": 0.01203,
-                "otherDeadBall": 0.09623
+                "retainedBeyondFirstTouch": 0.54787,
+                "releasedFirstTouchSafe": 0.04988,
+                "lostWithinFirstTouch": 0.06677,
+                "lostAfterHold": 0.22124,
+                "fouled": 0.0185,
+                "otherDeadBall": 0.09574
               },
-              "holdMeanS": 0.8448,
+              "holdMeanS": 1.1872,
               "holdMedianS": 0.3333,
-              "lostShare": 0.25732
+              "lostShare": 0.28801
             },
             "all": {
-              "n": 2322,
+              "n": 1652,
               "counts": {
-                "retainedBeyondFirstTouch": 1013,
-                "releasedFirstTouchSafe": 412,
-                "lostWithinFirstTouch": 262,
-                "lostAfterHold": 382,
+                "retainedBeyondFirstTouch": 864,
+                "releasedFirstTouchSafe": 90,
+                "lostWithinFirstTouch": 148,
+                "lostAfterHold": 362,
                 "fouled": 34,
-                "otherDeadBall": 219
+                "otherDeadBall": 154
               },
               "share": {
-                "retainedBeyondFirstTouch": 0.43626,
-                "releasedFirstTouchSafe": 0.17743,
-                "lostWithinFirstTouch": 0.11283,
-                "lostAfterHold": 0.16451,
-                "fouled": 0.01464,
-                "otherDeadBall": 0.09432
+                "retainedBeyondFirstTouch": 0.523,
+                "releasedFirstTouchSafe": 0.05448,
+                "lostWithinFirstTouch": 0.08959,
+                "lostAfterHold": 0.21913,
+                "fouled": 0.02058,
+                "otherDeadBall": 0.09322
               },
-              "holdMeanS": 0.7622,
+              "holdMeanS": 0.9867,
               "holdMedianS": 0.3333,
-              "lostShare": 0.27735
+              "lostShare": 0.30872
             }
           },
           "nearestOpponentAtReception": {
-            "n": 2322,
-            "mean": 5.0358,
-            "sd": 4.5089,
-            "p25": 1.6183,
-            "median": 3.1106,
-            "p75": 7.9135,
-            "p90": 11.3301,
-            "max": 27.5088,
+            "n": 1652,
+            "mean": 2.8338,
+            "sd": 2.2202,
+            "p25": 1.2599,
+            "median": 2.204,
+            "p75": 3.429,
+            "p90": 5.5246,
+            "max": 19.5172,
             "histogram": [
               1,
-              746,
-              380,
-              260,
-              198,
-              303,
-              434
+              744,
+              376,
+              256,
+              135,
+              99,
+              41
             ],
             "histogramShare": [
-              0.00043,
-              0.32127,
-              0.16365,
-              0.11197,
-              0.08527,
-              0.13049,
-              0.18691
+              0.00061,
+              0.45036,
+              0.2276,
+              0.15496,
+              0.08172,
+              0.05993,
+              0.02482
             ],
             "buckets": [
               "0–1m",
@@ -2309,6 +2580,7 @@
               ">9m"
             ]
           },
+          "nearestOpponentPopulation": "openPlay-origin first receptions",
           "engineTriggerRangeM": [
             3.1585,
             4.5
@@ -2316,72 +2588,93 @@
         },
         "discriminatorH169a": {
           "frozenExAnte": "Among the FIRST reception of each spell, compare P(spell lost here | pressed) against P(spell lost here | unpressed) at the frozen radius. READING RULE (frozen before any run): ratio ≥ 1.5 AND absolute gap ≥ 0.10 ⇒ PRESSED-SPECIFIC, the outlet story holds; ratio ≤ 1.2 OR gap ≤ 0.05 ⇒ NOT pressed-specific, the disease is elsewhere; anything between ⇒ AMBIGUOUS. ⭐ REPORTED, NEVER GATED — the commander rules.",
-          "nFirstReceptions": 2322,
-          "nPressed": 1387,
-          "nUnpressed": 935,
-          "pLostPressed": 0.33453,
-          "pLostUnpressed": 0.19251,
-          "ratio": 1.7377,
-          "gap": 0.14202,
+          "population": "⭐ openPlay-ORIGIN spells' first receptions ONLY (#171.1.iv). Restart/kickoff-origin receptions are set-piece geometry and are excluded from the headline; the all-origins variant is carried beside it, labelled, for context.",
+          "nFirstReceptions": 1652,
+          "nPressed": 1377,
+          "nUnpressed": 275,
+          "pLostPressed": 0.33406,
+          "pLostUnpressed": 0.18182,
+          "ratio": 1.8373,
+          "gap": 0.15224,
           "reading": "PRESSED-SPECIFIC — consistent with H-169a (pressure has no outlet)",
-          "holdMeanPressedS": 0.5508,
-          "holdMeanUnpressedS": 1.0758
+          "holdMeanPressedS": 0.5512,
+          "holdMeanUnpressedS": 3.1674,
+          "allOriginsVariant": {
+            "note": "⚠ CONTEXT ONLY — the same contrast on ALL first receptions (openPlay + restart + kickoff). NOT the frozen discriminator; it is here so the population choice is auditable rather than hidden.",
+            "nFirstReceptions": 2324,
+            "nPressed": 1553,
+            "nUnpressed": 771,
+            "pLostPressed": 0.29749,
+            "pLostUnpressed": 0.20882,
+            "ratio": 1.4246,
+            "gap": 0.08867,
+            "reading": "AMBIGUOUS — between the two frozen readings",
+            "holdMeanPressedS": 0.4983,
+            "holdMeanUnpressedS": 1.2261
+          }
         },
         "eventsPerMinute": {
-          "axisNote": "MAPPING: 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min; per-display-min = per-sim-s × 2.666667. Both axes are given for EVERY rate.",
+          "axisNote": "MAPPING: 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min; per-display-min = per-sim-s × 2.666667. Both axes are given for EVERY rate, and BOTH divide the SAME denominator — mean match.simTime (played sim-seconds), NOT simTick · DT — so the law reproduces exactly (#171.1.ii).",
+          "scopeNote": "⚠ every count here is a BOTH-TEAMS sum per match. passes / shots / fouls also carry perTeamPerMatch (= sum / 2), which is the scope the per-TEAM bands B9 (shots 10–14.5) and B10 (fouls 9–12) are stated in.",
           "passes": {
             "perMatch": 112.125,
-            "perSimSecond": 0.44618,
-            "perSimMinute": 26.7708,
-            "perDisplayMinute": 1.245833
+            "perSimSecond": 0.46439,
+            "perSimMinute": 27.8634,
+            "perDisplayMinute": 1.238373,
+            "perTeamPerMatch": 56.0625,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "passesCompleted": {
             "perMatch": 76.075,
-            "perSimSecond": 0.302726,
-            "perSimMinute": 18.1635,
-            "perDisplayMinute": 0.845278
+            "perSimSecond": 0.315081,
+            "perSimMinute": 18.9049,
+            "perDisplayMinute": 0.840216
           },
           "shots": {
             "perMatch": 11.2,
-            "perSimSecond": 0.044568,
-            "perSimMinute": 2.6741,
-            "perDisplayMinute": 0.124444
+            "perSimSecond": 0.046387,
+            "perSimMinute": 2.7832,
+            "perDisplayMinute": 0.123699,
+            "perTeamPerMatch": 5.6,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "fouls": {
             "perMatch": 3.775,
-            "perSimSecond": 0.015022,
-            "perSimMinute": 0.9013,
-            "perDisplayMinute": 0.041944
+            "perSimSecond": 0.015635,
+            "perSimMinute": 0.9381,
+            "perDisplayMinute": 0.041693,
+            "perTeamPerMatch": 1.8875,
+            "scope": "⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated in. Never read a per-team band against the sum."
           },
           "goals": {
             "perMatch": 2.425,
-            "perSimSecond": 0.00965,
-            "perSimMinute": 0.579,
-            "perDisplayMinute": 0.026944
+            "perSimSecond": 0.010044,
+            "perSimMinute": 0.6026,
+            "perDisplayMinute": 0.026783
           },
           "miscontrols": {
             "perMatch": 9.3,
-            "perSimSecond": 0.037008,
-            "perSimMinute": 2.2205,
-            "perDisplayMinute": 0.103333
+            "perSimSecond": 0.038518,
+            "perSimMinute": 2.3111,
+            "perDisplayMinute": 0.102715
           },
           "regains": {
             "perMatch": 42.675,
-            "perSimSecond": 0.169817,
-            "perSimMinute": 10.189,
-            "perDisplayMinute": 0.474167
+            "perSimSecond": 0.176748,
+            "perSimMinute": 10.6049,
+            "perDisplayMinute": 0.471327
           },
           "turnovers": {
             "perMatch": 41.3,
-            "perSimSecond": 0.164345,
-            "perSimMinute": 9.8607,
-            "perDisplayMinute": 0.458889
+            "perSimSecond": 0.171053,
+            "perSimMinute": 10.2632,
+            "perDisplayMinute": 0.456141
           },
           "possessionChanges": {
             "perMatch": 58.1,
-            "perSimSecond": 0.231198,
-            "perSimMinute": 13.8719,
-            "perDisplayMinute": 0.645556
+            "perSimSecond": 0.240634,
+            "perSimMinute": 14.438,
+            "perDisplayMinute": 0.64169
           }
         },
         "ci95PerMatch": {
@@ -2412,7 +2705,7 @@
     }
   },
   "wall": {
-    "perMatchMs": 102.108,
+    "perMatchMs": 98.525,
     "note": "measured OUTSIDE the X-DET-compared core (#128) — excluded from resultSha256."
   },
   "sizing": {
@@ -2426,12 +2719,12 @@
     "nRaw": 607,
     "nStepped": 650,
     "nStep": 50,
-    "wallPerMatchMs": 102.108,
+    "wallPerMatchMs": 98.525,
     "wallBudgetHours": 2,
-    "nAffordableAtBudget": 11752,
+    "nAffordableAtBudget": 12179,
     "nCap": 3000,
     "nStar": 650,
-    "projectedWallHours": 0.111,
+    "projectedWallHours": 0.107,
     "arithmetic": "N* = min( ceil(20000 / spellsPerMatch_binding) rounded up to 50, floor(budget / (ms_per_match × 3 arms × 2 X-DET)), 3000 ) — frozen BEFORE the smoke ran."
   },
   "fidelity": {
@@ -2510,7 +2803,7 @@
     "NO WATCHABILITY CLAIM. Tempo FEEL belongs to the user's eyes (#152); this instrument only puts a number beside the 1.1/1.2× intuition (VISION §2, 2026-07-27).",
     "NO MECHANIC IS PROPOSED HERE. The outlet-seats vs punish-compactness fork is the commander's to present after the gap table (#170.3)."
   ],
-  "verdict": "SIZING SMOKE — plumbing GREEN; N* = 650 (projected 0.111 h). NO conclusion is drawn from smoke levels.",
-  "resultSha256": "af764b0cdf1d5bb051ad8e0eee54e829d92dc771c23842b5310dd2af935bea57",
-  "sha256": "9135de0c1b026ceddd0bf98bff660d77b955c5326bf432c8d8eb453f21ca06b2"
+  "verdict": "SIZING SMOKE — plumbing GREEN; N* = 650 (projected 0.107 h). NO conclusion is drawn from smoke levels.",
+  "resultSha256": "2269882b50e552578e0e0c43703f7a880495aec6b57a39d96578217e1cc6530c",
+  "sha256": "42aa554101d56d074d6fd10fed685945ed48e6cf60790ea969354bfa6d2ee91e"
 }

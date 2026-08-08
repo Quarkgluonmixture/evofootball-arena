@@ -16,12 +16,18 @@
 // under pressure, and how long the actions themselves take — against real-football
 // REFERENCE LINES that GATE NOTHING.
 //
-// ⭐ AXIS HONESTY (#170.2, the PITCH_SCALE probe lesson). MATCH_DURATION = 240 sim-seconds
-// maps to a 90' display clock. EVERY rate is therefore reported TWICE:
-//     per SIM-second   — what the user actually watches at 1× (240 s = one match)
+// ⭐ AXIS HONESTY (#170.2, the PITCH_SCALE probe lesson; #171.1.ii FIX). MATCH_DURATION = 240
+// sim-seconds maps to a 90' display clock. EVERY rate is therefore reported TWICE:
+//     per SIM-second   — what the user actually watches at 1× (240 s = one nominal match)
 //     per DISPLAY-min  — the 90' mapping
 //     MAPPING FACTOR   — 240 sim-s ⇔ 90 display-min ⇒ 1 sim-s = 0.375 display-min
 //                        ⇒ rate_per_display_min = rate_per_sim_s × (240 / 90) = × 2.666…
+// ⭐ ONE CLOCK IS THE RATE DENOMINATOR (#171.1.ii): `match.simTime` — the PLAYED-time clock
+// that `Match.minute()` itself maps onto the 90' display. `simTick · DT` is NOT used in any
+// rate: `simTick` (= `stepCount`) counts the kickoff / goal-pause / half-time steps that
+// `simTime` skips (Match.ts:1113–1134), so dividing by it breaks the ×2.6667 law. The
+// pause-INCLUSIVE clock the user actually sits through is still emitted once per arm as
+// `wallSimSecondsPerMatch`, clearly labelled and used in NO rate.
 // DURATIONS are reported in SIM-SECONDS ONLY and are never rescaled: a 0.3 s hold is a
 // 0.3 s hold on the screen. The gap table never mixes axes.
 //
@@ -39,8 +45,9 @@
 //
 // COMMAND LINES:
 //   TEMPO_MODE=smoke  npx tsx scripts/probes/tempo-census.ts
-//   TEMPO_MODE=census TEMPO_N=<the disclosed N* from the smoke> \
-//                     npx tsx scripts/probes/tempo-census.ts
+//   the full census, §0.0.4 DETACHED (the commander's resident session; log declared):
+//     nohup env TEMPO_MODE=census TEMPO_N=<the disclosed N* from the smoke> \
+//       npx tsx scripts/probes/tempo-census.ts > /tmp/tempo-census-full.log 2>&1 & disown
 //   preflight (bounded, writes OUTSIDE docs/, NOT a verdict):
 //     TEMPO_MODE=smoke TEMPO_CAP=2 TEMPO_SKIP_FP=1 TEMPO_OUT=/tmp/t.json npx tsx …
 //
@@ -58,7 +65,7 @@ import { League } from '../../src/sim/League';
 import { Match } from '../../src/sim/Match';
 import { runHeadless } from '../../src/sim/simRunner';
 import {
-  CONTEST_RADIUS, CONTROL_RADIUS, DT, MATCH_DURATION, TOUCH_CONTROL_DIST,
+  CONTEST_RADIUS, CONTROL_RADIUS, CONTROL_REACH_SCALE, DT, MATCH_DURATION, TOUCH_CONTROL_DIST,
 } from '../../src/sim/constants';
 import { TEAM_SIZE, type Side, type TeamInfo } from '../../src/sim/types';
 import type { Player } from '../../src/sim/Player';
@@ -79,16 +86,23 @@ const SIM_S_PER_DISPLAY_MIN = MATCH_DURATION / DISPLAY_MINUTES;
 
 /** ⭐ THE PRESSURE RADIUS, FROZEN EX ANTE FROM A TRACED constants.ts VALUE.
  *  `TOUCH_CONTROL_DIST` (src/sim/constants.ts:315) = 4.2 m is the sim's OWN definition of
- *  "under pressure": above it the carrier plays open touches, at or below it "the carry
- *  stays glued — close control IS short touches, and the tackle/shield duel lives there".
+ *  "under pressure". Its docstring, quoted honestly across the TWO comment blocks it
+ *  actually lives in (constants.ts:305–311, the Phase-36 discrete-touch block, then
+ *  constants.ts:312–314 immediately above the const), with the elision marked:
+ *    "Under pressure (an opponent inside TOUCH_CONTROL_DIST) the carry stays glued: close
+ *     control IS short touches, and the tackle/shield duel lives there." […]
+ *    "Nearest-opponent distance above which the carrier plays open touches."
  *  It is the substrate's own pressure switch, which is exactly what this census must read.
  *  TWO declared SENSITIVITY radii are reported beside it, never instead of it:
  *    · CONTEST_RADIUS 3.0 m (constants.ts:256 — "both sides with a body within this of a
  *      loose ball = a genuine contest"), and
- *    · CONTROL_RADIUS 1.25 m (constants.ts:244 — the reach envelope; the tightest read).
+ *    · CONTROL_RADIUS (constants.ts:244 — the reach envelope; the tightest read). ⚠ It is
+ *      NOT a flat 1.25: the source is `1.25 * CONTROL_REACH_SCALE` (constants.ts:31, an
+ *      env-scalable factor), so the probe writes the COMPUTED runtime value plus the
+ *      formula and the observed scale into the trace (#171.1 finding 5).
  *  For context only, the engine's own RECEPTION pressure trigger is genome-dependent
- *  (`trigger = 3.0 + tempo·1.5`, Match.ts:1711 ⇒ 3.0–4.5 m) — it is REPORTED as the
- *  observed distribution, never used as the frozen radius (a genome-dependent radius
+ *  (`trigger = 3.0 + team.genome.tempo * 1.5`, Match.ts:1710 ⇒ 3.0–4.5 m) — it is REPORTED
+ *  as the observed distribution, never used as the frozen radius (a genome-dependent radius
  *  would make the ruler move with the arm). */
 const PRESSURE_R = TOUCH_CONTROL_DIST;
 const PRESSURE_R_TIGHT = CONTEST_RADIUS;
@@ -208,6 +222,9 @@ interface Band {
    *  D = DERIVED from another band (arithmetic shown); ABSENT = no honest source. */
   readonly grade: 'O' | 'T' | 'I' | 'S' | 'P' | 'D' | 'ABSENT';
   readonly source: string;
+  /** ⚠ #171.1.iii: the POPULATION the band counts, spelled out AT THE POINT OF READ where
+   *  it differs from the probe's default emission (both-teams sums per match). */
+  readonly scope?: string;
 }
 const REFERENCE_BANDS: readonly Band[] = [
   {
@@ -291,12 +308,18 @@ const REFERENCE_BANDS: readonly Band[] = [
       + 'shots/match in 2024-25 (statmuse.com), which was among the league LEADERS ⇒ the '
       + 'league mean sits below it. The band is deliberately wide and its centre is NOT '
       + 'sourced. Treat as an order-of-magnitude line only.',
+    scope: '⚠ PER TEAM PER MATCH. The probe\'s eventsPerMinute.shots.perMatch is a BOTH-TEAMS '
+      + 'sum — read this band against eventsPerMinute.shots.perTeamPerMatch (= the sum / 2; '
+      + 'the arms are symmetric, so the halving is exact in expectation, not per match).',
   },
   {
     id: 'foulsPerTeam', metric: 'fouls per team per match',
     lo: 9, hi: 12, unit: 'fouls', grade: 'P',
     source: 'PUBLIC but WEAK: Arsenal committed 399 fouls in 38 matches in 2024-25 = 10.5 '
       + 'per match (statmuse.com). One team, one season; the band is that value ±1.5.',
+    scope: '⚠ PER TEAM PER MATCH. The probe\'s eventsPerMinute.fouls.perMatch is a BOTH-TEAMS '
+      + 'sum — read this band against eventsPerMinute.fouls.perTeamPerMatch (= the sum / 2; '
+      + 'the arms are symmetric, so the halving is exact in expectation, not per match).',
   },
 ] as const;
 
@@ -498,8 +521,13 @@ interface MatchCensus {
   seed: number;
   spells: Spell[];
   touches: Touch[];
-  /** sim-seconds the match actually ran (stoppage included). */
+  /** ⭐ THE RATE DENOMINATOR (#171.1.ii): `match.simTime` — PLAYED sim-seconds (stoppage
+   *  included, kickoff/goal-pause/half-time steps excluded, exactly as the 90' display
+   *  clock counts them). Every rate on every axis divides by THIS. */
   simSeconds: number;
+  /** CONTEXT ONLY, in NO rate: the pause-INCLUSIVE clock the user actually sits through,
+   *  `simTick · DT` (simTick = stepCount, which ticks through the pauses simTime skips). */
+  wallSimSeconds: number;
   /** ticks with phase === 'playing' (the ball-in-play analogue). */
   inPlayTicks: number;
   /** ticks the ball had an owner while playing. */
@@ -588,11 +616,21 @@ function censusOne(arm: Arm, seed: number): MatchCensus {
     }
 
     if (phase !== 'playing') {
+      // ⭐ #171.1.i — THE DEAD-BALL LEAK FIX. The ownership episode closes at the SAME
+      // boundary that closes the spell: a carrier who is still holding the ball when the
+      // phase leaves 'playing' must not accrue hold ticks through the restart. Time on
+      // ball counts phase === 'playing' ticks ONLY. `prevOwnerGid` is reset to null so
+      // that the resumption (a restart taker, or the same body playing on) registers as a
+      // FRESH ownership episode rather than silently continuing the dead one.
+      if (curTouch !== null) {
+        curTouch.endTick = tick;
+        curTouch = null;
+      }
       if (cur !== null) {
         finishSpell(cur, tick, goalThisTick ? 'goal' : 'outOfPlay');
         cur = null;
       }
-      prevOwnerGid = ownerGid;
+      prevOwnerGid = null;
       continue;
     }
 
@@ -663,7 +701,8 @@ function censusOne(arm: Arm, seed: number): MatchCensus {
   const st0 = m.teams[0].stats; const st1 = m.teams[1].stats;
   return {
     seed, spells, touches,
-    simSeconds: m.simTick * DT,
+    simSeconds: m.simTime,
+    wallSimSeconds: m.simTick * DT,
     inPlayTicks, ownedTicks, windupTicks, windupEpisodes, windupLengths,
     stats: {
       passes: st0.passes + st1.passes,
@@ -681,12 +720,30 @@ function censusOne(arm: Arm, seed: number): MatchCensus {
 // =============================================================================
 // AGGREGATION — every rate on BOTH axes; every duration in SIM-SECONDS only.
 // =============================================================================
-/** A rate reported honestly on both clocks. */
-const bothAxes = (countPerMatch: number, simSecondsPerMatch: number) => ({
-  perMatch: round(countPerMatch, 4),
-  perSimSecond: round(countPerMatch / simSecondsPerMatch, 6),
-  perSimMinute: round((countPerMatch / simSecondsPerMatch) * 60, 4),
-  perDisplayMinute: round(countPerMatch / DISPLAY_MINUTES, 6),
+/** ⭐ A rate reported honestly on both clocks, off ONE denominator (#171.1.ii).
+ *  The denominator is ALWAYS `simSecondsPerMatch` = mean `match.simTime` (PLAYED sim-seconds
+ *  — the clock Match.minute() maps onto the 90' display). Both axes are therefore the same
+ *  number in two units and the stated law reproduces exactly:
+ *      perDisplayMinute = perSimSecond × SIM_S_PER_DISPLAY_MIN (= × 2.6667).
+ *  The pause-inclusive clock (simTick · DT) appears once per arm as context and in NO rate. */
+const bothAxes = (countPerMatch: number, simSecondsPerMatch: number) => {
+  const perSimSecond = countPerMatch / simSecondsPerMatch;
+  return {
+    perMatch: round(countPerMatch, 4),
+    perSimSecond: round(perSimSecond, 6),
+    perSimMinute: round(perSimSecond * 60, 4),
+    perDisplayMinute: round(perSimSecond * SIM_S_PER_DISPLAY_MIN, 6),
+  };
+};
+/** ⚠ #171.1.iii — a BOTH-TEAMS-summed count also emitted per TEAM per match. The arms are
+ *  symmetric (identical construction on both sides), so sum / 2 is the per-team level; it is
+ *  an expectation over the seed set, not a per-match attribution. */
+const bothAxesTeamScoped = (countPerMatch: number, simSecondsPerMatch: number) => ({
+  ...bothAxes(countPerMatch, simSecondsPerMatch),
+  perTeamPerMatch: round(countPerMatch / 2, 4),
+  scope: '⚠ perMatch is a BOTH-TEAMS sum; perTeamPerMatch (= sum / 2, the arms being '
+    + 'symmetric) is the scope the per-TEAM reference bands (B9 shots, B10 fouls) are stated '
+    + 'in. Never read a per-team band against the sum.',
 });
 
 const distOf = (xs: number[], edges: readonly number[], unit: string) => {
@@ -712,7 +769,10 @@ const shareOf = (num: number, den: number): number => round(den === 0 ? Number.N
 
 function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
   const matches = per.length;
+  /** ⭐ THE ONE RATE DENOMINATOR (#171.1.ii): mean PLAYED sim-seconds (match.simTime). */
   const simSecondsPerMatch = mean(per.map((p) => p.simSeconds));
+  /** CONTEXT ONLY, in no rate: the pause-inclusive clock (simTick · DT). */
+  const wallSimSecondsPerMatch = mean(per.map((p) => p.wallSimSeconds));
   const allSpells = per.flatMap((p) => p.spells);
   const openSpells = allSpells.filter((s) => s.origin === 'openPlay');
   const allTouches = per.flatMap((p) => p.touches);
@@ -739,7 +799,18 @@ function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
     || s.terminator === 'outOfPlay' || s.terminator === 'foulCommitted');
 
   // ---- press-context RECEPTION outcomes (the frozen 4-way at R = PRESSURE_R) ----
-  const firstTouches = allTouches.filter((t) => t.isFirstOfSpell);
+  // ⭐ #171.1.iv — POPULATION FIX. The frozen wording is "the FIRST reception of each SPELL"
+  // on the openPlay population; the all-origins pool folds in restart/kickoff receptions
+  // whose geometry is set-piece geometry (a placed ball, a retreating defence). The HEADLINE
+  // block and the H-169a discriminator therefore run on openPlay-origin spells ONLY; the
+  // all-origins variant is kept BESIDE them, labelled, for context.
+  // `spellIdx` is a per-MATCH index, so the join must happen inside each match.
+  const firstTouchesOpen = per.flatMap((p) => p.touches.filter(
+    (t) => t.isFirstOfSpell && p.spells[t.spellIdx]?.origin === 'openPlay',
+  ));
+  const firstTouchesAllOrigins = allTouches.filter((t) => t.isFirstOfSpell);
+  /** the HEADLINE population. */
+  const firstTouches = firstTouchesOpen;
   const classify = (t: Touch) => {
     const hold = (t.endTick - t.startTick) * DT;
     if (t.outcome === 'lost') return hold <= FIRST_TOUCH_S ? 'lostWithinFirstTouch' : 'lostAfterHold';
@@ -778,25 +849,43 @@ function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
   };
 
   // ---- ⭐ THE H-169a DISCRIMINATOR (frozen ex ante) ----
-  const firstPressed = firstTouches.filter((t) => t.nearestOpp <= PRESSURE_R);
-  const firstFree = firstTouches.filter((t) => t.nearestOpp > PRESSURE_R);
   const lossRate = (ts: readonly Touch[]): number =>
     shareOf(ts.filter((t) => t.outcome === 'lost').length, ts.length);
-  const pLostPressed = lossRate(firstPressed);
-  const pLostFree = lossRate(firstFree);
-  const ratio = Number.isFinite(pLostPressed) && Number.isFinite(pLostFree) && pLostFree > 0
-    ? pLostPressed / pLostFree : Number.NaN;
-  const gap = pLostPressed - pLostFree;
-  const reading = !Number.isFinite(ratio) ? 'INDETERMINATE (a rate is undefined or zero)'
-    : (ratio >= 1.5 && gap >= 0.10) ? 'PRESSED-SPECIFIC — consistent with H-169a (pressure has no outlet)'
-      : (ratio <= 1.2 || gap <= 0.05) ? 'NOT PRESSED-SPECIFIC — spells die unpressed too ⇒ the disease is elsewhere'
-        : 'AMBIGUOUS — between the two frozen readings';
+  /** The frozen contrast on a given first-reception population. */
+  const discriminate = (pool: readonly Touch[]) => {
+    const pressed = pool.filter((t) => t.nearestOpp <= PRESSURE_R);
+    const free = pool.filter((t) => t.nearestOpp > PRESSURE_R);
+    const pLostPressed = lossRate(pressed);
+    const pLostFree = lossRate(free);
+    const ratio = Number.isFinite(pLostPressed) && Number.isFinite(pLostFree) && pLostFree > 0
+      ? pLostPressed / pLostFree : Number.NaN;
+    const gap = pLostPressed - pLostFree;
+    const reading = !Number.isFinite(ratio) ? 'INDETERMINATE (a rate is undefined or zero)'
+      : (ratio >= 1.5 && gap >= 0.10) ? 'PRESSED-SPECIFIC — consistent with H-169a (pressure has no outlet)'
+        : (ratio <= 1.2 || gap <= 0.05) ? 'NOT PRESSED-SPECIFIC — spells die unpressed too ⇒ the disease is elsewhere'
+          : 'AMBIGUOUS — between the two frozen readings';
+    return {
+      nFirstReceptions: pool.length,
+      nPressed: pressed.length,
+      nUnpressed: free.length,
+      pLostPressed, pLostUnpressed: pLostFree,
+      ratio: round(ratio, 4), gap: round(gap, 5),
+      reading,
+      holdMeanPressedS: round(mean(pressed.map((t) => (t.endTick - t.startTick) * DT)), 4),
+      holdMeanUnpressedS: round(mean(free.map((t) => (t.endTick - t.startTick) * DT)), 4),
+    };
+  };
+  const discOpen = discriminate(firstTouchesOpen);
+  const discAllOrigins = discriminate(firstTouchesAllOrigins);
 
   const nearestOppDist = distOf(firstTouches.map((t) => t.nearestOpp), [1, 2, 3, 4.2, 6, 9], 'm');
 
   // ---- event rates, both axes ----
   const ev = (key: keyof MatchCensus['stats']) =>
     bothAxes(mean(per.map((p) => p.stats[key])), simSecondsPerMatch);
+  /** ⚠ both-teams sum AND per-team-per-match (the scope B9/B10 are stated in). */
+  const evTeam = (key: keyof MatchCensus['stats']) =>
+    bothAxesTeamScoped(mean(per.map((p) => p.stats[key])), simSecondsPerMatch);
   const turnoversPerMatch = mean(per.map((p) =>
     p.spells.filter((s) => s.terminator === 'opponentControl').length));
   const spellsPerMatch = mean(per.map((p) => p.spells.length));
@@ -812,6 +901,16 @@ function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
     arm,
     matches,
     simSecondsPerMatch: round(simSecondsPerMatch, 4),
+    simSecondsPerMatchNote: '⭐ match.simTime — PLAYED sim-seconds (stoppage in, kickoff / '
+      + 'goal-pause / half-time steps out). THE denominator of every rate on every axis '
+      + '(#171.1.ii), so perDisplayMinute = perSimSecond × '
+      + `${round(SIM_S_PER_DISPLAY_MIN, 6)} holds exactly.`,
+    wallSimSecondsPerMatch: round(wallSimSecondsPerMatch, 4),
+    wallSimSecondsNote: '⚠ CONTEXT ONLY — USED IN NO RATE. simTick · DT, the PAUSE-INCLUSIVE '
+      + 'clock the user actually sits through at 1× (simTick = stepCount, which ticks through '
+      + 'the kickoff / goal-pause / half-time steps that simTime skips). Reported because it '
+      + 'is the honest answer to "how long does a match take to watch", not because any rate '
+      + 'divides by it.',
     inPlaySimSecondsPerMatch: round(mean(per.map((p) => p.inPlayTicks * DT)), 4),
     ownedSimSecondsPerMatch: round(mean(per.map((p) => p.ownedTicks * DT)), 4),
     ownedShareOfInPlay: shareOf(mean(per.map((p) => p.ownedTicks)), mean(per.map((p) => p.inPlayTicks))),
@@ -850,8 +949,11 @@ function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
     touchesPerPossession: distOf(touchCounts, TOUCH_BUCKETS, ''),
 
     timeOnBallPerTouch: {
-      definition: 'owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT. '
-        + 'A DURATION — reported in SIM-SECONDS ONLY, never rescaled to the 90\' clock.',
+      definition: 'owner-held sim-seconds per ownership episode: (releaseTick − receptionTick) · DT, '
+        + 'counting phase === "playing" ticks ONLY — the episode is CLOSED at the same boundary '
+        + 'that closes the spell, so a carrier still holding the ball when play stops accrues no '
+        + 'dead-ball hold (#171.1.i). A DURATION — reported in SIM-SECONDS ONLY, never rescaled '
+        + 'to the 90\' clock.',
       ...distOf(holds, HOLD_BUCKETS_S, 's'),
       shareAtOrUnderFirstTouchWindow: shareOf(
         holds.filter((h) => h <= FIRST_TOUCH_S).length, holds.length,
@@ -878,11 +980,17 @@ function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
       frozenRadiusM: PRESSURE_R,
       frozenRadiusTrace: 'TOUCH_CONTROL_DIST, src/sim/constants.ts:315 — the substrate\'s own '
         + '"under pressure" switch for the carry.',
+      populationNote: '⭐ #171.1.iv — the HEADLINE first-reception block is the openPlay-ORIGIN '
+        + 'population (the frozen wording: the FIRST reception of each SPELL). Restart- and '
+        + 'kickoff-origin receptions carry set-piece geometry and are reported SEPARATELY as '
+        + 'firstReceptionsAllOrigins, labelled, for context only.',
       allReceptions: pressBlock(PRESSURE_R, allTouches),
-      firstReceptionsOfSpell: pressBlock(PRESSURE_R, firstTouches),
-      sensitivityTight: pressBlock(PRESSURE_R_TIGHT, firstTouches),
-      sensitivityTightest: pressBlock(PRESSURE_R_TIGHTEST, firstTouches),
+      firstReceptionsOfSpell: pressBlock(PRESSURE_R, firstTouchesOpen),
+      firstReceptionsAllOrigins: pressBlock(PRESSURE_R, firstTouchesAllOrigins),
+      sensitivityTight: pressBlock(PRESSURE_R_TIGHT, firstTouchesOpen),
+      sensitivityTightest: pressBlock(PRESSURE_R_TIGHTEST, firstTouchesOpen),
       nearestOpponentAtReception: nearestOppDist,
+      nearestOpponentPopulation: 'openPlay-origin first receptions',
       engineTriggerRangeM: [
         round(Math.min(...allTouches.map((t) => t.engineTrigger)), 4),
         round(Math.max(...allTouches.map((t) => t.engineTrigger)), 4),
@@ -895,24 +1003,31 @@ function aggregateArm(arm: Arm, per: MatchCensus[], statsSeedOffset: number) {
         + 'before any run): ratio ≥ 1.5 AND absolute gap ≥ 0.10 ⇒ PRESSED-SPECIFIC, the outlet '
         + 'story holds; ratio ≤ 1.2 OR gap ≤ 0.05 ⇒ NOT pressed-specific, the disease is '
         + 'elsewhere; anything between ⇒ AMBIGUOUS. ⭐ REPORTED, NEVER GATED — the commander rules.',
-      nFirstReceptions: firstTouches.length,
-      nPressed: firstPressed.length,
-      nUnpressed: firstFree.length,
-      pLostPressed, pLostUnpressed: pLostFree,
-      ratio: round(ratio, 4), gap: round(gap, 5),
-      reading,
-      holdMeanPressedS: round(mean(firstPressed.map((t) => (t.endTick - t.startTick) * DT)), 4),
-      holdMeanUnpressedS: round(mean(firstFree.map((t) => (t.endTick - t.startTick) * DT)), 4),
+      population: '⭐ openPlay-ORIGIN spells\' first receptions ONLY (#171.1.iv). '
+        + 'Restart/kickoff-origin receptions are set-piece geometry and are excluded from the '
+        + 'headline; the all-origins variant is carried beside it, labelled, for context.',
+      ...discOpen,
+      allOriginsVariant: {
+        note: '⚠ CONTEXT ONLY — the same contrast on ALL first receptions (openPlay + restart + '
+          + 'kickoff). NOT the frozen discriminator; it is here so the population choice is '
+          + 'auditable rather than hidden.',
+        ...discAllOrigins,
+      },
     },
 
     eventsPerMinute: {
       axisNote: `MAPPING: ${MATCH_DURATION} sim-s ⇔ ${DISPLAY_MINUTES} display-min ⇒ 1 sim-s = `
         + `${round(DISPLAY_MINUTES / MATCH_DURATION, 6)} display-min; per-display-min = `
-        + `per-sim-s × ${round(SIM_S_PER_DISPLAY_MIN, 6)}. Both axes are given for EVERY rate.`,
-      passes: ev('passes'),
+        + `per-sim-s × ${round(SIM_S_PER_DISPLAY_MIN, 6)}. Both axes are given for EVERY rate, `
+        + 'and BOTH divide the SAME denominator — mean match.simTime (played sim-seconds), NOT '
+        + 'simTick · DT — so the law reproduces exactly (#171.1.ii).',
+      scopeNote: '⚠ every count here is a BOTH-TEAMS sum per match. passes / shots / fouls also '
+        + 'carry perTeamPerMatch (= sum / 2), which is the scope the per-TEAM bands B9 (shots '
+        + '10–14.5) and B10 (fouls 9–12) are stated in.',
+      passes: evTeam('passes'),
       passesCompleted: ev('passesCompleted'),
-      shots: ev('shots'),
-      fouls: ev('fouls'),
+      shots: evTeam('shots'),
+      fouls: evTeam('fouls'),
       goals: ev('goals'),
       miscontrols: ev('miscontrols'),
       regains: bothAxes(regainsPerMatch, simSecondsPerMatch),
@@ -1082,13 +1197,26 @@ const body = {
       simSecondsPerDisplayMinute: round(SIM_S_PER_DISPLAY_MIN, 6),
       law: 'EVERY rate appears on BOTH axes. DURATIONS are sim-seconds only and are NEVER '
         + 'rescaled — a 0.3 s hold is 0.3 s on the screen. The gap table never mixes axes.',
+      rateDenominator: '⭐ ONE CLOCK (#171.1.ii): mean `match.simTime` — PLAYED sim-seconds — is '
+        + 'the denominator of BOTH axes, so perDisplayMinute = perSimSecond × '
+        + `${round(SIM_S_PER_DISPLAY_MIN, 6)} holds EXACTLY. \`simTick · DT\` is used in NO rate: `
+        + 'simTick (= stepCount) counts the kickoff / goal-pause / half-time steps that simTime '
+        + 'skips (Match.ts:1113–1134). That pause-inclusive clock is emitted once per arm as '
+        + '`wallSimSecondsPerMatch`, labelled as context.',
       trace: 'Match.ts:1058 — displayMinute = min(45, floor((simTime / duration) · 90)) per half.',
     },
     frozenRadii: {
       primaryM: PRESSURE_R, primaryTrace: 'TOUCH_CONTROL_DIST, src/sim/constants.ts:315',
       tightM: PRESSURE_R_TIGHT, tightTrace: 'CONTEST_RADIUS, src/sim/constants.ts:256',
-      tightestM: PRESSURE_R_TIGHTEST, tightestTrace: 'CONTROL_RADIUS, src/sim/constants.ts:244',
-      engineReceptionTrigger: 'trigger = 3.0 + genome.tempo · 1.5 (Match.ts:1711) ⇒ 3.0–4.5 m; '
+      tightestM: PRESSURE_R_TIGHTEST,
+      tightestTrace: `CONTROL_RADIUS, src/sim/constants.ts:244 = 1.25 × CONTROL_REACH_SCALE `
+        + `(constants.ts:31, positiveEnv('CONTROL_REACH_SCALE') ?? 1 — env-scalable, NOT a flat `
+        + `1.25). Observed at RUNTIME in this process: CONTROL_REACH_SCALE = `
+        + `${CONTROL_REACH_SCALE} ⇒ CONTROL_RADIUS = ${CONTROL_RADIUS} m, which is the value `
+        + 'actually used by the sensitivityTightest block (#171.1 finding 5).',
+      controlReachScaleObserved: CONTROL_REACH_SCALE,
+      controlRadiusFormula: 'CONTROL_RADIUS = 1.25 × CONTROL_REACH_SCALE',
+      engineReceptionTrigger: 'trigger = 3.0 + team.genome.tempo · 1.5 (Match.ts:1710) ⇒ 3.0–4.5 m; '
         + 'REPORTED as observed range, never used as the frozen radius (it moves with the arm).',
     },
     frozenFirstTouchWindowS: FIRST_TOUCH_S,

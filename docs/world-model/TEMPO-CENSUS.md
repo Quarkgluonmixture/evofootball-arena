@@ -50,16 +50,36 @@ Two things it is NOT:
 > 1 sim-second = **0.375** display-minutes · 1 display-minute = **2.6667** sim-seconds.
 > `rate_per_display_minute = rate_per_sim_second × 2.6667`.
 
+> ### ⭐ ONE CLOCK IS THE RATE DENOMINATOR (#171.1.ii — the fix)
+>
+> **`match.simTime` — PLAYED sim-seconds — is the denominator of BOTH axes.** It is the clock
+> `Match.minute()` itself maps onto the 90′ display, and it is what the doc means by "sim
+> seconds" everywhere below. Because both axes divide the *same* number, the law above
+> reproduces the emitted numbers **exactly**:
+> `perDisplayMinute = perSimSecond × 2.6667`, with no residual.
+>
+> **`simTick · DT` is used in NO rate.** `simTick` (= `stepCount`) advances on the kickoff,
+> goal-pause and half-time steps that `simTime` skips (`Match.ts:1113–1134`), so dividing by
+> it inflates the sim-second axis relative to the display axis and silently breaks the law —
+> which is precisely what the draft did. That pause-inclusive clock is still honest data — it
+> is the wall the user actually sits through at 1× — so it is emitted **once per arm** as
+> `wallSimSecondsPerMatch`, labelled `CONTEXT ONLY — USED IN NO RATE`.
+
 Binding rules, enforced in the probe's own output shape:
 
 1. **Every RATE is reported on BOTH axes** — `perSimSecond`, `perSimMinute`,
-   `perDisplayMinute`, plus the raw `perMatch`. There is no "the" rate.
+   `perDisplayMinute`, plus the raw `perMatch` — all off the one `simTime` denominator.
+   There is no "the" rate.
 2. **Every DURATION is reported in SIM-SECONDS ONLY and is never rescaled.** A 0.3 s hold is
    0.3 s on the screen at 1×; pretending it is 0.8 "display-seconds" would be a fiction, and
    it is exactly the fiction the PITCH_SCALE probe was burned by.
 3. **The gap table never mixes axes.** A reference line drawn from an 11v11 90-minute match
    is compared to our **display-minute** rate, and separately to our **sim-second** rate, with
    both shown. The reader is never handed one number and left to guess the clock.
+4. **The gap table never mixes SCOPES either** (#171.1.iii). Every count the probe emits is a
+   **both-teams sum per match**; the per-TEAM bands B9/B10 are read against the
+   `perTeamPerMatch` field (= sum / 2, the arms being symmetric), which is emitted beside the
+   sum for `passes`, `shots` and `fouls` and carries the warning in the record itself.
 
 ---
 
@@ -107,6 +127,12 @@ A **touch** = one **ownership episode** (a tick where `ball.owner` becomes a bod
 on the previous tick): a reception, a dribble re-collect, or a tackle-win. Reported as the
 count per open-play spell, with buckets `1 · 2 · 3 · 4 · 5 · 6–9 · 10+`.
 
+> ⭐ **An episode is CLOSED at the same boundary that closes the spell** (#171.1.i). When the
+> phase leaves `'playing'`, the open episode ends on that tick and the ownership tracker is
+> reset, so a body still holding the ball through a stoppage does **not** continue one
+> episode across the dead ball: the resumption (a restart taker, or the same body playing on)
+> is a **new** episode. **No dead-ball tick is ever an on-ball tick.**
+
 > ⚠ **Declared limit.** `Match` exposes `ball.owner`, **not a foot-ball contact event**. An
 > episode shorter than one tick (1/60 s) is invisible, and a contact that never establishes
 > control is seen only through its effect on ownership. Deriving the metric from observable
@@ -115,9 +141,12 @@ count per open-play spell, with buckets `1 · 2 · 3 · 4 · 5 · 6–9 · 10+`.
 
 ### 3.4 Time on ball per touch
 
-`(releaseTick − receptionTick) · DT` per ownership episode — **owner-held ticks per touch**.
-A duration: sim-seconds only. Buckets `≤0.1 · ≤0.28 · ≤0.5 · ≤1 · ≤2 · ≤4 · >4` s. The share
-at or under the frozen first-touch window is reported explicitly.
+`(releaseTick − receptionTick) · DT` per ownership episode — **owner-held ticks per touch**,
+counting **`phase === 'playing'` ticks ONLY**. The episode closes at the phase-exit boundary
+(§3.3), so a carrier who is still on the ball when the whistle goes accrues **zero** hold
+through the restart — dead-ball time cannot leak into time-on-ball. A duration: sim-seconds
+only. Buckets `≤0.1 · ≤0.28 · ≤0.5 · ≤1 · ≤2 · ≤4 · >4` s. The share at or under the frozen
+first-touch window is reported explicitly.
 
 ### 3.5 Turnovers and possession changes
 
@@ -132,18 +161,31 @@ Both on both axes.
 > **R = `TOUCH_CONTROL_DIST` = 4.2 m** — `src/sim/constants.ts:315`.
 
 **Rationale (why this member of the radius family):** it is the substrate's **own** pressure
-switch. Its docstring: *"Nearest-opponent distance above which the carrier plays open touches.
-Under pressure (an opponent inside `TOUCH_CONTROL_DIST`) the carry stays glued: close control
-IS short touches, and the tackle/shield duel lives there."* The census must read pressure the
-way the world itself defines it, not the way we would like to.
+switch. Its documentation lives in **two adjacent comment blocks**, and is quoted here with
+the elision marked (`constants.ts:305–311`, the Phase-36 discrete-touch block, then
+`constants.ts:312–314`, immediately above the const):
+
+> *"Under pressure (an opponent inside `TOUCH_CONTROL_DIST`) the carry stays glued: close
+> control IS short touches, and the tackle/shield duel lives there."* **[…]** *"Nearest-opponent
+> distance above which the carrier plays open touches."*
+
+The census must read pressure the way the world itself defines it, not the way we would like to.
 
 Two **sensitivity** radii are reported beside it, never instead of it:
-`CONTEST_RADIUS = 3.0` m (`constants.ts:256`) and `CONTROL_RADIUS = 1.25` m
-(`constants.ts:244`).
+`CONTEST_RADIUS = 3.0` m (`constants.ts:256`) and `CONTROL_RADIUS` (`constants.ts:244`).
 
-The engine also has a genome-dependent *reception* trigger — `trigger = 3.0 + genome.tempo·1.5`
-⇒ 3.0–4.5 m (`Match.ts:1711`). Its observed range is **reported**, but it is **not** the frozen
-radius: a radius that moves with the arm is not a ruler.
+> ⚠ **`CONTROL_RADIUS` IS NOT A FLAT 1.25 m** (#171.1, finding 5). The source is
+> `CONTROL_RADIUS = 1.25 * CONTROL_REACH_SCALE`, and `CONTROL_REACH_SCALE`
+> (`constants.ts:31`) is `positiveEnv('CONTROL_REACH_SCALE') ?? 1` — **env-scalable**. The
+> probe therefore imports the constant, uses the **computed runtime value** as the tightest
+> sensitivity radius, and writes that value, the formula, and the observed
+> `CONTROL_REACH_SCALE` into the JSON trace. In an unscaled environment
+> (`CONTROL_REACH_SCALE = 1`) it is 1.25 m; the JSON, not this sentence, is the record.
+
+The engine also has a genome-dependent *reception* trigger —
+`trigger = 3.0 + team.genome.tempo · 1.5` ⇒ 3.0–4.5 m (`Match.ts:1710`). Its observed range is
+**reported**, but it is **not** the frozen radius: a radius that moves with the arm is not a
+ruler.
 
 **Pressed** = nearest non-sent-off opponent within R **at the reception tick** (keepers
 included — a keeper 4 m away is pressure).
@@ -196,7 +238,14 @@ shield and look either do not exist or cost zero time in the substrate, so the o
 answer to a press is to move the ball instantly ⇒ the scramble self-perpetuates and tempo
 compresses.
 
-**The contrast.** Among the **FIRST reception of each spell**, at the frozen radius R:
+**The contrast.** Among the **FIRST reception of each OPEN-PLAY spell**, at the frozen radius R:
+
+> ⭐ **POPULATION, stated exactly** (#171.1.iv). The headline discriminator — and the headline
+> press-context block of §3.6 — run on **`origin: 'openPlay'` spells' first receptions ONLY**.
+> Restart- and kickoff-origin receptions are **set-piece geometry** (a placed ball, a
+> retreating defence) and were ≈30.6% of all first receptions in the draft smoke; folding them
+> in silently changes what "pressed" means. The **all-origins variant is reported beside it**,
+> labelled `CONTEXT ONLY`, so the population choice is auditable rather than hidden.
 
 ```
 P(lost | pressed)   vs   P(lost | unpressed)
@@ -232,6 +281,13 @@ anyway" are different diseases.
 > the ball, touches per possession, the first-touch share — are the ones worth reading,
 > because a human body's time is the same in both games.
 
+> ⚠ **THE SCOPE CAVEAT (#171.1.iii).** Every count this probe emits is a **BOTH-TEAMS SUM per
+> match**. B9 and B10 are stated **per TEAM per match**. The probe therefore emits
+> `perTeamPerMatch` (= sum / 2 — the arms are symmetric, so the halving is exact *in
+> expectation over the seed set*, not a per-match attribution) beside `perMatch` for
+> `passes` / `shots` / `fouls`, and each of those two band records carries the warning in the
+> record itself. **A per-team band read against a both-teams sum is a 2× error.**
+
 **Grade key.** `O/T/I/S` = the eFootball research file's own evidence grades
 ([`../efootball_engine_research_for_evofootball.md`](../efootball_engine_research_for_evofootball.md)
 §0). `P` = labelled **public** real-football estimate with its citation. `D` = **derived** from
@@ -247,8 +303,8 @@ another band, arithmetic shown. `ABSENT` = no honest source exists ⇒ **no band
 | B6 | share of possessions **dying at the first touch** | — | **ABSENT** | No public per-possession first-touch-death rate located; the research file has none. B3 bounds it only indirectly (a league mean of 3.5–4 passes per sequence is hard to reconcile with a *majority* of sequences dying on touch one — but that is an inference, not a band). |
 | B7 | **pressed vs unpressed** first-touch loss rate | — | **ABSENT** | The H-169a discriminator has **no** real-football reference. It is read as an **internal** contrast (pressed vs unpressed *within the same arm*), which is precisely why it can discriminate without a band. |
 | B8 | **kick preparation delay** (wind-up) — shape only | see source | **T** | Research file §5.2 / §5.3 / §5.6 (grade **T**, controlled frame-by-frame tests): a 99-rated ground passer's preparation delay is **≈4 frames** shorter than a 60-rated one on a ~15 m pass; below 60 the delay is floor-clamped; **60–80** is where ability matters most; above 80 the margin is ≈1 frame; the new engine is 2–3 frames faster at high ability. **SHAPE ONLY** — a frame count from another engine is not a target and no value here is imported. What it licenses is the qualitative claim that a real engine **spends real time between the decision and the strike** (VISION §2's C7 seat). |
-| B9 | **shots per team per match** | **10 – 14.5** (WEAK) | P | Only team-level datapoint located: Arsenal **14.53** shots/match 2024-25 ([statmuse](https://www.statmuse.com/fc/ask/premier-league-teams-average-shot-per-game)), which was among the league **leaders** ⇒ the league mean sits below it. Band deliberately wide; its **centre is not sourced**. Order-of-magnitude line only. |
-| B10 | **fouls per team per match** | **9 – 12** (WEAK) | P | Arsenal committed **399 fouls in 38 matches** 2024-25 = **10.5**/match ([statmuse](https://www.statmuse.com/fc/ask/premier-league-fouls-team-stats-2024-2025)). One team, one season; band = that value ±1.5. |
+| B9 | **shots per team per match** ⚠ **PER TEAM** — read against `eventsPerMinute.shots.perTeamPerMatch` (= the both-teams sum / 2), **never** against `perMatch` | **10 – 14.5** (WEAK) | P | Only team-level datapoint located: Arsenal **14.53** shots/match 2024-25 ([statmuse](https://www.statmuse.com/fc/ask/premier-league-teams-average-shot-per-game)), which was among the league **leaders** ⇒ the league mean sits below it. Band deliberately wide; its **centre is not sourced**. Order-of-magnitude line only. |
+| B10 | **fouls per team per match** ⚠ **PER TEAM** — read against `eventsPerMinute.fouls.perTeamPerMatch` (= the both-teams sum / 2), **never** against `perMatch` | **9 – 12** (WEAK) | P | Arsenal committed **399 fouls in 38 matches** 2024-25 = **10.5**/match ([statmuse](https://www.statmuse.com/fc/ask/premier-league-fouls-team-stats-2024-2025)). One team, one season; band = that value ±1.5. |
 
 **Nothing from the research file was found for B1–B7.** That file is an **engine** study
 (eFootball mechanics, evidence-graded O/T/I/S); it carries no real-football possession
@@ -349,15 +405,28 @@ the X-DET-compared core (#128) and is **excluded from `resultSha256`**; the JSON
 ## 9. COMMANDS
 
 ```bash
-# sizing smoke (done — committed)
+# sizing smoke (done — committed). Foreground: ~1 minute.
 TEMPO_MODE=smoke npx tsx scripts/probes/tempo-census.ts
+```
 
-# the full census (the commander launches detached, §0.0.4)
-TEMPO_MODE=census TEMPO_N=<N* from the smoke> npx tsx scripts/probes/tempo-census.ts
+**The full census — the §0.0.4 DETACHED form.** A sub-agent session dies and orphans its
+background processes, so the commander's own resident session launches it with `nohup … &
+disown` and supervises the **PID + the declared log file** (PROGRAMME §0.0.4 / #49.5, the
+#161 incident rule):
+
+```bash
+# LOG PATH (declared): /tmp/tempo-census-full.log
+nohup env TEMPO_MODE=census TEMPO_N=<N* from the smoke> \
+  npx tsx scripts/probes/tempo-census.ts \
+  > /tmp/tempo-census-full.log 2>&1 & disown
+
+# supervise: the PID printed above, plus
+tail -f /tmp/tempo-census-full.log
 ```
 
 Outputs: `docs/world-model/data/tempo-census-sizing-smoke.json` ·
-`docs/world-model/data/tempo-census.json`.
+`docs/world-model/data/tempo-census.json` · run log `/tmp/tempo-census-full.log`
+(progress is written to **stderr**, which the redirect captures).
 
 ---
 
