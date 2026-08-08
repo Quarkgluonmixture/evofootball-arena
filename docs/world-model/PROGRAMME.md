@@ -75,12 +75,19 @@ vs the WILD world — dupRun −2.4998 [−2.762, −2.249] (101.85% of
 seen, full replication) · box resolvedly pays −0.00174 · deep
 holds level +0.0045 [−0.0021, +0.0110] · offside flag quiet ⇒
 the backLoaded (discipline-shaped) read is CONFIRMED at exam
-grain. **SELF-DRIVE IS ON S2-P2** (gene family dormant:
-per-slot obedienceOffset born ABSENT, BIRTH NEUTRALITY binding,
-+ the confirm-gate polarity unit test debt #163.2.iv) → S2-P3
-(frontier battery; the §4 diversity observation on the
-discipline-vs-press axis is BINDING per #162.2.iv) → S2-P4 =
-the user's eyes; any FAIL/flag ⇒ STOP to the user. VISION §3
+grain. **S2-P2 BANKED (#165, `950c702`)**: offset gene family
+born ABSENT (±0.5 bound, slot-attached), dormant behind the NEW
+explicit `evolveHomePriorOffsets` opt-in — ⚠ THE ARMING
+CHECKLIST IS BINDING: armed = eye.v4.homePrior +
+evolveHomePrior + evolveHomePriorOffsets, ALL THREE; polarity
+debt discharged; one named test debt (vacuous homePrior-ON
+stream proof + docstring) rides S2-P3. **SELF-DRIVE IS ON
+S2-P3** (frame frozen #165.3: Leg F gene≡vector byte fidelity
+GATING · Leg W set-grain P3′ football hard gates GATING,
+effects REPORTED never re-gated · Leg S selection + §4
+diversity observation OBSERVATIONAL, H-165a labelled) → S2-P4 =
+the user's eyes (arming choice per Leg S outcome); Leg F/W
+FAIL ⇒ STOP to the user. VISION §3
 soft spot stands registered: break-even is rung-one's honest
 bar; defence is won back on higher ladder rungs (补位→默契→
 教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever

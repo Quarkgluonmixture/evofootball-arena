@@ -6941,3 +6941,92 @@
 >    §4 diversity observation binding per #162.2.iv) → S2-P4
 >    (the user's eyes). Road B; fingerprint `57b0bdab…c673`
 >    untouched.
+
+> **COMMANDER RULING #165 (2026-08-08 — S2-P2 draft + verify
+> PASS; findings disposed (one named debt rides S2-P3); the
+> S2-P3 frame frozen at commander level; dispatched):**
+>
+> 1. **BANKED + PUSHED**: `950c702` — the per-slot
+>    `homePriorObedienceOffset` gene family, born ABSENT, bound
+>    ±0.5 (traceable: exactly spans the certified [0,1] domain
+>    from the 0.5 whisper; covers every S2-P1 instrument
+>    vector's deviation), effective obedience =
+>    clamp01(obedience + offset[slot]) through the SHIPPED
+>    homePriorStrength — one changed executor line inside the
+>    dormant branch; mutate/crossover mirror the scalar idiom
+>    under a NEW explicit opt-in `evolveHomePriorOffsets`
+>    (default OFF, production passes neither); the #163.2.iv
+>    polarity debt DISCHARGED (evalConfirmGate lifted VERBATIM
+>    — byte-diff empty — into `a4S2P1ConfirmGate.ts`, unit
+>    tests assert all three leg polarities incl. leg (c)
+>    LOWER≤0 and the flag in NO conjunct); 24 new tests, suite
+>    1083 green, tsc clean; BIRTH NEUTRALITY verified
+>    line-by-line (field absent from GENE_KEYS, no birth path
+>    fills it, no role token near it; GK inert by geometry not
+>    by rule); machine-verify PASS.
+> 2. **FINDINGS DISPOSED**: (i) MEDIUM — the "existing
+>    homePrior-ON stream unperturbed" test is VACUOUS (both
+>    arms call current code; cannot fail) and its docstring
+>    overclaims: **NAMED DEBT, rides the S2-P3 draft** (build
+>    the HEAD-reimplementation reference with evolveHomePrior
+>    ON, fix the docstring); the load-bearing flag-OFF stream
+>    proof is genuine (HEAD reimplementation, draw-for-draw +
+>    RNG internal state). (ii) LOW — the separate opt-in
+>    deviates from the contract's "flips with the master
+>    switches" WORDING; RATIFIED as strictly more conservative
+>    (#75 explicit-gate idiom; widening evolveHomePrior would
+>    have moved existing flag-ON streams), **at the price of an
+>    arming-omission risk — therefore the S2-P3 ARMING
+>    CHECKLIST IS BINDING: an armed world = eye.v4.homePrior +
+>    evolveHomePrior + evolveHomePriorOffsets, all three,
+>    asserted in-probe**. (iii) INFO ×3 recorded: offsets are
+>    SLOT-attached (substitutes inherit the slot's offset —
+>    matches the contract's "per squad slot"; named here so the
+>    §4 diversity observation is interpreted at slot grain, not
+>    person grain); armed-path bit-identity rests on exhaustive
+>    arithmetic tracing (accepted); the lifted constants lost
+>    local ArmName typing (cosmetic).
+> 3. **THE S2-P3 FRAME, FROZEN AT COMMANDER LEVEL** (the
+>    executor's stage doc elaborates; numbers it must source
+>    from committed artifacts only): three legs.
+>    **Leg F — gene≡vector fidelity (exact-invariant, GATING)**:
+>    on shared seeds, the world armed via GENES (both teams'
+>    genomes carrying the backLoaded offset family at whisper
+>    0.5) is byte-identical to the S2-P1b instrument-vector
+>    world — the gene path and the grant path must coincide
+>    exactly; any mismatch FAILS the leg.
+>    **Leg W — world health at set grain (GATING, the P3′
+>    football hard gates inherited verbatim)**: armed-FIXED A/B
+>    (PRIOR+backLoaded-gene vs PRIOR-uniform, no evolution),
+>    sets sized by smoke: scramble ceiling, eye ball-ledger 0,
+>    roleMixTV ≥ the incumbent floor, X-family, the equilibrium
+>    band idiom — all at their P3′ forms; set-grain dupRun/
+>    deep/box/offsides/fouls/E4-combo REPORTED (never re-gated:
+>    the fork-grain exam #164 already ruled value; set grain is
+>    scale honesty, not a second bite).
+>    **Leg S — selection + the §4 diversity observation
+>    (OBSERVATIONAL, #162.2.iv binding)**: fresh-evo runs with
+>    ALL THREE flags armed, gen-0 fully born-absent (BIRTH
+>    NEUTRALITY in evolution); REPORTED with pre-registered
+>    metrics: adoption (population fraction carrying non-absent
+>    families over generations), drift magnitude, cross-team
+>    SHAPE diversity (do multiple offset shapes coexist, e.g.
+>    sign-pattern clusters — the discipline-vs-press axis), and
+>    correlation with existing style genes; directional
+>    hypotheses labelled (H-165a: selection adopts nonzero
+>    offsets at all — if fitness is flat, that is the honest
+>    F-S2c-shaped outcome: the whisper is already optimal for
+>    WINNING and the look-value is not selectable → the
+>    punish-compactness half inherits).
+>    **Disposition**: Leg F or Leg W FAIL ⇒ STOP to the user.
+>    Leg S shapes the S2-P4 arming choice (evolved world if
+>    adopted; certified fixed backLoaded-gene world if not,
+>    with the selection result honestly recorded) — S2-P4 is
+>    the user's play-test either way. Seeds from 12,256,040+;
+>    stats bases stream-disjoint per the #163 rule (gaps ≥
+>    200, e.g. 101700+). Road B throughout; wall ≤ 12 h.
+> 4. **DISPATCHED**: S2-P3 executor step (Workflow
+>    Draft→Verify, §0.0, Opus 5 medium): stage doc
+>    `A4-S2P3-GENE-BATTERY.md` + probe(s) + the named test debt
+>    + bounded smoke; local commit; the commander reviews,
+>    pushes, launches the full battery detached, adjudicates.

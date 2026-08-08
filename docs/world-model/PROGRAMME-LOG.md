@@ -2103,3 +2103,9 @@ RESUMED" → S2-P1b PASSED as frozen on all three legs (full-
 magnitude dupRun replication ×1.0185; box pays; deep holds
 level; offside flag quiet); self-drive chained to S2-P2
 gene-ization (#164).
+
+2026-08-08 (#165): superseded QUEUE state — "SELF-DRIVE IS ON
+S2-P2 (gene family dormant …)" → S2-P2 banked (`950c702`,
+verify PASS, one vacuous-test debt rides S2-P3, arming
+checklist made binding after the separate-flag ratification);
+S2-P3 frame frozen (#165.3) and dispatched.
