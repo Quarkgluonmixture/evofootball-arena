@@ -8553,3 +8553,54 @@
 >    slowest — the 乱转 stays live in every world until then);
 >    (丙) proceed to O2-T1 first and rule this after. Awaiting
 >    the ruling; O2-T1 stays queued regardless (#199.5).
+
+> **COMMANDER RULING #201 (2026-08-08 — the user rules 甲
+> ("按照推荐走") with the mechanism DEFINED by their two
+> reality questions; the MARK-TIGHTNESS contract drafted +
+> dual-audited; a NEW STANDING RULE ratified (every commander
+> decision checked against BOTH VISION and reality); MT-T0
+> dispatched):**
+>
+> 1. **USER RULINGS RECORDED**: (a) 甲 — the reshaped 乙
+>    proceeds; (b) the mechanism upgrade from the Q&A exchange
+>    is BINDING (both questions verbatim-anchored in VISION §1):
+>    relevance = the ACCESS-TIME ACCOUNT (ball-reach time vs
+>    own-recovery time — the engine's existing quantity
+>    families), output = CONTINUOUS marking tightness (sag),
+>    never a mark/don't-mark switch; "放人" is deleted from the
+>    design vocabulary; (c) ⭐ **STANDING RULE (protocol
+>    §0.0.3 extended)**: every commander decision —
+>    recommendations, mechanisms, sequencing — is checked
+>    against BOTH VISION and REALITY before presentation;
+>    contracts carry parallel §6 VISION / §7 REALITY audits
+>    from now on.
+> 2. **THE CONTRACT DRAFTED**:
+>    [`MARK-TIGHTNESS-CONTRACT.md`](MARK-TIGHTNESS-CONTRACT.md)
+>    — H-MT: gene-weighted, access-time-priced mark-stance SAG
+>    (`markDist′ = markDist + g_MT·sagOf(slack)` on the
+>    EXISTING goal/ball stance blend; gene `markSag` born
+>    absent + own opt-in; `markingAggression` and its triple
+>    coupling untouched; assignment/handover/22 m gate/threat
+>    order byte-identical; no decline predicate ever; the box
+>    prices itself — short flight ⇒ zero slack ⇒ tight).
+>    Honesty limit disclosed: no carrier-state term in slice
+>    one (deferred toward the O2-adjacent slice). Arc: MT-T0
+>    dormant seam → **MT-T1 = the PM-T1 RULER RE-RUN** (2×2
+>    top-dose {PM}×{MT} + control; success = the #199 null
+>    BODY contrasts resolve while the FULL #198 guard set
+>    holds; the swallow share becomes REPORTED — the body is
+>    the gate, not the steer label; F-MT-a wrong-geometry /
+>    F-MT-b marking-function-breaks (the Phase-30 axis made a
+>    gate) / F-MT-c clump — all STOP) → play-test exit.
+> 3. **AUDITS**: VISION §6 — six clauses PASS, zero amendments
+>    (no predicate; dimension-vs-weight split honest; stance
+>    prior-revert floors respected — sag only ADDS distance).
+>    REALITY §7 (the new form) — five clauses MATCH (time
+>    account = real defending; continuous output; box
+>    self-pricing; handover kept) + one HONEST GAP deferred
+>    (carrier release-ability reading).
+> 4. **MT-T0 DISPATCHED** (draft + independent verify per
+>    §0.0.2; the PM-T0 brief form + the #194/#196/#197
+>    evidence lessons; commit local, banking the commander's).
+>    MT-T1 queues behind its banking; O2-T1 stays queued
+>    (#199.5).

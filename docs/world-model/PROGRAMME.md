@@ -230,13 +230,27 @@ hear the compression ask). Known drafting traps: the
 box-threat boundary (lane-gap is the wrong relevance measure
 in the box), the formations.test.ts pin, Phase-30 direction
 instruments, PM-T1 battery re-run as the before/after ruler.
-THE FORK SITS AT THE USER (#200.4): 甲 draft the reshaped 乙
-contract (recommended) / 乙 defer marking to the defensive-eye
-rebuild / 丙 O2-T1 first, rule after.** QUEUED (not blocked):
-O2-T1 dispatches on the next "go" (#199.5). Seeds consumed this arc:
-12,311,000–024 (O2-T0) · 12,311,100–124 (PM-T0) ·
-12,311,200–205 (PM-T1 smoke ×2) · 12,311,300–949 (PM-T1
-battery). Also open: the v2
+THE USER RULED 甲 (#201, "按照推荐走") WITH THE MECHANISM
+DEFINED BY THEIR TWO REALITY QUESTIONS (VISION-anchored:
+盯人现实存在、假的是松紧写死;真实后卫算时间账,输出连续):
+[`MARK-TIGHTNESS-CONTRACT.md`](MARK-TIGHTNESS-CONTRACT.md) —
+H-MT: access-time-priced, gene-weighted mark-stance SAG (born
+absent; assignment/handover untouched; NO decline predicate
+ever; the box prices itself via short flight times); arc MT-T0
+dormant seam → MT-T1 = the PM-T1 RULER RE-RUN (2×2 top-dose
+arms {PM}×{MT}; success = the #199 null BODY contrasts
+resolve while the full guard set holds; F-MT-a wrong-geometry
+STOP · F-MT-b marking-function-breaks STOP · F-MT-c clump
+STOP) → play-test exit. VISION audit 6 clauses PASS + the NEW
+§7 REALITY audit (5 clauses, 1 honest gap deferred: no
+carrier-state term in slice one). ⭐ **STANDING RULE
+(user 2026-08-08, #201, protocol §0.0.7): every commander
+decision is checked against BOTH VISION and reality.**
+**MT-T0 IS DISPATCHED (#201.4).** QUEUED after its banking:
+MT-T1 ruler re-run; O2-T1 stays queued (#199.5). Seeds
+consumed this arc: 12,311,000–024 (O2-T0) · 12,311,100–124
+(PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) · 12,311,300–949
+(PM-T1 battery). Also open: the v2
 acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3
@@ -287,11 +301,20 @@ F9 any time.
      consumer mechanisms (not merely instruments) ALSO receive the
      explicit VISION audit at commander review (#111.4; the #91
      form).
-3. **Contracts get a VISION audit.** After the commander drafts a
-   design contract, audit it clause-by-clause against
-   [`../VISION.md`](../VISION.md) BEFORE any executor work; findings
-   become amendments + a ruling (precedent #90→#91: the audit caught
-   the designation-anchor violation).
+3. **Contracts get a VISION audit — AND a REALITY audit.** After the
+   commander drafts a design contract, audit it clause-by-clause
+   against [`../VISION.md`](../VISION.md) BEFORE any executor work;
+   findings become amendments + a ruling (precedent #90→#91: the
+   audit caught the designation-anchor violation). ⭐ **Extended by
+   the user 2026-08-08 (#201): EVERY commander decision —
+   recommendations at forks, contract mechanisms, sequencing calls —
+   is checked against BOTH VISION and REALITY (真实足球怎么做) before
+   it is presented.** Precedent: the #200 challenge (a hand decline
+   predicate passed blast-radius reasoning but failed the VISION
+   shape test) and the #201 reality questions (the time-account
+   mechanism replaced the lane-gap proxy). Contracts carry the two
+   audits as parallel sections (§6 VISION / §7 REALITY, the
+   MARK-TIGHTNESS form).
 4. **Long runs** are supervised by the COMMANDER's resident session
    (#49.5): detached `nohup … & disown` + Monitor on PID + output
    file — sub-agent sessions die and orphan background processes.
