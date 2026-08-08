@@ -273,8 +273,9 @@ station.
      9 m radius provided the pair's **depth** (x) difference is also small: the
      gate is a 2-D distance `dist(zoneCentre, threat.pos) > 9`, so it excludes a
      far-side man who is wider than the station or ≳9 m off it in x. That
-     exclusion is real and pinned: `formations.test.ts:150-155` stages a flank
-     threat at `y = 25`, wider than any station, and asserts **zonal does NOT
+     exclusion is real and pinned: `formations.test.ts` stages a flank threat at
+     `y = 25` in the `staged` helper (`:130`; ⚠ #191: the fix round attributed
+     the staging to the assertion lines) and at `:150-155` asserts **zonal does NOT
      mark him**. So the honest claim is: *the zonal gate is a station-proximity
      test, not a ball-relevance test — it excludes far-side men who are far from
      the weak-side man's station, and permits the ones parked next to him.*

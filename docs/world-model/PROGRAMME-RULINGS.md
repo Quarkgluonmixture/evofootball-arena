@@ -8059,3 +8059,29 @@
 >    modulation contract, whose phase-0 shares this map) and
 >    presents the 乙-fix-scope decision WITH the corrected map.
 >    O2-T0 dispatches after per the one-writer rule.
+
+> **COMMANDER RULING #191 (2026-08-08 — the mark-map fix round:
+> the nine #190 findings verified FIXED (incl. the re-derived
+> step-3 mechanism: lane geometry + chaser consumption + greedy
+> claim-thinning); the re-verify's five NEW one-line slips
+> corrected BY THE COMMANDER against code; the map is BANKED):**
+>
+> 1. **BANKED + PUSHED**: `99b4d06` + this ruling's five
+>    corrections (solidity interval [0.76,1]; the .marks grep =
+>    10 lines / 4 files; EMERGENT_POS guard at :111; free list
+>    2–5 wide; the test-staging cite split :130 vs :150-155 —
+>    each verified against source first). The corrected map's
+>    load-bearing content: the TRUE far-side-glue mechanism
+>    (the weak-side wide body is the ONLY body with a far-flank
+>    station by lane geometry; ball-side bodies are consumed as
+>    chasers; the greedy depth-major loop thins the rest), the
+>    branch disclosure (all station claims emergent-path-only),
+>    the nine-row release table with the completed chaser
+>    paths, the reader/blast-radius table, and the six fix
+>    surfaces S1–S6 with their traps.
+> 2. **NEXT (the #189 sequence, 甲)**: the commander drafts the
+>    defensive-phase modulation contract on this map + the
+>    forensic, and presents the 乙-fix-scope decision (narrow
+>    mark fix: S1 lane term / S2 priority key / S4 release —
+>    each must renegotiate the formations.test.ts pin) WITH the
+>    corrected map. O2-T0 dispatches after.
