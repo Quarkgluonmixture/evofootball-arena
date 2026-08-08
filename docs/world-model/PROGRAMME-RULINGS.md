@@ -7634,3 +7634,50 @@
 >    licensed ONLY on the seam path behind the flag (this is a
 >    mechanic arc — the gate is flag-off byte-identity, not
 >    X-SRC-ZERO). Road B: dormant, nothing ships.
+
+> **COMMANDER RULING #180 (2026-08-08 — O1-T1 verify PASS; the
+> two MEDIUM evidence gaps closed by the COMMANDER'S OWN
+> re-derivation; T1 BANKED; self-drive proceeds to O1-T2):**
+>
+> 1. **THE EVIDENCE GAP, CLOSED FIRST-HAND**: verify's two
+>    MEDIUMs were receipt gaps on the G2 HARD gate (two of
+>    three flag-off seeds had no committed artifact; one hash
+>    transcribed inconsistently). The commander re-derived both
+>    INDEPENDENTLY — a worktree at pre-change `ae27087` vs the
+>    seam commit `e64c998`, flag off, scripts/fingerprint.ts:
+>    20260728 → `c6e319a4…3ff080` IDENTICAL both sides; 424242
+>    → `45d98c74…a39f26` IDENTICAL both sides. The gate is
+>    TRUE; the doc's `…9d26` was a transcription error,
+>    corrected in place with a #180 note.
+> 2. **BANKED + PUSHED**: `e64c998` — the dormant shortPass
+>    wind-up seam (parallel `pendingPassWindup` slot so the
+>    certified C7 shot path is byte-untouched — ratified with
+>    its reasoning; arm site = the performPass else-branch
+>    only; cutback/kickoff/restart proven no-route; duration =
+>    the C7 law verbatim with tech = attrs.passing; one-touch
+>    bypass at the existing price, zero new charges — the arm
+>    body contains no price term). Gates: fingerprint + 3-seed
+>    byte-identity + non-vacuity (armed 51 wind-ups/match) +
+>    X-DET + 16 test pins + suite 1,116 green. REPORTED: W p50
+>    6 ticks (0.106 s); wind-up share 76.1% of eligible
+>    commits, bypass 23.9% (census-consistent); interruptions
+>    2.80%, 91% INT-LOSS.
+> 3. **THREE LOW DEBTS, NAMED AND BOUND TO O1-T2's BUILD
+>    BUDGET** (all dormant-robustness, all on the licensed seam
+>    path): (i) resolve validates the MATE only for undefined —
+>    a sent-off/substituted mate must cancel, not receive
+>    (+test); (ii) slot eviction accounting must live in-engine
+>    (or unreachability proven), not in a probe wrapper
+>    (+test); (iii) the pass plant sits after the C7 plant —
+>    define precedence for the double-pending body (+test).
+> 4. **DISPATCHED — O1-T2 (self-drive #179): the armed A/B.**
+>    The C7-T2 template (paired seeds, equilibrium form:
+>    goals/conversion/on-target/shots/loose-ball) PLUS the
+>    tempo-census dimensions on BOTH arms (spell length,
+>    one-touch share, turnovers per watched minute, pressed
+>    shares — the OUTCOME ruler, contract §4); sizing smoke →
+>    frozen N; F-O1a (equilibrium blowout) STOPS; the F-O1b
+>    read (tempo moves < 20% of the #173.2 gap) is taken at
+>    adjudication — a fork to the user either way it lands;
+>    the three §3 debts fixed + tested in the same commit.
+>    Seeds continue in the reserved band; Road B throughout.
