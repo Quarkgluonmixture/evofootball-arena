@@ -7487,3 +7487,34 @@
 >    bypass populations, the double-charge surfaces. Seeds
 >    12,300,000+ (new block family). Nothing ships this arc
 >    without the user's play-test verdict per slice.
+
+> **COMMANDER RULING #176 (2026-08-08 — the user rules "go":
+> O1 phase-0 dispatched — the pass-release code map + census):**
+>
+> 1. **SCOPE (read-only on src, the C7-PHASE0 + C7-T0 template
+>    pair fused into one step)**: (a) THE CODE MAP — where every
+>    pass-family kick releases (short pass / long ball / through
+>    / cross / cutback / clearance / keeper distribution /
+>    lay-off; free kicks excluded per C7 Q1), what a wind-up
+>    would interpose on at each site, the one-touch bypass
+>    surfaces (firstTouchWindow reads), the double-charge
+>    surfaces (kickMisalignment, oneTouchMul — what already
+>    prices hurry per kind), the interruption/maintenance
+>    surfaces (kickCooldown, decisionTimer, the C7 re-decide
+>    lock); (b) THE CENSUS — production world, fixed seeds from
+>    12,300,000+ (new block family), X-DET double-run:
+>    releases/match by kind, one-touch share by kind
+>    (window>0 at kick), pressed share at release (the frozen
+>    4.2 m radius), reception-to-release gap by kind, and the
+>    populations a staged O1 scope decision needs (which kinds
+>    carry the tempo, which are rare). Absolute descriptive —
+>    no gates beyond plumbing (X-DET, X-SRC-ZERO, X-FP-PROD,
+>    seed disjointness).
+> 2. **DISPATCH**: one executor step (Workflow Draft→Verify,
+>    §0.0, Opus 5 medium); the census is cheap (single-arm,
+>    ~minutes) — the executor runs it inline and commits map +
+>    probe + JSON together; verify re-checks map claims against
+>    code line-by-line and the census's metric definitions
+>    against the OUTLET-CONTRACT invariants. The commander
+>    adjudicates and freezes O1's first-cut scope on the
+>    numbers.
