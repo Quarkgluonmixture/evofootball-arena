@@ -123,11 +123,19 @@ rate) but **F-O1b FIRED**: tempo moved only 1.7–4.3% of the
 #173.2 gap (the phase-0 ≈4%-of-played-time ceiling foretold
 it). Diagnosis (labelled): release time is the SMALL half —
 spells die by pressed-retention loss = O2/O3's seat.
-**SELF-DRIVE STOPPED. THE QUEUE SITS AT THE USER'S #183.5
-FORK**: (甲) bank cut-1 + arm it into the play-test bundle +
-OPEN O2 抬头观察/O3 priced hold (the retention half) · (乙)
-raise the wind-up law (buys feel, ~5% of gap at 3×) · (丙)
-cut-2/3 kinds (~1% more) · (丁) bank dormant, stop the O-arc.
+**THE USER RULED 甲 (#184) → cut-1 BANKED; the v3 entry MERGED
++ DEPLOYED (#185, `f1734e1`: ?a4world=3 = v2 + 出球前摇,
+A4_WORLD_FLAGS byte-untouched); the O2 opening sizing BANKED
+(#186, `61bb5f9`): the perception wedge STILL BINDS O1-armed
+(7.88× [5.15,27.5]; baseline 14.8×; E-ABSTAIN-UNSEEN ≈69% both)
+⇒ 抬头观察 remains the binding seat; the O2 stage contract =
+the commander's NEXT DRAFTING ACT. **USER v3-SESSION VERDICT
+(#186.2, anchored in VISION §1)**: 进攻配合好 · 弱侧后卫乱转/
+脱队 (the formation-rigidity defect B, concrete lens) · 位置是
+活的 ontology (共识粗、执行活;调制自由 = 底座义务). H-186a
+labelled (phase-blind home vs station oscillation); **the
+far-side defender forensic census is DISPATCHED** — the
+modulation-vs-oscillation fork returns with its numbers.
 Also open:
 the v2 acceptance (#168.3), the 乙 offside axis, slice-2
 disposition, D1/D2/phone/F7b/F7c. VISION §3

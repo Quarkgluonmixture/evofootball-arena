@@ -2175,3 +2175,11 @@ status read, restored byte-identical from 9d6d106 (verified by
 anchored diff), queue-tail seed ledger refreshed in the same
 commit (7b92466). Lesson: QUEUE edits use anchored replace with
 a matched-string assertion, never unchecked find() slicing.
+
+2026-08-08 (#184–#186): superseded QUEUE state — "#183.5 FORK"
+→ the user ruled 甲 (cut-1 banked); v3 entry merged + deployed;
+O2 sizing banked (wedge still binds both arms — 抬头观察 stays
+the binding seat); the user's v3-session verdict landed (进攻
+配合好 · 弱侧后卫乱转 · 位置是活的 ontology → VISION §1
+anchor); far-side defender forensic dispatched (H-186a:
+modulation vs oscillation).
