@@ -218,13 +218,22 @@ owns 79.97–84.57 % of material-ask ticks** (the instrumented
 乙 number the fork was parked on; stage doc §RESULT + artifact
 `pm-t1-compression-exam.json`). PM seam stays BANKED-DORMANT;
 PM-T2/play-test does NOT proceed. **SELF-DRIVE ENDED at the
-pre-named STOP (#199.4). THE FORK SITS AT THE USER — the 乙
-fix scope, now WITH numbers: S1 lane term / S2 priority key /
-S4 release filter (each renegotiates the formations.test.ts
-pin, carries the Phase-30 direction instruments, and re-runs
-this battery as its before/after ruler — F-PM-a un-firing =
-the fix works).** QUEUED (not blocked by 乙): O2-T1 dispatches
-on the next "go" (#199.5). Seeds consumed this arc:
+pre-named STOP (#199.4).** **#200 (2026-08-08): the user's
+VISION challenge KILLED the S4-as-hand-predicate
+recommendation (intuition scored HIT, verbatim anchored in
+VISION §1 — "盯不盯人是判断,不是规则"); the 乙 scope is
+RESHAPED: a gene-weighted ball-relevance DIMENSION inside the
+mark score, born absent (0 = today, byte-identical) — the
+decline EMERGES from score × the existing 22 m gate, no new
+predicate; couples with the banked PM seam (released bodies
+hear the compression ask). Known drafting traps: the
+box-threat boundary (lane-gap is the wrong relevance measure
+in the box), the formations.test.ts pin, Phase-30 direction
+instruments, PM-T1 battery re-run as the before/after ruler.
+THE FORK SITS AT THE USER (#200.4): 甲 draft the reshaped 乙
+contract (recommended) / 乙 defer marking to the defensive-eye
+rebuild / 丙 O2-T1 first, rule after.** QUEUED (not blocked):
+O2-T1 dispatches on the next "go" (#199.5). Seeds consumed this arc:
 12,311,000–024 (O2-T0) · 12,311,100–124 (PM-T0) ·
 12,311,200–205 (PM-T1 smoke ×2) · 12,311,300–949 (PM-T1
 battery). Also open: the v2

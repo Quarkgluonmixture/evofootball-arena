@@ -8503,3 +8503,53 @@
 >    own frozen contract. Seeds consumed this round:
 >    12,311,300–949 (battery) + 12,311,200–205 (smoke, two
 >    plumbing runs).
+
+> **COMMANDER RULING #200 (2026-08-08 — the user challenges the
+> #199.4 S4 recommendation on VISION grounds ("可以不盯人…是不是
+> 固化不符合vision?"); the challenge is ADJUDICATED CORRECT —
+> the S4-as-hand-predicate recommendation is WITHDRAWN; the 乙
+> scope is RESHAPED to the emergence-honest form; the fork
+> re-presented):**
+>
+> 1. **USER INTUITION SCORED: HIT** (the #130/#140/#142 series
+>    continues — the commander's own recommendation overturned).
+>    Verbatim anchored into VISION §1 (the 位置是活的 block):
+>    a fixed decline/release predicate ("离球道太远就不盯")
+>    hand-sets a BEHAVIOUR for every team — the same violation
+>    family as the hand-authored formation menu and the retired
+>    width floor. The commander presented the narrowest blast
+>    radius and missed the shape test.
+> 2. **THE DEFECT STANDS (unchanged by the challenge)**: PM-T1
+>    measured the mark channel owning ~80 % of material-ask
+>    ticks, and the banked map's negative is causal — the mark
+>    score contains NO ball/lane-relevance variable, so NO
+>    genome can express "he is irrelevant, tuck in" (the
+>    maxed-genome criterion: substrate defect, not selection
+>    gap).
+> 3. **THE RESHAPED 乙 (recommended)**: add the MISSING
+>    DIMENSION, gene-weighted, born absent — a ball-relevance
+>    term inside the mark-selection score whose weight is a new
+>    tactical gene (0 = today's glue, byte-identical; the
+>    PM-T0/phase-41 pattern). The decline behaviour EMERGES
+>    from score × the EXISTING 22 m range gate — no new
+>    predicate anywhere; released bodies fall to the station
+>    field, where the banked PM seam gives compression an ear
+>    (the two cuts are designed to couple). Style divergence
+>    expected and desired: high weight = tuck-in/zonal-ish,
+>    zero = man-glue; selection decides. ⚠ Contract-drafting
+>    traps already known: the BOX-threat case (a far-post body
+>    waiting on a cross IS relevant — lane-gap is the wrong
+>    relevance measure inside the box; the existing boxThreat
+>    branch is the natural boundary), the formations.test.ts
+>    pin renegotiation, the Phase-30 direction instruments, and
+>    the PM-T1 battery re-run as the before/after ruler
+>    (F-PM-a un-firing = the fix works).
+> 4. **THE FORK (the user's, re-presented)**: (甲) draft the
+>    reshaped 乙 contract as #200.3 (gene-weighted relevance
+>    dimension; VISION audit; then executor; then the PM-T1
+>    ruler re-run) — the commander's recommendation; (乙) leave
+>    marking untouched and defer the whole question to the
+>    future defensive-eye rebuild (the S3–S8 mainline; purest,
+>    slowest — the 乱转 stays live in every world until then);
+>    (丙) proceed to O2-T1 first and rule this after. Awaiting
+>    the ruling; O2-T1 stays queued regardless (#199.5).
