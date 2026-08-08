@@ -94,13 +94,17 @@ export default defineConfig({
     // the suite robust on loaded/thermally-throttled hardware while still
     // failing fast on genuine hangs (the sim itself has a 4× step safety net).
     testTimeout: 20000,
-    // CI runs ONE worker thread (fm 12's corollary, final form): on the
-    // 2-core runner two worker threads contend for both cores, a match loop
-    // can then hold its event loop past vitest's 60s RPC budget, and the run
-    // dies with "[vitest-worker]: Timeout calling onTaskUpdate" — with all
-    // tests GREEN (killed the phase-45..50 deploy twice; per-test setImmediate
-    // yields only shrink the window). Single-threaded, the worker owns one
-    // core and the orchestrator the other. Local runs keep full parallelism.
+    // CI runs the FORKS pool (2026-08-08, third escalation of the same war):
+    // a worker THREAD that blocks its event loop on a long sync match loop
+    // starves the tinypool RPC and the run dies with "[vitest-worker]:
+    // Timeout calling onTaskUpdate" — with all tests GREEN. singleThread
+    // (phase-45..50) and three shards (2026-07-26) each bought time until the
+    // suite outgrew them; the slice-2 test files (fingerprint re-derivations,
+    // evolution loops) tripped it again on shard 3/3 three runs straight. A
+    // forked CHILD PROCESS blocking its own loop does not starve the parent's
+    // timers, which is the upstream-recommended fix for exactly this error.
+    // Local runs keep the threads pool with full parallelism.
+    pool: process.env.CI ? 'forks' : 'threads',
     poolOptions: {
       threads: { singleThread: !!process.env.CI },
       forks: { singleFork: !!process.env.CI },
