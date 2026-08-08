@@ -146,9 +146,24 @@ episode mean, episode max, and the per-world p50/p90/max over episodes.
 The live send, resolved per tick by the substrate's own precedence:
 
 1. If the station eye is armed on this match **and** `p.action.type ∈
-   STATION_FAMILY` (`src/ai/stationEye.ts`) **and** `p.c4Trace !== null` ⇒ the
-   send is the eye's ball-local lattice override, `p.c4Trace.applied` (the exact
-   value the executor assigned: `target = want; p.c4Trace = {meet: want, applied: want}`).
+   STATION_FAMILY` (`src/ai/stationEye.ts`) **and** `p.c4Trace !== null` **and the
+   body's live commitment carries an offset** (`stationEyeState.get(p.gid).offset
+   !== null`) ⇒ the send is the eye's ball-local lattice override,
+   `p.c4Trace.applied`.
+
+   **The fourth condition is the executor's real gate** (`src/ai/actionExecutor.ts:1055`:
+   `if (state !== undefined && state.offset !== null) { if (isStation) { … target = want }`).
+   A commitment that is live but offset-null steers nothing, so testing only the
+   first three would count as overrides ticks the executor never overrode. Declared
+   here as the fourth condition rather than left implicit in the probe.
+
+   **What `c4Trace.applied` actually is** (`src/ai/actionExecutor.ts:1145`:
+   `if (p.c4Trace !== null && target) p.c4Trace = { meet: p.c4Trace.meet, applied: target }`):
+   the eye's branch first writes `{meet: want, applied: want}` (`:1061`), and then
+   line 1145 REWRITES `applied` to the target that survived the executor's own
+   clamps (the onside clamp and the barred-box clamp). So `applied` is the point the
+   body was really steered at, not the raw lattice want — which is the send this
+   census means. `meet` retains the pre-clamp want.
 2. Otherwise ⇒ `formationSpot(p, teams[d], ball, /*hasBall*/ false, teams[a],
    /*abandonRest*/ false)` — which routes to `emergentStation` (emergent
    positioning is DEFAULT ON). `hasBall = false` because in-trigger the defending
@@ -199,6 +214,13 @@ override applied, else `-`). A SWITCH is a tick whose key differs from the previ
 tick's key, within the episode (the episode's first tick is never a switch).
 
 `switchRate = switches / episodeSimSeconds`.
+
+**What this key CANNOT separate** (stated here, not only at §8.4): because
+`eyeCandidateId` collapses to `-` on every tick the override is not applying, an
+override lapsing IN or OUT changes the key exactly as an action-type change or a new
+mark target does. A switch is evidence that **the send identity changed**; it names
+no cause. Any attribution of churn to one of those causes is beyond this
+instrument.
 
 ### §3.5 HEADING-FLIP RATE — the churn detector
 
@@ -272,6 +294,18 @@ N* = min(
 sizing smoke (16 seeds), which informs **only N** — no level, share or rate from
 the smoke is ever read as a result. The smoke's own artifact is emitted
 separately and labelled.
+
+**HOW THE RULE IS EXECUTED (added at the #187 fix round; the rule itself is
+unchanged).** N is not a constant in the probe. In census mode the probe READS the
+committed sizing artifact, takes exactly two numbers out of it
+(`min(episodesPerMatchByWorld)` and `msPerMatch`), evaluates the arithmetic above
+in-process before a single census match is stepped, and runs that output. The
+derivation, the artifact's own sha256, the smoke's seed block, all three terms and
+which term bound are emitted as `nDerivation` in the census artifact; the gate
+`nDerived` fails if the N actually run is not that output (so an `FSD_N` override
+turns the gate RED rather than passing quietly). The earlier draft hardcoded
+`min(N_CAP, …)` — the arithmetic never ran, and the census artifact's own post-hoc
+recompute was the only place the numbers appeared. §8 reports which term bound.
 
 ---
 
@@ -359,6 +393,19 @@ as the pair (weak, ballSide) plus their paired difference with a CI.
 
 ---
 
+### §5 FOOTNOTE — the one number §5 does not itself supply (added at the #187 fix round)
+
+§5 above is frozen and is not revised. It says "materially non-zero" for (i)'s
+corner disjunct and "low" for (ii)'s corner condition without giving a number. The
+probe therefore declares **one** cut, `CORNER_MATERIAL = 0.05`, and uses it for both
+(`share >= 0.05` = materially non-zero; `share < 0.05` = low), so no share can be
+both immaterial and not-low. This is a FLAGGED executor's choice in the same class
+as `SPEED_MIN` — there is no substrate anchor for it. The measured corner shares
+(medians 0 in every world, means ≤ 0.68 %) are two orders of magnitude below the
+cut, so no plausible value of it changes any verdict; see §8.7.
+
+---
+
 ## §6 GATES
 
 | gate | meaning |
@@ -371,6 +418,7 @@ as the pair (weak, ballSide) plus their paired difference with a CI.
 | `flagHygiene` | prod = no flags; v1 = v2 = `A4_WORLD_FLAGS` exactly; v3 = that + exactly `o1PassWindup`; `A4_WORLD_FLAGS` itself untouched |
 | `tableSha` | the injected merged table + control artifacts rehash to the pinned SHAs |
 | `armIdent` | v1/v2/v3 carry the certified eye (`isA4Armed` shape) and the expected obedience/offsets; prod carries none |
+| `nDerived` | the N actually run **is** the frozen §4.3 rule's own output on the sizing smoke's two numbers (RED if an `FSD_N` override replaced it) |
 | `probeReadOnly` | `abandonRestDesignation`, `homeRegionGrant`, `homeMapGrant` are all null/absent on every match |
 
 ---
@@ -393,18 +441,52 @@ as the pair (weak, ballSide) plus their paired difference with a CI.
 ## §8 RESULTS
 
 Artifact: [`data/farside-defender-forensic.json`](data/farside-defender-forensic.json)
-— `resultSha c47387aea8d5…`, **all nine gates GREEN** (X-DET true, X-FP-PROD
+— `resultSha 2bbdfc9a1a9b…`, **all ten gates GREEN** (X-DET true, X-FP-PROD
 `57b0bdab…` re-derived, src diff empty, seeds/stats disjoint, flag hygiene, table
-SHAs, arm identity, probe-read-only). Block **12,310,300..12,310,999** (N = 700
-seeds × 4 worlds × 2 X-DET passes), wall 587 s. Sizing artifact (16 seeds,
-informed only N): [`data/farside-defender-forensic-sizing.json`](data/farside-defender-forensic-sizing.json).
+SHAs, arm identity, N-derived, probe-read-only). Block
+**12,310,300..12,310,999** (N = 700 seeds × 4 worlds × 2 X-DET passes), wall 583 s.
 
-**Sizing shortfall, disclosed.** The frozen §4.3 arithmetic returned
-`N* = min(1250, 4388, 700) = 700` — the reserved band's own cap BOUND. So the
-1,500-episode aspiration was not reached: the census carries **843 (prod) / 925
-(v1) / 972 (v2) / 1,049 (v3)** episodes. N* is the frozen rule's own output and
-was not amended after the smoke; the shortfall is a precision cost, and the CIs
-below are the honest width that follows from it.
+*Provenance of these numbers:* the census was RE-RUN at the #187 fix round on the
+same block with the same invocation. Every measured level, CI, verdict and receipt
+below is **byte-identical to the draft run's**; the artifact differs only by the
+added `reading.clauseTerms` / `CORNER_MATERIAL` fields and the rebuilt N-provenance
+blocks, which is why `resultSha` moved from `c47387aea8d5…` to `2bbdfc9a1a9b…`.
+
+Sizing artifact (16 seeds, informed only N):
+[`data/farside-defender-forensic-sizing.json`](data/farside-defender-forensic-sizing.json).
+
+### §8.0 WHERE N CAME FROM — the sequence, in order
+
+Rewritten at the #187 fix round: the earlier draft printed the census run's own
+post-hoc numbers and called them the smoke's. The truth, in plain sequence:
+
+1. **The sizing smoke ran first** — 16 seeds @ 12,310,200..12,310,215, four worlds,
+   `FSD_MODE=smoke`. It measured exactly two things N depends on: episodes per match
+   (prod 1.2500 / v1 1.5625 / **v2 1.0625** / v3 1.8125 ⇒ binding = **1.0625**) and
+   **108.25 ms per match**. Nothing else in that artifact is read anywhere.
+2. **The frozen §4.3 arithmetic was then evaluated on those two numbers, in the
+   census process, before any census match was stepped**:
+   `ceil(1500 / 1.0625) = 1412` → stepped up to `N_STEP = 25` ⇒ **1425**;
+   `floor(1.0 h / (108.25 ms × 4 × 2))` ⇒ **4157**; the reserved band's cap ⇒ **700**.
+   `N* = min(1425, 4157, 700) = 700` — **the CAP BINDS** (`bindingTerm =
+   reservedBandCap`), and the projected wall was 0.168 h against a 1.0 h budget.
+   That 700 is the N that ran; the `nDerived` gate asserts it.
+3. **The census then ran and RE-EVALUATED the same arithmetic on its own yield**,
+   which selects nothing and is emitted as `sizingRecompute`, labelled POST-HOC:
+   binding episodes/match **1.2043** (prod), **102.21 ms/match** ⇒ 1246 → **1250**,
+   wall term **4402**, cap 700 ⇒ still 700, cap still binding. The census yielded
+   ~13 % more episodes per match in its binding world than the smoke predicted and
+   ran ~6 % faster per match; the cap bound under both, so the recompute changes
+   nothing and is reported only so the smoke's estimate can be checked against
+   reality. (Its `nStar` is labelled COUNTERFACTUAL in the artifact for that reason.
+   The wall term is a timing measurement and is the one number here that moves
+   between runs of the same block.)
+
+**Sizing shortfall, disclosed.** Because the cap bound, the 1,500-episode
+aspiration was not reached: the census carries **843 (prod) / 925 (v1) / 972 (v2) /
+1,049 (v3)** episodes. N* is the frozen rule's own output and was not amended after
+the smoke; the shortfall is a precision cost, and the CIs below are the honest width
+that follows from it.
 
 ### §8.1 How often the trigger fires, and for how long
 
@@ -441,20 +523,41 @@ EXCESS from +2.78 to +0.98 m — but none of them removes it.
 `sendLatGapMean` = metres between the tick's SEND TARGET and the ball's lane
 (§3.3). `SPREAD_R = 9 m` is the substrate's own body-spacing.
 
-| world | weak p50 [CI] | mirror p50 | Δ [CI] | resolved | compressionShortfall p50 (weak) |
-| --- | --- | --- | --- | --- | --- |
-| prod | **19.86** [19.65, 20.04] | 2.00 | **+17.86** [+17.65, +18.08] | ✔ | 7.56 m |
-| v1 | 18.16 [18.14, 18.19] | 1.39 | +16.78 [+16.57, +16.96] | ✔ | 4.15 m |
-| v2 | 18.18 [18.15, 18.22] | 1.26 | +16.92 [+16.76, +17.05] | ✔ | 2.80 m |
-| v3 | **18.14** [18.10, 18.18] | 1.24 | +16.90 [+16.74, +17.06] | ✔ | 2.27 m |
+**THE TARGET metric** — where the field SENDS him, relative to the ball's lane:
+
+| world | weak p50 [CI] | mirror p50 | Δ [CI] | resolved |
+| --- | --- | --- | --- | --- |
+| prod | **19.86** [19.65, 20.04] | 2.00 | **+17.86** [+17.65, +18.08] | ✔ |
+| v1 | 18.16 [18.14, 18.19] | 1.39 | +16.78 [+16.57, +16.96] | ✔ |
+| v2 | 18.18 [18.15, 18.22] | 1.26 | +16.92 [+16.76, +17.05] | ✔ |
+| v3 | **18.14** [18.10, 18.18] | 1.24 | +16.90 [+16.74, +17.06] | ✔ |
 
 The send target for the weak-side back sits **18–20 m off the ball's lane — about
 twice a body-spacing further than a compressed shape implies — in every world,
 with razor-tight CIs**, while his ball-side twin is sent to within 1.2–2.0 m of
-the ball's lane. The `compressionShortfall` (metres beyond one spacing) is
-7.56 m on prod and still 2.27 m on v3; the mirror's is 0 everywhere.
+the ball's lane.
 
-### §8.4 OSCILLATION — the churn is the EYE's, not the weak side's
+**A SEPARATE, BODY metric** (fixed at the #187 fix round: the draft tabled this
+beside `sendLatGapMean` with prose flowing from one to the other, which implies an
+arithmetic that does not exist). `lateralGapToBall` and `compressionShortfall` are
+measured on **where the body actually IS**, not on its target:
+`compressionShortfall = mean(max(0, |p.pos.y − ball.pos.y| − 9))`. It is **not**
+`sendLatGap − 9` and does not subtract into the table above.
+
+| world | body latGap p50 (weak) | compressionShortfall p50 (weak) | mirror latGap p50 | mirror shortfall p50 |
+| --- | --- | --- | --- | --- |
+| prod | 16.56 | **7.56** | 1.97 | 0 |
+| v1 | 12.88 | 4.15 | 2.10 | 0 |
+| v2 | 11.76 | 2.80 | 1.89 | 0 |
+| v3 | 11.18 | **2.27** | 1.83 | 0 |
+
+Read as its own fact: the weak-side back STANDS 11–17 m off the ball's lane, i.e.
+2.3–7.6 m beyond one body-spacing, and his ball-side twin stands inside the spacing
+(shortfall median 0 in all four worlds). Note the body's gap is 3.3–7.0 m SMALLER
+than its own send's gap in every world (16.56 vs 19.86 prod → 11.18 vs 18.14 v3) — he is generally on his way toward a target
+even further out, not overshooting it.
+
+### §8.4 OSCILLATION — the churn is NOT weak-side-specific (and its cause is beyond this instrument)
 
 | world | switch/s weak p50 [CI] | mirror p50 | Δ [CI] | resolved | flip90/s weak (p50 / mean) |
 | --- | --- | --- | --- | --- | --- |
@@ -463,13 +566,32 @@ the ball's lane. The `compressionShortfall` (metres beyond one spacing) is
 | v2 | 0.59 [0.32, 0.75] | 0.72 | −0.13 [−0.44, +0.04] | ✘ | 0 / 0.0040 |
 | v3 | 0.78 [0.67, 0.88] | 0.49 | **+0.29** [+0.06, +0.84] | ✔ | 0 / 0.0009 |
 
-- On **prod the send never changes at all** (median 0, mean 0.42 /s) — there is no
-  oscillation to fix in the shipped game.
-- In v1/v2/v3 the send does change ~0.6–0.8 /s, and the eye override owns 42–54 %
-  of ticks — but the ball-side mirror churns at essentially the same rate, so this
-  is a property of the ARMED EYE's commitment cycling on both flanks, **not** of
-  weak-side-ness. The paired excess is unresolved in v1 and v2 and resolves only
-  in v3, weakly (+0.29 /s, CI touching +0.06).
+**RETRACTED at the #187 fix round: the draft attributed this churn to "the armed
+eye's commitment cycling".** `switchKey` is `type|markTargetIdx|eyeCandidateId` and
+`eyeCandidateId` collapses to `-` on every non-override tick, so an override lapsing
+in or out is indistinguishable from an action-type flip or a new mark target on the
+decision clock (§3.4). The instrument **cannot** name which of those moved the key.
+What the receipts do support, stated exactly:
+
+- On **prod the MEDIAN episode shows no change at all** (switch p50 = 0; episodes
+  are short — duration p50 0.83 s), but the **mean is 0.42 /s** — the send identity
+  does change on prod episodes, and prod carries **zero override ticks**. That is
+  positive proof the metric fires on causes that are not the eye at all
+  (action-type / mark-target alternation), and it is why no eye attribution can be
+  read off this number.
+- In v1/v2/v3 the median rises to 0.59–0.78 /s and the mean to 0.80–0.91 /s, i.e.
+  roughly **double prod's mean**, while `eyeOverride` owns 42–54 % of ticks. So the
+  churn is HIGHER where the eye is armed — but with the key collapsing as it does,
+  "higher when armed" is as far as the evidence reaches; it does not isolate
+  candidate cycling from the mark/station alternation the arming also changes
+  (markStance falls 81.5 % → 29.6–36.0 % between prod and the armed worlds, §8.5, so
+  the action mix itself is different).
+- **The one clean cross-flank fact stands:** the ball-side mirror churns at
+  essentially the same rate as the weak-side back (mirror means 0.41 prod / 0.88 v1
+  / 0.90 v2 / 0.80 v3). The paired excess is unresolved in v1 and v2 and resolves
+  only in v3, weakly (+0.29 /s, CI lower bound +0.06). Whatever the cause, it is
+  **not** a weak-side phenomenon — which is the only thing §5 needs from this
+  metric.
 - Corner: `sendCornerShare` p50 = 0 in every world (means 0.00 %–0.68 %), and the
   body's own `posCornerShare` means are 0.5–1.3 %. **By the frozen (tight, 9 m of
   the clamp corner) test the literal 左下角 is NOT reproduced** — what IS
@@ -521,35 +643,62 @@ station, and is not the body the user is watching.
 
 ### §8.7 THE PRE-REGISTERED §5 READING, APPLIED MECHANICALLY
 
-| world | S (switch/s) | F (flip/s) | D (dist to send) | G (send lat gap) | corner | frozen verdict |
-| --- | --- | --- | --- | --- | --- | --- |
-| prod | 0.00 | 0.00 | 10.68 | 19.86 | 0.00 | **H-186a(i) MODULATION MISSING** |
-| v1 | 0.75 | 0.00 | 9.08 | 18.16 | 0.00 | H-186a(ii) OSCILLATION |
-| v2 | 0.59 | 0.00 | 10.49 | 18.18 | 0.00 | H-186a(ii) OSCILLATION |
-| v3 | 0.78 | 0.00 | 10.51 | 18.14 | 0.00 | H-186a(ii) OSCILLATION |
+Evaluated by the probe under the rule **as frozen, including (i)'s disjunct** — the
+draft's code tested only `G > SPREAD_R` and dropped "and/or the send's corner share
+is materially non-zero"; the code now evaluates and emits both terms
+(`reading.clauseTerms`, with `CORNER_MATERIAL = 0.05` per the §5 footnote).
+
+| world | S (switch/s) | F (flip/s) | D (dist to send) | G (send lat gap) | corner share | G > 9? | corner material? | (i) far-from-compressed | frozen verdict |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| prod | 0.00 | 0.00 | 10.68 | 19.86 | 0.0000 | ✔ | ✘ | ✔ | **H-186a(i) MODULATION MISSING** |
+| v1 | 0.75 | 0.00 | 9.08 | 18.16 | 0.0000 | ✔ | ✘ | ✔ | H-186a(ii) OSCILLATION |
+| v2 | 0.59 | 0.00 | 10.49 | 18.18 | 0.0000 | ✔ | ✘ | ✔ | H-186a(ii) OSCILLATION |
+| v3 | 0.78 | 0.00 | 10.51 | 18.14 | 0.0000 | ✔ | ✘ | ✔ | H-186a(ii) OSCILLATION |
+
+**NO VERDICT CHANGED under the restored disjunct, and the numbers say why.** The
+median episode `sendCornerShare` is exactly **0.0000** in all four worlds (means
+0.00 % / 0.26 % / 0.68 % / 0.35 %), two orders of magnitude below the 5 % cut, while
+the first disjunct `G > 9 m` is satisfied in all four (18.14–19.86 m). A disjunction
+whose first term is true everywhere and whose second is ~0 everywhere yields exactly
+what the narrower coded test yielded — the four verdicts above are byte-identical to
+the draft's. The defect was that the code was narrower than the frozen rule, not
+that it produced a different answer.
 
 The rule as frozen labels prod (i) and the three armed worlds (ii), because the
-(i) clause requires `S < CHURN_HI` and the armed worlds' eye cycling pushes `S`
-above 0.333 /s. **Three facts qualify that mechanical output, all measured:**
+(i) clause requires `S < CHURN_HI` and in the armed worlds `S` exceeds 0.333 /s.
+**Three facts qualify that mechanical output, all measured:**
 
 1. `G` — the (i) clause's own substantive test — is **satisfied in all four worlds
    at once** (18.14–19.86 m ≫ SPREAD_R = 9 m, CIs a few cm wide). The send never
    asks the weak-side back to compress, in any world.
 2. The churn that trips the (ii) clause in v1/v2/v3 is **not weak-side-specific**:
    the ball-side mirror churns at the same rate (paired Δ unresolved in v1 and v2,
-   resolved only in v3 at +0.29 /s with the CI touching zero-plus). It is the armed
-   eye's commitment cycling on both flanks.
-3. The (ii) clause's "sane and near" condition is met on the wrong reading — the
-   worst v3 episodes have `distToSend` of **0.83–1.26 m** while the body is 25 m
-   detached and 20–24 m off the ball's lane, with **zero** switches and **zero**
-   flips. He is standing exactly where he was sent. That is (i)'s picture, not
+   resolved only in v3 at +0.29 /s with the CI touching zero-plus). Its CAUSE is not
+   identifiable by this instrument — see the §8.4 retraction; the flank symmetry is
+   the part §5 needs and the part the receipts support.
+3. The (ii) clause's "sane and near" condition is met on the wrong reading. Take the
+   three v3 receipts whose weak-side back was steered by `stationHome` for **100 %**
+   of the episode with **zero** switches and **zero** flips (ranges restated at the
+   #187 fix round — the draft's "25 m / 20–24 m" excluded one of its own cited
+   episodes):
+
+   | v3 seed | from tick | dur | distToSend | detachment | sendLatGap |
+   | --- | --- | --- | --- | --- | --- |
+   | 12,310,572 | 14,881 | 2.07 s | **0.83 m** | 25.73 m | 20.53 m |
+   | 12,310,300 | 14,807 | 0.88 s | **0.90 m** | 25.18 m | 23.69 m |
+   | 12,310,904 | 4,533 | 0.85 s | **1.26 m** | 24.30 m | 19.54 m |
+
+   So: `distToSend` **0.83–1.26 m**, detachment **24.3–25.7 m**, send lateral gap
+   **19.5–23.7 m**. He is standing exactly where he was sent, a body-width from a
+   target 20 m off the ball and 25 m from his own team. That is (i)'s picture, not
    (ii)'s.
 
 **The census's factual readout, stated without design intent:** the evidence
 supports **H-186a(i) MODULATION MISSING** as the mechanism behind the user's
 picture in every world including v3 (the world he played), and does **not** support
 H-186a(ii) OSCILLATION as a weak-side phenomenon — the churn measured in the armed
-worlds is flank-symmetric eye cycling, and prod has none at all. D1 adds a
+worlds is flank-symmetric send-identity churn of a cause this instrument cannot name
+(§8.4), and on prod the median episode carries none. D1 adds a
 measured CHANNEL the ruling did not enumerate: the mark assignment owns 70–82 % of
 his trigger ticks and points far-side 30–59 % of the time, so whatever compression
 force is missing is missing against a live marking duty, not against an idle body.

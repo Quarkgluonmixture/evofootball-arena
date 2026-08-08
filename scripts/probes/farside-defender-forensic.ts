@@ -67,6 +67,12 @@ const SPEED_MIN = 1.0;
 const CHURN_HI = 1 / EYE_W_S;
 /** §5: the executor's own "badly out of position" scale. */
 const NEAR_M = 14;
+/** §5: the ONE corner-share cut, used for BOTH of the frozen rule's corner
+ *  clauses — (i)'s "the send's corner share is materially non-zero" and (ii)'s
+ *  "the send's corner share is low" — so a share cannot be simultaneously
+ *  immaterial and not-low. Declared here (no substrate anchor exists for
+ *  "materially non-zero"; it is the executor's choice, flagged like SPEED_MIN). */
+const CORNER_MATERIAL = 0.05;
 
 /* --- §4.2 the seed ledger --------------------------------------------------- */
 /** Consumed through here by the A4/O arc (the O2 opening re-run took ..199). */
@@ -115,9 +121,10 @@ const A4_V2_OFFSETS = [0, 0.4, 0.2, 0, -0.2, -0.4] as const;
 
 const MODE = (process.env.FSD_MODE ?? 'census') as 'smoke' | 'census';
 const N_ENV = process.env.FSD_N === undefined ? null : envInt('FSD_N', 0);
+const SIZING_PATH = 'docs/world-model/data/farside-defender-forensic-sizing.json';
 const OUT_PATH = process.env.FSD_OUT
   ?? (MODE === 'smoke'
-    ? 'docs/world-model/data/farside-defender-forensic-sizing.json'
+    ? SIZING_PATH
     : 'docs/world-model/data/farside-defender-forensic.json');
 /** Receipts: how many worst-detachment episodes to cite per world. */
 const RECEIPTS_PER_WORLD = 12;
@@ -417,7 +424,15 @@ function walkMatch(world: World, seed: number): MatchWalk {
       }
       acc.detach.push(n === 0 ? Number.NaN : Math.hypot(p.pos.x - cx / n, p.pos.y - cy / n));
 
-      // §3.2 the SEND — the eye's override where it applied, else the station field
+      // §3.2 the SEND — the eye's override where it applied, else the station field.
+      // The override test mirrors the EXECUTOR'S OWN gate (actionExecutor.ts:1055-1061):
+      // `state !== undefined && state.offset !== null` THEN `isStation`. The
+      // `eyeState.offset !== null` conjunct is the fourth condition (stage doc §3.2,
+      // disclosed): a live commitment with a null offset steers nothing, so without
+      // it a stale-but-present state would be counted as an override that never was.
+      // NOTE `c4Trace.applied` is NOT the raw eye want: actionExecutor.ts:1145 rewrites
+      // it to the target that SURVIVED the onside / barred-box clamps, i.e. the point
+      // the body was actually steered at. That is the send this census wants.
       const home = formationSpot(p, dTeam, m.ball, false, aTeam, false);
       const isStation = STATION_FAMILY.has(p.action.type);
       const eyeState = eyeArmed ? m.stationEyeState.get(p.gid) : undefined;
@@ -435,7 +450,11 @@ function walkMatch(world: World, seed: number): MatchWalk {
       acc.latGap.push(Math.abs(p.pos.y - m.ball.pos.y));
       acc.sendLatGap.push(Math.abs(send.y - m.ball.pos.y));
 
-      // §3.4 the send-identity switch
+      // §3.4 the send-identity switch. LIMITATION (stage doc §8.4): the key is
+      // `type|markTargetIdx|eyeCandidateId` and eyeCandidateId collapses to '-' on
+      // every non-override tick, so an override LAPSING IN OR OUT changes the key
+      // exactly like an action-type flip or a new mark target. A switch says "the
+      // send identity changed"; it does NOT say which of those changed it.
       const mark = p.action.type === 'MarkOpponent' ? (p.action.targetIdx ?? '-') : '-';
       const sk = `${p.action.type}|${mark}|${candId}`;
       if (acc.prevKey !== null && acc.prevKey !== sk) acc.switches += 1;
@@ -585,12 +604,27 @@ const readingOf = (eps: readonly Episode[]): Record<string, unknown> => {
   const cornerShare = med('weak', 'sendCornerShare');
   const Sc = med('ballSide', 'switchRate'); const Fc = med('ballSide', 'flipRate90');
   const Dc = med('ballSide', 'distToSendMean'); const Gc = med('ballSide', 'sendLatGapMean');
-  const modulationMissing = S < CHURN_HI && F < CHURN_HI && G > SPREAD_R;
-  const oscillation = (S >= CHURN_HI || F >= CHURN_HI) && D <= NEAR_M && cornerShare < 0.05;
+  // (i)'s second condition is a DISJUNCTION as frozen: "`G > SPREAD_R (9 m)`,
+  // and/or the send's corner share is materially non-zero". Both disjuncts are
+  // evaluated and both are emitted, so the reading can be audited term by term.
+  const sendStable = S < CHURN_HI && F < CHURN_HI;
+  const gExceedsSpread = G > SPREAD_R;
+  const cornerShareMaterial = cornerShare >= CORNER_MATERIAL;
+  const farFromCompressedShape = gExceedsSpread || cornerShareMaterial;
+  const modulationMissing = sendStable && farFromCompressedShape;
+  const churning = S >= CHURN_HI || F >= CHURN_HI;
+  const sendSaneAndNear = D <= NEAR_M && cornerShare < CORNER_MATERIAL;
+  const oscillation = churning && sendSaneAndNear;
   return {
-    scales: { CHURN_HI: round(CHURN_HI), NEAR_M, SPREAD_R },
+    scales: { CHURN_HI: round(CHURN_HI), NEAR_M, SPREAD_R, CORNER_MATERIAL },
     weak: { S: round(S), F: round(F), D: round(D), G: round(G), sendCornerShare: round(cornerShare) },
     ballSideMirror: { S: round(Sc), F: round(Fc), D: round(Dc), G: round(Gc) },
+    clauseTerms: {
+      sendStable, gExceedsSpread, cornerShareMaterial, farFromCompressedShape,
+      churning, sendSaneAndNear,
+      note: '(i) = sendStable AND (gExceedsSpread OR cornerShareMaterial) — the frozen '
+        + '§5 disjunct, verbatim; (ii) = churning AND sendSaneAndNear',
+    },
     supportsModulationMissing: modulationMissing,
     supportsOscillation: oscillation,
     verdict: modulationMissing && oscillation ? 'COMPOUND (both clauses fire)'
@@ -720,11 +754,83 @@ const runAll = (tag: string, base: number, n: number): RunOut => {
   };
 };
 
-/* --- sizing (smoke mode informs ONLY N) ------------------------------------ */
-const smokeN = MODE === 'smoke' ? SMOKE_MATCHES : 0;
-const censusN = MODE === 'smoke' ? 0 : Math.min(N_CAP, N_ENV ?? N_CAP);
+/* ========================================================================== */
+/* §5.5 THE CENSUS N — DERIVED FROM THE FROZEN §4.3 RULE, NOT HARDCODED       */
+/* ========================================================================== */
+/** The frozen §4.3 arithmetic AS A FUNCTION. Its only inputs are the two numbers
+ *  §4.3 says come from the sizing smoke. Nothing else feeds N. */
+const frozenNStar = (bindingEpisodesPerMatch: number, msPerMatchIn: number) => {
+  const nRaw = bindingEpisodesPerMatch > 0
+    ? Math.ceil(TARGET_EPISODES_PER_WORLD / bindingEpisodesPerMatch) : Number.NaN;
+  const nStepped = Number.isFinite(nRaw) ? Math.ceil(nRaw / N_STEP) * N_STEP : Number.NaN;
+  const nAffordableAtBudget = Math.floor(
+    (WALL_BUDGET_HOURS * 3_600_000) / (msPerMatchIn * WORLDS_COUNT * XDET_FACTOR),
+  );
+  const terms = {
+    episodeTarget: nStepped, wallBudget: nAffordableAtBudget, reservedBandCap: N_CAP,
+  };
+  const nStar = Math.min(nStepped, nAffordableAtBudget, N_CAP);
+  const bindingTerm = (Object.entries(terms).find(([, v]) => v === nStar) ?? ['none'])[0];
+  return {
+    arithmetic: `N* = min( ceil(${TARGET_EPISODES_PER_WORLD} / episodesPerMatch_binding) rounded up to `
+      + `${N_STEP}, floor(${WALL_BUDGET_HOURS} h / (ms_per_match × ${WORLDS_COUNT} worlds × ${XDET_FACTOR} X-DET)), `
+      + `${N_CAP} ) — frozen in stage doc §4.3 BEFORE the smoke ran`,
+    targetEpisodesPerWorld: TARGET_EPISODES_PER_WORLD,
+    bindingEpisodesPerMatch: round(bindingEpisodesPerMatch, 4),
+    msPerMatch: round(msPerMatchIn, 3),
+    nRaw, nStepped, nStep: N_STEP, nAffordableAtBudget, nCap: N_CAP,
+    terms, nStar: Number.isFinite(nStar) ? nStar : null, bindingTerm,
+    projectedWallHours: Number.isFinite(nStar)
+      ? round((nStar * WORLDS_COUNT * XDET_FACTOR * msPerMatchIn) / 3_600_000, 3) : null,
+  };
+};
+
+/** CENSUS MODE: the smoke's artifact is READ and the frozen rule is EVALUATED on
+ *  it, here, before a single census match is stepped. N is that output — it is not
+ *  a constant in this file. (The smoke's own N is fixed by §4.2 at 16 seeds.) */
+const nDerivation = ((): Record<string, unknown> & { n: number } => {
+  if (MODE === 'smoke') {
+    return {
+      mode: 'smoke',
+      note: 'THIS RUN IS THE SIZING SMOKE. Its N is fixed by stage doc §4.2 at 16 seeds '
+        + '(block 12,310,200..12,310,215); the §4.3 arithmetic is not applicable to it — '
+        + 'the smoke is the arithmetic\'s INPUT.',
+      n: SMOKE_MATCHES,
+    };
+  }
+  const bytes = readFileSync(SIZING_PATH);
+  const smoke = JSON.parse(bytes.toString('utf8')) as {
+    mode: string;
+    seeds: { base: number; count: number; first: number; last: number };
+    sizingRecompute?: { episodesPerMatchByWorld: Record<string, number>; msPerMatch: number };
+    sizing?: { episodesPerMatchByWorld: Record<string, number>; msPerMatch: number };
+  };
+  const smokeSizing = smoke.sizingRecompute ?? smoke.sizing;
+  if (smoke.mode !== 'smoke' || smokeSizing === undefined) {
+    throw new Error(`${SIZING_PATH} is not a usable sizing-smoke artifact (mode=${smoke.mode})`);
+  }
+  const perWorld = smokeSizing.episodesPerMatchByWorld;
+  const binding = Math.min(...Object.values(perWorld));
+  const derived = frozenNStar(binding, smokeSizing.msPerMatch);
+  const n = N_ENV ?? (derived.nStar as number);
+  return {
+    mode: 'census',
+    source: SIZING_PATH,
+    sizingArtifactSha256: createHash('sha256').update(bytes).digest('hex'),
+    smokeSeeds: smoke.seeds,
+    inputsFromSmoke: { episodesPerMatchByWorld: perWorld, bindingWorldEpisodesPerMatch: round(binding, 4), msPerMatch: smokeSizing.msPerMatch },
+    ...derived,
+    envOverride: N_ENV,
+    n,
+    note: 'The census N is the output of the frozen §4.3 rule evaluated IN THIS PROCESS on '
+      + 'the sizing smoke\'s own two numbers, read from the committed smoke artifact (sha '
+      + 'above) before any census match ran. `bindingTerm` names which of the three terms '
+      + 'actually selected N. No level, share or rate from the smoke is read as a result.',
+  };
+})();
+
 const RUN_BASE = MODE === 'smoke' ? SMOKE_BASE : CENSUS_BASE;
-const RUN_N = MODE === 'smoke' ? smokeN : censusN;
+const RUN_N = nDerivation.n;
 
 const t0 = Date.now();
 const first = runAll('pass1', RUN_BASE, RUN_N);
@@ -735,26 +841,24 @@ const xDet = firstJson === JSON.stringify(second);
 const resultSha = createHash('sha256').update(firstJson).digest('hex');
 
 const msPerMatch = passMs / Math.max(1, RUN_N * WORLDS_COUNT);
-const sizing = (() => {
+/** POST-HOC, and selects NOTHING. The same frozen §4.3 arithmetic re-evaluated on
+ *  THIS run's own episode yield and ms/match, so the smoke's estimate can be checked
+ *  against the census's reality. In smoke mode this block IS the sizing input that
+ *  the census's `nDerivation` later consumes. */
+const sizingRecompute = (() => {
   const worlds = first.worlds;
   const binding = Math.min(...WORLDS.map((w) => worlds[w].episodesPerMatch));
-  const nRaw = binding > 0 ? Math.ceil(TARGET_EPISODES_PER_WORLD / binding) : Number.NaN;
-  const nStepped = Number.isFinite(nRaw) ? Math.ceil(nRaw / N_STEP) * N_STEP : Number.NaN;
-  const nWall = Math.floor((WALL_BUDGET_HOURS * 3_600_000) / (msPerMatch * WORLDS_COUNT * XDET_FACTOR));
-  const nStar = Math.min(nStepped, nWall, N_CAP);
+  const derived = frozenNStar(binding, msPerMatch);
   return {
-    arithmetic: `N* = min( ceil(${TARGET_EPISODES_PER_WORLD} / episodesPerMatch_binding) rounded up to `
-      + `${N_STEP}, floor(${WALL_BUDGET_HOURS} h / (ms_per_match × ${WORLDS_COUNT} worlds × ${XDET_FACTOR} X-DET)), `
-      + `${N_CAP} ) — frozen in stage doc §4.3 BEFORE the smoke ran`,
-    targetEpisodesPerWorld: TARGET_EPISODES_PER_WORLD,
+    provenance: MODE === 'smoke'
+      ? 'THE SIZING SMOKE\'S OWN NUMBERS — episodesPerMatchByWorld and msPerMatch here are '
+        + 'the two inputs the census\'s frozen §4.3 derivation reads out of this artifact.'
+      : 'POST-HOC RECOMPUTE OF THIS CENSUS RUN. It selected nothing: the N actually run '
+        + 'came from `nDerivation` (the frozen rule on the SMOKE\'s numbers). Reported so the '
+        + 'smoke\'s estimate can be compared with what the census really yielded.',
     episodesPerMatchByWorld: Object.fromEntries(WORLDS.map((w) => [w, worlds[w].episodesPerMatch])),
-    bindingEpisodesPerMatch: round(binding, 4),
-    nRaw, nStepped, nStep: N_STEP,
-    msPerMatch: round(msPerMatch, 3),
-    nAffordableAtBudget: nWall, nCap: N_CAP,
-    nStar: Number.isFinite(nStar) ? nStar : null,
-    projectedWallHours: Number.isFinite(nStar)
-      ? round((nStar * WORLDS_COUNT * XDET_FACTOR * msPerMatch) / 3_600_000, 3) : null,
+    ...derived,
+    nStarLabel: MODE === 'smoke' ? 'nStar (this is the sizing run)' : 'nStar COUNTERFACTUAL (not the N run)',
   };
 })();
 
@@ -780,7 +884,10 @@ const statsMinGap = Math.min(...PUBLISHED_STATS_BASES.map((b) => Math.abs(BOOTST
 /* --- arm identity + flag hygiene ------------------------------------------ */
 const armIdent = (() => {
   const rows = WORLDS.map((w) => {
-    const m = matchFor(w, RESERVED_BAND[1]); // an UNUSED seed — construction only, never stepped
+    // RESERVED_BAND[1] = 12,310,999 = the CENSUS BLOCK'S LAST SEED. Used here for
+    // CONSTRUCTION ONLY — this match is never stepped, so it consumes no stream and
+    // cannot perturb the census's own walk over the same seed.
+    const m = matchFor(w, RESERVED_BAND[1]);
     const eye = m.stationEye;
     const g0 = m.teams[0].effGenome as TacticalGenome;
     const g1 = m.teams[1].effGenome as TacticalGenome;
@@ -847,6 +954,15 @@ const gates = {
   flagHygiene,
   tableSha: { ...tableIdent, pass: tableIdent.pass },
   armIdent,
+  nDerived: {
+    pass: MODE === 'smoke'
+      ? RUN_N === SMOKE_MATCHES
+      : N_ENV === null && RUN_N === nDerivation.nStar && typeof nDerivation.nStar === 'number',
+    ranN: RUN_N, derivedNStar: nDerivation.nStar ?? null, envOverride: N_ENV,
+    bindingTerm: nDerivation.bindingTerm ?? null,
+    note: 'the N actually run IS the frozen §4.3 rule\'s output on the smoke\'s numbers — '
+      + 'RED if an FSD_N override replaced it (then the run is not the pre-registered N)',
+  },
   probeReadOnly: {
     pass: first.probeReadOnly === true,
     note: 'abandonRestDesignation / homeRegionGrant / homeMapGrant null on every match '
@@ -864,10 +980,12 @@ const output = {
   hypothesis: {
     'H-186a(i)': 'MODULATION MISSING — no defensive ball-side compression force reaches the weak-side back',
     'H-186a(ii)': 'OSCILLATION — the live station field flips him between targets',
-    readingRule: 'stage doc §5, PRE-REGISTERED: (i) = stable send (switch/flip rates < 1/EYE_W_S) '
-      + 'while the send itself sits > SPREAD_R (9 m) off the ball lane; (ii) = churn rates >= 1/EYE_W_S '
-      + 'while the send is sane and near (<= 14 m) and out of the corner. Every "high"/"low" is judged '
-      + 'against the same-tick BALL-SIDE CONTROL MIRROR.',
+    readingRule: 'stage doc §5, PRE-REGISTERED: (i) = stable send (switch AND flip rates < 1/EYE_W_S) '
+      + 'while the target sits far from any compressed shape — "G > SPREAD_R (9 m), AND/OR the send\'s '
+      + 'corner share is materially non-zero" (a DISJUNCTION, both terms evaluated and emitted under '
+      + 'reading.clauseTerms); (ii) = churn rate >= 1/EYE_W_S while the send is sane and near (<= 14 m) '
+      + 'and its corner share is low. Every "high"/"low" is judged against the same-tick BALL-SIDE '
+      + 'CONTROL MIRROR.',
   },
   frozenParameters: {
     trigger: {
@@ -899,7 +1017,8 @@ const output = {
     D3: 'the A4-home divergence CHARACTERISED — which slot §2.2 actually picks and how far '
       + 'that body stands from §2.1\'s wide back, so "0 % agreement" is described not just stated.',
   },
-  sizing,
+  nDerivation,
+  sizingRecompute,
   ...first,
   gates,
   allGatesPass,
@@ -913,7 +1032,18 @@ const output = {
       + 'one tick downstream of the executor\'s call (stage doc §3, disclosed).',
     'SPEED_MIN = 1.0 m/s is a FLAGGED executor\'s choice — no published anchor exists for '
       + '"moving at all" (stage doc §3.5).',
-    'The compression yardstick (§3.3) is DESCRIPTIVE: no claim that a compressed shape is correct football.',
+    'The compression yardstick (§3.3) is DESCRIPTIVE: no claim that a compressed shape is correct football. '
+      + 'compressionShortfallMean is a BODY metric (mean of max(0, |p.y − ball.y| − 9)); sendLatGapMean is a '
+      + 'TARGET metric. They are not two views of one quantity and do not subtract into each other.',
+    'SWITCH-KEY LIMITATION (§3.4): the key is type|markTargetIdx|eyeCandidateId and eyeCandidateId '
+      + 'collapses to "-" whenever the override is not applying, so a switch cannot be attributed to eye '
+      + 'candidate cycling as against action-type or mark-target alternation. prod carries ZERO override '
+      + 'ticks and still shows a non-zero switch mean, which proves the metric fires on non-eye causes.',
+    'FLIP-RATE DEFECT (§3.5): the flip test compares CONSECUTIVE ticks while ACCEL = 14 m/s² caps a '
+      + 'per-tick Δv at 0.23 m/s, so a >90° per-tick reversal is near-unreachable and every flip rate is '
+      + '≈0 by construction. The F term of the §5 rule is vacuous; S carried clause (ii) alone.',
+    'CORNER_MATERIAL = 0.05 is a FLAGGED executor\'s choice: §5 says "materially non-zero" and "low" '
+      + 'without a number, so one cut serves both clauses (§5 corner disjunct and (ii)\'s corner condition).',
     'NOTHING SHIPS (Road B): zero src/** changes, the production fingerprint is re-derived unchanged.',
   ],
 };
@@ -942,6 +1072,8 @@ console.error(
       + `        READING: ${r.reading.verdict}\n`;
   }).join('')
   + `  gates ${allGatesPass ? 'GREEN' : 'RED'} · xDet ${xDet} · xFp ${xFpProd} · srcZero ${srcDiff === ''}\n`
-  + `  N* (sizing) ${sizing.nStar} · resultSHA ${resultSha.slice(0, 12)} → ${OUT_PATH}\n`,
+  + `  N run ${RUN_N} = frozen §4.3 N* (${String(nDerivation.bindingTerm ?? 'n/a')} binds) · `
+  + `post-hoc recompute on this run ${String(sizingRecompute.nStar)} (${sizingRecompute.bindingTerm} binds, selects nothing)\n`
+  + `  resultSHA ${resultSha.slice(0, 12)} → ${OUT_PATH}\n`,
 );
 if (!allGatesPass) process.exitCode = 1;

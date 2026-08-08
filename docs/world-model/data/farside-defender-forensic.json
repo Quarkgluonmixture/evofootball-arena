@@ -7,7 +7,7 @@
   "hypothesis": {
     "H-186a(i)": "MODULATION MISSING — no defensive ball-side compression force reaches the weak-side back",
     "H-186a(ii)": "OSCILLATION — the live station field flips him between targets",
-    "readingRule": "stage doc §5, PRE-REGISTERED: (i) = stable send (switch/flip rates < 1/EYE_W_S) while the send itself sits > SPREAD_R (9 m) off the ball lane; (ii) = churn rates >= 1/EYE_W_S while the send is sane and near (<= 14 m) and out of the corner. Every \"high\"/\"low\" is judged against the same-tick BALL-SIDE CONTROL MIRROR."
+    "readingRule": "stage doc §5, PRE-REGISTERED: (i) = stable send (switch AND flip rates < 1/EYE_W_S) while the target sits far from any compressed shape — \"G > SPREAD_R (9 m), AND/OR the send's corner share is materially non-zero\" (a DISJUNCTION, both terms evaluated and emitted under reading.clauseTerms); (ii) = churn rate >= 1/EYE_W_S while the send is sane and near (<= 14 m) and its corner share is low. Every \"high\"/\"low\" is judged against the same-tick BALL-SIDE CONTROL MIRROR."
   },
   "frozenParameters": {
     "trigger": {
@@ -39,24 +39,73 @@
     "D2": "the STEER-OWNER MIX — which mechanism owns the movement target per tick, in executeAction's own precedence: eyeOverride > markStance > stationHome > ballDirected.",
     "D3": "the A4-home divergence CHARACTERISED — which slot §2.2 actually picks and how far that body stands from §2.1's wide back, so \"0 % agreement\" is described not just stated."
   },
-  "sizing": {
+  "nDerivation": {
+    "mode": "census",
+    "source": "docs/world-model/data/farside-defender-forensic-sizing.json",
+    "sizingArtifactSha256": "d5b895ad534c50238ef743f92631ebf1df33d146fac7f4b7865953c770c64b78",
+    "smokeSeeds": {
+      "base": 12310200,
+      "count": 16,
+      "first": 12310200,
+      "last": 12310215
+    },
+    "inputsFromSmoke": {
+      "episodesPerMatchByWorld": {
+        "prod": 1.25,
+        "v1": 1.5625,
+        "v2": 1.0625,
+        "v3": 1.8125
+      },
+      "bindingWorldEpisodesPerMatch": 1.0625,
+      "msPerMatch": 108.25
+    },
     "arithmetic": "N* = min( ceil(1500 / episodesPerMatch_binding) rounded up to 25, floor(1 h / (ms_per_match × 4 worlds × 2 X-DET)), 700 ) — frozen in stage doc §4.3 BEFORE the smoke ran",
     "targetEpisodesPerWorld": 1500,
+    "bindingEpisodesPerMatch": 1.0625,
+    "msPerMatch": 108.25,
+    "nRaw": 1412,
+    "nStepped": 1425,
+    "nStep": 25,
+    "nAffordableAtBudget": 4157,
+    "nCap": 700,
+    "terms": {
+      "episodeTarget": 1425,
+      "wallBudget": 4157,
+      "reservedBandCap": 700
+    },
+    "nStar": 700,
+    "bindingTerm": "reservedBandCap",
+    "projectedWallHours": 0.168,
+    "envOverride": null,
+    "n": 700,
+    "note": "The census N is the output of the frozen §4.3 rule evaluated IN THIS PROCESS on the sizing smoke's own two numbers, read from the committed smoke artifact (sha above) before any census match ran. `bindingTerm` names which of the three terms actually selected N. No level, share or rate from the smoke is read as a result."
+  },
+  "sizingRecompute": {
+    "provenance": "POST-HOC RECOMPUTE OF THIS CENSUS RUN. It selected nothing: the N actually run came from `nDerivation` (the frozen rule on the SMOKE's numbers). Reported so the smoke's estimate can be compared with what the census really yielded.",
     "episodesPerMatchByWorld": {
       "prod": 1.2043,
       "v1": 1.3214,
       "v2": 1.3886,
       "v3": 1.4986
     },
+    "arithmetic": "N* = min( ceil(1500 / episodesPerMatch_binding) rounded up to 25, floor(1 h / (ms_per_match × 4 worlds × 2 X-DET)), 700 ) — frozen in stage doc §4.3 BEFORE the smoke ran",
+    "targetEpisodesPerWorld": 1500,
     "bindingEpisodesPerMatch": 1.2043,
+    "msPerMatch": 102.212,
     "nRaw": 1246,
     "nStepped": 1250,
     "nStep": 25,
-    "msPerMatch": 102.53,
-    "nAffordableAtBudget": 4388,
+    "nAffordableAtBudget": 4402,
     "nCap": 700,
+    "terms": {
+      "episodeTarget": 1250,
+      "wallBudget": 4402,
+      "reservedBandCap": 700
+    },
     "nStar": 700,
-    "projectedWallHours": 0.159
+    "bindingTerm": "reservedBandCap",
+    "projectedWallHours": 0.159,
+    "nStarLabel": "nStar COUNTERFACTUAL (not the N run)"
   },
   "seeds": {
     "base": 12310300,
@@ -578,7 +627,8 @@
         "scales": {
           "CHURN_HI": 0.333333,
           "NEAR_M": 14,
-          "SPREAD_R": 9
+          "SPREAD_R": 9,
+          "CORNER_MATERIAL": 0.05
         },
         "weak": {
           "S": 0,
@@ -592,6 +642,15 @@
           "F": 0,
           "D": 8.728535,
           "G": 1.995178
+        },
+        "clauseTerms": {
+          "sendStable": true,
+          "gExceedsSpread": true,
+          "cornerShareMaterial": false,
+          "farFromCompressedShape": true,
+          "churning": false,
+          "sendSaneAndNear": true,
+          "note": "(i) = sendStable AND (gExceedsSpread OR cornerShareMaterial) — the frozen §5 disjunct, verbatim; (ii) = churning AND sendSaneAndNear"
         },
         "supportsModulationMissing": true,
         "supportsOscillation": false,
@@ -1512,7 +1571,8 @@
         "scales": {
           "CHURN_HI": 0.333333,
           "NEAR_M": 14,
-          "SPREAD_R": 9
+          "SPREAD_R": 9,
+          "CORNER_MATERIAL": 0.05
         },
         "weak": {
           "S": 0.75,
@@ -1526,6 +1586,15 @@
           "F": 0,
           "D": 6.342902,
           "G": 1.385046
+        },
+        "clauseTerms": {
+          "sendStable": false,
+          "gExceedsSpread": true,
+          "cornerShareMaterial": false,
+          "farFromCompressedShape": true,
+          "churning": true,
+          "sendSaneAndNear": true,
+          "note": "(i) = sendStable AND (gExceedsSpread OR cornerShareMaterial) — the frozen §5 disjunct, verbatim; (ii) = churning AND sendSaneAndNear"
         },
         "supportsModulationMissing": false,
         "supportsOscillation": true,
@@ -2449,7 +2518,8 @@
         "scales": {
           "CHURN_HI": 0.333333,
           "NEAR_M": 14,
-          "SPREAD_R": 9
+          "SPREAD_R": 9,
+          "CORNER_MATERIAL": 0.05
         },
         "weak": {
           "S": 0.588235,
@@ -2463,6 +2533,15 @@
           "F": 0,
           "D": 6.428502,
           "G": 1.261998
+        },
+        "clauseTerms": {
+          "sendStable": false,
+          "gExceedsSpread": true,
+          "cornerShareMaterial": false,
+          "farFromCompressedShape": true,
+          "churning": true,
+          "sendSaneAndNear": true,
+          "note": "(i) = sendStable AND (gExceedsSpread OR cornerShareMaterial) — the frozen §5 disjunct, verbatim; (ii) = churning AND sendSaneAndNear"
         },
         "supportsModulationMissing": false,
         "supportsOscillation": true,
@@ -3386,7 +3465,8 @@
         "scales": {
           "CHURN_HI": 0.333333,
           "NEAR_M": 14,
-          "SPREAD_R": 9
+          "SPREAD_R": 9,
+          "CORNER_MATERIAL": 0.05
         },
         "weak": {
           "S": 0.779221,
@@ -3400,6 +3480,15 @@
           "F": 0,
           "D": 6.405646,
           "G": 1.237849
+        },
+        "clauseTerms": {
+          "sendStable": false,
+          "gExceedsSpread": true,
+          "cornerShareMaterial": false,
+          "farFromCompressedShape": true,
+          "churning": true,
+          "sendSaneAndNear": true,
+          "note": "(i) = sendStable AND (gExceedsSpread OR cornerShareMaterial) — the frozen §5 disjunct, verbatim; (ii) = churning AND sendSaneAndNear"
         },
         "supportsModulationMissing": false,
         "supportsOscillation": true,
@@ -4026,6 +4115,14 @@
         }
       ]
     },
+    "nDerived": {
+      "pass": true,
+      "ranN": 700,
+      "derivedNStar": 700,
+      "envOverride": null,
+      "bindingTerm": "reservedBandCap",
+      "note": "the N actually run IS the frozen §4.3 rule's output on the smoke's numbers — RED if an FSD_N override replaced it (then the run is not the pre-registered N)"
+    },
     "probeReadOnly": {
       "pass": true,
       "note": "abandonRestDesignation / homeRegionGrant / homeMapGrant null on every match (so the probe's formationSpot re-read matches the executor's own arguments)"
@@ -4033,13 +4130,16 @@
   },
   "allGatesPass": true,
   "deterministic": true,
-  "resultSha": "c47387aea8d550aefcc14bc7d83baf9bdce7bd6e3f3dc86cb151a1fbf3c5d370",
-  "head": "473415c",
-  "wallMs": 586598,
+  "resultSha": "2bbdfc9a1a9b118e107dd9fe1115d5c239d6aff48c38034fcedc74b4a649d049",
+  "head": "4a27f6a",
+  "wallMs": 582749,
   "disclosure": [
     "Observation frame: every read is taken AFTER m.step(DT); the executor evaluated its own station field at the HEAD of that tick, so the probe's formationSpot re-read is the field one tick downstream of the executor's call (stage doc §3, disclosed).",
     "SPEED_MIN = 1.0 m/s is a FLAGGED executor's choice — no published anchor exists for \"moving at all\" (stage doc §3.5).",
-    "The compression yardstick (§3.3) is DESCRIPTIVE: no claim that a compressed shape is correct football.",
+    "The compression yardstick (§3.3) is DESCRIPTIVE: no claim that a compressed shape is correct football. compressionShortfallMean is a BODY metric (mean of max(0, |p.y − ball.y| − 9)); sendLatGapMean is a TARGET metric. They are not two views of one quantity and do not subtract into each other.",
+    "SWITCH-KEY LIMITATION (§3.4): the key is type|markTargetIdx|eyeCandidateId and eyeCandidateId collapses to \"-\" whenever the override is not applying, so a switch cannot be attributed to eye candidate cycling as against action-type or mark-target alternation. prod carries ZERO override ticks and still shows a non-zero switch mean, which proves the metric fires on non-eye causes.",
+    "FLIP-RATE DEFECT (§3.5): the flip test compares CONSECUTIVE ticks while ACCEL = 14 m/s² caps a per-tick Δv at 0.23 m/s, so a >90° per-tick reversal is near-unreachable and every flip rate is ≈0 by construction. The F term of the §5 rule is vacuous; S carried clause (ii) alone.",
+    "CORNER_MATERIAL = 0.05 is a FLAGGED executor's choice: §5 says \"materially non-zero\" and \"low\" without a number, so one cut serves both clauses (§5 corner disjunct and (ii)'s corner condition).",
     "NOTHING SHIPS (Road B): zero src/** changes, the production fingerprint is re-derived unchanged."
   ]
 }
