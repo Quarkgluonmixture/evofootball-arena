@@ -172,11 +172,28 @@ PASS, zero amendments. **乙 RULED = DEFER (#193, "按推荐")**:
 no narrow mark fix now — PM-T1's F-PM-a instrument prices the
 mark channel's load-bearing share first; S1/S2/S4 stay
 inventoried in the banked map; the formations.test.ts pin
-stays untouched. **O2-T0 IS DISPATCHED (#193.2, draft +
-independent verify per §0.0.2)** — the dormant `o2Look` seam,
-flag-off byte-identity + #181.2 receipts. **QUEUED NEXT STEP:
-adjudicate O2-T0 (verify + commander review → bank or fix
-round); PM-T0 queues behind its banking.** Also open: the v2
+stays untouched. **O2-T0 IS BANKED (#194, `983ef0f` + the
+correction commit)**: the dormant `o2Look` seam BUILT +
+CERTIFIED — LOOK = 11 ticks (the certified C7 wind-up ceiling,
+derived in code, no re-cut for T1), cadence-only perception
+refresh through the ordinary recorder (heading-gated on the
+frame's own bodyDir; no faceTarget lever; STALE runs against
+the looker), third separate re-decide lock + plant (speedF
+0.22, no score term), `forcedLook` instrument (null in
+production), born-equivalence GATED 24/24, G-IDENT 3 league
+seeds identical (X-FP-PROD `57b0bdab…c673` unchanged), suite
+1,153 green. Machine-verify FAIL (2 MEDIUM evidence-reporting
++ 2 LOW, zero mechanism defects) recorded + corrected in place
+by the commander against the artifact (#191 form): the
+doc-typed G-DET digest (#181.2 breach) and the G-OFF≠RNG-
+receipt mislabel (true RNG evidence = G-IDENT vs pre-change
+baselines + the zero-rng diff); the abort-mix quirk
+(`abortedPhase` unreachable, goal-pause windows close as
+`abortedLoss`) = a T1 instrument note. **QUEUED NEXT STEP (on
+"go"/resume): dispatch PM-T0 (the #193.3 sequence, the
+PHASE-MODULATION dormant seam). After PM-T0 banks, the
+commander sequences PM-T1 vs O2-T1.** Seeds consumed this arc:
+12,311,000–024 (the O2-T0 receipt block). Also open: the v2
 acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3

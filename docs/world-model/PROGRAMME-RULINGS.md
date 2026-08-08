@@ -8172,3 +8172,74 @@
 >    commander's act after review.
 > 3. **SEQUENCE**: PM-T0 queues behind O2-T0's banking. One
 >    writer per tree throughout.
+
+> **COMMANDER RULING #194 (2026-08-08 — O2-T0 machine-verify
+> FAIL (2 MEDIUM evidence-reporting + 2 LOW; zero mechanism
+> defects); the four findings corrected IN PLACE by the
+> commander, each checked against the committed artifact/diff
+> first (the #191 form); O2-T0 BANKED):**
+>
+> 1. **VERIFY FAIL recorded as-is** (the ≥2-MEDIUM rule): (M1)
+>    a #181.2 breach IN THE DOC — the §RESULT G-DET digest
+>    `88aef330…bb4e` was typed from a SUPERSEDED run; the
+>    committed artifact's `gates.gDet.digestA===digestB===
+>    b98c8e84…9097` and the string 88aef330 appears nowhere in
+>    it (the artifact itself is self-consistent — the verifier
+>    INDEPENDENTLY recomputed `resultSha256 c19afe60…` exact).
+>    (M2) G-OFF (and G-BORN) mis-labelled as "the RNG-stream
+>    identity receipt" in doc + probe note + commit message —
+>    FALSE semantics: both arms execute the same flag-off path
+>    (`absent` ≡ `false`), so an unconditional added draw would
+>    pass the gate; the TRUE RNG-stream evidence is G-IDENT/G-FP
+>    against baselines frozen from PRE-change code + the src
+>    diff carrying ZERO rng/gaussian/Math.random calls
+>    (commander re-checked: 3 grep hits, all comments). (L3)
+>    "4 files and nothing else" src-stat completeness claim —
+>    the then-untracked `lookSeat.ts` (+63) is invisible to
+>    `git diff --stat`; claim withdrawn. (L4) "whetherEye
+>    pinned by a test" over-claim — the test is a string
+>    tripwire (`not.toContain('o2Look')`), not a content pin;
+>    the underlying fact stands (whetherEye.ts absent from the
+>    commit).
+> 2. **CORRECTIONS APPLIED BY THE COMMANDER** in the stage doc,
+>    ⚠-marked with the old claims left readable; the committed
+>    artifact is UNTOUCHED (frozen + self-consistent; its
+>    `gates.gOff.note` wording is superseded by the corrected
+>    doc row); `983ef0f`'s commit message repeats M2 and
+>    history is not rewritten — this ruling is the correction
+>    of record. The verify's abort-mix observation (the
+>    `abortedPhase` bail is largely unreachable — goal-pause
+>    windows close as `abortedLoss`; ledger still closes) is
+>    recorded as a T1 instrument note in the stage doc.
+> 3. **WHAT STOOD VERIFIED CLEAN (independently, load-bearing)**:
+>    git hygiene (exactly nine files; NOTHING pushed; tree
+>    clean); flag dormancy (`cfg.o2Look ?? false`, absent from
+>    `A4_WORLD_FLAGS`/`a4MatchFlags`/env, single `armO2Look`
+>    call site); RNG stream (G-IDENT: 3 league seeds identical
+>    incl. X-FP-PROD `57b0bdab…c673`; `npm run fingerprint`
+>    unchanged); M-O2.1 (cadence-only refresh through the
+>    ORDINARY recorder — pure code motion; heading-gating REAL:
+>    the replay cone-gates on the frame's own `bodyDir`; no
+>    `faceTarget` lever; STALE honestly runs against the
+>    looker); M-O2.2 (a third, separate re-decide lock — C7/O1
+>    locks byte-untouched; plant at speedF 0.22; no score term,
+>    no ball.owner write); M-O2.3 (percept-path decision, the
+>    C5-T2 eligibility conjunction + owns-ball; `forcedLook`
+>    instrument null in production; born-equivalence GATED
+>    24/24); M-O2.4 (whetherEye.ts absent from the diff; price
+>    table untouched); frozen-before-sight (`O2_LOOK_TICKS =
+>    Math.round(C7_W_CAP·60) = 11` DERIVED IN CODE from the
+>    certified wind-up ceiling at its real site, sizing honesty
+>    pre-registered: no re-cut for T1); receipts (#181.2
+>    honoured in the artifact: all hashes computed in-probe,
+>    recomputable in ~57 s, non-zero exit on gate failure);
+>    suite 1,153/125 green, tsc clean. G-SCAN was TIGHTENED by
+>    the author (E-ENDED named; scans === live-ticks identity),
+>    disclosed, not loosened.
+> 4. **BANKED + PUSHED**: `983ef0f` + the commander's
+>    correction commit. Road B intact: flag dormant, nothing
+>    defaulted, production byte-identical flag-off.
+> 5. **NEXT on "go"**: dispatch PM-T0 (the #193.3 sequence).
+>    After PM-T0 banks, the commander sequences PM-T1 vs O2-T1
+>    (both exams are then armed; shared-instrument economics
+>    decide the order at that point).

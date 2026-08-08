@@ -194,7 +194,12 @@ engine, not in a probe wrapper) counts them and is **read by nothing in the sim*
 
 ### The consumer (M-O2.4)
 
-`src/ai/whetherEye.ts` is **not touched by one character** (pinned by a test).
+`src/ai/whetherEye.ts` is **not touched by one character** — true by the commit
+itself (`whetherEye.ts` is absent from the `983ef0f` diff entirely). ⚠ CORRECTION
+(#194, verify finding 4): the first draft added "(pinned by a test)" — an
+over-claim; `tests/o2Look.test.ts:294-295` only asserts the file does not CONTAIN
+the string `o2Look`, which is a hygiene tripwire, not a content pin — it would
+not catch an unrelated edit to that file.
 The refreshed reading reaches it automatically, because the seat already pulls
 `match.perceivedSnapshot(p)` and that pull already reconstructs from the recorded
 scan moments. **The certified price table is untouched**; no cell, no cut, no
@@ -218,7 +223,7 @@ flag set and all three play-test worlds · the mark-selection surfaces S1–S6
 | --- | --- | --- |
 | **G-IDENT** | with `o2Look` absent, the 2-season league hash on **3 league seeds** equals the frozen pre-change baselines — **1337 `57b0bdab…c673` · 20260728 `c6e319a4…f080` · 424242 `45d98c74…a39f26`** — **all three RECOMPUTED IN-PROBE** and written to the committed artifact (#181.2: no doc-typed hash is evidence) | HARD |
 | **G-FP** | the 1337 row IS the production fingerprint; `npm run fingerprint` prints it unchanged | HARD |
-| **G-OFF** | per-match whole-run signature, **including the rng stream state**: flag ABSENT ≡ flag FALSE, in BOTH the production-shaped world and the percept-armed world, on every receipt seed. **RNG-stream identity**: any new draw on the flag-off path would move `rng.s` and fail this gate | HARD |
+| **G-OFF** | per-match whole-run signature, **including the rng stream state**: flag ABSENT ≡ flag FALSE, in BOTH the production-shaped world and the percept-armed world, on every receipt seed. ⚠ CORRECTION (#194, verify finding 2): the first draft added "**RNG-stream identity**: any new draw on the flag-off path would move `rng.s` and fail this gate" — **that semantics claim is FALSE**: both G-OFF arms execute the SAME flag-off code path (`absent` ⇒ `cfg.o2Look ?? false` ≡ `off`), so an unconditional draw would advance `rng.s` equally in both arms and the gate would still pass (G-BORN shares the defect: both arms run `forcedLook` null). G-OFF proves absent≡false config equivalence, nothing more. **The RNG-stream-identity evidence is G-IDENT/G-FP** — the baselines were frozen from the PRE-change code, so any flag-off draw would break them — plus direct inspection: the `983ef0f` src diff contains zero `rng`/`gaussian`/`Math.random` calls | HARD |
 | **G-BORN** | ARMED with `forcedLook` null ≡ OFF on every receipt seed (M-O2.3 born incumbent-equivalent — proved, not asserted) | HARD |
 | **G-BITE** | forced, the seam is REACHED (looks > 0, scans > 0) and the world DIVERGES — G-OFF/G-BORN are not the identity of dead code | HARD |
 | **G-LEN** | every **completed** window is exactly `O2_LOOK_TICKS` ticks; no window exceeds it; zero windows close unexplained; and `O2_LOOK_TICKS === round(C7_W_CAP · 60) === 11` | HARD |
@@ -289,10 +294,22 @@ digests), plus 3 league-seed 2-season identity runs and the 2 REPORTED freshness
 matches on seed 12,311,024.** Verdict: **GATES PASS.** Wall ≈ 57 s
 (CONTEXT ONLY — used in no rate).
 
-* **G-DET digest** `88aef330c95440413bb1c047bcd9244021880db9db8c04662d758a0d7140bb4e`
+* **G-DET digest** — ⚠ CORRECTION (#194, verify finding 1, a #181.2 breach in
+  the DOC): the first draft typed `88aef330…bb4e` here — a hash from a
+  SUPERSEDED run that appears NOWHERE in the committed artifact. The committed
+  receipt's value is `gates.gDet.digestA === digestB ===`
+  `b98c8e8417bdec5501a3e61725ba893b76a8f89afadebe9b8fae2fe49bb79097`
+  (verified against the artifact; its `resultSha256` recomputes exactly, so the
+  artifact — not this doc — is the evidence, which is the #181.2 rule this line
+  originally violated).
 * **resultSha256** `c19afe60406887cd79d052aa49802528ff9d44a212b4f592902174d06d3419cc`
+  (recomputable: `npx tsx scripts/probes/o2-t0-look-seam.ts`)
 * `git diff --stat -- src` (context): `PlayerBrain.ts +34 · actionExecutor.ts +17
-  · League.ts 2 ± · Match.ts +156` — 4 files, the seam path and nothing else.
+  · League.ts 2 ± · Match.ts +156`. ⚠ CORRECTION (#194, verify finding 3): the
+  first draft closed "— 4 files, the seam path and nothing else"; the commit
+  touches FIVE src files — `src/ai/lookSeat.ts` (+63, NEW) is invisible to a
+  `git diff --stat` taken while the file was still untracked. The completeness
+  claim is withdrawn; the authoritative list is `git show 983ef0f --stat`.
 
 ### Gate table
 
@@ -300,7 +317,7 @@ matches on seed 12,311,024.** Verdict: **GATES PASS.** Wall ≈ 57 s
 | --- | --- | --- |
 | **G-IDENT** | ✅ PASS | all three league hashes IDENTICAL to the frozen baselines: 1337 `57b0bdab…c673` · 20260728 `c6e319a4…f080` · 424242 `45d98c74…a39f26` — `gates.gIdent.rows`, each computed by the `scripts/fingerprint.ts` procedure on this run |
 | **G-FP** | ✅ PASS | the 1337 row IS the production fingerprint (`gates.xFpProd`), and `npm run fingerprint` re-derives `57b0bdab…c673` unchanged; also pinned as a test |
-| **G-OFF** | ✅ PASS | 24/24 seeds: flag ABSENT ≡ flag FALSE in the percept-armed world AND in the production-shaped world (`identical` ∧ `plainIdentical`), whole-match signature **including the rng stream state** ⇒ **RNG-stream identity holds: the flag-off draw sequence is untouched** |
+| **G-OFF** | ✅ PASS | 24/24 seeds: flag ABSENT ≡ flag FALSE in the percept-armed world AND in the production-shaped world (`identical` ∧ `plainIdentical`), whole-match signature including the rng stream state. ⚠ CORRECTION (#194, verify finding 2): the first draft concluded "⇒ RNG-stream identity holds" from THIS gate — wrong gate (both arms share the flag-off path; see the corrected §GATES row). What proves the flag-off draw sequence untouched is **G-IDENT against the pre-change baselines + the zero-rng src diff** |
 | **G-BORN** | ✅ PASS | 24/24: ARMED with `forcedLook` null ≡ OFF, byte for byte (M-O2.3 born incumbent-equivalent is GATED, not asserted) |
 | **G-BITE** | ✅ PASS | 24/24 forced arms diverge from OFF; **1,655 looks armed, 16,041 scan moments recorded** |
 | **G-LEN** | ✅ PASS | every one of the **1,338 completed** windows is exactly **11 ticks**; max observed 11; zero unexplained closes; `O2_LOOK_TICKS === round(0.18 · 60) === 11` |
@@ -311,6 +328,15 @@ matches on seed 12,311,024.** Verdict: **GATES PASS.** Wall ≈ 57 s
 | **G-SEED** | ✅ PASS | 12,311,000–12,311,024, zero collisions with the eight consumed A4/O-arc blocks (`gates.seedDisjoint`) |
 | **G-DET** | ✅ PASS | two invocations of the core, identical digests (above) |
 | **G-SUITE** | ✅ PASS | see §CHECKS below |
+
+**T1 instrument note (#194, from the independent verify — an observation, not a
+finding):** `stepO2Look`'s `phase !== 'playing'` bail is largely unreachable —
+`Match.step` returns early during kickoff/goalPause/halftime before the
+`stepO2Look` call, so a window spanning a goal pause closes as `abortedLoss` at
+the next playing tick rather than `abortedPhase` (why `abortedPhase === 0` in
+1,655 arms). The ledger still closes (unexplained arms 0) and no gate is
+affected; but if T1 ever reads the ABORT MIX as a mechanism signal, this
+classification quirk must be priced first.
 
 ### REPORTED — the look census (forced arm, 24 matches)
 
