@@ -7323,3 +7323,38 @@
 >    prod = the C7 finding surfacing in the ruler itself; band
 >    sourcing law held (nothing invented; ABSENT where no
 >    honest source).
+
+> **COMMANDER RULING #172 (2026-08-08 — the tempo-census fix
+> round re-verify PASS; the ruler is BANKED; the full census
+> launched):**
+>
+> 1. **BANKED + PUSHED**: `64cc3a0` on top of the failed draft
+>    `1dfc28a` — all seven #171 findings fixed and independently
+>    re-verified line-by-line (dead-ball closure at the phase
+>    boundary; ONE clock (simTime) denominates every rate, the
+>    ×2.6667 law now exact to 2e-6, the pause-inclusive wall
+>    clock emitted as context only; per-team scope fields +
+>    warnings on B9/B10; the H-169a headline population =
+>    openPlay-origin first receptions with the all-origins pool
+>    labelled context; runtime-computed CONTROL_RADIUS trace;
+>    citations honest; §0.0.4 launch form). tsc clean, suite
+>    1,100 green. RECORD CORRECTION to #171.1: the defective
+>    draft commit did not stay local — the #171 ruling push
+>    carried it to origin (it sits between the FAIL ruling and
+>    this fix, fully documented; banking is a ruling act, and
+>    it was not banked until now).
+> 2. **RE-VERIFY'S NON-BLOCKING NOTES RECORDED**: the 90'
+>    integration gap (0.76%, the nominal-vs-played mapping,
+>    inherent to the frozen law); the smoke H-169a headline
+>    FLIPS on prod from AMBIGUOUS to PRESSED-SPECIFIC purely
+>    via the mandated population fix (noted BEFORE reading the
+>    full run); a 58 s max single-owner hold in prod (post-fix
+>    this is real playing-phase holding, likely keeper — a
+>    substrate oddity, named probe candidate); one unlabelled
+>    genome-range nit (harmless).
+> 3. **LAUNCHED (§0.0.4, nohup detached)**: TEMPO_MODE=census
+>    TEMPO_N=650 @ 12,293,000+, three arms, X-DET, projected
+>    ~7 min → `data/tempo-census.json`. Adjudication by
+>    numbered ruling: the gap table on both time axes + the
+>    H-169a verdict at census N ⇒ then the outlet-seats vs
+>    punish-compactness fork goes to the user with numbers.
