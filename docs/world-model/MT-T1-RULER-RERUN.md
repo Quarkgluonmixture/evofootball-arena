@@ -118,10 +118,14 @@ for the commander **with numbers**.
 
 Disjointness against **every** consumed block (fourteen of them, PM-T1's battery and
 MT-T0's blocks included) is computed **in-probe** (`gates.gSeed`), never asserted here.
-The three own sub-blocks are asserted mutually disjoint and ordered, and a full-mode run
-**can only reach the battery block with no `MTT1_N` override** — an overridden run is
-routed onto the exit-semantics sub-block by construction, so the battery's seeds stay
-**virgin** (§6.5).
+The three own sub-blocks are asserted mutually disjoint and ordered. ⚠ CORRECTION
+(#203, verify finding 3): the first draft claimed an overridden full-mode run "can
+never touch a battery seed, by construction" — TRUE only for `MTT1_N ≤ 100`: the
+override is BASED on the exit-semantics sub-block (probe :845-847) but `RUN_N` is
+unclamped, so a larger override overflows into the battery block and is caught **post
+hoc** by `gSeed` (the run exits 1, invalid) — detected, not prevented. Operationally
+the commander launches full mode with NO `MTT1_N` (any full-mode override is
+`gNDerived`-RED anyway), so the battery block stays virgin (§6.5).
 
 **Stats stream (a third namespace)**: bootstrap base **103,600**, `B = 2000`, cluster =
 seed. PM-T1's base was 103,400 ⇒ the gap is exactly the #163 200 floor; disjointness from
@@ -198,7 +202,7 @@ the **seed**, not on the episode.
 
 Probe scripts in this repo execute on import (top-level side effects + `process.exit`), so
 PM-T1's instrument code **cannot be imported**. It is therefore carried into this probe
-**VERBATIM**, and a new HARD gate — **`gInherit`** — pins **eighteen defining lines** in
+**VERBATIM**, and a new HARD gate — **`gInherit`** — pins **nineteen defining lines** (⚠ CORRECTION #203: the first draft said eighteen; `gates.gInherit.rows.length === 19` in the committed artifact and the §5.0 enumeration itself lists 19) in
 their **ORIGINAL** files (the MT-T0 `G-CONST` idiom): the trigger cuts, the episode floor,
 `SPREAD_R`, `ASK_MATERIAL_M`, `NI_FRACTION`, the P3′ constants, both band rows, the three
 gated-quantity lines (`bodyGap` / `shortfall` / `detach`), both `formationSpot` ask reads
@@ -264,12 +268,20 @@ football. That verdict is the play-test's.
 
 ### §5.2 THE SAG CENSUS — the F-MT-a decidability instrument (NEW this stage)
 
-MT-T0's `stanceCensus` quantities, at its own cadence (every 15th tick, `playing`,
-out-of-possession `MarkOpponent` bodies with a resolvable mark), in **two layers**:
+MT-T0's `stanceCensus` quantities in **two layers**. ⚠ CORRECTION (#203, verify
+finding 1): the first draft claimed BOTH layers run "at its own cadence (every 15th
+tick)" — TRUE only of the match-wide layer (`tick % SAG_SAMPLE_EVERY === 0`, probe
+:635); **the weak-side in-trigger layer — the layer the F-MT-a gate reads — samples
+EVERY in-trigger tick** (probe :613, inside the trigger walk's per-tick observe, no
+cadence guard). Same quantities, denser sampling on the gated layer; the artifact's
+`inheritance.disclosedDifferences` text carries the superseded "cadence 15 verbatim"
+wording in the smoke (and will in the full run) — THIS row is the correction of
+record (the #198 precedent).
 
-* **match-wide** — every marker on both teams (MT-T0's own layer, for continuity);
-* ⭐ **weak-side back, in-trigger** — the very body the PRIMARY is built from. **This is
-  the layer the gate reads.**
+* **match-wide** — every marker on both teams (MT-T0's own layer + cadence, for
+  continuity);
+* ⭐ **weak-side back, in-trigger, every tick** — the very body the PRIMARY is built
+  from. **This is the layer the gate reads.**
 
 For each layer the probe recomputes, per tick, the unmodulated stance (`baseMarkDist`, the
 MT-T0 **probe-side REPLICA** of the two stance-floor lines — disclosed exactly as MT-T0
@@ -389,7 +401,7 @@ overlapper / corner-crash runners excluded).
 | `xFpProd` | the shipped fingerprint re-derived **in-probe** (seed 1337, 2 seasons) = `57b0bdab…c673` (#181.2) |
 | `xSrcZero` | `git diff --stat -- src` empty — instrument-only |
 | `gArm` | **BOTH** #196.3-D4 checklists per arm: the two flags exactly as frozen, each gene on all three views of both teams, `pmLaneConvergenceK` **and** `markSagWeight` exact, **both** evolution opt-in channels shown LIVE |
-| `gInherit` | **⭐ the ruler is inherited, not re-implemented**: 18 defining lines pinned VERBATIM in their original files (§5.0) |
+| `gInherit` | **⭐ the ruler is inherited, not re-implemented**: 19 defining lines pinned VERBATIM in their original files (§5.0; ⚠ #203: "18" was a miscount) |
 | `gCtrlEq` | ARMEDZERO (**both** flags on, **both** genes ABSENT) ≡ ABSENT (both flags off), whole-match signature **including the rng stream**, first min(8, N) seeds. ⚠ **THE ARMS DIFFER IN CODE PATH** — armed ⇒ `pmMover` **and** `mtSag` true ⇒ both seam branches are ENTERED and both weights evaluate to 0 ⇒ the born-absent reads are proven inert **through the live branches** (PM-T0 G-BORN + MT-T0 G-BORN, jointly) |
 | `gSeed` | block disjointness vs all **fourteen** consumed blocks, in-band, and the three own sub-blocks mutually disjoint + ordered |
 | `gStats` | bootstrap base 103,600, gap ≥ 200 from all nine published bases |
@@ -404,6 +416,12 @@ overlapper / corner-crash runners excluded).
 2 — the exam ran clean and a STOP fired       ⇒ the RESULT is a fork (by contract, the user's):
     PRIMARY fail  ·  F-MT-a  ·  F-MT-b  ·  F-MT-c
 ```
+
+⚠ CORRECTION (#203, verify finding 4): F-MT-b/c use the contract's ∀-over-body-moving-
+arms quantifier, so **exit 0's "with the guards quiet" verdict string can print while a
+band or GUARD-NI limb is blown at ONE body-moving arm** (an arm-limited cost, §5.4). The
+commander adjudicates from the PER-ARM rows in the artifact, never from the verdict
+line.
 
 ## §6 FREEZE HONESTY
 
@@ -424,7 +442,9 @@ overlapper / corner-crash runners excluded).
    by a level: (a) the battery base moved from 12,313,100 to **12,313,200** and the cap
    from 900 to **800**, creating the exit-semantics sub-block so that proving
    `gNDerived`-RED / exit-1 can never touch a battery seed (§6.5); (b) an overridden
-   full-mode run is **routed** onto that sub-block by construction. **No gate, predicate,
+   full-mode run is **routed** onto that sub-block (⚠ #203: BASED there — an
+   `MTT1_N > 100` override overflows into the battery block and is caught post hoc by
+   `gSeed`, not prevented; see the §3 correction). **No gate, predicate,
    tolerance, threshold, arm or instrument definition was touched**, and neither change
    was informed by any measured level.
 5. **MT-T1 ships nothing.** Road B: `src/**` untouched, both flags absent from every
@@ -552,7 +572,7 @@ VERDICT: SMOKE — PLUMBING ONLY; ADJUDICATES NOTHING
 **The plumbing verdict, and only that:** all ten X-family gates green (X-DET byte-identical
 across two core passes; the production fingerprint re-derived `57b0bdab…c673`;
 `git diff --stat -- src` empty; **both** arming checklists satisfied on all five arms with
-`k_PM` and `markSagWeight` exact and **both** opt-in channels live; all eighteen inheritance
+`k_PM` and `markSagWeight` exact and **both** opt-in channels live; all nineteen (⚠ #203) inheritance
 pins found; ARMEDZERO byte-identical to ABSENT on 6/6 seeds *through both live branches*;
 seeds and stats disjoint; the read-only assertions and `stationEye === null` hold). Every
 gate predicate evaluated and printed; the sag census is instrument-visible and **tightened

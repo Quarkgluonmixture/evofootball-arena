@@ -8660,3 +8660,53 @@
 >    independent verify; then the commander launches detached
 >    and adjudicates. F-MT-a/b/c are STOPs; success sends the
 >    arc to the user's play-test gate.
+
+> **COMMANDER RULING #203 (2026-08-09 — MT-T1 instruments
+> machine-verify PASS (1 MEDIUM + 3 LOW, all disclosure-layer);
+> corrected in place by the commander; the exam BANKED; the
+> FULL battery LAUNCHED):**
+>
+> 1. **VERIFY PASS recorded** (`16f6272`, ff-merged to main —
+>    the executor branched per the global git rule this time;
+>    programme convention noted, no content difference).
+>    Independently confirmed: the 5 arms exact (each seam dosed
+>    through its FULL arming checklist); receipts re-derived
+>    TWO ways at the verifier's own head (#197-M1 holds); the
+>    §SMOKE transcript diffed line-by-line vs a fresh run —
+>    UNABRIDGED incl. all four BAND FAILs and three GUARD-NI
+>    FAILs (#197-M2 holds); the N arithmetic re-derived by hand
+>    (213 pairs / yield 0.1667 → 1300 precision vs 800 cap ⇒
+>    **N* = 800, the SEED-BUDGET cap binds** — stated honestly,
+>    the band deliberately not widened after seeing the smoke);
+>    exit-1 semantics exercised LIVE on the dedicated
+>    sub-block; a NEW HARD gate `gInherit` pins 19 defining
+>    ruler/seam lines VERBATIM (the ruler is inherited, not
+>    re-implemented). SAG_MATERIAL_M = 1.4 m is TRACED (the
+>    full span of markingAggression's own stance band,
+>    `actionExecutor.ts:294`) because a gate reads it.
+> 2. **FINDINGS, corrected in place**: (M1) the F-MT-a-gated
+>    census layer samples EVERY in-trigger tick, not MT-T0's
+>    cadence-15 as the disclosure claimed (match-wide layer IS
+>    cadence-15) — denser sampling on the gated layer, same
+>    quantities; the artifact's `disclosedDifferences` text is
+>    superseded by the corrected doc row (the #198 precedent).
+>    (L2) gInherit pins 19 lines, not "18" (miscount, three
+>    sites). (L3) the seed-guard "by construction" over-claim:
+>    an `MTT1_N > 100` full-mode override overflows into the
+>    battery block and is caught POST HOC by gSeed, not
+>    prevented — operationally the commander launches with no
+>    override. (L4) exit-0's "guards quiet" string can print
+>    over a single-arm limb failure (the contract's ∀
+>    quantifier) — the commander adjudicates from the PER-ARM
+>    rows, never the verdict line.
+> 3. **BANKED + LAUNCHED**: `MTT1_MODE=full`, N = 800 (seeds
+>    12,313,200–999), 5 arms × 2 X-DET passes, projected wall
+>    ≈ 0.24 h. Deviations adjudicated: the two declared
+>    structural changes (the exit-semantics sub-block; the
+>    800 cap) are the #188-§4.4 form — ACCEPTED; the
+>    ask-variance-sizes-a-body-gate substitution (direction
+>    unknown) is disclosed and mitigated by publishing achieved
+>    half-widths — ACCEPTED with the note that an under-sized
+>    N shows up as unresolved CIs (an honest inconclusive,
+>    never a false pass). Adjudication from the artifact
+>    against the frozen §5 predicates; nothing re-cut.

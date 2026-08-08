@@ -260,15 +260,23 @@ slack-positive ticks, tightens zero, assignment never leads
 (pos tick 62 vs marks tick 130); verify PASS (3 LOW corrected
 in place — incl. the NAMED emergent feedback: a sagged body
 moves what assignMarks' gates read ⇒ drift is REPORTED in
-MT-T1). **MT-T1 (THE RULER RE-RUN) IS DISPATCHED (#202.4)**:
-5 arms (absent · armed-zero · PM-top · MT-top · PM+MT-top),
-PM-T1 instruments verbatim + sag-fired instrument + the
-#198 guard set incl. goals; success = the #199 null BODY
-contrasts resolve; F-MT-a/b/c STOP. QUEUED after: adjudicate
-→ user play-test gate; O2-T1 stays queued (#199.5). Seeds
-consumed this arc: 12,311,000–024 (O2-T0) · 12,311,100–124
-(PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) · 12,311,300–949
-(PM-T1 battery) · 12,312,000–025 (MT-T0). Also open: the v2
+MT-T1). **MT-T1 (THE RULER RE-RUN) IS BANKED + LAUNCHED (#203,
+`16f6272` + corrections)**: 5 arms (absent · armed-zero ·
+PM-top · MT-top · both-top), ruler instruments INHERITED (the
+new gInherit HARD gate pins 19 defining lines verbatim),
+sag-fired instrument (SAG_MATERIAL_M 1.4 m traced), the #198
+guard set incl. goals; N = 800 (the seed-budget cap binds,
+honestly stated); verify PASS (1 MEDIUM + 3 LOW
+disclosure-layer, corrected in place #203). Success = the
+#199 null BODY contrasts resolve at MT-top AND both-top;
+F-MT-a/b/c STOP. **The full battery is RUNNING (seeds
+12,313,200–999, ~15 min); adjudication ruling next.** QUEUED
+after: adjudicate → user play-test gate; O2-T1 stays queued
+(#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
+12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
+–901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
+exit-check) · 12,313,200–999 (MT-T1 battery). Also open: the v2
 acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3
