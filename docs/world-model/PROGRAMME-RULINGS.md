@@ -7905,3 +7905,36 @@
 >    12,310,200+; stats base ≥103,200. Facts only; the fork
 >    (modulation mechanic vs oscillation fix vs both) returns
 >    WITH the numbers.
+
+> **COMMANDER RULING #187 (2026-08-08 — the far-side forensic
+> machine-verify FAIL (three receipt-honesty MEDIUMs + one
+> attribution overreach); fix round dispatched; the measured
+> substance stands unchallenged):**
+>
+> 1. **VERIFY FAIL recorded as-is**: (P1) §8 attributes the
+>    sizing arithmetic to the smoke while quoting the census
+>    run's own numbers; (P2) census N was hardcoded to the cap,
+>    never computed from the frozen rule (post-hoc recompute
+>    dressed as pre-registration); (P3) the CODED §5 reading
+>    rule drops the frozen "and/or corner share" disjunct
+>    (narrower than frozen — with corner ≈0 it changed no
+>    outcome, but frozen is frozen); (P4) §8.4's mechanism
+>    attribution exceeds what switchKey can measure (the
+>    eyeCandidateId collapses when not overriding); plus five
+>    LOWs (c4Trace description, an undocumented-but-correct
+>    override tightening, a false seed comment, an overstated
+>    range, a presentational conflation).
+> 2. **NOT challenged (the substance)**: detachment RESOLVED in
+>    all four worlds (+2.78 m prod / +0.98 m armed vs the
+>    ball-side twin); the send target sits 18–20 m off the
+>    ball's lane vs the 9 m spacing (CIs cm-wide, ALL worlds);
+>    the mark-channel finding (weak-side back glued to a
+>    far-side man 59% on prod); the phase-blind home (0.1–0.2%
+>    agreement); the v3 zero-oscillation receipts. Disposition
+>    waits on the fixed receipts.
+> 3. **DISPOSITION**: fix round (rewrite §8 provenance
+>    truthfully; N derivation per the frozen rule or an honest
+>    cap statement; align the coded rule to frozen and
+>    re-evaluate outcomes under it; retract/qualify §8.4 to
+>    what the instrument measures; the five LOWs) +
+>    independent re-verify. Adjudication (#188) after.
