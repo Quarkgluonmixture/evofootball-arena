@@ -49,17 +49,39 @@
 //                  returns to the USER (contract F-S2d, the 乙 axis is user-gated);
 //                  fouls / restartTicks / the E4 combination counters are REPORTED.
 //
-// TWO MODES (explicit A4S2P1_MODE, NO default):
-//   smoke  — 40 matches @ 12,237,000 + k; realises the fork populations, the arm levels,
-//            the primary contrast σ̂, the per-match wall INCLUDING arms, and the FROZEN N
-//            arithmetic; X-DET double-run. Writes a4-s2p1-vector-census-sizing-smoke.json.
-//   census — A4S2P1_N matches @ 12,240,000 + k; the gate-bearing run (a FUTURE authorized
-//            step). Writes a4-s2p1-vector-census.json.
+// ⭐ S2-P1b (ruling #162) — THE backLoaded CONFIRMATORY EXAM, added as two further modes
+// over THIS SAME machinery (zero behaviour change to `smoke`/`census`). Three branches
+// only — NONE / uniform (descriptive reference, in NO gate leg) / backLoaded (the S2-P1
+// frozen vector, verbatim) — and the gate is read against the NONE anchor (the user's
+// 门前的账不亏 · 外围打平 · 撞车大减 line, #162.1):
+//   leg (a) dupRun(backLoaded − none) CI UPPER < 0
+//   leg (b) box   (backLoaded − none) CI UPPER < 0
+//   leg (c) deep  (backLoaded − none) CI LOWER ≤ 0
+//   OFFSIDE FLAG (descriptive, NEVER gating): offsides(backLoaded − none) CI LOWER >
+//   +0.0338 (= 2 × the S2-P1 seen +0.0169, the #152.4 doubling idiom) ⇒ F-S2d, to the USER.
+// N is FROZEN EX ANTE at 8,000 by #162 — the confirmatory smoke sizes NOTHING.
+//
+// FOUR MODES (explicit A4S2P1_MODE, NO default):
+//   smoke         — 40 matches @ 12,237,000 + k; realises the fork populations, the arm
+//                   levels, the primary contrast σ̂, the per-match wall INCLUDING arms, and
+//                   the FROZEN N arithmetic; X-DET double-run. Writes
+//                   a4-s2p1-vector-census-sizing-smoke.json.
+//   census        — A4S2P1_N matches @ 12,240,000 + k; the S2-P1 gate-bearing run. Writes
+//                   a4-s2p1-vector-census.json.
+//   confirm-smoke — 40 matches @ 12,256,000 + k (a DISJOINT block); WALL + PLUMBING ONLY:
+//                   populations, per-arm LEVELS and every hard gate. It computes NO
+//                   contrast, NO gate and NO N arithmetic — N is already frozen at 8,000
+//                   (#162) and nothing here may inform anything. Writes
+//                   a4-s2p1b-backloaded-confirmatory-smoke.json.
+//   confirm       — the FROZEN N = 8,000 matches @ 12,248,000 + k; the S2-P1b gate-bearing
+//                   run. Writes a4-s2p1b-backloaded-confirmatory.json.
 //
 // COMMAND LINES:
 //   smoke:   A4S2P1_MODE=smoke npx tsx scripts/probes/a4-s2p1-vector-census.ts
 //   census:  A4S2P1_MODE=census A4S2P1_N=<disclosed N* from the smoke> \
 //            npx tsx scripts/probes/a4-s2p1-vector-census.ts
+//   S2-P1b:  A4S2P1_MODE=confirm-smoke npx tsx scripts/probes/a4-s2p1-vector-census.ts
+//            A4S2P1_MODE=confirm       npx tsx scripts/probes/a4-s2p1-vector-census.ts
 //   preflight (bounded; writes OUTSIDE the repo, NOT a verdict):
 //     A4S2P1_MODE=smoke A4S2P1_CAP=2 A4S2P1_FORK_CAP=2 A4S2P1_OUT=/tmp/x.json \
 //       A4S2P1_SKIP_FP=1 npx tsx scripts/probes/a4-s2p1-vector-census.ts
@@ -117,6 +139,28 @@ const BOOTSTRAP_SEED = 101_403;
 const BOOTSTRAP_RESAMPLES = 2_000;
 const STATS_SEED_RESERVED = 101_503; // reserved-unused (no dispersion/permutation statistic)
 
+// =============================================================================
+// ⭐ S2-P1b — THE CONFIRMATORY FREEZE (ruling #162.3, copied; NEVER re-cut here).
+// =============================================================================
+const CONFIRM_SEED_BASE = 12_248_000; // FRESH: 12,248,000 + k, k∈0..7,999 ⇒ ≤ 12,255,999
+const CONFIRM_N_FROZEN = 8_000; // ⭐ FROZEN EX ANTE by #162 — leg (c) must not be passable by underpowering
+const CONFIRM_SMOKE_SEED_BASE = 12_256_000; // the DISJOINT plumbing block: 12,256,000 + k, k∈0..39
+const CONFIRM_SMOKE_MATCHES = 40;
+// FRESH stats seeds (101403 / 101503 are CONSUMED by S2-P1): the 1015xx family.
+const CONFIRM_BOOTSTRAP_SEED = 101_513;
+const CONFIRM_STATS_SEED_RESERVED = 101_523;
+// ⭐ the frozen OFFSIDE FLAG threshold: 2 × the S2-P1 seen +0.0169 (the #152.4 doubling idiom).
+const CONFIRM_OFFSIDE_FLAG_ABS = 0.0338;
+// the S2-P1 SEEN backLoaded−none anchors (docs/world-model/data/a4-s2p1-vector-census.json)
+// — CONTEXT ONLY, the P3′ replication idiom: they name the magnitude, never the predicate.
+const S2P1_SEEN_VS_NONE = { dupRun: -2.4543, deep: 0.0026, box: -0.0023, offsides: 0.0169 } as const;
+// S2-P1's OWN blocks become CONSUMED for S2-P1b (added ONLY on the confirmatory modes, so the
+// census mode's own disjointness gate is byte-unchanged).
+const CONFIRM_EXTRA_CONSUMED = [
+  [12_237_000, 12_237_039], // A4-S2-P1 sizing smoke
+  [12_240_000, 12_247_999], // A4-S2-P1 census (RAN, #161)
+] as const;
+
 // horizon: the certified P0b concede horizon, the P1c value VERBATIM.
 const W_PRICE_S = 10;
 const W_MAX_TICKS = Math.round(W_PRICE_S / DT);
@@ -140,10 +184,14 @@ const ARM_VECTORS = {
   singleAnchor: [0, 1.0, 0.375, 0.375, 0.375, 0.375],
 } as const;
 type ArmName = keyof typeof ARM_VECTORS;
-const ARMS = Object.keys(ARM_VECTORS) as ArmName[];
+const ALL_ARMS = Object.keys(ARM_VECTORS) as ArmName[];
 const CONTROL_ARM: ArmName = 'uniform'; // = the slice-1 PRIOR content (the control)
 const TREAT_ARM: ArmName = 'spread'; // = the H-157c discriminator (matched mean, max heterogeneity)
 const MEAN_TARGET = 0.5;
+// ⭐ S2-P1b arms (#162.3): none / uniform (DESCRIPTIVE reference, in NO gate leg) / backLoaded.
+const CONFIRM_TREAT_ARM: ArmName = 'backLoaded'; // the S2-P1 frozen vector, VERBATIM
+const CONFIRM_REFERENCE_ARM: ArmName = 'uniform';
+const CONFIRM_ARMS: ArmName[] = [CONFIRM_REFERENCE_ARM, CONFIRM_TREAT_ARM];
 
 // ⭐ THE FROZEN NON-INFERIORITY MARGIN FRACTIONS (pre-registration §4), derived ONLY from
 // the slice-1 CERTIFIED prices (#154): deep −0.7395 [−1.2055, −0.2440] ⇒ the CI bound
@@ -199,10 +247,17 @@ type Context = (typeof CONTEXTS)[number];
 // ENV / MODE.
 // =============================================================================
 const MODE = process.env.A4S2P1_MODE;
-if (MODE !== 'smoke' && MODE !== 'census') {
-  console.error('A4-S2P1 FATAL — A4S2P1_MODE must be "smoke" or "census" (see the header command lines).');
+if (MODE !== 'smoke' && MODE !== 'census' && MODE !== 'confirm-smoke' && MODE !== 'confirm') {
+  console.error('A4-S2P1 FATAL — A4S2P1_MODE must be "smoke" | "census" | "confirm-smoke" | "confirm" '
+    + '(see the header command lines).');
   process.exit(2);
 }
+const IS_CONFIRM = MODE === 'confirm' || MODE === 'confirm-smoke'; // ⭐ the S2-P1b (#162) modes
+const IS_CONFIRM_SMOKE = MODE === 'confirm-smoke';
+// the ACTIVE arm set: S2-P1 runs all five; S2-P1b runs uniform + backLoaded only (#162.3).
+const ARMS: ArmName[] = IS_CONFIRM ? CONFIRM_ARMS : ALL_ARMS;
+// the ACTIVE bootstrap seed: FRESH 1015xx for S2-P1b (101403/101503 are consumed).
+const STATS_SEED = IS_CONFIRM ? CONFIRM_BOOTSTRAP_SEED : BOOTSTRAP_SEED;
 const CAP = process.env.A4S2P1_CAP ? Math.max(1, Number.parseInt(process.env.A4S2P1_CAP, 10)) : Number.POSITIVE_INFINITY;
 const IS_PREFLIGHT = Number.isFinite(CAP);
 const FORK_CAP = (IS_PREFLIGHT && process.env.A4S2P1_FORK_CAP)
@@ -214,16 +269,32 @@ if (MODE === 'census' && N_ENV === null) {
   console.error('A4-S2P1 FATAL — census mode requires A4S2P1_N (pinned from the smoke arithmetic).');
   process.exit(2);
 }
+// ⭐ S2-P1b: N is FROZEN EX ANTE at 8,000 by ruling #162.3 and may NOT be supplied, re-cut or
+// re-derived — leg (c) (deep CI lower ≤ 0) must not be passable by underpowering.
+if (IS_CONFIRM && N_ENV !== null) {
+  console.error('A4-S2P1b FATAL — N is FROZEN at 8,000 by ruling #162.3; A4S2P1_N is REFUSED in the '
+    + 'confirmatory modes (bound the run with A4S2P1_CAP for a preflight instead).');
+  process.exit(2);
+}
 const N_CENSUS = MODE === 'census' ? Math.min(N_ENV as number, N_CAP) : 0;
-const FROZEN_BASE = MODE === 'smoke' ? SMOKE_SEED_BASE : CENSUS_SEED_BASE;
+const FROZEN_BASE = MODE === 'smoke' ? SMOKE_SEED_BASE
+  : MODE === 'confirm-smoke' ? CONFIRM_SMOKE_SEED_BASE
+    : MODE === 'confirm' ? CONFIRM_SEED_BASE : CENSUS_SEED_BASE;
 const SEED_BASE = (IS_PREFLIGHT && process.env.A4S2P1_SEED_BASE)
   ? Math.max(0, Number.parseInt(process.env.A4S2P1_SEED_BASE, 10)) : FROZEN_BASE;
-const PLANNED_MATCHES = MODE === 'smoke' ? SMOKE_MATCHES : N_CENSUS;
+const PLANNED_MATCHES = MODE === 'smoke' ? SMOKE_MATCHES
+  : MODE === 'confirm-smoke' ? CONFIRM_SMOKE_MATCHES
+    : MODE === 'confirm' ? CONFIRM_N_FROZEN : N_CENSUS;
 const MATCH_COUNT = IS_PREFLIGHT ? Math.min(PLANNED_MATCHES, CAP) : PLANNED_MATCHES;
 const SMOKE_OUT = 'docs/world-model/data/a4-s2p1-vector-census-sizing-smoke.json';
 const CENSUS_OUT = 'docs/world-model/data/a4-s2p1-vector-census.json';
+const CONFIRM_SMOKE_OUT = 'docs/world-model/data/a4-s2p1b-backloaded-confirmatory-smoke.json';
+const CONFIRM_OUT = 'docs/world-model/data/a4-s2p1b-backloaded-confirmatory.json';
+const DEFAULT_OUT = MODE === 'smoke' ? SMOKE_OUT
+  : MODE === 'confirm-smoke' ? CONFIRM_SMOKE_OUT
+    : MODE === 'confirm' ? CONFIRM_OUT : CENSUS_OUT;
 const OUT_PATH = process.env.A4S2P1_OUT
-  ?? (IS_PREFLIGHT ? '/tmp/a4s2p1-preflight.json' : (MODE === 'smoke' ? SMOKE_OUT : CENSUS_OUT));
+  ?? (IS_PREFLIGHT ? '/tmp/a4s2p1-preflight.json' : DEFAULT_OUT);
 
 // =============================================================================
 // SMALL NUMERIC HELPERS (P1c verbatim).
@@ -584,7 +655,7 @@ const meanCI = (rows: readonly CensusRow[], value: ForkValue, offset: number): C
     return n === 0 ? Number.NaN : sum / n;
   };
   const point = stat(rows);
-  const rng = new Rng(BOOTSTRAP_SEED + offset);
+  const rng = new Rng(STATS_SEED + offset);
   const draws: number[] = [];
   const nRows = rows.length;
   for (let d = 0; d < BOOTSTRAP_RESAMPLES; d++) {
@@ -728,6 +799,101 @@ const evalGate = (
 };
 
 // =============================================================================
+// ⭐ THE S2-P1b CONFIRMATORY GATE (ruling #162.3, copied VERBATIM) — never re-cut.
+//   (a) dupRun( backLoaded − none ) CI UPPER < 0    — 撞车大减 must REPLICATE on fresh seeds
+//   (b) box   ( backLoaded − none ) CI UPPER < 0    — 门前的账不亏: the 12× currency must PAY
+//   (c) deep  ( backLoaded − none ) CI LOWER ≤ 0    — 外围打平: must not RESOLVE worse
+// PASS := (a) ∧ (b) ∧ (c) ∧ the football hard gates ∧ the X-family. The OFFSIDE FLAG is
+// DESCRIPTIVE and NEVER gating: fired iff offsides(backLoaded − none) CI LOWER > +0.0338.
+// =============================================================================
+const evalConfirmGate = (
+  vsNone: Record<string, Record<string, CI>>,
+  levels: Record<string, Record<string, number>>,
+) => {
+  const t = vsNone[CONFIRM_TREAT_ARM];
+  // magnitude reporting, the P3′ replication idiom: the S2-P1 SEEN value is CONTEXT ONLY.
+  const replication = (key: 'dupRun' | 'deep' | 'box' | 'offsides') => {
+    const seen: number = S2P1_SEEN_VS_NONE[key];
+    const frac = seen === 0 ? Number.NaN : t[key].point / seen;
+    return { s2p1Seen: seen, replicatedFractionOfSeen: round(frac, 4) };
+  };
+
+  const legA = {
+    leg: '(a) PRIMARY 撞车大减', reading: 'dupRun(backLoaded − none) CI UPPER < 0',
+    contrast: t.dupRun, holds: Number.isFinite(t.dupRun.upper) && t.dupRun.upper < 0,
+    ...replication('dupRun'),
+    note: 'MAGNITUDE IS DESCRIPTIVE, the P3′ replication idiom: the leg is DIRECTIONAL, so a '
+      + 'confirmatory run reproducing even HALF the S2-P1 seen −2.4543 still HOLDS leg (a) — the '
+      + 'honest reading is then "the effect replicates, smaller than first seen", and the fraction '
+      + 'above is the number to report. The leg is never re-cut on the magnitude.',
+  };
+  const legB = {
+    leg: '(b) 门前的账不亏', reading: 'box(backLoaded − none) CI UPPER < 0',
+    contrast: t.box, holds: Number.isFinite(t.box.upper) && t.box.upper < 0,
+    ...replication('box'),
+    note: 'the 12×-currency limb: box entries suffered must resolvedly FALL against the WILD world '
+      + '(the NONE anchor) — an agreement that costs the box is not bought.',
+  };
+  const legC = {
+    leg: '(c) 外围打平', reading: 'deep(backLoaded − none) CI LOWER ≤ 0 (must not RESOLVE worse)',
+    contrast: t.deep, holds: Number.isFinite(t.deep.lower) && t.deep.lower <= 0,
+    ...replication('deep'),
+    note: 'a BREAK-EVEN leg, not a benefit leg (#162.2.iii: break-even is the honest bar for rung ONE '
+      + 'of the doctrine ladder). N is FROZEN EX ANTE at 8,000 precisely so this leg cannot be passed '
+      + 'by underpowering — the S2-P1 source estimate carried the same N and the same forks.',
+  };
+
+  const offCI = t.offsides;
+  const offsideFlagged = Number.isFinite(offCI.lower) && offCI.lower > CONFIRM_OFFSIDE_FLAG_ABS;
+  const pass = legA.holds && legB.holds && legC.holds;
+
+  return {
+    predicate: 'PASS := (a) dupRun(backLoaded − none) CI UPPER < 0 ∧ (b) box(backLoaded − none) CI '
+      + 'UPPER < 0 ∧ (c) deep(backLoaded − none) CI LOWER ≤ 0 ∧ the football hard gates ∧ the X-family '
+      + '(ruling #162.3, copied verbatim). The uniform arm is a DESCRIPTIVE reference and appears in NO '
+      + 'gate leg. The offside flag NEVER gates.',
+    anchor: 'vs NONE (the wild world), per the user ruling 考 at the #161.5 fork: 门前的账不亏 · '
+      + '外围打平 · 撞车大减 (#162.1).',
+    nFrozen: CONFIRM_N_FROZEN,
+    legA, legB, legC,
+    offsideFlag: {
+      contrast: offCI, threshold: CONFIRM_OFFSIDE_FLAG_ABS, ...replication('offsides'),
+      flagged: offsideFlagged,
+      note: 'DESCRIPTIVE, NEVER GATING (#162.3): fired iff the offsides(backLoaded − none) CI LOWER '
+        + 'exceeds +0.0338 = 2 × the S2-P1 seen +0.0169 (the #152.4 doubling idiom). A fired flag ⇒ '
+        + 'F-S2d: the 乙 offside axis returns to the USER, and it never flips PASS/FAIL.',
+    },
+    descriptiveReference: {
+      arm: CONFIRM_REFERENCE_ARM, contrasts: vsNone[CONFIRM_REFERENCE_ARM] ?? null,
+      note: 'the slice-1 PRIOR content (the whole-team whisper) carried as a LEVEL/CONTRAST reference '
+        + 'so the confirmatory read has its S2-P1 context — it is in NO gate leg.',
+    },
+    pass,
+    emptyCellVacuity: t.dupRun.n === 0
+      ? 'POOLED CELL EMPTY ⇒ every leg reads UNRESOLVED ⇒ NOT-ADVANCE (attainability failure)'
+      : 'co-populated (every admitted fork contributes to NONE and to every arm)',
+    disposition: pass
+      ? (offsideFlagged
+        ? 'PASS with the OFFSIDE FLAG raised — the backLoaded read CONFIRMS on fresh seeds (撞车大减, '
+          + '门前的账不亏, 外围打平), but the offside axis moved ≥ 2× the S2-P1 seen level: F-S2d, '
+          + 'RETURNS TO THE USER (the 乙 axis is user-gated, #158).'
+        : 'PASS — the S2-P1 descriptive backLoaded read is CONFIRMED on FRESH seeds against the wild '
+          + 'world: duplication resolvedly falls, the box account resolvedly pays, and the outer account '
+          + 'does not resolve worse. Self-drive proceeds to S2-P2 (gene-ization, offsets born ABSENT) on '
+          + 'commander review.')
+      : `NOT-ADVANCE — the confirmatory exam FAILED: ${[
+        legA.holds ? null : 'leg (a) dupRun', legB.holds ? null : 'leg (b) box',
+        legC.holds ? null : 'leg (c) deep',
+      ].filter((x) => x !== null).join(' + ')}. STOP; the fork RETURNS TO THE USER (#162.3).`,
+    levelsNote: `per-arm LEVELS are published for none/${CONFIRM_REFERENCE_ARM}/${CONFIRM_TREAT_ARM} on every `
+      + 'instrument (levels.* above); the S2-P1 instrument debt (the DEDICATED foul counter, the E4 '
+      + 'combination counters, the DESCRIPTIVE proximity block whose verdict authority is the USER\'s) '
+      + 'is carried UNCHANGED.',
+    offsideLevels: levels.offsides,
+  };
+};
+
+// =============================================================================
 // THE SIZING SMOKE — populations + the primary σ̂ + the FROZEN N arithmetic.
 // The wall-derived half is computed OUTSIDE the X-DET-compared core (#128).
 // =============================================================================
@@ -825,6 +991,41 @@ const computeWallArithmetic = (raw: SizingRaw, perMatchWallMs: number): WallArit
 };
 
 // =============================================================================
+// ⭐ THE S2-P1b BOUNDED SMOKE — WALL + PLUMBING ONLY. N is FROZEN at 8,000 by #162.3, so
+// this block computes NO contrast, NO gate and NO N arithmetic: it exists to confirm the
+// per-match wall cost of the three-branch fork and that every counter/gate plumbs through.
+// =============================================================================
+const buildConfirmSmokeCore = (rows: readonly CensusRow[]) => {
+  const strataN: Record<string, number> = {};
+  for (const c of CONTEXTS) strataN[c] = sumBy(rows, (r) => r.forks.filter((f) => f.context === c).length);
+  return {
+    nMatches: rows.length,
+    armVectors: Object.fromEntries(ARMS.map((a) => [a, ARM_VECTORS[a]])),
+    branches: ['none', ...ARMS],
+    treatArm: CONFIRM_TREAT_ARM, referenceArm: CONFIRM_REFERENCE_ARM,
+    populations: {
+      perMatchForksMean: round(mean(rows.map((r) => r.forks.length))),
+      totalForks: sumBy(rows, (r) => r.forks.length),
+      forkContextStrataN: strataN,
+      qualifyingTotal: sumBy(rows, (r) => r.counts.qualifying),
+      forkedTotal: sumBy(rows, (r) => r.counts.forked),
+      capSkippedTotal: sumBy(rows, (r) => r.counts.capSkipped),
+      forkCapPerMatch: FORK_CAP, forkCapBinds: rows.some((r) => r.counts.capSkipped > 0),
+      endedDropsTotal: sumBy(rows, (r) => r.drops.ended),
+      eyeDecisionsTotal: sumBy(rows, (r) => r.eyeDecisions),
+      xForkChecked: sumBy(rows, (r) => r.xForkChecked),
+      xForkMismatched: sumBy(rows, (r) => r.xForkMismatched),
+    },
+    armLevels: buildLevels(rows),
+    note: '⭐ WALL + PLUMBING ONLY. N is FROZEN EX ANTE at 8,000 by ruling #162.3 — this smoke sizes '
+      + 'NOTHING and informs NOTHING. NO contrast, NO σ̂, NO MDL, NO N arithmetic and NO gate leg is '
+      + 'computed here, so no frozen number can be touched by it (I-A6, #105.4). The levels below only '
+      + 'evidence that every S2-P1 instrument (deep/box, the DESCRIPTIVE proximity block, restarts, the '
+      + 'DEDICATED foul counter, offsides, the E4 combination counters) populates on the three branches.',
+  };
+};
+
+// =============================================================================
 // THE DETERMINISTIC EXPERIMENT (run TWICE for X-DET) — mode-dispatched payload.
 // =============================================================================
 const runExperiment = (pass: number) => {
@@ -854,6 +1055,44 @@ const runExperiment = (pass: number) => {
   const xForkMismatched = sumBy(rows, (r) => r.xForkMismatched);
   const xFork = { checked: xForkChecked, mismatched: xForkMismatched, pass: xForkMismatched === 0 };
 
+  if (MODE === 'confirm-smoke') {
+    return {
+      core: {
+        mode: 'confirm-smoke' as const, seedRange,
+        seedFamily: '12,256,000 + k, k∈0..39 (the S2-P1b plumbing block; inside the remaining pool '
+          + '12.237M–12.3M; DISJOINT from the S2-P1b gate block 12,248,000–12,255,999 and from every '
+          + 'consumed block incl. S2-P1\'s own smoke/census)',
+        wPriceS: W_PRICE_S, xForkIdent: xFork, confirmSmoke: buildConfirmSmokeCore(rows),
+        receipts: receiptOut,
+      },
+      wallMs: perMatchWallMs, sizingRaw: null,
+    };
+  }
+  if (MODE === 'confirm') {
+    const levels = buildLevels(rows);
+    const vsNone = buildContrasts(rows, 'none');
+    const gate = evalConfirmGate(vsNone, levels);
+    return {
+      core: {
+        mode: 'confirm' as const, seedRange,
+        seedFamily: '12,248,000 + k, k∈0..7,999 (FRESH; inside the remaining pool; disjoint from the '
+          + 'S2-P1 census 12,240,000–12,247,999 and from the S2-P1b smoke block)',
+        wPriceS: W_PRICE_S,
+        armVectors: Object.fromEntries(ARMS.map((a) => [a, ARM_VECTORS[a]])),
+        armLevels: levels, contrastsVsNone: vsNone, gate, xForkIdent: xFork,
+        populations: {
+          totalForks: sumBy(rows, (r) => r.forks.length),
+          qualifyingTotal: sumBy(rows, (r) => r.counts.qualifying),
+          forkedTotal: sumBy(rows, (r) => r.counts.forked),
+          capSkippedTotal: sumBy(rows, (r) => r.counts.capSkipped),
+          endedDropsTotal: sumBy(rows, (r) => r.drops.ended),
+          eyeDecisionsTotal: sumBy(rows, (r) => r.eyeDecisions),
+        },
+        receipts: receiptOut,
+      },
+      wallMs: perMatchWallMs, sizingRaw: null,
+    };
+  }
   if (MODE === 'smoke') {
     const { sizing, raw } = buildSizingCore(rows);
     return {
@@ -930,12 +1169,23 @@ if (SKIP_FP) { xFpProd = true; fingerprint = 'skipped (preflight)'; } else {
 // SEED DISJOINTNESS (HARD) — computed from the FROZEN family constants.
 const censusMaxSeed = CENSUS_SEED_BASE + N_CAP - 1; // 12,247,999
 const smokeMaxSeed = SMOKE_SEED_BASE + SMOKE_MATCHES - 1; // 12,237,039
+const confirmMaxSeed = CONFIRM_SEED_BASE + CONFIRM_N_FROZEN - 1; // 12,255,999
+const confirmSmokeMaxSeed = CONFIRM_SMOKE_SEED_BASE + CONFIRM_SMOKE_MATCHES - 1; // 12,256,039
 const disjointFrom = (aLo: number, aHi: number, bLo: number, bHi: number): boolean => aHi < bLo || bHi < aLo;
-const seedDisjoint =
-  SMOKE_SEED_BASE >= RESERVED_BAND[0] && censusMaxSeed <= RESERVED_BAND[1]
-  && smokeMaxSeed < CENSUS_SEED_BASE
-  && CONSUMED_BLOCKS.every(([lo, hi]) => disjointFrom(SMOKE_SEED_BASE, smokeMaxSeed, lo, hi)
-    && disjointFrom(CENSUS_SEED_BASE, censusMaxSeed, lo, hi));
+// ⭐ S2-P1b consumes S2-P1's OWN blocks as well (added ONLY on the confirmatory modes, so the
+// S2-P1 census-mode gate is byte-unchanged).
+const ACTIVE_CONSUMED: readonly (readonly [number, number])[] = IS_CONFIRM
+  ? [...CONSUMED_BLOCKS, ...CONFIRM_EXTRA_CONSUMED]
+  : CONSUMED_BLOCKS;
+const seedDisjoint = IS_CONFIRM
+  ? (CONFIRM_SEED_BASE >= RESERVED_BAND[0] && confirmSmokeMaxSeed <= RESERVED_BAND[1]
+    && confirmMaxSeed < CONFIRM_SMOKE_SEED_BASE
+    && ACTIVE_CONSUMED.every(([lo, hi]) => disjointFrom(CONFIRM_SEED_BASE, confirmMaxSeed, lo, hi)
+      && disjointFrom(CONFIRM_SMOKE_SEED_BASE, confirmSmokeMaxSeed, lo, hi)))
+  : (SMOKE_SEED_BASE >= RESERVED_BAND[0] && censusMaxSeed <= RESERVED_BAND[1]
+    && smokeMaxSeed < CENSUS_SEED_BASE
+    && CONSUMED_BLOCKS.every(([lo, hi]) => disjointFrom(SMOKE_SEED_BASE, smokeMaxSeed, lo, hi)
+      && disjointFrom(CENSUS_SEED_BASE, censusMaxSeed, lo, hi)));
 
 let head: string;
 try { head = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim(); } catch { head = 'git-unavailable'; }
@@ -967,13 +1217,30 @@ if (IS_PREFLIGHT) {
 } else if (MODE === 'smoke') {
   verdict = 'SIZING SMOKE — NOT a verdict: realises the fork populations, the arm levels, the primary σ̂ and the '
     + 'per-match wall, and pins the census N via the frozen arithmetic. Pass nArithmetic.nStar as A4S2P1_N.';
+} else if (MODE === 'confirm-smoke') {
+  verdict = 'S2-P1b BOUNDED SMOKE — NOT a verdict and NOT a sizing: it confirms the per-match wall of the '
+    + 'three-branch fork and that every counter + hard gate plumbs through. N is FROZEN at 8,000 (#162.3); '
+    + 'no contrast, no gate leg and no N arithmetic is computed here.';
+} else if (MODE === 'confirm') {
+  verdict = (experiment as Extract<typeof experiment, { mode: 'confirm' }>).gate.disposition;
 } else {
   verdict = (experiment as Extract<typeof experiment, { mode: 'census' }>).gate.disposition;
 }
 
 const body = {
-  experiment: `A4 S2-P1 (the per-body obedience VECTOR census — heterogeneity at MATCHED whisper dose) [${MODE}]`,
-  authority: 'docs/world-model/A4-S2P1-VECTOR-CENSUS.md (the FROZEN pre-registration); '
+  experiment: IS_CONFIRM
+    ? `A4 S2-P1b (the backLoaded CONFIRMATORY exam on FRESH seeds, against the NONE anchor) [${MODE}]`
+    : `A4 S2-P1 (the per-body obedience VECTOR census — heterogeneity at MATCHED whisper dose) [${MODE}]`,
+  authority: IS_CONFIRM
+    ? 'docs/world-model/A4-S2P1B-BACKLOADED-CONFIRMATORY.md (the FROZEN pre-registration) — which '
+      + 'ELABORATES and never re-cuts ruling #162.3 (the gate frozen at commander level: arms, seeds, '
+      + 'N = 8,000, the three legs, the offside flag threshold +0.0338); #162.1 (the user rules 考: '
+      + '门前的账不亏 · 外围打平 · 撞车大减); #162.2 (the VISION audit); #161 (the S2-P1 census, '
+      + 'F-S2b, and the descriptive backLoaded read this exam confirms or refutes); '
+      + 'docs/world-model/A4-S2P1-VECTOR-CENSUS.md (the machinery, the instruments, the X-family); '
+      + 'A4-SLICE2-PERBODY-CONTRACT §3 (BIRTH NEUTRALITY + Road B) / §5 (the #157 instrument debt) / '
+      + '§6 (F-S2d); #152.4 (the FLAG doubling idiom); A4-P3PRIME-REPLICATION (the replication idiom)'
+    : 'docs/world-model/A4-S2P1-VECTOR-CENSUS.md (the FROZEN pre-registration); '
     + 'A4-SLICE2-PERBODY-CONTRACT §1/§2/§3/§4/§5 (ruling #158); #157 (the user\'s play verdict); '
     + '#154 (the certified slice-1 prices); #152 (descriptive proximity + the FLAG idiom); #148 (the certified whisper); '
     + 'the A4-P1c probe idiom (the R3p fixture, the paired same-seed fork, the X-family, the sizing arithmetic)',
@@ -996,20 +1263,51 @@ const body = {
     censusSeedRange: [CENSUS_SEED_BASE, censusMaxSeed], smokeSeedRange: [SMOKE_SEED_BASE, smokeMaxSeed],
     consumedBlocks: CONSUMED_BLOCKS,
     wPriceS: W_PRICE_S, forkSpacingS: FORK_SPACING_S, forkCapPerMatch: FORK_CAP,
-    armVectors: ARM_VECTORS, controlArm: CONTROL_ARM, treatArm: TREAT_ARM, meanTarget: MEAN_TARGET,
+    armVectors: ARM_VECTORS,
+    controlArm: IS_CONFIRM ? 'none' : CONTROL_ARM,
+    treatArm: IS_CONFIRM ? CONFIRM_TREAT_ARM : TREAT_ARM,
+    meanTarget: MEAN_TARGET,
     valScaleRecomputed: round(VAL_SCALE), whisperStrength: homePriorStrength(MEAN_TARGET),
     certifiedSlice1Prices: {
       deep: { point: CERT_DEEP_POINT, ciNearZero: CERT_DEEP_NEAR_ZERO },
       box: { point: CERT_BOX_POINT, ciNearZero: CERT_BOX_NEAR_ZERO },
       source: 'ruling #154 (A4-P3′, PRIOR−R3p, per set)',
     },
-    marginFractions: { deep: round(MARGIN_FRACTION_DEEP), box: round(MARGIN_FRACTION_BOX) },
-    offsideFlagMultiple: OFFSIDE_FLAG_MULTIPLE, mdlRelFrom157: MDL_REL_157,
-    bootstrapSeed: BOOTSTRAP_SEED, bootstrapResamples: BOOTSTRAP_RESAMPLES, statsSeedReserved: STATS_SEED_RESERVED,
+    // the S2-P1 non-inferiority machinery — NOT part of the S2-P1b gate (#162.3 replaced the
+    // spread-vs-uniform margins with the three vs-NONE legs), so it is omitted there.
+    ...(IS_CONFIRM ? {} : {
+      marginFractions: { deep: round(MARGIN_FRACTION_DEEP), box: round(MARGIN_FRACTION_BOX) },
+      offsideFlagMultiple: OFFSIDE_FLAG_MULTIPLE, mdlRelFrom157: MDL_REL_157,
+    }),
+    bootstrapSeed: STATS_SEED,
+    bootstrapResamples: BOOTSTRAP_RESAMPLES,
+    statsSeedReserved: IS_CONFIRM ? CONFIRM_STATS_SEED_RESERVED : STATS_SEED_RESERVED,
     clusterUnit: 'match seed (#20); the delta statistic is a mean over forks',
     restThird: REST_THIRD, boxInnerLocalX: BOX_INNER_X, boxDepth: BOX_DEPTH, boxWidth: BOX_WIDTH,
     dupRunM: DUP_RUN_M, sampleEvery: SAMPLE_EVERY, contexts: CONTEXTS,
     metricKeys: METRIC_KEYS,
+    // ⭐ present ONLY on the S2-P1b modes, so the S2-P1 smoke/census payloads are byte-unchanged.
+    ...(IS_CONFIRM ? {
+      confirmatory: {
+        ruling: '#162.3 — frozen at COMMANDER level; the stage doc elaborates and NEVER re-cuts',
+        activeArms: ARMS, branches: ['none', ...ARMS],
+        treatArm: CONFIRM_TREAT_ARM, referenceArm: CONFIRM_REFERENCE_ARM,
+        referenceArmIsDescriptiveOnly: true,
+        anchor: 'none (the wild world)',
+        nFrozen: CONFIRM_N_FROZEN, nEnvRefused: true,
+        gateSeedRange: [CONFIRM_SEED_BASE, confirmMaxSeed],
+        smokeSeedRange: [CONFIRM_SMOKE_SEED_BASE, confirmSmokeMaxSeed],
+        bootstrapSeed: CONFIRM_BOOTSTRAP_SEED, statsSeedReserved: CONFIRM_STATS_SEED_RESERVED,
+        offsideFlagAbsolute: CONFIRM_OFFSIDE_FLAG_ABS,
+        s2p1SeenVsNone: S2P1_SEEN_VS_NONE,
+        extraConsumedBlocks: CONFIRM_EXTRA_CONSUMED,
+        legs: {
+          a: 'dupRun(backLoaded − none) CI UPPER < 0',
+          b: 'box(backLoaded − none) CI UPPER < 0',
+          c: 'deep(backLoaded − none) CI LOWER ≤ 0',
+        },
+      },
+    } : {}),
   },
   result: experiment,
   fidelity: {
@@ -1020,7 +1318,18 @@ const body = {
     eNonStation: { ...eNonStation, note: 'the eye ACTIVATES on the R3p world AND never overrides the ball carrier, inherited HARD gate' },
     xFpProd: { pass: xFpProd, fingerprintBaseline: FINGERPRINT_BASELINE, fingerprintObserved: fingerprint, skipped: SKIP_FP, note: 'src IS touched (the vector generalization of the dormant seam) ⇒ git diff src is NON-empty BY DESIGN; Road B = X-FP-PROD + the flag-off byte-identity test (tests/a4S2VectorGrant.test.ts)' },
     srcDiffStat: srcDiff, srcDiffExpectedNonEmpty: true,
-    seedDisjoint: { pass: seedDisjoint, reservedBand: RESERVED_BAND, censusRange: [CENSUS_SEED_BASE, censusMaxSeed], smokeRange: [SMOKE_SEED_BASE, smokeMaxSeed], consumedBlocks: CONSUMED_BLOCKS },
+    seedDisjoint: IS_CONFIRM
+      ? {
+        pass: seedDisjoint, reservedBand: RESERVED_BAND,
+        confirmGateRange: [CONFIRM_SEED_BASE, confirmMaxSeed],
+        confirmSmokeRange: [CONFIRM_SMOKE_SEED_BASE, confirmSmokeMaxSeed],
+        consumedBlocks: ACTIVE_CONSUMED,
+        note: 'the S2-P1b ledger: BOTH S2-P1 blocks (smoke 12,237,000–12,237,039 and census '
+          + '12,240,000–12,247,999) are now CONSUMED and asserted disjoint, as is every earlier arc block; '
+          + 'the gate block 12,248,000–12,255,999 and the plumbing-smoke block 12,256,000–12,256,039 are '
+          + 'mutually disjoint and inside the remaining pool 12.237M–12.3M.',
+      }
+      : { pass: seedDisjoint, reservedBand: RESERVED_BAND, censusRange: [CENSUS_SEED_BASE, censusMaxSeed], smokeRange: [SMOKE_SEED_BASE, smokeMaxSeed], consumedBlocks: CONSUMED_BLOCKS },
     xCorpusIdent: 'N/A (a fresh interventional corpus has no identity target — the P1 §4 precedent)',
   },
   gates,
@@ -1066,7 +1375,28 @@ const body = {
 const sha256 = createHash('sha256').update(canonical(body)).digest('hex');
 writeFileSync(OUT_PATH, `${JSON.stringify({ ...body, sha256 }, null, 2)}\n`);
 
-if (MODE === 'smoke') {
+if (MODE === 'confirm-smoke') {
+  const s = (experiment as Extract<typeof experiment, { mode: 'confirm-smoke' }>).confirmSmoke;
+  console.error(
+    `A4-S2P1b SMOKE (plumbing/wall ONLY) · HEAD ${head}${IS_PREFLIGHT ? ' · PREFLIGHT' : ''} · ${MATCH_COUNT}m`
+    + ` · forks ${s.populations.totalForks} (cap ${s.populations.forkCapBinds}) · eyeDec ${s.populations.eyeDecisionsTotal}`
+    + ` · dupRun L none/${CONFIRM_REFERENCE_ARM}/${CONFIRM_TREAT_ARM} ${s.armLevels.dupRun.none}/`
+    + `${s.armLevels.dupRun[CONFIRM_REFERENCE_ARM]}/${s.armLevels.dupRun[CONFIRM_TREAT_ARM]}`
+    + ` · wall/match ${round(wallMs, 1)} ms · projected N=8000 x2 (X-DET) ${round(CONFIRM_N_FROZEN * wallMs * XDET_FACTOR / 3_600_000, 2)} h`
+    + ` · xDet ${xDet} · xFork ${xForkIdent} · xMerge ${mergeIdent.pass} · priorEq ${priorEquivalence.pass}`
+    + ` · eNonSt ${eNonStation.pass} · xFp ${xFpProd} · disj ${seedDisjoint} · SHA ${sha256.slice(0, 12)}`,
+  );
+} else if (MODE === 'confirm') {
+  const c = experiment as Extract<typeof experiment, { mode: 'confirm' }>;
+  console.error(
+    `A4-S2P1b ${verdict.slice(0, 40)} · HEAD ${head}${IS_PREFLIGHT ? ' · PREFLIGHT' : ''} · confirm ${MATCH_COUNT}m`
+    + ` · (a) dupRun ${c.gate.legA.contrast.point} [${c.gate.legA.contrast.lower}, ${c.gate.legA.contrast.upper}] ${c.gate.legA.holds}`
+    + ` (×${c.gate.legA.replicatedFractionOfSeen} of the S2-P1 seen ${S2P1_SEEN_VS_NONE.dupRun})`
+    + ` · (b) box ${c.gate.legB.contrast.point} [${c.gate.legB.contrast.lower}, ${c.gate.legB.contrast.upper}] ${c.gate.legB.holds}`
+    + ` · (c) deep ${c.gate.legC.contrast.point} [${c.gate.legC.contrast.lower}, ${c.gate.legC.contrast.upper}] ${c.gate.legC.holds}`
+    + ` · offFlag ${c.gate.offsideFlag.flagged} · pass ${c.gate.pass} · xDet ${xDet} · SHA ${sha256.slice(0, 12)}`,
+  );
+} else if (MODE === 'smoke') {
   const s = (experiment as Extract<typeof experiment, { mode: 'smoke' }>).sizing as {
     populations: { totalForks: number; forkCapBinds: boolean; endedDropsTotal: number; eyeDecisionsTotal: number };
     smokeContext: { pooledPrimaryDelta: number; uniformDupRunLevel: number };
