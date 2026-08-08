@@ -580,7 +580,7 @@ one subtraction.
 | --- | --- | --- | --- |
 | goals/match | mean-of-matches | 2.20833 | 2.5 |
 | shots/match | mean-of-matches | 13.125 | 13.04167 |
-| conversion · on-target rate | **pooled** (goals ÷ shots over all matches) | 0.16908 · 0.60361 | 0.19664 · 0.60462 |
+| conversion · on-target rate | **mean of per-match ratios (paired basis)** (⚠ #182 CORRECTION: this row was mislabelled "pooled"; 0.16908/0.19664 are `result.paired.conversion.control/treated` — the pooled goals÷shots values are 0.168254/0.191693 at `arms.*.equilibrium.conversion`) | 0.16908 · 0.60361 | 0.19664 · 0.60462 |
 | loose/match | mean-of-matches | 130.625 | 126.91667 |
 | open-play spell mean / median (s) | **pooled** over all open-play spells | 4.5246 / 3.1583 | 4.3846 / 3.0583 |
 | open-play spell mean / median (s) | mean-of-matches (the F-O1b basis) | 4.64744 / 3.19653 | 4.5597 / 3.29792 |
@@ -610,7 +610,7 @@ is **RESOLVED**:
 
 **That one resolution is EXPECTED, and it is the seam biting on its own
 mechanism.** The wind-up's whole content is *hold the ball W ticks longer before
-releasing it* — W p50 = 6 ticks = **0.106 s** — and reception-to-release is the
+releasing it* — W p50 = 6 ticks = **0.100 s** (⚠ #182 CORRECTION: 6 ticks at DT=1/60 is exactly 0.100 s; 0.106 s is the realized MEAN, as the gate row states) — and reception-to-release is the
 metric that measures exactly that hold. A median shift of **+0.045 s** on a
 distribution whose median is ~0.31 s is the mechanism's direct arithmetic
 signature showing through at n = 24, not a football outcome: it needs no large

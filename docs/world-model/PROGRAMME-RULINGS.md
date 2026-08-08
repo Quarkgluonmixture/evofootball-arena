@@ -7715,3 +7715,38 @@
 >    the armed ABSOLUTE point (SE ≈0.05 vs half-width 0.36);
 >    disclosed rather than re-cut. The fork on any tempo
 >    outcome stays the user's (F-O1b).
+
+> **COMMANDER RULING #182 (2026-08-08 — O1-T2 fix round: six of
+> eight findings re-verified fixed; the two residual one-line
+> doc errors corrected BY THE COMMANDER in place and checked
+> against the committed artifact; T2 BANKED; the full A/B
+> LAUNCHED at the ruled N=1,000):**
+>
+> 1. **BANKED + PUSHED**: `08996e3` + this ruling's two
+>    in-place corrections — the G-IDENT receipts now COMPUTED
+>    in-probe every run (three seeds, the #181.2 standing rule
+>    honoured: no doc-text hash is evidence); the F-O1b block
+>    single-basis (paired per-match means end-to-end, pooled as
+>    labelled cross-check); the cut-1 population properly
+>    call-site-filtered (the stronger fix; arm share lands ON
+>    T1's 76% reference at 78.0% of eligible commits);
+>    unreachability overstatement withdrawn (the lock lapses on
+>    ball loss — "unobserved", never "unreachable"); non-zero
+>    exit on gate failure proven empirically; smoke substance
+>    drift = exactly the finding-5 population correction,
+>    field-by-field verified. Residuals corrected by the
+>    commander against the artifact: the conversion row's
+>    basis label (paired, not pooled — pooled values differ:
+>    0.168254/0.191693) and W p50 = 0.100 s exactly (0.106 is
+>    the mean). Suite 1,126 green, tsc clean.
+> 2. **LAUNCHED (§0.0.4, nohup detached)**: O1T2_MODE=full
+>    O1T2_N=1000 @ 12,303,000–12,303,999, ~30 min projected →
+>    `data/o1-t2-match-ab.json`. Disposition as frozen: F-O1a
+>    (armed absolute equilibrium outside the C7-T2 band) ⇒
+>    STOP to the user; otherwise the commander takes the F-O1b
+>    read (fractionOfGapMoved on spell mean + watched-clock
+>    turnovers) and the fork goes to the user WITH the numbers
+>    (self-drive #179 continues only on a clean non-fork
+>    outcome, i.e. equilibrium quiet AND tempo moved enough
+>    that the play-test entry is the obvious next step —
+>    anything else stops).
