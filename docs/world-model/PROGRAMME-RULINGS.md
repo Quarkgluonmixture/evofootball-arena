@@ -7798,3 +7798,34 @@
 >    kinds first (through/aerial — ~20% more releases, ~1%
 >    more gap); (丁) bank dormant and stop the O-arc. Road B
 >    intact; nothing shipped; fingerprint unchanged.
+
+> **COMMANDER RULING #184 (2026-08-08 — the user rules 甲 at
+> #183.5: cut-1 BANKED as a certified mechanic; the v3
+> play-test entry dispatched; the retention half (O2/O3) opens
+> under continued self-drive):**
+>
+> 1. **USER RULING RECORDED (verbatim: "甲")**: accept O1 cut-1
+>    (equilibrium-quiet, mechanism-certified, tempo-small as
+>    disclosed), arm it into the play-test bundle, open O2
+>    抬头观察 / O3 priced hold — the retention half, where the
+>    #173 texture and H-169a put the spell-length disease.
+> 2. **DISPATCHED — the v3 play-test entry**: "A4 world v3 ·
+>    出球前摇" = THE V2 WORLD + `o1PassWindup` (both sides),
+>    composed at the ENTRY layer — A4_WORLD_FLAGS itself is
+>    NEVER widened (the census-fidelity trap, contract §3 FLAG
+>    HYGIENE); `?a4world=3`, mutual exclusivity with v1/v2,
+>    badge names the world, the #156/#168 fidelity form
+>    (flag-off byte-identity, fingerprint re-derived, SW
+>    precache unchanged, tests in the v2-entry idiom). The
+>    user's feel list: 出球前的摆腿看得见吗 · 节奏手感 vs v2 ·
+>    防守封堵的新窗口.
+> 3. **SELF-DRIVE CONTINUES (#179 form) through**: the v3
+>    entry → the O2 opening step (the #65.3 unpark condition:
+>    re-run the whether-seat sizing smoke over the O1-ARMED
+>    world — cheap, instrument-only — does the perception
+>    wedge still bind, and at what magnitude) → the commander
+>    drafts the O2 stage contract on those numbers. STOPS:
+>    any FAIL/fork/ambiguity; the play-test acceptance; the O2
+>    contract's VISION audit lands with a ruling either way.
+>    O3 stays sequenced behind the C5 re-census over the
+>    O1-armed world (contract §2), not yet dispatched.
