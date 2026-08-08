@@ -7409,3 +7409,36 @@
 >    expensive); (丙) play/think first — the census stands
 >    either way. The v2 acceptance (#168.3) remains open in
 >    parallel. Road B intact; nothing shipped by this arc.
+
+> **COMMANDER RULING #174 (2026-08-08 — the user rules 甲 at
+> the #173.4 fork: the OUTLET-SEATS mechanic arc OPENS; first
+> step = the substrate inventory the contract must stand on):**
+>
+> 1. **USER RULING RECORDED (verbatim: "甲")**: the absorption
+>    half — C5 first-touch/control time + hold/shield as
+>    affordable actions + C7 kick wind-up. A MECHANIC arc:
+>    design contract + clause-by-clause VISION audit (the #91
+>    form) + PROBE-CONTRACTS six-layer acceptance
+>    (fires≠works≠pays≠selected≠good football) + the tempo
+>    census (#172-banked) as its standing ABSOLUTE ruler; the
+>    census gap table (#173.2) is the arc's baseline, frozen.
+> 2. **COMMANDER PRE-SCOUT (one grep, recorded honestly)**: the
+>    seats are PARTIALLY BUILT — `C5 T0` shield code exists in
+>    actionExecutor (body-position shield with honest
+>    perception, superseding the omniscient auto-shield), a
+>    Phase-28 pivot shield exists, `c7Windup`/`pendingKick`
+>    spans five files incl. a4World (consistent with the
+>    census: wind-up ABSENT on prod, PRESENT 8–9 episodes/match
+>    in the armed worlds — a dormant seam already half-wired),
+>    and the engine carries its own 0.28 s one-touch window.
+>    **Drafting the contract blind to this map would violate
+>    有故事就要有探针 — the INVENTORY comes first.**
+> 3. **DISPATCHED — the read-only substrate inventory** (one
+>    agent, no commit): map every existing seat against the
+>    three outlet seats (what exists / behind which flag /
+>    shipped-or-dormant / gene-or-attr-driven or hand-rule /
+>    what is genuinely missing), tracing each claim to
+>    file:line, PLUS the history (grep the rulings/log for C5,
+>    C7, T0, shield, windup — what was tried, shipped,
+>    reverted, and why). The contract (next round) stands on
+>    that map.
