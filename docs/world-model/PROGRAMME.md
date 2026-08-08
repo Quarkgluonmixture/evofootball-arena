@@ -98,9 +98,20 @@ to Leg F; flag-off byte-identical; SW precache clean. **SLICE
 2's SELF-DRIVE ARC IS CLOSED (#159→#168) — THE QUEUE SITS AT
 THE USER'S EYES**: v2 vs v1 vs off — 防守知道往哪走了吗 ·
 哨声/越位少了吗 · 配合如何 · 紧凑像球还是像堆 (+ the open
-D1/D2/phone/F7b/F7c list). AFTER the verdicts, the named
-forks: punish-compactness (#154.3/#167.4 — make the look PAY),
-the 乙 offside axis, slice-2 disposition. VISION §3
+D1/D2/phone/F7b/F7c list). **#169 (2026-08-08): the user's
+scramble verdict landed mid-acceptance (乱抢依旧 · 没有拿住球/
+抬头/护球 · 逼抢压力出不去 H-169a · 节奏太紧 — anchored in
+VISION §2); the ruler-honesty audit CONFIRMS 尺子不够: all
+battery legs are A/B contrasts, the disease lives in the
+baseline (turnovers ≈51/match BOTH arms). NAMED NEXT INSTRUMENT
+(awaiting the user's go): the ABSOLUTE possession/tempo census
+(spell lengths, touches/possession, time-on-ball, press-context
+outcomes, action durations vs real-football reference bands —
+reference lines, never gates; constants never imported). It
+also discriminates H-169a.** AFTER the verdicts + census, the
+named forks: the outlet seats (C5/C7/hold/shield substrate
+half) vs punish-compactness (#154.3/#167.4 selection half), the
+乙 offside axis, slice-2 disposition. VISION §3
 soft spot stands registered: break-even is rung-one's honest
 bar; defence is won back on higher ladder rungs (补位→默契→
 教练). HANGING: 乙 the offside axis; D1/D2/phone/F7b/F7c lever

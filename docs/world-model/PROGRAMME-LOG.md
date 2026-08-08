@@ -2124,3 +2124,11 @@ slice 2's self-drive arc CLOSED (#159→#168); queue moved to
 the user's acceptance session (v2 vs v1 vs off + the open
 lever list), with punish-compactness / 乙 / slice-2 disposition
 as the named after-verdict forks.
+
+2026-08-08 (#169): QUEUE amended (not superseded) — the user's
+scramble verdict (乱抢依旧/没有拿住球/逼抢压力出不去/节奏太紧/
+尺子不够?) landed mid-acceptance; ruler-honesty audit confirmed
+the relative-ruler blind spot (both-arm diseases can never fire
+an A/B gate); the absolute possession/tempo census named as the
+next instrument, awaiting go; v2 acceptance stays open in
+parallel.

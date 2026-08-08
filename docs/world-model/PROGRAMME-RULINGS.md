@@ -7184,3 +7184,67 @@
 >    #167.4 — make the look PAY so selection picks it), the 乙
 >    offside axis (still hanging), slice-2 disposition
 >    (keep-as-experiment / promote / retire).
+
+> **COMMANDER RULING #169 (2026-08-08 — the user's scramble
+> verdict lands mid-acceptance; the RULER-HONESTY audit answers
+> 尺子不够: YES — the batteries are RELATIVE and the disease
+> lives in the baseline; the absolute census is named the next
+> instrument):**
+>
+> 1. **USER VERDICT RECORDED (verbatim, anchored into VISION §2
+>    same round)**: "中场紧缩导致的乱抢依旧存在。没有拿住球的情
+>    况,或者抬头观察,或者护球,原因可能是逼抢压力出不去。导致整
+>    个比赛节奏特别的紧,再加上乱抢,和现实足球完全不一致。尺子
+>    不够?" — an observation from their EARLIER sessions,
+>    standing beside (not superseding) the pending v2
+>    acceptance.
+> 2. **THE RULER-HONESTY AUDIT (committed numbers only)**: what
+>    our instruments DID see — scramble I4 is a PROXIMITY count
+>    (own-within-5m), it gauged clumping and read ≈flat/down;
+>    turnovers/set ≈ 51.4 on a 240-sim-second match = one
+>    possession change every ~4.7 sim-seconds, IDENTICAL in
+>    both arms (diff −0.02) — the ruler SAW the franticness and
+>    filed it as "normal" because **every battery leg is an A/B
+>    CONTRAST: a disease present in BOTH arms can never fire a
+>    gate**. Nothing measures possession-spell length,
+>    time-on-ball, touches-per-possession, first-touch outcome,
+>    press-escape success, or action DURATIONS. 尺子不够 —
+>    confirmed, with the precise shape: WE HAVE RELATIVE RULERS
+>    AND AN ABSOLUTE DISEASE. The absolute ruler (the tempo
+>    census, VISION §2 2026-07-27, REALISM-LEDGER) is
+>    registered and UNBUILT.
+> 3. **STORIES LABELLED**: H-169a (the user's) — pressure has
+>    no OUTLET: first-touch control / hold / shield / look
+>    either do not exist or cost zero time in the substrate, so
+>    the only legal response to a press is to move the ball
+>    instantly ⇒ the scramble self-perpetuates and tempo
+>    compresses. Consistent with the three missing seats the
+>    user named 2026-07-26 (look-to-buy-information ·
+>    hold-draw-release · one-touch-vs-control unpriced) and the
+>    C5/C7 tempo anchors — but UNPROBED: no instrument has yet
+>    traced a scramble episode to a missing outlet. 有故事就要
+>    有探针.
+> 4. **THE NAMED NEXT INSTRUMENT (before ANY mechanic work)**:
+>    the ABSOLUTE POSSESSION/TEMPO CENSUS — one forensic probe,
+>    fixed seeds, production world + v1 + v2 arms, measuring
+>    per-arm ABSOLUTE levels with real-football reference bands
+>    stated ex ante from the eFootball research file's
+>    evidence-graded values (curve shapes and causal seats may
+>    be referenced; CONSTANTS never imported — the house law;
+>    the bands are REFERENCE lines, not gates): possession-spell
+>    length distribution, touches per possession, time-on-ball
+>    per touch, turnovers per display-minute, press-context
+>    outcomes (opponent within R at reception → next event),
+>    action durations (C5/C7 face), events per minute. Output =
+>    the honest gap table between our world and 真实足球 on the
+>    time dimension. It also gives H-169a its discriminator:
+>    if possession spells die at first touch UNDER PRESSURE
+>    disproportionately, the outlet story holds; if spells are
+>    short even unpressed, the disease is elsewhere.
+> 5. **DISPOSITION**: this ruling BLOCKS nothing — the v2
+>    acceptance (#168.3) stays open in parallel. The census is
+>    an executor step awaiting the user's go (self-drive ended
+>    at #168; new arcs need a new grant). After the census:
+>    the fork between the outlet seats (C5/C7/hold/shield — the
+>    substrate half) and punish-compactness (#154.3/#167.4 —
+>    the selection half) gets ruled with numbers in hand.
