@@ -141,11 +141,19 @@ vs 9 m spacing, ALL worlds, cm-CIs); oscillation NOT a
 weak-side phenomenon; D1: on prod he man-marks 82% of trigger
 ticks glued to a far-side man 15 m off the lane (the 乱转);
 the A4 home is phase-blind, measured (0.1–0.2% agreement).
-**THE QUEUE SITS AT THE USER'S #188.3 FORK**: (甲) the
-defensive-phase modulation arc (位置是活的 substrate half,
-full contract) · (乙) the mark-selection lens first (cheaper,
-narrower — phase-0 would say) · (丙) both behind the O2
-抬头观察 contract (the promised #186.1 drafting act). Also
+**THE USER RULED 丙→乙→甲 (#189)**: 丙 DONE — the O2 LOOK
+contract drafted + VISION-audited
+([`O2-LOOK-CONTRACT.md`](O2-LOOK-CONTRACT.md): H-O2, the wedge
+exam T1, F-O2a/b pre-named); 乙 RAN — the mark-selection map
+(commit `5b80a5c`, UNBANKED: #190 verify FAIL — two false
+trace mechanisms + seven smaller; the LOAD-BEARING NEGATIVES
+STAND VERIFIED: no ball/lane term in mark selection, depth-only
+priority, no retention state = the glue is a fixed point, the
+22 m gate exceeds HALF_W, the armed unglue = eye stance
+replacement, formations.test.ts pins today's far-side tracking).
+**QUEUED NEXT STEP (on "go"/resume): the #190 fix round →
+#191 banks the map → the commander drafts 甲 (modulation
+contract) + presents the 乙-fix-scope decision → O2-T0.** Also
 open: v2/v3 acceptances, 乙 offside, slice-2 disposition,
 punish-compactness, D1/D2/phone/F7b/F7c.
 Also open:

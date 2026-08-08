@@ -2191,3 +2191,9 @@ H-186a(i) modulation-missing CONFIRMED all four worlds; the D1
 mark channel named; oscillation cleared; queue moved to the
 user's #188.3 fork (modulation arc vs mark-selection lens vs
 O2-first sequencing).
+
+2026-08-08 (#189–#190): superseded QUEUE state — "#188.3 FORK"
+→ the user ruled 丙→乙→甲; O2 LOOK contract drafted+audited
+(#189.2); the mark-selection map ran but verify-FAILED (#190,
+two false trace mechanisms; core negatives verified standing);
+fix round queued as the next step, then 甲 drafting + O2-T0.
