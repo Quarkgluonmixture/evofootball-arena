@@ -46,6 +46,16 @@ export function decidePlayer(p: Player, match: Match): void {
     && match.ball.owner === p
   ) return;
 
+  // O1 T1 §SEAM: the same re-decide lock, transferred to the shortPass wind-up (a
+  // SEPARATE block so the C7 block above stays byte-identical). Its action stays
+  // { type: 'Pass' }; the release resolves at readyTick. Dormant in production
+  // (o1PassWindup OFF ⇒ pendingPassWindup null ⇒ never taken). Only holds while the
+  // winding-up body still owns the ball — once it loses it, the commitment lapses.
+  if (
+    match.o1PassWindup && match.pendingPassWindup !== null && match.pendingPassWindup.gid === p.gid
+    && match.ball.owner === p
+  ) return;
+
   // Dead-ball restart: the taker walks to the spot (chasing the stationary
   // ball); everyone else runs their normal logic against the dead ball —
   // defenders reshape and mark, attackers hold width around the spot.
@@ -972,7 +982,20 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         match.performCutback(p, cutbackMate!);
       } else {
         p.action = { type: 'Pass', targetIdx: passMate!.gid, scores };
-        match.performPass(p, passMate!, offsideExemptKick);
+        // O1 T1 (docs/world-model/O1-T1-PASS-WINDUP.md §SEAM): the single arm site,
+        // cut-1 = shortPass ONLY. An open-play shortPass enters the wind-up instead
+        // of releasing synchronously — the body commits and turns toward the mate for
+        // W ticks, then the pass resolves at readyTick through the SAME performPass
+        // math. Excluded, each for its own ruled reason: `mustKick` (restart takers
+        // share this door — the C7 free-kick precedent needs an explicit test here)
+        // and `firstTouchWindow > 0` (THE DESIGNED BYPASS — a one-touch release goes
+        // now, at its existing oneTouchMul price; no new charge). Dormant:
+        // o1PassWindup is OFF in every production path, so this is the shipped
+        // synchronous release verbatim (no rng draw added, no reordering). The
+        // cutback branch above is untouched.
+        if (match.o1PassWindup && !mustKick && p.firstTouchWindow <= 0) {
+          match.armPendingPass(p, passMate!, offsideExemptKick);
+        } else match.performPass(p, passMate!, offsideExemptKick);
       }
       break;
     case 'LoftedPass': {

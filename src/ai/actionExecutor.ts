@@ -1082,6 +1082,20 @@ export function executeAction(p: Player, match: Match, dt: number): void {
     p.faceTarget = { x: pk.aim.x, y: pk.aim.y };
   }
 
+  // O1 T1 (docs/world-model/O1-T1-PASS-WINDUP.md §SEAM): the same plant, for a body
+  // winding up a shortPass. The executor's "kick already happened → brief
+  // follow-through" (`case 'Pass'` above) does NOT apply during the window — the
+  // kick has NOT happened yet — so the movement target is held on the body's own
+  // spot (it does not dribble the ball out of range) and faceTarget is driven to the
+  // aim so the heading integrator composes the release. Dormant in production
+  // (o1PassWindup OFF ⇒ pendingPassWindup null).
+  const pp = match.pendingPassWindup;
+  if (pp !== null && match.o1PassWindup && pp.gid === p.gid && ball.owner === p) {
+    target = { x: p.pos.x, y: p.pos.y };
+    speedF = 0.22; // walking pace, the C7 plant's value
+    p.faceTarget = { x: pp.aim.x, y: pp.aim.y };
+  }
+
   // Stay onside (Phase 29): while a TEAMMATE is carrying the ball, off-ball
   // attackers never target a spot beyond the offside line — runs hold at the
   // second-last defender's shoulder and break the instant the kick is struck

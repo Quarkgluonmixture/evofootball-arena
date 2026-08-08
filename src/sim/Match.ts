@@ -393,6 +393,24 @@ export interface MatchConfig {
    */
   c7Windup?: boolean;
   /**
+   * O1 T1 (docs/world-model/O1-T1-PASS-WINDUP.md): the shortPass wind-up — the
+   * pass-family half of the certified C7 release seam (cut-1, ruling #178.3).
+   * When armed, an open-play shortPass commit (`PlayerBrain.ts` `case 'Pass'`,
+   * the `performPass` statement) does NOT release synchronously: the body enters
+   * `pendingPassWindup`, holds the still-owned ball and turns toward the mate for W
+   * ticks (the C7 §LAW constants verbatim, with tech = `attrs.passing` — the pass
+   * family's own attribute on the shared price chain, the one DESIGNED deviation),
+   * then the pass resolves at `readyTick` via the EXISTING performPass math
+   * evaluated at strike time. The one-touch window is the DESIGNED bypass
+   * (`firstTouchWindow > 0` ⇒ immediate release at the existing `oneTouchMul`
+   * price, no new charge); restart (`mustKick`) and kickoff passes are excluded;
+   * the cutback branch and the other eight pass kinds are untouched.
+   * **Default OFF, an explicit boolean — never `EDS_BUNDLE_ARMED`, never
+   * env-armed, absent from `a4World` (Road B, #179.2: nothing ships)**; a probe
+   * arms it, and the production fingerprint is unchanged.
+   */
+  o1PassWindup?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -562,6 +580,21 @@ export class Match {
    * production path (only `armPendingKick` sets it, only on the ON path).
    */
   pendingKick: { gid: number; readyTick: number; aim: V2 } | null = null;
+  /** O1 T1: the shortPass wind-up, dormant unless a probe world arms it (Road B). */
+  readonly o1PassWindup: boolean;
+  /**
+   * O1 T1 (docs/world-model/O1-T1-PASS-WINDUP.md §SEAM): a shortPass committed
+   * but not yet struck — a PARALLEL slot beside `pendingKick`, deliberately not a
+   * discriminated member of it, so the certified C7 shot path stays byte-identical
+   * (the doc states the form choice) and a shot wind-up and a pass wind-up can
+   * never evict each other. `{ gid, readyTick, aim, targetGid, offsideExempt }`:
+   * the committed body turns toward `aim` (the mate's position AT ARM TIME) until
+   * `stepCount === readyTick`, then the pass resolves via the EXISTING performPass
+   * math evaluated at strike time, to the mate captured at arm. NULL in every
+   * production path (only `armPendingPass` sets it, only on the ON path).
+   */
+  pendingPassWindup:
+    { gid: number; readyTick: number; aim: V2; targetGid: number; offsideExempt: boolean } | null = null;
   /**
    * C6 T1: per-body heading ring buffer (the lag law's lookback, doc §SEAM).
    * The outfield carrier's heading is recorded here each owned tick — engine
@@ -994,6 +1027,10 @@ export class Match {
     this.c6Carry = cfg.c6Carry ?? false;
     // C7 T1: Road B — never env-armed, never default-ON; a probe arms it explicitly.
     this.c7Windup = cfg.c7Windup ?? false;
+    // O1 T1: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED (the phase-0 trap 12: a seam gated on c7Windup would arm
+    // itself in the a4 world); a probe arms it explicitly.
+    this.o1PassWindup = cfg.o1PassWindup ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -1137,6 +1174,11 @@ export class Match {
     // head of the tick (before brains/physics), the release-side analogue of the
     // synchronous commit-line strike. No-op unless c7Windup is armed (Road B).
     if (this.pendingKick !== null) this.resolvePendingKick();
+
+    // O1 T1 §SEAM: a shortPass wind-up that has reached readyTick releases here, at
+    // the same head-of-tick site as the C7 strike. No-op unless o1PassWindup is
+    // armed (Road B ⇒ pendingPassWindup is null in every production path).
+    if (this.pendingPassWindup !== null) this.resolvePendingPassWindup();
 
     const _tBrain = prof.mark();
     for (const team of this.teams) {
@@ -1870,6 +1912,83 @@ export class Match {
       || shooter.sentOff || shooter.stunTimer > 0 || shooter.kickCooldown > 0
     ) return;
     this.performShot(shooter);
+  }
+
+  /**
+   * O1 T1 §SEAM (docs/world-model/O1-T1-PASS-WINDUP.md): arm the shortPass
+   * wind-up. Called ONLY from the `performPass` commit statement in
+   * `PlayerBrain`'s `case 'Pass'` (the open-play, non-restart, window-closed
+   * branch) when `o1PassWindup` is armed; every production path leaves that
+   * statement's synchronous `performPass` exactly as shipped.
+   *
+   * The body commits: it holds the still-owned ball at its carry offset and turns
+   * toward the mate's ARM-TIME position for W ticks, then the pass resolves at
+   * `readyTick` through the EXISTING `performPass` math evaluated at strike time.
+   * W is the C7 §LAW — the same frozen constants, the same `c7WindupTicks`
+   * function, the same clamp [3,11] — reading only the body's own |v|, |ω| (the C6
+   * heading ring) and, the ONE designed deviation (#178.4/#179.2), **`passing`**:
+   * the pass family's own attribute on the shared price chain
+   * (`mechanics.ts:78-88` takes `passing` as `tec` on every pass path,
+   * `dribbling` on every shot path). It reads no opponent, no percept, no
+   * ball-context (I2) and draws NO rng (I1) — the accuracy/power/hurry/pressure
+   * halves are already priced at strike time and O1 prices TIME only (the
+   * NO-TOUCH list).
+   */
+  armPendingPass(passer: Player, mate: Player, offsideExempt = false): void {
+    const tech = passer.attrs.passing;
+    const v = Math.sqrt(passer.vel.x * passer.vel.x + passer.vel.y * passer.vel.y);
+    // |ω| from the two most-recent recorded headings (the c6 ring), read exactly as
+    // `armPendingKick` reads it. No prior frame ⇒ straight (ω = 0), the c6 fallback.
+    const h1 = this.c6HeadingAt(passer.gid, this.stepCount - 1);
+    const h0 = this.c6HeadingAt(passer.gid, this.stepCount - 2);
+    let omega = 0;
+    if (h1 !== null && h0 !== null) {
+      let d = Math.atan2(h1.hy, h1.hx) - Math.atan2(h0.hy, h0.hx);
+      while (d > Math.PI) d -= 2 * Math.PI;
+      while (d < -Math.PI) d += 2 * Math.PI;
+      omega = Math.abs(d) / DT;
+    }
+    const wTicks = c7WindupTicks(v, omega, tech);
+    this.pendingPassWindup = {
+      gid: passer.gid,
+      readyTick: this.stepCount + wTicks,
+      aim: { x: mate.pos.x, y: mate.pos.y },
+      targetGid: mate.gid,
+      offsideExempt,
+    };
+    // The committed body turns toward the aim: the heading integrator (capped at
+    // TURN_RATE) does its work over the window, so the release reads an improved
+    // heading and pays LESS of the EXISTING misalignment price (no new term, I1).
+    passer.faceTarget = { x: mate.pos.x, y: mate.pos.y };
+  }
+
+  /**
+   * O1 T1 §SEAM: resolve the shortPass wind-up at `readyTick`. The release is the
+   * EXISTING `performPass` math, evaluated AT STRIKE TIME (I1) — reached from the
+   * seam instead of the commit line, with the mate and the `offsideExempt` flag
+   * captured at ARM time and the lead/speed/spray/orientation prices all computed
+   * now, once, against the body's now-integrated heading. If the body is no longer
+   * a valid passer (ball lost inside the window / stunned / sent off / phase left
+   * playing / a contact stamped the kick cooldown), the interruption already
+   * resolved through its EXISTING channel and NO pass runs — the seam adds nothing
+   * (the C7 I3 form). Dormant: `o1PassWindup` OFF ⇒ `pendingPassWindup` is always
+   * null,
+   * so this is a no-op in every production path.
+   */
+  private resolvePendingPassWindup(): void {
+    const pp = this.pendingPassWindup;
+    if (!this.o1PassWindup || pp === null || this.stepCount < pp.readyTick) return;
+    this.pendingPassWindup = null;
+    const passer = this.allPlayers[pp.gid];
+    const mate = this.allPlayers[pp.targetGid];
+    if (passer === undefined) return;
+    passer.faceTarget = null; // release the aim lock; the follow-through resumes
+    if (mate === undefined) return;
+    if (
+      this.phase !== 'playing' || this.ball.owner !== passer
+      || passer.sentOff || passer.stunTimer > 0 || passer.kickCooldown > 0
+    ) return;
+    this.performPass(passer, mate, pp.offsideExempt);
   }
 
   /* ---------------- ball physics ---------------- */
