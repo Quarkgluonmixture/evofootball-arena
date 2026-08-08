@@ -2079,3 +2079,14 @@ hangs; next authorized step = S2-P1 on "go".
 AUTHORIZED STEP on 'go' = S2-P1" → the user authorized
 SELF-DRIVE for the S2 arc (Workflow dispatch, Opus 5 medium
 executors); stops = FAIL/fork/user-gates only.
+
+2026-08-08 (#161): superseded QUEUE state — "SELF-DRIVE
+AUTHORIZED (#159): S2-P1 → S2-P2 → S2-P3 proceed without
+per-round 'go' … stops = FAIL / fork / user-gates" → the S2-P1
+census adjudicated (primary PASS, both NI limbs FAIL, F-S2b
+pre-named); self-drive STOPPED at the red line; queue moved to
+the user's #161.5 fork (bank/confirmatory-backLoaded/gene-ize/
+stop). Ops incident: first census run killed by a harness
+reconnect at pass-2 2,040/8,000 (session-tracked task, §0.0.4
+nohup rule violated once then followed); clean deterministic
+restart, zero contamination.

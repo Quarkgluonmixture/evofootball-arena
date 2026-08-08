@@ -6732,3 +6732,65 @@
 >    Disposition on completion by numbered ruling: PASS ⇒ chain
 >    to S2-P2 (self-drive #159); any FAIL leg / fired offside
 >    flag (F-S2d) ⇒ STOP to the user.
+
+> **COMMANDER RULING #161 (2026-08-08 — the S2-P1 census
+> adjudicated AS FROZEN: primary PASS, both non-inferiority
+> limbs FAIL ⇒ the pre-named F-S2b fires; self-drive STOPS; the
+> look-vs-value fork returns to the user):**
+>
+> 1. **BANKED**: `data/a4-s2p1-vector-census.json` (N=8,000
+>    matches @ 12,240,000–12,247,999, 96,000 admitted forks,
+>    five co-populated arms; both X-DET passes byte-identical;
+>    xForkIdent 96,000/96,000 zero leakage; X-MERGE re-hash
+>    exact; priorEquivalence, eNonStation, xFpProd
+>    `57b0bdab…c673`, seedDisjoint ALL true; JSON sha
+>    `461ff06c…`). One ops incident logged: the first census run
+>    died at pass-2 2,040/8,000 (session-tracked task killed by
+>    a harness reconnect — the §0.0.4 nohup rule exists for
+>    exactly this; violated once, then followed); clean restart,
+>    zero contamination (fixed seeds).
+> 2. **THE GATE, EXECUTED AS FROZEN**: PRIMARY **PASS** —
+>    dupRun(spread−uniform) **−0.3534 [−0.5241, −0.1811]**,
+>    duplication resolvedly FALLS at matched mean dose ⇒
+>    **H-157c is CONFIRMED as a mechanism** (heterogeneity per
+>    se cuts same-job duplication; the user's
+>    不知道该往哪走 diagnosis had a real causal handle).
+>    NON-INFERIORITY **FAIL both limbs**: deep +0.0115
+>    [+0.0062, +0.0164] vs frozen margin 0.0059 — spread gives
+>    back ~131% of uniform's whole certified deep benefit
+>    (−0.0088/window); box +0.0019 [+0.0011, +0.0028] vs margin
+>    0.00077 — ~69% given back vs the frozen 27.6% tolerance.
+>    ⇒ **disposition F-S2b, pre-named: NOT-ADVANCE; the fork is
+>    the USER's.**
+> 3. **THE OFFSIDE FLAG DID NOT FIRE** (spread offsides −0.011
+>    vs uniform — FEWER, not 2×); foul-born restarts ≈ flat
+>    (+0.004). The 乙 axis stays hanging untouched, no new
+>    urgency from this exam.
+> 4. **DESCRIPTIVE GOLD (labelled, none gated — the fork's
+>    evidence base)**: `backLoaded` [.9,.7,.5,.3,.1] cuts
+>    dupRun **−1.6885 [−1.869, −1.516] ≈ 5× the discriminator's
+>    cut (−3.0% of level, ~40% of the #157 look-cost)** at the
+>    SAME deep cost (+0.0114) and box ≈ HELD (+0.0004 [−0.0004,
+>    +0.0013], CI spans 0); offsides ALSO fall. `singleAnchor`
+>    sits between (dupRun −1.334, deep +0.0123). `frontLoaded`
+>    is the mirror: dupRun **+2.323 WORSE**, deep −0.0121
+>    resolvedly BETTER than uniform. **H-161a (HYPOTHESIS, no
+>    probe)**: the back line's obedience is the trading axis —
+>    pinned-home defenders stop duplicating but stop stepping
+>    out (deep leaks); free defenders chase (deep holds) and
+>    duplicate. Echoes the user's #140/#142 后卫也接应
+>    vindication; a discriminating forensic (who concedes the
+>    marginal deep entry, pinned or free backs) is the named
+>    probe if the story starts to matter.
+> 5. **SELF-DRIVE STOPS (#159 red line — pre-named FAIL mode).**
+>    S2-P2 does NOT dispatch. The fork, in the user's channel in
+>    plain language: (i) bank slice 2 NOT-ADVANCE and pivot to
+>    the punish-compactness substrate program (#154.3); (ii) a
+>    NEW pre-registered confirmatory exam on the backLoaded
+>    shape (S2-P1b: fresh seeds, fresh frozen gate, deep
+>    tolerance re-frozen BY THE USER — a value call, not the
+>    commander's); (iii) proceed to S2-P2 gene-ization anyway
+>    and let selection + the S2-P4 play-test adjudicate the
+>    shape (the census proves shape MATTERS; hand vectors were
+>    only ever instruments); (iv) wholesale stop. Road B intact;
+>    fingerprint `57b0bdab…c673` unchanged; nothing shipped.

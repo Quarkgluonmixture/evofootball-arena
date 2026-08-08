@@ -61,13 +61,24 @@ exercised NEGATIVE; stories H-157a/b/c labelled hypotheses).
 (H-A4.2: heterogeneity at matched mean cuts dupRun at
 non-inferior deep/box; VISION-audited, BIRTH-NEUTRALITY binding;
 the #157 instrument debt — offside flag, foul counter, E4 combo
-counters — binds every battery). **SELF-DRIVE AUTHORIZED
-(#159)**: S2-P1 → S2-P2 → S2-P3 proceed without per-round "go"
-(Workflow Draft→Verify, Opus 5 medium executors); stops =
-FAIL / fork / user-gates; S2-P4 play-test exit = the user. HANGING: 乙 the offside
-axis (user-gated); D1/D2/phone/F7b/F7c lever verdicts still
-OPEN. Seeds consumed through 12,236,999;
-12.237M–12.3M + stats 1014xx+ remain. R20 gaps / F9 any time.
+counters — binds every battery). **S2-P1 ADJUDICATED (#161,
+2026-08-08): primary PASS (dupRun resolvedly falls at matched
+mean — H-157c CONFIRMED as mechanism) but BOTH non-inferiority
+limbs FAIL (spread gives back ~131% of uniform's deep benefit,
+~69% of box vs the 27.6% frozen tolerance) ⇒ pre-named F-S2b;
+offside flag QUIET. Descriptive gold: backLoaded cuts dupRun 5×
+the discriminator at the same deep cost, box held; frontLoaded
+mirrors (dupRun worse, deep better); H-161a (hypothesis): the
+back line's obedience trades stepping-out vs duplicating.
+SELF-DRIVE STOPPED (#159 red line). THE QUEUE SITS AT THE
+USER'S #161.5 FORK**: (i) bank NOT-ADVANCE → pivot to
+punish-compactness (#154.3) · (ii) S2-P1b confirmatory exam on
+the backLoaded shape (deep tolerance re-frozen BY THE USER) ·
+(iii) proceed to S2-P2 gene-ization, selection + S2-P4 play-test
+adjudicate · (iv) stop. HANGING: 乙 the offside axis; D1/D2/
+phone/F7b/F7c lever verdicts still OPEN. Seeds consumed through
+12,247,999; 12.248M–12.3M + stats 1014xx+ (101403/101503
+consumed) remain. R20 gaps / F9 any time.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)
