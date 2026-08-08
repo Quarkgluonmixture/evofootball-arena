@@ -2151,3 +2151,10 @@ shield passed, whether-seat parked on perception); the OUTLET
 CONTRACT drafted + VISION-audited (O1 pass wind-up → O2 观察 →
 O3 priced hold → O4 control-time); next authorized step = O1
 phase-0 on "go".
+
+2026-08-08 (#178): QUEUE amended — O1 phase-0 ran (#176
+dispatch → verify FAIL → #177 fix → #178 banked): the
+pass-release map + 2,000-match census landed (shortPass 79.8%
+of open-play, one-touch 20.7%, pressed 73.4%, wind-up ≈4% of
+played time); cut-1 frozen = shortPass only; next authorized
+step = O1-T1 dormant seam on "go".

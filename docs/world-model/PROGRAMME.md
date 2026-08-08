@@ -123,9 +123,17 @@ changes); contract = [`OUTLET-CONTRACT.md`](OUTLET-CONTRACT.md)
 (VISION-audited, zero amendments): O1 pass wind-up (tempo
 lever, one-touch window = the designed bypass) → O2 抬头观察
 (#65.3 sizing first) → O3 priced hold (percept path, E5h/A2b
-hard) → O4 control-time hooks. **NEXT AUTHORIZED STEP on "go"
-= O1 phase-0** (pass-release code map + census, read-only, the
-C7-PHASE0 template; seeds 12,300,000+ new family). Also open:
+hard) → O4 control-time hooks. **O1 PHASE-0 BANKED (#176 FAIL
+→ #177 fix → #178 PASS)**: 2,000-match census — shortPass =
+79.8% of open-play releases, one-touch share 20.7% (real
+bypass population), pressed-at-release 73.4%, full-family
+wind-up ≈ 4% of played time (F-O1b stands); map: 7 commit
+statements / 3 doors / C7 seam form fits all; clearance
+cooldown claim corrected (uniform 0.45). **CUT-1 FROZEN =
+shortPass ONLY** (PlayerBrain.ts:975, cutback excluded, tech =
+attrs.passing, flag `o1PassWindup` never bundle-defaulted).
+**NEXT AUTHORIZED STEP on "go" = O1-T1** (the dormant seam,
+C7-T1-form gates). Also open:
 the v2 acceptance (#168.3), the 乙 offside axis, slice-2
 disposition, D1/D2/phone/F7b/F7c. VISION §3
 soft spot stands registered: break-even is rung-one's honest
