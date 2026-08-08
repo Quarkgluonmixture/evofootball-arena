@@ -134,8 +134,20 @@ the commander's NEXT DRAFTING ACT. **USER v3-SESSION VERDICT
 脱队 (the formation-rigidity defect B, concrete lens) · 位置是
 活的 ontology (共识粗、执行活;调制自由 = 底座义务). H-186a
 labelled (phase-blind home vs station oscillation); **the
-far-side defender forensic census is DISPATCHED** — the
-modulation-vs-oscillation fork returns with its numbers.
+far-side forensic RAN AND ADJUDICATED (#186.4 → #187 FAIL →
+#188 banked)**: H-186a(i) CONFIRMED — the station field never
+asks the weak-side back to compress (send 18–20 m off the lane
+vs 9 m spacing, ALL worlds, cm-CIs); oscillation NOT a
+weak-side phenomenon; D1: on prod he man-marks 82% of trigger
+ticks glued to a far-side man 15 m off the lane (the 乱转);
+the A4 home is phase-blind, measured (0.1–0.2% agreement).
+**THE QUEUE SITS AT THE USER'S #188.3 FORK**: (甲) the
+defensive-phase modulation arc (位置是活的 substrate half,
+full contract) · (乙) the mark-selection lens first (cheaper,
+narrower — phase-0 would say) · (丙) both behind the O2
+抬头观察 contract (the promised #186.1 drafting act). Also
+open: v2/v3 acceptances, 乙 offside, slice-2 disposition,
+punish-compactness, D1/D2/phone/F7b/F7c.
 Also open:
 the v2 acceptance (#168.3), the 乙 offside axis, slice-2
 disposition, D1/D2/phone/F7b/F7c. VISION §3
