@@ -189,11 +189,14 @@ doc-typed G-DET digest (#181.2 breach) and the G-OFF≠RNG-
 receipt mislabel (true RNG evidence = G-IDENT vs pre-change
 baselines + the zero-rng diff); the abort-mix quirk
 (`abortedPhase` unreachable, goal-pause windows close as
-`abortedLoss`) = a T1 instrument note. **QUEUED NEXT STEP (on
-"go"/resume): dispatch PM-T0 (the #193.3 sequence, the
-PHASE-MODULATION dormant seam). After PM-T0 banks, the
-commander sequences PM-T1 vs O2-T1.** Seeds consumed this arc:
-12,311,000–024 (the O2-T0 receipt block). Also open: the v2
+`abortedLoss`) = a T1 instrument note. **SELF-DRIVE ARC OPEN
+(#195, the user ruled 自走)**: PM-T0 → banking → the
+commander's T1 sequencing (PM-T1 vs O2-T1) → the exams; STOPs
+= pre-named FAIL forks (F-PM-a/b, F-O2a/b), hard escalations,
+every user-gate (play-test verdicts; the 乙 decision re-enters
+only with PM-T1's F-PM-a numbers). **PM-T0 IS DISPATCHED
+(#195.2).** Seeds consumed this arc: 12,311,000–024 (the O2-T0
+receipt block). Also open: the v2
 acceptance (#168.3) + v3
 acceptances, the 乙 offside axis, slice-2 disposition,
 punish-compactness (#154.3), D1/D2/phone/F7b/F7c. VISION §3

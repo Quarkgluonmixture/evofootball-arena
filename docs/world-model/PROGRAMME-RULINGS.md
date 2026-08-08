@@ -8243,3 +8243,31 @@
 >    After PM-T0 banks, the commander sequences PM-T1 vs O2-T1
 >    (both exams are then armed; shared-instrument economics
 >    decide the order at that point).
+
+> **COMMANDER RULING #195 (2026-08-08 — the user rules 自走; a
+> SELF-DRIVE ARC OPENS (the #159/#179 precedent); PM-T0
+> dispatched):**
+>
+> 1. **USER RULING RECORDED — 自走 (self-drive).** The arc:
+>    PM-T0 → banking → the commander's own T1 sequencing
+>    decision (PM-T1 vs O2-T1, shared-instrument economics) →
+>    the sequenced exams. STOP conditions (the #182 rule:
+>    self-drive continues only on clean non-fork outcomes):
+>    any pre-named FAIL fork (F-PM-a / F-PM-b / F-O2a / F-O2b),
+>    any hard escalation or structural blocker, and every
+>    user-gate — play-test entries/verdicts stay the user's;
+>    the 乙 decision re-enters ONLY with PM-T1's F-PM-a numbers
+>    (#193.1). Pre-registration discipline, Road B, one writer,
+>    and never-re-cut-after-sight bind every step.
+> 2. **PM-T0 DISPATCHED** (draft + independent verify per
+>    §0.0.2): the dormant defensive lateral-convergence seam
+>    per [`PHASE-MODULATION-CONTRACT.md`](PHASE-MODULATION-CONTRACT.md)
+>    §2–§3 — gene born ABSENT behind an explicit own-boolean
+>    opt-in (never bundle-defaulted), mover-reads-only fork
+>    (#35.3; zone centres NOT modulated = the 甲/乙 boundary),
+>    phase gate live-open-play-only with the restart-gate trace,
+>    flag-off byte-identity + fingerprint + RNG-stream receipts
+>    per #181.2, the read table published. The brief carries
+>    the #194 lessons verbatim (no doc-typed hashes; gate
+>    semantics stated exactly — say what the arms DIFFER in;
+>    completeness claims only from `git show --stat`).
