@@ -1,0 +1,4050 @@
+{
+  "experiment": "O2-OPENING-SIZING-RERUN",
+  "authority": "PROGRAMME-RULINGS #185.2 (the #65.3 unpark condition) · C5-T2-WHETHER-SEAT §5.2 (the form)",
+  "form": "the #65 sizing smoke VERBATIM (metrics/eligibility/constants) + three declared additions A1/A2/A3",
+  "block": "12310000..12310199",
+  "matches": 200,
+  "armDefinitions": {
+    "baseline": "CENSUS_FLAGS (#65 §0.1)",
+    "o1armed": "CENSUS_FLAGS + o1PassWindup"
+  },
+  "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+  "reference65": {
+    "block": "8500000..8500047",
+    "chooserHoldRate": 0.001411,
+    "trueContextShare": 0.00586,
+    "wedgeRatio": 4.1531,
+    "abstainUnseenShare": 0.706878,
+    "ctxAgreement": 0.502439,
+    "note": "chooserHold/abstain/agreement from the committed c5-t2-whether-sizing.json; trueContextShare 0.586 % is the CENSUS quantity (seat §3.4(B), 600/102466); wedgeRatio = 0.00586/0.001411"
+  },
+  "arms": {
+    "baseline": {
+      "matches": 200,
+      "qualifyingTotal": 15986,
+      "eligibleTotal": 11850,
+      "eligibleFraction": 0.741274,
+      "eligiblePerMatch": {
+        "mean": 59.25,
+        "min": 43,
+        "max": 71
+      },
+      "exclusions": {
+        "firstTouch": 2802,
+        "mustKick": 797,
+        "a0Shoot": 526,
+        "a0Clear": 11
+      },
+      "decisionClassShares": {
+        "D-HOLD": {
+          "count": 5,
+          "share": 0.000422
+        },
+        "E-ACTNOW-DECLINED": {
+          "count": 3633,
+          "share": 0.306582
+        },
+        "E-ABSTAIN-UNSEEN": {
+          "count": 8172,
+          "share": 0.68962
+        },
+        "E-NOCELL": {
+          "count": 40,
+          "share": 0.003376
+        }
+      },
+      "chooserHold": {
+        "total": 5,
+        "rateOfEligible": 0.000422,
+        "perMatchMean": 0.025,
+        "perMatchMax": 1,
+        "byCell": {
+          "0|0|0": 5
+        }
+      },
+      "trueContext": {
+        "holdableCells": [
+          "0|0|0"
+        ],
+        "total": 74,
+        "shareOfEligible": 0.006245
+      },
+      "wedgeRatio": 14.8,
+      "mCtxPerceptionPrice": {
+        "placed": 3638,
+        "agreeOverall": 0.522265,
+        "agreePressure": 0.854041,
+        "agreeStale": 1,
+        "agreeSupport": 0.58796,
+        "perceivedCellMix": {
+          "2|0|2": 255,
+          "2|0|1": 472,
+          "2|0|0": 1372,
+          "2|1|1": 162,
+          "1|0|0": 308,
+          "1|0|2": 63,
+          "0|1|1": 1,
+          "2|2|1": 80,
+          "2|1|0": 363,
+          "1|1|1": 39,
+          "1|0|1": 91,
+          "1|1|2": 24,
+          "2|1|2": 76,
+          "1|1|0": 117,
+          "0|1|0": 4,
+          "2|2|2": 73,
+          "2|2|0": 83,
+          "1|2|0": 20,
+          "1|2|2": 8,
+          "1|2|1": 20,
+          "0|0|1": 2,
+          "0|0|0": 5
+        }
+      },
+      "devFloor": {
+        "shareFloorPp": 0.29,
+        "nHoldFloor": 446,
+        "shareClearsFloor": false,
+        "matchesForNfloor": 17840
+      }
+    },
+    "o1armed": {
+      "matches": 200,
+      "qualifyingTotal": 16000,
+      "eligibleTotal": 11897,
+      "eligibleFraction": 0.743563,
+      "eligiblePerMatch": {
+        "mean": 59.485,
+        "min": 49,
+        "max": 80
+      },
+      "exclusions": {
+        "firstTouch": 2748,
+        "mustKick": 804,
+        "a0Shoot": 540,
+        "a0Clear": 11
+      },
+      "decisionClassShares": {
+        "D-HOLD": {
+          "count": 8,
+          "share": 0.000672
+        },
+        "E-ACTNOW-DECLINED": {
+          "count": 3674,
+          "share": 0.308817
+        },
+        "E-ABSTAIN-UNSEEN": {
+          "count": 8184,
+          "share": 0.687905
+        },
+        "E-NOCELL": {
+          "count": 31,
+          "share": 0.002606
+        }
+      },
+      "chooserHold": {
+        "total": 8,
+        "rateOfEligible": 0.000672,
+        "perMatchMean": 0.04,
+        "perMatchMax": 3,
+        "byCell": {
+          "0|0|0": 8
+        }
+      },
+      "trueContext": {
+        "holdableCells": [
+          "0|0|0"
+        ],
+        "total": 63,
+        "shareOfEligible": 0.005295
+      },
+      "wedgeRatio": 7.875,
+      "mCtxPerceptionPrice": {
+        "placed": 3682,
+        "agreeOverall": 0.518468,
+        "agreePressure": 0.840847,
+        "agreeStale": 1,
+        "agreeSupport": 0.587724,
+        "perceivedCellMix": {
+          "2|0|1": 458,
+          "2|1|1": 157,
+          "2|0|0": 1309,
+          "1|0|1": 110,
+          "2|1|0": 365,
+          "1|0|0": 352,
+          "2|1|2": 101,
+          "1|1|1": 50,
+          "1|1|0": 141,
+          "2|2|0": 155,
+          "2|0|2": 228,
+          "2|2|1": 77,
+          "1|1|2": 20,
+          "1|2|0": 9,
+          "1|2|2": 12,
+          "1|2|1": 11,
+          "0|0|0": 8,
+          "0|1|0": 8,
+          "2|2|2": 67,
+          "1|0|2": 43,
+          "0|0|1": 1
+        }
+      },
+      "devFloor": {
+        "shareFloorPp": 0.29,
+        "nHoldFloor": 446,
+        "shareClearsFloor": false,
+        "matchesForNfloor": 11150
+      }
+    }
+  },
+  "contrasts": {
+    "method": "per-match (seed-clustered) paired bootstrap, ratio-of-totals estimator, 2.5/97.5 percentiles",
+    "statsBase": 103000,
+    "resamples": 2000,
+    "clusters": 200,
+    "rates": {
+      "perceivedHoldShare": {
+        "baseline": {
+          "point": 0.000422,
+          "lower": 0.000085,
+          "upper": 0.000843
+        },
+        "o1armed": {
+          "point": 0.000672,
+          "lower": 0.000168,
+          "upper": 0.001424
+        },
+        "pairedDelta": {
+          "point": 0.00025,
+          "lower": -0.000422,
+          "upper": 0.001016
+        },
+        "resolved": false
+      },
+      "trueContextShare": {
+        "baseline": {
+          "point": 0.006245,
+          "lower": 0.004804,
+          "upper": 0.007799
+        },
+        "o1armed": {
+          "point": 0.005295,
+          "lower": 0.004048,
+          "upper": 0.006616
+        },
+        "pairedDelta": {
+          "point": -0.000949,
+          "lower": -0.002498,
+          "upper": 0.000599
+        },
+        "resolved": false
+      },
+      "abstainUnseenShare": {
+        "baseline": {
+          "point": 0.68962,
+          "lower": 0.671543,
+          "upper": 0.709863
+        },
+        "o1armed": {
+          "point": 0.687905,
+          "lower": 0.666722,
+          "upper": 0.708231
+        },
+        "pairedDelta": {
+          "point": -0.001716,
+          "lower": -0.020389,
+          "upper": 0.014672
+        },
+        "resolved": false
+      },
+      "actNowDeclinedShare": {
+        "baseline": {
+          "point": 0.306582,
+          "lower": 0.286161,
+          "upper": 0.324656
+        },
+        "o1armed": {
+          "point": 0.308817,
+          "lower": 0.288168,
+          "upper": 0.330186
+        },
+        "pairedDelta": {
+          "point": 0.002235,
+          "lower": -0.01424,
+          "upper": 0.020651
+        },
+        "resolved": false
+      },
+      "noCellShare": {
+        "baseline": {
+          "point": 0.003376,
+          "lower": 0.00236,
+          "upper": 0.004438
+        },
+        "o1armed": {
+          "point": 0.002606,
+          "lower": 0.001744,
+          "upper": 0.00354
+        },
+        "pairedDelta": {
+          "point": -0.00077,
+          "lower": -0.002111,
+          "upper": 0.000559
+        },
+        "resolved": false
+      },
+      "ctxAgreement": {
+        "baseline": {
+          "point": 0.522265,
+          "lower": 0.498439,
+          "upper": 0.544995
+        },
+        "o1armed": {
+          "point": 0.518468,
+          "lower": 0.4914,
+          "upper": 0.546455
+        },
+        "pairedDelta": {
+          "point": -0.003797,
+          "lower": -0.040934,
+          "upper": 0.032886
+        },
+        "resolved": false
+      },
+      "wedgeRatio": {
+        "baseline": {
+          "point": 14.8,
+          "lower": 9.1111,
+          "upper": 36
+        },
+        "o1armed": {
+          "point": 7.875,
+          "lower": 5.1538,
+          "upper": 27.5
+        },
+        "pairedDelta": {
+          "point": -6.925,
+          "lower": -17.3333,
+          "upper": 5.8909
+        },
+        "resolved": false
+      }
+    }
+  },
+  "gRepro65": {
+    "block": "8500000..8500047",
+    "published65": {
+      "qualifying": 3840,
+      "eligible": 2835,
+      "dHold": 4,
+      "classes": {
+        "D-HOLD": 4,
+        "E-ACTNOW-DECLINED": 816,
+        "E-ABSTAIN-UNSEEN": 2004,
+        "E-NOCELL": 11
+      },
+      "agreeOverall": 0.502439,
+      "ctxPlaced": 820
+    },
+    "observed": {
+      "qualifying": 3840,
+      "eligible": 2835,
+      "dHold": 4,
+      "classes": {
+        "D-HOLD": 4,
+        "E-ACTNOW-DECLINED": 816,
+        "E-ABSTAIN-UNSEEN": 2004,
+        "E-NOCELL": 11
+      },
+      "agreeOverall": 0.502439,
+      "ctxPlaced": 820
+    },
+    "identical": true,
+    "note": "this probe's own walker re-derives #65's committed numbers on #65's own block (baseline flags) — the form is #65's, proven in-probe (#181.2 receipt rule)"
+  },
+  "perMatch": {
+    "baseline": [
+      {
+        "seed": 12310000,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310001,
+        "eligible": 43,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 33,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310002,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310003,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 30,
+        "ctxPlaced": 36,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310004,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310005,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310006,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 37,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310007,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310008,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310009,
+        "eligible": 71,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 28,
+        "ctxPlaced": 43,
+        "ctxAgreeAll": 24
+      },
+      {
+        "seed": 12310010,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310011,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 52,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310012,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310013,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 30,
+        "ctxPlaced": 31,
+        "ctxAgreeAll": 23
+      },
+      {
+        "seed": 12310014,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 23
+      },
+      {
+        "seed": 12310015,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 23
+      },
+      {
+        "seed": 12310016,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310017,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310018,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 33,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310019,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 48,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310020,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310021,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310022,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310023,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 47,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310024,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 40,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310025,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310026,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310027,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310028,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310029,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310030,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310031,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310032,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 48,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310033,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 45,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310034,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310035,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310036,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310037,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310038,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310039,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 23
+      },
+      {
+        "seed": 12310040,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310041,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 54,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310042,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310043,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 42,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310044,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310045,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 29,
+        "ctxPlaced": 35,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310046,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310047,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310048,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310049,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310050,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 35,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310051,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310052,
+        "eligible": 70,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310053,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310054,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310055,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310056,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310057,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310058,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310059,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310060,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 33,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310061,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310062,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310063,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 3,
+        "abstainUnseen": 52,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310064,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310065,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 42,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310066,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310067,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 13,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310068,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310069,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310070,
+        "eligible": 70,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310071,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310072,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 34,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310073,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 42,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310074,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310075,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310076,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 24
+      },
+      {
+        "seed": 12310077,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 27,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310078,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310079,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310080,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310081,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310082,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310083,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 25,
+        "ctxPlaced": 38,
+        "ctxAgreeAll": 26
+      },
+      {
+        "seed": 12310084,
+        "eligible": 69,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310085,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310086,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310087,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 53,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310088,
+        "eligible": 68,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310089,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 13,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310090,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310091,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310092,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310093,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 4,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310094,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310095,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310096,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310097,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310098,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 36,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310099,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310100,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 21
+      },
+      {
+        "seed": 12310101,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 57,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310102,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 45,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310103,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310104,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310105,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 28,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310106,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 57,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310107,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 4,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310108,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 42,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310109,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310110,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310111,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310112,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 27,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 21
+      },
+      {
+        "seed": 12310113,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 30,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310114,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310115,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310116,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310117,
+        "eligible": 55,
+        "dHold": 1,
+        "trueHoldable": 1,
+        "abstainUnseen": 39,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310118,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 41,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310119,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 54,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310120,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310121,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310122,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310123,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310124,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310125,
+        "eligible": 50,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310126,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310127,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310128,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310129,
+        "eligible": 50,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 37,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310130,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310131,
+        "eligible": 47,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310132,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310133,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310134,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 27,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 22
+      },
+      {
+        "seed": 12310135,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310136,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 58,
+        "ctxPlaced": 4,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310137,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310138,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 55,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310139,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 30,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310140,
+        "eligible": 58,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310141,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310142,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 51,
+        "ctxPlaced": 5,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310143,
+        "eligible": 71,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310144,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310145,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310146,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310147,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310148,
+        "eligible": 70,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 29,
+        "ctxPlaced": 41,
+        "ctxAgreeAll": 22
+      },
+      {
+        "seed": 12310149,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310150,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 3,
+        "abstainUnseen": 36,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310151,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310152,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310153,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310154,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 3,
+        "abstainUnseen": 51,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310155,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310156,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310157,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310158,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310159,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 35,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310160,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310161,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 31,
+        "ctxAgreeAll": 22
+      },
+      {
+        "seed": 12310162,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310163,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310164,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310165,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310166,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310167,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310168,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310169,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 35,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310170,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 21
+      },
+      {
+        "seed": 12310171,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310172,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310173,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310174,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 47,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310175,
+        "eligible": 45,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310176,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310177,
+        "eligible": 59,
+        "dHold": 1,
+        "trueHoldable": 1,
+        "abstainUnseen": 32,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310178,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 33,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310179,
+        "eligible": 49,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 5,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310180,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310181,
+        "eligible": 63,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310182,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310183,
+        "eligible": 48,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310184,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 45,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310185,
+        "eligible": 69,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310186,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310187,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 40,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310188,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310189,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 28,
+        "ctxPlaced": 37,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310190,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 48,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310191,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310192,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310193,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 26,
+        "ctxPlaced": 36,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310194,
+        "eligible": 50,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310195,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310196,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 56,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310197,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 50,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310198,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310199,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 13
+      }
+    ],
+    "o1armed": [
+      {
+        "seed": 12310000,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310001,
+        "eligible": 49,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310002,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310003,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310004,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310005,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310006,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 45,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310007,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310008,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310009,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 37,
+        "ctxAgreeAll": 27
+      },
+      {
+        "seed": 12310010,
+        "eligible": 69,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 37,
+        "ctxAgreeAll": 20
+      },
+      {
+        "seed": 12310011,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310012,
+        "eligible": 55,
+        "dHold": 1,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310013,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310014,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 35,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310015,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 26,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310016,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310017,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310018,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310019,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310020,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310021,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 39,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310022,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 33,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310023,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310024,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 27,
+        "ctxPlaced": 31,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310025,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310026,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310027,
+        "eligible": 58,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310028,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310029,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 33,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310030,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310031,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310032,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310033,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 39,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310034,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310035,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310036,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310037,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 36,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310038,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 40,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310039,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310040,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 31,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310041,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310042,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 27,
+        "ctxPlaced": 37,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310043,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 33,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310044,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310045,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 33,
+        "ctxPlaced": 32,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310046,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310047,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 27,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310048,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 21,
+        "ctxPlaced": 44,
+        "ctxAgreeAll": 23
+      },
+      {
+        "seed": 12310049,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310050,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310051,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 40,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310052,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310053,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310054,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310055,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310056,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310057,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310058,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 54,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310059,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310060,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 36,
+        "ctxAgreeAll": 21
+      },
+      {
+        "seed": 12310061,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310062,
+        "eligible": 64,
+        "dHold": 1,
+        "trueHoldable": 3,
+        "abstainUnseen": 47,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310063,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 52,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310064,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310065,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310066,
+        "eligible": 50,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310067,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310068,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310069,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310070,
+        "eligible": 80,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 5,
+        "ctxPlaced": 75,
+        "ctxAgreeAll": 68
+      },
+      {
+        "seed": 12310071,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310072,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310073,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310074,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310075,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310076,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310077,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310078,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 39,
+        "ctxPlaced": 13,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310079,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310080,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 29,
+        "ctxPlaced": 32,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310081,
+        "eligible": 58,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310082,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310083,
+        "eligible": 70,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 39,
+        "ctxAgreeAll": 19
+      },
+      {
+        "seed": 12310084,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310085,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310086,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 50,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310087,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310088,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310089,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310090,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310091,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310092,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 13,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310093,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 54,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310094,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310095,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 48,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310096,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 49,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310097,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310098,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310099,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310100,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310101,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 62,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310102,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310103,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 4,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310104,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310105,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310106,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 58,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310107,
+        "eligible": 49,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310108,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310109,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 51,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310110,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310111,
+        "eligible": 50,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310112,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 33,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310113,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310114,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310115,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310116,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 30,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310117,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 50,
+        "ctxPlaced": 5,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310118,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 50,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310119,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 58,
+        "ctxPlaced": 2,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310120,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310121,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310122,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310123,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 56,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310124,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310125,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 49,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310126,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310127,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 35,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310128,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 44,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310129,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 45,
+        "ctxPlaced": 11,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310130,
+        "eligible": 68,
+        "dHold": 3,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310131,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310132,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310133,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 31,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310134,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310135,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310136,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310137,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 13,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310138,
+        "eligible": 52,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 49,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310139,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 30,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 22
+      },
+      {
+        "seed": 12310140,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 52,
+        "ctxPlaced": 6,
+        "ctxAgreeAll": 6
+      },
+      {
+        "seed": 12310141,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310142,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 54,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310143,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310144,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 35,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310145,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310146,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 49,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310147,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 29,
+        "ctxPlaced": 35,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310148,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 33,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 25
+      },
+      {
+        "seed": 12310149,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310150,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 43,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310151,
+        "eligible": 63,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 37,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310152,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310153,
+        "eligible": 69,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 35,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 20
+      },
+      {
+        "seed": 12310154,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 50,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310155,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 48,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310156,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 38,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310157,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 50,
+        "ctxPlaced": 1,
+        "ctxAgreeAll": 0
+      },
+      {
+        "seed": 12310158,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 26,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310159,
+        "eligible": 70,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 40,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310160,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 34,
+        "ctxPlaced": 19,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310161,
+        "eligible": 50,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310162,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310163,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 10,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310164,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 28,
+        "ctxPlaced": 34,
+        "ctxAgreeAll": 21
+      },
+      {
+        "seed": 12310165,
+        "eligible": 56,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 39,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 9
+      },
+      {
+        "seed": 12310166,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 15,
+        "ctxAgreeAll": 3
+      },
+      {
+        "seed": 12310167,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 17,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310168,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 40,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310169,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 46,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310170,
+        "eligible": 54,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310171,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 49,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310172,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310173,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 48,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310174,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310175,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 50,
+        "ctxPlaced": 5,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310176,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 30,
+        "ctxPlaced": 32,
+        "ctxAgreeAll": 24
+      },
+      {
+        "seed": 12310177,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 29,
+        "ctxPlaced": 30,
+        "ctxAgreeAll": 23
+      },
+      {
+        "seed": 12310178,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310179,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 1
+      },
+      {
+        "seed": 12310180,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310181,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 18,
+        "ctxAgreeAll": 11
+      },
+      {
+        "seed": 12310182,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 17
+      },
+      {
+        "seed": 12310183,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 48,
+        "ctxPlaced": 5,
+        "ctxAgreeAll": 2
+      },
+      {
+        "seed": 12310184,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 38,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 18
+      },
+      {
+        "seed": 12310185,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310186,
+        "eligible": 49,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 13,
+        "ctxAgreeAll": 8
+      },
+      {
+        "seed": 12310187,
+        "eligible": 69,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 33,
+        "ctxPlaced": 36,
+        "ctxAgreeAll": 15
+      },
+      {
+        "seed": 12310188,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310189,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 29,
+        "ctxPlaced": 37,
+        "ctxAgreeAll": 13
+      },
+      {
+        "seed": 12310190,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 7
+      },
+      {
+        "seed": 12310191,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 14
+      },
+      {
+        "seed": 12310192,
+        "eligible": 53,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 46,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310193,
+        "eligible": 71,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 30,
+        "ctxPlaced": 40,
+        "ctxAgreeAll": 25
+      },
+      {
+        "seed": 12310194,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 36,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 12
+      },
+      {
+        "seed": 12310195,
+        "eligible": 51,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 41,
+        "ctxPlaced": 9,
+        "ctxAgreeAll": 5
+      },
+      {
+        "seed": 12310196,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 50,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 10
+      },
+      {
+        "seed": 12310197,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 42,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 4
+      },
+      {
+        "seed": 12310198,
+        "eligible": 65,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 32,
+        "ctxPlaced": 32,
+        "ctxAgreeAll": 16
+      },
+      {
+        "seed": 12310199,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 54,
+        "ctxPlaced": 7,
+        "ctxAgreeAll": 2
+      }
+    ]
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "note": "the whole two-arm computation run twice, JSON byte-identical"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2,
+      "skipped": false
+    },
+    "gRepro65": {
+      "pass": true
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "srcDiff": ""
+    },
+    "seedDisjoint": {
+      "pass": true,
+      "block": "12310000..12310199",
+      "band": [
+        12300000,
+        12399999
+      ],
+      "clashes": [],
+      "repro65Block": "8500000..8500047",
+      "repro65Clash": false
+    },
+    "statsDisjoint": {
+      "pass": true,
+      "base": 103000,
+      "published": [
+        102000,
+        102200,
+        102400,
+        102600,
+        102800
+      ],
+      "minGap": 200
+    },
+    "flagHygiene": {
+      "pass": true,
+      "baseline": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false
+      },
+      "o1armed": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false,
+        "o1PassWindup": true
+      },
+      "note": "the arms differ in exactly one flag: o1PassWindup"
+    },
+    "tableSha": {
+      "pass": true,
+      "sha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+      "holdableCells": [
+        "0|0|0"
+      ]
+    }
+  },
+  "allGatesPass": true,
+  "deterministic": true,
+  "resultSha": "56d1b48b139513d64d34a8169f01797812f49adce4338926057f045226d2be78",
+  "head": "efc7536",
+  "wallMs": 1208283
+}
