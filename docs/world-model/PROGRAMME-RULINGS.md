@@ -7856,3 +7856,52 @@
 > 3. The v3 acceptance lands with the next Pages deploy; feel
 >    list per #184.2. Slice-2/v2 acceptance and all prior open
 >    levers remain open in parallel.
+
+> **COMMANDER RULING #186 (2026-08-08 — the O2 opening sizing
+> BANKED (verify PASS): the perception wedge STILL BINDS in the
+> O1-armed world; AND the user's v3-session verdict lands (进攻
+> 配合好 · 弱侧后卫乱转), anchored into VISION; the far-side
+> forensic probe dispatched):**
+>
+> 1. **O2 SIZING BANKED**: `61bb5f9` (200 shared seeds × 2 arms,
+>    the #65 form reproduced with G-REPRO65 proof, three
+>    declared additions labelled, all gates computed; suite
+>    hiccup = a load-timeout that passes idle, no test touched).
+>    THE READ: the wedge (true-context ÷ perceived-hold) is
+>    **14.8× [9.11, 36.0] baseline vs 7.88× [5.15, 27.5]
+>    O1-armed — both CIs entirely above 1×**; E-ABSTAIN-UNSEEN
+>    ≈69% both arms; no paired contrast resolved at smoke N;
+>    only cell 0|0|0 holdable on the (pre-O1-priced, held-fixed)
+>    table. ⇒ **taxing release time did NOT dissolve the
+>    perception constraint — 抬头观察 (O2) remains the binding
+>    seat**, exactly as #65 diagnosed. The O2 stage contract is
+>    the commander's NEXT DRAFTING ACT (VISION audit rides it);
+>    the C5 re-census over the O1 world (contract §2) remains
+>    O3's gate.
+> 2. **USER VERDICT RECORDED (verbatim, v3 session)**: "感觉
+>    进攻配合挺好的" (positive — consistent with thirdMan +7.3%
+>    and the wind-up cadence) AND the far-side defect: "对面断球
+>    在右后卫位置,左后卫会在左下角乱转,脱离球队之外" plus the
+>    ontology 位置是活的 (anchored VERBATIM into VISION §1 this
+>    round: 共识粗、执行活 — 站位随球权相位×对手形状×形势调制;
+>    教练后续档;调制自由 = 底座义务). This CONFIRMS the
+>    registered formation-rigidity defect (B) with a concrete
+>    lens and extends the 位置 ontology one rung.
+> 3. **H-186a (HYPOTHESIS, labelled)**: the far-side failure =
+>    (i) missing phase/situation MODULATION (no defensive
+>    ball-side compression force reaches the weak-side back —
+>    the A4 home is ball-relative but phase-blind), possibly
+>    compounded by (ii) a station-field OSCILLATION (the live
+>    emergent station flips between targets). 有故事就要有探针 —
+>    the probe separates (i) from (ii) before ANY mechanic.
+> 4. **DISPATCHED — the far-side defender forensic census**
+>    (instrument-only): when the OPPONENT holds possession deep
+>    on one flank, measure the weak-side back: distance to team
+>    centroid + to the A4 home target, station-target switch
+>    frequency + heading-flip rate (oscillation detector),
+>    station-field sanity (where does the field SEND him), and
+>    the same for prod/v1/v2/v3 worlds on shared seeds (which
+>    world the user saw is answered incidentally). Fresh seeds
+>    12,310,200+; stats base ≥103,200. Facts only; the fork
+>    (modulation mechanic vs oscillation fix vs both) returns
+>    WITH the numbers.
