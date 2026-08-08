@@ -98,6 +98,14 @@ import { randomSquad } from '../../src/evolution/playerGenome';
 import { League } from '../../src/sim/League';
 import { Match } from '../../src/sim/Match';
 import { cloneSimulationState } from '../../src/sim/cloneState';
+// ⭐ S2-P1b: the CONFIRMATORY GATE predicate + its frozen constants + the two shared
+// helpers (`round`, the `CI` shape), lifted VERBATIM into their own module so the gate
+// polarities carry a unit test (the #163.2.iv debt, ruling #164.3). Values, order of
+// evaluation and output shape are byte-for-byte what this file held.
+import {
+  CONFIRM_N_FROZEN, CONFIRM_OFFSIDE_FLAG_ABS, CONFIRM_REFERENCE_ARM, CONFIRM_TREAT_ARM,
+  S2P1_SEEN_VS_NONE, evalConfirmGate, round, type CI,
+} from './a4S2P1ConfirmGate';
 import { runHeadless } from '../../src/sim/simRunner';
 import { BOX_DEPTH, BOX_WIDTH, DT, HALF_L } from '../../src/sim/constants';
 import { TEAM_SIZE, type Side, type TeamInfo } from '../../src/sim/types';
@@ -143,17 +151,11 @@ const STATS_SEED_RESERVED = 101_503; // reserved-unused (no dispersion/permutati
 // ⭐ S2-P1b — THE CONFIRMATORY FREEZE (ruling #162.3, copied; NEVER re-cut here).
 // =============================================================================
 const CONFIRM_SEED_BASE = 12_248_000; // FRESH: 12,248,000 + k, k∈0..7,999 ⇒ ≤ 12,255,999
-const CONFIRM_N_FROZEN = 8_000; // ⭐ FROZEN EX ANTE by #162 — leg (c) must not be passable by underpowering
 const CONFIRM_SMOKE_SEED_BASE = 12_256_000; // the DISJOINT plumbing block: 12,256,000 + k, k∈0..39
 const CONFIRM_SMOKE_MATCHES = 40;
 // FRESH stats seeds (101403 / 101503 are CONSUMED by S2-P1): the 1015xx family.
 const CONFIRM_BOOTSTRAP_SEED = 101_513;
 const CONFIRM_STATS_SEED_RESERVED = 101_523;
-// ⭐ the frozen OFFSIDE FLAG threshold: 2 × the S2-P1 seen +0.0169 (the #152.4 doubling idiom).
-const CONFIRM_OFFSIDE_FLAG_ABS = 0.0338;
-// the S2-P1 SEEN backLoaded−none anchors (docs/world-model/data/a4-s2p1-vector-census.json)
-// — CONTEXT ONLY, the P3′ replication idiom: they name the magnitude, never the predicate.
-const S2P1_SEEN_VS_NONE = { dupRun: -2.4543, deep: 0.0026, box: -0.0023, offsides: 0.0169 } as const;
 // S2-P1's OWN blocks become CONSUMED for S2-P1b (added ONLY on the confirmatory modes, so the
 // census mode's own disjointness gate is byte-unchanged).
 const CONFIRM_EXTRA_CONSUMED = [
@@ -189,8 +191,6 @@ const CONTROL_ARM: ArmName = 'uniform'; // = the slice-1 PRIOR content (the cont
 const TREAT_ARM: ArmName = 'spread'; // = the H-157c discriminator (matched mean, max heterogeneity)
 const MEAN_TARGET = 0.5;
 // ⭐ S2-P1b arms (#162.3): none / uniform (DESCRIPTIVE reference, in NO gate leg) / backLoaded.
-const CONFIRM_TREAT_ARM: ArmName = 'backLoaded'; // the S2-P1 frozen vector, VERBATIM
-const CONFIRM_REFERENCE_ARM: ArmName = 'uniform';
 const CONFIRM_ARMS: ArmName[] = [CONFIRM_REFERENCE_ARM, CONFIRM_TREAT_ARM];
 
 // ⭐ THE FROZEN NON-INFERIORITY MARGIN FRACTIONS (pre-registration §4), derived ONLY from
@@ -299,7 +299,6 @@ const OUT_PATH = process.env.A4S2P1_OUT
 // =============================================================================
 // SMALL NUMERIC HELPERS (P1c verbatim).
 // =============================================================================
-const round = (v: number, dp = 6): number => (Number.isFinite(v) ? Number(v.toFixed(dp)) : Number.NaN);
 const mean = (xs: readonly number[]): number => (xs.length === 0 ? Number.NaN : xs.reduce((s, x) => s + x, 0) / xs.length);
 const sumBy = <T>(xs: readonly T[], f: (x: T) => number): number => xs.reduce((s, x) => s + f(x), 0);
 const pct = (sorted: readonly number[], q: number): number => (sorted.length === 0
@@ -646,7 +645,6 @@ const runCensusMatch = (seed: number, receipts: ReceiptBook | null): CensusRow =
 // STATISTICS — the match-cluster bootstrap (#20), the P1 engine.
 // =============================================================================
 type ForkValue = (f: ForkRec) => number;
-type CI = { point: number; lower: number; upper: number; n: number };
 
 const meanCI = (rows: readonly CensusRow[], value: ForkValue, offset: number): CI => {
   const stat = (sample: readonly CensusRow[]): number => {
@@ -806,92 +804,9 @@ const evalGate = (
 // PASS := (a) ∧ (b) ∧ (c) ∧ the football hard gates ∧ the X-family. The OFFSIDE FLAG is
 // DESCRIPTIVE and NEVER gating: fired iff offsides(backLoaded − none) CI LOWER > +0.0338.
 // =============================================================================
-const evalConfirmGate = (
-  vsNone: Record<string, Record<string, CI>>,
-  levels: Record<string, Record<string, number>>,
-) => {
-  const t = vsNone[CONFIRM_TREAT_ARM];
-  // magnitude reporting, the P3′ replication idiom: the S2-P1 SEEN value is CONTEXT ONLY.
-  const replication = (key: 'dupRun' | 'deep' | 'box' | 'offsides') => {
-    const seen: number = S2P1_SEEN_VS_NONE[key];
-    const frac = seen === 0 ? Number.NaN : t[key].point / seen;
-    return { s2p1Seen: seen, replicatedFractionOfSeen: round(frac, 4) };
-  };
-
-  const legA = {
-    leg: '(a) PRIMARY 撞车大减', reading: 'dupRun(backLoaded − none) CI UPPER < 0',
-    contrast: t.dupRun, holds: Number.isFinite(t.dupRun.upper) && t.dupRun.upper < 0,
-    ...replication('dupRun'),
-    note: 'MAGNITUDE IS DESCRIPTIVE, the P3′ replication idiom: the leg is DIRECTIONAL, so a '
-      + 'confirmatory run reproducing even HALF the S2-P1 seen −2.4543 still HOLDS leg (a) — the '
-      + 'honest reading is then "the effect replicates, smaller than first seen", and the fraction '
-      + 'above is the number to report. The leg is never re-cut on the magnitude.',
-  };
-  const legB = {
-    leg: '(b) 门前的账不亏', reading: 'box(backLoaded − none) CI UPPER < 0',
-    contrast: t.box, holds: Number.isFinite(t.box.upper) && t.box.upper < 0,
-    ...replication('box'),
-    note: 'the 12×-currency limb: box entries suffered must resolvedly FALL against the WILD world '
-      + '(the NONE anchor) — an agreement that costs the box is not bought.',
-  };
-  const legC = {
-    leg: '(c) 外围打平', reading: 'deep(backLoaded − none) CI LOWER ≤ 0 (must not RESOLVE worse)',
-    contrast: t.deep, holds: Number.isFinite(t.deep.lower) && t.deep.lower <= 0,
-    ...replication('deep'),
-    note: 'a BREAK-EVEN leg, not a benefit leg (#162.2.iii: break-even is the honest bar for rung ONE '
-      + 'of the doctrine ladder). N is FROZEN EX ANTE at 8,000 precisely so this leg cannot be passed '
-      + 'by underpowering — the S2-P1 source estimate carried the same N and the same forks.',
-  };
-
-  const offCI = t.offsides;
-  const offsideFlagged = Number.isFinite(offCI.lower) && offCI.lower > CONFIRM_OFFSIDE_FLAG_ABS;
-  const pass = legA.holds && legB.holds && legC.holds;
-
-  return {
-    predicate: 'PASS := (a) dupRun(backLoaded − none) CI UPPER < 0 ∧ (b) box(backLoaded − none) CI '
-      + 'UPPER < 0 ∧ (c) deep(backLoaded − none) CI LOWER ≤ 0 ∧ the football hard gates ∧ the X-family '
-      + '(ruling #162.3, copied verbatim). The uniform arm is a DESCRIPTIVE reference and appears in NO '
-      + 'gate leg. The offside flag NEVER gates.',
-    anchor: 'vs NONE (the wild world), per the user ruling 考 at the #161.5 fork: 门前的账不亏 · '
-      + '外围打平 · 撞车大减 (#162.1).',
-    nFrozen: CONFIRM_N_FROZEN,
-    legA, legB, legC,
-    offsideFlag: {
-      contrast: offCI, threshold: CONFIRM_OFFSIDE_FLAG_ABS, ...replication('offsides'),
-      flagged: offsideFlagged,
-      note: 'DESCRIPTIVE, NEVER GATING (#162.3): fired iff the offsides(backLoaded − none) CI LOWER '
-        + 'exceeds +0.0338 = 2 × the S2-P1 seen +0.0169 (the #152.4 doubling idiom). A fired flag ⇒ '
-        + 'F-S2d: the 乙 offside axis returns to the USER, and it never flips PASS/FAIL.',
-    },
-    descriptiveReference: {
-      arm: CONFIRM_REFERENCE_ARM, contrasts: vsNone[CONFIRM_REFERENCE_ARM] ?? null,
-      note: 'the slice-1 PRIOR content (the whole-team whisper) carried as a LEVEL/CONTRAST reference '
-        + 'so the confirmatory read has its S2-P1 context — it is in NO gate leg.',
-    },
-    pass,
-    emptyCellVacuity: t.dupRun.n === 0
-      ? 'POOLED CELL EMPTY ⇒ every leg reads UNRESOLVED ⇒ NOT-ADVANCE (attainability failure)'
-      : 'co-populated (every admitted fork contributes to NONE and to every arm)',
-    disposition: pass
-      ? (offsideFlagged
-        ? 'PASS with the OFFSIDE FLAG raised — the backLoaded read CONFIRMS on fresh seeds (撞车大减, '
-          + '门前的账不亏, 外围打平), but the offside axis moved ≥ 2× the S2-P1 seen level: F-S2d, '
-          + 'RETURNS TO THE USER (the 乙 axis is user-gated, #158).'
-        : 'PASS — the S2-P1 descriptive backLoaded read is CONFIRMED on FRESH seeds against the wild '
-          + 'world: duplication resolvedly falls, the box account resolvedly pays, and the outer account '
-          + 'does not resolve worse. Self-drive proceeds to S2-P2 (gene-ization, offsets born ABSENT) on '
-          + 'commander review.')
-      : `NOT-ADVANCE — the confirmatory exam FAILED: ${[
-        legA.holds ? null : 'leg (a) dupRun', legB.holds ? null : 'leg (b) box',
-        legC.holds ? null : 'leg (c) deep',
-      ].filter((x) => x !== null).join(' + ')}. STOP; the fork RETURNS TO THE USER (#162.3).`,
-    levelsNote: `per-arm LEVELS are published for none/${CONFIRM_REFERENCE_ARM}/${CONFIRM_TREAT_ARM} on every `
-      + 'instrument (levels.* above); the S2-P1 instrument debt (the DEDICATED foul counter, the E4 '
-      + 'combination counters, the DESCRIPTIVE proximity block whose verdict authority is the USER\'s) '
-      + 'is carried UNCHANGED.',
-    offsideLevels: levels.offsides,
-  };
-};
+// ⭐ S2-P1b — THE CONFIRMATORY GATE PREDICATE now lives in ./a4S2P1ConfirmGate (a PURE
+// MOVE, byte-for-byte, so its polarities carry a unit test — the #163.2.iv debt, ruling
+// #164.3). It is imported at the top of this file and called UNCHANGED below.
 
 // =============================================================================
 // THE SIZING SMOKE — populations + the primary σ̂ + the FROZEN N arithmetic.

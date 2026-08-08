@@ -167,6 +167,72 @@ export interface TacticalGenome {
    * I-A5 / I-A7.)
    */
   homePriorObedience?: number;
+  /**
+   * A4 SLICE 2, S2-P2 (A4-SLICE2-PERBODY-CONTRACT §2 M-S2.1, ruling #164.3) — THE
+   * PER-BODY OBEDIENCE OFFSET GENE FAMILY (每个人自己的"该往哪走"): one bounded
+   * offset per SQUAD SLOT, so each body has his OWN relationship to the team's
+   * kickoff agreement (the user's 爱压上的后卫和爱回撤的前锋, VISION §1) instead of
+   * the uniform whisper every body currently shares. Effective per-body obedience =
+   * `clamp01(homePriorObedience + offset_i)` (`effectiveHomePriorObedience` below),
+   * consumed through the SAME `homePriorStrength` map at the SAME `eye.v4.homePrior`
+   * seam — NO new consumer mechanism (M-S2.2).
+   *
+   * ⚠ BORN ABSENT (contract §3 BIRTH NEUTRALITY, the §8 audit's one live-risk
+   * clause): `undefined` ⇒ every offset reads 0 ⇒ effective obedience is the team
+   * whisper ⇒ BIT-IDENTICAL to the slice-1 world. NO role-derived birth content
+   * exists anywhere in `src/**` — no "defenders born obedient" (= 替球队定X,
+   * REJECTED ex ante); differentiation is EARNED by selection or granted only
+   * inside instruments. The array, when present, is indexed by SQUAD SLOT and
+   * carries no role knowledge: every slot is mutated by the same law.
+   *
+   * ⚠ RNG-STREAM SAFETY (the #148.5 / #75 genre, mirrored verbatim from
+   * `homePriorObedience`): OPTIONAL, deliberately NOT in GENE_KEYS, and gated behind
+   * its OWN explicit `evolveHomePriorOffsets` opt-in (an own named boolean per #75 —
+   * NOT a widening of `evolveHomePrior`, so even a flag-ON home-prior evolution run's
+   * draw sequence is unmoved). Its draws happen STRICTLY AFTER the `homePriorObedience`
+   * block, so enabling it never re-orders an existing draw; flag-off evolution consumes
+   * ZERO RNG for it and an absent optional key is omitted by JSON.stringify (the
+   * production fingerprint 57b0bdab…c673 stands).
+   */
+  homePriorObedienceOffset?: readonly number[];
+}
+
+/**
+ * ⭐ THE FROZEN OFFSET BOUND (A4 S2-P2, contract M-S2.1 "bounded"). Each per-slot
+ * offset lives in [−0.5, +0.5]. RATIONALE, frozen here with its provenance: the
+ * obedience gene's own domain is [0,1] (0 = no agreement, 1 = the A4-P1e-certified
+ * strength ceiling), so ±0.5 is exactly the amount that lets ANY body reach EITHER
+ * end of the certified domain from the neutral team whisper 0.5 (#148's certified
+ * PRIMARY dose) — and no more. It also covers, exactly, every vector the S2-P1
+ * frozen instrument grid priced (spread ±0.3, backLoaded/frontLoaded ±0.4,
+ * singleAnchor +0.5/−0.125 about the matched mean 0.5), so the gene family can
+ * EXPRESS the shapes the census measured without being able to invent a dose
+ * outside the certified span. The bound applies to the OFFSET; `clamp01` applies to
+ * the EFFECTIVE value (obedience + offset), which is what the consumer reads.
+ */
+export const HOME_PRIOR_OBEDIENCE_OFFSET_MAX = 0.5;
+
+/** Slots covered by the offset family = the squad (`TEAM_SIZE` = 6; kept a local
+ *  literal so this module stays free of any `sim/**` runtime import — the tests
+ *  assert it EQUALS `TEAM_SIZE`). Role-blind by contract §3: every slot is born
+ *  absent and mutates under the same law, GK included (the GK never reaches the v3
+ *  station eye, so his slot is inert by the world's own geometry, not by a
+ *  role-derived rule written into the gene). */
+export const HOME_PRIOR_OFFSET_SLOTS = 6;
+
+const clampOffset = (v: number): number => (Number.isFinite(v)
+  ? Math.max(-HOME_PRIOR_OBEDIENCE_OFFSET_MAX, Math.min(HOME_PRIOR_OBEDIENCE_OFFSET_MAX, v))
+  : 0);
+
+/**
+ * A4 S2-P2 (M-S2.1/M-S2.2): the EFFECTIVE per-body obedience for one squad slot =
+ * `clamp01(homePriorObedience + offset_slot)`. Both parts are born absent ⇒ this is
+ * `clamp01(0) = 0` at birth, and with the offsets absent it is `clamp01(obedience)`,
+ * which `homePriorStrength` already maps identically to the raw gene (its own domain
+ * clamp) — i.e. offsets-absent is BIT-IDENTICAL to the uniform whisper. PURE.
+ */
+export function effectiveHomePriorObedience(g: TacticalGenome, slot: number): number {
+  return clamp01((g.homePriorObedience ?? 0) + (g.homePriorObedienceOffset?.[slot] ?? 0));
 }
 
 export const GENE_KEYS = [
@@ -218,6 +284,19 @@ export interface MutateOptions {
    * flips this together with the `eye.v4.homePrior` consumption flag.
    */
   evolveHomePrior?: boolean;
+  /**
+   * A4 S2-P2 (#164.3, the SAME RNG-stream trap): opt-in that lets the dormant
+   * per-slot `homePriorObedienceOffset` family evolve. DEFAULT OFF — every
+   * production evolve.ts call omits it, so the family draws NO RNG and the
+   * flag-off random sequence stays byte-identical to HEAD. It is its OWN named
+   * boolean (#75: every new gate is explicit) rather than a widening of
+   * `evolveHomePrior`, so a home-prior-only run's stream is ALSO unmoved. Its
+   * draws happen ONLY when this is `true` and STRICTLY AFTER the
+   * `homePriorObedience` block, so enabling it never re-orders any existing draw.
+   * When shipped, an S2-P3-grade run flips this together with `evolveHomePrior`
+   * and the `eye.v4.homePrior` consumption flag.
+   */
+  evolveHomePriorOffsets?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -235,12 +314,30 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
   if (opts.evolveHomePrior === true && rng.chance(rate)) {
     out.homePriorObedience = clamp01((out.homePriorObedience ?? 0) + rng.gaussian() * scale);
   }
+  // A4 S2-P2 (#164.3): the per-slot OFFSET family mutates ONLY under its OWN explicit
+  // opt-in and ONLY here — after the GENE_KEYS loop AND after the homePriorObedience
+  // block — so flag-off runs consume ZERO extra RNG draws (byte-identical to HEAD) and
+  // a homePrior-only run's draw sequence is unmoved too. `{ ...g }` above already
+  // carried the family through untouched (born-absent ⇒ stays absent) in the flag-off
+  // path. Role-BLIND (contract §3 BIRTH NEUTRALITY): the same rate/scale law runs over
+  // every squad slot in slot order; each offset is clamped to the frozen ±0.5 bound.
+  if (opts.evolveHomePriorOffsets === true) {
+    const base = out.homePriorObedienceOffset;
+    const next = Array.from(
+      { length: HOME_PRIOR_OFFSET_SLOTS }, (_, i) => clampOffset(base?.[i] ?? 0),
+    );
+    for (let i = 0; i < HOME_PRIOR_OFFSET_SLOTS; i++) {
+      if (rng.chance(rate)) next[i] = clampOffset(next[i] + rng.gaussian() * scale);
+    }
+    out.homePriorObedienceOffset = next;
+  }
   return out;
 }
 
 /** Uniform crossover with occasional blending — child gene is from a, from b, or their mean. */
 export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
+  evolveHomePriorOffsets = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -258,6 +355,28 @@ export function crossoverGenomes(
     out.homePriorObedience = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
   } else if (a.homePriorObedience !== undefined) {
     out.homePriorObedience = a.homePriorObedience;
+  }
+  // A4 S2-P2 (#164.3): the per-slot OFFSET family crosses over ONLY under its OWN
+  // explicit opt-in and ONLY here — after the GENE_KEYS loop AND after the
+  // homePriorObedience block — so flag-off runs draw ZERO extra RNG and a
+  // homePrior-only run is unmoved. ONE draw for the whole family, mirroring the
+  // scalar gene's single from-a / from-b / blend law (the family is one agreement,
+  // not six independent ones). Flag-off ⇒ carry parent A's family through with NO
+  // draw (born-absent ⇒ the key stays absent ⇒ serialization unchanged).
+  if (evolveHomePriorOffsets) {
+    const r = rng.next();
+    const av = a.homePriorObedienceOffset;
+    const bv = b.homePriorObedienceOffset;
+    out.homePriorObedienceOffset = Array.from(
+      { length: HOME_PRIOR_OFFSET_SLOTS },
+      (_, i) => {
+        const ai = clampOffset(av?.[i] ?? 0);
+        const bi = clampOffset(bv?.[i] ?? 0);
+        return r < 0.4 ? ai : r < 0.8 ? bi : (ai + bi) / 2;
+      },
+    );
+  } else if (a.homePriorObedienceOffset !== undefined) {
+    out.homePriorObedienceOffset = a.homePriorObedienceOffset;
   }
   return out;
 }

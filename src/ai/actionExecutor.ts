@@ -16,6 +16,7 @@ import {
 import {
   beyondLineBit, evaluateInSupport, perceivedOffsideLine, widthHeldBit, type BitValue,
 } from './eyeContextBitsV4';
+import { effectiveHomePriorObedience } from '../evolution/genome';
 import { pressureAt } from './perception';
 import {
   ATTACK_FORMATIONS, cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX,
@@ -944,7 +945,16 @@ export function executeAction(p: Player, match: Match, dt: number): void {
         // grant covers p.side (independence, the P1c/P1d idiom).
         if (homeBias === undefined && eye.v4?.homePrior === true
           && (mapGrant === null || mapGrant.side !== p.side)) {
-          const s = homePriorStrength(team.genome.homePriorObedience ?? 0);
+          // A4 S2-P2 (contract M-S2.2, ruling #164.3): the strength is read from THIS
+          // BODY's EFFECTIVE obedience = clamp01(team obedience + HIS slot offset) —
+          // the SAME homePriorStrength map, the SAME closure, the SAME consumption
+          // moment. NO new consumer mechanism and no clamp beyond the gene's own
+          // domain. The offset family is BORN ABSENT everywhere (contract §3 BIRTH
+          // NEUTRALITY), so `effectiveHomePriorObedience` returns clamp01(obedience),
+          // which homePriorStrength maps IDENTICALLY to the raw gene it read before
+          // (its own domain clamp) ⇒ offsets-absent is bit-for-bit the uniform
+          // whisper (proven in tests/a4S2P2PerBodyOffsetGene.test.ts).
+          const s = homePriorStrength(effectiveHomePriorObedience(team.genome, p.index));
           if (s !== 0) {
             const home = ATTACK_FORMATIONS[team.style.formationAtk][p.index];
             if (home !== undefined) {
