@@ -9309,3 +9309,36 @@
 >    mandate; REALITY — a passer who cannot buy time and a
 >    midfield that never shows for the ball are exactly why
 >    real teams cannot play out of a press.
+
+> **COMMANDER RULING #219 (2026-08-10 — the user delegates the
+> #218.3 fork to the VISION test ("按照vision裁一下"); the
+> commander adjudicates: 甲 → 乙 → 丙):**
+>
+> 1. **SEQUENCE RULED: O2-T1 (the look exam) → check-to-ball
+>    contract → progression-value slice.** VISION grounds:
+>    (a) the look is 座2 — the OLDEST user-named missing seat
+>    (2026-07-26, named twice unprompted), already contracted
+>    (O2-LOOK-CONTRACT, five audit clauses PASS) with its T0
+>    seam BANKED (#194) — only the exam remains; (b) causal
+>    order — the census shows possession dying one-touch into
+>    the middle scramble, and the perception wedge (7.9–14.8×,
+>    E-ABSTAIN-UNSEEN ≈69 %) means an unseen receiver does not
+>    exist: SEEING is upstream of SHOWING (乙) which is
+>    upstream of PRICING (丙); (c) information value — F-O2a/b
+>    are arc-redirecting fail branches (staleness-not-the-
+>    cause would re-route the whole perception trunk before
+>    more is built on it); (d) the user's own #189 sequencing
+>    put O2 first; it has queued behind the defensive arc
+>    since #199.5.
+> 2. **QUEUED NEXT STEP (fires on "go"/resume, post-compact)**:
+>    dispatch O2-T1 per the frozen O2-LOOK-CONTRACT §3 — the
+>    WEDGE EXAM (the #186 sizing form re-run with the look
+>    FORCED at eligible moments; success = the wedge falls
+>    toward 1× and E-ABSTAIN-UNSEEN falls; F-O2a staleness-
+>    not-the-cause STOP · F-O2b free-option STOP). The
+>    executor form: stage doc + probe (inherit the #186 sizing
+>    instruments + the o2Look seam's forcedLook channel) +
+>    smoke + verify; the commander launches and adjudicates.
+>    The build-up ruler (#218: constructed share + scramble
+>    share) rides as REPORTED dimensions wherever the exam
+>    frame can carry them.

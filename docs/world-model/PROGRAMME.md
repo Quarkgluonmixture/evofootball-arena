@@ -362,9 +362,15 @@ everywhere; median goal = ONE pass from the regain; ~31 % of
 all goals within 10 s of an own-third loss; own-third TIME
 share 52 % on prod (42 % at MT08 — the tuck-in helps 倒脚).
 Build-up-arc success = constructed share + scramble share
-MOVE. THE FORK SITS AT THE USER (#218.3): 甲 O2-T1 (the look,
-frozen+queued; recommended) / 乙 check-to-ball contract /
-丙 progression-value slice.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+MOVE. **THE FORK WAS DELEGATED TO THE VISION TEST AND RULED
+(#219): 甲 → 乙 → 丙 — the look is the oldest user-named seat
+with its T0 seam already banked, SEEING is upstream of
+SHOWING is upstream of PRICING, and F-O2a/b are
+arc-redirecting information. QUEUED NEXT STEP (on
+"go"/resume): dispatch O2-T1 — the WEDGE EXAM per the frozen
+O2-LOOK-CONTRACT §3 (the #186 sizing form with the look
+FORCED; the #218 build-up ruler rides REPORTED). Then: 乙 the
+check-to-ball contract → 丙 progression value.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
