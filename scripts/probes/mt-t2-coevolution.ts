@@ -31,6 +31,17 @@
  * MODES:  MTT2_MODE=smoke (default) — plumbing only, ADJUDICATES NOTHING
  *         MTT2_MODE=full            — the pre-registered experiment
  *         MTT2_SEEDS=<n>            — accepted in SMOKE ONLY (turns gNDerived RED in full)
+ *         MTT2_RESUME=1             — RESILIENCE ONLY: restore already-finished (pass, seed)
+ *                                     units from the scratch checkpoint (§15.5). Refuses to
+ *                                     resume across a changed HEAD / probe / src / config.
+ *         MTT2_CHECKPOINT=<path>    — the scratch checkpoint file (default
+ *                                     /tmp/mt-t2-checkpoint.jsonl). NEVER committed.
+ *
+ * ⚠ THE CHECKPOINT CHANGES NO MEASUREMENT. It stores the EXACT per-seed unit of work the
+ * uninterrupted path produces and replays it; every pooled level, CI, gate, digest and the
+ * `resultSha256` are recomputed from the union exactly as before, so a resumed run is
+ * BYTE-IDENTICAL to an uninterrupted one (proved at smoke scale in the stage doc's
+ * §CHECKPOINT/RESUME appendix). See §15.5.
  *
  * EXIT SEMANTICS (the commander's monitor reads these):
  *   0 — X-family green, and the outcome is (i) SELECTION ENGAGES + RESTORES, or a MIXED
@@ -43,7 +54,7 @@
  */
 import { createHash } from 'node:crypto';
 import { execSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { formationSpot, runTarget } from '../../src/ai/formations';
 import {
   crossoverGenomes, markSagWeight, mutateGenome, pmLaneConvergenceK, randomGenome,
@@ -695,46 +706,238 @@ interface SeedOut {
 }
 interface Core {
   seeds: SeedOut[]; matchesPlayed: number; gen0Identical: boolean[];
+  /** RESILIENCE ONLY, timing: the true compute cost of pass-1's seeds, summed across
+   *  processes when the run was resumed (skipped seeds contribute their ORIGINAL cost). */
+  costMs: number;
+  restored: string[]; computed: string[];
 }
+
+/* ========================================================================== */
+/* §15.5 CHECKPOINT / RESUME — RESILIENCE ONLY, MEASURES NOTHING              */
+/* ========================================================================== */
+/**
+ * ⭐ WHY THIS EXISTS. The frozen full run (24 seeds × 2 arms × 25 gens × 2 X-DET passes,
+ * ≈ 3 h) was silently killed THREE times between 3 and 75 minutes in by an external killer
+ * that is not OOM and not the user, and that survived every launch channel tried. The probe
+ * wrote its artifact only at the very end, so each kill cost the entire run. This block makes
+ * a kill cost AT MOST ONE SEED.
+ *
+ * ⭐ WHY IT CANNOT MOVE A NUMBER. The checkpointed unit is exactly the `SeedOut` the
+ * uninterrupted loop builds — the two arms' whole `RunOut`s plus the body block — and it is
+ * stored per (PASS, SEED). Nothing pooled is stored: every level, CI, band row, gate, digest
+ * and `resultSha256` is recomputed downstream from the union of restored + freshly computed
+ * seeds, by the same code, in the same order. `SeedOut` is pure data (numbers, booleans,
+ * absent optional gene keys), so a JSON round trip is lossless — with ONE trap handled
+ * explicitly: `JSON.stringify` maps `NaN` to `null`, and a `null` would silently arithmetic
+ * as 0 downstream. Non-finite numbers are therefore encoded with a sentinel and every record
+ * is verified by (a) a payload hash and (b) an encode(decode(encode(x))) === encode(x)
+ * round-trip identity before it is trusted. A record that fails either check is DISCARDED and
+ * its seed is recomputed.
+ *
+ * ⭐ WHY RESUMING IS GUARDED. Resuming across a code change would silently mix two worlds.
+ * The header pins the full git HEAD, a hash of THIS probe file, a hash of `git diff -- src`,
+ * the mode, and a hash of the frozen-config echo (arms, seeds, strides, RNG bases, horizon,
+ * thresholds, band). Any mismatch ⇒ REFUSE, exit 1.
+ *
+ * The file lives under /tmp: it is SCRATCH, never committed, and never read by any gate.
+ */
+const CKPT_PATH = process.env.MTT2_CHECKPOINT ?? '/tmp/mt-t2-checkpoint.jsonl';
+const RESUME = process.env.MTT2_RESUME === '1';
+const PROBE_SELF_PATH = 'scripts/probes/mt-t2-coevolution.ts';
+const gitSay = (cmd: string): string => {
+  try { return execSync(cmd, { encoding: 'utf8' }).trim(); } catch { return 'git-unavailable'; }
+};
+
+/** the NaN-safe transport (see the trap note above) */
+const NONFINITE_TAG = '__nonFinite__';
+const encTransport = (v: unknown): unknown => {
+  if (typeof v === 'number' && !Number.isFinite(v)) {
+    return { [NONFINITE_TAG]: Number.isNaN(v) ? 'NaN' : v > 0 ? 'Infinity' : '-Infinity' };
+  }
+  if (Array.isArray(v)) return v.map(encTransport);
+  if (v !== null && typeof v === 'object') {
+    const o = v as Record<string, unknown>;
+    const out: Record<string, unknown> = {};
+    for (const k of Object.keys(o)) out[k] = encTransport(o[k]);
+    return out;
+  }
+  return v;
+};
+const decTransport = (v: unknown): unknown => {
+  if (Array.isArray(v)) return v.map(decTransport);
+  if (v !== null && typeof v === 'object') {
+    const o = v as Record<string, unknown>;
+    const keys = Object.keys(o);
+    if (keys.length === 1 && keys[0] === NONFINITE_TAG) {
+      const t = o[NONFINITE_TAG];
+      return t === 'NaN' ? Number.NaN : t === 'Infinity' ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
+    }
+    const out: Record<string, unknown> = {};
+    for (const k of keys) out[k] = decTransport(o[k]);
+    return out;
+  }
+  return v;
+};
+const encodeSeedOut = (s: SeedOut): string => JSON.stringify(encTransport(s));
+
+/** the guard: what a checkpoint may be resumed INTO */
+const ckptConfigEcho = {
+  mode: MODE, runSeeds: RUN_SEEDS, runTeams: RUN_TEAMS, runGens: RUN_GENS,
+  runBodyN: RUN_BODY_N, runBase: RUN_BASE, runBodyBase: RUN_BODY_BASE,
+  leagueStride: LEAGUE_STRIDE, genStride: GEN_STRIDE, bodyStride: BODY_STRIDE,
+  eliteN: ELITE_N, rebornN: REBORN_N,
+  mutRate: MUT_RATE, mutScale: MUT_SCALE, rebornRate: REBORN_RATE, rebornScale: REBORN_SCALE,
+  evoRngBase: EVO_RNG_BASE, driftRngBase: DRIFT_RNG_BASE,
+  arms: ARMS.map((a) => ({ id: a.id, evolveMarkSag: a.evolveMarkSag, evolveDefLaneConvergence: a.evolveDefLaneConvergence })),
+  consumeFlags: CONSUME_FLAGS, perceptFlags: PERCEPT_FLAGS, newGenes: NEW_GENES,
+  geneZeroEps: GENE_ZERO_EPS, geneHigh: GENE_HIGH,
+  band: { baseline: BAND_BASELINE, tolerance: BAND_TOLERANCE },
+  readPoints: READ_POINTS, bootstrapSeed: BOOTSTRAP_SEED, resamples: BOOTSTRAP_RESAMPLES,
+  smokeArtifactSha256: seedsDerived.smokeArtifactSha256, seedsStar: seedsDerived.seedsStar,
+};
+const ckptHeader = {
+  kind: 'header' as const,
+  version: 1,
+  headFull: gitSay('git rev-parse HEAD'),
+  probeSha256: existsSync(PROBE_SELF_PATH) ? sha(readFileSync(PROBE_SELF_PATH, 'utf8')) : 'probe-unreadable',
+  srcDiffSha256: sha(gitSay('git diff -- src')),
+  mode: MODE,
+  configSha256: sha(canonical(ckptConfigEcho)),
+};
+type CkptHeader = typeof ckptHeader;
+
+interface RestoredSeed { seed: SeedOut; computeMs: number }
+const restoredSeeds = new Map<string, RestoredSeed>();
+const ckptKey = (pass: number, seedIdx: number): string => `${pass}:${seedIdx}`;
+
+const refuse = (why: string): never => {
+  console.error(`MT-T2 FATAL — REFUSING TO RESUME: ${why}`);
+  console.error(`  checkpoint: ${CKPT_PATH}`);
+  console.error('  Resuming across a changed world would silently mix two worlds. Delete the '
+    + 'checkpoint to start a genuinely fresh run, or check out the commit it was made on.');
+  process.exit(1);
+};
+
+const startCheckpoint = (): void => {
+  const exists = existsSync(CKPT_PATH);
+  if (RESUME && exists) {
+    const lines = readFileSync(CKPT_PATH, 'utf8').split('\n').filter((l) => l.trim() !== '');
+    let hdr: CkptHeader | null = null;
+    let bad = 0;
+    for (const line of lines) {
+      let rec: Record<string, unknown>;
+      try { rec = JSON.parse(line) as Record<string, unknown>; } catch { bad += 1; continue; }
+      if (rec.kind === 'header') { if (hdr === null) hdr = rec as unknown as CkptHeader; continue; }
+      if (rec.kind !== 'seed' || hdr === null) { bad += 1; continue; }
+      const pass = rec.pass as number; const seedIdx = rec.seedIdx as number;
+      const payload = rec.payload as string;
+      if (typeof payload !== 'string' || sha(payload) !== rec.sha) { bad += 1; continue; }
+      let seed: SeedOut;
+      try { seed = decTransport(JSON.parse(payload)) as SeedOut; } catch { bad += 1; continue; }
+      if (encodeSeedOut(seed) !== payload) { bad += 1; continue; }   // lossless round trip or nothing
+      if (seed.seedIdx !== seedIdx || seed.leagueSeed !== RUN_BASE + seedIdx * LEAGUE_STRIDE) { bad += 1; continue; }
+      restoredSeeds.set(ckptKey(pass, seedIdx), { seed, computeMs: (rec.computeMs as number) ?? 0 });
+    }
+    if (hdr === null) refuse('the checkpoint has no readable header record (corrupt or truncated).');
+    const h = hdr as CkptHeader;
+    const mismatches = ([
+      ['git HEAD', h.headFull, ckptHeader.headFull],
+      ['probe file', h.probeSha256, ckptHeader.probeSha256],
+      ['src working tree', h.srcDiffSha256, ckptHeader.srcDiffSha256],
+      ['mode', h.mode, ckptHeader.mode],
+      ['frozen config', h.configSha256, ckptHeader.configSha256],
+    ] as const).filter(([, was, now]) => was !== now);
+    if (mismatches.length > 0) {
+      refuse(`${mismatches.length} guard field(s) changed since the checkpoint was written — `
+        + mismatches.map(([w, was, now]) => `${w}: ${String(was)} → ${String(now)}`).join(' · '));
+    }
+    banner(`RESUME — checkpoint ${CKPT_PATH} accepted (HEAD ${ckptHeader.headFull.slice(0, 7)} · `
+      + `config ${ckptHeader.configSha256.slice(0, 12)}) · ${restoredSeeds.size} (pass, seed) unit(s) `
+      + `restored${bad > 0 ? ` · ${bad} unusable record(s) DISCARDED and will be recomputed` : ''}`);
+    return;
+  }
+  if (RESUME && !exists) banner(`RESUME requested but no checkpoint at ${CKPT_PATH} — starting FRESH.`);
+  writeFileSync(CKPT_PATH, `${JSON.stringify(ckptHeader)}\n`);
+  banner(`checkpoint ARMED at ${CKPT_PATH} (fresh header; one line per finished (pass, seed) unit)`);
+};
+const appendCheckpoint = (pass: number, s: SeedOut, computeMs: number): void => {
+  const payload = encodeSeedOut(s);
+  try {
+    appendFileSync(CKPT_PATH, `${JSON.stringify({
+      kind: 'seed', pass, seedIdx: s.seedIdx, leagueSeed: s.leagueSeed, computeMs,
+      sha: sha(payload), payload,
+    })}\n`);
+  } catch (e) {
+    banner(`⚠ checkpoint append FAILED (${String(e)}) — the run continues, unprotected.`);
+  }
+};
+startCheckpoint();
+
+/** the matches a finished seed unit is charged with — one definition for BOTH the freshly
+ *  computed and the restored path, so the accounting cannot drift between them. */
+const matchesOfSeed = (s: SeedOut): number =>
+  ARM_IDS.reduce((a, arm) => a + s.runs[arm].matchesPlayed, 0) + s.body.evolved.length * 2;
 
 const computeCore = (pass: number): Core => {
   const seeds: SeedOut[] = [];
   let matchesPlayed = 0;
+  let costMs = 0;
+  const restored: string[] = []; const computed: string[] = [];
   const gen0Identical: boolean[] = [];
   const t0 = Date.now();
   for (let i = 0; i < RUN_SEEDS; i++) {
     const leagueSeed = RUN_BASE + i * LEAGUE_STRIDE;
-    const runs = {} as Record<ArmId, RunOut>;
-    for (const arm of ARM_IDS) {
-      const r = runEvolution(arm, leagueSeed, i, RUN_TEAMS, RUN_GENS);
-      runs[arm] = r;
-      matchesPlayed += r.matchesPlayed;
-      banner(`pass ${pass} · seed ${i + 1}/${RUN_SEEDS} (${leagueSeed}) · ${arm} done · `
-        + `${r.gens.length} gens · ${((Date.now() - t0) / 1000).toFixed(1)} s`);
+    const already = restoredSeeds.get(ckptKey(pass, i));
+    let seedOut: SeedOut;
+    if (already !== undefined) {
+      // ⭐ RESILIENCE ONLY: this exact unit of work was already computed by an earlier process
+      // at the SAME HEAD / probe / src / config (guarded in §15.5). Nothing is approximated.
+      seedOut = already.seed;
+      costMs += already.computeMs;
+      restored.push(ckptKey(pass, i));
+      banner(`pass ${pass} · seed ${i + 1}/${RUN_SEEDS} (${leagueSeed}) · SKIPPED — restored from `
+        + `checkpoint (originally computed in ${(already.computeMs / 1000).toFixed(1)} s) · `
+        + `${((Date.now() - t0) / 1000).toFixed(1)} s`);
+    } else {
+      const seedT0 = Date.now();
+      const runs = {} as Record<ArmId, RunOut>;
+      for (const arm of ARM_IDS) {
+        const r = runEvolution(arm, leagueSeed, i, RUN_TEAMS, RUN_GENS);
+        runs[arm] = r;
+        banner(`pass ${pass} · seed ${i + 1}/${RUN_SEEDS} (${leagueSeed}) · ${arm} done · `
+          + `${r.gens.length} gens · ${((Date.now() - t0) / 1000).toFixed(1)} s`);
+      }
+      // --- the post-evolution body read on the ARMED arm's final population ----
+      const finalPop = runs.ARMED.finalPop;
+      const pairs: [number, number][] = [];
+      for (let a = 0; a < RUN_TEAMS && pairs.length < RUN_BODY_N; a++) {
+        for (let b = a + 1; b < RUN_TEAMS && pairs.length < RUN_BODY_N; b++) pairs.push([a, b]);
+      }
+      while (pairs.length < RUN_BODY_N) pairs.push(pairs[pairs.length % Math.max(1, pairs.length)]);
+      const evolved: BodyRow[] = []; const zeroedRows: BodyRow[] = [];
+      pairs.forEach(([a, b], j) => {
+        const seed = RUN_BODY_BASE + i * BODY_STRIDE + j;
+        evolved.push(walkBody(seed, finalPop[a], finalPop[b]));
+        zeroedRows.push(walkBody(seed, zeroed(finalPop[a]), zeroed(finalPop[b])));
+      });
+      banner(`pass ${pass} · seed ${i + 1}/${RUN_SEEDS} · body instrument done (${pairs.length} pairs × 2 doses)`);
+      seedOut = { seedIdx: i, leagueSeed, runs, body: { evolved, zeroedRows } };
+      const seedMs = Date.now() - seedT0;
+      costMs += seedMs;
+      computed.push(ckptKey(pass, i));
+      // the unit is COMPLETE (both arms + the body block) — bank it before anything else can
+      // kill the process; a kill from here on costs at most the NEXT seed.
+      appendCheckpoint(pass, seedOut, seedMs);
     }
     /** gGen0: the two arms are the SAME WORLD at generation 1 (identical founders, both genes
      *  absent in both arms ⇒ the seam branches are entered and both weights are 0). */
-    gen0Identical.push(canonical(runs.ARMED.gens[0]) === canonical({
-      ...runs.CONTROL.gens[0], driftMean: null, driftSd: null,
+    gen0Identical.push(canonical(seedOut.runs.ARMED.gens[0]) === canonical({
+      ...seedOut.runs.CONTROL.gens[0], driftMean: null, driftSd: null,
     }));
-    // --- the post-evolution body read on the ARMED arm's final population ----
-    const finalPop = runs.ARMED.finalPop;
-    const pairs: [number, number][] = [];
-    for (let a = 0; a < RUN_TEAMS && pairs.length < RUN_BODY_N; a++) {
-      for (let b = a + 1; b < RUN_TEAMS && pairs.length < RUN_BODY_N; b++) pairs.push([a, b]);
-    }
-    while (pairs.length < RUN_BODY_N) pairs.push(pairs[pairs.length % Math.max(1, pairs.length)]);
-    const evolved: BodyRow[] = []; const zeroedRows: BodyRow[] = [];
-    pairs.forEach(([a, b], j) => {
-      const seed = RUN_BODY_BASE + i * BODY_STRIDE + j;
-      evolved.push(walkBody(seed, finalPop[a], finalPop[b]));
-      zeroedRows.push(walkBody(seed, zeroed(finalPop[a]), zeroed(finalPop[b])));
-      matchesPlayed += 2;
-    });
-    banner(`pass ${pass} · seed ${i + 1}/${RUN_SEEDS} · body instrument done (${pairs.length} pairs × 2 doses)`);
-    seeds.push({ seedIdx: i, leagueSeed, runs, body: { evolved, zeroedRows } });
+    matchesPlayed += matchesOfSeed(seedOut);
+    seeds.push(seedOut);
   }
-  return { seeds, matchesPlayed, gen0Identical };
+  return { seeds, matchesPlayed, gen0Identical, costMs, restored, computed };
 };
 
 const passStart = Date.now();
@@ -744,7 +947,11 @@ const coreB = computeCore(2);
 const digestA = sha(canonical(coreA.seeds));
 const digestB = sha(canonical(coreB.seeds));
 const xDet = digestA === digestB;
-const msPerMatchMeasured = passMs / Math.max(1, coreA.matchesPlayed);
+/** ⚠ the ONE timing number with a job (it feeds the frozen §4.1 seed rule) — so it is the
+ *  SUM OF THE PER-SEED COMPUTE COSTS of pass 1, not this process's wall clock: on a resumed
+ *  run a restored seed contributes the cost it ACTUALLY took in the process that computed it.
+ *  It therefore stays a genuine per-match cost across a kill. It rides OUTSIDE resultSha256. */
+const msPerMatchMeasured = coreA.costMs / Math.max(1, coreA.matchesPlayed);
 
 /* ========================================================================== */
 /* §17 THE MEASURED RESULT                                                    */
@@ -1346,6 +1553,21 @@ writeFileSync(OUT_PATH, `${JSON.stringify({
     note: 'CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the '
       + 'one timing number with a job: the frozen seed rule reads it.',
   },
+  resumeContextOnly: {
+    checkpointPath: CKPT_PATH,
+    resumeRequested: RESUME,
+    guard: ckptHeader,
+    passes: [
+      { pass: 1, restored: coreA.restored, computed: coreA.computed, costMs: coreA.costMs },
+      { pass: 2, restored: coreB.restored, computed: coreB.computed, costMs: coreB.costMs },
+    ],
+    note: 'CONTEXT ONLY, and OUTSIDE resultSha256 (the #197-M1 form): which (pass, seed) units '
+      + 'this PROCESS computed and which it restored from the /tmp scratch checkpoint. The '
+      + 'checkpoint stores the per-seed unit of work verbatim and every pooled quantity, gate, '
+      + 'digest and the resultSha256 are recomputed from the union, so a resumed run is '
+      + 'byte-identical to an uninterrupted one — which is exactly why this provenance rides '
+      + 'the envelope and is hashed NOWHERE.',
+  },
 }, null, 2)}\n`);
 
 /* ========================================================================== */
@@ -1410,6 +1632,11 @@ o(`X-FAMILY ${xPass ? 'GREEN' : '*** RED ***'}: `
 o(`X-DET digest ${digestA}`);
 o(`resultSha256 ${resultSha256}`);
 o(`wall ${(Date.now() - wall0) / 1000}s · ${round(msPerMatchMeasured, 1)} ms/match · matches/pass ${coreA.matchesPlayed} · artifact ${OUT_PATH}`);
+if (coreA.restored.length + coreB.restored.length > 0) {
+  o(`RESUMED — ${coreA.restored.length + coreB.restored.length} of ${RUN_SEEDS * 2} (pass, seed) units `
+    + `restored from ${CKPT_PATH}; the rest recomputed. Every pooled level, CI, gate, digest and `
+    + 'the resultSha256 above are recomputed from the union — resilience only, nothing measured differs.');
+}
 o(`SIZING — seeds* would be ${seedsDerived.seedsStar} (affordable ${seedsDerived.affordable}, cap ${seedsDerived.capBinds}) at ${seedsDerived.msPerMatchPrior} ms/match`);
 o(`VERDICT: ${verdict}`);
 if (MODE === 'smoke') o('⚠ SMOKE ADJUDICATES NOTHING — every number above is plumbing evidence, not a finding.');

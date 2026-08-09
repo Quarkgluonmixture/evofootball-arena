@@ -410,6 +410,133 @@ MTT2_MODE=full nohup npx tsx scripts/probes/mt-t2-coevolution.ts \
   the horizon** (the horizon is traced; the seed count is a budget).
 * Exit 0 ⇒ (i) or MIXED · 1 ⇒ INVALID · 2 ⇒ (ii) or (iii), a pre-named **negative finding**.
 
+## §CHECKPOINT/RESUME — the resilience appendix (added after the run was killed three times)
+
+⚠ **Nothing in §2–§8 moves here.** This section adds **no measurement, no arm, no seed, no
+threshold and no gate**. It is a crash-resilience wrapper around the same computation, and
+the receipts below are the proof that it is exactly that.
+
+### Why
+
+The frozen full run (24 seeds × 2 arms × 25 gens × 2 X-DET passes, ≈ 3 h) was **silently
+killed three times**, at roughly 3 min, ~5 min and ~75 min in, by a killer that was **not
+OOM and not the user**, and that survived every launch channel tried (foreground, `nohup`,
+the user's own terminal). The probe wrote its artifact **only at the very end**, so each kill
+cost **everything**. The fix does not identify the killer — it makes a kill cost **at most
+one league seed**.
+
+### The mechanism (probe §15.5, `scripts/probes/mt-t2-coevolution.ts`)
+
+```text
+checkpoint file   /tmp/mt-t2-checkpoint.jsonl      (override: MTT2_CHECKPOINT=<path>)
+                  SCRATCH — under /tmp, never committed, read by NO gate
+format            JSONL: line 1 = the guard header, then ONE line per FINISHED (pass, seed)
+unit of work      exactly the `SeedOut` the uninterrupted loop builds: BOTH arms' whole
+                  RunOut (every generation's stat row + the final population) + the whole
+                  body block (evolved + zeroed rows). Written only after the unit COMPLETES.
+per (pass, seed)  X-DET's two passes are checkpointed SEPARATELY, so pass 2 is resumable too
+                  and the X-DET comparison logic is untouched.
+stored per line   pass · seedIdx · leagueSeed · computeMs · sha256(payload) · payload
+resume            MTT2_RESUME=1 — validate the guard, restore finished units, recompute the
+                  rest. Default (no env) = today's behaviour exactly, and it checkpoints as
+                  it goes, so the FIRST run is already protected.
+progress          a restored seed logs `SKIPPED — restored from checkpoint (originally
+                  computed in N s)`, so the log never claims work it did not do.
+```
+
+**Why it cannot move a number.** *Nothing pooled is stored.* Every level, CI, band row,
+predicate, gate, X-DET digest and the `resultSha256` are recomputed downstream **from the
+union of restored + freshly computed seeds, by the same code, in the same order** — the run
+is deterministic, so a restored unit is the same bytes the fresh path would have produced.
+
+⚠ **The one real trap, handled explicitly:** `JSON.stringify` maps **`NaN` → `null`**, and a
+`null` would then arithmetic as **0** downstream instead of dropping out of a
+`Number.isFinite` filter. `SeedOut` genuinely contains NaN — **92 of them in the 2-seed
+smoke checkpoint** (`fitnessGeneCorrelation` when a gene column is constant ⇒ Pearson
+undefined; `bodyLatGap` / `shortfall` / `detach` when a body match yields zero episodes). So
+non-finite numbers travel with a sentinel, and **every record is trusted only after it passes
+both** (a) a payload `sha256` and (b) an `encode(decode(encode(x))) === encode(x)` round-trip
+identity plus a `leagueSeed` match. A record failing either check is **discarded and its seed
+recomputed** — a half-written trailing line after a `kill -9` can therefore never be believed.
+
+**Why resuming is guarded.** Resuming across a code change would silently mix two worlds. The
+header pins the **full git HEAD**, a **hash of the probe file itself**, a hash of
+`git diff -- src`, the **mode**, and a hash of the **frozen-config echo** (arms, seed count,
+bases/strides, RNG bases, horizon, thresholds, band, read points, stats bases, the smoke
+artifact hash the seed rule read). **Any mismatch ⇒ REFUSE, exit 1** — never a partial resume.
+
+**Two disclosures, stated rather than implied:**
+* `sizing.msPerMatch` (the one timing number with a job — the §4.1 seed rule reads it) is now
+  the **sum of the per-seed compute costs** of pass 1 rather than this process's wall clock,
+  so a restored seed contributes the cost it actually took in the process that computed it
+  and the number stays a genuine per-match cost across a kill. For an uninterrupted run the
+  two definitions differ only by loop overhead (the committed smoke reproduces bit-for-bit —
+  see the receipts). It rides **outside** `resultSha256`, as does the new
+  `resumeContextOnly` provenance block (#197-M1: nothing commit- or process-dependent inside
+  the hashed body).
+* **X-DET keeps its meaning across a kill**: a pass-2 record exists only if some process
+  genuinely computed pass 2, so the two digests still compare two independent executions —
+  they may simply have happened in two different processes.
+
+### Receipts (smoke scale, `MTT2_OUT` pointed at `/tmp` so no committed artifact is touched)
+
+**1 — the equivalence proof: fresh ≡ killed-then-resumed.** 2 smoke seeds, checkpointing on
+in both runs. Run (b) was killed with a **real `kill -9` of the whole process tree** 13 s in
+(after 1 of 4 `(pass, seed)` units had banked and with **no artifact on disk**), then re-run
+with `MTT2_RESUME=1`, which restored 1 unit and recomputed 3.
+
+```text
+(a) fresh, uninterrupted   resultSha256 32f6b9a0dfed6dd1a776447b81b33c5a9fd5a24230e185aff4220e9e94598eb3
+(b) kill -9 → MTT2_RESUME=1 resultSha256 32f6b9a0dfed6dd1a776447b81b33c5a9fd5a24230e185aff4220e9e94598eb3
+                            BYTE-IDENTICAL ✔   (X-DET digest also identical:
+                            16c7d0c53f5a6c3c77a2134956678ddbcc411c8f43be09a132e78e807a836349)
+```
+
+The two artifacts' **hashed bodies are byte-identical**; the files differ **only** in the
+envelope that is hashed nowhere (`headContextOnly`, `wallContextOnly`, `sizing`,
+`resumeContextOnly`). Both runs exit **0**, X-FAMILY **GREEN**, all twelve gates ok —
+including `gNDerived` and `gYield`.
+
+**2 — the committed smoke still reproduces bit-for-bit.** The default smoke (no env at all,
+the §9 configuration) re-run on the patched probe:
+
+```text
+committed artifact resultSha256 e443378f0782d4a1f7ba7cb91d83bf67b0a72e608cbf7cb59a5593324f010431
+re-run on patched probe        e443378f0782d4a1f7ba7cb91d83bf67b0a72e608cbf7cb59a5593324f010431
+X-DET digest                   1060c97b131b3ce68c43a0522e9b84bf0e7684c84bdd89524b07a3f27e54db16   (= §9's)
+```
+
+i.e. the §9 evidence block above is **unchanged by this fix**, exit 0, X-FAMILY GREEN.
+
+**3 — the guard refuses rather than mixing worlds** (all exit **1**, no partial resume):
+
+```text
+tampered HEAD + probe hash → "REFUSING TO RESUME: 2 guard field(s) changed … git HEAD: 000… →
+                              2a1ec32… · probe file: deadbeef… → 5645b8b1…"
+same checkpoint, MTT2_SEEDS=3 → "… 1 guard field(s) changed … frozen config: 210c7a65… → aff67dc1…"
+```
+
+**4 — a corrupt trailing line is discarded, not believed**: a truncated record appended to a
+good checkpoint gives `4 (pass, seed) unit(s) restored · 1 unusable record(s) DISCARDED and
+will be recomputed`, exit 0, and the **same** `resultSha256 32f6b9a0…98eb3`.
+
+`npx tsc --noEmit` is clean; `src/**` is untouched (`xSrcZero` ok in every run above).
+
+### Relaunching
+
+The §LAUNCH command is unchanged and stays the source of truth. After a kill, relaunch the
+**same** command with `MTT2_RESUME=1` prepended:
+
+```bash
+cd /Users/jamie/Documents/Promptfoo/evofootball-arena && \
+MTT2_MODE=full MTT2_RESUME=1 nohup npx tsx scripts/probes/mt-t2-coevolution.ts \
+  > /tmp/mt-t2-coevolution.log 2>&1 &
+```
+
+Still **no `MTT2_SEEDS`** (an override turns `gNDerived` RED). If the guard refuses, the tree
+moved: either check out the commit the checkpoint was made on, or delete
+`/tmp/mt-t2-checkpoint.jsonl` and pay for a genuinely fresh run.
+
 ## §RESULT — the run
 
 *(empty by design — the commander fills this from the committed artifact, adjudicating from
