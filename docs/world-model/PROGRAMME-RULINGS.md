@@ -8710,3 +8710,65 @@
 >    N shows up as unresolved CIs (an honest inconclusive,
 >    never a false pass). Adjudication from the artifact
 >    against the frozen §5 predicates; nothing re-cut.
+
+> **COMMANDER RULING #204 (2026-08-09 — MT-T1 ADJUDICATED:
+> PRIMARY PASS — the #199-null BODY contrasts RESOLVE (the sag
+> delivers the tuck-in, compression without clump, glue
+> softens) — but the FULL dose deflates the offensive
+> equilibrium (goals −27 %, headers −46 % at MTTOP/BOTHTOP;
+> formally no STOP by the ∀ predicate since PMTOP holds the
+> band); the dose/shape fork returns to the USER):**
+>
+> 1. **CLEAN RUN** (EXIT 0, N = 800, X-FAMILY GREEN all ten
+>    incl. gInherit; artifact committed `fcbf7148…8ef2`).
+>    Adjudicated from the PER-ARM rows per #203-L4. §RESULT
+>    filled by the commander.
+> 2. **H-MT's DELIVERY HALF IS CONFIRMED**: body −2.41 [−3.23,
+>    −1.58] at MTTOP, −2.80 [−3.52, −2.00] at BOTHTOP;
+>    shortfall and detachment FALL resolvedly (detachment
+>    better than the not-up bar); the sag fired on
+>    77,848/77,848 slack-positive weak-side ticks, tightened
+>    ZERO (stance 1.88 → 6.62 m); ⭐ the ask stayed NULL at
+>    MTTOP — the body compressed WITHOUT the station ask
+>    moving: the mark channel itself carries the tuck-in, and
+>    gating on the BODY (not the steer label, still ~81 %
+>    markStance) was the right call. Guards: spreadYOut FALLS
+>    (−0.70/−0.90), spacing/dupRun deep inside NI — no clump.
+>    Mark drift REPORTED: far-side share −7.9 pp / −12.2 pp
+>    (the #188 glue softens), markShare unchanged (assignment
+>    kept), distToMark +2.2 m (= the sag). Offsides FALL
+>    (−0.71/−0.84). Replication note: PMTOP body −0.97 [−1.76,
+>    −0.20] vs #199's null — overlapping CIs on fresh seeds,
+>    read as a small borderline PM-alone effect.
+> 3. ⭐ **THE COST FINDING**: at gene = 1 (both teams) the
+>    world turns sharply more defensive — goals 2.195 → 1.61
+>    (−27 %), headers −46 %, crosses −26 %, longBalls −41 %;
+>    MTTOP/BOTHTOP blow the band on 4/5 gated dimensions while
+>    the CONTROL holds it. Formally NOT F-MT-b (PMTOP, a
+>    body-moving arm, holds the band — the ∀ predicate; the
+>    #203-L4 caveat scenario realized). Substantively: the
+>    finely-tuned-equilibrium lesson in its defensive mirror —
+>    a working defence suppresses the aerial/wide channel;
+>    the co-evolution precedent (the vision/positioning arc:
+>    attack catches up under selection) names the balance
+>    channel; intermediate doses UNMEASURED (top-dose-only
+>    design).
+> 4. **DISPOSITIONS**: both seams stay BANKED-DORMANT (Road B;
+>    fingerprint unchanged; nothing ships). The 乙 question
+>    (#193.1) is now ANSWERED at instrument grain: the mark
+>    channel was the block, and pricing the STANCE (not
+>    changing selection) un-blocks it — S1/S2/S4 stay
+>    inventoried, none needed for this arc. **THE FORK IS THE
+>    USER'S (决策点人话先行, dual-checked per #201.1c)**: (甲,
+>    recommended) MT-T2 = a CO-EVOLUTION live A/B — arm
+>    `evolveMarkSag` + `evolveDefLaneConvergence`, let
+>    selection set the dose and measure where the population +
+>    equilibrium settle, THEN play-test the evolved world (the
+>    vision-attr precedent: don't hand-tune the dose; the
+>    density precedent: watchability is the user's play-test
+>    call); (乙) a dose-ladder addendum first (~15 min, find
+>    the body-moves-band-holds knee — but that knee is a
+>    hand-picked dose, weaker on VISION); (丙) play-test the
+>    top-dose world as-is (fastest eyes-on; that world scores
+>    −27 % — the user judges watchability directly). O2-T1
+>    stays queued regardless (#199.5).

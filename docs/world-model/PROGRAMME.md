@@ -267,12 +267,23 @@ new gInherit HARD gate pins 19 defining lines verbatim),
 sag-fired instrument (SAG_MATERIAL_M 1.4 m traced), the #198
 guard set incl. goals; N = 800 (the seed-budget cap binds,
 honestly stated); verify PASS (1 MEDIUM + 3 LOW
-disclosure-layer, corrected in place #203). Success = the
-#199 null BODY contrasts resolve at MT-top AND both-top;
-F-MT-a/b/c STOP. **The full battery is RUNNING (seeds
-12,313,200–999, ~15 min); adjudication ruling next.** QUEUED
-after: adjudicate → user play-test gate; O2-T1 stays queued
-(#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+disclosure-layer, corrected in place #203). **MT-T1 ADJUDICATED (#204): PRIMARY PASS** — body −2.41
+(MTTOP) / −2.80 (BOTHTOP) [the #199 nulls RESOLVE], sag fired
+77,848/77,848 (stance 1.88→6.62 m), ⭐ the ask stayed NULL at
+MTTOP (the mark channel itself carries the tuck-in; gate-on-
+the-body validated), spreadY falls (no clump), far-side glue
+softens (−7.9/−12.2 pp), assignment kept. ⭐ **THE COST
+FINDING: at gene = 1 the world deflates — goals −27 %,
+headers −46 %, crosses −26 %, longBalls −41 % (band FAIL 4/5
+at MTTOP/BOTHTOP; formally no STOP — PMTOP holds the band, ∀
+predicate; the #203-L4 scenario realized).** The 乙 question
+(#193.1) is ANSWERED: pricing the stance un-blocks the mark
+channel; S1/S2/S4 not needed. Both seams BANKED-DORMANT.
+**THE FORK SITS AT THE USER (#204.4): 甲 MT-T2 co-evolution
+live A/B (arm both opt-ins, selection sets the dose, then
+play-test the evolved world — recommended) / 乙 dose-ladder
+addendum (hand-picked knee) / 丙 play-test the top-dose world
+as-is (−27 % goals).** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

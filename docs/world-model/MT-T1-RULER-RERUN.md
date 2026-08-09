@@ -622,6 +622,56 @@ cd /Users/jamie/Documents/Promptfoo/evofootball-arena && \
 
 ## §RESULT — the gates run
 
-*(Empty by design. To be filled by the COMMANDER at adjudication — every number quoted
-FROM the committed `data/mt-t1-ruler-rerun.json` / its stdout; recompute with
-`MTT1_MODE=full npx tsx scripts/probes/mt-t1-ruler-rerun.ts`.)*
+*(Filled by the COMMANDER at adjudication, ruling #204 — every number quoted FROM the
+committed [`data/mt-t1-ruler-rerun.json`](data/mt-t1-ruler-rerun.json) / its stdout;
+recompute with `MTT1_MODE=full npx tsx scripts/probes/mt-t1-ruler-rerun.ts`.)*
+
+**Run**: 2026-08-09, HEAD `82b0a08`, N = 800 (seeds 12,313,200–999), 5 arms × 2 X-DET
+passes, wall 755.4 s, **EXIT = 0**. `resultSha256 fcbf7148…8ef2` · X-DET `39ea1c81…d4b7`
+· X-FP-PROD unchanged. **X-FAMILY GREEN (all ten).** Adjudicated from the PER-ARM rows
+(the #203-L4 discipline), not the verdict line.
+
+**PRIMARY — PASS. The #199-null BODY contrasts RESOLVE:**
+
+```
+  PMTOP     body -0.967 [-1.756, -0.203] ✔ · shortfall -0.647 ✔ · detach -0.553 [-1.202, +0.089]
+  MTTOP     body -2.411 [-3.226, -1.581] ✔ · shortfall -2.002 ✔ · detach -1.986 ✔ (falls)
+  BOTHTOP   body -2.796 [-3.523, -1.997] ✔ · shortfall -2.491 ✔ · detach -2.454 ✔ (falls)
+```
+
+The sag FIRES exactly as designed (weak-side in-trigger stance 1.88 → 6.62 m at MTTOP,
+77,848/77,848 slack-positive ticks sagged, ZERO tightened) and — the load-bearing
+surprise — **the ask stays NULL at MTTOP (−0.15 [−0.42, +0.12])**: the body compressed
+~2.4 m WITHOUT the station ask moving. The sag delivers the tuck-in through the mark
+channel itself; the steer label stays markStance (~81 % at BOTHTOP) while the BODY
+moves — the contract's gate-on-the-body choice validated. Replication note, honest:
+PMTOP's body here is −0.97 [−1.76, −0.20] vs #199's null [−1.15, +0.47] — overlapping
+CIs on fresh seeds; read as a small borderline PM-alone effect, not a contradiction.
+
+**F-MT-a / F-MT-b / F-MT-c — NONE fired** (F-MT-b's ∀ quantifier: PMTOP holds the band,
+so "every body-moving arm fails" is false). **GUARD-NI passes at every arm** — spreadYOut
+FALLS (MTTOP −0.70, BOTHTOP −0.90 vs tol ±1.60), spacing/dupRun deep inside tolerance:
+compression without clump, again. Mark drift (REPORTED): far-side share FALLS resolvedly
+(MTTOP −7.9 pp, BOTHTOP −12.2 pp), distToMark +2.2–2.3 m (= the sag), markShare
+unchanged (assignment kept, as designed). Offside flag: offsides FALL (MTTOP −0.71,
+BOTHTOP −0.84 per match) — a fall, not the rise the flag watches.
+
+⭐ **THE COST FINDING (formally not a STOP; substantively THE result the fork is about)**:
+**MTTOP and BOTHTOP blow the equilibrium band on 4 of 5 gated dimensions** —
+
+```
+  BAND MTTOP   FAIL: goals 1.614 vs [2.035, 2.754] OUT · crosses 1.679 OUT ·
+               headers 4.463 OUT · longBalls 3.333 OUT · cutbacks 2.986 ok
+  BAND BOTHTOP FAIL: goals 1.666 OUT · crosses 1.760 OUT · headers 4.514 OUT ·
+               longBalls 3.164 OUT · cutbacks 2.950 ok
+```
+
+At the FULL dose (gene = 1, both teams), a defence that tucks in properly suppresses the
+aerial/wide attacking channel wholesale: goals −27 %, headers −46 %, crosses −26 %,
+long balls −41 % vs the ABSENT control (2.195 → 1.61). The control itself holds the band
+(no substrate drift excluded). This is the finely-tuned-equilibrium lesson in its
+defensive mirror: a one-sided defensive improvement deflates scoring — the co-evolution
+precedent says selection (attack's own counters) is the balance channel, and this exam
+dosed defence only, at maximum, symmetrically. Intermediate doses are UNMEASURED (the
+2×2 design ran top dose only). **The fork returns to the user: the arc's exit is the
+play-test, and the dose/shape of the world to play-test is the decision.**
