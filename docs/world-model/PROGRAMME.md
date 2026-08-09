@@ -295,9 +295,15 @@ not silently drop the question the stage exists to answer;
 X-DET unchanged, smoke re-run, new resultSha256
 e443378f…0431); pre-registered adjudication note: ENGAGES is
 read WITH the neutral-drift shadow + fitness–gene correlation.
-**THE LONG RUN IS RUNNING (24 league seeds × 2 arms × 25
-generations, ~3 h; adjudication ruling next).**** O2-T1 stays
-queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**⚠ THE LONG RUN WAS INTERRUPTED TWICE (2026-08-09): launch 1
+died to overnight system sleep at pass 2 seed 12/24 (~2/3
+done, no artifact — the probe writes only at the end); launch
+2 (under caffeinate) was STOPPED ~5 min in — different shape,
+likely deliberate. The commander does NOT relaunch a third
+time unprompted; the relaunch decision (when / harness-vs-
+detached / same-or-smaller SEEDS by the frozen budget rule)
+sits with the user. The run is deterministic — nothing but
+time is lost.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
