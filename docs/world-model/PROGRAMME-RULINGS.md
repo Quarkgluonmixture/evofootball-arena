@@ -8949,3 +8949,32 @@
 >    (selection has spoken: indifferent); REALITY — tactical
 >    tightness is a coach-set dial in real football, and the
 >    coach rung is this dial's eventual home.
+
+> **COMMANDER RULING #209 (2026-08-09 — the user rules 甲: the
+> DOSE LADDER; dispatched):**
+>
+> 1. **USER RULING RECORDED — 甲.** A ~15 min ladder battery
+>    finds the play-test dose: arms = ABSENT control + BOTH
+>    genes equal at {0.2, 0.4, 0.6, 0.8} (the coupled world
+>    the user would play; 1.0 is already measured deflated,
+>    0.2 already measured healthy). Instruments = the
+>    MT-T1/PM-T1 battery form verbatim (body + band incl.
+>    goals + GUARD-NI + offside; swallow/drift REPORTED); the
+>    frozen N rule; fresh seeds ≥ 12,420,000; stats base ≥
+>    104,200 (#163).
+> 2. ⭐ **THE KNEE RULE, frozen ex ante (no cherry-picking
+>    after sight)**: the play-test dose = the LARGEST dose d
+>    whose arm (a) holds the band on EVERY gated dimension
+>    (control-gated, the inherited caveat), (b) passes
+>    GUARD-NI, and (c) has a resolvedly negative bodyLatGap.
+>    If no dose ≥ 0.4 qualifies, the entry builds at 0.2 (the
+>    measured-healthy anchor); if ALL qualify, 0.8. The knee
+>    is an EXHIBIT dose for the user's play-test verdict (the
+>    density precedent), not a ship decision — Road B binds
+>    until the play-test rules.
+> 3. **SEQUENCE**: ladder executor (stage doc + probe
+>    inheriting the ruler instruments + smoke + verify) → the
+>    commander launches (short battery; the harness channel,
+>    detached fallback per #207) → adjudicate → the play-test
+>    ENTRY builds at the knee (the #168/#185 form) → the
+>    user's eyes.

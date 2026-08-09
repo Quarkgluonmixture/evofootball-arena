@@ -315,13 +315,15 @@ MAX-DOSE artifact: at drift dose ≈ 0.2 the armed world sits
 band confounded by BOTH arms drifting high on goals — the
 #206 amendment correctly blocked a fake (i)). ⭐ The body
 still compresses at gene ≈ 0.2: bodyLatGap −0.702 [−1.147,
-−0.241]. DISPOSITION = the (ii) consequence: THE PLAY-TEST
-DOSE DECISION SITS AT THE USER — anchors: gene ≈ 0.2
-(healthy world, subtle −0.7 m tuck-in) vs gene = 1 (deflated
-−27 % goals, dramatic −2.4 m); a ~15 min ladder can find the
-knee on demand; the entry builds per #168/#185 at the ruled
-dose. Both seams stay banked-dormant.** O2-T1 stays queued
-(#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+−0.241]. DISPOSITION = the (ii) consequence: the dose returned
+to the user. **THE USER RULED 甲 (#209): THE DOSE LADDER** —
+arms = control + BOTH genes equal at {0.2, 0.4, 0.6, 0.8},
+the MT-T1 battery form verbatim, ⭐ the KNEE RULE frozen ex
+ante (largest dose holding band + GUARD-NI + resolved body;
+none ≥ 0.4 ⇒ 0.2; all ⇒ 0.8); then the play-test ENTRY builds
+at the knee (#168/#185 form) → the user's eyes. LADDER
+EXECUTOR DISPATCHED (#209.3). Both seams stay banked-dormant.**
+O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
