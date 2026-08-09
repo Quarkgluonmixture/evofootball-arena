@@ -42,6 +42,13 @@
  *   GGC_MODE=full  npx tsx scripts/probes/goal-genealogy-census.ts
  *   GGC_MODE=smoke GGC_CAP=2 GGC_SKIP_FP=1 GGC_OUT=/tmp/ggc.json npx tsx …   (preflight)
  * EXIT: 0 = clean census · 1 = X-family invalid · 2 = usage/fatal.
+ *
+ * ⚠ #215.3 FIX ROUND (five corrections, marked in place, old claims left readable):
+ *   H1+M2 the loss spot is the LAST OWNED tick for both the 后场失误 count and the by-third
+ *         origin classes; the regain-tick reading is published beside it (the WEDGE);
+ *   M3    GGC_CAP *or* GGC_SKIP_FP ⇒ PREFLIGHT ⇒ never a canonical artifact path;
+ *   L4    the published stats-base ledger is complete;
+ *   L5    matchOpenFallback split out of restartSecondBall.
  */
 
 import { execSync } from 'node:child_process';
@@ -122,9 +129,20 @@ const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = 
  *  legal base under the #163 200-floor is 104,400 (the #214.2 dispatch's own floor). */
 const BOOTSTRAP_SEED = 104_400;
 const BOOTSTRAP_RESAMPLES = 2000;
+/** ⚠ CORRECTION (#215.3-L4 — the #215 verify found NINE bases missing from the ledger the
+ *  #214 probe shipped, which began at 101,403). The ledger below is now the COMPLETE stats
+ *  namespace: every base DECLARED anywhere under scripts/** — spent bases and
+ *  reserved-unused ones alike — re-derived by reading the other probes, in the tempo census's
+ *  own CONSUMED_STATS form (which also lists reserved seeds). The gate RESULT is unchanged:
+ *  the nearest base to 104,400 is still 104,200 ⇒ minGap 200 = the #163 floor. */
 const PUBLISHED_STATS_BASES = [
-  101_403, 102_000, 102_200, 102_400, 102_600, 102_800, 103_000, 103_200, 103_400, 103_600,
-  103_800, 104_000, 104_200,
+  91_100, 91_110, 92_110, 93_003, 97_003, 98_003, 99_003, 99_203, 99_403, 99_503, 99_603,
+  99_703, 99_803, 99_903,
+  100_003, 100_203, 100_303, 100_403, 100_503, 100_603, 100_703, 100_803, 100_903,
+  101_003, 101_103, 101_203, 101_303, 101_403, 101_503, 101_513, 101_523, 101_800,
+  102_000, 102_200, 102_400, 102_600, 102_800,
+  103_000, 103_200, 103_400, 103_600, 103_800,
+  104_000, 104_200,
 ];
 
 /* --- §4.3 THE N ARITHMETIC, frozen ex ante ---------------------------------- */
@@ -160,8 +178,16 @@ if (MODE === undefined || !(MODES as readonly string[]).includes(MODE)) {
   process.exit(2);
 }
 const CAP = process.env.GGC_CAP ? Math.max(1, Number.parseInt(process.env.GGC_CAP, 10)) : Number.POSITIVE_INFINITY;
-const IS_PREFLIGHT = Number.isFinite(CAP);
+const IS_CAPPED = Number.isFinite(CAP);
 const SKIP_FP = process.env.GGC_SKIP_FP === '1';
+/** ⚠ CORRECTION (#215.3-M3 — the gate-bypass hole the #215 verify found). The #214 probe made
+ *  a run "preflight" on the CAP alone, so `GGC_SKIP_FP=1` on an UNCAPPED run passed xFpProd as
+ *  "skipped" AND was allowed to write the CANONICAL artifact path. ⭐ ANY skip/preflight lever
+ *  now makes the run a preflight REGARDLESS of cap, and a preflight can never write a canonical
+ *  path ⇒ a canonical-path artifact ALWAYS carries a genuinely re-derived xFpProd. */
+const IS_PREFLIGHT = IS_CAPPED || SKIP_FP;
+const PREFLIGHT_REASONS = [IS_CAPPED ? `GGC_CAP=${CAP}` : null, SKIP_FP ? 'GGC_SKIP_FP=1' : null]
+  .filter((r): r is string => r !== null);
 const N_ENV = process.env.GGC_N ? Math.max(1, Number.parseInt(process.env.GGC_N, 10)) : null;
 
 const OUT_BY_MODE: Record<Mode, string> = {
@@ -169,10 +195,15 @@ const OUT_BY_MODE: Record<Mode, string> = {
   full: 'docs/world-model/data/goal-genealogy-census.json',
 };
 const SMOKE_PATH = OUT_BY_MODE.smoke;
+const CANONICAL_DIR = 'docs/world-model/data/';
+/** the canonical-path test, applied to the RESOLVED write path (absolute or relative). */
+const isCanonicalPath = (p: string): boolean => p.includes(CANONICAL_DIR);
+/** ⭐ a preflight NEVER defaults onto a canonical path: /tmp, with a -preflight suffix. */
 const OUT_PATH = process.env.GGC_OUT ?? (IS_PREFLIGHT ? '/tmp/goal-genealogy-preflight.json' : OUT_BY_MODE[MODE]);
-if (IS_PREFLIGHT && OUT_PATH.startsWith('docs/world-model/data/')) {
-  console.error('GOAL-GENEALOGY FATAL — a CAPPED (preflight) invocation may not write a canonical '
-    + 'repo path; pass GGC_OUT=/tmp/… (the canonical-write guard).');
+if (IS_PREFLIGHT && isCanonicalPath(OUT_PATH)) {
+  console.error('GOAL-GENEALOGY FATAL — a PREFLIGHT invocation may not write a canonical repo path '
+    + `(the canonical-write guard). Preflight because: ${PREFLIGHT_REASONS.join(' + ')}. `
+    + 'Pass GGC_OUT=/tmp/… , or drop GGC_CAP / GGC_SKIP_FP to run the real thing.');
   process.exit(2);
 }
 
@@ -254,8 +285,14 @@ const matchFor = (arm: Arm, seed: number): Match => {
 /*    kickoffKickGid · lastCompletedPass · allPlayers[gid].pos · team.stats.   */
 /*    Writes NOTHING back into the match. Zero src/**.                        */
 /* ========================================================================== */
+/** ⚠ CORRECTION (#215.3-L5): `matchOpenFallback` was SPLIT OUT of `restartSecondBall`, which the
+ *  #214 probe made carry two different things at once — a real second ball off a dead-ball
+ *  restart, and the no-previous-segment FALLBACK (an open-play regain with nothing before it to
+ *  read a loss spot from). The partition stays EXHAUSTIVE and MUTUALLY EXCLUSIVE; the fallback
+ *  class is expected to be EMPTY in every arm (the match opens from a kickoff), and publishing it
+ *  separately is what makes that emptiness auditable instead of assumed. */
 const ORIGIN_CLASSES = [
-  'kickoff', 'goalKick', 'kickIn', 'restartSecondBall',
+  'kickoff', 'goalKick', 'kickIn', 'restartSecondBall', 'matchOpenFallback',
   'setPieceCorner', 'setPieceFreeKick', 'setPiecePenalty',
   'scrambleLooseBall',
   'turnoverWonInOwnThird', 'turnoverWonInMiddleThird', 'turnoverWonInFinalThird',
@@ -303,16 +340,32 @@ interface Segment {
   startThird: Third;
   thirdsVisited: Record<Third, boolean>;
   terminator: 'opponentControl' | 'deadBall' | 'goal' | 'matchEnd';
+  /** ⭐ THE DEFINITIONAL LOSS SPOT (#215.3-H1): the ball's position at THIS segment's LAST
+   *  OWNED tick — the release/loss point — in the LOSING (this) team's frame. Live-updated on
+   *  every owned tick, frozen when the segment ends. */
+  lastOwnedLocalXOwnerFrame: number;
   lossLocalXLoserFrame: number | null;
+  /** the REGAIN SPOT: the ball's position at the tick the opponent established control, in the
+   *  loser's frame — what the #214 probe wrongly used AS the loss spot. Kept as the declared
+   *  cross-cut so the wedge between the two readings stays measurable. */
+  regainSpotLocalXLoserFrame: number | null;
   goalScoringSide: Side | null;
+  /** ⭐ THE DEFINITIONAL third of the loss spot, in the WINNER's attacking frame — this is what
+   *  the by-third origin CLASSES are cut on (#215.3-M2). */
+  lossThird: Third | null;
   /** ⭐ THE ORTHOGONAL CROSS-CUT (open-play origins only): WHERE the ball was regained, in
    *  the WINNER's attacking frame, INDEPENDENTLY of whether the regain was contested. */
   regainThird: Third | null;
   regainContested: boolean;
+  /** the SAME origin class computed on the REGAIN spot — published beside `origin` so the
+   *  loss-vs-regain wedge is visible per class, not just in the turnover count. */
+  originAtRegainSpot: OriginClass;
 }
 
 interface GoalRecord {
   origin: OriginClass;
+  originAtRegainSpot: OriginClass;
+  lossThird: Third | null;
   family: Family;
   completedPasses: number;
   attemptedPasses: number;
@@ -335,6 +388,7 @@ interface MatchRow {
   assignedTicksSum: number;
   segments: number;
   segmentsByOrigin: Record<string, number>;
+  segmentsByOriginAtRegainSpot: Record<string, number>;
   segmentsByRegainCell: Record<string, number>;
   goals: GoalRecord[];
   goalsFromScore: number;
@@ -349,11 +403,14 @@ interface MatchRow {
   ownThirdOwnedTicks: number;
   chainLens: number[];
   chainMaxPerSegment: number[];
-  /* 后场失误 */
+  /* 后场失误 — BOTH readings (#215.3-H1): the definitional LOSS spot and the REGAIN cross-cut. */
   ownThirdTurnovers: number;
+  ownThirdTurnoversAtRegainSpot: number;
   turnoversTotal: number;
   dangerShot: number[]; // parallel to DANGER_WINDOWS_S
   dangerGoal: number[];
+  dangerShotAtRegain: number[];
+  dangerGoalAtRegain: number[];
 }
 
 function censusOne(arm: Arm, seed: number): MatchRow {
@@ -363,8 +420,12 @@ function censusOne(arm: Arm, seed: number): MatchRow {
   /** side → sim-times of that side's shots / goals (the danger-window ladder reads them). */
   const shotTimes: [number[], number[]] = [[], []];
   const goalTimes: [number[], number[]] = [[], []];
-  /** own-third turnovers: sim-time + the side that WON the ball (the danger窗口's shooter). */
+  /** own-third turnovers at the DEFINITIONAL LOSS SPOT: sim-time + the side that WON the ball
+   *  (the danger窗口's shooter). ⚠ CORRECTION (#215.3-H1) — the #214 probe filled this list at
+   *  the REGAIN tick instead; that reading now lives in `ownThirdTurnoversAtRegain`, published
+   *  beside it so the wedge between the two is itself data. */
   const ownThirdTurnovers: { t: number; winner: Side }[] = [];
+  const ownThirdTurnoversAtRegain: { t: number; winner: Side }[] = [];
 
   const lastOwnedPos = new Map<number, { x: number; y: number }>();
   let cur: Segment | null = null;
@@ -396,10 +457,17 @@ function censusOne(arm: Arm, seed: number): MatchRow {
     prevSeg = s;
   };
 
+  /** the by-third open-play class, given WHERE (winner's frame) and whether it was contested. */
+  const openPlayClass = (contested: boolean, t: Third): OriginClass => (contested ? 'scrambleLooseBall'
+    : t === 'own' ? 'turnoverWonInOwnThird'
+      : t === 'final' ? 'turnoverWonInFinalThird' : 'turnoverWonInMiddleThird');
+
   const openSegment = (team: Side, tick: number, ownerGid: number): Segment => {
     let origin: OriginClass;
+    let lossThird: Third | null = null;
     let regainThird: Third | null = null;
     let regainContested = false;
+    let regainSpotClass: OriginClass | null = null;
     if (m.kickoffKickGid === ownerGid) origin = 'kickoff';
     else if (m.restartKickGid === ownerGid) {
       const k = m.restartKickKind;
@@ -408,18 +476,25 @@ function censusOne(arm: Arm, seed: number): MatchRow {
           : k === 'penalty' ? 'setPiecePenalty'
             : k === 'goalKick' ? 'goalKick'
               : k === 'kickIn' ? 'kickIn' : 'restartSecondBall';
-    } else if (sinceDeadBall || prevSeg === null) origin = 'restartSecondBall';
+    } else if (sinceDeadBall) origin = 'restartSecondBall';
+    // ⚠ CORRECTION (#215.3-L5): the no-previous-segment case is its OWN class, not a second ball.
+    else if (prevSeg === null) origin = 'matchOpenFallback';
     else {
-      // AN OPEN-PLAY REGAIN. WHERE it happened is read the same way for both classes: the
-      // ball's position at the LOSS tick, mirrored into the WINNER's attacking frame
-      // (localX_winner = −localX_loser exactly — the two attack directions are opposite).
+      // ⚠ CORRECTION (#215.3-M2) — AN OPEN-PLAY REGAIN, classified on the DEFINITIONAL LOSS
+      // SPOT: the ball's position at the previous segment's LAST OWNED tick, mirrored into the
+      // WINNER's attacking frame (localX_winner = −localX_loser exactly — the two attack
+      // directions are opposite). The #214 probe read the ball at the REGAIN tick here and
+      // described it as the loss tick; that reading is KEPT, beside it, as the cross-cut.
       const lost = prevSeg.lossLocalXLoserFrame;
-      regainThird = thirdOf(lost === null ? 0 : -lost);
+      const regained = prevSeg.regainSpotLocalXLoserFrame;
+      lossThird = thirdOf(lost === null ? 0 : -lost);
+      regainThird = thirdOf(regained === null ? 0 : -regained);
       regainContested = contestedSinceLastSeg;
-      origin = contestedSinceLastSeg ? 'scrambleLooseBall'
-        : regainThird === 'own' ? 'turnoverWonInOwnThird'
-          : regainThird === 'final' ? 'turnoverWonInFinalThird' : 'turnoverWonInMiddleThird';
+      origin = openPlayClass(contestedSinceLastSeg, lossThird);
+      regainSpotClass = openPlayClass(contestedSinceLastSeg, regainThird);
     }
+    /** for every non-open-play origin the two readings COINCIDE by construction. */
+    const originAtRegainSpot: OriginClass = regainSpotClass ?? origin;
     const ballLocal = m.teams[team].localX(m.ball.pos.x);
     const st = thirdOf(ballLocal);
     return {
@@ -428,13 +503,16 @@ function censusOne(arm: Arm, seed: number): MatchRow {
       ownThirdLateralBack: 0, ownThirdLocated: 0, located: 0,
       minLocalX: ballLocal, maxLocalX: ballLocal, startThird: st,
       thirdsVisited: { own: st === 'own', middle: st === 'middle', final: st === 'final' },
-      terminator: 'matchEnd', lossLocalXLoserFrame: null, goalScoringSide: null,
-      regainThird, regainContested,
+      terminator: 'matchEnd', lastOwnedLocalXOwnerFrame: ballLocal,
+      lossLocalXLoserFrame: null, regainSpotLocalXLoserFrame: null, goalScoringSide: null,
+      lossThird, regainThird, regainContested, originAtRegainSpot,
     };
   };
 
   const goalOf = (s: Segment): GoalRecord => ({
     origin: s.origin,
+    originAtRegainSpot: s.originAtRegainSpot,
+    lossThird: s.lossThird,
     family: familyOf(s.origin),
     completedPasses: s.completedPasses,
     attemptedPasses: s.attemptedPasses,
@@ -517,11 +595,17 @@ function censusOne(arm: Arm, seed: number): MatchRow {
 
     const side = owner.side;
     if (cur !== null && cur.team !== side) {
-      // THE LOSS POINT: the ball's position at the moment the opponent establishes control,
-      // read in the LOSING team's own attacking frame (the 后场失误 frame).
-      const lossLocal = m.teams[cur.team].localX(m.ball.pos.x);
+      // ⭐ THE LOSS POINT (#215.3-H1, the DEFINITIONAL one): the ball's position at the
+      // segment's LAST OWNED tick — the release/loss point — in the LOSING team's own
+      // attacking frame (the 后场失误 frame).
+      const lossLocal = cur.lastOwnedLocalXOwnerFrame;
+      // the REGAIN POINT: the ball where the opponent ESTABLISHED control, same (loser's)
+      // frame. This is what the #214 probe counted; it is kept as the declared cross-cut.
+      const regainLocal = m.teams[cur.team].localX(m.ball.pos.x);
       cur.lossLocalXLoserFrame = lossLocal;
+      cur.regainSpotLocalXLoserFrame = regainLocal;
       if (thirdOf(lossLocal) === 'own') ownThirdTurnovers.push({ t: m.simTime, winner: side });
+      if (thirdOf(regainLocal) === 'own') ownThirdTurnoversAtRegain.push({ t: m.simTime, winner: side });
       closeSegment(cur, 'opponentControl', null);
       cur = null;
     }
@@ -539,6 +623,8 @@ function censusOne(arm: Arm, seed: number): MatchRow {
     seg.ownedTicks++;
     seg.lastOwnedTick = tick;
     const localX = m.teams[side].localX(m.ball.pos.x);
+    // ⭐ the LOSS SPOT is this, frozen at the last owned tick (#215.3-H1).
+    seg.lastOwnedLocalXOwnerFrame = localX;
     const t3 = thirdOf(localX);
     seg.thirdsVisited[t3] = true;
     if (t3 === 'own') seg.ownThirdOwnedTicks++;
@@ -553,6 +639,8 @@ function censusOne(arm: Arm, seed: number): MatchRow {
   const chainMaxPerSegment: number[] = [];
   const segmentsByOrigin: Record<string, number> = {};
   for (const o of ORIGIN_CLASSES) segmentsByOrigin[o] = 0;
+  const segmentsByOriginAtRegainSpot: Record<string, number> = {};
+  for (const o of ORIGIN_CLASSES) segmentsByOriginAtRegainSpot[o] = 0;
   const segmentsByRegainCell: Record<string, number> = {};
   for (const c of REGAIN_CELLS) segmentsByRegainCell[c] = 0;
   let completedPassesTotal = 0; let locatedPasses = 0; let ownThirdLocated = 0;
@@ -560,6 +648,7 @@ function censusOne(arm: Arm, seed: number): MatchRow {
   let turnoversTotal = 0; let assignedTicksSum = 0;
   for (const s of segments) {
     segmentsByOrigin[s.origin]++;
+    segmentsByOriginAtRegainSpot[s.originAtRegainSpot]++;
     if (s.regainThird !== null) segmentsByRegainCell[regainCellOf(s.regainContested, s.regainThird)]++;
     assignedTicksSum += s.assignedTicks;
     completedPassesTotal += s.completedPasses;
@@ -577,22 +666,26 @@ function censusOne(arm: Arm, seed: number): MatchRow {
     if (s.passOriginOwnThird.length > 0) chainMaxPerSegment.push(best);
   }
 
-  const dangerShot = DANGER_WINDOWS_S.map((w) => ownThirdTurnovers.filter(
-    (tv) => shotTimes[tv.winner].some((ts) => ts >= tv.t && ts <= tv.t + w),
-  ).length);
-  const dangerGoal = DANGER_WINDOWS_S.map((w) => ownThirdTurnovers.filter(
-    (tv) => goalTimes[tv.winner].some((ts) => ts >= tv.t && ts <= tv.t + w),
-  ).length);
+  const dangerOn = (evts: readonly { t: number; winner: Side }[], times: [number[], number[]]) =>
+    DANGER_WINDOWS_S.map((w) => evts.filter(
+      (tv) => times[tv.winner].some((ts) => ts >= tv.t && ts <= tv.t + w),
+    ).length);
+  const dangerShot = dangerOn(ownThirdTurnovers, shotTimes);
+  const dangerGoal = dangerOn(ownThirdTurnovers, goalTimes);
+  const dangerShotAtRegain = dangerOn(ownThirdTurnoversAtRegain, shotTimes);
+  const dangerGoalAtRegain = dangerOn(ownThirdTurnoversAtRegain, goalTimes);
 
   return {
     seed,
     simSeconds: m.simTime,
     totalTicks, deadBallTicks, segmentTicks, looseGapTicks, spanOrderViolations, assignedTicksSum,
-    segments: segments.length, segmentsByOrigin, segmentsByRegainCell,
+    segments: segments.length, segmentsByOrigin, segmentsByOriginAtRegainSpot, segmentsByRegainCell,
     goals, goalsFromScore, unattributedGoals,
     completedPassesTotal, locatedPasses, ownThirdLocated, ownThirdLateralBack,
     orphanCompletedPasses, ownedTicks, ownThirdOwnedTicks, chainLens, chainMaxPerSegment,
-    ownThirdTurnovers: ownThirdTurnovers.length, turnoversTotal, dangerShot, dangerGoal,
+    ownThirdTurnovers: ownThirdTurnovers.length,
+    ownThirdTurnoversAtRegainSpot: ownThirdTurnoversAtRegain.length,
+    turnoversTotal, dangerShot, dangerGoal, dangerShotAtRegain, dangerGoalAtRegain,
   };
 }
 
@@ -609,6 +702,14 @@ function aggregateArm(arm: Arm, per: MatchRow[], statsOffset: number) {
   for (const o of ORIGIN_CLASSES) byOrigin[o] = allGoals.filter((g) => g.origin === o).length;
   const byOriginShare: Record<string, number> = {};
   for (const o of ORIGIN_CLASSES) byOriginShare[o] = shareOf(byOrigin[o], nGoals);
+  /** ⚠ CORRECTION (#215.3-M2): the SAME classes cut on the REGAIN spot — the #214 reading,
+   *  kept beside the definitional one so the wedge is visible per class. */
+  const byOriginAtRegainSpot: Record<string, number> = {};
+  for (const o of ORIGIN_CLASSES) {
+    byOriginAtRegainSpot[o] = allGoals.filter((g) => g.originAtRegainSpot === o).length;
+  }
+  const byOriginShareAtRegainSpot: Record<string, number> = {};
+  for (const o of ORIGIN_CLASSES) byOriginShareAtRegainSpot[o] = shareOf(byOriginAtRegainSpot[o], nGoals);
   const byFamily = {
     setPiece: allGoals.filter((g) => g.family === 'setPiece').length,
     restart: allGoals.filter((g) => g.family === 'restart').length,
@@ -631,6 +732,10 @@ function aggregateArm(arm: Arm, per: MatchRow[], statsOffset: number) {
   const segmentsPerMatch = mean(per.map((p) => p.segments));
   const segOriginTotals: Record<string, number> = {};
   for (const o of ORIGIN_CLASSES) segOriginTotals[o] = sum(per.map((p) => p.segmentsByOrigin[o]));
+  const segOriginTotalsAtRegain: Record<string, number> = {};
+  for (const o of ORIGIN_CLASSES) {
+    segOriginTotalsAtRegain[o] = sum(per.map((p) => p.segmentsByOriginAtRegainSpot[o]));
+  }
   const segTotal = sum(Object.values(segOriginTotals));
 
   const locatedTotal = sum(per.map((p) => p.locatedPasses));
@@ -643,15 +748,24 @@ function aggregateArm(arm: Arm, per: MatchRow[], statsOffset: number) {
   const chainMax = per.flatMap((p) => p.chainMaxPerSegment);
 
   const ownThirdTurnoversPerMatch = per.map((p) => p.ownThirdTurnovers);
-  const dangerRows = DANGER_WINDOWS_S.map((w, i) => ({
+  const ownThirdTurnoversAtRegainPerMatch = per.map((p) => p.ownThirdTurnoversAtRegainSpot);
+  const dangerLadder = (
+    shotOf: (p: MatchRow, i: number) => number,
+    goalOfRow: (p: MatchRow, i: number) => number,
+    den: readonly number[],
+  ) => DANGER_WINDOWS_S.map((w, i) => ({
     windowS: w,
-    turnoversFollowedByOpponentShot: sum(per.map((p) => p.dangerShot[i])),
-    shareOfOwnThirdTurnovers: shareOf(sum(per.map((p) => p.dangerShot[i])), sum(ownThirdTurnoversPerMatch)),
-    turnoversFollowedByOpponentGoal: sum(per.map((p) => p.dangerGoal[i])),
-    goalShareOfOwnThirdTurnovers: shareOf(sum(per.map((p) => p.dangerGoal[i])), sum(ownThirdTurnoversPerMatch)),
-    perMatchShot: round(mean(per.map((p) => p.dangerShot[i])), 4),
-    perMatchGoal: round(mean(per.map((p) => p.dangerGoal[i])), 4),
+    turnoversFollowedByOpponentShot: sum(per.map((p) => shotOf(p, i))),
+    shareOfOwnThirdTurnovers: shareOf(sum(per.map((p) => shotOf(p, i))), sum(den)),
+    turnoversFollowedByOpponentGoal: sum(per.map((p) => goalOfRow(p, i))),
+    goalShareOfOwnThirdTurnovers: shareOf(sum(per.map((p) => goalOfRow(p, i))), sum(den)),
+    perMatchShot: round(mean(per.map((p) => shotOf(p, i))), 4),
+    perMatchGoal: round(mean(per.map((p) => goalOfRow(p, i))), 4),
   }));
+  const dangerRows = dangerLadder((p, i) => p.dangerShot[i], (p, i) => p.dangerGoal[i], ownThirdTurnoversPerMatch);
+  const dangerRowsAtRegain = dangerLadder(
+    (p, i) => p.dangerShotAtRegain[i], (p, i) => p.dangerGoalAtRegain[i], ownThirdTurnoversAtRegainPerMatch,
+  );
 
   return {
     arm,
@@ -669,6 +783,21 @@ function aggregateArm(arm: Arm, per: MatchRow[], statsOffset: number) {
       goalsPerMatch: round(nGoals / Math.max(1, matches), 4),
       goalsPerMatchCi95: ci(per.map((p) => p.goals.length), 1),
       byOrigin, byOriginShare, byFamily,
+      byOriginAtRegainSpot, byOriginShareAtRegainSpot,
+      lossVsRegainOriginNote: '⚠ CORRECTION (#215.3-M2): `byOrigin` is the DEFINITIONAL cut — the '
+        + 'by-third classes read the ball at the segment\'s LAST OWNED tick (the loss/release '
+        + 'point), mirrored into the WINNER\'s frame, exactly as the published definition states. '
+        + '`byOriginAtRegainSpot` is the SAME classifier run on the REGAIN tick (where the '
+        + 'opponent established control) — the reading the #214 probe shipped while describing it '
+        + 'as the loss spot. BOTH are published so the wedge between them is itself data; the '
+        + 'contested/scramble limb is identical in the two cuts by construction.',
+      byLossThird: (() => {
+        const cells: Record<string, number> = { own: 0, middle: 0, final: 0, notARegain: 0 };
+        for (const g of allGoals) {
+          if (g.lossThird === null) cells.notARegain++; else cells[g.lossThird]++;
+        }
+        return cells;
+      })(),
       byRegainCell: (() => {
         const cells: Record<string, number> = {};
         for (const c of REGAIN_CELLS) cells[c] = 0;
@@ -752,13 +881,40 @@ function aggregateArm(arm: Arm, per: MatchRow[], statsOffset: number) {
     /* ---------------- (c) 后场失误 ---------------- */
     backThirdErrors: {
       definition: 'an own-third turnover = a segment ending with terminator "opponentControl" whose '
-        + 'LOSS position (ball position at the segment\'s last owned tick) is in the LOSING team\'s '
-        + 'own third.',
+        + 'LOSS position (ball position at the segment\'s LAST OWNED tick) is in the LOSING team\'s '
+        + 'own third. ⚠ CORRECTION (#215.3-H1): the #214 probe read the ball at the REGAIN tick '
+        + 'instead — the definition above is now what the count MEASURES, and the regain-tick '
+        + 'reading is published beside it (atRegainSpot) as the declared cross-cut.',
       ownThirdTurnoversPerMatch: round(mean(ownThirdTurnoversPerMatch), 4),
       ownThirdTurnoversPerMatchCi95: ci(ownThirdTurnoversPerMatch, 4),
       ownThirdTurnovers: sum(ownThirdTurnoversPerMatch),
       turnoversPerMatch: round(mean(per.map((p) => p.turnoversTotal)), 4),
       ownThirdShareOfAllTurnovers: shareOf(sum(ownThirdTurnoversPerMatch), sum(per.map((p) => p.turnoversTotal))),
+      /** ⭐ THE LOSS-vs-REGAIN WEDGE, published per arm (#215.3): the same quantity read at the
+       *  two ticks. The gap is not an error term — it is where the ball travels between release
+       *  and the opponent establishing control, and it is worth watching. */
+      atRegainSpot: {
+        note: 'THE CROSS-CUT: the identical count read at the REGAIN tick (ball position where the '
+          + 'opponent established control, still in the LOSER\'s frame). This is the #214 number.',
+        ownThirdTurnovers: sum(ownThirdTurnoversAtRegainPerMatch),
+        ownThirdTurnoversPerMatch: round(mean(ownThirdTurnoversAtRegainPerMatch), 4),
+        ownThirdTurnoversPerMatchCi95: ci(ownThirdTurnoversAtRegainPerMatch, 5),
+        ownThirdShareOfAllTurnovers: shareOf(
+          sum(ownThirdTurnoversAtRegainPerMatch), sum(per.map((p) => p.turnoversTotal)),
+        ),
+        dangerousLadder: dangerRowsAtRegain,
+      },
+      lossVsRegainWedge: {
+        note: '⭐ THE WEDGE (#215.3): definitional LOSS-spot count minus REGAIN-spot count, on the '
+          + 'SAME turnovers. Published because the gap is a measurable property of the world (how '
+          + 'far the ball travels between release and the opponent\'s control), not a defect.',
+        lossSpot: sum(ownThirdTurnoversPerMatch),
+        regainSpot: sum(ownThirdTurnoversAtRegainPerMatch),
+        delta: sum(ownThirdTurnoversPerMatch) - sum(ownThirdTurnoversAtRegainPerMatch),
+        regainOverLossRatio: shareOf(sum(ownThirdTurnoversAtRegainPerMatch), sum(ownThirdTurnoversPerMatch)),
+        lossSpotPerMatch: round(mean(ownThirdTurnoversPerMatch), 4),
+        regainSpotPerMatch: round(mean(ownThirdTurnoversAtRegainPerMatch), 4),
+      },
       dangerousLadder: dangerRows,
       dangerousNote: '⚠ TEMPORAL CO-OCCURRENCE, NOT CAUSATION: "an opponent shot within W sim-seconds '
         + 'of the turnover", on match.simTime. No causal claim is made or permitted.',
@@ -769,6 +925,10 @@ function aggregateArm(arm: Arm, per: MatchRow[], statsOffset: number) {
       segmentsPerMatch: round(segmentsPerMatch, 4),
       byOrigin: segOriginTotals,
       byOriginShare: Object.fromEntries(ORIGIN_CLASSES.map((o) => [o, shareOf(segOriginTotals[o], segTotal)])),
+      byOriginAtRegainSpot: segOriginTotalsAtRegain,
+      byOriginShareAtRegainSpot: Object.fromEntries(
+        ORIGIN_CLASSES.map((o) => [o, shareOf(segOriginTotalsAtRegain[o], segTotal)]),
+      ),
       byRegainCell: Object.fromEntries(REGAIN_CELLS.map(
         (c) => [c, sum(per.map((p) => p.segmentsByRegainCell[c]))],
       )),
@@ -1133,7 +1293,17 @@ const statsMinGap = Math.min(...PUBLISHED_STATS_BASES.map((b) => Math.abs(BOOTST
 
 const xGates = {
   xDet: { pass: xDet, digestA, digestB, note: 'the whole measured core computed TWICE, canonical-JSON digests' },
-  xFpProd: { pass: xFpProd, baseline: FINGERPRINT_BASELINE, observed: fpObserved, seed: FINGERPRINT_SEED, seasons: FINGERPRINT_SEASONS, skipped: SKIP_FP },
+  xFpProd: {
+    pass: xFpProd,
+    baseline: FINGERPRINT_BASELINE,
+    observed: fpObserved,
+    seed: FINGERPRINT_SEED,
+    seasons: FINGERPRINT_SEASONS,
+    skipped: SKIP_FP,
+    reDerivedInThisProcess: !SKIP_FP,
+    skipNote: '⚠ #215.3-M3: a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no '
+      + 'canonical artifact can exist with skipped:true. Read `preflightProvenance` beside this.',
+  },
   xSrcZero: { pass: srcDiff === '', srcDiff, note: 'instrument-only: this stage adds ZERO src/** (#214.2)' },
   gArm: armCheck,
   gSeed: seedDisjoint,
@@ -1191,6 +1361,22 @@ const body = {
   ruling: '#214 (the user ruled 甲 on the #213.3 fork); form inherited from the #170–#173 tempo census',
   mode: MODE,
   preflight: IS_PREFLIGHT,
+  /** ⭐ #215.3-M3: WHY this run is (or is not) a preflight, and whether it was allowed anywhere
+   *  near a canonical repo path. A canonical-path artifact can only ever say `preflight: false`,
+   *  `fingerprintSkipped: false` — i.e. it ALWAYS carries a genuinely re-derived xFpProd. */
+  preflightProvenance: {
+    preflight: IS_PREFLIGHT,
+    reasons: PREFLIGHT_REASONS,
+    capped: IS_CAPPED,
+    fingerprintSkipped: SKIP_FP,
+    outPath: OUT_PATH,
+    canonicalPath: isCanonicalPath(OUT_PATH),
+    rule: '⚠ CORRECTION (#215.3-M3): ANY skip/preflight lever (GGC_CAP or GGC_SKIP_FP) makes the '
+      + 'run a PREFLIGHT regardless of N or cap, a preflight may NEVER write a canonical repo '
+      + 'path (guarded at parse time AND again at write time), and the skip is recorded here and '
+      + 'in gates.xFpProd. The #214 probe keyed "preflight" off the CAP alone, so an UNCAPPED '
+      + 'GGC_SKIP_FP=1 run could pass xFpProd as "skipped" and still write the canonical artifact.',
+  },
   frozenDesign: {
     arms: ARMS,
     armDefinitions: {
@@ -1216,10 +1402,19 @@ const body = {
       originObservation: 'kickoff/restart classes from match.kickoffKickGid / restartKickGid + '
         + 'restartKickKind; scrambleLooseBall when the substrate\'s OWN match.possessionPhase read '
         + '"contested" during the hand-over gap; otherwise a clean regain classified by the ball\'s '
-        + 'position at the LOSS tick.',
+        + 'position at the LOSS TICK = the previous segment\'s LAST OWNED tick (⚠ CORRECTION '
+        + '#215.3-M2 — the #214 probe used the REGAIN tick here while claiming the loss tick; the '
+        + 'regain-tick cut is now published separately as `byOriginAtRegainSpot`). '
+        + 'matchOpenFallback = an open-play regain with NO previous segment to read a loss spot '
+        + 'from (⚠ CORRECTION #215.3-L5 — split out of restartSecondBall; expected empty).',
       thirdFrame: '⭐ thirds are named in the WINNING (new possessing) team\'s attacking frame. '
         + 'turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER\'s own third. The '
-        + 'two frames are exact mirrors (localX_winner = −localX_loser).',
+        + 'two frames are exact mirrors (localX_winner = −localX_loser), and the mirror is applied '
+        + 'to the LOSS-tick position (the definitional spot).',
+      lossSpotDefinition: '⭐ THE LOSS SPOT (#215.3-H1) = the ball\'s position at the segment\'s '
+        + 'LAST OWNED tick, in the LOSING team\'s frame. It drives BOTH the 后场失误 count and the '
+        + 'by-third origin classes. THE REGAIN SPOT (ball where the opponent established control) '
+        + 'is published beside it everywhere, so the wedge between the two readings is data.',
       thirdBoundaryLocalX: round(THIRD_LOCAL_X, 6),
       thirdBoundaryTrace: 'HALF_L / 3 — the #188 / PM-T1 OWN_THIRD_LOCAL_X, inherited, mirrored for '
         + 'the final third.',
@@ -1275,6 +1470,14 @@ const body = {
       + 'empty. The frozen ORIGIN CLASS LIST IS UNCHANGED; what was added is the ORTHOGONAL report '
       + '(where × contested) over EVERY open-play regain. No measured level was seen for any arm '
       + 'before this was frozen — the preflight is plumbing and adjudicates nothing.',
+    '⚠⚠ THE #215 FIX ROUND (ruling #215.3, this artifact): the #214 build measured 后场失误 AND the '
+      + 'by-third origin classes at the REGAIN tick while its own published definition said the LOSS '
+      + 'tick. Both now read the ball at the segment\'s LAST OWNED tick, in the loser\'s frame, '
+      + 'mirrored to the winner\'s frame for the classes — and the REGAIN-tick reading is published '
+      + 'BESIDE the definitional one everywhere (atRegainSpot / byOriginAtRegainSpot / '
+      + 'lossVsRegainWedge), because the gap between the two ticks is a real property of the world. '
+      + 'Also fixed here: the GGC_SKIP_FP canonical-path bypass, the incomplete published stats-base '
+      + 'ledger, and the restartSecondBall / matchOpenFallback conflation. Old claims stay readable.',
     'THE DANGEROUS-TURNOVER WINDOW IS TEMPORAL CO-OCCURRENCE, NOT CAUSATION.',
     'PROD IS NOT A SINGLE-FACTOR CONTROL (the declared confound above).',
     'NO REFERENCE BAND EXISTS FOR GOAL GENEALOGY — the levels are reported against nothing, and that '
@@ -1303,6 +1506,13 @@ const body = {
  *  field ride the envelope OUTSIDE the hash. The one git-derived field still inside is
  *  `gates.xSrcZero` — a GATE OUTPUT (empty on any clean tree at any commit), not a commit id. */
 const resultSha256 = createHash('sha256').update(canonical(body)).digest('hex');
+/** ⭐ #215.3-M3, the SECOND limb of the guard, at the WRITE itself: no preflight artifact ever
+ *  lands on a canonical repo path, whatever route (env, default, cap, skip) got it here. */
+if (IS_PREFLIGHT && isCanonicalPath(OUT_PATH)) {
+  console.error(`GOAL-GENEALOGY FATAL — refusing to write a PREFLIGHT artifact to the canonical path ${OUT_PATH} `
+    + `(preflight because: ${PREFLIGHT_REASONS.join(' + ')}).`);
+  process.exit(2);
+}
 writeFileSync(OUT_PATH, `${JSON.stringify({
   ...body,
   resultSha256,
@@ -1332,7 +1542,8 @@ for (const arm of ARMS) {
   o(`  ${arm.padEnd(5)} goals ${g.goals} (${g.goalsPerMatch}/match, CI ${JSON.stringify(g.goalsPerMatchCi95)})`
     + ` · family openPlay ${g.byFamilyShare.openPlay} · restart ${g.byFamilyShare.restart}`
     + ` · SET PIECE ${g.byFamilyShare.setPiece}`);
-  o('        origins: ' + ORIGIN_CLASSES.map((c) => `${c} ${g.byOriginShare[c]}`).join(' · '));
+  o('        origins (LOSS-SPOT, definitional): ' + ORIGIN_CLASSES.map((c) => `${c} ${g.byOriginShare[c]}`).join(' · '));
+  o('        origins (REGAIN-SPOT cross-cut):   ' + ORIGIN_CLASSES.map((c) => `${c} ${g.byOriginShareAtRegainSpot[c]}`).join(' · '));
   o('        ⭐ regain CROSS-CUT (where × contested): '
     + REGAIN_CELLS.map((c) => `${c} ${g.byRegainCell[c]}`).join(' · ')
     + ` · notARegain ${g.byRegainThird.notARegain}`);
@@ -1363,9 +1574,12 @@ o('');
 o('(c) 后场失误 — per arm:');
 for (const arm of ARMS) {
   const e = coreA.perArm[arm].backThirdErrors;
-  o(`  ${arm.padEnd(5)} ownThirdTurnovers/match ${e.ownThirdTurnoversPerMatch} `
+  o(`  ${arm.padEnd(5)} ⭐ LOSS-SPOT (definitional) ownThirdTurnovers/match ${e.ownThirdTurnoversPerMatch} `
     + `(CI ${JSON.stringify(e.ownThirdTurnoversPerMatchCi95)}) · all turnovers/match ${e.turnoversPerMatch}`
     + ` · own-third share ${e.ownThirdShareOfAllTurnovers}`);
+  o(`        ⭐ WEDGE loss ${e.lossVsRegainWedge.lossSpot} vs regain ${e.lossVsRegainWedge.regainSpot}`
+    + ` (Δ ${e.lossVsRegainWedge.delta} · regain/loss ${e.lossVsRegainWedge.regainOverLossRatio})`
+    + ` · regain-spot /match ${e.atRegainSpot.ownThirdTurnoversPerMatch}`);
   for (const d of e.dangerousLadder) {
     o(`        DANGEROUS @${d.windowS}s: → opponent shot ${d.turnoversFollowedByOpponentShot} `
       + `(${d.shareOfOwnThirdTurnovers}) · → opponent goal ${d.turnoversFollowedByOpponentGoal} `

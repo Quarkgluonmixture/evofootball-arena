@@ -4,6 +4,15 @@
   "ruling": "#214 (the user ruled 甲 on the #213.3 fork); form inherited from the #170–#173 tempo census",
   "mode": "smoke",
   "preflight": false,
+  "preflightProvenance": {
+    "preflight": false,
+    "reasons": [],
+    "capped": false,
+    "fingerprintSkipped": false,
+    "outPath": "docs/world-model/data/goal-genealogy-census-smoke.json",
+    "canonicalPath": true,
+    "rule": "⚠ CORRECTION (#215.3-M3): ANY skip/preflight lever (GGC_CAP or GGC_SKIP_FP) makes the run a PREFLIGHT regardless of N or cap, a preflight may NEVER write a canonical repo path (guarded at parse time AND again at write time), and the skip is recorded here and in gates.xFpProd. The #214 probe keyed \"preflight\" off the CAP alone, so an UNCAPPED GGC_SKIP_FP=1 run could pass xFpProd as \"skipped\" and still write the canonical artifact."
+  },
   "frozenDesign": {
     "arms": [
       "PROD",
@@ -34,6 +43,7 @@
         "goalKick",
         "kickIn",
         "restartSecondBall",
+        "matchOpenFallback",
         "setPieceCorner",
         "setPieceFreeKick",
         "setPiecePenalty",
@@ -42,8 +52,9 @@
         "turnoverWonInMiddleThird",
         "turnoverWonInFinalThird"
       ],
-      "originObservation": "kickoff/restart classes from match.kickoffKickGid / restartKickGid + restartKickKind; scrambleLooseBall when the substrate's OWN match.possessionPhase read \"contested\" during the hand-over gap; otherwise a clean regain classified by the ball's position at the LOSS tick.",
-      "thirdFrame": "⭐ thirds are named in the WINNING (new possessing) team's attacking frame. turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third. The two frames are exact mirrors (localX_winner = −localX_loser).",
+      "originObservation": "kickoff/restart classes from match.kickoffKickGid / restartKickGid + restartKickKind; scrambleLooseBall when the substrate's OWN match.possessionPhase read \"contested\" during the hand-over gap; otherwise a clean regain classified by the ball's position at the LOSS TICK = the previous segment's LAST OWNED tick (⚠ CORRECTION #215.3-M2 — the #214 probe used the REGAIN tick here while claiming the loss tick; the regain-tick cut is now published separately as `byOriginAtRegainSpot`). matchOpenFallback = an open-play regain with NO previous segment to read a loss spot from (⚠ CORRECTION #215.3-L5 — split out of restartSecondBall; expected empty).",
+      "thirdFrame": "⭐ thirds are named in the WINNING (new possessing) team's attacking frame. turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third. The two frames are exact mirrors (localX_winner = −localX_loser), and the mirror is applied to the LOSS-tick position (the definitional spot).",
+      "lossSpotDefinition": "⭐ THE LOSS SPOT (#215.3-H1) = the ball's position at the segment's LAST OWNED tick, in the LOSING team's frame. It drives BOTH the 后场失误 count and the by-third origin classes. THE REGAIN SPOT (ball where the opponent established control) is published beside it everywhere, so the wedge between the two readings is data.",
       "thirdBoundaryLocalX": 10.5,
       "thirdBoundaryTrace": "HALF_L / 3 — the #188 / PM-T1 OWN_THIRD_LOCAL_X, inherited, mirrored for the final third.",
       "forwardPredicate": "localX(destination) − localX(origin) > 2 m — the ENGINE'S OWN forward-pass predicate, traced to src/sim/mechanics.ts:406 (:497/:624/:644), the same test that increments stats.passesForward.",
@@ -253,6 +264,7 @@
             "goalKick": 2,
             "kickIn": 1,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 2,
             "setPieceFreeKick": 1,
             "setPiecePenalty": 0,
@@ -266,6 +278,7 @@
             "goalKick": 0.11111,
             "kickIn": 0.05556,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 0.11111,
             "setPieceFreeKick": 0.05556,
             "setPiecePenalty": 0,
@@ -278,6 +291,41 @@
             "setPiece": 3,
             "restart": 5,
             "openPlay": 10
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 2,
+            "goalKick": 2,
+            "kickIn": 1,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 1,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 10,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShareAtRegainSpot": {
+            "kickoff": 0.11111,
+            "goalKick": 0.11111,
+            "kickIn": 0.05556,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.11111,
+            "setPieceFreeKick": 0.05556,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.55556,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "lossVsRegainOriginNote": "⚠ CORRECTION (#215.3-M2): `byOrigin` is the DEFINITIONAL cut — the by-third classes read the ball at the segment's LAST OWNED tick (the loss/release point), mirrored into the WINNER's frame, exactly as the published definition states. `byOriginAtRegainSpot` is the SAME classifier run on the REGAIN tick (where the opponent established control) — the reading the #214 probe shipped while describing it as the loss spot. BOTH are published so the wedge between them is itself data; the contested/scramble limb is identical in the two cuts by construction.",
+          "byLossThird": {
+            "own": 2,
+            "middle": 6,
+            "final": 2,
+            "notARegain": 8
           },
           "byRegainCell": {
             "contested_own": 2,
@@ -430,33 +478,72 @@
           "ownThirdTimeShareNote": "owned ticks with the ball in the POSSESSING team's own third ÷ all owned ticks (loose and dead-ball ticks are in neither)."
         },
         "backThirdErrors": {
-          "definition": "an own-third turnover = a segment ending with terminator \"opponentControl\" whose LOSS position (ball position at the segment's last owned tick) is in the LOSING team's own third.",
-          "ownThirdTurnoversPerMatch": 4.0833,
+          "definition": "an own-third turnover = a segment ending with terminator \"opponentControl\" whose LOSS position (ball position at the segment's LAST OWNED tick) is in the LOSING team's own third. ⚠ CORRECTION (#215.3-H1): the #214 probe read the ball at the REGAIN tick instead — the definition above is now what the count MEASURES, and the regain-tick reading is published beside it (atRegainSpot) as the declared cross-cut.",
+          "ownThirdTurnoversPerMatch": 7.1667,
           "ownThirdTurnoversPerMatchCi95": [
-            3,
-            5.1667
+            5.5833,
+            8.5833
           ],
-          "ownThirdTurnovers": 49,
+          "ownThirdTurnovers": 86,
           "turnoversPerMatch": 32.5833,
-          "ownThirdShareOfAllTurnovers": 0.12532,
+          "ownThirdShareOfAllTurnovers": 0.21995,
+          "atRegainSpot": {
+            "note": "THE CROSS-CUT: the identical count read at the REGAIN tick (ball position where the opponent established control, still in the LOSER's frame). This is the #214 number.",
+            "ownThirdTurnovers": 49,
+            "ownThirdTurnoversPerMatch": 4.0833,
+            "ownThirdTurnoversPerMatchCi95": [
+              3,
+              5.25
+            ],
+            "ownThirdShareOfAllTurnovers": 0.12532,
+            "dangerousLadder": [
+              {
+                "windowS": 5,
+                "turnoversFollowedByOpponentShot": 26,
+                "shareOfOwnThirdTurnovers": 0.53061,
+                "turnoversFollowedByOpponentGoal": 2,
+                "goalShareOfOwnThirdTurnovers": 0.04082,
+                "perMatchShot": 2.1667,
+                "perMatchGoal": 0.1667
+              },
+              {
+                "windowS": 10,
+                "turnoversFollowedByOpponentShot": 33,
+                "shareOfOwnThirdTurnovers": 0.67347,
+                "turnoversFollowedByOpponentGoal": 2,
+                "goalShareOfOwnThirdTurnovers": 0.04082,
+                "perMatchShot": 2.75,
+                "perMatchGoal": 0.1667
+              }
+            ]
+          },
+          "lossVsRegainWedge": {
+            "note": "⭐ THE WEDGE (#215.3): definitional LOSS-spot count minus REGAIN-spot count, on the SAME turnovers. Published because the gap is a measurable property of the world (how far the ball travels between release and the opponent's control), not a defect.",
+            "lossSpot": 86,
+            "regainSpot": 49,
+            "delta": 37,
+            "regainOverLossRatio": 0.56977,
+            "lossSpotPerMatch": 7.1667,
+            "regainSpotPerMatch": 4.0833
+          },
           "dangerousLadder": [
             {
               "windowS": 5,
-              "turnoversFollowedByOpponentShot": 26,
-              "shareOfOwnThirdTurnovers": 0.53061,
-              "turnoversFollowedByOpponentGoal": 2,
-              "goalShareOfOwnThirdTurnovers": 0.04082,
-              "perMatchShot": 2.1667,
-              "perMatchGoal": 0.1667
+              "turnoversFollowedByOpponentShot": 31,
+              "shareOfOwnThirdTurnovers": 0.36047,
+              "turnoversFollowedByOpponentGoal": 3,
+              "goalShareOfOwnThirdTurnovers": 0.03488,
+              "perMatchShot": 2.5833,
+              "perMatchGoal": 0.25
             },
             {
               "windowS": 10,
-              "turnoversFollowedByOpponentShot": 33,
-              "shareOfOwnThirdTurnovers": 0.67347,
-              "turnoversFollowedByOpponentGoal": 2,
-              "goalShareOfOwnThirdTurnovers": 0.04082,
-              "perMatchShot": 2.75,
-              "perMatchGoal": 0.1667
+              "turnoversFollowedByOpponentShot": 44,
+              "shareOfOwnThirdTurnovers": 0.51163,
+              "turnoversFollowedByOpponentGoal": 3,
+              "goalShareOfOwnThirdTurnovers": 0.03488,
+              "perMatchShot": 3.6667,
+              "perMatchGoal": 0.25
             }
           ],
           "dangerousNote": "⚠ TEMPORAL CO-OCCURRENCE, NOT CAUSATION: \"an opponent shot within W sim-seconds of the turnover\", on match.simTime. No causal claim is made or permitted."
@@ -468,6 +555,35 @@
             "goalKick": 49,
             "kickIn": 15,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 38,
+            "setPieceFreeKick": 36,
+            "setPiecePenalty": 1,
+            "scrambleLooseBall": 353,
+            "turnoverWonInOwnThird": 30,
+            "turnoverWonInMiddleThird": 5,
+            "turnoverWonInFinalThird": 3
+          },
+          "byOriginShare": {
+            "kickoff": 0.0718,
+            "goalKick": 0.08581,
+            "kickIn": 0.02627,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.06655,
+            "setPieceFreeKick": 0.06305,
+            "setPiecePenalty": 0.00175,
+            "scrambleLooseBall": 0.61821,
+            "turnoverWonInOwnThird": 0.05254,
+            "turnoverWonInMiddleThird": 0.00876,
+            "turnoverWonInFinalThird": 0.00525
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 41,
+            "goalKick": 49,
+            "kickIn": 15,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 38,
             "setPieceFreeKick": 36,
             "setPiecePenalty": 1,
@@ -476,11 +592,12 @@
             "turnoverWonInMiddleThird": 3,
             "turnoverWonInFinalThird": 2
           },
-          "byOriginShare": {
+          "byOriginShareAtRegainSpot": {
             "kickoff": 0.0718,
             "goalKick": 0.08581,
             "kickIn": 0.02627,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 0.06655,
             "setPieceFreeKick": 0.06305,
             "setPiecePenalty": 0.00175,
@@ -535,6 +652,40 @@
             "goalKick": 0,
             "kickIn": 0,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 4,
+            "setPieceFreeKick": 5,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 16,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0.10345,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.13793,
+            "setPieceFreeKick": 0.17241,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.55172,
+            "turnoverWonInOwnThird": 0.03448,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 9,
+            "restart": 3,
+            "openPlay": 17
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 3,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 4,
             "setPieceFreeKick": 5,
             "setPiecePenalty": 0,
@@ -543,11 +694,12 @@
             "turnoverWonInMiddleThird": 1,
             "turnoverWonInFinalThird": 0
           },
-          "byOriginShare": {
+          "byOriginShareAtRegainSpot": {
             "kickoff": 0.10345,
             "goalKick": 0,
             "kickIn": 0,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 0.13793,
             "setPieceFreeKick": 0.17241,
             "setPiecePenalty": 0,
@@ -556,10 +708,12 @@
             "turnoverWonInMiddleThird": 0.03448,
             "turnoverWonInFinalThird": 0
           },
-          "byFamily": {
-            "setPiece": 9,
-            "restart": 3,
-            "openPlay": 17
+          "lossVsRegainOriginNote": "⚠ CORRECTION (#215.3-M2): `byOrigin` is the DEFINITIONAL cut — the by-third classes read the ball at the segment's LAST OWNED tick (the loss/release point), mirrored into the WINNER's frame, exactly as the published definition states. `byOriginAtRegainSpot` is the SAME classifier run on the REGAIN tick (where the opponent established control) — the reading the #214 probe shipped while describing it as the loss spot. BOTH are published so the wedge between them is itself data; the contested/scramble limb is identical in the two cuts by construction.",
+          "byLossThird": {
+            "own": 2,
+            "middle": 9,
+            "final": 6,
+            "notARegain": 12
           },
           "byRegainCell": {
             "contested_own": 0,
@@ -712,33 +866,72 @@
           "ownThirdTimeShareNote": "owned ticks with the ball in the POSSESSING team's own third ÷ all owned ticks (loose and dead-ball ticks are in neither)."
         },
         "backThirdErrors": {
-          "definition": "an own-third turnover = a segment ending with terminator \"opponentControl\" whose LOSS position (ball position at the segment's last owned tick) is in the LOSING team's own third.",
-          "ownThirdTurnoversPerMatch": 6.0833,
+          "definition": "an own-third turnover = a segment ending with terminator \"opponentControl\" whose LOSS position (ball position at the segment's LAST OWNED tick) is in the LOSING team's own third. ⚠ CORRECTION (#215.3-H1): the #214 probe read the ball at the REGAIN tick instead — the definition above is now what the count MEASURES, and the regain-tick reading is published beside it (atRegainSpot) as the declared cross-cut.",
+          "ownThirdTurnoversPerMatch": 9,
           "ownThirdTurnoversPerMatchCi95": [
-            4.25,
-            8.25
+            6.1667,
+            12.4167
           ],
-          "ownThirdTurnovers": 73,
+          "ownThirdTurnovers": 108,
           "turnoversPerMatch": 42.9167,
-          "ownThirdShareOfAllTurnovers": 0.14175,
+          "ownThirdShareOfAllTurnovers": 0.20971,
+          "atRegainSpot": {
+            "note": "THE CROSS-CUT: the identical count read at the REGAIN tick (ball position where the opponent established control, still in the LOSER's frame). This is the #214 number.",
+            "ownThirdTurnovers": 73,
+            "ownThirdTurnoversPerMatch": 6.0833,
+            "ownThirdTurnoversPerMatchCi95": [
+              4.1667,
+              8.25
+            ],
+            "ownThirdShareOfAllTurnovers": 0.14175,
+            "dangerousLadder": [
+              {
+                "windowS": 5,
+                "turnoversFollowedByOpponentShot": 31,
+                "shareOfOwnThirdTurnovers": 0.42466,
+                "turnoversFollowedByOpponentGoal": 7,
+                "goalShareOfOwnThirdTurnovers": 0.09589,
+                "perMatchShot": 2.5833,
+                "perMatchGoal": 0.5833
+              },
+              {
+                "windowS": 10,
+                "turnoversFollowedByOpponentShot": 39,
+                "shareOfOwnThirdTurnovers": 0.53425,
+                "turnoversFollowedByOpponentGoal": 10,
+                "goalShareOfOwnThirdTurnovers": 0.13699,
+                "perMatchShot": 3.25,
+                "perMatchGoal": 0.8333
+              }
+            ]
+          },
+          "lossVsRegainWedge": {
+            "note": "⭐ THE WEDGE (#215.3): definitional LOSS-spot count minus REGAIN-spot count, on the SAME turnovers. Published because the gap is a measurable property of the world (how far the ball travels between release and the opponent's control), not a defect.",
+            "lossSpot": 108,
+            "regainSpot": 73,
+            "delta": 35,
+            "regainOverLossRatio": 0.67593,
+            "lossSpotPerMatch": 9,
+            "regainSpotPerMatch": 6.0833
+          },
           "dangerousLadder": [
             {
               "windowS": 5,
-              "turnoversFollowedByOpponentShot": 31,
-              "shareOfOwnThirdTurnovers": 0.42466,
-              "turnoversFollowedByOpponentGoal": 7,
-              "goalShareOfOwnThirdTurnovers": 0.09589,
-              "perMatchShot": 2.5833,
-              "perMatchGoal": 0.5833
+              "turnoversFollowedByOpponentShot": 37,
+              "shareOfOwnThirdTurnovers": 0.34259,
+              "turnoversFollowedByOpponentGoal": 5,
+              "goalShareOfOwnThirdTurnovers": 0.0463,
+              "perMatchShot": 3.0833,
+              "perMatchGoal": 0.4167
             },
             {
               "windowS": 10,
-              "turnoversFollowedByOpponentShot": 39,
-              "shareOfOwnThirdTurnovers": 0.53425,
-              "turnoversFollowedByOpponentGoal": 10,
-              "goalShareOfOwnThirdTurnovers": 0.13699,
-              "perMatchShot": 3.25,
-              "perMatchGoal": 0.8333
+              "turnoversFollowedByOpponentShot": 49,
+              "shareOfOwnThirdTurnovers": 0.4537,
+              "turnoversFollowedByOpponentGoal": 8,
+              "goalShareOfOwnThirdTurnovers": 0.07407,
+              "perMatchShot": 4.0833,
+              "perMatchGoal": 0.6667
             }
           ],
           "dangerousNote": "⚠ TEMPORAL CO-OCCURRENCE, NOT CAUSATION: \"an opponent shot within W sim-seconds of the turnover\", on match.simTime. No causal claim is made or permitted."
@@ -750,6 +943,35 @@
             "goalKick": 38,
             "kickIn": 15,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 36,
+            "setPieceFreeKick": 35,
+            "setPiecePenalty": 2,
+            "scrambleLooseBall": 472,
+            "turnoverWonInOwnThird": 25,
+            "turnoverWonInMiddleThird": 8,
+            "turnoverWonInFinalThird": 10
+          },
+          "byOriginShare": {
+            "kickoff": 0.07637,
+            "goalKick": 0.05476,
+            "kickIn": 0.02161,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.05187,
+            "setPieceFreeKick": 0.05043,
+            "setPiecePenalty": 0.00288,
+            "scrambleLooseBall": 0.68012,
+            "turnoverWonInOwnThird": 0.03602,
+            "turnoverWonInMiddleThird": 0.01153,
+            "turnoverWonInFinalThird": 0.01441
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 53,
+            "goalKick": 38,
+            "kickIn": 15,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 36,
             "setPieceFreeKick": 35,
             "setPiecePenalty": 2,
@@ -758,11 +980,12 @@
             "turnoverWonInMiddleThird": 18,
             "turnoverWonInFinalThird": 1
           },
-          "byOriginShare": {
+          "byOriginShareAtRegainSpot": {
             "kickoff": 0.07637,
             "goalKick": 0.05476,
             "kickIn": 0.02161,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 0.05187,
             "setPieceFreeKick": 0.05043,
             "setPiecePenalty": 0.00288,
@@ -817,6 +1040,40 @@
             "goalKick": 3,
             "kickIn": 0,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 1,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 11,
+            "turnoverWonInOwnThird": 3,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0,
+            "goalKick": 0.15,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.1,
+            "setPieceFreeKick": 0.05,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.55,
+            "turnoverWonInOwnThird": 0.15,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 3,
+            "restart": 3,
+            "openPlay": 14
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 0,
+            "goalKick": 3,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 2,
             "setPieceFreeKick": 1,
             "setPiecePenalty": 0,
@@ -825,11 +1082,12 @@
             "turnoverWonInMiddleThird": 1,
             "turnoverWonInFinalThird": 0
           },
-          "byOriginShare": {
+          "byOriginShareAtRegainSpot": {
             "kickoff": 0,
             "goalKick": 0.15,
             "kickIn": 0,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 0.1,
             "setPieceFreeKick": 0.05,
             "setPiecePenalty": 0,
@@ -838,10 +1096,12 @@
             "turnoverWonInMiddleThird": 0.05,
             "turnoverWonInFinalThird": 0
           },
-          "byFamily": {
-            "setPiece": 3,
-            "restart": 3,
-            "openPlay": 14
+          "lossVsRegainOriginNote": "⚠ CORRECTION (#215.3-M2): `byOrigin` is the DEFINITIONAL cut — the by-third classes read the ball at the segment's LAST OWNED tick (the loss/release point), mirrored into the WINNER's frame, exactly as the published definition states. `byOriginAtRegainSpot` is the SAME classifier run on the REGAIN tick (where the opponent established control) — the reading the #214 probe shipped while describing it as the loss spot. BOTH are published so the wedge between them is itself data; the contested/scramble limb is identical in the two cuts by construction.",
+          "byLossThird": {
+            "own": 3,
+            "middle": 5,
+            "final": 6,
+            "notARegain": 6
           },
           "byRegainCell": {
             "contested_own": 0,
@@ -994,32 +1254,71 @@
           "ownThirdTimeShareNote": "owned ticks with the ball in the POSSESSING team's own third ÷ all owned ticks (loose and dead-ball ticks are in neither)."
         },
         "backThirdErrors": {
-          "definition": "an own-third turnover = a segment ending with terminator \"opponentControl\" whose LOSS position (ball position at the segment's last owned tick) is in the LOSING team's own third.",
-          "ownThirdTurnoversPerMatch": 3.8333,
+          "definition": "an own-third turnover = a segment ending with terminator \"opponentControl\" whose LOSS position (ball position at the segment's LAST OWNED tick) is in the LOSING team's own third. ⚠ CORRECTION (#215.3-H1): the #214 probe read the ball at the REGAIN tick instead — the definition above is now what the count MEASURES, and the regain-tick reading is published beside it (atRegainSpot) as the declared cross-cut.",
+          "ownThirdTurnoversPerMatch": 5.5,
           "ownThirdTurnoversPerMatchCi95": [
-            3.0833,
-            4.5833
+            4.6667,
+            6.3333
           ],
-          "ownThirdTurnovers": 46,
+          "ownThirdTurnovers": 66,
           "turnoversPerMatch": 37.6667,
-          "ownThirdShareOfAllTurnovers": 0.10177,
+          "ownThirdShareOfAllTurnovers": 0.14602,
+          "atRegainSpot": {
+            "note": "THE CROSS-CUT: the identical count read at the REGAIN tick (ball position where the opponent established control, still in the LOSER's frame). This is the #214 number.",
+            "ownThirdTurnovers": 46,
+            "ownThirdTurnoversPerMatch": 3.8333,
+            "ownThirdTurnoversPerMatchCi95": [
+              3.0833,
+              4.5833
+            ],
+            "ownThirdShareOfAllTurnovers": 0.10177,
+            "dangerousLadder": [
+              {
+                "windowS": 5,
+                "turnoversFollowedByOpponentShot": 21,
+                "shareOfOwnThirdTurnovers": 0.45652,
+                "turnoversFollowedByOpponentGoal": 4,
+                "goalShareOfOwnThirdTurnovers": 0.08696,
+                "perMatchShot": 1.75,
+                "perMatchGoal": 0.3333
+              },
+              {
+                "windowS": 10,
+                "turnoversFollowedByOpponentShot": 24,
+                "shareOfOwnThirdTurnovers": 0.52174,
+                "turnoversFollowedByOpponentGoal": 7,
+                "goalShareOfOwnThirdTurnovers": 0.15217,
+                "perMatchShot": 2,
+                "perMatchGoal": 0.5833
+              }
+            ]
+          },
+          "lossVsRegainWedge": {
+            "note": "⭐ THE WEDGE (#215.3): definitional LOSS-spot count minus REGAIN-spot count, on the SAME turnovers. Published because the gap is a measurable property of the world (how far the ball travels between release and the opponent's control), not a defect.",
+            "lossSpot": 66,
+            "regainSpot": 46,
+            "delta": 20,
+            "regainOverLossRatio": 0.69697,
+            "lossSpotPerMatch": 5.5,
+            "regainSpotPerMatch": 3.8333
+          },
           "dangerousLadder": [
             {
               "windowS": 5,
-              "turnoversFollowedByOpponentShot": 21,
-              "shareOfOwnThirdTurnovers": 0.45652,
-              "turnoversFollowedByOpponentGoal": 4,
-              "goalShareOfOwnThirdTurnovers": 0.08696,
-              "perMatchShot": 1.75,
-              "perMatchGoal": 0.3333
+              "turnoversFollowedByOpponentShot": 25,
+              "shareOfOwnThirdTurnovers": 0.37879,
+              "turnoversFollowedByOpponentGoal": 6,
+              "goalShareOfOwnThirdTurnovers": 0.09091,
+              "perMatchShot": 2.0833,
+              "perMatchGoal": 0.5
             },
             {
               "windowS": 10,
-              "turnoversFollowedByOpponentShot": 24,
-              "shareOfOwnThirdTurnovers": 0.52174,
+              "turnoversFollowedByOpponentShot": 32,
+              "shareOfOwnThirdTurnovers": 0.48485,
               "turnoversFollowedByOpponentGoal": 7,
-              "goalShareOfOwnThirdTurnovers": 0.15217,
-              "perMatchShot": 2,
+              "goalShareOfOwnThirdTurnovers": 0.10606,
+              "perMatchShot": 2.6667,
               "perMatchGoal": 0.5833
             }
           ],
@@ -1032,6 +1331,35 @@
             "goalKick": 30,
             "kickIn": 11,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 35,
+            "setPieceFreeKick": 23,
+            "setPiecePenalty": 1,
+            "scrambleLooseBall": 413,
+            "turnoverWonInOwnThird": 20,
+            "turnoverWonInMiddleThird": 11,
+            "turnoverWonInFinalThird": 7
+          },
+          "byOriginShare": {
+            "kickoff": 0.0755,
+            "goalKick": 0.05034,
+            "kickIn": 0.01846,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.05872,
+            "setPieceFreeKick": 0.03859,
+            "setPiecePenalty": 0.00168,
+            "scrambleLooseBall": 0.69295,
+            "turnoverWonInOwnThird": 0.03356,
+            "turnoverWonInMiddleThird": 0.01846,
+            "turnoverWonInFinalThird": 0.01174
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 45,
+            "goalKick": 30,
+            "kickIn": 11,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 35,
             "setPieceFreeKick": 23,
             "setPiecePenalty": 1,
@@ -1040,11 +1368,12 @@
             "turnoverWonInMiddleThird": 12,
             "turnoverWonInFinalThird": 2
           },
-          "byOriginShare": {
+          "byOriginShareAtRegainSpot": {
             "kickoff": 0.0755,
             "goalKick": 0.05034,
             "kickIn": 0.01846,
             "restartSecondBall": 0,
+            "matchOpenFallback": 0,
             "setPieceCorner": 0.05872,
             "setPieceFreeKick": 0.03859,
             "setPiecePenalty": 0.00168,
@@ -1087,8 +1416,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "c7e41d58e1b89a0e896f9495f9b33fe952b6a492a5c15cc667f937de9a8c6450",
-      "digestB": "c7e41d58e1b89a0e896f9495f9b33fe952b6a492a5c15cc667f937de9a8c6450",
+      "digestA": "67752350d1a66a2ad510fe0c8c7b8f792df4dd70af44b4e8358f362d938dbd46",
+      "digestB": "67752350d1a66a2ad510fe0c8c7b8f792df4dd70af44b4e8358f362d938dbd46",
       "note": "the whole measured core computed TWICE, canonical-JSON digests"
     },
     "xFpProd": {
@@ -1097,7 +1426,9 @@
       "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
       "seed": 1337,
       "seasons": 2,
-      "skipped": false
+      "skipped": false,
+      "reDerivedInThisProcess": true,
+      "skipNote": "⚠ #215.3-M3: a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no canonical artifact can exist with skipped:true. Read `preflightProvenance` beside this."
     },
     "xSrcZero": {
       "pass": true,
@@ -1309,7 +1640,38 @@
       "pass": true,
       "base": 104400,
       "published": [
+        91100,
+        91110,
+        92110,
+        93003,
+        97003,
+        98003,
+        99003,
+        99203,
+        99403,
+        99503,
+        99603,
+        99703,
+        99803,
+        99903,
+        100003,
+        100203,
+        100303,
+        100403,
+        100503,
+        100603,
+        100703,
+        100803,
+        100903,
+        101003,
+        101103,
+        101203,
+        101303,
         101403,
+        101503,
+        101513,
+        101523,
+        101800,
         102000,
         102200,
         102400,
@@ -1400,6 +1762,7 @@
     "PASS DIRECTION IS OBSERVED ON COMPLETED PASSES AT THE RECEIVER'S ACTUAL POSITION, while the engine's own passesForward counter fires at the STRIKE, on the INTENDED target's position, for ATTEMPTED passes. Same 2 m predicate, different population — declared, and the located share is published per arm.",
     "THE ORIGIN CLASSIFIER IS A CLASSIFIER. A deflected clearance collected cleanly is a turnover…; a contested one is a scrambleLooseBall — and the contested test is the SUBSTRATE'S OWN possessionPhase classification, not a threshold of ours.",
     "⭐ THE REGAIN CROSS-CUT WAS ADDED AT PLUMBING TIME, BEFORE ANY MEASURED RUN, and is declared rather than quietly folded in: the bounded preflight showed the substrate's `contested` test absorbs ~60–70 % of regains, which would have left the three by-third origin classes nearly empty. The frozen ORIGIN CLASS LIST IS UNCHANGED; what was added is the ORTHOGONAL report (where × contested) over EVERY open-play regain. No measured level was seen for any arm before this was frozen — the preflight is plumbing and adjudicates nothing.",
+    "⚠⚠ THE #215 FIX ROUND (ruling #215.3, this artifact): the #214 build measured 后场失误 AND the by-third origin classes at the REGAIN tick while its own published definition said the LOSS tick. Both now read the ball at the segment's LAST OWNED tick, in the loser's frame, mirrored to the winner's frame for the classes — and the REGAIN-tick reading is published BESIDE the definitional one everywhere (atRegainSpot / byOriginAtRegainSpot / lossVsRegainWedge), because the gap between the two ticks is a real property of the world. Also fixed here: the GGC_SKIP_FP canonical-path bypass, the incomplete published stats-base ledger, and the restartSecondBall / matchOpenFallback conflation. Old claims stay readable.",
     "THE DANGEROUS-TURNOVER WINDOW IS TEMPORAL CO-OCCURRENCE, NOT CAUSATION.",
     "PROD IS NOT A SINGLE-FACTOR CONTROL (the declared confound above).",
     "NO REFERENCE BAND EXISTS FOR GOAL GENEALOGY — the levels are reported against nothing, and that absence is published rather than papered over with an unsourced number.",
@@ -1413,9 +1776,9 @@
     "THIS STAGE PROPOSES NO MECHANIC AND RULES ON NOTHING. Whether the user's #213 story (goals are turnover-fed; the attack cannot construct) is confirmed, refuted or split is the COMMANDER'S adjudication from the per-arm rows (#203)."
   ],
   "verdict": "SMOKE — PLUMBING ONLY; ADJUDICATES NOTHING",
-  "resultSha256": "b67d835dc87e991857692f690d6e1e049039f3ed81235f803028feadd7217cec",
+  "resultSha256": "86aae642471a3440c6c7ac7d62533f90be3c351c00bcb708ea3073f719917f7a",
   "sizing": {
-    "msPerMatch": 100.389,
+    "msPerMatch": 98.194,
     "goalsPerMatchByArm": {
       "PROD": 1.5,
       "MT02": 2.4167,
@@ -1424,11 +1787,11 @@
     "goalsPerMatchMin": 1.5,
     "provenance": "THE SMOKE'S TWO SIZING NUMBERS — ms/match and the MINIMUM goals per match over the three arms. These are the ONLY numbers a FULL run reads out of this artifact, and they feed ONLY N. THE SMOKE ADJUDICATES NOTHING."
   },
-  "headContextOnly": "37053e9",
+  "headContextOnly": "d17a12f",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1): the git short-hash of the tree this run was launched from. Recorded for provenance and hashed NOWHERE, so the receipt re-derives at any later commit.",
   "wallContextOnly": {
-    "corePassMs": 3614,
-    "totalMs": 17213,
+    "corePassMs": 3535,
+    "totalMs": 16935,
     "note": "CONTEXT ONLY, and OUTSIDE resultSha256 (#128) — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
   }
 }

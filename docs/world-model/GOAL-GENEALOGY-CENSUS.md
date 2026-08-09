@@ -16,6 +16,26 @@ two MT play-test worlds the user just watched (#211.3 / #212). It exists because
 #213 story — *"进球多由失误/抢断发起 · 后场倒脚太多 · 后场失误太多"* — is a **hypothesis
 until it has a probe**, and no goal-genealogy instrument existed.
 
+> ⚠⚠ **CORRECTION ROUND — commander ruling #215.3 (the #187 / #190 form: corrections marked
+> in place, the old claims left readable).** The #215 machine-verify of the #214 build failed
+> (1 HIGH + 2 MEDIUM + 2 LOW). Five things changed, all instrument-side, none of them the
+> frozen design (arms, N rule, seeds, the ladder-as-reporting, the gates' set are untouched):
+>
+> 1. **(H1 + M2 — one root cause) THE LOSS TICK.** The 后场失误 count *and* the by-third
+>    turnover origin classes now read the ball at the segment's **LAST OWNED tick** (the
+>    loss / release point), in the loser's frame and mirrored into the winner's frame for the
+>    classes — i.e. exactly what §2.1 and §2.4 below *always said*. The #214 probe read the
+>    **regain** tick instead. On the smoke block that moved own-third turnovers from
+>    **49 → 86** for PROD (the regain reading was the low one).
+> 2. **BOTH READINGS ARE PUBLISHED.** The loss spot is the definitional one; the regain spot
+>    stays as the declared cross-cut (`atRegainSpot`, `byOriginAtRegainSpot`,
+>    `lossVsRegainWedge`), because the gap between the two ticks is a real property of this
+>    world — how far the ball travels between release and the opponent's control — and it is
+>    worth watching rather than hiding.
+> 3. **(M3) THE PREFLIGHT BYPASS IS CLOSED** — see §6.
+> 4. **(L4) THE PUBLISHED STATS-BASE LEDGER IS COMPLETE** — see §4.2.
+> 5. **(L5) `matchOpenFallback` SPLIT OUT of `restartSecondBall`** — see §2.1.
+
 **Road B binds.** ZERO `src/**` changes. Every quantity below is derived from a **tick-walk
 over observable match state** (the tempo census's own instrument idiom, extended). The
 production fingerprint is re-derived unchanged inside the probe.
@@ -78,6 +98,7 @@ Restarts therefore always start a **new** segment with **its own origin class**.
 | `goalKick` / `kickIn` | RESTART | first owner is `match.restartKickGid` and `restartKickKind` is that kind | `restartKickGid` + `restartKickKind` |
 | `setPieceCorner` / `setPieceFreeKick` / `setPiecePenalty` | **SET PIECE** | ditto, for `corner` / `freeKick` / `penalty` | ditto |
 | `restartSecondBall` | RESTART | play resumed from a dead ball but the first team to own it is **not** the taker | the dead-ball flag + owner gid |
+| `matchOpenFallback` | RESTART | ⚠ **ADDED #215.3-L5** — an open-play regain with **no previous segment** to read a loss spot from. Split out of `restartSecondBall`, which the #214 build made carry both. Expected **empty** in every arm (the match opens from a kickoff); published so the emptiness is auditable rather than assumed | owner gid + the absence of a previous segment |
 | `scrambleLooseBall` | OPEN PLAY | possession changed hands with **no dead ball**, and at least one tick in the gap between the two segments was classified `contested` by the substrate itself | `match.possessionPhase.kind === 'contested'` |
 | `turnoverWonInOwnThird` / `…MiddleThird` / `…FinalThird` | OPEN PLAY | possession changed hands with no dead ball and no contested tick — the **clean regain / interception** | ball position at the **loss tick**, in the frame below |
 
@@ -89,6 +110,14 @@ unchanged**; what is added is an **orthogonal report** carried by every open-pla
 **where** it happened (own / middle / final, winner's frame) **×** whether it was
 **contested** — for segments and for goals. Declared here and in the artifact's deviations;
 no measured level for any arm was seen before it was frozen.
+
+⚠ **CORRECTION (#215.3-H1 + M2) — WHICH TICK "the loss tick" IS.** The row above always said
+*ball position at the loss tick*; the #214 probe in fact classified on the **regain** tick
+(where the opponent established control). It now reads the previous segment's **last owned
+tick**, as written. The regain-tick cut survives, **published beside it** as
+`byOriginAtRegainSpot` / `byOriginShareAtRegainSpot` for segments and goals, so the wedge
+between the two readings is itself data. The `scrambleLooseBall` limb is identical under both
+cuts by construction (it is decided by the substrate's `contested` flag, not by a position).
 
 ⭐ **THE THIRD IS NAMED IN THE WINNING (new possessing) TEAM'S ATTACKING FRAME.**
 `turnoverWonInFinalThird` = a **high** regain = the ball was lost in the **loser's own
@@ -153,6 +182,13 @@ silently dropped.
 ⚠ **A WINDOW IS NOT A CAUSAL CLAIM.** "Shot within 5 s of the turnover" is a *temporal
 co-occurrence*, and it is labelled as such in the artifact. The commander reads it as one.
 
+⚠ **CORRECTION (#215.3-H1).** The definition above is unchanged — but until this round the
+probe counted at the **regain** tick, not the last owned tick, which understated the quantity
+(**PROD smoke block: 49 at the regain spot vs 86 at the loss spot**, +75 %, on exactly the
+user's #213 observation). Both readings now ship per arm: `ownThirdTurnovers…` (definitional,
+loss spot) · `atRegainSpot.…` (the cross-cut, the #214 number) · `lossVsRegainWedge` (Δ and
+ratio). The dangerous-subset ladder is computed **on both**, each against its own denominator.
+
 ---
 
 ## 3. REFERENCE SHAPES (context only — THEY GATE NOTHING)
@@ -206,6 +242,12 @@ in prose.
 `104,400` (the bootstrap / resample stream, separate namespace). The nearest published base
 is 104,200 ⇒ gap 200 = the #163 floor. Checked in-probe (`gStats`).
 
+⚠ **CORRECTION (#215.3-L4).** The ledger the #214 probe checked against **began at 101,403**
+and was missing older bases (the verify found nine). The probe now carries the **complete**
+stats namespace — every base declared anywhere under `scripts/**`, spent and reserved-unused
+alike, in the tempo census's own `CONSUMED_STATS` form, from 91,100 up. **The gate result is
+unchanged**: the nearest base to 104,400 is still 104,200, minGap 200.
+
 ### 4.3 N — the frozen rule (sized on **genealogy precision**)
 
 The headline object is **the goal** — every genealogy row is a share **of goals**, so N is
@@ -237,7 +279,7 @@ rate, CI or threshold from the smoke is read anywhere, and the smoke adjudicates
 | gate | what it asserts |
 |---|---|
 | `xDet` | the whole measured core computed **TWICE**, canonical-JSON digests identical |
-| `xFpProd` | the shipped fingerprint `57b0bdab…c673` re-derived **in this process**, unchanged |
+| `xFpProd` | the shipped fingerprint `57b0bdab…c673` re-derived **in this process**, unchanged. ⚠ #215.3-M3: `GGC_SKIP_FP` no longer buys a canonical artifact — a skip forces the run onto the preflight path (§6) |
 | `xSrcZero` | `git diff --stat -- src` empty — this stage adds ZERO `src/**` |
 | `gArm` | the §1 checklist, all three arms, read back off freshly built matches |
 | `gSeed` | this run's block above the ceiling, inside the reserved band, disjoint from every consumed block, own sub-blocks ordered |
@@ -270,6 +312,15 @@ GGC_MODE=full npx tsx scripts/probes/goal-genealogy-census.ts
 GGC_MODE=smoke GGC_CAP=2 GGC_SKIP_FP=1 GGC_OUT=/tmp/ggc.json npx tsx scripts/probes/goal-genealogy-census.ts
 ```
 
+⚠ **CORRECTION (#215.3-M3) — THE PREFLIGHT BYPASS IS CLOSED.** The #214 build decided
+"preflight" from `GGC_CAP` **alone**, so an **uncapped** `GGC_SKIP_FP=1` run passed `xFpProd`
+as *"skipped"* **and** was allowed to write the canonical artifact path. Now: **any**
+skip/preflight lever (`GGC_CAP` *or* `GGC_SKIP_FP`) makes the run a preflight **regardless of
+cap or N**, a preflight defaults to `/tmp/goal-genealogy-preflight.json` and is **refused**
+on a canonical path — checked at parse time **and again at the write** — and the skip is
+recorded in the artifact (`preflightProvenance`, `gates.xFpProd.reDerivedInThisProcess`).
+⇒ **an artifact on a canonical repo path always carries a genuinely re-derived `xFpProd`.**
+
 Artifacts: `docs/world-model/data/goal-genealogy-census-smoke.json` (smoke) ·
 `docs/world-model/data/goal-genealogy-census.json` (full).
 **Exit semantics: 0 = clean census · 1 = X-family invalid · 2 = usage/fatal.**
@@ -301,6 +352,10 @@ that cost is accepted (stated, not hidden).
    phase-0 **gap table**. Whether the user's story ("goals are turnover-fed; the attack cannot
    construct") is confirmed, refuted, or split is the **commander's adjudication** from the
    per-arm rows (#203) — not this document's, and not the probe's.
+9. ⚠⚠ **THE #215.3 CORRECTION ROUND IS ON THE RECORD** (top of this document, and in the
+   artifact's own `deviations`): what the #214 build measured, what it now measures, and the
+   loss-vs-regain **wedge** published per arm. The failed reading is not deleted — it stays
+   as the cross-cut so the correction is checkable rather than merely asserted.
 
 ---
 
