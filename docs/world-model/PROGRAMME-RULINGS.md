@@ -9137,3 +9137,33 @@
 >    real-football analytics axis; a defence that works forces
 >    the attack to learn construction — that is real football's
 >    own history.
+
+> **COMMANDER RULING #214 (2026-08-09 — the user rules 甲: the
+> GOAL-GENEALOGY CENSUS; dispatched):**
+>
+> 1. **USER RULING RECORDED — 甲.** The BUILD-UP arc opens with
+>    its phase-0 gap table (the #170–#173 tempo-census form:
+>    descriptive, X-family-gated only, no pass/fail — the
+>    commander adjudicates the table). Three arms: production ·
+>    MT 0.2 · MT 0.8 (the live entry worlds). Quantities (the
+>    user's three observations, instrumented): (a) ⭐ GOAL
+>    GENEALOGY — every goal traced to its possession's ORIGIN
+>    (turnover by third / scramble / set piece / restart) +
+>    the possession's construction (passes, duration) before
+>    scoring; the constructed-vs-transition split REPORTED AT
+>    A THRESHOLD LADDER (≥3/≥4/≥5 passes — no single frozen
+>    N to game); (b) 后场倒脚 — own-third pass share,
+>    lateral/backward share, own-third chain loops; (c) 后场
+>    失误 — own-third turnovers per match + the dangerous
+>    subset (→ opponent shot/goal within a frozen window,
+>    ladder-reported). Real-football reference SHAPES may be
+>    cited as context; 常数永不进口 (the house law).
+> 2. **DISCIPLINE**: probe-side observation only (possession
+>    segments derived from tick-level watching, the forensic
+>    idiom; zero src/** — a needed telemetry hook = STOP and
+>    report); the full evidence stack (#181.2 receipts,
+>    head-outside-hash, unabridged transcripts, in-probe seed
+>    disjointness ≥ 12,421,000, stats base ≥ 104,400, the
+>    frozen N rule sized on goals-per-arm precision); fresh
+>    executor + independent verify; the commander launches and
+>    adjudicates the GAP TABLE (#203 per-arm rows).

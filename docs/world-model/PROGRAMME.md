@@ -347,12 +347,14 @@ exclusivity" framing scored a HIT (substrate-state, not a
 law; the turnover-fed-goals story = a hypothesis awaiting its
 probe). Defensive complaints ABSENT from the feedback (the
 tuck-in reads as working; explicit keep/hold word still the
-user's). **THE FORK SITS AT THE USER (#213.3): 甲 BUILD-UP
-ARC phase-0 = the goal-genealogy census (倒脚率 · 后场失误率 ·
-进球家谱: 组织 vs 转换 vs 定位球; prod + MT worlds;
-recommended) / 乙 straight to O2-T1 (the look = the most
-blocking build-up primitive) / 丙 rule the MT worlds' keep/
-hold first.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+user's). **THE USER RULED 甲 (#214): the GOAL-GENEALOGY CENSUS**
+— build-up arc phase-0, the #170–#173 census form: 3 arms
+(prod · MT 0.2 · MT 0.8), goal origins traced (turnover-by-
+third / scramble / set-piece) + construction ladder (≥3/4/5
+passes), own-third 倒脚 metrics, own-third error rate + its
+dangerous subset; descriptive, no gates beyond X-family;
+CENSUS EXECUTOR DISPATCHED (#214.2). O2-T1 stays queued
+(#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
