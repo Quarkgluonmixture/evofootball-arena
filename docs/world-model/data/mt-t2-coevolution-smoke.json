@@ -100,8 +100,8 @@
       "label": "(ii) SELECTION REJECTS — honest UNSUPPORTED",
       "ENGAGES": false,
       "engagedGenes": [],
-      "RESTORES": true,
-      "RESTORES_PARTIAL": false,
+      "RESTORES": false,
+      "RESTORES_PARTIAL": true,
       "BODY_NEGATIVE": true,
       "rejectedGenes": [
         "markSag",
@@ -1578,9 +1578,9 @@
     "MT-T2 SHIPS NOTHING (Road B): both seams stay dormant, both genes stay born-absent in every shipped path, and the production fingerprint is re-derived unchanged.",
     "NOTHING HERE IS A WATCHABILITY VERDICT — that is the user's play-test, per contract §3."
   ],
-  "resultSha256": "c43cc0044bfcb88fae81a9b16ddab21914b0655e881c232384a58e405b95d0ed",
+  "resultSha256": "e443378f0782d4a1f7ba7cb91d83bf67b0a72e608cbf7cb59a5593324f010431",
   "sizing": {
-    "msPerMatch": 92.286,
+    "msPerMatch": 90.5,
     "matchesPerPass": 98,
     "derivation": {
       "msPerMatchPrior": 102.21,
@@ -1594,11 +1594,11 @@
       "smokeArtifactSha256": null
     }
   },
-  "headContextOnly": "5af833e",
+  "headContextOnly": "273ab9a",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1): the git short-hash of the tree this run was launched from. Recorded for provenance and hashed NOWHERE, so the receipt re-derives at any later commit.",
   "wallContextOnly": {
-    "corePassMs": 9044,
-    "totalMs": 28144,
+    "corePassMs": 8869,
+    "totalMs": 27536,
     "note": "CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the frozen seed rule reads it."
   }
 }

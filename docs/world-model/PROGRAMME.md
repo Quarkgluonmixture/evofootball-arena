@@ -287,9 +287,17 @@ outcomes: (i) selection engages + equilibrium restores + body
 compression survives ⇒ play-test entry; (ii) genes driven to
 ~0 ⇒ honest UNSUPPORTED, hand-dose decision returns; (iii)
 genes maxed + equilibrium stays deflated ⇒ an ATTACK-side
-substrate finding. MT-T2 EXECUTOR IS DISPATCHED (#205.2);
-the commander launches the long run supervised (§0.0.4)
-after banking.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+substrate finding. **MT-T2 IS BANKED + LAUNCHED (#206,
+`273ab9a` + amendment)**: verify PASS (1 MEDIUM + 3 LOW); the
+MEDIUM became a PRE-LAUNCH STRICTER AMENDMENT (RESTORES now
+requires goals ∈ gated — the substrate-drift exclusion may
+not silently drop the question the stage exists to answer;
+X-DET unchanged, smoke re-run, new resultSha256
+e443378f…0431); pre-registered adjudication note: ENGAGES is
+read WITH the neutral-drift shadow + fitness–gene correlation.
+**THE LONG RUN IS RUNNING (24 league seeds × 2 arms × 25
+generations, ~3 h; adjudication ruling next).**** O2-T1 stays
+queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

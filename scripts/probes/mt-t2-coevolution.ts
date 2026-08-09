@@ -909,7 +909,12 @@ const trajectory = Array.from({ length: RUN_GENS }, (_, i) => {
 const ENGAGED_GENES = NEW_GENES.filter((k) =>
   geneDelta[k].resolvedAboveZero && armedFinalPooled[k] >= GENE_ZERO_EPS);
 const ENGAGES = ENGAGED_GENES.length > 0;
-const RESTORES = finalBand.armedInBand;
+// ⚠ #206 PRE-LAUNCH AMENDMENT (stricter, the #91 form; the verify's MEDIUM):
+// RESTORES additionally requires GOALS to be a GATED dimension — the question this
+// stage exists to answer may not be silently excluded by the substrate-drift rule.
+// If the CONTROL itself drifts off the goals band at gen 25, outcome (i) cannot
+// fire; the run lands MIXED with the drift published.
+const RESTORES = finalBand.armedInBand && finalBand.gatedDimensions.includes('goals');
 const RESTORES_PARTIAL = !RESTORES && goalsVsMttop.resolvedAboveZero;
 const BODY_NEGATIVE = bodyContrast.resolvedBelowZero;
 const REJECTED_GENES = NEW_GENES.filter((k) => armedFinalPooled[k] < GENE_ZERO_EPS);

@@ -120,7 +120,7 @@ instrument's.
 RESERVED BAND          12,320,000 .. 12,419,999            (virgin; MT-T1 ended at 12,313,999)
 smoke evolution        12,320,000 + gen×100 + matchIndex   (RUN — committed)
 smoke body             12,325,000 + …                      (RUN — committed)
-FULL evolution         12,330,000 + leagueIdx×3,000 + gen×100 + matchIndex   ⇒ ≤ 12,399,444
+FULL evolution         12,330,000 + leagueIdx×3,000 + gen×100 + matchIndex   ⇒ ≤ 12,401,444 (⚠ #206: the first draft wrote ≤ 12,399,444 — a max-gen-offset slip; the probe's gSeed computes the true span, inside the reserved band)
 FULL body instrument   12,410,000 + leagueIdx×100 + pairIndex                ⇒ ≤ 12,412,339
 ```
 
@@ -179,6 +179,7 @@ ENGAGES        := ∃ gene k:  CI( G_ARMED(k) − G_CONTROL(k) ) resolved ABOVE 
                              ∧ G_ARMED(k) ≥ GENE_ZERO_EPS = 0.02
 RESTORES       := at generation 25, ARMED is inside the band on EVERY GATED dimension
                   (gated = dimensions the CONTROL itself holds at that read point)
+                  ∧ GOALS ∈ gated                     ← ⚠ #206 PRE-LAUNCH AMENDMENT
 RESTORES_PART. := ¬RESTORES ∧ CI( ARMED goals@25 − MT-T1 MTTOP goals ) resolved ABOVE zero
 BODY_NEGATIVE  := CI( bodyLatGap(EVOLVED − ZEROED) ) resolved BELOW zero
 ```
@@ -187,6 +188,14 @@ BODY_NEGATIVE  := CI( bodyLatGap(EVOLVED − ZEROED) ) resolved BELOW zero
   ⇒ the play-test entry follows. **The stated form of "restores" is INSIDE THE BAND**;
   `RESTORES_PARTIAL` ("resolvedly closer than MTTOP's deflated levels") is **reported and does
   NOT satisfy (i)** — it is the honest middle reading the commander adjudicates.
+  ⚠ **#206 PRE-LAUNCH AMENDMENT (the verify's MEDIUM; the #91 form, STRICTER, applied
+  before any full-N sight)**: the inherited substrate-drift exclusion could silently drop
+  GOALS from the gate (a long-horizon CONTROL may itself drift off the 8-season-calibrated
+  band — the verifier's smoke re-run demonstrated `gated = {crosses}` concretely).
+  RESTORES therefore additionally requires **goals ∈ gated**: if the control itself
+  drifts off the goals band at gen 25, outcome (i) CANNOT fire and the run lands MIXED
+  with the drift published. The question this stage exists to answer may not be excluded
+  by its own honesty rule.
 * **(ii) SELECTION REJECTS** := `G_ARMED(k) < 0.02` for **both** genes ⇒ **honest
   UNSUPPORTED**; the hand-dose decision returns to the user.
 * **(iii) SELECTION MAXES + EQUILIBRIUM STAYS DEFLATED** := `(∃k: G_ARMED(k) ≥ GENE_HIGH =
@@ -196,7 +205,16 @@ BODY_NEGATIVE  := CI( bodyLatGap(EVOLVED − ZEROED) ) resolved BELOW zero
 
 **Both thresholds are TRACED, not chosen:**
 * `GENE_ZERO_EPS = 0.02` — A4-S2P3 §5.3's frozen `LEGS_SIGN_EPS = 0.02`, the Leg-S
-  "indistinguishable from zero" dead-zone, re-used unchanged.
+  "indistinguishable from zero" dead-zone, re-used unchanged. ⚠ #206 (verify finding 4,
+  disclosed): the anchor gated a SIGNED per-slot offset family (±0.5) while here it
+  gates the magnitude of a [0,1] gene mean — same number, same semantic role
+  ("indistinguishable from zero"), different quantity; named rather than implied.
+  ⚠ #206 adjudication note, pre-registered (verify finding 2): ENGAGES alone is
+  satisfiable by NEUTRAL DRIFT (clamp01's reflecting barrier drifts a no-selection walk
+  upward) — the commander adjudicates outcome (i)'s ENGAGES limb WITH the published
+  drift shadow and the fitness–gene correlation: an armed final mean statistically
+  indistinguishable from the shadow is NOT read as selection evidence, whatever the
+  predicate says.
 * `GENE_HIGH = 0.85` — the **top of `randomGenome`'s birth range**
   (`src/evolution/genome.ts`: `for (const k of GENE_KEYS) g[k] = rng.range(0.15, 0.85);`): a
   new gene at or above it has been driven higher than the substrate ever hands out at birth.
@@ -350,6 +368,13 @@ SIZING — seeds* would be 24 (affordable 30, cap SEEDS_MAX) at 102.21 ms/match
 VERDICT: (ii) SELECTION REJECTS — honest UNSUPPORTED  ⚠ SMOKE — ADJUDICATES NOTHING
 ⚠ SMOKE ADJUDICATES NOTHING — every number above is plumbing evidence, not a finding.
 ```
+
+⚠ #206: after the pre-launch RESTORES amendment the smoke was RE-RUN (the amendment
+changes only the verdict predicate, not the simulation — **X-DET digest unchanged**
+`1060c97b…db16`); the committed artifact and its `resultSha256` are now
+**`e443378f0782d4a1f7ba7cb91d83bf67b0a72e608cbf7cb59a5593324f010431`** (the transcript
+above is otherwise unchanged except wall-clock: 27.5 s · 90.5 ms/match). The superseded
+hash `c43cc004…d0ed` above is left readable per the fix form.
 
 **What the smoke DOES establish (plumbing only):**
 * both arms construct and run; **gen 1 is byte-equal across arms** (goals 2.333 / 2.333) —

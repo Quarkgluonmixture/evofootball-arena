@@ -8809,3 +8809,54 @@
 >    transcripts). The commander launches the long run
 >    supervised (§0.0.4) and adjudicates. O2-T1 stays queued
 >    (#199.5).
+
+> **COMMANDER RULING #206 (2026-08-09 — MT-T2 instruments
+> machine-verify PASS (1 MEDIUM + 3 LOW); the MEDIUM becomes a
+> PRE-LAUNCH STRICTER AMENDMENT (the #91 form, applied before
+> any full-N sight); the exam BANKED; the LONG RUN LAUNCHED):**
+>
+> 1. **VERIFY PASS recorded** (`273ab9a`, ff-merged to main).
+>    Independently confirmed: fitness is WIN-ONLY and
+>    gene-blind (zero grep hits in fitness/League/evolve; the
+>    probe's fitness has no genome in scope — the #167 rule
+>    held by construction + gate); the arms differ in exactly
+>    the two MutateOptions booleans (both consumption flags ON
+>    in BOTH arms — the control is MT-T1's proven ARMEDZERO
+>    world, so the seams' branches are entered in both and
+>    only the mutation law differs); receipts re-derived at
+>    the verifier's own head, transcript byte-identical
+>    modulo wall-clock; thresholds traced (GENE_ZERO_EPS =
+>    the Leg-S dead-zone; GENE_HIGH = randomGenome's birth
+>    ceiling); the two ex-ante confounds (RNG-stream
+>    displacement; neutral drift ≠ selection, with a published
+>    drift shadow) honestly declared.
+> 2. **THE MEDIUM → PRE-LAUNCH AMENDMENT (stricter)**: the
+>    inherited substrate-drift exclusion could silently drop
+>    GOALS from the RESTORES gate (the verifier demonstrated
+>    `gated = {crosses}` on a smoke re-run). AMENDED before
+>    launch, in probe + doc: **RESTORES additionally requires
+>    goals ∈ gated** — if the long-horizon CONTROL itself
+>    drifts off the goals band, outcome (i) cannot fire and
+>    the run lands MIXED with the drift published. The smoke
+>    was re-run under the amendment (X-DET unchanged
+>    `1060c97b…db16` — the simulation is untouched; the new
+>    committed `resultSha256 e443378f…0431`).
+> 3. **THE LOWs**: (L2) ENGAGES-vs-neutral-drift — a
+>    PRE-REGISTERED adjudication note added to the doc: the
+>    commander reads outcome (i)'s ENGAGES limb WITH the drift
+>    shadow + the fitness–gene correlation; an armed mean
+>    indistinguishable from the shadow is not selection
+>    evidence. (L3) the seed-span arithmetic corrected
+>    (≤ 12,401,444, inside the reserved band; gSeed computes
+>    the true span). (L4) the GENE_ZERO_EPS provenance nuance
+>    (signed-offset anchor vs [0,1] gene mean) disclosed.
+> 4. **BANKED + LAUNCHED**: `MTT2_MODE=full`, 24 league seeds
+>    × 2 arms × 25 generations (the frozen rule's output;
+>    SEEDS_MAX binds), projected wall ≈ 3 h (budget 4 h). Exit
+>    semantics: 0 = clean + outcome (i) or MIXED · 1 = invalid
+>    · 2 = clean + a pre-named NEGATIVE outcome ((ii)/(iii) —
+>    findings, not failures). Adjudication from the per-arm /
+>    per-generation rows; the #206.3 drift-shadow note binds
+>    the reading. Seeds consumed: 12,320,000-band smoke
+>    (12,330,000+… tiny span ×2 runs) + the full band on
+>    launch; exact spans in the artifacts.
