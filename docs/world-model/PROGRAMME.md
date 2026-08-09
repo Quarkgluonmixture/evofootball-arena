@@ -279,11 +279,17 @@ at MTTOP/BOTHTOP; formally no STOP — PMTOP holds the band, ∀
 predicate; the #203-L4 scenario realized).** The 乙 question
 (#193.1) is ANSWERED: pricing the stance un-blocks the mark
 channel; S1/S2/S4 not needed. Both seams BANKED-DORMANT.
-**THE FORK SITS AT THE USER (#204.4): 甲 MT-T2 co-evolution
-live A/B (arm both opt-ins, selection sets the dose, then
-play-test the evolved world — recommended) / 乙 dose-ladder
-addendum (hand-picked knee) / 丙 play-test the top-dose world
-as-is (−27 % goals).** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**THE USER RULED 甲 (#205): MT-T2 = the CO-EVOLUTION live A/B
+— arm `evolveMarkSag` + `evolveDefLaneConvergence` vs an
+un-armed control, WIN-ONLY fitness (the #167 Leg-S rule),
+genes born absent at gen 0; selection sets the dose. Pre-named
+outcomes: (i) selection engages + equilibrium restores + body
+compression survives ⇒ play-test entry; (ii) genes driven to
+~0 ⇒ honest UNSUPPORTED, hand-dose decision returns; (iii)
+genes maxed + equilibrium stays deflated ⇒ an ATTACK-side
+substrate finding. MT-T2 EXECUTOR IS DISPATCHED (#205.2);
+the commander launches the long run supervised (§0.0.4)
+after banking.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

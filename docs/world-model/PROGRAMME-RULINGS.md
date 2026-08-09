@@ -8772,3 +8772,40 @@
 >    top-dose world as-is (fastest eyes-on; that world scores
 >    −27 % — the user judges watchability directly). O2-T1
 >    stays queued regardless (#199.5).
+
+> **COMMANDER RULING #205 (2026-08-09 — the user rules 甲:
+> MT-T2 = the CO-EVOLUTION live A/B; the stage dispatched):**
+>
+> 1. **USER RULING RECORDED — 甲.** Selection sets the dose:
+>    arm `evolveMarkSag` + `evolveDefLaneConvergence` in a
+>    live evolution A/B vs an un-armed control; fitness stays
+>    WIN-ONLY (the #167 Leg-S rule — no fitness shaping toward
+>    the sag); genes born absent at gen 0 (incumbent-
+>    equivalent start). Dual-check on record (the #201.1c
+>    standing rule): VISION — the dose emerges, styles may
+>    diverge, no hand tuning; REALITY — real defensive
+>    tightness settled through attack-defence adaptation
+>    cycles, which is what a two-sided evolving league
+>    mirrors.
+> 2. **MT-T2 DISPATCHED** (draft + independent verify per
+>    §0.0.2): the executor drafts the frozen stage doc + the
+>    evolution-A/B instrument (the S2-P3 Leg-S form is the
+>    named precedent to reuse) + a tiny smoke; frozen ex ante:
+>    arms (armed vs control, same league seeds), horizon
+>    (traced from the co-evolution precedent's @8/@25-season
+>    reads), league-seed count sized by a rule, and the
+>    pre-named outcome forms — (i) SELECTION ENGAGES +
+>    equilibrium RESTORES toward the band + body compression
+>    survives at evolved doses ⇒ the play-test entry follows;
+>    (ii) selection drives the genes to ~0 (the sag does not
+>    pay under win-only fitness) ⇒ honest UNSUPPORTED, the
+>    hand-dose decision returns to the user; (iii) selection
+>    maxes the genes and the equilibrium stays deflated ⇒ a
+>    substrate finding for the ATTACK side (its counters), the
+>    fork returns. Gene trajectories, style divergence
+>    (per-team gene spread), the band per generation, and the
+>    #157 debt all REPORTED with the same evidence discipline
+>    (#181.2 receipts, head-outside-the-hash, unabridged
+>    transcripts). The commander launches the long run
+>    supervised (§0.0.4) and adjudicates. O2-T1 stays queued
+>    (#199.5).
