@@ -9237,3 +9237,36 @@
 >    scope the ledger claim honestly (or include the older
 >    bases); reword the fallback row. Re-verify gates the
 >    launch.
+
+> **COMMANDER RULING #217 (2026-08-10 — the micro-fix re-verify:
+> items 2/3/4 PASS (path-independence CONFIRMED better than
+> reported — byte-identical hashed bodies from canonical and
+> /tmp runs); the guard STILL bypassable (case-variant paths on
+> a case-insensitive filesystem; symlinks) — ADJUDICATED:
+> accept-with-operational-rule (the #207.2 form), stop the
+> guard loop, LAUNCH):**
+>
+> 1. **BANKED** (`6729707`): loss-tick semantics (twice
+>    verified), path-independent receipts (verifier recomputed
+>    from scratch), traversal + absolute-path vectors closed,
+>    honest fallback wording. The census's MEASUREMENT core is
+>    clean on every independent check.
+> 2. **RESIDUALS, recorded as-is**: (a) the canonical-write
+>    guard remains bypassable via case-variant paths (macOS
+>    case-insensitive fs: `DOCS/…` resolves to the same dir but
+>    fails the string test) and symlinks — the threat model is
+>    the LAUNCHER's own env misuse, and the launcher is the
+>    commander ⇒ ⚠ OPERATIONAL RULE (binding): census launches
+>    carry `GGC_MODE=full` and NOTHING else (no GGC_SKIP_FP,
+>    no GGC_OUT, repo root cwd). The terminal fix — filesystem
+>    IDENTITY (dev+inode of the resolved parent) instead of
+>    path-string comparison — is RECORDED DEBT for the next
+>    probe generation, not a fourth round now. (b) Corrections
+>    of record (the #198 form, no code edit): the
+>    `publishedScope` sentence over-claims its grep scope (the
+>    re-verifier's finding stands as the true scope); the
+>    guard's in-code comment over-states ("every spelling
+>    collapses" — traversal/absolute yes; case/symlink no).
+> 3. **LAUNCHED**: `GGC_MODE=full`, 3 arms × N = 400 × 2 X-DET
+>    passes, ≈ 7 min. The commander adjudicates the GAP TABLE
+>    from per-arm rows (#203).
