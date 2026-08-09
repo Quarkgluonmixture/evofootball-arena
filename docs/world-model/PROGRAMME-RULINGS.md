@@ -9270,3 +9270,42 @@
 > 3. **LAUNCHED**: `GGC_MODE=full`, 3 arms × N = 400 × 2 X-DET
 >    passes, ≈ 7 min. The commander adjudicates the GAP TABLE
 >    from per-arm rows (#203).
+
+> **COMMANDER RULING #218 (2026-08-10 — the GOAL-GENEALOGY
+> CENSUS adjudicated: the user's three observations
+> instrument-confirmed and sharpened; the gap table banked as
+> the BUILD-UP arc's ruler; the fork presented):**
+>
+> 1. **CLEAN RUN** (N = 400 × 3 arms, X-FAMILY GREEN, artifact
+>    `70c1a502…87ba`; §RESULT filled). Headlines: 乱抢 births
+>    **52.8 %** of all prod goals (the single biggest factory;
+>    RISES to 61.4 % at MT08); constructed ≥5-pass goals are
+>    **7.5–9.2 %** in every world; the median goal is born ONE
+>    pass from the regain; **~31 % of all goals sit within
+>    10 s of an own-third loss** (co-occurrence, labelled);
+>    the ball spends **52 %** of possession time in the own
+>    third on prod; set pieces 30.4 % (real-range) but corners
+>    collapse 17.5→8.2 % under the tuck-in.
+> 2. **THE #213 STORY, REFINED BY DATA**: the tuck-in does NOT
+>    choke the scramble economy — it shuts the CROSS/CORNER
+>    factory, which is why MT goals fall; the scramble share
+>    actually rises. The user's core claim stands and
+>    sharpens: the attack has two factories (scramble + set
+>    pieces) and NO build-up factory — there was never a
+>    constructed-goal economy to protect. Bonus: the tuck-in
+>    IMPROVES the user's 倒脚 complaints (own-third time
+>    52→42 %, more completed passes) — field position frees
+>    up when the defence stops chasing.
+> 3. **THE BUILD-UP ARC'S RULER (banked)**: success = the
+>    constructed-goal share and the scramble share MOVE (not
+>    just tempo — the F-O1b lesson institutionalized). THE
+>    FORK (人话先行): (甲, recommended) dispatch O2-T1 — the
+>    LOOK wedge exam, frozen since #189, the time-to-see
+>    primitive upstream of every combination; (乙) draft the
+>    check-to-ball/回撤接应 contract (the receiver-side
+>    primitive; supportSpot never drops); (丙) the
+>    progression-value slice (the E4 missing half). Dual-check:
+>    VISION — all three are named seats, capability-not-
+>    mandate; REALITY — a passer who cannot buy time and a
+>    midfield that never shows for the ball are exactly why
+>    real teams cannot play out of a press.

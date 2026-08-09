@@ -353,8 +353,18 @@ user's). **THE USER RULED 甲 (#214): the GOAL-GENEALOGY CENSUS**
 third / scramble / set-piece) + construction ladder (≥3/4/5
 passes), own-third 倒脚 metrics, own-third error rate + its
 dangerous subset; descriptive, no gates beyond X-family;
-CENSUS EXECUTOR DISPATCHED (#214.2). O2-T1 stays queued
-(#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**THE CENSUS RAN AND ADJUDICATED (#215 FAIL → #216 →
+#217 residuals-accepted → #218): the gap table is BANKED as
+the build-up arc's ruler — 乱抢 births 52.8 % of prod goals
+(rising to 61.4 % at MT08: the tuck-in shuts the cross/corner
+factory, NOT the scramble); constructed ≥5-pass goals 7.5–9.2 %
+everywhere; median goal = ONE pass from the regain; ~31 % of
+all goals within 10 s of an own-third loss; own-third TIME
+share 52 % on prod (42 % at MT08 — the tuck-in helps 倒脚).
+Build-up-arc success = constructed share + scramble share
+MOVE. THE FORK SITS AT THE USER (#218.3): 甲 O2-T1 (the look,
+frozen+queued; recommended) / 乙 check-to-ball contract /
+丙 progression-value slice.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

@@ -411,5 +411,32 @@ that cost is accepted (stated, not hidden).
 
 ## §RESULT
 
+*(Filled by the COMMANDER at adjudication, ruling #218 — every number from the committed
+[`data/goal-genealogy-census.json`](data/goal-genealogy-census.json); N = 400 × 3 arms,
+EXIT 0, X-FAMILY GREEN, `resultSha256 70c1a502…87ba`.)*
+
+**THE GAP TABLE (the build-up arc's ruler):**
+
+| quantity | PROD | MT02 | MT08 | the reading |
+| --- | --- | --- | --- | --- |
+| goals born in 乱抢/loose-ball | **52.8 %** | 58.9 % | 61.4 % | ⭐ the single biggest goal factory everywhere; RISES with the tuck-in |
+| goals from set pieces | 30.4 % | 27.1 % | 27.0 % | in the real range (~25–30 %) — but corners collapse 17.5→8.2 % (the cross pipeline dries) |
+| goals from CLEAN turnovers | 5.3 % | 4.3 % | 5.3 % | small — the "steal" is mostly a SCRAMBLE, not a clean win |
+| constructed goals (≥5 passes, non-SP) | **7.5 %** | 8.1 % | 9.2 % | ⭐ build-up as a goal source barely exists, in EVERY world |
+| passes before a goal (median / mean) | 1 / 1.47 | 1 / 1.30 | 0 / 1.36 | goals are born ~one pass from the regain |
+| own-third pass share / TIME share | 31.6 % / **52.4 %** | 27.1 % / 45.1 % | 24.2 % / 41.7 % | the ball LIVES in the back third on prod; the tuck-in actually frees the field |
+| own-third turnovers /match (loss-spot) | 7.45 | 7.79 | 6.75 | + the WEDGE: only ~57–75 % of them are re-won where lost (the scramble drags the rest) |
+| own-third losses → opponent GOAL ≤10 s | **8.6 %** (256 of 827 total goals ≈ 31 %) | 8.1 % | 8.1 % | ⭐ ~a third of ALL goals sit within 10 s of an own-third loss (co-occurrence, labelled) |
+| contested_middle share of regains | 51.8 % | 58.6 % | 61.0 % | possession DIES in the middle-third scramble, everywhere |
+
+**ADJUDICATION**: the user's three observations are instrument-confirmed — (1) goals are
+turnover-economy-fed (乱抢 52.8 % + clean 5.3 % ≈ 58 % of everything; ~31 % of all goals
+within 10 s of an own-third error); (2) the back third holds >half of possession time on
+prod; (3) own-third errors are frequent AND consequential. ⭐ The MT worlds REFINE the
+#213 story: the tuck-in does NOT suppress the scramble economy (its share rises) — it
+shuts the OTHER factory (crosses→corners), which is why goals fall. The disease is the
+ATTACK's: no build-up factory exists to lose. The build-up arc's success criterion now
+has a ruler: move the constructed-goal share and the scramble share, not just tempo.
+
 *(empty by design — filled by the commander after the launched run, from the artifact's
 per-arm rows. Nothing may be written here before the run.)*
