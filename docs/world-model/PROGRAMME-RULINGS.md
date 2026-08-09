@@ -8978,3 +8978,22 @@
 >    detached fallback per #207) → adjudicate → the play-test
 >    ENTRY builds at the knee (the #168/#185 form) → the
 >    user's eyes.
+
+> **COMMANDER RULING #210 (2026-08-09 — the DOSE LADDER banked
+> (verify PASS, 1 LOW) + LAUNCHED):**
+>
+> 1. **BANKED** (`9c161ef`): the knee rule coded as a faithful
+>    transcription of #209.2 (the verifier read the ruling from
+>    git and diffed the predicate limb by limb); instruments
+>    inherited from the ruler (gInherit now 26 pins, incl. 7
+>    into the MT-T1 probe itself); both arming checklists per
+>    arm; seeds 12,420,000-band, disjoint in-probe; stats base
+>    104,200; N* = 800 (cap binds). The LOW (a doc-typed wall
+>    term 6336 vs the re-derived 6351) is non-load-bearing —
+>    the cap binds either way; noted as the correction of
+>    record, no edit (the artifact computes its own).
+> 2. **LAUNCHED**: `MTLAD_MODE=full`, 5 arms × N = 800 × 2
+>    X-DET passes, projected ≈ 15 min, harness channel
+>    (detached fallback per #207 if killed). Adjudication =
+>    the knee per the frozen rule + per-arm rows (#203); then
+>    the play-test ENTRY builds at the knee.
