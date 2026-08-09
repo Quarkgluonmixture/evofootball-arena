@@ -10,6 +10,7 @@ import {
   randomGenome, type TacticalGenome,
 } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
+import { a4MatchFlags } from '../src/game/a4World';
 import { clamp01 } from '../src/utils/math';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -214,10 +215,21 @@ describe('PM-T0 — FLAG HYGIENE (Road B: nothing ships)', () => {
     expect(live.pmLaneConvergence).toBe(false);
   });
 
-  it('it is initialised `?? false`, never env-armed, and absent from a4World', () => {
+  it('it is initialised `?? false`, never env-armed, and never bundle-defaulted', () => {
     expect(SRC.match).toContain('this.pmLaneConvergence = cfg.pmLaneConvergence ?? false;');
-    expect(SRC.a4World).not.toContain('pmLaneConvergence');
-    expect(SRC.a4World).not.toContain('defLaneConvergence');
+    // #211.3 armed the seam into the two EXPLICITLY opt-in MT play-test worlds
+    // (until then this asserted the name was absent from a4World entirely; the
+    // narrower claim is the one that matters): the A4 CENSUS substrate is not
+    // widened, so every non-opt-in path — and every A4 world — stays unconverged.
+    const censusBlock = /export const A4_WORLD_FLAGS = \{([\s\S]*?)\} as const;/
+      .exec(SRC.a4World)?.[1];
+    expect(censusBlock).toBeDefined();
+    expect(censusBlock).not.toContain('pmLaneConvergence');
+    expect(a4MatchFlags(1).pmLaneConvergence).toBeUndefined();
+    expect(a4MatchFlags(2).pmLaneConvergence).toBeUndefined();
+    expect(a4MatchFlags(3).pmLaneConvergence).toBeUndefined();
+    expect(a4MatchFlags(4).pmLaneConvergence).toBe(true); // the licensed arm sites
+    expect(a4MatchFlags(5).pmLaneConvergence).toBe(true);
     // no environment door anywhere in src
     expect(SRC.match).not.toContain('PM_LANE_CONVERGENCE=');
     expect(SRC.formations).not.toContain('process.env.PM');

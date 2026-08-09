@@ -236,7 +236,9 @@ describe('A4 v2 — the entry: one value, two worlds, desktop AND phone', () => 
     expect(a4UrlOverride('?a4world=1')).toBe(1);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
     expect(a4UrlOverride('?a4world=3')).toBe(3); // the #184.2 wind-up world
-    expect(a4UrlOverride('?a4world=4')).toBeNull(); // no fourth world exists
+    expect(a4UrlOverride('?a4world=4')).toBe(4); // the #211.3 MT worlds
+    expect(a4UrlOverride('?a4world=5')).toBe(5);
+    expect(a4UrlOverride('?a4world=6')).toBeNull(); // no sixth world exists
     expect(a4UrlOverride('')).toBeNull();
   });
 

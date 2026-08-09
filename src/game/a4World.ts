@@ -48,6 +48,28 @@
  * the spell-length gap moved only 1.7–4.3% (release time was the small half of the
  * tempo disease). One-touch releases, restarts and kickoffs are untouched.
  *
+ * ⭐ V4 / V5 — THE MT PLAY-TEST WORLDS, 松盯内收 (commander ruling #211.3). These are
+ * NOT A4 worlds: they carry no eye, no whisper, no discipline family. They are the
+ * MT-LADDER's own measured arms made watchable — BOTH dormant defensive seams
+ * (`pmLaneConvergence` + `mtMarkSag`) armed together, with `defLaneConvergence` and
+ * `markSag` written at ONE fixed dose on all three genome views of both teams (the
+ * `armGenes` idiom this module gave the probes). v4 = the ruled KNEE 0.2 (the
+ * #209.2 fallback dose, the DEFAULT-named world); v5 = the 0.8 CONTRAST world, where
+ * the mechanism is visible to the naked eye and the scoreline deflates with it.
+ *
+ * ⚠ FIXED DOSE, NO EVOLUTION. The arming checklists (#196.3-D4) name three channels
+ * per seam — flag + evolve opt-in + non-absent gene. A play-test world arms the flag
+ * and the gene and deliberately leaves the two opt-ins (`evolveDefLaneConvergence` /
+ * `evolveMarkSag`) OFF: they govern mutation and crossover, and a FIXED armed world
+ * mutates nothing (the #165.2.ii reading this module already applies to v2). Nothing
+ * in the user's league evolves either gene.
+ *
+ * ⭐ THE FIDELITY SOURCE is `scripts/probes/mt-ladder.ts` + the committed
+ * `docs/world-model/data/mt-ladder.json`: v4 is arm **D02** and v5 is arm **D08**,
+ * construction flag for construction flag (`MT_WORLD_FLAGS` = the probe's
+ * `PERCEPT_FLAGS` plus the two seam flags, and `stationEye` stays NULL exactly as
+ * `frozenDesign.world` records) and dose for dose, both teams.
+ *
  * ⚠ V3 COMPOSES AT **THIS** LAYER (the #184.2 binding constraint). `A4_WORLD_FLAGS`
  * is the CENSUS-FIDELITY set — the substrate the eye's tables were censused on —
  * and widening it would silently move every world off-census (contract §3 FLAG
@@ -79,20 +101,23 @@ import type {
 export const A4_WORLD_KEY = 'evo:a4World';
 /**
  * `?a4world=1` arms v1 (the uniform whisper), `?a4world=2` arms v2 (the discipline
- * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=0` disarms — the phone
- * entry (see A4-PLAYTEST.md).
+ * world), `?a4world=3` arms v3 (v2 + 出球前摇), `?a4world=4` arms the MT knee world
+ * (松盯内收 at 0.2), `?a4world=5` its 0.8 contrast, `?a4world=0` disarms — the phone
+ * entry (see A4-PLAYTEST.md and MT-LADDER.md §ENTRY).
  */
 export const A4_WORLD_PARAM = 'a4world';
 
 /**
  * WHICH experimental world is armed: 0 = off (the shipped game), 1 = the #156
  * uniform-whisper world, 2 = the #167.5 discipline world, 3 = the #184.2 wind-up
- * world (v2 + `o1PassWindup`). Mutually exclusive by construction — one value,
- * never a blend.
+ * world (v2 + `o1PassWindup`), 4/5 = the #211.3 MT play-test worlds (the ladder's
+ * D02 / D08 arms). Mutually exclusive by construction — one value, never a blend.
  */
-export type A4WorldVersion = 0 | 1 | 2 | 3;
-/** The three armable worlds (0 is "no world"). */
-export type A4ArmedVersion = 1 | 2 | 3;
+export type A4WorldVersion = 0 | 1 | 2 | 3 | 4 | 5;
+/** The five armable worlds (0 is "no world"). */
+export type A4ArmedVersion = 1 | 2 | 3 | 4 | 5;
+/** The two MT play-test worlds (#211.3) — the fixed-dose coupled tuck-in worlds. */
+export type MtWorldVersion = 4 | 5;
 
 /**
  * The ENRICHED world's construction flags — `CENSUS_FLAGS` from the P3′ probe,
@@ -124,9 +149,82 @@ export type A4MatchFlags = League['matchFlags'];
  * match, and v1/v2 return exactly the census set they always did.
  */
 export function a4MatchFlags(version: A4ArmedVersion): A4MatchFlags {
+  if (isMtWorld(version)) return { ...MT_WORLD_FLAGS };
   const flags: A4MatchFlags = { ...A4_WORLD_FLAGS };
   if (version === 3) flags.o1PassWindup = true;
   return flags;
+}
+
+/* ---------------- the MT play-test worlds (#211.3) ---------------- */
+
+/**
+ * ⭐ THE MT WORLD'S CONSTRUCTION FLAGS = the MT-LADDER probe's dosed arms, verbatim:
+ * its `PERCEPT_FLAGS` (the percept-armed substrate PM-T0/PM-T1's own receipts ran in)
+ * plus the two consumption flags the arm throws. Deliberately NOT the A4 census set:
+ * the ladder arms carried no eye and no C-family seams, and a play-test world that
+ * added them would be watching a different world from the one that was measured.
+ */
+export const MT_WORLD_FLAGS = {
+  edsPerceivedDefence: true,
+  edsPerceivedChoice: true,
+  pmLaneConvergence: true,
+  mtMarkSag: true,
+} as const;
+
+/**
+ * version ⇒ the ONE dose both genes carry (the ladder's coupled axis, #209.1: the two
+ * genes EQUAL at each dose). 4 = the ruled knee (#211.1's NONE_ABOVE_FLOOR fallback),
+ * 5 = the contrast arm D08.
+ */
+export const MT_WORLD_DOSE: Readonly<Record<MtWorldVersion, number>> = { 4: 0.2, 5: 0.8 };
+/** The ladder arm each world reproduces — the fidelity anchor's key into the artifact. */
+export const MT_WORLD_ARM: Readonly<Record<MtWorldVersion, string>> = { 4: 'D02', 5: 'D08' };
+
+/** Is this an MT play-test world (as opposed to an A4 certified world)? */
+export function isMtWorld(version: A4WorldVersion): version is MtWorldVersion {
+  return version === 4 || version === 5;
+}
+
+/**
+ * Write BOTH seam genes at one dose onto all three genome references of one side —
+ * the `setA4Obedience` idiom, and the `armGenes` idiom the MT-LADDER / PM-T1 / MT-T1
+ * probes took from this module (#196.3-D6: the REAL gene channel, no engine-side dose
+ * surface anywhere).
+ */
+export function setMtDose(match: Match, side: Side, dose: number): void {
+  const team = match.teams[side];
+  for (const g of [team.info.genome, team.baseGenome, team.effGenome] as TacticalGenome[]) {
+    g.defLaneConvergence = dose;
+    g.markSag = dose;
+  }
+}
+
+/**
+ * Arm one MT play-test world on a freshly constructed match: both genes at the world's
+ * fixed dose, on both teams (the ladder's `doseBothTeams` — the equilibrium frame).
+ * The two consumption flags are CONSTRUCTION flags and arrived with `a4MatchFlags`;
+ * the eye stays null, and no evolution opt-in is touched.
+ */
+export function armMtWorld(match: Match, version: MtWorldVersion): void {
+  for (const side of [0, 1] as const) setMtDose(match, side, MT_WORLD_DOSE[version]);
+}
+
+/**
+ * WHICH MT world this match is in (0 = none): both flags armed, no eye, and both genes
+ * reading the same world's dose on the EFFECTIVE genome of both teams. Reads the MATCH,
+ * never the user's stored intent.
+ */
+export function mtArmedVersion(match: Match): 0 | MtWorldVersion {
+  if (!match.pmLaneConvergence || !match.mtMarkSag || match.stationEye !== null) return 0;
+  for (const version of [4, 5] as const) {
+    const dose = MT_WORLD_DOSE[version];
+    const both = ([0, 1] as const).every((side) => {
+      const g = match.teams[side].effGenome as TacticalGenome;
+      return g.defLaneConvergence === dose && g.markSag === dose;
+    });
+    if (both) return version;
+  }
+  return 0;
 }
 
 /** The #148 certified PRIMARY dose: homePriorStrength(0.5) = 0.25×VAL_SCALE. */
@@ -238,8 +336,19 @@ export function setA4Offsets(match: Match, side: Side, offsets: readonly number[
  * v3 arms EXACTLY v2's post-construction content: its one extra ingredient is a
  * CONSTRUCTION flag (`a4MatchFlags(3)`), which the match already carries by the
  * time it reaches here — there is nothing left to write.
+ *
+ * ⭐ v4/v5 (#211.3) take the EARLY branch: an MT play-test world is the ladder arm,
+ * which carried no eye and no whisper, so nothing of A4 is written and the census
+ * tables are not needed at all (`tables` may be null for them).
  */
-export function armA4World(match: Match, tables: A4Tables, version: A4ArmedVersion = 1): void {
+export function armA4World(
+  match: Match, tables: A4Tables | null, version: A4ArmedVersion = 1,
+): void {
+  if (isMtWorld(version)) {
+    armMtWorld(match, version);
+    return;
+  }
+  if (tables === null) return; // the A4 worlds cannot be armed without their census
   match.stationEye = a4EyeConfig(tables);
   for (const side of [0, 1] as const) {
     setA4Obedience(match, side, A4_OBEDIENCE);
@@ -258,12 +367,14 @@ export function isA4Armed(match: Match): boolean {
 }
 
 /**
- * WHICH certified world is on this match: 3 when the discipline family is on both
- * sides AND the wind-up seam is armed, 2 for the family alone, 1 for the uniform
- * whisper, 0 when unarmed or non-conforming. The badge and the tests read the
- * MATCH, not the user's stored intent.
+ * WHICH world is on this match: 4/5 for the MT play-test worlds (#211.3), 3 when the
+ * discipline family is on both sides AND the wind-up seam is armed, 2 for the family
+ * alone, 1 for the uniform whisper, 0 when unarmed or non-conforming. The badge and
+ * the tests read the MATCH, not the user's stored intent.
  */
 export function a4ArmedVersion(match: Match): A4WorldVersion {
+  const mt = mtArmedVersion(match); // #211.3 — a different family, checked first
+  if (mt !== 0) return mt;
   if (!isA4Armed(match)) return 0;
   const family = (side: Side): readonly number[] | undefined =>
     homePriorOffsets(match.teams[side].effGenome as TacticalGenome);
@@ -281,14 +392,15 @@ const readStored = (): A4WorldVersion => {
   try {
     const raw = localStorage.getItem(A4_WORLD_KEY);
     // '1' is what the #156 entry stored — an existing v1 player keeps v1.
-    return raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
+    return raw === '5' ? 5 : raw === '4' ? 4
+      : raw === '3' ? 3 : raw === '2' ? 2 : raw === '1' ? 1 : 0;
   } catch {
     return 0; // private mode / no storage
   }
 };
 
 /**
- * `?a4world=1` (v1) / `?a4world=2` (v2) / `?a4world=3` (v3) / `?a4world=0`, or null
+ * `?a4world=1` (v1) / `2` (v2) / `3` (v3) / `4` (MT 0.2) / `5` (MT 0.8) / `0`, or null
  * when the param is absent or unparseable. One value ⇒ the worlds are mutually
  * exclusive.
  */
@@ -299,6 +411,8 @@ export function a4UrlOverride(search: string): A4WorldVersion | null {
     if (raw === '1' || raw === 'true' || raw === 'on') return 1;
     if (raw === '2') return 2;
     if (raw === '3') return 3;
+    if (raw === '4') return 4;
+    if (raw === '5') return 5;
     if (raw === '0' || raw === 'false' || raw === 'off') return 0;
     return null;
   } catch {

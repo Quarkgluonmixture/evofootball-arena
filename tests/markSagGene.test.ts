@@ -10,6 +10,7 @@ import {
   randomGenome, type TacticalGenome,
 } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
+import { a4MatchFlags } from '../src/game/a4World';
 import { clamp01 } from '../src/utils/math';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import { Rng } from '../src/utils/rng';
@@ -230,10 +231,20 @@ describe('MT-T0 — Road B: the flag is dormant and the seam is inert until dose
       .toContain('this.mtMarkSag = cfg.mtMarkSag ?? false;');
   });
 
-  it('is absent from a4World (never bundle-defaulted) and from the assignment file', () => {
+  it('is never bundle-defaulted (only the explicit MT opt-in worlds) and absent from the assignment file', () => {
     const a4 = readFileSync('src/game/a4World.ts', 'utf8');
-    expect(a4).not.toContain('mtMarkSag');
-    expect(a4).not.toContain('markSag');
+    // #211.3 armed the seam into the two EXPLICITLY opt-in MT play-test worlds
+    // (until then this asserted the name was absent entirely; the narrower claim
+    // is the one that matters): the A4 CENSUS substrate is not widened, so every
+    // non-opt-in path — and every A4 world — stays sag-free.
+    const censusBlock = /export const A4_WORLD_FLAGS = \{([\s\S]*?)\} as const;/.exec(a4)?.[1];
+    expect(censusBlock).toBeDefined();
+    expect(censusBlock).not.toContain('mtMarkSag');
+    expect(a4MatchFlags(1).mtMarkSag).toBeUndefined();
+    expect(a4MatchFlags(2).mtMarkSag).toBeUndefined();
+    expect(a4MatchFlags(3).mtMarkSag).toBeUndefined();
+    expect(a4MatchFlags(4).mtMarkSag).toBe(true); // the licensed arm sites
+    expect(a4MatchFlags(5).mtMarkSag).toBe(true);
     // the 甲/乙 boundary: assignMarks / team.marks live here and never name the seam
     expect(readFileSync('src/ai/TeamBrain.ts', 'utf8')).not.toContain('markSag');
   });

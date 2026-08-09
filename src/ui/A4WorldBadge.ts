@@ -48,9 +48,18 @@ export const A4_BADGE_TEXT_V2 = '🧪 A4 约定世界 v2 · 纪律';
  * goes) — so the user can never mistake a v3 match for a v2 one.
  */
 export const A4_BADGE_TEXT_V3 = '🧪 A4 约定世界 v3 · 前摇';
+/**
+ * ⭐ V4/V5 (#211.3) — the MT play-test worlds. These are NOT A4 worlds, and the chip
+ * says so: a different family name (MT), and the DOSE in the name, because the whole
+ * point of the pair is that the user can tell 0.2 from 0.8 at a glance while switching
+ * between them. 0.2 is the ruled knee (the default-named world), 0.8 the contrast.
+ */
+export const A4_BADGE_TEXT_MT02 = '🧪 MT 0.2 · 松盯内收';
+export const A4_BADGE_TEXT_MT08 = '🧪 MT 0.8 · 松盯内收(对比)';
 /** version ⇒ chip text (0 = no chip). */
-export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3, string>> = {
+export const A4_BADGE_TEXTS: Readonly<Record<1 | 2 | 3 | 4 | 5, string>> = {
   1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3,
+  4: A4_BADGE_TEXT_MT02, 5: A4_BADGE_TEXT_MT08,
 };
 
 const defaultDoc = (): BadgeDoc | null =>
@@ -72,7 +81,7 @@ export class A4WorldBadge {
     return this.el === null ? 0 : this.version;
   }
 
-  /** Name the armed world — 0 removes the chip, 1/2/3 mount or RELABEL it in place. */
+  /** Name the armed world — 0 removes the chip, 1…5 mount or RELABEL it in place. */
   setWorld(version: A4WorldVersion): void {
     if (version === this.world) return;
     this.version = version;

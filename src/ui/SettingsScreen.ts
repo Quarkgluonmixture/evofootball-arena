@@ -138,10 +138,19 @@ export class SettingsScreen {
       (v) => setA4World(v ? 2 : 0));
     const a4V3Box = checkbox(t('A4 world v3 · 出球前摇 (play-test)'), a4WorldInitial === 3,
       (v) => setA4World(v ? 3 : 0));
+    // MT PLAY-TEST WORLDS (ruling #211.3): a DIFFERENT family from the A4 worlds
+    // above — the dose ladder's own measured arms, made watchable. Same single
+    // value, so arming one still disarms every other world.
+    const mt02Box = checkbox(t('MT 0.2 · 松盯内收 (play-test)'), a4WorldInitial === 4,
+      (v) => setA4World(v ? 4 : 0));
+    const mt08Box = checkbox(t('MT 0.8 · 松盯内收 对比 (play-test)'), a4WorldInitial === 5,
+      (v) => setA4World(v ? 5 : 0));
     const setA4World = (version: A4WorldVersion) => {
       input(a4V1Box).checked = version === 1;
       input(a4V2Box).checked = version === 2;
       input(a4V3Box).checked = version === 3;
+      input(mt02Box).checked = version === 4;
+      input(mt08Box).checked = version === 5;
       actions.setA4World(version);
     };
     exp.appendChild(a4V1Box);
@@ -153,6 +162,12 @@ export class SettingsScreen {
     exp.appendChild(a4V3Box);
     exp.appendChild(el('div', 'muted',
       t('v3 · 出球前摇:v2 的纪律世界,再加上短传的出球前摇 —— 球不再在决定的那一瞬间就飞出去,出球前有一个看得见的摆腿窗口,技术好的人摆得快、跑动中或急转身时摆得慢。一脚出球(一触即传)、开球和各种死球发球都不受影响。量到的:出球确实慢了(接球到出球 +0.043 秒)、丢球变少(每分钟 −0.18 次),比赛的进球和传中等大局都没被打乱;老实说,回合(球权持续)只变长了一点点 —— 慢慢出球只是节奏问题的小一半。你的眼睛要判的:摆腿看得见吗?节奏手感比 v2 好还是差?防守多出来的封堵窗口用上了吗?v1/v2/v3 只能开一个。')));
+    exp.appendChild(mt02Box);
+    exp.appendChild(el('div', 'muted',
+      t('MT 0.2 · 松盯内收:这是另一条线的世界 —— 跟上面的约定世界无关,防守端两个改动一起开:盯人的球员在球飞行的时候不再贴死,而是松开一点、身位往中间收;同时后防线整体朝球所在的那条通道靠。两队都开,剂量固定在 0.2(裁定下来的那一档),不会进化、不会自己变大。老实说:0.2 这一档量到的身位变化只有 −0.59 米,在尺子的分辨率以下 —— 眼睛很可能看不出来。想看清机制请开下面的 0.8 对比世界。你的眼睛要判的:弱侧后卫还乱转吗?防守知道往哪走了吗?')));
+    exp.appendChild(mt08Box);
+    exp.appendChild(el('div', 'muted',
+      t('MT 0.8 · 对比:同一个世界,剂量调到 0.8 —— 这是给眼睛看的那一档。量到的:弱侧身位 −2.40 米(确定),防守确实更靠得住;代价也是确定的 —— 进球从 2.19 掉到 1.73,头球少四成多,长传和传中都变少。梯子上每一档都是这个交易,没有免费的剂量:防守真的开始起作用,空中和边路的戏就会变少。所以真正要你回答的是:进球变少的世界,好看还是难看?看完这一档再回到 0.2 对比。')));
     this.root.appendChild(exp);
   }
 

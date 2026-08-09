@@ -545,3 +545,95 @@ one — and it prices the same dose at headers −23 %. No contradiction; the ru
 is the honest price tag. **Watchability has no instrument (the E4 lesson) — whether a
 lower-scoring, better-defended world is better FOOTBALL is exactly the user's
 play-test verdict, now carrying the whole decision.**
+
+---
+
+## §ENTRY — the two play-test worlds (ruling #211.3)
+
+*(Appended by the ENTRY executor. The worlds are **opt-in, default OFF, nothing ships**:
+production is byte-identical with them off — fingerprint `57b0bdab…c673` re-derived
+unchanged, `League.matchFlags` still `{}`, both genes still born absent. Road B intact.)*
+
+### How to reach them
+
+| | world | how | badge on screen |
+| --- | --- | --- | --- |
+| **the ruled knee** | `4` | ⚙ → 🧬 Experimental → **MT 0.2 · 松盯内收 (play-test)**, or `?a4world=4` | `🧪 MT 0.2 · 松盯内收` |
+| **the contrast** | `5` | ⚙ → 🧬 Experimental → **MT 0.8 · 松盯内收 对比 (play-test)**, or `?a4world=5` | `🧪 MT 0.8 · 松盯内收(对比)` |
+
+The `?a4world=N` link is the phone entry (it sticks, so it only has to be opened once);
+`?a4world=0` or unticking the box returns the shipped world. **One value, five worlds** —
+arming either MT world disarms the A4 worlds v1/v2/v3 and vice versa, so every A/B is
+between two clean worlds. **WATCHED MATCHES ONLY** (the E4 semantics, unchanged since
+#155): the world is pushed onto matches started from now on — a match already in flight
+keeps the brain it kicked off with, the league's simulated results are untouched, and no
+saved league is rewritten.
+
+### What each world arms (fidelity: the ladder arms, not a re-derivation)
+
+Both worlds arm **BOTH seams together**, exactly as every dosed ladder arm did:
+
+* construction flags `MT_WORLD_FLAGS` = `edsPerceivedDefence` + `edsPerceivedChoice`
+  (the probe's `PERCEPT_FLAGS`, i.e. the substrate PM-T0/PM-T1's receipts ran in) **+**
+  the two consumption flags `pmLaneConvergence` + `mtMarkSag`; `stationEye` stays
+  **null** (`frozenDesign.world`, verbatim — these are **not** A4 worlds: no eye, no
+  whisper, no discipline family);
+* the genes `defLaneConvergence` **and** `markSag`, EQUAL, at the world's one dose
+  (world 4 → **0.2** = arm **D02**; world 5 → **0.8** = arm **D08**), written on all
+  **three** genome views (`info.genome` / `baseGenome` / `effGenome`) of **both** teams
+  — the `a4World` `armGenes` idiom, the REAL gene channel (#196.3-D6; the ladder's
+  `doseBothTeams`).
+
+⚠ **FIXED DOSE — the evolution opt-ins are NOT armed.** The arming checklists (#196.3-D4)
+name three channels per seam: flag + evolve opt-in + non-absent gene. A play-test world
+arms the flag and the gene and deliberately leaves `evolveDefLaneConvergence` /
+`evolveMarkSag` **OFF** — they govern mutation and crossover, and a fixed armed world
+mutates nothing. **Nothing in your league evolves either gene**: the dose you switch on is
+the dose you watch, season after season, and it never drifts (the #165.2.ii reading the
+entry already applies to the A4 v2 family).
+
+**The fidelity receipt** is `tests/mtPlaytestEntry.test.ts`, triple-anchored per the #168
+precedent — every flag and both doses are read back from (i) the committed artifact
+[`data/mt-ladder.json`](data/mt-ladder.json) (`frozenDesign.arms` D02/D08 +
+`frozenDesign.world`, run `resultSha256 1716ffa3…`), (ii) the probe source
+[`../../scripts/probes/mt-ladder.ts`](../../scripts/probes/mt-ladder.ts) (its `ARMS` and
+`PERCEPT_FLAGS` literals) and (iii) §2's arm table above — no number is typed into the
+entry that the ladder did not measure. The same file pins byte-identity off (fingerprint,
+unarmed match, flags-only ≡ unarmed) and that the dose BITES (armed ≠ flags-only ≠
+production, 0.8 ≠ 0.2), and the worlds add **nothing** to the every-install payload — they
+carry no census tables at all, unlike the A4 worlds.
+
+### What you are looking at
+
+**MT 0.2 (the ruled knee)** — a marker holds a little further off the man he is watching
+while the ball is in flight, and the back line drifts toward the ball's lane. This is the
+dose the frozen knee rule returned (#211.1: its NONE_ABOVE_FLOOR fallback).
+
+⚠ **HONEST EXPECTATION: at 0.2 the body effect is SUB-RESOLUTION.** The ladder measured
+the weak-side body at **−0.586 m [−1.294, +0.147] — not resolved at N = 800**. The eye may
+see nothing at all. That is not a bug in the world and not a failure of your eyes; it is
+what "the knee is small" means. It is here as the *default*-named world because it is the
+ruled dose, and because the honest question is whether the smallest defensible dose is
+already enough to fix what you saw.
+
+**MT 0.8 (the contrast)** — the same world at the visible dose. Body **−2.396 m
+(resolved)**, the weak-side defender genuinely stops spinning; and the price is equally
+visible — **goals 1.73 vs the control's 2.19**, headers −44 %, crosses and long balls
+down with them. This is the mechanism world: watch it to learn what the tuck-in *is*, then
+go back to 0.2 and ask whether you can still see it.
+
+⭐ **THE FINDING THIS PAIR EXISTS TO SHOW: there is no free dose.** The band and a visibly
+working weak-side defence are mutually exclusive — you are choosing a point on a
+continuous trade, not finding a setting that gets both.
+
+### The exit questions (yours to answer — watchability has no instrument)
+
+1. **弱侧后卫还乱转吗?** — the thing that started this: does the far-side defender still
+   spin on the spot when play is on the other flank?
+2. **防守知道往哪走了吗?** — does the defensive shape look like it has a plan?
+3. **看得出松盯内收吗?** — can you actually SEE the sag-and-tuck (at 0.8, and then at
+   0.2)?
+4. ⭐ **进球变少的世界好看还是难看?** — the one that decides this: is a
+   lower-scoring, better-defended match better football, or worse?
+
+*(No instrument answers #4. The play-test verdict is the ruling.)*

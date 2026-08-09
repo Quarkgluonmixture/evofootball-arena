@@ -210,7 +210,9 @@ describe('A4 v3 — the entry: one value, three worlds, desktop AND phone', () =
     expect(a4UrlOverride('?a4world=2')).toBe(2);
     expect(a4UrlOverride('?a4world=1')).toBe(1);
     expect(a4UrlOverride('?a4world=0')).toBe(0);
-    expect(a4UrlOverride('?a4world=4')).toBeNull(); // no fourth world exists
+    expect(a4UrlOverride('?a4world=4')).toBe(4); // the #211.3 MT worlds
+    expect(a4UrlOverride('?a4world=5')).toBe(5);
+    expect(a4UrlOverride('?a4world=6')).toBeNull(); // no sixth world exists
     expect(a4UrlOverride('')).toBeNull();
   });
 
@@ -266,7 +268,10 @@ describe('A4 v3 — the entry: one value, three worlds, desktop AND phone', () =
     };
     expect(A4_BADGE_TEXT_V3).toBe('🧪 A4 约定世界 v3 · 前摇');
     expect(new Set([A4_BADGE_TEXT, A4_BADGE_TEXT_V2, A4_BADGE_TEXT_V3]).size).toBe(3);
-    expect(A4_BADGE_TEXTS).toEqual({ 1: A4_BADGE_TEXT, 2: A4_BADGE_TEXT_V2, 3: A4_BADGE_TEXT_V3 });
+    // (4/5 = the #211.3 MT worlds, a different family with its own names)
+    expect(A4_BADGE_TEXTS[1]).toBe(A4_BADGE_TEXT);
+    expect(A4_BADGE_TEXTS[2]).toBe(A4_BADGE_TEXT_V2);
+    expect(A4_BADGE_TEXTS[3]).toBe(A4_BADGE_TEXT_V3);
 
     const badge = new A4WorldBadge(doc);
     badge.setWorld(2);

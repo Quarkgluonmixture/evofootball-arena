@@ -31,7 +31,7 @@ import {
   edsPreviewFlags, readEdsPreviewMode, writeEdsPreviewMode, type EdsPreviewMode,
 } from './edsPreview';
 import {
-  a4MatchFlags, armA4World, loadA4Tables, readA4World, writeA4World,
+  a4MatchFlags, armA4World, isMtWorld, loadA4Tables, readA4World, writeA4World,
   type A4Tables, type A4WorldVersion,
 } from './a4World';
 import { A4WorldBadge } from '../ui/A4WorldBadge';
@@ -691,7 +691,9 @@ export class GameApp implements GameActions {
     // construction flags — the eye config and the obedience gene are applied
     // to the freshly built match. Unarmed (the default) this is a no-op and
     // `stationEye` stays null, exactly as in production.
-    if (this.a4World !== 0 && this.a4Tables !== null) {
+    // MT play-test worlds (#211.3) need no census tables at all — they are the
+    // ladder's own arms (genes only), so they arm the moment they are chosen.
+    if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World))) {
       armA4World(this.match, this.a4Tables, this.a4World);
     }
     this.buffer.clear();
@@ -1291,7 +1293,7 @@ export class GameApp implements GameActions {
   }
 
   private async armA4(version: A4WorldVersion): Promise<void> {
-    if (version !== 0 && this.a4Tables === null) {
+    if (version !== 0 && !isMtWorld(version) && this.a4Tables === null) {
       this.setStatus('A4 world: loading the census tables…');
       try {
         this.a4Tables = await loadA4Tables();
@@ -1309,15 +1311,21 @@ export class GameApp implements GameActions {
     writeA4World(version);
     this.a4Badge.setWorld(version);
     this.applyEdsPreview();
-    this.feed.pushSystem(version === 3
-      ? '🧪 A4 约定世界 v3 · 前摇 ON — the discipline world, and now a short pass is not struck the instant it is decided: the leg goes back first (fast for the technical ones), and the match restarts in that world.'
-      : version === 2
-        ? '🧪 A4 约定世界 v2 · 纪律 ON — the same agreement, but every position holds it at its own tightness (后卫紧 · 前锋松), and the match restarts in that world.'
-        : version === 1
-          ? '🧪 A4 约定世界 v1 · 统一 ON — both teams now share the measured pre-match agreement, and the match restarts in that world.'
-          : '🧪 A4 约定世界 OFF — the shipped world returns.');
+    this.feed.pushSystem(version === 5
+      ? '🧪 MT 0.8 · 松盯内收(对比) ON — the same weak-side tuck-in, turned up to the visible dose: defenders sag off their man toward the middle and the back line squeezes the far lane. Measured at this dose: the weak-side body moves 2.4 m, and goals fall to ~1.7 a match. The contrast world — look at it, then go back to 0.2.'
+      : version === 4
+        ? '🧪 MT 0.2 · 松盯内收 ON — both teams now defend the coupled tuck-in world at the ruled dose 0.2: a marker holds a little further off the man he is watching while the ball is travelling, and the back line drifts toward the ball\'s lane. Measured small (the body effect is under the ruler\'s resolution at this dose) — if you want to SEE the mechanism, arm the 0.8 contrast.'
+        : version === 3
+          ? '🧪 A4 约定世界 v3 · 前摇 ON — the discipline world, and now a short pass is not struck the instant it is decided: the leg goes back first (fast for the technical ones), and the match restarts in that world.'
+          : version === 2
+            ? '🧪 A4 约定世界 v2 · 纪律 ON — the same agreement, but every position holds it at its own tightness (后卫紧 · 前锋松), and the match restarts in that world.'
+            : version === 1
+              ? '🧪 A4 约定世界 v1 · 统一 ON — both teams now share the measured pre-match agreement, and the match restarts in that world.'
+              : '🧪 A4 约定世界 OFF — the shipped world returns.');
     this.loadNextFixture();
-    this.setStatus(version === 0 ? 'A4 world off.' : `A4 world v${version} armed.`);
+    this.setStatus(version === 0 ? 'A4 world off.'
+      : isMtWorld(version) ? `MT play-test world ${version === 4 ? '0.2' : '0.8'} armed.`
+        : `A4 world v${version} armed.`);
   }
 
   setEmergentPos(v: boolean): void {

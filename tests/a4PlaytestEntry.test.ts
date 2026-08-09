@@ -104,7 +104,9 @@ describe('A4 entry OFF — the shipped world is untouched (Road B / X-FP-PROD)',
     // The ONE call site that can arm a live match, and its guard.
     const app = repoText('src/game/GameApp.ts');
     expect(app.match(/armA4World\(/g)).toHaveLength(1);
-    expect(app).toContain('if (this.a4World !== 0 && this.a4Tables !== null) {');
+    // #211.3 widened the guard: the MT worlds carry no census payload, so they
+    // arm without tables — the A4 worlds still cannot.
+    expect(app).toContain('if (this.a4World !== 0 && (this.a4Tables !== null || isMtWorld(this.a4World))) {');
     expect(app).toContain('armA4World(this.match, this.a4Tables, this.a4World);');
     expect(app).toContain('private a4World: A4WorldVersion = 0;');
   });
