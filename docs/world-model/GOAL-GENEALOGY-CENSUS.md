@@ -36,6 +36,26 @@ until it has a probe**, and no goal-genealogy instrument existed.
 > 4. **(L4) THE PUBLISHED STATS-BASE LEDGER IS COMPLETE** — see §4.2.
 > 5. **(L5) `matchOpenFallback` SPLIT OUT of `restartSecondBall`** — see §2.1.
 
+> ⚠⚠ **MICRO-FIX ROUND — commander ruling #216.3 (again: corrections marked in place, the old
+> claims left readable).** The #216 re-verify **confirmed** the loss-tick core (H1 + M2 fixed;
+> the PROD wedge 86 vs 49 reproduced exactly), and found four mechanical items. Nothing in the
+> frozen design moved; the measured levels are unchanged.
+>
+> 1. **(H) THE CANONICAL-PATH GUARD LEAKED THROUGH `..`.** The #215.3 guard was a **substring**
+>    test on the **unresolved** string, so `GGC_OUT=docs/world-model/../world-model/data/…`
+>    contained no literal `docs/world-model/data/` and a skip-fp run **wrote into the canonical
+>    directory at exit 0** (proven live by the verifier). Both limbs now **resolve** to absolute
+>    paths and compare with a separator-aware prefix — see §6.
+> 2. **(M) THE RECEIPT WAS PATH-DEPENDENT.** The #215.3 fix put `preflightProvenance` — which
+>    carries `outPath` — **inside** the hashed body, so the same measurement written to `/tmp`
+>    and to the canonical path produced **different `resultSha256`** values (a #197-M1
+>    regression: a `/tmp` verifier could no longer re-derive the receipt). That block now rides
+>    the **unhashed envelope**, beside `headContextOnly` / `wallContextOnly` — see §6.
+> 3. **(L) THE LEDGER CLAIM IS RESCOPED HONESTLY** — "complete" means complete for the
+>    **#163-regime bases (≥ 91,100)**, not "every base ever" — see §4.2.
+> 4. **(L) `matchOpenFallback` IS STRUCTURALLY UNREACHABLE (DEFENSIVE)**, not "expected empty"
+>    — see §2.1.
+
 **Road B binds.** ZERO `src/**` changes. Every quantity below is derived from a **tick-walk
 over observable match state** (the tempo census's own instrument idiom, extended). The
 production fingerprint is re-derived unchanged inside the probe.
@@ -98,7 +118,7 @@ Restarts therefore always start a **new** segment with **its own origin class**.
 | `goalKick` / `kickIn` | RESTART | first owner is `match.restartKickGid` and `restartKickKind` is that kind | `restartKickGid` + `restartKickKind` |
 | `setPieceCorner` / `setPieceFreeKick` / `setPiecePenalty` | **SET PIECE** | ditto, for `corner` / `freeKick` / `penalty` | ditto |
 | `restartSecondBall` | RESTART | play resumed from a dead ball but the first team to own it is **not** the taker | the dead-ball flag + owner gid |
-| `matchOpenFallback` | RESTART | ⚠ **ADDED #215.3-L5** — an open-play regain with **no previous segment** to read a loss spot from. Split out of `restartSecondBall`, which the #214 build made carry both. Expected **empty** in every arm (the match opens from a kickoff); published so the emptiness is auditable rather than assumed | owner gid + the absence of a previous segment |
+| `matchOpenFallback` | RESTART | ⚠ **ADDED #215.3-L5** — an open-play regain with **no previous segment** to read a loss spot from. Split out of `restartSecondBall`, which the #214 build made carry both. ⚠ **CORRECTION (#216-L): this class is STRUCTURALLY UNREACHABLE — it is a DEFENSIVE branch, not merely "expected empty"** (the old wording). Reaching it requires *no previous segment* **and** *not since a dead ball*, but the match opens **from** a dead ball (the kickoff), so the second condition holds until a segment exists. Kept and published so that if the substrate ever changes, the case surfaces as its own class instead of silently contaminating `restartSecondBall` | owner gid + the absence of a previous segment |
 | `scrambleLooseBall` | OPEN PLAY | possession changed hands with **no dead ball**, and at least one tick in the gap between the two segments was classified `contested` by the substrate itself | `match.possessionPhase.kind === 'contested'` |
 | `turnoverWonInOwnThird` / `…MiddleThird` / `…FinalThird` | OPEN PLAY | possession changed hands with no dead ball and no contested tick — the **clean regain / interception** | ball position at the **loss tick**, in the frame below |
 
@@ -248,6 +268,16 @@ stats namespace — every base declared anywhere under `scripts/**`, spent and r
 alike, in the tempo census's own `CONSUMED_STATS` form, from 91,100 up. **The gate result is
 unchanged**: the nearest base to 104,400 is still 104,200, minGap 200.
 
+⚠ **CORRECTION (#216-L) — that "complete" is RESCOPED, because as written it overstated.**
+The ledger is **complete for the #163-regime bases: every stats base ≥ 91,100** declared under
+`scripts/**`. It is **not** "every base ever declared": **older pre-regime seeds predate the
+ledger and are deliberately excluded** — **90,730** (`stage3-v3-p0-role-map`,
+`stage3-v2-p2r-consumer`) and the **50xxx family** (≈ 50,000–51,037, across the `stage3` /
+`c4`–`c6` / `eds` probes). Excluding them changes nothing that gates: every one of them sits
+**≥ 13,000 below** the 104,400 base, so none can be the minimum. The probe now publishes this
+scope beside the ledger (`gates.gStats.publishedScope`), so the claim in the artifact matches
+what the array actually contains.
+
 ### 4.3 N — the frozen rule (sized on **genealogy precision**)
 
 The headline object is **the goal** — every genealogy row is a share **of goals**, so N is
@@ -320,6 +350,26 @@ cap or N**, a preflight defaults to `/tmp/goal-genealogy-preflight.json` and is 
 on a canonical path — checked at parse time **and again at the write** — and the skip is
 recorded in the artifact (`preflightProvenance`, `gates.xFpProd.reDerivedInThisProcess`).
 ⇒ **an artifact on a canonical repo path always carries a genuinely re-derived `xFpProd`.**
+
+⚠ **CORRECTION (#216-H) — THAT GUARD STILL LEAKED, AND NOW IT DOESN'T.** The #215.3 test was
+`outPath.includes('docs/world-model/data/')` — a **substring** test on the **unresolved**
+string. So a path that names the same directory a different way,
+`GGC_OUT=docs/world-model/../world-model/data/x.json`, matched nothing, sailed past **both**
+limbs, and a `GGC_SKIP_FP=1` run wrote a preflight artifact **into the canonical directory at
+exit 0** (the verifier proved it live). Both limbs now **resolve both sides to absolute paths**
+(`path.resolve`) and test with a **separator-aware prefix** — so every spelling of the
+canonical directory (`..` traversal, `./`, absolute, relative) collapses to one answer, while a
+merely similarly-named sibling (`…/data-scratch`) is not caught by accident. The same traversal
+command now **FATALs at exit 2 with nothing written**.
+
+⚠ **CORRECTION (#216-M) — THE RECEIPT IS PATH-INDEPENDENT AGAIN.** `preflightProvenance`
+carries `outPath`, and the #215.3 build placed it **inside the hashed body** — so the identical
+measurement produced a **different `resultSha256`** depending on where it was written, and a
+`/tmp` re-run could no longer re-derive the committed artifact's receipt (**#197-M1**, whose
+whole point is that the hash covers the timing-free, commit-free *measured body* only). The
+block now rides the **unhashed envelope** beside `headContextOnly` / `wallContextOnly`, with
+`outPathResolved` published beside `outPath`. Proven by running the smoke twice — canonical
+default and `GGC_OUT=/tmp/…` — and comparing: **same `resultSha256`**.
 
 Artifacts: `docs/world-model/data/goal-genealogy-census-smoke.json` (smoke) ·
 `docs/world-model/data/goal-genealogy-census.json` (full).

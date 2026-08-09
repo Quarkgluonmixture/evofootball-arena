@@ -4,15 +4,6 @@
   "ruling": "#214 (the user ruled 甲 on the #213.3 fork); form inherited from the #170–#173 tempo census",
   "mode": "smoke",
   "preflight": false,
-  "preflightProvenance": {
-    "preflight": false,
-    "reasons": [],
-    "capped": false,
-    "fingerprintSkipped": false,
-    "outPath": "docs/world-model/data/goal-genealogy-census-smoke.json",
-    "canonicalPath": true,
-    "rule": "⚠ CORRECTION (#215.3-M3): ANY skip/preflight lever (GGC_CAP or GGC_SKIP_FP) makes the run a PREFLIGHT regardless of N or cap, a preflight may NEVER write a canonical repo path (guarded at parse time AND again at write time), and the skip is recorded here and in gates.xFpProd. The #214 probe keyed \"preflight\" off the CAP alone, so an UNCAPPED GGC_SKIP_FP=1 run could pass xFpProd as \"skipped\" and still write the canonical artifact."
-  },
   "frozenDesign": {
     "arms": [
       "PROD",
@@ -52,7 +43,7 @@
         "turnoverWonInMiddleThird",
         "turnoverWonInFinalThird"
       ],
-      "originObservation": "kickoff/restart classes from match.kickoffKickGid / restartKickGid + restartKickKind; scrambleLooseBall when the substrate's OWN match.possessionPhase read \"contested\" during the hand-over gap; otherwise a clean regain classified by the ball's position at the LOSS TICK = the previous segment's LAST OWNED tick (⚠ CORRECTION #215.3-M2 — the #214 probe used the REGAIN tick here while claiming the loss tick; the regain-tick cut is now published separately as `byOriginAtRegainSpot`). matchOpenFallback = an open-play regain with NO previous segment to read a loss spot from (⚠ CORRECTION #215.3-L5 — split out of restartSecondBall; expected empty).",
+      "originObservation": "kickoff/restart classes from match.kickoffKickGid / restartKickGid + restartKickKind; scrambleLooseBall when the substrate's OWN match.possessionPhase read \"contested\" during the hand-over gap; otherwise a clean regain classified by the ball's position at the LOSS TICK = the previous segment's LAST OWNED tick (⚠ CORRECTION #215.3-M2 — the #214 probe used the REGAIN tick here while claiming the loss tick; the regain-tick cut is now published separately as `byOriginAtRegainSpot`). matchOpenFallback = an open-play regain with NO previous segment to read a loss spot from (⚠ CORRECTION #215.3-L5 — split out of restartSecondBall; ⚠ CORRECTION #216-L — it is STRUCTURALLY UNREACHABLE, i.e. DEFENSIVE, not merely \"expected empty\": reaching it needs prevSeg === null AND !sinceDeadBall, and the match opens FROM a dead ball (the kickoff), so sinceDeadBall is true until the first segment exists. It is kept and published so that if the substrate ever changes the branch surfaces as a class rather than silently contaminating restartSecondBall).",
       "thirdFrame": "⭐ thirds are named in the WINNING (new possessing) team's attacking frame. turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third. The two frames are exact mirrors (localX_winner = −localX_loser), and the mirror is applied to the LOSS-tick position (the definitional spot).",
       "lossSpotDefinition": "⭐ THE LOSS SPOT (#215.3-H1) = the ball's position at the segment's LAST OWNED tick, in the LOSING team's frame. It drives BOTH the 后场失误 count and the by-third origin classes. THE REGAIN SPOT (ball where the opponent established control) is published beside it everywhere, so the wedge between the two readings is data.",
       "thirdBoundaryLocalX": 10.5,
@@ -1428,7 +1419,7 @@
       "seasons": 2,
       "skipped": false,
       "reDerivedInThisProcess": true,
-      "skipNote": "⚠ #215.3-M3: a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no canonical artifact can exist with skipped:true. Read `preflightProvenance` beside this."
+      "skipNote": "⚠ #215.3-M3: a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no canonical artifact can exist with skipped:true. Read `preflightProvenance` in the artifact ENVELOPE (⚠ CORRECTION #216-M: it moved OUT of the hashed body, because it is path-bearing and was making resultSha256 path-dependent)."
     },
     "xSrcZero": {
       "pass": true,
@@ -1685,7 +1676,8 @@
         104000,
         104200
       ],
-      "minGap": 200
+      "minGap": 200,
+      "publishedScope": "⚠ CORRECTION (#216-L): this ledger is COMPLETE FOR THE #163-REGIME BASES (every stats base ≥ 91,100 declared under scripts/**), NOT \"every base ever\". The older pre-regime seeds — 90,730 and the 50xxx family — predate the ledger and are not listed; every one of them is ≥ 13,000 away from this base, so none can move minGap. The #215.3 wording claimed \"every base declared anywhere under scripts/**\", which overstated it."
     },
     "gNDerived": {
       "pass": true,
@@ -1776,9 +1768,9 @@
     "THIS STAGE PROPOSES NO MECHANIC AND RULES ON NOTHING. Whether the user's #213 story (goals are turnover-fed; the attack cannot construct) is confirmed, refuted or split is the COMMANDER'S adjudication from the per-arm rows (#203)."
   ],
   "verdict": "SMOKE — PLUMBING ONLY; ADJUDICATES NOTHING",
-  "resultSha256": "86aae642471a3440c6c7ac7d62533f90be3c351c00bcb708ea3073f719917f7a",
+  "resultSha256": "18b5d318f58a1fb576b0dbbe91ab4fa6555e1b0c79e20ce114f1111cd5586c6f",
   "sizing": {
-    "msPerMatch": 98.194,
+    "msPerMatch": 100.278,
     "goalsPerMatchByArm": {
       "PROD": 1.5,
       "MT02": 2.4167,
@@ -1787,11 +1779,22 @@
     "goalsPerMatchMin": 1.5,
     "provenance": "THE SMOKE'S TWO SIZING NUMBERS — ms/match and the MINIMUM goals per match over the three arms. These are the ONLY numbers a FULL run reads out of this artifact, and they feed ONLY N. THE SMOKE ADJUDICATES NOTHING."
   },
-  "headContextOnly": "d17a12f",
+  "preflightProvenance": {
+    "preflight": false,
+    "reasons": [],
+    "capped": false,
+    "fingerprintSkipped": false,
+    "outPath": "docs/world-model/data/goal-genealogy-census-smoke.json",
+    "outPathResolved": "/Users/jamie/Documents/Promptfoo/evofootball-arena/docs/world-model/data/goal-genealogy-census-smoke.json",
+    "canonicalPath": true,
+    "rule": "⚠ CORRECTION (#215.3-M3, tightened #216-H): ANY skip/preflight lever (GGC_CAP or GGC_SKIP_FP) makes the run a PREFLIGHT regardless of N or cap, a preflight may NEVER write a canonical repo path (guarded at parse time AND again at write time, on the RESOLVED absolute path with a separator-aware prefix test, so `..` traversal spellings cannot slip past), and the skip is recorded here and in gates.xFpProd. The #214 probe keyed \"preflight\" off the CAP alone, so an UNCAPPED GGC_SKIP_FP=1 run could pass xFpProd as \"skipped\" and still write the canonical artifact; the #215.3 fix then still let a traversal path through, because it tested the UNRESOLVED string.",
+    "hashNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ CORRECTION #216-M): the #215.3 build put this block INSIDE the hashed body, so the same measurement written to /tmp and to the canonical path produced DIFFERENT resultSha256 values. The receipt is path-independent again — a /tmp re-run re-derives the canonical artifact's hash byte-for-byte."
+  },
+  "headContextOnly": "5e9ee77",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1): the git short-hash of the tree this run was launched from. Recorded for provenance and hashed NOWHERE, so the receipt re-derives at any later commit.",
   "wallContextOnly": {
-    "corePassMs": 3535,
-    "totalMs": 16935,
+    "corePassMs": 3610,
+    "totalMs": 17332,
     "note": "CONTEXT ONLY, and OUTSIDE resultSha256 (#128) — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
   }
 }

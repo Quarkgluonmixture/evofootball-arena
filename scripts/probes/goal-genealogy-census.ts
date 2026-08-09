@@ -47,13 +47,25 @@
  *   H1+M2 the loss spot is the LAST OWNED tick for both the 后场失误 count and the by-third
  *         origin classes; the regain-tick reading is published beside it (the WEDGE);
  *   M3    GGC_CAP *or* GGC_SKIP_FP ⇒ PREFLIGHT ⇒ never a canonical artifact path;
- *   L4    the published stats-base ledger is complete;
+ *   L4    the published stats-base ledger is complete;   ⚠ RESCOPED by #216-L below;
  *   L5    matchOpenFallback split out of restartSecondBall.
+ *
+ * ⚠ #216 MICRO-FIX (four mechanical corrections, marked in place, old claims left readable):
+ *   H  the canonical-path guard RESOLVES both sides (path.resolve + separator-aware prefix) at
+ *      BOTH limbs — the #215.3 substring test on the UNRESOLVED path let `…/../…` traversal
+ *      write into the canonical dir at exit 0;
+ *   M  `preflightProvenance` (path-bearing) moved OUT of the hashed body into the UNHASHED
+ *      envelope — inside the body it made resultSha256 PATH-DEPENDENT (a #197-M1 regression);
+ *   L  the ledger claim is scoped honestly: complete for the #163-regime bases (≥ 91,100);
+ *      the older pre-regime seeds (90,730; the 50xxx family) predate the ledger and are named
+ *      as excluded (none of them can move minGap);
+ *   L  matchOpenFallback is STRUCTURALLY UNREACHABLE (defensive), not "expected empty".
  */
 
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { resolve as pathResolve, sep as pathSep } from 'node:path';
 import { randomGenome, type TacticalGenome } from '../../src/evolution/genome';
 import { randomSquad } from '../../src/evolution/playerGenome';
 import { League } from '../../src/sim/League';
@@ -129,12 +141,16 @@ const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = 
  *  legal base under the #163 200-floor is 104,400 (the #214.2 dispatch's own floor). */
 const BOOTSTRAP_SEED = 104_400;
 const BOOTSTRAP_RESAMPLES = 2000;
-/** ⚠ CORRECTION (#215.3-L4 — the #215 verify found NINE bases missing from the ledger the
- *  #214 probe shipped, which began at 101,403). The ledger below is now the COMPLETE stats
- *  namespace: every base DECLARED anywhere under scripts/** — spent bases and
- *  reserved-unused ones alike — re-derived by reading the other probes, in the tempo census's
- *  own CONSUMED_STATS form (which also lists reserved seeds). The gate RESULT is unchanged:
- *  the nearest base to 104,400 is still 104,200 ⇒ minGap 200 = the #163 floor. */
+/** ⚠ CORRECTION (#215.3-L4, SCOPED HONESTLY #216-L — the #215 verify found NINE bases missing
+ *  from the ledger the #214 probe shipped, which began at 101,403). The ledger below is
+ *  COMPLETE FOR THE #163-REGIME BASES, i.e. every stats base ≥ 91,100 declared anywhere under
+ *  scripts/** — spent bases and reserved-unused ones alike — re-derived by reading the other
+ *  probes, in the tempo census's own CONSUMED_STATS form (which also lists reserved seeds).
+ *  ⚠ It is NOT "every base ever": older PRE-REGIME seeds predate the 200-floor ledger — 90,730
+ *  and the 50xxx family (50,000..51,037 across the stage3 / c4–c6 / eds probes) — and are
+ *  deliberately NOT listed. They cannot change the gate: all of them sit ≥ 13,000 below the
+ *  BOOTSTRAP_SEED, so the minimum is unaffected. The gate RESULT is unchanged either way: the
+ *  nearest base to 104,400 is still 104,200 ⇒ minGap 200 = the #163 floor. */
 const PUBLISHED_STATS_BASES = [
   91_100, 91_110, 92_110, 93_003, 97_003, 98_003, 99_003, 99_203, 99_403, 99_503, 99_603,
   99_703, 99_803, 99_903,
@@ -195,9 +211,20 @@ const OUT_BY_MODE: Record<Mode, string> = {
   full: 'docs/world-model/data/goal-genealogy-census.json',
 };
 const SMOKE_PATH = OUT_BY_MODE.smoke;
-const CANONICAL_DIR = 'docs/world-model/data/';
-/** the canonical-path test, applied to the RESOLVED write path (absolute or relative). */
-const isCanonicalPath = (p: string): boolean => p.includes(CANONICAL_DIR);
+const CANONICAL_DIR = 'docs/world-model/data';
+/** ⚠ CORRECTION (#216-H — the traversal hole the #216 re-verify PROVED live). The #215.3 guard
+ *  was a SUBSTRING test on the UNRESOLVED string, so
+ *  `GGC_OUT=docs/world-model/../world-model/data/x.json` contained no literal
+ *  'docs/world-model/data/' and slipped past BOTH limbs — a skip-fp run wrote into the canonical
+ *  dir at exit 0. ⭐ The test now RESOLVES both sides to absolute paths and compares with a
+ *  separator-aware prefix, so every spelling of the same directory (traversal, `./`, absolute,
+ *  symlink-free relative) collapses to one answer, and a sibling dir whose name merely STARTS
+ *  with the canonical one (`…/data-scratch`) is NOT caught by accident. */
+const CANONICAL_DIR_ABS = pathResolve(CANONICAL_DIR);
+const isCanonicalPath = (p: string): boolean => {
+  const r = pathResolve(p);
+  return r === CANONICAL_DIR_ABS || r.startsWith(CANONICAL_DIR_ABS + pathSep);
+};
 /** ⭐ a preflight NEVER defaults onto a canonical path: /tmp, with a -preflight suffix. */
 const OUT_PATH = process.env.GGC_OUT ?? (IS_PREFLIGHT ? '/tmp/goal-genealogy-preflight.json' : OUT_BY_MODE[MODE]);
 if (IS_PREFLIGHT && isCanonicalPath(OUT_PATH)) {
@@ -1302,12 +1329,21 @@ const xGates = {
     skipped: SKIP_FP,
     reDerivedInThisProcess: !SKIP_FP,
     skipNote: '⚠ #215.3-M3: a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no '
-      + 'canonical artifact can exist with skipped:true. Read `preflightProvenance` beside this.',
+      + 'canonical artifact can exist with skipped:true. Read `preflightProvenance` in the '
+      + 'artifact ENVELOPE (⚠ CORRECTION #216-M: it moved OUT of the hashed body, because it is '
+      + 'path-bearing and was making resultSha256 path-dependent).',
   },
   xSrcZero: { pass: srcDiff === '', srcDiff, note: 'instrument-only: this stage adds ZERO src/** (#214.2)' },
   gArm: armCheck,
   gSeed: seedDisjoint,
-  gStats: { pass: statsMinGap >= 200, base: BOOTSTRAP_SEED, published: PUBLISHED_STATS_BASES, minGap: statsMinGap },
+  gStats: {
+    pass: statsMinGap >= 200, base: BOOTSTRAP_SEED, published: PUBLISHED_STATS_BASES, minGap: statsMinGap,
+    publishedScope: '⚠ CORRECTION (#216-L): this ledger is COMPLETE FOR THE #163-REGIME BASES '
+      + '(every stats base ≥ 91,100 declared under scripts/**), NOT "every base ever". The older '
+      + 'pre-regime seeds — 90,730 and the 50xxx family — predate the ledger and are not listed; '
+      + 'every one of them is ≥ 13,000 away from this base, so none can move minGap. The #215.3 '
+      + 'wording claimed "every base declared anywhere under scripts/**", which overstated it.',
+  },
   gNDerived: {
     pass: MODE === 'smoke' ? N_ENV === null : (N_ENV === null && RUN_N === nDerivation.nStar),
     ranN: RUN_N, derivedNStar: nDerivation.nStar ?? null, envOverride: N_ENV,
@@ -1361,22 +1397,11 @@ const body = {
   ruling: '#214 (the user ruled 甲 on the #213.3 fork); form inherited from the #170–#173 tempo census',
   mode: MODE,
   preflight: IS_PREFLIGHT,
-  /** ⭐ #215.3-M3: WHY this run is (or is not) a preflight, and whether it was allowed anywhere
-   *  near a canonical repo path. A canonical-path artifact can only ever say `preflight: false`,
-   *  `fingerprintSkipped: false` — i.e. it ALWAYS carries a genuinely re-derived xFpProd. */
-  preflightProvenance: {
-    preflight: IS_PREFLIGHT,
-    reasons: PREFLIGHT_REASONS,
-    capped: IS_CAPPED,
-    fingerprintSkipped: SKIP_FP,
-    outPath: OUT_PATH,
-    canonicalPath: isCanonicalPath(OUT_PATH),
-    rule: '⚠ CORRECTION (#215.3-M3): ANY skip/preflight lever (GGC_CAP or GGC_SKIP_FP) makes the '
-      + 'run a PREFLIGHT regardless of N or cap, a preflight may NEVER write a canonical repo '
-      + 'path (guarded at parse time AND again at write time), and the skip is recorded here and '
-      + 'in gates.xFpProd. The #214 probe keyed "preflight" off the CAP alone, so an UNCAPPED '
-      + 'GGC_SKIP_FP=1 run could pass xFpProd as "skipped" and still write the canonical artifact.',
-  },
+  /** ⚠ CORRECTION (#216-M): `preflightProvenance` USED TO LIVE HERE, inside the hashed body, and
+   *  it carries `outPath` — which made `resultSha256` PATH-DEPENDENT (a #197-M1 regression: a
+   *  /tmp verifier re-running this probe could no longer re-derive the receipt). It now rides the
+   *  UNHASHED envelope beside headContextOnly / wallContextOnly. `preflight` (a boolean about the
+   *  RUN, not about any path) stays in the body, where it belongs. */
   frozenDesign: {
     arms: ARMS,
     armDefinitions: {
@@ -1406,7 +1431,12 @@ const body = {
         + '#215.3-M2 — the #214 probe used the REGAIN tick here while claiming the loss tick; the '
         + 'regain-tick cut is now published separately as `byOriginAtRegainSpot`). '
         + 'matchOpenFallback = an open-play regain with NO previous segment to read a loss spot '
-        + 'from (⚠ CORRECTION #215.3-L5 — split out of restartSecondBall; expected empty).',
+        + 'from (⚠ CORRECTION #215.3-L5 — split out of restartSecondBall; ⚠ CORRECTION #216-L — '
+        + 'it is STRUCTURALLY UNREACHABLE, i.e. DEFENSIVE, not merely "expected empty": reaching '
+        + 'it needs prevSeg === null AND !sinceDeadBall, and the match opens FROM a dead ball '
+        + '(the kickoff), so sinceDeadBall is true until the first segment exists. It is kept and '
+        + 'published so that if the substrate ever changes the branch surfaces as a class rather '
+        + 'than silently contaminating restartSecondBall).',
       thirdFrame: '⭐ thirds are named in the WINNING (new possessing) team\'s attacking frame. '
         + 'turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER\'s own third. The '
         + 'two frames are exact mirrors (localX_winner = −localX_loser), and the mirror is applied '
@@ -1510,13 +1540,37 @@ const resultSha256 = createHash('sha256').update(canonical(body)).digest('hex');
  *  lands on a canonical repo path, whatever route (env, default, cap, skip) got it here. */
 if (IS_PREFLIGHT && isCanonicalPath(OUT_PATH)) {
   console.error(`GOAL-GENEALOGY FATAL — refusing to write a PREFLIGHT artifact to the canonical path ${OUT_PATH} `
-    + `(preflight because: ${PREFLIGHT_REASONS.join(' + ')}).`);
+    + `(resolved: ${pathResolve(OUT_PATH)}; preflight because: ${PREFLIGHT_REASONS.join(' + ')}).`);
   process.exit(2);
 }
 writeFileSync(OUT_PATH, `${JSON.stringify({
   ...body,
   resultSha256,
   sizing: sizingOut,
+  /** ⚠ CORRECTION (#216-M): OUTSIDE resultSha256 — this block is path-bearing (`outPath`,
+   *  `outPathResolved`, `canonicalPath`), so hashing it made the receipt path-dependent. Moved
+   *  here verbatim; the RULE it records is unchanged. */
+  preflightProvenance: {
+    preflight: IS_PREFLIGHT,
+    reasons: PREFLIGHT_REASONS,
+    capped: IS_CAPPED,
+    fingerprintSkipped: SKIP_FP,
+    outPath: OUT_PATH,
+    outPathResolved: pathResolve(OUT_PATH),
+    canonicalPath: isCanonicalPath(OUT_PATH),
+    rule: '⚠ CORRECTION (#215.3-M3, tightened #216-H): ANY skip/preflight lever (GGC_CAP or '
+      + 'GGC_SKIP_FP) makes the run a PREFLIGHT regardless of N or cap, a preflight may NEVER '
+      + 'write a canonical repo path (guarded at parse time AND again at write time, on the '
+      + 'RESOLVED absolute path with a separator-aware prefix test, so `..` traversal spellings '
+      + 'cannot slip past), and the skip is recorded here and in gates.xFpProd. The #214 probe '
+      + 'keyed "preflight" off the CAP alone, so an UNCAPPED GGC_SKIP_FP=1 run could pass xFpProd '
+      + 'as "skipped" and still write the canonical artifact; the #215.3 fix then still let a '
+      + 'traversal path through, because it tested the UNRESOLVED string.',
+    hashNote: 'CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ CORRECTION #216-M): the #215.3 build put '
+      + 'this block INSIDE the hashed body, so the same measurement written to /tmp and to the '
+      + 'canonical path produced DIFFERENT resultSha256 values. The receipt is path-independent '
+      + 'again — a /tmp re-run re-derives the canonical artifact\'s hash byte-for-byte.',
+  },
   headContextOnly: head,
   headNote: 'CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1): the git short-hash of the tree this run '
     + 'was launched from. Recorded for provenance and hashed NOWHERE, so the receipt re-derives at any '
