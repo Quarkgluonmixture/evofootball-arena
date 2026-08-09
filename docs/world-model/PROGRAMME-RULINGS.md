@@ -9167,3 +9167,38 @@
 >    frozen N rule sized on goals-per-arm precision); fresh
 >    executor + independent verify; the commander launches and
 >    adjudicates the GAP TABLE (#203 per-arm rows).
+
+> **COMMANDER RULING #215 (2026-08-09 — the GENEALOGY CENSUS
+> machine-verify FAIL (1 HIGH + 2 MEDIUM + 2 LOW); the fix
+> round dispatched BEFORE launch):**
+>
+> 1. **VERIFY FAIL recorded as-is** (`5943f2b`): (H1) 后场失误
+>    is measured at the REGAIN tick, not the LOSS tick its own
+>    definition states — 49 vs 86 on the smoke block (+75 %),
+>    materially wrong on exactly the user's quantity; (M2) the
+>    by-third turnover ORIGIN classes likewise describe the
+>    regain spot while the doc/artifact claim the loss spot
+>    (the mirror sentence is false as written); (M3) a
+>    gate-bypass hole — `GGC_SKIP_FP=1` on an UNCAPPED full
+>    run passes xFpProd as "skipped" AND writes the canonical
+>    artifact path; (L4) the gStats published-bases ledger
+>    misses nine older bases (gate result unaffected: nearest
+>    is still 104,200); (L5) `restartSecondBall` conflates a
+>    real class with the no-previous-segment fallback (empty
+>    in every arm).
+> 2. **WHAT STOOD** (verifier, independently): receipts
+>    re-derive at a different head (byte-identical resultSha256
+>    + X-DET); arm fidelity exact (the probe builds MT arms
+>    through GameApp's own path — `a4MatchFlags(v)` +
+>    `armA4World`); the segmentation accounting identity gates;
+>    the ladder is reporting-only; located-pass share 1.000.
+> 3. **FIX ROUND DISPATCHED** (all five; the #187 form): the
+>    loss position = the ball at the segment's LAST OWNED tick
+>    (the walk already records it) for both the 后场失误 count
+>    and the by-third origin classes — with BOTH loss-spot and
+>    regain-spot published (the regain cross-cut already
+>    exists; the loss spot becomes the definitional one);
+>    close the SKIP_FP bypass (skip ⇒ never canonical path,
+>    regardless of cap); complete the bases ledger; split the
+>    fallback class from `restartSecondBall`. Independent
+>    re-verify gates the launch.
