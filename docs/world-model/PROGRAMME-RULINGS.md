@@ -9202,3 +9202,38 @@
 >    regardless of cap); complete the bases ledger; split the
 >    fallback class from `restartSecondBall`. Independent
 >    re-verify gates the launch.
+
+> **COMMANDER RULING #216 (2026-08-10 — the fix-round re-verify
+> FAIL (1 HIGH + 1 MEDIUM + 2 LOW): the loss-tick core is
+> CONFIRMED FIXED, but the bypass guard is still open via path
+> traversal and the receipt regressed to path-dependence; a
+> final micro-fix dispatched):**
+>
+> 1. **CONFIRMED FIXED (independently)**: H1+M2 loss-tick
+>    semantics — the definitional own-third turnover and the
+>    by-third origin classes now read the segment's
+>    last-owned-tick position (both cuts share one classifier,
+>    differing only in the position read); BOTH readings
+>    published, the wedge itself now data (PROD 86 vs 49 —
+>    the verifier's +75 % reproduced exactly); L4 ledger 13→44
+>    bases; L5 fallback class split.
+> 2. **NEW FINDINGS**: (H) the canonical-path guard is a
+>    substring test on the UNRESOLVED path — `GGC_OUT=docs/
+>    world-model/../world-model/data/…` + skip-fp wrote into
+>    the canonical dir at exit 0 (proven live); (M) the fix
+>    put `preflightProvenance.outPath` INSIDE the hashed body,
+>    making resultSha256 PATH-DEPENDENT — a #197-M1
+>    regression (a /tmp verifier can no longer re-derive the
+>    receipt); (L) the ledger claim overstates ("every base"
+>    vs complete-from-91,100-up; 90,730 + the 50xxx family
+>    predate it); (L) matchOpenFallback is structurally
+>    unreachable — the wording should say defensive, not
+>    "expected empty".
+> 3. **FINAL MICRO-FIX DISPATCHED** (four items, mechanically
+>    specified): resolve both sides of the canonical test
+>    (`path.resolve`) and re-prove the traversal FATALs; move
+>    preflight provenance to the UNHASHED envelope and prove
+>    path-independence (same resultSha256 from a /tmp run);
+>    scope the ledger claim honestly (or include the older
+>    bases); reword the fallback row. Re-verify gates the
+>    launch.
