@@ -331,10 +331,18 @@ dose; the band (calibrated on the no-tuck world) and a
 visibly working weak-side defence are mutually exclusive;
 the #208 "healthy at 0.2" was the evolution frame
 (goals-warming masked the dent). The play-test carries the
-whole verdict. ENTRY EXECUTOR DISPATCHED (#211.3): world @
-0.2 (the ruled knee, default) + 0.8 CONTRAST world (the #168
-v1/v2 A/B tradition), both opt-in, byte-identical off. Both
-seams stay banked-dormant.**
+whole verdict. **THE ENTRY IS LIVE (#212,
+`471fd4f` + ruling, PUSHED → Pages)**: ⚙ → 🧬 Experimental →
+"MT 0.2 · 松盯内收" (world 4, the ruled knee) / "MT 0.8 ·
+松盯内收 对比" (world 5) · phone `?a4world=4|5` · badge names
+the world · fidelity triple-anchored to the #211 artifact ·
+byte-identical off · watched-matches-only · NO evolution
+opt-in armed. **THE QUEUE SITS AT THE USER'S PLAY-TEST**:
+弱侧后卫还乱转吗 · 防守知道往哪走了吗 · 看得出松盯内收吗 ·
+进球变少的世界好看还是难看? (0.2 = 微妙/世界几乎正常;
+0.8 = 机制清晰/进球 −21%). Corrections of record in #212.2
+(the banked T0 probes' a4World-hygiene limb + the ladder
+artifact's honesty text are superseded by construction).**
 O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900

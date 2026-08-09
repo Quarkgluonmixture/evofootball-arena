@@ -9040,3 +9040,44 @@
 >    Road B intact. The user's exit questions: 弱侧后卫还乱转
 >    吗 · 防守知道往哪走了吗 · 看得出松盯内收吗 · 进球变少的
 >    世界好看还是难看?
+
+> **COMMANDER RULING #212 (2026-08-09 — the MT play-test ENTRY
+> banked (verify PASS, 3 LOW) + PUSHED/DEPLOYED; the arc
+> reaches the user's eyes):**
+>
+> 1. **BANKED** (`471fd4f`): worlds 4 ("🧪 MT 0.2 · 松盯内收")
+>    and 5 ("🧪 MT 0.8 · 松盯内收(对比)") join the a4World
+>    family — ⚙ → 🧬 Experimental checkboxes or `?a4world=4|5`
+>    (sticky; `=0` disarms); each arms BOTH consumption flags +
+>    writes BOTH genes at its dose on all three genome views
+>    of both teams, WATCHED matches only (E4); NO evolution
+>    opt-in armed (fixed-dose exhibits; the entry doc says so
+>    plainly); no station eye (not A4 worlds); no census chunk
+>    fetched (instant arming). FIDELITY triple-anchored (the
+>    #168 form): the doses/flags are read back from the
+>    committed #211 artifact (resultSha256-pinned), the probe
+>    source, and the stage-doc arm table — no typed dose.
+>    Byte-identity off: fingerprint unchanged (verifier re-ran
+>    it), unarmed matches carry no flag/gene, a flags-only
+>    world is byte-identical to unarmed (the gene does the
+>    work), 0.2 ≠ 0.8 ≠ production all diverge. 140 tests
+>    green across the touched files; tsc clean.
+> 2. **CORRECTIONS OF RECORD** (no file edits; the #198
+>    superseded-text precedent): (a) the two banked T0 probes'
+>    G-HYGIENE limb `absentFromA4World` and the mt-ladder
+>    artifact's `honesty` text ("both flags stay absent from
+>    every play-test world") are FALSE BY CONSTRUCTION after
+>    this ruling — the banked receipts stand as computed; a
+>    RE-RUN failing that limb is #211.3 doing its job, not a
+>    regression; the LIVE hygiene gates were narrowed properly
+>    (census block seam-free; `a4MatchFlags(1..3)` carry
+>    neither flag). (b) `armA4World`'s null-tables branch is
+>    fail-silent for A4 worlds — unreachable today (GameApp
+>    still refuses v1–v3 without the census), noted as a wart
+>    for the next entry-family cleanup.
+> 3. **PUSHED — Pages deploys; the badge verifies.** The arc
+>    now sits at the USER'S PLAY-TEST (the contract's exit):
+>    弱侧后卫还乱转吗 · 防守知道往哪走了吗 · 看得出松盯内收吗 ·
+>    进球变少的世界,好看还是难看? Keep/change/revert per
+>    lever; Road B holds until the verdict (defaults byte-
+>    identical; nothing evolves either gene in the live game).
