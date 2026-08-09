@@ -8860,3 +8860,43 @@
 >    the reading. Seeds consumed: 12,320,000-band smoke
 >    (12,330,000+… tiny span ×2 runs) + the full band on
 >    launch; exact spans in the artifacts.
+
+> **COMMANDER RULING #207 (2026-08-09 — the MT-T2 long run was
+> silently KILLED THREE times (75/5/4 min; three launch
+> channels incl. the user's own terminal; forensics: empty
+> exit lines = external group-kill, no OOM, no kernel event,
+> no utility, not the user — killer UNIDENTIFIED); the
+> engineering answer BANKED: per-seed CHECKPOINT/RESUME, with
+> fresh ≡ resumed proven byte-identical; relaunch under the
+> user-authorized detached form):**
+>
+> 1. **THE RESILIENCE FIX BANKED** (`5fa987d`, verify PASS —
+>    1 MEDIUM + 2 LOW). Independently re-derived: THE FROZEN
+>    DESIGN DID NOT MOVE (every constant/predicate/gate above
+>    the checkpoint block byte-identical; the doc's frozen
+>    sections untouched; hashed-body semantics intact —
+>    `resumeContextOnly` rides the envelope). ⭐ THE
+>    EQUIVALENCE RECEIPT: a real `kill -9` of the whole tree
+>    mid-run + `MTT2_RESUME=1` produced a final artifact
+>    BYTE-IDENTICAL to the uninterrupted run
+>    (`resultSha256 32f6b9a0…8eb3` both; X-DET identical);
+>    the committed §9 smoke reproduces bit-for-bit on the
+>    patched probe (`e443378f…0431`). Guards: cross-HEAD /
+>    cross-config resume REFUSED (exit 1); corrupt records
+>    discarded + recomputed; NaN transport via sentinels
+>    (92 real NaNs verified, not assumed).
+> 2. **THE MEDIUM → OPERATIONAL RULE (binding on the
+>    launcher)**: a run WITHOUT `MTT2_RESUME=1` truncates the
+>    checkpoint — so EVERY launch, including the first,
+>    carries `MTT2_RESUME=1` (no checkpoint ⇒ fresh; kill ⇒
+>    the next launch restores). Launch from the repo root
+>    (the LOW: the probe-self-hash guard degrades from other
+>    cwds). The author's honest false-kill disclosure (killing
+>    the npx wrapper leaves the node grandchild alive) is
+>    NOTED for any future manual kill: target the node PID.
+> 3. **RELAUNCH MODE**: the user explicitly authorized the
+>    detached new-process-group launch (2026-08-09,
+>    "'新进程组脱离挂载'这个其实也可以做") — detached (immune
+>    to the observed group-kills) + checkpointed (immune to
+>    everything else; a kill now costs ≤ 1 seed ≈ 5 min).
+>    The read-only monitor watches artifact/verdict/stall.
