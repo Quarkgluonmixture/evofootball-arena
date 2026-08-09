@@ -512,6 +512,36 @@ cd /Users/jamie/Documents/Promptfoo/evofootball-arena && \
 
 ## §RESULT — the ladder runs
 
-*(Filled by the COMMANDER at adjudication — every number quoted FROM the committed
-[`data/mt-ladder.json`](data/mt-ladder.json) / its stdout; recompute with
+*(Filled by the COMMANDER at adjudication, ruling #211 — every number quoted FROM the
+committed [`data/mt-ladder.json`](data/mt-ladder.json) / its stdout; recompute with
 `MTLAD_MODE=full npx tsx scripts/probes/mt-ladder.ts`.)*
+
+**Run**: 2026-08-09, HEAD `3cb11c3`, N = 800 × 5 arms × 2 X-DET passes, wall 768.6 s,
+EXIT 0, X-FAMILY GREEN (all ten). `resultSha256 1716ffa3…393b` · X-DET `6a5f69fa…008d`.
+
+**THE KNEE (the frozen #209.2 rule): no dose qualifies ⇒ branch NONE_ABOVE_FLOOR ⇒
+KNEE = 0.2** (the pre-registered fallback; the 0.2 row itself also fails the band —
+published either way, as the rule requires):
+
+```
+  dose 0.2  band FAILS[goals 1.99, headers 6.57, longBalls 4.42] · GUARD-NI PASS · body −0.586 [−1.294, +0.147] NOT resolved
+  dose 0.4  band FAILS[goals 1.91, headers, longBalls]           · GUARD-NI PASS · body −1.445 ✔
+  dose 0.6  band FAILS[goals 1.74, crosses, headers, longBalls]  · GUARD-NI PASS · body −2.339 ✔
+  dose 0.8  band FAILS[goals 1.73, crosses, headers, longBalls]  · GUARD-NI PASS · body −2.396 ✔
+  (control holds the band on all five: goals 2.19, crosses 2.25, headers 8.55, longBalls 5.87, cutbacks 3.36)
+```
+
+⭐ **THE LOAD-BEARING FINDING: the trade is CONTINUOUS — there is no free dose.** The
+dose-response is smooth on both axes (ask −1.12/−1.77/−2.76/−3.66; body −0.59/−1.45/
+−2.34/−2.40; goals 1.99/1.91/1.74/1.73; headers −23 %…−44 %), GUARD-NI passes
+everywhere (compression, never clump), offsides fall at every dose, far-side glue
+softens (D04+ resolved). **The equilibrium band — calibrated on the no-tuck world —
+and a visibly working weak-side defence are mutually exclusive**: even 0.2 dents
+headers −23 % below tolerance, while 0.2's own body effect is not resolved at N = 800.
+Reconciliation with #208 (honest, frames differ): #208's "healthy at ≈0.2" was the
+EVOLUTION frame (evolved genomes + goals-warming inflation masking the dent; gen-8 in
+band, gen-25 confounded); THIS ladder is the ruler's production frame — the calibrated
+one — and it prices the same dose at headers −23 %. No contradiction; the ruler frame
+is the honest price tag. **Watchability has no instrument (the E4 lesson) — whether a
+lower-scoring, better-defended world is better FOOTBALL is exactly the user's
+play-test verdict, now carrying the whole decision.**

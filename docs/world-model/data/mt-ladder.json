@@ -1,0 +1,3833 @@
+{
+  "stage": "MT LADDER — THE DOSE LADDER (the coupled tuck-in world at 0.2 / 0.4 / 0.6 / 0.8)",
+  "doc": "docs/world-model/MT-LADDER.md",
+  "contract": "docs/world-model/MARK-TIGHTNESS-CONTRACT.md",
+  "seams": [
+    "docs/world-model/MT-T0-DORMANT-SEAM.md",
+    "docs/world-model/PM-T0-DORMANT-SEAM.md"
+  ],
+  "ruler": "docs/world-model/MT-T1-RULER-RERUN.md + scripts/probes/mt-t1-ruler-rerun.ts (itself the PM-T1 compression exam's instrument set)",
+  "ruling": "#209 (this dispatch; ⭐ the KNEE RULE frozen ex ante) · #208 (the drift-dose anchor) · #204 (the top-dose anchor) · #199 · #198 (the guard/band set incl. goals) · #196.3-D4 (the arming checklists) · #196.3-D6 (the gene channel) · #181.2 (committed recomputable receipts) · #197-M1/M2 · #194/#196 · #203 (adjudicate from PER-ARM rows) · #163",
+  "mode": "full",
+  "verdict": "KNEE = 0.2 (branch NONE_ABOVE_FLOOR; qualifying doses none) — an EXHIBIT dose for the play-test, NOT a ship decision; adjudicate from the PER-ARM rows (#203)",
+  "frozenDesign": {
+    "arms": [
+      {
+        "arm": "ABSENT",
+        "pmFlag": false,
+        "mtFlag": false,
+        "defLaneConvergence": null,
+        "markSag": null,
+        "kPm": 0,
+        "markSagWeight": 0,
+        "what": "THE CONTROL — both flags OFF, both genes absent (the production-shaped defensive path)"
+      },
+      {
+        "arm": "D02",
+        "pmFlag": true,
+        "mtFlag": true,
+        "defLaneConvergence": 0.2,
+        "markSag": 0.2,
+        "kPm": 0.05,
+        "markSagWeight": 0.2,
+        "what": "BOTH seams fully armed at dose 0.2 (k_PM = 0.05, markSagWeight = 0.2) — the coupled world; the DRIFT-DOSE anchor #208 measured healthy (body −0.70 m at gene ≈ 0.2)"
+      },
+      {
+        "arm": "D04",
+        "pmFlag": true,
+        "mtFlag": true,
+        "defLaneConvergence": 0.4,
+        "markSag": 0.4,
+        "kPm": 0.1,
+        "markSagWeight": 0.4,
+        "what": "BOTH seams fully armed at dose 0.4 (k_PM = 0.10, markSagWeight = 0.4) — UNMEASURED"
+      },
+      {
+        "arm": "D06",
+        "pmFlag": true,
+        "mtFlag": true,
+        "defLaneConvergence": 0.6,
+        "markSag": 0.6,
+        "kPm": 0.15,
+        "markSagWeight": 0.6,
+        "what": "BOTH seams fully armed at dose 0.6 (k_PM = 0.15, markSagWeight = 0.6) — UNMEASURED"
+      },
+      {
+        "arm": "D08",
+        "pmFlag": true,
+        "mtFlag": true,
+        "defLaneConvergence": 0.8,
+        "markSag": 0.8,
+        "kPm": 0.2,
+        "markSagWeight": 0.8,
+        "what": "BOTH seams fully armed at dose 0.8 (k_PM = 0.20, markSagWeight = 0.8) — UNMEASURED"
+      }
+    ],
+    "controlArm": "ABSENT",
+    "ladderDoses": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "citedNotRerunDose": 1,
+    "kCeiling": 0.25,
+    "sagCeilingM": 9,
+    "sagBallSpeed": 16,
+    "ceilingHonesty": "NEITHER seam constant is re-cut for this exam: k_PM ≤ 0.25 is PM-T0's traced legacy convergence weight and the sag family (16 m/s, 9 m cap, the sagOf shape) is MT-T0's traced freeze. If MT-T1 needs different ones, that is a fork for the commander WITH numbers.",
+    "doseBothTeams": true,
+    "world": {
+      "edsPerceivedDefence": true,
+      "edsPerceivedChoice": true,
+      "stationEye": null,
+      "flagsPerArm": "see arms above"
+    },
+    "seeds": {
+      "base": 12420200,
+      "n": 800,
+      "first": 12420200,
+      "last": 12420999
+    },
+    "reservedBand": [
+      12420000,
+      12420999
+    ],
+    "bootstrap": {
+      "base": 104200,
+      "resamples": 2000,
+      "cluster": "seed"
+    },
+    "niFraction": 0.276316,
+    "niFractionSource": "A4-S2P1-VECTOR-CENSUS §4 via PM-T1 §5.4: fraction_box = 1 − 0.275/0.380 = 0.2763. INHERITED, NOT INVENTED; the S2 form scales the FRACTION by the control arm's own level in THIS run.",
+    "bandSource": "A4-S2P3-GENE-BATTERY §4.2 (P3a §4.2 / C1 §4 absolute) via PM-T1 §5.5 — baselines and tolerances verbatim INCLUDING goals, WITH the declared substrate-drift exclusion.",
+    "askMaterialM": 1,
+    "askMaterialNote": "⚠ FLAGGED EXECUTOR'S CHOICE inherited from PM-T1 §5.3 at the same value and with the same status: NO GATE PREDICATE READS IT.",
+    "sagMaterialM": 1.4,
+    "sagMaterialNote": "TRACED (1.4 m is the full span of markingAggression's own stance band at src/ai/actionExecutor.ts:294, pinned VERBATIM by G-INHERIT), carried at MT-T1's value. ⚠ DIFFERENCE FROM THE RULER: MT-T1's F-MT-a gate read this number; HERE NO GATE AND NO KNEE LIMB READS IT — the sag census rides REPORTED.",
+    "kneeRule": "the play-test dose = the LARGEST dose d whose arm (a) holds the band on EVERY gated dimension (control-gated, the inherited substrate-drift caveat), (b) passes GUARD-NI, and (c) has a resolvedly negative bodyLatGap. If no dose ≥ 0.4 qualifies, the entry builds at 0.2 (the measured-healthy anchor); if ALL qualify, 0.8. — ruling #209.2, frozen ex ante.",
+    "kneeRuleFrozenExAnte": "ruling #209.2, written into MT-LADDER.md §5 and this probe BEFORE any full-N number existed. The three limbs are MT-T1's own band / GUARD-NI / bodyLatGap predicates, recomposed — no new threshold is introduced anywhere in this stage.",
+    "switchKeyProhibition": "switchKey is NOT computed anywhere in this probe: #188 §8.4 retracted it and MARK-SELECTION-CODE-MAP §5 trap 7 forbids reusing it. Attribution is the D2 STEER-OWNER read only. This exam makes NO oscillation claim."
+  },
+  "inheritance": {
+    "rulerProbe": "scripts/probes/pm-t1-compression-exam.ts",
+    "pins": [
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const OWN_THIRD_LOCAL_X = -HALF_L / 3;",
+        "what": "the #188 trigger own-third cut",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const FLANK_ABS_Y = BOX_WIDTH / 2;",
+        "what": "the #188 trigger flank cut",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const MIN_EPISODE_TICKS = 30;",
+        "what": "the episode floor",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const SPREAD_R = 9;",
+        "what": "the compression yardstick",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const ASK_MATERIAL_M = 1.0;",
+        "what": "the swallow materiality cut (no gate reads it)",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const NI_FRACTION = 1 - 0.275 / 0.380;",
+        "what": "the S2 non-inferiority fraction",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const DUP_RUN_M = 4;",
+        "what": "the P3′ duplicate-run radius",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "const PAIR_SUBSAMPLE = 6;",
+        "what": "the P3′ pair subsample",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "  goals: 2.3944, crosses: 2.4894, headers: 9.1039, longBalls: 6.2042, cutbacks: 3.8151,",
+        "what": "the equilibrium band baselines (incl. goals)",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "  goals: 0.15, crosses: 0.25, headers: 0.25, longBalls: 0.25, cutbacks: 0.25,",
+        "what": "the equilibrium band tolerances",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "          const bodyGap = Math.abs(p.pos.y - m.ball.pos.y);",
+        "what": "THE GATED QUANTITY: bodyLatGap",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "          acc.shortfall.push(Math.max(0, bodyGap - SPREAD_R));",
+        "what": "THE GATED QUANTITY: compressionShortfall",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "          acc.detach.push(n === 0 ? Number.NaN : Math.hypot(p.pos.x - cx / n, p.pos.y - cy / n));",
+        "what": "THE GATED QUANTITY: detachment",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "          const askMod = formationSpot(p, dTeam, m.ball, false, aTeam, false, true);",
+        "what": "the REPORTED ask (modulated station read)",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/pm-t1-compression-exam.ts",
+        "line": "          const askUnmod = formationSpot(p, dTeam, m.ball, false, aTeam, false, false);",
+        "what": "the REPORTED ask (unmodulated station read)",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t0-mark-sag.ts",
+        "line": "  let d = m.ball.owner === mark ? 2.6 : 2.6 - aggression * 1.4;",
+        "what": "the MT-T0 base-stance replica, floor line",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t0-mark-sag.ts",
+        "line": "  ) d = Math.max(d, 2.6 - aggression * 0.6);",
+        "what": "the MT-T0 base-stance replica, stand-off line",
+        "found": true
+      },
+      {
+        "file": "src/ai/actionExecutor.ts",
+        "line": "        let markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.4;",
+        "what": "⭐ THE SAG_MATERIAL_M ANCHOR: markingAggression's own 1.4 m stance band",
+        "found": true
+      },
+      {
+        "file": "src/ai/actionExecutor.ts",
+        "line": "          if (w > 0) markDist += w * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed);",
+        "what": "the MT-T0 seam line itself",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "const SPREAD_R = 9;",
+        "what": "MT-T1: the compression yardstick as re-run",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "const NI_FRACTION = 1 - 0.275 / 0.380;",
+        "what": "MT-T1: the S2 non-inferiority fraction as re-run",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "  goals: 2.3944, crosses: 2.4894, headers: 9.1039, longBalls: 6.2042, cutbacks: 3.8151,",
+        "what": "MT-T1: the band baselines (incl. goals) as re-run",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "  goals: 0.15, crosses: 0.25, headers: 0.25, longBalls: 0.25, cutbacks: 0.25,",
+        "what": "MT-T1: the band tolerances as re-run",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "const SAG_MATERIAL_M = 1.4;",
+        "what": "MT-T1: the traced material-sag threshold (REPORTED here, no gate reads it)",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "const PUB188_ASK = { p50: 19.86, lo: 19.65, hi: 20.04, clusters: 700 } as const;",
+        "what": "MT-T1: the SMOKE-FREE variance term of the frozen N rule",
+        "found": true
+      },
+      {
+        "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+        "line": "  const pairsNeeded = Math.ceil(((Z_975 * sigmaDelta) / TARGET_HALFWIDTH_M) ** 2);",
+        "what": "MT-T1: the frozen N-rule precision term",
+        "found": true
+      }
+    ],
+    "semantics": "THE RULER IS INHERITED, NOT RE-IMPLEMENTED. Because probe scripts execute on import (top-level side effects + process.exit), the instrument code cannot be imported from pm-t1-compression-exam.ts; it is carried here VERBATIM and this gate pins each defining line in its ORIGINAL file, the MT-T0 G-CONST idiom. If the ruler moves, this gate goes RED rather than the two exams drifting apart silently.",
+    "disclosedDifferences": [
+      "ARMS: the control plus FOUR COUPLED DOSES (ABSENT · D02 · D04 · D06 · D08 — BOTH genes equal, BOTH seams fully armed) replace MT-T1's five flag/gene arms. The 2x2 seam decomposition (PM-alone / MT-alone) is therefore NOT re-measured here: this stage walks the COUPLED axis the user would play, which is what #209.1 dispatched.",
+      "THERE IS NO GATED PRIMARY AND NO STOP CLASS. MT-T1's PRIMARY, F-MT-a, F-MT-b and F-MT-c do NOT exist here; their quantities all still run and are published PER ARM. The one decision rule is ⭐ THE KNEE (#209.2), whose three limbs are (a) MT-T1's band, (b) MT-T1's GUARD-NI and (c) MT-T1's bodyLatGap contrast — the SAME predicates, recomposed. Consequently exit 2 does not exist: every branch of the rule lands a dose.",
+      "THE BAND is computed on every arm and its CONTROL-GATED subset feeds knee limb (a); the baselines, tolerances and the substrate-drift exclusion are unchanged and inherited verbatim, goals INCLUDED. ⚠ #208 disclosed that long-evolution worlds can drift the goals dimension on the CONTROL itself; if that happens here goals is EXCLUDED and the exclusion is published — the knee then holds only over the dimensions that survive.",
+      "GUARD-NI is unchanged (spreadYOut / spacingMedian / spacingUnder4 / dupRunShare, fraction 0.2763) and is evaluated PER DOSED ARM as knee limb (b), not quantified over a body-moving subset. The tolerance SCALE is re-derived on THIS run's control.",
+      "ARMED-ZERO IS A GATE WORLD, NOT AN ARM: MT-T1 ran it as a battery arm; here G-CTRLEQ builds it directly and it contributes no measured quantity.",
+      "THE SAG CENSUS rides REPORTED at every arm, both layers. ⚠ MT-T1's #203 correction is carried CORRECTLY here: only the MATCH-WIDE layer runs at cadence 15; the WEAK-SIDE in-trigger layer samples EVERY in-trigger tick. SAG_MATERIAL_M = 1.4 m is still TRACED and pinned, but NO gate and NO knee limb reads it in this stage.",
+      "AT THE CONTROL ARM ONLY the ask instruments and the swallow share are DEGENERATE BY CONSTRUCTION (formationSpot's PM branch reads the gene, which is absent ⇒ shiftY ≡ 0 ⇒ zero material ticks ⇒ NaN shares). All four DOSED arms carry the PM gene, so unlike MT-T1 the ask is live at every dosed arm — REPORTED, never gated.",
+      "DOSE 1.0 IS NOT AN ARM. It is already measured (#204) and dose ≈ 0.2 under drift (#208); both are CITED from their committed artifacts (rehashed at run time), never re-run and never re-typed as numbers.",
+      "NO CHECKPOINT/RESUME. MT-T2's per-(pass, seed) checkpoint is NOT carried: this battery is ~15 min, so a kill costs the whole run and that cost is accepted, stated not hidden.",
+      "pairYield (an N input) is measured on the BODY, as in MT-T1; the variance term, the inflation, the 0.5 m target, the 25-step and the wall term are unchanged, and the reserved-band cap is this stage's own 800-seed band."
+    ]
+  },
+  "nDerivation": {
+    "mode": "full",
+    "smokeArtifact": "docs/world-model/data/mt-ladder-smoke.json",
+    "smokeArtifactSha256": "16a5644259274c8d9964606418d5c5c60c94ca8de1731ce77d30b6e4553473b7",
+    "arithmetic": "pairsNeeded = ceil( (1.96·σ_delta / 0.5 m)² ) · N* = min( ceil(pairsNeeded / pairYield) rounded up to 25, floor( 2.0 h / (ms_per_match × 5 arms × 2 X-DET) ), 800 ) — frozen in stage doc §4",
+    "varianceSource": "FARSIDE-DEFENDER-FORENSIC §8.3, prod world (the WIDEST of the four published worlds): weak-side back sendLatGapMean p50 19.86 [19.65, 20.04] over 700 per-seed clusters. σ_perSeed = (halfWidth / 1.96) · √700. NO SMOKE NUMBER FEEDS THIS TERM. ⚠ TWO DISCLOSED SUBSTITUTIONS: (a) a MEDIAN interval used as a mean's (inherited from PM-T1 §4 ⚠ #197-L4; direction CONSERVATIVE); (b) an ASK-metric variance applied to a BODY-metric gate (direction UNKNOWN — the achieved half-widths are PUBLISHED per arm and any shortfall is disclosed, never re-cut).",
+    "pub188": {
+      "p50": 19.86,
+      "lo": 19.65,
+      "hi": 20.04,
+      "clusters": 700
+    },
+    "pairsNeeded": 213,
+    "pairYield": 0.1667,
+    "pairYieldSource": "the same committed SMOKE artifact — THE SMOKE INFORMS ONLY N (the #188 §4.3 precedent): exactly two numbers are read out of it, ms/match and the MINIMUM paired-BODY yield over the four non-control arms. No level, share, rate, CI or threshold from it is read anywhere. ⚠ The probe reads the WORKING-TREE file at that path, not the committed blob — the provenance is sha-audited (this field), not git-enforced (PM-T1 §4 #197-L3).",
+    "pairYieldNote": "the trigger is rare and the arms diverge, so not every seed yields a PAIRED (control, arm) BODY value. ⚠ DISCLOSED DIFFERENCE from the ruler: PM-T1 measured this yield on the ASK because the ask was its gated quantity; this exam measures it on the BODY, which is THIS exam's gated quantity. Same episodes, same pairing rule.",
+    "halfWidth188": 0.195,
+    "sigmaPerSeed": 2.632253,
+    "pairedInflation": 1.414214,
+    "pairedInflationNote": "σ_delta = √2 · σ_perSeed — CONSERVATIVE: it treats the arms as INDEPENDENT, which over-states the variance of a paired same-seed delta.",
+    "targetHalfWidthM": 0.5,
+    "msPerMatch": 113.367,
+    "msPerMatchSource": "the committed SMOKE artifact docs/world-model/data/mt-ladder-smoke.json (sha256 16a5644259274c8d9964606418d5c5c60c94ca8de1731ce77d30b6e4553473b7)",
+    "nRaw": 1278,
+    "nStepped": 1300,
+    "nStep": 25,
+    "nWall": 6351,
+    "nCap": 800,
+    "capHonesty": "N_CAP = 800 is the reserved battery band 12,420,200..12,420,999 — a SEED-BUDGET cap, not a statistical statement. If it binds, the achieved half-width may be wider than the 0.5 m target and that shortfall is DISCLOSED, never re-cut (the #188 §8.0 precedent). The achieved half-width of every body contrast is published in `results.primary.achievedHalfWidthM`, so the shortfall (or its absence) is measured, not assumed.",
+    "terms": {
+      "precision": 1300,
+      "wallBudget": 6351,
+      "reservedBandCap": 800
+    },
+    "nStar": 800,
+    "bindingTerm": "reservedBandCap",
+    "projectedWallHours": 0.252,
+    "envOverride": null,
+    "n": 800
+  },
+  "smokeAdjudicatesNothing": false,
+  "predicates": {
+    "THE KNEE (the ONLY decision rule this stage carries)": "QUALIFIES(d) := the arm at dose d (a) holds the equilibrium BAND on EVERY CONTROL-GATED dimension (a dimension the CONTROL itself fails is DISCLOSED and EXCLUDED as substrate drift) AND (b) passes GUARD-NI AND (c) has CI_upper(bodyLatGap − ABSENT) < 0. KNEE := the LARGEST qualifying d; if NO d ≥ 0.4 qualifies ⇒ 0.2 (the measured-healthy anchor); if ALL qualify ⇒ 0.8. Ruling #209.2, frozen ex ante. EVERY BRANCH LANDS A DOSE — there is no STOP class and no exit 2.",
+    "GUARD-NI": "spreadY_out and spacingMedian CI_lower > −tol AND spacingUnder4 and dupRun CI_upper < +tol, tol = 0.2763 × |the CONTROL arm's own level, THIS run| (the S2 form; an UNRESOLVED, too-wide CI FAILS the limb, per the S2 degeneracy clause)",
+    "BAND": "the A4-S2P3 §4.2 baselines and tolerances INCLUDING goals, via PM-T1 §5.5 and MT-T1 §5.4 — control-gated with the declared substrate-drift exclusion",
+    "FLAG": "offsides — resolvedly UP at any dosed arm returns the axis to the USER; it NEVER flips the knee and never fails the run (the #157 instrument debt, the F-S2d form)",
+    "SAG-FIRED (REPORTED, no gate reads it here)": "weak-side-back in-trigger sag census: saggedGtBase > 0 AND tightened = 0 AND meanSagOnSlackPositive ≥ 1.4 m (the traced markingAggression stance band)",
+    "REPORTED": "the per-arm body rows in MT-T1's PRIMARY shape (bodyLatGap / compressionShortfall / detachMean) · the swallow share · mark-assignment drift (markShare / far-side share / distToMark / markLatGap — the map §2.4 EMERGENT feedback channel named by #202.2) · the ask instruments · the detach/steer receipts · the sag census · the per-dose sag census. NONE of these decides the knee except bodyLatGap, which is limb (c)."
+  },
+  "results": {
+    "perArm": {
+      "ABSENT": {
+        "matches": 800,
+        "episodes": 1042,
+        "episodesPerMatch": 1.3025,
+        "triggerTickShare": 0.014574,
+        "excludedShort": 7458,
+        "excludedSentOff": 11
+      },
+      "D02": {
+        "matches": 800,
+        "episodes": 932,
+        "episodesPerMatch": 1.165,
+        "triggerTickShare": 0.012759,
+        "excludedShort": 7140,
+        "excludedSentOff": 6
+      },
+      "D04": {
+        "matches": 800,
+        "episodes": 996,
+        "episodesPerMatch": 1.245,
+        "triggerTickShare": 0.013303,
+        "excludedShort": 6784,
+        "excludedSentOff": 4
+      },
+      "D06": {
+        "matches": 800,
+        "episodes": 850,
+        "episodesPerMatch": 1.0625,
+        "triggerTickShare": 0.01202,
+        "excludedShort": 6556,
+        "excludedSentOff": 14
+      },
+      "D08": {
+        "matches": 800,
+        "episodes": 863,
+        "episodesPerMatch": 1.0788,
+        "triggerTickShare": 0.011754,
+        "excludedShort": 6453,
+        "excludedSentOff": 10
+      }
+    },
+    "levels": {
+      "ABSENT": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 19.656319,
+            "p50": 19.533271,
+            "p90": 23.145034,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 2.226416,
+            "p50": 2.017985,
+            "n": 1042
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 19.656319,
+            "p50": 19.533271,
+            "p90": 23.145034,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 2.226416,
+            "p50": 2.017985,
+            "n": 1042
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 0,
+            "p50": 0,
+            "p90": 0,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 0,
+            "p50": 0,
+            "n": 1042
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 15.611166,
+            "p50": 16.845064,
+            "p90": 23.695532,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 3.755598,
+            "p50": 1.994288,
+            "n": 1042
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 7.526541,
+            "p50": 7.845064,
+            "p90": 14.695532,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 0.528865,
+            "p50": 0,
+            "n": 1042
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 13.127567,
+            "p50": 13.884601,
+            "p90": 19.544818,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 10.422928,
+            "p50": 10.524698,
+            "n": 1042
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 11.318912,
+            "p50": 10.543015,
+            "p90": 20.21379,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 9.527392,
+            "p50": 8.070909,
+            "n": 1042
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.832256,
+            "p50": 1,
+            "p90": 1,
+            "n": 1042
+          },
+          "mirror": {
+            "mean": 0.423028,
+            "p50": 0,
+            "n": 1042
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.575242,
+            "p50": 1,
+            "p90": 1,
+            "n": 924
+          },
+          "mirror": {
+            "mean": 0.076894,
+            "p50": 0,
+            "n": 502
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 3.405717,
+            "p50": 1.818942,
+            "p90": 8.656869,
+            "n": 924
+          },
+          "mirror": {
+            "mean": 4.144687,
+            "p50": 2.677293,
+            "n": 502
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 15.066981,
+            "p50": 15.750587,
+            "p90": 23.546698,
+            "n": 924
+          },
+          "mirror": {
+            "mean": 6.349197,
+            "p50": 5.092768,
+            "n": 502
+          }
+        },
+        "steerMix": {
+          "markStance": 0.82251,
+          "ballDirected": 0.08865,
+          "stationHome": 0.08802,
+          "other": 0.00082
+        },
+        "detachP90": 19.544818
+      },
+      "D02": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 18.65841,
+            "p50": 18.57111,
+            "p90": 21.947516,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 2.078569,
+            "p50": 1.942857,
+            "n": 932
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 19.579746,
+            "p50": 19.477711,
+            "p90": 23.051707,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 2.170234,
+            "p50": 2.033573,
+            "n": 932
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 0.921336,
+            "p50": 0.930747,
+            "p90": 1.121126,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 0.095902,
+            "p50": 0.087858,
+            "n": 932
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 14.448916,
+            "p50": 15.088132,
+            "p90": 22.435104,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 3.861167,
+            "p50": 2.120883,
+            "n": 932
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 6.331269,
+            "p50": 6.088132,
+            "p90": 13.435104,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 0.520426,
+            "p50": 0,
+            "n": 932
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 11.794583,
+            "p50": 11.922176,
+            "p90": 18.368936,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 9.878406,
+            "p50": 9.907661,
+            "n": 932
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 11.158124,
+            "p50": 10.391533,
+            "p90": 19.619252,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 9.451044,
+            "p50": 8.593352,
+            "n": 932
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.827832,
+            "p50": 1,
+            "p90": 1,
+            "n": 932
+          },
+          "mirror": {
+            "mean": 0.417907,
+            "p50": 0,
+            "n": 932
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.523142,
+            "p50": 0.631579,
+            "p90": 1,
+            "n": 821
+          },
+          "mirror": {
+            "mean": 0.07242,
+            "p50": 0,
+            "n": 455
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 3.691791,
+            "p50": 2.416751,
+            "p90": 8.494429,
+            "n": 821
+          },
+          "mirror": {
+            "mean": 4.19848,
+            "p50": 2.75263,
+            "n": 455
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 14.165525,
+            "p50": 14.209631,
+            "p90": 22.285752,
+            "n": 821
+          },
+          "mirror": {
+            "mean": 6.484231,
+            "p50": 5.304068,
+            "n": 455
+          }
+        },
+        "steerMix": {
+          "markStance": 0.83762,
+          "stationHome": 0.09145,
+          "ballDirected": 0.06932,
+          "other": 0.00162
+        },
+        "detachP90": 18.368936
+      },
+      "D04": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 17.787642,
+            "p50": 17.72526,
+            "p90": 20.756729,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 2.01329,
+            "p50": 1.859061,
+            "n": 996
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 19.629646,
+            "p50": 19.553024,
+            "p90": 22.911149,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 2.201296,
+            "p50": 2.062598,
+            "n": 996
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 1.842004,
+            "p50": 1.869124,
+            "p90": 2.198422,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 0.196589,
+            "p50": 0.179198,
+            "n": 996
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 14.052827,
+            "p50": 15.133958,
+            "p90": 21.172062,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 3.474099,
+            "p50": 1.918442,
+            "n": 996
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 5.992496,
+            "p50": 6.133958,
+            "p90": 12.172062,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 0.377331,
+            "p50": 0,
+            "n": 996
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 11.601152,
+            "p50": 11.59703,
+            "p90": 17.726075,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 9.736262,
+            "p50": 9.75967,
+            "n": 996
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 10.869191,
+            "p50": 9.800636,
+            "p90": 19.178012,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 9.219452,
+            "p50": 7.483003,
+            "n": 996
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.812658,
+            "p50": 1,
+            "p90": 1,
+            "n": 996
+          },
+          "mirror": {
+            "mean": 0.383564,
+            "p50": 0,
+            "n": 996
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.51982,
+            "p50": 0.633621,
+            "p90": 1,
+            "n": 864
+          },
+          "mirror": {
+            "mean": 0.055948,
+            "p50": 0,
+            "n": 449
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 4.298184,
+            "p50": 3.32138,
+            "p90": 8.410212,
+            "n": 864
+          },
+          "mirror": {
+            "mean": 4.784669,
+            "p50": 3.557921,
+            "n": 449
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 13.841854,
+            "p50": 14.168218,
+            "p90": 21.608049,
+            "n": 864
+          },
+          "mirror": {
+            "mean": 6.132627,
+            "p50": 5.273241,
+            "n": 449
+          }
+        },
+        "steerMix": {
+          "markStance": 0.82387,
+          "stationHome": 0.10034,
+          "ballDirected": 0.07446,
+          "other": 0.00133
+        },
+        "detachP90": 17.726075
+      },
+      "D06": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 16.809666,
+            "p50": 16.610165,
+            "p90": 19.903914,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 1.898766,
+            "p50": 1.75831,
+            "n": 850
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 19.523172,
+            "p50": 19.318357,
+            "p90": 23.236255,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 2.172727,
+            "p50": 2.015561,
+            "n": 850
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 2.713506,
+            "p50": 2.722481,
+            "p90": 3.337943,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 0.287494,
+            "p50": 0.258563,
+            "n": 850
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 13.208638,
+            "p50": 14.001642,
+            "p90": 20.977816,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 3.662597,
+            "p50": 2.012917,
+            "n": 850
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 5.356244,
+            "p50": 5.005961,
+            "p90": 11.977816,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 0.465079,
+            "p50": 0,
+            "n": 850
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 10.945632,
+            "p50": 10.836837,
+            "p90": 17.531096,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 9.356069,
+            "p50": 9.334912,
+            "n": 850
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 10.815118,
+            "p50": 10.33185,
+            "p90": 18.396225,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 9.118377,
+            "p50": 7.430644,
+            "n": 850
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.800772,
+            "p50": 1,
+            "p90": 1,
+            "n": 850
+          },
+          "mirror": {
+            "mean": 0.392961,
+            "p50": 0,
+            "n": 850
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.441402,
+            "p50": 0.096774,
+            "p90": 1,
+            "n": 729
+          },
+          "mirror": {
+            "mean": 0.073972,
+            "p50": 0,
+            "n": 390
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 4.737529,
+            "p50": 3.938879,
+            "p90": 9.31025,
+            "n": 729
+          },
+          "mirror": {
+            "mean": 4.66052,
+            "p50": 3.561311,
+            "n": 390
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 12.995092,
+            "p50": 12.804037,
+            "p90": 21.231478,
+            "n": 729
+          },
+          "mirror": {
+            "mean": 6.452086,
+            "p50": 5.448672,
+            "n": 390
+          }
+        },
+        "steerMix": {
+          "markStance": 0.80191,
+          "stationHome": 0.1179,
+          "ballDirected": 0.07891,
+          "other": 0.00127
+        },
+        "detachP90": 17.531096
+      },
+      "D08": {
+        "askLatGapMean": {
+          "weak": {
+            "mean": 15.912783,
+            "p50": 15.794349,
+            "p90": 18.758697,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 1.841955,
+            "p50": 1.73008,
+            "n": 863
+          }
+        },
+        "askLatGapUnmodMean": {
+          "weak": {
+            "mean": 19.54789,
+            "p50": 19.446154,
+            "p90": 22.917201,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 2.215351,
+            "p50": 2.138357,
+            "n": 863
+          }
+        },
+        "askShiftYMean": {
+          "weak": {
+            "mean": 3.635107,
+            "p50": 3.656642,
+            "p90": 4.377482,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 0.389157,
+            "p50": 0.340147,
+            "n": 863
+          }
+        },
+        "bodyLatGapMean": {
+          "weak": {
+            "mean": 13.319576,
+            "p50": 13.952303,
+            "p90": 20.584358,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 3.701094,
+            "p50": 2.223769,
+            "n": 863
+          }
+        },
+        "shortfallMean": {
+          "weak": {
+            "mean": 5.411256,
+            "p50": 4.952303,
+            "p90": 11.584358,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 0.422179,
+            "p50": 0,
+            "n": 863
+          }
+        },
+        "detachMean": {
+          "weak": {
+            "mean": 11.262776,
+            "p50": 11.029194,
+            "p90": 17.361728,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 9.292046,
+            "p50": 9.324969,
+            "n": 863
+          }
+        },
+        "distToSendMean": {
+          "weak": {
+            "mean": 10.459069,
+            "p50": 9.709539,
+            "p90": 18.504938,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 9.425771,
+            "p50": 8.083004,
+            "n": 863
+          }
+        },
+        "markShare": {
+          "weak": {
+            "mean": 0.766908,
+            "p50": 1,
+            "p90": 1,
+            "n": 863
+          },
+          "mirror": {
+            "mean": 0.406156,
+            "p50": 0,
+            "n": 863
+          }
+        },
+        "markFarSideShare": {
+          "weak": {
+            "mean": 0.462763,
+            "p50": 0.246914,
+            "p90": 1,
+            "n": 711
+          },
+          "mirror": {
+            "mean": 0.043377,
+            "p50": 0,
+            "n": 414
+          }
+        },
+        "distToMarkMean": {
+          "weak": {
+            "mean": 5.189266,
+            "p50": 4.416285,
+            "p90": 9.69793,
+            "n": 711
+          },
+          "mirror": {
+            "mean": 4.981323,
+            "p50": 3.932931,
+            "n": 414
+          }
+        },
+        "markLatGapMean": {
+          "weak": {
+            "mean": 13.225364,
+            "p50": 13.298064,
+            "p90": 20.750145,
+            "n": 711
+          },
+          "mirror": {
+            "mean": 6.16736,
+            "p50": 5.244239,
+            "n": 414
+          }
+        },
+        "steerMix": {
+          "markStance": 0.78418,
+          "stationHome": 0.12566,
+          "ballDirected": 0.08849,
+          "other": 0.00167
+        },
+        "detachP90": 17.361728
+      }
+    },
+    "knee": {
+      "rule": "the play-test dose = the LARGEST dose d whose arm (a) holds the band on EVERY gated dimension (control-gated, the inherited substrate-drift caveat), (b) passes GUARD-NI, and (c) has a resolvedly negative bodyLatGap. If no dose ≥ 0.4 qualifies, the entry builds at 0.2 (the measured-healthy anchor); if ALL qualify, 0.8. — ruling #209.2, frozen ex ante.",
+      "ladderDoses": [
+        0.2,
+        0.4,
+        0.6,
+        0.8
+      ],
+      "rows": [
+        {
+          "dose": 0.2,
+          "arm": "D02",
+          "bandHoldsOnGatedDimensions": false,
+          "failedGatedBandDimensions": [
+            "goals",
+            "headers",
+            "longBalls"
+          ],
+          "guardNiPasses": true,
+          "bodyLatGapResolvedlyNegative": false,
+          "bodyLatGap": {
+            "n": 401,
+            "control": 15.322585,
+            "treated": 14.737004,
+            "point": -0.585581,
+            "lower": -1.293808,
+            "upper": 0.147099,
+            "resolved": false
+          },
+          "qualifies": false
+        },
+        {
+          "dose": 0.4,
+          "arm": "D04",
+          "bandHoldsOnGatedDimensions": false,
+          "failedGatedBandDimensions": [
+            "goals",
+            "headers",
+            "longBalls"
+          ],
+          "guardNiPasses": true,
+          "bodyLatGapResolvedlyNegative": true,
+          "bodyLatGap": {
+            "n": 379,
+            "control": 15.461548,
+            "treated": 14.016457,
+            "point": -1.445091,
+            "lower": -2.160175,
+            "upper": -0.744635,
+            "resolved": true
+          },
+          "qualifies": false
+        },
+        {
+          "dose": 0.6,
+          "arm": "D06",
+          "bandHoldsOnGatedDimensions": false,
+          "failedGatedBandDimensions": [
+            "goals",
+            "crosses",
+            "headers",
+            "longBalls"
+          ],
+          "guardNiPasses": true,
+          "bodyLatGapResolvedlyNegative": true,
+          "bodyLatGap": {
+            "n": 366,
+            "control": 15.386235,
+            "treated": 13.047337,
+            "point": -2.338898,
+            "lower": -3.060763,
+            "upper": -1.620765,
+            "resolved": true
+          },
+          "qualifies": false
+        },
+        {
+          "dose": 0.8,
+          "arm": "D08",
+          "bandHoldsOnGatedDimensions": false,
+          "failedGatedBandDimensions": [
+            "goals",
+            "crosses",
+            "headers",
+            "longBalls"
+          ],
+          "guardNiPasses": true,
+          "bodyLatGapResolvedlyNegative": true,
+          "bodyLatGap": {
+            "n": 363,
+            "control": 15.640927,
+            "treated": 13.244991,
+            "point": -2.395936,
+            "lower": -3.150032,
+            "upper": -1.705519,
+            "resolved": true
+          },
+          "qualifies": false
+        }
+      ],
+      "qualifyingDoses": [],
+      "qualifyingDosesAtOrAboveFloor": [],
+      "branch": "NONE_ABOVE_FLOOR",
+      "branchNote": "NO dose ≥ 0.4 qualifies ⇒ the pre-registered fallback: 0.2, the measured-healthy anchor (#208). ⚠ This branch fires REGARDLESS of whether 0.2 itself qualifies on this run — that is what the rule says, and the 0.2 row is published either way.",
+      "kneeDose": 0.2,
+      "exhibitOnly": "THE KNEE IS AN EXHIBIT DOSE for the user's play-test verdict (the density-verdict precedent), NOT a ship decision. Road B binds until the play-test rules: both seams stay BANKED-DORMANT and src/** is untouched.",
+      "adjudicationNote": "ADJUDICATE FROM THE PER-ARM ROWS (#203), never from the knee line alone: the rule is a MAXIMUM over a three-limb conjunction, so a dose can fail on ONE limb (e.g. one band dimension) and that is invisible in the knee number."
+    },
+    "body": {
+      "bodyLaneGap": {
+        "D02": {
+          "n": 401,
+          "control": 15.322585,
+          "treated": 14.737004,
+          "point": -0.585581,
+          "lower": -1.293808,
+          "upper": 0.147099,
+          "resolved": false
+        },
+        "D04": {
+          "n": 379,
+          "control": 15.461548,
+          "treated": 14.016457,
+          "point": -1.445091,
+          "lower": -2.160175,
+          "upper": -0.744635,
+          "resolved": true
+        },
+        "D06": {
+          "n": 366,
+          "control": 15.386235,
+          "treated": 13.047337,
+          "point": -2.338898,
+          "lower": -3.060763,
+          "upper": -1.620765,
+          "resolved": true
+        },
+        "D08": {
+          "n": 363,
+          "control": 15.640927,
+          "treated": 13.244991,
+          "point": -2.395936,
+          "lower": -3.150032,
+          "upper": -1.705519,
+          "resolved": true
+        }
+      },
+      "compressionShortfall": {
+        "D02": {
+          "n": 401,
+          "control": 7.305132,
+          "treated": 6.578556,
+          "point": -0.726576,
+          "lower": -1.297956,
+          "upper": -0.138956,
+          "resolved": true
+        },
+        "D04": {
+          "n": 379,
+          "control": 7.377619,
+          "treated": 5.993794,
+          "point": -1.383825,
+          "lower": -1.959087,
+          "upper": -0.844829,
+          "resolved": true
+        },
+        "D06": {
+          "n": 366,
+          "control": 7.25592,
+          "treated": 5.264515,
+          "point": -1.991404,
+          "lower": -2.59818,
+          "upper": -1.423953,
+          "resolved": true
+        },
+        "D08": {
+          "n": 363,
+          "control": 7.527722,
+          "treated": 5.354555,
+          "point": -2.173167,
+          "lower": -2.750658,
+          "upper": -1.599893,
+          "resolved": true
+        }
+      },
+      "detachment": {
+        "D02": {
+          "n": 401,
+          "control": 12.919627,
+          "treated": 12.113588,
+          "point": -0.806039,
+          "lower": -1.380291,
+          "upper": -0.235631,
+          "resolved": true
+        },
+        "D04": {
+          "n": 379,
+          "control": 13.077842,
+          "treated": 11.630174,
+          "point": -1.447668,
+          "lower": -2.04056,
+          "upper": -0.891942,
+          "resolved": true
+        },
+        "D06": {
+          "n": 366,
+          "control": 12.811751,
+          "treated": 10.885766,
+          "point": -1.925985,
+          "lower": -2.51522,
+          "upper": -1.354971,
+          "resolved": true
+        },
+        "D08": {
+          "n": 363,
+          "control": 13.234956,
+          "treated": 11.191037,
+          "point": -2.043919,
+          "lower": -2.64592,
+          "upper": -1.467282,
+          "resolved": true
+        }
+      },
+      "perArm": {
+        "D02": {
+          "bodyFalls": false,
+          "shortfallFalls": true,
+          "detachNotUp": true,
+          "mtT1PrimaryShape": false
+        },
+        "D04": {
+          "bodyFalls": true,
+          "shortfallFalls": true,
+          "detachNotUp": true,
+          "mtT1PrimaryShape": true
+        },
+        "D06": {
+          "bodyFalls": true,
+          "shortfallFalls": true,
+          "detachNotUp": true,
+          "mtT1PrimaryShape": true
+        },
+        "D08": {
+          "bodyFalls": true,
+          "shortfallFalls": true,
+          "detachNotUp": true,
+          "mtT1PrimaryShape": true
+        }
+      },
+      "achievedHalfWidthM": {
+        "D02": 0.720454,
+        "D04": 0.70777,
+        "D06": 0.719999,
+        "D08": 0.722256
+      },
+      "bodyMovingArms": [
+        "D04",
+        "D06",
+        "D08"
+      ],
+      "note": "bodyLatGap is KNEE LIMB (c); shortfall and detachment ride REPORTED (MT-T1 gated on all three, this stage does not). `mtT1PrimaryShape` per arm is MT-T1's PRIMARY conjunction recomputed for continuity — it decides NOTHING here. The achieved half-widths are published whether or not they meet the 0.5 m target (the #188 §8.0 precedent)."
+    },
+    "sagCensus": {
+      "ABSENT": {
+        "fired": false,
+        "weakInTrigger": {
+          "samples": 120289,
+          "slackPositive": 104841,
+          "slackNonPositive": 15448,
+          "saggedGtBase": 0,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.892131,
+          "meanSaggedMarkDist": 1.892131,
+          "meanSagOnSlackPositive": 7.084425,
+          "meanSagAllTicks": 6.174615,
+          "maxSag": 9
+        },
+        "matchWide": {
+          "samples": 2226654,
+          "slackPositive": 1530498,
+          "slackNonPositive": 696156,
+          "saggedGtBase": 0,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.971406,
+          "meanSaggedMarkDist": 1.971406,
+          "meanSagOnSlackPositive": 4.950312,
+          "meanSagAllTicks": 3.402614,
+          "maxSag": 9
+        }
+      },
+      "D02": {
+        "fired": true,
+        "weakInTrigger": {
+          "samples": 104792,
+          "slackPositive": 89668,
+          "slackNonPositive": 15124,
+          "saggedGtBase": 89668,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.894982,
+          "meanSaggedMarkDist": 3.05038,
+          "meanSagOnSlackPositive": 6.751378,
+          "meanSagAllTicks": 5.776992,
+          "maxSag": 9
+        },
+        "matchWide": {
+          "samples": 2202443,
+          "slackPositive": 1488162,
+          "slackNonPositive": 714281,
+          "saggedGtBase": 1488162,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.962622,
+          "meanSaggedMarkDist": 2.584461,
+          "meanSagOnSlackPositive": 4.601531,
+          "meanSagAllTicks": 3.109195,
+          "maxSag": 9
+        }
+      },
+      "D04": {
+        "fired": true,
+        "weakInTrigger": {
+          "samples": 109064,
+          "slackPositive": 93042,
+          "slackNonPositive": 16022,
+          "saggedGtBase": 93042,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.892842,
+          "meanSaggedMarkDist": 4.084614,
+          "meanSagOnSlackPositive": 6.422997,
+          "meanSagAllTicks": 5.479429,
+          "maxSag": 9
+        },
+        "matchWide": {
+          "samples": 2201862,
+          "slackPositive": 1471107,
+          "slackNonPositive": 730755,
+          "saggedGtBase": 1471107,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.958286,
+          "meanSaggedMarkDist": 3.105767,
+          "meanSagOnSlackPositive": 4.293694,
+          "meanSagAllTicks": 2.868701,
+          "maxSag": 9
+        }
+      },
+      "D06": {
+        "fired": true,
+        "weakInTrigger": {
+          "samples": 96431,
+          "slackPositive": 80838,
+          "slackNonPositive": 15593,
+          "saggedGtBase": 80838,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.889494,
+          "meanSaggedMarkDist": 4.889607,
+          "meanSagOnSlackPositive": 5.964685,
+          "meanSagAllTicks": 5.000189,
+          "maxSag": 9
+        },
+        "matchWide": {
+          "samples": 2189213,
+          "slackPositive": 1438145,
+          "slackNonPositive": 751068,
+          "saggedGtBase": 1438145,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.953977,
+          "meanSaggedMarkDist": 3.541125,
+          "meanSagOnSlackPositive": 4.026719,
+          "meanSagAllTicks": 2.645246,
+          "maxSag": 9
+        }
+      },
+      "D08": {
+        "fired": true,
+        "weakInTrigger": {
+          "samples": 94234,
+          "slackPositive": 77868,
+          "slackNonPositive": 16366,
+          "saggedGtBase": 77868,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.891894,
+          "meanSaggedMarkDist": 5.697928,
+          "meanSagOnSlackPositive": 5.757465,
+          "meanSagAllTicks": 4.757543,
+          "maxSag": 9
+        },
+        "matchWide": {
+          "samples": 2187577,
+          "slackPositive": 1413542,
+          "slackNonPositive": 774035,
+          "saggedGtBase": 1413542,
+          "tightened": 0,
+          "meanBaseMarkDist": 1.953756,
+          "meanSaggedMarkDist": 3.933118,
+          "meanSagOnSlackPositive": 3.829042,
+          "meanSagAllTicks": 2.474204,
+          "maxSag": 9
+        }
+      }
+    },
+    "guardNI": {
+      "D02": {
+        "limbs": [
+          {
+            "key": "spreadYOut",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 5.725985,
+              "treated": 5.36421,
+              "point": -0.361775,
+              "lower": -0.391602,
+              "upper": -0.331704,
+              "resolved": true
+            },
+            "tolerance": 1.58218,
+            "pass": true
+          },
+          {
+            "key": "spacingMedian",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 13.107965,
+              "treated": 12.753807,
+              "point": -0.354158,
+              "lower": -0.419774,
+              "upper": -0.289712,
+              "resolved": true
+            },
+            "tolerance": 3.621938,
+            "pass": true
+          },
+          {
+            "key": "spacingUnder4",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 800,
+              "control": 0.093115,
+              "treated": 0.096159,
+              "point": 0.003043,
+              "lower": 0.00176,
+              "upper": 0.004406,
+              "resolved": true
+            },
+            "tolerance": 0.025729,
+            "pass": true
+          },
+          {
+            "key": "dupRunShare",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 797,
+              "control": 0.522506,
+              "treated": 0.550964,
+              "point": 0.028458,
+              "lower": 0.016956,
+              "upper": 0.040036,
+              "resolved": true
+            },
+            "tolerance": 0.144377,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "D04": {
+        "limbs": [
+          {
+            "key": "spreadYOut",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 5.725985,
+              "treated": 5.195712,
+              "point": -0.530273,
+              "lower": -0.561099,
+              "upper": -0.500061,
+              "resolved": true
+            },
+            "tolerance": 1.58218,
+            "pass": true
+          },
+          {
+            "key": "spacingMedian",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 13.107965,
+              "treated": 12.640014,
+              "point": -0.467951,
+              "lower": -0.529467,
+              "upper": -0.403748,
+              "resolved": true
+            },
+            "tolerance": 3.621938,
+            "pass": true
+          },
+          {
+            "key": "spacingUnder4",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 800,
+              "control": 0.093115,
+              "treated": 0.095557,
+              "point": 0.002442,
+              "lower": 0.001154,
+              "upper": 0.00369,
+              "resolved": true
+            },
+            "tolerance": 0.025729,
+            "pass": true
+          },
+          {
+            "key": "dupRunShare",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 800,
+              "control": 0.522427,
+              "treated": 0.564514,
+              "point": 0.042087,
+              "lower": 0.030075,
+              "upper": 0.054051,
+              "resolved": true
+            },
+            "tolerance": 0.144355,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "D06": {
+        "limbs": [
+          {
+            "key": "spreadYOut",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 5.725985,
+              "treated": 5.049508,
+              "point": -0.676477,
+              "lower": -0.705816,
+              "upper": -0.647337,
+              "resolved": true
+            },
+            "tolerance": 1.58218,
+            "pass": true
+          },
+          {
+            "key": "spacingMedian",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 13.107965,
+              "treated": 12.517622,
+              "point": -0.590343,
+              "lower": -0.655884,
+              "upper": -0.530017,
+              "resolved": true
+            },
+            "tolerance": 3.621938,
+            "pass": true
+          },
+          {
+            "key": "spacingUnder4",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 800,
+              "control": 0.093115,
+              "treated": 0.094886,
+              "point": 0.001771,
+              "lower": 0.000493,
+              "upper": 0.003114,
+              "resolved": true
+            },
+            "tolerance": 0.025729,
+            "pass": true
+          },
+          {
+            "key": "dupRunShare",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 800,
+              "control": 0.522427,
+              "treated": 0.560984,
+              "point": 0.038558,
+              "lower": 0.027139,
+              "upper": 0.049469,
+              "resolved": true
+            },
+            "tolerance": 0.144355,
+            "pass": true
+          }
+        ],
+        "pass": true
+      },
+      "D08": {
+        "limbs": [
+          {
+            "key": "spreadYOut",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 5.725985,
+              "treated": 4.925214,
+              "point": -0.800771,
+              "lower": -0.831442,
+              "upper": -0.771284,
+              "resolved": true
+            },
+            "tolerance": 1.58218,
+            "pass": true
+          },
+          {
+            "key": "spacingMedian",
+            "direction": "floor",
+            "contrast": {
+              "n": 800,
+              "control": 13.107965,
+              "treated": 12.452343,
+              "point": -0.655622,
+              "lower": -0.716417,
+              "upper": -0.593585,
+              "resolved": true
+            },
+            "tolerance": 3.621938,
+            "pass": true
+          },
+          {
+            "key": "spacingUnder4",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 800,
+              "control": 0.093115,
+              "treated": 0.096014,
+              "point": 0.002899,
+              "lower": 0.001602,
+              "upper": 0.004282,
+              "resolved": true
+            },
+            "tolerance": 0.025729,
+            "pass": true
+          },
+          {
+            "key": "dupRunShare",
+            "direction": "ceiling",
+            "contrast": {
+              "n": 799,
+              "control": 0.521829,
+              "treated": 0.565221,
+              "point": 0.043392,
+              "lower": 0.032217,
+              "upper": 0.05448,
+              "resolved": true
+            },
+            "tolerance": 0.14419,
+            "pass": true
+          }
+        ],
+        "pass": true
+      }
+    },
+    "band": {
+      "control": {
+        "goals": {
+          "level": 2.1925,
+          "lo": 2.03524,
+          "hi": 2.75356,
+          "inBand": true
+        },
+        "crosses": {
+          "level": 2.24625,
+          "lo": 1.86705,
+          "hi": 3.11175,
+          "inBand": true
+        },
+        "headers": {
+          "level": 8.54875,
+          "lo": 6.827925,
+          "hi": 11.379875,
+          "inBand": true
+        },
+        "longBalls": {
+          "level": 5.86625,
+          "lo": 4.65315,
+          "hi": 7.75525,
+          "inBand": true
+        },
+        "cutbacks": {
+          "level": 3.355,
+          "lo": 2.861325,
+          "hi": 4.768875,
+          "inBand": true
+        }
+      },
+      "byArm": {
+        "ABSENT": {
+          "row": {
+            "goals": {
+              "level": 2.1925,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": true
+            },
+            "crosses": {
+              "level": 2.24625,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": true
+            },
+            "headers": {
+              "level": 8.54875,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": true
+            },
+            "longBalls": {
+              "level": 5.86625,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": true
+            },
+            "cutbacks": {
+              "level": 3.355,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": true
+            }
+          },
+          "failedGatedDimensions": [],
+          "pass": true
+        },
+        "D02": {
+          "row": {
+            "goals": {
+              "level": 1.99,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": false
+            },
+            "crosses": {
+              "level": 2.065,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": true
+            },
+            "headers": {
+              "level": 6.56875,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": false
+            },
+            "longBalls": {
+              "level": 4.4225,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": false
+            },
+            "cutbacks": {
+              "level": 3.31625,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": true
+            }
+          },
+          "failedGatedDimensions": [
+            "goals",
+            "headers",
+            "longBalls"
+          ],
+          "pass": false
+        },
+        "D04": {
+          "row": {
+            "goals": {
+              "level": 1.91375,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": false
+            },
+            "crosses": {
+              "level": 2.01125,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": true
+            },
+            "headers": {
+              "level": 5.9125,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": false
+            },
+            "longBalls": {
+              "level": 4.01,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": false
+            },
+            "cutbacks": {
+              "level": 3.065,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": true
+            }
+          },
+          "failedGatedDimensions": [
+            "goals",
+            "headers",
+            "longBalls"
+          ],
+          "pass": false
+        },
+        "D06": {
+          "row": {
+            "goals": {
+              "level": 1.74,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": false
+            },
+            "crosses": {
+              "level": 1.77625,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": false
+            },
+            "headers": {
+              "level": 5.18625,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": false
+            },
+            "longBalls": {
+              "level": 3.58125,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": false
+            },
+            "cutbacks": {
+              "level": 3.14125,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": true
+            }
+          },
+          "failedGatedDimensions": [
+            "goals",
+            "crosses",
+            "headers",
+            "longBalls"
+          ],
+          "pass": false
+        },
+        "D08": {
+          "row": {
+            "goals": {
+              "level": 1.7275,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": false
+            },
+            "crosses": {
+              "level": 1.74125,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": false
+            },
+            "headers": {
+              "level": 4.77125,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": false
+            },
+            "longBalls": {
+              "level": 3.49625,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": false
+            },
+            "cutbacks": {
+              "level": 2.945,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": true
+            }
+          },
+          "failedGatedDimensions": [
+            "goals",
+            "crosses",
+            "headers",
+            "longBalls"
+          ],
+          "pass": false
+        }
+      },
+      "gatedDimensions": [
+        "goals",
+        "crosses",
+        "headers",
+        "longBalls",
+        "cutbacks"
+      ],
+      "excludedAsSubstrateDrift": [],
+      "note": "the A4-S2P3 §4.2 substrate-drift caveat, verbatim: a dimension the CONTROL arm itself fails is DISCLOSED and EXCLUDED from the gate."
+    },
+    "instrumentDebt157": {
+      "offsideFlagFired": false,
+      "offsideByArm": {
+        "D02": {
+          "n": 800,
+          "control": 1.99625,
+          "treated": 1.67875,
+          "point": -0.3175,
+          "lower": -0.4525,
+          "upper": -0.18625,
+          "resolved": true
+        },
+        "D04": {
+          "n": 800,
+          "control": 1.99625,
+          "treated": 1.5075,
+          "point": -0.48875,
+          "lower": -0.625,
+          "upper": -0.35125,
+          "resolved": true
+        },
+        "D06": {
+          "n": 800,
+          "control": 1.99625,
+          "treated": 1.43625,
+          "point": -0.56,
+          "lower": -0.68875,
+          "upper": -0.43375,
+          "resolved": true
+        },
+        "D08": {
+          "n": 800,
+          "control": 1.99625,
+          "treated": 1.275,
+          "point": -0.72125,
+          "lower": -0.845,
+          "upper": -0.59125,
+          "resolved": true
+        }
+      },
+      "contrasts": {
+        "offsides": {
+          "D02": {
+            "n": 800,
+            "control": 1.99625,
+            "treated": 1.67875,
+            "point": -0.3175,
+            "lower": -0.46625,
+            "upper": -0.18,
+            "resolved": true
+          },
+          "D04": {
+            "n": 800,
+            "control": 1.99625,
+            "treated": 1.5075,
+            "point": -0.48875,
+            "lower": -0.6325,
+            "upper": -0.35375,
+            "resolved": true
+          },
+          "D06": {
+            "n": 800,
+            "control": 1.99625,
+            "treated": 1.43625,
+            "point": -0.56,
+            "lower": -0.6825,
+            "upper": -0.43375,
+            "resolved": true
+          },
+          "D08": {
+            "n": 800,
+            "control": 1.99625,
+            "treated": 1.275,
+            "point": -0.72125,
+            "lower": -0.84625,
+            "upper": -0.59,
+            "resolved": true
+          }
+        },
+        "fouls": {
+          "D02": {
+            "n": 800,
+            "control": 4.17625,
+            "treated": 4.36625,
+            "point": 0.19,
+            "lower": 0.01375,
+            "upper": 0.37375,
+            "resolved": true
+          },
+          "D04": {
+            "n": 800,
+            "control": 4.17625,
+            "treated": 4.32125,
+            "point": 0.145,
+            "lower": -0.0325,
+            "upper": 0.32,
+            "resolved": false
+          },
+          "D06": {
+            "n": 800,
+            "control": 4.17625,
+            "treated": 4.22125,
+            "point": 0.045,
+            "lower": -0.1525,
+            "upper": 0.2375,
+            "resolved": false
+          },
+          "D08": {
+            "n": 800,
+            "control": 4.17625,
+            "treated": 4.305,
+            "point": 0.12875,
+            "lower": -0.0525,
+            "upper": 0.32375,
+            "resolved": false
+          }
+        },
+        "penalties": {
+          "D02": {
+            "n": 800,
+            "control": 0.05125,
+            "treated": 0.035,
+            "point": -0.01625,
+            "lower": -0.03875,
+            "upper": 0.005,
+            "resolved": false
+          },
+          "D04": {
+            "n": 800,
+            "control": 0.05125,
+            "treated": 0.02875,
+            "point": -0.0225,
+            "lower": -0.04125,
+            "upper": -0.00375,
+            "resolved": true
+          },
+          "D06": {
+            "n": 800,
+            "control": 0.05125,
+            "treated": 0.04375,
+            "point": -0.0075,
+            "lower": -0.02875,
+            "upper": 0.015,
+            "resolved": false
+          },
+          "D08": {
+            "n": 800,
+            "control": 0.05125,
+            "treated": 0.0325,
+            "point": -0.01875,
+            "lower": -0.03875,
+            "upper": 0,
+            "resolved": false
+          }
+        },
+        "thirdMan": {
+          "D02": {
+            "n": 800,
+            "control": 5.37125,
+            "treated": 4.9125,
+            "point": -0.45875,
+            "lower": -0.66,
+            "upper": -0.24375,
+            "resolved": true
+          },
+          "D04": {
+            "n": 800,
+            "control": 5.37125,
+            "treated": 4.48375,
+            "point": -0.8875,
+            "lower": -1.0975,
+            "upper": -0.67375,
+            "resolved": true
+          },
+          "D06": {
+            "n": 800,
+            "control": 5.37125,
+            "treated": 4.85125,
+            "point": -0.52,
+            "lower": -0.7475,
+            "upper": -0.29125,
+            "resolved": true
+          },
+          "D08": {
+            "n": 800,
+            "control": 5.37125,
+            "treated": 4.98125,
+            "point": -0.39,
+            "lower": -0.6175,
+            "upper": -0.16,
+            "resolved": true
+          }
+        },
+        "overlaps": {
+          "D02": {
+            "n": 800,
+            "control": 0.09,
+            "treated": 0.08125,
+            "point": -0.00875,
+            "lower": -0.0375,
+            "upper": 0.02,
+            "resolved": false
+          },
+          "D04": {
+            "n": 800,
+            "control": 0.09,
+            "treated": 0.10625,
+            "point": 0.01625,
+            "lower": -0.01375,
+            "upper": 0.04625,
+            "resolved": false
+          },
+          "D06": {
+            "n": 800,
+            "control": 0.09,
+            "treated": 0.0975,
+            "point": 0.0075,
+            "lower": -0.0225,
+            "upper": 0.03875,
+            "resolved": false
+          },
+          "D08": {
+            "n": 800,
+            "control": 0.09,
+            "treated": 0.075,
+            "point": -0.015,
+            "lower": -0.04375,
+            "upper": 0.0125,
+            "resolved": false
+          }
+        },
+        "forwardPassShare": {
+          "D02": {
+            "n": 800,
+            "control": 0.534204,
+            "treated": 0.519292,
+            "point": -0.014913,
+            "lower": -0.019244,
+            "upper": -0.010822,
+            "resolved": true
+          },
+          "D04": {
+            "n": 800,
+            "control": 0.534204,
+            "treated": 0.516545,
+            "point": -0.017659,
+            "lower": -0.021825,
+            "upper": -0.013558,
+            "resolved": true
+          },
+          "D06": {
+            "n": 800,
+            "control": 0.534204,
+            "treated": 0.509104,
+            "point": -0.025101,
+            "lower": -0.029279,
+            "upper": -0.02112,
+            "resolved": true
+          },
+          "D08": {
+            "n": 800,
+            "control": 0.534204,
+            "treated": 0.507558,
+            "point": -0.026646,
+            "lower": -0.030523,
+            "upper": -0.022661,
+            "resolved": true
+          }
+        }
+      }
+    },
+    "reportedAsk": {
+      "note": "REPORTED, NEVER GATED. All four DOSED arms carry the PM gene, so the ask is LIVE at each of them (unlike MT-T1, where three arms were degenerate). At the ABSENT control the ask is UNMODULATED BY CONSTRUCTION — formationSpot's PM branch reads pmLaneConvergenceK(gene), and the gene is absent. #199 measured its D100 ask at −4.705904 [−4.954743, −4.445391]; that number is context, not a comparison this stage makes.",
+      "contrasts": {
+        "D02": {
+          "n": 401,
+          "control": 19.698335,
+          "treated": 18.579188,
+          "point": -1.119147,
+          "lower": -1.335797,
+          "upper": -0.903279,
+          "resolved": true
+        },
+        "D04": {
+          "n": 379,
+          "control": 19.489528,
+          "treated": 17.717239,
+          "point": -1.77229,
+          "lower": -2.001578,
+          "upper": -1.516503,
+          "resolved": true
+        },
+        "D06": {
+          "n": 366,
+          "control": 19.563663,
+          "treated": 16.803772,
+          "point": -2.759891,
+          "lower": -3.004545,
+          "upper": -2.536474,
+          "resolved": true
+        },
+        "D08": {
+          "n": 363,
+          "control": 19.526098,
+          "treated": 15.866734,
+          "point": -3.659364,
+          "lower": -3.905045,
+          "upper": -3.415761,
+          "resolved": true
+        }
+      },
+      "askShiftY": {
+        "D02": {
+          "n": 401,
+          "control": 0,
+          "treated": 0.920584,
+          "point": 0.920584,
+          "lower": 0.902525,
+          "upper": 0.941346,
+          "resolved": true
+        },
+        "D04": {
+          "n": 379,
+          "control": 0,
+          "treated": 1.82834,
+          "point": 1.82834,
+          "lower": 1.802304,
+          "upper": 1.854446,
+          "resolved": true
+        },
+        "D06": {
+          "n": 366,
+          "control": 0,
+          "treated": 2.725552,
+          "point": 2.725552,
+          "lower": 2.680317,
+          "upper": 2.774445,
+          "resolved": true
+        },
+        "D08": {
+          "n": 363,
+          "control": 0,
+          "treated": 3.630323,
+          "point": 3.630323,
+          "lower": 3.569615,
+          "upper": 3.687843,
+          "resolved": true
+        }
+      }
+    },
+    "reportedSwallow": {
+      "note": "REPORTED, NEVER GATED (the contract §3: the body may compress WHILE markStance stays the steer owner — the gate is the BODY, not the label). #199 measured markStance owning 79.97–84.57 % of material-ask ticks. DEGENERATE (NaN) at the CONTROL arm only.",
+      "share": {
+        "ABSENT": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 0,
+            "markStanceShare": null,
+            "stationWalkShare": null,
+            "otherShare": null
+          }
+        ],
+        "D02": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 56751,
+            "markStanceShare": 0.839122,
+            "stationWalkShare": 0.092227,
+            "otherShare": 0.068651
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 19346,
+            "markStanceShare": 0.816448,
+            "stationWalkShare": 0.11589,
+            "otherShare": 0.067663
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 107,
+            "markStanceShare": 0.626168,
+            "stationWalkShare": 0.17757,
+            "otherShare": 0.196262
+          }
+        ],
+        "D04": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 66195,
+            "markStanceShare": 0.823869,
+            "stationWalkShare": 0.10034,
+            "otherShare": 0.075791
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 65651,
+            "markStanceShare": 0.823445,
+            "stationWalkShare": 0.10111,
+            "otherShare": 0.075444
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 22143,
+            "markStanceShare": 0.784401,
+            "stationWalkShare": 0.127354,
+            "otherShare": 0.088245
+          }
+        ],
+        "D06": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 54920,
+            "markStanceShare": 0.801912,
+            "stationWalkShare": 0.117899,
+            "otherShare": 0.080189
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 54918,
+            "markStanceShare": 0.801923,
+            "stationWalkShare": 0.117903,
+            "otherShare": 0.080174
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 49840,
+            "markStanceShare": 0.796368,
+            "stationWalkShare": 0.124839,
+            "otherShare": 0.078792
+          }
+        ],
+        "D08": [
+          {
+            "materialCutM": 0.5,
+            "materialTicks": 54616,
+            "markStanceShare": 0.784184,
+            "stationWalkShare": 0.125659,
+            "otherShare": 0.090157
+          },
+          {
+            "materialCutM": 1,
+            "materialTicks": 54601,
+            "markStanceShare": 0.7844,
+            "stationWalkShare": 0.125694,
+            "otherShare": 0.089907
+          },
+          {
+            "materialCutM": 2,
+            "materialTicks": 54135,
+            "markStanceShare": 0.785943,
+            "stationWalkShare": 0.126572,
+            "otherShare": 0.087485
+          }
+        ]
+      }
+    },
+    "reportedMarkDrift": {
+      "note": "REPORTED, NEVER GATED — the MARK-SELECTION-CODE-MAP §2.4 positional-feedback channel, named again by #202.2: a sagged body moves the distances assignMarks' own 22 m / 9 m gates read, so assignment CAN churn DOWNSTREAM of the body. Visible and attributed, not designed away, and NOT a predicate.",
+      "contrasts": {
+        "markShare": {
+          "D02": {
+            "n": 401,
+            "control": 0.821316,
+            "treated": 0.826661,
+            "point": 0.005345,
+            "lower": -0.033027,
+            "upper": 0.044178,
+            "resolved": false
+          },
+          "D04": {
+            "n": 379,
+            "control": 0.825663,
+            "treated": 0.807154,
+            "point": -0.018509,
+            "lower": -0.05625,
+            "upper": 0.019423,
+            "resolved": false
+          },
+          "D06": {
+            "n": 366,
+            "control": 0.829214,
+            "treated": 0.813732,
+            "point": -0.015482,
+            "lower": -0.0562,
+            "upper": 0.025839,
+            "resolved": false
+          },
+          "D08": {
+            "n": 363,
+            "control": 0.817681,
+            "treated": 0.779838,
+            "point": -0.037843,
+            "lower": -0.076522,
+            "upper": 0.005098,
+            "resolved": false
+          }
+        },
+        "markFarSideShare": {
+          "D02": {
+            "n": 351,
+            "control": 0.557311,
+            "treated": 0.542719,
+            "point": -0.014592,
+            "lower": -0.069373,
+            "upper": 0.043898,
+            "resolved": false
+          },
+          "D04": {
+            "n": 324,
+            "control": 0.572878,
+            "treated": 0.498769,
+            "point": -0.074109,
+            "lower": -0.132534,
+            "upper": -0.016999,
+            "resolved": true
+          },
+          "D06": {
+            "n": 312,
+            "control": 0.540317,
+            "treated": 0.42974,
+            "point": -0.110577,
+            "lower": -0.169746,
+            "upper": -0.052332,
+            "resolved": true
+          },
+          "D08": {
+            "n": 302,
+            "control": 0.569707,
+            "treated": 0.463385,
+            "point": -0.106322,
+            "lower": -0.16663,
+            "upper": -0.044661,
+            "resolved": true
+          }
+        },
+        "distToMarkMean": {
+          "D02": {
+            "n": 351,
+            "control": 3.274327,
+            "treated": 3.633559,
+            "point": 0.359232,
+            "lower": -0.053442,
+            "upper": 0.750774,
+            "resolved": false
+          },
+          "D04": {
+            "n": 324,
+            "control": 3.499354,
+            "treated": 4.34057,
+            "point": 0.841216,
+            "lower": 0.389544,
+            "upper": 1.300725,
+            "resolved": true
+          },
+          "D06": {
+            "n": 312,
+            "control": 3.317775,
+            "treated": 4.69776,
+            "point": 1.379984,
+            "lower": 0.931948,
+            "upper": 1.849319,
+            "resolved": true
+          },
+          "D08": {
+            "n": 302,
+            "control": 3.650366,
+            "treated": 5.225546,
+            "point": 1.575179,
+            "lower": 1.058031,
+            "upper": 2.055204,
+            "resolved": true
+          }
+        },
+        "markLatGapMean": {
+          "D02": {
+            "n": 351,
+            "control": 14.894601,
+            "treated": 14.355117,
+            "point": -0.539484,
+            "lower": -1.278136,
+            "upper": 0.21385,
+            "resolved": false
+          },
+          "D04": {
+            "n": 324,
+            "control": 15.018372,
+            "treated": 13.865213,
+            "point": -1.153159,
+            "lower": -1.96149,
+            "upper": -0.421592,
+            "resolved": true
+          },
+          "D06": {
+            "n": 312,
+            "control": 14.886195,
+            "treated": 12.85558,
+            "point": -2.030616,
+            "lower": -2.80631,
+            "upper": -1.228718,
+            "resolved": true
+          },
+          "D08": {
+            "n": 302,
+            "control": 14.973331,
+            "treated": 13.121298,
+            "point": -1.852033,
+            "lower": -2.675947,
+            "upper": -1.080593,
+            "resolved": true
+          }
+        }
+      }
+    },
+    "receipts": [
+      {
+        "arm": "ABSENT",
+        "seed": 12420617,
+        "startTick": 9766,
+        "simSeconds": 0.667,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 18.745,
+        "askLatGapUnmodulated": 18.745,
+        "bodyLatGap": 12.756,
+        "detach": 33.851,
+        "distToSend": 22.932,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm ABSENT (defLaneConvergence null, markSag null), seed 12420617, from tick 9766 (162.77 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "ABSENT",
+        "seed": 12420258,
+        "startTick": 13711,
+        "simSeconds": 0.95,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 23.786,
+        "askLatGapUnmodulated": 23.786,
+        "bodyLatGap": 13.457,
+        "detach": 31.736,
+        "distToSend": 28.46,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm ABSENT (defLaneConvergence null, markSag null), seed 12420258, from tick 13711 (228.52 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "ABSENT",
+        "seed": 12420451,
+        "startTick": 10267,
+        "simSeconds": 1.167,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 14.497,
+        "askLatGapUnmodulated": 14.497,
+        "bodyLatGap": 12.36,
+        "detach": 30.979,
+        "distToSend": 29.903,
+        "markShare": 0.9143,
+        "steerMix": {
+          "markStance": 0.9143,
+          "other": 0.0857
+        },
+        "watchHint": "MT-T1 arm ABSENT (defLaneConvergence null, markSag null), seed 12420451, from tick 10267 (171.12 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "ABSENT",
+        "seed": 12420395,
+        "startTick": 13600,
+        "simSeconds": 3.967,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 21.673,
+        "askLatGapUnmodulated": 21.673,
+        "bodyLatGap": 12.845,
+        "detach": 28.922,
+        "distToSend": 25.372,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm ABSENT (defLaneConvergence null, markSag null), seed 12420395, from tick 13600 (226.67 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "ABSENT",
+        "seed": 12420688,
+        "startTick": 14105,
+        "simSeconds": 0.5,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 18.798,
+        "askLatGapUnmodulated": 18.798,
+        "bodyLatGap": 26.392,
+        "detach": 27.568,
+        "distToSend": 8.921,
+        "markShare": 0.8,
+        "steerMix": {
+          "markStance": 0.8,
+          "stationHome": 0.2
+        },
+        "watchHint": "MT-T1 arm ABSENT (defLaneConvergence null, markSag null), seed 12420688, from tick 14105 (235.08 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "ABSENT",
+        "seed": 12420218,
+        "startTick": 14961,
+        "simSeconds": 0.633,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 24.967,
+        "askLatGapUnmodulated": 24.967,
+        "bodyLatGap": 25.291,
+        "detach": 26.616,
+        "distToSend": 1.403,
+        "markShare": 0,
+        "steerMix": {
+          "stationHome": 1
+        },
+        "watchHint": "MT-T1 arm ABSENT (defLaneConvergence null, markSag null), seed 12420218, from tick 14961 (249.35 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D02",
+        "seed": 12420658,
+        "startTick": 2602,
+        "simSeconds": 0.517,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 15.767,
+        "askLatGapUnmodulated": 16.47,
+        "bodyLatGap": 8.982,
+        "detach": 26.338,
+        "distToSend": 23.868,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D02 (defLaneConvergence 0.2, markSag 0.2), seed 12420658, from tick 2602 (43.37 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D02",
+        "seed": 12420620,
+        "startTick": 364,
+        "simSeconds": 1,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 14.777,
+        "askLatGapUnmodulated": 15.525,
+        "bodyLatGap": 22.435,
+        "detach": 24.235,
+        "distToSend": 7.885,
+        "markShare": 0.0333,
+        "steerMix": {
+          "markStance": 0.0333,
+          "stationHome": 0.9667
+        },
+        "watchHint": "MT-T1 arm D02 (defLaneConvergence 0.2, markSag 0.2), seed 12420620, from tick 364 (6.07 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D02",
+        "seed": 12420747,
+        "startTick": 14781,
+        "simSeconds": 0.917,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 22.759,
+        "askLatGapUnmodulated": 23.932,
+        "bodyLatGap": 23.245,
+        "detach": 23.235,
+        "distToSend": 1.325,
+        "markShare": 0,
+        "steerMix": {
+          "stationHome": 1
+        },
+        "watchHint": "MT-T1 arm D02 (defLaneConvergence 0.2, markSag 0.2), seed 12420747, from tick 14781 (246.35 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D02",
+        "seed": 12420959,
+        "startTick": 12797,
+        "simSeconds": 0.5,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 19.065,
+        "askLatGapUnmodulated": 19.839,
+        "bodyLatGap": 20.702,
+        "detach": 23.076,
+        "distToSend": 24.446,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D02 (defLaneConvergence 0.2, markSag 0.2), seed 12420959, from tick 12797 (213.28 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D02",
+        "seed": 12420513,
+        "startTick": 3452,
+        "simSeconds": 0.6,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 25.001,
+        "askLatGapUnmodulated": 26.294,
+        "bodyLatGap": 27.087,
+        "detach": 22.446,
+        "distToSend": 12.994,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D02 (defLaneConvergence 0.2, markSag 0.2), seed 12420513, from tick 3452 (57.53 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D02",
+        "seed": 12420922,
+        "startTick": 11542,
+        "simSeconds": 1.133,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 20.735,
+        "askLatGapUnmodulated": 21.787,
+        "bodyLatGap": 20.846,
+        "detach": 22.387,
+        "distToSend": 11.826,
+        "markShare": 0.9118,
+        "steerMix": {
+          "markStance": 0.9118,
+          "other": 0.0882
+        },
+        "watchHint": "MT-T1 arm D02 (defLaneConvergence 0.2, markSag 0.2), seed 12420922, from tick 11542 (192.37 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D04",
+        "seed": 12420599,
+        "startTick": 3100,
+        "simSeconds": 1.217,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 15.111,
+        "askLatGapUnmodulated": 16.577,
+        "bodyLatGap": 14.423,
+        "detach": 31.595,
+        "distToSend": 21.868,
+        "markShare": 0.9178,
+        "steerMix": {
+          "markStance": 0.9178,
+          "stationHome": 0.0822
+        },
+        "watchHint": "MT-T1 arm D04 (defLaneConvergence 0.4, markSag 0.4), seed 12420599, from tick 3100 (51.67 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D04",
+        "seed": 12420253,
+        "startTick": 3971,
+        "simSeconds": 0.667,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 17.681,
+        "askLatGapUnmodulated": 19.593,
+        "bodyLatGap": 22.436,
+        "detach": 25.663,
+        "distToSend": 5.107,
+        "markShare": 0.675,
+        "steerMix": {
+          "markStance": 0.675,
+          "stationHome": 0.325
+        },
+        "watchHint": "MT-T1 arm D04 (defLaneConvergence 0.4, markSag 0.4), seed 12420253, from tick 3971 (66.18 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D04",
+        "seed": 12420574,
+        "startTick": 14408,
+        "simSeconds": 2.15,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 21.117,
+        "askLatGapUnmodulated": 23.293,
+        "bodyLatGap": 12.271,
+        "detach": 25.144,
+        "distToSend": 20.795,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D04 (defLaneConvergence 0.4, markSag 0.4), seed 12420574, from tick 14408 (240.13 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D04",
+        "seed": 12420591,
+        "startTick": 2823,
+        "simSeconds": 2.617,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 17.225,
+        "askLatGapUnmodulated": 18.785,
+        "bodyLatGap": 1.916,
+        "detach": 24.828,
+        "distToSend": 27.323,
+        "markShare": 0,
+        "steerMix": {
+          "ballDirected": 1
+        },
+        "watchHint": "MT-T1 arm D04 (defLaneConvergence 0.4, markSag 0.4), seed 12420591, from tick 2823 (47.05 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D04",
+        "seed": 12420343,
+        "startTick": 745,
+        "simSeconds": 0.5,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 19.156,
+        "askLatGapUnmodulated": 21.088,
+        "bodyLatGap": 26.901,
+        "detach": 24.322,
+        "distToSend": 15.042,
+        "markShare": 0.7333,
+        "steerMix": {
+          "markStance": 0.7333,
+          "stationHome": 0.2667
+        },
+        "watchHint": "MT-T1 arm D04 (defLaneConvergence 0.4, markSag 0.4), seed 12420343, from tick 745 (12.42 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D04",
+        "seed": 12420293,
+        "startTick": 14289,
+        "simSeconds": 2.067,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 20.105,
+        "askLatGapUnmodulated": 22.219,
+        "bodyLatGap": 20.37,
+        "detach": 24.281,
+        "distToSend": 1.427,
+        "markShare": 0,
+        "steerMix": {
+          "stationHome": 1
+        },
+        "watchHint": "MT-T1 arm D04 (defLaneConvergence 0.4, markSag 0.4), seed 12420293, from tick 14289 (238.15 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D06",
+        "seed": 12420782,
+        "startTick": 14698,
+        "simSeconds": 1.783,
+        "defendingSide": 1,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 13.67,
+        "askLatGapUnmodulated": 15.805,
+        "bodyLatGap": 11.885,
+        "detach": 25.313,
+        "distToSend": 24.251,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D06 (defLaneConvergence 0.6, markSag 0.6), seed 12420782, from tick 14698 (244.97 sim-s), defending side 1, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D06",
+        "seed": 12420833,
+        "startTick": 11229,
+        "simSeconds": 1.333,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 21.593,
+        "askLatGapUnmodulated": 25.296,
+        "bodyLatGap": 23.324,
+        "detach": 24.931,
+        "distToSend": 4.254,
+        "markShare": 0.9125,
+        "steerMix": {
+          "markStance": 0.9125,
+          "stationHome": 0.0875
+        },
+        "watchHint": "MT-T1 arm D06 (defLaneConvergence 0.6, markSag 0.6), seed 12420833, from tick 11229 (187.15 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D06",
+        "seed": 12420617,
+        "startTick": 14123,
+        "simSeconds": 2.3,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 14.548,
+        "askLatGapUnmodulated": 16.79,
+        "bodyLatGap": 11.109,
+        "detach": 22.558,
+        "distToSend": 4.262,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D06 (defLaneConvergence 0.6, markSag 0.6), seed 12420617, from tick 14123 (235.38 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D06",
+        "seed": 12420392,
+        "startTick": 6338,
+        "simSeconds": 0.583,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 21.204,
+        "askLatGapUnmodulated": 24.889,
+        "bodyLatGap": 22.961,
+        "detach": 22.543,
+        "distToSend": 23.044,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D06 (defLaneConvergence 0.6, markSag 0.6), seed 12420392, from tick 6338 (105.63 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D06",
+        "seed": 12420836,
+        "startTick": 8506,
+        "simSeconds": 1.433,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 17.626,
+        "askLatGapUnmodulated": 20.07,
+        "bodyLatGap": 27.472,
+        "detach": 22.388,
+        "distToSend": 14.625,
+        "markShare": 0.8953,
+        "steerMix": {
+          "markStance": 0.8953,
+          "stationHome": 0.1047
+        },
+        "watchHint": "MT-T1 arm D06 (defLaneConvergence 0.6, markSag 0.6), seed 12420836, from tick 8506 (141.77 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D06",
+        "seed": 12420389,
+        "startTick": 8896,
+        "simSeconds": 0.5,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 15.342,
+        "askLatGapUnmodulated": 17.828,
+        "bodyLatGap": 23.98,
+        "detach": 22.307,
+        "distToSend": 14.063,
+        "markShare": 0.6,
+        "steerMix": {
+          "markStance": 0.6,
+          "stationHome": 0.4
+        },
+        "watchHint": "MT-T1 arm D06 (defLaneConvergence 0.6, markSag 0.6), seed 12420389, from tick 8896 (148.27 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D08",
+        "seed": 12420698,
+        "startTick": 8696,
+        "simSeconds": 0.667,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 18.382,
+        "askLatGapUnmodulated": 22.857,
+        "bodyLatGap": 12.749,
+        "detach": 27.218,
+        "distToSend": 13.313,
+        "markShare": 0.725,
+        "steerMix": {
+          "markStance": 0.725,
+          "stationHome": 0.275
+        },
+        "watchHint": "MT-T1 arm D08 (defLaneConvergence 0.8, markSag 0.8), seed 12420698, from tick 8696 (144.93 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D08",
+        "seed": 12420237,
+        "startTick": 1004,
+        "simSeconds": 0.583,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 18.759,
+        "askLatGapUnmodulated": 22.887,
+        "bodyLatGap": 15.492,
+        "detach": 26.856,
+        "distToSend": 30.143,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D08 (defLaneConvergence 0.8, markSag 0.8), seed 12420237, from tick 1004 (16.73 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      },
+      {
+        "arm": "D08",
+        "seed": 12420402,
+        "startTick": 12094,
+        "simSeconds": 0.65,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 21.432,
+        "askLatGapUnmodulated": 26.642,
+        "bodyLatGap": 15.691,
+        "detach": 26.193,
+        "distToSend": 20.356,
+        "markShare": 1,
+        "steerMix": {
+          "markStance": 1
+        },
+        "watchHint": "MT-T1 arm D08 (defLaneConvergence 0.8, markSag 0.8), seed 12420402, from tick 12094 (201.57 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D08",
+        "seed": 12420939,
+        "startTick": 14051,
+        "simSeconds": 0.633,
+        "defendingSide": 0,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 15.321,
+        "askLatGapUnmodulated": 18.96,
+        "bodyLatGap": 24.341,
+        "detach": 23.917,
+        "distToSend": 9.397,
+        "markShare": 0.5526,
+        "steerMix": {
+          "markStance": 0.5526,
+          "stationHome": 0.4474
+        },
+        "watchHint": "MT-T1 arm D08 (defLaneConvergence 0.8, markSag 0.8), seed 12420939, from tick 14051 (234.18 sim-s), defending side 0, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D08",
+        "seed": 12420539,
+        "startTick": 13599,
+        "simSeconds": 0.533,
+        "defendingSide": 1,
+        "flankSign": -1,
+        "weakSideSlot": 4,
+        "askLatGap": 18.905,
+        "askLatGapUnmodulated": 23.499,
+        "bodyLatGap": 19.043,
+        "detach": 23.842,
+        "distToSend": 1.101,
+        "markShare": 0,
+        "steerMix": {
+          "stationHome": 1
+        },
+        "watchHint": "MT-T1 arm D08 (defLaneConvergence 0.8, markSag 0.8), seed 12420539, from tick 13599 (226.65 sim-s), defending side 1, ball flank -y, weak-side slot 4"
+      },
+      {
+        "arm": "D08",
+        "seed": 12420840,
+        "startTick": 12923,
+        "simSeconds": 0.667,
+        "defendingSide": 0,
+        "flankSign": 1,
+        "weakSideSlot": 3,
+        "askLatGap": 15.94,
+        "askLatGapUnmodulated": 19.101,
+        "bodyLatGap": 27.777,
+        "detach": 23.408,
+        "distToSend": 16.471,
+        "markShare": 0.725,
+        "steerMix": {
+          "markStance": 0.725,
+          "stationHome": 0.275
+        },
+        "watchHint": "MT-T1 arm D08 (defLaneConvergence 0.8, markSag 0.8), seed 12420840, from tick 12923 (215.38 sim-s), defending side 0, ball flank +y, weak-side slot 3"
+      }
+    ],
+    "citedAnchors": {
+      "note": "CITED, NEVER RE-RUN and NEVER GATED ON: these two artifacts hold the measured doses this ladder is placed between. Nothing in this run reads a LEVEL out of them — only their bytes are hashed, so the citation is auditable (#181.2) and no prior number can leak into a predicate (#194-M1: quote hashes only from the run that produced them).",
+      "topDose": {
+        "dose": 1,
+        "path": "docs/world-model/data/mt-t1-ruler-rerun.json",
+        "what": "MT-T1 / #204 — gene = 1 on both teams: body −2.80 m, band blown on 4 of 5 gated dimensions",
+        "present": true,
+        "sha256": "9d4d1fc8524c253e9d9e43856e23bf3c0d3338bf3d1ab0e599fd779f65d6bd71",
+        "resultSha256": "fcbf714816b3517f5f0685392e30b7f3ac365409630b3c0d41c12ae2c2ef8ef2"
+      },
+      "driftDose": {
+        "dose": null,
+        "path": "docs/world-model/data/mt-t2-coevolution.json",
+        "what": "MT-T2 / #208 — the evolved drift dose gene ≈ 0.2: body −0.70 m, world healthy",
+        "present": true,
+        "sha256": "12cb2fd42d31f1125732b827206dca4932bea8579eed5dbe2cabb04b438f7aa6",
+        "resultSha256": "c42f4a9ab1beb109f2bd66f7dfeff91b21f82a8eb5bc5bd098640f686dea5139"
+      }
+    }
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "6a5f69fac2404a23d6dfed1a20c2b0c0e7f76997137713e23eb6fb09a080008d",
+      "digestB": "6a5f69fac2404a23d6dfed1a20c2b0c0e7f76997137713e23eb6fb09a080008d",
+      "note": "the whole core computed TWICE, canonical-JSON digests"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2
+    },
+    "xSrcZero": {
+      "pass": true,
+      "srcDiff": "",
+      "note": "instrument-only: zero src/** changes"
+    },
+    "gArm": {
+      "pass": true,
+      "pmOptInLive": true,
+      "mtOptInLive": true,
+      "rows": [
+        {
+          "arm": "ABSENT",
+          "pmGene": null,
+          "mtGene": null,
+          "pmFlag": false,
+          "pmFlagExpected": false,
+          "mtFlag": false,
+          "mtFlagExpected": false,
+          "pmGeneOnAllViews": true,
+          "mtGeneOnAllViews": true,
+          "kPm": [
+            0,
+            0
+          ],
+          "kPmExpected": 0,
+          "kPmCorrect": true,
+          "markSagWeight": [
+            0,
+            0
+          ],
+          "markSagWeightExpected": 0,
+          "markSagWeightCorrect": true,
+          "bothTeamsDosed": true,
+          "pass": true
+        },
+        {
+          "arm": "D02",
+          "pmGene": 0.2,
+          "mtGene": 0.2,
+          "pmFlag": true,
+          "pmFlagExpected": true,
+          "mtFlag": true,
+          "mtFlagExpected": true,
+          "pmGeneOnAllViews": true,
+          "mtGeneOnAllViews": true,
+          "kPm": [
+            0.05,
+            0.05
+          ],
+          "kPmExpected": 0.05,
+          "kPmCorrect": true,
+          "markSagWeight": [
+            0.2,
+            0.2
+          ],
+          "markSagWeightExpected": 0.2,
+          "markSagWeightCorrect": true,
+          "bothTeamsDosed": true,
+          "pass": true
+        },
+        {
+          "arm": "D04",
+          "pmGene": 0.4,
+          "mtGene": 0.4,
+          "pmFlag": true,
+          "pmFlagExpected": true,
+          "mtFlag": true,
+          "mtFlagExpected": true,
+          "pmGeneOnAllViews": true,
+          "mtGeneOnAllViews": true,
+          "kPm": [
+            0.1,
+            0.1
+          ],
+          "kPmExpected": 0.1,
+          "kPmCorrect": true,
+          "markSagWeight": [
+            0.4,
+            0.4
+          ],
+          "markSagWeightExpected": 0.4,
+          "markSagWeightCorrect": true,
+          "bothTeamsDosed": true,
+          "pass": true
+        },
+        {
+          "arm": "D06",
+          "pmGene": 0.6,
+          "mtGene": 0.6,
+          "pmFlag": true,
+          "pmFlagExpected": true,
+          "mtFlag": true,
+          "mtFlagExpected": true,
+          "pmGeneOnAllViews": true,
+          "mtGeneOnAllViews": true,
+          "kPm": [
+            0.15,
+            0.15
+          ],
+          "kPmExpected": 0.15,
+          "kPmCorrect": true,
+          "markSagWeight": [
+            0.6,
+            0.6
+          ],
+          "markSagWeightExpected": 0.6,
+          "markSagWeightCorrect": true,
+          "bothTeamsDosed": true,
+          "pass": true
+        },
+        {
+          "arm": "D08",
+          "pmGene": 0.8,
+          "mtGene": 0.8,
+          "pmFlag": true,
+          "pmFlagExpected": true,
+          "mtFlag": true,
+          "mtFlagExpected": true,
+          "pmGeneOnAllViews": true,
+          "mtGeneOnAllViews": true,
+          "kPm": [
+            0.2,
+            0.2
+          ],
+          "kPmExpected": 0.2,
+          "kPmCorrect": true,
+          "markSagWeight": [
+            0.8,
+            0.8
+          ],
+          "markSagWeightExpected": 0.8,
+          "markSagWeightCorrect": true,
+          "bothTeamsDosed": true,
+          "pass": true
+        }
+      ],
+      "semantics": "BOTH ARMING CHECKLISTS (#196.3-D4): each arm's two flags are exactly as frozen, each gene is written on all three genome views of BOTH teams (the a4World armGenes idiom — the REAL gene channel, #196.3-D6: this exam adds NO engine-side dose surface), the two expressed weights (k_PM, markSagWeight) equal their frozen values exactly, and BOTH evolution opt-in channels are shown LIVE (mutateGenome writes each key with its own opt-in and leaves it absent without). This exam is FIXED-DOSE, so the opt-ins are not exercised — asserted, not implied."
+    },
+    "gInherit": {
+      "pass": true,
+      "rows": [
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const OWN_THIRD_LOCAL_X = -HALF_L / 3;",
+          "what": "the #188 trigger own-third cut",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const FLANK_ABS_Y = BOX_WIDTH / 2;",
+          "what": "the #188 trigger flank cut",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const MIN_EPISODE_TICKS = 30;",
+          "what": "the episode floor",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const SPREAD_R = 9;",
+          "what": "the compression yardstick",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const ASK_MATERIAL_M = 1.0;",
+          "what": "the swallow materiality cut (no gate reads it)",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const NI_FRACTION = 1 - 0.275 / 0.380;",
+          "what": "the S2 non-inferiority fraction",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const DUP_RUN_M = 4;",
+          "what": "the P3′ duplicate-run radius",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const PAIR_SUBSAMPLE = 6;",
+          "what": "the P3′ pair subsample",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "  goals: 2.3944, crosses: 2.4894, headers: 9.1039, longBalls: 6.2042, cutbacks: 3.8151,",
+          "what": "the equilibrium band baselines (incl. goals)",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "  goals: 0.15, crosses: 0.25, headers: 0.25, longBalls: 0.25, cutbacks: 0.25,",
+          "what": "the equilibrium band tolerances",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "          const bodyGap = Math.abs(p.pos.y - m.ball.pos.y);",
+          "what": "THE GATED QUANTITY: bodyLatGap",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "          acc.shortfall.push(Math.max(0, bodyGap - SPREAD_R));",
+          "what": "THE GATED QUANTITY: compressionShortfall",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "          acc.detach.push(n === 0 ? Number.NaN : Math.hypot(p.pos.x - cx / n, p.pos.y - cy / n));",
+          "what": "THE GATED QUANTITY: detachment",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "          const askMod = formationSpot(p, dTeam, m.ball, false, aTeam, false, true);",
+          "what": "the REPORTED ask (modulated station read)",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "          const askUnmod = formationSpot(p, dTeam, m.ball, false, aTeam, false, false);",
+          "what": "the REPORTED ask (unmodulated station read)",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t0-mark-sag.ts",
+          "line": "  let d = m.ball.owner === mark ? 2.6 : 2.6 - aggression * 1.4;",
+          "what": "the MT-T0 base-stance replica, floor line",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t0-mark-sag.ts",
+          "line": "  ) d = Math.max(d, 2.6 - aggression * 0.6);",
+          "what": "the MT-T0 base-stance replica, stand-off line",
+          "found": true
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": "        let markDist = ball.owner === mark ? 2.6 : 2.6 - g.markingAggression * 1.4;",
+          "what": "⭐ THE SAG_MATERIAL_M ANCHOR: markingAggression's own 1.4 m stance band",
+          "found": true
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": "          if (w > 0) markDist += w * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed);",
+          "what": "the MT-T0 seam line itself",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "const SPREAD_R = 9;",
+          "what": "MT-T1: the compression yardstick as re-run",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "const NI_FRACTION = 1 - 0.275 / 0.380;",
+          "what": "MT-T1: the S2 non-inferiority fraction as re-run",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "  goals: 2.3944, crosses: 2.4894, headers: 9.1039, longBalls: 6.2042, cutbacks: 3.8151,",
+          "what": "MT-T1: the band baselines (incl. goals) as re-run",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "  goals: 0.15, crosses: 0.25, headers: 0.25, longBalls: 0.25, cutbacks: 0.25,",
+          "what": "MT-T1: the band tolerances as re-run",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "const SAG_MATERIAL_M = 1.4;",
+          "what": "MT-T1: the traced material-sag threshold (REPORTED here, no gate reads it)",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "const PUB188_ASK = { p50: 19.86, lo: 19.65, hi: 20.04, clusters: 700 } as const;",
+          "what": "MT-T1: the SMOKE-FREE variance term of the frozen N rule",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "  const pairsNeeded = Math.ceil(((Z_975 * sigmaDelta) / TARGET_HALFWIDTH_M) ** 2);",
+          "what": "MT-T1: the frozen N-rule precision term",
+          "found": true
+        }
+      ],
+      "semantics": "THE RULER IS INHERITED, NOT RE-IMPLEMENTED. Because probe scripts execute on import (top-level side effects + process.exit), the instrument code cannot be imported from pm-t1-compression-exam.ts; it is carried here VERBATIM and this gate pins each defining line in its ORIGINAL file, the MT-T0 G-CONST idiom. If the ruler moves, this gate goes RED rather than the two exams drifting apart silently.",
+      "disclosedDifferences": [
+        "ARMS: the control plus FOUR COUPLED DOSES (ABSENT · D02 · D04 · D06 · D08 — BOTH genes equal, BOTH seams fully armed) replace MT-T1's five flag/gene arms. The 2x2 seam decomposition (PM-alone / MT-alone) is therefore NOT re-measured here: this stage walks the COUPLED axis the user would play, which is what #209.1 dispatched.",
+        "THERE IS NO GATED PRIMARY AND NO STOP CLASS. MT-T1's PRIMARY, F-MT-a, F-MT-b and F-MT-c do NOT exist here; their quantities all still run and are published PER ARM. The one decision rule is ⭐ THE KNEE (#209.2), whose three limbs are (a) MT-T1's band, (b) MT-T1's GUARD-NI and (c) MT-T1's bodyLatGap contrast — the SAME predicates, recomposed. Consequently exit 2 does not exist: every branch of the rule lands a dose.",
+        "THE BAND is computed on every arm and its CONTROL-GATED subset feeds knee limb (a); the baselines, tolerances and the substrate-drift exclusion are unchanged and inherited verbatim, goals INCLUDED. ⚠ #208 disclosed that long-evolution worlds can drift the goals dimension on the CONTROL itself; if that happens here goals is EXCLUDED and the exclusion is published — the knee then holds only over the dimensions that survive.",
+        "GUARD-NI is unchanged (spreadYOut / spacingMedian / spacingUnder4 / dupRunShare, fraction 0.2763) and is evaluated PER DOSED ARM as knee limb (b), not quantified over a body-moving subset. The tolerance SCALE is re-derived on THIS run's control.",
+        "ARMED-ZERO IS A GATE WORLD, NOT AN ARM: MT-T1 ran it as a battery arm; here G-CTRLEQ builds it directly and it contributes no measured quantity.",
+        "THE SAG CENSUS rides REPORTED at every arm, both layers. ⚠ MT-T1's #203 correction is carried CORRECTLY here: only the MATCH-WIDE layer runs at cadence 15; the WEAK-SIDE in-trigger layer samples EVERY in-trigger tick. SAG_MATERIAL_M = 1.4 m is still TRACED and pinned, but NO gate and NO knee limb reads it in this stage.",
+        "AT THE CONTROL ARM ONLY the ask instruments and the swallow share are DEGENERATE BY CONSTRUCTION (formationSpot's PM branch reads the gene, which is absent ⇒ shiftY ≡ 0 ⇒ zero material ticks ⇒ NaN shares). All four DOSED arms carry the PM gene, so unlike MT-T1 the ask is live at every dosed arm — REPORTED, never gated.",
+        "DOSE 1.0 IS NOT AN ARM. It is already measured (#204) and dose ≈ 0.2 under drift (#208); both are CITED from their committed artifacts (rehashed at run time), never re-run and never re-typed as numbers.",
+        "NO CHECKPOINT/RESUME. MT-T2's per-(pass, seed) checkpoint is NOT carried: this battery is ~15 min, so a kill costs the whole run and that cost is accepted, stated not hidden.",
+        "pairYield (an N input) is measured on the BODY, as in MT-T1; the variance term, the inflation, the 0.5 m target, the 25-step and the wall term are unchanged, and the reserved-band cap is this stage's own 800-seed band."
+      ]
+    },
+    "gCtrlEq": {
+      "pass": true,
+      "seeds": 8,
+      "rows": [
+        {
+          "seed": 12420200,
+          "identical": true
+        },
+        {
+          "seed": 12420201,
+          "identical": true
+        },
+        {
+          "seed": 12420202,
+          "identical": true
+        },
+        {
+          "seed": 12420203,
+          "identical": true
+        },
+        {
+          "seed": 12420204,
+          "identical": true
+        },
+        {
+          "seed": 12420205,
+          "identical": true
+        },
+        {
+          "seed": 12420206,
+          "identical": true
+        },
+        {
+          "seed": 12420207,
+          "identical": true
+        }
+      ],
+      "semantics": "the ARMED-ZERO WORLD (BOTH flags on, BOTH genes ABSENT) ≡ ABSENT (both flags off), whole-match signature INCLUDING the rng stream. THE TWO WORLDS DIFFER IN CODE PATH (armed ⇒ pmMover and mtSag true ⇒ both seam branches are entered and both weights evaluate to 0), so the born-absent reads are proven inert THROUGH the live branches. ⚠ Armed-zero is a GATE WORLD here, not an arm (MT-T1 ran it as an arm); it contributes no measured quantity."
+    },
+    "gSeed": {
+      "pass": true,
+      "block": "12420200..12420999",
+      "band": [
+        12420000,
+        12420999
+      ],
+      "inBand": true,
+      "smokeBlock": "12420000..12420005",
+      "exitSemanticsBlock": "12420100..12420199",
+      "exitSemanticsNote": "stepped ONLY to prove the MTLAD_N override turns gNDerived RED and exits 1; its output is discarded and adjudicates nothing. Reserved so the battery block stays VIRGIN.",
+      "fullBase": 12420200,
+      "ownBlocksDisjoint": true,
+      "consumedBlocks": [
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208; evolution ..12,401,444 + body ..12,412,339)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        }
+      ],
+      "collisions": []
+    },
+    "gStats": {
+      "pass": true,
+      "base": 104200,
+      "published": [
+        101403,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200,
+        103400,
+        103600,
+        103800,
+        104000
+      ],
+      "minGap": 200
+    },
+    "gReadOnly": {
+      "pass": true,
+      "abandonRestAndGrantsNull": true,
+      "stationEyeNull": true,
+      "note": "no station eye is armed in this world, so the #188 send precedence reduces to the station read and the eyeOverride steer bucket is empty BY CONSTRUCTION"
+    },
+    "gNDerived": {
+      "pass": true,
+      "ranN": 800,
+      "derivedNStar": 800,
+      "envOverride": null,
+      "note": "in FULL mode the N run must BE the frozen §4 rule's output — an MTLAD_N override turns this gate RED rather than passing quietly (the #188 nDerived precedent). MTLAD_N is accepted in SMOKE only."
+    },
+    "xFamilyPass": true
+  },
+  "honesty": [
+    "FROZEN BEFORE SIGHT: the arms, the seeds, the N rule, the gates, the instruments and ⭐ THE KNEE RULE ITSELF were written in the stage doc and this probe before any full-N number existed, and are not re-cut afterwards. The knee rule's fallback branches were frozen WITH it, so no branch can be selected after sight.",
+    "THE SMOKE ADJUDICATES NOTHING and may not tune any threshold: it proves plumbing and publishes exactly two sizing numbers (ms/match, min paired-BODY yield) which feed ONLY N.",
+    "NO RE-CUT AFTER SIGHT: k_PM ≤ 0.25 is PM-T0's traced constant; 16 m/s, the 9 m cap and the sagOf shape are MT-T0's; the NI fraction is A4-S2P1 §4's; the band is A4-S2P3 §4.2's; SAG_MATERIAL_M is markingAggression's own stance band. THIS STAGE INTRODUCES NO NEW THRESHOLD — the knee is a recomposition of three inherited predicates.",
+    "THE ARMS DIFFER IN EXACTLY WHAT THE TABLE SAYS: two MatchConfig flags and two gene values, the two genes EQUAL at each dose. Nothing else moves; src/** is untouched (X-SRC-ZERO) and the doses travel the real gene channel on all three genome views of BOTH teams (#196.3-D6), throwing ALL switches of BOTH arming checklists (#196.3-D4).",
+    "The arms diverge tick-for-tick, so PAIRING IS ON THE SEED, not on the episode: each seed contributes one paired delta per arm, and the bootstrap clusters on the seed.",
+    "NO STOP CLASS AND NO EXIT 2: every branch of the knee rule lands a dose. A dose that fails a limb is PUBLISHED with its failing limb and its numbers — the commander adjudicates from the PER-ARM rows (#203), never from the knee line.",
+    "DOSE 1.0 IS NOT RE-RUN (#209.1): it is cited from MT-T1's committed artifact, whose bytes are hashed here. No level is read out of any prior artifact anywhere in this run.",
+    "NO CHECKPOINT/RESUME (unlike MT-T2): the battery is ~15 min, so a kill costs the whole run. Stated, not hidden.",
+    "THIS STAGE SHIPS NOTHING (Road B): both flags stay absent from every bundle and play-test world, both genes stay born-absent, and the production fingerprint is re-derived unchanged. The knee is an EXHIBIT dose for the user's play-test verdict, not a ship decision, and it does NOT say the compression is good football."
+  ],
+  "resultSha256": "1716ffa3f4e7d76e18d5758472e980c5143423fe01b20184a5cba726f451393b",
+  "sizing": {
+    "msPerMatch": 94.644,
+    "pairYieldByArm": {
+      "D02": 0.5012,
+      "D04": 0.4738,
+      "D06": 0.4575,
+      "D08": 0.4537
+    },
+    "pairYieldMin": 0.4537,
+    "provenance": "POST-HOC on this FULL run — it selected nothing (N came from the frozen rule on the SMOKE's two numbers). Reported so the smoke's estimate can be checked against reality."
+  },
+  "headContextOnly": "3cb11c3",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1): the git short-hash of the tree this run was launched from. Recorded for provenance and hashed NOWHERE, so the receipt re-derives at any later commit.",
+  "wallContextOnly": {
+    "corePassMs": 378576,
+    "totalMs": 768551,
+    "note": "CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
+  }
+}

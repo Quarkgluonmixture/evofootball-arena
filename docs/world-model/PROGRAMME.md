@@ -321,8 +321,20 @@ arms = control + BOTH genes equal at {0.2, 0.4, 0.6, 0.8},
 the MT-T1 battery form verbatim, ⭐ the KNEE RULE frozen ex
 ante (largest dose holding band + GUARD-NI + resolved body;
 none ≥ 0.4 ⇒ 0.2; all ⇒ 0.8); then the play-test ENTRY builds
-at the knee (#168/#185 form) → the user's eyes. LADDER
-EXECUTOR DISPATCHED (#209.3). Both seams stay banked-dormant.**
+at the knee (#168/#185 form) → the user's eyes. **THE LADDER
+RAN AND ADJUDICATED (#210 → #211): NO dose qualifies —
+D04–D08 blow the band (goals →1.73, headers −31…−44 %) with
+body resolved; D02 dents it too (headers −23 %) with body
+UNRESOLVED at N=800 ⇒ the frozen NONE_ABOVE_FLOOR fallback ⇒
+KNEE = 0.2. ⭐ FINDING: the trade is CONTINUOUS — no free
+dose; the band (calibrated on the no-tuck world) and a
+visibly working weak-side defence are mutually exclusive;
+the #208 "healthy at 0.2" was the evolution frame
+(goals-warming masked the dent). The play-test carries the
+whole verdict. ENTRY EXECUTOR DISPATCHED (#211.3): world @
+0.2 (the ruled knee, default) + 0.8 CONTRAST world (the #168
+v1/v2 A/B tradition), both opt-in, byte-identical off. Both
+seams stay banked-dormant.**
 O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900

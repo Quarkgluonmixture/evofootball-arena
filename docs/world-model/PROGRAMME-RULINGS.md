@@ -8997,3 +8997,46 @@
 >    (detached fallback per #207 if killed). Adjudication =
 >    the knee per the frozen rule + per-arm rows (#203); then
 >    the play-test ENTRY builds at the knee.
+
+> **COMMANDER RULING #211 (2026-08-09 — the DOSE LADDER
+> adjudicated: NO dose qualifies; the pre-registered fallback
+> fires ⇒ KNEE = 0.2; the load-bearing finding = the trade is
+> CONTINUOUS (no free dose — the band and a visibly working
+> weak-side defence are mutually exclusive); the play-test
+> ENTRY dispatched at 0.2 + an 0.8 CONTRAST world):**
+>
+> 1. **CLEAN RUN** (EXIT 0, X-FAMILY GREEN all ten, N = 800;
+>    artifact committed `1716ffa3…393b`). The knee rule fired
+>    its NONE_ABOVE_FLOOR branch exactly as frozen: D04–D08
+>    all fail the band (goals 1.91→1.73 vs floor 2.035,
+>    headers −31 %…−44 %, longBalls −32 %…−40 %) though
+>    GUARD-NI passes everywhere and the body resolves at D04+
+>    (−1.45/−2.34/−2.40 m); D02 dents the band too (headers
+>    −23 %, goals 1.99 a hair under) while its own body effect
+>    is NOT resolved at N = 800 (−0.59 [−1.29, +0.15]).
+> 2. ⭐ **THE FINDING**: dose-response is smooth on every axis
+>    (ask, body, goals, headers) with compression-never-clump
+>    and falling offsides throughout — **there is no knee
+>    inside the band's tolerances**. The equilibrium band was
+>    calibrated on the no-tuck world; a weak-side defence that
+>    visibly works NECESSARILY suppresses the aerial/wide
+>    channel below those tolerances. Honest reconciliation
+>    with #208: its "healthy at ≈0.2" was the evolution frame
+>    (goals-warming masked the dent); this ladder is the
+>    ruler's calibrated production frame — the honest price
+>    tag. Watchability has no instrument (the E4 lesson): the
+>    user's play-test now carries the whole verdict — is a
+>    lower-scoring, better-defended world better football?
+> 3. **ENTRY DISPATCHED (the #168/#185 form)**: world at the
+>    ruled KNEE 0.2 (default, per #209.2's fallback) **plus an
+>    0.8 CONTRAST world** — the commander's presentation call
+>    under the #168 v1/v2 A/B tradition, dual-checked
+>    (#201.1c): VISION — play-test worlds are measurement
+>    forks for the user's eyes, and 0.2's body effect is
+>    sub-resolution so eyes may see nothing without a
+>    contrast; REALITY — you judge a tactical change by
+>    watching it where it is visible. Both opt-in,
+>    byte-identical off, watched-matches-only (E4 semantics),
+>    Road B intact. The user's exit questions: 弱侧后卫还乱转
+>    吗 · 防守知道往哪走了吗 · 看得出松盯内收吗 · 进球变少的
+>    世界好看还是难看?
