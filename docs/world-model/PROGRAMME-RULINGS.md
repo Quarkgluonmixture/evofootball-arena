@@ -8900,3 +8900,52 @@
 >    to the observed group-kills) + checkpointed (immune to
 >    everything else; a kill now costs ≤ 1 seed ≈ 5 min).
 >    The read-only monitor watches artifact/verdict/stall.
+
+> **COMMANDER RULING #208 (2026-08-09 — MT-T2 ADJUDICATED:
+> MIXED, with the honest teeth the pre-registration built in —
+> SELECTION IS INDIFFERENT (the drift shadow kills the formal
+> ENGAGES); the #204 deflation vanishes at drift doses; the
+> body still compresses; the dose decision returns to the
+> USER with two measured anchors):**
+>
+> 1. **CLEAN RUN** (4th launch, detached + checkpointed,
+>    uninterrupted; 24 seeds × 2 arms × 25 gens; X-FAMILY
+>    GREEN all twelve; artifact committed `c42f4a9a…5139`).
+>    Adjudicated from the per-arm/per-read-point rows (#203)
+>    with the #206.3 drift-shadow note binding.
+> 2. **THE THREE QUESTIONS ANSWERED**: (Q1 selection) both
+>    genes rise to ~0.17–0.20 and resolve vs the structural
+>    zero — but are NULL vs the neutral-drift shadow (+0.045
+>    [−0.016, +0.111] / +0.024 [−0.026, +0.077]) with zero
+>    fitness–gene correlation across 25 generations ⇒ the rise
+>    is the mutation law's reflecting-barrier drift, NOT
+>    selection. Win-only fitness cannot hear a drift-level
+>    tuck-in over 45-match generations — the Leg-S lesson
+>    repeats, and the VISION §3 soft spot (defence pays on
+>    higher ladder rungs: 补位→默契→教练) gains its second
+>    instrument-grade confirmation. (Q2 equilibrium) the #204
+>    −27 % catastrophe is a MAX-DOSE artifact: at drift doses
+>    the armed world sits +1.41 goals [1.20, 1.64] above
+>    MTTOP's deflated level; the gen-25 band read is confounded
+>    by BOTH arms drifting high on goals (control 2.94 vs band
+>    top 2.75 — long-evolution goals-warming, caught honestly
+>    by the #206 amendment: goals ∉ gated ⇒ (i) cannot fire).
+>    (Q3 body) compression survives at the evolved dose:
+>    bodyLatGap −0.702 [−1.147, −0.241] at gene ≈ 0.2 —
+>    roughly dose-proportional. REPORTED: style spread is
+>    drift-shaped; attack pool quiet; #157 debt quiet.
+> 3. **DISPOSITION — the (ii) consequence in substance**:
+>    selection set no dose (drift did), so the PLAY-TEST DOSE
+>    decision returns to the user with two measured anchors —
+>    gene ≈ 0.2 (world healthy, tuck-in −0.7 m, subtle) and
+>    gene = 1 (world deflates −27 % goals, tuck-in −2.4 m,
+>    dramatic); intermediate doses unmeasured (a ~15 min
+>    ladder can locate the knee on demand). Both seams stay
+>    BANKED-DORMANT; Road B intact; the play-test ENTRY (the
+>    #168/#185 form) builds at whatever dose the user rules.
+>    The fork is presented 人话先行, dual-checked (#201.1c):
+>    VISION — a hand dose for a play-test EXHIBIT is the
+>    density-verdict precedent, not hand-coded behaviour
+>    (selection has spoken: indifferent); REALITY — tactical
+>    tightness is a coach-set dial in real football, and the
+>    coach rung is this dial's eventual home.

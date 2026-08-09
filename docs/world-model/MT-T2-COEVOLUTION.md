@@ -539,5 +539,50 @@ moved: either check out the commit the checkpoint was made on, or delete
 
 ## §RESULT — the run
 
-*(empty by design — the commander fills this from the committed artifact, adjudicating from
-the PER-ARM / per-read-point rows per #203, never from the verdict line alone.)*
+*(Filled by the COMMANDER at adjudication, ruling #208 — every number quoted FROM the
+committed [`data/mt-t2-coevolution.json`](data/mt-t2-coevolution.json) / its stdout;
+adjudicated from the per-arm / per-read-point rows per #203, WITH the #206.3
+drift-shadow note binding the ENGAGES reading.)*
+
+**Run**: 2026-08-09, HEAD `f2868c0`, 24 league seeds × 2 arms × 25 gens, wall 9,501 s
+(the 4th launch — detached per #207.3, checkpointed, uninterrupted). `resultSha256
+c42f4a9a…5139` · X-DET `46ec24cc…232d` · X-FP-PROD unchanged. **X-FAMILY GREEN (all
+twelve).** Probe verdict: **MIXED** — and the honest adjudication agrees, with teeth:
+
+**1. SELECTION IS INDIFFERENT (the #206.3 note kills the formal ENGAGES).** Both genes
+rise from absent to ~0.17–0.20 and resolve vs the control's structural zero (markSag
++0.203 [0.159, 0.247]; defLane +0.168 [0.125, 0.216]) — but vs the NEUTRAL-DRIFT SHADOW
+both are NULL (markSag +0.045 [−0.016, +0.111]; defLane +0.024 [−0.026, +0.077]) and the
+fitness–gene correlation hovers at zero for 25 generations (−0.07…+0.14, no trend).
+**The genes rose because the mutation law drifts upward off the zero barrier, not
+because winning selected them.** Win-only fitness can neither hear nor punish a
+drift-level tuck-in over 45-match generations. This is the Leg-S lesson again
+(#167: the look-value was not selectable either): defensive positioning quality
+couples too weakly to WINNING at this grain — the VISION §3 soft spot verbatim
+(defence is won back on higher ladder rungs: 补位→默契→教练).
+
+**2. THE #204 DEFLATION VANISHES AT DRIFT DOSES.** RESTORES is formally false — but for
+a NEW reason the #206 amendment caught honestly: at gen 25 the CONTROL ITSELF drifts
+out of the band on goals/headers/longBalls (control goals 2.94 vs [2.04, 2.75] — the
+long-evolution world inflates scoring in BOTH arms; a known goals-warming shape), so
+goals ∉ gated and (i) cannot fire. The armed−control contrast at gen 25 is small
+(armed 3.03 vs control 2.94), and vs MT-T1's deflated MTTOP level the armed world is
+**+1.41 goals [1.20, 1.64]** — the −27 % catastrophe was a MAX-DOSE artifact; at
+drift-reachable doses (~0.2) the world scores MORE than the historical band, not less.
+The only armed-arm band miss at gen 25 is crosses (1.79 vs floor 1.87, a hair under).
+
+**3. THE BODY STILL COMPRESSES AT THE EVOLVED DOSE.** At population means markSag 0.203
+/ defLane 0.168: bodyLatGap **−0.702 [−1.147, −0.241]** ✔, shortfall −0.555 ✔, detach
+−0.452 [−0.884, +0.004] (borderline, right direction) — ~29 % of the gene-1 effect at
+~20 % of the dose. The tuck-in is real and roughly dose-proportional down to small doses.
+
+**4. REPORTED**: style spread at gen 25 (markSag sd 0.138, defLane sd 0.114 across
+leagues — drift-shaped, not selection-structured); attack pool: no resolved response on
+any of the eight genes (expected at this dose); #157 debt quiet (offsides trend DOWN,
+fouls/penalties/thirdMan/overlaps null).
+
+**DISPOSITION (#208): the pre-named (ii) CONSEQUENCE applies in substance** — selection
+did not set a dose (drift did), so **the dose decision returns to the USER**, now with
+two measured anchors: gene ≈ 0.2 (healthy world, mild −0.7 m tuck-in) and gene = 1
+(band-breaking −27 % goals, strong −2.4 m tuck-in). The arc's contracted exit (the
+play-test) proceeds at whatever dose the user rules; the seams stay banked-dormant.

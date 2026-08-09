@@ -295,19 +295,33 @@ not silently drop the question the stage exists to answer;
 X-DET unchanged, smoke re-run, new resultSha256
 e443378f…0431); pre-registered adjudication note: ENGAGES is
 read WITH the neutral-drift shadow + fitness–gene correlation.
-**⚠ THE LONG RUN WAS KILLED TWICE (2026-08-09) — CAUSE
-DIAGNOSED: the session harness group-kills its background
-tasks (both task wrappers died WITHOUT printing their exit
-line = whole process group terminated externally; no crash
-reports; no OOM; the user did not stop them; ages 75 min and
-5 min = no consistent ceiling). The commander's detached
-relaunch was blocked by the permission classifier (correctly
-conservative). RESOLUTION: the launch is handed to the USER's
-own terminal (outside the session's process tree); a
-persistent read-only MONITOR watches the Tier-1 done-condition
-(artifact lands / VERDICT in log / stall / max-wait). The run
-is deterministic — same seeds, same result.** O2-T1 stays
-queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**THE RUN SURVIVED ITS KILLER AND ADJUDICATED (#207 → #208)**:
+three silent kills (75/5/4 min, three channels, killer never
+identified — no OOM/kernel event/utility/user) → #207
+checkpoint/resume banked (`5fa987d`; real kill -9 + resume ≡
+uninterrupted, byte-identical resultSha256; operational rule:
+EVERY launch carries MTT2_RESUME=1) → 4th launch DETACHED
+(user-authorized new process group) ran uninterrupted 2.6 h.
+**#208 VERDICT: MIXED, honestly decoded — ⭐ SELECTION IS
+INDIFFERENT: both genes rise to ~0.17–0.20 but are NULL vs
+the neutral-drift shadow (+0.045 [−0.016, +0.111] / +0.024
+[−0.026, +0.077]) with zero fitness–gene correlation over 25
+gens ⇒ the rise is reflecting-barrier drift, not selection
+(the Leg-S lesson repeats = the VISION §3 soft spot's 2nd
+instrument-grade confirmation: defence pays on higher ladder
+rungs 补位→默契→教练). ⭐ The #204 −27 % deflation is a
+MAX-DOSE artifact: at drift dose ≈ 0.2 the armed world sits
++1.41 goals [1.20, 1.64] above MTTOP's deflated level (gen-25
+band confounded by BOTH arms drifting high on goals — the
+#206 amendment correctly blocked a fake (i)). ⭐ The body
+still compresses at gene ≈ 0.2: bodyLatGap −0.702 [−1.147,
+−0.241]. DISPOSITION = the (ii) consequence: THE PLAY-TEST
+DOSE DECISION SITS AT THE USER — anchors: gene ≈ 0.2
+(healthy world, subtle −0.7 m tuck-in) vs gene = 1 (deflated
+−27 % goals, dramatic −2.4 m); a ~15 min ladder can find the
+knee on demand; the entry builds per #168/#185 at the ruled
+dose. Both seams stay banked-dormant.** O2-T1 stays queued
+(#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
