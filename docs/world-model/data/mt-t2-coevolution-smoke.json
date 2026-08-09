@@ -1,0 +1,1604 @@
+{
+  "stage": "MT-T2 — THE CO-EVOLUTION LIVE A/B (selection sets the dose)",
+  "doc": "docs/world-model/MT-T2-COEVOLUTION.md",
+  "contract": "docs/world-model/MARK-TIGHTNESS-CONTRACT.md §3 MT-T2 / exit · §1 H-MT · §4",
+  "seams": [
+    "docs/world-model/MT-T0-DORMANT-SEAM.md",
+    "docs/world-model/PM-T0-DORMANT-SEAM.md"
+  ],
+  "precedent": "A4-S2P3-GENE-BATTERY §5 (LEG S) — the selection instrument reused",
+  "ruling": "#205 (dispatch) · #204 (the cost finding) · #167 (win-only) · #163 · #181.2 · #197-M1/M2 · #203",
+  "mode": "smoke",
+  "verdict": "(ii) SELECTION REJECTS — honest UNSUPPORTED  ⚠ SMOKE — ADJUDICATES NOTHING",
+  "frozenDesign": {
+    "arms": [
+      {
+        "id": "ARMED",
+        "evolveMarkSag": true,
+        "evolveDefLaneConvergence": true,
+        "what": "BOTH evolution opt-ins TRUE — the genes may enter the population through mutation and crossover from their born-absent state. NOTHING is pre-seeded."
+      },
+      {
+        "id": "CONTROL",
+        "evolveMarkSag": false,
+        "evolveDefLaneConvergence": false,
+        "what": "BOTH evolution opt-ins FALSE — identical league seeds, identical founders, identical fitness; the two genes stay STRUCTURALLY ABSENT for all generations."
+      }
+    ],
+    "armsDifferInExactly": "the two MutateOptions evolution opt-ins (evolveMarkSag, evolveDefLaneConvergence). Both consumption flags (pmLaneConvergence, mtMarkSag) are ON in BOTH arms; percept flags identical; league seeds, founders and fitness identical.",
+    "fitness": "points.map((p, i) => p + gd[i] * 1e-3)  — points 3/1/0, goal difference as a 1e-3 tiebreak (A4-S2P3 §5.2, verbatim). NO genome is an input.",
+    "horizon": {
+      "generations": 3,
+      "readPoints": [
+        3
+      ],
+      "teams": 6,
+      "matchesPerGeneration": 15,
+      "eliteN": 2,
+      "rebornN": 2,
+      "mutateRate": 0.4,
+      "mutateScale": 0.08,
+      "rebornRate": 0.5,
+      "rebornScale": 0.15,
+      "evoRngBase": 771001,
+      "driftRngBase": 772001,
+      "source": "read points @8/@25 from the vision/positioning co-evolution arc; league shape and band law from A4-S2P3 §5.5 Leg S (which ran 20 generations)."
+    },
+    "leagueSeeds": {
+      "count": 1,
+      "base": 12320000,
+      "stride": 3000,
+      "rule": "SEEDS* = clamp( floor( 4.0 h / (ms_per_match × matchesPerSeed × 2 X-DET) ), 6, 24 ) · matchesPerSeed = 25 gens × 45 matches × 2 arms + 40 body matches × 2 doses = 2,330 — frozen in stage doc §5. ms_per_match comes from the COMMITTED smoke artifact; with no smoke on disk the #188 published prior 102.21 ms is used and that is disclosed here."
+    },
+    "bodyInstrument": {
+      "matchesPerSeedPerDose": 4,
+      "base": 12325000,
+      "stride": 100
+    },
+    "thresholds": {
+      "GENE_ZERO_EPS": 0.02,
+      "GENE_HIGH": 0.85,
+      "geneZeroEpsSource": "A4-S2P3 §5.3 LEGS_SIGN_EPS = 0.02 (the Leg-S frozen zero dead-zone)",
+      "geneHighSource": "randomGenome's birth range top, src/evolution/genome.ts rng.range(0.15, 0.85)",
+      "band": {
+        "baseline": {
+          "goals": 2.3944,
+          "crosses": 2.4894,
+          "headers": 9.1039,
+          "longBalls": 6.2042,
+          "cutbacks": 3.8151
+        },
+        "tolerance": {
+          "goals": 0.15,
+          "crosses": 0.25,
+          "headers": 0.25,
+          "longBalls": 0.25,
+          "cutbacks": 0.25
+        },
+        "source": "A4-S2P3 §4.2 via PM-T1 §5.5 / MT-T1 §5.5, incl. the substrate-drift exclusion"
+      }
+    },
+    "statsBases": {
+      "bootstrap": 103800,
+      "reserved": 104000,
+      "resamples": 2000
+    }
+  },
+  "predicates": {
+    "ENGAGES": "for at least one gene: CI( armed − control final-generation league-mean gene ) resolved ABOVE zero (seed-clustered percentile bootstrap, control ≡ structural 0) AND the armed pooled final mean ≥ GENE_ZERO_EPS (0.02)",
+    "RESTORES": "at the FINAL read point, the ARMED arm sits inside the inherited band on every GATED dimension (a dimension the CONTROL arm itself fails at that read point is excluded as substrate drift and disclosed)",
+    "RESTORES_PARTIAL": "¬RESTORES ∧ CI( armed goals @ final − MT-T1 MTTOP goals level ) resolved ABOVE zero — \"resolvedly closer to the band than MTTOP's deflated level\" on the dimension #204 named. REPORTED; it does not satisfy (i).",
+    "BODY_NEGATIVE": "CI( bodyLatGap(EVOLVED − ZEROED) ) resolved BELOW zero, paired on the league seed, measured on the ARMED arm's final-generation genomes",
+    "OUTCOME_I": "ENGAGES ∧ RESTORES ∧ BODY_NEGATIVE",
+    "OUTCOME_II": "both genes' armed pooled final mean < GENE_ZERO_EPS (0.02) ⇒ honest UNSUPPORTED",
+    "OUTCOME_III": "(∃ gene: armed pooled final mean ≥ GENE_HIGH (0.85)) ∧ ¬RESTORES",
+    "MIXED": "none of the three holds ⇒ REPORTED AS-IS, nothing re-cut (the three forms are NOT exhaustive and were never claimed to be)",
+    "exitSemantics": "0 = clean and (i) or MIXED · 1 = an X-family HARD gate failed (INVALID) · 2 = clean and a PRE-NAMED NEGATIVE outcome fired ((ii) or (iii)). Exit 2 is a FINDING, not a measurement failure."
+  },
+  "results": {
+    "outcome": {
+      "label": "(ii) SELECTION REJECTS — honest UNSUPPORTED",
+      "ENGAGES": false,
+      "engagedGenes": [],
+      "RESTORES": true,
+      "RESTORES_PARTIAL": false,
+      "BODY_NEGATIVE": true,
+      "rejectedGenes": [
+        "markSag",
+        "defLaneConvergence"
+      ],
+      "maxedGenes": [],
+      "OUTCOME_I": false,
+      "OUTCOME_II": true,
+      "OUTCOME_III": false,
+      "MIXED": false
+    },
+    "genes": {
+      "armedFinalPooled": {
+        "markSag": 0.013213,
+        "defLaneConvergence": 0
+      },
+      "controlFinalPooled": {
+        "markSag": 0,
+        "defLaneConvergence": 0
+      },
+      "neutralDriftFinalPooled": {
+        "markSag": 0,
+        "defLaneConvergence": 0.001316
+      },
+      "pairedDeltaVsControl": {
+        "markSag": {
+          "point": 0.013213,
+          "lower": 0.013213,
+          "upper": 0.013213,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "defLaneConvergence": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "n": 1,
+          "resolved": false,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": false
+        }
+      },
+      "pairedDeltaVsNeutralDrift": {
+        "markSag": {
+          "point": 0.013213,
+          "lower": 0.013213,
+          "upper": 0.013213,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "defLaneConvergence": {
+          "point": -0.001316,
+          "lower": -0.001316,
+          "upper": -0.001316,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": true,
+          "resolvedAboveZero": false
+        }
+      },
+      "styleDivergence": {
+        "markSag": {
+          "meanPerLeagueSd": 0.029545,
+          "perSeedSd": [
+            0.029545
+          ],
+          "meanPerLeagueMax": 0.079278
+        },
+        "defLaneConvergence": {
+          "meanPerLeagueSd": 0,
+          "perSeedSd": [
+            0
+          ],
+          "meanPerLeagueMax": 0
+        }
+      },
+      "evolvedDose": {
+        "markSag": {
+          "meanOverFinalPops": 0.013213,
+          "maxOverFinalPops": 0.079278
+        },
+        "defLaneConvergence": {
+          "meanOverFinalPops": 0,
+          "maxOverFinalPops": 0
+        }
+      },
+      "readingNote": "⚠ HOW TO READ THIS (declared ex ante). The mutation law writes clamp01(0 + gaussian·scale) onto every mutated/reborn genome under the opt-in, and a random walk clamped at zero drifts UPWARD with no selection at all. `pairedDeltaVsControl` is the statistic the dispatch froze (control is a STRUCTURAL zero); `pairedDeltaVsNeutralDrift` is the honest companion — the same law run on inert passengers through the control arm's own selection assignments. Read them together, with `fitnessGeneCorrelation` and `styleDivergence`."
+    },
+    "band": {
+      "byReadPoint": [
+        {
+          "gen": 3,
+          "control": {
+            "goals": {
+              "level": 1.4,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": false
+            },
+            "crosses": {
+              "level": 2.333333,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": true
+            },
+            "headers": {
+              "level": 12.133333,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": false
+            },
+            "longBalls": {
+              "level": 9.066667,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": false
+            },
+            "cutbacks": {
+              "level": 2.066667,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": false
+            }
+          },
+          "armed": {
+            "goals": {
+              "level": 2.266667,
+              "lo": 2.03524,
+              "hi": 2.75356,
+              "inBand": true
+            },
+            "crosses": {
+              "level": 2.6,
+              "lo": 1.86705,
+              "hi": 3.11175,
+              "inBand": true
+            },
+            "headers": {
+              "level": 16.533333,
+              "lo": 6.827925,
+              "hi": 11.379875,
+              "inBand": false
+            },
+            "longBalls": {
+              "level": 10.733333,
+              "lo": 4.65315,
+              "hi": 7.75525,
+              "inBand": false
+            },
+            "cutbacks": {
+              "level": 4.133333,
+              "lo": 2.861325,
+              "hi": 4.768875,
+              "inBand": true
+            }
+          },
+          "gatedDimensions": [
+            "crosses"
+          ],
+          "excludedAsSubstrateDrift": [
+            "goals",
+            "headers",
+            "longBalls",
+            "cutbacks"
+          ],
+          "armedFailedGated": [],
+          "armedInBand": true
+        }
+      ],
+      "pairedContrasts": [
+        {
+          "gen": 3,
+          "contrasts": {
+            "goals": {
+              "point": 0.866667,
+              "lower": 0.866667,
+              "upper": 0.866667,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            },
+            "crosses": {
+              "point": 0.266667,
+              "lower": 0.266667,
+              "upper": 0.266667,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            },
+            "headers": {
+              "point": 4.4,
+              "lower": 4.4,
+              "upper": 4.4,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            },
+            "longBalls": {
+              "point": 1.666666,
+              "lower": 1.666666,
+              "upper": 1.666666,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            },
+            "cutbacks": {
+              "point": 2.066666,
+              "lower": 2.066666,
+              "upper": 2.066666,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            }
+          }
+        }
+      ],
+      "final": {
+        "gen": 3,
+        "control": {
+          "goals": {
+            "level": 1.4,
+            "lo": 2.03524,
+            "hi": 2.75356,
+            "inBand": false
+          },
+          "crosses": {
+            "level": 2.333333,
+            "lo": 1.86705,
+            "hi": 3.11175,
+            "inBand": true
+          },
+          "headers": {
+            "level": 12.133333,
+            "lo": 6.827925,
+            "hi": 11.379875,
+            "inBand": false
+          },
+          "longBalls": {
+            "level": 9.066667,
+            "lo": 4.65315,
+            "hi": 7.75525,
+            "inBand": false
+          },
+          "cutbacks": {
+            "level": 2.066667,
+            "lo": 2.861325,
+            "hi": 4.768875,
+            "inBand": false
+          }
+        },
+        "armed": {
+          "goals": {
+            "level": 2.266667,
+            "lo": 2.03524,
+            "hi": 2.75356,
+            "inBand": true
+          },
+          "crosses": {
+            "level": 2.6,
+            "lo": 1.86705,
+            "hi": 3.11175,
+            "inBand": true
+          },
+          "headers": {
+            "level": 16.533333,
+            "lo": 6.827925,
+            "hi": 11.379875,
+            "inBand": false
+          },
+          "longBalls": {
+            "level": 10.733333,
+            "lo": 4.65315,
+            "hi": 7.75525,
+            "inBand": false
+          },
+          "cutbacks": {
+            "level": 4.133333,
+            "lo": 2.861325,
+            "hi": 4.768875,
+            "inBand": true
+          }
+        },
+        "gatedDimensions": [
+          "crosses"
+        ],
+        "excludedAsSubstrateDrift": [
+          "goals",
+          "headers",
+          "longBalls",
+          "cutbacks"
+        ],
+        "armedFailedGated": [],
+        "armedInBand": true
+      }
+    },
+    "deflatedReference": {
+      "note": "MT-T1's committed per-arm band levels — the deflation this stage asks selection about.",
+      "MTTOP": {
+        "goals": 1.61375,
+        "crosses": 1.67875,
+        "headers": 4.4625,
+        "longBalls": 3.3325,
+        "cutbacks": 2.98625
+      },
+      "BOTHTOP": {
+        "goals": 1.66625,
+        "crosses": 1.76,
+        "headers": 4.51375,
+        "longBalls": 3.16375,
+        "cutbacks": 2.95
+      },
+      "ABSENT": {
+        "goals": 2.195,
+        "crosses": 2.28375,
+        "headers": 8.21625,
+        "longBalls": 5.68375,
+        "cutbacks": 3.4275
+      },
+      "goalsVsMttop": {
+        "point": 0.652917,
+        "lower": 0.652917,
+        "upper": 0.652917,
+        "n": 1,
+        "resolved": true,
+        "resolvedBelowZero": false,
+        "resolvedAboveZero": true
+      }
+    },
+    "bodyAtEvolvedDose": {
+      "note": "the ARMED arm's FINAL-GENERATION genomes, played twice on identical seeds: EVOLVED (the two genes as selection left them) vs ZEROED (the two keys deleted). Paired on the league seed. This is MT-T1's gated quantity re-read at the dose selection chose.",
+      "bodyLatGap": {
+        "point": -6.311872,
+        "lower": -6.311872,
+        "upper": -6.311872,
+        "n": 1,
+        "resolved": true,
+        "resolvedBelowZero": true,
+        "resolvedAboveZero": false
+      },
+      "shortfall": {
+        "point": -2.757963,
+        "lower": -2.757963,
+        "upper": -2.757963,
+        "n": 1,
+        "resolved": true,
+        "resolvedBelowZero": true,
+        "resolvedAboveZero": false
+      },
+      "detach": {
+        "point": -0.814067,
+        "lower": -0.814067,
+        "upper": -0.814067,
+        "n": 1,
+        "resolved": true,
+        "resolvedBelowZero": true,
+        "resolvedAboveZero": false
+      },
+      "episodes": {
+        "evolved": 4,
+        "zeroed": 4
+      }
+    },
+    "debtCounters": {
+      "note": "the #157 instrument debt — REPORTED, never gated.",
+      "byReadPoint": [
+        {
+          "gen": 3,
+          "perArm": {
+            "ARMED": {
+              "offsides": 1.2,
+              "fouls": 3.066667,
+              "penalties": 0,
+              "thirdMan": 7.133333,
+              "overlaps": 0.066667
+            },
+            "CONTROL": {
+              "offsides": 0.666667,
+              "fouls": 4.533333,
+              "penalties": 0,
+              "thirdMan": 5.066667,
+              "overlaps": 0
+            }
+          },
+          "contrasts": {
+            "offsides": {
+              "point": 0.533333,
+              "lower": 0.533333,
+              "upper": 0.533333,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            },
+            "fouls": {
+              "point": -1.466666,
+              "lower": -1.466666,
+              "upper": -1.466666,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": true,
+              "resolvedAboveZero": false
+            },
+            "penalties": {
+              "point": 0,
+              "lower": 0,
+              "upper": 0,
+              "n": 1,
+              "resolved": false,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": false
+            },
+            "thirdMan": {
+              "point": 2.066666,
+              "lower": 2.066666,
+              "upper": 2.066666,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            },
+            "overlaps": {
+              "point": 0.066667,
+              "lower": 0.066667,
+              "upper": 0.066667,
+              "n": 1,
+              "resolved": true,
+              "resolvedBelowZero": false,
+              "resolvedAboveZero": true
+            }
+          }
+        }
+      ]
+    },
+    "attackCoEvolution": {
+      "note": "REPORTED, NEVER GATED — \"does attack's existing gene pool shift in response?\" (#205.2). Paired armed − control on the frozen attack-side gene list at the final generation.",
+      "finalContrasts": {
+        "attackingWidth": {
+          "point": 0.061358,
+          "lower": 0.061358,
+          "upper": 0.061358,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "tempo": {
+          "point": 0.063032,
+          "lower": 0.063032,
+          "upper": 0.063032,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "shootBias": {
+          "point": -0.085593,
+          "lower": -0.085593,
+          "upper": -0.085593,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": true,
+          "resolvedAboveZero": false
+        },
+        "riskTolerance": {
+          "point": -0.075234,
+          "lower": -0.075234,
+          "upper": -0.075234,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": true,
+          "resolvedAboveZero": false
+        },
+        "supportDistance": {
+          "point": 0.066084,
+          "lower": 0.066084,
+          "upper": 0.066084,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "pressIntensity": {
+          "point": 0.105791,
+          "lower": 0.105791,
+          "upper": 0.105791,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "transitionPress": {
+          "point": 0.058657,
+          "lower": 0.058657,
+          "upper": 0.058657,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        },
+        "defensiveCompactness": {
+          "point": 0.059431,
+          "lower": 0.059431,
+          "upper": 0.059431,
+          "n": 1,
+          "resolved": true,
+          "resolvedBelowZero": false,
+          "resolvedAboveZero": true
+        }
+      },
+      "armedFinalMean": {
+        "attackingWidth": 0.545943,
+        "tempo": 0.616068,
+        "shootBias": 0.552436,
+        "riskTolerance": 0.621489,
+        "supportDistance": 0.605426,
+        "pressIntensity": 0.357898,
+        "transitionPress": 0.338558,
+        "defensiveCompactness": 0.513449
+      },
+      "controlFinalMean": {
+        "attackingWidth": 0.484585,
+        "tempo": 0.553036,
+        "shootBias": 0.638029,
+        "riskTolerance": 0.696723,
+        "supportDistance": 0.539342,
+        "pressIntensity": 0.252107,
+        "transitionPress": 0.279901,
+        "defensiveCompactness": 0.454018
+      },
+      "armedFinalSd": {
+        "attackingWidth": 0.090573,
+        "tempo": 0.205942,
+        "shootBias": 0.2556,
+        "riskTolerance": 0.1225,
+        "supportDistance": 0.130343,
+        "pressIntensity": 0.063404,
+        "transitionPress": 0.199723,
+        "defensiveCompactness": 0.217184
+      }
+    },
+    "trajectory": [
+      {
+        "gen": 1,
+        "ARMED": {
+          "geneMean": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "geneSd": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "fitnessGeneCorrelation": {
+            "markSag": null,
+            "defLaneConvergence": null
+          },
+          "goals": 2.333333,
+          "crosses": 2.866667,
+          "headers": 15.266667,
+          "longBalls": 9.866667,
+          "cutbacks": 2.266667
+        },
+        "CONTROL": {
+          "geneMean": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "geneSd": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "fitnessGeneCorrelation": {
+            "markSag": null,
+            "defLaneConvergence": null
+          },
+          "goals": 2.333333,
+          "crosses": 2.866667,
+          "headers": 15.266667,
+          "longBalls": 9.866667,
+          "cutbacks": 2.266667
+        },
+        "neutralDrift": {
+          "markSag": 0,
+          "defLaneConvergence": 0
+        }
+      },
+      {
+        "gen": 2,
+        "ARMED": {
+          "geneMean": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "geneSd": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "fitnessGeneCorrelation": {
+            "markSag": null,
+            "defLaneConvergence": null
+          },
+          "goals": 1.466667,
+          "crosses": 1.933333,
+          "headers": 17.733333,
+          "longBalls": 11.066667,
+          "cutbacks": 3.8
+        },
+        "CONTROL": {
+          "geneMean": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "geneSd": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "fitnessGeneCorrelation": {
+            "markSag": null,
+            "defLaneConvergence": null
+          },
+          "goals": 1.533333,
+          "crosses": 2.333333,
+          "headers": 18.8,
+          "longBalls": 11,
+          "cutbacks": 3.666667
+        },
+        "neutralDrift": {
+          "markSag": 0,
+          "defLaneConvergence": 0.001316
+        }
+      },
+      {
+        "gen": 3,
+        "ARMED": {
+          "geneMean": {
+            "markSag": 0.013213,
+            "defLaneConvergence": 0
+          },
+          "geneSd": {
+            "markSag": 0.029545,
+            "defLaneConvergence": 0
+          },
+          "fitnessGeneCorrelation": {
+            "markSag": 0.3883,
+            "defLaneConvergence": null
+          },
+          "goals": 2.266667,
+          "crosses": 2.6,
+          "headers": 16.533333,
+          "longBalls": 10.733333,
+          "cutbacks": 4.133333
+        },
+        "CONTROL": {
+          "geneMean": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "geneSd": {
+            "markSag": 0,
+            "defLaneConvergence": 0
+          },
+          "fitnessGeneCorrelation": {
+            "markSag": null,
+            "defLaneConvergence": null
+          },
+          "goals": 1.4,
+          "crosses": 2.333333,
+          "headers": 12.133333,
+          "longBalls": 9.066667,
+          "cutbacks": 2.066667
+        },
+        "neutralDrift": {
+          "markSag": 0,
+          "defLaneConvergence": 0.001316
+        }
+      }
+    ],
+    "perSeed": [
+      {
+        "leagueSeed": 12320000,
+        "arms": {
+          "ARMED": {
+            "gen0BornAbsent": true,
+            "matchesPlayed": 45,
+            "gens": [
+              {
+                "gen": 1,
+                "geneMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneMax": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "genePresentFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneAboveEpsFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "driftMean": null,
+                "driftSd": null,
+                "attackGeneMean": {
+                  "attackingWidth": 0.564419,
+                  "tempo": 0.481116,
+                  "shootBias": 0.510294,
+                  "riskTolerance": 0.630995,
+                  "supportDistance": 0.553737,
+                  "pressIntensity": 0.444219,
+                  "transitionPress": 0.346325,
+                  "defensiveCompactness": 0.467529
+                },
+                "attackGeneSd": {
+                  "attackingWidth": 0.147513,
+                  "tempo": 0.205694,
+                  "shootBias": 0.219017,
+                  "riskTolerance": 0.130375,
+                  "supportDistance": 0.154119,
+                  "pressIntensity": 0.136409,
+                  "transitionPress": 0.141961,
+                  "defensiveCompactness": 0.191787
+                },
+                "rates": {
+                  "goals": 2.333333,
+                  "crosses": 2.866667,
+                  "headers": 15.266667,
+                  "longBalls": 9.866667,
+                  "cutbacks": 2.266667,
+                  "offsides": 1.066667,
+                  "fouls": 3.333333,
+                  "penalties": 0,
+                  "thirdMan": 5.733333,
+                  "overlaps": 0.2
+                },
+                "fitnessGeneCorrelation": {
+                  "markSag": null,
+                  "defLaneConvergence": null
+                }
+              },
+              {
+                "gen": 2,
+                "geneMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneMax": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "genePresentFraction": {
+                  "markSag": 0.3333,
+                  "defLaneConvergence": 0.5
+                },
+                "geneAboveEpsFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "driftMean": null,
+                "driftSd": null,
+                "attackGeneMean": {
+                  "attackingWidth": 0.600284,
+                  "tempo": 0.610882,
+                  "shootBias": 0.506471,
+                  "riskTolerance": 0.655982,
+                  "supportDistance": 0.604572,
+                  "pressIntensity": 0.331348,
+                  "transitionPress": 0.35263,
+                  "defensiveCompactness": 0.412262
+                },
+                "attackGeneSd": {
+                  "attackingWidth": 0.116286,
+                  "tempo": 0.199995,
+                  "shootBias": 0.230475,
+                  "riskTolerance": 0.074448,
+                  "supportDistance": 0.126994,
+                  "pressIntensity": 0.05908,
+                  "transitionPress": 0.166638,
+                  "defensiveCompactness": 0.226675
+                },
+                "rates": {
+                  "goals": 1.466667,
+                  "crosses": 1.933333,
+                  "headers": 17.733333,
+                  "longBalls": 11.066667,
+                  "cutbacks": 3.8,
+                  "offsides": 0.866667,
+                  "fouls": 3.666667,
+                  "penalties": 0,
+                  "thirdMan": 5.666667,
+                  "overlaps": 0.133333
+                },
+                "fitnessGeneCorrelation": {
+                  "markSag": null,
+                  "defLaneConvergence": null
+                }
+              },
+              {
+                "gen": 3,
+                "geneMean": {
+                  "markSag": 0.013213,
+                  "defLaneConvergence": 0
+                },
+                "geneSd": {
+                  "markSag": 0.029545,
+                  "defLaneConvergence": 0
+                },
+                "geneMax": {
+                  "markSag": 0.079278,
+                  "defLaneConvergence": 0
+                },
+                "genePresentFraction": {
+                  "markSag": 0.5,
+                  "defLaneConvergence": 0.6667
+                },
+                "geneAboveEpsFraction": {
+                  "markSag": 0.1667,
+                  "defLaneConvergence": 0
+                },
+                "driftMean": null,
+                "driftSd": null,
+                "attackGeneMean": {
+                  "attackingWidth": 0.545943,
+                  "tempo": 0.616068,
+                  "shootBias": 0.552436,
+                  "riskTolerance": 0.621489,
+                  "supportDistance": 0.605426,
+                  "pressIntensity": 0.357898,
+                  "transitionPress": 0.338558,
+                  "defensiveCompactness": 0.513449
+                },
+                "attackGeneSd": {
+                  "attackingWidth": 0.090573,
+                  "tempo": 0.205942,
+                  "shootBias": 0.2556,
+                  "riskTolerance": 0.1225,
+                  "supportDistance": 0.130343,
+                  "pressIntensity": 0.063404,
+                  "transitionPress": 0.199723,
+                  "defensiveCompactness": 0.217184
+                },
+                "rates": {
+                  "goals": 2.266667,
+                  "crosses": 2.6,
+                  "headers": 16.533333,
+                  "longBalls": 10.733333,
+                  "cutbacks": 4.133333,
+                  "offsides": 1.2,
+                  "fouls": 3.066667,
+                  "penalties": 0,
+                  "thirdMan": 7.133333,
+                  "overlaps": 0.066667
+                },
+                "fitnessGeneCorrelation": {
+                  "markSag": 0.3883,
+                  "defLaneConvergence": null
+                }
+              }
+            ],
+            "finalGeneMean": {
+              "markSag": 0.013213,
+              "defLaneConvergence": 0
+            }
+          },
+          "CONTROL": {
+            "gen0BornAbsent": true,
+            "matchesPlayed": 45,
+            "gens": [
+              {
+                "gen": 1,
+                "geneMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneMax": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "genePresentFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneAboveEpsFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "driftMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "driftSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "attackGeneMean": {
+                  "attackingWidth": 0.564419,
+                  "tempo": 0.481116,
+                  "shootBias": 0.510294,
+                  "riskTolerance": 0.630995,
+                  "supportDistance": 0.553737,
+                  "pressIntensity": 0.444219,
+                  "transitionPress": 0.346325,
+                  "defensiveCompactness": 0.467529
+                },
+                "attackGeneSd": {
+                  "attackingWidth": 0.147513,
+                  "tempo": 0.205694,
+                  "shootBias": 0.219017,
+                  "riskTolerance": 0.130375,
+                  "supportDistance": 0.154119,
+                  "pressIntensity": 0.136409,
+                  "transitionPress": 0.141961,
+                  "defensiveCompactness": 0.191787
+                },
+                "rates": {
+                  "goals": 2.333333,
+                  "crosses": 2.866667,
+                  "headers": 15.266667,
+                  "longBalls": 9.866667,
+                  "cutbacks": 2.266667,
+                  "offsides": 1.066667,
+                  "fouls": 3.333333,
+                  "penalties": 0,
+                  "thirdMan": 5.733333,
+                  "overlaps": 0.2
+                },
+                "fitnessGeneCorrelation": {
+                  "markSag": null,
+                  "defLaneConvergence": null
+                }
+              },
+              {
+                "gen": 2,
+                "geneMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneMax": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "genePresentFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneAboveEpsFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "driftMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0.001316
+                },
+                "driftSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0.002944
+                },
+                "attackGeneMean": {
+                  "attackingWidth": 0.547206,
+                  "tempo": 0.570879,
+                  "shootBias": 0.580188,
+                  "riskTolerance": 0.628922,
+                  "supportDistance": 0.547411,
+                  "pressIntensity": 0.292139,
+                  "transitionPress": 0.326179,
+                  "defensiveCompactness": 0.461794
+                },
+                "attackGeneSd": {
+                  "attackingWidth": 0.124507,
+                  "tempo": 0.180611,
+                  "shootBias": 0.226611,
+                  "riskTolerance": 0.105684,
+                  "supportDistance": 0.11019,
+                  "pressIntensity": 0.102383,
+                  "transitionPress": 0.166349,
+                  "defensiveCompactness": 0.257939
+                },
+                "rates": {
+                  "goals": 1.533333,
+                  "crosses": 2.333333,
+                  "headers": 18.8,
+                  "longBalls": 11,
+                  "cutbacks": 3.666667,
+                  "offsides": 1.266667,
+                  "fouls": 3.933333,
+                  "penalties": 0,
+                  "thirdMan": 4.933333,
+                  "overlaps": 0.266667
+                },
+                "fitnessGeneCorrelation": {
+                  "markSag": null,
+                  "defLaneConvergence": null
+                }
+              },
+              {
+                "gen": 3,
+                "geneMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneMax": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "genePresentFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "geneAboveEpsFraction": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0
+                },
+                "driftMean": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0.001316
+                },
+                "driftSd": {
+                  "markSag": 0,
+                  "defLaneConvergence": 0.002944
+                },
+                "attackGeneMean": {
+                  "attackingWidth": 0.484585,
+                  "tempo": 0.553036,
+                  "shootBias": 0.638029,
+                  "riskTolerance": 0.696723,
+                  "supportDistance": 0.539342,
+                  "pressIntensity": 0.252107,
+                  "transitionPress": 0.279901,
+                  "defensiveCompactness": 0.454018
+                },
+                "attackGeneSd": {
+                  "attackingWidth": 0.13672,
+                  "tempo": 0.14474,
+                  "shootBias": 0.202567,
+                  "riskTolerance": 0.080555,
+                  "supportDistance": 0.114302,
+                  "pressIntensity": 0.139848,
+                  "transitionPress": 0.147674,
+                  "defensiveCompactness": 0.215377
+                },
+                "rates": {
+                  "goals": 1.4,
+                  "crosses": 2.333333,
+                  "headers": 12.133333,
+                  "longBalls": 9.066667,
+                  "cutbacks": 2.066667,
+                  "offsides": 0.666667,
+                  "fouls": 4.533333,
+                  "penalties": 0,
+                  "thirdMan": 5.066667,
+                  "overlaps": 0
+                },
+                "fitnessGeneCorrelation": {
+                  "markSag": null,
+                  "defLaneConvergence": null
+                }
+              }
+            ],
+            "finalGeneMean": {
+              "markSag": 0,
+              "defLaneConvergence": 0
+            }
+          }
+        },
+        "body": {
+          "evolvedMeanBodyLatGap": 11.907682,
+          "zeroedMeanBodyLatGap": 18.219555,
+          "evolvedEpisodes": 4,
+          "zeroedEpisodes": 4
+        }
+      }
+    ]
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "1060c97b131b3ce68c43a0522e9b84bf0e7684c84bdd89524b07a3f27e54db16",
+      "digestB": "1060c97b131b3ce68c43a0522e9b84bf0e7684c84bdd89524b07a3f27e54db16",
+      "note": "the whole core computed TWICE, canonical-JSON digests"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2
+    },
+    "xSrcZero": {
+      "pass": true,
+      "srcDiff": "",
+      "note": "instrument-only: zero src/** changes"
+    },
+    "gArm": {
+      "pass": true,
+      "controlNeverCarries": true,
+      "armedCanCarry": true,
+      "separateOptIns": true,
+      "flagsOn": true,
+      "bornZeroWeights": true,
+      "onAllViews": true,
+      "weightsExpressed": true,
+      "semantics": "THE ARMS DIFFER IN EXACTLY TWO BOOLEANS — `evolveMarkSag` and `evolveDefLaneConvergence` on MutateOptions. Both arms carry the two CONSUMPTION flags (pmLaneConvergence, mtMarkSag) ON, so both seam branches are ENTERED in both worlds; in CONTROL the mutation law never writes either key, so both weights are 0 on every tick (MT-T1's ARMEDZERO arm, proven byte-identical to the flags-off world there). This gate proves the opt-ins GENUINELY GATE THE DRAWS: without them a mutated genome never carries the keys; with them it does; and each opt-in moves only its OWN key."
+    },
+    "gFitnessBlind": {
+      "pass": true,
+      "rows": [
+        {
+          "file": "src/evolution/fitness.ts",
+          "markSag": 0,
+          "defLaneConvergence": 0
+        },
+        {
+          "file": "src/sim/League.ts",
+          "markSag": 0,
+          "defLaneConvergence": 0
+        },
+        {
+          "file": "src/evolution/evolve.ts",
+          "markSag": 0,
+          "defLaneConvergence": 0
+        }
+      ],
+      "pureTable": true,
+      "fitnessLine": "points.map((p, i) => p + gd[i] * 1e-3)  — points 3/1/0, goal difference as a 1e-3 tiebreak (A4-S2P3 §5.2, verbatim). NO genome is an input.",
+      "semantics": "WIN-ONLY, ASSERTED TWO WAYS: (a) the probe's fitness takes only the season table — no genome is in scope; (b) the shipped fitness path (fitness.ts, League.ts, evolve.ts) contains ZERO occurrences of either gene name, so nothing anywhere shapes fitness toward the sag."
+    },
+    "gGen0": {
+      "pass": true,
+      "bornAbsent": true,
+      "gen1Identical": [
+        true
+      ],
+      "controlStructuralZero": true,
+      "semantics": "BIRTH NEUTRALITY INSIDE EVOLUTION: every founder genome comes from randomGenome, which carries neither key ⇒ generation 1 is the SAME WORLD in both arms (asserted by canonical equality of the whole gen-1 stat row, drift shadow excluded because it exists only on the control side). CONTROL's genes stay STRUCTURALLY ABSENT (mean 0, presence 0) for every generation — that is the structural zero the selection statistic is paired against."
+    },
+    "gRuler": {
+      "pass": true,
+      "available": true,
+      "path": "docs/world-model/data/mt-t1-ruler-rerun.json",
+      "artifactSha256": "9d4d1fc8524c253e9d9e43856e23bf3c0d3338bf3d1ab0e599fd779f65d6bd71",
+      "declaredResultSha256": "fcbf714816b3517f5f0685392e30b7f3ac365409630b3c0d41c12ae2c2ef8ef2",
+      "MTTOP": {
+        "goals": 1.61375,
+        "crosses": 1.67875,
+        "headers": 4.4625,
+        "longBalls": 3.3325,
+        "cutbacks": 2.98625
+      },
+      "BOTHTOP": {
+        "goals": 1.66625,
+        "crosses": 1.76,
+        "headers": 4.51375,
+        "longBalls": 3.16375,
+        "cutbacks": 2.95
+      },
+      "ABSENT": {
+        "goals": 2.195,
+        "crosses": 2.28375,
+        "headers": 8.21625,
+        "longBalls": 5.68375,
+        "cutbacks": 3.4275
+      },
+      "mttopGoals": 1.61375,
+      "semantics": "THE DEFLATED REFERENCE IS NOT TYPED: MT-T1's committed artifact is read and hashed HERE (#181.2), and the MTTOP band levels are taken from it. `declaredResultSha256` is the hash MT-T1 itself published over its measured body; `artifactSha256` is this run's hash of the whole file as committed."
+    },
+    "gInherit": {
+      "pass": true,
+      "rows": [
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const OWN_THIRD_LOCAL_X = -HALF_L / 3;",
+          "what": "the #188 trigger own-third cut",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const FLANK_ABS_Y = BOX_WIDTH / 2;",
+          "what": "the #188 trigger flank cut",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const MIN_EPISODE_TICKS = 30;",
+          "what": "the episode floor",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "const SPREAD_R = 9;",
+          "what": "the compression yardstick",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "  goals: 2.3944, crosses: 2.4894, headers: 9.1039, longBalls: 6.2042, cutbacks: 3.8151,",
+          "what": "the equilibrium band baselines (incl. goals)",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/pm-t1-compression-exam.ts",
+          "line": "  goals: 0.15, crosses: 0.25, headers: 0.25, longBalls: 0.25, cutbacks: 0.25,",
+          "what": "the equilibrium band tolerances",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "          const bodyGap = Math.abs(p.pos.y - m.ball.pos.y);",
+          "what": "THE BODY QUANTITY this stage re-reads at the evolved dose",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/mt-t1-ruler-rerun.ts",
+          "line": "          acc.shortfall.push(Math.max(0, bodyGap - SPREAD_R));",
+          "what": "the shortfall quantity",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/a4-s2p3-gene-battery.ts",
+          "line": "const LEGS_SIGN_EPS = 0.02;",
+          "what": "⭐ THE GENE_ZERO_EPS ANCHOR: the Leg-S frozen zero dead-zone",
+          "found": true
+        },
+        {
+          "file": "scripts/probes/a4-s2p3-gene-battery.ts",
+          "line": "const LEGS_MUT_RATE = 0.4; const LEGS_MUT_SCALE = 0.08;      // evolveGroup 'mutated'",
+          "what": "the Leg-S mirror of evolveGroup's mutated law",
+          "found": true
+        },
+        {
+          "file": "src/evolution/evolve.ts",
+          "line": "      coach.genome = mutateGenome(coach.genome, rng, { rate: 0.4, scale: 0.08 });",
+          "what": "evolveGroup's OWN mutated law — the band law this loop mirrors",
+          "found": true
+        },
+        {
+          "file": "src/evolution/evolve.ts",
+          "line": "        crossoverGenomes(pa.coach.genome, pb.coach.genome, rng), rng, { rate: 0.5, scale: 0.15 },",
+          "what": "evolveGroup's OWN reborn law",
+          "found": true
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": "  for (const k of GENE_KEYS) g[k] = rng.range(0.15, 0.85);",
+          "what": "⭐ THE GENE_HIGH ANCHOR: randomGenome's birth range, top = 0.85",
+          "found": true
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": "  if (opts.evolveMarkSag === true && rng.chance(rate)) {",
+          "what": "the markSag opt-in gate itself",
+          "found": true
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": "  if (opts.evolveDefLaneConvergence === true && rng.chance(rate)) {",
+          "what": "the defLaneConvergence opt-in gate itself",
+          "found": true
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": "          if (w > 0) markDist += w * markSagMetres(ball.pos, mark.pos, p.pos, p.topSpeed);",
+          "what": "the MT-T0 seam line the evolved dose flows through",
+          "found": true
+        }
+      ],
+      "semantics": "Every inherited definition is pinned in its ORIGINAL file, the MT-T0/MT-T1 G-CONST idiom: probe scripts execute on import, so the code is carried here and the source lines are pinned instead. If a source moves, this gate goes RED rather than the two instruments drifting apart silently.",
+      "disclosedDifferences": [
+        "⭐ THE SUBSTRATE IS THE LEG-S PROBE-SIDE LOOP, NOT THE SHIPPED LEAGUE. MutateOptions is still NOT plumbed through src/sim/League.ts or src/evolution/evolve.ts (evolveGroup calls mutateGenome/crossoverGenomes with hard-coded options), so arming an opt-in inside the shipped league would need a src change — forbidden (xSrcZero). This stage therefore reuses A4-S2P3 §5.2's named deviation VERBATIM: a probe-side selection loop mirroring evolveGroup's band law. NO careers, transfers, coaches, morale, promotion/ relegation, fire-sale, two-division pyramid, or the four-component computeFitness.",
+        "HORIZON: 25 generations with read points at generation 8 and 25 — traced from the vision/positioning CO-EVOLUTION arc's own @8 / @25-season reads (docs/ROADMAP.md, 2026-07-20). Leg S ran 20 generations; 25 CONTAINS that horizon and reaches the second read point. League shape (10 teams, 45-match single round robin, elite 2 / reborn 2) is Leg S's, unchanged.",
+        "A GENERATION HERE IS A SINGLE ROUND ROBIN (45 matches), whereas the @8/@25 co-evolution reads were SHIPPED-LEAGUE seasons. The read POINTS are inherited; the season CONTENT is the Leg-S instrument's. Stated, not implied.",
+        "THE ARMS DIFFER IN THE EVOLUTION OPT-INS ONLY (both consumption flags on in BOTH arms) — MT-T1's control was flags-OFF. gGen0 proves the two worlds are identical at generation 1.",
+        "THE BODY READ IS AT THE EVOLVED DOSE, on EVOLVED genomes: MT-T1 read it at gene = 1 on randomGenome teams. Same quantities, different population — that is the question.",
+        "⚠ THE RNG-STREAM DISPLACEMENT, DECLARED EX ANTE (the #148.5 trap in its EVOLUTION form). Under the opt-ins `mutateGenome`/`crossoverGenomes` draw EXTRA numbers for the two new keys, so from generation 2 onward the ARMED arm's evolution RNG stream is displaced relative to CONTROL's and the two populations diverge in EVERY gene, not only in the two under test. This is inherent to exercising the REAL gene channel (the alternative — re-implementing the opt-in draw law probe-side on a private stream — would no longer be the shipped channel, and #196.3-D6 forbids inventing a parallel dose surface). CONSEQUENCE, stated: the displacement is EXCHANGEABLE noise — it is uncorrelated with anything about the arm except the presence of the genes — so it inflates VARIANCE on every armed − control contrast rather than biasing it, and the paired league-seed design + the fixed founders (identical at generation 1, proven by gGen0) are what keep it honest. It also means an unresolved band contrast at this seed count is an honest INCONCLUSIVE, never a false pass.",
+        "⚠ NEUTRAL DRIFT IS NOT SELECTION (the Leg-S reading note, in its markSag form): the mutation law writes clamp01(0 + gaussian) onto every mutated/reborn genome, and a random walk CLAMPED AT ZERO drifts UPWARD mechanically. A non-zero final gene mean is therefore NOT by itself evidence of selection. The frozen primary statistic is the one the dispatch named (armed vs control's structural zero); the NEUTRAL-DRIFT SHADOW (inert passengers carried through the control arm's own elite/mutate/reborn assignments, in their own RNG namespace, touching no match) is published alongside it as the honest reference, together with the fitness-gene correlation and the style spread. Declared HERE, ex ante, not after sight."
+      ]
+    },
+    "gSeed": {
+      "pass": true,
+      "evolutionBlock": "12320000..12320244",
+      "bodyBlock": "12325000..12325003",
+      "band": [
+        12320000,
+        12419999
+      ],
+      "inBand": true,
+      "ownDisjoint": true,
+      "smokeBlocksBelowFull": true,
+      "seedFamily": "12320000 + leagueIdx×3000 + gen×100 + matchIndex  ·  body: 12325000 + leagueIdx×100 + pairIndex",
+      "consumedBlocks": [
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        }
+      ],
+      "collisions": [],
+      "freshLeagueSeedsNote": "the identity seeds 1337 / 20260728 / 424242 are CONSUMED baselines and are not used anywhere in this stage (1337 appears only as the production-fingerprint seed, which is a gate, not an experimental league)."
+    },
+    "gStats": {
+      "pass": true,
+      "base": 103800,
+      "reserved": 104000,
+      "published": [
+        101403,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200,
+        103400,
+        103600
+      ],
+      "minGap": 200,
+      "floorOk": true,
+      "note": "the #163 rule: a FRESH bootstrap base ≥ 103,800 with pairwise gaps ≥ 200 from every published base (MT-T1's was 103,600)."
+    },
+    "gNDerived": {
+      "pass": true,
+      "ranSeeds": 1,
+      "derivedSeedsStar": 24,
+      "envOverride": null,
+      "note": "in FULL mode the seed count MUST come from the frozen §5 rule; an MTT2_SEEDS override turns this gate RED and the run exits 1."
+    },
+    "gYield": {
+      "pass": true,
+      "bodyEpisodes": {
+        "evolved": 4,
+        "zeroed": 4
+      },
+      "gensPerRun": 3,
+      "note": "a measurement with zero body episodes or a truncated horizon is INVALID, not a finding."
+    },
+    "xFamilyPass": true
+  },
+  "honesty": [
+    "FROZEN BEFORE SIGHT: arms, horizon, read points, seed rule, thresholds, predicates and the three outcome forms were written in the stage doc before any full-run number existed, and are not re-cut afterwards.",
+    "THE SMOKE ADJUDICATES NOTHING and may not tune any threshold: it proves plumbing and publishes exactly one sizing number (ms/match) which feeds ONLY the seed count.",
+    "THE THREE PRE-NAMED FORMS ARE NOT EXHAUSTIVE. A mixture is reported AS-IS; nothing is re-cut to land on one of them, and a fired (ii)/(iii) is a RESULT that returns a fork to the user.",
+    "POWER, STATED HONESTLY: the selection statistic clusters on the LEAGUE SEED, so n = the seed count (single digits to low tens), not the number of teams or matches. This design can see a LARGE consistent effect (a gene mass far from the drift reference in most leagues, a band that plainly restores or plainly does not); it CANNOT resolve a small one, and it will not be read as though it could.",
+    "THE INSTRUMENT IS NOT THE SHIPPED ECOLOGY (the Leg-S limit, inherited): no careers, transfers, coaches, morale, promotion/relegation, fire-sale, two divisions, or the four-component computeFitness. A result here is evidence about SELECTION ON WINNING in a round robin.",
+    "MT-T2 SHIPS NOTHING (Road B): both seams stay dormant, both genes stay born-absent in every shipped path, and the production fingerprint is re-derived unchanged.",
+    "NOTHING HERE IS A WATCHABILITY VERDICT — that is the user's play-test, per contract §3."
+  ],
+  "resultSha256": "c43cc0044bfcb88fae81a9b16ddab21914b0655e881c232384a58e405b95d0ed",
+  "sizing": {
+    "msPerMatch": 92.286,
+    "matchesPerPass": 98,
+    "derivation": {
+      "msPerMatchPrior": 102.21,
+      "matchesPerSeed": 2330,
+      "perSeedSeconds": 476.3,
+      "affordable": 30,
+      "seedsStar": 24,
+      "capBinds": "SEEDS_MAX",
+      "arithmetic": "SEEDS* = clamp( floor( 4.0 h / (ms_per_match × matchesPerSeed × 2 X-DET) ), 6, 24 ) · matchesPerSeed = 25 gens × 45 matches × 2 arms + 40 body matches × 2 doses = 2,330 — frozen in stage doc §5. ms_per_match comes from the COMMITTED smoke artifact; with no smoke on disk the #188 published prior 102.21 ms is used and that is disclosed here.",
+      "source": "#188 published prior (no committed smoke artifact found)",
+      "smokeArtifactSha256": null
+    }
+  },
+  "headContextOnly": "5af833e",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1): the git short-hash of the tree this run was launched from. Recorded for provenance and hashed NOWHERE, so the receipt re-derives at any later commit.",
+  "wallContextOnly": {
+    "corePassMs": 9044,
+    "totalMs": 28144,
+    "note": "CONTEXT ONLY, and OUTSIDE resultSha256 — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the frozen seed rule reads it."
+  }
+}
