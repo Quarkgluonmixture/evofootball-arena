@@ -9081,3 +9081,59 @@
 >    进球变少的世界,好看还是难看? Keep/change/revert per
 >    lever; Road B holds until the verdict (defaults byte-
 >    identical; nothing evolves either gene in the live game).
+
+> **COMMANDER RULING #213 (2026-08-09 — the user's MT play-test
+> feedback lands: 后场倒脚太多 · 后场失误太多 · 进球多由失误/
+> 抢断发起 · "build up 长出来了吗?" · the #211 "mutual
+> exclusivity" framing CHALLENGED — adjudicated CORRECT; the
+> BUILD-UP question answered from existing instruments; the
+> fork presented):**
+>
+> 1. **USER INTUITION SCORED: HIT (again).** #211.2 stated the
+>    band and a working weak-side defence are "mutually
+>    exclusive" — that is a statement about the CURRENT
+>    SUBSTRATE'S STATE, not a law, and the commander's wording
+>    over-claimed. The user's causal story: the current
+>    world's goals are substantially TURNOVER-FED; improve the
+>    defence and the turnover supply drops, so goals collapse
+>    — the disease is an attack that cannot CONSTRUCT, not a
+>    defence that works. Verbatim anchored in VISION (the
+>    build-up block). The story is instrumentable and gets its
+>    probe (有故事就要有探针): no goal-genealogy instrument
+>    exists yet — the turnover-fed share is a HYPOTHESIS until
+>    then, marked as such.
+> 2. **"BUILD UP 长出来了吗" — NO, and structurally so** (from
+>    banked instruments, no new run): 80.8 % of open-play
+>    first receptions are PRESSED and spells run 4.39 s vs
+>    9.6–10.4 s real (#170–#173); "waiting" is not a valued
+>    action (the VISION time-dimension block); the E4 lesson
+>    is the user's 倒脚 observation instrument-confirmed
+>    (a chooser pricing only P(clean reception) recycles:
+>    forward share −5.1 pp, chains +12.7 %); H-169a: pressure
+>    destroys retention (pressed-loss ratio 1.79–1.97). The
+>    build-up arsenal is the ALREADY-NAMED thread: 座2 the
+>    LOOK (O2 — T0 BANKED, T1 queued), 座3 hold-draw-release,
+>    C6 shield, check-to-ball/回撤接应 (named missing), and
+>    progression VALUE (the E4 missing half). The MT/PM
+>    defensive seams are this disease's DEVELOPER, not its
+>    cause.
+> 3. **THE FORK (人话先行, dual-checked #201.1c)**: (甲,
+>    recommended) BUILD-UP ARC phase-0 = the GOAL-GENEALOGY
+>    census — instrument the user's three observations
+>    (back-third pass-share/倒脚 loops · back-third error
+>    rate · goal origins: constructed ≥N-pass open play vs
+>    turnover-in-final-third vs set piece) on prod + the MT
+>    worlds; gives the arc its gap table the way #170–#173 did
+>    for tempo; THEN the arc's slices ride the O-arc spine
+>    (O2-T1 next). (乙) straight to O2-T1 (the look = the
+>    single most-blocking build-up primitive; census later).
+>    (丙) the MT worlds' keep/hold verdict first (the user's
+>    feedback was all attack-side — the defensive complaints
+>    of #157/#186.2 are ABSENT, which reads as the tuck-in
+>    doing its job; an explicit keep/hold word is still the
+>    user's). VISION check: the census is the user's story
+>    getting its probe; the arsenal is capability-not-mandate.
+>    REALITY check: build-up vs transition goals is a standard
+>    real-football analytics axis; a defence that works forces
+>    the attack to learn construction — that is real football's
+>    own history.

@@ -337,13 +337,22 @@ whole verdict. **THE ENTRY IS LIVE (#212,
 松盯内收 对比" (world 5) · phone `?a4world=4|5` · badge names
 the world · fidelity triple-anchored to the #211 artifact ·
 byte-identical off · watched-matches-only · NO evolution
-opt-in armed. **THE QUEUE SITS AT THE USER'S PLAY-TEST**:
-弱侧后卫还乱转吗 · 防守知道往哪走了吗 · 看得出松盯内收吗 ·
-进球变少的世界好看还是难看? (0.2 = 微妙/世界几乎正常;
-0.8 = 机制清晰/进球 −21%). Corrections of record in #212.2
+opt-in armed. Corrections of record in #212.2
 (the banked T0 probes' a4World-hygiene limb + the ladder
-artifact's honesty text are superseded by construction).**
-O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+artifact's honesty text are superseded by construction).
+**PLAY-TEST FEEDBACK LANDED (#213, 2026-08-09)**: 后场倒脚
+太多 · 后场失误太多 · 进球多由失误/抢断发起 · build-up 没
+长出来 — and the user's challenge to #211's "mutual
+exclusivity" framing scored a HIT (substrate-state, not a
+law; the turnover-fed-goals story = a hypothesis awaiting its
+probe). Defensive complaints ABSENT from the feedback (the
+tuck-in reads as working; explicit keep/hold word still the
+user's). **THE FORK SITS AT THE USER (#213.3): 甲 BUILD-UP
+ARC phase-0 = the goal-genealogy census (倒脚率 · 后场失误率 ·
+进球家谱: 组织 vs 转换 vs 定位球; prod + MT worlds;
+recommended) / 乙 straight to O2-T1 (the look = the most
+blocking build-up primitive) / 丙 rule the MT worlds' keep/
+hold first.** O2-T1 stays queued (#199.5). Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
