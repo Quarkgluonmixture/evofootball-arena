@@ -433,12 +433,36 @@ co-evolution with ⭐ the user's hypothesis PRE-REGISTERED
 goals — the Phase 30.5 starvation receipt; pre-named contrast
 with MT-T2's defensive indifference] → play-test exit; §6
 six clauses PASS · §7 PASS with three named gaps).
-**QUEUED NEXT STEP (on "go"): dispatch CTB-T0 — the dormant
-2D support-plane seam** (flag `ctbSupportPlane` hard-false +
-`evolveCtbSupportPlane` opt-in + genes born absent outside
-GENE_KEYS; byte-identity/fingerprint/RNG receipts, the
-#181.2 stack; pin inventory a named deliverable). Then:
-CTB-T1 → CTB-T2 → entry; 丙 progression value behind the
+**CTB-T0 IS BANKED (#224, `1dc4aa9` + `d0814d7`)**: genes
+`ctbSupportDepth` (span traced = the plane's own 0.9 cap
+fraction ⇒ behind-ball expressible in both modes) +
+`ctbSupportWidth` (one coherent widthScale ∈ [0,2]); zero-point
+ARITHMETIC-EXACT; single read fork `formations.ts:661`; ⚠
+ARMING = `ctbSupportPlane` flag + `evolveCtbSupportPlane`
+opt-in + non-absent genes, ALL; X-FP-PROD unchanged; verify's
+2 evidence-layer findings fixed with the G-DET digest
+UNCHANGED across the fix; the falsified "never behind the
+ball" pre-registration WITHDRAWN honestly (132/10,968
+incumbent ticks, all pitch-clamp-bound, none
+genome-expressible — contract §0.3 survives verbatim);
+REPORTED corner smoke: 回撤 corner moves mean support from
+5.71 m ahead to 3.14 m BEHIND the ball (86.1 % behind-ball
+ticks). ⚠ T1 inheritances (#224.4): Phase 30.5 elasticity is
+CI-unprotected ⇒ T1 instruments short-option supply DIRECTLY;
+pitch-clamp saturation is part of the dose–response; the
+width axis stays one coherent scale unless a contract
+amendment says otherwise; no span re-cuts.
+**QUEUED NEXT STEP (on "go"): dispatch CTB-T1 — the
+SUPPORT-SUPPLY EXAM** (contract §3, the PM-T1 hand-dose form:
+plane arms deeper/shallower/narrower/wider + corners vs
+armed-zero + absent; ruler INHERITED — trueCellOf holdable
+supply [O2-T1] + pressed-first-reception [#173] +
+short-option supply [the Phase 30.5 quantity, instrumented
+directly] + #218 shares where the frame carries them; guards:
+interception ceiling [33/match history], offside flag, clump,
+band, X-family; F-CTB-a/b/c pre-named STOPs; seeds
+12,423,025+ free, stats ≥ 104,800). Then CTB-T2 co-evolution
+(the user's hypothesis pre-registered) → entry; 丙 behind the
 arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900

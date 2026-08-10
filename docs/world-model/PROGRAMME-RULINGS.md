@@ -9653,3 +9653,77 @@
 > 5. **QUEUED**: CTB-T0 dispatches on the next "go" (the O2 arc is
 >    closed at #222's STOP; one writer). 丙 stays behind this arc
 >    per #219.
+
+> **COMMANDER RULING #224 (2026-08-10 — CTB-T0 BANKED: the dormant
+> 2D support-plane seam is built, certified and byte-dormant; the
+> verify's two evidence-layer findings corrected with the measured
+> core PROVEN untouched; T1 inheritances named):**
+>
+> 1. **BANKED (`1dc4aa9` + micro-fix `d0814d7`)**: stage doc
+>    [`CTB-T0-DORMANT-SEAM.md`](CTB-T0-DORMANT-SEAM.md), probe +
+>    committed artifact (final resultSha256 `1bdf995d…797b`;
+>    prior `39797917…0793` superseded of record). Machine-verify
+>    = FAIL by rubric (1 MEDIUM + 1 LOW, BOTH evidence-layer) with
+>    the mechanism independently reproduced in full: the verifier
+>    re-derived resultSha256 at a DIFFERENT commit (#197-M1
+>    demonstrated), recomputed all three league hashes + the
+>    production fingerprint, read the seam path for smuggled
+>    predicates (none), and confirmed the pin inventory complete.
+>    The MEDIUM (the artifact's own hashed narration still carried
+>    a claim the round itself had falsified) and the LOW (the
+>    test-file seeds 12,423,900–901 ledger-listed but not
+>    machine-checked) were corrected in the micro-fix; ⭐ the
+>    G-DET digest is UNCHANGED across the fix (`5efe6a9b…17e4`) —
+>    the measured core is byte-identical, only narration and the
+>    extended seed check moved.
+> 2. **THE GENE LAW, banked**: `ctbSupportDepth` (前后 — signed
+>    shift of the ahead-bias; span TRACED code-derived =
+>    `SUPPORT_LAT_CAP_FRAC` 0.9, the same plane's own lateral cap
+>    fraction ⇒ 0.75−0.9 = −0.15 / 0.35−0.9 = −0.55: LEVEL-WITH
+>    and BEHIND the ball expressible in both modes) +
+>    `ctbSupportWidth` (左右 — one coherent widthScale = 1+gene ∈
+>    [0,2] on BOTH incumbent fan constants; at −1 the fan
+>    collapses onto the ball's lane; the span IS each incumbent
+>    constant itself). Zero-point ARITHMETIC-EXACT (+0 / ×1, IEEE
+>    identities, operation order preserved, pinned `.toBe()`).
+>    One opt-in `evolveCtbSupportPlane` (draws strictly after the
+>    markSag block); flag `ctbSupportPlane` hard-false, absent
+>    from `a4World.ts` entirely; EXACTLY ONE read fork
+>    (`formations.ts:661`), flag passed as a parameter so ~15
+>    probe call sites keep the incumbent 3-arg shape. All hard
+>    gates PASS (incl. the promoted G-FORK/G-TRACE/G-PINS);
+>    G-IDENT/G-FP: `57b0bdab…c673` unchanged — Road B holds,
+>    nothing ships. Suite 1,220/1,222; the two reds are
+>    wall-clock timeouts REPRODUCED ON THE PRE-CHANGE TREE (the
+>    #196 form; `simRunner.test.ts` joins the #196.2 flake family
+>    of record).
+> 3. **WITHDRAWAL OF RECORD (the honest kind)**: the
+>    pre-registered G-BITE claim "the incumbent lands behind the
+>    ball on ZERO ticks" was FALSIFIED by the round's own
+>    receipts and WITHDRAWN, not repaired: the incumbent lands
+>    behind the ball on 132/10,968 sampled ticks — every one
+>    clamp-bound at the pitch edge (`±(HALF_L−2)`), NONE
+>    genome-expressible ⇒ **the contract §0.3 statement survives
+>    exactly as written**; the stronger colloquial reading ("a
+>    supporter is never behind the ball") is false at the edges
+>    and must not be quoted. REPORTED corner smoke (12,423,024,
+>    descriptive): at the 回撤 corner (depth −1, width −1) the
+>    mean support point moves from 5.71 m AHEAD of the ball to
+>    3.14 m BEHIND it, 86.1 % of support ticks behind-ball, mean
+>    shift 11.99 m — the limb exists; whether it helps is T1's
+>    question.
+> 4. **T1 INHERITANCES, NAMED**: (i) ⚠ the Phase 30.5 elasticity
+>    receipt (mirror goals 1.47 → 0.93 when short options die) is
+>    CI-UNPROTECTED — no test guards it; T1 must instrument
+>    short-option supply DIRECTLY; (ii) the incumbent pitch
+>    clamps BIND at the deep/wide dose ends — clamp saturation is
+>    part of the dose–response, not slop; (iii) the width axis is
+>    ONE coherent scale by design — if pull and cap want
+>    independent motion, that is a CONTRACT question, never a
+>    quiet second gene; (iv) no dose span may be re-cut to make
+>    T1 succeed; (v) seeds: CTB-T0 consumed 12,423,000–024 +
+>    test seeds 12,423,900–901 (both machine-checked disjoint);
+>    free for T1: 12,423,025–899 and 12,423,902+; stats base ≥
+>    104,800 (none used at T0).
+> 5. **QUEUED**: CTB-T1 — the SUPPORT-SUPPLY EXAM (the PM-T1
+>    hand-dose form per contract §3) dispatches on the next "go".
