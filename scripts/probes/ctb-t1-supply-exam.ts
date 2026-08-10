@@ -909,8 +909,29 @@ const RATE_KEYS = [
   'interceptionsPerMatch', 'offsidesPerMatch', 'foulsPerMatch', 'goalsPerMatch',
   'spreadYOut', 'spreadYIn', 'spacingMedian', 'spacingUnder4',
   'clampXShare', 'clampYShare', 'behindBallShare', 'meanShiftM',
+  /* ⭐ ruler 5 — the #218 ARC RULER's own named shares, carried into the SAME paired
+   * seed-cluster bootstrap as everything else, so the battery reads them with CIs, paired
+   * deltas and mechanical `resolved` flags instead of bare per-arm counts.
+   * ⚠ THEY STAY REPORTED: no gate reads any of them, the pre-registered §SUCCESS set and the
+   * frozen F-CTB-a/b/c STOP set are UNCHANGED, and `resolved` here is the same mechanical CI
+   * flag it is everywhere else (#203) — never a verdict. Per #218 the arc-grain question is
+   * whether these shares MOVE, and that is the commander's to read. */
+  'constructedGe3Share', 'constructedGe4Share', 'constructedGe5Share',
+  'scrambleShareOfGoals', 'setPieceShareOfGoals',
 ] as const;
 type RateKey = typeof RATE_KEYS[number];
+/** the construction ladder's numerator/denominator on the NON-SET-PIECE pool, summed over rows */
+const ggPool = (rows: readonly PerMatch[], k: number): { num: number; den: number } => {
+  let num = 0; let den = 0;
+  for (const r of rows) {
+    for (const g of r.ggGoals) {
+      if (g.family === 'setPiece') continue;
+      den += 1;
+      if (g.completedPasses >= k) num += 1;
+    }
+  }
+  return { num, den };
+};
 const rateOf = (rows: readonly PerMatch[], key: RateKey): number => {
   const s = (f: (r: PerMatch) => number): number => rows.reduce((a, r) => a + f(r), 0);
   const n = Math.max(1, rows.length);
@@ -937,6 +958,19 @@ const rateOf = (rows: readonly PerMatch[], key: RateKey): number => {
     case 'clampYShare': return s((r) => r.clampYBound) / Math.max(1, s((r) => r.supportTicks));
     case 'behindBallShare': return s((r) => r.supportBehindBall) / Math.max(1, s((r) => r.supportTicks));
     case 'meanShiftM': return s((r) => r.supportShiftSum) / Math.max(1, s((r) => r.supportTicks));
+    /* ruler 5 — RATIO-OF-TOTALS, exactly like every other share above: the numerator and the
+     * denominator are each summed over the resampled seed set, then divided. The construction
+     * ladder is read on the NON-SET-PIECE pool (the census's own primary pool); the scramble
+     * and set-piece shares are read on ALL goals. */
+    case 'constructedGe3Share': return ggPool(rows, 3).num / Math.max(1, ggPool(rows, 3).den);
+    case 'constructedGe4Share': return ggPool(rows, 4).num / Math.max(1, ggPool(rows, 4).den);
+    case 'constructedGe5Share': return ggPool(rows, 5).num / Math.max(1, ggPool(rows, 5).den);
+    case 'scrambleShareOfGoals':
+      return s((r) => r.ggGoals.filter((g) => g.origin === 'scrambleLooseBall').length)
+        / Math.max(1, s((r) => r.ggGoals.length));
+    case 'setPieceShareOfGoals':
+      return s((r) => r.ggGoals.filter((g) => g.family === 'setPiece').length)
+        / Math.max(1, s((r) => r.ggGoals.length));
   }
 };
 const BAND_RATE: Record<BandKey, (r: PerMatch) => number> = {
@@ -1202,6 +1236,11 @@ const bootstrapAll = (byArm: Record<ArmName, PerMatch[]>) => {
     deltaDirection: `ARM − ${CONTROL_ARM}`,
     resolvedNote: '`resolved` is a MECHANICAL CI FLAG (the paired-delta CI excludes zero), '
       + 'NEVER a verdict (#203). F-CTB-a/b/c are the commander\'s.',
+    ruler5KeysNote: '⭐ the five ruler-5 keys (constructedGe3/4/5Share on the NON-SET-PIECE pool, '
+      + 'scrambleShareOfGoals, setPieceShareOfGoals) ride the SAME paired bootstrap as every '
+      + 'other column, so the battery reads the #218 arc ruler with CIs and paired deltas rather '
+      + 'than bare counts. ⚠ THEY REMAIN REPORTED: NO GATE READS THEM, and the pre-registered '
+      + '§SUCCESS condition and the frozen F-CTB-a/b/c STOP set are UNCHANGED by their presence.',
     rates,
   };
 };
@@ -2127,6 +2166,12 @@ for (const a of ARMS) {
     + ` · turnover own/mid/final ${pct(g.turnoverByThirdOriginShares.own)}/`
     + `${pct(g.turnoverByThirdOriginShares.middle)}/${pct(g.turnoverByThirdOriginShares.final)}`);
 }
+o('  (the same five shares, PAIRED and bootstrapped — REPORTED, no gate reads them)');
+rowLine('5a constructed ≥3 passes (non-set-piece pool)', 'constructedGe3Share');
+rowLine('5b constructed ≥4 passes (non-set-piece pool)', 'constructedGe4Share');
+rowLine('5c constructed ≥5 passes (non-set-piece pool)', 'constructedGe5Share');
+rowLine('5d scramble share of goals', 'scrambleShareOfGoals');
+rowLine('5e set-piece share of goals', 'setPieceShareOfGoals');
 o('');
 o('THE CEILINGS (rulers 3b/4b are near-saturated — disclosed, computed from these rows)');
 for (const [k, c] of [['4b support@pressed first rec', saturationCeilings.ruler4bSupportAtPressedFirstRec],

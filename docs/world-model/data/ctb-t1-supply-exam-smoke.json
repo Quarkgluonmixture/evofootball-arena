@@ -2507,6 +2507,7 @@
     "clusters": 12,
     "deltaDirection": "ARM − absent",
     "resolvedNote": "`resolved` is a MECHANICAL CI FLAG (the paired-delta CI excludes zero), NEVER a verdict (#203). F-CTB-a/b/c are the commander's.",
+    "ruler5KeysNote": "⭐ the five ruler-5 keys (constructedGe3/4/5Share on the NON-SET-PIECE pool, scrambleShareOfGoals, setPieceShareOfGoals) ride the SAME paired bootstrap as every other column, so the battery reads the #218 arc ruler with CIs and paired deltas rather than bare counts. ⚠ THEY REMAIN REPORTED: NO GATE READS THEM, and the pre-registered §SUCCESS condition and the frozen F-CTB-a/b/c STOP set are UNCHANGED by their presence.",
     "rates": {
       "trueHoldableShare": {
         "absent": {
@@ -4594,6 +4595,586 @@
             "draws": 2000
           },
           "resolved": true
+        }
+      },
+      "constructedGe3Share": {
+        "absent": {
+          "point": 0.076923,
+          "lower": 0,
+          "upper": 0.222222,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": null,
+          "resolved": false
+        },
+        "armedZero": {
+          "point": 0.076923,
+          "lower": 0,
+          "upper": 0.222222,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthBack": {
+          "point": 0.25,
+          "lower": 0.1,
+          "upper": 0.416667,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.173077,
+            "lower": 0.012605,
+            "upper": 0.366071,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": true
+        },
+        "depthHalf": {
+          "point": 0.190476,
+          "lower": 0,
+          "upper": 0.333333,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.113553,
+            "lower": -0.138158,
+            "upper": 0.32,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthFwd": {
+          "point": 0.25,
+          "lower": 0,
+          "upper": 0.666667,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.173077,
+            "lower": -0.142857,
+            "upper": 0.636364,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "narrow": {
+          "point": 0.272727,
+          "lower": 0,
+          "upper": 0.6,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.195804,
+            "lower": -0.0181,
+            "upper": 0.589744,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "wide": {
+          "point": 0.277778,
+          "lower": 0.090909,
+          "upper": 0.428571,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.200855,
+            "lower": -0.047619,
+            "upper": 0.391304,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "cornerCheck": {
+          "point": 0.066667,
+          "lower": 0,
+          "upper": 0.214286,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": -0.010256,
+            "lower": -0.2,
+            "upper": 0.1875,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        }
+      },
+      "constructedGe4Share": {
+        "absent": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": null,
+          "resolved": false
+        },
+        "armedZero": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthBack": {
+          "point": 0.15,
+          "lower": 0,
+          "upper": 0.315789,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.15,
+            "lower": 0,
+            "upper": 0.315789,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthHalf": {
+          "point": 0.047619,
+          "lower": 0,
+          "upper": 0.142857,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.047619,
+            "lower": 0,
+            "upper": 0.142857,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthFwd": {
+          "point": 0.083333,
+          "lower": 0,
+          "upper": 0.285714,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.083333,
+            "lower": 0,
+            "upper": 0.285714,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "narrow": {
+          "point": 0.090909,
+          "lower": 0,
+          "upper": 0.222222,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.090909,
+            "lower": 0,
+            "upper": 0.222222,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "wide": {
+          "point": 0.222222,
+          "lower": 0.090909,
+          "upper": 0.307692,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.222222,
+            "lower": 0.090909,
+            "upper": 0.307692,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": true
+        },
+        "cornerCheck": {
+          "point": 0.066667,
+          "lower": 0,
+          "upper": 0.214286,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.066667,
+            "lower": 0,
+            "upper": 0.214286,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        }
+      },
+      "constructedGe5Share": {
+        "absent": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": null,
+          "resolved": false
+        },
+        "armedZero": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthBack": {
+          "point": 0.05,
+          "lower": 0,
+          "upper": 0.166667,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.05,
+            "lower": 0,
+            "upper": 0.166667,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthHalf": {
+          "point": 0.047619,
+          "lower": 0,
+          "upper": 0.142857,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.047619,
+            "lower": 0,
+            "upper": 0.142857,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthFwd": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "narrow": {
+          "point": 0.090909,
+          "lower": 0,
+          "upper": 0.222222,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.090909,
+            "lower": 0,
+            "upper": 0.222222,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "wide": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "cornerCheck": {
+          "point": 0.066667,
+          "lower": 0,
+          "upper": 0.214286,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.066667,
+            "lower": 0,
+            "upper": 0.214286,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        }
+      },
+      "scrambleShareOfGoals": {
+        "absent": {
+          "point": 0.315789,
+          "lower": 0.066667,
+          "upper": 0.625,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": null,
+          "resolved": false
+        },
+        "armedZero": {
+          "point": 0.315789,
+          "lower": 0.066667,
+          "upper": 0.625,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthBack": {
+          "point": 0.535714,
+          "lower": 0.342857,
+          "upper": 0.8125,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.219925,
+            "lower": -0.133333,
+            "upper": 0.575,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthHalf": {
+          "point": 0.517241,
+          "lower": 0.305556,
+          "upper": 0.73913,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.201452,
+            "lower": -0.086957,
+            "upper": 0.480672,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthFwd": {
+          "point": 0.5,
+          "lower": 0.266667,
+          "upper": 0.666667,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.184211,
+            "lower": -0.269841,
+            "upper": 0.537594,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "narrow": {
+          "point": 0.318182,
+          "lower": 0.090909,
+          "upper": 0.631579,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.002392,
+            "lower": -0.254902,
+            "upper": 0.285714,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "wide": {
+          "point": 0.583333,
+          "lower": 0.47619,
+          "upper": 0.722222,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.267544,
+            "lower": -0.077295,
+            "upper": 0.545455,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "cornerCheck": {
+          "point": 0.6,
+          "lower": 0.4,
+          "upper": 0.826087,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.284211,
+            "lower": -0.017094,
+            "upper": 0.555556,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        }
+      },
+      "setPieceShareOfGoals": {
+        "absent": {
+          "point": 0.315789,
+          "lower": 0.117647,
+          "upper": 0.5,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": null,
+          "resolved": false
+        },
+        "armedZero": {
+          "point": 0.315789,
+          "lower": 0.117647,
+          "upper": 0.5,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0,
+            "lower": 0,
+            "upper": 0,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthBack": {
+          "point": 0.285714,
+          "lower": 0,
+          "upper": 0.470588,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": -0.030075,
+            "lower": -0.304348,
+            "upper": 0.21982,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthHalf": {
+          "point": 0.275862,
+          "lower": 0.111111,
+          "upper": 0.44,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": -0.039927,
+            "lower": -0.191067,
+            "upper": 0.15,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "depthFwd": {
+          "point": 0.454545,
+          "lower": 0.285714,
+          "upper": 0.666667,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.138756,
+            "lower": -0.105172,
+            "upper": 0.416667,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "narrow": {
+          "point": 0.5,
+          "lower": 0.181818,
+          "upper": 0.761905,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.184211,
+            "lower": -0.125604,
+            "upper": 0.475973,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "wide": {
+          "point": 0.25,
+          "lower": 0.16,
+          "upper": 0.375,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": -0.065789,
+            "lower": -0.252137,
+            "upper": 0.122727,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
+        },
+        "cornerCheck": {
+          "point": 0.4,
+          "lower": 0.173913,
+          "upper": 0.6,
+          "finiteDraws": 2000,
+          "draws": 2000,
+          "pairedDelta": {
+            "point": 0.084211,
+            "lower": -0.166667,
+            "upper": 0.337143,
+            "finiteDraws": 2000,
+            "draws": 2000
+          },
+          "resolved": false
         }
       }
     }
@@ -7822,8 +8403,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "2f3c768e37c196f9722ea592de583b8bc539af2c364c6f80579e7fc92b2c4c0e",
-      "digestB": "2f3c768e37c196f9722ea592de583b8bc539af2c364c6f80579e7fc92b2c4c0e",
+      "digestA": "dd7ae278cd359b1785b623046674ff9d4ea0bfafc9e65e47c15e5daa6f358275",
+      "digestB": "dd7ae278cd359b1785b623046674ff9d4ea0bfafc9e65e47c15e5daa6f358275",
       "note": "the WHOLE computation (all 8 arms + both repro walks + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
     },
     "xFpProd": {
@@ -8374,10 +8955,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "ff3778103d03bae0eebe1696cd0b3ac91bac7ede7de3a821cd57683fda56badd",
+  "resultSha256": "3e3c88758eb96b763c94268808497afb3a932c9f48fdd40ef76e4f7f4d4d7fe6",
   "envelopeContextOnly": {
-    "headContextOnly": "cebec04",
-    "wallMsContextOnly": 99056,
+    "headContextOnly": "586db4e",
+    "wallMsContextOnly": 102829,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/ctb-t1-supply-exam-smoke.json",
     "srcDiffStat": "",

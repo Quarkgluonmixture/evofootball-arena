@@ -116,9 +116,13 @@ Every dose is a **span END or its half**, read from the exported `CTB_GENE_MIN` 
    origins**, plus the segment population and the segmentation-accounting identity. Gate:
    **G-REPRO-GGC**. The limbs this exam does not read (pass LOCATION, own-third chains, the
    danger-window ladder) are **not** lifted — the G-REPRO-173 precedent, and the gate is what
-   proves the omission changes nothing on the columns that ARE read. ⚠ **REPORTED ONLY**: no
-   gate hangs on any of these shares in T1; per #218 the arc-grain reading is whether the
-   shares MOVE, and that is the commander's.
+   proves the omission changes nothing on the columns that ARE read. The five shares the #218
+   arc ruler names — constructed ≥3/≥4/≥5 (non-set-piece pool), scramble, set-piece — **ride
+   the same paired seed-cluster bootstrap as every other column**, so the battery reads them
+   with CIs, paired deltas and mechanical `resolved` flags rather than bare counts.
+   ⚠ **REPORTED ONLY**: no gate hangs on any of these shares in T1, and their presence changes
+   neither §SUCCESS nor the frozen F-CTB-a/b/c STOP set; per #218 the arc-grain reading is
+   whether the shares MOVE, and that is the commander's.
 
 ### ⭐ THE PRIMARY RULER, named ex ante (the ruled amendment, pre-battery)
 
@@ -288,7 +292,7 @@ Receipts: [`../../scripts/probes/ctb-t1-supply-exam.ts`](../../scripts/probes/ct
 **12 seeds × 8 arms = 96 full matches per core pass, the core runs TWICE (X-DET,
 byte-identical digests), plus the THREE G-REPRO re-walks (12 O2-T1 rows + 40 #173 matches +
 12 genealogy-census matches) each pass and the 2-season fingerprint league.** Verdict: **ALL
-GATES PASS** (`allGatesPass === true`), probe exit 0. Wall ≈ 99 s (CONTEXT ONLY — in no rate,
+GATES PASS** (`allGatesPass === true`), probe exit 0. Wall ≈ 103 s (CONTEXT ONLY — in no rate,
 in no gate).
 
 ⚠ **SUPERSESSION, stated plainly.** This §RESULT supersedes the first CTB-T1 smoke
@@ -299,8 +303,8 @@ MEASURED number is byte-identical** — the field-level diff moved only the amen
 new genealogy/ceiling blocks and the digests. Nothing was re-run to a different answer.
 
 * **X-DET digest** — `gates.xDet.digestA === digestB ===`
-  `2f3c768e37c196f9722ea592de583b8bc539af2c364c6f80579e7fc92b2c4c0e`
-* **resultSha256** `ff3778103d03bae0eebe1696cd0b3ac91bac7ede7de3a821cd57683fda56badd`
+  `dd7ae278cd359b1785b623046674ff9d4ea0bfafc9e65e47c15e5daa6f358275`
+* **resultSha256** `3e3c88758eb96b763c94268808497afb3a932c9f48fdd40ef76e4f7f4d4d7fe6`
   (re-derivable at any commit: the hashed body is commit-, timing- and path-free; `head`,
   wall and paths ride the `envelopeContextOnly` envelope, #197-M1).
 * **Files touched** — the authoritative list is `git show <this commit> --stat`; no
@@ -369,6 +373,15 @@ classifier, not a reading of build-up.
 
 ARMED-ZERO reproduces ABSENT cell for cell here too — the identity arm holds on the lifted
 instrument as well as on the inherited ones.
+
+⭐ **The five shares the #218 arc ruler names** — constructed ≥3/≥4/≥5 (non-set-piece pool),
+scramble, set-piece — **ride the SAME paired seed-cluster bootstrap as every other column**
+(`contrasts.rates.constructedGe3Share` etc.), so the battery reads them with CIs, paired deltas
+and mechanical `resolved` flags rather than bare counts. ⚠ **They remain REPORTED: no gate
+reads any of them, and the pre-registered §SUCCESS condition and the frozen F-CTB-a/b/c STOP
+set are unchanged by their presence.** At this smoke's N the flags are what 19–29 goals per arm
+can support and nothing more: constructed ≥3 DEPTH-BACK +17.3 pp [+1.3, +36.6] and constructed
+≥4 WIDE +22.2 pp [+9.1, +30.8] carry `resolved=true`; every other ruler-5 delta is unresolved.
 
 ### THE CEILINGS — rulers 3b/4b are near-saturated, and by exactly how much
 
@@ -474,9 +487,10 @@ $ CTBT1_N=1 CTBT1_SKIP_FP=1 npx tsx scripts/probes/ctb-t1-supply-exam.ts   (the 
 
 $ npx tsx scripts/probes/ctb-t1-supply-exam.ts          (THE SMOKE, RE-RUN, exit 0)
   ALL                PASS          (12 gates, incl. the new G-REPRO-GGC)
-  resultSha256 ff3778103d03bae0eebe1696cd0b3ac91bac7ede7de3a821cd57683fda56badd
-  wall 99 s (CONTEXT ONLY) · artifact docs/world-model/data/ctb-t1-supply-exam-smoke.json
-  (supersedes 1ae8a6f5…bce4 — pre-battery; every prior MEASURED number byte-identical)
+  resultSha256 3e3c88758eb96b763c94268808497afb3a932c9f48fdd40ef76e4f7f4d4d7fe6
+  wall 103 s (CONTEXT ONLY) · artifact docs/world-model/data/ctb-t1-supply-exam-smoke.json
+  (supersedes 1ae8a6f5…bce4 and ff377810…badd — pre-battery; every prior MEASURED
+   number byte-identical through both steps)
 ```
 
 ```text
