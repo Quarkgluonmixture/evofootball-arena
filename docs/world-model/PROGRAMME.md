@@ -411,15 +411,35 @@ the state-creating seat is the RECEIVER side. F-O2b does NOT
 fire (real resolved cost: turnover/spell +0.034; 414
 look-attributed turnovers; 18.6 % abort price). The o2Look
 seam stays BANKED-DORMANT (no O2-T2, no gene slice; O3
-unaffected). **SELF-DRIVE ENDED at the pre-named STOP (#195).
-THE FORK IS THE USER'S (#222.6, 人话 in the session summary):
-(甲, recommended) proceed per #219's own sequence → draft 乙
-the check-to-ball/回撤接应 contract carrying O2-T1's
-inheritance (乙's battery must carry the support-existence /
-holdable-supply dimensions as its ruler); (乙') F-O2a's
-literal prescription first — perception-trunk surgery on the
-half-blind SUPPORT channel; (丙') pause for the user's
-play-test word (the MT keep/hold verdict is still open).** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+unaffected). **SELF-DRIVE ENDED at the pre-named STOP (#195); the #222.6
+fork was RESOLVED BY THE USER'S OWN ENGAGEMENT (#223): 乙
+OPENS, shape AMENDED by the user to the FULL 2D PLANE
+(前后左右轴).** Substrate-defect proof banked at code level
+(`supportSpot` formations.ts:604-618 — no genome can place a
+supporter level with or behind the ball; the dimension is
+ABSENT, not buried; the between-lines check is the missing
+limb). Ontology fixed into VISION §3 verbatim: 底座 = 身体
+自由度, 基因 = 倾向; 缺一条腿,不是缺一个习惯. Contract
+drafted:
+[`CHECK-TO-BALL-CONTRACT.md`](CHECK-TO-BALL-CONTRACT.md)
+(H-CTB; M-CTB.1 axis pair around today's zero-points, born
+absent; M-CTB.3 slice one = STATIC plane freedom, dynamic
+account DEFERRED BY NAME; arc T0 dormant seam + Phase-30.5
+pin inventory → T1 support-supply exam, PM-T1 hand-dose form,
+ruler inherited [trueCellOf holdable supply + #173 pressed
+receptions + #218 shares], F-CTB-a/b/c pre-named STOPs → T2
+co-evolution with ⭐ the user's hypothesis PRE-REGISTERED
+["现实里会进化出回撤" ⇒ attack-side selection ENGAGES via
+goals — the Phase 30.5 starvation receipt; pre-named contrast
+with MT-T2's defensive indifference] → play-test exit; §6
+six clauses PASS · §7 PASS with three named gaps).
+**QUEUED NEXT STEP (on "go"): dispatch CTB-T0 — the dormant
+2D support-plane seam** (flag `ctbSupportPlane` hard-false +
+`evolveCtbSupportPlane` opt-in + genes born absent outside
+GENE_KEYS; byte-identity/fingerprint/RNG receipts, the
+#181.2 stack; pin inventory a named deliverable). Then:
+CTB-T1 → CTB-T2 → entry; 丙 progression value behind the
+arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

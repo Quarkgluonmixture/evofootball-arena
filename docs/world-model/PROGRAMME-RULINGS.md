@@ -9591,3 +9591,65 @@
 >    is not the executor's; 640 progress lines are context-only
 >    wall clock). **SELF-DRIVE ENDS at the pre-named STOP
 >    (#195): the fork returns to the user, 人话先行.**
+
+> **COMMANDER RULING #223 (2026-08-10 — the #222.6 fork resolved by
+> the user's own engagement: 乙 OPENS, with the shape AMENDED by the
+> user to the FULL 2D PLANE; the substrate-defect proof banked; the
+> CHECK-TO-BALL contract drafted):**
+>
+> 1. **THE USER'S TWO QUESTIONS, ANSWERED WITH CODE**: (a) 回撤接应
+>    will be 底座-with-emergent-weights, never a hand predicate
+>    (the #200 red line's attack-side application); (b) "没人传" IS
+>    a substrate defect, proved in the #188/#192 form —
+>    `supportSpot` (`formations.ts:604-618`) is the ONLY
+>    support-the-carrier positioning and its x-term is
+>    `ball.x + attackDir·radius·aheadBias` with `aheadBias ∈
+>    {0.75, 0.35}` a hand ternary and `radius = 10 +
+>    supportDistance·8`: **no genome in the evolvable space can
+>    place a supporter level with or behind the ball**; the lateral
+>    fan's constants (pull 0.75, cap 0.9·radius) are equally
+>    gene-unreachable. The off-ball attack repertoire ({ahead fan,
+>    runs in behind, lane stations}) contains NO motion toward a
+>    pressed carrier. The dimension is absent, not buried. Honest
+>    boundary recorded: the back line stands behind the ball
+>    trivially (倒脚 exists, 52% own-third time) — what is missing
+>    is the BETWEEN-LINES CHECK.
+> 2. **THE ONTOLOGY, fixed into VISION §3 verbatim**: 底座 = 身体
+>    自由度, 基因 = 倾向, 进化只能在身体给的自由度里发现用法. Real
+>    football evolved 回撤 CULTURALLY on complete bodies; our
+>    players' bodies have a hole. 缺一条腿,不是缺一个习惯 — the
+>    slice restores the limb, never teaches the habit.
+> 3. **THE USER'S SHAPE AMENDMENT RULED IN**: 前后左右轴 — the FULL
+>    2D plane, not a front-back axis alone; the lateral hand
+>    constants are absorbed as gene-adjustable zero-points rather
+>    than left as a second hand-tuned layer beside a freed x-axis.
+>    The stronger emergence form (less hand structure survives),
+>    dual-checked: VISION PASS (capability-not-mandate, enacted
+>    literally) · REALITY PASS (real receivers parameterize showing
+>    in exactly this plane).
+> 4. **THE CONTRACT IS DRAFTED**:
+>    [`CHECK-TO-BALL-CONTRACT.md`](CHECK-TO-BALL-CONTRACT.md) —
+>    H-CTB; M-CTB.1 the axis pair around today's zero-points (born
+>    absent = byte-identical; bounds traced at T0, never typed);
+>    M-CTB.3 slice one = STATIC plane freedom, the dynamic
+>    pressure-account slice DEFERRED BY NAME (the MT §7 precedent —
+>    nothing decides WHEN to check; this slice makes checking
+>    EXPRESSIBLE); arc CTB-T0 (dormant seam + pin inventory of the
+>    Phase 30.5 invariants) → CTB-T1 support-supply exam (PM-T1
+>    hand-dose form; ruler INHERITED: O2-T1 trueCellOf holdable
+>    supply + pressed-reception #173 + the #218 shares; guards:
+>    interception ceiling [the Phase 30.5 column disease, 33/match
+>    history], offside flag, clump, band; F-CTB-a/b/c pre-named
+>    STOPs) → CTB-T2 co-evolution with ⭐ THE USER'S HYPOTHESIS
+>    PRE-REGISTERED EX ANTE ("现实里会进化出回撤" ⇒ attack-side
+>    selection ENGAGES, because short-option supply is a
+>    goals-level signal — the Phase 30.5 starvation receipt 1.47 →
+>    0.93 — and goals are what win-only fitness hears; pre-named
+>    contrast with MT-T2's defensive indifference) → play-test
+>    exit. §6 VISION audit six clauses PASS, zero amendments; §7
+>    REALITY audit PASS with three honest gaps named (static vs
+>    dynamic checking; burst velocity; the marker-drag value
+>    question = 丙's seat).
+> 5. **QUEUED**: CTB-T0 dispatches on the next "go" (the O2 arc is
+>    closed at #222's STOP; one writer). 丙 stays behind this arc
+>    per #219.
