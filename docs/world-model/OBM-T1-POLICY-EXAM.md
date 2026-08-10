@@ -1,11 +1,16 @@
 # OBM T1 — the POLICY EXAM (hand-dose the off-ball EYES seat, measure the world)
 
-Status: **FROZEN BEFORE SIGHT, then SMOKED.** Everything from §FORM to §NON-CLAIMS — the
+Status: **FROZEN BEFORE SIGHT, then SMOKED, then CORRECTED PRE-BATTERY.** Everything from §FORM
+to §NON-CLAIMS — the
 world, the eight arms and their exact matrices, the ruler, the guards, the estimator, the
 success wording, the seed ledger, the N rule and the gate list — was written **before** any
 number of this stage existed. The measured numbers arrive only in
-[§RESULT — the smoke](#result--the-smoke) at the foot, and the two things that were sharpened
-after the first smoke run are recorded as **Deviations**, not smoothed away.
+[§RESULT — the smoke](#result--the-smoke) at the foot, and everything sharpened after a run —
+the two things sharpened after the FIRST smoke, and the **pre-battery evidence-layer
+corrections** (an unsourced doc column, a gate's under-scoped machine check, a field named
+beyond what it measures) — is recorded in **Deviations**, not smoothed away. **No arm, dose,
+ruler, guard, estimator or gate LEVEL changed in the correction**; the measured rows are
+byte-identical to the first smoke's.
 
 Authority chain: contract
 [`OFFBALL-MOVEMENT-CONTRACT.md`](OFFBALL-MOVEMENT-CONTRACT.md) — §3 **OBM-T1** (the whole
@@ -182,8 +187,11 @@ OBM-T0's own committed ledger: **12,424,000–024** (receipts) · **12,424,025**
 | free above | 12,424,038–039 · 12,424,041–049 · 12,424,728–899 · 12,424,907 + | later |
 
 Disjointness is computed **in-probe** against the COMPLETE consumed ledger (27+ blocks), never
-asserted here. The three G-REPRO blocks and the new CTB-T1 one are **deliberate re-walks of
-their sources' own committed blocks** — receipts, never fresh data.
+asserted here, and — since the pre-battery correction — for **every one of the eight blocks this
+stage touches**, not only the exam walk: 2 FRESH (exam · the declared dose read) · 2 RESERVED
+(guard · battery) · 4 RE-WALKS. The four re-walk blocks are **deliberate re-walks of their
+sources' own committed blocks** — receipts, never fresh data — so their predicate is inverted:
+each must land **inside** its source's consumed interval.
 
 **Stats stream**: base **105,000** (CTB-T1 consumed 104,800), min gap to any published base
 **≥ 200**, complete namespace published in-probe.
@@ -234,11 +242,11 @@ for the commander beside `nRaw`; the probe re-cuts nothing.
 | **G-REPRO-173** | ruler 2 reproduces the committed tempo-census numbers field for field | HARD |
 | **G-REPRO-GGC** | ruler 5's ported classifier reproduces the committed genealogy census counts (63 fields) | HARD |
 | **G-TRACE-RADIUS** | ruler 3's radius family is PARSED from `src/ai/formations.ts`, never typed | HARD |
-| ⭐ **G-BLIND-WORLD** | the percept trunk is **LIVE** in every arm's constructed world **and** the features are **non-degenerate** (snapshots exist · opponents perceived · all four feature means > 0) | HARD |
+| ⭐ **G-BLIND-WORLD** | the percept trunk is **LIVE** in every arm's constructed world **and** the features are **non-degenerate** (snapshots exist · `someFeatureNonZeroShare > 0` — at least one of the four features non-zero · all four feature means > 0). ⚠ The third limb is **non-degeneracy, not "opponents perceived"**; the complement `allFeaturesZeroShare` is published as an **upper bound** on blindness | HARD |
 | **G-ARM** | the matrix on **all three genome views of both teams**; the seat **REACHED** (policy-cache writes > 0 on every seed); the four support-tick classes **partition exactly**; ⭐ delivery on the axes an arm doses and **silence on the ones it does not**; **ARMED-ZERO delivers exactly zero shift** and both multipliers exactly 1 | HARD |
 | **FLAG-HYGIENE** | ARMED-ZERO ≡ ABSENT per seed on the whole-match signature **and** every row field; the dose matrices well-formed at domain corners; ⭐ the **two-doors** row: `ctbSupportPlane` FALSE and `edsPerceivedChoice` TRUE in **every** arm | HARD |
 | ⭐ **G-FORK-TOKENS** | the #228.5(b) debt PAID: the token grep gains `obmOffballPolicy` and `OBM_POLICY_TTL_TICKS`; every `src/**` occurrence enumerated and classified, **zero unclassified**, the named forks/apply sites counted exactly | HARD |
-| **SEED-DISJOINT** | all walked blocks vs the COMPLETE consumed ledger; the sub-blocks ordered and the battery clash-free | HARD |
+| **SEED-DISJOINT** | ⭐ **EVERY block this stage touches** vs the COMPLETE consumed ledger, each under its own predicate: the **FRESH** blocks (exam · the declared dose read) and the **RESERVED** ones (guard · battery) must be **clash-free and pairwise disjoint**; the four **RE-WALKS** (O2-T1 · #173 · GGC · CTB-T1) must land **INSIDE** their sources' consumed intervals — a clash-free re-walk would prove it is walking fresh seeds instead of reproducing a receipt. Sub-blocks ordered; battery clash-free | HARD |
 | **STATS-DISJOINT** | base 105,000, min gap ≥ 200 against the complete published namespace | HARD |
 | **G-CLEAN-INVOCATION** | any `OBMT1_N` / `OBMT1_SKIP_FP` override routes onto the guard block, reds this gate and exits 1 | HARD |
 
@@ -267,13 +275,24 @@ authorize the battery — only the commander can.
 `npx tsx scripts/probes/obm-t1-policy-exam.ts` — the doc carries no evidence the artifact does
 not.)*
 
+> ⚠ **THE RULE ABOVE WAS BROKEN ONCE AND IS RE-ASSERTED HERE.** The first cut of this §RESULT
+> published a **delivered-dose MAX column whose five numbers appear nowhere in the artifact**
+> (6.30 / 6.36 / 8.90 / 8.05 / 13.55 m against the committed 3.4491 / 3.4873 / 4.3857 / 4.8318
+> / 10.7537 m). It was caught pre-battery, the column is rebuilt from the artifact below, the
+> provenance investigation is recorded in **Deviations 5**, and the whole §RESULT was
+> re-swept **programmatically** against the artifact rather than re-read by eye. The prior
+> `resultSha256` **`4a3bc707…ec71` is SUPERSEDED pre-battery**; no measured rate, CI, guard or
+> gate level moved with it (the re-run's only artifact motion is the seed-disjointness block,
+> one renamed field and the digests — enumerated in Deviations 6).
+
 **12 seeds × 8 arms** (12,424,026–037), paired on one shared seed list, **plus** the four
 receipt walks (O2-T1 12 · #173 40 · GGC 12 · ⭐ CTB-T1 8) and the 8 delivered-dose matches —
 and the whole core runs **twice** (X-DET). Verdict: **ALL 15 GATES PASS**, probe exit 0.
 
-* **resultSha256** `4a3bc707e1e2ab34789a34b2e9fe0a1a9075a5e5b63153c877bd03f38d31ec71`
-* **X-DET digest** `849587f8c86ef448c8ad4e9d470e8c937452b088832ea4dcbb37d914c6ee6c61` (both passes)
-* Wall ≈ **328 s** — CONTEXT ONLY (#128), used in no rate. Per #197-M1 the hashed body is
+* **resultSha256** `8d85085761381d7c6aafced6ed21c911ec22f4aec8930369af00c8f2c46d3639`
+  (supersedes `4a3bc707…ec71` pre-battery)
+* **X-DET digest** `b1aa0a721ed6616ca919edd1e9b9b94e6f968b48ee8513aa5a8b6181da146f50` (both passes)
+* Wall ≈ **332 s** — CONTEXT ONLY (#128), used in no rate. Per #197-M1 the hashed body is
   commit-free, timing-free and path-free.
 
 ### Gate table
@@ -288,11 +307,11 @@ and the whole core runs **twice** (X-DET). Verdict: **ALL 15 GATES PASS**, probe
 | **G-REPRO-173** | ✅ PASS | pressed/unpressed/all/share identical to the committed census |
 | **G-REPRO-GGC** | ✅ PASS | 63 fields, 0 mismatches |
 | **G-TRACE-RADIUS** | ✅ PASS | `radius = 10 + g.supportDistance · 8` parsed from source |
-| ⭐ **G-BLIND-WORLD** | ✅ PASS | every arm percept-armed; **99.94 %** of samples have a snapshot, **98.96–99.40 %** perceive an opponent, all four feature means > 0 in every arm. ⭐ **`allFeaturesZeroShare` = 0.6–1.0 %** — that, and only that, is genuine silence |
+| ⭐ **G-BLIND-WORLD** | ✅ PASS | every arm percept-armed; **99.94 %** of samples have a snapshot, **98.96–99.40 %** have **at least one non-zero feature** (`someFeatureNonZeroShare` — renamed this round from `sawPerceivedOpponentShare`, which claimed more than it measures), all four feature means > 0 in every arm. ⭐ **`allFeaturesZeroShare` = 0.60–1.04 %** is an **UPPER BOUND on genuine silence, not a measurement of it**: four zero features also occur with opponents PRESENT beyond the feature radii |
 | **G-ARM** | ✅ PASS | matrix on 6/6 genome views on 12/12 seeds; **120 policy-cache writes per armed arm, 12/12 seeds**; the four classes partition exactly in every arm; ARMED-ZERO shift **exactly 0** with 157,914 planes PRESENT |
 | **FLAG-HYGIENE** | ✅ PASS | ARMED-ZERO ≡ ABSENT on **12/12** seeds, signature **and** every row field; two-doors row: `ctbSupportPlane` FALSE and `edsPerceivedChoice` TRUE in 8/8 arms |
 | ⭐ **G-FORK-TOKENS** | ✅ PASS | **37 src occurrences, ZERO unclassified**; 1 `FLAG_FORK_SCORE` + 1 `FLAG_FORK_PLANE` + 1 `PLANE_APPLY` + 2 `SCORE_APPLY` + 2/2 `SCORE_MUL_*` + 1 `POLICY_WRITE`, and the **new** classes **`SEAT_CALL` 3** and **`CADENCE_CAP` 3** — the #228.5(b) debt paid |
-| **SEED-DISJOINT** | ✅ PASS | smoke 12,424,026–037 · guard 12,424,050–099 · battery 12,424,100–727 · zero collisions |
+| **SEED-DISJOINT** | ✅ PASS | ⭐ **all EIGHT blocks this stage touches, machine-checked** (was four): FRESH — smoke 12,424,026–037 · **dose read 12,424,040**; RESERVED — guard 12,424,050–099 · battery 12,424,100–727; RE-WALKS — O2-T1 12,422,100–111 · #173 12,293,000–039 · GGC 12,421,000–011 · ⭐ **CTB-T1 12,423,100–107**. Zero ledger collisions on the four own blocks, zero overlaps among them, and each of the four re-walks lands **inside** its source's consumed interval (the inverted predicate) |
 | **STATS-DISJOINT** | ✅ PASS | base 105,000, min gap **200** |
 | **G-CLEAN-INVOCATION** | ✅ PASS | no override in force |
 
@@ -305,16 +324,28 @@ feature/score read:
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ABSENT | 0 m | 0 | 0 % | 0 % | — | 1 (1, 1) | 1 (1, 1) |
 | ARMED-ZERO | **0 m** | **0** | **0 %** | 0 % | 0 / 0 | **1 (1, 1)** | **1 (1, 1)** |
-| CHECK-WHEN-PRESSED | **0.507 m** | 6.30 | 28.2 % | 22.8 % | −0.041 / 0 | 1 (1, 1) | 1 (1, 1) |
-| CHECK-AND-SHOW | 0.633 m | 6.36 | 34.7 % | 28.6 % | −0.051 / 0 | 1.022 (1, **1.100**) | 1 (1, 1) |
-| MARKER-ESCAPE | 1.818 m | 8.90 | 87.1 % | 78.7 % | +0.132 / +0.132 | 1 (1, 1) | 1 (1, 1) |
-| SPACE-SEEK | 1.364 m | 8.05 | 67.1 % | 54.4 % | −0.100 / +0.100 | 1 (1, 1) | 1 (1, 1) |
+| CHECK-WHEN-PRESSED | **0.507 m** | 3.4491 | 28.2 % | 22.8 % | −0.041 / 0 | 1 (1, 1) | 1 (1, 1) |
+| CHECK-AND-SHOW | 0.633 m | 3.4873 | 34.7 % | 28.6 % | −0.051 / 0 | 1.022 (1, **1.100**) | 1 (1, 1) |
+| MARKER-ESCAPE | 1.818 m | 4.3857 | 87.1 % | 78.7 % | +0.132 / +0.132 | 1 (1, 1) | 1 (1, 1) |
+| SPACE-SEEK | 1.3635 m | 4.8318 | 67.1 % | 54.4 % | −0.100 / +0.100 | 1 (1, 1) | 1 (1, 1) |
 | STALE-CAUTION | **0 m** (by construction — a SCORE-only corner) | 0 | 0 % | 0 % | 0 / 0 | 0.984 (**0.904**, 1) | 0.984 (**0.904**, 1) |
-| KITCHEN-SINK | **4.331 m** | 13.55 | **97.4 %** | 94.9 % | −0.308 / +0.308 | 1.109 (1, **1.315**) | 0.891 (**0.685**, 1) |
+| KITCHEN-SINK | **4.331 m** | 10.7537 | **97.4 %** | 94.9 % | −0.308 / +0.308 | 1.109 (1, **1.315**) | 0.891 (**0.685**, 1) |
 
-**Read exactly.** (i) The **ceiling probe delivers ~0.31 of an axis and 4.3 m**, because the
-features it multiplies are themselves ~0.26 on average — that is the ceiling, and it is what
-makes every other row legible. (ii) **CHECK-WHEN-PRESSED delivers 0.5 m on average and moves
+⭐ **The MAX column is `arms.*.seam.maxShiftMetres`, quoted at the artifact's own 4 dp** — the
+column the first cut got wrong, so it is now published at full stored precision and swept
+programmatically together with every other cell of this table. Read it against the ceiling the
+geometry itself imposes: a plane-only corner can move a body at most
+`radius · |depth| · CTB_DEPTH_BIAS_SPAN` ≤ `18 · 0.25 · 0.9` = **4.05 m**, which is why
+CHECK-WHEN-PRESSED's largest single shift is 3.4491 m and cannot be more.
+
+**Read exactly.** (i) The **ceiling probe delivers ~0.31 of an axis on the exam walk and 4.331 m
+of mean shift**, and the mechanism is visible in ONE population rather than two: in the
+KITCHEN-SINK **dose read** the four feature means are `[0.19924, 0.47417, 0.26189, 0.15533]`,
+whose mean is **0.27266** — and that arm's **`planeWidth` mean is 0.27266**, the same number,
+because a full ±1 row IS the mean of its four features. (The exam walk's own
+`meanPlaneWidthOnPresent` is 0.308 rather than 0.273; it is a **different population** — support
+ticks with a plane present, not every-15-tick outfielder samples — and the two must not be
+divided into each other.) That is the ceiling, and it is what makes every other row legible. (ii) **CHECK-WHEN-PRESSED delivers 0.5 m on average and moves
 28 % of support ticks** — small on average and **concentrated**, exactly as pre-registered:
 f1 is the scarce feature and the plane is zero precisely when the carrier is not
 perceived-pressed. (iii) **STALE-CAUTION moves no geometry at all and is not supposed to** —
@@ -355,9 +386,10 @@ as **observations of record**, not findings.
 
 ### REPORTED — rulers 3/4 with their ceilings, and ruler 5
 
-Rulers 3b/4b remain **near-saturated**: ABSENT sits at **96.30 %** (3b) and **96.32 %** (4b),
-leaving **3.68 pp** of helpful headroom in total — which is exactly why the exam is carried by
-rulers 1 + 2. Ruler 5 (the #218 shares) rides the same paired bootstrap: ABSENT constructed≥3
+Rulers 3b/4b remain **near-saturated**: ABSENT sits at **96.305 %** (3b) and **96.317 %** (4b),
+leaving **3.695 pp** of helpful headroom on 3b and **3.683 pp** on 4b — **per ruler, not a
+total**: these are two different columns and their headrooms do not add. Either way each is
+under four points, which is exactly why the exam is carried by rulers 1 + 2. Ruler 5 (the #218 shares) rides the same paired bootstrap: ABSENT constructed≥3
 **8.33 %**, scramble share **52.6 %**; no arm resolves on any of the five shares at smoke
 grain, and **no gate reads a cell of that table**.
 
@@ -377,8 +409,12 @@ Equilibrium band: **`goals` is EXCLUDED** because the ABSENT arm itself fails it
 SPACE-SEEK · KITCHEN-SINK hold all four and the other four arms do not — **the band gates at
 battery N only**, so this row is context.
 
-⚠ Of record: **interceptions do not rise** at any dose here (ABSENT 26.25; every Δ inside
-±2), which is the opposite of the CTB-T1 static plane's signature (+1.8…+3.2/match resolved at
+⚠ Of record: **interceptions do not rise** at any dose here — ABSENT **26.25/match**, and **no
+arm resolves**: the seven paired point deltas run **−2.00** (CHECK-WHEN-PRESSED, the largest in
+magnitude and **exactly −2.0**, CI [−6.50, +1.92]) · −1.00 · −0.58 · −0.25 · 0.00 · +0.83 ·
+**+1.67** (CHECK-AND-SHOW, the largest rise, CI [−2.83, +5.42]). Stated as the artifact has it
+rather than as a "±2 band", because the extreme sits **on** 2.0, not inside it. That is the
+opposite of the CTB-T1 static plane's signature (+1.8…+3.2/match resolved at
 every depth dose). It is a 12-seed reading and it adjudicates nothing — but it is the first
 number in this arc that is *consistent with* H-CTB-T1a's "the missing dimension is WHEN".
 
@@ -400,10 +436,15 @@ substitution is published in the artifact as `sourceOfP0` / `deffProvenance` on 
 $ npx tsc --noEmit
 (clean)
 
-$ npx tsx scripts/probes/obm-t1-policy-exam.ts
+$ OBMT1_MODE=smoke npx tsx scripts/probes/obm-t1-policy-exam.ts     (the CORRECTION re-run)
   ALL                PASS      (15 gates)
-  exit 0 · resultSha256 4a3bc707e1e2ab34789a34b2e9fe0a1a9075a5e5b63153c877bd03f38d31ec71
-  wall 328 s (CONTEXT ONLY) · artifact docs/world-model/data/obm-t1-policy-exam-smoke.json
+  exit 0 · resultSha256 8d85085761381d7c6aafced6ed21c911ec22f4aec8930369af00c8f2c46d3639
+  wall 332 s (CONTEXT ONLY) · artifact docs/world-model/data/obm-t1-policy-exam-smoke.json
+  (supersedes 4a3bc707…ec71. Artifact diff vs the superseded run, EXHAUSTIVE: the
+   seedDisjoint block · sawPerceivedOpponentShare → someFeatureNonZeroShare in its three
+   homes · the new gBlindWorld.predicate · four corrected note/semantics strings ·
+   xDet digests + resultSha256 · the two CONTEXT-ONLY envelope fields (head, wall).
+   EVERY measured rate, CI, guard level and gate verdict is byte-identical.)
 
 $ OBMT1_N=1 OBMT1_SKIP_FP=1 npx tsx scripts/probes/obm-t1-policy-exam.ts   (the OVERRIDE route)
   ⚠ OVERRIDE IN FORCE — routed onto the EXIT-SEMANTICS GUARD BLOCK 12,424,050..12,424,099
@@ -441,12 +482,65 @@ isolation it is green. It cannot be this stage's: `src/**` is **byte-untouched**
    SILENCE — he perceived nobody". That is only the third cause: a plane of (0,0) also arises
    when the arm doses no plane row, and — far more often — when **this arm's own driving
    feature reads zero at that moment** (for an f1 corner: the carrier is not perceived-pressed,
-   i.e. the CONCENTRATION the hypothesis is about). Genuine blindness is priced separately and
-   is **0.6–1.0 %** of samples. The label was corrected in the probe's own published semantics.
+   i.e. the CONCENTRATION the hypothesis is about). Genuine blindness is **bounded above**
+   separately at **0.60–1.04 %** of samples (`allFeaturesZeroShare` — a ceiling, not a
+   measurement; see Deviation 7). The label was corrected in the probe's own published semantics.
 3. **A fourth seed block was declared** (the delivered-dose read, 12,424,040) rather than
    re-using an exam seed, because that read pulls percepts out-of-band. Declared in §SEEDS.
 4. **The world is not CTB-T1's**, by necessity (§FORM). Absolute levels across the two exams
    are not comparable; every contrast here is within-world and paired.
+
+**⭐ The PRE-BATTERY correction round (5–8) — all four are EVIDENCE-LAYER; no mechanism moved.**
+Independent verify reproduced the `resultSha256` identically and diffed the inherited sampling
+body to **zero changed lines** against `ctb-t1-supply-exam.ts`. What it caught was the layer
+between the artifact and the reader.
+
+5. ⛔⛔ **THE DELIVERED-DOSE MAX COLUMN WAS NOT IN THE ARTIFACT — and its provenance could not
+   be established.** The first cut published 6.30 / 6.36 / 8.90 / 8.05 / 13.55 m; the committed
+   artifact's `arms.*.seam.maxShiftMetres` are **3.4491 / 3.4873 / 4.3857 / 4.8318 / 10.7537**.
+   The column is rebuilt above. **The investigation, reported as it came out:**
+   * The five numbers appear **nowhere in the artifact** — a full numeric sweep of every scalar
+     in the committed JSON at ±0.006 tolerance returns **one** hit, and it is
+     `perMatch.spaceSeek[7].spacingMedian = 13.5468`, a coincidence in an unrelated column.
+   * They are **not a unit slip and not a stale-run artifact**: the ratios doc÷artifact are
+     1.83 / 1.82 / 2.03 / 1.67 / 1.26 — no constant, no power of ten. Swapping the
+     MARKER-ESCAPE and SPACE-SEEK rows makes four of the five ratios ≈1.83 but leaves
+     KITCHEN-SINK at 1.26, so even the tidiest transposition story does not close.
+   * They are **not the pre-clamp shift** either, and this is the decisive one: for a
+     plane-only corner the shift is bounded by `radius · |depth| · CTB_DEPTH_BIAS_SPAN`, with
+     `radius = 10 + supportDistance·8 ≤ 18` (the gene is `clamp01`), `|depth| ≤ 0.25` (a single
+     ±1 slot is the mean of four features) and `CTB_DEPTH_BIAS_SPAN = SUPPORT_LAT_CAP_FRAC =
+     0.9` ⇒ **≤ 4.05 m**. CHECK-WHEN-PRESSED's published 6.30 m is **above the ceiling the
+     geometry allows**, clamped or unclamped, so no reading of this world produces it.
+   * They are **not lifted from a sibling exam**: no `maxShiftMetres` in the OBM-T0, CTB-T0,
+     CTB-T1 smoke or CTB-T1 battery artifacts matches any of the five.
+   * The probe's stdout prints `maxShiftMetres` verbatim, and no earlier version of either
+     artifact or probe exists in git history to have printed anything else.
+   **Finding, stated honestly: the column has no traceable source. On the evidence it was
+   composed at drafting time rather than read off the run** — the exact failure the §RESULT
+   header rule exists to prevent. Recorded, not smoothed: the rule is re-asserted at the head of
+   §RESULT and the whole table is now swept **programmatically** against the artifact.
+6. **SEED-DISJOINT machine-checked four blocks and declared eight.** The gate computed
+   `walkedBlocks` for the exam walk and three re-walks only — the **declared** delivered-dose
+   block (12,424,040, fresh observational data), the reserved guard and battery blocks and the
+   **new CTB-T1 re-walk** were named in prose and checked by nobody, and `reproBlocksNote` still
+   said "the two repro blocks" when four run. The computation now covers all eight under three
+   predicates (fresh/reserved ⇒ clash-free and pairwise disjoint; re-walk ⇒ must land inside its
+   source's interval), and the ordering check now includes the dose-read seed. **The gate still
+   passes**, which is the point: the claim was true and was simply not being checked.
+7. **`sawPerceivedOpponentShare` was renamed `someFeatureNonZeroShare`.** It counts samples with
+   at least one non-zero feature — which is **weaker than its old name**: all four features read
+   zero with opponents *present* whenever every one of them is beyond that feature's radius (and
+   f4 is 0 on fresh readings). The G-BLIND-WORLD row is re-predicated to the non-degeneracy it
+   actually tests, and `allFeaturesZeroShare` is published as an **UPPER BOUND on genuine
+   blindness, not a measurement of it**. No level moved — only the name and the claim.
+8. **Three doc statements were restated to their own populations.** (a) rulers 3b/4b headroom is
+   **3.695 pp** and **3.683 pp** *per ruler*, never "3.68 pp in total" (the old figure was 4b's
+   alone, presented as both). (b) The ceiling-probe sentence mixed the exam walk's
+   on-present plane mean with an out-of-world T0 feature mean; it now reads the dose-read's own
+   featureMeans mean **0.27266** against that same read's `planeWidth` mean **0.27266**.
+   (c) "every Δ inside ±2" on interceptions was false at the boundary — CHECK-WHEN-PRESSED's
+   delta is **exactly −2.0** — so the sentence now lists the seven deltas.
 
 ### Disposition
 

@@ -988,9 +988,11 @@ const walkSeed = (seed: number, arm: WalkArm): PerMatch => {
             r.planeWidthSum += plane.width;
             r.planeDepthAbsSum += Math.abs(plane.depth);
             r.planeWidthAbsSum += Math.abs(plane.width);
-            // ⭐ ZERO IS SILENCE (#228.6): a body who perceived NO opponent reads all-zero
-            // features, so his plane is exactly (0,0) and he must not move by one bit. This
-            // is counted as its own class rather than folded into "the seam did nothing".
+            // ⭐ ZERO IS SILENCE (#228.6): a body whose four features ALL read zero — the
+            // no-policy point, whose commonest cause is that this arm's own driving feature is
+            // zero at this moment, not blindness — has a plane of exactly (0,0) and must not
+            // move by one bit. Counted as its own class, never folded into "the seam did
+            // nothing".
             if (planeZero) {
               r.supportTicksPlaneZero += 1;
               if (shift !== 0) r.supportTicksZeroPlaneMoved += 1;
@@ -1134,7 +1136,7 @@ const doseRead = (arm: ArmName) => {
   const widths: number[] = [];
   let samples = 0;
   let sawSnapshot = 0;
-  let sawOpponent = 0;
+  let someFeatureNonZero = 0;
   let allFeaturesZero = 0;
   let i = 0;
   while (!m.finished) {
@@ -1148,7 +1150,14 @@ const doseRead = (arm: ArmName) => {
         const policy = obmOffballPolicy(p, m, t.genome, anchor, m.ctbSupportPlane);
         samples += 1;
         if (policy.sawSnapshot) sawSnapshot += 1;
-        if (policy.features.some((f) => f !== 0)) sawOpponent += 1; else allFeaturesZero += 1;
+        // ⚠ NAMED FOR WHAT IT MEASURES (the pre-battery correction): this counts samples where
+        // AT LEAST ONE of the four features is non-zero — it is NOT "he perceived an opponent".
+        // All four features can read exactly zero WITH opponents present (every one of them
+        // beyond the feature's radius, or the readings fresh enough that f4 is 0), so the
+        // complement `allFeaturesZeroShare` is an UPPER BOUND on genuine blindness, never a
+        // measurement of it.
+        if (policy.features.some((f) => f !== 0)) someFeatureNonZero += 1;
+        else allFeaturesZero += 1;
         for (let k = 0; k < nF; k++) featureSums[k] += policy.features[k];
         for (let o = 0; o < nO; o++) outputSums[o] += policy.outputs[o];
         depths.push(policy.plane.depth);
@@ -1179,14 +1188,19 @@ const doseRead = (arm: ArmName) => {
     supportMul: dist5(supportMuls),
     runMul: dist5(runMuls),
     sawSnapshotShare: round(sawSnapshot / n, 5),
-    sawPerceivedOpponentShare: round(sawOpponent / n, 5),
+    someFeatureNonZeroShare: round(someFeatureNonZero / n, 5),
     allFeaturesZeroShare: round(allFeaturesZero / n, 5),
     scoreSpan: OBM_SCORE_SPAN,
     note: 'DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read '
       + 'seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and '
-      + 'no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE '
-      + 'share: samples where the body perceived NO opponent, whose policy is the no-policy '
-      + 'point and NOT a reading that nobody was near him.',
+      + 'no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT '
+      + 'LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, '
+      + 'which claimed more than it measured. Its complement `allFeaturesZeroShare` is the '
+      + 'ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of '
+      + 'it: all four features also read exactly zero with opponents PRESENT (every one of them '
+      + 'beyond the feature\'s own radius, or the body\'s readings fresh enough that f4 is 0). '
+      + 'What it does license is the direction the gate needs — a body whose features are all '
+      + 'zero has the no-policy point, and that class is small.',
   };
 };
 
@@ -1476,9 +1490,10 @@ const armSummary = (rows: PerMatch[]) => {
         + 'row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm\'s '
         + 'own driving features read zero at that moment (for an f1 corner: the carrier is not '
         + 'perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine '
-        + 'silence, no perceived opponent at all, which the delivered-dose read prices '
-        + 'separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is '
-        + 'slop and none of them is a gate on its own.',
+        + 'silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS '
+        + 'FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, '
+        + 'because four zero features also occur with opponents PRESENT beyond the feature '
+        + 'radii). None of the four classes is slop and none of them is a gate on its own.',
       clampNote: 'CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / '
         + '±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly.',
     },
@@ -2272,24 +2287,72 @@ const saturationCeilings = {
 const srcDiff = gitSay('git diff --stat -- src');
 const head = gitSay('git rev-parse --short HEAD');
 
-const walkedBlocks = [
-  { name: 'exam', first: RUN_BASE, last: RUN_BASE + RUN_N - 1 },
-  { name: 'reproO2 (re-walk)', first: REPRO_O2_BASE, last: REPRO_O2_BASE + REPRO_O2_N - 1 },
-  { name: 'repro173 (re-walk)', first: REPRO173_BASE, last: REPRO173_BASE + REPRO173_N - 1 },
-  { name: 'reproGgc (re-walk)', first: REPRO_GGC_BASE, last: REPRO_GGC_BASE + REPRO_GGC_N - 1 },
-];
-const examCollisions = CONSUMED
-  .filter((c) => !((RUN_BASE + RUN_N - 1) < c.range[0] || RUN_BASE > c.range[1]))
-  .map((c) => c.name);
 /** ⭐ THE BATTERY BLOCK IS NOW N-DERIVED (the ruled amendment), so its clash-freedom is CHECKED
  *  rather than pinned to a typed end-seed: it must clear the guard block below and the next
  *  consumed interval above. */
 const batteryN = nRule.nStar ?? 0;
 const batteryLast = BATTERY_BASE + batteryN - 1;
-const batteryCollisions = CONSUMED
-  .filter((c) => !(batteryLast < c.range[0] || BATTERY_BASE > c.range[1]))
-  .map((c) => c.name);
-const subBlocksOrdered = SMOKE_BASE + SMOKE_N - 1 < GUARD_BLOCK[0]
+const ledgerHits = (first: number, last: number): string[] => CONSUMED
+  .filter((c) => !(last < c.range[0] || first > c.range[1])).map((c) => c.name);
+/** ⭐ EVERY BLOCK THIS STAGE TOUCHES, MACHINE-CHECKED — not just the exam one (the pre-battery
+ *  correction). Three kinds, each with its OWN predicate, because they are not the same claim:
+ *   · `fresh`    — data this run creates and reads as evidence (the exam walk AND the DECLARED
+ *                  delivered-dose read). MUST be clash-free against the complete ledger.
+ *   · `reserved` — declared for this stage and walked by nothing yet (the exit-semantics guard
+ *                  block, the N-derived battery block). MUST also be clash-free.
+ *   · `re-walk`  — a DELIBERATE receipt walk of a SOURCE's own committed block (all FOUR of
+ *                  them). Its overlap with the ledger IS THE POINT, so the predicate inverts:
+ *                  it must land INSIDE a consumed interval, and a re-walk that came back
+ *                  clash-free would mean it is walking fresh seeds and is NOT a receipt.
+ *  The stage's own (fresh + reserved) blocks must additionally be pairwise disjoint. */
+type BlockKind = 'fresh' | 'reserved' | 're-walk';
+const walkedBlocksRaw: { name: string; first: number; last: number; kind: BlockKind }[] = [
+  { name: 'exam', first: RUN_BASE, last: RUN_BASE + RUN_N - 1, kind: 'fresh' },
+  {
+    name: 'deliveredDoseRead (the DECLARED fourth block, observational)',
+    first: DOSE_READ_SEED, last: DOSE_READ_SEED, kind: 'fresh',
+  },
+  {
+    name: 'exitSemanticsGuard (reserved)',
+    first: GUARD_BLOCK[0], last: GUARD_BLOCK[1], kind: 'reserved',
+  },
+  { name: 'battery (reserved, N-derived)', first: BATTERY_BASE, last: batteryLast, kind: 'reserved' },
+  {
+    name: 'reproO2 (re-walk)',
+    first: REPRO_O2_BASE, last: REPRO_O2_BASE + REPRO_O2_N - 1, kind: 're-walk',
+  },
+  {
+    name: 'repro173 (re-walk)',
+    first: REPRO173_BASE, last: REPRO173_BASE + REPRO173_N - 1, kind: 're-walk',
+  },
+  {
+    name: 'reproGgc (re-walk)',
+    first: REPRO_GGC_BASE, last: REPRO_GGC_BASE + REPRO_GGC_N - 1, kind: 're-walk',
+  },
+  {
+    name: 'reproCtbT1 (re-walk)',
+    first: REPRO_CTBT1_BASE, last: REPRO_CTBT1_BASE + REPRO_CTBT1_N - 1, kind: 're-walk',
+  },
+];
+const walkedBlocks = walkedBlocksRaw.map((b) => {
+  const ledgerCollisions = ledgerHits(b.first, b.last);
+  return {
+    ...b,
+    seeds: b.last - b.first + 1,
+    ledgerCollisions,
+    /** re-walks must HIT their source; fresh and reserved blocks must hit nothing. */
+    ok: b.kind === 're-walk' ? ledgerCollisions.length > 0 : ledgerCollisions.length === 0,
+  };
+});
+const stageOwnBlocks = walkedBlocks.filter((b) => b.kind !== 're-walk');
+const stageOwnOverlaps = stageOwnBlocks.flatMap((a, i) => stageOwnBlocks.slice(i + 1)
+  .filter((b) => !(a.last < b.first || b.last < a.first))
+  .map((b) => `${a.name} × ${b.name}`));
+const blockFailures = walkedBlocks.filter((b) => !b.ok).map((b) => b.name);
+const examCollisions = ledgerHits(RUN_BASE, RUN_BASE + RUN_N - 1);
+const batteryCollisions = ledgerHits(BATTERY_BASE, batteryLast);
+const subBlocksOrdered = SMOKE_BASE + SMOKE_N - 1 < DOSE_READ_SEED
+  && DOSE_READ_SEED < GUARD_BLOCK[0]
   && GUARD_BLOCK[1] < BATTERY_BASE
   && batteryN > 0 && batteryLast < NEXT_CONSUMED_AFTER_BATTERY
   && batteryCollisions.length === 0;
@@ -2456,7 +2519,7 @@ const gArmRows = Object.fromEntries(ARMS.map((a) => {
     meanShiftMetres: round(sum((r) => r.supportShiftSum) / Math.max(1, supportTicks), 4),
     /* ⭐ FEATURES NON-DEGENERATE (the delivered-dose read, same world in every arm) */
     doseSawSnapshotShare: dose.sawSnapshotShare,
-    doseSawOpponentShare: dose.sawPerceivedOpponentShare,
+    doseSomeFeatureNonZeroShare: dose.someFeatureNonZeroShare,
     doseFeatureMeans: dose.featureMeans,
     semantics: '⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. '
       + 'ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix '
@@ -2470,13 +2533,15 @@ const gArmRows = Object.fromEntries(ARMS.map((a) => {
       + 'never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the '
       + 'DOSED FEATURES read zero at that moment — for the f1 corners that is "the carrier is '
       + 'not perceived-pressed", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. '
-      + 'Genuine blindness (no perceived opponent at all) is the delivered-dose read\'s '
-      + '`allFeaturesZeroShare`, and it is ~1 % of samples.',
+      + 'Genuine blindness is BOUNDED ABOVE by the delivered-dose read\'s `allFeaturesZeroShare` '
+      + '(~1 % of samples) — that share is every sample whose four features all read zero, which '
+      + 'INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on '
+      + 'blindness and not a measurement of it.',
   }];
 }));
 const gArmPass = ARMS.every((a) => {
   const g = (gArmRows as any)[a];
-  const featuresLive = g.doseSawSnapshotShare > 0 && g.doseSawOpponentShare > 0
+  const featuresLive = g.doseSawSnapshotShare > 0 && g.doseSomeFeatureNonZeroShare > 0
     && (g.doseFeatureMeans as number[]).every((v) => v > 0);
   if (!featuresLive || !g.partitionExact || g.zeroPlaneMoved !== 0) return false;
   if (g.seedsWithSupportTicks !== RUN_N) return false;
@@ -2515,14 +2580,24 @@ const gBlindWorld = {
     + 'PAIRED contrast is unaffected.',
   perArm: Object.fromEntries(ARMS.map((a) => [a, {
     sawSnapshotShare: core0Dose[a].sawSnapshotShare,
-    sawPerceivedOpponentShare: core0Dose[a].sawPerceivedOpponentShare,
+    someFeatureNonZeroShare: core0Dose[a].someFeatureNonZeroShare,
     allFeaturesZeroShare: core0Dose[a].allFeaturesZeroShare,
     featureMeans: core0Dose[a].featureMeans,
     featureKeys: OBM_FEATURE_KEYS,
   }])),
+  /** ⚠ THE PREDICATE, RE-CUT TO WHAT IT MEASURES (pre-battery correction, no level moves): the
+   *  third limb was named `sawPerceivedOpponentShare > 0` and read as "opponents are perceived".
+   *  It is `someFeatureNonZeroShare > 0` — at least one of the four features is non-zero on at
+   *  least one sample — which is exactly the NON-DEGENERACY this gate needs and nothing more.
+   *  The complement `allFeaturesZeroShare` is published as an UPPER BOUND on genuine blindness. */
+  predicate: 'edsPerceivedChoice TRUE in every arm\'s CONSTRUCTED world · sawSnapshotShare > 0 · '
+    + 'someFeatureNonZeroShare > 0 (at least one of the four features non-zero) · all four '
+    + 'feature MEANS strictly positive. ⚠ NOT a claim that opponents were perceived on any '
+    + 'particular sample: `allFeaturesZeroShare` bounds genuine blindness from ABOVE, because '
+    + 'four zero features also occur with opponents present beyond the feature radii.',
   pass: ARMS.every((a) => (armWorlds as any)[a].edsPerceivedChoice === true
     && core0Dose[a].sawSnapshotShare > 0
-    && core0Dose[a].sawPerceivedOpponentShare > 0
+    && core0Dose[a].someFeatureNonZeroShare > 0
     && core0Dose[a].featureMeans.every((v) => v > 0)),
 };
 
@@ -2637,19 +2712,36 @@ const gates = {
       + 'is taken from.',
   },
   seedDisjoint: {
-    pass: examCollisions.length === 0 && subBlocksOrdered,
-    walkedBlocks, examCollisions, subBlocksOrdered, batteryCollisions,
+    pass: blockFailures.length === 0 && stageOwnOverlaps.length === 0
+      && examCollisions.length === 0 && subBlocksOrdered,
+    walkedBlocks,
+    blockFailures,
+    stageOwnOverlaps,
+    examCollisions,
+    subBlocksOrdered,
+    batteryCollisions,
     subBlocks: {
       smoke: `${SMOKE_BASE}..${SMOKE_BASE + SMOKE_N - 1}`,
+      deliveredDoseRead: `${DOSE_READ_SEED}`,
       exitSemanticsGuard: `${GUARD_BLOCK[0]}..${GUARD_BLOCK[1]}`,
       battery: `${BATTERY_BASE}..${batteryLast}`,
       batteryN,
       batteryRoom: BATTERY_ROOM,
       nextConsumedAfterBattery: NEXT_CONSUMED_AFTER_BATTERY,
     },
-    reproBlocksNote: 'the two repro blocks are DELIBERATE re-walks of the SOURCES\' own committed '
-      + 'blocks (receipts, never fresh data), so their overlap with the ledger is the point; only '
-      + 'the EXAM block must be clash-free.',
+    coverageNote: '⭐ EVERY BLOCK THIS STAGE TOUCHES IS MACHINE-CHECKED HERE (the pre-battery '
+      + 'correction; the earlier cut computed only four walked blocks and left the DECLARED '
+      + 'delivered-dose read, the reserved guard and battery blocks and the CTB-T1 re-walk out '
+      + 'of the machine check): 2 FRESH (exam · delivered-dose read) + 2 RESERVED (guard · '
+      + 'battery) + 4 RE-WALKS (O2-T1 · #173 · GGC · ⭐ CTB-T1).',
+    reproBlocksNote: 'the FOUR repro blocks (O2-T1 · #173 · GGC · ⭐ CTB-T1) are DELIBERATE '
+      + 're-walks of the SOURCES\' own committed blocks — receipts, never fresh data — so their '
+      + 'overlap with the ledger is THE POINT and their predicate is INVERTED: each must land '
+      + 'INSIDE a consumed interval (`ledgerCollisions` NON-EMPTY), and a re-walk that came back '
+      + 'clash-free would prove it is walking fresh seeds instead of reproducing a receipt. The '
+      + 'FRESH blocks (exam, delivered-dose read) and the RESERVED ones (guard, battery) carry '
+      + 'the ordinary predicate: `ledgerCollisions` EMPTY, and pairwise disjoint from each other '
+      + '(`stageOwnOverlaps`).',
     consumedLedger: CONSUMED,
   },
   statsDisjoint: {

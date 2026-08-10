@@ -451,7 +451,7 @@
         "clampXShare": 0.015394,
         "clampYBoundTicks": 18,
         "clampYShare": 0.000114,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -755,7 +755,7 @@
         "clampXShare": 0.015394,
         "clampYBoundTicks": 18,
         "clampYShare": 0.000114,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -1059,7 +1059,7 @@
         "clampXShare": 0.007876,
         "clampYBoundTicks": 173,
         "clampYShare": 0.000938,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -1363,7 +1363,7 @@
         "clampXShare": 0.005574,
         "clampYBoundTicks": 217,
         "clampYShare": 0.001303,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -1667,7 +1667,7 @@
         "clampXShare": 0.026787,
         "clampYBoundTicks": 112,
         "clampYShare": 0.000786,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -1971,7 +1971,7 @@
         "clampXShare": 0.010897,
         "clampYBoundTicks": 41,
         "clampYShare": 0.000291,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -2275,7 +2275,7 @@
         "clampXShare": 0.013041,
         "clampYBoundTicks": 31,
         "clampYShare": 0.000185,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -2579,7 +2579,7 @@
         "clampXShare": 0.004861,
         "clampYBoundTicks": 3208,
         "clampYShare": 0.017803,
-        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence, no perceived opponent at all, which the delivered-dose read prices separately as `allFeaturesZeroShare` (~1 % of samples). None of the four classes is slop and none of them is a gate on its own.",
+        "deliveredNote": "⭐ DOSE ≠ DELIVERED, published so it cannot be assumed away. The matrix is the DOSE; what the executor actually consumes is the composed PLANE, whose size is the mean of the WEIGHTED FEATURES — and the features are small on average (#228.6: f1 0.184 · f2 0.456 · f3 0.216 · f4 0.171). The four support-tick classes partition exactly: SHIFTED · PLANE-ZERO · PLANE-ABSENT (no decision inside OBM_POLICY_TTL_TICKS — the cadence cap) · UNSHIFTED-CLAMP-BOUND (the INCUMBENT pitch clamp pinned both pre-clamp values to the same bound). ⭐ READ PLANE-ZERO CAREFULLY: it has THREE causes, and only one of them is blindness — (i) this arm doses no plane row at all (a SCORE-only corner moves no geometry BY CONSTRUCTION); (ii) this arm's own driving features read zero at that moment (for an f1 corner: the carrier is not perceived-pressed — the CONCENTRATION the hypothesis is about); (iii) genuine silence — nothing this body reads is non-zero — which the delivered-dose read BOUNDS FROM ABOVE as `allFeaturesZeroShare` (~1 % of samples; a ceiling, not a measurement, because four zero features also occur with opponents PRESENT beyond the feature radii). None of the four classes is slop and none of them is a gate on its own.",
         "clampNote": "CLAMP SATURATION (#224.4(ii)): the INCUMBENT pitch clamps ±(HALF_L−2) / ±(HALF_W−2) bind on real ticks. Published so the dose-response reads honestly."
       },
       "guards": {
@@ -2695,10 +2695,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99939,
-      "sawPerceivedOpponentShare": 0.99221,
+      "someFeatureNonZeroShare": 0.99221,
       "allFeaturesZeroShare": 0.00779,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "armedZero": {
       "seed": 12424040,
@@ -2779,10 +2779,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99939,
-      "sawPerceivedOpponentShare": 0.99221,
+      "someFeatureNonZeroShare": 0.99221,
       "allFeaturesZeroShare": 0.00779,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "checkWhenPressed": {
       "seed": 12424040,
@@ -2863,10 +2863,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99939,
-      "sawPerceivedOpponentShare": 0.99325,
+      "someFeatureNonZeroShare": 0.99325,
       "allFeaturesZeroShare": 0.00675,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "checkAndShow": {
       "seed": 12424040,
@@ -2947,10 +2947,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99938,
-      "sawPerceivedOpponentShare": 0.9937,
+      "someFeatureNonZeroShare": 0.9937,
       "allFeaturesZeroShare": 0.0063,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "markerEscape": {
       "seed": 12424040,
@@ -3031,10 +3031,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99941,
-      "sawPerceivedOpponentShare": 0.99403,
+      "someFeatureNonZeroShare": 0.99403,
       "allFeaturesZeroShare": 0.00597,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "spaceSeek": {
       "seed": 12424040,
@@ -3115,10 +3115,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99941,
-      "sawPerceivedOpponentShare": 0.99401,
+      "someFeatureNonZeroShare": 0.99401,
       "allFeaturesZeroShare": 0.00599,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "staleCaution": {
       "seed": 12424040,
@@ -3199,10 +3199,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99938,
-      "sawPerceivedOpponentShare": 0.99125,
+      "someFeatureNonZeroShare": 0.99125,
       "allFeaturesZeroShare": 0.00875,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     },
     "kitchenSink": {
       "seed": 12424040,
@@ -3283,10 +3283,10 @@
         "max": 1
       },
       "sawSnapshotShare": 0.99938,
-      "sawPerceivedOpponentShare": 0.98962,
+      "someFeatureNonZeroShare": 0.98962,
       "allFeaturesZeroShare": 0.01038,
       "scoreSpan": 0.4,
-      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `allFeaturesZeroShare` is the ZERO-IS-SILENCE share: samples where the body perceived NO opponent, whose policy is the no-policy point and NOT a reading that nobody was near him."
+      "note": "DESCRIPTIVE ONLY, on ONE observational match per arm at the DECLARED dose-read seed. The percept pulls here perturb THIS match and no other; no exam row, no CI and no gate level is computed from it. ⭐ `someFeatureNonZeroShare` counts samples where AT LEAST ONE of the four features is non-zero — RENAMED from `sawPerceivedOpponentShare`, which claimed more than it measured. Its complement `allFeaturesZeroShare` is the ZERO-IS-SILENCE share and is an UPPER BOUND on genuine blindness, NOT a measurement of it: all four features also read exactly zero with opponents PRESENT (every one of them beyond the feature's own radius, or the body's readings fresh enough that f4 is 0). What it does license is the direction the gate needs — a body whose features are all zero has the no-policy point, and that class is small."
     }
   },
   "contrasts": {
@@ -9206,8 +9206,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "849587f8c86ef448c8ad4e9d470e8c937452b088832ea4dcbb37d914c6ee6c61",
-      "digestB": "849587f8c86ef448c8ad4e9d470e8c937452b088832ea4dcbb37d914c6ee6c61",
+      "digestA": "b1aa0a721ed6616ca919edd1e9b9b94e6f968b48ee8513aa5a8b6181da146f50",
+      "digestB": "b1aa0a721ed6616ca919edd1e9b9b94e6f968b48ee8513aa5a8b6181da146f50",
       "note": "the WHOLE computation (all 8 arms + both repro walks + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
     },
     "xFpProd": {
@@ -9238,7 +9238,7 @@
       "perArm": {
         "absent": {
           "sawSnapshotShare": 0.99939,
-          "sawPerceivedOpponentShare": 0.99221,
+          "someFeatureNonZeroShare": 0.99221,
           "allFeaturesZeroShare": 0.00779,
           "featureMeans": [
             0.23303,
@@ -9255,7 +9255,7 @@
         },
         "armedZero": {
           "sawSnapshotShare": 0.99939,
-          "sawPerceivedOpponentShare": 0.99221,
+          "someFeatureNonZeroShare": 0.99221,
           "allFeaturesZeroShare": 0.00779,
           "featureMeans": [
             0.23303,
@@ -9272,7 +9272,7 @@
         },
         "checkWhenPressed": {
           "sawSnapshotShare": 0.99939,
-          "sawPerceivedOpponentShare": 0.99325,
+          "someFeatureNonZeroShare": 0.99325,
           "allFeaturesZeroShare": 0.00675,
           "featureMeans": [
             0.22813,
@@ -9289,7 +9289,7 @@
         },
         "checkAndShow": {
           "sawSnapshotShare": 0.99938,
-          "sawPerceivedOpponentShare": 0.9937,
+          "someFeatureNonZeroShare": 0.9937,
           "allFeaturesZeroShare": 0.0063,
           "featureMeans": [
             0.22289,
@@ -9306,7 +9306,7 @@
         },
         "markerEscape": {
           "sawSnapshotShare": 0.99941,
-          "sawPerceivedOpponentShare": 0.99403,
+          "someFeatureNonZeroShare": 0.99403,
           "allFeaturesZeroShare": 0.00597,
           "featureMeans": [
             0.2819,
@@ -9323,7 +9323,7 @@
         },
         "spaceSeek": {
           "sawSnapshotShare": 0.99941,
-          "sawPerceivedOpponentShare": 0.99401,
+          "someFeatureNonZeroShare": 0.99401,
           "allFeaturesZeroShare": 0.00599,
           "featureMeans": [
             0.21146,
@@ -9340,7 +9340,7 @@
         },
         "staleCaution": {
           "sawSnapshotShare": 0.99938,
-          "sawPerceivedOpponentShare": 0.99125,
+          "someFeatureNonZeroShare": 0.99125,
           "allFeaturesZeroShare": 0.00875,
           "featureMeans": [
             0.19557,
@@ -9357,7 +9357,7 @@
         },
         "kitchenSink": {
           "sawSnapshotShare": 0.99938,
-          "sawPerceivedOpponentShare": 0.98962,
+          "someFeatureNonZeroShare": 0.98962,
           "allFeaturesZeroShare": 0.01038,
           "featureMeans": [
             0.19924,
@@ -9373,6 +9373,7 @@
           ]
         }
       },
+      "predicate": "edsPerceivedChoice TRUE in every arm's CONSTRUCTED world · sawSnapshotShare > 0 · someFeatureNonZeroShare > 0 (at least one of the four features non-zero) · all four feature MEANS strictly positive. ⚠ NOT a claim that opponents were perceived on any particular sample: `allFeaturesZeroShare` bounds genuine blindness from ABOVE, because four zero features also occur with opponents present beyond the feature radii.",
       "pass": true
     },
     "gForkTokens": {
@@ -9673,36 +9674,100 @@
         {
           "name": "exam",
           "first": 12424026,
-          "last": 12424037
+          "last": 12424037,
+          "kind": "fresh",
+          "seeds": 12,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "deliveredDoseRead (the DECLARED fourth block, observational)",
+          "first": 12424040,
+          "last": 12424040,
+          "kind": "fresh",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "exitSemanticsGuard (reserved)",
+          "first": 12424050,
+          "last": 12424099,
+          "kind": "reserved",
+          "seeds": 50,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "battery (reserved, N-derived)",
+          "first": 12424100,
+          "last": 12424727,
+          "kind": "reserved",
+          "seeds": 628,
+          "ledgerCollisions": [],
+          "ok": true
         },
         {
           "name": "reproO2 (re-walk)",
           "first": 12422100,
-          "last": 12422111
+          "last": 12422111,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "O2-T1 battery + reserve (#222)"
+          ],
+          "ok": true
         },
         {
           "name": "repro173 (re-walk)",
           "first": 12293000,
-          "last": 12293039
+          "last": 12293039,
+          "kind": "re-walk",
+          "seeds": 40,
+          "ledgerCollisions": [
+            "tempo census"
+          ],
+          "ok": true
         },
         {
           "name": "reproGgc (re-walk)",
           "first": 12421000,
-          "last": 12421011
+          "last": 12421011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "goal-genealogy census band (#214/#217)"
+          ],
+          "ok": true
+        },
+        {
+          "name": "reproCtbT1 (re-walk)",
+          "first": 12423100,
+          "last": 12423107,
+          "kind": "re-walk",
+          "seeds": 8,
+          "ledgerCollisions": [
+            "CTB-T1 battery + reserve (#225/#226)"
+          ],
+          "ok": true
         }
       ],
+      "blockFailures": [],
+      "stageOwnOverlaps": [],
       "examCollisions": [],
       "subBlocksOrdered": true,
       "batteryCollisions": [],
       "subBlocks": {
         "smoke": "12424026..12424037",
+        "deliveredDoseRead": "12424040",
         "exitSemanticsGuard": "12424050..12424099",
         "battery": "12424100..12424727",
         "batteryN": 628,
         "batteryRoom": 800,
         "nextConsumedAfterBattery": 12424900
       },
-      "reproBlocksNote": "the two repro blocks are DELIBERATE re-walks of the SOURCES' own committed blocks (receipts, never fresh data), so their overlap with the ledger is the point; only the EXAM block must be clash-free.",
+      "coverageNote": "⭐ EVERY BLOCK THIS STAGE TOUCHES IS MACHINE-CHECKED HERE (the pre-battery correction; the earlier cut computed only four walked blocks and left the DECLARED delivered-dose read, the reserved guard and battery blocks and the CTB-T1 re-walk out of the machine check): 2 FRESH (exam · delivered-dose read) + 2 RESERVED (guard · battery) + 4 RE-WALKS (O2-T1 · #173 · GGC · ⭐ CTB-T1).",
+      "reproBlocksNote": "the FOUR repro blocks (O2-T1 · #173 · GGC · ⭐ CTB-T1) are DELIBERATE re-walks of the SOURCES' own committed blocks — receipts, never fresh data — so their overlap with the ledger is THE POINT and their predicate is INVERTED: each must land INSIDE a consumed interval (`ledgerCollisions` NON-EMPTY), and a re-walk that came back clash-free would prove it is walking fresh seeds instead of reproducing a receipt. The FRESH blocks (exam, delivered-dose read) and the RESERVED ones (guard, battery) carry the ordinary predicate: `ledgerCollisions` EMPTY, and pairwise disjoint from each other (`stageOwnOverlaps`).",
       "consumedLedger": [
         {
           "name": "#65 whether-seat block (repro receipt)",
@@ -10477,14 +10542,14 @@
           "genesOnAllViewsSeeds": 0,
           "meanShiftMetres": 0,
           "doseSawSnapshotShare": 0.99939,
-          "doseSawOpponentShare": 0.99221,
+          "doseSomeFeatureNonZeroShare": 0.99221,
           "doseFeatureMeans": [
             0.23303,
             0.50135,
             0.23766,
             0.15501
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "armedZero": {
           "armed": true,
@@ -10516,14 +10581,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 0,
           "doseSawSnapshotShare": 0.99939,
-          "doseSawOpponentShare": 0.99221,
+          "doseSomeFeatureNonZeroShare": 0.99221,
           "doseFeatureMeans": [
             0.23303,
             0.50135,
             0.23766,
             0.15501
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "checkWhenPressed": {
           "armed": true,
@@ -10555,14 +10620,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 0.5067,
           "doseSawSnapshotShare": 0.99939,
-          "doseSawOpponentShare": 0.99325,
+          "doseSomeFeatureNonZeroShare": 0.99325,
           "doseFeatureMeans": [
             0.22813,
             0.50016,
             0.2477,
             0.15624
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "checkAndShow": {
           "armed": true,
@@ -10594,14 +10659,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 0.6326,
           "doseSawSnapshotShare": 0.99938,
-          "doseSawOpponentShare": 0.9937,
+          "doseSomeFeatureNonZeroShare": 0.9937,
           "doseFeatureMeans": [
             0.22289,
             0.50833,
             0.23591,
             0.15559
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "markerEscape": {
           "armed": true,
@@ -10633,14 +10698,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 1.8178,
           "doseSawSnapshotShare": 0.99941,
-          "doseSawOpponentShare": 0.99403,
+          "doseSomeFeatureNonZeroShare": 0.99403,
           "doseFeatureMeans": [
             0.2819,
             0.53556,
             0.25021,
             0.14982
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "spaceSeek": {
           "armed": true,
@@ -10672,14 +10737,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 1.3635,
           "doseSawSnapshotShare": 0.99941,
-          "doseSawOpponentShare": 0.99401,
+          "doseSomeFeatureNonZeroShare": 0.99401,
           "doseFeatureMeans": [
             0.21146,
             0.46796,
             0.2447,
             0.15352
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "staleCaution": {
           "armed": true,
@@ -10711,14 +10776,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 0,
           "doseSawSnapshotShare": 0.99938,
-          "doseSawOpponentShare": 0.99125,
+          "doseSomeFeatureNonZeroShare": 0.99125,
           "doseFeatureMeans": [
             0.19557,
             0.47533,
             0.23331,
             0.1571
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         },
         "kitchenSink": {
           "armed": true,
@@ -10750,14 +10815,14 @@
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 4.3308,
           "doseSawSnapshotShare": 0.99938,
-          "doseSawOpponentShare": 0.98962,
+          "doseSomeFeatureNonZeroShare": 0.98962,
           "doseFeatureMeans": [
             0.19924,
             0.47417,
             0.26189,
             0.15533
           ],
-          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness (no perceived opponent at all) is the delivered-dose read's `allFeaturesZeroShare`, and it is ~1 % of samples."
+          "semantics": "⭐ DELIVERY ON THE AXES THIS ARM DOSES, AND SILENCE ON THE ONES IT DOES NOT. ARMED arms: the seat must be REACHED (policy-cache writes > 0 on every seed, the matrix on all six genome views) and every support tick must fall in exactly one of the four accounted classes — SHIFTED · PLANE-ZERO · PLANE-ABSENT (the TTL cadence cap) · UNSHIFTED-CLAMP-BOUND. An arm that doses a PLANE row must SHIFT geometry; an arm that does NOT dose a plane row must shift EXACTLY NOTHING. An arm that doses a SCORE row must produce a non-neutral multiplier; an arm that does not must leave both multipliers at EXACTLY 1. ARMED-ZERO therefore has to be silent on all four axes with its planes PRESENT — that is the identity, and it is the strongest statement in this table. ABSENT never writes a policy at all. ⚠ NOTE ON PLANE-ZERO: a plane of exactly (0,0) means the DOSED FEATURES read zero at that moment — for the f1 corners that is \"the carrier is not perceived-pressed\", i.e. the CONCENTRATION the hypothesis predicts, NOT blindness. Genuine blindness is BOUNDED ABOVE by the delivered-dose read's `allFeaturesZeroShare` (~1 % of samples) — that share is every sample whose four features all read zero, which INCLUDES samples with opponents present beyond the feature radii, so it is a ceiling on blindness and not a measurement of it."
         }
       }
     },
@@ -10770,10 +10835,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "4a3bc707e1e2ab34789a34b2e9fe0a1a9075a5e5b63153c877bd03f38d31ec71",
+  "resultSha256": "8d85085761381d7c6aafced6ed21c911ec22f4aec8930369af00c8f2c46d3639",
   "envelopeContextOnly": {
-    "headContextOnly": "8cc81e0",
-    "wallMsContextOnly": 327755,
+    "headContextOnly": "1f8492c",
+    "wallMsContextOnly": 331670,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/obm-t1-policy-exam-smoke.json",
     "srcDiffStat": "",
