@@ -9727,3 +9727,72 @@
 >    104,800 (none used at T0).
 > 5. **QUEUED**: CTB-T1 — the SUPPORT-SUPPLY EXAM (the PM-T1
 >    hand-dose form per contract §3) dispatches on the next "go".
+
+> **COMMANDER RULING #225 (2026-08-10 — SELF-DRIVE ARC OPENED (the
+> user ruled 自走); CTB-T1 drafted + verified + pre-battery
+> adjudications ruled + fix rounds banked; the N = 628 battery
+> LAUNCHES):**
+>
+> 1. **SELF-DRIVE OPENED**: plan = T1 full cycle → if PASS, chain
+>    CTB-T2 co-evolution (the user's pre-registered hypothesis) →
+>    STOP before the play-test entry (a user gate). STOPs =
+>    F-CTB-a/b/c, hard escalations, user gates (#195 form).
+> 2. **CTB-T1 DRAFTED + VERIFIED** (`cebec04`): machine-verify FAIL
+>    by rubric (1 MEDIUM + 3 LOW, all disclosure-layer) with every
+>    core claim independently reproduced — the smoke regenerated
+>    byte-identical at a DIFFERENT commit (#197-M1 at full
+>    strength), both inheritance gates re-derived by hand
+>    (G-REPRO-O2T1 12/12 rows; G-REPRO-173 field-for-field), the N
+>    rule reproduced from committed artifacts to every digit,
+>    ARMED-ZERO ≡ ABSENT 12/12 incl. the rng stream, and the dose
+>    proven to survive the Phase-35 effGenome rebuild (the genes
+>    cannot silently die mid-match).
+> 3. **PRE-BATTERY ADJUDICATIONS (all ex ante — no battery number
+>    exists)**: (a) **N = 628**, the in-probe rule's own number —
+>    the 500 cap was the dispatch's, removing it is strictly more
+>    powered; battery block 12,423,100–727. (b) **PRIMARY RULER =
+>    rulers 1+2** (TRUE-holdable supply · pressed-first-reception)
+>    — the two unsaturated quantities; rulers 3/4 (short-option /
+>    support-existence) demoted to REPORTED with their ceilings
+>    DISCLOSED (absent 3b 97.09 % · 4b 97.40 % — ⭐ the decode note
+>    of record: the radius-family proximity predicate is ~94.5 %
+>    saturated in the bare world; SCARCITY LIVES IN SAFE SUPPORT,
+>    NOT RAW PROXIMITY — exactly the wedge exam's lesson from the
+>    receiving side). (c) **STOP GRANULARITY FROZEN**: F-CTB-b/c
+>    fire PER-DOSE (a breaching dose is disqualified); the ARC
+>    STOP fires only if every helpfully-moving dose is
+>    disqualified (the #209–211 ladder logic). (d) **CLAMP
+>    READING**: span-end rows read as DELIVERED geometry (mean
+>    shift + clamp shares beside every row; x-clamp binds 54.6 %
+>    at DEPTH-BACK, 57.3 % at CORNER); the depth primary read
+>    includes the interior −0.5 row. The band gates at battery N
+>    only, with the #198 control-fails exclusion. (e) **THE #218
+>    LIFT COMMISSIONED** — the verify proved the frame walks whole
+>    matches; the contract's named arc-grain ruler component is
+>    not dropped on scope grounds.
+> 4. **FIX ROUNDS BANKED** (`586db4e` + `56636fd`): the MEDIUM
+>    (uncomputed "4b needs far less" + undisclosed saturation) and
+>    all three LOWs corrected; the goal-genealogy origin
+>    classifier PORTED with hard gate **G-REPRO-GGC: 63/63 fields
+>    exact vs the committed census artifact — including the
+>    #215.3-H1 loss-vs-regain wedge (86/49) reproduced**; the five
+>    arc-ruler shares (constructed ≥3/4/5 · scramble · set-piece)
+>    added to the bootstrap (purely additive: all 1,512
+>    pre-existing rate leaves byte-identical; the identity arm
+>    reads Δ = 0 [0, 0] on every new column; REPORTED only — no
+>    gate reads them, §SUCCESS and the frozen STOP set unchanged).
+>    Final pre-battery receipt `3e3c8875…7fe6` (supersession chain
+>    `1ae8a6f5` → `ff377810` → final, all pre-battery, recorded).
+> 5. **SMOKE OBSERVATIONS OF RECORD (12 seeds — adjudicating
+>    nothing)**: ruler 1 reads LOW in every dosed arm (parked as a
+>    decode question); the helpful resolved moves live at
+>    first-reception grain (DEPTH-BACK +1.7–2.2 pp on 3b/4b);
+>    spacing-under-4m breaches at NARROW and CORNER-CHECK
+>    (F-CTB-b evidence-only at smoke grain); genealogy plumbing
+>    shakedown only (19–29 goals/arm).
+> 6. **LAUNCHED**: `CTBT1_MODE=full CTBT1_RESUME=1`, N = 628 × 8
+>    arms, stats base 104,800, detached process group + Tier-1
+>    artifact monitor (~1.6 h). Adjudication next against the
+>    FROZEN criteria: success = a dose moves ruler 1 or 2
+>    resolvedly in the helpful direction with that dose's guards
+>    held; F-CTB-a/b/c per #225.3(c).

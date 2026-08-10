@@ -452,18 +452,30 @@ CI-unprotected ⇒ T1 instruments short-option supply DIRECTLY;
 pitch-clamp saturation is part of the dose–response; the
 width axis stays one coherent scale unless a contract
 amendment says otherwise; no span re-cuts.
-**QUEUED NEXT STEP (on "go"): dispatch CTB-T1 — the
-SUPPORT-SUPPLY EXAM** (contract §3, the PM-T1 hand-dose form:
-plane arms deeper/shallower/narrower/wider + corners vs
-armed-zero + absent; ruler INHERITED — trueCellOf holdable
-supply [O2-T1] + pressed-first-reception [#173] +
-short-option supply [the Phase 30.5 quantity, instrumented
-directly] + #218 shares where the frame carries them; guards:
-interception ceiling [33/match history], offside flag, clump,
-band, X-family; F-CTB-a/b/c pre-named STOPs; seeds
-12,423,025+ free, stats ≥ 104,800). Then CTB-T2 co-evolution
-(the user's hypothesis pre-registered) → entry; 丙 behind the
-arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**SELF-DRIVE ARC OPEN (#225, the user ruled 自走): plan = T1
+full cycle → if PASS chain CTB-T2 → STOP before the play-test
+entry (user gate). CTB-T1 IS BUILT + VERIFIED + LAUNCHED
+(#225, `cebec04` + `586db4e` + `56636fd`)**: 8 hand-dose arms
+(absent · armed-zero identity [12/12 byte-identical incl.
+rng] · depth −1/−0.5/+1 · narrow · wide · corner), bare
+production world; ruler inherited with hard repro gates
+(G-REPRO-O2T1 12/12 · G-REPRO-173 exact · ⭐ G-REPRO-GGC 63/63
+incl. the #215 86/49 wedge — the #218 genealogy LIFTED into
+the exam with bootstrap CIs, REPORTED); pre-battery
+adjudications ex ante: N = 628 (the rule's own number),
+PRIMARY = rulers 1+2 (⭐ decode note: raw proximity ~94.5 %
+saturated — scarcity lives in SAFE support), F-CTB-b/c fire
+PER-DOSE (arc-STOP only if every helpful dose disqualifies),
+span-end rows = delivered geometry (x-clamp 54.6 % at
+DEPTH-BACK), band gates at battery N with #198 exclusion.
+Final pre-battery receipt `3e3c8875…7fe6`.
+**QUEUED NEXT STEP: adjudicate the CTB-T1 battery**
+(`CTBT1_MODE=full CTBT1_RESUME=1`, N = 628, block
+12,423,100–727, stats 104,800; success = a dose moves ruler 1
+or 2 resolvedly helpful with that dose's guards held;
+F-CTB-a/b/c per #225.3(c)). If PASS → chain CTB-T2
+co-evolution (the user's pre-registered hypothesis). 丙 behind
+the arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
