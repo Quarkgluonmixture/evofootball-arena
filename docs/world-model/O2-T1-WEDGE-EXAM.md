@@ -1,14 +1,16 @@
 # O2 T1 — THE WEDGE EXAM (the #186 sizing form re-run with the LOOK forced)
 
-Status: **PRE-REGISTERED, then SMOKED the same round.** The §FORM / §SEEDS /
-§GATES sections below were written **FROZEN BEFORE SIGHT** — from
-[`O2-LOOK-CONTRACT.md`](O2-LOOK-CONTRACT.md) §3, [`O2-OPENING-SIZING.md`](O2-OPENING-SIZING.md)
+Status: **PRE-REGISTERED, SMOKED the same round, and the N\* = 320 BATTERY RUN.**
+The §FORM / §SEEDS / §GATES sections below were written **FROZEN BEFORE SIGHT** —
+from [`O2-LOOK-CONTRACT.md`](O2-LOOK-CONTRACT.md) §3, [`O2-OPENING-SIZING.md`](O2-OPENING-SIZING.md)
 (#186) and [`O2-T0-DORMANT-SEAM.md`](O2-T0-DORMANT-SEAM.md) alone, before any
 O2-T1 datum existed. The measured numbers arrive only in
-[§RESULT (SMOKE)](#result--smoke) at the foot, and every number there is quoted
-**from the committed artifact**
-[`data/o2-t1-wedge-exam-smoke.json`](data/o2-t1-wedge-exam-smoke.json), never
-from a console transcript or from this doc's own prose (#181.2).
+[§RESULT (SMOKE)](#result--smoke) and
+[§RESULT (FULL BATTERY)](#result--full-battery) at the foot, and every number
+there is quoted **from the committed artifacts**
+[`data/o2-t1-wedge-exam-smoke.json`](data/o2-t1-wedge-exam-smoke.json) and
+[`data/o2-t1-wedge-exam.json`](data/o2-t1-wedge-exam.json), never from a console
+transcript or from this doc's own prose (#181.2).
 
 **NO design conclusion is drawn here.** The probe emits per-arm rows and paired
 deltas; it emits **no verdict line** (#203). F-O2a and F-O2b are pre-named in the
@@ -883,3 +885,970 @@ CONTROL, the #186 walker proved identical on two committed blocks (limb (a)
 #65's, limb (b) #186's own rows), and the battery N derived at **320** seeds/arm
 under the cap. **Nothing is adjudicated here** — the wedge exam's verdict, and
 F-O2a / F-O2b, are the commander's, on the battery.
+
+---
+
+## §RESULT — FULL BATTERY
+
+*(Every number in this section is quoted FROM the committed artifact
+[`data/o2-t1-wedge-exam.json`](data/o2-t1-wedge-exam.json), which is recomputed by
+`O2T1_MODE=full npx tsx scripts/probes/o2-t1-wedge-exam.ts`. The doc never carries
+evidence the artifact does not — #181.2.)*
+
+**Ran 2026-08-10 · `resultSha256`
+`2100760d267b197b18a7625e39bfc35c458e0f2227dfc2495d224f6eaf8a616b` ·
+X-DET core digest `b1489dd4b00faf4c7a8b8763b1dd155d7db2863465b53cf4cbfe6219e841126f`
+(both passes) · 320 shared seeds 12,422,100–12,422,419 (N* = 320, the pre-registered
+rule's binding limb) · **ALL 11 GATES PASS** (`allGatesPass: true`) · wall 1,590 s
+(CONTEXT ONLY, #128 — used in no rate, and riding the UNHASHED envelope).**
+
+⚠ **This is the RELAUNCHED battery.** The first battery on this block failed
+**G-FORCE** red on its cadence-identity limb; it was diagnosed **blind** (its gate
+block only, no exam number read by anyone), fixed at the measurement layer, and its
+artifact was **never committed and was deleted** — the full trail is in §GATES
+*"G-FORCE — correction of record"*, in §FORM (ii), and in deviations 9 and 10.
+`src/**` is byte-untouched across the whole episode
+(`envelopeContextOnly.srcDiffStat` is empty on this run).
+
+⭐ **The #221 diagnosis is validated by its own named class, arithmetically.** The
+red run recorded `scans` **115,308** against `liveWindowTicks` **116,568**. This run
+records `scans` **115,308** — the *same* number, as it must be, the engine being
+byte-identical — against `liveWindowTicks` **115,308** and
+`frozenPhaseTicksUnderLiveWindow` **1,260**. And **116,568 − 115,308 = 1,260 =
+10 × 126**, exactly the ten half-time-frozen windows the blind diagnosis predicted,
+at exactly the predicted 126 ticks each (72 half-time + 54 kickoff). The deficit did
+not disappear when the gate went green: it was **re-filed under its own name**.
+
+### Gate table — every value recomputed in-probe on the run that wrote the artifact
+
+| gate | verdict | evidence |
+| --- | --- | --- |
+| **X-DET** | ✅ PASS | the whole computation (both arms + both repro walks + every summary and bootstrap) run **twice**; hashed bodies byte-identical: `digestA === digestB === b1489dd4…126f` |
+| **X-FP-PROD** | ✅ PASS | observed `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` == the shipped baseline (seed 1337, 2 seasons) |
+| **G-REPRO-186** | ✅ PASS | limb (a) #65's block 8,500,000–047 reproduced **identically** against the #186 target; limb (b) #186's own block 12,310,000–011 reproduced **row-for-row on the CONTROL arm**, **0** mismatches |
+| **X-SRC-UNTOUCHED** | ✅ PASS | `git diff --stat -- src` **empty** on the run that wrote the artifact |
+| **X-RING-PIN** | ✅ PASS | `SCAN_FRAME_RING` read out of `src/sim/Match.ts` in-probe == **16** == expected |
+| **SEED-DISJOINT** | ✅ PASS | exam block 12,422,100–12,422,419: **0** collisions against the complete consumed ledger; sub-blocks ordered (smoke 12,422,000–011 · guard 12,422,050–099 · battery 12,422,100–899) |
+| **STATS-DISJOINT** | ✅ PASS | stats base **104,600**, min gap **200** from every published ≥91,100-regime base |
+| **FLAG-HYGIENE** | ✅ PASS | CONTROL == `CENSUS_FLAGS` + `o1PassWindup` exactly; LOOK == CONTROL + `o2Look` and **nothing else** (key-set equality + exactly one added key) |
+| **TABLE-DRIFT** | ✅ PASS | injected certified table `tableSha` == `184d1e84…0b53`; holdable-cell set == `["0\|0\|0"]` |
+| **G-FORCE** | ✅ PASS | LOOK: **11,964** looks, `looks > 0` on **320/320** seeds, **scans 115,308 === live window ticks 115,308** (the T0 cadence identity, read on the playing clock), `frozenPhaseTicksUnderLiveWindow` **1,260**, ledger closes with unexplained arms **0**. CONTROL: ledger **empty** (0 looks · 0 scans · 0 live ticks · 0 frozen ticks) |
+| **G-CLEAN-INVOCATION** | ✅ PASS | no env override in force (`O2T1_N` null, `O2T1_SKIP_FP` false); not routed to the guard block |
+
+### The headline table — both arms, 320 shared seeds
+
+Shares are of **eligible moments**: CONTROL **19,088** · LOOK **20,138**, from
+**25,582 / 25,600** qualifying (retained fraction **74.615 % / 78.6641 %**).
+Eligible per match: CONTROL mean **59.65** [47, 73] · LOOK mean **62.931** [47, 74].
+CIs are the paired per-match cluster bootstrap (2,000 resamples, ratio-of-totals,
+2.5/97.5, stats base 104,600, 320 clusters); `Δ` = **LOOK − CONTROL**, `resolved`
+iff the CI excludes 0.
+
+| quantity | CONTROL | LOOK | paired Δ (pp) [2.5, 97.5] | resolved? |
+| --- | --- | --- | --- | --- |
+| **PERCEIVED hold rate** (= the `D-HOLD` class share) | **0.0733 %** (n=14) | **0.0546 %** (n=11) | −0.0187 [−0.0754, +0.0367] | **no** |
+| **TRUE-context share** | **0.6391 %** (n=122) | **0.4817 %** (n=97) | **−0.1575** [−0.2901, −0.0172] | **YES** |
+| **wedge ratio (true ÷ perceived)** | **8.7143×**, CI [5.2083, 18.4286] (2,000/2,000 finite draws) | **8.8182×**, CI [4.8421, 22.2] (1,999/2,000 finite draws) | **+0.1039** [−10.2778, +13.55] (1,999 finite) | **no** |
+| **E-ABSTAIN-UNSEEN** | **68.179 %** (n=13,014) | **61.878 %** (n=12,461) | **−6.3009** [−7.4516, −5.1142] | **YES** |
+| **E-ACTNOW-DECLINED** | 31.4229 % (n=5,998) | 37.6899 % (n=7,590) | **+6.2671** [+5.0524, +7.4442] | **YES** |
+| **E-NOCELL** | 0.3248 % (n=62) | 0.3774 % (n=76) | +0.0526 [−0.0507, +0.1615] | no |
+| **M-CTX agreement (overall)** | **50.815 %** (placed 6,012) | **55.9137 %** (placed 7,601) | **+5.0987** [+2.8628, +7.2823] | **YES** |
+| — M-CTX **pressure** | 84.0652 % | 90.7381 % | **+6.6729** [+4.9261, +8.4665] | **YES** |
+| — M-CTX **stale** | 100 % | 100 % | 0 [0, 0] | no |
+| — M-CTX **support** | 58.5828 % | 59.0843 % | +0.5015 [−1.899, +2.8913] | no |
+| **turnover per spell** | **0.409024** | **0.443299** | **+0.034275** [+0.024942, +0.043182] | **YES** |
+| **turnovers / 1,000 walked ticks** | **3.368084** | **3.239743** | **−0.128341** [−0.232284, −0.02734] | **YES** |
+| **ringPressure share** | **0 %** | **6.2923 %** | **+0.062923** [+0.059084, +0.06665] | **YES** |
+| **DEV floor 0.29 % cleared?** | **no** | **no** | — | — |
+| matches to accumulate N_hold ≥ 446 | 10,195 | 12,975 | — | — |
+
+The **DEV floor is NOT re-cut** (#65.1): it stands at **0.29 %** share with
+`N_hold` floor **446**, and **neither arm clears it** at this N — the perceived-hold
+rate is 0.0733 % / 0.0546 %, so the floor would need **10,195 / 12,975** matches per
+arm. This is published as a standing measurement fact about the hold channel's
+rarity, exactly as it was at smoke; nothing here re-cuts it and nothing here is
+adjudicated from it.
+
+The **wedge contrast is defined on both arms at this N** (unlike the smoke, where
+the LOOK arm held zero times): both wedge CIs are wide, they overlap heavily, the
+paired delta's CI spans 0, and `lookWedgeCiExcludesControlPoint` is **false**. Those
+are mechanical CI properties (#203), stated and not interpreted here.
+
+### Exclusion mix (the declared population consequence, published so it is visible)
+
+| exclusion | CONTROL | LOOK |
+| --- | --- | --- |
+| first-touch window | 4,260 | 3,269 |
+| forced restart (`restartKickGid`) | 1,343 | 1,397 |
+| A0 `Shoot` | 878 | 764 |
+| A0 `ClearBall` | 13 | 32 |
+
+This is the shift §FORM declared **before sight**: under the re-decide lock the A0
+one-step fork reads the incumbent `Dribble` label in the LOOK arm, so the
+`Shoot`/`ClearBall` exclusions fire less often there and the first-touch exclusion
+falls — which is why the LOOK arm retains **more** eligible moments (20,138 vs
+19,088) from an almost identical qualifying count (25,600 vs 25,582). Declared
+consequence, published, not corrected for.
+
+### (i) The LOOK ledger — per arm, at scale
+
+| quantity | CONTROL | LOOK |
+| --- | --- | --- |
+| looks armed | 0 | **11,964** |
+| completed at the frozen 11 ticks | 0 | **9,600** |
+| aborted — not owned at the next head-of-tick (`abortedLoss`) | 0 | **2,222** |
+| aborted — phase / stun / sending-off | 0 | **0** |
+| E-ENDED (the walk ended mid-window) | 0 | **142** |
+| scan moments recorded | 0 | **115,308** |
+| live window ticks (playing clock) | 0 | **115,308** |
+| `frozenPhaseTicksUnderLiveWindow` (no scan possible; window cannot close) | 0 | **1,260** |
+| seeds with `looks > 0` | 0 / 320 | **320 / 320** |
+| unexplained arms | 0 | **0** |
+
+The ledger **closes exactly**: 9,600 + 2,222 + 0 + 142 = **11,964**. The cadence
+identity holds on the nose (**115,308 === 115,308**), and the frozen class carries
+**1,260** ticks beside it — the ten half-time-spanning windows, 126 ticks each.
+`abortedPhase` reads **0** at 11,964 arms, exactly the **#194** by-construction
+result priced in §FORM (i) *before* any abort number existed: `Match.step` returns
+early during the paused phases *before* `stepO2Look`, so a window that spans a pause
+closes as `abortedLoss` at the next playing tick instead. `abortedLoss` therefore
+means *"not owned by the looker at the next head-of-tick"* — a **superset** of a duel
+loss, and no mechanism claim is made from this mix.
+
+### (ii) F-O2b exposure instruments — per arm
+
+| quantity | CONTROL | LOOK | paired Δ [2.5, 97.5] | resolved? |
+| --- | --- | --- | --- | --- |
+| walked ticks | 2,627,013 | 2,588,168 | — | — |
+| possession spells | 21,632 | 18,915 | — | — |
+| turnovers | 8,848 | 8,385 | — | — |
+| **turnover per spell** | **0.409024** | **0.443299** | **+0.034275** [+0.024942, +0.043182] | **YES** |
+| **turnovers / 1,000 walked ticks** | **3.368084** | **3.239743** | **−0.128341** [−0.232284, −0.02734] | **YES** |
+| **turnovers look-attributed at the LOSS TICK** (`turnoversUnderLiveLook`, playing clock) | 0 (by construction) | **414** | — | — |
+| subclass — `attributionEdgesAcrossFrozenReset` (spell terminated by a half-time / kickoff dead-ball reset; **never mixed into the row above**) | 517 | **512** | — | — |
+| companion (a) — engine `abortedLoss` | 0 | **2,222** | — | — |
+| companion (b) — `abortedLossOwnTeamRecovery` (abort NOT ending as a team turnover) | 0 | **1,024** | — | — |
+| `abortedLossUnresolvedAtWalkEnd` (audit residue for (b)) | 0 | **25** | — | — |
+
+The re-specified, playing-clock-amended column **fires at scale**: of the LOOK arm's
+**8,385** team-level turnovers, **414** are attributable to a look live at the losing
+team's last-controlled **playing** tick. CONTROL reads **0 by construction** — no
+window can exist there.
+
+The frozen-reset subclass is a **boundary census, not an exposure cost**: **517**
+CONTROL / **512** LOOK attribution edges were terminated by a half-time or kickoff
+dead ball rather than by a loss in live play. It sits at nearly the same size in both
+arms — as it must, dead-ball boundaries being a property of the fixture and not of
+the look — and it is **never** added to the 414. Its purpose is that this population
+is **visible data** instead of being silently arbitrated by whichever owner the dead
+ball happened to hold (§FORM (ii)).
+
+The three companion columns are **data with no assumed identity** — no claim is made
+that they measure the same quantity. Read only through the #194 price: engine
+`abortedLoss` = **2,222** is *"not owned by the looker at the next head-of-tick"*; of
+those, **1,024** were followed by an established control by the **looker's own side**
+(own-team recovery — the abort did **not** end as a team-level turnover), **25** never
+saw another established control before the walk stopped, and the remaining **1,173**
+were followed by opposition control. That 1,173 is *not* the same population as the
+414: the 414 counts **turnovers** whose losing last-controlled playing tick was under a
+live look, the 1,173 counts **aborted windows** followed by opposition control. The
+arithmetic between them is the commander's to read, not this doc's.
+
+### (iii) M-CTX per-feature — read with T0 HONESTY LIMIT 2
+
+| feature | CONTROL | LOOK | paired Δ (pp) [2.5, 97.5] | resolved? |
+| --- | --- | --- | --- | --- |
+| overall agreement | 50.815 % | 55.9137 % | **+5.0987** [+2.8628, +7.2823] | **YES** |
+| pressure | 84.0652 % | 90.7381 % | **+6.6729** [+4.9261, +8.4665] | **YES** |
+| stale | 100 % | 100 % | 0 [0, 0] | no |
+| support | 58.5828 % | 59.0843 % | +0.5015 [−1.899, +2.8913] | no |
+
+Placed contexts: CONTROL **6,012** · LOOK **7,601**. **T0 HONESTY LIMIT 2 is
+binding on any reading of these rows**: a look refreshes **pressure** and **support**
+toward truth while `staleBand` reads the team's own possession clock — which runs
+while the body stands there and is **not a percept**. At this block `stale` agreement
+is **100 % in both arms**, so the overall figure is carried by pressure and support
+alone. The decomposition is published precisely so the overall number is not read
+without it.
+
+### (iv) Ring pressure (REPORTED, T0 HONESTY LIMIT 3)
+
+| quantity | CONTROL | LOOK |
+| --- | --- | --- |
+| ring size / retention | 16 / 51 ticks | 16 / 51 ticks |
+| moments with a readable ring | 18,768 | 19,818 |
+| ring FULL at the moment | 18,257 | 19,239 |
+| **ringPressure moments** (full **and** oldest frame younger than retention) | **0** | **1,247** |
+| **ringPressure share** | **0 %** | **6.2923 %** (Δ +0.062923 [+0.059084, +0.06665], **resolved**) |
+| mean occupancy | 15.761 | 15.763 |
+| mean oldest-frame age (ticks) | 182.47 | 143.582 |
+
+The ring is essentially always full in both arms (18,257/18,768 and 19,239/19,818);
+what moves is the **age** of its oldest frame — mean 182.47 ticks in CONTROL against
+143.582 in LOOK — which is what carries the ringPressure share from 0 to 6.2923 %.
+**REPORTED, per T0 HONESTY LIMIT 3**; no mechanism claim is made here.
+
+### (v) The #218 build-up ruler — DROPPED (stated plainly, no silent cap)
+
+| quantity | CONTROL | LOOK |
+| --- | --- | --- |
+| goals inside the walked window | **416** | **415** |
+| ticks walked | 2,627,013 | 2,588,168 |
+| matches reaching full time | **3 / 320** | **0 / 320** |
+
+The #218 constructed-goal and scramble shares are **NOT measured here**: their census
+origin classifier needs a **whole-match** walk, and this walk truncates at
+`PER_MATCH_CAP` = 80 sampled moments — only **3** CONTROL matches and **0** LOOK
+matches reached full time. Per-arm goal counts over the sampled window are carried in
+their place. Stated plainly, not silently capped.
+
+### The N rule, as computed in-probe (unchanged — it is an ex-ante rule)
+
+| limb | DEFF | m_req | ⇒ N |
+| --- | --- | --- | --- |
+| q1 perceived-hold half-closure | 1.4614 | 7,827.6 | 132 |
+| **q2 E-ABSTAIN-UNSEEN −2 pp (binding)** | 2.2155 | 18,976.4 | **320** |
+
+**N\* = 320** (cap 800, not binding) ⇒ battery block **12,422,100–12,422,419**, which
+is the block this run walked.
+
+### Pre-registered criteria — restated verbatim, adjudicated NOWHERE in this doc
+
+> "pre-registered success = perceived-context hold classification rate rises
+> toward the true-context rate (wedge point falls toward 1×, CI excluding the
+> baseline wedge), E-ABSTAIN-UNSEEN falls resolvedly"
+
+The pre-named FAIL branches, restated verbatim and **not fired here**: **F-O2a** —
+*the ledger shows looks completing and percepts refreshing but classification does not
+move*; **F-O2b** — *hold/survival improves at ~zero measured exposure cost*.
+
+⚠ **This section emits PER-ARM ROWS, paired deltas and the mechanical `resolved` CI
+flags only (#203).** The probe names neither F-O2a nor F-O2b, and neither does this
+doc. **Adjudication is the commander's ruling, recorded in `PROGRAMME-RULINGS.md`,
+not here.**
+
+### §CHECKS (full battery)
+
+```text
+$ git diff --stat -- src
+(empty)            # X-SRC-UNTOUCHED, recomputed in-probe on the run itself
+
+$ git rev-parse --short HEAD
+d3029f7            # envelopeContextOnly.headContextOnly (UNHASHED envelope, #197-M1/#198)
+```
+
+### The UNABRIDGED full-battery transcript
+
+```text
+
+=============================================================================
+O2-T1 WEDGE EXAM (#219.2) · mode full · N 320 seeds × 2 arms (CONTROL vs LOOK)
+seeds 12422100..12422419
+arms differ by EXACTLY o2Look; forcing = ONE LOOK PER RECEPTION (40-tick runway, 11-tick window)
+N rule ⇒ N* 320 (cap 800)
+=============================================================================
+RESUME requested but no checkpoint at /tmp/o2-t1-checkpoint.jsonl — starting FRESH.
+checkpoint ARMED at /tmp/o2-t1-checkpoint.jsonl (one line per finished (pass, seed) unit)
+  pass 1 · seed 1/320 (12422100) · both arms done · 2.5 s
+  pass 1 · seed 2/320 (12422101) · both arms done · 4.8 s
+  pass 1 · seed 3/320 (12422102) · both arms done · 7.1 s
+  pass 1 · seed 4/320 (12422103) · both arms done · 9.4 s
+  pass 1 · seed 5/320 (12422104) · both arms done · 11.7 s
+  pass 1 · seed 6/320 (12422105) · both arms done · 14.0 s
+  pass 1 · seed 7/320 (12422106) · both arms done · 16.2 s
+  pass 1 · seed 8/320 (12422107) · both arms done · 18.5 s
+  pass 1 · seed 9/320 (12422108) · both arms done · 20.7 s
+  pass 1 · seed 10/320 (12422109) · both arms done · 23.0 s
+  pass 1 · seed 11/320 (12422110) · both arms done · 25.2 s
+  pass 1 · seed 12/320 (12422111) · both arms done · 27.6 s
+  pass 1 · seed 13/320 (12422112) · both arms done · 29.9 s
+  pass 1 · seed 14/320 (12422113) · both arms done · 32.1 s
+  pass 1 · seed 15/320 (12422114) · both arms done · 34.4 s
+  pass 1 · seed 16/320 (12422115) · both arms done · 36.7 s
+  pass 1 · seed 17/320 (12422116) · both arms done · 39.0 s
+  pass 1 · seed 18/320 (12422117) · both arms done · 41.3 s
+  pass 1 · seed 19/320 (12422118) · both arms done · 43.4 s
+  pass 1 · seed 20/320 (12422119) · both arms done · 45.7 s
+  pass 1 · seed 21/320 (12422120) · both arms done · 48.1 s
+  pass 1 · seed 22/320 (12422121) · both arms done · 50.5 s
+  pass 1 · seed 23/320 (12422122) · both arms done · 52.8 s
+  pass 1 · seed 24/320 (12422123) · both arms done · 55.1 s
+  pass 1 · seed 25/320 (12422124) · both arms done · 57.4 s
+  pass 1 · seed 26/320 (12422125) · both arms done · 59.7 s
+  pass 1 · seed 27/320 (12422126) · both arms done · 62.1 s
+  pass 1 · seed 28/320 (12422127) · both arms done · 64.4 s
+  pass 1 · seed 29/320 (12422128) · both arms done · 66.7 s
+  pass 1 · seed 30/320 (12422129) · both arms done · 69.0 s
+  pass 1 · seed 31/320 (12422130) · both arms done · 71.5 s
+  pass 1 · seed 32/320 (12422131) · both arms done · 73.9 s
+  pass 1 · seed 33/320 (12422132) · both arms done · 76.1 s
+  pass 1 · seed 34/320 (12422133) · both arms done · 78.6 s
+  pass 1 · seed 35/320 (12422134) · both arms done · 81.0 s
+  pass 1 · seed 36/320 (12422135) · both arms done · 83.4 s
+  pass 1 · seed 37/320 (12422136) · both arms done · 85.7 s
+  pass 1 · seed 38/320 (12422137) · both arms done · 88.1 s
+  pass 1 · seed 39/320 (12422138) · both arms done · 90.5 s
+  pass 1 · seed 40/320 (12422139) · both arms done · 92.9 s
+  pass 1 · seed 41/320 (12422140) · both arms done · 95.2 s
+  pass 1 · seed 42/320 (12422141) · both arms done · 97.6 s
+  pass 1 · seed 43/320 (12422142) · both arms done · 100.0 s
+  pass 1 · seed 44/320 (12422143) · both arms done · 102.4 s
+  pass 1 · seed 45/320 (12422144) · both arms done · 104.8 s
+  pass 1 · seed 46/320 (12422145) · both arms done · 107.1 s
+  pass 1 · seed 47/320 (12422146) · both arms done · 109.4 s
+  pass 1 · seed 48/320 (12422147) · both arms done · 111.7 s
+  pass 1 · seed 49/320 (12422148) · both arms done · 114.1 s
+  pass 1 · seed 50/320 (12422149) · both arms done · 116.5 s
+  pass 1 · seed 51/320 (12422150) · both arms done · 119.0 s
+  pass 1 · seed 52/320 (12422151) · both arms done · 121.4 s
+  pass 1 · seed 53/320 (12422152) · both arms done · 123.7 s
+  pass 1 · seed 54/320 (12422153) · both arms done · 126.1 s
+  pass 1 · seed 55/320 (12422154) · both arms done · 128.5 s
+  pass 1 · seed 56/320 (12422155) · both arms done · 131.0 s
+  pass 1 · seed 57/320 (12422156) · both arms done · 133.2 s
+  pass 1 · seed 58/320 (12422157) · both arms done · 135.6 s
+  pass 1 · seed 59/320 (12422158) · both arms done · 138.0 s
+  pass 1 · seed 60/320 (12422159) · both arms done · 140.4 s
+  pass 1 · seed 61/320 (12422160) · both arms done · 142.7 s
+  pass 1 · seed 62/320 (12422161) · both arms done · 145.2 s
+  pass 1 · seed 63/320 (12422162) · both arms done · 147.4 s
+  pass 1 · seed 64/320 (12422163) · both arms done · 149.9 s
+  pass 1 · seed 65/320 (12422164) · both arms done · 152.3 s
+  pass 1 · seed 66/320 (12422165) · both arms done · 154.6 s
+  pass 1 · seed 67/320 (12422166) · both arms done · 157.1 s
+  pass 1 · seed 68/320 (12422167) · both arms done · 159.5 s
+  pass 1 · seed 69/320 (12422168) · both arms done · 161.9 s
+  pass 1 · seed 70/320 (12422169) · both arms done · 164.3 s
+  pass 1 · seed 71/320 (12422170) · both arms done · 166.6 s
+  pass 1 · seed 72/320 (12422171) · both arms done · 168.9 s
+  pass 1 · seed 73/320 (12422172) · both arms done · 171.0 s
+  pass 1 · seed 74/320 (12422173) · both arms done · 173.2 s
+  pass 1 · seed 75/320 (12422174) · both arms done · 175.4 s
+  pass 1 · seed 76/320 (12422175) · both arms done · 177.7 s
+  pass 1 · seed 77/320 (12422176) · both arms done · 179.9 s
+  pass 1 · seed 78/320 (12422177) · both arms done · 182.1 s
+  pass 1 · seed 79/320 (12422178) · both arms done · 184.4 s
+  pass 1 · seed 80/320 (12422179) · both arms done · 186.7 s
+  pass 1 · seed 81/320 (12422180) · both arms done · 189.0 s
+  pass 1 · seed 82/320 (12422181) · both arms done · 191.3 s
+  pass 1 · seed 83/320 (12422182) · both arms done · 193.6 s
+  pass 1 · seed 84/320 (12422183) · both arms done · 195.7 s
+  pass 1 · seed 85/320 (12422184) · both arms done · 198.0 s
+  pass 1 · seed 86/320 (12422185) · both arms done · 200.3 s
+  pass 1 · seed 87/320 (12422186) · both arms done · 202.6 s
+  pass 1 · seed 88/320 (12422187) · both arms done · 204.8 s
+  pass 1 · seed 89/320 (12422188) · both arms done · 207.1 s
+  pass 1 · seed 90/320 (12422189) · both arms done · 209.3 s
+  pass 1 · seed 91/320 (12422190) · both arms done · 211.5 s
+  pass 1 · seed 92/320 (12422191) · both arms done · 213.8 s
+  pass 1 · seed 93/320 (12422192) · both arms done · 216.1 s
+  pass 1 · seed 94/320 (12422193) · both arms done · 218.3 s
+  pass 1 · seed 95/320 (12422194) · both arms done · 220.5 s
+  pass 1 · seed 96/320 (12422195) · both arms done · 222.8 s
+  pass 1 · seed 97/320 (12422196) · both arms done · 225.1 s
+  pass 1 · seed 98/320 (12422197) · both arms done · 227.3 s
+  pass 1 · seed 99/320 (12422198) · both arms done · 229.6 s
+  pass 1 · seed 100/320 (12422199) · both arms done · 231.8 s
+  pass 1 · seed 101/320 (12422200) · both arms done · 234.1 s
+  pass 1 · seed 102/320 (12422201) · both arms done · 236.4 s
+  pass 1 · seed 103/320 (12422202) · both arms done · 238.6 s
+  pass 1 · seed 104/320 (12422203) · both arms done · 240.8 s
+  pass 1 · seed 105/320 (12422204) · both arms done · 243.1 s
+  pass 1 · seed 106/320 (12422205) · both arms done · 245.2 s
+  pass 1 · seed 107/320 (12422206) · both arms done · 247.5 s
+  pass 1 · seed 108/320 (12422207) · both arms done · 249.7 s
+  pass 1 · seed 109/320 (12422208) · both arms done · 251.9 s
+  pass 1 · seed 110/320 (12422209) · both arms done · 254.2 s
+  pass 1 · seed 111/320 (12422210) · both arms done · 256.5 s
+  pass 1 · seed 112/320 (12422211) · both arms done · 258.7 s
+  pass 1 · seed 113/320 (12422212) · both arms done · 261.0 s
+  pass 1 · seed 114/320 (12422213) · both arms done · 263.3 s
+  pass 1 · seed 115/320 (12422214) · both arms done · 265.4 s
+  pass 1 · seed 116/320 (12422215) · both arms done · 267.7 s
+  pass 1 · seed 117/320 (12422216) · both arms done · 270.0 s
+  pass 1 · seed 118/320 (12422217) · both arms done · 272.2 s
+  pass 1 · seed 119/320 (12422218) · both arms done · 274.4 s
+  pass 1 · seed 120/320 (12422219) · both arms done · 276.7 s
+  pass 1 · seed 121/320 (12422220) · both arms done · 279.2 s
+  pass 1 · seed 122/320 (12422221) · both arms done · 281.4 s
+  pass 1 · seed 123/320 (12422222) · both arms done · 283.6 s
+  pass 1 · seed 124/320 (12422223) · both arms done · 285.9 s
+  pass 1 · seed 125/320 (12422224) · both arms done · 288.2 s
+  pass 1 · seed 126/320 (12422225) · both arms done · 290.5 s
+  pass 1 · seed 127/320 (12422226) · both arms done · 292.7 s
+  pass 1 · seed 128/320 (12422227) · both arms done · 295.0 s
+  pass 1 · seed 129/320 (12422228) · both arms done · 297.3 s
+  pass 1 · seed 130/320 (12422229) · both arms done · 299.6 s
+  pass 1 · seed 131/320 (12422230) · both arms done · 301.7 s
+  pass 1 · seed 132/320 (12422231) · both arms done · 303.9 s
+  pass 1 · seed 133/320 (12422232) · both arms done · 306.2 s
+  pass 1 · seed 134/320 (12422233) · both arms done · 308.4 s
+  pass 1 · seed 135/320 (12422234) · both arms done · 310.7 s
+  pass 1 · seed 136/320 (12422235) · both arms done · 312.9 s
+  pass 1 · seed 137/320 (12422236) · both arms done · 315.0 s
+  pass 1 · seed 138/320 (12422237) · both arms done · 317.3 s
+  pass 1 · seed 139/320 (12422238) · both arms done · 319.4 s
+  pass 1 · seed 140/320 (12422239) · both arms done · 321.6 s
+  pass 1 · seed 141/320 (12422240) · both arms done · 323.8 s
+  pass 1 · seed 142/320 (12422241) · both arms done · 326.0 s
+  pass 1 · seed 143/320 (12422242) · both arms done · 328.3 s
+  pass 1 · seed 144/320 (12422243) · both arms done · 330.5 s
+  pass 1 · seed 145/320 (12422244) · both arms done · 332.8 s
+  pass 1 · seed 146/320 (12422245) · both arms done · 334.9 s
+  pass 1 · seed 147/320 (12422246) · both arms done · 337.1 s
+  pass 1 · seed 148/320 (12422247) · both arms done · 339.4 s
+  pass 1 · seed 149/320 (12422248) · both arms done · 341.7 s
+  pass 1 · seed 150/320 (12422249) · both arms done · 343.9 s
+  pass 1 · seed 151/320 (12422250) · both arms done · 346.1 s
+  pass 1 · seed 152/320 (12422251) · both arms done · 348.4 s
+  pass 1 · seed 153/320 (12422252) · both arms done · 350.6 s
+  pass 1 · seed 154/320 (12422253) · both arms done · 352.9 s
+  pass 1 · seed 155/320 (12422254) · both arms done · 355.1 s
+  pass 1 · seed 156/320 (12422255) · both arms done · 357.4 s
+  pass 1 · seed 157/320 (12422256) · both arms done · 359.7 s
+  pass 1 · seed 158/320 (12422257) · both arms done · 362.0 s
+  pass 1 · seed 159/320 (12422258) · both arms done · 364.1 s
+  pass 1 · seed 160/320 (12422259) · both arms done · 366.4 s
+  pass 1 · seed 161/320 (12422260) · both arms done · 368.6 s
+  pass 1 · seed 162/320 (12422261) · both arms done · 371.0 s
+  pass 1 · seed 163/320 (12422262) · both arms done · 373.2 s
+  pass 1 · seed 164/320 (12422263) · both arms done · 375.4 s
+  pass 1 · seed 165/320 (12422264) · both arms done · 377.8 s
+  pass 1 · seed 166/320 (12422265) · both arms done · 380.0 s
+  pass 1 · seed 167/320 (12422266) · both arms done · 382.2 s
+  pass 1 · seed 168/320 (12422267) · both arms done · 384.4 s
+  pass 1 · seed 169/320 (12422268) · both arms done · 386.6 s
+  pass 1 · seed 170/320 (12422269) · both arms done · 388.9 s
+  pass 1 · seed 171/320 (12422270) · both arms done · 391.2 s
+  pass 1 · seed 172/320 (12422271) · both arms done · 393.6 s
+  pass 1 · seed 173/320 (12422272) · both arms done · 395.9 s
+  pass 1 · seed 174/320 (12422273) · both arms done · 398.2 s
+  pass 1 · seed 175/320 (12422274) · both arms done · 400.4 s
+  pass 1 · seed 176/320 (12422275) · both arms done · 402.7 s
+  pass 1 · seed 177/320 (12422276) · both arms done · 405.0 s
+  pass 1 · seed 178/320 (12422277) · both arms done · 407.1 s
+  pass 1 · seed 179/320 (12422278) · both arms done · 409.4 s
+  pass 1 · seed 180/320 (12422279) · both arms done · 411.7 s
+  pass 1 · seed 181/320 (12422280) · both arms done · 413.9 s
+  pass 1 · seed 182/320 (12422281) · both arms done · 416.2 s
+  pass 1 · seed 183/320 (12422282) · both arms done · 418.5 s
+  pass 1 · seed 184/320 (12422283) · both arms done · 420.7 s
+  pass 1 · seed 185/320 (12422284) · both arms done · 422.9 s
+  pass 1 · seed 186/320 (12422285) · both arms done · 425.1 s
+  pass 1 · seed 187/320 (12422286) · both arms done · 427.3 s
+  pass 1 · seed 188/320 (12422287) · both arms done · 429.6 s
+  pass 1 · seed 189/320 (12422288) · both arms done · 431.9 s
+  pass 1 · seed 190/320 (12422289) · both arms done · 434.1 s
+  pass 1 · seed 191/320 (12422290) · both arms done · 436.4 s
+  pass 1 · seed 192/320 (12422291) · both arms done · 438.7 s
+  pass 1 · seed 193/320 (12422292) · both arms done · 441.0 s
+  pass 1 · seed 194/320 (12422293) · both arms done · 443.3 s
+  pass 1 · seed 195/320 (12422294) · both arms done · 445.5 s
+  pass 1 · seed 196/320 (12422295) · both arms done · 447.8 s
+  pass 1 · seed 197/320 (12422296) · both arms done · 450.0 s
+  pass 1 · seed 198/320 (12422297) · both arms done · 452.3 s
+  pass 1 · seed 199/320 (12422298) · both arms done · 454.5 s
+  pass 1 · seed 200/320 (12422299) · both arms done · 456.7 s
+  pass 1 · seed 201/320 (12422300) · both arms done · 459.1 s
+  pass 1 · seed 202/320 (12422301) · both arms done · 461.3 s
+  pass 1 · seed 203/320 (12422302) · both arms done · 463.4 s
+  pass 1 · seed 204/320 (12422303) · both arms done · 465.7 s
+  pass 1 · seed 205/320 (12422304) · both arms done · 468.1 s
+  pass 1 · seed 206/320 (12422305) · both arms done · 470.3 s
+  pass 1 · seed 207/320 (12422306) · both arms done · 472.4 s
+  pass 1 · seed 208/320 (12422307) · both arms done · 474.7 s
+  pass 1 · seed 209/320 (12422308) · both arms done · 476.9 s
+  pass 1 · seed 210/320 (12422309) · both arms done · 479.2 s
+  pass 1 · seed 211/320 (12422310) · both arms done · 481.4 s
+  pass 1 · seed 212/320 (12422311) · both arms done · 483.6 s
+  pass 1 · seed 213/320 (12422312) · both arms done · 485.8 s
+  pass 1 · seed 214/320 (12422313) · both arms done · 487.9 s
+  pass 1 · seed 215/320 (12422314) · both arms done · 490.2 s
+  pass 1 · seed 216/320 (12422315) · both arms done · 492.5 s
+  pass 1 · seed 217/320 (12422316) · both arms done · 494.7 s
+  pass 1 · seed 218/320 (12422317) · both arms done · 496.9 s
+  pass 1 · seed 219/320 (12422318) · both arms done · 499.1 s
+  pass 1 · seed 220/320 (12422319) · both arms done · 501.2 s
+  pass 1 · seed 221/320 (12422320) · both arms done · 503.4 s
+  pass 1 · seed 222/320 (12422321) · both arms done · 505.6 s
+  pass 1 · seed 223/320 (12422322) · both arms done · 507.9 s
+  pass 1 · seed 224/320 (12422323) · both arms done · 510.1 s
+  pass 1 · seed 225/320 (12422324) · both arms done · 512.3 s
+  pass 1 · seed 226/320 (12422325) · both arms done · 514.6 s
+  pass 1 · seed 227/320 (12422326) · both arms done · 516.8 s
+  pass 1 · seed 228/320 (12422327) · both arms done · 519.0 s
+  pass 1 · seed 229/320 (12422328) · both arms done · 521.3 s
+  pass 1 · seed 230/320 (12422329) · both arms done · 523.6 s
+  pass 1 · seed 231/320 (12422330) · both arms done · 525.8 s
+  pass 1 · seed 232/320 (12422331) · both arms done · 528.0 s
+  pass 1 · seed 233/320 (12422332) · both arms done · 530.3 s
+  pass 1 · seed 234/320 (12422333) · both arms done · 532.5 s
+  pass 1 · seed 235/320 (12422334) · both arms done · 534.7 s
+  pass 1 · seed 236/320 (12422335) · both arms done · 537.0 s
+  pass 1 · seed 237/320 (12422336) · both arms done · 539.3 s
+  pass 1 · seed 238/320 (12422337) · both arms done · 541.5 s
+  pass 1 · seed 239/320 (12422338) · both arms done · 543.8 s
+  pass 1 · seed 240/320 (12422339) · both arms done · 546.0 s
+  pass 1 · seed 241/320 (12422340) · both arms done · 548.2 s
+  pass 1 · seed 242/320 (12422341) · both arms done · 550.5 s
+  pass 1 · seed 243/320 (12422342) · both arms done · 552.7 s
+  pass 1 · seed 244/320 (12422343) · both arms done · 554.9 s
+  pass 1 · seed 245/320 (12422344) · both arms done · 557.1 s
+  pass 1 · seed 246/320 (12422345) · both arms done · 559.3 s
+  pass 1 · seed 247/320 (12422346) · both arms done · 561.6 s
+  pass 1 · seed 248/320 (12422347) · both arms done · 563.9 s
+  pass 1 · seed 249/320 (12422348) · both arms done · 566.1 s
+  pass 1 · seed 250/320 (12422349) · both arms done · 568.3 s
+  pass 1 · seed 251/320 (12422350) · both arms done · 570.5 s
+  pass 1 · seed 252/320 (12422351) · both arms done · 572.7 s
+  pass 1 · seed 253/320 (12422352) · both arms done · 575.0 s
+  pass 1 · seed 254/320 (12422353) · both arms done · 577.3 s
+  pass 1 · seed 255/320 (12422354) · both arms done · 579.5 s
+  pass 1 · seed 256/320 (12422355) · both arms done · 581.7 s
+  pass 1 · seed 257/320 (12422356) · both arms done · 583.8 s
+  pass 1 · seed 258/320 (12422357) · both arms done · 586.0 s
+  pass 1 · seed 259/320 (12422358) · both arms done · 588.2 s
+  pass 1 · seed 260/320 (12422359) · both arms done · 590.4 s
+  pass 1 · seed 261/320 (12422360) · both arms done · 592.7 s
+  pass 1 · seed 262/320 (12422361) · both arms done · 595.0 s
+  pass 1 · seed 263/320 (12422362) · both arms done · 597.3 s
+  pass 1 · seed 264/320 (12422363) · both arms done · 599.5 s
+  pass 1 · seed 265/320 (12422364) · both arms done · 601.6 s
+  pass 1 · seed 266/320 (12422365) · both arms done · 603.9 s
+  pass 1 · seed 267/320 (12422366) · both arms done · 606.1 s
+  pass 1 · seed 268/320 (12422367) · both arms done · 608.4 s
+  pass 1 · seed 269/320 (12422368) · both arms done · 610.5 s
+  pass 1 · seed 270/320 (12422369) · both arms done · 612.7 s
+  pass 1 · seed 271/320 (12422370) · both arms done · 615.0 s
+  pass 1 · seed 272/320 (12422371) · both arms done · 617.2 s
+  pass 1 · seed 273/320 (12422372) · both arms done · 619.4 s
+  pass 1 · seed 274/320 (12422373) · both arms done · 621.6 s
+  pass 1 · seed 275/320 (12422374) · both arms done · 623.9 s
+  pass 1 · seed 276/320 (12422375) · both arms done · 626.1 s
+  pass 1 · seed 277/320 (12422376) · both arms done · 628.3 s
+  pass 1 · seed 278/320 (12422377) · both arms done · 630.5 s
+  pass 1 · seed 279/320 (12422378) · both arms done · 632.8 s
+  pass 1 · seed 280/320 (12422379) · both arms done · 635.0 s
+  pass 1 · seed 281/320 (12422380) · both arms done · 637.2 s
+  pass 1 · seed 282/320 (12422381) · both arms done · 639.5 s
+  pass 1 · seed 283/320 (12422382) · both arms done · 641.8 s
+  pass 1 · seed 284/320 (12422383) · both arms done · 644.0 s
+  pass 1 · seed 285/320 (12422384) · both arms done · 646.2 s
+  pass 1 · seed 286/320 (12422385) · both arms done · 648.4 s
+  pass 1 · seed 287/320 (12422386) · both arms done · 650.6 s
+  pass 1 · seed 288/320 (12422387) · both arms done · 653.0 s
+  pass 1 · seed 289/320 (12422388) · both arms done · 655.3 s
+  pass 1 · seed 290/320 (12422389) · both arms done · 657.6 s
+  pass 1 · seed 291/320 (12422390) · both arms done · 659.8 s
+  pass 1 · seed 292/320 (12422391) · both arms done · 661.9 s
+  pass 1 · seed 293/320 (12422392) · both arms done · 664.2 s
+  pass 1 · seed 294/320 (12422393) · both arms done · 666.4 s
+  pass 1 · seed 295/320 (12422394) · both arms done · 668.7 s
+  pass 1 · seed 296/320 (12422395) · both arms done · 670.8 s
+  pass 1 · seed 297/320 (12422396) · both arms done · 673.1 s
+  pass 1 · seed 298/320 (12422397) · both arms done · 675.2 s
+  pass 1 · seed 299/320 (12422398) · both arms done · 677.4 s
+  pass 1 · seed 300/320 (12422399) · both arms done · 679.6 s
+  pass 1 · seed 301/320 (12422400) · both arms done · 681.9 s
+  pass 1 · seed 302/320 (12422401) · both arms done · 684.0 s
+  pass 1 · seed 303/320 (12422402) · both arms done · 686.2 s
+  pass 1 · seed 304/320 (12422403) · both arms done · 688.6 s
+  pass 1 · seed 305/320 (12422404) · both arms done · 690.8 s
+  pass 1 · seed 306/320 (12422405) · both arms done · 693.0 s
+  pass 1 · seed 307/320 (12422406) · both arms done · 695.3 s
+  pass 1 · seed 308/320 (12422407) · both arms done · 697.5 s
+  pass 1 · seed 309/320 (12422408) · both arms done · 699.8 s
+  pass 1 · seed 310/320 (12422409) · both arms done · 702.1 s
+  pass 1 · seed 311/320 (12422410) · both arms done · 704.4 s
+  pass 1 · seed 312/320 (12422411) · both arms done · 706.7 s
+  pass 1 · seed 313/320 (12422412) · both arms done · 708.9 s
+  pass 1 · seed 314/320 (12422413) · both arms done · 711.2 s
+  pass 1 · seed 315/320 (12422414) · both arms done · 713.4 s
+  pass 1 · seed 316/320 (12422415) · both arms done · 715.7 s
+  pass 1 · seed 317/320 (12422416) · both arms done · 717.8 s
+  pass 1 · seed 318/320 (12422417) · both arms done · 720.0 s
+  pass 1 · seed 319/320 (12422418) · both arms done · 722.3 s
+  pass 1 · seed 320/320 (12422419) · both arms done · 724.5 s
+  pass 1 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
+  pass 1 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
+  [o2-t1] pass 1 digest b1489dd4b00faf4c7a8b8763b1dd155d7db2863465b53cf4cbfe6219e841126f — X-DET second pass...
+  pass 2 · seed 1/320 (12422100) · both arms done · 2.2 s
+  pass 2 · seed 2/320 (12422101) · both arms done · 4.5 s
+  pass 2 · seed 3/320 (12422102) · both arms done · 6.6 s
+  pass 2 · seed 4/320 (12422103) · both arms done · 8.8 s
+  pass 2 · seed 5/320 (12422104) · both arms done · 11.1 s
+  pass 2 · seed 6/320 (12422105) · both arms done · 13.3 s
+  pass 2 · seed 7/320 (12422106) · both arms done · 15.5 s
+  pass 2 · seed 8/320 (12422107) · both arms done · 17.7 s
+  pass 2 · seed 9/320 (12422108) · both arms done · 19.9 s
+  pass 2 · seed 10/320 (12422109) · both arms done · 22.2 s
+  pass 2 · seed 11/320 (12422110) · both arms done · 24.4 s
+  pass 2 · seed 12/320 (12422111) · both arms done · 26.7 s
+  pass 2 · seed 13/320 (12422112) · both arms done · 29.0 s
+  pass 2 · seed 14/320 (12422113) · both arms done · 31.2 s
+  pass 2 · seed 15/320 (12422114) · both arms done · 33.4 s
+  pass 2 · seed 16/320 (12422115) · both arms done · 35.7 s
+  pass 2 · seed 17/320 (12422116) · both arms done · 38.0 s
+  pass 2 · seed 18/320 (12422117) · both arms done · 40.2 s
+  pass 2 · seed 19/320 (12422118) · both arms done · 42.3 s
+  pass 2 · seed 20/320 (12422119) · both arms done · 44.6 s
+  pass 2 · seed 21/320 (12422120) · both arms done · 46.8 s
+  pass 2 · seed 22/320 (12422121) · both arms done · 49.1 s
+  pass 2 · seed 23/320 (12422122) · both arms done · 51.3 s
+  pass 2 · seed 24/320 (12422123) · both arms done · 53.5 s
+  pass 2 · seed 25/320 (12422124) · both arms done · 55.8 s
+  pass 2 · seed 26/320 (12422125) · both arms done · 58.0 s
+  pass 2 · seed 27/320 (12422126) · both arms done · 60.2 s
+  pass 2 · seed 28/320 (12422127) · both arms done · 62.4 s
+  pass 2 · seed 29/320 (12422128) · both arms done · 64.6 s
+  pass 2 · seed 30/320 (12422129) · both arms done · 66.8 s
+  pass 2 · seed 31/320 (12422130) · both arms done · 69.1 s
+  pass 2 · seed 32/320 (12422131) · both arms done · 71.3 s
+  pass 2 · seed 33/320 (12422132) · both arms done · 73.4 s
+  pass 2 · seed 34/320 (12422133) · both arms done · 75.7 s
+  pass 2 · seed 35/320 (12422134) · both arms done · 78.0 s
+  pass 2 · seed 36/320 (12422135) · both arms done · 80.2 s
+  pass 2 · seed 37/320 (12422136) · both arms done · 82.4 s
+  pass 2 · seed 38/320 (12422137) · both arms done · 84.7 s
+  pass 2 · seed 39/320 (12422138) · both arms done · 87.0 s
+  pass 2 · seed 40/320 (12422139) · both arms done · 89.2 s
+  pass 2 · seed 41/320 (12422140) · both arms done · 91.3 s
+  pass 2 · seed 42/320 (12422141) · both arms done · 93.6 s
+  pass 2 · seed 43/320 (12422142) · both arms done · 95.8 s
+  pass 2 · seed 44/320 (12422143) · both arms done · 98.1 s
+  pass 2 · seed 45/320 (12422144) · both arms done · 100.4 s
+  pass 2 · seed 46/320 (12422145) · both arms done · 102.6 s
+  pass 2 · seed 47/320 (12422146) · both arms done · 104.7 s
+  pass 2 · seed 48/320 (12422147) · both arms done · 106.8 s
+  pass 2 · seed 49/320 (12422148) · both arms done · 109.1 s
+  pass 2 · seed 50/320 (12422149) · both arms done · 111.4 s
+  pass 2 · seed 51/320 (12422150) · both arms done · 113.7 s
+  pass 2 · seed 52/320 (12422151) · both arms done · 115.9 s
+  pass 2 · seed 53/320 (12422152) · both arms done · 118.1 s
+  pass 2 · seed 54/320 (12422153) · both arms done · 120.4 s
+  pass 2 · seed 55/320 (12422154) · both arms done · 122.6 s
+  pass 2 · seed 56/320 (12422155) · both arms done · 124.9 s
+  pass 2 · seed 57/320 (12422156) · both arms done · 127.0 s
+  pass 2 · seed 58/320 (12422157) · both arms done · 129.2 s
+  pass 2 · seed 59/320 (12422158) · both arms done · 131.5 s
+  pass 2 · seed 60/320 (12422159) · both arms done · 133.7 s
+  pass 2 · seed 61/320 (12422160) · both arms done · 136.0 s
+  pass 2 · seed 62/320 (12422161) · both arms done · 138.2 s
+  pass 2 · seed 63/320 (12422162) · both arms done · 140.4 s
+  pass 2 · seed 64/320 (12422163) · both arms done · 142.6 s
+  pass 2 · seed 65/320 (12422164) · both arms done · 144.9 s
+  pass 2 · seed 66/320 (12422165) · both arms done · 147.1 s
+  pass 2 · seed 67/320 (12422166) · both arms done · 149.4 s
+  pass 2 · seed 68/320 (12422167) · both arms done · 151.7 s
+  pass 2 · seed 69/320 (12422168) · both arms done · 153.9 s
+  pass 2 · seed 70/320 (12422169) · both arms done · 156.2 s
+  pass 2 · seed 71/320 (12422170) · both arms done · 158.5 s
+  pass 2 · seed 72/320 (12422171) · both arms done · 160.8 s
+  pass 2 · seed 73/320 (12422172) · both arms done · 162.9 s
+  pass 2 · seed 74/320 (12422173) · both arms done · 165.1 s
+  pass 2 · seed 75/320 (12422174) · both arms done · 167.2 s
+  pass 2 · seed 76/320 (12422175) · both arms done · 169.5 s
+  pass 2 · seed 77/320 (12422176) · both arms done · 171.7 s
+  pass 2 · seed 78/320 (12422177) · both arms done · 173.9 s
+  pass 2 · seed 79/320 (12422178) · both arms done · 176.2 s
+  pass 2 · seed 80/320 (12422179) · both arms done · 178.6 s
+  pass 2 · seed 81/320 (12422180) · both arms done · 180.9 s
+  pass 2 · seed 82/320 (12422181) · both arms done · 183.3 s
+  pass 2 · seed 83/320 (12422182) · both arms done · 185.6 s
+  pass 2 · seed 84/320 (12422183) · both arms done · 187.8 s
+  pass 2 · seed 85/320 (12422184) · both arms done · 190.0 s
+  pass 2 · seed 86/320 (12422185) · both arms done · 192.3 s
+  pass 2 · seed 87/320 (12422186) · both arms done · 194.6 s
+  pass 2 · seed 88/320 (12422187) · both arms done · 196.8 s
+  pass 2 · seed 89/320 (12422188) · both arms done · 199.1 s
+  pass 2 · seed 90/320 (12422189) · both arms done · 201.3 s
+  pass 2 · seed 91/320 (12422190) · both arms done · 203.5 s
+  pass 2 · seed 92/320 (12422191) · both arms done · 205.8 s
+  pass 2 · seed 93/320 (12422192) · both arms done · 208.1 s
+  pass 2 · seed 94/320 (12422193) · both arms done · 210.3 s
+  pass 2 · seed 95/320 (12422194) · both arms done · 212.6 s
+  pass 2 · seed 96/320 (12422195) · both arms done · 214.8 s
+  pass 2 · seed 97/320 (12422196) · both arms done · 217.1 s
+  pass 2 · seed 98/320 (12422197) · both arms done · 219.4 s
+  pass 2 · seed 99/320 (12422198) · both arms done · 221.6 s
+  pass 2 · seed 100/320 (12422199) · both arms done · 223.9 s
+  pass 2 · seed 101/320 (12422200) · both arms done · 226.2 s
+  pass 2 · seed 102/320 (12422201) · both arms done · 228.4 s
+  pass 2 · seed 103/320 (12422202) · both arms done · 230.6 s
+  pass 2 · seed 104/320 (12422203) · both arms done · 232.9 s
+  pass 2 · seed 105/320 (12422204) · both arms done · 235.1 s
+  pass 2 · seed 106/320 (12422205) · both arms done · 237.3 s
+  pass 2 · seed 107/320 (12422206) · both arms done · 239.6 s
+  pass 2 · seed 108/320 (12422207) · both arms done · 241.7 s
+  pass 2 · seed 109/320 (12422208) · both arms done · 243.9 s
+  pass 2 · seed 110/320 (12422209) · both arms done · 246.2 s
+  pass 2 · seed 111/320 (12422210) · both arms done · 248.5 s
+  pass 2 · seed 112/320 (12422211) · both arms done · 250.7 s
+  pass 2 · seed 113/320 (12422212) · both arms done · 253.0 s
+  pass 2 · seed 114/320 (12422213) · both arms done · 255.3 s
+  pass 2 · seed 115/320 (12422214) · both arms done · 257.5 s
+  pass 2 · seed 116/320 (12422215) · both arms done · 259.7 s
+  pass 2 · seed 117/320 (12422216) · both arms done · 262.0 s
+  pass 2 · seed 118/320 (12422217) · both arms done · 264.1 s
+  pass 2 · seed 119/320 (12422218) · both arms done · 266.4 s
+  pass 2 · seed 120/320 (12422219) · both arms done · 268.7 s
+  pass 2 · seed 121/320 (12422220) · both arms done · 271.1 s
+  pass 2 · seed 122/320 (12422221) · both arms done · 273.3 s
+  pass 2 · seed 123/320 (12422222) · both arms done · 275.5 s
+  pass 2 · seed 124/320 (12422223) · both arms done · 277.8 s
+  pass 2 · seed 125/320 (12422224) · both arms done · 280.0 s
+  pass 2 · seed 126/320 (12422225) · both arms done · 282.3 s
+  pass 2 · seed 127/320 (12422226) · both arms done · 284.6 s
+  pass 2 · seed 128/320 (12422227) · both arms done · 286.9 s
+  pass 2 · seed 129/320 (12422228) · both arms done · 289.2 s
+  pass 2 · seed 130/320 (12422229) · both arms done · 291.4 s
+  pass 2 · seed 131/320 (12422230) · both arms done · 293.6 s
+  pass 2 · seed 132/320 (12422231) · both arms done · 295.8 s
+  pass 2 · seed 133/320 (12422232) · both arms done · 298.1 s
+  pass 2 · seed 134/320 (12422233) · both arms done · 300.3 s
+  pass 2 · seed 135/320 (12422234) · both arms done · 302.6 s
+  pass 2 · seed 136/320 (12422235) · both arms done · 304.8 s
+  pass 2 · seed 137/320 (12422236) · both arms done · 307.0 s
+  pass 2 · seed 138/320 (12422237) · both arms done · 309.3 s
+  pass 2 · seed 139/320 (12422238) · both arms done · 311.4 s
+  pass 2 · seed 140/320 (12422239) · both arms done · 313.6 s
+  pass 2 · seed 141/320 (12422240) · both arms done · 315.9 s
+  pass 2 · seed 142/320 (12422241) · both arms done · 318.1 s
+  pass 2 · seed 143/320 (12422242) · both arms done · 320.4 s
+  pass 2 · seed 144/320 (12422243) · both arms done · 322.6 s
+  pass 2 · seed 145/320 (12422244) · both arms done · 324.9 s
+  pass 2 · seed 146/320 (12422245) · both arms done · 327.1 s
+  pass 2 · seed 147/320 (12422246) · both arms done · 329.3 s
+  pass 2 · seed 148/320 (12422247) · both arms done · 331.6 s
+  pass 2 · seed 149/320 (12422248) · both arms done · 333.9 s
+  pass 2 · seed 150/320 (12422249) · both arms done · 336.2 s
+  pass 2 · seed 151/320 (12422250) · both arms done · 338.4 s
+  pass 2 · seed 152/320 (12422251) · both arms done · 340.7 s
+  pass 2 · seed 153/320 (12422252) · both arms done · 342.9 s
+  pass 2 · seed 154/320 (12422253) · both arms done · 345.2 s
+  pass 2 · seed 155/320 (12422254) · both arms done · 347.5 s
+  pass 2 · seed 156/320 (12422255) · both arms done · 349.8 s
+  pass 2 · seed 157/320 (12422256) · both arms done · 352.1 s
+  pass 2 · seed 158/320 (12422257) · both arms done · 354.4 s
+  pass 2 · seed 159/320 (12422258) · both arms done · 356.6 s
+  pass 2 · seed 160/320 (12422259) · both arms done · 358.9 s
+  pass 2 · seed 161/320 (12422260) · both arms done · 361.2 s
+  pass 2 · seed 162/320 (12422261) · both arms done · 363.5 s
+  pass 2 · seed 163/320 (12422262) · both arms done · 365.7 s
+  pass 2 · seed 164/320 (12422263) · both arms done · 368.0 s
+  pass 2 · seed 165/320 (12422264) · both arms done · 370.4 s
+  pass 2 · seed 166/320 (12422265) · both arms done · 372.7 s
+  pass 2 · seed 167/320 (12422266) · both arms done · 374.9 s
+  pass 2 · seed 168/320 (12422267) · both arms done · 377.2 s
+  pass 2 · seed 169/320 (12422268) · both arms done · 379.4 s
+  pass 2 · seed 170/320 (12422269) · both arms done · 381.7 s
+  pass 2 · seed 171/320 (12422270) · both arms done · 384.0 s
+  pass 2 · seed 172/320 (12422271) · both arms done · 386.4 s
+  pass 2 · seed 173/320 (12422272) · both arms done · 388.7 s
+  pass 2 · seed 174/320 (12422273) · both arms done · 391.1 s
+  pass 2 · seed 175/320 (12422274) · both arms done · 393.4 s
+  pass 2 · seed 176/320 (12422275) · both arms done · 395.7 s
+  pass 2 · seed 177/320 (12422276) · both arms done · 398.0 s
+  pass 2 · seed 178/320 (12422277) · both arms done · 400.1 s
+  pass 2 · seed 179/320 (12422278) · both arms done · 402.4 s
+  pass 2 · seed 180/320 (12422279) · both arms done · 404.8 s
+  pass 2 · seed 181/320 (12422280) · both arms done · 407.1 s
+  pass 2 · seed 182/320 (12422281) · both arms done · 409.3 s
+  pass 2 · seed 183/320 (12422282) · both arms done · 411.6 s
+  pass 2 · seed 184/320 (12422283) · both arms done · 413.9 s
+  pass 2 · seed 185/320 (12422284) · both arms done · 416.1 s
+  pass 2 · seed 186/320 (12422285) · both arms done · 418.3 s
+  pass 2 · seed 187/320 (12422286) · both arms done · 420.5 s
+  pass 2 · seed 188/320 (12422287) · both arms done · 422.9 s
+  pass 2 · seed 189/320 (12422288) · both arms done · 425.1 s
+  pass 2 · seed 190/320 (12422289) · both arms done · 427.4 s
+  pass 2 · seed 191/320 (12422290) · both arms done · 429.7 s
+  pass 2 · seed 192/320 (12422291) · both arms done · 432.0 s
+  pass 2 · seed 193/320 (12422292) · both arms done · 434.3 s
+  pass 2 · seed 194/320 (12422293) · both arms done · 436.7 s
+  pass 2 · seed 195/320 (12422294) · both arms done · 439.0 s
+  pass 2 · seed 196/320 (12422295) · both arms done · 441.2 s
+  pass 2 · seed 197/320 (12422296) · both arms done · 443.5 s
+  pass 2 · seed 198/320 (12422297) · both arms done · 445.7 s
+  pass 2 · seed 199/320 (12422298) · both arms done · 447.9 s
+  pass 2 · seed 200/320 (12422299) · both arms done · 450.1 s
+  pass 2 · seed 201/320 (12422300) · both arms done · 452.5 s
+  pass 2 · seed 202/320 (12422301) · both arms done · 454.7 s
+  pass 2 · seed 203/320 (12422302) · both arms done · 456.9 s
+  pass 2 · seed 204/320 (12422303) · both arms done · 459.2 s
+  pass 2 · seed 205/320 (12422304) · both arms done · 461.6 s
+  pass 2 · seed 206/320 (12422305) · both arms done · 463.8 s
+  pass 2 · seed 207/320 (12422306) · both arms done · 466.0 s
+  pass 2 · seed 208/320 (12422307) · both arms done · 468.3 s
+  pass 2 · seed 209/320 (12422308) · both arms done · 470.5 s
+  pass 2 · seed 210/320 (12422309) · both arms done · 472.8 s
+  pass 2 · seed 211/320 (12422310) · both arms done · 475.0 s
+  pass 2 · seed 212/320 (12422311) · both arms done · 477.3 s
+  pass 2 · seed 213/320 (12422312) · both arms done · 479.5 s
+  pass 2 · seed 214/320 (12422313) · both arms done · 481.6 s
+  pass 2 · seed 215/320 (12422314) · both arms done · 484.0 s
+  pass 2 · seed 216/320 (12422315) · both arms done · 486.2 s
+  pass 2 · seed 217/320 (12422316) · both arms done · 488.5 s
+  pass 2 · seed 218/320 (12422317) · both arms done · 490.7 s
+  pass 2 · seed 219/320 (12422318) · both arms done · 492.9 s
+  pass 2 · seed 220/320 (12422319) · both arms done · 495.1 s
+  pass 2 · seed 221/320 (12422320) · both arms done · 497.3 s
+  pass 2 · seed 222/320 (12422321) · both arms done · 499.6 s
+  pass 2 · seed 223/320 (12422322) · both arms done · 501.9 s
+  pass 2 · seed 224/320 (12422323) · both arms done · 504.1 s
+  pass 2 · seed 225/320 (12422324) · both arms done · 506.4 s
+  pass 2 · seed 226/320 (12422325) · both arms done · 508.7 s
+  pass 2 · seed 227/320 (12422326) · both arms done · 510.9 s
+  pass 2 · seed 228/320 (12422327) · both arms done · 513.1 s
+  pass 2 · seed 229/320 (12422328) · both arms done · 515.4 s
+  pass 2 · seed 230/320 (12422329) · both arms done · 517.7 s
+  pass 2 · seed 231/320 (12422330) · both arms done · 520.0 s
+  pass 2 · seed 232/320 (12422331) · both arms done · 522.2 s
+  pass 2 · seed 233/320 (12422332) · both arms done · 524.5 s
+  pass 2 · seed 234/320 (12422333) · both arms done · 526.7 s
+  pass 2 · seed 235/320 (12422334) · both arms done · 529.0 s
+  pass 2 · seed 236/320 (12422335) · both arms done · 531.2 s
+  pass 2 · seed 237/320 (12422336) · both arms done · 533.5 s
+  pass 2 · seed 238/320 (12422337) · both arms done · 535.7 s
+  pass 2 · seed 239/320 (12422338) · both arms done · 538.0 s
+  pass 2 · seed 240/320 (12422339) · both arms done · 540.2 s
+  pass 2 · seed 241/320 (12422340) · both arms done · 542.4 s
+  pass 2 · seed 242/320 (12422341) · both arms done · 544.6 s
+  pass 2 · seed 243/320 (12422342) · both arms done · 546.8 s
+  pass 2 · seed 244/320 (12422343) · both arms done · 549.1 s
+  pass 2 · seed 245/320 (12422344) · both arms done · 551.3 s
+  pass 2 · seed 246/320 (12422345) · both arms done · 553.5 s
+  pass 2 · seed 247/320 (12422346) · both arms done · 555.8 s
+  pass 2 · seed 248/320 (12422347) · both arms done · 558.1 s
+  pass 2 · seed 249/320 (12422348) · both arms done · 560.2 s
+  pass 2 · seed 250/320 (12422349) · both arms done · 562.5 s
+  pass 2 · seed 251/320 (12422350) · both arms done · 564.7 s
+  pass 2 · seed 252/320 (12422351) · both arms done · 566.9 s
+  pass 2 · seed 253/320 (12422352) · both arms done · 569.2 s
+  pass 2 · seed 254/320 (12422353) · both arms done · 571.5 s
+  pass 2 · seed 255/320 (12422354) · both arms done · 573.7 s
+  pass 2 · seed 256/320 (12422355) · both arms done · 575.9 s
+  pass 2 · seed 257/320 (12422356) · both arms done · 577.9 s
+  pass 2 · seed 258/320 (12422357) · both arms done · 580.1 s
+  pass 2 · seed 259/320 (12422358) · both arms done · 582.3 s
+  pass 2 · seed 260/320 (12422359) · both arms done · 584.5 s
+  pass 2 · seed 261/320 (12422360) · both arms done · 586.8 s
+  pass 2 · seed 262/320 (12422361) · both arms done · 589.1 s
+  pass 2 · seed 263/320 (12422362) · both arms done · 591.4 s
+  pass 2 · seed 264/320 (12422363) · both arms done · 593.6 s
+  pass 2 · seed 265/320 (12422364) · both arms done · 595.7 s
+  pass 2 · seed 266/320 (12422365) · both arms done · 598.0 s
+  pass 2 · seed 267/320 (12422366) · both arms done · 600.3 s
+  pass 2 · seed 268/320 (12422367) · both arms done · 602.5 s
+  pass 2 · seed 269/320 (12422368) · both arms done · 604.6 s
+  pass 2 · seed 270/320 (12422369) · both arms done · 606.8 s
+  pass 2 · seed 271/320 (12422370) · both arms done · 609.1 s
+  pass 2 · seed 272/320 (12422371) · both arms done · 611.3 s
+  pass 2 · seed 273/320 (12422372) · both arms done · 613.6 s
+  pass 2 · seed 274/320 (12422373) · both arms done · 615.8 s
+  pass 2 · seed 275/320 (12422374) · both arms done · 618.0 s
+  pass 2 · seed 276/320 (12422375) · both arms done · 620.2 s
+  pass 2 · seed 277/320 (12422376) · both arms done · 622.4 s
+  pass 2 · seed 278/320 (12422377) · both arms done · 624.6 s
+  pass 2 · seed 279/320 (12422378) · both arms done · 626.9 s
+  pass 2 · seed 280/320 (12422379) · both arms done · 629.1 s
+  pass 2 · seed 281/320 (12422380) · both arms done · 631.4 s
+  pass 2 · seed 282/320 (12422381) · both arms done · 633.6 s
+  pass 2 · seed 283/320 (12422382) · both arms done · 635.9 s
+  pass 2 · seed 284/320 (12422383) · both arms done · 638.1 s
+  pass 2 · seed 285/320 (12422384) · both arms done · 640.4 s
+  pass 2 · seed 286/320 (12422385) · both arms done · 642.5 s
+  pass 2 · seed 287/320 (12422386) · both arms done · 644.7 s
+  pass 2 · seed 288/320 (12422387) · both arms done · 647.1 s
+  pass 2 · seed 289/320 (12422388) · both arms done · 649.3 s
+  pass 2 · seed 290/320 (12422389) · both arms done · 651.7 s
+  pass 2 · seed 291/320 (12422390) · both arms done · 653.8 s
+  pass 2 · seed 292/320 (12422391) · both arms done · 656.0 s
+  pass 2 · seed 293/320 (12422392) · both arms done · 658.3 s
+  pass 2 · seed 294/320 (12422393) · both arms done · 660.4 s
+  pass 2 · seed 295/320 (12422394) · both arms done · 662.7 s
+  pass 2 · seed 296/320 (12422395) · both arms done · 664.8 s
+  pass 2 · seed 297/320 (12422396) · both arms done · 667.1 s
+  pass 2 · seed 298/320 (12422397) · both arms done · 669.2 s
+  pass 2 · seed 299/320 (12422398) · both arms done · 671.4 s
+  pass 2 · seed 300/320 (12422399) · both arms done · 673.6 s
+  pass 2 · seed 301/320 (12422400) · both arms done · 675.9 s
+  pass 2 · seed 302/320 (12422401) · both arms done · 678.0 s
+  pass 2 · seed 303/320 (12422402) · both arms done · 680.2 s
+  pass 2 · seed 304/320 (12422403) · both arms done · 682.6 s
+  pass 2 · seed 305/320 (12422404) · both arms done · 684.8 s
+  pass 2 · seed 306/320 (12422405) · both arms done · 687.0 s
+  pass 2 · seed 307/320 (12422406) · both arms done · 689.3 s
+  pass 2 · seed 308/320 (12422407) · both arms done · 691.6 s
+  pass 2 · seed 309/320 (12422408) · both arms done · 693.8 s
+  pass 2 · seed 310/320 (12422409) · both arms done · 696.2 s
+  pass 2 · seed 311/320 (12422410) · both arms done · 698.5 s
+  pass 2 · seed 312/320 (12422411) · both arms done · 700.8 s
+  pass 2 · seed 313/320 (12422412) · both arms done · 703.1 s
+  pass 2 · seed 314/320 (12422413) · both arms done · 705.3 s
+  pass 2 · seed 315/320 (12422414) · both arms done · 707.6 s
+  pass 2 · seed 316/320 (12422415) · both arms done · 709.8 s
+  pass 2 · seed 317/320 (12422416) · both arms done · 712.0 s
+  pass 2 · seed 318/320 (12422417) · both arms done · 714.2 s
+  pass 2 · seed 319/320 (12422418) · both arms done · 716.5 s
+  pass 2 · seed 320/320 (12422419) · both arms done · 718.7 s
+  pass 2 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
+  pass 2 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
+  [o2-t1] pass 2 digest b1489dd4b00faf4c7a8b8763b1dd155d7db2863465b53cf4cbfe6219e841126f — X-DET PASS
+
+=== O2-T1 WEDGE EXAM · mode full · 12422100..12422419 (320 seeds/arm, shared) ===
+eligible moments  CONTROL 19088 · LOOK 20138   (qualifying 25582 / 25600)
+THE RATES (paired per-match bootstrap, ratio-of-totals, 2.5/97.5, stats base 104600, 2000 resamples; Δ = LOOK − CONTROL)
+  PERCEIVED hold             CONTROL     0.0733% · LOOK     0.0546% · Δ -0.000187 [-0.000754, 0.000367] resolved=false
+      n_hold           CONTROL 14 · LOOK 11
+  TRUE-context share         CONTROL     0.6391% · LOOK     0.4817% · Δ -0.001575 [-0.002901, -0.000172] resolved=true
+      n_true           CONTROL 122 · LOOK 97
+  WEDGE (true÷perceived)     CONTROL 8.7143× · LOOK 8.8182× · Δ 0.1039 [-10.2778, 13.55] resolved=false
+      LOOK wedge CI [4.8421, 22.2] · excludesControlPoint=false
+  E-ABSTAIN-UNSEEN           CONTROL    68.1790% · LOOK    61.8780% · Δ -0.063009 [-0.074516, -0.051142] resolved=true
+  E-ACTNOW-DECLINED          CONTROL    31.4229% · LOOK    37.6899% · Δ 0.062671 [0.050524, 0.074442] resolved=true
+  E-NOCELL                   CONTROL     0.3248% · LOOK     0.3774% · Δ 0.000526 [-0.000507, 0.001615] resolved=false
+  M-CTX agreement            CONTROL    50.8150% · LOOK    55.9137% · Δ 0.050987 [0.028628, 0.072823] resolved=true
+  M-CTX  pressure            CONTROL    84.0652% · LOOK    90.7381% · Δ 0.066729 [0.049261, 0.084665] resolved=true
+  M-CTX  stale               CONTROL   100.0000% · LOOK   100.0000% · Δ 0 [0, 0] resolved=false
+  M-CTX  support             CONTROL    58.5828% · LOOK    59.0843% · Δ 0.005015 [-0.01899, 0.028913] resolved=false
+  DEV floor 0.29% cleared?   CONTROL false · LOOK false   (NOT re-cut, #65.1)
+EXCLUSION MIX (firstTouch / mustKick / A0-Shoot / A0-Clear)
+  CONTROL 4260 / 1343 / 878 / 13   ·   LOOK 3269 / 1397 / 764 / 32
+(i) LOOK LEDGER   (the #194 abort-mix price is stated in the artifact beside these counts)
+  CONTROL looks 0 · scans 0 · liveTicks 0
+  LOOK    looks 11964 · completed 9600 · abortedLoss 2222 · abortedPhase 0 · E-ENDED 142 · scans 115308 · liveTicks 115308 · seedsWithLooks 320/320
+  frozen-phase ticks under a live window (NO scan, window cannot close — published, not dropped)   CONTROL 0 · LOOK 1260
+(ii) F-O2b EXPOSURE INSTRUMENTS
+  turnover per spell         CONTROL    0.409024 · LOOK    0.443299 · Δ 0.034275 [0.024942, 0.043182] resolved=true
+  turnovers /1000 ticks      CONTROL    3.368084 · LOOK    3.239743 · Δ -0.128341 [-0.232284, -0.02734] resolved=true
+  turnovers look-attributed at the LOSS TICK (PLAYING clock)   CONTROL 0 · LOOK 414
+  attribution edges across a FROZEN-PHASE dead-ball reset (own subclass, NEVER mixed in)   CONTROL 517 · LOOK 512
+  companions (no assumed identity): engine abortedLoss 0/2222 · abortedLoss with OWN-team recovery 0/1024 · unresolved at walk end 0/25
+  spells 21632/18915 · turnovers 8848/8385 · ticks 2627013/2588168
+(iv) RING PRESSURE (ring 16, retention 51 ticks)
+  ringPressure share         CONTROL     0.0000% · LOOK     6.2923% · Δ 0.062923 [0.059084, 0.06665] resolved=true
+  ringFull  CONTROL 18257/18768 · LOOK 19239/19818 · mean occupancy 15.761/15.763 · mean oldest age 182.47/143.582
+(v) BUILD-UP RULER — constructed/scramble shares DROPPED (whole-match classifier vs a walk
+    truncated at PER_MATCH_CAP); carried instead:
+  goals in walked window  CONTROL 416 · LOOK 415 · matches reaching full time 3/0 of 320
+N RULE (in-probe, from the committed #186 artifact)
+  q1 perceived-hold half-closure: DEFF 1.4614 · m_req 7827.6 ⇒ N 132
+  q2 E-ABSTAIN-UNSEEN −2pp:       DEFF 2.2155 · m_req 18976.4 ⇒ N 320
+  binding q2AbstainUnseen ⇒ N* 320 (cap 800, binds=false) · battery block 12422100..12422419
+GATES
+  xDet               PASS
+  xFpProd            PASS
+  gRepro186          PASS
+  xSrcUntouched      PASS
+  xRingPin           PASS
+  seedDisjoint       PASS
+  statsDisjoint      PASS
+  flagHygiene        PASS
+  tableDrift         PASS
+  gForce             PASS
+  gCleanInvocation   PASS
+  ALL                PASS
+resultSha256 2100760d267b197b18a7625e39bfc35c458e0f2227dfc2495d224f6eaf8a616b
+wall 1590 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam.json
+```
