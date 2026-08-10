@@ -150,6 +150,33 @@ probe's (`scripts/probes/o2-whether-sizing-rerun.ts`), which is itself #65's:
   several ticks between a loss and the next control. The predicate was tightened
   to a working one **before** any receipts run, in the O2-T0 `G-SCAN` precedent
   (a criterion fixed *before* sight, never re-cut after).
+  ⭐ **RE-SPECIFIED AT LOSS-TICK SEMANTICS — the commander-ruled PRE-BATTERY form,
+  settling the instrument debt §RESULT deviation 5 booked.** The debt was booked
+  *before* any battery datum existed and is settled here with none in existence.
+  The predicate now in force, stated exactly:
+
+  > The **team-level turnover** definition is UNCHANGED — the probe's existing
+  > spell tracking, a turnover being the tick at which the **owning side**
+  > changes. Such a turnover is **look-attributed** iff, at the **losing team's
+  > LAST-CONTROLLED tick of that spell**, the body then in control held a **live
+  > `o2Look` window of his own**. "Last-controlled tick" is derived from the
+  > probe's own spell tracking (the carrier's most recent tick in control), so
+  > the loose-ball gap between the loss and the opponent's regain — which is
+  > exactly why the adjacency wording read **0 by construction** — is spanned by
+  > construction rather than by any tick window. `O2_LOOK_TICKS` no longer enters
+  > the predicate. **0 in CONTROL by construction** (no window can exist there).
+
+  Published beside it, **as data with NO assumed identity** — no claim is made
+  that any of the three columns measures the same quantity:
+  **(a)** the engine ledger's own `abortedLoss` (already emitted; the #194
+  superset priced in (i)); **(b)** `abortedLossOwnTeamRecovery` — of the
+  aborted-by-loss windows, how many were followed by an established control by
+  the **looker's own side** (own-team recovery of the loose ball), i.e. the abort
+  did **not** end as a team-level turnover. `abortedLossUnresolvedAtWalkEnd` is
+  carried beside them so (b) is auditable against (a) (aborts whose next
+  established control never arrived before the walk stopped).
+  Whatever the re-specified column then reads is **published plainly**; this doc
+  adjudicates nothing from it.
   **F-O2b's shape (contract §3, the E5h class): classification improves while the
   measured exposure cost is ~zero.** Its two component readings, frozen here:
   (a) a classification limb resolves (the PERCEIVED hold delta, or the wedge
@@ -279,9 +306,11 @@ through 12,421,999).
 | stats base **104,600** | the bootstrap stream (#163: gap ≥ 200 from every published ≥91,100-regime base; the nearest is the census's 104,400 ⇒ min gap exactly 200) |
 
 Disjointness is computed **IN-PROBE** against the complete consumed-block ledger:
-the goal-genealogy census probe's ledger (the completest to date — 17 blocks
-through the MT-LADDER reserved band) **plus the census's own consumption
-12,421,000 – 12,421,999**, plus the two repro blocks. The stats namespace
+the goal-genealogy census probe's ledger (the completest to date — **17 blocks**
+through the MT-LADDER reserved band, #186's own 12,310,000–199 already **inside**
+it) **plus the census's own consumption 12,421,000 – 12,421,999**, plus #65's
+repro block 8,500,000–047 ⇒ **19 entries** in total (the count §RESULT quotes
+from the artifact). The stats namespace
 published is the census probe's complete ≥91,100-regime list **plus 104,400**
 (the census's own base); the probe proves min gap ≥ 200.
 
@@ -338,17 +367,33 @@ recomputed by `npx tsx scripts/probes/o2-t1-wedge-exam.ts`. The doc never carrie
 evidence the artifact does not — #181.2.)*
 
 **Ran 2026-08-10 · `resultSha256`
-`d21ffedbdaf7746013a71ece8286505c88283ebc2b13b45d6cfd2140231c2bc5` ·
-X-DET core digest `1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54`
+`eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7` ·
+X-DET core digest `908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf`
 (both passes) · 12 shared seeds 12,422,000–12,422,011 · **ALL GATES PASS**
-(`allGatesPass: true`) · wall 216 s (CONTEXT ONLY, #128 — used in no rate, and
+(`allGatesPass: true`) · wall 206 s (CONTEXT ONLY, #128 — used in no rate, and
 riding the UNHASHED envelope).**
+
+⚠ **SUPERSESSION, stated plainly.** This is the **second** smoke artifact. The
+first (`resultSha256`
+`d21ffedbdaf7746013a71ece8286505c88283ebc2b13b45d6cfd2140231c2bc5`, X-DET digest
+`1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54`) is **not
+withdrawn and remains in git history** at commit `e5a5261`. It was superseded by
+this **pre-battery instrument round**, run with **no battery datum in existence**:
+(1) `turnoversUnderLiveLook` re-specified at LOSS-TICK semantics (§FORM (ii)) and
+two companion columns published beside it; (2) `reference186.wedgeRatio` made a
+**file read** of the cited artifact's committed counts-based value **7.875** (it
+had been **7.8795**, re-derived in-probe from rounded shares — a CITED number that
+differed from its source); (3) the §SEEDS ledger arithmetic corrected to **19**.
+`src/**` is byte-untouched in this round too. **Every other number in this section
+is byte-identical to the first artifact's** — the only hashed-body fields that
+moved are the re-specified/added exposure columns and `reference186.wedgeRatio`
+(with its note), which is why `resultSha256` and the X-DET digest move.
 
 ### Gate table — every value recomputed in-probe on the run that wrote the artifact
 
 | gate | verdict | evidence |
 | --- | --- | --- |
-| **X-DET** | ✅ PASS | the whole computation twice; hashed bodies byte-identical: `digestA === digestB === 1a981665…af54` |
+| **X-DET** | ✅ PASS | the whole computation twice; hashed bodies byte-identical: `digestA === digestB === 908d6aac…7dcf` |
 | **X-FP-PROD** | ✅ PASS | observed `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` == the shipped baseline |
 | **G-REPRO-186 (a)** | ✅ PASS | #65's block 8,500,000–047, `REPRO65` flags: qualifying **3,840** · eligible **2,835** · D-HOLD **4** · classes **4 / 816 / 2,004 / 11** · cells placed **820** · agreement **0.502439** — identical to #186's committed `G-REPRO65` target |
 | **G-REPRO-186 (b)** | ✅ PASS | the CONTROL arm on #186's own block 12,310,000–011: **12 rows checked, 0 mismatches** against the committed `perMatch.o1armed` rows (seed · eligible · dHold · trueHoldable · abstainUnseen · ctxPlaced · ctxAgreeAll) |
@@ -428,18 +473,28 @@ loss. No mechanism claim is made from this mix.
 | turnovers | 339 | 280 | — | — |
 | **turnover per spell** | **0.415951** | **0.423601** | +0.00765 [−0.02383, +0.038604] | **no** |
 | **turnovers / 1,000 walked ticks** | **3.430827** | **2.848249** | **−0.582577** [−0.860543, −0.314299] | **YES** |
-| turnovers under a live look window | 0 (by construction) | **0** — see the deviation below | — | — |
-| engine `abortedLoss` | 0 | 94 | — | — |
+| **turnovers look-attributed at the LOSS TICK** (`turnoversUnderLiveLook`, re-specified) | 0 (by construction) | **18** | — | — |
+| companion (a) — engine `abortedLoss` | 0 | **94** | — | — |
+| companion (b) — `abortedLossOwnTeamRecovery` (abort NOT ending as a team turnover) | 0 | **50** | — | — |
+| `abortedLossUnresolvedAtWalkEnd` (audit residue for (b)) | 0 | **2** | — | — |
 
-⚠ `turnoversUnderLiveLook` reads **0 in the LOOK arm too**, and that number is
-**not** evidence of zero exposure — it is a statement about the attribution
-window. Named as a **hypothesis** (untested here, and not re-cut after sight):
-the ball is loose between a loss and the next established control for longer than
-the `O2_LOOK_TICKS` = 11-tick attribution window, so a look-interrupted loss is
-attributed to no turnover. The exposure readings that **do** fire are the two
-turnover rates above and the engine's `abortedLoss` = 94. **Recorded instrument
-debt:** the attribution window must be re-specified (or the loose-ball gap
-measured) **before** the battery runs — never after seeing battery numbers.
+The re-specified column **fires**: of the LOOK arm's **280** team-level turnovers,
+**18** are attributable to a look live at the losing team's last-controlled tick.
+The old adjacency wording read 0 by construction; the debt booked in deviation 5
+is **settled here, before the battery**, and the re-spec's exact predicate is in
+§FORM (ii).
+
+The three columns beside it are **data with no assumed identity** — no claim is
+made that they measure the same thing, and none of them is adjudicated here.
+Read only through the #194 price: `abortedLoss` = 94 is *"not owned by the looker
+at the next head-of-tick"*, a superset of a duel loss; of those, **50** were
+followed by an established control by the **looker's own side** (own-team recovery
+of the loose ball — the abort did not end as a team-level turnover), **2** never
+saw another established control before the walk stopped, and the remaining **42**
+were followed by opposition control. That 42 is *not* the same population as the
+18: the 18 counts **turnovers** whose losing last-controlled tick was under a live
+look, the 42 counts **aborted windows** followed by opposition control. The
+arithmetic between them is the commander's to read, not this doc's.
 
 ### (iii) M-CTX per-feature — read with T0 HONESTY LIMIT 2
 
@@ -528,7 +583,7 @@ N rule ⇒ N* 320 (cap 800)
   pass 1 · seed 12/12 (12422011) · both arms done · 29.5 s
   pass 1 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
   pass 1 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
-  [o2-t1] pass 1 digest 1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54 — X-DET second pass...
+  [o2-t1] pass 1 digest 908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf — X-DET second pass...
   pass 2 · seed 1/12 (12422000) · both arms done · 2.5 s
   pass 2 · seed 2/12 (12422001) · both arms done · 4.9 s
   pass 2 · seed 3/12 (12422002) · both arms done · 7.3 s
@@ -543,7 +598,7 @@ N rule ⇒ N* 320 (cap 800)
   pass 2 · seed 12/12 (12422011) · both arms done · 29.1 s
   pass 2 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
   pass 2 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
-  [o2-t1] pass 2 digest 1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54 — X-DET PASS
+  [o2-t1] pass 2 digest 908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf — X-DET PASS
 
 === O2-T1 WEDGE EXAM · mode smoke · 12422000..12422011 (12 seeds/arm, shared) ===
 eligible moments  CONTROL 718 · LOOK 757   (qualifying 960 / 960)
@@ -570,7 +625,8 @@ EXCLUSION MIX (firstTouch / mustKick / A0-Shoot / A0-Clear)
 (ii) F-O2b EXPOSURE INSTRUMENTS
   turnover per spell         CONTROL    0.415951 · LOOK    0.423601 · Δ 0.00765 [-0.02383, 0.038604] resolved=false
   turnovers /1000 ticks      CONTROL    3.430827 · LOOK    2.848249 · Δ -0.582577 [-0.860543, -0.314299] resolved=true
-  turnovers under a LIVE look window   CONTROL 0 · LOOK 0
+  turnovers look-attributed at the LOSS TICK   CONTROL 0 · LOOK 18
+  companions (no assumed identity): engine abortedLoss 0/94 · abortedLoss with OWN-team recovery 0/50 · unresolved at walk end 0/2
   spells 815/661 · turnovers 339/280 · ticks 98810/98306
 (iv) RING PRESSURE (ring 16, retention 51 ticks)
   ringPressure share         CONTROL     0.0000% · LOOK     6.7114% · Δ 0.067114 [0.046917, 0.087744] resolved=true
@@ -595,8 +651,8 @@ GATES
   gForce             PASS
   gCleanInvocation   PASS
   ALL                PASS
-resultSha256 d21ffedbdaf7746013a71ece8286505c88283ebc2b13b45d6cfd2140231c2bc5
-wall 216 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam-smoke.json
+resultSha256 eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7
+wall 206 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam-smoke.json
 ```
 
 ### §CHECKS

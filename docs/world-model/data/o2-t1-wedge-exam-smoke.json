@@ -66,11 +66,11 @@
     "arm": "o1armed",
     "perceivedHold": 0.000672,
     "trueContextShare": 0.005295,
-    "wedgeRatio": 7.8795,
+    "wedgeRatio": 7.875,
     "abstainUnseen": 0.687905,
     "eligible": 11897,
     "matches": 200,
-    "note": "CITED from the committed data/o2-whether-sizing-rerun.json; re-derived in-probe by gate G-REPRO-186 limb (b), never trusted as prose"
+    "note": "READ FIELD-FOR-FIELD out of the committed data/o2-whether-sizing-rerun.json (arms.o1armed: chooserHold.rateOfEligible · trueContext.shareOfEligible · wedgeRatio · decisionClassShares[\"E-ABSTAIN-UNSEEN\"].share · eligibleTotal, and the top-level matches) — nothing here is re-derived from rounded shares, so no CITED number can differ from its source; re-derived in-probe by gate G-REPRO-186 limb (b), never trusted as prose"
   },
   "arms": {
     "control": {
@@ -181,7 +181,11 @@
         "turnoverPerSpell": 0.415951,
         "turnoversPer1000Ticks": 3.4308,
         "turnoversUnderLiveLook": 0,
-        "engineAbortedLoss": 0
+        "turnoversUnderLiveLookPredicate": "LOSS-TICK semantics (commander-ruled PRE-BATTERY re-spec, the #215 census lesson): the team-level turnover definition is UNCHANGED (the owning side changes); it is look-attributed iff at the LOSING team's LAST-CONTROLLED tick of that spell the body in control held a live look window of his own. Derived from this walk's own spell tracking, so the loose-ball gap between the loss and the opponent's regain is spanned — the earlier adjacency wording read 0 BY CONSTRUCTION and is superseded. 0 in CONTROL by construction (no windows exist).",
+        "engineAbortedLoss": 0,
+        "abortedLossOwnTeamRecovery": 0,
+        "abortedLossUnresolvedAtWalkEnd": 0,
+        "companionColumnsNote": "THE TWO COMPANIONS ARE DATA WITH NO ASSUMED IDENTITY. (a) engineAbortedLoss = the engine ledger's own abortedLoss (\"not owned by the looker at the next head-of-tick\" — the #194 superset, priced in the ledger block). (b) abortedLossOwnTeamRecovery = of those aborted-by-loss windows, how many were followed by an established control by the LOOKER'S OWN side (own-team recovery of the loose ball), i.e. the abort did NOT end as a team-level turnover. abortedLossUnresolvedAtWalkEnd counts aborts whose next established control never arrived before the walk stopped, so (b) is auditable against (a). NO claim is made that any of these three columns measures the same thing."
       },
       "ringPressure": {
         "scanFrameRing": 16,
@@ -301,8 +305,12 @@
         "turnovers": 280,
         "turnoverPerSpell": 0.423601,
         "turnoversPer1000Ticks": 2.8482,
-        "turnoversUnderLiveLook": 0,
-        "engineAbortedLoss": 94
+        "turnoversUnderLiveLook": 18,
+        "turnoversUnderLiveLookPredicate": "LOSS-TICK semantics (commander-ruled PRE-BATTERY re-spec, the #215 census lesson): the team-level turnover definition is UNCHANGED (the owning side changes); it is look-attributed iff at the LOSING team's LAST-CONTROLLED tick of that spell the body in control held a live look window of his own. Derived from this walk's own spell tracking, so the loose-ball gap between the loss and the opponent's regain is spanned — the earlier adjacency wording read 0 BY CONSTRUCTION and is superseded. 0 in CONTROL by construction (no windows exist).",
+        "engineAbortedLoss": 94,
+        "abortedLossOwnTeamRecovery": 50,
+        "abortedLossUnresolvedAtWalkEnd": 2,
+        "companionColumnsNote": "THE TWO COMPANIONS ARE DATA WITH NO ASSUMED IDENTITY. (a) engineAbortedLoss = the engine ledger's own abortedLoss (\"not owned by the looker at the next head-of-tick\" — the #194 superset, priced in the ledger block). (b) abortedLossOwnTeamRecovery = of those aborted-by-loss windows, how many were followed by an established control by the LOOKER'S OWN side (own-team recovery of the loose ball), i.e. the abort did NOT end as a team-level turnover. abortedLossUnresolvedAtWalkEnd counts aborts whose next established control never arrived before the walk stopped, so (b) is auditable against (a). NO claim is made that any of these three columns measures the same thing."
       },
       "ringPressure": {
         "scanFrameRing": 16,
@@ -1214,8 +1222,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54",
-      "digestB": "1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54",
+      "digestA": "908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf",
+      "digestB": "908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf",
       "note": "the WHOLE computation (both arms + both repro walks + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
     },
     "xFpProd": {
@@ -1514,10 +1522,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "d21ffedbdaf7746013a71ece8286505c88283ebc2b13b45d6cfd2140231c2bc5",
+  "resultSha256": "eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7",
   "envelopeContextOnly": {
-    "headContextOnly": "844aaba",
-    "wallMsContextOnly": 216305,
+    "headContextOnly": "e5a5261",
+    "wallMsContextOnly": 206456,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/o2-t1-wedge-exam-smoke.json",
     "srcDiffStat": "",

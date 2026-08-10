@@ -305,6 +305,8 @@ interface PerMatch {
   possessionSpells: number;
   turnovers: number;
   turnoversUnderLiveLook: number;
+  abortedLossOwnTeamRecovery: number;
+  abortedLossUnresolvedAtWalkEnd: number;
   /* ---- (iv) ring pressure ---- */
   ringReadable: number;
   ringFull: number;
@@ -325,6 +327,7 @@ const emptyRow = (seed: number): PerMatch => ({
   looks: 0, lookScans: 0, lookCompleted: 0, lookAbortedLoss: 0, lookAbortedPhase: 0,
   lookEndedLive: 0, liveWindowTicks: 0,
   ticksWalked: 0, possessionSpells: 0, turnovers: 0, turnoversUnderLiveLook: 0,
+  abortedLossOwnTeamRecovery: 0, abortedLossUnresolvedAtWalkEnd: 0,
   ringReadable: 0, ringFull: 0, ringPressure: 0, ringOccupancySum: 0, ringOldestAgeSum: 0,
   goalsInWalkedWindow: 0, reachedFullTime: 0, retentionTicks: 0,
 });
@@ -355,8 +358,16 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
   let lastOwner = -1;
   let prevOwnerGid: number | null = null;
   let prevSide: number | null = null;
-  /** the most recent tick a look window was live, and whose it was (see the turnover rule) */
-  let lastLiveWindow: { gid: number; tick: number } | null = null;
+  /**
+   * ⭐ THE LOSS-TICK READING (the #215 census lesson; commander-ruled PRE-BATTERY re-spec).
+   * `lossTickUnderLook` carries, for the body currently in control, whether a look window of
+   * HIS was live at his MOST RECENT CONTROLLED TICK. When the owning side next changes, that
+   * reading IS the losing team's last-controlled-tick reading — the loose-ball gap between the
+   * loss and the opponent's regain is spanned by construction, not by an adjacency window.
+   */
+  let lossTickUnderLook = false;
+  /** aborted-by-loss windows awaiting the next established control (own-team recovery vs turnover) */
+  const pendingAbortLossSides: number[] = [];
   const r = emptyRow(seed);
   r.retentionTicks = retentionTicks;
   while (!match.finished && inMatch < PER_MATCH_CAP) {
@@ -422,13 +433,18 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
       inMatch += 1;
     }
     // --- the tick, and the per-tick observation columns ---------------------------
+    const winBefore = match.o2LookWindow;
+    const abortedLossBefore = match.o2LookLedger.abortedLoss;
     match.step(DT);
     r.ticksWalked += 1;
     sinceLast += 1;
     const win = match.o2LookWindow;
-    if (win !== null) {
-      r.liveWindowTicks += 1;
-      lastLiveWindow = { gid: win.gid, tick: match.simTick };
+    if (win !== null) r.liveWindowTicks += 1;
+    // the engine closed a window as abortedLoss on THIS step: park the looker's side until the
+    // next established control decides whether the spell ended as a team-level turnover.
+    if (match.o2LookLedger.abortedLoss > abortedLossBefore && winBefore !== null) {
+      const looker = match.allPlayers[winBefore.gid] as Player | undefined;
+      if (looker !== undefined) pendingAbortLossSides.push(looker.side);
     }
     const now = match.ball.owner;
     if (now !== null) {
@@ -436,22 +452,26 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
         r.possessionSpells += 1;
         if (prevSide !== null && now.side !== prevSide) {
           r.turnovers += 1;
-          // ⚠ SHARPENED after the guard dry run (stage doc §RESULT deviations): the literal
-          // "held a live window on the tick before the hand-over" reads 0 BY CONSTRUCTION,
-          // because the ball is loose for several ticks between the loss and the regain. The
-          // frozen predicate is therefore: the LOSING carrier is the body whose look window
-          // was live at, or within O2_LOOK_TICKS ticks before, the hand-over tick.
-          if (lastLiveWindow !== null && prevOwnerGid !== null
-            && lastLiveWindow.gid === prevOwnerGid
-            && match.simTick - lastLiveWindow.tick <= O2_LOOK_TICKS) {
-            r.turnoversUnderLiveLook += 1;
+          // ⭐ LOSS-TICK ATTRIBUTION (re-specified before the battery, #215 census lesson): the
+          // turnover is look-attributed iff the LOSING team's LAST-CONTROLLED tick of that spell
+          // was held by a body with a live look window of his own. No adjacency window is used,
+          // so the loose-ball gap cannot zero the column by construction.
+          if (lossTickUnderLook) r.turnoversUnderLiveLook += 1;
+        }
+        if (pendingAbortLossSides.length > 0) {
+          for (const side of pendingAbortLossSides) {
+            if (side === now.side) r.abortedLossOwnTeamRecovery += 1;
           }
+          pendingAbortLossSides.length = 0;
         }
         prevOwnerGid = now.gid;
         prevSide = now.side;
       }
+      // this tick the carrier IS in control: refresh his last-controlled-tick look reading
+      lossTickUnderLook = win !== null && win.gid === now.gid;
     }
   }
+  r.abortedLossUnresolvedAtWalkEnd = pendingAbortLossSides.length;
   const led = match.o2LookLedger;
   r.looks = led.looks;
   r.lookScans = led.scans;
@@ -602,7 +622,25 @@ const armSummary = (rows: PerMatch[]) => {
       turnoverPerSpell: round(rateOf(rows, 'turnoverPerSpell')),
       turnoversPer1000Ticks: round(rateOf(rows, 'turnoversPer1000Ticks'), 4),
       turnoversUnderLiveLook: s((r) => r.turnoversUnderLiveLook),
+      turnoversUnderLiveLookPredicate: 'LOSS-TICK semantics (commander-ruled PRE-BATTERY '
+        + 're-spec, the #215 census lesson): the team-level turnover definition is UNCHANGED '
+        + '(the owning side changes); it is look-attributed iff at the LOSING team\'s '
+        + 'LAST-CONTROLLED tick of that spell the body in control held a live look window of '
+        + 'his own. Derived from this walk\'s own spell tracking, so the loose-ball gap between '
+        + 'the loss and the opponent\'s regain is spanned — the earlier adjacency wording read 0 '
+        + 'BY CONSTRUCTION and is superseded. 0 in CONTROL by construction (no windows exist).',
       engineAbortedLoss: s((r) => r.lookAbortedLoss),
+      abortedLossOwnTeamRecovery: s((r) => r.abortedLossOwnTeamRecovery),
+      abortedLossUnresolvedAtWalkEnd: s((r) => r.abortedLossUnresolvedAtWalkEnd),
+      companionColumnsNote: 'THE TWO COMPANIONS ARE DATA WITH NO ASSUMED IDENTITY. '
+        + '(a) engineAbortedLoss = the engine ledger\'s own abortedLoss ("not owned by the '
+        + 'looker at the next head-of-tick" — the #194 superset, priced in the ledger block). '
+        + '(b) abortedLossOwnTeamRecovery = of those aborted-by-loss windows, how many were '
+        + 'followed by an established control by the LOOKER\'S OWN side (own-team recovery of '
+        + 'the loose ball), i.e. the abort did NOT end as a team-level turnover. '
+        + 'abortedLossUnresolvedAtWalkEnd counts aborts whose next established control never '
+        + 'arrived before the walk stopped, so (b) is auditable against (a). NO claim is made '
+        + 'that any of these three columns measures the same thing.',
     },
     /* (iv) RING PRESSURE — REPORTED (T0 HONESTY LIMIT 3). */
     ringPressure: {
@@ -687,12 +725,18 @@ const bootstrap = (ctrl: PerMatch[], look: PerMatch[]) => {
 /* ========================================================================== */
 const Z975 = 1.959963985;
 const Z80 = 0.841621234;
+/** the committed #186 artifact, READ ONCE — every #186 number in this probe comes from here */
+const SIZING186 = existsSync(SIZING186_PATH)
+  ? (() => {
+    const bytes = readFileSync(SIZING186_PATH);
+    return { bytes, j: JSON.parse(bytes.toString('utf8')) as any };
+  })()
+  : null;
 const nRule = (() => {
-  if (!existsSync(SIZING186_PATH)) {
+  if (SIZING186 === null) {
     return { available: false, note: `absent: ${SIZING186_PATH}`, nStar: null as number | null };
   }
-  const bytes = readFileSync(SIZING186_PATH);
-  const j = JSON.parse(bytes.toString('utf8')) as any;
+  const { bytes, j } = SIZING186;
   const a = j.arms.o1armed;
   const b = j.arms.baseline;
   const m186 = (a.eligibleTotal + b.eligibleTotal) / 2;
@@ -1179,10 +1223,21 @@ const body = {
   nRule,
   reference186: {
     block: '12310000..12310199', arm: 'o1armed',
-    perceivedHold: 0.000672, trueContextShare: 0.005295, wedgeRatio: 7.8795,
-    abstainUnseen: 0.687905, eligible: 11897, matches: 200,
-    note: 'CITED from the committed data/o2-whether-sizing-rerun.json; re-derived in-probe by '
-      + 'gate G-REPRO-186 limb (b), never trusted as prose',
+    perceivedHold: SIZING186 === null ? null
+      : SIZING186.j.arms.o1armed.chooserHold.rateOfEligible as number,
+    trueContextShare: SIZING186 === null ? null
+      : SIZING186.j.arms.o1armed.trueContext.shareOfEligible as number,
+    wedgeRatio: SIZING186 === null ? null : SIZING186.j.arms.o1armed.wedgeRatio as number,
+    abstainUnseen: SIZING186 === null ? null
+      : SIZING186.j.arms.o1armed.decisionClassShares['E-ABSTAIN-UNSEEN'].share as number,
+    eligible: SIZING186 === null ? null : SIZING186.j.arms.o1armed.eligibleTotal as number,
+    matches: SIZING186 === null ? null : SIZING186.j.matches as number,
+    note: 'READ FIELD-FOR-FIELD out of the committed data/o2-whether-sizing-rerun.json '
+      + '(arms.o1armed: chooserHold.rateOfEligible · trueContext.shareOfEligible · wedgeRatio · '
+      + 'decisionClassShares["E-ABSTAIN-UNSEEN"].share · eligibleTotal, and the top-level '
+      + 'matches) — nothing here is re-derived from rounded shares, so no CITED number can '
+      + 'differ from its source; re-derived in-probe by gate G-REPRO-186 limb (b), never '
+      + 'trusted as prose',
   },
   ...bodyA,
   gates,
@@ -1271,8 +1326,14 @@ o(`  LOOK    looks ${lookLedger.looks} · completed ${lookLedger.completed}`
 o('(ii) F-O2b EXPOSURE INSTRUMENTS');
 row('turnover per spell', 'turnoverPerSpell', false);
 row('turnovers /1000 ticks', 'turnoversPer1000Ticks', false);
-o(`  turnovers under a LIVE look window   CONTROL ${A.control.exposure.turnoversUnderLiveLook}`
+o(`  turnovers look-attributed at the LOSS TICK   CONTROL ${A.control.exposure.turnoversUnderLiveLook}`
   + ` · LOOK ${A.look.exposure.turnoversUnderLiveLook}`);
+o(`  companions (no assumed identity): engine abortedLoss ${A.control.exposure.engineAbortedLoss}`
+  + `/${A.look.exposure.engineAbortedLoss}`
+  + ` · abortedLoss with OWN-team recovery ${A.control.exposure.abortedLossOwnTeamRecovery}`
+  + `/${A.look.exposure.abortedLossOwnTeamRecovery}`
+  + ` · unresolved at walk end ${A.control.exposure.abortedLossUnresolvedAtWalkEnd}`
+  + `/${A.look.exposure.abortedLossUnresolvedAtWalkEnd}`);
 o(`  spells ${A.control.exposure.possessionSpells}/${A.look.exposure.possessionSpells}`
   + ` · turnovers ${A.control.exposure.turnovers}/${A.look.exposure.turnovers}`
   + ` · ticks ${A.control.exposure.ticksWalked}/${A.look.exposure.ticksWalked}`);
