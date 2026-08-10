@@ -1,0 +1,1196 @@
+{
+  "stage": "OBM T0 — the dormant OFF-BALL EYES SEAT (`offballMovementWeights` / `obmMovement`)",
+  "ruling": "#227 (the dispatch) + #181.2 (the standing receipt rule) + #194 (gate semantics stated exactly) + #197-M1 (commit-free hashed body) + #200 (no predicates) + #202 (traced bounds derived in code)",
+  "contract": "docs/world-model/OFFBALL-MOVEMENT-CONTRACT.md",
+  "doc": "docs/world-model/OBM-T0-DORMANT-SEAM.md",
+  "frozenLaw": {
+    "featureKeys": [
+      "carrierPlight",
+      "ownMarker",
+      "targetCongestion",
+      "readingAge"
+    ],
+    "outputKeys": [
+      "planeDepth",
+      "planeWidth",
+      "supportScore",
+      "runScore"
+    ],
+    "weightSlots": 16,
+    "weightDomain": [
+      -1,
+      1
+    ],
+    "scoreSpan": 0.4,
+    "policyTtlTicks": 9,
+    "pressureRadiusM": 6,
+    "retentionTicksAt08": 51,
+    "derivation": "features (all from the body's OWN perceivedSnapshot, all in [0,1]): f1 carrierPlight = clamp01(1 - d(nearest perceived opponent, perceived carrier) / PRESSURE_RADIUS_M); f2 ownMarker = the same at his own position; f3 targetCongestion = the same at his UNDEFORMED candidate support point; f4 readingAge = clamp01(mean ageTicks of his perceived opponents / perceptionRetentionTicks(awareness)). NO SNAPSHOT or NO PERCEIVED OPPONENT ⇒ all four EXACTLY ZERO (a blind body has no policy). outputs: output_o = (Σ_i w[o][i]·f_i) / OBM_FEATURE_KEYS.length ∈ [-1,1] — the divisor is the feature count, so the DYNAMIC term spans exactly what ONE static plane gene spans. composition: plane.depth = clamp(ctbSupportDepthWeight(g) + output_0, -1, 1) and likewise width (the banked CTB limb is the vocabulary, the static gene is the INTERCEPT); supportMul = 1 + output_2·OBM_SCORE_SPAN and runMul = 1 + output_3·OBM_SCORE_SPAN, where OBM_SCORE_SPAN IS 1 - OFFBALL_TIRED_MUL, the incumbent fatigue multiplier that already scales exactly these two scores. Every bound is DERIVED IN CODE from an incumbent constant; no number is invented and none is typed for this slice. ALL-ZERO weights ⇒ +0 and ×1 ⇒ today's world EXACTLY.",
+    "forcedDose": {
+      "matrix": [
+        -1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0
+      ],
+      "reading": "planeDepth ← -1·carrierPlight (回撤 when the carrier is pressed) · planeWidth ← +1·ownMarker · supportScore ← +1·carrierPlight · runScore ← -1·targetCongestion. Every non-zero entry is a domain corner (±1); no dose level is invented."
+    }
+  },
+  "gates": {
+    "gDet": {
+      "pass": true,
+      "digestA": "ac34a90d495d02acb7f0b3c844edb2d8c7016aaf0f44cefd299c79acee91954b",
+      "digestB": "ac34a90d495d02acb7f0b3c844edb2d8c7016aaf0f44cefd299c79acee91954b"
+    },
+    "gIdent": {
+      "pass": true,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "semantics": "THE RNG-STREAM RECEIPT for the sim path: these baselines were frozen from PRE-change code, so any draw added on the dormant path — conditional or not — would break them.",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gOff": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "CONFIG EQUIVALENCE ONLY (#194): flag ABSENT ≡ flag FALSE in both the production-shaped and the percept-armed world. Both arms execute the SAME flag-off code path, so this gate cannot and does not prove RNG-stream identity — G-IDENT (vs PRE-change baselines) plus the zero-rng seam does."
+    },
+    "gBorn": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ARMS DIFFER IN CODE PATH: armed ⇒ BOTH forks are entered, the seat PULLS THIS BODY'S PERCEPT SNAPSHOT on every in-possession off-ball decision, writes a policy into the match cache, and the executor reads it back. Byte-identity to OFF therefore proves two things at once: the born-absent matrix is inert THROUGH the live branch, AND the percept pull itself has no side effect on any other consumer."
+    },
+    "gZero": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ZERO-POINT IDENTITY: armed with the matrix PRESENT and ALL SLOTS ZERO. The arms differ in code path AND in gene state; byte-identity proves the additive plane law and the multiplicative score law are EXACTLY null at zero (+0 and ×1), i.e. today's geometry and today's score arithmetic are this policy's true centre."
+    },
+    "gBite": {
+      "pass": true,
+      "divergedSeeds": 24,
+      "seeds": 24,
+      "policyUnderForce": {
+        "samples": 8230,
+        "featureMeans": [
+          0.1839,
+          0.4556,
+          0.216,
+          0.1707
+        ],
+        "planeDepthMean": -0.046,
+        "planeWidthMean": 0.1139,
+        "supportMulMean": 1.0184,
+        "runMulMean": 0.9784,
+        "meanIncumbentAheadMetres": 6.047,
+        "meanDosedAheadMetres": 5.4858,
+        "meanAbsShiftMetres": 1.1501,
+        "maxAbsShiftMetres": 4.9005,
+        "movedSamples": 6750,
+        "behindBallSamples": 170,
+        "incumbentBehindBallSamples": 170,
+        "lawViolations": {
+          "outputArithmetic": 0,
+          "planeCompose": 0,
+          "scoreCompose": 0,
+          "planeSign": 0,
+          "planeMagnitude": 0,
+          "featureRange": 0
+        },
+        "lawPass": true,
+        "semantics": "REAL policies computed from REAL percepts on a live match at the forced corner. The checks: every feature in [0,1]; every output EQUAL to the mean of its weighted features (arithmetic, 1e-12); the plane EQUAL to clamp(static intercept + dynamic output); both score multipliers EQUAL to 1 + output·SPAN and inside the frozen band; the support point EQUAL to the exactly-predicted value including the INCUMBENT pitch clamp; and the SIGN law — this dose's depth output can only be ≤ 0 (a negative weight on a non-negative feature), so the seat may only ever pull a body BACK, never push him on, and a zero output must move him not at all."
+      }
+    },
+    "gEpi": {
+      "bodies": 5,
+      "featuresMatchPercept": 5,
+      "featuresMatchTruth": 0,
+      "meanPerceptAge": 10.6,
+      "truthAge": 0,
+      "divergedBodies": 5,
+      "moduleMatchMembers": [
+        "perceivedSnapshot"
+      ],
+      "moduleBannedHits": [],
+      "pass": true,
+      "semantics": "⭐ EPISTEMIC HONESTY, PROVED NOT ASSERTED. A percept-armed match is stepped 600 ticks, every eligible body's features are read off his OWN snapshot, then EVERY BODY IS TELEPORTED 25 m WITHOUT STEPPING — so no new scan moment is recorded and his recorded scan frames still hold the old world. The seat, re-run through its real entry point, must reproduce the PERCEPT-derived features for EVERY body (featuresMatchPercept === bodies), the truth-derived features must differ for every body (divergedBodies === bodies), and NOT ONE body may match the truth (featuresMatchTruth === 0). Plus the SOURCE pin: the only member of `match` the seat module names is `perceivedSnapshot` (moduleMatchMembers), and no truth-scan token appears in its executable body (moduleBannedHits empty)."
+    },
+    "gBlind": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "⭐ THE FOURTH ARMING LIMB (an ADDED gate). Fully armed AND fully dosed in a world with the percept trunk OFF (no edsPerceivedDefence / edsPerceivedChoice / stationEye ⇒ refreshPerception never runs ⇒ perceivedSnapshot is null) is byte-identical to that same world unarmed. A blind body has no policy — the seat reads NOTHING and modulates NOTHING. This is why OBM-T1's exam world MUST be percept-armed."
+    },
+    "gRng": {
+      "pass": true,
+      "seam": {
+        "before": 4115567729,
+        "after": 4115567729,
+        "pass": true,
+        "calls": 10,
+        "semantics": "an ARMED, fully DOSED decision (percept pull + policy + plane geometry) run over every outfielder of both teams on a 400-tick fixture: the match rng state is EXACT before and after."
+      },
+      "evolution": {
+        "genomesIdentical": true,
+        "rngStateIdentical": true,
+        "matrixStayedAbsent": true,
+        "optInDraws": true,
+        "ctbStreamUnmoved": true,
+        "crossoverOrderHeld": true,
+        "sActual": 2263703047,
+        "sHead": 2263703047,
+        "semantics": "THE ARMS DIFFER: the actual shipped mutate/crossover with the opt-in OFF vs a faithful PRE-GENE re-implementation (GENE_KEYS only). Identical genomes AND identical final rng state ⇒ zero extra draws; `optInDraws` shows the opt-in path is live; `ctbStreamUnmoved` and `crossoverOrderHeld` show the new draws sit STRICTLY AFTER the ctbSupportPlane block in mutation and in crossover alike."
+      }
+    },
+    "gHygiene": {
+      "pass": true,
+      "defaultFalse": true,
+      "absentFromA4World": true,
+      "notInGeneKeys": true,
+      "noEnvDoor": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true,
+      "randomGenomeBornAbsent": true
+    },
+    "gFork": {
+      "pass": true,
+      "flagForks": 2,
+      "planeApplySites": 1,
+      "semantics": "⭐ THE READ-FORK INVENTORY (this seam has MORE than one read site, and every one is named): EXACTLY TWO `match.obmMovement` forks in src/** — the POLICY fork in PlayerBrain.decideOffBall (which feeds the two SCORE sites) and the PLANE fork in actionExecutor's SupportBallCarrier case (which feeds the single TARGET site, applied at exactly one statement). Every other src occurrence of the flag, the gene, the plane type and the policy cache is enumerated below with file:line and class, zero unclassified.",
+      "sites": [
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 1227,
+          "kind": "FLAG_FORK_SCORE",
+          "text": "if (match.obmMovement) {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 1229,
+          "kind": "POLICY_WRITE",
+          "text": "match.setObmPolicy(p.gid, obm.plane);"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 25,
+          "kind": "TYPE",
+          "text": "runTarget, supportSpot, supportSpotOnObmPlane,"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 414,
+          "kind": "FLAG_FORK_PLANE",
+          "text": "const obmPlane = match.obmMovement ? match.obmPlaneFor(p) : null;"
+        },
+        {
+          "file": "src/ai/actionExecutor.ts",
+          "line": 415,
+          "kind": "PLANE_APPLY",
+          "text": "if (obmPlane !== null) target = supportSpotOnObmPlane(p, team, ball, obmPlane);"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "line": 10,
+          "kind": "TYPE",
+          "text": "import type { ObmPlane } from './offballEyes';"
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "line": 679,
+          "kind": "TYPE",
+          "text": "export function supportSpotOnObmPlane("
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "line": 680,
+          "kind": "TYPE",
+          "text": "p: Player, team: Team, ball: Ball, plane: ObmPlane,"
+        },
+        {
+          "file": "src/ai/offballEyes.ts",
+          "line": 74,
+          "kind": "TYPE",
+          "text": "export interface ObmPlane {"
+        },
+        {
+          "file": "src/ai/offballEyes.ts",
+          "line": 86,
+          "kind": "TYPE",
+          "text": "readonly plane: ObmPlane;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 342,
+          "kind": "GENE_DECL",
+          "text": "offballMovementWeights?: number[];"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 479,
+          "kind": "GENE_RW",
+          "text": "const raw = g.offballMovementWeights;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 771,
+          "kind": "GENE_RW",
+          "text": "out.offballMovementWeights = next;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 880,
+          "kind": "GENE_RW",
+          "text": "out.offballMovementWeights = Array.from("
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 884,
+          "kind": "GENE_RW",
+          "text": "} else if (a.offballMovementWeights !== undefined) {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 885,
+          "kind": "GENE_RW",
+          "text": "out.offballMovementWeights = a.offballMovementWeights;"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 283,
+          "kind": "UNION_KEY",
+          "text": "| 'pmLaneConvergence' | 'mtMarkSag' | 'ctbSupportPlane' | 'obmMovement'"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 21,
+          "kind": "TYPE",
+          "text": "import { OBM_POLICY_TTL_TICKS, type ObmPlane } from '../ai/offballEyes';"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 508,
+          "kind": "CONFIG",
+          "text": "obmMovement?: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 755,
+          "kind": "FIELD",
+          "text": "readonly obmMovement: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 762,
+          "kind": "POLICY_CACHE",
+          "text": "private readonly obmPolicies = new Map<number, { plane: ObmPlane; tick: number }>();"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1251,
+          "kind": "INIT",
+          "text": "this.obmMovement = cfg.obmMovement ?? false;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 3317,
+          "kind": "ACCESSOR",
+          "text": "setObmPolicy(gid: number, plane: ObmPlane): void {"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 3318,
+          "kind": "POLICY_CACHE",
+          "text": "this.obmPolicies.set(gid, { plane, tick: this.stepCount });"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 3329,
+          "kind": "ACCESSOR",
+          "text": "obmPlaneFor(p: Player): ObmPlane | null {"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 3330,
+          "kind": "POLICY_CACHE",
+          "text": "const entry = this.obmPolicies.get(p.gid);"
+        }
+      ]
+    },
+    "gTrace": {
+      "pass": true,
+      "lines": [
+        {
+          "file": "src/ai/offballEyes.ts",
+          "line": "export const OBM_SCORE_SPAN = 1 - OFFBALL_TIRED_MUL;",
+          "found": true
+        },
+        {
+          "file": "src/ai/offballEyes.ts",
+          "line": "export const OBM_POLICY_TTL_TICKS = Math.ceil(AI_INTERVAL / DT);",
+          "found": true
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": "export const OBM_WEIGHT_MIN = CTB_GENE_MIN;",
+          "found": true
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": "export const OBM_WEIGHT_MAX = CTB_GENE_MAX;",
+          "found": true
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": "export const OBM_WEIGHT_SLOTS = OBM_OUTPUT_KEYS.length * OBM_FEATURE_KEYS.length;",
+          "found": true
+        },
+        {
+          "file": "src/ai/perception.ts",
+          "line": "return clamp01(1 - best / PRESSURE_RADIUS_M);",
+          "found": true
+        },
+        {
+          "file": "src/ai/perceptionSnapshot.ts",
+          "line": "return Math.round(15 + clamp01(awarenessInput) * 45);",
+          "found": true
+        }
+      ],
+      "scoreSpan": 0.4,
+      "tiredMul": 0.6,
+      "ttlTicks": 9,
+      "aiIntervalTicks": 9,
+      "weightDomain": [
+        -1,
+        1
+      ],
+      "ctbDomain": [
+        -1,
+        1
+      ],
+      "pressureRadiusM": 6,
+      "retentionTicksAt08": 51,
+      "featureKeys": [
+        "carrierPlight",
+        "ownMarker",
+        "targetCongestion",
+        "readingAge"
+      ],
+      "outputKeys": [
+        "planeDepth",
+        "planeWidth",
+        "supportScore",
+        "runScore"
+      ],
+      "weightSlots": 16,
+      "semantics": "every bound of this slice is DERIVED IN CODE from an INCUMBENT constant and each declaration line is matched VERBATIM, so no number can be re-typed as a literal or drift from the family it was taken from: the score span from the off-ball fatigue multiplier, the weight domain from the CTB plane's own signed domain, the read cadence cap from AI_INTERVAL/DT, the matrix size from the two named key lists, the proximity normaliser from pressureAt's own radius and the staleness normaliser from the perception trunk's own retention horizon. The banked CTB spans are asserted UNTOUCHED in the same breath."
+    },
+    "gPins": {
+      "pass": true,
+      "supportSpotCallers": 0,
+      "ownTestCallers": 6,
+      "namedPins": [
+        {
+          "pin": "CTB-T0: the supportSpot SIGNATURE, pinned verbatim",
+          "file": "tests/ctbSupportPlane.test.ts",
+          "needle": "export function supportSpot(p: Player, team: Team, ball: Ball, ctbPlane = false): V2 {",
+          "found": true
+        },
+        {
+          "pin": "CTB-T0: the executor call site, pinned verbatim",
+          "file": "tests/ctbSupportPlane.test.ts",
+          "needle": "target = supportSpot(p, team, ball, match.ctbSupportPlane);",
+          "found": true
+        },
+        {
+          "pin": "CTB-T0: the depth-span derivation line, pinned verbatim",
+          "file": "tests/ctbSupportPlane.test.ts",
+          "needle": "export const CTB_DEPTH_BIAS_SPAN = SUPPORT_LAT_CAP_FRAC;",
+          "found": true
+        },
+        {
+          "pin": "CTB-T0: the two incumbent fan constants at the seam site",
+          "file": "tests/ctbSupportPlane.test.ts",
+          "needle": "const maxLat = radius * SUPPORT_LAT_CAP_FRAC * widthScale;",
+          "found": true
+        },
+        {
+          "pin": "the 5v6 sanity invariant (Phase 30.5)",
+          "file": "tests/cards.test.ts",
+          "needle": "directional: playing a man short costs results (forced early red)",
+          "found": true
+        },
+        {
+          "pin": "the goal-level shape pin (heir of the mirror-goals starvation receipt)",
+          "file": "tests/formations.test.ts",
+          "needle": "the novel shapes play REAL football — attack both ways over a seed pool",
+          "found": true
+        },
+        {
+          "pin": "the production-fingerprint pin (one of thirteen)",
+          "file": "tests/a4HomePriorGene.test.ts",
+          "needle": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "found": true
+        },
+        {
+          "pin": "the SupportBallCarrier action-type surface",
+          "file": "tests/combos.test.ts",
+          "needle": "type: 'SupportBallCarrier'",
+          "found": true
+        },
+        {
+          "pin": "the MakeRun licence surface (TeamBrain designation, UNTOUCHED)",
+          "file": "tests/formations.test.ts",
+          "needle": "man tracks the flank threat; zonal defends its zones and the box",
+          "found": true
+        }
+      ],
+      "semantics": "THE PIN INVENTORY, machine-checked. ⭐ The first four rows are the BANKED CTB PLANE's own verbatim source pins (contract §4: they must still pass unchanged) — which is exactly why the OBM plane read is a SECOND ENTRY POINT rather than a fifth parameter on `supportSpot`. The remaining rows are the wider inventory CTB-T0 named. Nothing was renegotiated to make this stage pass; the behavioural guards (interception ceiling, clump, offside) are OBM-T1's named guards, not T0 pins."
+    },
+    "seedDisjoint": {
+      "first": 12424000,
+      "last": 12424025,
+      "intervals": [
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read",
+          "first": 12424000,
+          "last": 12424024,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "OBM-T0 REPORTED cost reading",
+          "first": 12424025,
+          "last": 12424025,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "OBM-T0 test-file seeds (tests/obmEyesSeat.test.ts)",
+          "first": 12424900,
+          "last": 12424906,
+          "collisions": [],
+          "pass": true
+        }
+      ],
+      "consumedBlocks": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "goal-genealogy census band (#214/#217)",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#223)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds",
+          "range": [
+            12423900,
+            12423901
+          ]
+        }
+      ],
+      "collisions": [],
+      "pass": true,
+      "semantics": "EVERY interval this stage consumes is machine-checked against the COMPLETE consumed ledger (which now includes CTB-T1's 12,423,025–036 / 050–099 / 100–727 and CTB-T0's test seeds): the receipts block, the cost read, and the test file's own seeds."
+    },
+    "allPass": true
+  },
+  "reported": {
+    "dosedSmoke": {
+      "note": "REPORTED, observation-only, ONE forced match at the policy corner, sampled every 5 ticks over bodies actually holding the SupportBallCarrier action. No control, no CI, no dose curve, no ANSWER — the POLICY EXAM is OBM-T1's and these numbers adjudicate nothing.",
+      "seed": 12424024,
+      "supportTicks": 1530,
+      "movedTicks": 1392,
+      "meanShiftMetres": 1.193,
+      "maxShiftMetres": 4.3851,
+      "meanAheadIncumbent": 8.0323,
+      "meanAheadDosed": 7.2674,
+      "behindBallTicks": 6,
+      "meanSupportMul": 1.0276,
+      "meanRunMul": 0.974
+    },
+    "perceptPullCost": {
+      "note": "⭐ REPORTED, the M-OBM.4 cost reading, MEASURED not assumed. Wall-clock over one full match per arm in a PERCEPT-ARMED world, minimum of 3 repeats. It is a wall-clock on a shared machine: it is used in NO rate, bounds nothing, and is context for the commander only. The mechanism it prices: the seat pulls ONE percept snapshot per in-possession off-ball decision (AI_INTERVAL cadence), and the executor — which runs every tick — pulls NONE, re-using the cached plane inside OBM_POLICY_TTL_TICKS.",
+      "seed": 12424025,
+      "repeats": 3,
+      "ticksPerMatch": 14722,
+      "arms": [
+        {
+          "arm": "off",
+          "minMs": 94,
+          "msPerTick": 0.006162
+        },
+        {
+          "arm": "zeroArmed",
+          "minMs": 136,
+          "msPerTick": 0.008915
+        },
+        {
+          "arm": "forced",
+          "minMs": 134,
+          "msPerTick": 0.009102
+        }
+      ],
+      "armedZeroOverheadPct": 44.68,
+      "dosedOverheadPct": 42.55
+    }
+  },
+  "result": {
+    "seeds": {
+      "block": 12424000,
+      "n": 24,
+      "first": 12424000,
+      "last": 12424023
+    },
+    "rows": [
+      {
+        "seed": 12424000,
+        "absent": "6e0731288a3cef27240a79a03c8e0e3ae24994ce89768961dbc22cea80395bee",
+        "off": "6e0731288a3cef27240a79a03c8e0e3ae24994ce89768961dbc22cea80395bee",
+        "plain": "ff656d40de1d65bd3f3a620234ae72b49961004abd517a6f0b24a5f0c888afdd",
+        "plainOff": "ff656d40de1d65bd3f3a620234ae72b49961004abd517a6f0b24a5f0c888afdd",
+        "bornArmed": "6e0731288a3cef27240a79a03c8e0e3ae24994ce89768961dbc22cea80395bee",
+        "zeroArmed": "6e0731288a3cef27240a79a03c8e0e3ae24994ce89768961dbc22cea80395bee",
+        "forced": "28cf02f6a3d0afd1c63f1b40e0de01013fcfc598ad48b01d06c0438930c4fffd",
+        "blindOff": "ff656d40de1d65bd3f3a620234ae72b49961004abd517a6f0b24a5f0c888afdd",
+        "blindForced": "ff656d40de1d65bd3f3a620234ae72b49961004abd517a6f0b24a5f0c888afdd",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424001,
+        "absent": "d5269c34a482508962a469fef4ab75283205369b4334dc4e1b4c0e0837c85d31",
+        "off": "d5269c34a482508962a469fef4ab75283205369b4334dc4e1b4c0e0837c85d31",
+        "plain": "95d0346f0f5fb74fb7938865285d0d6a62bda3d13490c8ae8bc005700a3cc856",
+        "plainOff": "95d0346f0f5fb74fb7938865285d0d6a62bda3d13490c8ae8bc005700a3cc856",
+        "bornArmed": "d5269c34a482508962a469fef4ab75283205369b4334dc4e1b4c0e0837c85d31",
+        "zeroArmed": "d5269c34a482508962a469fef4ab75283205369b4334dc4e1b4c0e0837c85d31",
+        "forced": "fbacd49a0c84edfd332a9b963f287e7676d8a860c8f7b2ff81a61d9a6fa69571",
+        "blindOff": "95d0346f0f5fb74fb7938865285d0d6a62bda3d13490c8ae8bc005700a3cc856",
+        "blindForced": "95d0346f0f5fb74fb7938865285d0d6a62bda3d13490c8ae8bc005700a3cc856",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424002,
+        "absent": "42a697975fc4d709f04271f43e36721f62af7cd63f70fa36ee8cda3defd6ceb4",
+        "off": "42a697975fc4d709f04271f43e36721f62af7cd63f70fa36ee8cda3defd6ceb4",
+        "plain": "0cd6605a04e19910b4d843c3169a8f7fcfc6a0e082d0c26bc21cb3e110172236",
+        "plainOff": "0cd6605a04e19910b4d843c3169a8f7fcfc6a0e082d0c26bc21cb3e110172236",
+        "bornArmed": "42a697975fc4d709f04271f43e36721f62af7cd63f70fa36ee8cda3defd6ceb4",
+        "zeroArmed": "42a697975fc4d709f04271f43e36721f62af7cd63f70fa36ee8cda3defd6ceb4",
+        "forced": "1de964c389ba368af1b59d80e5a817c66b4aeac5ea88f53f46eccfa426276f9c",
+        "blindOff": "0cd6605a04e19910b4d843c3169a8f7fcfc6a0e082d0c26bc21cb3e110172236",
+        "blindForced": "0cd6605a04e19910b4d843c3169a8f7fcfc6a0e082d0c26bc21cb3e110172236",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424003,
+        "absent": "bc14e6c18056ddf9a403687451991a47de02f122fc5bddc4997e9f89ae3f27bc",
+        "off": "bc14e6c18056ddf9a403687451991a47de02f122fc5bddc4997e9f89ae3f27bc",
+        "plain": "5ab79e0959bfc6b981d020c1bd2abf4191a8d0aebcd1809a5324e8d68630ac38",
+        "plainOff": "5ab79e0959bfc6b981d020c1bd2abf4191a8d0aebcd1809a5324e8d68630ac38",
+        "bornArmed": "bc14e6c18056ddf9a403687451991a47de02f122fc5bddc4997e9f89ae3f27bc",
+        "zeroArmed": "bc14e6c18056ddf9a403687451991a47de02f122fc5bddc4997e9f89ae3f27bc",
+        "forced": "1e44d1770a2390e3c576bab49244e14734189a9ca31a1e22422b12bc4f82d85b",
+        "blindOff": "5ab79e0959bfc6b981d020c1bd2abf4191a8d0aebcd1809a5324e8d68630ac38",
+        "blindForced": "5ab79e0959bfc6b981d020c1bd2abf4191a8d0aebcd1809a5324e8d68630ac38",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424004,
+        "absent": "3b6608adb88e66304eb0ac707a8eb07d68c6a3adeb2850aba59d6dd81be77c6a",
+        "off": "3b6608adb88e66304eb0ac707a8eb07d68c6a3adeb2850aba59d6dd81be77c6a",
+        "plain": "285b755f42b01c634131738936803f8cac169ca4c15a179a35c5c499b122d6df",
+        "plainOff": "285b755f42b01c634131738936803f8cac169ca4c15a179a35c5c499b122d6df",
+        "bornArmed": "3b6608adb88e66304eb0ac707a8eb07d68c6a3adeb2850aba59d6dd81be77c6a",
+        "zeroArmed": "3b6608adb88e66304eb0ac707a8eb07d68c6a3adeb2850aba59d6dd81be77c6a",
+        "forced": "b84d043eb4a663ec5c177dc23aff619c282727545a32d6c0d539cf0cd65a4169",
+        "blindOff": "285b755f42b01c634131738936803f8cac169ca4c15a179a35c5c499b122d6df",
+        "blindForced": "285b755f42b01c634131738936803f8cac169ca4c15a179a35c5c499b122d6df",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424005,
+        "absent": "4f343ed6dccd2f1e70dc84240f9ce2cdfcc30df388be07e0342c39bbb4b9ddb6",
+        "off": "4f343ed6dccd2f1e70dc84240f9ce2cdfcc30df388be07e0342c39bbb4b9ddb6",
+        "plain": "f54b666f1433fcd3680dc79a08efb7e3d29c9ccf4d2c865b43164b0834ab89cf",
+        "plainOff": "f54b666f1433fcd3680dc79a08efb7e3d29c9ccf4d2c865b43164b0834ab89cf",
+        "bornArmed": "4f343ed6dccd2f1e70dc84240f9ce2cdfcc30df388be07e0342c39bbb4b9ddb6",
+        "zeroArmed": "4f343ed6dccd2f1e70dc84240f9ce2cdfcc30df388be07e0342c39bbb4b9ddb6",
+        "forced": "445cfdf98ef2525db2070aeb3cd63aa4fd266c7512d2c3e85749dada32f0d3d0",
+        "blindOff": "f54b666f1433fcd3680dc79a08efb7e3d29c9ccf4d2c865b43164b0834ab89cf",
+        "blindForced": "f54b666f1433fcd3680dc79a08efb7e3d29c9ccf4d2c865b43164b0834ab89cf",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424006,
+        "absent": "3bf41aac444920a43c0ccc0402f39ab1993ff4484165c43e716731c6d80171f0",
+        "off": "3bf41aac444920a43c0ccc0402f39ab1993ff4484165c43e716731c6d80171f0",
+        "plain": "0b2c38461236277a5ae29afc23e86743296fe0635154304aa2fad9930b62a7fa",
+        "plainOff": "0b2c38461236277a5ae29afc23e86743296fe0635154304aa2fad9930b62a7fa",
+        "bornArmed": "3bf41aac444920a43c0ccc0402f39ab1993ff4484165c43e716731c6d80171f0",
+        "zeroArmed": "3bf41aac444920a43c0ccc0402f39ab1993ff4484165c43e716731c6d80171f0",
+        "forced": "3b5b8fbbaa42ff6283a19840bf5a94436f806e3b1b095cc22005bc4caeea0e58",
+        "blindOff": "0b2c38461236277a5ae29afc23e86743296fe0635154304aa2fad9930b62a7fa",
+        "blindForced": "0b2c38461236277a5ae29afc23e86743296fe0635154304aa2fad9930b62a7fa",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424007,
+        "absent": "a52bc4fbae4478ac77ea629c709962603e8f44d327ff3ecb3b0fed9a4ad2d8d9",
+        "off": "a52bc4fbae4478ac77ea629c709962603e8f44d327ff3ecb3b0fed9a4ad2d8d9",
+        "plain": "b4e7391c59e9784bf511dfb075c08c71c11e3fe81a266e642906e72b424e29e7",
+        "plainOff": "b4e7391c59e9784bf511dfb075c08c71c11e3fe81a266e642906e72b424e29e7",
+        "bornArmed": "a52bc4fbae4478ac77ea629c709962603e8f44d327ff3ecb3b0fed9a4ad2d8d9",
+        "zeroArmed": "a52bc4fbae4478ac77ea629c709962603e8f44d327ff3ecb3b0fed9a4ad2d8d9",
+        "forced": "10d4f0bf9a2a2de58b527d97ffebeb5adf3861ed5d8811ce9aef8a70119c10ee",
+        "blindOff": "b4e7391c59e9784bf511dfb075c08c71c11e3fe81a266e642906e72b424e29e7",
+        "blindForced": "b4e7391c59e9784bf511dfb075c08c71c11e3fe81a266e642906e72b424e29e7",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424008,
+        "absent": "d954bd9480a8d65e9aa898298009639f57b6f5d1bcc7c909037d3396c8bfb78e",
+        "off": "d954bd9480a8d65e9aa898298009639f57b6f5d1bcc7c909037d3396c8bfb78e",
+        "plain": "1a6d9bbbde0065ae1d689ca8ce3f6b616a2a158f2f80aae20d7fe4e44d6e61c8",
+        "plainOff": "1a6d9bbbde0065ae1d689ca8ce3f6b616a2a158f2f80aae20d7fe4e44d6e61c8",
+        "bornArmed": "d954bd9480a8d65e9aa898298009639f57b6f5d1bcc7c909037d3396c8bfb78e",
+        "zeroArmed": "d954bd9480a8d65e9aa898298009639f57b6f5d1bcc7c909037d3396c8bfb78e",
+        "forced": "28d1e8150d9a72d83f589d0535729b481fa806ca66d380854a03f82c69bff5b1",
+        "blindOff": "1a6d9bbbde0065ae1d689ca8ce3f6b616a2a158f2f80aae20d7fe4e44d6e61c8",
+        "blindForced": "1a6d9bbbde0065ae1d689ca8ce3f6b616a2a158f2f80aae20d7fe4e44d6e61c8",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424009,
+        "absent": "019fffbff2d9b8191783fb02f0c221d4e5da05c5904d9d15bf87a61014c93566",
+        "off": "019fffbff2d9b8191783fb02f0c221d4e5da05c5904d9d15bf87a61014c93566",
+        "plain": "f36378a7011e7c2b3d5eb627d6c22989a4ccd45d649d07933a56fb1c723b728c",
+        "plainOff": "f36378a7011e7c2b3d5eb627d6c22989a4ccd45d649d07933a56fb1c723b728c",
+        "bornArmed": "019fffbff2d9b8191783fb02f0c221d4e5da05c5904d9d15bf87a61014c93566",
+        "zeroArmed": "019fffbff2d9b8191783fb02f0c221d4e5da05c5904d9d15bf87a61014c93566",
+        "forced": "984b64c540fa8328ca9da6ee9d3e9b131a0033b91703cba4bd1a8e5b81fb1d76",
+        "blindOff": "f36378a7011e7c2b3d5eb627d6c22989a4ccd45d649d07933a56fb1c723b728c",
+        "blindForced": "f36378a7011e7c2b3d5eb627d6c22989a4ccd45d649d07933a56fb1c723b728c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424010,
+        "absent": "e0623aafa664d0db334745259db64f52a8266b1ba8b817db6c5753f53ca88c86",
+        "off": "e0623aafa664d0db334745259db64f52a8266b1ba8b817db6c5753f53ca88c86",
+        "plain": "8097787c2877090a7a71908cdfa31290781b3a5ce35b7ed61ec44107b7d3e613",
+        "plainOff": "8097787c2877090a7a71908cdfa31290781b3a5ce35b7ed61ec44107b7d3e613",
+        "bornArmed": "e0623aafa664d0db334745259db64f52a8266b1ba8b817db6c5753f53ca88c86",
+        "zeroArmed": "e0623aafa664d0db334745259db64f52a8266b1ba8b817db6c5753f53ca88c86",
+        "forced": "4d9b72140cfab75e417b05925bc0efd523b4578556de520e45b176a31df7a927",
+        "blindOff": "8097787c2877090a7a71908cdfa31290781b3a5ce35b7ed61ec44107b7d3e613",
+        "blindForced": "8097787c2877090a7a71908cdfa31290781b3a5ce35b7ed61ec44107b7d3e613",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424011,
+        "absent": "cd99566644398cb91aee5cd7ebe05f17d040bfa85b411565ea32b16fb4adb487",
+        "off": "cd99566644398cb91aee5cd7ebe05f17d040bfa85b411565ea32b16fb4adb487",
+        "plain": "0962209ac2f5e9cd4b74eddcff01edfffaea3783f35973b70e2fb77a6a705931",
+        "plainOff": "0962209ac2f5e9cd4b74eddcff01edfffaea3783f35973b70e2fb77a6a705931",
+        "bornArmed": "cd99566644398cb91aee5cd7ebe05f17d040bfa85b411565ea32b16fb4adb487",
+        "zeroArmed": "cd99566644398cb91aee5cd7ebe05f17d040bfa85b411565ea32b16fb4adb487",
+        "forced": "52461492275fee5512722e669d570e0ada9f63485e8b3a05e4b7ac7081b8cf59",
+        "blindOff": "0962209ac2f5e9cd4b74eddcff01edfffaea3783f35973b70e2fb77a6a705931",
+        "blindForced": "0962209ac2f5e9cd4b74eddcff01edfffaea3783f35973b70e2fb77a6a705931",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424012,
+        "absent": "0a66f0a00456e78a6cfa42b777ef40e124714ced61c9ecf206c079ae515da9f6",
+        "off": "0a66f0a00456e78a6cfa42b777ef40e124714ced61c9ecf206c079ae515da9f6",
+        "plain": "674377c5177666ed76dbab3a431c99ebb6c8c226c498ef1a027323206b2db535",
+        "plainOff": "674377c5177666ed76dbab3a431c99ebb6c8c226c498ef1a027323206b2db535",
+        "bornArmed": "0a66f0a00456e78a6cfa42b777ef40e124714ced61c9ecf206c079ae515da9f6",
+        "zeroArmed": "0a66f0a00456e78a6cfa42b777ef40e124714ced61c9ecf206c079ae515da9f6",
+        "forced": "42a849f361f45faaef88085d7f35fc480805575ab6c8b00d9e9cb4290529d9b0",
+        "blindOff": "674377c5177666ed76dbab3a431c99ebb6c8c226c498ef1a027323206b2db535",
+        "blindForced": "674377c5177666ed76dbab3a431c99ebb6c8c226c498ef1a027323206b2db535",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424013,
+        "absent": "fd7f410c0d578780bcc90888d7ca4945e30d3c136463839318f5a57d26975d1b",
+        "off": "fd7f410c0d578780bcc90888d7ca4945e30d3c136463839318f5a57d26975d1b",
+        "plain": "21efc055aee55767e11df18a40f634f1e7ea94c587cd1326642c22b17a5edf79",
+        "plainOff": "21efc055aee55767e11df18a40f634f1e7ea94c587cd1326642c22b17a5edf79",
+        "bornArmed": "fd7f410c0d578780bcc90888d7ca4945e30d3c136463839318f5a57d26975d1b",
+        "zeroArmed": "fd7f410c0d578780bcc90888d7ca4945e30d3c136463839318f5a57d26975d1b",
+        "forced": "c8f7a09a78dc74a1f39fd131aa76e94f6d010446595c1873954559f0bb504059",
+        "blindOff": "21efc055aee55767e11df18a40f634f1e7ea94c587cd1326642c22b17a5edf79",
+        "blindForced": "21efc055aee55767e11df18a40f634f1e7ea94c587cd1326642c22b17a5edf79",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424014,
+        "absent": "303afc956cfa7361dd39696af9d5134d9a0da7fb1c2ad093a3f919163076ab93",
+        "off": "303afc956cfa7361dd39696af9d5134d9a0da7fb1c2ad093a3f919163076ab93",
+        "plain": "89c8204b799238732b2216619373a5aa9ed564d14e48dad556f80ab00cf9dcac",
+        "plainOff": "89c8204b799238732b2216619373a5aa9ed564d14e48dad556f80ab00cf9dcac",
+        "bornArmed": "303afc956cfa7361dd39696af9d5134d9a0da7fb1c2ad093a3f919163076ab93",
+        "zeroArmed": "303afc956cfa7361dd39696af9d5134d9a0da7fb1c2ad093a3f919163076ab93",
+        "forced": "b2a8231fbda289d0b72e6591247d108bcf1bd8d7e56a14c0e6308ef890ac31e6",
+        "blindOff": "89c8204b799238732b2216619373a5aa9ed564d14e48dad556f80ab00cf9dcac",
+        "blindForced": "89c8204b799238732b2216619373a5aa9ed564d14e48dad556f80ab00cf9dcac",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424015,
+        "absent": "bac586bff1564d2cb5a043156fed735567817c72abd96ea4554a44123ace04b1",
+        "off": "bac586bff1564d2cb5a043156fed735567817c72abd96ea4554a44123ace04b1",
+        "plain": "fddcc8a6e7ed3574d4e7ae21fd0ea0490af120358ea125b8962718d9152ec956",
+        "plainOff": "fddcc8a6e7ed3574d4e7ae21fd0ea0490af120358ea125b8962718d9152ec956",
+        "bornArmed": "bac586bff1564d2cb5a043156fed735567817c72abd96ea4554a44123ace04b1",
+        "zeroArmed": "bac586bff1564d2cb5a043156fed735567817c72abd96ea4554a44123ace04b1",
+        "forced": "e2a72b8b71c910cf3bb9f41f62000a32d763eddd98308e9bd500d6738bc7859c",
+        "blindOff": "fddcc8a6e7ed3574d4e7ae21fd0ea0490af120358ea125b8962718d9152ec956",
+        "blindForced": "fddcc8a6e7ed3574d4e7ae21fd0ea0490af120358ea125b8962718d9152ec956",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424016,
+        "absent": "b2b1a1440f2ab07f0651f52b453c2ce5c09ba295d69bf49399efbe40ef2ee660",
+        "off": "b2b1a1440f2ab07f0651f52b453c2ce5c09ba295d69bf49399efbe40ef2ee660",
+        "plain": "60ca9bee49b8b274f55d4a0d8546f1976ebdd3928421c756dcc6790ac934dfaa",
+        "plainOff": "60ca9bee49b8b274f55d4a0d8546f1976ebdd3928421c756dcc6790ac934dfaa",
+        "bornArmed": "b2b1a1440f2ab07f0651f52b453c2ce5c09ba295d69bf49399efbe40ef2ee660",
+        "zeroArmed": "b2b1a1440f2ab07f0651f52b453c2ce5c09ba295d69bf49399efbe40ef2ee660",
+        "forced": "585502ab69fa3c228c14983d8b5be55f2e3799c14d2db0c608b7edbe1aa52267",
+        "blindOff": "60ca9bee49b8b274f55d4a0d8546f1976ebdd3928421c756dcc6790ac934dfaa",
+        "blindForced": "60ca9bee49b8b274f55d4a0d8546f1976ebdd3928421c756dcc6790ac934dfaa",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424017,
+        "absent": "78693ef07d0aa0d74eb6f75e5140090ee06c3803e26113ef88ff4b8dc8fdcec8",
+        "off": "78693ef07d0aa0d74eb6f75e5140090ee06c3803e26113ef88ff4b8dc8fdcec8",
+        "plain": "126cbe2567bbe73eb362ccdbb24ba4476e408b1fbb419cabb15f9a8236123ef5",
+        "plainOff": "126cbe2567bbe73eb362ccdbb24ba4476e408b1fbb419cabb15f9a8236123ef5",
+        "bornArmed": "78693ef07d0aa0d74eb6f75e5140090ee06c3803e26113ef88ff4b8dc8fdcec8",
+        "zeroArmed": "78693ef07d0aa0d74eb6f75e5140090ee06c3803e26113ef88ff4b8dc8fdcec8",
+        "forced": "91ff0b608be6c5689ca0951fbaa6aa2e3d356a1374abfc191ecf9c5dc5861f17",
+        "blindOff": "126cbe2567bbe73eb362ccdbb24ba4476e408b1fbb419cabb15f9a8236123ef5",
+        "blindForced": "126cbe2567bbe73eb362ccdbb24ba4476e408b1fbb419cabb15f9a8236123ef5",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424018,
+        "absent": "f3f05c4e1dd77cd95df017eeebb58cbdcb498470cfdf8e33c2241d7202c4afd8",
+        "off": "f3f05c4e1dd77cd95df017eeebb58cbdcb498470cfdf8e33c2241d7202c4afd8",
+        "plain": "36e9828030eef130165c6a8eec8d63a118246d2f44f846929e7680c17b68da6f",
+        "plainOff": "36e9828030eef130165c6a8eec8d63a118246d2f44f846929e7680c17b68da6f",
+        "bornArmed": "f3f05c4e1dd77cd95df017eeebb58cbdcb498470cfdf8e33c2241d7202c4afd8",
+        "zeroArmed": "f3f05c4e1dd77cd95df017eeebb58cbdcb498470cfdf8e33c2241d7202c4afd8",
+        "forced": "5b62712b2f3711adff18cdf24834fbe06f135cd9ac6a155cdc418f403ead5702",
+        "blindOff": "36e9828030eef130165c6a8eec8d63a118246d2f44f846929e7680c17b68da6f",
+        "blindForced": "36e9828030eef130165c6a8eec8d63a118246d2f44f846929e7680c17b68da6f",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424019,
+        "absent": "b79a2c971b1ee5c624887aa7f4b71c2f5cf20586149c043c4ee33be419136eab",
+        "off": "b79a2c971b1ee5c624887aa7f4b71c2f5cf20586149c043c4ee33be419136eab",
+        "plain": "3b16aec7fb34d5c0eb24a07f836c36fbc45fdf740a0c367e039607d148a8d677",
+        "plainOff": "3b16aec7fb34d5c0eb24a07f836c36fbc45fdf740a0c367e039607d148a8d677",
+        "bornArmed": "b79a2c971b1ee5c624887aa7f4b71c2f5cf20586149c043c4ee33be419136eab",
+        "zeroArmed": "b79a2c971b1ee5c624887aa7f4b71c2f5cf20586149c043c4ee33be419136eab",
+        "forced": "816888c2eada031a360dda1e8bde3002606c52f9cd67bc5f512f6d34cb1440c7",
+        "blindOff": "3b16aec7fb34d5c0eb24a07f836c36fbc45fdf740a0c367e039607d148a8d677",
+        "blindForced": "3b16aec7fb34d5c0eb24a07f836c36fbc45fdf740a0c367e039607d148a8d677",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424020,
+        "absent": "4a8baadd1ed789d9648d35197c3ba10c032709f459479aad285c3df0fff016fd",
+        "off": "4a8baadd1ed789d9648d35197c3ba10c032709f459479aad285c3df0fff016fd",
+        "plain": "a36bffe0cfdb1fe8d11f5e7eeac2e2eaee59ada5c4f1a8279b106cd031464144",
+        "plainOff": "a36bffe0cfdb1fe8d11f5e7eeac2e2eaee59ada5c4f1a8279b106cd031464144",
+        "bornArmed": "4a8baadd1ed789d9648d35197c3ba10c032709f459479aad285c3df0fff016fd",
+        "zeroArmed": "4a8baadd1ed789d9648d35197c3ba10c032709f459479aad285c3df0fff016fd",
+        "forced": "36d5b25ae605c5250cd6ea65c8ff28e8f2a1f45cd323939228224984123af449",
+        "blindOff": "a36bffe0cfdb1fe8d11f5e7eeac2e2eaee59ada5c4f1a8279b106cd031464144",
+        "blindForced": "a36bffe0cfdb1fe8d11f5e7eeac2e2eaee59ada5c4f1a8279b106cd031464144",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424021,
+        "absent": "4a45978adf55e84ed1ea44a3650291bf21b3da8495baaa2ea231948e0db31ba7",
+        "off": "4a45978adf55e84ed1ea44a3650291bf21b3da8495baaa2ea231948e0db31ba7",
+        "plain": "f492650507c1cf593184946fdd40ce1c60154cceb940db66b3b0b91fabc1b34c",
+        "plainOff": "f492650507c1cf593184946fdd40ce1c60154cceb940db66b3b0b91fabc1b34c",
+        "bornArmed": "4a45978adf55e84ed1ea44a3650291bf21b3da8495baaa2ea231948e0db31ba7",
+        "zeroArmed": "4a45978adf55e84ed1ea44a3650291bf21b3da8495baaa2ea231948e0db31ba7",
+        "forced": "480ed62a1717eeef9e915ff74aba2a329f4b2391b1b004e44e600d2d488601af",
+        "blindOff": "f492650507c1cf593184946fdd40ce1c60154cceb940db66b3b0b91fabc1b34c",
+        "blindForced": "f492650507c1cf593184946fdd40ce1c60154cceb940db66b3b0b91fabc1b34c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424022,
+        "absent": "e02dbba20707b848c6d3ac2e133ee50ebea53a0f80bdd569a649373987933439",
+        "off": "e02dbba20707b848c6d3ac2e133ee50ebea53a0f80bdd569a649373987933439",
+        "plain": "1ca839be94d6b139aa95ba1f154b6230d5dcad74fd30c77d9cd9a319bf710c90",
+        "plainOff": "1ca839be94d6b139aa95ba1f154b6230d5dcad74fd30c77d9cd9a319bf710c90",
+        "bornArmed": "e02dbba20707b848c6d3ac2e133ee50ebea53a0f80bdd569a649373987933439",
+        "zeroArmed": "e02dbba20707b848c6d3ac2e133ee50ebea53a0f80bdd569a649373987933439",
+        "forced": "c932dbbf3658d7a13fd24974074d0684f4cc950d8903ac67d3b47133e6fced16",
+        "blindOff": "1ca839be94d6b139aa95ba1f154b6230d5dcad74fd30c77d9cd9a319bf710c90",
+        "blindForced": "1ca839be94d6b139aa95ba1f154b6230d5dcad74fd30c77d9cd9a319bf710c90",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      },
+      {
+        "seed": 12424023,
+        "absent": "1f4bc25fa2dbe4cf34bbb63627ba807a80574a214e0d992c2f432b39b2b92239",
+        "off": "1f4bc25fa2dbe4cf34bbb63627ba807a80574a214e0d992c2f432b39b2b92239",
+        "plain": "663ff2aefb23a9df8b85b8e60bc740351d6441815031717fbc7972be29621cbb",
+        "plainOff": "663ff2aefb23a9df8b85b8e60bc740351d6441815031717fbc7972be29621cbb",
+        "bornArmed": "1f4bc25fa2dbe4cf34bbb63627ba807a80574a214e0d992c2f432b39b2b92239",
+        "zeroArmed": "1f4bc25fa2dbe4cf34bbb63627ba807a80574a214e0d992c2f432b39b2b92239",
+        "forced": "1c1b7cb61b0f3d2e1b984b5bbf3585ff6def23578a3a853e335f5a6563a19e84",
+        "blindOff": "663ff2aefb23a9df8b85b8e60bc740351d6441815031717fbc7972be29621cbb",
+        "blindForced": "663ff2aefb23a9df8b85b8e60bc740351d6441815031717fbc7972be29621cbb",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "blindIdentical": true
+      }
+    ]
+  },
+  "resultSha256": "3f0c7464a3aeceeae207af20448ed585d1d2ce8a4e95fe54c3f297ae1215d79c",
+  "wallMsContextOnly": 73103,
+  "headContextOnly": "fb4cf37",
+  "artifactPathContextOnly": "docs/world-model/data/obm-t0-eyes-seat.json",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
+  "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."
+}

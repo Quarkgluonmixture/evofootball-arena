@@ -11,6 +11,16 @@ import type { Player } from '../sim/Player';
  * All return values are normalized to [0, 1] so scoring math stays readable.
  */
 
+/**
+ * ⭐ THE INCUMBENT PRESSURE RADIUS, named here at its own use site by OBM-T0 (#227).
+ * PURE CODE MOTION: `6` is the very metre count `pressureAt` has always divided by —
+ * the engine's standing answer to "from how far away does an opponent's proximity
+ * still count as pressure on a point". Given a name so the off-ball eyes seat can
+ * write its proximity features as a reference to the incumbent constant instead of
+ * as a fresh literal (the #202 form: traced, derived in code, never typed).
+ */
+export const PRESSURE_RADIUS_M = 6;
+
 /** Pressure on a position from the nearest opponent: 1 at 0m, 0 beyond 6m. */
 export function pressureAt(pos: V2, opponents: Player[]): number {
   let best = Infinity;
@@ -19,7 +29,7 @@ export function pressureAt(pos: V2, opponents: Player[]): number {
     const d = dist(o.pos, pos);
     if (d < best) best = d;
   }
-  return clamp01(1 - best / 6);
+  return clamp01(1 - best / PRESSURE_RADIUS_M);
 }
 
 /**

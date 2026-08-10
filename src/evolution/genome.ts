@@ -314,6 +314,32 @@ export interface TacticalGenome {
    * the `markSag` block, consumption gated by `ctbSupportPlane`).
    */
   ctbSupportWidth?: number;
+  /**
+   * OBM-T0 (OFFBALL-MOVEMENT-CONTRACT §2 M-OBM.3, ruling #227) — THE OFF-BALL
+   * MOVEMENT POLICY MATRIX (前插与回撤是同一个选择). A flat, row-major
+   * `OBM_OUTPUT_KEYS.length × OBM_FEATURE_KEYS.length` weight matrix
+   * (`OBM_WEIGHT_SLOTS` entries, index `output * OBM_FEATURE_KEYS.length + feature`)
+   * mapping the four PERCEIVED features to the four continuous outputs — see
+   * `src/ai/offballEyes.ts` for the law and `OBM_WEIGHT_MIN/MAX` below for the
+   * domain.
+   *
+   * Everything is `weight × continuous feature`; NO predicate reads it and it
+   * decides nothing (the #200 red line). 前插 / 回撤 is written nowhere: it is
+   * where the evolved weights put a body when the carrier's plight rises and his
+   * own marker loosens. ALL-ZERO ⇒ today's world EXACTLY (the outputs are `+0`
+   * and `×1`, exact in IEEE-754).
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to the `ctbSupport*` pair
+   * above (outside GENE_KEYS, so `randomGenome` / `mutateGenome` /
+   * `crossoverGenomes` / `geneDistance` draw the EXACT same rng in the EXACT same
+   * order as HEAD and `JSON.stringify` omits the key, hence the production
+   * fingerprint is byte-identical). It gains values ONLY under its OWN explicit
+   * `evolveOffballMovement` boolean (#75), whose draws sit STRICTLY AFTER the
+   * `ctbSupportPlane` block — hence after `markSag`, `defLaneConvergence` and both
+   * home-prior blocks — so enabling it never re-orders an existing draw. The
+   * CONSUMPTION path is separately gated by the dormant `obmMovement` match flag.
+   */
+  offballMovementWeights?: number[];
 }
 
 /**
@@ -404,6 +430,61 @@ export function ctbSupportWidthWeight(g: TacticalGenome): number {
   const v = g.ctbSupportWidth;
   if (v === undefined || !Number.isFinite(v)) return 0;
   return clampSignedUnit(v);
+}
+
+/**
+ * ⭐ OBM-T0 (M-OBM.2/M-OBM.3): THE POLICY MATRIX SHAPE — four PERCEIVED features
+ * (rows of the input vector) × four continuous OUTPUTS. Named, not numbered: the
+ * matrix size is DERIVED from these two lists in code, so no count is ever typed.
+ *
+ * The feature families are the contract's own §2 M-OBM.2 list and are declared as
+ * slice-one BOUNDS, not an exhaustive account of what a footballer reads.
+ */
+export const OBM_FEATURE_KEYS = [
+  'carrierPlight', // f1 — perceived opponents closing his perceived carrier
+  'ownMarker', //     f2 — nearest perceived opponent to himself
+  'targetCongestion', // f3 — nearest perceived opponent to his candidate target
+  'readingAge', //    f4 — the AGE of his own readings (staleness IS data)
+] as const;
+export const OBM_OUTPUT_KEYS = [
+  'planeDepth', //   the CTB plane's 前后 axis (dynamic shift on the banked limb)
+  'planeWidth', //   the CTB plane's 左右 axis
+  'supportScore', // the `SupportBallCarrier` candidate score
+  'runScore', //     the LICENSED `MakeRun` candidate score
+] as const;
+export const OBM_WEIGHT_SLOTS = OBM_OUTPUT_KEYS.length * OBM_FEATURE_KEYS.length;
+
+/**
+ * ⭐ OBM-T0 (M-OBM.3): THE WEIGHT DOMAIN — the SIGNED unit domain, DERIVED IN CODE
+ * from the CTB plane's own deformation-gene domain (`CTB_GENE_MIN/MAX`).
+ *
+ * TRACED by QUESTION IDENTITY, never invented: these weights deform the SAME plane
+ * around the SAME incumbent centres that the banked axis pair deforms, so one
+ * weight may express exactly as much as one static axis gene already expresses,
+ * and no more. Signed because a policy must be able to pull a body BACK as readily
+ * as it pushes him ON — that symmetry is the whole content of 前插与回撤是同一个选择.
+ */
+export const OBM_WEIGHT_MIN = CTB_GENE_MIN;
+export const OBM_WEIGHT_MAX = CTB_GENE_MAX;
+
+/**
+ * OBM-T0 (M-OBM.3): the matrix → weight-vector map, the SINGLE owner of the
+ * expression. Born absent ⇒ ALL ZERO ⇒ every output is `+0` / `×1` ⇒ a
+ * byte-identical world. PURE, no rng. Each slot is clamped to the signed domain,
+ * so no instrument can dose past the frozen bound through this door; a short,
+ * long, or non-finite array is read slot by slot with the same zero guard, so a
+ * malformed genome degrades to NEUTRAL rather than to nonsense.
+ */
+export function offballMovementWeightVector(g: TacticalGenome): number[] {
+  const raw = g.offballMovementWeights;
+  const out = new Array<number>(OBM_WEIGHT_SLOTS).fill(0);
+  if (raw === undefined || !Array.isArray(raw)) return out;
+  for (let i = 0; i < OBM_WEIGHT_SLOTS; i++) {
+    const v = raw[i];
+    if (v === undefined || !Number.isFinite(v)) continue;
+    out[i] = clampSignedUnit(v);
+  }
+  return out;
 }
 
 /**
@@ -592,6 +673,20 @@ export interface MutateOptions {
    * with the `ctbSupportPlane` match flag.
    */
   evolveCtbSupportPlane?: boolean;
+  /**
+   * OBM-T0 (#227, the SAME RNG-stream trap): opt-in that lets the dormant off-ball
+   * movement POLICY MATRIX (`offballMovementWeights`) evolve. DEFAULT OFF — every
+   * production evolve.ts call omits it, so the matrix draws NO RNG and the flag-off
+   * random sequence stays byte-identical to HEAD. It is its OWN named boolean (#75)
+   * rather than a widening of any existing opt-in, so those runs' streams are ALSO
+   * unmoved. ONE opt-in for the WHOLE matrix on purpose: it is one policy, and
+   * OBM-T2 selects on it as a policy. Its draws happen ONLY when this is `true` and
+   * STRICTLY AFTER the `ctbSupportPlane` block (hence after `markSag`,
+   * `defLaneConvergence` and both home-prior blocks), in slot order, so enabling it
+   * never re-orders an existing draw. When shipped, an OBM-T2-grade run flips this
+   * together with the `obmMovement` match flag.
+   */
+  evolveOffballMovement?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -659,6 +754,22 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
       out.ctbSupportWidth = clampSignedUnit((out.ctbSupportWidth ?? 0) + rng.gaussian() * scale);
     }
   }
+  // OBM-T0 (#227): the off-ball movement POLICY MATRIX mutates ONLY under its OWN
+  // explicit opt-in and ONLY here — after the GENE_KEYS loop, after BOTH home-prior
+  // blocks, after the defLaneConvergence block, after the markSag block AND after the
+  // ctbSupportPlane block — so flag-off runs consume ZERO extra RNG draws
+  // (byte-identical to HEAD) and no existing opt-in run's draw sequence moves.
+  // `{ ...g }` above already carried the matrix through untouched (born-absent ⇒
+  // stays absent) in the flag-off path. SLOT ORDER is fixed (row-major, output by
+  // output), so the matrix's own stream is stable too. The per-slot rate/scale law is
+  // the offset FAMILY's verbatim (#164.3), clamped to the SIGNED domain.
+  if (opts.evolveOffballMovement === true) {
+    const next = offballMovementWeightVector(out);
+    for (let i = 0; i < OBM_WEIGHT_SLOTS; i++) {
+      if (rng.chance(rate)) next[i] = clampSignedUnit(next[i] + rng.gaussian() * scale);
+    }
+    out.offballMovementWeights = next;
+  }
   return out;
 }
 
@@ -666,7 +777,7 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
 export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
-  evolveCtbSupportPlane = false,
+  evolveCtbSupportPlane = false, evolveOffballMovement = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -753,6 +864,25 @@ export function crossoverGenomes(
   } else {
     if (a.ctbSupportDepth !== undefined) out.ctbSupportDepth = a.ctbSupportDepth;
     if (a.ctbSupportWidth !== undefined) out.ctbSupportWidth = a.ctbSupportWidth;
+  }
+  // OBM-T0 (#227): the off-ball movement POLICY MATRIX crosses over ONLY under its
+  // OWN explicit opt-in and ONLY here — after every block above, the ctbSupportPlane
+  // pair included — so flag-off runs draw ZERO extra RNG and no existing opt-in run
+  // is moved. ONE draw for the WHOLE matrix, the offset FAMILY's law (#164.3): a
+  // policy is ONE agreement about how to read a situation, not sixteen independent
+  // ones, so a child inherits a coherent policy rather than a mosaic of two. Flag-off
+  // ⇒ carry parent A's matrix through with NO draw (born-absent ⇒ the key stays
+  // absent ⇒ serialization unchanged).
+  if (evolveOffballMovement) {
+    const r = rng.next();
+    const av = offballMovementWeightVector(a);
+    const bv = offballMovementWeightVector(b);
+    out.offballMovementWeights = Array.from(
+      { length: OBM_WEIGHT_SLOTS },
+      (_, i) => (r < 0.4 ? av[i] : r < 0.8 ? bv[i] : (av[i] + bv[i]) / 2),
+    );
+  } else if (a.offballMovementWeights !== undefined) {
+    out.offballMovementWeights = a.offballMovementWeights;
   }
   return out;
 }

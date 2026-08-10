@@ -18,6 +18,7 @@ import type {
   RoleControlLevels, StationEyeArm, StationEyeTrace,
 } from '../ai/stationEye';
 import type { WhetherEyeConfig } from '../ai/whetherEye';
+import { OBM_POLICY_TTL_TICKS, type ObmPlane } from '../ai/offballEyes';
 import { opennessOf } from '../ai/perception';
 import { Ball } from './Ball';
 import {
@@ -489,6 +490,23 @@ export interface MatchConfig {
    */
   ctbSupportPlane?: boolean;
   /**
+   * OBM T0 (OFFBALL-MOVEMENT-CONTRACT §2, ruling #227): the OFF-BALL EYES SEAT —
+   * the off-ball attacker reads four continuous features off his OWN percept
+   * snapshot and a gene-weighted policy turns them into a dynamic position on the
+   * banked CTB support plane plus a bounded modulation of his `SupportBallCarrier`
+   * and licensed `MakeRun` scores (`src/ai/offballEyes.ts`). Read at exactly TWO
+   * places: the policy fork in `PlayerBrain.decideOffBall` (the two SCORE sites) and
+   * the plane fork in `actionExecutor`'s `SupportBallCarrier` case (the TARGET site).
+   * TeamBrain designation, pass selection, the carrier's seats and the defensive
+   * trunk are untouched, and there is no predicate anywhere (#200). The policy
+   * matrix is BORN ABSENT, so even armed this changes nothing until an instrument or
+   * an opted-in evolution run gives it values.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B, #227: nothing ships)**; a
+   * probe arms it, and the production fingerprint is unchanged.
+   */
+  obmMovement?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -729,6 +747,19 @@ export class Match {
    * `SupportBallCarrier` case, which passes it as that function's `ctbPlane` fork.
    */
   readonly ctbSupportPlane: boolean;
+  /**
+   * OBM T0: the OFF-BALL EYES SEAT, dormant unless a probe world arms it (Road B).
+   * Read at exactly TWO places — the policy fork in `PlayerBrain.decideOffBall` and
+   * the plane fork in `actionExecutor`'s `SupportBallCarrier` case.
+   */
+  readonly obmMovement: boolean;
+  /**
+   * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
+   * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
+   * fork (i.e. at the body's own `AI_INTERVAL` decision cadence, never per tick) and
+   * READ only by `obmPlaneFor` below. Empty in every production path.
+   */
+  private readonly obmPolicies = new Map<number, { plane: ObmPlane; tick: number }>();
   /**
    * O2 T0 §SEAM: the live LOOK window — `{ gid, untilTick, startTick }`. A single
    * slot, sufficient because only the BALL OWNER may look and there is one ball.
@@ -1214,6 +1245,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#223: the genes get their OWN opt-in
     // and nothing else may turn them on); a probe arms it.
     this.ctbSupportPlane = cfg.ctbSupportPlane ?? false;
+    // OBM T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#227: the policy matrix gets its OWN
+    // opt-in and nothing else may turn it on); a probe arms it.
+    this.obmMovement = cfg.obmMovement ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -3271,6 +3306,31 @@ export class Match {
     }
     this.recordObserverScanFrame(body.gid);
     this.o2LookLedger.scans += 1;
+  }
+
+  /**
+   * OBM T0 §SEAM: record the policy this body just computed. Called ONLY from the
+   * single `obmMovement` fork in `PlayerBrain.decideOffBall`, i.e. once per decision
+   * per in-possession off-ball body — the M-OBM.4 cadence law, in code.
+   * Draws no rng, reads no truth, changes no tick by itself.
+   */
+  setObmPolicy(gid: number, plane: ObmPlane): void {
+    this.obmPolicies.set(gid, { plane, tick: this.stepCount });
+  }
+
+  /**
+   * OBM T0 §SEAM: the plane position this body last decided on, or null if he never
+   * decided one or if it is older than his own decision interval
+   * (`OBM_POLICY_TTL_TICKS`, derived from `AI_INTERVAL / DT`). The TTL is the CAP
+   * that keeps the executor — which runs EVERY tick — from ever pulling a percept:
+   * the seat reads at the brain's cadence and the legs re-use what it read.
+   * Null in every production path (nothing ever writes the map there).
+   */
+  obmPlaneFor(p: Player): ObmPlane | null {
+    const entry = this.obmPolicies.get(p.gid);
+    if (entry === undefined) return null;
+    if (this.stepCount - entry.tick > OBM_POLICY_TTL_TICKS) return null;
+    return entry.plane;
   }
 
   /** E3R2: this observer's recorded scan moments, oldest first. */

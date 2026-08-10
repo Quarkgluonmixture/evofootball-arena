@@ -340,6 +340,17 @@ export const GK_RUSH_ENVELOPE = 5;
 
 /** How often each player re-evaluates its utility scores (staggered). */
 export const AI_INTERVAL = 0.15;
+/**
+ * ⭐ THE INCUMBENT OFF-BALL FATIGUE MULTIPLIER, named by OBM-T0 (#227). PURE CODE
+ * MOTION: `0.6` is the very factor `decideOffBall` has always applied to the
+ * `SupportBallCarrier` and `MakeRun` scores when `tired` (`s *= 0.6`, four sites).
+ * Given a name so the off-ball eyes seat's score-modulation span can be written as
+ * a reference to the engine's own standing answer to "how much may a body's own
+ * state scale exactly these two scores" instead of as a fresh literal (#202).
+ * Lives here rather than in `PlayerBrain.ts` only to keep the seat module free of
+ * an import cycle; the use site is `decideOffBall` and nowhere else.
+ */
+export const OFFBALL_TIRED_MUL = 0.6;
 /** How often each TeamBrain re-picks a tactical mode / assignments. */
 export const TEAM_AI_INTERVAL = 0.4;
 

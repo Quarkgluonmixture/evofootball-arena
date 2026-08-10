@@ -142,6 +142,20 @@ export function oraclePerceptionSnapshot(
 
 const clamp01 = (v: number): number => Math.max(0, Math.min(1, v));
 
+/**
+ * ⭐ THE INCUMBENT RETENTION HORIZON, named here at its own use site by OBM-T0
+ * (#227). PURE CODE MOTION: `Math.round(15 + awareness * 45)` is the very
+ * expression the three perception paths below have always used for "how long a
+ * reading is still worth keeping" (0.25–1.0 s of memory at 60 Hz). Given a name so
+ * the off-ball eyes seat can normalise its STALENESS feature by the engine's own
+ * answer to that question instead of by a fresh literal (the #202 form). The
+ * argument is clamped exactly as every call site already clamped it, so the number
+ * this returns is bit-for-bit the one the inline expression produced.
+ */
+export function perceptionRetentionTicks(awarenessInput: number): number {
+  return Math.round(15 + clamp01(awarenessInput) * 45);
+}
+
 /** Stable functional noise: no RNG state and no call-order dependence. */
 function keyedNoise(seed: number, observerGid: number, entityGid: number, tick: number, channel: number): number {
   let h = seed | 0;
@@ -317,7 +331,7 @@ export function observeBall(
   const awareness = clamp01(awarenessInput);
   const viewDir = gazeDir ?? observer.bodyDir;
   const intervalTicks = Math.round(15 - awareness * 9);
-  const retentionTicks = Math.round(15 + awareness * 45);
+  const retentionTicks = perceptionRetentionTicks(awareness);
   const scan = memory.nextScanTick < 0 || tick >= memory.nextScanTick;
   const ownsBall = ball.ownerGid === observer.gid;
 
@@ -395,7 +409,7 @@ export function advancePerceptionMemory(
   )) throw new Error(`Invalid gaze for observer gid ${observerGid}`);
   const viewDir = gaze?.gazeDir ?? observer.bodyDir;
   const intervalTicks = Math.round(15 - awareness * 9); // 4–10 Hz at 60 Hz sim
-  const retentionTicks = Math.round(15 + awareness * 45); // 0.25–1.0 s memory
+  const retentionTicks = perceptionRetentionTicks(awareness); // 0.25–1.0 s memory
   const scan = memory.nextScanTick < 0 || truth.tick >= memory.nextScanTick;
   const ownsBall = truth.ball.ownerGid === observerGid;
 
@@ -527,7 +541,7 @@ export function reconstructBodyMemory(
   seed: number,
 ): void {
   const awareness = clamp01(awarenessInput);
-  const retentionTicks = Math.round(15 + awareness * 45);
+  const retentionTicks = perceptionRetentionTicks(awareness);
   const now = currentTruth.tick;
   for (const frame of frames) {
     if (frame.tick < 0 || now - frame.tick > retentionTicks || frame.tick > now) continue;

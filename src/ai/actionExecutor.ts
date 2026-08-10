@@ -22,7 +22,7 @@ import {
 import { pressureAt } from './perception';
 import {
   ATTACK_FORMATIONS, cornerCrashSpots, cornerKeyZone, fkWallSlots, formationSpot, offsideLineLocalX,
-  runTarget, supportSpot,
+  runTarget, supportSpot, supportSpotOnObmPlane,
 } from './formations';
 import { ballLanding, escapeCarry, interceptBall } from './perception';
 import { arrive, avoidOpponents, separation } from './steering';
@@ -404,6 +404,15 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // the incumbent expression, byte for byte. WHO supports (TeamBrain assignment),
       // pass selection and `speedF` below are untouched.
       target = supportSpot(p, team, ball, match.ctbSupportPlane);
+      // OBM T0 (#227, M-OBM.3) — THE PLANE READ FORK (read site 1 of 2). The policy
+      // was computed by the BRAIN at THIS body's own decision cadence; the executor
+      // only re-uses it (`obmPlaneFor` caps its age at `OBM_POLICY_TTL_TICKS`), so
+      // nothing here pulls a percept per tick. Flag off ⇒ `null` ⇒ this statement is
+      // skipped entirely and the incumbent line above stands byte for byte — which is
+      // also why the incumbent call is left untouched rather than given an argument
+      // (`tests/ctbSupportPlane.test.ts` pins it verbatim).
+      const obmPlane = match.obmMovement ? match.obmPlaneFor(p) : null;
+      if (obmPlane !== null) target = supportSpotOnObmPlane(p, team, ball, obmPlane);
       speedF = (team.mode === 'CounterAttack' ? 1 : 0.9) - conserve * 0.15;
       break;
     }

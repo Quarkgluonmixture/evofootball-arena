@@ -7,6 +7,7 @@ import type { Team } from '../sim/Team';
 import {
   ctbSupportDepthWeight, ctbSupportWidthWeight, pmLaneConvergenceK,
 } from '../evolution/genome';
+import type { ObmPlane } from './offballEyes';
 import type {
   AttackFormationId, CornerRoutine, DefendFormationId, TeamMode,
 } from '../sim/types';
@@ -641,14 +642,6 @@ export const CTB_DEPTH_BIAS_SPAN = SUPPORT_LAT_CAP_FRAC;
  * world exactly.
  */
 export function supportSpot(p: Player, team: Team, ball: Ball, ctbPlane = false): V2 {
-  const g = team.genome;
-  // 10..18m: close enough for a give-and-go, far enough that the carrier
-  // isn't mobbed by their own teammates (Phase 19 spacing pass, widened in
-  // Phase 27.1 — the crowd complaint was real).
-  const radius = 10 + g.supportDistance * 8;
-  const aheadBias = team.mode === 'CounterAttack' || team.mode === 'Attack' ? 0.75 : 0.35;
-
-  const lane = formationSpot(p, team, ball, true);
   // ⭐ CTB-T0 (#223, contract §2 M-CTB.1) — THE SUPPORT-PLANE SEAM: the ONE read
   // fork of `ctbSupportPlane` in src/**. Unconditional geometry, no predicate
   // (#200): when the seam is armed, the two signed genes deform this expression on
@@ -659,9 +652,55 @@ export function supportSpot(p: Player, team: Team, ball: Ball, ctbPlane = false)
   let depthShift = 0;
   let widthScale = 1;
   if (ctbPlane) {
-    depthShift = ctbSupportDepthWeight(g) * CTB_DEPTH_BIAS_SPAN;
-    widthScale = 1 + ctbSupportWidthWeight(g);
+    depthShift = ctbSupportDepthWeight(team.genome) * CTB_DEPTH_BIAS_SPAN;
+    widthScale = 1 + ctbSupportWidthWeight(team.genome);
   }
+  return supportSpotDeformed(p, team, ball, depthShift, widthScale);
+}
+
+/**
+ * ⭐ OBM-T0 (#227, contract §2 M-OBM.3) — THE PLANE READ SITE: the off-ball eyes
+ * seat's DYNAMIC position on the SAME banked limb, and the seat's only geometry.
+ *
+ * `plane` is the already-COMPOSED, already-clamped pair
+ * `clamp(staticCtbGene + dynamicPolicyOutput)` that the seat computed at the body's
+ * own decision cadence (`src/ai/offballEyes.ts`) — the static CTB genes are the
+ * policy's INTERCEPT, so this says exactly what the `ctbPlane` branch above says
+ * whenever the dynamic term is zero. Nothing is deformed twice and no new geometry
+ * is invented: the axis spans are the banked limb's own (`CTB_DEPTH_BIAS_SPAN` and
+ * the two incumbent fan constants).
+ *
+ * ⚠ Deliberately a SECOND ENTRY POINT rather than a fifth parameter on
+ * `supportSpot`: `tests/ctbSupportPlane.test.ts` pins that function's signature and
+ * its executor call site VERBATIM, and contract §4 forbids re-cutting the banked
+ * seam. The shared arithmetic lives in `supportSpotDeformed`, so nothing is
+ * duplicated and no incumbent line moved.
+ */
+export function supportSpotOnObmPlane(
+  p: Player, team: Team, ball: Ball, plane: ObmPlane,
+): V2 {
+  return supportSpotDeformed(
+    p, team, ball, plane.depth * CTB_DEPTH_BIAS_SPAN, 1 + plane.width,
+  );
+}
+
+/**
+ * The support geometry itself, deformed by an ALREADY-RESOLVED (depthShift,
+ * widthScale) pair. Pure code motion out of `supportSpot` by OBM-T0: every line
+ * below, and the order it evaluates in, is the incumbent expression's own — at
+ * `(0, 1)` it is the Phase 30.5 fan byte for byte.
+ */
+function supportSpotDeformed(
+  p: Player, team: Team, ball: Ball, depthShift: number, widthScale: number,
+): V2 {
+  const g = team.genome;
+  // 10..18m: close enough for a give-and-go, far enough that the carrier
+  // isn't mobbed by their own teammates (Phase 19 spacing pass, widened in
+  // Phase 27.1 — the crowd complaint was real).
+  const radius = 10 + g.supportDistance * 8;
+  const aheadBias = team.mode === 'CounterAttack' || team.mode === 'Attack' ? 0.75 : 0.35;
+
+  const lane = formationSpot(p, team, ball, true);
   const maxLat = radius * SUPPORT_LAT_CAP_FRAC * widthScale;
   const latPull = clamp((lane.y - ball.pos.y) * SUPPORT_LAT_PULL * widthScale, -maxLat, maxLat);
   return v2(

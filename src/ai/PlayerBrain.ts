@@ -2,8 +2,10 @@ import { clamp, clamp01 } from '../utils/math';
 import { dist, dot, norm, sub, v2 } from '../utils/vec';
 import { HALF_L, HALF_W } from '../sim/constants';
 import {
-  cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady,
+  cornerKeyZone, defenderLineLocalX, offsideLineLocalX, runBurstPoint, shapeReady, supportSpot,
 } from './formations';
+import { obmOffballPolicy } from './offballEyes';
+import { OFFBALL_TIRED_MUL } from '../sim/constants';
 import type { Match } from '../sim/Match';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
@@ -1211,6 +1213,23 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
 
   if (possession === team.side) {
     // ----- We have the ball -----
+    // ⭐ OBM T0 (#227, contract §2 M-OBM.1–3) — THE OFF-BALL EYES SEAT: read fork 2
+    // of 2 in src/**, and the seat's ONLY percept pull, taken here at the body's own
+    // AI_INTERVAL decision cadence (M-OBM.4). The policy's PLANE half is handed to
+    // the match so the executor can re-use it without looking again; its two SCORE
+    // multipliers modulate the candidates below. `supportSpot(p, team, ball)` is the
+    // UNDEFORMED incumbent point — his own intention, and the anchor the f3 space
+    // reading is taken at, so the policy's output can never feed its own input.
+    // Flag off ⇒ both multipliers stay exactly 1 and `s *= 1` is an IEEE-754
+    // identity, so the shipped scores are byte-identical (G-OFF / G-BORN / G-ZERO).
+    let obmSupportMul = 1;
+    let obmRunMul = 1;
+    if (match.obmMovement) {
+      const obm = obmOffballPolicy(p, match, g, supportSpot(p, team, ball));
+      match.setObmPolicy(p.gid, obm.plane);
+      obmSupportMul = obm.supportMul;
+      obmRunMul = obm.runMul;
+    }
     const pass = match.pendingPass;
     if (pass && pass.side === team.side && pass.targetGid === p.gid) {
       cands.push({ action: 'ReceivePass', score: 1.2, why: 'pass is coming to me' });
@@ -1242,7 +1261,11 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       const roleBonus = p.role === 'ST' ? 0.12 : p.role === 'WG' ? 0.1 : p.role === 'MF' ? 0.06 : 0;
       const modeMul = team.mode === 'Attack' || team.mode === 'CounterAttack' ? 1.2 : team.mode === 'BuildUp' ? 1.0 : 0.6;
       let s = (W.supportBase + clamp01(1 - d / 30) * W.supportProxW + roleBonus) * modeMul;
-      if (tired) s *= 0.6; // conserve energy: prefer holding shape
+      if (tired) s *= OFFBALL_TIRED_MUL; // conserve energy: prefer holding shape
+      // OBM T0 — SCORE SITE 1 of 2 (M-OBM.1). Bounded multiplicative, applied last so
+      // the incumbent arithmetic above is untouched; `obmSupportMul === 1` unless the
+      // seat is armed AND dosed, and `s *= 1` is exact.
+      s *= obmSupportMul;
       cands.push({ action: 'SupportBallCarrier', score: s, why: `dist ${d.toFixed(0)}m · mode ${team.mode}` });
     }
     // Assigned runner: sprint in behind and drag the line — the movement a
@@ -1265,7 +1288,11 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
       && match.simTime < team.crossFlight.until;
     if ((team.runners.has(p.index) || arriving) && (carrier ? carrier !== p : match.phase === 'restart' || crashLive || crossLive)) {
       let s = W.runScore;
-      if (tired) s *= 0.6;
+      if (tired) s *= OFFBALL_TIRED_MUL;
+      // OBM T0 — SCORE SITE 2 of 2 (M-OBM.1: the ALREADY-LICENSED run). The wall-pass
+      // burst and the overlap below are their own committed licenses with their own
+      // timing laws and are NOT in slice one — see the stage doc's §LAW.
+      s *= obmRunMul;
       cands.push({
         action: 'MakeRun',
         score: s,
@@ -1281,14 +1308,14 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // cost goals across the calibrate seeds — dart, then re-join.
     if (p.wallRun && match.simTime < p.wallRun.until - 1.1 && carrier && carrier !== p) {
       let s = W.runScore * (1.05 + (g.tempo + g.passBias) * 0.25);
-      if (tired) s *= 0.6;
+      if (tired) s *= OFFBALL_TIRED_MUL;
       cands.push({ action: 'MakeRun', score: s, why: 'bursting for the one-two return' });
     }
     // 套边 (Phase 34): licensed to overlap outside the confronted wide
     // carrier — width genes commit harder to the run.
     if (team.overlapper === p.index && carrier && carrier !== p) {
       let s = W.runScore * (1 + g.attackingWidth * 0.3);
-      if (tired) s *= 0.6;
+      if (tired) s *= OFFBALL_TIRED_MUL;
       cands.push({ action: 'MakeRun', score: s, why: 'overlapping outside the carrier' });
     }
     cands.push({
