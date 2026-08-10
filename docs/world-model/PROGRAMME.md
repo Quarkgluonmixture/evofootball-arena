@@ -366,11 +366,28 @@ MOVE. **THE FORK WAS DELEGATED TO THE VISION TEST AND RULED
 (#219): 甲 → 乙 → 丙 — the look is the oldest user-named seat
 with its T0 seam already banked, SEEING is upstream of
 SHOWING is upstream of PRICING, and F-O2a/b are
-arc-redirecting information. QUEUED NEXT STEP (on
-"go"/resume): dispatch O2-T1 — the WEDGE EXAM per the frozen
-O2-LOOK-CONTRACT §3 (the #186 sizing form with the look
-FORCED; the #218 build-up ruler rides REPORTED). Then: 乙 the
-check-to-ball contract → 丙 progression value.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+arc-redirecting information.** **O2-T1 IS DRAFTED + VERIFIED
+PASS + LAUNCHED (#220, `e5a5261` + `7f2cef2` micro-fix)**:
+stage doc [`O2-T1-WEDGE-EXAM.md`](O2-T1-WEDGE-EXAM.md);
+instrument inheritance PROVED (G-REPRO-186 reproduces #65's
+block AND #186's committed rows exactly; one latent #186
+NaN-sort estimator defect repaired ex ante);
+`turnoversUnderLiveLook` re-specified at #215 LOSS-TICK
+semantics BEFORE the battery (smoke: 18/280 look-attributed;
+abortedLoss 94 = 50 + 2 + 42, closure as data); smoke
+direction: E-ABSTAIN-UNSEEN −8.33 pp RESOLVED, M-CTX
++13.56 pp RESOLVED, rare-event quantities empty at 12 seeds
+(LOOK wedge undefined — the battery's question); the #218
+ruler could NOT ride (PER_MATCH_CAP truncates the walk —
+dropped with evidence, constructed/scramble shares stay with
+census-form instruments). N* = 320/arm (frozen MDE rule,
+binding quantity E-ABSTAIN-UNSEEN −2 pp; cap does not bind).
+**QUEUED NEXT STEP: adjudicate the O2-T1 battery** (seeds
+12,422,100–419, `O2T1_MODE=full O2T1_RESUME=1`) against the
+frozen criteria — success = wedge → 1× with paired CI
+excluding CONTROL + E-ABSTAIN-UNSEEN falls resolvedly;
+F-O2a / F-O2b = pre-named STOPs. Then: 乙 the check-to-ball
+contract → 丙 progression value.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
@@ -386,7 +403,12 @@ verdicts still OPEN. Seeds: the 12.30M band ledger — census
 12,302,040–063 · T2 full 12,303,000–999 · phase-0 smoke
 12,309,900–923; 12.304M–12.3099M gaps + 12.31M+ free; stats
 102,800 consumed, next base ≥ 103,000 (#163 rule). R20 gaps /
-F9 any time.
+F9 any time. ⭐ CURRENT FRONTIER (2026-08-10, supersedes the
+older ledger fragments above): seeds consumed/reserved through
+**12,422,899** (MT ladder 12,420,000-band · census
+12,421,000–999 · O2-T1 12,422,000–011 smoke / 050–099 guard /
+100–419 battery / reserve to 899); stats bases consumed
+through **104,600**, next ≥ **104,800**.
 
 ## 0.0 Operations protocol (how a step actually runs — codified
 2026-07-31, ruling #92; user-ratified, reusable as-is)

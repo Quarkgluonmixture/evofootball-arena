@@ -9342,3 +9342,92 @@
 >    The build-up ruler (#218: constructed share + scramble
 >    share) rides as REPORTED dimensions wherever the exam
 >    frame can carry them.
+
+> **COMMANDER RULING #220 (2026-08-10 — O2-T1 drafted, independently
+> verified PASS, the booked instrument debt settled ex ante; N* = 320;
+> the battery LAUNCHES):**
+>
+> 1. **THE ROUND IS BANKED** (`e5a5261` draft + `7f2cef2` pre-battery
+>    micro-fix): stage doc
+>    [`O2-T1-WEDGE-EXAM.md`](O2-T1-WEDGE-EXAM.md) + probe + smoke
+>    artifact (resultSha256 `eefb273a…c1d7`, X-DET twice, all 11 gates
+>    PASS). Machine-verify = **PASS, nothing above LOW** — the
+>    verifier reproduced the smoke BYTE-IDENTICALLY at HEAD,
+>    re-derived resultSha256 by hand (strip envelope → sort → sha256),
+>    recomputed the N rule to every intermediate digit off the #186
+>    committed artifact, and EMPIRICALLY tripped the override guard
+>    (`O2T1_N`/`O2T1_SKIP_FP` ⇒ exit 1, gates RED, /tmp only, guard
+>    seeds consumed as declared). The two LOWs (a derived-not-cited
+>    `reference186.wedgeRatio` 7.8795 vs the committed counts-based
+>    7.875; the §SEEDS 20-vs-19 block double-count) were corrected in
+>    the micro-fix; the field is now a field-for-field file read.
+> 2. **INSTRUMENT INHERITANCE PROVED, NOT ASSERTED**: G-REPRO-186
+>    limb (a) reproduces #65's committed block exactly
+>    (3,840/2,835/4/…/0.502439); limb (b) reproduces #186's twelve
+>    committed o1armed perMatch rows field-for-field, 0 mismatches.
+>    One LATENT #186 ESTIMATOR DEFECT found and repaired ex ante: the
+>    percentile helper filtered non-finite bootstrap draws AFTER
+>    sorting (Array.sort with a subtraction comparator is
+>    order-undefined once a NaN is present — the degenerate wedge arm
+>    printed CI [11, 1.33], lower > upper). The repair (filter before
+>    sort, publish finiteDraws/draws) touches ONLY the degenerate
+>    wedge CI; every other rate has finiteDraws === draws === 2000;
+>    the N-rule inputs are untainted (independently verified). First
+>    defective artifact discarded uncommitted; the trail rides the
+>    stage doc.
+> 3. **SMOKE SIGNALS (12 seeds — direction only, adjudicating
+>    nothing)**: E-ABSTAIN-UNSEEN 72.006 → 63.672 % (−8.33 pp
+>    [−13.77, −3.25] RESOLVED); M-CTX agreement +13.56 pp RESOLVED
+>    (pressure feature +15.24 pp RESOLVED; stale 100 %/100 % — own
+>    clock, not a percept; support unresolved); the look ledger
+>    closes (436 = 335 completed + 94 abortedLoss + 0 abortedPhase
+>    [the #194 quirk, priced ex ante] + 7 E-ENDED; scans 4,083 ===
+>    live window ticks). The rare-event quantities carry NO
+>    information at this N: LOOK-arm holds = 0, its wedge is
+>    UNDEFINED — published as absence, not evidence. The
+>    pre-registered criteria were NOT met at smoke and the doc says
+>    so plainly. Ring-pressure REPORTED: 6.7 % of LOOK moments show
+>    in-retention eviction (0 % CONTROL) — a real T0-limit-3 effect
+>    the battery reads again.
+> 4. **THE BOOKED DEBT SETTLED BEFORE THE BATTERY** (the round's own
+>    pre-launch condition): `turnoversUnderLiveLook` re-specified at
+>    LOSS-TICK semantics (the #215 census lesson — attribution reads
+>    the losing team's LAST-CONTROLLED tick of the spell, spanning
+>    the loose-ball gap that made the original adjacency wording read
+>    0 BY CONSTRUCTION). New smoke reading: **18 of 280** LOOK-arm
+>    team-level turnovers are look-attributed (CONTROL 0 by
+>    construction); the 94 engine abortedLoss decompose 50
+>    own-recovery + 2 unresolved-at-walk-end + 42 opposition-control
+>    — closure PUBLISHED AS DATA, no assumed identity (the third
+>    companion column accepted for auditability; the 42 ≠ the 18 is
+>    stated as arithmetic, not adjudication). Suite not re-run at the
+>    micro-fix: `src/**` and `tests/**` byte-untouched ⇒ the suite's
+>    inputs did not change; tsc clean; `git diff --stat -- src`
+>    empty.
+> 5. **DEVIATIONS ACCEPTED OF RECORD**: (a) the #218 build-up ruler
+>    could NOT ride the exam frame — the census origin classifier
+>    needs a whole-match walk and the #186 population walk truncates
+>    at PER_MATCH_CAP (proved: 960/960 qualifying = 80×12, 0/12
+>    matches reach full time in either arm) — dropped WITH EVIDENCE,
+>    per-arm goals-in-window carried instead (15 vs 20 at smoke);
+>    the constructed/scramble shares stay with census-form
+>    instruments (乙/丙's business). (b) The draft executor disclosed
+>    writing a placeholder §RESULT before any run (deleted next
+>    action, never committed) — recorded because the failure mode
+>    matters; no fabricated value reached any committed file.
+>    (c) Executor commits land on `main` per this programme's
+>    standing convention.
+> 6. **N* = 320/arm BY THE FROZEN MDE RULE** (computed in-probe off
+>    the #186 committed artifact: binding quantity = E-ABSTAIN-UNSEEN
+>    at a −2 pp absolute fall, two-sided 95 % / 80 % power, DEFF
+>    2.2155 MEASURED off #186's own bootstrap; the half-closure
+>    wedge quantity needs only N = 132; the 800 cap does NOT bind).
+>    **LAUNCHED**: `O2T1_MODE=full O2T1_RESUME=1`, battery seeds
+>    12,422,100–419, stats base 104,600, detached process group (the
+>    #208 proven survivor) + Tier-1 artifact monitor. Adjudication
+>    next, against the FROZEN criteria: success = the wedge falls
+>    toward 1× (paired CI excluding the CONTROL wedge) AND
+>    E-ABSTAIN-UNSEEN falls resolvedly; **F-O2a** (refresh without
+>    classification movement) and **F-O2b** (classification improves
+>    at ~zero measured exposure cost) are pre-named STOPs, reported
+>    as-is (#203: per-arm rows, never verdict lines).
