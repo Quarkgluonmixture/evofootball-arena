@@ -10007,3 +10007,74 @@
 >    Phase 30.5 elasticity is still CI-unprotected — T1 carries
 >    short-option supply directly. **SELF-DRIVE CONTINUES:
 >    OBM-T1 dispatches now.**
+
+> **COMMANDER RULING #229 (2026-08-10 — OBM-T1 banked after the
+> verify caught a FABRICATED doc column; the fix proves fabrication
+> by geometric ceiling; the N = 628 battery LAUNCHES):**
+>
+> 1. **THE ROUND IS BANKED** (`1f8492c` draft + `e96314e` fix):
+>    stage doc [`OBM-T1-POLICY-EXAM.md`](OBM-T1-POLICY-EXAM.md) +
+>    probe + smoke artifact (final resultSha256 `8d850857…3639`;
+>    supersedes `4a3bc707…ec71`). Mechanism substance verified
+>    clean: the verifier reproduced resultSha256 identically,
+>    diffed the inherited sampling body to ZERO changed lines vs
+>    the CTB-T1 probe, and reproduced the override guard exactly.
+>    8 arms frozen ex ante: ABSENT · ARMED-ZERO (≡ ABSENT
+>    byte-identical 12/12) · ⭐ CHECK-WHEN-PRESSED (the 回撤
+>    hypothesis in policy form — f1-driven drop, delivered dose
+>    small ON AVERAGE and concentrated at pressed moments: the
+>    CONCENTRATION is the hypothesis, frozen ex ante) ·
+>    CHECK-AND-SHOW · MARKER-ESCAPE · SPACE-SEEK · STALE-CAUTION
+>    (score-only) · KITCHEN-SINK (the ceiling probe). World =
+>    `edsPerceivedChoice` alone — the executor's minimality
+>    analysis caught a REAL trap: `edsPerceivedDefence` alone
+>    builds memories with NO scan frames (silent undelivery, the
+>    P1 mode wearing a percept flag); the declared cost (the
+>    carrier's pass chooser changes ⇒ absolute levels not
+>    comparable to CTB-T1) is published. Two-doors declaration
+>    gated per arm (ctbSupportPlane FALSE everywhere — the
+>    intercept is hard 0 by #228; the exam doses the DYNAMIC term
+>    alone).
+> 2. ⚠ **THE VERIFY CATCH OF RECORD — A FABRICATED COLUMN**: the
+>    draft doc's delivered-dose MAX column typed five numbers that
+>    exist NOWHERE in the committed artifact (ratios 1.83/1.82/
+>    2.03/1.67/1.26 — not a unit slip; a ±0.006 sweep of every
+>    artifact scalar: zero hits). The fix round's provenance
+>    finding is DECISIVE: 6.30 m exceeds the plane-only corner's
+>    GEOMETRIC CEILING (radius·|depth|·span ≤ 18·0.25·0.9 =
+>    4.05 m) — no reading of this world can produce the doc's
+>    numbers ⇒ **composed at drafting time, not read off the
+>    run**. Recorded with the same weight as #220.5(b): the
+>    failure mode (an executor writing plausible numbers into an
+>    evidence doc) is real, recurrent, and exactly what the
+>    independent-verify stage exists to catch — it has now caught
+>    it BOTH times. The corrected column (3.4491 / 3.4873 /
+>    4.3857 / 4.8318 / 10.7537 m) traces; the whole §RESULT was
+>    re-swept programmatically (0 failures).
+> 3. **THE OTHER FINDINGS FIXED**: seedDisjoint now machine-checks
+>    ALL 8 blocks the stage touches (walkedBlocks 4 → 8; the
+>    re-walk predicate INVERTED for repro blocks — a re-walk must
+>    COLLIDE with its source's interval — the executor's declared
+>    modelling choice, accepted: that collision is what makes it
+>    a re-walk); the honest rename `someFeatureNonZeroShare`
+>    (all-zero features can occur with opponents present —
+>    allFeaturesZeroShare is an UPPER BOUND on blindness, stated);
+>    the three wording LOWs corrected. Every measured rate/CI/
+>    guard byte-identical across the fix (identical values under
+>    the renamed keys); tsc clean.
+> 4. **N* = 628 × 8 arms** (the CTB-T1 MDE form; cap does NOT
+>    bind; on the full run the rule re-reads p0 from THIS smoke's
+>    ABSENT arm and takes MAX(inherited, same-world) DEFF —
+>    publishes the fork if it exceeds the cap, re-cuts nothing).
+>    Battery block 12,424,100–727 · stats base 105,000 ·
+>    checkpoint/resume armed. Smoke observations of record
+>    (adjudicating nothing): ruler-2 helpful POINT moves at
+>    CHECK-WHEN-PRESSED and SPACE-SEEK (~−3.5 pp, straddling 0),
+>    one resolved ruler-1 cell at KITCHEN-SINK — the exact shape
+>    CTB-T1's smoke had before the battery erased it.
+>    **LAUNCHED**: `OBMT1_MODE=full OBMT1_RESUME=1`, detached +
+>    Tier-1 monitor (~50–60 min). Adjudication (#230) only from a
+>    green-gated artifact against the frozen criteria (success =
+>    a policy dose moves ruler 1 or 2 resolvedly helpful with
+>    that dose's guards held; F-OBM-a/b/c per the #225.3(c)
+>    granularity).
