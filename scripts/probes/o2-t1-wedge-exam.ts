@@ -300,6 +300,7 @@ interface PerMatch {
   lookAbortedPhase: number;
   lookEndedLive: number;
   liveWindowTicks: number;
+  frozenPhaseTicksUnderLiveWindow: number;
   /* ---- (ii) F-O2b exposure instruments ---- */
   ticksWalked: number;
   possessionSpells: number;
@@ -325,7 +326,7 @@ const emptyRow = (seed: number): PerMatch => ({
   dHold: 0, holdCells: {}, trueHoldable: 0,
   ctxPlaced: 0, ctxAgreeAll: 0, ctxAgreeFeature: [0, 0, 0], perceivedCellCounts: {},
   looks: 0, lookScans: 0, lookCompleted: 0, lookAbortedLoss: 0, lookAbortedPhase: 0,
-  lookEndedLive: 0, liveWindowTicks: 0,
+  lookEndedLive: 0, liveWindowTicks: 0, frozenPhaseTicksUnderLiveWindow: 0,
   ticksWalked: 0, possessionSpells: 0, turnovers: 0, turnoversUnderLiveLook: 0,
   abortedLossOwnTeamRecovery: 0, abortedLossUnresolvedAtWalkEnd: 0,
   ringReadable: 0, ringFull: 0, ringPressure: 0, ringOccupancySum: 0, ringOldestAgeSum: 0,
@@ -435,11 +436,31 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
     // --- the tick, and the per-tick observation columns ---------------------------
     const winBefore = match.o2LookWindow;
     const abortedLossBefore = match.o2LookLedger.abortedLoss;
+    /**
+     * ⭐ THE PLAYING-CLOCK READING of a live window (corrected before the battery was banked;
+     * the T0 G-SCAN precedent — name the class, tighten honestly, never quietly rewrite).
+     * `Match.step` RETURNS EARLY during `kickoff`/`goalPause`/`halftime` (and `fulltime`)
+     * BEFORE `stepO2Look` runs (Match.ts §step), so on such a tick the engine records NO scan
+     * and cannot close the window — yet the window OBJECT persists. The old counter read
+     * `win !== null` on the WALL clock and so counted those frozen ticks as live, breaking the
+     * cadence identity by exactly the freeze length whenever a half ended under a live window
+     * (halftime 1.2 s = 72 ticks + the kickoff 0.9 s = 54 ticks ⇒ 126). The identity
+     * `scans === liveWindowTicks` is a statement about the clock `stepO2Look` RUNS on, so the
+     * counter now runs on that clock and the frozen ticks are PUBLISHED BESIDE IT as their own
+     * named class rather than dropped. The engine's `stepCount` safety net is deliberately NOT
+     * mirrored here: any OTHER path that skips `stepO2Look` must still break the gate loudly.
+     */
+    const phaseBefore = match.phase;
+    const frozenPhase = phaseBefore === 'kickoff' || phaseBefore === 'goalPause'
+      || phaseBefore === 'halftime' || phaseBefore === 'fulltime';
     match.step(DT);
     r.ticksWalked += 1;
     sinceLast += 1;
     const win = match.o2LookWindow;
-    if (win !== null) r.liveWindowTicks += 1;
+    if (win !== null) {
+      if (frozenPhase) r.frozenPhaseTicksUnderLiveWindow += 1;
+      else r.liveWindowTicks += 1;
+    }
     // the engine closed a window as abortedLoss on THIS step: park the looker's side until the
     // next established control decides whether the spell ended as a team-level turnover.
     if (match.o2LookLedger.abortedLoss > abortedLossBefore && winBefore !== null) {
@@ -601,6 +622,17 @@ const armSummary = (rows: PerMatch[]) => {
       abortedPhase: s((r) => r.lookAbortedPhase),
       endedLive: s((r) => r.lookEndedLive),
       liveWindowTicks: s((r) => r.liveWindowTicks),
+      frozenPhaseTicksUnderLiveWindow: s((r) => r.frozenPhaseTicksUnderLiveWindow),
+      cadenceClockNote: 'THE CADENCE IDENTITY IS READ ON THE CLOCK `stepO2Look` RUNS ON. '
+        + '`liveWindowTicks` counts ticks that ended with a live window AND on which the engine '
+        + 'actually reached the seam; `frozenPhaseTicksUnderLiveWindow` counts the ticks a window '
+        + 'object survived while `Match.step` returned early (kickoff/goalPause/halftime/'
+        + 'fulltime) BEFORE `stepO2Look` — no scan is recorded and the window cannot close on '
+        + 'such a tick. The two columns partition every tick that ended under a live window, so '
+        + 'nothing is dropped: the frozen class is PUBLISHED, not swallowed. A half ending under '
+        + 'a live window freezes it for the halftime pause (1.2 s = 72 ticks) plus the following '
+        + 'kickoff (0.9 s = 54 ticks) = 126 ticks; such a window then closes as abortedLoss at '
+        + 'the first playing tick (the #194 abort-mix quirk), never as abortedPhase.',
       seedsWithLooks: rows.filter((r) => r.looks > 0).length,
       scansEqualLiveTicks: s((r) => r.lookScans) === s((r) => r.liveWindowTicks),
       unexplainedArms: s((r) => r.looks)
@@ -1108,7 +1140,8 @@ const gForce = lookLedger.looks > 0
   && lookLedger.seedsWithLooks === RUN_N
   && lookLedger.scansEqualLiveTicks
   && lookLedger.unexplainedArms === 0
-  && ctrlLedger.looks === 0 && ctrlLedger.scans === 0 && ctrlLedger.liveWindowTicks === 0;
+  && ctrlLedger.looks === 0 && ctrlLedger.scans === 0 && ctrlLedger.liveWindowTicks === 0
+  && ctrlLedger.frozenPhaseTicksUnderLiveWindow === 0;
 
 const gates = {
   xDet: {
@@ -1165,13 +1198,20 @@ const gates = {
     look: {
       looks: lookLedger.looks, seedsWithLooks: lookLedger.seedsWithLooks, seeds: RUN_N,
       scans: lookLedger.scans, liveWindowTicks: lookLedger.liveWindowTicks,
+      frozenPhaseTicksUnderLiveWindow: lookLedger.frozenPhaseTicksUnderLiveWindow,
       scansEqualLiveTicks: lookLedger.scansEqualLiveTicks,
       unexplainedArms: lookLedger.unexplainedArms,
     },
-    control: { looks: ctrlLedger.looks, scans: ctrlLedger.scans, liveWindowTicks: ctrlLedger.liveWindowTicks },
+    control: {
+      looks: ctrlLedger.looks, scans: ctrlLedger.scans,
+      liveWindowTicks: ctrlLedger.liveWindowTicks,
+      frozenPhaseTicksUnderLiveWindow: ctrlLedger.frozenPhaseTicksUnderLiveWindow,
+    },
     note: 'the arms are what they claim: the seam is reached at scale on EVERY seed of the LOOK '
-      + 'arm (with the T0 cadence identity scans === live window ticks) and is entirely absent '
-      + 'from CONTROL',
+      + 'arm (with the T0 cadence identity scans === live window ticks READ ON THE PLAYING '
+      + 'CLOCK — the clock `stepO2Look` runs on; ticks a window survived while `Match.step` '
+      + 'returned early are counted and published separately as '
+      + '`frozenPhaseTicksUnderLiveWindow`, never dropped) and is entirely absent from CONTROL',
   },
   gCleanInvocation: {
     pass: !OVERRIDDEN, envN: N_ENV, skipFp: SKIP_FP,
@@ -1323,6 +1363,9 @@ o(`  LOOK    looks ${lookLedger.looks} · completed ${lookLedger.completed}`
   + ` · abortedLoss ${lookLedger.abortedLoss} · abortedPhase ${lookLedger.abortedPhase}`
   + ` · E-ENDED ${lookLedger.endedLive} · scans ${lookLedger.scans}`
   + ` · liveTicks ${lookLedger.liveWindowTicks} · seedsWithLooks ${lookLedger.seedsWithLooks}/${RUN_N}`);
+o(`  frozen-phase ticks under a live window (NO scan, window cannot close — published, not `
+  + `dropped)   CONTROL ${ctrlLedger.frozenPhaseTicksUnderLiveWindow}`
+  + ` · LOOK ${lookLedger.frozenPhaseTicksUnderLiveWindow}`);
 o('(ii) F-O2b EXPOSURE INSTRUMENTS');
 row('turnover per spell', 'turnoverPerSpell', false);
 row('turnovers /1000 ticks', 'turnoversPer1000Ticks', false);

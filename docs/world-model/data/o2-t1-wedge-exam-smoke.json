@@ -168,6 +168,8 @@
         "abortedPhase": 0,
         "endedLive": 0,
         "liveWindowTicks": 0,
+        "frozenPhaseTicksUnderLiveWindow": 0,
+        "cadenceClockNote": "THE CADENCE IDENTITY IS READ ON THE CLOCK `stepO2Look` RUNS ON. `liveWindowTicks` counts ticks that ended with a live window AND on which the engine actually reached the seam; `frozenPhaseTicksUnderLiveWindow` counts the ticks a window object survived while `Match.step` returned early (kickoff/goalPause/halftime/fulltime) BEFORE `stepO2Look` — no scan is recorded and the window cannot close on such a tick. The two columns partition every tick that ended under a live window, so nothing is dropped: the frozen class is PUBLISHED, not swallowed. A half ending under a live window freezes it for the halftime pause (1.2 s = 72 ticks) plus the following kickoff (0.9 s = 54 ticks) = 126 ticks; such a window then closes as abortedLoss at the first playing tick (the #194 abort-mix quirk), never as abortedPhase.",
         "seedsWithLooks": 0,
         "scansEqualLiveTicks": true,
         "unexplainedArms": 0,
@@ -293,6 +295,8 @@
         "abortedPhase": 0,
         "endedLive": 7,
         "liveWindowTicks": 4083,
+        "frozenPhaseTicksUnderLiveWindow": 0,
+        "cadenceClockNote": "THE CADENCE IDENTITY IS READ ON THE CLOCK `stepO2Look` RUNS ON. `liveWindowTicks` counts ticks that ended with a live window AND on which the engine actually reached the seam; `frozenPhaseTicksUnderLiveWindow` counts the ticks a window object survived while `Match.step` returned early (kickoff/goalPause/halftime/fulltime) BEFORE `stepO2Look` — no scan is recorded and the window cannot close on such a tick. The two columns partition every tick that ended under a live window, so nothing is dropped: the frozen class is PUBLISHED, not swallowed. A half ending under a live window freezes it for the halftime pause (1.2 s = 72 ticks) plus the following kickoff (0.9 s = 54 ticks) = 126 ticks; such a window then closes as abortedLoss at the first playing tick (the #194 abort-mix quirk), never as abortedPhase.",
         "seedsWithLooks": 12,
         "scansEqualLiveTicks": true,
         "unexplainedArms": 0,
@@ -1222,8 +1226,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf",
-      "digestB": "908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf",
+      "digestA": "4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966",
+      "digestB": "4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966",
       "note": "the WHOLE computation (both arms + both repro walks + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
     },
     "xFpProd": {
@@ -1503,15 +1507,17 @@
         "seeds": 12,
         "scans": 4083,
         "liveWindowTicks": 4083,
+        "frozenPhaseTicksUnderLiveWindow": 0,
         "scansEqualLiveTicks": true,
         "unexplainedArms": 0
       },
       "control": {
         "looks": 0,
         "scans": 0,
-        "liveWindowTicks": 0
+        "liveWindowTicks": 0,
+        "frozenPhaseTicksUnderLiveWindow": 0
       },
-      "note": "the arms are what they claim: the seam is reached at scale on EVERY seed of the LOOK arm (with the T0 cadence identity scans === live window ticks) and is entirely absent from CONTROL"
+      "note": "the arms are what they claim: the seam is reached at scale on EVERY seed of the LOOK arm (with the T0 cadence identity scans === live window ticks READ ON THE PLAYING CLOCK — the clock `stepO2Look` runs on; ticks a window survived while `Match.step` returned early are counted and published separately as `frozenPhaseTicksUnderLiveWindow`, never dropped) and is entirely absent from CONTROL"
     },
     "gCleanInvocation": {
       "pass": true,
@@ -1522,10 +1528,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7",
+  "resultSha256": "089a4292ce0dc2c0a8d19da0220f6e562d8be612d0ebe4812e914fa2c62fc2a3",
   "envelopeContextOnly": {
-    "headContextOnly": "e5a5261",
-    "wallMsContextOnly": 206456,
+    "headContextOnly": "14f824f",
+    "wallMsContextOnly": 207577,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/o2-t1-wedge-exam-smoke.json",
     "srcDiffStat": "",

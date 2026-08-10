@@ -124,8 +124,17 @@ probe's (`scripts/probes/o2-whether-sizing-rerun.ts`), which is itself #65's:
 
 * **(i) The per-arm LOOK LEDGER** — the in-engine `Match.o2LookLedger`
   (`looks` / `completed` / `abortedLoss` / `abortedPhase` / `scans`) plus the
-  probe-side `E-ENDED` class (the walk ended with a window live) and
-  `liveWindowTicks`.
+  probe-side `E-ENDED` class (the walk ended with a window live),
+  `liveWindowTicks` and `frozenPhaseTicksUnderLiveWindow`.
+  ⭐ **`liveWindowTicks` IS READ ON THE PLAYING CLOCK — the clock `stepO2Look`
+  actually runs on**, and the ticks it excludes are published beside it as their
+  own named class rather than dropped. `Match.step` returns early during
+  `kickoff` / `goalPause` / `halftime` / `fulltime` **before** `stepO2Look`, so on
+  such a tick the engine records **no scan** and **cannot close** the window — yet
+  the window object survives. The two columns **partition** every tick that ended
+  under a live window, so the cadence identity `scans === liveWindowTicks` is a
+  statement about the seam's own clock and nothing is swallowed to make it hold.
+  See §GATES **G-FORCE** for the correction of record this class was named in.
   ⚠ **THE #194 ABORT-MIX PRICE, paid BEFORE the mix is read anywhere.**
   `stepO2Look`'s `phase !== 'playing'` bail is largely unreachable — `Match.step`
   returns early during kickoff / goal-pause / half-time *before* `stepO2Look`
@@ -330,12 +339,55 @@ published is the census probe's complete ≥91,100-regime list **plus 104,400**
 | **STATS-DISJOINT** | HARD | stats base 104,600, min gap ≥ 200 from every published ≥91,100-regime base |
 | **FLAG-HYGIENE** | HARD | CONTROL == `CENSUS_FLAGS` + `o1PassWindup` exactly (the #186 `o1armed` set); LOOK == CONTROL + `o2Look` and **nothing else** (key-set equality + one added key) |
 | **TABLE-DRIFT** | HARD | injected certified table `tableSha` == `184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53` exactly **and** the holdable-cell set == `["0\|0\|0"]` |
-| **G-FORCE** | HARD | the arms are what they claim: in **LOOK**, `looks > 0` on **every** seed and `scans === liveWindowTicks` (the T0 cadence identity) and the ledger closes (`looks == completed + abortedLoss + abortedPhase + E-ENDED`); in **CONTROL**, the ledger is **empty** (zero looks, zero scans, zero live ticks) |
+| **G-FORCE** | HARD | the arms are what they claim: in **LOOK**, `looks > 0` on **every** seed and `scans === liveWindowTicks` **read on the playing clock** (the T0 cadence identity), with `frozenPhaseTicksUnderLiveWindow` published beside it, and the ledger closes (`looks == completed + abortedLoss + abortedPhase + E-ENDED`); in **CONTROL**, the ledger is **empty** (zero looks, zero scans, zero live ticks, zero frozen ticks) |
 | **G-CLEAN-INVOCATION** | HARD | no env override is in force (`O2T1_N`, `O2T1_SKIP_FP`). Any override routes the run onto the **guard block** and turns this gate RED (and exits 1) rather than passing quietly. |
 
 **Pre-named FAIL ⇒ report as-is, never re-cut**: any HARD gate failing, any `src`
 diff, any population edit. A frozen criterion is never re-cut after seeing
 numbers.
+
+#### ⚠ G-FORCE — CORRECTION OF RECORD (a measurement-layer defect, not a re-cut)
+
+A battery run of this instrument (N = 320, seeds 12,422,100–419, `resultSha256`
+`056f2fdd01e0c954f081bd8e9a4e959bf98a6833f16998ead226f205b055489e`) **failed
+G-FORCE red on the cadence-identity limb**: engine-ledger `scans` **115,308** vs
+probe-counted `liveWindowTicks` **116,568**. **That artifact was never committed
+and has been deleted**; it is superseded by the fix recorded here. Its exam
+numbers were **not read** — only its gate block was, and only to diagnose.
+
+*The account, confirmed empirically before the counter was touched* (a throwaway
+single-seed trace, no artifact, nothing adjudicated):
+
+* The deficit was **1,260 = exactly 10 of 320 seeds × exactly 126 ticks each** —
+  no other seed deviated by any amount.
+* On seed **12,422,107** the trace found **one** contiguous frozen span, ticks
+  **7,256–7,381 = 126 ticks**, composed of **72 `halftime` ticks** (the 1.2 s
+  pause, `Match.ts` `phaseTimer = 1.2`) **+ 54 `kickoff` ticks** (0.9 s,
+  `setupKickoff`). The window (gid 5, armed at tick 7,253, `untilTick` 7,264) sat
+  frozen across it and **closed as `abortedLoss` at tick 7,382**, the first
+  playing tick — the documented **#194** abort-mix quirk, never `abortedPhase`.
+  Seed 12,422,126 reproduced the identical shape (span 7,606–7,731, 72 + 54).
+  All ten affected seeds were re-walked independently: **126 each, total 1,260**.
+* **The seam was intact throughout** — the ledger closed (`unexplainedArms` 0),
+  CONTROL was empty, and `looks > 0` held on 320/320 seeds. The defect was in the
+  **probe's measurement**, not the engine: the counter read `win !== null` on the
+  **wall** clock, so ticks on which `Match.step` returned early *before*
+  `stepO2Look` — recording no scan and unable to close the window — were counted
+  as live. On such a tick a scan **cannot** exist, so the identity was being asked
+  to hold across a clock the seam does not run on.
+
+*The fix, in the O2-T0 **G-SCAN** precedent — name the class, tighten honestly,
+never quietly rewrite*: `liveWindowTicks` now counts on the seam's own clock, and
+the excluded ticks are published as the explicitly named companion class
+**`frozenPhaseTicksUnderLiveWindow`** (per arm, in the ledger, in the G-FORCE
+evidence block and in the transcript). The two columns partition every tick that
+ended under a live window, so **nothing is dropped to make the gate green** — the
+frozen ticks are visible on their own line. `src/**` is byte-untouched; the
+engine's `stepCount` safety net is deliberately **not** mirrored in the probe's
+predicate, so any *other* path that ever skips `stepO2Look` must still break this
+gate loudly rather than be absorbed. On the smoke block the new class reads
+**0 / 0** (no half ends under a live window there), which is why every previously
+committed smoke number is unchanged.
 
 ### Mode / resume contract
 
@@ -367,13 +419,27 @@ recomputed by `npx tsx scripts/probes/o2-t1-wedge-exam.ts`. The doc never carrie
 evidence the artifact does not — #181.2.)*
 
 **Ran 2026-08-10 · `resultSha256`
-`eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7` ·
-X-DET core digest `908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf`
+`089a4292ce0dc2c0a8d19da0220f6e562d8be612d0ebe4812e914fa2c62fc2a3` ·
+X-DET core digest `4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966`
 (both passes) · 12 shared seeds 12,422,000–12,422,011 · **ALL GATES PASS**
-(`allGatesPass: true`) · wall 206 s (CONTEXT ONLY, #128 — used in no rate, and
+(`allGatesPass: true`) · wall 208 s (CONTEXT ONLY, #128 — used in no rate, and
 riding the UNHASHED envelope).**
 
-⚠ **SUPERSESSION, stated plainly.** This is the **second** smoke artifact. The
+⚠ **SUPERSESSION (2), stated plainly.** This is the **third** smoke artifact. The
+second (`resultSha256`
+`eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7`, X-DET digest
+`908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf`) is **not
+withdrawn and remains in git history** at commit `14f824f`. It was superseded by
+the **G-FORCE correction of record** written up in §GATES: the probe's
+`liveWindowTicks` counter now runs on the clock `stepO2Look` runs on, and the
+excluded ticks are published as the named class
+`frozenPhaseTicksUnderLiveWindow`. **Every previously committed number in this
+section is byte-identical** — the *only* hashed-body fields that moved are the
+four new `frozenPhaseTicksUnderLiveWindow` entries (all **0** at smoke), the two
+new ledger notes and the G-FORCE note prose, which is why `resultSha256` and the
+X-DET digest move. `src/**` is byte-untouched in this round too.
+
+⚠ **SUPERSESSION (1), stated plainly.** The
 first (`resultSha256`
 `d21ffedbdaf7746013a71ece8286505c88283ebc2b13b45d6cfd2140231c2bc5`, X-DET digest
 `1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54`) is **not
@@ -393,7 +459,7 @@ moved are the re-specified/added exposure columns and `reference186.wedgeRatio`
 
 | gate | verdict | evidence |
 | --- | --- | --- |
-| **X-DET** | ✅ PASS | the whole computation twice; hashed bodies byte-identical: `digestA === digestB === 908d6aac…7dcf` |
+| **X-DET** | ✅ PASS | the whole computation twice; hashed bodies byte-identical: `digestA === digestB === 4554ed0b…4966` |
 | **X-FP-PROD** | ✅ PASS | observed `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` == the shipped baseline |
 | **G-REPRO-186 (a)** | ✅ PASS | #65's block 8,500,000–047, `REPRO65` flags: qualifying **3,840** · eligible **2,835** · D-HOLD **4** · classes **4 / 816 / 2,004 / 11** · cells placed **820** · agreement **0.502439** — identical to #186's committed `G-REPRO65` target |
 | **G-REPRO-186 (b)** | ✅ PASS | the CONTROL arm on #186's own block 12,310,000–011: **12 rows checked, 0 mismatches** against the committed `perMatch.o1armed` rows (seed · eligible · dHold · trueHoldable · abstainUnseen · ctxPlaced · ctxAgreeAll) |
@@ -403,7 +469,7 @@ moved are the re-specified/added exposure columns and `reference186.wedgeRatio`
 | **STATS-DISJOINT** | ✅ PASS | base **104,600**, **min gap 200** (nearest published base 104,400) |
 | **FLAG-HYGIENE** | ✅ PASS | CONTROL == `CENSUS_FLAGS` + `o1PassWindup`; LOOK == CONTROL + `o2Look`, exactly one key added, every shared key equal |
 | **TABLE-DRIFT** | ✅ PASS | `tableSha 184d1e84…0b53` · holdable-cell set `["0\|0\|0"]` |
-| **G-FORCE** | ✅ PASS | LOOK: **436** looks, `looks > 0` on **12/12** seeds, **scans 4,083 === live window ticks 4,083** (the T0 cadence identity), unexplained arms **0**. CONTROL: ledger **empty** (0 looks · 0 scans · 0 live ticks) |
+| **G-FORCE** | ✅ PASS | LOOK: **436** looks, `looks > 0` on **12/12** seeds, **scans 4,083 === live window ticks 4,083** (the T0 cadence identity, read on the playing clock), `frozenPhaseTicksUnderLiveWindow` **0**, unexplained arms **0**. CONTROL: ledger **empty** (0 looks · 0 scans · 0 live ticks · 0 frozen ticks). See §GATES **G-FORCE — correction of record** for the battery-run defect this class was named in. |
 | **G-CLEAN-INVOCATION** | ✅ PASS | no override in force (`O2T1_N` null · `O2T1_SKIP_FP` false) |
 
 ### The headline table — both arms, 12 shared seeds
@@ -455,7 +521,8 @@ It is stated, not worked around.
 | aborted — phase / stun / sending-off | 0 | **0** |
 | E-ENDED (the walk ended mid-window) | 0 | **7** |
 | scan moments recorded | 0 | **4,083** |
-| live window ticks | 0 | **4,083** |
+| live window ticks (playing clock) | 0 | **4,083** |
+| `frozenPhaseTicksUnderLiveWindow` (no scan possible; window cannot close) | 0 | **0** |
 | seeds with `looks > 0` | 0 / 12 | **12 / 12** |
 | unexplained arms | 0 | **0** |
 
@@ -569,36 +636,36 @@ seeds 12422000..12422011
 arms differ by EXACTLY o2Look; forcing = ONE LOOK PER RECEPTION (40-tick runway, 11-tick window)
 N rule ⇒ N* 320 (cap 800)
 =============================================================================
-  pass 1 · seed 1/12 (12422000) · both arms done · 2.7 s
-  pass 1 · seed 2/12 (12422001) · both arms done · 5.2 s
-  pass 1 · seed 3/12 (12422002) · both arms done · 7.7 s
-  pass 1 · seed 4/12 (12422003) · both arms done · 10.1 s
-  pass 1 · seed 5/12 (12422004) · both arms done · 12.6 s
-  pass 1 · seed 6/12 (12422005) · both arms done · 15.0 s
-  pass 1 · seed 7/12 (12422006) · both arms done · 17.5 s
-  pass 1 · seed 8/12 (12422007) · both arms done · 19.9 s
-  pass 1 · seed 9/12 (12422008) · both arms done · 22.2 s
-  pass 1 · seed 10/12 (12422009) · both arms done · 24.7 s
-  pass 1 · seed 11/12 (12422010) · both arms done · 27.1 s
-  pass 1 · seed 12/12 (12422011) · both arms done · 29.5 s
+  pass 1 · seed 1/12 (12422000) · both arms done · 2.6 s
+  pass 1 · seed 2/12 (12422001) · both arms done · 5.0 s
+  pass 1 · seed 3/12 (12422002) · both arms done · 7.4 s
+  pass 1 · seed 4/12 (12422003) · both arms done · 9.7 s
+  pass 1 · seed 5/12 (12422004) · both arms done · 12.1 s
+  pass 1 · seed 6/12 (12422005) · both arms done · 14.4 s
+  pass 1 · seed 7/12 (12422006) · both arms done · 16.8 s
+  pass 1 · seed 8/12 (12422007) · both arms done · 19.1 s
+  pass 1 · seed 9/12 (12422008) · both arms done · 21.3 s
+  pass 1 · seed 10/12 (12422009) · both arms done · 23.7 s
+  pass 1 · seed 11/12 (12422010) · both arms done · 25.9 s
+  pass 1 · seed 12/12 (12422011) · both arms done · 28.3 s
   pass 1 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
   pass 1 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
-  [o2-t1] pass 1 digest 908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf — X-DET second pass...
-  pass 2 · seed 1/12 (12422000) · both arms done · 2.5 s
-  pass 2 · seed 2/12 (12422001) · both arms done · 4.9 s
-  pass 2 · seed 3/12 (12422002) · both arms done · 7.3 s
-  pass 2 · seed 4/12 (12422003) · both arms done · 9.8 s
-  pass 2 · seed 5/12 (12422004) · both arms done · 12.2 s
-  pass 2 · seed 6/12 (12422005) · both arms done · 14.6 s
-  pass 2 · seed 7/12 (12422006) · both arms done · 17.1 s
-  pass 2 · seed 8/12 (12422007) · both arms done · 19.5 s
-  pass 2 · seed 9/12 (12422008) · both arms done · 21.9 s
-  pass 2 · seed 10/12 (12422009) · both arms done · 24.3 s
-  pass 2 · seed 11/12 (12422010) · both arms done · 26.7 s
-  pass 2 · seed 12/12 (12422011) · both arms done · 29.1 s
+  [o2-t1] pass 1 digest 4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966 — X-DET second pass...
+  pass 2 · seed 1/12 (12422000) · both arms done · 2.3 s
+  pass 2 · seed 2/12 (12422001) · both arms done · 4.7 s
+  pass 2 · seed 3/12 (12422002) · both arms done · 7.0 s
+  pass 2 · seed 4/12 (12422003) · both arms done · 9.4 s
+  pass 2 · seed 5/12 (12422004) · both arms done · 11.7 s
+  pass 2 · seed 6/12 (12422005) · both arms done · 14.0 s
+  pass 2 · seed 7/12 (12422006) · both arms done · 16.3 s
+  pass 2 · seed 8/12 (12422007) · both arms done · 18.5 s
+  pass 2 · seed 9/12 (12422008) · both arms done · 20.8 s
+  pass 2 · seed 10/12 (12422009) · both arms done · 23.1 s
+  pass 2 · seed 11/12 (12422010) · both arms done · 25.4 s
+  pass 2 · seed 12/12 (12422011) · both arms done · 27.7 s
   pass 2 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
   pass 2 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
-  [o2-t1] pass 2 digest 908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf — X-DET PASS
+  [o2-t1] pass 2 digest 4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966 — X-DET PASS
 
 === O2-T1 WEDGE EXAM · mode smoke · 12422000..12422011 (12 seeds/arm, shared) ===
 eligible moments  CONTROL 718 · LOOK 757   (qualifying 960 / 960)
@@ -622,6 +689,7 @@ EXCLUSION MIX (firstTouch / mustKick / A0-Shoot / A0-Clear)
 (i) LOOK LEDGER   (the #194 abort-mix price is stated in the artifact beside these counts)
   CONTROL looks 0 · scans 0 · liveTicks 0
   LOOK    looks 436 · completed 335 · abortedLoss 94 · abortedPhase 0 · E-ENDED 7 · scans 4083 · liveTicks 4083 · seedsWithLooks 12/12
+  frozen-phase ticks under a live window (NO scan, window cannot close — published, not dropped)   CONTROL 0 · LOOK 0
 (ii) F-O2b EXPOSURE INSTRUMENTS
   turnover per spell         CONTROL    0.415951 · LOOK    0.423601 · Δ 0.00765 [-0.02383, 0.038604] resolved=false
   turnovers /1000 ticks      CONTROL    3.430827 · LOOK    2.848249 · Δ -0.582577 [-0.860543, -0.314299] resolved=true
@@ -651,8 +719,8 @@ GATES
   gForce             PASS
   gCleanInvocation   PASS
   ALL                PASS
-resultSha256 eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7
-wall 206 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam-smoke.json
+resultSha256 089a4292ce0dc2c0a8d19da0220f6e562d8be612d0ebe4812e914fa2c62fc2a3
+wall 208 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam-smoke.json
 ```
 
 ### §CHECKS
@@ -664,7 +732,7 @@ $ npx tsc --noEmit
 $ npm test
 Test Files  128 passed (128)
      Tests  1206 passed (1206)
-  Duration  230.29s
+  Duration  239.72s
 
 $ git diff --stat -- src
 (empty)
@@ -710,6 +778,24 @@ $ git diff --stat -- src
    here.
 8. **Guard-block consumption:** seeds 12,422,050–12,422,051 were consumed by the
    dry run in (5), exactly the sub-block's declared purpose.
+9. **G-FORCE's cadence limb was a MEASUREMENT-layer defect, found by the gate
+   itself, and the smoke was re-run.** A completed N = 320 battery turned G-FORCE
+   red (`scans` 115,308 vs `liveWindowTicks` 116,568). The deficit was **10 seeds
+   × exactly 126 ticks**; a single-seed trace confirmed the mechanism before the
+   counter was touched (72 `halftime` + 54 `kickoff` ticks on which `Match.step`
+   returns early *before* `stepO2Look`, so no scan can be recorded and the window
+   cannot close, while the probe's counter read `win !== null` on the wall clock).
+   **The seam was intact** — the ledger closed, CONTROL was empty, looks fired on
+   320/320 seeds. The gate did its job: it caught the probe, not the engine.
+   Fixed in the O2-T0 `G-SCAN` precedent — `liveWindowTicks` moved onto the seam's
+   own clock and the excluded ticks **published** as the named class
+   `frozenPhaseTicksUnderLiveWindow` (§GATES, correction of record). **No
+   criterion was re-cut and no number was dropped**; the identity is now asked of
+   the clock it was always a statement about. That battery artifact was **never
+   committed and has been deleted**, and **its exam numbers were never read** —
+   only its gate block, and only to diagnose. `src/**` byte-untouched. The smoke
+   re-run reproduces every previously committed number byte-identically; the new
+   class reads 0/0 there.
 
 ### Disposition
 
