@@ -9925,3 +9925,85 @@
 > 5. **VISION ANCHORED VERBATIM** (the user's 2026-08-10 reframe,
 >    VISION §3). **QUEUED**: OBM-T0 dispatches on the next "go".
 >    丙 stays behind the arc per #219.
+
+> **COMMANDER RULING #228 (2026-08-10 — OBM-T0 BANKED after a
+> verify-caught HIGH was fixed and independently re-verified PASS:
+> the off-ball eyes seat is built, certified, epistemically honest,
+> and each seam now keeps its own arming door):**
+>
+> 1. **BANKED (`347916a` draft + `600ff04` fix)**: stage doc
+>    [`OBM-T0-DORMANT-SEAM.md`](OBM-T0-DORMANT-SEAM.md), seat
+>    `src/ai/offballEyes.ts` + minimal plumbing, receipt artifact
+>    (final resultSha256 `887a4109…92bf`; supersedes
+>    `3f0c7464…d79c`). THE CATCH OF RECORD (the two-stage form
+>    earning its keep): the first cut's composition consumed the
+>    banked CTB static genes UNCONDITIONALLY — arming
+>    `obmMovement` alone was a second, undocumented arming door
+>    for the CTB plane (empirically byte-identical to arming
+>    `ctbSupportPlane`), and the round's own gates ran only
+>    CTB-shut configurations so they structurally could not see
+>    it. OBM-T1 would have run EXACTLY the defective
+>    configuration and mis-attributed the static plane to the
+>    eyes.
+> 2. **THE FIX, proven three ways**: the intercept participates
+>    ONLY through its own gate (`intercept = ctbSupportPlane ?
+>    static genes : 0`; obm alone = dynamics on a zero intercept ·
+>    ctb alone = the bank exactly as banked · both = intercept +
+>    slopes). (a) G-CROSS: a 48-cell flag×gene×matrix×world
+>    crossing matrix collapsing onto EXACTLY SIX distinct worlds,
+>    23 ex-ante claims 8/8 seeds each, inside the G-DET core;
+>    (b) NON-VACUITY: the defective composition was temporarily
+>    restored — 2/3 new fixtures went red — then the fix restored
+>    (disclosed, pre-staging); (c) THE RE-VERIFIER'S OWN HARNESS:
+>    independent 48-cell re-run 22/22 with a SENSITIVITY CONTROL
+>    (the same harness against the pre-fix commit reds 8 checks,
+>    incl. the falsifier), an ADVERSARIAL per-team asymmetric
+>    extension (6/6), and ctb-alone byte-identity across
+>    `fb4cf37`/`347916a`/`600ff04` — the banked plane untouched
+>    by construction. Re-verify verdict PASS (3 LOW).
+> 3. **THE SEAT'S CERTIFIED CONTENT**: 16-weight FULL 4×4 policy
+>    matrix (one optional gene key outside GENE_KEYS; "choosing
+>    which feature drives which output would be the hand-coded
+>    tactic VISION forbids"); every bound DERIVED in code
+>    (OBM_SCORE_SPAN = 1 − the incumbent tired-mul = 0.4 by
+>    question identity; the /4 divisor makes the dynamic term's
+>    reach exactly one static gene's reach; TTL =
+>    ceil(AI_INTERVAL/DT) = 9 ticks — the body's own decision
+>    cadence; PRESSURE_RADIUS_M and retention named at their own
+>    use sites, pure code motion). ⭐ **G-EPI is REAL**: on a
+>    fixture that teleports every opponent +25 m WITHOUT a new
+>    scan frame, the seat's features match the PERCEPT 5/5 and
+>    the TRUTH 0/5 — a truth-reading implementation fails the
+>    gate; the module reads exactly ONE match member
+>    (`perceivedSnapshot`) and two self members (pos/side =
+>    proprioception). Four-limb arming checklist (flag + opt-in +
+>    genes + PERCEPT TRUNK — a blind world fails closed, gated
+>    not remembered); zero-point arithmetic-exact; RNG draws
+>    strictly after the ctb block; X-FP-PROD unchanged; suite
+>    green (the known #196.2 flake only).
+> 4. **COST OF RECORD**: an armed battery ≈ 1.4× the CTB-T1 wall
+>    (~40-45 % overhead, all percept pull) — T1 budgets it; the
+>    honest lever is CADENCE, never a truth shortcut.
+> 5. **RECORDED DEBTS (the #217.2 form, no further fix loop)**:
+>    (a) two stale composition docstrings state the pre-fix law
+>    (`formations.ts:665-668`, `offballEyes.ts:85`) — comment
+>    correction rides the next src-touching round; the stage doc
+>    + artifact truth table are authoritative; (b) G-FORK's token
+>    grep misses `obmOffballPolicy`/`OBM_POLICY_TTL_TICKS` (call
+>    site + cadence cap) — inventory completion rides OBM-T1;
+>    (c) G-CROSS is team-symmetric — the asymmetric crossing is
+>    covered of record by the re-verifier's independent 6/6, not
+>    by a committed gate. Also surfaced: the SISTER aliasing bug
+>    in `homePriorObedienceOffset` crossover carry-through (out
+>    of scope, recorded).
+> 6. **T1 NOTES BANKED EX ANTE**: the exam world MUST be
+>    percept-armed (G-BLIND gates it — the treatment cannot be
+>    silently undelivered); the dose ladder is designed against
+>    the OBSERVED feature distribution (means [f1 0.184 · f2
+>    0.456 · f3 0.216 · f4 0.171] — f2 largest, f1 scarcest),
+>    never the weight domain alone; ZERO IS SILENCE (a body who
+>    perceives no opponent reads all-zero — the continuous
+>    E-NOCELL; price it before reading feature streams);
+>    Phase 30.5 elasticity is still CI-unprotected — T1 carries
+>    short-option supply directly. **SELF-DRIVE CONTINUES:
+>    OBM-T1 dispatches now.**

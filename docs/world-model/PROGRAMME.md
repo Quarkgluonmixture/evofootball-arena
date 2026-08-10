@@ -503,14 +503,36 @@ modulation; NO predicates; licensing untouched slice one).
 SUPERSEDED of record: the CTB dynamic slice + #222.6(乙')
 absorbed; CTB-T2 does not run as scoped; ⭐ the user's
 evolution hypothesis RE-REGISTERED on OBM-T2 (its true
-object). **QUEUED NEXT STEP (on "go"): dispatch OBM-T0 — the
-dormant off-ball eyes seat** (flag + `evolveOffballMovement`
-opt-in + genes born absent, the full #181.2 stack; §LAW
-freezes feature constants + weight bounds with traces;
-percept-pull cost bounded at existing cadence laws; pin
-inventory incl. the CTB plane tests). Then OBM-T1 (the policy
-exam — the CTB-T1 instrument set inherited whole) → OBM-T2
-co-evolution → entry; 丙 behind the arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+object). **OBM-T0 IS BANKED (#228, `347916a` + fix `600ff04`)**: the
+eyes seat certified — 16-weight full 4×4 policy matrix (all
+bounds derived; TTL = the decision cadence), ⭐ G-EPI real
+(teleport fixture: percept 5/5, truth 0/5; the module reads
+ONE match member), four-limb arming incl. the percept trunk
+(blind fails closed, GATED). ⭐ VERIFY CAUGHT A HIGH: the
+first cut's composition made `obmMovement` a second arming
+door for the banked CTB genes — fixed (each seam keeps its
+own door: intercept = ctbSupportPlane ? static : 0), proven
+by the 48-cell G-CROSS matrix (collapses onto exactly SIX
+worlds, 23 claims 8/8 seeds), non-vacuity by re-breaking, and
+an independent re-verify harness with sensitivity control
+(pre-fix commit reds 8 checks) + per-team asymmetric
+extension — PASS (3 LOW = recorded debts #228.5). Cost of
+record: armed battery ≈ 1.4× wall (percept pull); the honest
+lever is cadence. T1 notes banked ex ante (#228.6: percept
+world gated; dose vs the OBSERVED feature distribution [0.184
+· 0.456 · 0.216 · 0.171]; zero-is-silence; short-option
+supply carried directly).
+**QUEUED NEXT STEP: adjudicate/continue the OBM-T1 dispatch
+(self-drive live)** — the POLICY EXAM per contract §3: the
+CTB-T1 instrument set inherited whole (probe/ruler/guards/
+genealogy/N-rule/per-dose STOP granularity), arms = ABSENT ·
+ARMED-ZERO · pre-registered POLICY CORNERS (incl.
+CHECK-WHEN-PRESSED, the 回撤 hypothesis in policy form),
+percept-armed world identical across arms; success = ruler 1
+or 2 moves resolvedly helpful with that dose's guards held;
+F-OBM-a/b/c pre-named. Then OBM-T2 co-evolution (the user's
+re-registered hypothesis) → STOP at the play-test entry (user
+gate). 丙 behind the arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
