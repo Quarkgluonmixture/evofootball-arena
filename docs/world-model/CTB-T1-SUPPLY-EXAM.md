@@ -5,6 +5,14 @@ form); the measured numbers arrive only in [§RESULT](#result--the-smoke) at the
 This round runs the **SMOKE** (12 seeds × 8 arms). The battery is the commander's to
 dispatch.
 
+⭐ **PRE-BATTERY AMENDMENT ROUND (this revision).** The commander ruled the pre-battery forks
+**before any battery number exists**: N = **628** (the rule's own number), primary ruler =
+**1 + 2** with 3/4 demoted to REPORTED and their **ceilings disclosed**, the **STOP granularity
+/ clamp reading / band rules frozen** in §SUCCESS, and the **#218 lift BUILT** (ruler 5, gated
+by G-REPRO-GGC). Two corrections ride with it (Deviations 8–9). The smoke was re-run: every
+previously committed **measured** number is byte-identical; see the supersession note in
+§RESULT.
+
 Authority: ruling **#224.5** (the dispatch) + contract
 [`CHECK-TO-BALL-CONTRACT.md`](CHECK-TO-BALL-CONTRACT.md) §1 (H-CTB, the ruler) · §2 (the
 mechanism dosed) · §3 (the **CTB-T1** clause and the pre-named **F-CTB-a/b/c**) · §4 (the
@@ -98,13 +106,27 @@ Every dose is a **span END or its half**, read from the exported `CTB_GENE_MIN` 
    moments where the carrier is pressed by the #173 test (opponent within 4.2 m).
    Published at BOTH grains (possession ticks · first receptions). **This is H-CTB's core
    quantity.**
-5. **The #218 shares** — ⚠ **DROPPED, declared, not silently capped.** The frame carries
-   whole matches, so the drop is NOT a frame limitation: the #218 constructed/scramble
-   classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs
-   its own G-REPRO against the committed census artifact, and a partial lift would be a NEW
-   instrument (forbidden here). In its place: per-arm **goals** with paired deltas, plus
-   the equilibrium-band goals dimension. Re-dispatching the classifier lift is the
-   commander's call (the O2-T1 precedent, made honestly rather than quietly).
+5. **The #218 shares** — ⭐ **LIFTED** (the commander re-dispatched the lift pre-battery; the
+   earlier declared drop is superseded and left readable in Deviation 4). The goal-genealogy
+   census's **origin classifier** is ported into this probe with its **LOSS-TICK semantics
+   VERBATIM** (#215.3-H1/M2: the by-third classes are cut on the ball at the previous
+   segment's LAST OWNED tick, mirrored into the WINNER's frame; the regain-tick reading rides
+   beside it as the declared cross-cut). Published per arm: **constructed-goal share** on the
+   ≥3/≥4/≥5 ladder (two pools), **scramble share**, **set-piece share**, **turnover-by-third
+   origins**, plus the segment population and the segmentation-accounting identity. Gate:
+   **G-REPRO-GGC**. The limbs this exam does not read (pass LOCATION, own-third chains, the
+   danger-window ladder) are **not** lifted — the G-REPRO-173 precedent, and the gate is what
+   proves the omission changes nothing on the columns that ARE read. ⚠ **REPORTED ONLY**: no
+   gate hangs on any of these shares in T1; per #218 the arc-grain reading is whether the
+   shares MOVE, and that is the commander's.
+
+### ⭐ THE PRIMARY RULER, named ex ante (the ruled amendment, pre-battery)
+
+The exam is read on **ruler 1 (TRUE-holdable supply) + ruler 2 (pressed-first-reception)** —
+the two **UNSATURATED** quantities, and the two the N rule is cut on. **Rulers 3 and 4 are
+DEMOTED to REPORTED with their ceilings DISCLOSED** (§RESULT publishes the headroom above the
+ABSENT arm, computed in-probe); ruler 5 is REPORTED by construction. This names which columns
+the exam is read on *before any battery number exists*; it changes no measurement.
 
 ### The estimator
 
@@ -128,6 +150,24 @@ executor** (#203):
 * **F-CTB-c** — offside spike or world-health collapse, resolved (⇒ STOP).
 
 The probe emits **PER-ARM ROWS and paired deltas only**. It fires nothing.
+
+### ⭐ THE STOP GRANULARITY — FROZEN EX ANTE (the ruled amendment, before any battery number)
+
+* **F-CTB-b and F-CTB-c fire PER DOSE.** A dose whose guard **breaches** (resolved AND beyond
+  the frozen tolerance) is **DISQUALIFIED as a candidate** — it is not an arc-level STOP. The
+  **ARC-level STOP fires only if EVERY dose that moves the primary ruler helpfully is
+  disqualified.**
+* **The clamp reading rule.** Span-end rows are read as **DELIVERED GEOMETRY**, never as the
+  nominal dose: mean shift and both clamp shares are published beside every row (#224.4(ii)).
+  The depth axis's dose-response primary read **includes the interior −0.5 row** (DEPTH-HALF),
+  which is the least clamp-saturated point on that axis.
+* **The band rule.** The equilibrium band **GATES at battery N only**. At any N the #198-form
+  exclusion applies: dimensions the **ABSENT arm itself fails** are **EXCLUDED and DISCLOSED**,
+  never silently failed by every arm.
+
+These are the granularity of the **commander's** adjudication, frozen here so they cannot be
+re-cut after sight. The probe still fires nothing (#203); it echoes this block into the
+artifact (`preRegisteredStopGranularity`) so the freeze is dated by the receipt, not by prose.
 
 ## §GUARDS — every tolerance frozen ex ante
 
@@ -160,9 +200,16 @@ assertion (#224.4(i)).
 | --- | --- | --- |
 | **smoke (this round)** | **12,423,025 – 12,423,036** | 12 seeds × 8 arms |
 | exit-semantics guard | 12,423,050 – 12,423,099 | ANY bounded/overridden run routes here; G-CLEAN-INVOCATION goes RED; /tmp only |
-| battery | 12,423,100 … 12,423,100 + N − 1 (cap 12,423,599) | the commander's to dispatch |
+| **battery (RULED)** | **12,423,100 – 12,423,727** (N = **628**, the N rule's OWN number) | the commander's to dispatch |
 | ⚠ CONSUMED | 12,423,000 – 12,423,024 · 12,423,900 – 12,423,901 | CTB-T0 receipts and its test-file seeds |
-| repro re-walks (NOT fresh data) | 12,293,000 – 12,293,039 (#173 sizing smoke) · 12,422,100 + k (O2-T1 battery) | receipts: deliberate re-walks of the SOURCES' own blocks |
+| repro re-walks (NOT fresh data) | 12,293,000 – 12,293,039 (#173 sizing smoke) · 12,422,100 + k (O2-T1 battery) · **12,421,000 – 12,421,011 (the goal-genealogy census's own smoke block)** | receipts: deliberate re-walks of the SOURCES' own blocks |
+
+⭐ **The battery block is N-DERIVED, not cap-derived** (the ruled amendment): the dispatch's
+500-seed cap was the **dispatch's**, never the contract's, so the rule's own number governs —
+the conservative direction, ruled before any battery number exists. The only remaining ceiling
+is **structural and read off the ledger in-probe**: the block may not reach the next consumed
+interval (12,423,900), which leaves **800** seeds of room, so 628 does not bind. The battery
+interval is now itself checked against the complete consumed ledger by SEED-DISJOINT.
 
 Disjointness is computed **in-probe** against the COMPLETE ledger (the ctb-t0 probe's list
 + CTB-T0's own two intervals). Stats base **104,800**, min gap ≥ 200 against the complete
@@ -176,21 +223,25 @@ Frozen form (the O2-T1 nRule form):
 m_iid(p0,p1) = (z.975 + z.80)^2 · (p0(1−p0) + p1(1−p1)) / (p1 − p0)^2
 DEFF         = (halfWidth(committed paired-delta CI) / z.975)^2 / SE_iid^2
 m_req        = DEFF · m_iid ;   N(q) = ceil(m_req / momentsPerSeed(q))
-N*           = min(500, max_q N(q))
+N*           = max_q N(q) , floored ONLY by the LEDGER's own room
 ```
 
 Both effect sizes are **TRACED from committed artifacts, never chosen after sight**:
 
 * **q1 — TRUE-holdable supply.** `p0` = the O2-T1 CONTROL point (0.006391, read from the
-  artifact). The MDE = **the smallest move this instrument has ever RESOLVED in a banked
-  battery**: |Δ| = 0.001575, the O2-T1 committed paired delta on this exact column. DEFF is
-  measured off that same committed paired-delta CI at 320 clusters.
+  artifact). The MDE = **the ONE paired delta this instrument has resolved in a banked battery
+  (O2-T1, two arms)**: |Δ| = 0.001575, the O2-T1 committed paired delta on this exact column.
+  DEFF is measured off that same committed paired-delta CI at 320 clusters. ⚠ The earlier
+  wording — *"the smallest move this instrument has ever resolved"* — dressed a **selection
+  from a set of one** as a minimum over many; corrected here and in the probe, with the number
+  unchanged and still traced.
 * **q2 — pressed-first-reception.** `p0` = 0.8085 (the #173 prod census). The MDE = the
   SMALLEST cross-arm difference the census itself published on this column (prod vs v1/v2),
   read from the committed artifact. DEFF is INHERITED from q1 — declared, because #173 is a
   single-arm census and publishes no paired CI for this column.
 
-Cap **500 seeds/arm** (the dispatch's). Smoke = **12 seeds, all 8 arms**.
+**No dispatch cap** (the ruled amendment): N is the rule's own number, floored only by the
+ledger's 800 seeds of room. Smoke = **12 seeds, all 8 arms**.
 
 ## §GATES — frozen ex ante, ALL computed in-probe (#181.2)
 
@@ -202,6 +253,7 @@ Cap **500 seeds/arm** (the dispatch's). Smoke = **12 seeds, all 8 arms**.
 | **X-SRC-UNTOUCHED** | `git diff --stat -- src` is EMPTY — this round touches no engine byte | HARD |
 | **G-REPRO-O2T1** | this probe's OWN walker re-walks the FIRST 12 seeds of the O2-T1 battery block in the O2-T1 CONTROL world and reproduces the committed `perMatch.control` rows `{seed, eligible, trueHoldable}` EXACTLY (targets read from the artifact, never typed) | HARD |
 | **G-REPRO-173** | this probe's OWN walker re-walks the #173 sizing-smoke block (40 seeds, `prod` arm) and reproduces its committed `firstReceptionsOfSpell` `{pressedShare, pressed.n, unpressed.n, all.n}` EXACTLY | HARD |
+| **G-REPRO-GGC** | the #218 LIFT proved: this probe's OWN ported origin classifier re-walks the goal-genealogy census's own SMOKE block (12,421,000–011, the `PROD` arm, in the census's own world) and reproduces that arm's committed INTEGER COUNTS EXACTLY — goal origins, segment origins, the loss-third cut, the construction ladder on both pools, own-third turnovers on BOTH readings (loss tick AND regain tick), and the segmentation accounting identity. Targets read from the artifact, never typed | HARD |
 | **G-TRACE-RADIUS** | the short-option radius family is PARSED out of `src/ai/formations.ts` (`const radius = 10 + g.supportDistance * 8;` matched verbatim) — the instrument's constants are read from source, never typed | HARD |
 | **SEED-DISJOINT** | every walked EXAM block is clash-free against the complete consumed ledger; the sub-blocks are ordered; the repro blocks are declared re-walks | HARD |
 | **STATS-DISJOINT** | stats base 104,800, min gap ≥ 200 against the complete published namespace | HARD |
@@ -219,8 +271,9 @@ This stage claims no football effect of its own: it DOSES a banked seam and repo
 changes no engine byte, ships nothing, arms nothing in any play-test world, and re-cuts no
 span (#224.4(iv)). It does not measure perceived hold, pass selection, TeamBrain
 assignment, carrier behaviour or any dynamic (state-coupled) checking — M-CTB.3's deferred
-slice is not smuggled in. The #218 constructed/scramble shares are NOT measured (see ruler
-5). **F-CTB-a/b/c are the commander's to fire**, on the numbers below.
+slice is not smuggled in. The #218 shares ARE now measured (ruler 5) but are **REPORTED and
+gate nothing** — no claim is made that any of them moved. **F-CTB-a/b/c are the commander's to
+fire**, on the numbers below.
 
 ---
 
@@ -233,14 +286,21 @@ does not.)*
 
 Receipts: [`../../scripts/probes/ctb-t1-supply-exam.ts`](../../scripts/probes/ctb-t1-supply-exam.ts).
 **12 seeds × 8 arms = 96 full matches per core pass, the core runs TWICE (X-DET,
-byte-identical digests), plus the two G-REPRO re-walks (12 O2-T1 rows + 40 #173 matches)
-each pass and the 2-season fingerprint league.** Verdict: **ALL GATES PASS**
-(`allGatesPass === true`), probe exit 0. Wall ≈ 100 s (CONTEXT ONLY — in no rate, in no
-gate).
+byte-identical digests), plus the THREE G-REPRO re-walks (12 O2-T1 rows + 40 #173 matches +
+12 genealogy-census matches) each pass and the 2-season fingerprint league.** Verdict: **ALL
+GATES PASS** (`allGatesPass === true`), probe exit 0. Wall ≈ 99 s (CONTEXT ONLY — in no rate,
+in no gate).
+
+⚠ **SUPERSESSION, stated plainly.** This §RESULT supersedes the first CTB-T1 smoke
+(`resultSha256` **1ae8a6f5…bce4**, committed at `cebec04`) **pre-battery**: the ruled
+amendments (N = 628; primary ruler = 1 + 2; the #218 lift) and two corrections (the degenerate
+clampBound counter, the q1 MDE superlative) changed the artifact. **Every previously committed
+MEASURED number is byte-identical** — the field-level diff moved only the amended fields, the
+new genealogy/ceiling blocks and the digests. Nothing was re-run to a different answer.
 
 * **X-DET digest** — `gates.xDet.digestA === digestB ===`
-  `24de20468efa8972217e686410dea8e856e40d47e9743cb43f04314bef920a71`
-* **resultSha256** `1ae8a6f5ba0c06d62f4b82a93604ad8388156ed4bc710c56557ece89d887bce4`
+  `2f3c768e37c196f9722ea592de583b8bc539af2c364c6f80579e7fc92b2c4c0e`
+* **resultSha256** `ff3778103d03bae0eebe1696cd0b3ac91bac7ede7de3a821cd57683fda56badd`
   (re-derivable at any commit: the hashed body is commit-, timing- and path-free; `head`,
   wall and paths ride the `envelopeContextOnly` envelope, #197-M1).
 * **Files touched** — the authoritative list is `git show <this commit> --stat`; no
@@ -255,8 +315,9 @@ gate).
 | **X-SRC-UNTOUCHED** | ✅ PASS | `git diff --stat -- src` EMPTY — no engine byte moved |
 | **G-REPRO-O2T1** | ✅ PASS | 12/12 rows of the O2-T1 battery block reproduced EXACTLY (`{seed, eligible, trueHoldable}`, 0 mismatches) by THIS probe's walker in the O2-T1 CONTROL world |
 | **G-REPRO-173** | ✅ PASS | the #173 sizing-smoke block re-walked: pressedShare **0.7959**, pressed **1,049**, unpressed **269**, all **1,318** — field for field identical to the committed census |
+| **G-REPRO-GGC** | ✅ PASS | the #218 LIFT proved: **63/63 committed fields reproduced, 0 mismatches** on the census's own smoke block 12,421,000–011 (`PROD`) — goals **18**, all 12 goal-origin counts, all 12 segment-origin counts (**571** segments), the loss-third cut, both construction-ladder pools, own-third turnovers **86** (loss tick) / **49** (regain tick), and the accounting identity (totalTicks 179,293 · segmentTicks = assignedTicksSum 154,493 · looseGap 0 · unattributed 0 · spanOrderViolations 0) |
 | **G-TRACE-RADIUS** | ✅ PASS | `const radius = 10 + g.supportDistance * 8;` matched VERBATIM in `src/ai/formations.ts`; base 10 / slope 8 PARSED, never typed |
-| **SEED-DISJOINT** | ✅ PASS | exam block 12,423,025–036, **zero collisions** with the 24-entry ledger; sub-blocks ordered (battery ends 12,423,599) |
+| **SEED-DISJOINT** | ✅ PASS | exam block 12,423,025–036, **zero collisions** with the 24-entry ledger; the N-derived battery block 12,423,100–**12,423,727** also checked and clash-free (ledger room 800, next consumed 12,423,900); sub-blocks ordered |
 | **STATS-DISJOINT** | ✅ PASS | base 104,800, min gap **200** against the complete published namespace |
 | **FLAG-HYGIENE** | ✅ PASS | 12/12 seeds: **ARMED-ZERO ≡ ABSENT byte-identical** — whole-match signature (rng stream included) AND every measured row field; arms differ by exactly the ctb dose |
 | **G-ARM** | ✅ PASS | every dosed arm: genes on all three genome views of both teams on 12/12 seeds, support ticks on every seed, and `shifted + clampBound === total` on every tick; ABSENT / ARMED-ZERO shift EXACTLY 0 |
@@ -288,6 +349,42 @@ them.** TRUE-holdable reads 1.133 % here against O2-T1's 0.639 %, and pressed-fi
 83.78 % against #173's 80.85 % — different WORLD (bare production vs the census world) and
 N=12 vs 320/650. The G-REPRO gates prove the INSTRUMENTS are the same; the levels are not
 claimed to be.
+
+### RULER 5 — THE #218 LIFT (REPORTED; no gate reads a single cell of this table)
+
+Shares of that arm's goals; the ladder is the share of the **non-set-piece** pool. ⚠ At 19–29
+goals per arm these counts are **tiny** — this table is a plumbing shakedown of the lifted
+classifier, not a reading of build-up.
+
+| arm | goals | constructed ≥3 | ≥4 | ≥5 | scramble | set-piece | turnover own/mid/final | segments |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ABSENT | 19 | 7.69 % | 0 | 0 | 31.58 % | 31.58 % | 5.26 / 0 / 0 % | 600 |
+| ARMED-ZERO | 19 | 7.69 % | 0 | 0 | 31.58 % | 31.58 % | 5.26 / 0 / 0 % | 600 |
+| DEPTH-BACK | 28 | 25.00 % | 15.00 % | 5.00 % | 53.57 % | 28.57 % | 3.57 / 0 / 0 % | 592 |
+| DEPTH-HALF | 29 | 19.05 % | 4.76 % | 4.76 % | 51.72 % | 27.59 % | 10.35 / 0 / 3.45 % | 613 |
+| DEPTH-FWD | 22 | 25.00 % | 8.33 % | 0 | 50.00 % | 45.45 % | 4.55 / 0 / 0 % | 691 |
+| NARROW | 22 | 27.27 % | 9.09 % | 9.09 % | 31.82 % | 50.00 % | 4.55 / 0 / 0 % | 631 |
+| WIDE | 24 | 27.78 % | 22.22 % | 0 | 58.33 % | 25.00 % | 4.17 / 0 / 0 % | 608 |
+| CORNER-CHECK | 25 | 6.67 % | 6.67 % | 6.67 % | 60.00 % | 40.00 % | 0 / 0 / 0 % | 608 |
+
+ARMED-ZERO reproduces ABSENT cell for cell here too — the identity arm holds on the lifted
+instrument as well as on the inherited ones.
+
+### THE CEILINGS — rulers 3b/4b are near-saturated, and by exactly how much
+
+Computed **in-probe** from these same rows (`saturationCeilings`), never typed:
+
+| ruler | ABSENT level | helpful headroom | DEPTH-BACK's move | share of the headroom it consumes |
+| --- | --- | --- | --- | --- |
+| **4b** support @ pressed first rec. | 97.399 % | **2.601 pp** | +1.737 pp (resolved) | **66.8 %** |
+| **3b** short option / first rec. | 97.094 % | **2.906 pp** | +2.183 pp (resolved) | **75.1 %** |
+
+⚠ **LABELLED DECODE NOTE, NOT A CONCLUSION** (the commander's reading, recorded so it can be
+tested rather than assumed): in the bare world the radius-family **proximity** predicate is
+near-saturated — a body is almost always within the support radius — so the scarcity H-CTB is
+about does not live in **raw proximity**; it lives in whether that body is a **SAFE** support
+(holdable, unpressed). That is a hypothesis about what these columns mean, not a finding of
+this round, and it is exactly why **rulers 1 + 2 carry the exam**.
 
 ### THE SEAM — reached, and the clamp saturation (#224.4(ii))
 
@@ -339,15 +436,26 @@ ABSENT arm here reads **22.5/match** and the largest dosed arm reads **27.3/matc
 
 * **DEFF 0.8302**, measured off the O2-T1 committed paired-delta CI on `trueContextShare`
   at 320 clusters.
-* **q1 TRUE-holdable** — p0 = 0.006391, MDE = **0.001575** (the O2-T1 RESOLVED delta on this
-  exact column), m_req 37,438 eligible moments ⇒ **N 628**.
+* **q1 TRUE-holdable** — p0 = 0.006391, MDE = **0.001575** (the one paired delta this
+  instrument has resolved in a banked battery: O2-T1, two arms), m_req 37,438 eligible moments
+  ⇒ **N 628**.
 * **q2 pressed-first-reception** — p0 = 0.8085, MDE = **0.03073** (the census's own smallest
   cross-arm gap), m_req 2,261 first receptions ⇒ **N 66**.
-* **Binding q1 ⇒ N\* = 500, the CAP BINDING** (raw 628). ⚠ Stated plainly: at the dispatch's
-  500-seed cap the exam is **under-powered for ruler 1 by its own rule** (628 asked, 500
-  allowed). The battery block is 12,423,100–12,423,599. Whether to run at the cap, widen the
-  cap, or let ruler 4b (which needs far less) carry the exam is a **fork for the commander**,
-  not a number to re-cut here.
+* **Binding q1 ⇒ N\* = 628 — THE RULE'S OWN NUMBER, RULED** (ledger room 800, does not bind).
+  The battery block is **12,423,100 – 12,423,727**.
+
+⭐ **THE FORK IS RULED, and the old paragraph is superseded.** The previous §RESULT asked
+whether to run at the cap, widen it, or *"let ruler 4b (which needs far less) carry the
+exam"* — and that parenthesis was an **uncomputed sizing claim**: 4b was never sized, and its
+**saturation was undisclosed**. The disposition, ruled pre-battery:
+
+1. **N = 628.** The 500 cap was the **dispatch's**, not the contract's; honouring the probe's
+   own rule is the conservative direction, and it is ruled *before any battery number exists*.
+2. **The primary ruler is ruler 1 + ruler 2** — the two unsaturated quantities.
+3. **Rulers 3/4 are REPORTED with their ceilings DISCLOSED** — 4b has **2.601 pp** of helpful
+   headroom in total and DEPTH-BACK's smoke move already consumes **~67 %** of it; 3b has
+   **2.906 pp**. Both are computed in-probe (see THE CEILINGS above). A column with under three
+   points of room left cannot be handed an exam it was never sized for.
 
 ### §CHECKS
 
@@ -364,10 +472,11 @@ $ CTBT1_N=1 CTBT1_SKIP_FP=1 npx tsx scripts/probes/ctb-t1-supply-exam.ts   (the 
   gCleanInvocation *** FAIL ***   xFpProd *** FAIL ***   ALL *** FAIL ***   exit 1
   artifact /tmp/ctb-t1-guard-run.json          (never a committed path)
 
-$ npx tsx scripts/probes/ctb-t1-supply-exam.ts          (THE SMOKE, exit 0)
-  ALL                PASS
-  resultSha256 1ae8a6f5ba0c06d62f4b82a93604ad8388156ed4bc710c56557ece89d887bce4
-  wall 100 s (CONTEXT ONLY) · artifact docs/world-model/data/ctb-t1-supply-exam-smoke.json
+$ npx tsx scripts/probes/ctb-t1-supply-exam.ts          (THE SMOKE, RE-RUN, exit 0)
+  ALL                PASS          (12 gates, incl. the new G-REPRO-GGC)
+  resultSha256 ff3778103d03bae0eebe1696cd0b3ac91bac7ede7de3a821cd57683fda56badd
+  wall 99 s (CONTEXT ONLY) · artifact docs/world-model/data/ctb-t1-supply-exam-smoke.json
+  (supersedes 1ae8a6f5…bce4 — pre-battery; every prior MEASURED number byte-identical)
 ```
 
 ```text
@@ -403,11 +512,13 @@ test's subject moved at all: there is no mechanism by which this round could cau
    echo rather than a world quantity. Also found on a guard-block run, also recorded rather
    than quietly dropped. Everything else, including the whole-match signature with the rng
    stream, is compared and identical on 12/12 seeds.
-4. **The #218 constructed/scramble shares are NOT measured** (§FORM ruler 5). The frame
-   carries whole matches, so this is an executor SCOPE decision, not a frame limitation: the
-   census classifier is a 1,674-line segment-genealogy machine needing its own G-REPRO, and a
-   partial lift would be a new instrument. Per-arm goals carry in its place. **Re-dispatching
-   the lift is the commander's call.**
+4. ⭐ **SUPERSEDED — the #218 lift was re-dispatched and BUILT** (§FORM ruler 5). The original
+   entry is left readable: *"the #218 constructed/scramble shares are NOT measured … an
+   executor SCOPE decision, not a frame limitation … re-dispatching the lift is the
+   commander's call."* The commander re-dispatched it pre-battery; the classifier is now
+   ported with the census's LOSS-TICK semantics verbatim and gated by **G-REPRO-GGC**
+   (63/63 committed fields, 0 mismatches). The shares are **REPORTED**, gate nothing, and the
+   census's seeds ride as a receipt re-walk only.
 5. **Guard tolerances are LEVEL-scaled, not variance-derived** — the inherited PM-T1 §5 S2
    non-inferiority fraction scaled by the ABSENT arm's own level. Declared in §GUARDS before
    the run; no banked instrument in this family publishes a variance-derived tolerance.
@@ -417,6 +528,21 @@ test's subject moved at all: there is no mechanism by which this round could cau
 7. **The #186 sampling BUDGET is untouched but the WALK continues past it** to full time, so
    the whole-match instruments exist. The sampled moment SET is bit-identical to the O2-T1
    walker's — which is exactly what G-REPRO-O2T1 measures rather than assumes.
+
+8. ⭐ **The `supportTicksUnshiftedClampBound` counter was DEGENERATE in the undosed arms and is
+   CORRECTED, not loosened.** It fired on **trivial equality** — in ABSENT / ARMED-ZERO there is
+   no dose, the incumbent and "dosed" pre-clamp expressions are the SAME expression, and the
+   counter therefore counted every unshifted tick (138,246 of 138,246) while its own published
+   `clampBoundSemantics` claimed a clamp had pinned two values to one bound. It now fires ONLY
+   when a dose exists AND the clamp genuinely pinned two DIFFERENT pre-clamp values to the same
+   bound; in ABSENT / ARMED-ZERO it is published as **null** with a one-line semantics note
+   (zero shift by definition). **No gate logic changed** — `gArmPass` already read `zeroShift`
+   in the undosed arms — and **every dosed arm's count is unchanged**, because a non-zero dose
+   always separates the pre-clamp values on the axis it acts on.
+9. **The q1 MDE provenance superlative is CORRECTED** (§NRULE): *"the smallest move this
+   instrument has ever resolved in a banked battery"* overstated a **selection from a set of
+   one**. It now reads as the plain fact — the one paired delta this instrument has resolved in
+   a banked battery (O2-T1, two arms). The number is unchanged.
 
 ### Disposition
 

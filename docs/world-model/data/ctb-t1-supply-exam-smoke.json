@@ -18,13 +18,15 @@
   },
   "doseProvenance": "every dose is a SPAN END or its half, read off the exported gene domain [-1, 1]. NO span is re-cut and no dose is invented (#224.4(iv)).",
   "preRegisteredSuccess": "contract §1 / dispatch, VERBATIM: at least one dose moves the ruler RESOLVEDLY in the helpful direction (holdable supply UP or support-existence-at-pressed UP or pressed-first-reception DOWN) with the guards held. FAIL branches pre-named: F-CTB-a (no dose moves any ruler quantity resolvedly) · F-CTB-b (interception/clump beyond the frozen tolerance, resolved) · F-CTB-c (offside spike or world-health collapse, resolved). ⚠ THIS PROBE FIRES NONE OF THEM: it emits PER-ARM ROWS and paired deltas with mechanical `resolved` CI flags only (#203); adjudication is the commander's.",
+  "preRegisteredStopGranularity": "⭐ FROZEN EX ANTE, BEFORE ANY BATTERY NUMBER EXISTS (the ruled amendment; stage doc §SUCCESS): F-CTB-b and F-CTB-c fire PER DOSE — a dose whose guard BREACHES (resolved AND beyond the frozen tolerance) is DISQUALIFIED as a candidate, and the ARC-level STOP fires only if EVERY dose that moves the primary ruler helpfully is disqualified. The clamp reading is frozen with it: SPAN-END rows are read as DELIVERED GEOMETRY (mean shift + clamp shares published beside every row), and the depth axis's dose-response primary read INCLUDES the interior −0.5 row. The band rule is frozen with it too: the equilibrium band GATES at battery N only; at any N the #198-form exclusion applies (dimensions the ABSENT arm itself fails are excluded AND disclosed). ⚠ THIS PROBE STILL FIRES NOTHING (#203) — this is the pre-registered GRANULARITY of the commander's own adjudication, recorded here so it cannot be re-cut after sight.",
   "rulerProvenance": {
     "r1": "the O2-T1 `trueCellOf` instrument VERBATIM on the #186 eligible-moment population; control read 0.639% at N=320. Gate: G-REPRO-O2T1.",
     "r2": "the #173 tempo-census pressed-first-reception instrument (openPlay-origin spells, TOUCH_CONTROL_DIST 4.2 m); baseline 80.8%. Gate: G-REPRO-173.",
     "r3": "SHORT-OPTION SUPPLY — #224.4(i)'s named CI-unprotected debt, instrumented DIRECTLY for the first time; radius family PARSED from source. Gate: G-TRACE-RADIUS.",
     "r4": "support-existence at PRESSED moments = r3's predicate under r2's pressure test — H-CTB's core quantity, published at BOTH grains.",
-    "r5": "the #218 shares: DROPPED with a declared statement (see arms[].ruler5BuildUp.dropped)."
+    "r5": "the #218 shares: LIFTED — the goal-genealogy ORIGIN CLASSIFIER ported with its LOSS-TICK semantics verbatim (#215.3-H1/M2) and published per arm (constructed ladder ≥3/4/5, scramble share, set-piece share, turnover-by-third origins). Gate: G-REPRO-GGC. REPORTED ONLY — no gate hangs on any of these shares in T1."
   },
+  "primaryRulers": "⭐ RULED PRE-BATTERY: the PRIMARY RULER is ruler 1 (TRUE-holdable supply) + ruler 2 (pressed-first-reception) — the two UNSATURATED quantities. Rulers 3 and 4 are DEMOTED to REPORTED with their ceilings DISCLOSED (`saturationCeilings`), and ruler 5 is REPORTED by construction. This changes no measurement: it names which columns the exam is read on, before the battery exists.",
   "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
   "frozenParameters": {
     "perMatchCap": 80,
@@ -44,7 +46,7 @@
   },
   "nRule": {
     "available": true,
-    "rule": "m_iid = (z.975+z.80)^2 (p0(1−p0)+p1(1−p1)) / (p1−p0)^2 ; DEFF measured off the O2-T1 committed paired-delta CI on the SAME column at 320 clusters ; m_req = DEFF·m_iid ; N(q) = ceil(m_req / momentsPerSeed) ; N = min(cap, max_q N(q))",
+    "rule": "m_iid = (z.975+z.80)^2 (p0(1−p0)+p1(1−p1)) / (p1−p0)^2 ; DEFF measured off the O2-T1 committed paired-delta CI on the SAME column at 320 clusters ; m_req = DEFF·m_iid ; N(q) = ceil(m_req / momentsPerSeed) ; N = max_q N(q), floored ONLY by the ledger room",
     "sources": {
       "o2t1": {
         "path": "docs/world-model/data/o2-t1-wedge-exam.json",
@@ -62,7 +64,7 @@
       "p0": 0.006391,
       "mde": 0.001575,
       "p1": 0.007966,
-      "mdeProvenance": "the O2-T1 COMMITTED paired delta on trueContextShare — the smallest move this instrument has RESOLVED in a banked battery (never chosen after sight)",
+      "mdeProvenance": "the O2-T1 COMMITTED paired delta on trueContextShare — THE ONE paired delta this instrument has resolved in a banked battery (O2-T1, two arms). ⚠ CORRECTED PRE-BATTERY: the earlier wording said \"the SMALLEST move ever resolved\", which dresses a selection from a set of ONE as a minimum over many. The number is unchanged and it is still traced, never chosen after sight.",
       "eligiblePerSeed": 59.65,
       "mIid": 45096.6,
       "mReq": 37438.3,
@@ -81,10 +83,100 @@
     },
     "binding": "q1TrueHoldable",
     "nRaw": 628,
-    "cap": 500,
-    "capBinds": true,
-    "nStar": 500,
-    "batteryBlock": "12423100..12423599"
+    "batteryRoom": 800,
+    "roomBinds": false,
+    "nStar": 628,
+    "batteryBlock": "12423100..12423727",
+    "capAmendment": "⭐ RULED PRE-BATTERY, before any battery number exists: N is the RULE'S OWN number (628), not the dispatch's 500-seed cap — the cap belonged to the dispatch, not to the contract, and honouring the in-probe rule is the conservative direction. The only remaining ceiling is the LEDGER's: the block may not reach the next consumed interval (12423900), leaving 800 seeds of room — computed here, never typed.",
+    "primaryRulers": "ruler 1 (TRUE-holdable supply) + ruler 2 (pressed-first-reception) — the two UNSATURATED quantities, and the two the N rule is cut on. Rulers 3/4 are DEMOTED to REPORTED with their ceilings DISCLOSED (see `saturationCeilings`)."
+  },
+  "saturationCeilings": {
+    "note": "⭐ THE CEILINGS, DISCLOSED (the ruled amendment): rulers 3b and 4b are bounded above by 100 %, and the ABSENT arm already sits just under it. The headroom below is the ENTIRE budget any helpful move on those two columns can spend — which is why the exam is carried by rulers 1 + 2 (the unsaturated pair) and 3/4 are REPORTED.",
+    "ruler4bSupportAtPressedFirstRec": {
+      "absentLevel": 0.973988,
+      "absentLevelPct": 97.399,
+      "helpfulHeadroomPp": 2.601,
+      "perArm": {
+        "armedZero": {
+          "deltaPp": 0,
+          "shareOfHeadroomConsumed": 0,
+          "resolved": false
+        },
+        "depthBack": {
+          "deltaPp": 1.737,
+          "shareOfHeadroomConsumed": 0.6676,
+          "resolved": true
+        },
+        "depthHalf": {
+          "deltaPp": 0.962,
+          "shareOfHeadroomConsumed": 0.3698,
+          "resolved": false
+        },
+        "depthFwd": {
+          "deltaPp": 0.97,
+          "shareOfHeadroomConsumed": 0.3727,
+          "resolved": false
+        },
+        "narrow": {
+          "deltaPp": -0.116,
+          "shareOfHeadroomConsumed": -0.0447,
+          "resolved": false
+        },
+        "wide": {
+          "deltaPp": 0.391,
+          "shareOfHeadroomConsumed": 0.1504,
+          "resolved": false
+        },
+        "cornerCheck": {
+          "deltaPp": 0.379,
+          "shareOfHeadroomConsumed": 0.1457,
+          "resolved": false
+        }
+      }
+    },
+    "ruler3bShortOptionFirstRec": {
+      "absentLevel": 0.970944,
+      "absentLevelPct": 97.094,
+      "helpfulHeadroomPp": 2.906,
+      "perArm": {
+        "armedZero": {
+          "deltaPp": 0,
+          "shareOfHeadroomConsumed": 0,
+          "resolved": false
+        },
+        "depthBack": {
+          "deltaPp": 2.183,
+          "shareOfHeadroomConsumed": 0.7512,
+          "resolved": true
+        },
+        "depthHalf": {
+          "deltaPp": 1.104,
+          "shareOfHeadroomConsumed": 0.3799,
+          "resolved": false
+        },
+        "depthFwd": {
+          "deltaPp": 1.541,
+          "shareOfHeadroomConsumed": 0.5304,
+          "resolved": true
+        },
+        "narrow": {
+          "deltaPp": 0.683,
+          "shareOfHeadroomConsumed": 0.2352,
+          "resolved": false
+        },
+        "wide": {
+          "deltaPp": 0.617,
+          "shareOfHeadroomConsumed": 0.2124,
+          "resolved": false
+        },
+        "cornerCheck": {
+          "deltaPp": 0.33,
+          "shareOfHeadroomConsumed": 0.1134,
+          "resolved": false
+        }
+      }
+    },
+    "decodeNote": "⚠ LABELLED DECODE NOTE, NOT A CONCLUSION (the commander's reading, recorded so it can be tested rather than assumed): in the BARE world the radius-family proximity predicate is NEAR-SATURATED — a body is almost always within the support radius — so the scarcity H-CTB is about does not live in RAW PROXIMITY at all; it lives in whether that body is a SAFE support (holdable, unpressed). That is a hypothesis about what these columns mean, not a measured finding of this round, and it is exactly why rulers 1 + 2 carry the exam."
   },
   "arms": {
     "absent": {
@@ -136,7 +228,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 19,
         "goalsPerMatch": 1.5833,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 19,
+          "goalsPerMatch": 1.5833,
+          "byOrigin": {
+            "kickoff": 1,
+            "goalKick": 2,
+            "kickIn": 3,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 6,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0.05263,
+            "goalKick": 0.10526,
+            "kickIn": 0.15789,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.10526,
+            "setPieceFreeKick": 0.21053,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.31579,
+            "turnoverWonInOwnThird": 0.05263,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 1,
+            "goalKick": 2,
+            "kickIn": 3,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 6,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 1
+          },
+          "byFamily": {
+            "setPiece": 6,
+            "restart": 6,
+            "openPlay": 7
+          },
+          "byFamilyShare": {
+            "setPiece": 0.31579,
+            "restart": 0.31579,
+            "openPlay": 0.36842
+          },
+          "scrambleShareOfGoals": 0.31579,
+          "setPieceShareOfGoals": 0.31579,
+          "turnoverByThirdOriginShares": {
+            "own": 0.05263,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 4,
+            "middle": 2,
+            "final": 1,
+            "notARegain": 12
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 13,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 1,
+                  "transition": 12,
+                  "constructedShareOfPool": 0.07692,
+                  "constructedShareOfAllGoals": 0.05263
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 0,
+                  "transition": 13,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 13,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 7,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 0,
+                  "transition": 7,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 0,
+                  "transition": 7,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 7,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 600,
+            "segmentsPerMatch": 50,
+            "byOrigin": {
+              "kickoff": 44,
+              "goalKick": 54,
+              "kickIn": 20,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 43,
+              "setPieceFreeKick": 25,
+              "setPiecePenalty": 1,
+              "scrambleLooseBall": 384,
+              "turnoverWonInOwnThird": 18,
+              "turnoverWonInMiddleThird": 5,
+              "turnoverWonInFinalThird": 6
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 44,
+              "goalKick": 54,
+              "kickIn": 20,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 43,
+              "setPieceFreeKick": 25,
+              "setPiecePenalty": 1,
+              "scrambleLooseBall": 384,
+              "turnoverWonInOwnThird": 20,
+              "turnoverWonInMiddleThird": 6,
+              "turnoverWonInFinalThird": 3
+            }
+          },
+          "turnovers": {
+            "total": 414,
+            "ownThird": 76,
+            "ownThirdAtRegainSpot": 52,
+            "ownThirdPerMatch": 6.3333,
+            "ownThirdShareOfAllTurnovers": 0.18357
+          },
+          "accounting": {
+            "totalTicks": 179478,
+            "deadBallTicks": 25702,
+            "segmentTicks": 153776,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 153776,
+            "goalsFromScore": 19,
+            "goalsMappedToSegments": 19,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 138246,
@@ -250,7 +518,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 19,
         "goalsPerMatch": 1.5833,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 19,
+          "goalsPerMatch": 1.5833,
+          "byOrigin": {
+            "kickoff": 1,
+            "goalKick": 2,
+            "kickIn": 3,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 6,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0.05263,
+            "goalKick": 0.10526,
+            "kickIn": 0.15789,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.10526,
+            "setPieceFreeKick": 0.21053,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.31579,
+            "turnoverWonInOwnThird": 0.05263,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 1,
+            "goalKick": 2,
+            "kickIn": 3,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 6,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 1
+          },
+          "byFamily": {
+            "setPiece": 6,
+            "restart": 6,
+            "openPlay": 7
+          },
+          "byFamilyShare": {
+            "setPiece": 0.31579,
+            "restart": 0.31579,
+            "openPlay": 0.36842
+          },
+          "scrambleShareOfGoals": 0.31579,
+          "setPieceShareOfGoals": 0.31579,
+          "turnoverByThirdOriginShares": {
+            "own": 0.05263,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 4,
+            "middle": 2,
+            "final": 1,
+            "notARegain": 12
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 13,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 1,
+                  "transition": 12,
+                  "constructedShareOfPool": 0.07692,
+                  "constructedShareOfAllGoals": 0.05263
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 0,
+                  "transition": 13,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 13,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 7,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 0,
+                  "transition": 7,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 0,
+                  "transition": 7,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 7,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 600,
+            "segmentsPerMatch": 50,
+            "byOrigin": {
+              "kickoff": 44,
+              "goalKick": 54,
+              "kickIn": 20,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 43,
+              "setPieceFreeKick": 25,
+              "setPiecePenalty": 1,
+              "scrambleLooseBall": 384,
+              "turnoverWonInOwnThird": 18,
+              "turnoverWonInMiddleThird": 5,
+              "turnoverWonInFinalThird": 6
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 44,
+              "goalKick": 54,
+              "kickIn": 20,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 43,
+              "setPieceFreeKick": 25,
+              "setPiecePenalty": 1,
+              "scrambleLooseBall": 384,
+              "turnoverWonInOwnThird": 20,
+              "turnoverWonInMiddleThird": 6,
+              "turnoverWonInFinalThird": 3
+            }
+          },
+          "turnovers": {
+            "total": 414,
+            "ownThird": 76,
+            "ownThirdAtRegainSpot": 52,
+            "ownThirdPerMatch": 6.3333,
+            "ownThirdShareOfAllTurnovers": 0.18357
+          },
+          "accounting": {
+            "totalTicks": 179478,
+            "deadBallTicks": 25702,
+            "segmentTicks": 153776,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 153776,
+            "goalsFromScore": 19,
+            "goalsMappedToSegments": 19,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 138246,
@@ -364,7 +808,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 28,
         "goalsPerMatch": 2.3333,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 28,
+          "goalsPerMatch": 2.3333,
+          "byOrigin": {
+            "kickoff": 1,
+            "goalKick": 1,
+            "kickIn": 2,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 3,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 1,
+            "scrambleLooseBall": 15,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0.03571,
+            "goalKick": 0.03571,
+            "kickIn": 0.07143,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.10714,
+            "setPieceFreeKick": 0.14286,
+            "setPiecePenalty": 0.03571,
+            "scrambleLooseBall": 0.53571,
+            "turnoverWonInOwnThird": 0.03571,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 1,
+            "goalKick": 1,
+            "kickIn": 2,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 3,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 1,
+            "scrambleLooseBall": 15,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 8,
+            "restart": 4,
+            "openPlay": 16
+          },
+          "byFamilyShare": {
+            "setPiece": 0.28571,
+            "restart": 0.14286,
+            "openPlay": 0.57143
+          },
+          "scrambleShareOfGoals": 0.53571,
+          "setPieceShareOfGoals": 0.28571,
+          "turnoverByThirdOriginShares": {
+            "own": 0.03571,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 4,
+            "middle": 5,
+            "final": 7,
+            "notARegain": 12
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 20,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 5,
+                  "transition": 15,
+                  "constructedShareOfPool": 0.25,
+                  "constructedShareOfAllGoals": 0.17857
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 3,
+                  "transition": 17,
+                  "constructedShareOfPool": 0.15,
+                  "constructedShareOfAllGoals": 0.10714
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 1,
+                  "transition": 19,
+                  "constructedShareOfPool": 0.05,
+                  "constructedShareOfAllGoals": 0.03571
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 16,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 4,
+                  "transition": 12,
+                  "constructedShareOfPool": 0.25,
+                  "constructedShareOfAllGoals": 0.14286
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 3,
+                  "transition": 13,
+                  "constructedShareOfPool": 0.1875,
+                  "constructedShareOfAllGoals": 0.10714
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 1,
+                  "transition": 15,
+                  "constructedShareOfPool": 0.0625,
+                  "constructedShareOfAllGoals": 0.03571
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 592,
+            "segmentsPerMatch": 49.3333,
+            "byOrigin": {
+              "kickoff": 52,
+              "goalKick": 46,
+              "kickIn": 18,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 34,
+              "setPieceFreeKick": 24,
+              "setPiecePenalty": 3,
+              "scrambleLooseBall": 391,
+              "turnoverWonInOwnThird": 14,
+              "turnoverWonInMiddleThird": 4,
+              "turnoverWonInFinalThird": 6
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 52,
+              "goalKick": 46,
+              "kickIn": 18,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 34,
+              "setPieceFreeKick": 24,
+              "setPiecePenalty": 3,
+              "scrambleLooseBall": 391,
+              "turnoverWonInOwnThird": 14,
+              "turnoverWonInMiddleThird": 9,
+              "turnoverWonInFinalThird": 1
+            }
+          },
+          "turnovers": {
+            "total": 416,
+            "ownThird": 101,
+            "ownThirdAtRegainSpot": 60,
+            "ownThirdPerMatch": 8.4167,
+            "ownThirdShareOfAllTurnovers": 0.24279
+          },
+          "accounting": {
+            "totalTicks": 180901,
+            "deadBallTicks": 24601,
+            "segmentTicks": 156300,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 156300,
+            "goalsFromScore": 28,
+            "goalsMappedToSegments": 28,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 139616,
@@ -478,7 +1098,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 29,
         "goalsPerMatch": 2.4167,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 29,
+          "goalsPerMatch": 2.4167,
+          "byOrigin": {
+            "kickoff": 1,
+            "goalKick": 1,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 6,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 15,
+            "turnoverWonInOwnThird": 3,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 1
+          },
+          "byOriginShare": {
+            "kickoff": 0.03448,
+            "goalKick": 0.03448,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.06897,
+            "setPieceFreeKick": 0.2069,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.51724,
+            "turnoverWonInOwnThird": 0.10345,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0.03448
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 1,
+            "goalKick": 1,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 6,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 15,
+            "turnoverWonInOwnThird": 3,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 1
+          },
+          "byFamily": {
+            "setPiece": 8,
+            "restart": 2,
+            "openPlay": 19
+          },
+          "byFamilyShare": {
+            "setPiece": 0.27586,
+            "restart": 0.06897,
+            "openPlay": 0.65517
+          },
+          "scrambleShareOfGoals": 0.51724,
+          "setPieceShareOfGoals": 0.27586,
+          "turnoverByThirdOriginShares": {
+            "own": 0.10345,
+            "middle": 0,
+            "final": 0.03448,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 7,
+            "middle": 7,
+            "final": 5,
+            "notARegain": 10
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 21,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 4,
+                  "transition": 17,
+                  "constructedShareOfPool": 0.19048,
+                  "constructedShareOfAllGoals": 0.13793
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 1,
+                  "transition": 20,
+                  "constructedShareOfPool": 0.04762,
+                  "constructedShareOfAllGoals": 0.03448
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 1,
+                  "transition": 20,
+                  "constructedShareOfPool": 0.04762,
+                  "constructedShareOfAllGoals": 0.03448
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 19,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 2,
+                  "transition": 17,
+                  "constructedShareOfPool": 0.10526,
+                  "constructedShareOfAllGoals": 0.06897
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 0,
+                  "transition": 19,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 19,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 613,
+            "segmentsPerMatch": 51.0833,
+            "byOrigin": {
+              "kickoff": 54,
+              "goalKick": 47,
+              "kickIn": 14,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 20,
+              "setPieceFreeKick": 34,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 402,
+              "turnoverWonInOwnThird": 26,
+              "turnoverWonInMiddleThird": 9,
+              "turnoverWonInFinalThird": 7
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 54,
+              "goalKick": 47,
+              "kickIn": 14,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 20,
+              "setPieceFreeKick": 34,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 402,
+              "turnoverWonInOwnThird": 30,
+              "turnoverWonInMiddleThird": 10,
+              "turnoverWonInFinalThird": 2
+            }
+          },
+          "turnovers": {
+            "total": 445,
+            "ownThird": 88,
+            "ownThirdAtRegainSpot": 57,
+            "ownThirdPerMatch": 7.3333,
+            "ownThirdShareOfAllTurnovers": 0.19775
+          },
+          "accounting": {
+            "totalTicks": 182079,
+            "deadBallTicks": 24838,
+            "segmentTicks": 157241,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 157241,
+            "goalsFromScore": 29,
+            "goalsMappedToSegments": 29,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 150899,
@@ -592,7 +1388,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 22,
         "goalsPerMatch": 1.8333,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 22,
+          "goalsPerMatch": 1.8333,
+          "byOrigin": {
+            "kickoff": 0,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 5,
+            "setPieceFreeKick": 5,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 11,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.22727,
+            "setPieceFreeKick": 0.22727,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.5,
+            "turnoverWonInOwnThird": 0.04545,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 0,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 5,
+            "setPieceFreeKick": 5,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 11,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 10,
+            "restart": 0,
+            "openPlay": 12
+          },
+          "byFamilyShare": {
+            "setPiece": 0.45455,
+            "restart": 0,
+            "openPlay": 0.54545
+          },
+          "scrambleShareOfGoals": 0.5,
+          "setPieceShareOfGoals": 0.45455,
+          "turnoverByThirdOriginShares": {
+            "own": 0.04545,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 2,
+            "middle": 7,
+            "final": 3,
+            "notARegain": 10
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 12,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 3,
+                  "transition": 9,
+                  "constructedShareOfPool": 0.25,
+                  "constructedShareOfAllGoals": 0.13636
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 1,
+                  "transition": 11,
+                  "constructedShareOfPool": 0.08333,
+                  "constructedShareOfAllGoals": 0.04545
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 12,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 12,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 3,
+                  "transition": 9,
+                  "constructedShareOfPool": 0.25,
+                  "constructedShareOfAllGoals": 0.13636
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 1,
+                  "transition": 11,
+                  "constructedShareOfPool": 0.08333,
+                  "constructedShareOfAllGoals": 0.04545
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 12,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 691,
+            "segmentsPerMatch": 57.5833,
+            "byOrigin": {
+              "kickoff": 46,
+              "goalKick": 44,
+              "kickIn": 13,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 36,
+              "setPieceFreeKick": 39,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 475,
+              "turnoverWonInOwnThird": 28,
+              "turnoverWonInMiddleThird": 6,
+              "turnoverWonInFinalThird": 4
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 46,
+              "goalKick": 44,
+              "kickIn": 13,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 36,
+              "setPieceFreeKick": 39,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 475,
+              "turnoverWonInOwnThird": 28,
+              "turnoverWonInMiddleThird": 9,
+              "turnoverWonInFinalThird": 1
+            }
+          },
+          "turnovers": {
+            "total": 513,
+            "ownThird": 93,
+            "ownThirdAtRegainSpot": 51,
+            "ownThirdPerMatch": 7.75,
+            "ownThirdShareOfAllTurnovers": 0.18129
+          },
+          "accounting": {
+            "totalTicks": 180282,
+            "deadBallTicks": 23837,
+            "segmentTicks": 156445,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 156445,
+            "goalsFromScore": 22,
+            "goalsMappedToSegments": 22,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 114215,
@@ -706,7 +1678,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 22,
         "goalsPerMatch": 1.8333,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 22,
+          "goalsPerMatch": 1.8333,
+          "byOrigin": {
+            "kickoff": 1,
+            "goalKick": 1,
+            "kickIn": 1,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 3,
+            "setPieceFreeKick": 8,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 7,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0.04545,
+            "goalKick": 0.04545,
+            "kickIn": 0.04545,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.13636,
+            "setPieceFreeKick": 0.36364,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.31818,
+            "turnoverWonInOwnThird": 0.04545,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 1,
+            "goalKick": 1,
+            "kickIn": 1,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 3,
+            "setPieceFreeKick": 8,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 7,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 11,
+            "restart": 3,
+            "openPlay": 8
+          },
+          "byFamilyShare": {
+            "setPiece": 0.5,
+            "restart": 0.13636,
+            "openPlay": 0.36364
+          },
+          "scrambleShareOfGoals": 0.31818,
+          "setPieceShareOfGoals": 0.5,
+          "turnoverByThirdOriginShares": {
+            "own": 0.04545,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 2,
+            "middle": 2,
+            "final": 4,
+            "notARegain": 14
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 11,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 3,
+                  "transition": 8,
+                  "constructedShareOfPool": 0.27273,
+                  "constructedShareOfAllGoals": 0.13636
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 1,
+                  "transition": 10,
+                  "constructedShareOfPool": 0.09091,
+                  "constructedShareOfAllGoals": 0.04545
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 1,
+                  "transition": 10,
+                  "constructedShareOfPool": 0.09091,
+                  "constructedShareOfAllGoals": 0.04545
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 8,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 2,
+                  "transition": 6,
+                  "constructedShareOfPool": 0.25,
+                  "constructedShareOfAllGoals": 0.09091
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 0,
+                  "transition": 8,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 8,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 631,
+            "segmentsPerMatch": 52.5833,
+            "byOrigin": {
+              "kickoff": 45,
+              "goalKick": 45,
+              "kickIn": 24,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 24,
+              "setPieceFreeKick": 43,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 417,
+              "turnoverWonInOwnThird": 21,
+              "turnoverWonInMiddleThird": 10,
+              "turnoverWonInFinalThird": 2
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 45,
+              "goalKick": 45,
+              "kickIn": 24,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 24,
+              "setPieceFreeKick": 43,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 417,
+              "turnoverWonInOwnThird": 25,
+              "turnoverWonInMiddleThird": 8,
+              "turnoverWonInFinalThird": 0
+            }
+          },
+          "turnovers": {
+            "total": 451,
+            "ownThird": 98,
+            "ownThirdAtRegainSpot": 44,
+            "ownThirdPerMatch": 8.1667,
+            "ownThirdShareOfAllTurnovers": 0.21729
+          },
+          "accounting": {
+            "totalTicks": 179747,
+            "deadBallTicks": 24384,
+            "segmentTicks": 155363,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 155363,
+            "goalsFromScore": 22,
+            "goalsMappedToSegments": 22,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 173189,
@@ -820,7 +1968,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 24,
         "goalsPerMatch": 2,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 24,
+          "goalsPerMatch": 2,
+          "byOrigin": {
+            "kickoff": 3,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 14,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0.125,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.08333,
+            "setPieceFreeKick": 0.16667,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.58333,
+            "turnoverWonInOwnThird": 0.04167,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 3,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 2,
+            "setPieceFreeKick": 4,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 14,
+            "turnoverWonInOwnThird": 1,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 6,
+            "restart": 3,
+            "openPlay": 15
+          },
+          "byFamilyShare": {
+            "setPiece": 0.25,
+            "restart": 0.125,
+            "openPlay": 0.625
+          },
+          "scrambleShareOfGoals": 0.58333,
+          "setPieceShareOfGoals": 0.25,
+          "turnoverByThirdOriginShares": {
+            "own": 0.04167,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 3,
+            "middle": 9,
+            "final": 3,
+            "notARegain": 9
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 18,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 5,
+                  "transition": 13,
+                  "constructedShareOfPool": 0.27778,
+                  "constructedShareOfAllGoals": 0.20833
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 4,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.22222,
+                  "constructedShareOfAllGoals": 0.16667
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 18,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 15,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 4,
+                  "transition": 11,
+                  "constructedShareOfPool": 0.26667,
+                  "constructedShareOfAllGoals": 0.16667
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 3,
+                  "transition": 12,
+                  "constructedShareOfPool": 0.2,
+                  "constructedShareOfAllGoals": 0.125
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 0,
+                  "transition": 15,
+                  "constructedShareOfPool": 0,
+                  "constructedShareOfAllGoals": 0
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 608,
+            "segmentsPerMatch": 50.6667,
+            "byOrigin": {
+              "kickoff": 48,
+              "goalKick": 40,
+              "kickIn": 21,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 29,
+              "setPieceFreeKick": 33,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 404,
+              "turnoverWonInOwnThird": 18,
+              "turnoverWonInMiddleThird": 8,
+              "turnoverWonInFinalThird": 7
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 48,
+              "goalKick": 40,
+              "kickIn": 21,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 29,
+              "setPieceFreeKick": 33,
+              "setPiecePenalty": 0,
+              "scrambleLooseBall": 404,
+              "turnoverWonInOwnThird": 22,
+              "turnoverWonInMiddleThird": 10,
+              "turnoverWonInFinalThird": 1
+            }
+          },
+          "turnovers": {
+            "total": 437,
+            "ownThird": 91,
+            "ownThirdAtRegainSpot": 49,
+            "ownThirdPerMatch": 7.5833,
+            "ownThirdShareOfAllTurnovers": 0.20824
+          },
+          "accounting": {
+            "totalTicks": 179677,
+            "deadBallTicks": 23344,
+            "segmentTicks": 156333,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 156333,
+            "goalsFromScore": 24,
+            "goalsMappedToSegments": 24,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 132759,
@@ -934,7 +2258,183 @@
       "ruler5BuildUp": {
         "goalsTotal": 25,
         "goalsPerMatch": 2.0833,
-        "dropped": "the #218 constructed/scramble shares are NOT measured here. The frame carries WHOLE matches, so this is NOT a frame limitation: the census classifier is a 1,674-line segment-genealogy machine whose faithful inheritance needs its own G-REPRO against the committed census artifact, and a partial lift would be a NEW instrument. Per-arm goals carry in its place. Declared, never silently capped; re-dispatching the lift is the commander's call."
+        "genealogy": {
+          "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+          "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+          "goals": 25,
+          "goalsPerMatch": 2.0833,
+          "byOrigin": {
+            "kickoff": 0,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 5,
+            "setPieceFreeKick": 5,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 15,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginShare": {
+            "kickoff": 0,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 0.2,
+            "setPieceFreeKick": 0.2,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 0.6,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byOriginAtRegainSpot": {
+            "kickoff": 0,
+            "goalKick": 0,
+            "kickIn": 0,
+            "restartSecondBall": 0,
+            "matchOpenFallback": 0,
+            "setPieceCorner": 5,
+            "setPieceFreeKick": 5,
+            "setPiecePenalty": 0,
+            "scrambleLooseBall": 15,
+            "turnoverWonInOwnThird": 0,
+            "turnoverWonInMiddleThird": 0,
+            "turnoverWonInFinalThird": 0
+          },
+          "byFamily": {
+            "setPiece": 10,
+            "restart": 0,
+            "openPlay": 15
+          },
+          "byFamilyShare": {
+            "setPiece": 0.4,
+            "restart": 0,
+            "openPlay": 0.6
+          },
+          "scrambleShareOfGoals": 0.6,
+          "setPieceShareOfGoals": 0.4,
+          "turnoverByThirdOriginShares": {
+            "own": 0,
+            "middle": 0,
+            "final": 0,
+            "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+          },
+          "byLossThird": {
+            "own": 1,
+            "middle": 6,
+            "final": 8,
+            "notARegain": 10
+          },
+          "constructedLadder": {
+            "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+            "nonSetPiece": {
+              "pool": 15,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 1,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.06667,
+                  "constructedShareOfAllGoals": 0.04
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 1,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.06667,
+                  "constructedShareOfAllGoals": 0.04
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 1,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.06667,
+                  "constructedShareOfAllGoals": 0.04
+                }
+              }
+            },
+            "openPlayOriginOnly": {
+              "pool": 15,
+              "ladder": {
+                "ge3": {
+                  "threshold": 3,
+                  "constructed": 1,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.06667,
+                  "constructedShareOfAllGoals": 0.04
+                },
+                "ge4": {
+                  "threshold": 4,
+                  "constructed": 1,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.06667,
+                  "constructedShareOfAllGoals": 0.04
+                },
+                "ge5": {
+                  "threshold": 5,
+                  "constructed": 1,
+                  "transition": 14,
+                  "constructedShareOfPool": 0.06667,
+                  "constructedShareOfAllGoals": 0.04
+                }
+              }
+            }
+          },
+          "segmentPopulation": {
+            "segments": 608,
+            "segmentsPerMatch": 50.6667,
+            "byOrigin": {
+              "kickoff": 49,
+              "goalKick": 48,
+              "kickIn": 26,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 29,
+              "setPieceFreeKick": 28,
+              "setPiecePenalty": 1,
+              "scrambleLooseBall": 401,
+              "turnoverWonInOwnThird": 17,
+              "turnoverWonInMiddleThird": 4,
+              "turnoverWonInFinalThird": 5
+            },
+            "byOriginAtRegainSpot": {
+              "kickoff": 49,
+              "goalKick": 48,
+              "kickIn": 26,
+              "restartSecondBall": 0,
+              "matchOpenFallback": 0,
+              "setPieceCorner": 29,
+              "setPieceFreeKick": 28,
+              "setPiecePenalty": 1,
+              "scrambleLooseBall": 401,
+              "turnoverWonInOwnThird": 15,
+              "turnoverWonInMiddleThird": 10,
+              "turnoverWonInFinalThird": 1
+            }
+          },
+          "turnovers": {
+            "total": 427,
+            "ownThird": 92,
+            "ownThirdAtRegainSpot": 55,
+            "ownThirdPerMatch": 7.6667,
+            "ownThirdShareOfAllTurnovers": 0.21546
+          },
+          "accounting": {
+            "totalTicks": 180392,
+            "deadBallTicks": 25190,
+            "segmentTicks": 155202,
+            "looseGapTicks": 0,
+            "assignedTicksSum": 155202,
+            "goalsFromScore": 25,
+            "goalsMappedToSegments": 25,
+            "unattributedGoals": 0,
+            "spanOrderViolations": 0
+          }
+        }
       },
       "seam": {
         "supportTicks": 148733,
@@ -3097,6 +4597,195 @@
         }
       }
     }
+  },
+  "gReproGgc": {
+    "block": "12421000..12421011",
+    "source": "docs/world-model/data/goal-genealogy-census-smoke.json",
+    "sourceArm": "PROD",
+    "world": "the goal-genealogy census's OWN `PROD` arm — the shipped game, no flags (this exam's world, and the #173 census's `prod` world too)",
+    "rowsScope": "the census publishes NO per-seed rows, so the whole 12-match PROD arm of its committed SMOKE artifact is the strongest cheap target: every match that arm contains, compared on INTEGER COUNTS across goal origins, segment origins, the loss-third cut, the construction ladder on both pools, own-third turnovers on BOTH readings, and the segmentation accounting identity.",
+    "fieldsChecked": 63,
+    "mismatches": 0,
+    "mismatchRows": [],
+    "observed": {
+      "provenance": "⭐ THE #218 LIFT: the goal-genealogy census's ORIGIN CLASSIFIER, ported from scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM (#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment's LAST OWNED tick, mirrored into the WINNER's frame; the REGAIN-tick reading rides beside it as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census's OWN smoke block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the columns that ARE read.",
+      "status": "REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; per #218 the arc-grain reading is whether the shares MOVE, and that is the commander's.",
+      "goals": 18,
+      "goalsPerMatch": 1.5,
+      "byOrigin": {
+        "kickoff": 2,
+        "goalKick": 2,
+        "kickIn": 1,
+        "restartSecondBall": 0,
+        "matchOpenFallback": 0,
+        "setPieceCorner": 2,
+        "setPieceFreeKick": 1,
+        "setPiecePenalty": 0,
+        "scrambleLooseBall": 10,
+        "turnoverWonInOwnThird": 0,
+        "turnoverWonInMiddleThird": 0,
+        "turnoverWonInFinalThird": 0
+      },
+      "byOriginShare": {
+        "kickoff": 0.11111,
+        "goalKick": 0.11111,
+        "kickIn": 0.05556,
+        "restartSecondBall": 0,
+        "matchOpenFallback": 0,
+        "setPieceCorner": 0.11111,
+        "setPieceFreeKick": 0.05556,
+        "setPiecePenalty": 0,
+        "scrambleLooseBall": 0.55556,
+        "turnoverWonInOwnThird": 0,
+        "turnoverWonInMiddleThird": 0,
+        "turnoverWonInFinalThird": 0
+      },
+      "byOriginAtRegainSpot": {
+        "kickoff": 2,
+        "goalKick": 2,
+        "kickIn": 1,
+        "restartSecondBall": 0,
+        "matchOpenFallback": 0,
+        "setPieceCorner": 2,
+        "setPieceFreeKick": 1,
+        "setPiecePenalty": 0,
+        "scrambleLooseBall": 10,
+        "turnoverWonInOwnThird": 0,
+        "turnoverWonInMiddleThird": 0,
+        "turnoverWonInFinalThird": 0
+      },
+      "byFamily": {
+        "setPiece": 3,
+        "restart": 5,
+        "openPlay": 10
+      },
+      "byFamilyShare": {
+        "setPiece": 0.16667,
+        "restart": 0.27778,
+        "openPlay": 0.55556
+      },
+      "scrambleShareOfGoals": 0.55556,
+      "setPieceShareOfGoals": 0.16667,
+      "turnoverByThirdOriginShares": {
+        "own": 0,
+        "middle": 0,
+        "final": 0,
+        "note": "thirds are named in the WINNING team's attacking frame: turnoverWonInFinalThird = a HIGH regain = the ball was lost in the LOSER's own third (exact mirror)."
+      },
+      "byLossThird": {
+        "own": 2,
+        "middle": 6,
+        "final": 2,
+        "notARegain": 8
+      },
+      "constructedLadder": {
+        "note": "A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.",
+        "nonSetPiece": {
+          "pool": 15,
+          "ladder": {
+            "ge3": {
+              "threshold": 3,
+              "constructed": 5,
+              "transition": 10,
+              "constructedShareOfPool": 0.33333,
+              "constructedShareOfAllGoals": 0.27778
+            },
+            "ge4": {
+              "threshold": 4,
+              "constructed": 2,
+              "transition": 13,
+              "constructedShareOfPool": 0.13333,
+              "constructedShareOfAllGoals": 0.11111
+            },
+            "ge5": {
+              "threshold": 5,
+              "constructed": 0,
+              "transition": 15,
+              "constructedShareOfPool": 0,
+              "constructedShareOfAllGoals": 0
+            }
+          }
+        },
+        "openPlayOriginOnly": {
+          "pool": 10,
+          "ladder": {
+            "ge3": {
+              "threshold": 3,
+              "constructed": 3,
+              "transition": 7,
+              "constructedShareOfPool": 0.3,
+              "constructedShareOfAllGoals": 0.16667
+            },
+            "ge4": {
+              "threshold": 4,
+              "constructed": 1,
+              "transition": 9,
+              "constructedShareOfPool": 0.1,
+              "constructedShareOfAllGoals": 0.05556
+            },
+            "ge5": {
+              "threshold": 5,
+              "constructed": 0,
+              "transition": 10,
+              "constructedShareOfPool": 0,
+              "constructedShareOfAllGoals": 0
+            }
+          }
+        }
+      },
+      "segmentPopulation": {
+        "segments": 571,
+        "segmentsPerMatch": 47.5833,
+        "byOrigin": {
+          "kickoff": 41,
+          "goalKick": 49,
+          "kickIn": 15,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 38,
+          "setPieceFreeKick": 36,
+          "setPiecePenalty": 1,
+          "scrambleLooseBall": 353,
+          "turnoverWonInOwnThird": 30,
+          "turnoverWonInMiddleThird": 5,
+          "turnoverWonInFinalThird": 3
+        },
+        "byOriginAtRegainSpot": {
+          "kickoff": 41,
+          "goalKick": 49,
+          "kickIn": 15,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 38,
+          "setPieceFreeKick": 36,
+          "setPiecePenalty": 1,
+          "scrambleLooseBall": 353,
+          "turnoverWonInOwnThird": 33,
+          "turnoverWonInMiddleThird": 3,
+          "turnoverWonInFinalThird": 2
+        }
+      },
+      "turnovers": {
+        "total": 391,
+        "ownThird": 86,
+        "ownThirdAtRegainSpot": 49,
+        "ownThirdPerMatch": 7.1667,
+        "ownThirdShareOfAllTurnovers": 0.21995
+      },
+      "accounting": {
+        "totalTicks": 179293,
+        "deadBallTicks": 24800,
+        "segmentTicks": 154493,
+        "looseGapTicks": 0,
+        "assignedTicksSum": 154493,
+        "goalsFromScore": 18,
+        "goalsMappedToSegments": 18,
+        "unattributedGoals": 0,
+        "spanOrderViolations": 0
+      }
+    },
+    "identical": true,
+    "note": "THE #218 LIFT PROVED, NOT ASSERTED (#203 / the G-REPRO-173 precedent): this probe's OWN ported classifier re-walks the census's own block in the census's own world and must reproduce the committed counts EXACTLY, including the LOSS-TICK semantics (#215.3-H1/M2) that separate them from the regain-tick reading. The census's seeds ride as a RECEIPT re-walk only — never fresh data for this exam."
   },
   "gReproO2T1": {
     "block": "12422100..12422111",
@@ -6133,8 +7822,8 @@
   "gates": {
     "xDet": {
       "pass": true,
-      "digestA": "24de20468efa8972217e686410dea8e856e40d47e9743cb43f04314bef920a71",
-      "digestB": "24de20468efa8972217e686410dea8e856e40d47e9743cb43f04314bef920a71",
+      "digestA": "2f3c768e37c196f9722ea592de583b8bc539af2c364c6f80579e7fc92b2c4c0e",
+      "digestB": "2f3c768e37c196f9722ea592de583b8bc539af2c364c6f80579e7fc92b2c4c0e",
       "note": "the WHOLE computation (all 8 arms + both repro walks + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
     },
     "xFpProd": {
@@ -6169,6 +7858,14 @@
         "all": 1318
       }
     },
+    "gReproGgc": {
+      "pass": true,
+      "block": "12421000..12421011",
+      "source": "docs/world-model/data/goal-genealogy-census-smoke.json",
+      "fieldsChecked": 63,
+      "mismatches": 0,
+      "sourceSha256": "1d7396c6e835fa73d3ee7dc9bf8261b5bcbcbcd25126caa42f671e4d73188317"
+    },
     "gTraceRadius": {
       "pass": true,
       "lineFound": true,
@@ -6195,14 +7892,23 @@
           "name": "repro173 (re-walk)",
           "first": 12293000,
           "last": 12293039
+        },
+        {
+          "name": "reproGgc (re-walk)",
+          "first": 12421000,
+          "last": 12421011
         }
       ],
       "examCollisions": [],
       "subBlocksOrdered": true,
+      "batteryCollisions": [],
       "subBlocks": {
         "smoke": "12423025..12423036",
         "exitSemanticsGuard": "12423050..12423099",
-        "battery": "12423100..12423599"
+        "battery": "12423100..12423727",
+        "batteryN": 628,
+        "batteryRoom": 800,
+        "nextConsumedAfterBattery": 12423900
       },
       "reproBlocksNote": "the two repro blocks are DELIBERATE re-walks of the SOURCES' own committed blocks (receipts, never fresh data), so their overlap with the ledger is the point; only the EXAM block must be clash-free.",
       "consumedLedger": [
@@ -6558,10 +8264,10 @@
           "seedsWithSupportTicks": 12,
           "supportTicks": 138246,
           "supportTicksShifted": 0,
-          "supportTicksUnshiftedClampBound": 138246,
+          "supportTicksUnshiftedClampBound": null,
           "everyTickShifted": false,
-          "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "everyTickShiftedOrClampBound": null,
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": true,
           "genesOnAllViewsSeeds": 0,
           "meanShiftMetres": 0
@@ -6571,10 +8277,10 @@
           "seedsWithSupportTicks": 12,
           "supportTicks": 138246,
           "supportTicksShifted": 0,
-          "supportTicksUnshiftedClampBound": 138246,
+          "supportTicksUnshiftedClampBound": null,
           "everyTickShifted": false,
-          "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "everyTickShiftedOrClampBound": null,
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": true,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 0
@@ -6587,7 +8293,7 @@
           "supportTicksUnshiftedClampBound": 78,
           "everyTickShifted": false,
           "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": false,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 10.385
@@ -6600,7 +8306,7 @@
           "supportTicksUnshiftedClampBound": 463,
           "everyTickShifted": false,
           "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": false,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 6.2719
@@ -6613,7 +8319,7 @@
           "supportTicksUnshiftedClampBound": 2458,
           "everyTickShifted": false,
           "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": false,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 11.6701
@@ -6626,7 +8332,7 @@
           "supportTicksUnshiftedClampBound": 102,
           "everyTickShifted": false,
           "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": false,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 5.2872
@@ -6639,7 +8345,7 @@
           "supportTicksUnshiftedClampBound": 0,
           "everyTickShifted": true,
           "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": false,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 3.9871
@@ -6652,7 +8358,7 @@
           "supportTicksUnshiftedClampBound": 0,
           "everyTickShifted": true,
           "everyTickShiftedOrClampBound": true,
-          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance.",
+          "clampBoundSemantics": "a DOSED tick that did not move is accounted for EXACTLY: the INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the counter is published as NULL — there is no dose, the two pre-clamp expressions are the SAME expression, and the shift is zero BY DEFINITION, so a \"clamp-bound\" count there was degenerate (it fired on trivial equality and contradicted this very semantics). The gate predicate is unchanged: the undosed arms are gated on `zeroShift`.",
           "zeroShift": false,
           "genesOnAllViewsSeeds": 12,
           "meanShiftMetres": 12.0774
@@ -6668,10 +8374,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "1ae8a6f5ba0c06d62f4b82a93604ad8388156ed4bc710c56557ece89d887bce4",
+  "resultSha256": "ff3778103d03bae0eebe1696cd0b3ac91bac7ede7de3a821cd57683fda56badd",
   "envelopeContextOnly": {
-    "headContextOnly": "c984e19",
-    "wallMsContextOnly": 100355,
+    "headContextOnly": "cebec04",
+    "wallMsContextOnly": 99056,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/ctb-t1-supply-exam-smoke.json",
     "srcDiffStat": "",
@@ -6679,6 +8385,7 @@
     "o2t1Path": "docs/world-model/data/o2-t1-wedge-exam.json",
     "tempoPath": "docs/world-model/data/tempo-census.json",
     "tempoSmokePath": "docs/world-model/data/tempo-census-sizing-smoke.json",
+    "ggcSmokePath": "docs/world-model/data/goal-genealogy-census-smoke.json",
     "checkpoint": {
       "armed": false,
       "path": null,

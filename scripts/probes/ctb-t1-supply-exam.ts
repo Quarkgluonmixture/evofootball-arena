@@ -20,7 +20,9 @@
 //   2 pressed-first-reception  — the #173 tempo-census instrument VERBATIM
 //   3 short-option supply      — #224.4(i)'s named debt; constants PARSED out of source
 //   4 support-existence @ press— (3) restricted to (2)'s pressure test: H-CTB's core quantity
-//   5 the #218 shares          — DROPPED with a declared statement (doc §FORM ruler 5)
+//   5 the #218 shares          — LIFTED (the goal-genealogy origin classifier ported with its
+//                                LOSS-TICK semantics verbatim, #215.3-H1/M2). Gate: G-REPRO-GGC.
+//                                REPORTED per arm; NO gate hangs on the shares in T1.
 //
 //   CTBT1_MODE=smoke|full    (default smoke: 12 seeds @ 12,423,025)
 //   CTBT1_RESUME=1           full mode only — restore finished (pass, seed) units (#207)
@@ -118,14 +120,16 @@ const SMOKE_BASE = 12_423_025;
 const SMOKE_N = 12;
 const GUARD_BLOCK: readonly [number, number] = [12_423_050, 12_423_099];
 const BATTERY_BASE = 12_423_100;
-/** Honest hard cap = the dispatch's 500 seeds/arm ⇒ the battery block ends at 12,423,599. */
-const N_CAP = 500;
 /** the #173 sizing-smoke block — a DELIBERATE re-walk (receipt), never fresh data */
 const REPRO173_BASE = 12_293_000;
 const REPRO173_N = 40;
 /** the O2-T1 battery block — a DELIBERATE re-walk of its first rows (receipt) */
 const REPRO_O2_BASE = 12_422_100;
 const REPRO_O2_N = 12;
+/** ⭐ the #218 LIFT's receipt: the goal-genealogy census's OWN SMOKE block, `PROD` arm — a
+ *  DELIBERATE re-walk (receipt), never fresh data (G-REPRO-GGC). */
+const REPRO_GGC_BASE = 12_421_000;
+const REPRO_GGC_N = 12;
 /** The COMPLETE consumed ledger: the ctb-t0 probe's list + CTB-T0's OWN consumption. */
 const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = [
   { name: '#65 whether-seat block (repro receipt)', range: [8_500_000, 8_500_047] },
@@ -153,6 +157,14 @@ const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = 
   { name: 'CTB-T0 receipts + corner/smoke read (#224)', range: [12_423_000, 12_423_024] },
   { name: 'CTB-T0 test-file seeds (#224)', range: [12_423_900, 12_423_901] },
 ];
+/** ⭐ THE BATTERY BLOCK'S CEILING IS THE LEDGER'S, NOT A DISPATCH NUMBER (the ruled amendment):
+ *  the dispatch's 500-seed cap was the DISPATCH's, never the contract's, and the N rule's own
+ *  number governs. The only ceiling left is STRUCTURAL — the battery block may not run into the
+ *  next consumed interval. Computed IN-PROBE from the ledger, never typed. */
+const NEXT_CONSUMED_AFTER_BATTERY = Math.min(
+  ...CONSUMED.map((c) => c.range[0]).filter((s) => s > BATTERY_BASE),
+);
+const BATTERY_ROOM = NEXT_CONSUMED_AFTER_BATTERY - BATTERY_BASE;
 /** §4.2 the stats stream — a SEPARATE namespace. O2-T1's base was 104,600 ⇒ the next legal
  *  base under the #163 200-floor is 104,800. The list is O2-T1's COMPLETE ≥91,100-regime
  *  ledger + 104,600 (O2-T1's own base). */
@@ -173,6 +185,8 @@ const TABLE_PATH = 'docs/world-model/data/c5-recensus.json';
 const O2T1_PATH = 'docs/world-model/data/o2-t1-wedge-exam.json';
 const TEMPO_SMOKE_PATH = 'docs/world-model/data/tempo-census-sizing-smoke.json';
 const TEMPO_PATH = 'docs/world-model/data/tempo-census.json';
+/** the #218 lift's source of truth: the goal-genealogy census's OWN committed SMOKE artifact */
+const GGC_SMOKE_PATH = 'docs/world-model/data/goal-genealogy-census-smoke.json';
 const FORMATIONS_SRC = 'src/ai/formations.ts';
 const EXPECTED_TABLE_SHA = '184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53';
 const FINGERPRINT_BASELINE = '57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673';
@@ -280,6 +294,66 @@ const radiusTrace = (() => {
 const supportRadiusOf = (g: { supportDistance: number }): number =>
   radiusTrace.base + g.supportDistance * radiusTrace.slope;
 
+/* ========================================================================== */
+/* §5b THE #218 LIFT — the goal-genealogy ORIGIN CLASSIFIER, ported            */
+/* ========================================================================== */
+/** ⭐ PORTED FROM `scripts/probes/goal-genealogy-census.ts` (#214/#215/#217), with its
+ *  ⚠ LOSS-TICK semantics VERBATIM (#215.3-H1 + M2): the by-third origin classes are cut on the
+ *  ball's position at the previous segment's LAST OWNED tick (the loss/release point), mirrored
+ *  into the WINNER's attacking frame; the REGAIN-tick reading is carried beside it as the
+ *  declared cross-cut. The limbs this exam does NOT read (pass LOCATION / own-third chains /
+ *  the danger-window ladder) are not lifted — the G-REPRO-173 precedent verbatim, and
+ *  G-REPRO-GGC is what proves the omission changes nothing on the columns that ARE read. */
+const THIRD_LOCAL_X = HALF_L / 3;
+const GG_ORIGIN_CLASSES = [
+  'kickoff', 'goalKick', 'kickIn', 'restartSecondBall', 'matchOpenFallback',
+  'setPieceCorner', 'setPieceFreeKick', 'setPiecePenalty',
+  'scrambleLooseBall',
+  'turnoverWonInOwnThird', 'turnoverWonInMiddleThird', 'turnoverWonInFinalThird',
+] as const;
+type OriginClass = typeof GG_ORIGIN_CLASSES[number];
+const GG_SET_PIECE: readonly OriginClass[] = ['setPieceCorner', 'setPieceFreeKick', 'setPiecePenalty'];
+const GG_OPEN_PLAY: readonly OriginClass[] = [
+  'scrambleLooseBall', 'turnoverWonInOwnThird', 'turnoverWonInMiddleThird', 'turnoverWonInFinalThird',
+];
+type GgFamily = 'setPiece' | 'restart' | 'openPlay';
+const ggFamilyOf = (o: OriginClass): GgFamily => (GG_SET_PIECE.includes(o) ? 'setPiece'
+  : GG_OPEN_PLAY.includes(o) ? 'openPlay' : 'restart');
+type Third = 'own' | 'middle' | 'final';
+const ggThirdOf = (localX: number): Third => (localX < -THIRD_LOCAL_X ? 'own'
+  : localX > THIRD_LOCAL_X ? 'final' : 'middle');
+/** the CONSTRUCTION ladder (#214.1a) — a REPORTING GRID; no N is privileged, nothing gates. */
+const CONSTRUCTED_LADDER = [3, 4, 5] as const;
+interface GgSegment {
+  team: Side;
+  origin: OriginClass;
+  originAtRegainSpot: OriginClass;
+  startTick: number;
+  lastOwnedTick: number;
+  assignedTicks: number;
+  completedPasses: number;
+  terminator: 'opponentControl' | 'deadBall' | 'goal' | 'matchEnd';
+  /** live-updated on every owned tick; frozen at the segment's LAST OWNED tick = the LOSS SPOT */
+  lastOwnedLocalXOwnerFrame: number;
+  lossLocalXLoserFrame: number | null;
+  regainSpotLocalXLoserFrame: number | null;
+  lossThird: Third | null;
+  regainThird: Third | null;
+  regainContested: boolean;
+  goalScoringSide: Side | null;
+}
+interface GgGoalRec {
+  origin: OriginClass;
+  originAtRegainSpot: OriginClass;
+  family: GgFamily;
+  lossThird: Third | null;
+  completedPasses: number;
+}
+type GgCounts = Record<OriginClass, number>;
+const ggZeroCounts = (): GgCounts => Object.fromEntries(
+  GG_ORIGIN_CLASSES.map((o) => [o, 0]),
+) as GgCounts;
+
 const nearestOpponent = (m: Match, p: Player): number => {
   let best = Number.POSITIVE_INFINITY;
   for (const o of m.teams[(1 - p.side) as Side].players) {
@@ -311,7 +385,7 @@ const DOSE: Record<ArmName, { depth: number; width: number } | null> = {
   cornerCheck: { depth: CTB_GENE_MIN, width: CTB_GENE_MIN },
 };
 /** the receipt walks (never exam data): each runs in ITS SOURCE's own world */
-type ReproArm = 'reproO2Control' | 'repro173Prod';
+type ReproArm = 'reproO2Control' | 'repro173Prod' | 'reproGgcProd';
 type WalkArm = ArmName | ReproArm;
 /** the O2-T1 CONTROL world, VERBATIM (CENSUS_FLAGS + o1PassWindup) */
 const O2T1_CONTROL_FLAGS = {
@@ -340,7 +414,14 @@ const matchOf = (seed: number, arm: WalkArm): Match => {
   }
   /** ⭐ THE WORLD (doc §FORM): the BARE production-shaped world — for the exam arms AND for
    *  the #173 receipt walk, which is exactly the census's own `prod` arm. */
-  if (arm === 'repro173Prod') return new Match(base as ConstructorParameters<typeof Match>[0]);
+  /** ⭐ the #218 receipt walk runs in the GENEALOGY CENSUS's OWN `PROD` arm — `new Match({seed,
+   *  teamA, teamB})`, the shipped game with no flags. Its `duration` is the engine default
+   *  MATCH_DURATION, which is the same 240 s this exam passes explicitly, so the census's world
+   *  and this exam's world coincide EXACTLY here — and G-REPRO-GGC is what proves it rather
+   *  than asserting it. */
+  if (arm === 'repro173Prod' || arm === 'reproGgcProd') {
+    return new Match(base as ConstructorParameters<typeof Match>[0]);
+  }
   const d = DOSE[arm];
   if (d === null) return new Match(base as ConstructorParameters<typeof Match>[0]);
   const m = new Match({ ...base, ctbSupportPlane: true } as ConstructorParameters<typeof Match>[0]);
@@ -406,6 +487,22 @@ interface PerMatch {
   spreadYIn: number;
   spacingMedian: number;
   spacingUnder4: number;
+  /* --- ruler 5: the #218 LIFT (goal-genealogy origin classifier, ported) --- */
+  ggSegments: number;
+  ggSegmentsByOrigin: GgCounts;
+  ggSegmentsByOriginAtRegainSpot: GgCounts;
+  ggGoals: GgGoalRec[];
+  ggTotalTicks: number;
+  ggDeadBallTicks: number;
+  ggSegmentTicks: number;
+  ggLooseGapTicks: number;
+  ggAssignedTicksSum: number;
+  ggSpanOrderViolations: number;
+  ggGoalsFromScore: number;
+  ggUnattributedGoals: number;
+  ggTurnoversTotal: number;
+  ggOwnThirdTurnovers: number;
+  ggOwnThirdTurnoversAtRegainSpot: number;
   /* --- context --- */
   ticksWalked: number;
   playedTicks: number;
@@ -450,6 +547,12 @@ const walkSeed = (seed: number, arm: WalkArm): PerMatch => {
     crosses: 0, headers: 0, longBalls: 0, cutbacks: 0,
     spreadYOut: Number.NaN, spreadYIn: Number.NaN,
     spacingMedian: Number.NaN, spacingUnder4: Number.NaN,
+    ggSegments: 0, ggSegmentsByOrigin: ggZeroCounts(),
+    ggSegmentsByOriginAtRegainSpot: ggZeroCounts(), ggGoals: [],
+    ggTotalTicks: 0, ggDeadBallTicks: 0, ggSegmentTicks: 0, ggLooseGapTicks: 0,
+    ggAssignedTicksSum: 0, ggSpanOrderViolations: 0, ggGoalsFromScore: 0,
+    ggUnattributedGoals: 0, ggTurnoversTotal: 0, ggOwnThirdTurnovers: 0,
+    ggOwnThirdTurnoversAtRegainSpot: 0,
     ticksWalked: 0, playedTicks: 0, reachedFullTime: 0, signature: '',
   };
   r.genesOnAllViews = genesOnAllViews(m) ? 1 : 0;
@@ -460,6 +563,129 @@ const walkSeed = (seed: number, arm: WalkArm): PerMatch => {
     const radius = supportRadiusOf(t.genome);
     return t.players.some((p) => p.gid !== carrier.gid && p.role !== 'GK' && !p.sentOff
       && dist(p.pos, carrier.pos) <= radius);
+  };
+
+  /* ===== ruler 5: THE #218 LIFT — the census's segment/origin machinery, PORTED =====
+   * ⚠ THE LOSS-TICK SEMANTICS ARE THE CENSUS'S OWN (#215.3-H1/M2), carried verbatim: an
+   * open-play regain is classified on the ball's position at the PREVIOUS segment's LAST
+   * OWNED tick, mirrored into the WINNER's frame (localX_winner = −localX_loser); the
+   * REGAIN-tick reading rides beside it as the declared cross-cut. */
+  const ggSegs: GgSegment[] = [];
+  const ggGoalRecs: GgGoalRec[] = [];
+  let ggCur: GgSegment | null = null;
+  let ggPrevSeg: GgSegment | null = null;
+  const ggPrevCompleted: [number, number] = [m.teams[0].stats.passesCompleted, m.teams[1].stats.passesCompleted];
+  const ggPrevScore: [number, number] = [m.score[0], m.score[1]];
+  let ggSinceDeadBall = true;   // the match opens from a kickoff
+  let ggContestedSinceLastSeg = false;
+
+  const ggClose = (s: GgSegment, terminator: GgSegment['terminator'], scoringSide: Side | null): void => {
+    s.terminator = terminator;
+    s.goalScoringSide = scoringSide;
+    const last = ggSegs.length === 0 ? null : ggSegs[ggSegs.length - 1];
+    if (last !== null && s.startTick <= last.startTick) r.ggSpanOrderViolations += 1;
+    ggSegs.push(s);
+    ggPrevSeg = s;
+  };
+  const ggOpenPlayClass = (contested: boolean, t: Third): OriginClass => (contested ? 'scrambleLooseBall'
+    : t === 'own' ? 'turnoverWonInOwnThird'
+      : t === 'final' ? 'turnoverWonInFinalThird' : 'turnoverWonInMiddleThird');
+  const ggOpen = (side: Side, tick: number, ownerGid: number): GgSegment => {
+    let origin: OriginClass;
+    let lossThird: Third | null = null;
+    let regainThird: Third | null = null;
+    let regainContested = false;
+    let regainSpotClass: OriginClass | null = null;
+    if (m.kickoffKickGid === ownerGid) origin = 'kickoff';
+    else if (m.restartKickGid === ownerGid) {
+      const k = m.restartKickKind;
+      origin = k === 'corner' ? 'setPieceCorner'
+        : k === 'freeKick' ? 'setPieceFreeKick'
+          : k === 'penalty' ? 'setPiecePenalty'
+            : k === 'goalKick' ? 'goalKick'
+              : k === 'kickIn' ? 'kickIn' : 'restartSecondBall';
+    } else if (ggSinceDeadBall) origin = 'restartSecondBall';
+    else if (ggPrevSeg === null) origin = 'matchOpenFallback';
+    else {
+      const lost = ggPrevSeg.lossLocalXLoserFrame;
+      const regained = ggPrevSeg.regainSpotLocalXLoserFrame;
+      lossThird = ggThirdOf(lost === null ? 0 : -lost);
+      regainThird = ggThirdOf(regained === null ? 0 : -regained);
+      regainContested = ggContestedSinceLastSeg;
+      origin = ggOpenPlayClass(ggContestedSinceLastSeg, lossThird);
+      regainSpotClass = ggOpenPlayClass(ggContestedSinceLastSeg, regainThird);
+    }
+    return {
+      team: side, origin, originAtRegainSpot: regainSpotClass ?? origin,
+      startTick: tick, lastOwnedTick: tick, assignedTicks: 0, completedPasses: 0,
+      terminator: 'matchEnd', lastOwnedLocalXOwnerFrame: m.teams[side].localX(m.ball.pos.x),
+      lossLocalXLoserFrame: null, regainSpotLocalXLoserFrame: null,
+      lossThird, regainThird, regainContested, goalScoringSide: null,
+    };
+  };
+  const ggGoalOf = (s: GgSegment): GgGoalRec => ({
+    origin: s.origin, originAtRegainSpot: s.originAtRegainSpot, family: ggFamilyOf(s.origin),
+    lossThird: s.lossThird, completedPasses: s.completedPasses,
+  });
+  /** ONE genealogy tick, run immediately after `m.step(DT)` — the census's own loop body, with
+   *  its `continue`s expressed as `return` so this exam's other instruments are untouched. */
+  const ggStep = (): void => {
+    r.ggTotalTicks += 1;
+    const tickNow = m.simTick;
+    const phaseNow = m.phase;
+    const ownerNow = m.ball.owner;
+    let goalSide: Side | null = null;
+    for (const s of [0, 1] as const) {
+      if (m.score[s] > ggPrevScore[s]) {
+        goalSide = s;
+        r.ggGoalsFromScore += m.score[s] - ggPrevScore[s];
+      }
+      ggPrevScore[s] = m.score[s];
+      const dCompleted = m.teams[s].stats.passesCompleted - ggPrevCompleted[s];
+      if (dCompleted > 0 && ggCur !== null && ggCur.team === s) ggCur.completedPasses += dCompleted;
+      ggPrevCompleted[s] = m.teams[s].stats.passesCompleted;
+    }
+    if (phaseNow !== 'playing') {
+      r.ggDeadBallTicks += 1;
+      if (ggCur !== null) {
+        if (goalSide !== null) {
+          ggClose(ggCur, 'goal', goalSide);
+          ggGoalRecs.push(ggGoalOf(ggCur));
+        } else ggClose(ggCur, 'deadBall', null);
+        ggCur = null;
+      } else if (goalSide !== null) r.ggUnattributedGoals += 1;
+      ggSinceDeadBall = true;
+      ggContestedSinceLastSeg = false;
+      return;
+    }
+    if (m.possessionPhase.kind === 'contested') ggContestedSinceLastSeg = true;
+    if (ownerNow === null) {
+      if (ggCur !== null) { ggCur.assignedTicks += 1; r.ggSegmentTicks += 1; } else r.ggLooseGapTicks += 1;
+      if (goalSide !== null && ggCur === null) r.ggUnattributedGoals += 1;
+      return;
+    }
+    const side = ownerNow.side;
+    if (ggCur !== null && ggCur.team !== side) {
+      // ⭐ THE DEFINITIONAL LOSS SPOT: the LAST OWNED tick's ball position, loser's frame.
+      const lossLocal = ggCur.lastOwnedLocalXOwnerFrame;
+      const regainLocal = m.teams[ggCur.team].localX(m.ball.pos.x);
+      ggCur.lossLocalXLoserFrame = lossLocal;
+      ggCur.regainSpotLocalXLoserFrame = regainLocal;
+      if (ggThirdOf(lossLocal) === 'own') r.ggOwnThirdTurnovers += 1;
+      if (ggThirdOf(regainLocal) === 'own') r.ggOwnThirdTurnoversAtRegainSpot += 1;
+      ggClose(ggCur, 'opponentControl', null);
+      ggCur = null;
+    }
+    if (ggCur === null) {
+      ggCur = ggOpen(side, tickNow, ownerNow.gid);
+      ggSinceDeadBall = false;
+      ggContestedSinceLastSeg = false;
+    }
+    const seg = ggCur;
+    ggContestedSinceLastSeg = false;
+    seg.assignedTicks += 1; r.ggSegmentTicks += 1;
+    seg.lastOwnedTick = tickNow;
+    seg.lastOwnedLocalXOwnerFrame = m.teams[side].localX(m.ball.pos.x);
   };
 
   while (!m.finished) {
@@ -499,6 +725,10 @@ const walkSeed = (seed: number, arm: WalkArm): PerMatch => {
     tick += 1;
     r.ticksWalked += 1;
     sinceLast += 1;
+    /* ⭐ ruler 5 runs BEFORE the full-time break, because the census's own loop processes every
+     * stepped tick including the terminal one. Every other instrument below keeps its existing
+     * early-break behaviour EXACTLY — this lift moves no previously measured number. */
+    ggStep();
     if (m.finished) break;
     const phase = m.phase;
     const now = m.ball.owner;
@@ -593,18 +823,28 @@ const walkSeed = (seed: number, arm: WalkArm): PerMatch => {
           // and pins them to the SAME bound. That is #224.4(ii)'s named clamp saturation,
           // not a dead seam. The predicate is made EXACT rather than loosened: every
           // non-shifting dosed tick must be clamp-bound on the axis the dose acts on.
-          if (shift === 0) {
+          // ⚠ CORRECTED AGAIN, PRE-BATTERY (the ruled amendment): the counter used to fire on
+          // TRIVIAL EQUALITY too, so in ABSENT / ARMED-ZERO — where there is no dose at all and
+          // the two expressions are the SAME expression — it counted every unshifted tick and
+          // contradicted its own published `clampBoundSemantics`. It now fires ONLY when a dose
+          // EXISTS and the incumbent clamp GENUINELY pinned two DIFFERENT pre-clamp values to
+          // the SAME bound on at least one axis. The gate predicate is unchanged (`gArmPass`
+          // reads `zeroShift` in the undosed arms), and the dosed arms' counts are unchanged:
+          // a non-zero dose always separates the pre-clamp values on the axis it acts on.
+          if (shift === 0 && armedFlag) {
             const maxLat0 = radius * SUPPORT_LAT_CAP_FRAC;
             const preX0 = m.ball.pos.x + t.attackDir * radius * bias;
             const preY0 = m.ball.pos.y
               + clamp((lane.y - m.ball.pos.y) * SUPPORT_LAT_PULL, -maxLat0, maxLat0);
-            const xPinned = preX0 === preX
-              || (Math.abs(preX0) > HALF_L - 2 && Math.abs(preX) > HALF_L - 2
-                && Math.sign(preX0) === Math.sign(preX));
-            const yPinned = preY0 === preY
-              || (Math.abs(preY0) > HALF_W - 2 && Math.abs(preY) > HALF_W - 2
-                && Math.sign(preY0) === Math.sign(preY));
-            if (xPinned && yPinned) r.supportTicksUnshiftedClampBound += 1;
+            const xGenuine = preX0 !== preX && Math.abs(preX0) > HALF_L - 2
+              && Math.abs(preX) > HALF_L - 2 && Math.sign(preX0) === Math.sign(preX);
+            const yGenuine = preY0 !== preY && Math.abs(preY0) > HALF_W - 2
+              && Math.abs(preY) > HALF_W - 2 && Math.sign(preY0) === Math.sign(preY);
+            const xPinned = preX0 === preX || xGenuine;
+            const yPinned = preY0 === preY || yGenuine;
+            if (xPinned && yPinned && (xGenuine || yGenuine)) {
+              r.supportTicksUnshiftedClampBound += 1;
+            }
           }
         }
       }
@@ -625,6 +865,17 @@ const walkSeed = (seed: number, arm: WalkArm): PerMatch => {
         }
       }
     }
+  }
+
+  /* --- ruler 5: close the open segment and fold the per-match genealogy rows --- */
+  if (ggCur !== null) { ggClose(ggCur, 'matchEnd', null); ggCur = null; }
+  r.ggSegments = ggSegs.length;
+  r.ggGoals = ggGoalRecs;
+  for (const s of ggSegs) {
+    r.ggSegmentsByOrigin[s.origin] += 1;
+    r.ggSegmentsByOriginAtRegainSpot[s.originAtRegainSpot] += 1;
+    r.ggAssignedTicksSum += s.assignedTicks;
+    if (s.terminator === 'opponentControl') r.ggTurnoversTotal += 1;
   }
 
   const bothPairs = [...pairs[0], ...pairs[1]];
@@ -693,6 +944,114 @@ const BAND_RATE: Record<BandKey, (r: PerMatch) => number> = {
   longBalls: (r) => r.longBalls, cutbacks: (r) => r.cutbacks,
 };
 
+/* --- ruler 5: the #218 LIFT's per-arm rows. DESCRIPTIVE (#203); NO gate reads them. ------ */
+const ggShare = (num: number, den: number): number => round(den === 0 ? Number.NaN : num / den, 5);
+const ggSummary = (rows: readonly PerMatch[]) => {
+  const goals = rows.flatMap((r) => r.ggGoals);
+  const n = goals.length;
+  const counts = (pick: (g: GgGoalRec) => OriginClass): GgCounts => {
+    const c = ggZeroCounts();
+    for (const g of goals) c[pick(g)] += 1;
+    return c;
+  };
+  const byOrigin = counts((g) => g.origin);
+  const byOriginAtRegainSpot = counts((g) => g.originAtRegainSpot);
+  const byFamily = {
+    setPiece: goals.filter((g) => g.family === 'setPiece').length,
+    restart: goals.filter((g) => g.family === 'restart').length,
+    openPlay: goals.filter((g) => g.family === 'openPlay').length,
+  };
+  const ladderOn = (pool: readonly GgGoalRec[]) => ({
+    pool: pool.length,
+    ladder: Object.fromEntries(CONSTRUCTED_LADDER.map((k) => {
+      const constructed = pool.filter((g) => g.completedPasses >= k).length;
+      return [`ge${k}`, {
+        threshold: k, constructed, transition: pool.length - constructed,
+        constructedShareOfPool: ggShare(constructed, pool.length),
+        constructedShareOfAllGoals: ggShare(constructed, n),
+      }];
+    })),
+  });
+  const segByOrigin = ggZeroCounts();
+  const segByOriginAtRegain = ggZeroCounts();
+  for (const r of rows) {
+    for (const o of GG_ORIGIN_CLASSES) {
+      segByOrigin[o] += r.ggSegmentsByOrigin[o];
+      segByOriginAtRegain[o] += r.ggSegmentsByOriginAtRegainSpot[o];
+    }
+  }
+  const sm = (f: (r: PerMatch) => number): number => rows.reduce((a, r) => a + f(r), 0);
+  const matches = Math.max(1, rows.length);
+  const lossThirdCells: Record<string, number> = { own: 0, middle: 0, final: 0, notARegain: 0 };
+  for (const g of goals) {
+    if (g.lossThird === null) lossThirdCells.notARegain += 1; else lossThirdCells[g.lossThird] += 1;
+  }
+  return {
+    provenance: '⭐ THE #218 LIFT: the goal-genealogy census\'s ORIGIN CLASSIFIER, ported from '
+      + 'scripts/probes/goal-genealogy-census.ts with its LOSS-TICK semantics VERBATIM '
+      + '(#215.3-H1/M2 — the by-third classes are cut on the ball at the previous segment\'s LAST '
+      + 'OWNED tick, mirrored into the WINNER\'s frame; the REGAIN-tick reading rides beside it '
+      + 'as the declared cross-cut). Gate: G-REPRO-GGC, which re-walks the census\'s OWN smoke '
+      + 'block and must reproduce its committed PROD rows EXACTLY. The limbs this exam does not '
+      + 'read (pass LOCATION, own-third chains, the danger-window ladder) are not lifted — the '
+      + 'G-REPRO-173 precedent, and the gate is what proves the omission changes nothing on the '
+      + 'columns that ARE read.',
+    status: 'REPORTED, at BOTH smoke and battery grain. NO GATE HANGS ON ANY SHARE BELOW in T1; '
+      + 'per #218 the arc-grain reading is whether the shares MOVE, and that is the commander\'s.',
+    goals: n,
+    goalsPerMatch: round(n / matches, 4),
+    byOrigin,
+    byOriginShare: Object.fromEntries(GG_ORIGIN_CLASSES.map((o) => [o, ggShare(byOrigin[o], n)])),
+    byOriginAtRegainSpot,
+    byFamily,
+    byFamilyShare: {
+      setPiece: ggShare(byFamily.setPiece, n),
+      restart: ggShare(byFamily.restart, n),
+      openPlay: ggShare(byFamily.openPlay, n),
+    },
+    scrambleShareOfGoals: ggShare(byOrigin.scrambleLooseBall, n),
+    setPieceShareOfGoals: ggShare(byFamily.setPiece, n),
+    turnoverByThirdOriginShares: {
+      own: ggShare(byOrigin.turnoverWonInOwnThird, n),
+      middle: ggShare(byOrigin.turnoverWonInMiddleThird, n),
+      final: ggShare(byOrigin.turnoverWonInFinalThird, n),
+      note: 'thirds are named in the WINNING team\'s attacking frame: turnoverWonInFinalThird = a '
+        + 'HIGH regain = the ball was lost in the LOSER\'s own third (exact mirror).',
+    },
+    byLossThird: lossThirdCells,
+    constructedLadder: {
+      note: 'A REPORTING GRID (#214.1a), NOT a gate and NOT a tuned N: constructed(k) = a goal '
+        + 'whose segment completed ≥ k passes, at every k ∈ {3,4,5}, on TWO pools.',
+      nonSetPiece: ladderOn(goals.filter((g) => g.family !== 'setPiece')),
+      openPlayOriginOnly: ladderOn(goals.filter((g) => g.family === 'openPlay')),
+    },
+    segmentPopulation: {
+      segments: sm((r) => r.ggSegments),
+      segmentsPerMatch: round(sm((r) => r.ggSegments) / matches, 4),
+      byOrigin: segByOrigin,
+      byOriginAtRegainSpot: segByOriginAtRegain,
+    },
+    turnovers: {
+      total: sm((r) => r.ggTurnoversTotal),
+      ownThird: sm((r) => r.ggOwnThirdTurnovers),
+      ownThirdAtRegainSpot: sm((r) => r.ggOwnThirdTurnoversAtRegainSpot),
+      ownThirdPerMatch: round(sm((r) => r.ggOwnThirdTurnovers) / matches, 4),
+      ownThirdShareOfAllTurnovers: ggShare(sm((r) => r.ggOwnThirdTurnovers), sm((r) => r.ggTurnoversTotal)),
+    },
+    accounting: {
+      totalTicks: sm((r) => r.ggTotalTicks),
+      deadBallTicks: sm((r) => r.ggDeadBallTicks),
+      segmentTicks: sm((r) => r.ggSegmentTicks),
+      looseGapTicks: sm((r) => r.ggLooseGapTicks),
+      assignedTicksSum: sm((r) => r.ggAssignedTicksSum),
+      goalsFromScore: sm((r) => r.ggGoalsFromScore),
+      goalsMappedToSegments: n,
+      unattributedGoals: sm((r) => r.ggUnattributedGoals),
+      spanOrderViolations: sm((r) => r.ggSpanOrderViolations),
+    },
+  };
+};
+
 const armSummary = (rows: PerMatch[]) => {
   const s = (f: (r: PerMatch) => number): number => rows.reduce((a, r) => a + f(r), 0);
   return {
@@ -734,16 +1093,11 @@ const armSummary = (rows: PerMatch[]) => {
       pressedFirstReceptionsWithShortOption: s((r) => r.firstRecPressedShort),
       shareOfPressedFirstReceptions: round(rateOf(rows, 'supportAtPressedFirstRecShare')),
     },
-    /* ruler 5 — the DECLARED DROP */
+    /* ruler 5 — the #218 LIFT, REPORTED (no gate reads any of it) */
     ruler5BuildUp: {
       goalsTotal: s((r) => r.goals),
       goalsPerMatch: round(rateOf(rows, 'goalsPerMatch'), 4),
-      dropped: 'the #218 constructed/scramble shares are NOT measured here. The frame carries '
-        + 'WHOLE matches, so this is NOT a frame limitation: the census classifier is a '
-        + '1,674-line segment-genealogy machine whose faithful inheritance needs its own '
-        + 'G-REPRO against the committed census artifact, and a partial lift would be a NEW '
-        + 'instrument. Per-arm goals carry in its place. Declared, never silently capped; '
-        + 're-dispatching the lift is the commander\'s call.',
+      genealogy: ggSummary(rows),
     },
     /* the seam, reached */
     seam: {
@@ -863,6 +1217,7 @@ const readJson = (p: string): { bytes: Buffer; j: any } | null => (existsSync(p)
 const O2T1 = readJson(O2T1_PATH);
 const TEMPO_SMOKE = readJson(TEMPO_SMOKE_PATH);
 const TEMPO = readJson(TEMPO_PATH);
+const GGC_SMOKE = readJson(GGC_SMOKE_PATH);
 
 const nRule = (() => {
   if (O2T1 === null || TEMPO === null) {
@@ -898,12 +1253,16 @@ const nRule = (() => {
   const nQ2 = Math.ceil(mReqQ2 / frPerSeed);
 
   const nRaw = Math.max(nQ1, nQ2);
-  const nStar = Math.min(N_CAP, nRaw);
+  /** ⭐ THE RULED AMENDMENT (pre-battery, before any battery number exists): the dispatch's
+   *  500-seed cap was the DISPATCH's, never the contract's, so THE RULE'S OWN NUMBER governs —
+   *  the conservative direction. The only ceiling left is STRUCTURAL: the battery block may not
+   *  run into the next consumed interval, and that room is computed from the ledger in-probe. */
+  const nStar = Math.min(BATTERY_ROOM, nRaw);
   return {
     available: true,
     rule: 'm_iid = (z.975+z.80)^2 (p0(1−p0)+p1(1−p1)) / (p1−p0)^2 ; DEFF measured off the O2-T1 '
       + 'committed paired-delta CI on the SAME column at 320 clusters ; m_req = DEFF·m_iid ; '
-      + 'N(q) = ceil(m_req / momentsPerSeed) ; N = min(cap, max_q N(q))',
+      + 'N(q) = ceil(m_req / momentsPerSeed) ; N = max_q N(q), floored ONLY by the ledger room',
     sources: {
       o2t1: { path: O2T1_PATH, sha256: sha(O2T1.bytes.toString('utf8')), resultSha: j.resultSha256 },
       tempo: { path: TEMPO_PATH, sha256: sha(TEMPO.bytes.toString('utf8')), resultSha: TEMPO.j.resultSha256 },
@@ -911,8 +1270,11 @@ const nRule = (() => {
     deff: round(deff, 4),
     q1TrueHoldable: {
       p0: p0q1, mde: mdeQ1, p1: round(p1q1, 8),
-      mdeProvenance: 'the O2-T1 COMMITTED paired delta on trueContextShare — the smallest move '
-        + 'this instrument has RESOLVED in a banked battery (never chosen after sight)',
+      mdeProvenance: 'the O2-T1 COMMITTED paired delta on trueContextShare — THE ONE paired '
+        + 'delta this instrument has resolved in a banked battery (O2-T1, two arms). ⚠ CORRECTED '
+        + 'PRE-BATTERY: the earlier wording said "the SMALLEST move ever resolved", which dresses '
+        + 'a selection from a set of ONE as a minimum over many. The number is unchanged and it '
+        + 'is still traced, never chosen after sight.',
       eligiblePerSeed: round(eligPerSeed, 4), mIid: round(mIid(p0q1, p1q1), 1),
       mReq: round(mReqQ1, 1), n: nQ1,
     },
@@ -926,8 +1288,20 @@ const nRule = (() => {
       mReq: round(mReqQ2, 1), n: nQ2,
     },
     binding: nQ1 >= nQ2 ? 'q1TrueHoldable' : 'q2PressedFirstReception',
-    nRaw, cap: N_CAP, capBinds: nRaw > N_CAP, nStar,
+    nRaw,
+    batteryRoom: BATTERY_ROOM,
+    roomBinds: nRaw > BATTERY_ROOM,
+    nStar,
     batteryBlock: `${BATTERY_BASE}..${BATTERY_BASE + nStar - 1}`,
+    capAmendment: '⭐ RULED PRE-BATTERY, before any battery number exists: N is the RULE\'S OWN '
+      + `number (${nRaw}), not the dispatch's 500-seed cap — the cap belonged to the dispatch, not `
+      + 'to the contract, and honouring the in-probe rule is the conservative direction. The only '
+      + `remaining ceiling is the LEDGER's: the block may not reach the next consumed interval `
+      + `(${NEXT_CONSUMED_AFTER_BATTERY}), leaving ${BATTERY_ROOM} seeds of room — computed here, `
+      + 'never typed.',
+    primaryRulers: 'ruler 1 (TRUE-holdable supply) + ruler 2 (pressed-first-reception) — the two '
+      + 'UNSATURATED quantities, and the two the N rule is cut on. Rulers 3/4 are DEMOTED to '
+      + 'REPORTED with their ceilings DISCLOSED (see `saturationCeilings`).',
   };
 })();
 
@@ -946,7 +1320,7 @@ banner('========================================================================
 banner(`CTB-T1 SUPPORT-SUPPLY EXAM (#224.5) · mode ${MODE} · N ${RUN_N} seeds × ${ARMS.length} arms`);
 banner(`seeds ${RUN_BASE}..${RUN_BASE + RUN_N - 1} · world = BARE PRODUCTION-SHAPED (doc §FORM)`);
 banner(`arms differ by EXACTLY the ctb dose · gene domain [${CTB_GENE_MIN}, ${CTB_GENE_MAX}]`);
-banner(`N rule ⇒ N* ${String(nRule.nStar)} (cap ${N_CAP})`);
+banner(`N rule ⇒ N* ${String(nRule.nStar)} (the rule's own number; ledger room ${BATTERY_ROOM})`);
 if (OVERRIDDEN) {
   banner('⚠ OVERRIDE IN FORCE (CTBT1_N / CTBT1_SKIP_FP) — routed onto the EXIT-SEMANTICS GUARD');
   banner(`  BLOCK ${GUARD_BLOCK[0]}..${GUARD_BLOCK[1]}; G-CLEAN-INVOCATION goes RED and this run`);
@@ -998,7 +1372,7 @@ const ckptConfigEcho = {
   duration: MATCH_DURATION, supportWindow: [SUPPORT_MIN_M, SUPPORT_MAX_M],
   pressureR: PRESSURE_R, tableSha: EXPECTED_TABLE_SHA, holdable: HOLDABLE_CELLS,
   radiusTrace, bootstrapSeed: BOOTSTRAP_SEED, resamples: BOOTSTRAP_RESAMPLES,
-  repro: [REPRO173_BASE, REPRO173_N, REPRO_O2_BASE, REPRO_O2_N],
+  repro: [REPRO173_BASE, REPRO173_N, REPRO_O2_BASE, REPRO_O2_N, REPRO_GGC_BASE, REPRO_GGC_N],
 };
 const ckptHeader = {
   kind: 'header' as const,
@@ -1083,6 +1457,7 @@ interface Core {
   byArm: Record<ArmName, PerMatch[]>;
   reproO2: PerMatch[];
   repro173: PerMatch[];
+  reproGgc: PerMatch[];
   restored: string[];
   computed: string[];
 }
@@ -1115,7 +1490,10 @@ const computeCore = (pass: number): Core => {
   banner(`  pass ${pass} · G-REPRO-173: block ${REPRO173_BASE} (${REPRO173_N} matches, prod world)...`);
   const repro173: PerMatch[] = [];
   for (let i = 0; i < REPRO173_N; i++) repro173.push(walkSeed(REPRO173_BASE + i, 'repro173Prod'));
-  return { byArm, reproO2, repro173, restored, computed };
+  banner(`  pass ${pass} · G-REPRO-GGC: block ${REPRO_GGC_BASE} (${REPRO_GGC_N} matches, census PROD world)...`);
+  const reproGgc: PerMatch[] = [];
+  for (let i = 0; i < REPRO_GGC_N; i++) reproGgc.push(walkSeed(REPRO_GGC_BASE + i, 'reproGgcProd'));
+  return { byArm, reproO2, repro173, reproGgc, restored, computed };
 };
 
 const coreBody = (core: Core) => {
@@ -1142,9 +1520,101 @@ const coreBody = (core: Core) => {
     && (got173.all - got173.pressed) === (want173.unpressed.n as number)
     && Number(share173.toFixed(4)) === Number((want173.pressedShare as number).toFixed(4));
 
+  /* --- G-REPRO-GGC: the #218 LIFT proved against the census's OWN committed rows ---------- */
+  const ggcGot = ggSummary(core.reproGgc);
+  const ggcWant = GGC_SMOKE === null ? null : GGC_SMOKE.j.result.perArm.PROD;
+  /** ⭐ WHICH ROWS, AND WHY: the census publishes NO per-seed rows in either committed artifact,
+   *  so the strongest CHEAP form available is its SMOKE arm ENTIRE — `PROD` over the whole
+   *  12-seed block 12,421,000..12,421,011, which is every match that arm contains. The compared
+   *  fields are the INTEGER COUNTS (never the rounded shares, which are functions of them) on
+   *  every limb this lift uses: the origin classification of GOALS and of SEGMENTS, the
+   *  loss-third cut, the construction ladder on both pools, the own-third turnover counts on
+   *  BOTH readings (loss tick AND regain tick — the #215.3-H1 wedge), and the segmentation
+   *  ACCOUNTING identity. Targets are READ from the artifact, never typed. */
+  const ggcChecks: { field: string; want: number; got: number }[] = ggcWant === null ? [] : [
+    { field: 'goals', want: ggcWant.goalGenealogy.goals as number, got: ggcGot.goals },
+    ...GG_ORIGIN_CLASSES.map((o) => ({
+      field: `goals.byOrigin.${o}`,
+      want: ggcWant.goalGenealogy.byOrigin[o] as number,
+      got: ggcGot.byOrigin[o],
+    })),
+    ...GG_ORIGIN_CLASSES.map((o) => ({
+      field: `goals.byOriginAtRegainSpot.${o}`,
+      want: ggcWant.goalGenealogy.byOriginAtRegainSpot[o] as number,
+      got: ggcGot.byOriginAtRegainSpot[o],
+    })),
+    ...(['setPiece', 'restart', 'openPlay'] as const).map((f) => ({
+      field: `goals.byFamily.${f}`,
+      want: ggcWant.goalGenealogy.byFamily[f] as number,
+      got: ggcGot.byFamily[f],
+    })),
+    ...(['own', 'middle', 'final', 'notARegain'] as const).map((t) => ({
+      field: `goals.byLossThird.${t}`,
+      want: ggcWant.goalGenealogy.byLossThird[t] as number,
+      got: ggcGot.byLossThird[t],
+    })),
+    ...(['nonSetPiece', 'openPlayOriginOnly'] as const).flatMap((pool) => [
+      {
+        field: `constructedLadder.${pool}.pool`,
+        want: ggcWant.goalGenealogy.constructedLadder[pool].pool as number,
+        got: (ggcGot.constructedLadder as any)[pool].pool as number,
+      },
+      ...CONSTRUCTED_LADDER.map((k) => ({
+        field: `constructedLadder.${pool}.ge${k}.constructed`,
+        want: ggcWant.goalGenealogy.constructedLadder[pool].ladder[`ge${k}`].constructed as number,
+        got: (ggcGot.constructedLadder as any)[pool].ladder[`ge${k}`].constructed as number,
+      })),
+    ]),
+    ...GG_ORIGIN_CLASSES.map((o) => ({
+      field: `segments.byOrigin.${o}`,
+      want: ggcWant.segmentPopulation.byOrigin[o] as number,
+      got: ggcGot.segmentPopulation.byOrigin[o],
+    })),
+    {
+      field: 'turnovers.ownThird(lossTick)',
+      want: ggcWant.backThirdErrors.ownThirdTurnovers as number,
+      got: ggcGot.turnovers.ownThird,
+    },
+    {
+      field: 'turnovers.ownThird(regainTick, the declared cross-cut)',
+      want: ggcWant.backThirdErrors.atRegainSpot.ownThirdTurnovers as number,
+      got: ggcGot.turnovers.ownThirdAtRegainSpot,
+    },
+    ...(['totalTicks', 'deadBallTicks', 'segmentTicks', 'looseGapTicks', 'assignedTicksSum',
+      'goalsFromScore', 'goalsMappedToSegments', 'unattributedGoals', 'spanOrderViolations'] as const)
+      .map((k) => ({
+        field: `accounting.${k}`,
+        want: ggcWant.accounting[k] as number,
+        got: (ggcGot.accounting as Record<string, number>)[k],
+      })),
+  ];
+  const ggcMismatches = ggcChecks.filter((c) => c.want !== c.got);
+
   return {
     arms: Object.fromEntries(ARMS.map((a) => [a, armSummary(core.byArm[a])])),
     contrasts: bootstrapAll(core.byArm),
+    gReproGgc: {
+      block: `${REPRO_GGC_BASE}..${REPRO_GGC_BASE + REPRO_GGC_N - 1}`,
+      source: GGC_SMOKE_PATH,
+      sourceArm: 'PROD',
+      world: 'the goal-genealogy census\'s OWN `PROD` arm — the shipped game, no flags (this '
+        + 'exam\'s world, and the #173 census\'s `prod` world too)',
+      rowsScope: 'the census publishes NO per-seed rows, so the whole 12-match PROD arm of its '
+        + 'committed SMOKE artifact is the strongest cheap target: every match that arm contains, '
+        + 'compared on INTEGER COUNTS across goal origins, segment origins, the loss-third cut, '
+        + 'the construction ladder on both pools, own-third turnovers on BOTH readings, and the '
+        + 'segmentation accounting identity.',
+      fieldsChecked: ggcChecks.length,
+      mismatches: ggcMismatches.length,
+      mismatchRows: ggcMismatches,
+      observed: ggcGot,
+      identical: ggcWant !== null && ggcChecks.length > 0 && ggcMismatches.length === 0,
+      note: 'THE #218 LIFT PROVED, NOT ASSERTED (#203 / the G-REPRO-173 precedent): this probe\'s '
+        + 'OWN ported classifier re-walks the census\'s own block in the census\'s own world and '
+        + 'must reproduce the committed counts EXACTLY, including the LOSS-TICK semantics '
+        + '(#215.3-H1/M2) that separate them from the regain-tick reading. The census\'s seeds '
+        + 'ride as a RECEIPT re-walk only — never fresh data for this exam.',
+    },
     gReproO2T1: {
       block: `${REPRO_O2_BASE}..${REPRO_O2_BASE + REPRO_O2_N - 1}`,
       world: 'the O2-T1 CONTROL world (CENSUS_FLAGS + o1PassWindup), VERBATIM',
@@ -1258,6 +1728,45 @@ const bandRows = Object.fromEntries(ARMS.map((a) => {
 }));
 
 /* ========================================================================== */
+/* §13b THE CEILINGS — rulers 3b/4b are NEAR-SATURATED, and by how much        */
+/* ========================================================================== */
+/** ⭐ PUBLISHED BECAUSE THE FORK PARAGRAPH ONCE SIZED A RULER WITHOUT COMPUTING IT: the
+ *  headroom above the ABSENT arm is what a helpful move on a near-saturated share can possibly
+ *  buy, and it is measured HERE, from the run's own numbers, never typed into a doc. */
+const ceilingOf = (key: RateKey) => {
+  const absent = C[key][CONTROL_ARM].point as number;
+  const headroomPp = (1 - absent) * 100;
+  return {
+    absentLevel: round(absent, 6),
+    absentLevelPct: round(absent * 100, 3),
+    helpfulHeadroomPp: round(headroomPp, 3),
+    perArm: Object.fromEntries(ARMS.filter((a) => a !== CONTROL_ARM).map((a) => {
+      const d = C[key][a].pairedDelta.point as number;
+      return [a, {
+        deltaPp: round(d * 100, 3),
+        shareOfHeadroomConsumed: round(headroomPp === 0 ? Number.NaN : (d * 100) / headroomPp, 4),
+        resolved: C[key][a].resolved as boolean,
+      }];
+    })),
+  };
+};
+const saturationCeilings = {
+  note: '⭐ THE CEILINGS, DISCLOSED (the ruled amendment): rulers 3b and 4b are bounded above by '
+    + '100 %, and the ABSENT arm already sits just under it. The headroom below is the ENTIRE '
+    + 'budget any helpful move on those two columns can spend — which is why the exam is carried '
+    + 'by rulers 1 + 2 (the unsaturated pair) and 3/4 are REPORTED.',
+  ruler4bSupportAtPressedFirstRec: ceilingOf('supportAtPressedFirstRecShare'),
+  ruler3bShortOptionFirstRec: ceilingOf('shortOptionFirstRecShare'),
+  decodeNote: '⚠ LABELLED DECODE NOTE, NOT A CONCLUSION (the commander\'s reading, recorded so it '
+    + 'can be tested rather than assumed): in the BARE world the radius-family proximity '
+    + 'predicate is NEAR-SATURATED — a body is almost always within the support radius — so the '
+    + 'scarcity H-CTB is about does not live in RAW PROXIMITY at all; it lives in whether that '
+    + 'body is a SAFE support (holdable, unpressed). That is a hypothesis about what these '
+    + 'columns mean, not a measured finding of this round, and it is exactly why rulers 1 + 2 '
+    + 'carry the exam.',
+};
+
+/* ========================================================================== */
 /* §14 GATES — all computed IN-PROBE (#181.2)                                 */
 /* ========================================================================== */
 const srcDiff = gitSay('git diff --stat -- src');
@@ -1267,12 +1776,23 @@ const walkedBlocks = [
   { name: 'exam', first: RUN_BASE, last: RUN_BASE + RUN_N - 1 },
   { name: 'reproO2 (re-walk)', first: REPRO_O2_BASE, last: REPRO_O2_BASE + REPRO_O2_N - 1 },
   { name: 'repro173 (re-walk)', first: REPRO173_BASE, last: REPRO173_BASE + REPRO173_N - 1 },
+  { name: 'reproGgc (re-walk)', first: REPRO_GGC_BASE, last: REPRO_GGC_BASE + REPRO_GGC_N - 1 },
 ];
 const examCollisions = CONSUMED
   .filter((c) => !((RUN_BASE + RUN_N - 1) < c.range[0] || RUN_BASE > c.range[1]))
   .map((c) => c.name);
+/** ⭐ THE BATTERY BLOCK IS NOW N-DERIVED (the ruled amendment), so its clash-freedom is CHECKED
+ *  rather than pinned to a typed end-seed: it must clear the guard block below and the next
+ *  consumed interval above. */
+const batteryN = nRule.nStar ?? 0;
+const batteryLast = BATTERY_BASE + batteryN - 1;
+const batteryCollisions = CONSUMED
+  .filter((c) => !(batteryLast < c.range[0] || BATTERY_BASE > c.range[1]))
+  .map((c) => c.name);
 const subBlocksOrdered = SMOKE_BASE + SMOKE_N - 1 < GUARD_BLOCK[0]
-  && GUARD_BLOCK[1] < BATTERY_BASE && BATTERY_BASE + N_CAP - 1 === 12_423_599;
+  && GUARD_BLOCK[1] < BATTERY_BASE
+  && batteryN > 0 && batteryLast < NEXT_CONSUMED_AFTER_BATTERY
+  && batteryCollisions.length === 0;
 const statsMinGap = Math.min(...PUBLISHED_STATS_BASES.map((b) => Math.abs(BOOTSTRAP_SEED - b)));
 
 /* --- FLAG-HYGIENE + the in-battery identity arm ---------------------------- */
@@ -1340,13 +1860,19 @@ const gArmRows = Object.fromEntries(ARMS.map((a) => {
     seedsWithSupportTicks: rows.filter((r) => r.supportTicks > 0).length,
     supportTicks,
     supportTicksShifted: shifted,
-    supportTicksUnshiftedClampBound: unshiftedClampBound,
+    supportTicksUnshiftedClampBound: dosedNonZero ? unshiftedClampBound : null,
     everyTickShifted: supportTicks > 0 && shifted === supportTicks,
-    everyTickShiftedOrClampBound: supportTicks > 0 && shifted + unshiftedClampBound === supportTicks,
+    everyTickShiftedOrClampBound: dosedNonZero
+      ? (supportTicks > 0 && shifted + unshiftedClampBound === supportTicks)
+      : null,
     clampBoundSemantics: 'a DOSED tick that did not move is accounted for EXACTLY: the '
       + 'INCUMBENT pitch clamp pinned the incumbent and the dosed pre-clamp values to the SAME '
       + 'bound (#224.4(ii) clamp saturation). The gate asserts shifted + clampBound === total; '
-      + 'nothing is excused by a tolerance.',
+      + 'nothing is excused by a tolerance. ⚠ CORRECTED PRE-BATTERY: in ABSENT / ARMED-ZERO the '
+      + 'counter is published as NULL — there is no dose, the two pre-clamp expressions are the '
+      + 'SAME expression, and the shift is zero BY DEFINITION, so a "clamp-bound" count there '
+      + 'was degenerate (it fired on trivial equality and contradicted this very semantics). The '
+      + 'gate predicate is unchanged: the undosed arms are gated on `zeroShift`.',
     zeroShift: shifted === 0,
     genesOnAllViewsSeeds: rows.reduce((s, r) => s + r.genesOnAllViews, 0),
     meanShiftMetres: round(rows.reduce((s, r) => s + r.supportShiftSum, 0) / Math.max(1, supportTicks), 4),
@@ -1385,6 +1911,12 @@ const gates = {
     pass: bodyA.gRepro173.identical,
     target: bodyA.gRepro173.target, observed: bodyA.gRepro173.observed,
   },
+  gReproGgc: {
+    pass: bodyA.gReproGgc.identical,
+    block: bodyA.gReproGgc.block, source: GGC_SMOKE_PATH,
+    fieldsChecked: bodyA.gReproGgc.fieldsChecked, mismatches: bodyA.gReproGgc.mismatches,
+    sourceSha256: GGC_SMOKE === null ? null : sha(GGC_SMOKE.bytes.toString('utf8')),
+  },
   gTraceRadius: {
     pass: radiusTrace.lineFound && radiusTrace.base === 10 && radiusTrace.slope === 8,
     ...radiusTrace,
@@ -1394,11 +1926,14 @@ const gates = {
   },
   seedDisjoint: {
     pass: examCollisions.length === 0 && subBlocksOrdered,
-    walkedBlocks, examCollisions, subBlocksOrdered,
+    walkedBlocks, examCollisions, subBlocksOrdered, batteryCollisions,
     subBlocks: {
       smoke: `${SMOKE_BASE}..${SMOKE_BASE + SMOKE_N - 1}`,
       exitSemanticsGuard: `${GUARD_BLOCK[0]}..${GUARD_BLOCK[1]}`,
-      battery: `${BATTERY_BASE}..${BATTERY_BASE + N_CAP - 1}`,
+      battery: `${BATTERY_BASE}..${batteryLast}`,
+      batteryN,
+      batteryRoom: BATTERY_ROOM,
+      nextConsumedAfterBattery: NEXT_CONSUMED_AFTER_BATTERY,
     },
     reproBlocksNote: 'the two repro blocks are DELIBERATE re-walks of the SOURCES\' own committed '
       + 'blocks (receipts, never fresh data), so their overlap with the ledger is the point; only '
@@ -1451,6 +1986,17 @@ const body = {
     + 'frozen tolerance, resolved) · F-CTB-c (offside spike or world-health collapse, resolved). '
     + '⚠ THIS PROBE FIRES NONE OF THEM: it emits PER-ARM ROWS and paired deltas with mechanical '
     + '`resolved` CI flags only (#203); adjudication is the commander\'s.',
+  preRegisteredStopGranularity: '⭐ FROZEN EX ANTE, BEFORE ANY BATTERY NUMBER EXISTS (the ruled '
+    + 'amendment; stage doc §SUCCESS): F-CTB-b and F-CTB-c fire PER DOSE — a dose whose guard '
+    + 'BREACHES (resolved AND beyond the frozen tolerance) is DISQUALIFIED as a candidate, and '
+    + 'the ARC-level STOP fires only if EVERY dose that moves the primary ruler helpfully is '
+    + 'disqualified. The clamp reading is frozen with it: SPAN-END rows are read as DELIVERED '
+    + 'GEOMETRY (mean shift + clamp shares published beside every row), and the depth axis\'s '
+    + 'dose-response primary read INCLUDES the interior −0.5 row. The band rule is frozen with '
+    + 'it too: the equilibrium band GATES at battery N only; at any N the #198-form exclusion '
+    + 'applies (dimensions the ABSENT arm itself fails are excluded AND disclosed). ⚠ THIS PROBE '
+    + 'STILL FIRES NOTHING (#203) — this is the pre-registered GRANULARITY of the commander\'s '
+    + 'own adjudication, recorded here so it cannot be re-cut after sight.',
   rulerProvenance: {
     r1: 'the O2-T1 `trueCellOf` instrument VERBATIM on the #186 eligible-moment population; '
       + 'control read 0.639% at N=320. Gate: G-REPRO-O2T1.',
@@ -1460,8 +2006,16 @@ const body = {
       + 'for the first time; radius family PARSED from source. Gate: G-TRACE-RADIUS.',
     r4: 'support-existence at PRESSED moments = r3\'s predicate under r2\'s pressure test — '
       + 'H-CTB\'s core quantity, published at BOTH grains.',
-    r5: 'the #218 shares: DROPPED with a declared statement (see arms[].ruler5BuildUp.dropped).',
+    r5: 'the #218 shares: LIFTED — the goal-genealogy ORIGIN CLASSIFIER ported with its LOSS-TICK '
+      + 'semantics verbatim (#215.3-H1/M2) and published per arm (constructed ladder ≥3/4/5, '
+      + 'scramble share, set-piece share, turnover-by-third origins). Gate: G-REPRO-GGC. '
+      + 'REPORTED ONLY — no gate hangs on any of these shares in T1.',
   },
+  primaryRulers: '⭐ RULED PRE-BATTERY: the PRIMARY RULER is ruler 1 (TRUE-holdable supply) + '
+    + 'ruler 2 (pressed-first-reception) — the two UNSATURATED quantities. Rulers 3 and 4 are '
+    + 'DEMOTED to REPORTED with their ceilings DISCLOSED (`saturationCeilings`), and ruler 5 is '
+    + 'REPORTED by construction. This changes no measurement: it names which columns the exam is '
+    + 'read on, before the battery exists.',
   tableSha: EXPECTED_TABLE_SHA,
   frozenParameters: {
     perMatchCap: PER_MATCH_CAP, momentSpacing: MOMENT_SPACING, horizon: HORIZON,
@@ -1473,6 +2027,7 @@ const body = {
       + 'moment SET is bit-identical to the O2-T1 walker\'s — which is what G-REPRO-O2T1 proves.',
   },
   nRule,
+  saturationCeilings,
   ...bodyA,
   guardVerdicts: {
     tolerances: guardRows,
@@ -1513,6 +2068,7 @@ writeFileSync(OUT_PATH, `${JSON.stringify({
     o2t1Path: O2T1_PATH,
     tempoPath: TEMPO_PATH,
     tempoSmokePath: TEMPO_SMOKE_PATH,
+    ggcSmokePath: GGC_SMOKE_PATH,
     checkpoint: {
       armed: CHECKPOINTING, path: CHECKPOINTING ? CKPT_PATH : null, resumeRequested: RESUME,
       restoredPass1: coreA.restored.length, computedPass1: coreA.computed.length,
@@ -1558,7 +2114,30 @@ rowLine('3a SHORT-OPTION supply — possession ticks', 'shortOptionPossShare');
 rowLine('3b SHORT-OPTION supply — first receptions', 'shortOptionFirstRecShare');
 rowLine('4a SUPPORT-EXISTENCE at PRESSED possession ticks', 'supportAtPressedPossShare');
 rowLine('4b SUPPORT-EXISTENCE at PRESSED first receptions', 'supportAtPressedFirstRecShare');
-rowLine('5  goals per match (the #218 shares are DROPPED — see the artifact)', 'goalsPerMatch', false);
+rowLine('5  goals per match (the #218 shares are LIFTED — rows below)', 'goalsPerMatch', false);
+o('');
+o('RULER 5 — THE #218 LIFT (REPORTED; no gate reads these · G-REPRO-GGC proves the port)');
+for (const a of ARMS) {
+  const g = (bodyA.arms as any)[a].ruler5BuildUp.genealogy;
+  o(`  ${a.padEnd(12)} goals ${String(g.goals).padStart(3)} · constructed≥3 `
+    + `${pct(g.constructedLadder.nonSetPiece.ladder.ge3.constructedShareOfPool)}`
+    + ` · ≥4 ${pct(g.constructedLadder.nonSetPiece.ladder.ge4.constructedShareOfPool)}`
+    + ` · ≥5 ${pct(g.constructedLadder.nonSetPiece.ladder.ge5.constructedShareOfPool)}`
+    + ` · scramble ${pct(g.scrambleShareOfGoals)} · setPiece ${pct(g.setPieceShareOfGoals)}`
+    + ` · turnover own/mid/final ${pct(g.turnoverByThirdOriginShares.own)}/`
+    + `${pct(g.turnoverByThirdOriginShares.middle)}/${pct(g.turnoverByThirdOriginShares.final)}`);
+}
+o('');
+o('THE CEILINGS (rulers 3b/4b are near-saturated — disclosed, computed from these rows)');
+for (const [k, c] of [['4b support@pressed first rec', saturationCeilings.ruler4bSupportAtPressedFirstRec],
+  ['3b short option / first rec', saturationCeilings.ruler3bShortOptionFirstRec]] as const) {
+  o(`  ${k}: ABSENT ${c.absentLevelPct}% ⇒ helpful headroom ${c.helpfulHeadroomPp} pp`);
+  for (const a of ARMS.filter((x) => x !== CONTROL_ARM)) {
+    const r = (c.perArm as any)[a];
+    o(`    ${a.padEnd(12)} Δ ${String(r.deltaPp).padStart(7)} pp = ${(r.shareOfHeadroomConsumed * 100).toFixed(1)}%`
+      + ` of the headroom · resolved=${r.resolved}`);
+  }
+}
 o('');
 o('THE SEAM (G-ARM + clamp saturation)');
 for (const a of ARMS) {
@@ -1597,7 +2176,8 @@ if (nRule.available) {
     + `${nr.q1TrueHoldable.mReq} ⇒ N ${nr.q1TrueHoldable.n}`);
   o(`  q2 pressed-first-reception (MDE = ${nr.q2PressedFirstReception.mde}, the census's own `
     + `smallest cross-arm gap): m_req ${nr.q2PressedFirstReception.mReq} ⇒ N ${nr.q2PressedFirstReception.n}`);
-  o(`  binding ${nr.binding} ⇒ N* ${nr.nStar} (cap ${N_CAP}, binds=${nr.capBinds}) · battery block ${nr.batteryBlock}`);
+  o(`  binding ${nr.binding} ⇒ N* ${nr.nStar} (the RULE'S own number; ledger room ${nr.batteryRoom}, `
+    + `binds=${nr.roomBinds}) · battery block ${nr.batteryBlock}`);
 }
 o('');
 o('GATES');
