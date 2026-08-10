@@ -9754,6 +9754,8 @@
       ],
       "blockFailures": [],
       "stageOwnOverlaps": [],
+      "stageOwnUnified": [],
+      "stageOwnOverlapSemantics": "⭐ a stage-own pair FAILS when its intervals intersect UNLESS they are EXACTLY equal (same first AND same last), in which case the two rows are ONE block under two names and are recorded in `stageOwnUnified` instead. This is the FULL-mode reality: the exam walk redeems the reserved battery block (RUN_BASE === BATTERY_BASE, same N-derived count), so a reservation and the walk that consumes it are not two blocks clashing. PARTIAL overlap still FAILS — an exam block that half-covers the reservation (or outgrows it) is a genuine ledger defect and is exactly what this check is for.",
       "examCollisions": [],
       "subBlocksOrdered": true,
       "batteryCollisions": [],
@@ -10835,10 +10837,10 @@
     }
   },
   "allGatesPass": true,
-  "resultSha256": "8d85085761381d7c6aafced6ed21c911ec22f4aec8930369af00c8f2c46d3639",
+  "resultSha256": "33ea85f01428053b0faa126016e633aaa3e77b98019c1b01ea8c2eb264c1c9c0",
   "envelopeContextOnly": {
-    "headContextOnly": "1f8492c",
-    "wallMsContextOnly": 331670,
+    "headContextOnly": "41acf6a",
+    "wallMsContextOnly": 329533,
     "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
     "outPath": "docs/world-model/data/obm-t1-policy-exam-smoke.json",
     "srcDiffStat": "",

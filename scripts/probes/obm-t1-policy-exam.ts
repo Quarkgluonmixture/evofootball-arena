@@ -2345,9 +2345,25 @@ const walkedBlocks = walkedBlocksRaw.map((b) => {
   };
 });
 const stageOwnBlocks = walkedBlocks.filter((b) => b.kind !== 're-walk');
-const stageOwnOverlaps = stageOwnBlocks.flatMap((a, i) => stageOwnBlocks.slice(i + 1)
+/** ⭐ IDENTITY IS NOT OVERLAP — the full-mode predicate correction. In FULL mode the exam walk IS
+ *  the redemption of the reserved battery block: `RUN_BASE === BATTERY_BASE` and `RUN_N` is the
+ *  same N-derived count, so the `exam` row and the `battery (reserved, N-derived)` row are the
+ *  SAME interval under two names — a reservation and the walk that consumes it — not two blocks
+ *  colliding. The earlier cut compared the block against itself and went RED in full mode only
+ *  (in smoke the exam block sits at SMOKE_BASE, a genuinely different interval, so the defect was
+ *  invisible). CORRECTED PREDICATE: an overlapping pair is a FAILURE unless the two intervals are
+ *  EXACTLY equal, in which case they are UNIFIED (recorded, not ignored). A PARTIAL overlap — an
+ *  exam block that half-covers the reservation, or a reservation the walk outgrew — is a real
+ *  defect and still fails, which is the whole load the check carries. */
+const stageOwnPairs = stageOwnBlocks.flatMap((a, i) => stageOwnBlocks.slice(i + 1)
   .filter((b) => !(a.last < b.first || b.last < a.first))
-  .map((b) => `${a.name} × ${b.name}`));
+  .map((b) => ({
+    pair: `${a.name} × ${b.name}`,
+    identical: a.first === b.first && a.last === b.last,
+    intervals: [`${a.first}..${a.last}`, `${b.first}..${b.last}`],
+  })));
+const stageOwnUnified = stageOwnPairs.filter((p) => p.identical);
+const stageOwnOverlaps = stageOwnPairs.filter((p) => !p.identical).map((p) => p.pair);
 const blockFailures = walkedBlocks.filter((b) => !b.ok).map((b) => b.name);
 const examCollisions = ledgerHits(RUN_BASE, RUN_BASE + RUN_N - 1);
 const batteryCollisions = ledgerHits(BATTERY_BASE, batteryLast);
@@ -2717,6 +2733,14 @@ const gates = {
     walkedBlocks,
     blockFailures,
     stageOwnOverlaps,
+    stageOwnUnified,
+    stageOwnOverlapSemantics: '⭐ a stage-own pair FAILS when its intervals intersect UNLESS they '
+      + 'are EXACTLY equal (same first AND same last), in which case the two rows are ONE block '
+      + 'under two names and are recorded in `stageOwnUnified` instead. This is the FULL-mode '
+      + 'reality: the exam walk redeems the reserved battery block (RUN_BASE === BATTERY_BASE, '
+      + 'same N-derived count), so a reservation and the walk that consumes it are not two blocks '
+      + 'clashing. PARTIAL overlap still FAILS — an exam block that half-covers the reservation '
+      + '(or outgrows it) is a genuine ledger defect and is exactly what this check is for.',
     examCollisions,
     subBlocksOrdered,
     batteryCollisions,

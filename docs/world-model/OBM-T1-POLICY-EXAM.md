@@ -285,14 +285,25 @@ not.)*
 > gate level moved with it (the re-run's only artifact motion is the seed-disjointness block,
 > one renamed field and the digests — enumerated in Deviations 6).
 
+> ⭐ **AND SUPERSEDED A SECOND TIME, BY A GATE-PREDICATE CORRECTION THE BATTERY EXPOSED.**
+> `8d850857…3639` **is superseded** by `33ea85f0…c9c0`. The battery run went **14/15 green with
+> SEED-DISJOINT red**, and the red was a **self-comparison artifact in this stage's own new
+> `stageOwnOverlaps` check, not a ledger clash**: in FULL mode the walked exam block **IS** the
+> reserved battery block (`RUN_BASE === BATTERY_BASE`, same N-derived count, 12,424,100–727),
+> so the reservation and the walk that redeems it were compared against each other and reported
+> as an overlap. Invisible in smoke, where the exam block sits at 12,424,026–037. The predicate
+> is corrected below (identity ⇒ unified, **partial overlap still fails**) and re-smoked. **No
+> measured number moved**: the smoke re-run's ONLY artifact motion is the two new
+> `seedDisjoint` fields, `resultSha256`, and the two CONTEXT-ONLY envelope fields.
+
 **12 seeds × 8 arms** (12,424,026–037), paired on one shared seed list, **plus** the four
 receipt walks (O2-T1 12 · #173 40 · GGC 12 · ⭐ CTB-T1 8) and the 8 delivered-dose matches —
 and the whole core runs **twice** (X-DET). Verdict: **ALL 15 GATES PASS**, probe exit 0.
 
-* **resultSha256** `8d85085761381d7c6aafced6ed21c911ec22f4aec8930369af00c8f2c46d3639`
-  (supersedes `4a3bc707…ec71` pre-battery)
+* **resultSha256** `33ea85f01428053b0faa126016e633aaa3e77b98019c1b01ea8c2eb264c1c9c0`
+  (supersedes `8d850857…3639`, which superseded `4a3bc707…ec71` pre-battery)
 * **X-DET digest** `b1aa0a721ed6616ca919edd1e9b9b94e6f968b48ee8513aa5a8b6181da146f50` (both passes)
-* Wall ≈ **332 s** — CONTEXT ONLY (#128), used in no rate. Per #197-M1 the hashed body is
+* Wall ≈ **330 s** — CONTEXT ONLY (#128), used in no rate. Per #197-M1 the hashed body is
   commit-free, timing-free and path-free.
 
 ### Gate table
@@ -311,7 +322,7 @@ and the whole core runs **twice** (X-DET). Verdict: **ALL 15 GATES PASS**, probe
 | **G-ARM** | ✅ PASS | matrix on 6/6 genome views on 12/12 seeds; **120 policy-cache writes per armed arm, 12/12 seeds**; the four classes partition exactly in every arm; ARMED-ZERO shift **exactly 0** with 157,914 planes PRESENT |
 | **FLAG-HYGIENE** | ✅ PASS | ARMED-ZERO ≡ ABSENT on **12/12** seeds, signature **and** every row field; two-doors row: `ctbSupportPlane` FALSE and `edsPerceivedChoice` TRUE in 8/8 arms |
 | ⭐ **G-FORK-TOKENS** | ✅ PASS | **37 src occurrences, ZERO unclassified**; 1 `FLAG_FORK_SCORE` + 1 `FLAG_FORK_PLANE` + 1 `PLANE_APPLY` + 2 `SCORE_APPLY` + 2/2 `SCORE_MUL_*` + 1 `POLICY_WRITE`, and the **new** classes **`SEAT_CALL` 3** and **`CADENCE_CAP` 3** — the #228.5(b) debt paid |
-| **SEED-DISJOINT** | ✅ PASS | ⭐ **all EIGHT blocks this stage touches, machine-checked** (was four): FRESH — smoke 12,424,026–037 · **dose read 12,424,040**; RESERVED — guard 12,424,050–099 · battery 12,424,100–727; RE-WALKS — O2-T1 12,422,100–111 · #173 12,293,000–039 · GGC 12,421,000–011 · ⭐ **CTB-T1 12,423,100–107**. Zero ledger collisions on the four own blocks, zero overlaps among them, and each of the four re-walks lands **inside** its source's consumed interval (the inverted predicate) |
+| **SEED-DISJOINT** | ✅ PASS | ⭐ **all EIGHT blocks this stage touches, machine-checked** (was four): FRESH — smoke 12,424,026–037 · **dose read 12,424,040**; RESERVED — guard 12,424,050–099 · battery 12,424,100–727; RE-WALKS — O2-T1 12,422,100–111 · #173 12,293,000–039 · GGC 12,421,000–011 · ⭐ **CTB-T1 12,423,100–107**. Zero ledger collisions on the four own blocks, zero overlaps among them, and each of the four re-walks lands **inside** its source's consumed interval (the inverted predicate). ⭐ **Stage-own pairwise predicate CORRECTED this round** (Deviation 9): intersecting rows fail **unless the two intervals are EXACTLY equal**, in which case they are one block under two names (`stageOwnUnified`) — the FULL-mode reality that the exam walk **redeems** the reserved battery block. **PARTIAL overlap still fails.** In smoke both lists are empty |
 | **STATS-DISJOINT** | ✅ PASS | base 105,000, min gap **200** |
 | **G-CLEAN-INVOCATION** | ✅ PASS | no override in force |
 
@@ -446,6 +457,20 @@ $ OBMT1_MODE=smoke npx tsx scripts/probes/obm-t1-policy-exam.ts     (the CORRECT
    xDet digests + resultSha256 · the two CONTEXT-ONLY envelope fields (head, wall).
    EVERY measured rate, CI, guard level and gate verdict is byte-identical.)
 
+$ OBMT1_MODE=smoke npx tsx scripts/probes/obm-t1-policy-exam.ts   (the GATE-PREDICATE correction)
+  ALL                PASS      (15 gates)
+  exit 0 · resultSha256 33ea85f01428053b0faa126016e633aaa3e77b98019c1b01ea8c2eb264c1c9c0
+  wall 330 s (CONTEXT ONLY) · artifact docs/world-model/data/obm-t1-policy-exam-smoke.json
+  (supersedes 8d850857…3639. Artifact diff vs the superseded run, EXHAUSTIVE — a
+   whole-JSON recursive field walk returns FIVE paths and no more:
+     ADDED   gates.seedDisjoint.stageOwnUnified              (empty in smoke)
+     ADDED   gates.seedDisjoint.stageOwnOverlapSemantics     (the corrected predicate, stated)
+     CHANGED resultSha256
+     CHANGED envelopeContextOnly.headContextOnly             (CONTEXT ONLY)
+     CHANGED envelopeContextOnly.wallMsContextOnly           (CONTEXT ONLY)
+   No measured rate, CI, guard level, digest-of-body or gate verdict moved — the xDet
+   digest is unchanged, which is the strongest available statement that the WORLD did not.)
+
 $ OBMT1_N=1 OBMT1_SKIP_FP=1 npx tsx scripts/probes/obm-t1-policy-exam.ts   (the OVERRIDE route)
   ⚠ OVERRIDE IN FORCE — routed onto the EXIT-SEMANTICS GUARD BLOCK 12,424,050..12,424,099
   gCleanInvocation *** FAIL ***   xFpProd *** FAIL ***   ALL *** FAIL ***   exit 1
@@ -541,6 +566,33 @@ between the artifact and the reader.
    featureMeans mean **0.27266** against that same read's `planeWidth` mean **0.27266**.
    (c) "every Δ inside ±2" on interceptions was false at the boundary — CHECK-WHEN-PRESSED's
    delta is **exactly −2.0** — so the sentence now lists the seven deltas.
+
+**⭐ The BATTERY-EXPOSED gate-predicate correction (9) — the check was wrong, not the ledger.**
+
+9. ⭐⭐ **THE FIRST BATTERY RUN WENT 14/15 WITH SEED-DISJOINT RED, AND THE RED WAS THE CHECK'S
+   OWN, NOT THE WORLD'S — RECORDED OF RECORD.** That run: `resultSha256`
+   **`b1cdef8d…8eef`**, **14/15 gates green, X-DET PASS**, its artifact **deliberately left
+   UNCOMMITTED and deleted** — it was produced by a probe whose SEED-DISJOINT predicate is now
+   known to be defective in FULL mode, so it is not evidence and is not banked. **No exam rate
+   from it has been read by anybody**, and none is quoted here.
+   **The defect**: the pre-battery correction (Deviation 6) added a stage-own **pairwise
+   disjointness** test over the fresh + reserved blocks. In SMOKE the exam block is
+   12,424,026–037 and the reserved battery block is 12,424,100–727 — different intervals, test
+   silent. In FULL, `RUN_BASE === BATTERY_BASE` and the run length **is** the N-derived
+   reservation length **by design** (full mode is the reservation being consumed), so the rows
+   `exam` and `battery (reserved, N-derived)` are the **same interval under two names** and the
+   test compared the block against itself. A **full-mode-only predicate bug**, and the exact
+   class of thing only a real battery could surface.
+   **Every other statement in that gate was correct on that run**: `ledgerCollisions` empty on
+   every fresh and reserved block, all four re-walk **inverted** predicates satisfied,
+   `examCollisions` empty, `batteryCollisions` empty, sub-block ordering true.
+   **The correction, stated as a predicate** (and published in the artifact as
+   `stageOwnOverlapSemantics`): a stage-own pair **fails when its intervals intersect UNLESS
+   they are EXACTLY equal** — equal ⇒ one block under two names, recorded in `stageOwnUnified`
+   rather than ignored. **A PARTIAL overlap still FAILS**: an exam block that half-covers the
+   reservation, or a walk that outgrew it, is a genuine ledger defect and is precisely what this
+   check exists to catch. Nothing was loosened to green — the identity case was never an overlap
+   in the first place, and the failure mode the check guards is strictly preserved.
 
 ### Disposition
 
