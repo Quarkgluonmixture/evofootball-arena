@@ -699,10 +699,27 @@ let head = '';
 try { head = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim(); } catch { head = 'git-unavailable'; }
 
 const seedDisjoint = (() => {
-  const first = BLOCK;
-  const last = BLOCK + N; // + the geometry/smoke match at BLOCK + N
-  const clashes = CONSUMED.filter((c) => !(last < c.range[0] || first > c.range[1]));
-  return { first, last, consumedBlocks: CONSUMED, collisions: clashes.map((c) => c.name), pass: clashes.length === 0 };
+  // EVERY interval this stage consumes is checked, not just the receipts block:
+  // the test file's own fixture seeds are consumption too (§SEED LEDGER).
+  const intervals = [
+    { name: 'CTB-T0 receipts + corner-geometry/smoke read', first: BLOCK, last: BLOCK + N },
+    { name: 'CTB-T0 test-file seeds (tests/ctbSupportPlane.test.ts)', first: 12_423_900, last: 12_423_901 },
+  ] as const;
+  const checked = intervals.map((iv) => {
+    const clashes = CONSUMED.filter((c) => !(iv.last < c.range[0] || iv.first > c.range[1]));
+    return { ...iv, collisions: clashes.map((c) => c.name), pass: clashes.length === 0 };
+  });
+  const all = checked.flatMap((iv) => iv.collisions);
+  return {
+    first: BLOCK,
+    last: BLOCK + N, // + the geometry/smoke match at BLOCK + N
+    intervals: checked,
+    consumedBlocks: CONSUMED,
+    collisions: all,
+    pass: checked.every((iv) => iv.pass),
+    semantics: 'BOTH intervals this stage consumes are machine-checked against the consumed '
+      + 'ledger: the receipts block AND the test file\'s own fixture seeds.',
+  };
 })();
 
 const gOff = runA.rows.every((r) => r.identical && r.plainIdentical);
@@ -784,9 +801,17 @@ const body = {
           + 'further back, negative width never widens, positive width never narrows. MAGNITUDE: '
           + 'the depth corners move the ahead-distance by exactly depth*span*radius (except '
           + 'where the incumbent pitch clamp binds), the narrow corner at -1 lands EXACTLY on '
-          + 'the ball\'s lane, and no corner ever inverts the lateral sign. The headline: the '
-          + 'DEEP corner puts bodies BEHIND the ball on real ticks, which the incumbent '
-          + 'expression does on ZERO ticks — the contract §0.3 defect, answered.',
+          + 'the ball\'s lane, and no corner ever inverts the lateral sign. The headline, as '
+          + 'CORRECTED after first sight (§DEV 4): the pre-registered "the incumbent lands '
+          + 'behind the ball on ZERO ticks" is FALSE and is withdrawn, not repaired — the '
+          + 'incumbent expression lands behind the ball ONLY where the pitch-edge x clamp '
+          + `binds (${geometry.corners[0].incumbentBehindBallSamples} of ${geometry.samples} `
+          + 'sampled ticks, every one clamp-bound, NONE genome-'
+          + 'expressible), so the contract §0.3 statement — no genome in the evolvable space '
+          + 'can place a supporter level with or behind the ball — survives exactly as '
+          + 'written. The gate therefore asserts that EVERY incumbent behind-ball case is '
+          + 'clamp-bound (incumbentBehindBallSamples === incumbentBehindBallClampBound) plus '
+          + 'a STRICT increase in behind-ball ticks under the deep dose.',
       },
     },
     gRng: {

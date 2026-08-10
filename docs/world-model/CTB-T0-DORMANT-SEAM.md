@@ -272,7 +272,10 @@ off a deterministic run.
 | free above | 12,423,025 – 12,423,899 and 12,423,902 + | available to CTB-T1 |
 
 Disjointness from every listed consumed block is computed **in-probe**
-(`gates.seedDisjoint`), not asserted here.
+(`gates.seedDisjoint`), not asserted here — and for **both** intervals this stage
+consumes: the receipts block AND the test file's 12,423,900–901 fixture seeds are each
+checked against the ledger and published with their own collision result
+(`gates.seedDisjoint.intervals`).
 
 ## §ROAD B — nothing ships
 
@@ -319,12 +322,24 @@ artifact [`data/ctb-t0-support-plane.json`](data/ctb-t0-support-plane.json).
 digests), plus 3 league-seed 2-season identity runs, the corner-geometry read and the
 dosed smoke on seed 12,423,024, the seam rng fixture, the 8-generation evolution-rng
 comparison (three arm pairs) and the `src/**` fork scan.** Verdict: **GATES PASS**
-(`gates.allPass === true`), probe exit 0. Wall ≈ 57 s (CONTEXT ONLY — used in no rate).
+(`gates.allPass === true`), probe exit 0. Wall ≈ 60 s (CONTEXT ONLY — used in no rate).
 
 * **G-DET digest** — `gates.gDet.digestA === digestB ===`
   `5efe6a9b13828270c2700e62c2f47e78f487d2e0c5b43a397b67bdd5dd1417e4`
-* **resultSha256** `39797917037e3da8e2a087fcb15818ed769c55686c2eb550f72b5c0241400793`
-  (recomputable: `npx tsx scripts/probes/ctb-t0-support-plane.ts`). ⭐ Per #197-M1 the
+* **resultSha256** `1bdf995d5f3a4d1474d3817b9572d09cf0409108f7893a7914963f934344797b`
+  (recomputable: `npx tsx scripts/probes/ctb-t0-support-plane.ts`). ⚠ **SUPERSESSION,
+  recorded not hidden:** the first banked run's `resultSha256` was
+  `39797917037e3da8e2a087fcb15818ed769c55686c2eb550f72b5c0241400793`; it is superseded
+  by an **evidence-layer correction only** — (i) the artifact's own
+  `gates.gBite.geometryUnderForce.semantics` string still narrated the FALSIFIED
+  pre-registered claim that the incumbent lands behind the ball on ZERO ticks, while
+  the same artifact reported 132 clamp-bound incumbent ticks (the executable predicate
+  and §DEV 4 had already been corrected — only the self-narration was missed), and
+  (ii) `gates.seedDisjoint` now machine-checks **both** intervals this stage consumes
+  (the receipts block AND the test file's 12,423,900–901 fixture seeds) instead of the
+  receipts block alone. **No measurement moved**: the G-DET digest is byte-identical
+  across both runs, and the only hashed fields that differ are those two. The prior
+  artifact stays in git history. ⭐ Per #197-M1 the
   hashed body is **commit-free, timing-free and path-free** — `headContextOnly`,
   `wallMsContextOnly` and `artifactPathContextOnly` ride the envelope, OUTSIDE the
   hash, so a third party re-derives this hash at an arbitrary commit or path.

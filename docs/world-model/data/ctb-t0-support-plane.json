@@ -141,7 +141,7 @@
           }
         ],
         "lawPass": true,
-        "semantics": "REAL supportSpot outputs sampled on a live match at the four traced corners. SIGN: negative depth never moves the seat further ahead, positive depth never further back, negative width never widens, positive width never narrows. MAGNITUDE: the depth corners move the ahead-distance by exactly depth*span*radius (except where the incumbent pitch clamp binds), the narrow corner at -1 lands EXACTLY on the ball's lane, and no corner ever inverts the lateral sign. The headline: the DEEP corner puts bodies BEHIND the ball on real ticks, which the incumbent expression does on ZERO ticks — the contract §0.3 defect, answered."
+        "semantics": "REAL supportSpot outputs sampled on a live match at the four traced corners. SIGN: negative depth never moves the seat further ahead, positive depth never further back, negative width never widens, positive width never narrows. MAGNITUDE: the depth corners move the ahead-distance by exactly depth*span*radius (except where the incumbent pitch clamp binds), the narrow corner at -1 lands EXACTLY on the ball's lane, and no corner ever inverts the lateral sign. The headline, as CORRECTED after first sight (§DEV 4): the pre-registered \"the incumbent lands behind the ball on ZERO ticks\" is FALSE and is withdrawn, not repaired — the incumbent expression lands behind the ball ONLY where the pitch-edge x clamp binds (132 of 10968 sampled ticks, every one clamp-bound, NONE genome-expressible), so the contract §0.3 statement — no genome in the evolvable space can place a supporter level with or behind the ball — survives exactly as written. The gate therefore asserts that EVERY incumbent behind-ball case is clamp-bound (incumbentBehindBallSamples === incumbentBehindBallClampBound) plus a STRICT increase in behind-ball ticks under the deep dose."
       }
     },
     "gRng": {
@@ -280,6 +280,22 @@
     "seedDisjoint": {
       "first": 12423000,
       "last": 12423024,
+      "intervals": [
+        {
+          "name": "CTB-T0 receipts + corner-geometry/smoke read",
+          "first": 12423000,
+          "last": 12423024,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "CTB-T0 test-file seeds (tests/ctbSupportPlane.test.ts)",
+          "first": 12423900,
+          "last": 12423901,
+          "collisions": [],
+          "pass": true
+        }
+      ],
       "consumedBlocks": [
         {
           "name": "#65 whether-seat block (repro receipt)",
@@ -437,7 +453,8 @@
         }
       ],
       "collisions": [],
-      "pass": true
+      "pass": true,
+      "semantics": "BOTH intervals this stage consumes are machine-checked against the consumed ledger: the receipts block AND the test file's own fixture seeds."
     },
     "allPass": true
   },
@@ -824,9 +841,9 @@
       }
     ]
   },
-  "resultSha256": "39797917037e3da8e2a087fcb15818ed769c55686c2eb550f72b5c0241400793",
-  "wallMsContextOnly": 56854,
-  "headContextOnly": "6318eef",
+  "resultSha256": "1bdf995d5f3a4d1474d3817b9572d09cf0409108f7893a7914963f934344797b",
+  "wallMsContextOnly": 60455,
+  "headContextOnly": "1dc4aa9",
   "artifactPathContextOnly": "docs/world-model/data/ctb-t0-support-plane.json",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit."
 }
