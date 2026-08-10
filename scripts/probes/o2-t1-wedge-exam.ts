@@ -306,6 +306,7 @@ interface PerMatch {
   possessionSpells: number;
   turnovers: number;
   turnoversUnderLiveLook: number;
+  attributionEdgesAcrossFrozenReset: number;
   abortedLossOwnTeamRecovery: number;
   abortedLossUnresolvedAtWalkEnd: number;
   /* ---- (iv) ring pressure ---- */
@@ -328,6 +329,7 @@ const emptyRow = (seed: number): PerMatch => ({
   looks: 0, lookScans: 0, lookCompleted: 0, lookAbortedLoss: 0, lookAbortedPhase: 0,
   lookEndedLive: 0, liveWindowTicks: 0, frozenPhaseTicksUnderLiveWindow: 0,
   ticksWalked: 0, possessionSpells: 0, turnovers: 0, turnoversUnderLiveLook: 0,
+  attributionEdgesAcrossFrozenReset: 0,
   abortedLossOwnTeamRecovery: 0, abortedLossUnresolvedAtWalkEnd: 0,
   ringReadable: 0, ringFull: 0, ringPressure: 0, ringOccupancySum: 0, ringOldestAgeSum: 0,
   goalsInWalkedWindow: 0, reachedFullTime: 0, retentionTicks: 0,
@@ -360,13 +362,33 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
   let prevOwnerGid: number | null = null;
   let prevSide: number | null = null;
   /**
-   * ⭐ THE LOSS-TICK READING (the #215 census lesson; commander-ruled PRE-BATTERY re-spec).
-   * `lossTickUnderLook` carries, for the body currently in control, whether a look window of
-   * HIS was live at his MOST RECENT CONTROLLED TICK. When the owning side next changes, that
-   * reading IS the losing team's last-controlled-tick reading — the loose-ball gap between the
-   * loss and the opponent's regain is spanned by construction, not by an adjacency window.
+   * ⭐ THE LOSS-TICK READING (the #215 census lesson; commander-ruled PRE-BATTERY re-spec),
+   * ⭐⭐ AMENDED PRE-BATTERY ONTO THE PLAYING CLOCK (commander ruling, made with NO exam
+   * number in existence — the same clock `stepO2Look` runs on, and the same clock the
+   * cadence identity is read on).
+   *
+   * `attrLossTickUnderLook` carries, for the body in control, whether a look window of HIS
+   * was live at his most recent CONTROLLED PLAYING TICK. When the owning side next changes,
+   * that reading IS the losing team's last-controlled-tick reading — the loose-ball gap
+   * between the loss and the opponent's regain is spanned by construction, not by an
+   * adjacency window.
+   *
+   * WHY THE AMENDMENT: on a frozen-phase tick (kickoff/goalPause/halftime early-return)
+   * `Match.step` never reaches the seam, so no scan exists and no window can close — yet the
+   * ball can be RESET to a kickoff taker. The wall-clock reading let that dead-ball owner
+   * OVERWRITE the losing carrier's last-controlled reading. CONTROL carries no windows at
+   * all, so the distortion fell ONLY on the LOOK arm's attributed count — precisely the
+   * column the F-O2b exposure limb reads. The attribution state below is therefore advanced
+   * ONLY on non-frozen ticks: frozen ticks never write it and never form an attribution edge.
+   *
+   * ⚠ THE TEAM-LEVEL TURNOVER DEFINITION IS UNCHANGED and the spell machinery feeding the
+   * RATE columns (`possessionSpells` / `turnovers` / the two per-spell rates) is untouched —
+   * it still runs on the walk's own wall clock. Only ATTRIBUTION moved.
    */
-  let lossTickUnderLook = false;
+  let attrLossTickUnderLook = false;
+  let attrPrevSide: number | null = null;
+  /** a frozen-phase dead-ball reset stands between the last controlled playing tick and the next */
+  let attrFrozenResetPending = false;
   /** aborted-by-loss windows awaiting the next established control (own-team recovery vs turnover) */
   const pendingAbortLossSides: number[] = [];
   const r = emptyRow(seed);
@@ -468,17 +490,11 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
       if (looker !== undefined) pendingAbortLossSides.push(looker.side);
     }
     const now = match.ball.owner;
+    // --- THE RATE COLUMNS: the walk's own spell machinery, UNTOUCHED by the amendment ------
     if (now !== null) {
       if (now.gid !== prevOwnerGid) {
         r.possessionSpells += 1;
-        if (prevSide !== null && now.side !== prevSide) {
-          r.turnovers += 1;
-          // ⭐ LOSS-TICK ATTRIBUTION (re-specified before the battery, #215 census lesson): the
-          // turnover is look-attributed iff the LOSING team's LAST-CONTROLLED tick of that spell
-          // was held by a body with a live look window of his own. No adjacency window is used,
-          // so the loose-ball gap cannot zero the column by construction.
-          if (lossTickUnderLook) r.turnoversUnderLiveLook += 1;
-        }
+        if (prevSide !== null && now.side !== prevSide) r.turnovers += 1;
         if (pendingAbortLossSides.length > 0) {
           for (const side of pendingAbortLossSides) {
             if (side === now.side) r.abortedLossOwnTeamRecovery += 1;
@@ -488,8 +504,24 @@ const walkSeed = (seed: number, arm: ArmName): PerMatch => {
         prevOwnerGid = now.gid;
         prevSide = now.side;
       }
-      // this tick the carrier IS in control: refresh his last-controlled-tick look reading
-      lossTickUnderLook = win !== null && win.gid === now.gid;
+    }
+    // --- ⭐ LOSS-TICK ATTRIBUTION, ON THE PLAYING CLOCK (commander-ruled pre-battery
+    // amendment). A frozen tick advances NO attribution state and forms NO attribution edge;
+    // it only records that a dead-ball reset now stands between the last controlled playing
+    // tick and the next one. An attribution edge whose spell was terminated by such a reset
+    // (the halftime / kickoff dead-ball case) is NOT a live-play loss, so it is counted into
+    // its own named subclass and NEVER mixed into `turnoversUnderLiveLook`.
+    if (frozenPhase) {
+      attrFrozenResetPending = true;
+    } else if (now !== null) {
+      if (attrPrevSide !== null && now.side !== attrPrevSide) {
+        if (attrFrozenResetPending) r.attributionEdgesAcrossFrozenReset += 1;
+        else if (attrLossTickUnderLook) r.turnoversUnderLiveLook += 1;
+      }
+      attrPrevSide = now.side;
+      attrFrozenResetPending = false;
+      // this PLAYING tick the carrier IS in control: refresh his last-controlled-tick reading
+      attrLossTickUnderLook = win !== null && win.gid === now.gid;
     }
   }
   r.abortedLossUnresolvedAtWalkEnd = pendingAbortLossSides.length;
@@ -654,13 +686,29 @@ const armSummary = (rows: PerMatch[]) => {
       turnoverPerSpell: round(rateOf(rows, 'turnoverPerSpell')),
       turnoversPer1000Ticks: round(rateOf(rows, 'turnoversPer1000Ticks'), 4),
       turnoversUnderLiveLook: s((r) => r.turnoversUnderLiveLook),
+      attributionEdgesAcrossFrozenReset: s((r) => r.attributionEdgesAcrossFrozenReset),
       turnoversUnderLiveLookPredicate: 'LOSS-TICK semantics (commander-ruled PRE-BATTERY '
-        + 're-spec, the #215 census lesson): the team-level turnover definition is UNCHANGED '
-        + '(the owning side changes); it is look-attributed iff at the LOSING team\'s '
-        + 'LAST-CONTROLLED tick of that spell the body in control held a live look window of '
-        + 'his own. Derived from this walk\'s own spell tracking, so the loose-ball gap between '
-        + 'the loss and the opponent\'s regain is spanned — the earlier adjacency wording read 0 '
-        + 'BY CONSTRUCTION and is superseded. 0 in CONTROL by construction (no windows exist).',
+        + 're-spec, the #215 census lesson), AMENDED PRE-BATTERY ONTO THE PLAYING CLOCK '
+        + '(commander ruling, with NO exam number in existence): the team-level turnover '
+        + 'definition is UNCHANGED (the owning side changes) and the spell machinery feeding '
+        + 'the RATE columns is UNTOUCHED; a turnover is look-attributed iff at the LOSING '
+        + 'team\'s LAST-CONTROLLED **PLAYING** TICK the body in control held a live look window '
+        + 'of his own. Attribution state advances ONLY on ticks the engine actually plays — the '
+        + 'same clock `stepO2Look` runs on. Frozen-phase ticks (kickoff/goalPause/halftime '
+        + 'early-return) write NO attribution state and form NO attribution edge. The '
+        + 'loose-ball gap between the loss and the opponent\'s regain is spanned by '
+        + 'construction — the earlier adjacency wording read 0 BY CONSTRUCTION and is '
+        + 'superseded. 0 in CONTROL by construction (no windows exist).',
+      attributionEdgesAcrossFrozenResetNote: 'THE NAMED SUBCLASS, PUBLISHED SO THE POPULATION '
+        + 'IS VISIBLE DATA rather than silently mixed in. These are attribution edges (the '
+        + 'owning side differs across the gap) whose spell was terminated by a FROZEN-PHASE '
+        + 'DEAD-BALL RESET — the half-time / kickoff case — not by a loss in live play. They '
+        + 'are counted here and are NEVER added to `turnoversUnderLiveLook`. WHY THIS MATTERS '
+        + 'ASYMMETRICALLY: on a frozen tick no scan can be recorded and no window can close, '
+        + 'yet the ball can be reset to a kickoff taker; the pre-amendment wall-clock reading '
+        + 'let that dead-ball owner OVERWRITE the losing carrier\'s last-controlled reading. '
+        + 'CONTROL carries no windows at all, so that distortion fell ONLY on the LOOK arm\'s '
+        + 'attributed count — exactly the column the F-O2b exposure limb reads.',
       engineAbortedLoss: s((r) => r.lookAbortedLoss),
       abortedLossOwnTeamRecovery: s((r) => r.abortedLossOwnTeamRecovery),
       abortedLossUnresolvedAtWalkEnd: s((r) => r.abortedLossUnresolvedAtWalkEnd),
@@ -1078,7 +1126,9 @@ const coreBody = (core: Core) => {
         seed: r.seed, eligible: r.eligible, dHold: r.dHold, trueHoldable: r.trueHoldable,
         abstainUnseen: r.classCounts['E-ABSTAIN-UNSEEN'], ctxPlaced: r.ctxPlaced,
         ctxAgreeAll: r.ctxAgreeAll, looks: r.looks, scans: r.lookScans,
-        liveWindowTicks: r.liveWindowTicks, turnovers: r.turnovers,
+        liveWindowTicks: r.liveWindowTicks,
+        frozenPhaseTicksUnderLiveWindow: r.frozenPhaseTicksUnderLiveWindow,
+        turnovers: r.turnovers,
         possessionSpells: r.possessionSpells, ticksWalked: r.ticksWalked,
         goals: r.goalsInWalkedWindow, ringPressure: r.ringPressure,
       })),
@@ -1086,7 +1136,9 @@ const coreBody = (core: Core) => {
         seed: r.seed, eligible: r.eligible, dHold: r.dHold, trueHoldable: r.trueHoldable,
         abstainUnseen: r.classCounts['E-ABSTAIN-UNSEEN'], ctxPlaced: r.ctxPlaced,
         ctxAgreeAll: r.ctxAgreeAll, looks: r.looks, scans: r.lookScans,
-        liveWindowTicks: r.liveWindowTicks, turnovers: r.turnovers,
+        liveWindowTicks: r.liveWindowTicks,
+        frozenPhaseTicksUnderLiveWindow: r.frozenPhaseTicksUnderLiveWindow,
+        turnovers: r.turnovers,
         possessionSpells: r.possessionSpells, ticksWalked: r.ticksWalked,
         goals: r.goalsInWalkedWindow, ringPressure: r.ringPressure,
       })),
@@ -1369,8 +1421,11 @@ o(`  frozen-phase ticks under a live window (NO scan, window cannot close — pu
 o('(ii) F-O2b EXPOSURE INSTRUMENTS');
 row('turnover per spell', 'turnoverPerSpell', false);
 row('turnovers /1000 ticks', 'turnoversPer1000Ticks', false);
-o(`  turnovers look-attributed at the LOSS TICK   CONTROL ${A.control.exposure.turnoversUnderLiveLook}`
+o(`  turnovers look-attributed at the LOSS TICK (PLAYING clock)   CONTROL ${A.control.exposure.turnoversUnderLiveLook}`
   + ` · LOOK ${A.look.exposure.turnoversUnderLiveLook}`);
+o('  attribution edges across a FROZEN-PHASE dead-ball reset (own subclass, NEVER mixed in)'
+  + `   CONTROL ${A.control.exposure.attributionEdgesAcrossFrozenReset}`
+  + ` · LOOK ${A.look.exposure.attributionEdgesAcrossFrozenReset}`);
 o(`  companions (no assumed identity): engine abortedLoss ${A.control.exposure.engineAbortedLoss}`
   + `/${A.look.exposure.engineAbortedLoss}`
   + ` · abortedLoss with OWN-team recovery ${A.control.exposure.abortedLossOwnTeamRecovery}`

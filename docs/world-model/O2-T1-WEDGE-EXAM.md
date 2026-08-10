@@ -175,6 +175,39 @@ probe's (`scripts/probes/o2-whether-sizing-rerun.ts`), which is itself #65's:
   > construction rather than by any tick window. `O2_LOOK_TICKS` no longer enters
   > the predicate. **0 in CONTROL by construction** (no window can exist there).
 
+  ⭐⭐ **AMENDED ONTO THE PLAYING CLOCK — a second commander-ruled PRE-BATTERY
+  amendment, made with NO exam number in existence** (the G-FORCE correction of
+  record surfaced it; see §GATES). The supersession trail above stands unchanged —
+  this amends the reading's **clock**, not its meaning. The predicate now in force,
+  stated exactly:
+
+  > The **team-level turnover definition is UNCHANGED** (the owning **side**
+  > changes) and the **spell machinery feeding the RATE columns is UNTOUCHED** —
+  > `possessionSpells`, `turnovers`, `turnoverPerSpell` and
+  > `turnoversPer1000WalkedTicks` are computed exactly as before. Only
+  > **ATTRIBUTION** moves. A turnover is **look-attributed** iff, at the losing
+  > team's **LAST-CONTROLLED PLAYING TICK**, the body then in control held a live
+  > `o2Look` window of his own. Attribution state advances **only on ticks the
+  > engine actually plays** — the same clock `stepO2Look` runs on and the same
+  > clock the G-FORCE cadence identity is read on. **Frozen-phase ticks**
+  > (`kickoff` / `goalPause` / `halftime` early-return) write **no** attribution
+  > state and form **no** attribution edge. An attribution edge whose spell was
+  > terminated by such a **frozen-phase dead-ball reset** is not a live-play loss:
+  > it is counted into its own named subclass
+  > **`attributionEdgesAcrossFrozenReset`** (published per arm) and is **never**
+  > mixed into `turnoversUnderLiveLook`.
+
+  **Why this had to be amended, and why the distortion was ASYMMETRIC.** On a
+  frozen tick `Match.step` never reaches the seam: no scan can be recorded and no
+  window can close — yet the ball **can** be reset to a kickoff taker. The
+  pre-amendment wall-clock reading let that dead-ball owner **overwrite** the
+  losing carrier's last-controlled reading, silently discarding the attribution.
+  **CONTROL carries no windows at all**, so this could only ever corrupt the
+  **LOOK** arm's attributed count — which is precisely the column the **F-O2b**
+  exposure limb reads. Left alone it would have biased the free-option question in
+  a direction no one had chosen, on the one arm under exam. Amended **ex ante**,
+  with the battery not yet re-run and no exam rate seen by anyone.
+
   Published beside it, **as data with NO assumed identity** — no claim is made
   that any of the three columns measures the same quantity:
   **(a)** the engine ledger's own `abortedLoss` (already emitted; the #194
@@ -419,13 +452,27 @@ recomputed by `npx tsx scripts/probes/o2-t1-wedge-exam.ts`. The doc never carrie
 evidence the artifact does not — #181.2.)*
 
 **Ran 2026-08-10 · `resultSha256`
-`089a4292ce0dc2c0a8d19da0220f6e562d8be612d0ebe4812e914fa2c62fc2a3` ·
-X-DET core digest `4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966`
+`f7a646eed18dee494d65f170c9d747925b99699e6fcfcaf1336e357780600b6a` ·
+X-DET core digest `210e58967dc4d63f5c0761b9da5411a6e026695dd0107745ff456a44bb073d34`
 (both passes) · 12 shared seeds 12,422,000–12,422,011 · **ALL GATES PASS**
-(`allGatesPass: true`) · wall 208 s (CONTEXT ONLY, #128 — used in no rate, and
+(`allGatesPass: true`) · wall 210 s (CONTEXT ONLY, #128 — used in no rate, and
 riding the UNHASHED envelope).**
 
-⚠ **SUPERSESSION (2), stated plainly.** This is the **third** smoke artifact. The
+⚠ **SUPERSESSION (3), stated plainly.** This is the **fourth** smoke artifact. The
+third (`resultSha256`
+`089a4292ce0dc2c0a8d19da0220f6e562d8be612d0ebe4812e914fa2c62fc2a3`, X-DET digest
+`4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966`) is **not
+withdrawn and remains in git history** at commit `48b059f`. It was superseded by
+the **loss-tick playing-clock amendment** (§FORM (ii), commander-ruled with no
+exam number in existence) plus the per-seed publication of
+`frozenPhaseTicksUnderLiveWindow`. The hashed-body fields that moved are: the two
+new `attributionEdgesAcrossFrozenReset` counters and their note, the 24 new
+per-seed `frozenPhaseTicksUnderLiveWindow` columns (all **0** at smoke) and the
+two amended `turnoversUnderLiveLookPredicate` strings. **No measured number moved
+at all** — `turnoversUnderLiveLook` read **0 / 18** before the amendment and
+**0 / 18** after it, exactly as the mechanism predicts (see (ii)).
+
+⚠ **SUPERSESSION (2), stated plainly.** The
 second (`resultSha256`
 `eefb273a38f25208c777e7aad5019617107811919aee02972f88fd5154ffc1d7`, X-DET digest
 `908d6aac112b25eafa2c2ef255c55d9bf8551d973d7dff0da39a2256980b7dcf`) is **not
@@ -459,7 +506,7 @@ moved are the re-specified/added exposure columns and `reference186.wedgeRatio`
 
 | gate | verdict | evidence |
 | --- | --- | --- |
-| **X-DET** | ✅ PASS | the whole computation twice; hashed bodies byte-identical: `digestA === digestB === 4554ed0b…4966` |
+| **X-DET** | ✅ PASS | the whole computation twice; hashed bodies byte-identical: `digestA === digestB === 210e5896…3d34` |
 | **X-FP-PROD** | ✅ PASS | observed `57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673` == the shipped baseline |
 | **G-REPRO-186 (a)** | ✅ PASS | #65's block 8,500,000–047, `REPRO65` flags: qualifying **3,840** · eligible **2,835** · D-HOLD **4** · classes **4 / 816 / 2,004 / 11** · cells placed **820** · agreement **0.502439** — identical to #186's committed `G-REPRO65` target |
 | **G-REPRO-186 (b)** | ✅ PASS | the CONTROL arm on #186's own block 12,310,000–011: **12 rows checked, 0 mismatches** against the committed `perMatch.o1armed` rows (seed · eligible · dHold · trueHoldable · abstainUnseen · ctxPlaced · ctxAgreeAll) |
@@ -540,7 +587,8 @@ loss. No mechanism claim is made from this mix.
 | turnovers | 339 | 280 | — | — |
 | **turnover per spell** | **0.415951** | **0.423601** | +0.00765 [−0.02383, +0.038604] | **no** |
 | **turnovers / 1,000 walked ticks** | **3.430827** | **2.848249** | **−0.582577** [−0.860543, −0.314299] | **YES** |
-| **turnovers look-attributed at the LOSS TICK** (`turnoversUnderLiveLook`, re-specified) | 0 (by construction) | **18** | — | — |
+| **turnovers look-attributed at the LOSS TICK** (`turnoversUnderLiveLook`, re-specified, now read on the **playing clock**) | 0 (by construction) | **18** | — | — |
+| subclass — `attributionEdgesAcrossFrozenReset` (spell terminated by a half-time / kickoff dead-ball reset; **never mixed into the row above**) | 20 | **23** | — | — |
 | companion (a) — engine `abortedLoss` | 0 | **94** | — | — |
 | companion (b) — `abortedLossOwnTeamRecovery` (abort NOT ending as a team turnover) | 0 | **50** | — | — |
 | `abortedLossUnresolvedAtWalkEnd` (audit residue for (b)) | 0 | **2** | — | — |
@@ -548,8 +596,19 @@ loss. No mechanism claim is made from this mix.
 The re-specified column **fires**: of the LOOK arm's **280** team-level turnovers,
 **18** are attributable to a look live at the losing team's last-controlled tick.
 The old adjacency wording read 0 by construction; the debt booked in deviation 5
-is **settled here, before the battery**, and the re-spec's exact predicate is in
-§FORM (ii).
+is **settled here, before the battery**, and the predicate's exact current form —
+including the **playing-clock amendment** — is in §FORM (ii).
+
+⭐ **The playing-clock amendment moved this column by ZERO at smoke** (it read 18
+before and after), which is exactly what the mechanism predicts: the amendment can
+only change an attribution whose losing carrier held a **live window** into a
+frozen tick, and `frozenPhaseTicksUnderLiveWindow` is **0** on this block. The
+subclass row is nevertheless **non-zero** (20 / 23) because frozen-phase resets
+themselves are ordinary here — every match has kickoffs — and those edges were
+always in the population; they are now **named and shown** instead of being
+silently arbitrated by whichever owner the dead ball happened to hold. Note the
+subclass is **not** an exposure cost and is **not** comparable across the arms as
+a rate: it is a population census of a dead-ball boundary.
 
 The three columns beside it are **data with no assumed identity** — no claim is
 made that they measure the same thing, and none of them is adjudicated here.
@@ -637,35 +696,35 @@ arms differ by EXACTLY o2Look; forcing = ONE LOOK PER RECEPTION (40-tick runway,
 N rule ⇒ N* 320 (cap 800)
 =============================================================================
   pass 1 · seed 1/12 (12422000) · both arms done · 2.6 s
-  pass 1 · seed 2/12 (12422001) · both arms done · 5.0 s
-  pass 1 · seed 3/12 (12422002) · both arms done · 7.4 s
-  pass 1 · seed 4/12 (12422003) · both arms done · 9.7 s
-  pass 1 · seed 5/12 (12422004) · both arms done · 12.1 s
-  pass 1 · seed 6/12 (12422005) · both arms done · 14.4 s
-  pass 1 · seed 7/12 (12422006) · both arms done · 16.8 s
-  pass 1 · seed 8/12 (12422007) · both arms done · 19.1 s
-  pass 1 · seed 9/12 (12422008) · both arms done · 21.3 s
-  pass 1 · seed 10/12 (12422009) · both arms done · 23.7 s
-  pass 1 · seed 11/12 (12422010) · both arms done · 25.9 s
-  pass 1 · seed 12/12 (12422011) · both arms done · 28.3 s
+  pass 1 · seed 2/12 (12422001) · both arms done · 5.1 s
+  pass 1 · seed 3/12 (12422002) · both arms done · 7.5 s
+  pass 1 · seed 4/12 (12422003) · both arms done · 9.9 s
+  pass 1 · seed 5/12 (12422004) · both arms done · 12.3 s
+  pass 1 · seed 6/12 (12422005) · both arms done · 14.7 s
+  pass 1 · seed 7/12 (12422006) · both arms done · 17.0 s
+  pass 1 · seed 8/12 (12422007) · both arms done · 19.3 s
+  pass 1 · seed 9/12 (12422008) · both arms done · 21.6 s
+  pass 1 · seed 10/12 (12422009) · both arms done · 24.0 s
+  pass 1 · seed 11/12 (12422010) · both arms done · 26.2 s
+  pass 1 · seed 12/12 (12422011) · both arms done · 28.7 s
   pass 1 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
   pass 1 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
-  [o2-t1] pass 1 digest 4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966 — X-DET second pass...
-  pass 2 · seed 1/12 (12422000) · both arms done · 2.3 s
-  pass 2 · seed 2/12 (12422001) · both arms done · 4.7 s
-  pass 2 · seed 3/12 (12422002) · both arms done · 7.0 s
-  pass 2 · seed 4/12 (12422003) · both arms done · 9.4 s
-  pass 2 · seed 5/12 (12422004) · both arms done · 11.7 s
-  pass 2 · seed 6/12 (12422005) · both arms done · 14.0 s
-  pass 2 · seed 7/12 (12422006) · both arms done · 16.3 s
-  pass 2 · seed 8/12 (12422007) · both arms done · 18.5 s
-  pass 2 · seed 9/12 (12422008) · both arms done · 20.8 s
-  pass 2 · seed 10/12 (12422009) · both arms done · 23.1 s
-  pass 2 · seed 11/12 (12422010) · both arms done · 25.4 s
-  pass 2 · seed 12/12 (12422011) · both arms done · 27.7 s
+  [o2-t1] pass 1 digest 210e58967dc4d63f5c0761b9da5411a6e026695dd0107745ff456a44bb073d34 — X-DET second pass...
+  pass 2 · seed 1/12 (12422000) · both arms done · 2.5 s
+  pass 2 · seed 2/12 (12422001) · both arms done · 4.8 s
+  pass 2 · seed 3/12 (12422002) · both arms done · 7.2 s
+  pass 2 · seed 4/12 (12422003) · both arms done · 9.6 s
+  pass 2 · seed 5/12 (12422004) · both arms done · 11.9 s
+  pass 2 · seed 6/12 (12422005) · both arms done · 14.3 s
+  pass 2 · seed 7/12 (12422006) · both arms done · 16.7 s
+  pass 2 · seed 8/12 (12422007) · both arms done · 19.0 s
+  pass 2 · seed 9/12 (12422008) · both arms done · 21.3 s
+  pass 2 · seed 10/12 (12422009) · both arms done · 23.7 s
+  pass 2 · seed 11/12 (12422010) · both arms done · 26.0 s
+  pass 2 · seed 12/12 (12422011) · both arms done · 28.4 s
   pass 2 · G-REPRO-186 (a): #65 block 8500000 (48 matches, REPRO65 flags)...
   pass 2 · G-REPRO-186 (b): #186 block 12310000 (12 matches, CONTROL arm)...
-  [o2-t1] pass 2 digest 4554ed0bb8efa002c62f6b891e7af776ece91b7a7253b361db12ab1ddd434966 — X-DET PASS
+  [o2-t1] pass 2 digest 210e58967dc4d63f5c0761b9da5411a6e026695dd0107745ff456a44bb073d34 — X-DET PASS
 
 === O2-T1 WEDGE EXAM · mode smoke · 12422000..12422011 (12 seeds/arm, shared) ===
 eligible moments  CONTROL 718 · LOOK 757   (qualifying 960 / 960)
@@ -693,7 +752,8 @@ EXCLUSION MIX (firstTouch / mustKick / A0-Shoot / A0-Clear)
 (ii) F-O2b EXPOSURE INSTRUMENTS
   turnover per spell         CONTROL    0.415951 · LOOK    0.423601 · Δ 0.00765 [-0.02383, 0.038604] resolved=false
   turnovers /1000 ticks      CONTROL    3.430827 · LOOK    2.848249 · Δ -0.582577 [-0.860543, -0.314299] resolved=true
-  turnovers look-attributed at the LOSS TICK   CONTROL 0 · LOOK 18
+  turnovers look-attributed at the LOSS TICK (PLAYING clock)   CONTROL 0 · LOOK 18
+  attribution edges across a FROZEN-PHASE dead-ball reset (own subclass, NEVER mixed in)   CONTROL 20 · LOOK 23
   companions (no assumed identity): engine abortedLoss 0/94 · abortedLoss with OWN-team recovery 0/50 · unresolved at walk end 0/2
   spells 815/661 · turnovers 339/280 · ticks 98810/98306
 (iv) RING PRESSURE (ring 16, retention 51 ticks)
@@ -719,8 +779,8 @@ GATES
   gForce             PASS
   gCleanInvocation   PASS
   ALL                PASS
-resultSha256 089a4292ce0dc2c0a8d19da0220f6e562d8be612d0ebe4812e914fa2c62fc2a3
-wall 208 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam-smoke.json
+resultSha256 f7a646eed18dee494d65f170c9d747925b99699e6fcfcaf1336e357780600b6a
+wall 210 s (CONTEXT ONLY) · artifact docs/world-model/data/o2-t1-wedge-exam-smoke.json
 ```
 
 ### §CHECKS
@@ -796,6 +856,24 @@ $ git diff --stat -- src
    only its gate block, and only to diagnose. `src/**` byte-untouched. The smoke
    re-run reproduces every previously committed number byte-identically; the new
    class reads 0/0 there.
+10. **The loss-tick attribution was AMENDED ONTO THE PLAYING CLOCK, ex ante, and
+    a named subclass published.** Diagnosing (9) surfaced that the *same*
+    frozen-tick blind spot reached a second column: on a frozen tick the ball can
+    be reset to a kickoff taker, and the wall-clock reading let that dead-ball
+    owner overwrite the losing carrier's last-controlled look reading. Because
+    **CONTROL carries no windows**, the distortion was **asymmetric** — it could
+    only corrupt the LOOK arm's `turnoversUnderLiveLook`, the column the F-O2b
+    exposure limb reads. Ruled an **amendment** by the commander with **no exam
+    number in existence**: attribution now advances only on played ticks, and
+    attribution edges terminated by a frozen-phase dead-ball reset go to their own
+    published subclass `attributionEdgesAcrossFrozenReset` rather than being
+    silently arbitrated (§FORM (ii)). **The team-level turnover definition and the
+    rate columns are untouched.** At smoke the amendment moved **nothing** —
+    `turnoversUnderLiveLook` reads 0 / 18 before and after, as the mechanism
+    predicts (`frozenPhaseTicksUnderLiveWindow` is 0 on this block) — and the
+    subclass reads 20 / 23, a population that was always there and is now named.
+    `frozenPhaseTicksUnderLiveWindow` was also added to the **per-seed** rows, so
+    the next cadence deficit is attributable without a re-run.
 
 ### Disposition
 
