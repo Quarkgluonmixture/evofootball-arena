@@ -382,12 +382,26 @@ ruler could NOT ride (PER_MATCH_CAP truncates the walk —
 dropped with evidence, constructed/scramble shares stay with
 census-form instruments). N* = 320/arm (frozen MDE rule,
 binding quantity E-ABSTAIN-UNSEEN −2 pp; cap does not bind).
-**QUEUED NEXT STEP: adjudicate the O2-T1 battery** (seeds
-12,422,100–419, `O2T1_MODE=full O2T1_RESUME=1`) against the
-frozen criteria — success = wedge → 1× with paired CI
-excluding CONTROL + E-ABSTAIN-UNSEEN falls resolvedly;
-F-O2a / F-O2b = pre-named STOPs. Then: 乙 the check-to-ball
-contract → 丙 progression value.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**THE FIRST BATTERY FAILED HARD GATE G-FORCE AND WAS FIXED
+BLIND (#221, `48b059f` + `770961a`)**: 10/320 seeds × exactly
+126 frozen ticks = a look window frozen across the halftime
+pause (72 + 54; the #194 quirk family — stepO2Look never runs
+in early-return phases); the SEAM is intact, the gate counter
+was over-broad ⇒ liveWindowTicks moved onto the seam's own
+clock + named class `frozenPhaseTicksUnderLiveWindow`; the
+adjacent dead-ball overwrite of `lossTickUnderLook` (LOOK-arm-
+only distortion of the F-O2b column) amended onto the playing
+clock ex ante; NO exam headline number was seen by anyone —
+the frozen criteria remain unsighted; red artifact
+(`056f2fdd…489e`) never committed, deleted.
+**QUEUED NEXT STEP: adjudicate the RELAUNCHED O2-T1 battery**
+(same block 12,422,100–419 re-walked by the corrected
+instrument, `O2T1_MODE=full O2T1_RESUME=1`) against the frozen
+criteria — success = wedge → 1× with paired CI excluding
+CONTROL + E-ABSTAIN-UNSEEN falls resolvedly; F-O2a / F-O2b =
+pre-named STOPs; green gates required before any number is
+read. Then: 乙 the check-to-ball contract → 丙 progression
+value.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

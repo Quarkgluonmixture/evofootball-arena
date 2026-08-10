@@ -9431,3 +9431,81 @@
 >    classification movement) and **F-O2b** (classification improves
 >    at ~zero measured exposure cost) are pre-named STOPs, reported
 >    as-is (#203: per-arm rows, never verdict lines).
+
+> **COMMANDER RULING #221 (2026-08-10 — the first O2-T1 battery
+> FAILED hard gate G-FORCE; diagnosed blind; two measurement-layer
+> fixes banked; the battery RELAUNCHES on the corrected
+> instrument):**
+>
+> 1. **THE RED RUN, OF RECORD**: the N = 320 battery completed
+>    (wall 1,673 s) with X-DET PASS but **G-FORCE FAIL** on its
+>    cadence-identity limb — engine scans 115,308 ≠ probe-counted
+>    liveWindowTicks 116,568 (deficit 1,260). The artifact
+>    (resultSha256 `056f2fdd…489e`) was NEVER committed and is
+>    deleted; ⚠ **no exam headline number was read by anyone** —
+>    commander and fix-executor both worked from gate blocks,
+>    ledger fields and per-seed looks/scans columns ONLY; the
+>    frozen criteria remain unsighted. Also of record: a
+>    mislaunched first invocation (env dict built but not passed ⇒
+>    smoke-mode re-walk of the already-committed smoke block,
+>    killed mid-run, zero output, zero fresh seeds); and the
+>    background monitor was group-killed once (the known machine
+>    phenomenon — the DETACHED battery itself survived; the #208
+>    pattern held).
+> 2. **DIAGNOSIS (from the quantized signature alone)**: exactly
+>    10/320 seeds carry a deficit of EXACTLY 126 ticks each —
+>    126 = halftime freeze 72 (phaseTimer 1.2 s) + kickoff freeze
+>    54 (0.9 s). A look window live at the half-end whistle is
+>    FROZEN across the pause: `Match.step` returns early during
+>    kickoff/goalPause/halftime so `stepO2Look` never runs (the
+>    #194 quirk family) — no scans recorded, window object
+>    persists, closes as abortedLoss at the first playing tick.
+>    The probe's per-tick counter counted frozen ticks as live.
+>    **THE SEAM IS INTACT** (ledger closes, unexplainedArms 0,
+>    looks on 320/320 LOOK seeds, CONTROL empty): the gate
+>    PREDICATE was written over-broadly at the measurement layer.
+> 3. **FIX 1 BANKED (`48b059f`)**: the diagnosis first CONFIRMED
+>    empirically on all 10 seeds (one contiguous 126-tick frozen
+>    span each — e.g. seed 12,422,107: span 7,256–7,381 = 72
+>    halftime + 54 kickoff, window closed abortedLoss at 7,382;
+>    instrumented assertions: ZERO scans on frozen ticks, exactly
+>    ONE per non-frozen live tick ⇒ the corrected identity holds
+>    exactly, no off-by-one). liveWindowTicks now counts on the
+>    clock `stepO2Look` runs on; the excluded ticks are the NAMED
+>    class `frozenPhaseTicksUnderLiveWindow` (the T0 G-SCAN
+>    precedent: name the class, tighten honestly). Contamination
+>    sweep: sampling (`phase === 'playing'`-gated), the
+>    abort-detection block, and ringRead all confirmed clean on
+>    the affected seeds (qualifyingOnFrozen = 0,
+>    abortDetectedOnFrozen = 0).
+> 4. **FIX 2 BANKED (`770961a`, commander-ruled amendment EX
+>    ANTE)**: the fix round surfaced an adjacent defect —
+>    possession bookkeeping advances during frozen ticks, and the
+>    dead-ball owner OVERWROTE `lossTickUnderLook` in 9 of the 10
+>    affected seeds. CONTROL carries no windows, so the distortion
+>    bent ONLY the LOOK arm's attributed count — the very column
+>    the F-O2b exposure limb reads. Ruled: attribution moves onto
+>    the PLAYING clock (frozen ticks never update last-controlled
+>    state or attribution edges); the team-level turnover
+>    DEFINITION and every rate column stay byte-untouched; the
+>    dead-ball-boundary population is published as the named
+>    subclass `attributionEdgesAcrossFrozenReset` (20/23 at smoke
+>    — a boundary census, NOT an exposure cost);
+>    frozenPhaseTicks added to the per-seed rows (per-seed columns
+>    are what made this diagnosable). Net effect of BOTH fixes on
+>    the committed smoke: **the only moved numeric field is the
+>    unhashed wall** — every measured number byte-identical;
+>    turnoversUnderLiveLook 0/18 unmoved (smoke has zero frozen
+>    events, exactly as the mechanism predicts). All 11 gates
+>    PASS at smoke (resultSha256 `f7a646ee…600b`); tsc clean;
+>    src/** byte-untouched throughout.
+> 5. **RELAUNCHED**: the same battery block 12,422,100–419
+>    re-walked deterministically by the corrected instrument (the
+>    #206/#216 re-run form; the engine path is byte-identical —
+>    only the measurement layer moved), `O2T1_MODE=full
+>    O2T1_RESUME=1`, fresh checkpoint, detached process group +
+>    Tier-1 artifact monitor. Adjudication (#222) only from a
+>    green-gated artifact, against the UNTOUCHED frozen criteria
+>    (success = wedge → 1× with paired CI excluding CONTROL +
+>    E-ABSTAIN-UNSEEN falls resolvedly; F-O2a / F-O2b pre-named
+>    STOPs).
