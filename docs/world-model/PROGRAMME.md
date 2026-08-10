@@ -544,15 +544,30 @@ hypothesis remains OPEN a SECOND time. Also of record: the
 first battery's seedDisjoint FAIL was a full-mode-only
 SELF-COMPARISON predicate bug, diagnosed blind, fixed
 `83f7aa0`, deterministic re-walk green. **SELF-DRIVE ENDED at
-the pre-named STOP. THE FORK IS THE USER'S (#230.5): (甲,
-recommended) ONE confirmatory genealogy exam — pre-registered
-single primary = the #218 shares at CHECK-AND-SHOW, a design
-built to kill the boundary signal; (乙) explicit user override
-→ run OBM-T2 co-evolution anyway (the 16-D cube is
-selection's to search; goals are where the only signal
-lives); (丙) leave the arc at the banked seat → 丙 progression
-value, or the play-test word (MT keep/hold STILL open since
-#213).** ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
+the pre-named STOP; the #230.5 fork was DISPOSED BY THE
+USER'S SUBSTRATE CENSUS (#231): the missing layer is
+RELATIONAL — "到脚不到路" (lead pricing exists only inside the
+MakeRun license loop; SupportBallCarrier receivers are priced
+to-feet always, PlayerBrain.ts:395-500) explains BOTH nulls;
+the #230 boundary signal leaked through the one existing
+conduit (the score channel). Contract drafted:
+[`PASS-TO-PATH-CONTRACT.md`](PASS-TO-PATH-CONTRACT.md)
+(H-PTP; one gene `passLeadSupport`, born absent, zero =
+to-feet arithmetic-exact; projection = the through-ball's own
+flight idiom on the chooser's world-appropriate source,
+G-EPI-MOTION gated; the confirmatory genealogy exam FOLDED
+INTO PTP-T1's combined cell; PTP-T2 co-arms the relational
+pair — the user's twice-open hypothesis re-registers there).
+SELF-DRIVE RE-OPENED (#231.4, the user ruled 自走).
+QUEUED NEXT STEP: dispatch PTP-T0 — the dormant pass-lead
+seam** (flag `ptpPassLead` + `evolvePassLeadSupport` + gene
+born absent; the full #181.2 stack; G-EPI-MOTION; the #228
+two-doors G-CROSS form vs the OBM and CTB doors; pin
+inventory incl. the through-ball and OBM tests). Then PTP-T1
+(the FULL-CHANNEL exam: ABSENT · zeros · CHECK-AND-SHOW alone
+· lead alone · ⭐ COMBINED · lead corners; two-tier primary =
+supply rulers + the #218 shares at the combined cell) →
+PTP-T2 → entry gate. 丙 behind the arc.** ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
 consumed/reserved through **12,424,899** (OBM-T0
 12,424,000–025 · OBM-T1 smoke 026–037 / dose-read 040 / guard
 050–099 / battery 100–455 / reserve to 727) + test seeds

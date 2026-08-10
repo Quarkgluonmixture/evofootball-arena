@@ -10164,3 +10164,59 @@
 >    where the only signal lives); (丙) leave the OBM arc at the
 >    banked seat → 丙 progression value, or the play-test word
 >    (the MT keep/hold verdict is STILL open since #213).
+
+> **COMMANDER RULING #231 (2026-08-11 — the user's substrate census
+> ruled in: the missing layer is RELATIONAL; the PASS-TO-PATH
+> contract drafted; the #230.5 fork disposed by construction;
+> self-drive re-opened on the 甲 path):**
+>
+> 1. **THE CENSUS, banked with its code proof**: audited against
+>    the whole real player, the per-body action library is largely
+>    complete (perception + the look + the off-ball eyes; the 2D
+>    plane; C5–C7/O1 technique; the MT/PM defensive accounts; gene
+>    channels throughout). The missing layer is RELATIONAL: (i) ⭐
+>    the passer cannot see motion — lead pricing
+>    (`runBurstPoint`, "meet the run, not the hover") exists ONLY
+>    inside the `MakeRun` license loop
+>    (`PlayerBrain.ts:395-500`); `SupportBallCarrier` receivers —
+>    ALL movement the OBM seat drives — are priced to-feet at
+>    their current spot, always; (ii) progression value absent
+>    (E4, 丙 queued); (iii) license origination; (iv) the off-ball
+>    look; (v) the 要球 signal channel. **"到脚不到路" explains
+>    BOTH nulls** (#226, #230): the pass model prices a moved
+>    receiver and a parked one identically, so movement cannot be
+>    cashed; the #230 boundary signal leaked through the ONE
+>    existing conduit (the score channel) — corroboration, not
+>    coincidence. User verbatim anchored in VISION §3.
+> 2. **THE CONTRACT IS DRAFTED**:
+>    [`PASS-TO-PATH-CONTRACT.md`](PASS-TO-PATH-CONTRACT.md) —
+>    H-PTP; M-PTP.1 the projection = the through-ball's own
+>    flight-time idiom extended to support receivers, consuming
+>    ONLY the chooser's world-appropriate information source
+>    (truth in bare, percepts in armed — G-EPI-MOTION gates it;
+>    motion inference traced at T0, staleness degradation is the
+>    design); M-PTP.2 ONE gene `passLeadSupport` ∈ [0,1], born
+>    absent, zero = to-feet arithmetic-exact; execution follows
+>    pricing (the led pass is aimed at the led point; scoring
+>    inputs evaluated there); M-PTP.3 no predicates — a still
+>    mate's led point degenerates to his feet, to-feet EMERGES;
+>    M-PTP.4 the MakeRun path byte-identical, the two-doors
+>    lesson (#228) gated from birth. §6 six clauses PASS · §7
+>    PASS with three named gaps.
+> 3. **THE #230.5 FORK IS DISPOSED BY CONSTRUCTION**: (甲 the
+>    confirmatory genealogy exam) is FOLDED INTO PTP-T1's
+>    two-tier pre-registered primary — the COMBINED cell
+>    (CHECK-AND-SHOW × lead) carries the #218 shares as a
+>    confirmatory primary sized to confirm-or-kill the #230
+>    boundary signal WITH THE CHANNEL OPEN (testing it on today's
+>    substrate would re-test a capped mechanism); (乙 the
+>    T2-override) is superseded by PTP-T2's CO-ARMED design —
+>    the passer's trust and the receiver's movement evolve
+>    together, the relational PAIR as the unit of selection; ⭐
+>    the user's twice-open hypothesis re-registers there (third
+>    registration, its truest object: 回撤 pays only when someone
+>    passes to it).
+> 4. **SELF-DRIVE RE-OPENED (the user ruled 自走)**: PTP-T0
+>    dispatches now; STOPs = F-PTP-a/b/c, hard escalations, user
+>    gates. Arc: T0 → T1 (the full-channel exam) → T2 → the
+>    play-test entry gate. 丙 stays behind the arc.
