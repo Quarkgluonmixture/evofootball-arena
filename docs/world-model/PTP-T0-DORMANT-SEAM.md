@@ -1,19 +1,53 @@
 # PTP T0 — the DORMANT PASS-LEAD SEAM (`ptpPassLead`, 传球到路: 球到人要去的地方)
 
-Status: **PRE-REGISTERED, then BUILT + RUN the same round — then CORRECTED after verify.**
+Status: **PRE-REGISTERED, then BUILT + RUN the same round — CORRECTED after verify — then
+its JUSTIFICATION RETRACTED after re-verify (behaviour unchanged).**
 
-> ⭐⭐ **SUPERSESSION NOTE (the correction round, #191 form).** The first build of this
+> ⭐⭐⭐ **SUPERSESSION NOTE 2 — THE WORDING RETRACTION (the re-verify round).** The
+> correction round below was re-verified end to end and **ALL of its BEHAVIOUR was
+> confirmed correct**: the loft is body-priced 26/26 on independent seeds, the ground pass
+> led 742/742, the ablation is non-vacuous, Road B has zero diffs. **One MEDIUM claim
+> defect remained.** The justification *"`performLoftedPass` carries NO lead — the switch is
+> struck at the man's FEET"* is **FALSE**: `performLoftedPass` has its OWN incumbent
+> strike-time lead — `src/sim/mechanics.ts`, `const lead = add(mate.pos, scale(mate.vel,
+> flight0 * 0.7));`, **measured mean 0.72 m** — so the switch aims at **neither** the body
+> **nor** this slice's `ptpLead` point.
+>
+> **The commander's ruling: the fix's BEHAVIOUR STANDS; only the JUSTIFICATION is
+> retracted.** Body-anchored loft pricing is the **incumbent's own pricing, restored**; the
+> loft's incumbent strike stays untouched, and the gap between its price and its strike is
+> the incumbent's own, out of this slice's scope (M-PTP.4). The coherence rationale is
+> unchanged by the retraction: a `ptpLead`-priced loft would be priced against an aim its
+> execution never uses. The false premise is replaced at every site it appeared (§DEV 9,
+> §LAW, the `LOFT_BODY` inventory row, the Disposition, the G-LOFT-BODY gate semantics in
+> the hashed body, the in-code comments in `PlayerBrain.ts` and the probe, and the test).
+> A LOW is fixed alongside: §DEV 4's gate table enumerated **eleven** gates under a count of
+> **ten**, because the machine counts SOURCE LINES and the prose counted logical gates — the
+> counting rule is now stated and both name the same ten lines, and the `passMul` dual use
+> (the four style-chain gates ride the LED gain for the ground pass and the BODY gain for
+> the loft, since the correction commit) is stated.
+>
+> **The receipts are re-run and re-hashed** because these strings live INSIDE the hashed
+> body: `resultSha256` **`7c5fdd57…0c32`** is superseded by the number in
+> [§RESULT](#result--the-gates-run). **Every measured number is byte-identical** — the only
+> artifact fields that moved are the corrected semantics strings and the digests.
+
+> ⭐⭐ **SUPERSESSION NOTE 1 (the correction round, #191 form).** The first build of this
 > stage was verified and reddened on four findings; the commander ruled each, and this
 > document and its receipts are the ruled repair. **The prior receipts are SUPERSEDED:
 > `resultSha256` **`acc76c5b…91e1`** (G-DET digest `d0e74c12…86f2`) is retired and replaced
 > by the numbers in [§RESULT](#result--the-gates-run). What changed, and why:
 > 1. ⭐ **A REAL CODE DEFECT (MEDIUM).** The LOFTED switch's candidate consumed the
->    aim-derived `open`/`gain` locals, but `performLoftedPass` carries **no lead** — so an
->    armed, dosed world PRICED one ball and STRUCK another, and the "Untouched: the lofted
->    switch" prohibition was FALSE. **Fixed**: the loft now re-reads openness, forward gain
+>    aim-derived `open`/`gain` locals, so an armed, dosed world priced the loft against a
+>    point its execution never reads, and the "Untouched: the lofted switch" prohibition
+>    was FALSE. **Fixed**: the loft now re-reads openness, forward gain
 >    and the style chain at `mate.pos` (§DEV 9), gated end-to-end by the new
 >    **G-LOFT-BODY** and pinned in `tests/ptpPassLead.test.ts`. The loft's EXECUTION was
 >    never touched, before or now.
+>    ⚠ **The justification first given for this fix has since been RETRACTED** (see the
+>    wording-retraction note above): the loft does **not** carry "no lead" and is **not**
+>    struck at the man's feet — it strikes on its OWN INCUMBENT lead. The BEHAVIOUR of the
+>    fix stands; only the sentence explaining it was wrong.
 > 2. ⭐ **A FALSE CLAIM ABOUT A CORRECT DESIGN (MEDIUM).** The doc and the in-code comment
 >    said *"every bonus stays anchored to the body"*. It never did: the incumbent
 >    gain-derived score gates ride the **LED** gain — and that is RIGHT for the ground
@@ -83,6 +117,10 @@ THE PRICING — the three scoring inputs the contract names move to the aim:
   the offside read (the flag is judged on where he STANDS), the kick misalignment
   (body mechanics), the lay-off distance test — and the WHOLE LOFTED SWITCH, which
   is out of slice and re-reads openness, gain and the style chain at mate.pos.
+  ⚠ the loft is NOT struck to the feet (that justification is RETRACTED): it strikes
+  on its OWN INCUMBENT lead, mate.pos + mate.vel · flight0 · 0.7 (mean 0.72 m), which
+  is the incumbent's and is UNTOUCHED here. This slice restores its incumbent BODY
+  pricing only — a ptpLead-priced loft would be priced against an aim it never uses.
   RIDING THE LED GAIN, for the GROUND pass only, BY DESIGN: every gain-derived
   score gate (§DEV 4 enumerates all ten). The chooser gates the pass it will
   actually strike — that is the coherence, not a leak.
@@ -272,7 +310,7 @@ the counts PINNED so a new one cannot appear without reddening G-FORK:
 | class | count | what it is |
 | --- | --- | --- |
 | **`BONUS_GATE`** | **10** | the gain-derived score gates the GROUND pass rides the **LED** gain with, BY DESIGN (§DEV 4): the stagnation tilt (2 branches), the CounterAttack tilt, the BuildUp tilt, the open-run back-pass suppression, the forward-gain term, the back-pass term, the risk/lane contest gate, the 2过1 wall-return test, the "don't hand it straight back" test and the third-man release test |
-| ⭐ **`LOFT_BODY`** | **8** | the LOFTED switch's own BODY-anchored re-reads — `openBody` / `gainBody` / `mulBody` and their four uses plus the winner capture. The loft is struck to the feet and is out of slice (M-PTP.4), so it is priced at the feet (G-LOFT-BODY) |
+| ⭐ **`LOFT_BODY`** | **8** | the LOFTED switch's own BODY-anchored re-reads — `openBody` / `gainBody` / `mulBody` and their four uses plus the winner capture. ⚠ **restated (re-verify round)**: the loft is **not** struck to the feet — it strikes on its OWN INCUMBENT lead (`mechanics.ts`, `add(mate.pos, scale(mate.vel, flight0 * 0.7))`, mean 0.72 m), which is out of slice (M-PTP.4) and untouched here. What this slice restores is the loft's **incumbent BODY-anchored pricing** (G-LOFT-BODY) — a `ptpLead`-priced loft would be priced against an aim its execution never uses |
 | **`MUL_FACTOR`** | **2** | the shared style/tilt chain, hoisted out of the mate loop as a function of the gain read (pure code motion, §DEV 9) and called once for the ground pass, once for the loft when the aim moved |
 
 **Byte-identity is arithmetic, not hope**: with the fork not taken, `ptpSeat` is `null`,
@@ -419,9 +457,17 @@ comparison, the `src/**` fork scan, and 9 timed matches for the cost reading on 
 
 * **G-DET digest** — `gates.gDet.digestA === digestB ===`
   `6a5ddeef41902a99ad5017cf8036d3f12c41b23d99b9116e40340693675446b8`
-  (supersedes `d0e74c12…86f2`)
-* **resultSha256** `7c5fdd576bedf38b5552215325fe09086262905d86514cc98a78a2960f750c32`
-  (supersedes `acc76c5b…91e1`)
+  (supersedes `d0e74c12…86f2`; **UNMOVED by the wording-retraction re-run**)
+* **resultSha256** `871fb7e90a8404ea93e5f72e67690fc2c6ae9f0bc3be157c3a64f1a94df273f1`
+  (⭐ the WORDING-RETRACTION re-run; supersedes `7c5fdd57…0c32`, which superseded
+  `acc76c5b…91e1`). ⭐ **It moved for ONE reason only**: two gate-semantics strings live
+  inside the hashed body and both were corrected. Machine-diffed leaf by leaf against the
+  superseded artifact, **exactly 13 leaves moved and NOT ONE is a measurement** —
+  `gates.gLoftBody.semantics`, `gates.gFork.semantics`, `resultSha256`, the two envelope
+  fields (`wallMsContextOnly`, `headContextOnly`) and the 8 declared-outside-the-hash
+  wall-clock readings under `reported.seatCost`. ⭐ **The G-DET digest did NOT move** —
+  `6a5ddeef…46b8` is unchanged, which is the machine's own statement that no behaviour
+  moved this round.
   (recomputable: `npx tsx scripts/probes/ptp-t0-pass-lead.ts`). ⭐ Per #197-M1 the hashed
   body is **commit-free, timing-free and path-free** — `headContextOnly`,
   `wallMsContextOnly` and `artifactPathContextOnly` ride the envelope, OUTSIDE the hash.
@@ -632,21 +678,41 @@ seat's 24 and the CTB plane's 16 included — is green.
    (§DEV 9). But `gain` is an INPUT to ten incumbent score gates, and those gates therefore
    see the LED gain for the ground pass:
 
-   | # | the gate | where |
+   ⭐ **THE COUNTING RULE, STATED (the re-verify round's LOW — the prose and the machine
+   used to enumerate DIFFERENT sets).** A row is **one SOURCE LINE** of the pass block that
+   names a gain read and is not already classified as a fork/aim/strike site — **not one
+   logical gate**. The two places the two readings diverge, now resolved in the machine's
+   favour so this table and `BONUS_GATE` name the SAME ten lines: (i) the stagnation tilt's
+   `else` half is a second logical BRANCH but carries no gain token of its own, so it is
+   **not** a separate row — it rides row 1; (ii) the "don't hand it straight back" test and
+   the third-man release test are **two separate lines**, so they are **two** rows, not one.
+   The old table's "1–2" and packed "10" are what made eleven gates appear under a count of
+   ten.
+
+   | # | the gate (one source line each) | where |
    | --- | --- | --- |
-   | 1–2 | the stagnation tilt, both branches (`gain > 0.05` / else) | the style chain |
-   | 3 | the CounterAttack forward tilt (`gain > 0`) | the style chain |
-   | 4 | the BuildUp recycling tilt (`gain < 0`) | the style chain |
-   | 5 | the open-run back-pass suppression (`openRun && gain < 0`) | the style chain |
-   | 6–7 | the forward-gain term and the back-pass penalty | the ground score |
-   | 8 | the risk/lane contest gate (`gain > 0.15 && lane < 0.4`) | the ground score |
-   | 9 | the 2过1 wall-return test (`gain > 0.2`) | the ground bonuses |
-   | 10 | the "don't hand it straight back" test (`gain < 0.1`) and the third-man release test (`gain > 0.15`) | the ground bonuses |
+   | 1 | the stagnation tilt (`gain > 0.05`; its `else` half shares this row — no gain token) | the style chain (`passMul`) |
+   | 2 | the CounterAttack forward tilt (`gain > 0`) | the style chain (`passMul`) |
+   | 3 | the BuildUp recycling tilt (`gain < 0`) | the style chain (`passMul`) |
+   | 4 | the open-run back-pass suppression (`openRun && gain < 0`) | the style chain (`passMul`) |
+   | 5 | the forward-gain term (`gain > 0`) | the ground score |
+   | 6 | the back-pass penalty (the `else` of row 5, on its own line) | the ground score |
+   | 7 | the risk/lane contest gate (`gain > 0.15 && lane < 0.4`) | the ground score |
+   | 8 | the 2过1 wall-return test (`gain > 0.2`) | the ground bonuses |
+   | 9 | the "don't hand it straight back" test (`gain < 0.1`) | the ground bonuses |
+   | 10 | the third-man release test (`gain > 0.15`) | the ground bonuses |
+
+   ⭐ **AND THE `passMul` DUAL USE (rows 1–4), stated because this commit created it.**
+   `passMul` is ONE declaration called TWICE: with the **LED** gain for the ground pass, and
+   with `gainBody` for the **loft** (since the correction commit — §DEV 9). So rows 1–4 are
+   counted **once** as `BONUS_GATE` lines but **run on both gains**, one world each: the
+   ground pass's style chain sees the led gain, the loft's sees the body gain. Rows 5–10 are
+   ground-only; the loft has its own body-anchored copies, counted as `LOFT_BODY` rows.
 
    **This is the design, not a leak, and it is the coherent half of the same principle the
    loft fix serves**: the chooser gates THE PASS IT WILL ACTUALLY STRIKE. A ball led into a
    runner's path IS more forward than a ball to his feet, and pricing it against the feet's
-   forward progress would be the incoherence. The ten sites are machine-counted as
+   forward progress would be the incoherence. The ten LINES are machine-counted as
    `BONUS_GATE` rows in G-FORK, so a new consumer cannot appear without reddening a gate and
    forcing this table to be updated in the same commit.
 5. **NO CAP** (§LAW 3), and the 18.75 m maximum lead the smoke observed is the honest
@@ -663,9 +729,18 @@ seat's 24 and the CTB plane's 16 included — is green.
    deterministic geometric quantity or a disclosed wall-clock.
 9. ⭐⭐ **THE LOFTED SWITCH PRICES AT THE BODY — the verify round's REAL DEFECT, repaired.**
    The first build let the lofted candidate consume the aim-derived `open`/`gain` locals.
-   `performLoftedPass` carries **no lead**: the switch is struck at the man's FEET and it is
-   out of this slice (M-PTP.4). So an armed, dosed world PRICED the loft against one point
-   and STRUCK it at another, and this document's own "Untouched: the lofted switch"
+   ⚠ **THE JUSTIFICATION IS RETRACTED AND RESTATED (the re-verify round; the BEHAVIOUR
+   stands).** This paragraph used to say *"`performLoftedPass` carries no lead: the switch is
+   struck at the man's FEET"*. **That was FALSE.** `performLoftedPass` has its OWN INCUMBENT
+   strike-time lead — `src/sim/mechanics.ts`, `const lead = add(mate.pos, scale(mate.vel,
+   flight0 * 0.7));`, **measured mean 0.72 m** — so the switch aims at **neither** the body
+   **nor** this slice's `ptpLead` point. That incumbent strike is out of this slice (M-PTP.4)
+   and is left **untouched**: the gap between the loft's price and its strike is the
+   INCUMBENT's own, not this slice's to close. What this slice does is **RESTORE the loft's
+   incumbent BODY-anchored PRICING**, and the pricing/execution coherence rationale survives
+   the retraction intact: a `ptpLead`-priced loft would be priced against an aim its
+   execution never uses. So an armed, dosed world PRICED the loft against one point
+   the incumbent never reads, and this document's own "Untouched: the lofted switch"
    prohibition was FALSE. The repair re-reads openness (`openBody`), forward gain
    (`gainBody`) and the style chain (`mulBody`) at `mate.pos` for the loft alone; the GROUND
    pass keeps its led values (§DEV 4) and **the loft's EXECUTION was never touched**. Two
@@ -698,8 +773,9 @@ under force the aim points move exactly as §LAW says with zero violations acros
 on 1,717 sampled projections and on 79 passes actually chosen and struck — which the strike
 CARRIES rather than lands on, composing it with the incumbent's own correction (mean +3.3 m
 beyond the priced aim, §DEV 2). ⭐ **And the one thing the ex-ante gates missed is now itself
-a gate**: the LOFTED switch, which is struck to the feet and out of slice, is PRICED at the
-feet — 168/168 lofted candidates across both world shapes, zero at the led point, on
+a gate**: the LOFTED switch — which strikes on its OWN incumbent lead (mean 0.72 m,
+`mechanics.ts`), untouched and out of slice — is PRICED at the
+BODY, its incumbent pricing restored — 168/168 lofted candidates across both world shapes, zero at the led point, on
 fixtures where the two readings differ by as much as 0.869 of openness (G-LOFT-BODY). **The
 motion
 channel is honest, and that is proved rather than promised**: where the chooser reads

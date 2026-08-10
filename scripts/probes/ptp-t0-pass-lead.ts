@@ -483,11 +483,19 @@ const aimGeometry = (seed: number, percept: boolean): {
 /* ---- ⭐ G-LOFT-BODY: the LOFTED switch is priced AT THE BODY ------------------ */
 /**
  * ⭐ THE VERIFY-ROUND CORRECTION, GATED (the #191 form: a finding becomes a gate, not
- * a promise). `performLoftedPass` carries NO lead — the switch is struck at the man's
- * FEET and it is out of this slice (M-PTP.4) — so its candidate must be PRICED at the
- * feet too. The first build priced it against the aim-derived `open`/`gain` locals,
- * which made the doc's "Untouched: the lofted switch" prohibition FALSE. The fix
- * recomputes openness, forward gain and the style chain at `mate.pos` for the loft.
+ * a promise). ⚠ THE JUSTIFICATION, RETRACTED AND RESTATED (the re-verify round): the
+ * earlier text here said the switch "carries NO lead — struck at the man's FEET". That
+ * was FALSE. `performLoftedPass` strikes on its OWN INCUMBENT lead — `src/sim/
+ * mechanics.ts`, `const lead = add(mate.pos, scale(mate.vel, flight0 * 0.7));`,
+ * measured mean 0.72 m — so it aims at NEITHER the body NOR this slice's `ptpLead`
+ * point. That incumbent strike is out of this slice (M-PTP.4) and is left UNTOUCHED;
+ * the gap between the loft's price and its strike is the INCUMBENT's own. What this
+ * slice does is RESTORE the loft's incumbent BODY-anchored PRICING, and the coherence
+ * rationale is unchanged by the retraction: a `ptpLead`-priced loft would be priced
+ * against an aim its execution never uses. The first build priced it against the
+ * aim-derived `open`/`gain` locals, which made the doc's "Untouched: the lofted
+ * switch" prohibition FALSE. The fix recomputes openness, forward gain and the style
+ * chain at `mate.pos` for the loft.
  *
  * THIS GATE MEASURES IT END TO END, through the brain itself, not through a reading
  * of the source: on an ARMED + FULLY DOSED match the carrier is asked to decide and
@@ -564,7 +572,7 @@ const loftBodyPricing = (seed: number, percept: boolean): {
     maxOpenDelta: round(maxDelta),
     meanOpenDelta: round(deltaSum / Math.max(loftCands, 1)),
     ambiguousNames: ambiguous,
-    // ⭐ every lofted candidate priced at the FEET, at least one sampled decision where
+    // ⭐ every lofted candidate priced at the BODY, at least one sampled decision where
     // that is a MATERIALLY different number from the led point, and NOT ONE priced at
     // the led point there.
     pass: loftCands > 0 && matchedBody === loftCands && material > 0 && matchedLed === 0,
@@ -1430,8 +1438,16 @@ const body = {
     },
     gLoftBody: {
       pass: gLoftBody, percept: loftPercept, bare: loftBare,
-      semantics: '⭐ THE VERIFY-ROUND CORRECTION, GATED (#191 form). `performLoftedPass` carries '
-        + 'NO lead and the lofted switch is OUT OF SLICE (M-PTP.4), so its candidate is PRICED '
+      semantics: '⭐ THE VERIFY-ROUND CORRECTION, GATED (#191 form). ⚠ JUSTIFICATION RETRACTED '
+        + 'AND RESTATED by the re-verify round: the earlier wording here said `performLoftedPass` '
+        + 'carries NO lead and is struck at the man\'s FEET — that was FALSE. The switch strikes '
+        + 'on its OWN INCUMBENT lead (src/sim/mechanics.ts, `add(mate.pos, scale(mate.vel, '
+        + 'flight0 * 0.7))`, measured mean 0.72 m), so it aims at NEITHER the body NOR this '
+        + 'slice\'s ptpLead point. That incumbent strike is OUT OF SLICE (M-PTP.4) and is left '
+        + 'UNTOUCHED — its price/strike gap is the INCUMBENT\'s own. What this slice does is '
+        + 'RESTORE the loft\'s incumbent BODY-anchored PRICING, and the rationale survives the '
+        + 'retraction intact: a ptpLead-priced loft would be priced against an aim its execution '
+        + 'never uses. So its candidate is PRICED '
         + 'AT THE BODY: openness, forward gain and the style chain are read at `mate.pos` while '
         + 'the GROUND pass keeps the led values it will actually be struck with. Measured END TO '
         + 'END through the brain on an ARMED + FULLY DOSED match — the LoftedPass candidate\'s '
@@ -1509,7 +1525,18 @@ const body = {
         + 'consumer is enumerated too — 10 BONUS_GATE rows (the gain-derived score gates the '
         + 'GROUND pass rides the LED gain with, BY DESIGN: it gates the pass it will strike), '
         + '8 LOFT_BODY rows (the lofted switch\'s body-anchored re-reads, M-PTP.4) and 2 '
-        + 'MUL_FACTOR rows (the shared style chain, hoisted as pure code motion). The counts '
+        + 'MUL_FACTOR rows. ⭐ THE COUNTING RULE, STATED (the re-verify round\'s LOW): a row is '
+        + 'ONE SOURCE LINE of the pass block that names a gain read and is not already '
+        + 'classified above — NOT one logical gate. Two places where the two would diverge, so '
+        + 'the doc\'s §DEV 4 table enumerates the SAME ten lines this gate counts: the '
+        + 'stagnation tilt\'s `else` half is a SECOND logical branch but shares no gain token, '
+        + 'so it is NOT a row (it rides the same row as the `gain > 0.05` half); and the '
+        + '"don\'t hand it straight back" test and the third-man release test are TWO separate '
+        + 'lines, hence TWO rows, not one. ⭐ AND THE MUL_FACTOR DUAL USE: `passMul` is ONE '
+        + 'declaration called TWICE — with the LED gain for the ground pass and with `gainBody` '
+        + 'for the loft (since the correction commit) — so the four style-chain gates inside it '
+        + '(stagnation, CounterAttack, BuildUp, open-run suppression) are counted ONCE as '
+        + 'BONUS_GATE rows but RUN on both gains, one world each. The counts '
         + 'are PINNED, so a new consumer cannot appear without reddening this gate and forcing '
         + 'the stage doc\'s §DEV 4 enumeration to be updated in the same commit.',
       sites: fork.sites,
@@ -1607,7 +1634,7 @@ o(`⭐ G-EPI-MOTION: percept ${epi.perceptMatchesPercept}/${epi.perceptBodies} r
   + ` · mean remembered age ${epi.meanRememberedAgeTicks} ticks`
   + ` | bare ${epi.bareMatchesTruth}/${epi.bareBodies} follow truth`
   + ` · module match members [${epi.moduleMatchMembers.join(', ')}]`);
-o('⭐ G-LOFT-BODY (the lofted switch prices at the FEET, armed + dosed):');
+o('⭐ G-LOFT-BODY (the lofted switch prices at the BODY, armed + dosed):');
 for (const [shape, r] of [['percept', loftPercept], ['bare', loftBare]] as const) {
   o(`  ${shape.padEnd(8)} ${r.matchedBody}/${r.loftCandidates} loft candidates priced at the BODY`
     + ` · material divergences ${r.materialSamples} (max Δopen ${r.maxOpenDelta})`

@@ -348,9 +348,9 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
     // MOTION out of the mate loop (PTP T0 §DEV 9): the statements, their order and
     // their operands are the shipped chain verbatim, so every call reproduces HEAD's
     // double exactly (G-IDENT / G-FP measure that, they do not assume it). It is a
-    // function of the FORWARD-GAIN READ so the LOFTED switch — which is out of this
-    // slice (M-PTP.4) and is struck to the body — can be priced at the BODY while the
-    // ground pass keeps the gain it will actually be struck with.
+    // function of the FORWARD-GAIN READ so the LOFTED switch — out of slice (M-PTP.4),
+    // striking on its OWN incumbent lead, never this slice's aim — keeps its incumbent
+    // BODY pricing while the ground pass keeps the gain it will actually be struck with.
     const passMul = (mate: Player, d: number, gain: number): number => {
       let mul = 1;
       if (gain > 0.05) mul *= 1 + gain * stagnation * 0.35;
@@ -399,7 +399,7 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // long/short bands), the offside read (the flag is judged on where he STANDS),
       // the kick misalignment (body mechanics), the lay-off distance test, and — via
       // `passMul(mate, d, gainBody)` — the whole style/tilt chain AND the openness of
-      // the LOFTED switch, which is out of slice (M-PTP.4) and struck to the body.
+      // the LOFTED switch, out of slice (M-PTP.4), striking on its OWN incumbent lead.
       //
       // ⭐ WHAT RIDES THE LED GAIN, BY DESIGN, for the GROUND pass this seat prices:
       // every gain-derived score gate below — the stagnation tilt, the CounterAttack
@@ -495,14 +495,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // (30.5 tried 18m: the loft cannibalized healthy ground passes and
       // through balls in the 18–24m band and goals sank with them).
       if (d > 24 && !layingOff) {
-        // ⭐ PTP T0 — THE LOFT PRICES AT THE BODY (M-PTP.4's prohibition, kept TRUE).
-        // `performLoftedPass` carries NO lead: the switch is struck at the man's feet,
-        // it is not this slice's action, and an aim-derived score here would price one
-        // ball and strike another. So its openness, its forward gain and its style
-        // chain are read at `mate.pos`. Seat absent ⇒ `aim` IS `mate.pos`, so these
-        // three are the very same reads and the arithmetic is HEAD's, byte for byte
-        // (G-OFF / G-BORN / G-ZERO); armed and dosed they are the ONLY reason the
-        // lofted candidate is unchanged by the seam.
+        // ⭐ PTP T0 — THE LOFT KEEPS ITS INCUMBENT BODY PRICING (M-PTP.4, kept TRUE).
+        // `performLoftedPass` strikes on its OWN incumbent lead (`mechanics.ts`:
+        // `mate.pos + mate.vel · flight0 · 0.7`, measured mean 0.72 m) — neither the
+        // body nor this slice's aim. That strike is the INCUMBENT's and is untouched
+        // here; what this restores is the incumbent BODY-anchored PRICING, because a
+        // ptpLead-priced loft would be priced against an aim its execution never uses.
+        // So openness, forward gain and style chain are read at `mate.pos`. Seat absent
+        // ⇒ `aim` IS `mate.pos`, so the arithmetic is HEAD's byte for byte (G-OFF/ZERO).
         const openBody = lead === null ? open : opennessAt(mate.pos, opp.players);
         const gainBody = lead === null ? gain
           : clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;

@@ -556,8 +556,14 @@ describe('PTP-T0 — the dormant PASS-LEAD seam', () => {
   });
 
   it('⭐ the LOFTED switch prices at the BODY, never at the led aim (M-PTP.4)', () => {
-    // `performLoftedPass` carries NO lead — the switch is struck at the man's feet and
-    // it is OUT OF SLICE — so its candidate must be priced at the feet too. Measured
+    // ⚠ RETRACTED JUSTIFICATION (re-verify round): this comment used to say the switch
+    // "carries NO lead — struck at the man's feet". FALSE. `performLoftedPass` strikes
+    // on its OWN INCUMBENT lead (src/sim/mechanics.ts, `add(mate.pos, scale(mate.vel,
+    // flight0 * 0.7))`, mean 0.72 m) — neither the body nor this slice's ptpLead point.
+    // That incumbent strike is OUT OF SLICE and untouched here; what this slice restores
+    // is the loft's incumbent BODY-anchored pricing. The rationale is unchanged: a
+    // ptpLead-priced loft would be priced against an aim its execution never uses.
+    // So its candidate must be priced at the BODY. Measured
     // through the brain: the LoftedPass candidate's own reported openness (to 2 dp in
     // its `why` string) against BOTH re-derivations, on decisions where they differ
     // MATERIALLY. Non-vacuity is asserted, not hoped for.
@@ -597,7 +603,7 @@ describe('PTP-T0 — the dormant PASS-LEAD seam', () => {
       }
     }
     expect(cands).toBeGreaterThan(0);
-    expect(body).toBe(cands); // every lofted candidate priced at his FEET
+    expect(body).toBe(cands); // every lofted candidate priced at his BODY
     expect(material).toBeGreaterThan(0); // and the two readings really do diverge
     expect(ledMatches).toBe(0); // never at the led point where it would show
   });

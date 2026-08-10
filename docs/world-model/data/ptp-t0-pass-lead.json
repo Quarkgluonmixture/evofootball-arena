@@ -164,7 +164,7 @@
         "ambiguousNames": 0,
         "pass": true
       },
-      "semantics": "⭐ THE VERIFY-ROUND CORRECTION, GATED (#191 form). `performLoftedPass` carries NO lead and the lofted switch is OUT OF SLICE (M-PTP.4), so its candidate is PRICED AT THE BODY: openness, forward gain and the style chain are read at `mate.pos` while the GROUND pass keeps the led values it will actually be struck with. Measured END TO END through the brain on an ARMED + FULLY DOSED match — the LoftedPass candidate's own reported openness against BOTH re-derivations (feet vs the led aim, the aim rebuilt independently from the frozen law). NON-VACUITY IS IN THE PREDICATE: the two must diverge MATERIALLY (> 0.05) on at least one sampled decision and the led value must be matched ZERO times there. ⚠ DECLARED INTERVENTION: an INSTRUMENT match (`decidePlayer` is called on the carrier), compared to no signature anywhere."
+      "semantics": "⭐ THE VERIFY-ROUND CORRECTION, GATED (#191 form). ⚠ JUSTIFICATION RETRACTED AND RESTATED by the re-verify round: the earlier wording here said `performLoftedPass` carries NO lead and is struck at the man's FEET — that was FALSE. The switch strikes on its OWN INCUMBENT lead (src/sim/mechanics.ts, `add(mate.pos, scale(mate.vel, flight0 * 0.7))`, measured mean 0.72 m), so it aims at NEITHER the body NOR this slice's ptpLead point. That incumbent strike is OUT OF SLICE (M-PTP.4) and is left UNTOUCHED — its price/strike gap is the INCUMBENT's own. What this slice does is RESTORE the loft's incumbent BODY-anchored PRICING, and the rationale survives the retraction intact: a ptpLead-priced loft would be priced against an aim its execution never uses. So its candidate is PRICED AT THE BODY: openness, forward gain and the style chain are read at `mate.pos` while the GROUND pass keeps the led values it will actually be struck with. Measured END TO END through the brain on an ARMED + FULLY DOSED match — the LoftedPass candidate's own reported openness against BOTH re-derivations (feet vs the led aim, the aim rebuilt independently from the frozen law). NON-VACUITY IS IN THE PREDICATE: the two must diverge MATERIALLY (> 0.05) on at least one sampled decision and the led value must be matched ZERO times there. ⚠ DECLARED INTERVENTION: an INSTRUMENT match (`decidePlayer` is called on the carrier), compared to no signature anywhere."
     },
     "gEpiMotion": {
       "perceptBodies": 4,
@@ -649,7 +649,7 @@
       "bonusGateSites": 10,
       "loftBodySites": 8,
       "mulFactorSites": 2,
-      "semantics": "⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.ptpPassLead` fork in src/** — the seat fork in PlayerBrain.decideOnBall's pass block — feeding exactly ONE lead computation, ONE aim composition, THREE aim-priced scoring inputs (lane, open, gain), ONE lead capture pair and ONE led-strike statement. Everything else that names the flag, the gene, the opt-in or the seat module is a declaration, an init, the League union key, an import or the seat module's own body — all enumerated below with file:line and class, ZERO unclassified. ⭐ AND THE CONSUMER HALF (the verify-round correction): the three AIM_APPLY sites CREATE the moved reads, so every DOWNSTREAM consumer is enumerated too — 10 BONUS_GATE rows (the gain-derived score gates the GROUND pass rides the LED gain with, BY DESIGN: it gates the pass it will strike), 8 LOFT_BODY rows (the lofted switch's body-anchored re-reads, M-PTP.4) and 2 MUL_FACTOR rows (the shared style chain, hoisted as pure code motion). The counts are PINNED, so a new consumer cannot appear without reddening this gate and forcing the stage doc's §DEV 4 enumeration to be updated in the same commit.",
+      "semantics": "⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.ptpPassLead` fork in src/** — the seat fork in PlayerBrain.decideOnBall's pass block — feeding exactly ONE lead computation, ONE aim composition, THREE aim-priced scoring inputs (lane, open, gain), ONE lead capture pair and ONE led-strike statement. Everything else that names the flag, the gene, the opt-in or the seat module is a declaration, an init, the League union key, an import or the seat module's own body — all enumerated below with file:line and class, ZERO unclassified. ⭐ AND THE CONSUMER HALF (the verify-round correction): the three AIM_APPLY sites CREATE the moved reads, so every DOWNSTREAM consumer is enumerated too — 10 BONUS_GATE rows (the gain-derived score gates the GROUND pass rides the LED gain with, BY DESIGN: it gates the pass it will strike), 8 LOFT_BODY rows (the lofted switch's body-anchored re-reads, M-PTP.4) and 2 MUL_FACTOR rows. ⭐ THE COUNTING RULE, STATED (the re-verify round's LOW): a row is ONE SOURCE LINE of the pass block that names a gain read and is not already classified above — NOT one logical gate. Two places where the two would diverge, so the doc's §DEV 4 table enumerates the SAME ten lines this gate counts: the stagnation tilt's `else` half is a SECOND logical branch but shares no gain token, so it is NOT a row (it rides the same row as the `gain > 0.05` half); and the \"don't hand it straight back\" test and the third-man release test are TWO separate lines, hence TWO rows, not one. ⭐ AND THE MUL_FACTOR DUAL USE: `passMul` is ONE declaration called TWICE — with the LED gain for the ground pass and with `gainBody` for the loft (since the correction commit) — so the four style-chain gates inside it (stagnation, CounterAttack, BuildUp, open-run suppression) are counted ONCE as BONUS_GATE rows but RUN on both gains, one world each. The counts are PINNED, so a new consumer cannot appear without reddening this gate and forcing the stage doc's §DEV 4 enumeration to be updated in the same commit.",
       "sites": [
         {
           "file": "src/ai/PlayerBrain.ts",
@@ -1523,22 +1523,22 @@
       "arms": [
         {
           "arm": "off",
-          "minMs": 88,
-          "msPerTick": 0.005964
-        },
-        {
-          "arm": "zeroArmed",
           "minMs": 87,
           "msPerTick": 0.005896
         },
         {
+          "arm": "zeroArmed",
+          "minMs": 86,
+          "msPerTick": 0.005828
+        },
+        {
           "arm": "forced",
-          "minMs": 89,
-          "msPerTick": 0.005917
+          "minMs": 88,
+          "msPerTick": 0.00585
         }
       ],
-      "armedZeroOverheadPct": -1.14,
-      "dosedOverheadPct": 1.14
+      "armedZeroOverheadPct": -1.15,
+      "dosedOverheadPct": 1.15
     }
   },
   "result": {
@@ -2412,9 +2412,9 @@
       ]
     }
   },
-  "resultSha256": "7c5fdd576bedf38b5552215325fe09086262905d86514cc98a78a2960f750c32",
-  "wallMsContextOnly": 110619,
-  "headContextOnly": "e58f8ae",
+  "resultSha256": "871fb7e90a8404ea93e5f72e67690fc2c6ae9f0bc3be157c3a64f1a94df273f1",
+  "wallMsContextOnly": 108462,
+  "headContextOnly": "74f1963",
   "artifactPathContextOnly": "docs/world-model/data/ptp-t0-pass-lead.json",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
   "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."
