@@ -488,12 +488,29 @@ slack-account form) modulating the banked plane. **CTB-T2 did
 NOT run — the user's pre-registered hypothesis remains OPEN**
 (re-conditions on the dynamic slice). Plane genes stay
 BANKED-DORMANT; fingerprint unchanged. **SELF-DRIVE ENDED at
-the pre-named STOP. THE FORK IS THE USER'S (#226.6): (甲,
-recommended) draft the DYNAMIC-CHECK slice contract (the
-deferred account, now evidence-backed); (乙) leave the arc at
-the banked limb → 丙 progression value or support-percept
-surgery; (丙) the play-test word first (MT keep/hold verdict
-still open).** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+the pre-named STOP; THE FORK WAS RESOLVED BY THE USER'S
+REFRAME (#227): 前插与回撤是同一个选择 — off-ball movement
+becomes ONE percept-fed, gene-weighted seat.** Code facts
+banked: today's off-ball attack decision reads ZERO percepts;
+前插 is a TeamBrain LICENSE, not the body's choice; the
+defence has the station eye, the attack has no eyes. Contract
+drafted:
+[`OFFBALL-MOVEMENT-CONTRACT.md`](OFFBALL-MOVEMENT-CONTRACT.md)
+(H-OBM; eyes = own perceivedSnapshot, four traced feature
+families incl. TIMING-as-data; policy = genes weight features
+→ position on the banked #224 plane + candidate-score
+modulation; NO predicates; licensing untouched slice one).
+SUPERSEDED of record: the CTB dynamic slice + #222.6(乙')
+absorbed; CTB-T2 does not run as scoped; ⭐ the user's
+evolution hypothesis RE-REGISTERED on OBM-T2 (its true
+object). **QUEUED NEXT STEP (on "go"): dispatch OBM-T0 — the
+dormant off-ball eyes seat** (flag + `evolveOffballMovement`
+opt-in + genes born absent, the full #181.2 stack; §LAW
+freezes feature constants + weight bounds with traces;
+percept-pull cost bounded at existing cadence laws; pin
+inventory incl. the CTB plane tests). Then OBM-T1 (the policy
+exam — the CTB-T1 instrument set inherited whole) → OBM-T2
+co-evolution → entry; 丙 behind the arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

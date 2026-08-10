@@ -9870,3 +9870,58 @@
 >    and take 丙 (progression value) or the support-percept
 >    surgery; (丙) the play-test word first (the MT keep/hold
 >    verdict is still open).
+
+> **COMMANDER RULING #227 (2026-08-10 — the user's reframe ruled in:
+> 前插与回撤是同一个选择 — off-ball movement becomes ONE
+> percept-fed, gene-weighted seat; the OBM contract drafted; the CTB
+> dynamic slice absorbed; the user's evolution hypothesis
+> re-registered on its true object):**
+>
+> 1. **THE REFRAME, dual-checked**: VISION — strictly less hand
+>    structure than the #226.6(甲) dynamic-account slice (which
+>    hand-picked ONE feature); the seat gives eyes + weights and
+>    lets 前插/回撤/hold-shape EMERGE as one policy (底座给能力
+>    enacted; #200 red line at full strength; 像人眼一样获得数据 =
+>    §1 感知诚实 verbatim). REALITY — real movement-off-the-ball is
+>    ONE skill read off one scan (marker, carrier's plight, space,
+>    currency of your picture); real 前插 is the runner's choice
+>    inside a licensed pattern. Both PASS.
+> 2. **THE CODE FACTS BANKED** (the commander's map, §0 of the
+>    contract): today's off-ball attack decision
+>    (`PlayerBrain.ts:1226-1298`) reads ZERO percepts —
+>    `SupportBallCarrier` scores on TRUTH distance + hand
+>    role/mode constants; **前插 (`MakeRun`) is not the body's
+>    choice — it is a TeamBrain LICENSE** (`team.runners` /
+>    overlapper / arriver / wallRun); the defence has the station
+>    eye, the attacking off-ball body has NO EYES. The user's
+>    claim lands on the defect exactly.
+> 3. **THE CONTRACT IS DRAFTED**:
+>    [`OFFBALL-MOVEMENT-CONTRACT.md`](OFFBALL-MOVEMENT-CONTRACT.md)
+>    — H-OBM; M-OBM.1 the seat sits on today's candidate surface
+>    (no new actions, licensing untouched); M-OBM.2 the eyes =
+>    the body's OWN perceivedSnapshot with four traced continuous
+>    feature families (carrier's plight · own marker · space at
+>    target · the AGE of his own readings — timing as data);
+>    M-OBM.3 the policy = genes weight features → position on the
+>    BANKED CTB PLANE (the #224 limb becomes this seat's
+>    vocabulary — not wasted, driven) + candidate-score
+>    modulation; NO predicates anywhere. Arc OBM-T0 (dormant
+>    seat) → OBM-T1 (the policy exam — ⭐ the whole CTB-T1
+>    instrument set inherited: probe, ruler, guards, genealogy,
+>    N rule, per-dose STOP granularity; F-OBM-a/b/c pre-named) →
+>    OBM-T2 co-evolution. §6 six clauses PASS · §7 PASS with
+>    three named gaps (license absorption later; no off-ball look
+>    action yet; third-man coordination emergent-or-absent).
+> 4. **SUPERSESSIONS OF RECORD**: the CHECK-TO-BALL contract's
+>    deferred dynamic-account slice is ABSORBED (strictly
+>    contained in M-OBM.2/3); CTB-T2 as originally scoped does
+>    not run; the #222.6(乙') support-percept surgery is absorbed
+>    (the receiver's eyes ARE this seat). ⭐ The user's
+>    pre-registered hypothesis ("现实里会进化出回撤") is
+>    RE-REGISTERED ex ante on OBM-T2 — its true object: with the
+>    BEHAVIOR expressible as a policy, attack-side selection
+>    engages via goals (the Phase 30.5 receipt; pre-named
+>    contrast with MT-T2's defensive indifference stands).
+> 5. **VISION ANCHORED VERBATIM** (the user's 2026-08-10 reframe,
+>    VISION §3). **QUEUED**: OBM-T0 dispatches on the next "go".
+>    丙 stays behind the arc per #219.
