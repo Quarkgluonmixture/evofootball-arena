@@ -10078,3 +10078,89 @@
 >    a policy dose moves ruler 1 or 2 resolvedly helpful with
 >    that dose's guards held; F-OBM-a/b/c per the #225.3(c)
 >    granularity).
+
+> **COMMANDER RULING #230 (2026-08-10/11 — the OBM-T1 battery
+> adjudicated from the green run: success NOT met; ⛔ F-OBM-a FIRES
+> (the pre-named STOP) — but the movement is GUARD-CLEAN, and the
+> decode leaves three labelled hypotheses; self-drive ends at the
+> STOP):**
+>
+> 1. **THE GREEN RUN IS BANKED** (`c6c61d9`: artifact
+>    `9f42b0b6…2091` committed, N* = 356 × 8 arms — the frozen
+>    rule's own number on same-world inputs — all 15 gates PASS,
+>    X-DET twice, wall 7,563 s; §RESULT generated
+>    PROGRAMMATICALLY from the artifact and independently swept
+>    back, the #229.2 lesson enforced). OF RECORD: the FIRST
+>    battery ran 14/15 green and failed seedDisjoint on a
+>    SELF-COMPARISON artifact (in full mode the walked exam block
+>    IS the battery reservation; the fix round's stageOwnOverlaps
+>    predicate flagged the identity as an overlap — a
+>    full-mode-only predicate bug invisible at smoke). Diagnosed
+>    BLIND (gate blocks only; no exam rate was read by anyone;
+>    the red artifact was deleted uncommitted, resultSha256
+>    `b1cdef8d…8eef` of record), fixed at `83f7aa0`
+>    (exact-equality pairs → `stageOwnUnified`; PARTIAL overlap
+>    still fails), deterministic re-walk relaunched fresh (the
+>    checkpoint guard correctly REFUSED the corrected probe —
+>    probeSha bound, doing its job). Commander corrections at
+>    banking: the stale status header updated; the transcript
+>    rides the #226.1 accepted form (281 substantive lines
+>    byte-verified, 712 context-only tick lines marked-omitted).
+> 2. **ADJUDICATION vs THE FROZEN CRITERIA**: across ALL 12
+>    primary cells (6 policy corners × {trueHoldableShare ABSENT
+>    0.5435 % · pressedFirstReceptionShare ABSENT 82.08 %}) —
+>    **ZERO resolved contrasts**. CHECK-WHEN-PRESSED's
+>    helpful-direction point on ruler 1 (+0.075 pp) straddles 0;
+>    every ruler-2 point sits slightly unhelpful, all unresolved.
+>    ⇒ **PRE-REGISTERED SUCCESS NOT MET; ⛔ F-OBM-a FIRES on its
+>    frozen wording** ("no policy dose moves the supply — the
+>    receiver-side program itself is re-examined").
+> 3. **THE POSITIVE KNOWLEDGE (facts)**: policy-driven movement is
+>    **GUARD-CLEAN — zero per-dose disqualifications**, the exact
+>    opposite of the static fan: interceptions within tolerance
+>    everywhere (spaceSeek +1.15 resolved, tol ±7.6);
+>    spacing-under-4m IMPROVES resolved at MARKER-ESCAPE and
+>    KITCHEN-SINK; offsides FALL resolved at KITCHEN-SINK; the
+>    delivered geometry is real and law-shaped (mean shift
+>    0.649 → 4.317 m across the dosed plane arms; ceiling
+>    behind-ball +8.02 pp resolved). CTB-T1's parked fan
+>    re-imported the column disease at two doses; the policy's
+>    situation-driven movement re-imported NOTHING. What the eyes
+>    buy is CLEANLINESS of movement, not (yet) supply.
+> 4. **THE DECODE — three labelled hypotheses (有故事就要有探针,
+>    none is a conclusion)**: **H-OBM-T1a (ruler layer)**: the
+>    supply rulers measure the PRESSING EQUILIBRIUM — the defence
+>    closes whoever receives, so reception-moment quantities are
+>    equilibrium-pinned; movement's value, if any, shows
+>    DOWNSTREAM in chain completion. The ONLY signal in that
+>    direction: constructedGe5Share at CHECK-AND-SHOW +2.96 pp
+>    **boundary-resolved [0.0000, +0.0593]**, with an INCOHERENT
+>    ladder (≥3 slightly negative, ≥4 unresolved) under ~114
+>    contrasts of multiplicity ⇒ FRAGILE, admissible only as a
+>    confirmatory design's pre-registered primary, never as a
+>    claim. (SPACE-SEEK's scramble −6.07 pp resolved flows to
+>    SET PIECES +4.50 pp resolved, not to construction — not a
+>    build-up win.) **H-OBM-T1b (dose)**: the frozen spans
+>    deliver 0.65 m mean at the 回撤 corner — but the CEILING
+>    arm's 4.32 m ALSO moved no primary, arguing against pure
+>    dose. **H-OBM-T1c (coverage)**: 8 corners in a 16-D cube —
+>    this null is about THESE corners; the space is selection's
+>    to search, and F-OBM-a is adjudicated exactly as written.
+> 5. **DISPOSITION**: the seat stays BANKED-DORMANT (fingerprint
+>    unchanged through every round; nothing ships). CTB-T2/OBM-T2
+>    does not run as scoped ⇒ ⚠ of record: the user's
+>    pre-registered hypothesis ("现实里会进化出回撤") remains
+>    OPEN for the SECOND time — its preconditions keep failing
+>    before it can be tested; it stays attached to any future
+>    OBM-T2. **SELF-DRIVE ENDS at the pre-named STOP. THE FORK IS
+>    THE USER'S (人话 in the session summary)**: (甲, recommended)
+>    ONE confirmatory genealogy exam — same banked probe, fresh
+>    seeds, PRE-REGISTERED SINGLE PRIMARY = the #218 shares at
+>    CHECK-AND-SHOW (does the boundary signal survive a design
+>    built to kill it?); (乙) amend the arc and run OBM-T2
+>    co-evolution anyway (an explicit user override of
+>    T1-gates-T2: the 16-D cube is arguably selection's to
+>    search, and goals — which selection hears — are exactly
+>    where the only signal lives); (丙) leave the OBM arc at the
+>    banked seat → 丙 progression value, or the play-test word
+>    (the MT keep/hold verdict is STILL open since #213).

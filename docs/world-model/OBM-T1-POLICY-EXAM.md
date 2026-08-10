@@ -4,8 +4,12 @@ Status: **FROZEN BEFORE SIGHT, then SMOKED, then CORRECTED PRE-BATTERY.** Everyt
 to §NON-CLAIMS — the
 world, the eight arms and their exact matrices, the ruler, the guards, the estimator, the
 success wording, the seed ledger, the N rule and the gate list — was written **before** any
-number of this stage existed. The measured numbers arrive only in
-[§RESULT — the smoke](#result--the-smoke) at the foot, and everything sharpened after a run —
+number of this stage existed. The measured numbers live in
+[§RESULT — the smoke](#result--the-smoke) and
+[§RESULT — FULL BATTERY](#result--full-battery) (N* = 356 × 8 arms as the frozen rule
+computed on same-world inputs, GREEN, adjudicated by ruling #230 in PROGRAMME-RULINGS.md).
+*(Header updated by the commander at banking — the pre-battery revision of this line said the
+numbers arrive only in the smoke.)* Everything sharpened after a run —
 the two things sharpened after the FIRST smoke, and the **pre-battery evidence-layer
 corrections** (an unsourced doc column, a gate's under-scoped machine check, a field named
 beyond what it measures) — is recorded in **Deviations**, not smoothed away. **No arm, dose,

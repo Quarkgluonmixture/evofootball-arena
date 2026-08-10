@@ -522,17 +522,42 @@ lever is cadence. T1 notes banked ex ante (#228.6: percept
 world gated; dose vs the OBSERVED feature distribution [0.184
 · 0.456 · 0.216 · 0.171]; zero-is-silence; short-option
 supply carried directly).
-**QUEUED NEXT STEP: adjudicate/continue the OBM-T1 dispatch
-(self-drive live)** — the POLICY EXAM per contract §3: the
-CTB-T1 instrument set inherited whole (probe/ruler/guards/
-genealogy/N-rule/per-dose STOP granularity), arms = ABSENT ·
-ARMED-ZERO · pre-registered POLICY CORNERS (incl.
-CHECK-WHEN-PRESSED, the 回撤 hypothesis in policy form),
-percept-armed world identical across arms; success = ruler 1
-or 2 moves resolvedly helpful with that dose's guards held;
-F-OBM-a/b/c pre-named. Then OBM-T2 co-evolution (the user's
-re-registered hypothesis) → STOP at the play-test entry (user
-gate). 丙 behind the arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**OBM-T1 IS ADJUDICATED (#229 banked the round after the
+verify caught a FABRICATED doc column — proven by geometric
+ceiling; #230 adjudicated the battery): SUCCESS NOT MET — ⛔
+F-OBM-a FIRED (the pre-named STOP)**: across all 12 primary
+cells (6 policy corners × 2 supply rulers, N* = 356) ZERO
+resolved contrasts — the eyes work, the policy moves bodies
+(0.65 → 4.32 m delivered, law-shaped), but the supply does
+not move. ⭐ THE POSITIVE KNOWLEDGE: policy-driven movement is
+GUARD-CLEAN (zero per-dose disqualifications; spacing
+IMPROVES at two arms; offsides FALL at the ceiling arm) — the
+static fan's diseases did NOT return; what the eyes buy is
+CLEAN movement, not (yet) supply. Three labelled hypotheses
+(#230.4): H-OBM-T1a ruler-layer (supply rulers are
+equilibrium-pinned; value shows downstream — the ONLY signal:
+constructedGe5 at CHECK-AND-SHOW +2.96 pp BOUNDARY-resolved
+[0.0000, 0.0593], fragile, confirmatory-only) · H-OBM-T1b
+dose (the ceiling arm argues against) · H-OBM-T1c coverage (8
+corners of a 16-D cube). OBM-T2 did not run — ⚠ the user's
+hypothesis remains OPEN a SECOND time. Also of record: the
+first battery's seedDisjoint FAIL was a full-mode-only
+SELF-COMPARISON predicate bug, diagnosed blind, fixed
+`83f7aa0`, deterministic re-walk green. **SELF-DRIVE ENDED at
+the pre-named STOP. THE FORK IS THE USER'S (#230.5): (甲,
+recommended) ONE confirmatory genealogy exam — pre-registered
+single primary = the #218 shares at CHECK-AND-SHOW, a design
+built to kill the boundary signal; (乙) explicit user override
+→ run OBM-T2 co-evolution anyway (the 16-D cube is
+selection's to search; goals are where the only signal
+lives); (丙) leave the arc at the banked seat → 丙 progression
+value, or the play-test word (MT keep/hold STILL open since
+#213).** ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
+consumed/reserved through **12,424,899** (OBM-T0
+12,424,000–025 · OBM-T1 smoke 026–037 / dose-read 040 / guard
+050–099 / battery 100–455 / reserve to 727) + test seeds
+12,424,900–906; stats bases consumed through **105,000**,
+next ≥ **105,200**. Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
