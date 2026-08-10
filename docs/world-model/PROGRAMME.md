@@ -469,13 +469,31 @@ PER-DOSE (arc-STOP only if every helpful dose disqualifies),
 span-end rows = delivered geometry (x-clamp 54.6 % at
 DEPTH-BACK), band gates at battery N with #198 exclusion.
 Final pre-battery receipt `3e3c8875…7fe6`.
-**QUEUED NEXT STEP: adjudicate the CTB-T1 battery**
-(`CTBT1_MODE=full CTBT1_RESUME=1`, N = 628, block
-12,423,100–727, stats 104,800; success = a dose moves ruler 1
-or 2 resolvedly helpful with that dose's guards held;
-F-CTB-a/b/c per #225.3(c)). If PASS → chain CTB-T2
-co-evolution (the user's pre-registered hypothesis). 丙 behind
-the arc.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**CTB-T1 IS ADJUDICATED (#226, `981ba4f` green artifact
+`ded1967a…9aab`): SUCCESS NOT MET — ⛔ F-CTB-a FIRED (the
+pre-named STOP)**: the limb delivers totally (behindBall
+0.09 % → 97.15 % at DEPTH-BACK, mean shift 10.15 m) but NO
+dose moves either primary ruler helpfully (holdable supply
+flat all six doses; pressed receptions flat, CORNER-CHECK
+resolved WORSE +1.08 pp); the #218 arc shares flat-to-worse;
+interceptions rise resolvedly at every depth dose (within
+tolerance); NARROW + CORNER-CHECK DISQUALIFIED (clump breach
+beyond tolerance — the Phase 30.5 column disease returns);
+DEPTH-FWD offside-flagged. ⭐ H-CTB-T1a (hypothesis): a
+static fan parks bodies in passing lanes and drags markers
+into the build-up zone — **the missing dimension is WHEN, not
+WHERE**; the named next surgery = the DYNAMIC account slice
+(pressure-on-carrier × gene, percept-path, the MT
+slack-account form) modulating the banked plane. **CTB-T2 did
+NOT run — the user's pre-registered hypothesis remains OPEN**
+(re-conditions on the dynamic slice). Plane genes stay
+BANKED-DORMANT; fingerprint unchanged. **SELF-DRIVE ENDED at
+the pre-named STOP. THE FORK IS THE USER'S (#226.6): (甲,
+recommended) draft the DYNAMIC-CHECK slice contract (the
+deferred account, now evidence-backed); (乙) leave the arc at
+the banked limb → 丙 progression value or support-percept
+surgery; (丙) the play-test word first (MT keep/hold verdict
+still open).** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/

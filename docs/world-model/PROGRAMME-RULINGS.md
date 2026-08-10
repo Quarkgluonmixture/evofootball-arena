@@ -9796,3 +9796,77 @@
 >    FROZEN criteria: success = a dose moves ruler 1 or 2
 >    resolvedly in the helpful direction with that dose's guards
 >    held; F-CTB-a/b/c per #225.3(c).
+
+> **COMMANDER RULING #226 (2026-08-10 — the CTB-T1 battery
+> adjudicated from the green run: success NOT met; ⛔ F-CTB-a FIRES
+> (the pre-named STOP); per-dose disqualifications recorded; the
+> decode names TIMING as the missing dimension; T2 does not run —
+> the user's hypothesis remains OPEN; self-drive ends at the
+> STOP):**
+>
+> 1. **THE GREEN RUN IS BANKED** (`981ba4f`: artifact
+>    `ded1967a…9aab` committed, N = 628 × 8 arms, all 12 gates
+>    PASS, X-DET twice, wall 2,112 s). ARMED-ZERO ≡ ABSENT held at
+>    battery N; the #197-M1 envelope form held; the band's
+>    control-fails exclusion set is EMPTY at battery N (all five
+>    dimensions gate — unlike the smoke). Commander corrections in
+>    place at banking: the stage-doc status header (stale
+>    smoke-era lines) updated; the executor's labelled transcript
+>    reduction (1,256 symmetric per-seed wall ticks → counted
+>    marker lines, read by no gate) ACCEPTED as a disclosed
+>    deviation — the default remains literal-unabridged.
+> 2. **ADJUDICATION vs THE FROZEN CRITERIA**: ruler 1
+>    (TRUE-holdable supply, ABSENT 0.5936 %) — NO dose resolves in
+>    either direction (all six paired CIs straddle 0; the smoke's
+>    wrong-way readings were 12-seed noise). Ruler 2
+>    (pressed-first-reception, ABSENT 80.24 %) — no dose resolves
+>    helpful; CORNER-CHECK resolves UNHELPFUL (+1.078 pp [+0.31,
+>    +1.82]). ⇒ **PRE-REGISTERED SUCCESS NOT MET.**
+> 3. ⛔ **F-CTB-a FIRES on its frozen wording**: no dose moves the
+>    supply resolvedly in the helpful direction — STATIC plane
+>    geometry is not the binding constraint. Per-dose records
+>    (#225.3(c)): **NARROW and CORNER-CHECK are DISQUALIFIED**
+>    (F-CTB-b's clump limb — spacingUnder4 +0.0527 / +0.0441 vs
+>    frozen tol ≈ 0.0256, resolved AND beyond tolerance: the
+>    Phase 30.5 column disease returns at exactly the doses that
+>    pull the fan inward); **DEPTH-FWD raises the offside FLAG**
+>    (+0.627/match resolved; fouls +0.43 resolved). Interceptions
+>    rise RESOLVEDLY at every depth dose (+1.77 … +3.18/match)
+>    but inside the frozen tolerance — recorded as the disease's
+>    direction, not a breach.
+> 4. **THE DECODE (facts, then the labelled hypothesis)**: the
+>    limb's mechanical delivery is TOTAL — behindBallShare 0.09 %
+>    → 97.15 % at DEPTH-BACK (mean shift 10.15 m; clamp-bind
+>    published per row) — yet the world does not improve:
+>    holdable supply flat, pressed receptions flat-to-worse, and
+>    the #218 arc shares flat-to-worse (constructedGe3 ABSENT
+>    26.6 %, the ONLY resolved move = CORNER-CHECK −5.68 pp;
+>    scramble +4.37 pp at CORNER-CHECK). The parked bodies feed
+>    the interception economy instead. **H-CTB-T1a (labelled
+>    hypothesis)**: a STATIC always-repositioned fan parks bodies
+>    in passing lanes and drags their markers into the build-up
+>    zone — real checking is TIMED: come short WHEN the carrier
+>    is pressed, leave after. **The missing dimension is WHEN,
+>    not WHERE** — contract §7 honest gap (a) made
+>    instrument-real; the named next surgery is the DYNAMIC
+>    account slice (pressure-on-carrier × gene, percept-path, the
+>    MT slack-account form), which modulates EXACTLY the banked
+>    plane (the limb is not wasted).
+> 5. **CTB-T2 DOES NOT RUN** (T1 gates it). ⚠ Of record: the
+>    user's pre-registered hypothesis ("现实里会进化出回撤" ⇒
+>    attack-side selection ENGAGES) is **NOT TESTED and remains
+>    OPEN** — it was always about the BEHAVIOR of checking, and
+>    the static plane is not yet that behavior; it re-conditions
+>    on the dynamic slice's co-evolution leg. Nothing about the
+>    Phase 30.5 goals-level selection-pressure argument is
+>    touched by this result.
+> 6. **DISPOSITION**: the plane genes stay BANKED-DORMANT
+>    (X-FP-PROD `57b0bdab…c673` unchanged through every round;
+>    nothing ships). **SELF-DRIVE ENDS at the pre-named STOP
+>    (#195/#225.1). THE FORK IS THE USER'S (人话 in the session
+>    summary)**: (甲, recommended) draft the DYNAMIC-CHECK slice
+>    contract — the contract's own deferred account, now
+>    evidence-backed; (乙) leave the CTB arc at the banked limb
+>    and take 丙 (progression value) or the support-percept
+>    surgery; (丙) the play-test word first (the MT keep/hold
+>    verdict is still open).

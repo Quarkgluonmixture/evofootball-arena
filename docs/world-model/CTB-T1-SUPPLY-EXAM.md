@@ -1,9 +1,10 @@
 # CTB T1 — the SUPPORT-SUPPLY EXAM (hand-dose the banked 2D plane, measure the world)
 
 Status: **§FORM / §SEEDS / §GATES / §SUCCESS frozen BEFORE SIGHT** (the PM-T1 two-part
-form); the measured numbers arrive only in [§RESULT](#result--the-smoke) at the foot.
-This round runs the **SMOKE** (12 seeds × 8 arms). The battery is the commander's to
-dispatch.
+form); the measured numbers live in [§RESULT — the smoke](#result--the-smoke) (12 seeds ×
+8 arms) and [§RESULT — FULL BATTERY](#result--full-battery) (N = 628 × 8 arms, GREEN,
+adjudicated by ruling #226 in PROGRAMME-RULINGS.md). *(Header updated by the commander at
+banking — the pre-battery revision of this line said the battery was still to dispatch.)*
 
 ⭐ **PRE-BATTERY AMENDMENT ROUND (this revision).** The commander ruled the pre-battery forks
 **before any battery number exists**: N = **628** (the rule's own number), primary ruler =
