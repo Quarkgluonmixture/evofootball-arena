@@ -559,15 +559,26 @@ G-EPI-MOTION gated; the confirmatory genealogy exam FOLDED
 INTO PTP-T1's combined cell; PTP-T2 co-arms the relational
 pair — the user's twice-open hypothesis re-registers there).
 SELF-DRIVE RE-OPENED (#231.4, the user ruled 自走).
-QUEUED NEXT STEP: dispatch PTP-T0 — the dormant pass-lead
-seam** (flag `ptpPassLead` + `evolvePassLeadSupport` + gene
-born absent; the full #181.2 stack; G-EPI-MOTION; the #228
-two-doors G-CROSS form vs the OBM and CTB doors; pin
-inventory incl. the through-ball and OBM tests). Then PTP-T1
-(the FULL-CHANNEL exam: ABSENT · zeros · CHECK-AND-SHOW alone
-· lead alone · ⭐ COMBINED · lead corners; two-tier primary =
-supply rulers + the #218 shares at the combined cell) →
-PTP-T2 → entry gate. 丙 behind the arc.** ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
+PTP-T0 IS BANKED (#232, `e58f8ae` + `74f1963` +
+`e7eb041`)**: the pass-lead limb exists — one gene, traced
+spans, percept motion HONESTLY carried (G-EPI-MOTION
+mutation-tested), zero-point arithmetic-exact both shapes,
+two-doors from birth, through-ball zero hunks; the verify
+trail (loft back to body pricing; bonus gates ride the led
+gain BY DESIGN with ablation proof; the false "struck at
+FEET" premise retracted at 11 sites with G-DET UNMOVED). ⭐
+T1 fact: the percept motion channel is THIN (921/1,109
+projections zero; 21.7 % led passes vs 62.9 % bare) — the
+combined cell tests the honest channel.
+**QUEUED NEXT STEP: adjudicate/continue PTP-T1 (self-drive
+live)** — the FULL-CHANNEL exam per contract §3: ABSENT ·
+zeros · CHECK-AND-SHOW alone · LEAD alone · ⭐ COMBINED ·
+corners; two-tier pre-registered primary = supply rulers 1+2
+AND the #218 shares at the COMBINED cell (the #230
+boundary-signal confirmatory, channel open); guards +
+per-dose STOPs inherited; F-PTP-a/b/c. Then PTP-T2 (co-armed
+pair; the user's hypothesis, third registration) → entry
+gate. 丙 behind the arc.** ⭐ FRONTIER UPDATE (supersedes the #224 line): seeds
 consumed/reserved through **12,424,899** (OBM-T0
 12,424,000–025 · OBM-T1 smoke 026–037 / dose-read 040 / guard
 050–099 / battery 100–455 / reserve to 727) + test seeds

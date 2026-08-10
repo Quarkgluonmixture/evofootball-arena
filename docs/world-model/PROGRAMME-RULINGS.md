@@ -10220,3 +10220,50 @@
 >    dispatches now; STOPs = F-PTP-a/b/c, hard escalations, user
 >    gates. Arc: T0 → T1 (the full-channel exam) → T2 → the
 >    play-test entry gate. 丙 stays behind the arc.
+
+> **COMMANDER RULING #232 (2026-08-11 — PTP-T0 BANKED after a
+> two-round verify trail; the pass-lead limb exists, dormant,
+> honest; the thin percept motion channel is the T1 fact of
+> record):**
+>
+> 1. **BANKED (`e58f8ae` + `74f1963` + `e7eb041`)**: stage doc
+>    [`PTP-T0-DORMANT-SEAM.md`](PTP-T0-DORMANT-SEAM.md), seat
+>    `src/ai/passLeadSeat.ts`, final receipt `871fb7e9…73f1`.
+>    ONE gene `passLeadSupport` ∈ [0,1] born absent; constants
+>    traced from the through-ball's OWN family (18 m/s flight ·
+>    1.6 mul from runBurstPoint's line; NO cap, declared —
+>    an over-greedy lead prices itself out because lane/open/gain
+>    are read AT the aim); ⭐ the percept layer HONESTLY carries
+>    motion (`ObservedPlayer.vel`, keyed-noise degraded, stale by
+>    age — no fallback needed); G-EPI-MOTION MUTATION-TESTED (a
+>    truth-reading patch fails the gate); zero-point
+>    arithmetic-exact in BOTH world shapes (verified on the
+>    re-verifier's own seeds incl. the #228 falsifiers); the
+>    two-doors G-CROSS from birth; the through-ball block ZERO
+>    hunks; fingerprint unchanged throughout.
+> 2. **THE VERIFY TRAIL, of record**: round 1 found the LOFT
+>    priced on aim-derived locals while striking without ptpLead
+>    (ruled: CODE fix — loft back to body-anchored pricing, an
+>    out-of-scope action's incumbent restored) and the
+>    bonus-gates-on-led-gain doc claim (ruled: the CODE is
+>    coherent pricing BY DESIGN — the chooser gates the pass it
+>    will strike; DOC corrected). Round 2 re-verify: all four
+>    discharged with ABLATION PROOF (re-anchoring the ground
+>    gain diverges 10/10 armed worlds, byte-identical 10/10
+>    flag-off — the gates are load-bearing); one CLAIM defect
+>    remained ("the loft is struck at the FEET" — false: the
+>    loft has its OWN incumbent 0.7·flight strike lead, mean
+>    0.72 m) → retracted at 11 sites with the trail kept; ⭐ the
+>    G-DET digest DID NOT MOVE across the retraction — the
+>    machine's own statement that no behaviour moved.
+> 3. **T1 FACTS OF RECORD**: ⭐ the percept motion channel is
+>    THIN — 921/1,109 support projections exactly zero in the
+>    percept world (remembered speed 0.72 vs 2.51 m/s truth;
+>    21.7 % of chosen passes carry a lead vs 62.9 % bare) ⇒ the
+>    combined cell tests the HONEST (thin) channel and must say
+>    so; the loft's incumbent price/strike gap is the
+>    incumbent's own; NO-cap is a T1 fork WITH numbers if
+>    F-PTP-b bites; the O1-windup precedence is pinned but
+>    unexercised. **SELF-DRIVE CONTINUES: PTP-T1 dispatches
+>    now** (the full-channel exam, contract §3: the #230.5
+>    confirmatory folded into the COMBINED cell).
