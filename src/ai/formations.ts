@@ -4,7 +4,9 @@ import { BOX_DEPTH, CORNER_CLEARANCE, FIELD_SCALE, GOAL_WIDTH, HALF_L, HALF_W } 
 import type { Ball } from '../sim/Ball';
 import type { Player } from '../sim/Player';
 import type { Team } from '../sim/Team';
-import { pmLaneConvergenceK } from '../evolution/genome';
+import {
+  ctbSupportDepthWeight, ctbSupportWidthWeight, pmLaneConvergenceK,
+} from '../evolution/genome';
 import type {
   AttackFormationId, CornerRoutine, DefendFormationId, TeamMode,
 } from '../sim/types';
@@ -585,6 +587,38 @@ export function runBurstPoint(p: Player, team: Team, opponents: Player[], flight
 }
 
 /**
+ * ⭐ THE INCUMBENT LATERAL-FAN CONSTANTS (Phase 30.5), named here at their own use
+ * site by CTB-T0 (#223). PURE CODE MOTION: `SUPPORT_LAT_PULL` is the `* 0.75`
+ * lane-pull factor and `SUPPORT_LAT_CAP_FRAC` is the `* 0.9` radius cap that
+ * `supportSpot` has always applied — the same two numbers, given names so the CTB
+ * width axis can be written as a deformation OF them instead of as new literals.
+ */
+export const SUPPORT_LAT_PULL = 0.75;
+export const SUPPORT_LAT_CAP_FRAC = 0.9;
+
+/**
+ * ⭐ THE FROZEN DEPTH SPAN (CTB-T0, contract §2 M-CTB.1: "gene-scaled with a bound
+ * TRACED from the existing geometry family… never a typed literal", the #202 form).
+ * `aheadBias′ = aheadBias + ctbSupportDepth · CTB_DEPTH_BIAS_SPAN`, i.e. the depth
+ * axis reaches ± this much AHEAD-BIAS around the incumbent ternary.
+ *
+ * TRACED, NOT INVENTED, and DERIVED IN CODE: it IS `SUPPORT_LAT_CAP_FRAC`, the
+ * seat's own lateral cap fraction — the engine's standing answer to "how far off the
+ * ball, as a fraction of the support radius, may this seat sit". The depth axis is
+ * that same question read on the other axis of the same plane, so the seat may
+ * express EXACTLY as much reach front-to-back as it already expresses side-to-side,
+ * and no more. It is a FRACTION OF THE SAME `radius = 10 + supportDistance·8` family
+ * (the contract's named natural neighbour), so in metres the span is 9–16.2 m.
+ *
+ * The consequence that matters (contract §0.3): the incumbent attacking bias is
+ * 0.75, so a full-negative dose reaches `0.75 − 0.9 = −0.15` — LEVEL WITH and BEHIND
+ * the ball become expressible, in both modes (non-attacking: `0.35 − 0.9 = −0.55`).
+ * Never re-cut: if CTB-T1 needs a different span that is a fork for the commander
+ * WITH numbers, not a quiet re-freeze after sight.
+ */
+export const CTB_DEPTH_BIAS_SPAN = SUPPORT_LAT_CAP_FRAC;
+
+/**
  * Where an off-ball player supports the carrier: ahead of the ball for
  * attacking modes, pulled laterally TOWARD the supporter's own formation
  * lane, at a radius set by the supportDistance gene.
@@ -600,8 +634,13 @@ export function runBurstPoint(p: Player, team: Team, opponents: Player[], flight
  * y fully to the lane, which parked "support" 30m from the carrier: no
  * short options left, neutral-genome attacks starved (mirror goals 1.47 →
  * 0.93), and the 5v6 sanity invariant inverted (probe-shorthand).
+ *
+ * CTB-T0 (#223): the seat gained a DORMANT 2D deformation plane behind
+ * `ctbSupportPlane` — see `CTB_DEPTH_BIAS_SPAN` below and the fork in the body.
+ * Born absent, flag hard-false: the paragraphs above still describe the shipped
+ * world exactly.
  */
-export function supportSpot(p: Player, team: Team, ball: Ball): V2 {
+export function supportSpot(p: Player, team: Team, ball: Ball, ctbPlane = false): V2 {
   const g = team.genome;
   // 10..18m: close enough for a give-and-go, far enough that the carrier
   // isn't mobbed by their own teammates (Phase 19 spacing pass, widened in
@@ -610,10 +649,23 @@ export function supportSpot(p: Player, team: Team, ball: Ball): V2 {
   const aheadBias = team.mode === 'CounterAttack' || team.mode === 'Attack' ? 0.75 : 0.35;
 
   const lane = formationSpot(p, team, ball, true);
-  const maxLat = radius * 0.9;
-  const latPull = clamp((lane.y - ball.pos.y) * 0.75, -maxLat, maxLat);
+  // ⭐ CTB-T0 (#223, contract §2 M-CTB.1) — THE SUPPORT-PLANE SEAM: the ONE read
+  // fork of `ctbSupportPlane` in src/**. Unconditional geometry, no predicate
+  // (#200): when the seam is armed, the two signed genes deform this expression on
+  // EVERY support tick; nothing here reads pressure, state or mode beyond the
+  // incumbent ternary, and nothing decides anything. Flag off OR genes absent ⇒
+  // `depthShift = 0` and `widthScale = 1` ⇒ `x + 0` and `× 1` are EXACT in IEEE-754
+  // ⇒ the incumbent expression evaluates byte-identically (G-BORN / G-ZERO).
+  let depthShift = 0;
+  let widthScale = 1;
+  if (ctbPlane) {
+    depthShift = ctbSupportDepthWeight(g) * CTB_DEPTH_BIAS_SPAN;
+    widthScale = 1 + ctbSupportWidthWeight(g);
+  }
+  const maxLat = radius * SUPPORT_LAT_CAP_FRAC * widthScale;
+  const latPull = clamp((lane.y - ball.pos.y) * SUPPORT_LAT_PULL * widthScale, -maxLat, maxLat);
   return v2(
-    clamp(ball.pos.x + team.attackDir * radius * aheadBias, -HALF_L + 2, HALF_L - 2),
+    clamp(ball.pos.x + team.attackDir * radius * (aheadBias + depthShift), -HALF_L + 2, HALF_L - 2),
     clamp(ball.pos.y + latPull, -HALF_W + 2, HALF_W - 2),
   );
 }

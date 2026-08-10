@@ -1,4 +1,4 @@
-import { clamp01 } from '../utils/math';
+import { clamp, clamp01 } from '../utils/math';
 import type { Rng } from '../utils/rng';
 
 /**
@@ -260,6 +260,60 @@ export interface TacticalGenome {
    * `mtMarkSag` match flag — every draw AND every read is thus flag-gated.
    */
   markSag?: number;
+  /**
+   * CTB-T0 (CHECK-TO-BALL-CONTRACT §2 M-CTB.1, ruling #223) — THE SUPPORT-PLANE
+   * DEPTH axis (回撤接应的「前后」). A SIGNED continuous shift of the support seat's
+   * ahead-bias, centred EXACTLY on the incumbent mode ternary (0.75 attacking /
+   * 0.35 otherwise), which is ABSORBED as the zero-point rather than deleted:
+   * `aheadBias′ = aheadBias + ctbSupportDepth · CTB_DEPTH_BIAS_SPAN`
+   * (see `supportSpot` / `CTB_DEPTH_BIAS_SPAN` in `src/ai/formations.ts`).
+   * 0 = today's world exactly. NEGATIVE reach is the whole point: at
+   * `aheadBias′ = 0` the supporter stands LEVEL with the ball and below it he
+   * shows BEHIND the ball — positions no genome in the shipped space can express
+   * today (the contract §0.3 code fact: 缺一条腿, 不是缺一个习惯).
+   *
+   * SIGNED domain [−1, +1] (not [0,1] like GENE_KEYS): the axis is a deformation
+   * around an incumbent centre, so its zero must be interior. NO predicate reads
+   * it and it decides nothing (the #200 red line): the shift is unconditional
+   * geometry, applied on every support tick when the seam is armed.
+   *
+   * ⚠ DORMANT / BORN ABSENT (RNG-STREAM SAFETY, the #148.5 / #75 genre, mirrored
+   * verbatim from `markSag`): OPTIONAL and BORN ABSENT (≡ 0 at its one consumer via
+   * `ctbSupportDepthWeight`), deliberately NOT in GENE_KEYS — so randomGenome /
+   * mutateGenome / crossoverGenomes / geneDistance draw the EXACT SAME RNG in the
+   * EXACT SAME order as HEAD, and the serialized genome (hence the production
+   * fingerprint 57b0bdab…c673) is byte-identical (an absent optional key is omitted
+   * by JSON.stringify). It gains a value ONLY when an evolution run opts in via the
+   * OWN explicit `evolveCtbSupportPlane` boolean (#75: never a widening of any
+   * existing opt-in), and its draws happen STRICTLY AFTER the `markSag` block —
+   * hence after the `defLaneConvergence` and both home-prior blocks too — so
+   * enabling it never re-orders an existing draw. The CONSUMPTION path is separately
+   * gated by the dormant `ctbSupportPlane` match flag.
+   */
+  ctbSupportDepth?: number;
+  /**
+   * CTB-T0 (CHECK-TO-BALL-CONTRACT §2 M-CTB.1, ruling #223) — THE SUPPORT-PLANE
+   * WIDTH axis (回撤接应的「左右」). A SIGNED continuous deformation of the lateral
+   * fan, applied as ONE coherent scale to BOTH incumbent fan constants at once:
+   * `widthScale = 1 + ctbSupportWidth`, then
+   * `pull′ = SUPPORT_LAT_PULL · widthScale` and
+   * `cap′  = radius · SUPPORT_LAT_CAP_FRAC · widthScale`
+   * (see `supportSpot` in `src/ai/formations.ts`). 0 = today's fan exactly
+   * (`widthScale = 1`); −1 collapses the fan onto the BALL'S OWN LANE (pull 0,
+   * cap 0 — the narrowest expressible support, right next to the carrier); +1
+   * doubles both, a fan reaching for the touchline. The deformation is COHERENT by
+   * construction — one gene, one factor on both constants — so the fan's shape is
+   * preserved and only its scale moves; `widthScale ≥ 0` always, so the lateral
+   * pull can never invert its sign.
+   *
+   * SIGNED domain [−1, +1], the same interior-zero reason as `ctbSupportDepth`.
+   * NO predicate reads it (#200): unconditional geometry, nothing decided.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to `ctbSupportDepth`
+   * above (outside GENE_KEYS, `evolveCtbSupportPlane` opt-in, draws strictly after
+   * the `markSag` block, consumption gated by `ctbSupportPlane`).
+   */
+  ctbSupportWidth?: number;
 }
 
 /**
@@ -311,6 +365,45 @@ export function markSagWeight(g: TacticalGenome): number {
   const v = g.markSag;
   if (v === undefined || !Number.isFinite(v)) return 0;
   return clamp01(v);
+}
+
+/**
+ * ⭐ CTB-T0 (M-CTB.1): THE SIGNED GENE DOMAIN for the support-plane axis pair.
+ *
+ * The GENE_KEYS family lives in [0,1] because each of those genes runs from "none"
+ * to "most". These two do not: they are DEFORMATIONS around an incumbent centre
+ * (the ahead-bias ternary; the fan constants), so their zero must be INTERIOR and
+ * their reach must be SIGNED — that is exactly what makes level-with/behind-the-ball
+ * expressible (the contract §0.3 defect). ±1 is a domain, not a geometry constant:
+ * the metric bounds are the traced spans in `src/ai/formations.ts`
+ * (`CTB_DEPTH_BIAS_SPAN` from the incumbent lateral cap fraction; the width axis'
+ * span IS each incumbent fan constant itself). The `homePriorObedienceOffset`
+ * family's ±0.5 `clampOffset` is the precedent for a signed clamp living here.
+ */
+export const CTB_GENE_MIN = -1;
+export const CTB_GENE_MAX = 1;
+const clampSignedUnit = (v: number): number => clamp(v, CTB_GENE_MIN, CTB_GENE_MAX);
+
+/**
+ * CTB-T0 (M-CTB.1): the DEPTH gene → weight map, the SINGLE owner of the expression.
+ * Born absent ⇒ `0` ⇒ `aheadBias′ === aheadBias` ⇒ byte-identical world. PURE, no rng.
+ * Clamped to [−1,1], so no instrument can dose past the frozen span through this door.
+ */
+export function ctbSupportDepthWeight(g: TacticalGenome): number {
+  const v = g.ctbSupportDepth;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clampSignedUnit(v);
+}
+
+/**
+ * CTB-T0 (M-CTB.1): the WIDTH gene → weight map, the SINGLE owner of the expression.
+ * Born absent ⇒ `0` ⇒ `widthScale === 1` ⇒ byte-identical world. PURE, no rng.
+ * Clamped to [−1,1], so the coherent fan scale stays in [0,2] and can never invert.
+ */
+export function ctbSupportWidthWeight(g: TacticalGenome): number {
+  const v = g.ctbSupportWidth;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clampSignedUnit(v);
 }
 
 /**
@@ -484,6 +577,21 @@ export interface MutateOptions {
    * MT-T2-grade run flips this together with the `mtMarkSag` match flag.
    */
   evolveMarkSag?: boolean;
+  /**
+   * CTB-T0 (#223, the SAME RNG-stream trap): opt-in that lets the dormant
+   * support-plane axis pair (`ctbSupportDepth` + `ctbSupportWidth`) evolve. DEFAULT
+   * OFF — every production evolve.ts call omits it, so the genes draw NO RNG and the
+   * flag-off random sequence stays byte-identical to HEAD. It is its OWN named
+   * boolean (#75) rather than a widening of any existing opt-in, so those runs'
+   * streams are ALSO unmoved. ONE opt-in for BOTH axes on purpose: they are one
+   * body's positional freedom (the user's 前后左右), not two independent tactics, and
+   * CTB-T2 doses/selects the plane as a plane. Its draws happen ONLY when this is
+   * `true` and STRICTLY AFTER the `markSag` block (hence after `defLaneConvergence`
+   * and both home-prior blocks), depth first then width, so enabling it never
+   * re-orders an existing draw. When shipped, a CTB-T2-grade run flips this together
+   * with the `ctbSupportPlane` match flag.
+   */
+  evolveCtbSupportPlane?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -536,6 +644,21 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
   if (opts.evolveMarkSag === true && rng.chance(rate)) {
     out.markSag = clamp01((out.markSag ?? 0) + rng.gaussian() * scale);
   }
+  // CTB-T0 (#223): the SUPPORT-PLANE axis pair mutates ONLY under its OWN explicit
+  // opt-in and ONLY here — after the GENE_KEYS loop, after BOTH home-prior blocks,
+  // after the defLaneConvergence block AND after the markSag block — so flag-off runs
+  // consume ZERO extra RNG draws (byte-identical to HEAD) and no existing opt-in run's
+  // draw sequence moves. `{ ...g }` above already carried both genes through untouched
+  // (born-absent ⇒ stay absent) in the flag-off path. DEPTH first, then WIDTH: one
+  // fixed order, so the pair's own stream is stable too. Clamped to the SIGNED domain.
+  if (opts.evolveCtbSupportPlane === true) {
+    if (rng.chance(rate)) {
+      out.ctbSupportDepth = clampSignedUnit((out.ctbSupportDepth ?? 0) + rng.gaussian() * scale);
+    }
+    if (rng.chance(rate)) {
+      out.ctbSupportWidth = clampSignedUnit((out.ctbSupportWidth ?? 0) + rng.gaussian() * scale);
+    }
+  }
   return out;
 }
 
@@ -543,6 +666,7 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
 export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
+  evolveCtbSupportPlane = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -608,6 +732,27 @@ export function crossoverGenomes(
     out.markSag = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
   } else if (a.markSag !== undefined) {
     out.markSag = a.markSag;
+  }
+  // CTB-T0 (#223): the SUPPORT-PLANE axis pair crosses over ONLY under its OWN
+  // explicit opt-in and ONLY here — after the GENE_KEYS loop, after BOTH home-prior
+  // blocks, after the defLaneConvergence block AND after the markSag block — so
+  // flag-off runs draw ZERO extra RNG and no existing opt-in run is moved. TWO draws,
+  // depth then width: unlike the offset FAMILY (one agreement, one draw), these are
+  // two independent axes of one plane and may be inherited from different parents.
+  // Flag-off ⇒ carry parent A's values through with NO draw (born-absent ⇒ the keys
+  // stay absent ⇒ serialization unchanged).
+  if (evolveCtbSupportPlane) {
+    const rd = rng.next();
+    const ad = a.ctbSupportDepth ?? 0;
+    const bd = b.ctbSupportDepth ?? 0;
+    out.ctbSupportDepth = rd < 0.4 ? ad : rd < 0.8 ? bd : (ad + bd) / 2;
+    const rw = rng.next();
+    const aw = a.ctbSupportWidth ?? 0;
+    const bw = b.ctbSupportWidth ?? 0;
+    out.ctbSupportWidth = rw < 0.4 ? aw : rw < 0.8 ? bw : (aw + bw) / 2;
+  } else {
+    if (a.ctbSupportDepth !== undefined) out.ctbSupportDepth = a.ctbSupportDepth;
+    if (a.ctbSupportWidth !== undefined) out.ctbSupportWidth = a.ctbSupportWidth;
   }
   return out;
 }

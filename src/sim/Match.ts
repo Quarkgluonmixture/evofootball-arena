@@ -474,6 +474,21 @@ export interface MatchConfig {
    */
   mtMarkSag?: boolean;
   /**
+   * CTB T0 (CHECK-TO-BALL-CONTRACT §2 M-CTB.2, ruling #223): arm the dormant
+   * SUPPORT-PLANE seam — the support seat's ahead-bias becomes a signed continuous
+   * axis (前后) and its lateral fan a signed continuous width (左右), both centred on
+   * today's values. Read at exactly ONE place: the `ctbPlane` argument of
+   * `supportSpot`, passed from the single `SupportBallCarrier` executor case. Who
+   * supports, pass selection and the carrier's own behaviour are untouched, and
+   * there is no predicate anywhere (#200). Both genes are BORN ABSENT, so even armed
+   * this changes nothing until an instrument or an opted-in evolution run gives them
+   * values.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B, #223: nothing ships)**; a
+   * probe arms it, and the production fingerprint is unchanged.
+   */
+  ctbSupportPlane?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -708,6 +723,12 @@ export class Match {
    * gates the sag term inside the `MarkOpponent` stance block.
    */
   readonly mtMarkSag: boolean;
+  /**
+   * CTB T0: the SUPPORT-PLANE seam, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the `supportSpot` call in `actionExecutor`'s
+   * `SupportBallCarrier` case, which passes it as that function's `ctbPlane` fork.
+   */
+  readonly ctbSupportPlane: boolean;
   /**
    * O2 T0 §SEAM: the live LOOK window — `{ gid, untilTick, startTick }`. A single
    * slot, sufficient because only the BALL OWNER may look and there is one ball.
@@ -1189,6 +1210,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#201.4: the gene gets its OWN opt-in
     // and nothing else may turn it on); a probe arms it.
     this.mtMarkSag = cfg.mtMarkSag ?? false;
+    // CTB T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#223: the genes get their OWN opt-in
+    // and nothing else may turn them on); a probe arms it.
+    this.ctbSupportPlane = cfg.ctbSupportPlane ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.

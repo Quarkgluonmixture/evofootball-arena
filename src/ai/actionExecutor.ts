@@ -399,7 +399,11 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       break;
     }
     case 'SupportBallCarrier': {
-      target = supportSpot(p, team, ball);
+      // CTB T0 (#223, M-CTB.4): the seam's ONLY consumer. The flag rides in as the
+      // `ctbPlane` argument; the fork itself lives inside `supportSpot`. Flag off ⇒
+      // the incumbent expression, byte for byte. WHO supports (TeamBrain assignment),
+      // pass selection and `speedF` below are untouched.
+      target = supportSpot(p, team, ball, match.ctbSupportPlane);
       speedF = (team.mode === 'CounterAttack' ? 1 : 0.9) - conserve * 0.15;
       break;
     }
