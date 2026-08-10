@@ -203,14 +203,27 @@ export function effectiveBlockers(from: V2, goal: V2, opponents: Player[]): numb
   return n;
 }
 
-/** How much free space a receiver has (nearest opponent distance / 8m). */
-export function opennessOf(p: Player, opponents: Player[]): number {
+/**
+ * How much free space there is AT A POINT (nearest opponent distance / 8m).
+ *
+ * ⭐ PURE CODE MOTION (PTP-T0, #231): this is `opennessOf`'s body verbatim with the
+ * receiver's position as the argument — the same loop, the same order, the same
+ * arithmetic — extracted so a pass can be priced at the point it is AIMED at rather
+ * than only at a body. `opennessOf` below is now the one-line body form of it, so
+ * there is zero duplicated arithmetic and its signature and behaviour are untouched.
+ */
+export function opennessAt(pos: V2, opponents: Player[]): number {
   let best = Infinity;
   for (const o of opponents) {
     if (o.sentOff) continue;
-    best = Math.min(best, dist(o.pos, p.pos));
+    best = Math.min(best, dist(o.pos, pos));
   }
   return clamp01(best / 8);
+}
+
+/** How much free space a receiver has (nearest opponent distance / 8m). */
+export function opennessOf(p: Player, opponents: Player[]): number {
+  return opennessAt(p.pos, opponents);
 }
 
 /** Free space in front of a dribbler toward `dir` (10m lookahead cone). */

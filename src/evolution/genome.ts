@@ -340,6 +340,31 @@ export interface TacticalGenome {
    * CONSUMPTION path is separately gated by the dormant `obmMovement` match flag.
    */
   offballMovementWeights?: number[];
+  /**
+   * PTP-T0 (PASS-TO-PATH-CONTRACT §2 M-PTP.2, ruling #231) — THE PASS-LEAD TRUST
+   * (传球到路). ONE team-level scalar in [0, 1]: how much of a SUPPORT-mode mate's
+   * projected displacement over the pass flight the carrier's pass model aims at.
+   *
+   * `aim = mate.pos + passLeadSupport · projectedDisplacement(mate, flight)` — see
+   * `src/ai/passLeadSeat.ts` for the law and the two traced constants it reuses.
+   * 0 = to feet = today's arithmetic EXACTLY (`x + 0`, an IEEE-754 identity), which
+   * is what G-ZERO measures rather than asserts.
+   *
+   * NO predicate reads it (#200): the lead is unconditional geometry × gene, so a
+   * STILL mate's led point IS his feet (his displacement is zero) — to-feet EMERGES,
+   * it is never branched on.
+   *
+   * ⚠ DORMANT / BORN ABSENT — identical birth discipline to the `ctbSupport*` pair
+   * and the OBM matrix above (outside GENE_KEYS, so `randomGenome` / `mutateGenome` /
+   * `crossoverGenomes` / `geneDistance` draw the EXACT same rng in the EXACT same
+   * order as HEAD and `JSON.stringify` omits the key, hence the production
+   * fingerprint is byte-identical). It gains values ONLY under its OWN explicit
+   * `evolvePassLeadSupport` boolean (#75), whose draws sit STRICTLY AFTER the
+   * `offballMovementWeights` block — hence after `ctbSupportPlane`, `markSag`,
+   * `defLaneConvergence` and both home-prior blocks. The CONSUMPTION path is
+   * separately gated by the dormant `ptpPassLead` match flag.
+   */
+  passLeadSupport?: number;
 }
 
 /**
@@ -485,6 +510,20 @@ export function offballMovementWeightVector(g: TacticalGenome): number[] {
     out[i] = clampSignedUnit(v);
   }
   return out;
+}
+
+/**
+ * PTP-T0 (M-PTP.2): the pass-LEAD gene → weight map, the SINGLE owner of the
+ * expression. Born absent ⇒ `0` ⇒ the projection term is exactly `+0` ⇒ the ordinary
+ * pass loop's arithmetic is byte-identical (to feet). PURE, no rng. Clamped to [0,1]
+ * — the domain is UNSIGNED because this gene runs from "none" (feet) to "the whole
+ * projected displacement" (path); a negative lead would aim BEHIND a moving mate,
+ * which is not a footballing choice, it is a mistake.
+ */
+export function passLeadSupportWeight(g: TacticalGenome): number {
+  const v = g.passLeadSupport;
+  if (v === undefined || !Number.isFinite(v)) return 0;
+  return clamp01(v);
 }
 
 /**
@@ -687,6 +726,20 @@ export interface MutateOptions {
    * together with the `obmMovement` match flag.
    */
   evolveOffballMovement?: boolean;
+  /**
+   * PTP-T0 (#231, the SAME RNG-stream trap): opt-in that lets the dormant pass-LEAD
+   * trust gene (`passLeadSupport`) evolve. DEFAULT OFF — every production evolve.ts
+   * call omits it, so the gene draws NO RNG and the flag-off random sequence stays
+   * byte-identical to HEAD. It is its OWN named boolean (#75) rather than a widening
+   * of any existing opt-in, so those runs' streams are ALSO unmoved. Its draws happen
+   * ONLY when this is `true` and STRICTLY AFTER the `offballMovementWeights` block
+   * (hence after `ctbSupportPlane`, `markSag`, `defLaneConvergence` and both
+   * home-prior blocks), so enabling it never re-orders an existing draw. When
+   * shipped, a PTP-T2-grade run flips this together with the `ptpPassLead` match flag
+   * — and, per the contract's co-evolution clause, alongside `evolveOffballMovement`:
+   * the passer's trust and the receiver's movement are the relational PAIR.
+   */
+  evolvePassLeadSupport?: boolean;
 }
 
 /** Returns a new genome; genes are clamped back to [0, 1]. */
@@ -770,6 +823,16 @@ export function mutateGenome(g: TacticalGenome, rng: Rng, opts: MutateOptions = 
     }
     out.offballMovementWeights = next;
   }
+  // PTP-T0 (#231): the pass-LEAD trust gene mutates ONLY under its OWN explicit
+  // opt-in and ONLY here — after the GENE_KEYS loop, after BOTH home-prior blocks,
+  // after the defLaneConvergence block, after the markSag block, after the
+  // ctbSupportPlane block AND after the offballMovement block — so flag-off runs
+  // consume ZERO extra RNG draws (byte-identical to HEAD) and no existing opt-in
+  // run's draw sequence moves. `{ ...g }` above already carried the gene through
+  // untouched (born-absent ⇒ stays absent) in the flag-off path.
+  if (opts.evolvePassLeadSupport === true && rng.chance(rate)) {
+    out.passLeadSupport = clamp01((out.passLeadSupport ?? 0) + rng.gaussian() * scale);
+  }
   return out;
 }
 
@@ -778,6 +841,7 @@ export function crossoverGenomes(
   a: TacticalGenome, b: TacticalGenome, rng: Rng, evolveHomePrior = false,
   evolveHomePriorOffsets = false, evolveDefLaneConvergence = false, evolveMarkSag = false,
   evolveCtbSupportPlane = false, evolveOffballMovement = false,
+  evolvePassLeadSupport = false,
 ): TacticalGenome {
   const out = {} as TacticalGenome;
   for (const k of GENE_KEYS) {
@@ -887,6 +951,20 @@ export function crossoverGenomes(
     // parent A's array — an in-place write on either (e.g. the arming checklist's
     // three-view dosing, #196.3-D6) can no longer reach through into the other.
     out.offballMovementWeights = [...a.offballMovementWeights];
+  }
+  // PTP-T0 (#231): the pass-LEAD trust gene crosses over ONLY under its OWN explicit
+  // opt-in and ONLY here — after every block above, the offballMovement matrix
+  // included — so flag-off runs draw ZERO extra RNG and no existing opt-in run is
+  // moved. ONE draw, the scalar law (`markSag`'s verbatim): from A, from B, or their
+  // mean. Flag-off ⇒ carry parent A's value through with NO draw (born-absent ⇒ the
+  // key stays absent ⇒ serialization unchanged).
+  if (evolvePassLeadSupport) {
+    const r = rng.next();
+    const av = a.passLeadSupport ?? 0;
+    const bv = b.passLeadSupport ?? 0;
+    out.passLeadSupport = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;
+  } else if (a.passLeadSupport !== undefined) {
+    out.passLeadSupport = a.passLeadSupport;
   }
   return out;
 }

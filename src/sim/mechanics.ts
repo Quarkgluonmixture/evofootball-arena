@@ -353,6 +353,7 @@ function executedPassPower(match: Match, passer: Player, intended: number): numb
 
 export function performPass(
   match: Match, passer: Player, mate: Player, offsideExempt = false, powerChoice = 1,
+  ptpLead: Readonly<V2> | null = null,
 ): void {
   if (match.ball.owner !== passer || passer.kickCooldown > 0) return;
   const team = match.teams[passer.side];
@@ -371,7 +372,18 @@ export function performPass(
 
   // Lead the receiver by a fraction of the expected flight time.
   const flight = dist(passer.pos, mate.pos) / (16 * powerMul);
-  const lead = add(mate.pos, scale(mate.vel, flight * 0.8));
+  const struckLead = add(mate.pos, scale(mate.vel, flight * 0.8));
+  // PTP T0 (docs/world-model/PTP-T0-DORMANT-SEAM.md §SEAM — EXECUTION FOLLOWS
+  // PRICING): when the chooser priced this pass against a LED point, the ball is
+  // aimed there. `ptpLead` is the chooser's OWN priced displacement, handed in by
+  // the single `ptpPassLead` fork in `PlayerBrain.decideOnBall`; it is `null` in
+  // every production path and on every other caller, so this line is the shipped
+  // strike verbatim (`lead === struckLead`, the incumbent object). The incumbent
+  // strike-time correction above is NOT replaced — it is the passer's own body
+  // knowledge and it stays; the gene's projection rides ON TOP of it, which is why
+  // gene 0 is byte-identical rather than merely close.
+  const lead = ptpLead === null ? struckLead
+    : v2(struckLead.x + ptpLead.x, struckLead.y + ptpLead.y);
   const d = dist(passer.pos, lead);
   // d·0.55+7.5 → d·0.6+8.2 (31.6, user call 传球力度): zip beats the
   // in-flight interceptors (completion 64→68%) — the receiving cost is

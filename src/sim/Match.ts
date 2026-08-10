@@ -514,6 +514,23 @@ export interface MatchConfig {
    */
   obmMovement?: boolean;
   /**
+   * PTP T0 (PASS-TO-PATH-CONTRACT §2 M-PTP.4, ruling #231): arm the dormant
+   * PASS-LEAD seam (传球到路). Armed, the ordinary pass loop prices a SUPPORT-mode
+   * mate at an AIM POINT projected along his motion over the pass flight — the
+   * through-ball family's own lead arithmetic, weighted by the born-absent
+   * `passLeadSupport` gene (`src/ai/passLeadSeat.ts`) — and a pass chosen against a
+   * led point is STRUCK at it. Read at exactly ONE place: the seat fork in
+   * `PlayerBrain.decideOnBall`'s pass block. The `MakeRun` through-ball loop, the
+   * whether seat, the certified table, the OBM/CTB seams and TeamBrain are untouched,
+   * and there is no predicate anywhere (#200) — a still mate's led point is his feet
+   * by arithmetic. The gene is BORN ABSENT, so even armed this changes nothing until
+   * an instrument or an opted-in evolution run gives it a value.
+   * **Default OFF, an EXPLICIT boolean — never `EDS_BUNDLE_ARMED`, never env-armed,
+   * absent from `a4World` and from every preset (Road B, #231: nothing ships)**; a
+   * probe arms it, and the production fingerprint is unchanged.
+   */
+  ptpPassLead?: boolean;
+  /**
    * EDS E3 instrument: log every perceived pass choice with the legacy choice
    * beside it, the class shares, look-pressure and the power canary. Pure
    * observation — it must not change a single tick.
@@ -760,6 +777,12 @@ export class Match {
    * the plane fork in `actionExecutor`'s `SupportBallCarrier` case.
    */
   readonly obmMovement: boolean;
+  /**
+   * PTP T0: the PASS-LEAD seam, dormant unless a probe world arms it (Road B).
+   * Read at exactly ONE place — the seat fork in `PlayerBrain.decideOnBall`'s pass
+   * block, which both prices the led aim point and carries it to the strike.
+   */
+  readonly ptpPassLead: boolean;
   /**
    * OBM T0 §SEAM: the last policy each off-ball body computed, keyed by gid, with
    * the tick it was computed on. WRITTEN only by the brain's single `obmMovement`
@@ -1256,6 +1279,10 @@ export class Match {
     // EDS_BUNDLE_ARMED, never bundle-defaulted (#227: the policy matrix gets its OWN
     // opt-in and nothing else may turn it on); a probe arms it.
     this.obmMovement = cfg.obmMovement ?? false;
+    // PTP T0: Road B — an EXPLICIT boolean, never env-armed, never default-ON, never
+    // EDS_BUNDLE_ARMED, never bundle-defaulted (#231: the lead gene gets its OWN
+    // opt-in and nothing else may turn it on); a probe arms it.
+    this.ptpPassLead = cfg.ptpPassLead ?? false;
     this.traceChoice = cfg.traceChoice ?? EDS_TRACE_ARMED;
     // A4-P1b (#133): Road B — never env-armed, never default-ON; absent ⇒ null
     // (the policy intact for both sides), so the fingerprint stands.
@@ -1689,8 +1716,11 @@ export class Match {
     return mech.shotQuality(this, p);
   }
   /** `powerChoice` is C1-A's dormant weight input; every live caller omits it. */
-  performPass(p: Player, mate: Player, offsideExempt = false, powerChoice = 1): void {
-    mech.performPass(this, p, mate, offsideExempt, powerChoice);
+  performPass(
+    p: Player, mate: Player, offsideExempt = false, powerChoice = 1,
+    ptpLead: Readonly<V2> | null = null,
+  ): void {
+    mech.performPass(this, p, mate, offsideExempt, powerChoice, ptpLead);
   }
   performThroughBall(p: Player, runner: Player, lofted = false, offsideExempt = false): void {
     mech.performThroughBall(this, p, runner, lofted, offsideExempt);

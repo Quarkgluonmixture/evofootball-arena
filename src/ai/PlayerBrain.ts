@@ -12,9 +12,10 @@ import type { Team } from '../sim/Team';
 import type { UtilityScore } from '../sim/types';
 import { aerialSense, kickMisalignment } from '../sim/mechanics';
 import {
-  airLaneOpenness, canInterceptPass, effectiveBlockers, interceptBall, laneOpenness, opennessOf,
-  escapeCarry, pressureAt, spaceAhead, timeToPoint,
+  airLaneOpenness, canInterceptPass, effectiveBlockers, interceptBall, laneOpenness, opennessAt,
+  opennessOf, escapeCarry, pressureAt, spaceAhead, timeToPoint,
 } from './perception';
+import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';
 import {
   choosePerceivedPassTarget, passChoiceCandidateGids, preferredPassPower,
 } from './perceivedPassChoice';
@@ -328,21 +329,44 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   // One aerial-lane read per decision — the pass loop and the through-ball
   // loop used to each run the same scan with the same arguments.
   const airLane = p.kickCooldown <= 0 ? airLaneOpenness(p.pos, opp.players) : 0;
+  // PTP T0 (docs/world-model/PTP-T0-DORMANT-SEAM.md §SEAM) — THE PASS-LEAD SEAT, the
+  // ONE `ptpPassLead` fork in `src/**`. Built once per decision (so a percept world
+  // pulls at most ONE snapshot here, never one per candidate mate), it carries the
+  // gene weight and the world-appropriate MOTION source: truth velocity in a bare
+  // world — the same source `mate.pos` already is — and this body's own REMEMBERED
+  // percept velocity when `edsPerceivedChoice` has swapped the chooser onto his
+  // snapshot. Flag off ⇒ `ptpSeat` is null ⇒ every aim below is `mate.pos` itself,
+  // the same object the shipped loop passes, so the arithmetic is byte-identical
+  // (G-OFF / G-BORN / G-ZERO). Born absent ⇒ weight 0 ⇒ every lead is exactly ±0.
+  const ptpSeat = match.ptpPassLead ? passLeadSeatOf(p, match, g, match.edsPerceivedChoice) : null;
+  let bestLeadX = 0;
+  let bestLeadY = 0;
   if (p.kickCooldown <= 0) {
     const lp = match.lastCompletedPass;
     const layingOff = p.action.type === 'HoldUp'; // pivot lay-off (Phase 28)
     for (const mate of team.players) {
       if (mate === p || mate.sentOff) continue;
+      // PTP T0: the point this pass is PRICED AT. Seat absent ⇒ literally `mate.pos`
+      // (to feet, the shipped loop); seat present ⇒ his feet plus the gene's share of
+      // the displacement he is projected to make over the flight. THE THREE SCORING
+      // INPUTS BELOW MOVE WITH IT — lane, open and gain are read AT the aim, so the
+      // chooser prices the pass it would actually play. Everything else in this loop
+      // stays anchored to the BODY on purpose and is unchanged: `d` (the flight the
+      // lead itself is derived from, and the long/short bands), the offside read (the
+      // flag is judged on where he STANDS), the kick misalignment (body mechanics),
+      // and every bonus below.
+      const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);
+      const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };
       // The playmaker (Phase 39) reads passing lanes 15% more open than
       // they look — the trait is vision, priced into lane weight only.
       const lane = Math.min(
         1,
-        laneOpenness(p.pos, mate.pos, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
+        laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
       );
-      const open = opennessOf(mate, opp.players);
+      const open = opennessAt(aim, opp.players);
       const d = dist(p.pos, mate.pos);
       // Forward progress of the pass, normalized to ±1 over 30m.
-      const gain = clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
+      const gain = clamp01((team.localX(aim.x) - localX + 30) / 60) * 2 - 1;
 
       // Shared style/tilt multipliers (identical for ground and lofted).
       let mul = 1;
@@ -434,6 +458,10 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         bestMate = mate;
         bestLane = lane;
         bestOpen = open;
+        // PTP T0: the winner's own led displacement, kept so the STRIKE can follow
+        // the PRICING. Seat absent ⇒ these stay 0 and no led strike is ever built.
+        bestLeadX = lead === null ? 0 : lead.x;
+        bestLeadY = lead === null ? 0 : lead.y;
       }
 
       // Lofted switch: only worth the hang time for genuinely long balls
@@ -1029,8 +1057,20 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         // o1PassWindup is OFF in every production path, so this is the shipped
         // synchronous release verbatim (no rng draw added, no reordering). The
         // cutback branch above is untouched.
+        // PTP T0 §SEAM (EXECUTION FOLLOWS PRICING): a pass PRICED against a led point
+        // is STRUCK at it. Its own armed-only statement — the incumbent statements
+        // around it are byte-identical, and the O1 wind-up keeps precedence (that
+        // banked seam owns the release timing; with both armed the strike resolves
+        // through the wind-up's own aim, an honest limit stated in the stage doc).
+        // Guards, not predicates: the lead rides only when the chooser's OWN winner
+        // is the man being passed to (a substituted target — the E2a-2 forced probe
+        // or the perceived chooser — was never priced with a lead), and only when the
+        // lead is non-zero, so the born-absent and zero-gene worlds never even reach
+        // this statement.
         if (match.o1PassWindup && !mustKick && p.firstTouchWindow <= 0) {
           match.armPendingPass(p, passMate!, offsideExemptKick);
+        } else if (passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)) {
+          match.performPass(p, passMate!, offsideExemptKick, 1, v2(bestLeadX, bestLeadY));
         } else match.performPass(p, passMate!, offsideExemptKick);
       }
       break;

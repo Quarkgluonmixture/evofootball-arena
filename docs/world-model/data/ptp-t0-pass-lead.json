@@ -1,0 +1,2252 @@
+{
+  "stage": "PTP T0 — the dormant PASS-LEAD seam (`passLeadSupport` / `ptpPassLead`)",
+  "ruling": "#231 (the dispatch) + #181.2 (the standing receipt rule) + #194 (gate semantics stated exactly) + #197-M1 (commit-free hashed body) + #200 (no predicates) + #202 (traced bounds) + #228 (the two-doors lesson, gated from birth)",
+  "contract": "docs/world-model/PASS-TO-PATH-CONTRACT.md",
+  "doc": "docs/world-model/PTP-T0-DORMANT-SEAM.md",
+  "frozenLaw": {
+    "flightSpeed": 18,
+    "leadFlightMul": 1.6,
+    "geneDomain": [
+      0,
+      1
+    ],
+    "dose": {
+      "zero": 0,
+      "full": 1
+    },
+    "derivation": "THE PROJECTION (M-PTP.1), for a SUPPORT-mode mate in the ordinary pass loop: flight = dist(carrier.pos, mate.pos) / PTP_FLIGHT_SPEED (18 — the through-ball loop's OWN divisor, cited verbatim at src/ai/PlayerBrain.ts); displacement = motion · flight · PTP_LEAD_FLIGHT_MUL (1.6 — runBurstPoint's OWN in-stride lead factor, cited verbatim at src/ai/formations.ts); aim = mate.pos + passLeadSupportWeight(g) · displacement. The three scoring inputs the contract names — lane, open, gain — are evaluated AT the aim point; d, the offside read and the kick misalignment stay anchored to the BODY. THE MOTION SOURCE IS THE CHOOSER'S OWN, per world shape: truth velocity in a bare world (the same source mate.pos already is) and the REMEMBERED velocity of that mate in this body's own perceived snapshot when edsPerceivedChoice has swapped the chooser onto percepts — a mate he has not seen has NO motion for him, hence zero, hence to feet. NO PREDICATE (#200): a still mate's displacement is zero BY ARITHMETIC. ZERO-POINT: gene absent or 0 ⇒ the displacement is exactly ±0 and mate.pos + ±0 === mate.pos in IEEE-754 ⇒ the ordinary loop's arithmetic is byte-identical. EXECUTION FOLLOWS PRICING: the winner's own lead is handed to performPass as a 5th argument and ADDED to the incumbent strike-time lead (mate.vel · flight · 0.8, untouched), on its own armed-only statement beside the pinned synchronous one. NO CAP is taken: the displacement is bounded by construction and an over-greedy lead prices ITSELF out through lane/open/gain, which are read AT the aim."
+  },
+  "gates": {
+    "gDet": {
+      "pass": true,
+      "digestA": "d0e74c12dbc977f8799ab0d010118f0f6693c701c4a2645abb33535350e286f2",
+      "digestB": "d0e74c12dbc977f8799ab0d010118f0f6693c701c4a2645abb33535350e286f2"
+    },
+    "gIdent": {
+      "pass": true,
+      "seasons": 2,
+      "procedure": "new League({seed}) → runHeadless toGeneration(generation + 2) → sha256(JSON.stringify(out.league)) — identical to scripts/fingerprint.ts",
+      "semantics": "THE RNG-STREAM RECEIPT for the sim path: these baselines were frozen from PRE-change code, so any draw added on the dormant path — conditional or not — would break them.",
+      "rows": [
+        {
+          "seed": 1337,
+          "seasons": 2,
+          "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "identical": true
+        },
+        {
+          "seed": 20260728,
+          "seasons": 2,
+          "baseline": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "observed": "c6e319a45693424d707f0faeb2b5f7561955af9bd07a33e2da6a7f13533ff080",
+          "identical": true
+        },
+        {
+          "seed": 424242,
+          "seasons": 2,
+          "baseline": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "observed": "45d98c7441765fde680d1d42fcb228a7631416980bba40ec92b85be042a39f26",
+          "identical": true
+        }
+      ]
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673"
+    },
+    "gOff": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "CONFIG EQUIVALENCE ONLY (#194): flag ABSENT ≡ flag FALSE in both the percept-armed and the production-shaped world. Both arms execute the SAME flag-off path, so this cannot and does not prove RNG-stream identity — G-IDENT does."
+    },
+    "gBorn": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ARMS DIFFER IN CODE PATH: armed ⇒ the seat is BUILT on every on-ball decision and, in the percept-armed world, PULLS THIS BODY'S SNAPSHOT; the aim point is composed per candidate mate through the live branch. Byte-identity to OFF therefore proves the born-absent gene inert THROUGH the live branch AND the percept pull free of side effects on any other consumer."
+    },
+    "gZero": {
+      "pass": true,
+      "seeds": 24,
+      "semantics": "THE ZERO-POINT IDENTITY, ARITHMETIC-EXACT: armed with the gene PRESENT at 0. The arms differ in code path AND in gene state; byte-identity proves the projection term is exactly +0 and that the aim composition, the three re-anchored scoring inputs and the strike are IEEE-754 identities at the zero-point."
+    },
+    "gBite": {
+      "pass": true,
+      "divergedSeeds": 24,
+      "bareDivergedSeeds": 24,
+      "seeds": 24,
+      "aimGeometryPercept": {
+        "samples": 2095,
+        "supportSamples": 1109,
+        "movedSamples": 188,
+        "stillSamples": 921,
+        "meanLeadMetres": 0.7805,
+        "maxLeadMetres": 13.7109,
+        "meanFlightSeconds": 0.5406,
+        "meanMotionSpeed": 0.7165,
+        "violations": {
+          "arithmetic": 0,
+          "direction": 0,
+          "nonSupportNonZero": 0,
+          "stillNonZero": 0,
+          "zeroDoseNonZero": 0
+        },
+        "pass": true
+      },
+      "aimGeometryBare": {
+        "samples": 1335,
+        "supportSamples": 608,
+        "movedSamples": 518,
+        "stillSamples": 90,
+        "meanLeadMetres": 2.5364,
+        "maxLeadMetres": 18.7885,
+        "meanFlightSeconds": 0.5448,
+        "meanMotionSpeed": 2.5131,
+        "violations": {
+          "arithmetic": 0,
+          "direction": 0,
+          "nonSupportNonZero": 0,
+          "stillNonZero": 0,
+          "zeroDoseNonZero": 0
+        },
+        "pass": true
+      },
+      "chosenPassesPercept": {
+        "passes": 106,
+        "ledPasses": 23,
+        "supportTargets": 53,
+        "meanLeadMetres": 5.3621,
+        "maxLeadMetres": 12.6679,
+        "meanLeadShareOfDistance": 0.4136,
+        "signViolations": 0,
+        "magnitudeViolations": 0,
+        "ledPassShare": 0.217
+      },
+      "chosenPassesBare": {
+        "passes": 89,
+        "ledPasses": 56,
+        "supportTargets": 57,
+        "meanLeadMetres": 5.5436,
+        "maxLeadMetres": 18.7497,
+        "meanLeadShareOfDistance": 0.3999,
+        "signViolations": 0,
+        "magnitudeViolations": 0,
+        "ledPassShare": 0.6292
+      },
+      "semantics": "THREE things at once. (i) DIVERGENCE: armed at the gene's upper corner the world moves on every seed, in the percept world AND in the bare world. (ii) THE LAW ON SAMPLED DECISIONS: on live match states the led displacement is re-derived INDEPENDENTLY from the world's own motion source and must match exactly, point along the motion (SIGN) and have magnitude gene·|motion|·flight·MUL; a NON-support mate's lead must be exactly zero; a STILL mate's lead must be exactly zero WITHOUT a branch (#200); the zero dose must give exactly zero. (iii) THE PASSES ACTUALLY CHOSEN: `performPass` is wrapped on a forced match so the 5th argument — the aim the ball was really struck at — is recorded for every chosen pass, and the same sign and magnitude law is re-checked on those real choices."
+    },
+    "gEpiMotion": {
+      "perceptBodies": 4,
+      "perceptMatchesPercept": 4,
+      "perceptMatchesTruth": 0,
+      "divergedBodies": 4,
+      "meanRememberedAgeTicks": 8,
+      "bareBodies": 12,
+      "bareMatchesTruth": 12,
+      "bareMatchesStalePercept": 0,
+      "moduleMatchMembers": [
+        "perceivedSnapshot"
+      ],
+      "moduleBannedHits": [],
+      "pass": true,
+      "semantics": "⭐ THE HONESTY CORE, PROVED NOT ASSERTED. A match is stepped 600 ticks, every eligible (carrier, support-mate) projection is recorded, then EVERY TRUTH VELOCITY IS REWRITTEN IN PLACE WITHOUT STEPPING — no scan moment is recorded, so the remembered velocities still hold the old world. POSITIONS ARE UNTOUCHED, so `flight` is identical and the ONLY thing that can move a projection is its motion source. In the PERCEPT world every projection must be UNCHANGED (it reads his own eyes) and NOT ONE may equal the truth-derived value; in the BARE world every projection must FOLLOW the truth exactly, because truth is what THAT chooser reads. Both halves are gated: that is what makes \"one inference form per world shape\" a mechanism. Plus the SOURCE pin: the only member of `match` the seat module names is `perceivedSnapshot`."
+    },
+    "gCross": {
+      "pass": true,
+      "cells": 48,
+      "seeds": {
+        "n": 4,
+        "first": 12425000,
+        "last": 12425003
+      },
+      "neighbourDose": {
+        "ctbDepth": -1,
+        "ctbWidth": 1,
+        "obmMatrix": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      },
+      "claims": [
+        {
+          "name": "DORMANT-ALL · lead absent · others dosed",
+          "a": "ptp0·obm0·ctb0·others1·lead-absent",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "all three flags OFF: no gene bank of any of the three seams can be read, so every gene state collapses onto the incumbent world."
+        },
+        {
+          "name": "DORMANT-ALL · lead zero · others dosed",
+          "a": "ptp0·obm0·ctb0·others1·lead-zero",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "all three flags OFF: no gene bank of any of the three seams can be read, so every gene state collapses onto the incumbent world."
+        },
+        {
+          "name": "DORMANT-ALL · lead dosed · others dosed",
+          "a": "ptp0·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "all three flags OFF: no gene bank of any of the three seams can be read, so every gene state collapses onto the incumbent world."
+        },
+        {
+          "name": "⭐ A-PTP-ALONE-INERT · others DOSED · lead absent",
+          "a": "ptp1·obm0·ctb0·others1·lead-absent",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: ptpPassLead ARMED with the BANKED obm matrix and ctbSupport* genes FULLY DOSED and this seat's own gene inert — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to."
+        },
+        {
+          "name": "⭐ A-PTP-ALONE-INERT · others DOSED · lead zero",
+          "a": "ptp1·obm0·ctb0·others1·lead-zero",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: ptpPassLead ARMED with the BANKED obm matrix and ctbSupport* genes FULLY DOSED and this seat's own gene inert — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to."
+        },
+        {
+          "name": "⭐ A-OTHER-GENES-INVISIBLE · ptp fully live, the other doors shut",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp1·obm0·ctb0·others0·lead-dosed",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE CLEANEST FORM: the pass-lead seat FULLY ARMED AND FULLY DOSED, biting hard — and the banked obm/ctb gene banks make NO difference to it whatsoever, because their own flags are shut."
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-LEAD · obm armed alone · lead absent",
+          "a": "ptp0·obm1·ctb0·others1·lead-absent",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the converse door: with ptpPassLead SHUT, this stage's gene is unreadable at any dose — the banked OBM seat delivers exactly what it delivered before this stage existed."
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-LEAD · obm armed alone · lead zero",
+          "a": "ptp0·obm1·ctb0·others1·lead-zero",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the converse door: with ptpPassLead SHUT, this stage's gene is unreadable at any dose — the banked OBM seat delivers exactly what it delivered before this stage existed."
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-LEAD · obm armed alone · lead dosed",
+          "a": "ptp0·obm1·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the converse door: with ptpPassLead SHUT, this stage's gene is unreadable at any dose — the banked OBM seat delivers exactly what it delivered before this stage existed."
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-LEAD · ctb armed alone · lead absent",
+          "a": "ptp0·obm0·ctb1·others1·lead-absent",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane."
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-LEAD · ctb armed alone · lead zero",
+          "a": "ptp0·obm0·ctb1·others1·lead-zero",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane."
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-LEAD · ctb armed alone · lead dosed",
+          "a": "ptp0·obm0·ctb1·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "mustBeIdentical": true,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane."
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · ptp-alone-dosed vs obm-alone-dosed",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ THE FALSIFIER: arming and dosing THIS seam must not reproduce the banked OBM seat armed on its own bank. If these two were byte-identical, one door would be spending the other's bank — the exact defect #228 caught."
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · ptp-alone-dosed vs ctb-alone-dosed",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the same falsifier against the banked CTB static plane."
+        },
+        {
+          "name": "⭐ C-PTP-INERT-IS-NOT-THE-NEIGHBOURS · ptp armed inert vs obm-alone",
+          "a": "ptp1·obm0·ctb0·others1·lead-zero",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "⭐ the identity that WOULD hold if this door leaked: an inert ptp seat sitting on a full neighbour bank must be the INCUMBENT world, hence DIFFERENT from the neighbour armed on that bank."
+        },
+        {
+          "name": "BITE · ptp armed + dosed, other doors shut, others dosed",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "the seat is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous."
+        },
+        {
+          "name": "BITE · ptp armed + dosed, other doors shut, others absent",
+          "a": "ptp1·obm0·ctb0·others0·lead-dosed",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "the seat is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous."
+        },
+        {
+          "name": "ALL-THREE-ARMED-AND-DOSED bites",
+          "a": "ptp1·obm1·ctb1·others1·lead-dosed",
+          "b": "ptp0·obm1·ctb1·others1·lead-absent",
+          "mustBeIdentical": false,
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true,
+          "semantics": "with all three doors open and every bank dosed, adding THIS seam's dose moves the world away from the other two armed alone. (What the combination BUYS is PTP-T1's exam, not adjudicated here.)"
+        }
+      ],
+      "table": [
+        {
+          "seed": 12425000,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others1·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others1·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others1·lead-absent": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp0·obm0·ctb1·others1·lead-zero": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp0·obm1·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb0·others1·lead-absent": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp0·obm1·ctb0·others1·lead-zero": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp0·obm1·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb1·others1·lead-absent": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp0·obm1·ctb1·others1·lead-zero": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp1·obm0·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm0·ctb0·others1·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others1·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm0·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm0·ctb1·others1·lead-absent": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp1·obm0·ctb1·others1·lead-zero": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "c4ca1b7c253c4cbd6069c90876cd9b5081d8a059002bf25aa97db9a12e02edbc",
+            "ptp1·obm1·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm1·ctb0·others1·lead-absent": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp1·obm1·ctb0·others1·lead-zero": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "5c0fbc20c5f176964c5d704b39c0c4c1e4a518e1f663c9d734c7594ee5adf56d",
+            "ptp1·obm1·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm1·ctb1·others1·lead-absent": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp1·obm1·ctb1·others1·lead-zero": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "80ac2f12a380d9edbc84325cbf7b1513fb33a1b2607fddebf55f22eda6923838"
+          }
+        },
+        {
+          "seed": 12425001,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others1·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others1·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others1·lead-absent": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp0·obm0·ctb1·others1·lead-zero": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp0·obm1·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb0·others1·lead-absent": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp0·obm1·ctb0·others1·lead-zero": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp0·obm1·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb1·others1·lead-absent": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp0·obm1·ctb1·others1·lead-zero": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp1·obm0·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm0·ctb0·others1·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others1·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm0·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm0·ctb1·others1·lead-absent": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp1·obm0·ctb1·others1·lead-zero": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "96603578e878ca629f579cf82534c52cae88e78605cabd5dd4846463a376548d",
+            "ptp1·obm1·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm1·ctb0·others1·lead-absent": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp1·obm1·ctb0·others1·lead-zero": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "b081cffbe80522a840c65364aa31d937225350a96c32f8fceb4ac601446c7e34",
+            "ptp1·obm1·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm1·ctb1·others1·lead-absent": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp1·obm1·ctb1·others1·lead-zero": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "e17cbd32c60eb7b223f039d4f1de63f285e9edf1b683dfbe7bcc91459b2992ac"
+          }
+        },
+        {
+          "seed": 12425002,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others1·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others1·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others1·lead-absent": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp0·obm0·ctb1·others1·lead-zero": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp0·obm1·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb0·others1·lead-absent": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp0·obm1·ctb0·others1·lead-zero": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp0·obm1·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb1·others1·lead-absent": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp0·obm1·ctb1·others1·lead-zero": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp1·obm0·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm0·ctb0·others1·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others1·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm0·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm0·ctb1·others1·lead-absent": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp1·obm0·ctb1·others1·lead-zero": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "da7983f2d4bd7aa6c301bc5063b5857606afd546b49287bbbde2d056445f2c57",
+            "ptp1·obm1·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm1·ctb0·others1·lead-absent": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp1·obm1·ctb0·others1·lead-zero": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "f13f9be757faf13a14f909d8b2a742e7f6db32e82bf1824a86e4d71754c46b50",
+            "ptp1·obm1·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm1·ctb1·others1·lead-absent": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp1·obm1·ctb1·others1·lead-zero": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "9a02cf4b09eddcaadab98048c1b389ed12dae7bd49ce7e9db46ec3c8a0bcba05"
+          }
+        },
+        {
+          "seed": 12425003,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others1·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others1·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others1·lead-absent": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp0·obm0·ctb1·others1·lead-zero": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp0·obm1·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb0·others1·lead-absent": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp0·obm1·ctb0·others1·lead-zero": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp0·obm1·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb1·others1·lead-absent": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp0·obm1·ctb1·others1·lead-zero": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp1·obm0·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm0·ctb0·others1·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others1·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm0·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm0·ctb1·others1·lead-absent": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp1·obm0·ctb1·others1·lead-zero": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "004289320d12bdb97fb62d9443bf2396fcb64751e34e76b250de4f523d88960b",
+            "ptp1·obm1·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm1·ctb0·others1·lead-absent": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp1·obm1·ctb0·others1·lead-zero": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "c93fad7d1b98399518ff584b866b6a618ecbefac1f67a49f4824a1824d2442e9",
+            "ptp1·obm1·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm1·ctb1·others1·lead-absent": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp1·obm1·ctb1·others1·lead-zero": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "4212cc893fb8c6965e431d5aafe05ba8e4b495c3c1d6318e7d6a4a0363f82270"
+          }
+        }
+      ],
+      "semantics": "⭐⭐ THE TWO-DOORS MATRIX (#228), gated FROM BIRTH rather than remembered. The OBM-T0 verify catch found a seat that spent a NEIGHBOURING seam's banked genes because no gate ever crossed the two arming doors. This stage crosses all three doors of the family it lands in — {ptpPassLead × obmMovement × ctbSupportPlane} × {the neighbours' banks dosed/absent} × {this gene absent/zero/dosed} = 48 cells, a FULL match per cell per seed, whole-run signature incl. rng state. Arming this door alone with BOTH neighbour banks fully dosed must be byte-identical to ALL-OFF; the neighbours armed alone must be unmoved by this gene at any dose; and the DISCRIMINATION rows prove the three seams are distinguishable, without which every identity above would be vacuous."
+    },
+    "gRng": {
+      "pass": true,
+      "seam": {
+        "before": 4179509926,
+        "after": 4179509926,
+        "pass": true,
+        "calls": 50,
+        "semantics": "an ARMED, fully DOSED seat built and applied over every outfielder of both teams against every mate on a 400-tick fixture: the match rng state is EXACT before and after. The percept pull draws nothing either."
+      },
+      "evolution": {
+        "genomesIdentical": true,
+        "rngStateIdentical": true,
+        "geneStayedAbsent": true,
+        "optInDraws": true,
+        "obmStreamUnmoved": true,
+        "crossoverOrderHeld": true,
+        "sActual": 2263703047,
+        "sHead": 2263703047,
+        "semantics": "THE ARMS DIFFER: the shipped mutate/crossover with the opt-in OFF vs a faithful PRE-GENE re-implementation (GENE_KEYS only). Identical genomes AND identical final rng state ⇒ zero extra draws; `optInDraws` shows the opt-in path is live; `obmStreamUnmoved` and `crossoverOrderHeld` show the new draws sit STRICTLY AFTER the offballMovement block (hence after ctbSupportPlane, markSag, defLaneConvergence and both home-prior blocks) in mutation and in crossover alike."
+      }
+    },
+    "gHygiene": {
+      "pass": true,
+      "defaultFalse": true,
+      "absentFromA4World": true,
+      "notInGeneKeys": true,
+      "noEnvDoor": true,
+      "freshMatchOff": true,
+      "leagueMatchOff": true,
+      "randomGenomeBornAbsent": true
+    },
+    "gFork": {
+      "pass": true,
+      "flagForks": 1,
+      "aimApplySites": 3,
+      "strikeSites": 1,
+      "semantics": "⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.ptpPassLead` fork in src/** — the seat fork in PlayerBrain.decideOnBall's pass block — feeding exactly ONE lead computation, ONE aim composition, THREE aim-priced scoring inputs (lane, open, gain), ONE lead capture pair and ONE led-strike statement. Everything else that names the flag, the gene, the opt-in or the seat module is a declaration, an init, the League union key, an import or the seat module's own body — all enumerated below with file:line and class, ZERO unclassified.",
+      "sites": [
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 18,
+          "kind": "IMPORT",
+          "text": "import { passLeadOffset, passLeadSeatOf } from './passLeadSeat';"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 341,
+          "kind": "FLAG_FORK",
+          "text": "const ptpSeat = match.ptpPassLead ? passLeadSeatOf(p, match, g, match.edsPerceivedChoice) : null;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 342,
+          "kind": "LEAD_NEUTRAL",
+          "text": "let bestLeadX = 0;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 343,
+          "kind": "LEAD_NEUTRAL",
+          "text": "let bestLeadY = 0;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 358,
+          "kind": "LEAD_COMPUTE",
+          "text": "const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 359,
+          "kind": "AIM_COMPOSE",
+          "text": "const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 364,
+          "kind": "AIM_APPLY_LANE",
+          "text": "laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 366,
+          "kind": "AIM_APPLY_OPEN",
+          "text": "const open = opennessAt(aim, opp.players);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 369,
+          "kind": "AIM_APPLY_GAIN",
+          "text": "const gain = clamp01((team.localX(aim.x) - localX + 30) / 60) * 2 - 1;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 463,
+          "kind": "LEAD_CAPTURE",
+          "text": "bestLeadX = lead === null ? 0 : lead.x;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 464,
+          "kind": "LEAD_CAPTURE",
+          "text": "bestLeadY = lead === null ? 0 : lead.y;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 1072,
+          "kind": "STRIKE_GUARD",
+          "text": "} else if (passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)) {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 1073,
+          "kind": "STRIKE_LED",
+          "text": "match.performPass(p, passMate!, offsideExemptKick, 1, v2(bestLeadX, bestLeadY));"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 46,
+          "kind": "GENE_RW",
+          "text": "import { passLeadSupportWeight, type TacticalGenome } from '../evolution/genome';"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 67,
+          "kind": "SEAT_DECL",
+          "text": "export const PTP_FLIGHT_SPEED = 18;"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 85,
+          "kind": "SEAT_DECL",
+          "text": "export const PTP_LEAD_FLIGHT_MUL = 1.6;"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 93,
+          "kind": "SEAT_DECL",
+          "text": "export interface PassLeadSeat {"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 109,
+          "kind": "SEAT_DECL",
+          "text": "export function passLeadSeatOf("
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 111,
+          "kind": "SEAT_BODY",
+          "text": "): PassLeadSeat {"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 113,
+          "kind": "GENE_RW",
+          "text": "weight: passLeadSupportWeight(g),"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 128,
+          "kind": "SEAT_DECL",
+          "text": "export function passLeadMotion(seat: PassLeadSeat, mate: Player): Readonly<V2> {"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 169,
+          "kind": "SEAT_DECL",
+          "text": "export function passLeadOffset("
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 170,
+          "kind": "SEAT_BODY",
+          "text": "seat: PassLeadSeat, from: Readonly<V2>, mate: Player,"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 173,
+          "kind": "SEAT_BODY",
+          "text": "const motion = passLeadMotion(seat, mate);"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 174,
+          "kind": "SEAT_BODY",
+          "text": "const flight = dist(from, mate.pos) / PTP_FLIGHT_SPEED;"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 176,
+          "kind": "SEAT_BODY",
+          "text": "x: seat.weight * (motion.x * flight * PTP_LEAD_FLIGHT_MUL),"
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "line": 177,
+          "kind": "SEAT_BODY",
+          "text": "y: seat.weight * (motion.y * flight * PTP_LEAD_FLIGHT_MUL),"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 367,
+          "kind": "GENE_DECL",
+          "text": "passLeadSupport?: number;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 523,
+          "kind": "GENE_RW",
+          "text": "export function passLeadSupportWeight(g: TacticalGenome): number {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 524,
+          "kind": "GENE_RW",
+          "text": "const v = g.passLeadSupport;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 742,
+          "kind": "OPTIN_DECL",
+          "text": "evolvePassLeadSupport?: boolean;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 833,
+          "kind": "OPTIN_RW",
+          "text": "if (opts.evolvePassLeadSupport === true && rng.chance(rate)) {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 834,
+          "kind": "GENE_RW",
+          "text": "out.passLeadSupport = clamp01((out.passLeadSupport ?? 0) + rng.gaussian() * scale);"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 844,
+          "kind": "OPTIN_RW",
+          "text": "evolvePassLeadSupport = false,"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 961,
+          "kind": "OPTIN_RW",
+          "text": "if (evolvePassLeadSupport) {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 963,
+          "kind": "GENE_RW",
+          "text": "const av = a.passLeadSupport ?? 0;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 964,
+          "kind": "GENE_RW",
+          "text": "const bv = b.passLeadSupport ?? 0;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 965,
+          "kind": "GENE_RW",
+          "text": "out.passLeadSupport = r < 0.4 ? av : r < 0.8 ? bv : (av + bv) / 2;"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 966,
+          "kind": "GENE_RW",
+          "text": "} else if (a.passLeadSupport !== undefined) {"
+        },
+        {
+          "file": "src/evolution/genome.ts",
+          "line": 967,
+          "kind": "GENE_RW",
+          "text": "out.passLeadSupport = a.passLeadSupport;"
+        },
+        {
+          "file": "src/sim/League.ts",
+          "line": 284,
+          "kind": "UNION_KEY",
+          "text": "| 'ptpPassLead'"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 532,
+          "kind": "CONFIG",
+          "text": "ptpPassLead?: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 785,
+          "kind": "FIELD",
+          "text": "readonly ptpPassLead: boolean;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1285,
+          "kind": "INIT",
+          "text": "this.ptpPassLead = cfg.ptpPassLead ?? false;"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1721,
+          "kind": "STRIKE_MACHINERY",
+          "text": "ptpLead: Readonly<V2> | null = null,"
+        },
+        {
+          "file": "src/sim/Match.ts",
+          "line": 1723,
+          "kind": "STRIKE_MACHINERY",
+          "text": "mech.performPass(this, p, mate, offsideExempt, powerChoice, ptpLead);"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "line": 356,
+          "kind": "STRIKE_MACHINERY",
+          "text": "ptpLead: Readonly<V2> | null = null,"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "line": 375,
+          "kind": "STRIKE_MACHINERY",
+          "text": "const struckLead = add(mate.pos, scale(mate.vel, flight * 0.8));"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "line": 385,
+          "kind": "STRIKE_MACHINERY",
+          "text": "const lead = ptpLead === null ? struckLead"
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "line": 386,
+          "kind": "STRIKE_MACHINERY",
+          "text": ": v2(struckLead.x + ptpLead.x, struckLead.y + ptpLead.y);"
+        }
+      ]
+    },
+    "gTrace": {
+      "pass": true,
+      "lines": [
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "the through-ball loop's OWN flight divisor (18)",
+          "line": "const flight = dist(p.pos, mate.pos) / 18;",
+          "found": true
+        },
+        {
+          "file": "src/ai/formations.ts",
+          "what": "runBurstPoint's OWN in-stride lead factor (1.6)",
+          "line": "return v2(p.pos.x + p.vel.x * flight * 1.6, p.pos.y + p.vel.y * flight * 1.6);",
+          "found": true
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "what": "this seat's flight-speed declaration",
+          "line": "export const PTP_FLIGHT_SPEED = 18;",
+          "found": true
+        },
+        {
+          "file": "src/ai/passLeadSeat.ts",
+          "what": "this seat's lead-factor declaration",
+          "line": "export const PTP_LEAD_FLIGHT_MUL = 1.6;",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐ M-PTP.4: the MakeRun through-ball guard, UNTOUCHED",
+          "line": "if (mate === p || mate.sentOff || mate.action.type !== 'MakeRun') continue;",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐ M-PTP.4: the through-ball burst call, UNTOUCHED",
+          "line": "const burst = runBurstPoint(mate, team, opp.players, flight);",
+          "found": true
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "what": "the incumbent strike-time lead, UNTOUCHED in arithmetic",
+          "line": "const struckLead = add(mate.pos, scale(mate.vel, flight * 0.8));",
+          "found": true
+        },
+        {
+          "file": "src/ai/perception.ts",
+          "what": "opennessOf is now the body form of opennessAt (code motion)",
+          "line": "return opennessAt(p.pos, opponents);",
+          "found": true
+        }
+      ],
+      "flightSpeed": 18,
+      "leadMul": 1.6,
+      "geneDomain": [
+        0,
+        1
+      ],
+      "semantics": "both projection constants are TRACED to the exact lines they are taken from, and those lines are matched VERBATIM (the MARK_SAG_BALL_SPEED precedent — the family cannot drift without reddening this gate): 18 from the through-ball loop's own flight divisor, 1.6 from runBurstPoint's own in-stride lead. The same gate asserts M-PTP.4 in source form — the MakeRun guard and the burst call are UNTOUCHED — and that the gene's domain really is clamp01's [0,1] at both ends and at absence."
+    },
+    "gPins": {
+      "pass": true,
+      "srcVerbatim": true,
+      "namedPins": [
+        {
+          "pin": "⭐ O1-T1: the SYNCHRONOUS strike statement, pinned VERBATIM (this is what shaped the design — the led strike is its OWN statement beside it, never an edit to it)",
+          "file": "tests/o1PassWindup.test.ts",
+          "needle": "expect(passCase).toMatch(/else match\\.performPass\\(p, passMate!, offsideExemptKick\\);/);",
+          "found": true
+        },
+        {
+          "pin": "O1-T1: the wind-up fork, pinned verbatim (it keeps PRECEDENCE over the led strike)",
+          "file": "tests/o1PassWindup.test.ts",
+          "needle": "/if \\(match\\.o1PassWindup && !mustKick && p\\.firstTouchWindow <= 0\\) \\{/",
+          "found": true
+        },
+        {
+          "pin": "O1-T1: the KICKOFF pass line, untouched",
+          "file": "tests/o1PassWindup.test.ts",
+          "needle": "expect(kickoffLine.trim()).toBe('match.performPass(p, back);');",
+          "found": true
+        },
+        {
+          "pin": "the SupportBallCarrier / ThroughBall action-type surface",
+          "file": "tests/combos.test.ts",
+          "needle": "(a.type === 'Pass' || a.type === 'ThroughBall')",
+          "found": true
+        },
+        {
+          "pin": "the production-fingerprint pin (one of thirteen)",
+          "file": "tests/a4HomePriorGene.test.ts",
+          "needle": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+          "found": true
+        },
+        {
+          "pin": "the 5v6 sanity invariant (Phase 30.5)",
+          "file": "tests/cards.test.ts",
+          "needle": "directional: playing a man short costs results (forced early red)",
+          "found": true
+        },
+        {
+          "pin": "the goal-level shape pin (heir of the mirror-goals starvation receipt)",
+          "file": "tests/formations.test.ts",
+          "needle": "the novel shapes play REAL football — attack both ways over a seed pool",
+          "found": true
+        },
+        {
+          "pin": "the BANKED OBM seat's own fixtures (must pass verbatim)",
+          "file": "tests/obmEyesSeat.test.ts",
+          "needle": "obmMovement",
+          "found": true
+        },
+        {
+          "pin": "the BANKED CTB plane's own verbatim source pin (must pass unchanged)",
+          "file": "tests/ctbSupportPlane.test.ts",
+          "needle": "export function supportSpot(p: Player, team: Team, ball: Ball, ctbPlane = false): V2 {",
+          "found": true
+        },
+        {
+          "pin": "the perceived-chooser fork's own pins (the seam this stage READS the world shape from)",
+          "file": "tests/perceivedPassChoice.test.ts",
+          "needle": "edsPerceivedChoice",
+          "found": true
+        }
+      ],
+      "semantics": "THE PIN INVENTORY, machine-checked. ⭐ The first row is the pin that SHAPED this design: tests/o1PassWindup.test.ts asserts the synchronous strike statement VERBATIM, so the led strike could never be an extra argument on that line — it is its own armed-only statement beside it, and the wind-up keeps precedence. Nothing was renegotiated; a failing pin would have been a STOP, never a test edit."
+    },
+    "seedDisjoint": {
+      "first": 12425000,
+      "last": 12425025,
+      "intervals": [
+        {
+          "name": "PTP-T0 receipts + geometry/EPI-MOTION/smoke read",
+          "first": 12425000,
+          "last": 12425024,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "PTP-T0 REPORTED cost reading",
+          "first": 12425025,
+          "last": 12425025,
+          "collisions": [],
+          "pass": true
+        },
+        {
+          "name": "PTP-T0 test-file seeds (tests/ptpPassLead.test.ts)",
+          "first": 12425900,
+          "last": 12425906,
+          "collisions": [],
+          "pass": true
+        }
+      ],
+      "consumedBlocks": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "goal-genealogy census band (#214/#217)",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#223)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds",
+          "range": [
+            12423900,
+            12423901
+          ]
+        },
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read (#227)",
+          "range": [
+            12424000,
+            12424024
+          ]
+        },
+        {
+          "name": "OBM-T0 REPORTED cost read (#227)",
+          "range": [
+            12424025,
+            12424025
+          ]
+        },
+        {
+          "name": "OBM-T1 smoke (#229/#230)",
+          "range": [
+            12424026,
+            12424037
+          ]
+        },
+        {
+          "name": "OBM-T1 dose-read (#230)",
+          "range": [
+            12424040,
+            12424040
+          ]
+        },
+        {
+          "name": "OBM-T1 guard band (#229)",
+          "range": [
+            12424050,
+            12424099
+          ]
+        },
+        {
+          "name": "OBM-T1 battery + reserve (#229/#230)",
+          "range": [
+            12424100,
+            12424727
+          ]
+        },
+        {
+          "name": "OBM-T0 test-file seeds",
+          "range": [
+            12424900,
+            12424906
+          ]
+        }
+      ],
+      "collisions": [],
+      "pass": true,
+      "semantics": "EVERY interval this stage consumes is machine-checked against the COMPLETE consumed ledger, which now includes OBM-T1's four blocks (smoke 12,424,026–037 · dose-read 040 · guard 050–099 · battery+reserve 100–727) and OBM-T0's test seeds."
+    },
+    "allPass": true
+  },
+  "reported": {
+    "chosenPassSmoke": {
+      "note": "REPORTED, observation-only, ONE forced match per world shape with `performPass` wrapped so the ACTUAL struck aim is recorded. Descriptive counts only — no control, no CI, no dose curve, no ANSWER. The FULL-CHANNEL EXAM is PTP-T1's.",
+      "seed": 12425024,
+      "percept": {
+        "passes": 106,
+        "ledPasses": 23,
+        "supportTargets": 53,
+        "meanLeadMetres": 5.3621,
+        "maxLeadMetres": 12.6679,
+        "meanLeadShareOfDistance": 0.4136,
+        "signViolations": 0,
+        "magnitudeViolations": 0,
+        "ledPassShare": 0.217
+      },
+      "bare": {
+        "passes": 89,
+        "ledPasses": 56,
+        "supportTargets": 57,
+        "meanLeadMetres": 5.5436,
+        "maxLeadMetres": 18.7497,
+        "meanLeadShareOfDistance": 0.3999,
+        "signViolations": 0,
+        "magnitudeViolations": 0,
+        "ledPassShare": 0.6292
+      }
+    },
+    "seatCost": {
+      "note": "REPORTED wall-clock on a shared machine, minimum of 3 repeats, one full match per arm in a PERCEPT-ARMED world. Used in NO rate, bounds nothing. The mechanism it prices: ONE percept pull per on-ball decision of the carrier (never per candidate mate, never per tick) plus a handful of multiply-adds per mate.",
+      "seed": 12425025,
+      "repeats": 3,
+      "ticksPerMatch": 15042,
+      "arms": [
+        {
+          "arm": "off",
+          "minMs": 88,
+          "msPerTick": 0.005964
+        },
+        {
+          "arm": "zeroArmed",
+          "minMs": 87,
+          "msPerTick": 0.005896
+        },
+        {
+          "arm": "forced",
+          "minMs": 91,
+          "msPerTick": 0.00605
+        }
+      ],
+      "armedZeroOverheadPct": -1.14,
+      "dosedOverheadPct": 3.41
+    }
+  },
+  "result": {
+    "seeds": {
+      "block": 12425000,
+      "n": 24,
+      "first": 12425000,
+      "last": 12425023
+    },
+    "rows": [
+      {
+        "seed": 12425000,
+        "absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+        "off": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+        "plain": "59708804514651204e23f8f76be802cafa72d33ed47466779d2a529b51860e1c",
+        "plainOff": "59708804514651204e23f8f76be802cafa72d33ed47466779d2a529b51860e1c",
+        "bornArmed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+        "zeroArmed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+        "forced": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+        "plainForced": "5484a612780bbe4d5d49a99f5c72c5b8e4318224cd7f9c12e03ebcfe8bc09ac1",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425001,
+        "absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+        "off": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+        "plain": "a97344295fbf38eef7787bb1d97856d9b1c9edfad1a3038f1dd5db5c56d8077b",
+        "plainOff": "a97344295fbf38eef7787bb1d97856d9b1c9edfad1a3038f1dd5db5c56d8077b",
+        "bornArmed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+        "zeroArmed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+        "forced": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+        "plainForced": "3500d5170c986b38ba137497119976f57375ce73f5243901234622e4b351b04c",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425002,
+        "absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+        "off": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+        "plain": "ce8b5cad882fc0976f11ef5ec5ee5e3b2e170beaf8b7000ad78f6ed8928a41a3",
+        "plainOff": "ce8b5cad882fc0976f11ef5ec5ee5e3b2e170beaf8b7000ad78f6ed8928a41a3",
+        "bornArmed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+        "zeroArmed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+        "forced": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+        "plainForced": "7a88c6051030d883b3980019a5c6459ce5bf2942ba6b298b8dcbd28740debf5b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425003,
+        "absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+        "off": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+        "plain": "04ce3955ecb2512d90d56ff4711197d325c2900fd346ecd774e13ea34bb1b3fe",
+        "plainOff": "04ce3955ecb2512d90d56ff4711197d325c2900fd346ecd774e13ea34bb1b3fe",
+        "bornArmed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+        "zeroArmed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+        "forced": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+        "plainForced": "26e7a87abea3ff8dd3e433d261dd07fd4490abc5501c47445d0764a7472a7cab",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425004,
+        "absent": "480814e8eb4f3e77f988d6d2f2486146c0e364d70693b3654c33f2dc2274b115",
+        "off": "480814e8eb4f3e77f988d6d2f2486146c0e364d70693b3654c33f2dc2274b115",
+        "plain": "bfc04388cbddf683290e33d27c8646d474f89f7f18ca44a0095b6ffab24c6ea6",
+        "plainOff": "bfc04388cbddf683290e33d27c8646d474f89f7f18ca44a0095b6ffab24c6ea6",
+        "bornArmed": "480814e8eb4f3e77f988d6d2f2486146c0e364d70693b3654c33f2dc2274b115",
+        "zeroArmed": "480814e8eb4f3e77f988d6d2f2486146c0e364d70693b3654c33f2dc2274b115",
+        "forced": "20964ae40704f7c390c7b81c139404494da66472726b9f813ea9efbc692abfbb",
+        "plainForced": "9c5ebe57e8e3debe326c10749411546fbfb7188011921034c0932bbcb76a7daa",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425005,
+        "absent": "8d4d2d88f1c68a04a8762565216a9fba8c22f653f9f277038cb6020b7d6043af",
+        "off": "8d4d2d88f1c68a04a8762565216a9fba8c22f653f9f277038cb6020b7d6043af",
+        "plain": "dc23bcf210ba64a693de769591b3debecd2b0477fdcd05fb6a95c59f3257c2f0",
+        "plainOff": "dc23bcf210ba64a693de769591b3debecd2b0477fdcd05fb6a95c59f3257c2f0",
+        "bornArmed": "8d4d2d88f1c68a04a8762565216a9fba8c22f653f9f277038cb6020b7d6043af",
+        "zeroArmed": "8d4d2d88f1c68a04a8762565216a9fba8c22f653f9f277038cb6020b7d6043af",
+        "forced": "efe3dbbd6f3f959606cc1e3c656f396f17200c8ecf9a639544999bf8ffe6d30f",
+        "plainForced": "e06ec3779ecb21fcbee93c3fd979d6263a750e14ebac4538ffaec3d4d0a3bd9b",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425006,
+        "absent": "8355f552b76aabab12421e74dd1f6f7f7db1ab63b96ec8cf0883800fc65d6939",
+        "off": "8355f552b76aabab12421e74dd1f6f7f7db1ab63b96ec8cf0883800fc65d6939",
+        "plain": "0e62e2575f967a2ed509dca2123fd421dbca1ce165a84a0fa5f5c17bb35fb63a",
+        "plainOff": "0e62e2575f967a2ed509dca2123fd421dbca1ce165a84a0fa5f5c17bb35fb63a",
+        "bornArmed": "8355f552b76aabab12421e74dd1f6f7f7db1ab63b96ec8cf0883800fc65d6939",
+        "zeroArmed": "8355f552b76aabab12421e74dd1f6f7f7db1ab63b96ec8cf0883800fc65d6939",
+        "forced": "c8edb2aa98ca3a19128a1a4500ac09ba892ffaa0098cd7090d1ef3dfbd1a0582",
+        "plainForced": "66201358c3fcd06f68e52848dc8c5a574b66c06412f82f69f51804ba18ed3df7",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425007,
+        "absent": "f98e079dbfcb9290f63c604b8da0f2eb6ec9457047416d7bb96d7881a99c47e1",
+        "off": "f98e079dbfcb9290f63c604b8da0f2eb6ec9457047416d7bb96d7881a99c47e1",
+        "plain": "e85a2d9cf5421808e0e5ecbeddbac550ee8fb4ca2f061520c001d162ca1bee6c",
+        "plainOff": "e85a2d9cf5421808e0e5ecbeddbac550ee8fb4ca2f061520c001d162ca1bee6c",
+        "bornArmed": "f98e079dbfcb9290f63c604b8da0f2eb6ec9457047416d7bb96d7881a99c47e1",
+        "zeroArmed": "f98e079dbfcb9290f63c604b8da0f2eb6ec9457047416d7bb96d7881a99c47e1",
+        "forced": "f86dcd25d2808254a71f6f5d03d678a2d80e2bfd65054ffc76a7d51e761cea84",
+        "plainForced": "9674732490b790a3f1e277ed1c7c227f364d1e234edca5c3fcd7eb6f51c590dd",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425008,
+        "absent": "f28bac4892e16bea4b67869800b0738ccc32cb9fa7183168dce8b67145375f95",
+        "off": "f28bac4892e16bea4b67869800b0738ccc32cb9fa7183168dce8b67145375f95",
+        "plain": "39ed4f3017277497d3f63569b9546206e5880ebd066b2ae7f15750f6141be123",
+        "plainOff": "39ed4f3017277497d3f63569b9546206e5880ebd066b2ae7f15750f6141be123",
+        "bornArmed": "f28bac4892e16bea4b67869800b0738ccc32cb9fa7183168dce8b67145375f95",
+        "zeroArmed": "f28bac4892e16bea4b67869800b0738ccc32cb9fa7183168dce8b67145375f95",
+        "forced": "911bead0969a648e2fc2ef574682feb265ab7ba7f1fb7d7b0916989043c23164",
+        "plainForced": "ccb70028726201cfa644b88e62d2918646328fbf9d5144d89375a4c5f351737e",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425009,
+        "absent": "27fbb8b09a47d8f05006424b54ba396c487f37e8ce46c0c45eb5ac0418de353c",
+        "off": "27fbb8b09a47d8f05006424b54ba396c487f37e8ce46c0c45eb5ac0418de353c",
+        "plain": "78860f9ae505fc3be3c82bbd034ac78db00dee1342eacdb42c8a1a1aafc5082d",
+        "plainOff": "78860f9ae505fc3be3c82bbd034ac78db00dee1342eacdb42c8a1a1aafc5082d",
+        "bornArmed": "27fbb8b09a47d8f05006424b54ba396c487f37e8ce46c0c45eb5ac0418de353c",
+        "zeroArmed": "27fbb8b09a47d8f05006424b54ba396c487f37e8ce46c0c45eb5ac0418de353c",
+        "forced": "09c631b3512dd284dcc3bd848ddad6ae948ec06527c60ba110e39d6cf55f84c9",
+        "plainForced": "612ec7ed2ca34bd9e4981d087c8e17fd3e0ddf77d62c26e5f47a936de71f51ef",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425010,
+        "absent": "ab2fcd59ebcc9687cebce8d6703e9d7316f62432d8fd4196e0bd8a32c53e705c",
+        "off": "ab2fcd59ebcc9687cebce8d6703e9d7316f62432d8fd4196e0bd8a32c53e705c",
+        "plain": "51e0a01123d944dc5e43065fd4f4140a1a2a1a4d7d851ac97ed533483f763a2f",
+        "plainOff": "51e0a01123d944dc5e43065fd4f4140a1a2a1a4d7d851ac97ed533483f763a2f",
+        "bornArmed": "ab2fcd59ebcc9687cebce8d6703e9d7316f62432d8fd4196e0bd8a32c53e705c",
+        "zeroArmed": "ab2fcd59ebcc9687cebce8d6703e9d7316f62432d8fd4196e0bd8a32c53e705c",
+        "forced": "7845de1b7fae0bb077430a41a34257517b82d8478b570d43ce01da1bccc72524",
+        "plainForced": "bd373af64482ff844f38c617a226697a19862b7f6c194d6cd82304f25ec92f74",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425011,
+        "absent": "3b205d8f98af792b9ee0f0e0c3ddb0d5e1263d0acd61f337c07dab8c9fbd2a55",
+        "off": "3b205d8f98af792b9ee0f0e0c3ddb0d5e1263d0acd61f337c07dab8c9fbd2a55",
+        "plain": "915c969e9d2c40ec2087c10000cc34126477fe36f1655a1ba5e2641f57e09388",
+        "plainOff": "915c969e9d2c40ec2087c10000cc34126477fe36f1655a1ba5e2641f57e09388",
+        "bornArmed": "3b205d8f98af792b9ee0f0e0c3ddb0d5e1263d0acd61f337c07dab8c9fbd2a55",
+        "zeroArmed": "3b205d8f98af792b9ee0f0e0c3ddb0d5e1263d0acd61f337c07dab8c9fbd2a55",
+        "forced": "41972215dd9581f35be503aebf8e4e8a086bca658bdbe661ade07249234d27d4",
+        "plainForced": "208246d97ce6fdb414ab97a927f3a48a42ffd53668e43716536049acd36c47f3",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425012,
+        "absent": "bf45a238cbb77dc2e48886260dfc461084657e6e22539392eef16b68371da7c8",
+        "off": "bf45a238cbb77dc2e48886260dfc461084657e6e22539392eef16b68371da7c8",
+        "plain": "0a17f1c1fcfe2a897c51f242a146a27b0380882b6d45ae4a5de978842a73c474",
+        "plainOff": "0a17f1c1fcfe2a897c51f242a146a27b0380882b6d45ae4a5de978842a73c474",
+        "bornArmed": "bf45a238cbb77dc2e48886260dfc461084657e6e22539392eef16b68371da7c8",
+        "zeroArmed": "bf45a238cbb77dc2e48886260dfc461084657e6e22539392eef16b68371da7c8",
+        "forced": "97e5669baa3c38d814e711be786016ad8b1d3e027e3fe3aa7fd025cad61a4a22",
+        "plainForced": "c19c5cbab014791a6d46991df0958fb46e015f2affb84056da5e83fbae0ce5ce",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425013,
+        "absent": "eb64240b8d1b0c751a33a068273f0ec88c5d8abee53c6552a72a20a65a846fa2",
+        "off": "eb64240b8d1b0c751a33a068273f0ec88c5d8abee53c6552a72a20a65a846fa2",
+        "plain": "c48d4fde9532209e20b312a4d68b7cb8cbc18a719b2cd483dd8a8e262859ffa0",
+        "plainOff": "c48d4fde9532209e20b312a4d68b7cb8cbc18a719b2cd483dd8a8e262859ffa0",
+        "bornArmed": "eb64240b8d1b0c751a33a068273f0ec88c5d8abee53c6552a72a20a65a846fa2",
+        "zeroArmed": "eb64240b8d1b0c751a33a068273f0ec88c5d8abee53c6552a72a20a65a846fa2",
+        "forced": "5b03427c3a097e0b74a94df5fd65bc808c494c297972de79b3966111f9cd6e40",
+        "plainForced": "f59857b35125522f0d7b54b7c59e6d03445a6d1387e9a7f53853be5d7e110be0",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425014,
+        "absent": "2f7db871fdaa6d9221bc83a4e8b62da9de2fab5bb28afc20a148cbd019fd24dc",
+        "off": "2f7db871fdaa6d9221bc83a4e8b62da9de2fab5bb28afc20a148cbd019fd24dc",
+        "plain": "0f2b7ceee1e1cb1ff589c90287985964628bd6314100c05b55b1dd03ab5d77b6",
+        "plainOff": "0f2b7ceee1e1cb1ff589c90287985964628bd6314100c05b55b1dd03ab5d77b6",
+        "bornArmed": "2f7db871fdaa6d9221bc83a4e8b62da9de2fab5bb28afc20a148cbd019fd24dc",
+        "zeroArmed": "2f7db871fdaa6d9221bc83a4e8b62da9de2fab5bb28afc20a148cbd019fd24dc",
+        "forced": "88dcee296df206152519231fa18207e17d1bf0ddd22fc547af9679078313f3d2",
+        "plainForced": "ea5fa39e28fd619da24244f05af65e35fcec7e16cc4f776f84001f1ae018ca31",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425015,
+        "absent": "54b9c0e52cee388cf24f6edc6d65c34adaeef56c4392a69c751d62f0932b7ca5",
+        "off": "54b9c0e52cee388cf24f6edc6d65c34adaeef56c4392a69c751d62f0932b7ca5",
+        "plain": "9342bfdc070e2af6534663d8c1794b409eb964961e8b789c6a4cdc5322c5db83",
+        "plainOff": "9342bfdc070e2af6534663d8c1794b409eb964961e8b789c6a4cdc5322c5db83",
+        "bornArmed": "54b9c0e52cee388cf24f6edc6d65c34adaeef56c4392a69c751d62f0932b7ca5",
+        "zeroArmed": "54b9c0e52cee388cf24f6edc6d65c34adaeef56c4392a69c751d62f0932b7ca5",
+        "forced": "54e8c1aa07ddbe1bc87ad761bf169a3fd04de346ee54b99a73a67d5164c7f691",
+        "plainForced": "7727e0b666d1a18251199ea8de8f907b2bd434a82f15b21b3741ded3e66d73af",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425016,
+        "absent": "c56715a4947662e308f8bc583e612cbf23d8e2272f102ac5033ff14c4b3d6a7f",
+        "off": "c56715a4947662e308f8bc583e612cbf23d8e2272f102ac5033ff14c4b3d6a7f",
+        "plain": "6f4b60527a67e7c1537a535a696b1f2052b0f6a4877144384700311ed0d4d18c",
+        "plainOff": "6f4b60527a67e7c1537a535a696b1f2052b0f6a4877144384700311ed0d4d18c",
+        "bornArmed": "c56715a4947662e308f8bc583e612cbf23d8e2272f102ac5033ff14c4b3d6a7f",
+        "zeroArmed": "c56715a4947662e308f8bc583e612cbf23d8e2272f102ac5033ff14c4b3d6a7f",
+        "forced": "29ac558c57294b172c0e4ea9492e75dc7a3ec2c161068231e9bc6048d6818bc2",
+        "plainForced": "a5b6b7754888ffdb0b2ebcc9f8904d96a3ffb6ca5df50c843d82682e7467eb5e",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425017,
+        "absent": "215412f3a1d999f9970f523f58bc88c103dac68c24dd53103c8b271fac20ac25",
+        "off": "215412f3a1d999f9970f523f58bc88c103dac68c24dd53103c8b271fac20ac25",
+        "plain": "286052080132a815a9a902d73dff2b5c13502be858c89cb3bc610a2ec69143f8",
+        "plainOff": "286052080132a815a9a902d73dff2b5c13502be858c89cb3bc610a2ec69143f8",
+        "bornArmed": "215412f3a1d999f9970f523f58bc88c103dac68c24dd53103c8b271fac20ac25",
+        "zeroArmed": "215412f3a1d999f9970f523f58bc88c103dac68c24dd53103c8b271fac20ac25",
+        "forced": "cbd1d699f74a6e57c9d53f247c6f011bca63d74bbe56cf5e5827056b05125037",
+        "plainForced": "51db7132144c15ee24457d27846ab3754e28b232e87813be887fd623042c227f",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425018,
+        "absent": "5d8efe5c6f67b5238c347bc85b2b496480358b03c9a6aaf26bf5d87b9ddbaa77",
+        "off": "5d8efe5c6f67b5238c347bc85b2b496480358b03c9a6aaf26bf5d87b9ddbaa77",
+        "plain": "ad63200a58905271eb929cbc3fac31329c375b7f0ff6baa7edd646e22659c9c2",
+        "plainOff": "ad63200a58905271eb929cbc3fac31329c375b7f0ff6baa7edd646e22659c9c2",
+        "bornArmed": "5d8efe5c6f67b5238c347bc85b2b496480358b03c9a6aaf26bf5d87b9ddbaa77",
+        "zeroArmed": "5d8efe5c6f67b5238c347bc85b2b496480358b03c9a6aaf26bf5d87b9ddbaa77",
+        "forced": "4fae787e5983affb49a543337d32d26ca5dd86c29b673740939a1647bc366ebe",
+        "plainForced": "0932bcadcf21f8f11ec6d4860657a8d2163f39c8cdf3f7a4ff80cf9060129a20",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425019,
+        "absent": "85ef7a9c6642f6a8c90945dca20a78bc17ede9d96b165fc5a1415ccdbf94de45",
+        "off": "85ef7a9c6642f6a8c90945dca20a78bc17ede9d96b165fc5a1415ccdbf94de45",
+        "plain": "8911e8e21b3089c69120d053bb78db8dd303b27d0c17ada72eafdf504993e5f2",
+        "plainOff": "8911e8e21b3089c69120d053bb78db8dd303b27d0c17ada72eafdf504993e5f2",
+        "bornArmed": "85ef7a9c6642f6a8c90945dca20a78bc17ede9d96b165fc5a1415ccdbf94de45",
+        "zeroArmed": "85ef7a9c6642f6a8c90945dca20a78bc17ede9d96b165fc5a1415ccdbf94de45",
+        "forced": "9ccb1f1859ad4b7a3acd681898cab1b6dc2138e9aaf73495a003468dd9a986b1",
+        "plainForced": "c980df4a74f59fa67f1525c5ecc94bca0942a87254a97df2990855a315dc3d42",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425020,
+        "absent": "15a339e83b45e886b2b6bade342f4e7be88d271fd93b9268c0b0c27e5cbe7de6",
+        "off": "15a339e83b45e886b2b6bade342f4e7be88d271fd93b9268c0b0c27e5cbe7de6",
+        "plain": "e4a0a510e050cb401cb7eb6a806c945212dbbd09f3596612d2e548bddf045a2c",
+        "plainOff": "e4a0a510e050cb401cb7eb6a806c945212dbbd09f3596612d2e548bddf045a2c",
+        "bornArmed": "15a339e83b45e886b2b6bade342f4e7be88d271fd93b9268c0b0c27e5cbe7de6",
+        "zeroArmed": "15a339e83b45e886b2b6bade342f4e7be88d271fd93b9268c0b0c27e5cbe7de6",
+        "forced": "d35be48383ee51cca99897a33b5626db1d40a402c9481cb8e1be3874738adb46",
+        "plainForced": "6c2782c2c47a5d5f42d885a0b0814355ecb1ba883def10d556226f336540021e",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425021,
+        "absent": "64fd17db6576ef832887b621636891106e6c16cacc4c52fb8780c8ea8439b03f",
+        "off": "64fd17db6576ef832887b621636891106e6c16cacc4c52fb8780c8ea8439b03f",
+        "plain": "ec7c981e66a1ca06a550e3061b537b7d48c0bc134c84434f5ceeba5e84a2ffe0",
+        "plainOff": "ec7c981e66a1ca06a550e3061b537b7d48c0bc134c84434f5ceeba5e84a2ffe0",
+        "bornArmed": "64fd17db6576ef832887b621636891106e6c16cacc4c52fb8780c8ea8439b03f",
+        "zeroArmed": "64fd17db6576ef832887b621636891106e6c16cacc4c52fb8780c8ea8439b03f",
+        "forced": "4557d6ec9a78fde4874e3c1f537598c88b40cc4831ad35929c4cfbdf26dc396f",
+        "plainForced": "7401a47d196d62e478a32a90295716b479c8a8e1fb57b3ea12a3068ee7369255",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425022,
+        "absent": "3cd0b2c3409473b4c108482b179cfe852b3712beec5181b90439cf307c8fb6ef",
+        "off": "3cd0b2c3409473b4c108482b179cfe852b3712beec5181b90439cf307c8fb6ef",
+        "plain": "950855ced8c7f6b5bb242f25a23bf2d9b7bc85a53ed9e2b6338ceea0c04e1b63",
+        "plainOff": "950855ced8c7f6b5bb242f25a23bf2d9b7bc85a53ed9e2b6338ceea0c04e1b63",
+        "bornArmed": "3cd0b2c3409473b4c108482b179cfe852b3712beec5181b90439cf307c8fb6ef",
+        "zeroArmed": "3cd0b2c3409473b4c108482b179cfe852b3712beec5181b90439cf307c8fb6ef",
+        "forced": "e1a69550bca5aabc714871c04b0005622f38caf659f1af9b40fd70a7b6fc9de0",
+        "plainForced": "9117a3fd998f8b059388d50042a464328a52a188178b6d5eee9590ba7a2176bf",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      },
+      {
+        "seed": 12425023,
+        "absent": "a842d11fdfe5776e353dbefffb2fcc2e50a08f72b874710981fa79ef8b377112",
+        "off": "a842d11fdfe5776e353dbefffb2fcc2e50a08f72b874710981fa79ef8b377112",
+        "plain": "9c4f28d2a6c1727c93a71fcfd3aaa8c77fc6190f1613f37f12c6c1c1baa7099d",
+        "plainOff": "9c4f28d2a6c1727c93a71fcfd3aaa8c77fc6190f1613f37f12c6c1c1baa7099d",
+        "bornArmed": "a842d11fdfe5776e353dbefffb2fcc2e50a08f72b874710981fa79ef8b377112",
+        "zeroArmed": "a842d11fdfe5776e353dbefffb2fcc2e50a08f72b874710981fa79ef8b377112",
+        "forced": "96ed42e4e4934ae33ede586a66aa8f5a520dd47a5422d0ea5544dcbe995c432a",
+        "plainForced": "0bbf01a75ec4bf3a58336ee62477fc10fee1144c635ff6d9e874c2f75108dc35",
+        "identical": true,
+        "plainIdentical": true,
+        "bornIdentical": true,
+        "zeroIdentical": true,
+        "diverged": true,
+        "bareDiverged": true
+      }
+    ],
+    "crossing": {
+      "cells": [
+        "ptp0·obm0·ctb0·others0·lead-absent",
+        "ptp0·obm0·ctb0·others0·lead-zero",
+        "ptp0·obm0·ctb0·others0·lead-dosed",
+        "ptp0·obm0·ctb0·others1·lead-absent",
+        "ptp0·obm0·ctb0·others1·lead-zero",
+        "ptp0·obm0·ctb0·others1·lead-dosed",
+        "ptp0·obm0·ctb1·others0·lead-absent",
+        "ptp0·obm0·ctb1·others0·lead-zero",
+        "ptp0·obm0·ctb1·others0·lead-dosed",
+        "ptp0·obm0·ctb1·others1·lead-absent",
+        "ptp0·obm0·ctb1·others1·lead-zero",
+        "ptp0·obm0·ctb1·others1·lead-dosed",
+        "ptp0·obm1·ctb0·others0·lead-absent",
+        "ptp0·obm1·ctb0·others0·lead-zero",
+        "ptp0·obm1·ctb0·others0·lead-dosed",
+        "ptp0·obm1·ctb0·others1·lead-absent",
+        "ptp0·obm1·ctb0·others1·lead-zero",
+        "ptp0·obm1·ctb0·others1·lead-dosed",
+        "ptp0·obm1·ctb1·others0·lead-absent",
+        "ptp0·obm1·ctb1·others0·lead-zero",
+        "ptp0·obm1·ctb1·others0·lead-dosed",
+        "ptp0·obm1·ctb1·others1·lead-absent",
+        "ptp0·obm1·ctb1·others1·lead-zero",
+        "ptp0·obm1·ctb1·others1·lead-dosed",
+        "ptp1·obm0·ctb0·others0·lead-absent",
+        "ptp1·obm0·ctb0·others0·lead-zero",
+        "ptp1·obm0·ctb0·others0·lead-dosed",
+        "ptp1·obm0·ctb0·others1·lead-absent",
+        "ptp1·obm0·ctb0·others1·lead-zero",
+        "ptp1·obm0·ctb0·others1·lead-dosed",
+        "ptp1·obm0·ctb1·others0·lead-absent",
+        "ptp1·obm0·ctb1·others0·lead-zero",
+        "ptp1·obm0·ctb1·others0·lead-dosed",
+        "ptp1·obm0·ctb1·others1·lead-absent",
+        "ptp1·obm0·ctb1·others1·lead-zero",
+        "ptp1·obm0·ctb1·others1·lead-dosed",
+        "ptp1·obm1·ctb0·others0·lead-absent",
+        "ptp1·obm1·ctb0·others0·lead-zero",
+        "ptp1·obm1·ctb0·others0·lead-dosed",
+        "ptp1·obm1·ctb0·others1·lead-absent",
+        "ptp1·obm1·ctb0·others1·lead-zero",
+        "ptp1·obm1·ctb0·others1·lead-dosed",
+        "ptp1·obm1·ctb1·others0·lead-absent",
+        "ptp1·obm1·ctb1·others0·lead-zero",
+        "ptp1·obm1·ctb1·others0·lead-dosed",
+        "ptp1·obm1·ctb1·others1·lead-absent",
+        "ptp1·obm1·ctb1·others1·lead-zero",
+        "ptp1·obm1·ctb1·others1·lead-dosed"
+      ],
+      "seeds": {
+        "n": 4,
+        "first": 12425000,
+        "last": 12425003
+      },
+      "claims": [
+        {
+          "name": "DORMANT-ALL · lead absent · others dosed",
+          "a": "ptp0·obm0·ctb0·others1·lead-absent",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": true,
+          "semantics": "all three flags OFF: no gene bank of any of the three seams can be read, so every gene state collapses onto the incumbent world.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "DORMANT-ALL · lead zero · others dosed",
+          "a": "ptp0·obm0·ctb0·others1·lead-zero",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": true,
+          "semantics": "all three flags OFF: no gene bank of any of the three seams can be read, so every gene state collapses onto the incumbent world.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "DORMANT-ALL · lead dosed · others dosed",
+          "a": "ptp0·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": true,
+          "semantics": "all three flags OFF: no gene bank of any of the three seams can be read, so every gene state collapses onto the incumbent world.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ A-PTP-ALONE-INERT · others DOSED · lead absent",
+          "a": "ptp1·obm0·ctb0·others1·lead-absent",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": true,
+          "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: ptpPassLead ARMED with the BANKED obm matrix and ctbSupport* genes FULLY DOSED and this seat's own gene inert — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ A-PTP-ALONE-INERT · others DOSED · lead zero",
+          "a": "ptp1·obm0·ctb0·others1·lead-zero",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": true,
+          "semantics": "⭐ THE TWO-DOORS GATE (#228) in this seam's form: ptpPassLead ARMED with the BANKED obm matrix and ctbSupport* genes FULLY DOSED and this seat's own gene inert — byte-identical to ALL-OFF. Arming this door can never spend a bank it was not given the key to.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ A-OTHER-GENES-INVISIBLE · ptp fully live, the other doors shut",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp1·obm0·ctb0·others0·lead-dosed",
+          "equal": true,
+          "semantics": "⭐ THE CLEANEST FORM: the pass-lead seat FULLY ARMED AND FULLY DOSED, biting hard — and the banked obm/ctb gene banks make NO difference to it whatsoever, because their own flags are shut.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-LEAD · obm armed alone · lead absent",
+          "a": "ptp0·obm1·ctb0·others1·lead-absent",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "equal": true,
+          "semantics": "⭐ the converse door: with ptpPassLead SHUT, this stage's gene is unreadable at any dose — the banked OBM seat delivers exactly what it delivered before this stage existed.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-LEAD · obm armed alone · lead zero",
+          "a": "ptp0·obm1·ctb0·others1·lead-zero",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "equal": true,
+          "semantics": "⭐ the converse door: with ptpPassLead SHUT, this stage's gene is unreadable at any dose — the banked OBM seat delivers exactly what it delivered before this stage existed.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-OBM-UNTOUCHED-BY-LEAD · obm armed alone · lead dosed",
+          "a": "ptp0·obm1·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "equal": true,
+          "semantics": "⭐ the converse door: with ptpPassLead SHUT, this stage's gene is unreadable at any dose — the banked OBM seat delivers exactly what it delivered before this stage existed.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-LEAD · ctb armed alone · lead absent",
+          "a": "ptp0·obm0·ctb1·others1·lead-absent",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "equal": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-LEAD · ctb armed alone · lead zero",
+          "a": "ptp0·obm0·ctb1·others1·lead-zero",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "equal": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ B-CTB-UNTOUCHED-BY-LEAD · ctb armed alone · lead dosed",
+          "a": "ptp0·obm0·ctb1·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "equal": true,
+          "semantics": "⭐ the same converse for the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · ptp-alone-dosed vs obm-alone-dosed",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "equal": false,
+          "semantics": "⭐ THE FALSIFIER: arming and dosing THIS seam must not reproduce the banked OBM seat armed on its own bank. If these two were byte-identical, one door would be spending the other's bank — the exact defect #228 caught.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ C-SEAMS-DISTINGUISHABLE · ptp-alone-dosed vs ctb-alone-dosed",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb1·others1·lead-absent",
+          "equal": false,
+          "semantics": "⭐ the same falsifier against the banked CTB static plane.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "⭐ C-PTP-INERT-IS-NOT-THE-NEIGHBOURS · ptp armed inert vs obm-alone",
+          "a": "ptp1·obm0·ctb0·others1·lead-zero",
+          "b": "ptp0·obm1·ctb0·others1·lead-absent",
+          "equal": false,
+          "semantics": "⭐ the identity that WOULD hold if this door leaked: an inert ptp seat sitting on a full neighbour bank must be the INCUMBENT world, hence DIFFERENT from the neighbour armed on that bank.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "BITE · ptp armed + dosed, other doors shut, others dosed",
+          "a": "ptp1·obm0·ctb0·others1·lead-dosed",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": false,
+          "semantics": "the seat is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "BITE · ptp armed + dosed, other doors shut, others absent",
+          "a": "ptp1·obm0·ctb0·others0·lead-dosed",
+          "b": "ptp0·obm0·ctb0·others0·lead-absent",
+          "equal": false,
+          "semantics": "the seat is not inert everywhere: armed and dosed it moves the world — otherwise every identity above would be vacuous.",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        },
+        {
+          "name": "ALL-THREE-ARMED-AND-DOSED bites",
+          "a": "ptp1·obm1·ctb1·others1·lead-dosed",
+          "b": "ptp0·obm1·ctb1·others1·lead-absent",
+          "equal": false,
+          "semantics": "with all three doors open and every bank dosed, adding THIS seam's dose moves the world away from the other two armed alone. (What the combination BUYS is PTP-T1's exam, not adjudicated here.)",
+          "seeds": 4,
+          "seedsHeld": 4,
+          "pass": true
+        }
+      ],
+      "rows": [
+        {
+          "seed": 12425000,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others1·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others1·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm0·ctb1·others1·lead-absent": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp0·obm0·ctb1·others1·lead-zero": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp0·obm1·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb0·others1·lead-absent": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp0·obm1·ctb0·others1·lead-zero": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp0·obm1·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp0·obm1·ctb1·others1·lead-absent": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp0·obm1·ctb1·others1·lead-zero": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp1·obm0·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm0·ctb0·others1·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others1·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm0·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm0·ctb1·others1·lead-absent": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp1·obm0·ctb1·others1·lead-zero": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "c4ca1b7c253c4cbd6069c90876cd9b5081d8a059002bf25aa97db9a12e02edbc",
+            "ptp1·obm1·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm1·ctb0·others1·lead-absent": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp1·obm1·ctb0·others1·lead-zero": "8b61f740a954b22b6c465d7ca474859f960b32fe0dd0d1a64da63e5b5796da58",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "5c0fbc20c5f176964c5d704b39c0c4c1e4a518e1f663c9d734c7594ee5adf56d",
+            "ptp1·obm1·ctb1·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb1·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
+            "ptp1·obm1·ctb1·others1·lead-absent": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp1·obm1·ctb1·others1·lead-zero": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "80ac2f12a380d9edbc84325cbf7b1513fb33a1b2607fddebf55f22eda6923838"
+          }
+        },
+        {
+          "seed": 12425001,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others1·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others1·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm0·ctb1·others1·lead-absent": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp0·obm0·ctb1·others1·lead-zero": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp0·obm1·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb0·others1·lead-absent": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp0·obm1·ctb0·others1·lead-zero": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp0·obm1·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp0·obm1·ctb1·others1·lead-absent": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp0·obm1·ctb1·others1·lead-zero": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp1·obm0·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm0·ctb0·others1·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others1·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm0·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm0·ctb1·others1·lead-absent": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp1·obm0·ctb1·others1·lead-zero": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "96603578e878ca629f579cf82534c52cae88e78605cabd5dd4846463a376548d",
+            "ptp1·obm1·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm1·ctb0·others1·lead-absent": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp1·obm1·ctb0·others1·lead-zero": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "b081cffbe80522a840c65364aa31d937225350a96c32f8fceb4ac601446c7e34",
+            "ptp1·obm1·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
+            "ptp1·obm1·ctb1·others1·lead-absent": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp1·obm1·ctb1·others1·lead-zero": "2ebd7cd31e166d14b04f90d6fafa20e1fe66d69b7737c50864db67b795b5fec0",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "e17cbd32c60eb7b223f039d4f1de63f285e9edf1b683dfbe7bcc91459b2992ac"
+          }
+        },
+        {
+          "seed": 12425002,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others1·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others1·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm0·ctb1·others1·lead-absent": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp0·obm0·ctb1·others1·lead-zero": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp0·obm1·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb0·others1·lead-absent": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp0·obm1·ctb0·others1·lead-zero": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp0·obm1·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp0·obm1·ctb1·others1·lead-absent": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp0·obm1·ctb1·others1·lead-zero": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp1·obm0·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm0·ctb0·others1·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others1·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm0·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm0·ctb1·others1·lead-absent": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp1·obm0·ctb1·others1·lead-zero": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "da7983f2d4bd7aa6c301bc5063b5857606afd546b49287bbbde2d056445f2c57",
+            "ptp1·obm1·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm1·ctb0·others1·lead-absent": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp1·obm1·ctb0·others1·lead-zero": "12f7739b834b3c08d92c74d85c8497a8e599400a4fd7165493cf702fc39001c3",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "f13f9be757faf13a14f909d8b2a742e7f6db32e82bf1824a86e4d71754c46b50",
+            "ptp1·obm1·ctb1·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb1·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
+            "ptp1·obm1·ctb1·others1·lead-absent": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp1·obm1·ctb1·others1·lead-zero": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "9a02cf4b09eddcaadab98048c1b389ed12dae7bd49ce7e9db46ec3c8a0bcba05"
+          }
+        },
+        {
+          "seed": 12425003,
+          "cells": {
+            "ptp0·obm0·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others1·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others1·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb0·others1·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm0·ctb1·others1·lead-absent": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp0·obm0·ctb1·others1·lead-zero": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp0·obm0·ctb1·others1·lead-dosed": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp0·obm1·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb0·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb0·others1·lead-absent": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp0·obm1·ctb0·others1·lead-zero": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp0·obm1·ctb0·others1·lead-dosed": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp0·obm1·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb1·others0·lead-dosed": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp0·obm1·ctb1·others1·lead-absent": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp0·obm1·ctb1·others1·lead-zero": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp0·obm1·ctb1·others1·lead-dosed": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp1·obm0·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm0·ctb0·others1·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others1·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb0·others1·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm0·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm0·ctb1·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm0·ctb1·others1·lead-absent": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp1·obm0·ctb1·others1·lead-zero": "325ead092225a534b9fe2f487ff4a5c242d302eb710c24a08232ce03481b6a20",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "004289320d12bdb97fb62d9443bf2396fcb64751e34e76b250de4f523d88960b",
+            "ptp1·obm1·ctb0·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb0·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb0·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm1·ctb0·others1·lead-absent": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp1·obm1·ctb0·others1·lead-zero": "9e43111c6b415667cdc4a7fefd9fc144e4c9f8776aa289e6b39fdd7a2c2c0d82",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "c93fad7d1b98399518ff584b866b6a618ecbefac1f67a49f4824a1824d2442e9",
+            "ptp1·obm1·ctb1·others0·lead-absent": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb1·others0·lead-zero": "f46e1fc63929fb929011cdf715f035953faf5c6db9c4db08978e3dc8b7265a41",
+            "ptp1·obm1·ctb1·others0·lead-dosed": "9d5eb0950b52e165fa3fc5cec440737d32868c055ed3d9a06f4686122f6cb669",
+            "ptp1·obm1·ctb1·others1·lead-absent": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp1·obm1·ctb1·others1·lead-zero": "7d1bf310d46b4b528bd893f75a2159fea64a76cdc3ce01d91e44a3f773f8621b",
+            "ptp1·obm1·ctb1·others1·lead-dosed": "4212cc893fb8c6965e431d5aafe05ba8e4b495c3c1d6318e7d6a4a0363f82270"
+          }
+        }
+      ]
+    }
+  },
+  "resultSha256": "acc76c5b440a90b7b7f418defe082aa706e54bccdb333036dc1b70e7e17c91e1",
+  "wallMsContextOnly": 108270,
+  "headContextOnly": "c6010dd",
+  "artifactPathContextOnly": "docs/world-model/data/ptp-t0-pass-lead.json",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
+  "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."
+}
