@@ -19,8 +19,8 @@
   "gates": {
     "gDet": {
       "pass": true,
-      "digestA": "d0e74c12dbc977f8799ab0d010118f0f6693c701c4a2645abb33535350e286f2",
-      "digestB": "d0e74c12dbc977f8799ab0d010118f0f6693c701c4a2645abb33535350e286f2"
+      "digestA": "6a5ddeef41902a99ad5017cf8036d3f12c41b23d99b9116e40340693675446b8",
+      "digestB": "6a5ddeef41902a99ad5017cf8036d3f12c41b23d99b9116e40340693675446b8"
     },
     "gIdent": {
       "pass": true,
@@ -121,6 +121,8 @@
         "meanLeadShareOfDistance": 0.4136,
         "signViolations": 0,
         "magnitudeViolations": 0,
+        "meanStruckBeyondPricedMetres": 3.2602,
+        "maxStruckBeyondPricedMetres": 7.613,
         "ledPassShare": 0.217
       },
       "chosenPassesBare": {
@@ -132,9 +134,37 @@
         "meanLeadShareOfDistance": 0.3999,
         "signViolations": 0,
         "magnitudeViolations": 0,
+        "meanStruckBeyondPricedMetres": 3.3684,
+        "maxStruckBeyondPricedMetres": 11.8293,
         "ledPassShare": 0.6292
       },
       "semantics": "THREE things at once. (i) DIVERGENCE: armed at the gene's upper corner the world moves on every seed, in the percept world AND in the bare world. (ii) THE LAW ON SAMPLED DECISIONS: on live match states the led displacement is re-derived INDEPENDENTLY from the world's own motion source and must match exactly, point along the motion (SIGN) and have magnitude gene·|motion|·flight·MUL; a NON-support mate's lead must be exactly zero; a STILL mate's lead must be exactly zero WITHOUT a branch (#200); the zero dose must give exactly zero. (iii) THE PASSES ACTUALLY CHOSEN: `performPass` is wrapped on a forced match so the 5th argument — the aim the ball was really struck at — is recorded for every chosen pass, and the same sign and magnitude law is re-checked on those real choices."
+    },
+    "gLoftBody": {
+      "pass": true,
+      "percept": {
+        "decisions": 262,
+        "loftCandidates": 98,
+        "matchedBody": 98,
+        "matchedLed": 0,
+        "materialSamples": 2,
+        "maxOpenDelta": 0.8688,
+        "meanOpenDelta": 0.012,
+        "ambiguousNames": 0,
+        "pass": true
+      },
+      "bare": {
+        "decisions": 227,
+        "loftCandidates": 70,
+        "matchedBody": 70,
+        "matchedLed": 0,
+        "materialSamples": 2,
+        "maxOpenDelta": 0.4616,
+        "meanOpenDelta": 0.0099,
+        "ambiguousNames": 0,
+        "pass": true
+      },
+      "semantics": "⭐ THE VERIFY-ROUND CORRECTION, GATED (#191 form). `performLoftedPass` carries NO lead and the lofted switch is OUT OF SLICE (M-PTP.4), so its candidate is PRICED AT THE BODY: openness, forward gain and the style chain are read at `mate.pos` while the GROUND pass keeps the led values it will actually be struck with. Measured END TO END through the brain on an ARMED + FULLY DOSED match — the LoftedPass candidate's own reported openness against BOTH re-derivations (feet vs the led aim, the aim rebuilt independently from the frozen law). NON-VACUITY IS IN THE PREDICATE: the two must diverge MATERIALLY (> 0.05) on at least one sampled decision and the led value must be matched ZERO times there. ⚠ DECLARED INTERVENTION: an INSTRUMENT match (`decidePlayer` is called on the carrier), compared to no signature anywhere."
     },
     "gEpiMotion": {
       "perceptBodies": 4,
@@ -403,7 +433,7 @@
             "ptp1·obm0·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
             "ptp1·obm0·ctb1·others1·lead-absent": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
             "ptp1·obm0·ctb1·others1·lead-zero": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
-            "ptp1·obm0·ctb1·others1·lead-dosed": "c4ca1b7c253c4cbd6069c90876cd9b5081d8a059002bf25aa97db9a12e02edbc",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "e486aea98789330f905532531fd1a86e20de0de00a88ee7c9da9f8ac9d336b2b",
             "ptp1·obm1·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
             "ptp1·obm1·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
             "ptp1·obm1·ctb0·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
@@ -415,7 +445,7 @@
             "ptp1·obm1·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
             "ptp1·obm1·ctb1·others1·lead-absent": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
             "ptp1·obm1·ctb1·others1·lead-zero": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
-            "ptp1·obm1·ctb1·others1·lead-dosed": "80ac2f12a380d9edbc84325cbf7b1513fb33a1b2607fddebf55f22eda6923838"
+            "ptp1·obm1·ctb1·others1·lead-dosed": "c741288d592f9fe6e96192ceb66be13d5c9781bb3edca658280559c879f8ed80"
           }
         },
         {
@@ -456,13 +486,13 @@
             "ptp1·obm0·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
             "ptp1·obm0·ctb1·others1·lead-absent": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
             "ptp1·obm0·ctb1·others1·lead-zero": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
-            "ptp1·obm0·ctb1·others1·lead-dosed": "96603578e878ca629f579cf82534c52cae88e78605cabd5dd4846463a376548d",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "c6f528c9426083281b428721f18d1a5993a7fc0b650a9682ddf079224bc447fa",
             "ptp1·obm1·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb0·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
             "ptp1·obm1·ctb0·others1·lead-absent": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
             "ptp1·obm1·ctb0·others1·lead-zero": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
-            "ptp1·obm1·ctb0·others1·lead-dosed": "b081cffbe80522a840c65364aa31d937225350a96c32f8fceb4ac601446c7e34",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "add90656a3af98e26e5fa5f3b586625197a02a9619b0723995bcd206cc51f7c7",
             "ptp1·obm1·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
@@ -509,7 +539,7 @@
             "ptp1·obm0·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
             "ptp1·obm0·ctb1·others1·lead-absent": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
             "ptp1·obm0·ctb1·others1·lead-zero": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
-            "ptp1·obm0·ctb1·others1·lead-dosed": "da7983f2d4bd7aa6c301bc5063b5857606afd546b49287bbbde2d056445f2c57",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "b396098d7cc6e80fedd14432d9047c1c61ca86edbd73e14bc6d9f884de2d9d83",
             "ptp1·obm1·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
             "ptp1·obm1·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
             "ptp1·obm1·ctb0·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
@@ -521,7 +551,7 @@
             "ptp1·obm1·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
             "ptp1·obm1·ctb1·others1·lead-absent": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
             "ptp1·obm1·ctb1·others1·lead-zero": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
-            "ptp1·obm1·ctb1·others1·lead-dosed": "9a02cf4b09eddcaadab98048c1b389ed12dae7bd49ce7e9db46ec3c8a0bcba05"
+            "ptp1·obm1·ctb1·others1·lead-dosed": "a980d00081e3ecb9838c477ad8d30a3d30fe9616e2403e49c6a4de56c921dd95"
           }
         },
         {
@@ -616,7 +646,10 @@
       "flagForks": 1,
       "aimApplySites": 3,
       "strikeSites": 1,
-      "semantics": "⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.ptpPassLead` fork in src/** — the seat fork in PlayerBrain.decideOnBall's pass block — feeding exactly ONE lead computation, ONE aim composition, THREE aim-priced scoring inputs (lane, open, gain), ONE lead capture pair and ONE led-strike statement. Everything else that names the flag, the gene, the opt-in or the seat module is a declaration, an init, the League union key, an import or the seat module's own body — all enumerated below with file:line and class, ZERO unclassified.",
+      "bonusGateSites": 10,
+      "loftBodySites": 8,
+      "mulFactorSites": 2,
+      "semantics": "⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.ptpPassLead` fork in src/** — the seat fork in PlayerBrain.decideOnBall's pass block — feeding exactly ONE lead computation, ONE aim composition, THREE aim-priced scoring inputs (lane, open, gain), ONE lead capture pair and ONE led-strike statement. Everything else that names the flag, the gene, the opt-in or the seat module is a declaration, an init, the League union key, an import or the seat module's own body — all enumerated below with file:line and class, ZERO unclassified. ⭐ AND THE CONSUMER HALF (the verify-round correction): the three AIM_APPLY sites CREATE the moved reads, so every DOWNSTREAM consumer is enumerated too — 10 BONUS_GATE rows (the gain-derived score gates the GROUND pass rides the LED gain with, BY DESIGN: it gates the pass it will strike), 8 LOFT_BODY rows (the lofted switch's body-anchored re-reads, M-PTP.4) and 2 MUL_FACTOR rows (the shared style chain, hoisted as pure code motion). The counts are PINNED, so a new consumer cannot appear without reddening this gate and forcing the stage doc's §DEV 4 enumeration to be updated in the same commit.",
       "sites": [
         {
           "file": "src/ai/PlayerBrain.ts",
@@ -644,55 +677,55 @@
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 358,
+          "line": 413,
           "kind": "LEAD_COMPUTE",
           "text": "const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 359,
+          "line": 414,
           "kind": "AIM_COMPOSE",
           "text": "const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 364,
+          "line": 419,
           "kind": "AIM_APPLY_LANE",
           "text": "laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 366,
+          "line": 421,
           "kind": "AIM_APPLY_OPEN",
           "text": "const open = opennessAt(aim, opp.players);"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 369,
+          "line": 424,
           "kind": "AIM_APPLY_GAIN",
           "text": "const gain = clamp01((team.localX(aim.x) - localX + 30) / 60) * 2 - 1;"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 463,
+          "line": 488,
           "kind": "LEAD_CAPTURE",
           "text": "bestLeadX = lead === null ? 0 : lead.x;"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 464,
+          "line": 489,
           "kind": "LEAD_CAPTURE",
           "text": "bestLeadY = lead === null ? 0 : lead.y;"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 1072,
+          "line": 1112,
           "kind": "STRIKE_GUARD",
           "text": "} else if (passMate === bestMate && (bestLeadX !== 0 || bestLeadY !== 0)) {"
         },
         {
           "file": "src/ai/PlayerBrain.ts",
-          "line": 1073,
+          "line": 1113,
           "kind": "STRIKE_LED",
           "text": "match.performPass(p, passMate!, offsideExemptKick, 1, v2(bestLeadX, bestLeadY));"
         },
@@ -866,31 +899,31 @@
         },
         {
           "file": "src/sim/Match.ts",
-          "line": 532,
+          "line": 534,
           "kind": "CONFIG",
           "text": "ptpPassLead?: boolean;"
         },
         {
           "file": "src/sim/Match.ts",
-          "line": 785,
+          "line": 787,
           "kind": "FIELD",
           "text": "readonly ptpPassLead: boolean;"
         },
         {
           "file": "src/sim/Match.ts",
-          "line": 1285,
+          "line": 1287,
           "kind": "INIT",
           "text": "this.ptpPassLead = cfg.ptpPassLead ?? false;"
         },
         {
           "file": "src/sim/Match.ts",
-          "line": 1721,
+          "line": 1723,
           "kind": "STRIKE_MACHINERY",
           "text": "ptpLead: Readonly<V2> | null = null,"
         },
         {
           "file": "src/sim/Match.ts",
-          "line": 1723,
+          "line": 1725,
           "kind": "STRIKE_MACHINERY",
           "text": "mech.performPass(this, p, mate, offsideExempt, powerChoice, ptpLead);"
         },
@@ -917,6 +950,126 @@
           "line": 386,
           "kind": "STRIKE_MACHINERY",
           "text": ": v2(struckLead.x + ptpLead.x, struckLead.y + ptpLead.y);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 354,
+          "kind": "MUL_FACTOR",
+          "text": "const passMul = (mate: Player, d: number, gain: number): number => {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 356,
+          "kind": "BONUS_GATE",
+          "text": "if (gain > 0.05) mul *= 1 + gain * stagnation * 0.35;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 358,
+          "kind": "BONUS_GATE",
+          "text": "if (team.mode === 'CounterAttack' && gain > 0) mul *= 1.3;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 359,
+          "kind": "BONUS_GATE",
+          "text": "if (team.mode === 'BuildUp' && gain < 0) mul *= 1.1; // patient recycling is fine"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 375,
+          "kind": "BONUS_GATE",
+          "text": "if (openRun && gain < 0) mul *= 0.35;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 427,
+          "kind": "MUL_FACTOR",
+          "text": "const mul = passMul(mate, d, gain);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 430,
+          "kind": "BONUS_GATE",
+          "text": "if (gain > 0) s *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 431,
+          "kind": "BONUS_GATE",
+          "text": "else s *= 1 + gain * W.passBackPen; // mild penalty for going backward"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 437,
+          "kind": "BONUS_GATE",
+          "text": "if (gain > 0.15 && lane < 0.4) {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 451,
+          "kind": "BONUS_GATE",
+          "text": "gain > 0.2; // the runner must genuinely be IN BEHIND, not alongside"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 454,
+          "kind": "BONUS_GATE",
+          "text": "} else if (lp && lp.passerGid === mate.gid && lp.receiverGid === p.gid && match.simTime - lp.t < 2.5 && gain < 0.1) {"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 462,
+          "kind": "BONUS_GATE",
+          "text": "lp.passerGid !== mate.gid && mate.action.type === 'MakeRun' && gain > 0.15"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 506,
+          "kind": "LOFT_BODY",
+          "text": "const openBody = lead === null ? open : opennessAt(mate.pos, opp.players);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 507,
+          "kind": "LOFT_BODY",
+          "text": "const gainBody = lead === null ? gain"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 509,
+          "kind": "LOFT_BODY",
+          "text": "const mulBody = lead === null ? mul : passMul(mate, d, gainBody);"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 510,
+          "kind": "LOFT_BODY",
+          "text": "let sL = (W.loftBase + openBody * W.loftOpenW) * airLane;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 511,
+          "kind": "LOFT_BODY",
+          "text": "if (gainBody > 0) sL *= 1 + gainBody * (W.passFwdBase + g.riskTolerance * W.passFwdRisk) * 0.8;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 512,
+          "kind": "LOFT_BODY",
+          "text": "else sL *= 1 + gainBody * W.passBackPen;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 513,
+          "kind": "LOFT_BODY",
+          "text": "sL *= mulBody;"
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "line": 518,
+          "kind": "LOFT_BODY",
+          "text": "bestLoftOpen = openBody;"
         }
       ]
     },
@@ -969,6 +1122,18 @@
           "file": "src/ai/perception.ts",
           "what": "opennessOf is now the body form of opennessAt (code motion)",
           "line": "return opennessAt(p.pos, opponents);",
+          "found": true
+        },
+        {
+          "file": "src/sim/mechanics.ts",
+          "what": "⭐ THE COMPOSITION, pinned rather than described: the struck point is the INCUMBENT correction PLUS the chooser's priced lead — so a led pass is NOT struck at the priced aim, it is struck BEYOND it (the smoke reports by how much)",
+          "line": ": v2(struckLead.x + ptpLead.x, struckLead.y + ptpLead.y);",
+          "found": true
+        },
+        {
+          "file": "src/ai/PlayerBrain.ts",
+          "what": "⭐ M-PTP.4 kept TRUE: the LOFTED switch prices at the BODY (its openness re-read at `mate.pos`, never at the aim)",
+          "line": "const openBody = lead === null ? open : opennessAt(mate.pos, opp.players);",
           "found": true
         }
       ],
@@ -1332,6 +1497,8 @@
         "meanLeadShareOfDistance": 0.4136,
         "signViolations": 0,
         "magnitudeViolations": 0,
+        "meanStruckBeyondPricedMetres": 3.2602,
+        "maxStruckBeyondPricedMetres": 7.613,
         "ledPassShare": 0.217
       },
       "bare": {
@@ -1343,6 +1510,8 @@
         "meanLeadShareOfDistance": 0.3999,
         "signViolations": 0,
         "magnitudeViolations": 0,
+        "meanStruckBeyondPricedMetres": 3.3684,
+        "maxStruckBeyondPricedMetres": 11.8293,
         "ledPassShare": 0.6292
       }
     },
@@ -1364,12 +1533,12 @@
         },
         {
           "arm": "forced",
-          "minMs": 91,
-          "msPerTick": 0.00605
+          "minMs": 89,
+          "msPerTick": 0.005917
         }
       ],
       "armedZeroOverheadPct": -1.14,
-      "dosedOverheadPct": 3.41
+      "dosedOverheadPct": 1.14
     }
   },
   "result": {
@@ -1406,7 +1575,7 @@
         "bornArmed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
         "zeroArmed": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
         "forced": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
-        "plainForced": "3500d5170c986b38ba137497119976f57375ce73f5243901234622e4b351b04c",
+        "plainForced": "765f1618b9f3061fc49401a0dfe3a3f190890042d6163b0f94e3e6dcac76c770",
         "identical": true,
         "plainIdentical": true,
         "bornIdentical": true,
@@ -1423,7 +1592,7 @@
         "bornArmed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
         "zeroArmed": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
         "forced": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
-        "plainForced": "7a88c6051030d883b3980019a5c6459ce5bf2942ba6b298b8dcbd28740debf5b",
+        "plainForced": "eeedb7f71647a3345149c684b89ee44dec111c5765cae0e441922761e079c0c9",
         "identical": true,
         "plainIdentical": true,
         "bornIdentical": true,
@@ -1490,8 +1659,8 @@
         "plainOff": "0e62e2575f967a2ed509dca2123fd421dbca1ce165a84a0fa5f5c17bb35fb63a",
         "bornArmed": "8355f552b76aabab12421e74dd1f6f7f7db1ab63b96ec8cf0883800fc65d6939",
         "zeroArmed": "8355f552b76aabab12421e74dd1f6f7f7db1ab63b96ec8cf0883800fc65d6939",
-        "forced": "c8edb2aa98ca3a19128a1a4500ac09ba892ffaa0098cd7090d1ef3dfbd1a0582",
-        "plainForced": "66201358c3fcd06f68e52848dc8c5a574b66c06412f82f69f51804ba18ed3df7",
+        "forced": "dfc00ea9740be2ca0623515a152a700c946628cdea6e7e29808adde2d5341439",
+        "plainForced": "91fc5c92132eb2919dac35218501f1fc32559b48450ca12ad70b86f3d0f0280d",
         "identical": true,
         "plainIdentical": true,
         "bornIdentical": true,
@@ -1508,7 +1677,7 @@
         "bornArmed": "f98e079dbfcb9290f63c604b8da0f2eb6ec9457047416d7bb96d7881a99c47e1",
         "zeroArmed": "f98e079dbfcb9290f63c604b8da0f2eb6ec9457047416d7bb96d7881a99c47e1",
         "forced": "f86dcd25d2808254a71f6f5d03d678a2d80e2bfd65054ffc76a7d51e761cea84",
-        "plainForced": "9674732490b790a3f1e277ed1c7c227f364d1e234edca5c3fcd7eb6f51c590dd",
+        "plainForced": "96cf8573b20492bd5f6b2abaf438899fffdcd5c6b94d3415b54d6a3c5556a5e7",
         "identical": true,
         "plainIdentical": true,
         "bornIdentical": true,
@@ -1541,7 +1710,7 @@
         "plainOff": "78860f9ae505fc3be3c82bbd034ac78db00dee1342eacdb42c8a1a1aafc5082d",
         "bornArmed": "27fbb8b09a47d8f05006424b54ba396c487f37e8ce46c0c45eb5ac0418de353c",
         "zeroArmed": "27fbb8b09a47d8f05006424b54ba396c487f37e8ce46c0c45eb5ac0418de353c",
-        "forced": "09c631b3512dd284dcc3bd848ddad6ae948ec06527c60ba110e39d6cf55f84c9",
+        "forced": "2c894126a48a86835ce5d1da788ca131a99b3e59cb93fae38e29330c6f9769c4",
         "plainForced": "612ec7ed2ca34bd9e4981d087c8e17fd3e0ddf77d62c26e5f47a936de71f51ef",
         "identical": true,
         "plainIdentical": true,
@@ -1575,8 +1744,8 @@
         "plainOff": "915c969e9d2c40ec2087c10000cc34126477fe36f1655a1ba5e2641f57e09388",
         "bornArmed": "3b205d8f98af792b9ee0f0e0c3ddb0d5e1263d0acd61f337c07dab8c9fbd2a55",
         "zeroArmed": "3b205d8f98af792b9ee0f0e0c3ddb0d5e1263d0acd61f337c07dab8c9fbd2a55",
-        "forced": "41972215dd9581f35be503aebf8e4e8a086bca658bdbe661ade07249234d27d4",
-        "plainForced": "208246d97ce6fdb414ab97a927f3a48a42ffd53668e43716536049acd36c47f3",
+        "forced": "2b8de15ba8302cc7f98a952cf9b810e1278db18d11e2c5128f6db2c38cb5bd77",
+        "plainForced": "3ad478d8b3bc7c0ccdf77d49349b70b655607b643c1619d426bb5635f967697b",
         "identical": true,
         "plainIdentical": true,
         "bornIdentical": true,
@@ -1728,7 +1897,7 @@
         "plainOff": "e4a0a510e050cb401cb7eb6a806c945212dbbd09f3596612d2e548bddf045a2c",
         "bornArmed": "15a339e83b45e886b2b6bade342f4e7be88d271fd93b9268c0b0c27e5cbe7de6",
         "zeroArmed": "15a339e83b45e886b2b6bade342f4e7be88d271fd93b9268c0b0c27e5cbe7de6",
-        "forced": "d35be48383ee51cca99897a33b5626db1d40a402c9481cb8e1be3874738adb46",
+        "forced": "ddc6a4b25f2198367099d5ffdfb2ddd808c4c21f1ee2fcf5282f9668e729eed3",
         "plainForced": "6c2782c2c47a5d5f42d885a0b0814355ecb1ba883def10d556226f336540021e",
         "identical": true,
         "plainIdentical": true,
@@ -1745,7 +1914,7 @@
         "plainOff": "ec7c981e66a1ca06a550e3061b537b7d48c0bc134c84434f5ceeba5e84a2ffe0",
         "bornArmed": "64fd17db6576ef832887b621636891106e6c16cacc4c52fb8780c8ea8439b03f",
         "zeroArmed": "64fd17db6576ef832887b621636891106e6c16cacc4c52fb8780c8ea8439b03f",
-        "forced": "4557d6ec9a78fde4874e3c1f537598c88b40cc4831ad35929c4cfbdf26dc396f",
+        "forced": "8efb44a6d8a41b824f670e997053fb7b949d5b47926dddedb9cbff1f8ee92562",
         "plainForced": "7401a47d196d62e478a32a90295716b479c8a8e1fb57b3ea12a3068ee7369255",
         "identical": true,
         "plainIdentical": true,
@@ -1780,7 +1949,7 @@
         "bornArmed": "a842d11fdfe5776e353dbefffb2fcc2e50a08f72b874710981fa79ef8b377112",
         "zeroArmed": "a842d11fdfe5776e353dbefffb2fcc2e50a08f72b874710981fa79ef8b377112",
         "forced": "96ed42e4e4934ae33ede586a66aa8f5a520dd47a5422d0ea5544dcbe995c432a",
-        "plainForced": "0bbf01a75ec4bf3a58336ee62477fc10fee1144c635ff6d9e874c2f75108dc35",
+        "plainForced": "a81556cd91a3c537aeb1dc502657c0726bbe75be53cd126b10ef3c82a122606c",
         "identical": true,
         "plainIdentical": true,
         "bornIdentical": true,
@@ -2066,7 +2235,7 @@
             "ptp1·obm0·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
             "ptp1·obm0·ctb1·others1·lead-absent": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
             "ptp1·obm0·ctb1·others1·lead-zero": "f8d6dcfc2bca4491082398f603c482dcc25e95398983e83eff156fbd55dd6a51",
-            "ptp1·obm0·ctb1·others1·lead-dosed": "c4ca1b7c253c4cbd6069c90876cd9b5081d8a059002bf25aa97db9a12e02edbc",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "e486aea98789330f905532531fd1a86e20de0de00a88ee7c9da9f8ac9d336b2b",
             "ptp1·obm1·ctb0·others0·lead-absent": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
             "ptp1·obm1·ctb0·others0·lead-zero": "146f97adad0ee884651c8f5febbb09adc57db1968fc1e22fe6965fc1cf3d7d11",
             "ptp1·obm1·ctb0·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
@@ -2078,7 +2247,7 @@
             "ptp1·obm1·ctb1·others0·lead-dosed": "2a60b94c0e02ae2690d0d4031a47006689bba425e680eead297e28d938bf7b16",
             "ptp1·obm1·ctb1·others1·lead-absent": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
             "ptp1·obm1·ctb1·others1·lead-zero": "815a4907aa0d66077e6b9e1b3155d527274a390339a3f82900c15f71097d3dda",
-            "ptp1·obm1·ctb1·others1·lead-dosed": "80ac2f12a380d9edbc84325cbf7b1513fb33a1b2607fddebf55f22eda6923838"
+            "ptp1·obm1·ctb1·others1·lead-dosed": "c741288d592f9fe6e96192ceb66be13d5c9781bb3edca658280559c879f8ed80"
           }
         },
         {
@@ -2119,13 +2288,13 @@
             "ptp1·obm0·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
             "ptp1·obm0·ctb1·others1·lead-absent": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
             "ptp1·obm0·ctb1·others1·lead-zero": "87b7abda82e045118c7c0a82f49c5b7bad0db5b2aa889df74b4433156777ae0b",
-            "ptp1·obm0·ctb1·others1·lead-dosed": "96603578e878ca629f579cf82534c52cae88e78605cabd5dd4846463a376548d",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "c6f528c9426083281b428721f18d1a5993a7fc0b650a9682ddf079224bc447fa",
             "ptp1·obm1·ctb0·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb0·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb0·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
             "ptp1·obm1·ctb0·others1·lead-absent": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
             "ptp1·obm1·ctb0·others1·lead-zero": "f0c3b8d526086cc679d18c9e7c36e03391a3ee4a95523e17012f9a8896ffa186",
-            "ptp1·obm1·ctb0·others1·lead-dosed": "b081cffbe80522a840c65364aa31d937225350a96c32f8fceb4ac601446c7e34",
+            "ptp1·obm1·ctb0·others1·lead-dosed": "add90656a3af98e26e5fa5f3b586625197a02a9619b0723995bcd206cc51f7c7",
             "ptp1·obm1·ctb1·others0·lead-absent": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb1·others0·lead-zero": "b24bada192cc14ad644e33a5aef666f83739ba86b551a3ce9ec580ebed5a2b36",
             "ptp1·obm1·ctb1·others0·lead-dosed": "b6d44fbcf8d4c93587ff2f29d7839cdae771d554d7a617c600892e63af20ead9",
@@ -2172,7 +2341,7 @@
             "ptp1·obm0·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
             "ptp1·obm0·ctb1·others1·lead-absent": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
             "ptp1·obm0·ctb1·others1·lead-zero": "384a0437931cb0c86ac3404cfbdd25beb91b0a74f91643cecb0385658660da7a",
-            "ptp1·obm0·ctb1·others1·lead-dosed": "da7983f2d4bd7aa6c301bc5063b5857606afd546b49287bbbde2d056445f2c57",
+            "ptp1·obm0·ctb1·others1·lead-dosed": "b396098d7cc6e80fedd14432d9047c1c61ca86edbd73e14bc6d9f884de2d9d83",
             "ptp1·obm1·ctb0·others0·lead-absent": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
             "ptp1·obm1·ctb0·others0·lead-zero": "ab3f31fd60042f58eedf701e59c75e5ebc052fdabed68d729ca7bcdf94bdfd21",
             "ptp1·obm1·ctb0·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
@@ -2184,7 +2353,7 @@
             "ptp1·obm1·ctb1·others0·lead-dosed": "b8c0240bb22b6ea2596a597c06cba9005995224ad5f76a267874ad25b654cf8a",
             "ptp1·obm1·ctb1·others1·lead-absent": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
             "ptp1·obm1·ctb1·others1·lead-zero": "a0f7a927134131f02a8f5a57db2407209a2961326e23576e547751d2bc8e8587",
-            "ptp1·obm1·ctb1·others1·lead-dosed": "9a02cf4b09eddcaadab98048c1b389ed12dae7bd49ce7e9db46ec3c8a0bcba05"
+            "ptp1·obm1·ctb1·others1·lead-dosed": "a980d00081e3ecb9838c477ad8d30a3d30fe9616e2403e49c6a4de56c921dd95"
           }
         },
         {
@@ -2243,9 +2412,9 @@
       ]
     }
   },
-  "resultSha256": "acc76c5b440a90b7b7f418defe082aa706e54bccdb333036dc1b70e7e17c91e1",
-  "wallMsContextOnly": 108270,
-  "headContextOnly": "c6010dd",
+  "resultSha256": "7c5fdd576bedf38b5552215325fe09086262905d86514cc98a78a2960f750c32",
+  "wallMsContextOnly": 110619,
+  "headContextOnly": "e58f8ae",
   "artifactPathContextOnly": "docs/world-model/data/ptp-t0-pass-lead.json",
   "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (⚠ #197-M1): the git short-hash of the tree this run observed. Embedding it in the hashed body would make the receipt un-re-derivable at any later commit.",
   "hashNote": "resultSha256 covers the body with the WALL-CLOCK cost numbers replaced by their note and seed — timings are machine-dependent and would make the hash un-re-derivable. Every GATE input is inside the hash."

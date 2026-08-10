@@ -77,9 +77,12 @@ import {
   CTB_GENE_MAX, CTB_GENE_MIN, GENE_KEYS, OBM_WEIGHT_MAX, OBM_WEIGHT_MIN, OBM_WEIGHT_SLOTS,
   crossoverGenomes, mutateGenome, passLeadSupportWeight, randomGenome, type TacticalGenome,
 } from '../../src/evolution/genome';
+import { decidePlayer } from '../../src/ai/PlayerBrain';
+import { kickMisalignment, orientationPowerMul } from '../../src/sim/mechanics';
+import { opennessAt } from '../../src/ai/perception';
 import { randomSquad } from '../../src/evolution/playerGenome';
 import { clamp01 } from '../../src/utils/math';
-import { dist } from '../../src/utils/vec';
+import { dist, norm, sub } from '../../src/utils/vec';
 import { TEAM_SIZE, type TeamInfo } from '../../src/sim/types';
 import type { Player } from '../../src/sim/Player';
 import { Rng } from '../../src/utils/rng';
@@ -477,6 +480,97 @@ const aimGeometry = (seed: number, percept: boolean): {
   };
 };
 
+/* ---- ⭐ G-LOFT-BODY: the LOFTED switch is priced AT THE BODY ------------------ */
+/**
+ * ⭐ THE VERIFY-ROUND CORRECTION, GATED (the #191 form: a finding becomes a gate, not
+ * a promise). `performLoftedPass` carries NO lead — the switch is struck at the man's
+ * FEET and it is out of this slice (M-PTP.4) — so its candidate must be PRICED at the
+ * feet too. The first build priced it against the aim-derived `open`/`gain` locals,
+ * which made the doc's "Untouched: the lofted switch" prohibition FALSE. The fix
+ * recomputes openness, forward gain and the style chain at `mate.pos` for the loft.
+ *
+ * THIS GATE MEASURES IT END TO END, through the brain itself, not through a reading
+ * of the source: on an ARMED + FULLY DOSED match the carrier is asked to decide and
+ * the `LoftedPass` candidate's OWN reported openness (`bestLoftOpen`, printed to 2 dp
+ * in its `why` string) is compared against BOTH re-derivations — `opennessAt(feet)`
+ * and `opennessAt(aim)` — with the aim rebuilt independently from the frozen law.
+ * NON-VACUITY IS PART OF THE PREDICATE: the two re-derivations must diverge MATERIALLY
+ * (> 0.05, well beyond the 2 dp print) on at least one sampled decision, otherwise the
+ * gate proves nothing and reds.
+ *
+ * ⚠ DECLARED INTERVENTION. This is an INSTRUMENT match: `decidePlayer` is called on
+ * the carrier at sample moments, which both re-decides and may execute. Its
+ * trajectory is therefore its own and is compared to NO signature anywhere in this
+ * probe — the same standing as the G-EPI-MOTION in-place rewrite fixture.
+ */
+const loftBodyPricing = (seed: number, percept: boolean): {
+  decisions: number; loftCandidates: number; matchedBody: number; matchedLed: number;
+  materialSamples: number; maxOpenDelta: number; meanOpenDelta: number;
+  ambiguousNames: number; pass: boolean;
+} => {
+  const m = matchOf(seed, percept ? 'forced' : 'plainForced');
+  const WHY = /^switch to (.+) · open (\d+\.\d\d) · air lane/;
+  let decisions = 0;
+  let loftCands = 0;
+  let matchedBody = 0;
+  let matchedLed = 0;
+  let material = 0;
+  let maxDelta = 0;
+  let deltaSum = 0;
+  let ambiguous = 0;
+  let i = 0;
+  while (!m.finished) {
+    m.step(DT);
+    i += 1;
+    if (i % 15 !== 0 || m.phase !== 'playing') continue;
+    const carrier = m.ball.owner;
+    if (carrier === null || carrier.kickCooldown > 0) continue;
+    const t = m.teams[carrier.side];
+    const opp = m.teams[1 - carrier.side];
+    decisions += 1;
+    decidePlayer(carrier, m);
+    const cand = carrier.action.scores.find((c) => c.action === 'LoftedPass');
+    if (cand === undefined) continue;
+    const parsed = WHY.exec(cand.why);
+    if (parsed === null) continue;
+    const named = t.players.filter((q) => q.name === parsed[1]);
+    if (named.length !== 1) { ambiguous += 1; continue; }
+    const mate = named[0];
+    loftCands += 1;
+    const reported = Number(parsed[2]);
+    // the two re-derivations: at his FEET, and at the point the GROUND pass is priced
+    // against (the aim the first build wrongly handed the loft)
+    const seat = passLeadSeatOf(
+      carrier, m, { ...t.genome, passLeadSupport: DOSE_FULL }, percept,
+    );
+    const lead = passLeadOffset(seat, carrier.pos, mate);
+    const bodyOpen = opennessAt(mate.pos, opp.players);
+    const ledOpen = opennessAt({ x: mate.pos.x + lead.x, y: mate.pos.y + lead.y }, opp.players);
+    const delta = Math.abs(ledOpen - bodyOpen);
+    deltaSum += delta;
+    maxDelta = Math.max(maxDelta, delta);
+    if (Math.abs(reported - Math.round(bodyOpen * 100) / 100) < 1e-9) matchedBody += 1;
+    if (delta > 0.05) {
+      material += 1;
+      if (Math.abs(reported - Math.round(ledOpen * 100) / 100) < 1e-9) matchedLed += 1;
+    }
+  }
+  return {
+    decisions,
+    loftCandidates: loftCands,
+    matchedBody,
+    matchedLed,
+    materialSamples: material,
+    maxOpenDelta: round(maxDelta),
+    meanOpenDelta: round(deltaSum / Math.max(loftCands, 1)),
+    ambiguousNames: ambiguous,
+    // ⭐ every lofted candidate priced at the FEET, at least one sampled decision where
+    // that is a MATERIALLY different number from the led point, and NOT ONE priced at
+    // the led point there.
+    pass: loftCands > 0 && matchedBody === loftCands && material > 0 && matchedLed === 0,
+  };
+};
+
 /* ---- ⭐ G-EPI-MOTION: the motion channel is HONEST, per world shape ---------- */
 /**
  * The OBM-T0 G-EPI form, applied to the MOTION channel. A percept-armed match is
@@ -713,9 +807,19 @@ const srcFiles = (dir: string): string[] => readdirSync(dir).flatMap((e) => {
 });
 const FORK_LINE =
   'const ptpSeat = match.ptpPassLead ? passLeadSeatOf(p, match, g, match.edsPerceivedChoice) : null;';
+/**
+ * ⭐ The counts the CONSUMER half is pinned at (drift detection, the inventory's own
+ * job): the gain-derived score gates the GROUND pass rides the led read with, and the
+ * lofted switch's body-anchored re-reads. A new consumer of either read must be
+ * enumerated in the stage doc's §DEV 4 in the same commit that adds it — the gate is
+ * what makes that a rule rather than a habit.
+ */
+const BONUS_GATE_SITES = 10;
+const LOFT_BODY_SITES = 8;
 const forkTable = (): {
   sites: { file: string; line: number; kind: string; text: string }[];
-  flagForks: number; aimApplySites: number; strikeSites: number; pass: boolean;
+  flagForks: number; aimApplySites: number; strikeSites: number;
+  bonusGateSites: number; loftBodySites: number; mulFactorSites: number; pass: boolean;
 } => {
   const sites: { file: string; line: number; kind: string; text: string }[] = [];
   const TOKENS = /ptpPassLead|ptpSeat|ptpLead|passLead|PassLead|PTP_FLIGHT_SPEED|PTP_LEAD_FLIGHT_MUL|bestLead|struckLead|const aim = lead|laneOpenness\(p\.pos, aim|opennessAt\(aim|team\.localX\(aim\.x\)/;
@@ -754,22 +858,54 @@ const forkTable = (): {
       sites.push({ file: f, line: i + 1, kind, text: t });
     });
   }
+  // ⭐ THE CONSUMER HALF OF THE INVENTORY (the verify-round correction). The three
+  // AIM_APPLY sites CREATE the moved reads; the inventory above stopped there, and
+  // the stage doc consequently claimed "every bonus stays anchored to the body",
+  // which was FALSE. Every DOWNSTREAM consumer of the (led) `gain` read is therefore
+  // enumerated here too — BONUS_GATE — beside the loft's body-anchored re-reads
+  // (LOFT_BODY) and the shared style chain (MUL_FACTOR). Scoped to the pass block of
+  // `decideOnBall` so the through-ball loop's own body-anchored `gain` is not swept in.
+  const brain = readFileSync('src/ai/PlayerBrain.ts', 'utf8').split('\n');
+  const from = brain.findIndex((l) => l.trim().startsWith('const layingOff = p.action.type'));
+  const to = brain.findIndex((l) => l.trim().startsWith('if (pressure > 0.5) bestPass *='));
+  const already = new Set(sites.filter((s) => s.file.endsWith('PlayerBrain.ts')).map((s) => s.line));
+  const consumers: { file: string; line: number; kind: string; text: string }[] = [];
+  for (let i = from; i >= 0 && to > from && i <= to; i += 1) {
+    const t = brain[i].trim();
+    if (t.startsWith('*') || t.startsWith('//') || t.startsWith('/*')) continue;
+    if (already.has(i + 1)) continue;
+    if (!/\bgain\b|gainBody|openBody|mulBody|passMul/.test(t)) continue;
+    const kind = /gainBody|openBody|mulBody/.test(t) ? 'LOFT_BODY'
+      : /passMul/.test(t) ? 'MUL_FACTOR' : 'BONUS_GATE';
+    consumers.push({ file: 'src/ai/PlayerBrain.ts', line: i + 1, kind, text: t });
+  }
+  const all = [...sites, ...consumers];
   const flagForks = sites.filter((s) => s.kind === 'FLAG_FORK');
   const aimApply = sites.filter((s) => s.kind.startsWith('AIM_APPLY'));
   const strike = sites.filter((s) => s.kind === 'STRIKE_LED');
+  const bonusGates = consumers.filter((s) => s.kind === 'BONUS_GATE');
+  const loftBody = consumers.filter((s) => s.kind === 'LOFT_BODY');
   return {
-    sites,
+    sites: all,
     flagForks: flagForks.length,
     aimApplySites: aimApply.length,
     strikeSites: strike.length,
+    bonusGateSites: bonusGates.length,
+    loftBodySites: loftBody.length,
+    mulFactorSites: consumers.filter((s) => s.kind === 'MUL_FACTOR').length,
     // ⭐ EXACTLY ONE flag fork, at the named site; exactly THREE scoring inputs read
     // at the aim; exactly ONE led-strike statement. Zero unclassified occurrences.
+    // ⭐ AND the consumer half: the led `gain` has BONUS_GATE consumers (so the doc's
+    // enumeration is the whole of them and the region was found at all), and the loft
+    // has its own body-anchored re-reads.
     pass: flagForks.length === 1 && flagForks[0].file.endsWith('PlayerBrain.ts')
       && aimApply.length === 3 && aimApply.every((s) => s.file.endsWith('PlayerBrain.ts'))
       && strike.length === 1 && strike[0].file.endsWith('PlayerBrain.ts')
       && sites.filter((s) => s.kind === 'AIM_COMPOSE').length === 1
       && sites.filter((s) => s.kind === 'LEAD_COMPUTE').length === 1
-      && sites.filter((s) => s.kind === 'OTHER').length === 0,
+      && sites.filter((s) => s.kind === 'OTHER').length === 0
+      && from >= 0 && to > from
+      && bonusGates.length === BONUS_GATE_SITES && loftBody.length === LOFT_BODY_SITES,
   };
 };
 
@@ -806,6 +942,19 @@ const TRACE_LINES: readonly { file: string; line: string; what: string }[] = [
   {
     file: 'src/ai/perception.ts', what: 'opennessOf is now the body form of opennessAt (code motion)',
     line: 'return opennessAt(p.pos, opponents);',
+  },
+  {
+    file: 'src/sim/mechanics.ts',
+    what: '⭐ THE COMPOSITION, pinned rather than described: the struck point is the '
+      + 'INCUMBENT correction PLUS the chooser\'s priced lead — so a led pass is NOT struck '
+      + 'at the priced aim, it is struck BEYOND it (the smoke reports by how much)',
+    line: ': v2(struckLead.x + ptpLead.x, struckLead.y + ptpLead.y);',
+  },
+  {
+    file: 'src/ai/PlayerBrain.ts',
+    what: '⭐ M-PTP.4 kept TRUE: the LOFTED switch prices at the BODY (its openness re-read '
+      + 'at `mate.pos`, never at the aim)',
+    line: 'const openBody = lead === null ? open : opennessAt(mate.pos, opp.players);',
   },
 ];
 const traceGate = (): {
@@ -940,6 +1089,7 @@ const dosedSmoke = (seed: number, percept: boolean): {
   passes: number; ledPasses: number; supportTargets: number;
   meanLeadMetres: number; maxLeadMetres: number; meanLeadShareOfDistance: number;
   signViolations: number; magnitudeViolations: number;
+  meanStruckBeyondPricedMetres: number; maxStruckBeyondPricedMetres: number;
   ledPassShare: number;
 } => {
   const m = matchOf(seed, percept ? 'forced' : 'plainForced');
@@ -952,6 +1102,8 @@ const dosedSmoke = (seed: number, percept: boolean): {
   let shareSum = 0;
   let signBad = 0;
   let magBad = 0;
+  let beyondSum = 0;
+  let beyondMax = 0;
   m.performPass = (
     p: Player, mate: Player, offsideExempt = false, powerChoice = 1,
     ptpLead: Readonly<{ x: number; y: number }> | null = null,
@@ -972,6 +1124,20 @@ const dosedSmoke = (seed: number, percept: boolean): {
       leadMax = Math.max(leadMax, mag);
       const d = dist(p.pos, mate.pos);
       shareSum += d > 0 ? mag / d : 0;
+      // ⭐ THE COMPOSITION, MEASURED (the verify-round wording correction). The ball is
+      // NOT struck at the priced aim: `performPass` composes the INCUMBENT strike-time
+      // correction (`mate.pos + mate.vel · flightExec · 0.8`, the passer's own body
+      // knowledge, untouched since long before this seam) WITH the chooser's priced
+      // `ptpLead`. So the struck point is the priced aim PLUS that correction, and the
+      // distance between them is exactly |struckLead − mate.pos| — re-derived here from
+      // `performPass`'s own exported arithmetic, powerChoice 1 (what the led-strike
+      // statement always hands it), and reported beside every "follows pricing" claim.
+      const misalign = kickMisalignment(p, norm(sub(mate.pos, p.pos)));
+      const powerMul = orientationPowerMul(misalign, p.attrs.passing);
+      const flightExec = dist(p.pos, mate.pos) / (16 * powerMul);
+      const beyond = Math.hypot(mate.vel.x, mate.vel.y) * flightExec * 0.8;
+      beyondSum += beyond;
+      beyondMax = Math.max(beyondMax, beyond);
     }
     orig(p, mate, offsideExempt, powerChoice, ptpLead);
   };
@@ -986,6 +1152,8 @@ const dosedSmoke = (seed: number, percept: boolean): {
     meanLeadShareOfDistance: round(shareSum / n),
     signViolations: signBad,
     magnitudeViolations: magBad,
+    meanStruckBeyondPricedMetres: round(beyondSum / n),
+    maxStruckBeyondPricedMetres: round(beyondMax),
     ledPassShare: round(led / Math.max(passes, 1)),
   };
 };
@@ -1116,6 +1284,9 @@ const fpRow = gIdentRows.find((r) => r.seed === FINGERPRINT_SEED)!;
 const geometryPercept = aimGeometry(READ_SEED, true);
 const geometryBare = aimGeometry(READ_SEED, false);
 const epi = epiMotionFixture(READ_SEED);
+const loftPercept = loftBodyPricing(READ_SEED, true);
+const loftBare = loftBodyPricing(READ_SEED, false);
+const gLoftBody = loftPercept.pass && loftBare.pass;
 const smokePercept = dosedSmoke(READ_SEED, true);
 const smokeBare = dosedSmoke(READ_SEED, false);
 const seamDraws = seamRng(READ_SEED);
@@ -1169,7 +1340,8 @@ const gRng = seamDraws.pass && evo.genomesIdentical && evo.rngStateIdentical
 const gHygiene = Object.values(hyg).every(Boolean);
 
 const gatesPass = gDet && gIdentPass && gOff && gBorn && gZero && gBite && epi.pass
-  && gCross && gRng && gHygiene && fork.pass && trace.pass && pins.pass && seedDisjoint.pass;
+  && gLoftBody && gCross && gRng && gHygiene && fork.pass && trace.pass && pins.pass
+  && seedDisjoint.pass;
 
 const body = {
   stage: 'PTP T0 — the dormant PASS-LEAD seam (`passLeadSupport` / `ptpPassLead`)',
@@ -1256,6 +1428,19 @@ const body = {
         + 'ball was really struck at — is recorded for every chosen pass, and the same sign and '
         + 'magnitude law is re-checked on those real choices.',
     },
+    gLoftBody: {
+      pass: gLoftBody, percept: loftPercept, bare: loftBare,
+      semantics: '⭐ THE VERIFY-ROUND CORRECTION, GATED (#191 form). `performLoftedPass` carries '
+        + 'NO lead and the lofted switch is OUT OF SLICE (M-PTP.4), so its candidate is PRICED '
+        + 'AT THE BODY: openness, forward gain and the style chain are read at `mate.pos` while '
+        + 'the GROUND pass keeps the led values it will actually be struck with. Measured END TO '
+        + 'END through the brain on an ARMED + FULLY DOSED match — the LoftedPass candidate\'s '
+        + 'own reported openness against BOTH re-derivations (feet vs the led aim, the aim '
+        + 'rebuilt independently from the frozen law). NON-VACUITY IS IN THE PREDICATE: the two '
+        + 'must diverge MATERIALLY (> 0.05) on at least one sampled decision and the led value '
+        + 'must be matched ZERO times there. ⚠ DECLARED INTERVENTION: an INSTRUMENT match '
+        + '(`decidePlayer` is called on the carrier), compared to no signature anywhere.',
+    },
     gEpiMotion: {
       ...epi,
       semantics: '⭐ THE HONESTY CORE, PROVED NOT ASSERTED. A match is stepped 600 ticks, every '
@@ -1311,14 +1496,22 @@ const body = {
     gHygiene: { pass: gHygiene, ...hyg },
     gFork: {
       pass: fork.pass, flagForks: fork.flagForks, aimApplySites: fork.aimApplySites,
-      strikeSites: fork.strikeSites,
+      strikeSites: fork.strikeSites, bonusGateSites: fork.bonusGateSites,
+      loftBodySites: fork.loftBodySites, mulFactorSites: fork.mulFactorSites,
       semantics: '⭐ THE READ-FORK INVENTORY: EXACTLY ONE `match.ptpPassLead` fork in src/** — '
         + 'the seat fork in PlayerBrain.decideOnBall\'s pass block — feeding exactly ONE lead '
         + 'computation, ONE aim composition, THREE aim-priced scoring inputs (lane, open, gain), '
         + 'ONE lead capture pair and ONE led-strike statement. Everything else that names the '
         + 'flag, the gene, the opt-in or the seat module is a declaration, an init, the League '
         + 'union key, an import or the seat module\'s own body — all enumerated below with '
-        + 'file:line and class, ZERO unclassified.',
+        + 'file:line and class, ZERO unclassified. ⭐ AND THE CONSUMER HALF (the verify-round '
+        + 'correction): the three AIM_APPLY sites CREATE the moved reads, so every DOWNSTREAM '
+        + 'consumer is enumerated too — 10 BONUS_GATE rows (the gain-derived score gates the '
+        + 'GROUND pass rides the LED gain with, BY DESIGN: it gates the pass it will strike), '
+        + '8 LOFT_BODY rows (the lofted switch\'s body-anchored re-reads, M-PTP.4) and 2 '
+        + 'MUL_FACTOR rows (the shared style chain, hoisted as pure code motion). The counts '
+        + 'are PINNED, so a new consumer cannot appear without reddening this gate and forcing '
+        + 'the stage doc\'s §DEV 4 enumeration to be updated in the same commit.',
       sites: fork.sites,
     },
     gTrace: {
@@ -1394,6 +1587,7 @@ for (const r of gIdentRows) {
 }
 o(`G-OFF ${gOff ? 'PASS' : 'FAIL'} · G-BORN ${gBorn ? 'PASS' : 'FAIL'} · G-ZERO ${gZero ? 'PASS' : 'FAIL'}`
   + ` · G-BITE ${gBite ? 'PASS' : 'FAIL'} · ⭐G-EPI-MOTION ${epi.pass ? 'PASS' : 'FAIL'}`
+  + ` · ⭐G-LOFT-BODY ${gLoftBody ? 'PASS' : 'FAIL'}`
   + ` · ⭐⭐G-CROSS ${gCross ? 'PASS' : 'FAIL'} · G-RNG ${gRng ? 'PASS' : 'FAIL'}`
   + ` · G-HYGIENE ${gHygiene ? 'PASS' : 'FAIL'} · G-FORK ${fork.pass ? 'PASS' : 'FAIL'}`
   + ` · G-TRACE ${trace.pass ? 'PASS' : 'FAIL'} · G-PINS ${pins.pass ? 'PASS' : 'FAIL'}`
@@ -1413,6 +1607,12 @@ o(`⭐ G-EPI-MOTION: percept ${epi.perceptMatchesPercept}/${epi.perceptBodies} r
   + ` · mean remembered age ${epi.meanRememberedAgeTicks} ticks`
   + ` | bare ${epi.bareMatchesTruth}/${epi.bareBodies} follow truth`
   + ` · module match members [${epi.moduleMatchMembers.join(', ')}]`);
+o('⭐ G-LOFT-BODY (the lofted switch prices at the FEET, armed + dosed):');
+for (const [shape, r] of [['percept', loftPercept], ['bare', loftBare]] as const) {
+  o(`  ${shape.padEnd(8)} ${r.matchedBody}/${r.loftCandidates} loft candidates priced at the BODY`
+    + ` · material divergences ${r.materialSamples} (max Δopen ${r.maxOpenDelta})`
+    + ` · priced at the LED point ${r.matchedLed}`);
+}
 o(`⭐⭐ G-CROSS (${CROSS_CELLS.length} cells × ${runA.crossing.seeds.n} seeds): `
   + `${runA.crossing.claims.filter((c) => c.pass).length}/${runA.crossing.claims.length} claims held`);
 for (const c of runA.crossing.claims) {
@@ -1424,17 +1624,22 @@ for (const cell of runA.crossing.cells) {
 }
 o(`G-RNG seam: rng ${seamDraws.before} → ${seamDraws.after} over ${seamDraws.calls} armed dosed projections`);
 o(`FORK TABLE: ${fork.flagForks} flag fork(s), ${fork.aimApplySites} aim-priced input(s), `
-  + `${fork.strikeSites} led-strike statement(s), ${fork.sites.length} src occurrence(s) total`);
+  + `${fork.strikeSites} led-strike statement(s), ${fork.bonusGateSites} BONUS_GATE consumer(s), `
+  + `${fork.loftBodySites} LOFT_BODY re-read(s), ${fork.sites.length} src occurrence(s) total`);
 o(`PIN INVENTORY: ${pins.namedPins.filter((p) => p.found).length}/${pins.namedPins.length} named pins present`
   + ` · src verbatim ${pins.srcVerbatim}`);
 o(`REPORTED chosen-pass smoke (percept): ${smokePercept.ledPasses}/${smokePercept.passes} passes LED`
   + ` · mean lead ${smokePercept.meanLeadMetres} m (max ${smokePercept.maxLeadMetres})`
   + ` · lead/distance ${smokePercept.meanLeadShareOfDistance}`
-  + ` · sign/magnitude violations ${smokePercept.signViolations}/${smokePercept.magnitudeViolations}`);
+  + ` · struck ${smokePercept.meanStruckBeyondPricedMetres} m BEYOND the priced aim`
+  + ` · sign/magnitude violations ${smokePercept.signViolations}/`
+  + `${smokePercept.magnitudeViolations}`);
 o(`REPORTED chosen-pass smoke (bare):    ${smokeBare.ledPasses}/${smokeBare.passes} passes LED`
   + ` · mean lead ${smokeBare.meanLeadMetres} m (max ${smokeBare.maxLeadMetres})`
   + ` · lead/distance ${smokeBare.meanLeadShareOfDistance}`
-  + ` · sign/magnitude violations ${smokeBare.signViolations}/${smokeBare.magnitudeViolations}`);
+  + ` · struck ${smokeBare.meanStruckBeyondPricedMetres} m BEYOND the priced aim`
+  + ` · sign/magnitude violations ${smokeBare.signViolations}/`
+  + `${smokeBare.magnitudeViolations}`);
 o(`REPORTED cost (min of ${cost.repeats}, ${cost.ticksPerMatch} ticks/match):`);
 for (const a of cost.arms) o(`  ${a.arm.padEnd(10)} ${String(a.minMs).padStart(6)} ms`);
 o(`  armed-zero overhead ${cost.armedZeroOverheadPct}% · dosed overhead ${cost.dosedOverheadPct}%`);

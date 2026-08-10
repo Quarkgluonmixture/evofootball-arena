@@ -519,7 +519,9 @@ export interface MatchConfig {
    * mate at an AIM POINT projected along his motion over the pass flight — the
    * through-ball family's own lead arithmetic, weighted by the born-absent
    * `passLeadSupport` gene (`src/ai/passLeadSeat.ts`) — and a pass chosen against a
-   * led point is STRUCK at it. Read at exactly ONE place: the seat fork in
+   * led point CARRIES that lead into the strike, which composes it with the incumbent
+   * strike-time correction (so the ball lands BEYOND the priced aim, never exactly on
+   * it — §HONESTY 5 of the stage doc). Read at exactly ONE place: the seat fork in
    * `PlayerBrain.decideOnBall`'s pass block. The `MakeRun` through-ball loop, the
    * whether seat, the certified table, the OBM/CTB seams and TeamBrain are untouched,
    * and there is no predicate anywhere (#200) — a still mate's led point is his feet

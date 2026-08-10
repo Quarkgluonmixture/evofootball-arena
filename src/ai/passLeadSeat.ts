@@ -180,5 +180,13 @@ export function passLeadOffset(
 
 // THE AIM POINT itself is composed at its ONE use site — `aim = mate.pos + lead` in
 // `PlayerBrain.decideOnBall`'s pass loop — deliberately, so the composition has a
-// single owner and the strike can be handed the SAME `lead` object the pricing used
-// (execution follows pricing exactly, not to within a rounding).
+// single owner and the strike can be handed the SAME `lead` object the pricing used.
+//
+// ⭐ STATED EXACTLY (the verify-round correction): "execution follows pricing" means the
+// chooser's OWN priced displacement is CARRIED into the strike, NOT that the ball is
+// struck at the priced point. `performPass` ADDS it to the incumbent strike-time
+// correction it has always applied (`struck = struckLead + ptpLead`), so the struck
+// point sits BEYOND the priced aim — measured at mean +3.26 m / +3.37 m (percept /
+// bare) on the stage's chosen-pass smoke. That composition is the design (the
+// incumbent's body knowledge is not replaced) and it is why the zero-gene world is
+// byte-identical rather than merely close.

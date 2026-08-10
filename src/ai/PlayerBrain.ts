@@ -344,31 +344,14 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
   if (p.kickCooldown <= 0) {
     const lp = match.lastCompletedPass;
     const layingOff = p.action.type === 'HoldUp'; // pivot lay-off (Phase 28)
-    for (const mate of team.players) {
-      if (mate === p || mate.sentOff) continue;
-      // PTP T0: the point this pass is PRICED AT. Seat absent ⇒ literally `mate.pos`
-      // (to feet, the shipped loop); seat present ⇒ his feet plus the gene's share of
-      // the displacement he is projected to make over the flight. THE THREE SCORING
-      // INPUTS BELOW MOVE WITH IT — lane, open and gain are read AT the aim, so the
-      // chooser prices the pass it would actually play. Everything else in this loop
-      // stays anchored to the BODY on purpose and is unchanged: `d` (the flight the
-      // lead itself is derived from, and the long/short bands), the offside read (the
-      // flag is judged on where he STANDS), the kick misalignment (body mechanics),
-      // and every bonus below.
-      const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);
-      const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };
-      // The playmaker (Phase 39) reads passing lanes 15% more open than
-      // they look — the trait is vision, priced into lane weight only.
-      const lane = Math.min(
-        1,
-        laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
-      );
-      const open = opennessAt(aim, opp.players);
-      const d = dist(p.pos, mate.pos);
-      // Forward progress of the pass, normalized to ±1 over 30m.
-      const gain = clamp01((team.localX(aim.x) - localX + 30) / 60) * 2 - 1;
-
-      // Shared style/tilt multipliers (identical for ground and lofted).
+    // Shared style/tilt multipliers (identical for ground and lofted). PURE CODE
+    // MOTION out of the mate loop (PTP T0 §DEV 9): the statements, their order and
+    // their operands are the shipped chain verbatim, so every call reproduces HEAD's
+    // double exactly (G-IDENT / G-FP measure that, they do not assume it). It is a
+    // function of the FORWARD-GAIN READ so the LOFTED switch — which is out of this
+    // slice (M-PTP.4) and is struck to the body — can be priced at the BODY while the
+    // ground pass keeps the gain it will actually be struck with.
+    const passMul = (mate: Player, d: number, gain: number): number => {
       let mul = 1;
       if (gain > 0.05) mul *= 1 + gain * stagnation * 0.35;
       else mul *= 1 - stagnation * 0.3;
@@ -400,6 +383,48 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       if (!mustKick) mul *= 1 - kickMisalignment(p, norm(sub(mate.pos, p.pos))) * 0.12 * (1 - p.attrs.passing * 0.5);
       // A pivot lays off short after holding up (Phase 28).
       if (layingOff && d < 12) mul *= 1.3;
+      return mul;
+    };
+    for (const mate of team.players) {
+      if (mate === p || mate.sentOff) continue;
+      // PTP T0: the point this pass is PRICED AT. Seat absent ⇒ literally `mate.pos`
+      // (to feet, the shipped loop); seat present ⇒ his feet plus the gene's share of
+      // the displacement he is projected to make over the flight. THE THREE SCORING
+      // INPUTS BELOW MOVE WITH IT — lane, open and gain are read AT the aim, so the
+      // chooser prices the pass it would actually play.
+      //
+      // ⭐ WHAT STAYS ANCHORED TO THE BODY, stated exactly (the verify-round
+      // correction — an earlier version of this comment claimed "every bonus", which
+      // was FALSE): `d` (the flight the lead itself is derived from, and the
+      // long/short bands), the offside read (the flag is judged on where he STANDS),
+      // the kick misalignment (body mechanics), the lay-off distance test, and — via
+      // `passMul(mate, d, gainBody)` — the whole style/tilt chain AND the openness of
+      // the LOFTED switch, which is out of slice (M-PTP.4) and struck to the body.
+      //
+      // ⭐ WHAT RIDES THE LED GAIN, BY DESIGN, for the GROUND pass this seat prices:
+      // every gain-derived score gate below — the stagnation tilt, the CounterAttack
+      // and BuildUp mode tilts, the open-run back-pass suppression, the forward-gain
+      // and back-pass terms, the risk/lane contest gate, the 2过1 wall-return test,
+      // the "don't hand it back" test and the third-man release test. They gate THE
+      // PASS THE CHOOSER WILL ACTUALLY STRIKE, so they read the gain of that pass;
+      // pricing a led ball against the body's forward progress would be the
+      // incoherence, not the fix. Enumerated as BONUS_GATE rows in the read-fork
+      // inventory (G-FORK) rather than left to a reader's eye.
+      const lead = ptpSeat === null ? null : passLeadOffset(ptpSeat, p.pos, mate);
+      const aim = lead === null ? mate.pos : { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y };
+      // The playmaker (Phase 39) reads passing lanes 15% more open than
+      // they look — the trait is vision, priced into lane weight only.
+      const lane = Math.min(
+        1,
+        laneOpenness(p.pos, aim, opp.players) * (p.traits.includes('playmaker') ? 1.15 : 1),
+      );
+      const open = opennessAt(aim, opp.players);
+      const d = dist(p.pos, mate.pos);
+      // Forward progress of the pass, normalized to ±1 over 30m.
+      const gain = clamp01((team.localX(aim.x) - localX + 30) / 60) * 2 - 1;
+
+      // The GROUND pass's style/tilt chain, on the gain of the pass it would strike.
+      const mul = passMul(mate, d, gain);
 
       let s = W.passBase + lane * W.passLaneW + open * W.passOpenW;
       if (gain > 0) s *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk);
@@ -470,15 +495,27 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
       // (30.5 tried 18m: the loft cannibalized healthy ground passes and
       // through balls in the 18–24m band and goals sank with them).
       if (d > 24 && !layingOff) {
-        let sL = (W.loftBase + open * W.loftOpenW) * airLane;
-        if (gain > 0) sL *= 1 + gain * (W.passFwdBase + g.riskTolerance * W.passFwdRisk) * 0.8;
-        else sL *= 1 + gain * W.passBackPen;
-        sL *= mul;
+        // ⭐ PTP T0 — THE LOFT PRICES AT THE BODY (M-PTP.4's prohibition, kept TRUE).
+        // `performLoftedPass` carries NO lead: the switch is struck at the man's feet,
+        // it is not this slice's action, and an aim-derived score here would price one
+        // ball and strike another. So its openness, its forward gain and its style
+        // chain are read at `mate.pos`. Seat absent ⇒ `aim` IS `mate.pos`, so these
+        // three are the very same reads and the arithmetic is HEAD's, byte for byte
+        // (G-OFF / G-BORN / G-ZERO); armed and dosed they are the ONLY reason the
+        // lofted candidate is unchanged by the seam.
+        const openBody = lead === null ? open : opennessAt(mate.pos, opp.players);
+        const gainBody = lead === null ? gain
+          : clamp01((team.localX(mate.pos.x) - localX + 30) / 60) * 2 - 1;
+        const mulBody = lead === null ? mul : passMul(mate, d, gainBody);
+        let sL = (W.loftBase + openBody * W.loftOpenW) * airLane;
+        if (gainBody > 0) sL *= 1 + gainBody * (W.passFwdBase + g.riskTolerance * W.passFwdRisk) * 0.8;
+        else sL *= 1 + gainBody * W.passBackPen;
+        sL *= mulBody;
         sL *= 0.55 + p.attrs.passing * 0.75;
         if (sL > bestLoft) {
           bestLoft = sL;
           bestLoftMate = mate;
-          bestLoftOpen = open;
+          bestLoftOpen = openBody;
         }
       }
     }
@@ -1057,8 +1094,11 @@ function decideCarrier(p: Player, team: Team, opp: Team, match: Match): void {
         // o1PassWindup is OFF in every production path, so this is the shipped
         // synchronous release verbatim (no rng draw added, no reordering). The
         // cutback branch above is untouched.
-        // PTP T0 §SEAM (EXECUTION FOLLOWS PRICING): a pass PRICED against a led point
-        // is STRUCK at it. Its own armed-only statement — the incumbent statements
+        // PTP T0 §SEAM (EXECUTION CARRIES THE PRICING): a pass PRICED against a led
+        // point hands its OWN priced displacement to the strike — which ADDS it to the
+        // incumbent strike-time correction, so the ball lands BEYOND the priced aim
+        // rather than on it (§HONESTY 5 / §DEV 2, measured in the stage doc's smoke).
+        // Its own armed-only statement — the incumbent statements
         // around it are byte-identical, and the O1 wind-up keeps precedence (that
         // banked seam owns the release timing; with both armed the strike resolves
         // through the wind-up's own aim, an honest limit stated in the stage doc).

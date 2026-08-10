@@ -13,9 +13,12 @@ import {
   crossoverGenomes, mutateGenome, passLeadSupportWeight, randomGenome, type TacticalGenome,
 } from '../src/evolution/genome';
 import { randomSquad } from '../src/evolution/playerGenome';
+import { decidePlayer } from '../src/ai/PlayerBrain';
+import { opennessAt } from '../src/ai/perception';
+import { kickMisalignment, orientationPowerMul } from '../src/sim/mechanics';
 import { a4MatchFlags } from '../src/game/a4World';
 import { clamp01 } from '../src/utils/math';
-import { dist } from '../src/utils/vec';
+import { dist, norm, sub } from '../src/utils/vec';
 import { TEAM_SIZE, type TeamInfo } from '../src/sim/types';
 import type { Player } from '../src/sim/Player';
 import { Rng } from '../src/utils/rng';
@@ -508,12 +511,13 @@ describe('PTP-T0 — the dormant PASS-LEAD seam', () => {
       .toBeLessThan(passCase.indexOf('v2(bestLeadX, bestLeadY)'));
   });
 
-  it('EXECUTION FOLLOWS PRICING: a led pass is struck at the led point', () => {
+  it('EXECUTION COMPOSES: the struck lead is the incumbent correction PLUS the priced lead', () => {
     const m = matchOf(12_425_902, { ptp: true, gene: 1, percept: false });
     const orig = m.performPass.bind(m);
     let led = 0;
     let plain = 0;
     let lawBad = 0;
+    let beyondSum = 0;
     m.performPass = (
       p: Player, mate: Player, offsideExempt = false, powerChoice = 1,
       ptpLead: Readonly<{ x: number; y: number }> | null = null,
@@ -525,6 +529,20 @@ describe('PTP-T0 — the dormant PASS-LEAD seam', () => {
         const want = Math.hypot(mate.vel.x, mate.vel.y) * flight * PTP_LEAD_FLIGHT_MUL;
         if (Math.abs(Math.hypot(ptpLead.x, ptpLead.y) - want) > 1e-9) lawBad += 1;
         if (mate.action.type !== 'SupportBallCarrier') lawBad += 1;
+        // ⭐ THE TRUE COMPOSED TARGET (the verify-round wording correction). The ball is
+        // NOT struck at the priced aim: `performPass` adds the chooser's `ptpLead` to its
+        // OWN incumbent strike-time correction (`mate.vel · flightExec · 0.8`), so the
+        // struck point sits BEYOND the priced point by exactly that correction. Asserted
+        // here so the claim in the doc is a pin, not a phrase.
+        const misalign = kickMisalignment(p, norm(sub(mate.pos, p.pos)));
+        const flightExec = dist(p.pos, mate.pos)
+          / (16 * orientationPowerMul(misalign, p.attrs.passing));
+        const struck = {
+          x: mate.pos.x + mate.vel.x * flightExec * 0.8 + ptpLead.x,
+          y: mate.pos.y + mate.vel.y * flightExec * 0.8 + ptpLead.y,
+        };
+        const priced = { x: mate.pos.x + ptpLead.x, y: mate.pos.y + ptpLead.y };
+        beyondSum += Math.hypot(struck.x - priced.x, struck.y - priced.y);
       }
       orig(p, mate, offsideExempt, powerChoice, ptpLead);
     };
@@ -532,6 +550,56 @@ describe('PTP-T0 — the dormant PASS-LEAD seam', () => {
     expect(led).toBeGreaterThan(0); // led passes really are chosen and struck
     expect(plain).toBeGreaterThan(0); // and to-feet passes still happen (no predicate)
     expect(lawBad).toBe(0);
+    // the composition is REAL and not a rounding: the struck point sits a measurable
+    // distance beyond the priced one on average (§HONESTY 5, §DEV 2)
+    expect(beyondSum / led).toBeGreaterThan(0.5);
+  });
+
+  it('⭐ the LOFTED switch prices at the BODY, never at the led aim (M-PTP.4)', () => {
+    // `performLoftedPass` carries NO lead — the switch is struck at the man's feet and
+    // it is OUT OF SLICE — so its candidate must be priced at the feet too. Measured
+    // through the brain: the LoftedPass candidate's own reported openness (to 2 dp in
+    // its `why` string) against BOTH re-derivations, on decisions where they differ
+    // MATERIALLY. Non-vacuity is asserted, not hoped for.
+    const m = matchOf(12_425_903, { ptp: true, gene: 1, percept: false });
+    let cands = 0;
+    let body = 0;
+    let ledMatches = 0;
+    let material = 0;
+    let i = 0;
+    while (!m.finished) {
+      m.step(DT);
+      i += 1;
+      if (i % 15 !== 0 || m.phase !== 'playing') continue;
+      const carrier = m.ball.owner;
+      if (carrier === null || carrier.kickCooldown > 0) continue;
+      const t = m.teams[carrier.side];
+      const opp = m.teams[1 - carrier.side];
+      decidePlayer(carrier, m); // DECLARED INTERVENTION: an instrument match
+      const c = carrier.action.scores.find((x) => x.action === 'LoftedPass');
+      const parsed = c === undefined
+        ? null : /^switch to (.+) · open (\d+\.\d\d) · air lane/.exec(c.why);
+      if (parsed === null) continue;
+      const named = t.players.filter((q) => q.name === parsed[1]);
+      if (named.length !== 1) continue;
+      const mate = named[0];
+      cands += 1;
+      const seat = passLeadSeatOf(carrier, m, { ...t.genome, passLeadSupport: 1 }, false);
+      const lead = passLeadOffset(seat, carrier.pos, mate);
+      const bodyOpen = opennessAt(mate.pos, opp.players);
+      const ledOpen = opennessAt(
+        { x: mate.pos.x + lead.x, y: mate.pos.y + lead.y }, opp.players,
+      );
+      if (Number(parsed[2]) === Math.round(bodyOpen * 100) / 100) body += 1;
+      if (Math.abs(ledOpen - bodyOpen) > 0.05) {
+        material += 1;
+        if (Number(parsed[2]) === Math.round(ledOpen * 100) / 100) ledMatches += 1;
+      }
+    }
+    expect(cands).toBeGreaterThan(0);
+    expect(body).toBe(cands); // every lofted candidate priced at his FEET
+    expect(material).toBeGreaterThan(0); // and the two readings really do diverge
+    expect(ledMatches).toBe(0); // never at the led point where it would show
   });
 
   it('the flag-off world never hands a lead to the strike', () => {
