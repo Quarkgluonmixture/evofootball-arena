@@ -9509,3 +9509,85 @@
 >    (success = wedge → 1× with paired CI excluding CONTROL +
 >    E-ABSTAIN-UNSEEN falls resolvedly; F-O2a / F-O2b pre-named
 >    STOPs).
+
+> **COMMANDER RULING #222 (2026-08-10 — the O2-T1 WEDGE EXAM
+> adjudicated from the green run: success NOT met; ⛔ F-O2a FIRES
+> (the pre-named STOP) with a refined decode; F-O2b does NOT
+> fire; the o2Look seam stays BANKED-DORMANT; self-drive ends at
+> the STOP):**
+>
+> 1. **THE GREEN RUN IS BANKED** (`ca27fb0`: artifact
+>    `2100760d…616b` committed, 320 seeds × 2 arms, all 11 gates
+>    PASS, X-DET twice, unabridged 711-line transcript). The #221
+>    correction is validated BY ITS OWN NAMED CLASS at scale:
+>    scans are IDENTICAL between the red and green runs (115,308)
+>    — the deficit did not vanish, it was re-filed under
+>    `frozenPhaseTicksUnderLiveWindow` = 1,260 = 10 × 126
+>    (116,568 − 115,308 exactly). The gate went green because the
+>    counting was corrected, not loosened — stated in the stage
+>    doc as arithmetic. Eligible populations 19,088 / 20,138 from
+>    25,582 / 25,600 qualifying; ledger closes (11,964 = 9,600 +
+>    2,222 + 0 + 142); DEV floor unmet in BOTH arms, not re-cut.
+> 2. **ADJUDICATION AGAINST THE FROZEN CRITERIA** (untouched
+>    since drafting; restated verbatim in the stage doc): limb
+>    (b) **MET** — E-ABSTAIN-UNSEEN 68.179 → 61.878 %, −6.30 pp
+>    [−7.45, −5.11] RESOLVED. Limb (a) **NOT MET** — the wedge
+>    does not fall toward 1×: 8.71× → 8.82× (paired Δ +0.10
+>    [−10.28, +13.55]; the CI does not exclude the CONTROL
+>    wedge); perceived-hold 0.0733 → 0.0546 % (Δ −0.019 pp
+>    [−0.075, +0.037], unresolved). ⇒ **PRE-REGISTERED SUCCESS
+>    NOT MET.**
+> 3. ⛔ **F-O2a FIRES — the pre-named STOP, on its plain frozen
+>    wording**: the look DEMONSTRABLY REFRESHES (unseen −6.30 pp
+>    RESOLVED · M-CTX agreement +5.10 pp [+2.86, +7.28] RESOLVED
+>    · the pressure feature +6.67 pp RESOLVED · 9,600 completed
+>    11-tick looks) AND the hold classification DOES NOT MOVE.
+>    The wedge is NOT staleness-driven at the carrier. **THE
+>    REFINED DECODE (facts, from the contrasts)**: the freed
+>    unseen share converts ENTIRELY into E-ACTNOW-DECLINED
+>    (+6.27 pp [+5.05, +7.44] RESOLVED) — seeing more shows the
+>    carrier a world that PRICES TO "PLAY IT NOW"; and the
+>    TRUE-holdable supply itself SHRINKS in the LOOK world
+>    (0.639 → 0.482 %, −0.157 pp [−0.290, −0.017] RESOLVED —
+>    standing still lets pressure close, destroying the very
+>    0|0|0 cells the table prices holdable); the SUPPORT feature
+>    stays the half-blind channel (59.1 % agreement, Δ
+>    unresolved — you cannot see support that does not exist).
+>    **H-O2T1a (labelled hypothesis, 有故事就要有探针)**: holding
+>    fails for want of HOLDABLE STATE, not information —
+>    pressure arrives before support exists to be seen; the
+>    state-creating seat is the RECEIVER side (乙 check-to-ball,
+>    where #219's own sequence already points); 乙's battery
+>    must carry the support-existence / holdable-supply
+>    dimensions as its ruler.
+> 4. **F-O2b DOES NOT FIRE**: the look's exposure cost is real
+>    and resolved — turnover/spell +0.0343 [+0.0249, +0.0432]
+>    RESOLVED; 414 look-attributed turnovers (playing-clock
+>    loss-tick attribution) vs 0 by construction; abortedLoss
+>    2,222/11,964 = 18.6 % (the T0 price at scale; decomposed
+>    1,024 own-recovery + 25 unresolved + 1,173 opposition);
+>    true-holdable supply −0.157 pp. Not a free option. Stated
+>    as data beside it: turnovers per 1,000 ticks FALL −0.128
+>    [−0.232, −0.027] RESOLVED — spells LENGTHEN under looks
+>    (18,915 vs 21,632 spells over ~2.6 M ticks); per-spell risk
+>    and per-time tempo decompose, both published. Ring pressure
+>    6.29 % RESOLVED (0 % CONTROL) = the T0 honesty-limit-3
+>    effect, real at the margin (direction: fresh kept, stale
+>    dropped) — instrument context, no gate.
+> 5. **DUAL CHECK (#201)**: VISION — the branch fires honestly;
+>    no re-cut makes 座2 "work"; the seat stays
+>    capability-not-mandate, BANKED-DORMANT (no O2-T2, no gene
+>    expression slice on this evidence; O3 re-pricing
+>    unaffected; the render cue stays unshipped). REALITY — a
+>    real player who lifts his head under pressure with nobody
+>    showing sees exactly "play it now"; build-up dies off the
+>    ball, not in the eyes — the exam reproduces how real teams
+>    fail against a press when no one checks to the ball. Both
+>    PASS.
+> 6. **DISPOSITION**: the O2 arc STOPS on its own pre-named
+>    branch; the yield (the decode + H-O2T1a + the half-blind
+>    support channel) is 乙's inheritance. Transcript kept
+>    UNABRIDGED of record (the #197 rule: abridgement authority
+>    is not the executor's; 640 progress lines are context-only
+>    wall clock). **SELF-DRIVE ENDS at the pre-named STOP
+>    (#195): the fork returns to the user, 人话先行.**

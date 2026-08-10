@@ -394,14 +394,32 @@ only distortion of the F-O2b column) amended onto the playing
 clock ex ante; NO exam headline number was seen by anyone —
 the frozen criteria remain unsighted; red artifact
 (`056f2fdd…489e`) never committed, deleted.
-**QUEUED NEXT STEP: adjudicate the RELAUNCHED O2-T1 battery**
-(same block 12,422,100–419 re-walked by the corrected
-instrument, `O2T1_MODE=full O2T1_RESUME=1`) against the frozen
-criteria — success = wedge → 1× with paired CI excluding
-CONTROL + E-ABSTAIN-UNSEEN falls resolvedly; F-O2a / F-O2b =
-pre-named STOPs; green gates required before any number is
-read. Then: 乙 the check-to-ball contract → 丙 progression
-value.** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
+**O2-T1 IS ADJUDICATED (#222, `ca27fb0` green artifact
+`2100760d…616b`): SUCCESS NOT MET — ⛔ F-O2a FIRED (the
+pre-named STOP)**: the look demonstrably refreshes
+(E-ABSTAIN-UNSEEN −6.30 pp RESOLVED · M-CTX +5.10 pp RESOLVED
+· pressure feature +6.67 pp) but the HOLD classification does
+not move (wedge 8.71× → 8.82×, Δ [−10.28, +13.55];
+perceived-hold unresolved) ⇒ the wedge is NOT
+staleness-driven. THE DECODE: freed unseen share converts
+ENTIRELY to E-ACTNOW-DECLINED (+6.27 pp RESOLVED); the
+TRUE-holdable supply itself SHRINKS (−0.157 pp RESOLVED —
+standing still lets pressure close); support stays the
+half-blind feature (59 % agreement). ⭐ H-O2T1a (hypothesis):
+holding fails for want of HOLDABLE STATE, not information —
+the state-creating seat is the RECEIVER side. F-O2b does NOT
+fire (real resolved cost: turnover/spell +0.034; 414
+look-attributed turnovers; 18.6 % abort price). The o2Look
+seam stays BANKED-DORMANT (no O2-T2, no gene slice; O3
+unaffected). **SELF-DRIVE ENDED at the pre-named STOP (#195).
+THE FORK IS THE USER'S (#222.6, 人话 in the session summary):
+(甲, recommended) proceed per #219's own sequence → draft 乙
+the check-to-ball/回撤接应 contract carrying O2-T1's
+inheritance (乙's battery must carry the support-existence /
+holdable-supply dimensions as its ruler); (乙') F-O2a's
+literal prescription first — perception-trunk surgery on the
+half-blind SUPPORT channel; (丙') pause for the user's
+play-test word (the MT keep/hold verdict is still open).** Seeds consumed this arc: 12,311,000–024 (O2-T0) ·
 12,311,100–124 (PM-T0) · 12,311,200–205 (PM-T1 smoke ×2) ·
 12,311,300–949 (PM-T1 battery) · 12,312,000–025 + 12,312,900
 –901 (MT-T0) · 12,313,000–005 + 12,313,100–101 (MT-T1 smoke/
