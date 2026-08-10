@@ -1,0 +1,1537 @@
+{
+  "stage": "O2 T1 — THE WEDGE EXAM (the #186 sizing form re-run with the LOOK forced)",
+  "ruling": "#219.2 (the dispatch) · O2-LOOK-CONTRACT §3 O2-T1 · #181.2 (the standing receipt rule)",
+  "doc": "docs/world-model/O2-T1-WEDGE-EXAM.md",
+  "mode": "smoke",
+  "block": "12422000..12422011",
+  "seeds": 12,
+  "armDefinitions": {
+    "control": "CENSUS_FLAGS + o1PassWindup — the #186 `o1armed` arm VERBATIM",
+    "look": "CONTROL + o2Look:true + the forcing harness (ONE LOOK PER RECEPTION)",
+    "forcingRule": "on a NEW-OWNERSHIP edge by a non-GK body, forcedLook = {gid, untilTick: simTick + 40}; the seat arms ONE 11-tick window and refuses to stack on a live one; a body who REGAINS later gets a fresh look; a body who merely keeps the ball is armed once. CONTINUOUS forcing is FORBIDDEN (it would pin the carrier via the re-decide lock and the world would stop playing football)."
+  },
+  "populationRulings": [
+    "the #186 eligible-moment predicate, spacing, per-match cap, pristine-clone classification and every metric column are inherited VERBATIM — zero population edits, zero re-cuts; the DEV floor is NOT re-cut",
+    "moments falling inside a live look window STAY in the population (they are honestly mid-price moments)",
+    "declared consequence: under the re-decide lock the A0 one-step fork reads the incumbent Dribble label, so the Shoot/ClearBall exclusions fire less often in the LOOK arm — the per-arm exclusion mix is published so the shift is visible"
+  ],
+  "preRegisteredSuccess": "contract §3: the perceived-context hold rate rises toward the true-context rate (the wedge point falls toward 1× with the paired CI excluding the CONTROL wedge) and E-ABSTAIN-UNSEEN falls resolvedly. FAIL branches pre-named: F-O2a (looks complete and percepts refresh but classification does not move) · F-O2b (hold/survival improves at ~zero measured exposure cost). ⚠ THIS PROBE FIRES NEITHER: it emits PER-ARM ROWS and paired deltas with mechanical `resolved` CI flags only (#203); adjudication is the commander's.",
+  "tableSha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+  "frozenInterval": {
+    "o2LookTicks": 11,
+    "forceRunwayTicks": 40
+  },
+  "nRule": {
+    "available": true,
+    "source": "docs/world-model/data/o2-whether-sizing-rerun.json",
+    "sourceSha256": "121ad7d42ec64c66eca45b119aa9105d733c301b9c3f48f141bf5203ea67b831",
+    "sourceResultSha": "56d1b48b139513d64d34a8169f01797812f49adce4338926057f045226d2be78",
+    "rule": "m_iid = (z.975+z.80)^2 (p0(1-p0)+p1(1-p1)) / (p1-p0)^2 ; DEFF measured off the #186 paired-delta CI ; m_req = DEFF·m_iid ; N(q) = ceil(m_req / eligiblePerSeed186) ; N = min(cap, max_q N(q))",
+    "inputs186": {
+      "eligibleTotalO1Armed": 11897,
+      "matches": 200,
+      "eligiblePerSeed": 59.485,
+      "perceivedHold": 0.000672,
+      "trueContextShare": 0.005295,
+      "abstainUnseen": 0.687905,
+      "m186": 11873.5
+    },
+    "q1PerceivedHold": {
+      "p0": 0.000672,
+      "p1": 0.0029835,
+      "effect": "HALF-CLOSURE of the wedge",
+      "deff": 1.4614,
+      "mIid": 5356.2,
+      "mReq": 7827.6,
+      "n": 132
+    },
+    "q2AbstainUnseen": {
+      "p0": 0.687905,
+      "p1": 0.667905,
+      "effect": "−2 pp absolute",
+      "deff": 2.2155,
+      "mIid": 8565.1,
+      "mReq": 18976.4,
+      "n": 320
+    },
+    "binding": "q2AbstainUnseen",
+    "nRaw": 320,
+    "cap": 800,
+    "capBinds": false,
+    "nStar": 320,
+    "batteryBlock": "12422100..12422419"
+  },
+  "reference186": {
+    "block": "12310000..12310199",
+    "arm": "o1armed",
+    "perceivedHold": 0.000672,
+    "trueContextShare": 0.005295,
+    "wedgeRatio": 7.8795,
+    "abstainUnseen": 0.687905,
+    "eligible": 11897,
+    "matches": 200,
+    "note": "CITED from the committed data/o2-whether-sizing-rerun.json; re-derived in-probe by gate G-REPRO-186 limb (b), never trusted as prose"
+  },
+  "arms": {
+    "control": {
+      "matches": 12,
+      "qualifyingTotal": 960,
+      "eligibleTotal": 718,
+      "eligibleFraction": 0.747917,
+      "eligiblePerMatch": {
+        "mean": 59.833,
+        "min": 54,
+        "max": 66
+      },
+      "exclusions": {
+        "firstTouch": 160,
+        "mustKick": 45,
+        "a0Shoot": 35,
+        "a0Clear": 2
+      },
+      "decisionClassShares": {
+        "D-HOLD": {
+          "count": 1,
+          "share": 0.001393
+        },
+        "E-ACTNOW-DECLINED": {
+          "count": 198,
+          "share": 0.275766
+        },
+        "E-ABSTAIN-UNSEEN": {
+          "count": 517,
+          "share": 0.720056
+        },
+        "E-NOCELL": {
+          "count": 2,
+          "share": 0.002786
+        }
+      },
+      "chooserHold": {
+        "total": 1,
+        "rateOfEligible": 0.001393,
+        "perMatchMean": 0.0833,
+        "perMatchMax": 1,
+        "byCell": {
+          "0|0|0": 1
+        }
+      },
+      "trueContext": {
+        "holdableCells": [
+          "0|0|0"
+        ],
+        "total": 5,
+        "shareOfEligible": 0.006964
+      },
+      "wedgeRatio": 5,
+      "mCtxPerceptionPrice": {
+        "placed": 199,
+        "agreeOverall": 0.432161,
+        "agreePressure": 0.788945,
+        "agreeStale": 1,
+        "agreeSupport": 0.562814,
+        "perceivedCellMix": {
+          "2|0|2": 8,
+          "2|0|1": 18,
+          "2|0|0": 81,
+          "2|1|0": 23,
+          "2|2|2": 5,
+          "1|0|1": 8,
+          "2|1|1": 4,
+          "1|0|0": 18,
+          "1|1|0": 8,
+          "1|1|1": 6,
+          "2|2|1": 4,
+          "1|2|2": 3,
+          "2|1|2": 4,
+          "1|1|2": 2,
+          "1|2|0": 1,
+          "2|2|0": 1,
+          "0|0|2": 1,
+          "1|0|2": 2,
+          "1|2|1": 1,
+          "0|0|0": 1
+        },
+        "honestyLimit2": "T0 HONESTY LIMIT 2: a look refreshes PRESSURE and SUPPORT toward truth while making STALENESS strictly worse (staleBand reads the team's own possession clock, which runs while he stands there — it is not a percept). The overall agreement number cannot be read without this decomposition."
+      },
+      "devFloor": {
+        "shareFloorPp": 0.29,
+        "nHoldFloor": 446,
+        "shareClearsFloor": false,
+        "matchesForNfloor": 5352
+      },
+      "lookLedger": {
+        "looks": 0,
+        "scans": 0,
+        "completed": 0,
+        "abortedLoss": 0,
+        "abortedPhase": 0,
+        "endedLive": 0,
+        "liveWindowTicks": 0,
+        "seedsWithLooks": 0,
+        "scansEqualLiveTicks": true,
+        "unexplainedArms": 0,
+        "frozenTicks": 11,
+        "abortMixPrice194": "⚠ #194: `stepO2Look`'s phase bail is largely unreachable (Match.step returns early during kickoff/goalPause/halftime BEFORE stepO2Look), so goal-pause windows close as abortedLoss and abortedPhase reads ≈0 BY CONSTRUCTION. abortedLoss means \"not owned at the next head-of-tick\" — a SUPERSET of a duel loss, and not a clean exposure-cost estimator on its own. The exposure block below is the independent instrument."
+      },
+      "exposure": {
+        "ticksWalked": 98810,
+        "possessionSpells": 815,
+        "turnovers": 339,
+        "turnoverPerSpell": 0.415951,
+        "turnoversPer1000Ticks": 3.4308,
+        "turnoversUnderLiveLook": 0,
+        "engineAbortedLoss": 0
+      },
+      "ringPressure": {
+        "scanFrameRing": 16,
+        "retentionTicks": 51,
+        "momentsReadable": 706,
+        "ringFull": 686,
+        "ringPressureMoments": 0,
+        "ringPressureShare": 0,
+        "meanOccupancy": 15.746,
+        "meanOldestFrameAgeTicks": 181.411
+      },
+      "buildUpCarried": {
+        "goalsInWalkedWindow": 15,
+        "ticksWalked": 98810,
+        "matchesReachingFullTime": 0,
+        "dropped": "the #218 constructed-goal share and scramble share are NOT measured here: the census origin classifier needs a WHOLE-MATCH walk and this walk truncates at PER_MATCH_CAP (see matchesReachingFullTime). Per-arm goal counts over the sampled window are carried in their place. Stated plainly, not silently capped."
+      }
+    },
+    "look": {
+      "matches": 12,
+      "qualifyingTotal": 960,
+      "eligibleTotal": 757,
+      "eligibleFraction": 0.788542,
+      "eligiblePerMatch": {
+        "mean": 63.083,
+        "min": 55,
+        "max": 69
+      },
+      "exclusions": {
+        "firstTouch": 101,
+        "mustKick": 68,
+        "a0Shoot": 32,
+        "a0Clear": 2
+      },
+      "decisionClassShares": {
+        "D-HOLD": {
+          "count": 0,
+          "share": 0
+        },
+        "E-ACTNOW-DECLINED": {
+          "count": 273,
+          "share": 0.360634
+        },
+        "E-ABSTAIN-UNSEEN": {
+          "count": 482,
+          "share": 0.636724
+        },
+        "E-NOCELL": {
+          "count": 2,
+          "share": 0.002642
+        }
+      },
+      "chooserHold": {
+        "total": 0,
+        "rateOfEligible": 0,
+        "perMatchMean": 0,
+        "perMatchMax": 0,
+        "byCell": {}
+      },
+      "trueContext": {
+        "holdableCells": [
+          "0|0|0"
+        ],
+        "total": 7,
+        "shareOfEligible": 0.009247
+      },
+      "wedgeRatio": null,
+      "mCtxPerceptionPrice": {
+        "placed": 273,
+        "agreeOverall": 0.567766,
+        "agreePressure": 0.941392,
+        "agreeStale": 1,
+        "agreeSupport": 0.604396,
+        "perceivedCellMix": {
+          "2|0|0": 123,
+          "2|0|1": 35,
+          "1|0|0": 6,
+          "2|2|2": 6,
+          "2|2|0": 11,
+          "1|0|1": 7,
+          "2|0|2": 24,
+          "2|1|0": 23,
+          "1|1|0": 2,
+          "0|0|2": 1,
+          "2|1|1": 14,
+          "1|0|2": 4,
+          "1|1|1": 1,
+          "2|2|1": 7,
+          "2|1|2": 8,
+          "1|2|0": 1
+        },
+        "honestyLimit2": "T0 HONESTY LIMIT 2: a look refreshes PRESSURE and SUPPORT toward truth while making STALENESS strictly worse (staleBand reads the team's own possession clock, which runs while he stands there — it is not a percept). The overall agreement number cannot be read without this decomposition."
+      },
+      "devFloor": {
+        "shareFloorPp": 0.29,
+        "nHoldFloor": 446,
+        "shareClearsFloor": false,
+        "matchesForNfloor": null
+      },
+      "lookLedger": {
+        "looks": 436,
+        "scans": 4083,
+        "completed": 335,
+        "abortedLoss": 94,
+        "abortedPhase": 0,
+        "endedLive": 7,
+        "liveWindowTicks": 4083,
+        "seedsWithLooks": 12,
+        "scansEqualLiveTicks": true,
+        "unexplainedArms": 0,
+        "frozenTicks": 11,
+        "abortMixPrice194": "⚠ #194: `stepO2Look`'s phase bail is largely unreachable (Match.step returns early during kickoff/goalPause/halftime BEFORE stepO2Look), so goal-pause windows close as abortedLoss and abortedPhase reads ≈0 BY CONSTRUCTION. abortedLoss means \"not owned at the next head-of-tick\" — a SUPERSET of a duel loss, and not a clean exposure-cost estimator on its own. The exposure block below is the independent instrument."
+      },
+      "exposure": {
+        "ticksWalked": 98306,
+        "possessionSpells": 661,
+        "turnovers": 280,
+        "turnoverPerSpell": 0.423601,
+        "turnoversPer1000Ticks": 2.8482,
+        "turnoversUnderLiveLook": 0,
+        "engineAbortedLoss": 94
+      },
+      "ringPressure": {
+        "scanFrameRing": 16,
+        "retentionTicks": 51,
+        "momentsReadable": 745,
+        "ringFull": 724,
+        "ringPressureMoments": 50,
+        "ringPressureShare": 0.067114,
+        "meanOccupancy": 15.76,
+        "meanOldestFrameAgeTicks": 147.213
+      },
+      "buildUpCarried": {
+        "goalsInWalkedWindow": 20,
+        "ticksWalked": 98306,
+        "matchesReachingFullTime": 0,
+        "dropped": "the #218 constructed-goal share and scramble share are NOT measured here: the census origin classifier needs a WHOLE-MATCH walk and this walk truncates at PER_MATCH_CAP (see matchesReachingFullTime). Per-arm goal counts over the sampled window are carried in their place. Stated plainly, not silently capped."
+      }
+    }
+  },
+  "contrasts": {
+    "method": "per-match (seed-clustered) PAIRED bootstrap, ratio-of-totals estimator, 2.5/97.5 percentiles; one resampled seed-index set feeds BOTH arms (#20 cluster = seed)",
+    "statsBase": 104600,
+    "resamples": 2000,
+    "clusters": 12,
+    "deltaDirection": "LOOK − CONTROL",
+    "rates": {
+      "perceivedHoldShare": {
+        "control": {
+          "point": 0.001393,
+          "lower": 0,
+          "upper": 0.00431,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": -0.001393,
+          "lower": -0.00431,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": false
+      },
+      "trueContextShare": {
+        "control": {
+          "point": 0.006964,
+          "lower": 0,
+          "upper": 0.014184,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.009247,
+          "lower": 0.001321,
+          "upper": 0.020243,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.002283,
+          "lower": -0.003003,
+          "upper": 0.008427,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": false
+      },
+      "abstainUnseenShare": {
+        "control": {
+          "point": 0.720056,
+          "lower": 0.668091,
+          "upper": 0.778243,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.636724,
+          "lower": 0.597884,
+          "upper": 0.680851,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": -0.083332,
+          "lower": -0.137655,
+          "upper": -0.032488,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": true
+      },
+      "actNowDeclinedShare": {
+        "control": {
+          "point": 0.275766,
+          "lower": 0.214784,
+          "upper": 0.329609,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.360634,
+          "lower": 0.314767,
+          "upper": 0.400264,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.084868,
+          "lower": 0.033913,
+          "upper": 0.139313,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": true
+      },
+      "noCellShare": {
+        "control": {
+          "point": 0.002786,
+          "lower": 0,
+          "upper": 0.006925,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.002642,
+          "lower": 0,
+          "upper": 0.006693,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": -0.000144,
+          "lower": -0.00411,
+          "upper": 0.004032,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": false
+      },
+      "ctxAgreement": {
+        "control": {
+          "point": 0.432161,
+          "lower": 0.299539,
+          "upper": 0.571429,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.567766,
+          "lower": 0.479245,
+          "upper": 0.646388,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.135605,
+          "lower": 0.008383,
+          "upper": 0.262597,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": true
+      },
+      "ctxAgreePressure": {
+        "control": {
+          "point": 0.788945,
+          "lower": 0.691489,
+          "upper": 0.880952,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.941392,
+          "lower": 0.90625,
+          "upper": 0.970909,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.152447,
+          "lower": 0.061596,
+          "upper": 0.249826,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": true
+      },
+      "ctxAgreeStale": {
+        "control": {
+          "point": 1,
+          "lower": 1,
+          "upper": 1,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 1,
+          "lower": 1,
+          "upper": 1,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": false
+      },
+      "ctxAgreeSupport": {
+        "control": {
+          "point": 0.562814,
+          "lower": 0.452941,
+          "upper": 0.672897,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.604396,
+          "lower": 0.522807,
+          "upper": 0.681661,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.041582,
+          "lower": -0.066046,
+          "upper": 0.152564,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": false
+      },
+      "turnoverPerSpell": {
+        "control": {
+          "point": 0.415951,
+          "lower": 0.385733,
+          "upper": 0.448819,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.423601,
+          "lower": 0.390863,
+          "upper": 0.453665,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.00765,
+          "lower": -0.02383,
+          "upper": 0.038604,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": false
+      },
+      "turnoversPer1000Ticks": {
+        "control": {
+          "point": 3.430827,
+          "lower": 3.033846,
+          "upper": 3.814714,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 2.848249,
+          "lower": 2.47,
+          "upper": 3.247808,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": -0.582577,
+          "lower": -0.860543,
+          "upper": -0.314299,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": true
+      },
+      "ringPressureShare": {
+        "control": {
+          "point": 0,
+          "lower": 0,
+          "upper": 0,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "look": {
+          "point": 0.067114,
+          "lower": 0.046917,
+          "upper": 0.087744,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": 0.067114,
+          "lower": 0.046917,
+          "upper": 0.087744,
+          "finiteDraws": 2000,
+          "draws": 2000
+        },
+        "resolved": true
+      },
+      "wedgeRatio": {
+        "control": {
+          "point": 5,
+          "lower": 0,
+          "upper": 10,
+          "finiteDraws": 1317,
+          "draws": 2000
+        },
+        "look": {
+          "point": null,
+          "lower": null,
+          "upper": null,
+          "finiteDraws": 0,
+          "draws": 2000
+        },
+        "pairedDelta": {
+          "point": null,
+          "lower": null,
+          "upper": null,
+          "finiteDraws": 0,
+          "draws": 2000
+        },
+        "resolved": false,
+        "lookWedgeCiExcludesControlPoint": false,
+        "note": "a mechanical CI property, NOT a verdict (#203)"
+      }
+    }
+  },
+  "gRepro186": {
+    "limbA": {
+      "block": "8500000..8500047",
+      "flags": "REPRO65 (= CENSUS_FLAGS, the #186 `baseline` arm)",
+      "target": {
+        "qualifying": 3840,
+        "eligible": 2835,
+        "dHold": 4,
+        "classes": {
+          "D-HOLD": 4,
+          "E-ACTNOW-DECLINED": 816,
+          "E-ABSTAIN-UNSEEN": 2004,
+          "E-NOCELL": 11
+        },
+        "agreeOverall": 0.502439,
+        "ctxPlaced": 820
+      },
+      "observed": {
+        "qualifying": 3840,
+        "eligible": 2835,
+        "dHold": 4,
+        "classes": {
+          "D-HOLD": 4,
+          "E-ACTNOW-DECLINED": 816,
+          "E-ABSTAIN-UNSEEN": 2004,
+          "E-NOCELL": 11
+        },
+        "agreeOverall": 0.502439,
+        "ctxPlaced": 820
+      },
+      "identical": true
+    },
+    "limbB": {
+      "block": "12310000..12310011",
+      "flags": "CONTROL (= the #186 `o1armed` arm)",
+      "rowsChecked": 12,
+      "committedRowsAvailable": 200,
+      "mismatches": 0,
+      "observedRows": [
+        {
+          "seed": 12310000,
+          "eligible": 58,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 49,
+          "ctxPlaced": 7,
+          "ctxAgreeAll": 3
+        },
+        {
+          "seed": 12310001,
+          "eligible": 49,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 34,
+          "ctxPlaced": 15,
+          "ctxAgreeAll": 11
+        },
+        {
+          "seed": 12310002,
+          "eligible": 60,
+          "dHold": 0,
+          "trueHoldable": 1,
+          "abstainUnseen": 41,
+          "ctxPlaced": 18,
+          "ctxAgreeAll": 10
+        },
+        {
+          "seed": 12310003,
+          "eligible": 59,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 31,
+          "ctxPlaced": 28,
+          "ctxAgreeAll": 11
+        },
+        {
+          "seed": 12310004,
+          "eligible": 54,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 35,
+          "ctxPlaced": 19,
+          "ctxAgreeAll": 10
+        },
+        {
+          "seed": 12310005,
+          "eligible": 59,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 39,
+          "ctxPlaced": 20,
+          "ctxAgreeAll": 9
+        },
+        {
+          "seed": 12310006,
+          "eligible": 57,
+          "dHold": 0,
+          "trueHoldable": 1,
+          "abstainUnseen": 45,
+          "ctxPlaced": 11,
+          "ctxAgreeAll": 7
+        },
+        {
+          "seed": 12310007,
+          "eligible": 65,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 45,
+          "ctxPlaced": 20,
+          "ctxAgreeAll": 7
+        },
+        {
+          "seed": 12310008,
+          "eligible": 55,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 41,
+          "ctxPlaced": 14,
+          "ctxAgreeAll": 9
+        },
+        {
+          "seed": 12310009,
+          "eligible": 68,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 31,
+          "ctxPlaced": 37,
+          "ctxAgreeAll": 27
+        },
+        {
+          "seed": 12310010,
+          "eligible": 69,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 32,
+          "ctxPlaced": 37,
+          "ctxAgreeAll": 20
+        },
+        {
+          "seed": 12310011,
+          "eligible": 56,
+          "dHold": 0,
+          "trueHoldable": 0,
+          "abstainUnseen": 45,
+          "ctxPlaced": 11,
+          "ctxAgreeAll": 4
+        }
+      ],
+      "identical": true
+    },
+    "note": "INSTRUMENT INHERITANCE PROVED, NOT ASSERTED: this probe's own walker re-derives two committed blocks — #65's block via the #186 G-REPRO65 target (limb a) and #186's OWN fresh block row-for-row on the CONTROL arm (limb b, the stronger form for THIS exam: it proves CONTROL *is* #186's o1armed arm on #186's own data)."
+  },
+  "perMatch": {
+    "control": [
+      {
+        "seed": 12422000,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 11,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 41,
+        "possessionSpells": 74,
+        "ticksWalked": 8923,
+        "goals": 2,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422001,
+        "eligible": 61,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 47,
+        "ctxPlaced": 14,
+        "ctxAgreeAll": 4,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 28,
+        "possessionSpells": 69,
+        "ticksWalked": 9611,
+        "goals": 1,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422002,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 39,
+        "ctxPlaced": 25,
+        "ctxAgreeAll": 6,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 19,
+        "possessionSpells": 55,
+        "ticksWalked": 7914,
+        "goals": 1,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422003,
+        "eligible": 58,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 42,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 3,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 29,
+        "possessionSpells": 74,
+        "ticksWalked": 7386,
+        "goals": 0,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422004,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 43,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 3,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 31,
+        "possessionSpells": 67,
+        "ticksWalked": 8778,
+        "goals": 0,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422005,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 54,
+        "ctxPlaced": 3,
+        "ctxAgreeAll": 2,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 38,
+        "possessionSpells": 89,
+        "ticksWalked": 11442,
+        "goals": 3,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422006,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 11,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 27,
+        "possessionSpells": 66,
+        "ticksWalked": 7060,
+        "goals": 2,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422007,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 12,
+        "ctxAgreeAll": 2,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 32,
+        "possessionSpells": 72,
+        "ticksWalked": 7917,
+        "goals": 2,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422008,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 34,
+        "ctxPlaced": 23,
+        "ctxAgreeAll": 18,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 23,
+        "possessionSpells": 62,
+        "ticksWalked": 6676,
+        "goals": 0,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422009,
+        "eligible": 54,
+        "dHold": 1,
+        "trueHoldable": 0,
+        "abstainUnseen": 45,
+        "ctxPlaced": 8,
+        "ctxAgreeAll": 1,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 36,
+        "possessionSpells": 85,
+        "ticksWalked": 8688,
+        "goals": 2,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422010,
+        "eligible": 64,
+        "dHold": 0,
+        "trueHoldable": 2,
+        "abstainUnseen": 42,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 8,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 16,
+        "possessionSpells": 47,
+        "ticksWalked": 6065,
+        "goals": 2,
+        "ringPressure": 0
+      },
+      {
+        "seed": 12422011,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 44,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 17,
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0,
+        "turnovers": 19,
+        "possessionSpells": 55,
+        "ticksWalked": 8350,
+        "goals": 0,
+        "ringPressure": 0
+      }
+    ],
+    "look": [
+      {
+        "seed": 12422000,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 28,
+        "ctxAgreeAll": 16,
+        "looks": 35,
+        "scans": 339,
+        "liveWindowTicks": 339,
+        "turnovers": 28,
+        "possessionSpells": 59,
+        "ticksWalked": 8281,
+        "goals": 3,
+        "ringPressure": 1
+      },
+      {
+        "seed": 12422001,
+        "eligible": 59,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 37,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 12,
+        "looks": 39,
+        "scans": 393,
+        "liveWindowTicks": 393,
+        "turnovers": 21,
+        "possessionSpells": 57,
+        "ticksWalked": 9706,
+        "goals": 0,
+        "ringPressure": 7
+      },
+      {
+        "seed": 12422002,
+        "eligible": 68,
+        "dHold": 0,
+        "trueHoldable": 4,
+        "abstainUnseen": 36,
+        "ctxPlaced": 32,
+        "ctxAgreeAll": 17,
+        "looks": 33,
+        "scans": 304,
+        "liveWindowTicks": 304,
+        "turnovers": 19,
+        "possessionSpells": 44,
+        "ticksWalked": 7425,
+        "goals": 1,
+        "ringPressure": 4
+      },
+      {
+        "seed": 12422003,
+        "eligible": 69,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 53,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 9,
+        "looks": 43,
+        "scans": 388,
+        "liveWindowTicks": 388,
+        "turnovers": 17,
+        "possessionSpells": 50,
+        "ticksWalked": 7693,
+        "goals": 1,
+        "ringPressure": 8
+      },
+      {
+        "seed": 12422004,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 39,
+        "ctxPlaced": 27,
+        "ctxAgreeAll": 19,
+        "looks": 29,
+        "scans": 247,
+        "liveWindowTicks": 247,
+        "turnovers": 22,
+        "possessionSpells": 51,
+        "ticksWalked": 7452,
+        "goals": 6,
+        "ringPressure": 2
+      },
+      {
+        "seed": 12422005,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 21,
+        "ctxAgreeAll": 5,
+        "looks": 41,
+        "scans": 399,
+        "liveWindowTicks": 399,
+        "turnovers": 26,
+        "possessionSpells": 63,
+        "ticksWalked": 8306,
+        "goals": 1,
+        "ringPressure": 4
+      },
+      {
+        "seed": 12422006,
+        "eligible": 67,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 29,
+        "ctxAgreeAll": 16,
+        "looks": 31,
+        "scans": 273,
+        "liveWindowTicks": 273,
+        "turnovers": 21,
+        "possessionSpells": 46,
+        "ticksWalked": 7231,
+        "goals": 1,
+        "ringPressure": 2
+      },
+      {
+        "seed": 12422007,
+        "eligible": 57,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 41,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 4,
+        "looks": 36,
+        "scans": 335,
+        "liveWindowTicks": 335,
+        "turnovers": 32,
+        "possessionSpells": 68,
+        "ticksWalked": 8545,
+        "goals": 2,
+        "ringPressure": 3
+      },
+      {
+        "seed": 12422008,
+        "eligible": 60,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 40,
+        "ctxPlaced": 20,
+        "ctxAgreeAll": 16,
+        "looks": 38,
+        "scans": 357,
+        "liveWindowTicks": 357,
+        "turnovers": 26,
+        "possessionSpells": 57,
+        "ticksWalked": 9087,
+        "goals": 2,
+        "ringPressure": 7
+      },
+      {
+        "seed": 12422009,
+        "eligible": 66,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 49,
+        "ctxPlaced": 16,
+        "ctxAgreeAll": 12,
+        "looks": 52,
+        "scans": 514,
+        "liveWindowTicks": 514,
+        "turnovers": 35,
+        "possessionSpells": 70,
+        "ticksWalked": 8284,
+        "goals": 0,
+        "ringPressure": 5
+      },
+      {
+        "seed": 12422010,
+        "eligible": 55,
+        "dHold": 0,
+        "trueHoldable": 1,
+        "abstainUnseen": 32,
+        "ctxPlaced": 22,
+        "ctxAgreeAll": 11,
+        "looks": 25,
+        "scans": 217,
+        "liveWindowTicks": 217,
+        "turnovers": 16,
+        "possessionSpells": 49,
+        "ticksWalked": 7279,
+        "goals": 2,
+        "ringPressure": 5
+      },
+      {
+        "seed": 12422011,
+        "eligible": 62,
+        "dHold": 0,
+        "trueHoldable": 0,
+        "abstainUnseen": 38,
+        "ctxPlaced": 24,
+        "ctxAgreeAll": 18,
+        "looks": 34,
+        "scans": 317,
+        "liveWindowTicks": 317,
+        "turnovers": 17,
+        "possessionSpells": 47,
+        "ticksWalked": 9017,
+        "goals": 1,
+        "ringPressure": 2
+      }
+    ]
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54",
+      "digestB": "1a9816653aa4485745a41a9ad88ae8a3716e2db41afa63227c3dd4aeb3a9af54",
+      "note": "the WHOLE computation (both arms + both repro walks + summaries + bootstrap) run twice; the two HASHED BODIES are byte-identical and resultSha256 is run 1's digest"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2
+    },
+    "gRepro186": {
+      "pass": true,
+      "limbA": true,
+      "limbB": true,
+      "limbBMismatches": 0
+    },
+    "xSrcUntouched": {
+      "pass": true
+    },
+    "xRingPin": {
+      "pass": true,
+      "observed": 16,
+      "expected": 16
+    },
+    "seedDisjoint": {
+      "pass": true,
+      "walkedBlocks": [
+        {
+          "name": "exam",
+          "first": 12422000,
+          "last": 12422011
+        },
+        {
+          "name": "repro186",
+          "first": 12310000,
+          "last": 12310011
+        },
+        {
+          "name": "repro65",
+          "first": 8500000,
+          "last": 8500047
+        }
+      ],
+      "examCollisions": [],
+      "subBlocksOrdered": true,
+      "subBlocks": {
+        "smoke": "12422000..12422011",
+        "exitSemanticsGuard": "12422050..12422099",
+        "battery": "12422100..12422899"
+      },
+      "reproBlocksNote": "the two repro blocks are DELIBERATE re-walks of #65's and #186's own committed blocks (receipts, never fresh data), so their overlap with the ledger is the point; only the EXAM block must be clash-free.",
+      "consumedLedger": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "goal-genealogy census band (#214/#217)",
+          "range": [
+            12421000,
+            12421999
+          ]
+        }
+      ]
+    },
+    "statsDisjoint": {
+      "pass": true,
+      "base": 104600,
+      "minGap": 200,
+      "published": [
+        91100,
+        91110,
+        92110,
+        93003,
+        97003,
+        98003,
+        99003,
+        99203,
+        99403,
+        99503,
+        99603,
+        99703,
+        99803,
+        99903,
+        100003,
+        100203,
+        100303,
+        100403,
+        100503,
+        100603,
+        100703,
+        100803,
+        100903,
+        101003,
+        101103,
+        101203,
+        101303,
+        101403,
+        101503,
+        101513,
+        101523,
+        101800,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200,
+        103400,
+        103600,
+        103800,
+        104000,
+        104200,
+        104400
+      ],
+      "publishedScope": "the goal-genealogy census probe's COMPLETE ≥91,100-regime ledger + 104,400 (the census's own base). Pre-regime bases (90,730, the 50xxx family) are ≥ 13,000 away and cannot move the minimum."
+    },
+    "flagHygiene": {
+      "pass": true,
+      "control": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false,
+        "o1PassWindup": true
+      },
+      "look": {
+        "edsPerceivedDefence": true,
+        "edsPerceivedChoice": true,
+        "edsValueAxis": true,
+        "c5Hold": true,
+        "c6Carry": true,
+        "c7Windup": true,
+        "c5TouchFork": false,
+        "o1PassWindup": true,
+        "o2Look": true
+      },
+      "note": "the arms differ by EXACTLY one flag: o2Look (plus the probe-level forcing harness)"
+    },
+    "tableDrift": {
+      "pass": true,
+      "sha": "184d1e84b787c312b6da95d7abcb6aee79c386e239a4f1c98e1783bfc0e20b53",
+      "holdableCells": [
+        "0|0|0"
+      ]
+    },
+    "gForce": {
+      "pass": true,
+      "look": {
+        "looks": 436,
+        "seedsWithLooks": 12,
+        "seeds": 12,
+        "scans": 4083,
+        "liveWindowTicks": 4083,
+        "scansEqualLiveTicks": true,
+        "unexplainedArms": 0
+      },
+      "control": {
+        "looks": 0,
+        "scans": 0,
+        "liveWindowTicks": 0
+      },
+      "note": "the arms are what they claim: the seam is reached at scale on EVERY seed of the LOOK arm (with the T0 cadence identity scans === live window ticks) and is entirely absent from CONTROL"
+    },
+    "gCleanInvocation": {
+      "pass": true,
+      "envN": null,
+      "skipFp": false,
+      "routedToGuardBlock": false,
+      "note": "any O2T1_N / O2T1_SKIP_FP override is BY DEFINITION not the exam: the run is routed onto the exit-semantics guard block, this gate goes RED and the process exits 1."
+    }
+  },
+  "allGatesPass": true,
+  "resultSha256": "d21ffedbdaf7746013a71ece8286505c88283ebc2b13b45d6cfd2140231c2bc5",
+  "envelopeContextOnly": {
+    "headContextOnly": "844aaba",
+    "wallMsContextOnly": 216305,
+    "wallNote": "CONTEXT ONLY (#128) — used in NO rate and in no gate",
+    "outPath": "docs/world-model/data/o2-t1-wedge-exam-smoke.json",
+    "srcDiffStat": "",
+    "tablePath": "docs/world-model/data/c5-recensus.json",
+    "sizing186Path": "docs/world-model/data/o2-whether-sizing-rerun.json",
+    "checkpoint": {
+      "armed": false,
+      "path": null,
+      "resumeRequested": false,
+      "restoredPass1": 0,
+      "computedPass1": 12,
+      "restoredPass2": 0,
+      "computedPass2": 12,
+      "note": "RESILIENCE ONLY. The unit is the per-(pass, seed) pair of PerMatch rows; nothing pooled is stored and every quantity, gate, digest and resultSha256 is recomputed from the union — a resumed run is byte-identical to a fresh one. /tmp scratch, never committed, never read by a gate."
+    }
+  }
+}
