@@ -43,6 +43,13 @@
  *   G-BLIND ⭐ THE FOURTH ARMING LIMB: fully armed and fully dosed in a world with
  *             the percept trunk OFF ≡ that world unarmed. A blind body has no
  *             policy. (An ADDED gate — strictly more conservative.)
+ *   G-CROSS ⭐⭐ THE FLAG×GENE CROSSING MATRIX (the verify catch): 48 cells —
+ *             {obm on/off} × {ctb flag on/off} × {ctb genes dosed/absent} ×
+ *             {policy matrix absent/zero/dosed} × {percept-armed/blind} — with
+ *             every identity and every DISCRIMINATION claim stated ex ante and
+ *             checked cell-against-cell. Arming obm ALONE must never deliver the
+ *             banked CTB static plane, whatever is banked in the ctbSupport* genes;
+ *             arming BOTH must deliver the bank EXACTLY as the intercept.
  *   G-RNG     the seam draws ZERO rng (exact state compare across a dosed armed
  *             decision on a stepped fixture) and the opt-in's draws sit strictly
  *             after every existing draw incl. the ctbSupportPlane block.
@@ -108,6 +115,14 @@ const LEAGUE_IDENT_BASELINES: readonly { seed: number; baseline: string }[] = [
 /* ---- seeds: a FRESH block above everything the ledger has consumed ------------ */
 const BLOCK = 12_424_000;
 const N = Number(process.env.OBMT0_N ?? 24);
+/**
+ * ⭐ The FLAG×GENE crossing matrix is 48 cells; it runs on the FIRST `CROSS_N` of
+ * the SAME receipt seeds (no new seed block is consumed) and, like everything else
+ * in the core, TWICE for G-DET. Mechanism defects of this kind show on every seed —
+ * the previous version's failure was byte-identical on all 24 — so the depth here
+ * buys cells, not seeds.
+ */
+const CROSS_N = Math.min(N, Number(process.env.OBMT0_CROSS_N ?? 8));
 const COST_SEED = BLOCK + N + 1; // 12,424,025 — the REPORTED cost reading
 const CONSUMED: readonly { name: string; range: readonly [number, number] }[] = [
   { name: '#65 whether-seat block (repro receipt)', range: [8_500_000, 8_500_047] },
@@ -234,6 +249,180 @@ const walk = (seed: number, arm: Arm): string => {
   return signature(m);
 };
 
+/* ========================================================================== */
+/* ⭐ G-CROSS — THE FLAG×GENE CROSSING MATRIX (the OBM-T0 verify catch)        */
+/* ========================================================================== */
+/**
+ * The MEDIUM that hid the HIGH: the nine named arms above never once cross the
+ * OBM flag with the BANKED CTB seam. They run `ctbSupportPlane` OFF and the
+ * `ctbSupport*` genes ABSENT in every cell, so a composition that consumed the
+ * banked genes through the WRONG door was invisible to every gate.
+ *
+ * This matrix crosses all four doors explicitly:
+ *     {obm on/off} × {ctb flag on/off} × {ctb genes dosed/absent}
+ *   × {policy matrix absent/zero/dosed} × {percept-armed/blind}
+ * = 48 cells, each a full match on the SAME receipt seeds, each hashed with the
+ * whole-run signature (rng state included). The identity claims below are stated
+ * BEFORE the run and machine-checked cell against cell — no cell is compared to a
+ * transcribed number.
+ */
+type MatrixState = 'absent' | 'zero' | 'dosed';
+interface CrossCell {
+  obm: boolean; ctb: boolean; ctbGenes: boolean; matrix: MatrixState; percept: boolean;
+}
+/**
+ * The CTB static dose: the SIGNED DOMAIN'S OWN CORNERS, exactly the convention
+ * `FORCED_MATRIX` uses. No dose level is invented, and at these values the banked
+ * static plane demonstrably bites (CTB-T0 §GATES), which is what makes "the OBM
+ * seat alone must NOT deliver it" a falsifiable claim rather than a tautology.
+ */
+const CTB_GENE_DOSE = { depth: CTB_GENE_MIN, width: CTB_GENE_MAX } as const;
+const cellKey = (c: CrossCell): string => `obm${c.obm ? 1 : 0}·ctb${c.ctb ? 1 : 0}`
+  + `·gene${c.ctbGenes ? 1 : 0}·m-${c.matrix}·${c.percept ? 'percept' : 'blind'}`;
+/** The CTB static genes on ALL THREE views of BOTH teams (#196.3-D6, as above). */
+const armCtbGenes = (m: Match, dose: { depth: number; width: number } | null): void => {
+  for (const t of m.teams) {
+    for (const g of [t.info.genome, t.baseGenome, t.effGenome] as TacticalGenome[]) {
+      if (dose === null) { delete g.ctbSupportDepth; delete g.ctbSupportWidth; } else {
+        g.ctbSupportDepth = dose.depth;
+        g.ctbSupportWidth = dose.width;
+      }
+    }
+  }
+};
+const crossMatchOf = (seed: number, c: CrossCell): Match => {
+  const m = new Match({
+    seed, teamA: team('A', seed * 2 + 1), teamB: team('B', seed * 2 + 2),
+    ...(c.percept ? PERCEPT_FLAGS : {}),
+    obmMovement: c.obm, ctbSupportPlane: c.ctb,
+  });
+  armCtbGenes(m, c.ctbGenes ? { ...CTB_GENE_DOSE } : null);
+  armMatrix(m, c.matrix === 'absent' ? null : c.matrix === 'zero' ? ZERO_MATRIX : FORCED_MATRIX);
+  return m;
+};
+const crossWalk = (seed: number, c: CrossCell): string => {
+  const m = crossMatchOf(seed, c);
+  while (!m.finished) m.step(DT);
+  return signature(m);
+};
+const CROSS_CELLS: readonly CrossCell[] = (() => {
+  const cells: CrossCell[] = [];
+  for (const percept of [true, false]) {
+    for (const obm of [false, true]) {
+      for (const ctb of [false, true]) {
+        for (const ctbGenes of [false, true]) {
+          for (const matrix of ['absent', 'zero', 'dosed'] as const) {
+            cells.push({ obm, ctb, ctbGenes, matrix, percept });
+          }
+        }
+      }
+    }
+  }
+  return cells;
+})();
+const K = (
+  obm: boolean, ctb: boolean, ctbGenes: boolean, matrix: MatrixState, percept: boolean,
+): string => cellKey({ obm, ctb, ctbGenes, matrix, percept });
+
+/**
+ * THE CLAIMS, stated ex ante. `equal: true` ⇒ the two cells must be BYTE-IDENTICAL
+ * on every seed; `equal: false` ⇒ they must DIFFER on every seed (a discrimination
+ * claim — the seams must be distinguishable, which is what the defect broke).
+ */
+const CROSS_CLAIMS: readonly {
+  name: string; a: string; b: string; equal: boolean; semantics: string;
+}[] = [
+  // ---- both doors shut: NEITHER gene bank is readable, whatever is banked -----
+  ...(['absent', 'zero', 'dosed'] as const).flatMap((matrix) => [true, false]
+    .map((percept) => ({
+      name: `DORMANT-BOTH · matrix ${matrix} · ${percept ? 'percept' : 'blind'}`,
+      a: K(false, false, true, matrix, percept), b: K(false, false, false, 'absent', percept),
+      equal: true,
+      semantics: 'both flags OFF: neither the banked CTB genes nor the policy matrix can be '
+        + 'read, so every gene state collapses onto the incumbent world.',
+    }))),
+  // ---- ⭐ GATE (a): the OBM door alone NEVER spends the banked CTB genes -------
+  ...(['absent', 'zero'] as const).map((matrix) => ({
+    name: `⭐ A-OBM-ALONE-INERT · ctb genes DOSED · matrix ${matrix} · percept`,
+    a: K(true, false, true, matrix, true), b: K(false, false, false, 'absent', true),
+    equal: true,
+    semantics: '⭐ THE DEFECT GATE. obm ARMED in a percept-armed world with the banked '
+      + 'ctbSupport* genes FULLY DOSED and the policy matrix inert — byte-identical to '
+      + 'ALL-OFF. Before the fix this cell delivered the banked static plane (it was '
+      + 'byte-identical to arming ctbSupportPlane alone), because the composition added the '
+      + 'CTB genes unconditionally. Each seam now expresses only what its OWN flag opened.',
+  })),
+  ...(['absent', 'zero'] as const).map((matrix) => ({
+    name: `A-OBM-ALONE-INERT · ctb genes ABSENT · matrix ${matrix} · percept`,
+    a: K(true, false, false, matrix, true), b: K(false, false, false, 'absent', true),
+    equal: true,
+    semantics: 'the incumbent G-BORN / G-ZERO reading, re-stated inside the crossing: armed '
+      + 'with nothing banked anywhere is ALL-OFF.',
+  })),
+  // ---- ⭐ the crispest statement of the fix ------------------------------------
+  {
+    name: '⭐ A-CTB-GENES-INVISIBLE · obm fully live, ctb door shut',
+    a: K(true, false, true, 'dosed', true), b: K(true, false, false, 'dosed', true),
+    equal: true,
+    semantics: '⭐ THE CLEANEST FORM: the seat FULLY ARMED AND FULLY DOSED, biting hard — and '
+      + 'the banked ctbSupport* genes make NO difference to it whatsoever, because their own '
+      + 'flag is shut. The dynamic policy runs on a ZERO intercept, whose zero-point is the '
+      + 'incumbent supportSpot geometry.',
+  },
+  {
+    name: '⭐ A-SEAMS-DISTINGUISHABLE · obm-alone (genes banked) vs ctb-alone',
+    a: K(true, false, true, 'zero', true), b: K(false, true, true, 'absent', true),
+    equal: false,
+    semantics: '⭐ THE FALSIFIER, in its empirical form. These two cells were BYTE-IDENTICAL '
+      + 'before the fix — that identity IS the defect, since arming obm alone reproduced '
+      + 'arming ctbSupportPlane alone. They must now DIFFER: the left is the incumbent world '
+      + '(inert seat, shut CTB door), the right is the banked static plane.',
+  },
+  // ---- ⭐ GATE (b): with BOTH doors open the intercept is the banked plane -----
+  ...(['absent', 'zero'] as const).map((matrix) => ({
+    name: `⭐ B-INTERCEPT-IS-THE-BANK · matrix ${matrix} · percept`,
+    a: K(true, true, true, matrix, true), b: K(false, true, true, 'absent', true),
+    equal: true,
+    semantics: '⭐ obm ARMED on top of an ARMED CTB seam with an inert policy matrix is '
+      + 'byte-identical to the CTB flag ON ALONE. The banked static plane is delivered '
+      + 'EXACTLY as banked and the seat adds nothing until its own genes say something — the '
+      + 'static gene really is the policy INTERCEPT, and zero really is its zero.',
+  })),
+  {
+    name: 'B-BOTH-DOORS-BITE · matrix dosed · percept',
+    a: K(true, true, true, 'dosed', true), b: K(false, true, true, 'absent', true),
+    equal: false,
+    semantics: 'BOTH doors open and the policy dosed ⇒ intercept PLUS slopes ⇒ the world must '
+      + 'leave the static-plane-only world. (The full-policy configuration is OBM-T1\'s exam, '
+      + 'not adjudicated here.)',
+  },
+  // ---- ⭐ GATE (c): the blind-world variants of both ---------------------------
+  ...(['absent', 'zero', 'dosed'] as const).map((matrix) => ({
+    name: `⭐ C-BLIND-A · obm armed, ctb door shut, genes dosed · matrix ${matrix}`,
+    a: K(true, false, true, matrix, false), b: K(false, false, false, 'absent', false),
+    equal: true,
+    semantics: '⭐ the blind-world variant of gate (a): with the percept trunk OFF a body has '
+      + 'no policy at all, so even a fully dosed matrix is inert — AND the banked CTB genes '
+      + 'still cannot leak through the OBM door. Both arming limbs fail closed at once.',
+  })),
+  ...(['absent', 'zero', 'dosed'] as const).map((matrix) => ({
+    name: `⭐ C-BLIND-B · both doors open, genes dosed · matrix ${matrix}`,
+    a: K(true, true, true, matrix, false), b: K(false, true, true, 'absent', false),
+    equal: true,
+    semantics: '⭐ the blind-world variant of gate (b): the CTB seam does NOT need eyes, so the '
+      + 'banked static plane is delivered in full; the OBM seat DOES, so it contributes '
+      + 'exactly nothing. The blind world isolates the intercept from the slopes.',
+  })),
+  // ---- the seat must still bite where it is supposed to -----------------------
+  ...[true, false].map((ctbGenes) => ({
+    name: `BITE · obm armed + dosed, ctb door shut, genes ${ctbGenes ? 'dosed' : 'absent'}`,
+    a: K(true, false, ctbGenes, 'dosed', true), b: K(false, false, false, 'absent', true),
+    equal: false,
+    semantics: 'the seat is not inert everywhere: armed, dosed and percept-armed it moves the '
+      + 'world — otherwise the identity gates above would be vacuous.',
+  })),
+];
+
 /* ---- G-BITE's geometry half + the REPORTED corner table ---------------------- */
 /**
  * On ONE armed match, sampled every 15 playing ticks over both sides' outfielders,
@@ -282,11 +471,14 @@ const policyGeometry = (seed: number): {
     for (const t of m.teams) {
       for (const p of t.players) {
         if (p.sentOff || p.role === 'GK') continue;
-        const base = supportSpot(p, t, m.ball);
+        // ⭐ the anchor is the point the body would ACTUALLY take with the seat absent
+        // UNDER THIS WORLD'S FLAG STATE (the OBM-T0 verify catch, LOW): identical to the
+        // brain's own `supportSpot(p, team, ball, match.ctbSupportPlane)` call.
+        const base = supportSpot(p, t, m.ball, m.ctbSupportPlane);
         // the dose is applied to a COPY of the team genome, so the sampled match
         // trajectory stays the born-absent one (observation, never intervention)
         const dosed: TacticalGenome = { ...t.genome, offballMovementWeights: [...FORCED_MATRIX] };
-        const policy = obmOffballPolicy(p, m, dosed, base);
+        const policy = obmOffballPolicy(p, m, dosed, base, m.ctbSupportPlane);
         // (a) the features are in range
         for (const f of policy.features) if (!(f >= 0 && f <= 1)) v.featureRange += 1;
         // (b) the outputs ARE the mean of the weighted features
@@ -390,7 +582,7 @@ const epiFixture = (seed: number): {
     if (snap === null) continue;
     const opponents = snap.players.filter((o) => o.side !== p.side);
     if (opponents.length === 0) continue;
-    const candidate = supportSpot(p, observerTeam, m.ball);
+    const candidate = supportSpot(p, observerTeam, m.ball, m.ctbSupportPlane);
     candidates.push({
       p,
       side: observerTeam.side,
@@ -416,7 +608,7 @@ const epiFixture = (seed: number): {
   let ageSum = 0;
   for (const c of candidates) {
     // the SEAT, run through its real entry point on the moved world
-    const seat = obmOffballPolicy(c.p, m, m.teams[c.side].genome, c.candidate);
+    const seat = obmOffballPolicy(c.p, m, m.teams[c.side].genome, c.candidate, m.ctbSupportPlane);
     const fromTruth = obmFeatures(truthSnapshot(c.p.gid), c.p.pos, c.p.side, c.candidate);
     const same = (a: readonly number[], b: readonly number[]): boolean =>
       a.length === b.length && a.every((x, i) => x === b[i]);
@@ -465,7 +657,9 @@ const seamRng = (seed: number): { before: number; after: number; pass: boolean; 
   for (const t of m.teams) {
     for (const p of t.players) {
       if (p.sentOff || p.role === 'GK') continue;
-      const policy = obmOffballPolicy(p, m, t.genome, supportSpot(p, t, m.ball));
+      const policy = obmOffballPolicy(
+        p, m, t.genome, supportSpot(p, t, m.ball, m.ctbSupportPlane), m.ctbSupportPlane,
+      );
       supportSpotOnObmPlane(p, t, m.ball, policy.plane);
       calls += 1;
     }
@@ -554,14 +748,17 @@ const srcFiles = (dir: string): string[] => readdirSync(dir).flatMap((e) => {
 });
 const forkTable = (): {
   sites: { file: string; line: number; kind: string; text: string }[];
-  flagForks: number; planeForks: number; pass: boolean;
+  flagForks: number; planeForks: number; scoreApplySites: number; pass: boolean;
 } => {
   const sites: { file: string; line: number; kind: string; text: string }[] = [];
   for (const f of srcFiles('src')) {
     const lines = readFileSync(f, 'utf8').split('\n');
     lines.forEach((text, i) => {
       const t = text.trim();
-      if (!/obmMovement|obmPlane|offballMovementWeights|ObmPlane|obmPolicies|setObmPolicy/.test(t)) return;
+      // ⭐ the token set gains `obmSupportMul|obmRunMul` (the OBM-T0 verify catch, LOW):
+      // the two SCORE-site multipliers were the seat's only src symbols the inventory
+      // did not see, so the two `s *= …` application lines were never enumerated.
+      if (!/obmMovement|obmPlane|offballMovementWeights|ObmPlane|obmPolicies|setObmPolicy|obmSupportMul|obmRunMul/.test(t)) return;
       if (t.startsWith('*') || t.startsWith('//') || t.startsWith('/*')) return;
       const kind = /^if \(match\.obmMovement\) \{$/.test(t) ? 'FLAG_FORK_SCORE'
         : /^const obmPlane = match\.obmMovement \? match\.obmPlaneFor\(p\) : null;$/.test(t)
@@ -575,24 +772,33 @@ const forkTable = (): {
                       : /obmPolicies/.test(t) ? 'POLICY_CACHE'
                         : /^match\.setObmPolicy\(p\.gid, obm\.plane\);$/.test(t) ? 'POLICY_WRITE'
                           : /^setObmPolicy|^obmPlaneFor/.test(t) ? 'ACCESSOR'
-                            : /offballMovementWeights/.test(t) ? 'GENE_RW'
-                              : /ObmPlane/.test(t) ? 'TYPE'
-                                : /obmPlane/.test(t) ? 'PLANE_PARAM' : 'OTHER';
+                            : /^let obm(Support|Run)Mul = 1;$/.test(t) ? 'SCORE_MUL_NEUTRAL'
+                              : /^obm(Support|Run)Mul = obm\.(support|run)Mul;$/.test(t) ? 'SCORE_MUL_SET'
+                                : /^s \*= obm(Support|Run)Mul;$/.test(t) ? 'SCORE_APPLY'
+                                  : /offballMovementWeights/.test(t) ? 'GENE_RW'
+                                    : /ObmPlane/.test(t) ? 'TYPE'
+                                      : /obmPlane/.test(t) ? 'PLANE_PARAM' : 'OTHER';
       sites.push({ file: f, line: i + 1, kind, text: t });
     });
   }
   const flagForks = sites.filter((s) => s.kind === 'FLAG_FORK_SCORE' || s.kind === 'FLAG_FORK_PLANE');
   const planeApply = sites.filter((s) => s.kind === 'PLANE_APPLY');
+  const scoreApply = sites.filter((s) => s.kind === 'SCORE_APPLY');
   return {
     sites,
     flagForks: flagForks.length,
     planeForks: planeApply.length,
-    // ⭐ EXACTLY TWO flag forks, one per named read site, and exactly one place
-    // where the plane is applied. Zero unclassified occurrences.
+    scoreApplySites: scoreApply.length,
+    // ⭐ EXACTLY TWO flag forks, one per named read site, exactly one place where the
+    // plane is applied and — newly enumerated — exactly TWO places where a score
+    // multiplier is applied, both in the brain. Zero unclassified occurrences.
     pass: flagForks.length === 2
       && flagForks.some((s) => s.kind === 'FLAG_FORK_SCORE' && s.file.endsWith('PlayerBrain.ts'))
       && flagForks.some((s) => s.kind === 'FLAG_FORK_PLANE' && s.file.endsWith('actionExecutor.ts'))
       && planeApply.length === 1 && planeApply[0].file.endsWith('actionExecutor.ts')
+      && scoreApply.length === 2 && scoreApply.every((s) => s.file.endsWith('PlayerBrain.ts'))
+      && sites.filter((s) => s.kind === 'SCORE_MUL_NEUTRAL').length === 2
+      && sites.filter((s) => s.kind === 'SCORE_MUL_SET').length === 2
       && sites.filter((s) => s.kind === 'OTHER').length === 0,
   };
 };
@@ -778,11 +984,11 @@ const dosedSmoke = (seed: number): {
     for (const t of m.teams) {
       for (const p of t.players) {
         if (p.sentOff || p.action?.type !== 'SupportBallCarrier') continue;
-        const base = supportSpot(p, t, m.ball);
+        const base = supportSpot(p, t, m.ball, m.ctbSupportPlane);
         const plane = m.obmPlaneFor(p);
         if (plane === null) continue;
         const dosedPoint = supportSpotOnObmPlane(p, t, m.ball, plane);
-        const policy = obmOffballPolicy(p, m, t.genome, base);
+        const policy = obmOffballPolicy(p, m, t.genome, base, m.ctbSupportPlane);
         const shift = Math.hypot(dosedPoint.x - base.x, dosedPoint.y - base.y);
         if (shift > 1e-9) moved += 1;
         sumShift += shift;
@@ -887,7 +1093,30 @@ const runExperiment = () => {
       blindIdentical: blindForced === blindOff,
     });
   }
-  return { seeds: { block: BLOCK, n: N, first: BLOCK, last: BLOCK + N - 1 }, rows };
+  // ⭐ the FLAG×GENE crossing, inside the core so G-DET covers it too
+  const crossRows = [] as { seed: number; cells: Record<string, string> }[];
+  for (let k = 0; k < CROSS_N; k++) {
+    const seed = BLOCK + k;
+    const cells: Record<string, string> = {};
+    for (const c of CROSS_CELLS) cells[cellKey(c)] = crossWalk(seed, c);
+    crossRows.push({ seed, cells });
+  }
+  const claims = CROSS_CLAIMS.map((cl) => {
+    const seedsHeld = crossRows.filter((r) => (
+      cl.equal ? r.cells[cl.a] === r.cells[cl.b] : r.cells[cl.a] !== r.cells[cl.b]
+    )).length;
+    return { ...cl, seeds: crossRows.length, seedsHeld, pass: seedsHeld === crossRows.length };
+  });
+  return {
+    seeds: { block: BLOCK, n: N, first: BLOCK, last: BLOCK + N - 1 },
+    rows,
+    crossing: {
+      cells: CROSS_CELLS.map(cellKey),
+      seeds: { n: CROSS_N, first: BLOCK, last: BLOCK + CROSS_N - 1 },
+      claims,
+      rows: crossRows,
+    },
+  };
 };
 
 /* ========================================================================== */
@@ -965,12 +1194,13 @@ const gBorn = runA.rows.every((r) => r.bornIdentical);
 const gZero = runA.rows.every((r) => r.zeroIdentical);
 const gBite = runA.rows.every((r) => r.diverged) && geometry.lawPass;
 const gBlind = runA.rows.every((r) => r.blindIdentical);
+const gCross = runA.crossing.claims.every((c) => c.pass);
 const gRng = seamDraws.pass && evo.genomesIdentical && evo.rngStateIdentical
   && evo.matrixStayedAbsent && evo.optInDraws && evo.ctbStreamUnmoved && evo.crossoverOrderHeld;
 const gHygiene = Object.values(hyg).every(Boolean);
 
 const gatesPass = gDet && gIdentPass && gOff && gBorn && gZero && gBite && epi.pass && gBlind
-  && gRng && gHygiene && fork.pass && trace.pass && pins.pass && seedDisjoint.pass;
+  && gCross && gRng && gHygiene && fork.pass && trace.pass && pins.pass && seedDisjoint.pass;
 
 const body = {
   stage: 'OBM T0 — the dormant OFF-BALL EYES SEAT (`offballMovementWeights` / `obmMovement`)',
@@ -996,9 +1226,15 @@ const body = {
       + 'NO SNAPSHOT or NO PERCEIVED OPPONENT ⇒ all four EXACTLY ZERO (a blind body has no '
       + 'policy). outputs: output_o = (Σ_i w[o][i]·f_i) / OBM_FEATURE_KEYS.length ∈ [-1,1] — the '
       + 'divisor is the feature count, so the DYNAMIC term spans exactly what ONE static plane '
-      + 'gene spans. composition: plane.depth = clamp(ctbSupportDepthWeight(g) + output_0, -1, 1) '
-      + 'and likewise width (the banked CTB limb is the vocabulary, the static gene is the '
-      + 'INTERCEPT); supportMul = 1 + output_2·OBM_SCORE_SPAN and runMul = 1 + '
+      + 'gene spans. composition (⭐ THE INTERCEPT PARTICIPATES ONLY THROUGH ITS OWN GATE): '
+      + 'intercept_depth = match.ctbSupportPlane ? ctbSupportDepthWeight(g) : 0 (likewise '
+      + 'width), plane.depth = clamp(intercept_depth + output_0, -1, 1) and likewise width. '
+      + 'The banked CTB limb is the vocabulary and, WHEN ITS OWN FLAG IS ARMED, the static '
+      + 'gene is the policy INTERCEPT; with that flag shut the intercept is a hard 0 and the '
+      + 'dynamic policy runs on the ZERO plane, whose zero-point IS the incumbent supportSpot '
+      + 'geometry. Each seam keeps its own arming door: obm alone => dynamic-only on a zero '
+      + 'intercept; ctb alone => the banked static plane exactly as banked; BOTH => the full '
+      + 'policy, intercept plus slopes. supportMul = 1 + output_2·OBM_SCORE_SPAN and runMul = 1 + '
       + 'output_3·OBM_SCORE_SPAN, where OBM_SCORE_SPAN IS 1 - OFFBALL_TIRED_MUL, the incumbent '
       + 'fatigue multiplier that already scales exactly these two scores. Every bound is DERIVED '
       + 'IN CODE from an incumbent constant; no number is invented and none is typed for this '
@@ -1035,14 +1271,19 @@ const body = {
         + 'THIS BODY\'S PERCEPT SNAPSHOT on every in-possession off-ball decision, writes a '
         + 'policy into the match cache, and the executor reads it back. Byte-identity to OFF '
         + 'therefore proves two things at once: the born-absent matrix is inert THROUGH the live '
-        + 'branch, AND the percept pull itself has no side effect on any other consumer.',
+        + 'branch, AND the percept pull itself has no side effect on any other consumer. '
+        + '⚠ SCOPE (the verify catch): these arms run with `ctbSupportPlane` OFF and the '
+        + 'ctbSupport* genes ABSENT, so on their own they say NOTHING about the crossing — '
+        + 'G-CROSS is where the flag×gene configuration is gated.',
     },
     gZero: {
       pass: gZero, seeds: N,
       semantics: 'THE ZERO-POINT IDENTITY: armed with the matrix PRESENT and ALL SLOTS ZERO. The '
         + 'arms differ in code path AND in gene state; byte-identity proves the additive plane '
         + 'law and the multiplicative score law are EXACTLY null at zero (+0 and ×1), i.e. '
-        + 'today\'s geometry and today\'s score arithmetic are this policy\'s true centre.',
+        + 'today\'s geometry and today\'s score arithmetic are this policy\'s true centre. '
+        + '⚠ SCOPE (the verify catch): as with G-BORN these arms are CTB-shut and CTB-gene '
+        + 'absent; the zero-point under every OTHER flag state is G-CROSS\'s business.',
     },
     gBite: {
       pass: gBite,
@@ -1082,6 +1323,29 @@ const body = {
         + 'reads NOTHING and modulates NOTHING. This is why OBM-T1\'s exam world MUST be '
         + 'percept-armed.',
     },
+    gCross: {
+      pass: gCross,
+      cells: CROSS_CELLS.length,
+      seeds: runA.crossing.seeds,
+      ctbGeneDose: CTB_GENE_DOSE,
+      claims: runA.crossing.claims.map((c) => ({
+        name: c.name, a: c.a, b: c.b, mustBeIdentical: c.equal,
+        seeds: c.seeds, seedsHeld: c.seedsHeld, pass: c.pass, semantics: c.semantics,
+      })),
+      table: runA.crossing.rows,
+      semantics: '⭐ ⭐ THE FLAG×GENE CROSSING MATRIX — the gate the first cut did not have, and '
+        + 'the reason its HIGH defect was invisible. Every named arm of this probe ran with '
+        + '`ctbSupportPlane` OFF and the `ctbSupport*` genes ABSENT, so a composition that '
+        + 'consumed the banked CTB gene bank through the OBM door could not be seen. The '
+        + 'matrix crosses all four doors explicitly — {obm on/off} × {ctb flag on/off} × {ctb '
+        + 'genes dosed/absent} × {policy matrix absent/zero/dosed} × {percept-armed/blind} = 48 '
+        + 'cells — runs a FULL match per cell per seed and hashes it with the whole-run '
+        + 'signature (rng state included). The claims are stated EX ANTE above and each is '
+        + 'checked cell-against-cell on every seed; `mustBeIdentical: false` rows are '
+        + 'DISCRIMINATION claims (the two seams must be distinguishable), and the '
+        + 'A-SEAMS-DISTINGUISHABLE row is exactly the identity that HELD before the fix and '
+        + 'must now FAIL to hold. The full per-cell sha table rides in `table`.',
+    },
     gRng: {
       pass: gRng,
       seam: {
@@ -1102,13 +1366,17 @@ const body = {
     gHygiene: { pass: gHygiene, ...hyg },
     gFork: {
       pass: fork.pass, flagForks: fork.flagForks, planeApplySites: fork.planeForks,
+      scoreApplySites: fork.scoreApplySites,
       semantics: '⭐ THE READ-FORK INVENTORY (this seam has MORE than one read site, and every '
         + 'one is named): EXACTLY TWO `match.obmMovement` forks in src/** — the POLICY fork in '
         + 'PlayerBrain.decideOffBall (which feeds the two SCORE sites) and the PLANE fork in '
         + 'actionExecutor\'s SupportBallCarrier case (which feeds the single TARGET site, '
         + 'applied at exactly one statement). Every other src occurrence of the flag, the gene, '
         + 'the plane type and the policy cache is enumerated below with file:line and class, '
-        + 'zero unclassified.',
+        + 'zero unclassified. ⭐ The token set now also covers `obmSupportMul|obmRunMul` (the '
+        + 'verify catch, LOW): the two SCORE-site applications were the seat\'s only src '
+        + 'symbols the inventory could not see, and both are now enumerated and counted '
+        + '(exactly two `s *= …` statements, both in PlayerBrain).',
       sites: fork.sites,
     },
     gTrace: {
@@ -1192,7 +1460,8 @@ for (const r of gIdentRows) {
 }
 o(`G-OFF ${gOff ? 'PASS' : 'FAIL'} · G-BORN ${gBorn ? 'PASS' : 'FAIL'} · G-ZERO ${gZero ? 'PASS' : 'FAIL'}`
   + ` · G-BITE ${gBite ? 'PASS' : 'FAIL'} · G-EPI ${epi.pass ? 'PASS' : 'FAIL'}`
-  + ` · G-BLIND ${gBlind ? 'PASS' : 'FAIL'} · G-RNG ${gRng ? 'PASS' : 'FAIL'}`
+  + ` · G-BLIND ${gBlind ? 'PASS' : 'FAIL'} · ⭐G-CROSS ${gCross ? 'PASS' : 'FAIL'}`
+  + ` · G-RNG ${gRng ? 'PASS' : 'FAIL'}`
   + ` · G-HYGIENE ${gHygiene ? 'PASS' : 'FAIL'} · G-FORK ${fork.pass ? 'PASS' : 'FAIL'}`
   + ` · G-TRACE ${trace.pass ? 'PASS' : 'FAIL'} · G-PINS ${pins.pass ? 'PASS' : 'FAIL'}`
   + ` · G-SEED ${seedDisjoint.pass ? 'PASS' : 'FAIL'} · G-DET ${gDet ? 'PASS' : 'FAIL'}`);
@@ -1210,9 +1479,19 @@ o(`  ahead ${geometry.meanIncumbentAheadMetres} → ${geometry.meanDosedAheadMet
 o(`G-EPI: ${epi.bodies} bodies · percept-matched ${epi.featuresMatchPercept}`
   + ` · truth-matched ${epi.featuresMatchTruth} · diverged ${epi.divergedBodies}`
   + ` · module match members [${epi.moduleMatchMembers.join(', ')}]`);
+o(`⭐ G-CROSS (${CROSS_CELLS.length} cells × ${runA.crossing.seeds.n} seeds): `
+  + `${runA.crossing.claims.filter((c) => c.pass).length}/${runA.crossing.claims.length} claims held`);
+for (const c of runA.crossing.claims) {
+  o(`  ${c.pass ? 'PASS' : '*** FAIL ***'} ${c.seedsHeld}/${c.seeds} `
+    + `${c.equal ? '≡' : '≠'} ${c.name}`);
+}
+o('⭐ G-CROSS TABLE (seed ' + String(runA.crossing.rows[0].seed) + ', sha12 per cell):');
+for (const cell of runA.crossing.cells) {
+  o(`  ${cell.padEnd(34)} ${runA.crossing.rows[0].cells[cell].slice(0, 12)}`);
+}
 o(`G-RNG seam: rng ${seamDraws.before} → ${seamDraws.after} over ${seamDraws.calls} armed dosed decisions`);
 o(`FORK TABLE: ${fork.flagForks} flag fork(s), ${fork.planeForks} plane-apply site(s), `
-  + `${fork.sites.length} src occurrence(s) total`);
+  + `${fork.scoreApplySites} score-apply site(s), ${fork.sites.length} src occurrence(s) total`);
 o(`PIN INVENTORY: ${pins.namedPins.filter((p) => p.found).length}/${pins.namedPins.length} named pins present `
   + `(incl. the 4 BANKED CTB verbatim pins) · pre-existing supportSpot callers in tests/** `
   + `${pins.supportSpotCallers} · own file ${pins.ownTestCallers}`);

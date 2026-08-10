@@ -6,6 +6,16 @@ INVENTORY and the Road B statement below were written **before** the receipts ra
 frozen-before-sight rule, the CTB-T0 / O2-T0 two-part form); the measured numbers
 arrive only in [§RESULT](#result--the-gates-run) at the foot.
 
+> ⭐⭐ **CORRECTED AFTER INDEPENDENT VERIFY (#191 form).** This stage was banked, verified,
+> and **failed** on a HIGH mechanism defect — the plane composition spent the BANKED
+> `ctbSupport*` gene bank through the OBM door, so arming this seat ALONE was
+> byte-identical to arming `ctbSupportPlane` alone — plus the MEDIUM that hid it: no
+> gate ever crossed the two seams' arming doors. Both are fixed and re-gated here
+> (**§LAW 6**, **§HONESTY 3**, the arming checklist, and the new HARD gate
+> ⭐⭐ **G-CROSS**, 48 cells). The first run's `resultSha256` `3f0c7464…d79c` is
+> **SUPERSEDED** by `887a4109…92bf`; the defect and its empirical proof are recorded in
+> §RESULT and Deviation 10 rather than smoothed away.
+
 Authority chain: contract
 [`OFFBALL-MOVEMENT-CONTRACT.md`](OFFBALL-MOVEMENT-CONTRACT.md) — §0 (the code facts:
 the off-ball attack decision reads NO percepts; 前插 is a top-down LICENSE, not the
@@ -46,8 +56,11 @@ THE EYES (all from the body's OWN match.perceivedSnapshot(p); all in [0,1])
 
 THE POLICY (16 team-level weights, born absent ⇒ all 0; domain SIGNED [−1,+1])
   output_o     = ( Σ_i  w[o][i] · f_i ) / OBM_FEATURE_KEYS.length      ∈ [−1, +1]
-  plane.depth  = clamp( ctbSupportDepth(g) + output_planeDepth , −1, +1 )
-  plane.width  = clamp( ctbSupportWidth(g) + output_planeWidth , −1, +1 )
+  ⭐ THE INTERCEPT PARTICIPATES ONLY THROUGH ITS OWN GATE
+  intercept_d  = match.ctbSupportPlane ? ctbSupportDepth(g) : 0
+  intercept_w  = match.ctbSupportPlane ? ctbSupportWidth(g) : 0
+  plane.depth  = clamp( intercept_d + output_planeDepth , −1, +1 )
+  plane.width  = clamp( intercept_w + output_planeWidth , −1, +1 )
   supportMul   = 1 + output_supportScore · OBM_SCORE_SPAN              ∈ [0.6, 1.4]
   runMul       = 1 + output_runScore     · OBM_SCORE_SPAN              ∈ [0.6, 1.4]
 
@@ -131,6 +144,34 @@ Same reason as the CTB pair: these are deformations around an INCUMBENT CENTRE, 
 must be interior and the reach must be signed. A policy that could only push a body ON
 would be half a policy; 前插与回撤是同一个选择 is a statement about a SIGN.
 
+### ⭐ 6. The INTERCEPT participates ONLY through its own gate (the verify catch)
+
+**This clause is a CORRECTION, recorded as one (#191).** The first cut of this stage
+composed `plane = clamp(ctbSupport*(g) + output)` **unconditionally**. That made arming
+`obmMovement` ALONE consume the **banked** `ctbSupport*` gene bank: with the OBM matrix
+absent or at zero and the CTB genes dosed, an obm-only world was **byte-identical to
+arming `ctbSupportPlane` alone**. The headline invariant of G-BORN and G-ZERO — *armed
+changes nothing until this seat's OWN genes say something* — was therefore **false in
+the flag-crossing configuration**, and neither the probe's nine arms nor the fixtures
+ever ran that configuration (they were all CTB-shut and CTB-gene-absent). Independent
+verify caught it; the empirical proof is in §RESULT's crossing table.
+
+**The law now.** Each seam keeps its **own arming door**:
+
+| `obmMovement` | `ctbSupportPlane` | what the body gets |
+| --- | --- | --- |
+| off | off | the incumbent `supportSpot` geometry |
+| off | **on** | the **banked static plane, exactly as banked** (`supportSpot`'s own fork — this seat is never reached) |
+| **on** | off | the **DYNAMIC term alone, on a ZERO intercept** — and the zero-point of that plane **IS** the incumbent geometry |
+| **on** | **on** | the **full policy**: the banked intercept **plus** the slopes |
+
+The contract's sentence *"the static gene is the policy's intercept"* is still true and
+still literal — it is now true **conditionally on the CTB flag**, which is the only form
+in which it can be true without one flag spending another flag's bank. `ctbPlaneArmed`
+is handed IN by the caller rather than read off `match` inside the seat module, so the
+G-EPI source pin (`perceivedSnapshot` is the ONLY `match` member the module names) is
+untouched. Gated by **G-CROSS**, 48 cells.
+
 **Sizing honesty, stated up front.** At full dose one feature at 1.0 moves the plane by
 `1/4` of an axis — about 2.3–4.1 m of front-back shift — and a score by ±10 %. All four
 features aligned reach the full axis and ±40 %. Whether any of that moves the
@@ -151,10 +192,17 @@ re-cutting any bound to make OBM-T1 succeed.
    This is stated rather than hidden: the seat is honest about OTHERS, exact about
    HIMSELF.
 3. **The candidate point is his own INTENTION, not information.** f3 is measured at
-   `supportSpot(p, team, ball)` — the point he would take with the seat absent. It is
+   `supportSpot(p, team, ball, match.ctbSupportPlane)` — the point he would **actually**
+   take with the seat absent, **under whatever flag state the world is in**. It is
    truth-anchored only in the sense that the incumbent executor's own target always has
-   been; the seat adds no channel. It is the **UNDEFORMED** point on purpose, so the
-   policy's output can never feed back into its own input.
+   been; the seat adds no channel. ⭐ The **honesty limit, corrected by the verify catch:**
+   the first cut anchored f3 at the CTB-*shut* point unconditionally, so in a
+   CTB-armed world the documented identity *"the anchor is the point he would otherwise
+   walk to"* was simply not true — he would have walked to the deformed point. The
+   anchor now tracks the CTB flag and the identity holds under every flag state. What it
+   still excludes, on purpose, is **this seat's OWN output**: self-feedback avoidance is
+   about the OBM term, not about the banked static plane, which is part of the world he
+   is standing in, not a thing he is choosing right now.
 4. **⭐ A BLIND BODY HAS NO POLICY.** `refreshPerception` runs only when
    `edsPerceivedDefence || edsPerceivedChoice || stationEye !== null`
    (`src/sim/Match.ts`), and without a memory `perceivedSnapshot` returns `null`. In a
@@ -215,6 +263,14 @@ re-cutting any bound to make OBM-T1 succeed.
   unchanged while the matrix is absent (G-BORN) and while it is AT ZERO (G-ZERO).
   OBM-T1 doses through the REAL gene channel on all three genome views
   (`info.genome` / `baseGenome` / `effGenome`) of BOTH teams.
+* ⭐ **AND THE HONEST STATEMENT ABOUT THE OTHER SEAM'S GENES (the verify catch):**
+  **the CTB static genes express ONLY under their own flag** — `obmMovement` is NOT a
+  key to the `ctbSupport*` bank. **This seat's arming adds DYNAMICS on top of whatever
+  the CTB door already delivered**: with `ctbSupportPlane` off it adds them to the
+  incumbent geometry; with it on it adds them to the banked static plane. So arming this
+  seat can never, at any dose of any OTHER seam's genes, reproduce that other seam. Four
+  limbs arm THIS seat; they do not arm anything else. Gated by **G-CROSS** (48 cells)
+  and by three fixtures in `tests/obmEyesSeat.test.ts`.
 
 ### ⭐ The READ-FORK INVENTORY (a NAMED deliverable — this seam has MORE than one)
 
@@ -226,6 +282,13 @@ grep (the G-FORK idiom, the PM-T0 "exactly 2 mover sites of 8" form):
 | --- | --- | --- | --- |
 | **1** | `if (match.obmMovement) {` — the POLICY fork | `src/ai/PlayerBrain.ts`, inside `decideOffBall`'s in-possession branch | the seat's ONE percept pull; writes the plane to the match cache; produces the two multipliers for **SCORE SITE 1** (`SupportBallCarrier`) and **SCORE SITE 2** (the LICENSED `MakeRun`) |
 | **2** | `const obmPlane = match.obmMovement ? match.obmPlaneFor(p) : null;` — the PLANE fork | `src/ai/actionExecutor.ts`, `case 'SupportBallCarrier'` | **TARGET SITE**: `if (obmPlane !== null) target = supportSpotOnObmPlane(...)`, the single apply statement |
+
+Plus exactly **TWO** statements that apply a score multiplier (`s *= obmSupportMul` and
+`s *= obmRunMul`, both in `PlayerBrain.decideOffBall`). ⭐ Those two were **added to the
+inventory by the verify catch**: `obmSupportMul` / `obmRunMul` were the seat's only
+`src/**` symbols the G-FORK token grep did not match, so the two application sites were
+never enumerated. They are now counted and classed (`SCORE_APPLY`, with
+`SCORE_MUL_NEUTRAL` and `SCORE_MUL_SET` for their declaration and assignment).
 
 Everything else that mentions the flag, the gene, the plane type or the policy cache is
 a declaration, an init, the League union key, an accessor or a type — enumerated with
@@ -304,6 +367,7 @@ All computed IN-PROBE (#181.2); `head` / wall-clock / paths ride the UNHASHED en
 | **G-BITE** | ARMED at a non-zero dose in a percept-armed world the world DIVERGES on every receipt seed, **AND the POLICY GEOMETRY moves as §LAW says**: on live match states, features in range, every output equal to the mean of its weighted features, the plane equal to `clamp(intercept + dynamic)`, both multipliers equal to `1 + output·SPAN` and inside the frozen band, the support point equal to the exactly-predicted value **including the INCUMBENT pitch clamp**, and the SIGN law (this dose's depth output can only be ≤ 0, so the seat may only pull a body BACK; a zero output must move him not at all) | HARD |
 | ⭐ **G-EPI** | **EPISTEMIC HONESTY PROVED, NOT ASSERTED.** On a stepped fixture whose PERCEPT diverges from TRUTH (opponents teleported after the last scan moment), the seat's computed features MATCH the percept-derived values for EVERY body and match the truth-derived values for NONE, with the truth/percept pair proved genuinely different for every body. PLUS the source-level pin: the ONLY member of `match` the seat module names is `perceivedSnapshot`, and no truth-scan token appears in its executable body | HARD |
 | ⭐ **G-BLIND** | **THE FOURTH ARMING LIMB.** Fully armed AND fully dosed in a world with the percept trunk OFF ≡ that world unarmed, byte for byte, on every receipt seed. A blind body has no policy | HARD |
+| ⭐⭐ **G-CROSS** | **THE FLAG×GENE CROSSING MATRIX** (added by the verify catch). 48 cells — {`obmMovement` on/off} × {`ctbSupportPlane` on/off} × {`ctbSupport*` genes dosed at the domain corners / absent} × {policy matrix absent/zero/dosed} × {percept-armed/blind} — one FULL match per cell per seed, whole-run signature incl. rng state, on the first 8 receipt seeds, inside the G-DET core. 23 claims stated EX ANTE and checked cell-against-cell, of which: **(a)** obm ON + matrix zero-or-absent + ctb flag OFF ≡ ALL-OFF **even with the ctb genes fully dosed**; **(a′)** obm fully armed AND fully dosed is *unchanged* by the ctb gene bank while that door is shut; **(a″)** ⭐ the DISCRIMINATION claim — obm-alone-with-genes-banked must **DIFFER** from ctb-alone (this pair was byte-identical before the fix, and that identity IS the defect); **(b)** obm ON + ctb flag ON + matrix zero-or-absent ≡ ctb flag ON **alone**; **(c)** the blind-world variants of both; plus DORMANT-BOTH and two non-vacuity BITE rows | HARD |
 | **G-RNG** | the seam draws **zero** rng — an armed, dosed decision (pull + policy + geometry) over every outfielder of both teams on a stepped fixture leaves the match rng state EXACT — and the opt-in's draws sit strictly after every existing draw: 8 generations of the shipped mutate+crossover with the opt-in OFF reproduce a faithful PRE-GENE re-implementation's genomes AND final rng state exactly, the gene stays absent, the opt-in path is shown live, **and the `ctbSupportPlane` opt-in's OWN values are unmoved in mutation AND in crossover** | HARD |
 | **G-HYGIENE** | `obmMovement` and the gene are absent from `a4World.ts` **entirely**; initialised `cfg.obmMovement ?? false`; gene absent from `GENE_KEYS`; a fresh Match and a League match are both OFF; no `envArmed` / `EDS_BUNDLE_ARMED` / `process.env` anywhere on a seam line | HARD |
 | **G-FORK** | ⭐ the READ-FORK INVENTORY: **exactly TWO** `match.obmMovement` forks in `src/**`, one per named read site, and **exactly ONE** plane-apply statement; every other `src/**` occurrence of the flag, gene, plane type, policy cache and accessors enumerated with file:line and class, **zero unclassified** | HARD |
@@ -330,7 +394,7 @@ a deterministic run.
 | --- | --- | --- |
 | A4/O/PM/MT/CTB-arc consumed through | see the probe's `CONSUMED` table (inherited in full, extended with CTB-T1's three blocks and CTB-T0's test seeds) | prior |
 | CTB-T1 consumption (#225/#226) | 12,423,025–036 · 12,423,050–099 · 12,423,100–727 | prior |
-| **OBM-T0 receipts (this stage)** | **12,424,000 – 12,424,023** (24 seeds × 9 arms) + **12,424,024** (the policy-geometry + G-EPI + dosed smoke read) | **CONSUMED here** |
+| **OBM-T0 receipts (this stage)** | **12,424,000 – 12,424,023** (24 seeds × 9 arms; ⭐ the 48-cell G-CROSS matrix re-uses the FIRST 8 of these same seeds — **no new block**) + **12,424,024** (the policy-geometry + G-EPI + dosed smoke read) | **CONSUMED here** |
 | **OBM-T0 REPORTED cost read** | **12,424,025** | **CONSUMED here** |
 | OBM-T0 test-file seeds (not a battery) | 12,424,900 – 12,424,906 | consumed here |
 | free above | 12,424,026 – 12,424,899 and 12,424,907 + | available to OBM-T1 |
@@ -376,23 +440,43 @@ quoted FROM `docs/world-model/data/obm-t0-eyes-seat.json`, which is recomputed b
 `npx tsx scripts/probes/obm-t0-eyes-seat.ts` — the doc never carries evidence the
 artifact does not.)*
 
-Tests: [`../../tests/obmEyesSeat.test.ts`](../../tests/obmEyesSeat.test.ts) — **21
-pins** (21 `it()` blocks). Receipts:
+> ⭐⭐ **SUPERSESSION (the verify catch, the #191 correction form).** The numbers below
+> are the **SECOND** run of this stage. The first (`resultSha256`
+> `3f0c7464a3aeceeae207af20448ed585d1d2ce8a4e95fe54c3f297ae1215d79c`, digest
+> `ac34a90d…954b`) is **SUPERSEDED** and must not be quoted: independent verify found a
+> HIGH defect in the plane composition and a MEDIUM hole in the gates that hid it.
+> **The defect:** `plane = clamp(ctbSupport*(g) + output)` was composed
+> unconditionally, so arming `obmMovement` **alone** consumed the **banked**
+> `ctbSupport*` gene bank. **The empirical proof, recorded honestly:** with the OBM
+> matrix zero-or-absent and the CTB genes dosed, an obm-only world was **byte-identical**
+> to arming `ctbSupportPlane` alone — falsifying G-BORN/G-ZERO's headline invariant in
+> exactly the flag-crossing configuration. **Why no gate saw it:** all nine probe arms
+> and every fixture ran CTB-shut and CTB-gene-absent, so that configuration was never
+> executed. **The fix:** the intercept participates only through its own gate (§LAW 6),
+> the anchor tracks the CTB flag (§HONESTY 3), and the crossing is now a HARD gate
+> (**G-CROSS**, 48 cells). The old identity is now itself a gated *discrimination* claim
+> — `A-SEAMS-DISTINGUISHABLE`, which must FAIL to hold, and does, on 8/8 seeds. Verified
+> non-vacuous: restoring the defective composition reds two of the three new fixtures.
+
+Tests: [`../../tests/obmEyesSeat.test.ts`](../../tests/obmEyesSeat.test.ts) — **24
+pins** (24 `it()` blocks, three of them the new crossing fixtures). Receipts:
 [`../../scripts/probes/obm-t0-eyes-seat.ts`](../../scripts/probes/obm-t0-eyes-seat.ts),
 artifact [`data/obm-t0-eyes-seat.json`](data/obm-t0-eyes-seat.json).
 **24 seeds × 9 arms (absent · off · plain · plainOff · bornArmed · zeroArmed · forced ·
-blindOff · blindForced) = 216 full matches per core run, and the core runs TWICE
-(G-DET, byte-identical digests), plus 3 league-seed 2-season identity runs, the
-policy-geometry read, the G-EPI divergence fixture, the dosed smoke and the seam rng
+blindOff · blindForced) = 216 full matches per core run, PLUS ⭐ the 48-cell FLAG×GENE
+CROSSING on the first 8 receipt seeds = 384 more full matches per core run, and the core
+runs TWICE (G-DET, byte-identical digests), plus 3 league-seed 2-season identity runs,
+the policy-geometry read, the G-EPI divergence fixture, the dosed smoke and the seam rng
 fixture on seed 12,424,024, the 8-generation evolution-rng comparison, the `src/**`
 fork scan, and 9 timed matches for the cost reading on seed 12,424,025.** Verdict:
-**GATES PASS** (`gates.allPass === true`), probe exit 0. Wall ≈ 73 s (CONTEXT ONLY —
+**GATES PASS** (`gates.allPass === true`), probe exit 0. Wall ≈ 146 s (CONTEXT ONLY —
 used in no rate).
 
 * **G-DET digest** — `gates.gDet.digestA === digestB ===`
-  `ac34a90d495d02acb7f0b3c844edb2d8c7016aaf0f44cefd299c79acee91954b`
-* **resultSha256** `3f0c7464a3aeceeae207af20448ed585d1d2ce8a4e95fe54c3f297ae1215d79c`
-  (recomputable: `npx tsx scripts/probes/obm-t0-eyes-seat.ts`). ⭐ Per #197-M1 the hashed
+  `5caa495987698cf448d3c9b01b537413e7c0d518403a55ac9b11621183cc1c90`
+* **resultSha256** `887a410934c4dd9893fc52baaf9e14c51721efa7231b29617531cb90679492bf`
+  (recomputable: `npx tsx scripts/probes/obm-t0-eyes-seat.ts`; re-derived byte-identical
+  on two independent invocations today). ⭐ Per #197-M1 the hashed
   body is **commit-free, timing-free and path-free** — `headContextOnly`,
   `wallMsContextOnly` and `artifactPathContextOnly` ride the envelope, OUTSIDE the hash.
   ⚠ Stated exactly: the REPORTED **wall-clock cost numbers are also outside the hash**
@@ -413,14 +497,42 @@ used in no rate).
 | **G-BITE** | ✅ PASS | **24/24 forced arms diverge** from absent. Policy geometry, seed 12,424,024, **8,230 sampled body-decisions**: **0 violations across all six law checks** (`outputArithmetic` · `planeCompose` · `scoreCompose` · `planeSign` · `planeMagnitude` · `featureRange`), and the seat moved the support point on **6,750 of 8,230** samples — see the table below |
 | ⭐ **G-EPI** | ✅ PASS | **5/5 bodies' features reproduce the PERCEPT exactly; 0/5 match the truth; 5/5 truth-vs-percept pairs genuinely differ** (mean perceived opponent age 10.6 ticks against the truth snapshot's 0). Source pin: `gates.gEpi.moduleMatchMembers === ['perceivedSnapshot']` — the ONLY member of `match` the seat names — and `moduleBannedHits === []` |
 | ⭐ **G-BLIND** | ✅ PASS | 24/24: fully armed AND fully dosed with the percept trunk OFF ≡ the same world unarmed, byte for byte. **A blind body has no policy** — which is why OBM-T1's exam world must be percept-armed |
+| ⭐⭐ **G-CROSS** | ✅ PASS | **23/23 claims held, 8/8 seeds each**, over 48 cells × 8 seeds = 384 full matches per core run. ⭐ `A-OBM-ALONE-INERT` (ctb genes DOSED, matrix absent **and** zero) ≡ ALL-OFF; ⭐ `A-CTB-GENES-INVISIBLE` — the seat fully live and fully dosed is *unchanged* by the banked gene bank; ⭐ `A-SEAMS-DISTINGUISHABLE` — obm-alone-with-genes-banked **DIFFERS** from ctb-alone on 8/8 (the identity that HELD before the fix); ⭐ `B-INTERCEPT-IS-THE-BANK` ≡ ctb-alone on 8/8; ⭐ `C-BLIND-A` / `C-BLIND-B` on all three matrix states; `DORMANT-BOTH` ×6 and two non-vacuity `BITE` rows. **The whole percept-world crossing collapses onto exactly FOUR distinct worlds** — see the table below |
 | **G-RNG** | ✅ PASS | (a) the seam: an ARMED, DOSED decision over every outfielder of both teams on a 400-tick fixture leaves the match rng state EXACT — **4115567729 → 4115567729**, 10 decisions. (b) evolution, 8 generations, opt-in OFF: genomes identical to the pre-gene re-implementation, the matrix stayed absent, final rng state matches exactly; `optInDraws: true`, **`ctbStreamUnmoved: true`** and **`crossoverOrderHeld: true`** — the new draws sit strictly after the CTB block in mutation and in crossover alike |
 | **G-HYGIENE** | ✅ PASS | `cfg.obmMovement ?? false`; the flag AND the gene absent from `a4World.ts` entirely; gene absent from `GENE_KEYS`; `randomGenome` never creates or serializes it; a fresh Match and a League match are both OFF; no `envArmed` / `EDS_BUNDLE_ARMED` / `process.env` on any of the 10 seam files' seam lines |
-| **G-FORK** | ✅ PASS | **exactly 2 flag forks and exactly 1 plane-apply statement**, at the two named sites; **26 src occurrences total, ZERO unclassified** (kinds: `FLAG_FORK_SCORE` · `FLAG_FORK_PLANE` · `PLANE_APPLY` · `POLICY_WRITE` · `POLICY_CACHE` · `ACCESSOR` · `CONFIG` · `FIELD` · `INIT` · `UNION_KEY` · `GENE_DECL` · `GENE_RW` · `TYPE`) |
+| **G-FORK** | ✅ PASS | **exactly 2 flag forks, exactly 1 plane-apply statement and ⭐ exactly 2 score-apply statements** (both in `PlayerBrain`), at the named sites; **32 src occurrences total, ZERO unclassified** (kinds: `FLAG_FORK_SCORE` · `FLAG_FORK_PLANE` · `PLANE_APPLY` · ⭐ `SCORE_APPLY` · ⭐ `SCORE_MUL_NEUTRAL` · ⭐ `SCORE_MUL_SET` · `POLICY_WRITE` · `POLICY_CACHE` · `ACCESSOR` · `CONFIG` · `FIELD` · `INIT` · `UNION_KEY` · `GENE_DECL` · `GENE_RW` · `TYPE`). The token grep gained `obmSupportMul|obmRunMul` (26 → 32 occurrences), the verify catch's LOW |
 | **G-TRACE** | ✅ PASS | all 7 derivation lines matched VERBATIM, and the identities hold: `OBM_SCORE_SPAN === 1 − OFFBALL_TIRED_MUL === 0.4`, `OBM_WEIGHT_MIN/MAX === CTB_GENE_MIN/MAX === ∓1`, `OBM_WEIGHT_SLOTS === 4 × 4 === 16`, `OBM_POLICY_TTL_TICKS === ceil(AI_INTERVAL/DT) === 9`, `PRESSURE_RADIUS_M === 6`, `perceptionRetentionTicks(0.8) === 51`; the banked `CTB_DEPTH_BIAS_SPAN === SUPPORT_LAT_CAP_FRAC` and `SUPPORT_LAT_PULL === 0.75` are asserted UNTOUCHED in the same breath |
 | **G-PINS** | ✅ PASS | **9/9 named pins present**, including all four BANKED CTB verbatim pins in BOTH the test file and `src/**`; **0** pre-existing `supportSpot` callers in `tests/**` (this stage's own file: 6, counted separately). Nothing renegotiated |
 | **G-SEED** | ✅ PASS | 12,424,000–024 · 12,424,025 · 12,424,900–906, **zero collisions** with the 27 consumed blocks (`gates.seedDisjoint.collisions === []`) |
 | **G-DET** | ✅ PASS | two invocations of the core, identical digests (above) |
 | **G-SUITE** | ✅ PASS (with the pre-existing flakes disclosed) | see §CHECKS |
+
+### ⭐⭐ G-CROSS — the flag×gene crossing table (seed 12,424,000, sha-12 per cell)
+
+The single clearest artefact this stage produced. **48 cells collapse onto exactly SIX
+distinct worlds — four in the percept-armed world, two in the blind one — and each
+distinct world is reached by exactly the doors that should reach it.** (`gene1` = the
+banked `ctbSupport*` genes dosed at the signed domain's corners; `m-` = the OBM policy
+matrix.) Reproduced identically on all 8 crossing seeds; full table in
+`gates.gCross.table`.
+
+| cell | sha-12 | which world |
+| --- | --- | --- |
+| `obm0·ctb0·gene{0,1}·m-{absent,zero,dosed}·percept` (6 cells) | `6e0731288a3c` | **INCUMBENT** — both doors shut, neither bank readable |
+| `obm0·ctb1·gene0·m-{absent,zero,dosed}·percept` (3 cells) | `6e0731288a3c` | INCUMBENT — CTB door open, nothing banked |
+| `obm1·ctb0·gene{0,1}·m-{absent,zero}·percept` (4 cells) | `6e0731288a3c` | ⭐ **INCUMBENT** — the seat ARMED, the CTB bank FULL, and **nothing happens** (gate a) |
+| `obm1·ctb1·gene0·m-{absent,zero}·percept` (2 cells) | `6e0731288a3c` | INCUMBENT — both doors open, nothing banked either side |
+| `obm0·ctb1·gene1·m-{absent,zero,dosed}·percept` (3 cells) | `c6693373ac23` | **CTB STATIC PLANE ALONE** — the OBM matrix is unreadable through the shut OBM door |
+| `obm1·ctb1·gene1·m-{absent,zero}·percept` (2 cells) | `c6693373ac23` | ⭐ **the SAME** — the banked plane delivered EXACTLY as banked; the seat adds nothing at zero (gate b: the intercept IS the bank) |
+| `obm1·ctb0·gene{0,1}·m-dosed·percept` (2 cells) | `28cf02f6a3d0` | ⭐ **OBM DYNAMIC ALONE** — and the CTB gene bank makes **no difference to it** (gate a′) |
+| `obm1·ctb1·gene0·m-dosed·percept` (1 cell) | `28cf02f6a3d0` | the SAME — CTB door open but nothing banked ⇒ intercept 0 |
+| `obm1·ctb1·gene1·m-dosed·percept` (1 cell) | `a41f32af01b9` | **THE FULL POLICY** — intercept + slopes; the only cell that is neither seam alone |
+| every `blind` cell with `ctb0` **or** `gene0` (18 cells) | `ff656d40de1d` | **INCUMBENT (blind)** — a blind body has no policy at ANY matrix dose (gate c) |
+| every `blind` cell with `ctb1·gene1` (6 cells) | `82172fe4ef8e` | **CTB STATIC PLANE (blind)** — the CTB seam needs no eyes; the OBM seat contributes exactly zero (gate c) |
+
+⭐ **The falsifier, in one line:** `6e0731288a3c ≠ c6693373ac23`. Before the fix,
+`obm1·ctb0·gene1·m-zero·percept` produced `c6693373ac23` — i.e. arming this seat alone
+reproduced the other seam. It now produces `6e0731288a3c`, the incumbent world.
 
 ### G-BITE — the policy geometry (seed 12,424,024, 8,230 sampled body-decisions)
 
@@ -493,11 +605,11 @@ tsc clean
 
 $ npx vitest run tests/obmEyesSeat.test.ts
  Test Files  1 passed (1)
-      Tests  21 passed (21)
+      Tests  24 passed (24)          (21 + the 3 new FLAG×GENE crossing fixtures)
 
 $ npx vitest run tests/ctbSupportPlane.test.ts tests/formations.test.ts   (THE BANKED PINS)
  Test Files  2 passed (2)
-      Tests  27 passed (27)
+      Tests  27 passed (27)          (unchanged — nothing was renegotiated)
 
 $ npm run fingerprint
 seed=1337 seasons=2 matches=142
@@ -506,15 +618,15 @@ sha256=57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673
 $ npx tsx scripts/probes/obm-t0-eyes-seat.ts        (exit 0)
 GATES PASS — artifact docs/world-model/data/obm-t0-eyes-seat.json
 
-$ npm test          (vitest run, THIS tree)
+$ npm test          (vitest run, THIS tree — AFTER the mechanism fix)
  Test Files  1 failed | 129 passed (130)
-      Tests  1 failed | 1242 passed (1243)
-   Duration  268.76s
+      Tests  1 failed | 1245 passed (1246)      (1,242 + the 3 crossing fixtures)
+   Duration  273.51s
  FAIL tests/formationEvolution.test.ts > league-level style ecology > ten seasons: …
                                                         Error: Test timed out in 180000ms.
 
 $ npx vitest run tests/formationEvolution.test.ts          (same tree, ISOLATED)
- ✓ league-level style ecology > ten seasons: …  146569ms   (budget 180000ms)
+ ✓ league-level style ecology > ten seasons: …  143803ms   (budget 180000ms)
  Test Files  1 passed (1)
       Tests  3 passed (3)
 
@@ -532,10 +644,14 @@ $ git stash pop; mv /tmp/obmEyesSeat.test.ts tests/       (tree restored, verifi
 TIMEOUT, not an assertion**, and it **reproduces identically on the PRE-CHANGE tree**
 (the #196 form: the nine seam src files stashed out, this stage's test file moved
 aside, the whole suite re-run — same file, same message, 1,221 other tests green).
-Isolated on THIS tree it passes in 146.6 s against the 180 s budget, so the mechanism is
-parallel-load contention, not this seam. This is the #196.2 flake family; the second
-member CTB-T0 newly observed (`simRunner.test.ts`) did not red on either run today.
-Every other test — **1,242 of 1,243**, the banked CTB plane's 16 included — is green.
+Isolated on THIS tree it passes in **143.8 s** against the 180 s budget, so the mechanism
+is parallel-load contention, not this seam. This is the #196.2 flake family; the second
+member CTB-T0 newly observed (`simRunner.test.ts`) did not red on any run today.
+Every other test — **1,245 of 1,246**, the banked CTB plane's 16 included — is green.
+⚠ Stated exactly: the PRE-CHANGE comparison run quoted above is the ORIGINAL stage's,
+not re-run for this fix round; what this round re-ran is the full suite on the fixed
+tree (identical red file, identical message, +3 green) and the isolated pass. The
+production fingerprint was re-derived from scratch and is unchanged.
 
 ### Deviations recorded
 
@@ -583,7 +699,25 @@ Every other test — **1,242 of 1,243**, the banked CTB plane's 16 included — 
    machine-dependent, so hashing them would make the receipt un-re-derivable (#197-M1's
    own logic, applied to a REPORTED field). Every GATE input is inside the hash, and the
    substitution is declared in the artifact's `hashNote`.
-9. **No bootstrap, no CI anywhere in this stage** — every number is an identity, a
+10. ⭐⭐ **THE VERIFY CATCH, recorded as a correction and not smoothed over (#191).**
+   This stage was banked once, verified independently, and **failed** on one HIGH and
+   one MEDIUM (plus three LOWs). The HIGH was a real mechanism defect — arming this seat
+   alone spent the BANKED CTB gene bank — and it was **empirically demonstrable**
+   (byte-identical shas), not a stylistic objection. The MEDIUM is the more instructive
+   half: **the gate battery could not see the defect because no arm and no fixture ever
+   crossed the two seams.** Fifteen gates, 216 matches per core run, and every one of
+   them ran with the neighbouring flag shut and its genes absent. The general lesson,
+   stated for the seams that come after this one: **when a new seat COMPOSES with a
+   banked seam, the crossing of the two arming doors is itself a required gate** — an
+   identity proved only in the configuration where the other door is shut proves nothing
+   about the configuration where it is open. G-CROSS is that gate, and it is written to
+   be reusable in form. The three LOWs were fixed in the same round: the f3 anchor now
+   tracks the CTB flag (§HONESTY 3), the G-FORK token grep gained
+   `obmSupportMul|obmRunMul` (26 → 32 enumerated occurrences), and `crossoverGenomes`
+   now **copies** parent A's weight array instead of aliasing it (value-identical, RNG-
+   and byte-neutral, and it guards T1's three-view dosing against in-place writes).
+   The superseded first-run numbers are named in §RESULT rather than deleted.
+11. **No bootstrap, no CI anywhere in this stage** — every number is an identity, a
    count, a deterministic geometric quantity or a disclosed wall-clock, so the ≥104,800
    stats base does not apply.
 
@@ -594,7 +728,11 @@ the consumption flag is a hard `false` absent from every bundle, the production
 fingerprint is unchanged, flag-off byte-identity holds on three league seeds and 24 match
 seeds with the rng stream included, an ARMED world is byte-identical to OFF with the
 matrix ABSENT and with it AT ZERO *through the live branch and through a live percept
-pull*, a fully dosed armed world with no eyes is byte-identical too, the seam draws zero
+pull*, a fully dosed armed world with no eyes is byte-identical too, ⭐ **and — after the
+verify catch — arming this seat is now proved to express NOTHING but its own genes:
+across the full 48-cell crossing of both arming doors and both gene banks, an obm-only
+world with the banked `ctbSupport*` genes fully dosed is byte-identical to ALL-OFF, and
+DIFFERENT from the CTB seam armed alone, on every seed**, the seam draws zero
 rng and an opted-out evolution run draws zero extra, exactly two read forks and one
 plane-apply statement exist in `src/**`, every bound is derived in code from an incumbent
 constant, every pinned test — the banked CTB plane's included — is untouched and green,

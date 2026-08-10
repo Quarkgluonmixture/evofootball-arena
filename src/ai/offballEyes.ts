@@ -176,28 +176,49 @@ export function obmFeatures(
  *
  * ```text
  * output_o   = ( Σ_i w[o][i] · f_i ) / OBM_FEATURE_KEYS.length        ∈ [−1, +1]
- * plane.depth = clamp( ctbSupportDepthWeight(g) + output_planeDepth, −1, +1 )
- * plane.width = clamp( ctbSupportWidthWeight(g) + output_planeWidth, −1, +1 )
+ * intercept_depth = ctbPlaneArmed ? ctbSupportDepthWeight(g) : 0
+ * intercept_width = ctbPlaneArmed ? ctbSupportWidthWeight(g) : 0
+ * plane.depth = clamp( intercept_depth + output_planeDepth, −1, +1 )
+ * plane.width = clamp( intercept_width + output_planeWidth, −1, +1 )
  * supportMul  = 1 + output_supportScore · OBM_SCORE_SPAN
  * runMul      = 1 + output_runScore     · OBM_SCORE_SPAN
  * ```
+ *
+ * ⭐ THE INTERCEPT PARTICIPATES ONLY THROUGH ITS OWN GATE (the OBM-T0 verify
+ * catch, the #191 correction form). The first cut composed the banked CTB genes
+ * into the plane UNCONDITIONALLY, so arming `obmMovement` ALONE — with the policy
+ * matrix absent or zero — silently CONSUMED the banked `ctbSupport*` genes and was
+ * byte-identical to arming `ctbSupportPlane` alone. That falsified G-BORN/G-ZERO's
+ * headline invariant in exactly the flag-crossing configuration neither the probe
+ * nor the tests ran. EACH SEAM NOW KEEPS ITS OWN ARMING DOOR:
+ *   * obm ON, ctb OFF  ⇒ intercept 0 — the DYNAMIC term alone, on the ZERO plane,
+ *     whose zero-point IS the incumbent `supportSpot` geometry;
+ *   * obm OFF, ctb ON  ⇒ this function is never reached; the banked static plane
+ *     is delivered by `supportSpot`'s own fork, exactly as banked;
+ *   * BOTH ON          ⇒ the full policy: the banked intercept plus the slopes.
+ * `ctbPlaneArmed` is passed IN by the caller (never read off `match` here) so the
+ * module's only `match` member stays `perceivedSnapshot` — G-EPI is untouched.
  *
  * The division by the feature count is the whole bound of the plane half, and it
  * is DERIVED, not chosen: a weight is signed-unit and a feature is unit, so the
  * MEAN of the weighted features spans exactly [−1, +1] — precisely the reach one
  * static plane gene already has. So the DYNAMIC term may say exactly as much as
- * the STATIC term, and the static gene is literally the policy's intercept
- * (contract M-OBM.3), the sum living in the banked axis' own domain.
+ * the STATIC term, and when the CTB door is open the static gene is literally the
+ * policy's intercept (contract M-OBM.3), the sum living in the banked axis' own
+ * domain.
  *
  * ZERO IS ARITHMETIC-EXACT: all weights zero ⇒ every `output_o` is `0` ⇒
- * `plane === (staticDepth, staticWidth)` by `x + 0`, and `supportMul === runMul
- * === 1` by `1 + 0 · span`, so the call sites' `s *= 1` is an IEEE-754 identity.
- * That is what G-ZERO measures rather than asserts.
+ * `plane === (intercept_depth, intercept_width)` by `x + 0` — which is
+ * `(0, 0)`, i.e. the incumbent point, with the CTB door shut, and the banked
+ * static plane with it open — and `supportMul === runMul === 1` by
+ * `1 + 0 · span`, so the call sites' `s *= 1` is an IEEE-754 identity. That is
+ * what G-ZERO measures rather than asserts.
  *
  * PURE: no rng, no writes, no truth.
  */
 export function obmPolicyOf(
   g: TacticalGenome, features: readonly number[], sawSnapshot: boolean,
+  ctbPlaneArmed: boolean,
 ): ObmPolicy {
   const w = offballMovementWeightVector(g);
   const nFeatures = OBM_FEATURE_KEYS.length;
@@ -207,12 +228,17 @@ export function obmPolicyOf(
     for (let i = 0; i < nFeatures; i++) acc += w[o * nFeatures + i] * features[i];
     outputs[o] = acc / nFeatures;
   }
+  // ⭐ THE CTB DOOR: the banked static genes enter this composition ONLY when their
+  // OWN flag is armed. Shut ⇒ a hard `0` intercept, so the seat can never spend a
+  // gene bank it was not given the key to.
+  const interceptDepth = ctbPlaneArmed ? ctbSupportDepthWeight(g) : 0;
+  const interceptWidth = ctbPlaneArmed ? ctbSupportWidthWeight(g) : 0;
   return {
     features,
     outputs,
     plane: {
-      depth: clampSigned(ctbSupportDepthWeight(g) + outputs[0]),
-      width: clampSigned(ctbSupportWidthWeight(g) + outputs[1]),
+      depth: clampSigned(interceptDepth + outputs[0]),
+      width: clampSigned(interceptWidth + outputs[1]),
     },
     supportMul: 1 + outputs[2] * OBM_SCORE_SPAN,
     runMul: 1 + outputs[3] * OBM_SCORE_SPAN,
@@ -225,14 +251,24 @@ export function obmPolicyOf(
  * features off it, weight them. Called once per off-ball decision (never per
  * tick), from the single `obmMovement` fork in `PlayerBrain.decideOffBall`.
  *
- * `candidate` is the body's OWN intention — the support point he would take with
- * the seat absent. It is his plan, not information about anybody else; the SPACE
- * reading taken at it (f3) is entirely percept. The undeformed point is used on
- * purpose, so the policy's own output can never feed back into its own input.
+ * `candidate` is the body's OWN intention — the support point he would ACTUALLY
+ * take with the seat absent, i.e. `supportSpot(p, team, ball, match.ctbSupportPlane)`
+ * under WHATEVER flag state the world is in. It is his plan, not information about
+ * anybody else; the SPACE reading taken at it (f3) is entirely percept. The point
+ * is the seat-absent one on purpose, so the policy's own output can never feed back
+ * into its own input — self-feedback avoidance is about the OBM output, not about
+ * the banked static plane, which is part of the world he stands in.
+ *
+ * `ctbPlaneArmed` is the CTB seam's OWN flag, handed in by the caller (see
+ * `obmPolicyOf`): this module never reads it off `match`, so the G-EPI source pin
+ * — `perceivedSnapshot` is the only `match` member named here — still holds.
  */
 export function obmOffballPolicy(
   p: Player, match: Match, g: TacticalGenome, candidate: Readonly<V2>,
+  ctbPlaneArmed: boolean,
 ): ObmPolicy {
   const snapshot = match.perceivedSnapshot(p);
-  return obmPolicyOf(g, obmFeatures(snapshot, p.pos, p.side, candidate), snapshot !== null);
+  return obmPolicyOf(
+    g, obmFeatures(snapshot, p.pos, p.side, candidate), snapshot !== null, ctbPlaneArmed,
+  );
 }

@@ -882,7 +882,11 @@ export function crossoverGenomes(
       (_, i) => (r < 0.4 ? av[i] : r < 0.8 ? bv[i] : (av[i] + bv[i]) / 2),
     );
   } else if (a.offballMovementWeights !== undefined) {
-    out.offballMovementWeights = a.offballMovementWeights;
+    // ⭐ COPIED, never ALIASED (the OBM-T0 verify catch, LOW): value-identical to
+    // parent A and therefore RNG- and byte-neutral, but the child no longer SHARES
+    // parent A's array — an in-place write on either (e.g. the arming checklist's
+    // three-view dosing, #196.3-D6) can no longer reach through into the other.
+    out.offballMovementWeights = [...a.offballMovementWeights];
   }
   return out;
 }

@@ -494,7 +494,14 @@ export interface MatchConfig {
    * the off-ball attacker reads four continuous features off his OWN percept
    * snapshot and a gene-weighted policy turns them into a dynamic position on the
    * banked CTB support plane plus a bounded modulation of his `SupportBallCarrier`
-   * and licensed `MakeRun` scores (`src/ai/offballEyes.ts`). Read at exactly TWO
+   * and licensed `MakeRun` scores (`src/ai/offballEyes.ts`).
+   * ⭐ THIS FLAG OPENS THE DYNAMIC HALF ONLY (the OBM-T0 verify catch). The banked
+   * `ctbSupport*` genes enter the plane composition as its INTERCEPT **only when
+   * `ctbSupportPlane` — their own flag — is also armed**. Armed alone, this seat
+   * runs its dynamic policy on a ZERO intercept, whose zero-point is the incumbent
+   * `supportSpot` geometry, so it can never spend a gene bank it was not given the
+   * key to; armed together with `ctbSupportPlane`, the banked static plane is
+   * delivered exactly as banked and this seat adds slopes on top. Read at exactly TWO
    * places: the policy fork in `PlayerBrain.decideOffBall` (the two SCORE sites) and
    * the plane fork in `actionExecutor`'s `SupportBallCarrier` case (the TARGET site).
    * TeamBrain designation, pass selection, the carrier's seats and the defensive

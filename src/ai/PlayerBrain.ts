@@ -1217,15 +1217,24 @@ function decideOffBall(p: Player, team: Team, opp: Team, match: Match): void {
     // of 2 in src/**, and the seat's ONLY percept pull, taken here at the body's own
     // AI_INTERVAL decision cadence (M-OBM.4). The policy's PLANE half is handed to
     // the match so the executor can re-use it without looking again; its two SCORE
-    // multipliers modulate the candidates below. `supportSpot(p, team, ball)` is the
-    // UNDEFORMED incumbent point — his own intention, and the anchor the f3 space
-    // reading is taken at, so the policy's output can never feed its own input.
+    // multipliers modulate the candidates below.
+    // ⭐ TWO DOORS, TWO ARGUMENTS (the OBM-T0 verify catch): `match.ctbSupportPlane`
+    // rides in TWICE and does two different jobs. (1) As the fourth `supportSpot`
+    // argument it makes the ANCHOR the point this body would ACTUALLY take with the
+    // seat absent under whatever flag state the world is in — so the f3 space reading
+    // is honest in every configuration, while still excluding the seat's OWN output
+    // (self-feedback avoidance retained). (2) As the fifth `obmOffballPolicy`
+    // argument it is the CTB DOOR: the banked static genes enter the plane
+    // composition only when their own flag is armed, so arming THIS seat alone can
+    // never spend the banked CTB gene bank.
     // Flag off ⇒ both multipliers stay exactly 1 and `s *= 1` is an IEEE-754
     // identity, so the shipped scores are byte-identical (G-OFF / G-BORN / G-ZERO).
     let obmSupportMul = 1;
     let obmRunMul = 1;
     if (match.obmMovement) {
-      const obm = obmOffballPolicy(p, match, g, supportSpot(p, team, ball));
+      const obm = obmOffballPolicy(
+        p, match, g, supportSpot(p, team, ball, match.ctbSupportPlane), match.ctbSupportPlane,
+      );
       match.setObmPolicy(p.gid, obm.plane);
       obmSupportMul = obm.supportMul;
       obmRunMul = obm.runMul;

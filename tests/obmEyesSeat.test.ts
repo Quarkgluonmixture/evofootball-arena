@@ -62,22 +62,35 @@ const team = (name: string, seed: number): TeamInfo => {
 const dosedMatrix = (fill: (i: number) => number): number[] => Array.from(
   { length: OBM_WEIGHT_SLOTS }, (_, i) => fill(i),
 );
+/** The BANKED CTB static dose: the signed domain's own corners (CTB-T0's convention). */
+const CTB_DOSE = { depth: CTB_GENE_MIN, width: CTB_GENE_MAX } as const;
+/**
+ * ⭐ The four doors, all four settable (the OBM-T0 verify catch): the OBM flag, the
+ * OBM policy matrix, the BANKED CTB flag and the BANKED CTB static genes. The first
+ * cut's fixtures could only move the first two, which is precisely why a composition
+ * that spent the CTB gene bank through the OBM door passed every test.
+ */
 const matchOf = (
   seed: number,
   arm?: boolean,
   weights?: number[],
   percept = true,
+  ctb = false,
+  ctbGenes?: { depth: number; width: number },
 ): Match => {
   const m = new Match({
     seed, teamA: team('A', seed * 2 + 1), teamB: team('B', seed * 2 + 2), duration: 240,
     ...(percept ? { edsPerceivedDefence: true, edsPerceivedChoice: true } : {}),
     ...(arm === undefined ? {} : { obmMovement: arm }),
+    ...(ctb ? { ctbSupportPlane: true } : {}),
   });
-  if (weights !== undefined) {
-    // THE ARMING CHECKLIST (#196.3-D6): all three genome views of BOTH teams.
-    for (const t of m.teams) {
-      for (const g of [t.info.genome, t.baseGenome, t.effGenome] as TacticalGenome[]) {
-        g.offballMovementWeights = [...weights];
+  // THE ARMING CHECKLIST (#196.3-D6): all three genome views of BOTH teams.
+  for (const t of m.teams) {
+    for (const g of [t.info.genome, t.baseGenome, t.effGenome] as TacticalGenome[]) {
+      if (weights !== undefined) g.offballMovementWeights = [...weights];
+      if (ctbGenes !== undefined) {
+        g.ctbSupportDepth = ctbGenes.depth;
+        g.ctbSupportWidth = ctbGenes.width;
       }
     }
   }
@@ -235,19 +248,23 @@ describe('OBM-T0 — the LAW: traced bounds, exact zero, bounded outputs', () =>
       const statics: TacticalGenome = {
         ctbSupportDepth: rng.next() * 2 - 1, ctbSupportWidth: rng.next() * 2 - 1,
       } as TacticalGenome;
+      // ⭐ crossed on the CTB DOOR: shut ⇒ the zero-point is the INCUMBENT plane
+      // (0, 0); open ⇒ it is the banked static plane, EXACTLY as banked.
+      for (const ctbArmed of [false, true]) {
       for (const g of [
         statics, { ...statics, offballMovementWeights: dosedMatrix(() => 0) },
       ] as TacticalGenome[]) {
-        const policy = obmPolicyOf(g, features, true);
+        const policy = obmPolicyOf(g, features, true, ctbArmed);
         expect(policy.outputs).toEqual([0, 0, 0, 0]);
-        expect(policy.plane.depth).toBe(statics.ctbSupportDepth);
-        expect(policy.plane.width).toBe(statics.ctbSupportWidth);
+        expect(policy.plane.depth).toBe(ctbArmed ? statics.ctbSupportDepth : 0);
+        expect(policy.plane.width).toBe(ctbArmed ? statics.ctbSupportWidth : 0);
         expect(policy.supportMul).toBe(1);
         expect(policy.runMul).toBe(1);
         // ...and ×1 is an identity on an arbitrary incumbent score
         const s = 0.1 + rng.next();
         expect(s * policy.supportMul).toBe(s);
         expect(s * policy.runMul).toBe(s);
+      }
       }
     }
   });
@@ -261,7 +278,7 @@ describe('OBM-T0 — the LAW: traced bounds, exact zero, bounded outputs', () =>
         ctbSupportWidth: rng.next() * 2 - 1,
         offballMovementWeights: dosedMatrix(() => (rng.next() < 0.5 ? -1 : 1)),
       } as TacticalGenome;
-      const policy = obmPolicyOf(g, features, true);
+      const policy = obmPolicyOf(g, features, true, rng.next() < 0.5);
       for (const o of policy.outputs) {
         expect(o).toBeGreaterThanOrEqual(OBM_WEIGHT_MIN);
         expect(o).toBeLessThanOrEqual(OBM_WEIGHT_MAX);
@@ -277,16 +294,30 @@ describe('OBM-T0 — the LAW: traced bounds, exact zero, bounded outputs', () =>
     }
   });
 
-  it('the STATIC CTB genes are the policy INTERCEPT: the dynamic term adds to them', () => {
+  it('⭐ THE CTB DOOR: the static genes are the INTERCEPT only when THEIR flag is armed', () => {
     const features = [1, 0, 0, 0];
     const g = {
       ctbSupportDepth: 0.25, ctbSupportWidth: -0.25,
       // w[planeDepth][f1] = +1 ⇒ output = 1/4; w[planeWidth][f1] = −1 ⇒ −1/4
       offballMovementWeights: dosedMatrix((i) => (i === 0 ? 1 : i === OBM_FEATURE_KEYS.length ? -1 : 0)),
     } as TacticalGenome;
-    const policy = obmPolicyOf(g, features, true);
-    expect(policy.plane.depth).toBeCloseTo(0.25 + 1 / OBM_FEATURE_KEYS.length, 12);
-    expect(policy.plane.width).toBeCloseTo(-0.25 - 1 / OBM_FEATURE_KEYS.length, 12);
+    // ctb flag ARMED ⇒ the banked gene IS the intercept and the dynamic term adds
+    const armed = obmPolicyOf(g, features, true, true);
+    expect(armed.plane.depth).toBeCloseTo(0.25 + 1 / OBM_FEATURE_KEYS.length, 12);
+    expect(armed.plane.width).toBeCloseTo(-0.25 - 1 / OBM_FEATURE_KEYS.length, 12);
+    // ⭐ ctb flag SHUT ⇒ intercept 0: the banked genes are NOT spendable through this
+    // seat's door, so the plane is the DYNAMIC term alone (the OBM-T0 verify catch)
+    const shut = obmPolicyOf(g, features, true, false);
+    expect(shut.plane.depth).toBeCloseTo(1 / OBM_FEATURE_KEYS.length, 12);
+    expect(shut.plane.width).toBeCloseTo(-1 / OBM_FEATURE_KEYS.length, 12);
+    // and the ctb genes make NO difference at all with the door shut
+    const noGenes = { ...g } as TacticalGenome;
+    delete noGenes.ctbSupportDepth;
+    delete noGenes.ctbSupportWidth;
+    expect(obmPolicyOf(noGenes, features, true, false).plane).toEqual(shut.plane);
+    // the SCORE half is untouched by the CTB door either way
+    expect(shut.supportMul).toBe(armed.supportMul);
+    expect(shut.runMul).toBe(armed.runMul);
   });
 });
 
@@ -295,6 +326,7 @@ describe('OBM-T0 — ⭐ G-EPI: the eyes are HONEST', () => {
     const policy = obmPolicyOf(
       { offballMovementWeights: dosedMatrix(() => 1) } as TacticalGenome,
       obmFeatures(null, { x: 0, y: 0 }, 0, { x: 5, y: 5 }),
+      false,
       false,
     );
     expect(policy.features).toEqual([0, 0, 0, 0]);
@@ -329,7 +361,7 @@ describe('OBM-T0 — ⭐ G-EPI: the eyes are HONEST', () => {
     for (const o of m.teams[1].players) { o.pos.x += 25; o.pos.y += 12; }
 
     // (a) the seat still reads the OLD, perceived positions
-    const seat = obmOffballPolicy(p, m, m.teams[0].genome, candidate);
+    const seat = obmOffballPolicy(p, m, m.teams[0].genome, candidate, m.ctbSupportPlane);
     expect(seat.features).toEqual(fromPercept);
 
     // (b) the same features computed off a TRUTH snapshot differ
@@ -508,5 +540,69 @@ describe('OBM-T0 — Road B hygiene, the read forks, and the four-limb arming ch
     // feature is zero. A blind body has no policy.
     const blindOff = run(matchOf(seed, false, undefined, false));
     expect(run(matchOf(seed, true, dose, false))).toBe(blindOff);
+    // ⭐ limb 1, re-stated HONESTLY (the verify catch): the CTB static genes express
+    // ONLY under their own flag — the OBM seat adds DYNAMICS on top of whatever that
+    // flag delivered, and can never open the CTB door for itself. Fully dosing the
+    // banked ctbSupport* genes changes NOTHING while `ctbSupportPlane` is off.
+    expect(run(matchOf(seed, true, undefined, true, false, CTB_DOSE))).toBe(off);
+    expect(run(matchOf(seed, true, dosedMatrix(() => 0), true, false, CTB_DOSE))).toBe(off);
+    expect(run(matchOf(seed, true, dose, true, false, CTB_DOSE)))
+      .toBe(run(matchOf(seed, true, dose, true, false)));
+  });
+});
+
+/**
+ * ⭐⭐ THE FLAG×GENE CROSSING (the OBM-T0 verify catch, the #191 correction form).
+ *
+ * THE DEFECT: the first cut composed `plane = clamp(ctbSupport*Weight(g) + output)`
+ * UNCONDITIONALLY, so arming `obmMovement` ALONE consumed the BANKED `ctbSupport*`
+ * gene bank — empirically, obm ON + matrix zero/absent + ctb genes dosed was
+ * BYTE-IDENTICAL to arming `ctbSupportPlane` alone. THE MISS: no probe arm and no
+ * fixture ever crossed the two seams, so the configuration in which the invariant
+ * broke was never executed. These fixtures execute it.
+ */
+describe('OBM-T0 — ⭐⭐ each seam expresses ONLY what its own flag opened', () => {
+  const seed = 12_424_906;
+  const dose = dosedMatrix((i) => (i % 2 === 0 ? -1 : 1));
+  const zero = dosedMatrix(() => 0);
+
+  it('⭐ obm ALONE never delivers the banked CTB plane, whatever is banked', () => {
+    const allOff = run(matchOf(seed, false));
+    // the banked static plane, alone, DOES bite — so the identities below are not vacuous
+    const ctbAlone = run(matchOf(seed, false, undefined, true, true, CTB_DOSE));
+    expect(ctbAlone).not.toBe(allOff);
+    for (const matrix of [undefined, zero]) {
+      // obm ARMED, ctb door SHUT, gene bank FULL ⇒ still exactly the incumbent world
+      expect(run(matchOf(seed, true, matrix, true, false, CTB_DOSE))).toBe(allOff);
+      // ⭐ THE FALSIFIER: this pair was byte-identical before the fix
+      expect(run(matchOf(seed, true, matrix, true, false, CTB_DOSE))).not.toBe(ctbAlone);
+    }
+    // and with the seat FULLY live the bank is still invisible to it
+    expect(run(matchOf(seed, true, dose, true, false, CTB_DOSE)))
+      .toBe(run(matchOf(seed, true, dose, true, false)));
+  });
+
+  it('⭐ with BOTH doors open the banked plane IS the intercept, exactly as banked', () => {
+    const ctbAlone = run(matchOf(seed, false, undefined, true, true, CTB_DOSE));
+    // an inert policy on top of an armed CTB seam ⇒ the static plane, untouched
+    expect(run(matchOf(seed, true, undefined, true, true, CTB_DOSE))).toBe(ctbAlone);
+    expect(run(matchOf(seed, true, zero, true, true, CTB_DOSE))).toBe(ctbAlone);
+    // dosed ⇒ intercept PLUS slopes ⇒ it must leave the static-plane-only world
+    expect(run(matchOf(seed, true, dose, true, true, CTB_DOSE))).not.toBe(ctbAlone);
+  });
+
+  it('⭐ the BLIND-WORLD variants of both: the seat contributes nothing without eyes', () => {
+    // (a) blind: ctb door shut, gene bank full, matrix FULLY dosed ⇒ the incumbent world
+    const blindAllOff = run(matchOf(seed, false, undefined, false));
+    for (const matrix of [undefined, zero, dose]) {
+      expect(run(matchOf(seed, true, matrix, false, false, CTB_DOSE))).toBe(blindAllOff);
+    }
+    // (b) blind: the CTB seam needs NO eyes, so it delivers the bank in full while
+    // the OBM seat — which does need them — adds exactly zero on top
+    const blindCtbAlone = run(matchOf(seed, false, undefined, false, true, CTB_DOSE));
+    expect(blindCtbAlone).not.toBe(blindAllOff);
+    for (const matrix of [undefined, zero, dose]) {
+      expect(run(matchOf(seed, true, matrix, false, true, CTB_DOSE))).toBe(blindCtbAlone);
+    }
   });
 });

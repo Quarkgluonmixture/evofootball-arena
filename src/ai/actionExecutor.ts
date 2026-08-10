@@ -411,6 +411,12 @@ export function executeAction(p: Player, match: Match, dt: number): void {
       // skipped entirely and the incumbent line above stands byte for byte — which is
       // also why the incumbent call is left untouched rather than given an argument
       // (`tests/ctbSupportPlane.test.ts` pins it verbatim).
+      // ⭐ THE TWO DOORS ARE INDEPENDENT (the OBM-T0 verify catch). The plane handed
+      // in already carries the CTB gate INSIDE it: with `ctbSupportPlane` OFF this is
+      // the DYNAMIC-ONLY plane, whose zero-point is the incumbent line above, so
+      // arming THIS seat alone never delivers the banked static CTB plane; with it ON
+      // this is intercept + slopes and it supersedes the static line above. Each seam
+      // therefore expresses only what its own flag opened.
       const obmPlane = match.obmMovement ? match.obmPlaneFor(p) : null;
       if (obmPlane !== null) target = supportSpotOnObmPlane(p, team, ball, obmPlane);
       speedF = (team.mode === 'CounterAttack' ? 1 : 0.9) - conserve * 0.15;
