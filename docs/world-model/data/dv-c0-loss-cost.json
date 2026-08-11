@@ -1,0 +1,2244 @@
+{
+  "stage": "DV-C0 — THE LOSS-COST CENSUS (the TRUE TABLE: turnover → goal-against hazard by zone)",
+  "doc": "docs/world-model/DV-C0-LOSS-COST-CENSUS.md",
+  "contract": "docs/world-model/DELIVERY-VALUE-CONTRACT.md §3 DV-C0 (+ the #246 amendment, + #247)",
+  "ruling": "#245 (the contract) · #246 (the reality-shape amendment) · #247 (truth/belief split) · #248 (the earned-knowledge ledger — DV is the pilot)",
+  "mode": "full",
+  "preflight": false,
+  "frozenDesign": {
+    "world": "⭐ BARE PRODUCTION — `new Match({seed, teamA, teamB})`, the SHIPPED game. No flag, no gene, no eye. This is the world whose prices ground everything (gWorld reads it back).",
+    "measuredQuantity": "for EVERY team-level turnover — the goal-genealogy census's own definition, inherited VERBATIM with its LOSS-TICK semantics (#215.3-H1: the turnover POSITION is the ball at the LOSING team's LAST-CONTROLLED tick) — does the CONCEDING side concede a goal within W sim-seconds of the loss, attributed cleanly by the frozen nearest-in-window rule?",
+    "turnoverDefinition": "INHERITED VERBATIM (#214 §3.1 / #215.3): a possession segment is a maximal interval of same-owner-TEAM control while phase === \"playing\", suspended while the ball is loose in play; a TURNOVER is a segment that ends with terminator \"opponentControl\". The event is STAMPED at the tick the opponent establishes control (the census's own stamp) and its POSITION is read at the segment's LAST OWNED tick.",
+    "zoning": {
+      "frame": "⭐ THE LOSER'S OWN ATTACKING FRAME — \"where did I lose it\". own third = the losing team's own defensive third. ⚠ This is the MIRROR of the #214 census's origin classes, which name thirds in the WINNER's frame (turnoverWonInFinalThird = a loss in the loser's own third). Both frames are exact mirrors; DV-C0 states its frame explicitly because the PRICE belongs to the team that pays it.",
+      "thirds": [
+        "own",
+        "middle",
+        "final"
+      ],
+      "thirdBoundaryLocalX": 10.5,
+      "thirdBoundaryTrace": "HALF_L / 3 — the #188 / PM-T1 OWN_THIRD_LOCAL_X, inherited through #214.",
+      "bands": [
+        "central",
+        "wide"
+      ],
+      "bandBoundaryAbsY": 6.766667,
+      "bandBoundaryTrace": "HALF_W / 3 — the SAME one-third rule applied to the pitch's own WIDTH constant (the width-axis ANALOGUE; declared as a zoning choice, frozen ex ante). The pitch is symmetric about y = 0, so |y| needs no frame mirror.",
+      "cells": [
+        "own_central",
+        "own_wide",
+        "middle_central",
+        "middle_wide",
+        "final_central",
+        "final_wide"
+      ],
+      "primaryTable": "THIRDS (three zones). The six third × band cells are the SECONDARY table."
+    },
+    "windows": {
+      "primaryWindowS": 10,
+      "windowsS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "trace": {
+        "pass": true,
+        "source": "docs/world-model/data/goal-genealogy-census.json",
+        "sourceField": "frozenDesign.definitions.dangerWindowsS",
+        "family": [
+          5,
+          10
+        ],
+        "familyMin": 5,
+        "primaryWindowS": 10,
+        "primaryInFamily": true,
+        "windowsS": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "allIntegerMultiplesOfFamilyMin": true,
+        "note": "⭐ THE WINDOW IS NOT TYPED AS A LEVEL: the PRIMARY window must be a MEMBER of the #218 census's own committed co-occurrence family, and every sensitivity window must be an integer multiple of that family's smallest member. Both are checked against the committed artifact at run time."
+      },
+      "note": "⭐ PRE-REGISTERED: the primary window is the #218 census's own 10 s co-occurrence window, and the sensitivity ladder is integer multiples of that family's 5 s member, so the table's WINDOW-DEPENDENCE is visible rather than hidden behind one choice."
+    },
+    "attributionRule": "⭐ FROZEN EX ANTE — NEAREST-IN-WINDOW, GREEDY, ONE-TO-ONE: conceded goals are processed chronologically; a goal conceded by T at t_g is attributed to the LATEST not-yet-attributed turnover by T with loss stamp in [t_g − W, t_g] (ties → earliest index); if none exists the goal is UNATTRIBUTED. Every goal therefore maps to exactly one-or-zero turnovers and every turnover carries at most one goal. The #218 CO-OCCURRENCE reading (many-to-one) is published beside every cell as the declared cross-cut.",
+    "estimator": "cluster bootstrap by MATCH SEED (#20), 2000 resamples, percentile 95 % CI, ratio-of-sums per zone. ⭐ ONE SHARED resample-index matrix, so every zone hazard and every zone DIFFERENCE (the #246 shape predicates) is computed on the SAME resampled clusters. Stats stream base 106000, disjoint from the match RNG (#163).",
+    "realityShapePredicates": "⭐ #246, PRE-REGISTERED BEFORE ANY RUN: (1) hazard(own third) > hazard(middle third); (2) hazard(middle third) > hazard(final third); (3) the GRADIENT — both together, i.e. hazard rising toward one's own goal. Each is resolved by the paired cluster-bootstrap CI of the DIFFERENCE excluding zero. ⚠ AN INVERSION IS A FINDING, NOT AN ERROR: it is PUBLISHED and routed to the 街机偏离 test (deliberate arcade trade-off vs defect) and is NEVER corrected into the table. MAGNITUDES are OUR world's and are supposed to be; only the SHAPE is the fidelity check.",
+    "truthBeliefSplit": "⭐⭐ #247: this table is INSTRUMENT-SIDE TRUTH. It grounds DV-T1's hand doses and it is the YARDSTICK against which DV-T2 measures belief convergence. It is NOT wired into any player's head — no player is born knowing it, and #248 names this arc as the pilot for the whole earned-knowledge ledger.",
+    "seedLedger": {
+      "pass": true,
+      "block": "12429100..12429824",
+      "band": [
+        12429000,
+        12429999
+      ],
+      "inBand": true,
+      "routedCorrectly": true,
+      "subBlocksOrdered": true,
+      "walkedBlocks": [
+        {
+          "name": "census walk (fresh)",
+          "first": 12429100,
+          "last": 12429824,
+          "kind": "fresh",
+          "seeds": 725,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "smoke block (reserved)",
+          "first": 12429000,
+          "last": 12429011,
+          "kind": "reserved",
+          "seeds": 12,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "exit-semantics guard block (reserved)",
+          "first": 12429050,
+          "last": 12429099,
+          "kind": "reserved",
+          "seeds": 50,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "census block + reserve (reserved)",
+          "first": 12429100,
+          "last": 12429899,
+          "kind": "reserved",
+          "seeds": 800,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "gWorld construction seed (never stepped)",
+          "first": 12429999,
+          "last": 12429999,
+          "kind": "reserved",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "reproGgc (re-walk RECEIPT)",
+          "first": 12421000,
+          "last": 12421011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "goal-genealogy census band (#214/#217)"
+          ],
+          "ok": true
+        }
+      ],
+      "subBlocks": {
+        "smoke": "12429000..12429011",
+        "guard": "12429050..12429099",
+        "census": "12429100..12429899",
+        "censusN": 725,
+        "gWorldConstructionSeed": 12429999
+      },
+      "freshnessNote": "⭐ #163: this stage's band opens at 12429000, strictly above everything the programme has consumed — DLC-T1s's battery + reserve ran to 12,428,899 and its test-seed band to 12,428,906.",
+      "reproNote": "the ONE re-walk block (GGC smoke) is a DELIBERATE receipt, so its predicate is INVERTED: it must COLLIDE with the ledger. Every other block carries the ordinary predicate (collision-free), and the sub-blocks are ordered and disjoint from each other.",
+      "gWorldSeedNote": "gWorld CONSTRUCTS one match at 12429999 and NEVER STEPS IT — no match RNG is drawn from that seed, and it is inside this stage's own reserved band.",
+      "consumedLedger": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "goal-genealogy census band (#214/#217)",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#224)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds (#224)",
+          "range": [
+            12423900,
+            12423901
+          ]
+        },
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read (#228)",
+          "range": [
+            12424000,
+            12424024
+          ]
+        },
+        {
+          "name": "OBM-T0 REPORTED cost reading (#228)",
+          "range": [
+            12424025,
+            12424025
+          ]
+        },
+        {
+          "name": "OBM-T1 smoke (#228.6/#230)",
+          "range": [
+            12424026,
+            12424037
+          ]
+        },
+        {
+          "name": "OBM-T1 delivered-dose read (#230)",
+          "range": [
+            12424040,
+            12424040
+          ]
+        },
+        {
+          "name": "OBM-T1 guard band (#230)",
+          "range": [
+            12424050,
+            12424099
+          ]
+        },
+        {
+          "name": "OBM-T1 battery + reserve (#230)",
+          "range": [
+            12424100,
+            12424899
+          ]
+        },
+        {
+          "name": "OBM-T0 test-file seeds (#228)",
+          "range": [
+            12424900,
+            12424906
+          ]
+        },
+        {
+          "name": "PTP-T0 receipts + geometry/EPI-MOTION/smoke read (#232)",
+          "range": [
+            12425000,
+            12425024
+          ]
+        },
+        {
+          "name": "PTP-T0 REPORTED cost reading (#232)",
+          "range": [
+            12425025,
+            12425025
+          ]
+        },
+        {
+          "name": "PTP-T1 smoke (#232.3/#233)",
+          "range": [
+            12425026,
+            12425037
+          ]
+        },
+        {
+          "name": "PTP-T1 delivered-dose read (#233)",
+          "range": [
+            12425040,
+            12425040
+          ]
+        },
+        {
+          "name": "PTP-T1 guard band (#233)",
+          "range": [
+            12425050,
+            12425099
+          ]
+        },
+        {
+          "name": "PTP-T1 battery + reserve (#233/#234)",
+          "range": [
+            12425100,
+            12425727
+          ]
+        },
+        {
+          "name": "PTP-T0 test-file seeds (#232)",
+          "range": [
+            12425900,
+            12425906
+          ]
+        },
+        {
+          "name": "DLC-T0 receipts + contest/winner/EPI/smoke read (#237)",
+          "range": [
+            12426000,
+            12426024
+          ]
+        },
+        {
+          "name": "DLC-T0 REPORTED chooser-cost reading (#237)",
+          "range": [
+            12426025,
+            12426025
+          ]
+        },
+        {
+          "name": "DLC-T1 smoke (#238)",
+          "range": [
+            12426030,
+            12426041
+          ]
+        },
+        {
+          "name": "DLC-T1 delivered-dose read (#238)",
+          "range": [
+            12426045,
+            12426045
+          ]
+        },
+        {
+          "name": "DLC-T1 guard band (#238)",
+          "range": [
+            12426050,
+            12426099
+          ]
+        },
+        {
+          "name": "DLC-T1 battery + reserve (#238/#239)",
+          "range": [
+            12426100,
+            12426727
+          ]
+        },
+        {
+          "name": "DLC-T0 test-file seeds (#237)",
+          "range": [
+            12426900,
+            12426906
+          ]
+        },
+        {
+          "name": "DLC-T0s receipts + grid/winner/EPI/smoke/decode read (#242)",
+          "range": [
+            12427000,
+            12427024
+          ]
+        },
+        {
+          "name": "DLC-T0s REPORTED chooser-cost reading (#242)",
+          "range": [
+            12427025,
+            12427025
+          ]
+        },
+        {
+          "name": "DLC-T0s test-file seeds (#242)",
+          "range": [
+            12427900,
+            12427906
+          ]
+        },
+        {
+          "name": "DLC-T1s smoke (#243)",
+          "range": [
+            12428000,
+            12428011
+          ]
+        },
+        {
+          "name": "DLC-T1s delivered-dose read (#243)",
+          "range": [
+            12428015,
+            12428015
+          ]
+        },
+        {
+          "name": "DLC-T1s strike read (#243)",
+          "range": [
+            12428020,
+            12428020
+          ]
+        },
+        {
+          "name": "DLC-T1s guard band (#243)",
+          "range": [
+            12428050,
+            12428099
+          ]
+        },
+        {
+          "name": "DLC-T1s battery + reserve (#243/#244)",
+          "range": [
+            12428100,
+            12428899
+          ]
+        },
+        {
+          "name": "DLC-T1s test-file seed band (#243)",
+          "range": [
+            12428900,
+            12428906
+          ]
+        }
+      ]
+    },
+    "statsBase": {
+      "base": 106000,
+      "resamples": 2000,
+      "cluster": "seed",
+      "minGap": 200
+    },
+    "nRule": {
+      "mode": "full",
+      "smokeArtifact": "docs/world-model/data/dv-c0-loss-cost-smoke.json",
+      "smokeArtifactSha256": "67f14879559e8d110a07df67449b6485a3ee737ff3aeab1e64a22bfa7cb44a32",
+      "targetRarestZoneEvents": 60,
+      "rarestZoneEventsPerMatch": 0.08333,
+      "eventsSource": "the same committed SMOKE artifact — THE SMOKE INFORMS ONLY N: exactly TWO numbers are read out of it, ms/match and the rarest third-level zone's attributed goals per match at the primary window. No hazard, share, CI, ordering or shape verdict is read from it anywhere.",
+      "msPerMatch": 106.667,
+      "msSource": "the committed SMOKE artifact docs/world-model/data/dv-c0-loss-cost-smoke.json (sha256 67f14879559e8d110a07df67449b6485a3ee737ff3aeab1e64a22bfa7cb44a32)",
+      "nRaw": 721,
+      "nStepped": 725,
+      "nStep": 25,
+      "nWall": 8437,
+      "nCap": 800,
+      "nStar": 725,
+      "bindingTerm": "precision",
+      "projectedWallHours": 0.043,
+      "arithmetic": "N* = min( ceil(60 / rarestZoneEventsPerMatch) ↑25, floor(0.5 h / (ms/match × 1 arm × 2 X-DET)), 800 ) — frozen in the stage doc §NRULE BEFORE the smoke ran. The rarest-zone event is an ATTRIBUTED conceded goal in the RAREST of the three third-level zones at the PRIMARY window, i.e. the scarcest numerator the published table contains.",
+      "envOverride": null,
+      "n": 725
+    }
+  },
+  "referenceShapes": {
+    "houseLaw": "⭐⭐ SHAPES ONLY, AND THEY REACH NO SIM VALUE (VISION §3): 常数永不进口. No real-football NUMBER appears in this probe; the #246 comparison is an ORDERING.",
+    "axis": "that losing the ball near your own goal is more expensive than losing it near theirs, and that the cost falls as the loss moves up the pitch, is the standard structure of real football's risk sense — the SHAPE #246 cites.",
+    "scaleCaveat": "⚠ this world is 6v6 on a 0.70-scaled pitch with 240 sim-seconds mapped to 90 display-minutes. MAGNITUDES DO NOT TRANSFER and are not supposed to (#246): only the ordering is compared."
+  },
+  "result": {
+    "seeds": {
+      "base": 12429100,
+      "n": 725,
+      "first": 12429100,
+      "last": 12429824
+    },
+    "census": {
+      "matches": 725,
+      "simSecondsPerMatch": 241.9837,
+      "turnoversPerMatch": 34.109,
+      "concededGoalsPerMatch": 2.1862,
+      "table": [
+        {
+          "windowS": 5,
+          "isPrimary": false,
+          "all": {
+            "zone": "all",
+            "turnovers": 24729,
+            "goalsAgainstAttributed": 654,
+            "hazard": 0.02645,
+            "hazardCi95": [
+              0.02435,
+              0.02854
+            ],
+            "turnoversFollowedByGoalCoOccurrence": 697,
+            "coOccurrenceRate": 0.02819
+          },
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 5380,
+              "goalsAgainstAttributed": 330,
+              "hazard": 0.06134,
+              "hazardCi95": [
+                0.05538,
+                0.06801
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 352,
+              "coOccurrenceRate": 0.06543
+            },
+            {
+              "zone": "middle",
+              "turnovers": 12544,
+              "goalsAgainstAttributed": 296,
+              "hazard": 0.0236,
+              "hazardCi95": [
+                0.02078,
+                0.0264
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 315,
+              "coOccurrenceRate": 0.02511
+            },
+            {
+              "zone": "final",
+              "turnovers": 6805,
+              "goalsAgainstAttributed": 28,
+              "hazard": 0.00411,
+              "hazardCi95": [
+                0.00265,
+                0.00569
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 30,
+              "coOccurrenceRate": 0.00441
+            }
+          ],
+          "byCell": [
+            {
+              "zone": "own_central",
+              "turnovers": 3872,
+              "goalsAgainstAttributed": 238,
+              "hazard": 0.06147,
+              "hazardCi95": [
+                0.05433,
+                0.06902
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 254,
+              "coOccurrenceRate": 0.0656
+            },
+            {
+              "zone": "own_wide",
+              "turnovers": 1508,
+              "goalsAgainstAttributed": 92,
+              "hazard": 0.06101,
+              "hazardCi95": [
+                0.04913,
+                0.07333
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 98,
+              "coOccurrenceRate": 0.06499
+            },
+            {
+              "zone": "middle_central",
+              "turnovers": 6692,
+              "goalsAgainstAttributed": 177,
+              "hazard": 0.02645,
+              "hazardCi95": [
+                0.02246,
+                0.0304
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 185,
+              "coOccurrenceRate": 0.02764
+            },
+            {
+              "zone": "middle_wide",
+              "turnovers": 5852,
+              "goalsAgainstAttributed": 119,
+              "hazard": 0.02033,
+              "hazardCi95": [
+                0.01673,
+                0.02405
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 130,
+              "coOccurrenceRate": 0.02221
+            },
+            {
+              "zone": "final_central",
+              "turnovers": 3926,
+              "goalsAgainstAttributed": 11,
+              "hazard": 0.0028,
+              "hazardCi95": [
+                0.00128,
+                0.00457
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 13,
+              "coOccurrenceRate": 0.00331
+            },
+            {
+              "zone": "final_wide",
+              "turnovers": 2879,
+              "goalsAgainstAttributed": 17,
+              "hazard": 0.0059,
+              "hazardCi95": [
+                0.00318,
+                0.00882
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 17,
+              "coOccurrenceRate": 0.0059
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — own-third losses are the most dangerous, danger falls as the loss moves up the pitch, i.e. hazard rises toward one's OWN goal. SHAPES ONLY; no real-football NUMBER is imported (VISION §3).",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "point": 0.03774,
+              "ci95": [
+                0.03131,
+                0.0447
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "point": 0.01949,
+              "ci95": [
+                0.01639,
+                0.0226
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "gradientTowardOwnGoal": "RESOLVED-CONFIRM",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 10,
+          "isPrimary": true,
+          "all": {
+            "zone": "all",
+            "turnovers": 24729,
+            "goalsAgainstAttributed": 1090,
+            "hazard": 0.04408,
+            "hazardCi95": [
+              0.04138,
+              0.04693
+            ],
+            "turnoversFollowedByGoalCoOccurrence": 1362,
+            "coOccurrenceRate": 0.05508
+          },
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 5380,
+              "goalsAgainstAttributed": 439,
+              "hazard": 0.0816,
+              "hazardCi95": [
+                0.07435,
+                0.08923
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 535,
+              "coOccurrenceRate": 0.09944
+            },
+            {
+              "zone": "middle",
+              "turnovers": 12544,
+              "goalsAgainstAttributed": 528,
+              "hazard": 0.04209,
+              "hazardCi95": [
+                0.03828,
+                0.04591
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 664,
+              "coOccurrenceRate": 0.05293
+            },
+            {
+              "zone": "final",
+              "turnovers": 6805,
+              "goalsAgainstAttributed": 123,
+              "hazard": 0.01807,
+              "hazardCi95": [
+                0.01491,
+                0.02135
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 163,
+              "coOccurrenceRate": 0.02395
+            }
+          ],
+          "byCell": [
+            {
+              "zone": "own_central",
+              "turnovers": 3872,
+              "goalsAgainstAttributed": 315,
+              "hazard": 0.08135,
+              "hazardCi95": [
+                0.0732,
+                0.08996
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 383,
+              "coOccurrenceRate": 0.09892
+            },
+            {
+              "zone": "own_wide",
+              "turnovers": 1508,
+              "goalsAgainstAttributed": 124,
+              "hazard": 0.08223,
+              "hazardCi95": [
+                0.06808,
+                0.09701
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 152,
+              "coOccurrenceRate": 0.1008
+            },
+            {
+              "zone": "middle_central",
+              "turnovers": 6692,
+              "goalsAgainstAttributed": 281,
+              "hazard": 0.04199,
+              "hazardCi95": [
+                0.037,
+                0.04697
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 348,
+              "coOccurrenceRate": 0.052
+            },
+            {
+              "zone": "middle_wide",
+              "turnovers": 5852,
+              "goalsAgainstAttributed": 247,
+              "hazard": 0.04221,
+              "hazardCi95": [
+                0.037,
+                0.04764
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 316,
+              "coOccurrenceRate": 0.054
+            },
+            {
+              "zone": "final_central",
+              "turnovers": 3926,
+              "goalsAgainstAttributed": 56,
+              "hazard": 0.01426,
+              "hazardCi95": [
+                0.01073,
+                0.0182
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 76,
+              "coOccurrenceRate": 0.01936
+            },
+            {
+              "zone": "final_wide",
+              "turnovers": 2879,
+              "goalsAgainstAttributed": 67,
+              "hazard": 0.02327,
+              "hazardCi95": [
+                0.01765,
+                0.0292
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 87,
+              "coOccurrenceRate": 0.03022
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — own-third losses are the most dangerous, danger falls as the loss moves up the pitch, i.e. hazard rises toward one's OWN goal. SHAPES ONLY; no real-football NUMBER is imported (VISION §3).",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "point": 0.03951,
+              "ci95": [
+                0.03179,
+                0.04795
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "point": 0.02402,
+              "ci95": [
+                0.01938,
+                0.0288
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "gradientTowardOwnGoal": "RESOLVED-CONFIRM",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 15,
+          "isPrimary": false,
+          "all": {
+            "zone": "all",
+            "turnovers": 24729,
+            "goalsAgainstAttributed": 1287,
+            "hazard": 0.05204,
+            "hazardCi95": [
+              0.04912,
+              0.05499
+            ],
+            "turnoversFollowedByGoalCoOccurrence": 1898,
+            "coOccurrenceRate": 0.07675
+          },
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 5380,
+              "goalsAgainstAttributed": 472,
+              "hazard": 0.08773,
+              "hazardCi95": [
+                0.08046,
+                0.09563
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 642,
+              "coOccurrenceRate": 0.11933
+            },
+            {
+              "zone": "middle",
+              "turnovers": 12544,
+              "goalsAgainstAttributed": 608,
+              "hazard": 0.04847,
+              "hazardCi95": [
+                0.04426,
+                0.05256
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 920,
+              "coOccurrenceRate": 0.07334
+            },
+            {
+              "zone": "final",
+              "turnovers": 6805,
+              "goalsAgainstAttributed": 207,
+              "hazard": 0.03042,
+              "hazardCi95": [
+                0.02651,
+                0.03453
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 336,
+              "coOccurrenceRate": 0.04938
+            }
+          ],
+          "byCell": [
+            {
+              "zone": "own_central",
+              "turnovers": 3872,
+              "goalsAgainstAttributed": 338,
+              "hazard": 0.08729,
+              "hazardCi95": [
+                0.07906,
+                0.09628
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 460,
+              "coOccurrenceRate": 0.1188
+            },
+            {
+              "zone": "own_wide",
+              "turnovers": 1508,
+              "goalsAgainstAttributed": 134,
+              "hazard": 0.08886,
+              "hazardCi95": [
+                0.07469,
+                0.10386
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 182,
+              "coOccurrenceRate": 0.12069
+            },
+            {
+              "zone": "middle_central",
+              "turnovers": 6692,
+              "goalsAgainstAttributed": 326,
+              "hazard": 0.04871,
+              "hazardCi95": [
+                0.04348,
+                0.05387
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 486,
+              "coOccurrenceRate": 0.07262
+            },
+            {
+              "zone": "middle_wide",
+              "turnovers": 5852,
+              "goalsAgainstAttributed": 282,
+              "hazard": 0.04819,
+              "hazardCi95": [
+                0.0425,
+                0.05415
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 434,
+              "coOccurrenceRate": 0.07416
+            },
+            {
+              "zone": "final_central",
+              "turnovers": 3926,
+              "goalsAgainstAttributed": 102,
+              "hazard": 0.02598,
+              "hazardCi95": [
+                0.02107,
+                0.03111
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 168,
+              "coOccurrenceRate": 0.04279
+            },
+            {
+              "zone": "final_wide",
+              "turnovers": 2879,
+              "goalsAgainstAttributed": 105,
+              "hazard": 0.03647,
+              "hazardCi95": [
+                0.02975,
+                0.04332
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 168,
+              "coOccurrenceRate": 0.05835
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — own-third losses are the most dangerous, danger falls as the loss moves up the pitch, i.e. hazard rises toward one's OWN goal. SHAPES ONLY; no real-football NUMBER is imported (VISION §3).",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "point": 0.03926,
+              "ci95": [
+                0.03115,
+                0.04829
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "point": 0.01805,
+              "ci95": [
+                0.01244,
+                0.02361
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "gradientTowardOwnGoal": "RESOLVED-CONFIRM",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        },
+        {
+          "windowS": 20,
+          "isPrimary": false,
+          "all": {
+            "zone": "all",
+            "turnovers": 24729,
+            "goalsAgainstAttributed": 1391,
+            "hazard": 0.05625,
+            "hazardCi95": [
+              0.05321,
+              0.05939
+            ],
+            "turnoversFollowedByGoalCoOccurrence": 2400,
+            "coOccurrenceRate": 0.09705
+          },
+          "byThird": [
+            {
+              "zone": "own",
+              "turnovers": 5380,
+              "goalsAgainstAttributed": 490,
+              "hazard": 0.09108,
+              "hazardCi95": [
+                0.08366,
+                0.09908
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 763,
+              "coOccurrenceRate": 0.14182
+            },
+            {
+              "zone": "middle",
+              "turnovers": 12544,
+              "goalsAgainstAttributed": 646,
+              "hazard": 0.0515,
+              "hazardCi95": [
+                0.04733,
+                0.05579
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 1169,
+              "coOccurrenceRate": 0.09319
+            },
+            {
+              "zone": "final",
+              "turnovers": 6805,
+              "goalsAgainstAttributed": 255,
+              "hazard": 0.03747,
+              "hazardCi95": [
+                0.03314,
+                0.04195
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 468,
+              "coOccurrenceRate": 0.06877
+            }
+          ],
+          "byCell": [
+            {
+              "zone": "own_central",
+              "turnovers": 3872,
+              "goalsAgainstAttributed": 355,
+              "hazard": 0.09168,
+              "hazardCi95": [
+                0.08316,
+                0.10081
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 557,
+              "coOccurrenceRate": 0.14385
+            },
+            {
+              "zone": "own_wide",
+              "turnovers": 1508,
+              "goalsAgainstAttributed": 135,
+              "hazard": 0.08952,
+              "hazardCi95": [
+                0.07538,
+                0.10476
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 206,
+              "coOccurrenceRate": 0.1366
+            },
+            {
+              "zone": "middle_central",
+              "turnovers": 6692,
+              "goalsAgainstAttributed": 344,
+              "hazard": 0.0514,
+              "hazardCi95": [
+                0.04606,
+                0.0568
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 615,
+              "coOccurrenceRate": 0.0919
+            },
+            {
+              "zone": "middle_wide",
+              "turnovers": 5852,
+              "goalsAgainstAttributed": 302,
+              "hazard": 0.05161,
+              "hazardCi95": [
+                0.04578,
+                0.05763
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 554,
+              "coOccurrenceRate": 0.09467
+            },
+            {
+              "zone": "final_central",
+              "turnovers": 3926,
+              "goalsAgainstAttributed": 133,
+              "hazard": 0.03388,
+              "hazardCi95": [
+                0.02834,
+                0.03937
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 250,
+              "coOccurrenceRate": 0.06368
+            },
+            {
+              "zone": "final_wide",
+              "turnovers": 2879,
+              "goalsAgainstAttributed": 122,
+              "hazard": 0.04238,
+              "hazardCi95": [
+                0.03507,
+                0.04997
+              ],
+              "turnoversFollowedByGoalCoOccurrence": 218,
+              "coOccurrenceRate": 0.07572
+            }
+          ],
+          "realityShape": {
+            "predicateSource": "⭐ #246, PRE-REGISTERED: real football's structure — own-third losses are the most dangerous, danger falls as the loss moves up the pitch, i.e. hazard rises toward one's OWN goal. SHAPES ONLY; no real-football NUMBER is imported (VISION §3).",
+            "ownVsMiddle": {
+              "pair": "own − middle",
+              "point": 0.03958,
+              "ci95": [
+                0.03125,
+                0.04842
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "middleVsFinal": {
+              "pair": "middle − final",
+              "point": 0.01403,
+              "ci95": [
+                0.00779,
+                0.0201
+              ],
+              "verdict": "RESOLVED-CONFIRM"
+            },
+            "gradientTowardOwnGoal": "RESOLVED-CONFIRM",
+            "routing": "no inversion at this window; the routing clause is dormant."
+          }
+        }
+      ],
+      "yardstick": {
+        "schema": "dv-c0.truth-table.v1",
+        "frozenBy": "DV-C0, before any belief exists (#247). DV-T2 MAY NOT RE-CUT THIS SHAPE: a belief vector is compared to `zones` (absolute hazards), to `relative` (scale-free — the shape only), and to `ordering` (the rank vector), and to nothing else.",
+        "frame": "the LOSING team's own attacking frame — \"where did I lose it\".",
+        "windowS": 10,
+        "zoning": {
+          "thirds": [
+            "own",
+            "middle",
+            "final"
+          ],
+          "thirdBoundaryLocalX": 10.5,
+          "bands": [
+            "central",
+            "wide"
+          ],
+          "bandBoundaryAbsY": 6.766667,
+          "cells": [
+            "own_central",
+            "own_wide",
+            "middle_central",
+            "middle_wide",
+            "final_central",
+            "final_wide"
+          ]
+        },
+        "zones": {
+          "own": {
+            "hazard": 0.0816,
+            "ci95": [
+              0.07435,
+              0.08923
+            ],
+            "turnovers": 5380,
+            "goalsAgainst": 439
+          },
+          "middle": {
+            "hazard": 0.04209,
+            "ci95": [
+              0.03828,
+              0.04591
+            ],
+            "turnovers": 12544,
+            "goalsAgainst": 528
+          },
+          "final": {
+            "hazard": 0.01807,
+            "ci95": [
+              0.01491,
+              0.02135
+            ],
+            "turnovers": 6805,
+            "goalsAgainst": 123
+          }
+        },
+        "cells": {
+          "own_central": {
+            "hazard": 0.08135,
+            "ci95": [
+              0.0732,
+              0.08996
+            ],
+            "turnovers": 3872,
+            "goalsAgainst": 315
+          },
+          "own_wide": {
+            "hazard": 0.08223,
+            "ci95": [
+              0.06808,
+              0.09701
+            ],
+            "turnovers": 1508,
+            "goalsAgainst": 124
+          },
+          "middle_central": {
+            "hazard": 0.04199,
+            "ci95": [
+              0.037,
+              0.04697
+            ],
+            "turnovers": 6692,
+            "goalsAgainst": 281
+          },
+          "middle_wide": {
+            "hazard": 0.04221,
+            "ci95": [
+              0.037,
+              0.04764
+            ],
+            "turnovers": 5852,
+            "goalsAgainst": 247
+          },
+          "final_central": {
+            "hazard": 0.01426,
+            "ci95": [
+              0.01073,
+              0.0182
+            ],
+            "turnovers": 3926,
+            "goalsAgainst": 56
+          },
+          "final_wide": {
+            "hazard": 0.02327,
+            "ci95": [
+              0.01765,
+              0.0292
+            ],
+            "turnovers": 2879,
+            "goalsAgainst": 67
+          }
+        },
+        "relative": {
+          "own": 1.72686,
+          "middle": 0.89073,
+          "final": 0.38241
+        },
+        "ordering": [
+          "own",
+          "middle",
+          "final"
+        ],
+        "baselineHazardAllZones": 0.04408
+      },
+      "accounting": {
+        "totalTicks": 10926815,
+        "deadBallTicks": 1529929,
+        "segmentTicks": 9396886,
+        "looseGapTicks": 0,
+        "assignedTicksSum": 9396886,
+        "spanOrderViolations": 0,
+        "goalsFromScore": 1585,
+        "concededGoals": 1585,
+        "turnoversTotal": 24729,
+        "turnoversLedgered": 24729,
+        "turnoversInCellsPrimary": 24729,
+        "doubleAttributed": 0,
+        "perWindow": [
+          {
+            "windowS": 5,
+            "attributed": 654,
+            "unattributed": 931,
+            "attributedInCells": 654
+          },
+          {
+            "windowS": 10,
+            "attributed": 1090,
+            "unattributed": 495,
+            "attributedInCells": 1090
+          },
+          {
+            "windowS": 15,
+            "attributed": 1287,
+            "unattributed": 298,
+            "attributedInCells": 1287
+          },
+          {
+            "windowS": 20,
+            "attributed": 1391,
+            "unattributed": 194,
+            "attributedInCells": 1391
+          }
+        ]
+      },
+      "inherited": {
+        "goals": 1585,
+        "byOrigin": {
+          "kickoff": 80,
+          "goalKick": 62,
+          "kickIn": 57,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 199,
+          "setPieceFreeKick": 220,
+          "setPiecePenalty": 18,
+          "scrambleLooseBall": 867,
+          "turnoverWonInOwnThird": 32,
+          "turnoverWonInMiddleThird": 13,
+          "turnoverWonInFinalThird": 37
+        },
+        "byOriginAtRegainSpot": {
+          "kickoff": 80,
+          "goalKick": 62,
+          "kickIn": 57,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 199,
+          "setPieceFreeKick": 220,
+          "setPiecePenalty": 18,
+          "scrambleLooseBall": 867,
+          "turnoverWonInOwnThird": 35,
+          "turnoverWonInMiddleThird": 26,
+          "turnoverWonInFinalThird": 21
+        },
+        "byFamily": {
+          "setPiece": 437,
+          "restart": 199,
+          "openPlay": 949
+        },
+        "byLossThird": {
+          "own": 185,
+          "middle": 433,
+          "final": 331,
+          "notARegain": 636
+        },
+        "constructedLadder": {
+          "nonSetPiece": {
+            "pool": 1148,
+            "ladder": {
+              "ge3": {
+                "threshold": 3,
+                "constructed": 290,
+                "transition": 858
+              },
+              "ge4": {
+                "threshold": 4,
+                "constructed": 151,
+                "transition": 997
+              },
+              "ge5": {
+                "threshold": 5,
+                "constructed": 94,
+                "transition": 1054
+              }
+            }
+          },
+          "openPlayOriginOnly": {
+            "pool": 949,
+            "ladder": {
+              "ge3": {
+                "threshold": 3,
+                "constructed": 200,
+                "transition": 749
+              },
+              "ge4": {
+                "threshold": 4,
+                "constructed": 110,
+                "transition": 839
+              },
+              "ge5": {
+                "threshold": 5,
+                "constructed": 68,
+                "transition": 881
+              }
+            }
+          }
+        },
+        "segmentsByOrigin": {
+          "kickoff": 3002,
+          "goalKick": 3100,
+          "kickIn": 913,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 2225,
+          "setPieceFreeKick": 1784,
+          "setPiecePenalty": 32,
+          "scrambleLooseBall": 22752,
+          "turnoverWonInOwnThird": 1136,
+          "turnoverWonInMiddleThird": 435,
+          "turnoverWonInFinalThird": 398
+        },
+        "segmentsByOriginAtRegainSpot": {
+          "kickoff": 3002,
+          "goalKick": 3100,
+          "kickIn": 913,
+          "restartSecondBall": 0,
+          "matchOpenFallback": 0,
+          "setPieceCorner": 2225,
+          "setPieceFreeKick": 1784,
+          "setPiecePenalty": 32,
+          "scrambleLooseBall": 22752,
+          "turnoverWonInOwnThird": 1306,
+          "turnoverWonInMiddleThird": 519,
+          "turnoverWonInFinalThird": 144
+        },
+        "ownThirdTurnovers": 5380,
+        "ownThirdTurnoversAtRegainSpot": 3193,
+        "turnoversTotal": 24729,
+        "accountingTicks": {
+          "totalTicks": 10926815,
+          "deadBallTicks": 1529929,
+          "segmentTicks": 9396886,
+          "looseGapTicks": 0,
+          "assignedTicksSum": 9396886,
+          "goalsFromScore": 1585,
+          "goalsMappedToSegments": 1585,
+          "unattributedGoalSegments": 0
+        }
+      },
+      "rarestZoneEventsPerMatch": 0.16966
+    }
+  },
+  "gates": {
+    "xDet": {
+      "pass": true,
+      "digestA": "57bfffdb0a14a2f4909b3c08d993f8d5d3e99854b05cde61b3e85db8d2110601",
+      "digestB": "57bfffdb0a14a2f4909b3c08d993f8d5d3e99854b05cde61b3e85db8d2110601",
+      "note": "the whole measured core computed TWICE, canonical-JSON digests"
+    },
+    "xFpProd": {
+      "pass": true,
+      "baseline": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "observed": "57b0bdab389122af5e4cacd75c4e13020b8ff248a413a7fcd71cc6215ba4c673",
+      "seed": 1337,
+      "seasons": 2,
+      "skipped": false,
+      "reDerivedInThisProcess": true,
+      "skipNote": "a SKIPPED fingerprint forces the run onto a PREFLIGHT path — no canonical artifact can exist with skipped:true (the canonical-write guard, both limbs)."
+    },
+    "xSrcUntouched": {
+      "pass": true,
+      "srcDiff": "",
+      "note": "INSTRUMENT-ONLY: this stage adds ZERO src/** — the contract's DV-C0 clause (\"No src change\")."
+    },
+    "gReproGgc": {
+      "pass": true,
+      "block": "12421000..12421011",
+      "source": "docs/world-model/data/goal-genealogy-census-smoke.json",
+      "sourceArm": "PROD",
+      "sourceSha256": "1d7396c6e835fa73d3ee7dc9bf8261b5bcbcbcd25126caa42f671e4d73188317",
+      "fieldsChecked": 62,
+      "mismatches": 0,
+      "mismatchRows": [],
+      "note": "⭐ THE INHERITANCE, PROVED: this probe's walker IS the goal-genealogy census's, with its LOSS-TICK semantics (#215.3-H1/M2) verbatim. It re-walks the census's OWN committed SMOKE block in the census's OWN PROD world and must reproduce its published INTEGER rows exactly. The limbs DV-C0 does not read (pass LOCATION, own-third chains, the danger ladder, the regain cross-cut cells) are not lifted — the G-REPRO-173 precedent — and this gate is what proves the omission changes nothing on the columns that ARE read."
+    },
+    "gWindowTrace": {
+      "pass": true,
+      "source": "docs/world-model/data/goal-genealogy-census.json",
+      "sourceField": "frozenDesign.definitions.dangerWindowsS",
+      "family": [
+        5,
+        10
+      ],
+      "familyMin": 5,
+      "primaryWindowS": 10,
+      "primaryInFamily": true,
+      "windowsS": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "allIntegerMultiplesOfFamilyMin": true,
+      "note": "⭐ THE WINDOW IS NOT TYPED AS A LEVEL: the PRIMARY window must be a MEMBER of the #218 census's own committed co-occurrence family, and every sensitivity window must be an integer multiple of that family's smallest member. Both are checked against the committed artifact at run time."
+    },
+    "gZoneTrace": {
+      "pass": true,
+      "thirdLocalX": 10.5,
+      "thirdFormula": "HALF_L / 3",
+      "thirdOk": true,
+      "bandAbsY": 6.766667,
+      "bandFormula": "HALF_W / 3",
+      "bandOk": true,
+      "halfL": 31.5,
+      "halfW": 20.3,
+      "note": "the third boundary is the #188 / PM-T1 OWN_THIRD_LOCAL_X inherited through the #214 census; the lateral band boundary is the SAME one-third rule applied to the pitch's own WIDTH constant. Both are DERIVED from src/sim/constants.ts at run time — neither is a typed metre value."
+    },
+    "gWorld": {
+      "pass": true,
+      "noMtFlags": true,
+      "noStageFlags": true,
+      "genesAbsent": true,
+      "eyeNull": true,
+      "readback": true,
+      "genomeViewsChecked": 6,
+      "mtFlagKeys": [
+        "edsPerceivedDefence",
+        "edsPerceivedChoice",
+        "pmLaneConvergence",
+        "mtMarkSag"
+      ],
+      "otherFlagKeys": [
+        "dlcStrikePlane",
+        "dlcDeliveryChoice",
+        "obmMovement",
+        "ptpPassToPath",
+        "ctbCheckToBall",
+        "pmPhaseModulation",
+        "mtMarkTightness",
+        "dvDeliveryValue"
+      ],
+      "geneKeysChecked": [
+        "defLaneConvergence",
+        "markSag",
+        "passLeadSupport",
+        "obmMoveWeights",
+        "ctbSupportPlane",
+        "dlcStrikePlaneGene"
+      ],
+      "constructionSeed": 12429999,
+      "note": "⭐ THE WORLD WHOSE PRICES GROUND EVERYTHING is the SHIPPED game: `new Match({seed, teamA, teamB})` with nothing else written. Read back on a freshly constructed, NEVER-STEPPED match: no MT consumption flag, no banked stage flag, no seam gene on ANY of the six genome views, stationEye null, and the engine-side mtArmedVersion readback 0."
+    },
+    "gSeedDisjoint": {
+      "pass": true,
+      "block": "12429100..12429824",
+      "band": [
+        12429000,
+        12429999
+      ],
+      "inBand": true,
+      "routedCorrectly": true,
+      "subBlocksOrdered": true,
+      "walkedBlocks": [
+        {
+          "name": "census walk (fresh)",
+          "first": 12429100,
+          "last": 12429824,
+          "kind": "fresh",
+          "seeds": 725,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "smoke block (reserved)",
+          "first": 12429000,
+          "last": 12429011,
+          "kind": "reserved",
+          "seeds": 12,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "exit-semantics guard block (reserved)",
+          "first": 12429050,
+          "last": 12429099,
+          "kind": "reserved",
+          "seeds": 50,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "census block + reserve (reserved)",
+          "first": 12429100,
+          "last": 12429899,
+          "kind": "reserved",
+          "seeds": 800,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "gWorld construction seed (never stepped)",
+          "first": 12429999,
+          "last": 12429999,
+          "kind": "reserved",
+          "seeds": 1,
+          "ledgerCollisions": [],
+          "ok": true
+        },
+        {
+          "name": "reproGgc (re-walk RECEIPT)",
+          "first": 12421000,
+          "last": 12421011,
+          "kind": "re-walk",
+          "seeds": 12,
+          "ledgerCollisions": [
+            "goal-genealogy census band (#214/#217)"
+          ],
+          "ok": true
+        }
+      ],
+      "subBlocks": {
+        "smoke": "12429000..12429011",
+        "guard": "12429050..12429099",
+        "census": "12429100..12429899",
+        "censusN": 725,
+        "gWorldConstructionSeed": 12429999
+      },
+      "freshnessNote": "⭐ #163: this stage's band opens at 12429000, strictly above everything the programme has consumed — DLC-T1s's battery + reserve ran to 12,428,899 and its test-seed band to 12,428,906.",
+      "reproNote": "the ONE re-walk block (GGC smoke) is a DELIBERATE receipt, so its predicate is INVERTED: it must COLLIDE with the ledger. Every other block carries the ordinary predicate (collision-free), and the sub-blocks are ordered and disjoint from each other.",
+      "gWorldSeedNote": "gWorld CONSTRUCTS one match at 12429999 and NEVER STEPS IT — no match RNG is drawn from that seed, and it is inside this stage's own reserved band.",
+      "consumedLedger": [
+        {
+          "name": "#65 whether-seat block (repro receipt)",
+          "range": [
+            8500000,
+            8500047
+          ]
+        },
+        {
+          "name": "tempo census",
+          "range": [
+            12293000,
+            12299999
+          ]
+        },
+        {
+          "name": "O1 phase-0 census",
+          "range": [
+            12300000,
+            12301999
+          ]
+        },
+        {
+          "name": "O1-T1 smoke",
+          "range": [
+            12302000,
+            12302039
+          ]
+        },
+        {
+          "name": "O1-T2 sizing smoke",
+          "range": [
+            12302040,
+            12302063
+          ]
+        },
+        {
+          "name": "O1-T2 full A/B",
+          "range": [
+            12303000,
+            12303999
+          ]
+        },
+        {
+          "name": "O1 phase-0 sizing smoke",
+          "range": [
+            12309900,
+            12309923
+          ]
+        },
+        {
+          "name": "O2 opening sizing (#186)",
+          "range": [
+            12310000,
+            12310199
+          ]
+        },
+        {
+          "name": "far-side forensic (reserved in full)",
+          "range": [
+            12310200,
+            12310999
+          ]
+        },
+        {
+          "name": "O2-T0 receipts + freshness read",
+          "range": [
+            12311000,
+            12311024
+          ]
+        },
+        {
+          "name": "PM-T0 receipts + boundary/ASK read",
+          "range": [
+            12311100,
+            12311124
+          ]
+        },
+        {
+          "name": "PM-T1 sizing smoke",
+          "range": [
+            12311200,
+            12311205
+          ]
+        },
+        {
+          "name": "PM-T1 battery (#199)",
+          "range": [
+            12311300,
+            12311949
+          ]
+        },
+        {
+          "name": "MT-T0 receipts + stance census + lockstep",
+          "range": [
+            12312000,
+            12312025
+          ]
+        },
+        {
+          "name": "MT-T0 test-file seeds",
+          "range": [
+            12312900,
+            12312901
+          ]
+        },
+        {
+          "name": "MT-T1 smoke + exit-check + battery (#204)",
+          "range": [
+            12313000,
+            12313999
+          ]
+        },
+        {
+          "name": "MT-T2 reserved band (#208)",
+          "range": [
+            12320000,
+            12419999
+          ]
+        },
+        {
+          "name": "MT-LADDER reserved band (#211)",
+          "range": [
+            12420000,
+            12420999
+          ]
+        },
+        {
+          "name": "goal-genealogy census band (#214/#217)",
+          "range": [
+            12421000,
+            12421999
+          ]
+        },
+        {
+          "name": "O2-T1 smoke (#222)",
+          "range": [
+            12422000,
+            12422011
+          ]
+        },
+        {
+          "name": "O2-T1 guard (#222)",
+          "range": [
+            12422050,
+            12422099
+          ]
+        },
+        {
+          "name": "O2-T1 battery + reserve (#222)",
+          "range": [
+            12422100,
+            12422899
+          ]
+        },
+        {
+          "name": "CTB-T0 receipts + corner/smoke read (#224)",
+          "range": [
+            12423000,
+            12423024
+          ]
+        },
+        {
+          "name": "CTB-T1 smoke + exit-check (#225)",
+          "range": [
+            12423025,
+            12423036
+          ]
+        },
+        {
+          "name": "CTB-T1 guard band (#225)",
+          "range": [
+            12423050,
+            12423099
+          ]
+        },
+        {
+          "name": "CTB-T1 battery + reserve (#225/#226)",
+          "range": [
+            12423100,
+            12423727
+          ]
+        },
+        {
+          "name": "CTB-T0 test-file seeds (#224)",
+          "range": [
+            12423900,
+            12423901
+          ]
+        },
+        {
+          "name": "OBM-T0 receipts + geometry/EPI/smoke read (#228)",
+          "range": [
+            12424000,
+            12424024
+          ]
+        },
+        {
+          "name": "OBM-T0 REPORTED cost reading (#228)",
+          "range": [
+            12424025,
+            12424025
+          ]
+        },
+        {
+          "name": "OBM-T1 smoke (#228.6/#230)",
+          "range": [
+            12424026,
+            12424037
+          ]
+        },
+        {
+          "name": "OBM-T1 delivered-dose read (#230)",
+          "range": [
+            12424040,
+            12424040
+          ]
+        },
+        {
+          "name": "OBM-T1 guard band (#230)",
+          "range": [
+            12424050,
+            12424099
+          ]
+        },
+        {
+          "name": "OBM-T1 battery + reserve (#230)",
+          "range": [
+            12424100,
+            12424899
+          ]
+        },
+        {
+          "name": "OBM-T0 test-file seeds (#228)",
+          "range": [
+            12424900,
+            12424906
+          ]
+        },
+        {
+          "name": "PTP-T0 receipts + geometry/EPI-MOTION/smoke read (#232)",
+          "range": [
+            12425000,
+            12425024
+          ]
+        },
+        {
+          "name": "PTP-T0 REPORTED cost reading (#232)",
+          "range": [
+            12425025,
+            12425025
+          ]
+        },
+        {
+          "name": "PTP-T1 smoke (#232.3/#233)",
+          "range": [
+            12425026,
+            12425037
+          ]
+        },
+        {
+          "name": "PTP-T1 delivered-dose read (#233)",
+          "range": [
+            12425040,
+            12425040
+          ]
+        },
+        {
+          "name": "PTP-T1 guard band (#233)",
+          "range": [
+            12425050,
+            12425099
+          ]
+        },
+        {
+          "name": "PTP-T1 battery + reserve (#233/#234)",
+          "range": [
+            12425100,
+            12425727
+          ]
+        },
+        {
+          "name": "PTP-T0 test-file seeds (#232)",
+          "range": [
+            12425900,
+            12425906
+          ]
+        },
+        {
+          "name": "DLC-T0 receipts + contest/winner/EPI/smoke read (#237)",
+          "range": [
+            12426000,
+            12426024
+          ]
+        },
+        {
+          "name": "DLC-T0 REPORTED chooser-cost reading (#237)",
+          "range": [
+            12426025,
+            12426025
+          ]
+        },
+        {
+          "name": "DLC-T1 smoke (#238)",
+          "range": [
+            12426030,
+            12426041
+          ]
+        },
+        {
+          "name": "DLC-T1 delivered-dose read (#238)",
+          "range": [
+            12426045,
+            12426045
+          ]
+        },
+        {
+          "name": "DLC-T1 guard band (#238)",
+          "range": [
+            12426050,
+            12426099
+          ]
+        },
+        {
+          "name": "DLC-T1 battery + reserve (#238/#239)",
+          "range": [
+            12426100,
+            12426727
+          ]
+        },
+        {
+          "name": "DLC-T0 test-file seeds (#237)",
+          "range": [
+            12426900,
+            12426906
+          ]
+        },
+        {
+          "name": "DLC-T0s receipts + grid/winner/EPI/smoke/decode read (#242)",
+          "range": [
+            12427000,
+            12427024
+          ]
+        },
+        {
+          "name": "DLC-T0s REPORTED chooser-cost reading (#242)",
+          "range": [
+            12427025,
+            12427025
+          ]
+        },
+        {
+          "name": "DLC-T0s test-file seeds (#242)",
+          "range": [
+            12427900,
+            12427906
+          ]
+        },
+        {
+          "name": "DLC-T1s smoke (#243)",
+          "range": [
+            12428000,
+            12428011
+          ]
+        },
+        {
+          "name": "DLC-T1s delivered-dose read (#243)",
+          "range": [
+            12428015,
+            12428015
+          ]
+        },
+        {
+          "name": "DLC-T1s strike read (#243)",
+          "range": [
+            12428020,
+            12428020
+          ]
+        },
+        {
+          "name": "DLC-T1s guard band (#243)",
+          "range": [
+            12428050,
+            12428099
+          ]
+        },
+        {
+          "name": "DLC-T1s battery + reserve (#243/#244)",
+          "range": [
+            12428100,
+            12428899
+          ]
+        },
+        {
+          "name": "DLC-T1s test-file seed band (#243)",
+          "range": [
+            12428900,
+            12428906
+          ]
+        }
+      ]
+    },
+    "gStatsDisjoint": {
+      "pass": true,
+      "base": 106000,
+      "published": [
+        91100,
+        91110,
+        92110,
+        93003,
+        97003,
+        98003,
+        99003,
+        99203,
+        99403,
+        99503,
+        99603,
+        99703,
+        99803,
+        99903,
+        100003,
+        100203,
+        100303,
+        100403,
+        100503,
+        100603,
+        100703,
+        100803,
+        100903,
+        101003,
+        101103,
+        101203,
+        101303,
+        101403,
+        101503,
+        101513,
+        101523,
+        101800,
+        102000,
+        102200,
+        102400,
+        102600,
+        102800,
+        103000,
+        103200,
+        103400,
+        103600,
+        103800,
+        104000,
+        104200,
+        104400,
+        104600,
+        104800,
+        105000,
+        105200,
+        105400,
+        105800
+      ],
+      "minGap": 200,
+      "resamples": 2000,
+      "cluster": "match seed (#20)",
+      "publishedScope": "DLC-T1s's COMPLETE ≥91,100-regime ledger + its own base 105,800. Pre-regime bases (90,730, the 50xxx family) are ≥ 13,000 away and cannot move the minimum."
+    },
+    "gCleanInvocation": {
+      "pass": true,
+      "envN": null,
+      "capped": false,
+      "skipFp": false,
+      "routedToGuardBlock": false,
+      "guardBlock": "12429050..12429099",
+      "note": "any DVC0_N / DVC0_CAP / DVC0_SKIP_FP override is BY DEFINITION not the census: the run is routed onto the exit-semantics guard block, this gate goes RED and the process exits 1, so the census block stays VIRGIN."
+    },
+    "gNDerived": {
+      "pass": true,
+      "ranN": 725,
+      "derivedNStar": 725,
+      "envOverride": null,
+      "note": "in FULL mode the N run must BE the frozen §NRULE output; DVC0_N is accepted in NO mode."
+    },
+    "gAccounting": {
+      "pass": true,
+      "ticksIdentity": true,
+      "noOverlap": true,
+      "spansOrdered": true,
+      "goalsIdentity": true,
+      "turnoverPartition": true,
+      "oneToOne": true,
+      "windowIdentity": true,
+      "attributedMonotoneInWindow": true,
+      "totalTicks": 10926815,
+      "deadBallTicks": 1529929,
+      "segmentTicks": 9396886,
+      "looseGapTicks": 0,
+      "assignedTicksSum": 9396886,
+      "spanOrderViolations": 0,
+      "goalsFromScore": 1585,
+      "concededGoals": 1585,
+      "turnoversTotal": 24729,
+      "turnoversLedgered": 24729,
+      "turnoversInCellsPrimary": 24729,
+      "doubleAttributed": 0,
+      "perWindow": [
+        {
+          "windowS": 5,
+          "attributed": 654,
+          "unattributed": 931,
+          "attributedInCells": 654
+        },
+        {
+          "windowS": 10,
+          "attributed": 1090,
+          "unattributed": 495,
+          "attributedInCells": 1090
+        },
+        {
+          "windowS": 15,
+          "attributed": 1287,
+          "unattributed": 298,
+          "attributedInCells": 1287
+        },
+        {
+          "windowS": 20,
+          "attributed": 1391,
+          "unattributed": 194,
+          "attributedInCells": 1391
+        }
+      ],
+      "identity": "⭐ (i) every tick is in EXACTLY ONE of {segment · loose interval · dead ball} and the spans are ordered and non-overlapping (the #214 identity, inherited); (ii) EVERY turnover is classified into EXACTLY ONE zone cell (total = ledgered = summed over the six cells); (iii) EVERY conceded goal is attributed to EXACTLY ONE-OR-ZERO turnovers by the frozen nearest-in-window rule (attributed + unattributed = conceded, at EVERY window, and no turnover carries two goals); (iv) attribution is MONOTONE in the window, which is a mechanical consequence of the rule and is checked rather than assumed."
+    }
+  },
+  "allGatesPass": true,
+  "deviations": [
+    "A TOUCH / OWNERSHIP EPISODE IS NOT A FOOT-BALL CONTACT (inherited from the #170 tempo census through #214): Match exposes ball.owner, not a contact event. Everything here is derived from observable state, which is what X-SRC-UNTOUCHED requires.",
+    "⭐ THE TURNOVER EVENT CARRIES TWO TICKS AND THIS PROBE USES BOTH AS THE CENSUS DOES: the POSITION is read at the LAST OWNED tick (#215.3-H1) and the TIME is stamped at the tick the opponent establishes control (the census's own stamp for the same event). The gap between them is the #215 wedge and is a real property of the world, not a defect.",
+    "⭐ THE LATERAL BAND IS AN ANALOGUE, NOT AN INHERITANCE: HALF_L/3 is a traced, twice-inherited constant; HALF_W/3 is the same one-third rule applied to the width constant, chosen ex ante by this stage. It enters the SECONDARY table only — the primary table and every #246 predicate are on THIRDS alone.",
+    "THE HAZARD IS A CONDITIONAL RATE, NOT A CAUSAL EFFECT. \"Goal against within W of a loss here\" is temporal attribution under a frozen rule; no counterfactual is claimed, and losses are not randomly assigned to zones (a team that loses it in its own third is in a different state from one that loses it in the final third — the state is part of the price).",
+    "THE ATTRIBUTION RULE IS A RULE, NOT A TRUTH. A goal 9 s after a midfield loss and 2 s after an own-third loss is credited to the own-third loss; a different rule would move it. The rule is frozen ex ante, the CO-OCCURRENCE cross-cut is published beside every cell, and the whole table is republished at four windows so the reader can see how much the choice moves.",
+    "SINGLE ARM, NO PAIRING. This is a CENSUS, not a contrast: there is no treatment, no control and no A/B predicate anywhere in this stage.",
+    "NO CHECKPOINT/RESUME: the census is a few minutes; a kill costs the run. Stated, not hidden."
+  ],
+  "registeredNonClaims": [
+    "NOTHING SHIPS: zero src/** bytes, the production fingerprint re-derived unchanged, no flag and no gene written anywhere.",
+    "⭐⭐ THE TABLE IS NOT WIRED INTO ANY PLAYER (#247). It is instrument-side truth: it grounds DV-T1's hand doses and yardsticks DV-T2's belief convergence. No chooser reads it, now or as a consequence of this stage.",
+    "NO PASS/FAIL ON ANY MEASURED HAZARD. The gates are the X-family, the inheritance receipt, the trace gates and the ACCOUNTING identities. The #246 shape flags are MECHANICAL CI readings, not gates: an inversion turns nothing red and is routed, not corrected.",
+    "THE WINDOW LADDER IS A REPORTING GRID. No window is privileged beyond the pre-registered primary, and none is tunable after sight.",
+    "THIS STAGE PROPOSES NO MECHANIC AND RULES ON NOTHING (#203). DV-T0/T1/T2 are the contract's."
+  ],
+  "verdict": "DV-C0 LOSS-COST CENSUS at N=725 × 1 arm (production) — gate-green. THE TABLE IS DESCRIPTIVE TRUTH: the #246 shape flags are mechanical and the commander adjudicates them.",
+  "resultSha256": "c2ad2f273623219d5ff31dfa240c0cb7649072f7327928ce576fcfd5a7409156",
+  "sizing": {
+    "msPerMatch": 82.932,
+    "rarestZoneEventsPerMatch": 0.16966,
+    "turnoversPerMatch": 34.109,
+    "concededGoalsPerMatch": 2.1862,
+    "provenance": "POST-HOC on this FULL run — it selected nothing (N came from the frozen rule on the SMOKE's two numbers). Reported so the smoke's estimate can be checked against reality."
+  },
+  "preflightProvenance": {
+    "preflight": false,
+    "reasons": [],
+    "capped": false,
+    "fingerprintSkipped": false,
+    "outPath": "docs/world-model/data/dv-c0-loss-cost.json",
+    "outPathResolved": "/Users/jamie/Documents/Promptfoo/evofootball-arena/docs/world-model/data/dv-c0-loss-cost.json",
+    "canonicalPath": true,
+    "rule": "ANY skip/preflight lever (DVC0_CAP or DVC0_SKIP_FP) makes the run a PREFLIGHT regardless of N, a preflight may NEVER write a canonical repo path (guarded at parse time AND again at write time, on the RESOLVED absolute path with a separator-aware prefix test so `..` traversal spellings cannot slip past), and the skip is recorded here and in gates.xFpProd."
+  },
+  "headContextOnly": "17c1b77",
+  "headNote": "CONTEXT ONLY, and OUTSIDE resultSha256 (#197-M1).",
+  "wallContextOnly": {
+    "corePassMs": 60126,
+    "totalMs": 126268,
+    "note": "CONTEXT ONLY, and OUTSIDE resultSha256 (#128) — used in no gate. `sizing.msPerMatch` is the one timing number with a job: the wall term of the frozen N rule reads it."
+  }
+}
