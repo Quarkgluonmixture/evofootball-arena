@@ -665,13 +665,33 @@ TRUE TABLE measured — own-third loss → conceded-in-10s
 24,729 turnovers); ⭐⭐ the #246 SHAPE CHECK RESOLVED-CONFIRM
 at every window — the world's risk landscape has REALITY'S
 shape; the DV-T2 convergence yardstick schema FROZEN.
-**QUEUED NEXT STEP (on "go"/自走): dispatch DV-T0 — the
-pricing seam** (flight exposure at pricing time + born-absent
-belief weights; the true table instrument-side per #247;
-seeds 12,430,000+, stats ≥ 106,200). Then DV-T1 (truth-dosed
-map exam: the #244 failure inverted) → DV-T2 (belief
-convergence; the user's hypothesis, fifth registration) →
-entry gate. Parallel cheap: the #239.4甲 band census. ⭐ FRONTIER (supersedes #234's
+**SESSION CHECKPOINT (2026-08-12, the wrap-up ruling of
+record): a DV-T0 draft+verify workflow was DISPATCHED
+in-flight at session end and DIES WITH THE SESSION — its
+executor commits locally, never pushes. ⭐ RESUME PROTOCOL
+for the next session's first "go": (1) `git log
+origin/main..HEAD` — if a LOCAL DV-T0 commit exists (stage
+doc DV-T0-DORMANT-SEAM.md + src/ai seam + probe), run the
+independent VERIFY stage against it, then adjudicate (#250);
+(2) if the tree is clean at origin/main, RE-DISPATCH DV-T0
+per the frozen brief below. THE BRIEF (frozen, #249.3 +
+contract M-DV.1/.3 + #246/#247): flight exposure at pricing
+time (traced from the corridor/arc families, no invented
+constants) + THREE zone belief genes + wExposure, ALL born
+absent behind `evolveDeliveryValue` + flag `dvDeliveryValue`;
+⭐ G-NOTABLE hard gate = no census value reachable from src
+(the #247 split in code; truth-dosing = instrument writes
+genes); the DV term prices EVERY delivery seam's candidates
+identically; full identity stack + two-doors; seeds
+12,430,000+ (test 12,430,900+), stats ≥ 106,200. Then DV-T1
+(truth-dosed map exam: JOINT = supply retained AND goals
+recover — the #244 failure inverted) → DV-T2 (belief
+convergence vs the frozen `dv-c0.truth-table.v1` yardstick;
+⭐ the user's evolution hypothesis, FIFTH registration) →
+entry gate. Parallel cheap: the #239.4甲 band census. Open
+user gates unchanged: MT keep/hold verdict (#213); the
+#248 earned-knowledge debts (hold table · mode doctrine ·
+assignMarks scheme) ride their own future arcs.** ⭐ FRONTIER (supersedes #234's
 line): seeds consumed/reserved through **12,426,899**
 (DLC-T0 12,426,000–025 · DLC-T1 smoke 030–041 / dose-read 045
 / guard 050–099 / battery 100–727) + test seeds
